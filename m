@@ -2,62 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B2E87619CB
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 15:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FFA761A47
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 15:44:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D69C10E157;
-	Tue, 25 Jul 2023 13:23:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C90410E3D5;
+	Tue, 25 Jul 2023 13:44:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
- [IPv6:2607:f8b0:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9AB10E157
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 13:23:10 +0000 (UTC)
-Received: by mail-ot1-x32f.google.com with SMTP id
- 46e09a7af769-6bc481fe23eso447915a34.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 06:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690291389; x=1690896189;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qUjLJfZGmrY6v5yzbM0o28FC7eJlgs2KX/pgUyBc1mE=;
- b=G4DuG6A6IT1EsZU1nY9ZNEBfbI1Kj2rbi//zWNjYRdnNlkZAboDQzYZ7aruyhCVZT/
- qnytHNIJfJCAqeaEHHAdgAFMs2Y8qtpZWfLP+OM00yln6/zncY0JPKPFvfYZSvvKUDIl
- cQKDHq9AxCuFxwbVrjXMZ7bWfJfmvVz/YA4VeyTEOPACVUGNMGEzke76+NjrCyoFtfmU
- ReNxooK+ENSEbW3lOBmOPaUqPc7fQRNhMAw5dTL+14pV1op7ckmAVDc5DWl6sTYKrfmK
- 9xG8TFDeB2VpoIKBmUVssiel8rjRtpw3CZqP/u5alqN/kxe3/ZCtJDNgt3aDfz/uYsVr
- XR6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690291389; x=1690896189;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qUjLJfZGmrY6v5yzbM0o28FC7eJlgs2KX/pgUyBc1mE=;
- b=PgyfOMt2Obryg6J5323WVK/Fq5/n/hEOAB+rlL5HmhY6DmPLQ0SbP8IZaOwWYqp1oa
- kDs6Ks4dFK7vrSoWGxKt8jCKC4h3P5/4eGF527h6ATmwVwoUtWtIy0SZIpenAaEPYa6k
- XgIXvwcVHyHiGn7UbcHVsdUtZ/wx7SoFp4Mn445tmLACAKDUZqqSoX3baH+up7Y+OWyR
- g/lvWRFLlHzB4CInN/m//XHRHUyhtFlqNROxePX+dQo0RjsfcZZgs7p8HG9PsN3HkUTT
- W3OF4Vrj1zLpkIRY41WU/xwIfBoYLe0j6tkDXr5+nmFG07nXsHqcrrGuRdoep8jHapsO
- igjw==
-X-Gm-Message-State: ABy/qLbByC7+gF8zauO1+NektFS60XKOBy5iTIekwdmZ2oy02oqnsOTn
- xl8/VNlG2VraAjMwtd1wqNxiSxxYHHkVLGKyur4=
-X-Google-Smtp-Source: APBJJlHTQj6ao4rWFCkMLg8GxR4UHYaYOPL/IBhlbYtXenf8ogSyH3lsDenJozXjJeqJMlQUkPwlFJZcjfTK7pvjukU=
-X-Received: by 2002:aca:d0f:0:b0:3a4:225d:8135 with SMTP id
- 15-20020aca0d0f000000b003a4225d8135mr13594717oin.31.1690291389298; Tue, 25
- Jul 2023 06:23:09 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 208A110E3D0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 13:44:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N4/NIezs9YxWw8Iw0bO0mk84YRKAhKqYZuONaA891Hv6sJVLxx3FyOtBNogcxG7MWn8nGhAYL6rkqB7avHOGxaPdIGyYxrV9E+ZsSJaTzqXZoHqUUjMXPMRABxEFOaqdyyFriRi6dXFyEcGhbKmqp6dFY0jSGR0fvem+SjsC9B8WW8sa4jwUuFX3ZRzI7W+nEBgXtIvVZat/jB4eqqs4MNRjATz3lbLNJyjtcCC9B7CtfFqCkkVxYKYjqa6FmjZf+3q1rpg31ovKOjLaSf/JZ4ZbhOHGtZbRybhyNLzeYOA1LL5+pGyyDTZO0HIBbqxY9S00/JUSnuhAMXaC1prhcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GEIXQgxZbACzEBQXLfpnpvLOBihPC7gGbThRx9AWxOs=;
+ b=KNzx8YLiDY9h6cuLzW92aUcuZkANf/NaFVH+SR1uWqLwkMD7pgqwwpEx4280/zEge5YAmDV23AYIxdkBk62vPQ4laHn+hH7kwmDk7VoEdGv2v72tDp9cN56CmiOJ1n4/9xKVKKfzCX48eLkzOMxkSjRQ3/EG7uPLwjVEjf7iOvJnDGwnHn+MvGNfPfXdu17FoPCnm1marDCrYZz6XeO+8qBwLeW8pXDYqIWngX0pI1pXtz4e+RPT4LphQMetT5tJaBZcH1sLvPw9meCxynxhBfqTjTWFd1G+HAgd5fzhD3r5xKFyRhuPH+YJwmMAN4xnjYIjSSDh+AXRUnMEM0Fgvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GEIXQgxZbACzEBQXLfpnpvLOBihPC7gGbThRx9AWxOs=;
+ b=lewZDnlmNLy9GkBVKxqUAqdbAzfOifeEI8WN5Xvx1A53icQjAG7oijkwngT7vCBlo7p/235Hw5Cgp2Ryk0TtFfdZ2hKBHrV0Tmt8YesUJ2SJ1lyBl3kZfWnbyVSxGgAs3VrminXUxL0CKyFUnplXSgd+RZfv2xLqCcMlwHZPVf8=
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com (2603:10b6:208:396::7)
+ by SJ2PR12MB8883.namprd12.prod.outlook.com (2603:10b6:a03:538::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.30; Tue, 25 Jul
+ 2023 13:44:24 +0000
+Received: from BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::2ced:6c4f:9dc7:4a3f]) by BL1PR12MB5898.namprd12.prod.outlook.com
+ ([fe80::2ced:6c4f:9dc7:4a3f%5]) with mapi id 15.20.6609.026; Tue, 25 Jul 2023
+ 13:44:24 +0000
+Content-Type: multipart/mixed;
+ boundary="_000_BL1PR12MB5898ECB0C9E46899FC75CAC78503ABL1PR12MB5898namp_"
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, "SHANMUGAM, SRINIVASAN"
+ <SRINIVASAN.SHANMUGAM@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: Fix ENOSYS means 'invalid syscall nr' in
+ amdgpu_device.c
+Thread-Topic: [PATCH] drm/amdgpu: Fix ENOSYS means 'invalid syscall nr' in
+ amdgpu_device.c
+Thread-Index: AQHZvS08wGZpTMDEoUKVkCdwiGLIoK/J8QCAgACQppA=
+Date: Tue, 25 Jul 2023 13:44:24 +0000
+Message-ID: <BL1PR12MB5898ECB0C9E46899FC75CAC78503A@BL1PR12MB5898.namprd12.prod.outlook.com>
+References: <20230723061549.2017184-1-srinivasan.shanmugam@amd.com>
+ <DM5PR12MB2469D37C8DE706055F2B6ECBF103A@DM5PR12MB2469.namprd12.prod.outlook.com>
+In-Reply-To: <DM5PR12MB2469D37C8DE706055F2B6ECBF103A@DM5PR12MB2469.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: <BL1PR12MB5898ECB0C9E46899FC75CAC78503A@BL1PR12MB5898.namprd12.prod.outlook.com>
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=545c07bd-c5c2-44c2-ba39-56a980917686;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
+ 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-07-25T05:05:21Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5898:EE_|SJ2PR12MB8883:EE_
+x-ms-office365-filtering-correlation-id: b9cc03e8-a57f-4505-6c5d-08db8d154213
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ETVxFUy4y3Du8tcVBGIhGEsyofGuHKTdg0cHESgfODt11pRyaFJwdf+UszIX5sfVJomiw7oh8qH+KmbLcheRJ2m9EU9zL2dcQqZnkrcqprtyALBoymYQfDGeztJlqeICtIaWmbZiV1WiGMfTfocmUZsjZLVd0HOE22gLuSKzk5pLiPYW62Jxt/QPeJPN5kMFPdOgEH5W3lJ2lG9NbiZl7dBwS3PwNHKE7EMvIqWl1gVByqRjjXnkZbR92izLx8ydT64dbwzDsI6SNXpyXcPC4rLOGJlo9p5EXWgeQnAg1a5jG8/yIz/x3Hb3tfk58beA+5bFjxxOOMmCAMd53lyIBKUF+CBZe+tiVWRazBgPo+xjig9wJC+wWrEwF9NEEvZtbXYxLXYBGXUJLLUIJZ1pbaE3tbEYk6s1H5Bicx2R+cjgyc+b/Elqpb8hqTDC/BcaTbZgVWtSyVEjY6czc0JPTq803xoKJ2ZZwlU7I90Wd39JA29fMXcTZGhEzn3MNBuYwKHx4QatUEj4Keu6VUWbUXHVZqJP3qOswU7HlOtliKaRtD+8A6/XI9xtHIP02TygxjnMMhrzaYDi2AGN/1cKcfzZqJlZmNyAc5DScNVzeJjrj9kzICR97lEFs0f9ZHkM
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5898.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(39860400002)(366004)(396003)(346002)(136003)(451199021)(53546011)(33656002)(41300700001)(30864003)(6506007)(186003)(83380400001)(66574015)(26005)(478600001)(71200400001)(55016003)(9686003)(38070700005)(2906002)(7696005)(86362001)(5660300002)(52536014)(66476007)(64756008)(76116006)(122000001)(66946007)(6636002)(4326008)(66446008)(66556008)(8676002)(8936002)(316002)(38100700002)(54906003)(110136005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YytHZTNkUldUaHpvR09Pd1F1ZmZGSHB4bnlYSllFTUdvMmx2aDY5NHNibG03?=
+ =?utf-8?B?REp1SnUzTVlyd2xuKzVrZHgydWsrNDVKVm02M2hMWGVhdUFtR3RvMXhiMjA5?=
+ =?utf-8?B?K3NkQUZLa3BxREgwRTRoV1k2WG5IYi91L2Q0djFBRGEvTWhxTE45RUNieFRF?=
+ =?utf-8?B?N2NYd3U1WHlqYnNLQWhYYy9IT2JrU1ZIUUIyQmZ6YmYyeS9FSGt3YjVzNUth?=
+ =?utf-8?B?dGVCUHA5MjBpdlZRYTFucDRqVG4xZm9pa1N6bG9jdXZMQURXcWIyb0EvTHNk?=
+ =?utf-8?B?Y0NtQ1pKSXFUVzI1K3RoZWxmVFVQTnluY0JCK0pjUHRFMjJuZk04TmRlblU0?=
+ =?utf-8?B?aG1GY2M1Qmh0bTVkTWpqbUVORStVcDdtZjlYY0d4MUZYVGY2V3I5Q2F4RWJU?=
+ =?utf-8?B?dVFrQ0lhQW5QdXd4YVFDOFVZWFBid3JWUENnRkk2Y2NnR1I1c0Jib0hWaEds?=
+ =?utf-8?B?eGZWN1pqY1hRLzJmMzA0Z2tKWGZmQXFwYkRndUlsQUVoOEJtbmF2d3B4WTVT?=
+ =?utf-8?B?STNWTTd6L3k1aE4zenV1MDM2K1RoL3hwMUdxb2tjeUJsUEpDamw3bFVwTngx?=
+ =?utf-8?B?Rm1TalY5a1JlbG5jTm5VeGFuY2hreHZVSTZUSTZpYmMxNlJqdlVtcHdzYzNw?=
+ =?utf-8?B?TGpNeTVqem1XTTZ3V1l5NGljaHJmWFZqMU14NjV1U0hkMmVmN3MxUmpzeXRG?=
+ =?utf-8?B?Zmp6UEVYRXNTNDlsV0kxc2tldzR2ZVh3RkZJMkhSUVo0V1VUZzV6dFZ5MU5s?=
+ =?utf-8?B?cVltNEpPNCtUYWgrcXh1MGxCNTg3YTNtVGdibk9uamJyUGNINlkvdEhYSlVU?=
+ =?utf-8?B?RFRqZmNQckVBaHBRZExTSmd0T0NoUU5IY3l1NUljbkEyV1lPUkc2cHZMNW8v?=
+ =?utf-8?B?TFZmY28yYWtROW1sdTNmSUYwc3F2V04zajB4b0syekxkSk1VNzdsWGJ6eWpT?=
+ =?utf-8?B?Sk0xRmNpMTAwbWV5VFJIUk5xUWFUNTRkalU1YS9CL1QxbnFlblVSSE5Sc1B4?=
+ =?utf-8?B?dVk0SHFocGQ4UFh4cGNvdzFsQmpLbnBIb1lyeXF6L3VoVGw0cUd2b1FvaEpz?=
+ =?utf-8?B?SVpqekVRaG4rWDBjVnVQcXpaY0pwVUI4YVhzdVl6ZFdheFZieFVjMDVhS2xX?=
+ =?utf-8?B?c2Z6SE1sTDYyTHBlQnNOYTJjNEpJTGl6Qms1YkpOdFo2S1lnVXMwK0J4WlBj?=
+ =?utf-8?B?THY4d3lFUlpCQXVCM3V6bG5HL1VhR3pFbXMrWVQzankySXNVK2hqd1hCeFVR?=
+ =?utf-8?B?OHhwOGp2REo5dnJSVXIwWmdmSzBsYTlFMzRiT0hHaUowYkRnenVYWFVuQmVO?=
+ =?utf-8?B?a0RlQng0aitkODMzbGczYXRDWGs2WG1yd1Y1KzdmcGhXaHNhclhZT1N1T1pO?=
+ =?utf-8?B?VGtuQmVTcVZxbUlkK1BkZllTVHZPMk4vTTJZTDF3R3Y3L1ViL3IrbFI3R1Ns?=
+ =?utf-8?B?S0ZXVVFRd3U2TEF3L1dmL0lxYXJlWWhJM2lya1FxZlNXVUpsVnRFelN5Y29z?=
+ =?utf-8?B?emlzMmVOUWVMRjl2ZGtleTZKTzY5N3NhU0hRbTF1Y1UzeGQwLzIyWittckpM?=
+ =?utf-8?B?aTlZczhhbk03M1J5d05qbHhRT2h6T0VHeG5ucndjTHh4WTl1dXorYzBWQUpD?=
+ =?utf-8?B?UjZyUVpQWVlwaUNqQXJlcVRybWxXRjgxUGVjaU5ROVRMemRxdVhNNUtZbzJT?=
+ =?utf-8?B?MDhVeTVhTTJHckUwNVZLOGF0ZlV4MUdUVkNrZkVGdXZRK0hLeDVHUG1KUFRm?=
+ =?utf-8?B?Y2ZLYkF5SUhMUGVUbG1NMzdrdDlSNTZnQUExQ0ltMUJWc2lyZXprMk1xRk8z?=
+ =?utf-8?B?ZnVVZncrU0YwYU1WQkE4RTZtc1dGTFBXaGdWdnIxY3luMjdhM0hhNXg0VEMr?=
+ =?utf-8?B?ZDB0RTBtUUFVMktvUVl4VWlFWWVCS0xQc0h0Z0M0K1ptUWgreXpvRHRSaHc4?=
+ =?utf-8?B?VUlkMmJzUzIvLzYzZnNTdVpydTRjUXBkeGR6Zm85NGVDY0xUZ2NXUEtxeG9N?=
+ =?utf-8?B?d1l2MTBWNXdCeGR1dUNBQ0tRdE1hRVJRbFBuQk83ME9KdDB3alhIekVUeEdw?=
+ =?utf-8?B?ZE1lYWw0THIxSHNYL2loYjJQN29qS05tUkUrWVRqWHRGTjZNUis0U0NiQ1I3?=
+ =?utf-8?Q?xwVQ=3D?=
 MIME-Version: 1.0
-References: <20230724200513.764387-1-alexander.deucher@amd.com>
- <20230724200513.764387-2-alexander.deucher@amd.com>
- <DM5PR12MB2469124C2BB6845CC4A03D04F103A@DM5PR12MB2469.namprd12.prod.outlook.com>
-In-Reply-To: <DM5PR12MB2469124C2BB6845CC4A03D04F103A@DM5PR12MB2469.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 25 Jul 2023 09:22:58 -0400
-Message-ID: <CADnq5_OORkCy3p66SfrZj60qnVUFyOegd02izwd3t3LOYBF1Wg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] drm/amdgpu: add ih 6.1 support
-To: "Chen, Guchun" <Guchun.Chen@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5898.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9cc03e8-a57f-4505-6c5d-08db8d154213
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2023 13:44:24.5122 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sAg6Uv32EcXV2OcstUDChxPxhf75bnN0iPDox8r40S0Q1Zkgb/MMWkNTxwbPaCUWRXi1tfgKisDTo5qdEZ2O5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8883
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,980 +136,627 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Li,
- Ben" <Ben.Li@amd.com>,
+Cc: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 24, 2023 at 11:01=E2=80=AFPM Chen, Guchun <Guchun.Chen@amd.com>=
- wrote:
->
-> [Public]
->
-> > -----Original Message-----
-> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex
-> > Deucher
-> > Sent: Tuesday, July 25, 2023 4:05 AM
-> > To: amd-gfx@lists.freedesktop.org
-> > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Li, Ben
-> > <Ben.Li@amd.com>
-> > Subject: [PATCH 2/3] drm/amdgpu: add ih 6.1 support
-> >
-> > From: benl <ben.li@amd.com>
-> >
-> > Add initial support for IH 6.1.
-> >
-> > Signed-off-by: benl <ben.li@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/Makefile  |   3 +-
-> >  drivers/gpu/drm/amd/amdgpu/ih_v6_1.c | 769
-> > +++++++++++++++++++++++++++  drivers/gpu/drm/amd/amdgpu/ih_v6_1.h
-> > |  28 +
-> >  3 files changed, 799 insertions(+), 1 deletion(-)  create mode 100644
-> > drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-> >  create mode 100644 drivers/gpu/drm/amd/amdgpu/ih_v6_1.h
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile
-> > b/drivers/gpu/drm/amd/amdgpu/Makefile
-> > index 29325981778a0..384b798a9bad1 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/Makefile
-> > +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-> > @@ -129,7 +129,8 @@ amdgpu-y +=3D \
-> >       vega10_ih.o \
-> >       vega20_ih.o \
-> >       navi10_ih.o \
-> > -     ih_v6_0.o
-> > +     ih_v6_0.o \
-> > +     ih_v6_1.o
-> >
-> >  # add PSP block
-> >  amdgpu-y +=3D \
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-> > b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-> > new file mode 100644
-> > index 0000000000000..5795a66ccbc5d
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-> > @@ -0,0 +1,769 @@
-> > +/*
-> > + * Copyright 2021 Advanced Micro Devices, Inc.
-> > + *
->
-> I guess the copyright year here should be 2023? Same for the new header f=
-ile ih_v6_1.h if it's right.
+--_000_BL1PR12MB5898ECB0C9E46899FC75CAC78503ABL1PR12MB5898namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Fixed up locally.  Thanks!
+W1B1YmxpY10NCg0KVGhlIFNfSVJVR08gc3R1ZmYgYmUgc3BsaXQgZnJvbSB0aGUgRU5PU1lTIHN0
+dWZmLCBzaW5jZSB0aGV5J3JlIHNlcGFyYXRlLiBBbHNvIHRoZSBTX0lSVUdPIHN0dWZmIGlzbid0
+IG1lbnRpb25lZCBpbiB0aGUgY29tbWl0IG1lc3NhZ2UuDQoNCiBLZW50DQoNCj4gLS0tLS1Pcmln
+aW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogYW1kLWdmeCA8YW1kLWdmeC1ib3VuY2VzQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIENoZW4sDQo+IEd1Y2h1bg0KPiBTZW50OiBU
+dWVzZGF5LCBKdWx5IDI1LCAyMDIzIDE6MDYgQU0NCj4gVG86IFNIQU5NVUdBTSwgU1JJTklWQVNB
+TiA8U1JJTklWQVNBTi5TSEFOTVVHQU1AYW1kLmNvbT47DQo+IEtvZW5pZywgQ2hyaXN0aWFuIDxD
+aHJpc3RpYW4uS29lbmlnQGFtZC5jb20+OyBEZXVjaGVyLCBBbGV4YW5kZXINCj4gPEFsZXhhbmRl
+ci5EZXVjaGVyQGFtZC5jb20+DQo+IENjOiBTSEFOTVVHQU0sIFNSSU5JVkFTQU4gPFNSSU5JVkFT
+QU4uU0hBTk1VR0FNQGFtZC5jb20+OyBhbWQtDQo+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+Cj4gU3ViamVjdDogUkU6IFtQQVRDSF0gZHJtL2FtZGdwdTogRml4IEVOT1NZUyBtZWFucyAnaW52
+YWxpZCBzeXNjYWxsIG5yJyBpbg0KPiBhbWRncHVfZGV2aWNlLmMNCj4NCj4gW1B1YmxpY10NCj4N
+Cj4gW1B1YmxpY10NCj4NCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206
+IGFtZC1nZnggPGFtZC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFs
+ZiBPZg0KPiA+IFNyaW5pdmFzYW4gU2hhbm11Z2FtDQo+ID4gU2VudDogU3VuZGF5LCBKdWx5IDIz
+LCAyMDIzIDI6MTYgUE0NCj4gPiBUbzogS29lbmlnLCBDaHJpc3RpYW4gPENocmlzdGlhbi5Lb2Vu
+aWdAYW1kLmNvbT47IERldWNoZXIsIEFsZXhhbmRlcg0KPiA+IDxBbGV4YW5kZXIuRGV1Y2hlckBh
+bWQuY29tPg0KPiA+IENjOiBTSEFOTVVHQU0sIFNSSU5JVkFTQU4gPFNSSU5JVkFTQU4uU0hBTk1V
+R0FNQGFtZC5jb20+Ow0KPiA+IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gU3Vi
+amVjdDogW1BBVENIXSBkcm0vYW1kZ3B1OiBGaXggRU5PU1lTIG1lYW5zICdpbnZhbGlkIHN5c2Nh
+bGwgbnInIGluDQo+ID4gYW1kZ3B1X2RldmljZS5jDQo+ID4NCj4gPiBFTk9TWVMgc2hvdWxkIGJl
+IHVzZWQgZm9yIG5vbmV4aXN0ZW50IHN5c2NhbGxzIG9ubHksIHJlcGxhY2UgRU5PU1lTIHdpdGgN
+Cj4gPiBFSU5WQUwgJiBvdGhlciBzdHlsZSBmaXhlcw0KPiA+DQo+ID4gV0FSTklORzogRU5PU1lT
+IG1lYW5zICdpbnZhbGlkIHN5c2NhbGwgbnInIGFuZCBub3RoaW5nIGVsc2UNCj4gPiArICAgICAg
+IGlmIChyID09IC1FTk9TWVMpDQo+ID4NCj4gPiBXQVJOSU5HOiBFTk9TWVMgbWVhbnMgJ2ludmFs
+aWQgc3lzY2FsbCBucicgYW5kIG5vdGhpbmcgZWxzZQ0KPiA+ICsgICAgICAgaWYgKHIgPT0gLUVO
+T1NZUykNCj4gPg0KPiA+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFt
+ZC5jb20+DQo+ID4gQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4N
+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBTcmluaXZhc2FuIFNoYW5tdWdhbSA8c3Jpbml2YXNhbi5zaGFu
+bXVnYW1AYW1kLmNvbT4NCj4NCj4gUmV2aWV3ZWQtYnk6IEd1Y2h1biBDaGVuIDxndWNodW4uY2hl
+bkBhbWQuY29tPg0KPg0KPiBSZWdhcmRzLA0KPiBHdWNodW4NCj4NCj4gPiAtLS0NCj4gPiAgZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RldmljZS5jIHwgNjAgKysrKysrKysrKyst
+LS0tLS0tLS0tLQ0KPiA+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yZXNldC5j
+ICB8ICA0ICstDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMzMgaW5zZXJ0aW9ucygrKSwgMzEgZGVs
+ZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2RldmljZS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfZGV2aWNlLmMNCj4gPiBpbmRleCAxYzc4NjE5MGE4NGUuLmVjMTY2Yzc5N2I5YSAxMDA2NDQN
+Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMNCj4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMNCj4gPiBA
+QCAtMTU5LDcgKzE1OSw3IEBAIHN0YXRpYyBzc2l6ZV90DQo+ID4gYW1kZ3B1X2RldmljZV9nZXRf
+cGNpZV9yZXBsYXlfY291bnQoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICAgICAgIHJldHVybiBz
+eXNmc19lbWl0KGJ1ZiwgIiVsbHVcbiIsIGNudCk7ICB9DQo+ID4NCj4gPiAtc3RhdGljIERFVklD
+RV9BVFRSKHBjaWVfcmVwbGF5X2NvdW50LCBTX0lSVUdPLA0KPiA+ICtzdGF0aWMgREVWSUNFX0FU
+VFIocGNpZV9yZXBsYXlfY291bnQsIDA0NDQsDQo+ID4gICAgICAgICAgICAgICBhbWRncHVfZGV2
+aWNlX2dldF9wY2llX3JlcGxheV9jb3VudCwgTlVMTCk7DQo+ID4NCj4gPiAgc3RhdGljIHZvaWQg
+YW1kZ3B1X2RldmljZV9nZXRfcGNpZV9pbmZvKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KTsN
+Cj4gPiBAQCAtMTgzLDcgKzE4Myw3IEBAIHN0YXRpYyBzc2l6ZV90DQo+ID4gYW1kZ3B1X2Rldmlj
+ZV9nZXRfcHJvZHVjdF9uYW1lKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gPiAgICAgICByZXR1cm4g
+c3lzZnNfZW1pdChidWYsICIlc1xuIiwgYWRldi0+cHJvZHVjdF9uYW1lKTsgIH0NCj4gPg0KPiA+
+IC1zdGF0aWMgREVWSUNFX0FUVFIocHJvZHVjdF9uYW1lLCBTX0lSVUdPLA0KPiA+ICtzdGF0aWMg
+REVWSUNFX0FUVFIocHJvZHVjdF9uYW1lLCAwNDQ0LA0KPiA+ICAgICAgICAgICAgICAgYW1kZ3B1
+X2RldmljZV9nZXRfcHJvZHVjdF9uYW1lLCBOVUxMKTsNCj4gPg0KPiA+ICAvKioNCj4gPiBAQCAt
+MjA1LDcgKzIwNSw3IEBAIHN0YXRpYyBzc2l6ZV90DQo+ID4gYW1kZ3B1X2RldmljZV9nZXRfcHJv
+ZHVjdF9udW1iZXIoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICAgICAgIHJldHVybiBzeXNmc19l
+bWl0KGJ1ZiwgIiVzXG4iLCBhZGV2LT5wcm9kdWN0X251bWJlcik7ICB9DQo+ID4NCj4gPiAtc3Rh
+dGljIERFVklDRV9BVFRSKHByb2R1Y3RfbnVtYmVyLCBTX0lSVUdPLA0KPiA+ICtzdGF0aWMgREVW
+SUNFX0FUVFIocHJvZHVjdF9udW1iZXIsIDA0NDQsDQo+ID4gICAgICAgICAgICAgICBhbWRncHVf
+ZGV2aWNlX2dldF9wcm9kdWN0X251bWJlciwgTlVMTCk7DQo+ID4NCj4gPiAgLyoqDQo+ID4gQEAg
+LTIyNyw3ICsyMjcsNyBAQCBzdGF0aWMgc3NpemVfdA0KPiA+IGFtZGdwdV9kZXZpY2VfZ2V0X3Nl
+cmlhbF9udW1iZXIoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICAgICAgIHJldHVybiBzeXNmc19l
+bWl0KGJ1ZiwgIiVzXG4iLCBhZGV2LT5zZXJpYWwpOyAgfQ0KPiA+DQo+ID4gLXN0YXRpYyBERVZJ
+Q0VfQVRUUihzZXJpYWxfbnVtYmVyLCBTX0lSVUdPLA0KPiA+ICtzdGF0aWMgREVWSUNFX0FUVFIo
+c2VyaWFsX251bWJlciwgMDQ0NCwNCj4gPiAgICAgICAgICAgICAgIGFtZGdwdV9kZXZpY2VfZ2V0
+X3NlcmlhbF9udW1iZXIsIE5VTEwpOw0KPiA+DQo+ID4gIC8qKg0KPiA+IEBAIC00ODEsOCArNDgx
+LDcgQEAgdWludDMyX3QgYW1kZ3B1X2RldmljZV9ycmVnKHN0cnVjdCBhbWRncHVfZGV2aWNlDQo+
+ID4gKmFkZXYsDQo+ID4gIC8qDQo+ID4gICAqIE1NSU8gcmVnaXN0ZXIgcmVhZCB3aXRoIGJ5dGVz
+IGhlbHBlciBmdW5jdGlvbnMNCj4gPiAgICogQG9mZnNldDpieXRlcyBvZmZzZXQgZnJvbSBNTUlP
+IHN0YXJ0DQo+ID4gLSAqDQo+ID4gLSovDQo+ID4gKyAqLw0KPiA+DQo+ID4gIC8qKg0KPiA+ICAg
+KiBhbWRncHVfbW1fcnJlZzggLSByZWFkIGEgbWVtb3J5IG1hcHBlZCBJTyByZWdpc3RlciBAQCAt
+NTA2LDgNCj4gPiArNTA1LDggQEAgdWludDhfdCBhbWRncHVfbW1fcnJlZzgoc3RydWN0IGFtZGdw
+dV9kZXZpY2UgKmFkZXYsDQo+ID4gdWludDMyX3Qgb2Zmc2V0KQ0KPiA+ICAgKiBNTUlPIHJlZ2lz
+dGVyIHdyaXRlIHdpdGggYnl0ZXMgaGVscGVyIGZ1bmN0aW9ucw0KPiA+ICAgKiBAb2Zmc2V0OmJ5
+dGVzIG9mZnNldCBmcm9tIE1NSU8gc3RhcnQNCj4gPiAgICogQHZhbHVlOiB0aGUgdmFsdWUgd2Fu
+dCB0byBiZSB3cml0dGVuIHRvIHRoZSByZWdpc3Rlcg0KPiA+IC0gKg0KPiA+IC0qLw0KPiA+ICsg
+Ki8NCj4gPiArDQo+ID4gIC8qKg0KPiA+ICAgKiBhbWRncHVfbW1fd3JlZzggLSByZWFkIGEgbWVt
+b3J5IG1hcHBlZCBJTyByZWdpc3Rlcg0KPiA+ICAgKg0KPiA+IEBAIC05OTEsNyArOTkwLDcgQEAg
+c3RhdGljIHZvaWQgYW1kZ3B1X2RldmljZV9tZW1fc2NyYXRjaF9maW5pKHN0cnVjdA0KPiA+IGFt
+ZGdwdV9kZXZpY2UgKmFkZXYpDQo+ID4gICAqIEByZWdpc3RlcnM6IHBvaW50ZXIgdG8gdGhlIHJl
+Z2lzdGVyIGFycmF5DQo+ID4gICAqIEBhcnJheV9zaXplOiBzaXplIG9mIHRoZSByZWdpc3RlciBh
+cnJheQ0KPiA+ICAgKg0KPiA+IC0gKiBQcm9ncmFtcyBhbiBhcnJheSBvciByZWdpc3RlcnMgd2l0
+aCBhbmQgYW5kIG9yIG1hc2tzLg0KPiA+ICsgKiBQcm9ncmFtcyBhbiBhcnJheSBvciByZWdpc3Rl
+cnMgd2l0aCBhbmQgb3IgbWFza3MuDQo+ID4gICAqIFRoaXMgaXMgYSBoZWxwZXIgZm9yIHNldHRp
+bmcgZ29sZGVuIHJlZ2lzdGVycy4NCj4gPiAgICovDQo+ID4gIHZvaWQgYW1kZ3B1X2RldmljZV9w
+cm9ncmFtX3JlZ2lzdGVyX3NlcXVlbmNlKHN0cnVjdCBhbWRncHVfZGV2aWNlDQo+ID4gKmFkZXYs
+IEBAIC0xMTU3LDcgKzExNTYsNyBAQCBpbnQgYW1kZ3B1X2RldmljZV9yZXNpemVfZmJfYmFyKHN0
+cnVjdA0KPiA+IGFtZGdwdV9kZXZpY2UgKmFkZXYpDQo+ID4gICAgICAgaW50IHJiYXJfc2l6ZSA9
+IHBjaV9yZWJhcl9ieXRlc190b19zaXplKGFkZXYtPmdtYy5yZWFsX3ZyYW1fc2l6ZSk7DQo+ID4g
+ICAgICAgc3RydWN0IHBjaV9idXMgKnJvb3Q7DQo+ID4gICAgICAgc3RydWN0IHJlc291cmNlICpy
+ZXM7DQo+ID4gLSAgICAgdW5zaWduZWQgaTsNCj4gPiArICAgICB1bnNpZ25lZCBpbnQgaTsNCj4g
+PiAgICAgICB1MTYgY21kOw0KPiA+ICAgICAgIGludCByOw0KPiA+DQo+ID4gQEAgLTEyMjYsOSAr
+MTIyNSw4IEBAIGludCBhbWRncHVfZGV2aWNlX3Jlc2l6ZV9mYl9iYXIoc3RydWN0DQo+ID4gYW1k
+Z3B1X2RldmljZSAqYWRldikNCj4gPg0KPiA+ICBzdGF0aWMgYm9vbCBhbWRncHVfZGV2aWNlX3Jl
+YWRfYmlvcyhzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikgIHsNCj4gPiAtICAgICBpZiAoaHdl
+aWdodDMyKGFkZXYtPmFpZF9tYXNrKSAmJiAoYWRldi0+ZmxhZ3MgJiBBTURfSVNfQVBVKSkgew0K
+PiA+ICsgICAgIGlmIChod2VpZ2h0MzIoYWRldi0+YWlkX21hc2spICYmIChhZGV2LT5mbGFncyAm
+IEFNRF9JU19BUFUpKQ0KPiA+ICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KPiA+IC0gICAg
+IH0NCj4gPg0KPiA+ICAgICAgIHJldHVybiB0cnVlOw0KPiA+ICB9DQo+ID4gQEAgLTEyNjQsNiAr
+MTI2Miw3IEBAIGJvb2wgYW1kZ3B1X2RldmljZV9uZWVkX3Bvc3Qoc3RydWN0DQo+ID4gYW1kZ3B1
+X2RldmljZSAqYWRldikNCj4gPiAgICAgICAgICAgICAgIGlmIChhZGV2LT5hc2ljX3R5cGUgPT0g
+Q0hJUF9GSUpJKSB7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgIGludCBlcnI7DQo+ID4gICAg
+ICAgICAgICAgICAgICAgICAgIHVpbnQzMl90IGZ3X3ZlcjsNCj4gPiArDQo+ID4gICAgICAgICAg
+ICAgICAgICAgICAgIGVyciA9IHJlcXVlc3RfZmlybXdhcmUoJmFkZXYtPnBtLmZ3LA0KPiA+ICJh
+bWRncHUvZmlqaV9zbWMuYmluIiwgYWRldi0+ZGV2KTsNCj4gPiAgICAgICAgICAgICAgICAgICAg
+ICAgLyogZm9yY2UgdlBvc3QgaWYgZXJyb3Igb2NjdXJlZCAqLw0KPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICBpZiAoZXJyKQ0KPiA+IEBAIC0xMzY2LDYgKzEzNjUsNyBAQCBzdGF0aWMgdW5zaWdu
+ZWQgaW50DQo+ID4gYW1kZ3B1X2RldmljZV92Z2Ffc2V0X2RlY29kZShzdHJ1Y3QgcGNpX2RldiAq
+cGRldiwNCj4gPiAgICAgICAgICAgICAgIGJvb2wgc3RhdGUpDQo+ID4gIHsNCj4gPiAgICAgICBz
+dHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IGRybV90b19hZGV2KHBjaV9nZXRfZHJ2ZGF0YShw
+ZGV2KSk7DQo+ID4gKw0KPiA+ICAgICAgIGFtZGdwdV9hc2ljX3NldF92Z2Ffc3RhdGUoYWRldiwg
+c3RhdGUpOw0KPiA+ICAgICAgIGlmIChzdGF0ZSkNCj4gPiAgICAgICAgICAgICAgIHJldHVybiBW
+R0FfUlNSQ19MRUdBQ1lfSU8gfCBWR0FfUlNSQ19MRUdBQ1lfTUVNIHwNCj4gPiBAQCAtMTM4OCw3
+ICsxMzg4LDggQEAgc3RhdGljIHZvaWQNCj4gPiBhbWRncHVfZGV2aWNlX2NoZWNrX2Jsb2NrX3Np
+emUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpICB7DQo+ID4gICAgICAgLyogZGVmaW5lcyBu
+dW1iZXIgb2YgYml0cyBpbiBwYWdlIHRhYmxlIHZlcnN1cyBwYWdlIGRpcmVjdG9yeSwNCj4gPiAg
+ICAgICAgKiBhIHBhZ2UgaXMgNEtCIHNvIHdlIGhhdmUgMTIgYml0cyBvZmZzZXQsIG1pbmltdW0g
+OSBiaXRzIGluIHRoZQ0KPiA+IC0gICAgICAqIHBhZ2UgdGFibGUgYW5kIHRoZSByZW1haW5pbmcg
+Yml0cyBhcmUgaW4gdGhlIHBhZ2UgZGlyZWN0b3J5ICovDQo+ID4gKyAgICAgICogcGFnZSB0YWJs
+ZSBhbmQgdGhlIHJlbWFpbmluZyBiaXRzIGFyZSBpbiB0aGUgcGFnZSBkaXJlY3RvcnkNCj4gPiAr
+ICAgICAgKi8NCj4gPiAgICAgICBpZiAoYW1kZ3B1X3ZtX2Jsb2NrX3NpemUgPT0gLTEpDQo+ID4g
+ICAgICAgICAgICAgICByZXR1cm47DQo+ID4NCj4gPiBAQCAtMTYyMCw3ICsxNjIxLDcgQEAgc3Rh
+dGljIGJvb2wgYW1kZ3B1X3N3aXRjaGVyb29fY2FuX3N3aXRjaChzdHJ1Y3QNCj4gPiBwY2lfZGV2
+ICpwZGV2KSAgew0KPiA+ICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBwY2lfZ2V0X2Ry
+dmRhdGEocGRldik7DQo+ID4NCj4gPiAtICAgICAvKg0KPiA+ICsgICAgICAgLyoNCj4gPiAgICAg
+ICAqIEZJWE1FOiBvcGVuX2NvdW50IGlzIHByb3RlY3RlZCBieSBkcm1fZ2xvYmFsX211dGV4IGJ1
+dCB0aGF0DQo+ID4gd291bGQgbGVhZCB0bw0KPiA+ICAgICAgICogbG9ja2luZyBpbnZlcnNpb24g
+d2l0aCB0aGUgZHJpdmVyIGxvYWQgcGF0aC4gQW5kIHRoZSBhY2Nlc3MgaGVyZSBpcw0KPiA+ICAg
+ICAgICogY29tcGxldGVseSByYWN5IGFueXdheS4gU28gZG9uJ3QgYm90aGVyIHdpdGggbG9ja2lu
+ZyBmb3Igbm93Lg0KPiA+IEBAIC0zMjY1LDcgKzMyNjYsNyBAQCBzdGF0aWMgaW50DQo+ID4gYW1k
+Z3B1X2RldmljZV9pcF9yZXN1bWVfcGhhc2UyKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQ0K
+PiA+ICAgKg0KPiA+ICAgKiBNYWluIHJlc3VtZSBmdW5jdGlvbiBmb3IgaGFyZHdhcmUgSVBzLiAg
+VGhlIGhhcmR3YXJlIElQcw0KPiA+ICAgKiBhcmUgc3BsaXQgaW50byB0d28gcmVzdW1lIGZ1bmN0
+aW9ucyBiZWNhdXNlIHRoZXkgYXJlDQo+ID4gLSAqIGFyZSBhbHNvIHVzZWQgaW4gaW4gcmVjb3Zl
+cmluZyBmcm9tIGEgR1BVIHJlc2V0IGFuZCBzb21lIGFkZGl0aW9uYWwNCj4gPiArICogYWxzbyB1
+c2VkIGluIHJlY292ZXJpbmcgZnJvbSBhIEdQVSByZXNldCBhbmQgc29tZSBhZGRpdGlvbmFsDQo+
+ID4gICAqIHN0ZXBzIG5lZWQgdG8gYmUgdGFrZSBiZXR3ZWVuIHRoZW0uICBJbiB0aGlzIGNhc2Ug
+KFMzL1M0KSB0aGV5IGFyZQ0KPiA+ICAgKiBydW4gc2VxdWVudGlhbGx5Lg0KPiA+ICAgKiBSZXR1
+cm5zIDAgb24gc3VjY2VzcywgbmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLg0KPiA+IEBA
+IC0zMzY3LDggKzMzNjgsNyBAQCBib29sIGFtZGdwdV9kZXZpY2VfYXNpY19oYXNfZGNfc3VwcG9y
+dChlbnVtDQo+ID4gYW1kX2FzaWNfdHlwZSBhc2ljX3R5cGUpICAjZWxzZQ0KPiA+ICAgICAgIGRl
+ZmF1bHQ6DQo+ID4gICAgICAgICAgICAgICBpZiAoYW1kZ3B1X2RjID4gMCkNCj4gPiAtICAgICAg
+ICAgICAgICAgICAgICAgRFJNX0lORk9fT05DRSgiRGlzcGxheSBDb3JlIGhhcyBiZWVuIHJlcXVl
+c3RlZA0KPiA+IHZpYSBrZXJuZWwgcGFyYW1ldGVyICINCj4gPiAtICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAiYnV0IGlzbid0IHN1cHBvcnRlZCBieSBBU0lDLA0KPiA+IGln
+bm9yaW5nXG4iKTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgRFJNX0lORk9fT05DRSgiRGlz
+cGxheSBDb3JlIGhhcyBiZWVuIHJlcXVlc3RlZA0KPiA+IHZpYSBrZXJuZWwgcGFyYW1ldGVyDQo+
+ID4gK2J1dCBpc24ndCBzdXBwb3J0ZWQgYnkgQVNJQywgaWdub3JpbmdcbiIpOw0KPiA+ICAgICAg
+ICAgICAgICAgcmV0dXJuIGZhbHNlOw0KPiA+ICAjZW5kaWYNCj4gPiAgICAgICB9DQo+ID4gQEAg
+LTM2MTYsNyArMzYxNiw4IEBAIGludCBhbWRncHVfZGV2aWNlX2luaXQoc3RydWN0IGFtZGdwdV9k
+ZXZpY2UNCj4gPiAqYWRldiwNCj4gPiAgICAgICAgICAgICAgICBwZGV2LT5zdWJzeXN0ZW1fdmVu
+ZG9yLCBwZGV2LT5zdWJzeXN0ZW1fZGV2aWNlLCBwZGV2LQ0KPiA+ID5yZXZpc2lvbik7DQo+ID4N
+Cj4gPiAgICAgICAvKiBtdXRleCBpbml0aWFsaXphdGlvbiBhcmUgYWxsIGRvbmUgaGVyZSBzbyB3
+ZQ0KPiA+IC0gICAgICAqIGNhbiByZWNhbGwgZnVuY3Rpb24gd2l0aG91dCBoYXZpbmcgbG9ja2lu
+ZyBpc3N1ZXMgKi8NCj4gPiArICAgICAgKiBjYW4gcmVjYWxsIGZ1bmN0aW9uIHdpdGhvdXQgaGF2
+aW5nIGxvY2tpbmcgaXNzdWVzDQo+ID4gKyAgICAgICovDQo+ID4gICAgICAgbXV0ZXhfaW5pdCgm
+YWRldi0+ZmlybXdhcmUubXV0ZXgpOw0KPiA+ICAgICAgIG11dGV4X2luaXQoJmFkZXYtPnBtLm11
+dGV4KTsNCj4gPiAgICAgICBtdXRleF9pbml0KCZhZGV2LT5nZnguZ3B1X2Nsb2NrX211dGV4KTsN
+Cj4gPiBAQCAtMzY5MywxMSArMzY5NCwxMSBAQCBpbnQgYW1kZ3B1X2RldmljZV9pbml0KHN0cnVj
+dCBhbWRncHVfZGV2aWNlDQo+ID4gKmFkZXYsDQo+ID4gICAgICAgICAgICAgICBhdG9taWNfc2V0
+KCZhZGV2LT5wbS5wd3Jfc3RhdGVbaV0sDQo+ID4gUE9XRVJfU1RBVEVfVU5LTk9XTik7DQo+ID4N
+Cj4gPiAgICAgICBhZGV2LT5ybW1pbyA9IGlvcmVtYXAoYWRldi0+cm1taW9fYmFzZSwgYWRldi0+
+cm1taW9fc2l6ZSk7DQo+ID4gLSAgICAgaWYgKGFkZXYtPnJtbWlvID09IE5VTEwpIHsNCj4gPiAr
+ICAgICBpZiAoIWFkZXYtPnJtbWlvKQ0KPiA+ICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07
+DQo+ID4gLSAgICAgfQ0KPiA+ICsNCj4gPiAgICAgICBEUk1fSU5GTygicmVnaXN0ZXIgbW1pbyBi
+YXNlOiAweCUwOFhcbiIsICh1aW50MzJfdClhZGV2LQ0KPiA+ID5ybW1pb19iYXNlKTsNCj4gPiAt
+ICAgICBEUk1fSU5GTygicmVnaXN0ZXIgbW1pbyBzaXplOiAldVxuIiwgKHVuc2lnbmVkKWFkZXYt
+DQo+ID4gPnJtbWlvX3NpemUpOw0KPiA+ICsgICAgIERSTV9JTkZPKCJyZWdpc3RlciBtbWlvIHNp
+emU6ICV1XG4iLCAodW5zaWduZWQgaW50KWFkZXYtDQo+ID4gPnJtbWlvX3NpemUpOw0KPiA+DQo+
+ID4gICAgICAgLyoNCj4gPiAgICAgICAgKiBSZXNldCBkb21haW4gbmVlZHMgdG8gYmUgcHJlc2Vu
+dCBlYXJseSwgYmVmb3JlIFhHTUkgaGl2ZQ0KPiA+IGRpc2NvdmVyZWQgQEAgLTM5NTEsNyArMzk1
+Miw4IEBAIGludCBhbWRncHVfZGV2aWNlX2luaXQoc3RydWN0DQo+ID4gYW1kZ3B1X2RldmljZSAq
+YWRldiwNCj4gPg0KPiA+ICAgICAgIC8qIGlmIHdlIGhhdmUgPiAxIFZHQSBjYXJkcywgdGhlbiBk
+aXNhYmxlIHRoZSBhbWRncHUgVkdBIHJlc291cmNlcw0KPiA+ICovDQo+ID4gICAgICAgLyogdGhp
+cyB3aWxsIGZhaWwgZm9yIGNhcmRzIHRoYXQgYXJlbid0IFZHQSBjbGFzcyBkZXZpY2VzLCBqdXN0
+DQo+ID4gLSAgICAgICogaWdub3JlIGl0ICovDQo+ID4gKyAgICAgICogaWdub3JlIGl0DQo+ID4g
+KyAgICAgICovDQo+ID4gICAgICAgaWYgKChhZGV2LT5wZGV2LT5jbGFzcyA+PiA4KSA9PSBQQ0lf
+Q0xBU1NfRElTUExBWV9WR0EpDQo+ID4gICAgICAgICAgICAgICB2Z2FfY2xpZW50X3JlZ2lzdGVy
+KGFkZXYtPnBkZXYsDQo+ID4gYW1kZ3B1X2RldmljZV92Z2Ffc2V0X2RlY29kZSk7DQo+ID4NCj4g
+PiBAQCAtNDAzNCw3ICs0MDM2LDcgQEAgdm9pZCBhbWRncHVfZGV2aWNlX2ZpbmlfaHcoc3RydWN0
+DQo+ID4gYW1kZ3B1X2RldmljZSAqYWRldikNCj4gPg0KPiA+ICAgICAgIC8qIG1ha2Ugc3VyZSBJ
+QiB0ZXN0IGZpbmlzaGVkIGJlZm9yZSBlbnRlcmluZyBleGNsdXNpdmUgbW9kZQ0KPiA+ICAgICAg
+ICAqIHRvIGF2b2lkIHByZWVtcHRpb24gb24gSUIgdGVzdA0KPiA+IC0gICAgICAqICovDQo+ID4g
+KyAgICAgICovDQo+ID4gICAgICAgaWYgKGFtZGdwdV9zcmlvdl92ZihhZGV2KSkgew0KPiA+ICAg
+ICAgICAgICAgICAgYW1kZ3B1X3ZpcnRfcmVxdWVzdF9mdWxsX2dwdShhZGV2LCBmYWxzZSk7DQo+
+ID4gICAgICAgICAgICAgICBhbWRncHVfdmlydF9maW5pX2RhdGFfZXhjaGFuZ2UoYWRldik7DQo+
+ID4gQEAgLTQ3NzEsOCArNDc3Myw5IEBAIGludCBhbWRncHVfZGV2aWNlX3ByZV9hc2ljX3Jlc2V0
+KHN0cnVjdA0KPiA+IGFtZGdwdV9kZXZpY2UgKmFkZXYsDQo+ID4gICAgICAgICAgICAgICBpZiAo
+IXJpbmcgfHwgIXJpbmctPnNjaGVkLnRocmVhZCkNCj4gPiAgICAgICAgICAgICAgICAgICAgICAg
+Y29udGludWU7DQo+ID4NCj4gPiAtICAgICAgICAgICAgIC8qY2xlYXIgam9iIGZlbmNlIGZyb20g
+ZmVuY2UgZHJ2IHRvIGF2b2lkIGZvcmNlX2NvbXBsZXRpb24NCj4gPiAtICAgICAgICAgICAgICAq
+bGVhdmUgTlVMTCBhbmQgdm0gZmx1c2ggZmVuY2UgaW4gZmVuY2UgZHJ2ICovDQo+ID4gKyAgICAg
+ICAgICAgICAvKiBDbGVhciBqb2IgZmVuY2UgZnJvbSBmZW5jZSBkcnYgdG8gYXZvaWQgZm9yY2Vf
+Y29tcGxldGlvbg0KPiA+ICsgICAgICAgICAgICAgICogbGVhdmUgTlVMTCBhbmQgdm0gZmx1c2gg
+ZmVuY2UgaW4gZmVuY2UgZHJ2DQo+ID4gKyAgICAgICAgICAgICAgKi8NCj4gPiAgICAgICAgICAg
+ICAgIGFtZGdwdV9mZW5jZV9kcml2ZXJfY2xlYXJfam9iX2ZlbmNlcyhyaW5nKTsNCj4gPg0KPiA+
+ICAgICAgICAgICAgICAgLyogYWZ0ZXIgYWxsIGh3IGpvYnMgYXJlIHJlc2V0LCBodyBmZW5jZSBp
+cyBtZWFuaW5nbGVzcywgc28NCj4gPiBmb3JjZV9jb21wbGV0aW9uICovIEBAIC00Nzg2LDcgKzQ3
+ODksNyBAQCBpbnQNCj4gPiBhbWRncHVfZGV2aWNlX3ByZV9hc2ljX3Jlc2V0KHN0cnVjdCBhbWRn
+cHVfZGV2aWNlICphZGV2LA0KPiA+DQo+ID4gICAgICAgciA9IGFtZGdwdV9yZXNldF9wcmVwYXJl
+X2h3Y29udGV4dChhZGV2LCByZXNldF9jb250ZXh0KTsNCj4gPiAgICAgICAvKiBJZiByZXNldCBo
+YW5kbGVyIG5vdCBpbXBsZW1lbnRlZCwgY29udGludWU7IG90aGVyd2lzZSByZXR1cm4gKi8NCj4g
+PiAtICAgICBpZiAociA9PSAtRU5PU1lTKQ0KPiA+ICsgICAgIGlmIChyID09IC1FSU5WQUwpDQo+
+ID4gICAgICAgICAgICAgICByID0gMDsNCj4gPiAgICAgICBlbHNlDQo+ID4gICAgICAgICAgICAg
+ICByZXR1cm4gcjsNCj4gPiBAQCAtNDkwNCw3ICs0OTA3LDcgQEAgaW50IGFtZGdwdV9kb19hc2lj
+X3Jlc2V0KHN0cnVjdCBsaXN0X2hlYWQNCj4gPiAqZGV2aWNlX2xpc3RfaGFuZGxlLA0KPiA+ICAg
+ICAgIHJlc2V0X2NvbnRleHQtPnJlc2V0X2RldmljZV9saXN0ID0gZGV2aWNlX2xpc3RfaGFuZGxl
+Ow0KPiA+ICAgICAgIHIgPSBhbWRncHVfcmVzZXRfcGVyZm9ybV9yZXNldCh0bXBfYWRldiwgcmVz
+ZXRfY29udGV4dCk7DQo+ID4gICAgICAgLyogSWYgcmVzZXQgaGFuZGxlciBub3QgaW1wbGVtZW50
+ZWQsIGNvbnRpbnVlOyBvdGhlcndpc2UgcmV0dXJuICovDQo+ID4gLSAgICAgaWYgKHIgPT0gLUVO
+T1NZUykNCj4gPiArICAgICBpZiAociA9PSAtRUlOVkFMKQ0KPiA+ICAgICAgICAgICAgICAgciA9
+IDA7DQo+ID4gICAgICAgZWxzZQ0KPiA+ICAgICAgICAgICAgICAgcmV0dXJuIHI7DQo+ID4gQEAg
+LTUzOTMsOSArNTM5Niw4IEBAIGludCBhbWRncHVfZGV2aWNlX2dwdV9yZWNvdmVyKHN0cnVjdA0K
+PiA+IGFtZGdwdV9kZXZpY2UgKmFkZXYsDQo+ID4gICAgICAgICAgICAgICBpZiAoYWRldi0+ZW5h
+YmxlX21lcyAmJiBhZGV2LT5pcF92ZXJzaW9uc1tHQ19IV0lQXVswXSAhPQ0KPiA+IElQX1ZFUlNJ
+T04oMTEsIDAsIDMpKQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICBhbWRncHVfbWVzX3NlbGZf
+dGVzdCh0bXBfYWRldik7DQo+ID4NCj4gPiAtICAgICAgICAgICAgIGlmDQo+ID4gKCFkcm1fZHJ2
+X3VzZXNfYXRvbWljX21vZGVzZXQoYWRldl90b19kcm0odG1wX2FkZXYpKQ0KPiA+ICYmICFqb2Jf
+c2lnbmFsZWQpIHsNCj4gPiArICAgICAgICAgICAgIGlmDQo+ID4gKCFkcm1fZHJ2X3VzZXNfYXRv
+bWljX21vZGVzZXQoYWRldl90b19kcm0odG1wX2FkZXYpKSAmJg0KPiA+ICsham9iX3NpZ25hbGVk
+KQ0KPiA+DQo+ID4gICAgICAgZHJtX2hlbHBlcl9yZXN1bWVfZm9yY2VfbW9kZShhZGV2X3RvX2Ry
+bSh0bXBfYWRldikpOw0KPiA+IC0gICAgICAgICAgICAgfQ0KPiA+DQo+ID4gICAgICAgICAgICAg
+ICBpZiAodG1wX2FkZXYtPmFzaWNfcmVzZXRfcmVzKQ0KPiA+ICAgICAgICAgICAgICAgICAgICAg
+ICByID0gdG1wX2FkZXYtPmFzaWNfcmVzZXRfcmVzOw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmVzZXQuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X3Jlc2V0LmMNCj4gPiBpbmRleCBlZWM0MWFkMzA0MDYuLjEyNTE1
+ZTQwYjY5MyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfcmVzZXQuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9y
+ZXNldC5jDQo+ID4gQEAgLTg3LDcgKzg3LDcgQEAgaW50IGFtZGdwdV9yZXNldF9wcmVwYXJlX2h3
+Y29udGV4dChzdHJ1Y3QNCj4gPiBhbWRncHVfZGV2aWNlICphZGV2LA0KPiA+ICAgICAgICAgICAg
+ICAgcmVzZXRfaGFuZGxlciA9IGFkZXYtPnJlc2V0X2NudGwtPmdldF9yZXNldF9oYW5kbGVyKA0K
+PiA+ICAgICAgICAgICAgICAgICAgICAgICBhZGV2LT5yZXNldF9jbnRsLCByZXNldF9jb250ZXh0
+KTsNCj4gPiAgICAgICBpZiAoIXJlc2V0X2hhbmRsZXIpDQo+ID4gLSAgICAgICAgICAgICByZXR1
+cm4gLUVOT1NZUzsNCj4gPiArICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+DQo+ID4g
+ICAgICAgcmV0dXJuIHJlc2V0X2hhbmRsZXItPnByZXBhcmVfaHdjb250ZXh0KGFkZXYtPnJlc2V0
+X2NudGwsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHJlc2V0X2NvbnRleHQpOw0KPiA+IEBAIC0xMDMsNyArMTAzLDcgQEAgaW50IGFtZGdwdV9yZXNl
+dF9wZXJmb3JtX3Jlc2V0KHN0cnVjdA0KPiA+IGFtZGdwdV9kZXZpY2UgKmFkZXYsDQo+ID4gICAg
+ICAgICAgICAgICByZXNldF9oYW5kbGVyID0gYWRldi0+cmVzZXRfY250bC0+Z2V0X3Jlc2V0X2hh
+bmRsZXIoDQo+ID4gICAgICAgICAgICAgICAgICAgICAgIGFkZXYtPnJlc2V0X2NudGwsIHJlc2V0
+X2NvbnRleHQpOw0KPiA+ICAgICAgIGlmICghcmVzZXRfaGFuZGxlcikNCj4gPiAtICAgICAgICAg
+ICAgIHJldHVybiAtRU5PU1lTOw0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7DQo+
+ID4NCj4gPiAgICAgICByZXQgPSByZXNldF9oYW5kbGVyLT5wZXJmb3JtX3Jlc2V0KGFkZXYtPnJl
+c2V0X2NudGwsIHJlc2V0X2NvbnRleHQpOw0KPiA+ICAgICAgIGlmIChyZXQpDQo+ID4gLS0NCj4g
+PiAyLjI1LjENCj4NCg0K
 
-Alex
+--_000_BL1PR12MB5898ECB0C9E46899FC75CAC78503ABL1PR12MB5898namp_
+Content-Disposition: attachment; filename="winmail.dat"
+Content-Transfer-Encoding: base64
+Content-Type: application/ms-tnef; name="winmail.dat"
 
->
-> Regards,
-> Guchun
->
-> > + * Permission is hereby granted, free of charge, to any person
-> > +obtaining a
-> > + * copy of this software and associated documentation files (the
-> > +"Software"),
-> > + * to deal in the Software without restriction, including without
-> > +limitation
-> > + * the rights to use, copy, modify, merge, publish, distribute,
-> > +sublicense,
-> > + * and/or sell copies of the Software, and to permit persons to whom
-> > +the
-> > + * Software is furnished to do so, subject to the following conditions=
-:
-> > + *
-> > + * The above copyright notice and this permission notice shall be
-> > +included in
-> > + * all copies or substantial portions of the Software.
-> > + *
-> > + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> > +EXPRESS OR
-> > + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-> > +MERCHANTABILITY,
-> > + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO
-> > EVENT
-> > +SHALL
-> > + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM,
-> > +DAMAGES OR
-> > + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-> > +OTHERWISE,
-> > + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
-> > THE USE
-> > +OR
-> > + * OTHER DEALINGS IN THE SOFTWARE.
-> > + *
-> > + */
-> > +
-> > +#include <linux/pci.h>
-> > +
-> > +#include "amdgpu.h"
-> > +#include "amdgpu_ih.h"
-> > +
-> > +#include "oss/osssys_6_1_0_offset.h"
-> > +#include "oss/osssys_6_1_0_sh_mask.h"
-> > +
-> > +#include "soc15_common.h"
-> > +#include "ih_v6_1.h"
-> > +
-> > +#define MAX_REARM_RETRY 10
-> > +
-> > +static void ih_v6_1_set_interrupt_funcs(struct amdgpu_device *adev);
-> > +
-> > +/**
-> > + * ih_v6_1_init_register_offset - Initialize register offset for ih
-> > +rings
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + *
-> > + * Initialize register offset ih rings (IH_V6_0).
-> > + */
-> > +static void ih_v6_1_init_register_offset(struct amdgpu_device *adev) {
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +
-> > +     /* ih ring 2 is removed
-> > +      * ih ring and ih ring 1 are available */
-> > +     if (adev->irq.ih.ring_size) {
-> > +             ih_regs =3D &adev->irq.ih.ih_regs;
-> > +             ih_regs->ih_rb_base =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_BASE);
-> > +             ih_regs->ih_rb_base_hi =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_BASE_HI);
-> > +             ih_regs->ih_rb_cntl =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_CNTL);
-> > +             ih_regs->ih_rb_wptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_WPTR);
-> > +             ih_regs->ih_rb_rptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_RPTR);
-> > +             ih_regs->ih_doorbell_rptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_DOORBELL_RPTR);
-> > +             ih_regs->ih_rb_wptr_addr_lo =3D SOC15_REG_OFFSET(OSSSYS,
-> > 0, regIH_RB_WPTR_ADDR_LO);
-> > +             ih_regs->ih_rb_wptr_addr_hi =3D SOC15_REG_OFFSET(OSSSYS,
-> > 0, regIH_RB_WPTR_ADDR_HI);
-> > +             ih_regs->psp_reg_id =3D PSP_REG_IH_RB_CNTL;
-> > +     }
-> > +
-> > +     if (adev->irq.ih1.ring_size) {
-> > +             ih_regs =3D &adev->irq.ih1.ih_regs;
-> > +             ih_regs->ih_rb_base =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_BASE_RING1);
-> > +             ih_regs->ih_rb_base_hi =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_BASE_HI_RING1);
-> > +             ih_regs->ih_rb_cntl =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_CNTL_RING1);
-> > +             ih_regs->ih_rb_wptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_WPTR_RING1);
-> > +             ih_regs->ih_rb_rptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_RB_RPTR_RING1);
-> > +             ih_regs->ih_doorbell_rptr =3D SOC15_REG_OFFSET(OSSSYS, 0,
-> > regIH_DOORBELL_RPTR_RING1);
-> > +             ih_regs->psp_reg_id =3D PSP_REG_IH_RB_CNTL_RING1;
-> > +     }
-> > +}
-> > +
-> > +/**
-> > + * force_update_wptr_for_self_int - Force update the wptr for self
-> > +interrupt
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @threshold: threshold to trigger the wptr reporting
-> > + * @timeout: timeout to trigger the wptr reporting
-> > + * @enabled: Enable/disable timeout flush mechanism
-> > + *
-> > + * threshold input range: 0 ~ 15, default 0,
-> > + * real_threshold =3D 2^threshold
-> > + * timeout input range: 0 ~ 20, default 8,
-> > + * real_timeout =3D (2^timeout) * 1024 / (socclk_freq)
-> > + *
-> > + * Force update wptr for self interrupt ( >=3D SIENNA_CICHLID).
-> > + */
-> > +static void
-> > +force_update_wptr_for_self_int(struct amdgpu_device *adev,
-> > +                            u32 threshold, u32 timeout, bool enabled) =
-{
-> > +     u32 ih_cntl, ih_rb_cntl;
-> > +
-> > +     ih_cntl =3D RREG32_SOC15(OSSSYS, 0, regIH_CNTL2);
-> > +     ih_rb_cntl =3D RREG32_SOC15(OSSSYS, 0, regIH_RB_CNTL_RING1);
-> > +
-> > +     ih_cntl =3D REG_SET_FIELD(ih_cntl, IH_CNTL2,
-> > +                             SELF_IV_FORCE_WPTR_UPDATE_TIMEOUT,
-> > timeout);
-> > +     ih_cntl =3D REG_SET_FIELD(ih_cntl, IH_CNTL2,
-> > +                             SELF_IV_FORCE_WPTR_UPDATE_ENABLE,
-> > enabled);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
-> > +                                RB_USED_INT_THRESHOLD, threshold);
-> > +
-> > +     if (amdgpu_sriov_vf(adev) && amdgpu_sriov_reg_indirect_ih(adev))
-> > {
-> > +             if (psp_reg_program(&adev->psp,
-> > PSP_REG_IH_RB_CNTL_RING1, ih_rb_cntl))
-> > +                     return;
-> > +     } else {
-> > +             WREG32_SOC15(OSSSYS, 0, regIH_RB_CNTL_RING1,
-> > ih_rb_cntl);
-> > +     }
-> > +
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_CNTL2, ih_cntl); }
-> > +
-> > +/**
-> > + * ih_v6_1_toggle_ring_interrupts - toggle the interrupt ring buffer
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @ih: amdgpu_ih_ring pointer
-> > + * @enable: true - enable the interrupts, false - disable the
-> > +interrupts
-> > + *
-> > + * Toggle the interrupt ring buffer (IH_V6_0)  */ static int
-> > +ih_v6_1_toggle_ring_interrupts(struct amdgpu_device *adev,
-> > +                                       struct amdgpu_ih_ring *ih,
-> > +                                       bool enable)
-> > +{
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +     uint32_t tmp;
-> > +
-> > +     ih_regs =3D &ih->ih_regs;
-> > +
-> > +     tmp =3D RREG32(ih_regs->ih_rb_cntl);
-> > +     tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, RB_ENABLE, (enable ? 1 :
-> > 0));
-> > +     /* enable_intr field is only valid in ring0 */
-> > +     if (ih =3D=3D &adev->irq.ih)
-> > +             tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, ENABLE_INTR,
-> > (enable ? 1 : 0));
-> > +
-> > +     if (amdgpu_sriov_vf(adev) && amdgpu_sriov_reg_indirect_ih(adev))
-> > {
-> > +             if (psp_reg_program(&adev->psp, ih_regs->psp_reg_id, tmp)=
-)
-> > +                     return -ETIMEDOUT;
-> > +     } else {
-> > +             WREG32(ih_regs->ih_rb_cntl, tmp);
-> > +     }
-> > +
-> > +     if (enable) {
-> > +             ih->enabled =3D true;
-> > +     } else {
-> > +             /* set rptr, wptr to 0 */
-> > +             WREG32(ih_regs->ih_rb_rptr, 0);
-> > +             WREG32(ih_regs->ih_rb_wptr, 0);
-> > +             ih->enabled =3D false;
-> > +             ih->rptr =3D 0;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_toggle_interrupts - Toggle all the available interrupt ring
-> > +buffers
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @enable: enable or disable interrupt ring buffers
-> > + *
-> > + * Toggle all the available interrupt ring buffers (IH_V6_0).
-> > + */
-> > +static int ih_v6_1_toggle_interrupts(struct amdgpu_device *adev, bool
-> > +enable) {
-> > +     struct amdgpu_ih_ring *ih[] =3D {&adev->irq.ih, &adev->irq.ih1};
-> > +     int i;
-> > +     int r;
-> > +
-> > +     for (i =3D 0; i < ARRAY_SIZE(ih); i++) {
-> > +             if (ih[i]->ring_size) {
-> > +                     r =3D ih_v6_1_toggle_ring_interrupts(adev, ih[i],
-> > enable);
-> > +                     if (r)
-> > +                             return r;
-> > +             }
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static uint32_t ih_v6_1_rb_cntl(struct amdgpu_ih_ring *ih, uint32_t
-> > +ih_rb_cntl) {
-> > +     int rb_bufsz =3D order_base_2(ih->ring_size / 4);
-> > +
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
-> > +                                MC_SPACE, ih->use_bus_addr ? 2 : 4);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
-> > +                                WPTR_OVERFLOW_CLEAR, 1);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
-> > +                                WPTR_OVERFLOW_ENABLE, 1);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RB_SIZE,
-> > rb_bufsz);
-> > +     /* Ring Buffer write pointer writeback. If enabled, IH_RB_WPTR
-> > register
-> > +      * value is written to memory
-> > +      */
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
-> > +                                WPTR_WRITEBACK_ENABLE, 1);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, MC_SNOOP, 1)=
-;
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, MC_RO, 0);
-> > +     ih_rb_cntl =3D REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, MC_VMID, 0);
-> > +
-> > +     return ih_rb_cntl;
-> > +}
-> > +
-> > +static uint32_t ih_v6_1_doorbell_rptr(struct amdgpu_ih_ring *ih) {
-> > +     u32 ih_doorbell_rtpr =3D 0;
-> > +
-> > +     if (ih->use_doorbell) {
-> > +             ih_doorbell_rtpr =3D REG_SET_FIELD(ih_doorbell_rtpr,
-> > +                                              IH_DOORBELL_RPTR, OFFSET=
-,
-> > +                                              ih->doorbell_index);
-> > +             ih_doorbell_rtpr =3D REG_SET_FIELD(ih_doorbell_rtpr,
-> > +                                              IH_DOORBELL_RPTR,
-> > +                                              ENABLE, 1);
-> > +     } else {
-> > +             ih_doorbell_rtpr =3D REG_SET_FIELD(ih_doorbell_rtpr,
-> > +                                              IH_DOORBELL_RPTR,
-> > +                                              ENABLE, 0);
-> > +     }
-> > +     return ih_doorbell_rtpr;
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_enable_ring - enable an ih ring buffer
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @ih: amdgpu_ih_ring pointer
-> > + *
-> > + * Enable an ih ring buffer (IH_V6_0)
-> > + */
-> > +static int ih_v6_1_enable_ring(struct amdgpu_device *adev,
-> > +                                   struct amdgpu_ih_ring *ih)
-> > +{
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +     uint32_t tmp;
-> > +
-> > +     ih_regs =3D &ih->ih_regs;
-> > +
-> > +     /* Ring Buffer base. [39:8] of 40-bit address of the beginning of=
- the
-> > ring buffer*/
-> > +     WREG32(ih_regs->ih_rb_base, ih->gpu_addr >> 8);
-> > +     WREG32(ih_regs->ih_rb_base_hi, (ih->gpu_addr >> 40) & 0xff);
-> > +
-> > +     tmp =3D RREG32(ih_regs->ih_rb_cntl);
-> > +     tmp =3D ih_v6_1_rb_cntl(ih, tmp);
-> > +     if (ih =3D=3D &adev->irq.ih)
-> > +             tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL,
-> > RPTR_REARM, !!adev->irq.msi_enabled);
-> > +     if (ih =3D=3D &adev->irq.ih1) {
-> > +             tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL,
-> > WPTR_OVERFLOW_ENABLE, 0);
-> > +             tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL,
-> > RB_FULL_DRAIN_ENABLE, 1);
-> > +     }
-> > +
-> > +     if (amdgpu_sriov_vf(adev) && amdgpu_sriov_reg_indirect_ih(adev))
-> > {
-> > +             if (psp_reg_program(&adev->psp, ih_regs->psp_reg_id, tmp)=
-)
-> > {
-> > +                     DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
-> > +                     return -ETIMEDOUT;
-> > +             }
-> > +     } else {
-> > +             WREG32(ih_regs->ih_rb_cntl, tmp);
-> > +     }
-> > +
-> > +     if (ih =3D=3D &adev->irq.ih) {
-> > +             /* set the ih ring 0 writeback address whether it's enabl=
-ed or
-> > not */
-> > +             WREG32(ih_regs->ih_rb_wptr_addr_lo, lower_32_bits(ih-
-> > >wptr_addr));
-> > +             WREG32(ih_regs->ih_rb_wptr_addr_hi, upper_32_bits(ih-
-> > >wptr_addr) & 0xFFFF);
-> > +     }
-> > +
-> > +     /* set rptr, wptr to 0 */
-> > +     WREG32(ih_regs->ih_rb_wptr, 0);
-> > +     WREG32(ih_regs->ih_rb_rptr, 0);
-> > +
-> > +     WREG32(ih_regs->ih_doorbell_rptr, ih_v6_1_doorbell_rptr(ih));
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_irq_init - init and enable the interrupt ring
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + *
-> > + * Allocate a ring buffer for the interrupt controller,
-> > + * enable the RLC, disable interrupts, enable the IH
-> > + * ring buffer and enable it.
-> > + * Called at device load and reume.
-> > + * Returns 0 for success, errors for failure.
-> > + */
-> > +static int ih_v6_1_irq_init(struct amdgpu_device *adev) {
-> > +     struct amdgpu_ih_ring *ih[] =3D {&adev->irq.ih, &adev->irq.ih1};
-> > +     u32 ih_chicken;
-> > +     u32 tmp;
-> > +     int ret;
-> > +     int i;
-> > +
-> > +     /* disable irqs */
-> > +     ret =3D ih_v6_1_toggle_interrupts(adev, false);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     adev->nbio.funcs->ih_control(adev);
-> > +
-> > +     if (unlikely((adev->firmware.load_type =3D=3D
-> > AMDGPU_FW_LOAD_DIRECT) ||
-> > +                  (adev->firmware.load_type =3D=3D
-> > AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO))) {
-> > +             if (ih[0]->use_bus_addr) {
-> > +                     ih_chicken =3D RREG32_SOC15(OSSSYS, 0,
-> > regIH_CHICKEN);
-> > +                     ih_chicken =3D REG_SET_FIELD(ih_chicken,
-> > +                                     IH_CHICKEN,
-> > MC_SPACE_GPA_ENABLE, 1);
-> > +                     WREG32_SOC15(OSSSYS, 0, regIH_CHICKEN,
-> > ih_chicken);
-> > +             }
-> > +     }
-> > +
-> > +     for (i =3D 0; i < ARRAY_SIZE(ih); i++) {
-> > +             if (ih[i]->ring_size) {
-> > +                     ret =3D ih_v6_1_enable_ring(adev, ih[i]);
-> > +                     if (ret)
-> > +                             return ret;
-> > +             }
-> > +     }
-> > +
-> > +     /* update doorbell range for ih ring 0 */
-> > +     adev->nbio.funcs->ih_doorbell_range(adev, ih[0]->use_doorbell,
-> > +                                         ih[0]->doorbell_index);
-> > +
-> > +     tmp =3D RREG32_SOC15(OSSSYS, 0, regIH_STORM_CLIENT_LIST_CNTL);
-> > +     tmp =3D REG_SET_FIELD(tmp, IH_STORM_CLIENT_LIST_CNTL,
-> > +                         CLIENT18_IS_STORM_CLIENT, 1);
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_STORM_CLIENT_LIST_CNTL, tmp);
-> > +
-> > +     tmp =3D RREG32_SOC15(OSSSYS, 0, regIH_INT_FLOOD_CNTL);
-> > +     tmp =3D REG_SET_FIELD(tmp, IH_INT_FLOOD_CNTL,
-> > FLOOD_CNTL_ENABLE, 1);
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_INT_FLOOD_CNTL, tmp);
-> > +
-> > +     /* GC/MMHUB UTCL2 page fault interrupts are configured as
-> > +      * MSI storm capable interrupts by deafult. The delay is
-> > +      * used to avoid ISR being called too frequently
-> > +      * when page fault happens on several continuous page
-> > +      * and thus avoid MSI storm */
-> > +     tmp =3D RREG32_SOC15(OSSSYS, 0, regIH_MSI_STORM_CTRL);
-> > +     tmp =3D REG_SET_FIELD(tmp, IH_MSI_STORM_CTRL,
-> > +                         DELAY, 3);
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_MSI_STORM_CTRL, tmp);
-> > +
-> > +     pci_set_master(adev->pdev);
-> > +
-> > +     /* enable interrupts */
-> > +     ret =3D ih_v6_1_toggle_interrupts(adev, true);
-> > +     if (ret)
-> > +             return ret;
-> > +     /* enable wptr force update for self int */
-> > +     force_update_wptr_for_self_int(adev, 0, 8, true);
-> > +
-> > +     if (adev->irq.ih_soft.ring_size)
-> > +             adev->irq.ih_soft.enabled =3D true;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_irq_disable - disable interrupts
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + *
-> > + * Disable interrupts on the hw.
-> > + */
-> > +static void ih_v6_1_irq_disable(struct amdgpu_device *adev) {
-> > +     force_update_wptr_for_self_int(adev, 0, 8, false);
-> > +     ih_v6_1_toggle_interrupts(adev, false);
-> > +
-> > +     /* Wait and acknowledge irq */
-> > +     mdelay(1);
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_get_wptr - get the IH ring buffer wptr
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @ih: amdgpu_ih_ring pointer
-> > + *
-> > + * Get the IH ring buffer wptr from either the register
-> > + * or the writeback memory buffer.  Also check for
-> > + * ring buffer overflow and deal with it.
-> > + * Returns the value of the wptr.
-> > + */
-> > +static u32 ih_v6_1_get_wptr(struct amdgpu_device *adev,
-> > +                           struct amdgpu_ih_ring *ih)
-> > +{
-> > +     u32 wptr, tmp;
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +
-> > +     wptr =3D le32_to_cpu(*ih->wptr_cpu);
-> > +     ih_regs =3D &ih->ih_regs;
-> > +
-> > +     if (!REG_GET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW))
-> > +             goto out;
-> > +
-> > +     wptr =3D RREG32_NO_KIQ(ih_regs->ih_rb_wptr);
-> > +     if (!REG_GET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW))
-> > +             goto out;
-> > +     wptr =3D REG_SET_FIELD(wptr, IH_RB_WPTR, RB_OVERFLOW, 0);
-> > +
-> > +     /* When a ring buffer overflow happen start parsing interrupt
-> > +      * from the last not overwritten vector (wptr + 32). Hopefully
-> > +      * this should allow us to catch up.
-> > +      */
-> > +     tmp =3D (wptr + 32) & ih->ptr_mask;
-> > +     dev_warn(adev->dev, "IH ring buffer overflow "
-> > +              "(0x%08X, 0x%08X, 0x%08X)\n",
-> > +              wptr, ih->rptr, tmp);
-> > +     ih->rptr =3D tmp;
-> > +
-> > +     tmp =3D RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
-> > +     tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR,
-> > 1);
-> > +     WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
-> > +out:
-> > +     return (wptr & ih->ptr_mask);
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_irq_rearm - rearm IRQ if lost
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @ih: amdgpu_ih_ring pointer
-> > + *
-> > + */
-> > +static void ih_v6_1_irq_rearm(struct amdgpu_device *adev,
-> > +                            struct amdgpu_ih_ring *ih)
-> > +{
-> > +     uint32_t v =3D 0;
-> > +     uint32_t i =3D 0;
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +
-> > +     ih_regs =3D &ih->ih_regs;
-> > +
-> > +     /* Rearm IRQ / re-write doorbell if doorbell write is lost */
-> > +     for (i =3D 0; i < MAX_REARM_RETRY; i++) {
-> > +             v =3D RREG32_NO_KIQ(ih_regs->ih_rb_rptr);
-> > +             if ((v < ih->ring_size) && (v !=3D ih->rptr))
-> > +                     WDOORBELL32(ih->doorbell_index, ih->rptr);
-> > +             else
-> > +                     break;
-> > +     }
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_set_rptr - set the IH ring buffer rptr
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @ih: amdgpu_ih_ring pointer
-> > + *
-> > + * Set the IH ring buffer rptr.
-> > + */
-> > +static void ih_v6_1_set_rptr(struct amdgpu_device *adev,
-> > +                            struct amdgpu_ih_ring *ih)
-> > +{
-> > +     struct amdgpu_ih_regs *ih_regs;
-> > +
-> > +     if (ih->use_doorbell) {
-> > +             /* XXX check if swapping is necessary on BE */
-> > +             *ih->rptr_cpu =3D ih->rptr;
-> > +             WDOORBELL32(ih->doorbell_index, ih->rptr);
-> > +
-> > +             if (amdgpu_sriov_vf(adev))
-> > +                     ih_v6_1_irq_rearm(adev, ih);
-> > +     } else {
-> > +             ih_regs =3D &ih->ih_regs;
-> > +             WREG32(ih_regs->ih_rb_rptr, ih->rptr);
-> > +     }
-> > +}
-> > +
-> > +/**
-> > + * ih_v6_1_self_irq - dispatch work for ring 1
-> > + *
-> > + * @adev: amdgpu_device pointer
-> > + * @source: irq source
-> > + * @entry: IV with WPTR update
-> > + *
-> > + * Update the WPTR from the IV and schedule work to handle the entries=
-.
-> > + */
-> > +static int ih_v6_1_self_irq(struct amdgpu_device *adev,
-> > +                           struct amdgpu_irq_src *source,
-> > +                           struct amdgpu_iv_entry *entry) {
-> > +     uint32_t wptr =3D cpu_to_le32(entry->src_data[0]);
-> > +
-> > +     switch (entry->ring_id) {
-> > +     case 1:
-> > +             *adev->irq.ih1.wptr_cpu =3D wptr;
-> > +             schedule_work(&adev->irq.ih1_work);
-> > +             break;
-> > +     default: break;
-> > +     }
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct amdgpu_irq_src_funcs ih_v6_1_self_irq_funcs =3D {
-> > +     .process =3D ih_v6_1_self_irq,
-> > +};
-> > +
-> > +static void ih_v6_1_set_self_irq_funcs(struct amdgpu_device *adev) {
-> > +     adev->irq.self_irq.num_types =3D 0;
-> > +     adev->irq.self_irq.funcs =3D &ih_v6_1_self_irq_funcs; }
-> > +
-> > +static int ih_v6_1_early_init(void *handle) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     ih_v6_1_set_interrupt_funcs(adev);
-> > +     ih_v6_1_set_self_irq_funcs(adev);
-> > +     return 0;
-> > +}
-> > +
-> > +static int ih_v6_1_sw_init(void *handle) {
-> > +     int r;
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +     bool use_bus_addr;
-> > +
-> > +     r =3D amdgpu_irq_add_id(adev, SOC21_IH_CLIENTID_IH, 0,
-> > +                           &adev->irq.self_irq);
-> > +
-> > +     if (r)
-> > +             return r;
-> > +
-> > +     /* use gpu virtual address for ih ring
-> > +      * until ih_checken is programmed to allow
-> > +      * use bus address for ih ring by psp bl */
-> > +     use_bus_addr =3D
-> > +             (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) ?
-> > false : true;
-> > +     r =3D amdgpu_ih_ring_init(adev, &adev->irq.ih, 256 * 1024,
-> > use_bus_addr);
-> > +     if (r)
-> > +             return r;
-> > +
-> > +     adev->irq.ih.use_doorbell =3D true;
-> > +     adev->irq.ih.doorbell_index =3D adev->doorbell_index.ih << 1;
-> > +
-> > +     adev->irq.ih1.ring_size =3D 0;
-> > +     adev->irq.ih2.ring_size =3D 0;
-> > +
-> > +     /* initialize ih control register offset */
-> > +     ih_v6_1_init_register_offset(adev);
-> > +
-> > +     r =3D amdgpu_ih_ring_init(adev, &adev->irq.ih_soft, PAGE_SIZE, tr=
-ue);
-> > +     if (r)
-> > +             return r;
-> > +
-> > +     r =3D amdgpu_irq_init(adev);
-> > +
-> > +     return r;
-> > +}
-> > +
-> > +static int ih_v6_1_sw_fini(void *handle) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     amdgpu_irq_fini_sw(adev);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ih_v6_1_hw_init(void *handle) {
-> > +     int r;
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     r =3D ih_v6_1_irq_init(adev);
-> > +     if (r)
-> > +             return r;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ih_v6_1_hw_fini(void *handle) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     ih_v6_1_irq_disable(adev);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int ih_v6_1_suspend(void *handle) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     return ih_v6_1_hw_fini(adev);
-> > +}
-> > +
-> > +static int ih_v6_1_resume(void *handle) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     return ih_v6_1_hw_init(adev);
-> > +}
-> > +
-> > +static bool ih_v6_1_is_idle(void *handle) {
-> > +     /* todo */
-> > +     return true;
-> > +}
-> > +
-> > +static int ih_v6_1_wait_for_idle(void *handle) {
-> > +     /* todo */
-> > +     return -ETIMEDOUT;
-> > +}
-> > +
-> > +static int ih_v6_1_soft_reset(void *handle) {
-> > +     /* todo */
-> > +     return 0;
-> > +}
-> > +
-> > +static void ih_v6_1_update_clockgating_state(struct amdgpu_device *ade=
-v,
-> > +                                            bool enable)
-> > +{
-> > +     uint32_t data, def, field_val;
-> > +
-> > +     if (adev->cg_flags & AMD_CG_SUPPORT_IH_CG) {
-> > +             def =3D data =3D RREG32_SOC15(OSSSYS, 0, regIH_CLK_CTRL);
-> > +             field_val =3D enable ? 0 : 1;
-> > +             data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
-> > +                                  DBUS_MUX_CLK_SOFT_OVERRIDE,
-> > field_val);
-> > +             data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
-> > +                                  OSSSYS_SHARE_CLK_SOFT_OVERRIDE,
-> > field_val);
-> > +             data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
-> > +                                  LIMIT_SMN_CLK_SOFT_OVERRIDE,
-> > field_val);
-> > +             data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
-> > +                                  DYN_CLK_SOFT_OVERRIDE, field_val);
-> > +             data =3D REG_SET_FIELD(data, IH_CLK_CTRL,
-> > +                                  REG_CLK_SOFT_OVERRIDE, field_val);
-> > +             if (def !=3D data)
-> > +                     WREG32_SOC15(OSSSYS, 0, regIH_CLK_CTRL, data);
-> > +     }
-> > +
-> > +     return;
-> > +}
-> > +
-> > +static int ih_v6_1_set_clockgating_state(void *handle,
-> > +                                        enum amd_clockgating_state sta=
-te)
-> > {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     ih_v6_1_update_clockgating_state(adev,
-> > +                             state =3D=3D AMD_CG_STATE_GATE);
-> > +     return 0;
-> > +}
-> > +
-> > +static void ih_v6_1_update_ih_mem_power_gating(struct amdgpu_device
-> > *adev,
-> > +                                            bool enable)
-> > +{
-> > +     uint32_t ih_mem_pwr_cntl;
-> > +
-> > +     /* Disable ih sram power cntl before switch powergating mode */
-> > +     ih_mem_pwr_cntl =3D RREG32_SOC15(OSSSYS, 0,
-> > regIH_MEM_POWER_CTRL);
-> > +     ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +                                     IH_BUFFER_MEM_POWER_CTRL_EN,
-> > 0);
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_MEM_POWER_CTRL,
-> > ih_mem_pwr_cntl);
-> > +
-> > +     /* It is recommended to set mem powergating mode to DS mode */
-> > +     if (enable) {
-> > +             /* mem power mode */
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_LS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_DS_EN, 1);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_SD_EN, 0);
-> > +             /* cam mem power mode */
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_LS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_DS_EN, 1);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_SD_EN, 0);
-> > +             /* re-enable power cntl */
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_CTRL_EN, 1);
-> > +     } else {
-> > +             /* mem power mode */
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_LS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_DS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_SD_EN, 0);
-> > +             /* cam mem power mode */
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_LS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_DS_EN, 0);
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_RETRY_INT_CAM_MEM_POWER_SD_EN, 0);
-> > +             /* re-enable power cntl*/
-> > +             ih_mem_pwr_cntl =3D REG_SET_FIELD(ih_mem_pwr_cntl,
-> > IH_MEM_POWER_CTRL,
-> > +
-> >       IH_BUFFER_MEM_POWER_CTRL_EN, 1);
-> > +     }
-> > +
-> > +     WREG32_SOC15(OSSSYS, 0, regIH_MEM_POWER_CTRL,
-> > ih_mem_pwr_cntl); }
-> > +
-> > +static int ih_v6_1_set_powergating_state(void *handle,
-> > +                                      enum amd_powergating_state state=
-)
-> > {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +     bool enable =3D (state =3D=3D AMD_PG_STATE_GATE);
-> > +
-> > +     if (adev->pg_flags & AMD_PG_SUPPORT_IH_SRAM_PG)
-> > +             ih_v6_1_update_ih_mem_power_gating(adev, enable);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void ih_v6_1_get_clockgating_state(void *handle, u64 *flags) {
-> > +     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
-> > +
-> > +     if (!RREG32_SOC15(OSSSYS, 0, regIH_CLK_CTRL))
-> > +             *flags |=3D AMD_CG_SUPPORT_IH_CG;
-> > +
-> > +     return;
-> > +}
-> > +
-> > +static const struct amd_ip_funcs ih_v6_1_ip_funcs =3D {
-> > +     .name =3D "ih_v6_1",
-> > +     .early_init =3D ih_v6_1_early_init,
-> > +     .late_init =3D NULL,
-> > +     .sw_init =3D ih_v6_1_sw_init,
-> > +     .sw_fini =3D ih_v6_1_sw_fini,
-> > +     .hw_init =3D ih_v6_1_hw_init,
-> > +     .hw_fini =3D ih_v6_1_hw_fini,
-> > +     .suspend =3D ih_v6_1_suspend,
-> > +     .resume =3D ih_v6_1_resume,
-> > +     .is_idle =3D ih_v6_1_is_idle,
-> > +     .wait_for_idle =3D ih_v6_1_wait_for_idle,
-> > +     .soft_reset =3D ih_v6_1_soft_reset,
-> > +     .set_clockgating_state =3D ih_v6_1_set_clockgating_state,
-> > +     .set_powergating_state =3D ih_v6_1_set_powergating_state,
-> > +     .get_clockgating_state =3D ih_v6_1_get_clockgating_state, };
-> > +
-> > +static const struct amdgpu_ih_funcs ih_v6_1_funcs =3D {
-> > +     .get_wptr =3D ih_v6_1_get_wptr,
-> > +     .decode_iv =3D amdgpu_ih_decode_iv_helper,
-> > +     .decode_iv_ts =3D amdgpu_ih_decode_iv_ts_helper,
-> > +     .set_rptr =3D ih_v6_1_set_rptr
-> > +};
-> > +
-> > +static void ih_v6_1_set_interrupt_funcs(struct amdgpu_device *adev) {
-> > +     adev->irq.ih_funcs =3D &ih_v6_1_funcs;
-> > +}
-> > +
-> > +const struct amdgpu_ip_block_version ih_v6_1_ip_block =3D {
-> > +     .type =3D AMD_IP_BLOCK_TYPE_IH,
-> > +     .major =3D 6,
-> > +     .minor =3D 0,
-> > +     .rev =3D 0,
-> > +     .funcs =3D &ih_v6_1_ip_funcs,
-> > +};
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.h
-> > b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.h
-> > new file mode 100644
-> > index 0000000000000..c48930d394cff
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.h
-> > @@ -0,0 +1,28 @@
-> > +/*
-> > + * Copyright 2021 Advanced Micro Devices, Inc.
-> > + *
-> > + * Permission is hereby granted, free of charge, to any person
-> > +obtaining a
-> > + * copy of this software and associated documentation files (the
-> > +"Software"),
-> > + * to deal in the Software without restriction, including without
-> > +limitation
-> > + * the rights to use, copy, modify, merge, publish, distribute,
-> > +sublicense,
-> > + * and/or sell copies of the Software, and to permit persons to whom
-> > +the
-> > + * Software is furnished to do so, subject to the following conditions=
-:
-> > + *
-> > + * The above copyright notice and this permission notice shall be
-> > +included in
-> > + * all copies or substantial portions of the Software.
-> > + *
-> > + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> > +EXPRESS OR
-> > + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-> > +MERCHANTABILITY,
-> > + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO
-> > EVENT
-> > +SHALL
-> > + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM,
-> > +DAMAGES OR
-> > + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-> > +OTHERWISE,
-> > + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
-> > THE USE
-> > +OR
-> > + * OTHER DEALINGS IN THE SOFTWARE.
-> > + *
-> > + */
-> > +#ifndef __IH_V6_1_IH_H__
-> > +#define __IH_V6_1_IH_H__
-> > +
-> > +extern const struct amdgpu_ip_block_version ih_v6_1_ip_block;
-> > +
-> > +#endif
-> > --
-> > 2.41.0
->
+eJ8+ImIMAQaQCAAEAAAAAAABAAEAAQeQBgAIAAAA5AQAAAAAAADoAAEJgAEAIQAAAEJBOEY0MTkw
+MUIyRUY5NDQ4Q0YxMUM5Q0IwQ0MyMTBEAFEHAQ2ABAACAAAAAgACAAEFgAMADgAAAOcHBwAZAA0A
+LAAYAAIAYQEBIIADAA4AAADnBwcAGQANACwAGAACAGEBAQiABwAYAAAASVBNLk1pY3Jvc29mdCBN
+YWlsLk5vdGUAMQgBBIABAFEAAABSRTogW1BBVENIXSBkcm0vYW1kZ3B1OiBGaXggRU5PU1lTIG1l
+YW5zICdpbnZhbGlkIHN5c2NhbGwgbnInIGluIGFtZGdwdV9kZXZpY2UuYwBEGwEDkAYAuE8AAGoA
+AAACAX8AAQAAAFEAAAA8QkwxUFIxMk1CNTg5OEVDQjBDOUU0Njg5OUZDNzVDQUM3ODUwM0FAQkwx
+UFIxMk1CNTg5OC5uYW1wcmQxMi5wcm9kLm91dGxvb2suY29tPgAAAAALAB8OAAAAAAIBCRABAAAA
+AxYAAP8VAAAuPgAATFpGdSAGfrJhAApmYmlkBAAAY2PAcGcxMjUyAP4DQ/B0ZXh0AfcCpAPjAgAE
+Y2gKwHNldDAg7wdtAoMAUBFNMgqABrQCgJZ9CoAIyDsJYjE5DsC/CcMWcgoyFnECgBViKgmwcwnw
+BJBhdAWyDlADYHOibwGAIEV4EcFuGDBdBlJ2BJAXtgIQcgDAdH0IUG4aMRAgBcAFoBtkZJogA1Ig
+ECIXslx2CJDkd2sLgGQ1HVME8AdADRdwMApxF/Jia21rBnMBkAAgIEJNX0LgRUdJTn0K/AHxC/Bg
+MiBbUHUCYA5QXZ5cIeAYUAqBIjRUaBnhgF9JUlVHTyAfYFJ1ASAgYhngcwtQaQcFQByEIxFFTk9T
+WdsF8CPDLCOwC4BjGeAlAWx5JwlwI7BlCrEYgGXwLiBBbBkgJPMjTAQA3G4nBUAHgAIwaQIgHFFn
+C4Ak8wWgbW0kgQeBc8phGDAuIiwgSymBIiyoPiAtLaJPBRBnC4BfB0AF0CsELaMtF0YDYToAIGFt
+ZC1nZnhUIDwwNS0G4HUmQXPmQCHgH2BzLgNQCeABAKRzaxiQcC4FsGctgFJPA6BCZRHQbCQATyUk
+AEMoAG4sLRdHdb8RwDFgLRcGYAIwMBBUClAQc2RheSYASnVsHHkgDqAmAAHQMjMgUDE6MDYnkE0t
+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
+P29LT0xfTW9OfzXJgAgCK/9t4XJP7PY8tMjDCn85TwyfPw2ujUR5INJilHCFkSYmHaI1aVywyOF8
+YnNbRwBDX0hXSVBdW/QwXQ8gPXM5d7DjMJ9wYFNJT04oljCkoDD9pKAz/gBzP3tOcfV10ZzR/Gxm
+s1DzAVyHLO8ZP6bD33pJqeAg0FwQINFfJaB80f+cdfVynOLv8rNQtNCBYX2Y+3o6dhEhK/K+0gIg
+uTGof/9/z4Dfge+C/4QGdgGGeoVsb35PeriI8vOQbFuxChJ1/zHw7WAzo/Vyiq/9xLVPc9f/rlqO
+jw3qXJZ2gFGIChJ6P7+Zf1qilv+YBWl60jBmpwAsLS2xAG8hLyskcy/z7zGd0W0v0vGe0p5iPIr0
+LmOYiWKd357vn/+Y8JuYoP3QePTA6SA0MRBAAjNPoDA2Li4xMsnJoDVl6yBiNm4A0QDyMKWANDSS
+2p1gnb+iL3+jP67jq0ChH6jvqf/qpjj9UDIrryNu3Dz/PgVw73H//3MPa7vo0l/2PGF2U101NkDe
+bHaABdCYI7ZIKLSPe1//ty1dH7lfDmS2Kph6GZxsZf9k9b1qI1zBR2czfj9Vi2yE/7Yq4LGxL7tv
+xV/K/8wPVd//vT3q4qaQbhDrcc9kr99bj/+yP7NPtF/M37Z/t4+4n9T//7q/u8/N373vvv/AD8Ef
+wi//4N/ET92fbGFpMcbeW8vbj1/cn92vZHI0QN/LLerJMj4updClsOrG6sXqxX19A9nA79AAHwBC
+AAEAAAAcAAAAUgB1AHMAcwBlAGwAbAAsACAASwBlAG4AdAAAAB8AZQABAAAAKgAAAEsAZQBuAHQA
+LgBSAHUAcwBzAGUAbABsAEAAYQBtAGQALgBjAG8AbQAAAAAAHwBkAAEAAAAKAAAAUwBNAFQAUAAA
+AAAAAgFBAAEAAABoAAAAAAAAAIErH6S+oxAZnW4A3QEPVAIAAACAUgB1AHMAcwBlAGwAbAAsACAA
+SwBlAG4AdAAAAFMATQBUAFAAAABLAGUAbgB0AC4AUgB1AHMAcwBlAGwAbABAAGEAbQBkAC4AYwBv
+AG0AAAAfAAJdAQAAACoAAABLAGUAbgB0AC4AUgB1AHMAcwBlAGwAbABAAGEAbQBkAC4AYwBvAG0A
+AAAAAB8A5V8BAAAAMgAAAHMAaQBwADoAawBlAG4AdAAuAHIAdQBzAHMAZQBsAGwAQABhAG0AZAAu
+AGMAbwBtAAAAAAAfABoMAQAAABwAAABSAHUAcwBzAGUAbABsACwAIABLAGUAbgB0AAAAHwAfDAEA
+AAAqAAAASwBlAG4AdAAuAFIAdQBzAHMAZQBsAGwAQABhAG0AZAAuAGMAbwBtAAAAAAAfAB4MAQAA
+AAoAAABTAE0AVABQAAAAAAACARkMAQAAAGgAAAAAAAAAgSsfpL6jEBmdbgDdAQ9UAgAAAIBSAHUA
+cwBzAGUAbABsACwAIABLAGUAbgB0AAAAUwBNAFQAUAAAAEsAZQBuAHQALgBSAHUAcwBzAGUAbABs
+AEAAYQBtAGQALgBjAG8AbQAAAB8AAV0BAAAAKgAAAEsAZQBuAHQALgBSAHUAcwBzAGUAbABsAEAA
+YQBtAGQALgBjAG8AbQAAAAAACwBAOgEAAAAfABoAAQAAABIAAABJAFAATQAuAE4AbwB0AGUAAAAA
+AAMA8T8JBAAACwBAOgEAAAADAP0/5AQAAAIBCzABAAAAEAAAALqPQZAbLvlEjPEcnLDMIQ0DABcA
+AQAAAEAAOQAALEkf/r7ZAUAACDCqaJUf/r7ZAQsAKQAAAAAAHwDZPwEAAAAAAgAAVABoAGUAIABT
+AF8ASQBSAFUARwBPACAAcwB0AHUAZgBmACAAYgBlACAAcwBwAGwAaQB0ACAAZgByAG8AbQAgAHQA
+aABlACAARQBOAE8AUwBZAFMAIABzAHQAdQBmAGYALAAgAHMAaQBuAGMAZQAgAHQAaABlAHkAJwBy
+AGUAIABzAGUAcABhAHIAYQB0AGUALgAgAEEAbABzAG8AIAB0AGgAZQAgAFMAXwBJAFIAVQBHAE8A
+IABzAHQAdQBmAGYAIABpAHMAbgAnAHQAIABtAGUAbgB0AGkAbwBuAGUAZAAgAGkAbgAgAHQAaABl
+ACAAYwBvAG0AbQBpAHQAIABtAGUAcwBzAGEAZwBlAC4ADQAKAA0ACgAgAEsAZQBuAHQADQAKAA0A
+CgA+ACAALQAtAC0ALQAtAE8AcgBpAGcAaQBuAGEAbAAgAE0AZQBzAHMAYQBnAGUALQAtAC0ALQAt
+AA0ACgA+ACAARgByAG8AbQA6ACAAYQBtAGQALQBnAGYAeAAgADwAYQBtAGQALQBnAGYAeAAtAGIA
+bwB1AG4AYwBlAHMAQABsAGkAcwB0AHMALgBmAHIAZQBlAGQAZQBzAGsAdABvAHAALgBvAHIAZwA+
+ACAATwBuACAAQgBlAGgAYQBsAGYAIABPAGYAIABDAGgAZQBuACwADQAKAD4AAAALAACACCAGAAAA
+AADAAAAAAAAARgAAAAAUhQAAAAAAAAsAIwAAAAAAHwAAgIYDAgAAAAAAwAAAAAAAAEYBAAAAHgAA
+AGEAYwBjAGUAcAB0AGwAYQBuAGcAdQBhAGcAZQAAAAAAAQAAAAwAAABlAG4ALQBVAFMAAAADAACA
+CCAGAAAAAADAAAAAAAAARgEAAAAyAAAARQB4AGMAaABhAG4AZwBlAEEAcABwAGwAaQBjAGEAdABp
+AG8AbgBGAGwAYQBnAHMAAAAAACAAAABIAACACCAGAAAAAADAAAAAAAAARgEAAAAiAAAATgBlAHQA
+dwBvAHIAawBNAGUAcwBzAGEAZwBlAEkAZAAAAAAA6APMuX+lBUVsXQjbjRVCEx8AAIATj/JB9IMU
+QaWE7ttaawv/AQAAABYAAABDAGwAaQBlAG4AdABJAG4AZgBvAAAAAAABAAAAKgAAAEMAbABpAGUA
+bgB0AD0ATQBTAEUAeABjAGgAYQBuAGcAZQBSAFAAQwAAAAAAHwAAgIYDAgAAAAAAwAAAAAAAAEYB
+AAAAGAAAAG0AcwBpAHAAXwBsAGEAYgBlAGwAcwAAAAEAAAASBAAATQBTAEkAUABfAEwAYQBiAGUA
+bABfAGQANAAyADQAMwBhADUAMwAtADYAMgAyADEALQA0AGYANwA1AC0AOAAxADUANAAtAGUANABi
+ADMAMwBhADUANwAwADcAYQAxAF8AQQBjAHQAaQBvAG4ASQBkAD0ANQA0ADUAYwAwADcAYgBkAC0A
+YwA1AGMAMgAtADQANABjADIALQBiAGEAMwA5AC0ANQA2AGEAOQA4ADAAOQAxADcANgA4ADYAOwBN
+AFMASQBQAF8ATABhAGIAZQBsAF8AZAA0ADIANAAzAGEANQAzAC0ANgAyADIAMQAtADQAZgA3ADUA
+LQA4ADEANQA0AC0AZQA0AGIAMwAzAGEANQA3ADAANwBhADEAXwBDAG8AbgB0AGUAbgB0AEIAaQB0
+AHMAPQAwADsATQBTAEkAUABfAEwAYQBiAGUAbABfAGQANAAyADQAMwBhADUAMwAtADYAMgAyADEA
+LQA0AGYANwA1AC0AOAAxADUANAAtAGUANABiADMAMwBhADUANwAwADcAYQAxAF8ARQBuAGEAYgBs
+AGUAZAA9AHQAcgB1AGUAOwBNAFMASQBQAF8ATABhAGIAZQBsAF8AZAA0ADIANAAzAGEANQAzAC0A
+NgAyADIAMQAtADQAZgA3ADUALQA4ADEANQA0AC0AZQA0AGIAMwAzAGEANQA3ADAANwBhADEAXwBN
+AGUAdABoAG8AZAA9AFAAcgBpAHYAaQBsAGUAZwBlAGQAOwBNAFMASQBQAF8ATABhAGIAZQBsAF8A
+ZAA0ADIANAAzAGEANQAzAC0ANgAyADIAMQAtADQAZgA3ADUALQA4ADEANQA0AC0AZQA0AGIAMwAz
+AGEANQA3ADAANwBhADEAXwBOAGEAbQBlAD0AUAB1AGIAbABpAGMALQBBAEkAUAAgADIALgAwADsA
+TQBTAEkAUABfAEwAYQBiAGUAbABfAGQANAAyADQAMwBhADUAMwAtADYAMgAyADEALQA0AGYANwA1
+AC0AOAAxADUANAAtAGUANABiADMAMwBhADUANwAwADcAYQAxAF8AUwBlAHQARABhAHQAZQA9ADIA
+MAAyADMALQAwADcALQAyADUAVAAwADUAOgAwADUAOgAyADEAWgA7AE0AUwBJAFAAXwBMAGEAYgBl
+AGwAXwBkADQAMgA0ADMAYQA1ADMALQA2ADIAMgAxAC0ANABmADcANQAtADgAMQA1ADQALQBlADQA
+YgAzADMAYQA1ADcAMAA3AGEAMQBfAFMAaQB0AGUASQBkAD0AMwBkAGQAOAA5ADYAMQBmAC0AZQA0
+ADgAOAAtADQAZQA2ADAALQA4AGUAMQAxAC0AYQA4ADIAZAA5ADkANABlADEAOAAzAGQAOwAAAAAA
+SAAAgGvFP0AwzcVHhvjt6eNaAisBAAAAHAAAAE0AUwBJAFAATABhAGIAZQBsAEcAdQBpAGQAAABT
+OiTUIWJ1T4FU5LM6VwehHwD6PwEAAAAcAAAAUgB1AHMAcwBlAGwAbAAsACAASwBlAG4AdAAAAAsA
+AIAIIAYAAAAAAMAAAAAAAABGAAAAAAaFAAAAAAAAHwA3AAEAAACiAAAAUgBFADoAIABbAFAAQQBU
+AEMASABdACAAZAByAG0ALwBhAG0AZABnAHAAdQA6ACAARgBpAHgAIABFAE4ATwBTAFkAUwAgAG0A
+ZQBhAG4AcwAgACcAaQBuAHYAYQBsAGkAZAAgAHMAeQBzAGMAYQBsAGwAIABuAHIAJwAgAGkAbgAg
+AGEAbQBkAGcAcAB1AF8AZABlAHYAaQBjAGUALgBjAAAAAAAfAD0AAQAAAAoAAABSAEUAOgAgAAAA
+AAADADYAAAAAAAMALgAAAAAAHwBCEAEAAACiAAAAPABEAE0ANQBQAFIAMQAyAE0AQgAyADQANgA5
+AEQAMwA3AEMAOABEAEUANwAwADYAMAA1ADUARgAyAEIANgBFAEMAQgBGADEAMAAzAEEAQABEAE0A
+NQBQAFIAMQAyAE0AQgAyADQANgA5AC4AbgBhAG0AcAByAGQAMQAyAC4AcAByAG8AZAAuAG8AdQB0
+AGwAbwBvAGsALgBjAG8AbQA+AAAAAAACAXEAAQAAACAAAAABAdm9LTzAZmlMwMShQpWQJ3CIYsig
+r8nxAICAAJCmkB8AcAABAAAAmgAAAFsAUABBAFQAQwBIAF0AIABkAHIAbQAvAGEAbQBkAGcAcAB1
+ADoAIABGAGkAeAAgAEUATgBPAFMAWQBTACAAbQBlAGEAbgBzACAAJwBpAG4AdgBhAGwAaQBkACAA
+cwB5AHMAYwBhAGwAbAAgAG4AcgAnACAAaQBuACAAYQBtAGQAZwBwAHUAXwBkAGUAdgBpAGMAZQAu
+AGMAAAAAAB8ANRABAAAAogAAADwAQgBMADEAUABSADEAMgBNAEIANQA4ADkAOABFAEMAQgAwAEMA
+OQBFADQANgA4ADkAOQBGAEMANwA1AEMAQQBDADcAOAA1ADAAMwBBAEAAQgBMADEAUABSADEAMgBN
+AEIANQA4ADkAOAAuAG4AYQBtAHAAcgBkADEAMgAuAHAAcgBvAGQALgBvAHUAdABsAG8AbwBrAC4A
+YwBvAG0APgAAAAAAHwA5EAEAAAASAQAAPAAyADAAMgAzADAANwAyADMAMAA2ADEANQA0ADkALgAy
+ADAAMQA3ADEAOAA0AC0AMQAtAHMAcgBpAG4AaQB2AGEAcwBhAG4ALgBzAGgAYQBuAG0AdQBnAGEA
+bQBAAGEAbQBkAC4AYwBvAG0APgAgADwARABNADUAUABSADEAMgBNAEIAMgA0ADYAOQBEADMANwBD
+ADgARABFADcAMAA2ADAANQA1AEYAMgBCADYARQBDAEIARgAxADAAMwBBAEAARABNADUAUABSADEA
+MgBNAEIAMgA0ADYAOQAuAG4AYQBtAHAAcgBkADEAMgAuAHAAcgBvAGQALgBvAHUAdABsAG8AbwBr
+AC4AYwBvAG0APgAAAAAAAwDeP+n9AAALAACACCAGAAAAAADAAAAAAAAARgAAAAADhQAAAAAAAAMA
+AIAIIAYAAAAAAMAAAAAAAABGAAAAAAGFAAAAAAAAAwCAEP////8DABMSAAAAAAIBAIATj/JB9IMU
+QaWE7ttaawv/AQAAAC4AAABIAGUAYQBkAGUAcgBCAG8AZAB5AEYAcgBhAGcAbQBlAG4AdABMAGkA
+cwB0AAAAAAABAAAAIgAAAAEACgAAAAQAAAAAAAAAFAAAAAAAAAAAAAAA/////wAAAAAAAAsAAIAT
+j/JB9IMUQaWE7ttaawv/AQAAABwAAABIAGEAcwBRAHUAbwB0AGUAZABUAGUAeAB0AAAAAAAAAAsA
+AIATj/JB9IMUQaWE7ttaawv/AQAAACgAAABJAHMAUQB1AG8AdABlAGQAVABlAHgAdABDAGgAYQBu
+AGcAZQBkAAAAAQAAAAIBAIATj/JB9IMUQaWE7ttaawv/AQAAAEAAAABDAG8AbgB2AGUAcgBzAGEA
+dABpAG8AbgBUAHIAZQBlAFAAYQByAGUAbgB0AFIAZQBjAG8AcgBkAEsAZQB5AAAAAQAAAC4AAAAA
+AAAAyfGnC8O0EEmHi084qczo5gEAjqQclcKcIEeEjj0vzHHCDgAHLQ5AsgAAAABAAAcwHzVqH/6+
+2QELAAIAAQAAAAMAJgAAAAAACwArAAAAAAALAAYMAAAAAAIBEDABAAAARgAAAAAAAADJ8acLw7QQ
+SYeLTzipzOjmBwAzHCdX7tSHS5Dh3UosyAzIAAAAATT4AACOpByVwpwgR4SOPS/MccIOAAZRkorn
+AAAAAAIBEzABAAAAEAAAAMBmaUzAxKFClZAncIhiyKACARQwAQAAAAwAAACJBAAAKTQQR1QAAAAD
+AFszAQAAAAMAWjYAAAAAAwBoNg0AAAALAPo2AQAAAB8A+D8BAAAAHAAAAFIAdQBzAHMAZQBsAGwA
+LAAgAEsAZQBuAHQAAAAfACJAAQAAAAYAAABFAFgAAAAAAB8AI0ABAAAAAgEAAC8ATwA9AEUAWABD
+AEgAQQBOAEcARQBMAEEAQgBTAC8ATwBVAD0ARQBYAEMASABBAE4ARwBFACAAQQBEAE0ASQBOAEkA
+UwBUAFIAQQBUAEkAVgBFACAARwBSAE8AVQBQACAAKABGAFkARABJAEIATwBIAEYAMgAzAFMAUABE
+AEwAVAApAC8AQwBOAD0AUgBFAEMASQBQAEkARQBOAFQAUwAvAEMATgA9ADEARgBDADQANABDADkA
+NwAxAEIAQQA0ADQARgA1AEQAOABEADEAOQAyADkAQgBCADcANAA1ADQARQA3AEEAMgAtAFIAVQBT
+AFMARQBMAEwALAAgAEsARQAAAAAAHwAkQAEAAAAGAAAARQBYAAAAAAAfACVAAQAAAAIBAAAvAE8A
+PQBFAFgAQwBIAEEATgBHAEUATABBAEIAUwAvAE8AVQA9AEUAWABDAEgAQQBOAEcARQAgAEEARABN
+AEkATgBJAFMAVABSAEEAVABJAFYARQAgAEcAUgBPAFUAUAAgACgARgBZAEQASQBCAE8ASABGADIA
+MwBTAFAARABMAFQAKQAvAEMATgA9AFIARQBDAEkAUABJAEUATgBUAFMALwBDAE4APQAxAEYAQwA0
+ADQAQwA5ADcAMQBCAEEANAA0AEYANQBEADgARAAxADkAMgA5AEIAQgA3ADQANQA0AEUANwBBADIA
+LQBSAFUAUwBTAEUATABMACwAIABLAEUAAAAAAB8AMEABAAAAHAAAAFIAdQBzAHMAZQBsAGwALAAg
+AEsAZQBuAHQAAAAfADFAAQAAABwAAABSAHUAcwBzAGUAbABsACwAIABLAGUAbgB0AAAAHwA4QAEA
+AAAcAAAAUgB1AHMAcwBlAGwAbAAsACAASwBlAG4AdAAAAB8AOUABAAAAHAAAAFIAdQBzAHMAZQBs
+AGwALAAgAEsAZQBuAHQAAAADAFlAAAAAAAMAWkAAAAAAAwA3UAEAAAADAAlZAQAAAB8ACl0BAAAA
+KgAAAEsAZQBuAHQALgBSAHUAcwBzAGUAbABsAEAAYQBtAGQALgBjAG8AbQAAAAAAHwALXQEAAAAq
+AAAASwBlAG4AdAAuAFIAdQBzAHMAZQBsAGwAQABhAG0AZAAuAGMAbwBtAAAAAAACARVdAQAAABIA
+AAACH5bYPYjkYE6OEagtmU4YPQEAAAIBFl0BAAAAEgAAAAIfltg9iORgTo4RqC2ZThg9AQAAAwAA
+gAggBgAAAAAAwAAAAAAAAEYAAAAAEIUAAAAAAAADAACACCAGAAAAAADAAAAAAAAARgAAAAAYhQAA
+AAAAAAsAAIAIIAYAAAAAAMAAAAAAAABGAAAAAIKFAAAAAAAACwAAgAggBgAAAAAAwAAAAAAAAEYA
+AAAADoUAAAAAAAAfAACAH6TrM6h6LkK+e3nhqY5UswEAAAA4AAAAQwBvAG4AdgBlAHIAcwBhAHQA
+aQBvAG4ASQBuAGQAZQB4AFQAcgBhAGMAawBpAG4AZwBFAHgAAAABAAAATAIAAEkASQA9AFsAQwBJ
+AEQAPQA0AGMANgA5ADYANgBjADAALQBjADQAYwAwAC0ANAAyAGEAMQAtADkANQA5ADAALQAyADcA
+NwAwADgAOAA2ADIAYwA4AGEAMAA7AEkARABYAEgARQBBAEQAPQAwADEARAA5AEIARAAyAEQAMwBD
+ADsASQBEAFgAQwBPAFUATgBUAD0AMwBdADsAUwBCAE0ASQBEAD0AMgA0ADsAUwAxAD0APABEAE0A
+NQBQAFIAMQAyAE0AQgAyADQANgA5AEQAMwA3AEMAOABEAEUANwAwADYAMAA1ADUARgAyAEIANgBF
+AEMAQgBGADEAMAAzAEEAQABEAE0ANQBQAFIAMQAyAE0AQgAyADQANgA5AC4AbgBhAG0AcAByAGQA
+MQAyAC4AcAByAG8AZAAuAG8AdQB0AGwAbwBvAGsALgBjAG8AbQA+ADsAUgBUAFAAPQBEAGkAcgBl
+AGMAdABDAGgAaQBsAGQAOwBUAEQATgA9AE0AaQBzAG0AYQB0AGMAaAA7AFQAUAA9AFIAZQBtAG8A
+dgBlAGQAOwBUAEYAUgA9AFAAYQByAHQAaQBjAGkAcABhAG4AdABDAGgAYQBuAGcAZQBkADsAVgBl
+AHIAcwBpAG8AbgA9AFYAZQByAHMAaQBvAG4AIAAxADUALgAyADAAIAAoAEIAdQBpAGwAZAAgADYA
+NgAwADkALgAwACkALAAgAFMAdABhAGcAZQA9AEgAMQAsACAAVABDADsAVQBQAD0ANQAwADsARABQ
+AD0AMQAAAB8AAIAIIAYAAAAAAMAAAAAAAABGAAAAANiFAAABAAAAEgAAAEkAUABNAC4ATgBvAHQA
+ZQAAAAAACwAAgFDjYwvMnNARvNsAgF/MzgQBAAAAJgAAAEkAcwBQAGUAcgBtAGEAbgBlAG4AdABG
+AGEAaQBsAHUAcgBlAAAAAAAAAAAAAwAAgFDjYwvMnNARvNsAgF/MzgQBAAAAJAAAAEkAbgBkAGUA
+eABpAG4AZwBFAHIAcgBvAHIAQwBvAGQAZQAAABsAAAAfAACAUONjC8yc0BG82wCAX8zOBAEAAAAq
+AAAASQBuAGQAZQB4AGkAbgBnAEUAcgByAG8AcgBNAGUAcwBzAGEAZwBlAAAAAAABAAAAcAAAAEkA
+bgBkAGUAeABpAG4AZwAgAFAAZQBuAGQAaQBuAGcAIAB3AGgAaQBsAGUAIABCAGkAZwBGAHUAbgBu
+AGUAbABQAE8ASQBJAHMAVQBwAFQAbwBEAGEAdABlACAAaQBzACAAZgBhAGwAcwBlAC4AAAACAQCA
+CCAGAAAAAADAAAAAAAAARgEAAAA2AAAASQBuAFQAcgBhAG4AcwBpAHQATQBlAHMAcwBhAGcAZQBD
+AG8AcgByAGUAbABhAHQAbwByAAAAAAABAAAAEAAAANtAFDgrCzZFjFGydwK/dXYDAA00/T8AAB8A
+AICGAwIAAAAAAMAAAAAAAABGAQAAAC4AAABhAHUAdABoAGUAbgB0AGkAYwBhAHQAaQBvAG4ALQBy
+AGUAcwB1AGwAdABzAAAAAAABAAAAsgAAAGQAawBpAG0APQBuAG8AbgBlACAAKABtAGUAcwBzAGEA
+ZwBlACAAbgBvAHQAIABzAGkAZwBuAGUAZAApACAAaABlAGEAZABlAHIALgBkAD0AbgBvAG4AZQA7
+AGQAbQBhAHIAYwA9AG4AbwBuAGUAIABhAGMAdABpAG8AbgA9AG4AbwBuAGUAIABoAGUAYQBkAGUA
+cgAuAGYAcgBvAG0APQBhAG0AZAAuAGMAbwBtADsAAAAAAB8AAICGAwIAAAAAAMAAAAAAAABGAQAA
+ACAAAAB4AC0AbQBzAC0AaABhAHMALQBhAHQAdABhAGMAaAAAAAEAAAACAAAAAAAAAB8AAIBrxT9A
+MM3FR4b47enjWgIrAQAAABIAAABNAEkAUABMAGEAYgBlAGwAAAAAAAEAAADaAQAAWwB7ACIAaQBk
+ACIAOgAiAGQANAAyADQAMwBhADUAMwAtADYAMgAyADEALQA0AGYANwA1AC0AOAAxADUANAAtAGUA
+NABiADMAMwBhADUANwAwADcAYQAxACIALAAiAHQAaQAiADoAIgAzAGQAZAA4ADkANgAxAGYALQBl
+ADQAOAA4AC0ANABlADYAMAAtADgAZQAxADEALQBhADgAMgBkADkAOQA0AGUAMQA4ADMAZAAiACwA
+IgBwAGkAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAw
+AC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAbgBtACIAOgAiAFAAdQBiAGwAaQBjAC0A
+QQBJAFAAIAAyAC4AMAAiACwAIgBhAGMAIgA6ADAALAAiAG8AcAAiADoAMgAsACIAYwB0ACIAOgAi
+ADIAMAAyADMALQAwADcALQAyADUAVAAwADUAOgAwADUAOgAyADEAWgAiACwAIgBtAHQAIgA6ACIA
+MAAwADAAMQAtADAAMQAtADAAMQBUADAAMAA6ADAAMAA6ADAAMAAiACwAIgB1AGMAIgA6AG4AdQBs
+AGwAfQBdAAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAAAuAAAAeAAtAG0AcwAtAHAAdQBiAGwA
+aQBjAHQAcgBhAGYAZgBpAGMAdAB5AHAAZQAAAAAAAQAAAAwAAABFAG0AYQBpAGwAAAAfAACAhgMC
+AAAAAADAAAAAAAAARgEAAAA2AAAAeAAtAG0AcwAtAHQAcgBhAGYAZgBpAGMAdAB5AHAAZQBkAGkA
+YQBnAG4AbwBzAHQAaQBjAAAAAAABAAAASAAAAEIATAAxAFAAUgAxADIATQBCADUAOAA5ADgAOgBF
+AEUAXwB8AFMASgAyAFAAUgAxADIATQBCADgAOAA4ADMAOgBFAEUAXwAAAB8AAICGAwIAAAAAAMAA
+AAAAAABGAQAAAFAAAAB4AC0AbQBzAC0AbwBmAGYAaQBjAGUAMwA2ADUALQBmAGkAbAB0AGUAcgBp
+AG4AZwAtAGMAbwByAHIAZQBsAGEAdABpAG8AbgAtAGkAZAAAAAEAAABKAAAAYgA5AGMAYwAwADMA
+ZQA4AC0AYQA1ADcAZgAtADQANQAwADUALQA2AGMANQBkAC0AMAA4AGQAYgA4AGQAMQA1ADQAMgAx
+ADMAAAAAAB8AAICGAwIAAAAAAMAAAAAAAABGAQAAADgAAAB4AC0AbQBzAC0AZQB4AGMAaABhAG4A
+ZwBlAC0AcwBlAG4AZABlAHIAYQBkAGMAaABlAGMAawAAAAEAAAAEAAAAMQAAAB8AAICGAwIAAAAA
+AMAAAAAAAABGAQAAADoAAAB4AC0AbQBzAC0AZQB4AGMAaABhAG4AZwBlAC0AYQBuAHQAaQBzAHAA
+YQBtAC0AcgBlAGwAYQB5AAAAAAABAAAABAAAADAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAAAq
+AAAAeAAtAG0AaQBjAHIAbwBzAG8AZgB0AC0AYQBuAHQAaQBzAHAAYQBtAAAAAAABAAAADgAAAEIA
+QwBMADoAMAA7AAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAABEAAAAeAAtAG0AaQBjAHIAbwBz
+AG8AZgB0AC0AYQBuAHQAaQBzAHAAYQBtAC0AbQBlAHMAcwBhAGcAZQAtAGkAbgBmAG8AAAABAAAA
+AgUAAEUAVABWAHgARgBVAHkANAB5ADMARAB1ADgAdABjAFYAQgBHAEkAaABHAEUAcwB5AG8AZgBH
+AHUASABLAFQAZABnADAAYwBIAEUAUwBnAGYATwBEAHQAMQAxAHAAUgB5AGEARgBKAHcAZABmACsA
+VQBzAHoASQBYADUAcwBmAFYASgBvAG0AaQB3ADcAbwBoADgAcQBIACsASwBtAGIATABjAGgAZQBS
+AEoAMgBtADkARQBVADkAegBMADIAZABjAFEAcQBaAG4AawByAGMAcQBwAHIAdAB5AEEATABCAG8A
+eQBtAFkAUQBmAEQARwBlAHoAdABKAGwAcQBlAEkAQwB0AEkAYQBXAG0AYgBaAGkAVgAxAFcAaQBH
+AE0AZgBUAGYAbwBjAG0AVQBaAHMAagBaAEwAVgBkADAASABPAEUAMgAyAGcATAB1AFMASwB6AGsA
+NQBwAEwAaQBQAFkAVwA2ADIASgB4AHQALwBRAFAAZQBKAFAATgA1AGsATQBGAFAAZABPAGcARQBI
+ADUAVwAzAGwASgAyAGwARwA5AE4AYgBpAFoAbAA3AGQAQgB3AFMAMwBQAHcATgBIAEsARQA3AEUA
+TQB2AEkAcQBXAGwAMQBnAFYAQgB5AHEAUgBqAGoAWABuAGsAWgBiAFIAOQAyAGkAegBMAHgAOAB5
+AGQAVAA2ADQAZABiAHcAegBEAHMASQA2AFMATgBYAHAAeQBYAGMAUABDADQAcgBMAE8ARwBKAGwA
+bwA5AHAANQBFAFgAVwBnAGUAUQBuAEEAZwAxAGEANQBqAEcAOAAvAHkASQB6AC8AeAAzAEgAYgAz
+AHQAZgBrADUAOABiAGUAQQArADUAYgBGAGoAeAB4AE8ATwBNAG0AQwBBAE0AZAA1ADMAbAB5AEkA
+QgBLAFUARgArAEMAQgBaAGUAKwB0AGkAVgBXAFIAYQB6AEIAZwBQAG8AKwB4AGoAaQBnADkAdwBK
+AEMAKwB3AFcAcgBFAHcARgA5AE4ARQBFAHYAWgB0AGIAWABZAHgATABYAFkAQgBHAFgAVQBKAEwA
+TABVAEkASgBaADEAcABiAGEARQAzAHQAYgBFAFkAawA2AHMAMQBIADUAQgBpAGMAeAAyAFIAKwBj
+AGoAZwB5AGMAKwBiAC8ARQBsAHEAcABiADgAaABxAFQARABDAC8AQgBjAGEAVABiAFoAZwBWAFcA
+dABTAHkAVgBFAGoAWQA2AGMAegBjADAASgBQAFQAcQA4ADAAMwB4AG8ASwBKADIAWgBaAHcAbABV
+ADcASQA5ADAAVwBkADMAOQBKAEEAMgA5AGYATQBYAGMAVABaAEcAaABFAHoAbgAzAE0ATgBCAHUA
+WQB3AEsASAB4ADQAUQBhAHQAVQBFAGoANABLAGUAdQA2AFYAVQBXAGIAVQBYAEgAVgBaAHEASgBQ
+ADMAcQBPAHMAdwBVADcASABsAE8AdABsAGkASwBhAFIAdABEACsAOABBADYALwBYAEkAOQB4AHQA
+SABJAFAAMAAyAFQAeQBnAHgAagBuAE0ATQBoAHIAegBhAFkARABpADIAQQBHAE4ALwAxAGMASwBj
+AGYAegBaAHEASgBsAFoAbQBOAHkAQQBjADUARABTAGMATgBWAHoAZQBKAGoAcgBqADkAawB6AEkA
+QwBSADkANwBsAEUARgBzADAAZgA5AFoASABrAE0AAAAAAB8AAICGAwIAAAAAAMAAAAAAAABGAQAA
+ADgAAAB4AC0AZgBvAHIAZQBmAHIAbwBuAHQALQBhAG4AdABpAHMAcABhAG0ALQByAGUAcABvAHIA
+dAAAAAEAAAByBAAAQwBJAFAAOgAyADUANQAuADIANQA1AC4AMgA1ADUALgAyADUANQA7AEMAVABS
+AFkAOgA7AEwAQQBOAEcAOgBlAG4AOwBTAEMATAA6ADEAOwBTAFIAVgA6ADsASQBQAFYAOgBOAEwA
+SQA7AFMARgBWADoATgBTAFAATQA7AEgAOgBCAEwAMQBQAFIAMQAyAE0AQgA1ADgAOQA4AC4AbgBh
+AG0AcAByAGQAMQAyAC4AcAByAG8AZAAuAG8AdQB0AGwAbwBvAGsALgBjAG8AbQA7AFAAVABSADoA
+OwBDAEEAVAA6AE4ATwBOAEUAOwBTAEYAUwA6ACgAMQAzADIAMwAwADAAMgA4ACkAKAA0ADYAMwA2
+ADAAMAA5ACkAKAAzADcANgAwADAAMgApACgAMwA5ADgANgAwADQAMAAwADAAMAAyACkAKAAzADYA
+NgAwADAANAApACgAMwA5ADYAMAAwADMAKQAoADMANAA2ADAAMAAyACkAKAAxADMANgAwADAAMwAp
+ACgANAA1ADEAMQA5ADkAMAAyADEAKQAoADUAMwA1ADQANgAwADEAMQApACgAMwAzADYANQA2ADAA
+MAAyACkAKAA0ADEAMwAwADAANwAwADAAMAAwADEAKQAoADMAMAA4ADYANAAwADAAMwApACgANgA1
+ADAANgAwADAANwApACgAMQA4ADYAMAAwADMAKQAoADgAMwAzADgAMAA0ADAAMAAwADAAMQApACgA
+NgA2ADUANwA0ADAAMQA1ACkAKAAyADYAMAAwADUAKQAoADQANwA4ADYAMAAwADAAMAAxACkAKAA3
+ADEAMgAwADAANAAwADAAMAAwADEAKQAoADUANQAwADEANgAwADAAMwApACgAOQA2ADgANgAwADAA
+MwApACgAMwA4ADAANwAwADcAMAAwADAAMAA1ACkAKAAyADkAMAA2ADAAMAAyACkAKAA3ADYAOQA2
+ADAAMAA1ACkAKAA4ADYAMwA2ADIAMAAwADEAKQAoADUANgA2ADAAMwAwADAAMAAwADIAKQAoADUA
+MgA1ADMANgAwADEANAApACgANgA2ADQANwA2ADAAMAA3ACkAKAA2ADQANwA1ADYAMAAwADgAKQAo
+ADcANgAxADEANgAwADAANgApACgAMQAyADIAMAAwADAAMAAwADEAKQAoADYANgA5ADQANgAwADAA
+NwApACgANgA2ADMANgAwADAAMgApACgANAAzADIANgAwADAAOAApACgANgA2ADQANAA2ADAAMAA4
+ACkAKAA2ADYANQA1ADYAMAAwADgAKQAoADgANgA3ADYAMAAwADIAKQAoADgAOQAzADYAMAAwADIA
+KQAoADMAMQA2ADAAMAAyACkAKAAzADgAMQAwADAANwAwADAAMAAwADIAKQAoADUANAA5ADAANgAw
+ADAAMwApACgAMQAxADAAMQAzADYAMAAwADUAKQA7AEQASQBSADoATwBVAFQAOwBTAEYAUAA6ADEA
+MQAwADEAOwAAAAAAHwAAgIYDAgAAAAAAwAAAAAAAAEYBAAAAXAAAAHgALQBtAHMALQBlAHgAYwBo
+AGEAbgBnAGUALQBhAG4AdABpAHMAcABhAG0ALQBtAGUAcwBzAGEAZwBlAGQAYQB0AGEALQBjAGgA
+dQBuAGsAYwBvAHUAbgB0AAAAAQAAAAQAAAAxAAAAHwAAgIYDAgAAAAAAwAAAAAAAAEYBAAAASgAA
+AHgALQBtAHMALQBlAHgAYwBoAGEAbgBnAGUALQBhAG4AdABpAHMAcABhAG0ALQBtAGUAcwBzAGEA
+ZwBlAGQAYQB0AGEALQAwAAAAAAABAAAAWgwAAGMAKwBHAGUAMwBkAFIAVwBUAGgAegBvAEcATwBP
+AHcAUQB1AGYAZgBGAEgAcAB4AG4AeQBYAEoAWQBFAE0ARwBvADIAbAB2AGgANgA5ADQAcwBiAGwA
+bQA3AEQASgB1AEoAdQAzAE0AWQByAHcAbABuACsANQBrAGQAeAAyAHUAawArADQANQBKAFYAbQA2
+ADMAaABMAFgAZQBhAHUAQQBtAEcAdABvADEAeABiADIAMAA5ACsAcwBkAEEARgBLAGsAcABxAEQA
+SAAwAEUANABoAFcAWQA2AFgAbgBIAGIALwB1AC8AZAA0AHYAMQBBAEQAYQAvAE0AaABxAEwATgA5
+AEUAQwBiAHgAVABFADcAYwBYAHcAdQA1AFgAeQBqAGIAcwBLAEEAaABYAGMALwBIAE8AYgBrAFMA
+VgBIAFEAQgAyAEIAZgB6AGIAZgAyAHkALwBFAEgAawB3AGIANQBzADUASwBhAHQAZQBCAFAAcAA5
+ADIAMABpAHYAVgBRAGEAMQBuAHAANABqAFQAbgAxAGYAbwBpAGsAUwB6AGwAbwBjAHUAdgBMAEEA
+RABXAHEAYgAyAG8AQQAvAEwAcwBkAGMAQwBtAEMAWgBKAEkAcQBUAFcAMgA1ACsAdABoAGUAbABm
+AFQAVQBQAE4AeQBuAGMAQgBCACsASgBjAFAAdABFADIAMgBuAGYATQA4AE4AZABlAG4AVQA0AGgA
+bQBGAGMAYwA1AEIAaAB0AG0ANQBkAE0AagBqAG0ARQBOAEUAKwBVAHAANwBtAGYAOQBYAGMARwB4
+ADEARgBYAFQAZgA2AFcAcgA5AEMAYQB4AEUAYgBUAHUAUQBrAEMASQBhAEEAbgBQAHUAdwB4AGEA
+UQBDADgAVQBZAFgAUABiAHcAcgBWAFAAQwBnAEYASQA2AGMAYwBnAEcAUgA1AHMAQgBiAG8ASABW
+AGgARwBsAHgAZgBWADcAWgBqAGMAWABRAC8AMgBmADMAMAA0AGcAawBKAFgAZgBmAEEAcQBwAGIA
+RABnAHUASQBsAEEARQBoADgAQgBtAG4AYQB2AHcAcAB4AFkANQBTAEkAMwBWAE0ANwB6AC8AeQA1
+AGgATgAzAHoAdQB1ADAAMwA2ACsAVABoAC8AeABwADEARwBxAG8AawBjAHkAQgBsAFAASgBDAGoA
+bAA3AGwAVQBwAE4AeAAxAEYAbQBTAGoAVgA5AGsAUgBlAGwAbgBjAE4AbgBVAHgAYQBuAGMAaABr
+AHgAdgBVAEkANgBUAEkANgBpAGIAYwAxADYAUgBqAHYAVQBtAHAAdwBzAGMAMwBwAEwAagBNAHkA
+NQBqAHoAbQBXAE0ANgB3AFcAWQB5ADQAaQBjAGgAcgBmAFgAVgBqADEATQB4ADYANQB1AFMASABk
+ADIAZQBmADcAcwAxAFIAagBzAHkAdABGAGYAagB6AFAARQBYAEUAcwBTADQAOQBsAFcASQAxAHMA
+awBlAHcANAB2AGUAWAB3AEYARgBJADIASABSAFEAWgA0AFcAVQBUAGcANQB6AHQAVgB5ADEATgBs
+AHEAWQBtADQASgBPADQAKwBUAGEAaAArAHEAeAB1ADAAbABCADUAOAA3AGEAMwBtAFQAZwBiAG4A
+TwBuAGoAYgByAFAAYwBIADYAWQAvAHQASABYAEoAVQBUAEQAVABqAGYAYwBQAHIARQBBAGgAcABR
+AGQATABTAEoAZwB0AE8AQwBoAFEATgBIAGMAeQB1ADUASQBjAG4AQQAyAFcAWQBPAFIARwA2AHAA
+dgBMADUAbwAvAEwAVgBmAGMAbwAyAGEAawBRADkAbQBsAHUAMwBmAEkARgAwAHMAcQB2AFcATgAz
+AGoAMAB4AG8ASwAyAHoATABkAEoATQBVADcANwBsAFgAYgB6AHkAagBTAEoATQAxAEYAYwBpADEA
+MAAwAG0AZQB5AFQAUgBIAFIATgBxAFEAYQBUADUANABkAGoAVQA1AGEALwBCAC8AVAAxAG4AcQBl
+AG4AVQBSAEgATgBSAHMAUAB4AHUAWQA0AEgAcQBoAHAAZAA4AFAAWAB4AHAAYwBvAHcAMQBsAEIA
+agBLAG4AcABIAG8AWQByAHkAcQB6AC8AdQBoAFQAbAA0AHEARwB2AG8AUQBvAGgASgBzAEkAWgBq
+AHoARQBRAGgAbgArAFgAMABjAFYAdQBQAHEAegBaAGMASgBwAFUAQgA4AGEAWABzAHUAWQB6AGQA
+VwBhAHgAVgBiAHgAVQBjADAANQBhAEsAbABXAHMAZgB6AEgATQBsAEwANgAyAEwAcABlAEIAcwBO
+AGEAMgBjADQASgBJAEwAaQB6AEIAawA1AGIASgBOAHQAWgA2AEsAWQBnAFUAcwAwACsAQgB4AFoA
+UABjAEwAdgA4AHcAeQBFAFIAWgBCAEEAdQBCADMAdQB6AGwAbgBHAC8AVQBhAEcAegBFAG0AcwAr
+AFkAVAAzAGoAeQAyAEkAcwBVACsAaABqAHcAWABCAHgAVQBRADgAeABwADgAagB2AEQASgA5AHYA
+cgBSAFUAcgAwAFoAZwBmAEsAMABsAGEAOQBFADMANABiAE8ASABHAGkASgAwAGIARABnAHoAdQBY
+AFgAVQBuAEIAZQBOAGsARABlAEIAeAA0AGoAKwBkADgAMwAzAGwAZwAzAGEAdABDAFgAawA2AFgA
+bQByAHcAVgA1ACsANwBmAHAAaABXAGgAcwBhAHIAWABZAE8AUwB1AE8AWgBOAFQAawBuAEIAZQBT
+AHEAVgBxAG0ASQBkACsAUABkAGYAWQBTAFQAdgBPADIATgAvAE0AMgBZAEwAMQB3AEcAdgA3AC8A
+VQBiAC8AcgArAGwAUgA3AEcAUwBsAEsARgBXAFUAUQBRAHcAdQA2AEwAQQB3AC8AVwBmAC8ASQBx
+AGEAcgBlAFkAaABJADMAaQByAGsAUQBxAGYAUwBXAFUASgBsAFYAdABFAHoAUwB5AGMAbwBzAHoA
+aQBzADIAZQBOAFEAZQBMAEYAOQB2AGQAawBlAHkANgBKAE8ANgA5ADcAcwBhAFMASABRAG0AMQB1
+AGMAVQAzAHgAZAAwAC8AMgAyAFoAKwBtAHIASgBMAGkAOQBZAHMAOABhAG4ATQA3ADMAUgB5AHcA
+TgBqAGwAeABRAE8AaAB6AE8ARQBHAHgAbgBuAHIAdwBjAEwAeAB4AFkAOQB1AHUAegArAGMAMABW
+AEEASgBDAFIANgByAFEAWgBQAFkAWQBwAGkAQwBqAEEAcgBlAHEAVAByAG0AbABXAEYAOAAxAFAA
+ZQBjAGkATgBRADkAVABMAHoAZABxAHUAWABNADUASwBZAG8AMgBTADAAOABVAHkANQBhAE0AMgBH
+AHIARQAwADUAVgBLADgAYQB0AGYAVQB4ADEARwBUAFYAQwBrAGYARQBGAHUAdgBRACsASABLAHgA
+NQBHAFAAbQBKAFAAVABmAGMAZgBLAGIAQQB5AEkASABMAFAAZQBUAGwAbQBNADMANwBrAHQAOQBS
+ADUANgBnAEEAQQAxAEMASQBtADEAQgBWAHMAaQByAGUAegBrADIATQBxAEYATwAzAGYAdQBVAGYA
+dwArAFMARgAwAGEATQBWAEIAQQA4AEUANgBtAHMAVwBGAEwAUABXAGgAZwBWAHYAcgAxAGMAeQBu
+ADIANwBhADMASABhADUAeAA0AFQAQwArAGQAMAB0AEUAMABtAFEAQQBVADIASwBvAFEAWQB4AFUA
+aQBFAFkAZQBCAEsATABQAHMASAB0AGcAQwA0ACsAWgBtAFEAaAArAHkAegBvAEQAdABSAGgAdwA4
+AFUASQBkADIAYgBzAFMAMgAvAC8ANgAzAGYAcwBTAHUAWgByAHUANABjAFEAcABkAHgAZAB6AGYA
+bwA5ADQAZQBDAGMATABUAGcAYwBXAFAASwBxAHgAbwBNAHcAWQB2ADEAMABWADUAdwBCAHgAZAB1
+AHUAQwBBAEMASwBRAHQATQBhAEUAUgBRAGwAUABuAEIATwA3ADAATwBKAHQAMAB3AGoAWABIAHoA
+RQBUAHgARwBwAGQATQBlAGEAbAA0AEwAcgAxAEgAcwBYAC8AaQBoAGIAMgBQADcAbwBqAEsATgBt
+AFIARQArAFkAVABqAFgAdABGAE4ANgBNAFIAKwA0AFMAQwBiAEMAUgA3AHgAdwBWAFEAPQAAAAAA
+gdw=
+
+--_000_BL1PR12MB5898ECB0C9E46899FC75CAC78503ABL1PR12MB5898namp_--
