@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B1D761988
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 15:16:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E0C761999
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 15:18:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D91710E13D;
-	Tue, 25 Jul 2023 13:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7A010E13F;
+	Tue, 25 Jul 2023 13:17:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 673D010E13D
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 13:15:59 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id
- 5614622812f47-3a425ef874dso3859450b6e.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 06:15:59 -0700 (PDT)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E2A10E13F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 13:17:57 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-1bb75afeee3so1470781fac.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 06:17:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690290958; x=1690895758;
+ d=gmail.com; s=20221208; t=1690291076; x=1690895876;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TYtYXO3YGC/lSWSx/QkJF1wFgyrMuWGsoLogarf8GnM=;
- b=XENbLvBQQK9132ZZCBhW/bu14vMCmq8C2V7fRN04Lu5U5kinXbvUxnXu7mVSkbZRPB
- ouO5jltlKNw/Swqhv3Hz00LhGy7UisMEIGkTFlkb5/7xlzVQB+lVPOXBIXeftJecnm2/
- WVwMm6ZjNBkkBlJIWpK6sXRLWqsaA+jOvJnPzqA+VBGqi0fgFwFJUgoX9QvsbUdHEkby
- RlhZZ2MQO7XNtFogKfO6gx6+FiE3kmvK8mCTDU+BwSpkseAR9h66SpP3GnIeSvUkSTLg
- I6vCaeXqyUfu4SWqeB3F3WNRqkAODk00WOnaZqhj7Hq0tetszNMrKULAIYUreikieY6t
- eySw==
+ bh=IqurHV6wYxbL743RqxIbcsoCPhdmd2Axd6jUoyWkAjI=;
+ b=RgL4MqF3WxIbuZD9e8luodMNeop+i/MNpUShPnim0y26q/5UQMk8CT9TS4ycHjuzse
+ WnHhukdnehcJ/OVTcSttm0u0i5h+0hBMls55FIQ0YouldNgXk6yWvHDkaQdB6eYW7xrM
+ eRioUIhl/3VFiDOKHrdWKuRk5sVRjU4LL7R0Lk1IdF72l17zPzfDjkZR19z6vlWMilRW
+ u0bZaHCdl096x8UUGladj2gvAXQChslBS0ngTaROwvMLdFhQIvHmtKaqRqeqWulR/8vm
+ 5xUnhzCMa2qbM40f5ubBnZ6nuaEEl2KqkpL8FjFT4OiDr8SfvrHTtzgBofLdHvON2GHS
+ BVhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690290958; x=1690895758;
+ d=1e100.net; s=20221208; t=1690291076; x=1690895876;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=TYtYXO3YGC/lSWSx/QkJF1wFgyrMuWGsoLogarf8GnM=;
- b=NHdtcYue/Dg+0CBPnnn0k4SgtyAWYa1zhap62nrPUDOrM5R9KJ37bbdZE+ZzKOEjie
- 2LIxn1dYMsD+Q8F71Jf9QIRbtJUEIXyPCxDH3AEoqRbanoGKI3+3YWufNaAInKAIjdfp
- q7fR3Sp3BHJ17b5u+lsWvIK2tu4JQp+z8uCNPjHmLbQ+/j8h4NVHaLdUoOUb4wRIRmcw
- o92Urh72+mQTT/d19x6C0cvYokfoXwO438GvF2kY3qwtWD92mHrH1J5mn67SydXNp50R
- 2tso15SwVOPVKLsIYGDkHc/oMhXTfJh0R9zOHiq+RISsD61aVL571QU4s7vPwrOh5OmM
- h+jw==
-X-Gm-Message-State: ABy/qLYYloMDhgLGXBfUXHhBtm1/x96JCGHQLwthOXsheafOfL+72o8D
- H4E7iLD0MMopiBq+sAeQy6AcIrJe2Bg2fTTky0FoD4qZ
-X-Google-Smtp-Source: APBJJlHWkqBsywbBaXV4/IHCRcCctITSB77+iAoO5FxYszXFGtr9Kfc+IfkotM3hry5ePv7OCxUWU1u3hrABwnQRglg=
-X-Received: by 2002:a05:6808:2119:b0:3a4:298f:b2e0 with SMTP id
- r25-20020a056808211900b003a4298fb2e0mr16330265oiw.26.1690290958622; Tue, 25
- Jul 2023 06:15:58 -0700 (PDT)
+ bh=IqurHV6wYxbL743RqxIbcsoCPhdmd2Axd6jUoyWkAjI=;
+ b=gqr3s/KD3Z4faKGGVtL06f2Ir67+2dTFG+uK+M6TupVAKkzBZReOqdMCHT7mLsQ2aH
+ pJja+OvYK0JRma7xVddQdG8Pxe2gcEDT01afuKyWIy3rWb+BeQoA5qeC+qwkEHi8l2Wn
+ FZXTkxCFKXfuwpVQER7uF2WTnVMRWcndStTdRItfKvnSRMtcTnXqp+ZPA6oUzwWCiajn
+ 48r4aZ5aDgzRSFedoaP3dJXNTJFWYILPm+0odw12trz+VBlDMFQaXc4rkLVMibrI5bnt
+ 6DH5Beryv6WzsgF4xHuGal1DJvaXXOY25ADnQPt0Ao6B2JJC3tqgjEGQ/3CdUKzyaSVc
+ tX8A==
+X-Gm-Message-State: ABy/qLZgYqxmZlpdVDLIPF97F3hYivVulwXrSxppU3K9KyNrDerCY6V4
+ xrkVuHxyj2vhTrZzYBRDJ9NDMIY9qmk2drfC41N34nCs
+X-Google-Smtp-Source: APBJJlGc5t/z4+eczk5fOYVXXtYVz43Ipw9+imZ3RiZdwn7YTW9r5hdME5H92Da/cs9OgLVp7oZMtaBF2PyPZ2aLiCI=
+X-Received: by 2002:a05:6871:614:b0:1bb:75af:37b5 with SMTP id
+ w20-20020a056871061400b001bb75af37b5mr6039311oan.10.1690291076363; Tue, 25
+ Jul 2023 06:17:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230725092020.3777355-1-Prike.Liang@amd.com>
-In-Reply-To: <20230725092020.3777355-1-Prike.Liang@amd.com>
+References: <20230725131539.2308926-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20230725131539.2308926-1-srinivasan.shanmugam@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 25 Jul 2023 09:15:47 -0400
-Message-ID: <CADnq5_Pj9XqiggwpD2uA_rP0sEbV6JMYCh1hOWjG1L6MACdGzw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: enable SDMA MGCG for SDMA 5.2.x
-To: Prike Liang <Prike.Liang@amd.com>
+Date: Tue, 25 Jul 2023 09:17:45 -0400
+Message-ID: <CADnq5_OhWLcyeTFXOb5+VuB9PSY8E40caaFVSPN9sFRKFv8F4w@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Prefer dev_* variant over printk in
+ amdgpu_atpx_handler.c
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,69 +68,163 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org,
- shikai.guo@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 25, 2023 at 5:20=E2=80=AFAM Prike Liang <Prike.Liang@amd.com> w=
-rote:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+On Tue, Jul 25, 2023 at 9:16=E2=80=AFAM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
 >
-> Now the SDMA firmware support SDMA MGCG properly,
-> so let's enable it from the driver side.
-
-If this is only supported on certain firmware versions, do we need a
-version check?
-
-Alex
-
-
+> Changed from printk to dev_* variants so that
+> we get better debug info when there are multiple GPUs
+> in the system.
 >
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+> Fixes other style issue:
+>
+> ERROR: open brace '{' following function definitions go on the next line
+> WARNING: printk() should include KERN_<LEVEL> facility level
+>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/nv.c        | 6 ++++--
->  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 1 +
->  2 files changed, 5 insertions(+), 2 deletions(-)
+>  .../gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c  | 35 ++++++++++++-------
+>  1 file changed, 23 insertions(+), 12 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu=
-/nv.c
-> index 6853b93ac82e..9bf7872e260d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-> @@ -901,7 +901,8 @@ static int nv_common_early_init(void *handle)
->                         AMD_CG_SUPPORT_ATHUB_LS |
->                         AMD_CG_SUPPORT_IH_CG |
->                         AMD_CG_SUPPORT_VCN_MGCG |
-> -                       AMD_CG_SUPPORT_JPEG_MGCG;
-> +                       AMD_CG_SUPPORT_JPEG_MGCG |
-> +                       AMD_CG_SUPPORT_SDMA_MGCG;
->                 adev->pg_flags =3D AMD_PG_SUPPORT_GFX_PG |
->                         AMD_PG_SUPPORT_VCN |
->                         AMD_PG_SUPPORT_VCN_DPG |
-> @@ -962,7 +963,8 @@ static int nv_common_early_init(void *handle)
->                         AMD_CG_SUPPORT_ATHUB_LS |
->                         AMD_CG_SUPPORT_IH_CG |
->                         AMD_CG_SUPPORT_VCN_MGCG |
-> -                       AMD_CG_SUPPORT_JPEG_MGCG;
-> +                       AMD_CG_SUPPORT_JPEG_MGCG |
-> +                       AMD_CG_SUPPORT_SDMA_MGCG;
->                 adev->pg_flags =3D AMD_PG_SUPPORT_VCN |
->                         AMD_PG_SUPPORT_VCN_DPG |
->                         AMD_PG_SUPPORT_JPEG |
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd=
-/amdgpu/sdma_v5_2.c
-> index 809eca54fc61..f8b6a2637d1d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-> @@ -1653,6 +1653,7 @@ static int sdma_v5_2_set_clockgating_state(void *ha=
-ndle,
->         case IP_VERSION(5, 2, 5):
->         case IP_VERSION(5, 2, 6):
->         case IP_VERSION(5, 2, 3):
-> +       case IP_VERSION(5, 2, 7):
->                 sdma_v5_2_update_medium_grain_clock_gating(adev,
->                                 state =3D=3D AMD_CG_STATE_GATE);
->                 sdma_v5_2_update_medium_grain_light_sleep(adev,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c b/drivers/g=
+pu/drm/amd/amdgpu/amdgpu_atpx_handler.c
+> index d6d986be906a..4eddca672f3e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
+> @@ -74,24 +74,29 @@ struct atpx_mux {
+>         u16 mux;
+>  } __packed;
+>
+> -bool amdgpu_has_atpx(void) {
+> +bool amdgpu_has_atpx(void)
+> +{
+>         return amdgpu_atpx_priv.atpx_detected;
+>  }
+>
+> -bool amdgpu_has_atpx_dgpu_power_cntl(void) {
+> +bool amdgpu_has_atpx_dgpu_power_cntl(void)
+> +{
+>         return amdgpu_atpx_priv.atpx.functions.power_cntl;
+>  }
+>
+> -bool amdgpu_is_atpx_hybrid(void) {
+> +bool amdgpu_is_atpx_hybrid(void)
+> +{
+>         return amdgpu_atpx_priv.atpx.is_hybrid;
+>  }
+>
+> -bool amdgpu_atpx_dgpu_req_power_for_displays(void) {
+> +bool amdgpu_atpx_dgpu_req_power_for_displays(void)
+> +{
+>         return amdgpu_atpx_priv.atpx.dgpu_req_power_for_displays;
+>  }
+>
+>  #if defined(CONFIG_ACPI)
+> -void *amdgpu_atpx_get_dhandle(void) {
+> +void *amdgpu_atpx_get_dhandle(void)
+> +{
+>         return amdgpu_atpx_priv.dhandle;
+>  }
+>  #endif
+> @@ -113,6 +118,8 @@ static union acpi_object *amdgpu_atpx_call(acpi_handl=
+e handle, int function,
+>         union acpi_object atpx_arg_elements[2];
+>         struct acpi_object_list atpx_arg;
+>         struct acpi_buffer buffer =3D { ACPI_ALLOCATE_BUFFER, NULL };
+> +       struct acpi_device *adev =3D container_of(handle, struct acpi_dev=
+ice, handle);
+> +       struct device *dev =3D &adev->dev;
+>
+>         atpx_arg.count =3D 2;
+>         atpx_arg.pointer =3D &atpx_arg_elements[0];
+> @@ -134,8 +141,8 @@ static union acpi_object *amdgpu_atpx_call(acpi_handl=
+e handle, int function,
+>
+>         /* Fail only if calling the method fails and ATPX is supported */
+>         if (ACPI_FAILURE(status) && status !=3D AE_NOT_FOUND) {
+> -               printk("failed to evaluate ATPX got %s\n",
+> -                      acpi_format_exception(status));
+> +               dev_err(dev, "failed to evaluate ATPX got %s\n",
+> +                       acpi_format_exception(status));
+>                 kfree(buffer.pointer);
+>                 return NULL;
+>         }
+> @@ -176,6 +183,8 @@ static void amdgpu_atpx_parse_functions(struct amdgpu=
+_atpx_functions *f, u32 mas
+>  static int amdgpu_atpx_validate(struct amdgpu_atpx *atpx)
+>  {
+>         u32 valid_bits =3D 0;
+> +       struct acpi_device *adev =3D container_of(atpx->handle, struct ac=
+pi_device, handle);
+> +       struct device *dev =3D &adev->dev;
+>
+>         if (atpx->functions.px_params) {
+>                 union acpi_object *info;
+> @@ -190,7 +199,7 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx *a=
+tpx)
+>
+>                 size =3D *(u16 *) info->buffer.pointer;
+>                 if (size < 10) {
+> -                       printk("ATPX buffer is too small: %zu\n", size);
+> +                       dev_err(dev, "ATPX buffer is too small: %zu\n", s=
+ize);
+>                         kfree(info);
+>                         return -EINVAL;
+>                 }
+> @@ -223,11 +232,11 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx =
+*atpx)
+>         atpx->is_hybrid =3D false;
+>         if (valid_bits & ATPX_MS_HYBRID_GFX_SUPPORTED) {
+>                 if (amdgpu_atpx_priv.quirks & AMDGPU_PX_QUIRK_FORCE_ATPX)=
+ {
+> -                       printk("ATPX Hybrid Graphics, forcing to ATPX\n")=
+;
+> +                       dev_info(dev, "ATPX Hybrid Graphics, forcing to A=
+TPX\n");
+>                         atpx->functions.power_cntl =3D true;
+>                         atpx->is_hybrid =3D false;
+>                 } else {
+> -                       printk("ATPX Hybrid Graphics\n");
+> +                       dev_info(dev, "ATPX Hybrid Graphics\n");
+>                         /*
+>                          * Disable legacy PM methods only when pcie port =
+PM is usable,
+>                          * otherwise the device might fail to power off o=
+r power on.
+> @@ -260,6 +269,8 @@ static int amdgpu_atpx_verify_interface(struct amdgpu=
+_atpx *atpx)
+>         struct atpx_verify_interface output;
+>         size_t size;
+>         int err =3D 0;
+> +       struct acpi_device *adev =3D container_of(atpx->handle, struct ac=
+pi_device, handle);
+> +       struct device *dev =3D &adev->dev;
+>
+>         info =3D amdgpu_atpx_call(atpx->handle, ATPX_FUNCTION_VERIFY_INTE=
+RFACE, NULL);
+>         if (!info)
+> @@ -278,8 +289,8 @@ static int amdgpu_atpx_verify_interface(struct amdgpu=
+_atpx *atpx)
+>         memcpy(&output, info->buffer.pointer, size);
+>
+>         /* TODO: check version? */
+> -       printk("ATPX version %u, functions 0x%08x\n",
+> -              output.version, output.function_bits);
+> +       dev_info(dev, "ATPX version %u, functions 0x%08x\n",
+> +                output.version, output.function_bits);
+>
+>         amdgpu_atpx_parse_functions(&atpx->functions, output.function_bit=
+s);
+>
 > --
-> 2.34.1
+> 2.25.1
 >
