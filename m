@@ -1,117 +1,118 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AE0762227
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 21:23:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5237622E9
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jul 2023 22:03:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C71A10E3F6;
-	Tue, 25 Jul 2023 19:23:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2EE10E17A;
+	Tue, 25 Jul 2023 20:03:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2053.outbound.protection.outlook.com [40.107.101.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABABD10E3F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 19:23:52 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2061b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::61b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF3110E17A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 20:03:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=arWbmcAa5hk2sLdHuzooZ+FLGWYZDnWutV3ZJYbYcset7HQIFVoJP+msjWe+OPDSK5c7u5YV995CK1S1hY2SMT8DYfKHA8PSoQbHAT/Vu3wPSkWOUXEFnTACyZxJIETKC30/mDYGwLpt2VECX6IZUHojqYzbQZqRPZpB+jVegiQhNutZ+fPqgB1xPpDS9qcfi1BRNTuEjhJ0Hvmb1OJMkcwE5QmPIFJ2/kRZVxFTaXheETKwowLNkyvijjl2l90/EwKGouXKTtjg4gyBX8wltjkRiSwrYl6yRCU8VI8eKtk291gmHqpB/n6MNhUp3qrHUXtKD4+5s6Bi/aSKnz49bA==
+ b=GsRaAkP2FqTeAcjOS7s6YyDyc2IRPdxoOrYEuHgsL85XqQIQx3dfxAHJfbRTDDrVmlp08FWEpK2kTv8NXBGr+ij/vg+A5AtH4HhI8EZDvulDaMVIJdIKQizuligMjsPbiPjWAPU4Q/NK8Dc1NH6HKj2SxAs7jY5/7qYfh8VFgqyntjPZ+1h5wfOwqf9m5Cne1qBqF3eyexDO6kP86q8UIztd1MJEocTGXb+J//iJRoYQua/aN7/WGdREoETOUKwc1+FCXp9zvHfEFLE+cbdSnejKgyG3VE9glN8Q1T9DxQ7E1iyZAUOP5fAAuqJvv2NLW88zoLCG9Awr9dUUEr0zXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iSnFSrCqqP5G3LNSjQ6DGGWjcLu2MmaH24UiJuV3t+o=;
- b=lJtddfOImX7D/PDBeNI5w9E02bdpNcs8Qn9KejJBjSNys1i3IZUMxZx+iGxaoVqGUpUdrfODODwjBduHTm4MvZhLqihaQoAhEzBbxf+mxRLSd+Wwj0qYlptn8QDTKO9iRqvggnS4BYV04KLeY8iJX9zFG4WbWcbBVJ4RwP6DaURXQZRFPj1OjvEOMcmyHv6RFtdl5hOEk7ZT50nJRj/ErX2l5nOIGv7GXRYffqBE72AID0Xa6fMLGcvzs1XUQWSP5+BkWglVgjqIf7a0VYQrpr+wuhkTDdGsn0aLRe2H2TT0BU+dhh1S5xHwpiuosM/gI2kE7+L94VUA7NWKWAy/CA==
+ bh=fN53tThPwnMcJ4cm3COOaOPnDlKOIEcY1CCQnKpfhR8=;
+ b=EBzVuXVi38SNYWWt5Rai6eVWxQ2lUlxwDvHGKbnrAKNEI+c/wjofXsxHM8+2KmLPQKgpCV2DfyKkNF9YbIn7F0K8QyLosEPnUq5mlvwomDKFgX8RuQM1dVyPSxBNB6fmPyU2X0zQBUiRDp3TGEFUIj+lQkhBg6VepVT9fDxOMhZ9lEbQf4LvfnvCUEDu4X4poq1CqPWli59rtMlDvh7W/Tevms/gdP0+FC8Rt6IOoV4GWfu6CqztgU20KILO6Og5r/hLAG4o8YokUo7x9N4qXXNlRhq3q2jD4S7I1FO9cftT41bAmxs/Dr7dJUFMUdPv0/sCHj0TUJcCAx12TmyvSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iSnFSrCqqP5G3LNSjQ6DGGWjcLu2MmaH24UiJuV3t+o=;
- b=n6MALf7nsI5Uw/buYGxRf9f0fV2haDK+gxhBgqUjMdFen+UgcL9/2g2NWEgneiecK74y11tNdlaZrzWZGIh8lsZ7teNoiuk9iGFJdZzIcdbHOV9wTrpQzN3CX5V6dyIiXsOUClw18WyLIxN2cjT60JtLsO16ABpVh4PA9sVWzPA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5336.namprd12.prod.outlook.com (2603:10b6:208:314::8)
- by MW4PR12MB8612.namprd12.prod.outlook.com (2603:10b6:303:1ec::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.32; Tue, 25 Jul
- 2023 19:23:50 +0000
-Received: from BL1PR12MB5336.namprd12.prod.outlook.com
- ([fe80::4d2a:6792:2239:9e72]) by BL1PR12MB5336.namprd12.prod.outlook.com
- ([fe80::4d2a:6792:2239:9e72%5]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
- 19:23:50 +0000
-Message-ID: <1716c2e2-494c-21c3-7858-6ec22a3eb805@amd.com>
-Date: Tue, 25 Jul 2023 15:23:47 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] drm/amdkfd: fix and enable ttmp setup for gfx11
-To: Jonathan Kim <jonathan.kim@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20230724190159.3544879-1-jonathan.kim@amd.com>
+ bh=fN53tThPwnMcJ4cm3COOaOPnDlKOIEcY1CCQnKpfhR8=;
+ b=thbBj1KInyxgPLIrBNI4oXl+Dd2V422fhoF9zIPytQ0y+SQO5WLfpgYB+t8NJShqiBLfVi19xbNuixAkms8wLH54kxGFUo2O/iIVpsNcFGU0tRS+izHfQkv/RZzNYdIH5WUx2g2uWRqK8JOyUeAxLK6VT74KHTdi4JzlDZ44nKM=
+Received: from CY8PR12MB7435.namprd12.prod.outlook.com (2603:10b6:930:51::6)
+ by MN0PR12MB5787.namprd12.prod.outlook.com (2603:10b6:208:376::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33; Tue, 25 Jul
+ 2023 20:03:32 +0000
+Received: from CY8PR12MB7435.namprd12.prod.outlook.com
+ ([fe80::31b9:4cc2:1b9a:3989]) by CY8PR12MB7435.namprd12.prod.outlook.com
+ ([fe80::31b9:4cc2:1b9a:3989%4]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
+ 20:03:32 +0000
+From: "Kim, Jonathan" <Jonathan.Kim@amd.com>
+To: "Huang, JinHuiEric" <JinHuiEric.Huang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: enable trap of each kfd vmid for gfx v9.4.3
+Thread-Topic: [PATCH] drm/amdgpu: enable trap of each kfd vmid for gfx v9.4.3
+Thread-Index: AQHZvyQeuznPjAvZA0+Uf8YG8bU0z6/K57ZQ
+Date: Tue, 25 Jul 2023 20:03:32 +0000
+Message-ID: <CY8PR12MB743532F29087073936BAFA868503A@CY8PR12MB7435.namprd12.prod.outlook.com>
+References: <20230725181550.254371-1-jinhuieric.huang@amd.com>
+In-Reply-To: <20230725181550.254371-1-jinhuieric.huang@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Eric Huang <jinhuieric.huang@amd.com>
-In-Reply-To: <20230724190159.3544879-1-jonathan.kim@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN0PR03CA0008.namprd03.prod.outlook.com
- (2603:10b6:408:e6::13) To BL1PR12MB5336.namprd12.prod.outlook.com
- (2603:10b6:208:314::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5336:EE_|MW4PR12MB8612:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07a6ca5f-75a7-4a12-6497-08db8d44ad0b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3UabwQcV7gg7rXmIBEkZ5iO1Ux5Ppsrq2MZYVwAUDNFFscoE/HKs2jRss9pw9gkyco460Vf6vtwiS2vdc1GbjFv3/+c5FuIVkfh1JQY0LmvdeOf04PL2WS+qZMmLxkS+D8QUsc9nHrsXeeQW0t5XdXq8QZqxUbhBYihP0z6ppJkL3crcKADP297lgEo2VNT1673gt1lGRTT6/JibQzsASI+ah++v1B13uvw9G9S12/q4CQO2M+sv78Z/9f0ESiEG2Wvb+umB02snFldImQBXBei+TOKvklbb8J6RpW5TAql4j+fX40JYDO45P+Lq2S6y/KwNecIqut2GMlXWsGHfIg8jGbsQ3zdxw5zNcnhfpu6xseuoThZS7uhiZHmo8Pjfyk2FydvwtMCDC/OQLNy+tsCgsF5dYcOMDt4KnQS/xyK5Xf1WXaZUj8RxbTsD3ViltONzZU4LfaGfGyKhdwekSwfkVOzvMU/Wk1g4olTnp9JZSOc1txJI4IhoFs1srUngEUr4UNPPaljVpl0OuElh+PIU20uDAG2za3+lTTKArv88UcHXZzOBHFj6QumUaozuG33u9mpCZXtFxMpiYxFazRjFvjo55IokIOxhBE+DexwUBk5N18WT0OpCyF18f67Xi6gv9M/yaNyPvX5loQtmAz1V7ruG6GbBJWU59zriImw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5336.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(376002)(136003)(366004)(346002)(451199021)(6506007)(6666004)(478600001)(6486002)(6512007)(186003)(26005)(53546011)(8936002)(66556008)(66476007)(5660300002)(8676002)(2906002)(38100700002)(36756003)(4326008)(41300700001)(86362001)(31696002)(316002)(2616005)(66946007)(83380400001)(31686004)(43740500002)(45980500001)(309714004);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=e6a53611-79c3-46db-8615-a4e09cf15e9a;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
+ 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-07-25T20:03:21Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR12MB7435:EE_|MN0PR12MB5787:EE_
+x-ms-office365-filtering-correlation-id: 1e7ed6d1-ab47-4251-f8e0-08db8d4a38e0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: JLvY3HEgDyDhPMEGl9rKS3v2j268xACLmUb53zX/QBq/mYeTwmhZAC5Xuslym/hrFhHXDdla/tL6vV5auQadbDj5QCcQvvzPPfQRVWANtW/+QT6Z320xXGqDv3zffOpnLqB0/CNea9zS4VXaDZ+r7TXvDOWenyTXCqIl9cQejh2QeNJH89AUWLdsPGvqgRNP6SlID83Z2UCTKxh4yeQVSNVS6vVLGxFaswreGdr874WawaPbolN8ZwUEkj+D7SPavHIs4m8EFd+aRf9dyc7shwa1y4RpFlXG/p3WimhOlOS887UdcaCSdMS5kQkHy2ZKBkFI7h2kaWEJJvcOeHS4E6KSylrNTyk5FYukz1xqXuqh4w7d5xTq8ZuX5jbJq3E8aGc/3AfUUU6tO8VD6/lY4r91qv9SvThFdWU0uqnXLNf612xrlLyoRsSOjlbZ5HwZSJmtxUPxXWX9q8YJXisafF8bzKdgdhZEy+x9g9/tqE5F9jGWwZE5GpQTvDQyDu30FA0/p+7qADtqXzSmybNFR6jl1VJ7+G47fsPY4K/aEQe6Hnugg/+oaZeWu7fpN9YS5Yyml/MuculmOZVTZIZ0gWKgIzQUyelg3dzgh8QjLXyFls1Ev+ZQpYqr7Nxx2U/9
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR12MB7435.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(376002)(396003)(366004)(136003)(346002)(451199021)(2906002)(41300700001)(5660300002)(38070700005)(316002)(52536014)(8936002)(33656002)(55016003)(86362001)(8676002)(26005)(53546011)(6506007)(9686003)(478600001)(7696005)(71200400001)(83380400001)(186003)(38100700002)(66946007)(122000001)(64756008)(66446008)(66476007)(66556008)(76116006)(110136005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3BrUWVWZU81ZlQ2aC8xNCtmcDdiRmh4QzNuQ29wL0JOajQwM0FsVkJLbGtO?=
- =?utf-8?B?Ymx3ekx1ZTlCcTI4clN5bVBnNmRSUkNZT0RJeWhhcDhLbDNMYW14RkdWY0p3?=
- =?utf-8?B?WnBIeGxRR2hPZXNSM3pxN1EyNG5OdktKQjNtWEZvTzhJSG9YdFhxRGF4dWth?=
- =?utf-8?B?c0FjWmRENjllWTJFMDFPV3U5cEVPUGJzRm5NMENtNGFralFlQ3hLV1d4Unha?=
- =?utf-8?B?WlVwY0NWTU11ditjV2F4WGtJQXgyZEZGc2tMTFFkZCtYSUFaTTlrMWhUQW44?=
- =?utf-8?B?cnZScFIyNmQvdFA4QUFvVEExdER1UEc2TjBSRXNVdHo4WTBqSEk2V0M0bFRP?=
- =?utf-8?B?aWtYOGk2WUh6UU5zdXptOHRKQW45aWx0WEdEd3g1VHNOQm1NYUR0cGVKTlJk?=
- =?utf-8?B?dTlIK0QxUGRmc1VUa1pCY2xEa3dqOWtwSTFaUHIrU1c3cW5kdnh0Yndvb3p2?=
- =?utf-8?B?RUMxWkZnVjZ0WDQwRlZ6NkFmVXl4MlcxOWRYeDlNblNTMlUrdTJHdk1EbWY3?=
- =?utf-8?B?T2VrN25SWEJHR0hOdzBKbkZlalhJWktrNHZRbmk2T0ZRSWpVaktBRGIyNit1?=
- =?utf-8?B?T0dqdlZqNXM0dXFyQlJkbmFRWVA2NDl2alE5OVhLK1h1Rldnb2hkbWE4dGs2?=
- =?utf-8?B?ZFZEQmV6dG1LTzQ4TEpyMm5qRXRxemt0QWtRcnR3dGVlUExVMldDU1E3M0RT?=
- =?utf-8?B?ejBCYTMzZzN4enlTWWR2N0VxU29CcHhTenF0dXpSWjluTjBBK25NaGp0NG9l?=
- =?utf-8?B?UEcvakxqZnk0bGlyNjRpd3hENWxPU0xWV2gxQ2dLdFlXMTVKbG9UaWoxaGxE?=
- =?utf-8?B?MHVGZ2t3R1YzS3dWWFBuY2U3cnNnUmEzWjZBK1ViRlRyYm95SXR2aU4xcnVM?=
- =?utf-8?B?aStYYnI1dGR2VUlKWkg4blREd3pZVERMcS81U0tLdWRPZ0ZSRVdaMFJzS3Bn?=
- =?utf-8?B?QjhtWnM4RFQ0NjBxV1dERDJIak1obFdOSHorYkVVdlNTU3FodHg2WjM2MVRY?=
- =?utf-8?B?aHYyRXJjWUZZbmt4SnZRMWN2d1VONVZCQ2VlNzRNSTZwWW83QzhxSk9rbFhs?=
- =?utf-8?B?cy9vSU05Z0t3bEhBWDNlRGtUcHJtdVRCNzB5TEt2QWdTNnZyMHlKVk42VldR?=
- =?utf-8?B?dTBBZFVTbGdQTHBBNWsrL2JUblhLZHo3NGRCTmF4OVRteWYxT2R2TlEzSWxM?=
- =?utf-8?B?Q2JuTDVrQzJteG1iVTV5WTAyZkRDTHAzMS8yUWRtOXpFUmpXU0NWMElWd0FQ?=
- =?utf-8?B?RmhQcDFTTE42MFoycFlFRmlmR2RxY1pseThXRW5KZUZnckh1N1Q0dFo1c1NV?=
- =?utf-8?B?RkdoSi90MVJCRlhLZ2ZBc0FGaGdnWStsWUp6b0ZldEZIR1ZrZTBMK3lCUFRm?=
- =?utf-8?B?ZUQvaU9mS3dMZ1JVK1FjYXdXRTNxZFBhRkZqRFBLUGwvazREWWZKTDNlOXo1?=
- =?utf-8?B?V3hTS0tCQnh3V2hGeWZXVGw5ZXkrSUc2YlIwaHVHZkd1SGtacUR6TnBaY0JC?=
- =?utf-8?B?azcxSEZabWZlNi9RNjh0Y1hLZ3VZWTEwRFR1U09uTWlaZ1JuNE95OGlYd0FB?=
- =?utf-8?B?eDI2V2hFSklLN01nMWQ0RXl6MTNLZ2dKdWk3WFE0VHBsZ0R4Tk1iN3J4ZTcx?=
- =?utf-8?B?QkUreFdNVlkrS3EzRXROWFQzWXhYaE9sTEZpdnp4UW9YL2RIYjFObzJFaUhi?=
- =?utf-8?B?UExtMWYyRTFoRGlHOTNyYXRYUTJjL2g4MkRzcHVrZzJwZjMwaEh0bWNMUEpu?=
- =?utf-8?B?b2lIUktKV0VTU3hJZk4vZ2txR09FTk5OOS82Y1pPdkRFbWgvOHMrekxuemZw?=
- =?utf-8?B?Tzd3N3pXaWtzMXNFek5TSTRiWE8wdlBidWRpRTl5Q091ZVFmdzJ1SHZrY2h2?=
- =?utf-8?B?U0RhdmVZTXIvbVoycEtsRGFKbWJMb0FvQkZFVUJvWS91RzdmT1J0K0tYUzZN?=
- =?utf-8?B?bzN3YklydVJ0aWV2Zmpwd0lveVZLWE1rdmVYQ2lQcmxYdVJPSzhLTW83YmtL?=
- =?utf-8?B?UnBDeUxLS1BlZDlmbTJUNnRacUg2bFBScFkzVzlwTmhJNEtvbTl3bmJhb3lD?=
- =?utf-8?B?VEphUUlIeDZaNTE3aDBTaUNjM1hMblI3cnJpNmpEZDFrbFNBOGdQMzBKMmt6?=
- =?utf-8?Q?ArALu23dTMfSVck1Ixz9Knt8H?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bMCAIEayTRAihfQnUMm/c8aPhLj+2pMN+Y40SRfrcGkhscfzZ32z6NycFYPa?=
+ =?us-ascii?Q?yFLHa95iPD1PnyCpDunxSxIazNJLTvwycnrsDJogxD8seofMsxxv7ljnzoUw?=
+ =?us-ascii?Q?MyeQ/c4Z+CZGi7xHhyxYqCWGyczC7p55L+R96V9O3Uz5GE3CUCnYUvm0nCkg?=
+ =?us-ascii?Q?byt9O4U4v3O/2qln2yN8Q8kwdKBUnSykjCxfUMYjGV4357XOggdoU2ooZxet?=
+ =?us-ascii?Q?lQuAbxBDY1Q6lgUjXEhMzDuh/jsMnvHMagzWGRUP2aTc1C82DZKfVAKQRoAI?=
+ =?us-ascii?Q?995J6jjN8g3GtiII2yAmlOkXw8RliYPTaO/DoTf3yMfaCXLOY5NOYEch/Nzh?=
+ =?us-ascii?Q?a/0iqwjk0GWTL17Tw3glwrkoj02IfPWSXKD13sEkNQJeWrhZQEHi1/omAhYg?=
+ =?us-ascii?Q?iOkXJ5l0/AhUjD2A8Bvu0BBRUXMjTMsS1o+0n1Br2qd937EiYOLZaqzzPnBQ?=
+ =?us-ascii?Q?4QFJQWqbXSu1J+6Gj432Ht8x25VocrPRmnFSRBO5uTEJ8c+tVLyiSGhs78RX?=
+ =?us-ascii?Q?F6pCVzszE05BwaxWOPb4z6KYrYlzTa1oM/f/jrudktH+TCm2SjDMxjMCYrNS?=
+ =?us-ascii?Q?57oPWUN6bdtcPOqHmAtinew7uGVD6h8kSZVaOA0h8dOHgLGHwXq8Y2HAB5yd?=
+ =?us-ascii?Q?ZL/XTXmSglb0Ik/S/iAgNpID/Fv/jcsfl7MC4vS8JP0Pl4JrIvGgilHYLb8m?=
+ =?us-ascii?Q?7NDh52d3QjmgJ7ItpwrcIlE29UZ7uwqX7ISKF4akZOsAlj6OW7IOUUp6cd+p?=
+ =?us-ascii?Q?e+kZHEs2FEAxArPS559Idtglr6vYRvNAcR3HQUlR6tfG776U/+OnL6zMhIVi?=
+ =?us-ascii?Q?mROaqrsEC8XDpBkozn9UTxu8xEO/DWhfW8urRWRBNbqTIBTatJXRDLZIEAdB?=
+ =?us-ascii?Q?2+wcfOoYRMPv9+PUuADisIcvhfNjQEpXqUg+fLy8D1RNDVA3UJzNdQis/wz0?=
+ =?us-ascii?Q?yB168o1aLeAv9aJquMBfjJr4LPNtPvwUKvMEzCW5E+A0Mu5ceF2O2RMhKKeR?=
+ =?us-ascii?Q?mMNVO8ORu5EDm7w4JENXEkGSgyEGXvL7NOe7/7N9VTJF/qhvWE2P/GuC0a8I?=
+ =?us-ascii?Q?YalbLiHe5IuJxY+apjqbpjFvA+yVbG5sGKDhjZc+31qhLUraJWnrDfe6v8OH?=
+ =?us-ascii?Q?pYEQ+6VmyE8F19G+tVzzTy4sBGKyyk9XmwpkS8qV58jHBRmPuv7tNypbMAfW?=
+ =?us-ascii?Q?UQe59UIz/uUqGxNh4GkvmHbHxVZtM8tsUdnNkUuEGLoqkv90sRHxnFfUaa3l?=
+ =?us-ascii?Q?zIbuZKMyYptpmKNjhxyO+kdqPL7A4PMdrNpms18nB8Nu1BbQ9pn4UOBlZitz?=
+ =?us-ascii?Q?kDl6q50a7FgP6tI7Vzyqj4UQxo/UL7UP2rySDJFzyISTkdpKkbtH1D7gbbUN?=
+ =?us-ascii?Q?kr+gvcZ/KukKaFZ/GK4Lj1NMcXCkU2R2QxRmx4pOZN4AGiU5yY9tLlvozaKF?=
+ =?us-ascii?Q?8s6dDWi4yHEl415HtlywsCaBQiTV0aOZNI+tk2iRaHZVdMDD5KzMygxeMVip?=
+ =?us-ascii?Q?cqXC6tVhrekx9VSgN/FH08UEo1o+v1QJlqCMr74nqijulSrAm5uCjwvDdz3N?=
+ =?us-ascii?Q?SqEOnw6+CxQkj3aZemE=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07a6ca5f-75a7-4a12-6497-08db8d44ad0b
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5336.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2023 19:23:50.5685 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W+e1cLEG8t9KyW313v6bQvVbpPp9MUdl/Vrf2qBNrSGWnRCm+zLEhjnwXCXHBTmNe2dCEv+i22VMjKZe0rn7/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB8612
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7435.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e7ed6d1-ab47-4251-f8e0-08db8d4a38e0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2023 20:03:32.4409 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fndWySyq1Z4/nJNUD+SWt4Qm7T+NnwUszFnZVXLN1J0H6hSvwipMANitFf+hx3pk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5787
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,242 +124,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+[Public]
 
-On 2023-07-24 15:01, Jonathan Kim wrote:
-> The MES cached process context must be cleared on adding any queue for
-> the first time.
+> -----Original Message-----
+> From: Huang, JinHuiEric <JinHuiEric.Huang@amd.com>
+> Sent: Tuesday, July 25, 2023 2:16 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Kim, Jonathan <Jonathan.Kim@amd.com>; Huang, JinHuiEric
+> <JinHuiEric.Huang@amd.com>
+> Subject: [PATCH] drm/amdgpu: enable trap of each kfd vmid for gfx v9.4.3
 >
-> For proper debug support, the MES will clear it's cached process context
-> on the first call to SET_SHADER_DEBUGGER.
+> To setup ttmp on as default for gfx v9.4.3 in IP hw init.
 >
-> This allows TTMPs to be pesistently enabled in a safe manner.
->
-> Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-Reviewed-by: Eric Huang <jinhuieric.huang@amd.com>
+> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
 
-Regards,
-Eric
+Reviewed-by: Jonathan Kim <jonathan.kim@amd.com>
+
 > ---
->   .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c    |  2 +-
->   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      | 13 ++++++++++++-
->   drivers/gpu/drm/amd/amdkfd/kfd_debug.c        | 19 +++++++++----------
->   drivers/gpu/drm/amd/amdkfd/kfd_debug.h        | 11 ++++++++++-
->   .../drm/amd/amdkfd/kfd_device_queue_manager.c |  2 ++
->   drivers/gpu/drm/amd/amdkfd/kfd_topology.c     | 12 +++++-------
->   6 files changed, 39 insertions(+), 20 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-> index 77ca5cbfb601..d67d003bada2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-> @@ -637,7 +637,7 @@ static uint32_t kgd_gfx_v11_disable_debug_trap(struct amdgpu_device *adev,
->   {
->   	uint32_t data = 0;
->   
-> -	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, TRAP_EN, keep_trap_enabled);
-> +	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, TRAP_EN, 1);
->   	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, EXCP_EN, 0);
->   	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, EXCP_REPLACE, 0);
->   
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> index e0f9cf6dd8fd..42df972357e9 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> @@ -2755,6 +2755,16 @@ static int runtime_enable(struct kfd_process *p, uint64_t r_debug,
->   
->   		if (pdd->qpd.queue_count)
->   			return -EEXIST;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> index 86a84a0970f0..9a90fd187909 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> @@ -898,6 +898,7 @@ static void gfx_v9_4_3_xcc_init_compute_vmid(struct
+> amdgpu_device *adev,
+>       int i;
+>       uint32_t sh_mem_config;
+>       uint32_t sh_mem_bases;
+> +     uint32_t data;
+>
+>       /*
+>        * Configure apertures:
+> @@ -917,6 +918,11 @@ static void
+> gfx_v9_4_3_xcc_init_compute_vmid(struct amdgpu_device *adev,
+>               /* CP and shaders */
+>               WREG32_SOC15_RLC(GC, GET_INST(GC, xcc_id),
+> regSH_MEM_CONFIG, sh_mem_config);
+>               WREG32_SOC15_RLC(GC, GET_INST(GC, xcc_id),
+> regSH_MEM_BASES, sh_mem_bases);
 > +
-> +		/*
-> +		 * Setup TTMPs by default.
-> +		 * Note that this call must remain here for MES ADD QUEUE to
-> +		 * skip_process_ctx_clear unconditionally as the first call to
-> +		 * SET_SHADER_DEBUGGER clears any stale process context data
-> +		 * saved in MES.
-> +		 */
-> +		if (pdd->dev->kfd->shared_resources.enable_mes)
-> +			kfd_dbg_set_mes_debug_mode(pdd, !kfd_dbg_has_cwsr_workaround(pdd->dev));
->   	}
->   
->   	p->runtime_info.runtime_state = DEBUG_RUNTIME_STATE_ENABLED;
-> @@ -2848,7 +2858,8 @@ static int runtime_disable(struct kfd_process *p)
->   			if (!pdd->dev->kfd->shared_resources.enable_mes)
->   				debug_refresh_runlist(pdd->dev->dqm);
->   			else
-> -				kfd_dbg_set_mes_debug_mode(pdd);
-> +				kfd_dbg_set_mes_debug_mode(pdd,
-> +							   !kfd_dbg_has_cwsr_workaround(pdd->dev));
->   		}
->   	}
->   
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-> index 1f82caea59ba..9ec750666382 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-> @@ -344,11 +344,10 @@ static int kfd_dbg_set_workaround(struct kfd_process *target, bool enable)
->   	return r;
->   }
->   
-> -int kfd_dbg_set_mes_debug_mode(struct kfd_process_device *pdd)
-> +int kfd_dbg_set_mes_debug_mode(struct kfd_process_device *pdd, bool sq_trap_en)
->   {
->   	uint32_t spi_dbg_cntl = pdd->spi_dbg_override | pdd->spi_dbg_launch_mode;
->   	uint32_t flags = pdd->process->dbg_flags;
-> -	bool sq_trap_en = !!spi_dbg_cntl || !kfd_dbg_has_cwsr_workaround(pdd->dev);
->   
->   	if (!kfd_dbg_is_per_vmid_supported(pdd->dev))
->   		return 0;
-> @@ -432,7 +431,7 @@ int kfd_dbg_trap_clear_dev_address_watch(struct kfd_process_device *pdd,
->   	if (!pdd->dev->kfd->shared_resources.enable_mes)
->   		r = debug_map_and_unlock(pdd->dev->dqm);
->   	else
-> -		r = kfd_dbg_set_mes_debug_mode(pdd);
-> +		r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   	kfd_dbg_clear_dev_watch_id(pdd, watch_id);
->   
-> @@ -474,7 +473,7 @@ int kfd_dbg_trap_set_dev_address_watch(struct kfd_process_device *pdd,
->   	if (!pdd->dev->kfd->shared_resources.enable_mes)
->   		r = debug_map_and_unlock(pdd->dev->dqm);
->   	else
-> -		r = kfd_dbg_set_mes_debug_mode(pdd);
-> +		r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   	/* HWS is broken so no point in HW rollback but release the watchpoint anyways */
->   	if (r)
-> @@ -516,7 +515,7 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
->   		if (!pdd->dev->kfd->shared_resources.enable_mes)
->   			r = debug_refresh_runlist(pdd->dev->dqm);
->   		else
-> -			r = kfd_dbg_set_mes_debug_mode(pdd);
-> +			r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   		if (r) {
->   			target->dbg_flags = prev_flags;
-> @@ -539,7 +538,7 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
->   			if (!pdd->dev->kfd->shared_resources.enable_mes)
->   				debug_refresh_runlist(pdd->dev->dqm);
->   			else
-> -				kfd_dbg_set_mes_debug_mode(pdd);
-> +				kfd_dbg_set_mes_debug_mode(pdd, true);
->   		}
->   	}
->   
-> @@ -601,7 +600,7 @@ void kfd_dbg_trap_deactivate(struct kfd_process *target, bool unwind, int unwind
->   		if (!pdd->dev->kfd->shared_resources.enable_mes)
->   			debug_refresh_runlist(pdd->dev->dqm);
->   		else
-> -			kfd_dbg_set_mes_debug_mode(pdd);
-> +			kfd_dbg_set_mes_debug_mode(pdd, !kfd_dbg_has_cwsr_workaround(pdd->dev));
->   	}
->   
->   	kfd_dbg_set_workaround(target, false);
-> @@ -717,7 +716,7 @@ int kfd_dbg_trap_activate(struct kfd_process *target)
->   		if (!pdd->dev->kfd->shared_resources.enable_mes)
->   			r = debug_refresh_runlist(pdd->dev->dqm);
->   		else
-> -			r = kfd_dbg_set_mes_debug_mode(pdd);
-> +			r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   		if (r) {
->   			target->runtime_info.runtime_state =
-> @@ -851,7 +850,7 @@ int kfd_dbg_trap_set_wave_launch_override(struct kfd_process *target,
->   		if (!pdd->dev->kfd->shared_resources.enable_mes)
->   			r = debug_refresh_runlist(pdd->dev->dqm);
->   		else
-> -			r = kfd_dbg_set_mes_debug_mode(pdd);
-> +			r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   		if (r)
->   			break;
-> @@ -883,7 +882,7 @@ int kfd_dbg_trap_set_wave_launch_mode(struct kfd_process *target,
->   		if (!pdd->dev->kfd->shared_resources.enable_mes)
->   			r = debug_refresh_runlist(pdd->dev->dqm);
->   		else
-> -			r = kfd_dbg_set_mes_debug_mode(pdd);
-> +			r = kfd_dbg_set_mes_debug_mode(pdd, true);
->   
->   		if (r)
->   			break;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-> index 586d7f886712..fd0ff64d4184 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-> @@ -126,5 +126,14 @@ static inline bool kfd_dbg_has_gws_support(struct kfd_node *dev)
->   	return true;
->   }
->   
-> -int kfd_dbg_set_mes_debug_mode(struct kfd_process_device *pdd);
-> +int kfd_dbg_set_mes_debug_mode(struct kfd_process_device *pdd, bool sq_trap_en);
-> +
-> +static inline bool kfd_dbg_has_ttmps_always_setup(struct kfd_node *dev)
-> +{
-> +	return (KFD_GC_VERSION(dev) < IP_VERSION(11, 0, 0) &&
-> +			KFD_GC_VERSION(dev) != IP_VERSION(9, 4, 2)) ||
-> +	       (KFD_GC_VERSION(dev) >= IP_VERSION(11, 0, 0) &&
-> +			KFD_GC_VERSION(dev) < IP_VERSION(12, 0, 0) &&
-> +			(dev->adev->mes.sched_version & AMDGPU_MES_VERSION_MASK) >= 70);
-> +}
->   #endif
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> index 71b7f16c0173..ccaf85fc12c2 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> @@ -228,6 +228,8 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
->   	queue_input.tma_addr = qpd->tma_addr;
->   	queue_input.trap_en = !kfd_dbg_has_cwsr_workaround(q->device);
->   	queue_input.skip_process_ctx_clear = qpd->pqm->process->debug_trap_enabled;
-> +	queue_input.skip_process_ctx_clear = qpd->pqm->process->debug_trap_enabled ||
-> +					     kfd_dbg_has_ttmps_always_setup(q->device);
->   
->   	queue_type = convert_to_mes_queue_type(q->properties.type);
->   	if (queue_type < 0) {
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> index eeedc3ddffeb..3b0749390388 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> @@ -38,6 +38,7 @@
->   #include "kfd_device_queue_manager.h"
->   #include "kfd_iommu.h"
->   #include "kfd_svm.h"
-> +#include "kfd_debug.h"
->   #include "amdgpu_amdkfd.h"
->   #include "amdgpu_ras.h"
->   #include "amdgpu.h"
-> @@ -1931,6 +1932,9 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
->   			HSA_CAP_TRAP_DEBUG_WAVE_LAUNCH_TRAP_OVERRIDE_SUPPORTED |
->   			HSA_CAP_TRAP_DEBUG_WAVE_LAUNCH_MODE_SUPPORTED;
->   
-> +	if (kfd_dbg_has_ttmps_always_setup(dev->gpu))
-> +		dev->node_props.debug_prop |= HSA_DBG_DISPATCH_INFO_ALWAYS_VALID;
-> +
->   	if (KFD_GC_VERSION(dev->gpu) < IP_VERSION(10, 0, 0)) {
->   		if (KFD_GC_VERSION(dev->gpu) == IP_VERSION(9, 4, 3))
->   			dev->node_props.debug_prop |=
-> @@ -1941,10 +1945,6 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
->   				HSA_DBG_WATCH_ADDR_MASK_LO_BIT_GFX9 |
->   				HSA_DBG_WATCH_ADDR_MASK_HI_BIT;
->   
-> -		if (KFD_GC_VERSION(dev->gpu) != IP_VERSION(9, 4, 2))
-> -			dev->node_props.debug_prop |=
-> -				HSA_DBG_DISPATCH_INFO_ALWAYS_VALID;
-> -
->   		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(9, 4, 2))
->   			dev->node_props.capability |=
->   				HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED;
-> @@ -1952,9 +1952,7 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
->   		dev->node_props.debug_prop |= HSA_DBG_WATCH_ADDR_MASK_LO_BIT_GFX10 |
->   					HSA_DBG_WATCH_ADDR_MASK_HI_BIT;
->   
-> -		if (KFD_GC_VERSION(dev->gpu) < IP_VERSION(11, 0, 0))
-> -			dev->node_props.debug_prop |= HSA_DBG_DISPATCH_INFO_ALWAYS_VALID;
-> -		else
-> +		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(11, 0, 0))
->   			dev->node_props.capability |=
->   				HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED;
->   	}
+> +             /* Enable trap for each kfd vmid. */
+> +             data =3D RREG32_SOC15(GC, GET_INST(GC, xcc_id),
+> regSPI_GDBG_PER_VMID_CNTL);
+> +             data =3D REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL,
+> TRAP_EN, 1);
+> +             WREG32_SOC15_RLC(GC, GET_INST(GC, xcc_id),
+> regSPI_GDBG_PER_VMID_CNTL, data);
+>       }
+>       soc15_grbm_select(adev, 0, 0, 0, 0, GET_INST(GC, xcc_id));
+>       mutex_unlock(&adev->srbm_mutex);
+> --
+> 2.34.1
 
