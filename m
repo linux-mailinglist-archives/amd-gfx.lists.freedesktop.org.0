@@ -2,94 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1287652B9
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Jul 2023 13:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8CFE76547C
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Jul 2023 15:04:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE7310E369;
-	Thu, 27 Jul 2023 11:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA4610E57E;
+	Thu, 27 Jul 2023 13:04:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2052.outbound.protection.outlook.com [40.107.102.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183D810E369
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 11:42:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MFr61HHvziYTLgC44KFv4cFLm20k5hGqNI6SmaryF8vWqwCzkD2KnQZ1/pQZNqw6l31TjOolnkmzOEu5Lc3vE3UGBuMxlqJrSRjC/z7Hf5EwkeQEauGbPpaoP0GEwsCL8+U8wcqu+uZ60ug/Iy1rExTsgKZtCWrqYjj/qLORt8uxw6XQcV5ZTwNFDKSfYzhNi8DLnSVRhBHQ1D0nTtirC4p1styHcTXfaHR+pFEBuibIrMSn/DBamwybr7OQi+6E6qVwjhXzB15kluSYYMK6P+wuRq6oCMFOvpS2wDFNR9f6hHfe/Sh7xFFpKczUadomk1Oozkl+MuEJ1nMNv59Sag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R9cSiPnwNiXwG4VDlxTYoWQy0NpxC/B0FeU0kyl4L1s=;
- b=kO/lMBddYAPbAW5s45b5DmvVauxkaHug7WwT0YWrUX/ij44qcLv8eASc7Rit12CpeJnIIxT2nPTVdyDNF2Dy0NXoENZOXqQQMOMQPQ68wKIIpP+cIVLV73Gs1Y0cwycXuu86f++K50DZUdlWRbSSNENwlQaL15L10TWe7x7mQJLYTeAJuvj6oAJ+4+5OzbhO/5jw8Bo+a1qciJfuuANGy3WtS2kY3KKalvNDCDh7+ArxXNW5f5M0uHfPfua8mTbgj5pvAL94ktomPH0fIZu6pudzQ5frvHWHLxwYXzbi/T1GykDNULZNLX9R5hjZNyllpN0rbpN5H/zUoc9Kz73tGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R9cSiPnwNiXwG4VDlxTYoWQy0NpxC/B0FeU0kyl4L1s=;
- b=ezuY76y05OFhDlwdCCpQyQr4FdToDbJOwS8PaA+pMxAw+Yiku0Dbxr1beHmArJFSVAbwdrb7UQV5tM5UrmE64WCBfQTm35mzgMbYUgIwFzx4BfPcyHT6GlYwZ/k2ItV98kzMeQ7Xck3AKvhET3SFgKMcqGZ7s8wSOyG5k9pDnvk=
-Received: from MW4P220CA0025.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::30)
- by PH7PR12MB5878.namprd12.prod.outlook.com (2603:10b6:510:1d6::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33; Thu, 27 Jul
- 2023 11:41:35 +0000
-Received: from CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:115:cafe::94) by MW4P220CA0025.outlook.office365.com
- (2603:10b6:303:115::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29 via Frontend
- Transport; Thu, 27 Jul 2023 11:41:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT015.mail.protection.outlook.com (10.13.175.130) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6631.29 via Frontend Transport; Thu, 27 Jul 2023 11:41:34 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 27 Jul
- 2023 06:41:34 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 27 Jul
- 2023 04:41:33 -0700
-Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.27 via
- Frontend Transport; Thu, 27 Jul 2023 06:41:33 -0500
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/pm: correct the pcie width for smu 13.0.0
-Date: Thu, 27 Jul 2023 19:41:25 +0800
-Message-ID: <20230727114125.3891244-1-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com
+ [IPv6:2607:f8b0:4864:20::a30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999F810E565
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 10:08:15 +0000 (UTC)
+Received: by mail-vk1-xa30.google.com with SMTP id
+ 71dfb90a1353d-486486724e7so277169e0c.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 03:08:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1690452494; x=1691057294;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Zcl6BwQRr5tucmG2DEZSo0kunSZ6siQNkNbMkfRPkVY=;
+ b=JycG6n7pB2Sc4gu9itmnznIyAZyAdQIB07CNiP83m7hNl6udqjYylENv/mySowU910
+ qRCdjGSpnRdz9zybYyllYUvG7uLY71hoFmSRW9B/7FdDM8eqlgvZpfYW87kkgcjqQchu
+ ku3eAGzrBFUf8PfFTXxW4SCxeHStHNX23nhKp1c+Kmhoyy/V2AZF3GxE6uayejTpxdSh
+ sd0HHoDo2cxHqGsA9aClc4E8DVw5NUOGmWR/6Dn8DVkUUjNlYLi1hJthWYqyWv54pIEU
+ 9q/pJxdiX5l1Lfabf6iXseMzPGBap3Uzt800tmGpGB39uWz8kV0wHn9NedIznGjVpTgI
+ +RoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1690452494; x=1691057294;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Zcl6BwQRr5tucmG2DEZSo0kunSZ6siQNkNbMkfRPkVY=;
+ b=dejuef/WZvCvF7nD0jWhITzVOlmxLoXIRcWuOwiILIc7At3c/qcocktBcrpH+fArLW
+ nTwR65MGY8vYNovJ1wqHhGPwiuI/YV78dIK/w6mv/ggfJOh2HfMdMV2E3ep0NXoGylxD
+ Z64jeUk694x66LjtFy58Wdj8ELL5+SyxrffMkb2L6+8xQsgQFPws+BeYJ56wtQguC86m
+ 6pSG888yYoKeqDQF/uFz0kAG11bRHpfaEanMzdWjkfBrUlRBygMu4p/SShjQ+w23HsuX
+ PTNahwk8QP1eTstCfuuDaxEGo+loDHjbBIaHh7Q8GCcL3fr/Oo1SeUd+4E+GXSwxq1RL
+ +Vxg==
+X-Gm-Message-State: ABy/qLb0VIc1uwGe3WBpfqCQY9IjAcwUBEhzjdSnHEK8yxTqoPC/RLx5
+ j04djYN70xKCELpnog/k7ANQJITxLdgr/6G3WGquSw==
+X-Google-Smtp-Source: APBJJlHfFpoELAVK4ktLR6yeOkc2l8FGvVMK1919cwae7SwaJre72xp+rCBY5EOc7fMCZvRi0x4FP5bwzauhHaoJROw=
+X-Received: by 2002:a1f:6058:0:b0:486:3e81:9b8a with SMTP id
+ u85-20020a1f6058000000b004863e819b8amr243950vkb.13.1690452494531; Thu, 27 Jul
+ 2023 03:08:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT015:EE_|PH7PR12MB5878:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9bddb1c3-b243-4fe9-2713-08db8e966e5f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: diCVuYug48xwIwKdUUqKQhAOFNOeaCF23ohTYt1i+pinKHPQ5Xm++1znFeS6oZOjAF8irxlusEpAhm+qWXDGsPf7DzbPA6oLnL2wi6RO0i69IuYptM/0cG4YeTfkNwQxIckUj2x1IX6Bd9UFwK0lCHaH4IcHhZjfKQNG1u0rsi9an60vgmFnwtH/Ye96dQyP15WkGLmXInbLilARr1KTm6NLE1wX1oyxRwR4GL+TT0OpOiM/nwCMLN1KG4l7DDkplggLrFPbZfqm18AVqPNdqQbioaZe4b7ysGORmZPyt5yneBOM4keIhxHY018l5APeAedy5cjo0YqgK/GF3+tu7fMmmbcpoNbDUHJfdLXUr+6yQu2Z1m7I3r4F5h9ofuepgkGYowyvFZYKg8+Q+P+Zk+2M0IA1yPWjTNJOiOY0MFlITojgSJqXIxZ2/4pm/xY23Aor8akgyfqKkPNj2JdbxurccsowUGKNJSRhh3skTERa2f/KfCzxmSYClmvct5YeMVphbBipdbwhnrK4pghb3zbwUE6/DMRK02zRXoDvLSTc2yQycO1M/Bp2UcDuIbMaLWyLeBhnuRBVFehPecX/kcB6ITGfjp4e3CPeKamYtMAl5k0jc1ppJGGmcF8bzT2ucz8pjDXAxhu69nj/BTHxOwy2FixhgemzfTOOvaEbGbZkX1PTHmqlUlIvcms1iLlNjYFWg4l9xM3QsLWoPAWBVg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(451199021)(82310400008)(46966006)(36840700001)(86362001)(81166007)(36756003)(356005)(508600001)(2906002)(54906003)(47076005)(2616005)(336012)(26005)(1076003)(426003)(36860700001)(186003)(4326008)(8936002)(70206006)(44832011)(8676002)(5660300002)(6666004)(7696005)(83380400001)(70586007)(316002)(6916009)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2023 11:41:34.9619 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9bddb1c3-b243-4fe9-2713-08db8e966e5f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5878
+References: <20230711133122.3710-1-christian.koenig@amd.com>
+ <20230711133122.3710-2-christian.koenig@amd.com>
+ <20230722220637.GA138486@dev-arch.thelio-3990X>
+In-Reply-To: <20230722220637.GA138486@dev-arch.thelio-3990X>
+From: Naresh Kamboju <naresh.kamboju@linaro.org>
+Date: Thu, 27 Jul 2023 15:38:03 +0530
+Message-ID: <CA+G9fYuEah=Kp9DzQf1xmG6XQCUY8f869C87MnDSQocGORV1JA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] drm: execution context for GEM buffers v7
+To: Nathan Chancellor <nathan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 27 Jul 2023 13:04:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,38 +70,131 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: evan.quan@amd.com, Kenneth Feng <kenneth.feng@amd.com>
+Cc: alexdeucher@gmail.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-correct the pcie width value in pp_dpm_pcie for smu 13.0.0
+On Sun, 23 Jul 2023 at 03:36, Nathan Chancellor <nathan@kernel.org> wrote:
+>
+> Hi Christian,
+>
+> On Tue, Jul 11, 2023 at 03:31:17PM +0200, Christian K=C3=B6nig wrote:
+> > This adds the infrastructure for an execution context for GEM buffers
+> > which is similar to the existing TTMs execbuf util and intended to repl=
+ace
+> > it in the long term.
+> >
+> > The basic functionality is that we abstracts the necessary loop to lock
+> > many different GEM buffers with automated deadlock and duplicate handli=
+ng.
+> >
+> > v2: drop xarray and use dynamic resized array instead, the locking
+> >     overhead is unnecessary and measurable.
+> > v3: drop duplicate tracking, radeon is really the only one needing that=
+.
+> > v4: fixes issues pointed out by Danilo, some typos in comments and a
+> >     helper for lock arrays of GEM objects.
+> > v5: some suggestions by Boris Brezillon, especially just use one retry
+> >     macro, drop loop in prepare_array, use flags instead of bool
+> > v6: minor changes suggested by Thomas, Boris and Danilo
+> > v7: minor typos pointed out by checkpatch.pl fixed
+> >
+> > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > Reviewed-by: Danilo Krummrich <dakr@redhat.com>
+> > Tested-by: Danilo Krummrich <dakr@redhat.com>
+>
+> <snip>
+>
+> > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> > new file mode 100644
+> > index 000000000000..73205afec162
+> > --- /dev/null
+> > +++ b/include/drm/drm_exec.h
+>
+> <snip>
+>
+> > + * Since labels can't be defined local to the loops body we use a jump=
+ pointer
+> > + * to make sure that the retry is only used from within the loops body=
+.
+> > + */
+> > +#define drm_exec_until_all_locked(exec)                              \
+> > +     for (void *__drm_exec_retry_ptr; ({                     \
+> > +             __label__ __drm_exec_retry;                     \
+> > +__drm_exec_retry:                                            \
+> > +             __drm_exec_retry_ptr =3D &&__drm_exec_retry;      \
+> > +             (void)__drm_exec_retry_ptr;                     \
+> > +             drm_exec_cleanup(exec);                         \
+> > +     });)
+> > +
+> > +/**
+> > + * drm_exec_retry_on_contention - restart the loop to grap all locks
+> > + * @exec: drm_exec object
+> > + *
+> > + * Control flow helper to continue when a contention was detected and =
+we need to
+> > + * clean up and re-start the loop to prepare all GEM objects.
+> > + */
+> > +#define drm_exec_retry_on_contention(exec)                   \
+> > +     do {                                                    \
+> > +             if (unlikely(drm_exec_is_contended(exec)))      \
+> > +                     goto *__drm_exec_retry_ptr;             \
+> > +     } while (0)
+>
+> This construct of using a label as a value and goto to jump into a GNU
+> C statement expression is explicitly documented in GCC's manual [1] as
+> undefined behavior:
+>
+> "Jumping into a statement expression with a computed goto (see Labels as
+> Values [2]) has undefined behavior. "
+>
+> A recent change in clang [3] to prohibit this altogether points this out,=
+ so
+> builds using clang-17 and newer will break with this change applied:
+>
+>   drivers/gpu/drm/tests/drm_exec_test.c:41:3: error: cannot jump from thi=
+s indirect goto statement to one of its possible targets
+>      41 |                 drm_exec_retry_on_contention(&exec);
+>         |                 ^
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+LKFT also noticed these build failures on arm and arm64 with clang nightly.
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 232274423f9e..4bdbd3910e1f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -1140,7 +1140,6 @@ static int smu_v13_0_0_print_clk_levels(struct smu_context *smu,
- 		(OverDriveTableExternal_t *)smu->smu_table.overdrive_table;
- 	struct smu_13_0_dpm_table *single_dpm_table;
- 	struct smu_13_0_pcie_table *pcie_table;
--	const int link_width[] = {0, 1, 2, 4, 8, 12, 16};
- 	uint32_t gen_speed, lane_width;
- 	int i, curr_freq, size = 0;
- 	int32_t min_value, max_value;
-@@ -1256,7 +1255,7 @@ static int smu_v13_0_0_print_clk_levels(struct smu_context *smu,
- 					(pcie_table->pcie_lane[i] == 6) ? "x16" : "",
- 					pcie_table->clk_freq[i],
- 					(gen_speed == DECODE_GEN_SPEED(pcie_table->pcie_gen[i])) &&
--					(lane_width == DECODE_LANE_WIDTH(link_width[pcie_table->pcie_lane[i]])) ?
-+					(lane_width == DECODE_LANE_WIDTH(pcie_table->pcie_lane[i])) ?
- 					"*" : "");
- 		break;
- 
--- 
-2.34.1
 
+>   include/drm/drm_exec.h:96:4: note: expanded from macro 'drm_exec_retry_=
+on_contention'
+>      96 |                         goto *__drm_exec_retry_ptr;            =
+ \
+>         |                         ^
+>   drivers/gpu/drm/tests/drm_exec_test.c:39:2: note: possible target of in=
+direct goto statement
+>      39 |         drm_exec_until_all_locked(&exec) {
+>         |         ^
+>   include/drm/drm_exec.h:79:33: note: expanded from macro 'drm_exec_until=
+_all_locked'
+>      79 |                 __label__ __drm_exec_retry;                    =
+ \
+>         |                                                                =
+ ^
+>   drivers/gpu/drm/tests/drm_exec_test.c:39:2: note: jump enters a stateme=
+nt expression
+>
+> It seems like if this construct works, it is by chance, although I am
+> not sure if there is another solution.
+
+Thanks for looking into this problem.
+
+
+>
+> [1]: https://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html
+> [2]: https://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html
+> [3]: https://github.com/llvm/llvm-project/commit/20219106060208f0c2f5d096=
+eb3aed7b712f5067
+>
+> Cheers,
+> Nathan
+
+- Naresh
