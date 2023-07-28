@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6422C767211
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 18:41:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F321E767213
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 18:41:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0568E10E1A0;
-	Fri, 28 Jul 2023 16:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7EA10E211;
+	Fri, 28 Jul 2023 16:41:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2083.outbound.protection.outlook.com [40.107.244.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B911310E1A0
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 16:41:19 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2084.outbound.protection.outlook.com [40.107.243.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B9B10E1A0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 16:41:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WWNlLAeC9UhyaGmcoSSXQEQsqx6KOea1iQZUFG66nZ5a49eHk/RJ7JPtoEpWc8VSjkX9LEDSnq/Ll7cXqp4YmfTh+HdKhjYcQTAuLJlaKX3ytzVKsB0X7OU2/buNONXWo4fUz44nsjCSrnDV8eLhLnafFzOieZkw8kh4vFpmyaRmiStBlKUeomOq6/EdOfveEpzYd0i7oaiRF0dyZKGycSm3pCimnIxTRVkU8VKSGLcL75IkNgeAdTlaF4Ni8hzuLEFSh+3U1hJfMdUhDpEd//hazHbfiL5PXFZDRAWOa4HXJPSGqQ2s7g3j3O9Mgq+bmbg91bAJ4lPpnbq8n93G3w==
+ b=c5P1pLL4tCngvCY0mM2C6awZxy48mCTIGmZTULCiSDImYqk1fgaKHWMhm3sCVSL6SLiPnOrJSOcfzmgsxCh3DG3N3TDSHrFKemADxIXQjBe44XIMs4EVWVlK7lL/0vGXygmJy1TTrrmwZw4mOieNT2PbQhQJtrmdt43ILwWEc+r8w5ViCTPz2zMMf3NiwfBK6BIOlXUQriPx8LH6HqLT9zs7MGiUgRIenjZMg1SruDaLnhO8yy1eXeucN9CZJ306LDD5Z34QSsgaPiKoqoJQ2cnX7QEIzag7mUM49VvkUh7jehIocMMLEm5MddtICepVw53rG+xayX6WZjaqNIzVGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EQ03Bo/u+7YDtaCL/S8IJhnzgPmlYQT+zw+g2O8E2Y0=;
- b=UEFsrMhhk1Y68jf+1jQtdlgw0HVfETCMhcpTKkeKcSr40ZeR9/xjcnXkxCriArmXFPnlJCnjH1hXMP9ERK2lSZg5AIparHeR5mek2e8JR6XcU0ZWSfIvhTW/o+ZKOvimxXwKVGYTcWhH2Hg26PwAar5/V3cjVZFLOJUZym4og0o1jtLCbszw2wowcSyeSPR1MtWcw4x+aqvWqL3tW3k62FrltQIXqp/0bWZo58OUP0fIFGgW6+xd4iJawbpsw8vxp9bAyiJJ/7ykvAcdQekK8yto13kfxSHx+7BnaNsf0WYbMwOXQGwOzWXWXn8heCY9PySOKvKKJCXJ+ANNDo7kTQ==
+ bh=4AqVagB2Z8MOrSBYW8emRHmoYS9QGLEOoUYddBUYtzQ=;
+ b=eX8JcGzZfDmPppjApRa3Pk9jhO6YvyTKo5Hpnf2wu0Pbbe10YaAl1PcxbRcj0LGtrcTau850a5VLB83bYNgH+ySe6FNuF8Ds5dhofk6RMUlnXa6MJ38z68Uw8ztQpwLBfR+0hF8dqwsf3ORETV5uuWKKjU0YEmcB86mtC6yn3cc2t2HTFnT8rMgvfj5CZ2d26uST6knTLbLHRdKFLIrEghUqQQQvzJCfrMZ4flYRY57RdiKKzVxq1s9MKU57qCv3bCr3jqt9DHDGgYYfgQd8HfRlAmz+D7XVDqpBn7fzf0QVk7A7dN/QQGadeoUgESNPJ9UUNd6UUQx3j8WM/wBjUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EQ03Bo/u+7YDtaCL/S8IJhnzgPmlYQT+zw+g2O8E2Y0=;
- b=i+NKEDjaOLXQ4PQku4PpyG4IJc9IlxGxSs26iKj5r6QrrHeLe3HgRohV+pXH5QWIk8Fp+RX4Hf9srlbq2AuR3gEbjdWSHX37n22JW3rHn8B5b/VoC/qISBB0dYAviZpSMy4hZOFuJAMT3vISIlMJee5LN78oA3n1IsWTWMHbDkM=
-Received: from DM6PR08CA0056.namprd08.prod.outlook.com (2603:10b6:5:1e0::30)
- by CH3PR12MB7691.namprd12.prod.outlook.com (2603:10b6:610:151::18) with
+ bh=4AqVagB2Z8MOrSBYW8emRHmoYS9QGLEOoUYddBUYtzQ=;
+ b=XVLF1GsQuOCntPZhlYVekZRFmQjYM6TQUZ04jFgCGKgwWM8eLwiGuGmPOr7jZCqixs/INsHnL78axibP0RGs7/jSR7NOTGwb6F3q4mKyVys9V3gfbVrLjk9b6Pysvg2siK/dqdP4ummZJxJHdET+bLxDEuL7f4H+ZvQEYJoj0zA=
+Received: from DM6PR08CA0045.namprd08.prod.outlook.com (2603:10b6:5:1e0::19)
+ by SJ2PR12MB7964.namprd12.prod.outlook.com (2603:10b6:a03:4cf::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.32; Fri, 28 Jul
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Fri, 28 Jul
  2023 16:41:18 +0000
 Received: from DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1e0:cafe::f3) by DM6PR08CA0056.outlook.office365.com
- (2603:10b6:5:1e0::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29 via Frontend
+ (2603:10b6:5:1e0:cafe::88) by DM6PR08CA0045.outlook.office365.com
+ (2603:10b6:5:1e0::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.34 via Frontend
  Transport; Fri, 28 Jul 2023 16:41:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT066.mail.protection.outlook.com (10.13.173.179) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6631.29 via Frontend Transport; Fri, 28 Jul 2023 16:41:17 +0000
+ 15.20.6631.29 via Frontend Transport; Fri, 28 Jul 2023 16:41:18 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 28 Jul
- 2023 11:41:16 -0500
+ 2023 11:41:17 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/4] drm/amdkfd: disable IOMMUv2 support for KV/CZ
-Date: Fri, 28 Jul 2023 12:41:00 -0400
-Message-ID: <20230728164102.3327956-2-alexander.deucher@amd.com>
+Subject: [PATCH 3/4] drm/amdkfd: disable IOMMUv2 support for Raven
+Date: Fri, 28 Jul 2023 12:41:01 -0400
+Message-ID: <20230728164102.3327956-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230728164102.3327956-1-alexander.deucher@amd.com>
 References: <20230728164102.3327956-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT066:EE_|CH3PR12MB7691:EE_
-X-MS-Office365-Filtering-Correlation-Id: c6b2d70a-2199-48ee-93d0-08db8f89776d
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT066:EE_|SJ2PR12MB7964:EE_
+X-MS-Office365-Filtering-Correlation-Id: 264ea9c4-d3f7-44fa-f214-08db8f8977ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sxObDeyLLyoHBzY86n/OfwANq7NGLq++wrQugf4mOLaZyBXpqY566zwnsUWpxGlHztDhui9EMJDS8H9NWO2g6BIHGhQgrquOcRrZAUW9IrFYmmEBwutY6XEb423UDOCURhXrPMbPkbBXHYG2yI5nzwZVMarEacbnfvhfvHBok5L5Q76mdDijqiLgjqHF2UP+RLw8AOgHkQw6+SIHqO1XaqlrjnJhPriPmEajlRfPCDhAyg//2rTRRNzRJ79EYmH3IKckupArxfJhJ8ECTEjJbzTTSrU9o3IJuLCZWtiGoxw41ddxUonSHxWlpTtVFUTh+RvuDrArpBwhg2o67OQeQ0fszPgYt8yD+RevM8rj9ccfIPq1P+wvlGAKeAUl35eAYwmrrLK8pArocE/fW3K/L7lmLUCIdm/i25qxO/bpN1z22eeOjuyXBMjn8TgtG35hu9Nq0LRAZEeVMMpIflQqwGECm7BEz7GHcD5dodUPkmyGtkQNagoYFT72lm70xilm3pDZgL+P3UA2jMHta6fjyiRHuxkPBvF0KTFCPg8NQhVedC6Ybv3H0k0KpUIU8q5yzpPfny6PZRJdJtFZlH4ty4RCeFDczO+O0lABIIzhy+/MV6bfvmHrBL7nsqrXSe55vdzHxUzKT+hI2xPNfQCV4C+JJpHK8Dv/6P/fDKwTbqT75HaOz4toaaJd+wLmhsOFOE4v/i5zsvLabpTtB6IYUJGI6AIkn093wa7kMlM8stEStv6CTakYV2mgIteojvm1BdU1sdAYyLfWGvoQoEammw==
+X-Microsoft-Antispam-Message-Info: 9Cx31a8ugTUw/RyPSKuOlGlUIAN91kmYdETg9QrWe97u33gl0LOTPB82daxKXAL4ml5+ul2IHc+lMuHZQVFlZRLghOmaEw6eLKS1SPB18PgQSL6jJ87CeWFkLMqI6YH88lA3Y3a8Fi/raCGm8Aw5pW57obp32eMBYfLb7KN09dOZ/uQFnyoEC4OrzSrP21xa9yT+dWlXC1IjOR0o4coubyVyVXOz3oMfoTvO+ud1oA4fsDYcU/ZqhW5urZiGgT7tlrORpstS8ULRGTYBosaNjHH6QdUe2OdvetN0oqHnT7KBp5cMpR7cDmxWMCsUUVzjm2IHbTWQTkLCPUGOpYleegnD4Nz01MV7mQBGB2QTalyFfflo+/zqlEmM9epy/P0gKt2ArvJ06iq6fvYxHpPc0hbc9Y+yrXCBy9ONZorZ6PoP8mfEGpz8Em0HVwAjE74ZpvwSg5JSj/UZdO2Gb97m4nWSUNL0FqiKMu8iX+LbNde5JYDaAcSSv9H3e/xwkzywLJ/+4/FVaw3UixQT3OzhaZgjA8iSmpTJxrSrkKGd+iK6CVl4b/7ueyLHZkWhgNM1oQPszbyJLLEtG+X4u2KCrG7mzf0EsqdCP+QZOeie6plne10h+jARKxCUaxwWSpX0NTkp080O+obloUVFVGxC00xet/hd38KtLbjNZhJ+ng5upoG2WHw5L6EoK1kY+Ki3DzAcDA0fmJjR9TUg3iyrfraNiHQmlYgR/Wi7MPiXHskL787iJg06DRKASt5XKBYX1uatQaNNuiGqzZe/uT8fLA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(39860400002)(396003)(376002)(136003)(451199021)(82310400008)(40470700004)(46966006)(36840700001)(40460700003)(86362001)(82740400003)(356005)(81166007)(40480700001)(26005)(7696005)(2906002)(6666004)(2616005)(426003)(336012)(47076005)(1076003)(16526019)(70206006)(70586007)(36756003)(5660300002)(41300700001)(316002)(6916009)(186003)(4326008)(8936002)(8676002)(478600001)(83380400001)(36860700001)(36900700001);
+ SFS:(13230028)(4636009)(346002)(376002)(39860400002)(136003)(396003)(451199021)(82310400008)(40470700004)(36840700001)(46966006)(36860700001)(47076005)(478600001)(7696005)(6666004)(336012)(2616005)(6916009)(70586007)(16526019)(26005)(1076003)(426003)(2906002)(70206006)(316002)(8936002)(356005)(5660300002)(8676002)(41300700001)(82740400003)(81166007)(36756003)(86362001)(83380400001)(40480700001)(40460700003)(4326008)(186003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2023 16:41:17.9237 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6b2d70a-2199-48ee-93d0-08db8f89776d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2023 16:41:18.3299 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 264ea9c4-d3f7-44fa-f214-08db8f8977ad
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7691
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7964
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,40 +111,41 @@ also paves the way to simplify the driver significantly.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 64772921ea43b..814a6116ca9bb 100644
+index 814a6116ca9bb..80362074f9796 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -234,10 +234,6 @@ static void kfd_device_info_init(struct kfd_dev *kfd,
- 		    asic_type != CHIP_TONGA)
- 			kfd->device_info.supports_cwsr = true;
+@@ -195,11 +195,6 @@ static void kfd_device_info_init(struct kfd_dev *kfd,
  
--		if (asic_type == CHIP_KAVERI ||
--		    asic_type == CHIP_CARRIZO)
+ 		kfd_device_info_set_event_interrupt_class(kfd);
+ 
+-		/* Raven */
+-		if (gc_version == IP_VERSION(9, 1, 0) ||
+-		    gc_version == IP_VERSION(9, 2, 2))
 -			kfd->device_info.needs_iommu_device = true;
 -
- 		if (asic_type != CHIP_HAWAII && !vf)
- 			kfd->device_info.needs_pci_atomics = true;
- 	}
-@@ -250,7 +246,6 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 	uint32_t gfx_target_version = 0;
- 
- 	switch (adev->asic_type) {
+ 		if (gc_version < IP_VERSION(11, 0, 0)) {
+ 			/* Navi2x+, Navi1x+ */
+ 			if (gc_version == IP_VERSION(10, 3, 6))
+@@ -293,7 +288,6 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
+ 			gfx_target_version = 90000;
+ 			f2g = &gfx_v9_kfd2kgd;
+ 			break;
 -#ifdef KFD_SUPPORT_IOMMU_V2
- #ifdef CONFIG_DRM_AMDGPU_CIK
- 	case CHIP_KAVERI:
- 		gfx_target_version = 70000;
-@@ -263,7 +258,6 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 		if (!vf)
- 			f2g = &gfx_v8_kfd2kgd;
- 		break;
+ 		/* Raven */
+ 		case IP_VERSION(9, 1, 0):
+ 		case IP_VERSION(9, 2, 2):
+@@ -301,7 +295,6 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
+ 			if (!vf)
+ 				f2g = &gfx_v9_kfd2kgd;
+ 			break;
 -#endif
- #ifdef CONFIG_DRM_AMDGPU_CIK
- 	case CHIP_HAWAII:
- 		gfx_target_version = 70001;
+ 		/* Vega12 */
+ 		case IP_VERSION(9, 2, 1):
+ 			gfx_target_version = 90004;
 -- 
 2.41.0
 
