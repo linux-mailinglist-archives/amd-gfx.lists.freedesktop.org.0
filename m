@@ -1,39 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F17766F98
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 16:36:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C8B4766FB0
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 16:46:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6257F10E707;
-	Fri, 28 Jul 2023 14:36:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D75A910E0D9;
+	Fri, 28 Jul 2023 14:46:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-127.mail.aliyun.com (out28-127.mail.aliyun.com
- [115.124.28.127])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1749A10E706;
- Fri, 28 Jul 2023 14:35:24 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.08700002|-1;
- BR=01201311R131S69rulernew998_84748_2000303; CH=blue; DM=|CONTINUE|false|;
- DS=CONTINUE|ham_alarm|0.00311369-0.000355902-0.99653; FP=0|0|0|0|0|-1|-1|-1;
- HT=ay29a033018047212; MF=sunran001@208suo.com; NM=1; PH=DW; RN=6; RT=6; SR=0;
- TI=W4_0.2.3_v5_212501EE_1690554907535_o7001c54a; 
-Received: from WS-web
- (sunran001@208suo.com[W4_0.2.3_v5_212501EE_1690554907535_o7001c54a]) at Fri,
- 28 Jul 2023 22:35:19 +0800
-Date: Fri, 28 Jul 2023 22:35:19 +0800
-From: "=?UTF-8?B?5a2Z5YaJ?=" <sunran001@208suo.com>
-To: "airlied" <airlied@gmail.com>, "daniel" <daniel@ffwll.ch>,
- "alexander.deucher" <alexander.deucher@amd.com>
-Message-ID: <3a4bebc5-79fb-4799-8743-14a0dde97a4f.sunran001@208suo.com>
-Subject: =?UTF-8?B?W1BBVENIXSBkcm0vcmFkZW9uOiBQcmVmZXIgJ3Vuc2lnbmVkIGludCcgdG8gYmFyZSB1c2Ug?=
- =?UTF-8?B?b2YgJ3Vuc2lnbmVkJw==?=
-X-Mailer: [Alimail-Mailagent][W4_0.2.3][v5][Chrome]
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B12A10E027;
+ Fri, 28 Jul 2023 14:45:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=oiMutyUMmVTk99ASOanACyUD72nSCbLfCygSg1z4+14=; b=Y1pdF6VAaU5RBGv2OSYBkSpK9G
+ qAkOTLW06hJyFxgChOD8q1GLjdJltoz4LI80qJInTti5eo8pZMdho56qPQIYTP+onXpNhM/GtGZfP
+ Dg4jJ9eoZao82TSWhPGvDgJi+QWT9deZw0Tzcsyzz6UJldyFIb/1V6Nume99Uij9oT30HM41QGyqX
+ 2HxLgbkDqiRLdsAZnuCLny+y0XlxpxxM+Wot3bwpamG2WFb0ZvFhTPUqF6jOnveBmrhbD6x0dRAdK
+ vuZZ9PTrYrPPWNajYZ1px+zXpWmtvsfwgE5yCDTAdINWjUhy/c00rJPzt4HuVxOPthR79machWgt3
+ jjCw25Lg==;
+Received: from [189.111.93.147] (helo=[192.168.1.111])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1qPOix-005De2-UM; Fri, 28 Jul 2023 16:45:48 +0200
+Message-ID: <24fc3974-a303-e792-b6d5-5ca634c2bc4b@igalia.com>
+Date: Fri, 28 Jul 2023 11:45:42 -0300
 MIME-Version: 1.0
-x-aliyun-mail-creator: W4_0.2.3_v5_TCwTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNS4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMTUuMC4xOTAxLjE4Mw==FR
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-X-Mailman-Approved-At: Fri, 28 Jul 2023 14:36:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] drm/amdgpu: Add new reset option and rework
+ coredump
+Content-Language: en-US
+To: christian.koenig@amd.com
+References: <20230714161128.69545-1-andrealmeid@igalia.com>
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <20230714161128.69545-1-andrealmeid@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,40 +53,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: =?UTF-8?B?5a2Z5YaJ?= <sunran001@208suo.com>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx <amd-gfx@lists.freedesktop.org>,
- linux-kernel <linux-kernel@vger.kernel.org>
+Cc: pierre-eric.pelloux-prayer@amd.com,
+ =?UTF-8?B?J01hcmVrIE9sxaHDoWsn?= <maraeo@gmail.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ dri-devel@lists.freedesktop.org, michel.daenzer@mailbox.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Samuel Pitoiset <samuel.pitoiset@gmail.com>, kernel-dev@igalia.com,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, alexander.deucher@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-V0FSTklORzogUHJlZmVyICd1bnNpZ25lZCBpbnQnIHRvIGJhcmUgdXNlIG9mICd1bnNpZ25lZCcK
-ClNpZ25lZC1vZmYtYnk6IFJhbiBTdW4gPHN1bnJhbjAwMUAyMDhzdW8uY29tPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX29iamVjdC5oIHwgOCArKysrLS0tLQogMSBmaWxlIGNo
-YW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9vYmplY3QuaCBiL2RyaXZlcnMvZ3B1L2RybS9yYWRl
-b24vcmFkZW9uX29iamVjdC5oCmluZGV4IDM5Y2M4N2E1OWE5YS4uOWI1NWE3MTAzY2ZkIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9vYmplY3QuaAorKysgYi9kcml2
-ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9vYmplY3QuaApAQCAtMzcsNyArMzcsNyBAQAogICoK
-ICAqIFJldHVybnMgY29ycmVzcG9uZGluZyBkb21haW4gb2YgdGhlIHR0bSBtZW1fdHlwZQogICov
-Ci1zdGF0aWMgaW5saW5lIHVuc2lnbmVkIHJhZGVvbl9tZW1fdHlwZV90b19kb21haW4odTMyIG1l
-bV90eXBlKQorc3RhdGljIGlubGluZSB1bnNpZ25lZCBpbnQgcmFkZW9uX21lbV90eXBlX3RvX2Rv
-bWFpbih1MzIgbWVtX3R5cGUpCiB7CiAgc3dpdGNoIChtZW1fdHlwZSkgewogIGNhc2UgVFRNX1BM
-X1ZSQU06CkBAIC0xMTIsMTIgKzExMiwxMiBAQCBzdGF0aWMgaW5saW5lIHVuc2lnbmVkIGxvbmcg
-cmFkZW9uX2JvX3NpemUoc3RydWN0IHJhZGVvbl9ibyAqYm8pCiAgcmV0dXJuIGJvLT50Ym8uYmFz
-ZS5zaXplOwogfQogCi1zdGF0aWMgaW5saW5lIHVuc2lnbmVkIHJhZGVvbl9ib19uZ3B1X3BhZ2Vz
-KHN0cnVjdCByYWRlb25fYm8gKmJvKQorc3RhdGljIGlubGluZSB1bnNpZ25lZCBpbnQgcmFkZW9u
-X2JvX25ncHVfcGFnZXMoc3RydWN0IHJhZGVvbl9ibyAqYm8pCiB7CiAgcmV0dXJuIGJvLT50Ym8u
-YmFzZS5zaXplIC8gUkFERU9OX0dQVV9QQUdFX1NJWkU7CiB9CiAKLXN0YXRpYyBpbmxpbmUgdW5z
-aWduZWQgcmFkZW9uX2JvX2dwdV9wYWdlX2FsaWdubWVudChzdHJ1Y3QgcmFkZW9uX2JvICpibykK
-K3N0YXRpYyBpbmxpbmUgdW5zaWduZWQgaW50IHJhZGVvbl9ib19ncHVfcGFnZV9hbGlnbm1lbnQo
-c3RydWN0IHJhZGVvbl9ibyAqYm8pCiB7CiAgcmV0dXJuIChiby0+dGJvLnBhZ2VfYWxpZ25tZW50
-IDw8IFBBR0VfU0hJRlQpIC8gUkFERU9OX0dQVV9QQUdFX1NJWkU7CiB9CkBAIC0xODksNyArMTg5
-LDcgQEAgc3RhdGljIGlubGluZSB2b2lkICpyYWRlb25fc2FfYm9fY3B1X2FkZHIoc3RydWN0IGRy
-bV9zdWJhbGxvYyAqc2FfYm8pCiAKIGV4dGVybiBpbnQgcmFkZW9uX3NhX2JvX21hbmFnZXJfaW5p
-dChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwKICAgICAgICAgIHN0cnVjdCByYWRlb25fc2Ff
-bWFuYWdlciAqc2FfbWFuYWdlciwKLSAgICAgICAgIHVuc2lnbmVkIHNpemUsIHUzMiBhbGlnbiwg
-dTMyIGRvbWFpbiwKKyAgICAgICAgIHVuc2lnbmVkIGludCBzaXplLCB1MzIgYWxpZ24sIHUzMiBk
-b21haW4sCiAgICAgICAgICB1MzIgZmxhZ3MpOwogZXh0ZXJuIHZvaWQgcmFkZW9uX3NhX2JvX21h
-bmFnZXJfZmluaShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwKICAgICAgICAgICBzdHJ1Y3Qg
-cmFkZW9uX3NhX21hbmFnZXIgKnNhX21hbmFnZXIpOwotLSAKMi4xNy4xCgo=
+Hi Christian, gently ping here
+
+Em 14/07/2023 13:11, André Almeida escreveu:
+> Hi,
+> 
+> The goal of this patchset is to improve debugging device resets on amdgpu.
+> 
+> The first patch creates a new module parameter to disable soft recoveries,
+> ensuring every recovery go through the full device reset, making easier to
+> generate resets from userspace tools like [0] and [1]. This is important to
+> validate how the stack behaves on resets, from end-to-end.
+> 
+> The last patches are a rework to alloc devcoredump dynamically and to move it to
+> a better source file.
+> 
+> I have dropped the patches that add more information to devcoredump for now,
+> until I figure out a better way to do so, like storing the IB address in the
+> fence.
+> 
+> Thanks,
+> 	André
+> 
+> [0] https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
+> [1] https://github.com/andrealmeid/vulkan-triangle-v1
+> 
+> Changelog:
+> 
+> v2: https://lore.kernel.org/dri-devel/20230713213242.680944-1-andrealmeid@igalia.com/
+> - Drop the IB and ring patch
+> - Drop patch that limited information from kernel threads
+> - Add patch to move coredump to amdgpu_reset
+> 
+> v1: https://lore.kernel.org/dri-devel/20230711213501.526237-1-andrealmeid@igalia.com/
+>   - Drop "Mark contexts guilty for causing soft recoveries" patch
+>   - Use GFP_NOWAIT for devcoredump allocation
+> 
+> André Almeida (5):
+>    drm/amdgpu: Create a module param to disable soft recovery
+>    drm/amdgpu: Allocate coredump memory in a nonblocking way
+>    drm/amdgpu: Rework coredump to use memory dynamically
+>    drm/amdgpu: Move coredump code to amdgpu_reset file
+>    drm/amdgpu: Create version number for coredumps
+> 
+>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  6 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 67 +-----------------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  9 +++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c  | 79 ++++++++++++++++++++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h  | 14 ++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c   |  6 +-
+>   6 files changed, 111 insertions(+), 70 deletions(-)
+> 
