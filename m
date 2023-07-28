@@ -1,49 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435D1766B1E
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 12:56:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09466766F99
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jul 2023 16:36:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A29C810E181;
-	Fri, 28 Jul 2023 10:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A9F10E708;
+	Fri, 28 Jul 2023 14:36:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D70410E181
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 10:56:33 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4RC4M13R90z9stN;
- Fri, 28 Jul 2023 12:56:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1690541789;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=5hEPLoqfE400Hx7CzA6V5N5eofZ4eL6nZVe4GAa1lt8=;
- b=lgPeODzlFiLyKYgwuJOhutG0AhftmIL08n4h+2VEcjp6PcZSd7gSh99zlTWVvaarHKy5ly
- jUBauyl/z7rstkzAARjspPkYQ7k8xW4vT9iW+lZWHJVHw+O9GnetjdVyxOhIOKDcHx9FIA
- JA5MQHTxyfhV1zgmFx0PeU4UPlHhH+YXH6lD9dtMRxobtYKPqYRS05c5aRFPSzx85YSwtm
- ZEYtVLm2l8rBvzAp8IrnHRevSFYwyRU1rr1VdbqWHeKSaNILaJgvboCmAfSjqyCWg664Fh
- a2VJpKS/2Yd5v1N8v0DZ4qTKBVyWmgNa6QpFQvqOAsk/UH4zD6mZ0HMgFzjgrA==
-Content-Type: multipart/mixed; boundary="------------NAyugCMDRDovcKgz4UNkpx7m"
-Message-ID: <acfde12d-e6b3-f95c-bd1d-94c0930a1bb7@mailbox.org>
-Date: Fri, 28 Jul 2023 12:56:28 +0200
+Received: from out28-91.mail.aliyun.com (out28-91.mail.aliyun.com
+ [115.124.28.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC3010E703;
+ Fri, 28 Jul 2023 14:29:19 +0000 (UTC)
+X-Alimail-AntiSpam: AC=SUSPECT; BC=0.6153257|-1; BR=01201311R941b1; CH=blue;
+ DM=|SUSPECT|false|;
+ DS=CONTINUE|ham_regular_dialog|0.00967824-0.00041684-0.989905;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047193; MF=sunran001@208suo.com; NM=1;
+ PH=DW; RN=6; RT=6; SR=0; TI=W4_0.2.3_v5_212D0486_1690553504444_o7001c346e; 
+Received: from WS-web
+ (sunran001@208suo.com[W4_0.2.3_v5_212D0486_1690553504444_o7001c346e]) at Fri,
+ 28 Jul 2023 22:12:26 +0800
+Date: Fri, 28 Jul 2023 22:12:26 +0800
+From: "=?UTF-8?B?5a2Z5YaJ?=" <sunran001@208suo.com>
+To: "airlied" <airlied@gmail.com>, "daniel" <daniel@ffwll.ch>,
+ "alexander.deucher" <alexander.deucher@amd.com>
+Message-ID: <161bd3d4-5faf-4b49-afb1-ea4791a9bc51.sunran001@208suo.com>
+Subject: =?UTF-8?B?W1BBVENIXSBkcm0vcmFkZW9uL2V2ZXJncmVlbl9jczogQ2xlYW4gdXAgZXJyb3JzIGluIGV2?=
+ =?UTF-8?B?ZXJncmVlbl9jcy5j?=
+X-Mailer: [Alimail-Mailagent][W4_0.2.3][v5][Chrome]
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] drm/amd/display: Use root connector's colorspace
- property for MST
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
-To: Harry Wentland <harry.wentland@amd.com>
-References: <20230713195850.165198-1-harry.wentland@amd.com>
- <47c218ef-2844-1e9b-0e67-c0aae1cb8e9d@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <47c218ef-2844-1e9b-0e67-c0aae1cb8e9d@mailbox.org>
-X-MBO-RS-META: rb4xhd9qfh8aa7eqjd3rhzxcdw5is88w
-X-MBO-RS-ID: 18516e12f99d3fa938e
+x-aliyun-mail-creator: W4_0.2.3_v5_TCwTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNS4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMTUuMC4xOTAxLjE4Mw==FR
+Content-Type: multipart/alternative;
+ boundary="----=ALIBOUNDARY_59651_7efc293ff700_64c3ccca_18bca8"
+X-Mailman-Approved-At: Fri, 28 Jul 2023 14:36:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,75 +45,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Reply-To: =?UTF-8?B?5a2Z5YaJ?= <sunran001@208suo.com>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------NAyugCMDRDovcKgz4UNkpx7m
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 7/14/23 18:52, Michel Dänzer wrote:
-> On 7/13/23 21:58, Harry Wentland wrote:
->> After driver init we shouldn't create new properties. Doing so
->> will lead to a warning storm from __drm_mode_object_add.
->>
->> We don't really need to create the property for MST connectors.
->> Re-using the mst_root connector's property is fine.
->>
->> v2: Add curly braces to avoid possibly 'else' confusion
-> 
-> I'm still hitting WARNINGs with this, see attachment.
-
-It's because drm_connector_attach_colorspace_property tries attaching the property to the MST root connector again, instead of to the newly created MST connector.
-
-I tried the attached patch on top and didn't get any WARNINGs, but for some reason the MST connector for my external monitor never showed up to user space. Not sure what's going on there.
-
-
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
-
---------------NAyugCMDRDovcKgz4UNkpx7m
-Content-Type: text/x-patch; charset=UTF-8;
- name="0001-drm-amd-display-Fix-attaching-root-colorspace-proper.patch"
-Content-Disposition: attachment;
- filename*0="0001-drm-amd-display-Fix-attaching-root-colorspace-proper.pa";
- filename*1="tch"
+------=ALIBOUNDARY_59651_7efc293ff700_64c3ccca_18bca8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: base64
 
-RnJvbSAxOGVkYjkyZGRkYjY3ZTIzNGZlNzAwMmFlN2QwZmI4YmZkNzQ2NDJmIE1vbiBTZXAg
-MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiA9P1VURi04P3E/TWljaGVsPTIwRD1DMz1BNG56ZXI/
-PSA8bWRhZW56ZXJAcmVkaGF0LmNvbT4KRGF0ZTogRnJpLCAyOCBKdWwgMjAyMyAxMjoyMzox
-MyArMDIwMApTdWJqZWN0OiBbUEFUQ0hdIGRybS9hbWQvZGlzcGxheTogRml4IGF0dGFjaGlu
-ZyByb290IGNvbG9yc3BhY2UgcHJvcGVydHkgdG8KIE1TVCBjb25uZWN0b3IKTUlNRS1WZXJz
-aW9uOiAxLjAKQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFyc2V0PVVURi04CkNvbnRl
-bnQtVHJhbnNmZXItRW5jb2Rpbmc6IDhiaXQKCmRybV9jb25uZWN0b3JfYXR0YWNoX2NvbG9y
-c3BhY2VfcHJvcGVydHkgdHJpZWQgYXR0YWNoaW5nIHRoZSBwcm9wZXJ0eQp0byB0aGUgbXN0
-X3Jvb3QgY29ubmVjdG9yIGFnYWluLCB3aGljaCBoaXQgYSBXQVJOSU5HIGluCmRybV9vYmpl
-Y3RfYXR0YWNoX3Byb3BlcnR5LgoKRml4IHRoaXMgYnkgY2FsbGluZyBkcm1fb2JqZWN0X2F0
-dGFjaF9wcm9wZXJ0eSBkaXJlY3RseSB3aXRoIGFwcHJvcHJpYXRlCnBhcmFtZXRlcnMuCgpT
-aWduZWQtb2ZmLWJ5OiBNaWNoZWwgRMOkbnplciA8bWRhZW56ZXJAcmVkaGF0LmNvbT4KLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIHwg
-NyArKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVf
-ZG0vYW1kZ3B1X2RtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2Rt
-L2FtZGdwdV9kbS5jCmluZGV4IGRmMzAyMDRhMmExYS4uNDQ3NTc2ZmI3NDIwIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
-LmMKQEAgLTczMDIsOCArNzMwMiwxMSBAQCB2b2lkIGFtZGdwdV9kbV9jb25uZWN0b3JfaW5p
-dF9oZWxwZXIoc3RydWN0IGFtZGdwdV9kaXNwbGF5X21hbmFnZXIgKmRtLAogCQkJaWYgKCFk
-cm1fbW9kZV9jcmVhdGVfZHBfY29sb3JzcGFjZV9wcm9wZXJ0eSgmYWNvbm5lY3Rvci0+YmFz
-ZSwgc3VwcG9ydGVkX2NvbG9yc3BhY2VzKSkKIAkJCQlkcm1fY29ubmVjdG9yX2F0dGFjaF9j
-b2xvcnNwYWNlX3Byb3BlcnR5KCZhY29ubmVjdG9yLT5iYXNlKTsKIAkJfSBlbHNlIHsgLyog
-dXNlIHJvb3QgY29ubmVjdG9yJ3MgcHJvcGVydHkgKi8KLQkJCWlmIChhY29ubmVjdG9yLT5t
-c3Rfcm9vdC0+YmFzZS5jb2xvcnNwYWNlX3Byb3BlcnR5KQotCQkJCWRybV9jb25uZWN0b3Jf
-YXR0YWNoX2NvbG9yc3BhY2VfcHJvcGVydHkoJmFjb25uZWN0b3ItPm1zdF9yb290LT5iYXNl
-KTsKKwkJCWlmIChhY29ubmVjdG9yLT5tc3Rfcm9vdC0+YmFzZS5jb2xvcnNwYWNlX3Byb3Bl
-cnR5KSB7CisJCQkJZHJtX29iamVjdF9hdHRhY2hfcHJvcGVydHkoJmFjb25uZWN0b3ItPmJh
-c2UuYmFzZSwKKwkJCQkJCQkgICBhY29ubmVjdG9yLT5tc3Rfcm9vdC0+YmFzZS5jb2xvcnNw
-YWNlX3Byb3BlcnR5LAorCQkJCQkJCSAgIERSTV9NT0RFX0NPTE9SSU1FVFJZX0RFRkFVTFQp
-OworCQkJfQogCQl9CiAKIAl9Ci0tIAoyLjQwLjEKCg==
+Rml4IHRoZSBmb2xsb3dpbmcgZXJyb3JzIHJlcG9ydGVkIGJ5IGNoZWNrcGF0Y2g6CkVSUk9SOiBz
+cGFjZSByZXF1aXJlZCBhZnRlciB0aGF0ICcsJyAoY3R4OlZ4VikKRVJST1I6IHNwYWNlcyByZXF1
+aXJlZCBhcm91bmQgdGhhdCAnPicgKGN0eDpWeFYpClNpZ25lZC1vZmYtYnk6IFJhbiBTdW4gPHN1
+bnJhbjAwMUAyMDhzdW8uY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vZXZlcmdyZWVu
+X2NzLmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRp
+b25zKC0pCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5j
+IGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ldmVyZ3JlZW5fY3MuYwppbmRleCAwZGU3OWYzYTdl
+M2YuLmQ4NTc3MTJhNTI1NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ldmVy
+Z3JlZW5fY3MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jCkBA
+IC0zMyw4ICszMyw4IEBACiAjaW5jbHVkZSAiZXZlcmdyZWVuX3JlZ19zYWZlLmgiCiAjaW5jbHVk
+ZSAiY2F5bWFuX3JlZ19zYWZlLmgiCi0jZGVmaW5lIE1BWChhLGIpICgoKGEpPihiKSk/KGEpOihi
+KSkKLSNkZWZpbmUgTUlOKGEsYikgKCgoYSk8KGIpKT8oYSk6KGIpKQorI2RlZmluZSBNQVgoYSwg
+YikgKCgoYSkgPiAoYikpPyhhKTooYikpCisjZGVmaW5lIE1JTihhLCBiKSAoKChhKSA8IChiKSk/
+KGEpOihiKSkKICNkZWZpbmUgUkVHX1NBRkVfQk1fU0laRSBBUlJBWV9TSVpFKGV2ZXJncmVlbl9y
+ZWdfc2FmZV9ibSkKLS0gCjIuMTcuMQo=
+------=ALIBOUNDARY_59651_7efc293ff700_64c3ccca_18bca8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
---------------NAyugCMDRDovcKgz4UNkpx7m--
+PGRpdiBjbGFzcz0iX19hbGl5dW5fZW1haWxfYm9keV9ibG9jayI+PGRpdiAgc3R5bGU9ImxpbmUt
+aGVpZ2h0OjEuNztmb250LWZhbWlseTpUYWhvbWEsQXJpYWwsU1RIZWl0aSxTaW1TdW47Zm9udC1z
+aXplOjE0LjBweDtjb2xvcjojMDAwMDAwOyI+Rml4IHRoZSBmb2xsb3dpbmcgZXJyb3JzIHJlcG9y
+dGVkIGJ5IGNoZWNrcGF0Y2g6PGJyID48YnIgPkVSUk9SOiBzcGFjZSByZXF1aXJlZCBhZnRlciB0
+aGF0ICcsJyAoY3R4OlZ4Vik8YnIgPkVSUk9SOiBzcGFjZXMgcmVxdWlyZWQgYXJvdW5kIHRoYXQg
+JyZndDsnIChjdHg6VnhWKTxiciA+PGJyID5TaWduZWQtb2ZmLWJ5OiA8c3BhbiA+UmFuIFN1biAm
+bHQ7c3VucmFuMDAxQDIwOHN1by5jb20mZ3Q7PC9zcGFuPjxiciA+LS0tPGJyID4gZHJpdmVycy9n
+cHUvZHJtL3JhZGVvbi9ldmVyZ3JlZW5fY3MuYyB8IDQgKystLTxiciA+IDEgZmlsZSBjaGFuZ2Vk
+LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pPGJyID48YnIgPmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jIGIvZHJpdmVycy9ncHUvZHJtL3Jh
+ZGVvbi9ldmVyZ3JlZW5fY3MuYzxiciA+aW5kZXggMGRlNzlmM2E3ZTNmLi5kODU3NzEyYTUyNTcg
+MTAwNjQ0PGJyID4tLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jPGJy
+ID4rKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jPGJyID5AQCAtMzMs
+OCArMzMsOCBAQDxiciA+ICNpbmNsdWRlICJldmVyZ3JlZW5fcmVnX3NhZmUuaCI8YnIgPiAjaW5j
+bHVkZSAiY2F5bWFuX3JlZ19zYWZlLmgiPGJyID4gPGJyID4tI2RlZmluZSBNQVgoYSxiKSAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAoKChhKSZndDsoYikpPyhhKTooYikpPGJyID4tI2RlZmluZSBNSU4oYSxiKSAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAoKChh
+KSZsdDsoYikpPyhhKTooYikpPGJyID4rI2RlZmluZSBNQVgoYSwgYikgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgKCgoYSkgJmd0
+OyAoYikpPyhhKTooYikpPGJyID4rI2RlZmluZSBNSU4oYSwgYikgJm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgKCgoYSkgJmx0OyAo
+YikpPyhhKTooYikpPGJyID4gPGJyID4gI2RlZmluZSBSRUdfU0FGRV9CTV9TSVpFIEFSUkFZX1NJ
+WkUoZXZlcmdyZWVuX3JlZ19zYWZlX2JtKTxiciA+IDxiciA+LS0gPGJyID4yLjE3LjE8ZGl2ICBz
+dHlsZT0ibGluZS1oZWlnaHQ6MjAuMHB4O2NsZWFyOmJvdGg7Ij48YnIgPjwvZGl2PjwvZGl2Pjwv
+ZGl2Pg==
+------=ALIBOUNDARY_59651_7efc293ff700_64c3ccca_18bca8--
+
