@@ -2,60 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F7FE76AAF3
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A44376AAFD
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1B0010E327;
-	Tue,  1 Aug 2023 08:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E448810E33A;
+	Tue,  1 Aug 2023 08:27:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 305 seconds by postgrey-1.36 at gabe;
- Mon, 31 Jul 2023 10:00:32 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A42A710E1C6
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 10:00:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=s29768273; t=1690797631; x=1691402431; i=spasswolf@web.de;
- bh=9RQG2VbKYDSZuh4TP7WDRuMW4rpRHwsYs5UOzzjkLj8=;
- h=X-UI-Sender-Class:Subject:From:To:Cc:Date;
- b=g+FomkFN/G4cKl20y4LwL25R1z0qgFTX4xYwggbVOQ6tQfL34U1JEDGRR1/4qayd6tDc2W3
- cEbfMnf6Ziui2idyEczs+fYHMMCgNhp8MZBRPJxm4xdUS45nS/dytNY3hlbiYzvb4S5bpCgL/
- sq4jC9L0I6BIp/EW6ZtZ9jLJEVCZKxkdZP0X4l5gWuaADXgCWLKPr3xCl9mUPCInrtIfJRfAv
- hfC6lU1elDT3BzKPjKQ/dOfSi8SgDMaGMj0OIlN5tg+z4tluKOuNhZo88wxhsaQSUPJs5Cgte
- gxD0QofOpNbrQNi2N/Qx73Gi+SZGrBXhN4XypR6LhtDh9AGfapsA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.0.101] ([84.119.92.193]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MwR4R-1pYART2esX-00sHE8; Mon, 31
- Jul 2023 11:55:22 +0200
-Message-ID: <ed355ece1ef4da99c020f311c0c34933c75d869a.camel@web.de>
-Subject: [PATCH] gpu: drm: amd: amdgpu: Fix calls to dev_{info,err}
-From: Bert Karwatzki <spasswolf@web.de>
-To: amd-gfx@lists.freedesktop.org
-Date: Mon, 31 Jul 2023 11:55:22 +0200
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.46.4-2 
+X-Greylist: delayed 1129 seconds by postgrey-1.36 at gabe;
+ Mon, 31 Jul 2023 13:45:41 UTC
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 134A010E2A5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 13:45:41 +0000 (UTC)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.53])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RDzTz1bhyzLnxT;
+ Mon, 31 Jul 2023 21:24:07 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemi500008.china.huawei.com
+ (7.221.188.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 31 Jul
+ 2023 21:26:46 +0800
+From: Ruan Jinjie <ruanjinjie@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+ <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <Rodrigo.Siqueira@amd.com>,
+ <evan.quan@amd.com>, <ruanjinjie@huawei.com>, <srinivasan.shanmugam@amd.com>, 
+ <wangxiongfeng2@huawei.com>, <Hawking.Zhang@amd.com>, <James.Zhu@amd.com>,
+ <Veerabadhran.Gopalakrishnan@amd.com>, <saleemkhan.jamadar@amd.com>,
+ <le.ma@amd.com>, <tao.zhou1@amd.com>, <Jane.Jian@amd.com>,
+ <Hongkun.Zhang@amd.com>, <leo.liu@amd.com>, <lijo.lazar@amd.com>,
+ <mario.limonciello@amd.com>, <Lang.Yu@amd.com>, <ruijing.dong@amd.com>,
+ <trix@redhat.com>, <Suresh.Guttula@amd.com>, <David.Wu3@amd.com>,
+ <sonny.jiang@amd.com>, <wenjing.liu@amd.com>, <Jun.Lei@amd.com>,
+ <mripard@kernel.org>, <tzimmermann@suse.de>, <drv@mailo.com>,
+ <Shiwu.Zhang@amd.com>, <aleksei.kodanev@bell-sw.com>,
+ <ye.xingchen@zte.com.cn>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: [PATCH -next] drm/amdgpu: Remove a lot of unnecessary ternary
+ operators
+Date: Mon, 31 Jul 2023 21:26:10 +0800
+Message-ID: <20230731132610.2675314-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:sagmMBdln4kotc5WAJSE2EDH4MtFJpUf0BkTvDK1t0N43RGuYys
- 12S5c0aFS5+SRjqzkwxtUyPACZIBt/1HOMXK9xvjcl5hCagYaZiZmd6O4kkkRQnNkgNMtDY
- AVcyWlqG3Tk+lZ/cBzmIKtI9PscSebmSVinI1JLcZO7uuj6Fl+2BRXUUbbV7OcFgKhudObI
- Vt+6Tp5jKhTk4gte8Em4A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:6g1a09C2hkU=;v53oG2KkmG2S8lD+JGCKhOrqXb3
- ca0CAuDkao9lBW2fNfNt5ekRQMcZOOCEhnJM+bqnw7VmGGFMz1mC9WXDKt4EHEPUXFygyMUp4
- ioW1lkgsCiwA/ag5Lw6JV81dUEqcxSu/OqSfgULwbd93fVWZQIXPNNq8+iDT39sRk/JXr/n2o
- pgcisNxfM3HvdCGv/bz50tuERr/5GPopxN1Zuz7O/RGS2p//au5NRZ+tKQY1Pu/+8GpG7Uv+N
- hH5tOsBoqsgU5b7uOBs/e92bYRIQk/xY3OpIaxLNYywnWjmXf5PvF4uzvoJZt+ozG9tcoLz4F
- RaBbYrclox7Asocr9SuBOtiQ4Hs5j4HEg/8mWiKLGL+b0yyM0M+Evcs1O/Sk8YHnoquvfiAFR
- DF5A2tHAc/T8E6gP8vqkXognZf18dLYnJ0hb0mgCQ8RPEZJZcPrrxSDtc7G75MljC75KrwBqF
- UeEOLk7yZLvszIBTKEAreelkrvibN4DLBsDsYiLSmkGXC5+seZeSzesJGlN9TxYtnMRfRJU4S
- mpWXorXt8/WrVraTmVfwDmbVjNIYHlVzvRepPUlNR6kqTvY0hBHECnWTCeWsJalhEax4BCCVN
- ivFoN0c+ODWMvFLahF5ou+2zlYijNjzsxrGEKMNjtD7WDfQYBLKhE/QrBdDEGi31tJV2JoYm5
- ny2jKvA5T60WeZWu1s9/XDcUmPk6rcYCbpVECLBTfyhWQa3yXRuEgUS8HE35cCiJdlSjsPlJr
- b/c+N77nt3mRr9mhz0AHOpf1nmfE6c9dr4phz3Q0D2kp60twfcIlb45Z901bzAIikVhQM+Fkx
- ZF+pAw8jtnCPJU+Ae8oHJXgkAWC4SiMIUJtKoexG8z3L2aO37Jngn/P8JlqJ+twPX4MQ/+MzZ
- queetHOMPDsZ+VCd7YCWv9JjIzVaHYVZGFeoybHfp8sH40m2mXeSS1cLJcxMDEGkLe3k0EBo3
- NHIvPF2LqGSrkxzgKShY1f9947A=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 01 Aug 2023 08:27:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,409 +61,277 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexdeucher@gmail.com>, "SHANMUGAM,
- SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>, "Chen,
- Guchun" <Guchun.Chen@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit b0bd0a92b8158ea9c809d885e0f0c21518bdbd14 introduced
-dev_{info,err} calls which failed (leading to a hang on boot) because of a=
-n
-incorrect usage of the container_of macro. This fixes the error by introdu=
-cing
-a pointer to the device as an additional element in struct amdgpu_atpx and
-struct radeon_atpx.
+Ther are many ternary operators, the true or false judgement
+of which is unnecessary in C language semantics.
 
-Fixes: https://gitlab.freedesktop.org/drm/amd/-/issues/2744
-Signed-off-by: Bert Karwatzki <spasswolf@web.de>
-=2D--
- .../gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c  | 40 +++++++++----------
- drivers/gpu/drm/radeon/radeon_atpx_handler.c  | 30 +++++++-------
- 2 files changed, 32 insertions(+), 38 deletions(-)
+Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c         |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c         |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c          |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c          |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c        |  2 +-
+ .../drm/amd/display/dc/dce/dce_link_encoder.c  |  4 +---
+ .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c    |  6 +++---
+ .../amd/pm/powerplay/hwmgr/smu7_powertune.c    |  2 +-
+ .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c  | 18 +++++++-----------
+ .../amd/pm/powerplay/smumgr/polaris10_smumgr.c |  2 +-
+ .../drm/amd/pm/powerplay/smumgr/vegam_smumgr.c |  7 +++----
+ 13 files changed, 23 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
-index 6f241c574665..29242ecec7b0 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
-@@ -37,6 +37,7 @@ struct amdgpu_atpx_functions {
-
- struct amdgpu_atpx {
- 	acpi_handle handle;
-+	struct device *dev;
- 	struct amdgpu_atpx_functions functions;
- 	bool is_hybrid;
- 	bool dgpu_req_power_for_displays;
-@@ -104,22 +105,20 @@ void *amdgpu_atpx_get_dhandle(void)
- /**
-  * amdgpu_atpx_call - call an ATPX method
-  *
-- * @handle: acpi handle
-+ * @atpx: amdgpu atpx struct
-  * @function: the ATPX function to execute
-  * @params: ATPX function params
-  *
-  * Executes the requested ATPX function (all asics).
-  * Returns a pointer to the acpi output buffer.
-  */
--static union acpi_object *amdgpu_atpx_call(acpi_handle handle, int functi=
-on,
-+static union acpi_object *amdgpu_atpx_call(struct amdgpu_atpx *atpx, int
-function,
- 					   struct acpi_buffer *params)
- {
- 	acpi_status status;
- 	union acpi_object atpx_arg_elements[2];
- 	struct acpi_object_list atpx_arg;
- 	struct acpi_buffer buffer =3D { ACPI_ALLOCATE_BUFFER, NULL };
--	struct acpi_device *adev =3D container_of(handle, struct acpi_device,
-handle);
--	struct device *dev =3D &adev->dev;
-
- 	atpx_arg.count =3D 2;
- 	atpx_arg.pointer =3D &atpx_arg_elements[0];
-@@ -137,11 +136,11 @@ static union acpi_object *amdgpu_atpx_call(acpi_hand=
-le
-handle, int function,
- 		atpx_arg_elements[1].integer.value =3D 0;
- 	}
-
--	status =3D acpi_evaluate_object(handle, NULL, &atpx_arg, &buffer);
-+	status =3D acpi_evaluate_object(atpx->handle, NULL, &atpx_arg, &buffer);
-
- 	/* Fail only if calling the method fails and ATPX is supported */
- 	if (ACPI_FAILURE(status) && status !=3D AE_NOT_FOUND) {
--		dev_err(dev, "failed to evaluate ATPX got %s\n",
-+		dev_err(atpx->dev, "failed to evaluate ATPX got %s\n",
- 			acpi_format_exception(status));
- 		kfree(buffer.pointer);
- 		return NULL;
-@@ -183,15 +182,13 @@ static void amdgpu_atpx_parse_functions(struct
-amdgpu_atpx_functions *f, u32 mas
- static int amdgpu_atpx_validate(struct amdgpu_atpx *atpx)
- {
- 	u32 valid_bits =3D 0;
--	struct acpi_device *adev =3D container_of(atpx->handle, struct
-acpi_device, handle);
--	struct device *dev =3D &adev->dev;
-
- 	if (atpx->functions.px_params) {
- 		union acpi_object *info;
- 		struct atpx_px_params output;
- 		size_t size;
-
--		info =3D amdgpu_atpx_call(atpx->handle,
-ATPX_FUNCTION_GET_PX_PARAMETERS, NULL);
-+		info =3D amdgpu_atpx_call(atpx, ATPX_FUNCTION_GET_PX_PARAMETERS,
-NULL);
- 		if (!info)
- 			return -EIO;
-
-@@ -199,7 +196,7 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx *at=
-px)
-
- 		size =3D *(u16 *) info->buffer.pointer;
- 		if (size < 10) {
--			dev_err(dev, "ATPX buffer is too small: %zu\n", size);
-+			dev_err(atpx->dev, "ATPX buffer is too small: %zu\n",
-size);
- 			kfree(info);
- 			return -EINVAL;
- 		}
-@@ -232,11 +229,11 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx *=
-atpx)
- 	atpx->is_hybrid =3D false;
- 	if (valid_bits & ATPX_MS_HYBRID_GFX_SUPPORTED) {
- 		if (amdgpu_atpx_priv.quirks & AMDGPU_PX_QUIRK_FORCE_ATPX) {
--			dev_info(dev, "ATPX Hybrid Graphics, forcing to
-ATPX\n");
-+			dev_info(atpx->dev, "ATPX Hybrid Graphics, forcing to
-ATPX\n");
- 			atpx->functions.power_cntl =3D true;
- 			atpx->is_hybrid =3D false;
- 		} else {
--			dev_info(dev, "ATPX Hybrid Graphics\n");
-+			dev_info(atpx->dev, "ATPX Hybrid Graphics\n");
- 			/*
- 			 * Disable legacy PM methods only when pcie port PM is
-usable,
- 			 * otherwise the device might fail to power off or
-power on.
-@@ -269,10 +266,8 @@ static int amdgpu_atpx_verify_interface(struct amdgpu=
-_atpx
-*atpx)
- 	struct atpx_verify_interface output;
- 	size_t size;
- 	int err =3D 0;
--	struct acpi_device *adev =3D container_of(atpx->handle, struct
-acpi_device, handle);
--	struct device *dev =3D &adev->dev;
-
--	info =3D amdgpu_atpx_call(atpx->handle, ATPX_FUNCTION_VERIFY_INTERFACE,
-NULL);
-+	info =3D amdgpu_atpx_call(atpx, ATPX_FUNCTION_VERIFY_INTERFACE, NULL);
- 	if (!info)
- 		return -EIO;
-
-@@ -280,7 +275,7 @@ static int amdgpu_atpx_verify_interface(struct amdgpu_=
-atpx
-*atpx)
-
- 	size =3D *(u16 *) info->buffer.pointer;
- 	if (size < 8) {
--		printk("ATPX buffer is too small: %zu\n", size);
-+		dev_err(atpx->dev, "ATPX buffer is too small: %zu\n", size);
- 		err =3D -EINVAL;
- 		goto out;
- 	}
-@@ -289,7 +284,7 @@ static int amdgpu_atpx_verify_interface(struct amdgpu_=
-atpx
-*atpx)
- 	memcpy(&output, info->buffer.pointer, size);
-
- 	/* TODO: check version? */
--	dev_info(dev, "ATPX version %u, functions 0x%08x\n",
-+	dev_info(atpx->dev, "ATPX version %u, functions 0x%08x\n",
- 		 output.version, output.function_bits);
-
- 	amdgpu_atpx_parse_functions(&atpx->functions, output.function_bits);
-@@ -320,7 +315,7 @@ static int amdgpu_atpx_set_discrete_state(struct amdgp=
-u_atpx
-*atpx, u8 state)
- 		input.dgpu_state =3D state;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D amdgpu_atpx_call(atpx->handle,
-+		info =3D amdgpu_atpx_call(atpx,
- 					ATPX_FUNCTION_POWER_CONTROL,
- 					&params);
- 		if (!info)
-@@ -356,7 +351,7 @@ static int amdgpu_atpx_switch_disp_mux(struct amdgpu_a=
-tpx
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D amdgpu_atpx_call(atpx->handle,
-+		info =3D amdgpu_atpx_call(atpx,
- 					ATPX_FUNCTION_DISPLAY_MUX_CONTROL,
- 					&params);
- 		if (!info)
-@@ -388,7 +383,7 @@ static int amdgpu_atpx_switch_i2c_mux(struct amdgpu_at=
-px
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D amdgpu_atpx_call(atpx->handle,
-+		info =3D amdgpu_atpx_call(atpx,
- 					ATPX_FUNCTION_I2C_MUX_CONTROL,
- 					&params);
- 		if (!info)
-@@ -420,7 +415,7 @@ static int amdgpu_atpx_switch_start(struct amdgpu_atpx
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D amdgpu_atpx_call(atpx->handle,
-+		info =3D amdgpu_atpx_call(atpx,
-					ATPX_FUNCTION_GRAPHICS_DEVICE_SWITCH_START_NOTIFICATION,
- 					&params);
- 		if (!info)
-@@ -452,7 +447,7 @@ static int amdgpu_atpx_switch_end(struct amdgpu_atpx *=
-atpx,
-u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D amdgpu_atpx_call(atpx->handle,
-+		info =3D amdgpu_atpx_call(atpx,
-					ATPX_FUNCTION_GRAPHICS_DEVICE_SWITCH_END_NOTIFICATION,
- 					&params);
- 		if (!info)
-@@ -533,6 +528,7 @@ static bool amdgpu_atpx_pci_probe_handle(struct pci_de=
-v
-*pdev)
- 	}
- 	amdgpu_atpx_priv.dhandle =3D dhandle;
- 	amdgpu_atpx_priv.atpx.handle =3D atpx_handle;
-+	amdgpu_atpx_priv.atpx.dev =3D &pdev->dev;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+index b582b83c4984..38ccec913f00 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+@@ -460,7 +460,7 @@ bool amdgpu_get_bios(struct amdgpu_device *adev)
+ 	return false;
+ 
+ success:
+-	adev->is_atom_fw = (adev->asic_type >= CHIP_VEGA10) ? true : false;
++	adev->is_atom_fw = adev->asic_type >= CHIP_VEGA10;
  	return true;
  }
-
-diff --git a/drivers/gpu/drm/radeon/radeon_atpx_handler.c
-b/drivers/gpu/drm/radeon/radeon_atpx_handler.c
-index fb4d931fdf18..f6a005520b55 100644
-=2D-- a/drivers/gpu/drm/radeon/radeon_atpx_handler.c
-+++ b/drivers/gpu/drm/radeon/radeon_atpx_handler.c
-@@ -26,6 +26,7 @@ struct radeon_atpx_functions {
-
- struct radeon_atpx {
- 	acpi_handle handle;
-+	struct device *dev;
- 	struct radeon_atpx_functions functions;
- 	bool is_hybrid;
- 	bool dgpu_req_power_for_displays;
-@@ -87,15 +88,13 @@ bool radeon_atpx_dgpu_req_power_for_displays(void) {
-  * Executes the requested ATPX function (all asics).
-  * Returns a pointer to the acpi output buffer.
-  */
--static union acpi_object *radeon_atpx_call(acpi_handle handle, int functi=
-on,
-+static union acpi_object *radeon_atpx_call(struct radeon_atpx *atpx, int
-function,
- 					   struct acpi_buffer *params)
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+index 79791379fc2b..df4440c21bbf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+@@ -479,7 +479,7 @@ static int jpeg_v3_0_set_clockgating_state(void *handle,
+ 					  enum amd_clockgating_state state)
  {
- 	acpi_status status;
- 	union acpi_object atpx_arg_elements[2];
- 	struct acpi_object_list atpx_arg;
- 	struct acpi_buffer buffer =3D { ACPI_ALLOCATE_BUFFER, NULL };
--	struct acpi_device *adev =3D container_of(handle, struct acpi_device,
-handle);
--	struct device *dev =3D &adev->dev;
-
- 	atpx_arg.count =3D 2;
- 	atpx_arg.pointer =3D &atpx_arg_elements[0];
-@@ -113,11 +112,11 @@ static union acpi_object *radeon_atpx_call(acpi_hand=
-le
-handle, int function,
- 		atpx_arg_elements[1].integer.value =3D 0;
- 	}
-
--	status =3D acpi_evaluate_object(handle, NULL, &atpx_arg, &buffer);
-+	status =3D acpi_evaluate_object(atpx->handle, NULL, &atpx_arg, &buffer);
-
- 	/* Fail only if calling the method fails and ATPX is supported */
- 	if (ACPI_FAILURE(status) && status !=3D AE_NOT_FOUND) {
--		dev_err(dev, "failed to evaluate ATPX got %s\n",
-+		dev_err(atpx->dev, "failed to evaluate ATPX got %s\n",
- 			acpi_format_exception(status));
- 		kfree(buffer.pointer);
- 		return NULL;
-@@ -159,15 +158,13 @@ static void radeon_atpx_parse_functions(struct
-radeon_atpx_functions *f, u32 mas
- static int radeon_atpx_validate(struct radeon_atpx *atpx)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 
+ 	if (enable) {
+ 		if (!jpeg_v3_0_is_idle(handle))
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
+index a707d407fbd0..3eb3dcd56b57 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
+@@ -626,7 +626,7 @@ static int jpeg_v4_0_set_clockgating_state(void *handle,
+ 					  enum amd_clockgating_state state)
  {
- 	u32 valid_bits =3D 0;
--	struct acpi_device *adev =3D container_of(atpx->handle, struct
-acpi_device, handle);
--	struct device *dev =3D &adev->dev;
-
- 	if (atpx->functions.px_params) {
- 		union acpi_object *info;
- 		struct atpx_px_params output;
- 		size_t size;
-
--		info =3D radeon_atpx_call(atpx->handle,
-ATPX_FUNCTION_GET_PX_PARAMETERS, NULL);
-+		info =3D radeon_atpx_call(atpx, ATPX_FUNCTION_GET_PX_PARAMETERS,
-NULL);
- 		if (!info)
- 			return -EIO;
-
-@@ -175,7 +172,7 @@ static int radeon_atpx_validate(struct radeon_atpx *at=
-px)
-
- 		size =3D *(u16 *) info->buffer.pointer;
- 		if (size < 10) {
--			dev_err(dev, "ATPX buffer is too small: %zu\n", size);
-+			dev_err(atpx->dev, "ATPX buffer is too small: %zu\n",
-size);
- 			kfree(info);
- 			return -EINVAL;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 
+ 	if (enable) {
+ 		if (!jpeg_v4_0_is_idle(handle))
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
+index ce2b22f7e4e4..153731d6ce8b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
+@@ -785,7 +785,7 @@ static int jpeg_v4_0_3_set_clockgating_state(void *handle,
+ 					  enum amd_clockgating_state state)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 	int i;
+ 
+ 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index b76ba21b5a89..9b662b105cc1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -2095,7 +2095,7 @@ static int vcn_v3_0_set_clockgating_state(void *handle,
+ 					  enum amd_clockgating_state state)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 	int i;
+ 
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+index 6089c7deba8a..7c486745bece 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+@@ -1918,7 +1918,7 @@ static int vcn_v4_0_wait_for_idle(void *handle)
+ static int vcn_v4_0_set_clockgating_state(void *handle, enum amd_clockgating_state state)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 	int i;
+ 
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index 550ac040b4be..e62472e6e7b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -1287,7 +1287,7 @@ static int vcn_v4_0_3_set_clockgating_state(void *handle,
+ 					  enum amd_clockgating_state state)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	bool enable = (state == AMD_CG_STATE_GATE) ? true : false;
++	bool enable = state == AMD_CG_STATE_GATE;
+ 	int i;
+ 
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+index fa314493ffc5..e4d65de2d0bb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+@@ -941,9 +941,7 @@ bool dce110_link_encoder_validate_output_with_stream(
+ 	break;
+ 	case SIGNAL_TYPE_EDP:
+ 	case SIGNAL_TYPE_LVDS:
+-		is_valid =
+-			(stream->timing.
+-				pixel_encoding == PIXEL_ENCODING_RGB) ? true : false;
++		is_valid = stream->timing.pixel_encoding == PIXEL_ENCODING_RGB;
+ 	break;
+ 	case SIGNAL_TYPE_VIRTUAL:
+ 		is_valid = true;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+index 1cb402264497..8c73016d2d17 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+@@ -904,7 +904,7 @@ static int smu7_setup_dpm_tables_v1(struct pp_hwmgr *hwmgr)
+ 					dep_sclk_table->entries[i].clk;
+ 
+ 			data->dpm_table.sclk_table.dpm_levels[data->dpm_table.sclk_table.count].enabled =
+-					(i == 0) ? true : false;
++					i == 0;
+ 			data->dpm_table.sclk_table.count++;
  		}
-@@ -206,7 +203,7 @@ static int radeon_atpx_validate(struct radeon_atpx *at=
-px)
-
- 	atpx->is_hybrid =3D false;
- 	if (valid_bits & ATPX_MS_HYBRID_GFX_SUPPORTED) {
--		dev_info(dev, "ATPX Hybrid Graphics\n");
-+		dev_info(atpx->dev, "ATPX Hybrid Graphics\n");
- 		/*
- 		 * Disable legacy PM methods only when pcie port PM is usable,
- 		 * otherwise the device might fail to power off or power on.
-@@ -235,7 +232,7 @@ static int radeon_atpx_verify_interface(struct radeon_=
-atpx
-*atpx)
- 	size_t size;
- 	int err =3D 0;
-
--	info =3D radeon_atpx_call(atpx->handle, ATPX_FUNCTION_VERIFY_INTERFACE,
-NULL);
-+	info =3D radeon_atpx_call(atpx, ATPX_FUNCTION_VERIFY_INTERFACE, NULL);
- 	if (!info)
- 		return -EIO;
-
-@@ -283,7 +280,7 @@ static int radeon_atpx_set_discrete_state(struct radeo=
-n_atpx
-*atpx, u8 state)
- 		input.dgpu_state =3D state;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D radeon_atpx_call(atpx->handle,
-+		info =3D radeon_atpx_call(atpx,
- 					ATPX_FUNCTION_POWER_CONTROL,
- 					&params);
- 		if (!info)
-@@ -319,7 +316,7 @@ static int radeon_atpx_switch_disp_mux(struct radeon_a=
-tpx
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D radeon_atpx_call(atpx->handle,
-+		info =3D radeon_atpx_call(atpx,
- 					ATPX_FUNCTION_DISPLAY_MUX_CONTROL,
- 					&params);
- 		if (!info)
-@@ -351,7 +348,7 @@ static int radeon_atpx_switch_i2c_mux(struct radeon_at=
-px
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D radeon_atpx_call(atpx->handle,
-+		info =3D radeon_atpx_call(atpx,
- 					ATPX_FUNCTION_I2C_MUX_CONTROL,
- 					&params);
- 		if (!info)
-@@ -383,7 +380,7 @@ static int radeon_atpx_switch_start(struct radeon_atpx
-*atpx, u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D radeon_atpx_call(atpx->handle,
-+		info =3D radeon_atpx_call(atpx,
-					ATPX_FUNCTION_GRAPHICS_DEVICE_SWITCH_START_NOTIFICATION,
- 					&params);
- 		if (!info)
-@@ -415,7 +412,7 @@ static int radeon_atpx_switch_end(struct radeon_atpx *=
-atpx,
-u16 mux_id)
- 		input.mux =3D mux_id;
- 		params.length =3D input.size;
- 		params.pointer =3D &input;
--		info =3D radeon_atpx_call(atpx->handle,
-+		info =3D radeon_atpx_call(atpx,
-					ATPX_FUNCTION_GRAPHICS_DEVICE_SWITCH_END_NOTIFICATION,
- 					&params);
- 		if (!info)
-@@ -495,6 +492,7 @@ static bool radeon_atpx_pci_probe_handle(struct pci_de=
-v
-*pdev)
-
- 	radeon_atpx_priv.dhandle =3D dhandle;
- 	radeon_atpx_priv.atpx.handle =3D atpx_handle;
-+	radeon_atpx_priv.atpx.dev =3D &pdev->dev;
- 	return true;
+ 	}
+@@ -919,7 +919,7 @@ static int smu7_setup_dpm_tables_v1(struct pp_hwmgr *hwmgr)
+ 			data->dpm_table.mclk_table.dpm_levels[data->dpm_table.mclk_table.count].value =
+ 							dep_mclk_table->entries[i].clk;
+ 			data->dpm_table.mclk_table.dpm_levels[data->dpm_table.mclk_table.count].enabled =
+-							(i == 0) ? true : false;
++							i == 0;
+ 			data->dpm_table.mclk_table.count++;
+ 		}
+ 	}
+@@ -1833,7 +1833,7 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+ 	data->enable_tdc_limit_feature = true;
+ 	data->enable_pkg_pwr_tracking_feature = true;
+ 	data->force_pcie_gen = PP_PCIEGenInvalid;
+-	data->ulv_supported = hwmgr->feature_mask & PP_ULV_MASK ? true : false;
++	data->ulv_supported = hwmgr->feature_mask & PP_ULV_MASK;
+ 	data->current_profile_setting.bupdate_sclk = 1;
+ 	data->current_profile_setting.sclk_up_hyst = 0;
+ 	data->current_profile_setting.sclk_down_hyst = 100;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
+index 21be23ec3c79..d6eeef3c58f7 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
+@@ -1103,7 +1103,7 @@ int smu7_enable_smc_cac(struct pp_hwmgr *hwmgr)
+ 		PP_ASSERT_WITH_CODE((0 == smc_result),
+ 				"Failed to enable CAC in SMC.", result = -1);
+ 
+-		data->cac_enabled = (0 == smc_result) ? true : false;
++		data->cac_enabled = smc_result == 0;
+ 	}
+ 	return result;
  }
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+index c51dd4c74fe9..dfb9573e3f55 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+@@ -135,13 +135,12 @@ static void vega10_set_default_registry_data(struct pp_hwmgr *hwmgr)
+ 	}
+ 
+ 	data->registry_data.clock_stretcher_support =
+-			hwmgr->feature_mask & PP_CLOCK_STRETCH_MASK ? true : false;
++			hwmgr->feature_mask & PP_CLOCK_STRETCH_MASK;
+ 
+-	data->registry_data.ulv_support =
+-			hwmgr->feature_mask & PP_ULV_MASK ? true : false;
++	data->registry_data.ulv_support = hwmgr->feature_mask & PP_ULV_MASK;
+ 
+ 	data->registry_data.sclk_deep_sleep_support =
+-			hwmgr->feature_mask & PP_SCLK_DEEP_SLEEP_MASK ? true : false;
++			hwmgr->feature_mask & PP_SCLK_DEEP_SLEEP_MASK;
+ 
+ 	data->registry_data.disable_water_mark = 0;
+ 
+@@ -150,7 +149,7 @@ static void vega10_set_default_registry_data(struct pp_hwmgr *hwmgr)
+ 	data->registry_data.fw_ctf_enabled = 1;
+ 
+ 	data->registry_data.avfs_support =
+-		hwmgr->feature_mask & PP_AVFS_MASK ? true : false;
++		hwmgr->feature_mask & PP_AVFS_MASK;
+ 	data->registry_data.led_dpm_enabled = 1;
+ 
+ 	data->registry_data.vr0hot_enabled = 1;
+@@ -1375,8 +1374,7 @@ static int vega10_setup_default_dpm_tables(struct pp_hwmgr *hwmgr)
+ 						dep_mm_table->entries[i].eclk) {
+ 			dpm_table->dpm_levels[dpm_table->count].value =
+ 					dep_mm_table->entries[i].eclk;
+-			dpm_table->dpm_levels[dpm_table->count].enabled =
+-					(i == 0) ? true : false;
++			dpm_table->dpm_levels[dpm_table->count].enabled = i == 0;
+ 			dpm_table->count++;
+ 		}
+ 	}
+@@ -1391,8 +1389,7 @@ static int vega10_setup_default_dpm_tables(struct pp_hwmgr *hwmgr)
+ 						dep_mm_table->entries[i].vclk) {
+ 			dpm_table->dpm_levels[dpm_table->count].value =
+ 					dep_mm_table->entries[i].vclk;
+-			dpm_table->dpm_levels[dpm_table->count].enabled =
+-					(i == 0) ? true : false;
++			dpm_table->dpm_levels[dpm_table->count].enabled = i == 0;
+ 			dpm_table->count++;
+ 		}
+ 	}
+@@ -1405,8 +1402,7 @@ static int vega10_setup_default_dpm_tables(struct pp_hwmgr *hwmgr)
+ 						dep_mm_table->entries[i].dclk) {
+ 			dpm_table->dpm_levels[dpm_table->count].value =
+ 					dep_mm_table->entries[i].dclk;
+-			dpm_table->dpm_levels[dpm_table->count].enabled =
+-					(i == 0) ? true : false;
++			dpm_table->dpm_levels[dpm_table->count].enabled = i == 0;
+ 			dpm_table->count++;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
+index e7ed2a7adf8f..ff6b563ecbf5 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
+@@ -1888,7 +1888,7 @@ static int polaris10_populate_avfs_parameters(struct pp_hwmgr *hwmgr)
+ 						(avfs_params.ucEnableGB_VDROOP_TABLE_CKSOFF << BTCGB1_Vdroop_Enable_SHIFT) |
+ 						(avfs_params.ucEnableGB_FUSE_TABLE_CKSON << AVFSGB0_Vdroop_Enable_SHIFT) |
+ 						(avfs_params.ucEnableGB_FUSE_TABLE_CKSOFF << AVFSGB1_Vdroop_Enable_SHIFT);
+-		data->apply_avfs_cks_off_voltage = (avfs_params.ucEnableApplyAVFS_CKS_OFF_Voltage == 1) ? true : false;
++		data->apply_avfs_cks_off_voltage = avfs_params.ucEnableApplyAVFS_CKS_OFF_Voltage == 1;
+ 	}
+ 	return result;
+ }
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
+index 7d024d3facef..34c9f59b889a 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
+@@ -295,9 +295,8 @@ static int vegam_process_firmware_header(struct pp_hwmgr *hwmgr)
+ 
+ static bool vegam_is_dpm_running(struct pp_hwmgr *hwmgr)
+ {
+-	return (1 == PHM_READ_INDIRECT_FIELD(hwmgr->device,
+-			CGS_IND_REG__SMC, FEATURE_STATUS, VOLTAGE_CONTROLLER_ON))
+-			? true : false;
++	return 1 == PHM_READ_INDIRECT_FIELD(hwmgr->device,
++			CGS_IND_REG__SMC, FEATURE_STATUS, VOLTAGE_CONTROLLER_ON);
+ }
+ 
+ static uint32_t vegam_get_mac_definition(uint32_t value)
+@@ -1660,7 +1659,7 @@ static int vegam_populate_avfs_parameters(struct pp_hwmgr *hwmgr)
+ 				(avfs_params.ucEnableGB_FUSE_TABLE_CKSON << AVFSGB0_Vdroop_Enable_SHIFT) |
+ 				(avfs_params.ucEnableGB_FUSE_TABLE_CKSOFF << AVFSGB1_Vdroop_Enable_SHIFT);
+ 		data->apply_avfs_cks_off_voltage =
+-				(avfs_params.ucEnableApplyAVFS_CKS_OFF_Voltage == 1) ? true : false;
++				avfs_params.ucEnableApplyAVFS_CKS_OFF_Voltage == 1;
+ 	}
+ 	return result;
+ }
+-- 
+2.34.1
 
-=2D-
-2.39.2
-
-If the introduction of new elements to {amdgpu,radeon}_atpx is to not want=
-ed I
-think using pr_{info,err} instead of dev_{info_err} is fine here.
-
-Bert Karwatzki
