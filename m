@@ -1,91 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D47576AA21
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 09:39:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B28076AAF6
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B75A10E313;
-	Tue,  1 Aug 2023 07:39:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EABED10E335;
+	Tue,  1 Aug 2023 08:27:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2050.outbound.protection.outlook.com [40.107.95.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1423010E313
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 07:39:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OQap86RwRUfT3LNcJfdzDx+aBrmaFfRRoWnXBppVsEjJXd24Lfue1HsQAWW/2/Pp7dAWkMT057rPnq4ZoguL/kyEvglyDN9bpxlT0DXgwsTen5Hhyd3Ck/ETItEVo9B5st2qY4415srAUKLPRadb/NqKtgBI0GXiirRRCQMpYk4qg8ZiIW/juimTEuAsQ2lOYPn3YzEcrTt0NhMwMZxNuTGNbt7/GzxnJnNa4XgXHU/83kNAPChdwWq9tl4qlYUmP+s2Rjal6mJ+ebLcOBSVwseWyp/oI8ZOdfW5XAlOcJWjVxIBliYwHfdtuhZtqI4sKdG2MY0H6K/bcI9B+20OLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QgaIzVW7y/aMkT0R0MTTlYTqMj7WcGgW31YLPIAgIVM=;
- b=e2BRMkiz7dgTxZx0igrk4ISVipTCILbhn+iNyZ7PRpfhEfVR7OUUft2cqQE28XPzRf9B1jpYtfzA0HC/5Mhqjy7+5Xj2gDbSfb54GXkaMvc1ifnt2LON4Zb8ifZmxePEQxS57ZtdDm/pepw1wjmntq5SarXI2Tc154qdw/wLYKqiMcFOlcpGVYxVJgh+OWMxKQuTe0DSo1Ovvm/E6JE4irFJYabPXu3vGIJq02fATrGVDGQtCKJv2XjUgr0PhtH2CPz1sL3EWllTvCv6BZsnSMrSolPlCwHozsbBWMEUQ7Erf8fp8FjAuS3iJcPFcoClWSMKuJag8eQQDDKtNjowLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QgaIzVW7y/aMkT0R0MTTlYTqMj7WcGgW31YLPIAgIVM=;
- b=er/nCqyE2lpIRNrMbZLJztYEvVxpzmLr/q5C0S4dX9zN3gC5Dw/EQVDbw9rLJw+VSJf+zxjCYrqNDy9r41x49tNhSHSxAjTf0quChlLfBuWmykQDFEu3ssbtCB+XXtFUqUL8sNtKmVfIsfc15eKjSvERJO5pCYgVfuTtQD/mPec=
-Received: from PH8PR20CA0011.namprd20.prod.outlook.com (2603:10b6:510:23c::14)
- by DM4PR12MB8522.namprd12.prod.outlook.com (2603:10b6:8:18f::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.43; Tue, 1 Aug
- 2023 07:39:07 +0000
-Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
- (2603:10b6:510:23c:cafe::31) by PH8PR20CA0011.outlook.office365.com
- (2603:10b6:510:23c::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.43 via Frontend
- Transport; Tue, 1 Aug 2023 07:39:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6631.22 via Frontend Transport; Tue, 1 Aug 2023 07:39:07 +0000
-Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 1 Aug
- 2023 02:38:55 -0500
-From: Lang Yu <Lang.Yu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: add support to create large TMR BO for APU
-Date: Tue, 1 Aug 2023 15:38:32 +0800
-Message-ID: <20230801073832.2133509-1-Lang.Yu@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21BBB10E1B4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 07:24:01 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id
+ ffacd0b85a97d-3176a439606so3698787f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 00:24:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1690788239; x=1691393039;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=GDv3qKhUocp9vQIpWuNn7A3ct9SRLnsAqxNrLpEWSRw=;
+ b=VMXNVL2Oq3cPE0S2ntOlhyFyEA9jwQS8YC9UxUY2aNiHkwzvhu2lWnLXD/r6CD/EjE
+ zlaxHRzpLLokCoS8OChhlzJh2NAr8gPIci5B79MpALVI25cnNf/RZ+ew3EESElp73Zkp
+ as81F7GMLhBr2ytR+8BVs043cLVKCljn82aY9Ntr+zi5mAsJyPOuqKYIB1r/gjsIt+dH
+ UoNVOxdJFbode0ZROeZhg/txEU6nMA1zTAal1ml/2SFYS7Nkrzchje7BNS/QRP/jjUhu
+ C4vpktLVkvOvNeVmwhavMSiyWHjz5uC102aFh/+W3wxPcxMD/VHAe1OEFtRvSf4e+WaG
+ 3GMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1690788239; x=1691393039;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GDv3qKhUocp9vQIpWuNn7A3ct9SRLnsAqxNrLpEWSRw=;
+ b=lqgBK0HJDpbZlgYGCR1sHjHJ2DoIB+sYv96XUoTLpfrz4WNThsyjljTfYEx4GCk/ht
+ ysvHXl6MrrutYCo9ZVOi8Cpz9a5OzXEntj+GaANDMJGtKjBa9qzUz150+FdClhjwfY1n
+ CkiOVhQPioJNvPmABj9aO5O9L7pJdy1z2N2EM7fj3aWEf3HdR6CFYH/5395IfAIvCAls
+ NPsJXDwtQr7q3wGAHxvQmK7pyHsiCXSLULK6soD0VIUKvdPC5VmJdpq4VV241HFJeXbG
+ VmyIWQlOSdlM9rfzZ/nUn75epTbquP9GnVbcwhIO0pJWwa9vMgronCCxO95hqTuRp+7y
+ qDbA==
+X-Gm-Message-State: ABy/qLa9Mpor64UduMjhcMYHFcOsPWlyhAV3uBWrplldkRox7FzO6TFs
+ 7hRpCDQnx50wqBSgjA2somdNGA==
+X-Google-Smtp-Source: APBJJlG182tGjUCnhlcvquzg/NE6PvguLCvYMhO2Ef+vm+Kh2mNG2PzwyW3xLMduaAMev8+BZW2+EQ==
+X-Received: by 2002:a5d:470e:0:b0:314:37e7:efb4 with SMTP id
+ y14-20020a5d470e000000b0031437e7efb4mr5617503wrq.11.1690788239642; 
+ Mon, 31 Jul 2023 00:23:59 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ y18-20020a5d6212000000b003143c6e09ccsm12199851wru.16.2023.07.31.00.23.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 31 Jul 2023 00:23:59 -0700 (PDT)
+Date: Mon, 31 Jul 2023 09:32:46 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: kevin1.wang@amd.com
+Subject: [bug report] drm/amdgpu: optimize amdgpu device attribute code
+Message-ID: <9ea841e4-325f-4076-8409-fbad9bb47196@moroto.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|DM4PR12MB8522:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5491f8f-e9f0-4aa8-63b9-08db92626343
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tyKbL708i8oQiPe+rfXUYVo21CDsAsUcv65594IZr1le+Wqwd/AP9plvWhJTbPZMYUB4bq6bOy+b7bA/ln3ebGJ8zzjEJPH7m/Nirc8YyuYofeaBxqaZzNnkU67CoFjvv5/84lB5kXnYo804H7wmKV1PcN7HA5rUmZWWGadmg7LsxdLbWrka1ACmyd59CQNV59uCi6V92iHzf+/H0xh0kH39TDXPa4sbDT433t17/vHl/aTbvk2GA/PlvHYHi4h2/VovLK7MhpsRBA0BmiDcVP6w2D2OEA6gMCHVJ9fXhjQENITnOQqMG/qt8djwUGImAWkupFslpxKKFjLU2oeK4VPzU6ckx2At1Cq57iKcBm4Tir/+1FqkMPUn7j/Uisatbz0nNyHVT1b+C/7bDvP8TIGPeV9W0//JLZtr+/LZC0MFqBza9/YLlH2ediVopUfDaS0z1/uP6G6MQCBIPa1G04GL1U/YjA6/ArdmXI7xC7LV8JqHhefzQURRB1RgJQUCrXl5tpJr1lTPYTreGRKRZMXuKrHz0Mjzh8tPf3VkMloms4Sj43HciFZZacvAXfhMNW2FIs3TB9fBUY9SxSeLqkzw4x+WnHWtiiW9UdnEd28NNQ6HZAo7WOz/4aF6nziJtp5WUfBdblN3N41UdSW4Jlf8ykcbZ3n+sRM9G+1HFPGf+Xk4QBUjCbqxnu1xFzZobI0PhnOOOHzeRrlDBp0yyIAP+MBd/8XgwIJnTvaVTrKLh+slK8AnsDVpVxMtpGEH/vx1Avw69JYOnkDu2ZZnTg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(376002)(346002)(39860400002)(396003)(82310400008)(451199021)(40470700004)(46966006)(36840700001)(36756003)(478600001)(81166007)(356005)(82740400003)(40480700001)(86362001)(40460700003)(6666004)(7696005)(2616005)(336012)(186003)(1076003)(26005)(8676002)(16526019)(8936002)(5660300002)(70586007)(4326008)(2906002)(6916009)(70206006)(41300700001)(54906003)(316002)(36860700001)(426003)(83380400001)(47076005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2023 07:39:07.2243 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5491f8f-e9f0-4aa8-63b9-08db92626343
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8522
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 01 Aug 2023 08:27:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,87 +68,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yifan Zhang <yifan1.zhang@amd.com>, Lang
- Yu <Lang.Yu@amd.com>, Christian Koenig <christian.koenig@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-TMR requires physical contiguous memory, amdgpu_bo_create_kernel()
-can't satisfy large(>128MB) physical contiguous memory allocation
-request with default 512MB VRAM on APU.
+Hello Kevin Wang,
 
-When requested TMR size > 128MB, use amdgpu_bo_create_kernel_at()
-to create the BO at offset 32MB with a step 1MB in the VRAM range.
+This is a semi-automatic email about new static checker warnings.
 
-Signed-off-by: Lang Yu <Lang.Yu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 38 +++++++++++++++++++++++--
- 1 file changed, 35 insertions(+), 3 deletions(-)
+The patch 4e01847c38f7: "drm/amdgpu: optimize amdgpu device attribute 
+code" from Apr 27, 2020, leads to the following Smatch complaint:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 15217e33b51d..3fadfaa63b2e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -783,6 +783,34 @@ static bool psp_boottime_tmr(struct psp_context *psp)
- 	}
- }
- 
-+static int psp_create_large_tmr_bo_for_apu(struct psp_context *psp,
-+					   int tmr_size,
-+					   void **cpu_addr)
-+{
-+	struct amdgpu_vram_mgr *mgr = &psp->adev->mman.vram_mgr;
-+	uint32_t rounded_size = round_up(tmr_size, 0x100000);
-+	uint32_t start = 0x2000000;
-+	uint32_t step = 0x100000;
-+	int ret = -ENOMEM;
-+
-+	for (; start + rounded_size <= mgr->manager.size &&
-+	     start + step <= mgr->manager.size; start += step) {
-+
-+		ret = amdgpu_bo_create_kernel_at(psp->adev, start, tmr_size,
-+						 &psp->tmr_bo, cpu_addr);
-+		if (ret == -ENOMEM)
-+			continue;
-+		if (ret)
-+			return ret;
-+
-+		psp->tmr_mc_addr = amdgpu_bo_gpu_offset(psp->tmr_bo);
-+
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- /* Set up Trusted Memory Region */
- static int psp_tmr_init(struct psp_context *psp)
- {
-@@ -813,8 +841,13 @@ static int psp_tmr_init(struct psp_context *psp)
- 		}
- 	}
- 
--	if (!psp->tmr_bo) {
--		pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-+	if (psp->tmr_bo)
-+		return 0;
-+
-+	pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-+	if (psp->adev->flags & AMD_IS_APU && tmr_size > 0x8000000)
-+		ret = psp_create_large_tmr_bo_for_apu(psp, tmr_size, pptr);
-+	else
- 		ret = amdgpu_bo_create_kernel(psp->adev, tmr_size,
- 					      PSP_TMR_ALIGNMENT,
- 					      AMDGPU_HAS_VRAM(psp->adev) ?
-@@ -822,7 +855,6 @@ static int psp_tmr_init(struct psp_context *psp)
- 					      AMDGPU_GEM_DOMAIN_GTT,
- 					      &psp->tmr_bo, &psp->tmr_mc_addr,
- 					      pptr);
--	}
- 
- 	return ret;
- }
--- 
-2.25.1
+    ./drivers/gpu/drm/amd/pm/amdgpu_pm.c:2182 amdgpu_device_attr_create()
+    warn: variable dereferenced before check 'attr' (see line 2175)
 
+./drivers/gpu/drm/amd/pm/amdgpu_pm.c
+  2174		struct device_attribute *dev_attr = &attr->dev_attr;
+  2175		const char *name = dev_attr->attr.name;
+                                   ^^^^^^^^^^
+Dereferenced.
+
+  2176		enum amdgpu_device_attr_states attr_states = ATTR_STATE_SUPPORTED;
+  2177		struct amdgpu_device_attr_entry *attr_entry;
+  2178	
+  2179		int (*attr_update)(struct amdgpu_device *adev, struct amdgpu_device_attr *attr,
+  2180				   uint32_t mask, enum amdgpu_device_attr_states *states) = default_attr_update;
+  2181	
+  2182		BUG_ON(!attr);
+
+Checked to late.  Also doesn't checkpatch warn about this?  Calling
+BUG_ON() here is not correct.
+
+  2183	
+  2184		attr_update = attr->attr_update ? attr->attr_update : default_attr_update;
+
+regards,
+dan carpenter
