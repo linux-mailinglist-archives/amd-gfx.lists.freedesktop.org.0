@@ -1,61 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B28076AAF6
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EF676AAF2
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EABED10E335;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 804F410E329;
 	Tue,  1 Aug 2023 08:27:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21BBB10E1B4
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 07:24:01 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id
- ffacd0b85a97d-3176a439606so3698787f8f.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 00:24:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1690788239; x=1691393039;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=GDv3qKhUocp9vQIpWuNn7A3ct9SRLnsAqxNrLpEWSRw=;
- b=VMXNVL2Oq3cPE0S2ntOlhyFyEA9jwQS8YC9UxUY2aNiHkwzvhu2lWnLXD/r6CD/EjE
- zlaxHRzpLLokCoS8OChhlzJh2NAr8gPIci5B79MpALVI25cnNf/RZ+ew3EESElp73Zkp
- as81F7GMLhBr2ytR+8BVs043cLVKCljn82aY9Ntr+zi5mAsJyPOuqKYIB1r/gjsIt+dH
- UoNVOxdJFbode0ZROeZhg/txEU6nMA1zTAal1ml/2SFYS7Nkrzchje7BNS/QRP/jjUhu
- C4vpktLVkvOvNeVmwhavMSiyWHjz5uC102aFh/+W3wxPcxMD/VHAe1OEFtRvSf4e+WaG
- 3GMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690788239; x=1691393039;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GDv3qKhUocp9vQIpWuNn7A3ct9SRLnsAqxNrLpEWSRw=;
- b=lqgBK0HJDpbZlgYGCR1sHjHJ2DoIB+sYv96XUoTLpfrz4WNThsyjljTfYEx4GCk/ht
- ysvHXl6MrrutYCo9ZVOi8Cpz9a5OzXEntj+GaANDMJGtKjBa9qzUz150+FdClhjwfY1n
- CkiOVhQPioJNvPmABj9aO5O9L7pJdy1z2N2EM7fj3aWEf3HdR6CFYH/5395IfAIvCAls
- NPsJXDwtQr7q3wGAHxvQmK7pyHsiCXSLULK6soD0VIUKvdPC5VmJdpq4VV241HFJeXbG
- VmyIWQlOSdlM9rfzZ/nUn75epTbquP9GnVbcwhIO0pJWwa9vMgronCCxO95hqTuRp+7y
- qDbA==
-X-Gm-Message-State: ABy/qLa9Mpor64UduMjhcMYHFcOsPWlyhAV3uBWrplldkRox7FzO6TFs
- 7hRpCDQnx50wqBSgjA2somdNGA==
-X-Google-Smtp-Source: APBJJlG182tGjUCnhlcvquzg/NE6PvguLCvYMhO2Ef+vm+Kh2mNG2PzwyW3xLMduaAMev8+BZW2+EQ==
-X-Received: by 2002:a5d:470e:0:b0:314:37e7:efb4 with SMTP id
- y14-20020a5d470e000000b0031437e7efb4mr5617503wrq.11.1690788239642; 
- Mon, 31 Jul 2023 00:23:59 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- y18-20020a5d6212000000b003143c6e09ccsm12199851wru.16.2023.07.31.00.23.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Jul 2023 00:23:59 -0700 (PDT)
-Date: Mon, 31 Jul 2023 09:32:46 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: kevin1.wang@amd.com
-Subject: [bug report] drm/amdgpu: optimize amdgpu device attribute code
-Message-ID: <9ea841e4-325f-4076-8409-fbad9bb47196@moroto.mountain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Received: from out28-172.mail.aliyun.com (out28-172.mail.aliyun.com
+ [115.124.28.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F43310E17E;
+ Mon, 31 Jul 2023 09:22:43 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.07502602|-1; CH=green;
+ DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_system_inform|0.461785-0.00373639-0.534478;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047206; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U4lAjtS_1690795270; 
+Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
+ fp:SMTPD_---.U4lAjtS_1690795270) by smtp.aliyun-inc.com;
+ Mon, 31 Jul 2023 17:22:36 +0800
+From: Ran Sun <sunran001@208suo.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amd/pm: Clean up errors in smu_v11_0_pptable.h
+Date: Mon, 31 Jul 2023 09:21:08 +0000
+Message-Id: <20230731092108.3162-1-sunran001@208suo.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Tue, 01 Aug 2023 08:27:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,39 +39,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Ran Sun <sunran001@208suo.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Kevin Wang,
+Fix the following errors reported by checkpatch:
 
-This is a semi-automatic email about new static checker warnings.
+ERROR: trailing whitespace
+ERROR: open brace '{' following struct go on the same line
+ERROR: code indent should use tabs where possible
 
-The patch 4e01847c38f7: "drm/amdgpu: optimize amdgpu device attribute 
-code" from Apr 27, 2020, leads to the following Smatch complaint:
+Signed-off-by: Ran Sun <sunran001@208suo.com>
+---
+ .../gpu/drm/amd/pm/swsmu/inc/smu_v11_0_pptable.h  | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-    ./drivers/gpu/drm/amd/pm/amdgpu_pm.c:2182 amdgpu_device_attr_create()
-    warn: variable dereferenced before check 'attr' (see line 2175)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_pptable.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_pptable.h
+index 0116e3d04fad..df7430876e0c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_pptable.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_pptable.h
+@@ -101,8 +101,7 @@ enum SMU_11_0_ODSETTING_ID {
+ };
+ #define SMU_11_0_MAX_ODSETTING    32          //Maximum Number of ODSettings
+ 
+-struct smu_11_0_overdrive_table
+-{
++struct smu_11_0_overdrive_table {
+     uint8_t  revision;                                        //Revision = SMU_11_0_PP_OVERDRIVE_VERSION
+     uint8_t  reserve[3];                                      //Zero filled field reserved for future use
+     uint32_t feature_count;                                   //Total number of supported features
+@@ -127,8 +126,7 @@ enum SMU_11_0_PPCLOCK_ID {
+ };
+ #define SMU_11_0_MAX_PPCLOCK      16          //Maximum Number of PP Clocks
+ 
+-struct smu_11_0_power_saving_clock_table
+-{
++struct smu_11_0_power_saving_clock_table {
+     uint8_t  revision;                                        //Revision = SMU_11_0_PP_POWERSAVINGCLOCK_VERSION
+     uint8_t  reserve[3];                                      //Zero filled field reserved for future use
+     uint32_t count;                                           //power_saving_clock_count = SMU_11_0_PPCLOCK_COUNT
+@@ -136,8 +134,7 @@ struct smu_11_0_power_saving_clock_table
+     uint32_t min[SMU_11_0_MAX_PPCLOCK];                       //PowerSavingClock Mode Clock Minimum array In MHz
+ };
+ 
+-struct smu_11_0_powerplay_table
+-{
++struct smu_11_0_powerplay_table {
+       struct atom_common_table_header header;
+       uint8_t  table_revision;
+       uint16_t table_size;                          //Driver portion table size. The offset to smc_pptable including header size
+@@ -145,14 +142,14 @@ struct smu_11_0_powerplay_table
+       uint32_t golden_revision;
+       uint16_t format_id;
+       uint32_t platform_caps;                       //POWERPLAYABLE::ulPlatformCaps
+-                                                    
++
+       uint8_t  thermal_controller_type;             //one of SMU_11_0_PP_THERMALCONTROLLER
+ 
+       uint16_t small_power_limit1;
+       uint16_t small_power_limit2;
+       uint16_t boost_power_limit;
+-      uint16_t od_turbo_power_limit;                //Power limit setting for Turbo mode in Performance UI Tuning. 
+-      uint16_t od_power_save_power_limit;           //Power limit setting for PowerSave/Optimal mode in Performance UI Tuning. 
++      uint16_t od_turbo_power_limit;                //Power limit setting for Turbo mode in Performance UI Tuning.
++      uint16_t od_power_save_power_limit;           //Power limit setting for PowerSave/Optimal mode in Performance UI Tuning.
+       uint16_t software_shutdown_temp;
+ 
+       uint16_t reserve[6];                          //Zero filled field reserved for future use
+-- 
+2.17.1
 
-./drivers/gpu/drm/amd/pm/amdgpu_pm.c
-  2174		struct device_attribute *dev_attr = &attr->dev_attr;
-  2175		const char *name = dev_attr->attr.name;
-                                   ^^^^^^^^^^
-Dereferenced.
-
-  2176		enum amdgpu_device_attr_states attr_states = ATTR_STATE_SUPPORTED;
-  2177		struct amdgpu_device_attr_entry *attr_entry;
-  2178	
-  2179		int (*attr_update)(struct amdgpu_device *adev, struct amdgpu_device_attr *attr,
-  2180				   uint32_t mask, enum amdgpu_device_attr_states *states) = default_attr_update;
-  2181	
-  2182		BUG_ON(!attr);
-
-Checked to late.  Also doesn't checkpatch warn about this?  Calling
-BUG_ON() here is not correct.
-
-  2183	
-  2184		attr_update = attr->attr_update ? attr->attr_update : default_attr_update;
-
-regards,
-dan carpenter
