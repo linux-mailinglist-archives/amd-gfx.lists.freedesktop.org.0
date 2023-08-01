@@ -1,68 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AFA76C691
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E70576C66F
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48C2210E509;
-	Wed,  2 Aug 2023 07:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98B8310E4E4;
+	Wed,  2 Aug 2023 07:20:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
- [IPv6:2607:f8b0:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F8E10E089;
- Tue,  1 Aug 2023 11:16:56 +0000 (UTC)
-Received: by mail-pf1-x430.google.com with SMTP id
- d2e1a72fcca58-686fa3fc860so3521900b3a.1; 
- Tue, 01 Aug 2023 04:16:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690888615; x=1691493415;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=g/d9qVu/YgKMVuhjhU0hWbA0JqMw1Dt0pNaA2X8wmek=;
- b=cLEpu1fpZif6atTb1LkbVf4G1i4TPB+OFiE4RXQUZPg+A6ZhoAg10LUcbLPsvJYl3l
- 7SBxpqYOzAt7LORxMkUuizMhJkXLNFsCm8w4nQemSEWYL9YeZkWOxVu/zuotfsSBWINF
- EuufoRgkUgF99WWvDddKTyIp8pAVcWkOnUWpb5yY48mHMc++5MIuw7yr23XxGuyMhFc+
- yhrRP8+PUv8GKmqwR51imhJ7Vgx9THntr+BrInKefmeXLMrrKUfqvaZMXnQjIICmonlS
- OO+bzooj95qi9tGLIRykfm8RMBvIplz+Kt4R8xVY3hBxz7/iu7pIYAg06Mt290ewUDmR
- wH1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690888615; x=1691493415;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=g/d9qVu/YgKMVuhjhU0hWbA0JqMw1Dt0pNaA2X8wmek=;
- b=f3JOhNlawmnsgIYHS2XqHd2NzY0GTJy003XkAUa9M1S+s5IHxKyVWtxMt7evQaL1JU
- WSNX8zwM2ntmrRJEWTXphmzZqzfhpOaf4u6xRnvG1ynusV1Al+jTkPM6S23pUk5NSPvs
- QwBGmHlO7bBCDk1g9Dfnk8e9Lt1ebUZ5KFjhKCVYvy0/FRw4mwx7f3NUPM+epdEN4PHT
- QM696/g+E3jIccBxTUqNxE9Rfig4p8xlj0Rcg2owZk2wGVFhdNirzj9xDYhbksU4awsx
- WA0Ac1WTz/GTlwacKAS9KdllwrATHQ1xxDs1I72bhDb6e/Klv3sGLZ5xKyxFulWQ/sCl
- W1ug==
-X-Gm-Message-State: ABy/qLaE2OWYOaRkTd+A2sZKPTLoZmAn/JgNFRKxy2675iXy8SVGKyMS
- 2hrqYKPSUqy3W2/g3E4hsXM=
-X-Google-Smtp-Source: APBJJlEQT4wLJEIOI4URIWAZ3XaBcZXevHviTbAHc+v8I5MziVFXsXSF6IISkcsOmV4HCiEhGp9bEg==
-X-Received: by 2002:a05:6a00:16c4:b0:668:99aa:3f17 with SMTP id
- l4-20020a056a0016c400b0066899aa3f17mr16050243pfc.16.1690888615498; 
- Tue, 01 Aug 2023 04:16:55 -0700 (PDT)
-Received: from debian.me ([103.131.18.64]) by smtp.gmail.com with ESMTPSA id
- d9-20020aa78689000000b0064fa2fdfa9esm9084667pfo.81.2023.08.01.04.16.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Aug 2023 04:16:54 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
- id C9A89801D541; Tue,  1 Aug 2023 18:16:50 +0700 (WIB)
-Date: Tue, 1 Aug 2023 18:16:50 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Ran Sun <sunran001@208suo.com>, alexander.deucher@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Subject: Re: [PATCH] drm/amd/pm: Clean up errors in smu73_discrete.h
-Message-ID: <ZMjposYeMFxU5nE9@debian.me>
-References: <20230801100024.8215-1-sunran001@208suo.com>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86E3B10E07E;
+ Tue,  1 Aug 2023 12:55:55 +0000 (UTC)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.55])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RFZkw33NLzNmbP;
+ Tue,  1 Aug 2023 20:52:24 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemi500008.china.huawei.com
+ (7.221.188.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 1 Aug
+ 2023 20:55:49 +0800
+From: Ruan Jinjie <ruanjinjie@huawei.com>
+To: <evan.quan@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>,
+ <daniel@ffwll.ch>, <mripard@kernel.org>, <tzimmermann@suse.de>,
+ <drv@mailo.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: [PATCH -next] drm/amd/pm: Remove many unnecessary NULL values
+Date: Tue, 1 Aug 2023 20:55:14 +0800
+Message-ID: <20230801125514.378451-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="Oz9nExZewyCtXaET"
-Content-Disposition: inline
-In-Reply-To: <20230801100024.8215-1-sunran001@208suo.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,51 +48,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: ruanjinjie@huawei.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Ther are many pointers assigned first, which need not to be initialized, so
+remove the NULL assignment.
 
---Oz9nExZewyCtXaET
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
+---
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c      | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c    | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/smumgr/tonga_smumgr.c   | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-On Tue, Aug 01, 2023 at 10:00:24AM +0000, Ran Sun wrote:
-> Fix the following errors reported by checkpatch:
->=20
-> ERROR: open brace '{' following struct go on the same line
-> ERROR: trailing whitespace
-> ERROR: space prohibited before open square bracket '['
->=20
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
+index 182118e3fd5f..5794b64507bf 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
+@@ -1237,7 +1237,7 @@ static int get_vce_clock_voltage_limit_table(struct pp_hwmgr *hwmgr,
+ 		const VCEClockInfoArray    *array)
+ {
+ 	unsigned long i;
+-	struct phm_vce_clock_voltage_dependency_table *vce_table = NULL;
++	struct phm_vce_clock_voltage_dependency_table *vce_table;
+ 
+ 	vce_table = kzalloc(struct_size(vce_table, entries, table->numEntries),
+ 			    GFP_KERNEL);
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
+index 4bc8db1be738..9e4228232f02 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
+@@ -2732,7 +2732,7 @@ static bool ci_is_dpm_running(struct pp_hwmgr *hwmgr)
+ 
+ static int ci_smu_init(struct pp_hwmgr *hwmgr)
+ {
+-	struct ci_smumgr *ci_priv = NULL;
++	struct ci_smumgr *ci_priv;
+ 
+ 	ci_priv = kzalloc(sizeof(struct ci_smumgr), GFP_KERNEL);
+ 
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
+index 02c094a06605..5e43ad2b2956 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
+@@ -332,7 +332,7 @@ static bool fiji_is_hw_avfs_present(struct pp_hwmgr *hwmgr)
+ 
+ static int fiji_smu_init(struct pp_hwmgr *hwmgr)
+ {
+-	struct fiji_smumgr *fiji_priv = NULL;
++	struct fiji_smumgr *fiji_priv;
+ 
+ 	fiji_priv = kzalloc(sizeof(struct fiji_smumgr), GFP_KERNEL);
+ 
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
+index 060fc140c574..97d9802fe673 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
+@@ -259,7 +259,7 @@ static int iceland_start_smu(struct pp_hwmgr *hwmgr)
+ 
+ static int iceland_smu_init(struct pp_hwmgr *hwmgr)
+ {
+-	struct iceland_smumgr *iceland_priv = NULL;
++	struct iceland_smumgr *iceland_priv;
+ 
+ 	iceland_priv = kzalloc(sizeof(struct iceland_smumgr), GFP_KERNEL);
+ 
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/tonga_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/tonga_smumgr.c
+index acbe41174d7e..6fe6e6abb5d8 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/tonga_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/tonga_smumgr.c
+@@ -226,7 +226,7 @@ static int tonga_start_smu(struct pp_hwmgr *hwmgr)
+ 
+ static int tonga_smu_init(struct pp_hwmgr *hwmgr)
+ {
+-	struct tonga_smumgr *tonga_priv = NULL;
++	struct tonga_smumgr *tonga_priv;
+ 
+ 	tonga_priv = kzalloc(sizeof(struct tonga_smumgr), GFP_KERNEL);
+ 	if (tonga_priv == NULL)
+-- 
+2.34.1
 
-Thanks for fixing up your tooling to use git-send-email(1). However, it'd
-been great to send a patch series touching whole drm/amd subsystem, with ea=
-ch
-patch fixes one error (assuming the subsystem permits checkpatch fixup
-like this) instead of spamming maintainers with >=3D 70 single patches like
-this.
-
-And it is unfortunate that you and @208suo.com people doesn't reply to
-review comments (try searching lore.kernel.org), which makes me wonder:
-what does prevent you from replying to the mailing lists like LKML? Your
-mail infrastructure?
-
-Thanks anyway.
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---Oz9nExZewyCtXaET
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZMjpnAAKCRD2uYlJVVFO
-o8eVAQC8i8w0oMagTUhlWHqTriRwuWmnzpcrsbkdtwpX3Jlw9wEAtX2Mn1Ie6sWq
-Fjq3EI7u1q5SRe7QS9q9ZY3WCOoWRAY=
-=mCUh
------END PGP SIGNATURE-----
-
---Oz9nExZewyCtXaET--
