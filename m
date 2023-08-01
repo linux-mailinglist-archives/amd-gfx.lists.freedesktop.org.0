@@ -1,33 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE57A76C674
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6325676C673
 	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4202410E4E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB24B10E4E8;
 	Wed,  2 Aug 2023 07:20:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com
- [115.124.28.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB8410E368;
- Tue,  1 Aug 2023 09:02:48 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.08914465|-1; CH=green;
- DM=|CONTINUE|false|;
- DS=CONTINUE|ham_enroll_verification|0.0343368-0.000303458-0.96536;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047212; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=7; RT=7; SR=0; TI=SMTPD_---.U5pdWgb_1690880559; 
+Received: from out28-170.mail.aliyun.com (out28-170.mail.aliyun.com
+ [115.124.28.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A03E10E368;
+ Tue,  1 Aug 2023 09:14:36 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.1113862|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_alarm|0.0177519-0.00266611-0.979582; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047212; MF=sunran001@208suo.com; NM=1; PH=DS; RN=7; RT=7; SR=0;
+ TI=SMTPD_---.U5qtWqJ_1690881266; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U5pdWgb_1690880559) by smtp.aliyun-inc.com;
- Tue, 01 Aug 2023 17:02:42 +0800
+ fp:SMTPD_---.U5qtWqJ_1690881266) by smtp.aliyun-inc.com;
+ Tue, 01 Aug 2023 17:14:30 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com,
 	airlied@gmail.com,
 	daniel@ffwll.ch
-Subject: [PATCH] drm/amd: Clean up errors in pptable_v1_0.h
-Date: Tue,  1 Aug 2023 09:02:37 +0000
-Message-Id: <20230801090237.7011-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amd: Clean up errors in processpptables.c
+Date: Tue,  1 Aug 2023 09:14:25 +0000
+Message-Id: <20230801091425.7181-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,27 +47,28 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: open brace '{' following struct go on the same line
+ERROR: open brace '{' following function definitions go on the next line
+ERROR: code indent should use tabs where possible
+ERROR: space required before the open parenthesis '('
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
-index b0ac4d121adc..7a31cfa5e7fb 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
-@@ -419,8 +419,7 @@ typedef struct _ATOM_Fiji_PowerTune_Table {
- 	USHORT usReserved;
- } ATOM_Fiji_PowerTune_Table;
- 
--typedef struct _ATOM_Polaris_PowerTune_Table
--{
-+typedef struct _ATOM_Polaris_PowerTune_Table {
-     UCHAR  ucRevId;
-     USHORT usTDP;
-     USHORT usConfigurableTDP;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
+index 1866fe20f9e2..f05f011c78be 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
+@@ -676,7 +676,7 @@ static PP_StateClassificationFlags make_classification_flags(
+ static int init_non_clock_fields(struct pp_hwmgr *hwmgr,
+ 						struct pp_power_state *ps,
+ 							    uint8_t version,
+-			 const ATOM_PPLIB_NONCLOCK_INFO *pnon_clock_info) 
++			 const ATOM_PPLIB_NONCLOCK_INFO *pnon_clock_info)
+ {
+ 	unsigned long rrr_index;
+ 	unsigned long tmp;
 -- 
 2.17.1
 
