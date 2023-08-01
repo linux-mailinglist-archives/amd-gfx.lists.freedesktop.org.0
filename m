@@ -2,32 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776CD76AAF5
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A5376AB0A
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Aug 2023 10:28:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF88B10E32F;
-	Tue,  1 Aug 2023 08:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33C4B10E355;
+	Tue,  1 Aug 2023 08:28:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-145.mail.aliyun.com (out28-145.mail.aliyun.com
- [115.124.28.145])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62A1C10E311;
- Tue,  1 Aug 2023 06:15:40 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.08867355|-1; CH=green;
- DM=|CONTINUE|false|;
- DS=CONTINUE|ham_regular_dialog|0.0219141-0.000104645-0.977981;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047209; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=7; RT=7; SR=0; TI=SMTPD_---.U5foOkY_1690870530; 
+Received: from out28-121.mail.aliyun.com (out28-121.mail.aliyun.com
+ [115.124.28.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D58210E316;
+ Tue,  1 Aug 2023 07:55:19 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.3847548|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_alarm|0.00255057-0.000655741-0.996794; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047199; MF=sunran001@208suo.com; NM=1; PH=DS; RN=7; RT=7; SR=0;
+ TI=SMTPD_---.U5l-U8X_1690876509; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U5foOkY_1690870530) by smtp.aliyun-inc.com;
- Tue, 01 Aug 2023 14:15:32 +0800
+ fp:SMTPD_---.U5l-U8X_1690876509) by smtp.aliyun-inc.com;
+ Tue, 01 Aug 2023 15:55:11 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com,
 	airlied@gmail.com,
 	daniel@ffwll.ch
-Subject: [PATCH] drm/amdgpu: Clean up errors in smu7_powertune.c
-Date: Tue,  1 Aug 2023 06:15:29 +0000
-Message-Id: <20230801061529.6269-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in common_baco.c
+Date: Tue,  1 Aug 2023 07:55:07 +0000
+Message-Id: <20230801075507.6377-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Tue, 01 Aug 2023 08:27:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,66 +47,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: that open brace { should be on the previous line
-ERROR: space required after that ',' (ctx:VxV)
+ERROR: code indent should use tabs where possible
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/common_baco.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
-index 21be23ec3c79..edab3ef09d33 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_powertune.c
-@@ -520,8 +520,7 @@ static const struct gpu_pt_config_reg DIDTConfig_Polaris12[] = {
- 	{   0xFFFFFFFF  }
- };
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/common_baco.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/common_baco.c
+index 1c73776bd606..fd79337a3536 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/common_baco.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/common_baco.c
+@@ -42,7 +42,7 @@ static bool baco_wait_register(struct pp_hwmgr *hwmgr, u32 reg, u32 mask, u32 va
+ }
  
--static const struct gpu_pt_config_reg DIDTConfig_Polaris11_Kicker[] =
--{
-+static const struct gpu_pt_config_reg DIDTConfig_Polaris11_Kicker[] = {
- /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  *      Offset                             Mask                                                Shift                                               Value       Type
-  * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@@ -646,7 +645,7 @@ static const struct gpu_pt_config_reg DIDTConfig_Polaris11_Kicker[] =
- 	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_CTRL_ENABLE_MASK,   DIDT_TCP_STALL_CTRL__DIDT_STALL_CTRL_ENABLE__SHIFT, 0x0001,     GPU_CONFIGREG_DIDT_IND },
- 	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_HI_MASK,      DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_HI__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
- 	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_LO_MASK,      DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_LO__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
--	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD_MASK,  DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD__SHIFT,0x01aa,     GPU_CONFIGREG_DIDT_IND },
-+	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD_MASK,  DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD__SHIFT, 0x01aa,     GPU_CONFIGREG_DIDT_IND },
- 	{   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__UNUSED_0_MASK,                 DIDT_TCP_STALL_CTRL__UNUSED_0__SHIFT,               0x0000,     GPU_CONFIGREG_DIDT_IND },
- 
- 	{   ixDIDT_TCP_TUNING_CTRL,            DIDT_TCP_TUNING_CTRL__DIDT_TUNING_ENABLE_MASK,      DIDT_TCP_TUNING_CTRL__DIDT_TUNING_ENABLE__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
-@@ -666,8 +665,7 @@ static const struct gpu_pt_config_reg DIDTConfig_Polaris11_Kicker[] =
- 	{   0xFFFFFFFF  }  /* End of list */
- };
- 
--static const struct gpu_pt_config_reg GCCACConfig_VegaM[] =
--{
-+static const struct gpu_pt_config_reg GCCACConfig_VegaM[] = {
- // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- //      Offset                             Mask                                                Shift                                               Value       Type
- // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@@ -703,8 +701,7 @@ static const struct gpu_pt_config_reg GCCACConfig_VegaM[] =
-     {   0xFFFFFFFF  }  // End of list
- };
- 
--static const struct gpu_pt_config_reg DIDTConfig_VegaM[] =
--{
-+static const struct gpu_pt_config_reg DIDTConfig_VegaM[] = {
- // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- //      Offset                             Mask                                                Shift                                               Value       Type
- // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@@ -831,7 +828,7 @@ static const struct gpu_pt_config_reg DIDTConfig_VegaM[] =
-     {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_CTRL_ENABLE_MASK,   DIDT_TCP_STALL_CTRL__DIDT_STALL_CTRL_ENABLE__SHIFT, 0x0001,     GPU_CONFIGREG_DIDT_IND },
-     {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_HI_MASK,      DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_HI__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
-     {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_LO_MASK,      DIDT_TCP_STALL_CTRL__DIDT_STALL_DELAY_LO__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
--    {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD_MASK,  DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD__SHIFT,0x01aa,     GPU_CONFIGREG_DIDT_IND },
-+    {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD_MASK,  DIDT_TCP_STALL_CTRL__DIDT_HI_POWER_THRESHOLD__SHIFT, 0x01aa,     GPU_CONFIGREG_DIDT_IND },
-     {   ixDIDT_TCP_STALL_CTRL,             DIDT_TCP_STALL_CTRL__UNUSED_0_MASK,                 DIDT_TCP_STALL_CTRL__UNUSED_0__SHIFT,               0x0000,     GPU_CONFIGREG_DIDT_IND },
- 
-     {   ixDIDT_TCP_TUNING_CTRL,            DIDT_TCP_TUNING_CTRL__DIDT_TUNING_ENABLE_MASK,      DIDT_TCP_TUNING_CTRL__DIDT_TUNING_ENABLE__SHIFT,    0x0001,     GPU_CONFIGREG_DIDT_IND },
+ static bool baco_cmd_handler(struct pp_hwmgr *hwmgr, u32 command, u32 reg, u32 mask,
+-			        u32 shift, u32 value, u32 timeout)
++				u32 shift, u32 value, u32 timeout)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)(hwmgr->adev);
+ 	u32 data;
 -- 
 2.17.1
 
