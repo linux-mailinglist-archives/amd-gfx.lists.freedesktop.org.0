@@ -2,115 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1019376DFC7
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Aug 2023 07:32:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C42B076E150
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Aug 2023 09:25:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE51889EB1;
-	Thu,  3 Aug 2023 05:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326D510E5AB;
+	Thu,  3 Aug 2023 07:25:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0D4889EB1
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 05:32:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PDlm2vM2HqNp79RHXUhiX6Inry6HEh/pU6QIzkIzsTgwHpdLirwmaUS03G1BjHaVMptoe9WxEf915fTA/1n6TwFsu+1/YbzsvTVKv9Q00lRVoFznK26opvYM0k/n1Pbo8DEhE7WMOH6+GvbLavS+ssqub7R22IvUnMFsq8lE8vLk1aRs8e+ZWIXL7p68+qsEQyG0dTs48kmUpLnn4YeUkOYeguZlc5mBHT/0161NzIbOuRNQi2NgOvRTo29ZRbjxA5DlzgREJyICo2xSBlxUIr150AZqjTZgrOpcos6w8Qub8t/AtSJj0qsOUh7/uRomCWY5aDQoMGtrhXA6vhj+8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hiY09wnjZ1T0GZBao88Df/8Xe0okshCqH9mN/g94/oM=;
- b=CX4eRC0u8Co4tOLEaZ6rBvBnsLyY91SyChTpTowlkrWZlbyCHvbMVVy+mZKEXS6Eo1T/FV7Vl9pT6Uwy2i+zmcdew9Z2lYjEblCt86ZQzVyuad4uffQ9IWaeHhaGTDOeksaAca4fYUOpiHBAQ+BhFPCist8Q6ojWoseys4uHwoYQtzyc07FWgUz+NNfmX7iZ1ffF1hGnttkDMYs59fvTjGxIsXxNP/gib/nbEpbi1BwiynE4uN3kooSQaqVM4ig3i36dArRcTr1vOlPY+vpg9ISklhUL+Cm2+Rt6XTXIQ3LYkix/hXNHewALsAeVTS/7lsFrOvq05OPttEZQV7NSOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hiY09wnjZ1T0GZBao88Df/8Xe0okshCqH9mN/g94/oM=;
- b=zYEzWtNIpp21tu5QKu7x3opho7SO8kn0tt5W75tjHRgnyMcG3aBJzqk5m3sAVcvFzd12ydB+XAs6w+W3CXhuhCODiJLXquJTU8tjsM+iyzSfy75gy7Mdo7ENs8f/bKu2bcZwehT3hFoX6xWrIn7GgbO5zKHSJWSDIjmU4GiPtE8=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by DS0PR12MB9276.namprd12.prod.outlook.com (2603:10b6:8:1a0::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.47; Thu, 3 Aug
- 2023 05:32:07 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::4d17:c920:ea2e:3b2d]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::4d17:c920:ea2e:3b2d%4]) with mapi id 15.20.6652.020; Thu, 3 Aug 2023
- 05:32:07 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/pm: Fix SMU v13.0.6 energy reporting
-Thread-Topic: [PATCH] drm/amd/pm: Fix SMU v13.0.6 energy reporting
-Thread-Index: AQHZxP25PArlZjcg+kCL/9xxCchJb6/YDXUg
-Date: Thu, 3 Aug 2023 05:32:07 +0000
-Message-ID: <BN9PR12MB52575A9BBE7A79AA67816A93FC08A@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20230802045617.238049-1-lijo.lazar@amd.com>
-In-Reply-To: <20230802045617.238049-1-lijo.lazar@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=a97d3204-4c69-4716-bb8d-759b6b27b307;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-08-03T05:31:14Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|DS0PR12MB9276:EE_
-x-ms-office365-filtering-correlation-id: ddb58f59-f21d-4112-c218-08db93e2fa6e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vCy++0lrAA3nPxvPIje//ufAtA9JZw64ulTM/ssgEXb/rbWXaQzgDVjoyAPVSJByOLooAnQiJGdFW6Zfc93MFhcqFYALgE0ft7GnSZl2bifNqwplCPMA/Xk5/cXDrEv7bGdDcEmz8FBPOmDhWfozPxRmGEFKl3QmBkze1wx5Q7ct4MdgRpRs2IwP/863GyzrhvVsPtGZY3Azndku+XiOyuXszfG/eFn/JLsNfwzpibYqnw02uKMvW2z0X6TPRKi+ZuxvjsxqwwH0ec77ohUQKLddf4YVYTnPhVpnDUtj5o2CzcCKMfJi8vbyN8GNgnQEBAS+aEsODNGX7hHtiG208ngv36SX3prR63aA31xhETzTmaLFVBKHeo46GX/8X6Zi9Q0rVIB/8UUY0AnoUMu3R+gl8BLtou9F+AxdTUYI0hnDMLZQq7nC/9T3ankQuR3V8ulmgGOdxh+EFU+kyVPeC1t2rKkW/aURVUkIuBsu+2S+TWE0HVd+B5GlXOZotkK/TXksm+kfdxWbQpd4YxA0EWoMz04+fzCjUA0AxG8Ra2kWDpE4CqBO0Xvc3Y3IWmVnFsHHM1E57Nzcn7Zj7ql68OwUlIqiGxhbzbD16uS8bzniaqFKAdKUwaSO+gg227z1ixBhFZWZ6sd/qO4tFj+Vbw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(451199021)(53546011)(6506007)(26005)(186003)(83380400001)(316002)(76116006)(2906002)(66946007)(4326008)(64756008)(66446008)(66476007)(66556008)(5660300002)(52536014)(41300700001)(8676002)(8936002)(7696005)(71200400001)(9686003)(478600001)(110136005)(54906003)(55016003)(38100700002)(122000001)(33656002)(86362001)(38070700005)(197533005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kpXaYImXW3mcwO/xOz+mnJGP3QTwfFFsleM6DUYX4msWsQzvnKkzHMR0XI+W?=
- =?us-ascii?Q?ryKcZxwelkd0Sfk8qj5IYCUgin1a+f08vEz6tx/r7hg6Pij1y2e6y/1un1pi?=
- =?us-ascii?Q?l2Z0HOj4UMC8R6qb4y1UzQDREMp6pBSaa3p3sE5ru8RxjwaT2yiso77tnvJE?=
- =?us-ascii?Q?PULy2nEczvbrAGH60DMdDO9zaEOvp/krNCK2nDVyS2C3/5FIrugzjSQLIiS4?=
- =?us-ascii?Q?/UtWBHBPj2ImLNBYWXIpvQooYKwyLImztKWA40skivk2yjxr6KxY4C3GmNSD?=
- =?us-ascii?Q?gHbH67fJG3rNtzxVCWeCVipXy659XSqcLNMrcM8kAikiisfgYqp1lPMjyZoQ?=
- =?us-ascii?Q?cW1WletB8wBD2HmJhenpFE6I9rzqcVsuxRa4Hu05BoFLwrUl21I7nzMmWgc/?=
- =?us-ascii?Q?O6kIyL6Izpm+M135qH8XvCMsrGTBwc+v2e9fDLpQS1HePD20HTTtIyLjUkm6?=
- =?us-ascii?Q?uCuGSKlcGzNma9PRdsTZn6TtUJE0ROGxs2YYTBi2a/4FVdT2EG3r9U/YJPw9?=
- =?us-ascii?Q?Jt5WyK0MSc+t4scA5K3GHQd+/UQvVgwadIKOznX1e4fcU6PLZeIp7WWxNSDp?=
- =?us-ascii?Q?UtHc/7hUEzJwOCJXUV0aZ4JhKOk3hYDzx8TGA8JypY0gXOlfMWOSU4mJG352?=
- =?us-ascii?Q?qVJp5OcAGxNZOljTj9LS2/a5T5YO1FATICjQ3jnyPLxf4wcTup7nlN2AFIai?=
- =?us-ascii?Q?YXwIiCd1cN3IXGBFKH3/9W+R65ZSnNKjDTEyfpViOUkTdIsSt003AcYNyWKT?=
- =?us-ascii?Q?5DXLrBSSXgBsP+xjjRIWT6zZ0A/5daaZR0axdbJLor8XIVDVTAEhUdMvvDly?=
- =?us-ascii?Q?cR0twvz9HU8I1vc+1RMXk3IWjwJwCBctoL8JqrGinFpS2CdB0HsigG1joetC?=
- =?us-ascii?Q?b/H2/bCf4kZr2fusXyfdsBb+/P4vc78Hqk1pDc7UOVeXu7yQdvM8yNF14o2j?=
- =?us-ascii?Q?t93xP/ga5XMytZ6GQV7pXExihG2IoN7KFDckmLbzKnZ0uUd8x/IGCnoGA8Ki?=
- =?us-ascii?Q?2kCBy41FetW/YUBc5D22xDFGBGr6M3utR0WXDJFqAMiqf4EaHGNmwd8ga6N5?=
- =?us-ascii?Q?b1fqXgjQoipPu0STrHrjUOrCkmMCG8VGr0afbeD3HRegwjEdHqgmYeTP3z4U?=
- =?us-ascii?Q?+i9J255YIxAYnJDqI+qII/fcSN95gn6NH5z+dE2hVvVgsmYrMATb0JEE1f+f?=
- =?us-ascii?Q?Z4iPt4C/+cHeZGIjrr9F5y86f9bkyg37JROMJtyYr/Zpei573PDD+1HEsgME?=
- =?us-ascii?Q?y5L2YcQHY4px0BZ0OZUnjraNCeqHYlRPofSE/DCVOajWIWdPJAyGNSySkhrh?=
- =?us-ascii?Q?A5EOM38cWHF80LYwGg3z3gWc3sXtwc3WMyrbCWeR/VZmK95l8s7Q4zvrXfyS?=
- =?us-ascii?Q?AJyaeGpvPmisYzWaAr2DuJlZMpndYzGnLPvORN0RGQYQHdPElPVRWznGrW2r?=
- =?us-ascii?Q?jfwRcJIfJGxp+MBXoY/Ea7K2De1XsEcGqknGW7yfkOM9g5d4vPl70J4hSyj8?=
- =?us-ascii?Q?Slhx20ZxIXdM0u3E/drHHhJv3FkdKoRyIUhJ1V1qEqSo/97i3thK2IqICICc?=
- =?us-ascii?Q?xAWaBiBNb5O3FplnKNk=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddb58f59-f21d-4112-c218-08db93e2fa6e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2023 05:32:07.5964 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WZg40kvLZl+GMvtaVs4X2NUrw8cqAHBTuuANdhDfSS/3ayVp8s73w02CADdC2NG0tXpqbbTBIhF3gXiaAhl/Wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9276
+Received: from out28-221.mail.aliyun.com (out28-221.mail.aliyun.com
+ [115.124.28.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6621910E4C6;
+ Wed,  2 Aug 2023 07:18:16 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.07484511|-1; CH=green;
+ DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_system_inform|0.401997-0.00104817-0.596955;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047205; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6ar1OK_1690960687; 
+Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
+ fp:SMTPD_---.U6ar1OK_1690960687) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 15:18:09 +0800
+From: Ran Sun <sunran001@208suo.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: Clean up errors in dce_v8_0.c
+Date: Wed,  2 Aug 2023 07:18:05 +0000
+Message-Id: <20230802071805.12808-1-sunran001@208suo.com>
+X-Mailer: git-send-email 2.17.1
+X-Mailman-Approved-At: Thu, 03 Aug 2023 07:25:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,52 +39,149 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Kasiviswanathan,
- Harish" <Harish.Kasiviswanathan@amd.com>
+Cc: Ran Sun <sunran001@208suo.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Fix the following errors reported by checkpatch:
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+ERROR: that open brace { should be on the previous line
+ERROR: code indent should use tabs where possible
+ERROR: space required before the open brace '{'
 
-Regards,
-Hawking
-
------Original Message-----
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Wednesday, August 2, 2023 12:56
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.D=
-eucher@amd.com>; Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>
-Subject: [PATCH] drm/amd/pm: Fix SMU v13.0.6 energy reporting
-
-Energy counter should be reported in units of 15.259 uJ. Don't apply any co=
-nversion.
-
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c | 37 ++++++++++-----------------
+ 1 file changed, 14 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 00eba3f950c6..90e003fbca81 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -1965,9 +1965,8 @@ static ssize_t smu_v13_0_6_get_gpu_metrics(struct smu=
-_context *smu, void **table
-
-        gpu_metrics->average_socket_power =3D
-                SMUQ10_TO_UINT(metrics->SocketPower);
--       /* Energy is reported in 15.625mJ units */
--       gpu_metrics->energy_accumulator =3D
--               SMUQ10_TO_UINT(metrics->SocketEnergyAcc);
-+       /* Energy counter reported in 15.259uJ (2^-16) units */
-+       gpu_metrics->energy_accumulator =3D metrics->SocketEnergyAcc;
-
-        gpu_metrics->current_gfxclk =3D
-                SMUQ10_TO_UINT(metrics->GfxclkFrequency[xcc0]);
---
-2.25.1
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+index d421a268c9ff..f2b3cb5ed6be 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+@@ -53,8 +53,7 @@
+ static void dce_v8_0_set_display_funcs(struct amdgpu_device *adev);
+ static void dce_v8_0_set_irq_funcs(struct amdgpu_device *adev);
+ 
+-static const u32 crtc_offsets[6] =
+-{
++static const u32 crtc_offsets[6] = {
+ 	CRTC0_REGISTER_OFFSET,
+ 	CRTC1_REGISTER_OFFSET,
+ 	CRTC2_REGISTER_OFFSET,
+@@ -63,8 +62,7 @@ static const u32 crtc_offsets[6] =
+ 	CRTC5_REGISTER_OFFSET
+ };
+ 
+-static const u32 hpd_offsets[] =
+-{
++static const u32 hpd_offsets[] = {
+ 	HPD0_REGISTER_OFFSET,
+ 	HPD1_REGISTER_OFFSET,
+ 	HPD2_REGISTER_OFFSET,
+@@ -1345,9 +1343,9 @@ static void dce_v8_0_audio_write_sad_regs(struct drm_encoder *encoder)
+ 				if (sad->channels > max_channels) {
+ 					value = (sad->channels <<
+ 						 AZALIA_F0_CODEC_PIN_CONTROL_AUDIO_DESCRIPTOR0__MAX_CHANNELS__SHIFT) |
+-					        (sad->byte2 <<
++						(sad->byte2 <<
+ 						 AZALIA_F0_CODEC_PIN_CONTROL_AUDIO_DESCRIPTOR0__DESCRIPTOR_BYTE_2__SHIFT) |
+-					        (sad->freq <<
++						(sad->freq <<
+ 						 AZALIA_F0_CODEC_PIN_CONTROL_AUDIO_DESCRIPTOR0__SUPPORTED_FREQUENCIES__SHIFT);
+ 					max_channels = sad->channels;
+ 				}
+@@ -1379,8 +1377,7 @@ static void dce_v8_0_audio_enable(struct amdgpu_device *adev,
+ 		enable ? AZALIA_F0_CODEC_PIN_CONTROL_HOT_PLUG_CONTROL__AUDIO_ENABLED_MASK : 0);
+ }
+ 
+-static const u32 pin_offsets[7] =
+-{
++static const u32 pin_offsets[7] = {
+ 	(0x1780 - 0x1780),
+ 	(0x1786 - 0x1780),
+ 	(0x178c - 0x1780),
+@@ -1740,8 +1737,7 @@ static void dce_v8_0_afmt_fini(struct amdgpu_device *adev)
+ 	}
+ }
+ 
+-static const u32 vga_control_regs[6] =
+-{
++static const u32 vga_control_regs[6] = {
+ 	mmD1VGA_CONTROL,
+ 	mmD2VGA_CONTROL,
+ 	mmD3VGA_CONTROL,
+@@ -1895,9 +1891,9 @@ static int dce_v8_0_crtc_do_set_base(struct drm_crtc *crtc,
+ 	case DRM_FORMAT_XBGR8888:
+ 	case DRM_FORMAT_ABGR8888:
+ 		fb_format = ((GRPH_DEPTH_32BPP << GRPH_CONTROL__GRPH_DEPTH__SHIFT) |
+-		             (GRPH_FORMAT_ARGB8888 << GRPH_CONTROL__GRPH_FORMAT__SHIFT));
++				(GRPH_FORMAT_ARGB8888 << GRPH_CONTROL__GRPH_FORMAT__SHIFT));
+ 		fb_swap = ((GRPH_RED_SEL_B << GRPH_SWAP_CNTL__GRPH_RED_CROSSBAR__SHIFT) |
+-		           (GRPH_BLUE_SEL_R << GRPH_SWAP_CNTL__GRPH_BLUE_CROSSBAR__SHIFT));
++			(GRPH_BLUE_SEL_R << GRPH_SWAP_CNTL__GRPH_BLUE_CROSSBAR__SHIFT));
+ #ifdef __BIG_ENDIAN
+ 		fb_swap |= (GRPH_ENDIAN_8IN32 << GRPH_SWAP_CNTL__GRPH_ENDIAN_SWAP__SHIFT);
+ #endif
+@@ -3151,7 +3147,7 @@ static int dce_v8_0_pageflip_irq(struct amdgpu_device *adev,
+ 
+ 	spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+ 	works = amdgpu_crtc->pflip_works;
+-	if (amdgpu_crtc->pflip_status != AMDGPU_FLIP_SUBMITTED){
++	if (amdgpu_crtc->pflip_status != AMDGPU_FLIP_SUBMITTED) {
+ 		DRM_DEBUG_DRIVER("amdgpu_crtc->pflip_status = %d != "
+ 						"AMDGPU_FLIP_SUBMITTED(%d)\n",
+ 						amdgpu_crtc->pflip_status,
+@@ -3544,8 +3540,7 @@ static void dce_v8_0_set_irq_funcs(struct amdgpu_device *adev)
+ 	adev->hpd_irq.funcs = &dce_v8_0_hpd_irq_funcs;
+ }
+ 
+-const struct amdgpu_ip_block_version dce_v8_0_ip_block =
+-{
++const struct amdgpu_ip_block_version dce_v8_0_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_DCE,
+ 	.major = 8,
+ 	.minor = 0,
+@@ -3553,8 +3548,7 @@ const struct amdgpu_ip_block_version dce_v8_0_ip_block =
+ 	.funcs = &dce_v8_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version dce_v8_1_ip_block =
+-{
++const struct amdgpu_ip_block_version dce_v8_1_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_DCE,
+ 	.major = 8,
+ 	.minor = 1,
+@@ -3562,8 +3556,7 @@ const struct amdgpu_ip_block_version dce_v8_1_ip_block =
+ 	.funcs = &dce_v8_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version dce_v8_2_ip_block =
+-{
++const struct amdgpu_ip_block_version dce_v8_2_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_DCE,
+ 	.major = 8,
+ 	.minor = 2,
+@@ -3571,8 +3564,7 @@ const struct amdgpu_ip_block_version dce_v8_2_ip_block =
+ 	.funcs = &dce_v8_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version dce_v8_3_ip_block =
+-{
++const struct amdgpu_ip_block_version dce_v8_3_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_DCE,
+ 	.major = 8,
+ 	.minor = 3,
+@@ -3580,8 +3572,7 @@ const struct amdgpu_ip_block_version dce_v8_3_ip_block =
+ 	.funcs = &dce_v8_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version dce_v8_5_ip_block =
+-{
++const struct amdgpu_ip_block_version dce_v8_5_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_DCE,
+ 	.major = 8,
+ 	.minor = 5,
+-- 
+2.17.1
 
