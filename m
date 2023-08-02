@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7C976C68A
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4650876C67C
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB90010E4F1;
-	Wed,  2 Aug 2023 07:20:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A607D10E4F0;
+	Wed,  2 Aug 2023 07:20:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-173.mail.aliyun.com (out28-173.mail.aliyun.com
- [115.124.28.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CF710E498;
- Wed,  2 Aug 2023 06:20:35 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.3399406|-1; CH=green; DM=|CONTINUE|false|;
- DS=CONTINUE|ham_alarm|0.0739442-0.00121786-0.924838; FP=0|0|0|0|0|-1|-1|-1;
- HT=ay29a033018047206; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
- TI=SMTPD_---.U6Y2FoY_1690957226; 
+Received: from out28-73.mail.aliyun.com (out28-73.mail.aliyun.com
+ [115.124.28.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A24910E49B;
+ Wed,  2 Aug 2023 06:26:11 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.6958764|0.7372184; CH=green;
+ DM=|SPAM|false|; DS=CONTINUE|ham_alarm|0.067393-0.00265674-0.92995;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047211; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6XebAJ_1690957561; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6Y2FoY_1690957226) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 14:20:29 +0800
+ fp:SMTPD_---.U6XebAJ_1690957561) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 14:26:02 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/display: Clean up errors in display_mode_vba_30.c
-Date: Wed,  2 Aug 2023 06:20:25 +0000
-Message-Id: <20230802062025.11332-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amd/display: Clean up errors in dce_clk_mgr.c
+Date: Wed,  2 Aug 2023 06:25:59 +0000
+Message-Id: <20230802062559.11421-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,37 +45,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: else should follow close brace '}'
+ERROR: spaces required around that '?' (ctx:VxE)
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c  | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-index 9af1a43c042b..ad741a723c0e 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-@@ -784,8 +784,7 @@ static unsigned int dscComputeDelay(enum output_format_class pixelFormat, enum o
- 		Delay = Delay + 1;
- 		//   sft
- 		Delay = Delay + 1;
--	}
--	else {
-+	} else {
- 		//   sfr
- 		Delay = Delay + 2;
- 		//   dsccif
-@@ -3489,8 +3488,7 @@ static double TruncToValidBPP(
- 		if (Format == dm_n422) {
- 			MinDSCBPP = 7;
- 			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
--		}
--		else {
-+		} else {
- 			MinDSCBPP = 8;
- 			MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c
+index 07359eb89efc..e7acd6eec1fd 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c
+@@ -640,7 +640,7 @@ static void dce11_pplib_apply_display_requirements(
+ 	 * on power saving.
+ 	 *
+ 	 */
+-	pp_display_cfg->min_dcfclock_khz = (context->stream_count > 4)?
++	pp_display_cfg->min_dcfclock_khz = (context->stream_count > 4) ?
+ 			pp_display_cfg->min_engine_clock_khz : 0;
+ 
+ 	pp_display_cfg->min_engine_clock_deep_sleep_khz
 -- 
 2.17.1
 
