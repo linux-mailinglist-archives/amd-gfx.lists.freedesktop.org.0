@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBA076C688
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE49E76C68E
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E4E410E4FE;
-	Wed,  2 Aug 2023 07:20:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F4610E4F2;
+	Wed,  2 Aug 2023 07:20:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-121.mail.aliyun.com (out28-121.mail.aliyun.com
- [115.124.28.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D669410E4BD;
- Wed,  2 Aug 2023 07:03:58 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.08088165|-1; CH=green;
- DM=|CONTINUE|false|; DS=CONTINUE|ham_regular_dialog|0.365273-0.011224-0.623503;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047213; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6Zm35v_1690959829; 
+Received: from out28-52.mail.aliyun.com (out28-52.mail.aliyun.com
+ [115.124.28.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D27410E4C5;
+ Wed,  2 Aug 2023 07:06:43 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.4053487|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_alarm|0.00345508-0.000378098-0.996167; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047207; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
+ TI=SMTPD_---.U6aqPgd_1690959995; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6Zm35v_1690959829) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 15:03:51 +0800
+ fp:SMTPD_---.U6aqPgd_1690959995) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 15:06:36 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: Clean up errors in dce_v10_0.c
-Date: Wed,  2 Aug 2023 07:03:48 +0000
-Message-Id: <20230802070348.12538-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in mxgpu_nv.c
+Date: Wed,  2 Aug 2023 07:06:32 +0000
+Message-Id: <20230802070632.12626-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,112 +45,33 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
+ERROR: else should follow close brace '}'
 ERROR: that open brace { should be on the previous line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c | 30 +++++++++-----------------
- 1 file changed, 10 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index 9a24ed463abd..584cd5277f92 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -52,8 +52,7 @@
- static void dce_v10_0_set_display_funcs(struct amdgpu_device *adev);
- static void dce_v10_0_set_irq_funcs(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
+index cae1aaa4ddb6..6a68ee946f1c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
+@@ -183,12 +183,10 @@ static int xgpu_nv_send_access_requests(struct amdgpu_device *adev,
+ 			if (req != IDH_REQ_GPU_INIT_DATA) {
+ 				pr_err("Doesn't get msg:%d from pf, error=%d\n", event, r);
+ 				return r;
+-			}
+-			else /* host doesn't support REQ_GPU_INIT_DATA handshake */
++			} else /* host doesn't support REQ_GPU_INIT_DATA handshake */
+ 				adev->virt.req_init_data_ver = 0;
+ 		} else {
+-			if (req == IDH_REQ_GPU_INIT_DATA)
+-			{
++			if (req == IDH_REQ_GPU_INIT_DATA) {
+ 				adev->virt.req_init_data_ver =
+ 					RREG32_NO_KIQ(mmMAILBOX_MSGBUF_RCV_DW1);
  
--static const u32 crtc_offsets[] =
--{
-+static const u32 crtc_offsets[] = {
- 	CRTC0_REGISTER_OFFSET,
- 	CRTC1_REGISTER_OFFSET,
- 	CRTC2_REGISTER_OFFSET,
-@@ -63,8 +62,7 @@ static const u32 crtc_offsets[] =
- 	CRTC6_REGISTER_OFFSET
- };
- 
--static const u32 hpd_offsets[] =
--{
-+static const u32 hpd_offsets[] = {
- 	HPD0_REGISTER_OFFSET,
- 	HPD1_REGISTER_OFFSET,
- 	HPD2_REGISTER_OFFSET,
-@@ -121,30 +119,26 @@ static const struct {
- 	.hpd = DISP_INTERRUPT_STATUS_CONTINUE5__DC_HPD6_INTERRUPT_MASK
- } };
- 
--static const u32 golden_settings_tonga_a11[] =
--{
-+static const u32 golden_settings_tonga_a11[] = {
- 	mmDCI_CLK_CNTL, 0x00000080, 0x00000000,
- 	mmFBC_DEBUG_COMP, 0x000000f0, 0x00000070,
- 	mmFBC_MISC, 0x1f311fff, 0x12300000,
- 	mmHDMI_CONTROL, 0x31000111, 0x00000011,
- };
- 
--static const u32 tonga_mgcg_cgcg_init[] =
--{
-+static const u32 tonga_mgcg_cgcg_init[] = {
- 	mmXDMA_CLOCK_GATING_CNTL, 0xffffffff, 0x00000100,
- 	mmXDMA_MEM_POWER_CNTL, 0x00000101, 0x00000000,
- };
- 
--static const u32 golden_settings_fiji_a10[] =
--{
-+static const u32 golden_settings_fiji_a10[] = {
- 	mmDCI_CLK_CNTL, 0x00000080, 0x00000000,
- 	mmFBC_DEBUG_COMP, 0x000000f0, 0x00000070,
- 	mmFBC_MISC, 0x1f311fff, 0x12300000,
- 	mmHDMI_CONTROL, 0x31000111, 0x00000011,
- };
- 
--static const u32 fiji_mgcg_cgcg_init[] =
--{
-+static const u32 fiji_mgcg_cgcg_init[] = {
- 	mmXDMA_CLOCK_GATING_CNTL, 0xffffffff, 0x00000100,
- 	mmXDMA_MEM_POWER_CNTL, 0x00000101, 0x00000000,
- };
-@@ -1425,8 +1419,7 @@ static void dce_v10_0_audio_enable(struct amdgpu_device *adev,
- 			   enable ? AZALIA_F0_CODEC_PIN_CONTROL_HOT_PLUG_CONTROL__AUDIO_ENABLED_MASK : 0);
- }
- 
--static const u32 pin_offsets[] =
--{
-+static const u32 pin_offsets[] = {
- 	AUD0_REGISTER_OFFSET,
- 	AUD1_REGISTER_OFFSET,
- 	AUD2_REGISTER_OFFSET,
-@@ -1811,8 +1804,7 @@ static void dce_v10_0_afmt_fini(struct amdgpu_device *adev)
- 	}
- }
- 
--static const u32 vga_control_regs[6] =
--{
-+static const u32 vga_control_regs[6] = {
- 	mmD1VGA_CONTROL,
- 	mmD2VGA_CONTROL,
- 	mmD3VGA_CONTROL,
-@@ -3651,8 +3643,7 @@ static void dce_v10_0_set_irq_funcs(struct amdgpu_device *adev)
- 	adev->hpd_irq.funcs = &dce_v10_0_hpd_irq_funcs;
- }
- 
--const struct amdgpu_ip_block_version dce_v10_0_ip_block =
--{
-+const struct amdgpu_ip_block_version dce_v10_0_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_DCE,
- 	.major = 10,
- 	.minor = 0,
-@@ -3660,8 +3651,7 @@ const struct amdgpu_ip_block_version dce_v10_0_ip_block =
- 	.funcs = &dce_v10_0_ip_funcs,
- };
- 
--const struct amdgpu_ip_block_version dce_v10_1_ip_block =
--{
-+const struct amdgpu_ip_block_version dce_v10_1_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_DCE,
- 	.major = 10,
- 	.minor = 1,
 -- 
 2.17.1
 
