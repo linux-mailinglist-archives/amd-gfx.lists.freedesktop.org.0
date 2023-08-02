@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8D776C67F
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE8776C67D
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3453010E4F8;
-	Wed,  2 Aug 2023 07:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B9910E4F5;
+	Wed,  2 Aug 2023 07:20:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-102.mail.aliyun.com (out28-102.mail.aliyun.com
- [115.124.28.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02FC10E47F;
- Wed,  2 Aug 2023 01:59:52 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.1085532|-1; CH=blue; DM=|OVERLOAD|false|;
- DS=CONTINUE|ham_system_inform|0.0392941-0.000118786-0.960587;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047199; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6KNjwR_1690941582; 
+Received: from out28-135.mail.aliyun.com (out28-135.mail.aliyun.com
+ [115.124.28.135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7948210E480;
+ Wed,  2 Aug 2023 02:03:22 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.4950177|-1; CH=blue; DM=|OVERLOAD|false|;
+ DS=CONTINUE|ham_alarm|0.0492171-0.00117622-0.949607; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047202; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
+ TI=SMTPD_---.U6KTuiI_1690941793; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6KNjwR_1690941582) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 09:59:44 +0800
+ fp:SMTPD_---.U6KTuiI_1690941793) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 10:03:15 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: Clean up errors in smu75.h
-Date: Wed,  2 Aug 2023 01:59:41 +0000
-Message-Id: <20230802015941.9124-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amd/pm: Clean up errors in smu8_smumgr.h
+Date: Wed,  2 Aug 2023 02:03:12 +0000
+Message-Id: <20230802020312.9233-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,51 +45,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: space prohibited before open square bracket '['
-ERROR: "foo * bar" should be "foo *bar"
+ERROR: Use C99 flexible arrays
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/inc/smu75.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/smu75.h b/drivers/gpu/drm/amd/pm/powerplay/inc/smu75.h
-index 771523001533..7d5ed7751976 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/inc/smu75.h
-+++ b/drivers/gpu/drm/amd/pm/powerplay/inc/smu75.h
-@@ -224,8 +224,8 @@ struct SMU7_LocalDpmScoreboard {
- 	uint8_t  DteClampMode;
- 	uint8_t  FpsClampMode;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+index c7b61222d258..475ffcf743d2 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+@@ -73,7 +73,7 @@ struct smu8_register_index_data_pair {
  
--	uint16_t LevelResidencyCounters [SMU75_MAX_LEVELS_GRAPHICS];
--	uint16_t LevelSwitchCounters [SMU75_MAX_LEVELS_GRAPHICS];
-+	uint16_t LevelResidencyCounters[SMU75_MAX_LEVELS_GRAPHICS];
-+	uint16_t LevelSwitchCounters[SMU75_MAX_LEVELS_GRAPHICS];
- 
- 	void     (*TargetStateCalculator)(uint8_t);
- 	void     (*SavedTargetStateCalculator)(uint8_t);
-@@ -316,7 +316,7 @@ struct SMU7_VoltageScoreboard {
- 
- 	VoltageChangeHandler_t functionLinks[6];
- 
--	uint16_t * VddcFollower1;
-+	uint16_t *VddcFollower1;
- 	int16_t  Driver_OD_RequestedVidOffset1;
- 	int16_t  Driver_OD_RequestedVidOffset2;
+ struct smu8_ih_meta_data {
+ 	uint32_t command;
+-	struct smu8_register_index_data_pair register_index_value_pair[1];
++	struct smu8_register_index_data_pair register_index_value_pair[0];
  };
-@@ -677,9 +677,9 @@ typedef struct SCS_CELL_t SCS_CELL_t;
  
- struct VFT_TABLE_t {
- 	VFT_CELL_t    Cell[TEMP_RANGE_MAXSTEPS][NUM_VFT_COLUMNS];
--	uint16_t      AvfsGbv [NUM_VFT_COLUMNS];
--	uint16_t      BtcGbv  [NUM_VFT_COLUMNS];
--	int16_t       Temperature [TEMP_RANGE_MAXSTEPS];
-+	uint16_t      AvfsGbv[NUM_VFT_COLUMNS];
-+	uint16_t      BtcGbv[NUM_VFT_COLUMNS];
-+	int16_t       Temperature[TEMP_RANGE_MAXSTEPS];
- 
- #ifdef SMU__FIRMWARE_SCKS_PRESENT__1
- 	SCS_CELL_t    ScksCell[TEMP_RANGE_MAXSTEPS][NUM_VFT_COLUMNS];
+ struct smu8_smumgr {
 -- 
 2.17.1
 
