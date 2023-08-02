@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3953776C5C6
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 08:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2488176C5C8
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 08:53:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAE1710E4B5;
-	Wed,  2 Aug 2023 06:53:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB0510E4B6;
+	Wed,  2 Aug 2023 06:53:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEAB10E4B5
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 06:53:17 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2073.outbound.protection.outlook.com [40.107.243.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91A6210E4B6
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 06:53:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BSK0EwXvQmrz9cc4uWtdDpEBnEdohwgcZ9u1q0hsSoM0EHJAyTOXeLurYjltrfuqVPfcgIRVGJmFYMJ7VCQDUUJTtc1zqwukPU/L25lAam9wCapUt6d88YdTTyzUkYaw142wgmm/bHPXfZzbMXg1d95YvUrM1JYFbA3VmTwGEws3/5+0SV7ekk5MTvI5pVrPA+P3PDXwY+NryBLoM5UyOEP0EM1nCc78DgmicoqI5JHheFunWIk/8R2+t4W61EE3Bk2k7A0Y2lAn51ihOX5m1P6Ia6XK1bZcXEy0F7IXOI2zZ7Li1erLdE/z0c4HZx+5SxvO83i7/zLZOBI1V5j+Kw==
+ b=CehsGeesY6CRSZVADQUt8rPke7h4itmnbzA+nnyPL7Fv9bS7lJISeVaS+kLWyIROEgBYE2nd/S8an3mG8EoVdh496vaswrxmtWR5a2KuO3mk5e8pEXocgkp6UT5r59pU5MTqtZHq0HW7ro38h1N6YdnL+EO3mS9vk7gbUlE/Ijv10Oh2279i6l7QGwUtclUwG46RPRiIavQWXUmWfF8xAcVS7Glg4WYgGPpFxHTjym23L30YuV2JdbpKlxp6j43D2J1fQFzHH1uKJ4llASYzE/9eX/gTcVg4/LG5c4J5t6AkMMOcCPcLdKT3iGzue2vJHAw+MIfwHpDa9mwo817+Qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1IgCEdETZbtql+YdtF+qUyw6ygr/kdnDKpc6ib9u5Iw=;
- b=Xdk/40jptAJ39qll7zd5EGeWsGBttKm/Bztp726tvLwwua95g+6xWZtL+TH+/nexBdPYeQaitjdVGC/EwZMfyKEcRN1B8HkP2HY9lf+eZzLwxNCFdI7AVhG0HUDtJXiUXXYTOC2v/P/AWdTqnjR7cCKCNCudbK9j5HzFB483ZxXXWUHGlc6jEykXPZDlBXXjFcavTwnrT+JhTsFhIp8AE/8I6RbC3tD9guIW1Xw84BzLdpmSc5E9MBDzqf5rouSjTnwrZB/Vc3dw6DwvvySaZh8RMeIqlv7ItAgAK0o91xkLWN36Xvwn81hJqyUfeoXtVLzppbHPOx0RcGfyyR0Mhg==
+ bh=4JUbU6Lo0HedRsteOOW5yPGGtHU2KYC5GC8ySHFYrf0=;
+ b=k/53ZnFUZhPl3Q510WSL0ics62WEjuqRtqptgLaGQ7MPfnQwQRIZchMFF5qgn59FfBgDaXMQoE8g1HD5vW+7FZEwbPYxxD4IrwuA5xH0HBaEwmtetW/Qojjnt6+Zk19oZeUclNXIh2WLsHHGG0slZc0SlShflfZRM/71F7lmIu7M+DgGYELRSAlyPa65GFJ3MDpZihWry7C3I0yiei8gg2K6xsJ6+93TNERTUwiLOyjQR5xr8b0O7yNnN9jRw/AXMCWPoHp2moubDX9GAWIx95vjytEPSdX2Vcdq4rMkaUs9vpcOW79o+avCzgcPfC4qGzogjstr4jEpnAF84NBEiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1IgCEdETZbtql+YdtF+qUyw6ygr/kdnDKpc6ib9u5Iw=;
- b=GRV/lZBUxJrxr9/oi1MJkkLroNMlj3hlvQv0qiYiFi07rID7nEJ5b4g77WxDd3YSs/REX7Mv14LBRXkQUZ8QHMGkHVKpVpQtR4FoN0FYXvdm6VGerx+jkh1yLDIkCSOCu8zY/pnhR4X2DZWH8Pa/H1P4Rxe1rHL4tQtjMdAOMCQ=
-Received: from CY8PR12CA0051.namprd12.prod.outlook.com (2603:10b6:930:4c::29)
- by MN2PR12MB4285.namprd12.prod.outlook.com (2603:10b6:208:1d7::12)
+ bh=4JUbU6Lo0HedRsteOOW5yPGGtHU2KYC5GC8ySHFYrf0=;
+ b=cUo3DSUuQ7ZYSN4koQHY67hFKwTpVr/LMbPmSZGUDE0yzATh2oB/eQieidNoOygvaoasEnaSfsThCcNxpo3CSit+rcAmXco/JeUgC/AneEzqFcs9KQtNJbYK1NcR/6E6hxCyCrKIJoAEtH64NCwYCFMZ6wBi5IpeS3H+tzd0+1A=
+Received: from SJ0PR05CA0013.namprd05.prod.outlook.com (2603:10b6:a03:33b::18)
+ by CY5PR12MB6645.namprd12.prod.outlook.com (2603:10b6:930:42::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
- 2023 06:53:14 +0000
-Received: from CY4PEPF0000EE38.namprd03.prod.outlook.com
- (2603:10b6:930:4c:cafe::e9) by CY8PR12CA0051.outlook.office365.com
- (2603:10b6:930:4c::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44 via Frontend
- Transport; Wed, 2 Aug 2023 06:53:13 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.43; Wed, 2 Aug
+ 2023 06:53:26 +0000
+Received: from MWH0EPF000989E5.namprd02.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::e5) by SJ0PR05CA0013.outlook.office365.com
+ (2603:10b6:a03:33b::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.16 via Frontend
+ Transport; Wed, 2 Aug 2023 06:53:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EE38.mail.protection.outlook.com (10.167.242.12) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000989E5.mail.protection.outlook.com (10.167.241.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6652.19 via Frontend Transport; Wed, 2 Aug 2023 06:53:13 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6652.19 via Frontend Transport; Wed, 2 Aug 2023 06:53:25 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 2 Aug
- 2023 01:53:12 -0500
+ 2023 01:53:21 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 2 Aug
- 2023 01:53:12 -0500
+ 2023 01:53:16 -0500
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 2 Aug 2023 01:52:54 -0500
+ Transport; Wed, 2 Aug 2023 01:53:12 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 14/22] drm/amd/display: Blocking invalid 420 modes on HDMI
- TMDS for DCN31
-Date: Wed, 2 Aug 2023 14:51:24 +0800
-Message-ID: <20230802065132.3129932-15-chiahsuan.chung@amd.com>
+Subject: [PATCH 15/22] drm/amd/display: Blocking invalid 420 modes on HDMI
+ TMDS for DCN314
+Date: Wed, 2 Aug 2023 14:51:25 +0800
+Message-ID: <20230802065132.3129932-16-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230802065132.3129932-1-chiahsuan.chung@amd.com>
 References: <20230802065132.3129932-1-chiahsuan.chung@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE38:EE_|MN2PR12MB4285:EE_
-X-MS-Office365-Filtering-Correlation-Id: 65c87121-5b0d-4f28-7750-08db93252462
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989E5:EE_|CY5PR12MB6645:EE_
+X-MS-Office365-Filtering-Correlation-Id: f61105c2-53eb-4180-bade-08db93252ba3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fgRYTJUDBqqxr1mGuSGBxTieXCQ6/pygufSO5KTg6Mm13vgf6XXjqLNZwT+LJUq7ItauG7+gqzOOXE62OYOpb84QdqwN5Yr/pk8DRnxFMnN5UObW2gaggobA8JFnacPe8LjeORgvM0zLsiOXQ3mE5hwBuklUBmfFvuS5EOQDcdqg8vHZ73z+Uq7g4A+CD6JuQt+BLKo90QdejV+AhlrfKJ+rEAayO74QYe4G1aTTyjyE3IyN9juwzaO45uIj9+JKjyTcRtCtEuBFE7dBrGEVIpWYFeLOmqS0Dw01OqGIfdoELo2spL19wKAiLXiJb2swsDVLz7n0N4LPaApEjv/eZt6iTJNmJ/2JX2jzy8xxN9+qdzzfDB6ZvmA5ZSJOtRryXbSTmTJShHIkhjOrjcnVx3dzQlExc10+aMPbCOdgQXdR+KDGJOH+e48YTq4l6SaHtP/vQZGrNxJk8T6m01N1VYxrYHmLe+CzlJ46pNrUkW55DWn9gflzvOVF0blpoVLbd428D/0qIhGTF9ajqEDVp3BZLquljm9aftea3i8Z8tmkc0aC1W/0oYw0h8NKHz7iWrLyc5lLKcIoUqqCZCJ5IY40zZLo4SwxlIyZ/Tdj/x4bdDvop5bGQIrnvkYRv0XgVwBtkIoosFfCvnTaV189iHqio5iyFPr+MzM6asIf225p9iqYeKdppLA9iTZM4DY4KAGUYZsHB4RwTRZo+hdFUl7DC7k/oN3McJQtJ5oHFpxuy8otJ5IjqaaIzmt08+LjjWW+k1NtxoxdJUquLLIFnaFCYHsOU0izel08TBZ857k=
+X-Microsoft-Antispam-Message-Info: ueedtIqjJmFW1y87OyeTSK3MAz5pt+XsIId2L2Uq1wjfPn4SE/ChHLM8tiTh08q3UWRGKBtirFrjjxpX+ekI0H5GZdP1+Rz2ONGuBEEgZ8qcXAjNlI97JacDfz/ScgF8wfDBWiI4X7QbxcKpma80VFpga2ArrMwA1xVPDr6RL/OEcDrdYrdeyoNY6s3KE2Luj5ByqloB7dXrVx2LcuveSek28RO30R64Opk/N9w97xHlqWYAuqcTxEjhT5VFgJfINfrx4COdkbLkPabEyUnKDdPKE8oeyZMYvPxSdM0pgW6lfFlffW0jhvB+ukhO6qKVWLguQRCgzBIbW1NDpzXfoUG8mY2uQhGTfGaUe+IEZa323+UgKamGffqyZg3SBnKNfRmYe4OS8RPePNL4bZUiZgBHv871goFPMdve7FiGVP2/VSZHddFZKXlsPkJNZzw9zMndrAbqcSq/EwwWcSzpgq/rUZb3Y4GWOTVpJLpcMnUyEGLycf9XGOGRbNbcX9KFI9H+DPXaapLHQfQ8Y1Ei7Ku5ruPmWf/hG/TNsnhGSaQnpkq2y6fLec5WBd3Td/2nBvT9PWw1MDisROE9Rciz7wcO2NSlPJBIvZpVs6Fr1yT1PyX5Tpks4mW7FkhPknE79+JUYDgqpD20EHI8od72fSzxh7oOaUOrd9ngFdg32OO3JoPCZfwBpOh4XJiN/LTAcgO7pyrxFAGoHkC8lwHu7JSTTvb/oWT6uPQbosJgGdvBIGSvJyv0U86bflOoTqbGsRwlREEPASYImAG7kRm95NHs1761FFgbV0I45OL5Tbo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(376002)(136003)(396003)(346002)(451199021)(82310400008)(46966006)(36840700001)(40470700004)(40480700001)(336012)(186003)(40460700003)(2616005)(36756003)(316002)(86362001)(478600001)(81166007)(54906003)(70586007)(70206006)(6666004)(7696005)(4326008)(6916009)(82740400003)(356005)(26005)(1076003)(41300700001)(8936002)(8676002)(426003)(47076005)(83380400001)(36860700001)(5660300002)(2906002)(36900700001)(44824005);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(39860400002)(136003)(376002)(346002)(451199021)(82310400008)(46966006)(36840700001)(40470700004)(2906002)(6916009)(70586007)(4326008)(5660300002)(70206006)(54906003)(41300700001)(316002)(2616005)(7696005)(8936002)(6666004)(1076003)(8676002)(26005)(186003)(336012)(426003)(36860700001)(47076005)(83380400001)(81166007)(356005)(82740400003)(36756003)(478600001)(40460700003)(40480700001)(86362001)(36900700001)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 06:53:13.5313 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65c87121-5b0d-4f28-7750-08db93252462
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 06:53:25.6561 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f61105c2-53eb-4180-bade-08db93252ba3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE38.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989E5.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4285
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6645
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,28 +117,28 @@ From: Leo Chen <sancchen@amd.com>
 
 [Why & How]
 HDMI TMDS does not have ODM support. Filtering 420 modes that
-exceed the 4096 FMT limitation on DCN31 will resolve
+exceed the 4096 FMT limitation on DCN314 will resolve
 intermittent corruptions issues.
 
 Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
 Signed-off-by: Leo Chen <sancchen@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c    | 4 +++-
+ .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c  | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-index eba51144fee7..adea459e7d36 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-@@ -4135,7 +4135,9 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+index 32251af76935..a94aa0f21a7f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+@@ -4227,7 +4227,9 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
  				}
- 				if (v->OutputFormat[k] == dm_420 && v->HActive[k] > DCN31_MAX_FMT_420_BUFFER_WIDTH
+ 				if (v->OutputFormat[k] == dm_420 && v->HActive[k] > DCN314_MAX_FMT_420_BUFFER_WIDTH
  						&& v->ODMCombineEnablePerState[i][k] != dm_odm_combine_mode_4to1) {
--					if (v->HActive[k] / 2 > DCN31_MAX_FMT_420_BUFFER_WIDTH) {
+-					if (v->HActive[k] / 2 > DCN314_MAX_FMT_420_BUFFER_WIDTH) {
 +					if (v->Output[k] == dm_hdmi) {
 +						FMTBufferExceeded = true;
-+					} else if (v->HActive[k] / 2 > DCN31_MAX_FMT_420_BUFFER_WIDTH) {
++					} else if (v->HActive[k] / 2 > DCN314_MAX_FMT_420_BUFFER_WIDTH) {
  						v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_4to1;
  						v->PlaneRequiredDISPCLK = v->PlaneRequiredDISPCLKWithODMCombine4To1;
  
