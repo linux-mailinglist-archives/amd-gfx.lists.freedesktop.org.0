@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CD676E14F
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Aug 2023 09:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA7376E13F
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Aug 2023 09:25:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB9310E5B7;
-	Thu,  3 Aug 2023 07:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B06EB10E5A6;
+	Thu,  3 Aug 2023 07:25:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-49.mail.aliyun.com (out28-49.mail.aliyun.com
- [115.124.28.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6B6F10E512;
- Wed,  2 Aug 2023 07:37:25 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.6682332|0.5811412; CH=green;
- DM=|SPAM|false|; DS=CONTINUE|ham_alarm|0.05409-0.00146338-0.944447;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047206; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6cMZwp_1690961835; 
+Received: from out28-105.mail.aliyun.com (out28-105.mail.aliyun.com
+ [115.124.28.105])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA81110E4DC;
+ Wed,  2 Aug 2023 07:43:24 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.1447226|-1; CH=blue; DM=|OVERLOAD|false|;
+ DS=CONTINUE|ham_system_inform|0.180895-0.00661834-0.812487;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047211; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6d8ofZ_1690962195; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6cMZwp_1690961835) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 15:37:17 +0800
+ fp:SMTPD_---.U6d8ofZ_1690962195) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 15:43:17 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: Clean up errors in uvd_v3_1.c
-Date: Wed,  2 Aug 2023 07:37:15 +0000
-Message-Id: <20230802073715.13598-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in vcn_v4_0.c
+Date: Wed,  2 Aug 2023 07:43:15 +0000
+Message-Id: <20230802074315.13688-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Thu, 03 Aug 2023 07:25:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,27 +45,61 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
+spaces required around that '==' (ctx:VxV)
+ERROR: space required before the open parenthesis '('
 ERROR: that open brace { should be on the previous line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-index 0fef925b6602..5534c769b655 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
-@@ -815,8 +815,7 @@ static const struct amd_ip_funcs uvd_v3_1_ip_funcs = {
- 	.set_powergating_state = uvd_v3_1_set_powergating_state,
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+index 6089c7deba8a..ef5b16061e96 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+@@ -1139,11 +1139,11 @@ static int vcn_v4_0_start(struct amdgpu_device *adev)
+ 				if (status & 2)
+ 					break;
+ 				mdelay(10);
+-				if (amdgpu_emu_mode==1)
++				if (amdgpu_emu_mode == 1)
+ 					msleep(1);
+ 			}
+ 
+-			if (amdgpu_emu_mode==1) {
++			if (amdgpu_emu_mode == 1) {
+ 				r = -1;
+ 				if (status & 2) {
+ 					r = 0;
+@@ -1959,7 +1959,7 @@ static int vcn_v4_0_set_powergating_state(void *handle, enum amd_powergating_sta
+ 		return 0;
+ 	}
+ 
+-	if(state == adev->vcn.cur_state)
++	if (state == adev->vcn.cur_state)
+ 		return 0;
+ 
+ 	if (state == AMD_PG_STATE_GATE)
+@@ -1967,7 +1967,7 @@ static int vcn_v4_0_set_powergating_state(void *handle, enum amd_powergating_sta
+ 	else
+ 		ret = vcn_v4_0_start(adev);
+ 
+-	if(!ret)
++	if (!ret)
+ 		adev->vcn.cur_state = state;
+ 
+ 	return ret;
+@@ -2101,8 +2101,7 @@ static const struct amd_ip_funcs vcn_v4_0_ip_funcs = {
+ 	.set_powergating_state = vcn_v4_0_set_powergating_state,
  };
  
--const struct amdgpu_ip_block_version uvd_v3_1_ip_block =
+-const struct amdgpu_ip_block_version vcn_v4_0_ip_block =
 -{
-+const struct amdgpu_ip_block_version uvd_v3_1_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_UVD,
- 	.major = 3,
- 	.minor = 1,
++const struct amdgpu_ip_block_version vcn_v4_0_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_VCN,
+ 	.major = 4,
+ 	.minor = 0,
 -- 
 2.17.1
 
