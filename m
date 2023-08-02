@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C19176C677
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9DC76C67E
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2170C10E4F6;
-	Wed,  2 Aug 2023 07:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 620E810E4EC;
+	Wed,  2 Aug 2023 07:20:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com
- [115.124.28.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F30210E4A2;
- Wed,  2 Aug 2023 06:40:37 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.2407244|-1; CH=green; DM=|CONTINUE|false|;
- DS=CONTINUE|ham_alarm|0.00221003-7.23864e-05-0.997718; FP=0|0|0|0|0|-1|-1|-1;
- HT=ay29a033018047204; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
- TI=SMTPD_---.U6YguAj_1690958427; 
+Received: from out28-170.mail.aliyun.com (out28-170.mail.aliyun.com
+ [115.124.28.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 081DB10E4A4;
+ Wed,  2 Aug 2023 06:43:46 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.5251083|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_alarm|0.0292899-0.00261234-0.968098; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047211; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
+ TI=SMTPD_---.U6YPSJs_1690958616; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6YguAj_1690958427) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 14:40:29 +0800
+ fp:SMTPD_---.U6YPSJs_1690958616) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 14:43:38 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: Clean up errors in amdgpu_psp.h
-Date: Wed,  2 Aug 2023 06:40:24 +0000
-Message-Id: <20230802064024.11806-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in ih_v6_0.c
+Date: Wed,  2 Aug 2023 06:43:33 +0000
+Message-Id: <20230802064333.11895-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,58 +45,38 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: open brace '{' following struct go on the same line
-ERROR: open brace '{' following enum go on the same line
+ERROR: trailing statements should be on next line
+ERROR: that open brace { should be on the previous line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/ih_v6_0.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index c3203de4a007..feef988bf0c1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -78,8 +78,7 @@ enum psp_bootloader_cmd {
- 	PSP_BL__LOAD_TOS_SPL_TABLE	= 0x10000000,
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+index 980b24120080..ec0c8f8b465a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+@@ -494,7 +494,8 @@ static int ih_v6_0_self_irq(struct amdgpu_device *adev,
+ 		*adev->irq.ih1.wptr_cpu = wptr;
+ 		schedule_work(&adev->irq.ih1_work);
+ 		break;
+-	default: break;
++	default:
++		break;
+ 	}
+ 	return 0;
+ }
+@@ -759,8 +760,7 @@ static void ih_v6_0_set_interrupt_funcs(struct amdgpu_device *adev)
+ 	adev->irq.ih_funcs = &ih_v6_0_funcs;
+ }
  
--enum psp_ring_type
+-const struct amdgpu_ip_block_version ih_v6_0_ip_block =
 -{
-+enum psp_ring_type {
- 	PSP_RING_TYPE__INVALID = 0,
- 	/*
- 	 * These values map to the way the PSP kernel identifies the
-@@ -89,8 +88,7 @@ enum psp_ring_type
- 	PSP_RING_TYPE__KM = 2  /* Kernel mode ring (formerly called GPCOM) */
- };
- 
--struct psp_ring
--{
-+struct psp_ring {
- 	enum psp_ring_type		ring_type;
- 	struct psp_gfx_rb_frame		*ring_mem;
- 	uint64_t			ring_mem_mc_addr;
-@@ -107,8 +105,7 @@ enum psp_reg_prog_id {
- 	PSP_REG_LAST
- };
- 
--struct psp_funcs
--{
-+struct psp_funcs {
- 	int (*init_microcode)(struct psp_context *psp);
- 	int (*bootloader_load_kdb)(struct psp_context *psp);
- 	int (*bootloader_load_spl)(struct psp_context *psp);
-@@ -307,8 +304,7 @@ struct psp_runtime_scpm_entry {
- 	enum psp_runtime_scpm_authentication scpm_status;
- };
- 
--struct psp_context
--{
-+struct psp_context {
- 	struct amdgpu_device		*adev;
- 	struct psp_ring			km_ring;
- 	struct psp_gfx_cmd_resp		*cmd;
++const struct amdgpu_ip_block_version ih_v6_0_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_IH,
+ 	.major = 6,
+ 	.minor = 0,
 -- 
 2.17.1
 
