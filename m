@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9573D76C68D
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D858B76C67B
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C59010E502;
-	Wed,  2 Aug 2023 07:20:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFE3410E4F3;
+	Wed,  2 Aug 2023 07:20:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-172.mail.aliyun.com (out28-172.mail.aliyun.com
- [115.124.28.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9533410E4A5;
- Wed,  2 Aug 2023 06:46:19 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.4706627|-1; CH=green; DM=|CONTINUE|false|;
- DS=CONTINUE|ham_alarm|0.0490271-0.00171531-0.949258; FP=0|0|0|0|0|-1|-1|-1;
- HT=ay29a033018047202; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
- TI=SMTPD_---.U6Z6Jsd_1690958768; 
+Received: from out28-171.mail.aliyun.com (out28-171.mail.aliyun.com
+ [115.124.28.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FB510E4A6;
+ Wed,  2 Aug 2023 06:48:33 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.3444751|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_alarm|0.00639894-4.13957e-05-0.99356; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047193; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
+ TI=SMTPD_---.U6YuGG9_1690958904; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6Z6Jsd_1690958768) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 14:46:09 +0800
+ fp:SMTPD_---.U6YuGG9_1690958904) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 14:48:25 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: Clean up errors in vega20_ih.c
-Date: Wed,  2 Aug 2023 06:46:06 +0000
-Message-Id: <20230802064606.12005-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in mmhub_v9_4.c
+Date: Wed,  2 Aug 2023 06:48:22 +0000
+Message-Id: <20230802064822.12093-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,38 +45,36 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: trailing statements should be on next line
-ERROR: that open brace { should be on the previous line
+ERROR: code indent should use tabs where possible
+ERROR: space required before the open parenthesis '('
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vega20_ih.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-index 544ee55a22da..dbc99536440f 100644
---- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-@@ -500,7 +500,8 @@ static int vega20_ih_self_irq(struct amdgpu_device *adev,
- 	case 2:
- 		schedule_work(&adev->irq.ih2_work);
- 		break;
--	default: break;
-+	default:
-+		break;
- 	}
- 	return 0;
- }
-@@ -710,8 +711,7 @@ static void vega20_ih_set_interrupt_funcs(struct amdgpu_device *adev)
- 	adev->irq.ih_funcs = &vega20_ih_funcs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+index e790f890aec6..5718e4d40e66 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+@@ -108,7 +108,7 @@ static void mmhub_v9_4_setup_vm_pt_regs(struct amdgpu_device *adev, uint32_t vmi
  }
  
--const struct amdgpu_ip_block_version vega20_ih_ip_block =
--{
-+const struct amdgpu_ip_block_version vega20_ih_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_IH,
- 	.major = 4,
- 	.minor = 2,
+ static void mmhub_v9_4_init_system_aperture_regs(struct amdgpu_device *adev,
+-					         int hubid)
++						int hubid)
+ {
+ 	uint64_t value;
+ 	uint32_t tmp;
+@@ -1568,7 +1568,7 @@ static int mmhub_v9_4_get_ras_error_count(struct amdgpu_device *adev,
+ 	uint32_t sec_cnt, ded_cnt;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(mmhub_v9_4_ras_fields); i++) {
+-		if(mmhub_v9_4_ras_fields[i].reg_offset != reg->reg_offset)
++		if (mmhub_v9_4_ras_fields[i].reg_offset != reg->reg_offset)
+ 			continue;
+ 
+ 		sec_cnt = (value &
 -- 
 2.17.1
 
