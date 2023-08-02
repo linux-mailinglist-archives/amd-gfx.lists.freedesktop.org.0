@@ -1,72 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D6376C666
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8655576C687
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2DB210E4D9;
-	Wed,  2 Aug 2023 07:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A707610E4FD;
+	Wed,  2 Aug 2023 07:20:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A607510E07C;
- Wed,  2 Aug 2023 01:06:57 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id
- d9443c01a7336-1b8b2886364so39236635ad.0; 
- Tue, 01 Aug 2023 18:06:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690938417; x=1691543217;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=+PdQZNMSX4BWd7GfGQsgkbSU4z+LmFph5fAsS9Mb/8E=;
- b=LiiY6SIY57LUWIarlaRfiiG5slzPSiWyCTrNC10J1X6bDP306y+pZtT4CiOn9V2+QH
- 5O4LpUeNPytWKhbHYu/aEVdn43Kouub92jKz1O33BAJrvN7jdqzIusQV3wXDKxQeDzdQ
- Q5EdAnfrwHW7fzo7lcGuH0AZelAvIOOVO7MGlFsm1dvIWD/g5tvkk3KpCj76xKclykHe
- tu9Ukv+OeUJLyP7fW4VTh9Vmkh6u4R8m0DYnbjdt8PThMHhosNfl7pOSk+A1FN2Jlf+n
- /SWqkEaxG3mISL+aJWqUXOl7rdOnbmGYvESMtlVtQSXaAUksiod8bW3ZupB+1zXc672G
- RnXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690938417; x=1691543217;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=+PdQZNMSX4BWd7GfGQsgkbSU4z+LmFph5fAsS9Mb/8E=;
- b=f+1ejwe1vIX4OHRZ0uV2NCjKsV2VBBWEti+odGEcD3i3Hr39AvBN+lu1d4Uu9BEmmD
- LMtY2XmnBtiQuW+27eqEazddG/EQOmp9F0BwlgusXAJOUCNkkP+U3g+ssWH1WqCTpfzK
- yCJIvqXkhHi45ViefnIKGOAUAWHHmLA8VHS7VKHvUDC4BQS6196zW/J/8cu5/0b8cy46
- RnvQmNEOP+KGaQthR6JlZ30AOA+MDJUA4EiQAI8UlokpB1P/N5neqewDrg2tbTJ3smC7
- mvlV2t5ZXoh/RCE0LqsNRDu4bUuXi3EBAT+bnwMFPUYbVLWDBzxIoCP3hn74tyOQikys
- QQbA==
-X-Gm-Message-State: ABy/qLYfLfnS1YFxCYB5CbSqM2S9BECK+VEIGgItLSHlsWHiSDGBbdJr
- 29hHbBKZEThdpcMwU38jtWI=
-X-Google-Smtp-Source: APBJJlFPO24E4YncgqAZho5j6BS4ESZz3zlESgIJC4yejRGuMT93LjBIrPlB6A5DdR6DXK6Z7FVJpQ==
-X-Received: by 2002:a17:902:7086:b0:1ae:10bc:4ae8 with SMTP id
- z6-20020a170902708600b001ae10bc4ae8mr12904705plk.26.1690938416930; 
- Tue, 01 Aug 2023 18:06:56 -0700 (PDT)
-Received: from [192.168.0.105] ([103.131.18.64])
- by smtp.gmail.com with ESMTPSA id
- h9-20020a170902748900b001b54a88e4a6sm11017738pll.51.2023.08.01.18.06.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Aug 2023 18:06:56 -0700 (PDT)
-Message-ID: <2f4f53e2-b12b-c77c-e7cb-8c0436a209e5@gmail.com>
-Date: Wed, 2 Aug 2023 08:06:51 +0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] drm/amd/pm: Clean up errors in smu73_discrete.h
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>, Ran Sun
- <sunran001@208suo.com>, alexander.deucher@amd.com, airlied@gmail.com,
- daniel@ffwll.ch
-References: <20230801100024.8215-1-sunran001@208suo.com>
- <ZMjposYeMFxU5nE9@debian.me> <87cz07vvwu.fsf@intel.com>
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <87cz07vvwu.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com
+ [115.124.28.146])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FDB10E14E;
+ Wed,  2 Aug 2023 01:23:12 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.07436496|-1; CH=green;
+ DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_system_inform|0.00356363-8.25022e-05-0.996354;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047201; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6IxzhY_1690939383; 
+Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
+ fp:SMTPD_---.U6IxzhY_1690939383) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 09:23:05 +0800
+From: Ran Sun <sunran001@208suo.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amd/pm: Clean up errors in smu71.h
+Date: Wed,  2 Aug 2023 01:23:02 +0000
+Message-Id: <20230802012302.8498-1-sunran001@208suo.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,34 +39,96 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Ran Sun <sunran001@208suo.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01/08/2023 18:34, Jani Nikula wrote:
-> On Tue, 01 Aug 2023, Bagas Sanjaya <bagasdotme@gmail.com> wrote:
->> And it is unfortunate that you and @208suo.com people doesn't reply to
->> review comments (try searching lore.kernel.org)
-> 
-> Essentially a one-way firehose of patches pointed at our general
-> direction is not benefitial to the community. It's not participation,
-> it's not co-operation. If the review gets ignored, why should we invest
-> our time on *any* of the patches?
-> 
-> 
+Fix the following errors reported by checkpatch:
 
-Well, I guess this is the kind of "hey, some new orgs spam us tens
-of trivial patches, then we review them as usual, but people from
-that org are deaf in regards of our reviews (maybe deliberately?)".
-The exact same situation happened last year with @cdjrlc.com
-people, when they were notoriously known for spell-fixing and
-redundant word fixing patches. Many of these patches were correct,
-but some of them were not, triggering reviews requesting changes.
-Yet, they also ignore the reviews.
+ERROR: open brace '{' following struct go on the same line
+ERROR: space prohibited before open square bracket '['
 
-Thanks.
+Signed-off-by: Ran Sun <sunran001@208suo.com>
+---
+ drivers/gpu/drm/amd/pm/powerplay/inc/smu71.h | 22 +++++++-------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/smu71.h b/drivers/gpu/drm/amd/pm/powerplay/inc/smu71.h
+index 71c9b2d28640..b5f177412769 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/inc/smu71.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/inc/smu71.h
+@@ -118,8 +118,7 @@ typedef struct {
+ 
+ #endif
+ 
+-struct SMU71_PIDController
+-{
++struct SMU71_PIDController {
+     uint32_t Ki;
+     int32_t LFWindupUpperLim;
+     int32_t LFWindupLowerLim;
+@@ -133,8 +132,7 @@ struct SMU71_PIDController
+ 
+ typedef struct SMU71_PIDController SMU71_PIDController;
+ 
+-struct SMU7_LocalDpmScoreboard
+-{
++struct SMU7_LocalDpmScoreboard {
+     uint32_t PercentageBusy;
+ 
+     int32_t  PIDError;
+@@ -179,8 +177,8 @@ struct SMU7_LocalDpmScoreboard
+     uint8_t  DteClampMode;
+     uint8_t  FpsClampMode;
+ 
+-    uint16_t LevelResidencyCounters [SMU71_MAX_LEVELS_GRAPHICS];
+-    uint16_t LevelSwitchCounters [SMU71_MAX_LEVELS_GRAPHICS];
++    uint16_t LevelResidencyCounters[SMU71_MAX_LEVELS_GRAPHICS];
++    uint16_t LevelSwitchCounters[SMU71_MAX_LEVELS_GRAPHICS];
+ 
+     void     (*TargetStateCalculator)(uint8_t);
+     void     (*SavedTargetStateCalculator)(uint8_t);
+@@ -200,8 +198,7 @@ typedef struct SMU7_LocalDpmScoreboard SMU7_LocalDpmScoreboard;
+ 
+ #define SMU7_MAX_VOLTAGE_CLIENTS 12
+ 
+-struct SMU7_VoltageScoreboard
+-{
++struct SMU7_VoltageScoreboard {
+     uint16_t CurrentVoltage;
+     uint16_t HighestVoltage;
+     uint16_t MaxVid;
+@@ -325,8 +322,7 @@ typedef struct SMU7_PowerScoreboard SMU7_PowerScoreboard;
+ 
+ // --------------------------------------------------------------------------------------------------
+ 
+-struct SMU7_ThermalScoreboard
+-{
++struct SMU7_ThermalScoreboard {
+    int16_t  GpuLimit;
+    int16_t  GpuHyst;
+    uint16_t CurrGnbTemp;
+@@ -360,8 +356,7 @@ typedef struct SMU7_ThermalScoreboard SMU7_ThermalScoreboard;
+ #define SMU7_VCE_SCLK_HANDSHAKE_DISABLE                  0x00020000
+ 
+ // All 'soft registers' should be uint32_t.
+-struct SMU71_SoftRegisters
+-{
++struct SMU71_SoftRegisters {
+     uint32_t        RefClockFrequency;
+     uint32_t        PmTimerPeriod;
+     uint32_t        FeatureEnables;
+@@ -413,8 +408,7 @@ struct SMU71_SoftRegisters
+ 
+ typedef struct SMU71_SoftRegisters SMU71_SoftRegisters;
+ 
+-struct SMU71_Firmware_Header
+-{
++struct SMU71_Firmware_Header {
+     uint32_t Digest[5];
+     uint32_t Version;
+     uint32_t HeaderSize;
 -- 
-An old man doll... just what I always wanted! - Clara
+2.17.1
 
