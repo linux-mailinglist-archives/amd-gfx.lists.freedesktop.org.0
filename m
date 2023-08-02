@@ -1,30 +1,29 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE67D76C663
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92AE576C67A
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E7410E4D7;
-	Wed,  2 Aug 2023 07:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E64C10E4DE;
+	Wed,  2 Aug 2023 07:20:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-131.mail.aliyun.com (out28-131.mail.aliyun.com
- [115.124.28.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5940010E49E;
- Wed,  2 Aug 2023 06:35:40 +0000 (UTC)
-X-Alimail-AntiSpam: AC=SUSPECT; BC=0.6725605|-1; BR=01201311R631b1; CH=blue;
- DM=|SUSPECT|false|; DS=CONTINUE|ham_alarm|0.0743208-0.00313566-0.922544;
- FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047193; MF=sunran001@208suo.com; NM=1;
- PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6YI7xD_1690958130; 
+Received: from out28-4.mail.aliyun.com (out28-4.mail.aliyun.com [115.124.28.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0110110E4A0;
+ Wed,  2 Aug 2023 06:37:56 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.5040528|-1; CH=green; DM=|CONTINUE|false|;
+ DS=CONTINUE|ham_system_inform|0.103306-0.00202804-0.894666;
+ FP=0|0|0|0|0|-1|-1|-1; HT=ay29a033018047208; MF=sunran001@208suo.com; NM=1;
+ PH=DS; RN=5; RT=5; SR=0; TI=SMTPD_---.U6YtKML_1690958263; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6YI7xD_1690958130) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 14:35:32 +0800
+ fp:SMTPD_---.U6YtKML_1690958263) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 14:37:45 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: Clean up errors in cik_ih.c
-Date: Wed,  2 Aug 2023 06:35:29 +0000
-Message-Id: <20230802063529.11608-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amdgpu: Clean up errors in vce_v3_0.c
+Date: Wed,  2 Aug 2023 06:37:42 +0000
+Message-Id: <20230802063742.11697-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -49,23 +48,43 @@ ERROR: that open brace { should be on the previous line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/cik_ih.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vce_v3_0.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik_ih.c b/drivers/gpu/drm/amd/amdgpu/cik_ih.c
-index df385ffc9768..6f7c031dd197 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik_ih.c
-@@ -442,8 +442,7 @@ static void cik_ih_set_interrupt_funcs(struct amdgpu_device *adev)
- 	adev->irq.ih_funcs = &cik_ih_funcs;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
+index 8def62c83ffd..18f6e62af339 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
+@@ -998,8 +998,7 @@ static void vce_v3_0_set_irq_funcs(struct amdgpu_device *adev)
+ 	adev->vce.irq.funcs = &vce_v3_0_irq_funcs;
+ };
  
--const struct amdgpu_ip_block_version cik_ih_ip_block =
+-const struct amdgpu_ip_block_version vce_v3_0_ip_block =
 -{
-+const struct amdgpu_ip_block_version cik_ih_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_IH,
- 	.major = 2,
++const struct amdgpu_ip_block_version vce_v3_0_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_VCE,
+ 	.major = 3,
  	.minor = 0,
+@@ -1007,8 +1006,7 @@ const struct amdgpu_ip_block_version vce_v3_0_ip_block =
+ 	.funcs = &vce_v3_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version vce_v3_1_ip_block =
+-{
++const struct amdgpu_ip_block_version vce_v3_1_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_VCE,
+ 	.major = 3,
+ 	.minor = 1,
+@@ -1016,8 +1014,7 @@ const struct amdgpu_ip_block_version vce_v3_1_ip_block =
+ 	.funcs = &vce_v3_0_ip_funcs,
+ };
+ 
+-const struct amdgpu_ip_block_version vce_v3_4_ip_block =
+-{
++const struct amdgpu_ip_block_version vce_v3_4_ip_block = {
+ 	.type = AMD_IP_BLOCK_TYPE_VCE,
+ 	.major = 3,
+ 	.minor = 4,
 -- 
 2.17.1
 
