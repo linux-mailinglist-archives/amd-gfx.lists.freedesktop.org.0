@@ -1,70 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC10D76C5BB
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 08:52:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DD776C5BE
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 08:52:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 381AF10E4AE;
-	Wed,  2 Aug 2023 06:52:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5796010E4B0;
+	Wed,  2 Aug 2023 06:52:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2061.outbound.protection.outlook.com [40.107.101.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5442A10E4AE
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 06:52:40 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2062.outbound.protection.outlook.com [40.107.94.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2863310E4B0
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 06:52:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b7pQWoshfm2Ski+cPoJmyvUggnzm9/sZth65nwfDcbJ1RzPCyTFMQwlnNh/CdFXPqx0LcYSFJA2bLWcTXcSPTI8YxJExArYfA04bzz6UbTJW7s1v9tEaRF/OS0kf1g0nQ0pHIDpC3TIE+VCHJdg6abt7jGmovqXDihEOR1R/jy84iv0mX2ceay+WDzxnsF2+pSyQTBYI/WstXpl6OvBmh7XOj41283AjmxjaOSyxfHp+6les9O+5actnhfksrejTNR6oWORqs0b7chkR3BgO8yAlweNbF+aUjgZxwsYVtqcaRF3A289ijBM1wuvF4oSEA8jUv0iUMifT2/ANlbbgaw==
+ b=KmWwzfl74CeiXDnlqHTM6O1ElvCmCDtoyg9Y+0T4PXI6WzIXyyzm+QYWOtw1w7983FmoxBqDGnCnIxZT/kATGcnJpZSIGl1QeMQB/JxylKqakZhsS8jxzZvg1Yt8o9Dv40G7trIpbK/1xioZKaLJIWEZtOKl++UcGwLIdDu2UhCBAL8wJ6sZD7//6IPfCfmn+6KKksDIWOYgdR1KPPV2TtvOg+CKyiDPhCHL6Egw17quen1owfyzwGywA7tZpiPd4zsUjg2/ITUxEAm+M5jybzAyDRcg/OHyAoCtqAMLLR+acS2gFjAdfvZz8c6ZMATUbujjvTLFHtTITn4y6XkW/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IVNdHHh0VQft3BYSHvacy9e3RmaHSG8PjaNHo6iDVOA=;
- b=ik4yH6kT4X2ZjbNHGACr8YePeqIBUFhVccNTPTImmYHQGU+wTFJzDbuLKEQ8AY9EAQDOujySfTqbvGya3o8lDzqCetvrx+ZwZ57jcbDGsRioBsIUljTJvsvdZ+bcSGg/9Acq9c3rxx1lJNhosGaANzrL0/Ceq89h/pXRA02iARQv0KccQroG0ZRZAPGr9DTjPEiXAHujm0X6fwhxS5KvICXxxufF2R1My2GcN3gth6Va+uBMaL24gISe4LO7M4a++JFKyMVwCdD2R9w+eLyNbwQZma81WDq7rv72fU6N7QwwotEQLqlu9W951WQ3q9+jTTODgArq5lXpuq9uGqZp/A==
+ bh=eyMhuftlqu/rwsUOIo7/lSMqnhJlepuRyVXJ9kPN98w=;
+ b=ZUx4CcIrR/B2pgtOFb9KCc4h5jBCRvBxgDQWKaRQ7qVBzDXDsXjNIvQA5Fc8jDPkLjaLqVRIfO4gw8tMnOaPrK9CsbUQqmY8ls5WQ1qOFj9kq1Pf43PyONF2mWsYr6IdnLzKCTRgFMQDlyqtIhp8IbSjXz3BCQkmjdXYzm1+0J3HNa9YT3sJ81zHNXlzkd1Rqn31nuMtKz2WL4rBxwzBL5wbnRs9Xdzb0ZTT1mCL2MwIdhS7mW0WHVGG6ls1wPv622ZH/c1E84oUAj+Dh8ZhVTBTKPrawzirsNSMSGoOoXc/BbpzjgNdk2FIwG82SsbhcO7eBQZMqh0pxgToOeiFPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IVNdHHh0VQft3BYSHvacy9e3RmaHSG8PjaNHo6iDVOA=;
- b=1OeQlwpLYQ1/+B6foHoNBZTDFA9ZwInyZaticCPD31Pj7tK3Yt/vDs71MLFHuQIM7Gjdn+vYSSv0DrX3IogfPI80cBMOnbhL2pNEY28kIUNJyyd0QjAHnHZyAF1MvZXXLjj+DDZiMIUfxI/wZD/mlNAmtQ0Y5fTa2BUR6KGsdro=
-Received: from DM6PR08CA0030.namprd08.prod.outlook.com (2603:10b6:5:80::43) by
- DS0PR12MB7778.namprd12.prod.outlook.com (2603:10b6:8:151::12) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6631.44; Wed, 2 Aug 2023 06:52:38 +0000
-Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:5:80:cafe::bc) by DM6PR08CA0030.outlook.office365.com
- (2603:10b6:5:80::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.19 via Frontend
- Transport; Wed, 2 Aug 2023 06:52:37 +0000
+ bh=eyMhuftlqu/rwsUOIo7/lSMqnhJlepuRyVXJ9kPN98w=;
+ b=zbWPaPkq02lUH22hR451bMADhjcWHrWYQXtnSsA0XKrjeio/IcRSmGoXYtD94P33hIaod7ECPI/8tliSqXx9E4GLUjoSX+DcT4Vlk45e0eGI6YRzy1cG+T6mRr78asuJEHaMQvZN1nQEEV58KeiIXjXNjvlrOH8bzDct10LISEU=
+Received: from MW4PR03CA0160.namprd03.prod.outlook.com (2603:10b6:303:8d::15)
+ by MW3PR12MB4363.namprd12.prod.outlook.com (2603:10b6:303:56::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
+ 2023 06:52:42 +0000
+Received: from MWH0EPF000989EB.namprd02.prod.outlook.com
+ (2603:10b6:303:8d:cafe::f) by MW4PR03CA0160.outlook.office365.com
+ (2603:10b6:303:8d::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.44 via Frontend
+ Transport; Wed, 2 Aug 2023 06:52:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.17) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000989EB.mail.protection.outlook.com (10.167.241.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6652.19 via Frontend Transport; Wed, 2 Aug 2023 06:52:37 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6652.19 via Frontend Transport; Wed, 2 Aug 2023 06:52:42 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 2 Aug
- 2023 01:52:34 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 01:52:41 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 2 Aug
- 2023 01:52:33 -0500
+ 2023 01:52:37 -0500
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 2 Aug 2023 01:52:30 -0500
+ Transport; Wed, 2 Aug 2023 01:52:34 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/22] drm/amd/display: support plane clip with zero recout
- size
-Date: Wed, 2 Aug 2023 14:51:18 +0800
-Message-ID: <20230802065132.3129932-9-chiahsuan.chung@amd.com>
+Subject: [PATCH 09/22] drm/amd/display: always acquire MPO pipe for every
+ blending tree
+Date: Wed, 2 Aug 2023 14:51:19 +0800
+Message-ID: <20230802065132.3129932-10-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230802065132.3129932-1-chiahsuan.chung@amd.com>
 References: <20230802065132.3129932-1-chiahsuan.chung@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|DS0PR12MB7778:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b63bfd3-0bbe-4b3a-1b8e-08db93250f17
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989EB:EE_|MW3PR12MB4363:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12ae5fe8-420c-481a-2603-08db932511db
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cFHFNxqeDlEEHRCptCGHqhWAc3q2yIWSfY5NjkTJ/L0ST5qySjvkS6RYnmYXtcU7nUZsRTwNLbFXFtB7L4a5lZe0bisxfiktJGFxMrrpyOLsy+FIDwVsm2SYJKKjwFpWMr4lUuBfRge6ylX7UhMC0wVf5Biv7TmYojVxwNYF1gOKyJ+doJuqgjF6d4ufk6ySHRt5/gxBsZmPjroXme4KI2WK+V+OIosTEKGgFztayv982JIusdrGjDxgs4unuROMVGkAMOVrzPZQTTwxWTmLQaryh59NWROMVJFtGl1P6G1KOVesdLnQZ3HBJEi/PYoJQR7Ka5ictSLlElbkGq+Jb56K3GHq2Ofnk4C0JJnI2YCVAu51yCDzHUPoWS8LeHpguoTmPtdWwbcbA0uDS9FRAxbhl/WQYyDd8TaTKLflZ626q2mi9oP2pRsmIrlbwQX+3MK8esZOExI1BVXlYUjHu6k8dKA8RhUdoqHTYJ8/t0M7XkMYr62EJUQNXl0iiMCIdsHIxNW5ror3cnLP9Uli1sMT90+O/eZUowFFt25Sxuo0V5Pl5BFWNUsttaTgMbKypjdkGzd5Xv6YyjzNRa+K9qTvQJ5gI5cWb4QUzesFioJ4uopa7XpeJFMPG8gkUqgRCE+2ffNIRq1OCB3zuwIKAbiKhkCJ1CfoR1/6KuOaFPJXkIAPKGVafztn/mNuyKAAGl1CA4FQc+XJ76qguMdBC3UAG25zhE133EUOSsOrNbw75o5XJ0hP4bvtVO9J6PfAXG3i6ZMd1ruAZV0lZgealA==
+X-Microsoft-Antispam-Message-Info: 2u9BsagpG6Nz49/Pt+BIEtTI+ipqSsgh1prjqdnJDnKeT3OxLXpV1NTeOXCLayRDrIoM4D4DJTA2VJL16jiehF9q44ByHPT93sHeiz/B3AnWdYqu1tae0AIKH7nBTo01dwXMhKlZN5GNVdPGpBxl52obcc/SsnT6Jek9e+bxfbCkbP8WYiqPorf6BJwsAfpgsGfqIknGdCrCP23WubsGIehD417L9b/CIEewoqdKJsoEX/AVBGCp5xKPJtrDUiMfLNCLWXFoMeT0j25kA89ycinnahZ6cJ44EsRp/GT6ez7AybxvmUVAC2iuCn9zNOlWP4ikOp36iOZ0x0e3zip3ArvfdVY1Zn0JgZpMgMzJnM8i2+wN4p6mQ7LrkruCz5O4zl7O1ve9/67rKyAJ+J3xjtyss1rgx1fjs1P3j2Z5EztmFeEPWrERzFw2+jbLMYbFqTWQqY9S+2wb9J4pUWvlTJWBs6NJCfqk3qYRRljzgY8u4Ho1lnLgOWg5EFFZ1Q+9p04NldfOqZKGgMmu4zgXZNJWjGUWZphFBh31sjJBrrFCjThVcXWZwPI4EEqdxc3pn/hHcQAgleZNna9dFlAC7H8PeHN13kX+b9iUEtaNvAyHVCS/tolsC5z3kl2buehVV7LMMlTpVv54f0WfKXLjRMwRUm7tFSEAIMGEyLf61d7XQy5wWVnSqVX+srDN6YcnmftwKuSvjedqDdJzO2oF7rKPIzOgZ/UgLTXC0NivmWY0x+MbIaLn13R5NVMDekbwDcyD+6E4l6vRI/HYsZLM/A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199021)(82310400008)(40470700004)(36840700001)(46966006)(36860700001)(40480700001)(6666004)(54906003)(82740400003)(81166007)(356005)(478600001)(40460700003)(86362001)(36756003)(2906002)(316002)(70586007)(5660300002)(8676002)(8936002)(41300700001)(26005)(1076003)(2616005)(47076005)(6916009)(83380400001)(336012)(426003)(4326008)(70206006)(186003)(7696005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(376002)(136003)(396003)(346002)(82310400008)(451199021)(46966006)(40470700004)(36840700001)(40480700001)(336012)(40460700003)(2616005)(186003)(316002)(86362001)(478600001)(81166007)(54906003)(70586007)(70206006)(6666004)(356005)(7696005)(6916009)(4326008)(82740400003)(36756003)(41300700001)(26005)(426003)(8676002)(5660300002)(8936002)(47076005)(1076003)(30864003)(2906002)(36860700001)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 06:52:37.8209 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b63bfd3-0bbe-4b3a-1b8e-08db93250f17
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 06:52:42.3986 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12ae5fe8-420c-481a-2603-08db932511db
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989EB.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7778
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4363
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,127 +116,421 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [why]
-If plane clip is outside current pipe's ODM slice rect, our logic will
-fail validation because we assume that when a pipe is acquired
-to support a plane clip, it must blend some portion of the plane
-on the screen. This assumption needs to be changed.
-When a pipe is acquired to render the plane, we are now allowing
-it to support a case where it can take minimum viewport and draw
-with zero recout size when the plane clip is outside current ODM
-slice rect. The reason is that we want to allocate and get the pipe
-pre-programmed so it is ready to be rendered when user moves
-the plane over to the current ODM slice with a fast update.
-Whereas with the existing solution when user moves the plane
-over, we will need to allocate a pipe as needed and power it up
-and program it through a full update. This not only impacts the
-user experience with unnecessary delay of a frame but also
-doesn't generate any benefit to the user because DML doesn't
-support it. DML will invalidate based on worst case scenario and
-it doesn't depend on the plane location. So having our
-programming sequence support such dynamic pipe allocation is
-not meaningful anyway.
+We only acquire MPO pipe for blending tree where the plane clip will
+be rendered. If an MPO plane is outside current ODM slice rect, we will
+skip pipe allocation. With new programming policy we want to allocate
+pipes for every ODM slice blending tree even for those whose ODM slice
+rect doesn't intersect with plane clip. This is aligned with DML validation
+so the pipe topology is programmed independently from the plane's
+position and dst plane size.
 
 [how]
-In build scaler params allow recout to be zero size and if viewport
-is smaller than minimum, set minimum viewport size.
+- Remove the logic to allocate pipe only when the MPO plane intersects
+with ODM slice and replace with the new logic to always allocate pipes.
+- Remove the logic to tear down ODM configuration in favor for supporting
+secondary MPO planes.
+- Remove the logic to use full update when MPO goes accross ODM slice
+boundary.
 
 Reviewed-by: Jun Lei <jun.lei@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 57 +++++++++++--------
- 1 file changed, 33 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  94 -------
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 235 +-----------------
+ 2 files changed, 12 insertions(+), 317 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index d0f4b86cadf1..ea09830a649c 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -1157,15 +1157,23 @@ static void calculate_recout(struct pipe_ctx *pipe_ctx)
- 			pipe_ctx, &plane_clip);
- 	odm_slice = calculate_odm_slice_in_timing_active(pipe_ctx);
- 	overlapping_area = intersect_rec(&mpc_slice_of_plane_clip, &odm_slice);
--	/* shift the overlapping area so it is with respect to current ODM
--	 * slice's position
--	 */
--	pipe_ctx->plane_res.scl_data.recout = shift_rec(
--			&overlapping_area,
--			-odm_slice.x, -odm_slice.y);
-+	if (overlapping_area.height > 0 &&
-+			overlapping_area.width > 0) {
-+		/* shift the overlapping area so it is with respect to current
-+		 * ODM slice's position
-+		 */
-+		pipe_ctx->plane_res.scl_data.recout = shift_rec(
-+				&overlapping_area,
-+				-odm_slice.x, -odm_slice.y);
-+		adjust_recout_for_visual_confirm(
-+				&pipe_ctx->plane_res.scl_data.recout,
-+				pipe_ctx);
-+	} else {
-+		/* if there is no overlap, zero recout */
-+		memset(&pipe_ctx->plane_res.scl_data.recout, 0,
-+				sizeof(struct rect));
-+	}
- 
--	adjust_recout_for_visual_confirm(&pipe_ctx->plane_res.scl_data.recout,
--			pipe_ctx);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 4326daa21094..413258db6746 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2701,96 +2701,6 @@ static enum surface_update_type check_update_surfaces_for_stream(
+ 	return overall_type;
  }
  
- static void calculate_scaling_ratios(struct pipe_ctx *pipe_ctx)
-@@ -1292,6 +1300,7 @@ static void calculate_inits_and_viewports(struct pipe_ctx *pipe_ctx)
- 	struct rect recout_dst_in_active_timing;
- 	struct rect recout_clip_in_active_timing;
- 	struct rect recout_clip_in_recout_dst;
-+	struct rect overlap_in_active_timing;
- 	struct rect odm_slice = calculate_odm_slice_in_timing_active(pipe_ctx);
- 	int vpc_div = (data->format == PIXEL_FORMAT_420BPP8
- 				|| data->format == PIXEL_FORMAT_420BPP10) ? 2 : 1;
-@@ -1301,11 +1310,16 @@ static void calculate_inits_and_viewports(struct pipe_ctx *pipe_ctx)
- 			&data->recout, odm_slice.x, odm_slice.y);
- 	recout_dst_in_active_timing = calculate_plane_rec_in_timing_active(
- 			pipe_ctx, &plane_state->dst_rect);
--	recout_clip_in_recout_dst = shift_rec(&recout_clip_in_active_timing,
--			-recout_dst_in_active_timing.x,
--			-recout_dst_in_active_timing.y);
--	ASSERT(recout_clip_in_recout_dst.x >= 0 &&
--			recout_clip_in_recout_dst.y >= 0);
-+	overlap_in_active_timing = intersect_rec(&recout_clip_in_active_timing,
-+			&recout_dst_in_active_timing);
-+	if (overlap_in_active_timing.width > 0 &&
-+			overlap_in_active_timing.height > 0)
-+		recout_clip_in_recout_dst = shift_rec(&overlap_in_active_timing,
-+				-recout_dst_in_active_timing.x,
-+				-recout_dst_in_active_timing.y);
-+	else
-+		memset(&recout_clip_in_recout_dst, 0, sizeof(struct rect));
-+
- 	/*
- 	 * Work in recout rotation since that requires less transformations
- 	 */
-@@ -1487,17 +1501,12 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- 			pipe_ctx->plane_res.scl_data.recout.x += pipe_ctx->plane_res.scl_data.recout.width;
+-static bool dc_check_is_fullscreen_video(struct rect src, struct rect clip_rect)
+-{
+-	int view_height, view_width, clip_x, clip_y, clip_width, clip_height;
+-
+-	view_height = src.height;
+-	view_width = src.width;
+-
+-	clip_x = clip_rect.x;
+-	clip_y = clip_rect.y;
+-
+-	clip_width = clip_rect.width;
+-	clip_height = clip_rect.height;
+-
+-	/* check for centered video accounting for off by 1 scaling truncation */
+-	if ((view_height - clip_y - clip_height <= clip_y + 1) &&
+-			(view_width - clip_x - clip_width <= clip_x + 1) &&
+-			(view_height - clip_y - clip_height >= clip_y - 1) &&
+-			(view_width - clip_x - clip_width >= clip_x - 1)) {
+-
+-		/* when OS scales up/down to letter box, it may end up
+-		 * with few blank pixels on the border due to truncating.
+-		 * Add offset margin to account for this
+-		 */
+-		if (clip_x <= 4 || clip_y <= 4)
+-			return true;
+-	}
+-
+-	return false;
+-}
+-
+-static enum surface_update_type check_boundary_crossing_for_windowed_mpo_with_odm(struct dc *dc,
+-		struct dc_surface_update *srf_updates, int surface_count,
+-		enum surface_update_type update_type)
+-{
+-	enum surface_update_type new_update_type = update_type;
+-	int i, j;
+-	struct pipe_ctx *pipe = NULL;
+-	struct dc_stream_state *stream;
+-
+-	/* Check that we are in windowed MPO with ODM
+-	 * - look for MPO pipe by scanning pipes for first pipe matching
+-	 *   surface that has moved ( position change )
+-	 * - MPO pipe will have top pipe
+-	 * - check that top pipe has ODM pointer
+-	 */
+-	if ((surface_count > 1) && dc->config.enable_windowed_mpo_odm) {
+-		for (i = 0; i < surface_count; i++) {
+-			if (srf_updates[i].surface && srf_updates[i].scaling_info
+-					&& srf_updates[i].surface->update_flags.bits.position_change) {
+-
+-				for (j = 0; j < dc->res_pool->pipe_count; j++) {
+-					if (srf_updates[i].surface == dc->current_state->res_ctx.pipe_ctx[j].plane_state) {
+-						pipe = &dc->current_state->res_ctx.pipe_ctx[j];
+-						stream = pipe->stream;
+-						break;
+-					}
+-				}
+-
+-				if (pipe && pipe->top_pipe && (get_num_odm_splits(pipe->top_pipe) > 0) && stream
+-						&& !dc_check_is_fullscreen_video(stream->src, srf_updates[i].scaling_info->clip_rect)) {
+-					struct rect old_clip_rect, new_clip_rect;
+-					bool old_clip_rect_left, old_clip_rect_right, old_clip_rect_middle;
+-					bool new_clip_rect_left, new_clip_rect_right, new_clip_rect_middle;
+-
+-					old_clip_rect = srf_updates[i].surface->clip_rect;
+-					new_clip_rect = srf_updates[i].scaling_info->clip_rect;
+-
+-					old_clip_rect_left = ((old_clip_rect.x + old_clip_rect.width) <= (stream->src.x + (stream->src.width/2)));
+-					old_clip_rect_right = (old_clip_rect.x >= (stream->src.x + (stream->src.width/2)));
+-					old_clip_rect_middle = !old_clip_rect_left && !old_clip_rect_right;
+-
+-					new_clip_rect_left = ((new_clip_rect.x + new_clip_rect.width) <= (stream->src.x + (stream->src.width/2)));
+-					new_clip_rect_right = (new_clip_rect.x >= (stream->src.x + (stream->src.width/2)));
+-					new_clip_rect_middle = !new_clip_rect_left && !new_clip_rect_right;
+-
+-					if (old_clip_rect_left && new_clip_rect_middle)
+-						new_update_type = UPDATE_TYPE_FULL;
+-					else if (old_clip_rect_middle && new_clip_rect_right)
+-						new_update_type = UPDATE_TYPE_FULL;
+-					else if (old_clip_rect_right && new_clip_rect_middle)
+-						new_update_type = UPDATE_TYPE_FULL;
+-					else if (old_clip_rect_middle && new_clip_rect_left)
+-						new_update_type = UPDATE_TYPE_FULL;
+-				}
+-			}
+-		}
+-	}
+-	return new_update_type;
+-}
+-
+ /*
+  * dc_check_update_surfaces_for_stream() - Determine update type (fast, med, or full)
+  *
+@@ -2822,10 +2732,6 @@ enum surface_update_type dc_check_update_surfaces_for_stream(
+ 			updates[i].surface->update_flags.raw = 0xFFFFFFFF;
  	}
  
--	if (!pipe_ctx->stream->ctx->dc->config.enable_windowed_mpo_odm) {
--		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE ||
--				pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
--			res = false;
--	} else {
--		/* Clamp minimum viewport size */
--		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE)
--			pipe_ctx->plane_res.scl_data.viewport.height = MIN_VIEWPORT_SIZE;
--		if (pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
--			pipe_ctx->plane_res.scl_data.viewport.width = MIN_VIEWPORT_SIZE;
--	}
-+	/* Clamp minimum viewport size */
-+	if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE)
-+		pipe_ctx->plane_res.scl_data.viewport.height = MIN_VIEWPORT_SIZE;
-+	if (pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
-+		pipe_ctx->plane_res.scl_data.viewport.width = MIN_VIEWPORT_SIZE;
-+
+-	if (type == UPDATE_TYPE_MED)
+-		type = check_boundary_crossing_for_windowed_mpo_with_odm(dc,
+-				updates, surface_count, type);
+-
+ 	if (type == UPDATE_TYPE_FAST) {
+ 		// If there's an available clock comparator, we use that.
+ 		if (dc->clk_mgr->funcs->are_clock_states_equal) {
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index ea09830a649c..dc6ebfa205b0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -76,7 +76,6 @@
  
- 	DC_LOG_SCALER("%s pipe %d:\nViewport: height:%d width:%d x:%d y:%d  Recout: height:%d width:%d x:%d y:%d  HACTIVE:%d VACTIVE:%d\n"
- 			"src_rect: height:%d width:%d x:%d y:%d  dst_rect: height:%d width:%d x:%d y:%d  clip_rect: height:%d width:%d x:%d y:%d\n",
+ #define DC_LOGGER_INIT(logger)
+ 
+-#define HEAD_NOT_IN_ODM -2
+ #define UNABLE_TO_SPLIT -1
+ 
+ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
+@@ -1715,48 +1714,6 @@ static int acquire_first_split_pipe(
+ 			split_pipe->plane_res.mpcc_inst = pool->dpps[i]->inst;
+ 			split_pipe->pipe_idx = i;
+ 
+-			split_pipe->stream = stream;
+-			return i;
+-		} else if (split_pipe->prev_odm_pipe &&
+-				split_pipe->prev_odm_pipe->plane_state == split_pipe->plane_state) {
+-
+-			// Fix case where ODM slice has child planes
+-			// Re-attach child planes
+-			struct pipe_ctx *temp_head_pipe = resource_get_head_pipe_for_stream(res_ctx, split_pipe->stream);
+-
+-			if (split_pipe->bottom_pipe && temp_head_pipe) {
+-
+-				struct pipe_ctx *temp_tail_pipe = resource_get_tail_pipe(res_ctx, temp_head_pipe);
+-
+-				if (temp_tail_pipe) {
+-
+-					split_pipe->bottom_pipe->top_pipe = temp_tail_pipe;
+-					temp_tail_pipe->bottom_pipe = split_pipe->bottom_pipe;
+-				}
+-			}
+-
+-			split_pipe->prev_odm_pipe->next_odm_pipe = split_pipe->next_odm_pipe;
+-
+-			if (split_pipe->next_odm_pipe)
+-				split_pipe->next_odm_pipe->prev_odm_pipe = split_pipe->prev_odm_pipe;
+-
+-			if (split_pipe->prev_odm_pipe->plane_state)
+-				resource_build_scaling_params(split_pipe->prev_odm_pipe);
+-
+-			memset(split_pipe, 0, sizeof(*split_pipe));
+-
+-			// We cannot split if head pipe is not odm
+-			if (temp_head_pipe && !temp_head_pipe->next_odm_pipe && !temp_head_pipe->prev_odm_pipe)
+-				return HEAD_NOT_IN_ODM;
+-
+-			split_pipe->stream_res.tg = pool->timing_generators[i];
+-			split_pipe->plane_res.hubp = pool->hubps[i];
+-			split_pipe->plane_res.ipp = pool->ipps[i];
+-			split_pipe->plane_res.dpp = pool->dpps[i];
+-			split_pipe->stream_res.opp = pool->opps[i];
+-			split_pipe->plane_res.mpcc_inst = pool->dpps[i]->inst;
+-			split_pipe->pipe_idx = i;
+-
+ 			split_pipe->stream = stream;
+ 			return i;
+ 		}
+@@ -1774,9 +1731,6 @@ bool dc_add_plane_to_context(
+ 	struct resource_pool *pool = dc->res_pool;
+ 	struct pipe_ctx *head_pipe, *tail_pipe, *free_pipe;
+ 	struct dc_stream_status *stream_status = NULL;
+-	struct pipe_ctx *prev_right_head = NULL;
+-	struct pipe_ctx *free_right_pipe = NULL;
+-	struct pipe_ctx *prev_left_head = NULL;
+ 
+ 	DC_LOGGER_INIT(stream->ctx->logger);
+ 	for (i = 0; i < context->stream_count; i++)
+@@ -1813,10 +1767,6 @@ bool dc_add_plane_to_context(
+ 			int pipe_idx = acquire_first_split_pipe(&context->res_ctx, pool, stream);
+ 			if (pipe_idx >= 0)
+ 				free_pipe = &context->res_ctx.pipe_ctx[pipe_idx];
+-			else if (pipe_idx == HEAD_NOT_IN_ODM)
+-				break;
+-			else
+-				ASSERT(false);
+ 		}
+ 
+ 		if (!free_pipe) {
+@@ -1830,184 +1780,23 @@ bool dc_add_plane_to_context(
+ 			tail_pipe = resource_get_tail_pipe(&context->res_ctx, head_pipe);
+ 			ASSERT(tail_pipe);
+ 
+-			/* ODM + window MPO, where MPO window is on right half only */
+-			if (free_pipe->plane_state &&
+-				(free_pipe->plane_state->clip_rect.x >= free_pipe->stream->src.x + free_pipe->stream->src.width/2) &&
+-				tail_pipe->next_odm_pipe) {
+-
+-				/* For ODM + window MPO, in 3 plane case, if we already have a MPO window on
+-				 *  the right side, then we will invalidate a 2nd one on the right side
+-				 */
+-				if (head_pipe->next_odm_pipe && tail_pipe->next_odm_pipe->bottom_pipe) {
+-					dc_plane_state_release(plane_state);
+-					return false;
+-				}
+-
+-				DC_LOG_SCALER("%s - ODM + window MPO(right). free_pipe:%d  tail_pipe->next_odm_pipe:%d\n",
+-						__func__,
+-						free_pipe->pipe_idx,
+-						tail_pipe->next_odm_pipe ? tail_pipe->next_odm_pipe->pipe_idx : -1);
+-
+-				/*
+-				 * We want to avoid the case where the right side already has a pipe assigned to
+-				 *  it and is different from free_pipe ( which would cause trigger a pipe
+-				 *  reallocation ).
+-				 * Check the old context to see if the right side already has a pipe allocated
+-				 * - If not, continue to use free_pipe
+-				 * - If the right side already has a pipe, use that pipe instead if its available
+-				 */
+-
+-				/*
+-				 * We also want to avoid the case where with three plane ( 2 MPO videos ), we have
+-				 *  both videos on the left side so one of the videos is invalidated.  Then we
+-				 *  move the invalidated video back to the right side.  If the order of the plane
+-				 *  states is such that the right MPO plane is processed first, the free pipe
+-				 *  selected by the head will be the left MPO pipe. But since there was no right
+-				 *  MPO pipe, it will assign the free pipe to the right MPO pipe instead and
+-				 *  a pipe reallocation will occur.
+-				 * Check the old context to see if the left side already has a pipe allocated
+-				 * - If not, continue to use free_pipe
+-				 * - If the left side is already using this pipe, then pick another pipe for right
+-				 */
+-
+-				prev_right_head = &dc->current_state->res_ctx.pipe_ctx[tail_pipe->next_odm_pipe->pipe_idx];
+-				if ((prev_right_head->bottom_pipe) &&
+-					(free_pipe->pipe_idx != prev_right_head->bottom_pipe->pipe_idx)) {
+-					free_right_pipe = acquire_free_pipe_for_head(context, pool, tail_pipe->next_odm_pipe);
+-				} else {
+-					prev_left_head = &dc->current_state->res_ctx.pipe_ctx[head_pipe->pipe_idx];
+-					if ((prev_left_head->bottom_pipe) &&
+-						(free_pipe->pipe_idx == prev_left_head->bottom_pipe->pipe_idx)) {
+-						free_right_pipe = acquire_free_pipe_for_head(context, pool, head_pipe);
+-					}
+-				}
+-
+-				if (free_right_pipe) {
+-					free_pipe->stream = NULL;
+-					memset(&free_pipe->stream_res, 0, sizeof(struct stream_resource));
+-					memset(&free_pipe->plane_res, 0, sizeof(struct plane_resource));
+-					free_pipe->plane_state = NULL;
+-					free_pipe->pipe_idx = 0;
+-					free_right_pipe->plane_state = plane_state;
+-					free_pipe = free_right_pipe;
+-				}
+-
+-				free_pipe->stream_res.tg = tail_pipe->next_odm_pipe->stream_res.tg;
+-				free_pipe->stream_res.abm = tail_pipe->next_odm_pipe->stream_res.abm;
+-				free_pipe->stream_res.opp = tail_pipe->next_odm_pipe->stream_res.opp;
+-				free_pipe->stream_res.stream_enc = tail_pipe->next_odm_pipe->stream_res.stream_enc;
+-				free_pipe->stream_res.audio = tail_pipe->next_odm_pipe->stream_res.audio;
+-				free_pipe->clock_source = tail_pipe->next_odm_pipe->clock_source;
+-
+-				free_pipe->top_pipe = tail_pipe->next_odm_pipe;
+-				tail_pipe->next_odm_pipe->bottom_pipe = free_pipe;
+-			} else if (free_pipe->plane_state &&
+-				(free_pipe->plane_state->clip_rect.x >= free_pipe->stream->src.x + free_pipe->stream->src.width/2)
+-				&& head_pipe->next_odm_pipe) {
+-
+-				/* For ODM + window MPO, support 3 plane ( 2 MPO ) case.
+-				 * Here we have a desktop ODM + left window MPO and a new MPO window appears
+-				 *  on the right side only.  It fails the first case, because tail_pipe is the
+-				 *  left window MPO, so it has no next_odm_pipe.  So in this scenario, we check
+-				 *  for head_pipe->next_odm_pipe instead
+-				 */
+-				DC_LOG_SCALER("%s - ODM + win MPO (left) + win MPO (right). free_pipe:%d  head_pipe->next_odm:%d\n",
+-						__func__,
+-						free_pipe->pipe_idx,
+-						head_pipe->next_odm_pipe ? head_pipe->next_odm_pipe->pipe_idx : -1);
+-
+-				/*
+-				 * We want to avoid the case where the right side already has a pipe assigned to
+-				 *  it and is different from free_pipe ( which would cause trigger a pipe
+-				 *  reallocation ).
+-				 * Check the old context to see if the right side already has a pipe allocated
+-				 * - If not, continue to use free_pipe
+-				 * - If the right side already has a pipe, use that pipe instead if its available
+-				 */
+-				prev_right_head = &dc->current_state->res_ctx.pipe_ctx[head_pipe->next_odm_pipe->pipe_idx];
+-				if ((prev_right_head->bottom_pipe) &&
+-					(free_pipe->pipe_idx != prev_right_head->bottom_pipe->pipe_idx)) {
+-					free_right_pipe = acquire_free_pipe_for_head(context, pool, head_pipe->next_odm_pipe);
+-					if (free_right_pipe) {
+-						free_pipe->stream = NULL;
+-						memset(&free_pipe->stream_res, 0, sizeof(struct stream_resource));
+-						memset(&free_pipe->plane_res, 0, sizeof(struct plane_resource));
+-						free_pipe->plane_state = NULL;
+-						free_pipe->pipe_idx = 0;
+-						free_right_pipe->plane_state = plane_state;
+-						free_pipe = free_right_pipe;
+-					}
+-				}
+-
+-				free_pipe->stream_res.tg = head_pipe->next_odm_pipe->stream_res.tg;
+-				free_pipe->stream_res.abm = head_pipe->next_odm_pipe->stream_res.abm;
+-				free_pipe->stream_res.opp = head_pipe->next_odm_pipe->stream_res.opp;
+-				free_pipe->stream_res.stream_enc = head_pipe->next_odm_pipe->stream_res.stream_enc;
+-				free_pipe->stream_res.audio = head_pipe->next_odm_pipe->stream_res.audio;
+-				free_pipe->clock_source = head_pipe->next_odm_pipe->clock_source;
+-
+-				free_pipe->top_pipe = head_pipe->next_odm_pipe;
+-				head_pipe->next_odm_pipe->bottom_pipe = free_pipe;
+-			} else {
+-
+-				/* For ODM + window MPO, in 3 plane case, if we already have a MPO window on
+-				 *  the left side, then we will invalidate a 2nd one on the left side
+-				 */
+-				if (head_pipe->next_odm_pipe && tail_pipe->top_pipe) {
+-					dc_plane_state_release(plane_state);
+-					return false;
+-				}
+-
+-				free_pipe->stream_res.tg = tail_pipe->stream_res.tg;
+-				free_pipe->stream_res.abm = tail_pipe->stream_res.abm;
+-				free_pipe->stream_res.opp = tail_pipe->stream_res.opp;
+-				free_pipe->stream_res.stream_enc = tail_pipe->stream_res.stream_enc;
+-				free_pipe->stream_res.audio = tail_pipe->stream_res.audio;
+-				free_pipe->clock_source = tail_pipe->clock_source;
+-
+-				free_pipe->top_pipe = tail_pipe;
+-				tail_pipe->bottom_pipe = free_pipe;
+-
+-				/* Connect MPO pipes together if MPO window is in the centre */
+-				if (!(free_pipe->plane_state &&
+-						(free_pipe->plane_state->clip_rect.x + free_pipe->plane_state->clip_rect.width <=
+-						free_pipe->stream->src.x + free_pipe->stream->src.width/2))) {
+-					if (!free_pipe->next_odm_pipe &&
+-						tail_pipe->next_odm_pipe && tail_pipe->next_odm_pipe->bottom_pipe &&
+-						tail_pipe->next_odm_pipe->bottom_pipe->plane_state == free_pipe->plane_state) {
+-						free_pipe->next_odm_pipe = tail_pipe->next_odm_pipe->bottom_pipe;
+-						tail_pipe->next_odm_pipe->bottom_pipe->prev_odm_pipe = free_pipe;
+-					}
+-					if (!free_pipe->prev_odm_pipe &&
+-						tail_pipe->prev_odm_pipe && tail_pipe->prev_odm_pipe->bottom_pipe &&
+-						tail_pipe->prev_odm_pipe->bottom_pipe->plane_state == free_pipe->plane_state) {
+-						free_pipe->prev_odm_pipe = tail_pipe->prev_odm_pipe->bottom_pipe;
+-						tail_pipe->prev_odm_pipe->bottom_pipe->next_odm_pipe = free_pipe;
+-					}
+-				}
++			free_pipe->stream_res.tg = tail_pipe->stream_res.tg;
++			free_pipe->stream_res.abm = tail_pipe->stream_res.abm;
++			free_pipe->stream_res.opp = tail_pipe->stream_res.opp;
++			free_pipe->stream_res.stream_enc = tail_pipe->stream_res.stream_enc;
++			free_pipe->stream_res.audio = tail_pipe->stream_res.audio;
++			free_pipe->clock_source = tail_pipe->clock_source;
++			free_pipe->top_pipe = tail_pipe;
++			tail_pipe->bottom_pipe = free_pipe;
++			if (tail_pipe->prev_odm_pipe) {
++				tail_pipe->prev_odm_pipe->bottom_pipe->next_odm_pipe = free_pipe;
++				free_pipe->prev_odm_pipe = tail_pipe->prev_odm_pipe->bottom_pipe;
+ 			}
+ 		}
+ 
+-		/* ODM + window MPO, where MPO window is on left half only */
+-		if (free_pipe->plane_state &&
+-			(free_pipe->plane_state->clip_rect.x + free_pipe->plane_state->clip_rect.width <=
+-			free_pipe->stream->src.x + free_pipe->stream->src.width/2)) {
+-			DC_LOG_SCALER("%s - ODM + window MPO(left). free_pipe:%d\n",
+-					__func__,
+-					free_pipe->pipe_idx);
+-			break;
+-		}
+-		/* ODM + window MPO, where MPO window is on right half only */
+-		if (free_pipe->plane_state &&
+-			(free_pipe->plane_state->clip_rect.x >= free_pipe->stream->src.x + free_pipe->stream->src.width/2)) {
+-			DC_LOG_SCALER("%s - ODM + window MPO(right). free_pipe:%d\n",
+-					__func__,
+-					free_pipe->pipe_idx);
+-			break;
+-		}
+-
+ 		head_pipe = head_pipe->next_odm_pipe;
+ 	}
++
+ 	/* assign new surfaces*/
+ 	stream_status->plane_states[stream_status->plane_count] = plane_state;
+ 
 -- 
 2.25.1
 
