@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DD476C676
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A712576C660
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Aug 2023 09:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377AB10E4EB;
-	Wed,  2 Aug 2023 07:20:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC0D10E4D5;
+	Wed,  2 Aug 2023 07:20:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out28-114.mail.aliyun.com (out28-114.mail.aliyun.com
- [115.124.28.114])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E199210E483;
- Wed,  2 Aug 2023 02:31:23 +0000 (UTC)
-X-Alimail-AntiSpam: AC=CONTINUE; BC=0.2471169|-1; CH=blue; DM=|OVERLOAD|false|;
- DS=CONTINUE|ham_alarm|0.00983395-0.000359475-0.989807; FP=0|0|0|0|0|-1|-1|-1;
- HT=ay29a033018047190; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
- TI=SMTPD_---.U6LyXcz_1690943470; 
+Received: from out28-133.mail.aliyun.com (out28-133.mail.aliyun.com
+ [115.124.28.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 066CE10E485;
+ Wed,  2 Aug 2023 02:40:05 +0000 (UTC)
+X-Alimail-AntiSpam: AC=CONTINUE; BC=0.4055942|-1; CH=blue; DM=|OVERLOAD|false|;
+ DS=CONTINUE|ham_alarm|0.00105794-0.000121474-0.998821; FP=0|0|0|0|0|-1|-1|-1;
+ HT=ay29a033018047199; MF=sunran001@208suo.com; NM=1; PH=DS; RN=5; RT=5; SR=0;
+ TI=SMTPD_---.U6N4oZg_1690943996; 
 Received: from localhost.localdomain(mailfrom:sunran001@208suo.com
- fp:SMTPD_---.U6LyXcz_1690943470) by smtp.aliyun-inc.com;
- Wed, 02 Aug 2023 10:31:17 +0800
+ fp:SMTPD_---.U6N4oZg_1690943996) by smtp.aliyun-inc.com;
+ Wed, 02 Aug 2023 10:39:58 +0800
 From: Ran Sun <sunran001@208suo.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: Clean up errors in amdgpu_pm.c
-Date: Wed,  2 Aug 2023 02:31:09 +0000
-Message-Id: <20230802023109.9924-1-sunran001@208suo.com>
+Subject: [PATCH] drm/amd/display: Clean up errors in color_gamma.c
+Date: Wed,  2 Aug 2023 02:39:55 +0000
+Message-Id: <20230802023955.10014-1-sunran001@208suo.com>
 X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Wed, 02 Aug 2023 07:20:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -45,37 +45,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: that open brace { should be on the previous line
-ERROR: space required before the open parenthesis '('
+ERROR: trailing whitespace
+ERROR: else should follow close brace '}'
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/modules/color/color_gamma.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 3922dd274f30..acaab3441030 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -743,7 +743,7 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- 		type = PP_OD_EDIT_CCLK_VDDC_TABLE;
- 	else if (*buf == 'm')
- 		type = PP_OD_EDIT_MCLK_VDDC_TABLE;
--	else if(*buf == 'r')
-+	else if (*buf == 'r')
- 		type = PP_OD_RESTORE_DEFAULT_TABLE;
- 	else if (*buf == 'c')
- 		type = PP_OD_COMMIT_DPM_TABLE;
-@@ -3532,7 +3532,8 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *adev)
- #if defined(CONFIG_DEBUG_FS)
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+index 67a062af3ab0..ff8e5708735d 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+@@ -359,7 +359,7 @@ static struct fixed31_32 translate_from_linear_space(
+ 		scratch_1 = dc_fixpt_add(one, args->a3);
+ 		/* In the first region (first 16 points) and in the
+ 		 * region delimited by START/END we calculate with
+-		 * full precision to avoid error accumulation. 
++		 * full precision to avoid error accumulation.
+ 		 */
+ 		if ((cal_buffer->buffer_index >= PRECISE_LUT_REGION_START &&
+ 			cal_buffer->buffer_index <= PRECISE_LUT_REGION_END) ||
+@@ -379,8 +379,7 @@ static struct fixed31_32 translate_from_linear_space(
+ 		scratch_1 = dc_fixpt_sub(scratch_1, args->a2);
  
- static void amdgpu_debugfs_prints_cpu_info(struct seq_file *m,
--					   struct amdgpu_device *adev) {
-+					   struct amdgpu_device *adev)
-+{
- 	uint16_t *p_val;
- 	uint32_t size;
- 	int i;
+ 		return scratch_1;
+-	}
+-	else
++	} else
+ 		return dc_fixpt_mul(args->arg, args->a1);
+ }
+ 
 -- 
 2.17.1
 
