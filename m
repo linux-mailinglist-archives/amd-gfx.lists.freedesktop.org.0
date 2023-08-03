@@ -1,51 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5B976FB01
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Aug 2023 09:18:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3595F76FAFB
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Aug 2023 09:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C93F210E6A1;
-	Fri,  4 Aug 2023 07:18:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBEF10E69E;
+	Fri,  4 Aug 2023 07:18:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com
- [IPv6:2607:f8b0:4864:20::b2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2ED010E61D
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 15:36:35 +0000 (UTC)
-Received: by mail-yb1-xb2b.google.com with SMTP id
- 3f1490d57ef6-bcb6dbc477eso1114770276.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Aug 2023 08:36:35 -0700 (PDT)
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com
+ [IPv6:2607:f8b0:4864:20::b30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50F0110E629
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 15:50:00 +0000 (UTC)
+Received: by mail-yb1-xb30.google.com with SMTP id
+ 3f1490d57ef6-d2b8437d825so1153990276.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Aug 2023 08:50:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1691076995; x=1691681795;
+ d=linaro.org; s=google; t=1691077799; x=1691682599;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=F0RiJFEC2TyWpgAWWlJd3Y77KTp5pRBuPs5ibASU4PI=;
- b=msm0BrH5ifzTm01PEG8loMj+Dv1GrOKfhgu/XSIx1g+nFlN4UO80QOmhBgbUGHLOET
- maNjsAY+vGJJgwH/4V+q274S7lxVJ/o1g++CATTAcBMW68NExx464ohZxTreY1fYRZL9
- JbA/OcyXEEyywWi2COfWs6+oNKRJ06biZaviM8/KGRJfrpmWZWNddjeqEDPGvdDyXIdq
- onfSG/O6E5wBSjEE4dpknFYoFiabzYeUYTekvYoYg1mkfzN879EnqlJ1Z25Iul8WbTXR
- 7wEeb8bfakbUlapSQzWb7Twa/r6JvEBEYvwDEoi+KyEk7sG3EuSL9+cYm2WtLuKINiY3
- 2wGw==
+ bh=l+4Wzr5DVMlZc1pH6QeuSNiApXly7C56WNxj8x1bVeY=;
+ b=gzhMq4KPHvG6ZhunE/V3Y0xg8sylBue0aRsl06ODKlaEdf3szqY3SrKaupRovtgbEK
+ gKga/H3lpF5ch1m5g1NEqcopsbgdHkGl2WoU7JzehexLVIizdIATMrp2SFRGWJruTrgg
+ UBpbPjc05NN313xxV3WERtnbE/ed1k0uf4DrRFCRJd0+CPiz8VPjLjOBvAPxK821Flhk
+ e4owjgBBtLtSqSibLWbbtcOCQ7uf7nzrlQSmj8ZdqZ1Ja+buMt93gdzCs8MLM3T48sZc
+ WdO4MuDaut0np4XNQJx7tR5vIYqV3rSpdNmLkqisODn+QLJbe6KUROS5fwxkIpvd+kUL
+ mNZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691076995; x=1691681795;
+ d=1e100.net; s=20221208; t=1691077799; x=1691682599;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=F0RiJFEC2TyWpgAWWlJd3Y77KTp5pRBuPs5ibASU4PI=;
- b=JyhMdl2DybFNFqgcH6g8ntSxdodmXxa4Ig6wU/6Tkp9SDEGgWM7x/tp7GYQ+x8wW3P
- xDsnNQAljDxmStzKStXvJmEZXJqKpgAZ+UzRsrtxxw0/N0xQZTJR43ORqy402gM71d5I
- oeb5OE37H+SChNE8G/kDtuPvpnPmIUJO6rJEEStM+XSFa/9SzkDBSdwqKZZl3LybviDB
- DqBsgTCK6xrTuost49aojPJa59UBCM/pbXQKxtleUGvBu5bXtc4vMwCf5mbROcIpmk9N
- IdDOvivf9uhwma5WWePR5W2e52Qz70fOTfTBApCYxFWeQfeMCwfbq/kdTom34hHfW5vq
- xytg==
-X-Gm-Message-State: ABy/qLb8ePrXsloTFhuDuoihGbrZ1f9uoa8n/4rk5v5nRZJpN+HaxtsL
- BIpr5ivRAuoHcqm0INmmnY5F//eD8LUMjO7+M7carQ==
-X-Google-Smtp-Source: APBJJlFYQquHXzrsKhhJGfCCxFrZ+hdH5p9FtN6ueneVgQ9/HLwNKPKeUcb1fuSTmM6kdAbJLQt1skEwUHmvVNRluF4=
-X-Received: by 2002:a25:738f:0:b0:d04:caf3:261e with SMTP id
- o137-20020a25738f000000b00d04caf3261emr16385250ybc.53.1691076994786; Thu, 03
- Aug 2023 08:36:34 -0700 (PDT)
+ bh=l+4Wzr5DVMlZc1pH6QeuSNiApXly7C56WNxj8x1bVeY=;
+ b=KhVY4YDKIXxXW4I5AZ848YHY0eV/OFiKoX3dpthmyHK00r4mHLTMX0nQocQKTcsTzd
+ /6rZJp0/AP1wYzEWIEgoa6/NfHjNKKnOd+G+tjeFsJpvPT02OjZUbdlPlhu/YqSzv7zr
+ e6qigzpVrzMWTE0JRv5+Kfsmu9r7eWFBk+lI/prOaIQ936dk9EkCYZc6bwy9M80JDPyi
+ N15Iq5qCyXpWVVVH4dbgjYIjaG+462D7OwnSPyTCd1l+2wmbTcfVYXBynUf1mJQqEisX
+ USQRTgrHQrhK/Bd/5d5GuLP61LWa5gfHeqSdzrClIEAWrM8LhuYAn3muF5iqii5nGlpk
+ Z+hA==
+X-Gm-Message-State: ABy/qLaUBWaIqd75ELXOJhV+mvIHvcdjSLFxv94hMcPbP16Qh1Yml3cx
+ b7m5D4SdZB6SJMy+W2tRpR7DeUXmeHcHuvmhOwF3Jw==
+X-Google-Smtp-Source: APBJJlGqe5OwfFXTkIX8KjflNZxLCJaBlCJcozkLSMt9bNI1VvyZ4ueyHK5KDKBhNWN4ugZ27MKACXtQew4zW6psAas=
+X-Received: by 2002:a25:2386:0:b0:cae:d40f:5934 with SMTP id
+ j128-20020a252386000000b00caed40f5934mr18670211ybj.27.1691077799474; Thu, 03
+ Aug 2023 08:49:59 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
  <20230729004913.215872-4-dmitry.baryshkov@linaro.org>
@@ -55,15 +55,17 @@ References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
  <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
  <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
  <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
-In-Reply-To: <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
+ <CAA8EJppCECObEe5UG3LsHUsmYfKzakWzVw33S4nVc=DB9sA0ig@mail.gmail.com>
+ <C-Fu9j3hts_YcQxukEbidrKyTdqYNxYuWUX-694HnmYKiJGZip24s6R8-dULdTvb2VE972he3PZlju2K9wFNkA9j-XKUGemuWiFLGT1eUu0=@emersion.fr>
+In-Reply-To: <C-Fu9j3hts_YcQxukEbidrKyTdqYNxYuWUX-694HnmYKiJGZip24s6R8-dULdTvb2VE972he3PZlju2K9wFNkA9j-XKUGemuWiFLGT1eUu0=@emersion.fr>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 3 Aug 2023 18:36:23 +0300
-Message-ID: <CAA8EJppCECObEe5UG3LsHUsmYfKzakWzVw33S4nVc=DB9sA0ig@mail.gmail.com>
+Date: Thu, 3 Aug 2023 18:49:48 +0300
+Message-ID: <CAA8EJpqvTV8yhf-xC5vbRuzhNjQ2qp5yxhTWWN6AdxX1-+JszA@mail.gmail.com>
 Subject: Re: [PATCH 3/4] drm/uapi: document the USB subconnector type
 To: Simon Ser <contact@emersion.fr>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 04 Aug 2023 07:18:42 +0000
+X-Mailman-Approved-At: Fri, 04 Aug 2023 07:18:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,41 +100,43 @@ Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 3 Aug 2023 at 18:31, Simon Ser <contact@emersion.fr> wrote:
+On Thu, 3 Aug 2023 at 18:43, Simon Ser <contact@emersion.fr> wrote:
 >
-> On Thursday, August 3rd, 2023 at 17:22, Simon Ser <contact@emersion.fr> w=
-rote:
+> On Thursday, August 3rd, 2023 at 17:36, Dmitry Baryshkov <dmitry.baryshko=
+v@linaro.org> wrote:
 >
-> > The KMS docs describe "subconnector" to be defined as "downstream port"=
- for DP.
-> > Can USB-C (or USB) be seen as a DP downstream port?
+> > On Thu, 3 Aug 2023 at 18:31, Simon Ser contact@emersion.fr wrote:
+> >
+> > > On Thursday, August 3rd, 2023 at 17:22, Simon Ser contact@emersion.fr=
+ wrote:
+> > >
+> > > > The KMS docs describe "subconnector" to be defined as "downstream p=
+ort" for DP.
+> > > > Can USB-C (or USB) be seen as a DP downstream port?
+> > >
+> > > To expand on this a bit: I'm wondering if we're mixing apples and
+> > > oranges here. The current values of "subconnector" typically describe
+> > > the lower-level protocol tunneled inside DP. For instance, VGA can be
+> > > tunneled inside the DP cable when using DP =E2=86=92 VGA adapter.
+> >
+> > My opinion hasn't changed: I think this should be the USB connector
+> > with proper DP / DVI / HDMI / etc. subconnector type (or lack of it).
+> > In the end, the physical connector on the side of laptop is USB-C.
 >
-> To expand on this a bit: I'm wondering if we're mixing apples and
-> oranges here. The current values of "subconnector" typically describe
-> the lower-level protocol tunneled inside DP. For instance, VGA can be
-> tunneled inside the DP cable when using DP =E2=86=92 VGA adapter.
+> - Even if the connector is USB-C, the protocol used for display is
+>   still DP. There's also the case of Thunderbolt.
 
-My opinion hasn't changed: I think this should be the USB connector
-with proper DP / DVI / HDMI / etc. subconnector type (or lack of it).
-In the end, the physical connector on the side of laptop is USB-C.
+Yes. But the connector type is not about the protocol.
 
-If we want to make it different from GUD, we might want to define a
-USB-DP connector type (which would also include SlimPort).
+> - This is inconsistent with existing drivers. i915 and amdgpu expose
+>   DP ports for their USB-C ports. Changing that isn't possible without
+>   causing user-space regressions (compositor config files use the
+>   connector type).
 
->
-> However, in the USB-C case, DP itself is tunneled inside USB-C. And you
-> might use a USB-C =E2=86=92 DP adapter. So it's not really *sub*connector=
-, it's
-> more of a *super*connector, right?
->
-> I think [1] is somewhat related, since it also allows user-space to
-> discover whether a connector uses USB-C. But relying on sysfs to figure
-> this out isn't super optimal perhaps.
->
-> [1]: https://lore.kernel.org/dri-devel/20221108185004.2263578-1-wonchung@=
-google.com/
+Yes, I know. Consider my phrase as a personal opinion or minority report.
 
-
+I think that using DisplayPort for USB-C connectors was a mistake,
+which we now have to cope with somehow.
 
 --=20
 With best wishes
