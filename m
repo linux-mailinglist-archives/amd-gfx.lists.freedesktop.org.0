@@ -2,121 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E002B76FAA2
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Aug 2023 09:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5E576FB4A
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Aug 2023 09:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA7A10E25F;
-	Fri,  4 Aug 2023 07:06:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B559510E6AF;
+	Fri,  4 Aug 2023 07:36:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2079.outbound.protection.outlook.com [40.107.212.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE00B10E25F
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Aug 2023 07:06:14 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on20604.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::604])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40C6A10E6AF
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Aug 2023 07:36:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ayb9kcJTC7l3CNjoy7qSmNhXrAUF+YN/BOHpa4rZs4L2KgEvU9pQ0lBpyXgx3RMCNSx1THgPhkKqytcDsAEQ1n7cPlJudhEDqklhKphmhHFWeLZgMz0AYHbXihXAdAfxfGIwOcDt0QOm2i0rJ1oK9vbZDry4Nj3kZDGd2oU6AdxLjq7NH9t8Cx7DSW7LAr6r4Skal3NxhbOPY/nzhLRemCZK1IGX/61cARDEVNLkawdumJeinMpgYl2BU+jy8yL+Mcj0mN5RsfTnxPbOACB1nuTxPjahldURCQOS83skkox1R3gNSHEkrPfsUCpWyui42Kw0towV6Ym61kClIvd//A==
+ b=XsEC0wmLitIwG5h10vm4QnbTMdlDFRMqR/egrJhwVvhSlpBtueFtxHYr7UDM5oysAI3f1fOZn0N/UquJjOojgKbXQEFbSljBvOxKcEuJngm6Ztr0lyXr4IIqxUoUIR/rQ/qr5qe0JbFfHcAwINnp6oXJ2haXe7bWyxOnRZg0VnGWHiSExtSgQTHMAved7QP/tig4Ol4qTP+hHwf6lH5nlExWnllYSFKvETrMciIY9D+PLVCbFzcOvcC8sBUAAiyBiTGUpN256OToWRtwIZwgYgH2iiikVLcaxE42x1FwezWAn9N+Io6JTq4ePY4QOmLBHCASeJ3mxenjTGyIJq/k2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=at9vZmlbEHh7we9KS2vkVc6y9U6icM1uSmnKENZKD+c=;
- b=jAbVktDHdLdCjjy1vXNY2wSo6BDPPrBxUjP6W9v9GpYZkrSQ1FUSHgpCECV26e3HhHtNAsK6XeEB2Pa6RpxfxXoPJJOYYp2PXCvLViI7x1qBOTg+ODZLXBB+OfQUDldIbItWGiokFCq9GFKlVI/0ybWKVWDLeP+OqhozYV/ahxtqe4Ivc1edRpDvv9eWCdHwOdR/vzUSkossQVc11Oya2x5jShqIqE2HYf2GDMWo0eqE36dn4k1ypWlPnQOQCINwmlg34yx4vKt1xU3nulhXenFZ6CLVtVVJ0dAVrpet2r3Vn64XZATpcibZLwsB0sEMckajN2n9700cc+Smf0HfqQ==
+ bh=Rk69Ck/dVlaNMvK2Tm41EtrtL7KUjcr24QUDVmLiabw=;
+ b=HEhzMkpEUFyzeTucZ7Hm3p1QwX9WBHZagKZO6IUjGsyFUyG43GopUm4iVmlXVYTsOD5QU887wBBVWI3XhSeUjG9FxyGIQliASIUDONPz/ykdUnK0SqC8e/YMAwELffuym1FlCUXM6adj2bcjXhAo4XyNdUiA3tTuHDVQQc5YuNc9NPPeip66B6Pt3KDY6tddlpCNLEGAdpRoPPriIGT9JglMMsq9vChKCSfZAl+kdtUf0UOuLBIsoE62Jk2tO44F2aXJ82B05ZFGvR8OGEzIRJkGm6kDQxp47BJ2DGzfworczA5/ADfDQNWihdrwONmyIPJEzM7TyccQ2M3CkWVh5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=at9vZmlbEHh7we9KS2vkVc6y9U6icM1uSmnKENZKD+c=;
- b=cOFQQPvE7dNQcOaIErba7cHUYv2Cfyr+UVMFHYIBhbS6F6XZNf3PytRHqS90aI4k6RcNUpsIheXb+Lx6tHEopQeBGgxv400N4S3RsTiv14L49QWGfgZLBJ9vKNaL32iu6ZcaEWl29faudHWelHQLbQt69WSBR8L2EsTCUAxL7Rs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4128.namprd12.prod.outlook.com (2603:10b6:208:1dd::15)
- by DM4PR12MB5867.namprd12.prod.outlook.com (2603:10b6:8:66::18) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=Rk69Ck/dVlaNMvK2Tm41EtrtL7KUjcr24QUDVmLiabw=;
+ b=Oob+bnCnI0deAaIC1wXe2pMn7yq9aUbs/OtFj647H5DWCQeTsWoq2wdA8jdL564YtFIDMUmBOoP+1DKXgtfxvlzKo2SqHQzre7Ob+LC5rzm/WzDWSfILpqH5jOJAD4pY+p5wUVtS6CapPK2dNNyxIb4C9QfMQD927KtOgyx3F2o=
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
+ by PH0PR12MB7957.namprd12.prod.outlook.com (2603:10b6:510:281::22)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.21; Fri, 4 Aug
- 2023 07:06:11 +0000
-Received: from MN2PR12MB4128.namprd12.prod.outlook.com
- ([fe80::c725:d5a0:a4a8:772b]) by MN2PR12MB4128.namprd12.prod.outlook.com
- ([fe80::c725:d5a0:a4a8:772b%3]) with mapi id 15.20.6652.021; Fri, 4 Aug 2023
- 07:06:11 +0000
-Content-Type: multipart/alternative;
- boundary="------------zYZgwzEesZaeouyLSyaC0HJI"
-Message-ID: <e23989ab-53f8-476c-a2c8-055b1d75f09e@amd.com>
-Date: Fri, 4 Aug 2023 12:35:54 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Remove volatile from 'wb' & from 'ptr' in
- amdgpu.h
-Content-Language: en-GB
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-References: <20230724155418.2179209-1-srinivasan.shanmugam@amd.com>
- <CADnq5_NcEr3=bDoSo5_YYYuNAMps655fcOuUDaAPmw3_QDwQNQ@mail.gmail.com>
- <f8c546b3-669b-41dc-bc35-c7fef96ad4e4@amd.com>
- <af0efe19-e78c-2a8c-96c3-ddec10a62cf4@amd.com>
-From: "SHANMUGAM, SRINIVASAN" <srishanm@amd.com>
-In-Reply-To: <af0efe19-e78c-2a8c-96c3-ddec10a62cf4@amd.com>
-X-ClientProxiedBy: PN3PR01CA0121.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:96::17) To MN2PR12MB4128.namprd12.prod.outlook.com
- (2603:10b6:208:1dd::15)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4128:EE_|DM4PR12MB5867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07a3a065-9e54-4090-0b6f-08db94b94887
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RwgLnT4gzwfN0DKy1prCB8A1gW8DZ6dSoRtnrJIaFWxzf29RuIxq9BHAxWky8uwuEby3IHsnQT6iT6yuvMjHRI39Oqlj3zM3kXdfSyo8moDugznUBaYTOnRcv/LFYOp2oDHCHjkqrGwaKtg2LMiXb9O0UJzhfEnrQ63STQtdLUYxkvOto8yG4pMAquTTNZdTs7nQEsbtIb0ZIsoIj1/DHvmbdvg0lyiT8OcAadXaRxR6rmN6Z7eFTCT9pce4zwBppzIwA2WLCBQhtA03YR7CsiYw0cBw86VPxduiLlCHYwZGO62m5Sr1IWWd+fDG+S52ZrWXvQy/CvEV2yQetVeUwtLxtew7eQLHYZzM1jOO9fHIlEMfEAyMFmfEKsrm2981jdjxXktQj+zwLiD3SDsdga5+eo4aRiW9zIQx3wT0LHRGHbDfjivkIpY7tA6hdVUbBQqSVXJBWo0UBoGrf4xumrl29BIMlqzBwz9fD3q0eZuL4qaq5dywF0jydDxD8oT2LIDzzTtzPqSn0QPgtIisjd31/0hyTWe9v/SPJAhq/Yi7chGvl9xVjpYRociK4GtBVjEt0JOKMGHUJj//MV24XgbOzGHIBJHRvrOkR2mVOL/qDRVi9ToUdpayLrxs1Dhl
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4128.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(451199021)(1800799003)(186006)(83380400001)(2616005)(66574015)(41300700001)(316002)(66476007)(66556008)(66946007)(4326008)(6636002)(53546011)(38100700002)(6506007)(26005)(8936002)(5660300002)(8676002)(6666004)(33964004)(6486002)(966005)(31696002)(478600001)(110136005)(166002)(2906002)(36756003)(6512007)(31686004)(45980500001)(43740500002);
+ 2023 07:36:51 +0000
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::feec:ad93:34ec:8ca7]) by MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::feec:ad93:34ec:8ca7%4]) with mapi id 15.20.6631.046; Fri, 4 Aug 2023
+ 07:36:50 +0000
+From: "Sharma, Shashank" <Shashank.Sharma@amd.com>
+To: "Zhang, Yifan" <Yifan1.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] Revert "drm/amdgpu: don't modify num_doorbells for mes"
+Thread-Topic: [PATCH] Revert "drm/amdgpu: don't modify num_doorbells for mes"
+Thread-Index: AQHZxpCwHrnf7T+FkE+l7hg8H9t4r6/ZvrPQ
+Date: Fri, 4 Aug 2023 07:36:50 +0000
+Message-ID: <MW4PR12MB56678065135849AD085610EFF209A@MW4PR12MB5667.namprd12.prod.outlook.com>
+References: <20230804050032.2110016-1-yifan1.zhang@amd.com>
+In-Reply-To: <20230804050032.2110016-1-yifan1.zhang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=b9659070-34b3-4001-905a-a6d1a714c851;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-08-04T07:33:09Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR12MB5667:EE_|PH0PR12MB7957:EE_
+x-ms-office365-filtering-correlation-id: 6005a362-ecdb-48ef-29a8-08db94bd911a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: v1f+pvI8X4dua2ONJ4LZWOF76L3ByMa5NsPZrQKiPpmqQhQoorSlZkUjOeU41zIREOSd7s4MJGK/hl4qolgTu5RwAXsiRidOb0I2A6uqvXwrUlJ8vfdCEuVTSXO6Q/sIzcZ81swHMzvXpndFTFCAHDAwxNATVhu0SjZe4w3QLMUTxl/uGMUWtlkGpDSVbld5y2/m0ElBfJx4Ra071iWxaD1Uc7hbbeQ4bwpde+Qvfp3hcGy+o+i8a2CG16GYrOkDd/0UYMQyW++zNbkrV0FATeXgFFBq2fWg13J4e2FesSZBvkUyB1T6Xpcme7BnlXda8yzWDtdIOrwiLjpA9Pv5aqTEg1YhvuBIANL1dAPgDtwsenjvsonJCMHoItd1qGJzaAd2bOiqUKBqFTIbzToSIFq7joric5l7qb49ADgbV0+XN1hPpFsSI96mmQWJGi6hPi22dxLftEylvhwe4FYXHpzUmMnLdj2KErbuCMNJGK8bV/Sm8Fnk2kKkFNjlcbAYCDcyLrn1n0pHaHxpNHDwrEdjVjKcm/HmXOjGfbVkIIosWpsh2oNxmnG00gj2ahPphHosbZqP9zeAEucRTtQMnyoMVZrBoDt1GTpSco9v52k=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR12MB5667.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(376002)(346002)(136003)(396003)(39860400002)(451199021)(186006)(1800799003)(83380400001)(122000001)(2906002)(33656002)(8936002)(26005)(6506007)(53546011)(38100700002)(71200400001)(52536014)(7696005)(8676002)(5660300002)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(55016003)(316002)(41300700001)(4326008)(478600001)(86362001)(54906003)(110136005)(38070700005)(966005)(9686003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTNpcE15YWVZMmdtSENmQTRjMlFTQVcyTjQ2NDZYSG1FaHZLZ1FoajY3RzF0?=
- =?utf-8?B?Uk1HaWtCKzhiVCsvNXd5cWVqYnJnMGQzUzE3YVRZaUZxZHc4R1dxeFdzNjh5?=
- =?utf-8?B?V3FDQXl2NG1ZZlRYSlJpQlp0TlczK1ArbGE4VnB0ZkgyeFJHekI3bkFqK283?=
- =?utf-8?B?b1RxdUJKcktLWGhXUlVZWXBHb1crdUtub1FQZENHMlFXRFlHeVhoTzhLaUZ4?=
- =?utf-8?B?T2Rhck8relI2MGt0UDJRK1p2b0VLcG11NEhFRU03U0NzemgrdDJlcnAxa3dB?=
- =?utf-8?B?NjlLckNldkZrVloxQWMwSGJXNmx2aUZXdit4YVV6L3pKNnNOcnJFVGRacDNI?=
- =?utf-8?B?dVJBMnNsWlN3V1FnTDJoRzZTV2ZvWG0yNE1mdjFOOUxzQjJvdVVRc3A5STVB?=
- =?utf-8?B?c3Fibkh0NUFQS2dlU1JBR3Q2TWV3cUpiL1lHcjVHaHFEd1daNTNBbkVFYndN?=
- =?utf-8?B?RGlUckN4Z1Y2ZmxUOXF1ditGd2lTRWRmcy9UcGxUMWF1TU0wNWE5cUxRUzRo?=
- =?utf-8?B?ODJwTFhiTmFxLzlsUGtNK0V3VlJTMitoVkQxUWxud2lvclpNUnR6YkxqWVB4?=
- =?utf-8?B?SURySUZuaG91V2R6THhOTWZFdTQyRU5OcVAvSnZyejQ4cGl4L0tjMkVWQ2l3?=
- =?utf-8?B?YlUrN2VQK3N1bHUwR1h4RHBLQmc1cktXd1pOMFpTZjM0ZzhNU2o4N3V2T3RQ?=
- =?utf-8?B?WFhQRVVBNk1EQzVUK2VwS0dDMmtCTkh3b3d2bnZwNHRtYkFuRWN2YVJlNUs3?=
- =?utf-8?B?ZTBUQ0s1cUFmM0t3UWtHTzIvU1VaSWc1djhsdTFkZmdUN3BtWE4wbENlaERO?=
- =?utf-8?B?OUxvWGtWRXdnSEFSTU5kbFdJbDNaelc4bmJ3M20rY2FBRG9wcmg1SmNWWnNq?=
- =?utf-8?B?aWcrcVZaSWN4TWFLa01IdDhRcmQ2OCtiWnFvSlhCR3AzYlFQMTVuU2tuQWph?=
- =?utf-8?B?djAxZ2hIdWRUNUZNSWFOU1IwUFNBSTF6QndhWTk3TlFiditydHQrS3J1N3Nx?=
- =?utf-8?B?b0RsZ05yUjRzM0ZPdU4waXlFb012NFBKK2FpOWRpMG1wQTFPQktpY2prMVhu?=
- =?utf-8?B?OXg0aXZCRFMzTExJZ2ZNaE45bHdBZFNmeFFWYUFpOWJsM1d1enh6V2FiakVn?=
- =?utf-8?B?Z1VpV1B0NFBzempmbk1xdW1TTW5rM0Q5YUZqOVBZN0xoNS9uNFc4c3NvRzFK?=
- =?utf-8?B?T2JHdWVsNkMzTUVybDN6WVRvZHJWemRPc25VTEg5ZU1ZbVkxLzAyQmp2UGk4?=
- =?utf-8?B?UzhNckNDUm5CclQrUHhsTU5VWWhJSktWZ3J2UGVBcnlzbXhoeU1JUHlVOW1O?=
- =?utf-8?B?anVHM1JGRW8xdndscFBQZ2lNMzNWaEdvWWNsVHpCZnd4THpSSlZZUHlYUGdG?=
- =?utf-8?B?TEVoZkltYkdTcEhxTTFpamRxdzJSaDBBMnFzcndocWZPM0JaU09sc0xiODVF?=
- =?utf-8?B?V1QrY21lU3VBUDY5Qjd1VmVZOW5ZNUpONFROczNid0R0b1czS2gyc2d5bVFG?=
- =?utf-8?B?dk52cGtGOGFONUw5czQzSGV2NitnQjNjWmdUMGdscmI3MCt2MjRKMERsaVNR?=
- =?utf-8?B?UXNNYWYzSWQ4WUNab0dtSHlSUTVjcHc5Zm9PRnJvUXlDRUhVN3pVT29kSm56?=
- =?utf-8?B?WWxDTVVqamptaTJ0bi94T1pJV3U3QWE2ekVpOUI1Z3NwMkI3VXNPMlhuekRj?=
- =?utf-8?B?N2g0anI4eDU3TUx2aDE4T0JLQ3JFNW1hSVpWS29uL3dvbW9peFFrNXN4OHBN?=
- =?utf-8?B?QVZPbmphbHRLNFlZOG5pNzRCTllUNEEzaUpKSkdYdVZ6RmtPbzA5TU1RU25p?=
- =?utf-8?B?VVR5Rzh4NmZkMHBmbmFtYWY4QXFlR1hDayt0RW02M1JZUlM4VVhHTjZzaUND?=
- =?utf-8?B?VmJCZktkNk1pREdPVklRUkxyOGpyKytHMHphTCtWU3VjQjZaSEZVeDBwakwz?=
- =?utf-8?B?bGpCbFBCMXdtbmFKV3VTcTJOSjB3cTJ5YUNTTStON1I2dHp1b0lkczBUQ2dN?=
- =?utf-8?B?SlRkWXBENTArN2dxM3QxTFBRNFdGVjZSZ1dCTkRsMyt1Ry9aakNzV2dndVBy?=
- =?utf-8?B?MGlQdVZLK2V5ekcyYUg2cVRSWjNYdFZvenlNRktuUzl6RFViWUdZUEVSUVhE?=
- =?utf-8?Q?xyq65+82tk2DHLaKKVXy1PTZm?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6xAoJE5DLMvZ57chMtZ+n9MikBJBT4VEWcGo+sFFPacxjy6nTghN1+xZQzx1?=
+ =?us-ascii?Q?1bXJqlbjney5i5o1N349l/o259md23bO7KINdmsNnn+HofKSN7nFs+ki9105?=
+ =?us-ascii?Q?Dlj/wkmzIwjLryPgvwomrj560G0fr045WtbtSJrAaI/onauJMMpgZl3cW9gL?=
+ =?us-ascii?Q?8z9APti3QxKGVw3BWGiwY6FSHoSYtmxGF+f8qtcaWvLDy64ftUFM56BxDz9V?=
+ =?us-ascii?Q?MqegUHcaVcPGr6BhLSgqd1YPDFuxHxXfCtvTtyMJQ0d0AyXmW4Iqoc9toepW?=
+ =?us-ascii?Q?9WLtMCWCjPzxQKeS9APd+bozHJt/B6qgVbl/vLJzi11/XhPH4jtiTMWxNUsl?=
+ =?us-ascii?Q?gOfy0osnfgT+cqtBtyv+uh9sZ439t+S3LynnXIQ1fJzF+f4diaB0hgsRm+6y?=
+ =?us-ascii?Q?0VafScFBB1L581Y+rVHf3CeyJRhRTK9Hn/IfB4iPTrpCmW8mDbgg7a4BscGQ?=
+ =?us-ascii?Q?qUwZ4FyiUTA4ENtA2W6jLvPhS9EcK1vKMmXZWVJlyGNoPanEuQt8AAwppKtf?=
+ =?us-ascii?Q?6eRlQk4SGFxFambNaerbq+VGm205ZCFQoGCbq0Vb8BSWuR7tb+scU+7c0MkG?=
+ =?us-ascii?Q?1k8jK7h/zp9nMoFerPx1wJhJGrCE6/nT/tT4jhOlOIirMQgosiQd1OGm0P82?=
+ =?us-ascii?Q?yoZ2TkmzUvwRcUMZj/1V6gtMn38aavxqJV4djmfNV1ryHd2Pd69rJHnJkZ7f?=
+ =?us-ascii?Q?9q8Z3sBjwC16AzuYEVouwDkRJoZU5Uxlo+hxKT/QffPR+f54GDue5oiobev7?=
+ =?us-ascii?Q?yFdzjThPdGMtPYtibTCH/O8+ADwIb/C7N3c2VWjr17ick8Zja5Noey9AfVAB?=
+ =?us-ascii?Q?w4grF/8NdVDUYiGnlA9NOVPJJ+aLfAxsqdAhwmBN7ChPkDyiYEG3SliJUr6F?=
+ =?us-ascii?Q?EZpdYP3oMdX8QWsT0BZsLBc4fcHmYSpTZWmHL/fLmGXhid/oMoezfNPHf0HD?=
+ =?us-ascii?Q?OUkK9R0XYEJkKzV90GHfgr9xMl7iX/uW7wNzKiPNIPPU4y7BtXbu91H0dGdt?=
+ =?us-ascii?Q?P5ML/kroAluGFjUiINarA0s4ztpIiOKBJnFgICgvcQc3pLb16i8laniqgHRE?=
+ =?us-ascii?Q?d82RXt4BC3Vj9KQtOlwG0N2OVAymECGUsmNwTVOTM+Y/jbFFygZOlO10uZjh?=
+ =?us-ascii?Q?GvL4m133rTB3wjJBPnvQuVID/9hB9xV5oxesYwnlXnDmqlBLPJ1jx+1UTHFJ?=
+ =?us-ascii?Q?vvzTqsPRjxCQcO96qBd4uyyFIVgJWNewyUsle0uAwtZjFL9yJMDYbD9414Hr?=
+ =?us-ascii?Q?/5YKEsyyMs3nJ7ypUT1ULMm9LL7WwLJcWbRZRcnYy14BJCUwXpESTrqn126L?=
+ =?us-ascii?Q?kj3Y41VpudvtDahyBhsNRxYnsIhUCjUljN2wKxDglBpZeHKiltLj9I0tIYzW?=
+ =?us-ascii?Q?CysCLq95Ix3PFmAy02tFK0TMKpHS+BmSKC+KF+VUVEg5mJXTdtM9f0NT0/Et?=
+ =?us-ascii?Q?2Ou8JkQE1sVXfH2B1Jz8oHdgwYGNrv7HB6dBbaOaLE0Fc5o4MRpvwuxVzHSy?=
+ =?us-ascii?Q?VPd7PEob7DLLTncj04zV+bsiWXDJuIbIjR5lS3CUUvcdNmn1w4XvyOWgojKp?=
+ =?us-ascii?Q?qoRVtpLee9lx7SwnBe4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07a3a065-9e54-4090-0b6f-08db94b94887
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4128.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2023 07:06:11.3767 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0rwxTdumNVlhAE3rzJKs8ax+j85SEc91zaphX3OU7/bW6LxzZ4CB1wdRYOc3CTOmg4Q2PWwQ40PQXf1yAoe+Bg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5867
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB5667.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6005a362-ecdb-48ef-29a8-08db94bd911a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Aug 2023 07:36:50.7015 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: d/f97SLVNeepHDMUNKGzepVdScKPQzNpA/Tnvy//4lSnSFfwMHqeXr2xu+cr/bvjx4W1JihaqVl7ZHSL6OhB6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7957
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,245 +123,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------zYZgwzEesZaeouyLSyaC0HJI
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+[AMD Official Use Only - General]
 
+Nack to the revert.
 
-On 8/3/2023 2:12 PM, Christian König wrote:
-> Am 03.08.23 um 07:23 schrieb SHANMUGAM, SRINIVASAN:
->>
->>
->> On 7/24/2023 10:43 PM, Alex Deucher wrote:
->>> On Mon, Jul 24, 2023 at 11:54 AM Srinivasan Shanmugam
->>> <srinivasan.shanmugam@amd.com>  wrote:
->>>> Fixes the following from checkpatch.pl:
->>>>
->>>> WARNING: Use of volatile is usually wrong: see Documentation/process/volatile-considered-harmful.rst
->>>> +       volatile uint32_t       *wb;
->>>>
->>>> WARNING: Use of volatile is usually wrong: see Documentation/process/volatile-considered-harmful.rst
->>>> +       volatile uint32_t               *ptr;
->>>>
->>>> 'wb' field from 'amdgpu_wb' struct & 'ptr' field from
->>>> 'amdgpu_mem_scratch', is not used to access h/w directly, neither they
->>>> are shared variables, so volatile is not necessary
->>> How did you come to that determination?  Both are GPU accessible
->>> memory allocations.  The writeback (wb) allocation happens to be in
->>> GTT so it's system memory, but the the mem_scratch allocation can be
->>> in device memory.
->>>
->>> Alex
->>
->> Hi Alex,
->>
->> Thanks for your feedbacks!
->>
->> Commit message is misleading, I presumed that this volatile modifiers 
->> are used for monitoring HW status registers due to external events & 
->> for some shared variables - may be volatile might be needed for *wb 
->> pointer variable - as they may be used for caches in between (on 
->> surface level info), can we split this patch into two, I felt 
->> volatile for *ptr is unnecessary as it is type casted with void type  
->> [(void **)&adev->mem_scratch.ptr); in amdgpu_device.c]- Any advises 
->> onto this please?
->>
->
-> Instead of declaring pointers we should use READ_ONCE()/WRITE_ONCE() 
-> when accessing those values to make sure that the compiler doesn't do 
-> any nasty things.
->
-> Regards,
-> Christian.
->
-Thanks a lot Christian!
+This is a whole series of doorbell changes, which has replacement for the p=
+atches too.
+https://patchwork.freedesktop.org/series/115802/
 
-So both the variables needs to be changed to plain variables - (ie., 
-"u32 wb" & "u32 ptr" without any volatile keyword or pointer variable) & 
-then protect this variables with "READ_ONCE()/WRITE_ONCE()", For ex: I 
-have proposed - https://patchwork.freedesktop.org/patch/551273/ am I 
-correct please? but may I know please is that volatile keyword, is that 
-doing the same job as "READ_ONCE()/WRITE_ONCE()", where compiler 
-optimizations is disabled? so that we can leave it as it is. & ignore 
-the checkpatch warning onto this please?
+The whole series was pushed to staging branch, but looks like some of the p=
+atches did not merge.
+When the whole series is merged, functionality will be restored.
 
--Srini
+I will check if there is any problem due to which other patches are blocked=
+ merge.
 
->> Best regards,
->>
->> Srini
->>
->>>> Cc: Christian König<christian.koenig@amd.com>
->>>> Cc: Alex Deucher<alexander.deucher@amd.com>
->>>> Signed-off-by: Srinivasan Shanmugam<srinivasan.shanmugam@amd.com>
->>>> ---
->>>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h | 4 ++--
->>>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->>>> index a046160b6a0e..06f79a84ff4b 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->>>> @@ -502,7 +502,7 @@ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
->>>>
->>>>   struct amdgpu_wb {
->>>>          struct amdgpu_bo        *wb_obj;
->>>> -       volatile uint32_t       *wb;
->>>> +       u32                     *wb;
->>>>          uint64_t                gpu_addr;
->>>>          u32                     num_wb; /* Number of wb slots actually reserved for amdgpu. */
->>>>          unsigned long           used[DIV_ROUND_UP(AMDGPU_MAX_WB, BITS_PER_LONG)];
->>>> @@ -621,7 +621,7 @@ int amdgpu_cs_wait_fences_ioctl(struct drm_device *dev, void *data,
->>>>   /* VRAM scratch page for HDP bug, default vram page */
->>>>   struct amdgpu_mem_scratch {
->>>>          struct amdgpu_bo                *robj;
->>>> -       volatile uint32_t               *ptr;
->>>> +       u32                             *ptr;
->>>>          u64                             gpu_addr;
->>>>   };
->>>>
->>>> --
->>>> 2.25.1
->>>>
->
---------------zYZgwzEesZaeouyLSyaC0HJI
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Regards
+Shashank
+-----Original Message-----
+From: Zhang, Yifan <Yifan1.Zhang@amd.com>
+Sent: Friday, August 4, 2023 7:01 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Chri=
+stian.Koenig@amd.com>; Sharma, Shashank <Shashank.Sharma@amd.com>; Zhang, Y=
+ifan <Yifan1.Zhang@amd.com>
+Subject: [PATCH] Revert "drm/amdgpu: don't modify num_doorbells for mes"
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 8/3/2023 2:12 PM, Christian König
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:af0efe19-e78c-2a8c-96c3-ddec10a62cf4@amd.com">
-      
-      Am 03.08.23 um 07:23 schrieb SHANMUGAM, SRINIVASAN:<br>
-      <blockquote type="cite" cite="mid:f8c546b3-669b-41dc-bc35-c7fef96ad4e4@amd.com">
-        <p><br>
-        </p>
-        <div class="moz-cite-prefix">On 7/24/2023 10:43 PM, Alex Deucher
-          wrote:<br>
-        </div>
-        <blockquote type="cite" cite="mid:CADnq5_NcEr3=bDoSo5_YYYuNAMps655fcOuUDaAPmw3_QDwQNQ@mail.gmail.com">
-          <pre class="moz-quote-pre" wrap="">On Mon, Jul 24, 2023 at 11:54 AM Srinivasan Shanmugam
-<a class="moz-txt-link-rfc2396E" href="mailto:srinivasan.shanmugam@amd.com" moz-do-not-send="true">&lt;srinivasan.shanmugam@amd.com&gt;</a> wrote:
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">Fixes the following from checkpatch.pl:
+This reverts commit f46644aa8de6d5efeff8d8c7fbf3ed58a89c765c.
 
-WARNING: Use of volatile is usually wrong: see Documentation/process/volatile-considered-harmful.rst
-+       volatile uint32_t       *wb;
+THe doorbell index could go beyond the first page for mes queues, this patc=
+h breaks the mes self test on gfx11.
 
-WARNING: Use of volatile is usually wrong: see Documentation/process/volatile-considered-harmful.rst
-+       volatile uint32_t               *ptr;
+[   23.212740] [drm] ring gfx_32768.1.1 was added
+[   23.213147] [drm] ring compute_32768.2.2 was added
+[   23.213540] [drm] ring sdma_32768.3.3 was added
+[   23.213546] [drm:amdgpu_mm_wdoorbell64 [amdgpu]] *ERROR* writing beyond =
+doorbell aperture: 0x00001000!
+[   23.214148] amdgpu 0000:c2:00.0: amdgpu: gfx_v11_0_ring_set_wptr_gfx: 51=
+68 0x402 0x1000 100
+[   23.560357] amdgpu 0000:c2:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] =
+*ERROR* ring gfx_32768.1.1 test failed (-110)
 
-'wb' field from 'amdgpu_wb' struct &amp; 'ptr' field from
-'amdgpu_mem_scratch', is not used to access h/w directly, neither they
-are shared variables, so volatile is not necessary
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">How did you come to that determination?  Both are GPU accessible
-memory allocations.  The writeback (wb) allocation happens to be in
-GTT so it's system memory, but the the mem_scratch allocation can be
-in device memory.
-
-Alex
-</pre>
-        </blockquote>
-        <p>Hi Alex,</p>
-        <p>Thanks for your feedbacks!<br>
-        </p>
-        <p>Commit message is misleading, I presumed that this volatile
-          modifiers are used for monitoring HW status registers due to
-          external events &amp; for some shared variables -&nbsp;<span><span class="ui-provider fy b c d e f g h i j k l m n o p q r s t
-            u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr"> may be
-              volatile might be needed for *wb pointer variable - as
-              they may be used for caches in between (on surface level
-              info), can we split this patch into two, I felt volatile
-              for *ptr is unnecessary as it is type casted with void
-              type&nbsp; [(void **)&amp;adev-&gt;mem_scratch.ptr); in
-              amdgpu_device.c]- Any advises onto this please?</span></span></p>
-      </blockquote>
-      <br>
-      Instead of declaring pointers we should use
-      READ_ONCE()/WRITE_ONCE() when accessing those values to make sure
-      that the compiler doesn't do any nasty things.<br>
-      <br>
-      Regards,<br>
-      Christian.<br>
-      <br>
-    </blockquote>
-    <p>Thanks a lot Christian! <br>
-    </p>
-    <p>So both the variables needs to be changed to plain variables -
-      (ie., &quot;u32 wb&quot; &amp; &quot;u32 ptr&quot; without any volatile keyword or&nbsp;
-      pointer variable) &amp; then protect this variables with &quot;READ_ONCE()/WRITE_ONCE()&quot;,
-      For ex: I have proposed -
-      <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/551273/">https://patchwork.freedesktop.org/patch/551273/</a> am I correct
-      please? but may I know please is that volatile keyword, is that
-      doing the same job as &quot;READ_ONCE()/WRITE_ONCE()&quot;, where compiler
-      optimizations is disabled? so that we can leave it as it is. &amp;
-      ignore the checkpatch warning onto this please?<br>
-    </p>
-    <p>-Srini<br>
-    </p>
-    <blockquote type="cite" cite="mid:af0efe19-e78c-2a8c-96c3-ddec10a62cf4@amd.com">
-      <blockquote type="cite" cite="mid:f8c546b3-669b-41dc-bc35-c7fef96ad4e4@amd.com">
-        <p><span><span class="ui-provider fy b c d e f g h i j k l m n o p
-            q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">Best
-              regards,</span></span></p>
-        <p><span><span class="ui-provider fy b c d e f g h i j k l m n o p
-            q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">Srini<br>
-            </span></span></p>
-        <blockquote type="cite" cite="mid:CADnq5_NcEr3=bDoSo5_YYYuNAMps655fcOuUDaAPmw3_QDwQNQ@mail.gmail.com">
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">Cc: Christian König <a class="moz-txt-link-rfc2396E" href="mailto:christian.koenig@amd.com" moz-do-not-send="true">&lt;christian.koenig@amd.com&gt;</a>
-Cc: Alex Deucher <a class="moz-txt-link-rfc2396E" href="mailto:alexander.deucher@amd.com" moz-do-not-send="true">&lt;alexander.deucher@amd.com&gt;</a>
-Signed-off-by: Srinivasan Shanmugam <a class="moz-txt-link-rfc2396E" href="mailto:srinivasan.shanmugam@amd.com" moz-do-not-send="true">&lt;srinivasan.shanmugam@amd.com&gt;</a>
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c  | 34 +++++++++++--------
+ 1 file changed, 19 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index a046160b6a0e..06f79a84ff4b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -502,7 +502,7 @@ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
+index 5c0d3cea817d..31db526d4921 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c
+@@ -140,21 +140,25 @@ int amdgpu_doorbell_init(struct amdgpu_device *adev)
+        adev->doorbell.base =3D pci_resource_start(adev->pdev, 2);
+        adev->doorbell.size =3D pci_resource_len(adev->pdev, 2);
 
- struct amdgpu_wb {
-        struct amdgpu_bo        *wb_obj;
--       volatile uint32_t       *wb;
-+       u32                     *wb;
-        uint64_t                gpu_addr;
-        u32                     num_wb; /* Number of wb slots actually reserved for amdgpu. */
-        unsigned long           used[DIV_ROUND_UP(AMDGPU_MAX_WB, BITS_PER_LONG)];
-@@ -621,7 +621,7 @@ int amdgpu_cs_wait_fences_ioctl(struct drm_device *dev, void *data,
- /* VRAM scratch page for HDP bug, default vram page */
- struct amdgpu_mem_scratch {
-        struct amdgpu_bo                *robj;
--       volatile uint32_t               *ptr;
-+       u32                             *ptr;
-        u64                             gpu_addr;
- };
+-       adev->doorbell.num_kernel_doorbells =3D
+-               min_t(u32, adev->doorbell.size / sizeof(u32),
+-                     adev->doorbell_index.max_assignment + 1);
+-       if (adev->doorbell.num_kernel_doorbells =3D=3D 0)
+-               return -EINVAL;
+-
+-       /*
+-        * For Vega, reserve and map two pages on doorbell BAR since SDMA
+-        * paging queue doorbell use the second page. The
+-        * AMDGPU_DOORBELL64_MAX_ASSIGNMENT definition assumes all the
+-        * doorbells are in the first page. So with paging queue enabled,
+-        * the max num_kernel_doorbells should + 1 page (0x400 in dword)
+-        */
+-       if (adev->asic_type >=3D CHIP_VEGA10)
+-               adev->doorbell.num_kernel_doorbells +=3D 0x400;
++       if (adev->enable_mes) {
++               adev->doorbell.num_kernel_doorbells =3D
++                       adev->doorbell.size / sizeof(u32);
++       } else {
++               adev->doorbell.num_kernel_doorbells =3D
++                       min_t(u32, adev->doorbell.size / sizeof(u32),
++                             adev->doorbell_index.max_assignment+1);
++               if (adev->doorbell.num_kernel_doorbells =3D=3D 0)
++                       return -EINVAL;
++
++               /* For Vega, reserve and map two pages on doorbell BAR sinc=
+e SDMA
++                * paging queue doorbell use the second page. The
++                * AMDGPU_DOORBELL64_MAX_ASSIGNMENT definition assumes all =
+the
++                * doorbells are in the first page. So with paging queue en=
+abled,
++                * the max num_kernel_doorbells should + 1 page (0x400 in d=
+word)
++                */
++               if (adev->asic_type >=3D CHIP_VEGA10)
++                       adev->doorbell.num_kernel_doorbells +=3D 0x400;
++       }
 
+        adev->doorbell.ptr =3D ioremap(adev->doorbell.base,
+                                     adev->doorbell.num_kernel_doorbells *
 --
-2.25.1
+2.37.3
 
-</pre>
-          </blockquote>
-        </blockquote>
-      </blockquote>
-      <br>
-    </blockquote>
-  </body>
-</html>
-
---------------zYZgwzEesZaeouyLSyaC0HJI--
