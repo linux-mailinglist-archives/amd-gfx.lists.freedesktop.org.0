@@ -1,74 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDAD773831
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Aug 2023 08:30:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF457738AB
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Aug 2023 09:40:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2844410E3A5;
-	Tue,  8 Aug 2023 06:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175F710E3AE;
+	Tue,  8 Aug 2023 07:40:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7DE10E3A5
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Aug 2023 06:30:48 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- 5b1f17b1804b1-3fe1e1142caso51511135e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Aug 2023 23:30:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691476247; x=1692081047;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=zqk8R3IonTci8hLSXfXeKm853p6DqLMRcAylSZJtUEM=;
- b=FmJgEKjoGxlH47ZTesaXYbYUaFPrcvpqlYsPV088rJE+oMPgnCDIiLxk6n7lYI7ruC
- cytUPwHOlLt2xaA0mC7UlneOO4hIFtVF5YTD5Pd3gJOqaWecfpV5DE+26Ws/P1FLIaAN
- InrSPIqt1Bl0liI7Fq30fDTSAm2caGRXM1pV89lsiU5UZgdpSoGA/N9MNnwOAlkaKpLB
- QL4Lm9mS3ALcxscI5NRk6JyojGTNvCQb17lMkdY2OKN7v/ypgjAGSnqSFDlAhAc9ifbe
- 5hLm0Nh+Gv0P8o7FEsH4U4oWAsI6P+geHOhNmqRcCTfZJ0CnAaySw/PVxQ0m6nPKUw6R
- 5Giw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691476247; x=1692081047;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=zqk8R3IonTci8hLSXfXeKm853p6DqLMRcAylSZJtUEM=;
- b=L5wC12siU6u/ZGtey7yFhwD+kL20tHRHIDuzJD123a0Xbr+voSQ5MEJ7ow3KRnhq6/
- oL2Fxg7jk+7jcjtpV/DFLUWBJWurctLuolb1kjc/1yFN7H/zo12YvxzwIgfebNfcR0wQ
- nRjDx7+glTCwifdHt3w3kHeNrgSBa2mAqEIfsGwaKlf1ln/zjqMA9JY1DyAtiXOOU0Xs
- yMM/uZQmipYGptDSrWEtQNT5e6chiVw5whAVFs4Qjdb7wimZC8bQX22JZnCazTGP9LwD
- lxaW16y2yIrZFNWycJS5AxDiC5Y12jU73wN7rx4sU7IiXKcZdZlL3I/5n4pYw5GgU5YH
- 631A==
-X-Gm-Message-State: AOJu0YxSYMNrlDPobUx/I6oHyDfrZrGpdCFd2AsflvRIgZQDoo87zPAJ
- z0nGvgLVB3Xxr/cqPDV6+nvT8ihInLE=
-X-Google-Smtp-Source: AGHT+IH3fgIot+xbJRQW4hSUf48X8BE6rkyU5OyjqqoHLIUQzNOP2vT5RVwLfvtvxwEAahg+Ot3p5A==
-X-Received: by 2002:aa7:c31a:0:b0:522:1d30:efce with SMTP id
- l26-20020aa7c31a000000b005221d30efcemr7865634edq.22.1691476225839; 
- Mon, 07 Aug 2023 23:30:25 -0700 (PDT)
-Received: from ?IPV6:2a00:e180:1471:fb00:e090:ae3d:1c51:b452?
- ([2a00:e180:1471:fb00:e090:ae3d:1c51:b452])
- by smtp.gmail.com with ESMTPSA id
- a22-20020aa7d756000000b005232cf13b02sm3910005eds.37.2023.08.07.23.30.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Aug 2023 23:30:25 -0700 (PDT)
-Message-ID: <08e66fda-b382-27bc-e219-9d0a66df9b43@gmail.com>
-Date: Tue, 8 Aug 2023 08:30:24 +0200
+Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
+ [185.70.41.103])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F021B10E094
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Aug 2023 06:40:57 +0000 (UTC)
+Date: Tue, 08 Aug 2023 06:40:42 +0000
+Authentication-Results: mail-41103.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
+ header.b="PpUcRl+Q"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1691476851; x=1691736051;
+ bh=rLyqhqtc/MDZ2VUlG4CH6NUh7rXYVmwrFO5WIOp1Wv0=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=PpUcRl+QCCH8VQQTilrvzfFeQsLP9st5SaVucMJyUkTUCUClrq6MB6Njhm8ew+8kG
+ RfEHf2/R5IogGt3Dw/F5wKWk1AAlQnytSBFsV39Y/yWQGL6JexkPkwEDEWTTQYWu7l
+ dCx9UgDrNUS7U4cE8/Vt8mgwzy7T3lo8h4AjIFbN0tZPieeqg0a060hagzrg16xY7v
+ VZmxobXOSg0tFv4iBP9nQ3DhP43aF5Yw37k1N1s0FxIXQTQjVyMPmQdqYK5lguh4X+
+ BeLrvZgsG1ZFhO87xcFpmKs2v6P/AMqzXkyLuLGTTSrrbskvTJcVyOlXGNWcYZ4oHR
+ PYwPAI/IjbAJw==
+To: amd-gfx@lists.freedesktop.org
+From: Umio Yasuno <coelacanth_dream@protonmail.com>
+Subject: [PATCH] fix throttle_status for other than MP0 11.0.7
+Message-ID: <20230808064025.1008680-1-coelacanth_dream@protonmail.com>
+Feedback-ID: 19510729:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 4/4] drm/amdgpu: use a macro to define no xcp partition
- case
-Content-Language: en-US
-To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
- alexander.deucher@amd.com, hawking.zhang@amd.com, christian.koenig@amd.com,
- Philip.Yang@amd.com, Felix.Kuehling@amd.com
-References: <20230718051342.217902-1-guchun.chen@amd.com>
- <20230718051342.217902-4-guchun.chen@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20230718051342.217902-4-guchun.chen@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 08 Aug 2023 07:40:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,99 +48,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 18.07.23 um 07:13 schrieb Guchun Chen:
-> ~0 as no xcp partition is used in several places, so improve its
-> definition by a macro for code consistency.
->
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
-> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2720
+Signed-off-by: Umio Yasuno <coelacanth_dream@protonmail.com>
+---
+ .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-I guess you already pushed this, so just for the record: Reviewed-by: 
-Christian König <christian.koenig@amd.com>.
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/driv=
+ers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 85d53597e..548d25cf3 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -578,7 +578,9 @@ static int sienna_cichlid_tables_init(struct smu_contex=
+t *smu)
+ =09return -ENOMEM;
+ }
+=20
+-static uint32_t sienna_cichlid_get_throttler_status_locked(struct smu_cont=
+ext *smu)
++static uint32_t sienna_cichlid_get_throttler_status_locked(struct smu_cont=
+ext *smu,
++=09=09=09=09=09=09=09   bool use_metrics_v3,
++=09=09=09=09=09=09=09   bool use_metrics_v2)
+ {
+ =09struct smu_table_context *smu_table=3D &smu->smu_table;
+ =09SmuMetricsExternal_t *metrics_ext =3D
+@@ -586,13 +588,11 @@ static uint32_t sienna_cichlid_get_throttler_status_l=
+ocked(struct smu_context *s
+ =09uint32_t throttler_status =3D 0;
+ =09int i;
+=20
+-=09if ((smu->adev->ip_versions[MP1_HWIP][0] =3D=3D IP_VERSION(11, 0, 7)) &=
+&
+-=09     (smu->smc_fw_version >=3D 0x3A4900)) {
++=09if (use_metrics_v3) {
+ =09=09for (i =3D 0; i < THROTTLER_COUNT; i++)
+ =09=09=09throttler_status |=3D
+ =09=09=09=09(metrics_ext->SmuMetrics_V3.ThrottlingPercentage[i] ? 1U << i =
+: 0);
+-=09} else if ((smu->adev->ip_versions[MP1_HWIP][0] =3D=3D IP_VERSION(11, 0=
+, 7)) &&
+-=09     (smu->smc_fw_version >=3D 0x3A4300)) {
++=09} else if (use_metrics_v2) {
+ =09=09for (i =3D 0; i < THROTTLER_COUNT; i++)
+ =09=09=09throttler_status |=3D
+ =09=09=09=09(metrics_ext->SmuMetrics_V2.ThrottlingPercentage[i] ? 1U << i =
+: 0);
+@@ -854,7 +854,7 @@ static int sienna_cichlid_get_smu_metrics_data(struct s=
+mu_context *smu,
+ =09=09=09metrics->TemperatureVrSoc) * SMU_TEMPERATURE_UNITS_PER_CENTIGRADE=
+S;
+ =09=09break;
+ =09case METRICS_THROTTLER_STATUS:
+-=09=09*value =3D sienna_cichlid_get_throttler_status_locked(smu);
++=09=09*value =3D sienna_cichlid_get_throttler_status_locked(smu, use_metri=
+cs_v3, use_metrics_v2);
+ =09=09break;
+ =09case METRICS_CURR_FANSPEED:
+ =09=09*value =3D use_metrics_v3 ? metrics_v3->CurrFanSpeed :
+@@ -4056,7 +4056,7 @@ static ssize_t sienna_cichlid_get_gpu_metrics(struct =
+smu_context *smu,
+ =09gpu_metrics->current_dclk1 =3D use_metrics_v3 ? metrics_v3->CurrClock[P=
+PCLK_DCLK_1] :
+ =09=09use_metrics_v2 ? metrics_v2->CurrClock[PPCLK_DCLK_1] : metrics->Curr=
+Clock[PPCLK_DCLK_1];
+=20
+-=09gpu_metrics->throttle_status =3D sienna_cichlid_get_throttler_status_lo=
+cked(smu);
++=09gpu_metrics->throttle_status =3D sienna_cichlid_get_throttler_status_lo=
+cked(smu, use_metrics_v3, use_metrics_v2);
+ =09gpu_metrics->indep_throttle_status =3D
+ =09=09=09smu_cmn_get_indep_throttler_status(gpu_metrics->throttle_status,
+ =09=09=09=09=09=09=09   sienna_cichlid_throttler_map);
+--=20
+2.40.1
 
-I need to get faster catching up on mails,
-Christian.
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 3 ++-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c          | 4 ++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h          | 2 ++
->   drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c       | 4 ++--
->   4 files changed, 8 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> index a7f314ddd173..d34c3ef8f3ed 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> @@ -1709,7 +1709,8 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
->   			alloc_flags |= (flags & KFD_IOC_ALLOC_MEM_FLAGS_PUBLIC) ?
->   			AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED : 0;
->   		}
-> -		xcp_id = fpriv->xcp_id == ~0 ? 0 : fpriv->xcp_id;
-> +		xcp_id = fpriv->xcp_id == AMDGPU_XCP_NO_PARTITION ?
-> +					0 : fpriv->xcp_id;
->   	} else if (flags & KFD_IOC_ALLOC_MEM_FLAGS_GTT) {
->   		domain = alloc_domain = AMDGPU_GEM_DOMAIN_GTT;
->   		alloc_flags = 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-> index d175e862f222..9c9cca129498 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-> @@ -363,7 +363,7 @@ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
->   	if (!adev->xcp_mgr)
->   		return 0;
->   
-> -	fpriv->xcp_id = ~0;
-> +	fpriv->xcp_id = AMDGPU_XCP_NO_PARTITION;
->   	for (i = 0; i < MAX_XCP; ++i) {
->   		if (!adev->xcp_mgr->xcp[i].ddev)
->   			break;
-> @@ -381,7 +381,7 @@ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
->   		}
->   	}
->   
-> -	fpriv->vm.mem_id = fpriv->xcp_id == ~0 ? -1 :
-> +	fpriv->vm.mem_id = fpriv->xcp_id == AMDGPU_XCP_NO_PARTITION ? -1 :
->   				adev->xcp_mgr->xcp[fpriv->xcp_id].mem_id;
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
-> index 0f8026d64ea5..9a1036aeec2a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
-> @@ -37,6 +37,8 @@
->   #define AMDGPU_XCP_FL_NONE 0
->   #define AMDGPU_XCP_FL_LOCKED (1 << 0)
->   
-> +#define AMDGPU_XCP_NO_PARTITION (~0)
-> +
->   struct amdgpu_fpriv;
->   
->   enum AMDGPU_XCP_IP_BLOCK {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-> index 16471b81a1f5..72b629a78c62 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-> @@ -68,7 +68,7 @@ static void aqua_vanjaram_set_xcp_id(struct amdgpu_device *adev,
->   	enum AMDGPU_XCP_IP_BLOCK ip_blk;
->   	uint32_t inst_mask;
->   
-> -	ring->xcp_id = ~0;
-> +	ring->xcp_id = AMDGPU_XCP_NO_PARTITION;
->   	if (adev->xcp_mgr->mode == AMDGPU_XCP_MODE_NONE)
->   		return;
->   
-> @@ -177,7 +177,7 @@ static int aqua_vanjaram_select_scheds(
->   	u32 sel_xcp_id;
->   	int i;
->   
-> -	if (fpriv->xcp_id == ~0) {
-> +	if (fpriv->xcp_id == AMDGPU_XCP_NO_PARTITION) {
->   		u32 least_ref_cnt = ~0;
->   
->   		fpriv->xcp_id = 0;
 
