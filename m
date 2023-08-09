@@ -1,62 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62E3775E76
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Aug 2023 14:07:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1286C775EC2
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Aug 2023 14:20:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB9910E41E;
-	Wed,  9 Aug 2023 12:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1C3710E423;
+	Wed,  9 Aug 2023 12:20:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
- [IPv6:2607:f8b0:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAB5110E41E
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Aug 2023 12:06:58 +0000 (UTC)
-Received: by mail-oi1-x236.google.com with SMTP id
- 5614622812f47-3a7a180c3faso2036678b6e.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 09 Aug 2023 05:06:58 -0700 (PDT)
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com
+ [IPv6:2607:f8b0:4864:20::c32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EF8710E423
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Aug 2023 12:20:22 +0000 (UTC)
+Received: by mail-oo1-xc32.google.com with SMTP id
+ 006d021491bc7-56c7f47ec42so4820297eaf.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 09 Aug 2023 05:20:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691582818; x=1692187618;
+ d=gmail.com; s=20221208; t=1691583621; x=1692188421;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=jbPL3f/SKGrfWLo1kR/zfzIUMY28L8Hb67rotPOMQu4=;
- b=BSlz9i1RwHpC+oohRnKMw+KZQUXXCTxsGknvsffe8eOsFjWEGyrihkfx+hkVmIpmRc
- 3wo2w9CxVUt6cQXMA02vyX1M3ajLj2ERi/Yrd8ydRT26eGtL+EeFcNx0sJPhpgOwI6Og
- OmLYvExRoibqDbStZJWIw5qX8kDltLQViHINzUr33vtlQTY7odkE/7ghsfpYGTjFq8St
- fKXvSLHRwHYYOQa6cdOxyZs5FXW9qZ0BxSC5AVbfdPeEsn82SNFbIvDFU4hongXc7vaW
- MwrxAiLLTaVD6yJRdx9xa+r1gdD9I3A0ig7lDmIsu5+Nl1UEN8Gr3BDn0sqvdoM8PYFw
- S0/Q==
+ bh=k11+OSwdJjYLMuvlahKsy7p54ybUxXGfOC2pjlBLcms=;
+ b=mb2/iCMFBPmf5EIVU+KTVfXd3i180kdg0SxiwvQPdr2kGXNC2/VvpxyE4MZfhdkm5R
+ f01Xnq1nyMLZwlAehvZx0VbxuUdIU3KqoRU5MQGM8kC2/YfYajlmx+2ZXxJbHRziDSXP
+ NCAgUE11isON4O1Y41m9hngEqVKwWAYmawZH/hBPCzOOuM38bUjbkgmzt0kk/P0h6vND
+ xn9MJNM11PUoJQHwHa6FEwtD9Q1HfICBJU8wUbM3v8Fd8jn+zy7Gc+EotWBn3SyWxU4P
+ ftd6BKS+AZ3gMXC5ujvSN8d8ZmoR2AzxH1Ljl3vEnVoPDfv4yKa9ML+55U/rX0R4qmu+
+ C5rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691582818; x=1692187618;
+ d=1e100.net; s=20221208; t=1691583621; x=1692188421;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=jbPL3f/SKGrfWLo1kR/zfzIUMY28L8Hb67rotPOMQu4=;
- b=EAqn6prVPqHK8CuWHV3LF1Ih8iD4FoADA/leUMazLWpnwyPsyqHMAYZ5gbbsX2zRiJ
- CbUDEZeaK/arBe2aA9uHqwj6nFjfZoGosdM9Mc3Ra8ihHwMLWHrbjPk9XU6KOhQX8AIC
- 3B4h5BG6qNWu372F8wy70uuT1/SAiuTZ8ie0CRQlcTE7Bnr3kkPrN9QgtNi6LqQpGTtL
- IIaZUsV8GE8tOxWTpGbr3/37DiOSkbaKlmjLwuUXjw/cyvksyj7k5gRHOkWc/ZCDDq6L
- dELMjLHPnVw2+QSWHBWoVHdTBhv5nz+riblN/XHxSFwEuW+mKG3CWyiJwMCG3P0JEcOq
- spfA==
-X-Gm-Message-State: AOJu0YzG4NpRCJ27Tt98BtprGyDvZ0ecOU8S19A032laGFW0X9P7ZPtO
- XylVyBNPn0wfssUmoDXfOBt1LoJdvkab4HYG4LpBDJuX
-X-Google-Smtp-Source: AGHT+IHl2AjV0vGVyGNzmsaw5zEsQMqooCC2+EkBkSOhv3i3VEsiTi+XqD4ELvwnqXsVSGJxIDGUHPskNIbZlOtFjy8=
-X-Received: by 2002:a05:6808:649:b0:3a7:8510:ecaa with SMTP id
- z9-20020a056808064900b003a78510ecaamr2467695oih.27.1691582818121; Wed, 09 Aug
- 2023 05:06:58 -0700 (PDT)
+ bh=k11+OSwdJjYLMuvlahKsy7p54ybUxXGfOC2pjlBLcms=;
+ b=lu/aTVTr1HI22Jz+ALivwaDPzlTtrqo1FeVA5nQjrz4mSqEk+Q2lUrsAMJ9OVftSDz
+ 8X2mJxlJdfyEf3HHdmJJm4oxjDbeVQC+k/IBHmjk68yBidEZ1oNF32XPDkJ3B9mUI8rM
+ 4zV5/62lXry4uUY7lyhE/tndYK1/rC/TKkI3fiAWYNg1gFD1NyoUofpiTDlC9YUJuySH
+ L5olhs/k3Zf11os39mILyMRvr7JrEEPZjn1pjlXPeoh1CTR6GYA586pgHuUj2UX+K7TK
+ XJkK67NwAcR9ms3fW930JjE0VOt9D6APtGoZMd5F29ly3eRrN7t4AUTj2On2ILc6uzFf
+ m8fw==
+X-Gm-Message-State: AOJu0YzvB7V73aPhp2JbobfeUu9VmCm9WSABl8KwtDJOzFKG5XKa7Zk+
+ JUjy+jS/bfFmi71VOvDxoOZJ8jCaXgyXigEoUCRgopp4
+X-Google-Smtp-Source: AGHT+IFuFFn4eB2wnExAr+dA3ZjlAGzlWXY+l5HXwXloUqrmA+CkRfk/ENTur013KRc3rW0C+llZMX8ndxsbk0HlCVw=
+X-Received: by 2002:a05:6808:3a6:b0:3a7:8e05:1697 with SMTP id
+ n6-20020a05680803a600b003a78e051697mr2448774oie.59.1691583621231; Wed, 09 Aug
+ 2023 05:20:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230808064025.1008680-1-coelacanth_dream@protonmail.com>
- <DM6PR12MB26194F879FCE037C745B6D97E40DA@DM6PR12MB2619.namprd12.prod.outlook.com>
- <CADnq5_NdZzofSAoaEg+fZbbn1weELA8acJ++RuekVWH13+YLeA@mail.gmail.com>
- <20230809062525.2346797-1-coelacanth_dream@protonmail.com>
-In-Reply-To: <20230809062525.2346797-1-coelacanth_dream@protonmail.com>
+References: <20230809101235.285114-1-kenneth.feng@amd.com>
+In-Reply-To: <20230809101235.285114-1-kenneth.feng@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 9 Aug 2023 08:06:46 -0400
-Message-ID: <CADnq5_OEAmaiOHRnOSey1k5qmgkh6VuPkWq6GUGDFjRnJM8zvQ@mail.gmail.com>
-Subject: Re: [PATCH] fix throttle_status for other than MP0 11.0.7
-To: Umio Yasuno <coelacanth_dream@protonmail.com>
+Date: Wed, 9 Aug 2023 08:20:09 -0400
+Message-ID: <CADnq5_Ot96o8RdopafMVOT6jZKgfkuxTOT4CVQJ6k8aBVPNBSw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amd/pm: disallow the fan setting if there is no
+ fan on smu 13.0.0
+To: Kenneth Feng <kenneth.feng@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,24 +68,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: lijo.lazar@amd.com, maisam.arif@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 9, 2023 at 3:15=E2=80=AFAM Umio Yasuno
-<coelacanth_dream@protonmail.com> wrote:
+On Wed, Aug 9, 2023 at 6:12=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com> =
+wrote:
 >
-> Sorry, I had mistaken MP1 for MP0.
-> Also, should I add an `drm/amdgpu:` or `drm/amdgpu/swsmu` or `drm/amdgpu/=
-pm` to
-> the prefix of the patch title?
+> drm/amd/pm: disallow the fan setting if there is no fan on smu 13.0.0
+> V2: depend on pm.no_fan to check
+>
+> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 
-I fixed it up when I applied it.
-
-Thanks,
+You can still read the fan speed though right?  Don't we want to just
+not expose the ability to manually set the fan speed?
 
 Alex
 
-
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drive=
+rs/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> index fddcd834bcec..0fb6be11a0cc 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+> @@ -331,6 +331,7 @@ static int smu_v13_0_0_check_powerplay_table(struct s=
+mu_context *smu)
+>         struct smu_13_0_0_powerplay_table *powerplay_table =3D
+>                 table_context->power_play_table;
+>         struct smu_baco_context *smu_baco =3D &smu->smu_baco;
+> +       PPTable_t *pptable =3D smu->smu_table.driver_pptable;
+>  #if 0
+>         PPTable_t *pptable =3D smu->smu_table.driver_pptable;
+>         const OverDriveLimits_t * const overdrive_upperlimits =3D
+> @@ -371,6 +372,9 @@ static int smu_v13_0_0_check_powerplay_table(struct s=
+mu_context *smu)
+>         table_context->thermal_controller_type =3D
+>                 powerplay_table->thermal_controller_type;
+>
+> +       smu->adev->pm.no_fan =3D
+> +               !(pptable->SkuTable.FeaturesToRun[0] & (1 << FEATURE_FAN_=
+CONTROL_BIT));
+> +
+>         return 0;
+>  }
+>
+> --
+> 2.34.1
 >
