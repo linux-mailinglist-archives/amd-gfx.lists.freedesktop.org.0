@@ -1,55 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64452777C82
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Aug 2023 17:43:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11689777D31
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Aug 2023 18:03:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7AD10E565;
-	Thu, 10 Aug 2023 15:43:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6365C10E569;
+	Thu, 10 Aug 2023 16:03:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF9210E55B;
- Thu, 10 Aug 2023 15:41:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=LZZwhU2q9tKRTuT4LMGtkLl/YytlWdJV5ADQ7yyf884=; b=nzCVWxdZKZwPPVrpb79vDihKKN
- YQMNeNih7Df6L+pZOvTjw50y9FCJs6aH8rL8h5X2REST5vdC3Wq9YdRoE5xnf6hw68vx0zt8985/4
- +9cDPaBlKuKeAHsCvu3wOh/4f+NA8FgH2SNngUajJxMQhE16KsGIQEWgQG79GUlXunzjgzLhpAOr+
- SYDCVy0iFP1vRNzRSbC+T0oIVVz6F2RvcjiMZYX3czR+nm5oLvCNzwtupO+DnMacrLMCIbCpZMS31
- kUka0xfiEZR78ZR0A8ZecYiCVpTdwXhUWyz2kMWRbBUeMIq9zHuWNHz7b8W60+R7DbtqAwg0Ryp6u
- XrPT05iA==;
-Received: from [2601:1c2:980:9ec0::2764]
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qU7mf-0084NA-10; Thu, 10 Aug 2023 15:41:09 +0000
-Message-ID: <efb2d30c-3945-a63d-9a3f-7cf39124f76a@infradead.org>
-Date: Thu, 10 Aug 2023 08:41:07 -0700
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4591110E563;
+ Thu, 10 Aug 2023 16:03:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=OtEX00Zz86ZdotII/QVp6fdEQKAfqBlaMcy6m5VgsMI=; b=fDSz/VVOxqter06/jIssmOeO+H
+ fVJK10sgVPQYSKS/UHFrFjwTfMMutnUjGojo3TqDt6iYEPh0/nHvt4jUlHGsWwn8l1aDA30ZCHQ16
+ IAgdhZphuWCmjqv0AumUWHWdgTmEed1UbADxpdPhr6QwVdK4aOC6+WDYcUEScCwvcAFRP1s/bcsd4
+ 1my7pL6/TVPNRfVPFVKV+hqwQLYTkmg4v6mByAqJDnXmY+2ejUjbr8ChHlWq+oPVC0rmyJUsFg6Gf
+ U7kTnwZGn19p6jlFof77AG0gTuHPFSlffJ0nGduv40ssDpnBR67zjHLEL+F4OnUHB6AwJgQCEYBI5
+ QLEbJjRA==;
+Received: from [38.44.68.151] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1qU885-00GjYD-Ll; Thu, 10 Aug 2023 18:03:17 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
+ Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, brian.starkey@arm.com, christian.koenig@amd.com,
+ daniel@ffwll.ch, liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, Xinhui.Pan@amd.com
+Subject: [PATCH v2 00/34] drm/amd/display: add AMD driver-specific properties
+ for color mgmt
+Date: Thu, 10 Aug 2023 15:02:40 -0100
+Message-Id: <20230810160314.48225-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V8 1/9] drivers core: Add support for Wifi band RF
- mitigations
-Content-Language: en-US
-To: Evan Quan <evan.quan@amd.com>, rafael@kernel.org, lenb@kernel.org,
- Alexander.Deucher@amd.com, Christian.Koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, johannes@sipsolutions.net,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, Mario.Limonciello@amd.com, mdaenzer@redhat.com,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, hdegoede@redhat.com,
- jingyuwang_vip@163.com, Lijo.Lazar@amd.com, jim.cromie@gmail.com,
- bellosilicio@gmail.com, andrealmeid@igalia.com, trix@redhat.com,
- jsg@jsg.id.au, arnd@arndb.de, andrew@lunn.ch
-References: <20230810073803.1643451-1-evan.quan@amd.com>
- <20230810073803.1643451-2-evan.quan@amd.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230810073803.1643451-2-evan.quan@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 10 Aug 2023 15:43:51 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,37 +54,219 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: Sebastian Wick <sebastian.wick@redhat.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Simon Ser <contact@emersion.fr>, Xaver Hugl <xaver.hugl@gmail.com>,
+ linux-kernel@vger.kernel.org, kernel-dev@igalia.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Joshua Ashton <joshua@froggi.es>, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi all,
+
+Here is the next version of our work to enable AMD driver-specific color
+management properties [1][2]. This series is a collection of
+contributions from Joshua, Harry, and me to enhance the AMD KMS color
+pipeline for Steam Deck/SteamOS by exposing additional pre-blending and
+post-blending color capabilities from those available in the current DRM
+KMS API[3].
+
+The userspace case here is Gamescope which is the compositor for
+SteamOS. Gamescope is already using these features to implement its
+color management pipeline [4].
+
+In this version, I try to address all concerns shared in the previous
+one, i.e.:
+- Replace DRM_ by AMDGPU_ prefix for transfer function enumeration; 
+- Explicitly define EOTFs and inverse EOTFs and set props accordingly;
+- Document pre-defined transfer functions;
+- Remove misleading comments;
+- Remove post-blending/MPC shaper and 3D LUT support;
+- Move driver-specific property operations from amdgpu_display.c to
+  amdgpu_dm_color.c;
+- Reset planes if any color props change;
+- Nits/small fixes;
+
+Bearing in mind the complexity of color concepts, I believe there is a
+high chance of some misunderstanding from my side when defining EOTFs
+and documenting pre-defined TFs. So, reviews are very important and
+welcome (thanks in advance). FWIW, I added Harry as a co-developer of
+this TF documentation since I based on his description of EOTF/inv_EOTF
+and previous documentation work [5]. Let me know if there is a better
+way for credits.
+
+Two DC patches were already applied and, therefore, removed from the
+series. I added r-b according to previous feedback. We also add plane
+CTM to driver-specific properties. As a result, this is the updated list
+of all driver-specific color properties exposed by this series:
+
+- plane degamma LUT and pre-defined TF;
+- plane HDR multiplier;
+- plane CTM 3x4;
+- plane shaper LUT and pre-defined TF;
+- plane 3D LUT;
+- plane blend LUT and pre-defined TF;
+- CRTC gamma pre-defined TF;
+
+Remember you can find the AMD HW color capabilities documented here:
+https://dri.freedesktop.org/docs/drm/gpu/amdgpu/display/display-manager.html#color-management-properties
+
+Worth mentioning that the pre-blending degamma block can use ROM curves
+for some pre-defined TFs, but the other blocks use the AMD color module
+to calculate this curve considering pre-defined coefficients.
+
+We need changes on DC gamut remap matrix to support the plane and CRTC
+CTM on drivers that support both. I've sent a previous patch to apply
+these changes to all DCN3+ families [6]. Here I use the same changes but
+limited to DCN301. Just let me know if you prefer the previous/expanded
+version.
+
+Finally, this is the Linux/AMD color management API before and after
+blending with the driver-specific properties:
+
++----------------------+
+|   PLANE              |
+|                      |
+|  +----------------+  |
+|  | AMD Degamma    |  |
+|  |                |  |
+|  | EOTF | 1D LUT  |  |
+|  +--------+-------+  |
+|           |          |
+|  +--------v-------+  |
+|  |    AMD HDR     |  |
+|  |    Multiply    |  |
+|  +--------+-------+  |
+|           |          |
+|  +--------v-------+  |
+|  |  AMD CTM (3x4) |  |
+|  +--------+-------+  |
+|           |          |
+|  +--------v-------+  |
+|  | AMD Shaper     |  |
+|  |                |  |
+|  | inv_EOTF |     |  |
+|  | Custom 1D LUT  |  |
+|  +--------+-------+  |
+|           |          |
+|  +--------v-------+  |
+|  |   AMD 3D LUT   |  |
+|  |   17^3/12-bit  |  |
+|  +--------+-------+  |
+|           |          |
+|  +--------v-------+  |
+|  | AMD Blend      |  |
+|  |                |  |
+|  | EOTF | 1D LUT  |  |
+|  +--------+-------+  |
+|           |          |
+++----------v---------++
+||      Blending      ||
+++----------+---------++
+|    CRTC   |          |
+|           |          |
+|   +-------v-------+  |
+|   | DRM Degamma   |  |
+|   |               |  |
+|   | Custom 1D LUT |  |
+|   +-------+-------+  |
+|           |          |
+|   +-------v-------+  |
+|   | DRM CTM (3x3) |  |
+|   +-------+-------+  |
+|           |          |
+|   +-------v-------+  |
+|   | DRM Gamma     |  |
+|   |               |  |
+|   | Custom 1D LUT |  |
+|   +---------------+  |
+|   | *AMD Gamma    |  |
+|   |   inv_EOTF    |  |
+|   +---------------+  |
+|                      |
++----------------------+
+
+Let me know your thoughts.
+
+Best Regards,
+
+Melissa Wen
+
+[1] https://lore.kernel.org/dri-devel/20230423141051.702990-1-mwen@igalia.com
+[2] https://lore.kernel.org/dri-devel/20230523221520.3115570-1-mwen@igalia.com
+[3] https://github.com/ValveSoftware/gamescope/blob/master/src/docs/Steam%20Deck%20Display%20Pipeline.png
+[4] https://github.com/ValveSoftware/gamescope
+[5] https://lore.kernel.org/dri-devel/20210730204134.21769-1-harry.wentland@amd.com
+[6] https://lore.kernel.org/dri-devel/20230721132431.692158-1-mwen@igalia.com
 
 
-On 8/10/23 00:37, Evan Quan wrote:
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index a1457995fd41..21f73a0bbd0b 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -7152,3 +7152,12 @@
->  				xmon commands.
->  			off	xmon is disabled.
->  
-> +	wbrf=		[KNL]
-> +			Format: { on | auto | off }
-> +			Controls if WBRF features should be enabled or disabled
-> +			forcely. Default is auto.
+Harry Wentland (1):
+  drm/amd/display: fix segment distribution for linear LUTs
 
-"forcely" is not a word. "forcedly" is a word, but it's not used very much
-AFAIK.
-I would probably write "Controls if WBRF features should be forced on or off."
+Joshua Ashton (14):
+  drm/amd/display: add plane degamma TF driver-specific property
+  drm/amd/display: add plane HDR multiplier driver-specific property
+  drm/amd/display: add plane blend LUT and TF driver-specific properties
+  drm/amd/display: add CRTC gamma TF support
+  drm/amd/display: set sdr_ref_white_level to 80 for out_transfer_func
+  drm/amd/display: mark plane as needing reset if color props change
+  drm/amd/display: add plane degamma TF and LUT support
+  drm/amd/display: add dc_fixpt_from_s3132 helper
+  drm/amd/display: add HDR multiplier support
+  drm/amd/display: handle empty LUTs in __set_input_tf
+  drm/amd/display: add plane blend LUT and TF support
+  drm/amd/display: allow newer DC hardware to use degamma ROM for PQ/HLG
+  drm/amd/display: copy 3D LUT settings from crtc state to stream_update
+  drm/amd/display: Use 3x4 CTM for plane CTM
 
-> +			on	Force enable the WBRF features.
-> +			auto	Up to the system to do proper checks to
-> +				determine the WBRF features should be enabled
-> +				or not.
-> +			off	Force disable the WBRF features.
+Melissa Wen (19):
+  drm/drm_mode_object: increase max objects to accommodate new color
+    props
+  drm/drm_property: make replace_property_blob_from_id a DRM helper
+  drm/drm_plane: track color mgmt changes per plane
+  drm/amd/display: add driver-specific property for plane degamma LUT
+  drm/amd/display: explicitly define EOTF and inverse EOTF
+  drm/amd/display: document AMDGPU pre-defined transfer functions
+  drm/amd/display: add plane 3D LUT driver-specific properties
+  drm/amd/display: add plane shaper LUT and TF driver-specific
+    properties
+  drm/amd/display: add CRTC gamma TF driver-specific property
+  drm/amd/display: add comments to describe DM crtc color mgmt behavior
+  drm/amd/display: encapsulate atomic regamma operation
+  drm/amd/display: decouple steps for mapping CRTC degamma to DC plane
+  drm/amd/display: reject atomic commit if setting both plane and CRTC
+    degamma
+  drm/amd/display: add plane shaper LUT support
+  drm/amd/display: add plane shaper TF support
+  drm/amd/display: add plane 3D LUT support
+  drm/amd/display: set stream gamut remap matrix to MPC for DCN301
+  drm/amd/display: add plane CTM driver-specific property
+  drm/amd/display: add plane CTM support
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  71 ++
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  34 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 101 +++
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 805 ++++++++++++++++--
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  72 ++
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 224 ++++-
+ .../amd/display/dc/dcn10/dcn10_cm_common.c    |  93 +-
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |  37 +
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.h    |   3 +
+ .../drm/amd/display/dc/dcn301/dcn301_init.c   |   2 +-
+ .../gpu/drm/amd/display/include/fixed31_32.h  |  12 +
+ drivers/gpu/drm/arm/malidp_crtc.c             |   2 +-
+ drivers/gpu/drm/drm_atomic.c                  |   1 +
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   1 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |  43 +-
+ drivers/gpu/drm/drm_property.c                |  49 ++
+ include/drm/drm_mode_object.h                 |   2 +-
+ include/drm/drm_plane.h                       |   7 +
+ include/drm/drm_property.h                    |   6 +
+ include/uapi/drm/drm_mode.h                   |   8 +
+ 20 files changed, 1446 insertions(+), 127 deletions(-)
 
 -- 
-~Randy
+2.40.1
+
