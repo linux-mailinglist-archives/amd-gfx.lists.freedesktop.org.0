@@ -2,61 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36317778B3E
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Aug 2023 12:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4247790F5
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Aug 2023 15:45:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47DE710E04C;
-	Fri, 11 Aug 2023 10:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 024EC10E0EF;
+	Fri, 11 Aug 2023 13:45:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E599A10E04C
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 10:11:14 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id
- 5b1f17b1804b1-3fe5c0e5747so10740875e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 03:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fireburn-co-uk.20221208.gappssmtp.com; s=20221208; t=1691748673; x=1692353473;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=7c68Ry+oVqAuw7fO572q8W4pRoYXB7KIFLG6gYSc4wY=;
- b=CB5CWv8BiLLUlt3rXGUDRfQQrFM5pisYzEfJwqdfn+1gtMbb48PF/Az2o9hDW8Tn5P
- WwuOAg+13O+3zgCuWMOIqbe2PrtoYA4mCRr6LwS15xNEKOBKEwUPOc2p1LezcXCix0If
- lbCTE+S7aP+DfF3gOWX5x737WZtO6j73Ka809m05zvnRGVMH+l85EqHVOD+TAaRj3q+3
- p7OvysWe8sLjh/Axz0gOSlap3p4tXKxgUbXaHdKLYpakzNhsaWga/eIEwOeGt9cw/3Nl
- le6dieH2V0rhXjXrsC5LgImvkou6KVtwwgMlSgbP3k0Wi2z3mpFhi2IrUfJnCncCwLzJ
- 1HEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691748673; x=1692353473;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=7c68Ry+oVqAuw7fO572q8W4pRoYXB7KIFLG6gYSc4wY=;
- b=Ca5SSbWPoyg3Kf4AMuVxmT3Y8PF09pqQ4q2eYsTNO/nu65n16RsSCMEYKIbSSBRE0b
- wbSRsDxiMlBqDPCz07J+bEakuhxRmlMcAdz4JgJHp/V/dYZEs31IteLR0F8XCUTVb5jB
- 0n4N/rFErSYHDEzzye3IkQMoLn6/s3sOLJO4LqVmSvmNwhCP7l+WG6ckfsozGPDtxkft
- rmOOc2go3Bh0s5oRvK6Yq9g3K8hDwaTIGWQ6//aVWVBOauR/iK7UnSo56kJufrz1jCG9
- 1LjHvVDyZnRZFRdf4EDYggJax5yeAWrKgVOEJ33E8dfW4Ra+F22waerc+QwvOpVuksJB
- CxNQ==
-X-Gm-Message-State: AOJu0YxmGJw7Sq+NVp7MX5rOepHwccp9b/3XzGmLL+gC34Fg9fJFpAJM
- 2HrAZqeZrYpNtqLdS4rpraq0k1oh9WtPjRyY4CWLyQ==
-X-Google-Smtp-Source: AGHT+IE50FE7shNt6YXKZmpjby+CyIWnGBigktBKuwVTC6U8UavO/ObOFDxZj5Fj2Cbr2dh5E5pRkJKSLIkr6AlCYBk=
-X-Received: by 2002:a05:600c:746:b0:3f9:b867:4bb with SMTP id
- j6-20020a05600c074600b003f9b86704bbmr3943423wmn.2.1691748673122; Fri, 11 Aug
- 2023 03:11:13 -0700 (PDT)
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 242DD10E08F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 09:02:09 +0000 (UTC)
+Received: from 46.183.103.8.relaix.net ([46.183.103.8] helo=[172.18.99.178]);
+ authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1qUO23-0003Fi-C9; Fri, 11 Aug 2023 11:02:07 +0200
+Message-ID: <c2f38e22-547d-9dec-cb50-95df3ba62975@leemhuis.info>
+Date: Fri, 11 Aug 2023 11:02:06 +0200
 MIME-Version: 1.0
-References: <20230719212255.30960-1-alex.sierra@amd.com>
- <11fa116f-87a7-38c4-f266-d19354bf69fc@amd.com>
- <CAHbf0-HZNEvSN0d2Ddnwg6z500WYDd5zzbTx69bBQmOc7GF=6w@mail.gmail.com>
- <844e90ef-01ec-2ccd-de37-f383c9bb24f7@amd.com>
-In-Reply-To: <844e90ef-01ec-2ccd-de37-f383c9bb24f7@amd.com>
-From: Mike Lothian <mike@fireburn.co.uk>
-Date: Fri, 11 Aug 2023 11:11:02 +0100
-Message-ID: <CAHbf0-Fm9hqvAHgVOWGFvQqt-7QyVm+LLjDUe3_h5-uXaFMQTg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: avoid svm dump when dynamic debug disabled
-To: Felix Kuehling <felix.kuehling@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 28/29] drm/amdkfd: Refactor migrate init to support
+ partition switch
+Content-Language: en-US, de-DE
+From: "Linux regression tracking #update (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+To: Linux kernel regressions list <regressions@lists.linux.dev>
+References: <20230510212333.2071373-28-alexander.deucher@amd.com>
+ <647beed4-9d0b-e351-6f66-756f73eb73a5@daenzer.net>
+ <620b0254-cdf7-b3aa-adfc-d7bda286b641@leemhuis.info>
+In-Reply-To: <620b0254-cdf7-b3aa-adfc-d7bda286b641@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1691744530;
+ af053131; 
+X-HE-SMSGID: 1qUO23-0003Fi-C9
+X-Mailman-Approved-At: Fri, 11 Aug 2023 13:45:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,16 +49,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, Philip.Yang@amd.com,
- jakub.kurzak@amd.com, amd-gfx@lists.freedesktop.org
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 3 Aug 2023 at 20:43, Felix Kuehling <felix.kuehling@amd.com> wrote:
->
-> Is your kernel configured without dynamic debugging? Maybe we need to
-> wrap this in some #if defined(CONFIG_DYNAMIC_DEBUG_CORE).
->
+[TLDR: This mail in primarily relevant for Linux kernel regression
+tracking. See link in footer if these mails annoy you.]
 
-Apologies, I thought I'd replied to this, yes I didn't have dynamic
-debugging enabled
+On 19.07.23 18:17, Linux regression tracking #adding (Thorsten Leemhuis)
+wrote:
+> On 17.07.23 15:09, Michel Dänzer wrote:
+>> On 5/10/23 23:23, Alex Deucher wrote:
+>>> From: Philip Yang <Philip.Yang@amd.com>
+>>>
+>>> Rename smv_migrate_init to a better name kgd2kfd_init_zone_device
+>>> because it setup zone devive pgmap for page migration and keep it in
+>>> kfd_migrate.c to access static functions svm_migrate_pgmap_ops. Call it
+>>> only once in amdgpu_device_ip_init after adev ip blocks are initialized,
+>>> but before amdgpu_amdkfd_device_init initialize kfd nodes which enable
+>>> SVM support based on pgmap.
+>>>
+>>> svm_range_set_max_pages is called by kgd2kfd_device_init everytime after
+>>> switching compute partition mode.
+>>>
+>>> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+>>> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+>>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>>
+>> I bisected a regression to this commit, which broke HW acceleration on this ThinkPad E595 with Picasso APU.
+
+#regzbot fix: drm/amdkfd: disable IOMMUv2 support for Raven
+#regzbot ignore-activity
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+That page also explains what to do if mails like this annoy you.
+
