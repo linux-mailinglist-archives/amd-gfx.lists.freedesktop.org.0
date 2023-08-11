@@ -2,124 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414F67790B6
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Aug 2023 15:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CFB7790F7
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Aug 2023 15:45:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C67D10E0DC;
-	Fri, 11 Aug 2023 13:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8828110E102;
+	Fri, 11 Aug 2023 13:45:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2060d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::60d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2E3E10E0DC
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 13:26:58 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2066.outbound.protection.outlook.com [40.107.95.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3604710E0E7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 13:41:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W/QOZN6r4vjC6cUT5zqR17hGotf42Gn4yd/x0z+sxobrXmoKi0JXZMREn2esalOfZQMYEeHHX0f9esAxe/PoLLdJ9lTMBBIoXcp9PZMd3pQGvtdeQX1F8yGffWJZJZtPc+x1tY7e+AqTsszMc9lvpRi9l8+0sfjWHc1zXPqCoPTeQHYCuX8O1JRGy6NW+0XTkc4wft5a6RYVYjraeparEjpoOO8fS6a9qtRFKLOLNiMoz8nA77gwlfEMHmhrY3NIRWBveJiobsd1oDQxf8CGnpHzo7904a8BiDGMqKc/K3J45780Ra0dZia0Yeu7O+oxRFgH+GjWuXRRdTOzSczXIQ==
+ b=BCohLkbg5yucQ7bL+R5kGoDhcEQ0VV8JEp5+JwMBhnu1xHCzqVsfYMKX1TluizGgG1LlObyMunjhqbRR6blf5zbPJTHKWvvG7efL3SYc1FtT+XZWbFlD5J3lAjNhbgXVHA89HDaXP40q9u8JBnZv06II6NhRtfCxJB6gP0S8n9XmXt3pprtlAGkpZNMnQI9O1N869ecWyLiQX1Y3wLBIHJPXSXnDC4/vDsHfUD+oAo1CD5lB20cVnU7OtFkPDi1Wyy0ugb+nXC+pgtVhukNg8CLzas9Dgt4qzlYARsaS89WMbh9N8LqIXmusMN9yGJfj9xROqF2VDKGmx3OwWSUwrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=acnJECL5dern37/A3XlT/3xoRV4BxqnHhwvGP5J5tS0=;
- b=LHPR6m2mVLSrushSS2M6YHLOleyXvIE7yxOexpX5N9xoLKhsvs3izjILmHe7KhjdWRe/uF5ec0tGShhzz/bUIcDbzwaeugbAGOUefQO720JPZi2Ok444nM+WRkqhIUYT8F2b8BdaW9J95tIQBh4f6CAOo5Pn4HeBtoIzxyWdg9sGkFgNichtyXs7DvHizgPie590yTF8TAXRdsypFyFpToBMMC3AiIm7jnPZh43WB0m49gp/RE5yf1di6i4bu+sXH0AYHZYaU7TDmv3R/p8GQoYpvgMM3iQl2CdkQmwcfGSLrI74SAb9v9q5G6S+JSIy9BnEi8NVPfF4ugq13eZf6Q==
+ bh=iFZ1kKaUrF7A627QsF5FOzottD8kmfIGrXpQ+bS44H4=;
+ b=QvmaxoLxEg9XsPpJMYkrvYcwKMwesQdgPcjYmKu3+hmWUqnnkhysCCdlqu/yDmA8PbVrxSu01N2Sg/5Gqr5kivg2lEymHbAefe2AhcJvw+50L8SgqzJwSLxvNPR/eLLhH0RRz1yJpAK8TESdYRrGovMoNYFhgOOja/VlcsYPPJxDaHFHSZpm6MjKh3l1Y/AZFTBSenbbzfOotmm/Xzvv/K9ZFxhVyykbPQTIOHdt3l534+rvWRKkgM0ehbypWLTcpPvY2FUWQGqx2xWkyGfpHQY6/xSsl0+ihyU4OH0CkRhhvZPLMPC0oDTHGwFvRDQXkudMKgUg85O76PDkBLbSsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=acnJECL5dern37/A3XlT/3xoRV4BxqnHhwvGP5J5tS0=;
- b=3DkbN3F7JpoXJYZmFTZz6ljOpakGahI6nuwBmBWhjW1a2PHdPfr8ULi0HaM5TNSAmMprlLWOPEmFSefcwbhLDDIRE8vG349cysToX9+bUXfI8XLxVdJbRfQ8+qAGWZ/YQh+0KOZsH8+rfiHPiOOJFLdlkyeLsL95ScAE+VA5p3w=
+ bh=iFZ1kKaUrF7A627QsF5FOzottD8kmfIGrXpQ+bS44H4=;
+ b=pq1dsKufU8gc0QFek8BbYW07q+A6H0OFz+Y8glt1K7tWa/aUyZBdQjd5HM7k23ElYBfoyYV6ezlfXEtsCLIKZRTn/tiNw56pgZkA73AMT9JGIdrlW1ZKMczx6tFSdrFM6x/Ct/9VYW+TCOnf9ZDtxwAsCDA3fKy2efvATeTlZ07U9dYF0jzDu9E/u9tiUu2knnow9h60e43GSbQyn3t1MjZ63LeLE1EqAFhowNN83yiW/hfe17y/KaKSpCKAxLxez3+Q+FlkuHIr7rd5h4r0Dq1ZvK647bAaXxFjvMw2xX4QyEGjNS7sNaBo/pAVJoyW5MZCiGtudtvYaRmMjQIExQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by DM4PR12MB9069.namprd12.prod.outlook.com (2603:10b6:8:b8::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MN0PR12MB6222.namprd12.prod.outlook.com (2603:10b6:208:3c2::19)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30; Fri, 11 Aug
- 2023 13:26:53 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::ca28:efb4:a838:58fb]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::ca28:efb4:a838:58fb%4]) with mapi id 15.20.6678.020; Fri, 11 Aug 2023
- 13:26:53 +0000
-Message-ID: <c517196e-5fa8-85b3-8a5b-bb36c2816454@amd.com>
-Date: Fri, 11 Aug 2023 09:26:51 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] drm/amdkfd: fix address watch clearing bug for gfx v9.4.2
-Content-Language: en-US
-To: Eric Huang <jinhuieric.huang@amd.com>,
- "Kim, Jonathan" <Jonathan.Kim@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20230810204744.195416-1-jinhuieric.huang@amd.com>
- <0a20bc13-312c-15b2-ea40-33cce76bb8eb@amd.com>
- <CY8PR12MB743551930E66E2C84AC089688513A@CY8PR12MB7435.namprd12.prod.outlook.com>
- <a6f589e3-4023-31eb-6df9-1118f48b39ed@amd.com>
- <aa5536b7-822f-3656-443f-46ac415659bb@amd.com>
- <e5495ff6-b2ee-ca2d-78a2-4747c0c46668@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <e5495ff6-b2ee-ca2d-78a2-4747c0c46668@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4PR01CA0462.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:d6::13) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ 2023 13:41:22 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::5111:16e8:5afe:1da1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::5111:16e8:5afe:1da1%6]) with mapi id 15.20.6652.029; Fri, 11 Aug 2023
+ 13:41:22 +0000
+Date: Fri, 11 Aug 2023 10:41:19 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: Re: [PATCH V2 1/5] drm/amdkfd: ignore crat by default
+Message-ID: <ZNY6f7gUuxw7jXSK@nvidia.com>
+References: <20230807220545.1320198-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230807220545.1320198-1-alexander.deucher@amd.com>
+X-ClientProxiedBy: SJ0PR05CA0119.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::34) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|DM4PR12MB9069:EE_
-X-MS-Office365-Filtering-Correlation-Id: 368a9e43-1d04-4c67-61f5-08db9a6ea05b
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MN0PR12MB6222:EE_
+X-MS-Office365-Filtering-Correlation-Id: acdba052-b474-4682-d8f1-08db9a70a62d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: niHYEASDnV07gM9XXALHO3MqjCjgWhMOJnavR3vqRlH0GzT6y7J8900e7g38X/MeAZE5xytEW0xXlwY7NjrvDRmfP2uWbYohByDdfsXjcF2+tMAKrBORVqXFdDAXoqqQksKcCpn2kHecuYyexWLkeqmp0JmcIe0fGeccW9PYtJ9PZU7aB/PtGoRrr0OlQNBW1U8CAXmGIqgP2ZbksNlwz1/v+W5qa+6pscAau7L7BNn/f5mnZeHQXa7YQe/ubBv84f5dI8am9usDoeTns4sZq6bcV2nx5Tc2IKJM0sy65w1kKvGWSSl0eFhsGWtKGfsKoPRSJd0cHDa/OyNKbbkUd/8nK+uEPAhzEV6I0YIyqFw1Xf//rLPbHmkxvNiFqymlZc1a68+fNV6hlmL9ZlqZac78iFgn5HHCF5hUzpfdePVzlsqOZHRVcH9MDOYm4sHfEXouqhEQhGnzy7802thzve4nO6koS1W6OlcGQl385uVL05DPEE6IrnMZBT3s1+sEvzMgkyuJdJmquGSNkPaA95LqMleA7qlnef2PNSnQFOAsqKVsAAL6H40BxTNqq0SbSq01pV3AAHBCvEiELu6Vi775hLpTouoW5+qBMPExWOoE4UwCP6m/c19WdS695wzP2MbyMfMUBumnepU6FxKgfQ==
+X-Microsoft-Antispam-Message-Info: Uv0dYeiIJlREOnrsUTv6DwZsfbMHxC9+v0ICozUqqMvZ3DkZAFvevHq4Qy41fLl28B7fvIrLbsMRdjDZrrHQvbIVZ2C6Yo6orkxKC6Ml5J6zisyDlqknXx49RwMshlAC7OFIHEAf4s0y7UxenbEut4BOGgzzIst4I05RV1X3jSdGgH4Td+o1A7e3CvOhxjt0gFbfgQMmVrxsM5XLpQxbto1P1X6aKYHAYNuofYzhfd3abEW7KGdxnpDQtDHfw66Ve/866W74c5w9ntFsWCe9Q/ECUZBTzQp+0n7HAUUf/Ke+lEAF0CwRczIv+y+wA+C3QZpsPbv+r7uzHaKUr4IDuii6j85pZvWjOPh+n6T4wQsoicqjgZ55nZKqIbQ9ZJEjYgH3D3PFfb3CeLB/bI/j0q3qEAYXD8uIEvbbGFgT81ftvr6j1tQKSGzF5Gf2Kuz9LuPT7JJPLsn/H16Wa2Oa+XmT+txWnOKawiVbqONUROav2bY9R5YcQH71HtmYgG8gqp/tEiQbLeGB/VeZ0V/G6FHk5mNE85eLsVTrgwPseX8G+L6LGNATj1rgaLl5lzM/
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(346002)(136003)(396003)(376002)(366004)(186006)(1800799006)(451199021)(26005)(6506007)(8676002)(8936002)(41300700001)(53546011)(36756003)(83380400001)(2906002)(2616005)(38100700002)(31696002)(86362001)(44832011)(66476007)(6512007)(66946007)(66556008)(478600001)(6486002)(5660300002)(110136005)(31686004)(316002)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(396003)(136003)(376002)(366004)(39860400002)(451199021)(1800799006)(186006)(316002)(6512007)(478600001)(2616005)(6666004)(5660300002)(6486002)(66556008)(66946007)(66476007)(86362001)(8936002)(41300700001)(8676002)(6916009)(4326008)(4744005)(83380400001)(36756003)(2906002)(6506007)(26005)(38100700002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?anVsL0M4QVFRZlhObzRBdVFJZkpnVW96MkR5UXR4RldUYVpXMGpyekVhVU1V?=
- =?utf-8?B?RFBqSTVRc3pGNmMrT2tWMkhqVjRTV1NsM0ZaY0o4SXRRc2NxbWZmVy9KbG9J?=
- =?utf-8?B?ZFlmdXVkdGdHMnJwSUtmemxOeDNhd005Zk56cEc2Y2pDSHJwWENsd0M3cjJY?=
- =?utf-8?B?dmhiMFFSODN0dWNhVE1vOEpnNE9mRjczQ3JMaUYvSmFFdHltTVUwWVlFOEhC?=
- =?utf-8?B?RisrWk9TMGQ2RXNuTWxNTXBTenhSZnBrTjFXOUlVbGhGUGkwNE5PU0k4K2RB?=
- =?utf-8?B?OWErWU0rUzhxVzVyL0RoUkt0RDdva3VPTnNIalBmQXJvM2lHU2lDNDVzOVVW?=
- =?utf-8?B?bXd5WW1waUs1cERRRjhOa3g5Tk14THIwT0NBTjd4U3grenJvbUk5UHFTNW9o?=
- =?utf-8?B?V3l1Wkp5TzBsZlhWNlpzc2VjblFKdzR0SHZSSWJ6WE8xNmgweHB0ck1kZ1ds?=
- =?utf-8?B?UlVTeWY0dVd3MzQzeWxVSGw2UEl2TFYxM3ZVa2NXRW5lY1ppVDJGOFJPZDlH?=
- =?utf-8?B?MXNabWcvU2d0S1FNNkVwTnFyeDNkQklnMkZ1VU1UL1ZGWm9zUUFWbXVla21p?=
- =?utf-8?B?V2NaYkNLOTRpY1FobDVHaWxuNHk0NEZmcmhsbWxMcTdPTVFnYWZKejlSYnJF?=
- =?utf-8?B?QWRCdjJHUUl3MG1sa3F1ak5MOUg2L3NubnNSYkYxYmJMMFV2YzRodW5QUlVE?=
- =?utf-8?B?eDB5SzNCblp5OHV1NDRmck9EanRuOUc5NE04bFZNQ1RsSHdFUXBFRkJNMnNS?=
- =?utf-8?B?TDZOMHZjZFd0bkNkZ1MwaWdSWFJ6d0l3ejQ2R0tjcE5kZ05OV0lnaEZHR0dj?=
- =?utf-8?B?cWl5UW0vRFBiWUwzdjgxYXcwZk40SzVOZlRISjYzOVJRZFVmbEFQWExoM1Vt?=
- =?utf-8?B?djREMGpkdFQxc1ZXRDJUVlhtYld3R3R3N0cwYXRqZVFseGtpTUk4RWlMWGY4?=
- =?utf-8?B?dHRWMlhoNE15UFdMalN6bnc0L0Z3Z0Jib0ZocThCZkxvbDZjQm10RlprQ2w1?=
- =?utf-8?B?L1FDdjRQVDJ6QmFoeWNGT2xyWG1VUkd1bkVPeFV4SUlRTFRpN0QyQXBmaWJP?=
- =?utf-8?B?b2k0aE1Xbld3ODBqYkQ4VTduQ3AvRDczcjJHWHdUdW9pL2pEN2pzeVVadWdZ?=
- =?utf-8?B?NzJCTkVxL1dmYW5qam1pbTFCdGp4WXJXbHNKSWxIUHhlRURnUy95TklIVTVt?=
- =?utf-8?B?UVBTYVRRRENlMkZObEtseEE3RnQvUDJxRDRFRGRWZGIzd05CK3UrK1VJUFNS?=
- =?utf-8?B?MXZzNm4yQiszd1hRb0NTTENRL0NsRFI2U015Zzl1VmVobEpYSWVsVWVZYkNF?=
- =?utf-8?B?MDF1TldPeG9MYUlkMmNsVXFpSkhKL3M3M2JQdytkdS8ySzlqd25jWkovQS8v?=
- =?utf-8?B?Q2JIRE1yNy9IOVJQTjM0dWlXQXNYNVpEL1Z2a0x5MXphU2RUd2Z0b0JSSTNJ?=
- =?utf-8?B?K0ZBTHJCZStRUzRCUVB3ZEMzOE5rbVpTd2VHSFh5MTNqeHBzMkJ3M0RzYzl4?=
- =?utf-8?B?WEpURG95MzFnT0tHSGhYWlpOYVFrNXlzRlpIUkwrNHpRR0sxd0ZkVC9vTmdZ?=
- =?utf-8?B?dEZlbGpLeW8vUmxOSkEwS2pVay9sNzdlMmFlNklFWk1xcU1wQ2xmL01SZm9y?=
- =?utf-8?B?STBtSGdJbWJYTFVJakkwYzUyWVZQa1NTdVVxaWlMZUplK2hiQ0xMVVBFcm1P?=
- =?utf-8?B?UnhycHBsZi94MWVWWWM0anRtdXY4bDNOSlJkWGlpUFBvQURxWmQ1QS9pU3N1?=
- =?utf-8?B?L0dSaUd1T0xndEpVc2dzN0VGYTJZWlZHaU10b3NUVGZ3WU9aNHFwSWk5M3F6?=
- =?utf-8?B?MDM0Q0pFOTJRMVFwUjQ5Tkl3bWFDTmMyZC9IMzYreEVNaFJDc2hreGxMMFo1?=
- =?utf-8?B?dWtQNURVVURYTWRRRGZ6YW1JeDJXMFlWWVhWeWVic1lqcDd4cmxtMy8xOWtS?=
- =?utf-8?B?QWdrSHREeERpU01qVlJPUEE0cTRnQkNkQlVSVVpFRmV1QTVaTytVdG1lTk82?=
- =?utf-8?B?a1RSR2d1UVJvbVRDYi94ZHhlUnluSUtDZnIrRTB2RHRLMjVXNDZqcjRoaEow?=
- =?utf-8?B?NG1HRzk0OE1GWi9MM0xVM2RNKzVBZlBjY3psZjNSanZScmJVK25KZ2JLWkNo?=
- =?utf-8?Q?4u8NlQqTFJmYeNl49ceALDxCh?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 368a9e43-1d04-4c67-61f5-08db9a6ea05b
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5cYWpmNSbnB9iGP4ZmaZmgXCnIitU4DXMtaFwPabN5/o7wkKg3g6EPwr69Wc?=
+ =?us-ascii?Q?B9ENDHJ5uNxNuyj/m1rdvJ/oedonH0AVNOYZDLLvJP7fsxcoQ6uemMEyDn9T?=
+ =?us-ascii?Q?EpeM+o8hMm0EFTda8yj8rByVY10qz61VQIY1ke9O4Xdspz8l5G0yIxMRVBRm?=
+ =?us-ascii?Q?Tya0yLJcmvK86QovdZn585Q+E7Vae4fsxRZ3wQOj9c73GH10kqFjpq9VHHUC?=
+ =?us-ascii?Q?3daBfHgRuURYw/T6r/ZEkuXJA5gEquqZW6rcQ7e17F2r6fobw2H9O/Slir49?=
+ =?us-ascii?Q?hPWyG16RCQTkJzeaJ2MF2vSZiWsTWJe28vpRa+yDAJIl5A4Gbs1QGwXpE27Z?=
+ =?us-ascii?Q?yAg7oadBdmK6EE6fLcfJZJTZ3zqBqz0Hym0kkGJS4Vnoop1NspE+w43BJpV2?=
+ =?us-ascii?Q?fXZYYxUpHZGrJXSrCURnGrvxWGhh/8oDQeWBrd3mp8kPKbGDBNyKqhFwSe+f?=
+ =?us-ascii?Q?dY3WRnYBhwSeqssHKiAscC8IZhS7eGNK7+3ElVquKSIz2+j4PcVhQ4X/pwUT?=
+ =?us-ascii?Q?Bmz0RH9cJCEFSAjkW/tm8SsoJwV5xlCSmObvYsiwV5qq7qeDb35qxsYJ7HH/?=
+ =?us-ascii?Q?AIxbSKs33H2MvKBok0PFmjITmJOnVcofOq8x9Chff2kB/xUlCAWeJ4Ol86Ue?=
+ =?us-ascii?Q?2uY/QcEbMF4bXaSH9L8M7KQg0XT2KN8dOpwPVBQAiIN6pOXfKbuYD8hY8gzG?=
+ =?us-ascii?Q?sGy5vcp1qA2NsO8fxEvhrucDLbCYg/F9/QrMUb/hWc+pUml6FIYjeDHykiSK?=
+ =?us-ascii?Q?a1iu7JVFM/rzF7sy/nAOHlffPjx6hLiyo/jWdkKswIUlPilJjC4GYiHJnmww?=
+ =?us-ascii?Q?esqvSTE01StcIaDYKCDAiWJlDzvxeE3qFhtdUNn+Jdt+iRgpbJKfOHdxR+KA?=
+ =?us-ascii?Q?wpOxUcFmsI+7+5ZtzZPtRyoiJy42d/zvwgbiavvCYgnanOnOUv3LVPJpoyzK?=
+ =?us-ascii?Q?H9vGDaxxg3TBNALZn+NfST5T4wdAb2sejfGcUWWAOitujbYckNBqF6Py5kxv?=
+ =?us-ascii?Q?EOP1xL8+ifdy9lVA84iVMvsMgI/WCMmFGdplhHAZc2BxzYrjpik6tJa+vhoG?=
+ =?us-ascii?Q?aQXJ0kBrKbPSqvC5SVsTyqUYNfq7iqghT+q/MIG3hia7Oicm3l2rkAL7ZYUs?=
+ =?us-ascii?Q?FhdIfKj3XjmPl9y+G5YMlLBFMJFM44liirgc5QHJDqJCbnM0XzxLnbL3NNvO?=
+ =?us-ascii?Q?RO6f9GrNDXY0Dg3SFEZB6Z4hQ85K3A7+Blt1M7f0pfW/oLKSht+gCMqn7/Is?=
+ =?us-ascii?Q?MbyNtgzNtPo+nRGWtMMhei+hkg1sI/Ppr355j1YU2KnT761UY7zxzvRzqEgG?=
+ =?us-ascii?Q?g4Pzmy4rn5l71FuxmlR9s5JqHAWiZjClbE6wODIymU7vqIL4JeaMUVmHaNpO?=
+ =?us-ascii?Q?5ryDSjT7VxFclDxMC2vJeTsKutpaTApD65eAeI03Gdf46OWmTJtPq341nPyR?=
+ =?us-ascii?Q?GsB+wgrBscaRJWlWhLhO0+vEpvJ7MPUTis69LrydFhUa1IDIMiCtQ4t0Rgna?=
+ =?us-ascii?Q?LPTOw1HPoeVykGPJRosJl2y92ql7+FhmA+lPeTy1GnTEzmjeLopNvCJl4WZr?=
+ =?us-ascii?Q?5Fd+jDPci55PVCymIOhVOdY7M7Bu1v0jHd7hh9JS?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acdba052-b474-4682-d8f1-08db9a70a62d
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 13:26:53.1508 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 13:41:22.1170 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xhfpdW2xYBW0kGonuhuvsfxq1XPWQPOry7PB5kKRDv8kTOmt1LX31KEiyEue7gNlxN/jb57BFYVFAxjRrq7zdQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB9069
+X-MS-Exchange-CrossTenant-UserPrincipalName: HlnM41ZHFVEevxVLpfvixFYC3ZM2jy/FcAFxpWrD+NnHGUZqB/AwbCV1FE2GFjdH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6222
+X-Mailman-Approved-At: Fri, 11 Aug 2023 13:45:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,137 +113,25 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Christian Konig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2023-08-10 um 18:27 schrieb Eric Huang:
-> There is not UNMAP_QUEUES command sending for queue preemption because 
-> the queue is suspended and test is closed to the end. Function 
-> unmap_queue_cpsch will do nothing after that.
+On Mon, Aug 07, 2023 at 06:05:41PM -0400, Alex Deucher wrote:
+> We are dropping the IOMMUv2 path, so no need to enable this.
+> It's often buggy on consumer platforms anyway.
+> 
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 4 ----
+>  1 file changed, 4 deletions(-)
 
-How do you suspend queues without sending an UNMAP_QUEUES command?
+For the series, please can we go ahead with this ASAP?
 
-Regards,
-   Felix
+The iommu side desperately needs the removal of the iommu_v2 private
+interface to the GPU.
 
+I'm really glad to see we can just delete the whole thing!
 
->
-> The workaround is new and only for gfx v9.4.2, because debugger tests 
-> has changed to check if all address watch points are correctly set, 
-> i.e. test A sets more than one watchpoint and leave, the following 
-> test B only sets one watchpoint, and test A's setting will cause more 
-> than one watchpoint event, so test B check out and report error on 
-> second or third watchpoint not set by itself.
->
-> Regards,
-> Eric
->
-> On 2023-08-10 17:56, Felix Kuehling wrote:
->> I think Jon is suggesting that the UNMAP_QUEUES command should clear 
->> the address watch registers. Requesting such a change from the the 
->> HWS team may take a long time.
->>
->> That said, when was this workaround implemented and reviewed? Did I 
->> review it as part of Jon's debugger upstreaming patch series? Or did 
->> this come later? This patch only enables the workaround for v9.4.2.
->>
->> Regards,
->>   Felix
->>
->>
->> On 2023-08-10 17:52, Eric Huang wrote:
->>> The problem is the queue is suspended before clearing address watch 
->>> call in KFD, there is not queue preemption and queue resume after 
->>> clearing call, and the test ends. So there is not chance to send 
->>> MAP_PROCESS to HWS. At this point FW has nothing to do. We have 
->>> several test FWs from Tej, none of them works, so I recalled the 
->>> kernel debug log and found out the problem.
->>>
->>> GFX11 has different scheduler, when calling clear address watch, KFD 
->>> directly sends the MES_MISC_OP_SET_SHADER_DEBUGGER to MES, it 
->>> doesn't consider if the queue is suspended. So GFX11 doesn't have 
->>> this issue.
->>>
->>> Regards,
->>> Eric
->>>
->>> On 2023-08-10 17:27, Kim, Jonathan wrote:
->>>> [AMD Official Use Only - General]
->>>>
->>>> This is a strange solution because the MEC should set watch 
->>>> controls as non-valid automatically on queue preemption to avoid 
->>>> this kind of issue in the first place by design. MAP_PROCESS on 
->>>> resume will take whatever the driver requests.
->>>> GFX11 has no issue with letting the HWS do this.
->>>>
->>>> Are we sure we're not working around some HWS bug?
->>>>
->>>> Thanks,
->>>>
->>>> Jon
->>>>
->>>>> -----Original Message-----
->>>>> From: Kuehling, Felix <Felix.Kuehling@amd.com>
->>>>> Sent: Thursday, August 10, 2023 5:03 PM
->>>>> To: Huang, JinHuiEric <JinHuiEric.Huang@amd.com>; amd-
->>>>> gfx@lists.freedesktop.org
->>>>> Cc: Kim, Jonathan <Jonathan.Kim@amd.com>
->>>>> Subject: Re: [PATCH] drm/amdkfd: fix address watch clearing bug 
->>>>> for gfx v9.4.2
->>>>>
->>>>> I think amdgpu_amdkfd_gc_9_4_3.c needs a similar fix. But maybe a bit
->>>>> different because it needs to support multiple XCCs.
->>>>>
->>>>> That said, this patch is
->>>>>
->>>>> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>>
->>>>>
->>>>> On 2023-08-10 16:47, Eric Huang wrote:
->>>>>> KFD currently relies on MEC FW to clear tcp watch control
->>>>>> register by sending MAP_PROCESS packet with 0 of field
->>>>>> tcp_watch_cntl to HWS, but if the queue is suspended, the
->>>>>> packet will not be sent and the previous value will be
->>>>>> left on the register, that will affect the following apps.
->>>>>> So the solution is to clear the register as gfx v9 in KFD.
->>>>>>
->>>>>> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
->>>>>> ---
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c | 8 +-------
->>>>>>    1 file changed, 1 insertion(+), 7 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
->>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
->>>>>> index e2fed6edbdd0..aff08321e976 100644
->>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
->>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
->>>>>> @@ -163,12 +163,6 @@ static uint32_t
->>>>> kgd_gfx_aldebaran_set_address_watch(
->>>>>>      return watch_address_cntl;
->>>>>>    }
->>>>>>
->>>>>> -static uint32_t kgd_gfx_aldebaran_clear_address_watch(struct
->>>>> amdgpu_device *adev,
->>>>>> - uint32_t watch_id)
->>>>>> -{
->>>>>> -   return 0;
->>>>>> -}
->>>>>> -
->>>>>>    const struct kfd2kgd_calls aldebaran_kfd2kgd = {
->>>>>>      .program_sh_mem_settings =
->>>>> kgd_gfx_v9_program_sh_mem_settings,
->>>>>>      .set_pasid_vmid_mapping = kgd_gfx_v9_set_pasid_vmid_mapping,
->>>>>> @@ -193,7 +187,7 @@ const struct kfd2kgd_calls aldebaran_kfd2kgd = {
->>>>>>      .set_wave_launch_trap_override =
->>>>> kgd_aldebaran_set_wave_launch_trap_override,
->>>>>>      .set_wave_launch_mode = kgd_aldebaran_set_wave_launch_mode,
->>>>>>      .set_address_watch = kgd_gfx_aldebaran_set_address_watch,
->>>>>> -   .clear_address_watch = kgd_gfx_aldebaran_clear_address_watch,
->>>>>> +   .clear_address_watch = kgd_gfx_v9_clear_address_watch,
->>>>>>      .get_iq_wait_times = kgd_gfx_v9_get_iq_wait_times,
->>>>>>      .build_grace_period_packet_info =
->>>>> kgd_gfx_v9_build_grace_period_packet_info,
->>>>>> .program_trap_handler_settings =
->>>>> kgd_gfx_v9_program_trap_handler_settings,
->>>
->
+Thanks,
+Jason
