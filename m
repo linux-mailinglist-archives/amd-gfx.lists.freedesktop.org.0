@@ -1,34 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BAA77F485
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Aug 2023 12:53:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E10C677F487
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Aug 2023 12:53:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 363E210E442;
-	Thu, 17 Aug 2023 10:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45D1010E446;
+	Thu, 17 Aug 2023 10:53:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1890D10E442
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 10:53:20 +0000 (UTC)
-Date: Thu, 17 Aug 2023 10:53:12 +0000
+Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60F0610E442
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 10:53:22 +0000 (UTC)
+Date: Thu, 17 Aug 2023 10:53:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1692269597; x=1692528797;
- bh=pLpZkjMsAF/xzWoxIw6c8JsgU8UpAXqqMohyUmW2kqQ=;
+ s=protonmail2; t=1692269600; x=1692528800;
+ bh=w/7sZIksOoSa8YJMYq1DR0emOqjcL7b+5Bq0YLKEzxw=;
  h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
  Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
  Message-ID:BIMI-Selector;
- b=fm9g3+1DH1CBxkkUsnL+cEayu4CytC15LBweqtDu9z72g7C51CgV+6dTihizKS8Px
- TD+jpCz3ukZkMi9eMlEyRIYPvBxh1GwCaP+qHP6PEbikZrvCEDCyV/X8SsS4Ey837W
- +nHQSVUuuPemLMeDGyKc3HcvZYQ5GcKIo9IyPQJZTlf6XwVM/otrTMRXJkpUnnjkz5
- vnIGAZFA+BBI86aW0HqrFL2mLAaHvRQIXv2aTYMYDe+3tHojjv1z13yFZJEP+tKSp/
- HGppA+5tA2iy7KWM8JfTR9SN6utQbBIjrsXZLztIxVo1uFvhwAUlaHBsmVZ2xHwRG3
- yS3oS5dKoSHaQ==
+ b=bsrMeOmaKkIL12a9Qw9JK/soxKSS99pJvGGEzn+nysHcTLkv2gD2pCBPEQHLaTWi9
+ 0DQ0CoAf/TExh1MCP5S0gW5d/Ffw2nbKeBXKSbjl9/cCKG+wuitaJmETeALZJmbzSR
+ 2pg8Lg3xM+IGrFy9CEtN8HI+JdtG3/h+nyXKnbWilfG4/o8jqmtnmKGVzpb0s9GCBh
+ 6VNwT0VHpT+mtk0y1QiqtGSf2Vlxmnz9xprSqE+ZLmLQ+QfxnASNN8fNmXpRtj5LGE
+ LTuvoFFsHFEYN0vwluGgT3D6/E1MHJhNvIGK5mRTxYvEc9y7B6jVpkVs2moviF0whf
+ qUDTtVykJVzEw==
 To: amd-gfx@lists.freedesktop.org
 From: Simon Ser <contact@emersion.fr>
-Subject: [PATCH v3 3/4] amd/display: add cursor rotation check
-Message-ID: <20230817105251.103228-4-contact@emersion.fr>
+Subject: [PATCH v3 4/4] amd/display: re-introduce cursor plane rotation prop
+Message-ID: <20230817105251.103228-5-contact@emersion.fr>
 In-Reply-To: <20230817105251.103228-1-contact@emersion.fr>
 References: <20230817105251.103228-1-contact@emersion.fr>
 Feedback-ID: 1358184:user:proton
@@ -53,17 +53,8 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The commit 1347385fe187 ("drm/amd/display: don't expose rotation
-prop for cursor plane") removed the rotation property for the
-cursor plane, assuming the cursor would always be displayed without
-any rotation. However the rotation is inherited from the underlying
-plane.
-
-As a result, if the primary plane is rotated, then the cursor plane
-will incorrectly be rotated as well even though it doesn't have a
-rotation property.
-
-To fix this, check that the underlying plane isn't rotated.
+Allow user-space to use the cursor plane with a rotated underlying
+plane under the condition that both planes have the same rotation.
 
 Signed-off-by: Simon Ser <contact@emersion.fr>
 Cc: Alex Deucher <alexander.deucher@amd.com>
@@ -71,32 +62,48 @@ Cc: Harry Wentland <hwentlan@amd.com>
 Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Cc: Michel D=C3=A4nzer <michel@daenzer.net>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c       | 4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 3 +--
+ 2 files changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
 u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index df40f74f5a15..aba01255ba12 100644
+index aba01255ba12..23ff33c78879 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -9867,6 +9867,13 @@ static int dm_check_crtc_cursor(struct drm_atomic_st=
-ate *state,
+@@ -9867,9 +9867,9 @@ static int dm_check_crtc_cursor(struct drm_atomic_sta=
+te *state,
  =09=09=09return -EINVAL;
  =09=09}
 =20
-+=09=09if (new_underlying_state->rotation !=3D DRM_MODE_ROTATE_0) {
-+=09=09=09drm_dbg_atomic(crtc->dev,
-+=09=09=09=09       "Cursor [PLANE:%d:%s] can't be used with rotated underl=
+-=09=09if (new_underlying_state->rotation !=3D DRM_MODE_ROTATE_0) {
++=09=09if (new_underlying_state->rotation !=3D new_cursor_state->rotation) =
+{
+ =09=09=09drm_dbg_atomic(crtc->dev,
+-=09=09=09=09       "Cursor [PLANE:%d:%s] can't be used with rotated underl=
 ying [PLANE:%d:%s]\n",
-+=09=09=09=09       cursor->base.id, cursor->name, underlying->base.id, und=
++=09=09=09=09       "Cursor [PLANE:%d:%s] rotation doesn't match underlying=
+ [PLANE:%d:%s]\n",
+ =09=09=09=09       cursor->base.id, cursor->name, underlying->base.id, und=
 erlying->name);
-+=09=09=09return -EINVAL;
-+=09=09}
-+
- =09=09/* If this plane covers the whole CRTC, no need to check planes unde=
-rneath */
- =09=09if (new_underlying_state->crtc_x <=3D 0 &&
- =09=09    new_underlying_state->crtc_y <=3D 0 &&
+ =09=09=09return -EINVAL;
+ =09=09}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/driv=
+ers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 8eeca160d434..1b3ef68f5bc4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -1487,8 +1487,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manage=
+r *dm,
+ =09=09DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
+ =09=09DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
+=20
+-=09if (dm->adev->asic_type >=3D CHIP_BONAIRE &&
+-=09    plane->type !=3D DRM_PLANE_TYPE_CURSOR)
++=09if (dm->adev->asic_type >=3D CHIP_BONAIRE)
+ =09=09drm_plane_create_rotation_property(plane, DRM_MODE_ROTATE_0,
+ =09=09=09=09=09=09   supported_rotations);
+=20
 --=20
 2.41.0
 
