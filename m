@@ -1,79 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41007780CCE
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Aug 2023 15:46:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C030780C5D
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Aug 2023 15:18:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D464C10E524;
-	Fri, 18 Aug 2023 13:46:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDBC210E506;
+	Fri, 18 Aug 2023 13:18:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
- [IPv6:2a00:1450:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3874310E4C1
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:30:59 +0000 (UTC)
-Received: by mail-lf1-x134.google.com with SMTP id
- 2adb3069b0e04-4fe61ae020bso1020942e87.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 03:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1692354657; x=1692959457;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=4LtmyRH3uquQa35qZEBrjYfCQfjxVyQMuxjwadVuCUE=;
- b=qq8HjUXVe1+6MOle1ON6Z8zxId8JviF3JUrcPfSleTCrvzSKdvjDMkBU6TIlonV19S
- BwQVl9Umc9Q6ci6cV+sLDKyj8qe5p2YcFyHxCxgnld7ac9NdQHCDvU5TQ/oPdpggzL0U
- NdDFes6sCMmTowWrGl+LzeZuuCq+sNOF/uO3XEuyXbBbZJuzaJK7Do4KF5tuSrK69fnK
- C/Vgm95LlW89hmRWdKEkmQm/IHDaUbZHJiFU0Ia4SoFq4SuFheTGOnN9CJpkqeIg4cLR
- /ddfNHU57zNFhzMtIRAo1ZzYC33PxrDJfilk472vCGfM84hrUqX8GopXk9lsxvAtFukw
- 11Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692354657; x=1692959457;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=4LtmyRH3uquQa35qZEBrjYfCQfjxVyQMuxjwadVuCUE=;
- b=FP2GA7CA14VgQvHHRXrYMFGLeXXlFB9Ixisybxr+eaiefIL+gEGHcZPrNW2rrb1YwI
- c1gEosVjkrsICTW1DlNSCpYMuSeAY7l2jm9MrWEmAdyv7KJOnZTxp6798I5NASQxoJav
- c2iNBAmBx6GfLiHcoGiefucprQSqaHEjDHv8LIka6Y50QMfYWdGXjbn0myQJGhOzMxcP
- 76diziQvLUM/vOedOAipzbWI4gCD+pFJQCbOpvPNj6DJvq0mZJndpW+P6zitYzDhie08
- 1WeTrPUfzFBT/3dRq98ZYW0Rfq/V9zYp1jAe8Lu5a9I1NdPLxklQMQv1Of95R65cT4a+
- KxVQ==
-X-Gm-Message-State: AOJu0YwQL0uW9myvd7A0DHLQKhp/YVU1mfRGfY9gTE1UPVuRdAkgLAOI
- LA4/NEC6B0zwJkvrnBPKB2UPaQ==
-X-Google-Smtp-Source: AGHT+IHzaCo2eTE/te1HsoVUFdeT0UZnxqjK11M2NmGV8gd/927nvst3bj0UfF8wjINrubj+z1+1WQ==
-X-Received: by 2002:a19:ca1d:0:b0:4f8:586a:8af6 with SMTP id
- a29-20020a19ca1d000000b004f8586a8af6mr1224933lfg.4.1692354657346; 
- Fri, 18 Aug 2023 03:30:57 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5?
- (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
- by smtp.gmail.com with ESMTPSA id
- 16-20020ac24830000000b004ff1b5c8df3sm275637lft.211.2023.08.18.03.30.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Aug 2023 03:30:56 -0700 (PDT)
-Message-ID: <6097eb1d-6b00-4a0f-a91f-5b19f2b422eb@linaro.org>
-Date: Fri, 18 Aug 2023 13:30:56 +0300
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2085.outbound.protection.outlook.com [40.107.237.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE7EB10E04E;
+ Fri, 18 Aug 2023 13:18:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KG6WrxiL1qsfpZk3pDgxqs9p6E9uI4Eq9q5yfviR5HkhuCSHSQtcRl8AXdHWa/oN2X5voT+bb5hUqQCyE//x7GwvLmyO9bnoZ0QNGcemHKZ/O+RuPUAt137YDky0V5xDYEmlIZeLBCTggTYwEmncEQ8lWb9hPPywL1X/EUwoJSOd/ZYTXYC0+Y1bjrVKMkXbi8+4p5lSzU+yzJCKqr+rWhpclV8h7yEp7UYEmeMGhjom5odmo3sUE8lY7vHvb2kyRTQhtDE82OgLcLk2FQY5tfCzzXCelRkfuehsLJQwsQf2/ZNNtY5S9kB/jMelpO689CG4qumBywrx3p6cNk+0Dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7XOGnyRXNa8Q8NJPt5UFR0D+rnOMmTdetyoG36AI6zU=;
+ b=oXlbjDX2fOUnKS8zfkk6zfU3VyHOZ49DkDWqIksIDdcGTpT8Y3J/JQH10SHFnFPmgpUYIzKt8T+WCgDaEfC021BlQmloQL1WSNnzDMgzUsUqIdEyppD086KVUefem9rPtUcTVpoquuIX4iByxI84Q0gHn7eKzqHr2KzPbbeCyE09rv2/qFmeSRfN97fViNhGznJzyace3OJ7ZSuMKXotnl1wR15WShZNUR78QiLiradM5YWvEll0+45Vcgk+sPvRbOZTaGgNImZHRM+eeQ2F1mDuOkuabkGdYJXi8Mgf6j0knf6ESmEpDJi3go0BO6tm7xRfv4WaLrgYZNEDpMlVuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7XOGnyRXNa8Q8NJPt5UFR0D+rnOMmTdetyoG36AI6zU=;
+ b=gEuRPPXMsScatUiZora2QzWKuJdsauJaP6iJ/5s9iEGLqny1uHI2b9F2O9Qub1JWddTERMehnxG8p59j8nY+ZoC5MUFRfJJeyjC2ltN7FE7FFfPYEdUqUY6OTEY5IRF0bApE8jAdhtjfqkVcdkRYAR5nfhdz4X7rM0/LvVnkaUA=
+Received: from BYAPR06CA0004.namprd06.prod.outlook.com (2603:10b6:a03:d4::17)
+ by DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.31; Fri, 18 Aug
+ 2023 13:18:10 +0000
+Received: from CO1PEPF000042A9.namprd03.prod.outlook.com
+ (2603:10b6:a03:d4:cafe::a1) by BYAPR06CA0004.outlook.office365.com
+ (2603:10b6:a03:d4::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.17 via Frontend
+ Transport; Fri, 18 Aug 2023 13:18:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000042A9.mail.protection.outlook.com (10.167.243.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6699.14 via Frontend Transport; Fri, 18 Aug 2023 13:18:09 +0000
+Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 18 Aug
+ 2023 08:18:07 -0500
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/display: fix mode scaling (RMX_.*)
+Date: Fri, 18 Aug 2023 09:17:39 -0400
+Message-ID: <20230818131742.88763-1-hamza.mahfooz@amd.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/uapi: document the USB subconnector type
-Content-Language: en-GB
-To: Simon Ser <contact@emersion.fr>
-References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
- <a32ce695-038f-0ef8-3584-5bd1ba528131@linaro.org>
- <20230802191351.GA1407@pendragon.ideasonboard.com>
- <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
- <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
- <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
- <20230803204459.GD27752@pendragon.ideasonboard.com>
- <TR8IBdXbd0C4U8Z4zf9ZLEH66QMutWs0QAAkPnMlKiOvgEZCk6AfEIPcIfRC555XWs8eSzeCCCW9R-3NwxZg6hDhPvPseAgAULAdUQ6epDA=@emersion.fr>
- <d9f9c272-ce9b-4599-bb11-1c026087ead3@linaro.org>
- <gIjbz8oq8AuY8E5_XGKnJNjIyQK9SDxp2-3Ep-Dr3D9T_-iUIt-q-oFgarZor4jtdI3682ZtuvQnaQBhTrc5OR6G2sqvDxbmxGZmcRrBAio=@emersion.fr>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <gIjbz8oq8AuY8E5_XGKnJNjIyQK9SDxp2-3Ep-Dr3D9T_-iUIt-q-oFgarZor4jtdI3682ZtuvQnaQBhTrc5OR6G2sqvDxbmxGZmcRrBAio=@emersion.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 18 Aug 2023 13:46:00 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042A9:EE_|DM4PR12MB5230:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82efc2c8-b647-49cf-b8c1-08db9fed9163
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sSUgEpkrPvhwGszI2xlC0xX2+4+J2xGoLV2FtyHzRk5SpdY/mzK1RKgeZQh6OI58BLcomd+oqXWVPZuDttMelC01bwlPdN2bitS/qvBVsmrGRIi9BJR2DgZxo9rJgmbFBOLJi+CXjTT+f3UjtDawFVaUTldcgXKdZWtHcJiObgawxRra+317xOgjWtZrXpQzfdzFwraTr0oYBdA8L/Jov4WjuZpF73i7UpgKbrnsnZrL27Y014MtjsqTvLKxIGIborjuJo8Uu0uD84TZMZYO0et1pDercq/OXrP9FBUz5tTvQV4yslYP1jeUaRuD/0Wg1y1r/TA83ib2yy+GrF9F5dhlyBChF+NO14zww33PA2cLb6HS2+20yr8CuOYkY30FhQCrT/69kzay8+9uB3CQWkRV63xCNnWku6q2SSWXI/M62TuzEGVeletHs59byR4UekoC0qXScONL965o+/1lcAQaVCQH6WFZyKOSy631jnKDcqGLPGdlDpn3qm75hTI8ltddlGj256UW2uVLj1TcTsijA+JMX3ZX/dDosJ5Fp6KBb6PZVx4lvpycslzPLJXMtMVEsP5vtuB83EIaxTK5I7Mk2EVGjnYi/pOI63z+4rnHfPq9IzNSFQOig1uQCLJ68+ZxAM8CMFlpY27YhLJKLjGjAfvD//3atJ3F04kS2NsINIRNfcfvsnGPMuaN+EE4Co5gAxsQuDU5dOQ7J00fg23CPWReYPxo8oJk3PGy5sLKA0pijw9NBUf5FSprdMvdm81p90Hy6wHlIYUqBHyZEhLaz75UsPl27M60g97OLImX4vwkmb1fKLIUuo1OvU9A
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(136003)(346002)(376002)(39860400002)(396003)(451199024)(186009)(1800799009)(82310400011)(46966006)(36840700001)(40470700004)(86362001)(36756003)(82740400003)(356005)(81166007)(40480700001)(478600001)(5660300002)(2616005)(16526019)(44832011)(70206006)(70586007)(6916009)(6666004)(26005)(54906003)(316002)(1076003)(4326008)(8676002)(8936002)(41300700001)(40460700003)(47076005)(336012)(36860700001)(2906002)(426003)(83380400001)(36900700001)(16060500005);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2023 13:18:09.6948 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82efc2c8-b647-49cf-b8c1-08db9fed9163
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5230
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,52 +97,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Janne Grunau <j@jannau.net>,
- Robert Foss <rfoss@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Andy Gross <agross@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Stylon Wang <stylon.wang@amd.com>, Alan Liu <haoping.liu@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <wayne.lin@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Joshua Ashton <joshua@froggi.es>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 18/08/2023 09:24, Simon Ser wrote:
-> On Thursday, August 17th, 2023 at 21:33, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> 
->> We have been looking for a way to document that the corresponding DP
->> port is represented by the USB connector on the device.
->>
->> Consequently, I believe the best way to document it, would be to use
->> DisplayPort / USB, when there is no dongle connected, switching to
->> DisplayPort / HDMI, DisplayPort / VGA, DisplayPort / DisplayPort, etc.
->> when the actual dongle / display is connected and then switching back to
->> the DisplayPort / USB when it gets disconnected.
->>
->> If this sounds good to all parties, I'll post v2, adding this
->> explanation to the cover letter.
-> 
-> But how can user-space discover that the port is USB-C when it's
-> connected? That information is lost at this point.
+As made mention of in commit 4a2df0d1f28e ("drm/amd/display: Fixed
+non-native modes not lighting up"), we shouldn't call
+drm_mode_set_crtcinfo() once the crtc timings have been decided. Since,
+it can cause settings to be unintentionally overwritten. So, since
+dm_state is never NULL now, we can use old_stream to determine if we
+should call drm_mode_set_crtcinfo() because we only need to set the crtc
+timing parameters for entirely new streams.
 
-Yes, unfortunately.
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Fixes: 712237a4a1b4 ("drm/amd/display: Always set crtcinfo from create_stream_for_sink")
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> (In addition, this clashes with the existing semantics of the
-> subconnector prop as discussed before: USB-C is not sub-, it's super-.)
-
-Ok. How do we proceed then? Is it fine to add another property for DP 
-case? Do you have any particular property name in mind? I will follow 
-with addition of this property then.
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 3b27b7742854..e9aff5014e39 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6035,7 +6035,7 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 
+ 	if (recalculate_timing)
+ 		drm_mode_set_crtcinfo(&saved_mode, 0);
+-	else
++	else if (!old_stream)
+ 		drm_mode_set_crtcinfo(&mode, 0);
+ 
+ 	/*
 -- 
-With best wishes
-Dmitry
+2.41.0
 
