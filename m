@@ -1,44 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD927824CB
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 09:46:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848197824D0
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 09:46:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD94610E201;
-	Mon, 21 Aug 2023 07:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A321110E205;
+	Mon, 21 Aug 2023 07:46:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9533110E2C9
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 21:24:38 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5FC10E013
+ for <amd-gfx@lists.freedesktop.org>; Sat, 19 Aug 2023 10:50:12 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7F8836340B;
- Fri, 18 Aug 2023 21:24:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61E71C433C7;
- Fri, 18 Aug 2023 21:24:36 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 5420A6222A;
+ Sat, 19 Aug 2023 10:50:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39AB7C433C8;
+ Sat, 19 Aug 2023 10:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1692393876;
- bh=Wdz4oVuBLe9dL/FbEM8zLUrqIvKI32lgagofb0qvY6o=;
+ s=korg; t=1692442210;
+ bh=UOf0VrNbj7jijgQLUEJOQOBTWQ8bE2tlLoIK1cWZfF4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qCq6FBHKwur8aDhPsmBJ8x7a/pO6VKC1iTCOZWMlrV+nEghj+H0DqAjTnOlZUR00P
- OdozVSYiigsj0UhUy+ly+qwBkX+RJEOGfUzAj4Hwm6GEpTCj7+gItKltc+AVOsfrqs
- 5g3zd+1+RH9uR0hpRVYfZeJOm9UwkwF1061rIaxY=
-Date: Fri, 18 Aug 2023 23:24:33 +0200
+ b=Kei/cEnCzd9vylrM81C/pPpoNImWO9ct/BfmNbABJtoIAiUdlMrA6QirCewN8nGsl
+ E+/EyT5QuE5r/CU3d6rHBMKoRtj1M4beqjlpX4igDLY31/WCHuJE9cep162hACy+zA
+ MkHvny2Q8i8kBUce3Avd2yXp9bzBiQ31Ho3RWg+I=
+Date: Sat, 19 Aug 2023 12:50:07 +0200
 From: Greg KH <gregkh@linuxfoundation.org>
-To: Evan Quan <evan.quan@amd.com>
+To: "Limonciello, Mario" <mario.limonciello@amd.com>
 Subject: Re: [V9 1/9] drivers core: Add support for Wifi band RF mitigations
-Message-ID: <2023081806-rounding-distract-b695@gregkh>
+Message-ID: <2023081919-mockup-bootleg-bdb9@gregkh>
 References: <20230818032619.3341234-1-evan.quan@amd.com>
  <20230818032619.3341234-2-evan.quan@amd.com>
+ <2023081806-rounding-distract-b695@gregkh>
+ <2328cf53-849d-46a1-87e6-436e3a1f5fd8@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230818032619.3341234-2-evan.quan@amd.com>
+In-Reply-To: <2328cf53-849d-46a1-87e6-436e3a1f5fd8@amd.com>
 X-Mailman-Approved-At: Mon, 21 Aug 2023 07:46:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,22 +52,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrew@lunn.ch, rafael@kernel.org, linux-wireless@vger.kernel.org,
- rdunlap@infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc: Andrew Lunn <andrew@lunn.ch>, pabeni@redhat.com, rafael@kernel.org,
+ linux-wireless@vger.kernel.org, rdunlap@infradead.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, edumazet@google.com,
- Mario Limonciello <mario.limonciello@amd.com>, horms@kernel.org,
- netdev@vger.kernel.org, alexander.deucher@amd.com, kuba@kernel.org,
- johannes@sipsolutions.net, pabeni@redhat.com, quic_jjohnson@quicinc.com,
- davem@davemloft.net, lenb@kernel.org
+ horms@kernel.org, netdev@vger.kernel.org, alexander.deucher@amd.com,
+ kuba@kernel.org, johannes@sipsolutions.net, Evan Quan <evan.quan@amd.com>,
+ quic_jjohnson@quicinc.com, davem@davemloft.net, lenb@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 18, 2023 at 11:26:11AM +0800, Evan Quan wrote:
->  drivers/base/Makefile                         |   1 +
->  drivers/base/wbrf.c                           | 280 ++++++++++++++++++
+On Fri, Aug 18, 2023 at 05:49:14PM -0500, Limonciello, Mario wrote:
+> 
+> 
+> On 8/18/2023 4:24 PM, Greg KH wrote:
+> > On Fri, Aug 18, 2023 at 11:26:11AM +0800, Evan Quan wrote:
+> > >   drivers/base/Makefile                         |   1 +
+> > >   drivers/base/wbrf.c                           | 280 ++++++++++++++++++
+> > 
+> > Why is a wifi-specific thing going into drivers/base/?
+> > 
+> > confused,
+> > 
+> > greg k-h
+> 
+> The original problem statement was at a high level 'there can be
+> interference between different devices operating at high frequencies'. The
+> original patches introduced some ACPI library code that enabled a mitigated
+> for this interference between mac80211 devices and amdgpu devices.
+> 
+> Andrew Lunn wanted to see something more generic, so the series has morphed
+> into base code for things to advertise frequencies in use and other things
+> to listen to frequencies in use and react.
+> 
+> The idea is supposed to be that if the platform knows that these mitigations
+> are needed then the producers send the frequencies in use, consumers react
+> to them.  The AMD implementation of getting this info from the platform
+> plugs into the base code (patch 2).
+> 
+> If users don't want this behavior they can turn it off on kernel command
+> line.
+> 
+> If the platform doesn't know mitigations are needed but user wants to turn
+> them on anyway they can turn it on kernel command line.
 
-Why is a wifi-specific thing going into drivers/base/?
+That's all fine, I don't object to that at all.  But bus/device-specific
+stuff should NOT be in drivers/base/ if at all possible (yes, we do have
+some exceptions with hypervisor.c and memory and cpu stuff) but for a
+frequency thing like this, why can't it live with the other
+wifi/frequency code in drivers/net/wireless/?
 
-confused,
+In other words, what's the benefit to having me be the maintainer of
+this, someone who knows nothing about this subsystem, other than you
+passing off that work to me?  :)
+
+thanks,
 
 greg k-h
