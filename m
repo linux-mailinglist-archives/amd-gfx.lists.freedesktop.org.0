@@ -1,46 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848197824D0
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 09:46:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F96F7824CA
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 09:46:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A321110E205;
-	Mon, 21 Aug 2023 07:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F31F310E200;
+	Mon, 21 Aug 2023 07:46:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5FC10E013
- for <amd-gfx@lists.freedesktop.org>; Sat, 19 Aug 2023 10:50:12 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5420A6222A;
- Sat, 19 Aug 2023 10:50:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39AB7C433C8;
- Sat, 19 Aug 2023 10:50:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1692442210;
- bh=UOf0VrNbj7jijgQLUEJOQOBTWQ8bE2tlLoIK1cWZfF4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Kei/cEnCzd9vylrM81C/pPpoNImWO9ct/BfmNbABJtoIAiUdlMrA6QirCewN8nGsl
- E+/EyT5QuE5r/CU3d6rHBMKoRtj1M4beqjlpX4igDLY31/WCHuJE9cep162hACy+zA
- MkHvny2Q8i8kBUce3Avd2yXp9bzBiQ31Ho3RWg+I=
-Date: Sat, 19 Aug 2023 12:50:07 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: "Limonciello, Mario" <mario.limonciello@amd.com>
-Subject: Re: [V9 1/9] drivers core: Add support for Wifi band RF mitigations
-Message-ID: <2023081919-mockup-bootleg-bdb9@gregkh>
-References: <20230818032619.3341234-1-evan.quan@amd.com>
- <20230818032619.3341234-2-evan.quan@amd.com>
- <2023081806-rounding-distract-b695@gregkh>
- <2328cf53-849d-46a1-87e6-436e3a1f5fd8@amd.com>
+X-Greylist: delayed 450 seconds by postgrey-1.36 at gabe;
+ Sun, 20 Aug 2023 09:58:59 UTC
+Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr
+ [80.12.242.19])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A06510E131
+ for <amd-gfx@lists.freedesktop.org>; Sun, 20 Aug 2023 09:58:59 +0000 (UTC)
+Received: from pop-os.home ([86.243.2.178]) by smtp.orange.fr with ESMTPA
+ id Xf5hqwKJwP8tnXf5iq04g0; Sun, 20 Aug 2023 11:51:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1692525087;
+ bh=Mh61Dvqgft6jmx3lrPrBaNnQEkuCgovy2orBj5LwvkM=;
+ h=From:To:Cc:Subject:Date;
+ b=P66eIAB0ilchO3DxiGNwVbTmhNv/U6gsfPkzH9QXC3zpFhFiqJlCIeA2dACx9CTzS
+ pi3tnzo/2pz2MaKGt0p0iOAXeuU62m/eL8HyaDsqyxj8KtWSqE6uodGkbrE2tTdsZb
+ 1V/gkLCuVTQStoff3xpdxZZ3nLK4j5mE7JZrLDVP/yYLzLGWWOW0kdxjWqjhnA2W+4
+ yfiwiTnPTRSzI2tlirYSSxMSH6pXgGrhkhzZjpKVrdN4cGXVnJsqGXYf6wQY1Tuh3s
+ QC5mSwfHYVj+/Vyfr30UDwPNZU9IV7Hm6Uzz90Rfq0nrhcmpNzhaA6s99jQo1Kt3xB
+ XCjra/tiLPySQ==
+X-ME-Helo: pop-os.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 20 Aug 2023 11:51:27 +0200
+X-ME-IP: 86.243.2.178
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, Felix.Kuehling@amd.com,
+ Arunpravin.PaneerSelvam@amd.com
+Subject: [PATCH 0/4] drm/amdgpu: Explicitly add a flexible array at the end of
+ 'struct amdgpu_bo_list' and simplify amdgpu_bo_list_create()
+Date: Sun, 20 Aug 2023 11:51:12 +0200
+Message-Id: <cover.1692524665.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2328cf53-849d-46a1-87e6-436e3a1f5fd8@amd.com>
-X-Mailman-Approved-At: Mon, 21 Aug 2023 07:46:03 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 21 Aug 2023 07:46:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,60 +54,28 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Lunn <andrew@lunn.ch>, pabeni@redhat.com, rafael@kernel.org,
- linux-wireless@vger.kernel.org, rdunlap@infradead.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, edumazet@google.com,
- horms@kernel.org, netdev@vger.kernel.org, alexander.deucher@amd.com,
- kuba@kernel.org, johannes@sipsolutions.net, Evan Quan <evan.quan@amd.com>,
- quic_jjohnson@quicinc.com, davem@davemloft.net, lenb@kernel.org
+Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 18, 2023 at 05:49:14PM -0500, Limonciello, Mario wrote:
-> 
-> 
-> On 8/18/2023 4:24 PM, Greg KH wrote:
-> > On Fri, Aug 18, 2023 at 11:26:11AM +0800, Evan Quan wrote:
-> > >   drivers/base/Makefile                         |   1 +
-> > >   drivers/base/wbrf.c                           | 280 ++++++++++++++++++
-> > 
-> > Why is a wifi-specific thing going into drivers/base/?
-> > 
-> > confused,
-> > 
-> > greg k-h
-> 
-> The original problem statement was at a high level 'there can be
-> interference between different devices operating at high frequencies'. The
-> original patches introduced some ACPI library code that enabled a mitigated
-> for this interference between mac80211 devices and amdgpu devices.
-> 
-> Andrew Lunn wanted to see something more generic, so the series has morphed
-> into base code for things to advertise frequencies in use and other things
-> to listen to frequencies in use and react.
-> 
-> The idea is supposed to be that if the platform knows that these mitigations
-> are needed then the producers send the frequencies in use, consumers react
-> to them.  The AMD implementation of getting this info from the platform
-> plugs into the base code (patch 2).
-> 
-> If users don't want this behavior they can turn it off on kernel command
-> line.
-> 
-> If the platform doesn't know mitigations are needed but user wants to turn
-> them on anyway they can turn it on kernel command line.
+This serie simplifies amdgpu_bo_list_create() and usage of the 'struct
+amdgpu_bo_list'.
 
-That's all fine, I don't object to that at all.  But bus/device-specific
-stuff should NOT be in drivers/base/ if at all possible (yes, we do have
-some exceptions with hypervisor.c and memory and cpu stuff) but for a
-frequency thing like this, why can't it live with the other
-wifi/frequency code in drivers/net/wireless/?
+It is compile tested only.
 
-In other words, what's the benefit to having me be the maintainer of
-this, someone who knows nothing about this subsystem, other than you
-passing off that work to me?  :)
+Christophe JAILLET (4):
+  drm/amdgpu: Explicitly add a flexible array at the end of 'struct
+    amdgpu_bo_list'
+  drm/amdgpu: Remove a redundant sanity check
+  drm/amdgpu: Remove amdgpu_bo_list_array_entry()
+  drm/amdgpu: Use kvzalloc() to simplify code
 
-thanks,
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 15 ++-------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h | 18 ++++++------------
+ 2 files changed, 8 insertions(+), 25 deletions(-)
 
-greg k-h
+-- 
+2.34.1
+
