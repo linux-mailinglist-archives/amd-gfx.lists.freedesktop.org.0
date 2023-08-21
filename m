@@ -1,52 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683927829BA
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 15:00:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 067B4782965
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 14:47:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4446710E245;
-	Mon, 21 Aug 2023 13:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9164910E23F;
+	Mon, 21 Aug 2023 12:47:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A099710E221;
- Mon, 21 Aug 2023 09:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692611877; x=1724147877;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=RPCj/Hzk+FNFieDTs98XdiamY2Vzer2lf8C6QZtmz6c=;
- b=NDUO3xuIwl647TsgdS3aacYnUuWm19ACY2YIXYYatv1GV6osTo2uiNTV
- m8LsbPryurqK8IDQDtz0JjlXouCznOGudxHaxkSzg2bktgEhhitPyGjZa
- /rJ2ezTn1+99/CV/m1kx79StgoJyMbutvp95Jq8Q9zqbfdQGGYJw1M40H
- ouwQQL1lyMjhY9xqdubbtbzi+eB4VDvOT8VQclK2T0RtkMDWKP221Mevq
- cNVKDBsGM+ra92g6z9Rfx3uO27ct88L32aWIEv+RvERqxyPd3aRGxLHVK
- hyOsFDByyja0cLfad7ozmAkYD8Hh3+MgqkQC+m/xCjmeJGnYCDxWSSwnc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10808"; a="437470465"
-X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; d="scan'208";a="437470465"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 02:57:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10808"; a="765304744"
-X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; d="scan'208";a="765304744"
-Received: from nsnaveen-mobl.gar.corp.intel.com ([10.252.54.252])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 02:57:46 -0700
-Date: Mon, 21 Aug 2023 12:57:39 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH v5 06/11] drm/radeon: Use RMW accessors for changing LNKCTL
-In-Reply-To: <BL1PR12MB5144FF7542426AB3B4C66082F71BA@BL1PR12MB5144.namprd12.prod.outlook.com>
-Message-ID: <674c5c35-9ce7-a144-719d-206ff2c16e8f@linux.intel.com>
-References: <20230717120503.15276-1-ilpo.jarvinen@linux.intel.com>
- <20230717120503.15276-7-ilpo.jarvinen@linux.intel.com>
- <BL1PR12MB5144FF7542426AB3B4C66082F71BA@BL1PR12MB5144.namprd12.prod.outlook.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2041.outbound.protection.outlook.com [40.107.93.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E83C10E23F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Aug 2023 12:47:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CGlCQ/BPQXYrBnvO9hWBjhmv1hoCNLgpyDQ5eJauVY6aqLH4De9JdjXCHPpDxMUIJHm+EWQdRhL4NTJlD4kY5Nru2kP8DEo//8jp0IxpASvjnF1RW/TZOjUW2BU4h96x+2nNO4ZbQmjB2BohaafdXyZ/TK+h/B9C1uumLLyT5CeGI3vTlBM/2UQlwiXuELBCnrGikF88uM2EYUxywaqapdqL+fIvE1eMUDj0IfbXjEhRFEVlvs0OUQ4DmFCrh5Sk1gwVZ3pj+WfJjr+B5BL+c5R5pK4XTVEXQaXiIsxks9lq5HI9Rriu6AybUv2NN3fh27a2tsvq2vWZ1wbR/YU8UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H83YjIEFIR9wf93RSummclKsfQ4wA3SwWja21PFCatg=;
+ b=ebUHQsx/YSP4zOOvzHNJOkPH+RtBycquFoYFodlV5sSMO5CO4UPAjDQa7uelvqI6r7NKo/2zdJ7k8jvtGTOzqu5iMFnoMHIw9T2WQwbzQk+5UaIm1EijBqA6IncUI89A0HLLFYro4VId53kGH5s5+rva3pUEhbAzPfICcUB0rApKdExvg5PFYp5dPmIa8OnxbOk0XceANV7/KN2XkpBlVQn5Ys22pHTEtQtBWDGZuBwn9NanI/xre7CMprsiiu75M21SDTzV91yLj+U5jIDOjGm+h+G4SbSSYfdIbqOqFFcZ1LK8vJbo4iRekQvpYd1hPtgcERzMllGwjnzyeTTNhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H83YjIEFIR9wf93RSummclKsfQ4wA3SwWja21PFCatg=;
+ b=RGpYXk/8FtnYHh22xkmKTV5iBBSiDtmljAKma7yiXDWpYibHr4SGHIyQLZ+akAn521I4fqzVDgcH02QYcxIPE6WttVlKpYpCfvUTP3lOr0hKQDi10MqPIYDAMmD02sGM1A7OkUSefmx2RnYO66iPg+/I363Z/6nxNMvDD5bbfQw=
+Received: from MWH0EPF00056D12.namprd21.prod.outlook.com
+ (2603:10b6:30f:fff2:0:1:0:15) by PH7PR12MB7020.namprd12.prod.outlook.com
+ (2603:10b6:510:1ba::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
+ 2023 12:47:35 +0000
+Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
+ (2a01:111:f403:f807::) by MWH0EPF00056D12.outlook.office365.com
+ (2603:1036:d20::b) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.4 via Frontend
+ Transport; Mon, 21 Aug 2023 12:47:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6699.14 via Frontend Transport; Mon, 21 Aug 2023 12:47:35 +0000
+Received: from mangesh-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 21 Aug
+ 2023 07:47:32 -0500
+From: Mangesh Gadre <Mangesh.Gadre@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
+ <Lijo.Lazar@amd.com>
+Subject: [PATCH v2] drm/amdgpu : Updated TCP/UTCL1 programming
+Date: Mon, 21 Aug 2023 20:47:04 +0800
+Message-ID: <20230821124704.3746697-1-Mangesh.Gadre@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-229501122-1692611873=:1744"
-X-Mailman-Approved-At: Mon, 21 Aug 2023 13:00:28 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|PH7PR12MB7020:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5fc65468-ed39-4115-ecc8-08dba244cb5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aO10q2mi16z8kWxYmaflkbunCDh+vMQYFESdCiJtfSL57GV6dUa87ewvP9DTmqll16ei9wFCZUc0M0oMtySq16y013c689rlEaA+n0dkRpZmDU1jE+MuN7Imf75DZ5VkgS0mUO8zQMAYxLFM082sMk7CP0DYv76LUGYeb9LX1MHM8klTvOKlUxd4jz5hCcnjn0rMh9q9uA03g9FRBTiwg5Abw94l++jQti7hkhXrUEQs+HTYrTKgjuafUHpUtGBHuZb7ApeCKSHkGj9UTxrSLlyyhT4I4VXt1gjT/lO11DDxgpH6/iEvAS5/3vtUrhTIHj32emr7cR5JXmkqO6JY1icjGtKN0f/e+1KYXy7DyeCG+45vMYdZdW3CU/blN/unoLNE+6VMEzxa53xWcje7AsBbKAs25dFKX9AMRY1EMw+LbPbDEuqV4jNKc/DZci6zAqA8lIan+YdvhlxkilXEXspl7FhiYlD1NOo2yoXht7wFKtvZ8tcMX100kgjrdFNdt5+mZ937ZMNfmp+1K8PeJNtH0NfxdNgN0lbgvPtKD6MjPqW4rJNRpT9WCAJamtAcGRWmc3tw2xbm/DQATVUKvq9M3hEXgUgiq42Qf2vGhbtKRBrajybbPJ1VZiPDnjwzdbcjt6jWknOGuCCZFa+vericO76k+l4ZFOS3wS2rbYF55mSN0oAxu6FI3ZO1Fc0Frqo8Vgx6dpxteAdv7JctBBQscb/3hndKJ8Fqh+F6H0rj6SSooNg4XfLGyqLUaoCpOeUMiPnSuO3wsuz45m4hLA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(376002)(136003)(396003)(82310400011)(451199024)(186009)(1800799009)(36840700001)(40470700004)(46966006)(2906002)(4744005)(40480700001)(15650500001)(83380400001)(5660300002)(336012)(426003)(16526019)(26005)(7696005)(86362001)(36860700001)(47076005)(8676002)(2616005)(8936002)(4326008)(70206006)(316002)(6636002)(70586007)(110136005)(478600001)(82740400003)(356005)(81166007)(6666004)(36756003)(41300700001)(40460700003)(1076003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 12:47:35.4547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fc65468-ed39-4115-ecc8-08dba244cb5a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7020
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +98,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dean Luick <dean.luick@cornelisnetworks.com>,
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
- Emmanuel Grumbach <emmanuel.grumbach@intel.com>, Rob Herring <robh@kernel.org>,
- =?ISO-8859-15?Q?Jonas_Dre=DFler?= <verdre@v0yd.nl>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
- Lukas Wunner <lukas@wunner.de>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Airlie <airlied@gmail.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Mangesh Gadre <Mangesh.Gadre@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+It is required for TCP/UTCL1 thrashing
 
---8323329-229501122-1692611873=:1744
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+v2: updated rev_id check
 
-On Fri, 18 Aug 2023, Deucher, Alexander wrote:
+Signed-off-by: Mangesh Gadre <Mangesh.Gadre@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> [Public]
-> 
-> > -----Original Message-----
-> > From: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> > Sent: Monday, July 17, 2023 8:05 AM
-> > To: linux-pci@vger.kernel.org; Bjorn Helgaas <bhelgaas@google.com>; Lorenzo
-> > Pieralisi <lorenzo.pieralisi@arm.com>; Rob Herring <robh@kernel.org>;
-> > Krzysztof Wilczyński <kw@linux.com>; Emmanuel Grumbach
-> > <emmanuel.grumbach@intel.com>; Rafael J . Wysocki <rafael@kernel.org>;
-> > Heiner Kallweit <hkallweit1@gmail.com>; Lukas Wunner <lukas@wunner.de>;
-> > Andy Shevchenko <andriy.shevchenko@linux.intel.com>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; Koenig, Christian
-> > <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>; David
-> > Airlie <airlied@gmail.com>; Daniel Vetter <daniel@ffwll.ch>; amd-
-> > gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
-> > kernel@vger.kernel.org
-> > Cc: Dean Luick <dean.luick@cornelisnetworks.com>; Jonas Dreßler
-> > <verdre@v0yd.nl>; Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>;
-> > stable@vger.kernel.org
-> > Subject: [PATCH v5 06/11] drm/radeon: Use RMW accessors for changing
-> > LNKCTL
-> >
-> > Don't assume that only the driver would be accessing LNKCTL. ASPM policy
-> > changes can trigger write to LNKCTL outside of driver's control.
-> > And in the case of upstream bridge, the driver does not even own the device
-> > it's changing the registers for.
-> >
-> > Use RMW capability accessors which do proper locking to avoid losing
-> > concurrent updates to the register value.
-> >
-> > Fixes: 8a7cd27679d0 ("drm/radeon/cik: add support for pcie gen1/2/3
-> > switching")
-> > Fixes: b9d305dfb66c ("drm/radeon: implement pcie gen2/3 support for SI")
-> > Suggested-by: Lukas Wunner <lukas@wunner.de>
-> > Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> > Cc: stable@vger.kernel.org
-> 
-> For this and the amdgpu patch:
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> I'm not sure if this is stable material however.  Is there some issue today?
-
-These were added without Cc stable into pci.git/pcie-rmw.
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 93590adf2b04..8b84ca80d80b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -203,6 +203,9 @@ static void gfx_v9_4_3_init_golden_registers(struct amdgpu_device *adev)
+ 		if (adev->rev_id == 0) {
+ 			WREG32_FIELD15_PREREG(GC, dev_inst, TCP_UTCL1_CNTL1,
+ 					      REDUCE_FIFO_DEPTH_BY_2, 2);
++		} else {
++			WREG32_FIELD15_PREREG(GC, dev_inst, TCP_UTCL1_CNTL2,
++						SPARE, 0x1);
+ 		}
+ 	}
+ }
 -- 
- i.
+2.34.1
 
---8323329-229501122-1692611873=:1744--
