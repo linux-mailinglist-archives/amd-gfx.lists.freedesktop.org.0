@@ -1,59 +1,94 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517757824CD
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 09:46:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1F1782368
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 08:06:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FB4210E203;
-	Mon, 21 Aug 2023 07:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98BBD10E1BE;
+	Mon, 21 Aug 2023 06:06:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from domac.alu.hr (domac.alu.unizg.hr [IPv6:2001:b68:2:2800::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 974C210E15C;
- Sun, 20 Aug 2023 21:14:19 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by domac.alu.hr (Postfix) with ESMTP id 309446016E;
- Sun, 20 Aug 2023 23:14:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1692566058; bh=ZD6pknCEJycLGFVPBeuZ+UHvP10inceHxW+/jLvVFAg=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=D9lwvh1icuamutzEPApEhLQ0/DAZtgcvNAl9uu/BeCn5bR0zE+9xA44MPRBzajeTN
- IKhS887dX4T3xBWf9EGsOTF062QyD/X2GoCJanbOKRbKltr0EiH+K4FkV9lNY09Usm
- qpCFPpMsWwFMFBlqRw1ESvAr6nwW9ozG5t2spKO6amVcQ87m00oKqcuJx6AKme3jmN
- 6sbvNBqiLh/E+gAwuWLztCNawQDiq1dBDZfRD1ZHcvrO1ckiXFkZvS6G7SD/5ZoU4z
- 7i8W8Fv20thKSa2pLJGrhMq3vJyA4Tx6OiHQwS8Jp5zbN51+BFbIi2kXfYwh5vHOKC
- mkqgVticgfLBQ==
-X-Virus-Scanned: Debian amavisd-new at domac.alu.hr
-Received: from domac.alu.hr ([127.0.0.1])
- by localhost (domac.alu.hr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id f-khtF3AHs-W; Sun, 20 Aug 2023 23:14:14 +0200 (CEST)
-Received: from [192.168.1.6] (unknown [94.250.191.183])
- by domac.alu.hr (Postfix) with ESMTPSA id 5D3436015E;
- Sun, 20 Aug 2023 23:14:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=alu.unizg.hr; s=mail;
- t=1692566054; bh=ZD6pknCEJycLGFVPBeuZ+UHvP10inceHxW+/jLvVFAg=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=GIG0cH6meJ+gAB2X0vj4kphWbyhZKD1MctUT4p6JsxIubMqGhT+S6LvH2LDWFNQtQ
- lgo8GpwNfmbKttHWNQKPcgS6qDwHi59/1kLMiPkNEPuLr1fnjNrarOFsXdMDygG+r5
- odiKgKFE6h+8lfMpZl4PJCN7FDtYVzCTKSTb9N1JRG0/tjVHpQBBFNWhk+2NrTyYXI
- 5zJdihVFaVnbtmHKB7L08nsMLodSkUTSjd+KpTE+CZl159Qo/9OH1Feo0FGit/iuFN
- 9ZIod7bLdBG4nY72Y+NPiBAEl+Ev3GRMoZ2IPK+/WQ61VTeQbFXGq71UjFaTL0aKzV
- LaFaiOWELqOgg==
-Message-ID: <3a931379-42f3-ec4f-36c1-bd267dd396b1@alu.unizg.hr>
-Date: Sun, 20 Aug 2023 23:14:14 +0200
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2061c.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::61c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E4BB10E1BE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Aug 2023 06:06:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xpn72lTxcTuR3nRvE7YGAE0dxUjNOBT0MyKCgHiCjSAKcKyLOHcmSvMFGq3cBduLQZy1LFTKQfKskv3GyygOmTxQo0ZVDQB5nx84VYrvp1JNN/miOi+heeFrpv8qKknFjIBqKaHA3uRnAZFmUJuzaQfyHqgRoj//+SrAoHlPtD5gR42akOAHdwpPi5RzWtXgxqhfsJV8VQAiCWx5aCa4xqdXXvR0SYiybLsRZ6pXofYWEXc0QzlHMIn9D1wawaJ+y3kqwZtyyyGlIABG6TvZW9kGJ47gY5bCOF2pQseEKssNgpXT90Qg696TXjiDHaFylgRdvsNPPsW4SoQfdUz8HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sE5xRjdFA34NEQfwKhali7eizF7Nw443JADFBN/LGWQ=;
+ b=AoyqLXoG2J1qSKyz7rol5BtRBuUeKKBAnkvOz72H4P1LJDC9LWvzn1qEWq77w1AkgyG2Lw9eKuTwnhb4Jwo9lcraozIYLvXDZXXJCKm132emSKGL4syIQfo6PL2OYEbNGbi7C1S4+L12G6tLjsmjjOuVblrA22oIwiiAezaHfCdyYU+aSxhTT5zn/zlqGYSJOjmRxb2SeXH1i9cgzE6HdPuv19mK1V2U1drahFGKH3SLnWn3HfTr5ikfnvU1FRme+o2C6WnW/VR9FXHADCDXq6DzIu1iGf7h524zh8cShMNPUo3gfcuv5EBh1/CRllMcSlrcsBvjVPXvOHf84SVh+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sE5xRjdFA34NEQfwKhali7eizF7Nw443JADFBN/LGWQ=;
+ b=GTc0PeCw46PvLzg0j5dIgpGMmEwuD+Mam7XMu1nlbsB8rD9+7twrL1GqF/xipFP3FrPAoqn+9rUYRFjsMh/a2O+F7SqyAb/UxUz6znmgUkyjZUx4zutOLLc+fkOAVy/AJ+WXMj9XkQbM1pkJJap6G5e2SDqyb++7d9mFB6uLXrA=
+Received: from CY8PR11CA0011.namprd11.prod.outlook.com (2603:10b6:930:48::16)
+ by IA1PR12MB7686.namprd12.prod.outlook.com (2603:10b6:208:422::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Mon, 21 Aug
+ 2023 06:06:14 +0000
+Received: from CY4PEPF0000E9DC.namprd05.prod.outlook.com
+ (2603:10b6:930:48:cafe::aa) by CY8PR11CA0011.outlook.office365.com
+ (2603:10b6:930:48::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20 via Frontend
+ Transport; Mon, 21 Aug 2023 06:06:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9DC.mail.protection.outlook.com (10.167.241.82) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6699.14 via Frontend Transport; Mon, 21 Aug 2023 06:06:14 +0000
+Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 21 Aug
+ 2023 01:06:11 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>, Guchun Chen <guchun.chen@amd.com>
+Subject: [PATCH] drm/amd/pm: Fixes incorrect type in
+ 'amdgpu_hwmon_show_power_avg() & _input()'
+Date: Mon, 21 Aug 2023 11:35:56 +0530
+Message-ID: <20230821060556.937890-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: [BUG]: amdgpu: soft lockup - CPU#1 stuck for 26s! [systemd-udevd:635]
-Content-Language: en-US
-From: Mirsad Todorovac <mirsad.todorovac@alu.unizg.hr>
-To: linux-kernel@vger.kernel.org
-References: <b4962d0d-7582-42a1-c8aa-5d31d5e28970@alu.unizg.hr>
-In-Reply-To: <b4962d0d-7582-42a1-c8aa-5d31d5e28970@alu.unizg.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 21 Aug 2023 07:46:04 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DC:EE_|IA1PR12MB7686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 235ed0fe-19fb-44f9-1810-08dba20cb9b1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TsT6iOvBUq5sG4g9n+tsHJa7hFvUiwkDbyw9K/1KDEzWk/z4oVcLHexD08ajD0C/CzstD8kZ6WK5M7i/DcyNMEfL3773haQ4X7q7QrgZy5WMo/T+KzpA6OY5uMUg4+08fm+x5XQmXsD6evEvh9C46aKJmVEQy3kl1x8cRQuSxinzFjxuRX4Wzq651F5e/M5100T6yJGzTtXwoJWHeAgsPuHp2bY3zkT4qzAITMqRozp49mQEy3b1xebp447n7gkQQobgOSsmRwLTex0VIYFPeqIXJi3sW9WNBABxKo2qEGtCk/GYoITLzaAr2UZyyMOOfixrf3fk5Z4inLQgPbn/MdneBexFhqSRRbgQae6WNGF1KFHQxGvUSuTQeIhAstoIYX8q3J002NMgNdweRb6cNp1n6M24UVavrvfsE4rLIKrHJivhRCWMEK+QPPtMjsGrVo3vdl0RLQN3iKA32J64Qxpn+daWXm8g3iKIevOwlHSILI6GKaDbHFhvpA8pkgArNNCVLhVuATQc7+sBBDcAkv/FJgP8soLW2WWha4wKc4WARojskjIq8wQp2PAbwd1zdVjmA5puV1gArs+s9a1syAqI2Om0sriiwee1/6EGD8pzZlLA8uVlpy7iMSv73t8BP5Q+y/0dJZXOap2JOTpVfKr2sTypHB09OphFK+cVnT/rFo+PZav/UTVLAlw+mizgVCMkoqSj9jjNr98gdqxDzMmavHgg7B7GVosYz+titBxgG/bVmfsOFz83P6KWGjIywqtqqEoJfI73/uXdvULD0g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(376002)(396003)(136003)(82310400011)(451199024)(186009)(1800799009)(36840700001)(40470700004)(46966006)(40460700003)(36860700001)(426003)(1076003)(336012)(26005)(6666004)(7696005)(16526019)(47076005)(83380400001)(2616005)(44832011)(8936002)(5660300002)(66574015)(8676002)(4326008)(2906002)(54906003)(478600001)(110136005)(41300700001)(70586007)(316002)(6636002)(70206006)(82740400003)(81166007)(40480700001)(86362001)(36756003)(356005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 06:06:14.0817 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 235ed0fe-19fb-44f9-1810-08dba20cb9b1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9DC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7686
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,186 +100,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lijo Lazar <lijo.lazar@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+The val is defined as unsigned int type, if(val<0) is invalid, hence
+modified its type to ssize_t
 
-Hi,
+Fixes the below:
 
-This soft lockup occurs on amdgpu vanilla torvalds kernel with KCSAN turned on.
+drivers/gpu/drm/amd/pm/amdgpu_pm.c:2800:5-8: WARNING: Unsigned expression compared with zero: val < 0
+drivers/gpu/drm/amd/pm/amdgpu_pm.c:2813:5-8: WARNING: Unsigned expression compared with zero: val < 0
 
-The platform is Ubuntu 22.04 LTS.
+Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Please find config and lshw here:
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index f03647fa3df6..cdc28e4da0c9 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -2794,26 +2794,26 @@ static ssize_t amdgpu_hwmon_show_power_avg(struct device *dev,
+ 					   struct device_attribute *attr,
+ 					   char *buf)
+ {
+-	unsigned int val;
++	ssize_t val;
+ 
+ 	val = amdgpu_hwmon_get_power(dev, AMDGPU_PP_SENSOR_GPU_AVG_POWER);
+ 	if (val < 0)
+ 		return val;
+ 
+-	return sysfs_emit(buf, "%u\n", val);
++	return sysfs_emit(buf, "%zd\n", val);
+ }
+ 
+ static ssize_t amdgpu_hwmon_show_power_input(struct device *dev,
+ 					     struct device_attribute *attr,
+ 					     char *buf)
+ {
+-	unsigned int val;
++	ssize_t val;
+ 
+ 	val = amdgpu_hwmon_get_power(dev, AMDGPU_PP_SENSOR_GPU_INPUT_POWER);
+ 	if (val < 0)
+ 		return val;
+ 
+-	return sysfs_emit(buf, "%u\n", val);
++	return sysfs_emit(buf, "%zd\n", val);
+ }
+ 
+ static ssize_t amdgpu_hwmon_show_power_cap_min(struct device *dev,
+-- 
+2.25.1
 
-https://domac.alu.unizg.hr/~mtodorov/linux/bugreports/amdgpu/6.5-rc7/
-
-Here is the log excerpt:
-
-[   69.050693] ==================================================================
-[   69.198264] watchdog: BUG: soft lockup - CPU#1 stuck for 26s! [systemd-udevd:635]
-[   69.198277] Modules linked in: amdgpu(+) snd_hwdep(+) nls_iso8859_1 amdxcp snd_pcm kvm(+) iommu_v2 drm_buddy gpu_sched irqbypass snd_seq_midi crct10dif_pclmul drm_suballoc_helper snd_seq_midi_event polyval_clmulni drm_ttm_helper snd_rawmidi polyval_generic ttm ghash_clmulni_intel sha512_ssse3 drm_display_helper snd_seq aesni_intel cec snd_seq_device snd_timer crypto_simd rc_core cryptd drm_kms_helper joydev input_leds snd rapl ccp wmi_bmof k10temp i2c_algo_bit soundcore sch_fq_codel mac_hid msr parport_pc drm ppdev lp parport ramoops pstore_blk reed_solomon pstore_zone efi_pstore ip_tables x_tables autofs4 btrfs blake2b_generic xor raid6_pq libcrc32c hid_generic usbhid hid nvme nvme_core r8169 ahci xhci_pci video crc32_pclmul libahci i2c_piix4 nvme_common realtek xhci_pci_renesas wmi gpio_amdpt
-[   69.198669] CPU: 1 PID: 635 Comm: systemd-udevd Not tainted 6.5.0-rc7-kcsan-g706a74159504 #3
-[   69.198680] Hardware name: ASRock X670E PG Lightning/X670E PG Lightning, BIOS 1.21 04/26/2023
-[   69.198686] RIP: kcsan_setup_watchpoint+0x274/0x3f0
-[ 69.198697] Code: 00 00 48 8b 45 c8 48 c7 00 00 00 00 00 f0 48 ff 0d c1 50 d5 0c 45 84 d2 75 10 48 f7 45 c0 00 02 00 00 74 06 fb 0f 1f 44 00 00 <83> 6b 04 01 41 57 9d 48 8d 65 d8 5b 41 5c 41 5d 41 5e 41 5f 5d 31
-All code
-========
-    0:    00 00                    add    %al,(%rax)
-    2:    48 8b 45 c8              mov    -0x38(%rbp),%rax
-    6:    48 c7 00 00 00 00 00     movq   $0x0,(%rax)
-    d:    f0 48 ff 0d c1 50 d5     lock decq 0xcd550c1(%rip)        # 0xcd550d6
-   14:    0c
-   15:    45 84 d2                 test   %r10b,%r10b
-   18:    75 10                    jne    0x2a
-   1a:    48 f7 45 c0 00 02 00     testq  $0x200,-0x40(%rbp)
-   21:    00
-   22:    74 06                    je     0x2a
-   24:    fb                       sti
-   25:    0f 1f 44 00 00           nopl   0x0(%rax,%rax,1)
-   2a:*    83 6b 04 01              subl   $0x1,0x4(%rbx)        <-- trapping instruction
-   2e:    41 57                    push   %r15
-   30:    9d                       popf
-   31:    48 8d 65 d8              lea    -0x28(%rbp),%rsp
-   35:    5b                       pop    %rbx
-   36:    41 5c                    pop    %r12
-   38:    41 5d                    pop    %r13
-   3a:    41 5e                    pop    %r14
-   3c:    41 5f                    pop    %r15
-   3e:    5d                       pop    %rbp
-   3f:    31                       .byte 0x31
-
-Code starting with the faulting instruction
-===========================================
-    0:    83 6b 04 01              subl   $0x1,0x4(%rbx)
-    4:    41 57                    push   %r15
-    6:    9d                       popf
-    7:    48 8d 65 d8              lea    -0x28(%rbp),%rsp
-    b:    5b                       pop    %rbx
-    c:    41 5c                    pop    %r12
-    e:    41 5d                    pop    %r13
-   10:    41 5e                    pop    %r14
-   12:    41 5f                    pop    %r15
-   14:    5d                       pop    %rbp
-   15:    31                       .byte 0x31
-[   69.198726] RSP: 0018:ffffb4a0411f7638 EFLAGS: 00000206
-[   69.198743] RAX: ffffffffb699a748 RBX: ffff9829c57833f0 RCX: 0000000000000000
-[   69.198751] RDX: ffffffffc2569f90 RSI: ffffffffc2569f90 RDI: ffffffffb699a748
-[   69.198758] RBP: ffffb4a0411f7698 R08: 0000000000000001 R09: 0000000000000000
-[   69.198765] R10: 0000000000000000 R11: 0011ffffc26082c8 R12: 0000000000000008
-[   69.198783] R13: ffffffffc26082c8 R14: 0000000000000000 R15: 0000000000000292
-[   69.198790] FS:  00007f452d2438c0(0000) GS:ffff9838d8240000(0000) knlGS:0000000000000000
-[   69.198799] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   69.198807] CR2: 00007f452cea127f CR3: 000000012540a000 CR4: 0000000000750ee0
-[   69.198830] PKRU: 55555554
-[   69.198835] Call Trace:
-[   69.198839]  <IRQ>
-[   69.198844] ? show_regs+0x72/0x90
-[   69.198856] ? watchdog_timer_fn+0x292/0x320
-[   69.198900] ? __pfx_watchdog_timer_fn+0x10/0x10
-[   69.198909] ? __hrtimer_run_queues+0x224/0x470
-[   69.198926] ? hrtimer_interrupt+0x1cb/0x3f0
-[   69.198937] ? __do_softirq+0xda/0x330
-[   69.198950] ? __sysvec_apic_timer_interrupt+0x86/0x1e0
-[   69.198980] ? sysvec_apic_timer_interrupt+0x8e/0xa0
-[   69.198990]  </IRQ>
-[   69.198994]  <TASK>
-[   69.199000] ? asm_sysvec_apic_timer_interrupt+0x1b/0x20
-[   69.199032] ? kcsan_setup_watchpoint+0x274/0x3f0
-[   69.199043] ? kcsan_setup_watchpoint+0x1de/0x3f0
-[   69.199055] ? find_kallsyms_symbol+0x139/0x340
-[   69.199068] __tsan_read8+0x11c/0x180
-[   69.199099] find_kallsyms_symbol+0x139/0x340
-[   69.199110] ? vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1647 (discriminator 1)) amdgpu
-[   69.204958] ? __pfx_vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1646) amdgpu
-[   69.210899] ? __pfx_vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1646) amdgpu
-[   69.216910] ? __pfx_vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1646) amdgpu
-[   69.222561] module_address_lookup+0x8c/0xe0
-[   69.222573] ? __pfx_vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1646) amdgpu
-[   69.228237] kallsyms_lookup_buildid+0x107/0x1b0
-[   69.228251] ? __pfx_vcn_v1_0_enc_ring_emit_fence (drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c:1646) amdgpu
-[   69.234368] kallsyms_lookup+0x14/0x30
-[   69.234381] test_for_valid_rec+0x38/0x90
-[   69.234411] ? sched_clock_noinstr+0x9/0x10
-[   69.234448] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234459] ? __mutex_lock_slowpath+0x13/0x20
-[   69.234470] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234481] ? mutex_lock+0xa7/0xb0
-[   69.234492] ftrace_module_enable+0x22e/0x3b0
-[   69.234525] load_module+0x3357/0x3980
-[   69.234533] ? aa_file_perm+0x1fc/0x800
-[   69.234562] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234593] ? security_kernel_post_read_file+0x79/0x90
-[   69.234618] init_module_from_file+0xdf/0x130
-[   69.234642] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234653] ? init_module_from_file+0xdf/0x130
-[   69.234668] idempotent_init_module+0x241/0x360
-[   69.234683] __x64_sys_finit_module+0x8e/0xf0
-[   69.234693] do_syscall_64+0x58/0x90
-[   69.234705] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234716] ? exit_to_user_mode_prepare+0x76/0x230
-[   69.234748] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234758] ? syscall_exit_to_user_mode+0x29/0x40
-[   69.234769] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234780] ? do_syscall_64+0x68/0x90
-[   69.234803] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234830] ? exit_to_user_mode_prepare+0x76/0x230
-[   69.234841] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234852] ? syscall_exit_to_user_mode+0x29/0x40
-[   69.234869] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234888] ? do_syscall_64+0x68/0x90
-[   69.234897] ? srso_alias_return_thunk+0x5/0x7f
-[   69.234922] ? do_syscall_64+0x68/0x90
-[   69.234952] entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-[   69.234978] RIP: 0033:0x7f452d11ea3d
-[ 69.234996] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
-All code
-========
-    0:    5b                       pop    %rbx
-    1:    41 5c                    pop    %r12
-    3:    c3                       ret
-    4:    66 0f 1f 84 00 00 00     nopw   0x0(%rax,%rax,1)
-    b:    00 00
-    d:    f3 0f 1e fa              endbr64
-   11:    48 89 f8                 mov    %rdi,%rax
-   14:    48 89 f7                 mov    %rsi,%rdi
-   17:    48 89 d6                 mov    %rdx,%rsi
-   1a:    48 89 ca                 mov    %rcx,%rdx
-   1d:    4d 89 c2                 mov    %r8,%r10
-   20:    4d 89 c8                 mov    %r9,%r8
-   23:    4c 8b 4c 24 08           mov    0x8(%rsp),%r9
-   28:    0f 05                    syscall
-   2a:*    48 3d 01 f0 ff ff        cmp    $0xfffffffffffff001,%rax        <-- trapping instruction
-   30:    73 01                    jae    0x33
-   32:    c3                       ret
-   33:    48 8b 0d c3 a3 0f 00     mov    0xfa3c3(%rip),%rcx        # 0xfa3fd
-   3a:    f7 d8                    neg    %eax
-   3c:    64 89 01                 mov    %eax,%fs:(%rcx)
-   3f:    48                       rex.W
-
-Code starting with the faulting instruction
-===========================================
-    0:    48 3d 01 f0 ff ff        cmp    $0xfffffffffffff001,%rax
-    6:    73 01                    jae    0x9
-    8:    c3                       ret
-    9:    48 8b 0d c3 a3 0f 00     mov    0xfa3c3(%rip),%rcx        # 0xfa3d3
-   10:    f7 d8                    neg    %eax
-   12:    64 89 01                 mov    %eax,%fs:(%rcx)
-   15:    48                       rex.W
-[   69.235005] RSP: 002b:00007ffda20bffe8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[   69.235020] RAX: ffffffffffffffda RBX: 00005561184c0f30 RCX: 00007f452d11ea3d
-[   69.235028] RDX: 0000000000000000 RSI: 000055611837ad80 RDI: 000000000000001a
-[   69.235035] RBP: 0000000000020000 R08: 0000000000000000 R09: 0000000000000002
-[   69.235052] R10: 000000000000001a R11: 0000000000000246 R12: 000055611837ad80
-[   69.235059] R13: 000055611836bc10 R14: 0000000000000000 R15: 00005561184ba330
-[   69.235072]  </TASK>
-[   69.462372] ==================================================================
-
-Best regards,
-Mirsad Todorovac
