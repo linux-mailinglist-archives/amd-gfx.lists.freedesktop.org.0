@@ -1,49 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5277829B8
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 15:00:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2B27829BD
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Aug 2023 15:00:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BEC10E23E;
-	Mon, 21 Aug 2023 13:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2363210E248;
+	Mon, 21 Aug 2023 13:00:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sipsolutions.net (s3.sipsolutions.net
- [IPv6:2a01:4f8:242:246e::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E48E10E073
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Aug 2023 09:44:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=d9AC3Y3wKvLhTCxarPAnq2BCxnL4Toqn/q0Gu3hZcq0=; 
- t=1692611085; x=1693820685; b=PHHWbJh82RK0a3pzp1LHYbjE+eXDAZlD3fvUkfOe8gN/POe
- iV0OIgcmNvti0+PXN9pYSiknYguWDSyr5/973N7BL7ArkTModSl7U9ZUVYjCZ6DoNUpplsHGQFshM
- EtzY4a1kAW8C538Gz2Axyueg2+ie9KtFATN1s9QHl8rPovn0E93G1k9yj6sOjQaptqvrfOafPFNcL
- rfl9F1WiYR6SASG4fDlvzXYb73jOeOKeO+m8H4TizA5kL70BtZ+X/FgMtI1enhBg4zk2g4FQf6HV3
- zNS93HoN0ZY2AdK2Iq9waRYzvoGblIA5mhmQ5cSNDq3k2PMOszdCIGFAxUXTCJlg==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <johannes@sipsolutions.net>)
- id 1qY1SZ-002xnF-2J; Mon, 21 Aug 2023 11:44:31 +0200
-Message-ID: <e167e97797a90d3d6ea09840ac909325537d6034.camel@sipsolutions.net>
-Subject: Re: [V9 4/9] wifi: mac80211: Add support for WBRF features
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Evan Quan <evan.quan@amd.com>, gregkh@linuxfoundation.org, 
- rafael@kernel.org, lenb@kernel.org, davem@davemloft.net,
- edumazet@google.com,  kuba@kernel.org, pabeni@redhat.com,
- alexander.deucher@amd.com, andrew@lunn.ch,  rdunlap@infradead.org,
- quic_jjohnson@quicinc.com, horms@kernel.org
-Date: Mon, 21 Aug 2023 11:44:29 +0200
-In-Reply-To: <20230818032619.3341234-5-evan.quan@amd.com>
-References: <20230818032619.3341234-1-evan.quan@amd.com>
- <20230818032619.3341234-5-evan.quan@amd.com>
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com
+ [209.85.219.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86BE410E21D;
+ Mon, 21 Aug 2023 09:48:48 +0000 (UTC)
+Received: by mail-yb1-f173.google.com with SMTP id
+ 3f1490d57ef6-d71c3a32e1aso3025334276.3; 
+ Mon, 21 Aug 2023 02:48:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692611327; x=1693216127;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=no9p+B7oDPokffxcX8RBtqzmO6q5O0GYwd0gNXSjVBA=;
+ b=Ms15s/VeetL88i+p2/Y7DlrbskCw+Ay2FyiVl7j0/3zoQtK6/xRRoHNAv2aPbr+aAs
+ rBVK19+T+/n6WAeLVv6G3tPTZvRTQx+JcVS3l43AwrYhgzQVQjkPAh4coPDBKn2q3/IL
+ u/cjSiHqANcp57mJa1WSVUVzlVuhZY2PtuQP/F6zQXmE+fk7RBF7tEwAbY9cc2xF7rQs
+ bW8AfXS/V7PdTb9Zi7lHq00QedqGYEKBQipUvVBS7ISuDZz63yOHbcBz/tBp375x3LOY
+ 7qPpdCnAnyNoakaOFiLTs7ysJehdAqouRbGUNDYzNi/cb5wEQyrF+58p1X572FycE7Fg
+ 856A==
+X-Gm-Message-State: AOJu0YxfYwiPetab/qyX9twEH0IISTldeeDrdFIvIhKmh8nezgyuCdd9
+ rJXZPj/vHXqPoBLweQUFsfKRRftxZ1B6KQ==
+X-Google-Smtp-Source: AGHT+IETDgZrKHduPbLYGIUTTWhS3DRgf5FRdc+wvqiaANkUOahhfN2VbGQvIGmlHr/3b7sUyXiEZw==
+X-Received: by 2002:a25:ace5:0:b0:d04:caf3:261e with SMTP id
+ x37-20020a25ace5000000b00d04caf3261emr6548114ybd.53.1692611327301; 
+ Mon, 21 Aug 2023 02:48:47 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com.
+ [209.85.128.176]) by smtp.gmail.com with ESMTPSA id
+ o131-20020a257389000000b00d749efa85a1sm751333ybc.41.2023.08.21.02.48.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Aug 2023 02:48:47 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-579de633419so36151907b3.3; 
+ Mon, 21 Aug 2023 02:48:47 -0700 (PDT)
+X-Received: by 2002:a25:e00f:0:b0:d4f:f231:78be with SMTP id
+ x15-20020a25e00f000000b00d4ff23178bemr6368153ybg.6.1692611326741; Mon, 21 Aug
+ 2023 02:48:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <8ffa3be3dc7b27345dde3bb32498c4cd3af050fa.1688632590.git.geert+renesas@glider.be>
+ <c13c9974-8903-904a-55a8-4065b43a437b@gmail.com>
+ <CAMuHMdW226aZY_Nx9nfbS-ivsW2oarbNAjZB10O60W0SUQzmYg@mail.gmail.com>
+ <CAMuHMdUzqTF9hfe91QN2woV=ycUjLJ-WsODYG8_jH5ABkNk8mQ@mail.gmail.com>
+ <d16bf538-f4f8-50ec-e0e9-5a194b113db4@amd.com>
+In-Reply-To: <d16bf538-f4f8-50ec-e0e9-5a194b113db4@amd.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 21 Aug 2023 11:48:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV0ckw=Bm5-HAy54UPaAEW_zyZLeC8r3K=iBMUZerCjYw@mail.gmail.com>
+Message-ID: <CAMuHMdV0ckw=Bm5-HAy54UPaAEW_zyZLeC8r3K=iBMUZerCjYw@mail.gmail.com>
+Subject: Re: [PATCH libdrm v2] amdgpu: Use PRI?64 to format uint64_t
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
 X-Mailman-Approved-At: Mon, 21 Aug 2023 13:00:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,62 +72,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2023-08-18 at 11:26 +0800, Evan Quan wrote:
-> To support the WBRF mechanism, Wifi adapters utilized in the system must
-> register the frequencies in use(or unregister those frequencies no longer
-> used) via the dedicated calls. So that, other drivers responding to the
-> frequencies can take proper actions to mitigate possible interference.
->=20
-> Co-developed-by: Mario Limonciello <mario.limonciello@amd.com>
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> Co-developed-by: Evan Quan <evan.quan@amd.com>
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
+Hi Christian,
 
-From WiFi POV, this looks _almost_ fine to me.
+On Mon, Aug 21, 2023 at 11:34=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+> Am 21.08.23 um 11:14 schrieb Geert Uytterhoeven:
+> > On Fri, Jul 7, 2023 at 9:36=E2=80=AFPM Geert Uytterhoeven <geert@linux-=
+m68k.org> wrote:
+> >> On Fri, Jul 7, 2023 at 2:06=E2=80=AFPM Christian K=C3=B6nig
+> >> <ckoenig.leichtzumerken@gmail.com> wrote:
+> >>> Am 06.07.23 um 10:36 schrieb Geert Uytterhoeven:
+> >>>> On 32-bit:
+> >>>>
+> >>>>       ../tests/amdgpu/amdgpu_stress.c: In function =E2=80=98alloc_bo=
+=E2=80=99:
+> >>>>       ../tests/amdgpu/amdgpu_stress.c:178:49: warning: format =E2=80=
+=98%lx=E2=80=99 expects argument of type =E2=80=98long unsigned int=E2=80=
+=99, but argument 4 has type =E2=80=98uint64_t=E2=80=99 {aka =E2=80=98long =
+long unsigned int=E2=80=99} [-Wformat=3D]
+> >>>>         fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%=
+x, size %lu\n",
+> >>>>                                                      ~~^
+> >>>>                                                      %llx
+> >>>>          num_buffers++, addr, domain, size);
+> >>>>                         ~~~~
+> >> [...]
+> >>
+> >>>> Fix this by using the proper "PRI?64" format specifiers.
+> >>>>
+> >>>> Fixes: d77ccdf3ba6f5a39 ("amdgpu: add amdgpu_stress utility v2")
+> >>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >>> Well generally good patch, but libdrm changes are now reviewed by mer=
+ge
+> >>> request and not on the mailing list any more.
+> >> I heard such a rumor, too ;-)
+> >>
+> >> Unfortunately one year later, that process is still not documented in
+> >> https://gitlab.freedesktop.org/mesa/drm/-/blob/main/CONTRIBUTING.rst
+> >> which still instructs me (a casual drive-by developer) to just submit
+> >> my patches to the mailing list...
+> > So a few weeks ago I created gitlab PRs for all my pending libdrm
+> > patch series, and I rebased them regularly when needed.
+> > What needs to be done to get them merged?
+>
+> You need to ping the userspace maintainers for this. Like Marek,
+> Pierre-Eric etc..
 
-> +static void wbrf_get_ranges_from_chandef(struct cfg80211_chan_def *chand=
-ef,
-> +					 struct wbrf_ranges_in *ranges_in)
-> +{
-> +	u64 start_freq1, end_freq1;
-> +	u64 start_freq2, end_freq2;
-> +	int bandwidth;
-> +
-> +	bandwidth =3D nl80211_chan_width_to_mhz(chandef->width);
-> +
-> +	get_chan_freq_boundary(chandef->center_freq1,
-> +			       bandwidth,
-> +			       &start_freq1,
-> +			       &end_freq1);
-> +
-> +	ranges_in->band_list[0].start =3D start_freq1;
-> +	ranges_in->band_list[0].end =3D end_freq1;
-> +
-> +	if (chandef->width =3D=3D NL80211_CHAN_WIDTH_80P80) {
-> +		get_chan_freq_boundary(chandef->center_freq2,
-> +				       bandwidth,
-> +				       &start_freq2,
-> +				       &end_freq2);
-> +
-> +		ranges_in->band_list[1].start =3D start_freq2;
-> +		ranges_in->band_list[1].end =3D end_freq2;
-> +	}
-> +}
+Thanks, I assume (from "git shortlog") you mean Marek Ol=C5=A1=C3=A1k and
+Pierre-Eric Pelloux-Prayer?
+How do I find out the maintainers for non-amd parts?
 
-This has to setup ranges_in->num_of_ranges, no?
-(Also no real good reason for num_of_ranges to be a u64, btw, since it
-can only go up to 11)
+Looks like this thread is becoming a "what is missing in
+CONTRIBUTING.rst?" list ;-)
 
-With that fixed, you can add
+Thanks again!
 
-Reviewed-by: Johannes Berg <johannes@sipsolutions.net>
+Gr{oetje,eeting}s,
 
-johannes
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
