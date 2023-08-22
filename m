@@ -1,36 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6BA4784198
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Aug 2023 15:09:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A99784196
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Aug 2023 15:09:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7160610E35C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F41C10E359;
 	Tue, 22 Aug 2023 13:09:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id 80C8C10E122;
- Tue, 22 Aug 2023 01:39:27 +0000 (UTC)
-Received: from [172.30.11.106] (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPSA id 863BD607583BC; 
- Tue, 22 Aug 2023 09:39:23 +0800 (CST)
-Message-ID: <c589a9b0-fc6b-d699-f08f-2e18c3e034a4@nfschina.com>
-Date: Tue, 22 Aug 2023 09:39:22 +0800
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86F8F10E1B2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 07:11:10 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 8ED2764D88;
+ Tue, 22 Aug 2023 07:11:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C08C43140;
+ Tue, 22 Aug 2023 07:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1692688268;
+ bh=OSFmIc6DjVqzpF68MG32L32Nfk/PkwF+T/iEcUfE7zI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=yFhT1h6G7GQs4G8xdXWO83os1xmaegpIyyVgziAzY/RjT4jaPabj1XFXBMGL/iE0W
+ IHtR6aNZw4QOeK7FZqjtRLpC+fVw62vbtkU06cUtNIRZiBgB1yiGvLyyej+vglfWid
+ 24ydufv4IeSFNst1ft204xjSah4Qbu3Wjk6I543w=
+Date: Tue, 22 Aug 2023 08:39:00 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: "Limonciello, Mario" <mario.limonciello@amd.com>
+Subject: Re: [V9 1/9] drivers core: Add support for Wifi band RF mitigations
+Message-ID: <2023082247-synthesis-revenge-470d@gregkh>
+References: <20230818032619.3341234-1-evan.quan@amd.com>
+ <20230818032619.3341234-2-evan.quan@amd.com>
+ <2023081806-rounding-distract-b695@gregkh>
+ <2328cf53-849d-46a1-87e6-436e3a1f5fd8@amd.com>
+ <2023081919-mockup-bootleg-bdb9@gregkh>
+ <e5d153ed-df8a-4d6f-8222-18dfd97f6371@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2] drm/amdgpu: Avoid possible buffer overflow
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-In-Reply-To: <2a4448cb-ac01-71fc-9335-68acdded0a78@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5d153ed-df8a-4d6f-8222-18dfd97f6371@amd.com>
 X-Mailman-Approved-At: Tue, 22 Aug 2023 13:09:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -43,95 +55,23 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: yifan1.zhang@amd.com, guchun.chen@amd.com, lijo.lazar@amd.com,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, le.ma@amd.com, christophe.jaillet@wanadoo.fr,
- dri-devel@lists.freedesktop.org, Yuliang.Shi@amd.com, candice.li@amd.com,
- Hawking.Zhang@amd.com
+Cc: Andrew Lunn <andrew@lunn.ch>, pabeni@redhat.com, rafael@kernel.org,
+ linux-wireless@vger.kernel.org, rdunlap@infradead.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, edumazet@google.com,
+ horms@kernel.org, netdev@vger.kernel.org, alexander.deucher@amd.com,
+ kuba@kernel.org, johannes@sipsolutions.net, Evan Quan <evan.quan@amd.com>,
+ quic_jjohnson@quicinc.com, davem@davemloft.net, lenb@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2023/8/21 17:31, Christian König wrote:
-> Am 21.08.23 um 09:37 schrieb Su Hui:
->> smatch error:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:1257 
->> amdgpu_discovery_reg_base_init() error:
->> testing array offset 'adev->vcn.num_vcn_inst' after use.
->>
->> change the assignment order to avoid buffer overflow.
->>
->> Fixes: c40bdfb2ffa4 ("drm/amdgpu: fix incorrect VCN revision in SRIOV")
->> Signed-off-by: Su Hui <suhui@nfschina.com>
->> ---
->> changes in v2:
->>   - fix the error about ip->revision (thanks to Christophe JAILLET).
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
->> index 8e1cfc87122d..b07bfd106a9b 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
->> @@ -1250,11 +1250,10 @@ static int 
->> amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
->>                    *     0b10 : encode is disabled
->>                    *     0b01 : decode is disabled
->>                    */
->> - adev->vcn.vcn_config[adev->vcn.num_vcn_inst] =
->> -                    ip->revision & 0xc0;
->> -                ip->revision &= ~0xc0;
->>                   if (adev->vcn.num_vcn_inst <
->>                       AMDGPU_MAX_VCN_INSTANCES) {
->> + adev->vcn.vcn_config[adev->vcn.num_vcn_inst] =
->> +                        ip->revision & 0xc0;
->>                       adev->vcn.num_vcn_inst++;
->>                       adev->vcn.inst_mask |=
->>                           (1U << ip->instance_number);
->> @@ -1265,6 +1264,7 @@ static int 
->> amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
->>                           adev->vcn.num_vcn_inst + 1,
->>                           AMDGPU_MAX_VCN_INSTANCES);
->>                   }
->> +                ip->revision &= ~0xc0;
->
-> That doesn't looks correct either. The assignment is intentionally 
-> outside of the "if".
->
-> See "adev->vcn.vcn_config[adev->vcn.num_vcn_inst] = ip->revision & 
-> 0xc0;" is always valid.
+On Mon, Aug 21, 2023 at 10:13:45PM -0500, Limonciello, Mario wrote:
+> So I wonder if the right answer is to put it in drivers/net/wireless
+> initially and if we come up with a need later for non wifi producers we can
+> discuss moving it at that time.
 
-Hi,
+Please do so.
 
-if "adev->vcn.vcn_config[adev->vcn.num_vcn_inst] = ip->revision & 0xc0;" 
-is always valid, then
+thanks,
 
-"adev->vcn.num_vcn_inst< AMDGPU_MAX_VCN_INSTANCES " is always true. So 
-the below judgement has
-
-no sense.
-
-                   if (adev->vcn.num_vcn_inst <
-                       AMDGPU_MAX_VCN_INSTANCES) {
-
-On the contrary, if we need this judgement, then 
-"adev->vcn.vcn_config[adev->vcn.num_vcn_inst] = ip->revision & 0xc0;"is not
-
-always valid, because "adev->vcn.num_vcn_inst >= 
-AMDGPU_MAX_VCN_INSTANCES" can be true, which cause buffer overflow.
-
-So I think this patch has some sense if I don't make some mistakes.
-
-Su Hui
-
->
-> We just avoid incrementing num_vcn_inst when we already have to many.
->
-> Regards,
-> Christian.
->
->
->>               }
->>               if (le16_to_cpu(ip->hw_id) == SDMA0_HWID ||
->>                   le16_to_cpu(ip->hw_id) == SDMA1_HWID ||
->
+greg k-h
