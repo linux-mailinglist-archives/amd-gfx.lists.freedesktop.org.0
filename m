@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BC0785CE2
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1F2785CE4
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A68FC10E464;
-	Wed, 23 Aug 2023 16:04:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B797C10E466;
+	Wed, 23 Aug 2023 16:04:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2065.outbound.protection.outlook.com [40.107.102.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD6710E462
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:24 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B46810E463
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ioo+QQgIlN0zXaewSJcrUFks1aBJXP28XvcRhmDiv7y+lLQ4vI8u5ISeStckbmhxkaHy2tEWFkbcD1DSzaDkJlfPxJcc4De7BtfK+th0K7K2U5WFOIvJRD8Wwzkk+JnEi9Kg6phB4r9+4a71zBAL0plF3Xql9UzuC6COYfTZBBViL3KKrGh4eI8Jz17IHIteBvSqzAiDi0+3GCo6BwXKps2CqPH1DHGREt0j/WHM4nlzp2aRcvJwQIxvVsnmUrF8neQSSOtzU8ac7hrhJ6WwwAhoHQzINTaADceVGBh7NKshKlCF4yV5knJRx3Mfs/3wjwnJi6HAi5+JfAon31Bu1w==
+ b=bgwar9RgnCSoE9ziozXqTKj8QOvK/FuSTJQMFHSVwLVK2b9cu7lqU2GVHHvu0rrfdvToMXZBPfkMjY5MLz53os1loqHJsCVsSJxPB2bN+TKdF80sHuSrSSV4nT/35mF9wOQgMt+2wedEtzLJV5v5e5zbbNNMGXyvePaQTi1MFtzEnjoiso0P+R5SyycgK1ZxGhXnvZTKEBy3F5OGMwnq6LTX0tFWzyq2mLxAQUWrCiZpmb2RkDunYL40qb+zUUWfaxnPbeYpoKVd6un/gZtcvC8lQV1kEvKo9+RtlsfLxES9WMecaC5A6m5Uu9PPALgzdLpqEP4Ud544K2/YZfctvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bok+eFEV6NEvIvKG1/UudSfP2rClssP8V7zIjxaB9Fw=;
- b=UYSwg+6mDhMSChQdpvZ31ckYgM2TZC2Uk/RVlCthZnsapyZo4OOu3+5hd7WKIIzARts1+Hd3QYR/tmikPjPSpxDtGgHhEQll6O44iHA6lmeQj6x7UDC6YtJn/L5qqNtu2eOcipOlb+HJmIw2zjtHp0M0LI9Kx7WQyS8uNMVWmTS8uslV1g9scMXuzC50tMD+OdSWC0SXX4weRgu2MBue2iwY2pE03OggsnMQpG48mCDPmCF1Si2fjbYogSZLsxUg/Ayft6dWfOzXnwIExwHZQXa5wdSU4apZj7pfTakQEqc8n9aYE1OB+D7rzVzjoz5yDgbYbkIY/D5DNzQroidIUQ==
+ bh=AVRamB80UDu7HFpQ1E/RRjDtouKmc8m5iqcuis2xXDg=;
+ b=SPpH8ppTL9L08Atgqs32UBVogeqb6lb7UpmV/SXdPOUPjbMqcI7NdQknuLzxKkGyx2qdLt0P3FiBOCuIfEI5AoyAdGjBh7EvdWpDlsoRidkK8n8dZflUX9ga3Wb+MIuPGmLQpW+h4G7h7xDofiefDixSZRCfl3tk8yAi1c+EU1TAQHUk4zUIYMNb20Z+mfxdllTZH2XBRdNiAI8WdHurdTY6RadKJz7ZxMPOWBorBxRQy2e8mYqmNG2HKTcK1yWfi2xQTFAzSlCmwKfgnlqo578/1A2/gHlLlaPekWCUK0Zz/m2m7QqiL9kFJb7ujhXnxMB6KAd0wM5djAQki7ammg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bok+eFEV6NEvIvKG1/UudSfP2rClssP8V7zIjxaB9Fw=;
- b=kJhmXg5F835jPnU54kKt4ejK1zu+G/8F7TGWkhVTMjX6cUgdR/g+x6QE6JnTcadWcqJO81g5LkVO/zkkTRrR0tmobdsDnc+OHMM5vjYCiodILsCeNy9lHl8oiP5/iucEymqVkDZlpY4XvTJyRMxr+SHehtDlPCH9HqJVYcD0C7o=
-Received: from SA0PR11CA0135.namprd11.prod.outlook.com (2603:10b6:806:131::20)
- by CH3PR12MB9171.namprd12.prod.outlook.com (2603:10b6:610:1a2::5)
+ bh=AVRamB80UDu7HFpQ1E/RRjDtouKmc8m5iqcuis2xXDg=;
+ b=q9/WMyxq50CUm9ac3KTX6MOh5ap7c80sZ+59lj/8MmDYQbm0uiYg3+Nzdgm62l6g0eKBK6igFIrl+GJ9easK3eM9s6i5twyXJWuPhXKjZwC/lia9VIy9BOzDZzQo1T0ZoHd5/XC8C/IwpaAOGKom9HDpRaGTNWGJpTy2mTm9d6w=
+Received: from SA0PR11CA0122.namprd11.prod.outlook.com (2603:10b6:806:131::7)
+ by MW4PR12MB7384.namprd12.prod.outlook.com (2603:10b6:303:22b::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Wed, 23 Aug
- 2023 16:04:22 +0000
+ 2023 16:04:24 +0000
 Received: from SN1PEPF0002529D.namprd05.prod.outlook.com
- (2603:10b6:806:131:cafe::5d) by SA0PR11CA0135.outlook.office365.com
- (2603:10b6:806:131::20) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:806:131:cafe::d3) by SA0PR11CA0122.outlook.office365.com
+ (2603:10b6:806:131::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20 via Frontend
- Transport; Wed, 23 Aug 2023 16:04:21 +0000
+ Transport; Wed, 23 Aug 2023 16:04:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF0002529D.mail.protection.outlook.com (10.167.242.4) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:21 +0000
+ 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:24 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 23 Aug
- 2023 11:04:20 -0500
+ 2023 11:04:21 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/21] drm/amd/display: always switch off ODM before
- committing more streams
-Date: Wed, 23 Aug 2023 11:58:07 -0400
-Message-ID: <20230823160347.176991-6-hamza.mahfooz@amd.com>
+Subject: [PATCH 06/21] drm/amd/display: Add DPIA Link Encoder Assignment Fix
+Date: Wed, 23 Aug 2023 11:58:08 -0400
+Message-ID: <20230823160347.176991-7-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230823160347.176991-1-hamza.mahfooz@amd.com>
 References: <20230823160347.176991-1-hamza.mahfooz@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529D:EE_|CH3PR12MB9171:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7dca6ee-efba-4da0-ca4f-08dba3f29d3b
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002529D:EE_|MW4PR12MB7384:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9af85a01-b3ba-4fb1-8023-08dba3f29e95
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4vBwKtxQm0p4XVQEmeMp07+5lYwjB4D9JqOas1DF8hBq5Wt6b2gO1rN34w/a/ZSAPx0qGlh+K8vAONUygJAoqrqWgTbQg5TJ/wl3s/RiL2N3s94KxlmGPEfN7Rq2biM4+ktGWJ8X2NsgIJXHnVlNQN33nH6XDfXPo7dHvYEpxUyRKppNqOYwq381AG6G+Te1+7wvHsjhI/Kh53DpZ7sEG1iKpdJWkjBVdCqjGesPltYHI1lwrKx0u7dG8xYNnz/mg2Vfymfy2r+BMuxwzGGT0pmlReJ7/l6Mt0PPK23TU/YFKIq0F4dOFlzSiNQCNmF0p/uRI/tL3h21kFu1UW3I9nZRv64kwUOQfo5CIVzt77G8mQK3KiCEyhDFR7ZMFYyizLs5oV5Uhx8rJtlKYccvkBJDy7PGc6g23qSGdvvMf4/9QbqaefcAh2udh/eB+JcPB7Ch8zcOqbEHLuxRPht43NE622pfF4NSFPmMY6Y9D2UMK5pOEbmzMOfJbHdIAjZBtk+pYfG2jTnZO7K1cnC3cgzULQDJgBrDEp9svfJlQdYBI/4J/cplD3p40M/esxcIrGGuAHlnbcqZnNM1ni58I9/xj8+vz/cZLKaZXTl3+G/raF8B7hMLb5901Zy3OrJ0UtIhfPHYZBOiySo/RIg49YjE7OFz1JOVZwtzLmf+MnP7hTGJkgFYBpHuBboInCq4DSoGBJDSHXGm58zbjTbG2AWUup3Pynm9QZlIElW43IO6EGpXTIjeHHYKvU06HPkrJ4rzSdrlrNg++KtbpDulvZQkECB05EWnQQu7ewzvcIk=
+X-Microsoft-Antispam-Message-Info: x297vFEcRXZs/cDW3NS/qNY9mi1UQkFHGPafgenmDj1tQLKVB88yzWPnwSG9xQKw9YM4FhxQJBW6Ncm0NY16kWlLO8M+jziTuHpa69u4Odw36Vlx8a45Z9fbauA2AfD+jY1pbAtckCgs1ZrDqNgDr5F/DRxXhkVQFqnHMnn+/9sqW++2gxqVRadZV0UAHYBxflVWWiJsQNH6yENYipGFtmWqqkO0obdcGU3KkcVOF/OLOAjc3ZP5Nk3ufL89kNAIKCZpIord7eWEivzzLUqBeLvg+YRDyO3BpNVmz6kAEvL76b9+aWuJ4h0u8gqAoXKidQI77SZOqm2w7D3gy+2tbTzLF0mb810iaAy7t1hxoKsk4P8u9PwihjQlwAak41RawgNGoqgW5aAlwVxxn0S+71uwmURnbPab4DGu3DJEa1mcxYVImhBp6MHxgyrMzBcgbNhVOAyteZ/b3wVFC12jigGyOi8j/NexLM0EG8oeMx6INuXVnWNJKU+LtUN55E5w05kIBKlm7YGZLqE6db838lZ1YjlYsLvHIKFRviPPKIbDELx7YJJD2KAess7W6LXJrISgE7z09agfyI/9xijEvGribNzQiIX3EeT65VkFNAxhadXd+y3FqK6LyTI5oVARUEMStCtSTBTF/XJSJ07Yp3GGKYG8UrYFcJyosFK3hNc/jetcST1fNSUhfx+bLZE24/iQLPYkm6JLISTjPmjJOR4NqjnSWjNugHMkrtM455qgRXTSc+B+IhtVIOhujZCXM80AXWnFFtj3yB5eNwfJdtb1ghr2+prWxtaS1kO6Nn7SwCCwcfwUqyHMH587YTsq
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(396003)(136003)(346002)(39860400002)(186009)(1800799009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(54906003)(6916009)(316002)(70586007)(70206006)(8676002)(8936002)(2616005)(4326008)(36756003)(40460700003)(41300700001)(1076003)(356005)(82740400003)(81166007)(478600001)(6666004)(40480700001)(83380400001)(2906002)(47076005)(36860700001)(86362001)(426003)(336012)(44832011)(5660300002)(26005)(16526019)(16060500005)(36900700001);
+ SFS:(13230031)(4636009)(376002)(396003)(136003)(346002)(39860400002)(186009)(1800799009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(54906003)(6916009)(316002)(70586007)(70206006)(8676002)(8936002)(2616005)(4326008)(36756003)(40460700003)(41300700001)(1076003)(356005)(82740400003)(81166007)(478600001)(6666004)(40480700001)(83380400001)(66574015)(2906002)(47076005)(36860700001)(86362001)(426003)(336012)(44832011)(5660300002)(26005)(16526019)(16060500005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:21.7786 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7dca6ee-efba-4da0-ca4f-08dba3f29d3b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:24.0443 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9af85a01-b3ba-4fb1-8023-08dba3f29e95
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529D.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9171
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7384
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,55 +99,191 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Dillon Varone <dillon.varone@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, stable@vger.kernel.org,
- Wenjing Liu <wenjing.liu@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>,
- solomon.chiu@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
- hamza.mahfooz@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, George Shen <george.shen@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Daniel Wheeler <daniel.wheeler@amd.com>, solomon.chiu@amd.com,
+ jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com,
+ wayne.lin@amd.com, Mustapha
+ Ghaddar <mghaddar@amd.com>, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Mustapha Ghaddar <mghaddar@amd.com>
 
-ODM power optimization is only supported with single stream. When ODM
-power optimization is enabled, we might not have enough free pipes for
-enabling other stream. So when we are committing more than 1 stream we
-should first switch off ODM power optimization to make room for new
-stream and then allocating pipe resource for the new stream.
+For DPIA we should have preferred DIG assignment based on DPIA selected
+as per the ASIC design.
 
-Cc: stable@vger.kernel.org
-Fixes: 4fbcb04a2ff5 ("drm/amd/display: add ODM case when looking for first split pipe")
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Reviewed-by: George Shen <george.shen@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Mustapha Ghaddar <mghaddar@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ .../drm/amd/display/dc/core/dc_link_enc_cfg.c | 35 +++++++++++++++----
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../amd/display/dc/dcn314/dcn314_resource.c   | 23 ++++++++++++
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |  1 +
+ .../drm/amd/display/dc/link/link_factory.c    |  4 +++
+ 5 files changed, 58 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 025e0fdf486d..c6f6dc972c2a 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2073,12 +2073,12 @@ enum dc_status dc_commit_streams(struct dc *dc,
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
+index 30c0644d4418..b66eeac4d3d2 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
+@@ -169,11 +169,23 @@ static void add_link_enc_assignment(
+ /* Return first available DIG link encoder. */
+ static enum engine_id find_first_avail_link_enc(
+ 		const struct dc_context *ctx,
+-		const struct dc_state *state)
++		const struct dc_state *state,
++		enum engine_id eng_id_requested)
+ {
+ 	enum engine_id eng_id = ENGINE_ID_UNKNOWN;
+ 	int i;
+ 
++	if (eng_id_requested != ENGINE_ID_UNKNOWN) {
++
++		for (i = 0; i < ctx->dc->res_pool->res_cap->num_dig_link_enc; i++) {
++			eng_id = state->res_ctx.link_enc_cfg_ctx.link_enc_avail[i];
++			if (eng_id == eng_id_requested)
++				return eng_id;
++		}
++	}
++
++	eng_id = ENGINE_ID_UNKNOWN;
++
+ 	for (i = 0; i < ctx->dc->res_pool->res_cap->num_dig_link_enc; i++) {
+ 		eng_id = state->res_ctx.link_enc_cfg_ctx.link_enc_avail[i];
+ 		if (eng_id != ENGINE_ID_UNKNOWN)
+@@ -287,7 +299,7 @@ void link_enc_cfg_link_encs_assign(
+ 		struct dc_stream_state *streams[],
+ 		uint8_t stream_count)
+ {
+-	enum engine_id eng_id = ENGINE_ID_UNKNOWN;
++	enum engine_id eng_id = ENGINE_ID_UNKNOWN, eng_id_req = ENGINE_ID_UNKNOWN;
+ 	int i;
+ 	int j;
+ 
+@@ -377,8 +389,15 @@ void link_enc_cfg_link_encs_assign(
+ 		 * assigned to that endpoint.
+ 		 */
+ 		link_enc = get_link_enc_used_by_link(state, stream->link);
+-		if (link_enc == NULL)
+-			eng_id = find_first_avail_link_enc(stream->ctx, state);
++		if (link_enc == NULL) {
++
++			if (stream->link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA &&
++					stream->link->dpia_preferred_eng_id != ENGINE_ID_UNKNOWN)
++				eng_id_req = stream->link->dpia_preferred_eng_id;
++
++			if (eng_id == ENGINE_ID_UNKNOWN)
++				eng_id = find_first_avail_link_enc(stream->ctx, state, eng_id_req);
++		}
+ 		else
+ 			eng_id =  link_enc->preferred_engine;
+ 
+@@ -402,7 +421,9 @@ void link_enc_cfg_link_encs_assign(
+ 			DC_LOG_DEBUG("%s: CUR %s(%d) - enc_id(%d)\n",
+ 					__func__,
+ 					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ? "PHY" : "DPIA",
+-					assignment.ep_id.link_id.enum_id - 1,
++					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ?
++							assignment.ep_id.link_id.enum_id :
++							assignment.ep_id.link_id.enum_id - 1,
+ 					assignment.eng_id);
+ 	}
+ 	for (i = 0; i < MAX_PIPES; i++) {
+@@ -413,7 +434,9 @@ void link_enc_cfg_link_encs_assign(
+ 			DC_LOG_DEBUG("%s: NEW %s(%d) - enc_id(%d)\n",
+ 					__func__,
+ 					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ? "PHY" : "DPIA",
+-					assignment.ep_id.link_id.enum_id - 1,
++					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ?
++							assignment.ep_id.link_id.enum_id :
++							assignment.ep_id.link_id.enum_id - 1,
+ 					assignment.eng_id);
  	}
  
--	/* Check for case where we are going from odm 2:1 to max
--	 *  pipe scenario.  For these cases, we will call
--	 *  commit_minimal_transition_state() to exit out of odm 2:1
--	 *  first before processing new streams
-+	/* ODM Combine 2:1 power optimization is only applied for single stream
-+	 * scenario, it uses extra pipes than needed to reduce power consumption
-+	 * We need to switch off this feature to make room for new streams.
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 9f9e8da3e4db..5d41a14844da 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1496,6 +1496,7 @@ struct dc_link {
+ 	 * object creation.
  	 */
--	if (stream_count == dc->res_pool->pipe_count) {
-+	if (stream_count > dc->current_state->stream_count &&
-+			dc->current_state->stream_count == 1) {
- 		for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 			pipe = &dc->current_state->res_ctx.pipe_ctx[i];
- 			if (pipe->next_odm_pipe)
+ 	enum engine_id eng_id;
++	enum engine_id dpia_preferred_eng_id;
+ 
+ 	bool test_pattern_enabled;
+ 	enum dp_test_pattern current_test_pattern;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+index 1c1fb2fa0822..004beed9bd44 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+@@ -1032,6 +1032,28 @@ static const struct dce_i2c_mask i2c_masks = {
+ 		I2C_COMMON_MASK_SH_LIST_DCN30(_MASK)
+ };
+ 
++/* ========================================================== */
++
++/*
++ * DPIA index | Preferred Encoder     |    Host Router
++ *   0        |      C                |       0
++ *   1        |      First Available  |       0
++ *   2        |      D                |       1
++ *   3        |      First Available  |       1
++ */
++/* ========================================================== */
++static const enum engine_id dpia_to_preferred_enc_id_table[] = {
++		ENGINE_ID_DIGC,
++		ENGINE_ID_DIGC,
++		ENGINE_ID_DIGD,
++		ENGINE_ID_DIGD
++};
++
++static enum engine_id dcn314_get_preferred_eng_id_dpia(unsigned int dpia_index)
++{
++	return dpia_to_preferred_enc_id_table[dpia_index];
++}
++
+ static struct dce_i2c_hw *dcn31_i2c_hw_create(
+ 	struct dc_context *ctx,
+ 	uint32_t inst)
+@@ -1785,6 +1807,7 @@ static struct resource_funcs dcn314_res_pool_funcs = {
+ 	.update_bw_bounding_box = dcn314_update_bw_bounding_box,
+ 	.patch_unknown_plane_state = dcn20_patch_unknown_plane_state,
+ 	.get_panel_config_defaults = dcn314_get_panel_config_defaults,
++	.get_preferred_eng_id_dpia = dcn314_get_preferred_eng_id_dpia,
+ };
+ 
+ static struct clock_source *dcn30_clock_source_create(
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index 7f9c75ffda18..b55848480485 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -65,6 +65,7 @@ struct resource_context;
+ struct clk_bw_params;
+ 
+ struct resource_funcs {
++	enum engine_id (*get_preferred_eng_id_dpia)(unsigned int dpia_index);
+ 	void (*destroy)(struct resource_pool **pool);
+ 	void (*link_init)(struct dc_link *link);
+ 	struct panel_cntl*(*panel_cntl_create)(
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_factory.c b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
+index 11b5ac218154..e406561c2c23 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
+@@ -792,6 +792,10 @@ static bool construct_dpia(struct dc_link *link,
+ 	/* Set dpia port index : 0 to number of dpia ports */
+ 	link->ddc_hw_inst = init_params->connector_index;
+ 
++	// Assign Dpia preferred eng_id
++	if (link->dc->res_pool->funcs->get_preferred_eng_id_dpia)
++		link->dpia_preferred_eng_id = link->dc->res_pool->funcs->get_preferred_eng_id_dpia(link->ddc_hw_inst);
++
+ 	/* TODO: Create link encoder */
+ 
+ 	link->psr_settings.psr_version = DC_PSR_VERSION_UNSUPPORTED;
 -- 
 2.41.0
 
