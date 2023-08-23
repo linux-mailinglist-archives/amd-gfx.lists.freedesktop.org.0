@@ -1,45 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAA178579D
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 14:10:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0D1785799
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 14:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A53D10E415;
-	Wed, 23 Aug 2023 12:10:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C36910E040;
+	Wed, 23 Aug 2023 12:10:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 421 seconds by postgrey-1.36 at gabe;
- Wed, 23 Aug 2023 09:00:45 UTC
-Received: from iam.tj (soggy.cloud [IPv6:2a01:7e00:e000:151::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 393AF10E3FD
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 09:00:45 +0000 (UTC)
-Received: from [IPV6:2a01:7e00:e001:ee80:145d:5eff:feb1:1df1] (unknown
- [IPv6:2a01:7e00:e001:ee80:145d:5eff:feb1:1df1])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
- (No client certificate requested)
- by iam.tj (Postfix) with ESMTPSA id 9D8F73414A
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 09:53:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=iam.tj; s=2019;
- t=1692780821; bh=dz25kycAHlSfcx4qXpNp5kM0z1nXfXAzq50otPD+EzY=;
- h=Date:To:From:Subject:From;
- b=lIbWdWZiqOsqQBeLhLNWlGRrGMs0keIA5erYLxsdvXD9oGkCk7UfAX0eNnugwblNG
- 7/kM2FEG0qzpLzd5sXoHPU9P+XdXR/0uhnOboCTXTioghmQYO/y0miQBjpRryFbN4/
- GX+PhrTZdY2Yfd5S716Qz09Q7GDg47nR8M3DAIs/s3vGmid0Lp1upCBwwSxcWku5k7
- QHwu/pjRzCB7aJ+T+5WqQ057m2b1rWM/IleJkLP/tb++RPsE2ziyvpFC/Cw3TB46Xe
- HlZvXKQYFVRzp9zTwu/uJkHyuqdhAitR3yX3VAjjKQMk4AxO4JB7z6BEFLBJunWOdm
- /zOEfzgz7S/eg==
-Message-ID: <590a06b6-9f59-2b4e-dd79-091091ccb3b6@iam.tj>
-Date: Wed, 23 Aug 2023 09:53:41 +0100
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 065F010E3FD;
+ Wed, 23 Aug 2023 09:03:28 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id
+ ffacd0b85a97d-31c3726cc45so2969303f8f.0; 
+ Wed, 23 Aug 2023 02:03:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1692781407; x=1693386207;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=YO/WOkrwEXYf9n89IX0yKt/64CcuxWDD6IgoTDcbvZU=;
+ b=b3TPtVV9WYnVP0xc3bm0CU3iTUNE4KW7L5RqP4CYb5zhdjsYLySfJvr/0KwkB9mt9R
+ u79Kz+ubf5bdQ2me/46UEEBotz2scDU0bLBG4ELIVxSq3r3vKn2vnYTbu5tormD6pZLt
+ N38g6lBYPIF3IfnO8fl6Rrrk/YiJdtwfEHCI5y8R47dh0L5sgVGvDJ8ueYVedGFqkaNn
+ DiE7kklDPD9+G6eh61kcIc8lOKG0Pw6CYwek8Qzl9TGkw2QyYyUDU9zyo/fFufH/qEpl
+ F4zfzPYmgDR/UaEJggDUoRTtG6R9JrjyohrkbEOe0GUKS6hpr9eXV/6lET+8MTaG9Pm8
+ F6Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692781407; x=1693386207;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=YO/WOkrwEXYf9n89IX0yKt/64CcuxWDD6IgoTDcbvZU=;
+ b=YfLJPIMAgrcwlJe4Bjgfzw+yEHzoaIK8clNTrhfxMaVpuyK+1V52jEr3wvgd/AMyU1
+ LJRWIKttHMsb1qRaBadJDxOberBRr6g6JbsdhuVam3UJ1H7LJGW9Yw37bw2VECRGa8R9
+ 9S2VEX70OYQ/FmnObZjFPFHENTBHNWzySCXgSiZWsOtFuFkx4wdeuvUiOYK4gykAz9+P
+ l/Luazr5MyZeKSV0+z6czOzaL3cx3uyfF8t7j8LLXj1WSMBmhkwMWQhMCWVr24eUpdFX
+ 8R1uAnNVc7Hl22OLnK0m3rMN2Isft+OlXqe/6pHBZHc9BHq0maStBcO1WJu4izK9oIOb
+ vT0g==
+X-Gm-Message-State: AOJu0YwUo7xI87kVPCj5pGXJHFw3tokuKhiMWD1yxocScZmDE8+F6Cv8
+ lBzzr6zeHhcWAnx9qkap67Q=
+X-Google-Smtp-Source: AGHT+IFIdpNbTfUs35kdTucR7rl6DKkzbkWnSECKpU83/iZ4E/M4zKtWK+korKF4tt75GGbwFpXXPA==
+X-Received: by 2002:a5d:4f0f:0:b0:319:89ce:da0b with SMTP id
+ c15-20020a5d4f0f000000b0031989ceda0bmr8759387wru.68.1692781407079; 
+ Wed, 23 Aug 2023 02:03:27 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ w16-20020a5d6810000000b003197b85bad2sm18292924wru.79.2023.08.23.02.03.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Aug 2023 02:03:25 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Lijo Lazar <lijo.lazar@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amd: Fix spelling mistake "throtting" ->
+ "throttling"
+Date: Wed, 23 Aug 2023 10:03:23 +0100
+Message-Id: <20230823090323.184121-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-GB
-To: amd-gfx@lists.freedesktop.org
-From: Tj <linux@iam.tj>
-Subject: 6.5.0-rc7: RIP: 0010:radeon_gem_va_ioctl+0x3dc/0x4f0 [radeon]
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 23 Aug 2023 12:10:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,96 +76,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Recently, and I think especially since 6.5.0-rc5 (but possibly earlier), on resume from S3 suspend the host sees:
+There is a spelling mistake in variable throtting_events, rename
+it to throttling_events.
 
-$ uname -r; lspci -nnk -d ::0300
-6.5.0-rc7+debian+tj
-0a:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Cape Verde GL [FirePro W4100] [1002:682c]
-         Subsystem: Dell Cape Verde GL [FirePro W4100] [1028:2b1e]
-         Kernel driver in use: radeon
-         Kernel modules: radeon, amdgpu
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c    | 6 +++---
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c   | 6 +++---
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index 704a2b577a0e..fbcff154b1d0 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -2313,7 +2313,7 @@ static const struct throttling_logging_label {
+ static void arcturus_log_thermal_throttling_event(struct smu_context *smu)
+ {
+ 	int ret;
+-	int throttler_idx, throtting_events = 0, buf_idx = 0;
++	int throttler_idx, throttling_events = 0, buf_idx = 0;
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint32_t throttler_status;
+ 	char log_buf[256];
+@@ -2328,11 +2328,11 @@ static void arcturus_log_thermal_throttling_event(struct smu_context *smu)
+ 	for (throttler_idx = 0; throttler_idx < ARRAY_SIZE(logging_label);
+ 	     throttler_idx++) {
+ 		if (throttler_status & logging_label[throttler_idx].feature_mask) {
+-			throtting_events++;
++			throttling_events++;
+ 			buf_idx += snprintf(log_buf + buf_idx,
+ 					    sizeof(log_buf) - buf_idx,
+ 					    "%s%s",
+-					    throtting_events > 1 ? " and " : "",
++					    throttling_events > 1 ? " and " : "",
+ 					    logging_label[throttler_idx].label);
+ 			if (buf_idx >= sizeof(log_buf)) {
+ 				dev_err(adev->dev, "buffer overflow!\n");
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index cc3169400c9b..bed5a9df1c06 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -1674,7 +1674,7 @@ static const struct throttling_logging_label {
+ static void aldebaran_log_thermal_throttling_event(struct smu_context *smu)
+ {
+ 	int ret;
+-	int throttler_idx, throtting_events = 0, buf_idx = 0;
++	int throttler_idx, throttling_events = 0, buf_idx = 0;
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint32_t throttler_status;
+ 	char log_buf[256];
+@@ -1689,11 +1689,11 @@ static void aldebaran_log_thermal_throttling_event(struct smu_context *smu)
+ 	for (throttler_idx = 0; throttler_idx < ARRAY_SIZE(logging_label);
+ 	     throttler_idx++) {
+ 		if (throttler_status & logging_label[throttler_idx].feature_mask) {
+-			throtting_events++;
++			throttling_events++;
+ 			buf_idx += snprintf(log_buf + buf_idx,
+ 					    sizeof(log_buf) - buf_idx,
+ 					    "%s%s",
+-					    throtting_events > 1 ? " and " : "",
++					    throttling_events > 1 ? " and " : "",
+ 					    logging_label[throttler_idx].label);
+ 			if (buf_idx >= sizeof(log_buf)) {
+ 				dev_err(adev->dev, "buffer overflow!\n");
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index d3b578e6bc2a..fa4ad08099ef 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -1888,7 +1888,7 @@ static const char *const throttling_logging_label[] = {
+ 
+ static void smu_v13_0_6_log_thermal_throttling_event(struct smu_context *smu)
+ {
+-	int throttler_idx, throtting_events = 0, buf_idx = 0;
++	int throttler_idx, throttling_events = 0, buf_idx = 0;
+ 	struct amdgpu_device *adev = smu->adev;
+ 	uint32_t throttler_status;
+ 	char log_buf[256];
+@@ -1902,10 +1902,10 @@ static void smu_v13_0_6_log_thermal_throttling_event(struct smu_context *smu)
+ 	     throttler_idx < ARRAY_SIZE(throttling_logging_label);
+ 	     throttler_idx++) {
+ 		if (throttler_status & (1U << throttler_idx)) {
+-			throtting_events++;
++			throttling_events++;
+ 			buf_idx += snprintf(
+ 				log_buf + buf_idx, sizeof(log_buf) - buf_idx,
+-				"%s%s", throtting_events > 1 ? " and " : "",
++				"%s%s", throttling_events > 1 ? " and " : "",
+ 				throttling_logging_label[throttler_idx]);
+ 			if (buf_idx >= sizeof(log_buf)) {
+ 				dev_err(adev->dev, "buffer overflow!\n");
+-- 
+2.39.2
 
-Aug 23 09:34:22 sunny kernel: BUG: kernel NULL pointer dereference, address: 00000000000001e8
-Aug 23 09:34:22 sunny kernel: #PF: supervisor read access in kernel mode
-Aug 23 09:34:22 sunny kernel: #PF: error_code(0x0000) - not-present page
-Aug 23 09:34:22 sunny kernel: PGD 31fde8067 P4D 31fde8067 PUD 0
-Aug 23 09:34:22 sunny kernel: Oops: 0000 [#2] PREEMPT SMP NOPTI
-Aug 23 09:34:22 sunny kernel: CPU: 13 PID: 404742 Comm: Renderer Tainted: G      D W  OE      6.5.0-rc7+debian+tj #75
-Aug 23 09:34:22 sunny kernel: Hardware name: System manufacturer System Product Name/PRIME X370-PRO, BIOS 6042 04/28/2022
-Aug 23 09:34:22 sunny kernel: RIP: 0010:radeon_gem_va_ioctl+0x3dc/0x4f0 [radeon]
-Aug 23 09:34:22 sunny kernel: Code: d2 e6 a7 c0 e8 c5 98 2f ee c7 43 04 01 00 00 00 41 bd ea ff ff ff e9 b3 fe ff ff 49 8b 41 70 4c 89 ce 4c 89 e7 4c 89 4c 24 08 <48> 8b >
-Aug 23 09:34:22 sunny kernel: RSP: 0018:ffffa6e9c5227bf0 EFLAGS: 00010282
-Aug 23 09:34:22 sunny kernel: RAX: 0000000000000000 RBX: ffffa6e9c5227d28 RCX: 0000000000000000
-Aug 23 09:34:22 sunny kernel: RDX: 0000000000000001 RSI: ffff9825ea5a9880 RDI: ffff9823c29dc000
-Aug 23 09:34:22 sunny kernel: RBP: ffffa6e9c5227c90 R08: 0000000000000000 R09: ffff9825ea5a9880
-Aug 23 09:34:22 sunny kernel: R10: 000000000007bee7 R11: ffffa6e900858000 R12: ffff9823c29dc000
-Aug 23 09:34:22 sunny kernel: R13: 0000000000000000 R14: ffffa6e9c5227c08 R15: ffff982620c00c78
-Aug 23 09:34:22 sunny kernel: FS:  00007fd4e32be6c0(0000) GS:ffff982aced40000(0000) knlGS:0000000000000000
-Aug 23 09:34:22 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-Aug 23 09:34:22 sunny kernel: CR2: 00000000000001e8 CR3: 00000004609b8000 CR4: 0000000000350ee0
-Aug 23 09:34:22 sunny kernel: Call Trace:
-Aug 23 09:34:22 sunny kernel:  <TASK>
-Aug 23 09:34:22 sunny kernel:  ? __die+0x1f/0x70
-Aug 23 09:34:22 sunny kernel:  ? page_fault_oops+0x159/0x470
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? do_user_addr_fault+0x65/0x640
-Aug 23 09:34:22 sunny kernel:  ? exc_page_fault+0x73/0x170
-Aug 23 09:34:22 sunny kernel:  ? asm_exc_page_fault+0x22/0x30
-Aug 23 09:34:22 sunny kernel:  ? radeon_gem_va_ioctl+0x3dc/0x4f0 [radeon]
-Aug 23 09:34:22 sunny kernel:  ? tomoyo_path_number_perm+0x68/0x1d0
-Aug 23 09:34:22 sunny kernel:  ? __pfx_radeon_gem_va_ioctl+0x10/0x10 [radeon]
-Aug 23 09:34:22 sunny kernel:  drm_ioctl_kernel+0xc1/0x160 [drm]
-Aug 23 09:34:22 sunny kernel:  drm_ioctl+0x24c/0x490 [drm]
-Aug 23 09:34:22 sunny kernel:  ? __pfx_radeon_gem_va_ioctl+0x10/0x10 [radeon]
-Aug 23 09:34:22 sunny kernel:  radeon_drm_ioctl+0x49/0x80 [radeon]
-Aug 23 09:34:22 sunny kernel:  __x64_sys_ioctl+0x93/0xd0
-Aug 23 09:34:22 sunny kernel:  do_syscall_64+0x5b/0xc0
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? __fget_light+0x9d/0x100
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? fpregs_assert_state_consistent+0x22/0x50
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? exit_to_user_mode_prepare+0x40/0x1d0
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? syscall_exit_to_user_mode+0x27/0x40
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? do_syscall_64+0x67/0xc0
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? syscall_exit_to_user_mode+0x27/0x40
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? do_syscall_64+0x67/0xc0
-Aug 23 09:34:22 sunny kernel:  ? fpregs_assert_state_consistent+0x22/0x50
-Aug 23 09:34:22 sunny kernel:  ? srso_return_thunk+0x5/0x10
-Aug 23 09:34:22 sunny kernel:  ? exit_to_user_mode_prepare+0x40/0x1d0
-Aug 23 09:34:22 sunny kernel:  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Aug 23 09:34:22 sunny kernel: RIP: 0033:0x7fd4fd83db3b
-Aug 23 09:34:22 sunny kernel: Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 >
-Aug 23 09:34:22 sunny kernel: RSP: 002b:00007fd4e32bbe10 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-Aug 23 09:34:22 sunny kernel: RAX: ffffffffffffffda RBX: 00007fd49cb8a040 RCX: 00007fd4fd83db3b
-Aug 23 09:34:22 sunny kernel: RDX: 00007fd4e32bbec0 RSI: 00000000c018646b RDI: 000000000000002d
-Aug 23 09:34:22 sunny kernel: RBP: 00007fd4e32bbec0 R08: 00007fd4fd5ca3f0 R09: 00007fd48adeff80
-Aug 23 09:34:22 sunny kernel: R10: 000000000007e000 R11: 0000000000000246 R12: 00000000c018646b
-Aug 23 09:34:22 sunny kernel: R13: 000000000000002d R14: 00007fd4fd5ca358 R15: 00000000000c9000
-Aug 23 09:34:22 sunny kernel:  </TASK>
-Aug 23 09:34:22 sunny kernel: Modules linked in: uinput veth rfcomm snd_seq_dummy snd_hrtimer snd_seq snd_seq_device nft_masq nvme_fabrics rdma_ucm ib_uverbs rdma_cm iw_c>
-Aug 23 09:34:22 sunny kernel:  bluetooth pcspkr sp5100_tco acpi_cpufreq snd_hda_core watchdog wmi_bmof snd_hwdep mxm_wmi ccp k10temp i2c_piix4 snd_pcm rng_core snd_timer >
-Aug 23 09:34:22 sunny kernel:  crct10dif_generic crct10dif_pclmul scsi_common usb_common crct10dif_common gpio_amdpt wmi gpio_generic
-Aug 23 09:34:22 sunny kernel: CR2: 00000000000001e8
-Aug 23 09:34:22 sunny kernel: ---[ end trace 0000000000000000 ]---
-Aug 23 09:34:22 sunny kernel: RIP: 0010:radeon_gem_va_ioctl+0x3dc/0x4f0 [radeon]
-Aug 23 09:34:22 sunny kernel: Code: d2 e6 a7 c0 e8 c5 98 2f ee c7 43 04 01 00 00 00 41 bd ea ff ff ff e9 b3 fe ff ff 49 8b 41 70 4c 89 ce 4c 89 e7 4c 89 4c 24 08 <48> 8b >
-Aug 23 09:34:22 sunny kernel: RSP: 0018:ffffa6e9ccd67c10 EFLAGS: 00010202
-Aug 23 09:34:22 sunny kernel: RAX: 0000000000000000 RBX: ffffa6e9ccd67d48 RCX: 0000000000000000
-Aug 23 09:34:22 sunny kernel: RDX: 0000000000000001 RSI: ffff9823c5fd3200 RDI: ffff9823c29dc000
-Aug 23 09:34:22 sunny kernel: RBP: ffffa6e9ccd67cb0 R08: 0000000000000000 R09: ffff9823c5fd3200
-Aug 23 09:34:22 sunny kernel: R10: 000000000004be00 R11: ffffa6e900858000 R12: ffff9823c29dc000
-Aug 23 09:34:22 sunny kernel: R13: 0000000000000000 R14: ffffa6e9ccd67c28 R15: ffff982591b21478
-Aug 23 09:34:22 sunny kernel: FS:  00007fd4e32be6c0(0000) GS:ffff982aced40000(0000) knlGS:0000000000000000
-Aug 23 09:34:22 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-Aug 23 09:34:22 sunny kernel: CR2: 00000000000001e8 CR3: 00000004609b8000 CR4: 0000000000350ee0
-
-Note: tainted due to building out-of-tree it87 to support mobo sensors
