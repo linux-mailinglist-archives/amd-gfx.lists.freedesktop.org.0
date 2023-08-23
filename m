@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D19785CEF
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A06AD785CEC
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4698810E46D;
-	Wed, 23 Aug 2023 16:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 007EB10E46A;
+	Wed, 23 Aug 2023 16:04:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF4A10E46B
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:50 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2040.outbound.protection.outlook.com [40.107.93.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1003210E46D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BaD9n8E0fuDgdrs4Wpp97/mjaEllYu6at6Gvraztr3P3/7SWKEcRytv4btWVdTE2qgRBf3vDoKGwUqz/RxedCPcwnrcwbMNuwud6pwkJ+/OXYkZi+0+GaAbDdKsb4+i3x/8vVBxB2vr984PUawn5758b2A0DGWvZZk1CrOwVxIjmqwkHiCEMEKYkTEJQ+2bK8iVGDcuBpVhCcTmv4cC4RxAZ3fnWoA5xkF1if2sA65vDNd3MwiWw7AkMlQkNx/NNVWDFA9ZqM3tKpCTA1hEyTyOZG32XrRAo9AOJItSKh6+JU7dTAje9yv0uYs4xaIfpMawtJlAUCPLns0QiMOpc/w==
+ b=E6FoBf81u5RMEiLSHTaSUU3SrjTdBuJc13IcZo0PdBzdrWJkwTmWONpZyURnpnFc1FAeaswrH7V1CJhntXXM/KWPol4sz3mhsKZ6G3LoDHDanviwdiO5AVJY1iOUDcJ+jLeUOSMUNuyE8/GBt/vwob8wFSi53p/3VevmI/n7wQChWZXDOXYjaGMw06dFtt5paP4NbhVLxY+kOI/9iGKaS47SMCSLYrm6JNkpZopCwbPffJx8OxU8056G0Pbm/6rkwqwgaufIk6FxpP3aFjjHjz9HIEqdBtWo/kQJxajFC8rmQMGXENL9vUe8BEMxTn1QuNhCIViURWyx3fCbpYnVMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fZHE0HXaFRdmgawXkKF9v65UvFdCGgVjrLVTUnG/1a4=;
- b=c14lvulDv4uSaWqUb6N2V50YLc3dRIaANZJvXbhkY4w3mLPvHL5sXxURjYqlh+grWemxd+1XgnzfcKfNluqB2bWKbGnIb94K8HVBXcqpzRj1MjBMKZr9Bety5xvsl9IBsrXAyu1JhTiVjLrQyXVDTwvxyWx9s+pZEuvX7+LZ9h7YIwY7HFPW06RbiTZ+4saxwRAk0Wjk0YgZiylbHiLTNHCW4fWv/XBBBz+M5C2L2GLgJGr5WiDMGdGJCiY4drdb0IMJmeCwcACVtCXv5xwf/+6xifCKUJHZCMNYRApBPPTpUMuc7Lnt0Gd56MrhicgFNkyDU9TAxhYCbtxz14H1Cg==
+ bh=Sll7QoNiaCIHgMRiujTlfwNO94CsRyM9BiICiVH4bic=;
+ b=MbPmLRiHlLw2sCf1axAiBtIVwTXu1oNDg+z/gEsHzwJeo1iBKTuUQZYAEiAwpTV8r77iEjhPkL4TfqY0LYUBNeJOh1FUgh+vlvtGFzEzQycEMcD13Kpw6KfMCNjdr5SHaz3xufbQ3wAt69T7zEGgnktphqBjZf1pSrrTAoPCNpDHuDgBBtqsQQiN0hkRtXgRCmvP1kvpVlCrSpB9cWKtapLgNJVyyBJZPpmO+G9oKjXVuhYUfwE8+XnqcP/nV++GOg9uqAN9jDUZ5y/dvPTACMOkp7nHtjexTtttukbu1iIxQCnzo8N+zNXWQlahSzeGLzFHOa8T5EKfl9XhAYPMXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fZHE0HXaFRdmgawXkKF9v65UvFdCGgVjrLVTUnG/1a4=;
- b=TrdvtV7sN8jFQUhniZv0x/d6bCY+rAh3vJA7UfuPjIT+/u06/jBZVRNEHqjEayMxgPOaXsVZOxL3jxE3LAtmdVGCqzFf8EJhYwkaGNOJvqKhD0VHdrUE13pbmmIuZ0haZ7XvamYYFJPZPY4ckxSBO22BEXDEEp37i7ZapvQXCgA=
-Received: from PA7P264CA0119.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:34c::12)
- by DS7PR12MB5933.namprd12.prod.outlook.com (2603:10b6:8:7c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Wed, 23 Aug
- 2023 16:04:43 +0000
+ bh=Sll7QoNiaCIHgMRiujTlfwNO94CsRyM9BiICiVH4bic=;
+ b=40PGWrEN0vT7wFRVriM+XlXrTghuzB33imLzQraftvB+pjgfIl/6zllj4kxQfav1xcFI9cJ5V1g5iC7zQtpcjAmh5gWmBc3B7icRfL08GZXjWzWNVWrBtoPllpm1aZuFapo0nL2++Khbht4qjguWYGQ6e5WmBVHnsD/2CKLp1zg=
+Received: from PA7P264CA0120.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:34c::18)
+ by DM4PR12MB6159.namprd12.prod.outlook.com (2603:10b6:8:a8::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.24; Wed, 23 Aug 2023 16:04:45 +0000
 Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10a6:102:34c:cafe::e5) by PA7P264CA0119.outlook.office365.com
- (2603:10a6:102:34c::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20 via Frontend
- Transport; Wed, 23 Aug 2023 16:04:42 +0000
+ (2603:10a6:102:34c:cafe::65) by PA7P264CA0120.outlook.office365.com
+ (2603:10a6:102:34c::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.25 via Frontend
+ Transport; Wed, 23 Aug 2023 16:04:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:42 +0000
+ 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:43 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 23 Aug
- 2023 11:04:33 -0500
+ 2023 11:04:34 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/21] drm/amd/display: switch to new ODM policy for windowed
- MPO ODM support
-Date: Wed, 23 Aug 2023 11:58:15 -0400
-Message-ID: <20230823160347.176991-14-hamza.mahfooz@amd.com>
+Subject: [PATCH 14/21] drm/amd/display: add pipe topology update log
+Date: Wed, 23 Aug 2023 11:58:16 -0400
+Message-ID: <20230823160347.176991-15-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230823160347.176991-1-hamza.mahfooz@amd.com>
 References: <20230823160347.176991-1-hamza.mahfooz@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|DS7PR12MB5933:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31e16604-14ed-4cd8-cf82-08dba3f2a985
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|DM4PR12MB6159:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6930f834-6fad-4b29-2817-08dba3f2aa61
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pQvb4v9G09HO0pU77HSsKeiymPIRQnybN7MNGBmti7x2ArCQ5Ua4MvZOSV+4jqWt8tkFvM4n5CVm6jJdouTzv446QVuiYn7aAyfeADEPZYcorEP5EKtkJVsqRwk3hTAnQQ4rPfkAi8u7sblqpK7MLQBUvdoNbhIODtG71E1jXHjjZDNLqBl4ZJu+DYBK5RGIEaJmIu5ignjU45tzqLyHCP9oW2qwX96zS3D8DMHqrojK1DSJgYMP6m4vGkO53SEEebMTNT4qX1k4MnNrwlDRNU+8Z8xT3IwP9RdvIZ8+EMArepD+XnKTdXjLjjfgrCnkPkU5ACYe22TCGcd++vYm1iTcIDD4sLjjf4L35LWaUCwFDN4iCt6SOov3xrrfdK6nEoCm+rxa/0+MyAn1b852jbFi1TyUV5vAOgzwIhzkJD2W5qHoAz+twM7TRMomaO0Iul8LuIC9Uij0WHXIK276x1m5pVVoI/oqnLBZYsSxxdQBCy5JEy2DLu7ghvRkgkxdffLCjD5AncjC8xvmJxyFhpcN3Hj6IUgXF9jvXOZ9ga8QjvgRAe18u7uYBiYgEXd/pQiscjtYplGekBQq5LyuI28+c/trm+4WQiot1yHrjWwXlu5PWX0hjpkzu22DcbOg/Peer9YxHM/p3trWb25+xtgJqzer3bHPSgRARkSJ4EnadFoLCXmftRZU4RDlwlK5LYao6lnpSf+JocpTntZ1tb/VbTyUnFCrlqR7yhsiGY7cCqoTKue/vfiXx+EoI1sPMmX99Ei1Kp45E3EOtvFgsHmO/Cc5/Ktuiryg7RIryoiwhSQ5uQq8987fHbGtsW+8
+X-Microsoft-Antispam-Message-Info: To4nqAuyAcQvm/OwAidEgLs05JSnjOn1Fi5gY8OSVmrwyRmd5VnuILDLRT0eYvGIFyl3BXovoKwDSvWZWm6PP4VnBQrzxbnIyXeSM3IzvENYelG+cK64UaqWWCZFddm/VvLo+8vXgBZaObUzE027huufELfiBM1UKCqxp3OwnxGTmnT4Zn997UtCrDnp2aSHiad/fVRXuEH/ZbRuRjUEDIquKJn9F11ZTjMsCPQI3/0aSio2lVeanTvuOfd7UyZkIjpwQwOEj24Tkmy/rCLH+j7COUfEGn+IEkCzBbrZz60zateMaqDGnIevndb9cg113FvkX8ZQoslG1ovsDJpZKvd9u/FqNuGP0XmXo73fDHgGmMrENKKH1WAVkY/QHJci+gvSKONBcncpNxsgMSuCMdIng/K8EU+5q8D/uYWzlZ7bJ/x4vjhLG5CGjNa+NE3HEfk5kt36R/wQnPYdLRx1Vp8lvdRFL2oKCystQwQGfRtZj+nMGv+ZgFWXN1oycM8d2NICTU5NxF/CiVXH1Cy6dKoj7dhIiUto8+9ePFCJ2J7S18YDnxVQyw8bz8N8YY+KRx/CGM2dhZcRx1h1RvJefJbYB/KZfIm7aXGD7Cl3PgfmJK8M2Wjm/ETth08JGYj8IH0ztEqAagcVhfd4fltd8olV6BNyBm7Nn6AIbxa1WxZVo4tNz9TB1Gh1SVWyrXJH5CxBan0jbB8v5CqUGr7m6K47PklkkWhdBXpZb+srFaJrFfEBcDNU1zD44z3P7cJqOLh4dN34DTrtu4JqDn1muTpVJUuidt9nXowtqsfZGG7bZnLMhtzvUXX6G0CIkCi0
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(82310400011)(451199024)(1800799009)(186009)(46966006)(36840700001)(40470700004)(2906002)(40480700001)(83380400001)(44832011)(426003)(5660300002)(336012)(16526019)(86362001)(36860700001)(26005)(47076005)(2616005)(8936002)(4326008)(70586007)(316002)(54906003)(6916009)(70206006)(82740400003)(478600001)(8676002)(356005)(81166007)(40460700003)(41300700001)(36756003)(6666004)(1076003)(36900700001)(16060500005);
+ SFS:(13230031)(4636009)(39860400002)(396003)(136003)(346002)(376002)(186009)(1800799009)(82310400011)(451199024)(46966006)(36840700001)(40470700004)(54906003)(6916009)(316002)(70586007)(8936002)(8676002)(4326008)(2616005)(70206006)(1076003)(36756003)(41300700001)(40460700003)(81166007)(356005)(82740400003)(478600001)(6666004)(40480700001)(15650500001)(83380400001)(2906002)(36860700001)(86362001)(47076005)(426003)(44832011)(336012)(5660300002)(16526019)(26005)(16060500005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:42.3965 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31e16604-14ed-4cd8-cf82-08dba3f2a985
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:43.8339 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6930f834-6fad-4b29-2817-08dba3f2aa61
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529E.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5933
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6159
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,127 +110,228 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Wenjing Liu <wenjing.liu@amd.com>
 
-We need to align windowed MPO ODM support on DCN3x with new ODM policy.
+Given an issue with pipe topology transition. It is very hard to tell
+the before and after pipe topology without a pipe topology logging. The
+change adds such logging to help with visualizing the issue.
 
 Reviewed-by: Jun Lei <jun.lei@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../drm/amd/display/dc/dcn32/dcn32_resource.c | 84 ++++++++++++++-----
- 1 file changed, 65 insertions(+), 19 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 159 ++++++++++++++++++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  10 +-
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |   7 +
+ 3 files changed, 168 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 88c9dbbacbd3..fd12791995a7 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -1885,6 +1885,67 @@ bool dcn32_validate_bandwidth(struct dc *dc,
- 	return out;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 84db7c5fb852..f32337122f5b 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1865,6 +1865,165 @@ int resource_get_odm_slice_index(const struct pipe_ctx *pipe_ctx)
+ 	return index;
  }
  
-+static bool should_allow_odm_power_optimization(struct dc *dc,
-+		struct dc_state *context)
++bool resource_is_pipe_topology_changed(const struct dc_state *state_a,
++		const struct dc_state *state_b)
 +{
-+	struct dc_stream_state *stream = context->streams[0];
++	int i;
++	const struct pipe_ctx *pipe_a, *pipe_b;
 +
-+	/*
-+	 * this debug flag allows us to disable ODM power optimization feature
-+	 * unconditionally. we force the feature off if this is set to false.
-+	 */
-+	if (!dc->debug.enable_single_display_2to1_odm_policy)
-+		return false;
++	if (state_a->stream_count != state_b->stream_count)
++		return true;
 +
-+	/* current design and test coverage is only limited to allow ODM power
-+	 * optimization for single stream. Supporting it for multiple streams
-+	 * use case would require additional algorithm to decide how to
-+	 * optimize power consumption when there are not enough free pipes to
-+	 * allocate for all the streams. This level of optimization would
-+	 * require multiple attempts of revalidation to make an optimized
-+	 * decision. Unfortunately We do not support revalidation flow in
-+	 * current version of DML.
-+	 */
-+	if (context->stream_count != 1)
-+		return false;
++	for (i = 0; i < MAX_PIPES; i++) {
++		pipe_a = &state_a->res_ctx.pipe_ctx[i];
++		pipe_b = &state_b->res_ctx.pipe_ctx[i];
 +
-+	/*
-+	 * Our hardware doesn't support ODM for HDMI TMDS
-+	 */
-+	if (dc_is_hdmi_signal(stream->signal))
-+		return false;
++		if (pipe_a->stream && !pipe_b->stream)
++			return true;
++		else if (!pipe_a->stream && pipe_b->stream)
++			return true;
 +
-+	/*
-+	 * ODM Combine 2:1 requires horizontal timing divisible by 2 so each
-+	 * ODM segment has the same size.
-+	 */
-+	if (!is_h_timing_divisible_by_2(stream))
-+		return false;
++		if (pipe_a->plane_state && !pipe_b->plane_state)
++			return true;
++		else if (!pipe_a->plane_state && pipe_b->plane_state)
++			return true;
 +
-+	/*
-+	 * No power benefits if the timing's pixel clock is not high enough to
-+	 * raise display clock from minimum power state.
-+	 */
-+	if (stream->timing.pix_clk_100hz * 100 <= DCN3_2_VMIN_DISPCLK_HZ)
-+		return false;
++		if (pipe_a->bottom_pipe && pipe_b->bottom_pipe) {
++			if (pipe_a->bottom_pipe->pipe_idx != pipe_b->bottom_pipe->pipe_idx)
++				return true;
++			if ((pipe_a->bottom_pipe->plane_state == pipe_a->plane_state) &&
++					(pipe_b->bottom_pipe->plane_state != pipe_b->plane_state))
++				return true;
++			else if ((pipe_a->bottom_pipe->plane_state != pipe_a->plane_state) &&
++					(pipe_b->bottom_pipe->plane_state == pipe_b->plane_state))
++				return true;
++		} else if (pipe_a->bottom_pipe || pipe_b->bottom_pipe) {
++			return true;
++		}
 +
-+	/* the new ODM power optimization feature reduces software design
-+	 * limitation and allows ODM power optimization to be supported even
-+	 * with presence of overlay planes. The new feature is enabled based on
-+	 * enable_windowed_mpo_odm flag. If the flag is not set, we limit our
-+	 * feature scope due to previous software design limitation */
-+	if (!dc->config.enable_windowed_mpo_odm) {
-+		if (context->stream_status[0].plane_count != 1)
-+			return false;
-+
-+		if (stream->src.width >= 5120 &&
-+				stream->src.width > stream->dst.width)
-+			return false;
++		if (pipe_a->next_odm_pipe && pipe_b->next_odm_pipe) {
++			if (pipe_a->next_odm_pipe->pipe_idx != pipe_b->next_odm_pipe->pipe_idx)
++				return true;
++		} else if (pipe_a->next_odm_pipe || pipe_b->next_odm_pipe) {
++			return true;
++		}
 +	}
-+
-+	return true;
++	return false;
 +}
 +
- int dcn32_populate_dml_pipes_from_context(
- 	struct dc *dc, struct dc_state *context,
- 	display_e2e_pipe_params_st *pipes,
-@@ -1895,35 +1956,20 @@ int dcn32_populate_dml_pipes_from_context(
- 	struct pipe_ctx *pipe = NULL;
- 	bool subvp_in_use = false;
- 	struct dc_crtc_timing *timing;
--	bool vsr_odm_support = false;
++/*
++ * Sample log:
++ *    pipe topology update
++ *  ________________________
++ * | plane0  slice0  stream0|
++ * |DPP0----OPP0----OTG0----| <--- case 0 (OTG master pipe with plane)
++ * | plane1 |       |       |
++ * |DPP1----|       |       | <--- case 5 (DPP pipe not in last slice)
++ * | plane0  slice1 |       |
++ * |DPP2----OPP2----|       | <--- case 2 (OPP head pipe with plane)
++ * | plane1 |               |
++ * |DPP3----|               | <--- case 4 (DPP pipe in last slice)
++ * |         slice0  stream1|
++ * |DPG4----OPP4----OTG4----| <--- case 1 (OTG master pipe without plane)
++ * |         slice1 |       |
++ * |DPG5----OPP5----|       | <--- case 3 (OPP head pipe without plane)
++ * |________________________|
++ */
++
++static void resource_log_pipe(struct dc *dc, struct pipe_ctx *pipe,
++		int stream_idx, int slice_idx, int plane_idx, int slice_count,
++		bool is_primary)
++{
++	DC_LOGGER_INIT(dc->ctx->logger);
++
++	if (slice_idx == 0 && plane_idx == 0 && is_primary) {
++		/* case 0 (OTG master pipe with plane) */
++		DC_LOG_DC(" | plane%d  slice%d  stream%d|",
++				plane_idx, slice_idx, stream_idx);
++		DC_LOG_DC(" |DPP%d----OPP%d----OTG%d----|",
++				pipe->plane_res.dpp->inst,
++				pipe->stream_res.opp->inst,
++				pipe->stream_res.tg->inst);
++	} else if (slice_idx == 0 && plane_idx == -1) {
++		/* case 1 (OTG master pipe without plane) */
++		DC_LOG_DC(" |         slice%d  stream%d|",
++				slice_idx, stream_idx);
++		DC_LOG_DC(" |DPG%d----OPP%d----OTG%d----|",
++				pipe->stream_res.opp->inst,
++				pipe->stream_res.opp->inst,
++				pipe->stream_res.tg->inst);
++	} else if (slice_idx != 0 && plane_idx == 0 && is_primary) {
++		/* case 2 (OPP head pipe with plane) */
++		DC_LOG_DC(" | plane%d  slice%d |       |",
++				plane_idx, slice_idx);
++		DC_LOG_DC(" |DPP%d----OPP%d----|       |",
++				pipe->plane_res.dpp->inst,
++				pipe->stream_res.opp->inst);
++	} else if (slice_idx != 0 && plane_idx == -1) {
++		/* case 3 (OPP head pipe without plane) */
++		DC_LOG_DC(" |         slice%d |       |", slice_idx);
++		DC_LOG_DC(" |DPG%d----OPP%d----|       |",
++				pipe->plane_res.dpp->inst,
++				pipe->stream_res.opp->inst);
++	} else if (slice_idx == slice_count - 1) {
++		/* case 4 (DPP pipe in last slice) */
++		DC_LOG_DC(" | plane%d |               |", plane_idx);
++		DC_LOG_DC(" |DPP%d----|               |",
++				pipe->plane_res.dpp->inst);
++	} else {
++		/* case 5 (DPP pipe not in last slice) */
++		DC_LOG_DC(" | plane%d |       |       |", plane_idx);
++		DC_LOG_DC(" |DPP%d----|       |       |",
++				pipe->plane_res.dpp->inst);
++	}
++}
++
++void resource_log_pipe_topology_update(struct dc *dc, struct dc_state *state)
++{
++	struct pipe_ctx *otg_master;
++	struct pipe_ctx *opp_heads[MAX_PIPES];
++	struct pipe_ctx *dpp_pipes[MAX_PIPES];
++
++	int stream_idx, slice_idx, dpp_idx, plane_idx, slice_count, dpp_count;
++	bool is_primary;
++	DC_LOGGER_INIT(dc->ctx->logger);
++
++	DC_LOG_DC("    pipe topology update");
++	DC_LOG_DC("  ________________________");
++	for (stream_idx = 0; stream_idx < state->stream_count; stream_idx++) {
++		otg_master = resource_get_otg_master_for_stream(
++				&state->res_ctx, state->streams[stream_idx]);
++		slice_count = resource_get_opp_heads_for_otg_master(otg_master,
++				&state->res_ctx, opp_heads);
++		for (slice_idx = 0; slice_idx < slice_count; slice_idx++) {
++			if (opp_heads[slice_idx]->plane_state) {
++				plane_idx = 0;
++				dpp_count = resource_get_dpp_pipes_for_opp_head(
++						opp_heads[slice_idx],
++						&state->res_ctx,
++						dpp_pipes);
++				for (dpp_idx = 0; dpp_idx < dpp_count; dpp_idx++) {
++					is_primary = !dpp_pipes[dpp_idx]->top_pipe ||
++							dpp_pipes[dpp_idx]->top_pipe->plane_state != dpp_pipes[dpp_idx]->plane_state;
++					resource_log_pipe(dc, dpp_pipes[dpp_idx],
++							stream_idx, slice_idx,
++							plane_idx, slice_count,
++							is_primary);
++					if (is_primary)
++						plane_idx++;
++				}
++			} else {
++				plane_idx = -1;
++				resource_log_pipe(dc, opp_heads[slice_idx],
++						stream_idx, slice_idx, plane_idx,
++						slice_count, true);
++			}
++
++		}
++	}
++	DC_LOG_DC(" |________________________|\n");
++}
++
+ static struct pipe_ctx *get_tail_pipe(
+ 		struct pipe_ctx *head_pipe)
+ {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 347156d02f21..dd4c7a7faf28 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1816,14 +1816,8 @@ void dcn20_program_front_end_for_ctx(
+ 	struct dce_hwseq *hws = dc->hwseq;
+ 	DC_LOGGER_INIT(dc->ctx->logger);
  
- 	dcn20_populate_dml_pipes_from_context(dc, context, pipes, fast_validate);
- 
--	/* Determine whether we will apply ODM 2to1 policy:
--	 * Applies to single display and where the number of planes is less than 3.
--	 * For 3 plane case ( 2 MPO planes ), we will not set the policy for the MPO pipes.
--	 *
-+	/*
- 	 * Apply pipe split policy first so we can predict the pipe split correctly
- 	 * (dcn32_predict_pipe_split).
- 	 */
- 	for (i = 0, pipe_cnt = 0; i < dc->res_pool->pipe_count; i++) {
- 		if (!res_ctx->pipe_ctx[i].stream)
- 			continue;
--		pipe = &res_ctx->pipe_ctx[i];
--		timing = &pipe->stream->timing;
+-	/* Carry over GSL groups in case the context is changing. */
+-	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+-		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
+-		struct pipe_ctx *old_pipe_ctx = &dc->current_state->res_ctx.pipe_ctx[i];
 -
--		pipes[pipe_cnt].pipe.dest.odm_combine_policy = dm_odm_combine_policy_dal;
--		vsr_odm_support = (res_ctx->pipe_ctx[i].stream->src.width >= 5120 &&
--				res_ctx->pipe_ctx[i].stream->src.width > res_ctx->pipe_ctx[i].stream->dst.width);
--		if (context->stream_count == 1 &&
--				context->stream_status[0].plane_count == 1 &&
--				!dc_is_hdmi_signal(res_ctx->pipe_ctx[i].stream->signal) &&
--				is_h_timing_divisible_by_2(res_ctx->pipe_ctx[i].stream) &&
--				pipe->stream->timing.pix_clk_100hz * 100 > DCN3_2_VMIN_DISPCLK_HZ &&
--				dc->debug.enable_single_display_2to1_odm_policy &&
--				!vsr_odm_support) { //excluding 2to1 ODM combine on >= 5k vsr
-+		if (should_allow_odm_power_optimization(dc, context))
- 			pipes[pipe_cnt].pipe.dest.odm_combine_policy = dm_odm_combine_policy_2to1;
--		}
-+		else
-+			pipes[pipe_cnt].pipe.dest.odm_combine_policy = dm_odm_combine_policy_dal;
- 		pipe_cnt++;
- 	}
+-		if (pipe_ctx->stream == old_pipe_ctx->stream)
+-			pipe_ctx->stream_res.gsl_group = old_pipe_ctx->stream_res.gsl_group;
+-	}
++	if (resource_is_pipe_topology_changed(dc->current_state, context))
++		resource_log_pipe_topology_update(dc, context);
  
+ 	if (dc->hwss.program_triplebuffer != NULL && dc->debug.enable_tri_buf) {
+ 		for (i = 0; i < dc->res_pool->pipe_count; i++) {
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index 55efd5600521..6777b07d0727 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -437,6 +437,13 @@ int resource_get_odm_slice_count(const struct pipe_ctx *otg_master);
+ /* Get the ODM slice index counting from 0 from left most slice */
+ int resource_get_odm_slice_index(const struct pipe_ctx *opp_head);
+ 
++/* determine if pipe topology is changed between state a and state b */
++bool resource_is_pipe_topology_changed(const struct dc_state *state_a,
++		const struct dc_state *state_b);
++
++/* log the pipe topology update in state */
++void resource_log_pipe_topology_update(struct dc *dc, struct dc_state *state);
++
+ /*
+  * Look for a free pipe in new resource context that is used as a secondary OPP
+  * head by cur_otg_master.
 -- 
 2.41.0
 
