@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8397A785CEE
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D6D785CF1
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 18:04:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0605510E46B;
-	Wed, 23 Aug 2023 16:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7533310E470;
+	Wed, 23 Aug 2023 16:04:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2082.outbound.protection.outlook.com [40.107.94.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0977D10E46B
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:50 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2073.outbound.protection.outlook.com [40.107.100.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D69F10E470
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 16:04:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L5vlnjxrOjB3SaIz/wNSiQUMFYCUy9fKQ9/DhZIQuxnwQPUzIiHinhrhe0wV5Rh0R5OhHNWIDL/umMz2Gs6e29c+82wlqKmGjToGbINDj/zE1THrPiHFYpMWzuTWFhSRQfpBYwViEsrC7Fi94pg3vDPYsn/ggFNS8+ApWFBjABNxvMip1pHRmxzunFkSmumF2yDV6vT257pZQwlE6ce9VV/nJcI/cLhn3ooMHrnbQLAK+Yq02RNPR6/Kms2xz/rLGAcKD8ZsuK9nMtoA6rSgv5EXfPW7RZie361zuChdkQNwShBlHOQ7f3WlyYN5GrxdiU3SZVZLv+Vhd1AJ1AUopg==
+ b=UVZ98RQ0Pdi7TbFGgg7CR5f1xCGbbL6GXA+4EGCSs6qWZ/wx9TkhUiPX3ikmfnp2vf4JIVdULvTx3HwqKYhsJJlSNCjIWaahS/fv1raQRW56lqe2Zy0IcStGLaJdL0U49+ocT+eRgPj07kVcmqajLKdI9He8XwkWzZRnMs3brj2AF9uuxTiPz1apeW+GpSAYGwsnDXuihWoNdzGY0EXie2SB6S1X9tKnHUdaNvm89L+1WUmXsstHXcD8xgP1uea7rVFh7ssI0pmQNo8FxwIssC94KJSlVNdwEZ1kPZGHtp0KulnPeeBMso4f/5WviPUxzJ/mVJiBnfB8VvtysSv5Ug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QZsfuoQIe6XeasPT5Yq0sHP1lUe7w3m5k/yV2UoToe0=;
- b=chsCrCSgB1kQcy1TMfgKHh2fQxw9ydTt3Vjxpln7Fw/dvg+oGMSvYTGGPBdC66J/UEXNjnushPbE5vh4fCk65/e1zkgu94GnJ1f9vxAmSdvyHH306hXhaoFK15hTXW4SsTS4laQwO7gBziTni4QpnpkMYitRTj402ZaPz8Qlf09Qnenl9I7LdxGF9T8Q7rcyta9XuydUtelq94V2cWJ+fLK/uMjKa2jk6soZ54TMPcMhb1NtRgmEsd+8qclM2Bidi6gbPRdIFY6/qorS/8maCJCWeN2yXfadSYOTQ3z1j3ikh+yh29HPXNKBLWBtf4K+ujhaKUw8ALuKaWQeQhlYWA==
+ bh=DfmPQS3poVRjww8Le2F7alw1fgItKLvhpSXK/CZmD4o=;
+ b=Tkxd+XkBCIIpHO4LOBCo0tebhipdMcPuinAa8MTiAVoVAF7QjXWPZIQaLRIKZDDYrkgVYTMqr3VoClZ8aAwH77FrSF1hpKgZ/VQK4Ib+qVarAbSvlLpeiMM2ij0wbuy5KXPGcgUefn/mJRzrAWHZ8wBjRpae5BHoy1p54J6NKsM2xIvfRbnLfjbZKUWe5bErRE8JN86dIx9GgHBWRrNfPV97bQo40OKqk9qikVI4srFiQHPHZ3husm7pCkhBnpb/iRSpCVCCfEai9rJIR5vKOyw0+Y5WtSe2HsLB6E46vXWBiwLr9Sb1OhxOspl7Za+dh2cn9iqgXz6jme1qhRchDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QZsfuoQIe6XeasPT5Yq0sHP1lUe7w3m5k/yV2UoToe0=;
- b=OKEawOBTPYo5HLuEXFOaRHBc5b/Sfj9KdqgHIm8/0qgHfovzydhSFp99PDeOT/f4FEMBsEmWIzBo3Ofzl1de3SoRIpVPi6Y1hxlbpKARQv1UIO9kzlqG73xwoSw4QC2kwZsGsq5yO9LjBSoQFmKL3FYq0K14fDc3WlZidH9Kt2c=
-Received: from PA7P264CA0108.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:34c::8)
- by CYYPR12MB8937.namprd12.prod.outlook.com (2603:10b6:930:cb::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Wed, 23 Aug
- 2023 16:04:47 +0000
+ bh=DfmPQS3poVRjww8Le2F7alw1fgItKLvhpSXK/CZmD4o=;
+ b=XddinQMqie9vH+JtYY5lLbhGJ0f6CJFqygJyJlg92f0wrSzXtLhYL181+NzGbRZM5tOG9j6eSpAqV4vZVLZ1dcGoisqIT2V59Kca1PZXgmvneM8sLbma3/Hi1YVjSO0okmrr0wXR13+Lu2sYoCr/0PaCY1z+cJylicFEw4UglJM=
+Received: from PA7P264CA0119.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:34c::12)
+ by SJ1PR12MB6074.namprd12.prod.outlook.com (2603:10b6:a03:45f::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
+ 2023 16:04:49 +0000
 Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10a6:102:34c:cafe::3) by PA7P264CA0108.outlook.office365.com
- (2603:10a6:102:34c::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10a6:102:34c:cafe::99) by PA7P264CA0119.outlook.office365.com
+ (2603:10a6:102:34c::12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20 via Frontend
- Transport; Wed, 23 Aug 2023 16:04:46 +0000
+ Transport; Wed, 23 Aug 2023 16:04:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:45 +0000
+ 15.20.6699.14 via Frontend Transport; Wed, 23 Aug 2023 16:04:48 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 23 Aug
- 2023 11:04:36 -0500
+ 2023 11:04:37 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/21] drm/amd/display: Remove wait while locked
-Date: Wed, 23 Aug 2023 11:58:17 -0400
-Message-ID: <20230823160347.176991-16-hamza.mahfooz@amd.com>
+Subject: [PATCH 16/21] drm/amd/display: Skip dmub memory flush when not needed
+Date: Wed, 23 Aug 2023 11:58:18 -0400
+Message-ID: <20230823160347.176991-17-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230823160347.176991-1-hamza.mahfooz@amd.com>
 References: <20230823160347.176991-1-hamza.mahfooz@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|CYYPR12MB8937:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0369d0a5-1b42-4cb8-defc-08dba3f2ab9b
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|SJ1PR12MB6074:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52d75958-3eb6-43fe-5919-08dba3f2acfa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: faxA9QGqLGMNwbk9FB8/Ns3f/fa0XBdusS0kdVNnH1qhN59GR6561j7FqL+tV7PA5nopTlc7ltjRzzSNE/MMqkC0qCqbsDVLT7jFlFmDOxVwiBGLjq9fXjheDDFDc0eAyR3TGt79lps9tNRbwOvWOyha8n3xiLK7glqHAkiRgR56GRnK8Me2h9Vo39PXHkEIxKaem8TKKvUtIpKTsBlfWndDV+ok8u6oHRzyL3CXSSCb/lbQdwLSLQ/jGc0n9dmDV+ueAWqst1AXDhWoUGiEPvHRV/Iz+gfjTkqROBNuzkCL4yG3R7zzQbZjjHxNarM68GpPW9TcNkR0TC+ynbQlY41TYjKrjMB3RmnSnNty+H01u0sxq1RE0maMB8+TwqKx3uVsT02+2Npl1vvn50cZjzEXZaaazpyw7TC9b0hdHsuge62UoBOzk2ce+SDHDj+g/ETryyX6p8b5DrKWhi2NSJfUKM8cqdEnWSPoHWvzCMIbqbpoOLkXA96cKZ5O3lLrtcVucmrCGBh/PQ0u14dAtnDoyrLUGSqS4Pst1AXrh4yxp9pKnplthnVOAqq8EIXM3y7+LVmAvK6bjz98F2Q9qTTwcCRHdL/DxncYSZy/BsqmcdSfg0I7eVV5M/4gs+KAVdtGbhGA5P1+dONROmgbtooeXLWLcmFkgnVgWztTwayo0pNsGDBVYlbdCmEMVGvQ0iy230rdVADolVVVzdo28f7+KtGCoFkajuAE9jLiSxBsxzMkHlz6f3XtPKm0PX5JTDBsLMJPbXv/tUaeZJQBkePAErLlAma9gTVC/cHILPSV5qz9J6v2FrfUAHnM/m4a
+X-Microsoft-Antispam-Message-Info: 1btcFIK7PCC1E4Bkvnub04bEs8yKKkfqqP3rMiPdSDPOQQB8UtHB0cfDYK0rRWtiwlqCToThMpOA15ukLQBn4oMK9SfJ2AyAghGKJH7mPH+QtR0y0eovjabDpiwKeCXGKW2qW3PJDSRx7tDXjH+GEVGHB22X2rOjKHhwhKxgcG20Q8w6jLNIxW0uvhip0TVHvbmBO3zk+ogMDRpjbCKIDxZi5Kbh0NbkCMsRzaGMLzfPmSqxEvY511TTt6c8wDqToO1nEDj4Rfa8k+2T7rbQZ5KoVtmo8SGPBAyDk2DJeF/YwLWHXIKlOasdiLWaSlbvgSBOi7E8mwYDWmAX1pgS1GQyY7rpymtYvoHkRMMoWKSwCLNyFBtuNRADx6VF8+iGu3tULpTSgKY0Z2fvVdtDgZtPXua7xvgcd8Qo8STjD8mb6+BzvlXMkr51qYmlFJtT7+xo5NAFF9zjrvrEZxvFaeEMu6+uPisNRJGIbTgGiZ9XrmHvIMyxy0PqG7X5D1uCFfyqIjm7pKJ22TTSOOw6H2njWPw/q1a92lr0oh7sq/irEG71V5qEtFs4toTa/CTx9Uvpwp6hX4PiLrOGpsbsMY5R3iwKY2ZuS5pMakhynkJSBjwOkDPbWd65S8mkII5gaHA3e2LBh1797osbObRvHrpdjgdaUxTnush+LpFlw9wYJz1rVt3l/Ogs2ZFK5CLd+Lo6jAXDFbHskX+QCw8mJL44rEKBeVt7hPrBYijhA6+m5lB7WpeJYBLqp9mfuPYeJoCb7X3OnKgvB6utCJzxu1Pe6b8cKdMC9tgrOX9myBOJw5iIXkIcHwRgoaDH3AbJ
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(396003)(136003)(346002)(39860400002)(186009)(1800799009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(54906003)(6916009)(316002)(70586007)(70206006)(8676002)(8936002)(2616005)(4326008)(36756003)(40460700003)(41300700001)(1076003)(356005)(82740400003)(81166007)(478600001)(6666004)(40480700001)(83380400001)(2906002)(47076005)(36860700001)(86362001)(426003)(336012)(44832011)(5660300002)(26005)(16526019)(16060500005)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(136003)(396003)(376002)(346002)(186009)(451199024)(1800799009)(82310400011)(40470700004)(46966006)(36840700001)(2616005)(316002)(6916009)(4326008)(8936002)(8676002)(40480700001)(70586007)(54906003)(70206006)(41300700001)(336012)(426003)(16526019)(26005)(1076003)(5660300002)(44832011)(6666004)(478600001)(83380400001)(40460700003)(47076005)(36860700001)(36756003)(86362001)(2906002)(82740400003)(356005)(81166007)(36900700001)(16060500005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:45.9120 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0369d0a5-1b42-4cb8-defc-08dba3f2ab9b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 16:04:48.2089 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52d75958-3eb6-43fe-5919-08dba3f2acfa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529E.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8937
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6074
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,147 +99,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- stable@vger.kernel.org, Gabe Teeger <gabe.teeger@amd.com>,
+Cc: stylon.wang@amd.com, Dillon
+ Varone <dillon.varone@amd.com>, Chris Park <chris.park@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com,
  Daniel Wheeler <daniel.wheeler@amd.com>, solomon.chiu@amd.com,
  jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com,
- wayne.lin@amd.com, Jun Lei <jun.lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Gabe Teeger <gabe.teeger@amd.com>
+From: Dillon Varone <dillon.varone@amd.com>
 
-[Why]
-We wait for mpc idle while in a locked state, leading to potential
-deadlock.
+[WHY&HOW]
+Readback is only necessary when loaded via CPU.
 
-[What]
-Move the wait_for_idle call to outside of HW lock. This and a
-call to wait_drr_doublebuffer_pending_clear are moved added to a new
-static helper function called wait_for_outstanding_hw_updates, to make
-the interface clearer.
-
-Cc: stable@vger.kernel.org
-Fixes: 8f0d304d21b3 ("drm/amd/display: Do not commit pipe when updating DRR")
-Reviewed-by: Jun Lei <jun.lei@amd.com>
+Reviewed-by: Chris Park <chris.park@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Gabe Teeger <gabe.teeger@amd.com>
+Signed-off-by: Dillon Varone <dillon.varone@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/Makefile       |  1 +
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 58 +++++++++++++------
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 11 ----
- 3 files changed, 42 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h     | 8 ++++++++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c | 3 ++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/Makefile b/drivers/gpu/drm/amd/display/dc/Makefile
-index 69ffd4424dc7..1b8c2aef4633 100644
---- a/drivers/gpu/drm/amd/display/dc/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/Makefile
-@@ -78,3 +78,4 @@ DC_EDID += dc_edid_parser.o
- AMD_DISPLAY_DMUB = $(addprefix $(AMDDALPATH)/dc/,$(DC_DMUB))
- AMD_DISPLAY_EDID = $(addprefix $(AMDDALPATH)/dc/,$(DC_EDID))
- AMD_DISPLAY_FILES += $(AMD_DISPLAY_DMUB) $(AMD_DISPLAY_EDID)
-+
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index c6f6dc972c2a..5aab67868cb6 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3501,6 +3501,45 @@ static void commit_planes_for_stream_fast(struct dc *dc,
- 		top_pipe_to_program->stream->update_flags.raw = 0;
- }
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index e7a50cbf2540..7a892f7bc7b0 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -142,6 +142,13 @@ enum dpia_notify_bw_alloc_status {
+ 	DPIA_BW_ALLOC_CAPS_CHANGED
+ };
  
-+static void wait_for_outstanding_hw_updates(struct dc *dc, const struct dc_state *dc_context)
-+{
-+/*
-+ * This function calls HWSS to wait for any potentially double buffered
-+ * operations to complete. It should be invoked as a pre-amble prior
-+ * to full update programming before asserting any HW locks.
-+ */
-+	int pipe_idx;
-+	int opp_inst;
-+	int opp_count = dc->res_pool->pipe_count;
-+	struct hubp *hubp;
-+	int mpcc_inst;
-+	const struct pipe_ctx *pipe_ctx;
++/* enum dmub_memory_access_type - memory access method */
++enum dmub_memory_access_type {
++	DMUB_MEMORY_ACCESS_DEFAULT,
++	DMUB_MEMORY_ACCESS_CPU = DMUB_MEMORY_ACCESS_DEFAULT,
++	DMUB_MEMORY_ACCESS_DMA
++};
 +
-+	for (pipe_idx = 0; pipe_idx < dc->res_pool->pipe_count; pipe_idx++) {
-+		pipe_ctx = &dc_context->res_ctx.pipe_ctx[pipe_idx];
-+
-+		if (!pipe_ctx->stream)
-+			continue;
-+
-+		if (pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear)
-+			pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear(pipe_ctx->stream_res.tg);
-+
-+		hubp = pipe_ctx->plane_res.hubp;
-+		if (!hubp)
-+			continue;
-+
-+		mpcc_inst = hubp->inst;
-+		// MPCC inst is equal to pipe index in practice
-+		for (opp_inst = 0; opp_inst < opp_count; opp_inst++) {
-+			if (dc->res_pool->opps[opp_inst]->mpcc_disconnect_pending[mpcc_inst]) {
-+				dc->res_pool->mpc->funcs->wait_for_idle(dc->res_pool->mpc, mpcc_inst);
-+				dc->res_pool->opps[opp_inst]->mpcc_disconnect_pending[mpcc_inst] = false;
-+				break;
-+			}
-+		}
-+	}
-+}
-+
- static void commit_planes_for_stream(struct dc *dc,
- 		struct dc_surface_update *srf_updates,
- 		int surface_count,
-@@ -3519,24 +3558,9 @@ static void commit_planes_for_stream(struct dc *dc,
- 	// dc->current_state anymore, so we have to cache it before we apply
- 	// the new SubVP context
- 	subvp_prev_use = false;
--
--
- 	dc_z10_restore(dc);
--
--	if (update_type == UPDATE_TYPE_FULL) {
--		/* wait for all double-buffer activity to clear on all pipes */
--		int pipe_idx;
--
--		for (pipe_idx = 0; pipe_idx < dc->res_pool->pipe_count; pipe_idx++) {
--			struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[pipe_idx];
--
--			if (!pipe_ctx->stream)
--				continue;
--
--			if (pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear)
--				pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear(pipe_ctx->stream_res.tg);
--		}
--	}
-+	if (update_type == UPDATE_TYPE_FULL)
-+		wait_for_outstanding_hw_updates(dc, context);
+ /**
+  * struct dmub_region - dmub hw memory region
+  * @base: base address for region, must be 256 byte aligned
+@@ -264,6 +271,7 @@ struct dmub_srv_hw_params {
+ 	bool dpia_hpd_int_enable_supported;
+ 	bool disable_clock_gate;
+ 	bool disallow_dispclk_dppclk_ds;
++	enum dmub_memory_access_type mem_access_type;
+ };
  
- 	if (update_type == UPDATE_TYPE_FULL) {
- 		dc_allow_idle_optimizations(dc, false);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index dd4c7a7faf28..971fa8bf6d1f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1563,17 +1563,6 @@ static void dcn20_update_dchubp_dpp(
- 			|| plane_state->update_flags.bits.global_alpha_change
- 			|| plane_state->update_flags.bits.per_pixel_alpha_change) {
- 		// MPCC inst is equal to pipe index in practice
--		int mpcc_inst = hubp->inst;
--		int opp_inst;
--		int opp_count = dc->res_pool->pipe_count;
--
--		for (opp_inst = 0; opp_inst < opp_count; opp_inst++) {
--			if (dc->res_pool->opps[opp_inst]->mpcc_disconnect_pending[mpcc_inst]) {
--				dc->res_pool->mpc->funcs->wait_for_idle(dc->res_pool->mpc, mpcc_inst);
--				dc->res_pool->opps[opp_inst]->mpcc_disconnect_pending[mpcc_inst] = false;
--				break;
--			}
--		}
- 		hws->funcs.update_mpcc(dc, pipe_ctx);
- 	}
+ /**
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 53464c3e49c1..d7d142c5b06a 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -564,7 +564,8 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+ 		 * DMCUB when backdoor loading if the write from x86 hasn't been
+ 		 * flushed yet. This only occurs in backdoor loading.
+ 		 */
+-		dmub_flush_buffer_mem(inst_fb);
++		if (params->mem_access_type == DMUB_MEMORY_ACCESS_CPU)
++			dmub_flush_buffer_mem(inst_fb);
  
+ 		if (params->fw_in_system_memory && dmub->hw_funcs.backdoor_load_zfb_mode)
+ 			dmub->hw_funcs.backdoor_load_zfb_mode(dmub, &cw0, &cw1);
 -- 
 2.41.0
 
