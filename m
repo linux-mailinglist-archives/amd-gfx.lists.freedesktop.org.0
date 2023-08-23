@@ -2,92 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513E07850B6
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 08:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EC47850AC
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 08:35:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF4D10E350;
-	Wed, 23 Aug 2023 06:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C86010E2C1;
+	Wed, 23 Aug 2023 06:35:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2047.outbound.protection.outlook.com [40.107.101.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 849EF10E34F
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 06:35:53 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4EA10E060;
+ Wed, 23 Aug 2023 06:35:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lsyFw+0gM/CMraxyQHO6idKrNzDwM/1RuehDRY/K9hyAOZgSKMLyGc/pOr+wo8nl8UMjJirG7gsV4yB3lw/uYR6Irr9Uqot0Wuu1oDnlpAMk86glDbuu8Q6k8eFP6gRYWhe8yyYd/PYKbmcxfSXwVJA1kht68lzoJNXxjbvsDXShruaDvCOH6dCJtftl4Q6KEVG/Kpw76DTnvKGAfeAOlNeQB8IZp+ZFTbBN1VI2dyCasJEhWIQcGpDhBxqNEL3i15Va+QEcYTEIcuNjTTw9zpfjrP1N7YylWseJEqOsEdNmKbNCIfJg0NaLURV4tyAAmi+NGoxLd0mlXF3/AJq1Lw==
+ b=VOPxuJMBsS+VUlwvh5/vTJZ/D1m1IO+rV0D6GyF5hdYXA0MRYqFmUYi4DH5iWDvTnVzjKAU4OTtjbt3A9MuJCVQCwVQL3PBYfo5wOxhLSm4mK7UlpeUf8QRxACvoLPkLCVpEBWWru9v+seRYwqxeAsFW437lMiwAE2ayiyVIRLRiTs6VfFLYNdgc/iZWUqm0C1qqxeXxX+GqRdMmZVDRlNN0DEoWrcht2uGjVdYWG/zOkifjtY7bj2kgDcF8gM9+zGHNzYX9ktA48IYaVjt7EpcSlZgJNKmNeGaq/kRto68ekH18SSFWKIXrDhTFeqUrfKtpAjm20WpkzRwlyg/Dqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sCrbNhf85en8e3uP8Wo9oeNGEE+fvAaVmbMYxzOnS1g=;
- b=hODSDKHixTutdLInSBadhgrOFR6Ik7C7+SFrxlIMWYC62G7JWIPNWAVFoFqoLt2rMnFRCE4Wj26MYi4vlrYpF74TapYkysnuNT7tmCNShoBC2cVWDjk6PVYHoAog8n4AAKOe8M2OWZtXsImV+0kHop/wffF7YLOY+6FOFYYecG3ziOtl1R3y74iwhBWgW7e/vI0RGo0cDHT/CcdXnOJFXS1DK5Le1XVsHp8JbTkkPEHJaeE0JHP5VCBQ1i34GwSMX+c1elvafMdS2ImCD2WiKF+lvrw2LZBQC9m602GJofxMCEY8tR1X42NHUd3rRSFgqrhVTEShL+RJ9vdIpTOgxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=uye1FaTdWvwFzIQ/I71HrkpqW3rW7rj65SYn2zS66Hs=;
+ b=H138u+pqZ13kpG6wmEXQET5IjZjV0NjShHxmd9HydzCsW0p9lmGiq5YUV3QJEkdxUE++mv8GW+H8UfOhK66J5aQX5otbrrVLgi5yXSwusa/ICZmYnzpADs1a36pqooPly1FGEXhiQ3ePLI4+QbhU73AGD2jl0Vs9COdQXj5NrhDFivcxVvk01KGhxpKoIGJH6zLzxCvkXpbloTUS46dbIh7M1aVlWDCWoZCtSUVjWjzhENkhlh988sOLaRbPZKFzQzLwxecmDyQtOfpA/B5iRoO9otFa9/qIehFY6Kb1/vd+V6HPLmy1Ke2VIPiZ3vGWl7amv0qVRwjEd6w3MGiybw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sCrbNhf85en8e3uP8Wo9oeNGEE+fvAaVmbMYxzOnS1g=;
- b=1Cq+Kqv+yF0V2+9fTP5ZwQM4R2NHAuY8RJRhXcRYGy4a21c178TJ9nnAakir1UJUFS7B6jFmrD2v2BaX3yeBQzrJStdCD/56NTp0bQFJ2BAqMSM+pwkouYohEvRhl7lqWNkgpafWAwD6+H5Gjx1cT+fIygJDL2F4daeptyLtgBU=
-Received: from CYXPR02CA0033.namprd02.prod.outlook.com (2603:10b6:930:cc::8)
- by LV2PR12MB5845.namprd12.prod.outlook.com (2603:10b6:408:176::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Wed, 23 Aug
- 2023 06:35:49 +0000
-Received: from CY4PEPF0000E9D0.namprd03.prod.outlook.com
- (2603:10b6:930:cc:cafe::2a) by CYXPR02CA0033.outlook.office365.com
- (2603:10b6:930:cc::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26 via Frontend
- Transport; Wed, 23 Aug 2023 06:35:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D0.mail.protection.outlook.com (10.167.241.143) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.15 via Frontend Transport; Wed, 23 Aug 2023 06:35:49 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 23 Aug
- 2023 01:35:46 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [V2 8/8] drm/amd/pm: add fan minimum pwm OD setting support for SMU13
-Date: Wed, 23 Aug 2023 14:34:06 +0800
-Message-ID: <20230823063406.1195151-8-evan.quan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230823063406.1195151-1-evan.quan@amd.com>
-References: <20230823063406.1195151-1-evan.quan@amd.com>
-MIME-Version: 1.0
+ bh=uye1FaTdWvwFzIQ/I71HrkpqW3rW7rj65SYn2zS66Hs=;
+ b=Fs3hCuilo9sdILcac5vAHAGc4Kx4yuytPO/rxpbMGanzU1PW4RYthCLiXC2d03v1W4EtlwuOgwT4SL7/+CYAEYSqFo/Sa5pqJUJOuiR8TJ03rfRclC3qXWZ8qJOZxergGA2T/xiwgEpoPFpcvZFl1nalAKa6WnGTvzuo8XfWylU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by SA1PR12MB8917.namprd12.prod.outlook.com (2603:10b6:806:386::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
+ 2023 06:35:18 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6787:e196:b8dc:93a1]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::6787:e196:b8dc:93a1%7]) with mapi id 15.20.6699.026; Wed, 23 Aug 2023
+ 06:35:18 +0000
+Message-ID: <f5df3e69-0668-79bc-ae10-92aec58232cc@amd.com>
+Date: Tue, 22 Aug 2023 23:35:06 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] drm/buddy: Fix contiguous memory allocation issues
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20230821101444.119601-1-Arunpravin.PaneerSelvam@amd.com>
+ <a1f422c6-728d-afae-29e1-6f091e16df7f@amd.com>
+ <4fa2c0ea-d8f7-f884-0eb7-c42cad75cd02@amd.com>
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <4fa2c0ea-d8f7-f884-0eb7-c42cad75cd02@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: PN2PR01CA0011.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::16) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D0:EE_|LV2PR12MB5845:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61e4f33b-3921-451c-c87d-08dba3a3309c
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|SA1PR12MB8917:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e393fc6-1c32-41be-4587-08dba3a31e0c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5g36C3Zp2iOeeEjhSozb9Z+q6Hh4bqK7mI8roLi/s8B+swfTI+7W1Zexe12xNo85Ef2AhmmnhTigOK90yTnsae4x5FsGMHo2P/pJyUBmLRixVA7C9n+6abNqXS6xh49Fw/Eag47Lt60JgYjTxy/JIflTtQgTcO+B3HSOnzIMZTdVt86j6FXAW39NrKvtlPon6ySnKMJhLyudZCh+CckH+tYaLrGYIYDP9+o2HnIO3mkDILLW6PIiOuP6Svu7nAzHiXAoaUbLwrM019CqmFZBs4JdxEBNJEB6iSzDFuhYuuzh2gkXpqo4E9IIHDsN41KhxAFbrM2Dj9ML382k4JKfXO0E0+IwB6KWw0DYzh6SzQ8I2WfOB2Xyovr4o0Lf4smjNj8iDAKX7IcGVuo9w+sv5ll34WxZ7kVQa9N/tuumHQBND2ejeP7X7n2sElLrR9g6KfqKQZT52bkhMo21q+bU1/TTCPvVxRVE2zv0YMlxoHxvcBMrA8S8VIOJXDJeDLyY7BI6w5LnYPegD0DxGZMRAeUS9PtVVnox0VzvjZJ0JHql9TmVq0J5aEbBlaTdMGnHyWL4JFqUiqXwWZBqXztgbYgEYJQY0bXJgfONPYYixOcoFnUgx708I3t/9W8+bvvxinROGPvjnCSQ1BQ4TSrXAiHvG4nrfak5O7v41l6LUPF9Y0SPmkOSbswN+UEUBlAqIEFz3hwXOWZMk8Lxmuob3VhGDHugnbeoIOcgbShj6CxYO2f5/aFBImRQaaBZQ6WZnYc6nkwhwC+7scHZGdy5wg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(136003)(346002)(39860400002)(376002)(186009)(82310400011)(451199024)(1800799009)(46966006)(36840700001)(40470700004)(40460700003)(2906002)(83380400001)(30864003)(26005)(86362001)(478600001)(40480700001)(426003)(36756003)(6666004)(7696005)(2616005)(1076003)(16526019)(336012)(5660300002)(44832011)(41300700001)(36860700001)(82740400003)(70586007)(356005)(54906003)(70206006)(316002)(6916009)(81166007)(8936002)(4326008)(8676002)(47076005)(36900700001);
+X-Microsoft-Antispam-Message-Info: fzk/9Pb6TC8zukuHQl/LWjVLxjBDujIo9nxWgG+rweuxgGe3IMKTTQ/fFyZrSSUhzgzR30ZgImAVyC5m1wG6hDm1N/6sbmRosQBuYOmfn1B2gVmksmB7qpBqSdqoEc/9ryFt1+ISSzDcuo2/eOkF9WQOKa3fYKnZp7aX3n82Vp2xUwuvXVhqoNJb1vo6husLLfztky1i+jDKstEHRfi/vxigGUfeUEMnL9NIxdnrG8FztI0DidyIQNYiVoTD8daWTX7mfptYAyIKX2p9qiOkqTUjwT+YKxsxQtI9ggX4K/8CBFcDwJ1FznWBPdRMpfvMgK4HNYUHje4aSOmXJr9Yx5IJr8TJ6d/xxgK0pzqS+BUplF3V0l+YZ/4fMo6sKqsRRPtJ7Dd850wnpnxtPfW6F6tMZ6Lu7faDLQd8+gcnsfLqFL8/4/RhsWVPoiGRq/s07PDDc/Gkiz7gWp9VGKX+vMgCIvwCr9Xr8uFjQ4aSLDL/8VnszMLkBcpR28HeJZEfQSljvoMnZdNaFJvyNF1UFnir+6RKaDQeGPxAt/UvLlyfkiMdGrve1zLwgi9xOCdFxdX34RSEEzrTBqFkWGohS33Si49BuofMJqnxfxy5aWpvcowU8vx0IlkABY2p27D0RnOhGlXYmRNq87RI+2ksmA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(136003)(39860400002)(346002)(366004)(1800799009)(186009)(451199024)(31696002)(86362001)(36756003)(5660300002)(2616005)(26005)(4326008)(8936002)(8676002)(66574015)(2906002)(83380400001)(30864003)(478600001)(6506007)(6486002)(53546011)(66946007)(66556008)(316002)(66476007)(6512007)(41300700001)(6666004)(31686004)(38100700002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c2plUnNVVXUzeEFsVTRvY2VZeVlaZTk0RFYrNEpsb2QrM0FubUtXRFZnN3d3?=
+ =?utf-8?B?bEVtQ3dsdlpKMzR0V2FJNFkyUVB6azVMTm1aVDVYQmg2Wnd1QVpieWhmSXNC?=
+ =?utf-8?B?RVpta2pwVnVMSHpJKzBWVDNaeCt0QzY0S1QweWpUNDlMUzhjczBveU1LL3NP?=
+ =?utf-8?B?MnJyWFl4eXhVb0tpbFpWdm42UjFmYklmeStMbUNxL21jenI5U000RzVXZExI?=
+ =?utf-8?B?dk9oaDcxNmhTQ0NYVjBJQWFWOUtPRnhUSnYwOUZrTlJ0YWg4dWFVaHRYWmp4?=
+ =?utf-8?B?NFBVNVhYK013bXIwTFFHOFpHWitCVkdYK2NqQ3NaK1g3KzNWck1LR1BIc2Vy?=
+ =?utf-8?B?SkE1NS9LeHZ6RjYwYkFmZ1pvelJnVlpmTkhaRVhsN2h5THdialJ2UlBZK3Z3?=
+ =?utf-8?B?RTZqZjV0YWVJaXJiVUFxNHVjQXBqM3RLYW9FdUVhaTJUUFJ6KzlrQmpxK1Rj?=
+ =?utf-8?B?TzJMUm5XZzZNWnlSNTh1ellqbDlpMXNqNHlXelNoTWh4Qm5YTXhzbHBPVmph?=
+ =?utf-8?B?SXR1N0ZPdWRhVVJkTVQzZDV2RVVNMGVWakl0YXhJS2FsRCtUeTU2dmUwdlEy?=
+ =?utf-8?B?dGVyU3J4dXJ4RWEyYUdHUjE5Z2NoQ1pZUTAvM2VwSUp5ZnZDeEVaVzl0aDFT?=
+ =?utf-8?B?NHJZaGlKUHl3b04zekNUdW82L0k0cEQ1WmlsMUxwYzdzeXNCb3dRZElNajZX?=
+ =?utf-8?B?SnBnd0pFb2JLQjExYmphLzFKVXZ3WHBDVnlnZnBOa2ZEUURPdit0UHZSWWdN?=
+ =?utf-8?B?S1ZlWnYyRElvb1VxT3h3a1dRVWhGYVAvVnVETEI2dG5HY0NWU2c2RXN4aFJs?=
+ =?utf-8?B?VmdxelQ5NEhKbCtPS1ZyTXBCMUNFaThRTC9JS3FFc2JKaW9oM3ZXMkt1UWZt?=
+ =?utf-8?B?Q0xrREc0eGd5Zjc3L3JqOFV6eXZ0TkoyM2pTNWNLbWF0cXRZS2lEY0VUdnVU?=
+ =?utf-8?B?cW9HTmhOTmNkYkI0ekl4b1VXc3M4di84VHFLeGFUTWh3SE00UGl3K0NtOGdS?=
+ =?utf-8?B?bE5CdGtkSTVKM1gzUmpMTXVMeEJRNE9QcW5za3dnZ1ExOTR1TGtGbEs2bzZz?=
+ =?utf-8?B?bkpGSGJOWEN6ZUo3c3kwUzdyNERPQWo5RnRJaHljZXJLOUE2REFieXN3OUR5?=
+ =?utf-8?B?SDBha2ZkVDEzdjVjQjRKSS9ycXJSak4yTFJTRCtxbzRKeGlCMnNZNm9udVBk?=
+ =?utf-8?B?ZHdTS24yQTZtRGlRakJnajZuSkd3TmhTOXpjZHI1Y1VGR0x6Z2dzRUNFVWhy?=
+ =?utf-8?B?SFE2UkxINnpNUDJtZWFpVHRHd2J6ZGlpbVNtQlJqb1hSTG1XNTBsTURoNVJu?=
+ =?utf-8?B?RmtuaEZIU1ZFeDJ2T3V0bjJvSTBkd2lrNm40bmN3K2NZaXFUc3N3V0xsT2Qx?=
+ =?utf-8?B?VzcyMGxKZHhDcXlWTjBLQ0FnSVFPTjgwcUM1TUdvSm91MEF2RHQyMkRraDNQ?=
+ =?utf-8?B?aDRzUjlEbXdyNExkd09rRFVObUF6dUpDc0h0ZUFrUHQ5c1U4eEJPcGdnVVl0?=
+ =?utf-8?B?T3JKdFBDd01MbTVoUkFXaEZ6NzlwMCs2czNNUCtPdldaaFE0ZTFJeVB5ODVU?=
+ =?utf-8?B?Zlo2ay9jcHNMRUtLOVZ2dXdDMmJGazhUTzl6RlFpSnlXMFBDaTlPVURBdVEr?=
+ =?utf-8?B?Rjc5SFhjMFkrVnVuem5DaVdRTklWUnJLUmh5U0xMOWFRN3REZEdYUDVjSjdW?=
+ =?utf-8?B?MUdJVlYxZlNrUVptVFh0cXRGNEpMS1l1aUFscGxlTHlGTEZBQ2NDS3lTc2RS?=
+ =?utf-8?B?a0didUJqZ0hlTlJxN3FnN2Y1bHhXVklvZmdoSDY2VzJpcmtOV1pkNitOU2NS?=
+ =?utf-8?B?c1FFTUJiOFpwOTFDUDBSU21uY0ZLU1Z5MlVDTGRjam1JYXhjNi9vUkphMWFW?=
+ =?utf-8?B?WG05QW55STVubE13OWdIU0E0VTdBSHAwMEVqWkdjdFF5WktzSkpkZE83ajVM?=
+ =?utf-8?B?cEV1b1E3WUZXQWM5TWV0Rng0STZQS2UzS0Z6cHhFK0orWHcwUjNkQmNyVzVI?=
+ =?utf-8?B?L1VrdDY0dGJLZkdINnl5ZW9tdDhjYTltWmJsSzF6RFpGeXpkS2NmRFNzNnJr?=
+ =?utf-8?B?MlFwNU9jREpodHFXSmVYdXU5M3o0R1R6QTBDc1NIRHZuTk9OeXp1UStKMnVr?=
+ =?utf-8?Q?KOWnZasNAPxpF6Li9jWvvgjr9?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 06:35:49.2541 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61e4f33b-3921-451c-c87d-08dba3a3309c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e393fc6-1c32-41be-4587-08dba3a31e0c
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 06:35:18.5577 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D0.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5845
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W4vTBUZCQPstoYQ/H1NbGvshsZobRFT79jf1izNtxkBrOXcdOJ/awmMzSx1AN+SP9E0PvRBzErKV4MUA/ml2Ug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8917
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,373 +127,389 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
+Cc: alexander.deucher@amd.com, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ matthew.auld@intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add SMU13 fan minimum pwm OD setting support.
 
-Signed-off-by: Evan Quan <evan.quan@amd.com>
---
-v1->v2:
-  - add missing kerneldoc for the new interface(Alex)
----
- Documentation/gpu/amdgpu/thermal.rst          |  6 ++
- .../gpu/drm/amd/include/kgd_pp_interface.h    |  2 +
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 59 +++++++++++++++++++
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  2 +
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  2 +
- drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h  |  1 +
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  | 51 +++++++++++++++-
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  | 51 +++++++++++++++-
- 8 files changed, 172 insertions(+), 2 deletions(-)
+On 22/08/23 22:52, Christian König wrote:
+> Am 21.08.23 um 13:16 schrieb Christian König:
+>> Am 21.08.23 um 12:14 schrieb Arunpravin Paneer Selvam:
+>>> The way now contiguous requests are implemented such that
+>>> the size rounded up to power of 2 and the corresponding order
+>>> block picked from the freelist.
+>>>
+>>> In addition to the older method, the new method will rounddown
+>>> the size to power of 2 and the corresponding order block picked
+>>> from the freelist. And for the remaining size we traverse the
+>>> tree and try to allocate either from the freelist block's buddy
+>>> or from the peer block. If the remaining size from peer/buddy
+>>> block is not free, we pick the next freelist block and repeat
+>>> the same method.
+>>
+>> I think it's worth mentioning that Xinhui tried something similar a 
+>> few month ago, but that didn't looked like it would work. For this 
+>> here I'm more confident.
+>>
+>> Of hand the implementation looks clean to me, but Matthew or others 
+>> which have more background in how the implementation works need to 
+>> take a look as well.
+>
+> One more thing I've just noticed, not sure if Matthew already noted 
+> it: When you mention "fix" in the subject line people might try to 
+> backport it, better write "improve" and drop the "issues" at the end.
 
-diff --git a/Documentation/gpu/amdgpu/thermal.rst b/Documentation/gpu/amdgpu/thermal.rst
-index 073ab9e418b1..940f723472b8 100644
---- a/Documentation/gpu/amdgpu/thermal.rst
-+++ b/Documentation/gpu/amdgpu/thermal.rst
-@@ -94,6 +94,12 @@ fan_target_temperature
- .. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
-    :doc: fan_target_temperature
- 
-+fan_minimum_pwm
-+---------------
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+   :doc: fan_minimum_pwm
-+
- GFXOFF
- ======
- 
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index c1065136f527..528c892f7c4b 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -118,6 +118,7 @@ enum pp_clock_type {
- 	OD_ACOUSTIC_LIMIT,
- 	OD_ACOUSTIC_TARGET,
- 	OD_FAN_TARGET_TEMPERATURE,
-+	OD_FAN_MINIMUM_PWM,
- };
- 
- enum amd_pp_sensors {
-@@ -197,6 +198,7 @@ enum PP_OD_DPM_TABLE_COMMAND {
- 	PP_OD_EDIT_ACOUSTIC_LIMIT,
- 	PP_OD_EDIT_ACOUSTIC_TARGET,
- 	PP_OD_EDIT_FAN_TARGET_TEMPERATURE,
-+	PP_OD_EDIT_FAN_MINIMUM_PWM,
- };
- 
- struct pp_states_info {
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 682eef0c0eeb..fa6c4ab16ccf 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -3772,6 +3772,57 @@ static umode_t fan_target_temperature_visible(struct amdgpu_device *adev)
- 	return umode;
- }
- 
-+/**
-+ * DOC: fan_minimum_pwm
-+ *
-+ * The amdgpu driver provides a sysfs API for checking and adjusting the
-+ * minimum fan speed in PWM.
-+ *
-+ * Reading back the file shows you the current setting and the permitted
-+ * ranges if changable.
-+ *
-+ * Writing an integer to the file, change the setting accordingly.
-+ *
-+ * When you have finished the editing, write "c" (commit) to the file to commit
-+ * your changes. NOTE: this will switch the fan control to auto mode.
-+ */
-+static ssize_t fan_minimum_pwm_show(struct kobject *kobj,
-+				    struct kobj_attribute *attr,
-+				    char *buf)
-+{
-+	struct od_kobj *container = container_of(kobj, struct od_kobj, kobj);
-+	struct amdgpu_device *adev = (struct amdgpu_device *)container->priv;
-+
-+	return (ssize_t)amdgpu_retrieve_od_settings(adev, OD_FAN_MINIMUM_PWM, buf);
-+}
-+
-+static ssize_t fan_minimum_pwm_store(struct kobject *kobj,
-+				     struct kobj_attribute *attr,
-+				     const char *buf,
-+				     size_t count)
-+{
-+	struct od_kobj *container = container_of(kobj, struct od_kobj, kobj);
-+	struct amdgpu_device *adev = (struct amdgpu_device *)container->priv;
-+
-+	return (ssize_t)amdgpu_distribute_custom_od_settings(adev,
-+							     PP_OD_EDIT_FAN_MINIMUM_PWM,
-+							     buf,
-+							     count);
-+}
-+
-+static umode_t fan_minimum_pwm_visible(struct amdgpu_device *adev)
-+{
-+	umode_t umode = 0000;
-+
-+	if (adev->pm.od_feature_mask & OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE)
-+		umode |= S_IRUSR | S_IRGRP | S_IROTH;
-+
-+	if (adev->pm.od_feature_mask & OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET)
-+		umode |= S_IWUSR;
-+
-+	return umode;
-+}
-+
- static struct od_feature_set amdgpu_od_set = {
- 	.containers = {
- 		[0] = {
-@@ -3817,6 +3868,14 @@ static struct od_feature_set amdgpu_od_set = {
- 						.store = fan_target_temperature_store,
- 					},
- 				},
-+				[5] = {
-+					.name = "fan_minimum_pwm",
-+					.ops = {
-+						.is_visible = fan_minimum_pwm_visible,
-+						.show = fan_minimum_pwm_show,
-+						.store = fan_minimum_pwm_store,
-+					},
-+				},
- 			},
- 		},
- 	},
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index 80d2ac1ecb9f..342c4d8318dc 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -324,6 +324,8 @@ struct config_table_setting
- #define OD_OPS_SUPPORT_ACOUSTIC_TARGET_THRESHOLD_SET		BIT(7)
- #define OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_RETRIEVE	BIT(8)
- #define OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET	BIT(9)
-+#define OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE		BIT(10)
-+#define OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET		BIT(11)
- 
- struct amdgpu_pm {
- 	struct mutex		mutex;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 22a6527139a6..d22ed5a272ce 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2491,6 +2491,8 @@ static enum smu_clk_type smu_convert_to_smuclk(enum pp_clock_type type)
- 		clk_type = SMU_OD_ACOUSTIC_TARGET; break;
- 	case OD_FAN_TARGET_TEMPERATURE:
- 		clk_type = SMU_OD_FAN_TARGET_TEMPERATURE; break;
-+	case OD_FAN_MINIMUM_PWM:
-+		clk_type = SMU_OD_FAN_MINIMUM_PWM; break;
- 	default:
- 		clk_type = SMU_CLK_COUNT; break;
- 	}
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
-index 1a00f807fb09..5c8f30f600f8 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h
-@@ -285,6 +285,7 @@ enum smu_clk_type {
- 	SMU_OD_ACOUSTIC_LIMIT,
- 	SMU_OD_ACOUSTIC_TARGET,
- 	SMU_OD_FAN_TARGET_TEMPERATURE,
-+	SMU_OD_FAN_MINIMUM_PWM,
- 	SMU_CLK_COUNT,
- };
- 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 953620f95abc..bedd9ca3605c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -107,6 +107,7 @@
- #define PP_OD_FEATURE_FAN_ACOUSTIC_LIMIT		8
- #define PP_OD_FEATURE_FAN_ACOUSTIC_TARGET		9
- #define PP_OD_FEATURE_FAN_TARGET_TEMPERATURE		10
-+#define PP_OD_FEATURE_FAN_MINIMUM_PWM			11
- 
- #define LINK_SPEED_MAX					3
- 
-@@ -1140,6 +1141,10 @@ static void smu_v13_0_0_get_od_setting_limits(struct smu_context *smu,
- 		od_min_setting = overdrive_lowerlimits->FanTargetTemperature;
- 		od_max_setting = overdrive_upperlimits->FanTargetTemperature;
- 		break;
-+	case PP_OD_FEATURE_FAN_MINIMUM_PWM:
-+		od_min_setting = overdrive_lowerlimits->FanMinimumPwm;
-+		od_max_setting = overdrive_upperlimits->FanMinimumPwm;
-+		break;
- 	default:
- 		od_min_setting = od_max_setting = INT_MAX;
- 		break;
-@@ -1452,6 +1457,24 @@ static int smu_v13_0_0_print_clk_levels(struct smu_context *smu,
- 				      min_value, max_value);
- 		break;
- 
-+	case SMU_OD_FAN_MINIMUM_PWM:
-+		if (!smu_v13_0_0_is_od_feature_supported(smu,
-+							 PP_OD_FEATURE_FAN_CURVE_BIT))
-+			break;
-+
-+		size += sysfs_emit_at(buf, size, "FAN_MINIMUM_PWM:\n");
-+		size += sysfs_emit_at(buf, size, "%d\n",
-+					(int)od_table->OverDriveTable.FanMinimumPwm);
-+
-+		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
-+		smu_v13_0_0_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_MINIMUM_PWM,
-+						  &min_value,
-+						  &max_value);
-+		size += sysfs_emit_at(buf, size, "MINIMUM_PWM: %u %u\n",
-+				      min_value, max_value);
-+		break;
-+
- 	case SMU_OD_RANGE:
- 		if (!smu_v13_0_0_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT) &&
- 		    !smu_v13_0_0_is_od_feature_supported(smu, PP_OD_FEATURE_UCLK_BIT) &&
-@@ -1766,6 +1789,28 @@ static int smu_v13_0_0_od_edit_dpm_table(struct smu_context *smu,
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
- 		break;
- 
-+	case PP_OD_EDIT_FAN_MINIMUM_PWM:
-+		if (!smu_v13_0_0_is_od_feature_supported(smu, PP_OD_FEATURE_FAN_CURVE_BIT)) {
-+			dev_warn(adev->dev, "Fan curve setting not supported!\n");
-+			return -ENOTSUPP;
-+		}
-+
-+		smu_v13_0_0_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_MINIMUM_PWM,
-+						  &minimum,
-+						  &maximum);
-+		if (input[0] < minimum ||
-+		    input[0] > maximum) {
-+			dev_info(adev->dev, "fan minimum pwm setting(%ld) must be within [%d, %d]!\n",
-+				 input[0], minimum, maximum);
-+			return -EINVAL;
-+		}
-+
-+		od_table->OverDriveTable.FanMinimumPwm = input[0];
-+		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		break;
-+
- 	case PP_OD_RESTORE_DEFAULT_TABLE:
- 		feature_ctrlmask = od_table->OverDriveTable.FeatureCtrlMask;
- 		memcpy(od_table,
-@@ -2030,7 +2075,9 @@ static void smu_v13_0_0_set_supported_od_feature_mask(struct smu_context *smu)
- 					    OD_OPS_SUPPORT_ACOUSTIC_TARGET_THRESHOLD_RETRIEVE |
- 					    OD_OPS_SUPPORT_ACOUSTIC_TARGET_THRESHOLD_SET |
- 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_RETRIEVE |
--					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET;
-+					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET |
-+					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE |
-+					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET;
- }
- 
- static int smu_v13_0_0_set_default_od_settings(struct smu_context *smu)
-@@ -2096,6 +2143,8 @@ static int smu_v13_0_0_set_default_od_settings(struct smu_context *smu)
- 			user_od_table_bak.OverDriveTable.AcousticTargetRpmThreshold;
- 		user_od_table->OverDriveTable.FanTargetTemperature =
- 			user_od_table_bak.OverDriveTable.FanTargetTemperature;
-+		user_od_table->OverDriveTable.FanMinimumPwm =
-+			user_od_table_bak.OverDriveTable.FanMinimumPwm;
- 	}
- 
- 	smu_v13_0_0_set_supported_od_feature_mask(smu);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-index a4d48ef5aaa7..c2ca5f228dd5 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -83,6 +83,7 @@
- #define PP_OD_FEATURE_FAN_ACOUSTIC_LIMIT		8
- #define PP_OD_FEATURE_FAN_ACOUSTIC_TARGET		9
- #define PP_OD_FEATURE_FAN_TARGET_TEMPERATURE		10
-+#define PP_OD_FEATURE_FAN_MINIMUM_PWM			11
- 
- #define LINK_SPEED_MAX					3
- 
-@@ -1126,6 +1127,10 @@ static void smu_v13_0_7_get_od_setting_limits(struct smu_context *smu,
- 		od_min_setting = overdrive_lowerlimits->FanTargetTemperature;
- 		od_max_setting = overdrive_upperlimits->FanTargetTemperature;
- 		break;
-+	case PP_OD_FEATURE_FAN_MINIMUM_PWM:
-+		od_min_setting = overdrive_lowerlimits->FanMinimumPwm;
-+		od_max_setting = overdrive_upperlimits->FanMinimumPwm;
-+		break;
- 	default:
- 		od_min_setting = od_max_setting = INT_MAX;
- 		break;
-@@ -1438,6 +1443,24 @@ static int smu_v13_0_7_print_clk_levels(struct smu_context *smu,
- 				      min_value, max_value);
- 		break;
- 
-+	case SMU_OD_FAN_MINIMUM_PWM:
-+		if (!smu_v13_0_7_is_od_feature_supported(smu,
-+							 PP_OD_FEATURE_FAN_CURVE_BIT))
-+			break;
-+
-+		size += sysfs_emit_at(buf, size, "FAN_MINIMUM_PWM:\n");
-+		size += sysfs_emit_at(buf, size, "%d\n",
-+					(int)od_table->OverDriveTable.FanMinimumPwm);
-+
-+		size += sysfs_emit_at(buf, size, "%s:\n", "OD_RANGE");
-+		smu_v13_0_7_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_MINIMUM_PWM,
-+						  &min_value,
-+						  &max_value);
-+		size += sysfs_emit_at(buf, size, "MINIMUM_PWM: %u %u\n",
-+				      min_value, max_value);
-+		break;
-+
- 	case SMU_OD_RANGE:
- 		if (!smu_v13_0_7_is_od_feature_supported(smu, PP_OD_FEATURE_GFXCLK_BIT) &&
- 		    !smu_v13_0_7_is_od_feature_supported(smu, PP_OD_FEATURE_UCLK_BIT) &&
-@@ -1752,6 +1775,28 @@ static int smu_v13_0_7_od_edit_dpm_table(struct smu_context *smu,
- 		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
- 		break;
- 
-+	case PP_OD_EDIT_FAN_MINIMUM_PWM:
-+		if (!smu_v13_0_7_is_od_feature_supported(smu, PP_OD_FEATURE_FAN_CURVE_BIT)) {
-+			dev_warn(adev->dev, "Fan curve setting not supported!\n");
-+			return -ENOTSUPP;
-+		}
-+
-+		smu_v13_0_7_get_od_setting_limits(smu,
-+						  PP_OD_FEATURE_FAN_MINIMUM_PWM,
-+						  &minimum,
-+						  &maximum);
-+		if (input[0] < minimum ||
-+		    input[0] > maximum) {
-+			dev_info(adev->dev, "fan minimum pwm setting(%ld) must be within [%d, %d]!\n",
-+				 input[0], minimum, maximum);
-+			return -EINVAL;
-+		}
-+
-+		od_table->OverDriveTable.FanMinimumPwm = input[0];
-+		od_table->OverDriveTable.FanMode = FAN_MODE_AUTO;
-+		od_table->OverDriveTable.FeatureCtrlMask |= BIT(PP_OD_FEATURE_FAN_CURVE_BIT);
-+		break;
-+
- 	case PP_OD_RESTORE_DEFAULT_TABLE:
- 		feature_ctrlmask = od_table->OverDriveTable.FeatureCtrlMask;
- 		memcpy(od_table,
-@@ -2011,7 +2056,9 @@ static void smu_v13_0_7_set_supported_od_feature_mask(struct smu_context *smu)
- 					    OD_OPS_SUPPORT_ACOUSTIC_TARGET_THRESHOLD_RETRIEVE |
- 					    OD_OPS_SUPPORT_ACOUSTIC_TARGET_THRESHOLD_SET |
- 					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_RETRIEVE |
--					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET;
-+					    OD_OPS_SUPPORT_FAN_TARGET_TEMPERATURE_SET |
-+					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_RETRIEVE |
-+					    OD_OPS_SUPPORT_FAN_MINIMUM_PWM_SET;
- }
- 
- static int smu_v13_0_7_set_default_od_settings(struct smu_context *smu)
-@@ -2077,6 +2124,8 @@ static int smu_v13_0_7_set_default_od_settings(struct smu_context *smu)
- 			user_od_table_bak.OverDriveTable.AcousticTargetRpmThreshold;
- 		user_od_table->OverDriveTable.FanTargetTemperature =
- 			user_od_table_bak.OverDriveTable.FanTargetTemperature;
-+		user_od_table->OverDriveTable.FanMinimumPwm =
-+			user_od_table_bak.OverDriveTable.FanMinimumPwm;
- 	}
- 
- 	smu_v13_0_7_set_supported_od_feature_mask(smu);
--- 
-2.34.1
+I will modify in the next version.
 
+Thanks,
+Arun.
+
+>
+> Regards,
+> Christian.
+>
+>>
+>> Thanks,
+>> Christian.
+>>
+>>>
+>>> Moved contiguous/alignment size computation part and trim
+>>> function to the drm buddy manager.
+>>>
+>>> Signed-off-by: Arunpravin Paneer Selvam 
+>>> <Arunpravin.PaneerSelvam@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/drm_buddy.c | 253 
+>>> ++++++++++++++++++++++++++++++++++--
+>>>   include/drm/drm_buddy.h     |   6 +-
+>>>   2 files changed, 248 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>>> index 7098f125b54a..220f60c08a03 100644
+>>> --- a/drivers/gpu/drm/drm_buddy.c
+>>> +++ b/drivers/gpu/drm/drm_buddy.c
+>>> @@ -569,6 +569,197 @@ static int __drm_buddy_alloc_range(struct 
+>>> drm_buddy *mm,
+>>>       return __alloc_range(mm, &dfs, start, size, blocks);
+>>>   }
+>>>   +static int __alloc_contiguous_block_from_buddy(struct drm_buddy *mm,
+>>> +                           u64 size,
+>>> +                           u64 min_block_size,
+>>> +                           struct drm_buddy_block *block,
+>>> +                           struct list_head *blocks)
+>>> +{
+>>> +    struct drm_buddy_block *buddy, *parent = NULL;
+>>> +    u64 start, offset = 0;
+>>> +    LIST_HEAD(dfs);
+>>> +    int err;
+>>> +
+>>> +    if (!block)
+>>> +        return -EINVAL;
+>>> +
+>>> +    buddy = __get_buddy(block);
+>>> +    if (!buddy)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    if (drm_buddy_block_is_allocated(buddy))
+>>> +        return -ENOSPC;
+>>> +
+>>> +    parent = block->parent;
+>>> +    if (!parent)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    if (block->parent->right == block) {
+>>> +        u64 remaining;
+>>> +
+>>> +        /* Compute the leftover size for allocation */
+>>> +        remaining = max((size - drm_buddy_block_size(mm, buddy)),
+>>> +                min_block_size);
+>>> +        if (!IS_ALIGNED(remaining, min_block_size))
+>>> +            remaining = round_up(remaining, min_block_size);
+>>> +
+>>> +        /* Check if remaining size is greater than buddy block size */
+>>> +        if (drm_buddy_block_size(mm, buddy) < remaining)
+>>> +            return -ENOSPC;
+>>> +
+>>> +        offset = drm_buddy_block_size(mm, buddy) - remaining;
+>>> +    }
+>>> +
+>>> +    list_add(&parent->tmp_link, &dfs);
+>>> +    start = drm_buddy_block_offset(parent) + offset;
+>>> +
+>>> +    err = __alloc_range(mm, &dfs, start, size, blocks);
+>>> +    if (err)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int __alloc_contiguous_block_from_peer(struct drm_buddy *mm,
+>>> +                          u64 size,
+>>> +                          u64 min_block_size,
+>>> +                          struct drm_buddy_block *block,
+>>> +                          struct list_head *blocks)
+>>> +{
+>>> +    struct drm_buddy_block *first, *peer, *tmp;
+>>> +    struct drm_buddy_block *parent = NULL;
+>>> +    u64 start, offset = 0;
+>>> +    unsigned int order;
+>>> +    LIST_HEAD(dfs);
+>>> +    int err;
+>>> +
+>>> +    if (!block)
+>>> +        return -EINVAL;
+>>> +
+>>> +    order = drm_buddy_block_order(block);
+>>> +    /* Add freelist block to dfs list */
+>>> +    list_add(&block->tmp_link, &dfs);
+>>> +
+>>> +    tmp = block;
+>>> +    parent = block->parent;
+>>> +    while (parent) {
+>>> +        if (block->parent->left == block) {
+>>> +            if (parent->left != tmp) {
+>>> +                peer = parent->left;
+>>> +                break;
+>>> +            }
+>>> +        } else {
+>>> +            if (parent->right != tmp) {
+>>> +                peer = parent->right;
+>>> +                break;
+>>> +            }
+>>> +        }
+>>> +
+>>> +        tmp = parent;
+>>> +        parent = tmp->parent;
+>>> +    }
+>>> +
+>>> +    if (!parent)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    do {
+>>> +        if (drm_buddy_block_is_allocated(peer))
+>>> +            return -ENOSPC;
+>>> +        /* Exit loop if peer block order is equal to block order */
+>>> +        if (drm_buddy_block_order(peer) == order)
+>>> +            break;
+>>> +
+>>> +        if (drm_buddy_block_is_split(peer)) {
+>>> +            /* Traverse down to the block order level */
+>>> +            if (block->parent->left == block)
+>>> +                peer = peer->right;
+>>> +            else
+>>> +                peer = peer->left;
+>>> +        } else {
+>>> +            break;
+>>> +        }
+>>> +    } while (1);
+>>> +
+>>> +    if (block->parent->left == block) {
+>>> +        u64 remaining;
+>>> +
+>>> +        /* Compute the leftover size for allocation */
+>>> +        remaining = max((size - drm_buddy_block_size(mm, block)),
+>>> +                min_block_size);
+>>> +        if (!IS_ALIGNED(remaining, min_block_size))
+>>> +            remaining = round_up(remaining, min_block_size);
+>>> +
+>>> +        /* Check if remaining size is greater than peer block size */
+>>> +        if (drm_buddy_block_size(mm, peer) < remaining)
+>>> +            return -ENOSPC;
+>>> +
+>>> +        offset = drm_buddy_block_size(mm, peer) - remaining;
+>>> +        /* Add left peer block to dfs list */
+>>> +        list_add(&peer->tmp_link, &dfs);
+>>> +    } else {
+>>> +        /* Add right peer block to dfs list */
+>>> +        list_add_tail(&peer->tmp_link, &dfs);
+>>> +    }
+>>> +
+>>> +    first = list_first_entry_or_null(&dfs,
+>>> +                     struct drm_buddy_block,
+>>> +                     tmp_link);
+>>> +    if (!first)
+>>> +        return -EINVAL;
+>>> +
+>>> +    start = drm_buddy_block_offset(first) + offset;
+>>> +    err = __alloc_range(mm, &dfs, start, size, blocks);
+>>> +    if (err)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int __drm_buddy_alloc_contiguous_blocks(struct drm_buddy *mm,
+>>> +                           u64 size,
+>>> +                           u64 min_block_size,
+>>> +                           struct list_head *blocks)
+>>> +{
+>>> +    struct drm_buddy_block *block;
+>>> +    struct list_head *list;
+>>> +    unsigned long pages;
+>>> +    unsigned int order;
+>>> +    u64 modify_size;
+>>> +    int err;
+>>> +
+>>> +    modify_size = rounddown_pow_of_two(size);
+>>> +    pages = modify_size >> ilog2(mm->chunk_size);
+>>> +    order = fls(pages) - 1;
+>>> +    if (order == 0)
+>>> +        return -ENOSPC;
+>>> +
+>>> +    list = &mm->free_list[order];
+>>> +    if (list_empty(list))
+>>> +        return -ENOSPC;
+>>> +
+>>> +    list_for_each_entry_reverse(block, list, link) {
+>>> +        /* Allocate contiguous blocks from the buddy */
+>>> +        err = __alloc_contiguous_block_from_buddy(mm,
+>>> +                              size,
+>>> +                              min_block_size,
+>>> +                              block,
+>>> +                              blocks);
+>>> +        if (!err)
+>>> +            return 0;
+>>> +
+>>> +        /* Allocate contiguous blocks from tree traversal method */
+>>> +        err = __alloc_contiguous_block_from_peer(mm,
+>>> +                             size,
+>>> +                             min_block_size,
+>>> +                             block,
+>>> +                             blocks);
+>>> +        if (!err)
+>>> +            return 0;
+>>> +    }
+>>> +
+>>> +    return -ENOSPC;
+>>> +}
+>>> +
+>>>   /**
+>>>    * drm_buddy_block_trim - free unused pages
+>>>    *
+>>> @@ -645,7 +836,7 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
+>>>    * @start: start of the allowed range for this block
+>>>    * @end: end of the allowed range for this block
+>>>    * @size: size of the allocation
+>>> - * @min_page_size: alignment of the allocation
+>>> + * @min_block_size: alignment of the allocation
+>>>    * @blocks: output list head to add allocated blocks
+>>>    * @flags: DRM_BUDDY_*_ALLOCATION flags
+>>>    *
+>>> @@ -660,23 +851,24 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
+>>>    */
+>>>   int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>                  u64 start, u64 end, u64 size,
+>>> -               u64 min_page_size,
+>>> +               u64 min_block_size,
+>>>                  struct list_head *blocks,
+>>>                  unsigned long flags)
+>>>   {
+>>>       struct drm_buddy_block *block = NULL;
+>>> +    u64 original_size, original_min_size;
+>>>       unsigned int min_order, order;
+>>> -    unsigned long pages;
+>>>       LIST_HEAD(allocated);
+>>> +    unsigned long pages;
+>>>       int err;
+>>>         if (size < mm->chunk_size)
+>>>           return -EINVAL;
+>>>   -    if (min_page_size < mm->chunk_size)
+>>> +    if (min_block_size < mm->chunk_size)
+>>>           return -EINVAL;
+>>>   -    if (!is_power_of_2(min_page_size))
+>>> +    if (!is_power_of_2(min_block_size))
+>>>           return -EINVAL;
+>>>         if (!IS_ALIGNED(start | end | size, mm->chunk_size))
+>>> @@ -692,12 +884,21 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>       if (start + size == end)
+>>>           return __drm_buddy_alloc_range(mm, start, size, blocks);
+>>>   -    if (!IS_ALIGNED(size, min_page_size))
+>>> -        return -EINVAL;
+>>> +    original_size = size;
+>>> +    original_min_size = min_block_size;
+>>> +
+>>> +    /* Roundup the size to power of 2 */
+>>> +    if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
+>>> +        size = roundup_pow_of_two(size);
+>>> +        min_block_size = size;
+>>> +    /* Align size value to min_block_size */
+>>> +    } else if (!IS_ALIGNED(size, min_block_size)) {
+>>> +        size = round_up(size, min_block_size);
+>>> +    }
+>>>         pages = size >> ilog2(mm->chunk_size);
+>>>       order = fls(pages) - 1;
+>>> -    min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>>> +    min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+>>>         do {
+>>>           order = min(order, (unsigned int)fls(pages) - 1);
+>>> @@ -716,6 +917,17 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>                   break;
+>>>                 if (order-- == min_order) {
+>>> +                if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION &&
+>>> +                    !(flags & DRM_BUDDY_RANGE_ALLOCATION))
+>>> +                    /*
+>>> +                     * Try contiguous block allocation through
+>>> +                     * tree traversal method
+>>> +                     */
+>>> +                    return __drm_buddy_alloc_contiguous_blocks(mm,
+>>> +                                           original_size,
+>>> +                                           original_min_size,
+>>> +                                           blocks);
+>>> +
+>>>                   err = -ENOSPC;
+>>>                   goto err_free;
+>>>               }
+>>> @@ -732,6 +944,31 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>>               break;
+>>>       } while (1);
+>>>   +    /* Trim the allocated block to the required size */
+>>> +    if (original_size != size) {
+>>> +        struct list_head *trim_list;
+>>> +        LIST_HEAD(temp);
+>>> +        u64 trim_size;
+>>> +
+>>> +        trim_list = &allocated;
+>>> +        trim_size = original_size;
+>>> +
+>>> +        if (!list_is_singular(&allocated)) {
+>>> +            block = list_last_entry(&allocated, typeof(*block), link);
+>>> +            list_move(&block->link, &temp);
+>>> +            trim_list = &temp;
+>>> +            trim_size = drm_buddy_block_size(mm, block) -
+>>> +                (size - original_size);
+>>> +        }
+>>> +
+>>> +        drm_buddy_block_trim(mm,
+>>> +                     trim_size,
+>>> +                     trim_list);
+>>> +
+>>> +        if (!list_empty(&temp))
+>>> +            list_splice_tail(trim_list, &allocated);
+>>> +    }
+>>> +
+>>>       list_splice_tail(&allocated, blocks);
+>>>       return 0;
+>>>   diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+>>> index 572077ff8ae7..a5b39fc01003 100644
+>>> --- a/include/drm/drm_buddy.h
+>>> +++ b/include/drm/drm_buddy.h
+>>> @@ -22,8 +22,9 @@
+>>>       start__ >= max__ || size__ > max__ - start__; \
+>>>   })
+>>>   -#define DRM_BUDDY_RANGE_ALLOCATION (1 << 0)
+>>> -#define DRM_BUDDY_TOPDOWN_ALLOCATION (1 << 1)
+>>> +#define DRM_BUDDY_RANGE_ALLOCATION        BIT(0)
+>>> +#define DRM_BUDDY_TOPDOWN_ALLOCATION        BIT(1)
+>>> +#define DRM_BUDDY_CONTIGUOUS_ALLOCATION        BIT(2)
+>>>     struct drm_buddy_block {
+>>>   #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+>>> @@ -155,5 +156,4 @@ void drm_buddy_print(struct drm_buddy *mm, 
+>>> struct drm_printer *p);
+>>>   void drm_buddy_block_print(struct drm_buddy *mm,
+>>>                  struct drm_buddy_block *block,
+>>>                  struct drm_printer *p);
+>>> -
+>>>   #endif
+>>
+>
