@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DFE785C9A
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 17:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2119785CA2
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Aug 2023 17:51:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD9810E449;
-	Wed, 23 Aug 2023 15:51:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C179110E455;
+	Wed, 23 Aug 2023 15:51:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95C8910E444
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 15:51:20 +0000 (UTC)
+ (mail-mw2nam10on2069.outbound.protection.outlook.com [40.107.94.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D2BA10E43B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 15:51:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZqSnVxBmUC+VQqnK4LupWc3Jd4zFPVQ7CHR6NlP4VyTuqub7fvdAA+lY12fM2Aa7Kvz6BBxNM5EM4K3KlLJ7ht//V4XIojqUjUDXZVEZYUR605AZuMWwN8ZKpk9hOHGyFJm8LqevKu7fFQJoxNIZ5JenjpzG2vMpmGFyH2bOA6BrzHJNPYnb4QIV2qJ5WechVX+h1txMzVA35iUqmG8EqQtf0ZtjfZkg/nIuoZ++yWhqxLS91VnhsYvFb50nrYz+dO+zeSXhXcSo3g2tFxlh+E2d5e8s7V+R/8uADxQKtfVd5++vttu1TeXzmXo7vkr0y6KFshPjvYEVUSpO8LfFkQ==
+ b=OQ7zx81syJX8xd6MKiO1OGav++o1I2DjMZbERx1r6EFkj4NSDDU1ABF9PfsRX8NCtPDjPemeVQbfFY586p0Gk0suHjba9PGGHx5VYzGZDEkaN++xnCs4l/FZ9JJ0HeCLxrMhH+dCB7R/l54FNSOFwzGq+IJhXPxhPiky+VSsnKWFjm2oV8Y2o1MsJ0mVRRCX7ypaGDbqO6XflrGbxb6MzVNdSWc6ZncJ4bUbXm9pavDcVsl7H7sEhSsbDbYNJdd2X6B7OShMYtFcX0tJP3JL8JPwsw2cUgtoAou9GVqHw5tVkbvUGcri5pbFMj3iHG3OT4YslXn2NO3DJEkdtsK4wA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nmh531Iuy+/e75ykQiA+UWrLhW0R7pthM8urGtKEsI0=;
- b=g0qNxNWmxrCJW+rMK19U3M1kOUae7FuUMO6P+cKpfWVxej1125vuC7Ijcd1NSUk+T1ajckXgT+ruab2+vOsjGng/Rz76tqBO0Y6dP6aEaWEIxhSX1nkjYyGF+ZX3bhkGb5aJZW+aDrR8CWIFsoyEGh6jVi0Has3H2mckSKMmzWf32A6I5ANjwrfqPte+GzfVEkEBP2UaXN6UvE/t5EVuY8rlrBHq/WCW33wWlIoTkdy7WCujEcdjmCbd+vchELL4cKtUBSxCASJ10cJZveScu5QrUtJW5EeRzNDJIWizXK3q+6cNkSSWKTKYRSwblalCwbFfQfCBCBRM6uvn/R0Cog==
+ bh=LX8Yyg2Ke8/uh2mUtWOlKL5C5gGaPRhFhywlSPFeQ2c=;
+ b=ZU7ULhuAimeBG0Uo/tI9fSz4pdtBuxVPt0x0mDaoJcOaWcz4ONjMRZyaZofysoNbL6ojtE5qvvOAeNMoEgc/mJS1Xow8ga4qABvOB8Gx/TGOz25IRxAlhj1aii0TGo7kvs+WKgmUEz8sg4Qp09mRcJ6+uE0i6TQ93ZWD24F0EnycXQD8dYzfXv2vDhEDMFdKDwr5mZWoEM0zvpvG2NVcD2JGu+iy6mvxmpGIC7DSAROicvixWQGfHls14SXJQ/4AXJQD8MoQZbKSE6DX87sQTUrKumFFk6Jb0LluvacgiHeaWiB7BNOKSqs7cTQH8/W4r+uGAXB2NXdT+OycE3rqVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nmh531Iuy+/e75ykQiA+UWrLhW0R7pthM8urGtKEsI0=;
- b=mEPDpVzm3HcWSMfc4ojV+WjD+NoR6cpHANW116TP0fFocVUuljPcOheXySckEnuSsuCB9hV6dXZ++5aHruJsjvGkYf/In5kxy9WcOe30LmKZKwOj9QwIQlvJPXA2NuHNN6L+yc81+IoiQrUmCEhnwdCMIDnl4rOXoryNZ385iDY=
-Received: from CY5PR18CA0046.namprd18.prod.outlook.com (2603:10b6:930:13::8)
- by DM8PR12MB5464.namprd12.prod.outlook.com (2603:10b6:8:3d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
- 2023 15:51:18 +0000
+ bh=LX8Yyg2Ke8/uh2mUtWOlKL5C5gGaPRhFhywlSPFeQ2c=;
+ b=jdRCqTcVowPTfopT4Vh0R9moDr7Lw1u20WcT6k30eTvqsiq67ESEgzIUHrDdj/PAoyEpMf/hPfbJE77insUCfyVNrFVQQIgOdYDywN5t+6qmPeYOm/1hu8kdsObZNftw1UtlTB+2UN8w6Z03nSOBlJNd89VvHopIWfyuMIgWYuI=
+Received: from CY5PR18CA0036.namprd18.prod.outlook.com (2603:10b6:930:13::21)
+ by PH7PR12MB8178.namprd12.prod.outlook.com (2603:10b6:510:2b3::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Wed, 23 Aug
+ 2023 15:51:19 +0000
 Received: from CY4PEPF0000EE32.namprd05.prod.outlook.com
- (2603:10b6:930:13:cafe::7a) by CY5PR18CA0046.outlook.office365.com
- (2603:10b6:930:13::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:930:13:cafe::20) by CY5PR18CA0036.outlook.office365.com
+ (2603:10b6:930:13::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26 via Frontend
- Transport; Wed, 23 Aug 2023 15:51:18 +0000
+ Transport; Wed, 23 Aug 2023 15:51:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE32.mail.protection.outlook.com (10.167.242.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6699.15 via Frontend Transport; Wed, 23 Aug 2023 15:51:18 +0000
+ 15.20.6699.15 via Frontend Transport; Wed, 23 Aug 2023 15:51:19 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 23 Aug
- 2023 10:51:15 -0500
+ 2023 10:51:16 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/35] drm/amd/display: Add DCN35 DWB
-Date: Wed, 23 Aug 2023 11:50:33 -0400
-Message-ID: <20230823155048.2526343-20-alexander.deucher@amd.com>
+Subject: [PATCH 21/35] drm/amd/display: Add DCN35 HUBP
+Date: Wed, 23 Aug 2023 11:50:34 -0400
+Message-ID: <20230823155048.2526343-21-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230823155048.2526343-1-alexander.deucher@amd.com>
 References: <20230823155048.2526343-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|DM8PR12MB5464:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4068801b-f828-467f-f2ba-08dba3f0ca69
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|PH7PR12MB8178:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca228d3b-e31b-4e82-7968-08dba3f0cab1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k99hFnmkELBdUiAPWBOaZui9pSzY/gN7xJCjwPXEDbsCFrYWDqC93REP7f6PzUyfWboe4d4o4olp6bDR+RRZN2UvDVAkCtB3qhKs9sDA67Z5CyXxtQ8bIX1T9J1x2SUmGWlS3BhiufIKDLRhq6VjS/PTaPANucnhk6x9HhSZ74VqIl+jlWtL0ed+eOO6jU4HRy0I7Wge6Np6xOTnMdNajfA9Au9SOI3SZfJNSWDAlp3bkvDkwq7xuK3HoMnIDS25WQAB7TSLfZHnDcr7bwyXlZasj7HEy95p7dBA18IAuTQ3uRdCKl8yZEm08RvMacYx59DHT+WXDj1TgJ0oXf5fARb1kTzNVGujhZ3myMY4gHwS1LAcDT6tqUh4k+eqKki7SwUqFn0plv4uF9v8V8MePhS7kjkx+qRJc2Hbjjh0udbjwk2QYYfQ3usXfJDEaDmEhpSttlh9lyzwYF8J4ovwEwuevFntuJiP2s8HpQRLRKtxcu4m/Cmoniou+XjK+p6fcS28yfxpu2y1nD3byttpipZm3rLevMvEqoVgi8EiSglw7eEyxahJsVtGksf5HqrBSJLq1pTf08guohnf8qYu7pU2iD6LXC0bm+5LLHudfeWZqZ7VAnj9OBRon8VKdhtw3Gj6wa+5a4nmqzghxhAMHim2ddTcu7K+3xnJLRgl4C0cZYlinzYvR3VFl0oCGU1phw52J9tfT9dmXUWmsB/3Lbpet/A6zaDyoRvvwmNDCsaGz+GBdwhxr6jaTKFawhzKrvwm/2I2oC4qhGDJU8OyjQ==
+X-Microsoft-Antispam-Message-Info: +kzRSSXRt/Ii9DrqzwY615tDmA4iwvTwmrskxKSaeaGekY4JQDIQ4t+gLKAPoGas/wsY4AsmrM3M6HEAxQSXMZKkDX4+7sEsjlHjq7i3DodEoqwVG1rTtk1sZbYJXUTkc0YJSGKSQYYwVK6L20t96alnTaRednKGx6g4if13ScpRv5PKDrlQcAE1bKQFBXNoH+8qwWthJjFIicx78apodO1RNgITzeaU7yFsoxPizohRiN8Kx7hQ65ArLPMRjk1ELsRzZypP/uSUGfJdArfU/WEBaEviwY1K1q9MafbKPKRhUAq3k1bar54+ZRQpjhPIfO33kGKd4GHPyifbkjUI9ffdVKHrdbv3nhArFMvWlnBBvRq25ImhHN0ILukxalg89hxfCxvcvfmlezw46yvMR5Hg7T5PPLp0VAe3aztaJ7eW+0vtASq6zZOVUhScAH3ineoqOdr3oQJ9gKnX/T/EyqbZ5ShR96Ric5fsTwr+AlaKoypwiTONLp8SONFJAQpMlCxpK9ZWXPBgWFP7sfQQqTaPW1nG7bkxueHYqzgsRXADPxi3hqbLQAr7zoOQA706G7/tDprF36GKzWPG0aRMRwWmHT/VQvp8MerEIYKpAxdU+lTeqzXFTwqL6g4CbYnMy6F9Rn9iYGHyakA44nNqeRdqjuKaqsoRdU7genr++t8+y0L7p94a44VzzVaieTV5jqE+R62njZJTKnwXW6/0E7uIeocMWF1hsj2avE8to16T2MwSLiAsBEKPmVMitj36y30j4HiqDmM6907S6BFiOQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(396003)(376002)(346002)(186009)(451199024)(1800799009)(82310400011)(40470700004)(46966006)(36840700001)(2616005)(7696005)(316002)(6916009)(4326008)(8936002)(8676002)(40480700001)(70586007)(54906003)(70206006)(41300700001)(336012)(426003)(16526019)(26005)(1076003)(5660300002)(6666004)(478600001)(83380400001)(40460700003)(47076005)(36860700001)(66899024)(36756003)(86362001)(2906002)(82740400003)(356005)(81166007)(36900700001);
+ SFS:(13230031)(4636009)(376002)(396003)(136003)(346002)(39860400002)(186009)(1800799009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(54906003)(6916009)(316002)(70586007)(70206006)(66899024)(8676002)(8936002)(2616005)(4326008)(36756003)(40460700003)(41300700001)(1076003)(356005)(82740400003)(81166007)(478600001)(6666004)(40480700001)(83380400001)(2906002)(47076005)(7696005)(36860700001)(86362001)(426003)(336012)(5660300002)(26005)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 15:51:18.5382 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4068801b-f828-467f-f2ba-08dba3f0ca69
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 15:51:19.0070 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca228d3b-e31b-4e82-7968-08dba3f0cab1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE32.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5464
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8178
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,24 +107,24 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 
 [Why & How]
-Add DWB handling for DCN35.
+Add HUBP handling for DCN35.
 
 Signed-off-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 Acked-by: Harry Wentland <Harry.Wentland@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dwb.c  | 58 ++++++++++++++++++
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dwb.h  | 59 +++++++++++++++++++
- 2 files changed, 117 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.h
+ .../gpu/drm/amd/display/dc/dcn35/dcn35_hubp.c | 104 ++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dcn35/dcn35_hubp.h |  59 ++++++++++
+ 2 files changed, 163 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.c
 new file mode 100644
-index 000000000000..b23a809999ed
+index 000000000000..2ae7b151b56c
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.c
-@@ -0,0 +1,58 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.c
+@@ -0,0 +1,104 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright 2023 Advanced Micro Devices, Inc.
@@ -149,45 +149,91 @@ index 000000000000..b23a809999ed
 + *
 + */
 +
++#include "dcn35_hubp.h"
 +#include "reg_helper.h"
-+#include "dcn35_dwb.h"
 +
 +#define REG(reg)\
-+	dwbc30->dwbc_regs->reg
++	hubp2->hubp_regs->reg
 +
 +#define CTX \
-+	dwbc30->base.ctx
++	hubp2->base.ctx
 +
 +#undef FN
-+#define FN(reg_name, field_name)                                             \
-+	((const struct dcn35_dwbc_shift *)(dwbc30->dwbc_shift))->field_name, \
-+		((const struct dcn35_dwbc_mask *)(dwbc30->dwbc_mask))        \
-+			->field_name
++#define FN(reg_name, field_name)                                           \
++	((const struct dcn35_hubp2_shift *)hubp2->hubp_shift)->field_name, \
++		((const struct dcn35_hubp2_mask *)hubp2->hubp_mask)->field_name
 +
-+#define DC_LOGGER \
-+	dwbc30->base.ctx->logger
++void hubp35_set_fgcg(struct hubp *hubp, bool enable)
++{
++	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
 +
-+void dcn35_dwbc_construct(struct dcn30_dwbc *dwbc30,
++	REG_UPDATE(HUBP_CLK_CNTL, HUBP_FGCG_REP_DIS, !enable);
++}
++
++static void hubp35_init(struct hubp *hubp)
++{
++	hubp3_init(hubp);
++
++	hubp35_set_fgcg(hubp, hubp->ctx->dc->debug.enable_fine_grain_clock_gating.bits.dchub);
++
++	/*do nothing for now for dcn3.5 or later*/
++}
++struct hubp_funcs dcn35_hubp_funcs = {
++	.hubp_enable_tripleBuffer = hubp2_enable_triplebuffer,
++	.hubp_is_triplebuffer_enabled = hubp2_is_triplebuffer_enabled,
++	.hubp_program_surface_flip_and_addr = hubp3_program_surface_flip_and_addr,
++	.hubp_program_surface_config = hubp3_program_surface_config,
++	.hubp_is_flip_pending = hubp2_is_flip_pending,
++	.hubp_setup = hubp3_setup,
++	.hubp_setup_interdependent = hubp2_setup_interdependent,
++	.hubp_set_vm_system_aperture_settings = hubp3_set_vm_system_aperture_settings,
++	.set_blank = hubp2_set_blank,
++	.dcc_control = hubp3_dcc_control,
++	.mem_program_viewport = min_set_viewport,
++	.set_cursor_attributes	= hubp2_cursor_set_attributes,
++	.set_cursor_position	= hubp2_cursor_set_position,
++	.hubp_clk_cntl = hubp2_clk_cntl,
++	.hubp_vtg_sel = hubp2_vtg_sel,
++	.dmdata_set_attributes = hubp3_dmdata_set_attributes,
++	.dmdata_load = hubp2_dmdata_load,
++	.dmdata_status_done = hubp2_dmdata_status_done,
++	.hubp_read_state = hubp3_read_state,
++	.hubp_clear_underflow = hubp2_clear_underflow,
++	.hubp_set_flip_control_surface_gsl = hubp2_set_flip_control_surface_gsl,
++	.hubp_init = hubp35_init,
++	.set_unbounded_requesting = hubp31_set_unbounded_requesting,
++	.hubp_soft_reset = hubp31_soft_reset,
++	.hubp_set_flip_int = hubp1_set_flip_int,
++	.hubp_in_blank = hubp1_in_blank,
++	.program_extended_blank = hubp31_program_extended_blank_value,
++};
++
++bool hubp35_construct(
++	struct dcn20_hubp *hubp2,
 +	struct dc_context *ctx,
-+	const struct dcn30_dwbc_registers *dwbc_regs,
-+	const struct dcn35_dwbc_shift *dwbc_shift,
-+	const struct dcn35_dwbc_mask *dwbc_mask,
-+	int inst)
++	uint32_t inst,
++	const struct dcn_hubp2_registers *hubp_regs,
++	const struct dcn35_hubp2_shift *hubp_shift,
++	const struct dcn35_hubp2_mask *hubp_mask)
 +{
-+	dcn30_dwbc_construct(dwbc30, ctx, dwbc_regs,
-+			     (const struct dcn30_dwbc_shift *)dwbc_shift,
-+			     (const struct dcn30_dwbc_mask *)dwbc_mask, inst);
++	hubp2->base.funcs = &dcn35_hubp_funcs;
++	hubp2->base.ctx = ctx;
++	hubp2->hubp_regs = hubp_regs;
++	hubp2->hubp_shift = (const struct dcn_hubp2_shift *)hubp_shift;
++	hubp2->hubp_mask = (const struct dcn_hubp2_mask *)hubp_mask;
++	hubp2->base.inst = inst;
++	hubp2->base.opp_id = OPP_ID_INVALID;
++	hubp2->base.mpcc_id = 0xf;
++
++	return true;
 +}
 +
-+void dcn35_dwbc_set_fgcg(struct dcn30_dwbc *dwbc30, bool enable)
-+{
-+	REG_UPDATE(DWB_ENABLE_CLK_CTRL, DWB_FGCG_REP_DIS, !enable);
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.h b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.h
++
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.h b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.h
 new file mode 100644
-index 000000000000..877f93c8168e
+index 000000000000..3addd66ed01b
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dwb.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubp.h
 @@ -0,0 +1,59 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
@@ -213,41 +259,41 @@ index 000000000000..877f93c8168e
 + *
 + */
 +
-+#ifndef __DCN35_DWB_H
-+#define __DCN35_DWB_H
++#ifndef __DC_HUBP_DCN35_H__
++#define __DC_HUBP_DCN35_H__
 +
-+#include "resource.h"
-+#include "dwb.h"
-+#include "dcn30/dcn30_dwb.h"
++#include "dcn31/dcn31_hubp.h"
 +
-+#define DWBC_COMMON_MASK_SH_LIST_DCN35(mask_sh) \
-+	DWBC_COMMON_MASK_SH_LIST_DCN30(mask_sh), \
-+	SF_DWB2(DWB_ENABLE_CLK_CTRL, DWB_TOP, 0, DWB_FGCG_REP_DIS, mask_sh)
++#define HUBP_MASK_SH_LIST_DCN35(mask_sh)\
++	HUBP_MASK_SH_LIST_DCN31(mask_sh),\
++	HUBP_SF(HUBP0_HUBP_CLK_CNTL, HUBP_FGCG_REP_DIS, mask_sh)
 +
-+#define DWBC_REG_FIELD_LIST_DCN3_5(type)          \
-+	struct {                                  \
-+		DWBC_REG_FIELD_LIST_DCN3_0(type); \
-+		type DWB_FGCG_REP_DIS;            \
++#define DCN35_HUBP_REG_FIELD_VARIABLE_LIST(type)          \
++	struct {                                          \
++		DCN32_HUBP_REG_FIELD_VARIABLE_LIST(type); \
++		type HUBP_FGCG_REP_DIS;                   \
 +	}
 +
-+struct dcn35_dwbc_mask {
-+	DWBC_REG_FIELD_LIST_DCN3_5(uint32_t);
++struct dcn35_hubp2_shift {
++	DCN35_HUBP_REG_FIELD_VARIABLE_LIST(uint8_t);
 +};
 +
-+struct dcn35_dwbc_shift {
-+	DWBC_REG_FIELD_LIST_DCN3_5(uint8_t);
++struct dcn35_hubp2_mask {
++	DCN35_HUBP_REG_FIELD_VARIABLE_LIST(uint32_t);
 +};
 +
-+void dcn35_dwbc_construct(struct dcn30_dwbc *dwbc30,
++
++bool hubp35_construct(
++	struct dcn20_hubp *hubp2,
 +	struct dc_context *ctx,
-+	const struct dcn30_dwbc_registers *dwbc_regs,
-+	const struct dcn35_dwbc_shift *dwbc_shift,
-+	const struct dcn35_dwbc_mask *dwbc_mask,
-+	int inst);
++	uint32_t inst,
++	const struct dcn_hubp2_registers *hubp_regs,
++	const struct dcn35_hubp2_shift *hubp_shift,
++	const struct dcn35_hubp2_mask *hubp_mask);
 +
-+void dcn35_dwbc_set_fgcg(struct dcn30_dwbc *dwbc30, bool enable);
++void hubp35_set_fgcg(struct hubp *hubp, bool enable);
 +
-+#endif
++#endif /* __DC_HUBP_DCN35_H__ */
 -- 
 2.41.0
 
