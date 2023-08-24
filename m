@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F662787AC5
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Aug 2023 23:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E692B787ABF
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Aug 2023 23:59:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0564D10E5DE;
-	Thu, 24 Aug 2023 21:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 221C110E5E3;
+	Thu, 24 Aug 2023 21:58:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2062b.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEA4A10E5E2
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 21:58:58 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2061b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::61b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4999C10E5DE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 21:58:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X8G9f7jsdHVqxi3wbsXemHlL55HE+7mgFgoe8OsyfKrArP/aQUjxyGvh75bFdzMbqXGSok38b0VuQcbVHhU5/KIYtc7dybRzhXxsaA55aJM3Qgdnhp8ucPIKzfewkja75on5JHmRStckWbmk3z3YrC0YFxSLkKmmwQUvkFNcw7dpwShXyQf4STUE4waTuUU7bbiCCxWiqxSwMlBoWI4zHAAZ4B1JC39NbupQ0RxnibHHhcCV7xNgLBbKddAr55b0odzAsLYz4QQGznq7c6Ly4hSTMxp+U/Y2vo6FXpVRcx+3V5oiGCNPR0jte6TIE8pLtf2jN+LjuSp9PnxKcpnkSw==
+ b=nhE+FNrhyKvePBK69UA3YX7vFEf8Y6dfGdV/UcAET71BJdd3hUnhGqsNjJN8uVjsScmTYtwrSj+1oXQApGYGEoP/QQWP8sRoMpjZYA1+00WaHBDtKb6kYr8rBoB+ohamURLsY8JdFlPdDta2a6S5kODRWU0wmNuDjxjZ4nDexw+eg/tQsjKXTsEkZ/Z8MCthXI5QVSdR6sX44KFAw4r2qXWi4EG09TWDKprJncL90hNsOtcG+fSBBhcP0C0QS40rdiszBFrMsp+dxInNtjrFQKXAPo0DpCTmb3qh3R5x1ifizjoGPJA34RM+YtjIg0MmyR+DjE564e82D8GrplMR6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aI0ExQ3sPvH4eDURlc+tnOT9H25UkoFWyR95YoVf5JU=;
- b=NIk4W/sQQIPhBj8ZYqltk2qTuDRKm93Z0dnGOEMSi6BO5nCDnN+aiO14tc5icgpUHNfxe3uAjb+x/7zHRdMbqrGCVvZw3i0uFj63LyJ9p5ViRwdMp49BKrNIVzpW9S/946XrAYKadS0al+PiynIXEp7tuSmDw+uk5kzEQ3mO/2myMV/cs+x8OW3wLSlRlSqv/lgogoCTz6e9X19cVHbT3L+S57xV1Yv1JnCmu2CgKVJrYRIq3iSfwcI8gzdyjxrTBnUlU/ABTNEODXhh1RAPrZZQHNjeTiwWyUU/Zg+4XMOogDvR3M9R6pdcsXFCmtfRYrtWGLC4vR9sKhNP6e29MA==
+ bh=YQJaMj6tLjOWWN/vOEodIFpgfvs9jmiPX3RoFo6O10o=;
+ b=bwylNrWndwq+XMDWlcSGOPEfiK0+PDvqEg1KO3rmUU/F2KgHkmU+e0IFHr21C5pVYwtmr7Q56SVOzr9cjqEgS4FRUNEmsZvhqfgQqXhUp8tKqm8imIOhtrncF1stKVN279w+UuPHO1d+JjtNI/kCf2wY5Ur8/57man6EcXpVH/TyCuQxD/YayZmbI1BhHtIPUSCqpXM6gi/NhsF7/FCzZAMGPgPaaj8VYDn8Z4l8fCFdzOtba0mLnfe6poIm6/IfvC2ZzmvwlU6Lb+hZgBVkhnVJKdLQbG6u2soJi7DAhLoQa3je6QTB8vqlP+DMALLBcTHR7khnzjacSQC+UaV2Aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aI0ExQ3sPvH4eDURlc+tnOT9H25UkoFWyR95YoVf5JU=;
- b=MYRBaWadip02A4wrbrq6k9N0HtFB0SyDTxKl6qjPKhOUSa8nRtGdch8mOiz6y5x4RALaiozk4yhZBH8TBxdEofudBfuukGPr4w9+f5tQ61y7ZOn+gB3iMOCaQplQ91frLhTKw2QD5BxKtJnYkANf/mszCV783rycw/Oa0wFEyio=
+ bh=YQJaMj6tLjOWWN/vOEodIFpgfvs9jmiPX3RoFo6O10o=;
+ b=pbUEBTh3zkqQ83Ikfyg4blQk7UoqzQiE+NOw0TLnXLrG9w2oStx1XutDa55J62C+h3xdCBe5VlLxW0ON94f82s+ZWsPUMDCLZ32MuxAHObhT+rFOXLX5bKyZjJN/cA7m5D52RzwsETjW+FHNfRjH5ghjArFLXFeroX7u1d0/3jg=
 Received: from DS0PR17CA0013.namprd17.prod.outlook.com (2603:10b6:8:191::11)
- by SJ1PR12MB6050.namprd12.prod.outlook.com (2603:10b6:a03:48b::17) with
+ by DS0PR12MB7677.namprd12.prod.outlook.com (2603:10b6:8:136::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Thu, 24 Aug
- 2023 21:58:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
+ 2023 21:58:55 +0000
 Received: from CY4PEPF0000EE37.namprd05.prod.outlook.com
- (2603:10b6:8:191:cafe::a1) by DS0PR17CA0013.outlook.office365.com
+ (2603:10b6:8:191:cafe::e5) by DS0PR17CA0013.outlook.office365.com
  (2603:10b6:8:191::11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27 via Frontend
- Transport; Thu, 24 Aug 2023 21:58:54 +0000
+ Transport; Thu, 24 Aug 2023 21:58:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,9 +55,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 16:58:53 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/14] drm/amdgpu: add selftest framework for UMSCH
-Date: Thu, 24 Aug 2023 17:58:29 -0400
-Message-ID: <20230824215835.2740115-9-alexander.deucher@amd.com>
+Subject: [PATCH 09/14] drm/amdgpu: add VPE queue submission test
+Date: Thu, 24 Aug 2023 17:58:30 -0400
+Message-ID: <20230824215835.2740115-10-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230824215835.2740115-1-alexander.deucher@amd.com>
 References: <20230824215835.2740115-1-alexander.deucher@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|SJ1PR12MB6050:EE_
-X-MS-Office365-Filtering-Correlation-Id: 715b7f96-cd44-4027-21a1-08dba4ed4f18
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|DS0PR12MB7677:EE_
+X-MS-Office365-Filtering-Correlation-Id: 298ea459-7b62-400a-5895-08dba4ed4f70
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: m8rQBciC4Pq/vF8QlIHrMkljknvMiGfgS4B6vSu2D8RWvf703RxSpP0ag06CFYfFjYu0LZesBzOT5huKvN2FWb8UY0T7cx4NvwNfTqRcT7mg+/xWvOYpiXaRVR6KJZsjGqHcip+LLJszlNngWu2lXm+5Pqu1Dle3sg3Lnji/BGKhPgdsekWz7EjcoCGuCE+10gQ4tCNC9FsL+QdE/6KLr/AQrbsszIfxHtRZaxrOHQS3UbsYs3lAYyzuyAftMQKmGdZGDPFzyrOJDW8bDI49IHS0Q4l5asHUz7gBYc8k6FgxpIc5VcsnMkS6VT4uaEM5JRksw4WPs7WUpjkrLurMlQHuj9mnjjDge8q0nCjO3pu+4IeoiBPaIhhYLv1AFcSKRp9euJ8fdcSM8mv6ZB3crFSatr/hdvWaUtcaW+ygmL83BINt0NR5sGkx2P2nNVuu4GpPYbPL5jNJXBXGPIQG33HUeD2t45J/rzU0CtLE0ObYuv7sTftJsFI8fd/SVA+hftObf988+KGL1+q6klrKaycK/zVWBvI3Xbuk2HZCZV5vJg1td4VzhcJMcONAPL39jvDWl7zdXQk9f/eQ9WB9LFFwPYlzNoot7GJVkNpBVWGIin7xgLr03X0fijvDaxTwz1tclOG0T9uvFeR+yICisXpsca86n9aiisYuW1k4E/mNNoYAh/BlJb/COVu9OV+cO5sygLa9dJl8wU+YjvD4rl6LE3lUHX73YEAzRecFXuMYjqV7+EkgWXrzYfxkwCiqB6HkxxvXOpusJKmgFqP3lw==
+X-Microsoft-Antispam-Message-Info: bHicXLwCCGGOShjKh6K/L4wneyf2VBluoRMX/Crc43V/rcWDR8igzEZLuKkMyrFx/z5T8gmItJkbPvgfZt20Z7SyurGony/STx8L61tFV9mzkhVr15JWIzw6m0ZuVneQR6KkI7bGDYIJfDxJmAHoIHpQOsv2cgoADq9/e6ZvjXC/j8rGXys0prnxZRIUbGCOyG1Hwb8tBL7AwFu0XHGjz4AjeFTu1GYnSOVNfm9hq4v/guPqPhOsLJobIuWcYVNUBxUBzlb+yC+PmLN5iNqN0xJmNDV4wTEEaQsnRjBdvkkIy4yDNCkGePsnV2fAPob24NopMAVZsv3ak8mxCNMPVydYiB363hUBwWncpoBfaALJaWCTIFR9KPMPuOyvC+iIJUp8/P3Z+DqDIHoGDhg0I9F97evERDAC+VIAR74dwkWrZTZREHMzEtnLSW9Cnt3GC7UUHgIWDTBXXI/JR9tK78psMyjBTiOFjTfswMGmGNmvNne9SJdSLWxyzZRYkiwdjy4Fq96Ccf884XS+nqkdIcpFLKRNZpkxQN9Yhuq2QGk5+zmD44E5mxooCivvPM2Hgm0QR0jtgEmZmF4mfxltNGIEsRiqbyrIZPTkRed1YiHhzpyhypV+jZ6fxKWZrN2POU09mLfKaexzZi28leXtW240cf72byBR5WBe3MUfeYCtWpcZKRhCk7xoT2t1Apm6gpj8RNHwcA8befSZVgxYBMFCEa3OtOGvzdM9hOUToEbCJlatI8Omw94fQxOI/EKSgrCPBwJw1tzK2YHjHOIitg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(136003)(39860400002)(346002)(376002)(186009)(1800799009)(451199024)(82310400011)(36840700001)(40470700004)(46966006)(54906003)(6916009)(316002)(70586007)(70206006)(8676002)(8936002)(4326008)(2616005)(36756003)(41300700001)(1076003)(40460700003)(81166007)(82740400003)(356005)(478600001)(6666004)(5660300002)(40480700001)(83380400001)(30864003)(2906002)(36860700001)(47076005)(7696005)(86362001)(336012)(426003)(16526019)(26005)(36900700001);
+ SFS:(13230031)(4636009)(376002)(39860400002)(396003)(136003)(346002)(186009)(1800799009)(82310400011)(451199024)(40470700004)(36840700001)(46966006)(1076003)(40460700003)(2616005)(5660300002)(8936002)(4326008)(8676002)(336012)(426003)(47076005)(36756003)(83380400001)(7696005)(36860700001)(26005)(16526019)(40480700001)(82740400003)(356005)(6666004)(81166007)(70206006)(70586007)(54906003)(6916009)(316002)(478600001)(41300700001)(2906002)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 21:58:54.3149 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 715b7f96-cd44-4027-21a1-08dba4ed4f18
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 21:58:54.9086 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 298ea459-7b62-400a-5895-08dba4ed4f70
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE37.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6050
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7677
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,440 +108,97 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Lang Yu <Lang.Yu@amd.com>
 
-Prepare for VPE and VCN queue submission test.
+Submit a fence command through indirect buffer.
 
 Signed-off-by: Lang Yu <Lang.Yu@amd.com>
 Reviewed-by: Leo Liu <leo.liu@amd.com>
 Reviewed-by: Veerabadhran Gopalakrishnan <Veerabadhran.Gopalakrishnan@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c | 406 ++++++++++++++++++-
- 1 file changed, 405 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c | 56 +++++++++++++++++++-
+ 1 file changed, 54 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-index 29457c503c85..ced963aaf7cf 100644
+index ced963aaf7cf..21ba2c695b9f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-@@ -28,6 +28,408 @@
- #include "amdgpu_umsch_mm.h"
- #include "umsch_mm_v4_0.h"
- 
-+struct umsch_mm_test_ctx_data {
-+	uint8_t process_csa[PAGE_SIZE];
-+	uint8_t vpe_ctx_csa[PAGE_SIZE];
-+	uint8_t vcn_ctx_csa[PAGE_SIZE];
-+};
-+
-+struct umsch_mm_test_mqd_data {
-+	uint8_t vpe_mqd[PAGE_SIZE];
-+	uint8_t vcn_mqd[PAGE_SIZE];
-+};
-+
-+struct umsch_mm_test_ring_data {
-+	uint8_t vpe_ring[PAGE_SIZE];
-+	uint8_t vpe_ib[PAGE_SIZE];
-+	uint8_t vcn_ring[PAGE_SIZE];
-+	uint8_t vcn_ib[PAGE_SIZE];
-+};
-+
-+struct umsch_mm_test_queue_info {
-+	uint64_t mqd_addr;
-+	uint64_t csa_addr;
-+	uint32_t doorbell_offset_0;
-+	uint32_t doorbell_offset_1;
-+	enum UMSCH_SWIP_ENGINE_TYPE engine;
-+};
-+
-+struct umsch_mm_test {
-+	struct amdgpu_bo	*ctx_data_obj;
-+	uint64_t		ctx_data_gpu_addr;
-+	uint32_t		*ctx_data_cpu_addr;
-+
-+	struct amdgpu_bo	*mqd_data_obj;
-+	uint64_t		mqd_data_gpu_addr;
-+	uint32_t		*mqd_data_cpu_addr;
-+
-+	struct amdgpu_bo	*ring_data_obj;
-+	uint64_t		ring_data_gpu_addr;
-+	uint32_t		*ring_data_cpu_addr;
-+
-+
-+	struct amdgpu_vm	*vm;
-+	struct amdgpu_bo_va	*bo_va;
-+	uint32_t		pasid;
-+	uint32_t		vm_cntx_cntl;
-+	uint32_t		num_queues;
-+};
-+
-+static int map_ring_data(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+			  struct amdgpu_bo *bo, struct amdgpu_bo_va **bo_va,
-+			  uint64_t addr, uint32_t size)
-+{
-+	struct ww_acquire_ctx ticket;
-+	struct list_head list;
-+	struct amdgpu_bo_list_entry pd;
-+	struct ttm_validate_buffer csa_tv;
-+	struct amdgpu_sync sync;
-+	int r;
-+
-+	INIT_LIST_HEAD(&list);
-+	INIT_LIST_HEAD(&csa_tv.head);
-+	csa_tv.bo = &bo->tbo;
-+	csa_tv.num_shared = 1;
-+
-+	list_add(&csa_tv.head, &list);
-+	amdgpu_vm_get_pd_bo(vm, &list, &pd);
-+
-+	amdgpu_sync_create(&sync);
-+
-+	r = ttm_eu_reserve_buffers(&ticket, &list, true, NULL);
-+	if (r)
-+		return r;
-+
-+	*bo_va = amdgpu_vm_bo_add(adev, vm, bo);
-+	if (!*bo_va) {
-+		ttm_eu_backoff_reservation(&ticket, &list);
-+		return -ENOMEM;
-+	}
-+
-+	r = amdgpu_vm_bo_map(adev, *bo_va, addr, 0, size,
-+			     AMDGPU_PTE_READABLE | AMDGPU_PTE_WRITEABLE |
-+			     AMDGPU_PTE_EXECUTABLE);
-+
-+	if (r) {
-+		amdgpu_vm_bo_del(adev, *bo_va);
-+		ttm_eu_backoff_reservation(&ticket, &list);
-+		return r;
-+	}
-+
-+
-+	r = amdgpu_vm_bo_update(adev, *bo_va, false);
-+	if (r)
-+		goto error;
-+
-+	amdgpu_sync_fence(&sync, (*bo_va)->last_pt_update);
-+
-+	r = amdgpu_vm_update_pdes(adev, vm, false);
-+	if (r)
-+		goto error;
-+
-+	amdgpu_sync_fence(&sync, vm->last_update);
-+
-+	amdgpu_sync_wait(&sync, false);
-+
-+	ttm_eu_backoff_reservation(&ticket, &list);
-+	amdgpu_sync_free(&sync);
-+
-+	return 0;
-+error:
-+	ttm_eu_backoff_reservation(&ticket, &list);
-+	amdgpu_sync_free(&sync);
-+	return r;
-+}
-+
-+static int unmap_ring_data(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+			    struct amdgpu_bo *bo, struct amdgpu_bo_va *bo_va,
-+			    uint64_t addr)
-+{
-+	struct ww_acquire_ctx ticket;
-+	struct list_head list;
-+	struct amdgpu_bo_list_entry pd;
-+	struct ttm_validate_buffer csa_tv;
-+	int r;
-+
-+	INIT_LIST_HEAD(&list);
-+	INIT_LIST_HEAD(&csa_tv.head);
-+	csa_tv.bo = &bo->tbo;
-+	csa_tv.num_shared = 1;
-+
-+	list_add(&csa_tv.head, &list);
-+	amdgpu_vm_get_pd_bo(vm, &list, &pd);
-+
-+	r = ttm_eu_reserve_buffers(&ticket, &list, true, NULL);
-+	if (r)
-+		return r;
-+
-+	r = amdgpu_vm_bo_unmap(adev, bo_va, addr);
-+	if (r) {
-+		ttm_eu_backoff_reservation(&ticket, &list);
-+		return r;
-+	}
-+
-+	amdgpu_vm_bo_del(adev, bo_va);
-+
-+	ttm_eu_backoff_reservation(&ticket, &list);
-+
-+	return 0;
-+}
-+
-+static void setup_vpe_queue(struct amdgpu_device *adev,
-+			    struct umsch_mm_test *test,
-+			    struct umsch_mm_test_queue_info *qinfo)
-+{
-+}
-+
-+static void setup_vcn_queue(struct amdgpu_device *adev,
-+			    struct umsch_mm_test *test,
-+			    struct umsch_mm_test_queue_info *qinfo)
-+{
-+}
-+
-+static int add_test_queue(struct amdgpu_device *adev,
-+			  struct umsch_mm_test *test,
-+			  struct umsch_mm_test_queue_info *qinfo)
-+{
-+	struct umsch_mm_add_queue_input queue_input = {};
-+	int r;
-+
-+	queue_input.process_id = test->pasid;
-+	queue_input.page_table_base_addr = amdgpu_gmc_pd_addr(test->vm->root.bo);
-+
-+	queue_input.process_va_start = 0;
-+	queue_input.process_va_end = (adev->vm_manager.max_pfn - 1) << AMDGPU_GPU_PAGE_SHIFT;
-+
-+	queue_input.process_quantum = 100000; /* 10ms */
-+	queue_input.process_csa_addr = test->ctx_data_gpu_addr +
-+				       offsetof(struct umsch_mm_test_ctx_data, process_csa);
-+
-+	queue_input.context_quantum = 10000; /* 1ms */
-+	queue_input.context_csa_addr = qinfo->csa_addr;
-+
-+	queue_input.inprocess_context_priority = CONTEXT_PRIORITY_LEVEL_NORMAL;
-+	queue_input.context_global_priority_level = CONTEXT_PRIORITY_LEVEL_NORMAL;
-+	queue_input.doorbell_offset_0 = qinfo->doorbell_offset_0;
-+	queue_input.doorbell_offset_1 = qinfo->doorbell_offset_1;
-+
-+	queue_input.engine_type = qinfo->engine;
-+	queue_input.mqd_addr = qinfo->mqd_addr;
-+	queue_input.vm_context_cntl = test->vm_cntx_cntl;
-+
-+	amdgpu_umsch_mm_lock(&adev->umsch_mm);
-+	r = adev->umsch_mm.funcs->add_queue(&adev->umsch_mm, &queue_input);
-+	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
-+	if (r)
-+		return r;
-+
-+	return 0;
-+}
-+
-+static int remove_test_queue(struct amdgpu_device *adev,
-+			     struct umsch_mm_test *test,
-+			     struct umsch_mm_test_queue_info *qinfo)
-+{
-+	struct umsch_mm_remove_queue_input queue_input = {};
-+	int r;
-+
-+	queue_input.doorbell_offset_0 = qinfo->doorbell_offset_0;
-+	queue_input.doorbell_offset_1 = qinfo->doorbell_offset_1;
-+	queue_input.context_csa_addr = qinfo->csa_addr;
-+
-+	amdgpu_umsch_mm_lock(&adev->umsch_mm);
-+	r = adev->umsch_mm.funcs->remove_queue(&adev->umsch_mm, &queue_input);
-+	amdgpu_umsch_mm_unlock(&adev->umsch_mm);
-+	if (r)
-+		return r;
-+
-+	return 0;
-+}
-+
-+static int submit_vpe_queue(struct amdgpu_device *adev, struct umsch_mm_test *test)
-+{
-+	return 0;
-+}
-+
-+static int submit_vcn_queue(struct amdgpu_device *adev, struct umsch_mm_test *test)
-+{
-+	return 0;
-+}
-+
-+static int setup_umsch_mm_test(struct amdgpu_device *adev,
-+			  struct umsch_mm_test *test)
-+{
-+	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB0(0)];
-+	int r;
-+
-+	test->vm_cntx_cntl = hub->vm_cntx_cntl;
-+
-+	test->vm = kzalloc(sizeof(*test->vm), GFP_KERNEL);
-+	if (!test->vm) {
-+		r = -ENOMEM;
-+		return r;
-+	}
-+
-+	r = amdgpu_vm_init(adev, test->vm, -1);
-+	if (r)
-+		goto error_free_vm;
-+
-+	test->pasid = amdgpu_pasid_alloc(16);
-+	if (test->pasid < 0) {
-+		r = test->pasid;
-+		goto error_fini_vm;
-+	}
-+
-+	r = amdgpu_bo_create_kernel(adev, sizeof(struct umsch_mm_test_ctx_data),
-+				    PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
-+				    &test->ctx_data_obj,
-+				    &test->ctx_data_gpu_addr,
-+				    (void **)&test->ctx_data_cpu_addr);
-+	if (r)
-+		goto error_free_pasid;
-+
-+	memset(test->ctx_data_cpu_addr, 0, sizeof(struct umsch_mm_test_ctx_data));
-+
-+	r = amdgpu_bo_create_kernel(adev, PAGE_SIZE,
-+				    PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
-+				    &test->mqd_data_obj,
-+				    &test->mqd_data_gpu_addr,
-+				    (void **)&test->mqd_data_cpu_addr);
-+	if (r)
-+		goto error_free_ctx_data_obj;
-+
-+	memset(test->mqd_data_cpu_addr, 0, PAGE_SIZE);
-+
-+	r = amdgpu_bo_create_kernel(adev, sizeof(struct umsch_mm_test_ring_data),
-+				    PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
-+				    &test->ring_data_obj,
-+				    NULL,
-+				    (void **)&test->ring_data_cpu_addr);
-+	if (r)
-+		goto error_free_mqd_data_obj;
-+
-+	memset(test->ring_data_cpu_addr, 0, sizeof(struct umsch_mm_test_ring_data));
-+
-+	test->ring_data_gpu_addr = AMDGPU_VA_RESERVED_SIZE;
-+	r = map_ring_data(adev, test->vm, test->ring_data_obj, &test->bo_va,
-+			  test->ring_data_gpu_addr, sizeof(struct umsch_mm_test_ring_data));
-+	if (r)
-+		goto error_free_ring_data_obj;
-+
-+	return 0;
-+
-+error_free_ring_data_obj:
-+	amdgpu_bo_free_kernel(&test->ring_data_obj, NULL,
-+			      (void **)&test->ring_data_cpu_addr);
-+error_free_mqd_data_obj:
-+	amdgpu_bo_free_kernel(&test->mqd_data_obj, &test->mqd_data_gpu_addr,
-+			      (void **)&test->mqd_data_cpu_addr);
-+error_free_ctx_data_obj:
-+	amdgpu_bo_free_kernel(&test->ctx_data_obj, &test->ctx_data_gpu_addr,
-+			      (void **)&test->ctx_data_cpu_addr);
-+error_free_pasid:
-+	amdgpu_pasid_free(test->pasid);
-+error_fini_vm:
-+	amdgpu_vm_fini(adev, test->vm);
-+error_free_vm:
-+	kfree(test->vm);
-+
-+	return r;
-+}
-+
-+static void cleanup_umsch_mm_test(struct amdgpu_device *adev,
-+				  struct umsch_mm_test *test)
-+{
-+	unmap_ring_data(adev, test->vm, test->ring_data_obj,
-+			test->bo_va, test->ring_data_gpu_addr);
-+	amdgpu_bo_free_kernel(&test->mqd_data_obj, &test->mqd_data_gpu_addr,
-+			      (void **)&test->mqd_data_cpu_addr);
-+	amdgpu_bo_free_kernel(&test->ring_data_obj, NULL,
-+			      (void **)&test->ring_data_cpu_addr);
-+	amdgpu_bo_free_kernel(&test->ctx_data_obj, &test->ctx_data_gpu_addr,
-+			       (void **)&test->ctx_data_cpu_addr);
-+	amdgpu_pasid_free(test->pasid);
-+	amdgpu_vm_fini(adev, test->vm);
-+	kfree(test->vm);
-+}
-+
-+static int setup_test_queues(struct amdgpu_device *adev,
-+			     struct umsch_mm_test *test,
-+			     struct umsch_mm_test_queue_info *qinfo)
-+{
-+	int i, r;
-+
-+	for (i = 0; i < test->num_queues; i++) {
-+		if (qinfo[i].engine == UMSCH_SWIP_ENGINE_TYPE_VPE)
-+			setup_vpe_queue(adev, test, &qinfo[i]);
-+		else
-+			setup_vcn_queue(adev, test, &qinfo[i]);
-+
-+		r = add_test_queue(adev, test, &qinfo[i]);
-+		if (r)
-+			return r;
-+	}
-+
-+	return 0;
-+}
-+
-+static int submit_test_queues(struct amdgpu_device *adev,
-+			      struct umsch_mm_test *test,
-+			      struct umsch_mm_test_queue_info *qinfo)
-+{
-+	int i, r;
-+
-+	for (i = 0; i < test->num_queues; i++) {
-+		if (qinfo[i].engine == UMSCH_SWIP_ENGINE_TYPE_VPE)
-+			r = submit_vpe_queue(adev, test);
-+		else
-+			r = submit_vcn_queue(adev, test);
-+		if (r)
-+			return r;
-+	}
-+
-+	return 0;
-+}
-+
-+static void cleanup_test_queues(struct amdgpu_device *adev,
-+			      struct umsch_mm_test *test,
-+			      struct umsch_mm_test_queue_info *qinfo)
-+{
-+	int i;
-+
-+	for (i = 0; i < test->num_queues; i++)
-+		remove_test_queue(adev, test, &qinfo[i]);
-+}
-+
-+static int umsch_mm_test(struct amdgpu_device *adev)
-+{
-+	struct umsch_mm_test_queue_info qinfo[] = {};
-+	struct umsch_mm_test test = { .num_queues = ARRAY_SIZE(qinfo) };
-+	int r;
-+
-+	r = setup_umsch_mm_test(adev, &test);
-+	if (r)
-+		return r;
-+
-+	r = setup_test_queues(adev, &test, qinfo);
-+	if (r)
-+		goto cleanup;
-+
-+	r = submit_test_queues(adev, &test, qinfo);
-+	if (r)
-+		goto cleanup;
-+
-+	cleanup_test_queues(adev, &test, qinfo);
-+	cleanup_umsch_mm_test(adev, &test);
-+
-+	return 0;
-+
-+cleanup:
-+	cleanup_test_queues(adev, &test, qinfo);
-+	cleanup_umsch_mm_test(adev, &test);
-+	return r;
-+}
-+
- int amdgpu_umsch_mm_submit_pkt(struct amdgpu_umsch_mm *umsch, void *pkt, int ndws)
+@@ -180,6 +180,21 @@ static void setup_vpe_queue(struct amdgpu_device *adev,
+ 			    struct umsch_mm_test *test,
+ 			    struct umsch_mm_test_queue_info *qinfo)
  {
- 	struct amdgpu_ring *ring = &umsch->ring;
-@@ -272,7 +674,9 @@ static int umsch_mm_early_init(void *handle)
- 
- static int umsch_mm_late_init(void *handle)
- {
--	return 0;
-+	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++	struct MQD_INFO *mqd = (struct MQD_INFO *)test->mqd_data_cpu_addr;
++	uint64_t ring_gpu_addr = test->ring_data_gpu_addr;
 +
-+	return umsch_mm_test(adev);
++	mqd->rb_base_lo = (ring_gpu_addr >> 8);
++	mqd->rb_base_hi = (ring_gpu_addr >> 40);
++	mqd->rb_size = PAGE_SIZE / 4;
++	mqd->wptr_val = 0;
++	mqd->rptr_val = 0;
++	mqd->unmapped = 1;
++
++	qinfo->mqd_addr = test->mqd_data_gpu_addr;
++	qinfo->csa_addr = test->ctx_data_gpu_addr +
++		offsetof(struct umsch_mm_test_ctx_data, vpe_ctx_csa);
++	qinfo->doorbell_offset_0 = (adev->doorbell_index.vpe_ring + 1) << 1;
++	qinfo->doorbell_offset_1 = 0;
  }
  
- static int umsch_mm_sw_init(void *handle)
+ static void setup_vcn_queue(struct amdgpu_device *adev,
+@@ -248,7 +263,42 @@ static int remove_test_queue(struct amdgpu_device *adev,
+ 
+ static int submit_vpe_queue(struct amdgpu_device *adev, struct umsch_mm_test *test)
+ {
+-	return 0;
++	struct MQD_INFO *mqd = (struct MQD_INFO *)test->mqd_data_cpu_addr;
++	uint32_t *ring = test->ring_data_cpu_addr +
++		offsetof(struct umsch_mm_test_ring_data, vpe_ring) / 4;
++	uint32_t *ib = test->ring_data_cpu_addr +
++		offsetof(struct umsch_mm_test_ring_data, vpe_ib) / 4;
++	uint64_t ib_gpu_addr = test->ring_data_gpu_addr +
++		offsetof(struct umsch_mm_test_ring_data, vpe_ib);
++	uint32_t *fence = ib + 2048 / 4;
++	uint64_t fence_gpu_addr = ib_gpu_addr + 2048;
++	const uint32_t test_pattern = 0xdeadbeef;
++	int i;
++
++	ib[0] = VPE_CMD_HEADER(VPE_CMD_OPCODE_FENCE, 0);
++	ib[1] = lower_32_bits(fence_gpu_addr);
++	ib[2] = upper_32_bits(fence_gpu_addr);
++	ib[3] = test_pattern;
++
++	ring[0] = VPE_CMD_HEADER(VPE_CMD_OPCODE_INDIRECT, 0);
++	ring[1] = (ib_gpu_addr & 0xffffffe0);
++	ring[2] = upper_32_bits(ib_gpu_addr);
++	ring[3] = 4;
++	ring[4] = 0;
++	ring[5] = 0;
++
++	mqd->wptr_val = (6 << 2);
++	// WDOORBELL32(adev->umsch_mm.agdb_index[CONTEXT_PRIORITY_LEVEL_NORMAL], mqd->wptr_val);
++
++	for (i = 0; i < adev->usec_timeout; i++) {
++		if (*fence == test_pattern)
++			return 0;
++		udelay(1);
++	}
++
++	dev_err(adev->dev, "vpe queue submission timeout\n");
++
++	return -ETIMEDOUT;
+ }
+ 
+ static int submit_vcn_queue(struct amdgpu_device *adev, struct umsch_mm_test *test)
+@@ -403,7 +453,9 @@ static void cleanup_test_queues(struct amdgpu_device *adev,
+ 
+ static int umsch_mm_test(struct amdgpu_device *adev)
+ {
+-	struct umsch_mm_test_queue_info qinfo[] = {};
++	struct umsch_mm_test_queue_info qinfo[] = {
++		{ .engine = UMSCH_SWIP_ENGINE_TYPE_VPE },
++	};
+ 	struct umsch_mm_test test = { .num_queues = ARRAY_SIZE(qinfo) };
+ 	int r;
+ 
 -- 
 2.41.0
 
