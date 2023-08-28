@@ -2,48 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB4378B1C3
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Aug 2023 15:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDE678B013
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Aug 2023 14:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A8810E2DD;
-	Mon, 28 Aug 2023 13:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82DC610E2AF;
+	Mon, 28 Aug 2023 12:27:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B112D10E27B;
- Mon, 28 Aug 2023 10:24:01 +0000 (UTC)
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested) (Authenticated sender: pq)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 439396607197;
- Mon, 28 Aug 2023 11:23:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1693218240;
- bh=TRZbDe8LQuMgVOMhiHo5O62FMhTtzu3Ux1yNcKFKK1M=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=gWHu19hdiXW9IhnxixEck7dEGyj1COfkIsc7EKiHF58iRkihvOlH6JN7iCdIvlVgq
- Lrdc6Xl3Ab8En3tbHsY6/p79OsM0SPznmJ7M2ikkTjcvafb9CMXfftkjO5v/XTQr1F
- rKgzyNhqDmf9q/cX+Oxyyg1IMjHjuZWczRcw80Lp6T/xHJBdg+c5DktFgeFXoKW3gs
- m5Tx/wOqn4sI0QPp8Grcv56rGAQGpR5ge7YWpNOcKb4/kGYEwbJ3peWFei1dLO4b7X
- f3xs7CyXAsElTsD7mc6ddC/VreTqLqSKeQz+1gp43pNhaWgGKNRYlrR+pY71JeAzbm
- kH5sMgLHuGbuw==
-Date: Mon, 28 Aug 2023 13:23:55 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Joshua Ashton <joshua@froggi.es>
-Subject: Re: [PATCH v2 19/34] drm/amd/display: decouple steps for mapping
- CRTC degamma to DC plane
-Message-ID: <20230828132355.21a8fd89.pekka.paalanen@collabora.com>
-In-Reply-To: <CAEZNXZCfvc909iFZQMdNEz=P_T=rYEYKq1Tdrt+8RNQpBSNt_g@mail.gmail.com>
-References: <20230810160314.48225-1-mwen@igalia.com>
- <20230810160314.48225-20-mwen@igalia.com>
- <20230822151110.3107b745.pekka.paalanen@collabora.com>
- <CAEZNXZCfvc909iFZQMdNEz=P_T=rYEYKq1Tdrt+8RNQpBSNt_g@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2047.outbound.protection.outlook.com [40.107.95.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51AA10E2A5;
+ Mon, 28 Aug 2023 12:27:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RF4ys2mb19ehBfSiAvyRUm2mZ8Uh+1F5IHmi+OXbH+LQRDsEct4dz1he1I2UgLuNBvSs+nTV7MV514oXuKiYPRmIhsjUDV2tGdF/8GP1X6AJmbkgPfz6wnmKMjJd4xo8Rw7L0+6y212RT41oDrQrvTTA4AqZ1AypgJ/IKwJinXE41Lof5rPtcUqi4CUNID6pJJv8BLSSZgaVGkc6gGwkv87G9E6cpxS19l1C7Kj2av8c4irhllBCMVd8Hr6RTpXU1XTJTRkL3kn70GwhHO3pj0tRPQG0VBV5gi+AnKP3cGTQBU0YYY6fyO57itvGOb0GQvDmThdhMbopaOhojrmRPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2WzLBkFEq0P/CGAn96QF99owWXAxiiXnVdVXF6XaNkg=;
+ b=RRhrF4AKXIEGWhxIdz2MlA8wn9ZfaN7fiuMZmZgE2xI0Ra5sgYmWIBlexSNXsirVuj4p+qddxHAXEsTYhxB8fXWP/0It/3yllnkWu/tEq9zBhLz8/s3/8ZaRYKlBcE7qAJisfgIsEQm2eEpxjox9wGxCcXDXt6aLOCINvqRdqBvPYEsk1zemc587ovEntbbv0roM7MH73FXR659P0uVSeUdRkt8x3AH7zCFiH+/mhyF1fSvhAWI8/Navrzc4BT54lRD79EAvHHikWFx0iUQtg9KyXboUhWtDpJCbuze6Uv8zgvWpoT6WMme7vpVjgQ0/CoCcA0nM1VfXDs0qvKA6Tw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2WzLBkFEq0P/CGAn96QF99owWXAxiiXnVdVXF6XaNkg=;
+ b=bbX5YzbCQHiOF99w/1exQmHpR2YUfImchZQI/hmvT6XcAKYbEG5AdZAYLUzjDdV8SNHo6Sa3TVtuL7w46hJiav4mqBFyujoUG8z2nXfXbIwfDefJJtsmiIizXPEZarWQnnVz6axNpO9Y/atwuQT9WRDN/ZUvhOLheGVRIklaQE0=
+Received: from CY8PR12CA0034.namprd12.prod.outlook.com (2603:10b6:930:49::22)
+ by SA3PR12MB8024.namprd12.prod.outlook.com (2603:10b6:806:312::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
+ 2023 12:26:58 +0000
+Received: from CY4PEPF0000E9D5.namprd05.prod.outlook.com
+ (2603:10b6:930:49:cafe::de) by CY8PR12CA0034.outlook.office365.com
+ (2603:10b6:930:49::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.35 via Frontend
+ Transport; Mon, 28 Aug 2023 12:26:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D5.mail.protection.outlook.com (10.167.241.76) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6745.17 via Frontend Transport; Mon, 28 Aug 2023 12:26:58 +0000
+Received: from rtg-Artic.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 28 Aug
+ 2023 07:26:52 -0500
+From: Arvind Yadav <Arvind.Yadav@amd.com>
+To: <Christian.Koenig@amd.com>, <alexander.deucher@amd.com>,
+ <shashank.sharma@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>,
+ <daniel@ffwll.ch>, <Felix.Kuehling@amd.com>, <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v3 0/7] GPU workload hints for better performance
+Date: Mon, 28 Aug 2023 17:56:07 +0530
+Message-ID: <20230828122614.3815122-1-Arvind.Yadav@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 28 Aug 2023 13:26:06 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D5:EE_|SA3PR12MB8024:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94f97efe-1d3b-4f83-d7b5-08dba7c212fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HGcrCefQo2Ph7swI7VI+g0lPc45giauYZJBomD66ApLxb9h2G4e9IbYkNzDrxm6v4cw7LEwiWreBkcX/xqHh3Fb2lKyLxyFclIkMFjt3z/XRGciV9xeQAj3oyG+mu5f4UC2B4I/gzErzyNgf30KaJEyXLXNjZzUECz0HvVth5hhsw8rFcQHXXVXoo+s9fRP3YSp4p/V9xlXt5IRqTPJ+3FoNSc8NKmmG/yS1UMwZPPIcVSUBqaFPOIuyBnjClLQiJVzw1yZpSW9jmnydHc//Vp6Xln2MdqM32zVF1zRk+UhPAOpwzc+g4x7l4DG96Qesm/RXHI2Q2nJ2Qw/29tOtZ9vXdlnykpFiUXMRF5dx8T/UH0wUiZoQo+QqSFiCH2JdVoG0+kMcdBOK5LdN7ngKXR0/5P9YMeEL03xls8nPk/hnRhZCrh7kYoxWAObBx+w5y3WVMZu3o4FJNDioQReHMCXYThVaTtwoBFWNsVZyVduV2rHpEpykl4rFbGVgxk7B8onjPc2Okst0m2aYvO66JgJdz7StcSZIxd5AdV9NQ72hZtmZu5cYyFwiwsTHOTtJRcEyNfy+kbty/6J8vGDn/Zk8L2KAhmf1JIGiJ71rDRIWZrykjonCzrOvIaROLpjMq1k1vksBOJYTBSRnTSxP9+m6aElrNhs9CBKc4KeSXYqNneQWLp7rOFsMxleytDYdUQQxwhuOuyMLjEmcWTAuwm0rHMjlSQA2WMg4/IQONwWnTwwHdZP9VBcdvIqbPDcZgNn11xDdKZfZWlydeug+nw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(136003)(346002)(376002)(39860400002)(451199024)(1800799009)(82310400011)(186009)(36840700001)(40470700004)(46966006)(356005)(478600001)(81166007)(83380400001)(82740400003)(16526019)(26005)(426003)(336012)(47076005)(36860700001)(1076003)(2616005)(40480700001)(7696005)(110136005)(6666004)(86362001)(5660300002)(2906002)(316002)(8936002)(4326008)(70206006)(36756003)(41300700001)(54906003)(8676002)(70586007)(40460700003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2023 12:26:58.6083 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94f97efe-1d3b-4f83-d7b5-08dba7c212fd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D5.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8024
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,224 +99,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>,
- "kernel-dev@igalia.com" <kernel-dev@igalia.com>,
- Shashank Sharma <Shashank.Sharma@amd.com>,
- "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Xaver Hugl <xaver.hugl@gmail.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Melissa Wen <mwen@igalia.com>, Alex Hung <alex.hung@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, Simon Ser <contact@emersion.fr>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "sungjoon.kim@amd.com" <sungjoon.kim@amd.com>
+Cc: Arvind Yadav <Arvind.Yadav@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Aug 2023 09:45:44 +0100
-Joshua Ashton <joshua@froggi.es> wrote:
+AMDGPU SOCs supports dynamic workload based power profiles, which can
+provide fine-tuned performance for a particular type of workload.
+This patch series adds an interface to set/reset these power profiles
+based on the submitted job. The driver can dynamically switch
+the power profiles based on submitted job. This can optimize the power
+performance when the particular workload is on. 
 
-> Degamma has always been on the plane on AMD. CRTC DEGAMMA_LUT has actually
-> just been applying it to every plane pre-blend.
+v2:
+- Splitting workload_profile_set and workload_profile_put
+  into two separate patches.
+- Addressed review comment.
+- Added new suspend function.
+- Added patch to switches the GPU workload mode for KFD. 
 
-I've never seen that documented anywhere.
-
-It has seemed obvious, that since we have KMS objects for planes and
-CRTCs, stuff on the CRTC does not do plane stuff before blending. That
-also has not been documented in the past, but it seemed the most
-logical choice.
-
-Even today
-https://dri.freedesktop.org/docs/drm/gpu/drm-kms.html#color-management-properties
-make no mention of whether they apply before or after blending.
-
-> Degamma makes no sense after blending anyway.
-
-If the goal is to allow blending in optical or other space, you are
-correct. However, APIs do not need to make sense to exist, like most of
-the options of "Colorspace" connector property.
-
-I have always thought the CRTC DEGAMMA only exists to allow the CRTC
-CTM to work in linear or other space.
-
-I have at times been puzzled by what the DEGAMMA and CTM are actually
-good for.
-
-> The entire point is for it to happen before blending to blend in linear
-> space. Otherwise DEGAMMA_LUT and REGAMMA_LUT are the exact same thing...
-
-The CRTC CTM is between CRTC DEGAMMA and CRTC GAMMA, meaning they are
-not interchangeable.
-
-I have literally believed that DRM KMS UAPI simply does not support
-blending in optical space, unless your framebuffers are in optical
-which no-one does, until the color management properties are added to
-KMS planes. This never even seemed weird, because non-linear blending
-is so common.
-
-So I have been misunderstanding the CRTC DEGAMMA property forever. Am I
-the only one? Do all drivers agree today at what point does CRTC
-DEGAMMA apply, before blending on all planes or after blending?
-
-Does anyone know of any doc about that?
-
-If drivers do not agree on the behaviour of a KMS property, then that
-property is useless for generic userspace.
+v3:
+- Addressed all review comment.
+- Changed the function name from *_set() to *_get().
+- Now clearing all the profile in work handler.
+- Added *_clear_all function to clear all the power profile.
 
 
-Thanks,
-pq
+Arvind Yadav (7):
+  drm/amdgpu: Added init/fini functions for workload
+  drm/amdgpu: Add new function to set GPU power profile
+  drm/amdgpu: Add new function to put GPU power profile
+  drm/amdgpu: Add suspend function to clear the GPU power profile.
+  drm/amdgpu: Set/Reset GPU workload profile
+  drm/amdgpu: switch workload context to/from compute
+  Revert "drm/amd/amdgpu: switch on/off vcn power profile mode"
 
+ drivers/gpu/drm/amd/amdgpu/Makefile           |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |   8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   6 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |   5 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       |  14 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_workload.c  | 226 ++++++++++++++++++
+ drivers/gpu/drm/amd/include/amdgpu_workload.h |  61 +++++
+ 8 files changed, 309 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_workload.c
+ create mode 100644 drivers/gpu/drm/amd/include/amdgpu_workload.h
 
-> On Tuesday, 22 August 2023, Pekka Paalanen <pekka.paalanen@collabora.com>
-> wrote:
-> > On Thu, 10 Aug 2023 15:02:59 -0100
-> > Melissa Wen <mwen@igalia.com> wrote:
-> >  
-> >> The next patch adds pre-blending degamma to AMD color mgmt pipeline, but
-> >> pre-blending degamma caps (DPP) is currently in use to provide DRM CRTC
-> >> atomic degamma or implict degamma on legacy gamma. Detach degamma usage
-> >> regarging CRTC color properties to manage plane and CRTC color
-> >> correction combinations.
-> >>
-> >> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> >> Signed-off-by: Melissa Wen <mwen@igalia.com>
-> >> ---
-> >>  .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 59 +++++++++++++------
-> >>  1 file changed, 41 insertions(+), 18 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c  
-> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> >> index 68e9f2c62f2e..74eb02655d96 100644
-> >> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> >> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> >> @@ -764,20 +764,9 @@ int amdgpu_dm_update_crtc_color_mgmt(struct  
-> dm_crtc_state *crtc)
-> >>       return 0;
-> >>  }
-> >>
-> >> -/**
-> >> - * amdgpu_dm_update_plane_color_mgmt: Maps DRM color management to DC  
-> plane.
-> >> - * @crtc: amdgpu_dm crtc state
-> >> - * @dc_plane_state: target DC surface
-> >> - *
-> >> - * Update the underlying dc_stream_state's input transfer function  
-> (ITF) in
-> >> - * preparation for hardware commit. The transfer function used depends  
-> on
-> >> - * the preparation done on the stream for color management.
-> >> - *
-> >> - * Returns:
-> >> - * 0 on success. -ENOMEM if mem allocation fails.
-> >> - */
-> >> -int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
-> >> -                                   struct dc_plane_state  
-> *dc_plane_state)
-> >> +static int
-> >> +map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
-> >> +                          struct dc_plane_state *dc_plane_state)
-> >>  {
-> >>       const struct drm_color_lut *degamma_lut;
-> >>       enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
-> >> @@ -800,8 +789,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct  
-> dm_crtc_state *crtc,
-> >>                                                &degamma_size);
-> >>               ASSERT(degamma_size == MAX_COLOR_LUT_ENTRIES);
-> >>
-> >> -             dc_plane_state->in_transfer_func->type =
-> >> -                     TF_TYPE_DISTRIBUTED_POINTS;
-> >> +             dc_plane_state->in_transfer_func->type =  
-> TF_TYPE_DISTRIBUTED_POINTS;
-> >>
-> >>               /*
-> >>                * This case isn't fully correct, but also fairly
-> >> @@ -837,7 +825,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct  
-> dm_crtc_state *crtc,
-> >>                                  degamma_lut, degamma_size);
-> >>               if (r)
-> >>                       return r;
-> >> -     } else if (crtc->cm_is_degamma_srgb) {
-> >> +     } else {
-> >>               /*
-> >>                * For legacy gamma support we need the regamma input
-> >>                * in linear space. Assume that the input is sRGB.
-> >> @@ -847,8 +835,43 @@ int amdgpu_dm_update_plane_color_mgmt(struct  
-> dm_crtc_state *crtc,
-> >>
-> >>               if (tf != TRANSFER_FUNCTION_SRGB &&
-> >>                   !mod_color_calculate_degamma_params(NULL,
-> >> -                         dc_plane_state->in_transfer_func, NULL, false))
-> >> +  
->  dc_plane_state->in_transfer_func,
-> >> +                                                     NULL, false))
-> >>                       return -ENOMEM;
-> >> +     }
-> >> +
-> >> +     return 0;
-> >> +}
-> >> +
-> >> +/**
-> >> + * amdgpu_dm_update_plane_color_mgmt: Maps DRM color management to DC  
-> plane.
-> >> + * @crtc: amdgpu_dm crtc state
-> >> + * @dc_plane_state: target DC surface
-> >> + *
-> >> + * Update the underlying dc_stream_state's input transfer function  
-> (ITF) in
-> >> + * preparation for hardware commit. The transfer function used depends  
-> on
-> >> + * the preparation done on the stream for color management.
-> >> + *
-> >> + * Returns:
-> >> + * 0 on success. -ENOMEM if mem allocation fails.
-> >> + */
-> >> +int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
-> >> +                                   struct dc_plane_state  
-> *dc_plane_state)
-> >> +{
-> >> +     bool has_crtc_cm_degamma;
-> >> +     int ret;
-> >> +
-> >> +     has_crtc_cm_degamma = (crtc->cm_has_degamma ||  
-> crtc->cm_is_degamma_srgb);
-> >> +     if (has_crtc_cm_degamma){
-> >> +             /* AMD HW doesn't have post-blending degamma caps. When DRM
-> >> +              * CRTC atomic degamma is set, we maps it to DPP degamma  
-> block
-> >> +              * (pre-blending) or, on legacy gamma, we use DPP degamma  
-> to
-> >> +              * linearize (implicit degamma) from sRGB/BT709 according  
-> to
-> >> +              * the input space.  
-> >
-> > Uhh, you can't just move degamma before blending if KMS userspace
-> > wants it after blending. That would be incorrect behaviour. If you
-> > can't implement it correctly, reject it.
-> >
-> > I hope that magical unexpected linearization is not done with atomic,
-> > either.
-> >
-> > Or maybe this is all a lost cause, and only the new color-op pipeline
-> > UAPI will actually work across drivers.
-> >
-> >
-> > Thanks,
-> > pq
-> >  
-> >> +              */
-> >> +             ret = map_crtc_degamma_to_dc_plane(crtc, dc_plane_state);
-> >> +             if (ret)
-> >> +                     return ret;
-> >>       } else {
-> >>               /* ...Otherwise we can just bypass the DGM block. */
-> >>               dc_plane_state->in_transfer_func->type = TF_TYPE_BYPASS;  
-> >
-> >  
+-- 
+2.34.1
 
