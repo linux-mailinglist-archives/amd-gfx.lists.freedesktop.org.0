@@ -2,63 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06495790260
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Sep 2023 21:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC92F790254
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Sep 2023 21:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C211B10E1F5;
-	Fri,  1 Sep 2023 19:03:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDC410E1E5;
+	Fri,  1 Sep 2023 19:03:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
- [IPv6:2a00:1450:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3931210E731
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 07:31:22 +0000 (UTC)
-Received: by mail-ej1-x641.google.com with SMTP id
- a640c23a62f3a-99c1f6f3884so195824966b.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Sep 2023 00:31:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693553480; x=1694158280; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=NRkr95h+/ONNstxBPFhhGqHm6f+phH7gUK5uTmvBHds=;
- b=eYFZNH52smYko6LXdCWtHdO/KerGTW7XOPLZKLeFfvIsNVrRNJcZZBgLejHyI5cFIo
- PWhbnn0N+swEiSy+7aInU5Rsvt5MRq1dR+xOkRzgmKE9X1bNEIRR3zjiDVHY+64J8HAV
- doUTr3uYczJfzT4nWhq6sQLhm+IcfkAvo1T37dqdBEphdDWejONOKr+D7aeq/jtTdx4Z
- BljOdYVneKayid2nuufv22Lt/Mk9Tov8/pEd1serKpqDMVM8YOzxIFd9adEd4cmtO5LA
- QLeosKogzQgYpZK/HLcEs7fgBCMJ0c47thuV8a3XLz368w/9xzsIVR0JPkGBhIFlNThQ
- msIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693553480; x=1694158280;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=NRkr95h+/ONNstxBPFhhGqHm6f+phH7gUK5uTmvBHds=;
- b=hxqX3AyheEvjC6Ze8pEmCvnb9HVfJ2xXi5UuylXRDuYKYUVYY6qKyQkb74DV/6bKG6
- dAMUfeev/mhYVQwsVyUPkDS2L9kW3CTm7H5T7TiQURDstJmjHDHhnAU/WQromqamJ1WJ
- zdrpoBLsEmjs2/8ETOvmCGt+VME/k90AhHVnLIdLcR8NQ4ZN0acmYUPCcPefgWIhqU/x
- Uf2qSsDimBaxxPV65/saLkkA2PopkX8gqX7fuHV5mJVDZqyx2esLNQl3Vuy3SyI5alAz
- gSDDnlrt6hcccwYIprBPgFzuEpxU4symxja3aRkzBikmxmTVLDdpr327KzJi2HG0etNb
- sIcg==
-X-Gm-Message-State: AOJu0Yyksd3AlOXoE/oP9dfnFKRBHjmwbiFA3UU67oy4fNYH4HvAnR6K
- PCwk5kPwE7ZS1ptCldaOdZgLvUtzE5VsQpOX
-X-Google-Smtp-Source: AGHT+IEuRzeZ+INl0StZfrh73hDpFcylH3J1oy028bnPu1qK7sgr+o96V77qqjKvcXwkC53OeAABlg==
-X-Received: by 2002:a17:906:7494:b0:9a1:d077:b74f with SMTP id
- e20-20020a170906749400b009a1d077b74fmr1136272ejl.49.1693553480388; 
- Fri, 01 Sep 2023 00:31:20 -0700 (PDT)
-Received: from debian-buildmachine.bernkas.tel
- (cpe-188-129-73-117.dynamic.amis.hr. [188.129.73.117])
- by smtp.gmail.com with ESMTPSA id
- ja8-20020a170907988800b0099bd5d28dc4sm1615947ejc.195.2023.09.01.00.31.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Sep 2023 00:31:20 -0700 (PDT)
-From: Simon Pilkington <simonp.git@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd: Make fence wait in suballocator uninterruptible
-Date: Fri,  1 Sep 2023 08:31:12 +0100
-Message-Id: <20230901073112.2012-1-simonp.git@gmail.com>
-X-Mailer: git-send-email 2.40.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFD7D10E7B7;
+ Fri,  1 Sep 2023 12:27:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693571264; x=1725107264;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OTEL3GSK+6A4sQHuCHvEp5CHkNzWKNu+FDPztYX+hGI=;
+ b=FshBngAnY5WJ3BlzDpMAEoxHz8qcADzo7OsqpaZGyUigPFByWLzZozl/
+ oUkO0orWx/9u3MIPlt2CZ3YY4rGD1zth/7aXP9q9kdMcmj+9mXBVL/Cbl
+ i/Fgp+gBN+oOmHGqZ5utoSxInSCJ2AewVF/5ltnnHvkR0o/gu8KBjA6sg
+ Mu3fxhFWn3Qz9jfv67eZEx4QHRbdhLfmR05L8CBYk/YyqFETPsjb3Euze
+ rSdj9m1fCUwXkaAFomPhRUc/HERezpuzUaloDupwbMPpbax/P0eW9YdDJ
+ Dgxmx9utfucH4exCPeeLDfsQcq4vdX5+sjaWsUbiEizbE2tkYUEjy5Lhq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="462575733"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="462575733"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 05:27:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="863524687"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="863524687"
+Received: from epronina-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.34.21])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 05:27:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Hung <alex.hung@amd.com>, Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/amd/display: stop using
+ drm_edid_override_connector_update()
+In-Reply-To: <b32199ef-7179-3908-3bed-dd164cadc5de@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1692705543.git.jani.nikula@intel.com>
+ <788721f6-afff-e0b2-db7c-32ab2dd075a9@amd.com> <87il965gob.fsf@intel.com>
+ <871qfm2kg1.fsf@intel.com>
+ <CADnq5_P49U3dcqiZhB-CjS8UbOtB7K2jNObS0ZQqMhOr3UhLQg@mail.gmail.com>
+ <87o7ip252r.fsf@intel.com> <87jztd2332.fsf@intel.com>
+ <1e6aa1ff-9aa9-6b2f-84f4-e0304205085c@amd.com> <87h6oh0yz9.fsf@intel.com>
+ <b32199ef-7179-3908-3bed-dd164cadc5de@amd.com>
+Date: Fri, 01 Sep 2023 15:27:27 +0300
+Message-ID: <87msy6hyds.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Mailman-Approved-At: Fri, 01 Sep 2023 19:03:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,35 +65,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Pilkington <simonp.git@gmail.com>
+Cc: Leo Li <sunpeng.li@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, "Wang, 
+ Yu \(Charlie\)" <Yu.Wang4@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, dri-devel@lists.freedesktop.org,
+ Wenchieh Chien <wenchieh.chien@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit c103a23f2f29
-("drm/amd: Convert amdgpu to use suballocation helper.")
-made the fence wait in amdgpu_sa_bo_new() interruptible but there is no
-code to handle an interrupt. This caused the kernel to randomly explode
-in high-VRAM-pressure situations so make it uninterruptible again.
+On Thu, 31 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
+> On 2023-08-30 01:29, Jani Nikula wrote:
+>> On Tue, 29 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
+>>> There is a patch under internal reviews. It removes calls edid_override
+>>> and drm_edid_override_connector_update as intended in this patchset but
+>>> does not remove the functionality.
+>> 
+>> While I am happy to hear there's progress, I'm somewhat baffled the
+>> review is internal. The commits that I suggested to revert were also
+>> only reviewed internally, as far as I can see... And that's kind of the
+>> problem.
+>> 
+>> Upstream code should be reviewed in public.
+>
+> Hi Jani,
+>
+> All patches are sent for public reviews, the progress is summarized as 
+> the followings:
+>
+> == internal ==
+>
+> 1. a patch or patches are tested by CI.
+> 2. internal technical and IP reviews are performed to ensure no concerns 
+> before patches are merged to internal branch.
+>
+> == public ==
+>
+> 3. a regression test and IP reviews are performed by engineers before 
+> sending to public mailing lists.
+> 4. the patchset is sent for public reviews ex. 
+> https://patchwork.freedesktop.org/series/122498/
+> 5. patches are merged to public repo.
 
-Fixes: c103a23f2f29 ("drm/amd: Convert amdgpu to use suballocation helper.")
-Signed-off-by: Simon Pilkington <simonp.git@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The point about public review is that there's no transparency to the
+steps before 4. The patches are posted for public review with
+Reviewed-by and Acked-by already added, based on internal review, and
+there is de facto no public review taking place on the code drops. There
+is zero visibility to the discussions taking place. We don't know if
+it's just rubber stamping, we don't know what concerns were raised, if
+any.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c
-index c6b4337eb20c..10df731998b2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c
-@@ -81,7 +81,7 @@ int amdgpu_sa_bo_new(struct amdgpu_sa_manager *sa_manager,
- 		     unsigned int size)
- {
- 	struct drm_suballoc *sa = drm_suballoc_new(&sa_manager->base, size,
--						   GFP_KERNEL, true, 0);
-+						   GFP_KERNEL, false, 0);
- 
- 	if (IS_ERR(sa)) {
- 		*sa_bo = NULL;
+I'm mainly disappointed about the double standards here, given that we
+post most patches directly upstream (especially ones that have zero
+reason to be embargoed like the ones being discussed here), and the ones
+that have gone through internal review will be stripped of all prior
+internal Reviewed-by's and Acked-by's before posting. Because that's the
+upstream expectation.
+
+
+BR,
+Jani.
+
+
 -- 
-2.40.1
-
+Jani Nikula, Intel Open Source Graphics Center
