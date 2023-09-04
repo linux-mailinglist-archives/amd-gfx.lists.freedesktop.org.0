@@ -1,58 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BB979120D
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Sep 2023 09:26:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354A9791139
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Sep 2023 08:05:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC5A10E0EC;
-	Mon,  4 Sep 2023 07:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33EA410E295;
+	Mon,  4 Sep 2023 06:05:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 471 seconds by postgrey-1.36 at gabe;
- Mon, 04 Sep 2023 00:49:33 UTC
-Received: from james.steelbluetech.co.uk (james.steelbluetech.co.uk
- [92.63.139.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A73310E265;
- Mon,  4 Sep 2023 00:49:33 +0000 (UTC)
-Received: from [10.0.5.25] (tv.ehuk.net [10.0.5.25])
- by james.steelbluetech.co.uk (Postfix) with ESMTP id A3C05BFC11;
- Mon,  4 Sep 2023 01:41:38 +0100 (BST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 james.steelbluetech.co.uk A3C05BFC11
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ehuk.net; s=default;
- t=1693788098; bh=QVu39wB/wdpDUmhFZ16BD56J1JZefShVT6nfmmsX3aU=;
- h=Date:Reply-To:Subject:To:Cc:References:From:In-Reply-To:From;
- b=r/tLnuN0s51iXJIk2yGflAPpi8cBtPKDfxH2ixJ+IMzo/2qGEOB93wugoMCqqWKWn
- +T4ObAGsDKuoC1O/uz2i1YI/e4yqkl9weiCOMfZ4mXRLMZAHi+njmG7kt4qHUjllBZ
- /hgI22tb0T+r6U6uGrPXC2Lw8al3k5OdkhPDNjre7Vh8RHwNSjOh7iRwatQyGJPexJ
- QIcKl5TFFt3mjLTsSJH6BbUI/7/WbcK0WHtByW4iiYO6c+WSzSIZJ0CcXOA/MSOgyo
- JgtuSEFyYnH0lXJM5mAUjUipe4d3YNGtV1RYfISXJiOWVXPgb/kWDjNIC9Aq9sA0s7
- ujcxwi3BVRb+w==
-Message-ID: <f3c5bb3d-9a78-65e0-97b5-ced02bd6b524@ehuk.net>
-Date: Mon, 4 Sep 2023 01:41:38 +0100
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCBE10E295
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Sep 2023 06:05:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nYtP/VMUuKz2dkBbmV8YbRDEFrX4exf7QM881zgQOEzXraRk9Ti0jTk/YPR5eitud77W+nk4CtoVg20lQzG8413saNjt91OwVwabbnP8wflBgNSGm0ldu/MCDCsPeJPhVeOhec0T3HfHWEPJr1XX/DP6rltrfWFN90fSNgt7+vHze3ZF2ivhRdAvIfqnJtZG56srkhqF7Xfl/f4smbOVt3k0ydGdkYpZ7SNc/cmODAYrYBQOiPgjPfxxINImiiiWg4u8fQlJEaq3WF8HzCM9Q71FksjB4eHtGp4zmX9xYISoM6gwh/0MZkJ/HPyPYU2e+yVJyMbgn4Gc8OO9OGq3mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=llt3tIsrUP1zgdJmNmSDnxeP1BnLXm28bi8JiFYcjfg=;
+ b=Q9p2G4gDDM9uWo+kmLXdgvNeY7hrLZmSsjZH4BNn193UpHS026hlCOJoU7i9MPo8u1GdXWZVxegMGVEfUX09VeL+97i71uxQdUJ6CU7VO/4ZTAAzTWa8cqqxfa51iQAs5nz0LAySB4ZHn2yEWdRTvoQwA/Y5KK0T+4KcFCIQg7dvyNyjYIjndwh0MsTCkbxgMSENup7rEQ3Qri8NKr8X7Z/swf0J9Kq0zPwzK8B/w2sA9hERFFKHSly2mXIwzjr0iZ30pRcpK/KZNgfAwFlfu0Y0iAL+E1iF+4rMFvnogFgI5VyaK9hxlB4rvc4qb/rmF56GCt6Dhqlzv5uovLVlEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=llt3tIsrUP1zgdJmNmSDnxeP1BnLXm28bi8JiFYcjfg=;
+ b=tNm/wjqiobeDNwMjbg+GrpDbelNnRyDJgsKVtyHqNIRTGRlqBizrK1m22rRVtMPRYouxX74QETk8Ppmk0uEgcR63W1Nk5oXy1qFQLR6wqXfFPo/0VA063W2iRVgb2u3gdSxH74IzgXLhgeYZzeWTHnMshO1ZiynkLqcZcknGxgk=
+Received: from PH7PR17CA0035.namprd17.prod.outlook.com (2603:10b6:510:323::16)
+ by MW4PR12MB7238.namprd12.prod.outlook.com (2603:10b6:303:229::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.30; Mon, 4 Sep
+ 2023 06:05:41 +0000
+Received: from SA2PEPF000015C9.namprd03.prod.outlook.com
+ (2603:10b6:510:323:cafe::17) by PH7PR17CA0035.outlook.office365.com
+ (2603:10b6:510:323::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.32 via Frontend
+ Transport; Mon, 4 Sep 2023 06:05:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF000015C9.mail.protection.outlook.com (10.167.241.199) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6768.25 via Frontend Transport; Mon, 4 Sep 2023 06:05:40 +0000
+Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 4 Sep
+ 2023 01:05:35 -0500
+From: Ma Jun <Jun.Ma2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <Alexander.Deucher@amd.com>
+Subject: [PATCH] drm/amd: Fix the flag setting code for interrupt request
+Date: Mon, 4 Sep 2023 14:05:01 +0800
+Message-ID: <20230904060501.2942018-1-Jun.Ma2@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH AUTOSEL 5.10 13/22] drm/amdgpu: install stub fence into
- potential unused fence pointers
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Chia-I Wu <olvaffe@gmail.com>, Greg KH <gregkh@linuxfoundation.org>
-References: <20230724012419.2317649-1-sashal@kernel.org>
- <20230724012419.2317649-13-sashal@kernel.org>
- <CAPaKu7RTgAMBLHbwtp4zgiBSDrTFtAj07k5qMzkuLQy2Zr+sZA@mail.gmail.com>
- <55fc4a28-1e17-44df-2069-a688828080e6@gmail.com>
- <2023083145-scoured-celery-2511@gregkh>
- <c657653e-24d8-5790-a91c-4c13bb9eaeb0@gmail.com>
- <2023083144-railroad-daybreak-7f41@gregkh>
- <CAPaKu7Q2vq5m6Av6L2LthnFy5w2XtjKUYF8Z2__0hVp0vj2L1A@mail.gmail.com>
- <44fd45f9-8e2c-f9a2-fe89-97329734e13c@gmail.com>
-Content-Language: en-GB
-From: Eddie Chapman <eddie@ehuk.net>
-In-Reply-To: <44fd45f9-8e2c-f9a2-fe89-97329734e13c@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang
-X-Mailman-Approved-At: Mon, 04 Sep 2023 07:25:50 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C9:EE_|MW4PR12MB7238:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7227fdb-8093-4710-fd0e-08dbad0cf7a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HdKmeogqdBsQiyyAUHWoY4X91m0k5pYlfG3JD8t9wTLheTXXXaYnyD4nJX0vMnOOwMhkVdLXDVA0DlkOZ9P7CdqF2kvmBQReywsm5GbWiAg3nxIwoMc+RbqGuJiCRo7Sk/lK5Ws3nN1+i8F9yBflxmIERdI+chQMsPMUpTdjlI9cXpZ8eq8yK74IX2sUyLcAXDmp3MJMuA+kzjsukXYLPycUjvWqtAnNmnKCBByZyNMCNzcf9H5N3lJMiXDYfg/SYEFFcIbSQiFmY2r0bW/t+VxJsPgrGBXL6PkPHKOnxsGTEewj6oNK3W7csLDOcwfDbOKPTyNRV9mDBa0XHQ2K1SYmLbXdv7bknQnQHpbfL87SLJOoVXCdAimFRjnieXHLjUv7G3ddun8SKVUiaV6gfkUS1D/jbfMSjrFWxKPkwN21jXfCQQb604ZYOvdtpaTN/Z362pF/vq/cjPC3tE3VyvyxoKT81UaRJjaKQmD50CDsmc7Tg0Szf/uOhO3r/CTKi7AD9Cs9uUws9aAPXUw9wpDBclPkfFJwy7pCDlRy14Grr5UXD1edl/sajkwx2+vWHngpKn6iawnh2O825R8cVEE/LFTXovzJOxNw3/bKpnAx+TxlbWAa2+NBCFiO26rV2Hc1rDA1WpuLNQSP1lvnZXGNpy7VoW7B6BPd+jwRFWBzs0VpgAiD1UMVDb1oXfQqAXsuwizZWdi2Me1431h7Rb9xmJe9zJ9pbxRWffj2eq7d7fkPKX3Qg4fkY0oWOevNybdgIFKNpfSW49ONYf6qsA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(346002)(136003)(376002)(396003)(451199024)(1800799009)(186009)(82310400011)(36840700001)(46966006)(40470700004)(8936002)(41300700001)(40480700001)(83380400001)(478600001)(6666004)(2906002)(70586007)(5660300002)(70206006)(8676002)(110136005)(54906003)(6636002)(316002)(4326008)(2616005)(1076003)(7696005)(40460700003)(16526019)(26005)(36860700001)(336012)(426003)(36756003)(356005)(81166007)(82740400003)(47076005)(86362001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2023 06:05:40.8233 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7227fdb-8093-4710-fd0e-08dbad0cf7a1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015C9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7238
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,69 +98,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eddie@ehuk.net
-Cc: Sasha Levin <sashal@kernel.org>, airlied@linux.ie,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- stable@vger.kernel.org, Lang Yu <Lang.Yu@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Ma Jun <Jun.Ma2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01/09/2023 07:02, Christian König wrote:
-> Am 31.08.23 um 20:55 schrieb Chia-I Wu:
->> On Thu, Aug 31, 2023 at 7:01 AM Greg KH <gregkh@linuxfoundation.org> 
->> wrote:
->>> On Thu, Aug 31, 2023 at 03:26:28PM +0200, Christian König wrote:
->>>> Am 31.08.23 um 12:56 schrieb Greg KH:
->>>>> On Thu, Aug 31, 2023 at 12:27:27PM +0200, Christian König wrote:
->>>>>> Am 30.08.23 um 20:53 schrieb Chia-I Wu:
->>>>>>> On Sun, Jul 23, 2023 at 6:24 PM Sasha Levin <sashal@kernel.org> 
->>>>>>> wrote:
->>>>>>>> From: Lang Yu <Lang.Yu@amd.com>
->>>>>>>>
->>>>>>>> [ Upstream commit 187916e6ed9d0c3b3abc27429f7a5f8c936bd1f0 ]
->>>>>>>>
->>>>>>>> When using cpu to update page tables, vm update fences are unused.
->>>>>>>> Install stub fence into these fence pointers instead of NULL
->>>>>>>> to avoid NULL dereference when calling dma_fence_wait() on them.
->>>>>>>>
->>>>>>>> Suggested-by: Christian König <christian.koenig@amd.com>
->>>>>>>> Signed-off-by: Lang Yu <Lang.Yu@amd.com>
->>>>>>>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>>>>>>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->>>>>>>> Signed-off-by: Sasha Levin <sashal@kernel.org>
->>>>>>>> ---
->>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 6 ++++--
->>>>>>>>     1 file changed, 4 insertions(+), 2 deletions(-)
->>>>>>> We start getting this warning spew on chromeos
->>>>>> Yeah because the older kernels still kept track of the last VM 
->>>>>> fence in the
->>>>>> syncobj.
->>>>>>
->>>>>> This patch here should probably not have been back ported.
->>>>>>
->>>>>> Why was that done anyway? The upstream commit doesn't have a CC 
->>>>>> stable and
->>>>>> this is only a bug fix for a new feature not present on older 
->>>>>> kernels.
->>>>> It is part of the AUTOSEL process.
->>>> Could we prevent patches from being backported by adding a Fixes: tag?
->>> Yes, that will show exactly where the patch should be backported to.
->> This is also AUTOSEL'ed to 5.15.  That might need a revert as well,
->> depending on when the amdgpu feature landed.
-> 
-> Both the feature and the bug fix landed in 6.5.
-> 
-> The bug fix should have never been backported to any older kernel at all 
-> as far as I can see.
-> 
-> Regards,
-> Christian.
+[1] Remove the irq flags setting code since pci_alloc_irq_vectors()
+handles these flags.
+[2] Free the msi vectors in case of error.
 
-I can confirm I've also started to get this warning hundreds of times 
-per second having upgraded from 5.15.123 to 5.15.130. There's also a 
-report from someone else of exactly the same on 5.15.128, here:
-https://gitlab.freedesktop.org/drm/amd/-/issues/2820
+Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 43 ++++++++++++++-----------
+ 1 file changed, 25 insertions(+), 18 deletions(-)
 
-Eddie
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+index fa6d0adcec20..17043a1e37a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+@@ -271,28 +271,28 @@ static void amdgpu_restore_msix(struct amdgpu_device *adev)
+ int amdgpu_irq_init(struct amdgpu_device *adev)
+ {
+ 	int r = 0;
+-	unsigned int irq;
++	unsigned int irq, flags;
+ 
+ 	spin_lock_init(&adev->irq.lock);
+ 
+ 	/* Enable MSI if not disabled by module parameter */
+ 	adev->irq.msi_enabled = false;
+ 
++	if (amdgpu_msi_ok(adev))
++		flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
++	else
++		flags = PCI_IRQ_LEGACY;
++
++	/* we only need one vector */
++	r = pci_alloc_irq_vectors(adev->pdev, 1, 1, flags);
++	if (r < 0) {
++		dev_err(adev->dev, "Failed to alloc msi vectors\n");
++		return r;
++	}
++
+ 	if (amdgpu_msi_ok(adev)) {
+-		int nvec = pci_msix_vec_count(adev->pdev);
+-		unsigned int flags;
+-
+-		if (nvec <= 0)
+-			flags = PCI_IRQ_MSI;
+-		else
+-			flags = PCI_IRQ_MSI | PCI_IRQ_MSIX;
+-
+-		/* we only need one vector */
+-		nvec = pci_alloc_irq_vectors(adev->pdev, 1, 1, flags);
+-		if (nvec > 0) {
+-			adev->irq.msi_enabled = true;
+-			dev_dbg(adev->dev, "using MSI/MSI-X.\n");
+-		}
++		adev->irq.msi_enabled = true;
++		dev_dbg(adev->dev, "using MSI/MSI-X.\n");
+ 	}
+ 
+ 	INIT_WORK(&adev->irq.ih1_work, amdgpu_irq_handle_ih1);
+@@ -302,22 +302,29 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
+ 	/* Use vector 0 for MSI-X. */
+ 	r = pci_irq_vector(adev->pdev, 0);
+ 	if (r < 0)
+-		return r;
++		goto free_vectors;
+ 	irq = r;
+ 
+ 	/* PCI devices require shared interrupts. */
+ 	r = request_irq(irq, amdgpu_irq_handler, IRQF_SHARED, adev_to_drm(adev)->driver->name,
+ 			adev_to_drm(adev));
+ 	if (r)
+-		return r;
++		goto free_vectors;
++
+ 	adev->irq.installed = true;
+ 	adev->irq.irq = irq;
+ 	adev_to_drm(adev)->max_vblank_count = 0x00ffffff;
+ 
+ 	DRM_DEBUG("amdgpu: irq initialized.\n");
+ 	return 0;
+-}
+ 
++free_vectors:
++	if (adev->irq.msi_enabled)
++		pci_free_irq_vectors(adev->pdev);
++
++	adev->irq.msi_enabled = false;
++	return r;
++}
+ 
+ void amdgpu_irq_fini_hw(struct amdgpu_device *adev)
+ {
+-- 
+2.34.1
+
