@@ -1,68 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E56D790D91
-	for <lists+amd-gfx@lfdr.de>; Sun,  3 Sep 2023 20:46:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3C6790F63
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Sep 2023 02:43:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBEC910E1FB;
-	Sun,  3 Sep 2023 18:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B52F410E153;
+	Mon,  4 Sep 2023 00:43:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
- [IPv6:2607:f8b0:4864:20::130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA30A10E1A1;
- Sun,  3 Sep 2023 18:46:22 +0000 (UTC)
-Received: by mail-il1-x130.google.com with SMTP id
- e9e14a558f8ab-34df008b0cbso3303145ab.1; 
- Sun, 03 Sep 2023 11:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693766782; x=1694371582; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9+vShd9z6JIlJdMcVT9ozEMb7ECMtYhQaxypaqn+ojI=;
- b=gsG7vqqREloVFGLQnEO9qOBUm3hP/oMcF+m2BCq68YPNrflltw3N+FN1LMoJOvlgQe
- 2VlGc7IfBWyUjeEACWGHqYuy3d9TvY5UJtKFfNNyrytreyC7n0CWo45J9B9A3tpoh4J8
- TizawBiB6p/1Ypwl+D7Oeix8ePXy1HEvaAPLgF8jpkmKjUx7tgPf/DxqgM0qRrXxbrEK
- 1amYyM5QzHRoyGWW0GDgeouyx/uC368Gu42qvJCrhmTMLS1sqi7rSXcG5pk5jPpWHKXY
- rT02ZjicRDoNpo2rTM8S2/KKQroWk+M58cpdVo9X6C6bfDcSWxHWEKho9DoenBDuh0hb
- bjTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693766782; x=1694371582;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9+vShd9z6JIlJdMcVT9ozEMb7ECMtYhQaxypaqn+ojI=;
- b=MW9IveanG2u26KxmtZCnmblLyAXe8iUHheIvnTjj3xuQhzJa/cVAtfQbADZLUVuM0j
- cuxiKlmQb9pVAvOwFkQsB3dXRLUnJG2VMV3OtWdjV2ErhEM0V9VO+bmtH+CDOUBX+tgX
- +JLJ6JqccG6ozLWkzPrTuz3nshQQRjmIhAG/Nmo9b4L55VvT67JiyHRoDkBDTk97PtTc
- nCBKhnN5UN+8CPGXthqfSqWcBsIfXvAaIqjuAd8BcsuF/gIuKOLUjQ8dyzmOfIvqEpl1
- gmHCBfatMLanUmlPS17LtjVrnIF1f57wyfjoCKLd9r4p+lSk+oYiJCY7G1CfhxoHcScZ
- EEvQ==
-X-Gm-Message-State: AOJu0YyFJgJrUbMUn6VnBQhZRQG5y/UBxI8LUQcH90CkTn0+0Glyo0xK
- jj/AI44cV8WL/xqvcZAfWdk=
-X-Google-Smtp-Source: AGHT+IGqOoyhaY6/BLxjGQwr9jgSrLCBNKR3l+qSBXjy+8E6+buexCVqqyAEqMiNiyX8+oyGCVjU2Q==
-X-Received: by 2002:a05:6e02:e12:b0:349:9993:f223 with SMTP id
- a18-20020a056e020e1200b003499993f223mr8706895ilk.23.1693766781766; 
- Sun, 03 Sep 2023 11:46:21 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- u9-20020a02cb89000000b0042b37dda71asm2519968jap.136.2023.09.03.11.46.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Sep 2023 11:46:21 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 6/6] drm: use correct ccflags-y syntax
-Date: Sun,  3 Sep 2023 12:46:03 -0600
-Message-ID: <20230903184607.272198-7-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230903184607.272198-1-jim.cromie@gmail.com>
-References: <20230903184607.272198-1-jim.cromie@gmail.com>
+X-Greylist: delayed 439 seconds by postgrey-1.36 at gabe;
+ Mon, 04 Sep 2023 00:43:33 UTC
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2F510E153;
+ Mon,  4 Sep 2023 00:43:32 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4BDF8B8069C;
+ Mon,  4 Sep 2023 00:36:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2A3EC433CA;
+ Mon,  4 Sep 2023 00:36:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1693787764;
+ bh=l/ZbviUAxVSkzWPyEeIQ9Fs+OkgtA7pgZqstVlvtbQQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=evXDeLHRwiT4KgwYnIN2i5lcQIUcFDaUGlfkVPVf+PtZYoGITJ2Volm+tErbbpK10
+ WweMowunRx81+JswUwcqQPA2jAYr7jslTPKkKcB2FY2S1LoKBKPXt37SUJlJKqmav7
+ Qy+lNtKGClbdkFVJY+9yTY37Tkcuz0OXraOVJPZgPNnve6ho6odmEnZpcwfzC6NTmT
+ TG0DJwCDaAxg+wdhgo2Lw16ebN2y8yLvX8LX96X9Tv9efh/aETy2PHWjexn3bxf/qW
+ y3Xm82oFazw2fFIyrY50SeGEYi28Z0JvwQHN3n4SMpTDS6fPHZJEmYGtsGmsazWoqN
+ 6NSxAcr9wl+rg==
+Date: Sun, 3 Sep 2023 20:36:02 -0400
+From: Sasha Levin <sashal@kernel.org>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: Re: [PATCH AUTOSEL 6.1 08/10] drm/amdkfd: ignore crat by default
+Message-ID: <ZPUmcjPuyUj2qqN+@sashalap>
+References: <20230822113628.3551393-1-sashal@kernel.org>
+ <20230822113628.3551393-8-sashal@kernel.org>
+ <BN9PR12MB5146E3C94A2A6CB87138B2BCF71FA@BN9PR12MB5146.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <BN9PR12MB5146E3C94A2A6CB87138B2BCF71FA@BN9PR12MB5146.namprd12.prod.outlook.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,43 +56,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@intel.com,
- daniel.vetter@ffwll.ch, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Jim Cromie <jim.cromie@gmail.com>,
- robdclark@gmail.com, seanpaul@chromium.org, daniel@ffwll.ch,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Mike Lothian <mike@fireburn.co.uk>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "airlied@gmail.com" <airlied@gmail.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Incorrect CFLAGS- usage failed to add -DDYNAMIC_DEBUG_MODULE,
-which broke builds with:
+On Tue, Aug 22, 2023 at 03:41:18PM +0000, Deucher, Alexander wrote:
+>[Public]
+>
+>> -----Original Message-----
+>> From: Sasha Levin <sashal@kernel.org>
+>> Sent: Tuesday, August 22, 2023 7:36 AM
+>> To: linux-kernel@vger.kernel.org; stable@vger.kernel.org
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix
+>> <Felix.Kuehling@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>;
+>> Mike Lothian <mike@fireburn.co.uk>; Sasha Levin <sashal@kernel.org>; Pan,
+>> Xinhui <Xinhui.Pan@amd.com>; airlied@gmail.com; daniel@ffwll.ch; amd-
+>> gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>> Subject: [PATCH AUTOSEL 6.1 08/10] drm/amdkfd: ignore crat by default
+>>
+>> From: Alex Deucher <alexander.deucher@amd.com>
+>>
+>> [ Upstream commit a6dea2d64ff92851e68cd4e20a35f6534286e016 ]
+>>
+>> We are dropping the IOMMUv2 path, so no need to enable this.
+>> It's often buggy on consumer platforms anyway.
+>
+>
+>This is not needed for stable.
 
-CONFIG_DRM_USE_DYNAMIC_DEBUG=Y
-CONFIG_DYNAMIC_DEBUG_CORE=Y, but CONFIG_DYNAMIC_DEBUG=N
+Dropped this and the other ones you've pointed out, thanks!
 
-Also add subdir-ccflags so that all drivers pick up the addition.
-
-Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 7a09a89b493b..013cde886326 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- 
--CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
- 
- drm-y := \
- 	drm_aperture.o \
 -- 
-2.41.0
-
+Thanks,
+Sasha
