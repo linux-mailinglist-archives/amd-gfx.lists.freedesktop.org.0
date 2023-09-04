@@ -1,37 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BA97920DC
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 09:47:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE907920DE
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 09:47:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B79710E448;
-	Tue,  5 Sep 2023 07:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD4D10E45D;
+	Tue,  5 Sep 2023 07:47:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-226.mta1.migadu.com (out-226.mta1.migadu.com
- [IPv6:2001:41d0:203:375::e2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B39D10E3FA
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Sep 2023 19:57:52 +0000 (UTC)
+Received: from out-211.mta1.migadu.com (out-211.mta1.migadu.com
+ [95.215.58.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1499010E3F7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Sep 2023 19:57:54 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1693857470;
+ t=1693857472;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=eVLtpKZqnO0MsDqBoHAPYkiqg81D+bke81ZOJN69XK4=;
- b=NC2ru9MCWsAYNJ2JJcP1noCtF2zQDgPBa0LpYE2S+4M6e4i+WN2Kd9qVsYWiRslhWMrg0+
- xIyJHmFr09Ash0CyTQsTafa0QY9OGLSS0SQL36tPB5E78LI0mlzwjbZA+6UeW9wJkR7mO+
- OeDMb50AfrAOUBCe6WMMLaNnrkQX67s=
+ bh=F94OEAVhjRPNan81JT9jYKc/35rAAkFMKn0HnOUomvI=;
+ b=GnSWs3Th21KoWg3GlauP3qiIOfTQOIrowoSQabwTLw+lmR60Zkz6STabaEZAnjCGxkeJj7
+ 3JZwsA+Ed49UQWdSv8QN1222rpeBrwhEKmFkowFHEmI3Xv35ckwzuofdSFTolilLKKXFoF
+ 0kP5vMu/6Z3tploGLiaOXmyG8Od7rYc=
 From: Sui Jingfeng <sui.jingfeng@linux.dev>
 To: Bjorn Helgaas <bhelgaas@google.com>
 Subject: [RFC,
- drm-misc-next v4 7/9] drm/ast: Register as a VGA client by calling
+ drm-misc-next v4 8/9] drm/hibmc: Register as a VGA client by calling
  vga_client_register()
-Date: Tue,  5 Sep 2023 03:57:22 +0800
-Message-Id: <20230904195724.633404-8-sui.jingfeng@linux.dev>
+Date: Tue,  5 Sep 2023 03:57:23 +0800
+Message-Id: <20230904195724.633404-9-sui.jingfeng@linux.dev>
 In-Reply-To: <20230904195724.633404-1-sui.jingfeng@linux.dev>
 References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
 MIME-Version: 1.0
@@ -49,32 +49,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-pci@vger.kernel.org
+ linux-pci@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Becasuse the display controller in the ASpeed BMC chip is a VGA-compatible
-device, the software programming guide of AST2400 say that it is fully
-IBM VGA compliant. Thus, it should also participate in the arbitration.
+Because the display controller in the Hibmc chip is a VGA compatible
+display controller. Because ARM64 doesn't need the VGA console. It does not
+need to worry about the side effects that come with the VGA compatible.
+However, the real problem is that some ARM64 PCs and servers do not have
+good UEFI firmware support. At least, it is not as good as UEFI firmware
+for x86. The Huawei KunPeng 920 PC and Taishan 100 server are examples.
+When a discrete GPU is mounted on such machines, the UEFI firmware still
+selects the integrated display controller (in the BMC) as the primary GPU.
+It is hardcoded, no options are provided for selection. A Linux user has
+no control at all.
 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
 Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
- drivers/gpu/drm/ast/ast_drv.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
-index e1224ef4ad83..1349f7bb5dfb 100644
---- a/drivers/gpu/drm/ast/ast_drv.c
-+++ b/drivers/gpu/drm/ast/ast_drv.c
-@@ -28,6 +28,7 @@
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+index 8a98fa276e8a..73a3f1cb109a 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
++++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+@@ -13,6 +13,7 @@
  
  #include <linux/module.h>
  #include <linux/pci.h>
@@ -82,46 +86,37 @@ index e1224ef4ad83..1349f7bb5dfb 100644
  
  #include <drm/drm_aperture.h>
  #include <drm/drm_atomic_helper.h>
-@@ -89,6 +90,34 @@ static const struct pci_device_id ast_pciidlist[] = {
+@@ -27,6 +28,10 @@
+ #include "hibmc_drm_drv.h"
+ #include "hibmc_drm_regs.h"
  
- MODULE_DEVICE_TABLE(pci, ast_pciidlist);
++static int hibmc_modeset = -1;
++MODULE_PARM_DESC(modeset, "Disable/Enable modesetting");
++module_param_named(modeset, hibmc_modeset, int, 0400);
++
+ DEFINE_DRM_GEM_FOPS(hibmc_fops);
  
-+static bool ast_want_to_be_primary(struct pci_dev *pdev)
+ static irqreturn_t hibmc_interrupt(int irq, void *arg)
+@@ -299,6 +304,14 @@ static int hibmc_load(struct drm_device *dev)
+ 	return ret;
+ }
+ 
++static bool hibmc_want_to_be_primary(struct pci_dev *pdev)
 +{
-+	if (ast_modeset == 10)
++	if (hibmc_modeset == 10)
 +		return true;
 +
 +	return false;
 +}
 +
-+static unsigned int ast_vga_set_decode(struct pci_dev *pdev, bool state)
-+{
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+	struct ast_device *ast = to_ast_device(drm);
-+	unsigned int decode;
-+
-+	if (state) {
-+		/* Enable standard VGA decode and Enable normal VGA decode */
-+		ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x04);
-+
-+		decode = VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
-+			 VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+	} else {
-+		ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x07);
-+		decode = VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+	}
-+
-+	return decode;
-+}
-+
- static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ static int hibmc_pci_probe(struct pci_dev *pdev,
+ 			   const struct pci_device_id *ent)
  {
- 	struct ast_device *ast;
-@@ -112,6 +141,8 @@ static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (ret)
- 		return ret;
+@@ -339,6 +352,8 @@ static int hibmc_pci_probe(struct pci_dev *pdev,
+ 		goto err_unload;
+ 	}
  
-+	vga_client_register(pdev, ast_vga_set_decode, ast_want_to_be_primary);
++	vga_client_register(pdev, NULL, hibmc_want_to_be_primary);
 +
  	drm_fbdev_generic_setup(dev, 32);
  
