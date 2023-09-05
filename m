@@ -1,63 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B78792075
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 08:04:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C742279207A
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 08:04:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C804410E42D;
-	Tue,  5 Sep 2023 06:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2198210E433;
+	Tue,  5 Sep 2023 06:04:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
- [IPv6:2a00:1450:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 025CA10E427
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 06:04:21 +0000 (UTC)
-Received: by mail-ed1-x535.google.com with SMTP id
- 4fb4d7f45d1cf-52c74a2e8edso2986120a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 04 Sep 2023 23:04:21 -0700 (PDT)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 868B310E427
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 06:04:22 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id
+ 4fb4d7f45d1cf-52a4737a08fso2737703a12.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 Sep 2023 23:04:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693893860; x=1694498660; darn=lists.freedesktop.org;
+ d=gmail.com; s=20221208; t=1693893861; x=1694498661; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=a9d5n3grJEyGrwKuAoASHma4QqT+cwst804XpWW7Fdg=;
- b=rmLKumPoqwjeiCbXqsWL67X/C9P6lbtXkS+KU4aOmqtBZnRe0F3BLQZxWWM9lixYNf
- LyCgN4oCH7m7XpkDLgmcJwEC2EKFXXdqmqO9UCDycormpxPneYG2Ym7tro37AVGnYd9O
- rxD1FdxNXtpDd9iKfJdetnyKOCYo/t30wbvdJ8eT+mwBsPvVqEq3is/7e1nHqkCqgVUr
- mGp5HcXmxGP8AvpQGsooLDS7CMNdh0BslROUATcesf+5UwnqQ0D9NEBxvDpajcqV3+as
- PObiAk2Lb/6uj9NfDj0wLv28IgGbHBvG3UuUngoa9aAdcFJgJFNK31iadnSvakk4Go9X
- qKcw==
+ bh=DhK2Af0acazU83JATi5DFULdeYKxEI+yy3mu6CtruwY=;
+ b=nk7zBjrZ5XahCSmJKRx4D7DFmxo+41uhzO1e0W7mloA9mvrnLK62JT7u5hTrErYBP4
+ eLnWchLujvNG1hUtAEPWJ97W8TUV7156+eAExlY1wtEVbNxpyHZKIXrNXapBDGr973ST
+ LASAHQ8/ua2CP5hyAfCp+Kj9+oVKfEuMKGPyIzAvdNi2fP8Ffy9TIgrhd2QmKFSqTIEL
+ jwW3KCOrtkaKfnVkEqmfljFZ3DVlR9TyoIFxwulXUreRHmLTzc+GT+gOEeElBerJqkuJ
+ EEkSaQs/e0ygNpu4K0ISFvy5IThIVeYjXFePO+NoBk9IVU+3olCgjmO9YOQQRLaM3E3w
+ EejQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693893860; x=1694498660;
+ d=1e100.net; s=20221208; t=1693893861; x=1694498661;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=a9d5n3grJEyGrwKuAoASHma4QqT+cwst804XpWW7Fdg=;
- b=CHraNfv3l64XiCgJ/t7qXXceA9QiogUQ2y3zEgAPvMQ84lD490n6nIabdsQxSztm5u
- RUyInaflqlMRTHupVhOu6VJnLRo/+Iz9ytoYMW6vCfLheiDPlNGlTB8WN9OI6CQhjg8R
- aFj4ARV1fGzG2odYgTvouK43LWP/tI0RuGdWqpfM+ponDPD41Twk9ruR5lHyJQK5ZFG/
- iWYIsfcgDSvbZZBrpSZFoTdq1ors0PGl4dLPvzaLzbrApnGJ7pdUwf8y1pPWQVDX7HWC
- Ef3gvb4NiDFcPYv6jytxNkR4RIKgQ7Pkh0fUmjx27JZ/mE6hlw7w8urjxlSnK9/bBNm+
- DUKA==
-X-Gm-Message-State: AOJu0YxEyU4ijV5fYK4B1h0wejgh3qnGgVhwkTtgrA0+DxFT7pEplqmH
- mxEyx8BSA+7LF6LL3PwPetUTlB+92FGl2eNs
-X-Google-Smtp-Source: AGHT+IGUd5HOtCN42bO2/jTNxYhLf87ypOAIap7bXH+S1+S94ItnX2mCwXpv7FQNBtVurDWBNjWzHw==
-X-Received: by 2002:a50:ee92:0:b0:52a:3ee9:a78a with SMTP id
- f18-20020a50ee92000000b0052a3ee9a78amr9175325edr.26.1693893860286; 
+ bh=DhK2Af0acazU83JATi5DFULdeYKxEI+yy3mu6CtruwY=;
+ b=Vxb7aUwHKeNqXardP0KjIMFpW9bxPcvVFIuEzBull5Mr0dWAy0N4BUsro5M+Mz+mTA
+ S1A0PniSwzDnV0fQ4glGA54l3+fK9stz/oBe1Aijz8xhAptMfyPxqmDE5BjzDbWaQ2Td
+ 652JIi2TzXPemZe/Y3LSYwkXB9JtcOClem1QoFip2bNWr5PfewVTC77zXtkT9VcAvs1B
+ ZK5OMR3/VgnY1VBkEQ/JCQZrOlbbDt31XmroUAYRvQwy6ePq9p24i1zJI+kctSoPQbns
+ L+T9I67+WKMRZLgfdt3v0BUaA+Qfjf6yDeolON97u6z3lxEk+3yHQ/0xSBCH9yETxtkB
+ r3MA==
+X-Gm-Message-State: AOJu0YyCwzukeqdKo+fZNHEzmYUfPngY2ZIHfNF4IAUPYqhjYyJgeDQc
+ l19ZJk+VhS2pQhj+JkKxb7SMCjBPMbuWv5ip
+X-Google-Smtp-Source: AGHT+IGjxkyJ/lWVXjd+B9quozaq0HN7fG7vAvslcVLz2VQPZIsyFUE40IRrenQQWExtpYk/q2zZxQ==
+X-Received: by 2002:aa7:c3d4:0:b0:523:19f0:b113 with SMTP id
+ l20-20020aa7c3d4000000b0052319f0b113mr8710406edr.31.1693893860967; 
  Mon, 04 Sep 2023 23:04:20 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15d9:7000:2f9d:c07d:1ee2:6439])
  by smtp.gmail.com with ESMTPSA id
- f2-20020a056402150200b0052a3b212157sm6631582edw.63.2023.09.04.23.04.19
+ f2-20020a056402150200b0052a3b212157sm6631582edw.63.2023.09.04.23.04.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Sep 2023 23:04:19 -0700 (PDT)
+ Mon, 04 Sep 2023 23:04:20 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 04/11] drm/amdgpu: fix and cleanup gmc_v7_0_flush_gpu_tlb_pasid
-Date: Tue,  5 Sep 2023 08:04:08 +0200
-Message-Id: <20230905060415.1400-5-christian.koenig@amd.com>
+Subject: [PATCH 05/11] drm/amdgpu: fix and cleanup gmc_v8_0_flush_gpu_tlb_pasid
+Date: Tue,  5 Sep 2023 08:04:09 +0200
+Message-Id: <20230905060415.1400-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230905060415.1400-1-christian.koenig@amd.com>
 References: <20230905060415.1400-1-christian.koenig@amd.com>
@@ -87,22 +87,22 @@ to reset instead of just restting the first one.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-index 6a6929ac2748..9e19a752f94b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-@@ -33,6 +33,7 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index 5af235202513..2d51531a1f2d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -31,6 +31,7 @@
  #include "amdgpu_ucode.h"
  #include "amdgpu_amdkfd.h"
  #include "amdgpu_gem.h"
 +#include "amdgpu_reset.h"
  
- #include "bif/bif_4_1_d.h"
- #include "bif/bif_4_1_sh_mask.h"
-@@ -426,23 +427,23 @@ static int gmc_v7_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ #include "gmc/gmc_8_1_d.h"
+ #include "gmc/gmc_8_1_sh_mask.h"
+@@ -616,25 +617,24 @@ static int gmc_v8_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
  					uint16_t pasid, uint32_t flush_type,
  					bool all_hub, uint32_t inst)
  {
@@ -133,8 +133,10 @@ index 6a6929ac2748..9e19a752f94b 100644
 +	RREG32(mmVM_INVALIDATE_RESPONSE);
 +	up_read(&adev->reset_domain->sem);
  	return 0;
+-
  }
  
+ /*
 -- 
 2.34.1
 
