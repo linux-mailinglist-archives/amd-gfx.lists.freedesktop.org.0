@@ -1,47 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 742C6792380
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 16:26:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4390279239E
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 16:46:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A83B810E53B;
-	Tue,  5 Sep 2023 14:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC6F510E049;
+	Tue,  5 Sep 2023 14:46:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBEC10E53B;
- Tue,  5 Sep 2023 14:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=fA6ccKKW2j5fwrikVqJ0Bd7twwS3X2mWjtfxvTj0j4w=; b=Nx6lzPF/D+4ldGG9CLctbPzoYo
- dBlWu3vcEi+QcfZttYOIxSDGKaVverRWxU69H5O7nGUzy9QPWKQ5o4VlqS9+uAEbTEVj5aeEEnKBq
- sIEdMz8VcLQkKb/VB4VS/ldoU7xoFnOiT3OdzeWUdGjzLvv3R/SKEXPHyHNOYyTs2KzZVCiqCJpWE
- sRbew43rHHYnBRR2GS5MkzP63qMYkNDNXxYrfk1QbGeoKgSh1j++Cl2BHX4sAsXcCiRBPLNQAbJ2H
- LBhd9OYM+R70OPj6WrLmc9NecLGbM9stJaxIJkGD3DbokhvD0E8q+rezPXDgZJfqkCAXxvtP1s1ip
- MrIXDDcQ==;
-Received: from [38.44.68.151] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1qdX07-002cXU-Lt; Tue, 05 Sep 2023 16:25:55 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: Harry Wentland <harry.wentland@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Subject: [RFC PATCH 5/5] drm/amd/display: add DPP and MPC color caps to DTN log
-Date: Tue,  5 Sep 2023 13:25:45 -0100
-Message-Id: <20230905142545.451153-6-mwen@igalia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230905142545.451153-1-mwen@igalia.com>
-References: <20230905142545.451153-1-mwen@igalia.com>
+X-Greylist: delayed 310 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Sep 2023 14:33:32 UTC
+Received: from out-222.mta0.migadu.com (out-222.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::de])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 176BC10E543
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 14:33:32 +0000 (UTC)
+Message-ID: <e3d2d996-a2c1-c4b8-7722-f67aefac8193@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1693924098;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UR1E0EgY5MLLLn/rotdUHKRy5Nxe3OW4mUJd7Y8S7Ac=;
+ b=f82FFX3ED+RO8uacw2rhS2YPv3o9jaMPTNOmmpLcmCuk5FgapClX0a64QrddQ0431Won7u
+ 3xWw4hB8t8g3ByC+AcVTZNZBKfLw1/o2iWi8F0esh9FSw9iqyg6m/2vliRccsaX40+fZHo
+ +At90VECeg91hXCSsjHb/OR4Zc5Cglo=
+Date: Tue, 5 Sep 2023 22:28:02 +0800
 MIME-Version: 1.0
+Subject: Re: [RFC, drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select
+ the primary video adapter at boot time
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <874jk8j45s.fsf@intel.com> <b11fedb4-d577-d007-0ef8-ac62775d9eee@gmail.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <b11fedb4-d577-d007-0ef8-ac62775d9eee@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Tue, 05 Sep 2023 14:46:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,103 +55,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Krunoslav Kovac <krunoslav.kovac@amd.com>,
- Shashank Sharma <Shashank.Sharma@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, sungjoon.kim@amd.com
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-pci@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add color caps information for DPP and MPC block to show HW color caps.
+Hi,
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 23 +++++++++++++++++++
- .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 23 +++++++++++++++++++
- 2 files changed, 46 insertions(+)
+On 2023/9/5 21:28, Christian König wrote:
+>>>
+>>> 2) Typically, those non-86 machines don't have a good UEFI firmware
+>>>     support, which doesn't support select primary GPU as firmware 
+>>> stage.
+>>>     Even on x86, there are old UEFI firmwares which already made 
+>>> undesired
+>>>     decision for you.
+>>>
+>>> 3) This series is attempt to solve the remain problems at the driver 
+>>> level,
+>>>     while another series[1] of me is target to solve the majority of 
+>>> the
+>>>     problems at device level.
+>>>
+>>> Tested (limited) on x86 with four video card mounted, Intel UHD 
+>>> Graphics
+>>> 630 is the default boot VGA, successfully override by ast2400 with
+>>> ast.modeset=10 append at the kernel cmd line.
+>> The value 10 is incredibly arbitrary, and multiplied as a magic number
+>> all over the place.
+>
+> +1 
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index b2f3f1f85f4f..6caac6cb8873 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -329,6 +329,24 @@ dcn10_log_color_state(struct dc *dc,
- 		DTN_INFO("\n");
- 	}
- 	DTN_INFO("\n");
-+	DTN_INFO("DPP Color Caps: input_lut_shared:%d  icsc:%d"
-+		 "  dgam_ram:%d  dgam_rom: srgb:%d,bt2020:%d,gamma2_2:%d,pq:%d,hlg:%d"
-+		 "  post_csc:%d  gamcor:%d  dgam_rom_for_yuv:%d  3d_lut:%d"
-+		 "  blnd_lut:%d  oscs:%d\n\n",
-+		 dc->caps.color.dpp.input_lut_shared,
-+		 dc->caps.color.dpp.icsc,
-+		 dc->caps.color.dpp.dgam_ram,
-+		 dc->caps.color.dpp.dgam_rom_caps.srgb,
-+		 dc->caps.color.dpp.dgam_rom_caps.bt2020,
-+		 dc->caps.color.dpp.dgam_rom_caps.gamma2_2,
-+		 dc->caps.color.dpp.dgam_rom_caps.pq,
-+		 dc->caps.color.dpp.dgam_rom_caps.hlg,
-+		 dc->caps.color.dpp.post_csc,
-+		 dc->caps.color.dpp.gamma_corr,
-+		 dc->caps.color.dpp.dgam_rom_for_yuv,
-+		 dc->caps.color.dpp.hw_3d_lut,
-+		 dc->caps.color.dpp.ogam_ram,
-+		 dc->caps.color.dpp.ocsc);
- 
- 	DTN_INFO("MPCC:  OPP  DPP  MPCCBOT  MODE  ALPHA_MODE  PREMULT  OVERLAP_ONLY  IDLE\n");
- 	for (i = 0; i < pool->pipe_count; i++) {
-@@ -342,6 +360,11 @@ dcn10_log_color_state(struct dc *dc,
- 				s.idle);
- 	}
- 	DTN_INFO("\n");
-+	DTN_INFO("MPC Color Caps: gamut_remap:%d, 3dlut:%d, ogam_ram:%d, ocsc:%d\n\n",
-+		 dc->caps.color.mpc.gamut_remap,
-+		 dc->caps.color.mpc.num_3dluts,
-+		 dc->caps.color.mpc.ogam_ram,
-+		 dc->caps.color.mpc.ocsc);
- }
- 
- void dcn10_log_hw_state(struct dc *dc,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-index e1a2a68c1d45..dfccf0d3f0d5 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-@@ -125,6 +125,24 @@ dcn30_log_color_state(struct dc *dc,
- 		DTN_INFO("\n");
- 	}
- 	DTN_INFO("\n");
-+	DTN_INFO("DPP Color Caps: input_lut_shared:%d  icsc:%d"
-+		 "  dgam_ram:%d  dgam_rom: srgb:%d,bt2020:%d,gamma2_2:%d,pq:%d,hlg:%d"
-+		 "  post_csc:%d  gamcor:%d  dgam_rom_for_yuv:%d  3d_lut:%d"
-+		 "  blnd_lut:%d  oscs:%d\n\n",
-+		 dc->caps.color.dpp.input_lut_shared,
-+		 dc->caps.color.dpp.icsc,
-+		 dc->caps.color.dpp.dgam_ram,
-+		 dc->caps.color.dpp.dgam_rom_caps.srgb,
-+		 dc->caps.color.dpp.dgam_rom_caps.bt2020,
-+		 dc->caps.color.dpp.dgam_rom_caps.gamma2_2,
-+		 dc->caps.color.dpp.dgam_rom_caps.pq,
-+		 dc->caps.color.dpp.dgam_rom_caps.hlg,
-+		 dc->caps.color.dpp.post_csc,
-+		 dc->caps.color.dpp.gamma_corr,
-+		 dc->caps.color.dpp.dgam_rom_for_yuv,
-+		 dc->caps.color.dpp.hw_3d_lut,
-+		 dc->caps.color.dpp.ogam_ram,
-+		 dc->caps.color.dpp.ocsc);
- 
- 	DTN_INFO("MPCC:  OPP  DPP  MPCCBOT  MODE  ALPHA_MODE  PREMULT  OVERLAP_ONLY  IDLE"
- 		 "  SHAPER mode  3DLUT_mode  3DLUT bit-depth  3DLUT size  OGAM mode  OGAM LUT"
-@@ -156,6 +174,11 @@ dcn30_log_color_state(struct dc *dc,
- 				s.gamut_remap_c11_c12, s.gamut_remap_c33_c34);
- 	}
- 	DTN_INFO("\n");
-+	DTN_INFO("MPC Color Caps: gamut_remap:%d, 3dlut:%d, ogam_ram:%d, ocsc:%d\n\n",
-+		 dc->caps.color.mpc.gamut_remap,
-+		 dc->caps.color.mpc.num_3dluts,
-+		 dc->caps.color.mpc.ogam_ram,
-+		 dc->caps.color.mpc.ocsc);
- }
- 
- bool dcn30_set_blend_lut(
--- 
-2.40.1
+
+This is the exact reason why I made this series as RFC, because this is a open-ended problem.
+The choices of 3,4,5,6,7,8 and 9 are as arbitrary as the number of '10'. '1' and '2' is
+definitely not suitable, because the seat has already been taken.
+
+Take the drm/nouveau as an example:
+
+
+```
+
+MODULE_PARM_DESC(modeset, "enable driver (default: auto, "
+		          "0 = disabled, 1 = enabled, 2 = headless)");
+int nouveau_modeset = -1;
+module_param_named(modeset, nouveau_modeset, int, 0400);
+
+```
+
+
+'1' is for enable the drm driver, some driver even override the 'nomodeset' parameter.
+
+'2' is not suitable, because nouveau use it as headless GPU (render-only or compute class GPU?)
+
+'3' is also not likely the best, the concerns is that
+what if a specific drm driver want to expand the usage in the future?
+
+
+The reason I pick up the digit '10' is that
+
+
+1) The modeset parameter is unlikely to get expanded up to 10 usages.
+
+Other drm drivers only use the '-1', '0' and 1, choose '2' will conflict with drm/nouveau.
+By pick the digit '10', it leave some space(room) to various device driver authors.
+It also helps to keep the usage consistent across various drivers.
+
+
+2) An int taken up 4 byte, I don't want to waste even a single byte,
+
+While in the process of defencing my patch, I have to say
+draft another kernel command line would cause the wasting of precious RAM storage.
+
+An int can have 2^31 usage, why we can't improve the utilization rate?
+
+3) Please consider the fact that the modeset is the most common and attractive parameter
+
+No name is better than the 'modeset', as other name is not easy to remember.
+
+Again, this is for Linux user, thus it is not arbitrary.
+Despite simple and trivial, I think about it more than one week.
 
