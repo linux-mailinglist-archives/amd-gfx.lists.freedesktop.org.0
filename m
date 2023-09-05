@@ -1,43 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ECF77920E3
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 09:47:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF1E79206F
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Sep 2023 08:04:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A8D10E465;
-	Tue,  5 Sep 2023 07:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABC510E423;
+	Tue,  5 Sep 2023 06:04:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-228.mta1.migadu.com (out-228.mta1.migadu.com
- [95.215.58.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7DB010E3FB
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Sep 2023 19:57:55 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1693857474;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=fhoRcuVch+7Gf4upXx5ouxYbS2GV0Aor2KTGkzLAL+I=;
- b=MsA02426tkJinkpz1/CD7KSiRYKyWnFWxA5gA3o4DzZdbtVyCxWD9yLCkse2QF1pq+rwCH
- GgV2R6PtMuA8UlGOKYY/J4alpOdakscn17HMIelz71RXSqt63hYGHhWu34q9bHpuwiM08Z
- xATVnBtvw/osh/XBPWbOGOPfG3A0KXc=
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-To: Bjorn Helgaas <bhelgaas@google.com>
-Subject: [RFC,
- drm-misc-next v4 9/9] drm/gma500: Register as a VGA client by calling
- vga_client_register()
-Date: Tue,  5 Sep 2023 03:57:24 +0800
-Message-Id: <20230904195724.633404-10-sui.jingfeng@linux.dev>
-In-Reply-To: <20230904195724.633404-1-sui.jingfeng@linux.dev>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E9510E423
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 06:04:19 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-52c4d3ff424so3002254a12.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 Sep 2023 23:04:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693893858; x=1694498658; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=mAqztmiFAD1g4DE4iT8A5dUqLGaJDLwE+Y2DLOZmK74=;
+ b=qGwgF3dNJa8z6ObiUEhOw4yA+B7RWQ741GitLYBks7iYS/QexfcOYBck2xr8BhP/ry
+ W1RnO4r/CKuMpoFODQOYHSPuyPSUahV2Pt54hnoX8fjylR1S3KArssGJugjPfznLIm0e
+ 32C6qRvH8e84jG0jOJ59k5qxlt22UBjYY858jc6e715NNxQ7ZVUdkJp16pW5AkSQUbY5
+ DNqHwKGbecKnaxo9/ESNNrdoz4FZ6hDuKTfp96/FtH+1vnfAzOFfaW2Q9qPCaR8u5x9f
+ uKMj3ufwTEtG3A5ovayKTXwcY0DonDvV0QY5z8/lGwHqC2UHTnwcujZXqLtJofEQcZzq
+ Hcyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693893858; x=1694498658;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mAqztmiFAD1g4DE4iT8A5dUqLGaJDLwE+Y2DLOZmK74=;
+ b=VtOZ+0iElXuKcpCTtuyAx7PO9Pdv/Si4MOS/HyqO4iwKpbjMmUwU2To28SKzUYbYti
+ kBqf4vw49Vd0GNbIDnAaKjpKiTsUuEEixZFRV/vnkdRg3iw9Nzohhqkz+whlW48jRcEU
+ Mu5ABzWhKZobu3f9YTSdd9cIY1C5avg4QSxCLkwPe5F8Qr9QvEHI6MFzXTLL+VUzY4hI
+ klgf2r7Pr6h9j26fpwE3jBDcloLmzN6EXUceb+DUuGva+6AtycVVBbJSWctDMsfWs7/z
+ oz9rylAXg3r9kpV21nF9RKhn+IisH0UkJki4UnQ2guZHRHks7PiKLCe6S/CAUI6aXvsl
+ 7wvA==
+X-Gm-Message-State: AOJu0YyB3rufQ+FNpTNXa9K0cFzFcUmgMsYTCPsSN5JCsoQ7f0AJTBTu
+ QFoBf4sn3/6ivdTiw7ks6mltnjI5ApFryQ==
+X-Google-Smtp-Source: AGHT+IEW5WT/AWvn074nMYL+3/PAO2tEnZgOJyVU+GdF3lJtR2XouMzXIGuhf1RTC2m1D9XROQuVag==
+X-Received: by 2002:a50:fc13:0:b0:523:48d7:70b1 with SMTP id
+ i19-20020a50fc13000000b0052348d770b1mr10031258edr.19.1693893857644; 
+ Mon, 04 Sep 2023 23:04:17 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:15d9:7000:2f9d:c07d:1ee2:6439])
+ by smtp.gmail.com with ESMTPSA id
+ f2-20020a056402150200b0052a3b212157sm6631582edw.63.2023.09.04.23.04.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 04 Sep 2023 23:04:17 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: Rework flushing changes to the TLB
+Date: Tue,  5 Sep 2023 08:04:04 +0200
+Message-Id: <20230905060415.1400-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Tue, 05 Sep 2023 07:47:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,131 +72,23 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org
+Cc: shashank.sharma@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+Hi guys,
 
-Because the display controller in N2000/D2000 series can be VGA-compatible,
-so let's register gma500 as a VGA client, despite the firmware may alter
-the PCI class code of IGD on a multiple GPU co-exist configuration. But
-this commit no crime, because VGAARB only cares about VGA devices.
+as discussed internally the MES and KFD needs some form of TLB fence
+which signals when flushing VM updates out to the hardware is completed
+and resources can be freed.
 
-Noticed that the display controller in N2000/D2000 processor don't has a
-valid VRAM BAR, the firmware put the EFI firmware framebuffer into the
-stolen memory, so the commit <86fd887b7fe3> ("vgaarb: Don't default
-exclusively to first video device with mem+io") is not effictive on such
-a case. But the benefits of the stolen memory is that it will not suffer
-from PCI resource relocation. Becase the stolen memory is carved out by
-the firmware and reside in system RAM. Therefore, while at it, provided a
-naive version of firmware framebuffer identification function and use the
-new machanism just created.
+As prerequisite to this we need to rework all the different workarounds
+and approaches around TLB flushing to be at a higher level.
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/gma500/psb_drv.c | 57 ++++++++++++++++++++++++++++++--
- 1 file changed, 55 insertions(+), 2 deletions(-)
+While at it fix a bunch of bugs in that code which could trigger in
+certain situations.
 
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index 8b64f61ffaf9..eb95d030d981 100644
---- a/drivers/gpu/drm/gma500/psb_drv.c
-+++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -14,7 +14,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/spinlock.h>
- #include <linux/delay.h>
--
-+#include <linux/vgaarb.h>
- #include <asm/set_memory.h>
- 
- #include <acpi/video.h>
-@@ -36,6 +36,11 @@
- #include "psb_irq.h"
- #include "psb_reg.h"
- 
-+static int gma500_modeset = -1;
-+
-+MODULE_PARM_DESC(modeset, "Disable/Enable modesetting");
-+module_param_named(modeset, gma500_modeset, int, 0400);
-+
- static const struct drm_driver driver;
- static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
- 
-@@ -446,6 +451,49 @@ static int gma_remove_conflicting_framebuffers(struct pci_dev *pdev,
- 	return __aperture_remove_legacy_vga_devices(pdev);
- }
- 
-+static bool gma_contain_firmware_fb(u64 ap_start, u64 ap_end)
-+{
-+	u64 fb_start;
-+	u64 fb_size;
-+	u64 fb_end;
-+
-+	if (screen_info.capabilities & VIDEO_CAPABILITY_64BIT_BASE)
-+		fb_start = (u64)screen_info.ext_lfb_base << 32 | screen_info.lfb_base;
-+	else
-+		fb_start = screen_info.lfb_base;
-+
-+	fb_size = screen_info.lfb_size;
-+	fb_end = fb_start + fb_size - 1;
-+
-+	/* No firmware framebuffer support */
-+	if (!fb_start || !fb_size)
-+		return false;
-+
-+	if (fb_start >= ap_start && fb_end <= ap_end)
-+		return true;
-+
-+	return false;
-+}
-+
-+static bool gma_want_to_be_primary(struct pci_dev *pdev)
-+{
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+	struct drm_psb_private *priv = to_drm_psb_private(drm);
-+	u64 vram_base = priv->stolen_base;
-+	u64 vram_size = priv->vram_stolen_size;
-+
-+	if (gma500_modeset == 10)
-+		return true;
-+
-+	/* Stolen memory are not going to be moved */
-+	if (gma_contain_firmware_fb(vram_base, vram_base + vram_size)) {
-+		drm_dbg(drm, "Contains firmware FB in the stolen memory\n");
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
- static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
- 	struct drm_psb_private *dev_priv;
-@@ -475,6 +523,8 @@ static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (ret)
- 		return ret;
- 
-+	vga_client_register(pdev, NULL, gma_want_to_be_primary);
-+
- 	psb_fbdev_setup(dev_priv);
- 
- 	return 0;
-@@ -526,7 +576,10 @@ static struct pci_driver psb_pci_driver = {
- 
- static int __init psb_init(void)
- {
--	if (drm_firmware_drivers_only())
-+	if (drm_firmware_drivers_only() && (gma500_modeset == -1))
-+		return -ENODEV;
-+
-+	if (!gma500_modeset)
- 		return -ENODEV;
- 
- 	return pci_register_driver(&psb_pci_driver);
--- 
-2.34.1
+Please review,
+Christian.
+
 
