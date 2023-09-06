@@ -1,53 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC042793D97
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4269793D9B
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF72B10E653;
-	Wed,  6 Sep 2023 13:25:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B3910E65A;
+	Wed,  6 Sep 2023 13:25:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 72226 seconds by postgrey-1.36 at gabe;
- Wed, 06 Sep 2023 10:32:06 UTC
-Received: from out-214.mta0.migadu.com (out-214.mta0.migadu.com
- [91.218.175.214])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C2E10E5F8;
- Wed,  6 Sep 2023 10:32:06 +0000 (UTC)
-Message-ID: <873b331a-d0ce-658c-6daa-02bf816e92d1@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1693996324;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=H72jsdb7U3rNb35/ic0Uk5LDLM+1lISVY4eiaaElZ2c=;
- b=rO55bXhvqRITklhqNkZjQSkPpG1KsVHaGfMYcafTrMftK6rWTx5/eJVCt7+EedNgadJO9K
- gvLY4Zuh1Ca38KxnhsMFebVtH4d4slIDl1wZL5rmNlnhVv6XScdRwizbDvUn1siUGjrHuq
- qr12MxtQNmef3fK4PG/rdaAdq1P3P6Q=
-Date: Wed, 6 Sep 2023 18:31:50 +0800
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7656810E5FB
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 10:50:28 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id
+ ffacd0b85a97d-31768ce2e81so2879077f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 06 Sep 2023 03:50:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1693997427; x=1694602227; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=pmLzb3c8+z0miJKXkfyMStT5Ebobfn4mx44yjcaNrOM=;
+ b=AfapApe1rOa+zANUmZnV2bqEYUzLFcVTfTXjgN8jZm96UwQrw2JrRjCV1fBsj0K8bh
+ UnQ+10HaXLOBiDO+Q8w3XhxIWKS8lndEQzccf7Cmq4CMeWab5oc30YSmYYraHnHZ8hrx
+ wNd5ki5ebQ+EXZd9aUR1uYCFX4O0eHIsdii+Tahx9XEdmiwE5Qh07XNUcbEtRqMwMUll
+ IUaz0Txr/xs0EGmyZ+hj+pwK8hcjXnbb8tk5suTxU8+9cGoZ/S/VmiOwJyfDBq7OYFtr
+ 6Zym3nIV8BcQjT4tP+Oou5MkiFSprVQFTDhh98Rq57OcluTqqtyJp5wy9DxjkZ3Hsira
+ f/ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693997427; x=1694602227;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=pmLzb3c8+z0miJKXkfyMStT5Ebobfn4mx44yjcaNrOM=;
+ b=kyS1FuzZXtEb3/liFCR5gxPbhue9+0sreKyI3TwEY2oJGa2Qj7gemxuBecJZa+FinJ
+ 7pxskmynPr3GLQbwEt/8ePjSbOcUhaaZ8I6I4gImnFXBToJOnrX9Ftt8IYblURdri7eo
+ +AGj3E+9UPh7S1oTAy3fET0rQL4pT/9tYj/p1dd4EEntACmxJxGjNhFQlzssle+UV3TE
+ L6oUEVcV/lnv3DelaL1ywlgMGKWxEz5JQDXoOjOjEwDIbFuVDQqYv+6SORnKHEqYvtIq
+ 6HZ/h+7mc54qEWGduSDgV41IbfTjsREDITNmfUglfyZH3XpUdR39lkl7wb9L2y8/fcq5
+ ygQQ==
+X-Gm-Message-State: AOJu0YweXBxz5x7I18Ayq0gnm7YVFzUMCHqzGFA85krjKMim+s9qR1EA
+ jbFmTDiCqjE1ru1/s4fDhk9dmvQE+FVcOCmcWlI=
+X-Google-Smtp-Source: AGHT+IHsfjUKU2O9rgaS83IsXQqHqTue7DbwbtHK0lTz/riAqcujWBySJWavR65O3jnUFoam/Gx5Vg==
+X-Received: by 2002:a5d:6907:0:b0:317:5168:c21f with SMTP id
+ t7-20020a5d6907000000b003175168c21fmr2066741wru.31.1693997426766; 
+ Wed, 06 Sep 2023 03:50:26 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ a28-20020a5d457c000000b00317f70240afsm20105195wrc.27.2023.09.06.03.50.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 06 Sep 2023 03:50:26 -0700 (PDT)
+Date: Wed, 6 Sep 2023 13:50:23 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Qingqing.Zhuo@amd.com
+Subject: [bug report] drm/amd/display: Add DCN35 CLK_MGR
+Message-ID: <e9176137-0aa4-4adc-9c16-dc1adbfff394@moroto.mountain>
 MIME-Version: 1.0
-Subject: Re: [Nouveau] [RFC, drm-misc-next v4 0/9] PCI/VGA: Allowing the user
- to select the primary video adapter at boot time
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- suijingfeng <suijingfeng@loongson.cn>,
- Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Helgaas
- <bhelgaas@google.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
- <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
- <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Wed, 06 Sep 2023 13:25:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,61 +68,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hello Qingqing Zhuo,
 
-On 2023/9/6 14:45, Christian König wrote:
->> Firmware framebuffer device already get killed by the 
->> drm_aperture_remove_conflicting_pci_framebuffers()
->> function (or its siblings). So, this series is definitely not to 
->> interact with the firmware framebuffer
->> (or more intelligent framebuffer drivers).  It is for user space 
->> program, such as X server and Wayland
->> compositor. Its for Linux user or drm drivers testers, which allow 
->> them to direct graphic display server
->> using right hardware of interested as primary video card.
->>
->> Also, I believe that X server and Wayland compositor are the best 
->> test examples.
->> If a specific DRM driver can't work with X server as a primary,
->> then there probably have something wrong.
->>
->>
->>> But what's the use case for overriding this setting?
->>>
->>
->> On a specific machine with multiple GPUs mounted,
->> only the primary graphics get POST-ed (initialized) by the firmware.
->> Therefore, the DRM drivers for the rest video cards, have to choose to
->> work without the prerequisite setups done by firmware, This is called 
->> as POST.
->
-> Well, you don't seem to understand the background here. This is 
-> perfectly normal behavior.
->
-> Secondary cards are posted after loading the appropriate DRM driver. 
-> At least for amdgpu this is done by calling the appropriate functions 
-> in the BIOS. 
+This is a semi-automatic email about new static checker warnings.
 
+The patch 8774029f76b9: "drm/amd/display: Add DCN35 CLK_MGR" from Aug
+2, 2023, leads to the following Smatch complaint:
 
-Well, thanks for you tell me this. You know more than me and definitely have a better understanding.
+    drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c:980 dcn35_clk_mgr_construct()
+    warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 913)
 
-Are you telling me that the POST function for AMDGPU reside in the BIOS?
-The kernel call into the BIOS?
-Does the BIOS here refer to the UEFI runtime or ATOM BIOS or something else?
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+   912	
+   913			if (ctx->dc_bios->integrated_info->memory_type == LpDdr5MemType) {
+                            ^^^^^^^^^^^^
+Unchecked dereference.  Also why is does AMD code have weird indenting
+like this?  It's totally unique to AMD.  I guess there was an if
+statement which was deleted or maybe this is autogenerated somehow?
 
-But the POST function for the drm ast, reside in the kernel space (in other word, in ast.ko).
-Is this statement correct?
+   914				dcn35_bw_params.wm_table = lpddr5_wm_table;
+   915			} else {
+   916				dcn35_bw_params.wm_table = ddr5_wm_table;
+   917			}
+   918			/* Saved clocks configured at boot for debug purposes */
+   919			 dcn35_dump_clk_registers(&clk_mgr->base.base.boot_snapshot, &clk_mgr->base.base, &log_info);
+   920	
+   921		clk_mgr->base.base.dprefclk_khz = dcn35_smu_get_dprefclk(&clk_mgr->base);
+   922		clk_mgr->base.base.clks.ref_dtbclk_khz = dcn35_smu_get_dtbclk(&clk_mgr->base);
+   923	
+   924		if (!clk_mgr->base.base.clks.ref_dtbclk_khz)
+   925			dcn35_smu_set_dtbclk(&clk_mgr->base, true);
+   926	
+   927		clk_mgr->base.base.clks.dtbclk_en = true;
+   928		dce_clock_read_ss_info(&clk_mgr->base);
+   929		/*when clk src is from FCH, it could have ss, same clock src as DPREF clk*/
+   930	
+   931		dcn35_read_ss_info_from_lut(&clk_mgr->base);
+   932		clk_mgr->base.base.dprefclk_khz =
+   933			dce_adjust_dp_ref_freq_for_ss(&clk_mgr->base, clk_mgr->base.base.dprefclk_khz);
+   934	
+   935		clk_mgr->base.base.bw_params = &dcn35_bw_params;
+   936	
+   937		if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
+   938			int i;
+   939			dcn35_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
+   940			DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
+   941					   "NumDispClkLevelsEnabled: %d\n"
+   942					   "NumSocClkLevelsEnabled: %d\n"
+   943					   "VcnClkLevelsEnabled: %d\n"
+   944					   "NumDfPst atesEnabled: %d\n"
+   945					   "MinGfxClk: %d\n"
+   946					   "MaxGfxClk: %d\n",
+   947					   smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled,
+   948					   smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled,
+   949					   smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled,
+   950					   smu_dpm_clks.dpm_clks->VcnClkLevelsEnabled,
+   951					   smu_dpm_clks.dpm_clks->NumDfPstatesEnabled,
+   952					   smu_dpm_clks.dpm_clks->MinGfxClk,
+   953					   smu_dpm_clks.dpm_clks->MaxGfxClk);
+   954			for (i = 0; i < smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled; i++) {
+   955				DC_LOG_SMU("smu_dpm_clks.dpm_clks->DcfClocks[%d] = %d\n",
+   956						   i,
+   957						   smu_dpm_clks.dpm_clks->DcfClocks[i]);
+   958			}
+   959			for (i = 0; i < smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled; i++) {
+   960				DC_LOG_SMU("smu_dpm_clks.dpm_clks->DispClocks[%d] = %d\n",
+   961						   i, smu_dpm_clks.dpm_clks->DispClocks[i]);
+   962			}
+   963			for (i = 0; i < smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled; i++) {
+   964				DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocClocks[%d] = %d\n",
+   965						   i, smu_dpm_clks.dpm_clks->SocClocks[i]);
+   966			}
+   967			for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++)
+   968				DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocVoltage[%d] = %d\n",
+   969						   i, smu_dpm_clks.dpm_clks->SocVoltage[i]);
+   970	
+   971			for (i = 0; i < NUM_DF_PSTATE_LEVELS; i++) {
+   972				DC_LOG_SMU("smu_dpm_clks.dpm_clks.DfPstateTable[%d].FClk = %d\n"
+   973						   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].MemClk= %d\n"
+   974						   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].Voltage = %d\n",
+   975						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].FClk,
+   976						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].MemClk,
+   977						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].Voltage);
+   978			}
+   979	
+   980			if (ctx->dc_bios && ctx->dc_bios->integrated_info && ctx->dc->config.use_default_clock_table == false) {
+                            ^^^^^^^^^^^^
+This NULL check is too late.  It will already have crashed.
 
-I means that for ASpeed BMC chip, if the firmware not POST the display controller.
-Then we have to POST it at the kernel space before doing various modeset option.
-We can only POST this chip by directly operate the various registers.
-Am I correct for the judgement about ast drm driver?
+   981				dcn35_clk_mgr_helper_populate_bw_params(
+   982						&clk_mgr->base,
 
-Thanks for your reviews.
-
+regards,
+dan carpenter
