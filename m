@@ -2,49 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729FD793D94
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E245793D96
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C56310E64F;
-	Wed,  6 Sep 2023 13:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2E310E651;
+	Wed,  6 Sep 2023 13:25:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-214.mta0.migadu.com (out-214.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::d6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 494DE10E570
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 04:14:15 +0000 (UTC)
-Message-ID: <eccd1d51-68f5-2bd8-890e-6d7c422abce6@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1693973653;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ReUbfyeD3q8qKsZb9bv3mQc4hrhuGmFA0TdHPFwtCxA=;
- b=v516R8djVSQGBsC8dKVonWQw8LG8OnWSMj1zPxIIlXE12/9RexGW4MGevXucxjR0rNJrmV
- 3BtBSLSs7/GM22h6yWJqwC6ViryP4klO1hhy4Sx/M0r1YrJ5F0rWpvqi2nfUBshaG1o+Kr
- NPnzupOYzec1IsJJ9tzGoxXDJhFy538=
-Date: Wed, 6 Sep 2023 12:14:01 +0800
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665BC10E184
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 09:39:52 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id
+ ffacd0b85a97d-31c93d2a24fso2712121f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 06 Sep 2023 02:39:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1693993191; x=1694597991; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+umOskM6kL2Z0E4/XXUPFHvWCL6vtXkCEL6aTz+tIx0=;
+ b=uoPRCpqs4EFNXnziWk9MQgGE9VTAJrQIGvxYawRSWuhzPe8vUjWjCC0NHttdQNxQ7v
+ ZHnxxjAQ5NcdqGbWNMxvB36uXEplc/Cyn9ADympnr2padm5h+c+qAmiEdDGOERvPaPLQ
+ xcwREdrciDfKvQPn2TXC/Yp5b3cO62QfF2WDYM+E5fzVuROp2mqbju3hqQYE8jTlsLhb
+ LowA8jCcIguVkFsBjDEn1Hp10q9hcT/5oGqrkCmTdIbuPpNMGYmHuzd9WvrmnyKQWWSB
+ tj2050I867MOKO6RBTBwskkEcH2fffu6qHg5k2zFlZQhUXbw38Zy2mAGEq6GOPtD4Itn
+ L0EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693993191; x=1694597991;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+umOskM6kL2Z0E4/XXUPFHvWCL6vtXkCEL6aTz+tIx0=;
+ b=i/ovco1UV1xsEQFWrS3cj1JMG7dpn5WmlGrGTIWzUQ8i8YRc7pJvip40ArFn6IdJlh
+ /w0hvaFotiV4oaFuITeiVSXecADBqK9tFlV27q/Djxc7x47fHEobqHcJ6/et2H6/z70M
+ z2MLHsC3ugJa9JqBDQO33RZ4nS4jdwbxYCg4IqmNF4x8M4lYdWtK9ShUErDGB30m/WRw
+ GijmrxWv2/yqAvRxQdb16DeGJfrdHj7gNx1/3dRs/7uwHcW04uCUkv1VphgvF1PVGnx+
+ MXYVEgB3rFW2wwhQLLP/hDbvL50i0RTIpkxw75oEX1qHCF+YLOG5Qz8Mgo4QDpYt05on
+ C70A==
+X-Gm-Message-State: AOJu0Yxdhro7dUwhwvZbK8nM4vHJz5uxdy2cOihrEN2Yu+v65lAwdJJR
+ cFYflYL8ex4fqxJUiQYl3lZpFKTn65rqYGaYDb0=
+X-Google-Smtp-Source: AGHT+IFKnnCjQ1hb8/JMdKFG6Mgx1fqwOWaamjpfTjL8cD2U5tTL3NszqH2N93fX2AxGas2HeCMCHw==
+X-Received: by 2002:adf:f291:0:b0:317:3f64:4901 with SMTP id
+ k17-20020adff291000000b003173f644901mr2047436wro.41.1693993190776; 
+ Wed, 06 Sep 2023 02:39:50 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ e13-20020a5d4e8d000000b0031c6cc74882sm19946439wru.107.2023.09.06.02.39.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 06 Sep 2023 02:39:50 -0700 (PDT)
+Date: Wed, 6 Sep 2023 12:39:46 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Lang.Yu@amd.com
+Subject: [bug report] drm/amdgpu: add selftest framework for UMSCH
+Message-ID: <dd425f64-868a-470f-b78c-8bf6a7b7daa9@moroto.mountain>
 MIME-Version: 1.0
-Subject: Re: [Nouveau] [RFC, drm-misc-next v4 0/9] PCI/VGA: Allowing the user
- to select the primary video adapter at boot time
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- suijingfeng <suijingfeng@loongson.cn>, Bjorn Helgaas <bhelgaas@google.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
- <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
- <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Wed, 06 Sep 2023 13:25:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,29 +68,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hello Lang Yu,
 
-On 2023/9/5 23:05, Thomas Zimmermann wrote:
-> You might have found a bug in the ast driver. Ast has means to detect 
-> if the device has been POSTed and maybe do that. If this doesn't work 
-> correctly, it needs a fix.
->
-That sounds fine.
+The patch 5d5eac7e8303: "drm/amdgpu: add selftest framework for
+UMSCH" from Jun 21, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
-The bug is not a big deal, I'm just take it as an example and report it to you.
-But a real fix can be complex, because there are quite a lot of servers
-ship with ASpeed BMC hardware.
+	drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c:338 setup_umsch_mm_test()
+	warn: unsigned error codes 'test->pasid'
 
-Honestly I don't have the time fix it on formal way.
-I have already tons patches in pending and I will focus on solve VGAARB related problem.
+drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
+    319 static int setup_umsch_mm_test(struct amdgpu_device *adev,
+    320                           struct umsch_mm_test *test)
+    321 {
+    322         struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB0(0)];
+    323         int r;
+    324 
+    325         test->vm_cntx_cntl = hub->vm_cntx_cntl;
+    326 
+    327         test->vm = kzalloc(sizeof(*test->vm), GFP_KERNEL);
+    328         if (!test->vm) {
+    329                 r = -ENOMEM;
+    330                 return r;
+    331         }
+    332 
+    333         r = amdgpu_vm_init(adev, test->vm, -1);
+    334         if (r)
+    335                 goto error_free_vm;
+    336 
+    337         test->pasid = amdgpu_pasid_alloc(16);
+--> 338         if (test->pasid < 0) {
+                    ^^^^^^^^^^^^^^^
+Unsigned can't be less than zero.
 
+    339                 r = test->pasid;
+    340                 goto error_fini_vm;
+    341         }
+    342 
+    343         r = amdgpu_bo_create_kernel(adev, sizeof(struct umsch_mm_test_ctx_data),
 
-Because I want to test your patch occasionally.
-So this series is useful for myself at corner cases.
-
+regards,
+dan carpenter
