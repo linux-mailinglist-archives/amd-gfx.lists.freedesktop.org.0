@@ -1,61 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4269793D9B
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2416793D99
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Sep 2023 15:25:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96B3910E65A;
-	Wed,  6 Sep 2023 13:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0C6010E654;
+	Wed,  6 Sep 2023 13:25:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7656810E5FB
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 10:50:28 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id
- ffacd0b85a97d-31768ce2e81so2879077f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 Sep 2023 03:50:28 -0700 (PDT)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E05310E5FA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 10:54:43 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id
+ ffacd0b85a97d-31c65820134so3011315f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 06 Sep 2023 03:54:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1693997427; x=1694602227; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1693997681; x=1694602481; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=pmLzb3c8+z0miJKXkfyMStT5Ebobfn4mx44yjcaNrOM=;
- b=AfapApe1rOa+zANUmZnV2bqEYUzLFcVTfTXjgN8jZm96UwQrw2JrRjCV1fBsj0K8bh
- UnQ+10HaXLOBiDO+Q8w3XhxIWKS8lndEQzccf7Cmq4CMeWab5oc30YSmYYraHnHZ8hrx
- wNd5ki5ebQ+EXZd9aUR1uYCFX4O0eHIsdii+Tahx9XEdmiwE5Qh07XNUcbEtRqMwMUll
- IUaz0Txr/xs0EGmyZ+hj+pwK8hcjXnbb8tk5suTxU8+9cGoZ/S/VmiOwJyfDBq7OYFtr
- 6Zym3nIV8BcQjT4tP+Oou5MkiFSprVQFTDhh98Rq57OcluTqqtyJp5wy9DxjkZ3Hsira
- f/ew==
+ bh=LCKeiVfXbpOHNlhl0gQNMuWrM7Q36OD6Fy+jaBM3zr0=;
+ b=Ad3xXY/acXv6X86+iwmvRHC1Fx3T6O/moSLWcGPlzYHSLYEnLsS5lN0me1h9J4DKBK
+ gOyKY0Z9/WYzp5aZirKfV5CZqTus7btjN3YzD5vOcFQTPE3JVKnyHXmjdfPl4bLE+7Gh
+ YUPUrIj1DK22o0E8eY8s3TrPUcY/D4ON89Nys8CFGnkb4kod3kCFtdTikagb55BIxqIb
+ q7ceyrdbE4FHuT9h9jHjP8tBfqzFEZ07dmgZGpz3jlXWyC2lXM4wugnB6hwa1nExidGA
+ GA9EQvHYatI4ixyh336IZ9Pr//kQ4FINYwDtRMzi5Fa4KsDxF3eEqlkrNyEP8bEIGAM4
+ sYuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693997427; x=1694602227;
+ d=1e100.net; s=20221208; t=1693997682; x=1694602482;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pmLzb3c8+z0miJKXkfyMStT5Ebobfn4mx44yjcaNrOM=;
- b=kyS1FuzZXtEb3/liFCR5gxPbhue9+0sreKyI3TwEY2oJGa2Qj7gemxuBecJZa+FinJ
- 7pxskmynPr3GLQbwEt/8ePjSbOcUhaaZ8I6I4gImnFXBToJOnrX9Ftt8IYblURdri7eo
- +AGj3E+9UPh7S1oTAy3fET0rQL4pT/9tYj/p1dd4EEntACmxJxGjNhFQlzssle+UV3TE
- L6oUEVcV/lnv3DelaL1ywlgMGKWxEz5JQDXoOjOjEwDIbFuVDQqYv+6SORnKHEqYvtIq
- 6HZ/h+7mc54qEWGduSDgV41IbfTjsREDITNmfUglfyZH3XpUdR39lkl7wb9L2y8/fcq5
- ygQQ==
-X-Gm-Message-State: AOJu0YweXBxz5x7I18Ayq0gnm7YVFzUMCHqzGFA85krjKMim+s9qR1EA
- jbFmTDiCqjE1ru1/s4fDhk9dmvQE+FVcOCmcWlI=
-X-Google-Smtp-Source: AGHT+IHsfjUKU2O9rgaS83IsXQqHqTue7DbwbtHK0lTz/riAqcujWBySJWavR65O3jnUFoam/Gx5Vg==
-X-Received: by 2002:a5d:6907:0:b0:317:5168:c21f with SMTP id
- t7-20020a5d6907000000b003175168c21fmr2066741wru.31.1693997426766; 
- Wed, 06 Sep 2023 03:50:26 -0700 (PDT)
+ bh=LCKeiVfXbpOHNlhl0gQNMuWrM7Q36OD6Fy+jaBM3zr0=;
+ b=BUmVrCYOaqIki7UKPi9nRqzlj3nhatzuW3RLAMkYXb28lAe8rtov1HoiprbxJHnVDo
+ 4Qlq+bRSilRvx/6cr5qXOzvAHFcWIKUzuwgYPBRWTefy8VaGvpssO01qYyOQ9Dw56MKq
+ sXcZo4ce6v4UkLu33/I62YOb3g7WlqdEeA6t37PEPyryFahpbW4UjbrqcEGm1ZECDFqK
+ 4SKsxriGZPMQLpG14dH9YKNTp+KMRRyRiClhff+XMgp3CzWo3+IOzVI5qIWO/BXMCMEb
+ Fw8bdXNSphQVNbSnzHeR3P+ULpt0YtDvqtKjKyBXaIG8XsPevcZQ+w8aGMHoaMskX6Az
+ 5tsQ==
+X-Gm-Message-State: AOJu0Yz8ka5bnc/fwKAE6+MuT0sfArUhTQOqN4ogA8SxpHHI6i/RPwHk
+ IujIO083Yz6d7KgD0zXNcb7Z3A==
+X-Google-Smtp-Source: AGHT+IEgpsMHaoM6HOfWi7u9qCzbaxmCm1tHHH2l8saUdqiH4tWYuh1cPZiI1bMgsHD5B4zKGALA6g==
+X-Received: by 2002:adf:fa46:0:b0:317:6ef1:7939 with SMTP id
+ y6-20020adffa46000000b003176ef17939mr1722000wrr.23.1693997681665; 
+ Wed, 06 Sep 2023 03:54:41 -0700 (PDT)
 Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- a28-20020a5d457c000000b00317f70240afsm20105195wrc.27.2023.09.06.03.50.25
+ r12-20020adfce8c000000b00317afc7949csm19979128wrn.50.2023.09.06.03.54.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Sep 2023 03:50:26 -0700 (PDT)
-Date: Wed, 6 Sep 2023 13:50:23 +0300
+ Wed, 06 Sep 2023 03:54:41 -0700 (PDT)
+Date: Wed, 6 Sep 2023 13:54:38 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Qingqing.Zhuo@amd.com
-Subject: [bug report] drm/amd/display: Add DCN35 CLK_MGR
-Message-ID: <e9176137-0aa4-4adc-9c16-dc1adbfff394@moroto.mountain>
+To: Evan Quan <evan.quan@amd.com>, Yang Wang <KevinYang.Wang@amd.com>
+Subject: [PATCH] drm/amdgpu: fix retry loop test
+Message-ID: <ea9bfa9b-2689-45cf-95b7-57577f0d76c2@moroto.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Wed, 06 Sep 2023 13:25:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,100 +69,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org,
+ Lijo Lazar <lijo.lazar@amd.com>, kernel-janitors@vger.kernel.org,
+ Asad Kamal <asad.kamal@amd.com>, Mario Limonciello <mario.limonciello@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Qingqing Zhuo,
+This loop will exit with "retry" set to -1 if it fails but the code
+checks for if "retry" is zero.  Fix this by changing post-op to a
+pre-op.  --retry vs retry--.
 
-This is a semi-automatic email about new static checker warnings.
+Fixes: e01eeffc3f86 ("drm/amd/pm: avoid driver getting empty metrics table for the first time")
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+Obviously this only loop 99 times now instead of a hundred but that's
+fine, this is an approximation.
 
-The patch 8774029f76b9: "drm/amd/display: Add DCN35 CLK_MGR" from Aug
-2, 2023, leads to the following Smatch complaint:
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-    drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c:980 dcn35_clk_mgr_construct()
-    warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 913)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index ff58ee14a68f..20163a9b2a66 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -336,7 +336,7 @@ static int smu_v13_0_6_setup_driver_pptable(struct smu_context *smu)
+ 
+ 	/* Store one-time values in driver PPTable */
+ 	if (!pptable->Init) {
+-		while (retry--) {
++		while (--retry) {
+ 			ret = smu_v13_0_6_get_metrics_table(smu, NULL, true);
+ 			if (ret)
+ 				return ret;
+-- 
+2.39.2
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-   912	
-   913			if (ctx->dc_bios->integrated_info->memory_type == LpDdr5MemType) {
-                            ^^^^^^^^^^^^
-Unchecked dereference.  Also why is does AMD code have weird indenting
-like this?  It's totally unique to AMD.  I guess there was an if
-statement which was deleted or maybe this is autogenerated somehow?
-
-   914				dcn35_bw_params.wm_table = lpddr5_wm_table;
-   915			} else {
-   916				dcn35_bw_params.wm_table = ddr5_wm_table;
-   917			}
-   918			/* Saved clocks configured at boot for debug purposes */
-   919			 dcn35_dump_clk_registers(&clk_mgr->base.base.boot_snapshot, &clk_mgr->base.base, &log_info);
-   920	
-   921		clk_mgr->base.base.dprefclk_khz = dcn35_smu_get_dprefclk(&clk_mgr->base);
-   922		clk_mgr->base.base.clks.ref_dtbclk_khz = dcn35_smu_get_dtbclk(&clk_mgr->base);
-   923	
-   924		if (!clk_mgr->base.base.clks.ref_dtbclk_khz)
-   925			dcn35_smu_set_dtbclk(&clk_mgr->base, true);
-   926	
-   927		clk_mgr->base.base.clks.dtbclk_en = true;
-   928		dce_clock_read_ss_info(&clk_mgr->base);
-   929		/*when clk src is from FCH, it could have ss, same clock src as DPREF clk*/
-   930	
-   931		dcn35_read_ss_info_from_lut(&clk_mgr->base);
-   932		clk_mgr->base.base.dprefclk_khz =
-   933			dce_adjust_dp_ref_freq_for_ss(&clk_mgr->base, clk_mgr->base.base.dprefclk_khz);
-   934	
-   935		clk_mgr->base.base.bw_params = &dcn35_bw_params;
-   936	
-   937		if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
-   938			int i;
-   939			dcn35_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
-   940			DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
-   941					   "NumDispClkLevelsEnabled: %d\n"
-   942					   "NumSocClkLevelsEnabled: %d\n"
-   943					   "VcnClkLevelsEnabled: %d\n"
-   944					   "NumDfPst atesEnabled: %d\n"
-   945					   "MinGfxClk: %d\n"
-   946					   "MaxGfxClk: %d\n",
-   947					   smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled,
-   948					   smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled,
-   949					   smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled,
-   950					   smu_dpm_clks.dpm_clks->VcnClkLevelsEnabled,
-   951					   smu_dpm_clks.dpm_clks->NumDfPstatesEnabled,
-   952					   smu_dpm_clks.dpm_clks->MinGfxClk,
-   953					   smu_dpm_clks.dpm_clks->MaxGfxClk);
-   954			for (i = 0; i < smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled; i++) {
-   955				DC_LOG_SMU("smu_dpm_clks.dpm_clks->DcfClocks[%d] = %d\n",
-   956						   i,
-   957						   smu_dpm_clks.dpm_clks->DcfClocks[i]);
-   958			}
-   959			for (i = 0; i < smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled; i++) {
-   960				DC_LOG_SMU("smu_dpm_clks.dpm_clks->DispClocks[%d] = %d\n",
-   961						   i, smu_dpm_clks.dpm_clks->DispClocks[i]);
-   962			}
-   963			for (i = 0; i < smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled; i++) {
-   964				DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocClocks[%d] = %d\n",
-   965						   i, smu_dpm_clks.dpm_clks->SocClocks[i]);
-   966			}
-   967			for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++)
-   968				DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocVoltage[%d] = %d\n",
-   969						   i, smu_dpm_clks.dpm_clks->SocVoltage[i]);
-   970	
-   971			for (i = 0; i < NUM_DF_PSTATE_LEVELS; i++) {
-   972				DC_LOG_SMU("smu_dpm_clks.dpm_clks.DfPstateTable[%d].FClk = %d\n"
-   973						   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].MemClk= %d\n"
-   974						   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].Voltage = %d\n",
-   975						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].FClk,
-   976						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].MemClk,
-   977						   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].Voltage);
-   978			}
-   979	
-   980			if (ctx->dc_bios && ctx->dc_bios->integrated_info && ctx->dc->config.use_default_clock_table == false) {
-                            ^^^^^^^^^^^^
-This NULL check is too late.  It will already have crashed.
-
-   981				dcn35_clk_mgr_helper_populate_bw_params(
-   982						&clk_mgr->base,
-
-regards,
-dan carpenter
