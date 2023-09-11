@@ -2,38 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B234879A822
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Sep 2023 15:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56AFB79A824
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Sep 2023 15:08:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 342A110E1AD;
-	Mon, 11 Sep 2023 13:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBC0F10E2EE;
+	Mon, 11 Sep 2023 13:08:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C41010E00B;
- Sun, 10 Sep 2023 23:44:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=psFHv5kVZjBZeSjSwTGpttOqkbU4kOzBlHIhUIId7P8=; b=caYFO9eaBmvQfAm7wMM/auiAzw
- 0HYDndat46HAViXPi597CkWvxYkycwL8jH55f1Jn9XHJu8YdD854xHCvwC8dTFSoO7hk2I9SxENKm
- qWh9cbfHlrsi+LbGTegt1yumvwHVwuVaMyvs6Vj2wcGV4VUNkw39ZviVBTnNn/zvKdhjqKbtoC3dR
- W9RSiQFEYApN0LiRJYUtr6XQqjjNBrBm+t0lZVHVcEYnmFULtzu1NKcm48eT4Uq5P2uCu9nFFrOcF
- w6tkepsKUReqftkY9T8oBcPC7eInm+zpyLVEunM8Q2K+Cy3nbGQ8h2wzOEA12JgrCXSD28v2bSZ37
- HKnxgUmw==;
-Received: from [2601:1c2:980:9ec0::9fed] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qfU6l-00GzAn-0h; Sun, 10 Sep 2023 23:44:51 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: fix replay_mode kernel-doc warning
-Date: Sun, 10 Sep 2023 16:44:50 -0700
-Message-ID: <20230910234450.15962-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.42.0
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C5710E19A;
+ Mon, 11 Sep 2023 08:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694421743; x=1725957743;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=kXCb911Im1WYlhVa1w+GsUGBVADxyxhDRL0Nfwv2OM4=;
+ b=dLHEJLAC5ob/YE/az4Uxb64byqgFTvtSwVJyYYzTuW+Pn6/FIr7Y/n6y
+ Udf6i0Fo9YgWMzCfgBaxLj1iF0Gd55urKSAau8cx58YELpUx7OTsWO6Xj
+ 3Y+HjoJyJPmCOlr+pIg+CsSJOYWmSCytEzuecRVbi+VJsLKaCHZAiJPlA
+ JIC7YSyCFrMZc9c9D9QZ8U104Tm5qUU2U6+6rG/ocxS7ACW0CPH9Izkhd
+ mgrUT7029J8FEbcy0mrIBjH+89YgGZqHFqtVTYXT7QS2UwumqjfOMrcUD
+ JQNbKg4G3uUm+n5vO97A+bBRSuhMsI+FbMCOR+PjFnQyiQ670+wZrkcYW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="368268883"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="368268883"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 01:42:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="916949458"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="916949458"
+Received: from kschuele-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.119])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 01:42:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/amd/display: Remove unwanted drm edid references
+In-Reply-To: <20230905171354.2657889-1-alex.hung@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230905171354.2657889-1-alex.hung@amd.com>
+Date: Mon, 11 Sep 2023 11:42:15 +0300
+Message-ID: <87tts1f6e0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Mailman-Approved-At: Mon, 11 Sep 2023 13:08:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,44 +59,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel test robot <lkp@intel.com>, Leo Li <sunpeng.li@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Randy Dunlap <rdunlap@infradead.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: stylon.wang@amd.com, haoping.liu@amd.com, srinivasan.shanmugam@amd.com,
+ sunpeng.li@amd.com, airlied@gmail.com, Qingqing.Zhuo@amd.com,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, Alex Hung <alex.hung@amd.com>,
+ daniel.wheeler@amd.com, aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
+ hamza.mahfooz@amd.com, daniel@ffwll.ch, wayne.lin@amd.com,
+ alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the typo in the kernel-doc for @replay_mode to prevent
-kernel-doc warnings:
+On Tue, 05 Sep 2023, Alex Hung <alex.hung@amd.com> wrote:
+> [WHY]
+> edid_override and drm_edid_override_connector_update, according to drm
+> documentation, should not be referred outside drm_edid.
+>
+> [HOW]
+> Remove and replace them accordingly.
+>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
 
-drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h:623: warning: Incorrect use of kernel-doc format:          * @replay mode: Replay supported
-drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h:626: warning: Function parameter or member 'replay_mode' not described in 'amdgpu_hdmi_vsdb_info'
+FWIW,
 
-Fixes: ec8e59cb4e0c ("drm/amd/display: Get replay info from VSDB")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-diff -- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -620,7 +620,7 @@ struct amdgpu_hdmi_vsdb_info {
- 	unsigned int max_refresh_rate_hz;
- 
- 	/**
--	 * @replay mode: Replay supported
-+	 * @replay_mode: Replay supported
- 	 */
- 	bool replay_mode;
- };
+and thanks for doing this!
+
+BR,
+Jani.
+
+
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++-----------------
+>  1 file changed, 2 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 1bb1a394f55f..f6a255773242 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -6372,15 +6372,12 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
+>  static void amdgpu_dm_connector_funcs_force(struct drm_connector *connector)
+>  {
+>  	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(connector);
+>  	struct dc_link *dc_link = aconnector->dc_link;
+>  	struct dc_sink *dc_em_sink = aconnector->dc_em_sink;
+>  	struct edid *edid;
+>  
+> -	if (!connector->edid_override)
+> -		return;
+> -
+> -	drm_edid_override_connector_update(&aconnector->base);
+> -	edid = aconnector->base.edid_blob_ptr->data;
+> +	edid = drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
+>  	aconnector->edid = edid;
+>  
+>  	/* Update emulated (virtual) sink's EDID */
+> @@ -6421,22 +6418,6 @@ static void create_eml_sink(struct amdgpu_dm_connector *aconnector)
+>  	};
+>  	struct edid *edid;
+>  
+> -	if (!aconnector->base.edid_blob_ptr) {
+> -		/* if connector->edid_override valid, pass
+> -		 * it to edid_override to edid_blob_ptr
+> -		 */
+> -
+> -		drm_edid_override_connector_update(&aconnector->base);
+> -
+> -		if (!aconnector->base.edid_blob_ptr) {
+> -			DRM_ERROR("No EDID firmware found on connector: %s ,forcing to OFF!\n",
+> -					aconnector->base.name);
+> -
+> -			aconnector->base.force = DRM_FORCE_OFF;
+> -			return;
+> -		}
+> -	}
+> -
+>  	edid = (struct edid *) aconnector->base.edid_blob_ptr->data;
+>  
+>  	aconnector->edid = edid;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
