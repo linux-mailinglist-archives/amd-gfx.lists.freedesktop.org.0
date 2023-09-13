@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAFEF79F011
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Sep 2023 19:15:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0163C79F013
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Sep 2023 19:15:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2214110E4CE;
-	Wed, 13 Sep 2023 17:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE10810E0F6;
+	Wed, 13 Sep 2023 17:15:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1121810E4E8
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 17:15:27 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2042.outbound.protection.outlook.com [40.107.100.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE2AA10E4C2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 17:15:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i2M5tSRQjF58T9Mm/qsYoFoltU/8G3KPzlIzFsan11G4GpKRJAW1EJx+EJ2mVf44WgQDH2h4oKUQx4OGrWIxShzm2lfqscFKfqKEpRInslhrM8dwbBunHOA2y3oT2KHfu4LOdg8uLpC+hr4dM7QufFLgBC2sPNev9I4cw75T6o7cxi0J8klTSvMdr2rSw6Xz7gcWYvVcb7p3FXm5gYZUawL0tzScGiwDf8BbyNlzd6CflQ5hvfiqLg7DyuzL5xMigs4r2aOB4phZeaMaq9/XCrYOZ92C2PaROzZ+6Os+8r9vSyM9m2rWkY4zRl1i5ZilvE/isxiXl60Zpo7OCqGtGg==
+ b=TW+xPzxlWzCRpsCm6KHV8aYFoU6A+4zxrHF4dT1QqgWNXAYut3zw0AqjbLEBNDsQbKhihS8jsEqKJy9hCS7dBucgWKpBSCmCs/zA4T+SAx+TxBlbzqPAO1yV3LtlpmWkqcwqNT7xH2ScV7Y3MvnGiEikfg9Y84za/uw84mm7daqqT65K4wCrz9EowOfZajXTnYpnd5dan4zoJ+kIqvFjNHCOt7gIMG+i5hOKUI4NgUQJVR8ksLvkiWcladK28/nvyisKGJm70/zfk6WRsJ/6ITFN2cw/6LVjCRPbp5wpCS+JgrXLRip2mzH0Kf3j7H5sh8Il9Y6mEdXYF63O57cAiQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6Keim3Y0n3ADkMu4UXS/2WcC1WnOJYCDhMn1txTead8=;
- b=gPjFMxu0UhjW+9MeDlF7w+aW4dtx9bdY65Jby0u0eOxDCxbgOo+eQ0cZwJpdgbpz2tDR19Vo8gdl1f8VgHi82tsTgCOueyc0LIvncLYfgtAQXFBDzzjJAu7mp52csxBe2UUuqj4M2XR35lFWTvqnuNY1/BZUmjRvPOukBO07d/+7IB9WlmiJ6+Ubv/D0t/WLoMyDhz/ZpZ+/G1hN7WA1sAR1wayKi2OPC8lvyCtGxOOvTgrkzQxNTAqHgmPcar0+5Fhb0RoslwswEzBPGmO5XQMJDS9rpLENVakHV9Du8lknT2EYDmku6pKEm2/Vv6ZSFR9hDU6MLiI23f8u+f6EOA==
+ bh=UluWBkVRV6fbSZ2QA04m+x9Jr9jvo3PEoEKFbT3t2NA=;
+ b=O4ujk61J1SgBTomtNQ6EJiQFDKCvNPhx5ZqHJLqEr+rgPxcqa+JmhhEx/MSm4UlT0MbRabGWPxB7jyc0CI1a0BBEEX340N1SPQ6dZC8Z1u+1cdMxneUHubzluMgisW8AYtMfVtxxv/VQp0z4LyoV/F3oqYveqontddMLlC9+1mfZQJTlHyd+JInUiHt0nHLIb4Sk4jDVo3flv7SJNrC9cj0hvliop3k/qTxiPuauFb1bh6q65FFKW/LibiC56IssTwQXXpHXcvysJnlLRxOoF/KSvXE2ZXAa4CcttPplJk8fz4OJExM9e6PFaCtzCMsIEkBHajxsn52Dy+3Fi9aDlQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6Keim3Y0n3ADkMu4UXS/2WcC1WnOJYCDhMn1txTead8=;
- b=ufx+2vGWsjthComoj088pjcuJ/PfZxvcIr6j9aEkWmt2HmmIFDWI2/CHpcmmJQQVdP2uhcfQDrMpKM3x3tUpuGPLfKpWyo02+T0fKMdU1Juoxecptw+1iI9laQNsW8YCnjbbvIl55kctpr8jRZdo8IL896XMljGSCEv5XBspHjY=
-Received: from MW4P222CA0010.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::15)
- by LV3PR12MB9185.namprd12.prod.outlook.com (2603:10b6:408:199::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Wed, 13 Sep
- 2023 17:15:25 +0000
-Received: from MWH0EPF000971E9.namprd02.prod.outlook.com
- (2603:10b6:303:114:cafe::c4) by MW4P222CA0010.outlook.office365.com
- (2603:10b6:303:114::15) with Microsoft SMTP Server (version=TLS1_2,
+ bh=UluWBkVRV6fbSZ2QA04m+x9Jr9jvo3PEoEKFbT3t2NA=;
+ b=mjpluG1qs5k2MK3H38LIf/zTsaNBMetm5qvksrbcqvomrAhseEhl8WvmdB87s/3zC7+j4Lg+f1GNj+Wh9K6i3HKtLSh1Fa/60dHxkZA1P1eIx2O/l29bXYf77pP8lCJSZvFwvVrt6avurCIe87aceIgY7woi30P5cERhZNg+1O8=
+Received: from DM6PR13CA0043.namprd13.prod.outlook.com (2603:10b6:5:134::20)
+ by DM4PR12MB6663.namprd12.prod.outlook.com (2603:10b6:8:8f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.33; Wed, 13 Sep
+ 2023 17:15:26 +0000
+Received: from DS1PEPF0001708F.namprd03.prod.outlook.com
+ (2603:10b6:5:134:cafe::27) by DM6PR13CA0043.outlook.office365.com
+ (2603:10b6:5:134::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19 via Frontend
- Transport; Wed, 13 Sep 2023 17:15:25 +0000
+ Transport; Wed, 13 Sep 2023 17:15:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000971E9.mail.protection.outlook.com (10.167.243.71) with Microsoft
+ DS1PEPF0001708F.mail.protection.outlook.com (10.167.17.139) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Wed, 13 Sep 2023 17:15:13 +0000
+ 15.20.6792.20 via Frontend Transport; Wed, 13 Sep 2023 17:15:25 +0000
 Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 13 Sep
- 2023 12:15:12 -0500
+ 2023 12:15:13 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 0/4] Enable seamless boot more widely
-Date: Wed, 13 Sep 2023 12:14:51 -0500
-Message-ID: <20230913171455.153412-1-mario.limonciello@amd.com>
+Subject: [PATCH v2 1/4] drm/amd: Drop special case for yellow carp without
+ discovery
+Date: Wed, 13 Sep 2023 12:14:52 -0500
+Message-ID: <20230913171455.153412-2-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230913171455.153412-1-mario.limonciello@amd.com>
+References: <20230913171455.153412-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000971E9:EE_|LV3PR12MB9185:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88955259-c843-4810-ed0c-08dbb47d0502
+X-MS-TrafficTypeDiagnostic: DS1PEPF0001708F:EE_|DM4PR12MB6663:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8e5419d-e83e-4344-eeaa-08dbb47d0589
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 02JsmKjKYxHA3GY+nwMHP+a4FWzbIrEJD8gEMnu8rJhf/peqEamcoUl8C4dY8y4I/62etYC6EhDIHxNwQzeSiZlmrIb7bUTCxsszzJAp2bHcq4lgNndEqN6O3HHbIf2bOH/DTwr0HGnWUDfXMNjSR4nZoDQCAQyFgdqEZRl4yxUJ9M/zlPvurhwowIVo1Yw2eFaeBb+CnhX9h7idMomyryvQSnZWjgRlzSxHMbqGdFCGJtTPjc+Bh3TkgjYxro+20O9JiUNsl/88HOQAoR11VW2mcU3cGeAlWekFpwlqlGhVWfu7F8oU2xG/UFuUceL0TbGE8S3AEnphuhvX5pFu51UcE9hDLdORz394peZChGMKipHU//g0gszE3tEfhq7g8vDYFHIqcjjlMq3uINFgQGt08m4+zZgC0uepALQqqFvxTyAQfDJoEkftB+0yD1FmQNEQQGFseo4dTTphI2GvLWZfvUTVHrIWnAa7VtATOE1ESvG2Ly6v5rKC4bF33Hy1egEfdsli1ttUDLdLyyfgkJ8d8U9YsIG4vl2NQDHi9zfFQLLgnVx1b4b4WHX3EmCyFjJtqXkmLpTUqS1ARe5KhliqmZFZ+eQP1dWXvtXMr7i+Y3qN/VpbmPv3K22GYWtcPaX2XdrmG7Qs3DSbW5cctTabwPR8z0n5s9VjvjF4xQgZQCFnRwrJmvFPF4HkyPlr4fIcH4HeWiJ20DMkWOlDGwI+NlOlqIMRuiZ5Nv+eWR4XN34Olc+CJvjYxmO+/E2SrOpbw2w/MF1b7QryzCPmvA==
+X-Microsoft-Antispam-Message-Info: zjtL3OzBgtmiNR2utGpHBR/su4zVv1URHh2MCh+YVmoEAJaX7b5GYRlTBJY5ZTImB6Aj86A+WlboN/8crIrfKp25/7ZOXZSWuEkZNvReZeEa3/8cGULs5EZti4gLfgjk33v9V8Kh9F3Xc8NHIqcIWn9U42mfADvicKbCVTb/yJrthkXE5bfqSxp8C/WVwt8hNPMS3m6Z2myehT/xRKmocpzTar8+grD+4C9WUsgFpPStfQ/Kd47DgHtIpGQ8niIHFqSkiK8tskuTg56IZuWjItEVHw7npBb3mh/W2atKN84DiTO9tlM1d5kgKUjY0A8LN/j/BmDszUaWObCN8U33XXE66welCajV3nlDa0ZvjjprDQFOUVdGdczoUPbgDBjyerECMwI56pgNHazan9Rj+fmnXQnR/vBdIDSRkkW50wFsNztlOCgsAz5zDrjWGG2w6qkvxuqn4nT8IapPGMmJL3muMQLJ/Z1dypAqEmQyaI8skapIqC2bLmaFxffKeLJv8SDMAqmdYNS1UcvBZggNtW+plZ9JX2JUUlm8zfNU6yhoJ708RNpRWgxJZMfuPkOhwuDHF6n2F9ne4M9l+oRG4//hrsgEe/r/miyB0o88iDa1HhfFUfgriXpJqFoNbvk2dBn57uYwNx6l8m66yWnx4KH70Uv+H6Pfr0iLT8/R63iFo/PnrNQ8MJCnNPHlENb373BSDjp19Ov9wM0xEe+VdLLkx+NOHfTw3WFKQaZezAwl6QHo2OS06bB2SDVWv83nrGIPNe81EodG1936G66YKA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(376002)(346002)(396003)(39860400002)(186009)(1800799009)(451199024)(82310400011)(36840700001)(46966006)(40470700004)(40460700003)(36860700001)(66899024)(2906002)(47076005)(36756003)(86362001)(356005)(81166007)(82740400003)(40480700001)(8936002)(8676002)(4326008)(1076003)(2616005)(16526019)(5660300002)(26005)(70206006)(7696005)(70586007)(54906003)(6916009)(316002)(41300700001)(6666004)(336012)(426003)(478600001)(83380400001)(44832011)(36900700001);
+ SFS:(13230031)(4636009)(136003)(396003)(346002)(39860400002)(376002)(82310400011)(451199024)(186009)(1800799009)(46966006)(36840700001)(40470700004)(70586007)(47076005)(83380400001)(41300700001)(40480700001)(6916009)(336012)(316002)(2906002)(54906003)(36860700001)(16526019)(6666004)(7696005)(478600001)(26005)(1076003)(70206006)(426003)(2616005)(5660300002)(86362001)(40460700003)(4326008)(44832011)(8936002)(356005)(81166007)(8676002)(82740400003)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2023 17:15:13.2453 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88955259-c843-4810-ed0c-08dbb47d0502
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2023 17:15:25.9113 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8e5419d-e83e-4344-eeaa-08dbb47d0589
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000971E9.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001708F.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9185
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6663
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,38 +105,37 @@ Cc: alexander.deucher@amd.com, harry.wentland@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Seamless boot allows keeping the content on the framebuffer from pre-boot
-so the screen doesn't get "painted black" during boot process.
+`amdgpu_gmc_get_vbios_allocations` has a special case for how to
+bring up yellow carp when amdgpu discovery is turned off. As this ASIC
+ships with discovery turned on, it's generally dead code and worse it
+causes `adev->mman.keep_stolen_vga_memory` to not be initialized for
+yellow carp.
 
-Ideally the flow looks like:
-* UEFI F/W posts vendor logo
-* GRUB doesn't show anything, but silently continues
-* Plymouth starts and adds OS logo to bottom and spinner
-* Simple DRM loads, no mode changes
-* amdgpu loads, no mode changes
-* Spinner keeps spinning
-* GDM starts up
+Remove it.
 
-Previously this was only enabled on Van Gogh, but this series enables
-the functionality more widely onto DCN3.0+.
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-This also introduces a kernel module parameter that to easily force it
-enabled on other ASICs too, which may be useful to adjust policy.
-
-Mario Limonciello (4):
-  drm/amd: Drop special case for yellow carp without discovery
-  drm/amd: Move seamless boot check out of display
-  drm/amd: Add a module parameter for seamless boot
-  drm/amd: Enable seamless boot by default on newer ASICs
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 28 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  8 ++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       |  6 ----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 +--------------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 --
- 6 files changed, 39 insertions(+), 30 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index de7b379a9cc8..c7793db6d098 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -725,12 +725,6 @@ void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev)
+ 	case CHIP_RENOIR:
+ 		adev->mman.keep_stolen_vga_memory = true;
+ 		break;
+-	case CHIP_YELLOW_CARP:
+-		if (amdgpu_discovery == 0) {
+-			adev->mman.stolen_reserved_offset = 0x1ffb0000;
+-			adev->mman.stolen_reserved_size = 64 * PAGE_SIZE;
+-		}
+-		break;
+ 	default:
+ 		adev->mman.keep_stolen_vga_memory = false;
+ 		break;
 -- 
 2.34.1
 
