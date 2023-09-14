@@ -1,43 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F4479F76C
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Sep 2023 04:01:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B2479F76E
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Sep 2023 04:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D4910E222;
-	Thu, 14 Sep 2023 02:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF9FF10E23C;
+	Thu, 14 Sep 2023 02:01:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C33E10E222
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on20619.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e89::619])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 280B210E222
  for <amd-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 02:01:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZShhKxi0ZIjbqDTuyZ5W6jnbEVO3SMFIIjUz4juv/YNeK+rXMowy9BzN6vfvPOPGKsA9AZ/xiVmi1MvQEpxjhiNILJvBi78xHncraz+sHKtlcJCo/bEBgh74GuA4ilrwMakt23caaK3gXy93lG8l7fLwVU/Gf2VG4dXN7jsZhZ/MN4YO9jdcMSqc4dhLtsPMR/x2hB4nfCyGH2MU0brCFwo1cr+ZPk/uaxDmMTiQX6OE/zZ1wwAvaLj4xWFk5a/ZzjFpHhD99xXQuZTHE9NrmpUolk6lsUNggSMgFcEX07p/TNnquN2CSzuj48OKJYJy0u9j9oPAiA2KNBuSDmVC7w==
+ b=bYQPKuXgNYRqHUOo39O4IwxpoTWK/B2Bx7j6D01P/mI3WsOzsJlNsZ3frA0nUpeYihLHemXmpAYQ8f1wmj3tYjbHyC4KOuqZ+5Vd+2ZvmQYfxJYQ3h6W0oNHoMyRQBv444I3sCQeb6vBBoDNfRt4BHYO0K4qKwYQcU3jzf8ofkOxU2FjNUIB1aWU0ZO0w8HH5YEoTJk3z5O84MljeWZ4uXyq9Gll5guhVcFXv951lMYUPW/bTg1pwiJaBUeu/CvWKE9LFBRUdiuHPRe4WXHdJaSEhX8IaHag02XVZ+m4BG06r+yYD54v91vKF4e5KFcxB1dOqM2gXSJuHGHjg5JzNA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vM0wlPv2jjgYY2hs3QT+bHGVesVoKiieMRTWrDfppIQ=;
- b=h1nwqej5lteoxPsWTkVIhrbaJ5UNaXLwnuItymcaxyANw7BdDYvbTEVviQWhQLCt6CfIAB4KfUDEQiUq93YpNnivHzPt8ky3OC0V6ttG6TD/iUCX5W8sd/GBVy3ajwMuwnf81cJVqSDUu5vOT9OaP5Nl/MQJ3Ms46kHiZBRVzLq6EmStol17bHlBwpEVxa4QL1jlR52B2KvIshBENS7Ea5pnpqwU+4Vkrf93bP0qYRWy0ykYL3p27WhugrnbfW8Phk5IX54Epc636HvRTAs2vFZwawuu8WlwJ7NyZ3QaLhooBE0tTTJYSgEfvYFSa78ZChMPw4eUMAX2hQY728NC5Q==
+ bh=7Ga/7mpek8KXJy4LwmHtWymMQdCtTqVBpsFVS9Q1iGY=;
+ b=b/K53eAhKANgYTPj92ZW8KQSkwvCK1q3tWVkN7im5HbIVQA3KeeMHXM21rOZ+OWAj34UaMr20LtXI0/gZI6qoVGeCZGvEaZCdMnu5whsb9d540zGUkuQDNBes5QjRhYOV51vXUb5ohEJNX23lauV68ZnZpF58qihJMG3l46c4CTB8t5gnrgS/5S8m/yHuqr8fnC6BCOuSdwRmviH6wYQGe3CFik3H+U41XATA4vv8eAWUWd51zR9ctr7MPxQi5/AtKBedA1jhLpHiR9j6zS1uBIyYkYmAIXgeasjBKnXf7u79pImlzJOPOO5arhInC1u4IieQ8AV8O5jFCbcwRT16g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vM0wlPv2jjgYY2hs3QT+bHGVesVoKiieMRTWrDfppIQ=;
- b=Isue08yJ+V6d9wyiEJSDRdLeoYOfZuIoXJWTKfjBYKrs7Bd385ptD26ZWTJN9/uvuJTnQ2E9uUfcDi51jLHKJB5fHDyJlQb/qSyoFgWfCSI9ndhVSGpMH2sYzfs+iu+HeQ4yq0pzQLIi0MwO1yR56fxAdb4GoPu4QXRhhu1Lck8=
-Received: from SN6PR2101CA0020.namprd21.prod.outlook.com
- (2603:10b6:805:106::30) by BY5PR12MB4951.namprd12.prod.outlook.com
- (2603:10b6:a03:1d2::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19; Thu, 14 Sep
- 2023 02:01:47 +0000
-Received: from SA2PEPF000015CB.namprd03.prod.outlook.com
- (2603:10b6:805:106:cafe::8f) by SN6PR2101CA0020.outlook.office365.com
- (2603:10b6:805:106::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.6 via Frontend
- Transport; Thu, 14 Sep 2023 02:01:47 +0000
+ bh=7Ga/7mpek8KXJy4LwmHtWymMQdCtTqVBpsFVS9Q1iGY=;
+ b=AHDFErMwk+Sd6w8bm1YRFCBQtcx9ZgwxbGPfUvVeiW5vKv98JSdPlzzFupwD5wh3q0v0ZOqOYYDvDQ4vgZAxsJG4XO5TFOlF3YJ+ekHiaHbBO/rQTI7fTbuRVEgj/YuNT7crTgShQkjlHrg2W8uHG81JkMD6Yp9dhG6TFiQ/AoU=
+Received: from PA7P264CA0161.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:36c::18)
+ by LV8PR12MB9272.namprd12.prod.outlook.com (2603:10b6:408:201::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Thu, 14 Sep
+ 2023 02:01:48 +0000
+Received: from SA2PEPF000015C8.namprd03.prod.outlook.com
+ (2603:10a6:102:36c:cafe::e0) by PA7P264CA0161.outlook.office365.com
+ (2603:10a6:102:36c::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19 via Frontend
+ Transport; Thu, 14 Sep 2023 02:01:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF000015CB.mail.protection.outlook.com (10.167.241.201) with Microsoft
+ SA2PEPF000015C8.mail.protection.outlook.com (10.167.241.198) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.6792.20 via Frontend Transport; Thu, 14 Sep 2023 02:01:47 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 13 Sep
- 2023 21:01:40 -0500
+ 2023 21:01:43 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/28] drm/amd/display: Correct z8 watermark mask
-Date: Wed, 13 Sep 2023 20:00:06 -0600
-Message-ID: <20230914020021.2890026-14-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 14/28] drm/amd/display: Update driver and IPS interop
+Date: Wed, 13 Sep 2023 20:00:07 -0600
+Message-ID: <20230914020021.2890026-15-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230914020021.2890026-1-Rodrigo.Siqueira@amd.com>
 References: <20230914020021.2890026-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CB:EE_|BY5PR12MB4951:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f003d79-d2c6-4809-ba2b-08dbb4c68dae
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|LV8PR12MB9272:EE_
+X-MS-Office365-Filtering-Correlation-Id: e92cb265-919f-4bbc-08ba-08dbb4c68dd1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ub3379Zt6+Gd/0ZefMg2+SW0hAlYZkj7iyxybC5U9VkymJ3J0lhVrbLqvqg++LPLNnjPhmxP6FUByEIGuS/Z3pDWotsX0WF/u3h9lLjSHU5cvASOrkxRbLFBb3lDg9yUGgL1UuZhunuXpFxUczbS4zCzLEid59jbTbkmq1tUgXpvKB2QEeNFXswAXTeH/BPSmajPWg+8SGz/YjSKZRlNf60TMU1NfIgORY7ZAEEse6pXQfi09drVYJvaDtYGLiJT4q55zjLe/arb6UogbTH0tsFmMvmJhGIzI3zFyEcy2Ixj1dLoNioaRsmg9wWVUPoqmfmX8so5zZKFL2BLX5AT7526Lz8vaOHaoVLDwQefGSaIX2vrQ8eHJ07pZtLBNuk67k8g39b/cGN8DJzzODRZtLvyI0uve+hBSAVuiT6spapdvYf00j8PgKOWhh/bZ5rElhnK8sexH+bUOjta9f7cXUQ23F0JXzj1LxMPbQcGXx9cTHMMouQtWxVZjYoPKCVbnkrTfuYZjpqOtLEBwp2VNCAtKg4UTyM/1SRsmwS1zhzEKa1HfByt1tzIsb4zErZBFrXSVfAflXWs2piymE85SjhkjcTQenxeaniRxa5hr2uHKvpcs8qvLcAlCMRNUO0rXFNHNjG0D1CL2nJBFX2dTBiyo3UTSwYmIiHcA7IqgV7Zvpe4U1A0g0+8P4QunaoWzUDX/P6o7kNUOvhZnXyczTUhqjJBklb15vB2aSWC2Djmj8SC7goJnSO0KUgiXEnu/O8OoL0xZNhOmi0ngZ3Apw==
+X-Microsoft-Antispam-Message-Info: zJTyjWQx70AP5YSLQAUPjJ3awTFfHKgAMq7nsayIpo1aElZm2Ad0/a4yPHWgVgs0E2iNDUH3iLjkQdXh2KNR2W983JV86I0WJL5cV+gevyBM+aF9FmG7EvQCKjDjaJG3WF8gJj+qQ6w5MI1riED3NTw/jx8qRreA8imWPwzcMyOfdsr8YCss90cEFqsNkLJK1qiQJkzKnEkBU3bJ02YzBBkcRGqmc1dijlS64kWWe3uMQ8NwwUjmKOfQGHOWKnMgekkKuqRhpaTMEbSQwAmZvhJGLP8qmduH8KAwp/Hd6G9h/Ib/GI5Zf9ibop17xWB9CzfOcP8g94hXE+jcW00/CXzIjiSL2mVbN5+thTHisHilCepqwm3vQTezD6G8Jq1uCjEeGK3SXXGDOr0yg5rsqDpZdzbmyeGN6NZDhWIsSDfm8XCfApRN+oLs29hWZ/xtrMorsSyjnBlKLTz52PrBEyQQ+sIWuu5QpshUqpjjrVeaGVKi7JKNiwZOkESC/zVG1/RVkwgFf4FEhP/8nkqM57zK4cHoXMUyqg3UBJ0BCSY62Gm3OQkTWopqDBZhDk0sdC6hfRYTCzPdCuf6BSFd1PpPvkeUWXzHiIYq2ExgnSCNyXS7KrEdS8frceZKkBOGpQ/qUFfX1V1gVkx18cSWJy6uS05VLBceaz7WBhYc1aDv1DDK/xrPugQqJ0h3C9vci8WzGalD34EmQs5MZQ6A6SuDgHu8kM9atDiCBH4lzn+qQ5mTU2hwr6qkivxXm40R5kP6YbqmMVRVtzbD3hqrHQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(346002)(39860400002)(376002)(396003)(82310400011)(1800799009)(451199024)(186009)(40470700004)(46966006)(36840700001)(478600001)(6666004)(336012)(426003)(83380400001)(26005)(2616005)(41300700001)(1076003)(316002)(70586007)(2906002)(70206006)(8936002)(5660300002)(6916009)(8676002)(54906003)(4326008)(36756003)(86362001)(36860700001)(47076005)(356005)(81166007)(82740400003)(16526019)(40480700001)(40460700003)(36900700001);
+ SFS:(13230031)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199024)(186009)(82310400011)(1800799009)(40470700004)(46966006)(36840700001)(83380400001)(86362001)(4326008)(5660300002)(316002)(40460700003)(6916009)(8676002)(36756003)(2906002)(70586007)(54906003)(41300700001)(70206006)(8936002)(47076005)(36860700001)(82740400003)(478600001)(2616005)(81166007)(356005)(336012)(6666004)(426003)(26005)(40480700001)(16526019)(1076003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 02:01:47.5526 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f003d79-d2c6-4809-ba2b-08dbb4c68dae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 02:01:47.8243 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e92cb265-919f-4bbc-08ba-08dbb4c68dd1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015C8.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4951
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9272
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,116 +101,73 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Charlene Liu <charlene.liu@amd.com>,
- Muhammad Ahmed <ahmed.ahmed@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+ Aric Cyr <aric.cyr@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Duncan Ma <duncan.ma@amd.com>, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, Jun Lei <jun.lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <charlene.liu@amd.com>
+From: Duncan Ma <duncan.ma@amd.com>
 
-Correct z8_watermark mask from 16bit to 20bit. Also, do not set dcn35
-dprefclk in clk_mgr_construct.
+[Why]
+Two issues fixed:
 
-Reviewed-by: Muhammad Ahmed <ahmed.ahmed@amd.com>
+1. Currently, driver does not allow idle prior to PSR entry. Once
+   PSR1+IPS is enabled, there is intermittent hang due to DCN access
+from IrqMgr during IPS2.
+
+2. Driver is sending multiple commands to PMFW and dmcub to exit IPS
+   even during IPS0.
+
+[How]
+1. Set driver allow optimization prior to entering PSR mode with the
+   condition for eDP display only.  Unregister all interrupts before
+   allowing driver idle and re-register interrupts when exiting from
+   idle. This will prevent IrqMgr to access DCN during IPS2.
+
+2. Block sending PMFW and dmcub exit low power state commands when
+   driver is not in idle state.
+
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Reviewed-by: Jun Lei <jun.lei@amd.com>
+Reviewed-by: Aric Cyr <aric.cyr@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Duncan Ma <duncan.ma@amd.com>
 ---
- .../amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c |  2 --
- .../gpu/drm/amd/display/dc/dcn35/dcn35_hubbub.c  | 16 ++++++++--------
- 2 files changed, 8 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c       | 4 ++++
+ drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hwseq.c | 2 ++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index ca6ce13921a7..b258eb37a859 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -930,8 +930,6 @@ void dcn35_clk_mgr_construct(
- 	/*when clk src is from FCH, it could have ss, same clock src as DPREF clk*/
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index 2f98dfa06dad..91b3a4610957 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -1110,6 +1110,10 @@ void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
+ {
+ 	if (dc->debug.dmcub_emulation)
+ 		return;
++
++	if (!dc->idle_optimizations_allowed)
++		return;
++
+ 	// Tell PMFW to exit low power state
+ 	if (dc->clk_mgr->funcs->exit_low_power_state)
+ 		dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hwseq.c
+index 025849143254..06960fada059 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hwseq.c
+@@ -651,6 +651,8 @@ bool dcn35_apply_idle_power_optimizations(struct dc *dc, bool enable)
+ 		// Tell PMFW to exit low power state
+ 		if (dc->clk_mgr->funcs->exit_low_power_state)
+ 			dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
++
++		dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true);
+ 	}
  
- 	dcn35_read_ss_info_from_lut(&clk_mgr->base);
--	clk_mgr->base.base.dprefclk_khz =
--		dce_adjust_dp_ref_freq_for_ss(&clk_mgr->base, clk_mgr->base.base.dprefclk_khz);
- 
- 	clk_mgr->base.base.bw_params = &dcn35_bw_params;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubbub.c
-index e9b1734e0c67..a0dc2e0c79c1 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_hubbub.c
-@@ -124,7 +124,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->a.cstate_pstate.cstate_enter_plus_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->a.cstate_pstate.cstate_enter_plus_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_A, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_A, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_ENTER_WATERMARK_Z8_A calculated =%d\n"
-@@ -140,7 +140,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->a.cstate_pstate.cstate_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->a.cstate_pstate.cstate_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_A, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_A, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_EXIT_WATERMARK_Z8_A calculated =%d\n"
-@@ -158,7 +158,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->b.cstate_pstate.cstate_enter_plus_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->b.cstate_pstate.cstate_enter_plus_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_B, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_B, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_ENTER_WATERMARK_Z8_B calculated =%d\n"
-@@ -174,7 +174,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->b.cstate_pstate.cstate_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->b.cstate_pstate.cstate_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_B, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_B, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_EXIT_WATERMARK_Z8_B calculated =%d\n"
-@@ -191,7 +191,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->c.cstate_pstate.cstate_enter_plus_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->c.cstate_pstate.cstate_enter_plus_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_C, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_C, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_ENTER_WATERMARK_Z8_C calculated =%d\n"
-@@ -207,7 +207,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->c.cstate_pstate.cstate_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->c.cstate_pstate.cstate_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_C, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_C, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_EXIT_WATERMARK_Z8_C calculated =%d\n"
-@@ -224,7 +224,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->d.cstate_pstate.cstate_enter_plus_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->d.cstate_pstate.cstate_enter_plus_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_D, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_D, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_ENTER_WATERMARK_Z8_D calculated =%d\n"
-@@ -240,7 +240,7 @@ static bool hubbub35_program_stutter_z8_watermarks(
- 				watermarks->d.cstate_pstate.cstate_exit_z8_ns;
- 		prog_wm_value = convert_and_clamp(
- 				watermarks->d.cstate_pstate.cstate_exit_z8_ns,
--				refclk_mhz, 0xffff);
-+				refclk_mhz, 0xfffff);
- 		REG_SET(DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_D, 0,
- 				DCHUBBUB_ARB_ALLOW_SR_EXIT_WATERMARK_Z8_D, prog_wm_value);
- 		DC_LOG_BANDWIDTH_CALCS("SR_EXIT_WATERMARK_Z8_D calculated =%d\n"
+ 	dc_dmub_srv_notify_idle(dc, enable);
 -- 
 2.40.1
 
