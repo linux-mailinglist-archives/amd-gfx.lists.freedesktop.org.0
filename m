@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8B279F773
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Sep 2023 04:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6020C79F775
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Sep 2023 04:02:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB4510E244;
-	Thu, 14 Sep 2023 02:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D656E10E4E0;
+	Thu, 14 Sep 2023 02:02:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on20618.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::618])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5144E10E4E2
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 02:02:02 +0000 (UTC)
+ (mail-mw2nam12on20608.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::608])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E0A10E4E0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 02:02:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j47txmAlGoH8iEPsLEWPd8KhAc+0+pw8VBgcsTUstRaaxJsTlc9PE9KvceaX5v+xo0J+4zhQffADa5EbKCL9A+n1QjpdcYEqDJHjyNILcodYqd814ajD/n7g+7S5+p4q+b8DU139e4v6+CLFfLsusJ3t1O6n0R1VpEUpuVq87MNmUWukFvqe1XlsulYf6Zo7Mz3AOQ1gZzkwad71GLGb8JsgtAk2SPBE2ISp+RXkWljWyvIXmo3zLeuEHXn16wl3nRa0+ifB5PH5/CrtgCTT61sT205Vcbn//1J0aU/El4UFdfZYQgOEGeKp3YKng7KcGbR/QnLn8gYjVDI7eH88fA==
+ b=A+HjB2RrpAKUs/fvaSmooBhs3xo+j63khzusF02JMlKh8cyW2yNZtLAPd/394ev4H+y45NY7smk61pfGiOYHyrKjRZvK3ClVfMV+OKNeZyt3Abxi6R/d54B4MmjFNOQcmmp20kQ5vE0qqbTctd5MNTadtakEHnDN6kqHPgRnzJ1nERC/G5bUrZMBX3yRD3WSL9l4jbmidLhU68xFgQafAz8nzM8nF5pOuXZT8bdjN5lxo7iUimjyWDhwXvOThfuoSonxGITqROZ0SyIXb32LgMg9a3/wvSydobtsf0/beaEKZQFrRP+54cK8XPZZRDmPNwruFlsKN0+z5sbVDWOtYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OJy6Vgzffr3rBbvbK9kOVAnwCfgZM0GPpa2ZAl/SqSE=;
- b=bCBQ2lem57Su/tn2mZ8VP9RFa95mxvJ1qnqVCEbaP/DVKjAd6QG8+j3yrrmaUCuwxHRs6ksHN92o/7rlcvBX4da94TNbAFknfPPKB1Dc6vdsYVoHE8rmoSo0sCvkLus13pSi6qgYJp6rWTsUUiVn5pLOSolUJa5QqdRlXs//iXMiKi+6qjDaVtyH4jPyOdSB8NMPnS4T59vV141uZA7rYxSgmx84U9RhLM20gyLOTFLRwkPaK3SNsNX4JCdqyiHwSS2qQ3j6xAfDlzT1GwZmDnj+fmFEjIDuzRzGb2FF4gaWSKqE2pFYQZuiPdwoScpF4owFaJyf48HtZ6QYdpLllA==
+ bh=PfvHKSxnq0PB0JPva7+dCKUUEJ0FOVDiKgDv0vIMweA=;
+ b=C0bg7yT0FalrtQqBgY5SPu8eXc/IkC2g4IPwu7YL++dw3VGfnEMoawlEznCSoqutTHspMpeNU0DK+azzUnE9IoFlUCGZvg5AKAjdnq9t3k3T3s6jKyHZrhgSJ+Q3OBoddRUowFXaxetu4OMpm6NH1Kw/s+Djk+6gOHb9CYtaebFWeFuyjMBiYH05Nl9aaP6If0cSW2QqwtvacRKz0B/yG6Nhld2UWk/ymu8lNfwhVZCJb8objswdDbPoiAKiIwkUgt6gorAIaEnQXnBXoavit8Mrx59w01QvV9++w8bbYqZiEWOzKSF/Rq3fJCUQ266JatBSQWNL73/73Sgv7Cs3sw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OJy6Vgzffr3rBbvbK9kOVAnwCfgZM0GPpa2ZAl/SqSE=;
- b=Lz/qJ9lSjBhQemrHnGzbvzH4tx7Qt/aLoeP4SHhIN/3D4S1yhqQze5uand9Bl8R5OG3vBggowgvh9+R18fxfwdmbD1Ht4A1DUmarfZzeUX2qpZwDEmJpq0L20MSEjwasUIrAqPFQaKmHO3FQtZ3upoLxbA0F9ZwxpTjGsUfFARM=
-Received: from PA7P264CA0161.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:36c::18)
- by DM6PR12MB4513.namprd12.prod.outlook.com (2603:10b6:5:2ad::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.40; Thu, 14 Sep
- 2023 02:02:00 +0000
+ bh=PfvHKSxnq0PB0JPva7+dCKUUEJ0FOVDiKgDv0vIMweA=;
+ b=0PDEwtfbKD6EV5FFb2nRs7O1Jf077B0Y8rIRk62XOdbCyBMZSzGrXrUAcwxW89SXHCQqivpnu2uCLNfLFFLQmow+RXcsA/qos0G45yGL/b41ZKS0X9ibqbzxk3RlREEgA0jNVncw8dCBvRHULPEeqyG9kExA1615FVDRJXGqV/o=
+Received: from PA7P264CA0157.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:36c::10)
+ by DS0PR12MB6390.namprd12.prod.outlook.com (2603:10b6:8:ce::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6745.34; Thu, 14 Sep 2023 02:02:06 +0000
 Received: from SA2PEPF000015C8.namprd03.prod.outlook.com
- (2603:10a6:102:36c:cafe::3f) by PA7P264CA0161.outlook.office365.com
- (2603:10a6:102:36c::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19 via Frontend
- Transport; Thu, 14 Sep 2023 02:01:59 +0000
+ (2603:10a6:102:36c:cafe::d0) by PA7P264CA0157.outlook.office365.com
+ (2603:10a6:102:36c::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.20 via Frontend
+ Transport; Thu, 14 Sep 2023 02:02:05 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,17 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SA2PEPF000015C8.mail.protection.outlook.com (10.167.241.198) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Thu, 14 Sep 2023 02:01:59 +0000
+ 15.20.6792.20 via Frontend Transport; Thu, 14 Sep 2023 02:02:04 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 13 Sep
- 2023 21:01:55 -0500
+ 2023 21:01:57 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/28] drm/amd/display: Fix MST recognizes connected displays
- as one
-Date: Wed, 13 Sep 2023 20:00:13 -0600
-Message-ID: <20230914020021.2890026-21-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 21/28] drm/amd/display: [FW Promotion] Release 0.0.183.0
+Date: Wed, 13 Sep 2023 20:00:14 -0600
+Message-ID: <20230914020021.2890026-22-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230914020021.2890026-1-Rodrigo.Siqueira@amd.com>
 References: <20230914020021.2890026-1-Rodrigo.Siqueira@amd.com>
@@ -70,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|DM6PR12MB4513:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed2946c2-e075-4893-a852-08dbb4c69485
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|DS0PR12MB6390:EE_
+X-MS-Office365-Filtering-Correlation-Id: 905dcf68-e59a-43c3-bb6b-08dbb4c69803
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b5FLf0hSaQYl0hgmQnfyvNF8gOr4s0SxekkYBITEkI8ZR+TZdqe0G0/4PxMh+xgB3lNIOCiJpPPxQR9/pXB0yI9T5v8mKG6qCOB86UHEyxNrNlv69kWIOiKciS3Sx7Mz0NdMDQGrGt38MsnQt9cQZYirqFNkOlsWIbCkgGn1rHkC5EAMlhj6qv5lBp58vLEEQd166yYxRJeZxnSP1pHlrVsTtqdWbtDc/TLSxNBaIRYhd+W2eYzRZSErdrOWhdjKzDUQ0u7CVxEayOXrW0DAFdWC6C4NZDN4mg8WjSoOHi2wf1GUrmGCfsqsdQAXVPzO8k6hqNrvcnwEjvzItYMgROn0ryxe8aR4uUce/391U9G3I4Tmh1vDHAbiYpnhQrBPGEsVOHayWuCgRDVO5pjKT1Y9bRKjPn31q3HXnfgPPW/uoCv1Me2kDONmZMh05Q8jihPtuzTrvTYomTLr1S9IlvBNsj9yEHWZj2OT5NQ16rWeGq/Su96nhddCPfk8Z8MtjN7++jSyTMxVeXo+hd2x7rT6SpxFg3U2uuI/5vPvCV8kYU8FdlbJicphr9GSTF2NofRpLnjjj+ACA00GHICtvjAbCXKIgocPLWjEROpdNa1KuUzrviSGqyc3XljgpggQI81U2jCcbeiNox7KNvtkUEMfkmlyKVQ3pHS4nWQO094LLr6/zDIQ5i8N37AtIHqCU5g0MLG3qQBOGDkquOXLdIoW5sD76DAHjQ6XykaIZnrv56loyJcn0A56790k5eixYT/O8beep5stGV2NZroYNg==
+X-Microsoft-Antispam-Message-Info: cFddG2JEAAx64/M9onMKtk8pjqRHQR+QrEDnXTTM1Wgs22fLvr5ZXczsziBC/EgFqPxIp9K+OUeZUCVbV13BeAgaAAqVOP2qqU+d1Q7mcSzzvJEdBk+ymAD5FZpcNHCqVVSO/0gj2c+wpNIRtMg9DHDv3oVO9k4a7vhFNtQK3XTG6dh/hFUZ/LXWGubiIvBFZhYeWxVReA60WplJGqtYSlrrzIouzZecXOLouqwzUsixveGf1nVbXMEXFL+uik5aYSRbsMDVC6etonSv1mNQqidcbeQ0Jr62jep1sWLL3Zt84gZuHKnCbPJGROTExAAaIEp1Df6GR/osWZ0PM5+FNZtLsm8UraRVza51AOFWFz7bIbA90cQbpweZikSlcCfH/eXTaTxbaq+gzZlObr1swBDfmE+iKwOBjtheC+gWVC+uLZ2ZBlmfohvVTna0lpJiQCB9nM6SP1Zf8PE++7Vqudm6tGyIf0jgEkAIaUak4hy50QfCk9ZCkVJC27h3GCoQm4jkXhTPQa5ScrhewyMl7BjqtTxLfiOksmBT003oQOvuWum7tg07ahsL/5BXD7zjqa6KTE2PucJVtmi4+IEEU3vDnkLeq+OU3Ctfevy9hKokSDSGTwcuV48WiV/FW0fYqAnzrOgOJ+4S640tT5B86Q8NgtwqVvEtaSFXIyHbANIcPdonhpMN/ItiR4xcZP9PPtQtpQpjRRTllY/k8RIBBAKJ6vCKKtfRX1MlxmmAd2Ai2h0kjGm00qdskg2mtgMqwAdBsUG2CVNT3OSLejDTtA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(136003)(39860400002)(346002)(376002)(451199024)(186009)(1800799009)(82310400011)(40470700004)(46966006)(36840700001)(36860700001)(40460700003)(47076005)(2906002)(36756003)(86362001)(82740400003)(81166007)(40480700001)(2616005)(16526019)(26005)(8936002)(8676002)(4326008)(1076003)(6666004)(41300700001)(54906003)(6916009)(356005)(70206006)(70586007)(316002)(83380400001)(336012)(426003)(478600001)(5660300002)(36900700001);
+ SFS:(13230031)(4636009)(136003)(39860400002)(346002)(376002)(396003)(186009)(1800799009)(82310400011)(451199024)(46966006)(40470700004)(36840700001)(40480700001)(426003)(16526019)(40460700003)(47076005)(26005)(86362001)(336012)(36756003)(6916009)(70206006)(54906003)(70586007)(8676002)(316002)(41300700001)(36860700001)(6666004)(8936002)(4326008)(5660300002)(81166007)(82740400003)(356005)(478600001)(2906002)(1076003)(2616005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 02:01:59.0743 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed2946c2-e075-4893-a852-08dbb4c69485
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 02:02:04.9337 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 905dcf68-e59a-43c3-bb6b-08dbb4c69803
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015C8.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4513
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6390
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,162 +100,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Charlene Liu <charlene.liu@amd.com>,
- Muhammad Ahmed <ahmed.ahmed@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Anthony Koo <anthony.koo@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Muhammad Ahmed <ahmed.ahmed@amd.com>
+From: Anthony Koo <anthony.koo@amd.com>
 
-[What]
-MST now recognizes both connected displays
+ - Add new IPS ALLOW masks
+ - Add new Replay power configuration options
 
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
-Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Muhammad Ahmed <ahmed.ahmed@amd.com>
+Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Anthony Koo <anthony.koo@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c | 95 +++++++++++++++----
- .../drm/amd/display/dc/dcn35/dcn35_resource.c |  4 -
- 2 files changed, 74 insertions(+), 25 deletions(-)
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c
-index 70a66df8315a..22137fde62bd 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c
-@@ -635,8 +635,55 @@ static void dccg35_enable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst,
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 6e705b219872..7ff507221285 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -596,6 +596,11 @@ enum dmub_ips_disable_type {
+ 	DMUB_IPS_DISABLE_IPS2_Z10 = 3,
+ };
  
-+/*get other front end connected to this backend*/
-+static uint8_t dccg35_get_other_enabled_symclk_fe(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst)
-+{
-+	uint8_t num_enabled_symclk_fe = 0;
-+	uint32_t be_clk_en = 0, fe_clk_en[5] = {0}, be_clk_sel[5] = {0};
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
++#define DMUB_IPS1_ALLOW_MASK 0x00000001
++#define DMUB_IPS2_ALLOW_MASK 0x00000002
++#define DMUB_IPS1_COMMIT_MASK 0x00000004
++#define DMUB_IPS2_COMMIT_MASK 0x00000008
 +
-+	switch (link_enc_inst) {
-+	case 0:
-+		REG_GET_3(SYMCLKA_CLOCK_ENABLE, SYMCLKA_CLOCK_ENABLE, &be_clk_en,
-+				SYMCLKA_FE_EN, &fe_clk_en[0],
-+				SYMCLKA_FE_SRC_SEL, &be_clk_sel[0]);
-+				break;
-+	case 1:
-+		REG_GET_3(SYMCLKB_CLOCK_ENABLE, SYMCLKB_CLOCK_ENABLE, &be_clk_en,
-+				SYMCLKB_FE_EN, &fe_clk_en[1],
-+				SYMCLKB_FE_SRC_SEL, &be_clk_sel[1]);
-+				break;
-+	case 2:
-+			REG_GET_3(SYMCLKC_CLOCK_ENABLE, SYMCLKC_CLOCK_ENABLE, &be_clk_en,
-+				SYMCLKC_FE_EN, &fe_clk_en[2],
-+				SYMCLKC_FE_SRC_SEL, &be_clk_sel[2]);
-+				break;
-+	case 3:
-+			REG_GET_3(SYMCLKD_CLOCK_ENABLE, SYMCLKD_CLOCK_ENABLE, &be_clk_en,
-+				SYMCLKD_FE_EN, &fe_clk_en[3],
-+				SYMCLKD_FE_SRC_SEL, &be_clk_sel[3]);
-+				break;
-+	case 4:
-+			REG_GET_3(SYMCLKE_CLOCK_ENABLE, SYMCLKE_CLOCK_ENABLE, &be_clk_en,
-+				SYMCLKE_FE_EN, &fe_clk_en[4],
-+				SYMCLKE_FE_SRC_SEL, &be_clk_sel[4]);
-+				break;
-+	}
-+	if (be_clk_en) {
-+	/* for DPMST, this backend could be used by multiple front end.
-+	only disable the backend if this stream_enc_ins is the last active stream enc connected to this back_end*/
-+		uint8_t i;
-+		for (i = 0; i != link_enc_inst && i < sizeof(fe_clk_en); i++) {
-+			if (fe_clk_en[i] && be_clk_sel[i] == link_enc_inst)
-+				num_enabled_symclk_fe++;
-+		}
-+	}
-+	return num_enabled_symclk_fe;
-+}
+ /**
+  * union dmub_fw_boot_options - Boot option definitions for SCRATCH14
+  */
+@@ -2786,6 +2791,10 @@ enum dmub_cmd_replay_type {
+ 	 * Set coasting vtotal.
+ 	 */
+ 	DMUB_CMD__REPLAY_SET_COASTING_VTOTAL	= 3,
++	/**
++	 * Set power opt and coasting vtotal.
++	 */
++	DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL	= 4,
+ };
+ 
+ /**
+@@ -2996,6 +3005,24 @@ struct dmub_rb_cmd_replay_set_coasting_vtotal {
+ 	struct dmub_cmd_replay_set_coasting_vtotal_data replay_set_coasting_vtotal_data;
+ };
+ 
++/**
++ * Definition of a DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL command.
++ */
++struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal {
++	/**
++	 * Command header.
++	 */
++	struct dmub_cmd_header header;
++	/**
++	 * Definition of a DMUB_CMD__SET_REPLAY_POWER_OPT command.
++	 */
++	struct dmub_cmd_replay_set_power_opt_data replay_set_power_opt_data;
++	/**
++	 * Definition of a DMUB_CMD__REPLAY_SET_COASTING_VTOTAL command.
++	 */
++	struct dmub_cmd_replay_set_coasting_vtotal_data replay_set_coasting_vtotal_data;
++};
 +
- static void dccg35_disable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst)
- {
-+	uint8_t num_enabled_symclk_fe = 0;
- 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
+ /**
+  * Definition of a DMUB_CMD__SET_PSR_POWER_OPT command.
+  */
+@@ -4138,6 +4165,10 @@ union dmub_rb_cmd {
+ 	 * Definition of a DMUB_CMD__REPLAY_SET_COASTING_VTOTAL command.
+ 	 */
+ 	struct dmub_rb_cmd_replay_set_coasting_vtotal replay_set_coasting_vtotal;
++	/**
++	 * Definition of a DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL command.
++	 */
++	struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal replay_set_power_opt_and_coasting_vtotal;
+ };
  
- 	switch (stream_enc_inst) {
-@@ -667,27 +714,33 @@ static void dccg35_disable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst
- 		break;
- 	}
- 
--	switch (link_enc_inst) {
--	case 0:
--		REG_UPDATE(SYMCLKA_CLOCK_ENABLE,
--				SYMCLKA_CLOCK_ENABLE, 0);
--		break;
--	case 1:
--		REG_UPDATE(SYMCLKB_CLOCK_ENABLE,
--				SYMCLKB_CLOCK_ENABLE, 0);
--		break;
--	case 2:
--		REG_UPDATE(SYMCLKC_CLOCK_ENABLE,
--				SYMCLKC_CLOCK_ENABLE, 0);
--		break;
--	case 3:
--		REG_UPDATE(SYMCLKD_CLOCK_ENABLE,
--				SYMCLKD_CLOCK_ENABLE, 0);
--		break;
--	case 4:
--		REG_UPDATE(SYMCLKE_CLOCK_ENABLE,
--				SYMCLKE_CLOCK_ENABLE, 0);
--		break;
-+	/*check other enabled symclk fe */
-+	num_enabled_symclk_fe = dccg35_get_other_enabled_symclk_fe(dccg, stream_enc_inst, link_enc_inst);
-+	/*only turn off backend clk if other front end attachecd to this backend are all off,
-+	 for mst, only turn off the backend if this is the last front end*/
-+	if (num_enabled_symclk_fe == 0) {
-+		switch (link_enc_inst) {
-+		case 0:
-+			REG_UPDATE(SYMCLKA_CLOCK_ENABLE,
-+					SYMCLKA_CLOCK_ENABLE, 0);
-+			break;
-+		case 1:
-+			REG_UPDATE(SYMCLKB_CLOCK_ENABLE,
-+					SYMCLKB_CLOCK_ENABLE, 0);
-+			break;
-+		case 2:
-+			REG_UPDATE(SYMCLKC_CLOCK_ENABLE,
-+					SYMCLKC_CLOCK_ENABLE, 0);
-+			break;
-+		case 3:
-+			REG_UPDATE(SYMCLKD_CLOCK_ENABLE,
-+					SYMCLKD_CLOCK_ENABLE, 0);
-+			break;
-+		case 4:
-+			REG_UPDATE(SYMCLKE_CLOCK_ENABLE,
-+					SYMCLKE_CLOCK_ENABLE, 0);
-+			break;
-+		}
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-index 7fa1172b98d0..4a0bca134581 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-@@ -751,14 +751,10 @@ static const struct dc_debug_options debug_defaults_drv = {
- 	.disable_unbounded_requesting = false,
- 	.disable_mem_low_power = true,
- 	.enable_hpo_pg_support = false,
--
- 	//must match enable_single_display_2to1_odm_policy to support dynamic ODM transitions
- 	.enable_double_buffered_dsc_pg_support = false,
- 	.enable_dp_dig_pixel_rate_div_policy = 1,
--	.disable_stutter = true,
--	.disable_idle_power_optimizations = true,
- 	.disable_z10 = false,
--	.disable_mem_low_power = true,
- 	.ignore_pg = true,
- 	.psp_disabled_wa = true,
- 	.disable_ips = true,
+ /**
 -- 
 2.40.1
 
