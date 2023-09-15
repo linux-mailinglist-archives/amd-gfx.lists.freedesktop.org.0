@@ -1,91 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5EA7A1D1A
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Sep 2023 13:07:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2DB7A1F32
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Sep 2023 14:50:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE82610E179;
-	Fri, 15 Sep 2023 11:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BA410E17E;
+	Fri, 15 Sep 2023 12:50:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 904FD10E179
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 11:07:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DpxK7SPhe5faqBz+wJq5EtQeaZtVyNDWWtr4lpvSw5Rc4I4V2kGku983m2NLte9WwR/gnGIa6HdpFbHRDA/uXVoY028iNZV7fBMBJeBa1wtIkbfnAO2ru0xEIxoUSXYDY/9E5x9SwkQHFPsJJmEnT0HzIFz+/2EfD/b7rZyG4OECdqa7ezs/P3JTI24AlJ+Chzzws7lwRWsK+ItMowDXuuLygO8JMuAWd0DCrgdOi1X4tAckmosLzhOaSCGVxGZpb2hRiZbWGpMULHBLnPWZaYSRsZ4rVCgOtnqTtbMSWWbv8TMcyoTqy5FwtY1o2s2Up3oSgSHCSmyPVlfWkncpPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eu6KNwU3GuQtKIFdd3N69ZIxNMw9Srf4cpR8fT8BO2M=;
- b=ijjlxW5vyQ4Z0zgvKD5C2GlcCwvcALCz2yoIhLKejSzT/3700TJJIHhsoErbqcVr4VjaXuTjLb+NvX9jcAnJ8L3x/pMY0hFcNOpXMR3vZxUVZt/hWuZkK1bnyC8ILd5J7Smh3+vi9jxj95PC8eHrXPdwzM4EVF0spEZULY54jIbotJf9K46wFDjysO6i11oxxSmyfAE6w0fRImuStlNVHO+3QgVIJQzCjca/Y0GKVUuketZYWYixRpRqEuI+7m396JxQJYmNlbLGD6hvyqArys7JQSqJ4zmAIR70CUMkrOs4s9BIt5i7NjmjhaybnhbVKtrlN0DVDMAryUIUjdhS7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eu6KNwU3GuQtKIFdd3N69ZIxNMw9Srf4cpR8fT8BO2M=;
- b=NaFuVDBGk4OygP9gIS4McjBPDlkrrmv1txyBmqxEuyr4smsvQyh/8113Nw+7ZLiTawv718wwwWY8hVcIm3U2ECJBujW5nnwPbKPx7tQO3PeUO2dDd6oIE4ploKpxBWLFjmD9FBl4u9Km1/IoXFFJ1pyT4Ck1WPPw2gQO54tNYXM=
-Received: from DM6PR04CA0005.namprd04.prod.outlook.com (2603:10b6:5:334::10)
- by SJ0PR12MB6925.namprd12.prod.outlook.com (2603:10b6:a03:483::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.36; Fri, 15 Sep
- 2023 11:06:59 +0000
-Received: from DS1PEPF0001709B.namprd05.prod.outlook.com
- (2603:10b6:5:334:cafe::1e) by DM6PR04CA0005.outlook.office365.com
- (2603:10b6:5:334::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21 via Frontend
- Transport; Fri, 15 Sep 2023 11:06:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS1PEPF0001709B.mail.protection.outlook.com (10.167.18.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Fri, 15 Sep 2023 11:06:59 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Sep
- 2023 06:06:58 -0500
-Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Fri, 15 Sep 2023 06:06:57 -0500
-From: Stanley.Yang <Stanley.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH Review V2 1/1] drm/amdgpu: Fix false positive error log
-Date: Fri, 15 Sep 2023 19:06:51 +0800
-Message-ID: <20230915110651.1849740-1-Stanley.Yang@amd.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Fri, 15 Sep 2023 03:13:42 UTC
+Received: from alimail73.intl.sendcloud.org (alimail73.intl.sendcloud.org
+ [47.241.223.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB7010E5BD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 03:13:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.pinchatx.com;
+ i=@mail.pinchatx.com; q=dns/txt; s=mail; t=1694747316; h=date : from :
+ reply-to : to : message-id : subject : mime-version : content-type :
+ list-unsubscribe : from;
+ bh=xi1AhidJWqAnatFDv4IHVExT5kdVTNFaZN94TXx4zBs=;
+ b=T8+eoW8wJzgliJy0gOD/V7hfoWiPfUipYy1rMmj8EC5ArGoaUqQoZVpdO0KY4Wv5ttBEi
+ BxxZ5SJy822gMR1TwXC0a/E/SY6EkOa3TMTDwEvkPLx3IAeG6BG+zAcLr4SgJ4iBWZnJBLU
+ IWzjNbbInBViKii92cE3AZEeM8gpmLQ=
+Received: from web.api (Unknown [127.0.0.1]) by SendCloud Inbound Server with
+ ESMTPA id 09C47DC2-D9E2-4A5D-AFE7-668BF867D4D8.1 envelope-from
+ <service@mail.pinchatx.com> (authenticated bits=0);
+ Fri, 15 Sep 2023 11:08:36 +0800
+Date: Fri, 15 Sep 2023 11:08:36 +0800 (CST)
+From: YMS PCB <service@mail.pinchatx.com>
+To: amd-gfx <amd-gfx@lists.freedesktop.org>
+Message-ID: <1694747316673_105266_22855_6777.sg-10_1_253_29-inbound0@mail.pinchatx.com>
+Subject: =?utf-8?q?PCB_development_for_quick_turn_PCBA?=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001709B:EE_|SJ0PR12MB6925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f929275-3b22-45d4-06f4-08dbb5dbe1a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: INehxJfhy9+N4/FBsLD5i0vnWQUTpIeUcabcZSnlXC+S87FM8TnfK7e2SXJAYfV4Rcv+ii7o1FcBEkTvsxCHD4uZBPJke+BgXteqwIzljJekjU9jHicDsnADP8156lmY8CtYaNpbsqPgGTj7uVHuQe2riJeQrp0kqZC7vGFUv5Eey2bwSwYRy/CiNiquV8vq+QxKCgZbWHk6jEp2T7khtycJT4HTzu444MhQVq/KTo/yBR/hr4rTpjx+8ct/3A0fKoNkpkXrHJ36lTuazkEw7txCC6xZivb811zIIbSQ2fDzWCfYOoIcb5TD4bSj+4YwtqbaRdmvZbhOe5xCRdsRzC4IIGbWZcMW7lN1DJRJgf/J+gf6yHydSHNYgt2KB6Gmfq3OQ40RuPEFteao0vxFbg9iH5svj0UhkboIPwjab54VAXeks5gjPcTakVE7t9zyAnZ6IQwFpdk1+u4WySxlCo9OoLKZGVPpatOnuVQoMIr4LlvxXjNyEYmQWHf6iKV11LN4ML+TRfmAxbkA4T7+nwQv8iKIVi3O9pZxWQKydErBlJ2JOirRJ8QzMBkqpcKWzsXGSNlSBBnqsQgWVZqa6jiqroqSLm7zvsrQvo19OiugPyh+wA+AoVfebtmUTNbVHJbAxTZctfl+Wl/DOIUF0RCIrpRreOTZ8B5VrAWn9x8cu5mtqkOVPY9tOKYEvQNGf2L/58XQj7UJYySjej8wqYcXe7Uau6T9x/O8u4kYx45SxI+LK5EOUdm5Rapo+uvM4y7EtCd7IInGczGkQjmPjg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(39860400002)(376002)(396003)(136003)(1800799009)(451199024)(82310400011)(186009)(40470700004)(46966006)(36840700001)(36860700001)(70206006)(356005)(70586007)(36756003)(81166007)(47076005)(40460700003)(8936002)(8676002)(4326008)(6916009)(5660300002)(41300700001)(82740400003)(2906002)(40480700001)(316002)(2616005)(83380400001)(7696005)(336012)(6666004)(426003)(86362001)(26005)(478600001)(1076003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 11:06:59.0561 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f929275-3b22-45d4-06f4-08dbb5dbe1a7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709B.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6925
+Content-Type: multipart/alternative;
+ boundary="----=_Part_56673698_956203564.1694747316287"
+sesame_open: 3de0be30478255bab0a4c78a5a664774
+X-SENDCLOUD-UUID: 1694747316673_105266_22855_6777.sg-10_1_253_29-inbound0$amd-gfx@lists.freedesktop.org
+X-SENDCLOUD-LOG: 1694747316673_105266_22855_6777.sg-10_1_253_29-inbound0$amd-gfx@lists.freedesktop.org#amd-gfx@lists.freedesktop.org#792620#105266#0#
+X-SENDCLOUD-LOG-NEW: MTY5NDc0NzMxNjY3M18xMDUyNjZfMjI4NTVfNjc3Ny5zZy0xMF8xXzI1M18yOS1pbmJvdW5kMCRhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyNhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyM3OTI2MjAjMTA1MjY2IzAj
+X-Mailman-Approved-At: Fri, 15 Sep 2023 12:50:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,46 +51,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
+Reply-To: "eddi.yan" <eddi.yan@yms-pcb.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It should first check block ras obj whether be set, it should
-return 0 directly if block ras obj or hw_ops is not set.
 
-Changed from V1:
-	return 0 directly if block ras obj or hw ops is not set
+------=_Part_56673698_956203564.1694747316287
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+<p>Dear customer,</p>
+<p>I am Eddi from <strong><span style=3D"color: #3598db;">YMS PCB</span></s=
+trong>, we are from Shenzhen China.</p>
+<p>We would like to introduce our company - a 20-year experienced manufactu=
+rer of printed circuit boards (PCB). Our specialty lies in producing high-q=
+uality blank PCBs that are customized according to your specific requiremen=
+ts.</p>
+<p>Our team of engineers and technicians ensure that each PCB goes through =
+a rigorous quality control process to meet international standards. We offe=
+r a wide range of PCB types such as single-sided, double-sided, multi-layer=
+ed, and flexible PCBs.</p>
+<p>In addition to our extensive experience and expertise, we are also equip=
+ped with advanced technology and state-of-the-art facilities that allow us =
+to produce high-volume orders at competitive prices. We are committed to pr=
+oviding timely deliveries to meet your production schedules.</p>
+<p>If you have any questions, please do not hesitate to contact us at [inse=
+rt contact details]. We look forward to working with you.</p>
+<p>Best regards,</p>
+<p>&nbsp;</p>
+<p><img src=3D"https://credits.pintreel.com//storage/uploads/643950b9cb966.=
+" /></p>
+<p><img src=3D"https://credits.pintreel.com//storage/uploads/6439507220b3e.=
+png" width=3D"147" height=3D"165" /></p>
+<p>You are receiving this email because you opted in via our website <a hre=
+f=3D"www.yms-pcb.com">YMS-PCB</a>. if you do not want to receive these emai=
+ls=EF=BC=8Cplease feel free to <a href=3D"https://ecamp.pintreel.com/newsle=
+tter-registration/%e9%80%80%e8%ae%a2/">unsubscribe</a>.</p>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 4a6df4e24243..25514af6cf8f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1105,15 +1105,15 @@ int amdgpu_ras_reset_error_status(struct amdgpu_device *adev,
- {
- 	struct amdgpu_ras_block_object *block_obj = amdgpu_ras_get_ras_block(adev, block, 0);
- 
--	if (!amdgpu_ras_is_supported(adev, block))
--		return -EINVAL;
--
--	if (!block_obj || !block_obj->hw_ops)   {
-+	if (!block_obj || !block_obj->hw_ops) {
- 		dev_dbg_once(adev->dev, "%s doesn't config RAS function\n",
- 			     ras_block_str(block));
--		return -EINVAL;
-+		return 0;
- 	}
- 
-+	if (!amdgpu_ras_is_supported(adev, block))
-+		return -EINVAL;
-+
- 	if (block_obj->hw_ops->reset_ras_error_count)
- 		block_obj->hw_ops->reset_ras_error_count(adev);
- 
--- 
-2.25.1
+<img src=3D"https://credits.pintreel.com/api/mail-detail/open/eyJpdiI6IkZvT=
+kd3blFOT1AvRjdLZTkxdzM0eGc9PSIsInZhbHVlIjoiYkZub2RjWVFtOEliZCtKMUdQZjByQT09=
+IiwibWFjIjoiNDQ0NjEwNzFjZmFjODNiNDZjMGVhMGI1N2VlMWE4MTAzZWU3NmMxNTdkNWI1YWJ=
+jZTQ1OTk1MzY0ZDU0MGU5YiIsInRhZyI6IiJ9" width=3D"1" height=3D"1"
+     style=3D"position: absolute; left: 0;bottom: 0;" alt=3D""/><table widt=
+h=3D"100%" align=3D"center"><tbody><tr align=3D"center"></tr><tr align=3D"c=
+enter"><td style=3D"border-top: 1px #e5e5e5 solid; padding-top: 15px;paddin=
+g-bottom:15px;" width=3D"560"><table border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"center"><tbody><tr><td style=3D"background-color: #ddd;=
+ border: 1px #ddd solid; border-radius: 4px; padding: 3px 15px; text-align:=
+ center;"><a style=3D"color: #a6a6a6; background: #ddd; font-size: 12px; te=
+xt-decoration: none;" href=3D"https://track2.sendcloud.net/track/unsubscrib=
+e.do?p=3DeyJ1c2VyX2lkIjogMTA1MjY2LCAidGFza19pZCI6ICIiLCAiZW1haWxfaWQiOiAiMT=
+Y5NDc0NzMxNjY3M18xMDUyNjZfMjI4NTVfNjc3Ny5zZy0xMF8xXzI1M18yOS1pbmJvdW5kMCRhb=
+WQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyIsICJzaWduIjogIjJlOGZlOGJkNmIyNTg4YzQ3=
+YTkzYzEyNTI4OGYzODBhIiwgInVzZXJfaGVhZGVycyI6IHt9LCAibGFiZWwiOiAwLCAidHJhY2t=
+fZG9tYWluIjogInRyYWNrMi5zZW5kY2xvdWQubmV0IiwgInJlYWxfdHlwZSI6ICIiLCAibmV0ZW=
+FzZSI6ICJmYWxzZSIsICJvdXRfaXAiOiAiNDcuMjQxLjIyMy42MyIsICJjb250ZW50X3R5cGUiO=
+iAiIiwgInJlY2VpdmVyIjogImFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIiwgIm1haWxs=
+aXN0X2lkIjogMCwgIm92ZXJzZWFzIjogIiIsICJjYXRlZ29yeV9pZCI6IDc5MjYyMCwgInBhZ2V=
+faWQiOiAtMX0%3D" target=3D"_blank" rel=3D"noopener">click to unsubscribe</a=
+></td></tr></tbody></table></td></tr></tbody></table>
+------=_Part_56673698_956203564.1694747316287--
+
+
 
