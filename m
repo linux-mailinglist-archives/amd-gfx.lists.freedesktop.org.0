@@ -1,70 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A317A4714
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 Sep 2023 12:32:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 951DE7A4A2F
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Sep 2023 14:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAFC210E265;
-	Mon, 18 Sep 2023 10:32:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9035410E09E;
+	Mon, 18 Sep 2023 12:53:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
- [IPv6:2a00:1450:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81BB210E04E
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Sep 2023 10:32:39 +0000 (UTC)
-Received: by mail-lj1-x22e.google.com with SMTP id
- 38308e7fff4ca-2c00c0f11b2so12673591fa.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Sep 2023 03:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695033157; x=1695637957; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Bct1fdBMWCc5uNQPo/dkixoQKggctX23vc6xY0OU8dw=;
- b=XBaoR/jSTE9hfGiv5MUUAsQ+0STZRyQH0RdqIF9RMkrKJpi/cjjwbqxB/wRzEYJ0D9
- g3KzB/XAr4G6v4Nw45B+dQASx9VGMtSaFwJXkZoFgMdAQ1hViwt+bu/YJPhjQchpNwJO
- f3Md7tESO3YI+yDf637H+IjSpgQySOiRPwn0Wsv5BE23AD9Z4amo9hSzBzyj+zD42+VG
- uPkbtogrKQk0ANNBYfvl/6vO7WFzpMo/HSwJRN3TA4fiqa7c5tpqGjhBC2dcU0/4Y3Ib
- h2kPD2sDDOtkN12ylH1aQj9kg9FZ6NkZZFzYIYUftbe535Otn8sxAvP3RWZqjdTOjyGW
- MpZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695033157; x=1695637957;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Bct1fdBMWCc5uNQPo/dkixoQKggctX23vc6xY0OU8dw=;
- b=eOSgTEbSbELhaLweJJPmFIErizaeKQDdy9f//6cN7K+tMqyJKLdPGI83uE/0wmjkK3
- GEhZ+dFfP8q5m9oU2eRWYHQ8eKqV96m6uUKx+ADBUZ557CE7NvukDnw/cDFiJ9ctCurP
- hcLRnYkklObCRZvReeaHnotHtVH/4gfjEJBFYuZngmvR/Qb0mn+8dK7XKh30frrLHDfg
- 07MLeUX+sLldPH/PozmPepbIEXVtZ8g3I8AZ+xpMayKQL/EI7vLAZjfEijNPjBDu5rTA
- etXbW7w/e++2ZrZEDKRtwfyYO2jtvmNQSit4k5Jwiz3qdlp+vZGxsRKsq+vb9QFtN0fR
- +uPg==
-X-Gm-Message-State: AOJu0YwefV2eppXf6oUToKBmBE+J0VdrgKeetdwR2TsQAfA7U48u7FpA
- kjfJJT/iq6pHM8EGRxB5+0E=
-X-Google-Smtp-Source: AGHT+IFzi6pHZdz+n9exsFsfzmOpPgDNQtY13sAqVzmXTWq/2qJDshGuT7s1MHOr1qsLVLjOSkG5iA==
-X-Received: by 2002:a05:651c:215:b0:2bc:d38e:65ab with SMTP id
- y21-20020a05651c021500b002bcd38e65abmr7404394ljn.37.1695033157194; 
- Mon, 18 Sep 2023 03:32:37 -0700 (PDT)
-Received: from [192.168.178.25] ([185.254.126.99])
- by smtp.gmail.com with ESMTPSA id
- z21-20020a170906241500b0099b76c3041csm6262638eja.7.2023.09.18.03.32.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 18 Sep 2023 03:32:36 -0700 (PDT)
-Message-ID: <022fbf02-b9f6-1286-bd25-dd150384047e@gmail.com>
-Date: Mon, 18 Sep 2023 12:32:35 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C21210E25F;
+ Mon, 18 Sep 2023 10:26:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695032771; x=1726568771;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Z3iL/y6QJ7h0kqxXMPKW9Xen6z9Asf9eYXxhADrOF38=;
+ b=eEoMvWNJRqCPPX+SX349qcAROcQ3KoqGarojaqnEmH56iddvKsp1a7wy
+ LxqR5dQtoaLA+3c7BKsReWMW2g+8wK+KBuv4Vn1JpvBxb8WNeIxeRpRWJ
+ KZ/dpRNb6BtBmfCrz688y3LVbXVe2/9ewARBABDxD5lWq84+Zpz2X2S3u
+ bgUssIfasUHWGm9uKB7/Ho6RXU5FGmdmsKphvyLYtF0hvB+P/pR2Bd3Zd
+ 4hzsCjehoMSLLubFBla7PHgbGAyyIMwmy3j5iyr7drhl3OhIPEql/v8km
+ xH1e2/BVBtljAlbmk/zmfKhagTmtDqvoYN3Yt6S5/F3ORqAyokYdgvdEv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="410574691"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="410574691"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 03:26:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="739079716"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="739079716"
+Received: from mkhokhlx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.60])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 03:26:01 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH][V2] drm/amd/display: Remove unwanted drm edid references
+In-Reply-To: <20230915224926.104072-1-alex.hung@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230915224926.104072-1-alex.hung@amd.com>
+Date: Mon, 18 Sep 2023 13:25:59 +0300
+Message-ID: <87zg1ju6a0.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 7/9] drm/amdgpu: map wptr BO into GART
-Content-Language: en-US
-To: Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20230908160446.2188-1-shashank.sharma@amd.com>
- <20230908160446.2188-8-shashank.sharma@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20230908160446.2188-8-shashank.sharma@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Mailman-Approved-At: Mon, 18 Sep 2023 12:53:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,163 +59,125 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, arvind.yadav@amd.com
+Cc: stylon.wang@amd.com, haoping.liu@amd.com, srinivasan.shanmugam@amd.com,
+ sunpeng.li@amd.com, airlied@gmail.com, Qingqing.Zhuo@amd.com,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, Alex Hung <alex.hung@amd.com>,
+ daniel.wheeler@amd.com, aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
+ hamza.mahfooz@amd.com, daniel@ffwll.ch, wayne.lin@amd.com,
+ alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 08.09.23 um 18:04 schrieb Shashank Sharma:
-> To support oversubscription, MES FW expects WPTR BOs to
-> be mapped into GART, before they are submitted to usermode
-> queues. This patch adds a function for the same.
+On Fri, 15 Sep 2023, Alex Hung <alex.hung@amd.com> wrote:
+> [WHY]
+> edid_override and drm_edid_override_connector_update, according to drm
+> documentation, should not be referred outside drm_edid.
 >
-> V4: fix the wptr value before mapping lookup (Bas, Christian).
-> V5: Addressed review comments from Christian:
->      - Either pin object or allocate from GART, but not both.
->      - All the handling must be done with the VM locks held.
+> [HOW]
+> Remove and replace them accordingly. This can tested by IGT's
+> kms_hdmi_inject test.
 >
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 81 +++++++++++++++++++
->   .../gpu/drm/amd/include/amdgpu_userqueue.h    |  1 +
->   2 files changed, 82 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index e266674e0d44..c0eb622dfc37 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -6427,6 +6427,79 @@ const struct amdgpu_ip_block_version gfx_v11_0_ip_block =
->   	.funcs = &gfx_v11_0_ip_funcs,
->   };
->   
-> +static int
-> +gfx_v11_0_map_gtt_bo_to_gart(struct amdgpu_device *adev, struct amdgpu_bo *bo)
-> +{
-> +	int ret;
-> +
-> +	ret = amdgpu_bo_reserve(bo, true);
-> +	if (ret) {
-> +		DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
-> +		goto err_reserve_bo_failed;
+> V2 - add comments for drm_get_edid and check edid before use.
+>
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 44 +++++++++++--------
+>  1 file changed, 25 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 5efebc06296b..b29ef87c27a9 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -6444,15 +6444,24 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
+>  static void amdgpu_dm_connector_funcs_force(struct drm_connector *connector)
+>  {
+>  	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(connector);
+>  	struct dc_link *dc_link = aconnector->dc_link;
+>  	struct dc_sink *dc_em_sink = aconnector->dc_em_sink;
+>  	struct edid *edid;
+>  
+> -	if (!connector->edid_override)
+> +	/*
+> +	 * Note: drm_get_edid gets edid in the following order:
+> +	 * 1) override EDID if set via edid_override debugfs,
+> +	 * 2) firmware EDID if set via edid_firmware module parameter
+> +	 * 3) regular DDC read.
+> +	 */
+> +	edid = drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
+> +	if (!edid) {
+> +		DRM_ERROR("No EDID found on connector: %s, forcing to OFF!\n", connector->name);
+> +		connector->force = DRM_FORCE_OFF;
+
+Drivers aren't supposed to modify connector->force.
+
+Why would you do that anyway? This connects EDID probe success with
+connector forcing, and I've been repeatedly saying these are two
+separate things that should not be conflated.
+
+Maybe the user has set connector->force, because the display probe is
+flaky. This switches connector->force off if the display does not
+respond, undermining one of the main purposes of the whole thing.
+
+>  		return;
 > +	}
-> +
-> +	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
-> +	if (ret) {
-> +		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
-> +		goto err_map_bo_gart_failed;
-> +	}
-> +
-> +	amdgpu_bo_unreserve(bo);
+>  
+> -	drm_edid_override_connector_update(&aconnector->base);
+> -	edid = aconnector->base.edid_blob_ptr->data;
+>  	aconnector->edid = edid;
+>  
+>  	/* Update emulated (virtual) sink's EDID */
+> @@ -6487,30 +6496,27 @@ static int get_modes(struct drm_connector *connector)
+>  
+>  static void create_eml_sink(struct amdgpu_dm_connector *aconnector)
+>  {
+> +	struct drm_connector *connector = &aconnector->base;
+> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(&aconnector->base);
+>  	struct dc_sink_init_data init_params = {
+>  			.link = aconnector->dc_link,
+>  			.sink_signal = SIGNAL_TYPE_VIRTUAL
+>  	};
+>  	struct edid *edid;
+>  
+> -	if (!aconnector->base.edid_blob_ptr) {
+> -		/* if connector->edid_override valid, pass
+> -		 * it to edid_override to edid_blob_ptr
+> -		 */
+> -
+> -		drm_edid_override_connector_update(&aconnector->base);
+> -
+> -		if (!aconnector->base.edid_blob_ptr) {
+> -			DRM_ERROR("No EDID firmware found on connector: %s ,forcing to OFF!\n",
+> -					aconnector->base.name);
+> -
+> -			aconnector->base.force = DRM_FORCE_OFF;
+> -			return;
+> -		}
+> +	/*
+> +	 * Note: drm_get_edid gets edid in the following order:
+> +	 * 1) override EDID if set via edid_override debugfs,
+> +	 * 2) firmware EDID if set via edid_firmware module parameter
+> +	 * 3) regular DDC read.
+> +	 */
+> +	edid = drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
+> +	if (!edid) {
+> +		DRM_ERROR("No EDID found on connector: %s, forcing to OFF!\n", connector->name);
+> +		connector->force = DRM_FORCE_OFF;
 
-The GART mapping can become invalid as soon as you unlock the BOs.
+Ditto.
 
-You need to attach an eviction fence for this to work correctly.
+BR,
+Jani.
 
-> +	bo = amdgpu_bo_ref(bo);
-> +
-> +	return 0;
-> +
-> +err_map_bo_gart_failed:
-> +	amdgpu_bo_unreserve(bo);
-> +err_reserve_bo_failed:
-> +	return ret;
-> +}
-> +
-> +static int
-> +gfx_v11_0_create_wptr_mapping(struct amdgpu_device *adev,
-> +			      struct amdgpu_usermode_queue *queue,
-> +			      uint64_t wptr)
-> +{
-> +	struct amdgpu_bo_va_mapping *wptr_mapping;
-> +	struct amdgpu_vm *wptr_vm;
-> +	struct amdgpu_bo *wptr_bo = NULL;
-> +	int ret;
-> +
-> +	mutex_lock(&queue->vm->eviction_lock);
+> +		return;
+>  	}
+>  
+> -	edid = (struct edid *) aconnector->base.edid_blob_ptr->data;
+> -
+>  	aconnector->edid = edid;
+>  
+>  	aconnector->dc_em_sink = dc_link_add_remote_sink(
 
-Never ever touch the eviction lock outside of the VM code! That lock is 
-completely unrelated to what you do here.
-
-> +	wptr_vm = queue->vm;
-> +	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
-> +	if (ret)
-> +		goto unlock;
-> +
-> +	wptr &= AMDGPU_GMC_HOLE_MASK;
-> +	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
-> +	amdgpu_bo_unreserve(wptr_vm->root.bo);
-> +	if (!wptr_mapping) {
-> +		DRM_ERROR("Failed to lookup wptr bo\n");
-> +		ret = -EINVAL;
-> +		goto unlock;
-> +	}
-> +
-> +	wptr_bo = wptr_mapping->bo_va->base.bo;
-> +	if (wptr_bo->tbo.base.size > PAGE_SIZE) {
-> +		DRM_ERROR("Requested GART mapping for wptr bo larger than one page\n");
-> +		ret = -EINVAL;
-> +		goto unlock;
-> +	}
-
-We probably also want to enforce that this BO is a per VM BO.
-
-> +
-> +	ret = gfx_v11_0_map_gtt_bo_to_gart(adev, wptr_bo);
-> +	if (ret) {
-> +		DRM_ERROR("Failed to map wptr bo to GART\n");
-> +		goto unlock;
-> +	}
-> +
-> +	queue->wptr_mc_addr = wptr_bo->tbo.resource->start << PAGE_SHIFT;
-
-This needs to be amdgpu_bo_gpu_offset() instead.
-
-Regards,
-Christian.
-
-> +
-> +unlock:
-> +	mutex_unlock(&queue->vm->eviction_lock);
-> +	return ret;
-> +}
-> +
->   static void gfx_v11_0_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
->   				  struct amdgpu_usermode_queue *queue)
->   {
-> @@ -6475,6 +6548,7 @@ static int gfx_v11_0_userq_map(struct amdgpu_userq_mgr *uq_mgr,
->   	queue_input.queue_size = userq_props->queue_size >> 2;
->   	queue_input.doorbell_offset = userq_props->doorbell_index;
->   	queue_input.page_table_base_addr = amdgpu_gmc_pd_addr(queue->vm->root.bo);
-> +	queue_input.wptr_mc_addr = queue->wptr_mc_addr;
->   
->   	amdgpu_mes_lock(&adev->mes);
->   	r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
-> @@ -6601,6 +6675,13 @@ static int gfx_v11_0_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
->   		goto free_mqd;
->   	}
->   
-> +	/* FW expects WPTR BOs to be mapped into GART */
-> +	r = gfx_v11_0_create_wptr_mapping(adev, queue, userq_props.wptr_gpu_addr);
-> +	if (r) {
-> +		DRM_ERROR("Failed to create WPTR mapping\n");
-> +		goto free_ctx;
-> +	}
-> +
->   	/* Map userqueue into FW using MES */
->   	r = gfx_v11_0_userq_map(uq_mgr, queue, &userq_props);
->   	if (r) {
-> diff --git a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
-> index 34e20daa06c8..ae155de62560 100644
-> --- a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
-> +++ b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
-> @@ -39,6 +39,7 @@ struct amdgpu_usermode_queue {
->   	int			queue_type;
->   	uint64_t		doorbell_handle;
->   	uint64_t		doorbell_index;
-> +	uint64_t		wptr_mc_addr;
->   	uint64_t		flags;
->   	struct amdgpu_mqd_prop	*userq_prop;
->   	struct amdgpu_userq_mgr *userq_mgr;
-
+-- 
+Jani Nikula, Intel
