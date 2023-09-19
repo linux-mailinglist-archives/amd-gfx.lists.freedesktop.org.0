@@ -2,52 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D67E7A633A
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Sep 2023 14:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 064B97A6211
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Sep 2023 14:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A75610E3B4;
-	Tue, 19 Sep 2023 12:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 866FB10E1FD;
+	Tue, 19 Sep 2023 12:08:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C27010E114;
- Tue, 19 Sep 2023 09:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695117219; x=1726653219;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yak+PZr/1NdKj6PUYM085G1Vbxe36GSiN0JLTc97SxI=;
- b=Zwl7a887fnHvHAq0fy+24mQd/hqyx2fh/M0xxhRGi7Gn50HO9tlQm/lx
- D64gRrW7QdtFnoLzPvPk29unpkt2p9AAVwGBLC2aId0QzeU+TcTQRbJAj
- opbBILT0lvPoN3qn8Iq1ctt8dPgL3vWdX1igicOTk6jXcr+eO5JzcAVa+
- 9TUR8fXbW54klceJcKLozsdbnM5II6kYb7TAwbVsNE6EXrMxHLvroYswO
- 7XW5uoiU+21TteKZhVozcZm8VCQI6QDOW8zuoLCbl33PyCub/H2g9I/IG
- 6RNTknmFWSdYhr0D793JjU0dThDpKPzshIjf8IzjDOCLTVvSWnMt/8hMV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="466227201"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466227201"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 02:53:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="739624229"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="739624229"
-Received: from tjquresh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.37.227])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 02:53:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD7C10E1FD
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 12:08:25 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id
+ 4fb4d7f45d1cf-530ea522f5eso2939365a12.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 05:08:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1695125304; x=1695730104; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=iL+ruvnDDy5a4jeyKTDidCtFpCTdEKVq01EzWhj+Yf0=;
+ b=FTISrWMEpdw0PXcCmI0T9yKpKU175TxFWa9TeRl5COfsilcluC/atFzUWrSs6rhFiH
+ k7/dj8CvRCiw1PrPtRAH51L/p3i19zxWX2bF4rwAMWaGKaa5JUqlRPxxNnCR8CvQcFw+
+ Gyk8cRiU0Fg3zvfOnfWxXNbEGxKYmpHvwJ+Jk0IJrofi/lPfKSL1yM7b2sfQGC21xqjG
+ RrDYF6Jp1D8UlDfkjH8UtjnhNBLmjJ3LywstFCOUJlkW3Yy9IbA0hDv9RXQvT1lK3gus
+ V9mZSUzJmpiB7DdKVzLuqn0Mqf5kMh27xE6G+5DMQmwRBOa3QQa82kvhg5Tt+DqFzsr7
+ fG2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695125304; x=1695730104;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=iL+ruvnDDy5a4jeyKTDidCtFpCTdEKVq01EzWhj+Yf0=;
+ b=PO1nZjCQuJ1i/3ydJsmt6klJMxxoO07zHCnBAljgp0q8bGAddRBF9A6t2dxCgp3Swy
+ w7JWaK5rJ75reJiC9WfQcVj87pU1IcwBeJHLAVFc9qpCmIfTmtCDhs8/zui/UeD/zS3H
+ kNEHr47fuV/BJ4z3itmFRaUW/sSMuehfRWdVgNCohbN4ZmurEtBUhofhnLixj5s5ncHL
+ JcgfMF6OsAIzd8fmksSMhkacndiFIKi65vzK8schilyQ43D0qjNCl6CrU1s6w5afm0iE
+ xa6UM1QaUUXKIOmAThj8z8Ju8YRMTuyWuN+9+7uSC/81HnUCAuuSNGjL0bxotC96iNXl
+ ZnBg==
+X-Gm-Message-State: AOJu0YzXjtsLZhF36wYgRZhadf6/cOsaPCHnn27U7BqPEhpcxdA8Qz8P
+ GFs4zRzjKU/j0+eqOOaXjXE=
+X-Google-Smtp-Source: AGHT+IExVqmUP9xrhSYdVmFERXtDA40tyaZnwgu4Gx9VGdzQL02epVT35Pi+wzBY7XLbCdAo+e9fnA==
+X-Received: by 2002:aa7:db56:0:b0:52b:d169:b373 with SMTP id
+ n22-20020aa7db56000000b0052bd169b373mr8934279edt.32.1695125303556; 
+ Tue, 19 Sep 2023 05:08:23 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:15bc:9900:21a0:f69e:f2eb:dcf5])
+ by smtp.gmail.com with ESMTPSA id
+ q5-20020aa7cc05000000b0052a1a623267sm7283100edt.62.2023.09.19.05.08.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Sep 2023 05:08:22 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: felix.kuehling@amd.com, alexdeucher@gmail.com, shashank.sharma@amd.com,
  amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH][V3] drm/amd/display: Remove unwanted drm edid references
-In-Reply-To: <20230918130455.2868485-1-alex.hung@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230918130455.2868485-1-alex.hung@amd.com>
-Date: Tue, 19 Sep 2023 12:53:30 +0300
-Message-ID: <87pm2etrol.fsf@intel.com>
+Subject: [PATCH 01/11] drm/amdgpu: fix and cleanup gmc_v9_0_flush_gpu_tlb
+Date: Tue, 19 Sep 2023 14:08:12 +0200
+Message-Id: <20230919120822.95241-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Tue, 19 Sep 2023 12:39:50 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,106 +72,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, haoping.liu@amd.com, srinivasan.shanmugam@amd.com,
- sunpeng.li@amd.com, airlied@gmail.com, Qingqing.Zhuo@amd.com,
- Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, Alex Hung <alex.hung@amd.com>,
- daniel.wheeler@amd.com, aurabindo.pillai@amd.com, hersenxs.wu@amd.com,
- hamza.mahfooz@amd.com, daniel@ffwll.ch, wayne.lin@amd.com,
- alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Sep 2023, Alex Hung <alex.hung@amd.com> wrote:
-> [WHY]
-> edid_override and drm_edid_override_connector_update, according to drm
-> documentation, should not be referred outside drm_edid.
->
-> [HOW]
-> Remove and replace them accordingly. This can tested by IGT's
-> kms_hdmi_inject test.
->
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
+The KIQ code path was ignoring the second flush. Also avoid long lines and
+re-calculating the register offsets over and over again.
 
-FWIW, Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 29 +++++++++++++++++----------
+ 1 file changed, 18 insertions(+), 11 deletions(-)
 
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 42 ++++++++++---------
->  1 file changed, 23 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 5efebc06296b..3968dd9cef7f 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -6444,15 +6444,23 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
->  static void amdgpu_dm_connector_funcs_force(struct drm_connector *connector)
->  {
->  	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
-> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(connector);
->  	struct dc_link *dc_link = aconnector->dc_link;
->  	struct dc_sink *dc_em_sink = aconnector->dc_em_sink;
->  	struct edid *edid;
->  
-> -	if (!connector->edid_override)
-> +	/*
-> +	 * Note: drm_get_edid gets edid in the following order:
-> +	 * 1) override EDID if set via edid_override debugfs,
-> +	 * 2) firmware EDID if set via edid_firmware module parameter
-> +	 * 3) regular DDC read.
-> +	 */
-> +	edid = drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
-> +	if (!edid) {
-> +		DRM_ERROR("No EDID found on connector: %s.\n", connector->name);
->  		return;
-> +	}
->  
-> -	drm_edid_override_connector_update(&aconnector->base);
-> -	edid = aconnector->base.edid_blob_ptr->data;
->  	aconnector->edid = edid;
->  
->  	/* Update emulated (virtual) sink's EDID */
-> @@ -6487,30 +6495,26 @@ static int get_modes(struct drm_connector *connector)
->  
->  static void create_eml_sink(struct amdgpu_dm_connector *aconnector)
->  {
-> +	struct drm_connector *connector = &aconnector->base;
-> +	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(&aconnector->base);
->  	struct dc_sink_init_data init_params = {
->  			.link = aconnector->dc_link,
->  			.sink_signal = SIGNAL_TYPE_VIRTUAL
->  	};
->  	struct edid *edid;
->  
-> -	if (!aconnector->base.edid_blob_ptr) {
-> -		/* if connector->edid_override valid, pass
-> -		 * it to edid_override to edid_blob_ptr
-> -		 */
-> -
-> -		drm_edid_override_connector_update(&aconnector->base);
-> -
-> -		if (!aconnector->base.edid_blob_ptr) {
-> -			DRM_ERROR("No EDID firmware found on connector: %s ,forcing to OFF!\n",
-> -					aconnector->base.name);
-> -
-> -			aconnector->base.force = DRM_FORCE_OFF;
-> -			return;
-> -		}
-> +	/*
-> +	 * Note: drm_get_edid gets edid in the following order:
-> +	 * 1) override EDID if set via edid_override debugfs,
-> +	 * 2) firmware EDID if set via edid_firmware module parameter
-> +	 * 3) regular DDC read.
-> +	 */
-> +	edid = drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
-> +	if (!edid) {
-> +		DRM_ERROR("No EDID found on connector: %s.\n", connector->name);
-> +		return;
->  	}
->  
-> -	edid = (struct edid *) aconnector->base.edid_blob_ptr->data;
-> -
->  	aconnector->edid = edid;
->  
->  	aconnector->dc_em_sink = dc_link_add_remote_sink(
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 2936a0fb7527..0f82ab48887a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -816,13 +816,17 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 					uint32_t vmhub, uint32_t flush_type)
+ {
+ 	bool use_semaphore = gmc_v9_0_use_invalidate_semaphore(adev, vmhub);
++	u32 j, inv_req, inv_req2, tmp, sem, req, ack;
+ 	const unsigned int eng = 17;
+-	u32 j, inv_req, inv_req2, tmp;
+ 	struct amdgpu_vmhub *hub;
+ 
+ 	BUG_ON(vmhub >= AMDGPU_MAX_VMHUBS);
+ 
+ 	hub = &adev->vmhub[vmhub];
++	sem = hub->vm_inv_eng0_sem + hub->eng_distance * eng;
++	req = hub->vm_inv_eng0_req + hub->eng_distance * eng;
++	ack = hub->vm_inv_eng0_ack + hub->eng_distance * eng;
++
+ 	if (adev->gmc.xgmi.num_physical_nodes &&
+ 	    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 0)) {
+ 		/* Vega20+XGMI caches PTEs in TC and TLB. Add a
+@@ -854,6 +858,10 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 
+ 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
+ 						   1 << vmid);
++		if (inv_req2)
++			amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack,
++							   inv_req2, 1 << vmid);
++
+ 		up_read(&adev->reset_domain->sem);
+ 		return;
+ 	}
+@@ -872,9 +880,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 		for (j = 0; j < adev->usec_timeout; j++) {
+ 			/* a read return value of 1 means semaphore acquire */
+ 			if (vmhub >= AMDGPU_MMHUB0(0))
+-				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, hub->vm_inv_eng0_sem + hub->eng_distance * eng);
++				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, sem);
+ 			else
+-				tmp = RREG32_SOC15_IP_NO_KIQ(GC, hub->vm_inv_eng0_sem + hub->eng_distance * eng);
++				tmp = RREG32_SOC15_IP_NO_KIQ(GC, sem);
+ 			if (tmp & 0x1)
+ 				break;
+ 			udelay(1);
+@@ -886,9 +894,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 
+ 	do {
+ 		if (vmhub >= AMDGPU_MMHUB0(0))
+-			WREG32_SOC15_IP_NO_KIQ(MMHUB, hub->vm_inv_eng0_req + hub->eng_distance * eng, inv_req);
++			WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req);
+ 		else
+-			WREG32_SOC15_IP_NO_KIQ(GC, hub->vm_inv_eng0_req + hub->eng_distance * eng, inv_req);
++			WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req);
+ 
+ 		/*
+ 		 * Issue a dummy read to wait for the ACK register to
+@@ -897,14 +905,13 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 		 */
+ 		if ((vmhub == AMDGPU_GFXHUB(0)) &&
+ 		    (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(9, 4, 2)))
+-			RREG32_NO_KIQ(hub->vm_inv_eng0_req +
+-				      hub->eng_distance * eng);
++			RREG32_SOC15_IP_NO_KIQ(GC, req);
+ 
+ 		for (j = 0; j < adev->usec_timeout; j++) {
+ 			if (vmhub >= AMDGPU_MMHUB0(0))
+-				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, hub->vm_inv_eng0_ack + hub->eng_distance * eng);
++				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, ack);
+ 			else
+-				tmp = RREG32_SOC15_IP_NO_KIQ(GC, hub->vm_inv_eng0_ack + hub->eng_distance * eng);
++				tmp = RREG32_SOC15_IP_NO_KIQ(GC, ack);
+ 			if (tmp & (1 << vmid))
+ 				break;
+ 			udelay(1);
+@@ -921,9 +928,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 		 * write with 0 means semaphore release
+ 		 */
+ 		if (vmhub >= AMDGPU_MMHUB0(0))
+-			WREG32_SOC15_IP_NO_KIQ(MMHUB, hub->vm_inv_eng0_sem + hub->eng_distance * eng, 0);
++			WREG32_SOC15_IP_NO_KIQ(MMHUB, sem, 0);
+ 		else
+-			WREG32_SOC15_IP_NO_KIQ(GC, hub->vm_inv_eng0_sem + hub->eng_distance * eng, 0);
++			WREG32_SOC15_IP_NO_KIQ(GC, sem, 0);
+ 	}
+ 
+ 	spin_unlock(&adev->gmc.invalidate_lock);
 -- 
-Jani Nikula, Intel
+2.34.1
+
