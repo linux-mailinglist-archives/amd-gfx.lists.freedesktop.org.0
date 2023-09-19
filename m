@@ -2,68 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5D97A6223
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Sep 2023 14:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296F87A6636
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Sep 2023 16:10:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B53010E3A6;
-	Tue, 19 Sep 2023 12:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D511210E131;
+	Tue, 19 Sep 2023 14:10:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4C7010E399
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 12:08:32 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id
- 4fb4d7f45d1cf-532aaba8747so1337456a12.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 05:08:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695125311; x=1695730111; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=pJsGUMusQcL2Op+zLbc8x0bVz3w2XJ4XJX4nO+4s1Ow=;
- b=Qsq4sY8lV7oofaHwwYzQwqD7wVTYTEZRxtw0zx+Io6zcqNJ6QnGgDEglbKQ00AJXcG
- 1wriIiEkl2EXdPF/T4cU5x8RT8Y4a5yyB86swJRvhf9YvUTNgFHU7F/HTaB2jTa2ZWTF
- IisQkfcqx2INpRDdJNPGLLCj+adqNh4W6mi6+1JXwLRuNoVAzS35FO+XVdF9rMZVB6HC
- 4rVYUeW5IBJHQjYbsL44G9cuC33h/hbV1OBFpXLn7X050ZJRBgJjIt0YQRr7iRTuFW8e
- FTQR+ICoS9QTXAZlGjoAFaSlCEUUrdMV97i6NLtvnD0/qK/e+yxwWYu6QyKYHCkqwcIT
- Oihg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695125311; x=1695730111;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=pJsGUMusQcL2Op+zLbc8x0bVz3w2XJ4XJX4nO+4s1Ow=;
- b=IJ2lBdTkPIZLTD1W/+skq7M5I2d0fRyco2oNC6NTgcyPEn0tMfs9P53srnWCV/SxUN
- rmkYtx0QJie0FXEixcISeQiQwDFqmr54xDD9EHbI3r83qBs9W6tezZrAF3C3mvF4ajy4
- CGrSjmcWxCF0lmmFTkhf0I2k8MjYSo00kVnSYCMnJgqoMqF/UI9rkNUUWywTaPWyN0Cr
- X6BuJGKP8ncIx6yb6wEMvR25sf+aBQQvjTAlfsRN+JShZ541x+133Z9jr1cbtRMm9cED
- a+rxDrn58YQe4exkKKTDWCeZiuJq1lCHDK4ctPLTFqWUDniCid6PN3Z2dv1YrjDw5yqD
- I/TQ==
-X-Gm-Message-State: AOJu0Ywnf0bh1/vGRbPuwsibtp1KFl6kGoXFn52tk6/MrxjehgpzfPTG
- jGHGelJ9dktc4RuhDz0DdSI=
-X-Google-Smtp-Source: AGHT+IEfEwkvWhJsETYmCS57xsZBDkgKEdZU6GILr/WU1ifgqhpSR4FL5LKrgMpa+LR8/nZ+QD7btA==
-X-Received: by 2002:aa7:d394:0:b0:525:691c:cd50 with SMTP id
- x20-20020aa7d394000000b00525691ccd50mr11447008edq.24.1695125311392; 
- Tue, 19 Sep 2023 05:08:31 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:15bc:9900:21a0:f69e:f2eb:dcf5])
- by smtp.gmail.com with ESMTPSA id
- q5-20020aa7cc05000000b0052a1a623267sm7283100edt.62.2023.09.19.05.08.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Sep 2023 05:08:30 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: felix.kuehling@amd.com, alexdeucher@gmail.com, shashank.sharma@amd.com,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/11] drm/amdgpu: further move TLB hw workarounds a layer up
-Date: Tue, 19 Sep 2023 14:08:22 +0200
-Message-Id: <20230919120822.95241-11-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230919120822.95241-1-christian.koenig@amd.com>
-References: <20230919120822.95241-1-christian.koenig@amd.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C430010E131
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 14:10:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W0ugheNDyegtEzIbKCLmc3YsdgRGiMjYF3XXqJiJ355lExoHBEs5llfduP1v+l81PQLD+vG/9tDtsIHW6vNztQSyeL26d58THl7Wxi9AJLPUjYSyzwYsNx+WKAlFkzjG5V4Qq/6bOpSW0JGVQu8u412EIEpxjTOXZVk21DIwjXtO/XrJ4SGSlAbGkH52EH0M6l+38ghKCcNtth+MMbTztFxn3TqBSijXhcp1MYYNcBGEOmkr7XoDAlqFE/5PcDAgmJLLHbQD7PwaxLTXOwSXKQXOBN8D2FBZCF7RZ50aJOBRHVSXY4Zu/Ujo73ougVYce/NlNqhj2mzJaizFY/8SOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i//DCXP1QBLKtkW+ZU1kyNmyAxjKcvB5nl501/f6jTQ=;
+ b=go0ue6CEYazrAAM+d9iNeuX+qQYRYcL4+ZkT+cDH7fV6AoFI7+uGfOwWUpFgRHMMuNYwZFHyhX9my/0X2o24EJYun/GG0mJf5DDL6+8tj1B6OgrcBdfxa4uncaJ0CGpdyxaETt/Su6Hl26rnv+X7MQnGF/Npq797hMcaAtleVXZL1YsPuZZy7jBtOIIJAb1qVg9tbfCEjgyyyDqhkJ2nAiB2ZKrKTzHc4V6HWYzliSuJEBacf6qeHfc8TbAoc+kCHG00Vbk8nXOR9xMGwRsNGnygFRmGET/AY0klOG31pQ8JafGqzduDb8Be3iFCNA/MGpt7yOyoO/h0cxrMBbtSog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i//DCXP1QBLKtkW+ZU1kyNmyAxjKcvB5nl501/f6jTQ=;
+ b=uMRtMzRr5kqzW8xSCAbjeLfhez9JswbA/ILvVafTikg9yfxMDzquInaCWfu1iqNG3W0reNlFDqa4IFcJxkWI+0BEdjPp4a6V4MYPP4Bdugj8K++DWMnYtMxU6pgLG465G1RL4R1BBsvllqWZzugghjlMIYEEfCPDaA/MXp7oB+4=
+Received: from DM6PR07CA0108.namprd07.prod.outlook.com (2603:10b6:5:330::14)
+ by CH3PR12MB9249.namprd12.prod.outlook.com (2603:10b6:610:1bc::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Tue, 19 Sep
+ 2023 14:10:28 +0000
+Received: from DS1PEPF0001709D.namprd05.prod.outlook.com
+ (2603:10b6:5:330:cafe::55) by DM6PR07CA0108.outlook.office365.com
+ (2603:10b6:5:330::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28 via Frontend
+ Transport; Tue, 19 Sep 2023 14:10:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF0001709D.mail.protection.outlook.com (10.167.18.107) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6792.19 via Frontend Transport; Tue, 19 Sep 2023 14:10:28 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 19 Sep
+ 2023 09:10:27 -0500
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdkfd: Don't use sw fault filter if retry cam enabled
+Date: Tue, 19 Sep 2023 10:09:54 -0400
+Message-ID: <20230919140954.8150-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0001709D:EE_|CH3PR12MB9249:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75b88e3b-d83c-49d1-3fc8-08dbb91a2d2f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sa2JZO14P+9JhVEMn7aBNuHisR0thkH0vpHaFMGS73g2IiQNDz0p4sNTUAISjmzvOiZTHqqWenH6lNH6WF3rdSyLaotx3Q0+K3+04lq7jf9I4LOlmuOkm7nsA5mbEVgfP7YzNOw1v2o3jTWZDhkAgN8hby7JavEjV54kMgDGwzEDBLZihYmekU6ftAAkwXfcKq7PbXRU6vbf0fcIynQfkMtwGgNjJXwOzoY+VOEbBfRjVuPzOJx5oYHVvt2okaHYuTBHWRLJqZGEjGVAnAjny1fDApBI+EzeNp71ta/FH1DhPGaUzvGULcr5YWR8WHRsN48JXVQqLfsadQ2lnTg8Uy5evl6uJvhCEwyTYNney8EmCvFf13tneiXtecnan5dSI9s7/1SAjnAuMoQxXW9PnkhbJPqwUdWEZlxZq/jl7GEpNVQgcOM6JwFc/AvGefVNs9YpOEm7x/hYF8PGa5qR7dR5LL8pIjtj7xYc3TaBx69NpTm20THdnG3+RaEWj3rCg+Tf4ScLsFQK4f0ey/WYqk5tgIScQw52yLaHyjYVI6q0Xrxuy3ithEzYv4VvzUTDNAEuEEpAI2fVV8vgh6Ux9+hFfAFitz/x7c2zaG8ajxoiU1VIsw476H3oFbKnpHl1n1NBaE2LOp9beBE2ivzdCwBySrW+P8CIBjRm9R/YSq0JfJ3ZzHstKK5JHpOluGPhoYajebSsFRFTJ9ZLbeVgDlyAIALNfFmznBGOiin6lW4/G6PPPqFhQKG+4BRG+/OsocGg9ZMJePbRTw0estJ9Fg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(136003)(346002)(396003)(376002)(451199024)(1800799009)(82310400011)(186009)(36840700001)(46966006)(40470700004)(6666004)(7696005)(40460700003)(86362001)(81166007)(82740400003)(40480700001)(36756003)(356005)(36860700001)(8676002)(2616005)(26005)(47076005)(1076003)(426003)(336012)(2906002)(4744005)(16526019)(83380400001)(478600001)(8936002)(4326008)(6916009)(5660300002)(41300700001)(54906003)(316002)(70586007)(70206006)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 14:10:28.0477 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75b88e3b-d83c-49d1-3fc8-08dbb91a2d2f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709D.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9249
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,168 +97,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: mukul.joshi@amd.com, Felix.Kuehling@amd.com,
+ Philip Yang <Philip.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For the PASID flushing we already handled that at a higher layer, apply
-those workarounds to the standard flush as well.
+If retry cam enabled, we don't use sw retry fault filter and add fault
+into sw filter ring, so we shouldn't remove fault from sw filter.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 19 +++++++
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 74 ++++++++-----------------
- 2 files changed, 42 insertions(+), 51 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index b074dc75f59f..ff65f7fee1df 100644
+index c7793db6d098..f357d1f7353a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -601,6 +601,14 @@ void amdgpu_gmc_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 		if (!down_read_trylock(&adev->reset_domain->sem))
- 			return;
+@@ -452,7 +452,10 @@ void amdgpu_gmc_filter_faults_remove(struct amdgpu_device *adev, uint64_t addr,
+ 	uint32_t hash;
+ 	uint64_t tmp;
  
-+		if (adev->gmc.flush_tlb_needs_extra_type_2)
-+			adev->gmc.gmc_funcs->flush_gpu_tlb(adev, vmid,
-+							   vmhub, 2);
+-	ih = adev->irq.retry_cam_enabled ? &adev->irq.ih_soft : &adev->irq.ih1;
++	if (adev->irq.retry_cam_enabled)
++		return;
 +
-+		if (adev->gmc.flush_tlb_needs_extra_type_0 && flush_type == 2)
-+			adev->gmc.gmc_funcs->flush_gpu_tlb(adev, vmid,
-+							   vmhub, 0);
-+
- 		adev->gmc.gmc_funcs->flush_gpu_tlb(adev, vmid, vmhub,
- 						   flush_type);
- 		up_read(&adev->reset_domain->sem);
-@@ -651,6 +659,17 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
- 
- 	if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready ||
- 	    !down_read_trylock(&adev->reset_domain->sem)) {
-+
-+		if (adev->gmc.flush_tlb_needs_extra_type_2)
-+			adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
-+								 2, all_hub,
-+								 inst);
-+
-+		if (adev->gmc.flush_tlb_needs_extra_type_0 && flush_type == 2)
-+			adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
-+								 0, all_hub,
-+								 inst);
-+
- 		adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
- 							 flush_type, all_hub,
- 							 inst);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index adb38698eac7..ba75ed60f8ba 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -814,37 +814,18 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 					uint32_t vmhub, uint32_t flush_type)
- {
- 	bool use_semaphore = gmc_v9_0_use_invalidate_semaphore(adev, vmhub);
--	u32 j, inv_req, inv_req2, tmp, sem, req, ack;
-+	u32 j, inv_req, tmp, sem, req, ack;
- 	const unsigned int eng = 17;
- 	struct amdgpu_vmhub *hub;
- 
- 	BUG_ON(vmhub >= AMDGPU_MAX_VMHUBS);
- 
- 	hub = &adev->vmhub[vmhub];
-+	inv_req = gmc_v9_0_get_invalidate_req(vmid, flush_type);
- 	sem = hub->vm_inv_eng0_sem + hub->eng_distance * eng;
- 	req = hub->vm_inv_eng0_req + hub->eng_distance * eng;
- 	ack = hub->vm_inv_eng0_ack + hub->eng_distance * eng;
- 
--	if (adev->gmc.xgmi.num_physical_nodes &&
--	    amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 0)) {
--		/* Vega20+XGMI caches PTEs in TC and TLB. Add a
--		 * heavy-weight TLB flush (type 2), which flushes
--		 * both. Due to a race condition with concurrent
--		 * memory accesses using the same TLB cache line, we
--		 * still need a second TLB flush after this.
--		 */
--		inv_req = gmc_v9_0_get_invalidate_req(vmid, 2);
--		inv_req2 = gmc_v9_0_get_invalidate_req(vmid, flush_type);
--	} else if (flush_type == 2 &&
--		   amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(9, 4, 3) &&
--		   adev->rev_id == 0) {
--		inv_req = gmc_v9_0_get_invalidate_req(vmid, 0);
--		inv_req2 = gmc_v9_0_get_invalidate_req(vmid, flush_type);
--	} else {
--		inv_req = gmc_v9_0_get_invalidate_req(vmid, flush_type);
--		inv_req2 = 0;
--	}
--
- 	/* This is necessary for a HW workaround under SRIOV as well
- 	 * as GFXOFF under bare metal
- 	 */
-@@ -855,10 +836,6 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 
- 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
- 						   1 << vmid);
--		if (inv_req2)
--			amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack,
--							   inv_req2, 1 << vmid);
--
- 		return;
- 	}
- 
-@@ -888,34 +865,29 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 			DRM_ERROR("Timeout waiting for sem acquire in VM flush!\n");
- 	}
- 
--	do {
--		if (vmhub >= AMDGPU_MMHUB0(0))
--			WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req);
--		else
--			WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req);
--
--		/*
--		 * Issue a dummy read to wait for the ACK register to
--		 * be cleared to avoid a false ACK due to the new fast
--		 * GRBM interface.
--		 */
--		if ((vmhub == AMDGPU_GFXHUB(0)) &&
--		    (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(9, 4, 2)))
--			RREG32_SOC15_IP_NO_KIQ(GC, req);
-+	if (vmhub >= AMDGPU_MMHUB0(0))
-+		WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req);
-+	else
-+		WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req);
- 
--		for (j = 0; j < adev->usec_timeout; j++) {
--			if (vmhub >= AMDGPU_MMHUB0(0))
--				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, ack);
--			else
--				tmp = RREG32_SOC15_IP_NO_KIQ(GC, ack);
--			if (tmp & (1 << vmid))
--				break;
--			udelay(1);
--		}
-+	/*
-+	 * Issue a dummy read to wait for the ACK register to
-+	 * be cleared to avoid a false ACK due to the new fast
-+	 * GRBM interface.
-+	 */
-+	if ((vmhub == AMDGPU_GFXHUB(0)) &&
-+	    (adev->ip_versions[GC_HWIP][0] < IP_VERSION(9, 4, 2)))
-+		RREG32_NO_KIQ(req);
- 
--		inv_req = inv_req2;
--		inv_req2 = 0;
--	} while (inv_req);
-+	for (j = 0; j < adev->usec_timeout; j++) {
-+		if (vmhub >= AMDGPU_MMHUB0(0))
-+			tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, ack);
-+		else
-+			tmp = RREG32_SOC15_IP_NO_KIQ(GC, ack);
-+		if (tmp & (1 << vmid))
-+			break;
-+		udelay(1);
-+	}
- 
- 	/* TODO: It needs to continue working on debugging with semaphore for GFXHUB as well. */
- 	if (use_semaphore) {
++	ih = &adev->irq.ih1;
+ 	/* Get the WPTR of the last entry in IH ring */
+ 	last_wptr = amdgpu_ih_get_wptr(adev, ih);
+ 	/* Order wptr with ring data. */
 -- 
-2.34.1
+2.35.1
 
