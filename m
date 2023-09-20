@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8DC7A70EF
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Sep 2023 05:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 878277A70F2
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Sep 2023 05:21:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A01CB10E432;
-	Wed, 20 Sep 2023 03:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D671310E435;
+	Wed, 20 Sep 2023 03:21:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on20627.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::627])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A89E10E432
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 03:21:18 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2063.outbound.protection.outlook.com [40.107.95.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C69FA10E433
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 03:21:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=boR35/tV5MrwcNXE2Lh1n9bw5GkvmF5LrLNhIetvrCvSIQv+loq8MBkYwUUfGBUrOpLe2ltwCoavFZMWXXwbU/2wywqqZF0zfjbQcxrhsJqsQBMf19Mp14BXrB/jVYuZSjD4pXvqExWmq3w/MtAj5FrWAO7gSUJ/lS8IFzXBVZAIuGuX0yEifiDMMNWQM6uCeSmwDzQ3Dy80Y+XbfjbDa9FOrucRt0arl5/Z8MKzWkfF6hFPIt7XKJnJFXA40kpuibg7prdAyXYMk2zG1mKZaozUTqG5i7gRXUs9XjrQXCa28iyFtaLSAT5gE/cbipIIYVcQBJcJgiGEGumx/9ohyQ==
+ b=KFDYUe6MGGJfgryZzi5T7jKAH/rSP/qQJ66oebE9HvBSWNWzAFTOjzViJotJQpuxl5gMBjlMBtbCUOuAx6owL3sd7eZOrusNp+2b6fAe1dx39Lnxo+kB5lOR61yR8HKQb41c67ODy2iO/O3OMnjIcLfvbdCfimzbRloDvg6HkYeILCgYO0QhEHsnSyDFTITZ3ckkkyF9uywDBWaYejrp5zyzh9CFOx5gwAxqrhzldxjJFiv1/rRdzXt3Lem4Zm6YyYL0S7b/igPdPth66Czx765rhFu7x/yBhZDu06NFnOYpCOD6QfNuy/+ynlfdkRj1FSRdSFQjkBBJNFbsYV7z/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5ZYZoyI/yb0XK8GwJVP/bTdfplUOCz7zC3QDqrebsUE=;
- b=eVw4dz86eA8NYgE+u8uHk185EeYuBotXRB9378KttLWFxyPXs4iO1+jBhu5RKPJD8TNxM1LRHrLmBT5WGBoCKiL04gVoEu3vlZaTowYmvCX7YvU6ieBvj9lxBMTPs4FU/djBLY6P0JljN1Lg3W7vgx97/eZhGUttslQ77HTBarkedCSljpfk24cdr5ZIDngUZ8C0Ou2MesKLOv5gT3LF2xmUnp8PvhuaETbt/6wpuydqeEAh3+p+lPdjfR6EPcdKVW17Ktz1HAxcmaDrILtWWL+3pb9WQNQD6x6kdh4zg5iZiRDdKHNj/5JgwsU7xzpC1q+h6qIQm8VYnl2ttQJmvw==
+ bh=otPSTkRd+xSCGjsXOazUOlWRDZkNyIlQugBdrt+Pg2Y=;
+ b=caJNJ0do9edju9ZNhJNtgEH/o8eN6g39zbNsM4B7DWlnrp7oYJ/ficpu8lQt4JtpQkyxp/cLnaFIxUB99t82qhb10FBkhozh/xEpV+A9fQ76cbjbmsSgq1ySZ6ShpILDKXg0LIhl5yGtfYlG7GuYA0o/xhS8QCqtSfpEzZPbnGEStoVhFqhuNQv50PkGr64C1LxCKNf4Al7gLSoRpKQJc0AeUUtd27ZCjMDus2bxGNxJnZKwnyOkJqSajS1YKJ46CIodKzvyFe04PuyoHloeCuX40WRm8XlJR9X9w8LB7LfdLpNIyIx9VhWdFmwegkUdsflguOF1eEIFPI3dfcOwPw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5ZYZoyI/yb0XK8GwJVP/bTdfplUOCz7zC3QDqrebsUE=;
- b=36G5fa+C0TDjO0BzvFIkEVGxvlTrDOoOfRauG1eIzijrJHeANGo64ESbL/AMzePVOWdBI0SDM81S9ZMdT7SeO/CjIc1CBcIwEbwVrK/qPb8vxEzb+7d59P1nddzAmpbV41/QZDfrO/nytK1R8JwkXFO4qqpbxrss6U6swhuxlas=
-Received: from BL0PR05CA0008.namprd05.prod.outlook.com (2603:10b6:208:91::18)
- by MW4PR12MB7285.namprd12.prod.outlook.com (2603:10b6:303:22e::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.24; Wed, 20 Sep
- 2023 03:21:16 +0000
-Received: from MN1PEPF0000F0E2.namprd04.prod.outlook.com
- (2603:10b6:208:91:cafe::c) by BL0PR05CA0008.outlook.office365.com
- (2603:10b6:208:91::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.24 via Frontend
- Transport; Wed, 20 Sep 2023 03:21:16 +0000
+ bh=otPSTkRd+xSCGjsXOazUOlWRDZkNyIlQugBdrt+Pg2Y=;
+ b=i830lzStJQfCWOC9uLaYeDdXX09/N4ihLwlUqekreTPfTH/FIv6AEo2k0vxC8u/7+IRQGGiJXDi3FBtll2XGnIc761vVx8eSArmHGGBVWgzoFdpdMoUTWiie/vPjqpk17MmpS5zSIxYGRVWoVN4dStPL5eabz83ITXumh7IuUwc=
+Received: from MN2PR08CA0002.namprd08.prod.outlook.com (2603:10b6:208:239::7)
+ by DS0PR12MB8563.namprd12.prod.outlook.com (2603:10b6:8:165::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26; Wed, 20 Sep
+ 2023 03:21:17 +0000
+Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
+ (2603:10b6:208:239:cafe::c7) by MN2PR08CA0002.outlook.office365.com
+ (2603:10b6:208:239::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28 via Frontend
+ Transport; Wed, 20 Sep 2023 03:21:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,9 +45,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- MN1PEPF0000F0E2.mail.protection.outlook.com (10.167.242.40) with Microsoft
+ MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Wed, 20 Sep 2023 03:21:16 +0000
+ 15.20.6792.20 via Frontend Transport; Wed, 20 Sep 2023 03:21:17 +0000
 Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 19 Sep
@@ -56,16 +55,16 @@ Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
  (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 19 Sep
- 2023 20:21:03 -0700
+ 2023 20:21:09 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Tue, 19 Sep 2023 22:20:58 -0500
+ Transport; Tue, 19 Sep 2023 22:21:05 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/19] drm/amd/display: add missing function pointer for
- DCN321 resource
-Date: Wed, 20 Sep 2023 11:16:20 +0800
-Message-ID: <20230920031624.3129206-16-Wayne.Lin@amd.com>
+Subject: [PATCH 16/19] drm/amd/display: add get primary dpp pipe resource
+ interface
+Date: Wed, 20 Sep 2023 11:16:21 +0800
+Message-ID: <20230920031624.3129206-17-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20230920031624.3129206-1-Wayne.Lin@amd.com>
 References: <20230920031624.3129206-1-Wayne.Lin@amd.com>
@@ -74,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E2:EE_|MW4PR12MB7285:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7457fd6e-24fe-4af6-dd07-08dbb988a68f
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|DS0PR12MB8563:EE_
+X-MS-Office365-Filtering-Correlation-Id: dee39e23-6489-4531-0275-08dbb988a73b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GVME/V+bGNotqsmyq1W5kzgB4Xz8WUtBO1zaurMphi+mPknNjdpzmwMYnQ+FI9BA7UAxMNu7sWAxhmM/ZlOaHLCtUbxHSLlhooM5B9LbpZrn4sLBsJ3jLsZQeTPhsjMiPOZyQcNapLi2Y6ale8Q8JmLPBjYIjFRfcBZ7/9CwvJhMTH2cRNBoTCDrpYBmffEJ/ldx+N1oRpnAGYtzSqmSmACUFqGcaZxKWi7i7iWK5KxsqTetVg6wJPA8QEfWj5pX8aH3MPbRMfml6/M26fEonFVlGHVXF9kV5TcWwhrkDx7Pkr4X+UwG3RS1UwWIffJv8E15md+pRawRNjlcyl0KBt1IY5dvNUmkmKQr3jPK0h4tpiBUqZL2UBQCO4annw+DShibRMU7PXMWv+YfwRLGx88V3c8XKNHR8pI4b5kzGIoeN2g9s4OoogoswSTRNvUr8Cbptd+Kwr2JQ3Y0eh98KTkNQn3Y6tL0flqdZ1RTnG4u1eWFRtYh6JlHKVwYKnruLZqaMG6s7H0lnO5Alc2Ws0hNrYQJog+SES0pzCaGvrlLvk5Z/T2U9GRR7Wol1GjRoRQw+DMHpvc1LraJ5gSamcs0TdloocGA0XudEx/dEYLzxCILKIQTAxbNYQmCLx8cp6if0OWutMuN+NUSy1qNWa0TQqOliqxYhN4qnnKEkzHZ4iZGGSwoMYqv8Ke1lx8anRmznllX2INIpilMseRYX5ZKwFodKbgNFtCuVC3uL18/eGDOCrzxAIIk1rVOUnYAsHD1k/VPkzpEgpfTo8XBfQ==
+X-Microsoft-Antispam-Message-Info: dg7VgIBNv/5wXhS533Y7PdDQ5ih8/UPyUUBILyQik0PgxTnhR7DheXVU136UMXiUqGRZMwhtLsOERjB/F8SeAc7AUI6/5Uz62DQyCgjL4gyQAFDJIPtRafYZCGHYpYKEgxjHg4Re//krQGCJG5Q5uUgWL9amzOyXcRDwmBu/Z0cf2CAYWlREU8R7JrQA9T0DoM1x8iFFAKaIo94MOuJr+jvzJBXP1LeX+Ta6w2uv4lQQJyQmOy7ZLsyUhgesIm15TnXmhG4BnPpMsCyBMhUDP0hKMvMutorPeBZCuUb+78Qz6/NSJMDkm68ZScG9/lIiQ2aLpJJxT7MRrB4CTWWzXcMxgCg4ixtoqLdlvuZDiYqdu0ozbJXrxupCCDJ0ODREjC6klNzSnZMyFVctHMLEg+0mE6LLLSHSgQ8+4P3Bo3HHQr2bgJIwFG4MU3UwApcpISsVvU2pE8mHT0RY0Pn2m/AaKdNCGHV8Q4Ncc4z1sjSrfD5W4rTGkotccAsYA+pHxDRjeNVgpkRCRf785LjYxzcbEJUEErENolnS95CVDEAh3t0R/cYlx3rX5lhqkyEexGbCVUHHs8yBuOYOwUuu9YppbOqRF0kwSQUYt+NPFn5g+iTHBoFdi2z/fr1nVRrFDbi5Ai1f2vi7FY3MmD+8wqVCNltGdUHy+9KI4ck+RkaHZRJw3Y3n3Oike9a2axjJYUVOAKrfk1aElZeTYDyQ1oo9voH2R0XKEmzjcaUEr8EA01Ju/WbCGpnCnW3i5GPBC4QjbmKkIOpoGE2JXsPvBw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(376002)(136003)(346002)(39860400002)(1800799009)(451199024)(186009)(82310400011)(36840700001)(40470700004)(46966006)(2906002)(8676002)(8936002)(4326008)(41300700001)(5660300002)(6916009)(54906003)(70206006)(70586007)(316002)(40460700003)(478600001)(47076005)(36756003)(6666004)(7696005)(1076003)(26005)(426003)(336012)(2616005)(83380400001)(40480700001)(36860700001)(356005)(81166007)(82740400003)(86362001)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(346002)(396003)(136003)(376002)(186009)(82310400011)(451199024)(1800799009)(46966006)(40470700004)(36840700001)(1076003)(40460700003)(70206006)(6666004)(2616005)(86362001)(70586007)(47076005)(478600001)(7696005)(26005)(36860700001)(426003)(81166007)(356005)(336012)(82740400003)(54906003)(8936002)(2906002)(4326008)(8676002)(6916009)(5660300002)(36756003)(316002)(41300700001)(40480700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 03:21:16.3725 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7457fd6e-24fe-4af6-dd07-08dbb988a68f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 03:21:17.4941 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dee39e23-6489-4531-0275-08dbb988a73b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E2.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DE.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7285
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8563
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,32 +115,59 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [why]
-acquire_free_pipe_as_secondary_opp_head function pointer is not
-assigned. This causes ODM mode to be disabled after enabling
-windowed MPO ODM capability on DCN321.
-
-[how]
-assign the correct function to the function pointer.
+Need to have a helper function to find the primary dp pipe of the plane
+associated with a dpp pipe
 
 Reviewed-by: Dillon Varone <dillon.varone@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 14 ++++++++++++++
+ drivers/gpu/drm/amd/display/dc/inc/resource.h     |  6 ++++++
+ 2 files changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-index 7d40fb6156f3..f11ff6f071e2 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-@@ -1589,6 +1589,7 @@ static struct resource_funcs dcn321_res_pool_funcs = {
- 	.calculate_wm_and_dlg = dcn32_calculate_wm_and_dlg,
- 	.populate_dml_pipes = dcn32_populate_dml_pipes_from_context,
- 	.acquire_free_pipe_as_secondary_dpp_pipe = dcn32_acquire_free_pipe_as_secondary_dpp_pipe,
-+	.acquire_free_pipe_as_secondary_opp_head = dcn32_acquire_free_pipe_as_secondary_opp_head,
- 	.release_pipe = dcn20_release_pipe,
- 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
- 	.add_dsc_to_stream_resource = dcn20_add_dsc_to_stream_resource,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 436892450936..614a1fb08809 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1805,6 +1805,20 @@ struct pipe_ctx *resource_get_opp_head(const struct pipe_ctx *pipe_ctx)
+ 	return opp_head;
+ }
+ 
++struct pipe_ctx *resource_get_primary_dpp_pipe(const struct pipe_ctx *dpp_pipe)
++{
++	struct pipe_ctx *pri_dpp_pipe = (struct pipe_ctx *) dpp_pipe;
++
++	ASSERT(resource_is_pipe_type(dpp_pipe, DPP_PIPE));
++	while (pri_dpp_pipe->prev_odm_pipe)
++		pri_dpp_pipe = pri_dpp_pipe->prev_odm_pipe;
++	while (pri_dpp_pipe->top_pipe &&
++			pri_dpp_pipe->top_pipe->plane_state == pri_dpp_pipe->plane_state)
++		pri_dpp_pipe = pri_dpp_pipe->top_pipe;
++	return pri_dpp_pipe;
++}
++
++
+ int resource_get_mpc_slice_index(const struct pipe_ctx *pipe_ctx)
+ {
+ 	struct pipe_ctx *split_pipe = pipe_ctx->top_pipe;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index 6777b07d0727..170d6ab81aef 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -409,6 +409,12 @@ struct pipe_ctx *resource_get_otg_master(const struct pipe_ctx *pipe_ctx);
+  */
+ struct pipe_ctx *resource_get_opp_head(const struct pipe_ctx *pipe_ctx);
+ 
++/*
++ * Get the DPP pipe allocated for MPC slice 0 and ODM slice 0 of the plane
++ * associated with dpp_pipe.
++ */
++struct pipe_ctx *resource_get_primary_dpp_pipe(const struct pipe_ctx *dpp_pipe);
++
+ /*
+  * Get the MPC slice index counting from 0 from left most slice
+  * For example, if a DPP pipe is used as a secondary pipe in MPCC combine, MPC
 -- 
 2.37.3
 
