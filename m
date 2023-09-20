@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FEB7A70EB
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Sep 2023 05:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A34D37A70ED
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Sep 2023 05:21:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9298C10E431;
-	Wed, 20 Sep 2023 03:20:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEDAA10E42F;
+	Wed, 20 Sep 2023 03:20:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20615.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::615])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3961510E42F
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 03:20:52 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E230E10E42F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 03:20:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g/Hg0hTTc0lg3F6jyUqAnJkxJEd2kPupM9TSnhGg67uYw58rqjMrq5ITLPMebv3ar9LLdOV9AgOF9eylX7iFxOa+DfLoUv0UcdNFnHAnf8S9dMje1WgzKlA/C11RYVNdhgL/Cw69vqlAefZgwUVEVgm/ff+Ir27uNTsgZGlHCbz0X3kVlKDqaeUkTJHo+wu+QF6St2tIfFOdFvJ7FnCqyf0oE3oYjDlFLWopCterCG6yyUdjkUhsmBjQSxfBD4M6H1zt7oOxztrgmObNt571FQ8tO0wfwS0L9Q/gDo3q6RtcI5oNMLPo8IbUsyvZDh1WS7lvSWi5rNZSKHwEXhSJvQ==
+ b=IDU4goChAZFJzJz7h8E2wXBdxxPtbtSwLXjW4cHv3ua5fYpOVsiB5YpyjlWpGjQIy6lw3eOsdPyFVYpi3urrjtC9u88tWSnalGHTH6mqReJ52qzz4WG+U970Nch0SdZ57C701oJU5gqhrWl4KHWXW+tyJ8m1e3tYRYC4OOeRAXkri/x6/ObH6VD4dX0UV/P/0ZHfWxOsLyiMApxy3ImrMCy26iBf6vVhosuZwik2JIAonTqjALNk8kybJH2hza9MKgxTpslsUzHKjIh0xzbAFRplWgjLsKpYIT1aaiS4JQkXAxMFACEXXRXRNWB2R6cqNmARLdDvgZB6PWRqT4gsUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UhosZSefV0Qw4nA/6hfGuzQW5PVMwAmIS6cCrjEXHZc=;
- b=gcC1JqteoLCXThZiOMqW3WYVY7PmM9+nNBpz7JI2fYVDDZ3gegddm+RyMzGuWAgoagith/5Y2jCCxitcIM0w3lZEO8p37iFh61MdmFd5ZVDNrijF3gjxiBxb4Ds3ftjf5HelsGu2gYjnmG3HVLkbXRTeJx+xl0ozcbAY8XJawb3Or3dfFTcGruWS5EY7Opw/Ba05GCyZaJzDPPiXMa35wxgoWGrPMQVv+Eh2QY47VRH5BODDz1Bo0REo7+2ktUfWU+ybeW7s9FO62nsN7F8tNJm87sM1lvhMJhdqBsRzC2+3mDUWLgMoyLwvg7JCeY86K3WKaNT/SNQh2KmU/z0rjQ==
+ bh=/sgppkaCqTXQHd4R9sFJ8lmbkRXLXosNdr6lvHqd3Uc=;
+ b=ZpRP+CVivUpq+I7mjUqWydmHKJwZ7kG6+TEKKlLvhWGPVB3Mi5hRHWQhYqrBKnVFpsgqIZ9BrHhNUNAaTgbA/+Dd69B8tk7j+5qZjTwLYshwrQvDAKglpe0sxASl8neS57R8SVFdTHTNes0Cy6aCPNbAkhaLPlXP8fEAFDZleo6X7/w9X18cu+dnOZcZiF/OGnngK56CfUqb+ZWWLfk9oROYDc3MIluLkfDuDRwGIp5/LvsX+IH8sv5hFb9hnf2Vbsrao+3JsbQcd3bFeLiPOGJ5bc7Q10DIfG7izWgGsFaIGq7gtE5oUITdmRllunfKzE/nBglOqIbBCA7QpJ364w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UhosZSefV0Qw4nA/6hfGuzQW5PVMwAmIS6cCrjEXHZc=;
- b=4dOBGP4mv5EuwkinfdQ/zKeXOWDtahwzvGIq6IkLRoKFTgjxXjoeESlNuqF2kK0kyCQ2Vdf+r4580ztkUvVDrofR8RL8vJx1Qc7QXUyTtDPa0sF3mVbGk/9l+pwV0otyF1E0Gf8dN9AiAYGNM3Md+grUONiYYvXsqZVUfKtl/UE=
-Received: from MN2PR08CA0003.namprd08.prod.outlook.com (2603:10b6:208:239::8)
- by PH7PR12MB8014.namprd12.prod.outlook.com (2603:10b6:510:27c::19)
+ bh=/sgppkaCqTXQHd4R9sFJ8lmbkRXLXosNdr6lvHqd3Uc=;
+ b=TUqICPrjg0vf4UolDpwpWxA55tzwKFHSd2dfTTyuQ4mtl6OeXG+2gHss0qIQqeKeQqEU/X5DnH1SpNczYEII0od4WI+ihSVj5UnY/Qb3NMqLcbvzrA2wcnXsc3SGoG7K4GLvkHhQGo+RoLC4XE2wDANgXrk2qWXoGmvMJNQl3Rc=
+Received: from MN2PR08CA0015.namprd08.prod.outlook.com (2603:10b6:208:239::20)
+ by LV2PR12MB5966.namprd12.prod.outlook.com (2603:10b6:408:171::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.26; Wed, 20 Sep
- 2023 03:20:49 +0000
+ 2023 03:20:52 +0000
 Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
- (2603:10b6:208:239:cafe::d3) by MN2PR08CA0003.outlook.office365.com
- (2603:10b6:208:239::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:239:cafe::ff) by MN2PR08CA0015.outlook.office365.com
+ (2603:10b6:208:239::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28 via Frontend
- Transport; Wed, 20 Sep 2023 03:20:49 +0000
+ Transport; Wed, 20 Sep 2023 03:20:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,23 +47,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6792.20 via Frontend Transport; Wed, 20 Sep 2023 03:20:49 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ 15.20.6792.20 via Frontend Transport; Wed, 20 Sep 2023 03:20:52 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 19 Sep
- 2023 22:20:36 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 22:20:47 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 19 Sep
- 2023 22:20:10 -0500
+ 2023 22:20:20 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Tue, 19 Sep 2023 22:19:55 -0500
+ Transport; Tue, 19 Sep 2023 22:20:15 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 10/19] drm/amd/display: Improve code style on bios_parser2
-Date: Wed, 20 Sep 2023 11:16:15 +0800
-Message-ID: <20230920031624.3129206-11-Wayne.Lin@amd.com>
+Subject: [PATCH 11/19] drm/amd/display: augment display clock in dc_cap
+ structure
+Date: Wed, 20 Sep 2023 11:16:16 +0800
+Message-ID: <20230920031624.3129206-12-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20230920031624.3129206-1-Wayne.Lin@amd.com>
 References: <20230920031624.3129206-1-Wayne.Lin@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|PH7PR12MB8014:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1863b81-ebfe-4121-859c-08dbb988964c
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|LV2PR12MB5966:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecefb6a4-6ad5-4654-2328-08dbb988980f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G+efIfbDyE3+P6TQbeYTaWkXS1m5TS7r78NxCkOtjkfxX0G0mdP+J6KFu6NlE+RDzDYQiv6WBxfGfFtmScnmDoGz2kq9EiXaWB7KReYunsnS2UlIANWAyB03sULYw/tovwUTNWOtUQss+WzzvnzTh92a7T+okGtyKXaonzvQVvUWi/hFQOVFk14uZv0A6pkNm0my2AELAwAUyly0YlQPAqKIv+BrO9fOjUchnitkBRQFw7eP+pFgWdGMK1p/SUijufiYgq85j0LRrStGprNO3nEDz8vvh+k3WlLwTFeeFdij4RjFTRlAAFEz+MUsfh7Xl6FZKiFbfN8/LKQeuHgZfTMQRxOzwW9ikl3NU/S93T/N1uhsVXoGcTwuzXTkMPjdbrjWrn5B65+Jxl3GnIUql7nxB2E97wD4B+qCrhmlbNp/y9AoM2gZ8p5o+M2J6PNOphXd9D2xX9582/A0sBUBUdV+eOgDCMSq+8Wtvwpr9UgBFizpTOSCMQzmTePvjm8BG7H1LnSHXQm+6JX7EWm+aoe4mDOLSpv7d1TCATSp5RZGzLj5ossp7tta51D9vGtMWjbGjkbRqHtStQvd2skFobzd+/IaDfQDj1XsS9rwsOW3RC6flcPmp4+wbGuwP6NeemKABd1z9oj+77KGlZb4sAr06FhrOrcHkCwgEvObJMlz0Q9QgZahSWDC6YPyZN8PPyKt6zYsBuuXIMiOC7vpt7LW7kjKSitcccRmIx7e6Sw0coC5UOK7iDYe7JpisHeXHRVTMD4yYW5Gh+sgLIph6w==
+X-Microsoft-Antispam-Message-Info: dO6GQyipfihOngrluSp1FRQyZtt37KUDL5JsJ2sBjF/+o2i77WvgGuyN1/y7Et7w4JYNwRvPlWXl9v3kCsoftk5FF2ZkUmwfbHaS6kJ0QeqOR+pvRN+vIJJxfhLLalKxv577fn96Z0+wIiPontNF0R6OFDClYXdKC84t0qOa/hIz7mluezyLr7pNj76XvVko2BGDmteweK6GwULevVmSXMNJOch24f3CkRFpO59InAwx6e01Ztz+fPNUdfaQxHgH3VfTeTrvX1lVcJNVpWNSueIxa1aKwvHOydRXFncCWBuelStuP+w0Gf5k4JiUc6G/wWDD06Db9xgQtyW1bKDQmOzmSOMoAusvBDcttB02gFlGxZs8OcXzB/ig1lHeA1alFGmKl/yqK5rycfFhwvOtUucjxGpagtDepLkTx+7BVk7SQr2ekYbFyJL6CbDtFsSIvAiOBpNvq0hXDHXvxwmlXC5iAV+IWBI75J+RxP9yC7OFlCAh4lwJJHuDwDc91DzWqEIeW1+Ptm47qmZVNyFd/37HX9yJwCKtzjqCRv4i+TpBp6ukYLRP1TDCZXMo/gfipddX0c8g140MFAg8UL+GqMscU5ltReYSmeLgOh15Mg6npB6zlOo897LxoBp6TBQJC8Tx74T3yltzREFwWLhD+Gf/H7ntjtrRx80lt2J1h19v5Dj2sPLcyg1I+9g3skgEU0ER80au3oAjHoO2elufL1T/vAC7jFBB720qQiSyVaO118uvE6cO4Vwf7yrx28xUWFPl5yR0kAt2Y2cKEihAwQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(39860400002)(346002)(136003)(396003)(82310400011)(1800799009)(451199024)(186009)(40470700004)(36840700001)(46966006)(478600001)(83380400001)(7696005)(6666004)(54906003)(8936002)(47076005)(26005)(5660300002)(2616005)(426003)(336012)(2906002)(70206006)(316002)(70586007)(6916009)(41300700001)(4326008)(8676002)(40460700003)(356005)(40480700001)(36860700001)(1076003)(82740400003)(36756003)(86362001)(81166007)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(39860400002)(346002)(376002)(1800799009)(82310400011)(186009)(451199024)(46966006)(36840700001)(40470700004)(356005)(26005)(1076003)(82740400003)(81166007)(2616005)(8676002)(8936002)(40460700003)(4326008)(83380400001)(36860700001)(2906002)(36756003)(336012)(426003)(47076005)(40480700001)(86362001)(7696005)(478600001)(5660300002)(6916009)(316002)(54906003)(70586007)(70206006)(41300700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 03:20:49.0876 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1863b81-ebfe-4121-859c-08dbb988964c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 03:20:52.0408 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecefb6a4-6ad5-4654-2328-08dbb988980f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DE.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8014
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5966
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,117 +105,65 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo Siqueira <rodrigo.siqueira@amd.com>,
- roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Max Tseng <max.tseng@amd.com>, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+From: Max Tseng <max.tseng@amd.com>
 
-bios_parser2 uses space instead of tabs in multiple areas; this commit
-converts those spaces into tabs. It also removes some other small
-details.
+[Why]
+Allow dc report maximum display clock possible at vmin
 
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Reviewed-by: Wayne Lin <wayne.lin@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Max Tseng <max.tseng@amd.com>
 ---
- .../drm/amd/display/dc/bios/bios_parser2.c    | 37 +++++++++----------
- 1 file changed, 17 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h                     | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c | 2 ++
+ drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c   | 2 ++
+ 3 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 2ec496be778a..7cdb1a8a0ba0 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -355,7 +355,7 @@ static struct atom_display_object_path_v3 *get_bios_object_from_path_v3(struct b
- 					&& id.enum_id == obj_id.enum_id)
- 				return &bp->object_info_tbl.v1_5->display_path[i];
- 		}
--        break;
-+	break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index faf897ac75d8..4065bb061c85 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -270,6 +270,7 @@ struct dc_caps {
+ 	uint16_t subvp_vertical_int_margin_us;
+ 	bool seamless_odm;
+ 	uint32_t max_v_total;
++	uint32_t max_disp_clock_khz_at_vmin;
+ 	uint8_t subvp_drr_vblank_start_margin_us;
+ };
  
- 	case OBJECT_TYPE_CONNECTOR:
- 	case OBJECT_TYPE_GENERIC:
-@@ -369,7 +369,7 @@ static struct atom_display_object_path_v3 *get_bios_object_from_path_v3(struct b
- 					&& id.enum_id == obj_id.enum_id)
- 				return &bp->object_info_tbl.v1_5->display_path[i];
- 		}
--        break;
-+	break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+index 4d0052ca742f..8b1691152f05 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+@@ -1912,6 +1912,8 @@ static bool dcn314_resource_construct(
+ 	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
+ 	dc->caps.color.mpc.ocsc = 1;
  
- 	default:
- 		return NULL;
-@@ -405,16 +405,16 @@ static enum bp_result bios_parser_get_i2c_info(struct dc_bios *dcb,
- 	}
++	dc->caps.max_disp_clock_khz_at_vmin = 694000;
++
+ 	/* Use pipe context based otg sync logic */
+ 	dc->config.use_pipe_ctx_sync_logic = true;
  
- 	switch (bp->object_info_tbl.revision.minor) {
--	    case 4:
--	    default:
--	        object = get_bios_object(bp, id);
-+	case 4:
-+	default:
-+		object = get_bios_object(bp, id);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+index 67ff19d4116d..10ae1b3da751 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+@@ -1832,6 +1832,8 @@ static bool dcn35_resource_construct(
+ 	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
+ 	dc->caps.color.mpc.ocsc = 1;
  
--	        if (!object)
--				return BP_RESULT_BADINPUT;
-+		if (!object)
-+			return BP_RESULT_BADINPUT;
- 
--	        offset = object->disp_recordoffset + bp->object_info_tbl_offset;
--	        break;
--	    case 5:
-+		offset = object->disp_recordoffset + bp->object_info_tbl_offset;
-+		break;
-+	case 5:
- 		object_path_v3 = get_bios_object_from_path_v3(bp, id);
- 
- 		if (!object_path_v3)
-@@ -568,17 +568,16 @@ static enum bp_result bios_parser_get_hpd_info(
- 		return BP_RESULT_BADINPUT;
- 
- 	switch (bp->object_info_tbl.revision.minor) {
--	    case 4:
--	    default:
--	        object = get_bios_object(bp, id);
-+	case 4:
-+	default:
-+		object = get_bios_object(bp, id);
- 
- 		if (!object)
- 			return BP_RESULT_BADINPUT;
- 
--	        record = get_hpd_record(bp, object);
--
--	        break;
--	    case 5:
-+		record = get_hpd_record(bp, object);
-+		break;
-+	case 5:
- 		object_path_v3 = get_bios_object_from_path_v3(bp, id);
- 
- 		if (!object_path_v3)
-@@ -1746,7 +1745,7 @@ static enum bp_result bios_parser_get_firmware_info(
- 			case 2:
- 			case 3:
- 				result = get_firmware_info_v3_2(bp, info);
--			break;
-+				break;
- 			case 4:
- 				result = get_firmware_info_v3_4(bp, info);
- 				break;
-@@ -2206,10 +2205,8 @@ static enum bp_result bios_parser_get_disp_connector_caps_info(
- {
- 	struct bios_parser *bp = BP_FROM_DCB(dcb);
- 	struct atom_display_object_path_v2 *object;
--
- 	struct atom_display_object_path_v3 *object_path_v3;
- 	struct atom_connector_caps_record *record_path_v3;
--
- 	struct atom_disp_connector_caps_record *record = NULL;
- 
- 	if (!info)
++	dc->caps.max_disp_clock_khz_at_vmin = 669154;
++
+ 	/* Use pipe context based otg sync logic */
+ 	dc->config.use_pipe_ctx_sync_logic = true;
+ 	/* read VBIOS LTTPR caps */
 -- 
 2.37.3
 
