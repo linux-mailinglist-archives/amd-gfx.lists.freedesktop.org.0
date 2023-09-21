@@ -1,50 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA58E7A954B
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 Sep 2023 16:34:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6B67A9561
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 Sep 2023 16:47:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120CB10E5E4;
-	Thu, 21 Sep 2023 14:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B687310E0EF;
+	Thu, 21 Sep 2023 14:47:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC50D10E5C6
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 14:25:10 +0000 (UTC)
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1695305726;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3QKfJEY1uLi87VIrjkLudvRExB2VG8jcVhhoK+qWqrU=;
- b=zE/czbZ4vhjGgipLwIvYHBCSOwaXOsr2FHzPwUl12r9qkPAilJqqhw04tSHieJiqr+nrjB
- HFV+3rx8nqby67Q8tVSb5ihXER9ip/f9Yn8kp4Pf0/l8r9CWmCESe9y0ebW3Gjwp9lVTNV
- Zq7HP6jFjUvpfI+2bXsGtgFsBu+a3vi5G+LqoxybmlCAe58GPgb6FN2Rh/vhU/ToULLgRX
- 9CSRWlAt8Gj4urqYo75pU0daqpFK5SbyFhXaPZQI7PURhYyZKZWBGDxCiPiKnnzUIMzTjj
- HMrGBErt3D49XlwnZRM/Pl+/mnm9UPBT3CKvGCXMaEj5sz5MYBQFMvXkO55I6g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1695305726;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3QKfJEY1uLi87VIrjkLudvRExB2VG8jcVhhoK+qWqrU=;
- b=DZ/H+yLvkKfU6D2WwvKVS0fxhhgMN7NtQ3+NP/OLmnyTklcdRT0JyqBbvhMrSqxDJY9QEV
- 72CINHkotZEzKEAw==
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/amd/display: Move the memory allocation out of
- dcn20_validate_bandwidth_fp().
-Date: Thu, 21 Sep 2023 16:15:16 +0200
-Message-Id: <20230921141516.520471-6-bigeasy@linutronix.de>
-In-Reply-To: <20230921141516.520471-1-bigeasy@linutronix.de>
-References: <20230921141516.520471-1-bigeasy@linutronix.de>
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
+ [IPv6:2607:f8b0:4864:20::c2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3120010E0EF
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 14:47:35 +0000 (UTC)
+Received: by mail-oo1-xc2b.google.com with SMTP id
+ 006d021491bc7-57129417cecso519353eaf.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 07:47:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1695307654; x=1695912454; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+KLQ/xnaI4+3RA1YXnTzrkfLYoA/KTVRE9AjZd5QSKM=;
+ b=ATiY3eOJxdBvbZoNds5JDxq5IIMGF9dTKbvyvz+A042XRzhTvyRnKguZF+SY55HMOV
+ UiUGaxk+hmGgwicWokay4nififAw6i5mtXsIq7TS5NQxqj6LSA2jo7qDvWfttZCmdXc0
+ gKOf8xdPP1kxbhTK4/PaVeA8pXORkzumRTC3wNcQ/vHybW7mVFs6JFlpIty9qepqhihr
+ 9ad8Bepwd8fKDwBZ4pMh3jbvFSsXEQuxNovluP4RJ7uHD5qiWBWaB7NTUc2yKC3CZ77f
+ 7bmfgFOa3iCknpdySR/sVxwFOfnw0jDrcq7azasdSXrX7mKB/8jyDBeFEKE5ZYZ+ygYi
+ 4vIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695307654; x=1695912454;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+KLQ/xnaI4+3RA1YXnTzrkfLYoA/KTVRE9AjZd5QSKM=;
+ b=OwLLu4TduzfS2DnoxY+jUQjY16QWB2y45fGFPF1UHEA0CO6do5kdxA5ohDW0BzG1h2
+ rarnNkVuBb8IkeGc87QAk6BjOyx0mJHvWMgkO7/AkA8eZ79+kWgEeZF9xkaPcyNSahfT
+ ibinqf5WdkLp1RlbfWCv2moErLiSEfUIVa97tttv3+HofhtaoesuBv/OZmOqNBdkJ4/s
+ JSCyseYa+zCz2sONtiGPlstcFIlxKWbozZZo/ka+n7pGLVGMwfJfpXp3wsOeXfwwFA5b
+ OL7V4wGkOl+EOxgqKXmqL22gzNrbQJT9S5UWizmXCWnnzHcek7tUDtfiFvRR0RlVIkTP
+ Y9mA==
+X-Gm-Message-State: AOJu0YxKxfXaWNuskqsWU8PgRXYA+dTyif4Kq5FrkTbw1Qq3aXJr4QVi
+ noUdLtCRYxWdjExg7jiWM+z5rI5/jh/xweUTgO0=
+X-Google-Smtp-Source: AGHT+IHt44HVqhj9vYsZBzQpfHgmd4rzjFLvykMP0s5tH0vXIZ7rPWB5ZQRlXxg+gwQvGTMAVR0Ju/JLeS3heEfz8qg=
+X-Received: by 2002:a05:6871:890:b0:1d6:ce75:d472 with SMTP id
+ r16-20020a056871089000b001d6ce75d472mr5997487oaq.6.1695307654222; Thu, 21 Sep
+ 2023 07:47:34 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230921124929.1965750-1-sathishkumar.sundararaju@amd.com>
+In-Reply-To: <20230921124929.1965750-1-sathishkumar.sundararaju@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 21 Sep 2023 10:47:22 -0400
+Message-ID: <CADnq5_NTHMU5OAb_Rw1iWyHB0ksgv8v7C2J7A9TnUdgRt-1_Yg@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: fix ip count query for xcp partitions
+To: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 21 Sep 2023 14:34:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,157 +67,141 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Peter Zijlstra <peterz@infradead.org>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Kuehling Felix <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
+ Alexander Deucher <Alexander.Deucher@amd.com>, Zhu James <James.Zhu@amd.com>,
+ Leo Liu <Leo.Liu@amd.com>, Koenig Christian <Christian.Koenig@amd.com>,
+ Srinath Rao <Srinath.rao@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dcn20_validate_bandwidth_fp() is invoked while FPU access has been
-enabled. FPU access requires disabling preemption even on PREEMPT_RT.
-It is not possible to allocate memory with disabled preemption even with
-GFP_ATOMIC on PREEMPT_RT.
+On Thu, Sep 21, 2023 at 9:07=E2=80=AFAM Sathishkumar S
+<sathishkumar.sundararaju@amd.com> wrote:
+>
+> fix wrong ip count INFO on spatial partitions. update the query
+> to return the instance count corresponding to the partition id.
+>
+> v2:
+>  initialize variables only when required to be (Christian)
+>  move variable declarations to the beginning of function (Christian)
+>
+> Signed-off-by: Sathishkumar S <sathishkumar.sundararaju@amd.com>
 
-Move the memory allocation before FPU access is enabled.
-To preserve previous "clean" state of "pipes" add a memset() before the
-second invocation of dcn20_validate_bandwidth_internal() where the
-variable is used.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
----
- .../drm/amd/display/dc/dcn20/dcn20_resource.c    | 10 +++++++++-
- .../gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c | 16 +++++++---------
- .../gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.h |  5 ++---
- 3 files changed, 18 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/driver=
-s/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index d587f807dfd7c..5036a3e608324 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2141,9 +2141,17 @@ bool dcn20_validate_bandwidth(struct dc *dc, struct =
-dc_state *context,
- 		bool fast_validate)
- {
- 	bool voltage_supported;
-+	display_e2e_pipe_params_st *pipes;
-+
-+	pipes =3D kcalloc(dc->res_pool->pipe_count, sizeof(display_e2e_pipe_param=
-s_st), GFP_KERNEL);
-+	if (!pipes)
-+		return false;
-+
- 	DC_FP_START();
--	voltage_supported =3D dcn20_validate_bandwidth_fp(dc, context, fast_valid=
-ate);
-+	voltage_supported =3D dcn20_validate_bandwidth_fp(dc, context, fast_valid=
-ate, pipes);
- 	DC_FP_END();
-+
-+	kfree(pipes);
- 	return voltage_supported;
- }
-=20
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c b/drivers=
-/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-index 8b2038162a7e1..2ad92497b9bf2 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-@@ -1923,7 +1923,7 @@ void dcn20_patch_bounding_box(struct dc *dc, struct _=
-vcs_dpi_soc_bounding_box_st
- }
-=20
- static bool dcn20_validate_bandwidth_internal(struct dc *dc, struct dc_sta=
-te *context,
--		bool fast_validate)
-+		bool fast_validate, display_e2e_pipe_params_st *pipes)
- {
- 	bool out =3D false;
-=20
-@@ -1932,7 +1932,6 @@ static bool dcn20_validate_bandwidth_internal(struct =
-dc *dc, struct dc_state *co
- 	int vlevel =3D 0;
- 	int pipe_split_from[MAX_PIPES];
- 	int pipe_cnt =3D 0;
--	display_e2e_pipe_params_st *pipes =3D kzalloc(dc->res_pool->pipe_count * =
-sizeof(display_e2e_pipe_params_st), GFP_ATOMIC);
- 	DC_LOGGER_INIT(dc->ctx->logger);
-=20
- 	BW_VAL_TRACE_COUNT();
-@@ -1967,16 +1966,14 @@ static bool dcn20_validate_bandwidth_internal(struc=
-t dc *dc, struct dc_state *co
- 	out =3D false;
-=20
- validate_out:
--	kfree(pipes);
-=20
- 	BW_VAL_TRACE_FINISH();
-=20
- 	return out;
- }
-=20
--bool dcn20_validate_bandwidth_fp(struct dc *dc,
--				 struct dc_state *context,
--				 bool fast_validate)
-+bool dcn20_validate_bandwidth_fp(struct dc *dc, struct dc_state *context,
-+				 bool fast_validate, display_e2e_pipe_params_st *pipes)
- {
- 	bool voltage_supported =3D false;
- 	bool full_pstate_supported =3D false;
-@@ -1995,11 +1992,11 @@ bool dcn20_validate_bandwidth_fp(struct dc *dc,
- 	ASSERT(context !=3D dc->current_state);
-=20
- 	if (fast_validate) {
--		return dcn20_validate_bandwidth_internal(dc, context, true);
-+		return dcn20_validate_bandwidth_internal(dc, context, true, pipes);
- 	}
-=20
- 	// Best case, we support full UCLK switch latency
--	voltage_supported =3D dcn20_validate_bandwidth_internal(dc, context, fals=
-e);
-+	voltage_supported =3D dcn20_validate_bandwidth_internal(dc, context, fals=
-e, pipes);
- 	full_pstate_supported =3D context->bw_ctx.bw.dcn.clk.p_state_change_suppo=
-rt;
-=20
- 	if (context->bw_ctx.dml.soc.dummy_pstate_latency_us =3D=3D 0 ||
-@@ -2011,7 +2008,8 @@ bool dcn20_validate_bandwidth_fp(struct dc *dc,
- 	// Fallback: Try to only support G6 temperature read latency
- 	context->bw_ctx.dml.soc.dram_clock_change_latency_us =3D context->bw_ctx.=
-dml.soc.dummy_pstate_latency_us;
-=20
--	voltage_supported =3D dcn20_validate_bandwidth_internal(dc, context, fals=
-e);
-+	memset(pipes, 0, dc->res_pool->pipe_count * sizeof(display_e2e_pipe_param=
-s_st));
-+	voltage_supported =3D dcn20_validate_bandwidth_internal(dc, context, fals=
-e, pipes);
- 	dummy_pstate_supported =3D context->bw_ctx.bw.dcn.clk.p_state_change_supp=
-ort;
-=20
- 	if (voltage_supported && (dummy_pstate_supported || !(context->stream_cou=
-nt))) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.h b/drivers=
-/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.h
-index a81a0b9e68842..b6c34198ddc86 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.h
-@@ -61,9 +61,8 @@ void dcn20_update_bounding_box(struct dc *dc,
- 			       unsigned int num_states);
- void dcn20_patch_bounding_box(struct dc *dc,
- 			      struct _vcs_dpi_soc_bounding_box_st *bb);
--bool dcn20_validate_bandwidth_fp(struct dc *dc,
--				 struct dc_state *context,
--				 bool fast_validate);
-+bool dcn20_validate_bandwidth_fp(struct dc *dc, struct dc_state *context,
-+				 bool fast_validate, display_e2e_pipe_params_st *pipes);
- void dcn20_fpu_set_wm_ranges(int i,
- 			     struct pp_smu_wm_range_sets *ranges,
- 			     struct _vcs_dpi_soc_bounding_box_st *loaded_bb);
---=20
-2.40.1
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 44 ++++++++++++++++++++-----
+>  1 file changed, 36 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_kms.c
+> index 081bd28e2443..d4ccbe7c78d6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -595,11 +595,16 @@ int amdgpu_info_ioctl(struct drm_device *dev, void =
+*data, struct drm_file *filp)
+>         struct drm_amdgpu_info *info =3D data;
+>         struct amdgpu_mode_info *minfo =3D &adev->mode_info;
+>         void __user *out =3D (void __user *)(uintptr_t)info->return_point=
+er;
+> +       struct amdgpu_fpriv *fpriv;
+> +       struct amdgpu_ip_block *ip_block;
+> +       enum amd_ip_block_type type;
+> +       struct amdgpu_xcp *xcp;
+> +       uint32_t count, inst_mask;
+>         uint32_t size =3D info->return_size;
+>         struct drm_crtc *crtc;
+>         uint32_t ui32 =3D 0;
+>         uint64_t ui64 =3D 0;
+> -       int i, found;
+> +       int i, found, ret;
+>         int ui32_size =3D sizeof(ui32);
+>
+>         if (!info->return_size || !info->return_pointer)
+> @@ -627,7 +632,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *d=
+ata, struct drm_file *filp)
+>                 return copy_to_user(out, &ui32, min(size, 4u)) ? -EFAULT =
+: 0;
+>         case AMDGPU_INFO_HW_IP_INFO: {
+>                 struct drm_amdgpu_info_hw_ip ip =3D {};
+> -               int ret;
+>
+>                 ret =3D amdgpu_hw_ip_info(adev, info, &ip);
+>                 if (ret)
+> @@ -637,15 +641,41 @@ int amdgpu_info_ioctl(struct drm_device *dev, void =
+*data, struct drm_file *filp)
+>                 return ret ? -EFAULT : 0;
+>         }
+>         case AMDGPU_INFO_HW_IP_COUNT: {
+> -               enum amd_ip_block_type type;
+> -               struct amdgpu_ip_block *ip_block =3D NULL;
+> -               uint32_t count =3D 0;
+> -
+> +               fpriv =3D (struct amdgpu_fpriv *) filp->driver_priv;
+>                 type =3D amdgpu_ip_get_block_type(adev, info->query_hw_ip=
+.type);
+>                 ip_block =3D amdgpu_device_ip_get_ip_block(adev, type);
+> +
+>                 if (!ip_block || !ip_block->status.valid)
+>                         return -EINVAL;
+>
+> +               if (adev->xcp_mgr && adev->xcp_mgr->num_xcps > 0 &&
+> +                       fpriv->xcp_id >=3D 0 && fpriv->xcp_id < adev->xcp=
+_mgr->num_xcps) {
+> +                       xcp =3D &adev->xcp_mgr->xcp[fpriv->xcp_id];
+> +                       switch (type) {
+> +                       case AMD_IP_BLOCK_TYPE_GFX:
+> +                               ret =3D amdgpu_xcp_get_inst_details(xcp, =
+AMDGPU_XCP_GFX, &inst_mask);
+> +                               count =3D hweight32(inst_mask);
+> +                               break;
+> +                       case AMD_IP_BLOCK_TYPE_SDMA:
+> +                               ret =3D amdgpu_xcp_get_inst_details(xcp, =
+AMDGPU_XCP_SDMA, &inst_mask);
+> +                               count =3D hweight32(inst_mask);
+> +                               break;
+> +                       case AMD_IP_BLOCK_TYPE_JPEG:
+> +                               ret =3D amdgpu_xcp_get_inst_details(xcp, =
+AMDGPU_XCP_VCN, &inst_mask);
+> +                               count =3D hweight32(inst_mask) * adev->jp=
+eg.num_jpeg_rings;
+> +                               break;
+> +                       case AMD_IP_BLOCK_TYPE_VCN:
+> +                               ret =3D amdgpu_xcp_get_inst_details(xcp, =
+AMDGPU_XCP_VCN, &inst_mask);
+> +                               count =3D hweight32(inst_mask);
+> +                               break;
+> +                       default:
+> +                               return -EINVAL;
+> +                       }
+> +                       if (ret)
+> +                               return ret;
+> +                       return copy_to_user(out, &count, min(size, 4u)) ?=
+ -EFAULT : 0;
+> +               }
+> +
+>                 switch (type) {
+>                 case AMD_IP_BLOCK_TYPE_GFX:
+>                 case AMD_IP_BLOCK_TYPE_VCE:
+> @@ -678,7 +708,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *d=
+ata, struct drm_file *filp)
+>                 return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT =
+: 0;
+>         case AMDGPU_INFO_FW_VERSION: {
+>                 struct drm_amdgpu_info_firmware fw_info;
+> -               int ret;
+>
+>                 /* We only support one instance of each IP block right no=
+w. */
+>                 if (info->query_fw.ip_instance !=3D 0)
+> @@ -823,7 +852,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *d=
+ata, struct drm_file *filp)
+>                 struct drm_amdgpu_info_device *dev_info;
+>                 uint64_t vm_size;
+>                 uint32_t pcie_gen_mask;
+> -               int ret;
+>
+>                 dev_info =3D kzalloc(sizeof(*dev_info), GFP_KERNEL);
+>                 if (!dev_info)
+> --
+> 2.25.1
+>
