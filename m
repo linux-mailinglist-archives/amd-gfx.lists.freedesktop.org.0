@@ -1,80 +1,79 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9E37AB7D7
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Sep 2023 19:39:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B346A7AB7D1
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Sep 2023 19:39:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BA5910E6C5;
-	Fri, 22 Sep 2023 17:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C94AB10E68A;
+	Fri, 22 Sep 2023 17:39:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC2410E6C0
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:19 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id
- d9443c01a7336-1c47309a8ccso28297565ad.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com
+ [IPv6:2607:f8b0:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63FFD10E6AF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:20 +0000 (UTC)
+Received: by mail-pf1-x42c.google.com with SMTP id
+ d2e1a72fcca58-68fb85afef4so2306398b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1695403939; x=1696008739;
+ d=chromium.org; s=google; t=1695403940; x=1696008740;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=a+ctTEyoq7sOv+FAZHxESomcnOOr3ZQuAJoEIOqh0C4=;
- b=Bg1JoqmeszBQYiEs9zR8EwDflyoMk8UWycHq9gTeUd1dewLTemNj/kpRwrA73TOI4A
- GcI0Dw3VOfsoZs/WHYJ0Y2uhybzyK2/vGdNmc08TpciI4ubetHwex+/LUm4SMJs5h8Wj
- QmEnOxfEdoMffTIZHV6ehhvk9myfivjQCWPh4=
+ bh=Q96X+e6e2GphA8WEKNidppfkY54O3UO5SgYggFHsXis=;
+ b=D2i987MsIealRDRy1XGX6kR0E0RRNshjZbWu+s/CRudwaELuqP6V7doxsc6nqRm5tA
+ 6t9/caaNJKieYCL8EX3zSvsW335/jAnVTQTjLfnuo0vkQNcePqTYH4LK/cw8+q7bXiPb
+ YfJtP/3qjwCPTVDkSckyMgaHfJsP+RgKmoYPY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695403939; x=1696008739;
+ d=1e100.net; s=20230601; t=1695403940; x=1696008740;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=a+ctTEyoq7sOv+FAZHxESomcnOOr3ZQuAJoEIOqh0C4=;
- b=aSSYPEUM7RUz8ci7W167G9SBMB6MtbQprsc7CvUmzTS7t/cb/XggznxM7KDB+jRNgE
- wStDLWHQrswpw0nA2+y9xxPcx4fyEvBU5LiWKlzNwFO7R06/IPPPO/2g9rorf8eKg1Sb
- Lp3/Sa5o+vB22nX9UsV5HfBxO+gqXjNM0Cf2lo3nCJbbg1/HWSxzGEaQ0XlHY24gM73D
- j+/OCJZ5zPHSCw7OS4kJHo8QnVj6l3jfU9wocIEycA7TgYG8oHkAaUVcIuwts+P7A1ES
- 80XaC8yW4Rnqcd6rirUocmoxlaIkoeBAG6LQXznEaXH7hGPtBVI6t0APv48NpSKFPAsa
- jRIg==
-X-Gm-Message-State: AOJu0YxDekXLPtLUd6DQNJg4s8EWpQ0yzZdv+OONaZ51VbfZU/R5wNGn
- zYvN5yjCmi6RjBYTp9+ECitFSw==
-X-Google-Smtp-Source: AGHT+IGC6/6NdvEqz8he++fdJuEaamt9Op5nnYZ05uajn7JWoal4nRh6sAA+e6vH/dWEyyl5jl0kkA==
-X-Received: by 2002:a17:903:32cf:b0:1c0:e87e:52ba with SMTP id
- i15-20020a17090332cf00b001c0e87e52bamr547482plr.2.1695403939425; 
+ bh=Q96X+e6e2GphA8WEKNidppfkY54O3UO5SgYggFHsXis=;
+ b=qsl/CPiOqkzhx9s0ZyJhesdk23vUgPFHxTyN3K09x8zNgx0aOqKQCAqVR5VfozX0mE
+ uS+gy3o8y8R6WqNkhVNb/dM/iQLJYuP1ST2YGteqSmypa9iz6fvP6K7UAg3Ho8w1IFtI
+ KDrEX58B3NM0UWml9u3OufmL4suvoSzP19lZDj6NIxyt7quKrnSpBn50fYS3Rj94PRBq
+ YUWOK731EE4YATpZ5nda9C7u5QL9r9tSRE5G6clikHSL0vkN5RXRXJz1VjprofOX2ViH
+ FwlO+nfoQQph5G2Abgkf6Rja56xMNprJQFepW5s16AD7fhiriCYAmpJvq4Hn0I7G2Bls
+ LaMQ==
+X-Gm-Message-State: AOJu0YzxY4orhcBAu7rQiS4IMcmokdXyOMNh5Nt8K5UvloHLu0G7o4p8
+ ZGM6KYazi3/dym2RO8kYmpxM6Q==
+X-Google-Smtp-Source: AGHT+IGXr1Sat+m9Td0MGaNcSAWB3dRra4hS8nmW8pMNrVJgFfBDLEWjUeK3DqEHM0m4IjyMLEfwlA==
+X-Received: by 2002:a05:6a20:9756:b0:14d:9bd1:6361 with SMTP id
+ hs22-20020a056a20975600b0014d9bd16361mr200432pzc.11.1695403939966; 
  Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
 Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
  [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- j5-20020a170902da8500b001c57aac6e5esm3763379plx.23.2023.09.22.10.32.17
+ u74-20020a63794d000000b00565e2ad12e5sm3318350pgc.91.2023.09.22.10.32.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 10:32:17 -0700 (PDT)
+ Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
 From: Kees Cook <keescook@chromium.org>
 To: David Airlie <airlied@gmail.com>
-Subject: [PATCH 2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with
+Subject: [PATCH 3/9] drm/i915/selftests: Annotate struct perf_series with
  __counted_by
-Date: Fri, 22 Sep 2023 10:32:07 -0700
-Message-Id: <20230922173216.3823169-2-keescook@chromium.org>
+Date: Fri, 22 Sep 2023 10:32:08 -0700
+Message-Id: <20230922173216.3823169-3-keescook@chromium.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230922173110.work.084-kees@kernel.org>
 References: <20230922173110.work.084-kees@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1428; i=keescook@chromium.org; 
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1705; i=keescook@chromium.org; 
  h=from:subject;
- bh=i2UpbGfuADbvlbxlhkLDZa/xyj6FED75tdnO2fZlmjo=; 
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+dEehHl9nbm4bhCFwpbMmpO3Xxql5kFxhRj
- Diayf24WdaJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PnQAKCRCJcvTf3G3A
- JvkkEACyRaaPJcAJJrT69OHPNJ7Sh8M7AKH2fzwSzceuPqxB6RysYYS6VR2iPdaDZg9zSS+vTbb
- fL60uv9o1ah81G8VJPhZppP9CtgmmA8a42Bpbs53luiTn/LGzycDXWPETOIgJGNsrJMgTFQyPMo
- 241VVShLmM8kxtLnJkLOnDZEqzjh4lSZG5ygNcH9YpR0LH3S9yhYSaBm0oamf3UpID1Xs/g89RE
- 2GjQlWgZzPdM7WCNcNNAIhK00fTWSD5DmnFGm50TziH8XWc8eGZZ2VknCk1GbO1UtJO7OW7lysZ
- dzxYyw9Eifo8NVwr14wp43rm0towIlCQv++/9z7OLpwblt6E0YNRNpTjv9DQV+xS5euSf4ETfjV
- IJ9vdSq6WjnidZkTBKdhROCuszJxRQ9b3HqXm169h7IYEdXvDeMvTQ2xgv9UwiFYpPlLImhrCYh
- r/oOkRSzfxf22LJvTsqX/WXIRpOCLm1gQa2ApJjyfzEXAegAaVehjC7856bxlgo+pE5tqm7PAvm
- JLb5hweD/O8L+7Tf7ij2oggZ9HmU2VGBIGVs0/EP7R6GeKLWO5KBBVa3/aADP01hJ2ZTfyjJsLl
- NqBiuVwLDZSWs6x18B1633XvJJtLwLIUg5eA8U/N4Q1qXUMezt3ySBuq4TSxO56Xod8iBUwzCfw
- TsBbpN+0JCLa/Ag==
+ bh=SbNV7tt6Hho3aemFjM+WsFyDqpMFvSNtroJg7EF/6LY=; 
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+e99M+BFyGmat9Yjgpanw6UekhSMQhhAVfe
+ PzecbdVf2uJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PngAKCRCJcvTf3G3A
+ JhPmD/oDoTfSn61jeN+hZ6qtbqMVL0umbxgqdZnXY/WBbLuBKV20tcaMAcUgkDgD7IZTf9vLT7N
+ QvsK/I3NzdeyXN9KRjg9P26c5TGRnuFhT5ow/Mmpjw2ZfwY/adYsynGhgMsY1zCzocr9Klih2M5
+ ONqETCgHopA10PwXUTZcfeylbqK62rRaYAWtkuoi0RcYjB0ba0MiguwtlB6nrG6fwv2owEKE9yZ
+ q2M6NVTsjfrdnESUtkpr+ZQMSdTP4DYj6WZCs8PEing/sqS9G43U/93adZtoUdXHfx6OIvtf4kR
+ QVJDI5f2FtS/OLpfsJPETvUFATNLl9zt+qYEEI6Xo/nwVAIDi10lef4gFjjLtPRlK+1R5w0hwDl
+ vKJUW0WgT4cnNhXnSosMUxrlYOzDiiFUv22K7MRCjwllhPuoEqIvmEu2skXTbfOi++COJZQENGW
+ mjr4E/cj8Pue9+KM7OxnSvfWccW9jLZfobZ+Mt3QO0uwzIKFw3tbN6roSBWKQjPzGVWZBhoB7P/
+ YBx8LyLPlIme4RIAinnRTvKcRBVmPKq0z5qb+ZrfdbS5SyUax0buA8IufSmAFbFNMVWiehiR7kj
+ m3qIzz42RIlit5ahExdpEPXkGeqqxLI86EouMV1p14sfdA6bPnL2FdLAyVYLHh92VJ7BRKvGmB7
+ gVsy2dUkMQ94AOw==
 X-Developer-Key: i=keescook@chromium.org; a=openpgp;
  fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
@@ -133,36 +132,40 @@ their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
 (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
 functions).
 
-As found with Coccinelle[1], add __counted_by for struct ip_hw_instance.
+As found with Coccinelle[1], add __counted_by for struct perf_series.
 
 [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: John Harrison <john.c.harrison@Intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index d1bc7b212520..be4c97a3d7bf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -662,7 +662,7 @@ struct ip_hw_instance {
- 	u8  harvest;
- 
- 	int num_base_addresses;
--	u32 base_addr[];
-+	u32 base_addr[] __counted_by(num_base_addresses);
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index a9b79888c193..acae30a04a94 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -1924,7 +1924,7 @@ struct perf_stats {
+ struct perf_series {
+ 	struct drm_i915_private *i915;
+ 	unsigned int nengines;
+-	struct intel_context *ce[];
++	struct intel_context *ce[] __counted_by(nengines);
  };
  
- struct ip_hw_id {
+ static int cmp_u32(const void *A, const void *B)
 -- 
 2.34.1
 
