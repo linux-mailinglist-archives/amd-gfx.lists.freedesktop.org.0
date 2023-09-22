@@ -2,82 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075907AB7D6
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Sep 2023 19:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30A0F7AB7D9
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Sep 2023 19:39:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9ADC10E6B0;
-	Fri, 22 Sep 2023 17:39:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB73710E6C8;
+	Fri, 22 Sep 2023 17:39:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C47410E6B6
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:22 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id
- 41be03b00d2f7-578b4981526so1789865a12.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:22 -0700 (PDT)
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
+ [IPv6:2607:f8b0:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0607110E6BB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:24 +0000 (UTC)
+Received: by mail-pf1-x42b.google.com with SMTP id
+ d2e1a72fcca58-691c05bc5aaso1970613b3a.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1695403942; x=1696008742;
+ d=chromium.org; s=google; t=1695403943; x=1696008743;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=uxN1BE4ZHdJI3Tb4/0aUqoFzscF/JkAVA7bHFE5N/Lw=;
- b=bD2xTadDXTR5lvsAgO9jU61vS7yykAPy+ysHmM/kk7MGszuK0PlNidXQkjeKrLtzLw
- 3wN5HejyKlsxddaIbHWc7klkp4MtBwjPZm17Cvn9hM5v2cSWOclRz6hDlapxFkXXV7ko
- yL44pwtM1zFW5u5TwGp1hnWvgg/weab7DjzrQ=
+ bh=0+TspM6FqnyWCQqgdT3WqLoCMBUMYLUrvB7POKzIF40=;
+ b=N99+lTXXBdw2FS6VqJFobDd7VwEw6H3StWC+hBm88qqivu08ytiF4GcQ0LaaFfUur2
+ MhY3yDDPHCAbmhnWnTveH8w20AgKhgpx8JzM/xO6k2AxEwSoz1N501x+hjGc8cbTmSPT
+ 6FtYWxeNCgEAYu5ExjN3X/ucNVgIykRHR8MN4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695403942; x=1696008742;
+ d=1e100.net; s=20230601; t=1695403943; x=1696008743;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=uxN1BE4ZHdJI3Tb4/0aUqoFzscF/JkAVA7bHFE5N/Lw=;
- b=eGNbrCuqw+P/zpcl0Vvcv4tHVrbxtrJEIqvdNQEzLGZwaJOmo71qReM4mK/0PjivYO
- S4dp30wmG4D08EotXcOeY6F8Q/DJGaKBoUx5wATVTRR/FXUwM1qIYVfWaGijMLV45Sdo
- 71Sxwph75ekDqMV3T8vVIGgtgex2sr67Tfwv5znQhUTsoDbbGUutETzPh7mZe7+Jexfv
- +dvr25MnVLHE/yVcTB/s2xiAccRoM44x7ZoNCbFtezTHpZ7s7L+LkZnPSjm/q1SPcy8s
- oeu3oJxOMsPjDCfzjPY+b03FN7iF7GSWSVy2Jy7HqwiyGYIc+lDCnbQegsnaqR/tpURi
- bihA==
-X-Gm-Message-State: AOJu0YyoMtwsjt5b06H0zVRH3+Bx4eSnlyQB3Z7AraJ8IC5uKk5fiGim
- yyPUcLtVdGNL2+0TH4/TnchhEQ==
-X-Google-Smtp-Source: AGHT+IH//vRAyYVOKaaq6VhS1fbYsjjpT5jue+Yc4/zN4nLEb/l32hmv6bVyDmgeyxxMAVlMxqzNow==
-X-Received: by 2002:a17:90a:5806:b0:26b:4ce1:9705 with SMTP id
- h6-20020a17090a580600b0026b4ce19705mr304838pji.38.1695403941884; 
- Fri, 22 Sep 2023 10:32:21 -0700 (PDT)
+ bh=0+TspM6FqnyWCQqgdT3WqLoCMBUMYLUrvB7POKzIF40=;
+ b=jviB7AiuNCtPzBenI9u1SX30fHZwJCOnC87NL4qMNYh4lhVhj1vaI+Tm3zyMjQJgxb
+ GlPtE8akhES8zkixzJFOGlsnAfWiQwaD1SedXPMzBv3WBduciqsmppizqqXeFcDR6uZp
+ 8vrYE4zzUFibiTRuf9kSposcrVm3azbW8/s9FLkrRPsDAIiwmcen35DsIdXVaAKqk7fi
+ WtIudS28XYRSKRy4wygS66dNHhYwrzNm/ulnUqs1T4WB6bI1jcbcarBCxOKORRRLMwUZ
+ kbV94xthKRU+N82c+Qb/FQdip7ZzwbbJNX6iExoFDnMYOWALNnQ2TGg1dD4FWMUX/Iom
+ f9kg==
+X-Gm-Message-State: AOJu0YzfR/87o6D3v91bEAcimoA42TaGSnN1lFR9mu5fB7vdNrm+7Rhc
+ xyPhW0Z75+gGajf9jmElPTDg4w==
+X-Google-Smtp-Source: AGHT+IGM2cgwn42K1WN8W9Zq/dfNXRG8PNtjzN+GwImGnEoLu2Sgi5BNiv1fIm5lYau2SjWWAldPQg==
+X-Received: by 2002:a17:90a:2a4a:b0:26d:2bac:a0bb with SMTP id
+ d10-20020a17090a2a4a00b0026d2baca0bbmr347669pjg.6.1695403943655; 
+ Fri, 22 Sep 2023 10:32:23 -0700 (PDT)
 Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
  [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- 30-20020a17090a005e00b00274c541ac9esm3815585pjb.48.2023.09.22.10.32.18
+ gq7-20020a17090b104700b0025bd4db25f0sm3547696pjb.53.2023.09.22.10.32.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
+ Fri, 22 Sep 2023 10:32:22 -0700 (PDT)
 From: Kees Cook <keescook@chromium.org>
 To: David Airlie <airlied@gmail.com>
-Subject: [PATCH 5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with
- __counted_by
-Date: Fri, 22 Sep 2023 10:32:10 -0700
-Message-Id: <20230922173216.3823169-5-keescook@chromium.org>
+Subject: [PATCH 6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+Date: Fri, 22 Sep 2023 10:32:11 -0700
+Message-Id: <20230922173216.3823169-6-keescook@chromium.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230922173110.work.084-kees@kernel.org>
 References: <20230922173110.work.084-kees@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1371; i=keescook@chromium.org; 
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1277; i=keescook@chromium.org; 
  h=from:subject;
- bh=IPCNKuct38YwTzB2zIOXZz855pzU163uvmhflCBSQWQ=; 
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+ePLJ5Y9ji0102KrPkzSXaeWKfcfISds5DF
- aJ14tx1Y4aJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PngAKCRCJcvTf3G3A
- JtXrD/0RXHf3wSRStY2vqlZH/um0jQPMLbKbehlFgssNmiWNKLGOpr9br8S3vwu1QvHGz1HXrqy
- ek4gD5gpWq9HZI5TJ2S0ATi0PCNLJBhXIuhc34RvAQY4zFQ3xDP1+U9nxWirglYoYpY8M62/YSo
- B0HX0gFwkDnSKjEiTZRLqLNrHJ2uDlJPrCaCz4/eG9EdAXU5odsdQXdC9MXbzm7VxjwSRLgFwVK
- GHLJXusf7Ruisahsoa0m9dY0LDoKPcUPSm6nZyyulGzjj8O7nZD5mkW5LmE3acjay9ccGO6xVQV
- CEmQ8fU5KxWIXh39kd9vqnEzf3cWZgF/XottaJZSmQfT1Ch1cecAsaQT61aXa0XgwnSoBRR1Adm
- pc0Dq6V8Dq2SSnL3qijLYnz0JJZIxQ2Vea1R0y83xCcXxYu29UWHu78xEIII3D5O3DQH7LTIFRk
- 64XrJvEWliQkDVEjTU9AAQ1DmI0+XI32xp59hVd2qxbLXVzaJbyW96YRrwk0Z8tybyQKuBGbl+N
- UjYgjPXkrQlaLwdvsSB5hxsSwDYFtZYt+C8rKOWeJuWm6hWS/WNw8to6mNAPP2UcQkbXemA4N1n
- LDw+BMjjOgfNdMdxGQwv3iqnBs5Ov3VImnlMxKxr+X4ixt4v0594/VlXa7PXU40u430EsrX9Bgl
- 2ggHJiZsUawsmBg==
+ bh=4ERTESaqnYz8ImDqyHPyzXy0AuquVom9vq+hq0gy89g=; 
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+eg2zdwhFFl6K23RVdCG+VU9OV+t2/BviGN
+ QnAc1heAtyJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PngAKCRCJcvTf3G3A
+ JvO0D/4+c0QkeKEEEd/HWEG0VvFv4kIlOeqfDMOPwJ1QkN1jVwlbiQVdn9lWjRgUq77jqzdpagc
+ 0e9qirU7jL0cbTe+JOBsFEQkZYwnIV0EUxV5Wb9g3csLF1vPRQafhR8984UzEKRtulAS9kQTSMT
+ xYBkkYy+pbMJZNux38iCGgJFdWD057RPEazeM0Aatd5kaNk0HGNFRG/lz7HPcD9XIged7BCjFe4
+ O5fJlM/WnYAAAK2cZn9AtONFzhR65gyQwb4pt0CXxC/kBS6pb6GBT8V9AsVWH8zu6CsMIVjafAT
+ OdJEF/tJGI7jp48gN51zXgv1VAdOAJOLBc/kciYavjyryrGgXYANueMuiXx+r42kxUG0yZkO3/X
+ uq+N33+UiId1hMftODv6WGPcCbwFJtgAfev1bfSRgKYiKQyjWPcbW5NPGeYVKKsvsew1qqGZWpN
+ ASd96EwnB4kIHBeIp1k14aTdlgBVRePuuE2Vrf/gjb9uTNMh605/Yq2hNu83sG0S0fKskR2pH6r
+ /VbQ9GYa6Dm3r4bYE6S0RRzMROjl3MXFBv4R99QF1UUF4V4iGgkcUUE3tdB+iCxIW1I5SuGR620
+ 4ajKmF3Z9xPkw56NlVdKBjnhCKGSlHNQv+Rh5xh0IeFJzR6f8SO8/u45ADDZHCkCqxoc7tiLP68
+ zupfltyyH8r66bw==
 X-Developer-Key: i=keescook@chromium.org; a=openpgp;
  fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 22 Sep 2023 17:39:34 +0000
+X-Mailman-Approved-At: Fri, 22 Sep 2023 17:39:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,19 +88,19 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Prike Liang <Prike.Liang@amd.com>, Huang Rui <ray.huang@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Emma Anholt <emma@anholt.net>,
+ Tom Rix <trix@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
  Marijn Suijten <marijn.suijten@somainline.org>,
- Matthew Brost <matthew.brost@intel.com>, Emma Anholt <emma@anholt.net>,
+ Matthew Brost <matthew.brost@intel.com>, Karol Herbst <kherbst@redhat.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
  Kuogee Hsieh <quic_khsieh@quicinc.com>, Nathan Chancellor <nathan@kernel.org>,
  VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
  Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Tom Rix <trix@redhat.com>, David Airlie <airlied@redhat.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
  virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
  linux-hardening@vger.kernel.org, Lijo Lazar <lijo.lazar@amd.com>,
  Kees Cook <keescook@chromium.org>, Yifan Zhang <yifan1.zhang@amd.com>,
@@ -132,35 +131,33 @@ their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
 (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
 functions).
 
-As found with Coccinelle[1], add __counted_by for struct nvkm_perfdom.
+As found with Coccinelle[1], add __counted_by for struct vc4_perfmon.
 
 [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
 
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
+Cc: Emma Anholt <emma@anholt.net>
+Cc: Maxime Ripard <mripard@kernel.org>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
 Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h | 2 +-
+ drivers/gpu/drm/vc4/vc4_drv.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h b/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-index 6ae25d3e7f45..c011227f7052 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-@@ -82,7 +82,7 @@ struct nvkm_perfdom {
- 	u8  mode;
- 	u32 clk;
- 	u16 signal_nr;
--	struct nvkm_perfsig signal[];
-+	struct nvkm_perfsig signal[] __counted_by(signal_nr);
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
+index bf66499765fb..ab61e96e7e14 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.h
++++ b/drivers/gpu/drm/vc4/vc4_drv.h
+@@ -76,7 +76,7 @@ struct vc4_perfmon {
+ 	 * Note that counter values can't be reset, but you can fake a reset by
+ 	 * destroying the perfmon and creating a new one.
+ 	 */
+-	u64 counters[];
++	u64 counters[] __counted_by(ncounters);
  };
  
- struct nvkm_funcdom {
+ struct vc4_dev {
 -- 
 2.34.1
 
