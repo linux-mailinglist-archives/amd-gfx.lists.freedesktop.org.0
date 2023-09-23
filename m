@@ -1,60 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D337F7AD203
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 09:43:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD097AD207
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 09:43:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA8D10E209;
-	Mon, 25 Sep 2023 07:43:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49CE410E20E;
+	Mon, 25 Sep 2023 07:43:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from omta040.useast.a.cloudfilter.net
- (omta040.useast.a.cloudfilter.net [44.202.169.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FDA10E087;
- Sat, 23 Sep 2023 01:41:40 +0000 (UTC)
-Received: from eig-obgw-6004a.ext.cloudfilter.net ([10.0.30.197])
+Received: from omta034.useast.a.cloudfilter.net
+ (omta034.useast.a.cloudfilter.net [44.202.169.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C01410E041;
+ Sat, 23 Sep 2023 23:01:38 +0000 (UTC)
+Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
  by cmsmtp with ESMTP
- id jkwcq81sryYOwjreNqyWXa; Sat, 23 Sep 2023 01:41:39 +0000
+ id k2unqHeonez0CkBceqDxbP; Sat, 23 Sep 2023 23:01:12 +0000
 Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
- id jreMqDlROQjqnjreMqJh2F; Sat, 23 Sep 2023 01:41:38 +0000
-X-Authority-Analysis: v=2.4 cv=QeV1A+Xv c=1 sm=1 tr=0 ts=650e4252
+ id kBd1qGwMXlFgfkBd2q3F18; Sat, 23 Sep 2023 23:01:36 +0000
+X-Authority-Analysis: v=2.4 cv=dpLItns4 c=1 sm=1 tr=0 ts=650f6e50
  a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=P7XfKmiOJ4/qXqHZrN7ymg==:17
  a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
  a=IkcTkHD0fZMA:10 a=zNV7Rl7Rt7sA:10 a=wYkD_t78qR0A:10 a=NEAV23lmAAAA:8
- a=-VAfIpHNAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
- a=cm27Pg_UAAAA:8 a=HvF037n1xESchLcPDVoA:9 a=QEXdDO2ut3YA:10
- a=srlwD-8ojaedGGhPAyx8:22 a=AjGcO6oz07-iQ99wixmX:22 a=Vxmtnl_E_bksehYqCbjh:22
- a=xmb-EsYY8bH0VWELuYED:22
+ a=20KFwNOVAAAA:8 a=cm27Pg_UAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
+ a=Z4Rwk6OoAAAA:8 a=VwQbUJbxAAAA:8 a=HvF037n1xESchLcPDVoA:9 a=QEXdDO2ut3YA:10
+ a=xmb-EsYY8bH0VWELuYED:22 a=Vxmtnl_E_bksehYqCbjh:22 a=HkZW87K1Qel5hWWM3VKY:22
+ a=AjGcO6oz07-iQ99wixmX:22
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
  In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
  :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=26mug2OgFJgVqTLezDBhTB27nouTOVCr4w9qfN76dRA=; b=gWUmwGML3LS+6SgXzjEE2Nv0zY
- 6WvEyyE/D9r5aCj97Qk0hU44T53pcFDfJ0WyOiS/y/dodQv4zYLJWZVtBZg6aROkxEqiqHxWMAJ61
- +bd/LUHoDPJN5875L0nhhFj064A/XItWKFZvpwztqirYg9Wo8HlyZHMRGa2FXndjO5z3QOeEehb5x
- 9pWKegwGcf6NwBGOyvfvUpoFR09ZCPES7oKwjP54v2sT2Oga4jwYCdhMiQe75/Xvu5af1uayGh/Zi
- LcKlz1Qa7HgfYM4nH9rvd6EoSM6xQwXtEMS+kzdzm26iBfpWyzv/7s9+4bmv2+xTf8q41SvM9G7GE
- L+885mkQ==;
-Received: from [94.239.20.48] (port=50846 helo=[192.168.1.98])
+ bh=lsg3//jjqgWrIpnVUXs6kZLjDiMPa9J5cQHlkHzKtj8=; b=dRtx4r6TqPf7Mv5fzXz+pSeVme
+ dAF8L2m62NiWDV/asI3acAilMy1xx0fyXiKnlxIJOX5GpNFRG1kQ1KDYtDzrFRdgKlrdn9LRI3jGA
+ 5q7/ryZATxM+E0ru/ObMVSdacNO0B0FOYy7dFKFT1ic6281ieBe1DQzGjQb06dQ3z8EHmVuOXicV/
+ NMBgvlCz/Ob+3bZIvRJlxaA8AczUEmDaPSFfQDWOSJuAflg/WGoz0+8uIGaNwsPC3kpY2AigNb7yT
+ k9rJLUnzu00Z/o5Uf4tCS0qBrAe+XRSPifLmZwYWmd4dVqHsXjZmXAlZXnqkMreFUQ7funbsi6tHD
+ OJLWfFbg==;
+Received: from [94.239.20.48] (port=43876 helo=[192.168.1.98])
  by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96)
- (envelope-from <gustavo@embeddedor.com>) id 1qjkgW-000Qi0-2c;
- Fri, 22 Sep 2023 13:15:24 -0500
-Message-ID: <75f4a4fa-a177-db4a-4653-f121a1e54141@embeddedor.com>
-Date: Fri, 22 Sep 2023 20:16:16 -0600
+ (envelope-from <gustavo@embeddedor.com>) id 1qjl0P-000jps-0z;
+ Fri, 22 Sep 2023 13:35:57 -0500
+Message-ID: <082a4081-5dc2-ada7-e187-7536768fa63f@embeddedor.com>
+Date: Fri, 22 Sep 2023 20:36:48 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [PATCH 6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+Subject: Re: [PATCH 7/9] drm/virtio: Annotate struct virtio_gpu_object_array
+ with __counted_by
 Content-Language: en-US
 To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
 References: <20230922173110.work.084-kees@kernel.org>
- <20230922173216.3823169-6-keescook@chromium.org>
+ <20230922173216.3823169-7-keescook@chromium.org>
 From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <20230922173216.3823169-6-keescook@chromium.org>
+In-Reply-To: <20230922173216.3823169-7-keescook@chromium.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-AntiAbuse: This header was added to track abuse,
@@ -66,20 +67,20 @@ X-AntiAbuse: Sender Address Domain - embeddedor.com
 X-BWhitelist: no
 X-Source-IP: 94.239.20.48
 X-Source-L: No
-X-Exim-ID: 1qjkgW-000Qi0-2c
+X-Exim-ID: 1qjl0P-000jps-0z
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-X-Source-Sender: ([192.168.1.98]) [94.239.20.48]:50846
+X-Source-Sender: ([192.168.1.98]) [94.239.20.48]:43876
 X-Source-Auth: gustavo@embeddedor.com
 X-Email-Count: 0
 X-Org: HG=hgshared;ORG=hostgator;
 X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
 X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfMk2+XRHGs9NUTxyaz3v9a5lCzRNvzl4OQu2IxGy7+BjLpOtF7RXZno860pcbvPvoFgMYveosbqMXkuZbNt+L5imwHYr8vUGdfSPNNanJgQvQdNAToJ4
- PKZaqYfvjMdn7CXz7dUvFf+zGZCimLHTWU8GIVnY4wRKb5YDxT7D7ao9taB1Eq3dhobTy6F45EmExD/w0RCK5oY2HQznqKuem2Wmqux0pVnKgln0KIJGS0AK
- gNJa/8YN+uSS6Si7A61jNsa0mW5qAz1MWRut2CiwNrI+xZOA/BBGwlJCR76VeDCp+zy3eft5Ik5xmDnQXn1SWCHmXzzMk62aaSB639cicriaxGjdJNd0F3PT
- ILH4Dsz26SpVneGsKMgMuZLS6ihszsLkuc1TyEvo3W+jSMI5erQ=
+X-CMAE-Envelope: MS4xfG2HDQzO0/Vpw4AjbGS3r3dC34Hfu2qBPRbXehcyQolrImZwAMi6hO5qjanZ/eNMLTpETgtwCj1iWu/4NtxW/A0zDANX7owb5VSuRa4DHcHJJcVCEBhP
+ zDYY25bYDeakSsX9PtKpQ3DgpZBHpn6nq9AA4H/wpZU+T2HLPPKb1hPlLuPKr2BDfvj47XkiU1SnQYH23PRndo8lPKjl+HQi8VwvteTHS5zyQ+09NmyG9Art
+ i05niYCJwDTToL5EHh+GrLPLsaiFB7hOas4nBhGQmcOS/tof9sLw9FgJF1n1jrWHsFZTS5z7ZV31VaNhxnXvXHLTRc7dl/R8TmvkwLPc/so++Jx+FSRu+SY1
+ zODIRhtzAG4dEUMbB/egNsA70jJRFrfP6ljABl7Be1OhKCP4Lxs=
 X-Mailman-Approved-At: Mon, 25 Sep 2023 07:43:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -138,15 +139,17 @@ On 9/22/23 11:32, Kees Cook wrote:
 > (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
 > functions).
 > 
-> As found with Coccinelle[1], add __counted_by for struct vc4_perfmon.
+> As found with Coccinelle[1], add __counted_by for struct virtio_gpu_object_array.
 > 
 > [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
 > 
-> Cc: Emma Anholt <emma@anholt.net>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
+> Cc: David Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
+> Cc: Chia-I Wu <olvaffe@gmail.com>
 > Cc: Daniel Vetter <daniel@ffwll.ch>
 > Cc: dri-devel@lists.freedesktop.org
+> Cc: virtualization@lists.linux-foundation.org
 > Signed-off-by: Kees Cook <keescook@chromium.org>
 
 Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
@@ -156,19 +159,19 @@ Thanks
 Gustavo
 
 > ---
->   drivers/gpu/drm/vc4/vc4_drv.h | 2 +-
+>   drivers/gpu/drm/virtio/virtgpu_drv.h | 2 +-
 >   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
-> index bf66499765fb..ab61e96e7e14 100644
-> --- a/drivers/gpu/drm/vc4/vc4_drv.h
-> +++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> @@ -76,7 +76,7 @@ struct vc4_perfmon {
->   	 * Note that counter values can't be reset, but you can fake a reset by
->   	 * destroying the perfmon and creating a new one.
->   	 */
-> -	u64 counters[];
-> +	u64 counters[] __counted_by(ncounters);
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.h b/drivers/gpu/drm/virtio/virtgpu_drv.h
+> index 8513b671f871..96365a772f77 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_drv.h
+> +++ b/drivers/gpu/drm/virtio/virtgpu_drv.h
+> @@ -119,7 +119,7 @@ struct virtio_gpu_object_array {
+>   	struct ww_acquire_ctx ticket;
+>   	struct list_head next;
+>   	u32 nents, total;
+> -	struct drm_gem_object *objs[];
+> +	struct drm_gem_object *objs[] __counted_by(total);
 >   };
 >   
->   struct vc4_dev {
+>   struct virtio_gpu_vbuffer;
