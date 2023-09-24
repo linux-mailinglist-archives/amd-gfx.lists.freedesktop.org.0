@@ -2,46 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347E77AC88A
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Sep 2023 15:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FAF87AC8AA
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Sep 2023 15:19:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C12810E172;
-	Sun, 24 Sep 2023 13:17:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4C710E171;
+	Sun, 24 Sep 2023 13:18:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06F3C10E15E;
- Sun, 24 Sep 2023 13:17:30 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998C910E171;
+ Sun, 24 Sep 2023 13:18:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7C69E60C24;
- Sun, 24 Sep 2023 13:17:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10A27C433C7;
- Sun, 24 Sep 2023 13:17:26 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id C1F66CE0B26;
+ Sun, 24 Sep 2023 13:18:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74645C4339A;
+ Sun, 24 Sep 2023 13:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1695561449;
- bh=lDq3UOUQY7o7x5pbXoiRH92AFPhE0J/Qm0xphQ23lAI=;
+ s=k20201202; t=1695561513;
+ bh=AFeVCQSAMJ19P9SVd3+4fK3hpmUw46XSFs2rfQTnPTA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jGnDGb/RIH4JhRL5JIVpeS/Q2akPYQ3LsAW8joAsbFsSM6QQKILmCqf9WMGOMa4RA
- qPoTfks+4TCFXbRaOeIN4ee7XmlWhJtOx7AzU4sycWZfUOXuOFFsmi3F0/YdEudtIg
- +B6WmJEPwsJqaBua9KWc21qIFWx2hSfCeD2vzsMsGQ2h014Xeewe8QUOb3W1mMHDiv
- HM7usWlXckM0Hm5KffVIOuOfIQKlM282lHEAThoz7eMypdBdmpKm3EuR4gdbyRQuXt
- NuC1BZ91eH8PgRA7yBlDaXaGRRAtxMUMArmEy39VxM+25WyjUABeEcEav/NKu7IE/N
- 29lz6IIFAcYmA==
+ b=rzRIdTcPL+QS8U2rJD17jeT+6PJYCaFILzH2eE2fM5wmQs2biaVgYB/us/fDeDLRk
+ NHSAN5mWnyAeZzGL7dn/2ufJ+CEZeX/4wIX7i1OaZmvSciDgzBxb+ntnFYn7vAfF7b
+ W1Ok0GJIn1Zy0cED3TM+NyOuJ18Isrd4mQ1GWrLPXOQvDIUcXsSgho39xlulBbc6tz
+ SzJySC3lU35eLqTV9L4fkYgktaITHhU29BbO9YsqaG8MnnHU506IMgxTRlpq8nOGCv
+ 4aTC7CHu+4HNxEhogcNcAcvNC86SlKxRRKce6msIActq/RFRT6Nqgos2Rgsfs7M8kB
+ A2kWwJbF8XC6g==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.5 33/41] drm/amdgpu: Handle null atom context in
- VBIOS info ioctl
-Date: Sun, 24 Sep 2023 09:15:21 -0400
-Message-Id: <20230924131529.1275335-33-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 20/28] drm/amd/display: Don't check registers,
+ if using AUX BL control
+Date: Sun, 24 Sep 2023 09:17:37 -0400
+Message-Id: <20230924131745.1275960-20-sashal@kernel.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230924131529.1275335-1-sashal@kernel.org>
-References: <20230924131529.1275335-1-sashal@kernel.org>
+In-Reply-To: <20230924131745.1275960-1-sashal@kernel.org>
+References: <20230924131745.1275960-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.5.5
+X-stable-base: Linux 6.1.55
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,63 +54,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, evan.quan@amd.com,
- srinivasan.shanmugam@amd.com, guchun.chen@amd.com, Lang.Yu@amd.com,
- David Francis <David.Francis@amd.com>, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, marek.olsak@amd.com,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- Alex Deucher <alexander.deucher@amd.com>, Felix.Kuehling@amd.com,
- James.Zhu@amd.com, airlied@gmail.com, christian.koenig@amd.com,
- Graham.Sider@amd.com
+Cc: aric.cyr@amd.com, Wenjing Liu <wenjing.liu@amd.com>,
+ dri-devel@lists.freedesktop.org, Jun.Lei@amd.com, airlied@gmail.com,
+ Sasha Levin <sashal@kernel.org>, charlene.liu@amd.com, sancchen@amd.com,
+ Rodrigo.Siqueira@amd.com, syed.hassan@amd.com, amd-gfx@lists.freedesktop.org,
+ tony.tascioglu@amd.com, harry.wentland@amd.com,
+ Stylon Wang <stylon.wang@amd.com>, ahmed.ahmed@amd.com, Jingwen.Zhu@amd.com,
+ sunpeng.li@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Swapnil Patel <swapnil.patel@amd.com>, Xinhui.Pan@amd.com, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Francis <David.Francis@amd.com>
+From: Swapnil Patel <swapnil.patel@amd.com>
 
-[ Upstream commit 5e7e82254270c8cf8b107451c5de01cee2f135ae ]
+[ Upstream commit f5b2c10b57615828b531bb0ae56bd6325a41167e ]
 
-On some APU systems, there is no atom context and so the
-atom_context struct is null.
+[Why]
+Currently the driver looks DCN registers to access if BL is on or not.
+This check is not valid if we are using AUX based brightness control.
+This causes driver to not send out "backlight off" command during power off
+sequence as it already thinks it is off.
 
-Add a check to the VBIOS_INFO branch of amdgpu_info_ioctl
-to handle this case, returning all zeroes.
+[How]
+Only check DCN registers if we aren't using AUX based brightness control.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: David Francis <David.Francis@amd.com>
+Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
+Acked-by: Stylon Wang <stylon.wang@amd.com>
+Signed-off-by: Swapnil Patel <swapnil.patel@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index f678bdd5f353d..b9fc7e2db5e59 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -940,12 +940,17 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 			struct atom_context *atom_context;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+index 9378c98d02cfe..508f5fe268484 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+@@ -973,7 +973,9 @@ void dce110_edp_backlight_control(
+ 		return;
+ 	}
  
- 			atom_context = adev->mode_info.atom_context;
--			memcpy(vbios_info.name, atom_context->name, sizeof(atom_context->name));
--			memcpy(vbios_info.vbios_pn, atom_context->vbios_pn, sizeof(atom_context->vbios_pn));
--			vbios_info.version = atom_context->version;
--			memcpy(vbios_info.vbios_ver_str, atom_context->vbios_ver_str,
--						sizeof(atom_context->vbios_ver_str));
--			memcpy(vbios_info.date, atom_context->date, sizeof(atom_context->date));
-+			if (atom_context) {
-+				memcpy(vbios_info.name, atom_context->name,
-+				       sizeof(atom_context->name));
-+				memcpy(vbios_info.vbios_pn, atom_context->vbios_pn,
-+				       sizeof(atom_context->vbios_pn));
-+				vbios_info.version = atom_context->version;
-+				memcpy(vbios_info.vbios_ver_str, atom_context->vbios_ver_str,
-+				       sizeof(atom_context->vbios_ver_str));
-+				memcpy(vbios_info.date, atom_context->date,
-+				       sizeof(atom_context->date));
-+			}
+-	if (link->panel_cntl) {
++	if (link->panel_cntl && !(link->dpcd_sink_ext_caps.bits.oled ||
++		link->dpcd_sink_ext_caps.bits.hdr_aux_backlight_control == 1 ||
++		link->dpcd_sink_ext_caps.bits.sdr_aux_backlight_control == 1)) {
+ 		bool is_backlight_on = link->panel_cntl->funcs->is_panel_backlight_on(link->panel_cntl);
  
- 			return copy_to_user(out, &vbios_info,
- 						min((size_t)size, sizeof(vbios_info))) ? -EFAULT : 0;
+ 		if ((enable && is_backlight_on) || (!enable && !is_backlight_on)) {
 -- 
 2.40.1
 
