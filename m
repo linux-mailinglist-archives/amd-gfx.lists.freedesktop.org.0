@@ -1,75 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 161377ADD8E
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 19:04:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3667ADE0B
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 19:52:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8351C10E2AE;
-	Mon, 25 Sep 2023 17:04:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BFCA10E2BE;
+	Mon, 25 Sep 2023 17:52:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA49810E2AE
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 17:04:48 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id
- 38308e7fff4ca-2bff776fe0bso114692351fa.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 10:04:48 -0700 (PDT)
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
+ [IPv6:2001:4860:4864:20::35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD61F10E2BA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 17:50:04 +0000 (UTC)
+Received: by mail-oa1-x35.google.com with SMTP id
+ 586e51a60fabf-1c0fcbf7ae4so4661410fac.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 10:50:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1695661485; x=1696266285;
+ d=chromium.org; s=google; t=1695664204; x=1696269004;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=7kX39Ca8A6vbWsrSc61cEoyakqRV/gh0/WoLN88Nm/E=;
- b=V/ugE3V35NNpTZJPiCS089pguyfOk6aiaqtruAuzxWfZPNkq2Kxd1cYeb12vYNUOQK
- hRIPx7Xo9uCQnL4DVhIh7ByzVZm/dlDjoB6spoPm6czG2Zv2nBoU2XvfC+7hFH5nyA0z
- tcEkre+EBBqN35Ecbp72dVlwLVu1gEEgPvLRU=
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=LrNZUYK9GVon3CstC3PAw8y74HnTAoBSBfYauDl4OzM=;
+ b=UObhHPgR2L04POINaxBQMaW/6y+Gwt2fRE8Q5AKWh0mBM4mkgx3NEroLSbHtvX6f/O
+ v0rI2XjI/kEFlxVduBTRexEbUMObOpVoNXE+G7pqxfotoJO3VP/fy8rqotmR7VrJxKef
+ 44kIBtWWxEXHs8yQjcrbgUoz6Pldb9Apdv4Dw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695661485; x=1696266285;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=7kX39Ca8A6vbWsrSc61cEoyakqRV/gh0/WoLN88Nm/E=;
- b=IENpOatq95pA6r+4l5WZNUCPxfny7yAvF680mSddXgOGROxkuw1WUXQPFApNsn9tAT
- 4iiqrvt0v8hFVr2QFrW8nuQziCrDnaQfQ7enH2hKPJlJKIOXm3V29ivPyBbWATOAJYKj
- FpLepmTuFTyVISG66tGX7rvoyr+SvP3TckBwXQsPPAG/G/iRMMPMyLi4VvnZEONxCmTo
- g47r7/fpsHzQX6G59qQsNKrcusIDrRdBwQaJdPc5hzYpMTylmVknm/z74LlnvkF/U57d
- CWQDUCHNCiAbZlYvqmAA4evENoeJmkrXcPtvSVe6KcT+XumbzpwzJt+TGRDrX3Xuu5dr
- glNA==
-X-Gm-Message-State: AOJu0YyM9Np4c4UuHEPwIrl1aqLjYd6otLu6jVx3EriFBHpjpjwcs74r
- dv40OU2O4EZUKT/YySaCDOAMltJVNXNEveEkz7oomeCJ
-X-Google-Smtp-Source: AGHT+IGgRnrQryfGPQj5y+5TRAVFFf7Nk58bFY2x9vlJxnuepdZu8uJfShkGcAgXdB/GFUkdVbKvTg==
-X-Received: by 2002:a05:651c:88:b0:2bd:1f83:8d4 with SMTP id
- 8-20020a05651c008800b002bd1f8308d4mr6573881ljq.22.1695661484622; 
- Mon, 25 Sep 2023 10:04:44 -0700 (PDT)
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com.
- [209.85.208.50]) by smtp.gmail.com with ESMTPSA id
- i13-20020a1709061ccd00b00991faf3810esm6635578ejh.146.2023.09.25.10.04.43
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Sep 2023 10:04:44 -0700 (PDT)
-Received: by mail-ed1-f50.google.com with SMTP id
- 4fb4d7f45d1cf-53368df6093so547a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 10:04:43 -0700 (PDT)
-X-Received: by 2002:a50:a699:0:b0:525:573c:6444 with SMTP id
- e25-20020a50a699000000b00525573c6444mr6897edc.1.1695661483259; Mon, 25 Sep
- 2023 10:04:43 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1695664204; x=1696269004;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LrNZUYK9GVon3CstC3PAw8y74HnTAoBSBfYauDl4OzM=;
+ b=jBiGyoxQuuSs3cpgBUdQof0Slc4sZeG1J1K21Qg592KgDcrFfT3ddcaAmtakWQO6WX
+ BB77X1zy3L7RqT/bAk+Th2J25FxWdyBjbcqLEYlz+fipD8LZ/cHp5ETt/1DPgkDrB9TU
+ glU4CMRWe6iX+P5kMxxz90XHDNAB7DQ7/Hy8CuZzCoBHKzVDQv1UiKHcYcOJPLDX2F84
+ INNzhwEeg6JFP0bllIllwAhS2t5i4SFX/o7aLS1FdbztgZQaSDp3dvpg0cXuAPb05p0O
+ 7qOsk6t43XJU6DZOWfxI6R9wNWQQZcVh20MVJbQye5T/2owL1p10PN0YpE5okQLLSKrJ
+ i/jw==
+X-Gm-Message-State: AOJu0Yzj/wUqtli0dA/OweVspy39sXExWHSz9q5gkNvx0aR5ns34BVaC
+ vKcXtc7YTe7iyovIwegmtJw+Lw==
+X-Google-Smtp-Source: AGHT+IEnVXJWnUtJ+JjUoJ2wutCIFPzVwQv9Kt/j17reyYiG5PztEKwn4JCr3bhZYPWh/NJDzvVOfA==
+X-Received: by 2002:a05:6870:3323:b0:1d5:5a83:22b7 with SMTP id
+ x35-20020a056870332300b001d55a8322b7mr9920226oae.51.1695664203813; 
+ Mon, 25 Sep 2023 10:50:03 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
+ [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
+ p19-20020a639513000000b00578afd8e012sm7498975pgd.92.2023.09.25.10.50.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 25 Sep 2023 10:50:03 -0700 (PDT)
+Date: Mon, 25 Sep 2023 10:50:02 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Subject: Re: [PATCH 3/9] drm/i915/selftests: Annotate struct perf_series with
+ __counted_by
+Message-ID: <202309251043.2D1F7D08@keescook>
+References: <20230922173110.work.084-kees@kernel.org>
+ <20230922173216.3823169-3-keescook@chromium.org>
+ <b668d521-c8fd-1207-0a65-e1200e7ebb2c@intel.com>
 MIME-Version: 1.0
-References: <20230921192749.1542462-1-dianders@chromium.org>
- <20230921122641.RFT.v2.7.I27914059cc822b52db9bf72b4013b525b60e06fd@changeid>
- <BL1PR12MB514407EE7F9B23BC58E40A6CF7FCA@BL1PR12MB5144.namprd12.prod.outlook.com>
-In-Reply-To: <BL1PR12MB514407EE7F9B23BC58E40A6CF7FCA@BL1PR12MB5144.namprd12.prod.outlook.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 25 Sep 2023 10:04:27 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UK_tWO7Vr2FJiaVX11DwfS7+VhrUoGZa989U7y_vtKOg@mail.gmail.com>
-Message-ID: <CAD=FV=UK_tWO7Vr2FJiaVX11DwfS7+VhrUoGZa989U7y_vtKOg@mail.gmail.com>
-Subject: Re: [RFT PATCH v2 07/12] drm/amdgpu: Call drm_atomic_helper_shutdown()
- at shutdown time
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b668d521-c8fd-1207-0a65-e1200e7ebb2c@intel.com>
+X-Mailman-Approved-At: Mon, 25 Sep 2023 17:52:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,145 +73,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhao, Victor" <Victor.Zhao@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "mdaenzer@redhat.com" <mdaenzer@redhat.com>, "Limonciello,
- Mario" <Mario.Limonciello@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>, "SHANMUGAM,
- SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "Zhang, Bokun" <Bokun.Zhang@amd.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, "Ma, Le" <Le.Ma@amd.com>, "Zhang,
- Morris" <Shiwu.Zhang@amd.com>, "Zhu, James" <James.Zhu@amd.com>,
- "jim.cromie@gmail.com" <jim.cromie@gmail.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Emma Anholt <emma@anholt.net>,
+ Tom Rix <trix@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
+ Karol Herbst <kherbst@redhat.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ amd-gfx@lists.freedesktop.org, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Nathan Chancellor <nathan@kernel.org>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
+ virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-hardening@vger.kernel.org, Lijo Lazar <lijo.lazar@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Kevin Wang <kevin1.wang@amd.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Melissa Wen <mwen@igalia.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Evan Quan <evan.quan@amd.com>, Sean Paul <sean@poorly.run>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Xiaojian Du <Xiaojian.Du@amd.com>, Le Ma <le.ma@amd.com>,
+ freedreno@lists.freedesktop.org, Bjorn Andersson <andersson@kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+ Zack Rusin <zackr@vmware.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Lang Yu <Lang.Yu@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Mon, Sep 25, 2023 at 12:08:36PM +0200, Andrzej Hajda wrote:
+> 
+> 
+> On 22.09.2023 19:32, Kees Cook wrote:
+> > Prepare for the coming implementation by GCC and Clang of the __counted_by
+> > attribute. Flexible array members annotated with __counted_by can have
+> > their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
+> > (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+> > functions).
+> > 
+> > As found with Coccinelle[1], add __counted_by for struct perf_series.
+> > 
+> > [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
+> > 
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: John Harrison <john.c.harrison@Intel.com>
+> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Kees Cook <keescook@chromium.org>
+> 
+> I am surprised this is the only finding in i915, I would expected more.
 
-On Mon, Sep 25, 2023 at 8:57=E2=80=AFAM Deucher, Alexander
-<Alexander.Deucher@amd.com> wrote:
->
-> [Public]
->
-> > -----Original Message-----
-> > From: Douglas Anderson <dianders@chromium.org>
-> > Sent: Thursday, September 21, 2023 3:27 PM
-> > To: dri-devel@lists.freedesktop.org; Maxime Ripard <mripard@kernel.org>
-> > Cc: Douglas Anderson <dianders@chromium.org>; Zhang, Bokun
-> > <Bokun.Zhang@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>;
-> > Zhu, James <James.Zhu@amd.com>; Zhao, Victor <Victor.Zhao@amd.com>;
-> > Pan, Xinhui <Xinhui.Pan@amd.com>; airlied@gmail.com; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; amd-gfx@lists.freedesktop.org; Koenig,
-> > Christian <Christian.Koenig@amd.com>; daniel@ffwll.ch; Kuehling, Felix
-> > <Felix.Kuehling@amd.com>; jim.cromie@gmail.com; Ma, Le
-> > <Le.Ma@amd.com>; Lazar, Lijo <Lijo.Lazar@amd.com>; linux-
-> > kernel@vger.kernel.org; maarten.lankhorst@linux.intel.com; Limonciello,
-> > Mario <Mario.Limonciello@amd.com>; mdaenzer@redhat.com; Zhang,
-> > Morris <Shiwu.Zhang@amd.com>; SHANMUGAM, SRINIVASAN
-> > <SRINIVASAN.SHANMUGAM@amd.com>; tzimmermann@suse.de
-> > Subject: [RFT PATCH v2 07/12] drm/amdgpu: Call
-> > drm_atomic_helper_shutdown() at shutdown time
-> >
-> > Based on grepping through the source code this driver appears to be mis=
-sing a
-> > call to drm_atomic_helper_shutdown() at system shutdown time. Among
-> > other things, this means that if a panel is in use that it won't be cle=
-anly
-> > powered off at system shutdown time.
-> >
-> > The fact that we should call drm_atomic_helper_shutdown() in the case o=
-f OS
-> > shutdown/restart comes straight out of the kernel doc "driver instance
-> > overview" in drm_drv.c.
-> >
-> > Suggested-by: Maxime Ripard <mripard@kernel.org>
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> > This commit is only compile-time tested.
-> >
-> > ...and further, I'd say that this patch is more of a plea for help than=
- a patch I
-> > think is actually right. I'm _fairly_ certain that drm/amdgpu needs thi=
-s call at
-> > shutdown time but the logic is a bit hard for me to follow. I'd appreci=
-ate if
-> > anyone who actually knows what this should look like could illuminate m=
-e, or
-> > perhaps even just post a patch themselves!
-> >
-> > (no changes since v1)
-> >
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 ++++++++++
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  2 ++
-> >  3 files changed, 13 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > index 8f2255b3a38a..cfcff0b37466 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> > @@ -1104,6 +1104,7 @@ static inline struct amdgpu_device
-> > *amdgpu_ttm_adev(struct ttm_device *bdev)  int amdgpu_device_init(struc=
-t
-> > amdgpu_device *adev,
-> >                      uint32_t flags);
-> >  void amdgpu_device_fini_hw(struct amdgpu_device *adev);
-> > +void amdgpu_device_shutdown_hw(struct amdgpu_device *adev);
-> >  void amdgpu_device_fini_sw(struct amdgpu_device *adev);
-> >
-> >  int amdgpu_gpu_wait_for_idle(struct amdgpu_device *adev); diff --git
-> > a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > index a2cdde0ca0a7..fa5925c2092d 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > @@ -4247,6 +4247,16 @@ void amdgpu_device_fini_hw(struct
-> > amdgpu_device *adev)
-> >
-> >  }
-> >
-> > +void amdgpu_device_shutdown_hw(struct amdgpu_device *adev) {
->
-> This needs a better name since its only for displays.  Also maybe move it=
- into amdgpu_display.c since it's really about turning off the displays.  T=
-hat said is this really even needed?  The driver already calls its suspend =
-functionality to turn off all of the hardware and put it into a quiescent s=
-tate before shutdown.  Basically shares the same code we use for suspend.
+I'm sure there are more, but it's likely my Coccinelle pattern didn't
+catch it. There are many many flexible arrays in drm. :)
 
-As per my comment above, for this driver, my patch was a "plea for
-help". I have no idea if it's really needed or if suspend handles it.
+$ grep -nRH '\[\];$' drivers/gpu/drm include/uapi/drm | grep -v :extern | wc -l
+122
 
-My main concerns are:
+If anyone has some patterns I can add to the Coccinelle script, I can
+take another pass at it.
 
-a) If it's possible that someone out there is using this DRM driver
-with a "drm_panel" then we need to make sure the panel gets disabled /
-unprepared properly at shutdown time. The goal is to remove the
-special logic in some panel drivers that disables the panel at
-shutdown time. The guidance I got from Maxime is that we should be
-relying on the DRM driver to disable panels at shutdown time and not
-have extra per-panel code for it.
+> Anyway:
+> 
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-b) It is documented that DRM driers call drm_atomic_helper_shutdown()
-at shutdown time. Even if things are working today, it's always
-possible that something will change later and break for drivers that
-aren't doing this.
+Thank you!
 
+-Kees
 
-If you're confident that everything is great for the "amdgpu" driver
-then I'm happy to drop this patch and not consider it a blocker for
-the eventual removal of the code in the individual panels drivers.
-
-If, after reading this, you conclude that some sort of patch is
-needed, I'd love it if you could test/post a patch yourself and then
-I'll drop this patch from my series.
-
-
--Doug
+-- 
+Kees Cook
