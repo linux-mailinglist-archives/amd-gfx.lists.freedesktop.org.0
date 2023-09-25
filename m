@@ -2,60 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17F07ADA24
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 16:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A3177AD9FB
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 16:22:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B84310E256;
-	Mon, 25 Sep 2023 14:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED2C10E25E;
+	Mon, 25 Sep 2023 14:22:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
- [IPv6:2001:4860:4864:20::2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADA4710E256
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 14:32:44 +0000 (UTC)
-Received: by mail-oa1-x2d.google.com with SMTP id
- 586e51a60fabf-1dcf357deedso2132871fac.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 07:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695652364; x=1696257164; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=b/3HqQ4ox7Fb9siS8AepHIy6hECl4OQ2to8wUI2aLzQ=;
- b=mxBSzimfBjrh0n/eIOox44ViaQHY6I+zKt41aFjiBbAP/rthh5Dy9+CQ8Nl6O8Lyym
- K8WFsS7Kn1M+vXeX7X9/wRN7OLQjpLDkh1DoaiWdzyr9S6d9vm8W6N2aOLWfijYTnn7A
- dVgvi0T0aHS8TXL4Ss0xy2NFOLXDKGxSpc6rGgCB/OTT7NDi3HIMh5elO1qZG6hNYjy3
- zyTPhWyFskdgdpFJGO084x2y5wfNN2v1RhPdBhIZifQSyhFD0rsjErYHDMJTawtCttyb
- /qcaHOLwFt4h6GhQZBYc1ixvMvOaeEc70yOaRAP6qk9Tg03sVmIktclEuRPx6SyiFNX/
- 7Kog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695652364; x=1696257164;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=b/3HqQ4ox7Fb9siS8AepHIy6hECl4OQ2to8wUI2aLzQ=;
- b=WdMxPJsBYjbIkC5f9yXIlt3zi6zrjPQzqwZWvVxCu36eP/VJ6XfMcEdur9wjpVD/NE
- Hrn1DDr+17aUfzoB3F3l2zPbV7ePwsRCdwhqSiXSX69gTsh6eXNmU/PYfClEoeonVtLJ
- ZWO0lCCmxcteLkXpEdi7WtTtTQkpwzh43XKVT/tpRzD0oB2PUMRLUT7fEDt0FbyT7iPh
- sGk5AbuISjedU3dMmg0zjJ/NwnjfRhQ8iVsyUUAvseEE+xqtL/eABzUlfPXwLh/WDNl3
- PTPcetttZ9dCi5YBuLiMeIvSeWhiWNvVNWk3Tzc7LT8ia7QKGuHg2P2dSvFrR7jtqXvj
- qSgw==
-X-Gm-Message-State: AOJu0YwPu3GIlUziLRqnTDMeAgXF8aMB239+41ISdqrnSK/lfihBKU1M
- e3LY/nIlEQCBe/2RG+HnrQBMH/BU8E4B2cKDTyDZqa0M
-X-Google-Smtp-Source: AGHT+IFgIlLK8ERG5HVXUXbjRNuy0otlgmwsY0ktqUwnYbb75FkqH2IUbx3ZGMBTGI4BUxSqhLRQoJDAc/PkgYa6xxA=
-X-Received: by 2002:a05:6870:f689:b0:1d5:b9e1:d35e with SMTP id
- el9-20020a056870f68900b001d5b9e1d35emr9438900oab.41.1695652363939; Mon, 25
- Sep 2023 07:32:43 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2077.outbound.protection.outlook.com [40.107.223.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B55E210E25E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 14:22:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T5XnmH220zDgXnbuZQy/hXNUZvZGCQNgbuP7GXRRdOO00qU3lukK1yEan3/BoDnvw4TpyAX9kYPBetgXJo+a2kWDgz80cxRR+QIb36ENoDQMgAk5a/YA/l7H4RhEPwbgFn6ilKUMnu9YtESPlSEKSFijygMi3ajXo0TDs3vBmcrS8y8gg6jIDWLhmVs2PCRnyHgFRSQ0Lk2fkUtNNhAVM4hCwEoSmfzy4QAx8s3eFrMjbLcOGWEMsMhbwrWugP2hFesaVkmh6MOczDLBYcKiz4GSUuz57yx8P4VrQ99Uw/kzOkAqqHRoPV/64yLNVDRQJElnDABIa+BgGquixggYZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qFcR22LHmsLco63IxeZSzMH4I4ugJVYTBR0qCdPapFw=;
+ b=aN1Ma/dEK8Hmoo/bTbTUSd72hewIsnQXMjbU5iAtRmctdaaT8qlVALzYgI5tpmjq10RoXcYuCnT03GkJXxYriSgfUAACCIiGAmlhqh3SPb1Q5/mlG10npatj/sUTXDSFKpQjZEcqHb6bkqeEHaIDIfTHSF8kQB2g4ErWSElCuxON558B25olG6yE2kyMLQhUTFzU9CZemBuNc3s0gkOjDUfJQg3v0rIbYWMvGj/rkIilnO2afVe9VSafYpCE9f36clz4LcwMnjrRdVbKrm2GcIKn6rma6OmVDE8vWz9d+7T5UcW9t1jnUfwNeV/h6M2F0JrK+wA+jjLNit4pdaQ5Eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qFcR22LHmsLco63IxeZSzMH4I4ugJVYTBR0qCdPapFw=;
+ b=4mws5WaSeELJlZNy6dHf+2OikDb3WEci0rN0X9dpgDUfYKOZeIWHlSREhaHS2IXS48mCe9xI0xNUZgQZlpBZ5ahYziqbZ919zuS4BxSaoZR+dwIbEyu61+UTT2Bk78woaVqMzHINtL8Za9LHUz6RFMH3y6zLrjulVcZwZ+bCdNU=
+Received: from CH2PR02CA0019.namprd02.prod.outlook.com (2603:10b6:610:4e::29)
+ by DS7PR12MB6167.namprd12.prod.outlook.com (2603:10b6:8:98::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.31; Mon, 25 Sep
+ 2023 14:22:45 +0000
+Received: from DS2PEPF0000343B.namprd02.prod.outlook.com
+ (2603:10b6:610:4e:cafe::5e) by CH2PR02CA0019.outlook.office365.com
+ (2603:10b6:610:4e::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.35 via Frontend
+ Transport; Mon, 25 Sep 2023 14:22:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF0000343B.mail.protection.outlook.com (10.167.18.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Mon, 25 Sep 2023 14:22:45 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 25 Sep
+ 2023 09:22:42 -0500
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd: Move evict resources suspend step to prepare()
+Date: Mon, 25 Sep 2023 09:33:59 -0500
+Message-ID: <20230925143359.14932-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230922201243.104935-1-mario.limonciello@amd.com>
-In-Reply-To: <20230922201243.104935-1-mario.limonciello@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 25 Sep 2023 10:32:32 -0400
-Message-ID: <CADnq5_NLSz0Ur2NFMadGSx2im3PCUrO577e52ahAs8M+YN8C-A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Propagate failures in dc_set_power_state()
-To: Mario Limonciello <mario.limonciello@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343B:EE_|DS7PR12MB6167:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ca9dcae-0774-45a2-7b2d-08dbbdd2e308
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: adv4I+5C05SXZrr8Iu1YcIeUc/0oG/2/0OMfIvWK4G6O4BBxQ7FvG5aI1qfx28SpqH/DmgNNJdsxTZr+Zed7Gs7xHsuJLatKZljxKCSqhxGyYFBju33j2+Ymq7yhMJRo6GlOwFfeVSD5wLjthPDxxj9iIQACQnQgI/xg6yLNUvO5aD3NHHr8wYCtkKfeTA0ymZWbvOkiHOcfLCuDSOyy6BMOHhDJgE2fka3T8HIeYgCISo8Kd4+cyFHnyB5LrNGVUGzKQl5LcncgTq8S+RUZw7TiZe0CCOuNeb+6XGqHgy6H9HOKtm6r4fzpQmW8ecg7qxTy1+PxsDn2WqZAAZeS7fWTCWaXIWYOZlHucIorS8HrCRJhaTnle0/fn5EDfjrI+oL93+iX5VmNX0L2Oqb/Vh2R/C3VP5XB8hDa2BxuCe0wh90FbMMJlRnKVf963vpo3eM47eYxFXGeyLZoIMpofkFss1i7df/OBjEGfpQENxZ/CAq5moTMBheQgLUmXYpSS09MDF/YjeDKAMj/CEgsa6bfCQNlH5BbS2+Z1Ve/9OyGwAJr3wltbHV0PKBnfwA6zisiv00RETt7oOw+XdBwgJrPd+zRZK9IOiwpGS0cHYU2Ho2ohRUj4fy4U8kDA4PFnM8XrvVic7kAUtRb71beuXCuGnz2qknVJaVqsGhAtDLVJmznqphatiECzh+fgThMy/3l387NFpuiJ3KHZEcZNwdZxNYWkPY3QOJWbzPyAlArZBFlK43M8ho3bFyd5ld0
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(82310400011)(1800799009)(451199024)(186009)(40470700004)(36840700001)(46966006)(40460700003)(40480700001)(15650500001)(41300700001)(8676002)(8936002)(4326008)(5660300002)(44832011)(36860700001)(316002)(36756003)(70586007)(356005)(478600001)(83380400001)(81166007)(26005)(70206006)(336012)(966005)(47076005)(426003)(16526019)(82740400003)(1076003)(6916009)(2906002)(6666004)(2616005)(86362001)(7696005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 14:22:45.2041 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ca9dcae-0774-45a2-7b2d-08dbbdd2e308
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6167
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,126 +97,95 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry.Wentland@amd.com, amd-gfx@lists.freedesktop.org
+Cc: Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 22, 2023 at 4:51=E2=80=AFPM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> During the suspend process dc_set_power_state() will use kzalloc
-> to allocate memory, but this potentially fails with memory pressure.
-> If it fails, the suspend should be aborted.
->
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2362
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+If the system is under high memory pressure, the resources may need
+to be evicted into swap instead.  If the storage backing for swap
+is offlined during the suspend() step then such a call may fail.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+So instead move this step into prepare(), while leaving all other
+steps that put the GPU into a low power state in suspend().
 
-> ---
-> Cc: Harry.Wentland@amd.com
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 13 ++++++++-----
->  drivers/gpu/drm/amd/display/dc/core/dc.c          |  8 +++++---
->  drivers/gpu/drm/amd/display/dc/dc.h               |  2 +-
->  3 files changed, 14 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 373884ca38b9..2acb555343ae 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -2670,9 +2670,7 @@ static int dm_suspend(void *handle)
->
->         hpd_rx_irq_work_suspend(dm);
->
-> -       dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D3);
-> -
-> -       return 0;
-> +       return dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D3);
->  }
->
->  struct amdgpu_dm_connector *
-> @@ -2865,7 +2863,10 @@ static int dm_resume(void *handle)
->                 if (r)
->                         DRM_ERROR("DMUB interface failed to initialize: s=
-tatus=3D%d\n", r);
->
-> -               dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D0);
-> +               r =3D dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D=
-0);
-> +               if (r)
-> +                       return r;
-> +
->                 dc_resume(dm->dc);
->
->                 amdgpu_dm_irq_resume_early(adev);
-> @@ -2914,7 +2915,9 @@ static int dm_resume(void *handle)
->         }
->
->         /* power on hardware */
-> -       dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D0);
-> +       r =3D dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D0);
-> +       if (r)
-> +               return r;
->
->         /* program HPD filter */
->         dc_resume(dm->dc);
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/a=
-md/display/dc/core/dc.c
-> index 293489c41086..a1593d550526 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-> @@ -4711,7 +4711,7 @@ void dc_power_down_on_boot(struct dc *dc)
->                 dc->hwss.power_down_on_boot(dc);
->  }
->
-> -void dc_set_power_state(
-> +int dc_set_power_state(
->         struct dc *dc,
->         enum dc_acpi_cm_power_state power_state)
->  {
-> @@ -4719,7 +4719,7 @@ void dc_set_power_state(
->         struct display_mode_lib *dml;
->
->         if (!dc->current_state)
-> -               return;
-> +               return 0;
->
->         switch (power_state) {
->         case DC_ACPI_CM_POWER_STATE_D0:
-> @@ -4746,7 +4746,7 @@ void dc_set_power_state(
->
->                 ASSERT(dml);
->                 if (!dml)
-> -                       return;
-> +                       return -ENOMEM;
->
->                 /* Preserve refcount */
->                 refcount =3D dc->current_state->refcount;
-> @@ -4764,6 +4764,8 @@ void dc_set_power_state(
->
->                 break;
->         }
-> +
-> +       return 0;
->  }
->
->  void dc_resume(struct dc *dc)
-> diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/di=
-splay/dc/dc.h
-> index faf897ac75d8..82013ebcba91 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dc.h
-> +++ b/drivers/gpu/drm/amd/display/dc/dc.h
-> @@ -2329,7 +2329,7 @@ void dc_notify_vsync_int_state(struct dc *dc, struc=
-t dc_stream_state *stream, bo
->
->  /* Power Interfaces */
->
-> -void dc_set_power_state(
-> +int dc_set_power_state(
->                 struct dc *dc,
->                 enum dc_acpi_cm_power_state power_state);
->  void dc_resume(struct dc *dc);
-> --
-> 2.34.1
->
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2362
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  7 +------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 11 +++++++++--
+ 3 files changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index a79d53bdbe13..54859e810844 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1285,6 +1285,7 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ #define MIN(X, Y) ((X) < (Y) ? (X) : (Y))
+ 
+ /* Common functions */
++int amdgpu_device_evict_resources(struct amdgpu_device *adev);
+ bool amdgpu_device_has_job_running(struct amdgpu_device *adev);
+ bool amdgpu_device_should_recover_gpu(struct amdgpu_device *adev);
+ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 30c4f5cca02c..4df27d200848 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4085,7 +4085,7 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+  * at suspend time.
+  *
+  */
+-static int amdgpu_device_evict_resources(struct amdgpu_device *adev)
++int amdgpu_device_evict_resources(struct amdgpu_device *adev)
+ {
+ 	int ret;
+ 
+@@ -4122,11 +4122,6 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+ 
+ 	adev->in_suspend = true;
+ 
+-	/* Evict the majority of BOs before grabbing the full access */
+-	r = amdgpu_device_evict_resources(adev);
+-	if (r)
+-		return r;
+-
+ 	if (amdgpu_sriov_vf(adev)) {
+ 		amdgpu_virt_fini_data_exchange(adev);
+ 		r = amdgpu_virt_request_full_gpu(adev, false);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 81edf66dbea8..8ec1c1c79bfb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2380,12 +2380,14 @@ static int amdgpu_pmops_prepare(struct device *dev)
+ {
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(drm_dev);
++	int r;
+ 
+ 	/* Return a positive number here so
+ 	 * DPM_FLAG_SMART_SUSPEND works properly
+ 	 */
+-	if (amdgpu_device_supports_boco(drm_dev))
+-		return pm_runtime_suspended(dev);
++	if (amdgpu_device_supports_boco(drm_dev) &&
++	    pm_runtime_suspended(dev))
++		return 1;
+ 
+ 	/* if we will not support s3 or s2i for the device
+ 	 *  then skip suspend
+@@ -2394,6 +2396,11 @@ static int amdgpu_pmops_prepare(struct device *dev)
+ 	    !amdgpu_acpi_is_s3_active(adev))
+ 		return 1;
+ 
++	/* Evict the majority of BOs before grabbing the full access */
++	r = amdgpu_device_evict_resources(adev);
++	if (r)
++		return r;
++
+ 	return 0;
+ }
+ 
+-- 
+2.34.1
+
