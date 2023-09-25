@@ -2,59 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3E37AD9EC
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 16:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B26B07ADA01
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 16:24:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC4A10E262;
-	Mon, 25 Sep 2023 14:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3623E10E264;
+	Mon, 25 Sep 2023 14:24:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
- [IPv6:2001:4860:4864:20::2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A98710E261
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 14:17:55 +0000 (UTC)
-Received: by mail-oa1-x2d.google.com with SMTP id
- 586e51a60fabf-1c4c5375329so3613894fac.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 07:17:55 -0700 (PDT)
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
+ [IPv6:2607:f8b0:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D327D10E264
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 14:24:32 +0000 (UTC)
+Received: by mail-ot1-x32f.google.com with SMTP id
+ 46e09a7af769-6bf2427b947so3240277a34.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 07:24:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695651475; x=1696256275; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1695651872; x=1696256672; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=dWId3rm9P0/5gVVDQpUZw/9a3+JhcVS7aOQG11Tdyag=;
- b=dC4GXML6aOmB1E7klayBuBV4AQdJOPUPSyAYFaP90a88TckU7uuEErwdU/6cLoj4vW
- ZH7aL9R/4FVtc8r5FyTH0xZK7nD764jgOibk62NwFb1nMJDi5tgEsgjfzKqAeLkODAVe
- LXz2Jd5piLdLKKNGIglQmXU9puOQdZODI+RLUVAiLmalPVlAfy8XFKKZy++w+zR5QBI0
- TUTqZ/vtOSzKnxhn4yrI3E8cdEfVqaxTkHUfblLKQ+mwDadp+jT/FVqXzjT5OtJZ4bn1
- +NRiUf9xEZ/5qDYbPnQR4OXr/KA3ENXcciCH3rG/Fj6RIc2hGVh42cVwU4y9vPdOfKSQ
- 25HA==
+ bh=4VoebIdzAQqabF1FkK3+kTXtIMJCsUe8LphF77eg6ro=;
+ b=milUn0KuOerhYzhNVy+PuSbOGDCl3qCU9tHZhLSgee21Q/2xxtlqwzskzx/fsotiUr
+ Qd83Eokkwe0MbRFOeQF/HpaI6O3sPcr8pFx8uyTFTlOoOjZ2Y5o6qV/YE3xlQyuSZJOF
+ g1eBkmlHv+C4CBLJQ06ylZpg2ryVmDSGPNToXxZp/9y91tL5yZB4nbKbGf0e0CdocYf8
+ ObFJRLbfMZ8IfKg+hrnKf7dfRUcj/WcqBGegaELyTs6nhQecv7S1S9+rswkajWoDG7/n
+ RSP1xemu23cv5D1Jcg5/j18PNoE8vbsBqCxf+RqGx5qH+1F8UC/UMubqKFPGAXU3OUIK
+ LWQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695651475; x=1696256275;
+ d=1e100.net; s=20230601; t=1695651872; x=1696256672;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=dWId3rm9P0/5gVVDQpUZw/9a3+JhcVS7aOQG11Tdyag=;
- b=tp0UNLeu7YxYfq4TuufS8Zxe0hV0krMVUbJX3IjaP2RfvsC4a/EjRtnpe+wBV/dmVd
- a0gFAQdALz+fyFzd/whVADBOKb0/U+yRoMWQOqQ9V/blwDXzZ7b96K3lvQLnn0p+aTgo
- U7RYmv9PJbNBGhTneZ63zfV6iJV1vEndH3lryUkoN1FtAzuwrw+1RuyZYDpuA/ZLWHS+
- fxlVfvFmgr8lJzwIx6H9D4uQXrsvuKZWwXxYAkmmbiPTNaJkIMWsFA4RuH0FMihWYbyd
- PEybzdI+Ow3YWTdazf63NYB+/+IIOJ4VVYZn2j0BQjHt9o0nGYigTLqEThQlR/waWEOZ
- N73Q==
-X-Gm-Message-State: AOJu0YwO40m4Jzwe/qDqCKYcVWeuhP4+fv08mSt6/jkVDVJIRZ0ujSHD
- L4zfm3VyCq6MgVmyC10X1E9NRWh23yfg97HUd5E=
-X-Google-Smtp-Source: AGHT+IHtVWhrUzL+dX42DCDY3fQM/cdiWxFpRGrfeMYLsEFfutaXa8AluXH62CsOpkH/tA8kcHnKTQvFSMmlg3mKOtU=
-X-Received: by 2002:a05:6870:c38b:b0:1d6:266b:e58a with SMTP id
- g11-20020a056870c38b00b001d6266be58amr8342807oao.14.1695651475041; Mon, 25
- Sep 2023 07:17:55 -0700 (PDT)
+ bh=4VoebIdzAQqabF1FkK3+kTXtIMJCsUe8LphF77eg6ro=;
+ b=d9DyOjdy9iwtCekIPfrpDmUfPEFwmz9C/AJ6Oy91EehPAzLVMjAPGa/X678GDNoFca
+ Hba7Yjq23/Je2pE4EvmGg3PxK1AfIFYnVRVux+1T6xheFOnRjs1FLYH0q46a3gSlhjRa
+ KOWaCsj4y7MJptdVmT5pYDjAGWj5bHTRWg28xu5MEy5sa613x/1WNdMV1Pwmd/6LxfEO
+ bwiDhJEvDTZaxc2UbrPO/C8dVbHF73X9HJfnSZHkz0NFE4EcDh/XFsL8ljayBOSXlT0o
+ 6r79xAdWpQbY+B3GYzkBkdqzhj5zwxy6EhZWQ3jMfD3xaIyDERkGXec4teB/vGR3+dXU
+ jcFA==
+X-Gm-Message-State: AOJu0YwehpkJIyl9O1aaMGNT1ypghNisyRkkqOB9xv6aJWRKnvUbXcqO
+ dXXzX9BUfJBPULq6jyFmbV1l0EjYXh71rxzeU/72PDEq
+X-Google-Smtp-Source: AGHT+IFIx7m5rqwbU2hHJV/hW7QdIbw/eRS63835Be1xvDB63nbjcrjeUA/hySd9yex7C+fGTzaMuujtiJPyHW8BQds=
+X-Received: by 2002:a05:6870:63ac:b0:1d0:dbdd:2792 with SMTP id
+ t44-20020a05687063ac00b001d0dbdd2792mr6912102oap.39.1695651871940; Mon, 25
+ Sep 2023 07:24:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230925062225.819007-1-srinivasan.shanmugam@amd.com>
-In-Reply-To: <20230925062225.819007-1-srinivasan.shanmugam@amd.com>
+References: <20230922213419.51846-1-luben.tuikov@amd.com>
+In-Reply-To: <20230922213419.51846-1-luben.tuikov@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 25 Sep 2023 10:17:44 -0400
-Message-ID: <CADnq5_PEW6-OX39Ap2DeWciReNS2=+fdzra0uRko7JucvdR8VA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Address 'srf_updates' not described in
- 'could_mpcc_tree_change_for_active_pipes'
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Date: Mon, 25 Sep 2023 10:24:20 -0400
+Message-ID: <CADnq5_NapXB0PH84EszWBfGfWJxXYU4hV3j8fHpHwbaMxKeJEQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix a memory leak
+To: Luben Tuikov <luben.tuikov@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,48 +67,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <Alexander.Deucher@amd.com>,
+ Yang Wang <kevinyang.wang@amd.com>,
+ AMD Graphics <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 25, 2023 at 2:41=E2=80=AFAM Srinivasan Shanmugam
-<srinivasan.shanmugam@amd.com> wrote:
+On Fri, Sep 22, 2023 at 5:51=E2=80=AFPM Luben Tuikov <luben.tuikov@amd.com>=
+ wrote:
 >
-> Fixes the following:
+> Fix a memory leak in amdgpu_fru_get_product_info().
 >
-> drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3928: warning: Functio=
-n parameter or member 'srf_updates' not described in 'could_mpcc_tree_chang=
-e_for_active_pipes'
->
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> Cc: Alex Deucher <Alexander.Deucher@amd.com>
+> Reported-by: Yang Wang <kevinyang.wang@amd.com>
+> Fixes: 0dbf2c56262532 ("drm/amdgpu: Interpret IPMI data for product infor=
+mation (v2)")
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
 > ---
->  drivers/gpu/drm/amd/display/dc/core/dc.c | 1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c | 1 +
 >  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/a=
-md/display/dc/core/dc.c
-> index c5a74b202bc8..ab403d2d9038 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-> @@ -3906,6 +3906,7 @@ static void commit_planes_for_stream(struct dc *dc,
->   *
->   * @dc: Used to get the current state status
->   * @stream: Target stream, which we want to remove the attached planes
-> + * @srf_updates: Array of surface updates
->   * @surface_count: Number of surface update
->   * @is_plane_addition: [in] Fill out with true if it is a plane addition=
- case
->   *
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+> index 9c66d98af6d86a..7cd0dfaeee206c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+> @@ -170,6 +170,7 @@ int amdgpu_fru_get_product_info(struct amdgpu_device =
+*adev)
+>                 csum +=3D pia[size - 1];
+>         if (csum) {
+>                 DRM_ERROR("Bad Product Info Area checksum: 0x%02x", csum)=
+;
+> +               kfree(pia);
+>                 return -EIO;
+>         }
+>
+>
+> base-commit: 14d13f757d369c9873ebbe34d02d0896f5de565e
 > --
-> 2.34.1
+> 2.42.0
 >
