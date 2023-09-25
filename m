@@ -2,48 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F617AE00B
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 21:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 097687AE017
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Sep 2023 21:52:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B3210E316;
-	Mon, 25 Sep 2023 19:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32C6F10E31B;
+	Mon, 25 Sep 2023 19:52:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE8D10E307;
- Mon, 25 Sep 2023 19:50:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=+sDMhQfGTAJaMxdArU/jGdKeiFDfWD2SuuYunmoKLT4=; b=oefIML4fiawsjF0BqR2XMRZkC/
- wP5zGs5n+k239hl9HkdpS+6slrnpGX0lGe1DeDkjqtjD6nJbhtS0lmLrMI0ikSGSvtja8bpSfblpt
- 6McjIWwQh4VKVhfp9Ex8KgTpWyQKeME4mSRH/hjh9e8v01WJ63SFakLneXBrSDlkU+5Oco7yETIEk
- BNmsNq1K1LcEf9us142kJi34NU26BBcL+zSlIZ56rNaOkEBaKKDcjXnRtw06BjZKGM9MU7gQpuPws
- m3oeRt1vJ7Jhr3hf3vNRuiX7Lkf7re7/eR0eWqx6xelkw61E62nupTo50X1z773oqTkgrReyubO4U
- NveS1IWg==;
-Received: from [102.213.205.115] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1qkrbT-008GsG-N2; Mon, 25 Sep 2023 21:50:47 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de
-Subject: [PATCH v3 32/32] drm/amd/display: Add 3x4 CTM support for plane CTM
-Date: Mon, 25 Sep 2023 18:49:32 -0100
-Message-Id: <20230925194932.1329483-33-mwen@igalia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230925194932.1329483-1-mwen@igalia.com>
-References: <20230925194932.1329483-1-mwen@igalia.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED21810E31B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Sep 2023 19:52:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V5Fo7loC8xem6nvuVyMXix8y/l2CCuIKwA4KpPcuqFFxgYqS4jhWuSjR6ypBBmq2MsCwkxdvnR0kqabL5WkfIluWV+IgaOVgEtsk7OfDFuAfccnfBzl1a+7+bQ51ZxVYuz2iUdnU/D4ru/V18yIUpTpMWdyLCt2vewGPpFxm3Jb2RsiinOLmhcHOH11TDa1ZhxOZo6vZxNW3NybeTqNmI74WDOKOE/54CIq6ZszpbycTxw4hoGmcLWb9pDqYhSpEkf93dqthF9aMemm8Wsm9g1pLsAqN5qOC/dOYCv04NK4TDNrL+XJTwsBnx3AAR9gAK5Y4ot6om8RBjmDXVMcW5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CWvZhG/8QBVYa/LVSZFfRgSpwHOOxOxzImsEvfL6/ao=;
+ b=gt642cS8s/zmHKLJi0duWH73ajpnMYUQmgcFqJX0Vh4rfSxWZHL2DF1S9YmuNjg8frO+Fgc5ElOAPpxl5rLyLeSJhkk8k4v/reNXJkIOMby4MDgedOyG8hq+8y+X19SChz3QmRL1Ut57doCf29VmApg2Yaf9EBAQdDVjL1g8q3Jfy5N6s++c4nPP+yOyYKnvD+7nWvgU7NrfOJBXw6kn32I0TVbZscjz0uAQMKrYFKImChSIy9LLBwrzbKKOuNIgxvbeyXnH8vgd8maT9RC7GmjL0d/FdRzWaqX3yFUv5Gk9c+lLubTsu8fKU6vtk1wxtdIY293YNSZ6e2NtQ3GYYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CWvZhG/8QBVYa/LVSZFfRgSpwHOOxOxzImsEvfL6/ao=;
+ b=4c+CeUrs0Ai5ho7zvV3RnBaxMs9ubP5roDLWzLiVw3gXj+yao+/GQFPYdwlvSMfcwTwDOMu0JzQzfwvxZrF2vQTbGCiCVEts1A4DU0wL1REa5F6FCp+o8CjNrXnk0Bsl4q6pjCxed0abmJ3vbBn5yliAco+1LQMnb0DEUyFgxe4=
+Received: from SJ0PR03CA0151.namprd03.prod.outlook.com (2603:10b6:a03:338::6)
+ by IA1PR12MB7590.namprd12.prod.outlook.com (2603:10b6:208:42a::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Mon, 25 Sep
+ 2023 19:52:48 +0000
+Received: from CO1PEPF000042AC.namprd03.prod.outlook.com
+ (2603:10b6:a03:338:cafe::9a) by SJ0PR03CA0151.outlook.office365.com
+ (2603:10b6:a03:338::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.30 via Frontend
+ Transport; Mon, 25 Sep 2023 19:52:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000042AC.mail.protection.outlook.com (10.167.243.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Mon, 25 Sep 2023 19:52:47 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 25 Sep
+ 2023 14:52:40 -0500
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/8] Some cleanups related to missing microcode
+Date: Mon, 25 Sep 2023 14:51:59 -0500
+Message-ID: <20230925195207.124850-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042AC:EE_|IA1PR12MB7590:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1360a2f8-50b6-4e6a-ec5e-08dbbe00fe2c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WC7mb1htOvNZJNB+YM3d4iaMpQGrSWl1EVrBKnVgcG6x/DiaBdrq1JbRHERchFheBl6yDRBh52Xzpy11Ie7CJeXY02gDzQ09bY/xpG9/+TRujqm5oeN41u+XTXukQRcfB4j92nlv75rd8mMqJquOw3MpSkCKu9aJwGep2B1QHELzs5/bL01vcULYWxtZFCv6iu9AqZE+f59/GNgaxhnR2RIEn5vNRnW7478/A/XXGa4iBLYt/9P4q386JRP1ZC2HfWhdb8kuQ0TaUNazIw+XB2DQDOt/U0pti+2qe4UzMO8EK+IiYaiRXpzQO0QkuiShkHPuEkZDeFzDjykrvzCyid81vR1ShIO64RzguXvFrt+9jQWsqnL4abKyoiEZjRtSVa++MFP3lhOWmH0bTkyDn9X7ca8vJ8h8MP67fIWiVZd+7kU6m25DuMet0FQXA10tyVk1Xnk1w9Yodvdk5fJR8ky6OC3PzKWj5NYHl4LI1upoKZH9YsLNfLtYCv3pGcbX0rTPKYawemFU2g3lqwEigd1jt81jo6mCicNyei8ILaXxDhZT/aH8lfjYDkTcIc+aV01UMoxedkP0N9OMLlDuNBLsCiTP9nViDJFTOSfTATTFkUQysi8+jqqLY4umAF2L2m+fABOvqsLY64zBze7OXT9MeKhy9EmDpdZf/xM+Tw4AM2XiZXcnkoV/5FIH+eInMXH0JVfV2OUG/H1kpvS61oxW9LVL62X5E95sul5xVc+T4R3Kjc9733bNODxsYqn57x65sGQ0BK/jhvj/rE6NKg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(136003)(346002)(39860400002)(376002)(396003)(230922051799003)(451199024)(1800799009)(82310400011)(186009)(46966006)(40470700004)(36840700001)(81166007)(6666004)(7696005)(8676002)(2616005)(47076005)(478600001)(4326008)(16526019)(70586007)(83380400001)(336012)(2906002)(5660300002)(1076003)(316002)(70206006)(6916009)(426003)(8936002)(41300700001)(40480700001)(36756003)(36860700001)(44832011)(82740400003)(86362001)(26005)(40460700003)(356005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 19:52:47.5285 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1360a2f8-50b6-4e6a-ec5e-08dbbe00fe2c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7590
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,122 +97,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
- Simon Ser <contact@emersion.fr>, Xaver Hugl <xaver.hugl@gmail.com>,
- kernel-dev@igalia.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Joshua Ashton <joshua@froggi.es>, sungjoon.kim@amd.com
+Cc: Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Joshua Ashton <joshua@froggi.es>
+I recently found a noisier experience than I expected with missing
+microcode.  As a result I found that some microcode wasn't being loaded
+in early_init and some messages were unnecessary.
 
-Create drm_color_ctm_3x4 to support 3x4-dimension plane CTM matrix and
-convert DRM CTM to DC CSC float matrix.
+Mario Limonciello (8):
+  drm/amd: Drop error message about failing to load DMUB firmware
+  drm/amd: Drop error message about failing to load SDMA firmware
+  drm/amd: Move microcode init from sw_init to early_init for SDMA v5.0
+  drm/amd: Move microcode init from sw_init to early_init for SDMA v6.0
+  drm/amd: Move microcode init from sw_init to early_init for SDMA v5.2
+  drm/amd: Move microcode init from sw_init to early_init for SDMA v3.0
+  drm/amd: Move microcode init from sw_init to early_init for SDMA v2.4
+  drm/amd: Move microcode init from sw_init to early_init for CIK SDMA
 
-v3:
-- rename ctm2 to ctm_3x4 (Harry)
+ drivers/gpu/drm/amd/amdgpu/cik_sdma.c             | 11 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c            | 11 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c            | 11 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c            |  4 +---
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c          |  4 +---
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c            | 11 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c            | 11 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c            | 11 +++++------
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 --
+ 9 files changed, 32 insertions(+), 44 deletions(-)
 
-Signed-off-by: Joshua Ashton <joshua@froggi.es>
----
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 28 +++++++++++++++++--
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  2 +-
- include/uapi/drm/drm_mode.h                   |  8 ++++++
- 3 files changed, 34 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 944dccd483de..774a83a9dee7 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -410,6 +410,28 @@ static void __drm_ctm_to_dc_matrix(const struct drm_color_ctm *ctm,
- 	}
- }
- 
-+/**
-+ * __drm_ctm_3x4_to_dc_matrix - converts a DRM CTM 3x4 to a DC CSC float matrix
-+ * @ctm: DRM color transformation matrix with 3x4 dimensions
-+ * @matrix: DC CSC float matrix
-+ *
-+ * The matrix needs to be a 3x4 (12 entry) matrix.
-+ */
-+static void __drm_ctm_3x4_to_dc_matrix(const struct drm_color_ctm_3x4 *ctm,
-+				       struct fixed31_32 *matrix)
-+{
-+	int i;
-+
-+	/* The format provided is S31.32, using signed-magnitude representation.
-+	 * Our fixed31_32 is also S31.32, but is using 2's complement. We have
-+	 * to convert from signed-magnitude to 2's complement.
-+	 */
-+	for (i = 0; i < 12; i++) {
-+		/* gamut_remap_matrix[i] = ctm[i - floor(i/4)] */
-+		matrix[i] = dc_fixpt_from_s3132(ctm->matrix[i]);
-+	}
-+}
-+
- /**
-  * __set_legacy_tf - Calculates the legacy transfer function
-  * @func: transfer function
-@@ -1154,7 +1176,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- {
- 	struct amdgpu_device *adev = drm_to_adev(crtc->base.state->dev);
- 	struct dm_plane_state *dm_plane_state = to_dm_plane_state(plane_state);
--	struct drm_color_ctm *ctm = NULL;
-+	struct drm_color_ctm_3x4 *ctm = NULL;
- 	struct dc_color_caps *color_caps = NULL;
- 	bool has_crtc_cm_degamma;
- 	int ret;
-@@ -1208,7 +1230,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 
- 	/* Setup CRTC CTM. */
- 	if (dm_plane_state->ctm) {
--		ctm = (struct drm_color_ctm *)dm_plane_state->ctm->data;
-+		ctm = (struct drm_color_ctm_3x4 *)dm_plane_state->ctm->data;
- 		/* DCN2 and older don't support both pre-blending and
- 		 * post-blending gamut remap. For this HW family, if we have
- 		 * the plane and CRTC CTMs simultaneously, CRTC CTM takes
-@@ -1219,7 +1241,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 		 * mapping CRTC CTM to MPC and keeping plane CTM setup at DPP,
- 		 * as it's done by dcn30_program_gamut_remap().
- 		 */
--		__drm_ctm_to_dc_matrix(ctm, dc_plane_state->gamut_remap_matrix.matrix);
-+		__drm_ctm_3x4_to_dc_matrix(ctm, dc_plane_state->gamut_remap_matrix.matrix);
- 
- 		dc_plane_state->gamut_remap_matrix.enable_remap = true;
- 		dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 98501f5044c2..a1f087b0f7e5 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1551,7 +1551,7 @@ dm_atomic_plane_set_property(struct drm_plane *plane,
- 		ret = drm_property_replace_blob_from_id(plane->dev,
- 							&dm_plane_state->ctm,
- 							val,
--							sizeof(struct drm_color_ctm), -1,
-+							sizeof(struct drm_color_ctm_3x4), -1,
- 							&replaced);
- 		dm_plane_state->base.color_mgmt_changed |= replaced;
- 		return ret;
-diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index 46becedf5b2f..a811d24e8ed5 100644
---- a/include/uapi/drm/drm_mode.h
-+++ b/include/uapi/drm/drm_mode.h
-@@ -838,6 +838,14 @@ struct drm_color_ctm {
- 	__u64 matrix[9];
- };
- 
-+struct drm_color_ctm_3x4 {
-+	/*
-+	 * Conversion matrix with 3x4 dimensions in S31.32 sign-magnitude
-+	 * (not two's complement!) format.
-+	 */
-+	__u64 matrix[12];
-+};
-+
- struct drm_color_lut {
- 	/*
- 	 * Values are mapped linearly to 0.0 - 1.0 range, with 0x0 == 0.0 and
 -- 
-2.40.1
+2.34.1
 
