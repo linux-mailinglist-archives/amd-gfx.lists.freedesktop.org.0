@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E087AF5D5
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Sep 2023 23:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EFD87AF5D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Sep 2023 23:54:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356A910E442;
-	Tue, 26 Sep 2023 21:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E85A10E443;
+	Tue, 26 Sep 2023 21:54:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2085.outbound.protection.outlook.com [40.107.220.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F129E10E43C
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 21:53:56 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2057.outbound.protection.outlook.com [40.107.96.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D812F10E442
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 21:53:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J/3HjS3bAd/zqT7J94blIVGDGzdm0zxIwZ6Pp1PNs97h+7QIVr5I93ThXDv+KCekd5L8h6ygNkog9DdaXF0OdctlnNqYMc1RbyL9aB1z+/VPxbf5Fn2sXLaI9DC1Y68/qKy1uOCYq/b/3yY1Uz1x6h3d1xD/YjpzibvDKw8dusBJHy9qZ8zLEE5pfAm9mY50Jkf39TprACZqtDaHzvxK6X+kUeCtyMIXTbjZiigC7PyOhAtrxD8F0D6I73FF2fLewKAYI30s655W4MbxxaKUUqPY+OsYgxR91WWHNp1xQ8DOhxCNKfoGlleXAYXkvH8jrO1Dfo3J44iwQzh8Qou8bA==
+ b=abkRMSf6Xs3TjrVuQ8OaQU+S7rpGP0CUwfpDm1/qf18nHi9oFUcStetIZsAoFwGBAXg/LAp8hn7RtE77hsIa0S61Qt/nYBp3rS2loe/ypJ5BSloDU8BuchYi5UD59hUEf82UyGvm6LwGasarMHk7XfyR/HdpoVQ9t0f74rkxbrP1pw5BW5yH0/NZjHty/1VoKC4YkzzvK+K9zc85v8MoZmL4YiBDb+msApNjyduBaGOwnhHPUTp0tEyzbmhE1eF2kcZ8jIWed4jge3M9ajnulOOPck1asa6noL5sYnl4RpsLQGvnu7HsLi3VznPliddOGrVQIPMejTKUFzGKVWIQ2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ag+5bvmwywfybxZAKvGAHJh0tEdcRddx7+6o0RTRgos=;
- b=fVXfKSFPoujGaqMvKeEm6VWx5H4XnJmEfro63J74aERdVqRU3lLP8w3em1Z3pONwKj+fIYSZYLHRvG85jvJTPiElijmQnk2h19q/yXbd3d+KWDPzYt9dPol+SuJqlmls4YhSKOKmesjUMkTCGkdBdHmOt1sCW9TVlYfTsckJP1+oxjVwklO6j3HgkEh7pTG/DSxVLsKYw023o7F+XVtMRi/HmyhFqCTuZNpVtRfiUTWWgFLiuwpifbIRaknRQa8X2cSyqU72HTc7hVy3er1SWHpr3CCVJ3/eqLdcH1EYbe4aPQYve/eTwBzl4GSA40Rg9KZTBvRPIsj4T/R9Tx6PTQ==
+ bh=/t0fZhsu4KenwkonBYiZvxLRdMrGn1KfCMoLWVSUNtA=;
+ b=Xm2KrXn5JapSnqCll0UC28jWsdA9n5xCPZLn+81KcSVpLvw7kfG9r7qQV3gyk747BhbwB8+JTVznKKkkROvtNYlSYGebVByc78u2Rwx2sIhpscs1CZ1X/JZ7AWLog39Pbi+mT6w8INENBkfCg7GgyD9DSAkA38QAthabtN97et+ZUs/917za2bRxFWtjSubgPt/SxQioGZEHSzgsY9G9kSFQIzxonE7Sfee/D9e/+oYRcgJ20+73I43n7/xWbas+tXohuapbo4Bz7B+eFOoorF6RN5cjGjyk8m2Mn9ekjVD2IbEJXHxSub4OO5mMgimUeKiqTjI5XAVF/vQ/PWhRLw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ag+5bvmwywfybxZAKvGAHJh0tEdcRddx7+6o0RTRgos=;
- b=LfmQVIyv9iZU4AQr2xXD/CIDvRYQaO5TNxEX13daCYR8MFUtm9jtmgW2TROyNc3mJybJ8BsfO56/lDoNcH7tPtSNQnhRAYs7WpBwfiRc1/KUpXqbKsFoqj6U5K6pJBOG+eqLTB+DhgsGsAqGrC9eRrOCZT/EXm3qb9heGHX7FNU=
-Received: from DM6PR06CA0028.namprd06.prod.outlook.com (2603:10b6:5:120::41)
- by DS0PR12MB8814.namprd12.prod.outlook.com (2603:10b6:8:14e::22) with
+ bh=/t0fZhsu4KenwkonBYiZvxLRdMrGn1KfCMoLWVSUNtA=;
+ b=uIJ+rsSoi9E4RXwbjOxsCEKv5F82Kn/m+vn6orqvpRRuXeJYRqRILs52h3G1wlT97zZkyZ7F3YtUCnXfFu5aFFgaN5dvt/NauzKJkpAY/hsrRFz6OfibfgeP46Tz4tMnTBPWLz6hdffs3DU3SXhs0y46ee2xo/E6NM3HpgBbzc4=
+Received: from DS7PR03CA0073.namprd03.prod.outlook.com (2603:10b6:5:3bb::18)
+ by DM4PR12MB5359.namprd12.prod.outlook.com (2603:10b6:5:39e::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Tue, 26 Sep
- 2023 21:53:54 +0000
-Received: from DS1PEPF00017095.namprd03.prod.outlook.com
- (2603:10b6:5:120:cafe::dd) by DM6PR06CA0028.outlook.office365.com
- (2603:10b6:5:120::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.21 via Frontend
- Transport; Tue, 26 Sep 2023 21:53:54 +0000
+ 2023 21:53:55 +0000
+Received: from DS3PEPF000099D9.namprd04.prod.outlook.com
+ (2603:10b6:5:3bb:cafe::5b) by DS7PR03CA0073.outlook.office365.com
+ (2603:10b6:5:3bb::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.35 via Frontend
+ Transport; Tue, 26 Sep 2023 21:53:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS1PEPF00017095.mail.protection.outlook.com (10.167.17.138) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099D9.mail.protection.outlook.com (10.167.17.10) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Tue, 26 Sep 2023 21:53:54 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6838.14 via Frontend Transport; Tue, 26 Sep 2023 21:53:55 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 26 Sep
- 2023 16:53:54 -0500
+ 2023 16:53:55 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
  (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 26 Sep
- 2023 14:53:53 -0700
+ 2023 14:53:54 -0700
 Received: from manjaura-ryzen.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Tue, 26 Sep 2023 16:53:52 -0500
+ Transport; Tue, 26 Sep 2023 16:53:53 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 11/14] drm/amd/display: Update DMUB cmd header
-Date: Tue, 26 Sep 2023 17:47:02 -0400
-Message-ID: <20230926215335.200765-12-aurabindo.pillai@amd.com>
+Subject: [PATCH 12/14] drm/amd/display: Adjust code style for dmub_cmd.h
+Date: Tue, 26 Sep 2023 17:47:03 -0400
+Message-ID: <20230926215335.200765-13-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20230926215335.200765-1-aurabindo.pillai@amd.com>
 References: <20230926215335.200765-1-aurabindo.pillai@amd.com>
@@ -72,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017095:EE_|DS0PR12MB8814:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6872b5a-83ef-44e4-da6b-08dbbedb13f0
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D9:EE_|DM4PR12MB5359:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e619fa0-15ac-4258-fab5-08dbbedb148f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 01rg5EQk7LjkEXayOVmIC3sAJ4IMgdiFDID5gJBqn6I6lm+O9ekICargHfCuLtH5BwJjon79EKz0Jw4MbDaaNHZ3N9hWuLE/JKWJ3gROgPhndw8tVQf8G0n7zoOL27cpFcLOn8YWepwD29hdx3tsxT6vcWja/q02+7IVw4uOG+pQGlH5KivSo8ZQyAPr+tbDZHNdHTg9lJg1xkFOqjFKM7Prj+VgKDjO0hEXBxVsbWGCIlcpDP0/5dvUaDhaf897pIwY//+QTcVVfTHrpEMgSK4ASJknkbPQyT+BmvpezIkK3bqPh1NUaA4kFyWyukCJOKn/tU2lW7HcWy3YN1Iq+SYm46K1V1OVeSGe4tIjwrneOh7zss5iVhLXAhVtj1Bo5i0tAMsq8c56cCbX/6NktNKZPrSPLdoToKBlA22aTkFHhxC8I2SMbOrgs3FLbHtldSpfkwrPwG0PJAO3QyC1S0ibRck2cZtwgH3BDX1fJuKg/0sWgk9uX+IKC/YTmmNp2nP4VfVmMZ7AUNoqOlKUOHZidi9VcPtRjqKFHYSxfNJpuNrS6G2luHk8M2wIyw9TzO6i8DmiuDp34xPR5/FklKOJNvw+Gib7IlJK+VgToeyMJflz0YnedG1dk2zCXFULNfIzrSU/C7Z4T74yh9s/AAs9xDEiDllAPdlaVX3h+uAMjd2EKa3eRVissmWaNtuYveG8KC43oKKCW7vEMp7Nf0BKoYsu5z6GNZYKAgJW8YgfKqIv86UlkaAHa5TfNm50oVJUwympgQz6KxWCU7so0A==
+X-Microsoft-Antispam-Message-Info: EdBVbPLpDnHn/NZbTYD2SnpdgYyOOjqSopAQlDs/4EvAAAadg44HhsbdiiFFo4UpV8B/8tJv3Gf1IEsoAlxQmSqkCLg23iRJpTTSYQEdVCJuAYDnTsnz00isBxIwmo866ii1znl/yPaNVpHGtzbH9grIqu3jSh2Ec58UYeYjtUaoIuA2C8CC0/Eum5FaV0S5GwcC8sZZ/k7zVAfd1Blb0IzSJfN6On34E9T+N9A2K0fMJLTkbnOHhnJ0fzmAqDoUtPbIt2etHfoW9VbKsKA293KuVFDEr1X/svrfDazxGp3VV9ZipJTtmaysSj/6rqeLRahA0URgDl7QUKzKsVdwYWZRLr5SarfGhu5MJGM8xArMaVUIZwrhjHAmMcqu0Frb97tb++o2UE+cfHObkS8QaukZ/SZM6/qdT+ze4vsvpiPF1XRtFuP6SVoW5hfz39XUaAZIN0cWYZrk4S0Nytg3A/Z3qma283pwzJofz8u803UBvqjvJZ1FPVKYCRojWDJTEiLyIOKESoy9Bh7jQnKMtuqeFOMcgXFxUE00mWHFCfI576jRdvHShNxhVSVr4DClCsuc6Xj+ICjfbVCVCYRNOqgpx1qtksHdLKJooiMItyAFBxUtCM2Td8BZ6bailoUQ/kMPzgjj+71Fsrab+ekNsXqJXSMbzUMBmbsQ3w3/oPNrXL6rBTlXhAM5y6CgWBY/zEupjeg/dbfqtbv0Wa3aSrXPoA4FlNPG5awHG1R1kMN92Lx5KG3r+jfbIKK8jkl8gypKgcusZ8fnJ4WKhs7QMg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(230922051799003)(186009)(82310400011)(451199024)(1800799009)(36840700001)(46966006)(40470700004)(316002)(44832011)(5660300002)(8936002)(36860700001)(40480700001)(4326008)(41300700001)(8676002)(54906003)(15650500001)(6916009)(70586007)(70206006)(40460700003)(2906002)(2616005)(7696005)(356005)(81166007)(36756003)(47076005)(478600001)(1076003)(26005)(83380400001)(336012)(86362001)(6666004)(426003)(82740400003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(376002)(396003)(39860400002)(346002)(136003)(230922051799003)(1800799009)(186009)(82310400011)(451199024)(40470700004)(36840700001)(46966006)(40460700003)(2906002)(86362001)(336012)(1076003)(426003)(2616005)(6666004)(478600001)(36756003)(36860700001)(7696005)(47076005)(83380400001)(81166007)(82740400003)(356005)(40480700001)(26005)(8676002)(4326008)(44832011)(8936002)(70586007)(41300700001)(5660300002)(54906003)(70206006)(6916009)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 21:53:54.3942 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6872b5a-83ef-44e4-da6b-08dbbedb13f0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 21:53:55.4371 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e619fa0-15ac-4258-fab5-08dbbedb148f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017095.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D9.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8814
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5359
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,101 +112,279 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why&How]
-* Add hints about the bits used in the packed struct.
-* Update new bitfields for ABM and IPS
+Make some formatting changes and rearranging of definitions for consistency.
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 31 +++++++++++++++++--
- 1 file changed, 28 insertions(+), 3 deletions(-)
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 162 +++++++++---------
+ 1 file changed, 81 insertions(+), 81 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 7ff507221285..25b59accb843 100644
+index 25b59accb843..50686fef97f5 100644
 --- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
 +++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -343,53 +343,78 @@ union dmub_psr_debug_flags {
- union replay_debug_flags {
- 	struct {
- 		/**
-+		 * 0x1 (bit 0)
- 		 * Enable visual confirm in FW.
- 		 */
- 		uint32_t visual_confirm : 1;
+@@ -464,7 +464,8 @@ union replay_hw_flags {
+ };
  
- 		/**
-+		 * 0x2 (bit 1)
- 		 * @skip_crc: Set if need to skip CRC.
- 		 */
- 		uint32_t skip_crc : 1;
+ /**
+- * DMUB visual confirm color
++ * DMUB feature capabilities.
++ * After DMUB init, driver will query FW capabilities prior to enabling certain features.
+  */
+ struct dmub_feature_caps {
+ 	/**
+@@ -641,7 +642,7 @@ union dmub_fw_boot_options {
+ 		uint32_t enable_dpia: 1; /**< 1 if DPIA should be enabled */
+ 		uint32_t invalid_vbios_data: 1; /**< 1 if VBIOS data table is invalid */
+ 		uint32_t dpia_supported: 1; /**< 1 if DPIA is supported on this platform */
+-		uint32_t sel_mux_phy_c_d_phy_f_g: 1; /**< 1 if PHYF/PHYG should be enabled */
++		uint32_t sel_mux_phy_c_d_phy_f_g: 1; /**< 1 if PHYF/PHYG should be enabled on DCN31 */
+ 		/**< 1 if all root clock gating is enabled and low power memory is enabled*/
+ 		uint32_t power_optimization: 1;
+ 		uint32_t diag_env: 1; /* 1 if diagnostic environment */
+@@ -787,6 +788,11 @@ enum dmub_gpint_command {
+ 	 */
+ 	DMUB_GPINT__PSR_RESIDENCY = 9,
  
- 		/**
-+		 * 0x4 (bit 2)
- 		 * @force_link_power_on: Force disable ALPM control
- 		 */
- 		uint32_t force_link_power_on : 1;
- 
- 		/**
-+		 * 0x8 (bit 3)
- 		 * @force_phy_power_on: Force phy power on
- 		 */
- 		uint32_t force_phy_power_on : 1;
- 
- 		/**
-+		 * 0x10 (bit 4)
- 		 * @timing_resync_disabled: Disabled Replay normal sleep mode timing resync
- 		 */
- 		uint32_t timing_resync_disabled : 1;
- 
- 		/**
-+		 * 0x20 (bit 5)
- 		 * @skip_crtc_disabled: CRTC disable skipped
- 		 */
- 		uint32_t skip_crtc_disabled : 1;
- 
- 		/**
-+		 * 0x40 (bit 6)
- 		 * @force_defer_one_frame_update: Force defer one frame update in ultra sleep mode
- 		 */
- 		uint32_t force_defer_one_frame_update : 1;
++	/**
++	 * DESC: Notifies DMCUB detection is done so detection required can be cleared.
++	 */
++	DMUB_GPINT__NOTIFY_DETECTION_DONE = 12,
 +
- 		/**
-+		 * 0x80 (bit 7)
- 		 * @disable_delay_alpm_on: Force disable delay alpm on
- 		 */
- 		uint32_t disable_delay_alpm_on : 1;
-+
- 		/**
-+		 * 0x100 (bit 8)
- 		 * @disable_desync_error_check: Force disable desync error check
- 		 */
- 		uint32_t disable_desync_error_check : 1;
-+
- 		/**
--		 * @disable_desync_error_check: Force disable desync error check
-+		 * 0x200 (bit 9)
-+		 * @force_self_update_when_abm_non_steady: Force self update if abm is not steady
-+		 */
-+		uint32_t force_self_update_when_abm_non_steady : 1;
-+
-+		/**
-+		 * 0x400 (bit 10)
-+		 * @force_disable_ips1: Force disable IPS1 state
-+		 */
-+		uint32_t force_disable_ips1 : 1;
-+
-+		/**
-+		 * 0x800 (bit 11)
-+		 * @force_disable_ips2: Force disable IPS2 state
- 		 */
--		uint32_t disable_dmub_save_restore : 1;
-+		uint32_t force_disable_ips2 : 1;
+ 	/**
+ 	 * DESC: Get REPLAY state from FW.
+ 	 * RETURN: REPLAY state enum. This enum may need to be converted to the legacy REPLAY state value.
+@@ -801,11 +807,6 @@ enum dmub_gpint_command {
+ 	 */
+ 	DMUB_GPINT__REPLAY_RESIDENCY = 14,
  
--		uint32_t reserved : 22;
-+		uint32_t reserved : 20;
- 	} bitfields;
+-
+-	/**
+-	 * DESC: Notifies DMCUB detection is done so detection required can be cleared.
+-	 */
+-	DMUB_GPINT__NOTIFY_DETECTION_DONE = 12,
+ 	/**
+ 	 * DESC: Updates the trace buffer lower 32-bit mask.
+ 	 * ARGS: The new mask
+@@ -991,8 +992,9 @@ enum dmub_cmd_type {
+ 	 * Command type used for all panel control commands.
+ 	 */
+ 	DMUB_CMD__PANEL_CNTL = 74,
++
+ 	/**
+-	 * Command type used for <TODO:description>
++	 * Command type used for all CAB commands.
+ 	 */
+ 	DMUB_CMD__CAB_FOR_SS = 75,
  
- 	uint32_t u32All;
+@@ -1017,7 +1019,6 @@ enum dmub_cmd_type {
+ 	/**
+ 	 * Command type used for all VBIOS interface commands.
+ 	 */
+-
+ 	/**
+ 	 * Command type used for all REPLAY commands.
+ 	 */
+@@ -1240,6 +1241,28 @@ struct dmub_rb_cmd_PLAT_54186_wa {
+ 	struct dmub_cmd_PLAT_54186_wa flip; /**< Flip data */
+ };
+ 
++/**
++ * enum dmub_cmd_mall_type - MALL commands
++ */
++enum dmub_cmd_mall_type {
++	/**
++	 * Allows display refresh from MALL.
++	 */
++	DMUB_CMD__MALL_ACTION_ALLOW = 0,
++	/**
++	 * Disallows display refresh from MALL.
++	 */
++	DMUB_CMD__MALL_ACTION_DISALLOW = 1,
++	/**
++	 * Cursor copy for MALL.
++	 */
++	DMUB_CMD__MALL_ACTION_COPY_CURSOR = 2,
++	/**
++	 * Controls DF requests.
++	 */
++	DMUB_CMD__MALL_ACTION_NO_DF_REQ = 3,
++};
++
+ /**
+  * struct dmub_rb_cmd_mall - MALL command data.
+  */
+@@ -2078,28 +2101,6 @@ enum psr_version {
+ 	PSR_VERSION_UNSUPPORTED			= 0xFFFFFFFF,
+ };
+ 
+-/**
+- * enum dmub_cmd_mall_type - MALL commands
+- */
+-enum dmub_cmd_mall_type {
+-	/**
+-	 * Allows display refresh from MALL.
+-	 */
+-	DMUB_CMD__MALL_ACTION_ALLOW = 0,
+-	/**
+-	 * Disallows display refresh from MALL.
+-	 */
+-	DMUB_CMD__MALL_ACTION_DISALLOW = 1,
+-	/**
+-	 * Cursor copy for MALL.
+-	 */
+-	DMUB_CMD__MALL_ACTION_COPY_CURSOR = 2,
+-	/**
+-	 * Controls DF requests.
+-	 */
+-	DMUB_CMD__MALL_ACTION_NO_DF_REQ = 3,
+-};
+-
+ /**
+  * PHY Link rate for DP.
+  */
+@@ -2760,6 +2761,20 @@ struct dmub_cmd_psr_set_power_opt_data {
+ 	uint32_t power_opt;
+ };
+ 
++/**
++ * Definition of a DMUB_CMD__SET_PSR_POWER_OPT command.
++ */
++struct dmub_rb_cmd_psr_set_power_opt {
++	/**
++	 * Command header.
++	 */
++	struct dmub_cmd_header header;
++	/**
++	 * Definition of a DMUB_CMD__SET_PSR_POWER_OPT command.
++	 */
++	struct dmub_cmd_psr_set_power_opt_data psr_set_power_opt_data;
++};
++
+ #define REPLAY_RESIDENCY_MODE_SHIFT            (0)
+ #define REPLAY_RESIDENCY_ENABLE_SHIFT          (1)
+ 
+@@ -3048,20 +3063,6 @@ struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal {
+ 	struct dmub_cmd_replay_set_coasting_vtotal_data replay_set_coasting_vtotal_data;
+ };
+ 
+-/**
+- * Definition of a DMUB_CMD__SET_PSR_POWER_OPT command.
+- */
+-struct dmub_rb_cmd_psr_set_power_opt {
+-	/**
+-	 * Command header.
+-	 */
+-	struct dmub_cmd_header header;
+-	/**
+-	 * Definition of a DMUB_CMD__SET_PSR_POWER_OPT command.
+-	 */
+-	struct dmub_cmd_psr_set_power_opt_data psr_set_power_opt_data;
+-};
+-
+ /**
+  * Set of HW components that can be locked.
+  *
+@@ -3694,17 +3695,16 @@ struct dmub_rb_cmd_query_feature_caps {
+  */
+ struct dmub_cmd_visual_confirm_color_data {
+ 	/**
+-	 * DMUB feature capabilities.
+-	 * After DMUB init, driver will query FW capabilities prior to enabling certain features.
++	 * DMUB visual confirm color
+ 	 */
+-struct dmub_visual_confirm_color visual_confirm_color;
++	struct dmub_visual_confirm_color visual_confirm_color;
+ };
+ 
+ /**
+  * Definition of a DMUB_CMD__GET_VISUAL_CONFIRM_COLOR command.
+  */
+ struct dmub_rb_cmd_get_visual_confirm_color {
+- /**
++	/**
+ 	 * Command header.
+ 	 */
+ 	struct dmub_cmd_header header;
+@@ -3714,38 +3714,6 @@ struct dmub_rb_cmd_get_visual_confirm_color {
+ 	struct dmub_cmd_visual_confirm_color_data visual_confirm_color_data;
+ };
+ 
+-struct dmub_optc_state {
+-	uint32_t v_total_max;
+-	uint32_t v_total_min;
+-	uint32_t tg_inst;
+-};
+-
+-struct dmub_rb_cmd_drr_update {
+-		struct dmub_cmd_header header;
+-		struct dmub_optc_state dmub_optc_state_req;
+-};
+-
+-struct dmub_cmd_fw_assisted_mclk_switch_pipe_data {
+-	uint32_t pix_clk_100hz;
+-	uint8_t max_ramp_step;
+-	uint8_t pipes;
+-	uint8_t min_refresh_in_hz;
+-	uint8_t pipe_count;
+-	uint8_t pipe_index[4];
+-};
+-
+-struct dmub_cmd_fw_assisted_mclk_switch_config {
+-	uint8_t fams_enabled;
+-	uint8_t visual_confirm_enabled;
+-	uint16_t vactive_stretch_margin_us; // Extra vblank stretch required when doing FPO + Vactive
+-	struct dmub_cmd_fw_assisted_mclk_switch_pipe_data pipe_data[DMUB_MAX_FPO_STREAMS];
+-};
+-
+-struct dmub_rb_cmd_fw_assisted_mclk_switch {
+-	struct dmub_cmd_header header;
+-	struct dmub_cmd_fw_assisted_mclk_switch_config config_data;
+-};
+-
+ /**
+  * enum dmub_cmd_panel_cntl_type - Panel control command.
+  */
+@@ -3784,6 +3752,38 @@ struct dmub_rb_cmd_panel_cntl {
+ 	struct dmub_cmd_panel_cntl_data data; /**< payload */
+ };
+ 
++struct dmub_optc_state {
++	uint32_t v_total_max;
++	uint32_t v_total_min;
++	uint32_t tg_inst;
++};
++
++struct dmub_rb_cmd_drr_update {
++	struct dmub_cmd_header header;
++	struct dmub_optc_state dmub_optc_state_req;
++};
++
++struct dmub_cmd_fw_assisted_mclk_switch_pipe_data {
++	uint32_t pix_clk_100hz;
++	uint8_t max_ramp_step;
++	uint8_t pipes;
++	uint8_t min_refresh_in_hz;
++	uint8_t pipe_count;
++	uint8_t pipe_index[4];
++};
++
++struct dmub_cmd_fw_assisted_mclk_switch_config {
++	uint8_t fams_enabled;
++	uint8_t visual_confirm_enabled;
++	uint16_t vactive_stretch_margin_us; // Extra vblank stretch required when doing FPO + Vactive
++	struct dmub_cmd_fw_assisted_mclk_switch_pipe_data pipe_data[DMUB_MAX_FPO_STREAMS];
++};
++
++struct dmub_rb_cmd_fw_assisted_mclk_switch {
++	struct dmub_cmd_header header;
++	struct dmub_cmd_fw_assisted_mclk_switch_config config_data;
++};
++
+ /**
+  * Data passed from driver to FW in a DMUB_CMD__VBIOS_LVTMA_CONTROL command.
+  */
 -- 
 2.42.0
 
