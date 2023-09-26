@@ -2,44 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2467AED32
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Sep 2023 14:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 456E97AED92
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Sep 2023 15:03:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D090A10E3CE;
-	Tue, 26 Sep 2023 12:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C577110E3DF;
+	Tue, 26 Sep 2023 13:03:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F55210E3C7;
- Tue, 26 Sep 2023 12:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=aC32IXn1jGwDARVO6Xy5vEOeKBQLTWiC5a2CHee2PCs=; b=CgcZqcCRw507vlY7ELYv9zzjXZ
- r877Ddv5MOVm0JCcuU8ZlIH3esQjzU5t82Qp8YjpIKcj7kGl5cqJTyfaOllJbTIGv0WQAXefrTTaA
- rQH2gA+g5PRShk6LuBpGmRLbczKdMR9VqRgtNwMz4ygqMQqyWoSxmvypJFaAvjg8LATvqPYcRsNi7
- CAQe3rhfPjmhI6rk6wnpCplRTkHBrUlBG0MaI8hgj9fGMdA6B5IQXSpHw8QKpHT4DIMjnzj7cFSxt
- MPa/pW+vJFiEAlcVujK9UtaYmn/2AmEGa/fHYrBfJw/FT1YEXylZBiHy15rcnOZNKfW8SMO6nuML1
- lh55EYkA==;
-Received: from [102.213.205.115] (helo=mail.igalia.com)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ql7Ul-008W1J-NL; Tue, 26 Sep 2023 14:48:55 +0200
-Date: Tue, 26 Sep 2023 11:48:47 -0100
-From: Melissa Wen <mwen@igalia.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Subject: Re: [RFC PATCH v2 0/5] drm/amd/display: improve DTN color state log
-Message-ID: <20230926124847.bp7vaow52g6zqwkq@mail.igalia.com>
-References: <20230913164329.123687-1-mwen@igalia.com>
- <1bc1f834-22c4-4199-a063-f53cc345161f@amd.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E68610E3D3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 12:56:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1695732993;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UkUBWVUpOckdloB7nvyn6S4lYeiAg6HkW3tcCGhfEaA=;
+ b=XFjE5YXHN05yxYvTH+oo/ucBO+4uHoy07u6dexMRAnQnXSMMfEIZzFkGG02sLk/qPLteR5
+ mT3tjUtmsM84RmB3mNQS9RFDOGZyUWsqMIhesHPBxUV9EHgjUmRhty5O2dMjJ8VQZHZZQZ
+ Qajy5EGlKkWF5YOSsk0uKAi+Ev5/a2U=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-216-CA82Ri75NCOS3EME434f5g-1; Tue, 26 Sep 2023 08:56:32 -0400
+X-MC-Unique: CA82Ri75NCOS3EME434f5g-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-99bebfada8cso729058866b.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Sep 2023 05:56:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695732991; x=1696337791;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=UkUBWVUpOckdloB7nvyn6S4lYeiAg6HkW3tcCGhfEaA=;
+ b=vIjpOt342f3Ufubx/fT+TltzOh2VXOK07/4ThASWqIZlO7QSnh6CUPSy2/2NNV3xa7
+ UBoGqU1SWE9tj+zoyxYKtv/uPA0P/z/UG9qkTbZACqjBOCp2qo9o0A8jsUviaHiXeFDB
+ Flw8CVObWMsBaa8V9OhBVASZuT4IHrUnN2p19upt1Iy3tGhuIywIOs7Ul5vbEAfMdbP8
+ F6oFSfWALun+3ZU3tn4sAwjgJMyYExNYx/Y+DQ9vmfblKshc4nWlqq8B860HNSiy+rbr
+ r8HIvHr4BfGdo0bJR3clKxJdkzRftoXZpIPV8pL2jfOkDd9KZRxNhuo2rJu2s2u/+D+E
+ RvgQ==
+X-Gm-Message-State: AOJu0Yx2OGNZystkzt79J4V5lqRIFipqQQXRr13DV0ubVSNpv56Bejnt
+ qbP0SLMsI81zYFEFY6/cc+PJTa+0pb5tLTNFK4XsqMEqPFxhJvWtm2crPb1ScBhPCqqx6rcqu6L
+ rt0PGYgtS2DogENufCO370QtwCA==
+X-Received: by 2002:a17:906:5182:b0:9ae:7088:6e5d with SMTP id
+ y2-20020a170906518200b009ae70886e5dmr8609861ejk.3.1695732991320; 
+ Tue, 26 Sep 2023 05:56:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFlKMkjWc/6E/rOck6ptJGST/s1rC6uMsZziOzioVqLhJ/fEha6iiUPqIHhbUDWGuzvICiu2w==
+X-Received: by 2002:a17:906:5182:b0:9ae:7088:6e5d with SMTP id
+ y2-20020a170906518200b009ae70886e5dmr8609829ejk.3.1695732990967; 
+ Tue, 26 Sep 2023 05:56:30 -0700 (PDT)
+Received: from [192.168.1.217] ([109.36.138.247])
+ by smtp.gmail.com with ESMTPSA id
+ t2-20020a17090616c200b0099d45ed589csm7672502ejd.125.2023.09.26.05.56.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 26 Sep 2023 05:56:30 -0700 (PDT)
+Message-ID: <6c047e17-66b0-c3ff-1b4e-4478663619a4@redhat.com>
+Date: Tue, 26 Sep 2023 14:56:26 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1bc1f834-22c4-4199-a063-f53cc345161f@amd.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 13/15] platform/x86/amd/pmf: Add PMF-AMDGPU set interface
+To: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>, markgross@kernel.org,
+ basavaraj.natikar@amd.com, jikos@kernel.org, benjamin.tissoires@redhat.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch
+References: <20230922175056.244940-1-Shyam-sundar.S-k@amd.com>
+ <20230922175056.244940-14-Shyam-sundar.S-k@amd.com>
+ <2e201a3b-d75f-916d-5135-b084ad5da23e@redhat.com>
+ <437fbd5c-386f-4609-a350-77f61c8aaa0c@amd.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <437fbd5c-386f-4609-a350-77f61c8aaa0c@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 26 Sep 2023 13:02:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,147 +91,199 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Krunoslav Kovac <krunoslav.kovac@amd.com>, kernel-dev@igalia.com,
- Shashank Sharma <Shashank.Sharma@amd.com>, sunpeng.li@amd.com,
- Xinhui.Pan@amd.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- dri-devel@lists.freedesktop.org,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
- airlied@gmail.com, christian.koenig@amd.com, sungjoon.kim@amd.com
+Cc: amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Patil.Reddy@amd.com,
+ linux-input@vger.kernel.org, mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 09/25, Harry Wentland wrote:
-> 
-> 
-> On 2023-09-13 12:43, Melissa Wen wrote:
-> > Hi,
-> > 
-> > This is an update of previous RFC [0] improving the data collection of
-> > Gamma Correction and Blend Gamma color blocks.
-> > 
-> > As I mentioned in the last version, I'm updating the color state part of
-> > DTN log to match DCN3.0 HW better. Currently, the DTN log considers the
-> > DCN10 color pipeline, which is useless for DCN3.0 because of all the
-> > differences in color caps between DCN versions. In addition to new color
-> > blocks and caps, some semantic differences made the DCN10 output not fit
-> > DCN30.
-> > 
-> > In this RFC, the first patch adds new color state elements to DPP and
-> > implements the reading of registers according to HW blocks. Similarly to
-> > MPC, the second patch also creates a DCN3-specific function to read the
-> > MPC state and add the MPC color state logging to it. With DPP and MPC
-> > color-register reading, I detach DCN10 color state logging from the HW
-> > log and create a `.log_color_state` hook for logging color state
-> > according to HW color blocks with DCN30 as the first use case. Finally,
-> > the last patch adds DPP and MPC color caps output to facilitate
-> > understanding of the color state log.
-> > 
-> > This version works well with the driver-specific color properties[1] and
-> > steamdeck/gamescope[2] together, where we can see color state changing
-> > from default values.
-> > 
-> > Here is a before vs. after example:
-> > 
-> > Without this series:
-> > ===================
-> > DPP:    IGAM format  IGAM mode    DGAM mode    RGAM mode  GAMUT mode  C11 C12   C13 C14   C21 C22   C23 C24   C31 C32   C33 C34
-> > [ 0]:            0h  BypassFixed  Bypass       Bypass            0    00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > [ 3]:            0h  BypassFixed  Bypass       Bypass            0    00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > 
-> > MPCC:  OPP  DPP  MPCCBOT  MODE  ALPHA_MODE  PREMULT  OVERLAP_ONLY  IDLE
-> > [ 0]:   0h   0h       3h     3           2        0             0     0
-> > [ 3]:   0h   3h       fh     2           2        0             0     0
-> > 
-> > With this series (Steamdeck/Gamescope):
-> > ======================================
-> > 
-> > DPP:  DGAM ROM  DGAM ROM type  DGAM LUT  SHAPER mode  3DLUT mode  3DLUT bit depth  3DLUT size  RGAM mode  GAMUT mode  C11 C12   C13 C14   C21 C22   C23 C24   C31 C32   C33 C34
-> > [ 0]:        1           sRGB    Bypass        RAM A       RAM B           12-bit    17x17x17      RAM A           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > [ 1]:        1           sRGB    Bypass        RAM B       RAM A           12-bit    17x17x17      RAM A           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > [ 2]:        1           sRGB    Bypass        RAM B       RAM A           12-bit    17x17x17      RAM A           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > [ 3]:        1           sRGB    Bypass        RAM A       RAM B           12-bit    17x17x17      RAM A           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > 
-> > DPP Color Caps: input_lut_shared:0  icsc:1  dgam_ram:0  dgam_rom: srgb:1,bt2020:1,gamma2_2:1,pq:1,hlg:1  post_csc:1  gamcor:1  dgam_rom_for_yuv:0  3d_lut:1  blnd_lut:1  oscs:0
-> > 
-> > MPCC:  OPP  DPP  MPCCBOT  MODE  ALPHA_MODE  PREMULT  OVERLAP_ONLY  IDLE  SHAPER mode  3DLUT_mode  3DLUT bit-depth  3DLUT size  OGAM mode  OGAM LUT  GAMUT mode  C11 C12   C33 C34
-> > [ 0]:   0h   0h       2h     3           0        1             0     0       Bypass      Bypass           12-bit    17x17x17        RAM         A           0 00000000h 00000000h
-> > [ 1]:   0h   1h       fh     2           2        0             0     0       Bypass      Bypass           12-bit    17x17x17     Bypass         A           0 00000000h 00000000h
-> > [ 2]:   0h   2h       3h     3           0        1             0     0       Bypass      Bypass           12-bit    17x17x17     Bypass         A           0 00000000h 00000000h
-> > [ 3]:   0h   3h       1h     3           2        0             0     0       Bypass      Bypass           12-bit    17x17x17     Bypass         A           0 00000000h 00000000h
-> > 
-> > MPC Color Caps: gamut_remap:1, 3dlut:2, ogam_ram:1, ocsc:1
-> > 
-> > With this series (Steamdeck/KDE):
-> > ================================
-> > 
-> > DPP:  DGAM ROM  DGAM ROM type  DGAM LUT  SHAPER mode  3DLUT mode  3DLUT bit depth  3DLUT size  RGAM mode  GAMUT mode  C11 C12   C13 C14   C21 C22   C23 C24   C31 C32   C33 C34
-> > [ 0]:        0           sRGB    Bypass       Bypass      Bypass           12-bit       9x9x9     Bypass           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > [ 3]:        0           sRGB    Bypass       Bypass      Bypass           12-bit       9x9x9     Bypass           0  00000000h 00000000h 00000000h 00000000h 00000000h 00000000h
-> > 
-> > DPP Color Caps: input_lut_shared:0  icsc:1  dgam_ram:0  dgam_rom: srgb:1,bt2020:1,gamma2_2:1,pq:1,hlg:1  post_csc:1  gamcor:1  dgam_rom_for_yuv:0  3d_lut:1  blnd_lut:1  oscs:0
-> > 
-> > MPCC:  OPP  DPP  MPCCBOT  MODE  ALPHA_MODE  PREMULT  OVERLAP_ONLY  IDLE  SHAPER mode  3DLUT_mode  3DLUT bit-depth  3DLUT size  OGAM mode  OGAM LUT  GAMUT mode  C11 C12   C33 C34
-> > [ 0]:   0h   0h       3h     3           2        0             0     0       Bypass      Bypass           12-bit    17x17x17        RAM         A           1 00002000h 00002000h
-> > [ 3]:   0h   3h       fh     2           2        0             0     0       Bypass      Bypass           12-bit    17x17x17     Bypass         A           0 00000000h 00000000h
-> > 
-> > MPC Color Caps: gamut_remap:1, 3dlut:2, ogam_ram:1, ocsc:1
-> > 
-> > Before extending it to other DCN families, I have some doubts.
-> > - Does this approach of the `.log_color_state` hook make sense for you?
-> 
-> Yes
-> 
-> > - Is there any conflict between logging color state by HW version and
-> >   DTN log usage?
-> > - Is there a template/style for DTN log output that I should follow or
-> >   information that I should include?
-> > 
-> 
-> At this point it looks like we only use the DTN log for debug purposes,
-> so no conflict and no need to follow a specific format, as long as the
-> output is human-parseable (which yours is).
-> 
-> At one point in the past these were used by automated tests on other
-> platforms but that's no longer the case.
+Hi,
 
-Great! I'll prepare a next version from your suggestions and also
-addressing Siqueira's review.
+On 9/26/23 13:24, Shyam Sundar S K wrote:
+> Hi Hans,
+> 
+> On 9/26/2023 4:05 PM, Hans de Goede wrote:
+>> Hi,
+>>
+>> On 9/22/23 19:50, Shyam Sundar S K wrote:
+>>> For the Smart PC Solution to fully work, it has to enact to the actions
+>>> coming from TA. Add the initial code path for set interface to AMDGPU.
+>>>
+>>> Co-developed-by: Mario Limonciello <mario.limonciello@amd.com>
+>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>>> Signed-off-by: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
+>>> ---
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_pmf.c | 21 +++++++++++++++++++++
+>>>  drivers/platform/x86/amd/pmf/pmf.h      |  2 ++
+>>>  drivers/platform/x86/amd/pmf/tee-if.c   | 19 +++++++++++++++++--
+>>>  include/linux/amd-pmf-io.h              |  1 +
+>>>  4 files changed, 41 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmf.c
+>>> index 232d11833ddc..5c567bff0548 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmf.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmf.c
+>>> @@ -68,3 +68,24 @@ int amd_pmf_get_gfx_data(struct amd_gpu_pmf_data *pmf)
+>>>  	return 0;
+>>>  }
+>>>  EXPORT_SYMBOL_GPL(amd_pmf_get_gfx_data);
+>>> +
+>>> +int amd_pmf_set_gfx_data(struct amd_gpu_pmf_data *pmf)
+>>> +{
+>>> +	struct drm_device *drm_dev = pci_get_drvdata(pmf->gpu_dev);
+>>> +	struct amdgpu_device *adev = drm_to_adev(drm_dev);
+>>> +	struct backlight_device *bd;
+>>> +
+>>> +	if (!(adev->flags & AMD_IS_APU)) {
+>>> +		DRM_ERROR("PMF-AMDGPU interface not supported\n");
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	bd = backlight_device_get_by_type(BACKLIGHT_RAW);
+>>> +	if (!bd)
+>>> +		return -ENODEV;
+>>
+>> This assumes that the backlight is always controller by the amdgpu's
+>> native backlight driver, but it might e.g. also be handled by
+>> eacpi-video or by nvidia_wmi_ec_backlight (when using an AMD APU +
+>> nvidia dgpu).
+> 
+> PMF is meant for AMD APUs(atleast for now) and the _HID will only be
+> made visible if its AMD laptop. So using amdgpu's native BACKLIGHT_RAW
+> should be safe, right?
 
-Thanks for the guidance.
-
-Melissa
+Users can pass say acpi_backlight=video and use the acpi_video
+driver for backlight control instead of the native GPU backlight
+control.
 
 > 
-> Harry
+>>
+>> For now what should be done here is to call acpi_video_get_backlight_type()
+>> and then translate the return value from this into a backlight-type:
+>>
+>>         acpi_backlight_video		-> BACKLIGHT_FIRMWARE
+>>         acpi_backlight_vendor,		-> BACKLIGHT_PLATFORM
+>>         acpi_backlight_native,		-> BACKLIGHT_RAW
+>>         acpi_backlight_nvidia_wmi_ec,	-> BACKLIGHT_FIRMWARE
+>>         acpi_backlight_apple_gmux,	-> BACKLIGHT_PLATFORM
+>>
 > 
-> > Let me know your thoughts.
-> > 
-> > Thanks,
-> > 
-> > Melissa
-> > 
-> > [0] https://lore.kernel.org/amd-gfx/20230905142545.451153-1-mwen@igalia.com/
-> > [1] https://lore.kernel.org/amd-gfx/20230810160314.48225-1-mwen@igalia.com/
-> > [2] https://github.com/ValveSoftware/gamescope
-> > 
-> > Melissa Wen (5):
-> >   drm/amd/display: detach color state from hw state logging
-> >   drm/amd/display: fill up DCN3 DPP color state
-> >   drm/amd/display: create DCN3-specific log for MPC state
-> >   drm/amd/display: hook DCN30 color state logging to DTN log
-> >   drm/amd/display: add DPP and MPC color caps to DTN log
-> > 
-> >  .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  53 +++++++--
-> >  .../gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c  |  45 ++++++-
-> >  .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 111 ++++++++++++++++++
-> >  .../drm/amd/display/dc/dcn30/dcn30_hwseq.h    |   3 +
-> >  .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   1 +
-> >  .../gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c  |  55 ++++++++-
-> >  .../drm/amd/display/dc/dcn301/dcn301_init.c   |   1 +
-> >  drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |   8 ++
-> >  drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   |  13 ++
-> >  .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   2 +
-> >  10 files changed, 280 insertions(+), 12 deletions(-)
-> > 
+> I can add this change in the v2, do you insist on this?
+
+Insist is a strong word, but I think that it is a good idea to have
+this. Evenutally it looks like this code will need to either integrate with
+the drm drivers lot more; or the drm core needs to export some special
+hooks for this which the PMF code can then call.
+
+Actually thinking more about this, I think that the right thing to do
+here is make some code register brightness control as a cooling device
+(which I think is already done in some cases) and then have the PMF
+code use the cooling-device APIs for this.
+
+IMHO that would be a much cleaner solution then this hack.
+
+Regards,
+
+Hans
+
+
+
 > 
+> Thanks,
+> Shyam
+> 
+>> Also I'm worried about probe order here, this code currently assumes
+>> that the GPU or other backlight driver has loaded before this runs,
+>> which is not necessarily the case.
+>>
+>> I think that if the backlight_device_get_by_type() fails this
+>> should be retried say every 10 seconds from some delayed workqueue
+>> for at least a couple of minutes after boot.
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+>>
+>>
+>>> +
+>>> +	backlight_device_set_brightness(bd, pmf->brightness);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(amd_pmf_set_gfx_data);
+>>> diff --git a/drivers/platform/x86/amd/pmf/pmf.h b/drivers/platform/x86/amd/pmf/pmf.h
+>>> index 9032df4ba48a..ce89cc0daa5a 100644
+>>> --- a/drivers/platform/x86/amd/pmf/pmf.h
+>>> +++ b/drivers/platform/x86/amd/pmf/pmf.h
+>>> @@ -73,6 +73,7 @@
+>>>  #define PMF_POLICY_STT_SKINTEMP_APU				7
+>>>  #define PMF_POLICY_STT_SKINTEMP_HS2				8
+>>>  #define PMF_POLICY_SYSTEM_STATE					9
+>>> +#define PMF_POLICY_DISPLAY_BRIGHTNESS				12
+>>>  #define PMF_POLICY_P3T						38
+>>>  
+>>>  /* TA macros */
+>>> @@ -480,6 +481,7 @@ enum ta_pmf_error_type {
+>>>  };
+>>>  
+>>>  struct pmf_action_table {
+>>> +	unsigned long display_brightness;
+>>>  	enum system_state system_state;
+>>>  	unsigned long spl; /* in mW */
+>>>  	unsigned long sppt; /* in mW */
+>>> diff --git a/drivers/platform/x86/amd/pmf/tee-if.c b/drivers/platform/x86/amd/pmf/tee-if.c
+>>> index 1608996654e8..eefffff83a4c 100644
+>>> --- a/drivers/platform/x86/amd/pmf/tee-if.c
+>>> +++ b/drivers/platform/x86/amd/pmf/tee-if.c
+>>> @@ -79,10 +79,10 @@ static int amd_pmf_update_uevents(struct amd_pmf_dev *dev, u16 event)
+>>>  	return 0;
+>>>  }
+>>>  
+>>> -static void amd_pmf_apply_policies(struct amd_pmf_dev *dev, struct ta_pmf_enact_result *out)
+>>> +static int amd_pmf_apply_policies(struct amd_pmf_dev *dev, struct ta_pmf_enact_result *out)
+>>>  {
+>>>  	u32 val, event = 0;
+>>> -	int idx;
+>>> +	int idx, ret;
+>>>  
+>>>  	for (idx = 0; idx < out->actions_count; idx++) {
+>>>  		val = out->actions_list[idx].value;
+>>> @@ -160,8 +160,23 @@ static void amd_pmf_apply_policies(struct amd_pmf_dev *dev, struct ta_pmf_enact_
+>>>  				dev->prev_data->system_state = 0;
+>>>  			}
+>>>  			break;
+>>> +
+>>> +		case PMF_POLICY_DISPLAY_BRIGHTNESS:
+>>> +			ret = amd_pmf_get_gfx_data(&dev->gfx_data);
+>>> +			if (ret)
+>>> +				return ret;
+>>> +
+>>> +			dev->prev_data->display_brightness = dev->gfx_data.brightness;
+>>> +			if (dev->prev_data->display_brightness != val) {
+>>> +				dev->gfx_data.brightness = val;
+>>> +				amd_pmf_set_gfx_data(&dev->gfx_data);
+>>> +				dev_dbg(dev->dev, "update DISPLAY_BRIGHTNESS : %d\n", val);
+>>> +			}
+>>> +			break;
+>>>  		}
+>>>  	}
+>>> +
+>>> +	return 0;
+>>>  }
+>>>  
+>>>  static int amd_pmf_invoke_cmd_enact(struct amd_pmf_dev *dev)
+>>> diff --git a/include/linux/amd-pmf-io.h b/include/linux/amd-pmf-io.h
+>>> index a2d4af231362..ecae387ddaa6 100644
+>>> --- a/include/linux/amd-pmf-io.h
+>>> +++ b/include/linux/amd-pmf-io.h
+>>> @@ -25,4 +25,5 @@ struct amd_gpu_pmf_data {
+>>>  };
+>>>  
+>>>  int amd_pmf_get_gfx_data(struct amd_gpu_pmf_data *pmf);
+>>> +int amd_pmf_set_gfx_data(struct amd_gpu_pmf_data *pmf);
+>>>  #endif
+>>
+> 
+
