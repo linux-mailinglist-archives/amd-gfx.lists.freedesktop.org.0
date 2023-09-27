@@ -2,51 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397267B049B
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Sep 2023 14:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C9E97B03F7
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Sep 2023 14:26:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CABD110E507;
-	Wed, 27 Sep 2023 12:47:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A481C10E4FC;
+	Wed, 27 Sep 2023 12:26:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2668410E4FD;
- Wed, 27 Sep 2023 12:26:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695817562; x=1727353562;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=w7Z7GAGvbkE0au25RJJjN4TJdomnd2iP3p/t+pD5fTU=;
- b=THU3rD4igytA4t9c8ZOEn8LYvTd3Zm2EH/RQhlkE45o+tnU5bn5ww4fU
- DgWIr33TkIYBlD5+2f6Hlt7ETpgLByc+rsD16BA24zp4fQo15WWctQyTF
- HknaKqcTVf4ZjyGkvGfN7RsCEX3VSMFQHIiLoHkpADq4dGM7MWD3JSrRF
- H8fZgLlqpIe3I+6+pbkhl1TF8mTv2F1wGsBpfDiLYOnBAKqzgqJJzH/nr
- xiZUMleNxfZD3/u0+UgbaAWf6YvAzhMOm7R8TXgx+pnj/+oH8JdaxsXei
- oCQKZl1fMpFjn8VMHnRTDVDuf4FZkwoSBIHgT1W0K6AhniUQqoxvp6P8r g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="381712699"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="381712699"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 05:26:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="778523583"
-X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="778523583"
-Received: from clkuhl-mobl.amr.corp.intel.com (HELO
- idecesar-mobl.ger.corp.intel.com) ([10.252.53.225])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 05:25:54 -0700
-Date: Wed, 27 Sep 2023 15:25:47 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-Subject: Re: [PATCH 09/15] platform/x86/amd/pmf: Add facility to dump TA inputs
-In-Reply-To: <20230922175056.244940-10-Shyam-sundar.S-k@amd.com>
-Message-ID: <3c1893f2-cf72-c423-5de8-1423b2113a9e@linux.intel.com>
-References: <20230922175056.244940-1-Shyam-sundar.S-k@amd.com>
- <20230922175056.244940-10-Shyam-sundar.S-k@amd.com>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F4210E4FC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Sep 2023 12:26:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f+2natVoJbkVQExzI1skemOid4sd0nOzmiYRDRR2RgIHJjC7C8mB5DPrToxGnkxSqU9MQyT6HTDvO7AlSAcQARRXC2Uf3oGglBbmQWix0pi1veYBLogJHJJW559l4N/VlNtTR2EP1S1ZW7OQajfkXL1TD+BsP+Iq5VjIpPNvjI8vFaz4tQrJyN2JtfoO8ugSrWlvUuxkQTunh01cze2EqykPu6i6Jj3M7PfLdlIaZhPVFVOO5js5bu6zfWl0I4C4gJgnDaXwTZB9MRznyaB80XRUqQwZZifuI8ay1HOHQ5hwWFB+9VTiJ+/Sc5Auh0Szhh/gwg+QssDoURogY5W+Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0qQNyoJvhoBlzlEHPnotJNhMoFzl4Ja87cLppBa36Fo=;
+ b=PC0zLd3/SiogIaqiAfiYZC5fBg7FEuxWuZIiRamzkG8Bo7zoyn24G1kuohIv1CLJuIskC6qDcDQpcBtHWtpaT5JowhOYawakaEKFLdIPbtnHb+2L+cCclVge1i3cCnxsnLfF63VioznJ1VSCRaOlDBKhhoebHgDs4FHouXcZ7LdHigq54CMhErcF86Gqq23yNipfFm5AOyZarp+/FN5Lq89jv7Br651rVsuW057CKjcK1zTwqytsbecm7xDekMjgW9HrhUHMPDcogCCUKoDor6UdPyb27pYl0H9artsafKTnYapY01vaDbMCxglkl/9dmWeY2bdg/4DtIHR2xjnsew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0qQNyoJvhoBlzlEHPnotJNhMoFzl4Ja87cLppBa36Fo=;
+ b=zqV1Bh56c71hJk6tNfWHCSZidxkM+vx7suoLXpzHRs+BPONdRNBEAedcFhR9tSM/ZRrBR5XsVnHdFqIPhoyUNl91I7N0+z4YcLsVBNc7+r0BqFMwqpM0wUgLRJgxAaOoXXcJo1SRaEW+uLowU+/p/QUwUq7CXaz9KMA0kJqg+YE=
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
+ by SA1PR12MB6895.namprd12.prod.outlook.com (2603:10b6:806:24e::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Wed, 27 Sep
+ 2023 12:26:23 +0000
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::9b99:8d90:81b8:b091]) by BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::9b99:8d90:81b8:b091%7]) with mapi id 15.20.6838.016; Wed, 27 Sep 2023
+ 12:26:22 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 2/2] drm/amdgpu: update retry times for psp vmbx wait
+Thread-Topic: [PATCH 2/2] drm/amdgpu: update retry times for psp vmbx wait
+Thread-Index: AQHZ8Sxi6p2dj+bL0E6BcX5z7xmhG7AumTdg
+Date: Wed, 27 Sep 2023 12:26:22 +0000
+Message-ID: <BN9PR12MB5257C9909484BB6EBD4BDEA9FCC2A@BN9PR12MB5257.namprd12.prod.outlook.com>
+References: <20230927102023.7736-1-tao.zhou1@amd.com>
+ <20230927102023.7736-2-tao.zhou1@amd.com>
+In-Reply-To: <20230927102023.7736-2-tao.zhou1@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=404e5277-88b5-4289-bd5e-8e8b65312061;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-09-27T12:26:03Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SA1PR12MB6895:EE_
+x-ms-office365-filtering-correlation-id: b83d020c-ef8b-4839-fa21-08dbbf54f60e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: N0CtZg7O5m2oI0Pe8p4bro6coOJ/kzBObf5tqSaXdkyIh2mtsqYIaivwwRf2dXFlwdM4/RdawtU36bPPSqgUeNzAvruMEIg1P1haarWDt67yov16p35QHa17nLqq+90YtaCiBu9hacOUSVpH7fAdY3kLHLoXLv0GkDea36F6HzOCL3cMFaMVxOmGeJ8JxivkFwSrURgnpyIALwNKp3dyQZtoekqwhOp09AeqZ4DghWCqWf+FJ6yo644WUZR2gX9nwb8uzgC1GDLIdXQhKHr7drdyKpr3VB/UvUiijtlQdevHTjmfj1KWahtX8CgPOExHVhJLia0Nx7ZbYKzbW6usXFWlwSOiE0AwOjhMf6oKqTXtIcAHOxbOSQv416jWFOD29q1ZUsOiBbAuanpHF3fPnZCkWdiGVjKSIhz0y27xoFDKfAuUT0FzkAmJg0lgc899aUArs5ncHHSlvbP6bxnxd5PWtchVvNo7kRLy+aGXQ4Tt/P1/jJEJ/044MSdzSwp+lc93FMDpMjqtQV2w27gBTzH05+czcBfSwuC3lkKnMSkJOt40TsHTKaFqq5fFyYwAGqGB920/SeMroCD8ignTmdc7CT4EbPADZMr7Yu7SjhQkcbbDVy1tgxlj426BUcds
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(136003)(376002)(39860400002)(366004)(346002)(230922051799003)(186009)(451199024)(1800799009)(83380400001)(41300700001)(55016003)(53546011)(122000001)(15650500001)(64756008)(66946007)(110136005)(38100700002)(66556008)(316002)(66446008)(2906002)(478600001)(66476007)(76116006)(86362001)(4326008)(6506007)(8936002)(8676002)(38070700005)(71200400001)(7696005)(9686003)(26005)(52536014)(5660300002)(33656002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jNNDJo9HF/pT0eLYy3u0BMZY9PSno30qz52KHuDU9f9kzvLITTZfPbfehNih?=
+ =?us-ascii?Q?0IzGvKaiM315+tfM6bhtnjTQo+yYDJtVkp1Cb1ACOoOIynfKhOLOgsznQqix?=
+ =?us-ascii?Q?aVFTwI6kGG4D5so7ah9RCiC0I0w+nVGDFCu7yHRMdMSFCWQxpNB/ZQ6kR2Ky?=
+ =?us-ascii?Q?7C/aRh6RvS4EBaBauRtLYFc2e/ixtrfVnNxuJNvC6WkBy1tv4EF6xpg2vP7A?=
+ =?us-ascii?Q?tCcvQgko4B3lpj7cpeZRcHs/9xnKlQ42TF2qv9vxDuaNxDMwv9o2XEFJKUt9?=
+ =?us-ascii?Q?e30Du84PJTeHT5hki7XFfNsLtp5ujQ7iUqqsRS20kLO6zCPfsAr0CuzYl5ua?=
+ =?us-ascii?Q?ZoGKtDgeKA30R2BI3VRgUVO9lDLGiHvs4ysfX/HttWmnPIB0SefKuFzJSUEI?=
+ =?us-ascii?Q?JyROiSivXmkQvjCA9uaqdje6xTg8O+s3nf7Tjsx3uWzrAtyzrGoZVOWcamxp?=
+ =?us-ascii?Q?4XJdhzGHBxfCpGfwafdEGXpEThTB/CFxHfrgnlfzt0WHAPEpSh9Wjje4rkxt?=
+ =?us-ascii?Q?LTBLq9x+Di2HQ7GKsSvizI83SkNlf4ZoQ2KBfF92saXJH8JZb+nXFSkr/7/I?=
+ =?us-ascii?Q?u3Dcg+Dfy4uPD3xQA3xJn1sCQho7Ni4NQjrMyLF/HGVvwSMaAMGIMCwWCBy1?=
+ =?us-ascii?Q?QVTzj0oZWKa+v4tJjY5VqR5pdHccc0tQeX5qWs26frXtO3eMR2TVaO6EezHx?=
+ =?us-ascii?Q?UNjnPYKHKksOoaPd5WGulP+qngYxCSx6ey202hgz0W0+X9icZWI/CbNxJXWC?=
+ =?us-ascii?Q?qdPkNm+oP5XxXs50eEyBoukNVk1Y2eNzMYNVDJ3K6G0w3qf2GyCmpaUwJL5Z?=
+ =?us-ascii?Q?rkQ+1LYJlYePuPYXzxxwg/eQERlgbIvoOMiiB6pBekuii4uerK35P/2OYeL+?=
+ =?us-ascii?Q?1/4vKF0VFj1JtuiZv7OkSqDqpmQ4DmyTGekH5eWz8DKm2Jkg10GC21RMF9iz?=
+ =?us-ascii?Q?6XbafFltbcqVTOP5rNKEOrmEO0s1Iejv+N9cn70geUXiaRm0Gt+svfd36aBy?=
+ =?us-ascii?Q?R/nADSV3R76pf9TJ4NjwAOvYbEIu+w05xYKp35BwSEXuxtRGaVdIHhE7NSe5?=
+ =?us-ascii?Q?OqpSW/pBHql552/zEsBC522uFB5LB0cQSQylFzOflQP7hOngKCpeBTfrEPw4?=
+ =?us-ascii?Q?Nk6EXnwayERiYRxuJ/c2i3wVtDlVnv6Wvzmvjw9LkAFc82rw+ufws78FpY8v?=
+ =?us-ascii?Q?QTDthSv2c7mhhrzhyFywRzikErS0jlWnh9iVyTTk4PBqyLGC5aI6L8VuZA5H?=
+ =?us-ascii?Q?snmLhQcCuDbrJ4gKsfhq1W1IIIBuh6BkVGvur19GdNqWR1RB8fXabjHo67bM?=
+ =?us-ascii?Q?3V9JE6qJE85Xwvq0WFFQ7RchATvvtXT/bmzrgxGjD93cqQoy+EXHkTwVLfsh?=
+ =?us-ascii?Q?hlx5YqxveqjgZoACCi8+NEInEK4oQLnaHq/GtJJ/JnYPrJzpgKRUBdp8Wyha?=
+ =?us-ascii?Q?w1mhP2GisQtVrjscgZ8Zx+mvVL9nLyEjCfpt6XwVEeZvuSjLrCpQ3gC8U276?=
+ =?us-ascii?Q?8DWhjSpaK3PN42QOw+Xfs/njuz4EDL1jxWIXIC1Sz1IfuQ9K+80Kh8qrFuOE?=
+ =?us-ascii?Q?YKHoQOytR/W6tn9wYUwEKBpZrU/VAJH2sP9r5SOc?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Mailman-Approved-At: Wed, 27 Sep 2023 12:47:47 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b83d020c-ef8b-4839-fa21-08dbbf54f60e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2023 12:26:22.9383 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X1MWh1/XyTnHszOPTg4RvZTG8Gaj8DVwhRhbEyPha/SDKzhO6hNq24IJXSSH8jZLbzZ1GdJ7nW0xnvxvue7g5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6895
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,129 +123,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, Patil.Reddy@amd.com, basavaraj.natikar@amd.com,
- dri-devel@lists.freedesktop.org, jikos@kernel.org,
- amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- markgross@kernel.org, hdegoede@redhat.com, benjamin.tissoires@redhat.com,
- mario.limonciello@amd.com, daniel@ffwll.ch, linux-input@vger.kernel.org,
- alexander.deucher@amd.com, airlied@gmail.com, christian.koenig@amd.com
+Cc: "Zhou1, Tao" <Tao.Zhou1@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Sep 2023, Shyam Sundar S K wrote:
+[AMD Official Use Only - General]
 
-> PMF driver sends constant inputs to TA which its gets via the other
-> subsystems in the kernel. To debug certain TA issues knowing what inputs
-> being sent to TA becomes critical. Add debug facility to the driver which
-> can isolate Smart PC and TA related issues.
-> 
-> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-> Signed-off-by: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-> ---
->  drivers/platform/x86/amd/pmf/pmf.h    |  3 +++
->  drivers/platform/x86/amd/pmf/spc.c    | 37 +++++++++++++++++++++++++++
->  drivers/platform/x86/amd/pmf/sps.c    |  2 +-
->  drivers/platform/x86/amd/pmf/tee-if.c |  1 +
->  4 files changed, 42 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/x86/amd/pmf/pmf.h b/drivers/platform/x86/amd/pmf/pmf.h
-> index c5334f1177a4..61a0f3225b62 100644
-> --- a/drivers/platform/x86/amd/pmf/pmf.h
-> +++ b/drivers/platform/x86/amd/pmf/pmf.h
-> @@ -592,6 +592,7 @@ int apmf_get_static_slider_granular(struct amd_pmf_dev *pdev,
->  bool is_pprof_balanced(struct amd_pmf_dev *pmf);
->  int amd_pmf_power_slider_update_event(struct amd_pmf_dev *dev);
->  
-> +const char *source_as_str(unsigned int state);
->  
->  int apmf_update_fan_idx(struct amd_pmf_dev *pdev, bool manual, u32 idx);
->  int amd_pmf_set_sps_power_limits(struct amd_pmf_dev *pmf);
-> @@ -622,4 +623,6 @@ int apmf_check_smart_pc(struct amd_pmf_dev *pmf_dev);
->  
->  /* Smart PC - TA interfaces */
->  void amd_pmf_populate_ta_inputs(struct amd_pmf_dev *dev, struct ta_pmf_enact_table *in);
-> +void amd_pmf_dump_ta_inputs(struct amd_pmf_dev *dev, struct ta_pmf_enact_table *in);
-> +
->  #endif /* PMF_H */
-> diff --git a/drivers/platform/x86/amd/pmf/spc.c b/drivers/platform/x86/amd/pmf/spc.c
-> index 08159cd5f853..5c6745f56ed1 100644
-> --- a/drivers/platform/x86/amd/pmf/spc.c
-> +++ b/drivers/platform/x86/amd/pmf/spc.c
-> @@ -13,6 +13,43 @@
->  #include <linux/power_supply.h>
->  #include "pmf.h"
->  
-> +#ifdef CONFIG_AMD_PMF_DEBUG
-> +static const char *ta_slider_as_str(unsigned int state)
-> +{
-> +	switch (state) {
-> +	case TA_BEST_PERFORMANCE:
-> +		return "PERFORMANCE";
-> +	case TA_BETTER_PERFORMANCE:
-> +		return "BALANCED";
-> +	case TA_BEST_BATTERY:
-> +		return "POWER_SAVER";
-> +	default:
-> +		return "Unknown TA Slider State";
-> +	}
-> +}
-> +
-> +void amd_pmf_dump_ta_inputs(struct amd_pmf_dev *dev, struct ta_pmf_enact_table *in)
-> +{
-> +	dev_dbg(dev->dev, "==== TA inputs START ====\n");
-> +	dev_dbg(dev->dev, "Slider State : %s\n", ta_slider_as_str(in->ev_info.power_slider));
-> +	dev_dbg(dev->dev, "Power Source : %s\n", source_as_str(in->ev_info.power_source));
-> +	dev_dbg(dev->dev, "Battery Percentage : %d\n", in->ev_info.bat_percentage);
-> +	dev_dbg(dev->dev, "Designed Battery Capacity : %d\n", in->ev_info.bat_design);
-> +	dev_dbg(dev->dev, "Fully Charged Capacity : %d\n", in->ev_info.full_charge_capacity);
-> +	dev_dbg(dev->dev, "Drain Rate : %d\n", in->ev_info.drain_rate);
-> +	dev_dbg(dev->dev, "Socket Power : %d\n", in->ev_info.socket_power);
-> +	dev_dbg(dev->dev, "Skin Temperature : %d\n", in->ev_info.skin_temperature);
-> +	dev_dbg(dev->dev, "Avg C0 Residency : %d\n", in->ev_info.avg_c0residency);
-> +	dev_dbg(dev->dev, "Max C0 Residency : %d\n", in->ev_info.max_c0residency);
-> +	dev_dbg(dev->dev, "GFX Busy : %d\n", in->ev_info.gfx_busy);
-> +	dev_dbg(dev->dev, "Connected Display Count : %d\n", in->ev_info.monitor_count);
-> +	dev_dbg(dev->dev, "LID State : %s\n", in->ev_info.lid_state ? "Close" : "Open");
-> +	dev_dbg(dev->dev, "==== TA inputs END ====\n");
+Series is Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Again, the printf format specifiers are wrong, shouldn't the compiler warn 
-about them?
+Regards,
+Hawking
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tao Zhou
+Sent: Wednesday, September 27, 2023 18:20
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
+Subject: [PATCH 2/2] drm/amdgpu: update retry times for psp vmbx wait
 
-> +}
-> +#else
-> +void amd_pmf_dump_ta_inputs(struct amd_pmf_dev *dev, struct ta_pmf_enact_table *in) {}
-> +#endif
-> +
->  static void amd_pmf_get_smu_info(struct amd_pmf_dev *dev, struct ta_pmf_enact_table *in)
->  {
->  	u16 max, avg = 0;
-> diff --git a/drivers/platform/x86/amd/pmf/sps.c b/drivers/platform/x86/amd/pmf/sps.c
-> index a70e67749be3..13e36b52dfe8 100644
-> --- a/drivers/platform/x86/amd/pmf/sps.c
-> +++ b/drivers/platform/x86/amd/pmf/sps.c
-> @@ -27,7 +27,7 @@ static const char *slider_as_str(unsigned int state)
->  	}
->  }
->  
-> -static const char *source_as_str(unsigned int state)
-> +const char *source_as_str(unsigned int state)
->  {
->  	switch (state) {
->  	case POWER_SOURCE_AC:
-> diff --git a/drivers/platform/x86/amd/pmf/tee-if.c b/drivers/platform/x86/amd/pmf/tee-if.c
-> index 1629856c20b4..4844782d93c7 100644
-> --- a/drivers/platform/x86/amd/pmf/tee-if.c
-> +++ b/drivers/platform/x86/amd/pmf/tee-if.c
-> @@ -186,6 +186,7 @@ static int amd_pmf_invoke_cmd_enact(struct amd_pmf_dev *dev)
->  	}
->  
->  	if (ta_sm->pmf_result == TA_PMF_TYPE__SUCCESS && out->actions_count) {
-> +		amd_pmf_dump_ta_inputs(dev, in);
->  		dev_dbg(dev->dev, "action count:%d result:%x\n", out->actions_count,
->  			ta_sm->pmf_result);
->  		amd_pmf_apply_policies(dev, out);
-> 
+Increase the retry loops and replace the constant number with macro.
 
--- 
- i.
+Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/psp_v13_0.c
+index 54008a8991fc..b7bc00d4c696 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
+@@ -59,6 +59,9 @@ MODULE_FIRMWARE("amdgpu/psp_14_0_0_ta.bin");
+ /* Read USB-PD from LFB */
+ #define GFX_CMD_USB_PD_USE_LFB 0x480
+
++/* Retry times for vmbx ready wait */
++#define PSP_VMBX_POLLING_LIMIT 20000
++
+ /* VBIOS gfl defines */
+ #define MBOX_READY_MASK 0x80000000
+ #define MBOX_STATUS_MASK 0x0000FFFF
+@@ -138,7 +141,7 @@ static int psp_v13_0_wait_for_vmbx_ready(struct psp_con=
+text *psp)
+        struct amdgpu_device *adev =3D psp->adev;
+        int retry_loop, ret;
+
+-       for (retry_loop =3D 0; retry_loop < 70; retry_loop++) {
++       for (retry_loop =3D 0; retry_loop < PSP_VMBX_POLLING_LIMIT; retry_l=
+oop++) {
+                /* Wait for bootloader to signify that is
+                   ready having bit 31 of C2PMSG_33 set to 1 */
+                ret =3D psp_wait_for(
+--
+2.35.1
 
