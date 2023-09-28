@@ -2,92 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0797B2641
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Sep 2023 22:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57F9E7B265A
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Sep 2023 22:17:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34BA10E69D;
-	Thu, 28 Sep 2023 20:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE50E10E6A3;
+	Thu, 28 Sep 2023 20:17:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2042.outbound.protection.outlook.com [40.107.102.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97D3D10E3E9
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Sep 2023 20:06:27 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48A6110E6A3;
+ Thu, 28 Sep 2023 20:17:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iH55j/SjdKCDFh1shcQnODh/rwZBcgO7Tpze1z3mjgpW8OmwjsQfZ6rgV7h1GtOBEycuM5FATn/DGpXXJfoMtMaMoKBWYWNqKuBYTpqmCq0sPADeG0y8cUSosEyckikwbbBW54eo1x96cpvMR/PE0DqCmCf2GxGQGvmR6xebGf6mkmmIP9gOqhAjHkY9B3/iIiPNs9T5OsiI3TbGgVEGNAqDxIzwMFXcMRrRTUdx14ex53I6ScXElan7d1quPg1om39qZpLuN158EOATszNrAsPhOPJfsAtLkODvw91hSlJ/0Gl7rC3MMOMuNd1AlggoykfsXMz0g7drOTOoW+krdw==
+ b=cRZk/h+B3iCE3wS1Bpr53PKvw9j9R2Ce9/ySxUb+G3bD3R+1qb/qbSHQsD5A5CG65MC3yi8LuGPv0mehnBDKjFHUk6Tcpv8U4fsP4f8NYhenOjRUsMNu8gFwgtuE2ynFGwwbjtH2whkWkd4kT++UtzsaRVTbu2Xah4e2HYHzf57pZk2eHcQk+zSoXhNoVVzbcYoeLvzMOo8+ZmOSP8eu5dgS6rrRDNAx8r5fPJkOm88OS6OC/YYPZFMPfpzj70uwXsma0HK+aBcCnRkcXUuBTzBHcAR3F6dZhS1qPqFz+0+WXwshbdD6KdoQiz3NKK44oSecCoI9foDhxm2MKbTTTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OTe4QLxJmnC5v9ZrbzO2Cj8MpDROChlh0JpS0on+3Os=;
- b=MCO4Ej+H42jqcO5X1OxRewdz3ih7FOss2vMq6uOlXnfcfNAxqpIa1sSiYgdHWAlhJHwdHWFyMm8PwH67IFyuytFJbp5orJjfK2PBP7B1GNYK04yx88Aj6twKM8tAci1eSqQFoqbYXslgDQuxWIOyT235A3f6AzOgh3U7G5kL7CMnw6OpwsIM9m8xpDnnFRTEuePzkRgJ+S7bdMFC/NQFijRMlncItgbyrXR6eDA8XfNN/o0nsHdU3843iXBXZ3gbx9KinQ6pQLa26yMgk5Trvv4gjVNLbtxUj/wZvwI17pYnD+H8d9/OR+1Ki8KpyWufhjxQLvB5KN6jUeat88qOZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=attkzSJ5T9jecgR1FmoKEARY0xUSNwEIJI/TxVZftLA=;
+ b=bA1fehs+T1OWrumVQ3JOb9CfsjEKnm2ESVK1++Sb8kssz471/kfppQmuLgyq8W8JQyJVTIPrNvEQD8Yhtx5noQwltR0E7qg/ttDuIFfrtClNSIaoaLpw7Qzpyfww4cRNwAfX/Fe16ku9ndwQbaeyhaoZqS8ECrHaSJyZ+WT/0uPCro4d9jwxWQwlONVPOVVpC4owET+9Wn60k9+zRO9S/6+7F6O0kWzgkZfPhPHsbMj0Kmw+XT6wonaB9Rq88h9I6zRRs9LoFma8gcY306vEUh2EpQAJLXONpZdSw++Ad5/PA5SjUE8somxlWKZ32b6BE3K/MfT6FdWWUS5sOjYRfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OTe4QLxJmnC5v9ZrbzO2Cj8MpDROChlh0JpS0on+3Os=;
- b=m6S/nPQe3x5ZxZlDoRValWgz0XTN+NPlDVBfQzCco7q020Oq8TOiB3tMH+bVOsGPegpeELUrc0xiXMjRKs92hKpfoxO52aGz6i4alAFnKJZZym18KBjJPcThR1yKagJacsaPLrVkJ9DFCUwyHDDca0+beRrp/H6l02yYpLMoSBc=
-Received: from MW2PR2101CA0015.namprd21.prod.outlook.com (2603:10b6:302:1::28)
- by SJ2PR12MB7992.namprd12.prod.outlook.com (2603:10b6:a03:4c3::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.32; Thu, 28 Sep
- 2023 20:06:25 +0000
-Received: from CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::33) by MW2PR2101CA0015.outlook.office365.com
- (2603:10b6:302:1::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.13 via Frontend
- Transport; Thu, 28 Sep 2023 20:06:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT091.mail.protection.outlook.com (10.13.175.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.25 via Frontend Transport; Thu, 28 Sep 2023 20:06:25 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 28 Sep
- 2023 15:06:22 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdgpu: refine fault cache updates
-Date: Thu, 28 Sep 2023 16:06:08 -0400
-Message-ID: <20230928200608.2857534-5-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230928200608.2857534-1-alexander.deucher@amd.com>
-References: <20230928200608.2857534-1-alexander.deucher@amd.com>
+ bh=attkzSJ5T9jecgR1FmoKEARY0xUSNwEIJI/TxVZftLA=;
+ b=uK2hPBd/yOi2iRFXUMUUH3MW1IBOLN6q30v0xvAQ5r7lYtK0hAUmh5N3k976PI4JqEPqRHuN3RuLjo3zC53PJZpv5HhfHPC+4Hg1CjhmA5riV4sPUT0Oewfd6iNhclbYhg0UEJRNHhspm0cp9V5wguZTzIsS7AloeX6fuoZifVU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by SJ0PR12MB6758.namprd12.prod.outlook.com (2603:10b6:a03:44a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Thu, 28 Sep
+ 2023 20:17:03 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::121e:5e68:c78a:1f2f]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::121e:5e68:c78a:1f2f%3]) with mapi id 15.20.6838.024; Thu, 28 Sep 2023
+ 20:17:03 +0000
+Message-ID: <c1f850e7-7442-4cb9-a83f-289d467dc749@amd.com>
+Date: Thu, 28 Sep 2023 16:16:57 -0400
+User-Agent: Mozilla Thunderbird
+From: Harry Wentland <harry.wentland@amd.com>
+Subject: Re: [PATCH v3 07/32] drm/amd/display: document AMDGPU pre-defined
+ transfer functions
+To: Melissa Wen <mwen@igalia.com>, amd-gfx@lists.freedesktop.org,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
+ Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch
+References: <20230925194932.1329483-1-mwen@igalia.com>
+ <20230925194932.1329483-8-mwen@igalia.com>
+Content-Language: en-US
+In-Reply-To: <20230925194932.1329483-8-mwen@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQZPR01CA0124.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:87::14) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|SJ2PR12MB7992:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e8c1f16-5c24-4d92-c28b-08dbc05e64e1
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|SJ0PR12MB6758:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14ebaf27-7248-49da-1e72-08dbc05fe0a7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A2pF9CWNHv1JAkohdj6qiy/I+Os0VUVoagI536yYiOg10XHVFu+mtlEzbLr6PsHkVUOILpta+7L58UUYaV/nfRlAFA8OOFdm8q3bq5fOYgSubmV05Vn6TK0fICgyQDpAGpQ45j2xHt4uE9E9W3v/G7owLd8TS1l98MdGoyWZHoxTdNt0aqweCB3WoUZ5hsUBs0GYTKSPDQi8NZ4aiItU1S0Y/GHLlFH51i3tAzpHlMGvPlN5HGXqJAj/wQWIn+0Sobf9TgLs6o9ojzYEvyOKFzYSIUmXtTRPrsjuhApzm9l0VWBXWj1f00mPxmSLlSa2muLZVj9aXlgXEMbybfTu6Kb+0vp9m5dW3fJggo4Z3hQ6sNHEPnO563KXM4b3uk8IUv7RZ4at2B9BbDlR8X/HTp785b5E9qWJweMFuPt/QjneOD0YLvP8C/Cg604S6YtrXJfO1FsGvdY2E9mWbJjTlGRn3P0D5GSjXdz8zJZJ3HhLTDh/gU9dZTez0oB1UobfHqxCqLm8YV0vMZ6fmtSQk5Fj2SbCXW27r3D+x0B8RImQlf8F3/P1mNeFSi5NTp2TuAET4sDg/fN7kRfc1VihmmiHDgAyjZjzd/w1KZWr/PEX+BHrg/NyRWpviBH7TwoZE8kZqrsmY4UGp27wB446vAX3VQiNgAS29SFYNhL8RZb2b4zBemZwLy4Krwf6VPoPALyY5xpgi6gFltxOrrX5JSfRtMyr5EsArqcCcZKWOCFOE1iRomAeY1MtGZdhuyPE6+CsINjT2hdFWg88We3gVg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(376002)(396003)(346002)(136003)(230922051799003)(64100799003)(451199024)(186009)(82310400011)(1800799009)(46966006)(40470700004)(36840700001)(15650500001)(7696005)(2906002)(47076005)(478600001)(4326008)(16526019)(426003)(8676002)(70586007)(70206006)(336012)(5660300002)(8936002)(26005)(83380400001)(1076003)(2616005)(36860700001)(81166007)(41300700001)(6916009)(316002)(82740400003)(356005)(6666004)(86362001)(36756003)(40460700003)(40480700001)(36900700001);
+X-Microsoft-Antispam-Message-Info: wJWPRkfE0wXwjRGwzziC0eTqhHh4biH77xBCQ3/+wMzOVgLyLutv8BXM1BrdNXbohrDNlz2HuxtWfhylhL0q8Sv/z1GegytwHTlSF443gCrt7K64M7t/Y+WRV1GWcD0tHmVE2IIlSjHVDCRd5zQbA55dvvsrB/dGe9G3JMwAX6FJ7OR1CggO3vZLLTELIlalaZG6IyXB+LXs5ih9uMIOf1VOClsj6VgJNn9tBCjxmkB+rCQSptuqa9z2M4hVjC8fierqU5O5M0+K8m6TSK0t6nUf3Kq2zSOceRjWM7qtKYFOdlwKbHzYwGr3q7sJ+3OZGfwzfuKZuZGEcF3Tkx1N7Bmbte0xqOJ806jUo9vrG3IRnop+vuQMJvFMiso767ZgfiHw2rSp6zf2FfgUR9JOyuhK60yPeRxKXzUnjl6+C/Rif4Ea1Iw1ba++Xoz+3hZqyuAfRSa9jRSh6CEtDbiOZZPtA/Ghk8mwdrbOjqbAw5ysHS+a2H352KstGvBzCBoM58dPLLfm/JNJdOcgxmvRhM7xR6XNe+FpaSRDEXD59uHYcL7/kcfiuEks+flc7RCKP3InYBrLDAtbPTm6j3vQnLNonVvDnOX6qnLuQII27fEtSNxtQWuXW26AkbqCVXxvhlgjvbIQwa4Zn8ZAu3kE/r5208frWuY6h4NOD5coRY4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(366004)(376002)(39860400002)(346002)(396003)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(26005)(6512007)(6486002)(53546011)(6666004)(6506007)(478600001)(83380400001)(5660300002)(2906002)(2616005)(316002)(4326008)(8676002)(110136005)(66946007)(54906003)(66476007)(66556008)(8936002)(7416002)(44832011)(36756003)(41300700001)(86362001)(38100700002)(31696002)(921005)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnQzenJSWXgvcy9KTEJTUXJjOEdhWHpDVTROU25DeHFGMUEzSmVtRktseHVO?=
+ =?utf-8?B?TXYwVlRnMkY4K2ZyTUlnMUVKN1g4V1RsUlFPOTJ1WWthRlg2Rm1xREdkLzN2?=
+ =?utf-8?B?cGFFeHl4QitCZTVZczloOStPMWluNHN0REV2eHBNUjJIV0JIL0RHU0xZeE9D?=
+ =?utf-8?B?bGJFTW5DdG5qVC8xUldISkdLVWJFeDlBUmhhc2ZHdk1ZeEdRWGpXaXZMUHpB?=
+ =?utf-8?B?UjZaVmpMQU1XM1k4bm5hWHhHeGxYTGhQN3lUNlU1TUNLbVNENXNYL3lXYWl4?=
+ =?utf-8?B?OE1jSytkdnpjbE1VYmNnMldhOVlxK0psNFVMS1pia0JhTldGT1kreUlEN05C?=
+ =?utf-8?B?c0tidFV1blFnY1lCRlR6QnhWWUxGK0ZTQlBvaVlBb1phdlVoWkNKNWIzRk9u?=
+ =?utf-8?B?dVBQM2RUamg5QWx5VkZlN1EzQ01JMVVHUjRNR1VJMDlRNnlqT1E3NUxvY3RQ?=
+ =?utf-8?B?WGZ0cmVzOThGSVBFR21ad2V3endyTnNCMVpmdUgrT2RKSXJQbHVRRGZwSGlZ?=
+ =?utf-8?B?V0xCWXlVTEQvSGhsVVB3UEphYzRMM2V1Qm1JclYxMnE0U3RHazlLSzdNQzBu?=
+ =?utf-8?B?dGVNMVFjQ1JGR0IxcXlzeUkyeERYUW4yZjhRaGFCSXN3dVRnY1hxbnB6L2JE?=
+ =?utf-8?B?V2NNZUlVYUllcklDV3dIWm9YalNsMVU3SnNyZk1Ma3VXWHVOYjVIVkQrUzA0?=
+ =?utf-8?B?REFaOTJIMEZiNm13d3NDNEtBTGh0WUI1eHhEVnkxNEFKb3l2dWgyaVUxMzhv?=
+ =?utf-8?B?empiVTdVazlIYk83c3FBU1h1LzI0UEJEcW5TbCtzZlV4ZWJKQ0JCQWROYkxI?=
+ =?utf-8?B?dG04dzIrNDFJTVZUS0RWMlU4cnA1VFRXenhib0hhbVVsVDJQcEswaXJkL1Fy?=
+ =?utf-8?B?V0NxVmVWNkM3bVNzbzJLcFV1czhUR0JIN3JJZ2g4aEIvNXd0VU5tcWF2WFoy?=
+ =?utf-8?B?TGVYOXVXTHpGMUQ0NzdoZU1iMStwT2hKQUZ1TnJtVzd4Q1F5RFJjdkZQZTFS?=
+ =?utf-8?B?dG4rTVBFOFVFVnBmZkpuK3lLSWUxYlJtVlllMDlMcG5WQjRraytBUUNzeFRO?=
+ =?utf-8?B?UjJ3Q3pWcTZiQ0taN3BHb1NlQWFDL1kweTlSWTJldkFUUVI4VHZzRVVJVFhm?=
+ =?utf-8?B?clZVOVRkV01nbmN6bWU0b3J1NDlnRjE2Ukw4NWE1UWhzUHBFOXVhQURuZURX?=
+ =?utf-8?B?eHlVLzhoeTYxbDlWUXBxU242VHdkeitFc3JBYzNEeUdVaWsvQkhUenRsNmZ5?=
+ =?utf-8?B?QzIvYnJYdFpySzRBQkxHWnM4akhlN21nVHgzdVhuTkRQeDI0OGhlUkE0dzBM?=
+ =?utf-8?B?Snowa2hLbmpzUXJ5YzVkOFZKa1gvOVh6T2taNm0zTitBbjZ6aDNnejA0Ymxz?=
+ =?utf-8?B?bUFEU2dONVZ3WnB4d0hpQVQ2NWs2T1NWQWlSYklTSk1CMGppNHNkRU5KTFlE?=
+ =?utf-8?B?dlhBNjNFV1AxNlYxb1pqOXNwWm5XcGwvWUVjVGFaOHlzQlc1TldjU0dhVWNp?=
+ =?utf-8?B?SnNWSnZlWTlzYVRLQnNORnVjS3V5TkVSelhGTi83Vjg3eEY1SWZISnpsaitJ?=
+ =?utf-8?B?VkoyeTVlNUFRSFZCclFvblNSbFNWZmx0OHFwa21aZzRRVWM3eXNtMHlQWkdU?=
+ =?utf-8?B?a2FZd1hXcXJXN2p6QmZGdHhlWis1MElzWnA5bWwrNDF2L3FQQjVvOXFDbGlZ?=
+ =?utf-8?B?WlQxdVhyNnNOei9YYUdaSk9iNEgvRHJ2NU11c2Fvd0RWU284NURISXQwSm1H?=
+ =?utf-8?B?anh1MjdiSjZ1VTJCL3Q3TWlKQ3ZWVVB5Zll2U1VIY1IzS2sreUFldWpTVUph?=
+ =?utf-8?B?NCtITGExT0hhOTR0MlRzdkNHY2h4MjRvb2NoQ0huUlNhbGFPdmRhRUM4blVH?=
+ =?utf-8?B?Y2pac05TUVFUR3dRVFFhUXRKaFh2cDgrT2ttWjVDazhxVmU3RTRTaWdsNTdV?=
+ =?utf-8?B?eEwvQUJibkZWeURFdXZuNndCWjhXbmIyY2cvdGdMbjFRMzdLZTNTOVZQUVE0?=
+ =?utf-8?B?OTRqSjE0cjdrUnVaMXg5RGdMenpLdTRoYkorUTVOcHNyM1JMTTdRbkxRbEZV?=
+ =?utf-8?B?SStLQjF1R2Fib0ltSm8wSXF6TGowM014OTBhdFhGTjNTdEpITTVnVi9XdUp2?=
+ =?utf-8?Q?26NRyH8zYuQkvBOAtJ6PRcRfp?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2023 20:06:25.3470 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e8c1f16-5c24-4d92-c28b-08dbc05e64e1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14ebaf27-7248-49da-1e72-08dbc05fe0a7
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2023 20:17:02.9550 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7992
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +hMrLI7neiYy0E+NkALS1B+FkFVBkQxX+pncj+Wq8jmnRHRiBiSKgFU6VuDZGAc4g5syehC7cTFkwTqUqVuDpA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6758
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,38 +128,110 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Simon Ser <contact@emersion.fr>, Xaver Hugl <xaver.hugl@gmail.com>,
+ kernel-dev@igalia.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Joshua Ashton <joshua@froggi.es>, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't update the fault cache if status is 0.  In the multiple
-fault case, subsequent faults will return a 0 status which is
-useless for userspace and replaces the useful fault status, so
-only update if status is non-0.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 4058ed49e5a6..afc19341334f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2753,7 +2753,12 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
- 	xa_lock_irqsave(&adev->vm_manager.pasids, flags);
- 
- 	vm = xa_load(&adev->vm_manager.pasids, pasid);
--	if (vm) {
-+	/* Don't update the fault cache if status is 0.  In the multiple
-+	 * fault case, subsequent faults will return a 0 status which is
-+	 * useless for userspace and replaces the useful fault status, so
-+	 * only update if status is non-0.
-+	 */
-+	if (vm && status) {
- 		vm->fault_info.addr = addr;
- 		vm->fault_info.status = status;
- 		if (AMDGPU_IS_GFXHUB(vmhub)) {
--- 
-2.41.0
+On 2023-09-25 15:49, Melissa Wen wrote:
+> Brief documentation about pre-defined transfer function usage on AMD
+> display driver and standardized EOTFs and inverse EOTFs.
+> 
+> v3:
+> - Document BT709 OETF (Pekka)
+> - Fix description of sRGB and pure power funcs (Pekka)
+> 
+> Co-developed-by: Harry Wentland <harry.wentland@amd.com>
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> Signed-off-by: Melissa Wen <mwen@igalia.com>
+> ---
+>  .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> index d03bdb010e8b..14f9c02539c6 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+> @@ -85,6 +85,45 @@ void amdgpu_dm_init_color_mod(void)
+>  }
+>  
+>  #ifdef AMD_PRIVATE_COLOR
+> +/* Pre-defined Transfer Functions (TF)
+> + *
+> + * AMD driver supports pre-defined mathematical functions for transferring
+> + * between encoded values and optical/linear space. Depending on HW color caps,
+> + * ROMs and curves built by the AMD color module support these transforms.
+> + *
+> + * The driver-specific color implementation exposes properties for pre-blending
+> + * degamma TF, shaper TF (before 3D LUT), and blend(dpp.ogam) TF and
+> + * post-blending regamma (mpc.ogam) TF. However, only pre-blending degamma
+> + * supports ROM curves. AMD color module uses pre-defined coefficients to build
+> + * curves for the other blocks. What can be done by each color block is
+> + * described by struct dpp_color_capsand struct mpc_color_caps.
+> + *
+> + * AMD driver-specific color API exposes the following pre-defined transfer
+> + * functions:
+> + *
+> + * - Linear/Unity: linear/identity relationship between pixel value and
+> + *   luminance value;
+> + * - Gamma 2.2, Gamma 2.4, Gamma 2.6: pure power functions;
+> + * - sRGB: 2.4: The piece-wise transfer function from IEC 61966-2-1:1999;
+> + * - BT.709: has a linear segment in the bottom part and then a power function
+> + *   with a 0.45 (~1/2.22) gamma for the rest of the range; standardized by
+> + *   ITU-R BT.709-6;
+> + * - PQ (Perceptual Quantizer): used for HDR display, allows luminance range
+> + *   capability of 0 to 10,000 nits; standardized by SMPTE ST 2084.
+> + *
+
+I think it's important to highlight that the AMD color model is
+designed with an assumption that SDR (sRGB, BT.709, G2.2, etc.)
+peak white maps (normalized to 1.0 FP) to 80 nits in the PQ system.
+This has the implication that PQ EOTF (NL-to-L) maps to [0.0..125.0].
+125.0 = 10,000 nits / 80 nits
+
+I think we'll want table or some other way describing this:
+
+(Using L to mean linear and NL to mean non-linear.)
+
+== sRGB, BT709, Gamma 2.x ==
+NL form is either UNORM or [0.0, 1.0]
+L form is [0.0, 1.0]
+
+Note that HDR multiplier can wide range beyond [0.0, 1.0].
+In practice this means that PQ TF is needed for any subsequent
+L-to-NL transforms.
+
+== PQ ==
+NL form is either UNORM or FP16 CCCS (Windows canonical composition color space, see [1])
+L form is [0.0, 125.0]
+
+== Unity, Default ==
+NL form is either UNORM or FP16 CCCS
+L form is either [0.0, 1.0] (mapping from UNORM) or CCCS (mapping from CCCS FP16)
+
+Harry
+
+> + * In the driver-specific API, color block names attached to TF properties
+> + * suggest the intention regarding non-linear encoding pixel's luminance
+> + * values. As some newer encodings don't use gamma curve, we make encoding and
+> + * decoding explicit by defining an enum list of transfer functions supported
+> + * in terms of EOTF and inverse EOTF, where:
+> + *
+> + * - EOTF (electro-optical transfer function): is the transfer function to go
+> + *   from the encoded value to an optical (linear) value. De-gamma functions
+> + *   traditionally do this.
+> + * - Inverse EOTF (simply the inverse of the EOTF): is usually intended to go
+> + *   from an optical/linear space (which might have been used for blending)
+> + *   back to the encoded values. Gamma functions traditionally do this.
+> + */
+>  static const char * const
+>  amdgpu_transfer_function_names[] = {
+>  	[AMDGPU_TRANSFER_FUNCTION_DEFAULT]		= "Default",
+
 
