@@ -2,71 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5D67B30BF
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Sep 2023 12:41:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3DA7B338E
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Sep 2023 15:27:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ADC110E002;
-	Fri, 29 Sep 2023 10:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0F210E0FE;
+	Fri, 29 Sep 2023 13:27:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B21010E002
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 10:41:53 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id
- ffacd0b85a97d-32325534cfaso9189150f8f.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Sep 2023 03:41:52 -0700 (PDT)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
+ [IPv6:2607:f8b0:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0DEA10E453;
+ Fri, 29 Sep 2023 10:02:17 +0000 (UTC)
+Received: by mail-pl1-x634.google.com with SMTP id
+ d9443c01a7336-1c60f1a2652so3603145ad.0; 
+ Fri, 29 Sep 2023 03:02:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695984111; x=1696588911; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=CJJin821yiePrQGBmypvXmkdZz+5mvyLIoB34DHugu0=;
- b=FBn/CYwNG3ZFjN1GylvG+FfykuWcHlAAG3jdjbPY4C9WxOwiFZxwPmA1apJY9wO7eQ
- zbYd4CmMEhiiZ55uXA8tpi+11F/JrVAGnPfG8L0AnSRdRx4Fgfs5kycC2iA6CAYYkIA8
- iCwkquqrKa3Y/HQXUPp2f6Y9s9SIWWiwFMipwVkmMU1aasb1TPiqY3e1B9pW7Be16GkK
- X2Nl5BSqeH5pWEzhCGljBZkZ8r+0zBeSQD5Eb7cHvPGIa4/gSFiQ/Hk3jlLfECfSqAiH
- +FFR1JiY77MmUV5agHZQZ4OYsKztXWR1vQsDDXnlHOxfKnZ0r1gSq1V1R8/DkTaztP8p
- Q+Gw==
+ d=gmail.com; s=20230601; t=1695981737; x=1696586537; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=B/dcw9ZT8JKLzzG4Y/QBvOkYw2j2/eNx49mOmDCD4Ko=;
+ b=Ywp5mUG1sR0ztP11YXhhkx0zqwNaqFviFeuhtpsUxiSwtnDl4EUDPV94flBr1gpHtg
+ JK0YeKaPHEjuRwDLV+Anj2OwUKvs0AGxmmOY5UfaQiYZ9GaGjI7YvQ190ywOWKziOj4K
+ FfYS/mNndGzcxBuImkDRE8y3YsJPAHKnn6WGMDiPYtsnVb7FGlaUvRC7of8wNxkpn8ux
+ Ie0u6gB0LG+sin+uwbipIGx3w0OKpPUha10nOHz2JCf2S5ykW96OsLB6oFmoLkWLUR0V
+ dC5KEhCVAuuwN60ts01JSzftZ8H1qgMUF8px0V5HbivnAc7wJ4j/LN3/mMGPbGeUu1zY
+ yOQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695984111; x=1696588911;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=CJJin821yiePrQGBmypvXmkdZz+5mvyLIoB34DHugu0=;
- b=sQD+beyx4GmWgkZLukmzmHNaycZvIel4K17MF5rdUhTFakgYKikgpqQc8LI7RtP3/w
- lTTRGNlUZuhIqLUZW5x6MJs/vemV2PWXcyyrwRjCO5CRo9BTa0Wr+4/LLxXJfwPsdCZ0
- Ee/FWqubUn8CR3gcUk67eE7RDN6NSNvpszpPsmz9ICbiO8VIZwCr6vYQFY4XnnoRO9oX
- OjP4TJWBbFoVtsnlgxJMtW9pgZmBkIMhxdLR+6Okbn56kO3SYoOP/U0yu0QVXRVr8T2I
- /dqQv2fr9LI3Cp/cNhy93voFA7/tC0Dr3A1FlRr3Xh48ku/kX1oXfejbypsvmeBNcYxD
- kSuw==
-X-Gm-Message-State: AOJu0YxnoTjvvmQU34/VQFQOR7k07S0+Mcnb9AU2N+HwB5mIKy6xoDtv
- 8od8JUryGpe9YvBGNSK4pis=
-X-Google-Smtp-Source: AGHT+IHu73wZnnKNlJbQwHqXARP/5NtXvbK2rMZ1xZWcyN2V/ZeoMcQ/r2vw/OoGXb381fZ3+HTLBw==
-X-Received: by 2002:a5d:4211:0:b0:31f:dcdd:726 with SMTP id
- n17-20020a5d4211000000b0031fdcdd0726mr3629746wrq.66.1695984110741; 
- Fri, 29 Sep 2023 03:41:50 -0700 (PDT)
-Received: from [192.168.178.25] ([185.254.126.65])
+ d=1e100.net; s=20230601; t=1695981737; x=1696586537;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=B/dcw9ZT8JKLzzG4Y/QBvOkYw2j2/eNx49mOmDCD4Ko=;
+ b=IyuwkKDB8bifbGXXBONZHxfFx6IDxNEEzcEXCD7N0aK2VLnJCu5oMUkRC0uuNIDKa/
+ hT/jk5haiPyFocTUdreLIBl0H1UKXEv1M07WB8rRJZwkF1v5bEuvqDebBj+utT9FAC3X
+ ZaqguD+Ktf5wcAU7a+s+CzGRCSPqc+gD8Dt37DkxtbhelO58prt5LED+WcwOeTitfNmk
+ mAbajewI/I6iWFownY41jMMEnJutxjdq6CUrJtsoPvsxDHOSzaS4RXLdwFK2fB/PIY3y
+ X0sYOtDlzz3UFDw+aHlcEZvs3D38SJ2jUvqhDcnDA/a6ab7UkLn25KwT1AJBrpWpj4zw
+ BmLg==
+X-Gm-Message-State: AOJu0YxMCtU0V4APxeD/YFAJchJbBBrYQh1op3mGfkGFz41xjhVfBFP2
+ FRrjzeB8iGpzyHTZ5cBaNt0=
+X-Google-Smtp-Source: AGHT+IEsTj/2jI4gPTpIYC3RVNZHeJphdPDRhTWYlAF7sWlUBOha1hqRYO47qSnv51rGQwoJgcV50A==
+X-Received: by 2002:a17:902:e545:b0:1c5:cf7c:4d50 with SMTP id
+ n5-20020a170902e54500b001c5cf7c4d50mr5459105plf.18.1695981737162; 
+ Fri, 29 Sep 2023 03:02:17 -0700 (PDT)
+Received: from sagar-virtual-machine.localdomain ([103.69.217.155])
  by smtp.gmail.com with ESMTPSA id
- g16-20020adfa490000000b003232380ffd5sm13264120wrb.106.2023.09.29.03.41.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 29 Sep 2023 03:41:50 -0700 (PDT)
-Message-ID: <4287004f-a89e-3e8a-a2c0-687fa6ec38f8@gmail.com>
-Date: Fri, 29 Sep 2023 12:41:48 +0200
+ s18-20020a17090330d200b001c6052152fdsm11991603plc.50.2023.09.29.03.02.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 Sep 2023 03:02:16 -0700 (PDT)
+From: Sagar Vashnav <sagarvashnav72427@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Sagar Vashnav <sagarvashnav72427@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] add kernel docs for dc_dmub_caps
+Date: Fri, 29 Sep 2023 06:00:51 -0400
+Message-Id: <20230929100055.17563-1-sagarvashnav72427@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <215ed02d-1dab-480f-84fb-a828b294f716@infradead.org>
+References: <215ed02d-1dab-480f-84fb-a828b294f716@infradead.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/2] drm/amdgpu/gmc: add a way to force a particular
- placement for GART
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20230927181251.2364633-1-alexander.deucher@amd.com>
- <CADnq5_MMWMoLrKa2GWDcx24-gG=6T6kuftEznvujwjUWxNa9Aw@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_MMWMoLrKa2GWDcx24-gG=6T6kuftEznvujwjUWxNa9Aw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 29 Sep 2023 13:27:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,185 +79,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As discussed on yesterdays call feel free to add my rb to the series.
+Add kernel documentation for the dc_dmub_caps structure.
 
-Christian.
+Signed-off-by: Sagar Vashnav <sagarvashnav72427@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Am 28.09.23 um 15:23 schrieb Alex Deucher:
-> Ping on this series?  Fixes an issue for SR-IOV in stress tests.
->
-> Alex
->
-> On Wed, Sep 27, 2023 at 2:31 PM Alex Deucher <alexander.deucher@amd.com> wrote:
->> We normally place GART based on the location of VRAM and the
->> available address space around that, but provide an option
->> to force a particular location for hardware that needs it.
->>
->> v2: Switch to passing the placement via parameter
->>
->> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 22 +++++++++++++++++-----
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  9 ++++++++-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c  |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c   |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c   |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   |  2 +-
->>   8 files changed, 31 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> index 2bfeaacd050c..60c81c3d29d5 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
->> @@ -269,7 +269,8 @@ void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc
->>    * If GART size is bigger than space left then we ajust GART size.
->>    * Thus function will never fails.
->>    */
->> -void amdgpu_gmc_gart_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc)
->> +void amdgpu_gmc_gart_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
->> +                             enum amdgpu_gart_placement gart_placement)
->>   {
->>          const uint64_t four_gb = 0x100000000ULL;
->>          u64 size_af, size_bf;
->> @@ -287,11 +288,22 @@ void amdgpu_gmc_gart_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc)
->>                  mc->gart_size = max(size_bf, size_af);
->>          }
->>
->> -       if ((size_bf >= mc->gart_size && size_bf < size_af) ||
->> -           (size_af < mc->gart_size))
->> -               mc->gart_start = 0;
->> -       else
->> +       switch (gart_placement) {
->> +       case AMDGPU_GART_PLACEMENT_HIGH:
->>                  mc->gart_start = max_mc_address - mc->gart_size + 1;
->> +               break;
->> +       case AMDGPU_GART_PLACEMENT_LOW:
->> +               mc->gart_start = 0;
->> +               break;
->> +       case AMDGPU_GART_PLACEMENT_BEST_FIT:
->> +       default:
->> +               if ((size_bf >= mc->gart_size && size_bf < size_af) ||
->> +                   (size_af < mc->gart_size))
->> +                       mc->gart_start = 0;
->> +               else
->> +                       mc->gart_start = max_mc_address - mc->gart_size + 1;
->> +               break;
->> +       }
->>
->>          mc->gart_start &= ~(four_gb - 1);
->>          mc->gart_end = mc->gart_start + mc->gart_size - 1;
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
->> index f593259a66c3..e699d1ca8deb 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
->> @@ -199,6 +199,12 @@ struct amdgpu_mem_partition_info {
->>
->>   #define INVALID_PFN    -1
->>
->> +enum amdgpu_gart_placement {
->> +       AMDGPU_GART_PLACEMENT_BEST_FIT = 0,
->> +       AMDGPU_GART_PLACEMENT_HIGH,
->> +       AMDGPU_GART_PLACEMENT_LOW,
->> +};
->> +
->>   struct amdgpu_gmc {
->>          /* FB's physical address in MMIO space (for CPU to
->>           * map FB). This is different compared to the agp/
->> @@ -391,7 +397,8 @@ void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc
->>   void amdgpu_gmc_vram_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
->>                                u64 base);
->>   void amdgpu_gmc_gart_location(struct amdgpu_device *adev,
->> -                             struct amdgpu_gmc *mc);
->> +                             struct amdgpu_gmc *mc,
->> +                             enum amdgpu_gart_placement gart_placement);
->>   void amdgpu_gmc_agp_location(struct amdgpu_device *adev,
->>                               struct amdgpu_gmc *mc);
->>   void amdgpu_gmc_set_agp_default(struct amdgpu_device *adev,
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
->> index 70370b412d24..8e6e36279389 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
->> @@ -670,7 +670,7 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
->>          base += adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
->>
->>          amdgpu_gmc_vram_location(adev, &adev->gmc, base);
->> -       amdgpu_gmc_gart_location(adev, mc);
->> +       amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>          if (!amdgpu_sriov_vf(adev))
->>                  amdgpu_gmc_agp_location(adev, mc);
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
->> index d0a9ee2f12d3..d611d2efce3b 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
->> @@ -634,7 +634,7 @@ static void gmc_v11_0_vram_gtt_location(struct amdgpu_device *adev,
->>          base = adev->mmhub.funcs->get_fb_location(adev);
->>
->>          amdgpu_gmc_vram_location(adev, &adev->gmc, base);
->> -       amdgpu_gmc_gart_location(adev, mc);
->> +       amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>          if (!amdgpu_sriov_vf(adev) ||
->>              (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(11, 5, 0)))
->>                  amdgpu_gmc_agp_location(adev, mc);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
->> index 3f31f268e0eb..7f66954fd302 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
->> @@ -212,7 +212,7 @@ static void gmc_v6_0_vram_gtt_location(struct amdgpu_device *adev,
->>          base <<= 24;
->>
->>          amdgpu_gmc_vram_location(adev, mc, base);
->> -       amdgpu_gmc_gart_location(adev, mc);
->> +       amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>   }
->>
->>   static void gmc_v6_0_mc_program(struct amdgpu_device *adev)
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
->> index a72dc21cf6fc..3869cefab7bd 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
->> @@ -240,7 +240,7 @@ static void gmc_v7_0_vram_gtt_location(struct amdgpu_device *adev,
->>          base <<= 24;
->>
->>          amdgpu_gmc_vram_location(adev, mc, base);
->> -       amdgpu_gmc_gart_location(adev, mc);
->> +       amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>   }
->>
->>   /**
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
->> index 8ce77d074d17..4126172feb7f 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
->> @@ -414,7 +414,7 @@ static void gmc_v8_0_vram_gtt_location(struct amdgpu_device *adev,
->>          base <<= 24;
->>
->>          amdgpu_gmc_vram_location(adev, mc, base);
->> -       amdgpu_gmc_gart_location(adev, mc);
->> +       amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>   }
->>
->>   /**
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
->> index 6b15677c0314..37e96d9d30a3 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
->> @@ -1611,7 +1611,7 @@ static void gmc_v9_0_vram_gtt_location(struct amdgpu_device *adev,
->>                  amdgpu_gmc_sysvm_location(adev, mc);
->>          } else {
->>                  amdgpu_gmc_vram_location(adev, mc, base);
->> -               amdgpu_gmc_gart_location(adev, mc);
->> +               amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_BEST_FIT);
->>                  if (!amdgpu_sriov_vf(adev))
->>                          amdgpu_gmc_agp_location(adev, mc);
->>          }
->> --
->> 2.41.0
->>
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 8125839..14b4c50 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -208,6 +208,16 @@ struct dc_color_caps {
+ 	struct mpc_color_caps mpc;
+ };
+ 
++/**
++ * struct dc_dmub_caps - DMUB (Display Microcontroller Unit) capabilities
++ * @psr: support for PSR (Power Saving State Residency)
++ * @mclk_sw: support for MCLK_SW (Memory Clock Switch)
++ * @subvp_psr: support for SUBVP PSR (Sub-Viewport Power Saving State Residency)
++ * @gecc_enable: GECC (Global Error Correcting Code) enablement.
++ *
++ * This structure describes the capabilities of the Display Microcontroller Unit (DMUB).
++ * It specifies whether certain features like PSR and MCLK_SW are supported.
++ */
+ struct dc_dmub_caps {
+ 	bool psr;
+ 	bool mclk_sw;
+-- 
+2.34.1
 
