@@ -1,72 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3DA7B338E
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Sep 2023 15:27:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3787B3394
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Sep 2023 15:28:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0F210E0FE;
-	Fri, 29 Sep 2023 13:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A982510E712;
+	Fri, 29 Sep 2023 13:27:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0DEA10E453;
- Fri, 29 Sep 2023 10:02:17 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id
- d9443c01a7336-1c60f1a2652so3603145ad.0; 
- Fri, 29 Sep 2023 03:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695981737; x=1696586537; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=B/dcw9ZT8JKLzzG4Y/QBvOkYw2j2/eNx49mOmDCD4Ko=;
- b=Ywp5mUG1sR0ztP11YXhhkx0zqwNaqFviFeuhtpsUxiSwtnDl4EUDPV94flBr1gpHtg
- JK0YeKaPHEjuRwDLV+Anj2OwUKvs0AGxmmOY5UfaQiYZ9GaGjI7YvQ190ywOWKziOj4K
- FfYS/mNndGzcxBuImkDRE8y3YsJPAHKnn6WGMDiPYtsnVb7FGlaUvRC7of8wNxkpn8ux
- Ie0u6gB0LG+sin+uwbipIGx3w0OKpPUha10nOHz2JCf2S5ykW96OsLB6oFmoLkWLUR0V
- dC5KEhCVAuuwN60ts01JSzftZ8H1qgMUF8px0V5HbivnAc7wJ4j/LN3/mMGPbGeUu1zY
- yOQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695981737; x=1696586537;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=B/dcw9ZT8JKLzzG4Y/QBvOkYw2j2/eNx49mOmDCD4Ko=;
- b=IyuwkKDB8bifbGXXBONZHxfFx6IDxNEEzcEXCD7N0aK2VLnJCu5oMUkRC0uuNIDKa/
- hT/jk5haiPyFocTUdreLIBl0H1UKXEv1M07WB8rRJZwkF1v5bEuvqDebBj+utT9FAC3X
- ZaqguD+Ktf5wcAU7a+s+CzGRCSPqc+gD8Dt37DkxtbhelO58prt5LED+WcwOeTitfNmk
- mAbajewI/I6iWFownY41jMMEnJutxjdq6CUrJtsoPvsxDHOSzaS4RXLdwFK2fB/PIY3y
- X0sYOtDlzz3UFDw+aHlcEZvs3D38SJ2jUvqhDcnDA/a6ab7UkLn25KwT1AJBrpWpj4zw
- BmLg==
-X-Gm-Message-State: AOJu0YxMCtU0V4APxeD/YFAJchJbBBrYQh1op3mGfkGFz41xjhVfBFP2
- FRrjzeB8iGpzyHTZ5cBaNt0=
-X-Google-Smtp-Source: AGHT+IEsTj/2jI4gPTpIYC3RVNZHeJphdPDRhTWYlAF7sWlUBOha1hqRYO47qSnv51rGQwoJgcV50A==
-X-Received: by 2002:a17:902:e545:b0:1c5:cf7c:4d50 with SMTP id
- n5-20020a170902e54500b001c5cf7c4d50mr5459105plf.18.1695981737162; 
- Fri, 29 Sep 2023 03:02:17 -0700 (PDT)
-Received: from sagar-virtual-machine.localdomain ([103.69.217.155])
- by smtp.gmail.com with ESMTPSA id
- s18-20020a17090330d200b001c6052152fdsm11991603plc.50.2023.09.29.03.02.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 Sep 2023 03:02:16 -0700 (PDT)
-From: Sagar Vashnav <sagarvashnav72427@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84B6410E11B;
+ Fri, 29 Sep 2023 11:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695988687; x=1727524687;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=gwM5fnXuG8powd+ajq+cI+5GyVGOVUj5BEzCq+gdTz4=;
+ b=U9ymXTRjb58s1kDbPX2wMtSZlajBOmEYi9j8bh1ZV+qlXQthQLcF0sPB
+ aHyEieTKVioIbKKa8FcUh2fiQpfDT1KE+3ObOHkh7zN2rew/IbuvsuutW
+ x0p6O4f4kNg9KWP6zPcCqkvX7E67QW/xlde2IvX4Bd1SfTTx0a2WRfVDi
+ aAiHrVgXMPYaXqUQQ/vRv+lrBB8njKHxcFTYYqsRoJdQ++wcmNpFPp4Og
+ WdFU46tiqMEVndqJh8gsv7doCeyjFr2yVCM8EPGvmpzYBnTB3b+R7O34Y
+ 2mYgY5J/lj+yKQPiCWLnRCwwvZoeDgRT+NMWa5cMkFGoQHeN46GISfcUl g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="413185345"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="413185345"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 04:58:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; 
+   d="scan'208";a="838607"
+Received: from valeks2x-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.242])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 04:58:00 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <helgaas@kernel.org>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Rob Herring <robh@kernel.org>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ Lukas Wunner <lukas@wunner.de>, Alexandru Gagniuc <mr.nuke.me@gmail.com>,
+ Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Sagar Vashnav <sagarvashnav72427@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] add kernel docs for dc_dmub_caps
-Date: Fri, 29 Sep 2023 06:00:51 -0400
-Message-Id: <20230929100055.17563-1-sagarvashnav72427@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <215ed02d-1dab-480f-84fb-a828b294f716@infradead.org>
-References: <215ed02d-1dab-480f-84fb-a828b294f716@infradead.org>
+Subject: [PATCH v3 02/10] drm/radeon: Use RMW accessors for changing LNKCTL2
+Date: Fri, 29 Sep 2023 14:57:15 +0300
+Message-Id: <20230929115723.7864-3-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230929115723.7864-1-ilpo.jarvinen@linux.intel.com>
+References: <20230929115723.7864-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 29 Sep 2023 13:27:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,37 +71,156 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Zhang Rui <rui.zhang@intel.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add kernel documentation for the dc_dmub_caps structure.
+Don't assume that only the driver would be accessing LNKCTL2. In the
+case of upstream (parent), the driver does not even own the device it's
+changing the registers for.
 
-Signed-off-by: Sagar Vashnav <sagarvashnav72427@gmail.com>
+Use RMW capability accessors which do proper locking to avoid losing
+concurrent updates to the register value. This change is also useful as
+a cleanup.
+
+Suggested-by: Lukas Wunner <lukas@wunner.de>
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/radeon/cik.c | 40 ++++++++++++++----------------------
+ drivers/gpu/drm/radeon/si.c  | 40 ++++++++++++++----------------------
+ 2 files changed, 30 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 8125839..14b4c50 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -208,6 +208,16 @@ struct dc_color_caps {
- 	struct mpc_color_caps mpc;
- };
+diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
+index 10be30366c2b..b5e96a8fc2c1 100644
+--- a/drivers/gpu/drm/radeon/cik.c
++++ b/drivers/gpu/drm/radeon/cik.c
+@@ -9592,28 +9592,18 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
+ 								   PCI_EXP_LNKCTL_HAWD);
  
-+/**
-+ * struct dc_dmub_caps - DMUB (Display Microcontroller Unit) capabilities
-+ * @psr: support for PSR (Power Saving State Residency)
-+ * @mclk_sw: support for MCLK_SW (Memory Clock Switch)
-+ * @subvp_psr: support for SUBVP PSR (Sub-Viewport Power Saving State Residency)
-+ * @gecc_enable: GECC (Global Error Correcting Code) enablement.
-+ *
-+ * This structure describes the capabilities of the Display Microcontroller Unit (DMUB).
-+ * It specifies whether certain features like PSR and MCLK_SW are supported.
-+ */
- struct dc_dmub_caps {
- 	bool psr;
- 	bool mclk_sw;
+ 				/* linkctl2 */
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+-							  &tmp16);
+-				tmp16 &= ~(PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN);
+-				tmp16 |= (bridge_cfg2 &
+-					  (PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN));
+-				pcie_capability_write_word(root,
+-							   PCI_EXP_LNKCTL2,
+-							   tmp16);
+-
+-				pcie_capability_read_word(rdev->pdev,
+-							  PCI_EXP_LNKCTL2,
+-							  &tmp16);
+-				tmp16 &= ~(PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN);
+-				tmp16 |= (gpu_cfg2 &
+-					  (PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN));
+-				pcie_capability_write_word(rdev->pdev,
+-							   PCI_EXP_LNKCTL2,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL2,
++								   PCI_EXP_LNKCTL2_ENTER_COMP |
++								   PCI_EXP_LNKCTL2_TX_MARGIN,
++								   bridge_cfg2 |
++								   (PCI_EXP_LNKCTL2_ENTER_COMP |
++								    PCI_EXP_LNKCTL2_TX_MARGIN));
++				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL2,
++								   PCI_EXP_LNKCTL2_ENTER_COMP |
++								   PCI_EXP_LNKCTL2_TX_MARGIN,
++								   gpu_cfg2 |
++								   (PCI_EXP_LNKCTL2_ENTER_COMP |
++								    PCI_EXP_LNKCTL2_TX_MARGIN));
+ 
+ 				tmp = RREG32_PCIE_PORT(PCIE_LC_CNTL4);
+ 				tmp &= ~LC_SET_QUIESCE;
+@@ -9627,15 +9617,15 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
+ 	speed_cntl &= ~LC_FORCE_DIS_SW_SPEED_CHANGE;
+ 	WREG32_PCIE_PORT(PCIE_LC_SPEED_CNTL, speed_cntl);
+ 
+-	pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL2, &tmp16);
+-	tmp16 &= ~PCI_EXP_LNKCTL2_TLS;
++	tmp16 = 0;
+ 	if (speed_cap == PCIE_SPEED_8_0GT)
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_8_0GT; /* gen3 */
+ 	else if (speed_cap == PCIE_SPEED_5_0GT)
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_5_0GT; /* gen2 */
+ 	else
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_2_5GT; /* gen1 */
+-	pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL2, tmp16);
++	pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL2,
++					   PCI_EXP_LNKCTL2_TLS, tmp16);
+ 
+ 	speed_cntl = RREG32_PCIE_PORT(PCIE_LC_SPEED_CNTL);
+ 	speed_cntl |= LC_INITIATE_LINK_SPEED_CHANGE;
+diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
+index a91012447b56..32871ca09a0f 100644
+--- a/drivers/gpu/drm/radeon/si.c
++++ b/drivers/gpu/drm/radeon/si.c
+@@ -7189,28 +7189,18 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
+ 								   PCI_EXP_LNKCTL_HAWD);
+ 
+ 				/* linkctl2 */
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+-							  &tmp16);
+-				tmp16 &= ~(PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN);
+-				tmp16 |= (bridge_cfg2 &
+-					  (PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN));
+-				pcie_capability_write_word(root,
+-							   PCI_EXP_LNKCTL2,
+-							   tmp16);
+-
+-				pcie_capability_read_word(rdev->pdev,
+-							  PCI_EXP_LNKCTL2,
+-							  &tmp16);
+-				tmp16 &= ~(PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN);
+-				tmp16 |= (gpu_cfg2 &
+-					  (PCI_EXP_LNKCTL2_ENTER_COMP |
+-					   PCI_EXP_LNKCTL2_TX_MARGIN));
+-				pcie_capability_write_word(rdev->pdev,
+-							   PCI_EXP_LNKCTL2,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL2,
++								   PCI_EXP_LNKCTL2_ENTER_COMP |
++								   PCI_EXP_LNKCTL2_TX_MARGIN,
++								   bridge_cfg2 &
++								   (PCI_EXP_LNKCTL2_ENTER_COMP |
++								    PCI_EXP_LNKCTL2_TX_MARGIN));
++				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL2,
++								   PCI_EXP_LNKCTL2_ENTER_COMP |
++								   PCI_EXP_LNKCTL2_TX_MARGIN,
++								   gpu_cfg2 &
++								   (PCI_EXP_LNKCTL2_ENTER_COMP |
++								    PCI_EXP_LNKCTL2_TX_MARGIN));
+ 
+ 				tmp = RREG32_PCIE_PORT(PCIE_LC_CNTL4);
+ 				tmp &= ~LC_SET_QUIESCE;
+@@ -7224,15 +7214,15 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
+ 	speed_cntl &= ~LC_FORCE_DIS_SW_SPEED_CHANGE;
+ 	WREG32_PCIE_PORT(PCIE_LC_SPEED_CNTL, speed_cntl);
+ 
+-	pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL2, &tmp16);
+-	tmp16 &= ~PCI_EXP_LNKCTL2_TLS;
++	tmp16 = 0;
+ 	if (speed_cap == PCIE_SPEED_8_0GT)
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_8_0GT; /* gen3 */
+ 	else if (speed_cap == PCIE_SPEED_5_0GT)
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_5_0GT; /* gen2 */
+ 	else
+ 		tmp16 |= PCI_EXP_LNKCTL2_TLS_2_5GT; /* gen1 */
+-	pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL2, tmp16);
++	pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL2,
++					   PCI_EXP_LNKCTL2_TLS, tmp16);
+ 
+ 	speed_cntl = RREG32_PCIE_PORT(PCIE_LC_SPEED_CNTL);
+ 	speed_cntl |= LC_INITIATE_LINK_SPEED_CHANGE;
 -- 
-2.34.1
+2.30.2
 
