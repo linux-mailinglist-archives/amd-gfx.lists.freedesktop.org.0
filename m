@@ -2,39 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC0887B4CB1
+	by mail.lfdr.de (Postfix) with ESMTPS id 889B37B4CB0
 	for <lists+amd-gfx@lfdr.de>; Mon,  2 Oct 2023 09:39:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B399410E219;
-	Mon,  2 Oct 2023 07:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9DD910E213;
+	Mon,  2 Oct 2023 07:39:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC2610E096
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Oct 2023 01:08:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=nngXHStwMm/8b0PbSb+Shl8IOlqNc+wbIGR/pgQDPss=; b=jUpy1oUFYb3ixmnJNKrsMC2mF5
- 7JStuKpGRv8QxLzzJacggxsNEa6nAPE7waV7RfwPHmjLD3BaUzdM0HKuf3xuhPF5ATReaxgIjvsD1
- m0oulql6TxwYvkuMtveo99BCx9XLRFDWAziYHtM0XGe7y6672I8CN1r21RqcuCbxEIbt7VxTWy8cs
- CNRvhJ0wIJDmmKRsaXgnAOTIikZX8kuo+tknjoeRDO0mWwg9yo+nWdjoPMNVUD1YfmrSUKrR13z9k
- S6YhU7xsok4JW+VZe1nePdONZHhP7isykb9GNKBVEo7PArTn3QgAjDoOM7RCEqt8mPO2s+668jmQF
- RA8Rcyew==;
-Received: from [50.53.46.231] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qn7QJ-00Bmzj-34; Mon, 02 Oct 2023 01:08:36 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: amdgpu_drm.h: fix comment typos
-Date: Sun,  1 Oct 2023 18:08:33 -0700
-Message-ID: <20231002010835.14798-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.42.0
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
+ [IPv6:2607:f8b0:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3215010E104;
+ Mon,  2 Oct 2023 04:42:15 +0000 (UTC)
+Received: by mail-pl1-x630.google.com with SMTP id
+ d9443c01a7336-1c60a514f3aso112452365ad.3; 
+ Sun, 01 Oct 2023 21:42:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696221734; x=1696826534; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=Apgh5I/AZlw1bZUGVlRw0FcB6BXkBGvFxHpXJVnA298=;
+ b=JaY7FRnu1tAAJqingLClp0rFuNETDjLxx0ZoxZaEuI/vf5Ukn2YjW+bNLusxY/oQM7
+ dSdTBJmHEt3irhggkoPsVnrcb6XyLYqwMc7ObWvn069OST4dF/nH0kvIzmYQ93iMl/PJ
+ wfsf3IcjFAF7ibJIoB86IQZlvmheYyHMPTxWGJTX7B6Cae/FJxXqkyp0MrrOGiCXHu5t
+ 9Y2T1w2UopFXVnwVmJICwCB06J1+Xp2ec8ZuXxo+4DG6eErbaOJiHAYZqWd555Kdp+M+
+ GvQtyXsleHn4/r2cCA/w2fRt3+pT3TxWKRIFfqXXmwHSZm+clj3/rBmPy36JsuGC1ro8
+ +jHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696221734; x=1696826534;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Apgh5I/AZlw1bZUGVlRw0FcB6BXkBGvFxHpXJVnA298=;
+ b=wRM7VyKok7qz9+ykTh53G3cRCyHf8XCqlkXPoDSuAVT7oNbMy3MS6NElx0ws+0+/IZ
+ HGGBfT3z+MUu5FLVatsKyCSNIQNLmi0E4RGV+qu4rXjaJuKoOWM1B6BNe+NWfRC0ahiA
+ v/SYQJgGb+CGfc0OHLOkESY6LgPtRNkrIgeBxYj9v8eIhzYMiMoy5HS2gRUf3kMxyoKT
+ 4XSemfK3wpLHt4YGuP7mDQd7gntGfz2AZULhA3qSwZH8itduIHogvn7KUQ5ItULFCjCF
+ MKdCaOqrfiuOkOeJI81r9zyrX3kXZeJba842lnZtn/LLXEebmRE0omU69v3GydQ7uvdr
+ kfKA==
+X-Gm-Message-State: AOJu0Yxfz3UtOOqXDQhPkBAVImzhf6HGvRHyba7S/q4mDE5Y/uAkrJwP
+ jHrLRsgaFZYXBBkjd4E5SEg=
+X-Google-Smtp-Source: AGHT+IFFfibQl2jUVEX5S5XbCIBmeSoheGM2nkffMvC6cL/VFt9IIncdmDz+joXJ2xn+KBlnCBFneQ==
+X-Received: by 2002:a17:903:428b:b0:1b8:2c6f:3248 with SMTP id
+ ju11-20020a170903428b00b001b82c6f3248mr10461230plb.39.1696221734619; 
+ Sun, 01 Oct 2023 21:42:14 -0700 (PDT)
+Received: from sagar-virtual-machine.localdomain ([103.157.161.86])
+ by smtp.gmail.com with ESMTPSA id
+ jj7-20020a170903048700b001c73701bd17sm7397429plb.4.2023.10.01.21.42.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 01 Oct 2023 21:42:14 -0700 (PDT)
+From: Sagar Vashnav <sagarvashnav72427@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Sagar Vashnav <sagarvashnav72427@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd/display: add kernel docs for dc_dmub_caps
+Date: Mon,  2 Oct 2023 00:41:19 -0400
+Message-Id: <20231002044126.70197-1-sagarvashnav72427@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <9270c1f3-c8f3-4b3c-91ec-ed17d97ecafd@infradead.org>
+References: <9270c1f3-c8f3-4b3c-91ec-ed17d97ecafd@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 02 Oct 2023 07:39:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,36 +79,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Randy Dunlap <rdunlap@infradead.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Correct typos of "occurred".
+Add kernel documentation for the dc_dmub_caps structure.
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
+Signed-off-by: Sagar Vashnav <sagarvashnav72427@gmail.com>
 ---
- include/uapi/drm/amdgpu_drm.h |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff -- a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
---- a/include/uapi/drm/amdgpu_drm.h
-+++ b/include/uapi/drm/amdgpu_drm.h
-@@ -249,9 +249,9 @@ union drm_amdgpu_bo_list {
- /* unknown cause */
- #define AMDGPU_CTX_UNKNOWN_RESET	3
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 81258392d..14b4c503d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -208,6 +208,16 @@ struct dc_color_caps {
+ 	struct mpc_color_caps mpc;
+ };
  
--/* indicate gpu reset occured after ctx created */
-+/* indicate gpu reset occurred after ctx created */
- #define AMDGPU_CTX_QUERY2_FLAGS_RESET    (1<<0)
--/* indicate vram lost occured after ctx created */
-+/* indicate vram lost occurred after ctx created */
- #define AMDGPU_CTX_QUERY2_FLAGS_VRAMLOST (1<<1)
- /* indicate some job from this context once cause gpu hang */
- #define AMDGPU_CTX_QUERY2_FLAGS_GUILTY   (1<<2)
++/**
++ * struct dc_dmub_caps - DMUB (Display Microcontroller Unit) capabilities
++ * @psr: support for PSR (Power Saving State Residency)
++ * @mclk_sw: support for MCLK_SW (Memory Clock Switch)
++ * @subvp_psr: support for SUBVP PSR (Sub-Viewport Power Saving State Residency)
++ * @gecc_enable: GECC (Global Error Correcting Code) enablement.
++ *
++ * This structure describes the capabilities of the Display Microcontroller Unit (DMUB).
++ * It specifies whether certain features like PSR and MCLK_SW are supported.
++ */
+ struct dc_dmub_caps {
+ 	bool psr;
+ 	bool mclk_sw;
+-- 
+2.34.1
+
