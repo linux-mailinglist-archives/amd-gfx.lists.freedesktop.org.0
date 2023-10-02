@@ -1,93 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 816287B4C03
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Oct 2023 09:01:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7077B4EE5
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Oct 2023 11:20:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6070C10E149;
-	Mon,  2 Oct 2023 07:01:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA4810E26C;
+	Mon,  2 Oct 2023 09:20:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 742DA10E25A
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Oct 2023 07:00:22 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- 5b1f17b1804b1-40675f06f1fso1503725e9.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Oct 2023 00:00:22 -0700 (PDT)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C751D10E26C;
+ Mon,  2 Oct 2023 09:20:17 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id
+ ffacd0b85a97d-31427ddd3fbso14945850f8f.0; 
+ Mon, 02 Oct 2023 02:20:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1696230020; x=1696834820; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :references:cc:to:content-language:subject:reply-to:from:user-agent
- :mime-version:date:message-id:from:to:cc:subject:date:message-id
- :reply-to; bh=65UjR/BYH4sgNp7jAQsrOIIv1FTbyb0+YEnzQHZ9wXU=;
- b=u2Xun9AXPJ/HOaWdLMWAoIzqzTg+Y8J4+ZvBBziRkX7PZZGNgIOl8a4uVI3K2EirDZ
- DWlNgS/db9bU2yCjJiDRfFUGOy7gFNo4mo5dNaYb/NH1hMVJmTYXycRtxFqZFwpdpff3
- D3VTvtZ0WM2qiFpeETMN/z7ETofsJG2EqX64H0svg/2BPytnlQv5AuPgSoAm0U8pKIFz
- Zh9iNFUy/Bixg43ipg56WBNsuEbF7KgaOMdpSJso28PLlCaEJh6PR9ZKsH1p3b14DT3e
- TgHZus3qDq2y+FuOguZH2wQjevzG0IfcGI2O75IFqhjJ+x4NyfR4EwCc29eRrpyr/nL4
- tNGQ==
+ d=gmail.com; s=20230601; t=1696238416; x=1696843216; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=vNiEun8BJgZFmuZelXrrpN/XVazT12AxKny5brwsu7w=;
+ b=hpul48jc5wRgYuuq7rjWOuldRr3Cz9nGdNrRFKhLCSavyavqMoagsUnusKybAJHuKA
+ xE046GUSPsZTRflARG4QV+okYn9/EzkY3povCmvJ5Ik1GrCj5Ln9lbAmh48xN4moydyS
+ Ob0E2wJN29J2EQksMeSZ09nE0LGVTMfQwQYSuQk0qsMjIhriV7625WbkTiavmwYjaLqD
+ UHXgnOE3qWqbwPTE1XChcntGdNGGp7w49mOcrOfHtkSnNRlfSSMvU1dMNWke9VL0l3zU
+ sCHGzEt0FvM1pGp6qohTFb5z2sf0rVb6W87Vmo3P3pPk/heYC/hymC4KcrnC0WYc0EL+
+ MVCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696230020; x=1696834820;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :references:cc:to:content-language:subject:reply-to:from:user-agent
- :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=65UjR/BYH4sgNp7jAQsrOIIv1FTbyb0+YEnzQHZ9wXU=;
- b=OLY/EMHrBO+yaIN1jGwXsOsPHXHVEbpnl2Ee7ezJ+3YeBPU7hA9I2LzQCq69VjOAPy
- C4EQKPx7U5s4NqTtwM+mJuBqjk/IwV5CzhnJ0Okutfs9sXRnrYxVfdQgaP4KZSL9t7eR
- nEhAYeYXFkhPEoM823cmTuigZJQycs6lCxJrEiueDH5kAyfZavY/fKCJE3u7SjZKQlWq
- JwokgPpBqXuwP96gy1fIbf1tQ9G4VVt2CTR+K7fHDN2byf5E8XyErZ1kF1CqtMF55Y5G
- 1SPN/HYaFOJkb6H/62B6y4XAelyPAQIrBLwMxDwZTRCB4KiZRb0AFP6Nyg6fHN0lGtBY
- YhIA==
-X-Gm-Message-State: AOJu0YyilX9Bbn1JJypU7uOoJ5NCko+trzoWlMDLLKcuQXON1aqPLCsx
- h5u8PQEujyxGl+vDvLC1AftwNA==
-X-Google-Smtp-Source: AGHT+IE2F7pfcHOX2OqOjdf/8yC0R+rXJgV623odj8DkbTqz9V9NQ2wG4qE6yedpKCypg3IborH+mQ==
-X-Received: by 2002:a05:6000:114b:b0:30e:56b3:60fe with SMTP id
- d11-20020a056000114b00b0030e56b360femr8811358wrx.4.1696230020459; 
- Mon, 02 Oct 2023 00:00:20 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b653:7e47:ffdd:9340?
- ([2a01:e0a:982:cbb0:b653:7e47:ffdd:9340])
+ d=1e100.net; s=20230601; t=1696238416; x=1696843216;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=vNiEun8BJgZFmuZelXrrpN/XVazT12AxKny5brwsu7w=;
+ b=EV+IoY/hoj/U/elpIXBrMJjo2eti6i/r6uC0vZ7zP36Ogv4Ehbm+OV2vjkvsAHmIcN
+ DYEslUo4u6DNhyJOUEWXr2dJPqFSu24/OZiG36ERZus5uME1+uPKJK16ycwjwDRVokMu
+ h5eF68WrC1H59Y9xt1X4nbNZcWn3T068qLW4JiowOcH0He62g2zwsxhbn2GST4BcXNh9
+ 3ayItguHqMVMyj8uyBQ8MfYpTPkqGPRqzHEJLdHQWGOPlLsw3vHG9yE2TVK/A4LDNVzu
+ 0Ez17qAq9s+Hxrgd3DAvWjFmnidUAdES7WVwSff99TOeMYrKboJ5az85F6wByCnvwSXu
+ Gb1w==
+X-Gm-Message-State: AOJu0Yxuxi6j+6ZPC8jWUDKviP1iS9xz8P3l4OeXzr1B/1a65fSaNCnL
+ dOiz5T1a81XUOektcnKGqU8=
+X-Google-Smtp-Source: AGHT+IHbGguNFjowt/WUg4Hv4Wpy0nhMxW4/Lz37ilFeyba8QPT16aUDMsJeXvW8elMT4DQ7Chc9QA==
+X-Received: by 2002:adf:ee10:0:b0:319:71be:9248 with SMTP id
+ y16-20020adfee10000000b0031971be9248mr9703358wrn.19.1696238415942; 
+ Mon, 02 Oct 2023 02:20:15 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
  by smtp.gmail.com with ESMTPSA id
- d11-20020adff84b000000b0031980783d78sm12200252wrq.54.2023.10.02.00.00.19
+ t3-20020a5d5343000000b0030ae53550f5sm27500038wrv.51.2023.10.02.02.20.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 02 Oct 2023 00:00:19 -0700 (PDT)
-Message-ID: <7d157f25-a25d-41c2-9ff5-624721efcb92@linaro.org>
-Date: Mon, 2 Oct 2023 09:00:18 +0200
+ Mon, 02 Oct 2023 02:20:15 -0700 (PDT)
+Message-ID: <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+Date: Mon, 2 Oct 2023 11:20:09 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] MAINTAINERS: drm/ci: add entries for xfail files
-Content-Language: en-US, fr
-To: Helen Koike <helen.koike@collabora.com>, dri-devel@lists.freedesktop.org
-References: <20230919182249.153499-1-helen.koike@collabora.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230919182249.153499-1-helen.koike@collabora.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 0/9] drm: Annotate structs with __counted_by
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
+References: <20230922173110.work.084-kees@kernel.org>
+ <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -101,90 +76,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Cc: mripard@kernel.org, daniel@ffwll.ch, heiko@sntech.de,
- michel.daenzer@mailbox.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- jani.nikula@linux.intel.com, robdclark@gmail.com,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- p.zabel@pengutronix.de, airlied@redhat.com, alexander.deucher@amd.com,
- linux-amlogic@lists.infradead.org, daniel@fooishbar.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Karol Herbst <kherbst@redhat.com>,
+ Tom Rix <trix@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Prike Liang <Prike.Liang@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Matthew Brost <matthew.brost@intel.com>, Evan Quan <evan.quan@amd.com>,
+ Emma Anholt <emma@anholt.net>, amd-gfx@lists.freedesktop.org,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Chia-I Wu <olvaffe@gmail.com>,
+ llvm@lists.linux.dev, Yifan Zhang <yifan1.zhang@amd.com>,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Nathan Chancellor <nathan@kernel.org>, Le Ma <le.ma@amd.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ virtualization@lists.linux-foundation.org, Sean Paul <sean@poorly.run>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Xiaojian Du <Xiaojian.Du@amd.com>,
+ Lang Yu <Lang.Yu@amd.com>, Bjorn Andersson <andersson@kernel.org>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Rob Clark <robdclark@gmail.com>,
+ Melissa Wen <mwen@igalia.com>, John Harrison <john.c.harrison@Intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, freedreno@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>, linux-hardening@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 19/09/2023 20:22, Helen Koike wrote:
-> DRM CI keeps track of which tests are failing, flaking or being skipped
-> by the ci in the expectations files. Add entries for those files to the
-> corresponding driver maintainer, so they can be notified when they
-> change.
-> 
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> ---
-> 
-> For reference: https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg463165.html
-> 
->   MAINTAINERS | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 90f13281d297..740a2ce2689c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6614,6 +6614,7 @@ S:	Maintained
->   B:	https://gitlab.freedesktop.org/drm/msm/-/issues
->   T:	git https://gitlab.freedesktop.org/drm/msm.git
->   F:	Documentation/devicetree/bindings/display/msm/
-> +F:	drivers/gpu/drm/ci/xfails/msm*
->   F:	drivers/gpu/drm/msm/
->   F:	include/uapi/drm/msm_drm.h
->   
-> @@ -6886,6 +6887,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->   F:	Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->   F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
->   F:	Documentation/gpu/meson.rst
-> +F:	drivers/gpu/drm/ci/xfails/meson*
->   F:	drivers/gpu/drm/meson/
->   
->   DRM DRIVERS FOR ATMEL HLCDC
-> @@ -6994,6 +6996,7 @@ L:	dri-devel@lists.freedesktop.org
->   L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
->   S:	Supported
->   F:	Documentation/devicetree/bindings/display/mediatek/
-> +F:	drivers/gpu/drm/ci/xfails/mediatek*
->   F:	drivers/gpu/drm/mediatek/
->   F:	drivers/phy/mediatek/phy-mtk-dp.c
->   F:	drivers/phy/mediatek/phy-mtk-hdmi*
-> @@ -7034,6 +7037,7 @@ L:	dri-devel@lists.freedesktop.org
->   S:	Maintained
->   T:	git git://anongit.freedesktop.org/drm/drm-misc
->   F:	Documentation/devicetree/bindings/display/rockchip/
-> +F:	drivers/gpu/drm/ci/xfails/rockchip*
->   F:	drivers/gpu/drm/rockchip/
->   
->   DRM DRIVERS FOR STI
-> @@ -10476,6 +10480,7 @@ C:	irc://irc.oftc.net/intel-gfx
->   T:	git git://anongit.freedesktop.org/drm-intel
->   F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
->   F:	Documentation/gpu/i915.rst
-> +F:	drivers/gpu/drm/ci/xfails/i915*
->   F:	drivers/gpu/drm/i915/
->   F:	include/drm/i915*
->   F:	include/uapi/drm/i915_drm.h
-> @@ -17862,6 +17867,7 @@ C:	irc://irc.oftc.net/radeon
->   T:	git https://gitlab.freedesktop.org/agd5f/linux.git
->   F:	Documentation/gpu/amdgpu/
->   F:	drivers/gpu/drm/amd/
-> +F:	drivers/gpu/drm/ci/xfails/amd*
->   F:	drivers/gpu/drm/radeon/
->   F:	include/uapi/drm/amdgpu_drm.h
->   F:	include/uapi/drm/radeon_drm.h
-> @@ -22846,6 +22852,7 @@ L:	dri-devel@lists.freedesktop.org
->   L:	virtualization@lists.linux-foundation.org
->   S:	Maintained
->   T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	drivers/gpu/drm/ci/xfails/virtio*
->   F:	drivers/gpu/drm/virtio/
->   F:	include/uapi/linux/virtio_gpu.h
->   
+Am 29.09.23 um 21:33 schrieb Kees Cook:
+> On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
+>> This is a batch of patches touching drm for preparing for the coming
+>> implementation by GCC and Clang of the __counted_by attribute. Flexible
+>> array members annotated with __counted_by can have their accesses
+>> bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
+>> indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family functions).
+>>
+>> As found with Coccinelle[1], add __counted_by to structs that would
+>> benefit from the annotation.
+>>
+>> [...]
+> Since this got Acks, I figure I should carry it in my tree. Let me know
+> if this should go via drm instead.
+>
+> Applied to for-next/hardening, thanks!
+>
+> [1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with __counted_by
+>        https://git.kernel.org/kees/c/a6046ac659d6
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+STOP! In a follow up discussion Alex and I figured out that this won't work.
+
+The value in the structure is byte swapped based on some firmware 
+endianness which not necessary matches the CPU endianness.
+
+Please revert that one from going upstream if it's already on it's way.
+
+And because of those reasons I strongly think that patches like this 
+should go through the DRM tree :)
+
+Regards,
+Christian.
+
+> [2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with __counted_by
+>        https://git.kernel.org/kees/c/4df33089b46f
+> [3/9] drm/i915/selftests: Annotate struct perf_series with __counted_by
+>        https://git.kernel.org/kees/c/ffd3f823bdf6
+> [4/9] drm/msm/dpu: Annotate struct dpu_hw_intr with __counted_by
+>        https://git.kernel.org/kees/c/2de35a989b76
+> [5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with __counted_by
+>        https://git.kernel.org/kees/c/188aeb08bfaa
+> [6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+>        https://git.kernel.org/kees/c/59a54dc896c3
+> [7/9] drm/virtio: Annotate struct virtio_gpu_object_array with __counted_by
+>        https://git.kernel.org/kees/c/5cd476de33af
+> [8/9] drm/vmwgfx: Annotate struct vmw_surface_dirty with __counted_by
+>        https://git.kernel.org/kees/c/b426f2e5356a
+> [9/9] drm/v3d: Annotate struct v3d_perfmon with __counted_by
+>        https://git.kernel.org/kees/c/dc662fa1b0e4
+>
+> Take care,
+>
+
