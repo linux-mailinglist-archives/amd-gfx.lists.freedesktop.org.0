@@ -2,96 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2444B7B7C07
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 11:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3259D7B8089
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 15:16:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9808A10E368;
-	Wed,  4 Oct 2023 09:25:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643FD10E379;
+	Wed,  4 Oct 2023 13:16:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2051.outbound.protection.outlook.com [40.107.243.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D00D10E360
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 09:25:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BsNI/6DBk/hrkb+qW+Q0/9ExN+4a+HTGMvNUZScvVccAJkDW5AK8IliY2iTeFGPLMKV/oQLwAeTrtsRPBfj+aS9PqdZ7YbnmC5ZFHVVShI7+dcLeNaOzi9v5gdEpzasExWlKBE4sMTI/J9MqurQQOzZDR/X7xAgG4EkU8GldQJvWdkXnfNOybaWWNCdg0BpsIpqJS1zxvF/F0BB95VcXHUOvlLkSnDPfRJ9HCa1bT0yZtNhSzg6ERHZBvqIgJ/zbPccsVLY/78h0zNnhXNfCAjfSX67k9joqY75JBmeY5UxcOL4Kt/gLq2GIUBKU07VDsr0saGct0J5CLGNopXsVRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TdiZrSukoqonAaniM8mozucrRYwEo5ZkLWuIEZ3qf4c=;
- b=GJNc1Z8zFYqtZoqONX8qQSridjdyemB9FIwZJSZzYgqNiYu+pHaR6N58v6zyyWMj8qZ9sdNB5sl3e3q/nSyEV9t6nxSU8mzAeEBDDUBog07VHzRuk9pwG9CFRQD25mG+dkVVOfu9dM7wDJUppJh8lhYu4yoaydUcjhz4aVuPx7rA1L7LEQU6BCoNuMzTa9yO3wU/pMhQgxctd6rna1LCYpF0GN56WTM2PSPWY/Nc3MZfgmrgWh4zXfuQW75mDnvyKPOSfN1P6BORwAo84pm+X9j1r5w97vYsvH/aiA4nV2bCwns3oTzj/FNxESla19izPhWPXJy4P7JeGgey0JNYTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TdiZrSukoqonAaniM8mozucrRYwEo5ZkLWuIEZ3qf4c=;
- b=gTjlGHFhi8gVqJFVGilIpoUM0sfgUouBczEq9jXUMilmFURKyMnrmychsYZTzvgw5EjBJ3JgU5Ss486ApgREeDnjyMs8S5h+vooM7nCX5NqMVBJli1HZQiL+7nfwXt1iGCeqW97vk/n2w1KyFHzjdhy567kg6bFIpvNzAzoaaEs=
-Received: from CYZPR12CA0007.namprd12.prod.outlook.com (2603:10b6:930:8b::25)
- by CY8PR12MB7172.namprd12.prod.outlook.com (2603:10b6:930:5b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Wed, 4 Oct
- 2023 09:25:13 +0000
-Received: from CY4PEPF0000EDD4.namprd03.prod.outlook.com
- (2603:10b6:930:8b:cafe::3d) by CYZPR12CA0007.outlook.office365.com
- (2603:10b6:930:8b::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33 via Frontend
- Transport; Wed, 4 Oct 2023 09:25:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EDD4.mail.protection.outlook.com (10.167.241.208) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Wed, 4 Oct 2023 09:25:13 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 4 Oct
- 2023 04:25:08 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 4 Oct
- 2023 04:25:08 -0500
-Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 4 Oct 2023 04:25:03 -0500
-From: Tom Chung <chiahsuan.chung@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/16] drm/amd/display: 3.2.255
-Date: Wed, 4 Oct 2023 17:23:01 +0800
-Message-ID: <20231004092301.2371458-17-chiahsuan.chung@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231004092301.2371458-1-chiahsuan.chung@amd.com>
-References: <20231004092301.2371458-1-chiahsuan.chung@amd.com>
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
+ [IPv6:2607:f8b0:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAA5F10E323
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 23:29:57 +0000 (UTC)
+Received: by mail-ot1-x330.google.com with SMTP id
+ 46e09a7af769-6c4fa1c804bso981660a34.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Oct 2023 16:29:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1696375797; x=1696980597;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=sHOGbVO4yt56UuQA6X7B53h+Y2FMmkpmlA/gBYESKrU=;
+ b=Uy/0Z2YIFTTuTnaFubaK7B0r6hY8hmMfGjaW1THZwdVigyNg4xDOpe37rvhpmHw1Ps
+ dgl5YHo0Lxt6byt9yND/dgGN1DBbiw7t+Hj/CKYvq7lknMqhiLnbyBcSKL4OMIYB3YDR
+ L97ae7IvtMbfbImmjwGtZ7vHFsjcWf6PRpTNs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696375797; x=1696980597;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sHOGbVO4yt56UuQA6X7B53h+Y2FMmkpmlA/gBYESKrU=;
+ b=DpZ6pOhzllWwThRB5mwxC0y7pw7LSUs6J2/1yIws3EVCju3/1xsKyOCiernEV6r4EO
+ spzReCLDmu0KpEOGQItEOyMS20qZUeXGfiUSmpBe1LPSKfPv/FZsRAyuu2Mgmr1Tc+c2
+ G5vMT6g05LCo8jgxIl60i+deJSrt4vcRpSRDQYYRiR3AHjWWZs7XqWMpBQAeDnOfWroK
+ ZRB/K6cn/O/0EQG8Z8OkF7OXX29SiLGRzRmDmzm9zmBeC90wPQ7IqlmjoVdPWZ52IKRe
+ +yK25DMuYUq17f5STDziTnYwuO/0aSUqyAZD8JLwOQvoK4GQZFLs6e7lhxPUWFG1g05L
+ 0sOQ==
+X-Gm-Message-State: AOJu0YxXbTJSfj07Vyiq8rq4vUkbfzM3Eb4s3Dc2A+XgrvM4UmQa3fYJ
+ UkcnXkwtQT1d+JdMS9h7D1vUTw==
+X-Google-Smtp-Source: AGHT+IE5Y1aTeSmZultlmhH08sL/6gXNiFbzPXi0v1PX93a6hQ7va5s5hktVz94Kc3mdmWYw273bWw==
+X-Received: by 2002:a05:6358:3182:b0:143:1063:d1eb with SMTP id
+ q2-20020a056358318200b001431063d1ebmr1010070rwd.17.1696375796777; 
+ Tue, 03 Oct 2023 16:29:56 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
+ [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
+ z20-20020a17090a8b9400b0026d54b2abe9sm134489pjn.37.2023.10.03.16.29.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Oct 2023 16:29:56 -0700 (PDT)
+From: Kees Cook <keescook@chromium.org>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Annotate struct amdgpu_bo_list with __counted_by
+Date: Tue,  3 Oct 2023 16:29:52 -0700
+Message-Id: <20231003232952.work.158-kees@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2647; i=keescook@chromium.org; 
+ h=from:subject:message-id;
+ bh=1v/oxBN7ZqO28+dM0oWFTdo9vpsVEGznhHHT3hTYF8I=; 
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlHKPwyIdWSWld6J97atG9hIxpNtU0Dh7/kol1x
+ NGYcBbZXXGJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZRyj8AAKCRCJcvTf3G3A
+ JgEqEACpA4yYWb2KVzTOCIfwm8hujCVTSJPb/hR3KANtcMNWX25mFUB8inrRxZWNTJKlqnLkDzN
+ VGPP1FbsCXD2NkpMv9Mi5rqHxnIYI4dPDjXghdQZo5wwWSmTJ0gDxcvYlhF68WAUuSdvzAYcuRR
+ Ua+upzrG0Zxau1z8VFtdASoWxhl6W5HCuBWKVJzL8coLB2q2sxHBtdJC9utqgikQ+n0LXYRG5/V
+ aIQWGc1WjEYexxVOe0SI0nqCGbvf/eSyWa7NM5pbGLR1oVDB4ThDda1/F+wHQ/qmoam8kolP2AJ
+ oif+XR3OH8/MLa0+Kb/eK+eJEclZP7gav8nxBSgsB0gjyvfBjmVd5mIPJGIteGyclUcZWQVeb0l
+ Kv+i+yrEZgNkEfh8Gflfov5ubL79ZXskKLGfkaJmMBAIm9kvZBbvzIrIzGxI9tuD3sRDd+CrqSU
+ XlgByjZ5HUL2Uqwbuj+8V4e6ks6sp0HYyeN26gSl+Ta8yOR8L1c+HaJpeBpPhItyuMwXwEN8vV4
+ WJCL05UQH36noU9sZ9FxQwYeP7wFkf6e4jOTjhPwjBMg3Lc9cDgUHaU3r+BizH/wpINJF9UCSmF
+ ibq3bJCAyYdVnesvLjy+QzmKTpbLov9bkIJeuxtJ/uTrmRoaLQunBZ3qRodYL81VPJ74Nt+blMg
+ vM2VNuF fGpQ1XFg==
+X-Developer-Key: i=keescook@chromium.org; a=openpgp;
+ fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD4:EE_|CY8PR12MB7172:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5ad44990-c062-45ca-f24b-08dbc4bbd008
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QxYNuuc06wR4Kc62nI9/KF90bV2A4p6yj/6LImL9pvXfs0RjRfhVahSZhtk0rORW9k4Ft4os13rx453Uxb9Kpp3dc2b6pa8hBq8leZ+KGc2f7uWd1vMgav5pEM+Bc90eYgKNMSs1IhKzysfQSOjzSqurE7gNFjXxaUixqqlcXTjJX7hlAisA8UdvhNRsaO6zlM6+1r7ALG6eOqjdgGDZSATc3GAbZk46swvY+Ddb+UhF0iZfwMR5agOP1AobvStHpNzLnxcc0FqDEMNC2vx86TvpRDJzwizykfI2iMVzYJfDFnKVaY88aW+GvNbQXvVSbr1kAk8CnofBmagUBxFuBoaMUKnMzPSBGzx1KkwUqOT+S6FIHA7aNf/5fk5XtTLts+zuXltApFWrm64Enl4CWDbthHJedRADRYdyIvSc41Eg3s/8nuaTnzvVHaSfwxvV/v9JMdnk5b2//7vUrfD7Rm37PmGh8+OEg0Tvu6EP3EfYSh8HCzN2vSNKeMEwECUSa8PEFWUwsU4lVjvcKQxpUiZRiqbbYTEppbP2wYMxScKzavRbwlF4j6BrmuUmPizZompx+EqyMyMuBg4MqjzkemM9TJRUObpnYFqe2UTFJXv2bBMFeggjI69eMeViUhgAiZjszC2UaOLRSKNWTNTl+8NcYCwM+5sWHmqkVlOKYLrkx1MACF7p4UExNQ6Jm4wpJE2V0QNNzlm9UeUo7BPTMMU3LcWBb+lBGBZjoZLojYGCeQFGpz8rU5wpe9MCwzBdCC1BTKWtmZD0Uy6P+HUaaw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(346002)(396003)(376002)(136003)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(82310400011)(40470700004)(36840700001)(46966006)(8676002)(83380400001)(426003)(8936002)(4326008)(336012)(47076005)(70586007)(41300700001)(36860700001)(70206006)(54906003)(316002)(6916009)(478600001)(26005)(2906002)(7696005)(2616005)(1076003)(81166007)(5660300002)(356005)(82740400003)(86362001)(36756003)(40480700001)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 09:25:13.0295 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ad44990-c062-45ca-f24b-08dbc4bbd008
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7172
+X-Mailman-Approved-At: Wed, 04 Oct 2023 13:16:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,46 +86,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>, chiahsuan.chung@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: llvm@lists.linux.dev, Kees Cook <keescook@chromium.org>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Tom Rix <trix@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Nick Desaulniers <ndesaulniers@google.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Nathan Chancellor <nathan@kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-hardening@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+Prepare for the coming implementation by GCC and Clang of the __counted_by
+attribute. Flexible array members annotated with __counted_by can have
+their accesses bounds-checked at run-time via CONFIG_UBSAN_BOUNDS (for
+array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+functions).
 
-This version brings along following fixes:
-- Refactor DPG test pattern logic for ODM cases
-- Refactor HWSS into component folder
-- Revert "drm/amd/display: Add a check for idle power optimization"
-- Revert "drm/amd/display: remove duplicated edp relink to fastboot
-- Update cursor limits based on SW cursor fallback limits
-- Update stream mask
-- Update pmfw_driver_if new structure
-- Modify SMU message logs
-- Don't set dpms_off for seamless boot
+As found with Coccinelle[1], add __counted_by for struct amdgpu_bo_list.
+Additionally, since the element count member must be set before accessing
+the annotated flexible array member, move its initialization earlier.
 
-Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: Luben Tuikov <luben.tuikov@amd.com>
+Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-hardening@vger.kernel.org
+Link: https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci [1]
+Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 0b9384707106..9f6d8d5000bf 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -47,7 +47,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+index 6f5b641b631e..781e5c5ce04d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+@@ -84,6 +84,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
  
--#define DC_VER "3.2.254"
-+#define DC_VER "3.2.255"
+ 	kref_init(&list->refcount);
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
++	list->num_entries = num_entries;
+ 	array = list->entries;
+ 
+ 	for (i = 0; i < num_entries; ++i) {
+@@ -129,7 +130,6 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+ 	}
+ 
+ 	list->first_userptr = first_userptr;
+-	list->num_entries = num_entries;
+ 	sort(array, last_entry, sizeof(struct amdgpu_bo_list_entry),
+ 	     amdgpu_bo_list_entry_cmp, NULL);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
+index 6a703be45d04..555cd6d877c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
+@@ -56,7 +56,7 @@ struct amdgpu_bo_list {
+ 	 */
+ 	struct mutex bo_list_mutex;
+ 
+-	struct amdgpu_bo_list_entry entries[];
++	struct amdgpu_bo_list_entry entries[] __counted_by(num_entries);
+ };
+ 
+ int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
 -- 
-2.25.1
+2.34.1
 
