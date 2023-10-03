@@ -2,47 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702BD7B6E70
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Oct 2023 18:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629097B6E7C
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Oct 2023 18:31:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFB3810E2D9;
-	Tue,  3 Oct 2023 16:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E16B10E2EA;
+	Tue,  3 Oct 2023 16:31:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 596AE10E2ED
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 16:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696350432; x=1727886432;
- h=date:from:to:cc:subject:message-id;
- bh=l9UdjBKN9yue3ajt6IHFcmXyQRF44I1x/rrvo2Y6S/Y=;
- b=U9EDoT/DAijcFXp9FdWythjIaIIxbJdo/E9PxTGYzjFVVBn/mfD60XNn
- JnebMZInsL4p4A95aDbrKdIQFEfNJ1QbhSpS+pqzvgkBBM+ah6rn+HrOL
- JNIjYL83Trr3aW6t2bm0u/qHkNYo2Q4Zg2REhz+XaS4OYv0rWI893bwCI
- Hw2SxtpF/T8FWm8Dr5qQxKfbp3fsxiANASVRCEtXDJOYyTU4PBRqRpTKH
- fTQ+WhATnUwlQP3FsWlTBBIiSLg8capJjr7/k8zOr4IVSa76eVKEytinN
- R/nKrIUazHycX2tfTIkPu7z1bS5Pcz4Bex0eDhXKhzXlFqMfemy5KJzJF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="373259527"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="373259527"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 09:27:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="841412235"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="841412235"
-Received: from lkp-server02.sh.intel.com (HELO c3b01524d57c) ([10.239.97.151])
- by FMSMGA003.fm.intel.com with ESMTP; 03 Oct 2023 09:27:08 -0700
-Received: from kbuild by c3b01524d57c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qniEk-0007Qf-1g;
- Tue, 03 Oct 2023 16:27:06 +0000
-Date: Wed, 04 Oct 2023 00:26:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD REGRESSION
- c9f2baaa18b5ea8f006a2b3a616da9597c71d15e
-Message-ID: <202310040009.HOWj2ngq-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com
+ [IPv6:2001:4860:4864:20::34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4CD810E2E3
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Oct 2023 16:31:48 +0000 (UTC)
+Received: by mail-oa1-x34.google.com with SMTP id
+ 586e51a60fabf-1dcbd8a56d6so714137fac.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Oct 2023 09:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696350708; x=1696955508; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=xeeK35tqCiojtPxDKIApWZ9uecQ8HUhVX7hx+iiwjrU=;
+ b=QKwiS4qXKuU2tXXNtaqa+KIrD8i3PD60aucZk3b8yPRi2fEE7Nn9GrGgfZZ7Vnj6fW
+ 480fNgaukprmLgKCXuH0RfMmN/RE6mntq4RS/zANas0T1H5zEdx5hYI0AiugA24ND2bd
+ 7t3I9Bl1aYnVBMST1qplIVYsx8dVH4GUZdk7OAFZwHLmBAyhvEgdJP8OtzQz24QWCiPF
+ hocHvxxxtCb4hf0ZbsiDDB2Yqsx3am6UoL42M3wsz1VulCQe8qGY38jWmiUOwkBTAkoR
+ V71PE+yKqDH9KXo1miKqy+U8CpLG0dwGDSRKUEAuhTweRN4zvTF2LKaAQ+6jXS2Rcb+b
+ OyKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696350708; x=1696955508;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=xeeK35tqCiojtPxDKIApWZ9uecQ8HUhVX7hx+iiwjrU=;
+ b=kONG2Q4OlIgSwWtZTBS9Tp4Ri9wt31pwEKZ/COkMJ9/pYdfKXaRJWQOL6ootv/sUzj
+ jBSe9ilvEqQFhZ+KYNwZeQf1fH2Ty6ZujRpSMODvnsGqsJ518jKxKmCsyFsYRs5avRA8
+ ZMQwy1fbVkNO6nz4rYronB3+zUWNuR3KN9kfiX90bWb9ijxoLY5I7kWvDzaN1/pyJ/Pt
+ tb1LLTjh3/eSxmSQVlx1BXV7/Ayqw1NR8hj4AwIhY7L5d2WunkxVitSbL+k0UEXRFNvA
+ OvhdWThYIxuKqaQxWJcjr18YYEBon63M1PTjBeCYzzBXB9DruhBlhCxxtpJjfC8nsmvh
+ HD8w==
+X-Gm-Message-State: AOJu0Yy2tV7HDiuI0BDXA2yePZ3xVC+27OaXILOIEsHuxPx76JjiF25x
+ il10UGyr7kEOopCGvGNDiVJD1FQySScNkkXiQlQ=
+X-Google-Smtp-Source: AGHT+IGcZjN+ljh+q5v3ikyLPpsNEmmDGSR8Dm4EiofULcsXSt1d+UNcg+jLz+UoTJD5zE3SGc3CBXkpEzN+ySvWGpE=
+X-Received: by 2002:a05:6870:d0c5:b0:1e1:372:1f7a with SMTP id
+ k5-20020a056870d0c500b001e103721f7amr118651oaa.8.1696350708069; Tue, 03 Oct
+ 2023 09:31:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230921124929.1965750-1-sathishkumar.sundararaju@amd.com>
+ <CADnq5_NTHMU5OAb_Rw1iWyHB0ksgv8v7C2J7A9TnUdgRt-1_Yg@mail.gmail.com>
+ <d96ed183-6806-c2a8-7972-fab3944aa02a@amd.com>
+In-Reply-To: <d96ed183-6806-c2a8-7972-fab3944aa02a@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 3 Oct 2023 12:31:36 -0400
+Message-ID: <CADnq5_MM-_zR6_nDdfejpoC=m0Xv4eM5ZQkoVZH6qnChfcaWCA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: fix ip count query for xcp partitions
+To: "Sundararaju, Sathishkumar" <sasundar@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,315 +69,159 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-hardening@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: "Sundararaju, Sathishkumar" <Sathishkumar.Sundararaju@amd.com>,
+ Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org,
+ Alexander Deucher <Alexander.Deucher@amd.com>, James.Zhu@amd.com, "Liu,
+ Leo" <Leo.Liu@amd.com>, Koenig Christian <Christian.Koenig@amd.com>,
+ Srinath Rao <Srinath.rao@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: c9f2baaa18b5ea8f006a2b3a616da9597c71d15e  Add linux-next specific files for 20231003
+On Tue, Oct 3, 2023 at 12:22=E2=80=AFPM Sundararaju, Sathishkumar
+<sasundar@amd.com> wrote:
+>
+> Hi ,
+>
+> Kind request to help review the change. Thank you.
 
-Error/Warning reports:
+I acked this change back when you sent it out, but if it didn't come
+through for some reason:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-https://lore.kernel.org/oe-kbuild-all/202309122047.cRi9yJrq-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202309130213.mSR7X2jZ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202309192314.VBsjiIm5-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202309212121.cul1pTRa-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202309212339.hxhBu2F1-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202310032158.OvfQjd58-lkp@intel.com
-
-Error/Warning: (recently discovered and may have been fixed)
-
-aarch64-linux-ld: ice_lib.c:(.text+0x7b94): undefined reference to `ice_is_cgu_present'
-aarch64-linux-ld: ice_lib.c:(.text+0x7bac): undefined reference to `ice_is_clock_mux_present_e810t'
-csky-linux-ld: include/asm-generic/bitops/instrumented-atomic.h:30:(.text+0x5be8): undefined reference to `ice_is_cgu_present'
-csky-linux-ld: include/asm-generic/bitops/instrumented-atomic.h:30:(.text+0x5bec): undefined reference to `ice_is_clock_mux_present_e810t'
-drivers/cpufreq/sti-cpufreq.c:215:50: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3928: warning: Function parameter or member 'srf_updates' not described in 'could_mpcc_tree_change_for_active_pipes'
-fs/bcachefs/bcachefs_format.h:215:25: warning: 'p' offset 3 in 'struct bkey' isn't aligned to 4 [-Wpacked-not-aligned]
-fs/bcachefs/bcachefs_format.h:217:25: warning: 'version' offset 27 in 'struct bkey' isn't aligned to 4 [-Wpacked-not-aligned]
-include/asm-generic/bitops/instrumented-atomic.h:30:(.text+0x5bdc): undefined reference to `ice_is_phy_rclk_present'
-include/linux/fortify-string.h:57:33: warning: writing 8 bytes into a region of size 0 [-Wstringop-overflow=]
-include/net/bluetooth/bluetooth.h:364:16: warning: 'memcmp' specified bound 6 exceeds source size 0 [-Wstringop-overread]
-kernel/bpf/helpers.c:1906:19: warning: no previous declaration for 'bpf_percpu_obj_new_impl' [-Wmissing-declarations]
-kernel/bpf/helpers.c:1942:18: warning: no previous declaration for 'bpf_percpu_obj_drop_impl' [-Wmissing-declarations]
-kernel/bpf/helpers.c:2477:18: warning: no previous declaration for 'bpf_throw' [-Wmissing-declarations]
-xtensa-linux-ld: ice_dpll.c:(.text+0x584): undefined reference to `ice_cgu_get_pin_type'
-xtensa-linux-ld: ice_dpll.c:(.text+0x588): undefined reference to `ice_cgu_get_pin_freq_supp'
-xtensa-linux-ld: ice_dpll.c:(.text+0x5e0): undefined reference to `ice_cgu_get_pin_name'
-xtensa-linux-ld: ice_dpll.c:(.text+0xfb2): undefined reference to `ice_get_cgu_rclk_pin_info'
-
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml:
-{standard input}:1162: Error: expected comma after name `mp' in .size directive
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- arc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- arc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- arm-allmodconfig
-|   |-- drivers-cpufreq-sti-cpufreq.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- arm-allyesconfig
-|   |-- drivers-cpufreq-sti-cpufreq.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- arm64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- arm64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- arm64-randconfig-003-20231003
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- arm64-randconfig-r002-20230421
-|   `-- include-net-bluetooth-bluetooth.h:warning:memcmp-specified-bound-exceeds-source-size
-|-- arm64-randconfig-r013-20230308
-|   |-- aarch64-linux-ld:ice_lib.c:(.text):undefined-reference-to-ice_is_cgu_present
-|   `-- aarch64-linux-ld:ice_lib.c:(.text):undefined-reference-to-ice_is_clock_mux_present_e810t
-|-- csky-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- csky-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- csky-randconfig-r025-20230628
-|   |-- csky-linux-ld:include-asm-generic-bitops-instrumented-atomic.h:(.text):undefined-reference-to-ice_is_cgu_present
-|   |-- csky-linux-ld:include-asm-generic-bitops-instrumented-atomic.h:(.text):undefined-reference-to-ice_is_clock_mux_present_e810t
-|   `-- include-asm-generic-bitops-instrumented-atomic.h:(.text):undefined-reference-to-ice_is_phy_rclk_present
-|-- i386-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- i386-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- i386-buildonly-randconfig-001-20231003
-|   |-- kernel-bpf-helpers.c:warning:no-previous-declaration-for-bpf_percpu_obj_drop_impl
-|   |-- kernel-bpf-helpers.c:warning:no-previous-declaration-for-bpf_percpu_obj_new_impl
-|   `-- kernel-bpf-helpers.c:warning:no-previous-declaration-for-bpf_throw
-|-- i386-buildonly-randconfig-005-20231003
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- i386-buildonly-randconfig-006-20231003
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- loongarch-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- loongarch-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- loongarch-defconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- loongarch-randconfig-001-20231003
-|   `-- Documentation-devicetree-bindings-mfd-qcom-pm8xxx.yaml:
-|-- m68k-allmodconfig
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- m68k-allyesconfig
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- microblaze-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- microblaze-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- mips-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- mips-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- openrisc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- openrisc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- parisc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- parisc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   |-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- powerpc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   |-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- powerpc-randconfig-002-20231003
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- powerpc64-randconfig-001-20231003
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- riscv-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- riscv-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|-- s390-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   |-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- s390-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   |-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-|-- sh-randconfig-r014-20220820
-|   `-- standard-input:Error:expected-comma-after-name-mp-in-.size-directive
-|-- sparc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- sparc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- sparc64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- sparc64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   |-- fs-bcachefs-bcachefs_format.h:warning:p-offset-in-struct-bkey-isn-t-aligned-to
-|   `-- fs-bcachefs-bcachefs_format.h:warning:version-offset-in-struct-bkey-isn-t-aligned-to
-|-- x86_64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:Function-parameter-or-member-srf_updates-not-described-in-could_mpcc_tree_change_for_active_pipes
-|   `-- include-linux-fortify-string.h:warning:writing-bytes-into-a-region-of-size
-`-- xtensa-randconfig-r004-20220323
-    |-- xtensa-linux-ld:ice_dpll.c:(.text):undefined-reference-to-ice_cgu_get_pin_freq_supp
-    |-- xtensa-linux-ld:ice_dpll.c:(.text):undefined-reference-to-ice_cgu_get_pin_name
-    |-- xtensa-linux-ld:ice_dpll.c:(.text):undefined-reference-to-ice_cgu_get_pin_type
-    `-- xtensa-linux-ld:ice_dpll.c:(.text):undefined-reference-to-ice_get_cgu_rclk_pin_info
-
-elapsed time: 726m
-
-configs tested: 107
-configs skipped: 2
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20231003   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                                 defconfig   gcc  
-arm                   randconfig-001-20231003   gcc  
-arm64                            allmodconfig   gcc  
-arm64                             allnoconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20231003   gcc  
-i386         buildonly-randconfig-002-20231003   gcc  
-i386         buildonly-randconfig-003-20231003   gcc  
-i386         buildonly-randconfig-004-20231003   gcc  
-i386         buildonly-randconfig-005-20231003   gcc  
-i386         buildonly-randconfig-006-20231003   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                  randconfig-001-20231003   gcc  
-i386                  randconfig-002-20231003   gcc  
-i386                  randconfig-003-20231003   gcc  
-i386                  randconfig-004-20231003   gcc  
-i386                  randconfig-005-20231003   gcc  
-i386                  randconfig-006-20231003   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                        allyesconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20231003   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                             allmodconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-openrisc                         allmodconfig   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                              allnoconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                randconfig-001-20231003   gcc  
-x86_64                randconfig-002-20231003   gcc  
-x86_64                randconfig-003-20231003   gcc  
-x86_64                randconfig-004-20231003   gcc  
-x86_64                randconfig-005-20231003   gcc  
-x86_64                randconfig-006-20231003   gcc  
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> Regards,
+>
+> Sathish
+>
+> On 9/21/2023 8:17 PM, Alex Deucher wrote:
+> > On Thu, Sep 21, 2023 at 9:07=E2=80=AFAM Sathishkumar S
+> > <sathishkumar.sundararaju@amd.com> wrote:
+> >> fix wrong ip count INFO on spatial partitions. update the query
+> >> to return the instance count corresponding to the partition id.
+> >>
+> >> v2:
+> >>   initialize variables only when required to be (Christian)
+> >>   move variable declarations to the beginning of function (Christian)
+> >>
+> >> Signed-off-by: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+> > Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> >
+> >> ---
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 44 ++++++++++++++++++++---=
+--
+> >>   1 file changed, 36 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_kms.c
+> >> index 081bd28e2443..d4ccbe7c78d6 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> >> @@ -595,11 +595,16 @@ int amdgpu_info_ioctl(struct drm_device *dev, vo=
+id *data, struct drm_file *filp)
+> >>          struct drm_amdgpu_info *info =3D data;
+> >>          struct amdgpu_mode_info *minfo =3D &adev->mode_info;
+> >>          void __user *out =3D (void __user *)(uintptr_t)info->return_p=
+ointer;
+> >> +       struct amdgpu_fpriv *fpriv;
+> >> +       struct amdgpu_ip_block *ip_block;
+> >> +       enum amd_ip_block_type type;
+> >> +       struct amdgpu_xcp *xcp;
+> >> +       uint32_t count, inst_mask;
+> >>          uint32_t size =3D info->return_size;
+> >>          struct drm_crtc *crtc;
+> >>          uint32_t ui32 =3D 0;
+> >>          uint64_t ui64 =3D 0;
+> >> -       int i, found;
+> >> +       int i, found, ret;
+> >>          int ui32_size =3D sizeof(ui32);
+> >>
+> >>          if (!info->return_size || !info->return_pointer)
+> >> @@ -627,7 +632,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void=
+ *data, struct drm_file *filp)
+> >>                  return copy_to_user(out, &ui32, min(size, 4u)) ? -EFA=
+ULT : 0;
+> >>          case AMDGPU_INFO_HW_IP_INFO: {
+> >>                  struct drm_amdgpu_info_hw_ip ip =3D {};
+> >> -               int ret;
+> >>
+> >>                  ret =3D amdgpu_hw_ip_info(adev, info, &ip);
+> >>                  if (ret)
+> >> @@ -637,15 +641,41 @@ int amdgpu_info_ioctl(struct drm_device *dev, vo=
+id *data, struct drm_file *filp)
+> >>                  return ret ? -EFAULT : 0;
+> >>          }
+> >>          case AMDGPU_INFO_HW_IP_COUNT: {
+> >> -               enum amd_ip_block_type type;
+> >> -               struct amdgpu_ip_block *ip_block =3D NULL;
+> >> -               uint32_t count =3D 0;
+> >> -
+> >> +               fpriv =3D (struct amdgpu_fpriv *) filp->driver_priv;
+> >>                  type =3D amdgpu_ip_get_block_type(adev, info->query_h=
+w_ip.type);
+> >>                  ip_block =3D amdgpu_device_ip_get_ip_block(adev, type=
+);
+> >> +
+> >>                  if (!ip_block || !ip_block->status.valid)
+> >>                          return -EINVAL;
+> >>
+> >> +               if (adev->xcp_mgr && adev->xcp_mgr->num_xcps > 0 &&
+> >> +                       fpriv->xcp_id >=3D 0 && fpriv->xcp_id < adev->=
+xcp_mgr->num_xcps) {
+> >> +                       xcp =3D &adev->xcp_mgr->xcp[fpriv->xcp_id];
+> >> +                       switch (type) {
+> >> +                       case AMD_IP_BLOCK_TYPE_GFX:
+> >> +                               ret =3D amdgpu_xcp_get_inst_details(xc=
+p, AMDGPU_XCP_GFX, &inst_mask);
+> >> +                               count =3D hweight32(inst_mask);
+> >> +                               break;
+> >> +                       case AMD_IP_BLOCK_TYPE_SDMA:
+> >> +                               ret =3D amdgpu_xcp_get_inst_details(xc=
+p, AMDGPU_XCP_SDMA, &inst_mask);
+> >> +                               count =3D hweight32(inst_mask);
+> >> +                               break;
+> >> +                       case AMD_IP_BLOCK_TYPE_JPEG:
+> >> +                               ret =3D amdgpu_xcp_get_inst_details(xc=
+p, AMDGPU_XCP_VCN, &inst_mask);
+> >> +                               count =3D hweight32(inst_mask) * adev-=
+>jpeg.num_jpeg_rings;
+> >> +                               break;
+> >> +                       case AMD_IP_BLOCK_TYPE_VCN:
+> >> +                               ret =3D amdgpu_xcp_get_inst_details(xc=
+p, AMDGPU_XCP_VCN, &inst_mask);
+> >> +                               count =3D hweight32(inst_mask);
+> >> +                               break;
+> >> +                       default:
+> >> +                               return -EINVAL;
+> >> +                       }
+> >> +                       if (ret)
+> >> +                               return ret;
+> >> +                       return copy_to_user(out, &count, min(size, 4u)=
+) ? -EFAULT : 0;
+> >> +               }
+> >> +
+> >>                  switch (type) {
+> >>                  case AMD_IP_BLOCK_TYPE_GFX:
+> >>                  case AMD_IP_BLOCK_TYPE_VCE:
+> >> @@ -678,7 +708,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void=
+ *data, struct drm_file *filp)
+> >>                  return copy_to_user(out, &ui64, min(size, 8u)) ? -EFA=
+ULT : 0;
+> >>          case AMDGPU_INFO_FW_VERSION: {
+> >>                  struct drm_amdgpu_info_firmware fw_info;
+> >> -               int ret;
+> >>
+> >>                  /* We only support one instance of each IP block righ=
+t now. */
+> >>                  if (info->query_fw.ip_instance !=3D 0)
+> >> @@ -823,7 +852,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void=
+ *data, struct drm_file *filp)
+> >>                  struct drm_amdgpu_info_device *dev_info;
+> >>                  uint64_t vm_size;
+> >>                  uint32_t pcie_gen_mask;
+> >> -               int ret;
+> >>
+> >>                  dev_info =3D kzalloc(sizeof(*dev_info), GFP_KERNEL);
+> >>                  if (!dev_info)
+> >> --
+> >> 2.25.1
+> >>
