@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73BD7B8EA0
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 23:21:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D0C7B8EA3
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 23:21:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1193810E3BC;
-	Wed,  4 Oct 2023 21:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A70AE10E3C1;
+	Wed,  4 Oct 2023 21:21:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2069.outbound.protection.outlook.com [40.107.96.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2890010E3BB
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 21:21:42 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A297310E3BD
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 21:21:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DuyyhIpbrDJKBYrP4FJujY0eQDSkNXXPbiOt+wh8lTh15TW7VGEZCZzYqq8EEoegaCDmTKnjBq3sZmyfxNoJBOVL/qSGM2fWYKQy4Ztwz+5rZg+a+VedNaadwB8otZCvzE+PBhbgvkuUTHWyi+2QmR/xzPcn8P/cqLsknTsSyrP042vcRJYqBA08FMkQ9PmsDHnceijN4K5rocE+UZ2XGGyvSkMGY3aC6mh99tbuGoFZ2D9lT4AITZWriQRLMAFPFL9WmQbFTeBBW8wt1UsX9RKzij7Ne63atgqEiK/TtejzBHkfQEDMFTjeLC0ByNTHPkuuu6Y/ZX2SUeRejvON0w==
+ b=nKZU8oQsuA0Bw4vSmtJ+dgXaFbCe4jqis2CaA0o8tfnqFx44U66Wsc4KoLRVJwz3e7LIbGzOyVFxiQMHuLOLe0dnBaRuzbPsPQ5VEnmh5In9b5yrU5jUoqSsSkKLBNgth9D1qq9xFAE9eDa0UVPpgdCC/1lycYH62Y+fBbOkhDV8XoH71bBJUiSx/ZR0aYVBYsnWHaEwGkTmwg0negZ0wKRO4gZOEp0E8X6iqMPDhbzbvwDCd2Bh0wnKCwHbjZpdWJRQTPDVWUuxO74YZ5EchlmqBF66zwMtOlbNVadUevlhuS0E2UFYg1fnDqVDGoiS0/bA52oMim/gEX4haizBrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MPGHb9TdO0jOViTZO7bHiougJFKjtBHSiDcgIU5eEUc=;
- b=O/16FpsEgwQ8NHOUJhqBU4ForMkwAS3hSpg4a8qSbLhQ4u9Jj2WOo7X0AeFTlAmfB/qZDUi+v+xosHQhKZ/44jq/lbHAJrHFPfgsBS2r6/Zzm19kHVqgcm5IKSKSdnOxMCNp6Ws/z0ZQaKunkSx/X/l0uo/X7kfPI+m28TONriD4P6Kf9JTyR292cFmtTyNH+QS2GYqkiOrjzC4htmF9Z9pD1vV0PUrXGJZmHoet/AgCTSvFoUWKri43NVI3RZ8WFI7OL84GFomJa2ur+VF1c0YrItWTkqNln0UVGcBDLOlmJ0RLLSKLbl/bpE0+OR329BtHOYeaoEQC72wjg4wGpA==
+ bh=U3cB2CTbJZOryd3CmE0OnW4G0aUubTmWUGYoiI8ptik=;
+ b=RcREgtscwVWx4L7ioCT39FjqwKUVstK03boO6IzTUYkPCOw/6IWdqt4FWyvK+WDkiUjqNLIji3OAu991vPkpBpgS7Hfjw99Z1reejqWmgG6SErElNTH5900D/EPnB/nmojxPL8qQASPI2TflFvu+W1lD1JEYxuoH9edNCSQ56PqEMTMiJNPwGvOjSyX4zg44yqztOaFVjqQgF9p1SKnsiKVQF9Q70bszJHCEjIqyUnFgSk5dNcnF77/SUva0E3VOf6MZM0DN+A0ZEin4w9uBBxiBXy3UrIiP8bzWtj3eCNi+pMYXR3qTe3b8nMCYIbko6MaWVcmB7iwvIe9dUjgQBA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MPGHb9TdO0jOViTZO7bHiougJFKjtBHSiDcgIU5eEUc=;
- b=YZEZjIJj9Gv5d8i2IsdarPlwu0vOtxTRZMDvxbZxhG0BZBGvBzc2ebAQg2diluhm5hPk7rF8OMtL6r5WhrfX9mwYAudAApBk2F0E+WB7AJCrkLwkAyVmrrowwbcAr1RpXrF7P0gsp1Q4AVIlWd1Ji7KodYXyHBjoc3nKwfjR5Gs=
-Received: from MN2PR11CA0025.namprd11.prod.outlook.com (2603:10b6:208:23b::30)
- by MW4PR12MB5641.namprd12.prod.outlook.com (2603:10b6:303:186::5)
+ bh=U3cB2CTbJZOryd3CmE0OnW4G0aUubTmWUGYoiI8ptik=;
+ b=FEliZ3OtG7sMa1yqwrLSxvBddI3lot2fesTawVoLN+ZFIdNQXshwhox3csCAZrgQAE8RJhg6ET1br0Oc0s8ALa8YpT+V1eOkqXS/fcUP8rmS2yiqddP0lfN7uHRkhO7iAVCWyEd7L2PQNCjsXMwwH2wrriYzcGMRUp/XT5inUj0=
+Received: from MN2PR11CA0002.namprd11.prod.outlook.com (2603:10b6:208:23b::7)
+ by PH0PR12MB5417.namprd12.prod.outlook.com (2603:10b6:510:e1::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Wed, 4 Oct
- 2023 21:21:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Wed, 4 Oct
+ 2023 21:21:39 +0000
 Received: from BL02EPF0001A108.namprd05.prod.outlook.com
- (2603:10b6:208:23b:cafe::94) by MN2PR11CA0025.outlook.office365.com
- (2603:10b6:208:23b::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:23b:cafe::ba) by MN2PR11CA0002.outlook.office365.com
+ (2603:10b6:208:23b::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.25 via Frontend
- Transport; Wed, 4 Oct 2023 21:21:38 +0000
+ Transport; Wed, 4 Oct 2023 21:21:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF0001A108.mail.protection.outlook.com (10.167.241.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Wed, 4 Oct 2023 21:21:38 +0000
+ 15.20.6838.14 via Frontend Transport; Wed, 4 Oct 2023 21:21:39 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 4 Oct
- 2023 16:21:34 -0500
+ 2023 16:21:36 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 00/16] Introduce DML version 2
-Date: Wed, 4 Oct 2023 15:20:54 -0600
-Message-ID: <20231004212110.3753955-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH v3 01/16] drm/amd/display: Move dce_calcs from DML folder
+Date: Wed, 4 Oct 2023 15:20:55 -0600
+Message-ID: <20231004212110.3753955-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231004212110.3753955-1-Rodrigo.Siqueira@amd.com>
+References: <20231004212110.3753955-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A108:EE_|MW4PR12MB5641:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0a4c1c7-fb1d-4dd0-0908-08dbc51fe512
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A108:EE_|PH0PR12MB5417:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0fdac54e-2190-438a-2924-08dbc51fe5b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: I2yj8rJpuK7+2ZrDPNL4GFRQTZC1imUUfjOhoEdGVmH+T3GLHZJSa1+7aaXSfuhmBNmrymGcqrionVLUvX743669VCsTeaJQK2Ivn/jRkhTxT8p9+yVrM4xWOlakhwVPSSxlvdpWhtxzggGn1tXSpRmLXqGI7oGIEcpUz6ujP+TPu+0adSps75GF1fR5z/VlXCnuyOuhOIDfhDOuuINGo090gmW2JmF7OQc23JRpzyDxnstNUXy2KafOvt+Teh5gSSigkdsgk4CFlsR3pQaxvCsbfqmfA5dIbaiX2VZfDyfHVrRcBV//vxYhlfWSCQo3F7ovMf/nSO9Ww9MNPP8tFOJtZBzAHwhJ1ksTD3hWaWj6t2MhlWX6soY8EICG5hiLRqBxhnEIAiUzzB2wNaC2RmTPnvYm3xHk5NwiCX8oSba/2/gYS48l2DHx50bhSVZvIVsHW6qdmMO/rmppxcdiy335B6YxnRr9Xb0uzt39efUSe3OMGu3fZpWD3FnTRLgaB0WhUT5/yu+FiNSX35+AHITMsEEdCyjkvrrT3Wj+I0ndw+6d45LXpLeS4iVzKtHghq1Iqqq42SyQKR7aw9p+5ddsVyuaoGuaCVCMaQBLuy4Ez0mVgX1Bo9PUCSYsPX1D8AGTwrbYZB7j2GMIgEFTee21wISl+9Y97ILBb8TaSFez0GOW22EReyQPw9UWIzNGOTNiiChSRKfnrnRnD03OYmqKAcXndBIDBLF3kbrRy6KOpRBVaNk3rM5WvHh2XE5PGmRhWRRerNKUvguwV6ZJKw==
+X-Microsoft-Antispam-Message-Info: HzXlMFVkY2I+eq2hq2uNDY54WHlyLPXTu1a1x4Q8tkle8Enpn9nPe1d/dZIZEJ16FTW7GNPGW4fWHkv0MkVIb9WLqV17VndmfVEjHpv2ruBUzQ5uGOeo9AFO+ne6GbKBM0SOY/U4le0eS8yUk4aCtwdzMeiFqLasw0LHDrPgb6b1oua8dQYdEWhwZFPilQSkO6g22HrQQwIu4AkKM14hDRzodyI/j8BPNqD0uDlJC3ayt9PGGGjyFwoxwQI0HLzEZsp5hdt9m7bx0sBD/TUZ7fGNjGdqbKGsrnWgjO8+JLyJpQwYJDEQwxBYncSHcmJj51ow72sdiApR9/1MG8llvhpGM6nMwfwuuAWvdCb7lstg0TlUZ43lOEbToK+AjyoQIExDtSaokUKgPoxaVy5BWMqhg+7zrDF7ti1Wa1HJktbO49rAN6lG0ShMMx2DS2zxEx8kSWxeilcK0yXwb4WYqo3UWLcLc0CP4RabZUETzwcaGCuKRTxnaq75F0totjNOQak0zT+ByxzdFxeC5MPHkNNjDxsXuTkx5WSdEspXke5Oa/qepBW66eNAGtNfxhUt296KwS34k58vPnO5XdQKxqdbkGfCWMtD9itA8EaItzG5MWJc1ArQ7cA4GQWPK8T6JdOW7VtgqLcbklvM1bihKlxL6ttb0opZStMVGE0KeplOyy2l0YoeH/nXQK7rYOrFUNxQZBKzPIzPauLmUEHmORFZkxNfU8vD8Zs/9Paq+7Q2L0s1Ouo5CPFcP3ve3RlNjKqoHDKEKtsH+gLkuyTp/w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(39860400002)(396003)(136003)(376002)(230922051799003)(451199024)(186009)(82310400011)(1800799009)(64100799003)(46966006)(36840700001)(40470700004)(47076005)(2906002)(83380400001)(40460700003)(81166007)(82740400003)(86362001)(356005)(36756003)(36860700001)(40480700001)(1076003)(16526019)(6666004)(26005)(70586007)(54906003)(70206006)(6916009)(2616005)(5660300002)(41300700001)(4326008)(8936002)(8676002)(478600001)(426003)(316002)(336012)(36900700001);
+ SFS:(13230031)(4636009)(376002)(346002)(136003)(396003)(39860400002)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(82310400011)(36840700001)(46966006)(40470700004)(40460700003)(40480700001)(1076003)(2616005)(478600001)(6666004)(36860700001)(86362001)(356005)(82740400003)(81166007)(8936002)(8676002)(4326008)(5660300002)(2906002)(47076005)(83380400001)(26005)(426003)(336012)(16526019)(36756003)(41300700001)(70586007)(316002)(6916009)(70206006)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 21:21:38.0410 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0a4c1c7-fb1d-4dd0-0908-08dbc51fe512
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 21:21:39.1035 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0fdac54e-2190-438a-2924-08dbc51fe5b4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A108.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5641
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5417
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,133 +106,59 @@ Cc: Sunpeng.Li@amd.com, richard.gong@amd.com, qingqing.zhuo@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset introduces a new version of DML that will be used for some
-already available ASIC based on DCN3x and future devices. This new
-version of the DML is more reliable, provide a better programming model
-for hardware/software, and is more flexible for creating new tools for
-automation/validation (e.g., unit test). This first version is a
-transition step for new ASICs, meaning that we will keep improving this
-new component. Finally, it is important to highlight that a large part
-of the DML code is generated.
+dce_calcs does not have FPU operations, and it is required for DCE and
+DCN. Remove this file from the DML folder and add it to the basic folder
+visible for DCE and DCN.
 
-This patchset starts with a code refactor in the DML to improve the code
-isolation and avoid compilation issues when using some 32-bit
-architecture such as ARM and PPC. Next, it is introduced the basic code
-for DML2. Finally, the end of this patchset enables DML2 for some
-specific ASICs followed by patches that improve DML when used with
-specific devices.
-
-Thanks
-Siqueira
-
-Charlene Liu (2):
-  drm/amd/display: Add z8_marks in dml
-  drm/amd/display: correct dml2 input and dlg_refclk
-
-Daniel Miess (1):
-  drm/amd/display: Port replay vblank logic to DML2
-
-Gabe Teeger (1):
-  drm/amd/display: add check in validate_only in dml2
-
-Qingqing Zhuo (2):
-  drm/amd/display: Introduce DML2
-  drm/amd/display: Add DCN35 DML2 support
-
-Rodrigo Siqueira (4):
-  drm/amd/display: Move dce_calcs from DML folder
-  drm/amd/display: Move custom_float outside DML
-  drm/amd/display: Move bw_fixed outside DML folder
-  drm/amd/display: Move dml code under CONFIG_DRM_AMD_DC_FP guard
-
-Saaem Rizvi (1):
-  drm/amd/display: Modify Pipe Selection for Policy for ODM
-
-Sung Joon Kim (3):
-  drm/amd/display: Handle multiple streams sourcing same surface
-  drm/amd/display: Use fixed DET Buffer Size
-  drm/amd/display: Fix Chroma Surface height/width initialization
-
-Taimur Hassan (2):
-  drm/amd/display: Split pipe for stereo timings
-  drm/amd/display: Move stereo timing check to helper
-
- drivers/gpu/drm/amd/display/dc/Makefile       |     6 +-
- .../gpu/drm/amd/display/dc/basics/Makefile    |     9 +-
- .../dc/{dml/calcs => basics}/bw_fixed.c       |    13 +-
- .../dc/{dml/calcs => basics}/calcs_logger.h   |     0
- .../dc/{dml/calcs => basics}/custom_float.c   |    90 +-
- .../dc/{dml/calcs => basics}/dce_calcs.c      |     0
- drivers/gpu/drm/amd/display/dc/core/dc.c      |    39 +
- .../gpu/drm/amd/display/dc/core/dc_resource.c |    20 +
- drivers/gpu/drm/amd/display/dc/dc.h           |     5 +
- .../drm/amd/display/dc/dcn32/dcn32_resource.c |    61 +-
- .../amd/display/dc/dcn321/dcn321_resource.c   |    41 +
- .../drm/amd/display/dc/dcn35/dcn35_resource.c |    24 +-
- drivers/gpu/drm/amd/display/dc/dml/Makefile   |     2 -
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |    80 +
- .../amd/display/dc/dml/dcn321/dcn321_fpu.c    |    81 +
- drivers/gpu/drm/amd/display/dc/dml2/Makefile  |    91 +
- .../gpu/drm/amd/display/dc/dml2/cmntypes.h    |    92 +
- .../amd/display/dc/dml2/display_mode_core.c   | 10296 ++++++++++++++++
- .../amd/display/dc/dml2/display_mode_core.h   |   201 +
- .../dc/dml2/display_mode_core_structs.h       |  1970 +++
- .../dc/dml2/display_mode_lib_defines.h        |    75 +
- .../amd/display/dc/dml2/display_mode_util.c   |   796 ++
- .../amd/display/dc/dml2/display_mode_util.h   |    74 +
- .../display/dc/dml2/dml2_dc_resource_mgmt.c   |   861 ++
- .../display/dc/dml2/dml2_dc_resource_mgmt.h   |    48 +
- .../drm/amd/display/dc/dml2/dml2_dc_types.h   |    40 +
- .../amd/display/dc/dml2/dml2_internal_types.h |   121 +
- .../amd/display/dc/dml2/dml2_mall_phantom.c   |   913 ++
- .../amd/display/dc/dml2/dml2_mall_phantom.h   |    50 +
- .../gpu/drm/amd/display/dc/dml2/dml2_policy.c |   308 +
- .../gpu/drm/amd/display/dc/dml2/dml2_policy.h |    47 +
- .../display/dc/dml2/dml2_translation_helper.c |  1201 ++
- .../display/dc/dml2/dml2_translation_helper.h |    39 +
- .../gpu/drm/amd/display/dc/dml2/dml2_utils.c  |   480 +
- .../gpu/drm/amd/display/dc/dml2/dml2_utils.h  |   144 +
- .../drm/amd/display/dc/dml2/dml2_wrapper.c    |   745 ++
- .../drm/amd/display/dc/dml2/dml2_wrapper.h    |   212 +
- .../gpu/drm/amd/display/dc/dml2/dml_assert.h  |    30 +
- .../drm/amd/display/dc/dml2/dml_depedencies.h |    31 +
- .../display/dc/dml2/dml_display_rq_dlg_calc.c |   585 +
- .../display/dc/dml2/dml_display_rq_dlg_calc.h |    63 +
- .../gpu/drm/amd/display/dc/dml2/dml_logging.h |    29 +
- .../gpu/drm/amd/display/dc/inc/core_types.h   |     1 +
- 43 files changed, 19931 insertions(+), 83 deletions(-)
- rename drivers/gpu/drm/amd/display/dc/{dml/calcs => basics}/bw_fixed.c (94%)
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/basics/Makefile             | 7 ++++++-
+ .../amd/display/dc/{dml/calcs => basics}/calcs_logger.h    | 0
+ .../drm/amd/display/dc/{dml/calcs => basics}/dce_calcs.c   | 0
+ drivers/gpu/drm/amd/display/dc/dml/Makefile                | 2 +-
+ 4 files changed, 7 insertions(+), 2 deletions(-)
  rename drivers/gpu/drm/amd/display/dc/{dml/calcs => basics}/calcs_logger.h (100%)
- rename drivers/gpu/drm/amd/display/dc/{dml/calcs => basics}/custom_float.c (66%)
  rename drivers/gpu/drm/amd/display/dc/{dml/calcs => basics}/dce_calcs.c (100%)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/Makefile
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/cmntypes.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_core_structs.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_lib_defines.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_types.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_internal_types.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_policy.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_policy.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml_assert.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml_depedencies.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml_display_rq_dlg_calc.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml_display_rq_dlg_calc.h
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml2/dml_logging.h
 
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/Makefile b/drivers/gpu/drm/amd/display/dc/basics/Makefile
+index 01b99e0d788e..ee611b03dc48 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/basics/Makefile
+@@ -24,7 +24,12 @@
+ # It provides the general basic services required by other DAL
+ # subcomponents.
+ 
+-BASICS = conversion.o fixpt31_32.o vector.o dc_common.o
++BASICS := \
++	conversion.o \
++	fixpt31_32.o \
++	vector.o \
++	dc_common.o \
++	dce_calcs.o
+ 
+ AMD_DAL_BASICS = $(addprefix $(AMDDALPATH)/dc/basics/,$(BASICS))
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/calcs/calcs_logger.h b/drivers/gpu/drm/amd/display/dc/basics/calcs_logger.h
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dml/calcs/calcs_logger.h
+rename to drivers/gpu/drm/amd/display/dc/basics/calcs_logger.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/calcs/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dml/calcs/dce_calcs.c
+rename to drivers/gpu/drm/amd/display/dc/basics/dce_calcs.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+index b06c3983af36..8621dfe9a68c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+@@ -134,7 +134,7 @@ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calcs.o := $(dml_rcflags)
+ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_auto.o := $(dml_rcflags)
+ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_rcflags)
+ 
+-DML = calcs/dce_calcs.o calcs/custom_float.o calcs/bw_fixed.o
++DML = calcs/custom_float.o calcs/bw_fixed.o
+ 
+ ifdef CONFIG_DRM_AMD_DC_FP
+ DML += display_mode_lib.o display_rq_dlg_helpers.o dml1_display_rq_dlg_calc.o
 -- 
 2.40.1
 
