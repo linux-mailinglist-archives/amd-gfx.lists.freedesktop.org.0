@@ -2,63 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C3E7B8065
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 15:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C577B80AD
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Oct 2023 15:21:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF91891A3;
-	Wed,  4 Oct 2023 13:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C252B10E0EC;
+	Wed,  4 Oct 2023 13:21:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com
- [IPv6:2001:4860:4864:20::36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9A1891A3
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 13:13:44 +0000 (UTC)
-Received: by mail-oa1-x36.google.com with SMTP id
- 586e51a60fabf-1e1a2e26afcso1397689fac.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 04 Oct 2023 06:13:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696425223; x=1697030023; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yxcQw8eUKA7ELohgummqMLiBSJJJtm1+W7xwhH9zI/U=;
- b=UpwC1igJ2/56y2xLL1Aa/FJnVzA1n89ei/U4kpVQz4VwH8JU4Dz7f7An/f1Vc6za2E
- X8Q4PLGrqexd1kxdhno4nSYhLaMjBaS0kBgsIhdXgVc9CGL6YuZGlWYY+B9z3buZbQ8+
- jRD0UyaFbN73uXj9IgnV3hrPHAjbW2UkfDrgNzrh8XSJJ1yiWuShX3ruBVvfJhMvuYiN
- YjS4hS+ZOfidBmrhgvyTh7OU95oi8kFMZ0qz+tNw3UXiZ5mffzpC2SZYTCFsT+duLDyz
- E2ghdrUzZP60nSmycBj7EQFkGdWPYyAte/oDTyr8DYaqsON3whxAUxUBwtxo9dSQhPBO
- UZXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696425223; x=1697030023;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yxcQw8eUKA7ELohgummqMLiBSJJJtm1+W7xwhH9zI/U=;
- b=RqjXwjgXpFQAW97r4btY4RncGKaIUWlJtnL22OFQxmYHHtGXnaakYdRtJScAwuCK9x
- G4UnXov0hTlrfnRLyY+nYMZriMlWroCwlGvFC7QFKYZh0eXdZ5ng3OsaFyulVgL8I3UO
- iQ6RDL06jXs47GT3lpvRF7oGJTx8z8vLsv/50Xmr00FsUkJidZEzOsANpJZNeyBxqjBj
- veiqkPBPED+72FZViv6Dv/9GGLRPBcIB4j4z7rLSY1omPBUZESi+8/cmVIJWV+8tmUj6
- jdFduSqpnBsZx/Gce8Kxzzo/aSAX19RMSAialwFTWTuBX1/vjjUgukMiKHB6tJDg/k29
- 68nQ==
-X-Gm-Message-State: AOJu0Yx3QusEeybqN7TfSXNd56hKMuAXrDnWlJAMPvbg2x8LJ2rC3bAy
- N/U/21vdexVzl4YOjRzrdiwgWpcvIoKQbnyr7TiltBnu
-X-Google-Smtp-Source: AGHT+IEcrz1zRIP0J5Y+LnqALeqayCTeNMBN/Zh5BaK2tECfVqQG4u0VQPr8TyqBC+r5W0nZ3rG8AkckmzG2/kVKg3w=
-X-Received: by 2002:a05:6870:7010:b0:1c0:5f7a:896f with SMTP id
- u16-20020a056870701000b001c05f7a896fmr2668189oae.8.1696425223405; Wed, 04 Oct
- 2023 06:13:43 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E1710E369
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Oct 2023 13:21:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XC/Qztu5OUgeJTdR84SwrY2hknsR6HDupd8moJ7QMTI3Wcx1maNRDJAylRJRSf9+hLlgseHPW+sdnXTgroN7uTFrNro/kcVznsTswU+961UsdKQuOsbR/CNIyXDgJZ4WVEu7qr6Ei8TiVtmuwGJ2aidUCjJZEBuEyxbVnpcNDLyoIDAwcBOaMO8pGWufb77/2WEgwPwV4hP5aZyjaXOUDf7zFIoTt3wLkvVXeI44He1x2IXdPGpFbZdIZAGmbSAYvOHNPkzOLq3AeuuSPllPz8oGxg4sgvl0rBYX/KBZMzdW3d0Hl3Ixu2dybAshgnZdXiRfcjZo8hYCIsAVP8dePw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Ze0yqW6KrZcvbgp1uGVgq83LzvbefidK0cEewbsk4g=;
+ b=WkUQP5gDQehYSFmG390VC3GASlfClerurrDmcoxY1e51JQ8arcyekIJALIjpSz5npQ08xdjvouuSv8gDTvLZaa02e2kwd8rr2WNF/bXHkIPAW0Yq0bdVnF8kQz/tWKkK3jRcslCAGU+DRoGITjCms826f8ZIxR2cyp6qMvgwVGvVoR9+Yj+6yJCZrelop2hSSEKCa5QeGywZjkSbdzD4SuKuL70E0fG+rAS/IGBN5T+T0eoqkP5sgxU14OKgBLzhnPVoHNRhV0NJLm0Ut6Z0Z/++w843H22gs1bySwIdxSN0I43dimio/apzCE1gzra85w7CXRbUhVlebkW3ynIu4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Ze0yqW6KrZcvbgp1uGVgq83LzvbefidK0cEewbsk4g=;
+ b=zcjg/9BJR8+cXWcra7QgURDfZCUp7rWQm0/7Ovrgp4/gjqi35A5GHc4UdOAIxEqzZnfdg+iv23A8aD2ZnCqKivgcZXlGDv3+q6ZvBcmeg0tMeAv0B5RfMJjq71PdJd5kc5LIjcKPSVwOnj3cL/PEiYh+b1EfWl4ED6elcPrADY4=
+Received: from PH8PR02CA0018.namprd02.prod.outlook.com (2603:10b6:510:2d0::8)
+ by CH0PR12MB5203.namprd12.prod.outlook.com (2603:10b6:610:ba::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Wed, 4 Oct
+ 2023 13:21:02 +0000
+Received: from SN1PEPF0002BA4D.namprd03.prod.outlook.com
+ (2603:10b6:510:2d0:cafe::b9) by PH8PR02CA0018.outlook.office365.com
+ (2603:10b6:510:2d0::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.31 via Frontend
+ Transport; Wed, 4 Oct 2023 13:21:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF0002BA4D.mail.protection.outlook.com (10.167.242.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.14 via Frontend Transport; Wed, 4 Oct 2023 13:21:02 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 4 Oct
+ 2023 08:20:58 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/4] drm/amdgpu: enable FRU device for SMU v13.0.6
+Date: Wed, 4 Oct 2023 18:50:36 +0530
+Message-ID: <20231004132039.1506172-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230908160446.2188-1-shashank.sharma@amd.com>
- <20230908160446.2188-6-shashank.sharma@amd.com>
- <CADnq5_MiNtSswTycxUQu0MfbD80LNg1M0=NCJ_1Br2Ek=ir-ig@mail.gmail.com>
- <deb6a51c-3a4b-fcb5-7b5f-ff0eade3d72b@amd.com>
-In-Reply-To: <deb6a51c-3a4b-fcb5-7b5f-ff0eade3d72b@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 4 Oct 2023 09:13:32 -0400
-Message-ID: <CADnq5_MQxu3hy4eBkmVX8Cc0rOVQ4fBnuryKeYEHrBE=pAG03g@mail.gmail.com>
-Subject: Re: [PATCH v6 5/9] drm/amdgpu: create context space for usermode queue
-To: Shashank Sharma <shashank.sharma@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4D:EE_|CH0PR12MB5203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a97e8ef-aa9b-4938-d7ec-08dbc4dcc1af
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5fiysD8wxsr8FaU+Jnq7TYu0HMmoczI8G5w7fRlvdTQ1qdJEpcY7dFHcBsGiLyZ5Xi7meI67UvPAGjawxqRhRIIeWOmEEkKr5Gv8x11GMSRqHR11RnTwelSca34zeP/ieVa+WvxT9YgkRnePHwxhVzx4hQD70amOpMdXpXHT0oypfl518XwRbzfsi5rvkY+thJToufNf0IFoXolkcrVaQUoz4iLFqN+efgyYATPTLZ1RbU2CUDTtg2NsLuiKKNe2kKEdkCIpMw7xLcmR5ScLCGiZJDYaWGjbDOHlmfFb60ssiiVZk2bxU4rWvWdNqX7TF+INUBEQxKuhwVrUm7KD5GVJkOA1feC0wYSJdF+GgXQGJEiP9c3i01yf97Y8K0cLcF3TnLM9KN7OhmY5PsBOS/aMYWJKzhq1t6ymgv96P4Fb8xI1NfkMVc3Ijrhu31W8LKSD1Ss9o0UW5nrtGELW7s1dt8hJGGQK1PBFR98JMFXX+A9ksk0uQK2PcFoPUa0Rq5y9TaJxUOqbipY79AK4vhrXbU7QFsdgbZtsirNefYv0K6PLqvmJR/OabISnMKzeDExGklCLTYaVK+VK0gS6xtSM1hjSzqAMc+jTItfaz+oz5QkEWJN5RsLHnDDp3mHyudok+tJZNxSoPEmuHxIWpCGGvY2MD0KJKNXOq4N0A7O4kgAAopnq7aFsYbEE3JGyC+t+V0GvtjBArHBkvWT4VAyuLNlS5mhKO7Q9+mebXEfZuwhhvZPRQjwHKDtec/pMypuIjrTHlJPArIpGho60mQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(230922051799003)(186009)(64100799003)(451199024)(1800799009)(82310400011)(36840700001)(46966006)(40470700004)(47076005)(2906002)(83380400001)(40460700003)(82740400003)(86362001)(81166007)(36756003)(356005)(36860700001)(40480700001)(6916009)(316002)(54906003)(70206006)(70586007)(7696005)(1076003)(41300700001)(2616005)(336012)(6666004)(478600001)(426003)(4326008)(44832011)(8676002)(5660300002)(26005)(8936002)(16526019)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 13:21:02.3808 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a97e8ef-aa9b-4938-d7ec-08dbc4dcc1af
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4D.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5203
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,209 +97,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, arvind.yadav@amd.com,
- Christian Koenig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Yang Wang <kevinyang.wang@amd.com>, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 29, 2023 at 1:50=E2=80=AFPM Shashank Sharma <shashank.sharma@am=
-d.com> wrote:
->
->
-> On 20/09/2023 17:21, Alex Deucher wrote:
-> > On Fri, Sep 8, 2023 at 12:45=E2=80=AFPM Shashank Sharma <shashank.sharm=
-a@amd.com> wrote:
-> >> The FW expects us to allocate at least one page as context
-> >> space to process gang, process, GDS and FW  related work.
-> >> This patch creates a joint object for the same, and calculates
-> >> GPU space offsets of these spaces.
-> >>
-> >> V1: Addressed review comments on RFC patch:
-> >>      Alex: Make this function IP specific
-> >>
-> >> V2: Addressed review comments from Christian
-> >>      - Allocate only one object for total FW space, and calculate
-> >>        offsets for each of these objects.
-> >>
-> >> V3: Integration with doorbell manager
-> >>
-> >> V4: Review comments:
-> >>      - Remove shadow from FW space list from cover letter (Alex)
-> >>      - Alignment of macro (Luben)
-> >>
-> >> V5: Merged patches 5 and 6 into this single patch
-> >>      Addressed review comments:
-> >>      - Use lower_32_bits instead of mask (Christian)
-> >>      - gfx_v11_0 instead of gfx_v11 in function names (Alex)
-> >>      - Shadow and GDS objects are now coming from userspace (Christian=
-,
-> >>        Alex)
-> >>
-> >> V6:
-> >>      - Add a comment to replace amdgpu_bo_create_kernel() with
-> >>        amdgpu_bo_create() during fw_ctx object creation (Christian).
-> >>      - Move proc_ctx_gpu_addr, gang_ctx_gpu_addr and fw_ctx_gpu_addr o=
-ut
-> >>        of generic queue structure and make it gen11 specific (Alex).
-> >>
-> >> Cc: Alex Deucher <alexander.deucher@amd.com>
-> >> Cc: Christian Koenig <christian.koenig@amd.com>
-> >> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
-> >> Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 61 +++++++++++++++++=
-++
-> >>   .../gpu/drm/amd/include/amdgpu_userqueue.h    |  1 +
-> >>   2 files changed, 62 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/=
-amd/amdgpu/gfx_v11_0.c
-> >> index 6760abda08df..8ffb5dee72a9 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> >> @@ -61,6 +61,9 @@
-> >>   #define regCGTT_WD_CLK_CTRL_BASE_IDX   1
-> >>   #define regRLC_RLCS_BOOTLOAD_STATUS_gc_11_0_1  0x4e7e
-> >>   #define regRLC_RLCS_BOOTLOAD_STATUS_gc_11_0_1_BASE_IDX 1
-> >> +#define AMDGPU_USERQ_PROC_CTX_SZ   PAGE_SIZE
-> >> +#define AMDGPU_USERQ_GANG_CTX_SZ   PAGE_SIZE
-> >> +#define AMDGPU_USERQ_FW_CTX_SZ     PAGE_SIZE
-> >>
-> >>   MODULE_FIRMWARE("amdgpu/gc_11_0_0_pfp.bin");
-> >>   MODULE_FIRMWARE("amdgpu/gc_11_0_0_me.bin");
-> >> @@ -6424,6 +6427,56 @@ const struct amdgpu_ip_block_version gfx_v11_0_=
-ip_block =3D
-> >>          .funcs =3D &gfx_v11_0_ip_funcs,
-> >>   };
-> >>
-> >> +static void gfx_v11_0_userq_destroy_ctx_space(struct amdgpu_userq_mgr=
- *uq_mgr,
-> >> +                                             struct amdgpu_usermode_q=
-ueue *queue)
-> >> +{
-> >> +       struct amdgpu_userq_obj *ctx =3D &queue->fw_obj;
-> >> +
-> >> +       amdgpu_bo_free_kernel(&ctx->obj, &ctx->gpu_addr, &ctx->cpu_ptr=
-);
-> >> +}
-> >> +
-> >> +static int gfx_v11_0_userq_create_ctx_space(struct amdgpu_userq_mgr *=
-uq_mgr,
-> >> +                                           struct amdgpu_usermode_que=
-ue *queue,
-> >> +                                           struct drm_amdgpu_userq_mq=
-d_gfx_v11_0 *mqd_user)
-> >> +{
-> >> +       struct amdgpu_device *adev =3D uq_mgr->adev;
-> >> +       struct amdgpu_userq_obj *ctx =3D &queue->fw_obj;
-> >> +       struct v11_gfx_mqd *mqd =3D queue->mqd.cpu_ptr;
-> >> +       uint64_t fw_ctx_gpu_addr;
-> >> +       int r, size;
-> >> +
-> >> +       /*
-> >> +        * The FW expects at least one page space allocated for
-> >> +        * process ctx, gang ctx and fw ctx each. Create an object
-> >> +        * for the same.
-> >> +        */
-> >> +       size =3D AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_FW_CTX_SZ +
-> >> +              AMDGPU_USERQ_GANG_CTX_SZ;
-> >> +       r =3D amdgpu_bo_create_kernel(adev, size, PAGE_SIZE,
-> >> +                                   AMDGPU_GEM_DOMAIN_GTT,
-> >> +                                   &ctx->obj,
-> >> +                                   &ctx->gpu_addr,
-> >> +                                   &ctx->cpu_ptr);
-> >> +       if (r) {
-> >> +               DRM_ERROR("Failed to allocate ctx space bo for userque=
-ue, err:%d\n", r);
-> >> +               return r;
-> >> +       }
-> >> +
-> >> +       fw_ctx_gpu_addr =3D ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ +
-> >> +                         AMDGPU_USERQ_GANG_CTX_SZ;
-> >> +       mqd->fw_work_area_base_lo =3D lower_32_bits(fw_ctx_gpu_addr);
-> >> +       mqd->fw_work_area_base_lo =3D upper_32_bits(fw_ctx_gpu_addr);
-> >> +
-> >> +       /* Shadow and GDS objects come directly from userspace */
-> >> +       mqd->shadow_base_lo =3D lower_32_bits(mqd_user->shadow_va);
-> >> +       mqd->shadow_base_hi =3D upper_32_bits(mqd_user->shadow_va);
-> >> +
-> >> +       mqd->gds_bkup_base_lo =3D lower_32_bits(mqd_user->gds_va);
-> >> +       mqd->gds_bkup_base_hi =3D upper_32_bits(mqd_user->gds_va);
-> >> +
-> >> +       return 0;
-> >> +}
-> >> +
-> >>   static int gfx_v11_0_userq_mqd_create(struct amdgpu_userq_mgr *uq_mg=
-r,
-> >>                                        struct drm_amdgpu_userq_in *arg=
-s_in,
-> >>                                        struct amdgpu_usermode_queue *q=
-ueue)
-> >> @@ -6480,6 +6533,13 @@ static int gfx_v11_0_userq_mqd_create(struct am=
-dgpu_userq_mgr *uq_mgr,
-> >>                  goto free_mqd;
-> >>          }
-> >>
-> >> +       /* Create BO for FW operations */
-> >> +       r =3D gfx_v11_0_userq_create_ctx_space(uq_mgr, queue, &mqd_use=
-r);
-> >> +       if (r) {
-> >> +               DRM_ERROR("Failed to allocate BO for userqueue (%d)", =
-r);
-> >> +               goto free_mqd;
-> >> +       }
-> >> +
-> >>          return 0;
-> >>
-> >>   free_mqd:
-> >> @@ -6492,6 +6552,7 @@ gfx_v11_0_userq_mqd_destroy(struct amdgpu_userq_=
-mgr *uq_mgr, struct amdgpu_userm
-> >>   {
-> >>          struct amdgpu_userq_obj *mqd =3D &queue->mqd;
-> >>
-> >> +       gfx_v11_0_userq_destroy_ctx_space(uq_mgr, queue);
-> >>          amdgpu_bo_free_kernel(&mqd->obj, &mqd->gpu_addr, &mqd->cpu_pt=
-r);
-> >>   }
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h b/drivers/=
-gpu/drm/amd/include/amdgpu_userqueue.h
-> >> index 240f92796f00..34e20daa06c8 100644
-> >> --- a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
-> >> +++ b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
-> >> @@ -44,6 +44,7 @@ struct amdgpu_usermode_queue {
-> >>          struct amdgpu_userq_mgr *userq_mgr;
-> >>          struct amdgpu_vm        *vm;
-> >>          struct amdgpu_userq_obj mqd;
-> >> +       struct amdgpu_userq_obj fw_obj;
-> > Since this is gfx 11 specific, I feel like this would be better stored
-> > in some gfx 11 structure rather than the generic user queue structure.
-> > Maybe a driver private pointer here would make more sense, then each
-> > IP can hang whatever structure they want here for IP specific
-> > metadata.
->
->
-> I was thinking more on this, and to me it seems like it's the size of
-> this FW space which is going to be specific to a IP, but some object
-> space probably will always be required, as MES will always need some
-> space to save its process and gang ctx. So if this is not a big concern
-> for you, I would like to keep it here and see how this space requirement
-> evolves over the time.
+From: Yang Wang <kevinyang.wang@amd.com>
 
-Sure.  We can revisit this later.
+v1:
+enable GFX v9.4.3 FRU device to query board information.
 
-Alex
+v2:
+use MP1 version to identify different asic
 
->
-> - Shashank
->
-> >
-> > Alex
-> >
-> >
-> >>   };
-> >>
-> >>   struct amdgpu_userq_funcs {
-> >> --
-> >> 2.42.0
-> >>
+Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c    | 48 +++++++++++--------
+ 1 file changed, 29 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+index 7cd0dfaeee20..d0ae9cada110 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+@@ -57,27 +57,26 @@ static bool is_fru_eeprom_supported(struct amdgpu_device *adev, u32 *fru_addr)
+ 	 * for ease/speed/readability. For now, 2 string comparisons are
+ 	 * reasonable and not too expensive
+ 	 */
+-	switch (adev->asic_type) {
+-	case CHIP_VEGA20:
+-		/* D161 and D163 are the VG20 server SKUs */
+-		if (strnstr(atom_ctx->vbios_pn, "D161",
+-			    sizeof(atom_ctx->vbios_pn)) ||
+-		    strnstr(atom_ctx->vbios_pn, "D163",
+-			    sizeof(atom_ctx->vbios_pn))) {
+-			if (fru_addr)
+-				*fru_addr = FRU_EEPROM_MADDR_6;
+-			return true;
+-		} else {
++	switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
++	case IP_VERSION(11, 0, 2):
++		switch (adev->asic_type) {
++		case CHIP_VEGA20:
++			/* D161 and D163 are the VG20 server SKUs */
++			if (strnstr(atom_ctx->vbios_pn, "D161",
++				    sizeof(atom_ctx->vbios_pn)) ||
++			    strnstr(atom_ctx->vbios_pn, "D163",
++				    sizeof(atom_ctx->vbios_pn))) {
++				if (fru_addr)
++					*fru_addr = FRU_EEPROM_MADDR_6;
++				return true;
++			} else {
++				return false;
++			}
++		case CHIP_ARCTURUS:
++		default:
+ 			return false;
+ 		}
+-	case CHIP_ALDEBARAN:
+-		/* All Aldebaran SKUs have an FRU */
+-		if (!strnstr(atom_ctx->vbios_pn, "D673",
+-			     sizeof(atom_ctx->vbios_pn)))
+-			if (fru_addr)
+-				*fru_addr = FRU_EEPROM_MADDR_6;
+-		return true;
+-	case CHIP_SIENNA_CICHLID:
++	case IP_VERSION(11, 0, 7):
+ 		if (strnstr(atom_ctx->vbios_pn, "D603",
+ 			    sizeof(atom_ctx->vbios_pn))) {
+ 			if (strnstr(atom_ctx->vbios_pn, "D603GLXE",
+@@ -92,6 +91,17 @@ static bool is_fru_eeprom_supported(struct amdgpu_device *adev, u32 *fru_addr)
+ 		} else {
+ 			return false;
+ 		}
++	case IP_VERSION(13, 0, 2):
++		/* All Aldebaran SKUs have an FRU */
++		if (!strnstr(atom_ctx->vbios_pn, "D673",
++			     sizeof(atom_ctx->vbios_pn)))
++			if (fru_addr)
++				*fru_addr = FRU_EEPROM_MADDR_6;
++		return true;
++	case IP_VERSION(13, 0, 6):
++			if (fru_addr)
++				*fru_addr = FRU_EEPROM_MADDR_8;
++			return true;
+ 	default:
+ 		return false;
+ 	}
+-- 
+2.25.1
+
