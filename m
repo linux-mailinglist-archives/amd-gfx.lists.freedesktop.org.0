@@ -1,61 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A7EE7B9FE1
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:31:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AAE7B9FF1
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:32:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0DAF10E40A;
-	Thu,  5 Oct 2023 14:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBA010E40D;
+	Thu,  5 Oct 2023 14:32:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
- [IPv6:2607:f8b0:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095F010E40A
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 14:31:13 +0000 (UTC)
-Received: by mail-ot1-x330.google.com with SMTP id
- 46e09a7af769-6c4fc2ce697so707242a34.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 07:31:13 -0700 (PDT)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE47E10E40E;
+ Thu,  5 Oct 2023 14:32:04 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id
+ ffacd0b85a97d-3226b8de467so1074198f8f.3; 
+ Thu, 05 Oct 2023 07:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696516273; x=1697121073; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=t5bClF36fx11x/Hsn7PnhYN1sucWEKXZElZiqOSE37w=;
- b=VFMqa9NV2OpsLq296ETRISbhabMaT5mMk9dK8N0PBFtinLpLCP1hFAmXU0tHBgd8sh
- xu9x2WIA8mEklXp0Meh0pFZirteUivfdoydH7naJKsg9hc2DCdCgcKlETcOrsAFUYxQE
- l8EvmaIJ1QC+xG/cIaA3Rlei/8gAH7fB/lNkLa5sBgTuzI4LmSgWJRC7dHHe6buWw9oR
- fSDHhOgvMYFZEHrJlF/+UDJfzcmJcSddGEP8K8j2sejWqq6q+4vmmRawEgMo1+DDTJJG
- /SQk9NFKSi2GCHTZmxslqd/TFcVcYtbHzxyhvdixN4l7W5g2CKiOnZgv7WB3HsOtt0LF
- FaDw==
+ d=gmail.com; s=20230601; t=1696516323; x=1697121123; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=7lZZZ4/1+PKPxfykJQx+K5x1JSysyKZLvsajzTAsxdk=;
+ b=VzWCQ1QvMI2ABMGR1MwEPq56d9Z00PLDPIbTphazw+twPyuEML6dqVcQTfTS8m6UGt
+ yNMrrACss6dZxzzZmixpP75Svl3F3h61UZCPbdnmduvlzRl4A6xc3fPtBLRI1xUT2dZY
+ pjgJ47eJRvkB0eQRlJ6FJNhPr+GMr1R+gs1RYrQyFQZgxRqH4Jg+D+HyOk6pxu6Jf2mR
+ Bxvg3+VMV3OY50P+1oiY11/9e5e8R+1JKdDQlYYEmVE0cwWnnJZP0q7DGvZfLs4aOWUR
+ o67xEMrR/x1E7m0tGR7KAwaNrg+7LJdrpgcmrJr70CrUmV8+YJrjeeNTFT86+s6O7kW4
+ EVag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696516273; x=1697121073;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=t5bClF36fx11x/Hsn7PnhYN1sucWEKXZElZiqOSE37w=;
- b=KR89joGc3naOR3yq9NpVMdk5HrwCaRdbUSI4jId06FdziUtSHdFjkjgobGtRWkZa7a
- ZbNJyBKLFFGA+cVAfn9EM1PqpkKWfTCMLuSBJnej6zjTJS6w3fjRgqUwPEwrmlaM4PzP
- tz1/HDs9Y7c02XoAz/IuyjXEwzo3kfzn8Uqr2NE/kPGiAFAP2f8UCThcV0r7JLmVeAqv
- wdBB0nDjH2Q1GZa2ok4NO6AOsN1btorIDqkuWfVm38fugA8+QULvJ44VcoeOQ/rnrw88
- oGcx2Jxz+1grJH0IRo4UcS5ty2cmS/L3f2cdQOGNEHIII7tXEp6bou5Zbj6ZjaL5ZI3k
- GL7w==
-X-Gm-Message-State: AOJu0YzWGTcJSAP9nAdFdoxUrCcXRLGw7om4kRCkBnXBALE4rSTBpnPV
- 0d/iAE1674m3YUd3i6VE4k8OPsSss28MUk7AmaNLbUZ0
-X-Google-Smtp-Source: AGHT+IGIYeNs42fqUkGnd8uGemCuNJ6Dc5jbgNO+JZPwH53lUjVl79eDhQEsvV0NsCUcLvpY/XZh7PC4URcy+pI87Xg=
-X-Received: by 2002:a05:6870:f720:b0:1d6:2476:be2e with SMTP id
- ej32-20020a056870f72000b001d62476be2emr5366717oab.35.1696516273019; Thu, 05
- Oct 2023 07:31:13 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1696516323; x=1697121123;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=7lZZZ4/1+PKPxfykJQx+K5x1JSysyKZLvsajzTAsxdk=;
+ b=XKsQ7v30wc0FLsftHi2guon0QQndoNLmUzVw477QG3EM6Ga3SCgulFXIwARcebimfv
+ GVHCDk0CRqHkd6mgQLapVmzwgzMmmeQ3wnBHBH/OE7JAmuCJnIogb/SAeHembtoWyHRn
+ yC4zuQYmdc/b9PPf45zmkbHILngm3Lfvj7hzOORFWRshCBxUw2TWms1HN422+ArTqhpz
+ SAH2haWzc/JKB5QgesEuCUcgfPJosKY2fRauKsJJ5hyMzfc9pH1XyClhItqAQe4AHkiT
+ 2u6qjKSqZ2ocShzuTIUQycHc41gIvGqnr2k+aJQLdPFxyT2RiaSjakAfsuM8CrMIcbmv
+ rrfQ==
+X-Gm-Message-State: AOJu0YzB1J1Eq2uFUtKfIfllhVhUG0jlnPHpQe+dvm8+uaPdGJuLreIK
+ 6cnJ1zZT5B2znO3v5O29ZGI=
+X-Google-Smtp-Source: AGHT+IGeNwFRiaR2N0eH2gDEphyHTycBq3NZEolG4ZYAdI003Zqp47OEBzOniXtW8LVUM2/Bd1MTnw==
+X-Received: by 2002:a05:6000:1946:b0:327:e073:d604 with SMTP id
+ e6-20020a056000194600b00327e073d604mr4536663wry.45.1696516322757; 
+ Thu, 05 Oct 2023 07:32:02 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ b18-20020a5d4d92000000b00327cd5e5ac1sm1954639wru.1.2023.10.05.07.32.01
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Oct 2023 07:32:02 -0700 (PDT)
+Message-ID: <ca2006f4-a038-460d-a9ca-d14dca8e4a8b@gmail.com>
+Date: Thu, 5 Oct 2023 16:31:59 +0200
 MIME-Version: 1.0
-References: <20231005134906.58141-1-boyuan.zhang@amd.com>
-In-Reply-To: <20231005134906.58141-1-boyuan.zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 5 Oct 2023 10:31:02 -0400
-Message-ID: <CADnq5_Myn=yi+YDPO82J=r6ddN_AjTRx9uinuw-6pNFSLuuWbg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: update ib start and size alignment
-To: boyuan.zhang@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Annotate struct amdgpu_bo_list with
+ __counted_by
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, Alex Deucher <alexander.deucher@amd.com>
+References: <20231003232952.work.158-kees@kernel.org>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20231003232952.work.158-kees@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,132 +75,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Tom Rix <trix@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Nathan Chancellor <nathan@kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-hardening@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 5, 2023 at 10:17=E2=80=AFAM <boyuan.zhang@amd.com> wrote:
+Am 04.10.23 um 01:29 schrieb Kees Cook:
+> Prepare for the coming implementation by GCC and Clang of the __counted_by
+> attribute. Flexible array members annotated with __counted_by can have
+> their accesses bounds-checked at run-time via CONFIG_UBSAN_BOUNDS (for
+> array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
+> functions).
 >
-> From: Boyuan Zhang <boyuan.zhang@amd.com>
+> As found with Coccinelle[1], add __counted_by for struct amdgpu_bo_list.
+> Additionally, since the element count member must be set before accessing
+> the annotated flexible array member, move its initialization earlier.
 >
-> Update IB starting address alignment and size alignment with correct valu=
-es
-> for decode and encode IPs.
->
-> Decode IB starting address alignment: 256 bytes
-> Decode IB size alignment: 64 bytes
-> Encode IB starting address alignment: 256 bytes
-> Encode IB size alignment: 4 bytes
->
-> Also bump amdgpu driver version for this update.
->
-> Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+> Cc: Luben Tuikov <luben.tuikov@amd.com>
+> Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-hardening@vger.kernel.org
+> Link: https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci [1]
+> Signed-off-by: Kees Cook <keescook@chromium.org>
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  3 ++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 22 +++++++++++-----------
->  2 files changed, 13 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_drv.c
-> index e3471293846f..9e345d503a47 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -113,9 +113,10 @@
->   *            gl1c_cache_size, gl2c_cache_size, mall_size, enabled_rb_pi=
-pes_mask_hi
->   *   3.53.0 - Support for GFX11 CP GFX shadowing
->   *   3.54.0 - Add AMDGPU_CTX_QUERY2_FLAGS_RESET_IN_PROGRESS support
-> + *   3.55.0 - Update IB start address and size alignment for decode and =
-encode
->   */
->  #define KMS_DRIVER_MAJOR       3
-> -#define KMS_DRIVER_MINOR       54
-> +#define KMS_DRIVER_MINOR       55
->  #define KMS_DRIVER_PATCHLEVEL  0
->
->  /*
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_kms.c
-> index 081bd28e2443..96db51765a6c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -447,7 +447,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                         if (adev->uvd.inst[i].ring.sched.ready)
->                                 ++num_rings;
->                 }
-> -               ib_start_alignment =3D 64;
-> +               ib_start_alignment =3D 256;
->                 ib_size_alignment =3D 64;
->                 break;
->         case AMDGPU_HW_IP_VCE:
-> @@ -455,8 +455,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                 for (i =3D 0; i < adev->vce.num_rings; i++)
->                         if (adev->vce.ring[i].sched.ready)
->                                 ++num_rings;
-> -               ib_start_alignment =3D 4;
-> -               ib_size_alignment =3D 1;
-> +               ib_start_alignment =3D 256;
-> +               ib_size_alignment =3D 4;
->                 break;
->         case AMDGPU_HW_IP_UVD_ENC:
->                 type =3D AMD_IP_BLOCK_TYPE_UVD;
-> @@ -468,8 +468,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                                 if (adev->uvd.inst[i].ring_enc[j].sched.r=
-eady)
->                                         ++num_rings;
->                 }
-> -               ib_start_alignment =3D 64;
-> -               ib_size_alignment =3D 64;
-> +               ib_start_alignment =3D 256;
-> +               ib_size_alignment =3D 4;
->                 break;
->         case AMDGPU_HW_IP_VCN_DEC:
->                 type =3D AMD_IP_BLOCK_TYPE_VCN;
-> @@ -480,8 +480,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                         if (adev->vcn.inst[i].ring_dec.sched.ready)
->                                 ++num_rings;
->                 }
-> -               ib_start_alignment =3D 16;
-> -               ib_size_alignment =3D 16;
-> +               ib_start_alignment =3D 256;
-> +               ib_size_alignment =3D 64;
->                 break;
->         case AMDGPU_HW_IP_VCN_ENC:
->                 type =3D AMD_IP_BLOCK_TYPE_VCN;
-> @@ -493,8 +493,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                                 if (adev->vcn.inst[i].ring_enc[j].sched.r=
-eady)
->                                         ++num_rings;
->                 }
-> -               ib_start_alignment =3D 64;
-> -               ib_size_alignment =3D 1;
-> +               ib_start_alignment =3D 256;
-> +               ib_size_alignment =3D 4;
->                 break;
->         case AMDGPU_HW_IP_VCN_JPEG:
->                 type =3D (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOC=
-K_TYPE_JPEG)) ?
-> @@ -508,8 +508,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *ad=
-ev,
->                                 if (adev->jpeg.inst[i].ring_dec[j].sched.=
-ready)
->                                         ++num_rings;
->                 }
-> -               ib_start_alignment =3D 16;
-> -               ib_size_alignment =3D 16;
-> +               ib_start_alignment =3D 256;
-> +               ib_size_alignment =3D 64;
->                 break;
->         case AMDGPU_HW_IP_VPE:
->                 type =3D AMD_IP_BLOCK_TYPE_VPE;
-> --
-> 2.34.1
->
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+> index 6f5b641b631e..781e5c5ce04d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
+> @@ -84,6 +84,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+>   
+>   	kref_init(&list->refcount);
+>   
+> +	list->num_entries = num_entries;
+>   	array = list->entries;
+>   
+>   	for (i = 0; i < num_entries; ++i) {
+> @@ -129,7 +130,6 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+>   	}
+>   
+>   	list->first_userptr = first_userptr;
+> -	list->num_entries = num_entries;
+>   	sort(array, last_entry, sizeof(struct amdgpu_bo_list_entry),
+>   	     amdgpu_bo_list_entry_cmp, NULL);
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
+> index 6a703be45d04..555cd6d877c3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
+> @@ -56,7 +56,7 @@ struct amdgpu_bo_list {
+>   	 */
+>   	struct mutex bo_list_mutex;
+>   
+> -	struct amdgpu_bo_list_entry entries[];
+> +	struct amdgpu_bo_list_entry entries[] __counted_by(num_entries);
+>   };
+>   
+>   int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
+
