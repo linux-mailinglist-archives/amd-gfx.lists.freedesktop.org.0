@@ -2,63 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5747BA207
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 17:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 588D67BA5CE
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 18:21:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42AA010E150;
-	Thu,  5 Oct 2023 15:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B722010E42B;
+	Thu,  5 Oct 2023 16:21:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
- [IPv6:2001:4860:4864:20::2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A45A510E150
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 15:11:49 +0000 (UTC)
-Received: by mail-oa1-x2f.google.com with SMTP id
- 586e51a60fabf-1dceb2b8823so557319fac.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 08:11:49 -0700 (PDT)
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
+ [IPv6:2607:f8b0:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1206710E427
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 16:16:24 +0000 (UTC)
+Received: by mail-pf1-x42b.google.com with SMTP id
+ d2e1a72fcca58-69af8a42066so317485b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 09:16:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696518709; x=1697123509; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xZ8HsXgy8+vl8TJGCcf+hnBNndejrxw4pfmGogq0KzM=;
- b=ErHs0IYDEaY/HgmDTQ1p66xqFTSE/Qnbx0gbYPi9jJXo5dqyBiCIkhJz5Q2TybWEVW
- bHW8XLjRVemGgS2a3BOkKzw8zou2YJIAZkByEg4b9aBEN8twngE6mYT60QTOXwohNPh5
- ApnhE0S2RlfAdRnCZcGjpMzNev2H0z5p1yhG7BfbcGcVHGSQZsM7MSWTCKo9O+SJr0qD
- gpVvn9mKC9wUlOBadR+T6z0QRBFd+64AFjGYfT1LZScclti0vrFMvvQCdSyo0U8gtlgX
- xRbPqiT/7EG2dAuZ22t9CkfEBAd4euKjyUp1qz0Udeinixv3cWY4+GBk4YbS0JM6NXpA
- r99w==
+ d=chromium.org; s=google; t=1696522583; x=1697127383;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=xpZu6lqlyEvAN7T4WQyZZbFvUnbP262xmkxGmbRAMgI=;
+ b=R4aGLuFVebVY+lCBlJ+k0wRGf9TtF80WpFxII0nsVbe1M69zwkBEC+6IaEZqfNS61Q
+ GnRhvmPEPdWBeLeL738JgsM1cZYycVzK26nT32E6y5ez0lhfppfijxAkRYh0jdz/dm5D
+ 7ygr4qt4A7vx45HaMaPKID2z9z9oNGNoOMSiA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696518709; x=1697123509;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xZ8HsXgy8+vl8TJGCcf+hnBNndejrxw4pfmGogq0KzM=;
- b=j0Pi8GUyXMkfdWtLzUsJ7fYcUyBYIaPtk8NOt04HCrBsvjFrFLMfYXAmvb05FlxVTg
- wugkqOKcOt8lcPGtoW1YopY6qRia+yscKcmnv4bSr5mt8/jN3Npee99Cir8AwPMjn3Cz
- zIPQ/3IBCxLAr03tZMsqKoN81PP0Oeh4JXCgAFBUUWRniCOZFpId4RT+9FnCKuKM6yzG
- Apf3d9Ph1m6rrfVVDiRVoi592K3PGk5aO8Fyj+DW7MYwt4TN6KQAZx0DwioTJ4h74AP9
- DNI9T1MAjCAfO+xAQMJUbCbFUAfqd/jaPtjaQlzaaI4n1bfRvhsiL3uEi1HSUoKQAeej
- 7n4Q==
-X-Gm-Message-State: AOJu0YwpC2DBCYoPpkK8pCX6LYU9YX6LqPlhaDe8smMNPaQ3vrh2su2K
- 1rDYoT2wMYvG3gKu/gKZ6CK8pVUIqjx3naLg4rLkQnWq
-X-Google-Smtp-Source: AGHT+IHOEaf6z7gNIDHBiIy3PcVubfw0XielmOm2BK1n3AYGDFS+r/x2Rm2bPemWbfxmTlkLFwGpFkB3amxCMqyfUlA=
-X-Received: by 2002:a05:6870:3925:b0:1e1:fd34:3574 with SMTP id
- b37-20020a056870392500b001e1fd343574mr875794oap.9.1696518708824; Thu, 05 Oct
- 2023 08:11:48 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1696522583; x=1697127383;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=xpZu6lqlyEvAN7T4WQyZZbFvUnbP262xmkxGmbRAMgI=;
+ b=JSi5Bx0BC0g0an448n3E8cR6Z+buA3k2USXc3BoP5igtdA+FX4a4NdIpc0B5rVmgtr
+ hrK3H3qLKDuPXuv0sapHfzULK6Hv1ls9IDhZauWGwEpUAhe0HYPxxMfp0vWKMHD0Ygw8
+ ztzCTwBLgzZ2zdjkFL+ezXDWKHJ+47Rnu2dHY8x/+gXPbEim9tpUZCdptNjXoQX063wc
+ 3ckdB139kfzgd9AhRczoiQPeKXkYoyDAbUKiAHxV5SmuW8/YgLqidrfAp6nNAM9kIAjR
+ JRz/5Hy7FOe06hQlloUAOv08feKfbVgBvWAh8BNC/gCYuOwTnSFfAbJWdxm4KS/KoAOo
+ 6H1w==
+X-Gm-Message-State: AOJu0YzPV9AKLsXH3K2/puB0pW158pVCydk66aysR25KQHWX/9qBKDKp
+ 4gu/IyCilQ9fGMDyh53FdRljfw==
+X-Google-Smtp-Source: AGHT+IFXrkOsf8NbaVIJ+XbxUqZLmBzsbpEzEa+s/qtoOV9I4bEmWp8zGBhz1z3Jkv2V6R2XFzEStQ==
+X-Received: by 2002:a05:6a20:9152:b0:14e:509:1d7b with SMTP id
+ x18-20020a056a20915200b0014e05091d7bmr6301990pzc.8.1696522583218; 
+ Thu, 05 Oct 2023 09:16:23 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
+ [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
+ a26-20020a62e21a000000b00672ea40b8a9sm1612998pfi.170.2023.10.05.09.16.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Oct 2023 09:16:23 -0700 (PDT)
+Date: Thu, 5 Oct 2023 09:16:21 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH 0/9] drm: Annotate structs with __counted_by
+Message-ID: <202310050915.ABB0419C@keescook>
+References: <20230922173110.work.084-kees@kernel.org>
+ <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+ <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+ <CADnq5_Ma2CrLYggJHKFEObsNmUoqJwb2p1xai5DfL=m43U6zEA@mail.gmail.com>
+ <202310020952.E7DE0948C0@keescook>
+ <10644b5f-b0a7-85ef-0658-2353ee14df0d@gmail.com>
+ <202310021107.9BB46FB8E@keescook>
+ <0be2dfa4-b6c1-f62a-66e1-615da7aa3c76@amd.com>
+ <202310021122.B6DA850FB0@keescook>
+ <d58bbe17-efa7-4548-9c7d-bf0310d31ef5@gmail.com>
 MIME-Version: 1.0
-References: <20231004153410.895387-1-alexander.deucher@amd.com>
- <BN9PR12MB52571DA4201DF6772AE601C8FCCAA@BN9PR12MB5257.namprd12.prod.outlook.com>
- <BN9PR12MB52576BB64B4AB77BBA32D6A5FCCAA@BN9PR12MB5257.namprd12.prod.outlook.com>
-In-Reply-To: <BN9PR12MB52576BB64B4AB77BBA32D6A5FCCAA@BN9PR12MB5257.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 5 Oct 2023 11:11:37 -0400
-Message-ID: <CADnq5_OTOuvKFjreAmFxK5rrYGjhVrLqz5va-uNR_Yrokws3SQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Enable SMU 13.0.0 optimizations when ROCm is
- active (v2)
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d58bbe17-efa7-4548-9c7d-bf0310d31ef5@gmail.com>
+X-Mailman-Approved-At: Thu, 05 Oct 2023 16:21:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,117 +81,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Liu,
- Kun" <Kun.Liu2@amd.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Emma Anholt <emma@anholt.net>,
+ Tom Rix <trix@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
+ Karol Herbst <kherbst@redhat.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ amd-gfx@lists.freedesktop.org, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
+ virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-hardening@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Kevin Wang <kevin1.wang@amd.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Evan Quan <evan.quan@amd.com>, Sean Paul <sean@poorly.run>,
+ Yifan Zhang <yifan1.zhang@amd.com>, Xiaojian Du <Xiaojian.Du@amd.com>,
+ Le Ma <le.ma@amd.com>, freedreno@lists.freedesktop.org,
+ Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Rob Clark <robdclark@gmail.com>, Melissa Wen <mwen@igalia.com>,
+ Zack Rusin <zackr@vmware.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexdeucher@gmail.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Lang Yu <Lang.Yu@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 4, 2023 at 11:47=E2=80=AFPM Zhang, Hawking <Hawking.Zhang@amd.c=
-om> wrote:
->
-> [AMD Official Use Only - General]
->
-> Hmm... thinking about it more, will it override the profile mode/workload=
- for 0xC8 or 0xCC SKU as well. In another words, does it mean the pmfw fix =
-is general to all the 13_0_0 SKUs.
+On Thu, Oct 05, 2023 at 11:42:38AM +0200, Christian König wrote:
+> Am 02.10.23 um 20:22 schrieb Kees Cook:
+> > On Mon, Oct 02, 2023 at 08:11:41PM +0200, Christian König wrote:
+> > > Am 02.10.23 um 20:08 schrieb Kees Cook:
+> > > > On Mon, Oct 02, 2023 at 08:01:57PM +0200, Christian König wrote:
+> > > > > Am 02.10.23 um 18:53 schrieb Kees Cook:
+> > > > > > On Mon, Oct 02, 2023 at 11:06:19AM -0400, Alex Deucher wrote:
+> > > > > > > On Mon, Oct 2, 2023 at 5:20 AM Christian König
+> > > > > > > <ckoenig.leichtzumerken@gmail.com> wrote:
+> > > > > > > > Am 29.09.23 um 21:33 schrieb Kees Cook:
+> > > > > > > > > On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
+> > > > > > > > > > This is a batch of patches touching drm for preparing for the coming
+> > > > > > > > > > implementation by GCC and Clang of the __counted_by attribute. Flexible
+> > > > > > > > > > array members annotated with __counted_by can have their accesses
+> > > > > > > > > > bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
+> > > > > > > > > > indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family functions).
+> > > > > > > > > > 
+> > > > > > > > > > As found with Coccinelle[1], add __counted_by to structs that would
+> > > > > > > > > > benefit from the annotation.
+> > > > > > > > > > 
+> > > > > > > > > > [...]
+> > > > > > > > > Since this got Acks, I figure I should carry it in my tree. Let me know
+> > > > > > > > > if this should go via drm instead.
+> > > > > > > > > 
+> > > > > > > > > Applied to for-next/hardening, thanks!
+> > > > > > > > > 
+> > > > > > > > > [1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with __counted_by
+> > > > > > > > >           https://git.kernel.org/kees/c/a6046ac659d6
+> > > > > > > > STOP! In a follow up discussion Alex and I figured out that this won't work.
+> > > > > > I'm so confused; from the discussion I saw that Alex said both instances
+> > > > > > were false positives?
+> > > > > > 
+> > > > > > > > The value in the structure is byte swapped based on some firmware
+> > > > > > > > endianness which not necessary matches the CPU endianness.
+> > > > > > > SMU10 is APU only so the endianess of the SMU firmware and the CPU
+> > > > > > > will always match.
+> > > > > > Which I think is what is being said here?
+> > > > > > 
+> > > > > > > > Please revert that one from going upstream if it's already on it's way.
+> > > > > > > > 
+> > > > > > > > And because of those reasons I strongly think that patches like this
+> > > > > > > > should go through the DRM tree :)
+> > > > > > Sure, that's fine -- please let me know. It was others Acked/etc. Who
+> > > > > > should carry these patches?
+> > > > > Probably best if the relevant maintainer pick them up individually.
+> > > > > 
+> > > > > Some of those structures are filled in by firmware/hardware and only the
+> > > > > maintainers can judge if that value actually matches what the compiler
+> > > > > needs.
+> > > > > 
+> > > > > We have cases where individual bits are used as flags or when the size is
+> > > > > byte swapped etc...
+> > > > > 
+> > > > > Even Alex and I didn't immediately say how and where that field is actually
+> > > > > used and had to dig that up. That's where the confusion came from.
+> > > > Okay, I've dropped them all from my tree. Several had Acks/Reviews, so
+> > > > hopefully those can get picked up for the DRM tree?
+> > > I will pick those up to go through drm-misc-next.
+> > > 
+> > > Going to ping maintainers once more when I'm not sure if stuff is correct or
+> > > not.
+> > Sounds great; thanks!
+> 
+> I wasn't 100% sure for the VC4 patch, but pushed the whole set to
+> drm-misc-next anyway.
+> 
+> This also means that the patches are now auto merged into the drm-tip
+> integration branch and should any build or unit test go boom we should
+> notice immediately and can revert it pretty easily.
 
-Yes, my understanding is that this should apply to all skus.
+Thanks very much; I'll keep an eye out for any reports.
 
-Alex
-
->
-> Other than that, the patch looks good to me.
->
-> Regards,
-> Hawking
->
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Zhang,=
- Hawking
-> Sent: Thursday, October 5, 2023 11:32
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-gfx@lists.freedes=
-ktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Liu, Kun <Kun.Liu2@am=
-d.com>
-> Subject: RE: [PATCH] drm/amdgpu: Enable SMU 13.0.0 optimizations when ROC=
-m is active (v2)
->
-> [AMD Official Use Only - General]
->
-> [AMD Official Use Only - General]
->
-> Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
->
-> Regards,
-> Hawking
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex D=
-eucher
-> Sent: Wednesday, October 4, 2023 23:34
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Liu, Kun <Kun.Liu2@am=
-d.com>
-> Subject: [PATCH] drm/amdgpu: Enable SMU 13.0.0 optimizations when ROCm is=
- active (v2)
->
-> From: Kun Liu <Kun.Liu2@amd.com>
->
-> When ROCm is active enable additional SMU 13.0.0 optimizations.
-> This reuses the unused powersave profile on PMFW.
->
-> v2: move to the swsmu code since we need both bits active in
->     the workload mask.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c    | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drive=
-rs/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> index 684b4e01fac2..83035fb1839a 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-> @@ -2447,6 +2447,7 @@ static int smu_v13_0_0_set_power_profile_mode(struc=
-t smu_context *smu,
->         DpmActivityMonitorCoeffInt_t *activity_monitor =3D
->                 &(activity_monitor_external.DpmActivityMonitorCoeffInt);
->         int workload_type, ret =3D 0;
-> +       u32 workload_mask;
->
->         smu->power_profile_mode =3D input[size];
->
-> @@ -2536,9 +2537,23 @@ static int smu_v13_0_0_set_power_profile_mode(stru=
-ct smu_context *smu,
->         if (workload_type < 0)
->                 return -EINVAL;
->
-> +       workload_mask =3D 1 << workload_type;
-> +
-> +       /* Add optimizations for SMU13.0.0.  Reuse the power saving profi=
-le */
-> +       if (smu->power_profile_mode =3D=3D PP_SMC_POWER_PROFILE_COMPUTE &=
-&
-> +           (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) =3D=3D IP_VERSION(=
-13, 0, 0)) &&
-> +           ((smu->adev->pm.fw_version =3D=3D 0x004e6601) ||
-> +            (smu->adev->pm.fw_version >=3D 0x004e7300))) {
-> +               workload_type =3D smu_cmn_to_asic_specific_index(smu,
-> +                                                              CMN2ASIC_M=
-APPING_WORKLOAD,
-> +                                                              PP_SMC_POW=
-ER_PROFILE_POWERSAVING);
-> +               if (workload_type >=3D 0)
-> +                       workload_mask |=3D 1 << workload_type;
-> +       }
-> +
->         return smu_cmn_send_smc_msg_with_param(smu,
->                                                SMU_MSG_SetWorkloadMask,
-> -                                              1 << workload_type,
-> +                                              workload_mask,
->                                                NULL);  }
->
-> --
-> 2.41.0
->
+-- 
+Kees Cook
