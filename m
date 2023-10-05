@@ -2,118 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F957B9D77
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 15:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C727B9D93
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 15:50:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C05EB10E16D;
-	Thu,  5 Oct 2023 13:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E851310E3ED;
+	Thu,  5 Oct 2023 13:50:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::61d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 430E010E16D
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 13:45:20 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2062a.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4494910E3ED
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 13:50:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iHqGUUpUk33iJpXcOONYnpZDzZU5xHfPLu0DakOwp+7/Ri++gtoJS0hJlmncQafFtr32qBg4dzf87IMN7qWbVfZZakBhT6Sq1oWZ0dLyQ/1laqJnwvKij3EaTiu+zm6hoiNIBkDAsN3W7BHr5gYUVeH6yFNZ1gaZfgzWsJuPxaoF+Vsaj4WEXhMpQVETZCGtoJO5zoGq9VSaAjcm+cxT1xwxsJ3grhODynBNE18Ti3+VRUsawmrXwskn2CIytpHPe1CAkp1KhAiqNnghT1IIAjLzhOcysmhLiR2EQlCu8Rj+6bRgsrNxApGqfbnDY4Cu3STwPvUM/DrE8lZks/wjdw==
+ b=T9v5fQa3JgKiwzFpAro8eS7ZtxcWkXZwQV4jljKA0lE1Y1Pbb6v8S4qyF/7n3zuGVDmRf7rq25v84AL/piX6QOunoNQF9ZdC93vX9NL7w28WSYihKJVftKeLY96v6vmiI5/jiMtM04YDW68gfd0eoXZCVE2rAKXxZF01kfvuqNdmhIkf4G3s9vyOYKMen7YHJ7XnQX9tpy2qZLW5eDZhWinx8H8X5f3v1nWXWy4cMyh7+FzapTimewrtnKgCZ2oH0PqN7RDXJZNSebfUNt+WLrFRIF641fYP2vv7XVF4Pu3HrO+ouigm9MXqPPdz3ERfQOeud1RKHBPB8RUVGs8R2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3/ckg472THnSUPIw274rTyQzAladwuoCGxB9Cuwd2ks=;
- b=S5JdLa5JVdjjX48lUqr0ZaYBboKnE0dK75nvbYprsUlPa7NCFUdLhhCEWD/vcI0Jr4NmcojmQinIk/XlTqFv30zkSF97ufxm+RNxhM2+fU/5LqniXNsItUU1MlUJereoCTwZR4JtMcU2aFoK18WopSzQd9v4Ado90YpnoCb2+htY787XE3QsUriR1YULIzkisAM3qiKraGfLXQz5rQANV//gEMH/aNg3qldxMpozLaaLIlOo/saYT+iS35sxlkKeKpuJ1tLY3WgAgH3E1SOapH1UKvCIo5Mf4qS8n/Y5/K+BSOBf6V3j+GILmtNrQShbe4or/qbWHDxdxkP3mUhMoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=gTRmHsbhhBAxwyOyiUKsle0uf0kRJmTaS0AwGqLOadY=;
+ b=cveNlL9blKHrhBvSiVV56P6kK2G2EWTCRjUiItjeLuyIB0UfuP6NBpkqjC6i8hqYeldGFLB/jAb2Zx5p7tlYb+reqh29dEj62B1K58ir8tzOwfVHzRAJwUXh7evluG/0p9G4xWWOTHAziS0MquO9tLhXbCz+wJXlsF7IGwkMwNVsxrdAlN3hroFv9jxlEZrx+CWneecJhYCeWMX8tlE4up/ucZZjjwllAfptwLl3mi2cU8Qh+SzI+0NIEKbh91gpnK+SvqLg2apwNyOH8daDqffkeXRlPuzqVzuu9ZvcATRmsfsHO9A4SoATotqQIHeczPNAq4szchwTIHE9RroNSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3/ckg472THnSUPIw274rTyQzAladwuoCGxB9Cuwd2ks=;
- b=SqM/xO1+aiEjwa9QBdw/SCQLubGZ8yxyP/sZoDf+rYlgwpERg4sjfENrC9s5xK/Qb1DcpvBBGvK6ZO9MK3MU8LQducRhRhJMkAN93u3AV+fOmEvz5oVurGHeFj++0utmXa8aY2/4BvrS3IzgFUox4Ut5G8bx6HxeymGjZqmdzpw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by IA1PR12MB7736.namprd12.prod.outlook.com (2603:10b6:208:420::15)
+ bh=gTRmHsbhhBAxwyOyiUKsle0uf0kRJmTaS0AwGqLOadY=;
+ b=2cqZg5tjjij8xi0bV5vxzMk0jfAJBab64BQlK1f/K70cUE7O4G4VPLdWCpUfg13CffKUWSkFMhTj0rwHpj5p9yOeoa6qacejmaSEdB5D1j02ji8ir8tXYajGw2yYGYstydDz7K0R0fx05lFG5BTUKDhmqM1ppVSvS3L6HMPV0xU=
+Received: from MN2PR19CA0028.namprd19.prod.outlook.com (2603:10b6:208:178::41)
+ by BY5PR12MB4034.namprd12.prod.outlook.com (2603:10b6:a03:205::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.21; Thu, 5 Oct
- 2023 13:45:18 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::3e65:d396:58fb:27d4]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::3e65:d396:58fb:27d4%3]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
- 13:45:18 +0000
-Message-ID: <78abc334-44ed-4632-8796-6bbe9c432501@amd.com>
-Date: Thu, 5 Oct 2023 08:45:17 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd: Fix UBSAN array-index-out-of-bounds for Polaris
- and Tonga
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <20231004204644.182618-1-mario.limonciello@amd.com>
- <CADnq5_ON-+ZE_Op_16ihsva-EOBtb91GZO+fepox42SS0nT1ZQ@mail.gmail.com>
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <CADnq5_ON-+ZE_Op_16ihsva-EOBtb91GZO+fepox42SS0nT1ZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SA9PR11CA0030.namprd11.prod.outlook.com
- (2603:10b6:806:6e::35) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.37; Thu, 5 Oct
+ 2023 13:50:34 +0000
+Received: from MN1PEPF0000F0DF.namprd04.prod.outlook.com
+ (2603:10b6:208:178:cafe::65) by MN2PR19CA0028.outlook.office365.com
+ (2603:10b6:208:178::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.37 via Frontend
+ Transport; Thu, 5 Oct 2023 13:50:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000F0DF.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Thu, 5 Oct 2023 13:50:34 +0000
+Received: from ecarx-native.hitronhub.home (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 5 Oct 2023 08:50:28 -0500
+From: <boyuan.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: update ib start and size alignment
+Date: Thu, 5 Oct 2023 09:49:06 -0400
+Message-ID: <20231005134906.58141-1-boyuan.zhang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|IA1PR12MB7736:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d066352-f14d-4700-e6fa-08dbc5a94fb7
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DF:EE_|BY5PR12MB4034:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf786829-8f24-453a-6208-08dbc5aa0c27
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 42varvEwmU5igXf3O8lhg/eb65w7vml8KE4dDGSTUdGoKHOJ9TvE0UMRvXJJ3x4GneTmrEn5Nu9XyY1UNcMWgqKD4dENFtTgPUxsce5sIQs9zwc1cr65UtIcNRk4dD5TX6NGDIWKBO4jdlY8ARGxhDNrYtnflVh8hNDxpw/fE3DIUfHJ8aInmkbg0F4Llgz5OAsQogWIjgRh3MhDQJClnZvh2g4oL+dbekKI3jTFgdxBk6tfJNA7+NO3FJe3fSqU+NEYi9r3TI7/SqqbmuRFy3/Dsd7ow/D0l62dBxB4kuNF/v1OU7MAfLBZL5SYQxoV05xnIpP754tvAlWpBRlP6p0T6r9uneyAdeHmeY+cfy61ckfEbhp8PFrJLA9EYEgyA83yk66Bz0tXkDJkqOn4PGHrTQBfkaVC6gYRsHgy84rpDiPTW3n2anRACf+HcS1RKIvONhJsHkzWp1FUc3MnE19ubmluYuf1ETun9lvuBVZcEMtKHDNTry2olfjg/Z+tjv0OfNMv6t5asbg4+sDpcR+Jx/+RDQd7eqd5fOTwidptCTGpWZYtFb1UkY34D4G1mcqqtSkoLf0M1TTMlPKsYIIr9cxAyCUq7u69M5Rc2M3bQzJQJYCuFjfv2TrGSOkogFBZbVmuNP3SGrPCIvfzkqFMQ0fNKCacbIYS+kdQCBMOJ6JDHpH0OhzVSwC8ndIi
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(346002)(39860400002)(376002)(136003)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(66476007)(31686004)(53546011)(6486002)(6512007)(6506007)(478600001)(2616005)(31696002)(36756003)(38100700002)(86362001)(26005)(2906002)(41300700001)(966005)(83380400001)(8676002)(316002)(8936002)(66946007)(5660300002)(6916009)(4326008)(66556008)(44832011)(45980500001)(43740500002);
+X-Microsoft-Antispam-Message-Info: UeGZz6lPBkOTcOzIE7QjgkaGbUsxFi01WRcrTDEuko/TsaDddYAWBD/mGubMgKAKZoTd5AfDvnoX1ylHa6YNW/ppsFbM4NDjfxR5dZA7TrHB3QmEqkXaZzo2rRyUNHNqYkCdLv29COzoL/tS7K/bYbkIZmQVmRE8ej43nSwOHmjxnWsdAmEGhoz6HaBFxvhP7IQmLYh7xhjIF19wajtn0VzaYKXtgjo4BVgHpv90iAOFs1kbP5YafajL3+Z/k42RODeSuxxs+hhnzULS1E8ZjNLblebQ09iLYjQ9yj+ymXIqYIXY8PgN3SFK61om6LZV3VtbtZ62cY+5dmLYOCKIo71oO6HrFcA+bwmBVndF3N3yBJ1j2fhVtAHLhFxXVfsSDNkBt5B1F8ZMqNwQLt1fGlXRqmdiPG0M0OyGUtzJx6xddMlJVTZEjcOPeJZG/rJRl/FsmSG8iyrScUZu02a1ie4dGFII9TBfbdmQVJWOA8k6U+f/4qfR0oev6FZWnqRzng1eiN+u3/6QINblOGcyRpPAXkGx0a4+xLQZt4TZf5yME3LicsU7JA+9g7gw4oIoZLhCjQV1v0sKeAx6muZYny3B0sTTJVzIf6UNOrYQP1p5XR4hq6M9QotYkM9Y4KPHr5gKrw+LiTHTRFtIaxdz7nCdGLryx16CLZ7yf1pbVD15DWZQ4ZdAkxSaXfcKossEiY/7ii3AZfo5AfWZQcQkXAuiXWvNEKvoZzCSP82sSNYytSTh02MgZxSkIyEBCSuenbJ+nzUvw2NcQlS+MXfYWA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(376002)(396003)(346002)(136003)(39860400002)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(82310400011)(46966006)(36840700001)(40470700004)(40460700003)(40480700001)(6666004)(478600001)(47076005)(36860700001)(426003)(86362001)(356005)(82740400003)(81166007)(2906002)(16526019)(15650500001)(2876002)(83380400001)(336012)(26005)(1076003)(2616005)(36756003)(70206006)(70586007)(6916009)(41300700001)(5660300002)(8936002)(316002)(8676002)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXo5M3FvaXhFTHB6d1lXME1PdlJ6cTFSaUU3V0hSYjdOdzJra3lQSTFhSjBG?=
- =?utf-8?B?dGEwQnFVbzE0YzIzUERCdWhWc3VMWWl1MEZVaVdaQzh2bW1acHl4cDBIbm5K?=
- =?utf-8?B?a1dmY1cwWmluNFh0cGFaMkh6S3BkZEVIQm9kNDFkdTBJd2Jpd2dlZVJ6NUVr?=
- =?utf-8?B?S0ZnNk1LRE9RVmx3eU40M085eXRyckY0MTlSWmZ0YWNJak9xMjNFeXpGM2Fh?=
- =?utf-8?B?V0NzVUNUNUZYYkZ3dTFYa08xUmoxcWt1K1lOV3JmU2tNT1BYL3lzRjhTaFI0?=
- =?utf-8?B?am82T3ZscE44UDFadks0bVYwemlTTVBGZm8yL3UyOWNSZ1dLVGc2SWZaMDM4?=
- =?utf-8?B?bkRFNnRlRk5NMHZtSjk3cWVhWFkxdWpaVi9IcFhZMWZHMGVIdGR1RXJnWXF4?=
- =?utf-8?B?L1N2YVR0cXBNRGlhN3d0cy9LYjlEM1U1MUd2VmhiUDZsMXRiYVViK2hLMDNC?=
- =?utf-8?B?WXRGUVdvZUk0eHY3a0pvL0hodWw0ZFNWU2hEczVObVdmMi92NEdYVURGNHlx?=
- =?utf-8?B?MVcyS0VGVnVXRTR6SEJXTlpTR25oMHFFaGN1bWI5UmlIYXZnbjJqdHdsRHll?=
- =?utf-8?B?VXdRb2cxQWZRdis0ZjgwakZGSFppSkpKYktLdURTdnBEN3o2am5ydDV3bnds?=
- =?utf-8?B?d0hOKys5c1V0SDEySlRZNk0vSUNMNTFRVWtoRGNFS0dFQUw3Rk14SHRvWk5X?=
- =?utf-8?B?ZGh6U1dwaUJxVnBoN2Y0VDdoWm5EQjRING9ZYW1xUFBFNmt6OGFJZ1Q4ajZp?=
- =?utf-8?B?ZGJoTWZ0SlRZcjY1VUUyeGFLYWZPdkh0VXRuM1FVOGhjQkRhRVdlOFJlbDkr?=
- =?utf-8?B?NVpxOFFSV21WZFBseTBNKytwaVVYbnlaYm11TWwwQlZObGtHTW5Hbjl1QStl?=
- =?utf-8?B?WDZQR3VOMzVZallPUHI2Q1I4MXlWWG92ODk4NFpEdE1TOTJndUtObEJDODd2?=
- =?utf-8?B?Ny9CMXdHSGFJUUJCYjhmZmFpYStoaXNtQkFQSVBhKytqa083U0ljbmtWeWM2?=
- =?utf-8?B?VE90ZGZXUjRLQVArUHVFd2JHNU4vdXJka3dleU9Cc00vNEdQMjNkUW1GejdN?=
- =?utf-8?B?T0ZudVY4NFo3eEdrTnE0UkJYQ3YyN1VDQXVQMm1xQy94aXNxRERRa2VrOG0y?=
- =?utf-8?B?NDVWT3IzNEQ0Uzk4S3F4RkdmRUs1dnF3djBlaW8zVWc4Vk9BWmdqd1NQWmlu?=
- =?utf-8?B?UW94RERpL0FCTndOK2JuZExPWFRoMENGanEvY29mQStvaE1USURuWUpiTUc3?=
- =?utf-8?B?Mnc4ZW5DTDZxSERFd2J5UldFN3ZLY3ZYbXowMzJGNHRPZUJCenJRbnpxbDdn?=
- =?utf-8?B?N0tDWmN6Z3BlYVUrYnNXaFdueWZnM0VSL2NMQzdZYytiK28xSzh6cXBiNGJh?=
- =?utf-8?B?UGlHeXdZb3B6YmdZRmRoQU9BODlOUHVyU0NFODhHbmdNeTdqMHhsY2NOa01Z?=
- =?utf-8?B?OS9ZcEhRMEdwS1I4a3JTaUd5eGNOVWVpbEMxL1NpTWdtanQ1TVBwdGtYcS9E?=
- =?utf-8?B?d2JrT3RmaEphNi9IQXJtTHRydk9WR3AweXY3MWwzdGJXK2EybW5Za2ltVVpW?=
- =?utf-8?B?U3NqMTBsQm4ySE5sV3l6NGphT29Gc2ZyazFOdGVXY3J3Ukd4alhNY3NCSjI3?=
- =?utf-8?B?V2VkMytXd3laaUFPVnRYWFlJMTcxaWN2TjRxb2hmYjc0S1pweml6TlNhSGZo?=
- =?utf-8?B?T3NEZmZFV01hUnREdlJVTHlFWnVVYkJDdzUwVjZ2WmdQd0ZUS3NrbVBVV1VF?=
- =?utf-8?B?dE9WbHo4V3VIVDZJWnRpRmh3ODBIRm1KZ3NIRm0xb0RZLzFDRVkwSmhjeExL?=
- =?utf-8?B?VnhtOW95cnY5SmFUYnhFQkNJdFJwcXIyV2FFUFhHaTdWOE1oRWhHVE55RkZU?=
- =?utf-8?B?L2JETktzVnRJTHR4YitEU0k4eU1FdmxhdU1XbTJpbEgrdmVLWVFKd0h4MWcv?=
- =?utf-8?B?dG1EQSswRFBMRnRYVlVaSXV2VUxJb3dsYXNzTjRseVZqVDJaelZDS3dlaGVF?=
- =?utf-8?B?VS9tSEJzT25jdTNnSXhibmRSSHlzYWg0Z2NIeXUrR2lnRlR5VTVLMkhveGpO?=
- =?utf-8?B?RVFSSG1zdU56WHRodkhMTjV1WGcrU1NwUDRzcDFxd05FVk5TSGxXa21oaWlx?=
- =?utf-8?Q?N/U0lBVd+/Ipt7hmaf3yq98eu?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d066352-f14d-4700-e6fa-08dbc5a94fb7
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 13:45:18.2210 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 13:50:34.1608 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf786829-8f24-453a-6208-08dbc5aa0c27
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CNvQDGytmRG6aVOZO/35gYw/A59j3GJsgGMQvtetZUBs4wL40E8OMnBjuCJl7O24Wots+Fy/m58OxFFQJgd5nQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7736
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DF.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4034
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,91 +98,112 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Boyuan Zhang <boyuan.zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/4/2023 16:50, Alex Deucher wrote:
-> On Wed, Oct 4, 2023 at 5:42 PM Mario Limonciello
-> <mario.limonciello@amd.com> wrote:
->>
->> For pptable structs that use flexible array sizes, use flexible arrays.
->>
->> Link: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2036742
->> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> 
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Thanks, can you also review the similar (but different) series of the 
-other variable arrays?
+Update IB starting address alignment and size alignment with correct values
+for decode and encode IPs.
 
-https://lore.kernel.org/amd-gfx/20231004202253.182540-1-mario.limonciello@amd.com/T/#t
+Decode IB starting address alignment: 256 bytes
+Decode IB size alignment: 64 bytes
+Encode IB starting address alignment: 256 bytes
+Encode IB size alignment: 4 bytes
 
-> 
->> ---
->>  From this bug report there are more to fix
->>   .../gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h    | 12 ++++++------
->>   1 file changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
->> index 57bca1e81d3a..9fcad69a9f34 100644
->> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
->> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pptable_v1_0.h
->> @@ -164,7 +164,7 @@ typedef struct _ATOM_Tonga_State {
->>   typedef struct _ATOM_Tonga_State_Array {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;             /* Number of entries. */
->> -       ATOM_Tonga_State entries[1];    /* Dynamically allocate entries. */
->> +       ATOM_Tonga_State entries[];     /* Dynamically allocate entries. */
->>   } ATOM_Tonga_State_Array;
->>
->>   typedef struct _ATOM_Tonga_MCLK_Dependency_Record {
->> @@ -210,7 +210,7 @@ typedef struct _ATOM_Polaris_SCLK_Dependency_Record {
->>   typedef struct _ATOM_Polaris_SCLK_Dependency_Table {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;                                                     /* Number of entries. */
->> -       ATOM_Polaris_SCLK_Dependency_Record entries[1];                          /* Dynamically allocate entries. */
->> +       ATOM_Polaris_SCLK_Dependency_Record entries[];                           /* Dynamically allocate entries. */
->>   } ATOM_Polaris_SCLK_Dependency_Table;
->>
->>   typedef struct _ATOM_Tonga_PCIE_Record {
->> @@ -222,7 +222,7 @@ typedef struct _ATOM_Tonga_PCIE_Record {
->>   typedef struct _ATOM_Tonga_PCIE_Table {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;                                                                             /* Number of entries. */
->> -       ATOM_Tonga_PCIE_Record entries[1];                                                      /* Dynamically allocate entries. */
->> +       ATOM_Tonga_PCIE_Record entries[];                                                       /* Dynamically allocate entries. */
->>   } ATOM_Tonga_PCIE_Table;
->>
->>   typedef struct _ATOM_Polaris10_PCIE_Record {
->> @@ -235,7 +235,7 @@ typedef struct _ATOM_Polaris10_PCIE_Record {
->>   typedef struct _ATOM_Polaris10_PCIE_Table {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;                                         /* Number of entries. */
->> -       ATOM_Polaris10_PCIE_Record entries[1];                      /* Dynamically allocate entries. */
->> +       ATOM_Polaris10_PCIE_Record entries[];                      /* Dynamically allocate entries. */
->>   } ATOM_Polaris10_PCIE_Table;
->>
->>
->> @@ -252,7 +252,7 @@ typedef struct _ATOM_Tonga_MM_Dependency_Record {
->>   typedef struct _ATOM_Tonga_MM_Dependency_Table {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;                                                                             /* Number of entries. */
->> -       ATOM_Tonga_MM_Dependency_Record entries[1];                        /* Dynamically allocate entries. */
->> +       ATOM_Tonga_MM_Dependency_Record entries[];                         /* Dynamically allocate entries. */
->>   } ATOM_Tonga_MM_Dependency_Table;
->>
->>   typedef struct _ATOM_Tonga_Voltage_Lookup_Record {
->> @@ -265,7 +265,7 @@ typedef struct _ATOM_Tonga_Voltage_Lookup_Record {
->>   typedef struct _ATOM_Tonga_Voltage_Lookup_Table {
->>          UCHAR ucRevId;
->>          UCHAR ucNumEntries;                                                                             /* Number of entries. */
->> -       ATOM_Tonga_Voltage_Lookup_Record entries[1];                            /* Dynamically allocate entries. */
->> +       ATOM_Tonga_Voltage_Lookup_Record entries[];                             /* Dynamically allocate entries. */
->>   } ATOM_Tonga_Voltage_Lookup_Table;
->>
->>   typedef struct _ATOM_Tonga_Fan_Table {
->> --
->> 2.34.1
->>
+Also bump amdgpu driver version for this update.
+
+Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  3 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 22 +++++++++++-----------
+ 2 files changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index e3471293846f..9e345d503a47 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -113,9 +113,10 @@
+  *            gl1c_cache_size, gl2c_cache_size, mall_size, enabled_rb_pipes_mask_hi
+  *   3.53.0 - Support for GFX11 CP GFX shadowing
+  *   3.54.0 - Add AMDGPU_CTX_QUERY2_FLAGS_RESET_IN_PROGRESS support
++ *   3.55.0 - Update IB start address and size alignment for decode and encode
+  */
+ #define KMS_DRIVER_MAJOR	3
+-#define KMS_DRIVER_MINOR	54
++#define KMS_DRIVER_MINOR	55
+ #define KMS_DRIVER_PATCHLEVEL	0
+ 
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 081bd28e2443..96db51765a6c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -447,7 +447,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 			if (adev->uvd.inst[i].ring.sched.ready)
+ 				++num_rings;
+ 		}
+-		ib_start_alignment = 64;
++		ib_start_alignment = 256;
+ 		ib_size_alignment = 64;
+ 		break;
+ 	case AMDGPU_HW_IP_VCE:
+@@ -455,8 +455,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 		for (i = 0; i < adev->vce.num_rings; i++)
+ 			if (adev->vce.ring[i].sched.ready)
+ 				++num_rings;
+-		ib_start_alignment = 4;
+-		ib_size_alignment = 1;
++		ib_start_alignment = 256;
++		ib_size_alignment = 4;
+ 		break;
+ 	case AMDGPU_HW_IP_UVD_ENC:
+ 		type = AMD_IP_BLOCK_TYPE_UVD;
+@@ -468,8 +468,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 				if (adev->uvd.inst[i].ring_enc[j].sched.ready)
+ 					++num_rings;
+ 		}
+-		ib_start_alignment = 64;
+-		ib_size_alignment = 64;
++		ib_start_alignment = 256;
++		ib_size_alignment = 4;
+ 		break;
+ 	case AMDGPU_HW_IP_VCN_DEC:
+ 		type = AMD_IP_BLOCK_TYPE_VCN;
+@@ -480,8 +480,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 			if (adev->vcn.inst[i].ring_dec.sched.ready)
+ 				++num_rings;
+ 		}
+-		ib_start_alignment = 16;
+-		ib_size_alignment = 16;
++		ib_start_alignment = 256;
++		ib_size_alignment = 64;
+ 		break;
+ 	case AMDGPU_HW_IP_VCN_ENC:
+ 		type = AMD_IP_BLOCK_TYPE_VCN;
+@@ -493,8 +493,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 				if (adev->vcn.inst[i].ring_enc[j].sched.ready)
+ 					++num_rings;
+ 		}
+-		ib_start_alignment = 64;
+-		ib_size_alignment = 1;
++		ib_start_alignment = 256;
++		ib_size_alignment = 4;
+ 		break;
+ 	case AMDGPU_HW_IP_VCN_JPEG:
+ 		type = (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_JPEG)) ?
+@@ -508,8 +508,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+ 				if (adev->jpeg.inst[i].ring_dec[j].sched.ready)
+ 					++num_rings;
+ 		}
+-		ib_start_alignment = 16;
+-		ib_size_alignment = 16;
++		ib_start_alignment = 256;
++		ib_size_alignment = 64;
+ 		break;
+ 	case AMDGPU_HW_IP_VPE:
+ 		type = AMD_IP_BLOCK_TYPE_VPE;
+-- 
+2.34.1
 
