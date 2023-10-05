@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2927BA026
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9637BA058
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:36:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6139610E411;
-	Thu,  5 Oct 2023 14:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDF010E079;
+	Thu,  5 Oct 2023 14:36:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7E510E079
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 14:34:57 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id
- ffacd0b85a97d-32320381a07so1096700f8f.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 07:34:56 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF8E10E079
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 14:36:44 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ 5b1f17b1804b1-4054f790190so10066935e9.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 07:36:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696516495; x=1697121295; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ d=gmail.com; s=20230601; t=1696516603; x=1697121403; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=mnsjZrQdh9DYOPe6kFeHHRw/KhavHxikKS0AoMLcBAQ=;
- b=B+ZWfro0/iTnN4NCIUYEW+bbF7AjAmuneOumAxM6BTlCEx7T7aO/nbp6GWMzk6fkud
- 278q9JRTO2zqTAsYoT2+NY6E12aq/gOE2O0q8ojWvywCZ/1i3m7Esj56S3pFYrHWY+vU
- JxTusA3f9IDW/3/WaGX80a7K8OX7TCGpHEqiSA6LN7j585ghKgS+N5kN0zQOdsahnWX8
- SJYKHXZuRZVrrBssOyOy06O8SnOASWAq/UX5xHBFbmpxmQCG7xTRxf2EYFOM6fcCJsV9
- buhiAhw8J9tqlq5gJ04OaKG/5ZQNdhm6y3py6i7I6bvMFOCU+xXBdtOIUb8HFPpuCq/O
- ePxw==
+ bh=e8TV6QJsTS6z9lMh0FypLyUznrqJ68GQo0/EK4OU034=;
+ b=ihvuIam/BbKBmfvPwomVR6HxSbqA0biUxrY0Sv2C7hV4NkjbTRYAoPyIm13aMg2ILO
+ N/5MEQttdRl/iN10B3WwKpjUagnqZAVY3jM/7k90Hd+7rXtpKnNnVzpvcyKsnoDG0C8y
+ 21FVlfvGsj/I8MkWjQEdYiXXLlVKIQ1SlgsKopPAWucV7LE+jyiI6fruSGTQFn0m3JeM
+ mn+ISwvBBQhgIUfCRyLU6xRLP4QHs9V3Ru04nEytNT3bAC7vmAOe2RL/rqhuhOUOoeG5
+ G8a368Z8zN2TD6MHFAoe44aG+CYi47EpAMcnLPuZTLNF/wu3VvcZAZYRMWdEBVbx1y/Q
+ tQlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696516495; x=1697121295;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ d=1e100.net; s=20230601; t=1696516603; x=1697121403;
+ h=content-transfer-encoding:in-reply-to:from:references:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=mnsjZrQdh9DYOPe6kFeHHRw/KhavHxikKS0AoMLcBAQ=;
- b=YCeyQyMTrcewfNVrFHb/WcwiQSQdh26zezzK7dpuzk1mB+qPBDv9ILI9znOl80qYui
- W1u+nJpvFnJj6UCnwom3G3vUD0wF6G87Thuaj8CeZGdcZ5aG4myrBbOZFsmTJ69t/u9D
- EIz3qASF0waUnc28poVm/KMNuxPsRmR7aADJySgpxtSSeRX9e1HE4a34UMFWzsBLztFx
- OAfHSIQ5uHdd63jghpbpD5Vtap3dDkraJS+l/JvEseQOQYLNwDCK0cY/GeDsDu4FpLN5
- yRXF5VwSRGaDe5aSERfgfVZC4uD5W3ovqDYQOB/qZz1G+0GkGxJX2FmXJxsK5XKam5Pz
- 4Now==
-X-Gm-Message-State: AOJu0Yyb4GvvOOT9St4epWaAiKCMHPZetFF/s7bj1xMotufzfz5F60D5
- Xs/CKt5cgXYfhVV60EA2KIY=
-X-Google-Smtp-Source: AGHT+IF5iJLUdPx8JkDlOdU9Q1rfHcpfM06Gdgivq2BPYsYGVt4yslk8wm9EO+yhAru8d49+stqnQQ==
-X-Received: by 2002:a05:6000:1189:b0:321:6936:c217 with SMTP id
- g9-20020a056000118900b003216936c217mr4833180wrx.14.1696516495226; 
- Thu, 05 Oct 2023 07:34:55 -0700 (PDT)
+ bh=e8TV6QJsTS6z9lMh0FypLyUznrqJ68GQo0/EK4OU034=;
+ b=oNkyZVEZyuaCeZYDZsHDY8tKf8atJLXEgQMz+7fS6SbrlVj707tkB/mpXBzwPkve4a
+ 3IsCs/V66y5Qm4BPS7s7fQMmdzvCd8UHav0qRfU8oLV8SP9iqzAWiJpf0Jq5dkw+gzHC
+ JljoQgsoC2QqrnK6/oZQE6InM32MFU3RYVIm4jltO77mF87+FqwEupA/hEptpQXwZmh5
+ q/VLZTXceT7JBQX40q042NalWzCWLS+m+jWMJbcNLwYOnKkn1bpIY1nCIyzALmwGzPAR
+ qAvKS0eIsLgpZMdAxuA7a+d6dx/OlZh5vZgXugY4MDWGrrzWmTWPUV5lyiIOrkkqO6K9
+ pQKw==
+X-Gm-Message-State: AOJu0Yw8Dk9xdAghn0MLicRrDU2PjpQwiipGmqDFPfNrgJxdQ9GlSmre
+ 11mifReUXDzDQedVmTuOQrBKpcU7X6A=
+X-Google-Smtp-Source: AGHT+IH1fsA6wJmRVqmRnpF8LqhzCIbSi+/EEnzX9gl0ppzMKJpvDLyaPx7VonaozcZz03e7PW72WQ==
+X-Received: by 2002:adf:f804:0:b0:324:647e:a8b3 with SMTP id
+ s4-20020adff804000000b00324647ea8b3mr5071531wrp.14.1696516602859; 
+ Thu, 05 Oct 2023 07:36:42 -0700 (PDT)
 Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
  by smtp.gmail.com with ESMTPSA id
- y13-20020adfee0d000000b00325aca09ad1sm1944615wrn.24.2023.10.05.07.34.54
+ p14-20020a056000018e00b0031984b370f2sm1940757wrx.47.2023.10.05.07.36.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 05 Oct 2023 07:34:54 -0700 (PDT)
-Message-ID: <d9f617f9-3346-4b4c-bd00-a6da1b0f377a@gmail.com>
-Date: Thu, 5 Oct 2023 16:34:53 +0200
+ Thu, 05 Oct 2023 07:36:42 -0700 (PDT)
+Message-ID: <42eb5748-0a1c-4044-b670-95ab08c0c10a@gmail.com>
+Date: Thu, 5 Oct 2023 16:36:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/9] drm/amdgpu: map wptr BO into GART
+Subject: Re: [PATCH] drm/amdgpu: update ib start and size alignment
 Content-Language: en-US
-To: Felix Kuehling <felix.kuehling@amd.com>,
- Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20230908160446.2188-1-shashank.sharma@amd.com>
- <20230908160446.2188-8-shashank.sharma@amd.com>
- <022fbf02-b9f6-1286-bd25-dd150384047e@gmail.com>
- <816ed7f8-9a22-4b17-ae0e-27701ea51557@amd.com>
+To: boyuan.zhang@amd.com, amd-gfx@lists.freedesktop.org
+References: <20231005134906.58141-1-boyuan.zhang@amd.com>
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <816ed7f8-9a22-4b17-ae0e-27701ea51557@amd.com>
+In-Reply-To: <20231005134906.58141-1-boyuan.zhang@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -78,191 +74,113 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, arvind.yadav@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 04.10.23 um 23:34 schrieb Felix Kuehling:
+Am 05.10.23 um 15:49 schrieb boyuan.zhang@amd.com:
+> From: Boyuan Zhang <boyuan.zhang@amd.com>
 >
-> On 2023-09-18 06:32, Christian König wrote:
->> Am 08.09.23 um 18:04 schrieb Shashank Sharma:
->>> To support oversubscription, MES FW expects WPTR BOs to
->>> be mapped into GART, before they are submitted to usermode
->>> queues. This patch adds a function for the same.
->>>
->>> V4: fix the wptr value before mapping lookup (Bas, Christian).
->>> V5: Addressed review comments from Christian:
->>>      - Either pin object or allocate from GART, but not both.
->>>      - All the handling must be done with the VM locks held.
->>>
->>> Cc: Alex Deucher <alexander.deucher@amd.com>
->>> Cc: Christian Koenig <christian.koenig@amd.com>
->>> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
->>> Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 81 
->>> +++++++++++++++++++
->>>   .../gpu/drm/amd/include/amdgpu_userqueue.h    |  1 +
->>>   2 files changed, 82 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c 
->>> b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->>> index e266674e0d44..c0eb622dfc37 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->>> @@ -6427,6 +6427,79 @@ const struct amdgpu_ip_block_version 
->>> gfx_v11_0_ip_block =
->>>       .funcs = &gfx_v11_0_ip_funcs,
->>>   };
->>>   +static int
->>> +gfx_v11_0_map_gtt_bo_to_gart(struct amdgpu_device *adev, struct 
->>> amdgpu_bo *bo)
->>> +{
->>> +    int ret;
->>> +
->>> +    ret = amdgpu_bo_reserve(bo, true);
->>> +    if (ret) {
->>> +        DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
->>> +        goto err_reserve_bo_failed;
->>> +    }
->>> +
->>> +    ret = amdgpu_ttm_alloc_gart(&bo->tbo);
->>> +    if (ret) {
->>> +        DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
->>> +        goto err_map_bo_gart_failed;
->>> +    }
->>> +
->>> +    amdgpu_bo_unreserve(bo);
->>
->> The GART mapping can become invalid as soon as you unlock the BOs.
->>
->> You need to attach an eviction fence for this to work correctly.
+> Update IB starting address alignment and size alignment with correct values
+> for decode and encode IPs.
 >
-> Don't you need an eviction fence on the WPTR BO regardless of the GTT 
-> mapping?
+> Decode IB starting address alignment: 256 bytes
+> Decode IB size alignment: 64 bytes
+> Encode IB starting address alignment: 256 bytes
+> Encode IB size alignment: 4 bytes
+>
+> Also bump amdgpu driver version for this update.
+>
+> Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Yeah, indeed :)
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Long story short we need a general eviction fence handling for BOs.
-
-Regards,
-Christian.
-
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  3 ++-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 22 +++++++++++-----------
+>   2 files changed, 13 insertions(+), 12 deletions(-)
 >
-> Regards,
->   Felix
->
->
->>
->>> +    bo = amdgpu_bo_ref(bo);
->>> +
->>> +    return 0;
->>> +
->>> +err_map_bo_gart_failed:
->>> +    amdgpu_bo_unreserve(bo);
->>> +err_reserve_bo_failed:
->>> +    return ret;
->>> +}
->>> +
->>> +static int
->>> +gfx_v11_0_create_wptr_mapping(struct amdgpu_device *adev,
->>> +                  struct amdgpu_usermode_queue *queue,
->>> +                  uint64_t wptr)
->>> +{
->>> +    struct amdgpu_bo_va_mapping *wptr_mapping;
->>> +    struct amdgpu_vm *wptr_vm;
->>> +    struct amdgpu_bo *wptr_bo = NULL;
->>> +    int ret;
->>> +
->>> +    mutex_lock(&queue->vm->eviction_lock);
->>
->> Never ever touch the eviction lock outside of the VM code! That lock 
->> is completely unrelated to what you do here.
->>
->>> +    wptr_vm = queue->vm;
->>> +    ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
->>> +    if (ret)
->>> +        goto unlock;
->>> +
->>> +    wptr &= AMDGPU_GMC_HOLE_MASK;
->>> +    wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> 
->>> PAGE_SHIFT);
->>> +    amdgpu_bo_unreserve(wptr_vm->root.bo);
->>> +    if (!wptr_mapping) {
->>> +        DRM_ERROR("Failed to lookup wptr bo\n");
->>> +        ret = -EINVAL;
->>> +        goto unlock;
->>> +    }
->>> +
->>> +    wptr_bo = wptr_mapping->bo_va->base.bo;
->>> +    if (wptr_bo->tbo.base.size > PAGE_SIZE) {
->>> +        DRM_ERROR("Requested GART mapping for wptr bo larger than 
->>> one page\n");
->>> +        ret = -EINVAL;
->>> +        goto unlock;
->>> +    }
->>
->> We probably also want to enforce that this BO is a per VM BO.
->>
->>> +
->>> +    ret = gfx_v11_0_map_gtt_bo_to_gart(adev, wptr_bo);
->>> +    if (ret) {
->>> +        DRM_ERROR("Failed to map wptr bo to GART\n");
->>> +        goto unlock;
->>> +    }
->>> +
->>> +    queue->wptr_mc_addr = wptr_bo->tbo.resource->start << PAGE_SHIFT;
->>
->> This needs to be amdgpu_bo_gpu_offset() instead.
->>
->> Regards,
->> Christian.
->>
->>> +
->>> +unlock:
->>> +    mutex_unlock(&queue->vm->eviction_lock);
->>> +    return ret;
->>> +}
->>> +
->>>   static void gfx_v11_0_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
->>>                     struct amdgpu_usermode_queue *queue)
->>>   {
->>> @@ -6475,6 +6548,7 @@ static int gfx_v11_0_userq_map(struct 
->>> amdgpu_userq_mgr *uq_mgr,
->>>       queue_input.queue_size = userq_props->queue_size >> 2;
->>>       queue_input.doorbell_offset = userq_props->doorbell_index;
->>>       queue_input.page_table_base_addr = 
->>> amdgpu_gmc_pd_addr(queue->vm->root.bo);
->>> +    queue_input.wptr_mc_addr = queue->wptr_mc_addr;
->>>         amdgpu_mes_lock(&adev->mes);
->>>       r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
->>> @@ -6601,6 +6675,13 @@ static int gfx_v11_0_userq_mqd_create(struct 
->>> amdgpu_userq_mgr *uq_mgr,
->>>           goto free_mqd;
->>>       }
->>>   +    /* FW expects WPTR BOs to be mapped into GART */
->>> +    r = gfx_v11_0_create_wptr_mapping(adev, queue, 
->>> userq_props.wptr_gpu_addr);
->>> +    if (r) {
->>> +        DRM_ERROR("Failed to create WPTR mapping\n");
->>> +        goto free_ctx;
->>> +    }
->>> +
->>>       /* Map userqueue into FW using MES */
->>>       r = gfx_v11_0_userq_map(uq_mgr, queue, &userq_props);
->>>       if (r) {
->>> diff --git a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h 
->>> b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->>> index 34e20daa06c8..ae155de62560 100644
->>> --- a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->>> +++ b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->>> @@ -39,6 +39,7 @@ struct amdgpu_usermode_queue {
->>>       int            queue_type;
->>>       uint64_t        doorbell_handle;
->>>       uint64_t        doorbell_index;
->>> +    uint64_t        wptr_mc_addr;
->>>       uint64_t        flags;
->>>       struct amdgpu_mqd_prop    *userq_prop;
->>>       struct amdgpu_userq_mgr *userq_mgr;
->>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index e3471293846f..9e345d503a47 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -113,9 +113,10 @@
+>    *            gl1c_cache_size, gl2c_cache_size, mall_size, enabled_rb_pipes_mask_hi
+>    *   3.53.0 - Support for GFX11 CP GFX shadowing
+>    *   3.54.0 - Add AMDGPU_CTX_QUERY2_FLAGS_RESET_IN_PROGRESS support
+> + *   3.55.0 - Update IB start address and size alignment for decode and encode
+>    */
+>   #define KMS_DRIVER_MAJOR	3
+> -#define KMS_DRIVER_MINOR	54
+> +#define KMS_DRIVER_MINOR	55
+>   #define KMS_DRIVER_PATCHLEVEL	0
+>   
+>   /*
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index 081bd28e2443..96db51765a6c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -447,7 +447,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   			if (adev->uvd.inst[i].ring.sched.ready)
+>   				++num_rings;
+>   		}
+> -		ib_start_alignment = 64;
+> +		ib_start_alignment = 256;
+>   		ib_size_alignment = 64;
+>   		break;
+>   	case AMDGPU_HW_IP_VCE:
+> @@ -455,8 +455,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   		for (i = 0; i < adev->vce.num_rings; i++)
+>   			if (adev->vce.ring[i].sched.ready)
+>   				++num_rings;
+> -		ib_start_alignment = 4;
+> -		ib_size_alignment = 1;
+> +		ib_start_alignment = 256;
+> +		ib_size_alignment = 4;
+>   		break;
+>   	case AMDGPU_HW_IP_UVD_ENC:
+>   		type = AMD_IP_BLOCK_TYPE_UVD;
+> @@ -468,8 +468,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   				if (adev->uvd.inst[i].ring_enc[j].sched.ready)
+>   					++num_rings;
+>   		}
+> -		ib_start_alignment = 64;
+> -		ib_size_alignment = 64;
+> +		ib_start_alignment = 256;
+> +		ib_size_alignment = 4;
+>   		break;
+>   	case AMDGPU_HW_IP_VCN_DEC:
+>   		type = AMD_IP_BLOCK_TYPE_VCN;
+> @@ -480,8 +480,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   			if (adev->vcn.inst[i].ring_dec.sched.ready)
+>   				++num_rings;
+>   		}
+> -		ib_start_alignment = 16;
+> -		ib_size_alignment = 16;
+> +		ib_start_alignment = 256;
+> +		ib_size_alignment = 64;
+>   		break;
+>   	case AMDGPU_HW_IP_VCN_ENC:
+>   		type = AMD_IP_BLOCK_TYPE_VCN;
+> @@ -493,8 +493,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   				if (adev->vcn.inst[i].ring_enc[j].sched.ready)
+>   					++num_rings;
+>   		}
+> -		ib_start_alignment = 64;
+> -		ib_size_alignment = 1;
+> +		ib_start_alignment = 256;
+> +		ib_size_alignment = 4;
+>   		break;
+>   	case AMDGPU_HW_IP_VCN_JPEG:
+>   		type = (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_JPEG)) ?
+> @@ -508,8 +508,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>   				if (adev->jpeg.inst[i].ring_dec[j].sched.ready)
+>   					++num_rings;
+>   		}
+> -		ib_start_alignment = 16;
+> -		ib_size_alignment = 16;
+> +		ib_start_alignment = 256;
+> +		ib_size_alignment = 64;
+>   		break;
+>   	case AMDGPU_HW_IP_VPE:
+>   		type = AMD_IP_BLOCK_TYPE_VPE;
 
