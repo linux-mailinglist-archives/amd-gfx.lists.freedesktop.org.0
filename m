@@ -2,67 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C9637BA058
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A2D7BA05B
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Oct 2023 16:37:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDF010E079;
-	Thu,  5 Oct 2023 14:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A385210E412;
+	Thu,  5 Oct 2023 14:37:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF8E10E079
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 14:36:44 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- 5b1f17b1804b1-4054f790190so10066935e9.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 05 Oct 2023 07:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696516603; x=1697121403; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=e8TV6QJsTS6z9lMh0FypLyUznrqJ68GQo0/EK4OU034=;
- b=ihvuIam/BbKBmfvPwomVR6HxSbqA0biUxrY0Sv2C7hV4NkjbTRYAoPyIm13aMg2ILO
- N/5MEQttdRl/iN10B3WwKpjUagnqZAVY3jM/7k90Hd+7rXtpKnNnVzpvcyKsnoDG0C8y
- 21FVlfvGsj/I8MkWjQEdYiXXLlVKIQ1SlgsKopPAWucV7LE+jyiI6fruSGTQFn0m3JeM
- mn+ISwvBBQhgIUfCRyLU6xRLP4QHs9V3Ru04nEytNT3bAC7vmAOe2RL/rqhuhOUOoeG5
- G8a368Z8zN2TD6MHFAoe44aG+CYi47EpAMcnLPuZTLNF/wu3VvcZAZYRMWdEBVbx1y/Q
- tQlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696516603; x=1697121403;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=e8TV6QJsTS6z9lMh0FypLyUznrqJ68GQo0/EK4OU034=;
- b=oNkyZVEZyuaCeZYDZsHDY8tKf8atJLXEgQMz+7fS6SbrlVj707tkB/mpXBzwPkve4a
- 3IsCs/V66y5Qm4BPS7s7fQMmdzvCd8UHav0qRfU8oLV8SP9iqzAWiJpf0Jq5dkw+gzHC
- JljoQgsoC2QqrnK6/oZQE6InM32MFU3RYVIm4jltO77mF87+FqwEupA/hEptpQXwZmh5
- q/VLZTXceT7JBQX40q042NalWzCWLS+m+jWMJbcNLwYOnKkn1bpIY1nCIyzALmwGzPAR
- qAvKS0eIsLgpZMdAxuA7a+d6dx/OlZh5vZgXugY4MDWGrrzWmTWPUV5lyiIOrkkqO6K9
- pQKw==
-X-Gm-Message-State: AOJu0Yw8Dk9xdAghn0MLicRrDU2PjpQwiipGmqDFPfNrgJxdQ9GlSmre
- 11mifReUXDzDQedVmTuOQrBKpcU7X6A=
-X-Google-Smtp-Source: AGHT+IH1fsA6wJmRVqmRnpF8LqhzCIbSi+/EEnzX9gl0ppzMKJpvDLyaPx7VonaozcZz03e7PW72WQ==
-X-Received: by 2002:adf:f804:0:b0:324:647e:a8b3 with SMTP id
- s4-20020adff804000000b00324647ea8b3mr5071531wrp.14.1696516602859; 
- Thu, 05 Oct 2023 07:36:42 -0700 (PDT)
-Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- p14-20020a056000018e00b0031984b370f2sm1940757wrx.47.2023.10.05.07.36.42
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 05 Oct 2023 07:36:42 -0700 (PDT)
-Message-ID: <42eb5748-0a1c-4044-b670-95ab08c0c10a@gmail.com>
-Date: Thu, 5 Oct 2023 16:36:41 +0200
-MIME-Version: 1.0
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2060e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8a::60e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C183710E412
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Oct 2023 14:37:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dr+RzsJKWuRaa7W36mERU20VOg/x8fAAKp2pABFH2v1cNgsPqp6OJd3/5VJ4KUe869xUlQh+MdOfuoqPsdexurFt3L4Qo+z5NN2tn4hX+ODvtXVEEm2TAphCkMcwBJ+hK9tck9jhUVyT6jxNhr+5ieKYco0J7gFrwKbKYdZ+7aqAgtjEcEZRxpH43gSkw9es/yHZlP2BrC7uTH2aRVj9/gjUFeWsLVHMeq2Utbs0zyyuI8sgfWwBdOGVHIWFNihQuXcwsD6YUsw8UIMd6kiqY2oEY5dlrfrCjkiwyRC0ZLqeXJdnTyAIyAzHNZ+eE7m4QPCmQfK2YSI5jEaMQ0h5IQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UognOOWW5z8Z7Pw9tq6oBSDZSEmVhGEEzugNaMjo6yI=;
+ b=VMD+Rim7S7uLPeK6OEEzJ6zgoQm11wwAvDB/nqcr37b6gxyXJofCLTPfSNK2iNXoA8ODLeefdcMjqXD50MXOJAoFILXf3onbM5FxI0Fbx90/jRoEB86Wi3Z2TUJkATkXAUoY4QYRQ70R5FUEOM18KNoJIRBo7eHZNu/S+k8SxjMSdwuG6LIR6HKHr/oKNGfoR/x0xR8It12PrAx5qeMrb1z++VF5lILVsiZ/rTl5M4WUscC+FEqCfjmR4bMQHYFHUEv4k9xWIyVTpD8vrZMqNFpoJoGxXJ6hjvmhFtUvxhrNPyJMSyY3L8BmBAtC/VMxwsjB/Nq/kyl544gSYWgcVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UognOOWW5z8Z7Pw9tq6oBSDZSEmVhGEEzugNaMjo6yI=;
+ b=MaCGAOtG47yYUlfBydOQBUey158Ys0DeR1dJnBDaibCOOzIL1maM86o7hCAYdNWmlNJvHypCLq/dY3z1d4/AeNLR9TN+JX2CZ190qwPEY/HE7vh+/tfqG49WPxlbHVhIxiUpzMLN3hvAgQOAzr0N3LZtr75/xeFu6nnr3obuYBI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by SA1PR12MB7103.namprd12.prod.outlook.com (2603:10b6:806:2b0::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Thu, 5 Oct
+ 2023 14:37:49 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::3e65:d396:58fb:27d4]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::3e65:d396:58fb:27d4%3]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
+ 14:37:48 +0000
+Message-ID: <d7cd2858-2179-48e0-82fa-3e053bb6bc52@amd.com>
+Date: Thu, 5 Oct 2023 09:37:46 -0500
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: update ib start and size alignment
+Subject: Re: [PATCH v4 2/3] drm/amd/display: Destroy DC context while keeping
+ DML
 Content-Language: en-US
-To: boyuan.zhang@amd.com, amd-gfx@lists.freedesktop.org
-References: <20231005134906.58141-1-boyuan.zhang@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20231005134906.58141-1-boyuan.zhang@amd.com>
+To: "Wentland, Harry" <Harry.Wentland@amd.com>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>
+References: <20231004171838.168215-1-mario.limonciello@amd.com>
+ <20231004171838.168215-3-mario.limonciello@amd.com>
+ <CADnq5_PU9pzxR4gfVP=-X9YVGYMmqa74qRU-Qm0kxn7BQfivtw@mail.gmail.com>
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <CADnq5_PU9pzxR4gfVP=-X9YVGYMmqa74qRU-Qm0kxn7BQfivtw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SN1PR12CA0048.namprd12.prod.outlook.com
+ (2603:10b6:802:20::19) To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|SA1PR12MB7103:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d477c9c-c85a-46c3-9d7d-08dbc5b0a5a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ypbi8PeH5N6mN0FylrlyOuWPddkaqyDeIA+ls+5AxzVxcx72zYPnYAH8xjVTUkiJqP6uyNNo4DpoZZZfO3Q69RzNPLq6iJYV9OOtttP2lOLIq6TfWt1ZpKLeetnbXvLsY6X9BXjQ34eqiH9GBfKutzgI2WobjkZfMHMS82lYtAqc33Gb1Ie0NPitqlGh5GmXJpk6kd38BxUtWWbXnHHK8BVLNa47NE4FjBYVrMHp+xlAHkGHOeWwbO0WY8OBQAP3JhdgI8lB+32+xF0Q/lW65a/sU7yN3fYkSYK2Mf3NYhpxbhhGLrVxDDqpw7wCObliDYW1e/wAbMFq1+OxrKmxs2OS2XirCrbDEFU1VhlRLvFEvrWvnHMkdDmNVjGjWsCLmpU9LzQSNCyZzy+fC/qCO+7uUR+Ph+GXVjU5yGmMQJI0xzfHK2jCNqxbfmc62OzBmwOd/UqppZU/ByOOhSC2/EK2zDZtOmaOYZ4edB2C5CMAEIBwyMWzC2/1uBi8nKmQGR0PI0wqS3lmBAfFzlk5H4JADwdjqFOyUacegHbTzZNthEgj+qfCTZ3hJx+uhZZ2ISwMt7bY2gJV3xOCI6snBPlVOORY5FwxWsmp3GtO4H8YNqdjDTJntzJayxy+2Hnk
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(39860400002)(346002)(366004)(376002)(136003)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(478600001)(31686004)(6512007)(26005)(36756003)(966005)(66946007)(66476007)(66556008)(41300700001)(316002)(110136005)(6636002)(38100700002)(2616005)(53546011)(6506007)(83380400001)(6486002)(86362001)(5660300002)(44832011)(4326008)(31696002)(8676002)(8936002)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SWdrZWpGV0NrZCtLR1ppNm94M0NmSWt1T0VGZTNQQXV1ZEFNdVZjRXBicyt2?=
+ =?utf-8?B?b3hvZDlVTXorcWdzN04vaGlvYmlTQ3Q0SXFmeGFwQVJsVUFYbGY4R2Zqd0Y3?=
+ =?utf-8?B?VmJQNU9UaVBrVmNpK3FlVzhMWEtYSWJ2N3lxc3YxSDVmamtKRE05UFdmUks5?=
+ =?utf-8?B?MERYaWtHbTJqTlN2MVM3ZFVZTDJjNkoyWThYMFZEM0prSFBMTy9WVkVGY2p4?=
+ =?utf-8?B?SFg5UkR4R0tsdkV6elg4dHBOUkJjaUdrUEJoY1ZERmU3cDhsdWl0Q0d3bCtC?=
+ =?utf-8?B?WEUyNEpwa28zQ3k0WHZDNllpOFhCMGxZTnEyWU4xUW5Jd1Q5K0VPSHRiVGJ5?=
+ =?utf-8?B?UitvS0VaOUtuV3pGRzZjeHVic1RMMUNHTGxYSFNINUZrS0dPQlYxY2REOXdF?=
+ =?utf-8?B?dk4weDBFTmlEZWVhbUVyeVBUa3NBN2RTVm9JWGpia3d1Z0xZU0hwR0kxZ1hy?=
+ =?utf-8?B?c3VRdmYyZVVhMmQ2M3YrT2I5WWdWNDVUbWpVTW9nem5GRS9waHY4QnVMZTJo?=
+ =?utf-8?B?R1NLeWN1Q1NZMHBIODBlMmt4R0gvYlpBaE5CRWpObFpqSkFLeThpWjVWcFVa?=
+ =?utf-8?B?MVpOQzg5cjVZNlBuSzNCL00vN0gyWnBGSjlkYmlJVllhRy9WQzlqL09BenJ5?=
+ =?utf-8?B?eEN1UUVEaHZYVXhoYWxXb0p5VWkyblZISk1NMi8xa05jNWhMcmlKMXBHUXZt?=
+ =?utf-8?B?c2cybTU2azM2RXkrMWR0a3BBSXZ3cStITFJuSUlTRVpMUWRTRXd1UTIrUU5m?=
+ =?utf-8?B?UGhJN3NHSGRXamIzQXN6ZWR4c0htVU1oTmllWHgvekUyUDFNeGtVcmtaMDhj?=
+ =?utf-8?B?R1hrK1BJUUtpTUJWeXpGaDBNS2JLZGo1WW9RQTFlbU5CQ3Z5UHM2UENRSXZC?=
+ =?utf-8?B?UFpGUEVKQXFncm8yeEdLZ0kxSFByWmt0dnp0eWU3U1ZLT0J5ckU3SldMUlRt?=
+ =?utf-8?B?WG9jbXE0MHVBTEpoNW9LcVk5VytIUkoxbDBaTUZJS2FqYUt5enZuK3k3QkNm?=
+ =?utf-8?B?VHhGYkdxRVVWYVdxakVhdGFhTkk0djBXSmN0bFU4dGxsb2ZWTHpJeTBNMzE2?=
+ =?utf-8?B?YUVhRUk4NU5GOG1CSUhNY3NKeEdGVENuUFNncDJYWEVwRWl6eW5aOE1NYzQ1?=
+ =?utf-8?B?UDRnMk52THhETGVjUlp0bUFiSy9tZWhESnlsWnF6NktZMmk2cG1IRkY5MkFV?=
+ =?utf-8?B?VGwxYXR0NWpxa3ZIS3FDSGlyZzFJVlgvVnB2UXZxQ3JlUGNWckFDdHVETy9y?=
+ =?utf-8?B?YnY4dXUrUlNSNjJwOS9mNUNBdHJEK0VsY015WUJkK1NSWXcyZEZTQVMwWmxE?=
+ =?utf-8?B?WFdVbEk1NDIyNVEyUVRCQTh3Mi9UYVZ1RDdwRzdXTDNrcmtXSkNYbXQzTkND?=
+ =?utf-8?B?TjVxUTFxMU9Ra2xqNldTWitlUVpYT01qaHRjdnBjMVl1eUdxcjZDQWg5Y3Nq?=
+ =?utf-8?B?cGNqOFg5TDFxSVVlOUpiN245NXZWQk5DT0I0UWhjVVVTelJZY2NFSE1jcXQ0?=
+ =?utf-8?B?VmIwWndUSkhKQndRdSswQUU4VlF0dDE3ellLeTlyem1kVHhxalBac0J5ZklQ?=
+ =?utf-8?B?cDd0TWMybDN4V0k1SktGWjNjWS9nM09NZzlaeDNFM2JzTk9iR2NMT1BNa20y?=
+ =?utf-8?B?OHVyajhVQ1FQNUZwNUd0Ryt1N2kydVBjRThTQUFpZy82U0trdGRTcTk1dElw?=
+ =?utf-8?B?MGgwVktPdDhCSUFnclJ4Qml1YVdacThyL3RVajBsVkRiKzBjMzg0ZkgxVG5r?=
+ =?utf-8?B?ZkRjbTEyT2pmaHcwVDBYKzc3dFplWC9zdWdaWXhCbFlHcTR1S0ZUb1VpWmxE?=
+ =?utf-8?B?M1BTK1h1NjMvakYwem9QQmdVWGVxeFhMRVd3dEt5eTZMdkNxNzJMdkg4V200?=
+ =?utf-8?B?OXFVSnpYWGZvUUQrTGhLVXhCM3JoMXdvZ3BzZm1mNEQ1am1DREsvckJNQkVm?=
+ =?utf-8?B?SFNabmhZUUhjb081RjlyZXdUaDdURFc3ajZ0WUZCMk5ZdE1WOGZ5Vm1YMU9x?=
+ =?utf-8?B?dXQ5Q2F2Wkh0dW42VjA4djExNk9OenBHTlVJNXkxNUlJemxoYi84blptekp0?=
+ =?utf-8?B?aENrMXd3ek94ZGYxaXliY2hxenRqenBaTGJqZ3BTZmNFUXdRcGZOMTNaTCt6?=
+ =?utf-8?Q?JM32ynnXi8zv7/8rBoZBKPF7t?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d477c9c-c85a-46c3-9d7d-08dbc5b0a5a1
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 14:37:48.8597 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kY7GHXqNQfKJtg7PZSuRY+1aJxlBPdTlwgXIcdP6KqoClMP9MxAmoLsu9z0fx5UgTpg1gUakV7ofImfJG/WUiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7103
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,113 +128,119 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 05.10.23 um 15:49 schrieb boyuan.zhang@amd.com:
-> From: Boyuan Zhang <boyuan.zhang@amd.com>
->
-> Update IB starting address alignment and size alignment with correct values
-> for decode and encode IPs.
->
-> Decode IB starting address alignment: 256 bytes
-> Decode IB size alignment: 64 bytes
-> Encode IB starting address alignment: 256 bytes
-> Encode IB size alignment: 4 bytes
->
-> Also bump amdgpu driver version for this update.
->
-> Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
+On 10/5/2023 09:27, Alex Deucher wrote:
+> On Wed, Oct 4, 2023 at 1:37 PM Mario Limonciello
+> <mario.limonciello@amd.com> wrote:
+>>
+>> If there is memory pressure at suspend time then dynamically
+>> allocating a large structure as part of DC suspend code will
+>> fail.
+>>
+>> Instead re-use the same structure and clear all members except
+>> those that should be maintained.
+>>
+>> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2362
+>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/display/dc/core/dc.c      | 25 -------------------
+>>   .../gpu/drm/amd/display/dc/core/dc_resource.c | 12 +++++++++
+>>   2 files changed, 12 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+>> index 39e291a467e2..cb8c7c5a8807 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
+>> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+>> @@ -4728,9 +4728,6 @@ bool dc_set_power_state(
+>>          struct dc *dc,
+>>          enum dc_acpi_cm_power_state power_state)
+>>   {
+>> -       struct kref refcount;
+>> -       struct display_mode_lib *dml;
+>> -
+>>          if (!dc->current_state)
+>>                  return true;
+>>
+>> @@ -4750,30 +4747,8 @@ bool dc_set_power_state(
+>>                  break;
+>>          default:
+>>                  ASSERT(dc->current_state->stream_count == 0);
+>> -               /* Zero out the current context so that on resume we start with
+>> -                * clean state, and dc hw programming optimizations will not
+>> -                * cause any trouble.
+>> -                */
+>> -               dml = kzalloc(sizeof(struct display_mode_lib),
+>> -                               GFP_KERNEL);
+>> -
+>> -               ASSERT(dml);
+>> -               if (!dml)
+>> -                       return false;
+>> -
+>> -               /* Preserve refcount */
+>> -               refcount = dc->current_state->refcount;
+>> -               /* Preserve display mode lib */
+>> -               memcpy(dml, &dc->current_state->bw_ctx.dml, sizeof(struct display_mode_lib));
+>>
+>>                  dc_resource_state_destruct(dc->current_state);
+>> -               memset(dc->current_state, 0,
+>> -                               sizeof(*dc->current_state));
+>> -
+>> -               dc->current_state->refcount = refcount;
+>> -               dc->current_state->bw_ctx.dml = *dml;
+> 
+> The dml dance seems a bit weird.  I guess it's here because
+> dc_resource_state_destruct() might change it?  Can we safely drop
+> this?  If we do need it, we could pre-allocate a dml structure and use
+> that.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+The dml structure is huge, so I think it's sub-optimal to have two 
+copies of it.  That's why I aimed to just destroy everything else except 
+it instead.
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  3 ++-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 22 +++++++++++-----------
->   2 files changed, 13 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index e3471293846f..9e345d503a47 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -113,9 +113,10 @@
->    *            gl1c_cache_size, gl2c_cache_size, mall_size, enabled_rb_pipes_mask_hi
->    *   3.53.0 - Support for GFX11 CP GFX shadowing
->    *   3.54.0 - Add AMDGPU_CTX_QUERY2_FLAGS_RESET_IN_PROGRESS support
-> + *   3.55.0 - Update IB start address and size alignment for decode and encode
->    */
->   #define KMS_DRIVER_MAJOR	3
-> -#define KMS_DRIVER_MINOR	54
-> +#define KMS_DRIVER_MINOR	55
->   #define KMS_DRIVER_PATCHLEVEL	0
->   
->   /*
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> index 081bd28e2443..96db51765a6c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -447,7 +447,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   			if (adev->uvd.inst[i].ring.sched.ready)
->   				++num_rings;
->   		}
-> -		ib_start_alignment = 64;
-> +		ib_start_alignment = 256;
->   		ib_size_alignment = 64;
->   		break;
->   	case AMDGPU_HW_IP_VCE:
-> @@ -455,8 +455,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   		for (i = 0; i < adev->vce.num_rings; i++)
->   			if (adev->vce.ring[i].sched.ready)
->   				++num_rings;
-> -		ib_start_alignment = 4;
-> -		ib_size_alignment = 1;
-> +		ib_start_alignment = 256;
-> +		ib_size_alignment = 4;
->   		break;
->   	case AMDGPU_HW_IP_UVD_ENC:
->   		type = AMD_IP_BLOCK_TYPE_UVD;
-> @@ -468,8 +468,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   				if (adev->uvd.inst[i].ring_enc[j].sched.ready)
->   					++num_rings;
->   		}
-> -		ib_start_alignment = 64;
-> -		ib_size_alignment = 64;
-> +		ib_start_alignment = 256;
-> +		ib_size_alignment = 4;
->   		break;
->   	case AMDGPU_HW_IP_VCN_DEC:
->   		type = AMD_IP_BLOCK_TYPE_VCN;
-> @@ -480,8 +480,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   			if (adev->vcn.inst[i].ring_dec.sched.ready)
->   				++num_rings;
->   		}
-> -		ib_start_alignment = 16;
-> -		ib_size_alignment = 16;
-> +		ib_start_alignment = 256;
-> +		ib_size_alignment = 64;
->   		break;
->   	case AMDGPU_HW_IP_VCN_ENC:
->   		type = AMD_IP_BLOCK_TYPE_VCN;
-> @@ -493,8 +493,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   				if (adev->vcn.inst[i].ring_enc[j].sched.ready)
->   					++num_rings;
->   		}
-> -		ib_start_alignment = 64;
-> -		ib_size_alignment = 1;
-> +		ib_start_alignment = 256;
-> +		ib_size_alignment = 4;
->   		break;
->   	case AMDGPU_HW_IP_VCN_JPEG:
->   		type = (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_JPEG)) ?
-> @@ -508,8 +508,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->   				if (adev->jpeg.inst[i].ring_dec[j].sched.ready)
->   					++num_rings;
->   		}
-> -		ib_start_alignment = 16;
-> -		ib_size_alignment = 16;
-> +		ib_start_alignment = 256;
-> +		ib_size_alignment = 64;
->   		break;
->   	case AMDGPU_HW_IP_VPE:
->   		type = AMD_IP_BLOCK_TYPE_VPE;
+The only reason it's "safe" to drop the whole above stuff is because of 
+"threading the needle" of what dc_resource_state_destruct() does.
+
+In the earlier version I had a mistake to miss clearing the scratch 
+variable and it caused some IGT faliures.
+
+This probably needs to be double checked with the DML2 series landing as 
+well to make sure it didn't get caught in the middle.
+
+> 
+> Alex
+> 
+>> -
+>> -               kfree(dml);
+>>
+>>                  break;
+>>          }
+>> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+>> index aa7b5db83644..e487c966c118 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+>> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+>> @@ -4350,6 +4350,18 @@ void dc_resource_state_destruct(struct dc_state *context)
+>>                  context->streams[i] = NULL;
+>>          }
+>>          context->stream_count = 0;
+>> +       context->stream_mask = 0;
+>> +       memset(&context->res_ctx, 0, sizeof(context->res_ctx));
+>> +       memset(&context->pp_display_cfg, 0, sizeof(context->pp_display_cfg));
+>> +       memset(&context->dcn_bw_vars, 0, sizeof(context->dcn_bw_vars));
+>> +       context->clk_mgr = NULL;
+>> +       memset(&context->bw_ctx.bw, 0, sizeof(context->bw_ctx.bw));
+>> +       memset(context->block_sequence, 0, sizeof(context->block_sequence));
+>> +       context->block_sequence_steps = 0;
+>> +       memset(context->dc_dmub_cmd, 0, sizeof(context->dc_dmub_cmd));
+>> +       context->dmub_cmd_count = 0;
+>> +       memset(&context->perf_params, 0, sizeof(context->perf_params));
+>> +       memset(&context->scratch, 0, sizeof(context->scratch));
+>>   }
+>>
+>>   void dc_resource_state_copy_construct(
+>> --
+>> 2.34.1
+>>
 
