@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307897BBEFF
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Oct 2023 20:51:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFD27BBF01
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Oct 2023 20:51:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D2E10E55B;
-	Fri,  6 Oct 2023 18:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1190210E558;
+	Fri,  6 Oct 2023 18:51:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C517A10E559
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 18:50:57 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B1E810E55B
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 18:50:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NqteLPy5Bnt+IwlUOIi8za4n/+k58Ydl2oHqqbegFHSGXwfG6GUM6ADscQZkmz36jVSCmuuqvaAuz2es7UUMsEVIQh/bh3YoCzyNgsN+Kftiv86FRm1sRS8edmVobgyAs/QDbHNIote9p03jCY9nIER77zBZi3K3NRou/jdNFhTZwIMx0VJ9s6FlwM628NP2D+0sa+7n3OxX+kaMDNknBtPAtqIG+AmvwGHyTSkD6ZAv+ZZKMrhOfn/RX1nVjYbKabugQF3hVeCMSqykFjFcl09sNss9Oyz6PG0N2Jnkm7wqa3hiMJHUHejZmHl7Gkg1POs4YjvfAmODp6rmsmX5+w==
+ b=gw/mX3n2ekE5Gkx44ZmokJ6UmfT7Sm8RZ6qMwQ/maElrCJl2VoQyVoQs+eK/jwygihvyYCnsmNV+eJgD4Iub+3gemVpRM3TWJiyZDjoEiyoUeJvBeRN4xiufiVHYSJc2QNDpsK7n0LSUva+jUoQ414X8f91CwJrAaRaBw5OV2KdOJ8I4Wj6c5fXQ2vPCQX9rPuPHfth1LE9Hwk+3mZYj1R7BIVuNJHgPdSZm5AJ4xc0N7qDsYkjiFwcfjdfwONBCiDzncHoAR3yHvLMH5bqh4jvR9B3O+HBjFnOhmC7tAnXtN1omE991hdvG6wrw7B42NsqCz2C98kUO9i6zcFNdDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XOqC/k3YbDST0jYwoRQcrl8E7DwyjQU/NHDVZ9r4bHA=;
- b=Fpg5z3qNmg8W+v32BN9DaVoY5URcgQGrLX8SNk3WyH4a68HzGsyzx8kTVK7BPzJXhYgQm6Eykf/+djy6opH3/OEMmn1Q6IVmxw6igLmY221GgN5R/JkE+O07PgabfTPEBSRbHJROQS4H0zVVdoDqzz3OUg6nP5fupFcVH8Iq1HNH755+2xwed1uWTHP7DRVqN2aWDdPv6PJ7z1U56E8bivCZ9W8NC4sHTgL+LKbgejBemUsr8TR9WjXeTiCuaB5lax2VCgKbfeiAuO4d2EAwSzvnI1pRNS02GQxhilA3hD0g3GrfA9BjycOgSiPS+k3ULn0rQWYAxCm1H+Lvo/pKcA==
+ bh=g5sq+j7gDEsaKG7i4yvF+hKAMnDW7c/O6v7POaAtqc4=;
+ b=GtXgO3P1nH/1zKioKGV0mJiG+VzV/9x4SpjTjFHL+IJt/0cl7pO8S8wy6C5GEUmicB+dIJ7K+P+q8Wotg+24wV7cnhaZ0xe4/fNvLc3VaUCQVYxAfBupG3EAYHO5xQXCwstysGVMyvGq+JpQ1eqrw6GQ0BMFHN8530K1ZYLP/F2SVIBrtWmTugUtvyX/q88pfvT+rpcgKu4s0wLc8eyJnQE5dT5cgRAidgno1LiYhy1sCmRlobhxuDioc/uhBZ4cNSqa7knikKrtQytRm08vraGrm0HhH556ofhjQpLvVt+oo7diocB/TK8izkg6zlxU++6o3vl4nridG7bUssdmuw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XOqC/k3YbDST0jYwoRQcrl8E7DwyjQU/NHDVZ9r4bHA=;
- b=S0KuIxzAM8ts7MmyB9WV3/t1KeRLTMqdwVi00LzQ5ZG7TGxSO8n4/hacMoTMKC2Nr02cxnDATrIjz3S9hjnmBUR9g5PsSI2T0b2gEPZC1GMq6oWVggXoZ0Dop8XJPLO8ILhwEC7ejYviIKcaHcJI0sASx5J7lpdzmWkPP+gGPoc=
-Received: from BL1PR13CA0270.namprd13.prod.outlook.com (2603:10b6:208:2ba::35)
- by MN0PR12MB5955.namprd12.prod.outlook.com (2603:10b6:208:37e::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.39; Fri, 6 Oct
+ bh=g5sq+j7gDEsaKG7i4yvF+hKAMnDW7c/O6v7POaAtqc4=;
+ b=IVj1Lmt5BgGn6eEYpcev0Ly4GTy9d49phtZXeGikew3d/dLXsPpOBXIWYmsH6PprDyBwPyVVtESCGCn32s3DJUlxQ8UWmha6LD1t2oyl0LZNJ0My05kGn5nj4hsxTqO27hhRWu1dZHINZ61xkAHbPm2ENyhohVbs5z2EcyT9xCY=
+Received: from BL1PR13CA0256.namprd13.prod.outlook.com (2603:10b6:208:2ba::21)
+ by DS0PR12MB7970.namprd12.prod.outlook.com (2603:10b6:8:149::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.36; Fri, 6 Oct
  2023 18:50:54 +0000
 Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:2ba:cafe::24) by BL1PR13CA0270.outlook.office365.com
- (2603:10b6:208:2ba::35) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:2ba:cafe::6) by BL1PR13CA0256.outlook.office365.com
+ (2603:10b6:208:2ba::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.29 via Frontend
  Transport; Fri, 6 Oct 2023 18:50:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -54,10 +54,10 @@ Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 13:50:53 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v5 2/7] drm/amd: Add concept of running prepare() sequence for
- IP blocks
-Date: Fri, 6 Oct 2023 13:50:21 -0500
-Message-ID: <20231006185026.5536-3-mario.limonciello@amd.com>
+Subject: [PATCH v5 3/7] drm/amd: Split up UVD suspend into prepare and suspend
+ steps
+Date: Fri, 6 Oct 2023 13:50:22 -0500
+Message-ID: <20231006185026.5536-4-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231006185026.5536-1-mario.limonciello@amd.com>
 References: <20231006185026.5536-1-mario.limonciello@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|MN0PR12MB5955:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf65358b-25a5-4d9c-5c91-08dbc69d2b65
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|DS0PR12MB7970:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc9d487b-f8e9-45ab-cd09-08dbc69d2b99
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5gRTotS1nyWETQS/lqdRPtzn1GwY7TU59prT3fZ0bLJ6Y+CrIK5bgYAEbbCc5l3yKJ/Nd4jemcnY33PJ2hu+u0bkMpI7AvwAVkP1V3U6xR7h6R0TrWn6NaPG7tWVKJZwH4wPe50yf9ATeZJ9EbTTMfGR1LcHX0znjs6rkNurM+AsCKWCDrBADzkWa4Yli3PmZvNm4hQVuUSZ2p9TrhojLzn49347JK9ceFgWatKmT//QuxHh5HwiJxKMftlrZMGiDMI3L8PCNMP8C+s7q3DqsHiN0AfUxiK2Nm9wQYGv3dcN2nycuDZvkr7jkrJSjpNHTgxNJK6x/e/qlFJ+55DhN5O4SkqnIgP8calz7W/92hhzFFAN6W2jqfqzcfnX4yB7uRudwVgJjtCre5ou/YFJZ9oT2GtxlzyQTaI+a910Z9L/+Dd0W28qT4Po9S64+HOz1ZxYyQvDDsS08cJZ136vV82hU5kGpGzuZ5n7pdfDuwHG4M3TAezsNYhGxYOIahXuZBMZtENguJac6BeNbAzIRMDQqyZzKkWj9UT3H9x6V3P7Hr5l23ws6+0Ywm4LLpyk0xSsEsSapbi+4cAnVKYv3J+wcCgMLiVq3HQhJ1CheIPZpmQcbSOLoTCk9LjkFkaDFP5f7WKeqWLSPdsWQaixKXOpOy3BR5Ww6aWneUfmp406Xi6vabwD2Uk0HZmSeUIpPnN18WF42yoA48FcKScGYVxvYAgV3O+Y+BJRHpw8fbaPxFBk6/s5TGJVxUDPJdoCAKYpYEYOoTzxqkukzmBMrg==
+X-Microsoft-Antispam-Message-Info: ki7TX00SR6NurMGEHw4EdK99zpJP74WAJ5qNtIPKPFmeNEVypPrXVZOh7gmbMmulZ8+yXuzuiLux6JdmFsSvuVsTkcMi+JaZ00TFaqGR8B97P2wESVVPH8KylFIraYtYHVLZvOgt6abqZHpi1z4XixV+DrwrxeAH7gIiNR5eOqnkQgjRkUr+Du/8zU7oEN/G0V9VP9+O0P4Lkt/Pq4//+wFj6FyjNdBLUmz7cR5uEpCcsHCHXYBG9SBinAhmkLFjeZoL7Ayw/3+pov98J3nSMhy5kKzAElfmuSIZtIbfMtl575T7Ha0FPiAkvmV8XcAnvHfCgQpGnAOJXsL4h1oU2P1jacE69VgGdj7N5bk22xCCy/ria56y59DVXQaCP4PKnidNV6Ab57I6yKqzO8EZfhVWSNEo/fR9WgYeCdj50i1gjYr5k3/iJrdI1Bu/3HSHx5Rm0ZgFMWEdfCnLByBBm/Ky2ggyLoNCYaG9LwDVLI2RJlNX0b+zMo0523/wkgBAwjkzMezF8Bx18HkqQkbLieH2QfjS5rKdkkfpqLEVGM0mnJgluHXlbZ3ncDJZa07BTQnOLP5ccyOwI1svDqzwNsl3WtD+W+6ppnyRMBSxvTFSWy0VTubHKvPmvgvqq8GFuLqJ0VJ+y02wuISBaRk1AOpvn/QdwUi2sMLut1P21x3V+J7IW5vjimOFfoS1VpyEAHVVMjx9Z2/R7PsLSbjGphS2D7des1/LjGXAkCkbwIlP6KkacNILdeb1rU+U3rYp0b3JhBvgcUyQKX9YeNmqqA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(376002)(396003)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(82310400011)(40470700004)(36840700001)(46966006)(83380400001)(40480700001)(40460700003)(6666004)(7696005)(478600001)(47076005)(36756003)(36860700001)(86362001)(82740400003)(356005)(81166007)(2906002)(426003)(336012)(1076003)(2616005)(16526019)(26005)(316002)(54906003)(70586007)(70206006)(5660300002)(6916009)(41300700001)(4326008)(8676002)(44832011)(8936002)(36900700001);
+ SFS:(13230031)(4636009)(136003)(39860400002)(346002)(396003)(376002)(230922051799003)(64100799003)(451199024)(186009)(82310400011)(1800799009)(46966006)(36840700001)(40470700004)(83380400001)(336012)(40460700003)(40480700001)(6666004)(7696005)(478600001)(86362001)(36860700001)(47076005)(82740400003)(356005)(81166007)(15650500001)(2906002)(41300700001)(316002)(426003)(2616005)(1076003)(26005)(16526019)(36756003)(54906003)(44832011)(5660300002)(6916009)(70206006)(70586007)(8676002)(8936002)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2023 18:50:54.2815 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf65358b-25a5-4d9c-5c91-08dbc69d2b65
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2023 18:50:54.6253 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc9d487b-f8e9-45ab-cd09-08dbc69d2b99
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5955
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7970
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,62 +104,213 @@ Cc: Harry.Wentland@amd.com, Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If any IP blocks allocate memory during their sw_fini() sequence
-this can cause the suspend to fail under memory pressure.  Introduce
-a new phase that IP blocks can use to allocate memory before suspend
-starts so that it can potentially be evicted into swap instead.
+amdgpu_uvd_suspend() allocates memory and copies objects into that
+allocated memory.  This fails under memory pressure.  Instead move
+majority of this code into a prepare step when swap can still be
+allocated.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v4->v5:
  * New patch
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 +++++++++++-
- drivers/gpu/drm/amd/include/amd_shared.h   |  1 +
- 2 files changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 12 ++++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c   |  9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c   |  9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c   |  9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c   |  9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c   |  9 +++++++++
+ 7 files changed, 54 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index cb334dc57c59..a362152cd0da 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4348,7 +4348,7 @@ static int amdgpu_device_evict_resources(struct amdgpu_device *adev)
- int amdgpu_device_prepare(struct drm_device *dev)
- {
- 	struct amdgpu_device *adev = drm_to_adev(dev);
--	int r;
-+	int i, r;
- 
- 	if (dev->switch_power_state == DRM_SWITCH_POWER_OFF)
- 		return 0;
-@@ -4358,6 +4358,16 @@ int amdgpu_device_prepare(struct drm_device *dev)
- 	if (r)
- 		return r;
- 
-+	for (i = 0; i < adev->num_ip_blocks; i++) {
-+		if (!adev->ip_blocks[i].status.valid)
-+			continue;
-+		if (!adev->ip_blocks[i].version->funcs->prepare)
-+			continue;
-+		r = adev->ip_blocks[i].version->funcs->prepare((void *)adev);
-+		if (r)
-+			return r;
-+	}
-+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+index b7441654e6fa..a53c4ba8b3fe 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+@@ -418,12 +418,11 @@ int amdgpu_uvd_entity_init(struct amdgpu_device *adev)
  	return 0;
  }
  
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index ce75351204bb..1f831cb747e0 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -299,6 +299,7 @@ struct amd_ip_funcs {
- 	int (*hw_init)(void *handle);
- 	int (*hw_fini)(void *handle);
- 	void (*late_fini)(void *handle);
-+	int (*prepare)(void *prepare);
- 	int (*suspend)(void *handle);
- 	int (*resume)(void *handle);
- 	bool (*is_idle)(void *handle);
+-int amdgpu_uvd_suspend(struct amdgpu_device *adev)
++int amdgpu_uvd_prepare(struct amdgpu_device *adev)
+ {
+ 	unsigned int size;
+ 	void *ptr;
+ 	int i, j, idx;
+-	bool in_ras_intr = amdgpu_ras_intr_triggered();
+ 
+ 	cancel_delayed_work_sync(&adev->uvd.idle_work);
+ 
+@@ -452,7 +451,7 @@ int amdgpu_uvd_suspend(struct amdgpu_device *adev)
+ 
+ 		if (drm_dev_enter(adev_to_drm(adev), &idx)) {
+ 			/* re-write 0 since err_event_athub will corrupt VCPU buffer */
+-			if (in_ras_intr)
++			if (amdgpu_ras_intr_triggered())
+ 				memset(adev->uvd.inst[j].saved_bo, 0, size);
+ 			else
+ 				memcpy_fromio(adev->uvd.inst[j].saved_bo, ptr, size);
+@@ -461,7 +460,12 @@ int amdgpu_uvd_suspend(struct amdgpu_device *adev)
+ 		}
+ 	}
+ 
+-	if (in_ras_intr)
++	return 0;
++}
++
++int amdgpu_uvd_suspend(struct amdgpu_device *adev)
++{
++	if (amdgpu_ras_intr_triggered())
+ 		DRM_WARN("UVD VCPU state may lost due to RAS ERREVENT_ATHUB_INTERRUPT\n");
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
+index 9f89bb7cd60b..72228425e021 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
+@@ -74,6 +74,7 @@ struct amdgpu_uvd {
+ int amdgpu_uvd_sw_init(struct amdgpu_device *adev);
+ int amdgpu_uvd_sw_fini(struct amdgpu_device *adev);
+ int amdgpu_uvd_entity_init(struct amdgpu_device *adev);
++int amdgpu_uvd_prepare(struct amdgpu_device *adev);
+ int amdgpu_uvd_suspend(struct amdgpu_device *adev);
+ int amdgpu_uvd_resume(struct amdgpu_device *adev);
+ int amdgpu_uvd_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
+index 5534c769b655..869e9948fa36 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c
+@@ -706,6 +706,14 @@ static int uvd_v3_1_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
++static int uvd_v3_1_prepare(void *handle)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++	return amdgpu_uvd_prepare(adev);
++
++}
++
+ static int uvd_v3_1_suspend(void *handle)
+ {
+ 	int r;
+@@ -806,6 +814,7 @@ static const struct amd_ip_funcs uvd_v3_1_ip_funcs = {
+ 	.sw_fini = uvd_v3_1_sw_fini,
+ 	.hw_init = uvd_v3_1_hw_init,
+ 	.hw_fini = uvd_v3_1_hw_fini,
++	.prepare = uvd_v3_1_prepare,
+ 	.suspend = uvd_v3_1_suspend,
+ 	.resume = uvd_v3_1_resume,
+ 	.is_idle = uvd_v3_1_is_idle,
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c b/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
+index c108b8381795..e589c17af371 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c
+@@ -220,6 +220,14 @@ static int uvd_v4_2_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
++static int uvd_v4_2_prepare(void *handle)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++	return amdgpu_uvd_prepare(adev);
++
++}
++
+ static int uvd_v4_2_suspend(void *handle)
+ {
+ 	int r;
+@@ -756,6 +764,7 @@ static const struct amd_ip_funcs uvd_v4_2_ip_funcs = {
+ 	.sw_fini = uvd_v4_2_sw_fini,
+ 	.hw_init = uvd_v4_2_hw_init,
+ 	.hw_fini = uvd_v4_2_hw_fini,
++	.prepare = uvd_v4_2_prepare,
+ 	.suspend = uvd_v4_2_suspend,
+ 	.resume = uvd_v4_2_resume,
+ 	.is_idle = uvd_v4_2_is_idle,
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c
+index d7e31e48a2b8..65aa23bc2d91 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c
+@@ -218,6 +218,14 @@ static int uvd_v5_0_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
++static int uvd_v5_0_prepare(void *handle)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++	return amdgpu_uvd_prepare(adev);
++
++}
++
+ static int uvd_v5_0_suspend(void *handle)
+ {
+ 	int r;
+@@ -863,6 +871,7 @@ static const struct amd_ip_funcs uvd_v5_0_ip_funcs = {
+ 	.sw_fini = uvd_v5_0_sw_fini,
+ 	.hw_init = uvd_v5_0_hw_init,
+ 	.hw_fini = uvd_v5_0_hw_fini,
++	.prepare = uvd_v5_0_prepare,
+ 	.suspend = uvd_v5_0_suspend,
+ 	.resume = uvd_v5_0_resume,
+ 	.is_idle = uvd_v5_0_is_idle,
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
+index 5fe872f4bea7..a4035aeb973b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
+@@ -542,6 +542,14 @@ static int uvd_v6_0_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
++static int uvd_v6_0_prepare(void *handle)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++	return amdgpu_uvd_prepare(adev);
++
++}
++
+ static int uvd_v6_0_suspend(void *handle)
+ {
+ 	int r;
+@@ -1528,6 +1536,7 @@ static const struct amd_ip_funcs uvd_v6_0_ip_funcs = {
+ 	.sw_fini = uvd_v6_0_sw_fini,
+ 	.hw_init = uvd_v6_0_hw_init,
+ 	.hw_fini = uvd_v6_0_hw_fini,
++	.prepare = uvd_v6_0_prepare,
+ 	.suspend = uvd_v6_0_suspend,
+ 	.resume = uvd_v6_0_resume,
+ 	.is_idle = uvd_v6_0_is_idle,
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+index 86d1d46e1e5e..3228bf1a379c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+@@ -612,6 +612,14 @@ static int uvd_v7_0_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
++static int uvd_v7_0_prepare(void *handle)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
++
++	return amdgpu_uvd_prepare(adev);
++
++}
++
+ static int uvd_v7_0_suspend(void *handle)
+ {
+ 	int r;
+@@ -1787,6 +1795,7 @@ const struct amd_ip_funcs uvd_v7_0_ip_funcs = {
+ 	.sw_fini = uvd_v7_0_sw_fini,
+ 	.hw_init = uvd_v7_0_hw_init,
+ 	.hw_fini = uvd_v7_0_hw_fini,
++	.prepare = uvd_v7_0_prepare,
+ 	.suspend = uvd_v7_0_suspend,
+ 	.resume = uvd_v7_0_resume,
+ 	.is_idle = NULL /* uvd_v7_0_is_idle */,
 -- 
 2.34.1
 
