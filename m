@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED7B7BBF00
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Oct 2023 20:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39AEB7BBF04
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Oct 2023 20:51:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C2110E55C;
-	Fri,  6 Oct 2023 18:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B1F10E55D;
+	Fri,  6 Oct 2023 18:51:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2050.outbound.protection.outlook.com [40.107.102.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8509B10E559
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 18:50:57 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2054.outbound.protection.outlook.com [40.107.96.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E2A10E556
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Oct 2023 18:51:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AMZeu7Ae/n3KCswsTKB4DEH2uI2i3omRKOufKNpv0ldW3K4hQhUFCGq6yTCgcPkWv+fxrgsq6F4uRagG1vGY7tEDPR+fb1lQUtMfYdcK6W5y+POXYxs7I5Vyesq4n5VoaaMTsEg6z1MSWLADJSt/t3g9xhkUFcfNEmt9AO+tLdKbWs1/5bcNETRZZikvpvMxqy3h2CJQzH2Eo4lGevEUCdq1kwAGHbeLjkcQka00/CDsbMgwcITrNldeZ73bMUtUH4f5F2s19gJ4VtCF5Bwn3d5tN5aWzFKT9/8XF+G+FDPGi2r7QnnnRcu0ngFmUcH/aRi64SkRHUx/0hA9Jhfc7g==
+ b=bot6x0D54izHZUG2vsGPL1fPy4Z5tBV3jyKFII2UJxwJgX6oa/DJf44ixhPM1vkKOkG9J8IqdxD8FK66nxR1co8DRfbhKMwfU+gPVihF+nKgj5bNriHiu0NbvUt3NFzg6ZW08BouvyceK4N6rCbzRoCMEkSNUEwFnNF0qgaZDsll+E2YLFr7kxubs0IdEHykgNAdHYL2JSdOq+GRSTmn+IAe4kipZbRTR2kGmuHdr09mAXhNLYXQ96slP1KAjQ78aqivgDkqjQy/c5Kc+nIjloS+up9Yw/ponYCo3eJ2uzXtw5+x/zVO2eh+aBWERp4+XHqGdnYf+ey7uzCttOjAHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KY9krHmORRK0DaSE1YS8G3EO5JZVOu/OLw8LSkgIqMs=;
- b=Y0ZRMBj55lrH+iVxo/3thxzqdvdNhpTn9LSGIHOf6lvowXplkZGuZnCHc9eBQbi0kvBPQYbQuPbIb4XAgCVRwVmjKl7aA7E3iSjjcZktvLoKj+yuO0napx8RRg+DMmQ5X6gA4q6718rrkxjQ1UBA4kaKTrhAzqGeOsQ1jhNPXkSicULqDOQ3nYuxzJbNjjEZV3cGS4N9wseIvdJK93vowJnmEGdA/5qwWKE78w8rjCbQoAQXiZRGPj4jABBYvin/LmOuuKScs8Eofg8y8d23he1pfBI2S3XfgolU0ourrnXzEfO+amnZDETgSMzNUUyCQyPJ5pog9el7Oz5Yjqs7NA==
+ bh=yd26FrU8wFHJC0k/LXduIGT0CiUCyt5c9/g7kfBXajQ=;
+ b=JkzK1FEXLXtZQT3fGB6exQ06eu6vDsgTWJlPaXZbZvUnF9noRzSxVheE67zck42DgaY57fiPzWPue2lMxoyplqFWdic5eEmklnzY+ku7kaJsguXm3wMZ4gmxU/8HvuFGJxcT+yIJNV8leosc1NslEYyXjn+Vb/c+wyCvtXywBPkQoeTo57FWl6hcrHKGVmv5juV3fwxH1ywh51cAI6pkbl8/PbODMMm9p4mngsn3XZH/G6sCROzeL/ePSK92uqGj5wwy0rkfuqH7PdC1NSxAsGoK310FIb/Dy6n5PRyCKIfi9xxghWJWaTFNaj5rVx9VnFG9WGEIFgwutyNB0HWXqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KY9krHmORRK0DaSE1YS8G3EO5JZVOu/OLw8LSkgIqMs=;
- b=3LpLc+5cfomUjTgoCm/UeImv83HIqKbq5DaoDT/s1ahh/R4SGsoGryZrOqFl5kMccFKTKTtp35quoxRM6FndIg+LsZAtHDhqUmlkCV4AHSOZK970/jvi6Mu51dkLb65ejUDo+XxhsKBU98mXhxMxpH98Ep2k3pxZd7F/mNcBgl4=
-Received: from BL1PR13CA0263.namprd13.prod.outlook.com (2603:10b6:208:2ba::28)
- by SA0PR12MB7074.namprd12.prod.outlook.com (2603:10b6:806:2d5::6)
+ bh=yd26FrU8wFHJC0k/LXduIGT0CiUCyt5c9/g7kfBXajQ=;
+ b=XQSoPL5lHg1AIUCDU1Ibzlq6/cVL2y2EiXxbKq8x2l/i+IGirrkDVeVCV3OWyfdQQOMUWyd4Hxf/kANidD8mPzI2LEiKMuhIKSzlEOeTo3oXLO7ySjY3Le84u8cHAs9qdOU0H5VIEpTFMjt5PpqWIecC3s+u/VMVnRDiJ5bCY9c=
+Received: from BL1PR13CA0268.namprd13.prod.outlook.com (2603:10b6:208:2ba::33)
+ by PH8PR12MB7424.namprd12.prod.outlook.com (2603:10b6:510:228::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.33; Fri, 6 Oct
- 2023 18:50:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.31; Fri, 6 Oct
+ 2023 18:51:22 +0000
 Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:2ba:cafe::cc) by BL1PR13CA0263.outlook.office365.com
- (2603:10b6:208:2ba::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.29 via Frontend
- Transport; Fri, 6 Oct 2023 18:50:55 +0000
+ (2603:10b6:208:2ba:cafe::d9) by BL1PR13CA0268.outlook.office365.com
+ (2603:10b6:208:2ba::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.17 via Frontend
+ Transport; Fri, 6 Oct 2023 18:51:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Fri, 6 Oct 2023 18:50:55 +0000
+ 15.20.6838.14 via Frontend Transport; Fri, 6 Oct 2023 18:51:22 +0000
 Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 6 Oct
  2023 13:50:54 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v5 4/7] drm/amd: Capture errors in
- amdgpu_switcheroo_set_state()
-Date: Fri, 6 Oct 2023 13:50:23 -0500
-Message-ID: <20231006185026.5536-5-mario.limonciello@amd.com>
+Subject: [PATCH v5 5/7] drm/amd/display: Catch errors from
+ drm_atomic_helper_suspend()
+Date: Fri, 6 Oct 2023 13:50:24 -0500
+Message-ID: <20231006185026.5536-6-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231006185026.5536-1-mario.limonciello@amd.com>
 References: <20231006185026.5536-1-mario.limonciello@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|SA0PR12MB7074:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf019353-a39b-4f0c-538a-08dbc69d2be1
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|PH8PR12MB7424:EE_
+X-MS-Office365-Filtering-Correlation-Id: a00c2147-fee9-4161-3f93-08dbc69d3c2b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z0m2MzwGhB4wn4mVk719UGsEeb7pjxzVTx2ZjDI3acJyRiIB1cpUE3P9zgo9zRyumlQcnJE7YTSJUX652rhEelg2GueOGTG5ZO/XDWY0MrhvXmQOdj+SPzh1r5HVCN21INxY+WUPtI31poGTJ1sFjNvydFc3TsigTO8zGq4VxJpnzPmL7TxXi0PVLws7PV06LOlT88OYlQsY5U2p2IpeZAssSoteMvWez+9Dz9BBWB0mnFWebyRJ4YcIXb8FGaf1ZTkdRtfUxEn9w80lNvlCfcA6B8NiprDAgXKY/FRaKSuXMmPKJHdH7X+NMnzcyge8IobLTZsKdJGAncjAmXFW+fAZmiCtAZU2wV26iv038BQCTqXxFnPl1fs/0irSiLFoQBxQKdN+Hm1wroyDqTUhSSrh9BRivtvf2Olvc4sM/KIMdWq6E1MJUycgWmFb/rl5IGq2Ws99iKusFthvhbehYDu3C9uPajzydM116qmKpr0sH7cfZcWUkfKe6kmLRvpOdCwkHz3PIA9zNEgmzuyV2ItjUAxl3ifoYIsTxkzc5kwIkwsis77OhdNeF6GA+tYBKlB42vpTD90xhpZTivdohVqMpx7ojG4vXlZRyVW7YwHcmTV9RDjHgq+q0mdKR5UCIrM/tk0eNxX/aMnKuDUaJwkBV/hBCO8qXZ5zeENywoR6H+6qXzFVaaE4PSb+eKa5nM0FManwOozekkHy2RwyC9+ZFqD7TW1CZLxm7kUfW7x7aZnqvfnZe3X6CyEazA20nGHxez+PrsFGr+FBjC6Y3Q==
+X-Microsoft-Antispam-Message-Info: cTuR50NOyM3YQTDTSdD3RWGuwtPbPOY+zzae5TtAB8WUNNu0d4GqBws4b+/zpd18fzkEvRgG0X2wvw6CUMiqY3wOoZ4Y1kxUjdJq0IrkD+oFrWm6RLWxB1F2XgIfXPXtFu8bTXYgfFgTSchU280qXOpVcndinPD19GtCeuAOmpqx153E36crZk5q++zSxFCV6TT1xYbz2hHWMVLBcoDb/LPHCsGet2wHCH5wFEnp0jjzfXh0WIluZgAuPg/9OkZJV04wueWc9qhP3rQQ5TsgBM+onneop9m7f+nRaE5D0mmLUrFc6Jf32IvesHuMJb8HH81+iubEY3AvixPDA2BaLG01Fz1M8Hb24It2o63+Pchjzb8tSUnPNhgwAlEEHEvVoaKn2d/UZztsY0YpychGjOWt83bs/5mJ1W2jSTldSzNKAJUMEi2QLGuzudYrIibPQEsrHXxW/58YeTxkbYcxu9viqpZEzndBQUREnyMhXUZij/FNWaQd07UAxb/YyyHTD0MEeUEHLR3WNzB91/T5O6YK/scBrweypjhuhwFmYBRYI6UFtSCHkRxb/M4XrCtEFB3EItj2/xbOgBgHi3bOSs9Pe9AxiUHx+DRYJJEGylKhelOzUqbIMHt7jLC1v/VdJz2+AU72wnZW32RTHgG/hc5+tf9rskvF2GBJaawLabdX4cbBN0tXhtkcOnh5Wf9BSA+LtsHw0/As+6YLANWr1nGc+qJruY44b0A/uypNTlVhKQOSedorPggYyCeNkLUD
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(39860400002)(396003)(346002)(136003)(230922051799003)(1800799009)(82310400011)(451199024)(186009)(64100799003)(36840700001)(40470700004)(46966006)(40460700003)(40480700001)(26005)(1076003)(70206006)(2616005)(82740400003)(426003)(356005)(54906003)(8936002)(336012)(70586007)(6916009)(16526019)(316002)(81166007)(478600001)(4326008)(6666004)(41300700001)(8676002)(36860700001)(47076005)(83380400001)(36756003)(7696005)(86362001)(2906002)(44832011)(5660300002)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(346002)(376002)(39860400002)(230922051799003)(1800799009)(82310400011)(64100799003)(186009)(451199024)(36840700001)(46966006)(40470700004)(336012)(4326008)(8936002)(6666004)(5660300002)(8676002)(44832011)(70206006)(54906003)(6916009)(41300700001)(316002)(70586007)(966005)(40460700003)(36860700001)(47076005)(40480700001)(2906002)(426003)(86362001)(26005)(478600001)(36756003)(16526019)(2616005)(356005)(81166007)(82740400003)(1076003)(7696005)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2023 18:50:55.0940 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf019353-a39b-4f0c-538a-08dbc69d2be1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2023 18:51:22.4377 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a00c2147-fee9-4161-3f93-08dbc69d3c2b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7074
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7424
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,73 +104,33 @@ Cc: Harry.Wentland@amd.com, Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-amdgpu_switcheroo_set_state() calls lots of functions that could
-fail under memory pressure or for other reasons.  Don't assume
-everything can successfully run sequentially, and check return codes
-for everything that returns one.
+drm_atomic_helper_suspend() can return PTR_ERR(), in which case the
+error gets stored into `dm->cached_state`.  This can cause failures
+during resume.  Catch the error during suspend and fail the suspend
+instead.
 
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2362
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 36 +++++++++++++++++-----
- 1 file changed, 29 insertions(+), 7 deletions(-)
+v4->v5:
+ * New patch
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index a362152cd0da..8dfcff783dab 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1749,23 +1749,45 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
- 		/* don't suspend or resume card normally */
- 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index a59a11ae42db..63944d3b9e8c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2716,6 +2716,8 @@ static int dm_suspend(void *handle)
  
--		pci_set_power_state(pdev, PCI_D0);
--		amdgpu_device_load_pci_state(pdev);
-+		r = pci_set_power_state(pdev, PCI_D0);
-+		if (r) {
-+			DRM_WARN("pci_set_power_state failed (%d)\n", r);
-+			return;
-+		}
-+		if (!amdgpu_device_load_pci_state(pdev))
-+			return;
- 		r = pci_enable_device(pdev);
- 		if (r)
- 			DRM_WARN("pci_enable_device failed (%d)\n", r);
--		amdgpu_device_resume(dev, true);
-+		r = amdgpu_device_resume(dev, true);
-+		if (r) {
-+			DRM_WARN("amdgpu_device_resume failed (%d)\n", r);
-+			return;
-+		}
+ 	WARN_ON(adev->dm.cached_state);
+ 	adev->dm.cached_state = drm_atomic_helper_suspend(adev_to_drm(adev));
++	if (IS_ERR(adev->dm.cached_state))
++		return PTR_ERR(adev->dm.cached_state);
  
- 		dev->switch_power_state = DRM_SWITCH_POWER_ON;
- 	} else {
- 		pr_info("switched off\n");
- 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
--		amdgpu_device_prepare(dev);
--		amdgpu_device_suspend(dev, true);
--		amdgpu_device_cache_pci_state(pdev);
-+		r = amdgpu_device_prepare(dev);
-+		if (r) {
-+			DRM_WARN("amdgpu_device_prepare failed (%d)\n", r);
-+			return;
-+		}
-+		r = amdgpu_device_suspend(dev, true);
-+		if (r) {
-+			DRM_WARN("amdgpu_device_suspend failed (%d)\n", r);
-+			return;
-+		}
-+		if (!amdgpu_device_cache_pci_state(pdev))
-+			return;
- 		/* Shut down the device */
- 		pci_disable_device(pdev);
--		pci_set_power_state(pdev, PCI_D3cold);
-+		r = pci_set_power_state(pdev, PCI_D3cold);
-+		if (r) {
-+			DRM_WARN("pci_set_power_state failed (%d)\n", r);
-+			return;
-+		}
- 		dev->switch_power_state = DRM_SWITCH_POWER_OFF;
- 	}
- }
+ 	s3_handle_mst(adev_to_drm(adev), true);
+ 
 -- 
 2.34.1
 
