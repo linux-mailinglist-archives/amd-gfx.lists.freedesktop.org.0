@@ -1,54 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 216F17BDED6
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Oct 2023 15:23:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05ACC7BDCB3
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Oct 2023 14:46:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50D6A10E112;
-	Mon,  9 Oct 2023 13:23:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8786C10E0FF;
+	Mon,  9 Oct 2023 12:46:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08C2789226;
- Mon,  9 Oct 2023 11:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696849357; x=1728385357;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=MmMf258M2aynXUKykT7A9ZJ1flv5Ehw3wMtnyNA2/MI=;
- b=MaiDGI3bslFnMGKYgCxQVzfKGo8/0dHOojPDfBnnFFH2bU/J97vQcuBr
- +eiIg/rEXVtMtApeDGPuh13ZIhlP8R4Jn3aMEXA6GBbTy9qeTf/D5vQwW
- yR+J6upfChUpm9wE5yEA7Cjr3vwUzaVPmRF6i0VBuzBiCTdfJRZQIbfnP
- jgL6fB8u1VkeCc8NoAQIIIytUQwl+2gTRkEU2IrOyswsi5YFtTWsNAjA5
- +RSNXJwYAa/QhnknWujacSbFOtN6Vi3eTJfvypHWgLBUrP80ZqoAUH32g
- loYu1OeL89JfyjLsJSShXVuZ/rC9DSUJcBsNxLIzuF7wUWoPvyRZbSjUP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="382993239"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="382993239"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 04:02:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="788124493"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="788124493"
-Received: from lshebash-mobl3.ccr.corp.intel.com ([10.252.57.254])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 04:02:31 -0700
-Date: Mon, 9 Oct 2023 14:02:29 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-Subject: Re: [PATCH v2 12/16] platform/x86/amd/pmf: Add PMF-AMDGPU get
- interface
-In-Reply-To: <c5834d5e-af71-4d96-88ae-c2acd5f6604b@amd.com>
-Message-ID: <38f6ad4d-fbbe-2b43-61e-7c676e3dbac6@linux.intel.com>
-References: <20230930083715.2050863-1-Shyam-sundar.S-k@amd.com>
- <20230930083715.2050863-13-Shyam-sundar.S-k@amd.com>
- <e7b33961-23bb-cb8-2941-ced3f0cf2620@linux.intel.com>
- <c5834d5e-af71-4d96-88ae-c2acd5f6604b@amd.com>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11A2B10E0FF;
+ Mon,  9 Oct 2023 12:46:45 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ 5b1f17b1804b1-405524e6768so43557285e9.2; 
+ Mon, 09 Oct 2023 05:46:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696855603; x=1697460403; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=46YmJF0NCAJOq27FzOxAehU5zeb/ItCo7qFVBmNntgE=;
+ b=BAaplgTmnzbb9Bxl0xZAWFOj70h5LKmXBjr6hMUzTIfmf2ZJFb+Cq93nKpCEs0o5rr
+ GB+ib08Hx/PmKxcwakNSfjuThiRp37VeuHAH8gLRmRHFUCcClqBkP7rzV6dJjKgYnx6Q
+ HmEpsf13DeLv5ZV7B7eJ+t++V7ntkZ7KTrKM2Eh5KBqcms4FnBViharpoXRkWjZLDmly
+ UvzKrH8De2aKpy+YbqmhdbfZzK2ZRRTac/jUCVOYCH9N5dQ89aQOqz99+gGVZWDSKjA1
+ zo3XBIHIFg40KKGm9J8b0pdRRSFSDvQ6jIo1fVDtGIevewbuXXAOZVnJlPKQ8VkZYYYb
+ 3Q5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696855603; x=1697460403;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=46YmJF0NCAJOq27FzOxAehU5zeb/ItCo7qFVBmNntgE=;
+ b=EBWSObXPkTuzrjgdQCbrffgrg2oy4hN8k0aTKe7rNGZx03M5c3NloarjpcBOztPblN
+ 8RTBBoqKvLixtJcovo+xCQkTRhGltYzZjhp02siyELW3zEPYaLsDxYvJWIXPLlCg1Zcy
+ bBT1ObC0oqBlUnNkpW+entxzLvEE/JKHmVtwLybomYl0ZxKoIxCc6rLfks+ZKJuasV3E
+ S+5XK++8pckQn5NG8d9s4Kg4v84SuGo4QxxJGNSme/4glgNEzV8CfodfGapLVTm7lIcq
+ erEv1HZHLggtRyKpfVQv8I+EMrDDq0A02fxLG4Ef+uJWU8tFqqoIwr+KLRj5RvVqTJCb
+ Obeg==
+X-Gm-Message-State: AOJu0Ywow/z9VSbQ+UsG1/cACk7CLFc23Lp5FFYhFIVzkD1t2q9hFp42
+ 5Y/MDvHrdlCwAGbajEaCNEM=
+X-Google-Smtp-Source: AGHT+IFHKObOZreEa2lhEy26Zw5w3xizdKPFB5KSHgUs7mXxo0KcjUbN/Du2Ci/oP8LOrpKffCEM9g==
+X-Received: by 2002:a7b:c5c9:0:b0:403:272:4414 with SMTP id
+ n9-20020a7bc5c9000000b0040302724414mr13535879wmk.0.1696855603106; 
+ Mon, 09 Oct 2023 05:46:43 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ c11-20020a7bc84b000000b0040648217f4fsm13400617wml.39.2023.10.09.05.46.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 09 Oct 2023 05:46:42 -0700 (PDT)
+Message-ID: <0eb8750d-79c5-4508-ac36-7f91bc8cbaf9@gmail.com>
+Date: Mon, 9 Oct 2023 14:46:40 +0200
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1989512445-1696849355=:1721"
-X-Mailman-Approved-At: Mon, 09 Oct 2023 13:23:38 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH AUTOSEL 5.10 13/22] drm/amdgpu: install stub fence into
+ potential unused fence pointers
+Content-Language: en-US
+To: Greg KH <gregkh@linuxfoundation.org>, Bryan Jennings <bryjen423@gmail.com>
+References: <2023083119-phoney-ascend-d4ec@gregkh>
+ <d32d6919-47cf-4ddc-955a-0759088220ae@gmail.com>
+ <2023100750-unraveled-propeller-3697@gregkh>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <2023100750-unraveled-propeller-3697@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,91 +77,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, Patil.Reddy@amd.com, basavaraj.natikar@amd.com,
- dri-devel@lists.freedesktop.org, jikos@kernel.org,
- amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- markgross@kernel.org, Hans de Goede <hdegoede@redhat.com>,
- benjamin.tissoires@redhat.com, mario.limonciello@amd.com, daniel@ffwll.ch,
- linux-input@vger.kernel.org, alexander.deucher@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: sashal@kernel.org, airlied@linux.ie, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
+ stable@vger.kernel.org, Lang.Yu@amd.com, olvaffe@gmail.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Am 07.10.23 um 11:50 schrieb Greg KH:
+> On Sun, Sep 10, 2023 at 03:43:01PM -0500, Bryan Jennings wrote:
+>> This is also causing log spam on 5.15.  It was included in 5.15.128 as
+>> commit 4921792e04f2125b5eadef9dbe9417a8354c7eff.  I encountered this and
+>> found https://gitlab.freedesktop.org/drm/amd/-/issues/2820 while researching
+>> the problem.
+> Confused, what should we do here?
 
---8323329-1989512445-1696849355=:1721
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+If this patch was backported to even more older kernels then please 
+revert that immediately!
 
-On Mon, 9 Oct 2023, Shyam Sundar S K wrote:
-> On 10/4/2023 6:19 PM, Ilpo Järvinen wrote:
-> > On Sat, 30 Sep 2023, Shyam Sundar S K wrote:
-> > 
-> >> In order to provide GPU inputs to TA for the Smart PC solution to work, we
-> >> need to have interface between the PMF driver and the AMDGPU driver.
-> >>
-> >> Add the initial code path for get interface from AMDGPU.
-> >>
-> >> Co-developed-by: Mario Limonciello <mario.limonciello@amd.com>
-> >> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> >> Signed-off-by: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-> > 
-> >> @@ -355,6 +356,21 @@ static int amd_pmf_get_bios_buffer(struct amd_pmf_dev *dev)
-> >>  	return amd_pmf_start_policy_engine(dev);
-> >>  }
-> >>  
-> >> +static int amd_pmf_get_gpu_handle(struct pci_dev *pdev, void *data)
-> >> +{
-> >> +	struct amd_pmf_dev *dev = data;
-> >> +
-> >> +	if (pdev->vendor == PCI_VENDOR_ID_ATI && pdev->devfn == 0) {
-> >> +		/* get the amdgpu handle from the pci root after walking through the pci bus */
-> > 
-> > I can see from the code that you assign to amdgpu handle so this comment 
-> > added no information.
-> > 
-> > It doesn't really answer at all why you're doing this second step. Based 
-> > on the give parameters to pci_get_device(), it looks as if you're asking 
-> > for the same device you already have in pdev to be searched to you.
-> 
-> Not sure if I understand you remark completely.
-> 
-> amd_pmf_get_gpu_handle() is a callback function for pci_walk_bus
-> (which is done below).
-> 
-> What I am trying to do here is to get the PCI handle for the GPU
-> device by walking the PCI bus.
-> 
-> I think the 'pdev' here refers to the pci root, using that root we
-> walk the entire tree and only stop walking when we find a handle to
-> GPU device.
+This patch was part of a new feature and can only work correctly with a 
+bunch of prerequisites. If you don't have those prerequisites in your 
+branch then it might actually cause random memory corruptions through 
+device DMA.
 
-Not exactly what happens, in amd_pmf_get_gpu_handle() pdev changes on each 
-call so I don't know why you stated it is refering to the "pci root".
+And we should probably talk about why this patch was automatically 
+selected for backporting in the first place? There is no mention that 
+this is a fix or should be backported in the commit message or patch 
+itself whatsoever.
 
-> Do you want me to change the "pdev" parameter to be renamed as "root" ?
+Without the WARN_ON() which started to spam the logs that could have 
+gone south pretty quickly. Random data corruption without any indicator 
+what's causing it is not really funny.
 
-No, please don't do that, it would be misleading.
-
-> Am I missing something?
-
-I meant that at some point of the walk through the PCI devices, you have 
-a PCI device pdev with ->vendor PCI_VENDOR_ID_AMD when that if condition 
-above matched. Please explain why you need to do another lookup with 
-pci_get_device() at that point (with the same ->vendor and ->device as 
-shown below)?
-
-> >> +		dev->gfx_data.gpu_dev = pci_get_device(pdev->vendor, pdev->device, NULL);
-> >> +		if (dev->gfx_data.gpu_dev) {
-> >> +			pci_dev_put(pdev);
-> >> +			return 1; /* stop walking */
-> >> +		}
-> >> +	}
-> >> +	return 0; /* continue walking */
-
-
--- 
- i.
-
---8323329-1989512445-1696849355=:1721--
+Regards,
+Christian.
