@@ -1,71 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2F67BDDC7
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Oct 2023 15:13:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5757BE24F
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Oct 2023 16:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05BA610E0B7;
-	Mon,  9 Oct 2023 13:13:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E6A10E0FE;
+	Mon,  9 Oct 2023 14:16:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66AA210E0B7
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 13:13:18 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id
- ffacd0b85a97d-32157c8e4c7so4500512f8f.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 09 Oct 2023 06:13:18 -0700 (PDT)
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com
+ [IPv6:2001:4860:4864:20::2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0569210E0FE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Oct 2023 14:16:28 +0000 (UTC)
+Received: by mail-oa1-x2a.google.com with SMTP id
+ 586e51a60fabf-1e58a522e41so1997827fac.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 09 Oct 2023 07:16:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696857197; x=1697461997; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=N9Z6Mvux0hHTgmZtbZR76jHnRusRA/JNmSZfvaBXMkw=;
- b=RDDZBFNw2Bdr8bLaI4laqK4KlQqeQ6GYpuxujGvY3cOZUP5G08wK3znYngllMDydM5
- 0H2muZg+s18eD0gEsYdDqvbL9FVtkdIslHoJUkjkLdi71+npC2tcydyd+UkQLTr8cqnI
- ZG15v/ytk0TzgYqstxh5wad8/wp7fIrCn8e5eHhFFsggs20uh4AU7Agbkv8s/exFeB2M
- GSBCsKsy2r4T8n+GbKCDRRe+LVJZX7+XoVPWFHaCGv2m0GaTY1kj+bhJL+Oq1mbjNBVV
- /O94EsQXrYWpJ8Wd4AfYOsKpMbbF6tditGi7SemYOCXJRhr77VDSYj5gpzV9ITWUbzfs
- Vbhw==
+ d=gmail.com; s=20230601; t=1696860988; x=1697465788; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=e6ByXfcqaW852uGGDoefSjUjRJsbMqoNQbQzTOOk8LU=;
+ b=JXo9pJ95kPBNYTi09G7MSiSVVAwiczM3aYjwlJZgdQf9/7bJ85bCwBAG+aE1DMiW3D
+ WZHHwrwiT1Y409USUrVjxiP3qpm6UGL6TqaHfrW9GvuX5e03bpihVmDw0bPEVzlnnCW8
+ I1nD5HJIYrzyrr02FJa6HhDW4LioJI4XTNpcrKslWllqoIYRG1HIHccT6LtrOKXSvcfj
+ 5vDrajJUVNGDBefi6Af4E7EXMKyXKjEu5kqkIzi/oi4FqTn+G4hbbQjexHDfC+z7Xfz9
+ DdFR6saXiEcOKLL8FhEB+I4tyuN1bfUNsXku2LGRuIibzmYzBEE0hI8BxjzuHvn29Kpn
+ kSng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696857197; x=1697461997;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=N9Z6Mvux0hHTgmZtbZR76jHnRusRA/JNmSZfvaBXMkw=;
- b=nuv7gDdBiWbItCveNFBhqYugIGBVTtap/iZvVCeM1PLWVjOyJLxHyAPIrgWnqtE6+b
- OFy7uefdNLXAP4whakNQ2CjtR1Tn5mEMMv6UGDC+5YNPYZhsy1fYuqrRnyZ9imLwOrqi
- wYWiatsxfA/4HLHTIz0IG/tWvD1ojGG9gWCQhAlvrxCwICb5IfahwJjIzkuHAAY7kmHr
- 9qbhYoj3GFYbT8ARtjkVpJEmg8GyBGoFTk6JTMyEDZuRFlW+TePvEftZpjtEsU7Ql38+
- rQNBcdK3ni1H+PTBezKCTFc3lCHxciesmq5BTBl3J8iKyRlWwquGiM/kuUuXtUJJFF3U
- Y4fQ==
-X-Gm-Message-State: AOJu0YzkrfBuJBHGJn/1WlFpqsbqlQF1Gwa2E/U2GoNc0RlW+wB5u5LJ
- 2VUKxzv2/Ndok2rtiwtCzyQ=
-X-Google-Smtp-Source: AGHT+IF/GzKzx4xhJegcpwG/XEcmXRaffzaa8o5m0G+HiFkMIHqfbMN3PI9WiIrgfQD6Y9NCyVUM6A==
-X-Received: by 2002:adf:e383:0:b0:320:1c4:e213 with SMTP id
- e3-20020adfe383000000b0032001c4e213mr13168102wrm.1.1696857196457; 
- Mon, 09 Oct 2023 06:13:16 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:1d:6120:aabc:7bed:38ed:c94a?
- ([2a01:e0a:1d:6120:aabc:7bed:38ed:c94a])
- by smtp.gmail.com with ESMTPSA id
- e17-20020a05600c219100b0040646a708dasm11151163wme.15.2023.10.09.06.13.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 09 Oct 2023 06:13:16 -0700 (PDT)
-Message-ID: <b57be307-2986-949a-9275-ce5d36f8e88f@gmail.com>
-Date: Mon, 9 Oct 2023 15:13:15 +0200
+ d=1e100.net; s=20230601; t=1696860988; x=1697465788;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=e6ByXfcqaW852uGGDoefSjUjRJsbMqoNQbQzTOOk8LU=;
+ b=kyH+adyIz+F14BXvMXZJmPIHgik2+862VGhcFxkeoVNZLEcemV7/rbASXXhbwcaWS8
+ jh3v1997RK9C7QEQPgOiDAK4TwzhJVPB4966iQpgsEPKE5bm5eaa4azGZOZCGwpXQcoI
+ e22p5DB5/YjgJQ+b4ARsZip6MZ4Swa0XBON8Ye5YOEPlC5CHNvrxUKqOenxf3MJoNsrw
+ 0fW+weqyg4CFYcx260pzInF6IKpVKq8f46ekthhH168wBrwdPI3CPNYDcjveZWNa65Ky
+ oXOmwnqABHT+gd0XlBLdE6whqC0B0Orlr/sldcXqbyLOkfQEyLqB2y+iF/ISAw0SEP4D
+ 1b8A==
+X-Gm-Message-State: AOJu0YxeguuQH+NQm6ABT3kqJgpObtP7JSq3xl4IvjnJr2cQbx3TM/pC
+ m8WIbcLCL0yqexjUYcw28LmCpYmpGx5VBKXaRoI=
+X-Google-Smtp-Source: AGHT+IGfxdyIz+wOdEM6U9wNJc+Asjd3wGJ1d4xdaK3I2zUltRa00RGSfd/+/VJUPql9rj7Z8oiMssnfdVHGoh/4xTI=
+X-Received: by 2002:a05:6870:f141:b0:1d1:425b:8029 with SMTP id
+ l1-20020a056870f14100b001d1425b8029mr19265371oac.13.1696860986731; Mon, 09
+ Oct 2023 07:16:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] drm/amdgpu: add missing NULL check
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org
-References: <20231006121151.1502-1-christian.koenig@amd.com>
-Content-Language: en-US
-From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
-In-Reply-To: <20231006121151.1502-1-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231006052149.1566154-1-lijo.lazar@amd.com>
+ <20231006052149.1566154-4-lijo.lazar@amd.com>
+ <007b0fed-4982-4978-95e3-6763d114a97e@gmail.com>
+ <CADnq5_MzHbigYydWy9xkT_rgNEpogU8+y4bodAy1NxD99acnZQ@mail.gmail.com>
+ <11992882-b7ff-4fe5-8777-755f128472e9@gmail.com>
+In-Reply-To: <11992882-b7ff-4fe5-8777-755f128472e9@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 9 Oct 2023 10:16:15 -0400
+Message-ID: <CADnq5_N-_uTpay-Ph1k2iJWJNEcL38c1iZjZoe28n4jVXPMrPQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] drm/amd/pm: Add sysfs attribute to get pm log
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,31 +71,126 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alexander.Deucher@amd.com, Lijo Lazar <lijo.lazar@amd.com>,
+ kevinyang.wang@amd.com, amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I can confirm this patch fixes the kernel crash I reported.
-
-But as discussed with Christian, we should find the root cause.
-
-On 10/6/23 14:11, Christian König wrote:
-> bo->tbo.resource can easily be NULL here.
+On Mon, Oct 9, 2023 at 4:41=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
 >
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> Am 06.10.23 um 16:24 schrieb Alex Deucher:
+> > On Fri, Oct 6, 2023 at 4:32=E2=80=AFAM Christian K=C3=B6nig
+> > <ckoenig.leichtzumerken@gmail.com> wrote:
+> >> Am 06.10.23 um 07:21 schrieb Lijo Lazar:
+> >>> Add sysfs attribute to read power management log. A snapshot is
+> >>> captured to the buffer when the attribute is read.
+> >>>
+> >>> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+> >>> ---
+> >>>
+> >>> v2: Pass PAGE_SIZE as the max size of input buffer
+> >>>
+> >>>    drivers/gpu/drm/amd/pm/amdgpu_pm.c | 40 ++++++++++++++++++++++++++=
+++++
+> >>>    1 file changed, 40 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd=
+/pm/amdgpu_pm.c
+> >>> index 4c65a2fac028..5a1d21c52672 100644
+> >>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> >>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> >>> @@ -1794,6 +1794,44 @@ static ssize_t amdgpu_set_apu_thermal_cap(stru=
+ct device *dev,
+> >>>        return count;
+> >>>    }
+> >>>
+> >>> +static int amdgpu_pmlog_attr_update(struct amdgpu_device *adev,
+> >>> +                                 struct amdgpu_device_attr *attr,
+> >>> +                                 uint32_t mask,
+> >>> +                                 enum amdgpu_device_attr_states *sta=
+tes)
+> >>> +{
+> >>> +     if (amdgpu_dpm_get_pm_log(adev, NULL, 0) =3D=3D -EOPNOTSUPP)
+> >>> +             *states =3D ATTR_STATE_UNSUPPORTED;
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +static ssize_t amdgpu_get_pmlog(struct device *dev,
+> >>> +                             struct device_attribute *attr, char *bu=
+f)
+> >>> +{
+> >>> +     struct drm_device *ddev =3D dev_get_drvdata(dev);
+> >>> +     struct amdgpu_device *adev =3D drm_to_adev(ddev);
+> >>> +     ssize_t size =3D 0;
+> >>> +     int ret;
+> >>> +
+> >>> +     if (amdgpu_in_reset(adev))
+> >>> +             return -EPERM;
+> >> Please stop using amdgpu_in_reset() for stuff like that altogether.
+> >>
+> >> When this is reset critical it should grab the reset rw semaphore. If =
+it
+> >> isn't than that check isn't necessary.
+> > All of the power related sysfs files have this check.  It was
+> > originally added because users have processes running which poll
+> > various hwmon files at regular intervals and since SMU also handles
+> > reset, we don't want to get a metrics table request while a reset is
+> > happening otherwise the SMU gets confused.
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> index f3ee83cdf97e..d28e21baef16 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> @@ -252,7 +252,7 @@ static inline bool amdgpu_bo_in_cpu_visible_vram(struct amdgpu_bo *bo)
->   	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
->   	struct amdgpu_res_cursor cursor;
->   
-> -	if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-> +	if (!bo->tbo.resource || bo->tbo.resource->mem_type != TTM_PL_VRAM)
->   		return false;
->   
->   	amdgpu_res_first(bo->tbo.resource, 0, amdgpu_bo_size(bo), &cursor);
+> Then this approach is completely broken. Nothing prevents the reset from
+> starting right after doing the check.
+>
+> If we need exclusive access to the SMU then we should just grab a lock.
+
+Right, but the entire file should be fixed.  It's sort of orthogonal
+to this patch.
+
+Alex
+
+>
+> Christian.
+>
+> >
+> > Alex
+> >
+> >> Regards,
+> >> Christian.
+> >>
+> >>> +     if (adev->in_suspend && !adev->in_runpm)
+> >>> +             return -EPERM;
+> >>> +
+> >>> +     ret =3D pm_runtime_get_sync(ddev->dev);
+> >>> +     if (ret < 0) {
+> >>> +             pm_runtime_put_autosuspend(ddev->dev);
+> >>> +             return ret;
+> >>> +     }
+> >>> +
+> >>> +     size =3D amdgpu_dpm_get_pm_log(adev, buf, PAGE_SIZE);
+> >>> +
+> >>> +     pm_runtime_mark_last_busy(ddev->dev);
+> >>> +     pm_runtime_put_autosuspend(ddev->dev);
+> >>> +
+> >>> +     return size;
+> >>> +}
+> >>> +
+> >>>    /**
+> >>>     * DOC: gpu_metrics
+> >>>     *
+> >>> @@ -2091,6 +2129,8 @@ static struct amdgpu_device_attr amdgpu_device_=
+attrs[] =3D {
+> >>>        AMDGPU_DEVICE_ATTR_RW(smartshift_bias,                        =
+  ATTR_FLAG_BASIC,
+> >>>                              .attr_update =3D ss_bias_attr_update),
+> >>>        AMDGPU_DEVICE_ATTR_RW(xgmi_plpd_policy,                       =
+  ATTR_FLAG_BASIC),
+> >>> +     AMDGPU_DEVICE_ATTR_RO(pmlog,                                   =
+ ATTR_FLAG_BASIC,
+> >>> +                           .attr_update =3D amdgpu_pmlog_attr_update=
+),
+> >>>    };
+> >>>
+> >>>    static int default_attr_update(struct amdgpu_device *adev, struct =
+amdgpu_device_attr *attr,
+>
