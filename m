@@ -1,43 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 766BC7BF860
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 12:18:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3347D7BF862
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 12:18:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE7FF10E2E7;
-	Tue, 10 Oct 2023 10:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B230C10E336;
+	Tue, 10 Oct 2023 10:18:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F29310E332
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2060d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::60d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F59210E331
  for <amd-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 10:18:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mD8wuwnUk+lVNtxmozT9hh5KebU5spOP+BXQj/fKzB/i7rfOV2ood8iKyjuuV4E/jkLV1/fUSHWRTU2l8/PBuxjWTa1xNIEkNnNtFml/ik7CD1L1DOS14LZTyRLsHnyKCqmlhCJInCNB49c2Xp3Kqm4iNoMOhfcgLyob5/lJHBtw+jXBS8v9a5jnvlm4SwE/dRpBdOymoMPNmy4b+N/Qsa9omnuQAAuhLgXiuiRIKrjOaSwwYWD8RBWBHnany3NgGgb0ldAcwQtD/0ya+bzcJEU+9BvfdiV4iYRwWtEVAwIJhu4p9FulB62Rtla55A98x8trYCn1WhgLU9nrG2l8Fg==
+ b=aNLlXxye1IvkPmo9qR+YYSWqPRxTfJdw9NPavXW41pJhpXiKZhV+h/XkpCP9xQ82+ChQqdZgdli73HmeVqEduEcpBSGHYM4AGA1oWywccFsjnjZ4ZmRZhGPGcMJSLW8mISwr/E8HuPg4emtMGBQdwnGkEljdwMWnOuLGXtgtlHGym9efROJTFe/LTMZ5AridA0dRHWRN589UjMrKerSvafATifDE9Juqf6E9Bb9SvDiLkZV+uvpRo/AeoucxQnv5RuF4s/zCt4EmtGLD2PtqBmqAf0OmK6yy4RvR/BkQUvlCkF7BDIs0LJDnYb+6fSZEBKL8M38K9HVYKo4r6zSvhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZKeAo9HV9A6qYoAT/S71uNdl1thviVi6dzViyFldE2c=;
- b=gal0aTnEwj6bq/QM13FWgGDwiwjpxB/B1k4Gntc4jPT8CK3044FjHYJr2u3OndtCIwLzOEvpHPJubZKCcR3hQGt3L9WcL65ooX+iTKgydhSY7imvnx0f0C9fHTCL7THLhCyVRhjv24E2ekGccwsNX3s4nYgDgpHw45tcJWQO0RzU5WY55kzrO/dGi0imUNXBb6xN2cysE7v5YPNIOOR/O5AH9y9H+dtQKMrypVDGlMX/2Ae8ZR28ntK2qlPGQ/qnZ3bKFuqIusQA18SbV3k2/uhQYG7Qe/Ds+I5LCoIOoFot+H9xpM7Q+ZrWXgNfpj06I80nMy875kzksQTcbyOoGg==
+ bh=cH1D3A1QaXB29tTAQFQK5KOiNXNpG4Nw6RvTb8VnM8s=;
+ b=X2ABixwwxA3ehXrpJPdlyPfA/ZbRP2N3kX1dsxP/bW6tZaJjY+KexIKH3LicikFBJfk++JWdYTM9QSNE8bhhMwo688VwSyX9434/cp9op0VeDDtO8JcnCV7DlkQSy8wydkMqvHZr+uY7NJR5wLNPCZ9z6VDSzY9grk+nptGBifvYpqqmQ1XG1Z0IQGc0et7fF88+FETrPPVwvqNE2uF7f/HA/i1rP7FerAGcSjRrz/dvFuJFN0Gx5sMZX9jwtRc3jQ+0J+nOY/eKjiu7l/KftIEELn0hExi5zOs9QdMw43Fl8ry2pdDErojW4tnhFstW7DwIJu7fKxuroM3zjQPefw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZKeAo9HV9A6qYoAT/S71uNdl1thviVi6dzViyFldE2c=;
- b=yuzDgm6iFQmP02p5XIjMKL1m+mQ9lx5DOKMkX48oXVGGDmsljJyw3aR03SxMJ7M5yxDuRFksgHwdwBmvYxXDjiE2G6cEv6RfRR3exTEqZGsBLGqTGM7EC3n5+4ScDn3OiPi4IEWO5juaEnL9/15j4EvSApSnuSxvTaXVG3epEfw=
+ bh=cH1D3A1QaXB29tTAQFQK5KOiNXNpG4Nw6RvTb8VnM8s=;
+ b=ARMWpkfUMbOALHKJ/m6/mmP3UnTVSLvF6SsxRmyg7VQbcgTcv0idH+FbKyA/HzsuW1ccdkQToFjjfia0AjSY3dN8O5sXFd/yhiQG89v/CtSJfgsRKYewdNQReF1A22uThgbWl9blGHeY3PJlhneh5Aj3NqY3qc0FWXmKWQ52GfA=
 Received: from PH0P220CA0021.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::9) by
- DS0PR12MB8199.namprd12.prod.outlook.com (2603:10b6:8:de::20) with
+ CY8PR12MB7729.namprd12.prod.outlook.com (2603:10b6:930:84::21) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.6863.38; Tue, 10 Oct 2023 10:18:45 +0000
 Received: from SA2PEPF000015CC.namprd03.prod.outlook.com
- (2603:10b6:510:d3:cafe::96) by PH0P220CA0021.outlook.office365.com
+ (2603:10b6:510:d3:cafe::a6) by PH0P220CA0021.outlook.office365.com
  (2603:10b6:510:d3::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37 via Frontend
- Transport; Tue, 10 Oct 2023 10:18:44 +0000
+ Transport; Tue, 10 Oct 2023 10:18:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SA2PEPF000015CC.mail.protection.outlook.com (10.167.241.202) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.14 via Frontend Transport; Tue, 10 Oct 2023 10:18:44 +0000
+ 15.20.6838.14 via Frontend Transport; Tue, 10 Oct 2023 10:18:45 +0000
 Received: from MUN-L-SHSHARMA.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 10 Oct
- 2023 05:18:40 -0500
+ 2023 05:18:42 -0500
 From: Shashank Sharma <shashank.sharma@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v7 07/12] drm/amdgpu: map usermode queue into MES
-Date: Tue, 10 Oct 2023 12:17:47 +0200
-Message-ID: <20231010101752.1843-8-shashank.sharma@amd.com>
+Subject: [PATCH v7 08/12] drm/amdgpu: map wptr BO into GART
+Date: Tue, 10 Oct 2023 12:17:48 +0200
+Message-ID: <20231010101752.1843-9-shashank.sharma@amd.com>
 X-Mailer: git-send-email 2.38.0.windows.1
 In-Reply-To: <20231010101752.1843-1-shashank.sharma@amd.com>
 References: <20231010101752.1843-1-shashank.sharma@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|DS0PR12MB8199:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f80a4a9-842b-4638-2ba9-08dbc97a48e3
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|CY8PR12MB7729:EE_
+X-MS-Office365-Filtering-Correlation-Id: 375e22f4-8ee5-4da6-c50b-08dbc97a493d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vbHvJ5EHWuQUyaiASuNpkyLzp5sczW/Af39zFvOdm3GA/LJbkoRdoZkCuBt0CFZXpb1VeFuICDqmibD1Kth7t1JErf5DEXofLsf3DVSBANC1vTphd6KsHS91l1EXqxNpsYWgVDmciHg6CnazkBb0RfBhmeRQovs5qEu91Dx+vFQTE9x8hmPmmPGy2rV6g5Pv/jn720xvezyCznWkS2/2tt7wnT3FsH+FYTSxsAvqdnhWbf4AzaOCVtIv4qyQk2gtzw27ueV+UsyvqpWkgkiUmMWxvdiBR76IcbhPCO2EU4nCUQ5PuVMEiPwOW85kr0xizC9wxmDxCOMkS2CwEAa2XNBpM4UmwrLUOtD6OTmU8PZX4H8jJIsHtrfXZVWZcwZ9Te4KXpuUn2Q/qxz/eG6u9CPwEqhRF1/B+9Ltx3eqAWKd0xOaQGVkiw3jroRJJo+SBmTH5KdAmm05a17irXLxXrSheoOksz2RETl2AsT9C0WxbliiQOGaFLda6jZCNTuPMrLAf8vXctcXF7/UFN9AcpHz85xHePKhS9Dn3bTMB3eAV0e5YYDltz6DBfABtgAqqR9UXMoTj2oM74R9YzcnlMKWfPyrb4d+71v6Fxa304Y1/3j+Nzo7c41TdaBEMrlVf/slRa5B9kG4xkZUVQyjgDH/0sSunxXUhIjWJK89AwZmr3M1kiF8DgicKd/3abmIez5lM3m4nKOjWlrbfbUk6hlpCMKPpzAN46YlyYBW6wfdNQgmOejyHzg/njyecSc6Nxb7MBrRXbavywDEspG+ew==
+X-Microsoft-Antispam-Message-Info: WXlrKDdF+SCjWGeUWReIXegDfw6GszMDzegiC53ooHYbIif7CVPZjmjgwoBhFy/AbZG3v++IiM8i+dkFX81c4YLq1YUBDllxVZLF2WNtn4kkgJrjyw5Sz4OC6OqGI6zCAkbk2e35iymNEtFcKhAh46nKaxJ4eApmOecGtlgpR64fmPB+m2dSecgTvxvtM5qErWomXpDeS0DKfsjWQEMioBZj4NYPE0Cd0ATCWhdZwsi7/+zq0cIINwtsJOU50qXSABEN7PkqO0+qqGehZxPP+Y5QEUNuJcgw1gbTGUUhGIF+0an+tyrLA1OSTgBDYtHwPRcyxOOpxZFRjHpLwgA56cHZAKkPBeKdpy5rkYoTXI2OA8oq1f7Q6FcjdClXWL+9KYsMj52yksAxsLF68Q92Ipo59ZtIVICmihRTaZUIzAFxFUvVlBvCpkHsS8cHYQvj0srTtRpuV4CUANhCZ6C2d4e0SsoXYB/KqgRuHD8cYWpcdNnhWraj1credkwNZic0JXMtyl7oVjgWw1X0AevITBCAMvP0l4s4OSHSdHQJspnYhX/jy5HYOavB09Y332G6I2B/1IGxJAn+9zOkSQuAuZqxUjLXfhjcW4kvqciMPSKmpAzhxFvBVpEZLbv+2JOUDMhUYc6rw31CAZ/fLcSlwd1kOWWFZL/QS0rps4sXVYC3yqjqQthf7t+NX5puOPPVuNmsRAzGR2x/5zv2gZduyBLvGCHlizND9oaWCiyxbRORhBYaVnkQIwQO6sdpnBg+w7l11iTiPO3Zq1L60lFSVA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(396003)(346002)(376002)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(82310400011)(46966006)(36840700001)(40470700004)(4326008)(8676002)(5660300002)(44832011)(41300700001)(8936002)(6916009)(316002)(70206006)(54906003)(70586007)(40460700003)(2906002)(356005)(83380400001)(47076005)(82740400003)(40480700001)(81166007)(16526019)(26005)(2616005)(426003)(1076003)(336012)(86362001)(36860700001)(36756003)(7696005)(478600001)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(82310400011)(64100799003)(451199024)(1800799009)(186009)(36840700001)(46966006)(40470700004)(316002)(70206006)(6916009)(54906003)(41300700001)(44832011)(5660300002)(8936002)(4326008)(70586007)(8676002)(40460700003)(36860700001)(1076003)(2616005)(86362001)(83380400001)(7696005)(81166007)(2906002)(40480700001)(82740400003)(356005)(36756003)(426003)(336012)(26005)(16526019)(478600001)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 10:18:44.8472 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f80a4a9-842b-4638-2ba9-08dbc97a48e3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 10:18:45.4410 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 375e22f4-8ee5-4da6-c50b-08dbc97a493d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8199
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7729
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,133 +106,142 @@ Cc: Alex Deucher <alexander.deucher@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch adds new functions to map/unmap a usermode queue into
-the FW, using the MES ring. As soon as this mapping is done, the
-queue would  be considered ready to accept the workload.
+To support oversubscription, MES FW expects WPTR BOs to
+be mapped into GART, before they are submitted to usermode
+queues. This patch adds a function for the same.
 
-V1: Addressed review comments from Alex on the RFC patch series
-    - Map/Unmap should be IP specific.
-V2:
-    Addressed review comments from Christian:
-    - Fix the wptr_mc_addr calculation (moved into another patch)
-    Addressed review comments from Alex:
-    - Do not add fptrs for map/unmap
+V4: fix the wptr value before mapping lookup (Bas, Christian).
 
-V3: Integration with doorbell manager
-V4: Rebase
-V5: Use gfx_v11_0 for function names (Alex)
-V6: Removed queue->proc/gang/fw_ctx_address variables and doing the
-    address calculations locally to keep the queue structure GEN
-    independent (Alex)
-V7: Added R-B from Alex
+V5: Addressed review comments from Christian:
+    - Either pin object or allocate from GART, but not both.
+    - All the handling must be done with the VM locks held.
+
+V7: Addressed review comments from Christian:
+    - Do not take vm->eviction_lock
+    - Use amdgpu_bo_gpu_offset to get the wptr_bo GPU offset
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian Koenig <christian.koenig@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 72 ++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 76 +++++++++++++++++++
+ .../gpu/drm/amd/include/amdgpu_userqueue.h    |  1 +
+ 2 files changed, 77 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 4b0c3fc63411..d7d374822352 100644
+index d7d374822352..8c62a51025af 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6405,6 +6405,67 @@ const struct amdgpu_ip_block_version gfx_v11_0_ip_block =
+@@ -6405,6 +6405,74 @@ const struct amdgpu_ip_block_version gfx_v11_0_ip_block =
  	.funcs = &gfx_v11_0_ip_funcs,
  };
  
-+static int gfx_v11_0_userq_map(struct amdgpu_userq_mgr *uq_mgr,
-+			       struct amdgpu_usermode_queue *queue,
-+			       struct amdgpu_mqd_prop *userq_props)
++static int
++gfx_v11_0_map_gtt_bo_to_gart(struct amdgpu_device *adev, struct amdgpu_bo *bo)
 +{
-+	struct amdgpu_device *adev = uq_mgr->adev;
-+	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
-+	struct mes_add_queue_input queue_input;
-+	int r;
++	int ret;
 +
-+	memset(&queue_input, 0x0, sizeof(struct mes_add_queue_input));
-+
-+	queue_input.process_va_start = 0;
-+	queue_input.process_va_end = (adev->vm_manager.max_pfn - 1) << AMDGPU_GPU_PAGE_SHIFT;
-+	queue_input.process_quantum = 100000; /* 10ms */
-+	queue_input.gang_quantum = 10000; /* 1ms */
-+	queue_input.paging = false;
-+
-+	queue_input.process_context_addr = ctx->gpu_addr;
-+	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
-+	queue_input.gang_global_priority_level = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
-+
-+	queue_input.process_id = queue->vm->pasid;
-+	queue_input.queue_type = queue->queue_type;
-+	queue_input.mqd_addr = queue->mqd.gpu_addr;
-+	queue_input.wptr_addr = userq_props->wptr_gpu_addr;
-+	queue_input.queue_size = userq_props->queue_size >> 2;
-+	queue_input.doorbell_offset = userq_props->doorbell_index;
-+	queue_input.page_table_base_addr = amdgpu_gmc_pd_addr(queue->vm->root.bo);
-+
-+	amdgpu_mes_lock(&adev->mes);
-+	r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
-+	amdgpu_mes_unlock(&adev->mes);
-+	if (r) {
-+		DRM_ERROR("Failed to map queue in HW, err (%d)\n", r);
-+		return r;
++	ret = amdgpu_bo_reserve(bo, true);
++	if (ret) {
++		DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
++		goto err_reserve_bo_failed;
 +	}
 +
-+	DRM_DEBUG_DRIVER("Queue (doorbell:%d) mapped successfully\n", userq_props->doorbell_index);
++	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
++	if (ret) {
++		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
++		goto err_map_bo_gart_failed;
++	}
++
++	amdgpu_bo_unreserve(bo);
++	bo = amdgpu_bo_ref(bo);
++
++	return 0;
++
++err_map_bo_gart_failed:
++	amdgpu_bo_unreserve(bo);
++err_reserve_bo_failed:
++	return ret;
++}
++
++static int
++gfx_v11_0_create_wptr_mapping(struct amdgpu_userq_mgr *uq_mgr,
++			      struct amdgpu_usermode_queue *queue,
++			      uint64_t wptr)
++{
++	struct amdgpu_device *adev = uq_mgr->adev;
++	struct amdgpu_bo_va_mapping *wptr_mapping;
++	struct amdgpu_vm *wptr_vm;
++	struct amdgpu_userq_obj *wptr_obj = &queue->wptr_obj;
++	int ret;
++
++	wptr_vm = queue->vm;
++	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
++	if (ret)
++		return ret;
++
++	wptr &= AMDGPU_GMC_HOLE_MASK;
++	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
++	amdgpu_bo_unreserve(wptr_vm->root.bo);
++	if (!wptr_mapping) {
++		DRM_ERROR("Failed to lookup wptr bo\n");
++		return -EINVAL;
++	}
++
++	wptr_obj->obj = wptr_mapping->bo_va->base.bo;
++	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
++		DRM_ERROR("Requested GART mapping for wptr bo larger than one page\n");
++		return -EINVAL;
++	}
++
++	ret = gfx_v11_0_map_gtt_bo_to_gart(adev, wptr_obj->obj);
++	if (ret) {
++		DRM_ERROR("Failed to map wptr bo to GART\n");
++		return ret;
++	}
++
++	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset_no_check(wptr_obj->obj);
 +	return 0;
 +}
 +
-+static void gfx_v11_0_userq_unmap(struct amdgpu_userq_mgr *uq_mgr,
-+				  struct amdgpu_usermode_queue *queue)
-+{
-+	struct amdgpu_device *adev = uq_mgr->adev;
-+	struct mes_remove_queue_input queue_input;
-+	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
-+	int r;
-+
-+	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
-+	queue_input.doorbell_offset = queue->doorbell_index;
-+	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+
-+	amdgpu_mes_lock(&adev->mes);
-+	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
-+	amdgpu_mes_unlock(&adev->mes);
-+	if (r)
-+		DRM_ERROR("Failed to unmap queue in HW, err (%d)\n", r);
-+}
-+
- static int gfx_v11_0_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
- 					    struct amdgpu_usermode_queue *queue,
- 					    struct drm_amdgpu_userq_mqd_gfx_v11_0 *mqd_user)
-@@ -6490,8 +6551,18 @@ static int gfx_v11_0_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
+ static int gfx_v11_0_userq_map(struct amdgpu_userq_mgr *uq_mgr,
+ 			       struct amdgpu_usermode_queue *queue,
+ 			       struct amdgpu_mqd_prop *userq_props)
+@@ -6434,6 +6502,7 @@ static int gfx_v11_0_userq_map(struct amdgpu_userq_mgr *uq_mgr,
+ 	queue_input.queue_size = userq_props->queue_size >> 2;
+ 	queue_input.doorbell_offset = userq_props->doorbell_index;
+ 	queue_input.page_table_base_addr = amdgpu_gmc_pd_addr(queue->vm->root.bo);
++	queue_input.wptr_mc_addr = queue->wptr_obj.gpu_addr;
+ 
+ 	amdgpu_mes_lock(&adev->mes);
+ 	r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
+@@ -6551,6 +6620,13 @@ static int gfx_v11_0_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
  		goto free_mqd;
  	}
  
-+	/* Map userqueue into FW using MES */
-+	r = gfx_v11_0_userq_map(uq_mgr, queue, &userq_props);
++	/* FW expects WPTR BOs to be mapped into GART */
++	r = gfx_v11_0_create_wptr_mapping(uq_mgr, queue, userq_props.wptr_gpu_addr);
 +	if (r) {
-+		DRM_ERROR("Failed to init MQD\n");
++		DRM_ERROR("Failed to create WPTR mapping\n");
 +		goto free_ctx;
 +	}
 +
- 	return 0;
+ 	/* Map userqueue into FW using MES */
+ 	r = gfx_v11_0_userq_map(uq_mgr, queue, &userq_props);
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
+index 643f31474bd8..ffe8a3d73756 100644
+--- a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
++++ b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
+@@ -45,6 +45,7 @@ struct amdgpu_usermode_queue {
+ 	struct amdgpu_vm	*vm;
+ 	struct amdgpu_userq_obj mqd;
+ 	struct amdgpu_userq_obj fw_obj;
++	struct amdgpu_userq_obj wptr_obj;
+ };
  
-+free_ctx:
-+	amdgpu_userqueue_destroy_object(uq_mgr, &queue->fw_obj);
-+
- free_mqd:
- 	amdgpu_userqueue_destroy_object(uq_mgr, &queue->mqd);
- 	kfree(mqd_user);
-@@ -6501,6 +6572,7 @@ static int gfx_v11_0_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr,
- static void
- gfx_v11_0_userq_mqd_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_queue *queue)
- {
-+	gfx_v11_0_userq_unmap(uq_mgr, queue);
- 	amdgpu_userqueue_destroy_object(uq_mgr, &queue->fw_obj);
- 	amdgpu_userqueue_destroy_object(uq_mgr, &queue->mqd);
- }
+ struct amdgpu_userq_funcs {
 -- 
 2.42.0
 
