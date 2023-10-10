@@ -2,114 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846757BF453
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 09:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C5B7BF6D2
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 11:07:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1D6010E1B3;
-	Tue, 10 Oct 2023 07:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EAF010E32F;
+	Tue, 10 Oct 2023 09:07:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2074.outbound.protection.outlook.com [40.107.223.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74E6F10E1B3
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 07:30:21 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C965510E32F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 09:07:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W61gXA2WTdBEDFOFoU8yEU4v7aNAmOCFK76DfOcaAcudKQOWGH5d5uJBWb/aI+D1sLMSA7k+2B6QOFWSLcZp2Vmpm1yWIjaNDyiVQEZedLJnP/b2WJT0e42S4dP4W4Nu6aY5V0QTIZ8W78ostT1+7fRjgJ7dV/5auNtL8JULAMlfX8PqL1LI6143baDBtP0LDskcbUJM6T2eot1CSZDZKZnqpbLzhtcBHPEz5b94yf2XuO1JSDMTa4RVmdYJSNZdN1V4d2fBXjuZI5ZZ+nFSidcwDwb1nLxKprgAUMqgljJHKYGe17qKC1ax7ZeTN1r+/Ug8phYYM6w7V0bCY/ok2A==
+ b=E1+D1DnkdONdFmwNU+kUzT71CbXJrf/av0p5iB2Xmtfz1jm1Bat86wpmmozNE+imKcrnUeel651YfjdHIIu7oujeaLVao4FVvmeKfsQAZQJXZg12W71mHF1HRYKy7jgx/PyH7vUJEsUS6f789xnMZbInUzZ9oKV6luFvSlnTsAUn4lVZ4hr0IP95+ySEnhxSsP+sgR5igtt2Z6wQpUznoGny/PALyNXoO6vXUyayDHaiHW3RHflHqBv2THqkU+z60RWR2IJfen3yfLC8FSpeOfzO64VvBSyWUAvpYqS5xPQ+fZJXIXV3Evqad57mqdwIAmkka2JZ4LZ9OrBNMAi0iA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aOcoMxwYiOT6AsLZXwZBMp1gDL9JqObbUvB3nnxO86Q=;
- b=E5t94HTJ/DfrxrO3jycIRARdJAjF7ezTczk3cWp2Rnfz23gTVTDLQ6r/XJp9bgUXawy0zUWCFWpItW89BKEd6CQakUamHQEk8xNZ0wh27VqtuoS9mLfr8WJhTzH1oycyzeZd0ajDLfPs0fKB+rzYfi45IhLRucZGmoyC6CPhu8mI+6n2LH392a0zTLHVtSAucY6lRhgsuKi8zSdoUKpGrYMByuqldwFsRjI1Mi9hou5vjisI8ZhvYeHSo1fZH022NzSpXnYB0Hj1sPqPsbg7oDTrqTRsK3TOPGgMVEW5OK6z1Jq+nCfS77RK5wCOZ7pAdLj82nUve0MzAUpZw0Ae8A==
+ bh=6a25Z6/ckDj+9PL5Ccn5FbGhjC1ojVRLdibPSKVmWfg=;
+ b=OC8Pk2WL1zVBAbg8Ck0yR8tBd1G0QEv3sEbqi+OXTqNuGqbdWoNg7pogBbzSDRUQ89aheD3QkUTUMxM5yqsU2WCA4eKAulcUlRCG3rUntQPA3h+0s9T8ubm+hQNpfTQryhBgi9fFU5fUz3u+R8bILupLYkuhvZBRtGXcdOXxrfCwcNUrMxOyC0d6ZrC5Q8wKmCQkGP5L0C0SDljiNjETWnAEMGt2JOq3ZA1xRtcl0Y7FzIcRYpHjLAJxRuWpW6x8vWnI1jtxOUXgqypRViG4gIflR3X6RBJJ4NNk6j8aK0B+l/Nnp/UZcTvYsqhkk0r4Z8QnMWPnWHJv+REzUkDjCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aOcoMxwYiOT6AsLZXwZBMp1gDL9JqObbUvB3nnxO86Q=;
- b=q7f3uFHSS+w4tVl6vTKQgxaB3+5GHQpXRRBjM6yQSysTR9EcbFZTY5bVnwf6DwZK6oFSAMLzT99dDStO8s4pmTOIQZk9f+OZ9aR2trx0gJgIwHrNq1yQGwgYA28gek6Sz5Po4u/nrc8+TFvRxTxjneDIt1TsfRrGsJS6XCE3MHs=
+ bh=6a25Z6/ckDj+9PL5Ccn5FbGhjC1ojVRLdibPSKVmWfg=;
+ b=sI2w77GDqaHzjdLLryI6JTN12pjTX4dQz+6bQyRtBbMC4xkTuY40GxJla44Jq1CQmxv1ZnN0L/brm3dbqiqf7MVuuidwnc1vyD3VaTuW5CKCSGOt0d1DsKYSXrrCz2hOYuFPbZSqxMcagEICtEYeKvOm0jfUfKC7qs/ARoNMOts=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6055.namprd12.prod.outlook.com (2603:10b6:208:3cd::20)
- by PH0PR12MB7790.namprd12.prod.outlook.com (2603:10b6:510:289::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Tue, 10 Oct
- 2023 07:30:15 +0000
-Received: from MN0PR12MB6055.namprd12.prod.outlook.com
- ([fe80::d8f4:cd66:a294:589f]) by MN0PR12MB6055.namprd12.prod.outlook.com
- ([fe80::d8f4:cd66:a294:589f%7]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
- 07:30:15 +0000
-Message-ID: <66f3dfc7-d463-44d1-a23a-20920bf2014e@amd.com>
-Date: Tue, 10 Oct 2023 15:30:07 +0800
+Received: from BYAPR12MB3589.namprd12.prod.outlook.com (2603:10b6:a03:df::29)
+ by DM4PR12MB6256.namprd12.prod.outlook.com (2603:10b6:8:a3::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.38; Tue, 10 Oct 2023 09:07:05 +0000
+Received: from BYAPR12MB3589.namprd12.prod.outlook.com
+ ([fe80::548e:3646:9594:2b3b]) by BYAPR12MB3589.namprd12.prod.outlook.com
+ ([fe80::548e:3646:9594:2b3b%4]) with mapi id 15.20.6863.041; Tue, 10 Oct 2023
+ 09:07:05 +0000
+Message-ID: <1378e5b0-08a2-482a-a1f5-0d7673ca156c@amd.com>
+Date: Tue, 10 Oct 2023 11:06:58 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: save VCN instances init info before jpeg init
-To: "Lin.Cao" <lincao12@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20231010062734.40143-1-lincao12@amd.com>
-From: "Chen, JingWen (Wayne)" <JingWen.Chen2@amd.com>
-In-Reply-To: <20231010062734.40143-1-lincao12@amd.com>
+Subject: Re: [PATCH] drm/amdgpu:Check gfx poweron when skip flush_gpu_tlb
+Content-Language: en-US
+To: "Xu, Feifei" <Feifei.Xu@amd.com>, "Zhang, Hawking"
+ <Hawking.Zhang@amd.com>, "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20231008100642.1915677-1-Feifei.Xu@amd.com>
+ <PH7PR12MB59972CEAF0241F48E6B342CE82CFA@PH7PR12MB5997.namprd12.prod.outlook.com>
+ <CH2PR12MB4152A458EC29B83672A600FCFECEA@CH2PR12MB4152.namprd12.prod.outlook.com>
+ <BN9PR12MB5257442EEE0BB34C24F1A8F9FCCEA@BN9PR12MB5257.namprd12.prod.outlook.com>
+ <CH2PR12MB415201DE77642C298438B4ABFECDA@CH2PR12MB4152.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CH2PR12MB415201DE77642C298438B4ABFECDA@CH2PR12MB4152.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR01CA0033.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::23) To MN0PR12MB6055.namprd12.prod.outlook.com
- (2603:10b6:208:3cd::20)
+X-ClientProxiedBy: FR2P281CA0160.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:99::9) To BYAPR12MB3589.namprd12.prod.outlook.com
+ (2603:10b6:a03:df::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6055:EE_|PH0PR12MB7790:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3fd7f431-be57-42e6-0ddf-08dbc962bf3b
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3589:EE_|DM4PR12MB6256:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67862eb5-2459-431e-8560-08dbc97045b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oM7+CrtkdtnAgAHaQbjA23DdjexhMuhd7K5rZl1c/dQnHFUPJiqZe/0fVeeiCfbE7DZqu9Qtmkf3qPOxOx3qAsmNDXXuTI4brn2W8cWYOvW05T4DjAswA/+iMzPK0XCU5rTGSIFgT+T7exrdn4+YTF5i2pfp455fPREApcY05UcOpZFfe3vkkaVrTCbigXBLsvZtqUt4Hji5QsKWAJrbT/kPQ7ZmIRHf0LomRNXYR3ZxtMBTQ87XeyzjaPdlUakTqyCPb29gM9etJ08tJd/lGX9R1V/rQaEQy32YW4d3nee2q8UbVPqhmejxTp1Em9fFNGkHuizbzVog/VJVTFG/yn1+7EL+5EBRehnFXmltHQz8eWs3qI0TR5h6sMRO5LtNWaN9eg4EQ4anjpt1Sci4qlICLtrwGR+rmvAe+voeVQfxY39eydVBlh8Y4WPmIpgbXpPBSVV3SZjgFVYYgwal1r2PmMZ5mMrmt9b999l2p4MecJxSl3QPC2X4n7UdakeCnOemJpTSA+22LcpojwR85kroeaKGxV/t4XsM9BATTXE5yUMk3THpv7xGbOg3c0KkRHnQ/Qur+HaGEWjV1hGUVoxiCOjZi8EP2NFlSOu8Fc4n1Y6hnFtSNoNtdAZ0Utj9JgtlwL5BcgL8KhacbeR6Uw==
+X-Microsoft-Antispam-Message-Info: uE+IT4otkrpj8n3fUaFHZdHYXVBI5I4E5D8Elo458NR4YraXh15sHw5bQ8WuNbhia9dLtjERg5ziUMBOWHR1z37gAsThW0Z+tuG2ji8t2+D22GpWbYMhJVXmQ6lYFEQ1c3lapMDPtQPcLC+4rM5pwGqANu6OaGmF4qCGw+l7+YN4zdRaM961wjeXb/OH5Wga7ncT/9cNFOGAVJhMtAlEKd6J/mv/U4zHDD6cClsTo9ChtXmLt5Dmtd3+soKvBob7qzdlZHr+KXuteXt5m5TOGDrBH87K6jRq9gV5mPddExtdbmn2+9t8VBN9+zXSDGwL3yxF9oHSZ9vXR9+lyVdEujdmNg0IZmJ1k3k14pyS7rJhJ573sxtbuRmmHOGPsqL6dEIxb21xPTnyK81E5t4oIYqNwC6XTW+gZzb4jFYfU1wfAej0LE2Ubi/jNy5eSNz3WJ7SMwgH5Ql050KFhuL+QiPopDunLKamcfXgRCbxVLL6DNVlDdqrwTm8nuis45FZqE+ry4TSsWy/HIzQVX83Z6Ei/pascvqfCjvzqB4mC1mdDQmymQ02nPij2VJyykiyWFURksa+3H/cACMXTHrb/BQinLclx1PEvKfmMUdBwJxd3bDwoxA5W2xurVMPPft6P8iYETwUUu0TZ3ruNqfxVA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6055.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(376002)(396003)(366004)(346002)(230922051799003)(186009)(451199024)(1800799009)(64100799003)(6512007)(53546011)(2616005)(6506007)(41300700001)(478600001)(316002)(6486002)(4744005)(2906002)(66476007)(66556008)(5660300002)(8676002)(8936002)(66946007)(26005)(31696002)(38100700002)(36756003)(86362001)(6666004)(31686004)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3589.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(136003)(396003)(39860400002)(366004)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(31696002)(86362001)(38100700002)(36756003)(31686004)(6512007)(478600001)(6486002)(8936002)(53546011)(8676002)(41300700001)(2906002)(6506007)(5660300002)(6666004)(2616005)(83380400001)(316002)(66946007)(66476007)(66556008)(110136005)(26005)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ei9HeVEyRXN1VHFZQ1doL1lRQjFFcTJOVSt3RG5CQ2pKT0dhWjBJNUVGUHNB?=
- =?utf-8?B?Ylc3N1RKVEJlTHl4TXZvb1hsb1c0SVh2c0JEVlhiNUhlSFdFZ08rQ3lDdjBy?=
- =?utf-8?B?dVJneFdvNHpYZE1sbkZNYm9CekFkZUhjZURuWmhUaHloUU8rTU4vNW9jdWwr?=
- =?utf-8?B?ZXBraDBuVTlvVHpkRVY2Sk9mdThKV29RYWNNV0ZoNG05VTFINGkvT0NGZHRp?=
- =?utf-8?B?djBnUXdLM3RiNGNxam9ndm9UbUVkdk9XTUtaMG4weWt4cWlET2pSQ2xURFJj?=
- =?utf-8?B?dEthWkFtTW5Calk1QnlqUGFpNE5ucFFXUXJkdlRvNjJQcXJFVXpudXc1OVJZ?=
- =?utf-8?B?SnFwdWZiOUpYM3YyTVlNdzVjSWxPTTZWR0hFZVlobXN2SndjRlA4dkNiWmRi?=
- =?utf-8?B?dlczNG1qWnNWYWF3NElSa2pJV3RNZTRzOGlMWE9pVExSRFQ0NzhhanZqTEpq?=
- =?utf-8?B?LzRtWjhZWGtQY3dXd1VNalFMZERFNVJ0V29wMkZkTVpJOFVycHlLKy9uTzJW?=
- =?utf-8?B?cW9wbTUwRTdJYVcwTWdheC9kWEVSNlQxL0pTYjV1L2UwSEJTRjhobUdSbmMv?=
- =?utf-8?B?V0kyWFpVMHh4YXo5ZWRRakNtbGlBZCtiMlNydzhiSzhlT1VRTlBkSFdUZWJz?=
- =?utf-8?B?U3VLclJMcGRsd3NJdllJUUFrby9zQjgxRW4zODRyb0ZSTVFGSFVNbWFGUlNL?=
- =?utf-8?B?L3dBRUJna3hpK0dydmVPQVJnVm12NWF1VWFnZWpyemdSRDlYbHpRNkwyUEF5?=
- =?utf-8?B?Y09oZ25Gb1RIZ1E0NkxxU2sycWhkZGVjVWhYU3I2TWRNT05UVWNWSll2M2VN?=
- =?utf-8?B?dG81K0Q5Z3J3SXVWSlU4U0RlQzBxekU2ZVBLWWhHcEIyN1BUc1E1VmpWdm85?=
- =?utf-8?B?TTkrMFBXMUpMWkhZeU5ZazdGWWpBRWhjUEZxekJhUTRvR3l2UjJaekJybUx0?=
- =?utf-8?B?Z29IMjJRMkkyblNlRXdrTmhtS3pxR3FlV1BiTzE5TjhleDVFSGRLZUxYQVNB?=
- =?utf-8?B?dTk2RlhPd0JFZGY0OTJOWGZiT2V6TFF6bEdEeXpqTElESlJJU0NTcDRYZlc4?=
- =?utf-8?B?bWtESWt6dnh1WXJFVkJyUUVaVElha0ErNElLL053MnpwSzg3Q05IWTJjU1ZI?=
- =?utf-8?B?ZVBqQUo0OXJreWxGT0UxZVRFU0EyU1MrZWNUT0lhNEExRXNJaUJsUnpHbzE5?=
- =?utf-8?B?aVo0bFBBUmUvbER0ZXZTMzNXdGF1Z3VWNjB5Rk5GSUM4MEJFZU0rOTgxWVBG?=
- =?utf-8?B?ek1vME9LZ09yR1h4RXNCZWNHU24zMFlGemtjL1RtRGtoQ1A2NFo5VzVQVWpE?=
- =?utf-8?B?alUvVnFnclNjbUd0eitKaTg1Uk1WSk5keGtaRFliMnIwVU94NlRxR3BxU0Er?=
- =?utf-8?B?UWNUVFNFZENPVWZseGQyTk12V3BMcFVZSlM0Y082V2wyWFQxN01mSkdUWndx?=
- =?utf-8?B?QnQrRDZ1N2RwMjBGNUhMZnBxZXBjNFAvZ0xsdnpmWU5PSmtNNlIrSmEzQmZx?=
- =?utf-8?B?c1F3bWd1Z1FjbnpGOGRnQVJOd05EOG5MUExwQ1VJSUQwMHB3bmZyZEh1blZF?=
- =?utf-8?B?SlVPUUV2N2ZlMUFVSVE5bVJwbHZKbG1sbkpCaFd6M2pDL0xvOUoxNUlBYVcv?=
- =?utf-8?B?Um5Sb21BYzJKYTlwUE85TTNTQk5ZNjlvVU8xdGx2M2lBRis2ME5xRk1KL1BW?=
- =?utf-8?B?OFZCdzZPdmJUVk5vQnZFV05YbU9yOERHMmRTVkdVYkdHcVZ6NFBxQmFydU5y?=
- =?utf-8?B?cnhoTEsxcDFyNEYybHV2UitObytyQ2g1U1BIL2xNU2NKbTFPUGJDaHJwTlZF?=
- =?utf-8?B?SnJKaTVBYVhjeXpsZ3gwWUp4U2d0MXJBUkExR0ZOSUZmNzdSa3ZaN1pxWjM1?=
- =?utf-8?B?NGRmaXdtZ0gvdkYvdGMyTTNEejkzaHdaczVzM0pwdHZINnpwTzltV1F2S1Zw?=
- =?utf-8?B?WExUeXhUdDhnQ1Y4SW51MTUvN1p4bkZUY08vSTRqWWNwSk9OZHZOY2pjTU1s?=
- =?utf-8?B?K1pObG1UUmF3N0UwTkxRK0dVenE2REpyTnk3S3pSOXNCNWMrc25aNnV4YnBv?=
- =?utf-8?B?U0NNTnorTEY2ZmdHamVMMzJBejhIZHJvQ0dOSjJQazBsZE5pc2pEbVlUR0JM?=
- =?utf-8?Q?t0o296Gk2xXX9lF1t8pJo5J7q?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rm1UUzFTUlhXWlRPbHFLTENPeTZmSFZFY0FjTitGNWtwWlRnbUVJSFMyTEFt?=
+ =?utf-8?B?aFJNaFR1dWVaMmRkaFV1ZUIvcXB4cEczWnVwZjRNVWdIajN3OEVPNGpzT3BJ?=
+ =?utf-8?B?Q1NPUGhYL0UvbUpKeFRHRU5VMDJmRnoybkp1NTd3WjI3dElzellac0psRE9n?=
+ =?utf-8?B?ZmVycnp4dTFLeTZNcTI2RE9MQWl2cldEa2lqL05rT3BvMFB1K09mSlNGQWI3?=
+ =?utf-8?B?WkluUTBMSW9BQm5ZZHNCWW9LcVpoY0ZsQlp0KzRrMUhrc2tDbjlFUm9sbWdt?=
+ =?utf-8?B?cjRrSTNuVnp0cm1EMFFNdmFSQ2Z4dHB0VlQrOVArcmhKa1dHNFFvTnNrNTlT?=
+ =?utf-8?B?MmpZZElVY3Vtc0tKa1hVQ0Z2VjNBRzB0R2l6TjhPZEdWbERLSXJxNG5ZYXl0?=
+ =?utf-8?B?NzB0K2dxeVpzNUFFUk9TMFc1eDl4S0toWXB2NXByOHcxelE4RUN5cHExaHJB?=
+ =?utf-8?B?TE9YKzREOTBFaGFMcmZsbG43SDg2VXZKejNNN2R3cENoUmxlS0Q4QVgvZWo2?=
+ =?utf-8?B?NDY1OHBGVGNYWWJGaDVBSGZkSzduaEtZYXpvQnZsRVNGOWFCQWxPNTRJQ1R2?=
+ =?utf-8?B?Tkt4M1lwcHg1U0VlWlJ0S1VDZWlyeHRxQ0hUYkJYVTVBbS9JQlJxQjAwK3A2?=
+ =?utf-8?B?eE9kSGZpWk9VeDA5b2hXdnJoMmNmVUc4ZjZWYnIwVTkzT2l6VElZZUlXZk44?=
+ =?utf-8?B?dzBsNEZnVDhPOTExT3doVVFCWHFST3lkMmh3RDFML1RIeU1uYy9WamVMNGNn?=
+ =?utf-8?B?eS9SMWdXYWExVmYwa2tDaVhIL3ljaHM2YTZoRG56b2pTWVJub3kyZmExYkJG?=
+ =?utf-8?B?RmlUaFdnNjNadXJCajZMRU1IZGJxTm5aNVJrNXMzaVQydG0xNUxHVW5kVXVq?=
+ =?utf-8?B?VFd3NkRhZ2c3UTRybEszYzI4ckMwWDF4YzBpSXFpZElUblpRVzB5d3MrZDZu?=
+ =?utf-8?B?VHd5R1pYbzg0cm11bHlvZVBNckNuM1JDWFE5ZGpOS2k5TWViaXNUeHBjQmdy?=
+ =?utf-8?B?ZFRHL0QrMkxFY1l4Qnl2VlhrV1J1dHg0cjNSYjQ1OHlGVHFOY1p0MHQ0WHJG?=
+ =?utf-8?B?L3BCM3M2NkpNNmJWek1YQUN5V2gzbDYrVlRRSEVLLzhiWUZHcWZuQ3YrQkha?=
+ =?utf-8?B?ZW56YURFVDhqczFUeE5BQmxPUldrYnpIZ1YvYnhaVUt4VnlxMjBiNHA1alRB?=
+ =?utf-8?B?emhJK0M1L0RDWHBiVzdCUlU3bi8wMTZOa29XRHV2NU5NTFVDYis1ZEt3RDhC?=
+ =?utf-8?B?UWpPUGJtSCtGMVRWNWN6QXM3eklKa05kSmdjY3FFaTFCeGFkWUhCQng3TjJ2?=
+ =?utf-8?B?ZzBSRi8zODBwTnRha0pKNkVrSVhkMXgzZmJRanVvRHhhY1c1YThvZnNHOUhD?=
+ =?utf-8?B?YUJCRDZDdVNaTkJPNDF2TDMyT1VTd0w5TkNLRnRvY0FoZjBSMEFSQmZIWE9D?=
+ =?utf-8?B?RkFZU3FaamtSRURnYjNkYU9iM2NpYjBEVzBka1haQmt6bnZDLzh3YjBoR2pH?=
+ =?utf-8?B?TnNIN0pFSHNMaXZPbGFVZldOYXFyOEFsUktjekdxRHNrcWNwd1JtVytXNWRp?=
+ =?utf-8?B?Z1ZpYnUybmp2dTFyc2pBbGV2TG1vUytSK2E5RGRwci8vNkdrZ1dwUEZESTRL?=
+ =?utf-8?B?dzBPbUZCTXdSNXdrUllzZUMvajVkbGFPL1V4QjROaGFBRzNDVGZYNHpJMnBD?=
+ =?utf-8?B?MDVWbnljbmdJekZEbDJLM3VBQzk0a0ZZejBCNFhyVHRhVEVldGs1TXkxcEUz?=
+ =?utf-8?B?OE1ENldNLysyenFxV3dUMHF3cVltZmVZUlNodzk5QlZwN2x3UEhVK0RyeWtQ?=
+ =?utf-8?B?NHVweGhCUy9iTHo1dUhlOTQ0dGpyUloyNVhlMStsUWFsYUY0ZU83TXIvRUpv?=
+ =?utf-8?B?Y25PdSs1YlFWL0tMamc3Q0JpcnU1bWU3K3JQZzEvTDNyQ3Q0cU94cFltTWxr?=
+ =?utf-8?B?bnlSWUtwUzJIYlZqWWJMR0hwMnoyT3ZXYW5EMDFqa0lSUXhWalRnQ2t5NUMx?=
+ =?utf-8?B?bG1ERFJ5QXp3eWVwbXIvaHZRWjQrS3R3Q1pmMkJzQXJGOE0xMTM2S1Zad0Ju?=
+ =?utf-8?B?NG5CN2NFVFNaZFVjNmxLQlFCbVdxQXhCbXVMeENwQkZrMHhTMGRRUWtpdDZF?=
+ =?utf-8?Q?vjVE=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fd7f431-be57-42e6-0ddf-08dbc962bf3b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6055.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67862eb5-2459-431e-8560-08dbc97045b4
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3589.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 07:30:15.6834 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 09:07:04.8989 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k0Y7UJP33otOsXXM5YeGcpvvzDWHy8nQ2AAOsATU7oSurdZIJLjxG36IJVYQfIr1lajCffgukOnQxWQsrjNLxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7790
+X-MS-Exchange-CrossTenant-UserPrincipalName: TGoLi3C7wiKzrJqGqCXX8YH9gK+oPhbVP5fqedHss9v69uW9UbRuxjNnNnq1pxbC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6256
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,32 +131,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Jingwen Chen <Jingwen.Chen2@amd.com>
+Hi Feifei,
 
-Best Regards,
-JingWen Chen
+yeah, that is correct behavior. The GMC callback should *not* get called 
+during resume in a reset, because the reset needs to take care of 
+invalidating the TLB anyway.
 
-On 2023/10/10 14:27, Lin.Cao wrote:
-> JPEG init header will overwirte vcn init header info which will
-> loss some debug information
-> 
-> Signed-off-by: Lin.Cao <lincao12@amd.com>
+If the later doesn't work any more we need to re-iterate the reset 
+procedure and not mess with this here.
+
+Regards,
+Christian.
+
+Am 10.10.23 um 04:27 schrieb Xu, Feifei:
+> [AMD Official Use Only - General]
+>
+> Yes, adev->gfx.is_poweron check will be applied in gmc_v11 callback, which will be called after the generic gmc part: amdgpu_gmc_flush_gpu_tlb() function.
+> But in commit: d0c860f33553 ("drm/amdgpu: rework lock handling for flush_tlb v2"), the flush is moved at a higher level amdgpu_gmc_flush_gpu_tlb() function.
+>
+> Thus the gmc_v11 callback will never be called in the resume because adev->reset_domain->sem not released and returned ahead. Adding a check of adev->gfx.is_poweron will let GFX11 not breaking ahead, like following:
+>
+> if (!down_read_trylock(&adev->reset_domain->sem) && //--> true in gfx11
+> +!adev->gfx.is_poweron)         //-->false in gfx11, and the whole if statement will be false, not return ahead. The following gmc v11 callback will be executed later.
+>
+> Thanks,
+> Feifei
+>
+> -----Original Message-----
+> From: Zhang, Hawking <Hawking.Zhang@amd.com>
+> Sent: Monday, October 9, 2023 4:58 PM
+> To: Xu, Feifei <Feifei.Xu@amd.com>; Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Koenig, Christian <Christian.Koenig@amd.com>
+> Subject: RE: [PATCH] drm/amdgpu:Check gfx poweron when skip flush_gpu_tlb
+>
+> [AMD Official Use Only - General]
+>
+> adev->gfx.is_poweron check should already be applied in IP specific (gmc v11) callback. If gfx is not power on, it does nothing but just returns. I didn't see how it helps resolve the issue if we just move the check from one function to another.
+>
+> Regards,
+> Hawking
+>
+> -----Original Message-----
+> From: Xu, Feifei <Feifei.Xu@amd.com>
+> Sent: Monday, October 9, 2023 09:51
+> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Koenig, Christian <Christian.Koenig@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
+> Subject: RE: [PATCH] drm/amdgpu:Check gfx poweron when skip flush_gpu_tlb
+>
+> [AMD Official Use Only - General]
+>
+> Hi,
+>
+>>> Based on your description, the above code should use "||" instead of
+>>> "&&",
+> && is to add more restriction here.  To avoid skipping necessary TLB flush by return.
+> For Asics < GFX11, !adev->gfx.is_poweron is always true (this paremeter is intrudoced from GFX11), only depends on reset_domain->sem; For Asics = GFX11, !adev->gfx.is_poweron might be false (which gfx might already poweron in the reset), this will make the if () not ture, return will not be executed, thus flush TLB.
+>
+>>> And after merging code into one line may result in the lock not being released if the lock can be acquired success.
+> If !adev->gfx.is_poweron is true, the reset_domin->sem will not be down_read_trylock, thus could avoid this deadlock.
+>
+> Thanks,
+> Feifei
+>
+> -----Original Message-----
+> From: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+> Sent: Sunday, October 8, 2023 9:36 PM
+> To: Xu, Feifei <Feifei.Xu@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Xu, Feifei <Feifei.Xu@amd.com>; Xu, Feifei <Feifei.Xu@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
+> Subject: RE: [PATCH] drm/amdgpu:Check gfx poweron when skip flush_gpu_tlb
+>
+>
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Feifei Xu
+> Sent: Sunday, October 8, 2023 6:07 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Xu, Feifei <Feifei.Xu@amd.com>; Xu, Feifei <Feifei.Xu@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
+> Subject: [PATCH] drm/amdgpu:Check gfx poweron when skip flush_gpu_tlb
+>
+> To fix the gpu recovery failed on GFX11 with gfxhub pagefault, flush gpu tlb after reset on GFX11.
+> Gfxhub tlb flush need check if adev->gfx.is_poweron set.
+>
+> Fixes: d0c860f33553 ("drm/amdgpu: rework lock handling for flush_tlb v2")
+>
+> Signed-off-by: Feifei Xu <Feifei.Xu@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> index a3768aefb6b6..bc38b90f8cf8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-> @@ -431,6 +431,10 @@ static int jpeg_v4_0_start_sriov(struct amdgpu_device *adev)
->   	end.cmd_header.command_type =
->   		MMSCH_COMMAND__END;
->   
-> +	size = sizeof(struct mmsch_v4_0_init_header);
-> +	table_loc = (uint32_t *)table->cpu_addr;
-> +	memcpy(&header, (void *)table_loc, size);
-> +
->   	header.version = MMSCH_VERSION;
->   	header.total_size = RREG32_SOC15(VCN, 0, regMMSCH_VF_CTX_SIZE);
->   
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> index 2f9bb86edd71..048d32edee88 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> @@ -611,8 +611,9 @@ void amdgpu_gmc_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+>                  /*
+>                   * A GPU reset should flush all TLBs anyway, so no need to do
+>                   * this while one is ongoing.
+> +                * For GFX11, gfxhub flush check if adev->gfx.is_poweron is set.
+>                   */
+> -               if (!down_read_trylock(&adev->reset_domain->sem))
+> +               if (!down_read_trylock(&adev->reset_domain->sem) &&
+> +!adev->gfx.is_poweron)
+>                          return;
+>
+> [Kevin]:
+> Based on your description, the above code should use "||" instead of "&&", And after merging code into one line may result in the lock not being released if the lock can be acquired success.
+>
+> Best Regards,
+> Kevin
+>
+>                  if (adev->gmc.flush_tlb_needs_extra_type_2)
+> --
+> 2.34.1
+>
+>
+>
+
