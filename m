@@ -2,39 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2777BFF74
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 16:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B76857BFF79
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Oct 2023 16:42:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22D8210E389;
-	Tue, 10 Oct 2023 14:41:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3361410E393;
+	Tue, 10 Oct 2023 14:42:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F2310E389
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 14:41:50 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75C9210E38B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Oct 2023 14:41:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FBaHujETLCAz+H0vzTxGzW1KluW8JkNF/QyrqM7ZsnfvVNWLoWSAiLD++kXEGZbdz/AfMFrbxOENDnoE1Oc/mY8YE/eqkJemu7mjMLzMX6UiJwVJ77QbLRlERvamMN7BOutQLArkc326teMdoC+QhWIIIiBZ41+icden+jXC3P9FkNgaMKSssolRYI2lwLeOhtTLW57COBGIninfGS9WTyD8kL0OtLJ/Q5zUQlC37aj19/5tG/nzmbVsg763HIBNA/IGVbwXy4ff3t3UzsyH8jwxN0L5DpboiYYJuvVkibGq/V3uNesBI6U8Z2p/3nhsd4YYAJ6GSY5guYQoe8thXg==
+ b=F0cstmY/UwDYsFITl6xSIW0mCwRo0qbOki5voTgj1ALVdCIn81nHg0yYZ+UW//ltsIHSvQzAuv/4UJXTRHrH5yNhweVTTzo2Z9+E7WiVT+LbVXQpu/IdNotokTMH20F1SAiWtZjgYf4ItUx0ZATSAIzu4ud4bLntiTb/9YL13TXo2e1fTQUZ53WWFI02OIVtlpR5QQjCZWZDZQ1JwdwCp9OqW08melKN++pisMfT17hqcZQWqKriuKdyrla5I820XJZwWXRWLGON1nhzCIhYihxicWyHfLU4RtoGHCQ8V6jxudgm+B7kZ9kVWSNO28vouzFkimhjmZndUlEEwlfubA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gVYD7ior3Qs8zBVhopCgIarP+QmzGA11Z+P9UTGALPY=;
- b=Jy7pM7S7yWaWy7ymJB/nk8i1+0aSuiH3EhD8R4diYG5vGWE7ya1ko26XexoZ4HvY11dYtHEyo/WWUGBo1IL75/Sdy+VqsYHBCRJRSF84L58LfiXJA4otK7LYSqnzCeYT4VM+wO5sAeaSKnQ4lGaTETuADObt+JtgvQtt4SU3VnBLR0w5x9b07sAY3xGKVx3DHr+xWZNYI90ms2g+yRw89xZogv2qgGPs4M1Tb07VtDHqLfHNZIJHolbUCM/eeIFPPxpWEBNKF4uQy6GZKkInME7lkEeMumI1uvYKa6D0zQ5+S6YvXpJzkxkwPkExhDg2SwBideMmsN1afL8fXoSKXQ==
+ bh=FkAJvYb7SWa+KcvFYP6YBDMA3fg0NB8TCKSMI7JSoLw=;
+ b=SslfBZWS1Hl5gKWfSmDF20mlIGCBwc5tNzVOzprXy2jVwLZNH0vs2HubGF1u+nq6ZaNZZ1L3FDchFx/B2IhPcXChfGnPGyTkFLrm9qjucrSlV/6Jkh2XFOvv21tvz4UYxhX0DWQaLpWA1zPtwzS9uWXsSbXFiCBRrYT8gfvQTijEclC5bovh4XgH/AYKlsaPm66CQKm3O/i8xY7C5BmBLMSETaLNfEKdKhFszzAInbvrk6MT1a2qOKyePFt1QDdq4fHcHw2w73t66uYI8pq66DrgGpLbUoe4lD0COORRLknATDVbCvT/A/iInBPKBrf/0M/euU5ZzKJu3hs5WPS39A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gVYD7ior3Qs8zBVhopCgIarP+QmzGA11Z+P9UTGALPY=;
- b=H2lRDAMgYUPvb3PVOwP7kPAcCDDLqGJzS0oydofJMAmz8QGkKwyxK92fzarvLjN++hSETnAwOHqZJ0PgLwNRk2EsfUt0qbFQLA7VINsIq2wXT9K8f+q2Kwryu+3P0P8Pi7bUE7+huiakFRhMgcnR9ej9Vs3CQAoAssS608Q20B8=
+ bh=FkAJvYb7SWa+KcvFYP6YBDMA3fg0NB8TCKSMI7JSoLw=;
+ b=oFzWIFZWaDCedjnAbfXTzd+38vBlt+VbktD8WRA9l9jGb99+WH0l3U42K0nCYGa5c5U8QUlz8EIT7+EPlPawNmB74+x6hqrCbpHVpuNorMB/MjyvWyExjFpYbovhkLCoN3oVx34774ug0rOygJJFK6zX+nAV0QdIQYBIWB5TaVg=
 Received: from MW4P222CA0001.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::6)
- by DS0PR12MB9448.namprd12.prod.outlook.com (2603:10b6:8:1bb::8) with
+ by MN2PR12MB4487.namprd12.prod.outlook.com (2603:10b6:208:264::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37; Tue, 10 Oct
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.40; Tue, 10 Oct
  2023 14:41:48 +0000
 Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
- (2603:10b6:303:114:cafe::53) by MW4P222CA0001.outlook.office365.com
+ (2603:10b6:303:114:cafe::bc) by MW4P222CA0001.outlook.office365.com
  (2603:10b6:303:114::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.37 via Frontend
  Transport; Tue, 10 Oct 2023 14:41:48 +0000
@@ -47,18 +47,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Tue, 10 Oct 2023 14:41:47 +0000
+ 15.20.6838.22 via Frontend Transport; Tue, 10 Oct 2023 14:41:48 +0000
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 10 Oct
- 2023 09:41:46 -0500
+ 2023 09:41:47 -0500
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 1/7] drm/amdkfd: Wait vm update fence after retry fault
- recovered
-Date: Tue, 10 Oct 2023 10:40:18 -0400
-Message-ID: <20231010144024.3016-1-Philip.Yang@amd.com>
+Subject: [PATCH v2 2/7] drm/amdkfd: Add helper function
+ svm_range_need_access_gpus
+Date: Tue, 10 Oct 2023 10:40:19 -0400
+Message-ID: <20231010144024.3016-2-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20231010144024.3016-1-Philip.Yang@amd.com>
+References: <20231010144024.3016-1-Philip.Yang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|DS0PR12MB9448:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14ad8579-6422-44a8-2279-08dbc99f0846
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|MN2PR12MB4487:EE_
+X-MS-Office365-Filtering-Correlation-Id: cdf734d4-0e71-4ccc-ce6c-08dbc99f08b3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cQJcTjN1boaxZR2ST+iCanv+A9jR1Vmnt4QvVA66Wvu5D6uhM97gui4lEBbsZ6g46ZR0BAiFf21VpdgMQQlZg/1PW8oK/KC2baV7+w495VokUfijUIo62Br1aIhsEkmvhOG4T/W3MZ2nIjDBurTBZBQfVhp1tl+gcU7uTEIyhsehCjEI//VNic/h0fSy1IO8mocQ6LrvmyLRp0u+dYrvg2zySxqP7uYJ5Hj09oT0rVcH4Ctaxda0IQ4RumeOIbcLias11/Dcq4SupWHV1+YVU4NESoOTVIMDmye9+Zmw4pPGWS2cI8idLYmEX1LjzFrxI+rF1erEfmdUIHvrfE6w4JthvOoguY/qrYziWWsjaFdA5sMGeF5QFkwNWMS0wcgnUgOJX7mxddwOg8oYnCK+8yI34q8ynTCZxwp9NG7dry01qzXm2wcFDSBiO1yZ89Ld+0SlMRcku1Snk13Uq2rFvgi77+j8BQh+siBkdAfIh1twKKd9/uCvPXVc762TtIP6UJg3uqG95flmNpdEOe1pY+RvBiqeFeIoMl/KIPzgZM/Y3FLyxTFYU4nIzfJeZQ+JrEVbDbKLDlY7q7y92ez2Kl4D/8maoGPAFwxvf4Ma9QdSAIsugwEGTZfMXJHFazjj6NQp0uXOZvfeDDwF5DeWZsnX8DEF3rYpjtB+OKftAGM1UTq4zk/VFKfnmgFmpYRSVdgg1VRGAlcm1aW7CYZRvY6Mcc/vR82zohyRPc4lbX4ih4xxqZPSr86EVVsCC5HnS8PmZXK5VDVznl5XCcw7qw==
+X-Microsoft-Antispam-Message-Info: hVZae0yQcrR9HGrwNNO7GF/cNXHDyTq7Y8THBOnHYB4RiKWjANAYQnW8G1JxmmHV92Q+WWl3b3CQ/UdHdrCVe+/13vC+19bORbw0bD8ZZPV+qkgkgAvWXGPuw6R8h+TxvdmmmP+ZiW3iM+/llv6L0dvRKqC3xOnUdrJhTAigJ8aKuk1GHyZ610f0zmSujzm6mvGp80PzOY5+gYdMxfd1rbJv8X/hQ9ri2ml7qQFgC7U0o0Apx2sS8k8uKtBNJSAdDqtjSPdIGbRHRm2ZjocNYrxy3e+xqV6mJsS9KbIeTnf3FjlP3CGrMec7SPeVLm/M6dOgFaY/ueI0a7qR7T9VFnTcm5Su4RKVQvMYNiuEY7Og65s3ytOacVf8FJHPv0KCjGzMrwF0KNjICpJMtXSRgn4308LWeGLyrd/wjrnHHQNTuY15nohMFu3/H+QWzte7VvZaRAyTnyzn8Hx0yA+83FxAdgZEPQ0j4OOJzZFaL0lMvAP26Kma+OsNfgtnxxXutTz+4l/NWUgn/Q3sEb3q5/6P9E1/zOodsl4x8nvptZnUxS4CYE6zpFcH9n/t6FMCPIpv0wVxBRaCg9AgQ0kAD7qTq5thW1ugb03lxHRC5qGo+DiRxU29QlPSVQA/KzWEFJGbx6TcD2jPqnBz/zkA6Qm+FRnp3jIhBJ5Iryc1cv8c1xtnqkknfo2T1HVngyXwRDdg+USrY/b5aF5OxW1cCMp6vGD0v0pOfqmt5dXZNDGM2rVP5f+CXk51fRG4nel64LVbhnfdI4xRjH/lwiC7AQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(396003)(136003)(346002)(376002)(230922051799003)(186009)(82310400011)(64100799003)(451199024)(1800799009)(46966006)(40470700004)(36840700001)(6666004)(82740400003)(2616005)(7696005)(1076003)(41300700001)(478600001)(336012)(15650500001)(2906002)(83380400001)(47076005)(426003)(70586007)(5660300002)(6916009)(54906003)(70206006)(8676002)(4326008)(16526019)(8936002)(26005)(40460700003)(316002)(36756003)(356005)(36860700001)(81166007)(86362001)(40480700001)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(346002)(376002)(136003)(396003)(230922051799003)(82310400011)(1800799009)(64100799003)(451199024)(186009)(46966006)(36840700001)(40470700004)(36860700001)(83380400001)(47076005)(40460700003)(40480700001)(4326008)(8936002)(70586007)(70206006)(316002)(6916009)(8676002)(41300700001)(54906003)(5660300002)(478600001)(2906002)(86362001)(6666004)(7696005)(81166007)(2616005)(356005)(336012)(36756003)(426003)(1076003)(82740400003)(16526019)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 14:41:47.7448 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14ad8579-6422-44a8-2279-08dbc99f0846
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 14:41:48.4635 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdf734d4-0e71-4ccc-ce6c-08dbc99f08b3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9448
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4487
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,93 +104,89 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If using sdma update GPU page table, kfd flush tlb does nothing if vm
-update fence callback doesn't update vm->tlb_seq. This works now because
-retry fault keep coming and will be handled to update page table again
-after AMDGPU_SVM_RANGE_RETRY_FAULT_PENDING timeout and flush tlb.
-
-With the following patch to add bitmap_mapped flag, the retry fault
-recover will only update GPU page table once, need wait vm udate fence
-and then flush tlb.
-
-No change if using CPU update GPU page table because no vm update fence.
-
-Remove wait parameter in svm_range_validate_and_map because it is
-always called with true now.
+Refactor svm_range_validate_and_map to add and use the helper function
+to get all GPUs bitmap that need access the svm range. No functional
+change. This helper will be used in the following patch.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 55 +++++++++++++++++-----------
+ 1 file changed, 34 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 2b4ccc0531e8..e195106a77cb 100644
+index e195106a77cb..fb22b857adbc 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1454,7 +1454,7 @@ svm_range_map_to_gpu(struct kfd_process_device *pdd, struct svm_range *prange,
- static int
- svm_range_map_to_gpus(struct svm_range *prange, unsigned long offset,
- 		      unsigned long npages, bool readonly,
--		      unsigned long *bitmap, bool wait, bool flush_tlb)
-+		      unsigned long *bitmap, bool flush_tlb)
+@@ -1191,6 +1191,34 @@ svm_range_split_by_granularity(struct kfd_process *p, struct mm_struct *mm,
+ 	}
+ 	return 0;
+ }
++
++static int
++svm_range_need_access_gpus(unsigned long *bitmap, struct svm_range *prange)
++{
++	struct kfd_process *p = container_of(prange->svms, struct kfd_process, svms);
++	uint32_t gpuidx;
++
++	if (p->xnack_enabled) {
++		bitmap_copy(bitmap, prange->bitmap_aip, MAX_GPU_INSTANCE);
++
++		/* If prefetch range to GPU, or GPU retry fault migrate range to
++		 * GPU, which has ACCESS attribute to the range, create mapping
++		 * on that GPU.
++		 */
++		if (prange->actual_loc) {
++			gpuidx = kfd_process_gpuidx_from_gpuid(p, prange->actual_loc);
++			if (gpuidx < 0)
++				return -EINVAL;
++			if (test_bit(gpuidx, prange->bitmap_access))
++				bitmap_set(bitmap, gpuidx, 1);
++		}
++	} else {
++		bitmap_or(bitmap, prange->bitmap_access, prange->bitmap_aip,
++			  MAX_GPU_INSTANCE);
++	}
++	return 0;
++}
++
+ static bool
+ svm_nodes_in_same_hive(struct kfd_node *node_a, struct kfd_node *node_b)
  {
- 	struct kfd_process_device *pdd;
- 	struct amdgpu_device *bo_adev = NULL;
-@@ -1487,8 +1487,7 @@ svm_range_map_to_gpus(struct svm_range *prange, unsigned long offset,
- 
- 		r = svm_range_map_to_gpu(pdd, prange, offset, npages, readonly,
- 					 prange->dma_addr[gpuidx],
--					 bo_adev, wait ? &fence : NULL,
--					 flush_tlb);
-+					 bo_adev, &fence, flush_tlb);
- 		if (r)
- 			break;
- 
-@@ -1612,7 +1611,7 @@ static void *kfd_svm_page_owner(struct kfd_process *p, int32_t gpuidx)
-  */
- static int svm_range_validate_and_map(struct mm_struct *mm,
- 				      struct svm_range *prange, int32_t gpuidx,
--				      bool intr, bool wait, bool flush_tlb)
-+				      bool intr, bool flush_tlb)
- {
- 	struct svm_validate_context *ctx;
- 	unsigned long start, end, addr;
-@@ -1741,7 +1740,7 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
- 
- 		if (!r)
- 			r = svm_range_map_to_gpus(prange, offset, npages, readonly,
--						  ctx->bitmap, wait, flush_tlb);
-+						  ctx->bitmap, flush_tlb);
- 
- 		if (!r && next == end)
- 			prange->mapped_to_gpu = true;
-@@ -1848,7 +1847,7 @@ static void svm_range_restore_work(struct work_struct *work)
- 		mutex_lock(&prange->migrate_mutex);
- 
- 		r = svm_range_validate_and_map(mm, prange, MAX_GPU_INSTANCE,
--					       false, true, false);
-+					       false, false);
- 		if (r)
- 			pr_debug("failed %d to map 0x%lx to gpus\n", r,
- 				 prange->start);
-@@ -3094,7 +3093,7 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 		}
+@@ -1631,28 +1659,13 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
+ 	if (gpuidx < MAX_GPU_INSTANCE) {
+ 		bitmap_zero(ctx->bitmap, MAX_GPU_INSTANCE);
+ 		bitmap_set(ctx->bitmap, gpuidx, 1);
+-	} else if (ctx->process->xnack_enabled) {
+-		bitmap_copy(ctx->bitmap, prange->bitmap_aip, MAX_GPU_INSTANCE);
+-
+-		/* If prefetch range to GPU, or GPU retry fault migrate range to
+-		 * GPU, which has ACCESS attribute to the range, create mapping
+-		 * on that GPU.
+-		 */
+-		if (prange->actual_loc) {
+-			gpuidx = kfd_process_gpuidx_from_gpuid(ctx->process,
+-							prange->actual_loc);
+-			if (gpuidx < 0) {
+-				WARN_ONCE(1, "failed get device by id 0x%x\n",
+-					 prange->actual_loc);
+-				r = -EINVAL;
+-				goto free_ctx;
+-			}
+-			if (test_bit(gpuidx, prange->bitmap_access))
+-				bitmap_set(ctx->bitmap, gpuidx, 1);
+-		}
+ 	} else {
+-		bitmap_or(ctx->bitmap, prange->bitmap_access,
+-			  prange->bitmap_aip, MAX_GPU_INSTANCE);
++		r = svm_range_need_access_gpus(ctx->bitmap, prange);
++		if (r) {
++			WARN_ONCE(1, "failed get device by id 0x%x\n",
++				 prange->actual_loc);
++			goto free_ctx;
++		}
  	}
  
--	r = svm_range_validate_and_map(mm, prange, gpuidx, false, false, false);
-+	r = svm_range_validate_and_map(mm, prange, gpuidx, false, false);
- 	if (r)
- 		pr_debug("failed %d to map svms 0x%p [0x%lx 0x%lx] to gpus\n",
- 			 r, svms, prange->start, prange->last);
-@@ -3643,7 +3642,7 @@ svm_range_set_attr(struct kfd_process *p, struct mm_struct *mm,
- 		flush_tlb = !migrated && update_mapping && prange->mapped_to_gpu;
- 
- 		r = svm_range_validate_and_map(mm, prange, MAX_GPU_INSTANCE,
--					       true, true, flush_tlb);
-+					       true, flush_tlb);
- 		if (r)
- 			pr_debug("failed %d to map svm range\n", r);
- 
+ 	if (bitmap_empty(ctx->bitmap, MAX_GPU_INSTANCE)) {
 -- 
 2.35.1
 
