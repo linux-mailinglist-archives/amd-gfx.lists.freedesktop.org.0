@@ -2,116 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85ED07C64F4
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Oct 2023 07:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD917C6673
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Oct 2023 09:32:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC17510E412;
-	Thu, 12 Oct 2023 05:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD1F10E428;
+	Thu, 12 Oct 2023 07:32:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2086.outbound.protection.outlook.com [40.107.237.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51BFC10E410
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 05:54:23 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D84C310E428
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Oct 2023 07:32:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ui+BnlZwrc4Hz8ftcfI3Wb15ir2OSB6N6zuLFISls/n5F3yXgy9Em13cOH1Ea+WK9bEc6mHH0ylviahLVFOkm73PqGw6/gWkPnx6Su3Szxhh9bP0ua14cEWi1Zr8z5/nICvMEaV4mJGOIK0UrR2ph+7SSsA6NI0lnA+HQlrZfTOsJU+0SALDrmQ8wcKG/eidSF7KGOWfUPSDJV1GoFZaqScERQ3t80mHvacpb5wNjNbfQyNhdKPe8eUHOr/YMGaNCVOcIhYDERptfYkaGXAeF4TYuY/diklgrkQffm56slcYmt4C1OwOSPjATTdNQLgwyOUbKnxvLbAShZqjEXjCNQ==
+ b=nVykj9tlCqNHVaaP7sVd5ZGPqaADBdtVveBaHAQkPCq/VNefZse3NWNOnwTB9Oaljr5r0hKWnaZjpPwffr8hMfYgsN9EGS0w8JSoWl6hqu+ZnOtJyPmdNK607pFehbzcVZjXu485H/GYq+IPIgq2MOurUzP0+9hRQCth/IaXxfAlBdsjremCRpXAsxpHvnMZgdQXuv0dkiWdIBNTZ+rW6isGeP43UDvvHgICYL1XmQWJ8hZR9JuUXPjKdxWeavHbityEkaeeU3NZPoI8hGjwFov5sjk1JJ4ZL+0U09keYHNzDiokVOkVaP3GV7JhwKpUOGrvxZUfP64NEuFICSfaTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BlJRt4nX7jF9EuKezek22GjFlD/cV/h/z0W24lwhxDQ=;
- b=EZ0wl8Dhyvnv+eqX2szcWQooiHVFGyJv2BvtlmmkQkwhdABnzv1toOBuKQOOC02X08fOCojXB7mitdI4GGgu/Y0Soi7wWhb8BfgXPuq/MPnKSd9z5hYNouEv980D7AICzOApomiBKGw/ZgMjnFuNLM33JzDyM3rogQzJZdaGC4Kqxy6wy9as9WXU1EJId7yBZthz8TxRVP2M81DmsWnp7R/zSDNFb/oD2vrMegCk3Pzr44BlwU+kgX5OIrvMuenfuCazwZQH/xbuuzrkt9fvQhvVeMg0yp8bdtNEbN1BRZuq+w6MfMCqdhYvlvMYDQnQUXf+xTviV34INDOUoXLnfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=8r6j4MqvGt5Z5YOopxwbfBHasnMojrcjhK+fWUjnX/8=;
+ b=YK3UIuZBXwK4J4ymRxkAmaT6kTiSLwCr0aHEOenSEdKmijA+mdu+HTo4ROiv/D+E0wmc4rKXd0e4tEiHBPh3cn8Gh66DudQg+s99RV0TPid3ExefokEQfMOM/prj37dSbUE2GEINAVeg2pOYSVnudwzE43CCmFG/TZioqp78PWOdh8d3JiSfBywfJAhkIA5LOPPzTQj0OtCU7p2Da82G5AXovzVtiTbLtcTVWbame0J4c1Jl1Ow3cAIEiprjzygdAmgdvPpeGd+LUARzElZXaNF7sG3s4i6hiJ6EW0Vf3dzjQiwCf0m9ihkOLEQhvV4NgvuuG9JNlzHEOp/mPBKDZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BlJRt4nX7jF9EuKezek22GjFlD/cV/h/z0W24lwhxDQ=;
- b=zR99/DTvReTEpCqYGmKtBQQekhuXNXy6q/czaLFM67ZaCQlJ3aETzWOao5RQuxmp7yZ6e0D1eS8+IVwYHelteuCETD+g7Q/tTRP0oU+eep5NDk2dNhQvCESc0g4D0qfjyXkTQk3yz4lWSmVi9bV/VWPJ7GwVUfqxMkxPuVm5xZI=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by MN0PR12MB6126.namprd12.prod.outlook.com (2603:10b6:208:3c6::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Thu, 12 Oct
- 2023 05:54:20 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::9b99:8d90:81b8:b091]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::9b99:8d90:81b8:b091%7]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
- 05:54:20 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2 3/3] drm/amd/pm: Add P2S tables for SMU v13.0.6
-Thread-Topic: [PATCH v2 3/3] drm/amd/pm: Add P2S tables for SMU v13.0.6
-Thread-Index: AQHZ/MjC4RkjpxeE00qcx6voOzoCE7BFp2oA
-Date: Thu, 12 Oct 2023 05:54:20 +0000
-Message-ID: <BN9PR12MB5257E0B927CB5217920428D2FCD3A@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20231012045755.111418-1-lijo.lazar@amd.com>
- <20231012045755.111418-3-lijo.lazar@amd.com>
-In-Reply-To: <20231012045755.111418-3-lijo.lazar@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=8afccfe8-a500-4bc4-a2cd-f5f160e43055;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-10-12T05:53:57Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|MN0PR12MB6126:EE_
-x-ms-office365-filtering-correlation-id: 5ef49ed4-116b-4013-0b71-08dbcae7adb2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sJ9EJ6pYPfwNL4dwpau1lEMZKVY4w0e8gv0k9XJGHPLxOeau5RcR3pRey9VXxXYVUA9gnL1upgIlNL3YQRD1+aHAJXgvPn6kVHA5JZeK5GvjDiYlvrAtbjyFHBJ/BiJkRefQbIq3RJEzQ0Np9bj5uqY67bisl7xswYiQ5SudQr6ORVtw+u+7PjdNzbeO1Gy63/3eOheWWVMUzs8eC0AtP3G9kOSeT3vSTJFlAmkETZ8vegjHEZ4+q5CHkwMUdmXxj/4CNFYlar2ru1hirG9Ww7o/GvtP1t2uZsqPViXJVwmbCFivKmSGd+g3cyOBjPZHHX6SerIDLKaHUhMMgP0g5te7KlDIq6MULLgZfhZRPwp5lwaTsX52OHvjy4+vADjrQENOLD7WqtkLJhZLSkLa8fQUX1ZOmFR4pRmlsGSvj+VgthKKZF7l5iTePycHVk+tgyFR2z2IMGqNdmvfm9Q2HCDSr3oRLHW2qYpFYPjS7WoRcm/HNy80m62twKeCucVy45VBwcW/dbT5KJYnjg4eW//lT7hFTtjfnSy337xECDKtV/F6WePsFvzeCEbF39uAur3+0ywe0+nPcpvsawcMqyA2o8ngxYHoKQgvRePy5vPmQHt8pv7aJJNPgx84VRm6
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(346002)(39860400002)(396003)(366004)(136003)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(33656002)(86362001)(9686003)(53546011)(7696005)(6506007)(71200400001)(76116006)(66946007)(64756008)(66556008)(66476007)(316002)(66446008)(83380400001)(110136005)(41300700001)(5660300002)(52536014)(478600001)(4326008)(8676002)(2906002)(8936002)(26005)(122000001)(55016003)(38070700005)(38100700002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1ZsVjK0lBU9ClNssv4GJyqn2vDZ8cHp2mhOC5Cg/4GH5E5n4b50qJOAuRUDQ?=
- =?us-ascii?Q?VXlc/hv2ljYkL2GMnZCdrMWUYogGvW3cikK335wKZC/HG7/IJSeSGcyJioZN?=
- =?us-ascii?Q?88xxH9CsBJxtyTjQg1eOsBO7ks1fRhCy9FSQaDH4SiuiPWCvxaHTL8djnwf5?=
- =?us-ascii?Q?y4YbsgjJiHj0l+k2Ufo6YzFz3IVlukS6XMKXEqr7qqC0CN8EZuy98s10RSxc?=
- =?us-ascii?Q?ONwv3STxi9jyZsAkIsM6ex2P91FG2gw0GSZInPqZRe5vJEwqkS7J44C1+ebO?=
- =?us-ascii?Q?gqwNqpN0Yu9NPdnrfcwQsE8qI2X9AFYn/7lnst8Z/+JyaqMwx1VuSxezZ1hs?=
- =?us-ascii?Q?aqXC3iid0ybFwLY8KnfP1oxrpx7iT3zVoallxqE1xx/PXJBU/80XhSqPZsWp?=
- =?us-ascii?Q?3Q4Vp3oZqjHA7DTgNkaQ7in8D2QAG9/xB94oAnW1IjokDldWy3JrCdaA7+Lk?=
- =?us-ascii?Q?Rq3w8aHzBsRiU5+LwgHfVzubCQDCyHOENk8l1vck4OY0Zd6CeOKqvjImW7CJ?=
- =?us-ascii?Q?NhddHJuDkRmlIqGTsCblR98NfXlyn1hDJZJoHBwK5fsI9Sjs7K7yRflb2jzl?=
- =?us-ascii?Q?Yh9A1WWQi3iIWoLAZOvmItyZTB6POaHmIh4oFQNOUhHxJwLAKvUk3wcWDYxK?=
- =?us-ascii?Q?cMMCLawSzJSW6eoHvVVEIFvhboGbBq2HuJgUU7BVrmDQdTcI5pbiT5P4fX4b?=
- =?us-ascii?Q?v49rw+CM3VAXDVE0c6bp0NooIQjybSyinX4EmQO1u2etSYVUM1pcGPfKLPmt?=
- =?us-ascii?Q?xSW9S2lZC8REEhfcsxeuyH0cHurH2OBE1UGrA4EEHRVVG8bJgB2Umrs4rZ85?=
- =?us-ascii?Q?xTCccwwPSqlm0fsT9BdZM8clhmeVHL3kVDkp3iLGsJ5NRcRCoRtjXRSJCy9W?=
- =?us-ascii?Q?bWdwHkoz5tWhLtPdK4MYPdSeSLkxTlltUrmIKxXicNrPl+oe9+U2eOwCZ298?=
- =?us-ascii?Q?q0Hd7gvnmaK8Ni1Va4jKK52IaWx2HjszV5pRMEhp/jfAauovn8LMm4FXKv1z?=
- =?us-ascii?Q?EYsmrczRm2ppwk7Ly3PaR/Oph1QlDrptemXWpD+mCceOwe89BrwJ+nGObi3q?=
- =?us-ascii?Q?AXBsLBdM1chqlJ0lJqevmUbC+a75x/pJkx5lcVZ8GkpQqYsor8d8qmIHAIzB?=
- =?us-ascii?Q?9RzADbdeI4ETCsljF8JJsoNvz26aLwTeuUXUqVFr9cQdFyOVyK/9ORVd8wUZ?=
- =?us-ascii?Q?Z5/VcvvLDeIA4AoIhJrNloRyP5rT1uA99aQXzKIDCaH6ccOzpbLqqh9vTgPK?=
- =?us-ascii?Q?3T87C0T4EFWyPNYrmYi43ctkLEDBMvdztPFCp6gx2MNjh0Ia05qAUB6caEiw?=
- =?us-ascii?Q?6eHWPhbco4gOoKM8nbqV905/2048cy3+f3k1cRrKP2oMAtuwFRcxAOQ4BvM8?=
- =?us-ascii?Q?5OZabfz0+zGcKW5Ly4MtImowbtis4Hf3UzEGlPUaJW/PF1F2PtVi1ox6W7Cu?=
- =?us-ascii?Q?kmWZc+WlWafvfleahPlrSI+jExLLVAEJn8nBiSolyYw8PO3uWFIEaVfnsTYj?=
- =?us-ascii?Q?oxWRMQ/pc5dWqxw58/kKkHsfTzYBNQQI2P177Frrv33mdZePjPL7cN4sxmsL?=
- =?us-ascii?Q?DRQmv5Dm+6K/p2mK7Wt+fIdPBJLHU5o/+yvcppR/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=8r6j4MqvGt5Z5YOopxwbfBHasnMojrcjhK+fWUjnX/8=;
+ b=e9KBCNZ/r4EaHhdI+yhHmFC6Agzb/xruYHAP15sPBR9r1kvA69uAYtXTNCg65nPyxMyMv/zFurKIJJrrtvifwC/2kSstqxItav2R2KsB7z+8kV8zy5BUwmzs8+w2fCbgCr+K+lHQvRYdaotMpf7P7mV0HoNRfVSVlwUSJdiBo0A=
+Received: from DM6PR18CA0030.namprd18.prod.outlook.com (2603:10b6:5:15b::43)
+ by BY5PR12MB4967.namprd12.prod.outlook.com (2603:10b6:a03:1de::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.42; Thu, 12 Oct
+ 2023 07:32:24 +0000
+Received: from CY4PEPF0000EE3E.namprd03.prod.outlook.com
+ (2603:10b6:5:15b:cafe::4e) by DM6PR18CA0030.outlook.office365.com
+ (2603:10b6:5:15b::43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.27 via Frontend
+ Transport; Thu, 12 Oct 2023 07:32:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3E.mail.protection.outlook.com (10.167.242.18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6838.22 via Frontend Transport; Thu, 12 Oct 2023 07:32:23 +0000
+Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 12 Oct
+ 2023 02:32:22 -0500
+From: Lang Yu <Lang.Yu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdgpu: correct NBIO v7.11 programing
+Date: Thu, 12 Oct 2023 15:31:44 +0800
+Message-ID: <20231012073145.1076131-1-Lang.Yu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3E:EE_|BY5PR12MB4967:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54d009a7-c0c1-487d-668c-08dbcaf56098
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cQ/lhMndpb469XS3mrn49hE46TOmXH67aGQcwIt2i1Na+v9zIMNHJhFQlAFN5aki/gZrrjsz03reOTl4/BqldW72Y+zEo7uD8SGdd+iyeDP9GxEsZm0UOhjjauRzq9bPD6QBKiQsaUNcUtkInmZUaQ0bpEYC6v3esOHDudLlxD6w+hg1GHyCi/+mIpU89jOZpAHKLoRaFwsDpv31J55InzdawoocAnolqyFIQKdxvi1HbgIvN4rJsyMu6WXYcmoh3GnYFoKPlGizM/qq8eoGYT0P4ouYh3YgWNsvCytjWlS8GPPgXagmcmvWJ+g6nz4fojnsxn0nzy0IAk2299gjAgemKx1HLbuuOG+lzYiXPk7lIIq01Du7Rudw1OaB/Jo4qZ+8ArBYIhymE3mraO3QuHn0y7WIoSP5QHf/U6ZxjPr8OPRCojpSIUmLRS7IaGANHfjt5Uge8dp+jhIS5IzYvt3r4d67LbsHjuW2zNadYOzxh+XCEDgfMrOYOeYNJGbyaPTO/K+tnGpdSm1kAt9lIJjneOexieVUhqwmhBrFstXDraqbF0hFE3CVbve6y/mZjr60mWd8Q+5iM7yUPBpZIao0zWXuN9qy8OYu28qZCJV7JN7DfXnbGj7vWuXwRkUr2/hM4iRDxTusmNJ02YXQb0yo7fbRzbk88QVuWbqACyLwLGGe8rwglLqxgdek7EA8V0O9hipt/Ce86nELXz+D+AEhzG6vwE3UdhOuPU/eYGevUaPW0tYZtSNfg/mqOMb9llCI8oNlqBaN8m9kXS+uFw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(376002)(346002)(136003)(39860400002)(230922051799003)(451199024)(1800799009)(82310400011)(186009)(64100799003)(36840700001)(40470700004)(46966006)(40480700001)(2616005)(40460700003)(336012)(16526019)(316002)(47076005)(426003)(82740400003)(81166007)(356005)(36860700001)(8936002)(83380400001)(4326008)(8676002)(6916009)(5660300002)(70586007)(70206006)(41300700001)(54906003)(2906002)(1076003)(7696005)(6666004)(478600001)(26005)(86362001)(36756003)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ef49ed4-116b-4013-0b71-08dbcae7adb2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2023 05:54:20.2879 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cM/fOl1gftHO2IziTTbJdfFg+4f1ozZ05MOhgeGbv51gShkn+g2LpieY2nH1ZN6hTUachBFNbk+kxtA73CzRAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6126
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 07:32:23.8362 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54d009a7-c0c1-487d-668c-08dbcaf56098
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3E.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4967
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,168 +97,168 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>, Lang Yu <Lang.Yu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Use v7.7 before, switch to v7.11 now.
+Fix incorrect programing.
 
-Series is
-
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-
-Regards,
-Hawking
------Original Message-----
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Thursday, October 12, 2023 12:58
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.D=
-eucher@amd.com>
-Subject: [PATCH v2 3/3] drm/amd/pm: Add P2S tables for SMU v13.0.6
-
-Add P2S table load support on SMU v13.0.6 ASICs.
-
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Signed-off-by: Lang Yu <Lang.Yu@amd.com>
 ---
-v2: Fixed MP0 IP version check (Hawking)
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_11.c       | 56 +++++++++----------
+ .../asic_reg/nbio/nbio_7_11_0_offset.h        |  9 ++-
+ 2 files changed, 33 insertions(+), 32 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       |  7 ++
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  | 71 +++++++++++++++++++
- 2 files changed, 78 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_psp.c
-index c41bd07f3f98..7158d478eeea 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -2516,6 +2516,13 @@ static int psp_load_p2s_table(struct psp_context *ps=
-p)
-        if (adev->in_runpm && (adev->pm.rpm_mode =3D=3D AMDGPU_RUNPM_BACO))
-                return 0;
-
-+       if (amdgpu_ip_version(adev, MP0_HWIP, 0) =3D=3D IP_VERSION(13, 0, 6=
-)) {
-+               uint32_t supp_vers =3D adev->flags & AMD_IS_APU ? 0x0036013=
-D :
-+                                                               0x0036003C;
-+               if (psp->sos.fw_version < supp_vers)
-+                       return 0;
-+       }
-+
-        if (!ucode->fw || amdgpu_sriov_vf(psp->adev))
-                return 0;
-
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 8220bdcbd927..d29740bcdc8f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -65,6 +65,8 @@
- #undef pr_info
- #undef pr_debug
-
-+MODULE_FIRMWARE("amdgpu/smu_13_0_6.bin");
-+
- #define to_amdgpu_device(x) (container_of(x, struct amdgpu_device, pm.smu_=
-i2c))
-
- #define SMU_13_0_6_FEA_MAP(smu_feature, smu_13_0_6_feature)               =
-     \
-@@ -123,6 +125,9 @@ struct mca_ras_info {
-                             enum amdgpu_mca_error_type type, int idx, uint=
-32_t *count);  };
-
-+#define P2S_TABLE_ID_A 0x50325341
-+#define P2S_TABLE_ID_X 0x50325358
-+
- static const struct cmn2asic_msg_mapping smu_v13_0_6_message_map[SMU_MSG_M=
-AX_COUNT] =3D {
-        MSG_MAP(TestMessage,                         PPSMC_MSG_TestMessage,=
-                     0),
-        MSG_MAP(GetSmuVersion,                       PPSMC_MSG_GetSmuVersio=
-n,                   1),
-@@ -256,6 +261,70 @@ struct smu_v13_0_6_dpm_map {
-        uint32_t *freq_table;
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_11.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_11.c
+index 6873eead1e19..3a94f249929e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_11.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_11.c
+@@ -66,19 +66,19 @@ static void nbio_v7_11_sdma_doorbell_range(struct amdgpu_device *adev, int insta
+ 					  bool use_doorbell, int doorbell_index,
+ 					  int doorbell_size)
+ {
+-	u32 reg = SOC15_REG_OFFSET(NBIO, 0, regGDC0_BIF_SDMA0_DOORBELL_RANGE);
++	u32 reg = SOC15_REG_OFFSET(NBIO, 0, regGDC0_BIF_CSDMA_DOORBELL_RANGE);
+ 	u32 doorbell_range = RREG32_PCIE_PORT(reg);
+ 
+ 	if (use_doorbell) {
+ 		doorbell_range = REG_SET_FIELD(doorbell_range,
+-					       GDC0_BIF_SDMA0_DOORBELL_RANGE,
++					       GDC0_BIF_CSDMA_DOORBELL_RANGE,
+ 					       OFFSET, doorbell_index);
+ 		doorbell_range = REG_SET_FIELD(doorbell_range,
+-					       GDC0_BIF_SDMA0_DOORBELL_RANGE,
++					       GDC0_BIF_CSDMA_DOORBELL_RANGE,
+ 					       SIZE, doorbell_size);
+ 	} else {
+ 		doorbell_range = REG_SET_FIELD(doorbell_range,
+-					       GDC0_BIF_SDMA0_DOORBELL_RANGE,
++					       GDC0_BIF_CSDMA_DOORBELL_RANGE,
+ 					       SIZE, 0);
+ 	}
+ 
+@@ -145,27 +145,25 @@ static void nbio_v7_11_enable_doorbell_aperture(struct amdgpu_device *adev,
+ static void nbio_v7_11_enable_doorbell_selfring_aperture(struct amdgpu_device *adev,
+ 							bool enable)
+ {
+-/*	u32 tmp = 0;
++	u32 tmp = 0;
+ 
+ 	if (enable) {
+-		tmp = REG_SET_FIELD(tmp, BIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
++		tmp = REG_SET_FIELD(tmp, BIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_CNTL,
+ 				DOORBELL_SELFRING_GPA_APER_EN, 1) |
+-			REG_SET_FIELD(tmp, BIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
++		      REG_SET_FIELD(tmp, BIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_CNTL,
+ 				DOORBELL_SELFRING_GPA_APER_MODE, 1) |
+-			REG_SET_FIELD(tmp, BIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
++		      REG_SET_FIELD(tmp, BIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_CNTL,
+ 				DOORBELL_SELFRING_GPA_APER_SIZE, 0);
+ 
+ 		WREG32_SOC15(NBIO, 0,
+-			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
++			regBIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+ 			lower_32_bits(adev->doorbell.base));
+ 		WREG32_SOC15(NBIO, 0,
+-			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
++			regBIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+ 			upper_32_bits(adev->doorbell.base));
+ 	}
+ 
+-	WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
+-		tmp);
+-*/
++	WREG32_SOC15(NBIO, 0, regBIF_BX_PF1_DOORBELL_SELFRING_GPA_APER_CNTL, tmp);
+ }
+ 
+ 
+@@ -216,12 +214,12 @@ static void nbio_v7_11_ih_control(struct amdgpu_device *adev)
+ 
+ static u32 nbio_v7_11_get_hdp_flush_req_offset(struct amdgpu_device *adev)
+ {
+-	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF0_GPU_HDP_FLUSH_REQ);
++	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF1_GPU_HDP_FLUSH_REQ);
+ }
+ 
+ static u32 nbio_v7_11_get_hdp_flush_done_offset(struct amdgpu_device *adev)
+ {
+-	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF0_GPU_HDP_FLUSH_DONE);
++	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF1_GPU_HDP_FLUSH_DONE);
+ }
+ 
+ static u32 nbio_v7_11_get_pcie_index_offset(struct amdgpu_device *adev)
+@@ -236,27 +234,27 @@ static u32 nbio_v7_11_get_pcie_data_offset(struct amdgpu_device *adev)
+ 
+ static u32 nbio_v7_11_get_pcie_port_index_offset(struct amdgpu_device *adev)
+ {
+-	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF0_RSMU_INDEX);
++	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF1_RSMU_INDEX);
+ }
+ 
+ static u32 nbio_v7_11_get_pcie_port_data_offset(struct amdgpu_device *adev)
+ {
+-	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF0_RSMU_DATA);
++	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX_PF1_RSMU_DATA);
+ }
+ 
+ const struct nbio_hdp_flush_reg nbio_v7_11_hdp_flush_reg = {
+-	.ref_and_mask_cp0 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP0_MASK,
+-	.ref_and_mask_cp1 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP1_MASK,
+-	.ref_and_mask_cp2 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP2_MASK,
+-	.ref_and_mask_cp3 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP3_MASK,
+-	.ref_and_mask_cp4 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP4_MASK,
+-	.ref_and_mask_cp5 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP5_MASK,
+-	.ref_and_mask_cp6 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP6_MASK,
+-	.ref_and_mask_cp7 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP7_MASK,
+-	.ref_and_mask_cp8 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP8_MASK,
+-	.ref_and_mask_cp9 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP9_MASK,
+-	.ref_and_mask_sdma0 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__SDMA0_MASK,
+-	.ref_and_mask_sdma1 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__SDMA1_MASK,
++	.ref_and_mask_cp0 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP0_MASK,
++	.ref_and_mask_cp1 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP1_MASK,
++	.ref_and_mask_cp2 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP2_MASK,
++	.ref_and_mask_cp3 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP3_MASK,
++	.ref_and_mask_cp4 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP4_MASK,
++	.ref_and_mask_cp5 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP5_MASK,
++	.ref_and_mask_cp6 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP6_MASK,
++	.ref_and_mask_cp7 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP7_MASK,
++	.ref_and_mask_cp8 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP8_MASK,
++	.ref_and_mask_cp9 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__CP9_MASK,
++	.ref_and_mask_sdma0 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__SDMA0_MASK,
++	.ref_and_mask_sdma1 = BIF_BX_PF1_GPU_HDP_FLUSH_DONE__SDMA1_MASK,
  };
-
-+static int smu_v13_0_6_init_microcode(struct smu_context *smu) {
-+       const struct smc_firmware_header_v2_1 *v2_1;
-+       const struct common_firmware_header *hdr;
-+       struct amdgpu_firmware_info *ucode =3D NULL;
-+       struct smc_soft_pptable_entry *entries;
-+       struct amdgpu_device *adev =3D smu->adev;
-+       uint32_t p2s_table_id =3D P2S_TABLE_ID_A;
-+       int ret =3D 0, i, p2stable_count;
-+       char ucode_prefix[30];
-+       char fw_name[30];
-+
-+       /* No need to load P2S tables in IOV mode */
-+       if (amdgpu_sriov_vf(adev))
-+               return 0;
-+
-+       if (!(adev->flags & AMD_IS_APU))
-+               p2s_table_id =3D P2S_TABLE_ID_X;
-+
-+       amdgpu_ucode_ip_version_decode(adev, MP1_HWIP, ucode_prefix,
-+                                      sizeof(ucode_prefix));
-+
-+       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s.bin", ucode_prefix);
-+
-+       ret =3D amdgpu_ucode_request(adev, &adev->pm.fw, fw_name);
-+       if (ret)
-+               goto out;
-+
-+       hdr =3D (const struct common_firmware_header *)adev->pm.fw->data;
-+       amdgpu_ucode_print_smc_hdr(hdr);
-+
-+       /* SMU v13.0.6 binary file doesn't carry pptables, instead the entr=
-ies
-+        * are used to carry p2s tables.
-+        */
-+       v2_1 =3D (const struct smc_firmware_header_v2_1 *)adev->pm.fw->data=
-;
-+       entries =3D (struct smc_soft_pptable_entry
-+                          *)((uint8_t *)v2_1 +
-+                             le32_to_cpu(v2_1->pptable_entry_offset));
-+       p2stable_count =3D le32_to_cpu(v2_1->pptable_count);
-+       for (i =3D 0; i < p2stable_count; i++) {
-+               if (le32_to_cpu(entries[i].id) =3D=3D p2s_table_id) {
-+                       smu->pptable_firmware.data =3D
-+                               ((uint8_t *)v2_1 +
-+                                le32_to_cpu(entries[i].ppt_offset_bytes));
-+                       smu->pptable_firmware.size =3D
-+                               le32_to_cpu(entries[i].ppt_size_bytes);
-+                       break;
-+               }
-+       }
-+
-+       if (smu->pptable_firmware.data && smu->pptable_firmware.size) {
-+               ucode =3D &adev->firmware.ucode[AMDGPU_UCODE_ID_P2S_TABLE];
-+               ucode->ucode_id =3D AMDGPU_UCODE_ID_P2S_TABLE;
-+               ucode->fw =3D &smu->pptable_firmware;
-+               adev->firmware.fw_size +=3D ALIGN(ucode->fw->size, PAGE_SIZ=
-E);
-+       }
-+
-+       return 0;
-+out:
-+       amdgpu_ucode_release(&adev->pm.fw);
-+
-+       return ret;
-+}
-+
- static int smu_v13_0_6_tables_init(struct smu_context *smu)  {
-        struct smu_table_context *smu_table =3D &smu->smu_table; @@ -2787,6=
- +2856,8 @@ static const struct pptable_funcs smu_v13_0_6_ppt_funcs =3D {
-        .get_power_limit =3D smu_v13_0_6_get_power_limit,
-        .is_dpm_running =3D smu_v13_0_6_is_dpm_running,
-        .get_unique_id =3D smu_v13_0_6_get_unique_id,
-+       .init_microcode =3D smu_v13_0_6_init_microcode,
-+       .fini_microcode =3D smu_v13_0_fini_microcode,
-        .init_smc_tables =3D smu_v13_0_6_init_smc_tables,
-        .fini_smc_tables =3D smu_v13_0_fini_smc_tables,
-        .init_power =3D smu_v13_0_init_power,
---
+ 
+ static void nbio_v7_11_init_registers(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
+index f446b1760f7c..846a8cf3926a 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
+@@ -8187,9 +8187,9 @@
+ #define regBIF_BX0_PCIE_INDEX_BASE_IDX                                                                  5
+ #define regBIF_BX0_PCIE_DATA                                                                            0x800d
+ #define regBIF_BX0_PCIE_DATA_BASE_IDX                                                                   5
+-#define regBIF_BX0_PCIE_INDEX2                                                                          0xe
++#define regBIF_BX0_PCIE_INDEX2                                                                          0x800e
+ #define regBIF_BX0_PCIE_INDEX2_BASE_IDX                                                                 0
+-#define regBIF_BX0_PCIE_DATA2                                                                           0xf
++#define regBIF_BX0_PCIE_DATA2                                                                           0x800f
+ #define regBIF_BX0_PCIE_DATA2_BASE_IDX                                                                  0
+ #define regBIF_BX0_SBIOS_SCRATCH_0                                                                      0x8048
+ #define regBIF_BX0_SBIOS_SCRATCH_0_BASE_IDX                                                             5
+@@ -8678,7 +8678,10 @@
+ #define regBIF_BX_PF1_MM_DATA_BASE_IDX                                                                  0
+ #define regBIF_BX_PF1_MM_INDEX_HI                                                                       0x0006
+ #define regBIF_BX_PF1_MM_INDEX_HI_BASE_IDX                                                              0
+-
++#define regBIF_BX_PF1_RSMU_INDEX                                                                        0x0000
++#define regBIF_BX_PF1_RSMU_INDEX_BASE_IDX                                                               1
++#define regBIF_BX_PF1_RSMU_DATA                                                                         0x0001
++#define regBIF_BX_PF1_RSMU_DATA_BASE_IDX                                                                1
+ 
+ // addressBlock: nbio_nbif0_bif_bx_BIFDEC1:1
+ // base address: 0x0
+-- 
 2.25.1
 
