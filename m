@@ -2,118 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B635E7C8DD8
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Oct 2023 21:41:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFDD37C907B
+	for <lists+amd-gfx@lfdr.de>; Sat, 14 Oct 2023 00:48:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E91310E059;
-	Fri, 13 Oct 2023 19:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB77610E642;
+	Fri, 13 Oct 2023 22:48:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2060d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::60d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C813D10E059
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Oct 2023 19:41:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XPbIpfB7D7U+wJNaqBfiPqmv3DYCTW57+Hq6MjAYQ7DXeimMqHg+E4H8T68Z+VqLWVt7ey+gXhfWgVEsdclPv+RSdwFjenxKMA//WEw4B7DQMOghCsUT6Khkp0MsPzzRZZjAgkctr2GCriEHEZp5RohXnGM14nakp8FrrMEw82r6QFQFrXSFRtaTTkDRvog3KAcFxGcUSozKNcxvPXeldb0SjJvJS7uEiyAtOvM6yjyYgSOGRV1CvRc8QDE9DDK8LTbLH94vgXtTJuv/EcHKHK9UXDSDhvxxTSgLNUy4t7P04bKwRRLfMgJApvu3kf0/HYQCnk4+J9ZZ2ljX5OEq6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VDlCip3BBsfaDe47kC/a9ywjDOEGjJHvlIeJyw5Wda8=;
- b=T46p6NaN/pnpKZYvxZUE/1w4c+rjpQRbmu+LulWqxyeUkXu5qOn5Ui/IutMwcziAH6FdsmDLH0fVYkcsDYqyIKh+ka7Axbyz42yOYZAlAAz+RQkhxlhktWnFvJofytFLfghZ7p63oSBkhMGHc4Q4/JSu2NKLoMZCeRgL4AnSGiTUKM1fjn6ijpmDlKtAexqsgal7YmkmjbyUNLbFwI0lvElMlpKQPwjkmPXEajke8sLVkl7hJClo7M+Q77QTdeJ5pezcXXUSognO9np6CjfpNOcza8O3rZHW4NiF6zv4eqdE89sVuz3VlOw3D5r+V+ogpMiyx1R3+5CXuOU1qKyMdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VDlCip3BBsfaDe47kC/a9ywjDOEGjJHvlIeJyw5Wda8=;
- b=3T9APy/S1CuBBSh8WNeLgnzlEg6ERd1JcjtREv9o5A6YSx2pga3ype25JNrB6Hx9Zi0ebF8KIs5WybpvPK47yDNzz+ln0EsnlVFS98FiYZ2Fud4bYX6Wp87RnMose6z7gSnu2p/dTM+nZl0iG5bJh+mHR4as5g0FwxgSnh1qD1Y=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by SA1PR12MB7344.namprd12.prod.outlook.com (2603:10b6:806:2b7::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Fri, 13 Oct
- 2023 19:41:41 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::a2bb:870f:8aaa:1ba2]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::a2bb:870f:8aaa:1ba2%7]) with mapi id 15.20.6863.046; Fri, 13 Oct 2023
- 19:41:40 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 3/3] drm/amd: Read IMU FW version from scratch register
- during hw_init
-Thread-Topic: [PATCH 3/3] drm/amd: Read IMU FW version from scratch register
- during hw_init
-Thread-Index: AQHZ/gs221TgjVn2s0eMX0WP8AaQFLBIHmf+
-Date: Fri, 13 Oct 2023 19:41:40 +0000
-Message-ID: <BL1PR12MB514422796638C36C8CE9313BF7D2A@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20231013192604.200515-1-mario.limonciello@amd.com>
- <20231013192604.200515-4-mario.limonciello@amd.com>
-In-Reply-To: <20231013192604.200515-4-mario.limonciello@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=True;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-10-13T19:41:40.047Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|SA1PR12MB7344:EE_
-x-ms-office365-filtering-correlation-id: 0f13d80f-9e79-4f31-39f0-08dbcc246c16
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SVzRGUNT++Gilibip0nHBTNXg8YbbYvrJ2WCgycznY0XnUsZFlPEtO2cDTE4r0FwgkKkOydr/6VUBRH0XhiKEr3lGFO2R5Vo5W8vocvOanw8C0wCVAaQHfk/CeILE4fWeFSx4tye0rXka2r7ODGwc2ouN0wnwMUaWF2aLcTAnaUN0yn9sXbQoZA2sZRxeZn6VgXwDAZ7H0PA2cDWqSHyfyrcjml8d+V030wp3iTcGcCF5lp3SrXXshPnh3hhKQRQlHXFt4HBAeds7vYRCEG9MLeY0rpr8v00lf8wGEh9URV3kDLZGHFNMjCz1lYjplPvm9PXR0EYhC1YXNk2qzrx3ZYKqi04hvOPjOX86ZKWLqNVh2yRHkp6vnJpJF7bDPREdbbOGZ8DgqZ9qCRmAAr2YEHmbCgXkgb/5WRJc/pkMTLAVn9dDtI5vvMvAawsUhxnrmHdJZgwavgi0vgu+7cMVTsFXbzfBac32XrgOqbU8HRn07CAEV+IQFEflSD/cymJplWBSlX7NEY/y7M94I0srbQiv62uOmYqwDAMPS1ZBP+U4mBqwhOaXbeqB8cpoxp2+nVwDEEl5qr+crMSUGR/KGm+Djo0QY7AhBWds9Uy/550AxZPCh5+7p+obPSRT8U4
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(376002)(366004)(39860400002)(396003)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(55016003)(66556008)(66476007)(26005)(64756008)(53546011)(66946007)(110136005)(316002)(76116006)(66446008)(5660300002)(41300700001)(2906002)(8676002)(52536014)(7696005)(478600001)(71200400001)(6506007)(8936002)(9686003)(38100700002)(33656002)(38070700005)(86362001)(122000001)(19627405001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?McAAwk2T7pNv9mABxRUml9OqCRKCzViISwdzdrLId70dX60tR0w9r1tPRq0U?=
- =?us-ascii?Q?E0Dy+BzvjwBjCoIFgeqEVgDUxGFfEcvHk6s20qSPxrhQaJ5gxVXgME6JqmHx?=
- =?us-ascii?Q?Vo1WHQyjpN+CBixpr69uxMr2g6uQidy3MkuZoZIYHgXryc9qgXcZKBpqFSGp?=
- =?us-ascii?Q?LbmQckTCoFovhRSdAK6bvozJONT7omacuNpgnSR/B2UmEKnYJKy6Cgq9e/Uk?=
- =?us-ascii?Q?CNhGDtRhVocf4ejBIBpUP8yFEz7pWPcVqV3UM1OZAKJJHTkBQmEAus+yyR+P?=
- =?us-ascii?Q?Aec9pkyJ53RVdBlOoUCpjymDMiI4LSEj1VaGS+FSVif7sdng67SbRCwBOUFA?=
- =?us-ascii?Q?2hXAXUV1dKl6h3WYdxMYyMoefAZWLDgxbxESV0SUtfV5hUPaHTkZtmU14xfX?=
- =?us-ascii?Q?/Gk7nrvsfcC9l8U+WUNhBgXSE+MHq7goDGsqog6Zcs2TuGW4IeO0N60iPkSo?=
- =?us-ascii?Q?Wk0ch2peVEs3s2jVC5/FwTSXMlW2cXJln5PZm/ZNxgAh5hwnfS+uv3SSmum0?=
- =?us-ascii?Q?ctLTRGaqH8jsR2Y5NNKyzUDHOt75wfD7gL/eKWs0L6BAIMMVkEi2VhnOG2IF?=
- =?us-ascii?Q?TK+bk2ube3n4lVXo94COK1kzOeHHZtKrhI4dhu4zZkOrnTS3mFdCbzrfazaD?=
- =?us-ascii?Q?0R+rie56Nq/+5Gjy6e8KB6Ou9+v8FMt9/4RlKbI8knxv5VcLILMpzvXpKVKC?=
- =?us-ascii?Q?pg9GBYEkAwUF0wGKm3KHjk59p/FN0Ok3MZXd6O8mPu0mCKkUjQxGEOi87DP8?=
- =?us-ascii?Q?xdhIe0zWQCswSRlA47xAWcN01bDt/Ot86IcurcmuE3lLpIdDA++JingDBDkj?=
- =?us-ascii?Q?CkZpmu3v3Z47DWdCPyGuu9XRX7p6AykwUYyFUzXUBlVtBxxDv8TRD7iKgaKn?=
- =?us-ascii?Q?98QuQ2HxEiSHrSdAUsZdCrQMLi6o/FWL6MfUMgyn4p1fZcnxg7VnWmnwwKQ6?=
- =?us-ascii?Q?cOA9y4z3kCrv9SKhcygEFCeFgQ5O3YJJcNT2BR6OLFYKbpq7i2tbdY2yXiyI?=
- =?us-ascii?Q?isjmFoFvepzqzVqmQgZYbYJE5HAQ8dNeiScafLDubHkMyQrig2sdQAdF5Tkt?=
- =?us-ascii?Q?SERwIBjlU63Gl+i/gdC4CVM8yM6qyKpfAfqIn3qCyeZYtBS8P1j1Mbj1v/mR?=
- =?us-ascii?Q?p/gUSfzUWxU/y7M0d+tCfIurxUkxvgP5xmsJMA73SKemRlwkhSy7AcLiAtt6?=
- =?us-ascii?Q?UTd4pD0KchilGHUOB3xbCOjA72nQSGy1zcREWApWUFMEafeP28aorYde4MzR?=
- =?us-ascii?Q?uQ+/dUTsVFt4mg9jEUjAILz+6vxkHAZBjUreR4qajvJ80Tm2nRvbJRUPLp5G?=
- =?us-ascii?Q?LryuWSsumhfSP+jm5vQ+Kzh8q326xrOHh5NKa9BVGzFy78HS7bYLKdXoA0/v?=
- =?us-ascii?Q?XwpFs0iFEIUTXEzNJGgs9XfkYlhpJNzVvZbwDU83eakq+t1mSo7BgrTJFhUI?=
- =?us-ascii?Q?MvHks0lHbolgVIw63nNgORZ2n5CKVrrhftALi9D13t3E3Xwz/V9fqnj7fdxN?=
- =?us-ascii?Q?X9LJISWcl464cN12iXg/3/gghDDskTTB7k6yF16JmGuecN3KB0+ZHuKdiW41?=
- =?us-ascii?Q?gSrlVxdqvEUF2QkCxLc=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BL1PR12MB514422796638C36C8CE9313BF7D2ABL1PR12MB5144namp_"
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com
+ [IPv6:2607:f8b0:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E610010E071;
+ Fri, 13 Oct 2023 22:48:30 +0000 (UTC)
+Received: by mail-il1-x12a.google.com with SMTP id
+ e9e14a558f8ab-3573e6dd79bso9362365ab.2; 
+ Fri, 13 Oct 2023 15:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1697237310; x=1697842110; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=1Mng0G0MZHQ5iG3ZlpwMZtpDxjZVpA+nf77+wmyN2nk=;
+ b=IZdIajVWnp0jocQGRgx9QrV2BaD7c+xlCMkiSEppqQfdipBjcmuoinFY9WJu50wl2f
+ gnKyS9BvKOpHa66oHhlNXOAaDl+p4ch7LXvy8v0I1tMjjCBwtNk16glX6kKcWtE6kXqy
+ PqjQhB1cFt6uJ2eEAz+MW22L48duNsAP5nusfCZB9Cdj/DThy9kKmPfs7g8Ol8i7pKfJ
+ M+AWw7XJVBTZNcI15jR9KxZRRu2CEVCabqDqH/rZhhOog7y/1I81HWmr85Fdn4hMTeJv
+ y0tHwAmcbu7W+S8dJM9bIZ4hdYqQs4dNM2CRPR07MSGFhnZWmdt1B9bsW8pxDcuqcKQx
+ GY3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1697237310; x=1697842110;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=1Mng0G0MZHQ5iG3ZlpwMZtpDxjZVpA+nf77+wmyN2nk=;
+ b=wNc0+KKhTrv9vXcb6cJHM1nfwIxO6IdixoJ2TM5zSIsS5iQ8HdOvWQmfIt1Ru5PbEq
+ KJVVuLU7DK9NoNkGDSj57ZEE+ee1Fe+AqcGRey6JoA1mCaZm5rdwJe+p6vqiggMGH7Gi
+ bKkW+qfNH6mwMCMw8+u9K0NZFIcQlvDlw4vRZ7YhSCkOiaG9LjSQbwGMZIhxb9mF+Cqj
+ OfCH+wj9KAzhhw1YC2sSekZhRcXL4Hd62biQ21qf1UbdeF0vZdwZHJSAPVxNZJ6+Jtep
+ D5I3YQvG8rvWk3qrf153m7SQt6khpzckctT5aVypC2Mtl1tDFL9OBtR4KUKF3N+sHdsZ
+ h1jg==
+X-Gm-Message-State: AOJu0YzUMAwNNh+sOCe7aeRztlYofH4qj5rS1e+Qc82iJ2sT+1eXSENh
+ A4xqc1pOqvL9t+LwVwWOvLg=
+X-Google-Smtp-Source: AGHT+IG+I25uvqNU5DZMw47ZwGEBEd5TljGGiNjhM3n4cZrTiK6lXr5EVFKspt/gyJ2MjEBfwcoK7w==
+X-Received: by 2002:a05:6e02:b22:b0:357:5b51:ae6c with SMTP id
+ e2-20020a056e020b2200b003575b51ae6cmr5877260ilu.6.1697237310091; 
+ Fri, 13 Oct 2023 15:48:30 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ t10-20020a92dc0a000000b003512c3e8809sm1683071iln.71.2023.10.13.15.48.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Oct 2023 15:48:29 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: linux-kernel@vger.kernel.org, jbaron@akamai.com,
+ gregkh@linuxfoundation.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH v7b 00/25] fix DRM_USE_DYNAMIC_DEBUG=y regression
+Date: Fri, 13 Oct 2023 16:47:52 -0600
+Message-ID: <20231013224818.3456409-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f13d80f-9e79-4f31-39f0-08dbcc246c16
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2023 19:41:40.7262 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 069EzH5F++t2cj5BjZ7/wZw2+gvtoCAa31A/qdhsq3J+WBQ/XchBMgL2HUz6YK+NyRuLksT+XgQyGhis4PoMnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7344
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,142 +72,140 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: lb@semihalf.com, groeck@google.com, linux-doc@vger.kernel.org,
+ jani.nikula@intel.com, daniel.vetter@ffwll.ch, linux@rasmusvillemoes.dk,
+ robdclark@gmail.com, Jim Cromie <jim.cromie@gmail.com>, mcgrof@kernel.org,
+ seanpaul@chromium.org, joe@perches.com, bleung@google.com, yanivt@google.com,
+ ville.syrjala@linux.intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BL1PR12MB514422796638C36C8CE9313BF7D2ABL1PR12MB5144namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+hi Jason, DRM-folk
 
-[AMD Official Use Only - General]
+(now with checkpatch fixes)
 
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Mario Li=
-monciello <mario.limonciello@amd.com>
-Sent: Friday, October 13, 2023 3:26 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Limonciello, Mario <Mario.Limonciello@amd.com>
-Subject: [PATCH 3/3] drm/amd: Read IMU FW version from scratch register dur=
-ing hw_init
+This patchest fixes the chicken-egg initialization problem in the 1st
+version of ddebug-class-maps, that DRM-CI uncovered.
 
-If the IMU version wasn't discovered from the header, such as when
-the firmware was directly loaded by PSP then there is no firmware
-version to show to userspace from sysfs or IOCTL.
+The root-problem was DECLARE_DYNDBG_CLASSMAP, which broke the K&R rule:
+"define once, refer many".  In patch 14 it is replaced by:
 
-The IMU F/W stores the version in the first scratch register though,
-so fetch it in these cases to let the driver export.
+ DYNDBG_CLASSMAP_DEFINE - define and export a struct ddebug_class_map
+ DYNDBG_CLASSMAP_USE - ref the exported struct
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 4 ++++
- 1 file changed, 4 insertions(+)
+test-dynamic-debug is also extended with a -submod.ko, in order to
+recapitulate the drm & drivers initialization scenario.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v11_0.c
-index f0957d060750..154b20492123 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -4373,6 +4373,10 @@ static int gfx_v11_0_hw_init(void *handle)
-         if (r)
-                 return r;
+They're on v6.6-rc5 now, and apply cleanly to drm-tip/drm-tip.
 
-+       /* get IMU version from HW if it's not set */
-+       if (!adev->gfx.imu_fw_version)
-+               adev->gfx.imu_fw_version =3D RREG32_SOC15(GC, 0, regGFX_IMU=
-_SCRATCH_0);
-+
-         return r;
- }
+Ive been running recent revs on rc3+, on my desktop and laptop.
 
---
-2.34.1
+The final blocker was a missing __align(8) on the ddebug_class_user
+record inserted by DYNDBG_CLASSMAP_USE.  This caused DRM=y (builtin
+only) to have a corrupt record for drm_kms_helper (builtin dependent).
+Curiously, a clang build did not exhibit this problem.
+
+Heres a part of dmesg, for a DRM=y kernel, booted with
+     dynamic_debug.verbose=3 drm.debug=0x10
+
+[    0.466747] dyndbg: add-module: drm 406 sites
+[    0.467569] dyndbg: classes[0]: module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.467743] dyndbg: module:drm attached 1 classes
+[    0.468557] dyndbg: builtin class: module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.468742] dyndbg:  found kp:drm.debug =0x10
+[    0.468743] dyndbg:   mapped to: module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.469742] dyndbg:   drm.debug: classbits: 0x10
+[    0.470573] dyndbg: apply bitmap: 0x10 to: 0x0 for drm
+[    0.470743] dyndbg: query 0: "class DRM_UT_ATOMIC +p" mod:drm
+[    0.471743] dyndbg: split into words: "class" "DRM_UT_ATOMIC" "+p"
+[    0.472743] dyndbg: op='+' flags=0x1 maskp=0xffffffff
+[    0.473679] dyndbg: parsed: func="" file="" module="drm" format="" lineno=0-0 class=DRM_UT_ATOMIC
+[    0.473749] dyndbg: processed 1 queries, with 0 matches, 0 errs
+[    0.474742] dyndbg: bit_4: 0 matches on class: DRM_UT_ATOMIC -> 0x10
+[    0.475742] dyndbg: applied bitmap: 0x10 to: 0x0 for drm
+[    0.476686] dyndbg: 406 debug prints in module drm
+[    0.476743] dyndbg: add-module: drm_kms_helper 93 sites
+[    0.477727] dyndbg: class_ref[0] drm_kms_helper -> drm module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.477743] dyndbg: builtin class: module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.478742] dyndbg:  found kp:drm.debug =0x10
+[    0.478743] dyndbg:   mapped to: module:drm base:0 len:10 type:DISJOINT_BITS
+[    0.479743] dyndbg:   drm.debug: classbits: 0x10
+[    0.480592] dyndbg: apply bitmap: 0x10 to: 0x0 for drm_kms_helper
+[    0.480743] dyndbg: query 0: "class DRM_UT_ATOMIC +p" mod:drm_kms_helper
+[    0.481743] dyndbg: split into words: "class" "DRM_UT_ATOMIC" "+p"
+[    0.482743] dyndbg: op='+' flags=0x1 maskp=0xffffffff
+[    0.483743] dyndbg: parsed: func="" file="" module="drm_kms_helper" format="" lineno=0-0 class=DRM_UT_ATOMIC
+[    0.484750] dyndbg: class-ref: drm_kms_helper.DRM_UT_ATOMIC  module:drm_kms_helper nd:93 nc:0 nu:1
+[    0.485809] dyndbg: processed 1 queries, with 44 matches, 0 errs
+[    0.486742] dyndbg: bit_4: 44 matches on class: DRM_UT_ATOMIC -> 0x10
+[    0.487742] dyndbg: applied bitmap: 0x10 to: 0x0 for drm_kms_helper
+[    0.488743] dyndbg: attach-client-module:  module:drm_kms_helper nd:93 nc:0 nu:1
+[    0.489742] dyndbg:  93 debug prints in module drm_kms_helper
+
+Widespread testing is appreciated.
+I have scripts if anyone wants them.
+
+I'll forward lkp-robot reports here when I get them.
+Patches also at https://github.com/jimc/linux (dd-fix-7b)
 
 
---_000_BL1PR12MB514422796638C36C8CE9313BF7D2ABL1PR12MB5144namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Jim Cromie (25):
+  test-dyndbg: fixup CLASSMAP usage error
+  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+  dyndbg: make ddebug_class_param union members same size
+  dyndbg: replace classmap list with a vector
+  dyndbg: ddebug_apply_class_bitmap - add module arg, select on it
+  dyndbg: split param_set_dyndbg_classes to module/wrapper fns
+  dyndbg: drop NUM_TYPE_ARRAY
+  dyndbg: reduce verbose/debug clutter
+  dyndbg: silence debugs with no-change updates
+  dyndbg: tighten ddebug_class_name() 1st arg type
+  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+  dyndbg: reduce verbose=3 messages in ddebug_add_module
+  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+  dyndbg-API: fix CONFIG_DRM_USE_DYNAMIC_DEBUG regression
+  dyndbg: add for_each_boxed_vector
+  dyndbg: refactor ddebug_classparam_clamp_input
+  dyndbg-API: promote DYNDBG_CLASSMAP_PARAM to API
+  dyndbg-doc: add classmap info to howto
+  dyndbg: reserve flag bit _DPRINTK_FLAGS_PREFIX_CACHED
+  dyndbg: add _DPRINTK_FLAGS_INCL_LOOKUP
+  dyndbg: refactor *dynamic_emit_prefix
+  dyndbg: change WARN_ON to WARN_ON_ONCE
+  drm: use correct ccflags-y spelling
+  drm-drivers: DRM_CLASSMAP_USE in 2nd batch of drivers, helpers
+  drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;font-=
-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[AMD Official Use Only - General]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Series is:</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Mario Limonciello &lt;mario.l=
-imonciello@amd.com&gt;<br>
-<b>Sent:</b> Friday, October 13, 2023 3:26 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Limonciello, Mario &lt;Mario.Limonciello@amd.com&gt;<br>
-<b>Subject:</b> [PATCH 3/3] drm/amd: Read IMU FW version from scratch regis=
-ter during hw_init</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">If the IMU version wasn't discovered from the head=
-er, such as when<br>
-the firmware was directly loaded by PSP then there is no firmware<br>
-version to show to userspace from sysfs or IOCTL.<br>
-<br>
-The IMU F/W stores the version in the first scratch register though,<br>
-so fetch it in these cases to let the driver export.<br>
-<br>
-Signed-off-by: Mario Limonciello &lt;mario.limonciello@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 4 ++++<br>
-&nbsp;1 file changed, 4 insertions(+)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v11_0.c<br>
-index f0957d060750..154b20492123 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
-@@ -4373,6 +4373,10 @@ static int gfx_v11_0_hw_init(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* get IMU version from HW if it's no=
-t set */<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!adev-&gt;gfx.imu_fw_version)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; adev-&gt;gfx.imu_fw_version =3D RREG32_SOC15(GC, 0, regGFX_IMU_S=
-CRATCH_0);<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;}<br>
-&nbsp;<br>
--- <br>
-2.34.1<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
+ .../admin-guide/dynamic-debug-howto.rst       |  60 ++-
+ MAINTAINERS                                   |   2 +-
+ drivers/gpu/drm/Kconfig                       |   3 +-
+ drivers/gpu/drm/Makefile                      |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
+ drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
+ drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |   2 +
+ drivers/gpu/drm/drm_print.c                   |  35 +-
+ drivers/gpu/drm/gud/gud_drv.c                 |   2 +
+ drivers/gpu/drm/i915/i915_params.c            |  12 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
+ drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
+ drivers/gpu/drm/udl/udl_main.c                |   2 +
+ drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
+ include/asm-generic/vmlinux.lds.h             |   1 +
+ include/drm/drm_print.h                       |  12 +-
+ include/linux/dynamic_debug.h                 | 121 +++--
+ kernel/module/main.c                          |   3 +
+ lib/Kconfig.debug                             |  24 +-
+ lib/Makefile                                  |   3 +
+ lib/dynamic_debug.c                           | 460 +++++++++++-------
+ lib/test_dynamic_debug.c                      | 131 ++---
+ lib/test_dynamic_debug_submod.c               |  17 +
+ 27 files changed, 586 insertions(+), 365 deletions(-)
+ create mode 100644 lib/test_dynamic_debug_submod.c
 
---_000_BL1PR12MB514422796638C36C8CE9313BF7D2ABL1PR12MB5144namp_--
+-- 
+2.41.0
+
