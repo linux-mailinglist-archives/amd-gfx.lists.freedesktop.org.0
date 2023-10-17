@@ -2,58 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0218E7CC3E8
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Oct 2023 15:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C73707CC4B3
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Oct 2023 15:22:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4902710E11C;
-	Tue, 17 Oct 2023 13:04:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F23C310E2FB;
+	Tue, 17 Oct 2023 13:22:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
- [IPv6:2001:4860:4864:20::2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0EF010E11C
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Oct 2023 13:04:26 +0000 (UTC)
-Received: by mail-oa1-x2f.google.com with SMTP id
- 586e51a60fabf-1e98e97c824so3378617fac.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Oct 2023 06:04:26 -0700 (PDT)
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com
+ [IPv6:2607:f8b0:4864:20::c2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBDF710E2FA;
+ Tue, 17 Oct 2023 13:22:16 +0000 (UTC)
+Received: by mail-oo1-xc2a.google.com with SMTP id
+ 006d021491bc7-57ddde51033so3434166eaf.1; 
+ Tue, 17 Oct 2023 06:22:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1697547865; x=1698152665; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1697548936; x=1698153736; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=KrwJDE+IqCEN+iFudADfo0tG2V0N7pnZawzIsGMcXP4=;
- b=YXceTxFXDO+Ozlwy427gVSuRdsXR9khstkfY5vk8w+01YkVQbaLMJtHHLB5fqsy2K5
- 9QSlvAZMK6QlTFl+UvQ8i5UhnEzAPjiXSZlkO3GDV7f1J0WGvk9Q8eQF2+gU9aevaBWl
- iNHMuo7lJkiWOFvQWRA8Rw0Ydk0fD+dnUTkiNfsmOjMMGsy1n/55gxB5sfOLfW4XTpnV
- 3CoqeoE7BqfgGtyL+Xx/Wnzg9ye4Nht3xhYN8/N7mapXxgAgNFLZBs+lSCXMA2mb4MfB
- w1xL6yNv+2Dm3d6lAtWusUfAA6xIuj0JrchniJyenyK3qho8C/PqpEFdnOaleBMjvC5F
- dYPg==
+ bh=Iu05MGWPD0utxhshrOX9Vp8nu3FivASq6+WhFfzoo4Y=;
+ b=jjPN/ODNjssG/ue/uFWEODBbjnDnoe+Z/LS2W4fbjPpO6dTEQ/PTYc4qsrhY5CgoWd
+ ZNl023w2+wvBs7pBaaw/ARHKRG7iCt2APTGhjU3wOjNbKFcgSHmerp37p0elcNeTdkWv
+ q5gwSU8wLPYnJrhm8rdJ6TrqkJB8SWPQ7oh55eKduIRvUc9XixaF/m5oDm8x4V2YHBkb
+ SQ9GnOI6hNstM7dRbDGtrTZZb+UWfBexfuU5OMhuo12FbuRkyrXUfZKbQkioTfw+BXHI
+ lpUeG4oPwQJDvJIL+y1oae7vk/Fdt9boOAJMXpjg4i92fOzh8RMrgasNrCzo/Y1iL+/1
+ xmbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697547865; x=1698152665;
+ d=1e100.net; s=20230601; t=1697548936; x=1698153736;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=KrwJDE+IqCEN+iFudADfo0tG2V0N7pnZawzIsGMcXP4=;
- b=a0YEMJRiGfmAaAfZvKGO96EsIr9dXwD0CVgaYYg4G2s9laMjT4QsmYSJ2sSCTR5s8a
- UTyItQDGBEnN/tI16Mxa3UO2FlXQr6gBVAKA/MlI0+sV5fOnWgBk42kvG8CEwVck4EQB
- nQArXGxpeSnraE/BqSST2pFj6K9SoYcY7lwoBBv+Ej+0vBFfoomk5Oklf3nqEjeBg9xS
- ZuMzp6L9q9E2FhoVXBF/a2a8roYB8dTaS9kJpB7CIk9XjbbywOFeZXu+NIEjLvER+6rG
- uHEdNO6L2gZgjFU1ofOIddBxT+qwx5BZebbma6RZJHCzqktjwGLVtYXbKjLykOwDs1UK
- LV6w==
-X-Gm-Message-State: AOJu0Yy2/pm7liJxzynTg9Thx0L20d7msAa9MDDktz9bFb/N4TWgCYM4
- XecRI0p1OBAUbdgxbtVTm2L5NsWIg33AaccrEb4=
-X-Google-Smtp-Source: AGHT+IHFQdvDm/jdtx9dyd1iZQARdlFjMSfRlMrJnOjSBEsLK4achgZd9QTBGVEWh40Ck+egdzE9xnS2wJz4NVq6qD4=
-X-Received: by 2002:a05:6870:134f:b0:1e9:88a0:a67f with SMTP id
- 15-20020a056870134f00b001e988a0a67fmr998667oac.23.1697547864169; Tue, 17 Oct
- 2023 06:04:24 -0700 (PDT)
+ bh=Iu05MGWPD0utxhshrOX9Vp8nu3FivASq6+WhFfzoo4Y=;
+ b=L4CAziqDcQWfInnGN3zTAfzAA5eLokpov46GtSsbh8iVbFnTHpXdwEbrX84yXARyVx
+ yPB/J/sTeA2sYeF+Ussms+MTWM38m4/ttVg+iJmqnLBVM5iSO6Q841tHU/juq+nTKVcG
+ o5KIsW91jNv88qA1N8Gn3+aMbVSAsClKoOlOC1Mhh2hrNKodFJbpJ4E5CGQQaeu+2rSN
+ oAb+CoQWZsZFMyM6jTy8hY3W3z6SPswE9MrFeFxzWvLAus8O9HWl1UuCkyuE5AHGjyF4
+ afLjSqxacWGqa27S1lSge0iYDgTYPYzvNgE6Z+8Z13kZ5Hn1nan0CmyylWn5ZzVooBmh
+ M+XQ==
+X-Gm-Message-State: AOJu0Yxje8tjMxbZJSHIIwfBdgJ/Xr1CUuYyKW+zzOSQEv8kbfz4pBT9
+ mAronxVm6GDuE291uztRyiqzMQCqQRjawsn/yzybPS2u
+X-Google-Smtp-Source: AGHT+IGWvDBEWgZr9kN5nYsb8FZqXEv/8H6URPEYn+xbBf62G50QbAAVdtKT75sp1ilhtVSO4hzMVOZoW6R6QTn2OEI=
+X-Received: by 2002:a05:6870:b487:b0:1e9:7912:3bd9 with SMTP id
+ y7-20020a056870b48700b001e979123bd9mr1074656oap.9.1697548936093; Tue, 17 Oct
+ 2023 06:22:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20231017121015.1336786-1-christian.koenig@amd.com>
-In-Reply-To: <20231017121015.1336786-1-christian.koenig@amd.com>
+References: <20231017035656.8211-1-luben.tuikov@amd.com>
+In-Reply-To: <20231017035656.8211-1-luben.tuikov@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 17 Oct 2023 09:04:13 -0400
-Message-ID: <CADnq5_PY7RRL7Xp7Ju14yqBRBdBcxWuR0+H-ysDtZCZzdUrkXg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: ignore duplicate BOs again
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Tue, 17 Oct 2023 09:22:05 -0400
+Message-ID: <CADnq5_NyhWLmSbtmeaHv7RRXhEc+C4XTPZ-U57zrpw3N3nObCg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: Unset context priority is now invalid
+To: Luben Tuikov <luben.tuikov@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,42 +67,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <Alexander.Deucher@amd.com>,
+ Direct Rendering Infrastructure - Development
+ <dri-devel@lists.freedesktop.org>,
+ AMD Graphics <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 17, 2023 at 8:22=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
+On Tue, Oct 17, 2023 at 12:52=E2=80=AFAM Luben Tuikov <luben.tuikov@amd.com=
+> wrote:
 >
-> Looks like RADV is actually hitting this.
+> A context priority value of AMD_CTX_PRIORITY_UNSET is now invalid--instea=
+d of
+> carrying it around and passing it to the Direct Rendering Manager--and it
+> becomes AMD_CTX_PRIORITY_NORMAL in amdgpu_ctx_ioctl(), the gateway to con=
+text
+> creation.
 >
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Fixes: ca6c1e210aa7 ("drm/amdgpu: use the new drm_exec object for CS v3")
-
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
+> Cc: Alex Deucher <Alexander.Deucher@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_cs.c
-> index efdb1c48f431..d93a8961274c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -65,7 +65,8 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parse=
-r *p,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ctx.c
+> index 0dc9c655c4fbdb..092962b93064fc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> @@ -47,7 +47,6 @@ const unsigned int amdgpu_ctx_num_entities[AMDGPU_HW_IP=
+_NUM] =3D {
+>  bool amdgpu_ctx_priority_is_valid(int32_t ctx_prio)
+>  {
+>         switch (ctx_prio) {
+> -       case AMDGPU_CTX_PRIORITY_UNSET:
+>         case AMDGPU_CTX_PRIORITY_VERY_LOW:
+>         case AMDGPU_CTX_PRIORITY_LOW:
+>         case AMDGPU_CTX_PRIORITY_NORMAL:
+> @@ -55,6 +54,7 @@ bool amdgpu_ctx_priority_is_valid(int32_t ctx_prio)
+>         case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+>                 return true;
+>         default:
+> +       case AMDGPU_CTX_PRIORITY_UNSET:
+>                 return false;
+
+I  don't recall if any userspace uses this, but this would break
+userspace if it does.
+
+Alex
+
 >         }
->
->         amdgpu_sync_create(&p->sync);
-> -       drm_exec_init(&p->exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
-> +       drm_exec_init(&p->exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
-> +                     DRM_EXEC_IGNORE_DUPLICATES);
->         return 0;
 >  }
 >
+> base-commit: dc9b2e683bcba017588b9aaad80f442ad004a48f
 > --
-> 2.34.1
+> 2.42.0
 >
