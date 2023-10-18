@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F0F7CE4FD
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC5C7CE4F8
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5D010E037;
-	Wed, 18 Oct 2023 17:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC8210E421;
+	Wed, 18 Oct 2023 17:42:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B0ED10E037
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:42:37 +0000 (UTC)
+ (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7437310E421
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:42:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CP58WTCH+lVcGh9uyipuPk0k5WmAq3UKIH0mLUMJKpLPGC5v7lXiIZEiXI0MKcOnZ9qVuz36kykBokqMicCm5lla4EiK68LxldOAxdOxoh4/NAuRPtMyT3XL6AcR1808599N18rmPRxNk6G8m0pgJH/Ou+VlkAHmJCYeyLCFTL+TuY+y6U39KxXBoXTKSMXgww8l4HLz9BL6tj9XRYn4oeapPRX/B8vzdfSiGjPZcJkD8+6NKzLhlJd0mWFT/Mf0LZP+VucnGhMLJPsIJAKA7XupU6y9r5F7Ks7dOOUji38vcqktGVXPWiLM2b4YDevOGKkKR160JBuUaNOSk3vjBQ==
+ b=JHRCEmgRh5PRjKekYcwD1Ijlg4NMbwMT0CxED+gIXroLtkSTu7HlXMOkPHcQgz03LY0TzIy5mBNvx1rrmHiwYdXte+azbmXQeVYhnsFhwViQP9wbL7bnzZLrWto1XMIhNlLBrZWz9kDNKd73yRDTkcZjrViVTRqL3ZjdeQJGrC1cqpxiiQbBckfVSep9GAQO3tUntvN6ri0W/3ZyfwuO1k2mK+D1oSSCuLQiu2FueWV9pu2e5bS7YtAJOLk6pr3tnMZ4wUkAf3MGmI/iM37rLswcfT52LLtd3fMosg4p3t8yqok1I8FPkc3Pw6bI2tl9yx9AsqBIsgh56t2p4fNfBg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VTxUc9ftsO9KePBFajZhryoSYZA1Dt/jhxNb62vnLV0=;
- b=T5IvvjHVcfPNNwR9lDDONg3JOHiqLeMaQcN8mXj5U8HLiTYRbddStddEGwYV4Nid94AmA5pCIGyiq1uz5hQEk5m0pU58QBoCIAIpy9ALqlb+F7MkhNsOHAUo8KHc9y2zS0jSsAR9X3sGU9eQXFCeifDzdRdBFQOLdou7d546h4XFnhtXQaA8NOBuGJiWYn+zk3Lg9zUdYi6ESTqCfR8Fe4JzCHJf7Ju9uZwU7PGmIbTsd9OaOSlj3N0S0FuU8u2TYS++8UwDnC+OEkDcjPLB0YOKXT/Pvat2bnp0Fd9cFWMUkOJTIFBhsanClI48p4BbYaAeTiHii5JWrgagQSml+A==
+ bh=z3+moArg/GnShMngoS4gHkLFIbwEqxVDM9P+jmGnbhk=;
+ b=L60g8NIFCZx5oJ6N1BK9faIDbzhDYCbbNXvoPGsRXJ1rSgs4ejSIsjVfSghP+n/5015kl0l900yk0Azlu+KbymDhZBlYs1R0XoiKms8Mf/AjpOx+VIOLEJPDZn8UGmBvHGgHqBvMCVvLtxMj1LjdCZB396xeSm/UC0Sfof4cdkOCUionBJQAk++pL25koNTZpEQDIwYHwKBlO0BS72EkmPosBG0P4DQRGuW075znY+KcxCtJKcAWjGu/ggKXlIdXfucJy09N68srm9P3mtFJd1eBuE24gdfMtcS7vZC+5qP5r6SCpeQHcckAOW8x2PFil1N9vyLJ9HgOG1cXKTy3gw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VTxUc9ftsO9KePBFajZhryoSYZA1Dt/jhxNb62vnLV0=;
- b=ULf+jLN6wysEhbDDzix7AMcEhJUSbjT5PWTujHAqfMKBIgElgC03Ej2GZ948jg2goMYmhFJXScvz+09ENpyWdSKG3HpTNMTzToW2Ds5gC1o65t4ZLIlZBmY7p5uwL1gaHCjj8peLxcEptG969q2ZT+bgBwST0/2QalcF5lGrbGU=
-Received: from BY5PR03CA0014.namprd03.prod.outlook.com (2603:10b6:a03:1e0::24)
- by PH7PR12MB7137.namprd12.prod.outlook.com (2603:10b6:510:1ed::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Wed, 18 Oct
- 2023 17:42:34 +0000
-Received: from CO1PEPF000044F2.namprd05.prod.outlook.com
- (2603:10b6:a03:1e0:cafe::52) by BY5PR03CA0014.outlook.office365.com
- (2603:10b6:a03:1e0::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24 via Frontend
- Transport; Wed, 18 Oct 2023 17:42:34 +0000
+ bh=z3+moArg/GnShMngoS4gHkLFIbwEqxVDM9P+jmGnbhk=;
+ b=0shpgllJc2LEFpd4Peip4/eh+ePnp/vQRXyjnrysulz2A0kmflw31YAyo/R32gl1qPamjh0seT2oVx3e0R/PZJuY1sdil3ZLB8+16hHkPKt84JRNR/9QNLq7KscLb7P27tJ9z/1ZE4KxEqJuMYfks+BycOgpMelz0UDcjqzcjvU=
+Received: from MW4PR04CA0209.namprd04.prod.outlook.com (2603:10b6:303:86::34)
+ by DM4PR12MB6663.namprd12.prod.outlook.com (2603:10b6:8:8f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Wed, 18 Oct
+ 2023 17:42:05 +0000
+Received: from CO1PEPF000044F3.namprd05.prod.outlook.com
+ (2603:10b6:303:86:cafe::61) by MW4PR04CA0209.outlook.office365.com
+ (2603:10b6:303:86::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23 via Frontend
+ Transport; Wed, 18 Oct 2023 17:42:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,26 +45,26 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000044F2.mail.protection.outlook.com (10.167.241.72) with Microsoft
+ CO1PEPF000044F3.mail.protection.outlook.com (10.167.241.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6907.23 via Frontend Transport; Wed, 18 Oct 2023 17:42:34 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ 15.20.6907.22 via Frontend Transport; Wed, 18 Oct 2023 17:42:03 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 12:42:29 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 12:42:02 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 12:42:01 -0500
+ 2023 10:42:02 -0700
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 18 Oct 2023 12:42:00 -0500
+ Transport; Wed, 18 Oct 2023 12:42:01 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/26] drm/amd/display: Reduce default backlight min from 5
- nits to 1 nits
-Date: Wed, 18 Oct 2023 13:41:15 -0400
-Message-ID: <20231018174133.1613439-9-Roman.Li@amd.com>
+Subject: [PATCH 09/26] drm/amd/display: add pipe resource management callbacks
+ to DML2
+Date: Wed, 18 Oct 2023 13:41:16 -0400
+Message-ID: <20231018174133.1613439-10-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231018174133.1613439-1-Roman.Li@amd.com>
 References: <20231018174133.1613439-1-Roman.Li@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F2:EE_|PH7PR12MB7137:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7e98f80-7672-43b7-7b37-08dbd0019c76
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F3:EE_|DM4PR12MB6663:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6746638e-e957-464d-f613-08dbd0018a36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: K91s8YBMAkjMGldF39gtRqt8ar++JK4skV46DQO8fgYIULw2BwucD2AKCdMBlZvK54ksKrdvOOwi9NqhWZRVJwxzVQGkkCJ6nsOaS0L+kpH0w3YwmBkdz5n1tNQnzSsGZpIFOjN6vAxNyFehQidpeoU/5Tu4mqeHQIY9cWH7KdE3kc/RZsjvi1DxDdv0ohfs1cPWqwN+zcpPq+SYNo/YIutf0BHadRSIlkxXBDnkhW17Lvx5zpI9HG22nk5u5Uh6e+3JGCBkDGo8ZV1iz8lH+6Txavk35oDavau8OeJ5sS1Eedv4hNDDQPbRbukUX16f/HgNY08zGeuyX1f2YFvAiKzmtLIKbx5eI5Ffy9xdzzctxiZcW93ndLXFTOTbTavnvB6jzs3E0K+v0br+Km2PAVCecbJzKCiQMeJtWFGnsLfzRlcDuLq4tA7BFPoKtKHVTwLDh3rSxVLKFk+A0rjGqHOib8BIIj4cq3efC4FQ9yCRidGZnD6LajBFuOmIj7nOWh8vMUdA8aP1S1l/TgdQHo78PFmTyR95KU11k/Fd7TYyxnvb/etVsH0PtCbiaXunAjW+nkXSXLtTN+++tKOrpu567cu+btwllLvJsIZqBAtbudb/7E/229OAY9LGBaFgAak6Of4BDw/6xj+KdPmA6dvVpoTMSDDD4lQ1xk157Yg71JonTKHZ+/OYIrCB8V+AAGlTZcZoYkpvQ/EBR4HS3YnvVoapYzwV1cQZG0sNAR1DLCpMoDAwrk+W978tB3R34SU/Jf8WrW9h0VrkdFFPmQ==
+X-Microsoft-Antispam-Message-Info: ECvMyyS6YaDcdLzliaBx2QwSTtPJjN5nGvdxpLxlQ+eaQCXowMB2OulUdB5wpKZ1gELlCzqaD76dmcOKidLD6LGkDhVwGGd5TZ1aw2Vf+EBGUq6Sb7yvE7mxg2Kem5P3M9htZYF9ucu3/RelYp6sYn2eW/sHkV6uhBjcqOkUU7mk5kBfCSGWp59exFZE10LV7y6ADkpbc7aoJW76Bu7nrpFJcX9tEolwGexSgJqigL/UMOzHmdqaAnFBdjLB9JkPnDGMmhQjBB4F1RTQCctihpLDoxbJh86+etSpuXUuc4HZTNjaerSq2s5DP5qFlXWb+vQ3KruGFagKAzosu34U7Ibs7djSQBOgtoZqtDisczG625waJxuKguzWNevYeDiM1ZJM9UXxObf27TqHuqDUYLxvd4Qv3++2StGxuiW/qRnhZjVlMDjs9igykcvUkHBTNeKle5S0Ydu4Th5ITGkMiAfUfsSGfmjerh4ieiKBvJzSO7duKj6aqOEsK/pwEZm772tsy2eD85oXMNrCv8Sk8lRCzs4vnvXrpw8eaU8K75R7b+fUNRUbdhCm1Xz3Lkm0GnAiLWuKXYlTtW7sfaHUC4gqSdbMylC2FY67hUzCzEwnLeJfz67GAlpV4SchCYMTuoEtS0LM5dyDNaL08dS8IJZDDMvuQ3UwF+xyAxuHEBi1X0L+2K1OVYcriX4qsqde3irEPRyPxycpgJSyPPf7MOVm2IpsG6xTbpzQLfa2RXG+g2A0WesOeVvUEZjXnP2sOnGX+XONa90Q7hMXThzRfA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(39860400002)(346002)(136003)(396003)(230922051799003)(1800799009)(186009)(64100799003)(82310400011)(451199024)(40470700004)(36840700001)(46966006)(54906003)(426003)(26005)(356005)(82740400003)(478600001)(336012)(7696005)(1076003)(81166007)(2616005)(6666004)(316002)(70586007)(6916009)(70206006)(47076005)(36860700001)(83380400001)(8936002)(4326008)(8676002)(2906002)(5660300002)(41300700001)(40460700003)(40480700001)(36756003)(2876002)(86362001)(36900700001);
+ SFS:(13230031)(4636009)(376002)(136003)(346002)(39860400002)(396003)(230922051799003)(82310400011)(186009)(64100799003)(1800799009)(451199024)(40470700004)(36840700001)(46966006)(82740400003)(336012)(426003)(26005)(356005)(47076005)(36860700001)(83380400001)(5660300002)(41300700001)(54906003)(8936002)(70206006)(70586007)(8676002)(4326008)(2876002)(6916009)(86362001)(2906002)(478600001)(6666004)(7696005)(1076003)(40480700001)(40460700003)(81166007)(316002)(2616005)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:42:34.0206 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7e98f80-7672-43b7-7b37-08dbd0019c76
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:42:03.4053 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6746638e-e957-464d-f613-08dbd0018a36
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7137
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6663
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,43 +104,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com,
- Swapnil Patel <swapnil.patel@amd.com>, Sunpeng.Li@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, jerry.zuo@amd.com,
- Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com, wayne.lin@amd.com,
+Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
+ Wenjing Liu <wenjing.liu@amd.com>, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
+ wayne.lin@amd.com, Chaitanya Dhere <chaitanya.dhere@amd.com>,
  Harry.Wentland@amd.com, agustin.gutierrez@amd.com, kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Swapnil Patel <swapnil.patel@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why & How]
-Currently set_default_brightness_aux function uses 5 nits as lower limit
-to check for valid default_backlight setting. However some newer panels
-can support even lower default settings
+[why]
+Need DML2 to support new pipe resource management APIs.
 
-Reviewed-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
+Reviewed-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Swapnil Patel <swapnil.patel@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../amd/display/dc/link/protocols/link_edp_panel_control.c    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_resource.c |  5 +++++
+ .../drm/amd/display/dc/dcn321/dcn321_resource.c   |  5 +++++
+ .../gpu/drm/amd/display/dc/dcn35/dcn35_resource.c |  5 +++++
+ .../gpu/drm/amd/display/dc/dml2/dml2_wrapper.h    | 15 +++++++++++++++
+ 4 files changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-index 938df1f0f7da..86f97ddcc595 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-@@ -283,8 +283,8 @@ bool set_default_brightness_aux(struct dc_link *link)
- 	if (link && link->dpcd_sink_ext_caps.bits.oled == 1) {
- 		if (!read_default_bl_aux(link, &default_backlight))
- 			default_backlight = 150000;
--		// if < 5 nits or > 5000, it might be wrong readback
--		if (default_backlight < 5000 || default_backlight > 5000000)
-+		// if < 1 nits or > 5000, it might be wrong readback
-+		if (default_backlight < 1000 || default_backlight > 5000000)
- 			default_backlight = 150000; //
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+index 81b0588fa80b..02d3168f1673 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+@@ -2445,6 +2445,11 @@ static bool dcn32_resource_construct(
+ 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
+ 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
+ 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
++	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
++	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
++	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
++	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
++	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
  
- 		return edp_set_backlight_level_nits(link, true,
+ 	dc->dml2_options.svp_pstate.callbacks.dc = dc;
+ 	dc->dml2_options.svp_pstate.callbacks.add_plane_to_context = &dc_add_plane_to_context;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
+index 44caf6711589..9f6186be7cd8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
+@@ -1998,6 +1998,11 @@ static bool dcn321_resource_construct(
+ 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
+ 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
+ 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
++	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
++	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
++	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
++	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
++	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
+ 
+ 	dc->dml2_options.svp_pstate.callbacks.dc = dc;
+ 	dc->dml2_options.svp_pstate.callbacks.add_plane_to_context = &dc_add_plane_to_context;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+index 4e03c9d663de..682bf93049b0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+@@ -2082,6 +2082,11 @@ static bool dcn35_resource_construct(
+ 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
+ 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
+ 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
++	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
++	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
++	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
++	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
++	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
+ 	dc->dml2_options.max_segments_per_hubp = 24;
+ 
+ 	dc->dml2_options.det_segment_size = DCN3_2_DET_SEG_SIZE;/*todo*/
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+index f3b85b0891d3..c3d5b84ee914 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+@@ -71,6 +71,21 @@ struct dml2_dc_callbacks {
+ 	bool (*build_scaling_params)(struct pipe_ctx *pipe_ctx);
+ 	bool (*can_support_mclk_switch_using_fw_based_vblank_stretch)(struct dc *dc, struct dc_state *context);
+ 	bool (*acquire_secondary_pipe_for_mpc_odm)(const struct dc *dc, struct dc_state *state, struct pipe_ctx *pri_pipe, struct pipe_ctx *sec_pipe, bool odm);
++	bool (*update_pipes_for_stream_with_slice_count)(
++			struct dc_state *new_ctx,
++			const struct dc_state *cur_ctx,
++			const struct resource_pool *pool,
++			const struct dc_stream_state *stream,
++			int new_slice_count);
++	bool (*update_pipes_for_plane_with_slice_count)(
++			struct dc_state *new_ctx,
++			const struct dc_state *cur_ctx,
++			const struct resource_pool *pool,
++			const struct dc_plane_state *plane,
++			int slice_count);
++	int (*get_odm_slice_index)(const struct pipe_ctx *opp_head);
++	int (*get_mpc_slice_index)(const struct pipe_ctx *dpp_pipe);
++	struct pipe_ctx *(*get_opp_head)(const struct pipe_ctx *pipe_ctx);
+ };
+ 
+ struct dml2_dc_svp_callbacks {
 -- 
 2.34.1
 
