@@ -2,68 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6F57CE50A
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 608A17CE51F
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:43:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9256810E440;
-	Wed, 18 Oct 2023 17:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9925110E43A;
+	Wed, 18 Oct 2023 17:43:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2060.outbound.protection.outlook.com [40.107.94.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCA5B10E43F
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:42:48 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6130210E43A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:43:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kSr243yJBOZ5+sm15gwqFUmH9gyKWmSJd6j3pBifxSiiNZ3n1HNfkp1jKFbjXtkuiu7Grt4a8Mwi3Nq8nvV9V/WZyBqYVE+hxbIGh/spNzmi08PhKDpPnG5x41DG44zwRTOLYB2ANuPatnYjCX2wQm5lbnK3E1EDr8izxU5WmcR7nL0AS9c7Wxp7UojT7r0SqPqEptefAPXqogQYlqICcTNHOUWCPDuW26zclZj+67QrjxS/F89Wj6XqxK1cCXjxhRHESjueiIPYUpAh1M6lLfac1wr0+xfqPkqtu0i0/gnsel9jQk5jQaO6GMavWxgjTF45HUJ006j0QmqpqKQarw==
+ b=NKPgmIxT8e5iDnJ0v0a7qN9ek0+txyng3eL/99J7xBEMa349DIu8Ktcr3iGhHoajKaGQEz3jLfg7ahvGwY+Sbj7wvLUGZTcRrYiSRaFtFeSZ5SrPo99Gao2cYlFvHY4YdJupTP6c5lVc1t+2UrsyAj+58VgAIzRa2HSie+hKmc0KBYJP+s0xAmvY6gvdDpvp1SO/4dlJ2DOm7TCb3c1wpP/Gf3wuaeAqFJBoMuqQg0yaFlxVbJ2aRwqMI+gVYl84kpBJwf/VYarBeXh4Bf0giHsuyvaVyN2ohxRsoQiv22xIDVriSMU5R5QpvotXnn2oco9WMk4/aHwhxqOI9mTb2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H9FHnfze21lOv6nyGGXsP6gdqDxB1K7bmal6JujAnWQ=;
- b=izoFWreW7HQ+YfFQkLa7o98g9L4Ud77jVfRl0Aefi1Xgvi2EuNkOs2K496WfV/r4KVvIyu88BVrk4oX4FTFQkEWXSbXOra0TSVTAh4rR9AvxVMLppkCUrDOFOpgoDdKV6aLiJp+utUmx3EVmZNqtB3R8Q/hDvreLMtNbQh4+QtvvtWi4dTma3WqkOSr/Su/88cCqOLNI1dhSkcusoaC5L6ivwyVijeFDH/WIq0svcunhhwvZsqIEFpRmsB9P04I+8NTCqyIsHPmABtZdq8p/T98M9fHzwe/iVGwbBUOECOmWbFQfX05TSQCZIhD5cq/8IXJ2DGtb6cnTs+BQluOp5g==
+ bh=fknAXP4uRHMuCIZwcHUsugT8pc8amwFR/gFhhLEwv38=;
+ b=lM/IKHlLoS1kynXB7bBUg454XgGKZ7++ruyZaQx4k1DkDIbQ8NtDsIA9CFbIurRL/kWKtdf27AN738FK5UKSRcYgTuM+EOgwi53qt1oTiIIS5NfKUZ7KqugfRd+QWS2JGe331ILl0PE4KpBs3kwmpguYR0QODUOFk5Ige4mayTeH+83p72VAouOe26E1vqKR00G0n+tc+N++k3k+qsH2XKp6Pud1A/IYX+zr65RQEE3JPs47nhdE9GpatVo0RDNCHmZKXFgmlIzbyfJoV4ZmtcfZhea70d0F0W1aX/WcABn94+Mvs3Ut7hoGo4WVMpkVrvtrnolvWLJX5WOfj7i7vA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H9FHnfze21lOv6nyGGXsP6gdqDxB1K7bmal6JujAnWQ=;
- b=WUpLQ9Et+VP1nYJihsh1WAt/Hc6fSmIMg+d1KfPOXSlEdB9At9P0XruSoT07b/artfxMWVhLh7vpO7MlnFZPnDNBWDegcvmexUinZye8LyNmtsM3KautPba5x44t6Vu/mEFrMv+Im+a155l2soplc04MtBos1C21Knesd5Ps3fw=
-Received: from SJ0PR13CA0233.namprd13.prod.outlook.com (2603:10b6:a03:2c1::28)
- by DS7PR12MB6261.namprd12.prod.outlook.com (2603:10b6:8:97::20) with
+ bh=fknAXP4uRHMuCIZwcHUsugT8pc8amwFR/gFhhLEwv38=;
+ b=5HYkPoM5I7MX4It1BQYgrq+fIMHL0uHOnU1RSfrFhDW/O1gGnaP6oFRRD0FXRWp5TTZrCcFEkiuZzxo7P1fwbBbp0ETL/8GZWYbTvIGKwZ16P3Ztfu9WDxOBFquGk6XxXBYBlr1Alh3km9KVLh6U7E40fO3KZii7C49GeNynRNE=
+Received: from DS7P222CA0019.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::12) by
+ BN9PR12MB5212.namprd12.prod.outlook.com (2603:10b6:408:11d::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35; Wed, 18 Oct
- 2023 17:42:46 +0000
-Received: from CO1PEPF000044F1.namprd05.prod.outlook.com
- (2603:10b6:a03:2c1:cafe::ec) by SJ0PR13CA0233.outlook.office365.com
- (2603:10b6:a03:2c1::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.7 via Frontend
- Transport; Wed, 18 Oct 2023 17:42:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.21; Wed, 18 Oct
+ 2023 17:43:25 +0000
+Received: from DS1PEPF00017095.namprd03.prod.outlook.com
+ (2603:10b6:8:2e:cafe::dc) by DS7P222CA0019.outlook.office365.com
+ (2603:10b6:8:2e::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24 via Frontend
+ Transport; Wed, 18 Oct 2023 17:43:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000044F1.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF00017095.mail.protection.outlook.com (10.167.17.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6907.23 via Frontend Transport; Wed, 18 Oct 2023 17:42:45 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6907.21 via Frontend Transport; Wed, 18 Oct 2023 17:43:24 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 12:42:44 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 12:42:44 -0500
+ 2023 12:42:55 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 18 Oct 2023 12:42:33 -0500
+ Transport; Wed, 18 Oct 2023 12:42:44 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/26] drm/amd/display: Correct enum typo
-Date: Wed, 18 Oct 2023 13:41:22 -0400
-Message-ID: <20231018174133.1613439-16-Roman.Li@amd.com>
+Subject: [PATCH 16/26] drm/amd/display: Add prefix to amdgpu crtc functions
+Date: Wed, 18 Oct 2023 13:41:23 -0400
+Message-ID: <20231018174133.1613439-17-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231018174133.1613439-1-Roman.Li@amd.com>
 References: <20231018174133.1613439-1-Roman.Li@amd.com>
@@ -72,26 +68,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F1:EE_|DS7PR12MB6261:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31813b29-ef5f-49e6-0cd5-08dbd001a35f
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017095:EE_|BN9PR12MB5212:EE_
+X-MS-Office365-Filtering-Correlation-Id: af3c950d-e554-4b5c-7355-08dbd001bab4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ttwL6XLaoVjzRZRAzSvD5IfUkWxY7yqTmYO5Rxwv0yx7GglvcSIXV2D09TTCGmgqYURvAGAoabNZx7UPTrmKov7EoN53V5uSpDVi8l6EOdTIMluHULlz0qTkueXU2+UfEtd4HeReHQG2xHqsjk1sMxvkN8H9cLFvPLHiFzV6Hftpxnz6WHCZUDvq8Ibd9h2+OOVkcpt/0M9upUlZeHxtykK693Fnnf9hi/yuHJI2CR3je6Jh7eV+47hIlffJ02jXE5cWuRZ7TWox1brgpZ8mpDl86u0J71fDnFJ/B7gnOs8BMTz/Em7QXwUA2IlkTXFLFfINLfea+eBtp/t7EMMF4gEqKWH2vvykHu15FSfplLEWM2H13w7ulUscPwBw5jJhXes8+/ulD9nstJbTDdGMKU+I8Albzn8WQsyXWQJwjM3kPrxQtEq3f8vnYsSR8rZvzf7I+DDbfFnVP5jSIQLFjsNVcxMD6SgnCZur09qFf28yCLLWKT0xvTwHi0wdBST9BiDLAo1XgZspPZ7T4c9M8hb5MP4pzPnrAKE3tddMwDd6z4+76IFLUdbwIW2FKj3DVOJiY/0nZZDpzVtGSNj7Ob3z4CCqA2BPpMa81qAflk+4q9FXEtoqfJWxtDXTbZ7KWdqB0gFb11qxPPWHcQQwmK3Qw5oXyYadQhaQ0oK8pK2r8IPf+nKyt/V7JOla0VUXMsPEmQWfjVDcOMAM5BPNVPLVU1151XRrOtNo0oSjlLvExeiKadr+gcXE72H7KbncDxSCXk8/6rbpQ4LDTDUMaw==
+X-Microsoft-Antispam-Message-Info: 6YW1I+MGEWOrulAJFJkkuj/Lvio2GTEAS7sQqCgFx0P9kBvp8Uyo4r93f3QgATj2MvZGnqxvJTnDQMBbLHRfd4nPjVL31JYHmifcjbK5IFpIHa60KceSIWWMknoSp86TtRvVdBOrodP/X/rTtAOdy2URGJX4ySK8RCmrGCJP9KUIjD+L7tM06pkEDsVj88qFIYxPMFgcgv+YjuBuWUGztuhRwPHGti5OwyynTmKXWtta8Qe07OqlJSigpb6t7E8prhn2E07+rZwsxntqa8y9gBFdiN3vVzk9JmZqWcAHEF6lJHHghQQia6EXKc3I8SIVzGwsswHkIAh9frHoRrxfMLiEUuZ2U5Xe9ITZMKUrW2VElyelO+/RQEjr7pNdKY+fXkjiRxDZJa2gSt6SjWyoVwUSlqu7liaeOJMhXZQKMEat8IkFXpze5m564nj9TTJDPyrVs3g3JmVXVfSsuBCdZNtWJQ75w42TbBguyecLE9Ss4YcSrmy33Bk0BkoB3dmwY1SV2LKU+6DJuNHuK8Ou3Sknk+HvhXSU4HwvFWEBjXZ0fDBI1cB32VmvaQPEkTTdvlNHqbtWGfj9tpxbrvxwpmdSp9osJRQ8khpLZ30avBHu1Cw4F2429ZAPuqmQsoo90OOIuKDTh6mcFHGP9VtXxQiXqCUzhZugOJBMfLNopGeiXhfKKsggnLzdEJAKSvQrbXxEY0f6U2mlVO6qxvGNbDhLmeNhQWyr0eHxqUCAJfoHTNPvSSKou1r2aDH9CUp+affhaoS2D7B712ATIN7OBA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(376002)(136003)(39860400002)(346002)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(82310400011)(36840700001)(40470700004)(46966006)(1076003)(478600001)(8676002)(8936002)(4326008)(70206006)(70586007)(6916009)(54906003)(316002)(41300700001)(40480700001)(7696005)(47076005)(356005)(81166007)(86362001)(82740400003)(36860700001)(336012)(36756003)(2876002)(6666004)(83380400001)(26005)(40460700003)(2906002)(5660300002)(426003)(2616005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(376002)(136003)(39860400002)(396003)(346002)(230922051799003)(64100799003)(186009)(82310400011)(1800799009)(451199024)(46966006)(36840700001)(40470700004)(36756003)(40480700001)(40460700003)(316002)(54906003)(70586007)(6916009)(70206006)(1076003)(86362001)(81166007)(356005)(36860700001)(83380400001)(336012)(7696005)(6666004)(26005)(2616005)(426003)(82740400003)(8936002)(478600001)(2876002)(4326008)(5660300002)(47076005)(2906002)(8676002)(41300700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:42:45.5486 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31813b29-ef5f-49e6-0cd5-08dbd001a35f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:43:24.8052 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: af3c950d-e554-4b5c-7355-08dbd001bab4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F1.namprd05.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017095.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6261
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5212
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,44 +109,179 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 
-This commit just replaces dc_interrupt_po*r*larity with its correct
-name, which is dc_interrupt_polarity.
+The ftrace debug feature allows filtering functions based on a prefix,
+which can be helpful in some complex debug scenarios. The driver can
+benefit more from this feature if the function name follows some
+patterns; for this reason, this commit adds the prefix amdgpu_dm_crtc_
+to all the functions that do not have it in the amdgpu_dm_crtc.c file.
 
 Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/irq_types.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    | 48 +++++++++----------
+ 1 file changed, 24 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/irq_types.h b/drivers/gpu/drm/amd/display/dc/irq_types.h
-index 530c2578db40..93354bff456a 100644
---- a/drivers/gpu/drm/amd/display/dc/irq_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/irq_types.h
-@@ -178,7 +178,7 @@ enum dc_interrupt_context {
- 	INTERRUPT_CONTEXT_NUMBER
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+index 440fc0869a34..611849e3bf91 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+@@ -95,7 +95,7 @@ bool amdgpu_dm_crtc_vrr_active(struct dm_crtc_state *dm_state)
+ 	       dm_state->freesync_config.state == VRR_STATE_ACTIVE_FIXED;
+ }
+ 
+-static void vblank_control_worker(struct work_struct *work)
++static void amdgpu_dm_crtc_vblank_control_worker(struct work_struct *work)
+ {
+ 	struct vblank_control_work *vblank_work =
+ 		container_of(work, struct vblank_control_work, work);
+@@ -144,7 +144,7 @@ static void vblank_control_worker(struct work_struct *work)
+ 	kfree(vblank_work);
+ }
+ 
+-static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
++static inline int amdgpu_dm_crtc_set_vblank(struct drm_crtc *crtc, bool enable)
+ {
+ 	struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
+ 	struct amdgpu_device *adev = drm_to_adev(crtc->dev);
+@@ -184,7 +184,7 @@ static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
+ 		if (!work)
+ 			return -ENOMEM;
+ 
+-		INIT_WORK(&work->work, vblank_control_worker);
++		INIT_WORK(&work->work, amdgpu_dm_crtc_vblank_control_worker);
+ 		work->dm = dm;
+ 		work->acrtc = acrtc;
+ 		work->enable = enable;
+@@ -202,15 +202,15 @@ static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
+ 
+ int amdgpu_dm_crtc_enable_vblank(struct drm_crtc *crtc)
+ {
+-	return dm_set_vblank(crtc, true);
++	return amdgpu_dm_crtc_set_vblank(crtc, true);
+ }
+ 
+ void amdgpu_dm_crtc_disable_vblank(struct drm_crtc *crtc)
+ {
+-	dm_set_vblank(crtc, false);
++	amdgpu_dm_crtc_set_vblank(crtc, false);
+ }
+ 
+-static void dm_crtc_destroy_state(struct drm_crtc *crtc,
++static void amdgpu_dm_crtc_destroy_state(struct drm_crtc *crtc,
+ 				  struct drm_crtc_state *state)
+ {
+ 	struct dm_crtc_state *cur = to_dm_crtc_state(state);
+@@ -226,7 +226,7 @@ static void dm_crtc_destroy_state(struct drm_crtc *crtc,
+ 	kfree(state);
+ }
+ 
+-static struct drm_crtc_state *dm_crtc_duplicate_state(struct drm_crtc *crtc)
++static struct drm_crtc_state *amdgpu_dm_crtc_duplicate_state(struct drm_crtc *crtc)
+ {
+ 	struct dm_crtc_state *state, *cur;
+ 
+@@ -266,12 +266,12 @@ static void amdgpu_dm_crtc_destroy(struct drm_crtc *crtc)
+ 	kfree(crtc);
+ }
+ 
+-static void dm_crtc_reset_state(struct drm_crtc *crtc)
++static void amdgpu_dm_crtc_reset_state(struct drm_crtc *crtc)
+ {
+ 	struct dm_crtc_state *state;
+ 
+ 	if (crtc->state)
+-		dm_crtc_destroy_state(crtc, crtc->state);
++		amdgpu_dm_crtc_destroy_state(crtc, crtc->state);
+ 
+ 	state = kzalloc(sizeof(*state), GFP_KERNEL);
+ 	if (WARN_ON(!state))
+@@ -291,12 +291,12 @@ static int amdgpu_dm_crtc_late_register(struct drm_crtc *crtc)
+ 
+ /* Implemented only the options currently available for the driver */
+ static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
+-	.reset = dm_crtc_reset_state,
++	.reset = amdgpu_dm_crtc_reset_state,
+ 	.destroy = amdgpu_dm_crtc_destroy,
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
+-	.atomic_duplicate_state = dm_crtc_duplicate_state,
+-	.atomic_destroy_state = dm_crtc_destroy_state,
++	.atomic_duplicate_state = amdgpu_dm_crtc_duplicate_state,
++	.atomic_destroy_state = amdgpu_dm_crtc_destroy_state,
+ 	.set_crc_source = amdgpu_dm_crtc_set_crc_source,
+ 	.verify_crc_source = amdgpu_dm_crtc_verify_crc_source,
+ 	.get_crc_sources = amdgpu_dm_crtc_get_crc_sources,
+@@ -309,11 +309,11 @@ static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
+ #endif
  };
  
--enum dc_interrupt_porlarity {
-+enum dc_interrupt_polarity {
- 	INTERRUPT_POLARITY_DEFAULT = 0,
- 	INTERRUPT_POLARITY_LOW = INTERRUPT_POLARITY_DEFAULT,
- 	INTERRUPT_POLARITY_HIGH,
-@@ -199,12 +199,12 @@ struct dc_interrupt_params {
- 	/* The polarity *change* which will trigger an interrupt.
- 	 * If 'requested_polarity == INTERRUPT_POLARITY_BOTH', then
- 	 * 'current_polarity' must be initialised. */
--	enum dc_interrupt_porlarity requested_polarity;
-+	enum dc_interrupt_polarity requested_polarity;
- 	/* If 'requested_polarity == INTERRUPT_POLARITY_BOTH',
- 	 * 'current_polarity' should contain the current state, which means
- 	 * the interrupt will be triggered when state changes from what is,
- 	 * in 'current_polarity'. */
--	enum dc_interrupt_porlarity current_polarity;
-+	enum dc_interrupt_polarity current_polarity;
- 	enum dc_irq_source irq_source;
- 	enum dc_interrupt_context int_context;
+-static void dm_crtc_helper_disable(struct drm_crtc *crtc)
++static void amdgpu_dm_crtc_helper_disable(struct drm_crtc *crtc)
+ {
+ }
+ 
+-static int count_crtc_active_planes(struct drm_crtc_state *new_crtc_state)
++static int amdgpu_dm_crtc_count_crtc_active_planes(struct drm_crtc_state *new_crtc_state)
+ {
+ 	struct drm_atomic_state *state = new_crtc_state->state;
+ 	struct drm_plane *plane;
+@@ -345,8 +345,8 @@ static int count_crtc_active_planes(struct drm_crtc_state *new_crtc_state)
+ 	return num_active;
+ }
+ 
+-static void dm_update_crtc_active_planes(struct drm_crtc *crtc,
+-					 struct drm_crtc_state *new_crtc_state)
++static void amdgpu_dm_crtc_update_crtc_active_planes(struct drm_crtc *crtc,
++						     struct drm_crtc_state *new_crtc_state)
+ {
+ 	struct dm_crtc_state *dm_new_crtc_state =
+ 		to_dm_crtc_state(new_crtc_state);
+@@ -357,18 +357,18 @@ static void dm_update_crtc_active_planes(struct drm_crtc *crtc,
+ 		return;
+ 
+ 	dm_new_crtc_state->active_planes =
+-		count_crtc_active_planes(new_crtc_state);
++		amdgpu_dm_crtc_count_crtc_active_planes(new_crtc_state);
+ }
+ 
+-static bool dm_crtc_helper_mode_fixup(struct drm_crtc *crtc,
++static bool amdgpu_dm_crtc_helper_mode_fixup(struct drm_crtc *crtc,
+ 				      const struct drm_display_mode *mode,
+ 				      struct drm_display_mode *adjusted_mode)
+ {
+ 	return true;
+ }
+ 
+-static int dm_crtc_helper_atomic_check(struct drm_crtc *crtc,
+-				      struct drm_atomic_state *state)
++static int amdgpu_dm_crtc_helper_atomic_check(struct drm_crtc *crtc,
++					      struct drm_atomic_state *state)
+ {
+ 	struct drm_crtc_state *crtc_state = drm_atomic_get_new_crtc_state(state,
+ 										crtc);
+@@ -379,7 +379,7 @@ static int dm_crtc_helper_atomic_check(struct drm_crtc *crtc,
+ 
+ 	trace_amdgpu_dm_crtc_atomic_check(crtc_state);
+ 
+-	dm_update_crtc_active_planes(crtc, crtc_state);
++	amdgpu_dm_crtc_update_crtc_active_planes(crtc, crtc_state);
+ 
+ 	if (WARN_ON(unlikely(!dm_crtc_state->stream &&
+ 			amdgpu_dm_crtc_modeset_required(crtc_state, NULL, dm_crtc_state->stream)))) {
+@@ -410,9 +410,9 @@ static int dm_crtc_helper_atomic_check(struct drm_crtc *crtc,
+ }
+ 
+ static const struct drm_crtc_helper_funcs amdgpu_dm_crtc_helper_funcs = {
+-	.disable = dm_crtc_helper_disable,
+-	.atomic_check = dm_crtc_helper_atomic_check,
+-	.mode_fixup = dm_crtc_helper_mode_fixup,
++	.disable = amdgpu_dm_crtc_helper_disable,
++	.atomic_check = amdgpu_dm_crtc_helper_atomic_check,
++	.mode_fixup = amdgpu_dm_crtc_helper_mode_fixup,
+ 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
  };
+ 
 -- 
 2.34.1
 
