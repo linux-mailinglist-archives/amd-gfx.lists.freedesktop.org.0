@@ -2,69 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC5C7CE4F8
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 909337CE4FF
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 19:42:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC8210E421;
-	Wed, 18 Oct 2023 17:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F7B10E426;
+	Wed, 18 Oct 2023 17:42:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7437310E421
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:42:08 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on20631.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E45D210E41F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 17:42:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JHRCEmgRh5PRjKekYcwD1Ijlg4NMbwMT0CxED+gIXroLtkSTu7HlXMOkPHcQgz03LY0TzIy5mBNvx1rrmHiwYdXte+azbmXQeVYhnsFhwViQP9wbL7bnzZLrWto1XMIhNlLBrZWz9kDNKd73yRDTkcZjrViVTRqL3ZjdeQJGrC1cqpxiiQbBckfVSep9GAQO3tUntvN6ri0W/3ZyfwuO1k2mK+D1oSSCuLQiu2FueWV9pu2e5bS7YtAJOLk6pr3tnMZ4wUkAf3MGmI/iM37rLswcfT52LLtd3fMosg4p3t8yqok1I8FPkc3Pw6bI2tl9yx9AsqBIsgh56t2p4fNfBg==
+ b=MXt4JV06pRH8YLkCyzPEZF0LOLudqb6B2vg8IOagr1tzO4QShp9dPJhRM4Rq7Qqf91tgvxBy53dfYeaSuyKOqymdm4DJICETKu6Q8pCF3eYechLsDBXyQWBNTdjymumG9hF0oGNGOnCqdmNDVSmHE0+rbkKsCTIEMnsiQsbXLQTQe+njMu2r4/y27vE78KBCaj4SI30vaaQ0XxXhe6MkC5yxW5o/ENUOn+vLlr2hnJQujrkSbo+AE7Z8fTHPoxZe1bfvmNOMtep+obq56jH6EGEpSxlZ2K/2l/A3YhlUMxXgUZcdMrK84naIboqQt2iwoXM0RPwZscmmFPqBhK+LOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z3+moArg/GnShMngoS4gHkLFIbwEqxVDM9P+jmGnbhk=;
- b=L60g8NIFCZx5oJ6N1BK9faIDbzhDYCbbNXvoPGsRXJ1rSgs4ejSIsjVfSghP+n/5015kl0l900yk0Azlu+KbymDhZBlYs1R0XoiKms8Mf/AjpOx+VIOLEJPDZn8UGmBvHGgHqBvMCVvLtxMj1LjdCZB396xeSm/UC0Sfof4cdkOCUionBJQAk++pL25koNTZpEQDIwYHwKBlO0BS72EkmPosBG0P4DQRGuW075znY+KcxCtJKcAWjGu/ggKXlIdXfucJy09N68srm9P3mtFJd1eBuE24gdfMtcS7vZC+5qP5r6SCpeQHcckAOW8x2PFil1N9vyLJ9HgOG1cXKTy3gw==
+ bh=2HTMvKrcZt1DdmSHiivT2Em7V020NduJKXnQBH6UJus=;
+ b=Ux2Ftw2VOHNWWc4Vat+xLRSESJf2zgSy+nZEat/m9dY1uOiAg8L0TnZcYHvi9Ym2K6HCD3UgqevoW55J6X7axwLJVa2rGjP/CONb7lcgrxr8Fcx29c6Oc0AkycXH65giPg6rxmSu9y7xLLBIX1QAtS1uccEuBNjchwyzuGlD4WGRPhq3HPME5kTrBpLjfuhiUNxo/5HHPs5DqzeeL53tg37rEj9MboZ+/4fkF7uGJzQD8rGB1iC8nm8SU/gSeqmDAMEqqDSiMJPrQTNCYupFuojq5rAdbnekZT/znCHUKSCwfJM8o7GW4LXh/PWA+3NeBu8xtQHAgrqLc+ADJ4R8CQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z3+moArg/GnShMngoS4gHkLFIbwEqxVDM9P+jmGnbhk=;
- b=0shpgllJc2LEFpd4Peip4/eh+ePnp/vQRXyjnrysulz2A0kmflw31YAyo/R32gl1qPamjh0seT2oVx3e0R/PZJuY1sdil3ZLB8+16hHkPKt84JRNR/9QNLq7KscLb7P27tJ9z/1ZE4KxEqJuMYfks+BycOgpMelz0UDcjqzcjvU=
-Received: from MW4PR04CA0209.namprd04.prod.outlook.com (2603:10b6:303:86::34)
- by DM4PR12MB6663.namprd12.prod.outlook.com (2603:10b6:8:8f::13) with
+ bh=2HTMvKrcZt1DdmSHiivT2Em7V020NduJKXnQBH6UJus=;
+ b=TQtA1qAgHtKR5AXGr3ZYJnWibGlfS64fid+2vriXt1aAcdX89MNszk8KDtTqYmBNHVU12fMPVjWP1gW6S9Icg1efa2VjbC7TiVUWQbwCTbd4MHLiaY2ikIngOCpBAi4mqNNhhzcEwX89bd1+dF8SRNCEya7GKVwUZ2eVh4mH8sE=
+Received: from DM6PR02CA0101.namprd02.prod.outlook.com (2603:10b6:5:1f4::42)
+ by SA1PR12MB7295.namprd12.prod.outlook.com (2603:10b6:806:2b6::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Wed, 18 Oct
- 2023 17:42:05 +0000
-Received: from CO1PEPF000044F3.namprd05.prod.outlook.com
- (2603:10b6:303:86:cafe::61) by MW4PR04CA0209.outlook.office365.com
- (2603:10b6:303:86::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23 via Frontend
- Transport; Wed, 18 Oct 2023 17:42:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Wed, 18 Oct
+ 2023 17:42:36 +0000
+Received: from DS1PEPF00017093.namprd03.prod.outlook.com
+ (2603:10b6:5:1f4:cafe::ff) by DM6PR02CA0101.outlook.office365.com
+ (2603:10b6:5:1f4::42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36 via Frontend
+ Transport; Wed, 18 Oct 2023 17:42:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000044F3.mail.protection.outlook.com (10.167.241.73) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF00017093.mail.protection.outlook.com (10.167.17.136) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6907.22 via Frontend Transport; Wed, 18 Oct 2023 17:42:03 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6907.21 via Frontend Transport; Wed, 18 Oct 2023 17:42:35 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 12:42:02 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 12:42:30 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
- 2023 10:42:02 -0700
+ 2023 12:42:03 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Wed, 18 Oct 2023 12:42:01 -0500
+ Transport; Wed, 18 Oct 2023 12:42:02 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/26] drm/amd/display: add pipe resource management callbacks
- to DML2
-Date: Wed, 18 Oct 2023 13:41:16 -0400
-Message-ID: <20231018174133.1613439-10-Roman.Li@amd.com>
+Subject: [PATCH 10/26] drm/amd/display: implement map dc pipe with callback in
+ DML2
+Date: Wed, 18 Oct 2023 13:41:17 -0400
+Message-ID: <20231018174133.1613439-11-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231018174133.1613439-1-Roman.Li@amd.com>
 References: <20231018174133.1613439-1-Roman.Li@amd.com>
@@ -73,26 +74,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F3:EE_|DM4PR12MB6663:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6746638e-e957-464d-f613-08dbd0018a36
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017093:EE_|SA1PR12MB7295:EE_
+X-MS-Office365-Filtering-Correlation-Id: 850de3fd-6647-495c-e118-08dbd0019d6a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ECvMyyS6YaDcdLzliaBx2QwSTtPJjN5nGvdxpLxlQ+eaQCXowMB2OulUdB5wpKZ1gELlCzqaD76dmcOKidLD6LGkDhVwGGd5TZ1aw2Vf+EBGUq6Sb7yvE7mxg2Kem5P3M9htZYF9ucu3/RelYp6sYn2eW/sHkV6uhBjcqOkUU7mk5kBfCSGWp59exFZE10LV7y6ADkpbc7aoJW76Bu7nrpFJcX9tEolwGexSgJqigL/UMOzHmdqaAnFBdjLB9JkPnDGMmhQjBB4F1RTQCctihpLDoxbJh86+etSpuXUuc4HZTNjaerSq2s5DP5qFlXWb+vQ3KruGFagKAzosu34U7Ibs7djSQBOgtoZqtDisczG625waJxuKguzWNevYeDiM1ZJM9UXxObf27TqHuqDUYLxvd4Qv3++2StGxuiW/qRnhZjVlMDjs9igykcvUkHBTNeKle5S0Ydu4Th5ITGkMiAfUfsSGfmjerh4ieiKBvJzSO7duKj6aqOEsK/pwEZm772tsy2eD85oXMNrCv8Sk8lRCzs4vnvXrpw8eaU8K75R7b+fUNRUbdhCm1Xz3Lkm0GnAiLWuKXYlTtW7sfaHUC4gqSdbMylC2FY67hUzCzEwnLeJfz67GAlpV4SchCYMTuoEtS0LM5dyDNaL08dS8IJZDDMvuQ3UwF+xyAxuHEBi1X0L+2K1OVYcriX4qsqde3irEPRyPxycpgJSyPPf7MOVm2IpsG6xTbpzQLfa2RXG+g2A0WesOeVvUEZjXnP2sOnGX+XONa90Q7hMXThzRfA==
+X-Microsoft-Antispam-Message-Info: hXg09ZFmxdIIJ2+al9kudZ+iedpIBdV1W7t7Ul2aE88g1GoAV0MMyo+LYgwVPGKMH+fc3t1htyP4+SNJhrsy1is88u7tKNjpxS7ITGmX7AVh3kBJNTOMFSBjHezxDc2FCWpUAMV2fRWcL4JyQMbtJBX8YhPzxziWqfr6GeD8uWISWx3zeaFzgR5cYEaPrgOwqUapx4SDqgFVFjyyRSxG4HWl1ooJ9LSyllU6lZqqVqQNex1u43LNCYEhwOC0JTwtr9yrcJ0tHwcEYELVVm7Q8QsUgN9tiFtNJm1Z3zqVInDgTTotvcA9DWSO1PKp687uxaZDfToQm2rQYkGqJ+1hG2NKL4syMZw19gRMyQ2IclhTM059CDRKS9qibNKdpzd9uu5wn+tZq+XIX+b2NMehl0DWSuyf18wEgdPiT6T+xoJiUIjoStBMB8+itfSLanxjsQt9SrtVDRXe1Yn19j1/cy7TYzk2al1pY5L95yYTNtpH999oGKqQp6B9j7j2Xe2rSVCLohm6RbR+bWSnkEmR3I+eWqffob5aX/z+n40oNSLMO8oe2oLfpbHDWENibdsCHynDKFfU9QIz6P5BfMblCTzQM2t4qRxPok8TrXk/ekV6sQLOO8U2hzpJLQWG6PWENUpF3g94TLudV9hv0uFvkaUHY+41r9KEeSeCJ4Vn/ZIge0Iw50/GK+KD7qk4aS4dHpDa9AV3QHCUIQM+LOsqIfrCspGtaPsb/t1WAatEWIJei2xqT42qQnlMWK9lnSYDmeT844ZDkZf28xiZPP4DIyLthcFLOXlQBHbcxGXovOBsvEBsx6ki8p2Wbz11T+xw
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(136003)(346002)(39860400002)(396003)(230922051799003)(82310400011)(186009)(64100799003)(1800799009)(451199024)(40470700004)(36840700001)(46966006)(82740400003)(336012)(426003)(26005)(356005)(47076005)(36860700001)(83380400001)(5660300002)(41300700001)(54906003)(8936002)(70206006)(70586007)(8676002)(4326008)(2876002)(6916009)(86362001)(2906002)(478600001)(6666004)(7696005)(1076003)(40480700001)(40460700003)(81166007)(316002)(2616005)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(396003)(376002)(136003)(230922051799003)(82310400011)(1800799009)(186009)(64100799003)(451199024)(36840700001)(40470700004)(46966006)(54906003)(6916009)(36860700001)(70586007)(70206006)(6666004)(478600001)(7696005)(426003)(356005)(81166007)(336012)(83380400001)(2616005)(316002)(2906002)(41300700001)(8936002)(8676002)(4326008)(2876002)(36756003)(5660300002)(86362001)(82740400003)(47076005)(26005)(1076003)(40480700001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:42:03.4053 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6746638e-e957-464d-f613-08dbd0018a36
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 17:42:35.6847 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 850de3fd-6647-495c-e118-08dbd0019d6a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F3.namprd05.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017093.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6663
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7295
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,92 +116,203 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [why]
-Need DML2 to support new pipe resource management APIs.
+Unify pipe resource management logic in dc resource layer.
 
 Reviewed-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn32/dcn32_resource.c |  5 +++++
- .../drm/amd/display/dc/dcn321/dcn321_resource.c   |  5 +++++
- .../gpu/drm/amd/display/dc/dcn35/dcn35_resource.c |  5 +++++
- .../gpu/drm/amd/display/dc/dml2/dml2_wrapper.h    | 15 +++++++++++++++
- 4 files changed, 30 insertions(+)
+ .../drm/amd/display/dc/dcn32/dcn32_resource.c |   1 +
+ .../display/dc/dml2/dml2_dc_resource_mgmt.c   | 144 ++++++++++++++++++
+ .../drm/amd/display/dc/dml2/dml2_wrapper.h    |   1 +
+ 3 files changed, 146 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 81b0588fa80b..02d3168f1673 100644
+index 02d3168f1673..0e1d395a9340 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -2445,6 +2445,11 @@ static bool dcn32_resource_construct(
- 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
- 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
- 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
-+	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
-+	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
-+	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
-+	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
-+	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
+@@ -2481,6 +2481,7 @@ static bool dcn32_resource_construct(
  
- 	dc->dml2_options.svp_pstate.callbacks.dc = dc;
- 	dc->dml2_options.svp_pstate.callbacks.add_plane_to_context = &dc_add_plane_to_context;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-index 44caf6711589..9f6186be7cd8 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-@@ -1998,6 +1998,11 @@ static bool dcn321_resource_construct(
- 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
- 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
- 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
-+	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
-+	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
-+	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
-+	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
-+	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
+ 	dc->dml2_options.max_segments_per_hubp = 18;
+ 	dc->dml2_options.det_segment_size = DCN3_2_DET_SEG_SIZE;
++	dc->dml2_options.map_dc_pipes_with_callbacks = true;
  
- 	dc->dml2_options.svp_pstate.callbacks.dc = dc;
- 	dc->dml2_options.svp_pstate.callbacks.add_plane_to_context = &dc_add_plane_to_context;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-index 4e03c9d663de..682bf93049b0 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-@@ -2082,6 +2082,11 @@ static bool dcn35_resource_construct(
- 	dc->dml2_options.callbacks.build_scaling_params = &resource_build_scaling_params;
- 	dc->dml2_options.callbacks.can_support_mclk_switch_using_fw_based_vblank_stretch = &dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch;
- 	dc->dml2_options.callbacks.acquire_secondary_pipe_for_mpc_odm = &dc_resource_acquire_secondary_pipe_for_mpc_odm_legacy;
-+	dc->dml2_options.callbacks.update_pipes_for_stream_with_slice_count = &resource_update_pipes_for_stream_with_slice_count;
-+	dc->dml2_options.callbacks.update_pipes_for_plane_with_slice_count = &resource_update_pipes_for_plane_with_slice_count;
-+	dc->dml2_options.callbacks.get_mpc_slice_index = &resource_get_mpc_slice_index;
-+	dc->dml2_options.callbacks.get_odm_slice_index = &resource_get_odm_slice_index;
-+	dc->dml2_options.callbacks.get_opp_head = &resource_get_opp_head;
- 	dc->dml2_options.max_segments_per_hubp = 24;
+ 	if (ASICREV_IS_GC_11_0_3(dc->ctx->asic_id.hw_internal_rev) && (dc->config.sdpif_request_limit_words_per_umc == 0))
+ 		dc->config.sdpif_request_limit_words_per_umc = 16;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+index 36baf35bb170..71fce58da44d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+@@ -756,6 +756,146 @@ static void map_pipes_for_plane(struct dml2_context *ctx, struct dc_state *state
+ 	free_unused_pipes_for_plane(ctx, state, plane, &scratch->pipe_pool, stream->stream_id);
+ }
  
- 	dc->dml2_options.det_segment_size = DCN3_2_DET_SEG_SIZE;/*todo*/
++static unsigned int get_mpc_factor(struct dml2_context *ctx,
++		const struct dc_state *state,
++		const struct dml_display_cfg_st *disp_cfg,
++		struct dml2_dml_to_dc_pipe_mapping *mapping,
++		const struct dc_stream_status *status, unsigned int stream_id,
++		int plane_idx)
++{
++	unsigned int plane_id;
++	unsigned int cfg_idx;
++
++	get_plane_id(state, status->plane_states[plane_idx], stream_id, &plane_id);
++	cfg_idx = find_disp_cfg_idx_by_plane_id(mapping, plane_id);
++	if (ctx->architecture == dml2_architecture_20)
++		return (unsigned int)disp_cfg->hw.DPPPerSurface[cfg_idx];
++	ASSERT(false);
++	return 1;
++}
++
++static unsigned int get_odm_factor(
++		const struct dml2_context *ctx,
++		const struct dml_display_cfg_st *disp_cfg,
++		struct dml2_dml_to_dc_pipe_mapping *mapping,
++		const struct dc_stream_state *stream)
++{
++	unsigned int cfg_idx = find_disp_cfg_idx_by_stream_id(
++			mapping, stream->stream_id);
++
++	if (ctx->architecture == dml2_architecture_20)
++		switch (disp_cfg->hw.ODMMode[cfg_idx]) {
++		case dml_odm_mode_bypass:
++			return 1;
++		case dml_odm_mode_combine_2to1:
++			return 2;
++		case dml_odm_mode_combine_4to1:
++			return 4;
++		}
++	ASSERT(false);
++	return 1;
++}
++
++static void populate_mpc_factors_for_stream(
++		struct dml2_context *ctx,
++		const struct dml_display_cfg_st *disp_cfg,
++		struct dml2_dml_to_dc_pipe_mapping *mapping,
++		const struct dc_state *state,
++		unsigned int stream_idx,
++		unsigned int odm_factor,
++		unsigned int mpc_factors[MAX_PIPES])
++{
++	const struct dc_stream_status *status = &state->stream_status[stream_idx];
++	unsigned int stream_id = state->streams[stream_idx]->stream_id;
++	int i;
++
++	for (i = 0; i < status->plane_count; i++)
++		if (odm_factor == 1)
++			mpc_factors[i] = get_mpc_factor(
++					ctx, state, disp_cfg, mapping, status,
++					stream_id, i);
++		else
++			mpc_factors[i] = 1;
++}
++
++static void populate_odm_factors(const struct dml2_context *ctx,
++		const struct dml_display_cfg_st *disp_cfg,
++		struct dml2_dml_to_dc_pipe_mapping *mapping,
++		const struct dc_state *state,
++		unsigned int odm_factors[MAX_PIPES])
++{
++	int i;
++
++	for (i = 0; i < state->stream_count; i++)
++		odm_factors[i] = get_odm_factor(
++				ctx, disp_cfg, mapping, state->streams[i]);
++}
++
++static bool map_dc_pipes_for_stream(struct dml2_context *ctx,
++		struct dc_state *state,
++		const struct dc_state *existing_state,
++		const struct dc_stream_state *stream,
++		const struct dc_stream_status *status,
++		unsigned int odm_factor,
++		unsigned int mpc_factors[MAX_PIPES])
++{
++	int plane_idx;
++	bool result = true;
++
++	if (odm_factor == 1)
++		/*
++		 * ODM and MPC combines are by DML design mutually exclusive.
++		 * ODM factor of 1 means MPC factors may be greater than 1.
++		 * In this case, we want to set ODM factor to 1 first to free up
++		 * pipe resources from previous ODM configuration before setting
++		 * up MPC combine to acquire more pipe resources.
++		 */
++		result &= ctx->config.callbacks.update_pipes_for_stream_with_slice_count(
++				state,
++				existing_state,
++				ctx->config.callbacks.dc->res_pool,
++				stream,
++				odm_factor);
++	for (plane_idx = 0; plane_idx < status->plane_count; plane_idx++)
++		result &= ctx->config.callbacks.update_pipes_for_plane_with_slice_count(
++				state,
++				existing_state,
++				ctx->config.callbacks.dc->res_pool,
++				status->plane_states[plane_idx],
++				mpc_factors[plane_idx]);
++	if (odm_factor > 1)
++		result &= ctx->config.callbacks.update_pipes_for_stream_with_slice_count(
++				state,
++				existing_state,
++				ctx->config.callbacks.dc->res_pool,
++				stream,
++				odm_factor);
++	return result;
++}
++
++static bool map_dc_pipes_with_callbacks(struct dml2_context *ctx,
++		struct dc_state *state,
++		const struct dml_display_cfg_st *disp_cfg,
++		struct dml2_dml_to_dc_pipe_mapping *mapping,
++		const struct dc_state *existing_state)
++{
++	unsigned int odm_factors[MAX_PIPES];
++	unsigned int mpc_factors_for_stream[MAX_PIPES];
++	int i;
++	bool result = true;
++
++	populate_odm_factors(ctx, disp_cfg, mapping, state, odm_factors);
++	for (i = 0; i < state->stream_count; i++) {
++		populate_mpc_factors_for_stream(ctx, disp_cfg, mapping, state,
++				i, odm_factors[i], mpc_factors_for_stream);
++		result &= map_dc_pipes_for_stream(ctx, state, existing_state,
++				state->streams[i],
++				&state->stream_status[i],
++				odm_factors[i], mpc_factors_for_stream);
++	}
++	return result;
++}
++
+ bool dml2_map_dc_pipes(struct dml2_context *ctx, struct dc_state *state, const struct dml_display_cfg_st *disp_cfg, struct dml2_dml_to_dc_pipe_mapping *mapping, const struct dc_state *existing_state)
+ {
+ 	int stream_index, plane_index, i;
+@@ -770,6 +910,10 @@ bool dml2_map_dc_pipes(struct dml2_context *ctx, struct dc_state *state, const s
+ 	unsigned int odm_mode_array[__DML2_WRAPPER_MAX_STREAMS_PLANES__] = {0}, dpp_per_surface_array[__DML2_WRAPPER_MAX_STREAMS_PLANES__] = {0};
+ 	struct dc_pipe_mapping_scratch scratch;
+ 
++	if (ctx->config.map_dc_pipes_with_callbacks)
++		return map_dc_pipes_with_callbacks(
++				ctx, state, disp_cfg, mapping, existing_state);
++
+ 	if (ctx->architecture == dml2_architecture_21) {
+ 		/*
+ 		 * Extract ODM and DPP outputs from DML2.1 and map them in an array as required for pipe mapping in dml2_map_dc_pipes.
 diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
-index f3b85b0891d3..c3d5b84ee914 100644
+index c3d5b84ee914..5494380062dd 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
 +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
-@@ -71,6 +71,21 @@ struct dml2_dc_callbacks {
- 	bool (*build_scaling_params)(struct pipe_ctx *pipe_ctx);
- 	bool (*can_support_mclk_switch_using_fw_based_vblank_stretch)(struct dc *dc, struct dc_state *context);
- 	bool (*acquire_secondary_pipe_for_mpc_odm)(const struct dc *dc, struct dc_state *state, struct pipe_ctx *pri_pipe, struct pipe_ctx *sec_pipe, bool odm);
-+	bool (*update_pipes_for_stream_with_slice_count)(
-+			struct dc_state *new_ctx,
-+			const struct dc_state *cur_ctx,
-+			const struct resource_pool *pool,
-+			const struct dc_stream_state *stream,
-+			int new_slice_count);
-+	bool (*update_pipes_for_plane_with_slice_count)(
-+			struct dc_state *new_ctx,
-+			const struct dc_state *cur_ctx,
-+			const struct resource_pool *pool,
-+			const struct dc_plane_state *plane,
-+			int slice_count);
-+	int (*get_odm_slice_index)(const struct pipe_ctx *opp_head);
-+	int (*get_mpc_slice_index)(const struct pipe_ctx *dpp_pipe);
-+	struct pipe_ctx *(*get_opp_head)(const struct pipe_ctx *pipe_ctx);
+@@ -167,6 +167,7 @@ struct dml2_configuration_options {
+ 	struct dml2_soc_bbox_overrides bbox_overrides;
+ 	unsigned int max_segments_per_hubp;
+ 	unsigned int det_segment_size;
++	bool map_dc_pipes_with_callbacks;
  };
  
- struct dml2_dc_svp_callbacks {
+ /*
 -- 
 2.34.1
 
