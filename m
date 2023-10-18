@@ -1,31 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E717CDCA5
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 15:06:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 621827CDCAB
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 15:06:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72FBC10E3E3;
-	Wed, 18 Oct 2023 13:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5231910E3E9;
+	Wed, 18 Oct 2023 13:06:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-113.freemail.mail.aliyun.com
- (out30-113.freemail.mail.aliyun.com [115.124.30.113])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3067410E353;
- Wed, 18 Oct 2023 01:22:38 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R131e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045192;
- MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=9; SR=0;
- TI=SMTPD_---0VuOwjAo_1697592153; 
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VuOwjAo_1697592153) by smtp.aliyun-inc.com;
- Wed, 18 Oct 2023 09:22:34 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: alexander.deucher@amd.com, harry.wentland@amd.com, airlied@gmail.com,
- daniel@ffwll.ch
-Subject: [PATCH -next] drm/amd/display: Simplify bool conversion
-Date: Wed, 18 Oct 2023 09:22:32 +0800
-Message-Id: <20231018012232.23995-1-yang.lee@linux.alibaba.com>
+Received: from out30-111.freemail.mail.aliyun.com
+ (out30-111.freemail.mail.aliyun.com [115.124.30.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA1110E387;
+ Wed, 18 Oct 2023 06:15:45 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R691e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046060;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0VuPi1lq_1697609732; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VuPi1lq_1697609732) by smtp.aliyun-inc.com;
+ Wed, 18 Oct 2023 14:15:41 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Subject: [PATCH] drm/amd/display: Use swap() instead of open coding it
+Date: Wed, 18 Oct 2023 14:15:31 +0800
+Message-Id: <20231018061531.11565-1-jiapeng.chong@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -41,34 +40,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abaci Robot <abaci@linux.alibaba.com>, Yang Li <yang.lee@linux.alibaba.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, sunpeng.li@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-./drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c:4802:84-89: WARNING: conversion to bool not needed here
+Swap is a function interface that provides exchange function. To avoid
+code duplication, we can use swap function.
+
+./drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c:445:127-128: WARNING opportunity for swap().
 
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=6901
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=6903
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
-index 851db026f251..3296c078ff3e 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
-@@ -4799,7 +4799,7 @@ static void CalculateSurfaceSizeInMall(
- 		if (UseMALLForStaticScreen[k] == dml_use_mall_static_screen_enable)
- 			TotalSurfaceSizeInMALL = TotalSurfaceSizeInMALL + SurfaceSizeInMALL[k];
- 	}
--	*ExceededMALLSize = (TotalSurfaceSizeInMALL <= MALLAllocatedForDCN * 1024 * 1024 ? false : true);
-+	*ExceededMALLSize = (TotalSurfaceSizeInMALL > MALLAllocatedForDCN * 1024 * 1024);
- } // CalculateSurfaceSizeInMall
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+index 36baf35bb170..5cbb2db9dfd1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+@@ -425,7 +425,6 @@ static void sort_pipes_for_splitting(struct dc_plane_pipe_pool *pipes)
+ {
+ 	bool sorted, swapped;
+ 	unsigned int cur_index;
+-	unsigned int temp;
+ 	int odm_slice_index;
  
- static void CalculateDETBufferSize(
+ 	for (odm_slice_index = 0; odm_slice_index < pipes->num_pipes_assigned_to_plane_for_odm_combine; odm_slice_index++) {
+@@ -441,10 +440,7 @@ static void sort_pipes_for_splitting(struct dc_plane_pipe_pool *pipes)
+ 		swapped = false;
+ 		while (!sorted) {
+ 			if (pipes->pipes_assigned_to_plane[odm_slice_index][cur_index] > pipes->pipes_assigned_to_plane[odm_slice_index][cur_index + 1]) {
+-				temp = pipes->pipes_assigned_to_plane[odm_slice_index][cur_index];
+-				pipes->pipes_assigned_to_plane[odm_slice_index][cur_index] = pipes->pipes_assigned_to_plane[odm_slice_index][cur_index + 1];
+-				pipes->pipes_assigned_to_plane[odm_slice_index][cur_index + 1] = temp;
+-
++				swap(pipes->pipes_assigned_to_plane[odm_slice_index][cur_index], pipes->pipes_assigned_to_plane[odm_slice_index][cur_index + 1]);
+ 				swapped = true;
+ 			}
+ 
 -- 
 2.20.1.7.g153144c
 
