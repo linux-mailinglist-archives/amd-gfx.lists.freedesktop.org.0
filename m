@@ -1,52 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10E0B7CDCA4
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 15:06:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7586D7CDB77
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Oct 2023 14:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE3C10E3E1;
-	Wed, 18 Oct 2023 13:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37C7610E3D3;
+	Wed, 18 Oct 2023 12:21:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F2B10E09B;
- Wed, 18 Oct 2023 10:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697624525; x=1729160525;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=xDWK7EvYYMm8tp0hVJ/TwEDbQjIuQxVbahjC4hZ+APw=;
- b=KBDOMq7d77KX2Ivh8kwfgbKr5HLzuw7ANk2C42KrfelnP5AAcZ+esRQ1
- Pzb3RQ3OXr3EADBiH/ROzPRD996OVYc94sdrO9R5XligQu4mEuLNWe+rC
- ejU/Ag3y26uWV2r/+YLZhFjt4+o778P9KhmCweKALMIYe5StEYhuthBmu
- QYR9mPFYZj/TCoDloP9WTtxs+Moc/Oh3iny55aTYDQvzWhT97jKd7md9/
- ppHYAmHU4nPmfoZXVtbV+NTv9CbdNLSh2rcVGLU9bC8AaAJON3ZIxb8ij
- Ynd98PdOg5NICIm5c3X00/vh5mI1++46vOXAC2/kHyOS7rB5aVD1Xhki0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="384865059"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="384865059"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 03:22:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="756537906"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="756537906"
-Received: from gruberda-mobl1.ger.corp.intel.com ([10.252.62.52])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 03:21:59 -0700
-Date: Wed, 18 Oct 2023 13:21:57 +0300 (EEST)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-Subject: Re: [PATCH v4 11/17] platform/x86/amd/pmf: Add capability to sideload
- of policy binary
-In-Reply-To: <20231018070241.2041529-12-Shyam-sundar.S-k@amd.com>
-Message-ID: <c6be6d40-f8d7-a4f-91c6-967ff920a44@linux.intel.com>
-References: <20231018070241.2041529-1-Shyam-sundar.S-k@amd.com>
- <20231018070241.2041529-12-Shyam-sundar.S-k@amd.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on20627.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eab::627])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB90610E3D3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 12:21:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CfRnQgchTDzXbOIT02eootzH68MlFQIHrpPWtnTZIcbbdJP4EqlMjgopl2YHMfAQkhOkHsF4yiP8G6M7647PCXU7D/0P7PD4nL5cg8LzmQTO1Fo+KWB0AKKgBIgTJR+DKArtm2wN3FWfJqL7s2p2avgCE4GVurM4InttbRG1MJkoCM7bhO+IgjLiDQwC+EVlf6VfqMRpE7UE2fV3VJsLPkkW+5VW59g94zFoPSE/fBjwwIYBFt43dJzyDqucZFAHejuykQrAPVP0XejROlZQjWYwkMwwN+oedxsOFwNm9j0dzApiLbw54qs6Bw8crGaynOFiRp7DVT25oSSY5jAgTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JNiCIDZpwwKBKRzkjFScmr++GxgNOQ065/d+18ZWA+8=;
+ b=gc31pl4Q8+5KHe48pog66jig6u7/j4WbQZi3uCy97GRH3asFAwVLRXch+gA+1ZyG5oUMeiiVMQ0ctKxjrQKCsMWxnMwZmOL+q1L0Tt7eBHD3l2I2I2qLaC4n6pBMRw1HFebKrnb8VdYcm4TpxaPyo+03R9nENI+Osd5jQp0q1KmpWXaNG1xOohRM0RbZogreVcHNPoP1K6zRCPjIrHBnWzJySpT/BB0YN/ivV8MEu8x9Z9H67M2DQpSWfJmhP0C7m/4HxyulWNp/g5QJE9kjXXWqRHex2pLkK5Clu23wta8zw8DjMc+cOu0sUJY/vgVduePupkveeC/zzB9IBjhL4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JNiCIDZpwwKBKRzkjFScmr++GxgNOQ065/d+18ZWA+8=;
+ b=y/Q1c6Kqu8w4mOygqBwsYWmD1DJOaXPhPGtSXUywVAINO2MKZr1CcuWxTskewNa/M2t4BkbZU7tDdIu1Cj1BkKFe1Thzn0NGxeh5ZTBv0muPJKwzl8RmGSuIHUF2DSxbHNphTebYdISSh92bhOw3Ns6MQ2spPc85uUgWlexuGIc=
+Received: from MW4P222CA0019.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::24)
+ by PH0PR12MB5607.namprd12.prod.outlook.com (2603:10b6:510:142::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35; Wed, 18 Oct
+ 2023 12:21:39 +0000
+Received: from CO1PEPF000044FB.namprd21.prod.outlook.com
+ (2603:10b6:303:114:cafe::fd) by MW4P222CA0019.outlook.office365.com
+ (2603:10b6:303:114::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.35 via Frontend
+ Transport; Wed, 18 Oct 2023 12:21:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044FB.mail.protection.outlook.com (10.167.241.201) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6933.6 via Frontend Transport; Wed, 18 Oct 2023 12:21:38 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 18 Oct
+ 2023 07:21:37 -0500
+Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Wed, 18 Oct 2023 07:21:36 -0500
+From: Stanley.Yang <Stanley.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH Review 1/1] drm/amdgpu: Enable mca debug mode mode for apu
+Date: Wed, 18 Oct 2023 20:21:34 +0800
+Message-ID: <20231018122134.3280090-1-Stanley.Yang@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Mailman-Approved-At: Wed, 18 Oct 2023 13:06:18 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044FB:EE_|PH0PR12MB5607:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0674c5c9-a7d3-41f4-11e8-08dbcfd4c72f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dChXuYx6AHNkajmj3wXhGbytJrFcPx21oF8XCt9FgH72mB1+cDXcQeCIyf4X5uwArdD6nRXpCZKFSiLDn8w1bgsIBZJhsG/z78/Hy8aaGZXl39naTCUb+a5piZ/zV8qMFG6u/v5ljpp9y0FCvPa4m6yzETNTTdbuKOiPJ+D6kHb1v0bzyiZaKcJ7mwmiLC6i99jEFhh+om25FYCIcVnCgBprN7BO69AdBb6tjgEjH+Lb3BwmuzQBp3FWGXsM5huTdqAH7CN/76sWVH3CvQboVCVQxPJ7CuXUPPHIo3uQRoD0uYWCg6rYlWNbDXzAvStE40k4r5/Hf+0BiVAFBMgx2esGsitfFJbXGTpM4O143CW5rN0wY7qKBO4AsR+hKTTXUA/ImN4YiANGTpHI5EZHtprlyZ5aKGYSgCmZsgJ7E1+atBbbEQUenpWJC3hriDtXxVLoDvw5Mk5TOPvY7xypf7y1o34EeV8oYci7+FD77WHCA2F0pzgdfKmgcLNDgqMH1GehoqAqu6UUz6lPjCIk7dPhTI04TnLmxBRFsjLOjBomNJdp4rfS2hEpnKVgrybNZTBUjTjlMoOE7MQWw8tY4TlRbbnTcdzQSlfzpyfYUgTYEbxSmhCnUwhd+CyNbs05ftkkJSuDBHy+V4Bx3+HcVDjn/sREe8XGlatac+fTVbUgQW5q/fl0H1icQyfJCjq5VftWvZjqu13YVZysdt7fnDEG2qdKlh3gqo8ZSso2Yw78A0586eKw5v1eyssmFeygaXtqO2X7w2SBrB6aKEsfNA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(376002)(346002)(136003)(39860400002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(82310400011)(40470700004)(36840700001)(46966006)(40460700003)(26005)(2616005)(82740400003)(426003)(1076003)(336012)(8936002)(8676002)(4326008)(5660300002)(47076005)(83380400001)(40480700001)(356005)(81166007)(2906002)(478600001)(41300700001)(86362001)(4744005)(316002)(7696005)(36756003)(70586007)(70206006)(36860700001)(6916009)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 12:21:38.2949 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0674c5c9-a7d3-41f4-11e8-08dbcfd4c72f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044FB.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5607
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,163 +98,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, Patil.Reddy@amd.com, basavaraj.natikar@amd.com,
- dri-devel@lists.freedesktop.org, jikos@kernel.org,
- amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- markgross@kernel.org, Hans de Goede <hdegoede@redhat.com>,
- benjamin.tissoires@redhat.com, mario.limonciello@amd.com, daniel@ffwll.ch,
- linux-input@vger.kernel.org, alexander.deucher@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 18 Oct 2023, Shyam Sundar S K wrote:
+Enable smu_v13_0_6 mca debug mode when GFX RAS feature is enabled
+on APU.
 
-> A policy binary is OS agnostic, and the same policies are expected to work
-> across the OSes.  At times it becomes difficult to debug when the policies
-> inside the policy binaries starts to misbehave. Add a way to sideload such
-> policies independently to debug them via a debugfs entry.
-> 
-> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-> Signed-off-by: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-> ---
->  drivers/platform/x86/amd/pmf/pmf.h    |  1 +
->  drivers/platform/x86/amd/pmf/tee-if.c | 67 +++++++++++++++++++++++++++
->  2 files changed, 68 insertions(+)
-> 
-> diff --git a/drivers/platform/x86/amd/pmf/pmf.h b/drivers/platform/x86/amd/pmf/pmf.h
-> index 593930519039..8712299ad52b 100644
-> --- a/drivers/platform/x86/amd/pmf/pmf.h
-> +++ b/drivers/platform/x86/amd/pmf/pmf.h
-> @@ -219,6 +219,7 @@ struct amd_pmf_dev {
->  	bool cnqf_supported;
->  	struct notifier_block pwr_src_notifier;
->  	/* Smart PC solution builder */
-> +	struct dentry *esbin;
->  	unsigned char *policy_buf;
->  	u32 policy_sz;
->  	struct tee_context *tee_ctx;
-> diff --git a/drivers/platform/x86/amd/pmf/tee-if.c b/drivers/platform/x86/amd/pmf/tee-if.c
-> index 0eba258f4040..6c4ce22ba518 100644
-> --- a/drivers/platform/x86/amd/pmf/tee-if.c
-> +++ b/drivers/platform/x86/amd/pmf/tee-if.c
-> @@ -8,6 +8,7 @@
->   * Author: Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
->   */
->  
-> +#include <linux/debugfs.h>
->  #include <linux/tee_drv.h>
->  #include <linux/uuid.h>
->  #include "pmf.h"
-> @@ -16,9 +17,14 @@
->  
->  /* Policy binary actions sampling frequency (in ms) */
->  static int pb_actions_ms = MSEC_PER_SEC;
-> +/* Sideload policy binaries to debug policy failures */
-> +static bool pb_side_load;
-> +
->  #ifdef CONFIG_AMD_PMF_DEBUG
->  module_param(pb_actions_ms, int, 0644);
->  MODULE_PARM_DESC(pb_actions_ms, "Policy binary actions sampling frequency (default = 1000ms)");
-> +module_param(pb_side_load, bool, 0444);
-> +MODULE_PARM_DESC(pb_side_load, "Sideload policy binaries debug policy failures");
->  #endif
->  
->  static const uuid_t amd_pmf_ta_uuid = UUID_INIT(0x6fd93b77, 0x3fb8, 0x524d,
-> @@ -269,6 +275,61 @@ static int amd_pmf_start_policy_engine(struct amd_pmf_dev *dev)
->  	return 0;
->  }
->  
-> +#ifdef CONFIG_AMD_PMF_DEBUG
-> +static ssize_t amd_pmf_get_pb_data(struct file *filp, const char __user *buf,
-> +				   size_t length, loff_t *pos)
-> +{
-> +	struct amd_pmf_dev *dev = filp->private_data;
-> +	int ret;
-> +
-> +	/* Policy binary size cannot exceed POLICY_BUF_MAX_SZ */
-> +	if (length > POLICY_BUF_MAX_SZ || length == 0)
-> +		return -EINVAL;
-> +
-> +	dev->policy_sz = length;
-> +	if (copy_from_user(dev->policy_buf, buf, dev->policy_sz))
-> +		return -EFAULT;
-> +
-> +	ret = amd_pmf_start_policy_engine(dev);
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	return length;
-> +}
-> +
-> +static const struct file_operations pb_fops = {
-> +	.write = amd_pmf_get_pb_data,
-> +	.open = simple_open,
-> +};
-> +
-> +static int amd_pmf_open_pb(struct amd_pmf_dev *dev, struct dentry *debugfs_root)
-> +{
-> +	struct dentry *file = NULL;
-> +
-> +	dev->esbin = debugfs_create_dir("pb", debugfs_root);
-> +	if (IS_ERR(dev->esbin))
-> +		return -EINVAL;
-> +
-> +	file = debugfs_create_file("update_policy", 0644, dev->esbin, dev, &pb_fops);
-> +	if (!file)
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-debugfs_create_file() returns ERR_PTR() on errors. I don't actually know 
-if NULL even needs to be checked or if it'd return errno in that case 
-because the usually custom is to just ignore debugfs_create_file() 
-return value.
-
-Why is this function returning int anyway? It's not checked by the caller 
-so why bother when all it does is deal with debugfs for which the normal 
-approach is to ignore the errors.
-
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index cab5a5569bc6..62589ba3c4a5 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -2298,7 +2298,8 @@ static int smu_v13_0_6_post_init(struct smu_context *smu)
+ {
+ 	struct amdgpu_device *adev = smu->adev;
+ 
+-	if (!amdgpu_sriov_vf(adev) && amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC))
++	if (!amdgpu_sriov_vf(adev) && (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC) ||
++		(adev->is_app_apu && amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__GFX))))
+ 		return smu_v13_0_6_mca_set_debug_mode(smu, true);
+ 
+ 	return 0;
 -- 
- i.
+2.25.1
 
-
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static void amd_pmf_remove_pb(struct amd_pmf_dev *dev)
-> +{
-> +	debugfs_remove_recursive(dev->esbin);
-> +}
-> +#else
-> +static int amd_pmf_open_pb(struct amd_pmf_dev *dev, struct dentry *debugfs_root)
-> +{
-> +	return 0;
-> +}
-> +
-> +static void amd_pmf_remove_pb(struct amd_pmf_dev *dev) {}
-> +#endif
-> +
->  static int amd_pmf_get_bios_buffer(struct amd_pmf_dev *dev)
->  {
->  	dev->policy_buf = kzalloc(dev->policy_sz, GFP_KERNEL);
-> @@ -281,6 +342,9 @@ static int amd_pmf_get_bios_buffer(struct amd_pmf_dev *dev)
->  
->  	memcpy(dev->policy_buf, dev->policy_base, dev->policy_sz);
->  
-> +	if (pb_side_load)
-> +		amd_pmf_open_pb(dev, dev->dbgfs_dir);
-> +
->  	return amd_pmf_start_policy_engine(dev);
->  }
->  
-> @@ -382,6 +446,9 @@ int amd_pmf_init_smart_pc(struct amd_pmf_dev *dev)
->  
->  void amd_pmf_deinit_smart_pc(struct amd_pmf_dev *dev)
->  {
-> +	if (pb_side_load)
-> +		amd_pmf_remove_pb(dev);
-> +
->  	kfree(dev->prev_data);
->  	kfree(dev->policy_buf);
->  	cancel_delayed_work_sync(&dev->pb_work);
-> 
