@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457247CFB19
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 15:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BCCF7CFB16
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 15:33:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7E7410E4E3;
-	Thu, 19 Oct 2023 13:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B72D10E4D9;
+	Thu, 19 Oct 2023 13:33:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2078.outbound.protection.outlook.com [40.107.100.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA55410E4E2
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 13:33:05 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3EFE10E002
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 13:33:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KTt7tnUGN/SWUta9gyFEQsh64ALH2/x/5fiAsDRhKNInAJk3r6ut3bYN58a9YwM38Qs5rBGv8tPxhFUS1kzwX//76ZrTbCtqPpKE4MA6YFpKzxgz28GGnGWa8ojqsMqRbEFvMg/AvI90P7oGcM93K0v/Mt+Gv51HxNAR+MsOr4JzOl7pqmSbCSp2vKb/10UB5XyQhjA6MUjNJVWqyL8SkeG/DHr+6+ZyStqD6GU6m9A1jPDrwKdSWLgVy+ROygTAa55yJDPzYYHxm7YP4W27GDz6ODKvmak9UnHxjxR6MNigkuOkK2CrzLeVtA4tCWz5Y5GqNEDMJt96RA+KC1VZkw==
+ b=H/uNGTXGj2/rC7uOrhiGqshHJ6rHimmR+2nH0CtA1PbK/Ppbl445pra5QatGMIZbjLzf58s8VlZ/SBJX4mqodO4hgksP3y38/RhuJovdLphTYey0nMJ64mZQWLKu98f2EWIatP/EbH0c3Nv574iWsZygjXgiXQY7U4/Z0EHyKp0FxPiu5JQsmIYw2RoX3SpAM/8tvm0Kgwpo6thf7VsoxhqDvx8d1ELLtMZdwa5UqoDAmZyQHPaqU3PUUWF5jBMApkQlQ/9Ea4rh/HGjltLt34LnVpDvl1EBKur5+iqELRw8GSerJtBbH4/agEyD7Tbn1GZICl4bVojVe4UTKtpHEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EGX1fjf26Z/gmlEXRGexcT1put7rNxW6JyzTSsp7y0s=;
- b=mh6Ap8iaAegS5ZutZwbVY5JZCgpKG//acvZiX13rNDvBPDzdjQqh0mgqqM1vGOH9c45qHF5zKYP6n61cK0maKYzzxHY/LsUmVa3GVG0BWuKpLGme/vSGTSJt+340lJPoNtZMXZ8crQ1xO1mLHt1KR7KthxRtGGADW6OT9H95ytDGdtsRTpZTDmmtv27C0Aqrm0pel1u9IgFGhJTnG9ET60l+03N7TArNBFZCbmoX5OCFyLrQRUL91z+A09X5j0ZPMu+d1eHs8/F4YvfMK01+7JUrHqk1ecqn0cKGf3y2e3S5atPGfv5LBOQgw58SB6Skt3Tw9KNZIA0pdVyMIueK0g==
+ bh=VTxUc9ftsO9KePBFajZhryoSYZA1Dt/jhxNb62vnLV0=;
+ b=QN+qljsrZOon9DD3xVfuxzrBlsuT3av7ZEVavs+OSY5TGe2u8bqywvM3A4Ub2C5MKokfmirsc63T+bc6qZ779+mFwE0yVq3UMQ5lR3PicNoth8ASXYund2LpDEL1Rsr/HHWYJ19IycjKRd6zfUbkNeeN6w77OULkU+LUP1CcANGKSOb8y6kFhRNOqXQhZWFscaNIeGdfDsgT1rsRwtQO3SJvybuB6J4H0s2Iae4e+IdWuRb4daNkswtbDobeUkl4X5rMBUFunhl5tZ/vvCx4/ZfLNGoNKpX5C7CT+Ec2Q1BgWAC2kWIeVUg5MjBcPvnn8xg8lVZxK0Bj6usazHfWpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EGX1fjf26Z/gmlEXRGexcT1put7rNxW6JyzTSsp7y0s=;
- b=AcDNIHEAGg9+d1hTa62IqWNir3T4OGKPmwdJA6RsrXqB6i79h5Q1KAhBTF1GvH9QVH0JHdpHhrD+Dm+Ks9U4Gs6PNMNlFRFoYkg4n6Zjtvbpk+RnlC24oZcXbsQb/BecPoZDZtlHsPzwTKuQ7IfZ+IvrRW4H4KmscvzNw3rIHrs=
-Received: from BL1PR13CA0092.namprd13.prod.outlook.com (2603:10b6:208:2b9::7)
- by PH0PR12MB7094.namprd12.prod.outlook.com (2603:10b6:510:21d::18)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=VTxUc9ftsO9KePBFajZhryoSYZA1Dt/jhxNb62vnLV0=;
+ b=18QPismLgupNbO3tiW0QNpnjIteyOT9hx3BmYUjyNOJoTtwieLBMCztOIT3VwoNm8adLUohvd0iF65hcVTcUgpuS6tyZjksp0LUp1d1gahj/xN5hZs00/gfImhYGHMvJDUPf6gG3BgOo/s8DlepR/M7xYyNJICV8ibBxUAdQogY=
+Received: from BL0PR1501CA0031.namprd15.prod.outlook.com
+ (2603:10b6:207:17::44) by DS7PR12MB6311.namprd12.prod.outlook.com
+ (2603:10b6:8:94::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Thu, 19 Oct
- 2023 13:33:02 +0000
-Received: from BL6PEPF0001AB4D.namprd04.prod.outlook.com
- (2603:10b6:208:2b9:cafe::f5) by BL1PR13CA0092.outlook.office365.com
- (2603:10b6:208:2b9::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.7 via Frontend
- Transport; Thu, 19 Oct 2023 13:33:02 +0000
+ 2023 13:33:01 +0000
+Received: from MN1PEPF0000F0E5.namprd04.prod.outlook.com
+ (2603:10b6:207:17:cafe::ef) by BL0PR1501CA0031.outlook.office365.com
+ (2603:10b6:207:17::44) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.25 via Frontend
+ Transport; Thu, 19 Oct 2023 13:33:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB4D.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000F0E5.mail.protection.outlook.com (10.167.242.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Thu, 19 Oct 2023 13:33:02 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6838.22 via Frontend Transport; Thu, 19 Oct 2023 13:33:01 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 19 Oct
- 2023 08:32:59 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 19 Oct
- 2023 08:32:41 -0500
+ 2023 08:33:00 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Thu, 19 Oct 2023 08:32:40 -0500
+ Transport; Thu, 19 Oct 2023 08:32:59 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 06/24] drm/amd/display: Update SDP VSC colorimetry from DP
- test automation request
-Date: Thu, 19 Oct 2023 09:32:04 -0400
-Message-ID: <20231019133222.1633077-7-Roman.Li@amd.com>
+Subject: [PATCH v2 07/24] drm/amd/display: Reduce default backlight min from 5
+ nits to 1 nits
+Date: Thu, 19 Oct 2023 09:32:05 -0400
+Message-ID: <20231019133222.1633077-8-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231019133222.1633077-1-Roman.Li@amd.com>
 References: <20231019133222.1633077-1-Roman.Li@amd.com>
@@ -73,26 +69,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4D:EE_|PH0PR12MB7094:EE_
-X-MS-Office365-Filtering-Correlation-Id: a74b5cfb-8410-45d8-5c1a-08dbd0a7eacd
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E5:EE_|DS7PR12MB6311:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ed429f9-1c40-4a36-9686-08dbd0a7ea4a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F5dPtyrGC6dmJ2uTubJs7daTYHGKEgmu1RI699EgJZC4Z03Ddn7lpA4YbXKx+lcewab3xqse9fjz/foWqMuSbcPO7ArMzCnBYsmrGYno5tA5g2JFId/dwvt43EPeGIZSIcVAxdcZ4PtuJwgXzbqm4fIg/0WJbZziby2LjsSE+2DZg2ce1BYERC0MgD14kz7QhA2bnft7TF/P4znvSJvMgmJENPKmw3bgHGaTLT6DAVxmrqffOfYNChSdS7ISrCM/puygb6EIPyUzJ8qp/SOInSe35oymybLiE6ofuVSqHAPxHeSuQ+fAo13lkw4pKhQQZX+5/SOFvDyHFIJcQ9vrYTxFACpIxaBdnYBWC76jzV2l8hSyryZHBNR9SPIa+RFOl8nG5EAWi8n0qzNGtHbP5baWptcs5jYGrtGvovu2urzHQFqYs9JOKCHavNM5Y4Vv84SFT54jV0wsfQoX21sLDhOLh581SBVLid47zM+P+dE/EL6TEgygLZiiY+aJQALQzqe6JMlhJrtq01cN6HRGtYAmuVDmm+EyHfujQCrnSbdU6m43Byj6kSoO7hVVZtogTP2e8i4ow5L45/hTz8JycONcuQGL62SGUMMrRo9eL5g9hP4YEiYkLSW6hClU8/sS7ZRUEpAzfBJvUlbLb0F30kBl/B1TnADi16xLvF5S/TrGq6puAmHXlZ7+SanY6uiO173tW6VgK1dpSWUTTUPKR8s3fnuTS6BmNCkNFCvtJkqcRcMJlih2euDXh7gDNuNdAjhXIycY58SGpDKmHH7wog==
+X-Microsoft-Antispam-Message-Info: greZ78hXNvYQRWr3/4kYoFsqgFdPC+AyMHt1B4qJKFJ0alqWib/CDCsF0MlWdXVxL0f4uyEJ/SFmvt7YzWHc2HaXmM+uygyNiQlVSIgpCR6hI0Zp6cRzMQ4c7SOA7X4diFfUUsfNqikNM0XP+sdXzKClr3HIWZmZYGs1L0s59VY9MAoIJLzlNQpzNtBUA24tSchU6L7rgszLoibx3nr1kGaWi3mHMwgp2ds8AFSEKU2uPv8rRn9KU5biyROtgXYKrVWL6hfJU2Ct7NRfKKTpc6ox7R2QJ2+4PWFc3CyfTSIjVXVevGb9pH7gCooV6rU51zrrr/8/vElVBJCxGLq8/UIDgZy+/b2XzSBK1hei2X7K3uW9somHSb9HU5hbDdPi+1zAu9KzrMry4kAoIoVSJpRPQLnHboX9pZIKegHRxUAZIhS5PvbSO7e5xL9nFiIPeYRl6u8VKdOdV2YQ6SAhdr2n9AvOkXdTvyht2hI61l69tI6eYpQ+naUYk/NELJmLlskPLDqfKwe4jzGtg60D6XXh/Q13xl0UNU2Veiieip3HRtA1ZzMPo7P48bWHj56358dU4B6RYlDPdgRwXSTvK2TdhTQflxsYMRokLtgsE3xVpaYft/mkGjoUDberTlPpvbeNjx7pc/i4mIJFGXEB5yV9+19CFpN0fQ9mw7+WjWiquid6KCmfmWdM9PCOWNoHJc6ViZAznsvtg8yYX0f3bVTWh4rQgDvkYca9RlvSOhxcIpcu6kkzbRkqtcqd5/2icZB3ZHsrxRT2yO5yEXViMw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(346002)(396003)(39860400002)(136003)(230922051799003)(451199024)(82310400011)(186009)(64100799003)(1800799009)(36840700001)(46966006)(40470700004)(40460700003)(7696005)(1076003)(83380400001)(6666004)(426003)(4326008)(336012)(70206006)(8936002)(316002)(2616005)(36860700001)(8676002)(5660300002)(2876002)(41300700001)(15650500001)(2906002)(82740400003)(478600001)(47076005)(54906003)(6916009)(26005)(86362001)(81166007)(356005)(70586007)(36756003)(40480700001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(376002)(396003)(136003)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(82310400011)(36840700001)(40470700004)(46966006)(86362001)(36756003)(40480700001)(82740400003)(40460700003)(336012)(47076005)(6916009)(316002)(70586007)(478600001)(54906003)(81166007)(356005)(70206006)(36860700001)(426003)(5660300002)(26005)(1076003)(2616005)(6666004)(8676002)(8936002)(7696005)(83380400001)(4326008)(2876002)(41300700001)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 13:33:02.0187 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a74b5cfb-8410-45d8-5c1a-08dbd0a7eacd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 13:33:01.0835 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ed429f9-1c40-4a36-9686-08dbd0a7ea4a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4D.namprd04.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E5.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7094
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6311
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,48 +100,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
- Wenjing Liu <wenjing.liu@amd.com>, George Shen <george.shen@amd.com>,
+Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com,
+ Swapnil Patel <swapnil.patel@amd.com>, Sunpeng.Li@amd.com,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, jerry.zuo@amd.com,
  Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com, wayne.lin@amd.com,
  Harry.Wentland@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: George Shen <george.shen@amd.com>
+From: Swapnil Patel <swapnil.patel@amd.com>
 
-[Why]
-Certain test equipment vendors check the SDP VSC for colorimetry against
-the value from the test request during certain DP link layer tests for
-YCbCr test cases.
+[Why & How]
+Currently set_default_brightness_aux function uses 5 nits as lower limit
+to check for valid default_backlight setting. However some newer panels
+can support even lower default settings
 
-[How]
-Update SDP VSC with colorimetry from test automation request.
-
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
+Reviewed-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: George Shen <george.shen@amd.com>
+Signed-off-by: Swapnil Patel <swapnil.patel@amd.com>
 ---
- .../gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c   | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../amd/display/dc/link/protocols/link_edp_panel_control.c    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-index 0894e6aef3dd..21a39afd274b 100644
---- a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-@@ -839,6 +839,12 @@ bool dp_set_test_pattern(
- 				pipe_ctx->stream->vsc_infopacket.sb[17] |= (1 << 7); // sb17 bit 7 Dynamic Range: 0 = VESA range, 1 = CTA range
- 			else
- 				pipe_ctx->stream->vsc_infopacket.sb[17] &= ~(1 << 7);
-+
-+			if (color_space == COLOR_SPACE_YCBCR601_LIMITED)
-+				pipe_ctx->stream->vsc_infopacket.sb[16] &= 0xf0;
-+			else if (color_space == COLOR_SPACE_YCBCR709_LIMITED)
-+				pipe_ctx->stream->vsc_infopacket.sb[16] |= 1;
-+
- 			resource_build_info_frame(pipe_ctx);
- 			link->dc->hwss.update_info_frame(pipe_ctx);
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+index 938df1f0f7da..86f97ddcc595 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+@@ -283,8 +283,8 @@ bool set_default_brightness_aux(struct dc_link *link)
+ 	if (link && link->dpcd_sink_ext_caps.bits.oled == 1) {
+ 		if (!read_default_bl_aux(link, &default_backlight))
+ 			default_backlight = 150000;
+-		// if < 5 nits or > 5000, it might be wrong readback
+-		if (default_backlight < 5000 || default_backlight > 5000000)
++		// if < 1 nits or > 5000, it might be wrong readback
++		if (default_backlight < 1000 || default_backlight > 5000000)
+ 			default_backlight = 150000; //
+ 
+ 		return edp_set_backlight_level_nits(link, true,
 -- 
 2.34.1
 
