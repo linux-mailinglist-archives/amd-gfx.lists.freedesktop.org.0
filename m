@@ -1,71 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B40B7CFB15
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 15:33:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9437CFB13
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 15:32:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9833E10E4DB;
-	Thu, 19 Oct 2023 13:33:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4254010E4E1;
+	Thu, 19 Oct 2023 13:32:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on20626.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::626])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5928410E4DB
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 13:33:02 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C25FD10E002
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Oct 2023 13:32:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=heqgFsssC8eWNnIpxKtfgrm5fOMmORCXhwlJIXUpF8ryy/SBkjIUKu7G83as0XHy7H+fGQ7h/mMJHMr0m4+NnD0fl2yeZc/tU5dU5guI9leWvBh3Xk3qXWaXFr3Mz94q53ZhRaBk2+kS9nMNCAntdyllulcicLhZBU1pQnn3agyeZpRlyK+yWmtGd6Rq/DVpNU5GuS0u9JwhqStHP0TnWhMjALegdWV/w84dOcrZIX01AEdBk1EPSUnSdAgyz+CgqdRDM9d4+Ww1o6521SK8gnYPjIM55yirWBP+s0nsf/CIJEsJOjPUVDRry2kEJL/9z2lYGnCC/JCpCXYJD6jkzw==
+ b=cbPmrI4in5iL8PijrmX9eKWvL9z5cnNmmAKauqhnTEf5Th96mf4j6EMhuSUeJQoTZI4Q2pTfnZM0rUyH2qi+vfWc2R+FG3NDS1VAQKYUJHbPDDfeGN476WMDW8B+qEZ73byeH83AH5QdjgjfSJCyov9EbCuW47u2qkKldPTkRyu9Y5Pp72secpu5M8hbjFrWnAHx39mEpdPYt8qwhuONwRQGwMMjc6BspAPS80BrguW3pTOTB/THsV+f877o48IE8hugl/QIsZQnXiuSahLdxeY5Dj8RAGaW5LPiJCMTkZdeBYZ+CJET0WxlcZodv9DNj01MVVdas1VV0Q84exDvdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zWjxLdLWYIcwIhKuLQmOyJ0u8kmiRSbJuiBJbQfju88=;
- b=LMZF85vqO4SIfeZfUnRZ2ta4xwVVPgEyGt65a+n6hPhPRCdIwUQz4weUnMqkJajbR2rF2qKq5ZRQhKdnGla8df+5Ou+paX9WES9eW/GzZZom6scyuqlpRxRiwwitWJfU8JBq1VyylFT4OVHD8Z47LzTtSbH/wFip7YISjEWf7j5cxCx8jcuqpV52hsT6glpSDU4fmQmIxk1E/XudC1W5IEpv2dczywgDr7kLN8p6WNvquP4FwcbgmFOMc/1ChoAnFGIqZ129LImemRpmoLLkw5eB3QV572ffZ4pxI4MWtXsFH+cupquK7GI/os3VlkpADdN7gC/s3ANFO1eWfxonCQ==
+ bh=c63OjxI+jD4x/46eeIWn7EKUBGO8oIRLckHOhgm4Oao=;
+ b=Baq3Pn+R+ohOd7SubL4y+VCAXNmIVyCAjLOALqnyn/DRswRkhIUbBPo9aea4Kv/+W+KYGv/+HBwjrTHhQMeJ4SlLOlzZ9a3KEnLnYirCCWvQDa/Ov+3bk06Yyw4xlZBz0iNYIKZwbInmccIeR0BQ3ahZ2C3RfAYLohXrP1segnWXfIsIRN0+l4OxNEq9BUZwTverm8n3hduXWX5Y4Qizrx+tm9DHlcC8gw58hGdtpMP2+586Bi6BBq0oCwGxIxRgqAeklmC4Fu0TIUuflaqgJda9AO+srs1UVhcyxocOdmmK+DI+keKwCsmwxQfwEgoWbhRT4mAzdxbfkKHm2T97Lg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zWjxLdLWYIcwIhKuLQmOyJ0u8kmiRSbJuiBJbQfju88=;
- b=lE2kWkc39WHzeqG2JDRVFjzk4NFY/8GvCqjaBKmjMBBVxKYGHMfBqWcNnYyBm/6lBW/r74PkX8S0PbAli6IbzSjmsNXJvnMF387Nr/cLA4qKTEWjG+vIPaKXrBNe5j/0MQ0xoTKs5eGHfxMQ8PpMdMzm7LRG958RjFItVslodAA=
-Received: from BL0PR1501CA0003.namprd15.prod.outlook.com
- (2603:10b6:207:17::16) by DM4PR12MB8558.namprd12.prod.outlook.com
- (2603:10b6:8:187::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.24; Thu, 19 Oct
- 2023 13:32:59 +0000
-Received: from MN1PEPF0000F0E5.namprd04.prod.outlook.com
- (2603:10b6:207:17:cafe::4b) by BL0PR1501CA0003.outlook.office365.com
- (2603:10b6:207:17::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36 via Frontend
- Transport; Thu, 19 Oct 2023 13:32:59 +0000
+ bh=c63OjxI+jD4x/46eeIWn7EKUBGO8oIRLckHOhgm4Oao=;
+ b=MSmbOyPjSCIXQCHZj6yi+YRH5qpWsT5ovshUbLXYpkhi6DFU9SBP4qi6Kdo3s1cPf1jZGNASFjKw385gtVp7g+hIjtEmGaNayNTjj4S789ENr+bs3yLheHqoL7d2gaABzJwvyatTOWq6OritMREIw9lhHsi/UctVFVzYFCxyd5o=
+Received: from MN2PR05CA0018.namprd05.prod.outlook.com (2603:10b6:208:c0::31)
+ by CH0PR12MB5369.namprd12.prod.outlook.com (2603:10b6:610:d4::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Thu, 19 Oct
+ 2023 13:32:41 +0000
+Received: from BL6PEPF0001AB4C.namprd04.prod.outlook.com
+ (2603:10b6:208:c0:cafe::1a) by MN2PR05CA0018.outlook.office365.com
+ (2603:10b6:208:c0::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.8 via Frontend
+ Transport; Thu, 19 Oct 2023 13:32:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000F0E5.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4C.mail.protection.outlook.com (10.167.242.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Thu, 19 Oct 2023 13:32:59 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.6838.22 via Frontend Transport; Thu, 19 Oct 2023 13:32:40 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 19 Oct
- 2023 08:32:39 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 19 Oct
- 2023 08:32:39 -0500
+ 2023 08:32:40 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Thu, 19 Oct 2023 08:32:38 -0500
+ Transport; Thu, 19 Oct 2023 08:32:39 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 04/24] drm/amd/display: Revert "Improve x86 and dmub ips
- handshake"
-Date: Thu, 19 Oct 2023 09:32:02 -0400
-Message-ID: <20231019133222.1633077-5-Roman.Li@amd.com>
+Subject: [PATCH v2 05/24] drm/amd/display: Add a check for idle power
+ optimization
+Date: Thu, 19 Oct 2023 09:32:03 -0400
+Message-ID: <20231019133222.1633077-6-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231019133222.1633077-1-Roman.Li@amd.com>
 References: <20231019133222.1633077-1-Roman.Li@amd.com>
@@ -74,26 +69,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E5:EE_|DM4PR12MB8558:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8f7aeb7-704e-435d-03b1-08dbd0a7e955
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4C:EE_|CH0PR12MB5369:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27c5e29b-6e11-4ed6-2ce8-08dbd0a7de34
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UJuwOKiNHzoLs/s+Ww50Su9u5AEzU03E1eP207w+mcM94wD1B7AQOXkg7j6vmU0c+nM0LpodgyALvdGbo5b5dgsxk8uvET0LNp/U46/QP9j/bFeUMzp6V80Eun3SbJsII5HtGdMPkZj+eGX/qgjrBPljNJVDd7RvnCFk7S8w8bguuX+O75eeYqaGUVWUzS/dD8EQuhSigjDcnK/peqvP5dZzkWplEwekM+v3VToZn7v9d0so/UNnM/Vys58PPpzJ+ijeMirR5UqbvgwpWjkl2n96LHxfP645GlnFbwpGvHXdKyb/PZtVlk3Fik+UkfFSVvxaMUBZbJV6By1SyVe3ryCJ0HMxViMDWI6AIJkLQ3M7/EV4vhBShue4db84ZnZ6UYc4VGbWBle32MTJGyzuTwAWhnQPTkoS9o5Ej+OsPtRZ4OivylyRpHi9g0suiq+3wnhlsg39cEtFfM4CUyAduNGMFlwIjfyPTTNR1cNW7MEN9mmB2NtQuzg3Dw5AJfKonPiFd3qW6+/fIFcijoKpMSlBYTYzLeybVUDsWhGGCzgbAIw9txL/FlXapP0qhydUOw5OQHIjeFWL3a+gTW05lShZRVrKjI3JrAHLLEA7s7Lh0IULI6EXeSPW9c+xaJ4WL2PfuGmUDkDY6ofIEkKzNY+WBoQ2FQhmBlP4EWbosxbUO4Y9Ng6uQ6he3ajtgIprzn3oNzouXLxRcK40LaryO7H1XZd6GLbZNSaGoJ8A3LkSWPSlRL4o0AVQ0Ajga/vx6TtNExTsM6jRVnlsRdKhjA==
+X-Microsoft-Antispam-Message-Info: aGRgdMn2opZ6NapcJXsH6eCaMpc/MW5+3EF4eHQbjnb5WoD3S0wZu6QjvC4RMVxP8jDVUqXnhn3uKC+h39qtiU9oz95+97t4cFdQAoEIyx8MmjcUD4LeEg9ucWzUZ4qyIJ12yX/iiSUjUgl/QNSBdpWMwDf7IHFnj3+FR2UVNcxP8QtVp5JwxKnkRb4K0vQnRyU6+k6rXOAeEtEYqyP6oyKqR4JuMBe7OuGWcnFIirt9YzCMAIrnM6u5n9400YrrygEVagA98F7aG37hdEakqdMJ81mZ4TBHzMu19wlVBeOS8Cdtunk6viwdMjzADpxTtRebSTaIct17hHLG83j7XeMbptQT6YW38hvuQe5YLp6IcjCBPvy/v48x12nn64DB9oNjBR1zPOuHB2Z9aWiAyckMV3Y8EkSw/Cy8KWwmpj+A8fIy66gfSvkNUbEcKb8X4E8VWHCArJPA+GLl43XB9CRxEy5WCpkTAGs+9e1QASVAShYm8D+az/yt9Fee9PhZMD8RjiQ0RHvWPgoy1OZYxdrXm2i1fx0NW/mley+QU2Q+DPtMLtWI5OHptPS0RHFwquyOsj3sLjRapikyIrHn/Va/6KdVQWCjJpHVoxaeqmk6j0STcWPpXyz2OzwaZhfyR1w/8BhzlXusszLpOU4+ua42LtsxjrJ6mHt/wRyK4fwSdVxSoG44bA9zgaT4/S4t7gOVWOGMH6jzMmQYsJpVa9z/ycFVqDsDQ8FrCXHFO1/DC5o74RvyRrZsS7cTvT5Qi3GUd/zuPPIoP16WpB4s9g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(451199024)(82310400011)(64100799003)(1800799009)(186009)(36840700001)(40470700004)(46966006)(336012)(426003)(356005)(82740400003)(26005)(47076005)(36860700001)(40460700003)(83380400001)(41300700001)(5660300002)(4326008)(1076003)(478600001)(8936002)(8676002)(54906003)(70586007)(70206006)(6916009)(2906002)(86362001)(30864003)(2876002)(316002)(7696005)(6666004)(40480700001)(81166007)(2616005)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(346002)(39860400002)(136003)(376002)(230922051799003)(186009)(1800799009)(451199024)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(2906002)(2876002)(40460700003)(5660300002)(8676002)(4326008)(36756003)(8936002)(40480700001)(41300700001)(316002)(54906003)(70586007)(70206006)(86362001)(6916009)(478600001)(6666004)(2616005)(7696005)(1076003)(426003)(81166007)(356005)(26005)(82740400003)(336012)(36860700001)(83380400001)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 13:32:59.3493 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8f7aeb7-704e-435d-03b1-08dbd0a7e955
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2023 13:32:40.8665 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27c5e29b-6e11-4ed6-2ce8-08dbd0a7de34
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E5.namprd04.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4C.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8558
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5369
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,351 +100,167 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Duncan Ma <duncan.ma@amd.com>,
- jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
- wayne.lin@amd.com, Harry.Wentland@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>, chiahsuan.chung@amd.com,
+ Sunpeng.Li@amd.com, Sung Joon Kim <sungkim@amd.com>, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
+ hersenxs.wu@amd.com, wayne.lin@amd.com, Nicholas Choi <nicholas.choi@amd.com>,
+ Harry.Wentland@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Sung Joon Kim <sungkim@amd.com>
 
-This reverts commit 8316378d272ed96f60177cc9a8beaadb8640f745.
+[why]
+Need a helper function to check idle power is allowed
+so that dc doesn't access any registers that are power-gated.
 
-Causes intermittent hangs during reboot stress testing.
+[how]
+Implement helper function to check idle power optimization.
+Enable a hook to check if detection is allowed.
 
-Reviewed-by: Duncan Ma <duncan.ma@amd.com>
+V2:
+Add function hooks for set and get idle states.
+Check if function hook was properly initialized.
+
+Reviewed-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Nicholas Choi <nicholas.choi@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Sung Joon Kim <sungkim@amd.com>
 ---
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 37 ------------
- .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.c  | 14 +----
- .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.h  |  4 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 -
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  | 57 ++++---------------
- .../gpu/drm/amd/display/dc/dcn35/dcn35_init.c |  2 -
- .../drm/amd/display/dc/dcn35/dcn35_resource.c |  2 -
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 30 ++++------
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.h   |  3 -
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  3 +-
- .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |  2 -
- 11 files changed, 27 insertions(+), 129 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 23 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  4 +++-
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  8 ++-----
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |  2 ++
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |  2 ++
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  1 +
+ 7 files changed, 34 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index f80917f6153b..302a3d348c76 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -808,34 +808,6 @@ static void dcn35_set_low_power_state(struct clk_mgr *clk_mgr_base)
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index f602ff0d4146..c4962cc4bb93 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -4883,6 +4883,9 @@ void dc_allow_idle_optimizations(struct dc *dc, bool allow)
+ 	if (dc->debug.disable_idle_power_optimizations)
+ 		return;
+ 
++	if (dc->caps.ips_support && dc->config.disable_ips)
++		return;
++
+ 	if (dc->clk_mgr != NULL && dc->clk_mgr->funcs->is_smu_present)
+ 		if (!dc->clk_mgr->funcs->is_smu_present(dc->clk_mgr))
+ 			return;
+@@ -4894,6 +4897,26 @@ void dc_allow_idle_optimizations(struct dc *dc, bool allow)
+ 		dc->idle_optimizations_allowed = allow;
  }
  
--static void dcn35_set_idle_state(struct clk_mgr *clk_mgr_base, bool allow_idle)
--{
--	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
--	struct dc *dc = clk_mgr_base->ctx->dc;
--	uint32_t val = dcn35_smu_read_ips_scratch(clk_mgr);
--
--	if (dc->config.disable_ips == 0) {
--		val |= DMUB_IPS1_ALLOW_MASK;
--		val |= DMUB_IPS2_ALLOW_MASK;
--	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS1) {
--		val = val & ~DMUB_IPS1_ALLOW_MASK;
--		val = val & ~DMUB_IPS2_ALLOW_MASK;
--	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2) {
--		val |= DMUB_IPS1_ALLOW_MASK;
--		val = val & ~DMUB_IPS2_ALLOW_MASK;
--	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2_Z10) {
--		val |= DMUB_IPS1_ALLOW_MASK;
--		val |= DMUB_IPS2_ALLOW_MASK;
--	}
--
--	if (!allow_idle) {
--		val = val & ~DMUB_IPS1_ALLOW_MASK;
--		val = val & ~DMUB_IPS2_ALLOW_MASK;
--	}
--
--	dcn35_smu_write_ips_scratch(clk_mgr, val);
--}
--
- static void dcn35_exit_low_power_state(struct clk_mgr *clk_mgr_base)
++bool dc_dmub_is_ips_idle_state(struct dc *dc)
++{
++	uint32_t idle_state = 0;
++
++	if (dc->debug.disable_idle_power_optimizations)
++		return false;
++
++	if (!dc->caps.ips_support || dc->config.disable_ips)
++		return false;
++
++	if (dc->hwss.get_idle_state)
++		idle_state = dc->hwss.get_idle_state(dc);
++
++	if ((idle_state & DMUB_IPS1_ALLOW_MASK) ||
++		(idle_state & DMUB_IPS2_ALLOW_MASK))
++		return true;
++
++	return false;
++}
++
+ /* set min and max memory clock to lowest and highest DPM level, respectively */
+ void dc_unlock_memory_clock_frequency(struct dc *dc)
  {
- 	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
-@@ -855,13 +827,6 @@ static bool dcn35_is_ips_supported(struct clk_mgr *clk_mgr_base)
- 	return ips_supported;
- }
- 
--static uint32_t dcn35_get_idle_state(struct clk_mgr *clk_mgr_base)
--{
--	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
--
--	return dcn35_smu_read_ips_scratch(clk_mgr);
--}
--
- static void dcn35_init_clocks_fpga(struct clk_mgr *clk_mgr)
- {
- 	dcn35_init_clocks(clk_mgr);
-@@ -949,8 +914,6 @@ static struct clk_mgr_funcs dcn35_funcs = {
- 	.set_low_power_state = dcn35_set_low_power_state,
- 	.exit_low_power_state = dcn35_exit_low_power_state,
- 	.is_ips_supported = dcn35_is_ips_supported,
--	.set_idle_state = dcn35_set_idle_state,
--	.get_idle_state = dcn35_get_idle_state
- };
- 
- struct clk_mgr_funcs dcn35_fpga_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
-index b6b8c3ca1572..b20b3a5eb3c4 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
-@@ -444,9 +444,9 @@ void dcn35_vbios_smu_enable_48mhz_tmdp_refclk_pwrdwn(struct clk_mgr_internal *cl
- 			enable);
- }
- 
--int dcn35_smu_exit_low_power_state(struct clk_mgr_internal *clk_mgr)
-+void dcn35_smu_exit_low_power_state(struct clk_mgr_internal *clk_mgr)
- {
--	return dcn35_smu_send_msg_with_param(
-+	dcn35_smu_send_msg_with_param(
- 		clk_mgr,
- 		VBIOSSMC_MSG_DispPsrExit,
- 		0);
-@@ -459,13 +459,3 @@ int dcn35_smu_get_ips_supported(struct clk_mgr_internal *clk_mgr)
- 			VBIOSSMC_MSG_QueryIPS2Support,
- 			0);
- }
--
--void dcn35_smu_write_ips_scratch(struct clk_mgr_internal *clk_mgr, uint32_t param)
--{
--	REG_WRITE(MP1_SMN_C2PMSG_71, param);
--}
--
--uint32_t dcn35_smu_read_ips_scratch(struct clk_mgr_internal *clk_mgr)
--{
--	return REG_READ(MP1_SMN_C2PMSG_71);
--}
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-index 2b8e6959a03d..38b7a4420d6c 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
-@@ -194,10 +194,8 @@ void dcn35_smu_set_zstate_support(struct clk_mgr_internal *clk_mgr, enum dcn_zst
- void dcn35_smu_set_dtbclk(struct clk_mgr_internal *clk_mgr, bool enable);
- void dcn35_vbios_smu_enable_48mhz_tmdp_refclk_pwrdwn(struct clk_mgr_internal *clk_mgr, bool enable);
- 
--int dcn35_smu_exit_low_power_state(struct clk_mgr_internal *clk_mgr);
-+void dcn35_smu_exit_low_power_state(struct clk_mgr_internal *clk_mgr);
- int dcn35_smu_get_ips_supported(struct clk_mgr_internal *clk_mgr);
- int dcn35_smu_get_dtbclk(struct clk_mgr_internal *clk_mgr);
- int dcn35_smu_get_dprefclk(struct clk_mgr_internal *clk_mgr);
--void dcn35_smu_write_ips_scratch(struct clk_mgr_internal *clk_mgr, uint32_t param);
--uint32_t dcn35_smu_read_ips_scratch(struct clk_mgr_internal *clk_mgr);
- #endif /* DAL_DC_35_SMU_H_ */
 diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index f16912a8791d..cc1cae4d7329 100644
+index cc1cae4d7329..e3b8c71e2c31 100644
 --- a/drivers/gpu/drm/amd/display/dc/dc.h
 +++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -975,8 +975,6 @@ struct dc_debug_options {
- 	bool replay_skip_crtc_disabled;
- 	bool ignore_pg;/*do nothing, let pmfw control it*/
- 	bool psp_disabled_wa;
--	unsigned int ips2_eval_delay_us;
--	unsigned int ips2_entry_delay_us;
- };
+@@ -2362,6 +2362,7 @@ bool dc_is_plane_eligible_for_idle_optimizations(struct dc *dc, struct dc_plane_
+ 				struct dc_cursor_attributes *cursor_attr);
  
- struct gpu_info_soc_bounding_box_v1_0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 4fd3f09432be..a388f34c6d04 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -1100,64 +1100,31 @@ void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
+ void dc_allow_idle_optimizations(struct dc *dc, bool allow);
++bool dc_dmub_is_ips_idle_state(struct dc *dc);
  
- 	cmd.idle_opt_notify_idle.cntl_data.driver_idle = allow_idle;
+ /* set min and max memory clock to lowest and highest DPM level, respectively */
+ void dc_unlock_memory_clock_frequency(struct dc *dc);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+index 5daedd893923..5d62805f3bdf 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+@@ -586,7 +586,9 @@ void dcn31_reset_hw_ctx_wrap(
+ 			struct clock_source *old_clk = pipe_ctx_old->clock_source;
  
--	if (allow_idle) {
--		if (dc->hwss.set_idle_state)
--			dc->hwss.set_idle_state(dc, true);
--	}
--
- 	dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
-+
-+	if (allow_idle)
-+		udelay(500);
- }
- 
- void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
- {
--	uint32_t allow_state = 0;
--	uint32_t commit_state = 0;
--
- 	if (dc->debug.dmcub_emulation)
- 		return;
- 
- 	if (!dc->idle_optimizations_allowed)
- 		return;
- 
--	if (dc->hwss.get_idle_state &&
--		dc->hwss.set_idle_state &&
--		dc->clk_mgr->funcs->exit_low_power_state) {
--
--		allow_state = dc->hwss.get_idle_state(dc);
--		dc->hwss.set_idle_state(dc, false);
--
--		if (allow_state & DMUB_IPS2_ALLOW_MASK) {
--			// Wait for evaluation time
--			udelay(dc->debug.ips2_eval_delay_us);
--			commit_state = dc->hwss.get_idle_state(dc);
--			if (commit_state & DMUB_IPS2_COMMIT_MASK) {
--				// Tell PMFW to exit low power state
--				dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
--
--				// Wait for IPS2 entry upper bound
--				udelay(dc->debug.ips2_entry_delay_us);
--				dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
-+	// Tell PMFW to exit low power state
-+	if (dc->clk_mgr->funcs->exit_low_power_state)
-+		dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
- 
--				do {
--					commit_state = dc->hwss.get_idle_state(dc);
--				} while (commit_state & DMUB_IPS2_COMMIT_MASK);
-+	// Wait for dmcub to load up
-+	dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true);
- 
--				if (!dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true))
--					ASSERT(0);
--
--				return;
--			}
--		}
--
--		dc_dmub_srv_notify_idle(dc, false);
--		if (allow_state & DMUB_IPS1_ALLOW_MASK) {
--			do {
--				commit_state = dc->hwss.get_idle_state(dc);
--			} while (commit_state & DMUB_IPS1_COMMIT_MASK);
--		}
--	}
-+	// Notify dmcub disallow idle
-+	dc_dmub_srv_notify_idle(dc, false);
- 
--	if (!dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true))
--		ASSERT(0);
-+	// Confirm dmu is powered up
-+	dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_init.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_init.c
-index 534223dbe595..588a259c11f2 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_init.c
-@@ -118,8 +118,6 @@ static const struct hw_sequencer_funcs dcn35_funcs = {
- 	.calc_blocks_to_ungate = dcn35_calc_blocks_to_ungate,
- 	.block_power_control = dcn35_block_power_control,
- 	.root_clock_control = dcn35_root_clock_control,
--	.set_idle_state = dcn35_set_idle_state,
--	.get_idle_state = dcn35_get_idle_state
- };
- 
- static const struct hwseq_private_funcs dcn35_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-index 99d55b958977..4e03c9d663de 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
-@@ -746,8 +746,6 @@ static const struct dc_debug_options debug_defaults_drv = {
- 	.disable_z10 = false,
- 	.ignore_pg = true,
- 	.psp_disabled_wa = true,
--	.ips2_eval_delay_us = 200,
--	.ips2_entry_delay_us = 400
- };
- 
- static const struct dc_panel_config panel_config_defaults = {
+ 			/* Reset pipe which is seamless boot stream. */
+-			if (!pipe_ctx_old->plane_state) {
++			if (!pipe_ctx_old->plane_state &&
++				dc->res_pool->hubbub->funcs->program_det_size &&
++				dc->res_pool->hubbub->funcs->wait_for_det_apply) {
+ 				dc->res_pool->hubbub->funcs->program_det_size(
+ 					dc->res_pool->hubbub, pipe_ctx_old->plane_res.hubp->inst, 0);
+ 				/* Wait det size changed. */
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index 0e218f9e2a86..12821cb9ab6c 100644
+index 12821cb9ab6c..36d2b91aa337 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -650,10 +650,18 @@ bool dcn35_apply_idle_power_optimizations(struct dc *dc, bool enable)
+@@ -627,12 +627,8 @@ void dcn35_power_down_on_boot(struct dc *dc)
+ 	if (dc->clk_mgr->funcs->set_low_power_state)
+ 		dc->clk_mgr->funcs->set_low_power_state(dc->clk_mgr);
  
- 	// TODO: review other cases when idle optimization is allowed
- 
-+	if (!enable) {
-+		// Tell PMFW to exit low power state
-+		if (dc->clk_mgr->funcs->exit_low_power_state)
-+			dc->clk_mgr->funcs->exit_low_power_state(dc->clk_mgr);
-+
-+		dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true);
-+	}
-+
-+	dc_dmub_srv_notify_idle(dc, enable);
-+
- 	if (!enable)
--		dc_dmub_srv_exit_low_power_state(dc);
--	else
--		dc_dmub_srv_notify_idle(dc, enable);
-+		dc_dmub_srv_is_hw_pwr_up(dc->ctx->dmub_srv, true);
- 
- 	return true;
+-	if (dc->clk_mgr->clks.pwr_state == DCN_PWR_STATE_LOW_POWER) {
+-		if (!dc->idle_optimizations_allowed) {
+-			dc_dmub_srv_notify_idle(dc, true);
+-			dc->idle_optimizations_allowed = true;
+-		}
+-	}
++	if (dc->clk_mgr->clks.pwr_state == DCN_PWR_STATE_LOW_POWER)
++		dc_allow_idle_optimizations(dc, true);
  }
-@@ -1187,19 +1195,3 @@ void dcn35_optimize_bandwidth(
- 			dc->hwss.root_clock_control(dc, &pg_update_state, false);
- 	}
- }
--
--void dcn35_set_idle_state(const struct dc *dc, bool allow_idle)
--{
--	// TODO: Find a more suitable communcation
--	if (dc->clk_mgr->funcs->set_idle_state)
--		dc->clk_mgr->funcs->set_idle_state(dc->clk_mgr, allow_idle);
--}
--
--uint32_t dcn35_get_idle_state(const struct dc *dc)
--{
--	// TODO: Find a more suitable communcation
--	if (dc->clk_mgr->funcs->get_idle_state)
--		return dc->clk_mgr->funcs->get_idle_state(dc->clk_mgr);
--
--	return 0;
--}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-index 14bbdb0fa634..7c0ff7b163a9 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-@@ -79,7 +79,4 @@ void dcn35_dsc_pg_control(
- 		struct dce_hwseq *hws,
- 		unsigned int dsc_inst,
- 		bool power_on);
--
--void dcn35_set_idle_state(const struct dc *dc, bool allow_idle);
--uint32_t dcn35_get_idle_state(const struct dc *dc);
- #endif /* __DC_HWSS_DCN35_H__ */
+ 
+ bool dcn35_apply_idle_power_optimizations(struct dc *dc, bool enable)
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index 452680fe9aab..d45302035e3f 100644
+index d45302035e3f..c43d1f6c2a06 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -418,8 +418,7 @@ struct hw_sequencer_funcs {
+@@ -418,6 +418,8 @@ struct hw_sequencer_funcs {
  		struct pg_block_update *update_state, bool power_on);
  	void (*root_clock_control)(struct dc *dc,
  		struct pg_block_update *update_state, bool power_on);
--	void (*set_idle_state)(const struct dc *dc, bool allow_idle);
--	uint32_t (*get_idle_state)(const struct dc *dc);
-+
++	void (*set_idle_state)(const struct dc *dc, bool allow_idle);
++	uint32_t (*get_idle_state)(const struct dc *dc);
+ 
  	bool (*is_pipe_topology_transition_seamless)(struct dc *dc,
  			const struct dc_state *cur_ctx,
- 			const struct dc_state *new_ctx);
 diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
-index fa9614bcb160..cb2dc3f75ae2 100644
+index cb2dc3f75ae2..fa9614bcb160 100644
 --- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
 +++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
-@@ -262,8 +262,6 @@ struct clk_mgr_funcs {
+@@ -262,6 +262,8 @@ struct clk_mgr_funcs {
  	void (*set_low_power_state)(struct clk_mgr *clk_mgr);
  	void (*exit_low_power_state)(struct clk_mgr *clk_mgr);
  	bool (*is_ips_supported)(struct clk_mgr *clk_mgr);
--	void (*set_idle_state)(struct clk_mgr *clk_mgr, bool allow_idle);
--	uint32_t (*get_idle_state)(struct clk_mgr *clk_mgr);
++	void (*set_idle_state)(struct clk_mgr *clk_mgr, bool allow_idle);
++	uint32_t (*get_idle_state)(struct clk_mgr *clk_mgr);
  
  	void (*init_clocks)(struct clk_mgr *clk_mgr);
  
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index b99db771e071..e43e8d4bfe37 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -352,6 +352,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 			funcs->init_reg_offsets = dmub_srv_dcn35_regs_init;
+ 
+ 			funcs->is_hw_powered_up = dmub_dcn35_is_hw_powered_up;
++			funcs->should_detect = dmub_dcn35_should_detect;
+ 			break;
+ 
+ 	default:
 -- 
 2.34.1
 
