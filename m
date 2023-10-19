@@ -1,34 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CE47CF2B4
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 10:36:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84967CF2B7
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Oct 2023 10:36:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F8210E4A5;
-	Thu, 19 Oct 2023 08:36:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7CB110E49E;
+	Thu, 19 Oct 2023 08:36:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86E2210E027
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Oct 2023 20:52:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id A84E561917;
- Wed, 18 Oct 2023 20:52:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCE0C433C8;
- Wed, 18 Oct 2023 20:52:10 +0000 (UTC)
-Date: Wed, 18 Oct 2023 16:52:08 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: kernel test robot <lkp@intel.com>
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 2dac75696c6da3c848daa118a729827541c89d33
-Message-ID: <20231018165208.5267a9b9@gandalf.local.home>
-In-Reply-To: <202310190456.pryB092r-lkp@intel.com>
-References: <202310190456.pryB092r-lkp@intel.com>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from out30-110.freemail.mail.aliyun.com
+ (out30-110.freemail.mail.aliyun.com [115.124.30.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7C910E461;
+ Thu, 19 Oct 2023 01:03:39 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R221e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045192;
+ MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=9; SR=0;
+ TI=SMTPD_---0VuS3rO6_1697677413; 
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0VuS3rO6_1697677413) by smtp.aliyun-inc.com;
+ Thu, 19 Oct 2023 09:03:34 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: alexander.deucher@amd.com, harry.wentland@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Subject: [PATCH -next 1/2] drm/amd/display: clean up one inconsistent indenting
+Date: Thu, 19 Oct 2023 09:03:31 +0800
+Message-Id: <20231019010332.25878-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 19 Oct 2023 08:36:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,22 +41,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- amd-gfx@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev@lists.ozlabs.org, linux-trace-kernel@vger.kernel.org
+Cc: Abaci Robot <abaci@linux.alibaba.com>, Yang Li <yang.lee@linux.alibaba.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Oct 2023 04:07:35 +0800
-kernel test robot <lkp@intel.com> wrote:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/display_mode_util.c:150 dml_max() warn: inconsistent indenting
 
-> Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml:
-> Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml:
-> fs/tracefs/event_inode.c:782:11-21: ERROR: ei is NULL but dereferenced.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=6933
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This was already reported and I'm currently testing a patch to fix it.
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c
+index 7dd1f8a12582..3a70838abfba 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_util.c
+@@ -147,7 +147,7 @@ dml_float_t dml_max(dml_float_t x, dml_float_t y)
+ 		return y;
+ 	if (y != y)
+ 		return x;
+-if (x > y)
++	if (x > y)
+ 		return x;
+ 	else
+ 		return y;
+-- 
+2.20.1.7.g153144c
 
--- Steve
