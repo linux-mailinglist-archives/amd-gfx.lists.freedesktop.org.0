@@ -1,71 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC59B7D104D
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Oct 2023 15:10:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD0B97D111A
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Oct 2023 15:58:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9340810E05F;
-	Fri, 20 Oct 2023 13:10:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B5E10E5B9;
+	Fri, 20 Oct 2023 13:58:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE0EA10E05F
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 13:10:24 +0000 (UTC)
-Received: by mail-lj1-x235.google.com with SMTP id
- 38308e7fff4ca-2c50305c5c4so12150621fa.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 06:10:24 -0700 (PDT)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7B3B10E0E4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 13:54:10 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id
+ ffacd0b85a97d-32d9d8284abso605308f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 06:54:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1697807423; x=1698412223; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
+ d=linaro.org; s=google; t=1697810049; x=1698414849; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=6Km4gmlUHmEwDJfvc6XatZAQt1uguGOV9c98P/6IKeE=;
- b=mNMrlES16szmHajY6YzUAHYrTtl0jfRJBw+VKBtfYGr+SA5gB9b5J5ZcqP7+CJFjoC
- kPI7UWArqLQ16BQ6B5XW2Gds4zVQ2vSq+X9gOFjQpPWxx4Z7/D8KePDI9X4rA+FP6WIl
- cFG7ha2dVwvi9SgJLtVxpEwpjfJhDee80DGUnWzBD3Gi8GqOowJauX6XCNV10ghNF+OE
- xOyMsJZl8Hc6ZsUkTQUBNn8p7pl2nkMtfnaiwotnLEDGFQe6IPb45GAUxS9ugRBR84Oh
- 4BMAg68jHRxwrnTjBO6ggJikGV6VwTCiEYErcqPZYBrSeL0qPcFS4rulx02U6dpzMiCN
- Y2xA==
+ bh=vaxQKyBIIqPqw4ZLaGsJttia3ebEsf2c6Qv9i1pJuD4=;
+ b=puXnLFJC1Whgct3fQKFLo4q613NeLGKm3AuNr0BnDy8zWmExp3VgQqdK1mOkNUVpkb
+ +FA0ohW2pvZVrNzz3+TH4QcxtRIa0mCKE9fDCzQt5TvK0BiCtd9x3EgdH36sLkZwvotO
+ v7CWlJr9nR/oRlFGUvezrTyNk6HwEVL3K0zswrJjxhOyY8Ki7Ijg38CVPrT7dHcp6W7s
+ QpDtZLisiOid69Xc1e+kTx2s9LU36r7CDIHIpynkjcedrBl2LpOgAMJUhGRV5aUkbjIs
+ dHRpisE2eMRBcfwp5K7LNNdd0F4hLJIkUdAT0ee7xIq5pgFO2EkuTbIW2GDMG8pt6+D8
+ KJfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697807423; x=1698412223;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20230601; t=1697810049; x=1698414849;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6Km4gmlUHmEwDJfvc6XatZAQt1uguGOV9c98P/6IKeE=;
- b=pUaXoSt9tRgh0mxuudGdFIQSJuYCYIJetcNERe2aXXhKgd8I+uJ3GXxukwmRwSyRXd
- 2VtgKY8MLjc63w5XUPeiy4JGSmai2CAFF88xt7L2AX44OVCIWLIpdKUtTsqvE8KmRmIG
- hwd8kiaFAOS+ntAuZ4JqWM2NGdti8qCv2pxOfJFrSoVb0YJd9aQZ4z2Rdo7bxO30B38i
- z2BrXJtZs+8SPCuiw41y8GAf5AMhl/9ij/+jBr3ggxEMo+oXUB3smpG9NZC6+6fbFXMW
- sKDLJo/lRYO6DiIDmyonI4hwZddp3Jh8YKJ8TEnL7Ozt75l+BlhvkM5zQGWRz0U3NW5d
- fhFg==
-X-Gm-Message-State: AOJu0YxYSQk60zQ/cBJQbfxiRznOJAy4DyauHVre/yF+eMu7NcN8MDa0
- 0dAbSr5TLVIna+FzgwfMiU6dV6vDoTo88Q==
-X-Google-Smtp-Source: AGHT+IE19FRIWp3aj/e+BwHFSaf91pJwIVC45H04/GQ0dWNnUGA5yXN0mgkJAYpK0SIZ9lMIDwLCMA==
-X-Received: by 2002:a2e:be2b:0:b0:2bb:78ad:56cb with SMTP id
- z43-20020a2ebe2b000000b002bb78ad56cbmr1513563ljq.37.1697807422795; 
- Fri, 20 Oct 2023 06:10:22 -0700 (PDT)
-Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- x5-20020adfdd85000000b0032dba85ea1bsm1667195wrl.75.2023.10.20.06.10.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 20 Oct 2023 06:10:22 -0700 (PDT)
-Message-ID: <f833c27f-eb11-4191-a3c0-dd81c34fcecf@gmail.com>
-Date: Fri, 20 Oct 2023 15:10:20 +0200
+ bh=vaxQKyBIIqPqw4ZLaGsJttia3ebEsf2c6Qv9i1pJuD4=;
+ b=nqDrBiaAlEOuLY5W9liAo4UESf51ZGvyMIa5kAXqWgIJVVf9xnICCRAEkx0xqHNsw2
+ buiqQ7Ppvr0Jwen/vC3yX9bdJgRUFY8RIuIoVW5exnNHVHzc2jNd2kmrzeROlUgaSrc9
+ Gq/IeopVtnPAmuIC1vG98k9zUgbNhgZSIKF0cSFcicf0k6AL691J7GTtmhTgnz2aNoKI
+ VHDCa9Oxy2oUi0A80c8GESgeGv27OROylvhd9plDqy8ACNGZv9UessJAkAGj0kVuVP6/
+ lS+xssCuZ+jlgF2qm53tIxyMeE4ksiPV/tXmMK+62fJB3Xg/AP93KfvGioF5sE/vzwNw
+ sZVw==
+X-Gm-Message-State: AOJu0Yy85pvQWo+HXle4QShOfmEj9XAqAsZAYDYOauICQjySQwfBrpHw
+ oyCuqnUD/rZkg0RbwRYC+BYxhSmXr3BYATNIC9Q=
+X-Google-Smtp-Source: AGHT+IEEtOZBrzqw15i/Fk3l2uBP2Xef23poD55mjgCPdAfykh4YBFKECujRA7trBMnZDwLsAipMEQ==
+X-Received: by 2002:adf:f091:0:b0:32d:aabf:1db3 with SMTP id
+ n17-20020adff091000000b0032daabf1db3mr1794189wro.24.1697810049346; 
+ Fri, 20 Oct 2023 06:54:09 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ p17-20020a5d68d1000000b0032d687fd9d0sm1755769wrw.19.2023.10.20.06.54.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Oct 2023 06:54:08 -0700 (PDT)
+Date: Fri, 20 Oct 2023 16:54:04 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Qingqing.Zhuo@amd.com
+Subject: [bug report] drm/amd/display: Introduce DML2
+Message-ID: <cd6292d4-ae5c-4c30-b253-0fdae835269b@moroto.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu: Add timeout for sync wait
-Content-Language: en-US
-To: "Deng, Emily" <Emily.Deng@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20231020061307.588900-1-Emily.Deng@amd.com>
- <fbf6e76a-547d-423d-987b-9d1260437322@gmail.com>
- <PH0PR12MB5417863B213789488F00ADC98FDBA@PH0PR12MB5417.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <PH0PR12MB5417863B213789488F00ADC98FDBA@PH0PR12MB5417.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 20 Oct 2023 13:58:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,89 +68,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No, the wait forever is what is expected and perfectly valid user 
-experience.
+Hello Qingqing Zhuo,
 
-Waiting with a timeout on the other hand sounds like a really bad idea 
-to me.
+The patch 7966f319c66d: "drm/amd/display: Introduce DML2" from Jul
+28, 2023 (linux-next), leads to the following Smatch static checker
+warning:
 
-Every wait with a timeout needs a justification, e.g. for example that 
-userspace explicitly specified it. And I absolutely don't see that here.
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_wrapper.c:77 map_hw_resources()
+error: buffer overflow 'dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_stream_id' 6 <= 7
 
-Regards,
-Christian.
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_wrapper.c:79 map_hw_resources()
+error: buffer overflow 'dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_plane_id' 6 <= 7
 
-Am 20.10.23 um 10:52 schrieb Deng, Emily:
-> [AMD Official Use Only - General]
->
-> Hi Christian,
->       The issue is running a compute hang with a quark and trigger a compute job timeout. For compute, the timeout setting is 60s, but for gfx and sdma, it is 10s.
-> So, get the timeout from the sched is reasonable for different sched.
->      And if wait timeout, it will print error, so won't hint real issues. And even it has real issue, the wait forever is bad user experience, and driver couldn't work anymore.
->
-> Emily Deng
-> Best Wishes
->
->
->
->> -----Original Message-----
->> From: Christian König <ckoenig.leichtzumerken@gmail.com>
->> Sent: Friday, October 20, 2023 3:29 PM
->> To: Deng, Emily <Emily.Deng@amd.com>; amd-gfx@lists.freedesktop.org
->> Subject: Re: [PATCH 1/2] drm/amdgpu: Add timeout for sync wait
->>
->> Am 20.10.23 um 08:13 schrieb Emily Deng:
->>> Issue: Dead heappen during gpu recover, the call sequence as below:
->>>
->>> amdgpu_device_gpu_recover->amdgpu_amdkfd_pre_reset-
->>> flush_delayed_work
->>> -> amdgpu_amdkfd_gpuvm_restore_process_bos->amdgpu_sync_wait
->>>
->>> It is because the amdgpu_sync_wait is waiting for the bad job's fence,
->>> and never return, so the recover couldn't continue.
->>>
->>>
->>> Signed-off-by: Emily Deng <Emily.Deng@amd.com>
->>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c | 11 +++++++++--
->>>    1 file changed, 9 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
->>> index dcd8c066bc1f..6253d6aab7f8 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
->>> @@ -406,8 +406,15 @@ int amdgpu_sync_wait(struct amdgpu_sync *sync,
->> bool intr)
->>>       int i, r;
->>>
->>>       hash_for_each_safe(sync->fences, i, tmp, e, node) {
->>> -            r = dma_fence_wait(e->fence, intr);
->>> -            if (r)
->>> +            struct drm_sched_fence *s_fence = to_drm_sched_fence(e-
->>> fence);
->>> +            long timeout = msecs_to_jiffies(10000);
->> That handling doesn't make much sense. If you need a timeout then you need
->> a timeout for the whole function.
->>
->> Additional to that timeouts often just hide real problems which needs fixing.
->>
->> So this here needs a much better justification otherwise it's a pretty clear NAK.
->>
->> Regards,
->> Christian.
->>
->>> +
->>> +            if (s_fence)
->>> +                    timeout = s_fence->sched->timeout;
->>> +
->>> +            if (r == 0)
->>> +                    r = -ETIMEDOUT;
->>> +            if (r < 0)
->>>                       return r;
->>>
->>>               amdgpu_sync_entry_free(e);
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_wrapper.c
+    59 static void map_hw_resources(struct dml2_context *dml2,
+    60                 struct dml_display_cfg_st *in_out_display_cfg, struct dml_mode_support_info_st *mode_support_info)
+    61 {
+    62         unsigned int num_pipes = 0;
+    63         int i, j;
+    64 
+    65         for (i = 0; i < __DML_NUM_PLANES__; i++) {
+                               ^^^^^^^^^^^^^^^^^^
 
+__DML_NUM_PLANES__ is 8.  This loops 0-7.
+
+    66                 in_out_display_cfg->hw.ODMMode[i] = mode_support_info->ODMMode[i];
+    67                 in_out_display_cfg->hw.DPPPerSurface[i] = mode_support_info->DPPPerSurface[i];
+    68                 in_out_display_cfg->hw.DSCEnabled[i] = mode_support_info->DSCEnabled[i];
+    69                 in_out_display_cfg->hw.NumberOfDSCSlices[i] = mode_support_info->NumberOfDSCSlices[i];
+    70                 in_out_display_cfg->hw.DLGRefClkFreqMHz = 24;
+    71                 if (dml2->v20.dml_core_ctx.project != dml_project_dcn35 &&
+    72                         dml2->v20.dml_core_ctx.project != dml_project_dcn351) {
+    73                         /*dGPU default as 50Mhz*/
+    74                         in_out_display_cfg->hw.DLGRefClkFreqMHz = 50;
+    75                 }
+    76                 for (j = 0; j < mode_support_info->DPPPerSurface[i]; j++) {
+--> 77                         dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_stream_id[num_pipes] = dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_stream_id[i];
+
+Both of these arrays have 6 elements.
+
+    78                         dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_stream_id_valid[num_pipes] = true;
+    79                         dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_plane_id[num_pipes] = dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_plane_id[i];
+    80                         dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_plane_id_valid[num_pipes] = true;
+    81                         num_pipes++;
+    82                 }
+    83         }
+    84 }
+
+regards,
+dan carpenter
