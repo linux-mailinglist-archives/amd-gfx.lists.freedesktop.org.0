@@ -2,42 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937397D18D6
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Oct 2023 00:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3C67D18DB
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Oct 2023 00:06:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC9310E5F9;
-	Fri, 20 Oct 2023 22:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4724810E5FB;
+	Fri, 20 Oct 2023 22:06:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C9F010E5F9
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 22:06:29 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on20618.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8a::618])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DADCB10E5FB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Oct 2023 22:06:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=faChtodxNgo2qASkSvr3aHfkyw0HFFKax47eS+6HHKJhiWa/1Jx5HtdaTfEnSvu1LjnQC/4rmDwcigILmESib4pFucofyibAOyJpwW/EAg8Ctyr4iL052Uv26BDIGdcHyshOFl4PnQsJuKK1Dk59tR7qzRKIzAle56Ta77Jw3Uni+YvOXdwkGXRJeqr7vehUOeSx3EI8eU0DHagYdTGOv5W+con+vIEpsbryjg9HUcjcKgHghdUEwhKqj5iq+U2ZTp5IMS7qoSfxBzLfmL5zavlz2EB4q4CqUpkgX6SKbMWOL8etJZUr5BPhdyZCoGN8YzQ9PHqYVJv4deRisjJIMQ==
+ b=iohM0PiuHKm0n7tpXDmTBP5I/f1Ma88yQ8cMYxIX5vK0kNsEvFDB6SVtNZ8tvYJ9xXAdFjOdT/FwVeWzCu3U8ZpFimiIR3rb+5pnLW8rJ2F0KcKUM1GcrHB8nk3g3zOWWOOMDfBFyEH9bPVePsBodbYnv1Ka3Jqiu2QjW7bO03roSAaHD+q95DWg8t2sFVZjb4vkxZVHiGhfKsgrlaL/ArAcyrj4SGyMbWbm+9N3W8IoCvn4XPwYDyZzWWHsabtRT1Xpwrgo7AZzrx2lRmq9eO50/wyHjYJzCh26I2WI5qsHoNf+Ub850scL/b55p/fJCM2ZRNoUUzBAn3T8DJUlkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q2+GAPTJqOgVccyUMiQJ0m2xvY6fdLAtvxSIBfeSKR8=;
- b=hBr0h9vul76BbsP2Sb5bvmJn518OLw1Jv6+H2t+OspDDpiI0D4im+PYWsRQqaI/WFdWZTxkP7isj2N9sA7pZDwrshLQ69YEUhVP2N91bbWN4KeqQksTBVx48VSm9U5SrlhY5r8khTlHHesfNL9KmxwhSkg3x6sf7D9I5QWGtHND954/7BOpsvHaVMLiEtd9Ku/z0+ax+VYmku1GQtnE6ZCv4sE2/8ZGBX1HOyGgiWZoZ3SbAW0t0MprfR3FgU12RH9aGw3ioelw6lPJQ/uCBTT0+otFzS72NLY+Vd+ebIU0cHpVbXlXQ3A9IhZzO2GKaXZD5E5XTJCWINUoX7KlEDw==
+ bh=NegSShqbmXqX24ngqi1J/ULIUagFEdI12p5Ii1Mb5Gs=;
+ b=Y5nnp7t+5jLuyDGZ8wfz0JbHMtRf7V0CdAvT0fssoSniXmvA+4AWWHSH+vRsJa8Xwqq/bKMnreYR4sM3WgttbUNtBBCW/DSmubw8BESXBYB4jvmz9WrFaiE6BcPQrk4BJyc5oniZm9F+cdwXmrYGOkh4aAvwe2ksIK2F1nPw3n/vxcNOiUQnwuxsg0GoJZjS+YZmYGh1v4qlrqkxjOYJtiXjTurrwP1U/e9e/ES+V27hvvylUEb3uPAJoDYAZ5tMySuqEL172MzaTj4e1siJejvcf1Q8wsO5Pxs5kD9CNclt0o+YB6UwDk0oatl2SmlalV4NydCQ3Olmcz1+FJczFQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q2+GAPTJqOgVccyUMiQJ0m2xvY6fdLAtvxSIBfeSKR8=;
- b=f//xyCVlfVvIxS6wCRwhr5JdtC5Lf5xbobXLuAi0iOgzEBF3xpkiEqn97NHlzW0aENSOncWZXu5x2kjCQ+FpzBugJUa6l+9i/yGZxASSrOZj1+qJivOFEdCx1yyS7dnePoHKuPkCAZ1ES1V5K/v5NQK7jP92IEFH8TVsjMhHzE4=
-Received: from MN2PR22CA0017.namprd22.prod.outlook.com (2603:10b6:208:238::22)
- by DS0PR12MB7704.namprd12.prod.outlook.com (2603:10b6:8:130::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Fri, 20 Oct
- 2023 22:06:27 +0000
+ bh=NegSShqbmXqX24ngqi1J/ULIUagFEdI12p5Ii1Mb5Gs=;
+ b=DQ8fv1PqM0CJwrzXLxCPIp02YOZcs0PP6DSki1000/qNDNpbmJb1FDtGJICLgNyHYA+ALMhwywukYkKClRPNQCWnfPnPry/CF7nGKk0dB8fyRDIqpPQmyY8Am1KluQE8CWfkhOqFDUS4GmZW/9QIdt8iX/0Ab9BvLuUq3TS/oo8=
+Received: from MN2PR22CA0020.namprd22.prod.outlook.com (2603:10b6:208:238::25)
+ by SA3PR12MB9227.namprd12.prod.outlook.com (2603:10b6:806:398::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.23; Fri, 20 Oct
+ 2023 22:06:28 +0000
 Received: from BL6PEPF0001AB54.namprd02.prod.outlook.com
- (2603:10b6:208:238:cafe::fb) by MN2PR22CA0017.outlook.office365.com
- (2603:10b6:208:238::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.25 via Frontend
- Transport; Fri, 20 Oct 2023 22:06:27 +0000
+ (2603:10b6:208:238:cafe::8d) by MN2PR22CA0020.outlook.office365.com
+ (2603:10b6:208:238::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26 via Frontend
+ Transport; Fri, 20 Oct 2023 22:06:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +48,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL6PEPF0001AB54.mail.protection.outlook.com (10.167.241.6) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6838.22 via Frontend Transport; Fri, 20 Oct 2023 22:06:26 +0000
+ 15.20.6838.22 via Frontend Transport; Fri, 20 Oct 2023 22:06:28 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 20 Oct
- 2023 17:06:10 -0500
+ 2023 17:06:26 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <linux-doc@vger.kernel.org>
-Subject: [PATCH 0/8] Expand and improve AMDGPU documentation
-Date: Fri, 20 Oct 2023 16:05:13 -0600
-Message-ID: <20231020220549.493808-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 1/8] Documentation/gpu: Add basic page for HUBP
+Date: Fri, 20 Oct 2023 16:05:14 -0600
+Message-ID: <20231020220549.493808-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231020220549.493808-1-Rodrigo.Siqueira@amd.com>
+References: <20231020220549.493808-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB54:EE_|DS0PR12MB7704:EE_
-X-MS-Office365-Filtering-Correlation-Id: e05eee7a-9a5c-4d96-a15f-08dbd1b8ce72
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB54:EE_|SA3PR12MB9227:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6984c4f9-5772-4093-8673-08dbd1b8cf19
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ard9gX8/qvx3394xK+0QgZnktq9fzgSfHYLFrMFE4uEQyxgc5fJpWfKm5nv2ZLvTeT8lL9isjKbHhtMGSEo8iWUCpTGkmLb1hNV8EIc87hAdkrRK3K9yRa5yPLfHeQsB5AeTM74SPgnbIoI0TMF3rHD7O1hD7IKjz7O99+CLN+3+lT0A9ujd2dGennQOo877Oh/x6WNVIHY3p/mtNYiNUKCQ8ZvKNxjxCNlub6McyF3OyY3aa2MdPrGoyO0A7MHg3FKRlkLryh7YGfufMnrFZl9hbCKy48OkSpJmBRym9B5aM604os8eqWcCphQnvqIVjMxWLBaVIiJcm1qqUhggvrEOpKQ4pnwVSXl3tDhc+ZzuXSa2kNtLWbjPby9bJLb+o2wdyHb7SnSChRY7IYIN6FVsfnL5KWJcX+0VMJZwMq1nVY2N32r687HoVoFYXg3Vxyr5yTrdA8oYxIWsFoPGDUr/CdNYM+rfb3Bw9KknMz0a/5ZQVEOsJ9cl7bMBJshrOBQuWaQH5j+mbVyWH9YRFtzjI2/PSy0H10VLqaVUC+POviReVyFlyzHw+iyMZVc3G6T+Q+2me9yObaoRhPS0VoLl9JaS6ZJwMwHV6ipNylZRVg7YMne1avGS27euZpAmoj2gykbuwXLBM6NuNPJXaTLWNS8KCEz8n0ty8ia3XawxpihF4Csgax8ypvTfsdQpW4ZTNtjvkbazU9OEJJmK0EoZE9GcLOSd3f4f7Z/2cQPWqHFknl39g/LJqw/gv5qUhxO7jk4numeFMld6kLb+7g==
+X-Microsoft-Antispam-Message-Info: LlbhbjkziwIllFJfo77eZ8DgJW0TESx1nzuffdiQ/4t2pOT+EdGp56k/8D3q4S69qHzg+8XRmVjrcIYxns82PewS/tmpWBiP2cAuO1Xq4fk+/agTZYueD3YjbVYnoAeZMoJ5mC5SMK7YR7p/V0QCAc8ZVX6viE9Pk3Xe2Fo3LCrPrzp0V2Qs2RCVaA/RpezpjlWAMjve/sc+WFWSjAkMswxDmAHE2KRnsjCD7FgF92JpxxtVLV6sq0z1rzd7NZTvh5ZTy87hCGtX8gx1CUdulwP2ULSpaoCE1ozklUcpq1ERHIFHAEHaMN2brIN14DDxuyNuGMWLcmQVRl3a40oghjhpJqIaOQ1NwOO7m9GLZwjXzPDCvEhHZz3UfSxhlYRdk/kSV6Pe6h3QdBkOBueJsqQpMT695PPFugfKy4wPZTITPblqtlEhxTI0lKRVtSMfJhSoBrLB6088zOB1W7Fj+zY0YTdGaFTwA54n8OBkByCtxzH8ZfrO/+G0XAKYzm/p+Vu/KWjYKAZlgOiZfahH0WaMlsw6oXRfkQtcAIqDMZlPF3DB26ktP3fP6pcou5qNmDkZcvhnCKQqfZmZaZdnulmh5twVoQJ1MMOLTNjjYkt2N2YgNbpldOO/x71ONETko7iV4FqGzDxABJu2Agq8za1O/s5svA3FeUSm8n0nliJI/whn5ss+LC3IOYhHaRThNch+PrUrLJcRlVqjGpCWKx+uXYDAWo9/sw50ZHq2Si9qANPe6YO0Of/zGL7PjS76sCaHRvjC7a+TtOZkseHOqQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(186009)(1800799009)(451199024)(82310400011)(64100799003)(36840700001)(46966006)(40470700004)(4326008)(40460700003)(86362001)(47076005)(36756003)(5660300002)(41300700001)(2906002)(81166007)(1076003)(356005)(40480700001)(16526019)(336012)(426003)(82740400003)(36860700001)(26005)(83380400001)(2616005)(8936002)(8676002)(478600001)(110136005)(70586007)(70206006)(316002)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(396003)(376002)(346002)(136003)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(82310400011)(36840700001)(46966006)(40470700004)(40480700001)(40460700003)(36756003)(478600001)(6666004)(36860700001)(356005)(86362001)(82740400003)(2616005)(81166007)(47076005)(2906002)(316002)(83380400001)(54906003)(41300700001)(426003)(1076003)(16526019)(336012)(26005)(8676002)(5660300002)(4326008)(70586007)(70206006)(8936002)(110136005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 22:06:26.9769 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e05eee7a-9a5c-4d96-a15f-08dbd1b8ce72
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 22:06:28.1332 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6984c4f9-5772-4093-8673-08dbd1b8cf19
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB54.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7704
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9227
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,45 +100,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Harry
+ Wentland <Harry.Wentland@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset improves how the AMDGPU display documentation is
-organized, expands the kerne-doc to extract information from the source,
-and adds more context about DC workflow. Finally, at the end of this
-series, we also introduce a contribution session for those interested in
-contributing with the display code.
+Create the HUBP documentation page and add the doc references to extract
+the HUBP code documentation.
 
-Thanks
-Siqueira
-
-Rodrigo Siqueira (8):
-  Documentation/gpu: Add basic page for HUBP
-  Documentation/gpu: Add simple doc page for DCHUBBUB
-  Documentation/gpu: Add kernel doc entry for DPP
-  Documentation/gpu: Add kernel doc entry for MPC
-  Documentation/gpu: Add entry for OPP in the kernel doc
-  Documentation/gpu: Add entry for the DIO component
-  Documentation/gpu: Add an explanation about the DC weekly patches
-  Documentation/gpu: Introduce a simple contribution list for display
-    code
-
- .../gpu/amdgpu/display/dcn-blocks.rst         |  78 ++++++
- .../amdgpu/display/display-contributing.rst   |  88 +++++++
- Documentation/gpu/amdgpu/display/index.rst    | 114 +++++++-
- drivers/gpu/drm/amd/display/TODO              | 110 --------
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |   6 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |  26 ++
- drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |  13 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   | 248 ++++++++++++------
- drivers/gpu/drm/amd/display/dc/inc/hw/opp.h   |  16 ++
- .../amd/display/dc/link/hwss/link_hwss_dio.h  |  10 +
- 10 files changed, 520 insertions(+), 189 deletions(-)
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Harry Wentland <Harry.Wentland@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ .../gpu/amdgpu/display/dcn-blocks.rst          | 18 ++++++++++++++++++
+ Documentation/gpu/amdgpu/display/index.rst     |  1 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h   | 13 ++++++++++++-
+ 3 files changed, 31 insertions(+), 1 deletion(-)
  create mode 100644 Documentation/gpu/amdgpu/display/dcn-blocks.rst
- create mode 100644 Documentation/gpu/amdgpu/display/display-contributing.rst
- delete mode 100644 drivers/gpu/drm/amd/display/TODO
 
+diff --git a/Documentation/gpu/amdgpu/display/dcn-blocks.rst b/Documentation/gpu/amdgpu/display/dcn-blocks.rst
+new file mode 100644
+index 000000000000..5da34d5b73d8
+--- /dev/null
++++ b/Documentation/gpu/amdgpu/display/dcn-blocks.rst
+@@ -0,0 +1,18 @@
++==========
++DCN Blocks
++==========
++
++In this section, you will find some extra details about some of the DCN blocks
++and the code documentation when it is automatically generated.
++
++HUBP
++----
++
++.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
++   :doc: overview
++
++.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
++   :export:
++
++.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
++   :internal:
+diff --git a/Documentation/gpu/amdgpu/display/index.rst b/Documentation/gpu/amdgpu/display/index.rst
+index f8a4f53d70d8..b09d1434754d 100644
+--- a/Documentation/gpu/amdgpu/display/index.rst
++++ b/Documentation/gpu/amdgpu/display/index.rst
+@@ -28,5 +28,6 @@ table of content:
+    display-manager.rst
+    dc-debug.rst
+    dcn-overview.rst
++   dcn-blocks.rst
+    mpo-overview.rst
+    dc-glossary.rst
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
+index 7f3f9b69e903..dedc5370023e 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
+@@ -26,13 +26,24 @@
+ #ifndef __DAL_HUBP_H__
+ #define __DAL_HUBP_H__
+ 
++/**
++ * DOC: overview
++ *
++ * Display Controller Hub (DCHUB) is the gateway between the Scalable Data Port
++ * (SDP) and DCN. This component has multiple features, such as memory
++ * arbitration, rotation, and cursor manipulation.
++ *
++ * There is one HUBP allocated per pipe, which fetches data and converts
++ * different pixel formats (i.e. ARGB8888, NV12, etc) into linear, interleaved
++ * and fixed-depth streams of pixel data.
++ */
++
+ #include "mem_input.h"
+ #include "cursor_reg_cache.h"
+ 
+ #define OPP_ID_INVALID 0xf
+ #define MAX_TTU 0xffffff
+ 
+-
+ enum cursor_pitch {
+ 	CURSOR_PITCH_64_PIXELS = 0,
+ 	CURSOR_PITCH_128_PIXELS,
 -- 
 2.42.0
 
