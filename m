@@ -2,65 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50677D88BA
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Oct 2023 21:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCF87D8817
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Oct 2023 20:15:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 554BD10E09C;
-	Thu, 26 Oct 2023 19:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09A8910E84D;
+	Thu, 26 Oct 2023 18:15:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91DC510E843
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 17:33:43 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- 5b1f17b1804b1-4081ccf69dcso14048025e9.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 10:33:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1698341622; x=1698946422; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=kODa0N4RmPWhXOkFZtrSi2EV6hRoPP6ATwYExjZLFqU=;
- b=bw5e/8yr1C121WTG64xAwDpntXQ87urxrzQWBeWFHmBG5ABB0zhXmr0OR5uGaictgc
- dHcQRFjT2xZe3L5exjs9lf0MtlVzvMwNOWLM+vXcT4IbKJAj+ZHZRNSZRExfenQnCFer
- gc66yz3Ob1HPaqvz2WeQqgC5+AcW6AqdLRRovC8VBzADqhL424wDa3liJkIJscwPWKSW
- TVj4c1Czi+55rpRqy4lH0Asos535Edq58fsOmASat9ioJOUCO/OwyvyD22fgMsqscYg4
- A8hQd8qDgAFr3+p3hC1aIQK7u/2+3gOeWw+IEbkPxl8AH1H2f1CvcY4eMMass3Z4MRUO
- S+XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698341622; x=1698946422;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=kODa0N4RmPWhXOkFZtrSi2EV6hRoPP6ATwYExjZLFqU=;
- b=SVjCEIvJ2SwwGD6pWq4aGFSnqowViTqgSBHUAxVfDEIHR7MYUbvs98VhZ/cmU/HlY3
- QeEb/3uXFTClCq1DW2OiNRevNatcjlIrKAxuhSzrTxDZAf6uGMMuH6MT+Go3dzZWpHgw
- rP9OT6zE8CjWXBsvc3WlkgNln/nRF85p3TI8f6eBmHKNiG68ShR6iiH+odOqJQzKC8Ul
- I1TFnCdj7rS5P5oV3wrP+RL+60BW5X5dxdRZJi58TmAvUtIFNHcjTfSrBve+kXF0mpGM
- np9uiqIwklesqFceLCD5WzG72T+jY3scqcSE0csYYxHSZrJNEdkhRveDXwvhm50OpE/9
- c43Q==
-X-Gm-Message-State: AOJu0YwGxDD34/RxpNoxs6WoClKxuah4pxGQZpZlWaV03eVofhABSzh+
- T+WbtjCqOY8xEIGe3taw3+FjUy84xhp3Cr74TILdWQ==
-X-Google-Smtp-Source: AGHT+IHS+e/1aJbW5bTQTAm8VGasNzmiEEEr/R+7zojVf4ISGNWsbt1rRD/ziGfT0qFpFtdXhFPfWQ==
-X-Received: by 2002:a05:600c:3c97:b0:402:e68f:8a4f with SMTP id
- bg23-20020a05600c3c9700b00402e68f8a4fmr608518wmb.0.1698341621783; 
- Thu, 26 Oct 2023 10:33:41 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:c7c:7213:c700:ddfa:8123:b8d1:3b7d])
- by smtp.gmail.com with ESMTPSA id
- w11-20020a05600c474b00b004067e905f44sm3164541wmo.9.2023.10.26.10.33.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Oct 2023 10:33:41 -0700 (PDT)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [REGRESSION] rx7600 stopped working after "1cfb4d612127 drm/amdgpu:
- put MQDs in VRAM"
-Date: Thu, 26 Oct 2023 18:33:20 +0100
-Message-ID: <20231026173320.552430-1-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.42.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1191A10E84D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Oct 2023 18:15:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IKeRt3XHKLIeGi9fMsg0vN/AanOL1yT1M4ffgJdsepen1teaEHJSTPM52NEW1sQNi1quaRGW89+N5T87CAOKts2Czc3ZZDAzwovFdbB00BWfK5Q437/1r7O/qJs6qnfS3gzPV1l6Wfy4BD8w/eiM04Aogsivz9ECTVYXqMwCbwY2WgHWgVsIEuP3XcJ51H4fTLFAGOvIe8l+RusiRpw3QaE/2/+JYzfxEa3EIQ4byOVhwK4VQZJGVU7kajZ3T1QfTZWrHCbubDivzG94CAVcH9pwHP1FsF0qLdndIORtOYhElU2Q8X47yV2/cB0OsDgdArQ+IzqLy5/0kJIKrOQqrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CJzbps7FfFJwcBGJmj/+AQx/0JXus1pQ0ILo/AxZWx8=;
+ b=F+jlpbmQk/JO0KJQS01cP8XURZ+XkcZTmjSKkp9MmgcPksAkqd9sLMRbyUfa6AITd6BhGLBnh0RXm7CxJ5ykGesNdC3paJemShfCmlr8LJubfBIghMiQpldmTpjSK76ntHWO2Ro/MHu6j6La5J4ZTiTegRnMfB8uIjOPfYXBgXQ5iVyoRknSo6z5kxd9HeijinBHZy6RKV7oXn00y/FkCu2qJubkE39J4C1BMMCsnCA/2DXI57kJ6Sdkiu8D4cI/CgvEvOImwkfslPgz4YYMPG/5KoET2FZin809S7lM/KV0bO0zqr1/McaDsgOlwvplmET3/q7xbWZ1nFQfhwdw6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CJzbps7FfFJwcBGJmj/+AQx/0JXus1pQ0ILo/AxZWx8=;
+ b=k3n0yo+1+FmCDK2ebQV8zCQjCIH3oofd9cVEutzzh+n7c07MtymkZWfaDSeNh6R8BStvtUcbf25Ec+DgF+miHWs8XAwtP8Xd+yu5UP86WUMVltt863pMH26kZX8DDXQC/W5+MCK3dchUhLUCHfvbn+YwrMroMGQCX3+hVM4nhk4=
+Received: from CH0PR13CA0028.namprd13.prod.outlook.com (2603:10b6:610:b1::33)
+ by CY5PR12MB6431.namprd12.prod.outlook.com (2603:10b6:930:39::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Thu, 26 Oct
+ 2023 18:15:40 +0000
+Received: from CY4PEPF0000FCC4.namprd03.prod.outlook.com
+ (2603:10b6:610:b1:cafe::1c) by CH0PR13CA0028.outlook.office365.com
+ (2603:10b6:610:b1::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.8 via Frontend
+ Transport; Thu, 26 Oct 2023 18:15:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000FCC4.mail.protection.outlook.com (10.167.242.106) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6933.15 via Frontend Transport; Thu, 26 Oct 2023 18:15:40 +0000
+Received: from mukjoshi-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Thu, 26 Oct
+ 2023 13:15:39 -0500
+From: Mukul Joshi <mukul.joshi@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Fix typo in IP discovery parsing
+Date: Thu, 26 Oct 2023 14:15:22 -0400
+Message-ID: <20231026181522.262269-1-mukul.joshi@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 26 Oct 2023 19:06:02 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC4:EE_|CY5PR12MB6431:EE_
+X-MS-Office365-Filtering-Correlation-Id: d20308eb-7dc6-4dcd-c4ec-08dbd64f8fa5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /S37sj1TPabk/u/SWUYoTcaG1Ug4MN7g1j5Rgrwul68ciKvBgU/uM6B4EayeEP4v+OEDuqqQF2o8JAiv4tV5UrtXBV4U2ox+i9kK9JzwhuSvZSuW91dERceCOyOxQ+c1GIbUIkdxGt3N9O6dcDbtZnm1uuBY9k0baJQB4ICl7b2y9p62ccE1Zr7hpg1QWIjAoI/uAX+UJM27yaEOxI/KYaq9oZ7wmE4V2Pkks19peo09wol1+irUK/oPjdDItmRBAep9ynkQZST/Wc8xDJPq9s835g0OqnvIyn2hT6GXII7PaMg47tVwOsQ9dKCgkRTnYsnPR3DlFbY6jZMpdwYOGxT7g40Fv9J6YD4uzFjDdnKWwDUzyyFgdstK3jizUneT7RfUYIIcy8Ai14gpq+1r5xouB+XuhNaKBpMRwQbh4FJ+msINhYdriYYrexDEfbbjB5SCpMXRWey8HR9HukWx4HGIs1RxlXPqS/iX4GdNdcmHn6wdTbA4qSAfW1kUevI2lQEiUYPa7MUVxhQdGPAdwHx4EasDlYMO1N1SuMO1grfnbGxOaV82QkHppH2tEx7IPCwfbXOKcFbIfG/MSlI6TllC7BvM8s1Icw/Ow1mTc++Z8iRkBVBKAg0ZnO7ARR5QW3a72eGlQNqN0AbUQYtEJ52RIzv5/zTvBDgYrR+3JOYcSnLFYOO8y5wvfiHpD739o+2/31FSlhr4HXvBxpa65nTCSMOtILAt6hoZanw32J8RgHjoAzkLSgVDLnMRECyxFwkcHBJ2g2LPofYFd0O2Dg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(396003)(136003)(376002)(39860400002)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(41300700001)(82740400003)(2906002)(36860700001)(316002)(70586007)(356005)(70206006)(6916009)(54906003)(7696005)(478600001)(1076003)(2616005)(81166007)(426003)(6666004)(336012)(47076005)(83380400001)(40480700001)(36756003)(44832011)(40460700003)(86362001)(5660300002)(4326008)(8676002)(8936002)(26005)(16526019)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 18:15:40.2729 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d20308eb-7dc6-4dcd-c4ec-08dbd64f8fa5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC4.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6431
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,210 +97,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mathieu.poirier@linaro.org, Xinhui.Pan@amd.com, klimov.linux@gmail.com,
- luben.tuikov@amd.com, mario.limonciello@amd.com, leo.yan@linaro.org,
- alexander.deucher@amd.com, christian.koenig@amd.com, alexey.klimov@linaro.org
+Cc: alexander.deucher@amd.com, Mukul Joshi <mukul.joshi@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-#regzbot introduced: 1cfb4d612127
-#regzbot title: rx7600 stopped working after "1cfb4d612127 drm/amdgpu: put =
-MQDs in VRAM"
+Fix a typo in parsing of the GC info table header when
+reading the IP discovery table.
 
-Hi all,
-
-I've been playing with RX7600 and it was observed that amdgpu stopped worki=
-ng between kernel 6.2 and 6.5.
-Then I narrowed it down to 6.4 <-> 6.5-rc1 and finally bisect pointed at 1c=
-fb4d6121276a829aa94d0e32a7f5e1830ebc21
-And I manually checked if it boots/works on the previous commit and the men=
-tioned one.
-
-I guess the log also reveals warning in error path. Please see below.
-
-I didn't check any further. This is simple debian testing system with the f=
-ollowing cmdline options:
-root@avadebian:~# cat /proc/cmdline
-BOOT_IMAGE=3D/boot/vmlinuz-6.6-rc7+ ignore_loglevel root=3D/dev/nvme1n1p2 r=
-o nr_cpus=3D32
-
-So far simple revert (patch is below) returns things back to normal-ish: th=
-ere are huge graphics artifacts on Xorg/X11 under 6.1 to upstream kernel. W=
-ayland-based sway works great without issues. Not sure where should I repor=
-t this.
-
-Please let me know if I can help debugging, testing or provide some other l=
-ogs regarding 1cfb4d612127? Any cmdline options to collect more info?
-
-Thanks,
-Alexey
-
-
-
-From 214372d5cedcf8757dd80d5f4d058377a3d92c52 Mon Sep 17 00:00:00 2001
-From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Thu, 26 Oct 2023 17:01:02 +0100
-Subject: [PATCH] drm/amdgpu: Revert "drm/amdgpu: put MQDs in VRAM"
-
-This reverts commit 1cfb4d6121276a829aa94d0e32a7f5e1830ebc21.
-
-amdgpu driver fails during initialisation with RX7600/gfx11 on
-ADLINK Ampere Altra Developer Platform (AVA developer platform)
-with mentioned commit:
-
-[   12.559893] [drm] Display Core v3.2.247 initialized on DCN 3.2.1
-[   12.565906] [drm] DP-HDMI FRL PCON supported
-[   12.572192] [drm] DMUB hardware initialized: version=3D0x07000C00
-[   12.582541] snd_hda_intel 000d:03:00.1: bound 000d:03:00.0 (ops amdgpu_d=
-m_audio_component_bind_ops [amdgpu])
-[   12.625357] [drm] kiq ring mec 3 pipe 1 q 0
-[   12.857087] amdgpu 000d:03:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] =
-*ERROR* ring comp_1.0.0 test failed (-110)
-[   12.867930] [drm:amdgpu_device_init [amdgpu]] *ERROR* hw_init of IP bloc=
-k <gfx_v11_0> failed -110
-[   12.877289] amdgpu 000d:03:00.0: amdgpu: amdgpu_device_ip_init failed
-[   12.883723] amdgpu 000d:03:00.0: amdgpu: Fatal error during GPU init
-[   12.890070] amdgpu 000d:03:00.0: amdgpu: amdgpu: finishing device.
-[   12.896586] [drm] DSC precompute is not needed.
-[   12.901142] ------------[ cut here ]------------
-[   12.905747] WARNING: CPU: 0 PID: 212 at drivers/gpu/drm/amd/amdgpu/amdgp=
-u_irq.c:615 amdgpu_irq_put+0xa8/0xc8 [amdgpu]
-[   12.916841] Modules linked in: hid_generic(E) usbhid(E) hid(E) qrtr(E) i=
-ptable_nat(E) amdgpu(E+) nf_nat(E) nf_conntrack(E) snd_hda_codec_hdmi(E) nf=
-_defrag_ipv6(E) nf_defrag_ipv4(E) libcrc32c(E) iptable_mangle(E) iptable_fi=
-lter(E) amdxcp(E) drm_exec(E) gpu_sched(E) snd_hda_intel(E) aes_ce_blk(E) s=
-nd_intel_dspcfg(E) drm_buddy(E) aes_ce_cipher(E) snd_hda_codec(E) xhci_pci(=
-E) video(E) crct10dif_ce(E) polyval_ce(E) snd_hda_core(E) xhci_hcd(E) drm_s=
-uballoc_helper(E) snd_hwdep(E) polyval_generic(E) drm_ttm_helper(E) snd_pcm=
-(E) ghash_ce(E) ast(E) ttm(E) gf128mul(E) snd_timer(E) ipmi_ssif(E) drm_dis=
-play_helper(E) drm_shmem_helper(E) sha2_ce(E) sha256_arm64(E) ipmi_devintf(=
-E) usbcore(E) snd(E) drm_kms_helper(E) igb(E) sha1_ce(E) sbsa_gwdt(E) ipmi_=
-msghandler(E) arm_spe_pmu(E) soundcore(E) usb_common(E) i2c_algo_bit(E) cpp=
-c_cpufreq(E) i2c_designware_platform(E) arm_dsu_pmu(E) arm_cmn(E) xgene_hwm=
-on(E) i2c_designware_core(E) evdev(E) binfmt_misc(E) loop(E) fuse(E) efi_ps=
-tore(E) drm(E) dm_mod(E) dax(E) configfs(E) efivarfs(E)
-[   12.916916]  ip_tables(E) x_tables(E) autofs4(E)
-[   13.011111] CPU: 0 PID: 212 Comm: kworker/0:2 Tainted: G            E   =
-   6.6.0-rc7+ #23
-[   13.019277] Hardware name: ADLINK Ampere Altra Developer Platform/Ampere=
- Altra Developer Platform, BIOS TianoCore 2.04.100.10 (SYS: 2.06.20220308) =
-04/18/2
-[   13.033084] Workqueue: events work_for_cpu_fn
-[   13.037434] pstate: 20400009 (nzCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=
-=3D--)
-[   13.044384] pc : amdgpu_irq_put+0xa8/0xc8 [amdgpu]
-[   13.049652] lr : amdgpu_fence_driver_hw_fini+0x118/0x160 [amdgpu]
-[   13.056220] sp : ffff80008012bc10
-[   13.059522] x29: ffff80008012bc20 x28: 0000000000000000 x27: 00000000000=
-00000
-[   13.066647] x26: 0000000000000000 x25: ffff07ff98580010 x24: ffff07ff985=
-80000
-[   13.073772] x23: ffff07ff985a78f0 x22: ffff07ff98580010 x21: ffff07ff985=
-904c8
-[   13.080896] x20: ffff07ff985900e8 x19: ffff07ff98598580 x18: 00000000000=
-00006
-[   13.088020] x17: 0000000000000020 x16: ffffbb510d0d7140 x15: fffffffffff=
-ffefb
-[   13.095145] x14: 0000000000000000 x13: 2e64656465656e20 x12: ffff07ff8c7=
-fd9e0
-[   13.102268] x11: 00000000000003e8 x10: ffff07ff8c7fd9e0 x9 : ffffbb50ac3=
-345e0
-[   13.109392] x8 : ffffbb50abf18000 x7 : 0000000000000000 x6 : 000000007a4=
-56104
-[   13.116516] x5 : 0000000000000000 x4 : ffff07ff98580000 x3 : 00000000000=
-00000
-[   13.123641] x2 : 0000000000000000 x1 : ffff07ff985a78f0 x0 : ffff07ffc5f=
-d4000
-[   13.130765] Call trace:
-[   13.133200]  amdgpu_irq_put+0xa8/0xc8 [amdgpu]
-[   13.138121]  amdgpu_device_fini_hw+0xb8/0x380 [amdgpu]
-[   13.143732]  amdgpu_driver_unload_kms+0x54/0x80 [amdgpu]
-[   13.149517]  amdgpu_driver_load_kms+0x100/0x1c0 [amdgpu]
-[   13.155301]  amdgpu_pci_probe+0x134/0x428 [amdgpu]
-[   13.160564]  local_pci_probe+0x48/0xb8
-[   13.164305]  work_for_cpu_fn+0x24/0x40
-[   13.168043]  process_one_work+0x170/0x3d0
-[   13.172042]  worker_thread+0x2bc/0x3e0
-[   13.175781]  kthread+0x118/0x128
-[   13.178999]  ret_from_fork+0x10/0x20
-[   13.182564] ---[ end trace 0000000000000000 ]---
-...
-[   16.984679] amdgpu: probe of 000d:03:00.0 failed with error -110
-
-Cc: Luben Tuikov <luben.tuikov@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Fixes: 1cfb4d612127 drm/amdgpu: put MQDs in VRAM
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 9 ++-------
- drivers/gpu/drm/amd/amdgpu/mes_v10_1.c  | 1 -
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c  | 1 -
- 3 files changed, 2 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_gfx.c
-index 2382921710ec..1f2d8be0fc44 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -382,11 +382,6 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 	int r, i, j;
- 	struct amdgpu_kiq *kiq =3D &adev->gfx.kiq[xcc_id];
- 	struct amdgpu_ring *ring =3D &kiq->ring;
--	u32 domain =3D AMDGPU_GEM_DOMAIN_GTT;
--
--	/* Only enable on gfx10 and 11 for now to avoid changing behavior on olde=
-r chips */
--	if (adev->ip_versions[GC_HWIP][0] >=3D IP_VERSION(10, 0, 0))
--		domain |=3D AMDGPU_GEM_DOMAIN_VRAM;
-=20
- 	/* create MQD for KIQ */
- 	if (!adev->enable_mes_kiq && !ring->mqd_obj) {
-@@ -421,7 +416,7 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 			ring =3D &adev->gfx.gfx_ring[i];
- 			if (!ring->mqd_obj) {
- 				r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--							    domain, &ring->mqd_obj,
-+							    AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj,
- 							    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 				if (r) {
- 					dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
-@@ -445,7 +440,7 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
- 		ring =3D &adev->gfx.compute_ring[j];
- 		if (!ring->mqd_obj) {
- 			r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--						    domain, &ring->mqd_obj,
-+						    AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj,
- 						    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 			if (r) {
- 				dev_warn(adev->dev, "failed to create ring mqd bo (%d)", r);
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/a=
-mdgpu/mes_v10_1.c
-index eb06d749876f..080e7eb3f98d 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-@@ -898,7 +898,6 @@ static int mes_v10_1_mqd_sw_init(struct amdgpu_device *=
-adev,
- 		return 0;
-=20
- 	r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--				    AMDGPU_GEM_DOMAIN_VRAM |
- 				    AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj,
- 				    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 	if (r) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/mes_v11_0.c
-index 6827d547042e..0608710306b8 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -1004,7 +1004,6 @@ static int mes_v11_0_mqd_sw_init(struct amdgpu_device=
- *adev,
- 		return 0;
-=20
- 	r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
--				    AMDGPU_GEM_DOMAIN_VRAM |
- 				    AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj,
- 				    &ring->mqd_gpu_addr, &ring->mqd_ptr);
- 	if (r) {
---=20
-2.42.0
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 8d3681172cea..81476cd8461c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -1488,7 +1488,7 @@ static int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev)
+ 		adev->gfx.config.num_sc_per_sh = le32_to_cpu(gc_info->v2.gc_num_sc_per_se) /
+ 			le32_to_cpu(gc_info->v2.gc_num_sh_per_se);
+ 		adev->gfx.config.num_packer_per_sc = le32_to_cpu(gc_info->v2.gc_num_packer_per_sc);
+-		if (le16_to_cpu(gc_info->v2.header.version_minor == 1)) {
++		if (le16_to_cpu(gc_info->v2.header.version_minor) == 1) {
+ 			adev->gfx.config.gc_num_tcp_per_sa = le32_to_cpu(gc_info->v2_1.gc_num_tcp_per_sh);
+ 			adev->gfx.config.gc_tcp_size_per_cu = le32_to_cpu(gc_info->v2_1.gc_tcp_size_per_cu);
+ 			adev->gfx.config.gc_num_sdp_interface = le32_to_cpu(gc_info->v2_1.gc_num_sdp_interface); /* per XCD */
+-- 
+2.35.1
 
