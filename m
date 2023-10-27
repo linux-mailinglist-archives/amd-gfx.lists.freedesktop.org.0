@@ -1,93 +1,116 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DF77D96B9
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Oct 2023 13:33:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50007D9AD2
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Oct 2023 16:08:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9E910E0C6;
-	Fri, 27 Oct 2023 11:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5288F10E9AE;
+	Fri, 27 Oct 2023 14:08:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on20622.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::622])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F0310E0C6
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 11:33:33 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2080.outbound.protection.outlook.com [40.107.92.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1C810E9AE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Oct 2023 14:08:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F8tSxWrpvPzuwdUEU8x1O+JjvtaWmVZOwhPrKTV92hPK932XEgcjBY9U2WgaYU04z3E0OXD1OjA8o7YqXH6KUNC7hea5RwgiXnmhkI4F+5jDgl0KOO75IJLkZLjRyrOCiYm/+FrRKPNRHzQSlX3VruR6nn6Uyz/t/LcIZjpSBXrMRUJbDkkqZgpq/PEqP+nxkVEq1OwoApbgNqnQYAcxlrYlI25fOgDvKBfzDRjraVF3qqCGCnkZv/ZiAXWQNRJMqJQYh6tkIi7IjVBO9i6tGuSn3meZyXJetSvNI/kkgUJ0f6PsS+Q4pmWXYxw81r62HIKQLDtnGaeYWAnwvspXTQ==
+ b=brZ5c2Y2tq8RLqpZpAYsIR8lycxbjefT/1Wo/3AWRAnVDxfBFylBBnFm0QtPU4BKfFuenJKM7lr2F1OgPLSauxXOr2blMf8SiPDZnXLMKbS4kKCLv/u2+rRy/sVZKupUCgqqqH7BCEb3PLFVHVHPgbYkZqNWS++0j3HCTLRbJUpfqluZMVam9N8TqUUlXMjBDVuyDfSOlvRUj0RxMyLGOzy8OBoK/dBmB1Gcv1xx/cRhKr10kYxBL4HvWoa5aOhomGONCTWBoPnP6jpD/Xr1wUY3Ua4mPH2RkKIN7XaBqbNhyjzT6pgu3aoc5+oCqJT05RORIOyHHHYJ7RlCR4Cs4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8QZAak04rr3nScaLD8L755R5FNhQ7x+mGu+jg4Ntyu0=;
- b=ZmX4fYmWQXZzznNXjsAlEml5L3SxBDK9vuFOP3p166+FrsziNfeLIu4ri9LQFZsobQSreR7OMHh+z4keMWAh+Bcsj5uWtWxSPAbGpNCcczl6oRlUPb4428QbfI/xIMJhE5F642+i6PRX1AMq1imyrFR7oJmx4Ljpcpa3S1nXBY6S8VS13zI99l8KsMSsiMx1f70ZZz77Bc6JowvW32abWp7JeH/Et/kJ1YX0JyDFQ4D9HzW74EzRWxfAeCKPyUfA3CKGT+OdAnwyl5bGMyCyzY3B9C33LbC9QhSNT0lFhr/LThsmekGH0suQHuIA23rwRMtDNzX/Xrhau0qzl2YQCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=2in1indJrdOvV4hhApf+YeenGBOj2H7L7oUwd2uIW7Y=;
+ b=WmU7JU+JK9b/CuGmUoBoKJ5Wmb2DGnVw/ppNhVksQm7ygt4wyhKZZMaHulnHB5na+p9J+ubnR2YcNRAU6w2OaBfRvc7IlAm4pA3xvYnHaUW/gKk9IbPpiNtLQGYWz9OA9rQp5CVsA8FOnBUXw6pe+XYkd8TFkkJNhrsriK/meY+5r3MsTxFB0cL+F3BBpkIcizOuEfGuQfeNn+x82BbIQUQDRxDw+0J2fLB0dynoOfIVxJOe+Iv6H81R38nga/9K1aWYdqLwHwuX+SFTvzFhBv7xevOq4iW9lgyjCRif3IB7f7mFwKtbemcIt8Q5uAlbwPGo5nVRMvSO693pUDwzmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8QZAak04rr3nScaLD8L755R5FNhQ7x+mGu+jg4Ntyu0=;
- b=ILPvs0EOkljtVjevR7vySb4bGgWUkXMqYL/HpR6j3VwBhn9E5AAe582iWTqBWvDlwi2F+HN/TGDFyrPqJIN2iqPiPUhzY5EGuAjge1Q61M3AoHT3m0eLrk7ElVOpBtwB5rsRFQvSq33g4/0HecRACxRszrjXOpjlzWqVGw7tKRk=
-Received: from DM6PR01CA0022.prod.exchangelabs.com (2603:10b6:5:296::27) by
- PH7PR12MB7307.namprd12.prod.outlook.com (2603:10b6:510:20b::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6933.24; Fri, 27 Oct 2023 11:33:30 +0000
-Received: from DS2PEPF0000343F.namprd02.prod.outlook.com
- (2603:10b6:5:296:cafe::4e) by DM6PR01CA0022.outlook.office365.com
- (2603:10b6:5:296::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.24 via Frontend
- Transport; Fri, 27 Oct 2023 11:33:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF0000343F.mail.protection.outlook.com (10.167.18.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6933.18 via Frontend Transport; Fri, 27 Oct 2023 11:33:29 +0000
-Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 27 Oct
- 2023 06:33:27 -0500
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: add RAS reset/query operations for XGMI v6_4
-Date: Fri, 27 Oct 2023 19:32:54 +0800
-Message-ID: <20231027113254.20958-2-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20231027113254.20958-1-tao.zhou1@amd.com>
-References: <20231027113254.20958-1-tao.zhou1@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343F:EE_|PH7PR12MB7307:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67ebd2e7-9bdd-4d79-a143-08dbd6e08b32
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UQPf95ied0Fs3wjcA9YkyJXwPxsVV6eMzXGGm4aF+0Qzhe+DkqPFLjrI/vP0G4FpmoR8m1157Mh2zgyDceCRFrpM/MWKzkPR7XhFDreQ/B1Lt0ijR10gLjTFM9ZAfiSZtYmfGIg4C6gHxuzI5ljtw9TAXD5SMF+qI+93ZsTn9mtLv35QnN6086MJyTujDNQgRbtYfJRrhvPAfsJBx5I8oxrsB4rhngQ45kFlKOlgHuQmMEsgUkUqdz0U1paFYCVQbE4AsqziZzOengEmJoaY+HjZYpCXnga02xuzC7QdqujTSnkcBlNpxC4ewdovqnMH2DvNvc9iNauBtfzeVdOvpMTiPy0ZAeRHg99COpL5J6XNXIbKfpAdxn+j78Ugb+IVCxNsro9/OwM94tBMwL7IiEm/lXEbxKpsQsrqg/CuLdKam9Wl7wcc1AuSnqvOmuK4Sl9PmqsaUVkN5hsJ79FcuW3VLg1K8ZiBMad5kyCJDCLPT+r1oh5mAjbjZD+4z4/I9wfHp+B735u8TBcAAN5z2FTArohQGcuDR1/zXGzVJ6bl3cIpRmeoH88vx4YgAgfoMMYcNDvp+JDQ81ZMmdPllMWwycd2tgCSKOcUTECZB2IlIyZivQ5lUUgl8Q6aSLAxSaiRNiqSAdVkh99GF2KZxqDZc7LmDeMBxeLz4oxCXLsQqhWWmU4MhLPHXFfx3N4IMWeEEzLWK631B6kpARw/raUUBQltdkaqCkczVINQCM6jnxr9l6a+KLR4XtRIeri/0qwWW24g5l9MLdhXnlG/jg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(346002)(376002)(396003)(230922051799003)(451199024)(64100799003)(82310400011)(1800799009)(186009)(46966006)(40470700004)(36840700001)(36860700001)(40460700003)(426003)(356005)(81166007)(83380400001)(36756003)(16526019)(1076003)(26005)(336012)(7696005)(70206006)(70586007)(316002)(6916009)(478600001)(6666004)(2906002)(82740400003)(5660300002)(41300700001)(2616005)(86362001)(8676002)(4326008)(8936002)(47076005)(40480700001)(36900700001);
+ bh=2in1indJrdOvV4hhApf+YeenGBOj2H7L7oUwd2uIW7Y=;
+ b=Dycd3ULOCCjlwTSvx9139lVNhvifLJoo6278PVyxK3TxumJA0ohjM4thYIDhqB+G2nO2nnCT4bJa8MJacRO8bB6Zq3vwPEQiamNB4L2RNrcniyfyhOWDvgdXZqJ62hFcgnWc+/KXJ8aGT8r5NKO1xdwebwbe0Gwzug3C5H0y0uo=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by CH3PR12MB9252.namprd12.prod.outlook.com (2603:10b6:610:1ba::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Fri, 27 Oct
+ 2023 14:08:08 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::f081:16c7:9129:c010]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::f081:16c7:9129:c010%3]) with mapi id 15.20.6933.024; Fri, 27 Oct 2023
+ 14:08:08 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Liu01, Tong (Esther)" <Tong.Liu01@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: add unmap latency when gfx11 set kiq resources
+Thread-Topic: [PATCH] drm/amdgpu: add unmap latency when gfx11 set kiq
+ resources
+Thread-Index: AQHaCId4IZsD8BVbKUy/2Wl60gBdd7BdrOXA
+Date: Fri, 27 Oct 2023 14:08:08 +0000
+Message-ID: <BL1PR12MB5144BE624DB7B78BCF056301F7DCA@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20231027034111.319751-1-Tong.Liu01@amd.com>
+In-Reply-To: <20231027034111.319751-1-Tong.Liu01@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-10-27T14:08:08.125Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|CH3PR12MB9252:EE_
+x-ms-office365-filtering-correlation-id: 816d6ce2-1be9-424a-1307-08dbd6f625da
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: p/3s6dpsI7/T655WwxIM28AXdlgmW1TAYlAZu6iXxq03YtAo6WhxFfQdyAaX6Jg3i9eSPq4LEH111ahCa2qTReYeGGdCxV1ZdMR/7g8i0Kh2qiCJh1IJRvH0z+PerHMju9ALFzFtGcsol8zr3qOpkPk/FdWgnOUTXO3G9LjyPmfUK9zIpfHH0+V8eXKPFlcV18qNe160qYQ5qgcQjKVVkYbgiTTadeJYI4YPOywMXTpfxiLCTpFxAKAsOIbHaVHDFGSiPJ32zdOIAPMhONi5ab0SMkt59Qh0ASveZLRldzUwzPuDuwboeWSCJ/P73dqxwC0V9cisrkLVpqb0tmRenmkfZlb0Tj3jS7R2DHhMPY1soww3wm/vZ/rI/Gm06YVK28Z0T5ak4rq4dXhOKFyM8AFfXoElOwpltlMsi7B1EpONFtHeT/ne8eAvH7LfDytetq41usosDQNZ2lKEJVg7jsDLqbNbFrm+yD7pHLfARXJAP3Uu/uaoakbzZ4un7crUAOBwEyl23XVyxJKJsbhYGUfRq1/8/Z4SCZEk/ATD48jUTq3MpPMfJNhwWvnJ8/muCzkZ3AC5/CXWDUe1ddymXk6elcLlGZFwEZ0+IqiRGiX8ol8Cc0STXdL3Uf5d1TCQ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(376002)(396003)(366004)(39860400002)(136003)(230922051799003)(1800799009)(64100799003)(451199024)(186009)(66476007)(2906002)(19627405001)(5660300002)(41300700001)(52536014)(55016003)(4326008)(8676002)(8936002)(83380400001)(122000001)(76116006)(7696005)(38070700009)(38100700002)(66946007)(54906003)(66446008)(316002)(66556008)(64756008)(9686003)(53546011)(26005)(33656002)(71200400001)(6506007)(86362001)(110136005)(478600001);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nCIBfV8wPTaedqxj54MUp8J+43qhc+y5LDjb28MN2WE9fAqMNe6mNSD1izdk?=
+ =?us-ascii?Q?5isxtva30etQ1nNOtVrRk/Tf4eSRBaPhQOu4xtgkGl5TVis53la6OoVaFREU?=
+ =?us-ascii?Q?jaqJs8N1pgC1iVHp3F4oaI4y7cTLT0Ds/0kA/4l18rpMY8lTo/vOXewDm5dk?=
+ =?us-ascii?Q?pcmwtizgdIy4fd6WrfU5ic3VIsEu6IZf0rChZBt2CbZj2e7ZCWE4doJAC8UT?=
+ =?us-ascii?Q?Q2Wjl+e3jVwb4bd+xxuFXwyNbk1p9lpixDhCwjsiHwYim4dwvnceupbBfHCy?=
+ =?us-ascii?Q?RC0fMBfWfiWzpDdcp+nREohnZtIVyygo85+obpRpMbiLhFDxkZiFYbg0RzJ9?=
+ =?us-ascii?Q?WMm99dllFSz5vM5vETLEf6wvKw5Ow/YHTQJMeCr/F6QPjgfUfxaWfdq/l7wd?=
+ =?us-ascii?Q?OtEbH42LrW76I8CePCtoRJc/+nq5NvV7r6fs+1lqrte3G4pql7uIbJl9fkCR?=
+ =?us-ascii?Q?Xq7HErrve3VyMnU8yZPNhIVOL5NGTeqNUOmuUnyUfFv6+4DIJVgxGd3TNX9L?=
+ =?us-ascii?Q?IhtYNpDM43dHtvTl6zSjNpBMYviZHJmdaV+zhpOw+PZA3unpEaf+jA9HNK0i?=
+ =?us-ascii?Q?UiISsAkV/DLQ6R2x8kH6Eia0w+HaQJd6+xkHemN86NvWNJcARSrrhuWDzbAy?=
+ =?us-ascii?Q?Ha6+L67bPIXSunvNuH7+PzmyB2saL/f6HKcbYxN77sp/xa+ZsNVskZbscduX?=
+ =?us-ascii?Q?E9xB03gs8iENAwxyQ/VY4w789lVgguIyMLgTrh/RN/0qDl1AeBoOjSBc3H9C?=
+ =?us-ascii?Q?a5/iXl9JTIhL22CEOsONfLWk4P29kumYxDQiODaAALFP9yt7Nf8K/C7op9Gv?=
+ =?us-ascii?Q?aRLRldGXP1LvwU72qaGoaa0CvfPn/ssEO2qC4HIJlwz/wqXdI1S4Pitme9aL?=
+ =?us-ascii?Q?7nepppAdyLeSj1HBb2qAkSh5QI8VNEua6xfK2nZCGEsCAmQm9K0atRm6GMdO?=
+ =?us-ascii?Q?2WN+Mok05DHHkBNadOhriDU40nADI0DHesdvULawvTnGK7aTiN5dLFhFsVV/?=
+ =?us-ascii?Q?N1SRLKtzl+4Sslvn1o1brk6suHrFWjpA8zmB7ke/TXBgPrgjRf3DSvXowPuV?=
+ =?us-ascii?Q?t9IgEESK1zC3i0TAWxI014SeRV12r83wSoDlNt/AI2srg0voDpf+3tQLT/nL?=
+ =?us-ascii?Q?gm1rdLw/tSe06wt62jrGNaRUqqUZGsj10CAhCA3oF6lbGvHmHVMSDHiVXcCj?=
+ =?us-ascii?Q?mU3uxrKrD8qnKLOBbe1UqUUTr/1heqpjH6soZgmB+/itLcvJamuWL1hc1N8k?=
+ =?us-ascii?Q?qR9fFxjJq5aMOX1kX+jcRgzLdVQMH8j3kGnMbOq/f4N6I7Dyr0QghuX7SpHm?=
+ =?us-ascii?Q?gZksGycYN56A5fDAJ/Ki2YteFskVOGZEjEVo/ijcykqVf48DRNcVoYldV4+A?=
+ =?us-ascii?Q?PIfT4zqeTHhk67Eu87T36493zFADC8JIxHmutf3kShZWQ/kL8itnSQYgnd7v?=
+ =?us-ascii?Q?hUa4+fvoXzlQu+TJMz2WA7xtwIvxdr7NDq5uqWWvL3eKZlewLVSQIi3/WBnk?=
+ =?us-ascii?Q?Q75ahVR7KQMXvuo7xjpj5xiq1rW/I/rhZW8y97Ya5jJeHq7jFhgILbx91FgY?=
+ =?us-ascii?Q?3/iUQ6gMcaxl2aglc4o=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB5144BE624DB7B78BCF056301F7DCABL1PR12MB5144namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2023 11:33:29.8645 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67ebd2e7-9bdd-4d79-a143-08dbd6e08b32
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343F.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7307
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 816d6ce2-1be9-424a-1307-08dbd6f625da
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2023 14:08:08.8140 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h6rH1rhtZaFMUr6X5z52JfDDMjaOMouavaa2MQ2VpmMaJE9YH4pMyC33Ua3ek5oWgccyUbHskiUMjwT59lGd+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9252
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,104 +122,160 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>
+Cc: "Xiao, Jack" <Jack.Xiao@amd.com>, "Xu,
+ Feifei" <Feifei.Xu@amd.com>, "Chen, Horace" <Horace.Chen@amd.com>, "Chang,
+ HaiJun" <HaiJun.Chang@amd.com>, "Tuikov, Luben" <Luben.Tuikov@amd.com>,
+ Evan Quan <Evan.Quan@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Liu, Monk" <Monk.Liu@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reset/query RAS error status and count.
+--_000_BL1PR12MB5144BE624DB7B78BCF056301F7DCABL1PR12MB5144namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-v2: use XGMI IP version instead of WAFL version.
+[Public]
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: Tong Liu01 <Tong.Liu01@amd.com>
+Sent: Thursday, October 26, 2023 11:41 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Evan Quan <Evan.Quan@amd.com>; Chen, Horace <Horace.Chen@amd.com>; Tuik=
+ov, Luben <Luben.Tuikov@amd.com>; Koenig, Christian <Christian.Koenig@amd.c=
+om>; Deucher, Alexander <Alexander.Deucher@amd.com>; Xiao, Jack <Jack.Xiao@=
+amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>; Liu, Monk <Monk.Liu@amd.c=
+om>; Xu, Feifei <Feifei.Xu@amd.com>; Chang, HaiJun <HaiJun.Chang@amd.com>; =
+Liu01, Tong (Esther) <Tong.Liu01@amd.com>
+Subject: [PATCH] drm/amdgpu: add unmap latency when gfx11 set kiq resources
+
+[why]
+If driver does not set unmap latency for KIQ, the default value of KIQ
+unmap latency is zero. When do unmap queue, KIQ will return that almost
+immediately after receiving unmap command. So, the queue status will be
+saved to MQD incorrectly or lost in some chance.
+
+[how]
+Set unmap latency when do kiq set resources. The unmap latency is set to
+be 1 second that is synchronized with Windows driver.
+
+Signed-off-by: Tong Liu01 <Tong.Liu01@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 46 ++++++++++++++++++++++--
- 1 file changed, 43 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-index 2b7dc490ba6b..0533f873001b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-@@ -103,6 +103,16 @@ static const int walf_pcs_err_noncorrectable_mask_reg_aldebaran[] = {
- 	smnPCS_GOPX1_PCS_ERROR_NONCORRECTABLE_MASK + 0x100000
- };
- 
-+static const int xgmi3x16_pcs_err_status_reg_v6_4[] = {
-+	smnPCS_XGMI3X16_PCS_ERROR_STATUS,
-+	smnPCS_XGMI3X16_PCS_ERROR_STATUS + 0x100000
-+};
-+
-+static const int xgmi3x16_pcs_err_noncorrectable_mask_reg_v6_4[] = {
-+	smnPCS_XGMI3X16_PCS_ERROR_NONCORRECTABLE_MASK,
-+	smnPCS_XGMI3X16_PCS_ERROR_NONCORRECTABLE_MASK + 0x100000
-+};
-+
- static const struct amdgpu_pcs_ras_field xgmi_pcs_ras_fields[] = {
- 	{"XGMI PCS DataLossErr",
- 	 SOC15_REG_FIELD(XGMI0_PCS_GOPX16_PCS_ERROR_STATUS, DataLossErr)},
-@@ -958,6 +968,16 @@ static void amdgpu_xgmi_reset_ras_error_count(struct amdgpu_device *adev)
- 	default:
- 		break;
- 	}
-+
-+	switch (amdgpu_ip_version(adev, XGMI_HWIP, 0)) {
-+	case IP_VERSION(6, 4, 0):
-+		for (i = 0; i < ARRAY_SIZE(xgmi3x16_pcs_err_status_reg_v6_4); i++)
-+			pcs_clear_status(adev,
-+					xgmi3x16_pcs_err_status_reg_v6_4[i]);
-+		break;
-+	default:
-+		break;
-+	}
- }
- 
- static int amdgpu_xgmi_query_pcs_error_status(struct amdgpu_device *adev,
-@@ -975,7 +995,9 @@ static int amdgpu_xgmi_query_pcs_error_status(struct amdgpu_device *adev,
- 
- 	if (is_xgmi_pcs) {
- 		if (amdgpu_ip_version(adev, XGMI_HWIP, 0) ==
--		    IP_VERSION(6, 1, 0)) {
-+		    IP_VERSION(6, 1, 0) ||
-+		    amdgpu_ip_version(adev, XGMI_HWIP, 0) ==
-+		    IP_VERSION(6, 4, 0)) {
- 			pcs_ras_fields = &xgmi3x16_pcs_ras_fields[0];
- 			field_array_size = ARRAY_SIZE(xgmi3x16_pcs_ras_fields);
- 		} else {
-@@ -1013,7 +1035,7 @@ static void amdgpu_xgmi_query_ras_error_count(struct amdgpu_device *adev,
- 					     void *ras_error_status)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gfx_v11_0.c
+index fd22943685f7..7aef7a3a340f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -155,6 +155,7 @@ static void gfx11_kiq_set_resources(struct amdgpu_ring =
+*kiq_ring, uint64_t queue
  {
- 	struct ras_err_data *err_data = (struct ras_err_data *)ras_error_status;
--	int i;
-+	int i, supported = 1;
- 	uint32_t data, mask_data = 0;
- 	uint32_t ue_cnt = 0, ce_cnt = 0;
- 
-@@ -1077,7 +1099,25 @@ static void amdgpu_xgmi_query_ras_error_count(struct amdgpu_device *adev,
- 		}
- 		break;
- 	default:
--		dev_warn(adev->dev, "XGMI RAS error query not supported");
-+		supported = 0;
-+		break;
-+	}
-+
-+	switch (amdgpu_ip_version(adev, XGMI_HWIP, 0)) {
-+	case IP_VERSION(6, 4, 0):
-+		/* check xgmi3x16 pcs error */
-+		for (i = 0; i < ARRAY_SIZE(xgmi3x16_pcs_err_status_reg_v6_4); i++) {
-+			data = RREG32_PCIE(xgmi3x16_pcs_err_status_reg_v6_4[i]);
-+			mask_data =
-+				RREG32_PCIE(xgmi3x16_pcs_err_noncorrectable_mask_reg_v6_4[i]);
-+			if (data)
-+				amdgpu_xgmi_query_pcs_error_status(adev, data,
-+						mask_data, &ue_cnt, &ce_cnt, true, true);
-+		}
-+		break;
-+	default:
-+		if (!supported)
-+			dev_warn(adev->dev, "XGMI RAS error query not supported");
- 		break;
- 	}
- 
--- 
-2.35.1
+         amdgpu_ring_write(kiq_ring, PACKET3(PACKET3_SET_RESOURCES, 6));
+         amdgpu_ring_write(kiq_ring, PACKET3_SET_RESOURCES_VMID_MASK(0) |
++                         PACKET3_SET_RESOURCES_UNMAP_LATENTY(0xa) | /* unm=
+ap_latency: 0xa (~ 1s) */
+                           PACKET3_SET_RESOURCES_QUEUE_TYPE(0));  /* vmid_m=
+ask:0 queue_type:0 (KIQ) */
+         amdgpu_ring_write(kiq_ring, lower_32_bits(queue_mask)); /* queue m=
+ask lo */
+         amdgpu_ring_write(kiq_ring, upper_32_bits(queue_mask)); /* queue m=
+ask hi */
+--
+2.34.1
 
+
+--_000_BL1PR12MB5144BE624DB7B78BCF056301F7DCABL1PR12MB5144namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;font=
+-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[Public]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Tong Liu01 &lt;Tong.L=
+iu01@amd.com&gt;<br>
+<b>Sent:</b> Thursday, October 26, 2023 11:41 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Evan Quan &lt;Evan.Quan@amd.com&gt;; Chen, Horace &lt;Horace.Che=
+n@amd.com&gt;; Tuikov, Luben &lt;Luben.Tuikov@amd.com&gt;; Koenig, Christia=
+n &lt;Christian.Koenig@amd.com&gt;; Deucher, Alexander &lt;Alexander.Deuche=
+r@amd.com&gt;; Xiao, Jack &lt;Jack.Xiao@amd.com&gt;; Zhang, Hawking
+ &lt;Hawking.Zhang@amd.com&gt;; Liu, Monk &lt;Monk.Liu@amd.com&gt;; Xu, Fei=
+fei &lt;Feifei.Xu@amd.com&gt;; Chang, HaiJun &lt;HaiJun.Chang@amd.com&gt;; =
+Liu01, Tong (Esther) &lt;Tong.Liu01@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: add unmap latency when gfx11 set kiq re=
+sources</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">[why]<br>
+If driver does not set unmap latency for KIQ, the default value of KIQ<br>
+unmap latency is zero. When do unmap queue, KIQ will return that almost<br>
+immediately after receiving unmap command. So, the queue status will be<br>
+saved to MQD incorrectly or lost in some chance.<br>
+<br>
+[how]<br>
+Set unmap latency when do kiq set resources. The unmap latency is set to<br=
+>
+be 1 second that is synchronized with Windows driver.<br>
+<br>
+Signed-off-by: Tong Liu01 &lt;Tong.Liu01@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 1 +<br>
+&nbsp;1 file changed, 1 insertion(+)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gfx_v11_0.c<br>
+index fd22943685f7..7aef7a3a340f 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
+@@ -155,6 +155,7 @@ static void gfx11_kiq_set_resources(struct amdgpu_ring =
+*kiq_ring, uint64_t queue<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(kiq_ring=
+, PACKET3(PACKET3_SET_RESOURCES, 6));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(kiq_ring=
+, PACKET3_SET_RESOURCES_VMID_MASK(0) |<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PACK=
+ET3_SET_RESOURCES_UNMAP_LATENTY(0xa) | /* unmap_latency: 0xa (~ 1s) */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; PACKET3_SET_RESOURCES_QUEUE_TYPE(0));&nbsp; /* vmid_mask:0 queue_typ=
+e:0 (KIQ) */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(kiq_ring=
+, lower_32_bits(queue_mask)); /* queue mask lo */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ring_write(kiq_ring=
+, upper_32_bits(queue_mask)); /* queue mask hi */<br>
+-- <br>
+2.34.1<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB5144BE624DB7B78BCF056301F7DCABL1PR12MB5144namp_--
