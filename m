@@ -2,98 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D19E7DB510
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Oct 2023 09:26:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661C97DB50E
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Oct 2023 09:26:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB14D10E23B;
-	Mon, 30 Oct 2023 08:26:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51F310E239;
+	Mon, 30 Oct 2023 08:26:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com
- (mail-he1eur01olkn2053.outbound.protection.outlook.com [40.92.65.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B007910EA8C;
- Sat, 28 Oct 2023 00:48:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XWOiHtz1qLr9YKcgAjd3nDrgkkRgFQwwFOCQ0/Obnleh0MvOuRp+YWhe663rkko2dFtMzf4XHBu4Qr8vGJP7pOXPl79/dci3+6DPan+IqlINRxoLp2eS3XHCiQsQ7dj4nq4V/ZEDBpOyR7HTl1qfUN5ZDBh76oeFRuQbs2unoFpdPI432988rr6wjf/aGXtGvs+avb4gqjsdFPAeSwL/glPqT4L58zJDK0hiFkGtqIKlkgBdZYBEFPHGmMwshdNbw6j+OOLmGtdx18JODKx8S29QgQOnOl5ohatFwDyZg4x7+iGPg2/C/Y5Z+jwvBjPpJ7DxVSrJ+SlbioLhxkcdIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ijryH2cwV593iFdnbobPQmBt3dXyq7smFv2RtMU1E1k=;
- b=Uyo93Vc/eaY/AlJy7rdA9WmU3+Pax3U33Bqeewzq6o5EX82Hmx3ep31HdMlDuLAAICOYyZXTQYvRh7/X01bbcxV4ZWu/E3d/Jf0YkkKah6iZocKK98hqOE6jDFKMHgwCjU9mWu9dF/t81K6lZ8PKtqTBNCWOZM5eCXipz1gVwY09nlNGa0mXNbx5ngi99sVythsCrvZedz7/QQO4WrM9mXlQNkmNPmT+AG4VFRT6MIp+Cg6GQxitWA8nXTpQtx3It7qnJsJ4gdcDt/SKXE6vRcUpHoByKyMiaWmb+A3DeigYdsMTfMg+93rKpeZUhqBiZsYhQkpcp9BbIzLQFYgZng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ijryH2cwV593iFdnbobPQmBt3dXyq7smFv2RtMU1E1k=;
- b=gyTavy1Q/jnE4Jh99lt7o/yrcv4B9V+7hSVFa7UDcb5RXTehBYUnUe8fVyzKdoWgY5ST4AIUiXWJsnCixi6wVtEoYB4UqdUI/3DBmgz92gBvrLwK0eOuYoKhrNrbIn/j2yHrV/jiKcorM7HJhrA9i8MEyfv3pH+ZI+PMvMauF4MMaU1vrOb7BwpT/UK5RUq5Oje3HP27ki15VaKwVeZhtYZB/7t1wwoEjZgd2iNZyrS6NOf5xRMNs2uOaUXeFVB5ka3nYgmpiG9eb/h/gL4Rxzjz/EUzvlVUqJa9F9rm++P7UiBjDfRm+AidBcli4qPvis2617KW0ENKZO+e/91zxA==
-Received: from DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:42a::7)
- by AM9PR10MB4069.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1ff::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.20; Sat, 28 Oct
- 2023 00:48:25 +0000
-Received: from DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e2b0:8d7e:e293:bd97]) by DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e2b0:8d7e:e293:bd97%7]) with mapi id 15.20.6933.024; Sat, 28 Oct 2023
- 00:48:24 +0000
-Date: Sat, 28 Oct 2023 06:18:15 +0530
-From: Yuran Pereira <yuran.pereira@hotmail.com>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Subject: Re: [PATCH] drm/amdgpu: Fixes uninitialized variable usage in
- amdgpu_dm_setup_replay
-Message-ID: <DB3PR10MB6835311E66539604DD442CBBE8A3A@DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM>
-References: <DB3PR10MB683590457246A6625BAA6102E8DDA@DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM>
- <dc2242cd-6522-4073-b376-edc2a9abc3d9@amd.com>
- <PH8PR12MB727953EE85D593EF25650454F9DCA@PH8PR12MB7279.namprd12.prod.outlook.com>
- <39ab34ec-209d-4176-b271-1a02e2976497@amd.com>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <39ab34ec-209d-4176-b271-1a02e2976497@amd.com>
-X-TMN: [gK1RKZMcW/dThrt6g92boikMWOPWyY+H]
-X-ClientProxiedBy: JNAP275CA0043.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4e::19)
- To DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:42a::7)
-X-Microsoft-Original-Message-ID: <20231028004815.GC1301832@nmj-network>
+X-Greylist: delayed 1201 seconds by postgrey-1.36 at gabe;
+ Sat, 28 Oct 2023 12:04:25 UTC
+Received: from 11.mo581.mail-out.ovh.net (11.mo581.mail-out.ovh.net
+ [87.98.173.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8309010E097
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Oct 2023 12:04:25 +0000 (UTC)
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.4.8])
+ by mo581.mail-out.ovh.net (Postfix) with ESMTP id E07E2274BD
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Oct 2023 11:29:13 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-bfgcf (unknown [10.110.115.83])
+ by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 4E5F31FD5D;
+ Sat, 28 Oct 2023 11:29:13 +0000 (UTC)
+Received: from RCM-web3.webmail.mail.ovh.net ([178.33.236.78])
+ by ghost-submission-6684bf9d7b-bfgcf with ESMTPSA
+ id u/3yEYnwPGWSZQAAyIRv4w
+ (envelope-from <jose.pekkarinen@foxhound.fi>); Sat, 28 Oct 2023 11:29:13 +0000
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PR10MB6835:EE_|AM9PR10MB4069:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71d9005c-cb18-42e1-0fd6-08dbd74f974e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +Jeg0ZfJ2EErjrpHeGNySrxxCumlcZEyMNUHrKeVnlSIz6QFxU235asQqzrZx/d3WAorW9vQWG8snWobN2n5KcG3szhTQySbTInU/+Alb/c9TxsHD/uHgTM1jhkDejl1e9ANMeJXfBxbfrEk6sEaLx3ST72BNKPCJlfNZ2EBE5XGdX5AD/BmxZgHfzUAezr2p1jgkD6LwlujOvX7n0CjDwMsXNldm05UnSOoG2SU73QanDU7KWXTD6nha3Vk1jjkAHogCLw4y6bNqnL7nROev+kukI4hZ1B1O8bcCs9BnSIgkztVpTlo8jyqTU5+uAcfdlIAZw9CoqhJOiL+CP5BFBcDtoUUcQ+MGANXuDD1IXghrPT9xmyNXM4XyOXzMrWk29XSJIStmxFwkgxuBx3eYSGIQ1qHS8ghzcaC/EsESoWC/OxUErbHx7T70VvC2ZZVtOctlcV9O6o0WYwePWxgXa6kBzWzRwQdV/A7BOU+Y+rMVRTZ9qCUuJgnvECsZW/8K5hrAO9v8PQ93y6CnV+m2Mp/zkivoYWl0ATMVpWswZqOsQvfZYHurAIPMFcYY6xP
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3eTqngevDhFw7wFGaYdOeLtggo+nIAWADaBHxkZKu1Y3iHAkZE1nkkIenV?=
- =?iso-8859-1?Q?1vEycrQ23J5/grnxI8LDZraJ90vjC0mR8teioTkFUcUFd2UoDGnjIYh02k?=
- =?iso-8859-1?Q?UMuhrOXQbOlflAwc+COCGgH6Npqf41Li5/Yr0PVkktEihyE8IHPZAsDTDT?=
- =?iso-8859-1?Q?Uzox1Uk2ME9MG8qG2MQ5T8lQ/YJDAwIwws6HuSl9eH/uYCWqSXbxj9P1Ek?=
- =?iso-8859-1?Q?vWSEWJYmOguLRidF0klXTejWR1HtS7YX3iVGTc7bsWk4yoCVVzQMUo9RMm?=
- =?iso-8859-1?Q?IuyFP14bxOTMROEDiIK5V15wW7zdxgGMyKrGwCWywkQzSzbhOMJHvkAUMO?=
- =?iso-8859-1?Q?eu2NEaJcgaOzROGIRgbJ9bMqkAfEKq2H+SmLQfjFlsGT/jLB83PlbXbDP7?=
- =?iso-8859-1?Q?YiABIh3Y1cBB3vHHWxn8BTMJmTPLdCvvZoX2ztOjyZdaXLpHgPslzX9W+5?=
- =?iso-8859-1?Q?x+HCeBCbydOaQpCZejrTo4DkB+DKyQGE0+kRpfrxyv320DWwBTbhTA8ADr?=
- =?iso-8859-1?Q?tiMicagJcM1Nru6pZ0bB252qdwdqzl1ZhvAmoSAZ5dSK+rDGLsFTIsM5eI?=
- =?iso-8859-1?Q?XiSwaU83x92cSnH2lYvaKsQSLlPm3xU3DRJkpnwy1y/23bTeBNIf/gB2Qs?=
- =?iso-8859-1?Q?PrFsgNncXK26tb0I5pJSxrANbbIiQc76lNSZjN98isQj6I71oubeup6Jii?=
- =?iso-8859-1?Q?WpW1wJWgyIBAkYUfuOZF577GfDMMDLjOJHKCAQe95+aH/iusZvLcOaSJbN?=
- =?iso-8859-1?Q?cNm/GYUTkztvNy5lHTOtwYknffhsHAh7LGCJZl0MKKOpM5KFghmIhZdHuw?=
- =?iso-8859-1?Q?N4q/TmKBEIm9eSYUxI41xE7BAVi4BiKbwTCRGGG6FadsB3sDeNqnoMhPir?=
- =?iso-8859-1?Q?DADdkGeRmvHgfo5zMD+zdGaujb8m3U+SIfxPLRY3SIWdR+0j5rCvIwUAfT?=
- =?iso-8859-1?Q?u8P+xiIOXu+/jfF4Z7qD04mgDWgMMavESTU/7q/8M6HKtcYkhKYgEYFsVC?=
- =?iso-8859-1?Q?mOPgvP0zjyZefvD5lYtI6D1DrT+QistTLe1aftg6a2l4JIUHFT2HuNG1Zt?=
- =?iso-8859-1?Q?OO5KGvKZg6iXQG2wz9S1Tq/T0KcqNoqCpUnuCdQlBg+xIYMgMZGt9Sxay6?=
- =?iso-8859-1?Q?R8MGeQGPd1XVS1tglR/t6ZOJfNStWsZJmxEyWv13vbmOhOPLn0EA0kFxzC?=
- =?iso-8859-1?Q?ciBts26ejuo+ULOUPjgtwSr176uS+NN/R1hKlPH+4yrZEwuAqQRK+ojjtP?=
- =?iso-8859-1?Q?eDV0U1wsqD8/eGxZEBSm2gpx48gPU9LhGiWm2yAbw=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-6b909.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71d9005c-cb18-42e1-0fd6-08dbd74f974e
-X-MS-Exchange-CrossTenant-AuthSource: DB3PR10MB6835.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2023 00:48:24.8400 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4069
+Date: Sat, 28 Oct 2023 14:29:12 +0300
+From: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: Re: [PATCH] drm/radeon: replace 1-element arrays with flexible-array
+ members
+In-Reply-To: <BL1PR12MB5144FA51BCB5DFD9A9F88A5BF7DCA@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20231027165841.71810-1-jose.pekkarinen@foxhound.fi>
+ <BL1PR12MB5144FA51BCB5DFD9A9F88A5BF7DCA@BL1PR12MB5144.namprd12.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.15
+Message-ID: <634f769b7f723795180d5bd2186943b9@foxhound.fi>
+X-Sender: jose.pekkarinen@foxhound.fi
+Organization: Foxhound Ltd.
+X-Originating-IP: 104.244.73.190
+X-Webmail-UserID: jose.pekkarinen@foxhound.fi
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 17332384643125454502
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrleeigdduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigohhitgfgsehtkehjtddtreejnecuhfhrohhmpeflohhsrocurfgvkhhkrghrihhnvghnuceojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqnecuggftrfgrthhtvghrnhepheeiudelueefgefgueehgfeukeejgedthedufedvudetfeduveekleefudehjedtnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepuddvjedrtddrtddruddpuddtgedrvdeggedrjeefrdduledtpddujeekrdeffedrvdefiedrjeeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqpdhnsggprhgtphhtthhopedupdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdpoffvtefjohhsthepmhhoheekuddpmhhouggvpehsmhhtphhouhht
 X-Mailman-Approved-At: Mon, 30 Oct 2023 08:26:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -106,110 +59,491 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Lakha,
- Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>,
- "linux-kernel-mentees@lists.linuxfoundation.org"
- <linux-kernel-mentees@lists.linuxfoundation.org>
+Cc: linux-kernel-mentees@lists.linuxfoundation.org, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, skhan@linuxfoundation.org, airlied@gmail.com, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
-On Fri, Oct 27, 2023 at 11:57:45AM -0400, Hamza Mahfooz wrote:
-> On 10/27/23 11:55, Lakha, Bhawanpreet wrote:
-> > [AMD Official Use Only - General]
-> > 
-> > 
-> > 
-> > There was a consensus to use memset instead of {0}. I remember making
-> > changes related to that previously.
+On 2023-10-27 20:55, Deucher, Alexander wrote:
+> [Public]
 > 
-> Hm, seems like it's used rather consistently in the DM and in DC
-> though.
+>> -----Original Message-----
+>> From: Jos√© Pekkarinen <jose.pekkarinen@foxhound.fi>
+>> Sent: Friday, October 27, 2023 12:59 PM
+>> To: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
+>> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>;
+>> skhan@linuxfoundation.org
+>> Cc: Jos√© Pekkarinen <jose.pekkarinen@foxhound.fi>; airlied@gmail.com;
+>> daniel@ffwll.ch; amd-gfx@lists.freedesktop.org; dri-
+>> devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; 
+>> linux-kernel-
+>> mentees@lists.linuxfoundation.org
+>> Subject: [PATCH] drm/radeon: replace 1-element arrays with 
+>> flexible-array
+>> members
+>> 
+>> Reported by coccinelle, the following patch will move the following 1 
+>> element
+>> arrays to flexible arrays.
+>> 
+>> drivers/gpu/drm/radeon/atombios.h:5523:32-48: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:5545:32-48: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:5461:34-44: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4447:30-40: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4236:30-41: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7044:24-37: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7054:24-37: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7095:28-45: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7553:8-17: WARNING use 
+>> flexible-array
+>> member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7559:8-17: WARNING use 
+>> flexible-array
+>> member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:3896:27-37: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:5443:16-25: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:5454:34-43: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4603:21-32: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:6299:32-44: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4628:32-46: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:6285:29-39: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4296:30-36: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4756:28-36: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:4064:22-35: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7327:9-24: WARNING use 
+>> flexible-array
+>> member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7332:32-53: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:6030:8-17: WARNING use 
+>> flexible-array
+>> member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7362:26-41: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7369:29-44: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7349:24-32: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> drivers/gpu/drm/radeon/atombios.h:7355:27-35: WARNING use flexible-
+>> array member instead
+>> (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-
+>> length-and-one-element-arrays)
+>> 
+>> Signed-off-by: Jos√© Pekkarinen <jose.pekkarinen@foxhound.fi>
 > 
-Have you decided which one should be used?
-
-Should I submit a v2 patch using {0} instead of memset?
-
-
-Yuran Pereira
-> > 
-> > Bhawan
-> > 
-> > ------------------------------------------------------------------------
-> > *From:* Mahfooz, Hamza <Hamza.Mahfooz@amd.com>
-> > *Sent:* October 27, 2023 11:53 AM
-> > *To:* Yuran Pereira <yuran.pereira@hotmail.com>; airlied@gmail.com
-> > <airlied@gmail.com>
-> > *Cc:* Li, Sun peng (Leo) <Sunpeng.Li@amd.com>; Lakha, Bhawanpreet
-> > <Bhawanpreet.Lakha@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>; Siqueira,
-> > Rodrigo <Rodrigo.Siqueira@amd.com>; linux-kernel@vger.kernel.org
-> > <linux-kernel@vger.kernel.org>; amd-gfx@lists.freedesktop.org
-> > <amd-gfx@lists.freedesktop.org>; dri-devel@lists.freedesktop.org
-> > <dri-devel@lists.freedesktop.org>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; Koenig, Christian
-> > <Christian.Koenig@amd.com>;
-> > linux-kernel-mentees@lists.linuxfoundation.org
-> > <linux-kernel-mentees@lists.linuxfoundation.org>
-> > *Subject:* Re: [PATCH] drm/amdgpu: Fixes uninitialized variable usage in
-> > amdgpu_dm_setup_replay
-> > On 10/26/23 17:25, Yuran Pereira wrote:
-> > > Since `pr_config` is not initialized after its declaration, the
-> > > following operations with `replay_enable_option` may be performed
-> > > when `replay_enable_option` is holding junk values which could
-> > > possibly lead to undefined behaviour
-> > > 
-> > > ```
-> > > ††††† ...
-> > > ††††† pr_config.replay_enable_option |= pr_enable_option_static_screen;
-> > > ††††† ...
-> > > 
-> > > ††††† if (!pr_config.replay_timing_sync_supported)
-> > > ††††††††† pr_config.replay_enable_option &= ~pr_enable_option_general_ui;
-> > > ††††† ...
-> > > ```
-> > > 
-> > > This patch initializes `pr_config` after its declaration to ensure that
-> > > it doesn't contain junk data, and prevent any undefined behaviour
-> > > 
-> > > Addresses-Coverity-ID: 1544428 ("Uninitialized scalar variable")
-> > > Fixes: dede1fea4460 ("drm/amd/display: Add Freesync Panel DM code")
-> > > Signed-off-by: Yuran Pereira <yuran.pereira@hotmail.com>
-> > > ---
-> > > †† drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c | 3 +++
-> > > †† 1 file changed, 3 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> > > index 32d3086c4cb7..40526507f50b 100644
-> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> > > @@ -23,6 +23,7 @@
-> > > ††† *
-> > > ††† */
-> > > +#include <linux/string.h>
-> > > †† #include "amdgpu_dm_replay.h"
-> > > †† #include "dc.h"
-> > > †† #include "dm_helpers.h"
-> > > @@ -74,6 +75,8 @@ bool amdgpu_dm_setup_replay(struct dc_link *link, struct amdgpu_dm_connector *ac
-> > > ††††††† struct replay_config pr_config;
-> > 
-> > I would prefer setting pr_config = {0};
-> > 
-> > > ††††††† union replay_debug_flags *debug_flags = NULL;
-> > > +†††† memset(&pr_config, 0, sizeof(pr_config));
-> > > +
-> > > ††††††† // For eDP, if Replay is supported, return true to skip checks
-> > > ††††††† if (link->replay_settings.config.replay_supported)
-> > > ††††††††††††††† return true;
-> > -- 
-> > Hamza
-> > 
-> -- 
-> Hamza
+> Please verify that changing these to variable sized arrays does not
+> break any calculations based on the old size in the driver.  More
+> below.
 > 
+>> ---
+>>  drivers/gpu/drm/radeon/atombios.h | 54 
+>> +++++++++++++++----------------
+>>  1 file changed, 27 insertions(+), 27 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/radeon/atombios.h
+>> b/drivers/gpu/drm/radeon/atombios.h
+>> index 8a6621f1e82c..7fa1606be92c 100644
+>> --- a/drivers/gpu/drm/radeon/atombios.h
+>> +++ b/drivers/gpu/drm/radeon/atombios.h
+>> @@ -3893,7 +3893,7 @@ typedef struct _ATOM_GPIO_PIN_ASSIGNMENT
+>> typedef struct _ATOM_GPIO_PIN_LUT  {
+>>    ATOM_COMMON_TABLE_HEADER  sHeader;
+>> -  ATOM_GPIO_PIN_ASSIGNMENT   asGPIO_Pin[1];
+>> +  ATOM_GPIO_PIN_ASSIGNMENT   asGPIO_Pin[];
+>>  }ATOM_GPIO_PIN_LUT;
+>> 
+>> 
+>> /******************************************************************
+>> **********/
+>> @@ -4061,7 +4061,7 @@ typedef struct
+>> _ATOM_SRC_DST_TABLE_FOR_ONE_OBJECT         //usSrcDstTableOffset
+>>    UCHAR               ucNumberOfSrc;
+>>    USHORT              usSrcObjectID[1];
+>>    UCHAR               ucNumberOfDst;
+>> -  USHORT              usDstObjectID[1];
+>> +  USHORT              usDstObjectID[];
+>>  }ATOM_SRC_DST_TABLE_FOR_ONE_OBJECT;
+>> 
+>> 
+>> @@ -4233,7 +4233,7 @@ typedef struct
+>> _ATOM_CONNECTOR_DEVICE_TAG_RECORD
+>>    ATOM_COMMON_RECORD_HEADER   sheader;
+>>    UCHAR                       ucNumberOfDevice;
+>>    UCHAR                       ucReserved;
+>> -  ATOM_CONNECTOR_DEVICE_TAG   asDeviceTag[1];         //This Id is 
+>> same as
+>> "ATOM_DEVICE_XXX_SUPPORT", 1 is only for allocation
+>> +  ATOM_CONNECTOR_DEVICE_TAG   asDeviceTag[];          //This Id is 
+>> same as
+>> "ATOM_DEVICE_XXX_SUPPORT", 1 is only for allocation
+>>  }ATOM_CONNECTOR_DEVICE_TAG_RECORD;
+>> 
+>> 
+>> @@ -4293,7 +4293,7 @@ typedef struct
+>> _ATOM_OBJECT_GPIO_CNTL_RECORD
+>>    ATOM_COMMON_RECORD_HEADER   sheader;
+>>    UCHAR                       ucFlags;                // Future 
+>> expnadibility
+>>    UCHAR                       ucNumberOfPins;         // Number of 
+>> GPIO pins used to
+>> control the object
+>> -  ATOM_GPIO_PIN_CONTROL_PAIR  asGpio[1];              // the real 
+>> gpio pin pair
+>> determined by number of pins ucNumberOfPins
+>> +  ATOM_GPIO_PIN_CONTROL_PAIR  asGpio[];               // the real 
+>> gpio pin pair
+>> determined by number of pins ucNumberOfPins
+>>  }ATOM_OBJECT_GPIO_CNTL_RECORD;
+>> 
+>>  //Definitions for GPIO pin state
+>> @@ -4444,7 +4444,7 @@ typedef struct
+>> _ATOM_BRACKET_LAYOUT_RECORD
+>>    UCHAR                       ucWidth;
+>>    UCHAR                       ucConnNum;
+>>    UCHAR                       ucReserved;
+>> -  ATOM_CONNECTOR_LAYOUT_INFO  asConnInfo[1];
+>> +  ATOM_CONNECTOR_LAYOUT_INFO  asConnInfo[];
+>>  }ATOM_BRACKET_LAYOUT_RECORD;
+>> 
+>> 
+>> /******************************************************************
+>> **********/
+>> @@ -4600,7 +4600,7 @@ typedef struct  _ATOM_I2C_VOLTAGE_OBJECT_V3
+>>     UCHAR    ucVoltageControlAddress;
+>>     UCHAR    ucVoltageControlOffset;
+>>     ULONG    ulReserved;
+>> -   VOLTAGE_LUT_ENTRY asVolI2cLut[1];        // end with 0xff
+>> +   VOLTAGE_LUT_ENTRY asVolI2cLut[];         // end with 0xff
+>>  }ATOM_I2C_VOLTAGE_OBJECT_V3;
+>> 
+>>  // ATOM_I2C_VOLTAGE_OBJECT_V3.ucVoltageControlFlag
+>> @@ -4625,7 +4625,7 @@ typedef struct
+>> _ATOM_LEAKAGE_VOLTAGE_OBJECT_V3
+>>     UCHAR    ucLeakageEntryNum;           // indicate the entry number 
+>> of
+>> LeakageId/Voltage Lut table
+>>     UCHAR    ucReserved[2];
+>>     ULONG    ulMaxVoltageLevel;
+>> -   LEAKAGE_VOLTAGE_LUT_ENTRY_V2 asLeakageIdLut[1];
+>> +   LEAKAGE_VOLTAGE_LUT_ENTRY_V2 asLeakageIdLut[];
+>>  }ATOM_LEAKAGE_VOLTAGE_OBJECT_V3;
+>> 
+>> 
+>> @@ -4753,7 +4753,7 @@ typedef struct _ATOM_POWER_SOURCE_INFO  {
+>>               ATOM_COMMON_TABLE_HEADER                asHeader;
+>>               UCHAR
+>>                                       asPwrbehave[16];
+>> -             ATOM_POWER_SOURCE_OBJECT                asPwrObj[1];
+>> +             ATOM_POWER_SOURCE_OBJECT                asPwrObj[];
+>>  }ATOM_POWER_SOURCE_INFO;
+>> 
+>> 
+>> @@ -5440,7 +5440,7 @@ typedef struct _ATOM_FUSION_SYSTEM_INFO_V2
+>> typedef struct _ATOM_I2C_DATA_RECORD  {
+>>    UCHAR         ucNunberOfBytes;                                      
+>>         //Indicates how many
+>> bytes SW needs to write to the external ASIC for one block, besides to 
+>> "Start"
+>> and "Stop"
+>> -  UCHAR         ucI2CData[1];                                         
+>>         //I2C data in bytes,
+>> should be less than 16 bytes usually
+>> +  UCHAR         ucI2CData[];                                          
+>>         //I2C data in bytes, should
+>> be less than 16 bytes usually
+>>  }ATOM_I2C_DATA_RECORD;
+>> 
+>> 
+>> @@ -5451,14 +5451,14 @@ typedef struct
+>> _ATOM_I2C_DEVICE_SETUP_INFO
+>>    UCHAR                                      ucSSChipID;             
+>> //SS chip being used
+>>    UCHAR                                      ucSSChipSlaveAddr;      
+>> //Slave Address to
+>> set up this SS chip
+>>    UCHAR                           ucNumOfI2CDataRecords;  //number of 
+>> data block
+>> -  ATOM_I2C_DATA_RECORD            asI2CData[1];
+>> +  ATOM_I2C_DATA_RECORD            asI2CData[];
+>>  }ATOM_I2C_DEVICE_SETUP_INFO;
+>> 
+>> 
+>> //=================================================================
+>> =========================
+>>  typedef struct  _ATOM_ASIC_MVDD_INFO
+>>  {
+>>    ATOM_COMMON_TABLE_HEADER         sHeader;
+>> -  ATOM_I2C_DEVICE_SETUP_INFO      asI2CSetup[1];
+>> +  ATOM_I2C_DEVICE_SETUP_INFO      asI2CSetup[];
+>>  }ATOM_ASIC_MVDD_INFO;
+>> 
+>> 
+>> //=================================================================
+>> =========================
+>> @@ -5520,7 +5520,7 @@ typedef struct _ATOM_ASIC_INTERNAL_SS_INFO
+>> typedef struct _ATOM_ASIC_INTERNAL_SS_INFO_V2  {
+>>    ATOM_COMMON_TABLE_HEADER         sHeader;
+>> -  ATOM_ASIC_SS_ASSIGNMENT_V2           asSpreadSpectrum[1];
+>> //this is point only.
+>> +  ATOM_ASIC_SS_ASSIGNMENT_V2           asSpreadSpectrum[];
+>> //this is point only.
+>>  }ATOM_ASIC_INTERNAL_SS_INFO_V2;
+>> 
+>>  typedef struct _ATOM_ASIC_SS_ASSIGNMENT_V3 @@ -5542,7 +5542,7 @@
+>> typedef struct _ATOM_ASIC_SS_ASSIGNMENT_V3  typedef struct
+>> _ATOM_ASIC_INTERNAL_SS_INFO_V3  {
+>>    ATOM_COMMON_TABLE_HEADER         sHeader;
+>> -  ATOM_ASIC_SS_ASSIGNMENT_V3           asSpreadSpectrum[1];
+>> //this is pointer only.
+>> +  ATOM_ASIC_SS_ASSIGNMENT_V3           asSpreadSpectrum[];
+>> //this is pointer only.
+>>  }ATOM_ASIC_INTERNAL_SS_INFO_V3;
+>> 
+>> 
+>> @@ -6027,7 +6027,7 @@ typedef struct _ENABLE_SCALER_PARAMETERS
+>>    UCHAR ucScaler;            // ATOM_SCALER1, ATOM_SCALER2
+>>    UCHAR ucEnable;            // ATOM_SCALER_DISABLE or
+>> ATOM_SCALER_CENTER or ATOM_SCALER_EXPANSION
+>>    UCHAR ucTVStandard;        //
+>> -  UCHAR ucPadding[1];
+>> +  UCHAR ucPadding[];
+> 
+> This may actually be a 1 element array.  It‚Äôs just padding at the end
+> of the table.
+> 
+>>  }ENABLE_SCALER_PARAMETERS;
+>>  #define ENABLE_SCALER_PS_ALLOCATION ENABLE_SCALER_PARAMETERS
+>> 
+>> @@ -6282,7 +6282,7 @@ typedef union
+>> _ATOM_MEMORY_SETTING_ID_CONFIG_ACCESS
+>> 
+>>  typedef struct _ATOM_MEMORY_SETTING_DATA_BLOCK{
+>>       ATOM_MEMORY_SETTING_ID_CONFIG_ACCESS
+>>       ulMemoryID;
+>> -     ULONG
+>>                                                               
+>> aulMemData[1];
+>> +     ULONG
+>>                                                               
+>> aulMemData[];
+>>  }ATOM_MEMORY_SETTING_DATA_BLOCK;
+>> 
+>> 
+>> @@ -6296,7 +6296,7 @@ typedef struct _ATOM_INIT_REG_BLOCK{
+>>       USHORT
+>>                                               usRegIndexTblSize;
+>> 
+>>                       //size of asRegIndexBuf
+>>       USHORT
+>>                                               usRegDataBlkSize;
+>> 
+>>                               //size of
+>> ATOM_MEMORY_SETTING_DATA_BLOCK
+>>       ATOM_INIT_REG_INDEX_FORMAT
+>>       asRegIndexBuf[1];
+>> -     ATOM_MEMORY_SETTING_DATA_BLOCK  asRegDataBuf[1];
+>> +     ATOM_MEMORY_SETTING_DATA_BLOCK  asRegDataBuf[];
+>>  }ATOM_INIT_REG_BLOCK;
+>> 
+> 
+> This one needs special handling as you have multiple variable sized 
+> arrays.
+
+     I'm happy to add any special handling in v2, though
+I may need to understand what that special handling would
+be. Would you mind to elaborate? Otherwise I can just leave
+the sensitive cases and the paddings untouched and resend
+the patch with the rest of cases converted.
+
+> 
+>>  #define END_OF_REG_INDEX_BLOCK  0x0ffff @@ -7041,7 +7041,7 @@
+>> typedef struct _ATOM_DISP_OUT_INFO
+>>       USHORT ptrTransmitterInfo;
+>>       USHORT ptrEncoderInfo;
+>>       ASIC_TRANSMITTER_INFO  asTransmitterInfo[1];
+>> -     ASIC_ENCODER_INFO      asEncoderInfo[1];
+>> +     ASIC_ENCODER_INFO      asEncoderInfo[];
+> 
+> Same here.
+> 
+>>  }ATOM_DISP_OUT_INFO;
+>> 
+>>  typedef struct _ATOM_DISP_OUT_INFO_V2
+>> @@ -7051,7 +7051,7 @@ typedef struct _ATOM_DISP_OUT_INFO_V2
+>>       USHORT ptrEncoderInfo;
+>>    USHORT ptrMainCallParserFar;                  // direct address of 
+>> main parser call
+>> in VBIOS binary.
+>>       ASIC_TRANSMITTER_INFO  asTransmitterInfo[1];
+>> -     ASIC_ENCODER_INFO      asEncoderInfo[1];
+>> +     ASIC_ENCODER_INFO      asEncoderInfo[];
+> 
+> Same here.
+> 
+>>  }ATOM_DISP_OUT_INFO_V2;
+>> 
+>> 
+>> @@ -7092,7 +7092,7 @@ typedef struct _ATOM_DISP_OUT_INFO_V3
+>>    UCHAR  ucCoreRefClkSource;                    // value of 
+>> CORE_REF_CLK_SOURCE
+>>    UCHAR  ucDispCaps;
+>>    UCHAR  ucReserved[2];
+>> -  ASIC_TRANSMITTER_INFO_V2  asTransmitterInfo[1];     // for 
+>> alligment only
+>> +  ASIC_TRANSMITTER_INFO_V2  asTransmitterInfo[];      // for 
+>> alligment only
+>>  }ATOM_DISP_OUT_INFO_V3;
+>> 
+>>  //ucDispCaps
+>> @@ -7324,12 +7324,12 @@ typedef struct
+>> _CLOCK_CONDITION_SETTING_ENTRY{
+>>    USHORT usMaxClockFreq;
+>>    UCHAR  ucEncodeMode;
+>>    UCHAR  ucPhySel;
+>> -  ULONG  ulAnalogSetting[1];
+>> +  ULONG  ulAnalogSetting[];
+>>  }CLOCK_CONDITION_SETTING_ENTRY;
+>> 
+>>  typedef struct _CLOCK_CONDITION_SETTING_INFO{
+>>    USHORT usEntrySize;
+>> -  CLOCK_CONDITION_SETTING_ENTRY asClkCondSettingEntry[1];
+>> +  CLOCK_CONDITION_SETTING_ENTRY asClkCondSettingEntry[];
+>>  }CLOCK_CONDITION_SETTING_INFO;
+>> 
+>>  typedef struct _PHY_CONDITION_REG_VAL{
+>> @@ -7346,27 +7346,27 @@ typedef struct _PHY_CONDITION_REG_VAL_V2{
+>> typedef struct _PHY_CONDITION_REG_INFO{
+>>    USHORT usRegIndex;
+>>    USHORT usSize;
+>> -  PHY_CONDITION_REG_VAL asRegVal[1];
+>> +  PHY_CONDITION_REG_VAL asRegVal[];
+>>  }PHY_CONDITION_REG_INFO;
+>> 
+>>  typedef struct _PHY_CONDITION_REG_INFO_V2{
+>>    USHORT usRegIndex;
+>>    USHORT usSize;
+>> -  PHY_CONDITION_REG_VAL_V2 asRegVal[1];
+>> +  PHY_CONDITION_REG_VAL_V2 asRegVal[];
+>>  }PHY_CONDITION_REG_INFO_V2;
+>> 
+>>  typedef struct _PHY_ANALOG_SETTING_INFO{
+>>    UCHAR  ucEncodeMode;
+>>    UCHAR  ucPhySel;
+>>    USHORT usSize;
+>> -  PHY_CONDITION_REG_INFO  asAnalogSetting[1];
+>> +  PHY_CONDITION_REG_INFO  asAnalogSetting[];
+>>  }PHY_ANALOG_SETTING_INFO;
+>> 
+>>  typedef struct _PHY_ANALOG_SETTING_INFO_V2{
+>>    UCHAR  ucEncodeMode;
+>>    UCHAR  ucPhySel;
+>>    USHORT usSize;
+>> -  PHY_CONDITION_REG_INFO_V2  asAnalogSetting[1];
+>> +  PHY_CONDITION_REG_INFO_V2  asAnalogSetting[];
+>>  }PHY_ANALOG_SETTING_INFO_V2;
+>> 
+>>  typedef struct _GFX_HAVESTING_PARAMETERS { @@ -7550,13 +7550,13
+>> @@ typedef struct _ATOM_TMDS_INFO  typedef struct
+>> _ATOM_ENCODER_ANALOG_ATTRIBUTE  {
+>>    UCHAR ucTVStandard;     //Same as TV standards defined above,
+>> -  UCHAR ucPadding[1];
+>> +  UCHAR ucPadding[];
+> 
+> This may actually be a 1 element array.  It‚Äôs just padding at the end
+> of the table.
+> 
+>>  }ATOM_ENCODER_ANALOG_ATTRIBUTE;
+>> 
+>>  typedef struct _ATOM_ENCODER_DIGITAL_ATTRIBUTE  {
+>>    UCHAR ucAttribute;      //Same as other digital encoder attributes 
+>> defined
+>> above
+>> -  UCHAR ucPadding[1];
+>> +  UCHAR ucPadding[];
+> 
+> Same here.
+> 
+> Alex
+> 
+>>  }ATOM_ENCODER_DIGITAL_ATTRIBUTE;
+>> 
+>>  typedef union _ATOM_ENCODER_ATTRIBUTE
+>> --
+>> 2.39.2
+
+     Thanks for the comments!
+
+     Jos√©.
