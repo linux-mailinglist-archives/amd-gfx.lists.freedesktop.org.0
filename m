@@ -1,48 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72EC67DB50D
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Oct 2023 09:26:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D207DAF16
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Oct 2023 23:56:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD39810E238;
-	Mon, 30 Oct 2023 08:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5711610E1A9;
+	Sun, 29 Oct 2023 22:56:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from 4.mo550.mail-out.ovh.net (4.mo550.mail-out.ovh.net
- [46.105.76.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4434010E0D1
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Oct 2023 16:24:07 +0000 (UTC)
-Received: from director2.ghost.mail-out.ovh.net (unknown [10.109.146.211])
- by mo550.mail-out.ovh.net (Postfix) with ESMTP id 6F02724B4B
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Oct 2023 12:44:26 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-9glgx (unknown [10.110.103.93])
- by director2.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 222291FE51;
- Sun, 29 Oct 2023 12:44:23 +0000 (UTC)
-Received: from foxhound.fi ([37.59.142.107])
- by ghost-submission-6684bf9d7b-9glgx with ESMTPSA
- id TGu9AadTPmX5kQMAW1D1+g
- (envelope-from <jose.pekkarinen@foxhound.fi>); Sun, 29 Oct 2023 12:44:23 +0000
-Authentication-Results: garm.ovh; auth=pass
- (GARM-107S0013dc59c63-7237-4b8e-b1f2-ef5aba89673c,
- 2D5A9C8C3C9544CFCEEB4DEE313913C815DB1A20)
- smtp.auth=jose.pekkarinen@foxhound.fi
-X-OVh-ClientIp: 87.94.110.144
-From: =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- skhan@linuxfoundation.org
-Subject: [PATCH] drm/amd/display: remove redundant check
-Date: Sun, 29 Oct 2023 14:44:04 +0200
-Message-Id: <20231029124404.16159-1-jose.pekkarinen@foxhound.fi>
-X-Mailer: git-send-email 2.39.2
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC3EB10E1A9;
+ Sun, 29 Oct 2023 22:56:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 0401160EDC;
+ Sun, 29 Oct 2023 22:56:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 235FFC433A9;
+ Sun, 29 Oct 2023 22:56:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1698620173;
+ bh=001YAmpLETxjsM9j7Vvl/WXpAl9mBPA1mEwrmF4EQAw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=eUSo1chgV/1QwDOuL4lMJw0aflRcbefarg4mIaCrhSmLID1NRw3ckUR8xzKXHR41J
+ CAifWLXlcN0YsaPP/skQ6FwqSNlV7HAQDrX3CDEAofypDxO2/GtkSD/RU1CYJuvFMu
+ N+1xaKhLM8SeZeuFHrm2s2QH1qE5VlpP2TN9lM8/Qq5Mqc8JwXv12ZfVlbbZ6TNNal
+ bmM4KR1p8uCgYMDyQE2mn2esmTSfh2usIGWnpfvBgibLURFEtuh2miB0EbccacC16o
+ tJg4te9cenjWUCzofVy78Apd5VbFo1DAeBwdN7SJO/C2oPYz7vKylCE3fheeZRLq9s
+ v8K/SgMlXjW4Q==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.5 38/52] drm/amdgpu: Unset context priority is now
+ invalid
+Date: Sun, 29 Oct 2023 18:53:25 -0400
+Message-ID: <20231029225441.789781-38-sashal@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231029225441.789781-1-sashal@kernel.org>
+References: <20231029225441.789781-1-sashal@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.5.9
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 6028631051890370214
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrleekgdegvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpeflohhsrocurfgvkhhkrghrihhnvghnuceojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqnecuggftrfgrthhtvghrnhepfedtleeuteeitedvtedtteeuieevudejfeffvdetfeekleehhfelleefteetjeejnecukfhppeduvdejrddtrddtrddupdekjedrleegrdduuddtrddugeegpdefjedrheelrddugedvrddutdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqpdhnsggprhgtphhtthhopedupdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdpoffvtefjohhsthepmhhoheehtddpmhhouggvpehsmhhtphhouhht
-X-Mailman-Approved-At: Mon, 30 Oct 2023 08:26:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,43 +54,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dillon.varone@amd.com, linux-kernel-mentees@lists.linuxfoundation.org,
- dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, samson.tam@amd.com, SyedSaaem.Rizvi@amd.com,
- aurabindo.pillai@amd.com,
- =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, george.shen@amd.com,
- alexander.deucher@amd.com, Jun.Lei@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: Sasha Levin <sashal@kernel.org>, pierre-eric.pelloux-prayer@amd.com,
+ lijo.lazar@amd.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org, Luben Tuikov <luben.tuikov@amd.com>,
+ zhenguo.yin@amd.com, daniel@ffwll.ch, alexander.deucher@amd.com,
+ James.Zhu@amd.com, airlied@gmail.com,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch addresses the following warning spotted by
-using coccinelle where the case checked does the same
-than the else case.
+From: Luben Tuikov <luben.tuikov@amd.com>
 
-drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c:4664:8-10: WARNING: possible condition with no effect (if == else)
+[ Upstream commit eab0261967aeab528db4d0a51806df8209aec179 ]
 
-Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
+A context priority value of AMD_CTX_PRIORITY_UNSET is now invalid--instead of
+carrying it around and passing it to the Direct Rendering Manager--and it
+becomes AMD_CTX_PRIORITY_NORMAL in amdgpu_ctx_ioctl(), the gateway to context
+creation.
+
+Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+Acked-by: Alex Deucher <Alexander.Deucher@amd.com>
+Link: https://lore.kernel.org/r/20231017035656.8211-1-luben.tuikov@amd.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c   | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-index ecea008f19d3..d940dfa5ae43 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-@@ -4661,10 +4661,6 @@ void dml32_CalculateMinAndMaxPrefetchMode(
- 	} else if (AllowForPStateChangeOrStutterInVBlankFinal == dm_prefetch_support_uclk_fclk_and_stutter) {
- 		*MinPrefetchMode = 0;
- 		*MaxPrefetchMode = 0;
--	} else if (AllowForPStateChangeOrStutterInVBlankFinal ==
--			dm_prefetch_support_uclk_fclk_and_stutter_if_possible) {
--		*MinPrefetchMode = 0;
--		*MaxPrefetchMode = 3;
- 	} else {
- 		*MinPrefetchMode = 0;
- 		*MaxPrefetchMode = 3;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 0dc9c655c4fbd..092962b93064f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -47,7 +47,6 @@ const unsigned int amdgpu_ctx_num_entities[AMDGPU_HW_IP_NUM] = {
+ bool amdgpu_ctx_priority_is_valid(int32_t ctx_prio)
+ {
+ 	switch (ctx_prio) {
+-	case AMDGPU_CTX_PRIORITY_UNSET:
+ 	case AMDGPU_CTX_PRIORITY_VERY_LOW:
+ 	case AMDGPU_CTX_PRIORITY_LOW:
+ 	case AMDGPU_CTX_PRIORITY_NORMAL:
+@@ -55,6 +54,7 @@ bool amdgpu_ctx_priority_is_valid(int32_t ctx_prio)
+ 	case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+ 		return true;
+ 	default:
++	case AMDGPU_CTX_PRIORITY_UNSET:
+ 		return false;
+ 	}
+ }
 -- 
-2.39.2
+2.42.0
 
