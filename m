@@ -2,115 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8CB07DB50A
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Oct 2023 09:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E5D7DB54D
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Oct 2023 09:40:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8C610E236;
-	Mon, 30 Oct 2023 08:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 825BB10E242;
+	Mon, 30 Oct 2023 08:40:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2079.outbound.protection.outlook.com [40.107.93.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92AE910E236
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 08:23:19 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2076.outbound.protection.outlook.com [40.107.237.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08A710E242
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Oct 2023 08:40:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CJCsYwzVk/Fuq7NWpmYwgBmkFUeXI8jgVqM2V/hMFwz86uH0ZKW/PBZ/FBCvz/PGYAWp37dbW1O/aJ11iL24qrPVuJzv5gKoEZZb/aYKunCisG+8wm1EwKMFaSdjWWvNS1lywfF9zlJabi+/c9J1h6FrqMhkhW0skaRvY7fHs8OemvdHCWDsYJb9/363K7MngWddQTmXU+nXIpOxFuG19Cpc0H49mN9AMHIEspB7N+HnSoKCY/iIzL3dheMG/4OIQrlMOfYKlFUypCLS4zp/0qg/++zGEIrIyDY+NQFx9AXrpKgQNmSpCcjO5u3y210A8Amv5pIfCJ9at+CfoXe11Q==
+ b=bFr/Detbez9lSRnQ/MiQzZ2Qm3e0956/ZnLsRAZvFEcF5s9/sVML9jzMY512BkcJjTMF4z8kCGOa4IfHvTgfT4c0J9jSAnCyf/caEDCf9+p97keHkpDprsx6WNZ1nVYqHfjlwgUD/mqmMNWYdeKWZ3owSzdbBC+eV+yJryjn+ZX+K3dr/0oNV/94AvrA6BoXRM7GSQfImTgPMTlsunsXFMIXN9SjVTllT+6NWW84E8X9+MsLg3hVPAksaKd9vG9aoQLcd+hif9B/HgXddL/pP96QAoy1oXUyN+HIVLHJ/wUdkpxBpaSvxSOEFL69JAgRCCJcWJx+hO9ixmsGlXxAyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u2rlyXEKGtfasJG9BVlwtVwnw78I228n8bBx/Mfb7Tk=;
- b=XB4s1rAzvbkfEdbAHB/JBdoEwoIXb7bRn4IybcIL6rGTU3oUf1XOBzrEgToUvszv4Ta1zXs9by81Pz2yBYOrE7uM2nqLBMN7lzLTjdNPs9skj+reZGJ+GU83lRMri5CWXeNynYN9/NKtK0/x9tCwR5A/0sfGxIXdM45plKUH/RwXhwjmYlpv0NR1lP+szGq0S1/1976kZOg/JIKmiQSOaW+9IAuqFATN2X43hffFr0nld9rv13FpGY2Wr2PslUuB4556Z8fBVd7ZSUBKAhG7bGCpTbC9+YhKcml/EE0QwcG4/FcXf0czdp+KVoHFmhwSFd80qNcXKdQzcwYBRm31bQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=5i+XOuxiOocBaOeMGQDCMjn91WUsWKyvt2KJN2DKXQM=;
+ b=L+EgFVSWU/Gi1x/OPbcdRBwgRr3tjIaFbocaKc5j9IAksTrRbMLeKJ2MbAKcmNjXsHSjYq4HfsejTmjayJMQo+hqS7yQ1LCtjCx9CWD5IU2XZTXHQbTszK19cEVf+d9Gd5bD9trcXOJtjitsLy5UNE9IvVYOB2yzDkK95Tf/VXMOEW17dpgAYgP999aPk/vcVSq3CzO3tBk8Vromzbjnh5Ww9ygK8a/17bm4TthLkx3ZO19u4DpXnaykYoDtEuCV9uRWudYLggpVy3GzK/rkJW8k9vzZOl2QB4e/q8WtK05LmUGJGucU/OqB+U3KQYXGo1Peu8VoAFMZtu/GTV6w+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u2rlyXEKGtfasJG9BVlwtVwnw78I228n8bBx/Mfb7Tk=;
- b=ABeXYB3Hh2qSkGXxZZYV7JM/dz/OqAysxIM2myl5WCehpOQ/2Erc+ZwrsTghX2V3FV3g1lRupBRZToS35qfYaQDa1bADkqGKI5fy5lod4ZP/YcJcbxYF57e73HEQEY5bJQbasUuImbgiRAaTNSH5gP87UFS8mMs2z/Q+GLIBjZU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB3589.namprd12.prod.outlook.com (2603:10b6:a03:df::29)
- by CYYPR12MB8655.namprd12.prod.outlook.com (2603:10b6:930:c4::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28; Mon, 30 Oct
- 2023 08:23:16 +0000
-Received: from BYAPR12MB3589.namprd12.prod.outlook.com
- ([fe80::4ea:63c4:867:830e]) by BYAPR12MB3589.namprd12.prod.outlook.com
- ([fe80::4ea:63c4:867:830e%4]) with mapi id 15.20.6933.028; Mon, 30 Oct 2023
- 08:23:15 +0000
-Message-ID: <8e81a28a-5d50-44df-b441-6ceb2133c5e9@amd.com>
-Date: Mon, 30 Oct 2023 09:23:03 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] drm/amdkfd: Run restore_workers on freezable WQs
-Content-Language: en-US
-To: Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20231027223911.2640763-1-Felix.Kuehling@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20231027223911.2640763-1-Felix.Kuehling@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0185.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9f::18) To DM6PR12MB3596.namprd12.prod.outlook.com
- (2603:10b6:5:3e::27)
+ bh=5i+XOuxiOocBaOeMGQDCMjn91WUsWKyvt2KJN2DKXQM=;
+ b=TzT2/ACRbjZr3g39mmIrvQcZIrpPEi+6jVmggZmfY4IzqL86+tfNxio3KZoBIV/OwgAMom6om6dV18/gvnJSJZdDWv2mCEwygnI7MsxqZDX8ZGlMiKs02YEDIcXQPLPPgVKx3MfyFWJHann106qESdo5PRcJoNLmke4Z3I+pGqc=
+Received: from DS7PR03CA0303.namprd03.prod.outlook.com (2603:10b6:8:2b::19) by
+ SA1PR12MB5657.namprd12.prod.outlook.com (2603:10b6:806:234::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.29; Mon, 30 Oct
+ 2023 08:39:59 +0000
+Received: from DS2PEPF00003442.namprd04.prod.outlook.com
+ (2603:10b6:8:2b:cafe::15) by DS7PR03CA0303.outlook.office365.com
+ (2603:10b6:8:2b::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28 via Frontend
+ Transport; Mon, 30 Oct 2023 08:39:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6933.18 via Frontend Transport; Mon, 30 Oct 2023 08:39:59 +0000
+Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Mon, 30 Oct
+ 2023 03:39:57 -0500
+From: Tim Huang <Tim.Huang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amd/pm: not stop rlc for IMU enabled APUs when suspend
+Date: Mon, 30 Oct 2023 16:36:57 +0800
+Message-ID: <20231030083658.537469-1-Tim.Huang@amd.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3589:EE_|CYYPR12MB8655:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06c4d768-f43f-43ce-6f50-08dbd9217611
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|SA1PR12MB5657:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1fbe2210-7fb2-4bbb-1915-08dbd923cd57
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DCJVyQBehO1CX5ivXaS+7awUwOov63G88LouIOrxqZ1jMl5Ux444+97bOkiFgfMj/QHQ/iEwEU8Wg616Tea/REm7EkRa3NbyYlBgrokD4cwsV9kHkCiwtNOWZpiBsLpe7hdIlbOlNP4ZsR5ifhowNTweKNK13bYAQobVFyRQtZ2/4+fS+UjsxADihxc10ITzPqoZloXw55bK2kgG6rP8C/pAo+qRDnB7WRpOD6A8sZX5YVghy1NVv+eQleoZS3kccI4VMQeWu4/m76PwxoTD9ms8SwOtoX+I1kAyk3BFjueOQbyj/Kg9n9PZaKM8S6z/brcYBT9ifd31ExoM6vk3EZrwkZSGc2sJY1ywEXRFaU19suQOZzSfWYcnRAr5mOLM3J2rAI7nHb2UBqIicPSTrA0XvLBoU0U/aga5X22sXygJHLCHHym+N74zbQVPBqHOLKvmY1U2AVUY75WidHv7RRKoKnlSTmyLlELSxZBUfkn9ns2M1uAvlpOA/ODRoOT+fnZlC8qYjkmE9dHVMHi1PlJ7zT1tDYWG+ViZRUhwYx7V0lk59SrHrnYV97WloAYfZmL/dcmFpoSWmw0esP37NEHyGEwwMkJmcjtVVG0BU+9LEeYLjhr2Uo2p3S01XpF4a32iN65EEacxN9CgRiPHew==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB3589.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(396003)(376002)(136003)(346002)(230922051799003)(186009)(451199024)(1800799009)(64100799003)(8936002)(8676002)(4326008)(83380400001)(5660300002)(41300700001)(316002)(66476007)(66556008)(66946007)(45080400002)(478600001)(6666004)(6486002)(2906002)(31686004)(6506007)(2616005)(26005)(6512007)(31696002)(36756003)(86362001)(38100700002)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: LkJmP63r2qnxJ6QvWrFrKmd4E+ZvZoBaQYQAZiVOqrJAXpttfN7RZoPEf5DmmQQ/8NYnY9Pf4UaCAZ0Bgc4csBzobDP0wnf/raMlg/gbp65BY9mcm4YDU6q+6Zatw2qg4/kSfQJVW9nQwIYYGuweNAa/PtXtznsL1fLKNjqoytzk7UFk6D/1dGXP9d8eVO/os3NHdeH/C3OeLfj52RbrU9OmJ6K00H+TXnwjV3UXj5PXpl1U9IJNA1rFfp2LYqgU/sGOzcKYOxqU0m8Fzz1KNI+EKe7xvRauc6UFkSkEyxjOfBPq/oXJuWExiJ5CHfO4UA0W3sfwYUX3vGhR7oBCa8xHkK/ogPzFu6DNd5Jm463UJVykRKQKi6aw+OwaUg5VSs/GMLIG54vLXzzCkStiiOEIn0Wn4YO5GX/O5aId/KhtTEr203NXjrG5x9P4AjTsrWQRE5iTuGKmrYgJQvw97bPKkom/i7cF6YVf1HP0t1rV8PcAM2g/++Ly28+UqZhyhecxYbYrshcIAfYcB1Mm7fHSo/RFkrPog8OQgnQuBXu725/4oREqqU7v+p3Wc5YTfY479XenY6Rm1qYo1xOXoh4HF/54kOxYD6i+7n5EECKUNm/WYzXs104eOwTjV5ttaj39LvpvbSSQydBwgA53qSSwfbyrV966tJVVUkOzM/KJetK1tqO3rX7IoE+yhRABzD/vQU75/q5w0Po4BGFlAQ4m7qgLM1iJkz2FdXmxK6bfDmdJp8Q7yiSz+sU8ZJawDfK218yJpDZu0YSLwMCCuw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(136003)(346002)(396003)(376002)(39860400002)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(4744005)(2906002)(36860700001)(40460700003)(5660300002)(316002)(82740400003)(70586007)(356005)(70206006)(54906003)(19627235002)(478600001)(6916009)(7696005)(47076005)(2616005)(40480700001)(426003)(83380400001)(336012)(4326008)(41300700001)(36756003)(86362001)(8676002)(15650500001)(8936002)(81166007)(1076003)(26005)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGpFd24vQTNGcFh6bFl2R1FCMmFSNG45NDRmdHE3eVozYTNKbkJpUFNoM3Rz?=
- =?utf-8?B?cTJhME4yLzFIbURES3loWEhZTXIrdEtSeWpOdjFtYy9XQk9hMkJyZzRnZldo?=
- =?utf-8?B?UDJ0WGE4NnAxR05mL2dSUVFScGh3dEllM2RUUVpjY3ZuVUFvcENkUVVCVi85?=
- =?utf-8?B?V3Nyb3RLdVluREdxbkQ4RjhvUS9oV0xyTzJLSm5yWVZLb0FVekU5blBGZ3Va?=
- =?utf-8?B?UzhMa1R5ZDFvZmpLcENxU0dHTXNXLyswUUtBSnByUDVqR0UxZzBpVVoydUFl?=
- =?utf-8?B?VWk2TDBSVG01dEhpUFUyQ2ZKRy9UM2UxTGttMEIwZk5FTHJiRXN5a3dQV0ti?=
- =?utf-8?B?M0dzTnlWQnpGTnBuTE5VSW5Pd3BxUUxEaDh6QXVjWjlNV3lnRkxlMkJWYy9I?=
- =?utf-8?B?SmU2Z0p4M1psYUJ6aEpKTVpYSG9ja3BYdzVHdW4wc0NZZStpVStnZFZIbi84?=
- =?utf-8?B?VndKQm53NmMvQi9NTzBTaDhkTytRQklqM1M0T1FOa2lXSm5oYWlta0tUajdN?=
- =?utf-8?B?NHEwU2M0RXF0Tmc3d0FxWm9TcDVqN0xwV1p2WE9hdkNvUmFKZkJ4MUVPTlJC?=
- =?utf-8?B?RWoxOWh0ZWVhNjVYb1J6WjZkdGJMZ2ZJYVVGdzJackxheTBjQW9sMFdFTU55?=
- =?utf-8?B?eXNpaWRZUjVDakFwSzEzVVZKaGVpOU1jMW8vOXhoeFpqd045NnIyeDRrSldZ?=
- =?utf-8?B?dVpmRmhLWXdRRE5MdHB4L2s3bDlzY3E3QnVGRUVOeHpCbmx5V1R1M3RwOHp6?=
- =?utf-8?B?WVllRUFlYXFUTkZPZmlUQVJjd25JTGphWGJLQm5pQ0k3dmo4dmhDVnhoS0RE?=
- =?utf-8?B?TWdqRDV6c3VLTVNaTy9JZjB2aStGTGlDNWVKVHRNTWdZS3J5bS84Y1pRNzZQ?=
- =?utf-8?B?SUdTa2pla1Ria3BSUVlZMEs2cmZuWTFGZzFHaDFwazJlOTZoQVQ2bE5uMmo5?=
- =?utf-8?B?MnlWaitQaVo3c1dQS2tjVHFNQkpyVmJDak5Eb2dZdmo2MC85ZVRyWEExeTFM?=
- =?utf-8?B?VjJLUlByb0VWb1pmSElmcVpMRThPUUdWQWlmOGdtSHBndWExNS9WVXh2dUh6?=
- =?utf-8?B?ZGpYSU1qUGN3bVNDSlNQc0xWUnlVWHY5cFJBbXEvcUxJTTIySXd4VGxzWU1s?=
- =?utf-8?B?TW9iMWVqQ1RCTEcwRnY0ZjRaV2UyZldBMy9Gd0N1WUVqdGNGVGliekhJTit6?=
- =?utf-8?B?TS80dnpqd3Fack1oZDJ0eG84b0dCb3VkUWI1cHdhb1F6QVFoTzdqb0lGS2Zm?=
- =?utf-8?B?Rm5USGxQMGE1VklBMjBkUHZndVloQklxdXlXTHRtZ01uMUpJNnp6RW1RKzZq?=
- =?utf-8?B?dUhuSDdIM1ZUQjVJVVdxNEVCUldTRDFjWEw4YVZrcDc3YWdmbzVWZlF6UTBw?=
- =?utf-8?B?Vzc1d3BheURiVGtWNUZTZ1d0Q3E0dXNRNzBFWCtpSlloZ2FOdUNxWTBlMURJ?=
- =?utf-8?B?RkM0QUtBTHhTcXo1TDdHTnpDVGVia1RHc0trYmd4UEdSa1ZFaG01Sjk0aU1Y?=
- =?utf-8?B?RUN0K3RYNjl0alVhWVBjRkhHNFljSUhNZ29GUmhaZWhUdTFwUXczazFCcWtP?=
- =?utf-8?B?cmpzV0dOaXNPa0x5QXZNTVRZaC9iazgvOVJNTktPbWZaRTlreHp4QU9jWFpZ?=
- =?utf-8?B?R2JmUlpSUlZSK0NSTHVlKzFJbzFWOWxuUm5vUUx4aXl0MXRSWjl3VC9SRDZJ?=
- =?utf-8?B?TGY1UlFUcFZqT3FqTzVQWFpRMnQ4NWRlZlBkK09hNHVyREJiUk1EaE1sSDRa?=
- =?utf-8?B?Q1BmQnJvWlBIRzBWSTkxbmlCQnNRNnYxM1M2WmJFYlFQckRLWGloMHVyYUxj?=
- =?utf-8?B?d2NxeG1SU3VYVzIrV05hTXU1YXBWZjNXVnJZSXVkUk9rZFlNMlhJSjhETTNY?=
- =?utf-8?B?aklvSS84WVFVaStjOGhmVjBlOXBQTG5NTHhNMHZ2V0hyODljY2xsZnZtNUFT?=
- =?utf-8?B?aDk3R2tiVXZucGx4bktHV0dkWFJrd09zSDljR25TZnBFZzl0aWtBalRNeHFX?=
- =?utf-8?B?Ym9Ba1RpR2lqZWFXZk1lanFYaE0vM2RDdmk5L29PM1FpQ2xBRzZVaTZuUUtU?=
- =?utf-8?B?ZGc5RnhWcDkwVjVGMU84a3NVR2xtVWgyMzd1Z3pEZnEyQXVWWFMwaE5XQnlw?=
- =?utf-8?Q?2+7s=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06c4d768-f43f-43ce-6f50-08dbd9217611
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3596.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 08:23:15.4924 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 08:39:59.4396 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fbe2210-7fb2-4bbb-1915-08dbd923cd57
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DJ8uF545P4P0RDla0zV1KCl2sRpdoejGaW3jj5FRC7/dBiKp8df02uJNZAq6xZp4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8655
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5657
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,245 +97,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: emily.deng@amd.com, xinhui.pan@amd.com
+Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com,
+ Tim Huang <Tim.Huang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 28.10.23 um 00:39 schrieb Felix Kuehling:
-> Make restore workers freezable so we don't have to explicitly flush them
-> in suspend and GPU reset code paths, and we don't accidentally try to
-> restore BOs while the GPU is suspended. Not having to flush restore_work
-> also helps avoid lock/fence dependencies in the GPU reset case where we're
-> not allowed to wait for fences.
->
-> This is an RFC and request for testing. I have not tested this myself yet.
-> My notes below:
->
-> Restore work won't be frozen during GPU reset. Does it matter? Queues will
-> stay evicted until resume in any case. But restore_work may be in trouble
-> if it gets run in the middle of a GPU reset. In that case, if anything
-> fails, it will just reschedule itself, so should be fine as long as it
-> doesn't interfere with the reset itself (respects any mechanisms in place
-> to prevent HW access during the reset).
->
-> What HW access does restore_work perform:
-> - migrating buffers: uses GPU scheduler, should be suspended during reset
-> - TLB flushes in userptr restore worker: not called directly, relies on
->    HWS to flush TLBs on VMID attachment
-> - TLB flushes in SVM restore worker: Does TLB flush in the mapping code
-> - Resuming user mode queues: should not happen while GPU reset keeps queue
->    eviction counter elevated
-> Ergo: Except for the SVM case, it's OK to not flush restore work before
-> GPU resets. I'll need to rethink the interaction of SVM restore_work with
-> GPU resets.
+For IMU enabled APUs, after sending the PrepareMp1ForUnload message
+to SMU in system_features_control, the RLC registers can't be touched.
+The driver to stop the rlc in suspending is no longer required.
 
-It also sounds like the restore work is some high level work and 
-shouldn't interact with the lower level GPU reset.
+Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 1 +
+ 1 file changed, 1 insertion(+)
 
->
-> What about cancelling p->eviction_work? Eviction work would normally be
-> needed to signal eviction fences, but we're doing that explicitly in
-> suspend_all_processes. Does eviction_work wait for fences anywhere? Yes,
-> indirectly by flushing restore_work. So we should not try to cancel it
-> during a GPU reset.
->
-> Problem: accessing p->ef concurrently in evict_process_worker and
-> suspend_all_processes. Need a spinlock to use and update it safely.
-> Problem: What if evict_process_worker gets stuck in flushing restore_work?
-> We can skip all of that if p->ef is NULL (which it is during the reset).
-> Even if it gets stuck, it's no problem if the reset doesn't depend on it.
-> It should get unstuck after the reset.
->
-> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> ---
->   .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  9 ++--
->   drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  1 +
->   drivers/gpu/drm/amd/amdkfd/kfd_process.c      | 49 +++++++++++++------
->   drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  4 +-
->   4 files changed, 44 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> index 54f31a420229..89e632257663 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> @@ -1644,7 +1644,8 @@ int amdgpu_amdkfd_criu_resume(void *p)
->   		goto out_unlock;
->   	}
->   	WRITE_ONCE(pinfo->block_mmu_notifications, false);
-> -	schedule_delayed_work(&pinfo->restore_userptr_work, 0);
-> +	queue_delayed_work(system_freezable_wq,
-> +			   &pinfo->restore_userptr_work, 0);
->   
->   out_unlock:
->   	mutex_unlock(&pinfo->lock);
-> @@ -2458,7 +2459,8 @@ int amdgpu_amdkfd_evict_userptr(struct mmu_interval_notifier *mni,
->   				       KFD_QUEUE_EVICTION_TRIGGER_USERPTR);
->   		if (r)
->   			pr_err("Failed to quiesce KFD\n");
-> -		schedule_delayed_work(&process_info->restore_userptr_work,
-> +		queue_delayed_work(system_freezable_wq,
-> +			&process_info->restore_userptr_work,
->   			msecs_to_jiffies(AMDGPU_USERPTR_RESTORE_DELAY_MS));
->   	}
->   	mutex_unlock(&process_info->notifier_lock);
-> @@ -2793,7 +2795,8 @@ static void amdgpu_amdkfd_restore_userptr_worker(struct work_struct *work)
->   
->   	/* If validation failed, reschedule another attempt */
->   	if (evicted_bos) {
-> -		schedule_delayed_work(&process_info->restore_userptr_work,
-> +		queue_delayed_work(system_freezable_wq,
-> +			&process_info->restore_userptr_work,
->   			msecs_to_jiffies(AMDGPU_USERPTR_RESTORE_DELAY_MS));
->   
->   		kfd_smi_event_queue_restore_rescheduled(mm);
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> index 9cc32f577e38..cf017d027fee 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -919,6 +919,7 @@ struct kfd_process {
->   	 * during restore
->   	 */
->   	struct dma_fence *ef;
-> +	spinlock_t ef_lock;
->   
->   	/* Work items for evicting and restoring BOs */
->   	struct delayed_work eviction_work;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> index fbf053001af9..a07cba58ec5e 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> @@ -664,7 +664,8 @@ int kfd_process_create_wq(void)
->   	if (!kfd_process_wq)
->   		kfd_process_wq = alloc_workqueue("kfd_process_wq", 0, 0);
->   	if (!kfd_restore_wq)
-> -		kfd_restore_wq = alloc_ordered_workqueue("kfd_restore_wq", 0);
-> +		kfd_restore_wq = alloc_ordered_workqueue("kfd_restore_wq",
-> +							 WQ_FREEZABLE);
->   
->   	if (!kfd_process_wq || !kfd_restore_wq) {
->   		kfd_process_destroy_wq();
-> @@ -1460,6 +1461,7 @@ static struct kfd_process *create_process(const struct task_struct *thread)
->   
->   	kref_init(&process->ref);
->   	mutex_init(&process->mutex);
-> +	spin_lock_init(&process->ef_lock);
->   	process->mm = thread->mm;
->   	process->lead_thread = thread->group_leader;
->   	process->n_pdds = 0;
-> @@ -1904,6 +1906,19 @@ kfd_process_gpuid_from_node(struct kfd_process *p, struct kfd_node *node,
->   	return -EINVAL;
->   }
->   
-> +static void signal_eviction_fence(struct kfd_process *p)
-> +{
-> +	spin_lock(&p->ef_lock);
-> +	if (!p->ef)
-> +		goto unlock_out;
-> +	dma_fence_signal(p->ef);
-
-This needs to grab the internal lock of the eviction fence, I'm not sure 
-that has correct ordering with the newly added ef_lock.
-
-> +	dma_fence_put(p->ef);
-> +	WRITE_ONCE(p->ef, NULL);
-> +
-> +unlock_out:
-> +	spin_unlock(&p->ef_lock);
-> +}
-> +
->   static void evict_process_worker(struct work_struct *work)
->   {
->   	int ret;
-> @@ -1916,8 +1931,11 @@ static void evict_process_worker(struct work_struct *work)
->   	 * lifetime of this thread, kfd_process p will be valid
->   	 */
->   	p = container_of(dwork, struct kfd_process, eviction_work);
-> -	WARN_ONCE(p->last_eviction_seqno != p->ef->seqno,
-> -		  "Eviction fence mismatch\n");
-> +	/* If the eviction fence is not valid, we're probably in a suspend
-> +	 * or GPU reset cycle. There is nothing to do in this case.
-> +	 */
-> +	if (!READ_ONCE(p->ef))
-> +		return;
-
-This evict process work is high level I don't think it should have any 
-dependency on the GPU reset.
-
-Regards,
-Christian.
-
->   
->   	/* Narrow window of overlap between restore and evict work
->   	 * item is possible. Once amdgpu_amdkfd_gpuvm_restore_process_bos
-> @@ -1930,9 +1948,7 @@ static void evict_process_worker(struct work_struct *work)
->   	pr_debug("Started evicting pasid 0x%x\n", p->pasid);
->   	ret = kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_TRIGGER_TTM);
->   	if (!ret) {
-> -		dma_fence_signal(p->ef);
-> -		dma_fence_put(p->ef);
-> -		p->ef = NULL;
-> +		signal_eviction_fence(p);
->   		queue_delayed_work(kfd_restore_wq, &p->restore_work,
->   				msecs_to_jiffies(PROCESS_RESTORE_TIME_MS));
->   
-> @@ -1967,9 +1983,19 @@ static void restore_process_worker(struct work_struct *work)
->   
->   	p->last_restore_timestamp = get_jiffies_64();
->   	/* VMs may not have been acquired yet during debugging. */
-> -	if (p->kgd_process_info)
-> +	if (p->kgd_process_info) {
-> +		struct dma_fence *ef = NULL;
-> +
->   		ret = amdgpu_amdkfd_gpuvm_restore_process_bos(p->kgd_process_info,
-> -							     &p->ef);
-> +							     &ef);
-> +		if (!ret) {
-> +			spin_lock(&p->ef_lock);
-> +			WARN_ONCE(p->ef, "Eviction fence is not NULL");
-> +			WRITE_ONCE(p->ef, ef);
-> +			spin_unlock(&p->ef_lock);
-> +		}
-> +	}
-> +
->   	if (ret) {
->   		pr_debug("Failed to restore BOs of pasid 0x%x, retry after %d ms\n",
->   			 p->pasid, PROCESS_BACK_OFF_TIME_MS);
-> @@ -1994,14 +2020,9 @@ void kfd_suspend_all_processes(void)
->   
->   	WARN(debug_evictions, "Evicting all processes");
->   	hash_for_each_rcu(kfd_processes_table, temp, p, kfd_processes) {
-> -		cancel_delayed_work_sync(&p->eviction_work);
-> -		flush_delayed_work(&p->restore_work);
-> -
->   		if (kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_TRIGGER_SUSPEND))
->   			pr_err("Failed to suspend process 0x%x\n", p->pasid);
-> -		dma_fence_signal(p->ef);
-> -		dma_fence_put(p->ef);
-> -		p->ef = NULL;
-> +		signal_eviction_fence(p);
->   	}
->   	srcu_read_unlock(&kfd_processes_srcu, idx);
->   }
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index fe937670c927..aa6c34127be9 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -1869,7 +1869,7 @@ static void svm_range_restore_work(struct work_struct *work)
->   	/* If validation failed, reschedule another attempt */
->   	if (evicted_ranges) {
->   		pr_debug("reschedule to restore svm range\n");
-> -		schedule_delayed_work(&svms->restore_work,
-> +		queue_delayed_work(system_freezable_wq, &svms->restore_work,
->   			msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
->   
->   		kfd_smi_event_queue_restore_rescheduled(mm);
-> @@ -1945,7 +1945,7 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
->   			pr_debug("failed to quiesce KFD\n");
->   
->   		pr_debug("schedule to restore svm %p ranges\n", svms);
-> -		schedule_delayed_work(&svms->restore_work,
-> +		queue_delayed_work(system_freezable_wq, &svms->restore_work,
->   			msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
->   	} else {
->   		unsigned long s, l;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 23b00eddc1af..5fb1c49e7e2d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -1711,6 +1711,7 @@ static int smu_disable_dpms(struct smu_context *smu)
+ 	}
+ 
+ 	if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(9, 4, 2) &&
++	    !((adev->flags & AMD_IS_APU) && adev->gfx.imu.funcs) &&
+ 	    !amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs->stop)
+ 		adev->gfx.rlc.funcs->stop(adev);
+ 
+-- 
+2.39.2
 
