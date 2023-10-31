@@ -1,62 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 519CB7DC96A
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Oct 2023 10:23:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C84947DCAA5
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Oct 2023 11:21:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C27C210E445;
-	Tue, 31 Oct 2023 09:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5324110E477;
+	Tue, 31 Oct 2023 10:21:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6853910E439
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 08:57:37 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- 5b1f17b1804b1-409299277bbso34300925e9.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 01:57:37 -0700 (PDT)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB8310E464
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 10:21:45 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id
+ 38308e7fff4ca-2c5210a1515so79479301fa.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 03:21:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1698742656; x=1699347456; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ d=gmail.com; s=20230601; t=1698747704; x=1699352504; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=KdIgMt0Zd5OrTAXhCgGiW0ACxcmVYMBjRSImafg865I=;
- b=cXHctjLAsf2/BYqILuKbAzBxXkpGV3ztF2TzgLObjfkv17zfO2/Fc8OJWONjNyVIzy
- o3TE07MIOdDGcMKnpyXHOhHk1D3/1BoyjoSjECasN0indGT7lMsQEV93sa1hP6EZfoEQ
- jMYs6ydOBUla++L/NfnmctvG1R3nFiv52EAguObU6VjmlurRnbAGeKcXP/Pn7tA0DV4c
- FEzGfeOjZvVpKT9FIqAH5N3Rgc1FhYlUsFL3Cn0em3XH6YHV0vFzWEvHl2/mGscsz80z
- aX5wy0kGOIYOJ/6ABOhfk5GD0OrlzIQP78Zl4HCnyShyejL75ewOtmDRs8LxW9bOwexf
- ug0Q==
+ bh=xe5GwjZa1w2lGRZgmZjtLv/3J12+t4WzxIJJT09TcAQ=;
+ b=UH9gyNxG/r3oM9H+qwSdH28QZ/admFkVyln9jO8aQbq2T8B4EFoed2qp+C/4BFak2A
+ q/WNgf1a8yixwo/+XeVQRsvcP6jFkzbNtGfG2G28j2he4SZMEkI6GN7qwrCpg372Vnfu
+ gt2Xbwt4nhNBFPrPzqMjxs4/GEE/ilW51kj+NTgjyC124LgbSOdn9QtVVVxe70iqppKq
+ EgI4W9dy+ufTT7I2bhJo38mwlvoaZD+kTnb9jALD36h8c5VooatMpoEr1QPhBLby+cOL
+ sXsjsk4ZjIs7/Q1+0nZE1j+GlW/SphC8xXWaPEvQBjBz0AA/7nvF+Q+tjq2YvAZrKizJ
+ h78g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698742656; x=1699347456;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ d=1e100.net; s=20230601; t=1698747704; x=1699352504;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=KdIgMt0Zd5OrTAXhCgGiW0ACxcmVYMBjRSImafg865I=;
- b=UKX6zP0XwCMrbKRXarr8Lv3pEK3EeGUqw7Xoiiu2GtpATnxeAgaRpnQwAMiLwOtHhL
- YlFhlAntaac17o0jXNaO9imPS+2j6LepEwtqT7siVfwGRNNl05eKKmbwUJ1XTfIMwmAp
- /ZG+Xu5BG0vDAPl4umMNb5GTgMOx9omEzIEvMxhhTx/1udyiPsc3I3YeLDma1u2byj7m
- dVkxhZyl34HEpQNVcqnD8dObm0ot4aNnJTUljmPDIDqyisWm3klYEKFCNzbUrNyHotCt
- 5nQ25y5oSDeSwvkv4uS9Umy98+nZv0+GbVM3U3PmP6gm0Msf9xheeUsQvD7XGzMFcodj
- z+rQ==
-X-Gm-Message-State: AOJu0YyCKvp8pYpx+Htu08x56dl8YwUcnXOv1yfeW7/7mEubtkG4lDXJ
- tclwz41g9DkJTlEQhWf2OLHuTw==
-X-Google-Smtp-Source: AGHT+IHAStacHa9biIkH81dxXEV2xdyUtO+PorrqumPvn5b6OJ2e/L4MwAP8DCM+n0AjYZ8UXx694Q==
-X-Received: by 2002:a05:600c:4f92:b0:402:f55c:faee with SMTP id
- n18-20020a05600c4f9200b00402f55cfaeemr9229980wmq.26.1698742655548; 
- Tue, 31 Oct 2023 01:57:35 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- b3-20020a05600c150300b004083729fc14sm1096849wmg.20.2023.10.31.01.57.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Oct 2023 01:57:35 -0700 (PDT)
-Date: Tue, 31 Oct 2023 11:57:32 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: stylon.wang@amd.com
-Subject: [bug report] drm/amd/display: Add interface to enable DPIA trace
-Message-ID: <961dd9b8-6000-4af8-ba24-15688723e372@moroto.mountain>
+ bh=xe5GwjZa1w2lGRZgmZjtLv/3J12+t4WzxIJJT09TcAQ=;
+ b=nXc7ZABuozuyRpuTwsQofQwj6QvqxcU69HpSZGRrXAI5h04tUIHA0VEVsDS+ZEZBm/
+ IbJEdalNiwEa30MZlrtJ/iOpqtyFC0ocRpwQq0wB/J8uuRUt/tPgDMRqVKYM0Iye8FoS
+ csKzrQwxXeheGuYIgTnN+uJSEUR7aHDlpBTpE8VK76o/uiCQ0xsjY9ZEnhSBNFGRR39W
+ aIeffP+w0nP6ZR5q904wPvYSslvubgsFO8g6OkYYgmiX72EU7jE5FbDLwLBAk3BjMAXW
+ G8Z2JXdUgi8D8sxIDGpdWYuyoECWCIE0+4gDV7nhkCOL1JV7G3Vk8R8MEFpdLPoVmu7L
+ 55wg==
+X-Gm-Message-State: AOJu0Yy2lSCXtR6EUK3aKRHMN/ew7WCRS551UPz8urDhGorLstLF+ghm
+ 165/3+VZqu7mtZwbYFR8umtYGv2nP52WtA==
+X-Google-Smtp-Source: AGHT+IGKK0naZ18zkD3XI2G2HLKHTk7Ko9seVl4d69k36GbiUONoSL/BhmCzMFONWoG27zMGFxSIXg==
+X-Received: by 2002:a05:651c:86:b0:2c5:2fa8:716a with SMTP id
+ 6-20020a05651c008600b002c52fa8716amr10663800ljq.9.1698747703682; 
+ Tue, 31 Oct 2023 03:21:43 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ d8-20020a05600c34c800b0040644e699a0sm1319929wmq.45.2023.10.31.03.21.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 31 Oct 2023 03:21:43 -0700 (PDT)
+Message-ID: <6f2fb11c-0000-41b5-8205-8d86be4b8285@gmail.com>
+Date: Tue, 31 Oct 2023 11:21:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Tue, 31 Oct 2023 09:23:45 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] /drm/amdgpu: correct chunk_ptr to a pointer to chunk.
+Content-Language: en-US
+To: YuanShang <YuanShang.Mao@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20231031025546.574051-1-YuanShang.Mao@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20231031025546.574051-1-YuanShang.Mao@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +74,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Stylon Wang,
+Am 31.10.23 um 03:55 schrieb YuanShang:
+> The variable "chunk_ptr" should be a pointer pointing
+> to a struct drm_amdgpu_cs_chunk instead of to a pointer
+> of that.
+> Signed-off-by: YuanShang <YuanShang.Mao@amd.com>
 
-The patch 71ba6b577a35: "drm/amd/display: Add interface to enable
-DPIA trace" from Jun 30, 2023 (linux-next), leads to the following
-Smatch static checker warning:
+Good catch, Reviewed-by: Christian König <christian.koenig@amd.com>
 
-	drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:1041 dc_dmub_srv_enable_dpia_trace()
-	error: we previously assumed 'dc_dmub_srv' could be null (see line 1040)
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> index 74769afaa33d..551b9466a441 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> @@ -208,7 +208,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
+>   	}
+>   
+>   	for (i = 0; i < p->nchunks; i++) {
+> -		struct drm_amdgpu_cs_chunk __user **chunk_ptr = NULL;
+> +		struct drm_amdgpu_cs_chunk __user *chunk_ptr = NULL;
+>   		struct drm_amdgpu_cs_chunk user_chunk;
+>   		uint32_t __user *cdata;
+>   
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c
-    1033 void dc_dmub_srv_enable_dpia_trace(const struct dc *dc)
-    1034 {
-    1035         struct dc_dmub_srv *dc_dmub_srv = dc->ctx->dmub_srv;
-    1036         struct dmub_srv *dmub;
-    1037         enum dmub_status status;
-    1038         static const uint32_t timeout_us = 30;
-    1039 
-    1040         if (!dc_dmub_srv || !dc_dmub_srv->dmub) {
---> 1041                 DC_LOG_ERROR("%s: invalid parameters.", __func__);
-                         ^^^^^^^^^^^^^
-This macro dereferences dc_dmub_srv.
-
-    1042                 return;
-    1043         }
-    1044 
-    1045         dmub = dc_dmub_srv->dmub;
-
-regards,
-dan carpenter
