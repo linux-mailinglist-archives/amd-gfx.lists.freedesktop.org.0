@@ -2,91 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563BC7DC6F1
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Oct 2023 08:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 519CB7DC96A
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Oct 2023 10:23:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE2D410E409;
-	Tue, 31 Oct 2023 07:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C27C210E445;
+	Tue, 31 Oct 2023 09:23:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD71A10E409
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 07:12:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NMYz5y4wLy+xiGm6yTAzwi9hR2wk6ALGqlpdWTlF8OD1EMuf67zsMaC6sejQimRcI7gjotPoM0rnpCxoRzCEEuPJ9RYnpI0tKzVi2+YJB/4gCJpPFEDMkFKu60paIB2j1Cji+LM1D76Nkr9dSxDPZ73QZzAUr8eudOdSyUMcR4Sohk2PCeFpy1Ak5riIMr8fYzRev1cLXCfRnh8BYSr4y/RKwqdYF0M9OqG4f0YFrsj+N1cGLuwrJRVEvRPIhhRDbqBeFnRDPScVfGmWkY+QyWiNPgWXUhNC+jxkH1DkukBeVNfELgkx13l5Vxwn+3pdRdqaZNrC9FefnHERVPNv8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jRpPEzH4tr8o7mlgzSij5k/ATioaW3DPvcJr9j86aQ0=;
- b=c803179yhxIHqMtD47eX+XDvM/rvJSndgI8QhII2md2Tf7A9HidSGawfxZ49C4SJfB7Rqs/fIqmaBH/YIFLFYyYAO8a2C/DnIM6loj5XXCB5+NtT+HL/WQeFrtMCGqqV+7z3mr8pfnxSPIM//wvGxVVMUGphBYzDvTGTZkvwMPdWtCwLKVbSTN2DmL0HWoxCwTu7o70o15fBParCDm7koi+Aglm10TIBs19r9L9/VtAric10cFylxSdBkQoOyN42YAcTAr/bDj/2AMHpQmiJhrcGdVJ6/67D5ijVckoBa7IWwSM8V3iBsRXov8ZwK++VYyO888zzLtrnJGgcWgG9kQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jRpPEzH4tr8o7mlgzSij5k/ATioaW3DPvcJr9j86aQ0=;
- b=wu0PBFcVdVmB3jPNj3l75KiF2KfHKtPx+ZumACdYlTKideQ0HRTxNFnFd9YQfdKWp7iM5LYAxGSyC86PppjjxMizrebsxCxYv0pd6GnbNK6BVwfNTVFZS/fzkocuEkeSQvD/Vl9zd31/AajytBdwPeWnVnXi9Gzo8ItrGa3g480=
-Received: from MW2PR16CA0007.namprd16.prod.outlook.com (2603:10b6:907::20) by
- MW6PR12MB7069.namprd12.prod.outlook.com (2603:10b6:303:238::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28; Tue, 31 Oct
- 2023 07:12:42 +0000
-Received: from CO1PEPF000044F6.namprd21.prod.outlook.com
- (2603:10b6:907:0:cafe::5d) by MW2PR16CA0007.outlook.office365.com
- (2603:10b6:907::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29 via Frontend
- Transport; Tue, 31 Oct 2023 07:12:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000044F6.mail.protection.outlook.com (10.167.241.196) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6977.0 via Frontend Transport; Tue, 31 Oct 2023 07:12:42 +0000
-Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Tue, 31 Oct
- 2023 02:12:40 -0500
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: check recovery status of xgmi hive in
- ras_reset_error_count
-Date: Tue, 31 Oct 2023 15:12:31 +0800
-Message-ID: <20231031071231.16744-1-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.35.1
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6853910E439
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 08:57:37 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id
+ 5b1f17b1804b1-409299277bbso34300925e9.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Oct 2023 01:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1698742656; x=1699347456; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=KdIgMt0Zd5OrTAXhCgGiW0ACxcmVYMBjRSImafg865I=;
+ b=cXHctjLAsf2/BYqILuKbAzBxXkpGV3ztF2TzgLObjfkv17zfO2/Fc8OJWONjNyVIzy
+ o3TE07MIOdDGcMKnpyXHOhHk1D3/1BoyjoSjECasN0indGT7lMsQEV93sa1hP6EZfoEQ
+ jMYs6ydOBUla++L/NfnmctvG1R3nFiv52EAguObU6VjmlurRnbAGeKcXP/Pn7tA0DV4c
+ FEzGfeOjZvVpKT9FIqAH5N3Rgc1FhYlUsFL3Cn0em3XH6YHV0vFzWEvHl2/mGscsz80z
+ aX5wy0kGOIYOJ/6ABOhfk5GD0OrlzIQP78Zl4HCnyShyejL75ewOtmDRs8LxW9bOwexf
+ ug0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698742656; x=1699347456;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=KdIgMt0Zd5OrTAXhCgGiW0ACxcmVYMBjRSImafg865I=;
+ b=UKX6zP0XwCMrbKRXarr8Lv3pEK3EeGUqw7Xoiiu2GtpATnxeAgaRpnQwAMiLwOtHhL
+ YlFhlAntaac17o0jXNaO9imPS+2j6LepEwtqT7siVfwGRNNl05eKKmbwUJ1XTfIMwmAp
+ /ZG+Xu5BG0vDAPl4umMNb5GTgMOx9omEzIEvMxhhTx/1udyiPsc3I3YeLDma1u2byj7m
+ dVkxhZyl34HEpQNVcqnD8dObm0ot4aNnJTUljmPDIDqyisWm3klYEKFCNzbUrNyHotCt
+ 5nQ25y5oSDeSwvkv4uS9Umy98+nZv0+GbVM3U3PmP6gm0Msf9xheeUsQvD7XGzMFcodj
+ z+rQ==
+X-Gm-Message-State: AOJu0YyCKvp8pYpx+Htu08x56dl8YwUcnXOv1yfeW7/7mEubtkG4lDXJ
+ tclwz41g9DkJTlEQhWf2OLHuTw==
+X-Google-Smtp-Source: AGHT+IHAStacHa9biIkH81dxXEV2xdyUtO+PorrqumPvn5b6OJ2e/L4MwAP8DCM+n0AjYZ8UXx694Q==
+X-Received: by 2002:a05:600c:4f92:b0:402:f55c:faee with SMTP id
+ n18-20020a05600c4f9200b00402f55cfaeemr9229980wmq.26.1698742655548; 
+ Tue, 31 Oct 2023 01:57:35 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ b3-20020a05600c150300b004083729fc14sm1096849wmg.20.2023.10.31.01.57.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 31 Oct 2023 01:57:35 -0700 (PDT)
+Date: Tue, 31 Oct 2023 11:57:32 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: stylon.wang@amd.com
+Subject: [bug report] drm/amd/display: Add interface to enable DPIA trace
+Message-ID: <961dd9b8-6000-4af8-ba24-15688723e372@moroto.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F6:EE_|MW6PR12MB7069:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1b4287a-0473-4bc4-3cd2-08dbd9e0c64b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SdvUy9uVb/BDHQgy+of5mjOMx1XT0N2wQyZE7czZiA7GG+1u8kzqKRG0VxHEN1d1MST6A+amYQofqsyUJfiVa+k/lL5ggFuy/GE6zB3U7ydnp0V7HSyqVupsLzdsJbdT+b5EyMb/6/9HnQ+ivvAy8CftTE7W7pnI+USqQiRmmhlQYbLG2ZwWHuwMBUxTyXkAYAXpAhYGzbqlgfdtN+5rTRkm6hRg9xQqs50MqZUZ51HZgRyHNamzTAMcsBFJFu5MPiql+qYD35/zG9Qe8jG4KWKEc+e/nDJZFT04Nq77MX0AZLvVR/Wv5X0RupcpH7cYxXniVVcUziS9v9JucF1TL+2iH9N9VVg8ijabRvlnyqx2HCfna85EqcD0ANPPOUyCzdXNzE1brjvBYdFpSDPbH0UE2XK60+ro0fWFsw8sYNJob42osRklE+U52nsUQ303Wkjr+76D9NhTOKZWIdHgCZNO4Tj3eS97yokKTrMtgX5OexhfZyd3wUdeH2mUUN9mqvABExiRO6dCD5UMt6yNc9s1yFrzdZK1djVIr6oBwsXFs2N2wTv+kKEfbeyw4VPB3a1Hp9hp4gS1SKzb1fsuTNEAMuPi69YVpXenxI+iXt2pUIxrFzsvp/fl8paXIpMJHKwp2fxG2o/9GFtTj+2XbM8SHamQ1EQ6DAWllhsO6s1JI3rgL8m0Vz6u+JjRfqxoVEucp2ZiVyZ//TZdLrlQRGAqFIrXg61tN+53CX332xp115I6iCmTO0GU6qmgMEXMS8/RtpMpCCZsIyzqaq2fpw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(346002)(136003)(396003)(376002)(230922051799003)(64100799003)(1800799009)(82310400011)(186009)(451199024)(46966006)(40470700004)(36840700001)(478600001)(7696005)(70206006)(70586007)(6666004)(16526019)(336012)(426003)(26005)(1076003)(86362001)(41300700001)(2616005)(2906002)(8676002)(6916009)(5660300002)(54906003)(4326008)(8936002)(316002)(82740400003)(36756003)(83380400001)(36860700001)(47076005)(356005)(81166007)(40460700003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2023 07:12:42.4372 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1b4287a-0473-4bc4-3cd2-08dbd9e0c64b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F6.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7069
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 31 Oct 2023 09:23:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,48 +68,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Handle xgmi hive case.
+Hello Stylon Wang,
 
-Suggested-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+The patch 71ba6b577a35: "drm/amd/display: Add interface to enable
+DPIA trace" from Jun 30, 2023 (linux-next), leads to the following
+Smatch static checker warning:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 753260745554..0093c28f4343 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1226,6 +1226,8 @@ int amdgpu_ras_reset_error_count(struct amdgpu_device *adev,
- 	struct amdgpu_ras_block_object *block_obj = amdgpu_ras_get_ras_block(adev, block, 0);
- 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
- 	const struct amdgpu_mca_smu_funcs *mca_funcs = adev->mca.mca_funcs;
-+	struct amdgpu_hive_info *hive;
-+	int hive_ras_recovery = 0;
- 
- 	if (!block_obj || !block_obj->hw_ops) {
- 		dev_dbg_once(adev->dev, "%s doesn't config RAS function\n",
-@@ -1237,8 +1239,15 @@ int amdgpu_ras_reset_error_count(struct amdgpu_device *adev,
- 	    !amdgpu_ras_get_mca_debug_mode(adev))
- 		return -EOPNOTSUPP;
- 
-+	hive = amdgpu_get_xgmi_hive(adev);
-+	if (hive) {
-+		hive_ras_recovery = atomic_read(&hive->ras_recovery);
-+		amdgpu_put_xgmi_hive(hive);
-+	}
-+
- 	/* skip ras error reset in gpu reset */
--	if ((amdgpu_in_reset(adev) || atomic_read(&ras->in_recovery)) &&
-+	if ((amdgpu_in_reset(adev) || atomic_read(&ras->in_recovery) ||
-+	    hive_ras_recovery) &&
- 	    mca_funcs && mca_funcs->mca_set_debug_mode)
- 		return -EOPNOTSUPP;
- 
--- 
-2.35.1
+	drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:1041 dc_dmub_srv_enable_dpia_trace()
+	error: we previously assumed 'dc_dmub_srv' could be null (see line 1040)
 
+drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c
+    1033 void dc_dmub_srv_enable_dpia_trace(const struct dc *dc)
+    1034 {
+    1035         struct dc_dmub_srv *dc_dmub_srv = dc->ctx->dmub_srv;
+    1036         struct dmub_srv *dmub;
+    1037         enum dmub_status status;
+    1038         static const uint32_t timeout_us = 30;
+    1039 
+    1040         if (!dc_dmub_srv || !dc_dmub_srv->dmub) {
+--> 1041                 DC_LOG_ERROR("%s: invalid parameters.", __func__);
+                         ^^^^^^^^^^^^^
+This macro dereferences dc_dmub_srv.
+
+    1042                 return;
+    1043         }
+    1044 
+    1045         dmub = dc_dmub_srv->dmub;
+
+regards,
+dan carpenter
