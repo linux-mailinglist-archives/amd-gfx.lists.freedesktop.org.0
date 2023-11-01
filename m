@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280267DE6A3
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 Nov 2023 21:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46ED47DE6A6
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 Nov 2023 21:08:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86EA010E0EF;
-	Wed,  1 Nov 2023 20:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2E210E77B;
+	Wed,  1 Nov 2023 20:08:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBDC10E0EF
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 20:08:45 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2061d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8c::61d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0697F10E775
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Nov 2023 20:08:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jb8iWA0skvhE8Ibm+3nffRWZ1KbjHS3TJAWrwy9sRBruWp+BddCHZMx9ugMn1dH8fwzB5S3DXsHTpUaXzI++aI/UbGDIaL1MiCtY0UP5LIlgI6D7PUG0brr8o5rOSdyRvpLlXH44ZYPw0uP9TevwxR2wZNGgm6+xfI+RQi7UFPhtZFWSySIFEeWYmJp2ynqtg27LGBOpGBgOnkJXA6p1KL87wPrOlfGghSAApzGqmJ+ebf9E/lluDManoxtFGKRx+H/cbQv2e1ukuetZPNLFbxitwbDnbMo3PjfV6Nvf7GqKp6or8LUFruNeq51m4v1T8tdM+qwqx3kA20/HuRZnog==
+ b=FDlAp25JTnQSYi/i/sHcfpDlU1Kx8sMJ949aF+H+nbUUg9IMlsFYvfOoFJOmBsNhJjxJ/IzTZdc/xK5ub34qx3twKASZKMZ8TXz9QTMgzxrs60UgAVblCkO9j3u48rQttm5GNHFf6amqhPJobAN3an+DbK64GioO/mmx84ByqjY1bK5Q5q0+dmv9CPH5EtentifPrMc0t4oXL0dt9wDitDAzH5noY2/LTAettn6G0pM09QPED1YvFeP98LbYJJFZlkhpG7NwrsG4y6dj97phq485Xs+XlTFGpwmirxezBpeP8wB+Onin715SYH9IcMXKSAUVlyDeK+1zjrOZlV7GZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uvw2lB2RUZPmDAEETQ0AL128x+7IleS/tTyDhhzlEHk=;
- b=TbGf2ir0nAJjztGQEZJDg0OAFE6eI+q9IgjKKxYKLU2R2Zb5GJ/gBtvkf2SxzyVd9FwG9A2YSvHH0g0OAPqlpnG7HIUFHkRjo/Ubm+T/PDiZOgoQeV9Fsh0z70bWfZZHQFU3l19N2ZfwpuXQJYC72qStjI21OSgE9h++F4FORbTjeVsvNOV5/RXzcHMF0GeUn94KrjcEAqFmK8+wJMtPWXmdGv+vEymPPx8a+bBI1FZI+K1LYka1LJ45mbkQVsCqK5wzEWO1HMHPCINEk7dgssWkGTjyA+18vRfyqdtGc2tCE4lY74EWibZ6YeAGDlyS7TLJkKMDr+pxeaZwtpRMwg==
+ bh=Cfsg4yUOzUrpvdGk5mvbg8q/BQelNvOcvgKFSjAUYbw=;
+ b=eaCzLCL9oyDHuAq6Ng2JPGaG9J0zOQAr82nMeI9YbrgKy9wfaPvzXayz39KtQu5dR+4AjwOHVMpA3MJN2SgCQoJQKX/1/r/0Cyq4T6lABaNhZ6s2yS4QkGRnuarrn7+IV+00cHmbXm3RnafM4tewhzfLDoFPV9gxyUQ1dRLS9eR0kzr1CPIrMLyIUZzTiWhiagTqsSbJFA1ykiOE8FdynzLrg8Tn5XSXMJq0lQ0WO/8/eWw2xzaYsjXba+G3tFYI6qLkIILL5YohYbdus4JrwwAj9sHSBocGwrs/TstbFLDI5H9CrMncsFzfScYO2R2PzGjlqH8ZFQ1RJHAsWN2u/w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uvw2lB2RUZPmDAEETQ0AL128x+7IleS/tTyDhhzlEHk=;
- b=sKKHl0MZYVV9rrkTL8RBzFT+M7GrLcllay/p5NQITFyrbhmuXfNHEAJ6AGsLTZYtjJxrlFKgKIVTZR3ULs7ZTYFav5wcKTiTunBZ3STUZxkpmBBVmQkts5YgDuNXaxU3/Onmj+tZGWH/LhdQ2n0/hpl/xvAGxHr/pBGfKMxv/OM=
-Received: from DM6PR08CA0058.namprd08.prod.outlook.com (2603:10b6:5:1e0::32)
- by MW6PR12MB9018.namprd12.prod.outlook.com (2603:10b6:303:241::6) with
+ bh=Cfsg4yUOzUrpvdGk5mvbg8q/BQelNvOcvgKFSjAUYbw=;
+ b=ZQcbO+b1Hit1ADj5CC5BHuXhrQtfWKJnap0GqDaGKCRM7Owm+h53dLeLM60ys/Ty5wWpYid4i7TCVg2UlkeJX5mk+VT6KRRoBnTTHcSc1TC76RIdVCg5xjund7o0IeaANxriIPsReVa16vCQHi3DIEoMlL2Hqyp16luaWta1geo=
+Received: from DM6PR17CA0034.namprd17.prod.outlook.com (2603:10b6:5:1b3::47)
+ by CH3PR12MB9025.namprd12.prod.outlook.com (2603:10b6:610:129::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Wed, 1 Nov
- 2023 20:08:42 +0000
-Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:5:1e0:cafe::ec) by DM6PR08CA0058.outlook.office365.com
- (2603:10b6:5:1e0::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19 via Frontend
- Transport; Wed, 1 Nov 2023 20:08:42 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19; Wed, 1 Nov
+ 2023 20:08:47 +0000
+Received: from DS2PEPF00003447.namprd04.prod.outlook.com (2603:10b6:5:1b3::4)
+ by DM6PR17CA0034.outlook.office365.com (2603:10b6:5:1b3::47) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6954.19 via Frontend Transport; Wed, 1 Nov 2023 20:08:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,47 +46,50 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ DS2PEPF00003447.mail.protection.outlook.com (10.167.17.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6954.19 via Frontend Transport; Wed, 1 Nov 2023 20:08:42 +0000
+ 15.20.6954.19 via Frontend Transport; Wed, 1 Nov 2023 20:08:46 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Wed, 1 Nov
- 2023 15:08:41 -0500
+ 2023 15:08:42 -0500
 Received: from hersenwu-Majolica-CZN.amd.com (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32
- via Frontend Transport; Wed, 1 Nov 2023 15:08:40 -0500
+ via Frontend Transport; Wed, 1 Nov 2023 15:08:41 -0500
 From: Hersen Wu <hersenxs.wu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/12] DC Patches October 30, 2023
-Date: Wed, 1 Nov 2023 16:08:20 -0400
-Message-ID: <20231101200832.995436-1-hersenxs.wu@amd.com>
+Subject: [PATCH 01/12] drm/amd/display: save and restore mall state when
+ applying minimal transition
+Date: Wed, 1 Nov 2023 16:08:21 -0400
+Message-ID: <20231101200832.995436-2-hersenxs.wu@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231101200832.995436-1-hersenxs.wu@amd.com>
+References: <20231101200832.995436-1-hersenxs.wu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|MW6PR12MB9018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18b797f2-dc80-4666-cfa9-08dbdb1658a0
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|CH3PR12MB9025:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2974c69d-9d98-42ea-afab-08dbdb165b55
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Yvkb9pw4IPV0QAJUbCoK3/FrmDZNWXFM0euTQnkOzIDxK0viasRNOMopu+iBSpd6z4G5J91x3SdNSfNcjhnmsFAHMWGKtEZx4Br5RmGWlBcIo8S07fHD5BCQ2RQRtWwfBOKfdwWTIwWKQdyZcCy8tSR4cjSEqsftONEd8TL3zWLKkugtKXMByzY/oepYGLiqSxG3iEn6HAnvzF2wU7iYhuhAWRyPQ/ELyfS+eEXSJxVVp0q5omOmkPZm3+jTGlNf8Ph+TnNy9yVZMK/JqYFb+RvcMN91CM1zggYmKfRKy09p4GsG+qpWQskNjERSuLwgjf+ptI260etvVk6blBReu91ynbqECHdp00TpGtGbSA1/aSb76HqYQxGOxky5KJKbV6L9JcwAlSuyo5mmNhybTxniKbp/t2aEna1MGQdMN2gLeeghoRj4jgAMXAQt3hlYSTUwHMNrkHIimLKF7md8Jl8wtZxZuW5BPCpasbMSmXPEuYlso++2255EBzKL5MH/HYiqgbE6DotUGee3jw+oTwkaqqxbLaZiHCaAmNAgHns08RuEGoKq+VlGTQg41Q7MmOfOX5BBjgSM/qBLd0w4sw+qHLlJdcnfH7TF0kx7QunaN2+n5WIhZzObrmfZErq2EEAajHlf0xAzkscs3gW2IUdT3L8bnMqMLih2NY7pfBW0PGOpCli/9kwjhBxJqnuLEssAVIjQ+Saf9YfyI6kP+hNp3jA6FgBOUiyi2q3Wchr72eF6xSG/bgPE7KJANjwTQ/pYf8dAJp4l6Yuqx1WvJQ==
+X-Microsoft-Antispam-Message-Info: /xZNsCBka855JCFwDm1jlCBsL8CpJEInQtvc9jwPVaOrW7BydGgtqPRn3bgN0RhOlbmpaAylDo/+/pVT6vW6yLNavQhDp9pPGxnr/zRfEHkhQYdo9KP8onmXGAis+GZzwWaWXhZSDauuE3+poIOAY/rIEe4mO5yRaGBmWTUC2lnEatx+ujle+EBx2YNIIdOxtt8Vjpi68pbYUFoUt3KzCqH9/J+eywia7rS2KP1U6nTHSF/6wyGCDbuj/YvtLjIy854sy5wa/ZUqTulYjlPkye/70W3iJe7i/d8V8zb011WaCX2hagDSHYllw5L9Nmmd+NDngaGKzW9aPLOCTVHuQBvDAoC3AL65O9vNNNVbz3TZgtN/p1QroYiaaiZFPoTO+OtI6tQJ7w7jjuy+O1MI2tnEqZgut0ti8wckQc29YLvqLlXzRfN0iJurwt+0LuZmInBgxzhRD6uUPCX0vllxtrhH5+yRaXmOMriVZxMXOCMqxDn9VwTo9JFTA62WBEskJjfg9jBAD9o3K9b5xID+r52r61stXkmkXnTlwRYowhMXcdt6dICsFoqLwOKFeoX3vGTAOrBTOL7fz0uhoPWnENL4wJaUwPo2LiMW1ncGjWFKWzwDXTWWh+bVnTGAHtubouvMRBbyLFVaqsEB4Af86Y48bxCT5g7XPtD8sO+EfA3ySfaOiGGu+ozwQoZdKYxyn+OvqVNkzbQ6PoP/N8sHm2GOuaqPg2KKT9eX38TE5F6zY6tmHRf7Qmxl4BZ6eQPSZU24HkZYybd4ru7ze/ezSA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(39860400002)(346002)(136003)(376002)(230922051799003)(186009)(451199024)(82310400011)(64100799003)(1800799009)(40470700004)(36840700001)(46966006)(2616005)(1076003)(26005)(7696005)(40460700003)(86362001)(40480700001)(36860700001)(82740400003)(47076005)(356005)(81166007)(36756003)(426003)(336012)(5660300002)(54906003)(70206006)(70586007)(4326008)(8676002)(8936002)(6916009)(83380400001)(316002)(41300700001)(6666004)(478600001)(2906002)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(136003)(396003)(376002)(346002)(230922051799003)(186009)(1800799009)(64100799003)(82310400011)(451199024)(46966006)(36840700001)(40470700004)(36756003)(40480700001)(2616005)(40460700003)(86362001)(82740400003)(356005)(81166007)(83380400001)(36860700001)(5660300002)(6666004)(426003)(336012)(26005)(1076003)(47076005)(7696005)(8936002)(70586007)(478600001)(4326008)(316002)(8676002)(54906003)(6916009)(2906002)(70206006)(41300700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 20:08:42.3098 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18b797f2-dc80-4666-cfa9-08dbdb1658a0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 20:08:46.8506 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2974c69d-9d98-42ea-afab-08dbdb165b55
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003447.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB9018
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9025
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,93 +101,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
+Cc: stylon.wang@amd.com, Dillon Varone <dillon.varone@amd.com>,
+ chiahsuan.chung@amd.com, Sunpeng.Li@amd.com, Wenjing Liu <wenjing.liu@amd.com>,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, jerry.zuo@amd.com,
  Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com, wayne.lin@amd.com,
  Harry.Wentland@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Title: DC Patches October 30, 2023
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-Start from:
-  9379d9fc18582c69862dc25fb770ae2e102f29d6
-  drm/amd/display: 3.2.258
+[why]
+There is a case when we are switching from ODM combine to Subvp where
+minimal transition based off subvp state is required. In thise case, we
+need to save and restore mall state when applying minimal transition.
 
-Stopped at:
-  0a6aa88e926196036c7cf9edb70924b659461617
-  drm/amd/display: 3.2.259
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Acked-by: Hersen Wu <hersenxs.wu@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-This DC patchset brings improvements in multiple areas. In summary, we
-highlight:
-
-- Enable DCN35 physymclk root clock gating
-- Fix DP automation test pattern bug
-- Disable OTG for mode switch from TMDS to FRL
-- Refactor DML2
-- Revert Fix handling duplicate planes on one stream
-- Revert Enable DCN clock gating
-- Implement cursor P-State allow for SubVP
-- Save and restore mall state while switching from ODM to Subvp
-
-
-Alvin Lee (1):
-  drm/amd/display: For cursor P-State allow for SubVP
-
-Aric Cyr (1):
-  drm/amd/display: Promote DAL to 3.2.259
-
-Chaitanya Dhere (1):
-  drm/amd/display: Remove references to unused dml arch version
-
-Daniel Miess (2):
-  drm/amd/display: Revert Enable DCN clock gating
-  drm/amd/display: Enable physymclk RCO
-
-George Shen (1):
-  drm/amd/display: Set stream's DP test pattern upon test request
-
-Joshua Aberback (1):
-  drm/amd/display: Remove unused duplicate register definition
-
-Ovidiu Bunea (1):
-  drm/amd/display: Disable OTG for mode timing switch on DCN35
-
-Rodrigo Siqueira (1):
-  drm/amd/display: Create optc.h file
-
-Sung Joon Kim (2):
-  drm/amd/display: Revert Fix handling duplicate planes on one stream
-  drm/amd/display: Fix handling duplicate planes on one stream
-
-Wenjing Liu (1):
-  drm/amd/display: save and restore mall state when applying minimal
-    transition
-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   3 +
- .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   |   2 +-
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  |   3 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  20 ++
- drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
- drivers/gpu/drm/amd/display/dc/dce/dce_abm.h  |  15 --
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.h | 186 +--------------
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h |   6 +-
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c |  84 ++++---
- .../drm/amd/display/dc/dcn35/dcn35_pg_cntl.c  |  10 +-
- .../drm/amd/display/dc/dcn35/dcn35_pg_cntl.h  |   1 +
- .../drm/amd/display/dc/dcn35/dcn35_resource.c |  22 +-
- .../display/dc/dml2/dml2_dc_resource_mgmt.c   |  16 +-
- .../amd/display/dc/dml2/dml2_internal_types.h |   1 -
- .../display/dc/dml2/dml2_translation_helper.c |  40 +---
- .../drm/amd/display/dc/hwss/dce/dce_hwseq.h   |  18 +-
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  17 +-
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  33 ++-
- drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |   9 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/optc.h  | 219 ++++++++++++++++++
- .../gpu/drm/amd/display/dc/inc/hw/pg_cntl.h   |   2 +
- 21 files changed, 380 insertions(+), 329 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/inc/hw/optc.h
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index de8e5b18a12c..7b9bf5cb4529 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -4116,8 +4116,17 @@ static bool commit_minimal_transition_state_for_windowed_mpo_odm(struct dc *dc,
+ 	bool success = false;
+ 	struct dc_state *minimal_transition_context;
+ 	struct pipe_split_policy_backup policy;
++	struct mall_temp_config mall_temp_config;
+ 
+ 	/* commit based on new context */
++	/* Since all phantom pipes are removed in full validation,
++	 * we have to save and restore the subvp/mall config when
++	 * we do a minimal transition since the flags marking the
++	 * pipe as subvp/phantom will be cleared (dc copy constructor
++	 * creates a shallow copy).
++	 */
++	if (dc->res_pool->funcs->save_mall_state)
++		dc->res_pool->funcs->save_mall_state(dc, context, &mall_temp_config);
+ 	minimal_transition_context = create_minimal_transition_state(dc,
+ 			context, &policy);
+ 	if (minimal_transition_context) {
+@@ -4126,9 +4135,20 @@ static bool commit_minimal_transition_state_for_windowed_mpo_odm(struct dc *dc,
+ 			dc->hwss.is_pipe_topology_transition_seamless(
+ 					dc, minimal_transition_context, context)) {
+ 			DC_LOG_DC("%s base = new state\n", __func__);
++
+ 			success = dc_commit_state_no_check(dc, minimal_transition_context) == DC_OK;
+ 		}
+ 		release_minimal_transition_state(dc, minimal_transition_context, &policy);
++		if (dc->res_pool->funcs->restore_mall_state)
++			dc->res_pool->funcs->restore_mall_state(dc, context, &mall_temp_config);
++		/* If we do a minimal transition with plane removal and the context
++		 * has subvp we also have to retain back the phantom stream / planes
++		 * since the refcount is decremented as part of the min transition
++		 * (we commit a state with no subvp, so the phantom streams / planes
++		 * had to be removed).
++		 */
++		if (dc->res_pool->funcs->retain_phantom_pipes)
++			dc->res_pool->funcs->retain_phantom_pipes(dc, context);
+ 	}
+ 
+ 	if (!success) {
 -- 
 2.25.1
 
