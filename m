@@ -1,95 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D697DF5A1
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Nov 2023 16:05:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F3AA7DF69F
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Nov 2023 16:39:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D475410E8E3;
-	Thu,  2 Nov 2023 15:04:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCCA10E8E9;
+	Thu,  2 Nov 2023 15:39:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7D8E10E8E3
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 15:04:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TvuBZECweX1RLPgMRvz0ZEWc3C8OngdLcW1jxVUmbpLUlDR/QHvgYWpJNvrHz/5LOlx6TQY94a+hH7skrnXXwQ/Kj1EOM4dlQlhYb1PM0ged8mvDUAHAQQnd7+blKHR/UrA2fq6c76iXOuZyT/w2uCaDdNBXUkcqARcqxHrl2Xf3dDE3zoR+98dqX62LcCzngKeWuJz6O0KO62B3s41ib8YUEGFmTfwuBE0K20kzibCq9tiOvTGvEgG3x9/+Y89G5N+Z2PtKmvU7v5v6dVghRO8c22l8Zb1p1rEhKYvQJrOVBqAHb/kAFVcVtVqpCBvXFzdG3Qd1JoFZbmfbekFGCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WAgwp6N8jelTo/cW3kQR3ad5J56dyWI7odXWpgklgSQ=;
- b=j9yq7AE00Jxpe9pi5lvah/sU6XJpZTu5wGK53cttGRfKO55mJfkaG5VO/G0pctpRNj6vFEi348ap5zY3dH9svksmvcvUc7uWF5CPyPzDVVNug0t5xGUrVZeHS70SFRdJgSP+yqrve8PK7yzI5M/CB2Y31BlRWgsTeQOvAgVimRpT8yJKsXZslS6WkXAM9skpGTf0Wgf2V+o0l14PiD5rORM7Fim82zOFSIeHcx/7Lj5ZcqKdV1vtnPcqz307jk0sXyo/sMecw9LdzFgoIDXTvXsMkdlyUj2ebv3/SevFmL/qcGzr0mvqPzqrkxUtreB/XFEqHLD9O3eC6JnPJ9JrQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WAgwp6N8jelTo/cW3kQR3ad5J56dyWI7odXWpgklgSQ=;
- b=m+ZZYokUZOMtoKyKfb/cEVkZ36OesdScHVQuJxEK6D7k+SP6tdxao+EKPISt3hQttCugjfzwiL65k91Ofreu+EpqLkCHrBBEsdkuTCYSGuElISMHD/X8ChjtlUxMgYts20/0pub+jm1CJPEEHlvx5p3rBsEU0RycSXWEEdvmmQk=
-Received: from BL1PR13CA0331.namprd13.prod.outlook.com (2603:10b6:208:2c6::6)
- by LV8PR12MB9359.namprd12.prod.outlook.com (2603:10b6:408:1fe::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Thu, 2 Nov
- 2023 15:04:52 +0000
-Received: from BL6PEPF0001AB74.namprd02.prod.outlook.com
- (2603:10b6:208:2c6:cafe::a0) by BL1PR13CA0331.outlook.office365.com
- (2603:10b6:208:2c6::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19 via Frontend
- Transport; Thu, 2 Nov 2023 15:04:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB74.mail.protection.outlook.com (10.167.242.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6954.19 via Frontend Transport; Thu, 2 Nov 2023 15:04:52 +0000
-Received: from ubuntu22.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Thu, 2 Nov
- 2023 10:04:51 -0500
-From: Victor Lu <victorchengchi.lu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdgpu: Change WREG32_RLC to WREG32_SOC15_RLC where
- inst != 0 (v2)
-Date: Thu, 2 Nov 2023 11:04:27 -0400
-Message-ID: <20231102150427.12978-4-victorchengchi.lu@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231102150427.12978-1-victorchengchi.lu@amd.com>
-References: <a69f99f0-881a-1b52-1e29-4cb6b2bc1994@amd.com>
- <20231102150427.12978-1-victorchengchi.lu@amd.com>
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2B1010E8E9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 15:39:08 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id
+ ffacd0b85a97d-32dc918d454so621436f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Nov 2023 08:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1698939547; x=1699544347; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/Bcqu9mcRdPrTnPxyHQ2e36LRNkiYraR4drSiZNzpvk=;
+ b=WAh9ZBuZ8ZJRsupksRhT88HRk+zmGK3kM5u3VTzl68K0fQ5ivJBzLLxCXPNduA5psC
+ ItKOBAIlNJNge57T1ou8Oh4WuRKWLNo3Xh4Nlo2hvD/6OUmaP+YGskPV8QflCH83w1v1
+ vjAKfZzpmIBRS1X/EgiiPUj17MrjbYI5a88Anvs2ktpmB/SUn3pvXJcjeoP4LDAnu1Yb
+ eQ8Rl+6CyWXubSIRgtwzbQPWxQgxXumI/F0tSeRLaapIkS4xBf4JAJ2qKsQQrQpDcKG/
+ PGTadAJ4uNAnQ/U85n7Nbk6kfX+FdSJp3iaGJAJKVA8TLO9WHewgt8MofpLe6PCEIoI4
+ TbwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698939547; x=1699544347;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=/Bcqu9mcRdPrTnPxyHQ2e36LRNkiYraR4drSiZNzpvk=;
+ b=M+ZVI3aOBvmBTNgiPA6RTelmKPwWUsX6jPh0h906A4mmdPQozCbggdT60syP6jA2Kk
+ 2b7Kb1FAkT4FOWmnH/u4qf6O4zyUnDKmQhypgpFvjbwvrpsfQSXEuIIjwUe2R0sUOcZh
+ hIO+6H+VTF7O5wOx/oga8zLLNrRYDye9GnvYogdtmW28FWnKFPNgSHc/QJ/tGukXLG6f
+ m2FaDqj4z9Ndzzp8jRj/kREuo8h8OF4DqIZWE6G4sRPfyur/+ets9Hss1IYy/R1CyYwS
+ GTVRsMW/69FytH09qjSOQk6JRcmejAvAVSD3+FTG7GBHiIUfpvc+vu5s4of8IUw7tlQ7
+ IGAg==
+X-Gm-Message-State: AOJu0Yxhx3XfDF00xEsw1BrPji286RZm42yJNoPk3uKzxt+gGkBpwszS
+ FJjha8ThVWgNjF/qfPM3ha8=
+X-Google-Smtp-Source: AGHT+IFDhV5RPNeUBHTTVsM+E4RD4VgzZXsXNSNtmEM/cGxczTxgP6hylu9zxkYyh341anBntWQbqA==
+X-Received: by 2002:a05:6000:18a4:b0:32f:755c:c625 with SMTP id
+ b4-20020a05600018a400b0032f755cc625mr14887642wri.11.1698939546761; 
+ Thu, 02 Nov 2023 08:39:06 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ g9-20020adff409000000b00318147fd2d3sm2791118wro.41.2023.11.02.08.39.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 02 Nov 2023 08:39:06 -0700 (PDT)
+Message-ID: <de95125a-f413-4765-b131-aeaa1296a1ec@gmail.com>
+Date: Thu, 2 Nov 2023 16:39:03 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Fix the vram base start address
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20231030122205.24805-1-Arunpravin.PaneerSelvam@amd.com>
+ <f691b236-e5da-4f4e-aaf1-bd74f2f9db56@gmail.com>
+ <838a8374-5499-478e-3439-3000b32bc7e4@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <838a8374-5499-478e-3439-3000b32bc7e4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB74:EE_|LV8PR12MB9359:EE_
-X-MS-Office365-Filtering-Correlation-Id: f27ee294-e8f1-4598-0e0b-08dbdbb51136
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2XnzIjEp4OmYCsNEdViYuvEPPCow8g0irhAhnmYfWm3CiVujc94KOmNH+JJrCJjNCq1YCboGRlke8gghi8Wa24wcOeo9srP/WZiqyAtMctJyEZ3vmjtQL2vh34kBi97yxKo9ZORzrZ5C/A+877rE68Z0O4WMKxZcr+AJ/zu/qEjTW1ZAGXZhtxuPeFz0+goQ8sAW/SVd1XE3JxudfzNTtYyYYZA01WXcsdkfJxslZB1uFAXm4eQ1WDVw7PjPrBAgySWj6JOmButFz/oJk7Rz197/AKvdBZwfhY++zY8jHgqm9eWnDTkVgxoLnZ1fFOmt+PShHJfuG5mshPxO+WQ6V4kKS+AS6s1NmJPaagb0JoVhcYkB57Buxh+lRmUXGPgaqD1YmgNA2BTy/UfmUTieXIkKRg2PtRpth08jS5yF0OQsPoS0Re26Qk6V7QqYqMN5S3drTkBMbbikjKHXY7TD8h/notImibFBFC3FAu91ztpbkp9ovOyxF9keO24llrSgo0I/0Bg3TxPk2gzdS3M5ZVCHzm9RcRX8oa+rv/f0rNKwEpfjY9HsS0BbKbEkvw7NbLboDfLtaMi8yM0wa34QrbFT0THkKq2LgAk04Hj3IzCg6dCG9ZhCD9+SSKJt1D4NOSi3j2SlBE5wcVL8piBw1mQfNBduugy88WYdqM20zI/PgfATmMpEX5C92IWGEf4j+MIYPL1ei3xeXpfbyywemO1PW35SZmttO399QikjkQdVubI3SQewpLOxjcMAej9y7/9NRuxAx//xQwCjA8Lp9Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(376002)(346002)(136003)(396003)(230922051799003)(186009)(1800799009)(82310400011)(451199024)(64100799003)(40470700004)(36840700001)(46966006)(40460700003)(83380400001)(47076005)(16526019)(26005)(1076003)(336012)(6916009)(81166007)(426003)(356005)(36860700001)(70206006)(70586007)(316002)(54906003)(5660300002)(8676002)(4326008)(8936002)(6666004)(2906002)(2616005)(41300700001)(478600001)(82740400003)(7696005)(86362001)(36756003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2023 15:04:52.5344 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f27ee294-e8f1-4598-0e0b-08dbdbb51136
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB74.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9359
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,194 +77,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lijo.lazar@amd.com, davis.ming@amd.com,
- Victor Lu <victorchengchi.lu@amd.com>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W/RREG32_RLC is hardedcoded to use instance 0. W/RREG32_SOC15_RLC
-should be used instead when inst != 0.
+Am 01.11.23 um 20:13 schrieb Arunpravin Paneer Selvam:
+> Hi Christian,
+>
+> On 10/30/2023 9:34 PM, Christian König wrote:
+>>
+>>
+>> Am 30.10.23 um 13:22 schrieb Arunpravin Paneer Selvam:
+>>> If the size returned by drm buddy allocator is higher than
+>>> the required size, we take the higher size to calculate
+>>> the buffer start address. This is required if we couldn't
+>>> trim the buffer to the requested size. This will fix the
+>>> display corruption issue on APU's which has limited VRAM
+>>> size.
+>>>
+>>> gitlab issue link: https://gitlab.freedesktop.org/drm/amd/-/issues/2859
+>>> JIRA ticket link: https://ontrack-internal.amd.com/browse/SWDEV-425461
+>>>
+>>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>>> Signed-off-by: Arunpravin Paneer Selvam 
+>>> <Arunpravin.PaneerSelvam@amd.com>
+>>
+>> Acked-by: Christian König <christian.koenig@amd.com>
+>>
+>> IIRC that hack with the start address is actually not needed any 
+>> more, but we need to double check this.
+> okay, can we just remove this hack and keep the vres->base.start value 
+> as the start address of the first block from the
+> allocated list.
 
-v2: rebase
+Please double check if we don't have any more cases where we compare the 
+start address against the visible VRAM limit.
 
-Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
----
- .../drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c   | 38 ++++++++----------
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 40 +++++++++----------
- drivers/gpu/drm/amd/amdgpu/soc15_common.h     |  2 +-
- 3 files changed, 37 insertions(+), 43 deletions(-)
+I think we now fixed all those cases and replaced them with calls to 
+check if all segments are visible, but I'm not 100% sure.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
-index 80309d39737a..f6598b9e4faa 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
-@@ -306,8 +306,7 @@ static int kgd_gfx_v9_4_3_hqd_load(struct amdgpu_device *adev, void *mqd,
- 	/* Activate doorbell logic before triggering WPTR poll. */
- 	data = REG_SET_FIELD(m->cp_hqd_pq_doorbell_control,
- 			     CP_HQD_PQ_DOORBELL_CONTROL, DOORBELL_EN, 1);
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_PQ_DOORBELL_CONTROL),
--				data);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_PQ_DOORBELL_CONTROL, data);
- 
- 	if (wptr) {
- 		/* Don't read wptr with get_user because the user
-@@ -336,27 +335,24 @@ static int kgd_gfx_v9_4_3_hqd_load(struct amdgpu_device *adev, void *mqd,
- 		guessed_wptr += m->cp_hqd_pq_wptr_lo & ~(queue_size - 1);
- 		guessed_wptr += (uint64_t)m->cp_hqd_pq_wptr_hi << 32;
- 
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_LO),
--		       lower_32_bits(guessed_wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_HI),
--		       upper_32_bits(guessed_wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_POLL_ADDR),
--		       lower_32_bits((uintptr_t)wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
--			regCP_HQD_PQ_WPTR_POLL_ADDR_HI),
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_LO,
-+			lower_32_bits(guessed_wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_HI,
-+			upper_32_bits(guessed_wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_POLL_ADDR,
-+			lower_32_bits((uintptr_t)wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_PQ_WPTR_POLL_ADDR_HI,
- 			upper_32_bits((uintptr_t)wptr));
--		WREG32(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_PQ_WPTR_POLL_CNTL1),
--		       (uint32_t)kgd_gfx_v9_get_queue_mask(adev, pipe_id,
--			       queue_id));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_PQ_WPTR_POLL_CNTL1,
-+			(uint32_t)kgd_gfx_v9_get_queue_mask(adev, pipe_id, queue_id));
- 	}
- 
- 	/* Start the EOP fetcher */
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_EOP_RPTR),
--	       REG_SET_FIELD(m->cp_hqd_eop_rptr,
--			     CP_HQD_EOP_RPTR, INIT_FETCHER, 1));
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_EOP_RPTR,
-+	       REG_SET_FIELD(m->cp_hqd_eop_rptr, CP_HQD_EOP_RPTR, INIT_FETCHER, 1));
- 
- 	data = REG_SET_FIELD(m->cp_hqd_active, CP_HQD_ACTIVE, ACTIVE, 1);
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_ACTIVE), data);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), regCP_HQD_ACTIVE, data);
- 
- 	kgd_gfx_v9_release_queue(adev, inst);
- 
-@@ -494,15 +490,15 @@ static uint32_t kgd_gfx_v9_4_3_set_address_watch(
- 			VALID,
- 			1);
- 
--	WREG32_RLC((SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
-+	WREG32_XCC((SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
- 			regTCP_WATCH0_ADDR_H) +
- 			(watch_id * TCP_WATCH_STRIDE)),
--			watch_address_high);
-+			watch_address_high, inst);
- 
--	WREG32_RLC((SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
-+	WREG32_XCC((SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
- 			regTCP_WATCH0_ADDR_L) +
- 			(watch_id * TCP_WATCH_STRIDE)),
--			watch_address_low);
-+			watch_address_low, inst);
- 
- 	return watch_address_cntl;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-index 9285789b3a42..00fbc0f44c92 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-@@ -91,8 +91,8 @@ void kgd_gfx_v9_program_sh_mem_settings(struct amdgpu_device *adev, uint32_t vmi
- {
- 	kgd_gfx_v9_lock_srbm(adev, 0, 0, 0, vmid, inst);
- 
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmSH_MEM_CONFIG), sh_mem_config);
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmSH_MEM_BASES), sh_mem_bases);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmSH_MEM_CONFIG, sh_mem_config);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmSH_MEM_BASES, sh_mem_bases);
- 	/* APE1 no longer exists on GFX9 */
- 
- 	kgd_gfx_v9_unlock_srbm(adev, inst);
-@@ -245,8 +245,7 @@ int kgd_gfx_v9_hqd_load(struct amdgpu_device *adev, void *mqd,
- 	/* Activate doorbell logic before triggering WPTR poll. */
- 	data = REG_SET_FIELD(m->cp_hqd_pq_doorbell_control,
- 			     CP_HQD_PQ_DOORBELL_CONTROL, DOORBELL_EN, 1);
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_DOORBELL_CONTROL),
--					data);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_PQ_DOORBELL_CONTROL, data);
- 
- 	if (wptr) {
- 		/* Don't read wptr with get_user because the user
-@@ -275,25 +274,24 @@ int kgd_gfx_v9_hqd_load(struct amdgpu_device *adev, void *mqd,
- 		guessed_wptr += m->cp_hqd_pq_wptr_lo & ~(queue_size - 1);
- 		guessed_wptr += (uint64_t)m->cp_hqd_pq_wptr_hi << 32;
- 
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_LO),
--		       lower_32_bits(guessed_wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_HI),
--		       upper_32_bits(guessed_wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_POLL_ADDR),
--		       lower_32_bits((uintptr_t)wptr));
--		WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_POLL_ADDR_HI),
--		       upper_32_bits((uintptr_t)wptr));
--		WREG32_SOC15(GC, GET_INST(GC, inst), mmCP_PQ_WPTR_POLL_CNTL1,
--		       (uint32_t)kgd_gfx_v9_get_queue_mask(adev, pipe_id, queue_id));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_LO,
-+			lower_32_bits(guessed_wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_HI,
-+			upper_32_bits(guessed_wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_POLL_ADDR,
-+			lower_32_bits((uintptr_t)wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_POLL_ADDR_HI,
-+			upper_32_bits((uintptr_t)wptr));
-+		WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_PQ_WPTR_POLL_CNTL1,
-+			(uint32_t)kgd_gfx_v9_get_queue_mask(adev, pipe_id, queue_id));
- 	}
- 
- 	/* Start the EOP fetcher */
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_EOP_RPTR),
--	       REG_SET_FIELD(m->cp_hqd_eop_rptr,
--			     CP_HQD_EOP_RPTR, INIT_FETCHER, 1));
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_EOP_RPTR,
-+	       REG_SET_FIELD(m->cp_hqd_eop_rptr, CP_HQD_EOP_RPTR, INIT_FETCHER, 1));
- 
- 	data = REG_SET_FIELD(m->cp_hqd_active, CP_HQD_ACTIVE, ACTIVE, 1);
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_ACTIVE), data);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_ACTIVE, data);
- 
- 	kgd_gfx_v9_release_queue(adev, inst);
- 
-@@ -556,7 +554,7 @@ int kgd_gfx_v9_hqd_destroy(struct amdgpu_device *adev, void *mqd,
- 		break;
- 	}
- 
--	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_DEQUEUE_REQUEST), type);
-+	WREG32_SOC15_RLC(GC, GET_INST(GC, inst), mmCP_HQD_DEQUEUE_REQUEST, type);
- 
- 	end_jiffies = (utimeout * HZ / 1000) + jiffies;
- 	while (true) {
-@@ -908,8 +906,8 @@ void kgd_gfx_v9_get_iq_wait_times(struct amdgpu_device *adev,
- 					uint32_t inst)
- 
- {
--	*wait_times = RREG32(SOC15_REG_OFFSET(GC, GET_INST(GC, inst),
--			mmCP_IQ_WAIT_TIME2));
-+	*wait_times = RREG32_SOC15_RLC(GC, GET_INST(GC, inst),
-+			mmCP_IQ_WAIT_TIME2);
- }
- 
- void kgd_gfx_v9_set_vm_context_page_table_base(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-index c75e9cd5c98b..4607df23fe27 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-@@ -140,7 +140,7 @@
- 
- /* for GC only */
- #define RREG32_RLC(reg) \
--	__RREG32_SOC15_RLC__(reg, AMDGPU_REGS_RLC, GC_HWIP)
-+	__RREG32_SOC15_RLC__(reg, AMDGPU_REGS_RLC, GC_HWIP, 0)
- 
- #define WREG32_RLC_NO_KIQ(reg, value, hwip) \
- 	__WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_NO_KIQ | AMDGPU_REGS_RLC, hwip, 0)
--- 
-2.34.1
+Regards,
+Christian.
+
+>
+> Thanks,
+> Arun
+>>
+>> Christian.
+>>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 15 +++++++++++++--
+>>>   1 file changed, 13 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>> index 18f58efc9dc7..08916538a615 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>>> @@ -77,7 +77,16 @@ static inline bool 
+>>> amdgpu_is_vram_mgr_blocks_contiguous(struct list_head *head)
+>>>       return true;
+>>>   }
+>>>   +static inline u64 amdgpu_vram_mgr_blocks_size(struct list_head 
+>>> *head)
+>>> +{
+>>> +    struct drm_buddy_block *block;
+>>> +    u64 size = 0;
+>>>   +    list_for_each_entry(block, head, link)
+>>> +        size += amdgpu_vram_mgr_block_size(block);
+>>> +
+>>> +    return size;
+>>> +}
+>>>     /**
+>>>    * DOC: mem_info_vram_total
+>>> @@ -516,6 +525,8 @@ static int amdgpu_vram_mgr_new(struct 
+>>> ttm_resource_manager *man,
+>>>       mutex_unlock(&mgr->lock);
+>>>         vres->base.start = 0;
+>>> +    size = max_t(u64, amdgpu_vram_mgr_blocks_size(&vres->blocks),
+>>> +             vres->base.size);
+>>>       list_for_each_entry(block, &vres->blocks, link) {
+>>>           unsigned long start;
+>>>   @@ -523,8 +534,8 @@ static int amdgpu_vram_mgr_new(struct 
+>>> ttm_resource_manager *man,
+>>>               amdgpu_vram_mgr_block_size(block);
+>>>           start >>= PAGE_SHIFT;
+>>>   -        if (start > PFN_UP(vres->base.size))
+>>> -            start -= PFN_UP(vres->base.size);
+>>> +        if (start > PFN_UP(size))
+>>> +            start -= PFN_UP(size);
+>>>           else
+>>>               start = 0;
+>>>           vres->base.start = max(vres->base.start, start);
+>>
+>
 
