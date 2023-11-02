@@ -1,117 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E55287DEF63
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Nov 2023 11:03:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CDE7DF335
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Nov 2023 14:05:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 505A410E023;
-	Thu,  2 Nov 2023 10:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 405DD10E883;
+	Thu,  2 Nov 2023 13:05:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2066.outbound.protection.outlook.com [40.107.102.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F59D10E023
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 10:03:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vn8TR9KRmg0rq65+8/aDEb8lybgagkLXzxOU01o+SmMWDUVQ7XzQnsXRQaMtplsgn/BPFK9oqrfcGAfmvDpaMkLvVdgHom0YztWlAJHLjXM7qQcVB//NqHgxcXeYh/d6diVJoTn02LpFf53il+rD1ifKZcTXtI5jYwpIBuVeHijsD+yGqKGqvSv5w8EhvPnLe/y/7EPfMoOTW4jlRdHswICJqy6g+Md3wxfU1eNRYzXW0TnAUh6/k4NBO5DKcm4ujOi/dKKSE04yGjXLTtSeK2Jc1HXBVD0qpp0okdmvmZDed6zR/1DOOwStr/+wBQCOmmyHYmSb7K3AFnpxaDQctQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kj2RDH+x+8zym9B3evVMxwTpZ1bm3J6WFKcniXOoZ/U=;
- b=JIRGERoExWiQz0tMKiX1QhcNY/MLh4xOLmLYy0X2fxq6b97StQCFmG4Ns/1fOevMzfYpy3q3+UNEErvK/5eRw4D+rSyMcLhkRBBqzWUnWNnTkfwSG2SbQXIIkmcnvqvL7+LWlT2SrtjmmESvQ8soOfeRpWeYO1/nIgbhN5r3mfNx6k043oaVHkSvfzLXpk0XqUWPe42Ucmcgx/1SIbpixmFjXSt2afr/80zibQj7rACsJwqnTMJFcM6P+dYAO4pidaXtXIDGp0P+oHDT2dYDH8sZznkuiU0zLZJ7cia+9Pd5kdwxaWotT2Y8TM2Ty+MOejdLUIg0tyCjKvIzeJGUgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kj2RDH+x+8zym9B3evVMxwTpZ1bm3J6WFKcniXOoZ/U=;
- b=oqoLm5Ao2w3n1+Sxsoj5ZLFHLQgG1wZDDFqvYMX1DI01aCEu6PLZt1sjP+FQvE13SFr1tiUJn6r8aniOJdjUehhCtIw9Gwpha8w+hE2zBRZG3P85uh09zJyeYnk8W7alIfCOP3Ry5qGBl4qg4BsKoRSiTFFUl9CM87fq+gmUB1c=
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com (2603:10b6:930:21::10)
- by PH7PR12MB9126.namprd12.prod.outlook.com (2603:10b6:510:2f0::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Thu, 2 Nov
- 2023 10:03:26 +0000
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::9b2f:2ac9:bfd0:589b]) by CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::9b2f:2ac9:bfd0:589b%3]) with mapi id 15.20.6954.019; Thu, 2 Nov 2023
- 10:03:25 +0000
-From: "Zhang, Yifan" <Yifan1.Zhang@amd.com>
-To: "Huang, Tim" <Tim.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/amdgpu: fix GRBM read timeout when do mes_self_test
-Thread-Topic: [PATCH v2] drm/amdgpu: fix GRBM read timeout when do
- mes_self_test
-Thread-Index: AQHaDKEYfNPCNXNHmEa4YcZV7KaFybBmzjkQ
-Date: Thu, 2 Nov 2023 10:03:25 +0000
-Message-ID: <CY5PR12MB636947DBAD9DDF3095BA44E5C1A6A@CY5PR12MB6369.namprd12.prod.outlook.com>
-References: <20231101085317.609080-1-Tim.Huang@amd.com>
-In-Reply-To: <20231101085317.609080-1-Tim.Huang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=13280d52-b3b0-4228-a14e-7a57d3a4b130;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-11-02T10:02:51Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR12MB6369:EE_|PH7PR12MB9126:EE_
-x-ms-office365-filtering-correlation-id: 41439aed-b550-4dd0-7a58-08dbdb8af49c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LEjHCtcJ4cOQHNahcndGaAzmjJhgHmGEO4rXV0apOS0IHm/7GdNWBOGBOdfGWWSXROm4HU+bRFi073B/kFtkx3XRcaPAAzfkEcBVQ/TzNcHXwQvpoSzFbWvPql6E+XbVANveb2k/ntPeDHcn28l+ZbofzUSLZ+huIrTI7gN8J58n6oIBxVGDA7/U1DPMEGpJ2n7aeBE5fEmR7FYUlmzGzFEZ0+wsINKdvwNN8lekN+M8BePQZp5H+V1hjXRdgkfAigk/rMX2cFEKaYxNEOQzLlnlz7l4OyBZ8ZzbbXApILOWq+KyA3MtmxSLv9zDr0EOQRv3zQuHBFxo3VBT44qpciODrIuKcEoVAu8GIGGhV8uyu/tKbGIyOpZ06QAHxwAaJgDQwyc6WpzJIQMRntPmWosgYcGqwYTpGjXv7zLUeJBD25dgiCaU943kX2ulhxMpeRvcyE/Jy4LA3+o87nAsfzMdLsNSCjXgXUAb0jUiz9rmYxvHzy9os+62iUasl6rjFBZBL5HMC17e9HXLL4VxHtS5jHhjmGWHFcs9M6YobYQEO85oruVsQ7PZRGBzlr168cBJ4H0AJRrBZDWiRPlMFydcsu2A8rd1GZCY690F5PV+KK0AwpvcpJ0AOntEKiiZ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6369.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(376002)(39860400002)(366004)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(71200400001)(55016003)(2906002)(478600001)(26005)(38070700009)(86362001)(38100700002)(33656002)(83380400001)(9686003)(7696005)(6506007)(53546011)(8676002)(122000001)(5660300002)(52536014)(66946007)(66556008)(64756008)(54906003)(66476007)(66446008)(316002)(76116006)(110136005)(41300700001)(8936002)(4326008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GCa2nWTcyNh6LQyDrIkYqCmElh1lUD3sD9JyGzU9DEpg+F5ShWuVUXtChRZU?=
- =?us-ascii?Q?5W+ylpBdPo3dfketXaFl4cgi4YisxUvldHfIiMAZwylvzNa42xfpzYCJo+uR?=
- =?us-ascii?Q?W9dWX+jhzYNF5p7rePZ8PgZ70JuIP5OL6Rbvm/bB5yvPiSwKSCJlI07KKob4?=
- =?us-ascii?Q?gvSCtnrUz8H8mzZPIMIr0BZ463jdMVtoY4nZRcE3w19U4XpvYvABcKqHYqo7?=
- =?us-ascii?Q?PlwFmrvUufapQAVDlv8BP6uZ2KG3cXYmvR6TiQS6odSejjqz6yNJLnOOGRga?=
- =?us-ascii?Q?dUWcGYPBCnS8xi8xyvna49uE9bRliWJDPmP0MgJHvupU627dzPx5zsSMq25S?=
- =?us-ascii?Q?0yrhJ0FknzBdmXKkKVaxMqr5lmId8udK8oGNufg9RWVp6fu8c4W7KwoC/Q33?=
- =?us-ascii?Q?YfPaWFdgqQ3TIEMllAE3TWLqU/wG0aiM1vhqtOvo1tCzHVbyfWGe/Gh+Bn+g?=
- =?us-ascii?Q?LFXZ4tVB96QOuqQs+l/HbdXNgq7dvQNR2HYbHefiNrEVY3aITbQoeVNnjKOk?=
- =?us-ascii?Q?Vjkd3BBlZcMXrQQuMIBcAbOcKx+6fH5o5EtokLfVDACILYqBGJQtcL4s/3yU?=
- =?us-ascii?Q?bGSZ5ugZ5dfncqFAPADettMh75MdouoEZByYbUB8dN7quSCG3Lid6rb+7IBP?=
- =?us-ascii?Q?emBMu/oSnZK7P6PCrTansCpyKM/5Dzeoktb76gjLmTOA7RM8tNlpzyXgyRbD?=
- =?us-ascii?Q?/UVYd3JZdc+HyK3b8ZdFFyhb0DTA1aySgoGyUfJ5ViyHtnSRLNnKDKnQCVlO?=
- =?us-ascii?Q?o/WLLc+SjtaOrZr7Spyr4AoJoKqwQoFTRkxlKIU0CVklZiitUE9R5Uvu92F4?=
- =?us-ascii?Q?vL+xjcqYOQKgzj3ijTs5gMf1ay87k/l6sxfe/bIjVNFwM+c8g29NWUxupvG5?=
- =?us-ascii?Q?HbL9dYLoJDsvw0zOm7ZPkT86sW6rdaRuWJCnLTL1XFWYsOzJIxrE0MIObiyS?=
- =?us-ascii?Q?re5U+b27LxecJlje3tq/yeUULaGWOL4YRdDyA6StOHiq/suKlJGDSoS9qCWu?=
- =?us-ascii?Q?l33k4GHLeif8aH7VKPtcSn/JQSWhYAZuhlptrkjZ0pqFn20Bfo1ueWV151kQ?=
- =?us-ascii?Q?j9Fy3/hHKFUFTEzpTAelCb1m6ibwTDHQMX7ugbhJMd5K2Cpq8LZl44vT6ceC?=
- =?us-ascii?Q?IX3eKG0fbnkEw/oZ1eshzffs++30iWb7ebL5vBIeti3x0Wr8IClUGv3cdN/P?=
- =?us-ascii?Q?BzJ4BOetarZ1AftBJHLVApcNuxEpeBNN22M7rs+tdc2HhsG44VsRad349Kx6?=
- =?us-ascii?Q?fLYKQDIXP1eQ4bxceFJazMQbumBbz2ngOUPBCwbHIHcFUAzyFTAnbWKwZ4b7?=
- =?us-ascii?Q?fNBZaa8ZCGGhaw2qxXYJb/7EDuA3F2jhyK0PG1b8vMuvPLk4CRN7+80YH5OW?=
- =?us-ascii?Q?hnCiRkWIHKmoRO4dgKC4mxPvfds2tmqsAtUcIbD2AM6kNcqBNsdU+Qh4f5fF?=
- =?us-ascii?Q?UWDcUrurj9lIE9c6jRhdIgcx9k/SQbaTQiWgzbDoXlv/8kNtb32PXcbHvrHD?=
- =?us-ascii?Q?Saxz+OWIVjlW7c8Irvz8fptPtzrAPvVBRiddanwl+FgeUgsm1iOwMz/CRW1v?=
- =?us-ascii?Q?7BZJzzpYCQvIDWv23wI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC7A210E864
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Nov 2023 11:55:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698926122; x=1730462122;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=LN2zsFLqmMKh/7dbnLz+vFNRTOnaAK8H94eqPAfKQj4=;
+ b=F8E3VKITOsdg61omRXWQ/NIqn93FhfKdal8/ypjm6RviE3ROXFgX4zck
+ 9iv6Sf5gcq2jT+nYsr7/L95FclqdSf2D+83aJSZAwzqnlZchBSHW7rvR7
+ 2gfg8uLlKsvQ0ZwqOGLQ/WSDff/p/u0QVZR9CCDkVHIRR/P2lVQhpggSr
+ tjV74QpJDzJbIAgpBRunhwSgDGfDZoIYV1wtNQPcPKMF2qVIrQm1rbGPQ
+ 1igAQkcm5HeFotWu8+hu30Pd7dDZv9NA818YI8eIaseU8X0buy8VAoJlR
+ vHglcWYSOmUD/r/MfLv4XeEYmb/Iq1MUvE6dosCDiFyUhdyi69WApY6qm g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="455176344"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="455176344"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 04:55:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="904988180"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="904988180"
+Received: from sdsadara-mobl.ger.corp.intel.com ([10.251.215.6])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 04:55:17 -0700
+Date: Thu, 2 Nov 2023 13:55:11 +0200 (EET)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Ma Jun <Jun.Ma2@amd.com>
+Subject: Re: [Patch v13 4/9] wifi: mac80211: Add support for WBRF features
+In-Reply-To: <20231030071832.2217118-5-Jun.Ma2@amd.com>
+Message-ID: <5b8ea81c-dd4c-7f2a-c862-b9a0aab16044@linux.intel.com>
+References: <20231030071832.2217118-1-Jun.Ma2@amd.com>
+ <20231030071832.2217118-5-Jun.Ma2@amd.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6369.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41439aed-b550-4dd0-7a58-08dbdb8af49c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2023 10:03:25.8710 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0uSKkfxLuUNjFWNSU+jKbnV02IPV8y4BkH5IEMmkgnnNmitULxK9uyL4OzXayo8F
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9126
+Content-Type: text/plain; charset=US-ASCII
+X-Mailman-Approved-At: Thu, 02 Nov 2023 13:05:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,78 +57,187 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Xiao,
- Jack" <Jack.Xiao@amd.com>
+Cc: Evan Quan <quanliangl@hotmail.com>, linux-doc@vger.kernel.org,
+ Netdev <netdev@vger.kernel.org>, Lijo.Lazar@amd.com,
+ linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ edumazet@google.com, mario.limonciello@amd.com, alexander.deucher@amd.com,
+ kuba@kernel.org, johannes@sipsolutions.net, pabeni@redhat.com,
+ davem@davemloft.net, lenb@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+On Mon, 30 Oct 2023, Ma Jun wrote:
 
-This patch is :
+> From: Evan Quan <quanliangl@hotmail.com>
+> 
+> To support the WBRF mechanism, Wifi adapters utilized in the system must
+> register the frequencies in use (or unregister those frequencies no longer
+> used) via the dedicated calls. So that, other drivers responding to the
+> frequencies can take proper actions to mitigate possible interference.
+> 
+> Co-developed-by: Mario Limonciello <mario.limonciello@amd.com>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> Co-developed-by: Evan Quan <quanliangl@hotmail.com>
+> Signed-off-by: Evan Quan <quanliangl@hotmail.com>
+> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> --
+> v1->v2:
+>   - place the new added member(`wbrf_supported`) in
+>     ieee80211_local(Johannes)
+>   - handle chandefs change scenario properly(Johannes)
+>   - some minor fixes around code sharing and possible invalid input
+>     checks(Johannes)
+> v2->v3:
+>   - drop unnecessary input checks and intermediate APIs(Mario)
+>   - Separate some mac80211 common code(Mario, Johannes)
+> v3->v4:
+>   - some minor fixes around return values(Johannes)
+> v9->v10:
+>   - get ranges_in->num_of_ranges set and passed in(Johannes)
+> v12:
+>   - use acpi_amd_wbrf_add_remove to replace the acpi_amd_wbrf_add_exclusion
+>     acpi_amd_wbrf_remove_exclusion
+> v13:
+>   - Fix the format issue (IIpo Jarvinen)
+>   - Remove KHZ_TO_HZ and use HZ_PER_KHZ in linux/units.h (IIpo Jarvinen)
+> ---
+>  net/mac80211/Makefile      |  2 +
+>  net/mac80211/chan.c        |  9 ++++
+>  net/mac80211/ieee80211_i.h |  7 +++
+>  net/mac80211/main.c        |  2 +
+>  net/mac80211/wbrf.c        | 95 ++++++++++++++++++++++++++++++++++++++
+>  5 files changed, 115 insertions(+)
+>  create mode 100644 net/mac80211/wbrf.c
+> 
+> diff --git a/net/mac80211/Makefile b/net/mac80211/Makefile
+> index b8de44da1fb8..d46c36f55fd3 100644
+> --- a/net/mac80211/Makefile
+> +++ b/net/mac80211/Makefile
+> @@ -65,4 +65,6 @@ rc80211_minstrel-$(CONFIG_MAC80211_DEBUGFS) += \
+>  
+>  mac80211-$(CONFIG_MAC80211_RC_MINSTREL) += $(rc80211_minstrel-y)
+>  
+> +mac80211-y += wbrf.o
+> +
+>  ccflags-y += -DDEBUG
+> diff --git a/net/mac80211/chan.c b/net/mac80211/chan.c
+> index 68952752b599..458469c224ae 100644
+> --- a/net/mac80211/chan.c
+> +++ b/net/mac80211/chan.c
+> @@ -506,11 +506,16 @@ static void _ieee80211_change_chanctx(struct ieee80211_local *local,
+>  
+>  	WARN_ON(!cfg80211_chandef_compatible(&ctx->conf.def, chandef));
+>  
+> +	ieee80211_remove_wbrf(local, &ctx->conf.def);
+> +
+>  	ctx->conf.def = *chandef;
+>  
+>  	/* check if min chanctx also changed */
+>  	changed = IEEE80211_CHANCTX_CHANGE_WIDTH |
+>  		  _ieee80211_recalc_chanctx_min_def(local, ctx, rsvd_for);
+> +
+> +	ieee80211_add_wbrf(local, &ctx->conf.def);
+> +
+>  	drv_change_chanctx(local, ctx, changed);
+>  
+>  	if (!local->use_chanctx) {
+> @@ -668,6 +673,8 @@ static int ieee80211_add_chanctx(struct ieee80211_local *local,
+>  	lockdep_assert_held(&local->mtx);
+>  	lockdep_assert_held(&local->chanctx_mtx);
+>  
+> +	ieee80211_add_wbrf(local, &ctx->conf.def);
+> +
+>  	if (!local->use_chanctx)
+>  		local->hw.conf.radar_enabled = ctx->conf.radar_enabled;
+>  
+> @@ -748,6 +755,8 @@ static void ieee80211_del_chanctx(struct ieee80211_local *local,
+>  	}
+>  
+>  	ieee80211_recalc_idle(local);
+> +
+> +	ieee80211_remove_wbrf(local, &ctx->conf.def);
+>  }
+>  
+>  static void ieee80211_free_chanctx(struct ieee80211_local *local,
+> diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+> index 98ef1fe1226e..1172554bd831 100644
+> --- a/net/mac80211/ieee80211_i.h
+> +++ b/net/mac80211/ieee80211_i.h
+> @@ -1600,6 +1600,8 @@ struct ieee80211_local {
+>  
+>  	/* extended capabilities provided by mac80211 */
+>  	u8 ext_capa[8];
+> +
+> +	bool wbrf_supported;
+>  };
+>  
+>  static inline struct ieee80211_sub_if_data *
+> @@ -2637,4 +2639,9 @@ ieee80211_eht_cap_ie_to_sta_eht_cap(struct ieee80211_sub_if_data *sdata,
+>  				    const struct ieee80211_eht_cap_elem *eht_cap_ie_elem,
+>  				    u8 eht_cap_len,
+>  				    struct link_sta_info *link_sta);
+> +
+> +void ieee80211_check_wbrf_support(struct ieee80211_local *local);
+> +void ieee80211_add_wbrf(struct ieee80211_local *local, struct cfg80211_chan_def *chandef);
+> +void ieee80211_remove_wbrf(struct ieee80211_local *local, struct cfg80211_chan_def *chandef);
+> +
+>  #endif /* IEEE80211_I_H */
+> diff --git a/net/mac80211/main.c b/net/mac80211/main.c
+> index 24315d7b3126..b20bdaac84db 100644
+> --- a/net/mac80211/main.c
+> +++ b/net/mac80211/main.c
+> @@ -1396,6 +1396,8 @@ int ieee80211_register_hw(struct ieee80211_hw *hw)
+>  	debugfs_hw_add(local);
+>  	rate_control_add_debugfs(local);
+>  
+> +	ieee80211_check_wbrf_support(local);
+> +
+>  	rtnl_lock();
+>  	wiphy_lock(hw->wiphy);
+>  
+> diff --git a/net/mac80211/wbrf.c b/net/mac80211/wbrf.c
+> new file mode 100644
+> index 000000000000..ca3f30b58476
+> --- /dev/null
+> +++ b/net/mac80211/wbrf.c
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Wifi Band Exclusion Interface for WLAN
+> + * Copyright (C) 2023 Advanced Micro Devices
+> + *
+> + */
+> +
+> +#include <linux/acpi_amd_wbrf.h>
+> +#include <linux/units.h>
+> +#include <net/cfg80211.h>
+> +#include "ieee80211_i.h"
+> +
+> +void ieee80211_check_wbrf_support(struct ieee80211_local *local)
+> +{
+> +	struct wiphy *wiphy = local->hw.wiphy;
+> +	struct device *dev;
+> +
+> +	if (!wiphy)
+> +		return;
+> +
+> +	dev = wiphy->dev.parent;
+> +	if (!dev)
+> +		return;
+> +
+> +	local->wbrf_supported = acpi_amd_wbrf_supported_producer(dev);
+> +	dev_dbg(dev, "WBRF is %s supported\n",
+> +		local->wbrf_supported ? "" : "not");
+> +}
+> +
+> +static void get_chan_freq_boundary(u32 center_freq, u32 bandwidth, u64 *start, u64 *end)
+> +{
+> +	bandwidth = MHZ_TO_KHZ(bandwidth);
+> +	center_freq = MHZ_TO_KHZ(center_freq);
 
-Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
+Please use include/linux/units.h ones for these too.
 
------Original Message-----
-From: Huang, Tim <Tim.Huang@amd.com>
-Sent: Wednesday, November 1, 2023 4:53 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zh=
-ang@amd.com>; Xiao, Jack <Jack.Xiao@amd.com>; Huang, Tim <Tim.Huang@amd.com=
->
-Subject: [PATCH v2] drm/amdgpu: fix GRBM read timeout when do mes_self_test
-
-Use a proper MEID to make sure the CP_HQD_* and CP_GFX_HQD_* registers can =
-be touched when initialize the compute and gfx mqd in mes_self_test.
-Otherwise, we expect no response from CP and an GRBM eventual timeout.
-
-Signed-off-by: Tim Huang <Tim.Huang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_mes.c
-index 70fe3b39c004..45280fb0e00c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -556,8 +556,20 @@ static void amdgpu_mes_queue_init_mqd(struct amdgpu_de=
-vice *adev,
-        mqd_prop.hqd_queue_priority =3D p->hqd_queue_priority;
-        mqd_prop.hqd_active =3D false;
-
-+       if (p->queue_type =3D=3D AMDGPU_RING_TYPE_GFX ||
-+           p->queue_type =3D=3D AMDGPU_RING_TYPE_COMPUTE) {
-+               mutex_lock(&adev->srbm_mutex);
-+               amdgpu_gfx_select_me_pipe_q(adev, p->ring->me, p->ring->pip=
-e, 0, 0, 0);
-+       }
-+
-        mqd_mgr->init_mqd(adev, q->mqd_cpu_ptr, &mqd_prop);
-
-+       if (p->queue_type =3D=3D AMDGPU_RING_TYPE_GFX ||
-+           p->queue_type =3D=3D AMDGPU_RING_TYPE_COMPUTE) {
-+               amdgpu_gfx_select_me_pipe_q(adev, 0, 0, 0, 0, 0);
-+               mutex_unlock(&adev->srbm_mutex);
-+       }
-+
-        amdgpu_bo_unreserve(q->mqd_obj);
- }
-
-@@ -993,9 +1005,13 @@ int amdgpu_mes_add_ring(struct amdgpu_device *adev, i=
-nt gang_id,
-        switch (queue_type) {
-        case AMDGPU_RING_TYPE_GFX:
-                ring->funcs =3D adev->gfx.gfx_ring[0].funcs;
-+               ring->me =3D adev->gfx.gfx_ring[0].me;
-+               ring->pipe =3D adev->gfx.gfx_ring[0].pipe;
-                break;
-        case AMDGPU_RING_TYPE_COMPUTE:
-                ring->funcs =3D adev->gfx.compute_ring[0].funcs;
-+               ring->me =3D adev->gfx.compute_ring[0].me;
-+               ring->pipe =3D adev->gfx.compute_ring[0].pipe;
-                break;
-        case AMDGPU_RING_TYPE_SDMA:
-                ring->funcs =3D adev->sdma.instance[0].ring.funcs;
---
-2.39.2
+-- 
+ i.
 
