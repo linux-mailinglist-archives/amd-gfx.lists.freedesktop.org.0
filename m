@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F707E051F
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Nov 2023 15:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 150AB7E051C
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Nov 2023 15:57:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9805F10EA10;
-	Fri,  3 Nov 2023 14:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92CD510EA0A;
+	Fri,  3 Nov 2023 14:57:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2045.outbound.protection.outlook.com [40.107.223.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 336CF10EA0D
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2056.outbound.protection.outlook.com [40.107.94.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1442C10EA0A
  for <amd-gfx@lists.freedesktop.org>; Fri,  3 Nov 2023 14:57:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TOiNw2wdMzYQFaTA69a34zr8XDyrA6v9GFZtdWpfg6QSUbyEOlO3E1ZroM37DM6pI5yZmxbPjaRojijo9xhkLMgxxARdJ4jpI2CAnZr58E6aNKHX0lIfxR2gubnfJJRJelGCayqxbmxBQuaDHka9GvK5RUw6Ri/xaZKHYDYYtjjIFxpKtjVtbJ4ujCD5cjsmhE7j+C4VCKDphEk3DiOe5yFC82Z9OB9MvMOQVNSi9pv8HkTyfAhDVVUewYK4SKXrghjOqVjXvhLnVqEOuc6ZVnnWSxpbidB6c7mQDznCSdAxfPdLsD+JIcG/TY+EIJO1r6GlI25nognN+EU1suk+xA==
+ b=POERUFCRjALeFwL9BWs9cjGpTWFobdJdOP0YlJjz2GUm8zhrbVPFE2AP0h4KrsAOb+Z//s+3wDrR9FSCF5ZhAX6taS9vz3p8nBVq1SviAzkd+Vk1TSev/e6Rphy96viUYbMESQKafB9RzwvzsUzho0CuoeX/6XeKSmTkoah1MoqKjFO8TQfV/cABTvGuy8zlTXLqiY4DS8yDEbORAVfkDcMhfeX+eb+wK9mEL89v0Mp2ufON+mWKj0tqzJsM3kycyNz9yLLjjk6FJvAC+6XoW87rlBuPjxhLcg2fD/Tb6/cxFFDXMCiKNgu7cNYBM6zj1RC5tCEoJCkq6HO8XqHJmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DBqhRSOnWUvEiaH2swllYKHfDmH7QK8ho1rQYz8Qe84=;
- b=cHXMc8DrnJeRVh2xjkbup+M8rdRVIamBoQtmIT0Z5ZJ2wmXent+imgVVlll/VEB0bsmR4OvZbvqP7NFvAKXmunzWoRiSgJ9mhN6ZT4DFuhcq2SBkSV0InJzmuUchD2+4Oh6quEmQrbHS6ytKmyrACwGBXRJy27li4aus+Riod7/f1VYlzOXFOfSoLtrW9gO1yrq61wNlzA9X4MzJWjq7Rp9j2yTjwVaZILww+EIPbUopEdCayMdEDe04vwfmNp2owzizUgtCG/2n1cTGjJXq3fsAlPP3jLtvdVIbmmpgDI3tU3kRCu6fA0zrQ8OnpGFxlBY4TvrwB/rW/3Nzh+IaiA==
+ bh=xzVaMSRiTMEL+bbsVwG2S9mQElPLbgmlZqQaDMRl8po=;
+ b=IqztMiL8aR3gqRMa1kqE4GQt7i4W3z5dnvRHczr7KunlIy3RFIXUJKMr5/U7P0Qi4vPowErX8KI5JW9tnLmxiIDlEWcTbh82e1+KFgBfy+LQrgatwzBKpnypt7I+aJaQZOdarXXbFvImx9oonQUHWrneeHXAhZbk4r903T/TjDn7larPpqEbQkPbGpVeYaScbcGSzxt2gNk23KM9L8Z/eEJgWlmZnUZOhUhnJtMuJmZcBK3Wt8Gf9mD7QdxTlIElNgbqRO9vqoe9XPzP4xmQEaNcT29YCCSmXMj5Ib3lr55Pv1SWHbDdus6ws1X/m3r8br6Hhn7a6uKs6ZNyq6mFRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DBqhRSOnWUvEiaH2swllYKHfDmH7QK8ho1rQYz8Qe84=;
- b=xnFdoupZjz+E+DUijq6d8KuQy1sFzD5UTGmr4h2mEZDo9kiYRaPy55ximg0kJRQH5fdW/dBKZhgcPE+f/LFBZobIaOpxQmCAwoJKsulhDmAUenEpXVFy9tAJNyhkY6Gp5TlaQQEokEai+MOTuMm9r9miincvJDVZiG5CSj1qFgI=
-Received: from BL1PR13CA0145.namprd13.prod.outlook.com (2603:10b6:208:2bb::30)
- by DS7PR12MB8322.namprd12.prod.outlook.com (2603:10b6:8:ed::13) with
+ bh=xzVaMSRiTMEL+bbsVwG2S9mQElPLbgmlZqQaDMRl8po=;
+ b=X28OOWvUMo2RIJIeiueDpsRrqQWWob+9XFOOutXqqLWeM8h0it7W42lnMypGBiCGT/OhDLnK5mMN0BxU5xCfaa0otOR7xFmZ2FALDEv3Jw7LyIapQds4aIZwoTU7MY8KhSJNLy5oacEN0UJVOklmAuF8/INJT2JNhlKuwXXMT6o=
+Received: from BL1PR13CA0130.namprd13.prod.outlook.com (2603:10b6:208:2bb::15)
+ by DS0PR12MB8442.namprd12.prod.outlook.com (2603:10b6:8:125::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Fri, 3 Nov
  2023 14:57:15 +0000
 Received: from BL02EPF0001A105.namprd05.prod.outlook.com
- (2603:10b6:208:2bb:cafe::f8) by BL1PR13CA0145.outlook.office365.com
- (2603:10b6:208:2bb::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:2bb:cafe::7c) by BL1PR13CA0130.outlook.office365.com
+ (2603:10b6:208:2bb::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.10 via Frontend
- Transport; Fri, 3 Nov 2023 14:57:14 +0000
+ Transport; Fri, 3 Nov 2023 14:57:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6954.19 via Frontend Transport; Fri, 3 Nov 2023 14:57:14 +0000
+ 15.20.6954.19 via Frontend Transport; Fri, 3 Nov 2023 14:57:15 +0000
 Received: from ubuntu22.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 3 Nov
  2023 09:57:12 -0500
 From: Victor Lu <victorchengchi.lu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/4] drm/amdgpu: Add xcc param to SRIOV kiq write and
- WREG32_SOC15_IP_NO_KIQ (v4)
-Date: Fri, 3 Nov 2023 10:56:52 -0400
-Message-ID: <20231103145654.2651-2-victorchengchi.lu@amd.com>
+Subject: [PATCH 3/4] drm/amdgpu: Use correct KIQ MEC engine for gfx9.4.3 (v5)
+Date: Fri, 3 Nov 2023 10:56:53 -0400
+Message-ID: <20231103145654.2651-3-victorchengchi.lu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231103145654.2651-1-victorchengchi.lu@amd.com>
 References: <513b2282-2f88-d837-ff37-6bd04641e833@amd.com>
@@ -70,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|DS7PR12MB8322:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f9e59f2-fc3c-429c-59f0-08dbdc7d2a9a
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|DS0PR12MB8442:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5eeab1c1-caa0-4f09-66fb-08dbdc7d2b29
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WV0Zq+dcVrjf8eO/0o2AEyGs8sI2F+jTzsXyrz3zD7QBc3bgUOIoTf77NXXXI5wiDFLGLrIUtKs4YOWcS7Kd415E+up/7ezZ6ebPsCQ6HVXtReTZvI7B9y0VwURRtyUDf1YX26R3WDc5yEinzErhdLDjluKiFQ8cGcmU1DK666RGpn2ciT4YVz5n13mpCj29jD/wQ5LKBnWDnzkYxkiPOIy8YNyMTuxj9O3ClOr8Gl/s1HuZrG9iOaBpc+4FSHL8a1/xEO2nljBwklQM38Ml2APrOdoouwEFXPtYl9tTipiMtbK3W8QOUyuZ/2UM4ds11b/sfnciefYHq6OVwUNydb8Nz4rb2XtRgZDvSBz+m3elrDnwr7iNFQO6iS9wXT5aEAolk9Oh48FeHqQtnfWbsQindfDwBUc+5qYdFxgpv8wrkLV1S1CzpCF0Dt884zjlRIIh5fRzsWg6FWGDUmaczslpqDpsNYlxpDvKxWgIDm/F1vu/iWXf+3uERvMvl+Lo+oJw26sFBupnrke7rA1qHf1XARUFkhwIsJls9C0I6ZNNzxhwK2BjDO1/G/CWH6MR5LlBw7nF6lr7jIQ06oAHw2ayKNMFpgk1+tx3xHI2z2NkQIDk/F3jUa3f6/UE1g3OCR0tb35su702tn6odtlzpqkbAadxa6bCuQ4VHV2WrTDzOtcHOoLukA8/ofULTjna7wxXfw9f+jSWrKVSlK7r2JYZV7X0T812hbp+DpcIcyNg3Cef+CBboWJakmebYqzEL2qe5SqsTLzsgeYoL85OyQ==
+X-Microsoft-Antispam-Message-Info: eQ7IFO7aNG/RCuYTxPJu3XNzqDatpIVpKbRuN6me4uJFoalkxZFiaIBjJhGev3zTjNKRRJsN6rIfm3GGtzVPd7wMy8Z2bh6S/emYGaJSRc76P2TSdX6XUhJTUDmEc6TIflF4UCacBNov7TMwQNLgrvwQpG6P/BivDqHINCyEPtMsh34WwrcGkAppLC3qFIBnSxpHynt/u1g7TQuAVy97AlHVBrb1LmH2cr0ySMzfbOR7HJ7qfK59VBKi+u/OZay96wFQvqXT4VPmKCV2aEGZJp5QjQLCCANGjEgirTo6U9ZW5lVlNyCK76NZLNVumJSAdE10wbUVxEb73cdYlffy9T1hzK1jfxc9rC+4t/MhtP0T2j2kGh1U+fQebXJlpSAtvGGxFEOje0DfO9rcav/vX83C8RKcFNldBfs5SAZHSrsEiZHYGF/sQmRYtCpgDFQR7d7SvP3SkmfRnVAHRnHtZbmnQX6T2BEIF46txTf8KyAr5D4BYTSg+od9L4mh4U0jKoiNGNFKHjdLv/dIuqoSj4Wcq4kKELbiwPBdCvNx1uoIYOZRXDfmN5Hx75U0AIFvrvWXwGlFROeFI1pPNm7pRlqjT4PiQinNtJO8eZolUiIlEfRmYhPY74J3za+tguPR/XpmkfBRtkPrJSH+4tkGPtRjIk7IvnlZTG/9ZLZVQNoI74ZSe8/b1oT87wXrPPPonn6MkbJBsypFQYB837XmlYFlI6WqcUKbwHVKWQPkU+2xdnjEU7uhZC+V3EyGayAw+qlnprvyJETbyjPxcBmI4w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(346002)(136003)(39860400002)(376002)(230922051799003)(1800799009)(451199024)(186009)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(40460700003)(86362001)(5660300002)(41300700001)(6916009)(54906003)(70206006)(70586007)(316002)(8676002)(4326008)(8936002)(40480700001)(36756003)(2906002)(82740400003)(356005)(26005)(16526019)(2616005)(1076003)(81166007)(336012)(426003)(47076005)(36860700001)(478600001)(83380400001)(7696005)(6666004)(36900700001);
+ SFS:(13230031)(4636009)(396003)(376002)(39860400002)(136003)(346002)(230922051799003)(1800799009)(451199024)(186009)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(41300700001)(40460700003)(47076005)(5660300002)(2906002)(30864003)(36860700001)(86362001)(82740400003)(81166007)(356005)(1076003)(2616005)(26005)(16526019)(336012)(426003)(316002)(6916009)(70586007)(70206006)(54906003)(6666004)(36756003)(478600001)(7696005)(40480700001)(4326008)(8936002)(8676002)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 14:57:14.4807 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f9e59f2-fc3c-429c-59f0-08dbdc7d2a9a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 14:57:15.3869 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5eeab1c1-caa0-4f09-66fb-08dbdc7d2b29
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A105.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8322
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8442
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,190 +105,342 @@ Cc: lijo.lazar@amd.com, davis.ming@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-WREG32/RREG32_SOC15_IP_NO_KIQ and amdgpu_virt_kiq_reg_write_reg_wait
-are not using the correct rlcg interface or mec engine, respectively.
+amdgpu_kiq_wreg/rreg is hardcoded to use MEC engine 0.
 
-Add xcc instance parameter to them.
+Add an xcc_id parameter to amdgpu_kiq_wreg/rreg, define W/RREG32_XCC
+and amdgpu_device_xcc_wreg/rreg to to use the new xcc_id parameter.
 
-v4: Use GET_INST and squash commit with:
-"drm/amdgpu: Add xcc_inst param to amdgpu_virt_kiq_reg_write_reg_wait"
+Using amdgpu_sriov_runtime to determine whether to access via kiq or
+RLC is sufficient for now.
 
-v3: xcc not needed for MMMHUB
+v5: add condition in amdgpu_device_xcc_w/rreg, remove trace func call
 
-v2: rebase
+v4: avoid using amdgpu_sriov_w/rreg
+
+v3: use W/RREG32_XCC to handle non-kiq case
+
+v2: define amdgpu_device_xcc_wreg/rreg instead of changing parameters
+    of amdgpu_device_wreg/rreg
 
 Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c  |  5 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h  |  3 ++-
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c    |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c    |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c     | 26 +++++++++++++----------
- drivers/gpu/drm/amd/amdgpu/soc15_common.h |  6 +++---
- 6 files changed, 25 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           | 13 ++-
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c   |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 89 ++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       |  8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h       |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h      |  4 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c       |  8 +-
+ 9 files changed, 116 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index a0aa624f5a92..e179f022c428 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -73,9 +73,10 @@ void amdgpu_virt_init_setting(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 43c579f5a95e..e8dc75a3ff44 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1162,11 +1162,18 @@ uint32_t amdgpu_device_rreg(struct amdgpu_device *adev,
+ 			    uint32_t reg, uint32_t acc_flags);
+ u32 amdgpu_device_indirect_rreg_ext(struct amdgpu_device *adev,
+ 				    u64 reg_addr);
++uint32_t amdgpu_device_xcc_rreg(struct amdgpu_device *adev,
++				uint32_t reg, uint32_t acc_flags,
++				uint32_t xcc_id);
+ void amdgpu_device_wreg(struct amdgpu_device *adev,
+ 			uint32_t reg, uint32_t v,
+ 			uint32_t acc_flags);
+ void amdgpu_device_indirect_wreg_ext(struct amdgpu_device *adev,
+ 				     u64 reg_addr, u32 reg_data);
++void amdgpu_device_xcc_wreg(struct amdgpu_device *adev,
++			    uint32_t reg, uint32_t v,
++			    uint32_t acc_flags,
++			    uint32_t xcc_id);
+ void amdgpu_mm_wreg_mmio_rlc(struct amdgpu_device *adev,
+ 			     uint32_t reg, uint32_t v, uint32_t xcc_id);
+ void amdgpu_mm_wreg8(struct amdgpu_device *adev, uint32_t offset, uint8_t value);
+@@ -1207,8 +1214,8 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ #define RREG32_NO_KIQ(reg) amdgpu_device_rreg(adev, (reg), AMDGPU_REGS_NO_KIQ)
+ #define WREG32_NO_KIQ(reg, v) amdgpu_device_wreg(adev, (reg), (v), AMDGPU_REGS_NO_KIQ)
  
- void amdgpu_virt_kiq_reg_write_reg_wait(struct amdgpu_device *adev,
- 					uint32_t reg0, uint32_t reg1,
--					uint32_t ref, uint32_t mask)
-+					uint32_t ref, uint32_t mask,
-+					uint32_t xcc_inst)
+-#define RREG32_KIQ(reg) amdgpu_kiq_rreg(adev, (reg))
+-#define WREG32_KIQ(reg, v) amdgpu_kiq_wreg(adev, (reg), (v))
++#define RREG32_KIQ(reg) amdgpu_kiq_rreg(adev, (reg), 0)
++#define WREG32_KIQ(reg, v) amdgpu_kiq_wreg(adev, (reg), (v), 0)
+ 
+ #define RREG8(reg) amdgpu_mm_rreg8(adev, (reg))
+ #define WREG8(reg, v) amdgpu_mm_wreg8(adev, (reg), (v))
+@@ -1218,6 +1225,8 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ #define WREG32(reg, v) amdgpu_device_wreg(adev, (reg), (v), 0)
+ #define REG_SET(FIELD, v) (((v) << FIELD##_SHIFT) & FIELD##_MASK)
+ #define REG_GET(FIELD, v) (((v) << FIELD##_SHIFT) & FIELD##_MASK)
++#define RREG32_XCC(reg, inst) amdgpu_device_xcc_rreg(adev, (reg), 0, inst)
++#define WREG32_XCC(reg, v, inst) amdgpu_device_xcc_wreg(adev, (reg), (v), 0, inst)
+ #define RREG32_PCIE(reg) adev->pcie_rreg(adev, (reg))
+ #define WREG32_PCIE(reg, v) adev->pcie_wreg(adev, (reg), (v))
+ #define RREG32_PCIE_PORT(reg) adev->pciep_rreg(adev, (reg))
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
+index 490c8f5ddb60..80309d39737a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
+@@ -300,7 +300,7 @@ static int kgd_gfx_v9_4_3_hqd_load(struct amdgpu_device *adev, void *mqd,
+ 	hqd_end = SOC15_REG_OFFSET(GC, GET_INST(GC, inst), regCP_HQD_AQL_DISPATCH_ID_HI);
+ 
+ 	for (reg = hqd_base; reg <= hqd_end; reg++)
+-		WREG32_RLC(reg, mqd_hqd[reg - hqd_base]);
++		WREG32_XCC(reg, mqd_hqd[reg - hqd_base], inst);
+ 
+ 
+ 	/* Activate doorbell logic before triggering WPTR poll. */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+index 51011e8ee90d..9285789b3a42 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+@@ -239,7 +239,7 @@ int kgd_gfx_v9_hqd_load(struct amdgpu_device *adev, void *mqd,
+ 
+ 	for (reg = hqd_base;
+ 	     reg <= SOC15_REG_OFFSET(GC, GET_INST(GC, inst), mmCP_HQD_PQ_WPTR_HI); reg++)
+-		WREG32_RLC(reg, mqd_hqd[reg - hqd_base]);
++		WREG32_XCC(reg, mqd_hqd[reg - hqd_base], inst);
+ 
+ 
+ 	/* Activate doorbell logic before triggering WPTR poll. */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 9a11dd1b686e..7cba8d65b0fc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -74,6 +74,7 @@
+ #include "amdgpu_pmu.h"
+ #include "amdgpu_fru_eeprom.h"
+ #include "amdgpu_reset.h"
++#include "amdgpu_virt.h"
+ 
+ #include <linux/suspend.h>
+ #include <drm/task_barrier.h>
+@@ -473,7 +474,7 @@ uint32_t amdgpu_device_rreg(struct amdgpu_device *adev,
+ 		if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
+ 		    amdgpu_sriov_runtime(adev) &&
+ 		    down_read_trylock(&adev->reset_domain->sem)) {
+-			ret = amdgpu_kiq_rreg(adev, reg);
++			ret = amdgpu_kiq_rreg(adev, reg, 0);
+ 			up_read(&adev->reset_domain->sem);
+ 		} else {
+ 			ret = readl(((void __iomem *)adev->rmmio) + (reg * 4));
+@@ -510,6 +511,49 @@ uint8_t amdgpu_mm_rreg8(struct amdgpu_device *adev, uint32_t offset)
+ 	BUG();
+ }
+ 
++
++/**
++ * amdgpu_device_xcc_rreg - read a memory mapped IO or indirect register with specific XCC
++ *
++ * @adev: amdgpu_device pointer
++ * @reg: dword aligned register offset
++ * @acc_flags: access flags which require special behavior
++ * @xcc_id: xcc accelerated compute core id
++ *
++ * Returns the 32 bit value from the offset specified.
++ */
++uint32_t amdgpu_device_xcc_rreg(struct amdgpu_device *adev,
++				uint32_t reg, uint32_t acc_flags,
++				uint32_t xcc_id)
++{
++	uint32_t ret, rlcg_flag;
++
++	if (amdgpu_device_skip_hw_access(adev))
++		return 0;
++
++	if ((reg * 4) < adev->rmmio_size) {
++		if (amdgpu_sriov_vf(adev) &&
++		    !amdgpu_sriov_runtime(adev) &&
++		    adev->gfx.rlc.rlcg_reg_access_supported &&
++		    amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags,
++							 GC_HWIP, false,
++							 &rlcg_flag)) {
++			amdgpu_virt_rlcg_reg_rw(adev, reg, 0, rlcg_flag, xcc_id);
++		} else if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
++		    amdgpu_sriov_runtime(adev) &&
++		    down_read_trylock(&adev->reset_domain->sem)) {
++			ret = amdgpu_kiq_rreg(adev, reg, xcc_id);
++			up_read(&adev->reset_domain->sem);
++		} else {
++			ret = readl(((void __iomem *)adev->rmmio) + (reg * 4));
++		}
++	} else {
++		ret = adev->pcie_rreg(adev, reg * 4);
++	}
++
++	return ret;
++}
++
+ /*
+  * MMIO register write with bytes helper functions
+  * @offset:bytes offset from MMIO start
+@@ -557,7 +601,7 @@ void amdgpu_device_wreg(struct amdgpu_device *adev,
+ 		if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
+ 		    amdgpu_sriov_runtime(adev) &&
+ 		    down_read_trylock(&adev->reset_domain->sem)) {
+-			amdgpu_kiq_wreg(adev, reg, v);
++			amdgpu_kiq_wreg(adev, reg, v, 0);
+ 			up_read(&adev->reset_domain->sem);
+ 		} else {
+ 			writel(v, ((void __iomem *)adev->rmmio) + (reg * 4));
+@@ -598,6 +642,47 @@ void amdgpu_mm_wreg_mmio_rlc(struct amdgpu_device *adev,
+ 	}
+ }
+ 
++/**
++ * amdgpu_device_xcc_wreg - write to a memory mapped IO or indirect register with specific XCC
++ *
++ * @adev: amdgpu_device pointer
++ * @reg: dword aligned register offset
++ * @v: 32 bit value to write to the register
++ * @acc_flags: access flags which require special behavior
++ * @xcc_id: xcc accelerated compute core id
++ *
++ * Writes the value specified to the offset specified.
++ */
++void amdgpu_device_xcc_wreg(struct amdgpu_device *adev,
++			uint32_t reg, uint32_t v,
++			uint32_t acc_flags, uint32_t xcc_id)
++{
++	uint32_t rlcg_flag;
++
++	if (amdgpu_device_skip_hw_access(adev))
++		return;
++
++	if ((reg * 4) < adev->rmmio_size) {
++		if (amdgpu_sriov_vf(adev) &&
++		    !amdgpu_sriov_runtime(adev) &&
++		    adev->gfx.rlc.rlcg_reg_access_supported &&
++		    amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags,
++							 GC_HWIP, true,
++							 &rlcg_flag)) {
++			amdgpu_virt_rlcg_reg_rw(adev, reg, v, rlcg_flag, xcc_id);
++		} else if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
++		    amdgpu_sriov_runtime(adev) &&
++		    down_read_trylock(&adev->reset_domain->sem)) {
++			amdgpu_kiq_wreg(adev, reg, v, xcc_id);
++			up_read(&adev->reset_domain->sem);
++		} else {
++			writel(v, ((void __iomem *)adev->rmmio) + (reg * 4));
++		}
++	} else {
++		adev->pcie_wreg(adev, reg * 4, v);
++	}
++}
++
+ /**
+  * amdgpu_device_indirect_rreg - read an indirect register
+  *
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index c92e0aba69e1..60ae4bfdc7f5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -929,12 +929,12 @@ void amdgpu_gfx_ras_error_func(struct amdgpu_device *adev,
+ 		func(adev, ras_error_status, i);
+ }
+ 
+-uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg)
++uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg, uint32_t xcc_id)
  {
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
-+	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_inst];
- 	struct amdgpu_ring *ring = &kiq->ring;
  	signed long r, cnt = 0;
  	unsigned long flags;
+ 	uint32_t seq, reg_val_offs = 0, value = 0;
+-	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
++	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *ring = &kiq->ring;
+ 
+ 	if (amdgpu_device_skip_hw_access(adev))
+@@ -997,12 +997,12 @@ uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg)
+ 	return ~0;
+ }
+ 
+-void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v)
++void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v, uint32_t xcc_id)
+ {
+ 	signed long r, cnt = 0;
+ 	unsigned long flags;
+ 	uint32_t seq;
+-	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
++	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *ring = &kiq->ring;
+ 
+ 	BUG_ON(!ring->funcs->emit_wreg);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 7088c5015675..f23bafec71c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -521,8 +521,8 @@ int amdgpu_gfx_process_ras_data_cb(struct amdgpu_device *adev,
+ int amdgpu_gfx_cp_ecc_error_irq(struct amdgpu_device *adev,
+ 				  struct amdgpu_irq_src *source,
+ 				  struct amdgpu_iv_entry *entry);
+-uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg);
+-void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v);
++uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg, uint32_t xcc_id);
++void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v, uint32_t xcc_id);
+ int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev);
+ void amdgpu_gfx_cp_init_microcode(struct amdgpu_device *adev, uint32_t ucode_id);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index e179f022c428..82762c61d3ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -943,7 +943,7 @@ void amdgpu_virt_update_sriov_video_codec(struct amdgpu_device *adev,
+ 	}
+ }
+ 
+-static bool amdgpu_virt_get_rlcg_reg_access_flag(struct amdgpu_device *adev,
++bool amdgpu_virt_get_rlcg_reg_access_flag(struct amdgpu_device *adev,
+ 						 u32 acc_flags, u32 hwip,
+ 						 bool write, u32 *rlcg_flag)
+ {
+@@ -976,7 +976,7 @@ static bool amdgpu_virt_get_rlcg_reg_access_flag(struct amdgpu_device *adev,
+ 	return ret;
+ }
+ 
+-static u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag, u32 xcc_id)
++u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag, u32 xcc_id)
+ {
+ 	struct amdgpu_rlcg_reg_access_ctrl *reg_access_ctrl;
+ 	uint32_t timeout = 50000;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index 858ef21ae515..bb436d41b4ca 100644
+index bb436d41b4ca..ca13ae70e87d 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -334,7 +334,8 @@ bool amdgpu_virt_mmio_blocked(struct amdgpu_device *adev);
- void amdgpu_virt_init_setting(struct amdgpu_device *adev);
- void amdgpu_virt_kiq_reg_write_reg_wait(struct amdgpu_device *adev,
- 					uint32_t reg0, uint32_t rreg1,
--					uint32_t ref, uint32_t mask);
-+					uint32_t ref, uint32_t mask,
-+					uint32_t xcc_inst);
- int amdgpu_virt_request_full_gpu(struct amdgpu_device *adev, bool init);
- int amdgpu_virt_release_full_gpu(struct amdgpu_device *adev, bool init);
- int amdgpu_virt_reset_gpu(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index d8a4fddab9c1..a43d1aa42e11 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -268,7 +268,7 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 	if (adev->gfx.kiq[0].ring.sched.ready && !adev->enable_mes &&
- 	    (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
- 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
--				1 << vmid);
-+				1 << vmid, GET_INST(GC, 0));
- 		return;
- 	}
+@@ -366,4 +366,8 @@ u32 amdgpu_sriov_rreg(struct amdgpu_device *adev,
+ bool amdgpu_virt_fw_load_skip_check(struct amdgpu_device *adev,
+ 			uint32_t ucode_id);
+ void amdgpu_virt_post_reset(struct amdgpu_device *adev);
++bool amdgpu_virt_get_rlcg_reg_access_flag(struct amdgpu_device *adev,
++					  u32 acc_flags, u32 hwip,
++					  bool write, u32 *rlcg_flag);
++u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag, u32 xcc_id);
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index ce2a9876369e..9afd43276ab2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -2738,16 +2738,16 @@ static void gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-index 19eaada35ede..93f100dd5d94 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -228,7 +228,7 @@ static void gmc_v11_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 	if ((adev->gfx.kiq[0].ring.sched.ready || adev->mes.ring.sched.ready) &&
- 	    (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
- 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
--				1 << vmid);
-+				1 << vmid, GET_INST(GC, 0));
- 		return;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index 3a1050344b59..35ef7529cc8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -817,7 +817,7 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 					uint32_t vmhub, uint32_t flush_type)
- {
- 	bool use_semaphore = gmc_v9_0_use_invalidate_semaphore(adev, vmhub);
--	u32 j, inv_req, tmp, sem, req, ack;
-+	u32 j, inv_req, tmp, sem, req, ack, inst;
- 	const unsigned int eng = 17;
- 	struct amdgpu_vmhub *hub;
- 
-@@ -832,13 +832,17 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 	/* This is necessary for a HW workaround under SRIOV as well
- 	 * as GFXOFF under bare metal
- 	 */
--	if (adev->gfx.kiq[0].ring.sched.ready &&
-+	if (vmhub >= AMDGPU_MMHUB0(0))
-+		inst = GET_INST(GC, 0);
-+	else
-+		inst = vmhub;
-+	if (adev->gfx.kiq[inst].ring.sched.ready &&
- 	    (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
- 		uint32_t req = hub->vm_inv_eng0_req + hub->eng_distance * eng;
- 		uint32_t ack = hub->vm_inv_eng0_ack + hub->eng_distance * eng;
- 
- 		amdgpu_virt_kiq_reg_write_reg_wait(adev, req, ack, inv_req,
--						   1 << vmid);
-+						   1 << vmid, inst);
- 		return;
- 	}
- 
-@@ -856,9 +860,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 		for (j = 0; j < adev->usec_timeout; j++) {
- 			/* a read return value of 1 means semaphore acquire */
- 			if (vmhub >= AMDGPU_MMHUB0(0))
--				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, sem);
-+				tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, sem, inst);
- 			else
--				tmp = RREG32_SOC15_IP_NO_KIQ(GC, sem);
-+				tmp = RREG32_SOC15_IP_NO_KIQ(GC, sem, inst);
- 			if (tmp & 0x1)
- 				break;
- 			udelay(1);
-@@ -869,9 +873,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 	}
- 
- 	if (vmhub >= AMDGPU_MMHUB0(0))
--		WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req);
-+		WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req, inst);
- 	else
--		WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req);
-+		WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req, inst);
- 
- 	/*
- 	 * Issue a dummy read to wait for the ACK register to
-@@ -884,9 +888,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 
- 	for (j = 0; j < adev->usec_timeout; j++) {
- 		if (vmhub >= AMDGPU_MMHUB0(0))
--			tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, ack);
-+			tmp = RREG32_SOC15_IP_NO_KIQ(MMHUB, ack, inst);
- 		else
--			tmp = RREG32_SOC15_IP_NO_KIQ(GC, ack);
-+			tmp = RREG32_SOC15_IP_NO_KIQ(GC, ack, inst);
- 		if (tmp & (1 << vmid))
- 			break;
- 		udelay(1);
-@@ -899,9 +903,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
- 		 * write with 0 means semaphore release
- 		 */
- 		if (vmhub >= AMDGPU_MMHUB0(0))
--			WREG32_SOC15_IP_NO_KIQ(MMHUB, sem, 0);
-+			WREG32_SOC15_IP_NO_KIQ(MMHUB, sem, 0, inst);
- 		else
--			WREG32_SOC15_IP_NO_KIQ(GC, sem, 0);
-+			WREG32_SOC15_IP_NO_KIQ(GC, sem, 0, inst);
- 	}
- 
- 	spin_unlock(&adev->gmc.invalidate_lock);
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-index da683afa0222..c75e9cd5c98b 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-@@ -69,7 +69,7 @@
- 
- #define RREG32_SOC15_IP(ip, reg) __RREG32_SOC15_RLC__(reg, 0, ip##_HWIP, 0)
- 
--#define RREG32_SOC15_IP_NO_KIQ(ip, reg) __RREG32_SOC15_RLC__(reg, AMDGPU_REGS_NO_KIQ, ip##_HWIP, 0)
-+#define RREG32_SOC15_IP_NO_KIQ(ip, reg, inst) __RREG32_SOC15_RLC__(reg, AMDGPU_REGS_NO_KIQ, ip##_HWIP, inst)
- 
- #define RREG32_SOC15_NO_KIQ(ip, inst, reg) \
- 	__RREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, \
-@@ -86,8 +86,8 @@
- #define WREG32_SOC15_IP(ip, reg, value) \
- 	 __WREG32_SOC15_RLC__(reg, value, 0, ip##_HWIP, 0)
- 
--#define WREG32_SOC15_IP_NO_KIQ(ip, reg, value) \
--	 __WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_NO_KIQ, ip##_HWIP, 0)
-+#define WREG32_SOC15_IP_NO_KIQ(ip, reg, value, inst) \
-+	 __WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_NO_KIQ, ip##_HWIP, inst)
- 
- #define WREG32_SOC15_NO_KIQ(ip, inst, reg, value) \
- 	__WREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, \
+ 	switch (state) {
+ 	case AMDGPU_IRQ_STATE_DISABLE:
+-		mec_int_cntl = RREG32(mec_int_cntl_reg);
++		mec_int_cntl = RREG32_XCC(mec_int_cntl_reg, xcc_id);
+ 		mec_int_cntl = REG_SET_FIELD(mec_int_cntl, CP_ME1_PIPE0_INT_CNTL,
+ 					     TIME_STAMP_INT_ENABLE, 0);
+-		WREG32(mec_int_cntl_reg, mec_int_cntl);
++		WREG32_XCC(mec_int_cntl_reg, mec_int_cntl, xcc_id);
+ 		break;
+ 	case AMDGPU_IRQ_STATE_ENABLE:
+-		mec_int_cntl = RREG32(mec_int_cntl_reg);
++		mec_int_cntl = RREG32_XCC(mec_int_cntl_reg, xcc_id);
+ 		mec_int_cntl = REG_SET_FIELD(mec_int_cntl, CP_ME1_PIPE0_INT_CNTL,
+ 					     TIME_STAMP_INT_ENABLE, 1);
+-		WREG32(mec_int_cntl_reg, mec_int_cntl);
++		WREG32_XCC(mec_int_cntl_reg, mec_int_cntl, xcc_id);
+ 		break;
+ 	default:
+ 		break;
 -- 
 2.34.1
 
