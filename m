@@ -2,109 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6012D7E03C3
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Nov 2023 14:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 190797E051D
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Nov 2023 15:57:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A08810E9E2;
-	Fri,  3 Nov 2023 13:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4BE10EA0D;
+	Fri,  3 Nov 2023 14:57:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2071.outbound.protection.outlook.com [40.107.243.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C7D10E9E2
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Nov 2023 13:31:37 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::61e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCB9110EA0A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Nov 2023 14:57:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rij947xIQVPBYyoKMGkpzbvu7q+FfVSySKJ/eUSPcGmfspWXDSCa+pUO8HqFEPiapbDG7Ns2M9EHYTY4ZpMNU8aZt36t2k2n0+lUE4re7P+P910uk5hqf1AnbeIesW+7K96/dFmMXIyRDQYMbvqH9JMMqziOR5Zn1utxx9AiYsSzK0i+G0/H4LejLGaI68SESywpMpn7svBkKlkIBgtoN+RMIVQpfs3IzfH0gb6icse38naYgP3fktofM4QxDqeK2L5IsQpW9f2mRL6uodl/aH/9Rll49SQjeexm+0Bc6SfzGusa+cZbg9a23+0N+/ldv8mYnRMqwrEI9W7QZZX0cw==
+ b=Ayg4KyDGHO2/8LFRJP9Xp5mnTYvmvfMQsdSJx5OZhTORtayOVPvNRebmTv3mQ0cj+CYvbXnLik3IpMizaFXC9w5lTrQbBA0l24tQAYvDFqVjHa/Q35ALw5F1J7M6S+HLY0M29ORTRvghjw7l0VFeTiY8deOnaLcN5r9X5atkERlXDuD8KOwxhz+b4gFtdODd3ckEsTfFAgDCpsMl0+ybb1qGcZhIyc2Yinu9jqvAqbWrT2cC6DxYcjPIkwL8YL6S40IHAxtqCI5+InJQMAcE+4hprPtp2czWSLQ0GAtU0hBpQ23Z1DANvl8SJGMdBTl3JmEEKBdvfG8w1ZPK0OhPvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fAhyILvY34fI0V67+HdbjjTQXsn935Dar3mpeURvxZQ=;
- b=iVVop9h3aJPLeaV5G4BQtOp06aT88KL0ASqrKrNRbKcTk86es9/QCZogimOmfz4AGXyu1PcluMDtHEDtZXCyQUYDgjEnLZOeFBUffoq8LPa67VS/BOdvDA1DAclDRVC0TDcxECso+Yn2++4BdLcQATK069BjtF83XpYe3NWUNXT7E9JOfj85oJ+3/UkayvZWeyI0rYZFjxb2++PWenBBatfmEICGnN79Eh2RNSgZ8G4M9EpMob/k3dAGEaEQB0UR30KTwnf0rAJvMvimC3ATYc1HZAgRP359KsBea4UJz9VbMBZooLi1+KcjLGiADo/A55p9TmqHmPKXIJcQ++HZsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=wncTctsx1aE0FQBp5Wqz+nAzKarTBXzW5kiqwa0eK4Y=;
+ b=TOrjeXSeZ3bRH6G1RxaMmauADG/TnxysTA73UzhHaDZMnDF6mzvYdnvh32SP3dzNifds8+wkh6rJZX+vtx3LMCtAgVaZxMq84xYeaNOo+l59rJ+6afTIV2q1o40Wyogrf8gRosVyBsBW9P/Af3XQoh6Ps0ZeC71j322VXrPWWD3fQd2YWCuwhdcmOowpcsNpY0xVVVmwRgWV0RLpHC/OItm8OeFsNsn9odXIXgvzPESxah50T8Okpep+pABwG94aQas/LYb9pzs8pUCuqkJFFMNOhgJkwKZIdj0ICunmjNWnIwr4wobvPwUQmtjTMiLSYUr9TD+z79pZqR4aQdMvMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fAhyILvY34fI0V67+HdbjjTQXsn935Dar3mpeURvxZQ=;
- b=Vt4LV+Qo85vxKa/kQRzVj9sWGAw7l1Lkp+oFbvL8oVSjZcFfzx5ru5jPxoRBFDWNuoLAP7cffQdKy9RreRQBaDxahRmEBPghYUrFLUCuqlc3by2n/4PiQaTdYzAKZKnRYJz2WqT+5AHNAfE10lLNb4Uni1Tts4xYgswB2UxH5Nc=
-Received: from PH7PR12MB5997.namprd12.prod.outlook.com (2603:10b6:510:1d9::21)
- by CYYPR12MB8890.namprd12.prod.outlook.com (2603:10b6:930:c7::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.24; Fri, 3 Nov
- 2023 13:31:35 +0000
-Received: from PH7PR12MB5997.namprd12.prod.outlook.com
- ([fe80::ca1f:8b18:846d:234e]) by PH7PR12MB5997.namprd12.prod.outlook.com
- ([fe80::ca1f:8b18:846d:234e%4]) with mapi id 15.20.6933.025; Fri, 3 Nov 2023
- 13:31:35 +0000
-From: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
-To: "Ma, Jun" <Jun.Ma2@amd.com>
-Subject: RE: [PATCH] drm/amd/pm: Move some functions to smu_v13_0.c as generic
- code
-Thread-Topic: [PATCH] drm/amd/pm: Move some functions to smu_v13_0.c as
- generic code
-Thread-Index: AQHaDi7A054iCXkn5U2dXu04E5y63bBolneQ
-Date: Fri, 3 Nov 2023 13:31:35 +0000
-Message-ID: <PH7PR12MB5997321C7E66526CF227B3CB82A5A@PH7PR12MB5997.namprd12.prod.outlook.com>
-References: <20231103082113.3038890-1-Jun.Ma2@amd.com>
-In-Reply-To: <20231103082113.3038890-1-Jun.Ma2@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB5997:EE_|CYYPR12MB8890:EE_
-x-ms-office365-filtering-correlation-id: b29a0656-9776-42c5-6ff8-08dbdc71334c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: avMN+6Tm5ucYcsSgjJhSzPFD9ZBxylOSOtPVh7h73ZAhQ29kjyOAo8hBmyVLx96kc7rppEyAGrL4pyGdoNUrfBbjkxDvUrVyVmIfLY9lPsMrBrOQ7LX2O0ewWxuSOQKfcqRyGO15ELNJrJvg9z0Nj+llsOzJNZIBCfW5wBhs3gZKh2xl4cCY0sqtrc07sdeeZzeQb6nKST/L6G1Ij5A0nlIYt82janSnzTBfj6Osiu7HYLSxWaqKzqZKR2vfnwqmMWP+NTJf5GxQcwsYjdZW4d2yHwqRKalXG+NcFVxDflOn9RuXq97GM5wGAffo4r36p/j2YunMDo8gC9Bqk+zaStIYf3A2VMVCycfemVVuSV+VKlVq70l+xhvsefhLGuapP+McSwucsHzNn7aIZsqE5kTtjH1UextcvA3JevqvgCuwrB1lYj/6OIwjhnKAPNGyBRDI1ks/JkjohH1lyAgLezBT0Jg7Gx+lBkdDIm5NmV2H8W6AX0VNefBHXUOfznx6BATDuwtdofkIHhhoa7fF1aNBVyHV4GGP+dHXsutK7ZKCbVvNHNuwCMGLdX+XqVRzbSiIeaGomgRiNXkTW9pmTlVz9unWf2vhNt3FLu6iCuFSin3Oz8E1F/Wmw9T4SekE74auGODdi6yFxXeIYlr++A==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5997.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(346002)(366004)(136003)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(122000001)(33656002)(478600001)(52536014)(86362001)(5660300002)(2906002)(38100700002)(41300700001)(55016003)(83380400001)(26005)(9686003)(6862004)(8676002)(64756008)(66476007)(4326008)(66446008)(66556008)(53546011)(6506007)(38070700009)(7696005)(71200400001)(6636002)(66946007)(76116006)(316002)(8936002)(41533002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?CPS/uSQdO/QnQv9gSMB53HBmDrgp8daA/EEXNvWQXfhy6SPYdXe6yXADcFfn?=
- =?us-ascii?Q?CBFxLjJxWE37Gq5E0P1Mopcoya1EnKQZImjsj+759+++Pjh8l+Zg9ETrE0qz?=
- =?us-ascii?Q?x87l0AUuW+Czq9y2MnB3n7YNZHE7ookkysFfPr20sQ9sSQQP0vwIy8p3flZz?=
- =?us-ascii?Q?aBh+5KX03lELHGNwFVZX2ymcTIoJXt8ElX76PrYiUSDAUiIeK+S9f2Zvg1/d?=
- =?us-ascii?Q?bLDeY+OZRva3AhoNaL15v2UV4at4+3hPCEe/Dv4WFCE2BXpDF6SkOhKCL9pC?=
- =?us-ascii?Q?g/xbVc83+wPn+MxTnTkONU7Y+hgWj7nBv/Ah8Ys0dcr1hLaRJp7mcCPH0iak?=
- =?us-ascii?Q?SdzpAZLwCSxn+VkubqE33TEXrhAE6W1UPYIrxb/ZrSyQmNcy9AbVmgjr0Dv5?=
- =?us-ascii?Q?4PgOwahY/lbabpiKa/j/xKncQioSDyjvRHL477tET92xviHT5RwPr1KlhsLw?=
- =?us-ascii?Q?Ft3bXDtwO4H6iPFbm1pccGh0fmWYYp0ZuAcH++5IgOWa+vjNQOmjuNmgBMld?=
- =?us-ascii?Q?df8XKdMKU0eHc3iQdWw1y6Ik7u2h5SLCFcv5Ks7zwa7LGLy9BzANvvPbpcHd?=
- =?us-ascii?Q?8MqA8S9DGlUKA9EZ3La0N0a30e6/8yyVDXWJs13WdHIk40M37wVXQCzxRVog?=
- =?us-ascii?Q?3N3+Y+9lI16QQyxSt9JLNoffHbT6hw2sQqrPnd4DvX10RvXfiAEe2wDGR1xH?=
- =?us-ascii?Q?Wtyc/2CoeWDCe0klmqdHB77ClIma6ogTRj1YZey91kYsEdRyi+s+7cQA4QQp?=
- =?us-ascii?Q?rlU23Vt5uhcTriYMwlVY3Fuu28kOAaFSXSjm58JETUX9px5IVf4CT71rD6b0?=
- =?us-ascii?Q?dnDg3DB1686xZ0218B+k0UN3EGA320ZzRAjGVs1oZE42qyYelqGIle5SPt1t?=
- =?us-ascii?Q?Gw1b7Am41/gqxz4AdwnIjhjd6Uo8EgbD90dNJcWl9yvlg/0u/kHep2WB31cP?=
- =?us-ascii?Q?sdfyW8qrG2OsoFtzW/Wav9v91375a6muqLteTywOq9YeuJSys8RUA5OMfCc3?=
- =?us-ascii?Q?KoKMpdqmE+u19bVKo+mOeXT6UTEYaw4MR1he+9XGZSCCAtJy/vBkYMRnM/4n?=
- =?us-ascii?Q?MpA4uQ7jFrYHW24Jx0/rw/MCYmQ6eqoclzgNS+7CQTfpCQMCNh4d2uoKprwY?=
- =?us-ascii?Q?z7Be+vnajt3Xl9kzEXQsV9UOWVhNUaAfwVvrwqfmkWnjDKLPGeuDRYcGcfxQ?=
- =?us-ascii?Q?IOuxYiH35okXkNhPlljB98Fyu477VHB60mWdJhxMPIKdtuZoyqFIP0ix4usE?=
- =?us-ascii?Q?GP42sFwZ3eDKBn4FokoD/9UZpUBXAJ/Ak37lRMJ1n+lI7Yh69BIGBrW+pw7V?=
- =?us-ascii?Q?+nFenTlU7fCN6lRjgDRkczQYzN5tZolRpWr/SPCeIvoeEfA6e+hCyle/1P4p?=
- =?us-ascii?Q?al7Ga1TafMk1iwJr+d8KWZaS9zOEO/p2Tb9hRbWO02OqfMDptc1/TXh+myr+?=
- =?us-ascii?Q?gw8f5vCsHJI+dcqwUPcpexLC0EgD2WYg8vdoBB5sGNCkpxW+Ma/4L+3LX7Fj?=
- =?us-ascii?Q?miXL/3OXlWFMpoKwAmG0oiTS/IPmY0yDLNOWl56W/PGh7Hy05Z1MnBtm7RIU?=
- =?us-ascii?Q?k8dpqCHL3pdHbZsDA78=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=wncTctsx1aE0FQBp5Wqz+nAzKarTBXzW5kiqwa0eK4Y=;
+ b=c+u8URlF1YBcsonNgiEhaYYdBJ2BBQceMc8euB4UUeyV6F/9MCIUuOJMMYGm5SqQycqLh9q4BQ/n7zlX8tal6k4O/9mkYGokRVBxD6jZgux6PBQC1xgyF0MLDwBuiLU+bzOWAp94N4InVCuRViY6HywOD9dCx23YVSNkkl2ss5k=
+Received: from BL1PR13CA0149.namprd13.prod.outlook.com (2603:10b6:208:2bb::34)
+ by BN9PR12MB5307.namprd12.prod.outlook.com (2603:10b6:408:104::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Fri, 3 Nov
+ 2023 14:57:14 +0000
+Received: from BL02EPF0001A105.namprd05.prod.outlook.com
+ (2603:10b6:208:2bb:cafe::32) by BL1PR13CA0149.outlook.office365.com
+ (2603:10b6:208:2bb::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.10 via Frontend
+ Transport; Fri, 3 Nov 2023 14:57:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6954.19 via Frontend Transport; Fri, 3 Nov 2023 14:57:13 +0000
+Received: from ubuntu22.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Fri, 3 Nov
+ 2023 09:57:11 -0500
+From: Victor Lu <victorchengchi.lu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/4] drm/amdgpu: Add flag to enable indirect RLCG access for
+ gfx v9.4.3
+Date: Fri, 3 Nov 2023 10:56:51 -0400
+Message-ID: <20231103145654.2651-1-victorchengchi.lu@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <513b2282-2f88-d837-ff37-6bd04641e833@amd.com>
+References: <513b2282-2f88-d837-ff37-6bd04641e833@amd.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|BN9PR12MB5307:EE_
+X-MS-Office365-Filtering-Correlation-Id: 716ef9a6-e8bf-43bd-e943-08dbdc7d2a27
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1uM39FahQNPSVj/59UoIxNGuutxCYh4CayY3hGmEGBQzg/S8kuzB77eBSYbwDakwJ+VY2vXlIprHD0h7tXt14sQ1KBdcXhRhXylnakOwRaK9aP80A9SAkVq9GdlAVmUm4mpjqV4Ou3ZvC3YbexZWdcDJajOJfxddIf03Bft98pRhvPsMMA9gs4FlP7G/4AHeMVEuaC/QIzjD4+3bpDZJ8WWGg0wXC/qSz8ZKisg0KVIpSQpHu4RZ+6KGcUZDksnR9lbfOdAlJxsDHHM9tzUFZFnGAt24nQqSKbYgZbtErzgzB8hIWmeaUTvq8KYNVeET2cXwKe8r8PJdPJ4pY6ahGIcoAjpSqIz1GfI+1lTDl/KVpdGFCgPnavhVwcrRaThVnm6tvticn73x4ySjLJ0bbwV53ICAs6FXiVWUSExn9tYwYK+ctV5Ij60QJq9f25uDKsr7Xq8zJzz23E4jpu+/Omm7RU7YkXfRmmKrTnbHbJZSf/TjFeByFzOUO6GOacEkiKCZOukpRyvKnKtbfaRdyrmdaVCweLkoMD7uRqmLZJrrZxOBClzblwUCyvCYwwjK8f9nnbi6ogLLAmpXpCnem7JjVrzk/6CLnyk8XpHq/dgM95h/FfzwKkFhkZtnTpQtgKuo90D0WD3JUjiH9ayGCvT1ySI9JHuEl4oES9qwsB4CPN8MHPq0NOCy8qhbljLFkW8gIYE0grGEacG00y3D4+AhZ23zVlQ/o0nk/eiAz+1h9DPeLWDxuEZVJ51Fxxv0dIKHFk2KmDXNXmVLcXZyrw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(396003)(376002)(136003)(346002)(230922051799003)(82310400011)(64100799003)(186009)(451199024)(1800799009)(36840700001)(40470700004)(46966006)(86362001)(47076005)(83380400001)(26005)(336012)(2616005)(1076003)(16526019)(426003)(7696005)(6666004)(54906003)(6916009)(316002)(70206006)(70586007)(478600001)(81166007)(356005)(36860700001)(82740400003)(41300700001)(8676002)(4326008)(36756003)(8936002)(40480700001)(40460700003)(4744005)(2906002)(5660300002)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5997.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b29a0656-9776-42c5-6ff8-08dbdc71334c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2023 13:31:35.2706 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PNXNtXB4GQilfxOnfu3xfHza4dykYGnPdKTkfkWzj4hbkqgydmzEzp13NKAnY0/s
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8890
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 14:57:13.6994 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 716ef9a6-e8bf-43bd-e943-08dbdc7d2a27
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A105.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5307
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,202 +101,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: lijo.lazar@amd.com, davis.ming@amd.com,
+ Victor Lu <victorchengchi.lu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+The "rlcg_reg_access_supported" flag is missing. Add it back in.
 
------Original Message-----
-From: Ma, Jun <Jun.Ma2@amd.com>=20
-Sent: Friday, November 3, 2023 4:21 PM
-To: amd-gfx@lists.freedesktop.org; Feng, Kenneth <Kenneth.Feng@amd.com>; De=
-ucher, Alexander <Alexander.Deucher@amd.com>; Wang, Yang(Kevin) <KevinYang.=
-Wang@amd.com>
-Cc: Ma, Jun <Jun.Ma2@amd.com>
-Subject: [PATCH] drm/amd/pm: Move some functions to smu_v13_0.c as generic =
-code
-
-Use generic functions and remove the duplicate code
-
-Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    | 38 ++++++++++++++-----
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  | 36 +-----------------  ...=
-/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  | 36 +-----------------
- 3 files changed, 32 insertions(+), 78 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/d=
-rm/amd/pm/swsmu/smu13/smu_v13_0.c
-index 281c3cb707a5..1f42befcc213 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -2282,22 +2282,40 @@ int smu_v13_0_baco_set_state(struct smu_context *sm=
-u,
-=20
- int smu_v13_0_baco_enter(struct smu_context *smu)  {
--	int ret =3D 0;
--
--	ret =3D smu_v13_0_baco_set_state(smu,
--				       SMU_BACO_STATE_ENTER);
--	if (ret)
--		return ret;
-+	struct smu_baco_context *smu_baco =3D &smu->smu_baco;
-+	struct amdgpu_device *adev =3D smu->adev;
-+	int ret;
-=20
--	msleep(10);
-+	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev))
-+		return smu_v13_0_baco_set_armd3_sequence(smu,
-+				(smu_baco->maco_support && amdgpu_runtime_pm !=3D 1) ?
-+					BACO_SEQ_BAMACO : BACO_SEQ_BACO);
-[kevin]:
-
-Miss {} here?
-
-Best Regards,
-Kevin
-+	else {
-+		ret =3D smu_v13_0_baco_set_state(smu, SMU_BACO_STATE_ENTER);
-+		if (!ret)
-+			msleep(10);
-[kevin]:
-Please use usleep_range() function instead of msleep() to keep the same cod=
-ing style.
-
--	return ret;
-+		return ret;
-+	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index a1c2c952d882..ce2a9876369e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -1101,6 +1101,7 @@ static void gfx_v9_4_3_init_rlcg_reg_access_ctrl(struct amdgpu_device *adev)
+ 		reg_access_ctrl->grbm_idx = SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regGRBM_GFX_INDEX);
+ 		reg_access_ctrl->spare_int = SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_SPARE_INT);
+ 	}
++	adev->gfx.rlc.rlcg_reg_access_supported = true;
  }
-=20
- int smu_v13_0_baco_exit(struct smu_context *smu)  {
--	return smu_v13_0_baco_set_state(smu,
--					SMU_BACO_STATE_EXIT);
-+	struct amdgpu_device *adev =3D smu->adev;
-+	int ret;
-+
-+	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev)) {
-+		/* Wait for PMFW handling for the Dstate change */
-+		usleep_range(10000, 11000);
-+		ret =3D smu_v13_0_baco_set_armd3_sequence(smu, BACO_SEQ_ULPS);
-+	} else {
-+		ret =3D smu_v13_0_baco_set_state(smu, SMU_BACO_STATE_EXIT);
-+	}
-+
-+	if (!ret)
-+		adev->gfx.is_poweron =3D false;
-+
-+	return ret;
- }
-=20
- int smu_v13_0_set_gfx_power_up_by_imu(struct smu_context *smu) diff --git =
-a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/am=
-d/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 4d3076fe37a1..d715ca2ec121 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -2586,38 +2586,6 @@ static int smu_v13_0_0_set_power_profile_mode(struct=
- smu_context *smu,
- 					       NULL);
- }
-=20
--static int smu_v13_0_0_baco_enter(struct smu_context *smu) -{
--	struct smu_baco_context *smu_baco =3D &smu->smu_baco;
--	struct amdgpu_device *adev =3D smu->adev;
--
--	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev))
--		return smu_v13_0_baco_set_armd3_sequence(smu,
--				(smu_baco->maco_support && amdgpu_runtime_pm !=3D 1) ?
--					BACO_SEQ_BAMACO : BACO_SEQ_BACO);
--	else
--		return smu_v13_0_baco_enter(smu);
--}
--
--static int smu_v13_0_0_baco_exit(struct smu_context *smu) -{
--	struct amdgpu_device *adev =3D smu->adev;
--	int ret;
--
--	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev)) {
--		/* Wait for PMFW handling for the Dstate change */
--		usleep_range(10000, 11000);
--		ret =3D smu_v13_0_baco_set_armd3_sequence(smu, BACO_SEQ_ULPS);
--	} else {
--		ret =3D smu_v13_0_baco_exit(smu);
--	}
--
--	if (!ret)
--		adev->gfx.is_poweron =3D false;
--
--	return ret;
--}
--
- static bool smu_v13_0_0_is_mode1_reset_supported(struct smu_context *smu) =
- {
- 	struct amdgpu_device *adev =3D smu->adev; @@ -3064,8 +3032,8 @@ static co=
-nst struct pptable_funcs smu_v13_0_0_ppt_funcs =3D {
- 	.baco_is_support =3D smu_v13_0_baco_is_support,
- 	.baco_get_state =3D smu_v13_0_baco_get_state,
- 	.baco_set_state =3D smu_v13_0_baco_set_state,
--	.baco_enter =3D smu_v13_0_0_baco_enter,
--	.baco_exit =3D smu_v13_0_0_baco_exit,
-+	.baco_enter =3D smu_v13_0_baco_enter,
-+	.baco_exit =3D smu_v13_0_baco_exit,
- 	.mode1_reset_is_support =3D smu_v13_0_0_is_mode1_reset_supported,
- 	.mode1_reset =3D smu_v13_0_0_mode1_reset,
- 	.mode2_reset =3D smu_v13_0_0_mode2_reset, diff --git a/drivers/gpu/drm/am=
-d/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu=
-_v13_0_7_ppt.c
-index 81eafed76045..f5596f031d00 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -2515,38 +2515,6 @@ static int smu_v13_0_7_set_mp1_state(struct smu_cont=
-ext *smu,
- 	return ret;
- }
-=20
--static int smu_v13_0_7_baco_enter(struct smu_context *smu) -{
--	struct smu_baco_context *smu_baco =3D &smu->smu_baco;
--	struct amdgpu_device *adev =3D smu->adev;
--
--	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev))
--		return smu_v13_0_baco_set_armd3_sequence(smu,
--				(smu_baco->maco_support && amdgpu_runtime_pm !=3D 1) ?
--					BACO_SEQ_BAMACO : BACO_SEQ_BACO);
--	else
--		return smu_v13_0_baco_enter(smu);
--}
--
--static int smu_v13_0_7_baco_exit(struct smu_context *smu) -{
--	struct amdgpu_device *adev =3D smu->adev;
--	int ret;
--
--	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev)) {
--		/* Wait for PMFW handling for the Dstate change */
--		usleep_range(10000, 11000);
--		ret =3D smu_v13_0_baco_set_armd3_sequence(smu, BACO_SEQ_ULPS);
--	} else {
--		ret =3D smu_v13_0_baco_exit(smu);
--	}
--
--	if (!ret)
--		adev->gfx.is_poweron =3D false;
--
--	return ret;
--}
--
- static bool smu_v13_0_7_is_mode1_reset_supported(struct smu_context *smu) =
- {
- 	struct amdgpu_device *adev =3D smu->adev; @@ -2628,8 +2596,8 @@ static co=
-nst struct pptable_funcs smu_v13_0_7_ppt_funcs =3D {
- 	.baco_is_support =3D smu_v13_0_baco_is_support,
- 	.baco_get_state =3D smu_v13_0_baco_get_state,
- 	.baco_set_state =3D smu_v13_0_baco_set_state,
--	.baco_enter =3D smu_v13_0_7_baco_enter,
--	.baco_exit =3D smu_v13_0_7_baco_exit,
-+	.baco_enter =3D smu_v13_0_baco_enter,
-+	.baco_exit =3D smu_v13_0_baco_exit,
- 	.mode1_reset_is_support =3D smu_v13_0_7_is_mode1_reset_supported,
- 	.mode1_reset =3D smu_v13_0_mode1_reset,
- 	.set_mp1_state =3D smu_v13_0_7_set_mp1_state,
---
+ 
+ static int gfx_v9_4_3_rlc_init(struct amdgpu_device *adev)
+-- 
 2.34.1
 
