@@ -2,64 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 578197E1CD0
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 633CD7E1CD4
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE3610E28A;
-	Mon,  6 Nov 2023 09:00:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9F710E28E;
+	Mon,  6 Nov 2023 09:00:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
- [IPv6:2a00:1450:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E3010E1FF;
- Sat,  4 Nov 2023 09:42:49 +0000 (UTC)
-Received: by mail-ej1-x632.google.com with SMTP id
- a640c23a62f3a-9d0b4dfd60dso429797566b.1; 
- Sat, 04 Nov 2023 02:42:49 -0700 (PDT)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D24710E0BE;
+ Sat,  4 Nov 2023 13:02:33 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id
+ d2e1a72fcca58-6ba54c3ed97so3078528b3a.2; 
+ Sat, 04 Nov 2023 06:02:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699090968; x=1699695768; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=SbfL3NkpfKmXRCHooSUmBGmgS2c222w1KL1iym/+IkE=;
- b=GE4zXpmod9A0z06yzSrJugzKOoAwoetzZtpN/9qwSd1xfWaQB9p49wjok2DIQcgb2e
- 71wToTRe6ZbP3eFhGhCeJwrpKhbaKgFz5HEQdkXrUh8j5kEZble4wu7Pi52EQxvh/c+F
- kiXcXUukb2mWqSiKvp3aDc5KZuo9Pl4q8SgTHGLyWoNzNESvGGu7OQ0o6JNPbd379hFG
- RYGWyZgNKsRNUzXke3ZniA0Z3+uQe7R4ZdB+rVMSkuHzq/otBoRl7fUCDuupX4S8qPhM
- OSu+IbAxkY938NchlsXg46zwwbNXNzfcBTUdsr40A2J+boUb7iXxGqXF/BZLWVCShWhf
- pGIw==
+ d=gmail.com; s=20230601; t=1699102952; x=1699707752; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=LFVAhVDAedSPFBRNn04JrHWzW4kv30ibC/cuBpR5pcg=;
+ b=Baka9YFWf5y+G9TWSAYxNWS8e2Xub/MJ3kvd5Qc5ljEaOBBSD2dpbxe1UQ8UifPSvA
+ gAsDAf0+GxHpCiBN4N9iG8u8cJ6tWWgMpBMtdkEHG9dfhlPPjs91afuDrap3wWr/rYtS
+ ToYgkWiTybd0Xpu/cqhd439u12JqxWULdXJCExKtkLqVawa8TfrsnOmPdSG/EgUOg93Z
+ EPasEvMNGjr1jU5ecfvworYvVgmmCrjCVIz68toGem4FkAnTXbPWyzusO4BuNCHWVlO3
+ Yi9kV3SAyV+3P15CqUb7TOXWCHYqJxGXJ3pCFA4h5y6AND9VTh6IJEjOo4Wwj/BQTc6S
+ NRoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699090968; x=1699695768;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=SbfL3NkpfKmXRCHooSUmBGmgS2c222w1KL1iym/+IkE=;
- b=DyyfO2/ff5FTvVExjTLCcFLnhQEH4fkb82IC29/pzj1h7kANZLMrWJl7XcXNp6isSg
- ottS2o2i4x2eacKXd6zL2qIXVRzyXKHusGiDb6aljyqI0nuLfuA6+k2FAracJKH15xYo
- N08kSBsPFr0aStkgEFwrnQ2rQp2eYhvr2XklfAlMFi4CBu2cNkjt6FNptko+fei+1m2L
- dsUM0goUqkxbF7Lg+JNQDu99cZXqIFRVtB/iLYbUbxmgj4lDQMqdL5Vm5s5CFl7TkNQK
- S3yPOXD3DMAE/msh5FMhr5jQw5bW+BerniyEC3aeNQ+3QXmf+H16w5tkqeIk1NORKbXj
- Oeuw==
-X-Gm-Message-State: AOJu0Yy+axyjhixIg2Sk+WfeIoHECgud/dTbsrg/Zob6QPFYcpwxEz7P
- MDUrRhFP5ddrXpvXWHsjpBBsSrkHgZ133Ii7gnY=
-X-Google-Smtp-Source: AGHT+IFAHNDkINjU+Y5YPivroCWJYoBJBuwLvpBetinur2scmP7PDHWMEUo6pHc1DTONAZV4gYyQrLs4lzdWmyR0oUc=
-X-Received: by 2002:a17:907:1b02:b0:9ae:82b4:e309 with SMTP id
- mp2-20020a1709071b0200b009ae82b4e309mr9393758ejc.0.1699090967781; Sat, 04 Nov
- 2023 02:42:47 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1699102952; x=1699707752;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LFVAhVDAedSPFBRNn04JrHWzW4kv30ibC/cuBpR5pcg=;
+ b=makvNvIiPSH38XuKyTD5Lxi9w6Z/Jw8UxE2D05qVT9umvzcyCAiFNEzfGiBrV90/5/
+ ZD1JuTif/arz6ncMmt3NuY53tt/6E+oo9faXLUVAO2mmpvTf8YfV0U1XUHFT0eru09bd
+ v570C2AM51pbE6Q+i0PKFJnyQeX292Vja/+VArtOgwNI1wHUzl9pt336D6SXSb/y/D4g
+ UZ1TB+JErq6j7ZY2c1kePXNX4C2NBOGHrbA5uY4j+6g5J5EzAmizg6c82r/o+gNR2aS/
+ g7l9zaZSmUH0WRz/HdZX/oKKMfxj1HfZil3awX3wneTs6u6Gyn631dlggTcKo2qby4hF
+ VC7g==
+X-Gm-Message-State: AOJu0YwihVKko3i5xWcOx+x28fH4P/Zx9bVkfSHCvVg4dXJWgiTZBeif
+ tX4kzHZCDeEYjHEtXF8CnvmrTSVjyyA=
+X-Google-Smtp-Source: AGHT+IGb2vdo0cD4NjwXX5OmI6gWBS7QEBhZ6vsJMldsGy5t93N5hQHbF6HT7pFJFA7qYJp4Mni0UA==
+X-Received: by 2002:a05:6a20:7348:b0:17a:eddb:ac6a with SMTP id
+ v8-20020a056a20734800b0017aeddbac6amr31496489pzc.6.1699102952530; 
+ Sat, 04 Nov 2023 06:02:32 -0700 (PDT)
+Received: from [192.168.1.11] ([27.5.100.249])
+ by smtp.gmail.com with ESMTPSA id
+ f20-20020a635554000000b0059d6f5196fasm2844708pgm.78.2023.11.04.06.02.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 04 Nov 2023 06:02:32 -0700 (PDT)
+Message-ID: <2bb714be-9511-4f79-a633-9f4467a6dcba@gmail.com>
+Date: Sat, 4 Nov 2023 18:32:25 +0530
 MIME-Version: 1.0
-References: <ZUNsmJGbYwgPaUpY@debian>
- <CADnq5_Minarw2D_TeRdkm6nJOP_4qHM+MxiMeLWMXqHxjq22Xw@mail.gmail.com>
- <CADVatmO9NCs=ryNg72HNzMDpqg862gpGnnFhQ4uwTpEkjOkCLw@mail.gmail.com>
- <CADnq5_Ou7Cq071DJZnq+3PDNqkd3ZJb+dCEvMjiked6_t=E6MA@mail.gmail.com>
-In-Reply-To: <CADnq5_Ou7Cq071DJZnq+3PDNqkd3ZJb+dCEvMjiked6_t=E6MA@mail.gmail.com>
-From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Date: Sat, 4 Nov 2023 09:42:11 +0000
-Message-ID: <CADVatmN4njCTGxNPjtpX9gdaySUxW07petaRP1uOzHaQNxf7fQ@mail.gmail.com>
-Subject: Re: mainline build failure due to 7966f319c66d ("drm/amd/display:
- Introduce DML2")
-To: Alex Deucher <alexdeucher@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: avoid variable reinitialization
+Content-Language: en-US
+From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ daniel@ffwll.ch, airlied@gmail.com, Qingqing.Zhuo@amd.com,
+ alvin.lee2@amd.com, wenjing.liu@amd.com, jun.lei@amd.com, Samson.Tam@amd.com
+References: <20231024181134.48066-1-bragathemanick0908@gmail.com>
+ <744beb05-1327-401e-a961-edfe63bd8927@gmail.com>
+In-Reply-To: <744beb05-1327-401e-a961-edfe63bd8927@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 06 Nov 2023 09:00:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,67 +79,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, Leo Li <sunpeng.li@amd.com>,
- Qingqing Zhuo <Qingqing.Zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- "linux-kernel@vger.kernel.orgLinus Torvalds" <torvalds@linux-foundation.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2 Nov 2023 at 22:53, Alex Deucher <alexdeucher@gmail.com> wrote:
+
+On 30/10/23 20:17, Bragatheswaran Manickavel wrote:
 >
-> On Thu, Nov 2, 2023 at 1:07=E2=80=AFPM Sudip Mukherjee
-> <sudipm.mukherjee@gmail.com> wrote:
-> >
-> > On Thu, 2 Nov 2023 at 16:52, Alex Deucher <alexdeucher@gmail.com> wrote=
-:
-> > >
-> > > On Thu, Nov 2, 2023 at 5:32=E2=80=AFAM Sudip Mukherjee (Codethink)
-> > > <sudipm.mukherjee@gmail.com> wrote:
-> > > >
-> > > > Hi All,
-> > > >
-> > > > The latest mainline kernel branch fails to build x86_64 allmodconfi=
-g
-> > > > with the error:
-> > > >
-> > > > drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/display_mode_core.c: =
-In function 'dml_prefetch_check':
-> > > > drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/display_mode_core.c:6=
-707:1: error: the frame size of 2056 bytes is larger than 2048 bytes [-Werr=
-or=3Dframe-larger-than=3D]
-> > > >  6707 | }
-> > > >       | ^
-> > > >
-> > > > git bisect pointed to 7966f319c66d ("drm/amd/display: Introduce DML=
-2")
-> > > >
-> > > > I will be happy to test any patch or provide any extra log if neede=
-d.
-> > >
-> > > This was reported earlier and fixed by:
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
-mmit/?id=3D089dbf6a06f1dcaeed4f8b86d619e8d28b235207
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
-mmit/?id=3Db141fa036c901303ca5659cc22e9c08f8b097892
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
-mmit/?id=3D5b2c54e0d0ea09f7a3b500510731878326e1117e
-> > > but I guess maybe different compiler versions are still hitting this.
-> >
-> > Yes, I should have mentioned. gcc-11 and gcc-12 failed to build. but
-> > gcc-13 was ok.
+> On 24/10/23 23:41, Bragatheswaran Manickavel wrote:
+>> The member variable enable_hpo_pg_support is already initialized
+>> and hence the reinitialization instruction can be removed. Issue
+>> identified using the doubleinit.cocci Coccinelle semantic patch script.
+>>
+>> Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
+>> ---
+>>   drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c 
+>> b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+>> index 99d55b958977..1fd9df8da09c 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+>> +++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
+>> @@ -739,7 +739,6 @@ static const struct dc_debug_options 
+>> debug_defaults_drv = {
+>>       .disable_boot_optimizations = false,
+>>       .disable_unbounded_requesting = false,
+>>       .disable_mem_low_power = false,
+>> -    .enable_hpo_pg_support = false,
+>>       //must match enable_single_display_2to1_odm_policy to support 
+>> dynamic ODM transitions
+>>       .enable_double_buffered_dsc_pg_support = true,
+>>       .enable_dp_dig_pixel_rate_div_policy = 1,
 >
-> Should be fixed with Nathan's patch:
-> https://patchwork.freedesktop.org/patch/565675/
+>
+> just a friendly ping
+>
+> Thanks,
+> Bragathe
+>
+Could someone help me in reviewing this changes ?
 
-Yes, it does. Thanks.
+Thanks,
+Bragathe
 
-Tested-by: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-
-
---=20
-Regards
-Sudip
