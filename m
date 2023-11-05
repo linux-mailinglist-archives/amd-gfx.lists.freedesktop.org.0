@@ -1,31 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C0D7E1CD7
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE057E1CD2
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E6D10E28D;
-	Mon,  6 Nov 2023 09:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1F910E286;
+	Mon,  6 Nov 2023 09:00:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 366 seconds by postgrey-1.36 at gabe;
- Sun, 05 Nov 2023 09:55:02 UTC
 Received: from smtp.gentoo.org (mail.gentoo.org
  [IPv6:2001:470:ea4a:1:5054:ff:fec7:86e4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2E110E04A;
- Sun,  5 Nov 2023 09:55:02 +0000 (UTC)
-User-agent: mu4e 1.10.7; emacs 30.0.50
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 145AA10E0CA;
+ Sun,  5 Nov 2023 16:07:07 +0000 (UTC)
 From: Sam James <sam@gentoo.org>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: amdgpu_amdkfd_gfx* triggers new -Walloc-size warnings in GCC 14
-Date: Sun, 05 Nov 2023 09:45:24 +0000
-Organization: Gentoo
-Message-ID: <87wmuwo7i3.fsf@gentoo.org>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] amdgpu: Adjust kmalloc_array calls for new -Walloc-size
+Date: Sun,  5 Nov 2023 16:06:50 +0000
+Message-ID: <20231105160652.374422-1-sam@gentoo.org>
+X-Mailer: git-send-email 2.42.1
+In-Reply-To: <87wmuwo7i3.fsf@gentoo.org>
+References: <87wmuwo7i3.fsf@gentoo.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 06 Nov 2023 09:00:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -38,72 +37,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <kees@kernel.org>, uecker@gcc.gnu.org
+Cc: linux-kernel@vger.kernel.org, Sam James <sam@gentoo.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GCC 14 introduces a new -Walloc-size warning (https://gcc.gnu.org/onlinedoc=
-s/gcc/Warning-Options.html#index-Wno-alloc-size)
-which triggers on the following amdgpu files:
-"""
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c: In function =E2=80=98kgd_hqd_dump=
-=E2=80=99:
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c:241:15: error: allocation of insuffi=
-cient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {aka =
-=E2=80=98unsigned int[2
-]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://gcc=
-.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
-  241 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
-FP_KERNEL);
-      |               ^
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c: In function =E2=80=98kgd_hqd_sdma_d=
-ump=E2=80=99:
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c:327:15: error: allocation of insuffi=
-cient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {aka =
-=E2=80=98unsigned int[2
-]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://gcc=
-.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
-  327 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
-FP_KERNEL);
-      |               ^
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c: In function =E2=80=98kgd_arcturus=
-_hqd_sdma_dump=E2=80=99:
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:203:15: error: allocation of insuf=
-ficient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {ak=
-a =E2=80=98unsigned int
-[2]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://g=
-cc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
-  203 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
-FP_KERNEL);
-      |               ^
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c: In function =E2=80=98kgd_gfx_v9_4=
-_3_hqd_sdma_dump=E2=80=99:
-/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c:142:15: error: allocation of insuf=
-ficient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {ak=
-a =E2=80=98unsigned int
-[2]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://g=
-cc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
-  142 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
-FP_KERNEL);
-      |               ^
-"""
+GCC 14 introduces a new -Walloc-size included in -Wextra which errors out
+on various files in drivers/gpu/drm/amd/amdgpu like:
+```
+amdgpu_amdkfd_gfx_v8.c:241:15: error: allocation of insufficient size ‘4’ for type ‘uint32_t[2]’ {aka ‘unsigned int[2]'} with size ‘8’ [-Werror=alloc-size]
+```
 
-$ gcc-14 --version
-gcc-14 (Gentoo Hardened 14.0.0 p, commit
-2b02f083e67e97f8187d3ec023c3d281f49232c0) 14.0.0 20231104 (experimental)
-8d22ac6a18cf542cd541c06b2a7df8fdd293946d
-Copyright (C) 2023 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is
-NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPO=
-SE.
+This is because each HQD_N_REGS is actually a uint32_t[2]. Move the * 2 to
+the size argument so GCC sees we're allocating enough.
 
-thanks,
-sam
+Originally did 'sizeof(uint32_t) * 2' for the size but a friend suggested
+'sizeof(**dump)' better communicates the intent.
+
+Link: https://lore.kernel.org/all/87wmuwo7i3.fsf@gentoo.org/
+Signed-off-by: Sam James <sam@gentoo.org>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c   | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c   | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c   | 4 ++--
+ 5 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+index 625db444df1c..0ba15dcbe4e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+@@ -200,7 +200,7 @@ int kgd_arcturus_hqd_sdma_dump(struct amdgpu_device *adev,
+ #undef HQD_N_REGS
+ #define HQD_N_REGS (19+6+7+10)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
+index 490c8f5ddb60..ca7238b5535b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c
+@@ -141,7 +141,7 @@ static int kgd_gfx_v9_4_3_hqd_sdma_dump(struct amdgpu_device *adev,
+ 		(*dump)[i++][1] = RREG32(addr);         \
+ 	} while (0)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+index 6bf448ab3dff..ca4a6b82817f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+@@ -214,7 +214,7 @@ static int kgd_hqd_dump(struct amdgpu_device *adev,
+ 		(*dump)[i++][1] = RREG32(addr);		\
+ 	} while (0)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+@@ -301,7 +301,7 @@ static int kgd_hqd_sdma_dump(struct amdgpu_device *adev,
+ #undef HQD_N_REGS
+ #define HQD_N_REGS (19+4)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+index cd06e4a6d1da..0f3e2944edd7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+@@ -238,7 +238,7 @@ static int kgd_hqd_dump(struct amdgpu_device *adev,
+ 		(*dump)[i++][1] = RREG32(addr);		\
+ 	} while (0)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+@@ -324,7 +324,7 @@ static int kgd_hqd_sdma_dump(struct amdgpu_device *adev,
+ #undef HQD_N_REGS
+ #define HQD_N_REGS (19+4+2+3+7)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+index 51011e8ee90d..a3355b90aac5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+@@ -365,7 +365,7 @@ int kgd_gfx_v9_hqd_dump(struct amdgpu_device *adev,
+ 		(*dump)[i++][1] = RREG32(addr);		\
+ 	} while (0)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+@@ -462,7 +462,7 @@ static int kgd_hqd_sdma_dump(struct amdgpu_device *adev,
+ #undef HQD_N_REGS
+ #define HQD_N_REGS (19+6+7+10)
+ 
+-	*dump = kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), GFP_KERNEL);
++	*dump = kmalloc_array(HQD_N_REGS, sizeof(**dump), GFP_KERNEL);
+ 	if (*dump == NULL)
+ 		return -ENOMEM;
+ 
+-- 
+2.42.1
+
