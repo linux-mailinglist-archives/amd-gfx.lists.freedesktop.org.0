@@ -2,71 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633CD7E1CD4
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C0D7E1CD7
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9F710E28E;
-	Mon,  6 Nov 2023 09:00:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E6D10E28D;
+	Mon,  6 Nov 2023 09:00:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D24710E0BE;
- Sat,  4 Nov 2023 13:02:33 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id
- d2e1a72fcca58-6ba54c3ed97so3078528b3a.2; 
- Sat, 04 Nov 2023 06:02:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699102952; x=1699707752; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=LFVAhVDAedSPFBRNn04JrHWzW4kv30ibC/cuBpR5pcg=;
- b=Baka9YFWf5y+G9TWSAYxNWS8e2Xub/MJ3kvd5Qc5ljEaOBBSD2dpbxe1UQ8UifPSvA
- gAsDAf0+GxHpCiBN4N9iG8u8cJ6tWWgMpBMtdkEHG9dfhlPPjs91afuDrap3wWr/rYtS
- ToYgkWiTybd0Xpu/cqhd439u12JqxWULdXJCExKtkLqVawa8TfrsnOmPdSG/EgUOg93Z
- EPasEvMNGjr1jU5ecfvworYvVgmmCrjCVIz68toGem4FkAnTXbPWyzusO4BuNCHWVlO3
- Yi9kV3SAyV+3P15CqUb7TOXWCHYqJxGXJ3pCFA4h5y6AND9VTh6IJEjOo4Wwj/BQTc6S
- NRoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699102952; x=1699707752;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=LFVAhVDAedSPFBRNn04JrHWzW4kv30ibC/cuBpR5pcg=;
- b=makvNvIiPSH38XuKyTD5Lxi9w6Z/Jw8UxE2D05qVT9umvzcyCAiFNEzfGiBrV90/5/
- ZD1JuTif/arz6ncMmt3NuY53tt/6E+oo9faXLUVAO2mmpvTf8YfV0U1XUHFT0eru09bd
- v570C2AM51pbE6Q+i0PKFJnyQeX292Vja/+VArtOgwNI1wHUzl9pt336D6SXSb/y/D4g
- UZ1TB+JErq6j7ZY2c1kePXNX4C2NBOGHrbA5uY4j+6g5J5EzAmizg6c82r/o+gNR2aS/
- g7l9zaZSmUH0WRz/HdZX/oKKMfxj1HfZil3awX3wneTs6u6Gyn631dlggTcKo2qby4hF
- VC7g==
-X-Gm-Message-State: AOJu0YwihVKko3i5xWcOx+x28fH4P/Zx9bVkfSHCvVg4dXJWgiTZBeif
- tX4kzHZCDeEYjHEtXF8CnvmrTSVjyyA=
-X-Google-Smtp-Source: AGHT+IGb2vdo0cD4NjwXX5OmI6gWBS7QEBhZ6vsJMldsGy5t93N5hQHbF6HT7pFJFA7qYJp4Mni0UA==
-X-Received: by 2002:a05:6a20:7348:b0:17a:eddb:ac6a with SMTP id
- v8-20020a056a20734800b0017aeddbac6amr31496489pzc.6.1699102952530; 
- Sat, 04 Nov 2023 06:02:32 -0700 (PDT)
-Received: from [192.168.1.11] ([27.5.100.249])
- by smtp.gmail.com with ESMTPSA id
- f20-20020a635554000000b0059d6f5196fasm2844708pgm.78.2023.11.04.06.02.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 04 Nov 2023 06:02:32 -0700 (PDT)
-Message-ID: <2bb714be-9511-4f79-a633-9f4467a6dcba@gmail.com>
-Date: Sat, 4 Nov 2023 18:32:25 +0530
+X-Greylist: delayed 366 seconds by postgrey-1.36 at gabe;
+ Sun, 05 Nov 2023 09:55:02 UTC
+Received: from smtp.gentoo.org (mail.gentoo.org
+ [IPv6:2001:470:ea4a:1:5054:ff:fec7:86e4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2E110E04A;
+ Sun,  5 Nov 2023 09:55:02 +0000 (UTC)
+User-agent: mu4e 1.10.7; emacs 30.0.50
+From: Sam James <sam@gentoo.org>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: amdgpu_amdkfd_gfx* triggers new -Walloc-size warnings in GCC 14
+Date: Sun, 05 Nov 2023 09:45:24 +0000
+Organization: Gentoo
+Message-ID: <87wmuwo7i3.fsf@gentoo.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: avoid variable reinitialization
-Content-Language: en-US
-From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- daniel@ffwll.ch, airlied@gmail.com, Qingqing.Zhuo@amd.com,
- alvin.lee2@amd.com, wenjing.liu@amd.com, jun.lei@amd.com, Samson.Tam@amd.com
-References: <20231024181134.48066-1-bragathemanick0908@gmail.com>
- <744beb05-1327-401e-a961-edfe63bd8927@gmail.com>
-In-Reply-To: <744beb05-1327-401e-a961-edfe63bd8927@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 06 Nov 2023 09:00:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,48 +38,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Kees Cook <kees@kernel.org>, uecker@gcc.gnu.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+GCC 14 introduces a new -Walloc-size warning (https://gcc.gnu.org/onlinedoc=
+s/gcc/Warning-Options.html#index-Wno-alloc-size)
+which triggers on the following amdgpu files:
+"""
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c: In function =E2=80=98kgd_hqd_dump=
+=E2=80=99:
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c:241:15: error: allocation of insuffi=
+cient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {aka =
+=E2=80=98unsigned int[2
+]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://gcc=
+.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
+  241 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
+FP_KERNEL);
+      |               ^
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c: In function =E2=80=98kgd_hqd_sdma_d=
+ump=E2=80=99:
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c:327:15: error: allocation of insuffi=
+cient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {aka =
+=E2=80=98unsigned int[2
+]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://gcc=
+.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
+  327 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
+FP_KERNEL);
+      |               ^
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c: In function =E2=80=98kgd_arcturus=
+_hqd_sdma_dump=E2=80=99:
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:203:15: error: allocation of insuf=
+ficient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {ak=
+a =E2=80=98unsigned int
+[2]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://g=
+cc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
+  203 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
+FP_KERNEL);
+      |               ^
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c: In function =E2=80=98kgd_gfx_v9_4=
+_3_hqd_sdma_dump=E2=80=99:
+/var/tmp/portage/sys-kernel/gentoo-kernel-6.5.10/work/linux-6.5/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_amdkfd_gc_9_4_3.c:142:15: error: allocation of insuf=
+ficient size =E2=80=984=E2=80=99 for type =E2=80=98uint32_t[2]=E2=80=99 {ak=
+a =E2=80=98unsigned int
+[2]=E2=80=99} with size =E2=80=988=E2=80=99 [-Werror=3Dalloc-size[https://g=
+cc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Walloc-size]]
+  142 |         *dump =3D kmalloc_array(HQD_N_REGS * 2, sizeof(uint32_t), G=
+FP_KERNEL);
+      |               ^
+"""
 
-On 30/10/23 20:17, Bragatheswaran Manickavel wrote:
->
-> On 24/10/23 23:41, Bragatheswaran Manickavel wrote:
->> The member variable enable_hpo_pg_support is already initialized
->> and hence the reinitialization instruction can be removed. Issue
->> identified using the doubleinit.cocci Coccinelle semantic patch script.
->>
->> Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
->> ---
->>   drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c 
->> b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
->> index 99d55b958977..1fd9df8da09c 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
->> +++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_resource.c
->> @@ -739,7 +739,6 @@ static const struct dc_debug_options 
->> debug_defaults_drv = {
->>       .disable_boot_optimizations = false,
->>       .disable_unbounded_requesting = false,
->>       .disable_mem_low_power = false,
->> -    .enable_hpo_pg_support = false,
->>       //must match enable_single_display_2to1_odm_policy to support 
->> dynamic ODM transitions
->>       .enable_double_buffered_dsc_pg_support = true,
->>       .enable_dp_dig_pixel_rate_div_policy = 1,
->
->
-> just a friendly ping
->
-> Thanks,
-> Bragathe
->
-Could someone help me in reviewing this changes ?
+$ gcc-14 --version
+gcc-14 (Gentoo Hardened 14.0.0 p, commit
+2b02f083e67e97f8187d3ec023c3d281f49232c0) 14.0.0 20231104 (experimental)
+8d22ac6a18cf542cd541c06b2a7df8fdd293946d
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPO=
+SE.
 
-Thanks,
-Bragathe
-
+thanks,
+sam
