@@ -2,41 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C9B7E15A9
-	for <lists+amd-gfx@lfdr.de>; Sun,  5 Nov 2023 18:50:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A738C7E1CD3
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 913DA10E131;
-	Sun,  5 Nov 2023 17:49:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 678EE10E28F;
+	Mon,  6 Nov 2023 09:00:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 607 seconds by postgrey-1.36 at gabe;
- Sun, 05 Nov 2023 17:49:57 UTC
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net
- [83.223.95.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 820A210E130;
- Sun,  5 Nov 2023 17:49:57 +0000 (UTC)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
- client-signature RSA-PSS (4096 bits) client-digest SHA256)
- (Client CN "*.hostsharing.net",
- Issuer "RapidSSL Global TLS RSA4096 SHA256 2022 CA1" (verified OK))
- by bmailout1.hostsharing.net (Postfix) with ESMTPS id D5BCE300002D8;
- Sun,  5 Nov 2023 18:39:46 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id BDB26473E23; Sun,  5 Nov 2023 18:39:46 +0100 (CET)
-Date: Sun, 5 Nov 2023 18:39:46 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Subject: Re: [PATCH v2 6/9] PCI: Rename is_thunderbolt to is_tunneled
-Message-ID: <20231105173946.GA31955@wunner.de>
-References: <20231103190758.82911-1-mario.limonciello@amd.com>
- <20231103190758.82911-7-mario.limonciello@amd.com>
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
+ [IPv6:2607:f8b0:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3308210E11A
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Nov 2023 17:55:58 +0000 (UTC)
+Received: by mail-pl1-x62b.google.com with SMTP id
+ d9443c01a7336-1cc5b7057d5so33666845ad.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 05 Nov 2023 09:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699206957; x=1699811757; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=HIXC95EsfE1M+IH5iNxhZaF/mLKVXVH52rDOYhksDf4=;
+ b=KW47Ns1nmomh1fZR7dM11DbKIXxhEuZJKmK8tOUtewm5JYA0tZ4yH0i0aIh0Z4gMrU
+ 3F9NHqR6c6dxA7b08bHe3RgoVVaJnWw7dA3XxzdzcCaPzoar80zeweYkggFQ1F9AOP5S
+ HzQrS+JnPftFLpne66VXJRxtcBBCkSq11CDxJ8gFvkqFtMUkbWKIjfwc1OH2xqzJzXwG
+ YXsuOmEMa8DD1eiwqAUn4BZl09k3DiZHPlEQyrw6cUDP631bGRmOew4YPPvy7vt5R6aK
+ 1hj/dPxVAofcRDdRT+AW57Wwe5yxk9bY49PiECpGwArHZ1du8p0u3NwXEyroMBwI3S5/
+ Ixng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699206957; x=1699811757;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HIXC95EsfE1M+IH5iNxhZaF/mLKVXVH52rDOYhksDf4=;
+ b=rI2gZRihp7FjnsHO419k1QUqorMKG5hY8xqDiqWFJshxEgfhQhIxJwLgiTthkHle8D
+ pygIfz0p90uWgE6jKrIJI8NAWUgx5RTDLNcu5BJyX9FvsBKRHuyNqdBtoAOpYTszqJxD
+ rdnMFFMU8XBuhs8T0qWHIKsWR8YZjaKsyZEXT+4onS0cJ288cMIyHt+4yJUqw8mvVclz
+ 2WcptpVDMp1FPNTuUKU79xOy7ffQ+Nmns/Dt7tMOIu1GexHEfG74HuykhI3IPZo8ez9u
+ 18nAI0CwESX1wjqiwsGMvMxgMQ0T1cB9iZ7sUFBcGb1/XUBBUyG4hY37a7fXaM26aph1
+ V04g==
+X-Gm-Message-State: AOJu0Yzj2H1acrm1GWkzbbehI9qKMJZBxNejGbry9sLQ6PYcL902dTA8
+ cU4wMQO1molAj8A+JrJikX0=
+X-Google-Smtp-Source: AGHT+IFBLGY54PYhYsI+r9J0zFjt+Lj9MUAmvwx6SjMhszUI82oqENWEtbcEZk5jA75+E2fw/54IEQ==
+X-Received: by 2002:a17:902:ecce:b0:1cc:59a1:79c6 with SMTP id
+ a14-20020a170902ecce00b001cc59a179c6mr22992191plh.18.1699206957551; 
+ Sun, 05 Nov 2023 09:55:57 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ m15-20020a170902db0f00b001c7443d0890sm3062865plx.102.2023.11.05.09.55.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 05 Nov 2023 09:55:56 -0800 (PST)
+Date: Sun, 5 Nov 2023 09:55:55 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Subject: Re: [PATCH 2/2] drm/amd/display: Fix stack size issue on DML2
+Message-ID: <aa6344f8-abd4-4f9e-86cf-febecd6fd747@roeck-us.net>
+References: <20231016142031.241912-1-Rodrigo.Siqueira@amd.com>
+ <20231016142031.241912-3-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231103190758.82911-7-mario.limonciello@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20231016142031.241912-3-Rodrigo.Siqueira@amd.com>
+X-Mailman-Approved-At: Mon, 06 Nov 2023 09:00:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,47 +73,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- Karol Herbst <kherbst@redhat.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
- Andreas Noever <andreas.noever@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- Danilo Krummrich <dakr@redhat.com>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Jamet <michael.jamet@intel.com>, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Yehezkel Bernat <YehezkelShB@gmail.com>,
- Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Maciej W . Rozycki" <macro@orcam.me.uk>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Roman Li <roman.li@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-next@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Chaitanya Dhere <chaitanya.dhere@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 03, 2023 at 02:07:55PM -0500, Mario Limonciello wrote:
-> The `is_thunderbolt` bit has been used to indicate that a PCIe device
-> contained the Intel VSEC which is used by various parts of the kernel
-> to change behavior. To later allow usage with USB4 controllers as well,
-> rename this to `is_tunneled`.
+On Mon, Oct 16, 2023 at 08:19:18AM -0600, Rodrigo Siqueira wrote:
+> This commit is the last part of the fix that reduces the stack size in
+> the DML2 code.
+> 
 
-This doesn't seem to make sense.  is_thunderbolt indicates that a device
-is part of a Thunderbolt controller.  See the code comment:
+That does not really help when trying to build allmodconfig or allyesconfig
+with gcc 11.4 or 12.3.
 
-> -	unsigned int	is_thunderbolt:1;	/* Thunderbolt controller */
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/display_mode_core.c: In function 'dml_prefetch_check':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/display_mode_core.c:6707:1: error: the frame size of 2056 bytes is larger than 2048 bytes
 
-A Thunderbolt controller is not necessarily tunneled.  The PCIe switch,
-NHI and XHCI of the Thunderbolt host controller are not tunneled at all.
+This is with v6.6-14500-g1c41041124bd.
 
-Thanks,
+I am overwriting it by forcing CONFIG_FRAME_WARN=0 in my test builds for
+x86_64, but of course that affects all code. Maybe consider increasing
+frame-larger-than in drivers/gpu/drm/amd/display/dc/dml2/Makefile ?
+Currently it is
 
-Lukas
+ifneq ($(CONFIG_FRAME_WARN),0)
+frame_warn_flag := -Wframe-larger-than=2048
+endif
+
+Guenter
