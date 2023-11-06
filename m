@@ -2,43 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458977E2EB0
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 22:09:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7047E2F10
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 22:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4AC210E425;
-	Mon,  6 Nov 2023 21:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C5C10E43E;
+	Mon,  6 Nov 2023 21:37:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827DC10E0EF;
- Mon,  6 Nov 2023 21:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=WcTGKRC8aIgIPpHyxt4LGmD5l1aKIH7ouZAiNt82fgg=; b=sKhhISRqy1vGsTBa4cQkabNGwK
- Y80kTBPUORC6EOmzuclu5twI3w3XcUEWwHMohljLxE2+7JhgtQ8o9m2vAYgUCGK6NHR5niwvmST52
- nSj634WUPTTp89u40iIyu3dIUDdKwFHmQJiBeut3uhCoiYEczGA51DKix2AFnRmMRIJsAbwDQwn0Z
- Aq9VxikIu0Gbef2njHB/Fjc0In45vDqJYFzTy5dQQkyvRvkaImhOsLod4iM0wWGjxGIqSLfhhkDtO
- hJ3LoY07io4PiRJcq9lQMo1HRc4BG6/2P0EqRn9gW9eN2liJNTwR3ylCzASH6Cm5MECpygt0eqVy8
- EcAohGXg==;
-Received: from [50.53.46.231] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1r06pj-00HZGK-1n; Mon, 06 Nov 2023 21:08:31 +0000
-Message-ID: <aa6b416d-08a4-4f8e-8ab6-f8bf489876d0@infradead.org>
-Date: Mon, 6 Nov 2023 13:08:31 -0800
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com
+ [IPv6:2607:f8b0:4864:20::c32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5C710E436;
+ Mon,  6 Nov 2023 21:20:08 +0000 (UTC)
+Received: by mail-oo1-xc32.google.com with SMTP id
+ 006d021491bc7-582050ce2d8so819816eaf.0; 
+ Mon, 06 Nov 2023 13:20:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699305607; x=1699910407; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=1fyk105fO9nPx1K8RQh7z3r5ykWh5/CrtqeSXyVa34c=;
+ b=HE7iYAtSDgKg4l4CWcWcumSQG9a21pWzw+EC6ZA+1tOjjgK08AcO2V4/Iwmgkmw7ct
+ UmfcP0gEylosJu/w7hiXRtE4zhDecysB5F2BMe1q1s06vzSkjKWgbG3hBTZUR4425FSO
+ m+r+x25BwoiWiDEPN6iG+2xxJ+GLqj4t63uiQzK1EoQj4mUsnBvcPb8eFrQoEC5BsYEA
+ XtxoMgcMxHVTGEk+WSDocOIwtYDafmReMES8U5/+sAuPa6PfHwl52etypXaQXAC9+wn+
+ FlCmPgX7Rskg5eHqGtZJ0/LmOVRJ9W3eejHPV1nGOLaAj6lwQQ8FjA1aciY2Jpi3nbUC
+ rxNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699305607; x=1699910407;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=1fyk105fO9nPx1K8RQh7z3r5ykWh5/CrtqeSXyVa34c=;
+ b=Mvr+p+5Fbe6ssz1y5x7tniscjb6XaUoLP5q7/eDmHlCLYEC48aXsGd5Hh6kMmXUPnx
+ 0REpD23OYsSVb59K/sq6lR53QLA+IEK/dxKr64jsJn9+ztIxwwHTTZJSW2hHNrg4PuZI
+ 9Q3FTsi5uzeVH9gQiqqGhK0yl0rSxPU7tYBBtZ0F+npxp4DLA7T3S5UED7S2XoGK72ms
+ qWvuSZwwBYQE35ewXObt7AeZp0QdzItV/swRtlDOgIXV3YljO2ukS2w5C+VUuhAfdNdA
+ 1nBPBgXqKjxqgDrOltjbSqgF0TckTzcZi1H/joaBab/ZUm53Ul9sm7AXcTepTSQWDq2k
+ lbeg==
+X-Gm-Message-State: AOJu0YzFprqSdxYqweWebfF37WZd8fJLkXqusYpXv++kDfHKzCMBo7q6
+ MMU3Jy5rlK6AFb6EjqnoxTI=
+X-Google-Smtp-Source: AGHT+IH4VDf8xNiyaOS4OHF/NY+0agil1P2kuT4qJkDyOIVe9taGaS0U+sjLOgwU7KXVIGo4aSi+fQ==
+X-Received: by 2002:a05:6358:f201:b0:169:4a72:2b84 with SMTP id
+ jj1-20020a056358f20100b001694a722b84mr41339730rwb.1.1699305607292; 
+ Mon, 06 Nov 2023 13:20:07 -0800 (PST)
+Received: from [192.168.0.152] ([103.75.161.210])
+ by smtp.gmail.com with ESMTPSA id
+ y188-20020a6364c5000000b005b92ba3938dsm190941pgb.77.2023.11.06.13.20.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Nov 2023 13:20:06 -0800 (PST)
+Message-ID: <3b92b89b-ca72-4012-b4f2-0b19e4ba9153@gmail.com>
+Date: Tue, 7 Nov 2023 02:49:56 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm: amd: Resolve Sphinx unexpected indentation warning
+Subject: Re: [PATCH] drivers: gpu: Fix warning using plain integer as NULL
 Content-Language: en-US
-To: Hunter Chasens <hunter.chasens18@ncf.edu>, linux-kernel@vger.kernel.org
-References: <20231106201739.29507-1-hunter.chasens18@ncf.edu>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20231106201739.29507-1-hunter.chasens18@ncf.edu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 06 Nov 2023 21:09:34 +0000
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20231103155013.332367-1-singhabhinav9051571833@gmail.com>
+ <CADnq5_OkWD3YmCKgXbtk=Gnba3AgAiAWp2z_nzHQvRfEOsdXVg@mail.gmail.com>
+From: Abhinav Singh <singhabhinav9051571833@gmail.com>
+In-Reply-To: <CADnq5_OkWD3YmCKgXbtk=Gnba3AgAiAWp2z_nzHQvRfEOsdXVg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 06 Nov 2023 21:37:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,55 +76,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: airlied@gmail.com, Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com,
+ linux-kernel-mentees@lists.linuxfoundation.org, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 11/6/23 12:17, Hunter Chasens wrote:
-> Resolves Sphinx unexpected indentation warning when compiling
-> documentation (e.g. `make htmldocs`). Replaces tabs with spaces and adds
-> a literal block to keep vertical formatting of the
-> example power state list.
+On 11/7/23 00:25, Alex Deucher wrote:
+> Applied.  This matches what we already do in the other clear state headers.
 > 
-> Signed-off-by: Hunter Chasens <hunter.chasens18@ncf.edu>
-
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
-> ---
->  drivers/gpu/drm/amd/pm/amdgpu_pm.c | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
+> Alex
 > 
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> index 517b9fb4624c..81b8ceb26890 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -989,12 +989,13 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
->   * Reading back the files will show you the available power levels within
->   * the power state and the clock information for those levels. If deep sleep is
->   * applied to a clock, the level will be denoted by a special level 'S:'
-> - * E.g.,
-> - *	S: 19Mhz *
-> - *	0: 615Mhz
-> - *	1: 800Mhz
-> - *	2: 888Mhz
-> - *	3: 1000Mhz
-> + * E.g.::
-> + *
-> + *  S: 19Mhz *
-> + *  0: 615Mhz
-> + *  1: 800Mhz
-> + *  2: 888Mhz
-> + *  3: 1000Mhz
->   *
->   *
->   * To manually adjust these states, first select manual using
-
--- 
-~Randy
+> On Fri, Nov 3, 2023 at 12:00 PM Abhinav Singh
+> <singhabhinav9051571833@gmail.com> wrote:
+>>
+>> sparse static analysis tools generate a warning with this message
+>> "Using plain integer as NULL pointer". In this case this warning is
+>> being shown because we are trying to intialize a pointer to NULL using
+>> integer value 0.
+>>
+>> Signed-off-by: Abhinav Singh <singhabhinav9051571833@gmail.com>
+>> ---
+>>   drivers/gpu/drm/radeon/clearstate_evergreen.h | 8 ++++----
+>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/radeon/clearstate_evergreen.h b/drivers/gpu/drm/radeon/clearstate_evergreen.h
+>> index 63a1ffbb3ced..3b645558f133 100644
+>> --- a/drivers/gpu/drm/radeon/clearstate_evergreen.h
+>> +++ b/drivers/gpu/drm/radeon/clearstate_evergreen.h
+>> @@ -1049,7 +1049,7 @@ static const struct cs_extent_def SECT_CONTEXT_defs[] =
+>>       {SECT_CONTEXT_def_5, 0x0000a29e, 5 },
+>>       {SECT_CONTEXT_def_6, 0x0000a2a5, 56 },
+>>       {SECT_CONTEXT_def_7, 0x0000a2de, 290 },
+>> -    { 0, 0, 0 }
+>> +    { NULL, 0, 0 }
+>>   };
+>>   static const u32 SECT_CLEAR_def_1[] =
+>>   {
+>> @@ -1060,7 +1060,7 @@ static const u32 SECT_CLEAR_def_1[] =
+>>   static const struct cs_extent_def SECT_CLEAR_defs[] =
+>>   {
+>>       {SECT_CLEAR_def_1, 0x0000ffc0, 3 },
+>> -    { 0, 0, 0 }
+>> +    { NULL, 0, 0 }
+>>   };
+>>   static const u32 SECT_CTRLCONST_def_1[] =
+>>   {
+>> @@ -1070,11 +1070,11 @@ static const u32 SECT_CTRLCONST_def_1[] =
+>>   static const struct cs_extent_def SECT_CTRLCONST_defs[] =
+>>   {
+>>       {SECT_CTRLCONST_def_1, 0x0000f3fc, 2 },
+>> -    { 0, 0, 0 }
+>> +    { NULL, 0, 0 }
+>>   };
+>>   static const struct cs_section_def evergreen_cs_data[] = {
+>>       { SECT_CONTEXT_defs, SECT_CONTEXT },
+>>       { SECT_CLEAR_defs, SECT_CLEAR },
+>>       { SECT_CTRLCONST_defs, SECT_CTRLCONST },
+>> -    { 0, SECT_NONE }
+>> +    { NULL, SECT_NONE }
+>>   };
+>> --
+>> 2.39.2
+>>
+Hi Alex, thanks for looking into this. By applied you mean this patch is 
+accepted and it has been merged?
