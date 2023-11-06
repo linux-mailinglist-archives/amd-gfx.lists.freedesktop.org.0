@@ -2,46 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3C307E1CD8
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 10:00:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF537E1B03
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Nov 2023 08:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51A6F10E294;
-	Mon,  6 Nov 2023 09:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5CB910E028;
+	Mon,  6 Nov 2023 07:20:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA4810E267;
- Mon,  6 Nov 2023 05:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=zasn4w0oFWumSsqCqP28MJ/uPlB0cSsr7K9bf/OVxqY=; b=eRcSAPghQurk40C3TGIMY4j69Y
- 4Pi1KCpZsK8FUtXRJzZrqZqhaGQTCMmnPvHt7yf1SIBQGmaIHvw/3b3OG6tloG+7KxYwZw5e64w43
- Ucwd+8TWrzmoY2zVW5Za9kZ/SnJyr/GxpuEOSao0SnwPjkG+SuEpRvMO/VGpWcKudcHkwnjSzGUJQ
- r8OWlfaYTI1juyHZF1+5L1ps5p+N+8E80SUfDBpNC2SwVEdHSTRuQ+rZT8q3OpTjOQZycGCxzVj/S
- dW39s1M5goCXED/9TUyown7DWb+MzxF9Y0mn7r9kJvPThVrbnY9MUAXrd88iu546OBAafJ7G/K5su
- dmuWKKKQ==;
-Received: from [50.53.46.231] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qzs83-00Ft8t-2N; Mon, 06 Nov 2023 05:26:27 +0000
-Message-ID: <665794d7-38e0-4e74-9af7-eca986792e44@infradead.org>
-Date: Sun, 5 Nov 2023 21:26:26 -0800
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
+ [IPv6:2607:f8b0:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2435D10E028
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 07:20:01 +0000 (UTC)
+Received: by mail-pl1-x62d.google.com with SMTP id
+ d9443c01a7336-1cc5fa0e4d5so38004995ad.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 05 Nov 2023 23:20:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699255200; x=1699860000; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=u9fAZAztE0fZnRppsuZW5whBvfbPMksUXtw2NeivLjo=;
+ b=OeNo2DMGQXv6BXntWZ53k5+qO3dDsW+Ucl+WRQBmEj1Ina8zlRnQ0ZLC0tK7Z+ytof
+ QliitBQhAng2/hbNPgreed3lvy4lGaDIM674Jp6uEibW/nMqyyGvHfbFfBb3ifIIryVB
+ aK3IAaWXHzjqwsNFpDPoEqfw4Ajuk2DsGmjZJd7kGc9bx1gKfBz1usAi9EyAEofHZr6+
+ x9R2sLBEn2VghJjJCy+2prWqnPwGwbb/t+L4FKVz8YNebyPlTUBlFNdmITXUES/DUDtL
+ /wUWnt1tmknRLZWyzUpmdqT+XR5LnU4WxylLnsgvBiW6gIjxqGyCxI4HJv+tFANcAfWi
+ 4m8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699255200; x=1699860000;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=u9fAZAztE0fZnRppsuZW5whBvfbPMksUXtw2NeivLjo=;
+ b=fS20mx8u99sxiXYmy3hEJ15hFVRKBlUR9JLDOZi70xKAaweztzIXt0V+hhI2LfxCp3
+ UZsH9mhi7ER4pvvzYP8A8+IY3HHw6mbaxqaRa+pIwYsA9PZyw9qNOP/VFRhS0i8/enPk
+ 8dub+15lLPySzhISyRaw5MhThaX3LhJhOwmZecD7Shdey6Hvcp1Kyf8CfKmlFqtlN8RC
+ nA8XBFOlmuso8ZveWcEeMPyCXpHzKAGPPvkaIjuUxeSPMx3k6O1K0YZjWVbRjVScG+67
+ IqloeaSc4uZOZwM7GcohfnHUO32mOH1tsI7cIODGFePGZgJ9a1BBxFnn6D2HgjFnNuts
+ Gasg==
+X-Gm-Message-State: AOJu0YwDtjrNehX/xpUL66TmDBb5NLprnpMUyOUsSvKUG3jqQ+rpqULe
+ iqM0rrFu8F77RuQf2BXgrlTZMcf6ym0=
+X-Google-Smtp-Source: AGHT+IEc+ecCvffm4mdNPAT+KiQFTOJepUh3OxRYFp6o3oo+9BPdzNqMGuhV51+ntARJruE9WDrgtQ==
+X-Received: by 2002:a17:903:c4:b0:1cc:3b86:cfc5 with SMTP id
+ x4-20020a17090300c400b001cc3b86cfc5mr20634177plc.4.1699255199932; 
+ Sun, 05 Nov 2023 23:19:59 -0800 (PST)
+Received: from localhost.localdomain ([2601:644:400:c541:161b:8203:d9e6:f4dc])
+ by smtp.gmail.com with ESMTPSA id
+ jc10-20020a17090325ca00b001cc3a6813f8sm5197062plb.154.2023.11.05.23.19.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 05 Nov 2023 23:19:59 -0800 (PST)
+From: Lawrence Yiu <lawyiu.dev@gmail.com>
+To: amd-gfx@lists.freedesktop.org,
+	Felix.Kuehling@amd.com
+Subject: [PATCH] drm/amdkfd: Skip locking KFD when unbinding GPU
+Date: Sun,  5 Nov 2023 23:14:05 -0800
+Message-Id: <20231106071405.121981-1-lawyiu.dev@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm: amd: Resolve Sphinx unexpected indentation warning
-Content-Language: en-US
-To: Bagas Sanjaya <bagasdotme@gmail.com>,
- Hunter Chasens <hunter.chasens18@ncf.edu>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20231105210044.70371-1-hunter.chasens18@ncf.edu>
- <ZUh2fuCjmgle3vd9@debian.me>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <ZUh2fuCjmgle3vd9@debian.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 06 Nov 2023 09:00:02 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,65 +70,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lijo Lazar <lijo.lazar@amd.com>,
- Linux Documentation <linux-doc@vger.kernel.org>, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org,
- Linux DRI Development <dri-devel@lists.freedesktop.org>, daniel@ffwll.ch,
- alexander.deucher@amd.com, evan.quan@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: alexander.deucher@amd.com, Xinhui.Pan@amd.com, christian.koenig@amd.com,
+ Lawrence Yiu <lawyiu.dev@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+After unbinding a GPU, KFD becomes locked and unusable, resulting in
+applications not being able to use ROCm for compute anymore and rocminfo
+outputting the following error message:
 
+ROCk module is loaded
+Unable to open /dev/kfd read-write: Invalid argument
 
-On 11/5/23 21:15, Bagas Sanjaya wrote:
-> On Sun, Nov 05, 2023 at 04:00:44PM -0500, Hunter Chasens wrote:
->> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> index 517b9fb4624c..703fe2542258 100644
->> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> @@ -990,11 +990,14 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
->>   * the power state and the clock information for those levels. If deep sleep is
->>   * applied to a clock, the level will be denoted by a special level 'S:'
->>   * E.g.,
->> - *	S: 19Mhz *
->> - *	0: 615Mhz
->> - *	1: 800Mhz
->> - *	2: 888Mhz
->> - *	3: 1000Mhz
->> + *
->> + * ::
->> + *
->> + *  S: 19Mhz *
->> + *  0: 615Mhz
->> + *  1: 800Mhz
->> + *  2: 888Mhz
->> + *  3: 1000Mhz
->>   *
->>   *
->>   * To manually adjust these states, first select manual using
-> 
-> LGTM, thanks!
-> 
-> Fixes: 615585d09b33 ("Documentation/amdgpu: Modify pp_dpm_*clk details")
-> Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
-> 
+KFD remains locked even after rebinding the same GPU and a system reboot
+is required to unlock it. Fix this by not locking KFD during the GPU
+unbind process.
 
-but can it be done without being so obvious about using Sphinx (or is it ReST?)
-in source files?
+Closes: https://github.com/RadeonOpenCompute/ROCm/issues/629
+Signed-off-by: Lawrence Yiu <lawyiu.dev@gmail.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-e.g.: (not tested)
-
- * E.g.:
- * *	S: 19Mhz *
- * *	0: 615Mhz
- * *	1: 800Mhz
- * *	2: 888Mhz
- * *	3: 1000Mhz
-
-This is what I have seen done in quite a few source files.
-
-Oh well, lots of files are already infected, so WTH. :(
-
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 0a9cf9dfc224..c9436039e619 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -949,8 +949,8 @@ void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm)
+ 	if (!kfd->init_complete)
+ 		return;
+ 
+-	/* for runtime suspend, skip locking kfd */
+-	if (!run_pm) {
++	/* for runtime suspend or GPU unbind, skip locking kfd */
++	if (!run_pm && !drm_dev_is_unplugged(adev_to_drm(kfd->adev))) {
+ 		mutex_lock(&kfd_processes_mutex);
+ 		count = ++kfd_locked;
+ 		mutex_unlock(&kfd_processes_mutex);
 -- 
-~Randy
+2.34.1
+
