@@ -1,63 +1,116 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295D07E401F
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 14:38:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6397D7E419E
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 15:11:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5263410E14C;
-	Tue,  7 Nov 2023 13:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED3EE10E606;
+	Tue,  7 Nov 2023 14:11:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com
- [IPv6:2607:f8b0:4864:20::c2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 683AB10E04C;
- Tue,  7 Nov 2023 13:38:16 +0000 (UTC)
-Received: by mail-oo1-xc2f.google.com with SMTP id
- 006d021491bc7-586beb5e6a7so3180618eaf.1; 
- Tue, 07 Nov 2023 05:38:16 -0800 (PST)
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58A5010E5FB;
+ Tue,  7 Nov 2023 14:08:46 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id
+ 5614622812f47-3b2f2b9a176so3595289b6e.0; 
+ Tue, 07 Nov 2023 06:08:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699364295; x=1699969095; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=u/JzXXKi9EWZmEKt0kuoOZHJPpAwEzdC1EaLt8yqMl0=;
- b=ASqNRG66OEXUyFRSUA6Qn4rrzbkjk1Duqc7Je6Sx78IJxWkXxsrj6grtwgDR99coR+
- TpuxlkRNZD3/RcBdtBs2BLzVP7sh1+7EfXItFWWmuRcmeAknVOlXuT6RW3Vkjsx49dCY
- rn6rTHv2Q8HQ7cbePDLH6HJA1C/APn55d+RYul0cxyAbmrP+xoKqXU0r7BrU/6KVqfgE
- OiH50H6XrA60PeaZ1yozaIzBnvlMVIiN9mNZdjXyxLebXZs5aiQewTuGWPikgaPjgcTD
- R4PLkck7y9nscgKxx0lWCZp9enPVHfwShAVFvBqICe6l8Mm0dGairfudyaUudlRcujNB
- o4PQ==
+ d=gmail.com; s=20230601; t=1699366125; x=1699970925; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+ :to:content-language:subject:user-agent:mime-version:date:message-id
+ :sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=7E017EjOFXuP36pk8gKau3KQ8toNm0LyBtFmQTDZXes=;
+ b=Ic2uxL91W/13vx4vExe7m4ITqXttte5lnPCSSi/m5QAeaPt4koQJTP0QbKU2CEF9cF
+ cJE6Ncs7NsnRoRzKZ9NGKNKZSWsNjyLqyWq6Wui9fectSmOSNhwPaZtd46Kp7D5E6gXy
+ x6pdZETSvOE+V+C50cTLs4QBCQ6DmJjQlW1Hqi3TdVzxnS0FCd2gmsp4u1sMYNakBl/c
+ 5K9l431iZOc3PC8A61M1Og5U3joYV3+zyBCJF19pm4V0usfeS2OqWFO+6N5lkbP4yaCC
+ 7xlwIlP4Mj+92/OzxEywPu7V2p7TbNjpLbt3cY8bT3nTtas6gPMlVU4wNPe6EOP5N408
+ TC0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699364295; x=1699969095;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=u/JzXXKi9EWZmEKt0kuoOZHJPpAwEzdC1EaLt8yqMl0=;
- b=leZLqJkYQndFSMK7ZELMsv4hJ6lq9ZdjX7YRr5U/+IJkQ3hJksxdGI16es7W1qPZ/6
- RLF37DZv1syZ7p2qYsSS74dJfkMJYLsn/p7bOP2gacKroKsZL9/KXAPzq0wcBZbWzJJp
- QZvsxbjVUQcMFJOuHLeEH1xDmREpP03yG6UDLP6TpF74qqMDc0HX9uQjEyqLhOyvuL31
- iXXKEC1Kc/0uP6dlt8Zc4LRbAe9RkKWT2IdNMw2MrIoA6GlgVfRRR/Xl+vBatzaD9Keu
- uOTWR/QDuNWAxWAdkFUQR13ZRZi6zwRZ3P1bVsYxFy7QrKcQYUMVoToaed45aE+DHgyA
- U23A==
-X-Gm-Message-State: AOJu0YwLgR43/9F/jEY3ox4pdZQ5dECmbL8Ar7QN5YEQ2D3P7VO+5svL
- xicvtp4RqDDdqGnj7yhuN56FAWPkq/Y7gV2wt9q6gXk1
-X-Google-Smtp-Source: AGHT+IHNBTVDKA0fR0kDClpaT8pql9m1AEsUIvWGKaOkV7HGpxLEMW93vsgGqKhwvt+ff8/n4Uq7GyTt1WdlZHsmbo0=
-X-Received: by 2002:a05:6871:af8c:b0:1e9:b9e6:98e1 with SMTP id
- zx12-20020a056871af8c00b001e9b9e698e1mr2251960oab.1.1699364295339; Tue, 07
- Nov 2023 05:38:15 -0800 (PST)
+ d=1e100.net; s=20230601; t=1699366125; x=1699970925;
+ h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+ :to:content-language:subject:user-agent:mime-version:date:message-id
+ :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=7E017EjOFXuP36pk8gKau3KQ8toNm0LyBtFmQTDZXes=;
+ b=DCy6LLRMm9Tfa5wpr+NdcAbt6McskwmwwvsD0NpJtBI3uIFWeVe4kk6ytcCwKiF5yA
+ xVOO/AYGFlwoeAex2g/VZNBdhORJa+DVIwApr/8WTNkr+JrmyOGfaOXszUGca7aGbcqj
+ NnrDQoPvFzaxXWrNFD/CThtNeiqyxvz8YCwvpQIOdp7qga/wsF0G1BtsMsJ8nwikRZzm
+ 4a3gDUXa56NXIToHXBkAadR9pxrHoOkwifzeF4usarXBih2xuBMFMLV3TA288AKiHLYH
+ a85jdNQP2tINJXf4KW+88ypGiDyo4VIIsXURCPV7hlNQtJ3EtOQY2xjqVJGPtP0RreqY
+ cJgQ==
+X-Gm-Message-State: AOJu0Yy5CHRRtpMOu5L6h2Ja5Tt473U8v6AFp0gBBwT0LwxRihWHW/OQ
+ ZWZs+kH2PXlWThR0aYP1nt0=
+X-Google-Smtp-Source: AGHT+IEv7qhraNCOHtaK5eQQRgR4wQeeTOv9HlDWpb8HARhYjVV4ooQ+6ZyIWGbKsX9A29dvpCkWkg==
+X-Received: by 2002:a05:6808:4189:b0:3a7:6d4a:fd78 with SMTP id
+ dj9-20020a056808418900b003a76d4afd78mr30432411oib.24.1699366125410; 
+ Tue, 07 Nov 2023 06:08:45 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
+ ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ o15-20020a81de4f000000b0059f766f9750sm5537468ywl.124.2023.11.07.06.08.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 07 Nov 2023 06:08:44 -0800 (PST)
+Message-ID: <98e8490e-6608-47a8-890c-f1fe894dac7f@roeck-us.net>
+Date: Tue, 7 Nov 2023 06:08:42 -0800
 MIME-Version: 1.0
-References: <20231107121837.3759358-1-sashal@kernel.org>
- <20231107121837.3759358-21-sashal@kernel.org>
-In-Reply-To: <20231107121837.3759358-21-sashal@kernel.org>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 7 Nov 2023 08:38:03 -0500
-Message-ID: <CADnq5_PzxAMvY7FKDuBT-7RwGhXusoKioF8zXwKR9oWvdp9foQ@mail.gmail.com>
-Subject: Re: [PATCH AUTOSEL 6.6 21/40] drm/radeon: Fix UBSAN
- array-index-out-of-bounds for Radeon HD 5430
-To: Sasha Levin <sashal@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/pm: clean up redundant comparisons with 0
+Content-Language: en-US
+To: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>,
+ evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, skhan@linuxfoundation.org
+References: <20231107082910.92508-1-jose.pekkarinen@foxhound.fi>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231107082910.92508-1-jose.pekkarinen@foxhound.fi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 07 Nov 2023 14:11:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,55 +122,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Held <felix.held@amd.com>, Xinhui.Pan@amd.com,
+Cc: linux-hwmon@vger.kernel.org, jdelvare@suse.com,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- stable@vger.kernel.org, christian.koenig@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, airlied@gmail.com,
+ linux-kernel-mentees@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 7, 2023 at 7:20=E2=80=AFAM Sasha Levin <sashal@kernel.org> wrot=
-e:
->
-> From: Mario Limonciello <mario.limonciello@amd.com>
->
-> [ Upstream commit c63079c61177ba1b17fa05c6875699a36924fe39 ]
->
-> For pptable structs that use flexible array sizes, use flexible arrays.
->
-> Suggested-by: Felix Held <felix.held@amd.com>
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2894
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-
-FWIW, I don't think any of these UBSAN variable sized array changes
-are really stable material.  They are not really fixing an actual
-issue just making UBSAN happy.
-
-Alex
-
-
+On 11/7/23 00:29, José Pekkarinen wrote:
+> There is a couple of function return checks of functions that return
+> unsigned values, and local variables to hold them are also unsigned, so
+> checking if they are negative will always return false. This patch will
+> remove them, as well as the never reached code.
+> 
+> drivers/gpu/drm/amd/pm/amdgpu_pm.c:2801:5-8: WARNING: Unsigned expression compared with zero: val < 0
+> drivers/gpu/drm/amd/pm/amdgpu_pm.c:2814:5-8: WARNING: Unsigned expression compared with zero: val < 0
+> 
+> Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
 > ---
->  drivers/gpu/drm/radeon/pptable.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/radeon/pptable.h b/drivers/gpu/drm/radeon/pp=
-table.h
-> index 4c2eec49dadc9..94947229888ba 100644
-> --- a/drivers/gpu/drm/radeon/pptable.h
-> +++ b/drivers/gpu/drm/radeon/pptable.h
-> @@ -74,7 +74,7 @@ typedef struct _ATOM_PPLIB_THERMALCONTROLLER
->  typedef struct _ATOM_PPLIB_STATE
->  {
->      UCHAR ucNonClockStateIndex;
-> -    UCHAR ucClockStateIndices[1]; // variable-sized
-> +    UCHAR ucClockStateIndices[]; // variable-sized
->  } ATOM_PPLIB_STATE;
->
->
-> --
-> 2.42.0
->
+>   drivers/gpu/drm/amd/pm/amdgpu_pm.c | 4 ----
+>   1 file changed, 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> index 8bb2da13826f..e7bb1d324084 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -2798,8 +2798,6 @@ static ssize_t amdgpu_hwmon_show_power_avg(struct device *dev,
+>   	unsigned int val;
+>   
+>   	val = amdgpu_hwmon_get_power(dev, AMDGPU_PP_SENSOR_GPU_AVG_POWER);
+> -	if (val < 0)
+> -		return val;
+>   
+
+This is reporting errors returned from amdgpu_hwmon_get_power() as large integers.
+
+Guenter
+
+>   	return sysfs_emit(buf, "%u\n", val);
+>   }
+> @@ -2811,8 +2809,6 @@ static ssize_t amdgpu_hwmon_show_power_input(struct device *dev,
+>   	unsigned int val;
+>   
+>   	val = amdgpu_hwmon_get_power(dev, AMDGPU_PP_SENSOR_GPU_INPUT_POWER);
+> -	if (val < 0)
+> -		return val;
+>   
+>   	return sysfs_emit(buf, "%u\n", val);
+>   }
+
