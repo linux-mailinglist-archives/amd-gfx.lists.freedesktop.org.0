@@ -1,58 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8917E3670
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 09:13:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016507E4028
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 14:40:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5297A10E4CA;
-	Tue,  7 Nov 2023 08:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B47D510E5F2;
+	Tue,  7 Nov 2023 13:40:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EBE810E4BA;
- Tue,  7 Nov 2023 06:24:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699338255; x=1730874255;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=xMd2rVgz/0nCDHGO5G5Cgmns963Fjfa40nHUcD2LIxI=;
- b=IGCMk8ZZpOLcTsOgycxyY4TH3dQ/eEP5ApYP7g3QYG2nqGBUAliuOluS
- 5q0Nz+BKL2CeVuwhRrIK8vN1mQEN37rWnUNnI1BxvrXCo+05EWGnNTi1a
- v0CS1yb/0h97f5ax1fmFs62RLrv9b8S/jp6ZWJnJBMIpQNvLbykJfLf2g
- rNGe2YlKqBXrWEN561Ln0J9ZPIlalDjgXgkN7YnreOfgI5XG4VSa6AX7F
- vArXh463zL2b9g2BwG+UkgLqjUbL1QWzwUxvGEE1WFQ3ROxRSdHNFEo9H
- S5O6TpHxQWi8cqEM+Y1t2t7jqE0j+jbZLdSqqwa251uJAq1k49tAaNClj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="475682220"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="475682220"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 22:24:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="1094047505"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="1094047505"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga005.fm.intel.com with ESMTP; 06 Nov 2023 22:24:07 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1001)
- id 15A0E3CC; Tue,  7 Nov 2023 08:24:05 +0200 (EET)
-Date: Tue, 7 Nov 2023 08:24:05 +0200
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v2 8/9] PCI: Exclude PCIe ports used for tunneling in
- pcie_bandwidth_available()
-Message-ID: <20231107062405.GU17433@black.fi.intel.com>
-References: <20231103190758.82911-1-mario.limonciello@amd.com>
- <20231103190758.82911-9-mario.limonciello@amd.com>
- <20231106181022.GA18564@wunner.de>
- <712ebb25-3fc0-49b5-96a1-a13c3c4c4921@amd.com>
- <20231106185652.GA3360@wunner.de>
- <20231107054526.GT17433@black.fi.intel.com>
+Received: from 8.mo560.mail-out.ovh.net (8.mo560.mail-out.ovh.net
+ [188.165.52.147])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B22D110E4CE
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 08:37:01 +0000 (UTC)
+Received: from director11.ghost.mail-out.ovh.net (unknown [10.109.156.29])
+ by mo560.mail-out.ovh.net (Postfix) with ESMTP id 3538529A28
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 08:28:50 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-s8vqx (unknown [10.110.208.218])
+ by director11.ghost.mail-out.ovh.net (Postfix) with ESMTPS id A83E51FDFD;
+ Tue,  7 Nov 2023 08:28:48 +0000 (UTC)
+Received: from foxhound.fi ([37.59.142.95])
+ by ghost-submission-6684bf9d7b-s8vqx with ESMTPSA
+ id jQj6KkD1SWWnLwAA4IXPKg
+ (envelope-from <jose.pekkarinen@foxhound.fi>); Tue, 07 Nov 2023 08:28:48 +0000
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-95G001000307f4-4e36-45cc-84f3-1e15167bd51f,
+ 990ED9DB402E285008FC912DE57946D84A8BC800)
+ smtp.auth=jose.pekkarinen@foxhound.fi
+X-OVh-ClientIp: 213.216.211.70
+From: =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ skhan@linuxfoundation.org
+Subject: [PATCH] drm/amd/display: clean up redundant conversions to bool
+Date: Tue,  7 Nov 2023 10:28:38 +0200
+Message-Id: <20231107082839.92061-1-jose.pekkarinen@foxhound.fi>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231107054526.GT17433@black.fi.intel.com>
-X-Mailman-Approved-At: Tue, 07 Nov 2023 08:13:30 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 17672687891539732161
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrudduhedguddujecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpeflohhsrocurfgvkhhkrghrihhnvghnuceojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqnecuggftrfgrthhtvghrnhepfedtleeuteeitedvtedtteeuieevudejfeffvdetfeekleehhfelleefteetjeejnecukfhppeduvdejrddtrddtrddupddvudefrddvudeirddvuddurdejtddpfeejrdehledrudegvddrleehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhoshgvrdhpvghkkhgrrhhinhgvnhesfhhogihhohhunhgurdhfiheqpdhnsggprhgtphhtthhopedupdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdpoffvtefjohhsthepmhhoheeitddpmhhouggvpehsmhhtphhouhht
+X-Mailman-Approved-At: Tue, 07 Nov 2023 13:40:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +55,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- Karol Herbst <kherbst@redhat.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Andreas Noever <andreas.noever@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- Danilo Krummrich <dakr@redhat.com>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Jamet <michael.jamet@intel.com>, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Yehezkel Bernat <YehezkelShB@gmail.com>,
- Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Maciej W . Rozycki" <macro@orcam.me.uk>
+Cc: airlied@gmail.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, Bhawanpreet.Lakha@amd.com,
+ linux-kernel-mentees@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 07, 2023 at 07:45:26AM +0200, Mika Westerberg wrote:
-> Hi,
-> 
-> On Mon, Nov 06, 2023 at 07:56:52PM +0100, Lukas Wunner wrote:
-> > On Mon, Nov 06, 2023 at 12:44:25PM -0600, Mario Limonciello wrote:
-> > > Tangentially related; the link speed is currently symmetric but there are
-> > > two sysfs files.  Mika left a comment in drivers/thunderbolt/switch.c it may
-> > > be asymmetric in the future. So we may need to keep that in mind on any
-> > > design that builds on top of them.
-> > 
-> > Aren't asymmetric Thunderbolt speeds just a DisplayPort thing?
-> 
-> No, they affect the whole fabric. We have the initial code for
-> asymmetric switching in v6.7-rc1.
-> 
-> > > As 'thunderbolt' can be a module or built in, we need to bring code into PCI
-> > > core so that it works in early boot before it loads.
-> > 
-> > tb_switch_get_generation() is small enough that it could be moved to the
-> > PCI core.  I doubt that we need to make thunderbolt built-in only
-> > or move a large amount of code to the PCI core.
-> 
-> If at all possible I would like to avoid this and littering PCI side
-> with non-PCI stuff. There could be other similar "mediums" in the future
-> where you can transfer packets of "native" protocols such as PCIe so
-> instead of making it Thunderbolt/USB4 specific it should be generic
-> enough to support future extensions.
-> 
-> In case of Thunderbolt/USB4 there is no real way to figure out how much
-> bandwidth each PCIe tunnel gets (it is kind of bulk traffic that gets
-> what is left from isochronous protocols) so I would not even try that
-> and instead use the real PCIe links in pcie_bandwidth_available() and
-> skip all the "virtual" ones.
+This patch will address the following couple of warnings retrieved by
+using coccinelle, where there is an explicit conversion to bool that
+are redundant.
 
-Actually can we call the new function something like pci_link_is_virtual()
-instead and make pcie_bandwidth_available() call it? That would be more
-future proof IMHO.
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c:94:102-107: WARNING: conversion to bool not needed here
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c:102:72-77: WARNING: conversion to bool not needed here
+
+Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
+index 32d3086c4cb7..5ce542b1f860 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
+@@ -91,7 +91,7 @@ bool amdgpu_dm_setup_replay(struct dc_link *link, struct amdgpu_dm_connector *ac
+ 	pr_config.replay_supported = true;
+ 	pr_config.replay_power_opt_supported = 0;
+ 	pr_config.replay_enable_option |= pr_enable_option_static_screen;
+-	pr_config.replay_timing_sync_supported = aconnector->max_vfreq >= 2 * aconnector->min_vfreq ? true : false;
++	pr_config.replay_timing_sync_supported = aconnector->max_vfreq >= 2 * aconnector->min_vfreq;
+ 
+ 	if (!pr_config.replay_timing_sync_supported)
+ 		pr_config.replay_enable_option &= ~pr_enable_option_general_ui;
+@@ -99,7 +99,7 @@ bool amdgpu_dm_setup_replay(struct dc_link *link, struct amdgpu_dm_connector *ac
+ 	debug_flags = (union replay_debug_flags *)&pr_config.debug_flags;
+ 	debug_flags->u32All = 0;
+ 	debug_flags->bitfields.visual_confirm =
+-		link->ctx->dc->debug.visual_confirm == VISUAL_CONFIRM_REPLAY ? true : false;
++		link->ctx->dc->debug.visual_confirm == VISUAL_CONFIRM_REPLAY;
+ 
+ 	link->replay_settings.replay_feature_enabled = true;
+ 
+-- 
+2.39.2
+
