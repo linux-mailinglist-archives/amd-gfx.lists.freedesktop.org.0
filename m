@@ -2,115 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9937E30BD
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 00:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB32A7E366F
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 09:13:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F16C10E104;
-	Mon,  6 Nov 2023 23:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D772710E4C7;
+	Tue,  7 Nov 2023 08:13:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2063.outbound.protection.outlook.com [40.107.92.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D561210E104
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Nov 2023 23:10:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f2pc+the7qcG4xYHrFkV+tzHvO4st3wBAisebbxaYBdaHrjH1VWklVkIFGgmPN2cJ7GzFRjk/ghrSYYQozBrFUgIDUtnu+63df2CY5Kgs4UDI5OlA3ZQsKpwz1GxGYwKLR+LfbVUV1ZbwRKR1gI9B7W4ETBI/AaaAJRDcejrf8ujGyiJnrh7CmSgtJLMBLnl3gXBZAgdK0HMCs4C4KL0HKSBQFkrcOLXJgGKea4sTuKrRLW20MWVpzbQxITiaQAqlVl1iP8hgJ+K2Nm5cHlFvTNh1mgpIqLNkVahRsUfViY4IQlq9ZwsSO2F1NnCLA4H1H0B+7qkWM+9Gn/nC0hDSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u83elcwzxgq/4KuuLV7DvPmZwK374OIvLLde5kBhpak=;
- b=ZQJq+6qgCAbdmMre/tVXUtZmAlNJSKOwMM5R7nBN/Qb55bZKbRsfPEj89tADd3Ct+YuYlzTTvGdAqlQxeZDQW0a/lJzpJ4nL9vy2zjztcINfgCxUDBtvlWifMHkt+nr83wtR3vnwImdyCzaPszicUWJDnTkkvl6HXdk3UE1ml4HIAFYoRGnPgfMnszipAxZTJJWB2gZY1Z8sFF/gVHxu/QK+0RxbtvSAKOwoMGa7JHnT20r/vNw2ZuoliZenLuSWrdz5Q9uqRD6a4I5P+elrvYUQRInZ1gdpSPy8tGEFar37PYiG5JNhrAbSZy80o6rJ0s0s/UFzrViMbJy6pJggzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u83elcwzxgq/4KuuLV7DvPmZwK374OIvLLde5kBhpak=;
- b=KMRDI6KD7M/HOsXJmBwBDM+Ebj8qOIo9/VRYkDG029fxGY3rQwa9Ws1z8rydMmPog/18kDvE4OH8VwbYJwJlXcsWhJ8k9egGoaYzsQcOTdtetaJAJ7oPUwnGJNSe4oWTlp04ihofV77jxl96k3PZNM8380EXya2QAhy1RmqzDus=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by CY8PR12MB8243.namprd12.prod.outlook.com (2603:10b6:930:78::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Mon, 6 Nov
- 2023 23:10:32 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::19c3:4a94:9ddf:35aa]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::19c3:4a94:9ddf:35aa%3]) with mapi id 15.20.6954.028; Mon, 6 Nov 2023
- 23:10:31 +0000
-Message-ID: <4db20aad-c19f-4adf-ba13-97acbdb6ba16@amd.com>
-Date: Mon, 6 Nov 2023 18:10:29 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdkfd: Skip locking KFD when unbinding GPU
-Content-Language: en-US
-To: Lawrence Yiu <lawyiu.dev@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20231106071405.121981-1-lawyiu.dev@gmail.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20231106071405.121981-1-lawyiu.dev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBPR0101CA0220.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:67::17) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 389AF10E495;
+ Tue,  7 Nov 2023 00:25:14 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id
+ d9443c01a7336-1cc30bf9e22so40492065ad.1; 
+ Mon, 06 Nov 2023 16:25:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699316714; x=1699921514; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=KvNevDILmrFumM2oQIUBMvMXYtsYvLzdrTujg9hVkHI=;
+ b=miBkMjSDa+KJpdbHLW5RXIoBdprMRRqM+HJZaU3zMqfqvyoKGVcLfUtdl1LX0Wnwwy
+ /kpYdpv1wrsmwGrd5x8x/2fsupgJTYRlMajpZBW8MuAPHU61em0XZMYi+KpvtlOORheK
+ jb6R33X745Ldj+a5r3bkdZjW5qbxUZMrm4x5BXKw7DFeF/S0qllAXOByvnslOcQ6lR+s
+ r4yYMVRqxUYdTu8Z475fmsabFmupStl/HHg54wiRexFEONDNNi7OH2aof3ysdJy8CQKB
+ agOl+93JID7LS+Xxgy+F85FlMX0MolYRmOWY9bl8BdURlwX8Upa06A4ophPPaV6B/2nx
+ TWUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699316714; x=1699921514;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=KvNevDILmrFumM2oQIUBMvMXYtsYvLzdrTujg9hVkHI=;
+ b=WqFcEeYnMLdvCgiDnpjx1ee8V55a4hwHnNjMveP6c2oyeiOpQ+5rPvmCafghrT6kc0
+ KWG2SwCXwlBNNZx/sNFPEar5r3IqTR+4aUY0VawvvE13Oy5XZ953OcOs6sjqYhqTM4IH
+ V/68P7SChq0MZqVKMR28O82paYVRgGLVPOMhdRISVhkbLgpLjtSkznb0FW1gTYWyxqHT
+ 4pZZCePMFpR6chELAC44YUDbC3QFz7Q85+VXS3aIlzAnw8iUjE+9WnziNEOrec+b8Lso
+ Uo7YWME4qErCs0EAy6GWyg9rP7LEc/e/HD99XM/ojQy2dNPr/RsVlICHD8ciD8lAFM1f
+ kB6g==
+X-Gm-Message-State: AOJu0YwvyEeLXSUvTBudeUsKVnfQjhnMI+SOSwUVmcWIHirZgwm8EG8C
+ TpFntI3QTOdYNUt2mLnt3cw=
+X-Google-Smtp-Source: AGHT+IFpEJjW+6bQ6vlcdu8jbIyxxRW7ZMOKGK03NP4M1Mz4NcROaycZ11XDShYh+2rBgXl2g25WXw==
+X-Received: by 2002:a17:902:e551:b0:1cc:51ee:5faf with SMTP id
+ n17-20020a170902e55100b001cc51ee5fafmr1650822plf.7.1699316713622; 
+ Mon, 06 Nov 2023 16:25:13 -0800 (PST)
+Received: from debian.me ([103.131.18.64]) by smtp.gmail.com with ESMTPSA id
+ d7-20020a170902654700b001bb1f0605b2sm6573600pln.214.2023.11.06.16.25.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 06 Nov 2023 16:25:13 -0800 (PST)
+Received: by debian.me (Postfix, from userid 1000)
+ id 63C18817FA85; Tue,  7 Nov 2023 07:25:00 +0700 (WIB)
+Date: Tue, 7 Nov 2023 07:24:58 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Hunter Chasens <hunter.chasens18@ncf.edu>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] drm: amd: Resolve Sphinx unexpected indentation warning
+Message-ID: <ZUmD2u7qZS9XWRRz@debian.me>
+References: <20231106201739.29507-1-hunter.chasens18@ncf.edu>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|CY8PR12MB8243:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8d1fc1b-723c-4d20-29ff-08dbdf1d9311
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: drsm/pHgvnnGOYQjcq2zoWHktWu4YmrEsH1X82R95Sa0v1guABvfBqzZeeJelNrdc0IfW8xld7IwdMwcmNHI4WmRq8x/vBSiSwK4Or3G5l67E9CVqZU0Kjrs+J7Ot6Dw+iNs2qeDZrb/DrHWbKsFm+sEgz/rF2Wiih876cZNRakwayzscitd0iKt3zK5Ue6fukh8evWPhECQNUOdeKIa6sp3+yXaJx+khB3WJ6NnxpGJ2Z0cDGGoENrLmFrDKgIIWKuQCQpr6b7jTQkWqzMOYh0USgUs5cyDMYhUJFiW5/DufKSiz7v4BS3fJ0ySs0vCI/jwdl81ZuuI9O3yAL77PPVnNoLAVpElyzykQnDJrV6Ex4DOd1bj9wBiHDsFuqA/1wHY8LPBND5oy1AdPKOSeSAG9+RrYkDyMnMCDvAghzEJuPuSrk3g0CpkinOMAJqHWkpIrgnFMAjOSFOJIgSberhlwulNBXBH7mr7oqfv+cgBShG1AYz+KAAl+Gs1FmWaF2ZoyZLwPODwIufez3XerQk1AAC2CFKPYjShTZCdnqXeE84EZi8J63CPZWAegx/K4ele4a1Th9Fow5SA0TEazjGu2jI1ZYuwE31eRXgkrXYX4pe3CZ/Uc6rrHcZnBj2tn/m9FyeZwh0Cbk5vBel9VQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(366004)(136003)(346002)(376002)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(83380400001)(316002)(38100700002)(478600001)(53546011)(6506007)(966005)(6486002)(66556008)(66476007)(26005)(6512007)(66946007)(2616005)(5660300002)(2906002)(8676002)(36756003)(4326008)(31696002)(86362001)(8936002)(41300700001)(44832011)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?emV3VGQzZExGbnhpMkg3RXcxRHNkaG1xM0IxRldTMXRaT3huUlUyK1pvUHVq?=
- =?utf-8?B?YkZ4OVovd1FYNFh4WE5sRFp4QWc5Smw1bzlNd3JwSkVuQ1QvOE4zM1pycnln?=
- =?utf-8?B?c05CZ3pnekQ4UlRzK1BDSVZWS0xkbGNXQVN3cU9PbVRLVUo2QkNzOE12U2Rk?=
- =?utf-8?B?U3l0NnlUV2I0U0JTMldnWUo3cG1pditlOFRGNVdvcDgzTTkzZlo1MHIxakNr?=
- =?utf-8?B?YU03UW82U2NZR2F6cS9NaEFZNjJsaldCRVVDTS9TeWJSb1N0WlRQUTU4VE9o?=
- =?utf-8?B?NytpSUp3Z0twUzEyOUZLZVp5SlhpMEd4N1VLakREZUpUbXRiZGxnSTVMSWNo?=
- =?utf-8?B?ZEZKdTZmeGdGcUIzL1hWU0tCSldKa3hwb0dmdW5SUG91bHdBT055elpFQnFa?=
- =?utf-8?B?bTJLbDV2Vk56R2Uzb2NhOFJxcjN5d2RGZGZEMy9tNTN4WndDTW5nSUlCWmNu?=
- =?utf-8?B?VWtzVVNPSU1Rc21ZTnpWTXFFOWtleGZ1dk41V2laTUhESWFWclg4R3hVN0NZ?=
- =?utf-8?B?cE9ybG5jTXZQWXlySko4SE0rNDU5QXFEeHlRQS9uY1c2b2NzUEtLRWRGSm10?=
- =?utf-8?B?b2tObEhrVWN6Wm5jODFrVUpWRWx2R2l6VmdRcGVrazBBVXlzT29MSk5MUEJj?=
- =?utf-8?B?elpENXpZTkpQVmF2RXR4TnF5WFZXM3B0T3ZCT0V6Q1kwd29DWmNETm84dzZZ?=
- =?utf-8?B?dnZFZUlSbFd2TnRYMGJ6YnFCa3p4WlRObG92OENRQS9kOCtMVkhSN2h0aFZ4?=
- =?utf-8?B?aVFpbGVNQSsxN3F5dGhFc3ZjU1FnRXhXZW1tVmVocTU5dFp3WXZzaWRvSlps?=
- =?utf-8?B?N2ZoMldscGROZlg2ZHVURiszYk0rR0hRa2lCOEE2ZXFLR0oyd0hRVWNsRzJr?=
- =?utf-8?B?elZJQlBwSmE3REpncEcxMVU4N241S3l5cm5mYjhaYnd3U2NyNTBmZnpGMDY2?=
- =?utf-8?B?eXFDU2pOMm5DWXZhNFN3aUNqMzFIV1pDbThSRzlOd3dLcGErTG5Jemx4cHFQ?=
- =?utf-8?B?YmRIZHNRL09JVURUMjlwbk5uQjRnd3F1TkRyTTVtNExsUkZsN2pTeFkvUFZx?=
- =?utf-8?B?ZXJYOVZPdkl4bFhIT0w1L0YxMTRSME4zdjhhY3VialJNYkpKNHdLdW5yOGkw?=
- =?utf-8?B?a1ZuTm1vNUNGdDBiN0NmOXNYYm1Dcmk3RnYrV3UyV1Rja3Z4Um11YjM4OGdm?=
- =?utf-8?B?ZlRTK01DOFdZUTFWRDhpa2FRWlIxN2dvUTB6ZVluYmdHa1BFVjRiTlhaV1RM?=
- =?utf-8?B?ZE9yZDJpNDNrbGkxT0Qyb2JSSlNJbllFeGZGVUMzK2UxVTBaQ3BPVnlPSklw?=
- =?utf-8?B?K3dnYmxxN1hDdHpkTzZ0UUFndWE2Z21Za1MvbWlhSGZ0NzJOZ1dqa0h4Nkc5?=
- =?utf-8?B?Y0x2S3pwVW9hRXI1RHpaMGJYVWttS3JBeXRWMzc3Rk9xcmpsbmcwUU8yalZi?=
- =?utf-8?B?SlcyMExUby9FRyt6OGdYd0RVeDUyR2RhYnNPeHAxc3NjT1RYOUxmMXBuUm8w?=
- =?utf-8?B?UzZDSEZxanpPLzcxR3g0R3BkVnE1ajFKc21ZdnRiemU5bXM0dXJORzBSVDlp?=
- =?utf-8?B?dFVVSFFPS1ZLN0w1UzBqL09xY2JPLy9oRG5HVFdwdjFtNXYwS3hxcUdYWUlt?=
- =?utf-8?B?Z2NoWVlyMkkxM21xRFlYV25DaHlxbEhJZXJHcFdnbit5d084S0VINXRaSWU1?=
- =?utf-8?B?bEZDaUNLTGZkL1NnZVpkK1R0M3VpYWlOdGRYb2tSdEZxbmR4YWxydmhwczUr?=
- =?utf-8?B?Q2U4Q0tYT3l4RzBaRGtjSlFKSjlQbDFXa0trcWRINkZBUm1XcHh3a3NnL0Q1?=
- =?utf-8?B?akRheVNBNjQwTFZ5cDI4OFF5MlFSc1FrWlhvYzBVMkN6MEZ2NG9HLzJ5UURQ?=
- =?utf-8?B?MjV1ejV1YUhpSVdtRjNWbUhJaHczelQwMk5ud1JoT054K1RvbFBhNnhQYjVE?=
- =?utf-8?B?RGVIZDJxOHpIYUxVYUNGa25TY2lpUEJEcWtZZmVkUDZhU1R6dUFFd2orSm0r?=
- =?utf-8?B?VGZ1Q0FXSDQ2VGUxaDg1TEZYWXlqeVNlVCthQVo1Z2loNm9HdGpqOVpKZTU5?=
- =?utf-8?B?SDBYbmtwTjRDVFNRbVBuak1kQkg1TDBzSWF2RzAwTmJobnFaVzd0eHRXSG5X?=
- =?utf-8?Q?ZZkrITbdL2Xw3ZGDX5etNfCL0?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8d1fc1b-723c-4d20-29ff-08dbdf1d9311
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2023 23:10:31.9062 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0x46lAtNNtPlGx9lNqJeYA+0eqwUHGsBpFb4zMkZB+2mgai5U93i6dmpqOId5xLGPX7oCzjsdKYvhRnIZT1REQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8243
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="/im2KQQsxOjeQDIO"
+Content-Disposition: inline
+In-Reply-To: <20231106201739.29507-1-hunter.chasens18@ncf.edu>
+X-Mailman-Approved-At: Tue, 07 Nov 2023 08:13:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,70 +75,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Xinhui.Pan@amd.com, christian.koenig@amd.com
+Cc: Lijo Lazar <lijo.lazar@amd.com>,
+ Linux Documentation <linux-doc@vger.kernel.org>, Xinhui.Pan@amd.com,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>, daniel@ffwll.ch,
+ alexander.deucher@amd.com, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2023-11-06 2:14, Lawrence Yiu wrote:
-> After unbinding a GPU, KFD becomes locked and unusable, resulting in
-> applications not being able to use ROCm for compute anymore and rocminfo
-> outputting the following error message:
->
-> ROCk module is loaded
-> Unable to open /dev/kfd read-write: Invalid argument
->
-> KFD remains locked even after rebinding the same GPU and a system reboot
-> is required to unlock it. Fix this by not locking KFD during the GPU
-> unbind process.
->
-> Closes: https://github.com/RadeonOpenCompute/ROCm/issues/629
-> Signed-off-by: Lawrence Yiu <lawyiu.dev@gmail.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> index 0a9cf9dfc224..c9436039e619 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> @@ -949,8 +949,8 @@ void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm)
->   	if (!kfd->init_complete)
->   		return;
->   
-> -	/* for runtime suspend, skip locking kfd */
-> -	if (!run_pm) {
-> +	/* for runtime suspend or GPU unbind, skip locking kfd */
-> +	if (!run_pm && !drm_dev_is_unplugged(adev_to_drm(kfd->adev))) {
->   		mutex_lock(&kfd_processes_mutex);
->   		count = ++kfd_locked;
 
-This lock is meant to prevent new KFD processes from starting while a 
-GPU reset or suspend/resume is in progress. Just below it also suspends 
-the user mode queues of all processes to ensure the GPUs are idle before 
-suspending. It sounds like this is not applicable to the hot-unplug use 
-case. In particular, if there is no matching kgd2kfd_resume call, that 
-would lead to the symptom you describe, where KFD just gets stuck forever.
+--/im2KQQsxOjeQDIO
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What's the semantics of GPU hot unplug? Is it more like a GPU reset or 
-more like runtime-PM? In other words, do we need to notify processes 
-when a GPU goes away, or is there some other mechanism that ensures a 
-GPU is idle before being unplugged?
+On Mon, Nov 06, 2023 at 03:17:39PM -0500, Hunter Chasens wrote:
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/=
+amdgpu_pm.c
+> index 517b9fb4624c..81b8ceb26890 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -989,12 +989,13 @@ static ssize_t amdgpu_get_pp_features(struct device=
+ *dev,
+>   * Reading back the files will show you the available power levels within
+>   * the power state and the clock information for those levels. If deep s=
+leep is
+>   * applied to a clock, the level will be denoted by a special level 'S:'
+> - * E.g.,
+> - *	S: 19Mhz *
+> - *	0: 615Mhz
+> - *	1: 800Mhz
+> - *	2: 888Mhz
+> - *	3: 1000Mhz
+> + * E.g.::
+> + *
+> + *  S: 19Mhz *
+> + *  0: 615Mhz
+> + *  1: 800Mhz
+> + *  2: 888Mhz
+> + *  3: 1000Mhz
+>   *
+>   *
+>   * To manually adjust these states, first select manual using
 
-If it's more like runtime PM, then simply call kgd2kfd_suspend with 
-run_pm=true.
+LGTM, thanks!
 
-If it's more like a GPU reset, you can't just remove this lock. User 
-mode won't be aware and will try to continue using the GPU. In the best 
-case applications will just soft hang. Instead you should probably 
-replace the kgd2kfd_suspend call with calls to kgd2kfd_pre_reset and 
-kgd2kfd_post_reset. That would idle the affected GPU, notify user mode 
-processes using the GPU that something is wrong, and resume all the GPUs 
-again. You'd need to be careful about the sequence between actual unplug 
-and post_reset. Not sure if post_reset would need changes to avoid 
-failing on the removed GPU.
+Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
 
-Regards,
-   Felix
+--=20
+An old man doll... just what I always wanted! - Clara
 
+--/im2KQQsxOjeQDIO
+Content-Type: application/pgp-signature; name="signature.asc"
 
->   		mutex_unlock(&kfd_processes_mutex);
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZUmDrQAKCRD2uYlJVVFO
+o3+ZAQDfjlESW3+XuDhrOEojS9fqik7nCHXgYFOPvulyC48CzwEAmlHOs12KiwgZ
+BP9nE37zIUNmEkWjNU+PCfws51OmbgE=
+=JkyO
+-----END PGP SIGNATURE-----
+
+--/im2KQQsxOjeQDIO--
