@@ -1,61 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B231B7E439F
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 16:40:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B827E4AB0
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 22:29:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2098F10E0D4;
-	Tue,  7 Nov 2023 15:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C43DB10E6BA;
+	Tue,  7 Nov 2023 21:29:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
- [IPv6:2001:4860:4864:20::32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E38110E0A3;
- Tue,  7 Nov 2023 15:39:52 +0000 (UTC)
-Received: by mail-oa1-x32.google.com with SMTP id
- 586e51a60fabf-1f03fdfcfacso3356223fac.0; 
- Tue, 07 Nov 2023 07:39:52 -0800 (PST)
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C153110E6BA
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 21:28:40 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id
+ 3f1490d57ef6-daead9cde1eso19576276.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Nov 2023 13:28:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699371591; x=1699976391; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JW7foL1oxcRpbeUsbIlYVRRPx5rqbcU/gbE+Wj+BaFE=;
- b=jB6+3rRGr/IXTmZr/p4IuCS3G8tHAa/2MfBtpHs7clpRmpAt8A47rzUGcq5Kthjf/Y
- Ig+/QjDJ1UNroVkmgPTtBOUM8GbXtU+3x+jbp4sF/4lXZnPb2OpjGwFBnKv+ORtnpklm
- vA979MgvuCAMXtRO5apk30wifZKC1AIjaEdXD41u6gK5yo0GuZCFI2l5tcXpFjo1vBHa
- g2DweJExsQisxQ1weTz7gvGMGhJ5DU/VAY350KBTOS5nm9ij80eFOtq5+PNw8V2zUChm
- k/xrIbz7hcHvBXrcRG2CCRciQIUZ52YQOiOi5ZfVI8t5I8T13PB/fF9gt5vB8pEvYbFb
- wqJw==
+ d=ncf.edu; s=google; t=1699392520; x=1699997320; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=5GrfKC2IvsZBEgQFQYe2RhJApLNUugeSPWTjf04uUac=;
+ b=jW0dtq3xrp3B9qkZxYmlxqJs9D/XZR11aOSwhJ1DDQS7kcEFBJ8NOwodxFRmma11X5
+ g17EmP+5mmzam3ZM5HPmpPMt6fSvV9x42UsgbTXw7vodEQ0r3dO6xn57GWOgRdyAsOaK
+ nrdTghv0yOgY+XRh+hTtN494sr51VOgGCPRL97gNRRSeKU6lbWaTzGdTkm9oT0CNNItQ
+ 5LOT8J3gCejZIaw4omTU/YntQ9sFipelUg2ix6aRL6+PvN9lCqqdTKJ6X7BQMP5boquB
+ wgit4DQarRpdF9XcQgq6pvAg1I6G2dRd1bzBk+kbkKdKb+Bm080k5fQzmzi+uMoLeX/i
+ ee8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699371591; x=1699976391;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JW7foL1oxcRpbeUsbIlYVRRPx5rqbcU/gbE+Wj+BaFE=;
- b=apvuAHcGB24kl+xwMlV3flgEbwbTb6y1QAk1p5I+LWPK8Ppyfn4e7QweeVkKJFXiW3
- ioxef9EUgw6YSF7yoLcvsxoVuj9r3pNyzBfpwZhbfQrLLZ88I1Fj0kiZOMj66NWixxqs
- YkKqUIDEAeY3UPsAZMxhLcgIA1x795v6iNZSOBqLhKJUE40DvyWFMvM2QoI7g3cqH5sv
- zwuq/dRZDEou+QcXEibFRoE+A0VSGoDqLpJ8/TUYNhrJCxnfYZ+M9gwrsZ2uZKO9zaBw
- L4Haj8bt/bSZqfYku9uf58gbFw+Yq+7TWkJnTcTYkGfDFL7X3g3AuU1ukQw1AWeE8Kvd
- Nrfg==
-X-Gm-Message-State: AOJu0YyZPLLAFGKwRO0ZjOB/3KxsGr9XqtDym2Y715ohujvg0E8w5VvT
- ESFzR8KYYM3BJD/3m/hcrJ2omVzAhE+Ty9hd7xU=
-X-Google-Smtp-Source: AGHT+IFvtIGgWBLyu7RRG3uFcIzUM0xQQOleEl4WYezcoWx58X/a2dPjF56SgV0wq6ut3+Af0EixxFZNfu5sL4Wnq0k=
-X-Received: by 2002:a05:6870:168a:b0:1ef:bae2:e3ac with SMTP id
- j10-20020a056870168a00b001efbae2e3acmr3487366oae.55.1699371591585; Tue, 07
- Nov 2023 07:39:51 -0800 (PST)
+ d=1e100.net; s=20230601; t=1699392520; x=1699997320;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=5GrfKC2IvsZBEgQFQYe2RhJApLNUugeSPWTjf04uUac=;
+ b=IroMTEJkLDMhv3PuRiyXdtIPrxEpo77E1T8opSDScnRfD8W1O0TrQuX89G7Bi0oZ8s
+ XwldkxWqdhky/B6f4oSbkonRb9vhvPgV3KjE/HJcNNQwPfswSTdI9UWYjqhtkT9vboeh
+ ZfGjF/cvaVIntMpKkArN6gmDM0WiJ8M7DkVHi9LdUeWWa7lWCO+YiILl/avqrZofecsC
+ ukJunbtk5cBUUJXmrpTnu0vPsZqpKvCCQhPJFATMnXW+7wl5mD7HMPAe+6BXuRaUikrm
+ IRMEmEIYUHY+vHJnknRF7QmIMltqSOm/fZrTS+bsUv/1AZcnwlWQdGOzzWyqOdA2CT5S
+ sWHA==
+X-Gm-Message-State: AOJu0YyNs8pOT9kZVtmXrQ9G1EfzxK3qPkZfrz3bKjvklTlIJIP2nlfu
+ WF4I20lrDioa5UI7PHCSqkVtNGLnY8sfOOnPsbHXJg==
+X-Google-Smtp-Source: AGHT+IEVGxWjSPfH29B0f+BhNDDfe9GVs/2MnfzycBPjOvD0xg9LpfAOaj+zUSsjtvyDbSoQfjhDcg==
+X-Received: by 2002:a25:97c8:0:b0:d9a:6b46:f49d with SMTP id
+ j8-20020a2597c8000000b00d9a6b46f49dmr9749055ybo.59.1699392519826; 
+ Tue, 07 Nov 2023 13:28:39 -0800 (PST)
+Received: from Lux.hsd1.fl.comcast.net ([2601:580:8201:d0::4174])
+ by smtp.gmail.com with ESMTPSA id
+ j186-20020a25d2c3000000b00da06575fbc8sm5657649ybg.2.2023.11.07.13.28.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Nov 2023 13:28:39 -0800 (PST)
+From: Hunter Chasens <hunter.chasens18@ncf.edu>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH v3] drm: amd: Resolve Sphinx unexpected indentation warning
+Date: Tue,  7 Nov 2023 11:28:30 -0500
+Message-ID: <20231107162830.36856-1-hunter.chasens18@ncf.edu>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-References: <20231107082839.92061-1-jose.pekkarinen@foxhound.fi>
-In-Reply-To: <20231107082839.92061-1-jose.pekkarinen@foxhound.fi>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 7 Nov 2023 10:39:40 -0500
-Message-ID: <CADnq5_NpMmo5SdXdStcRMGfcz0v6Nu-ZTORsSHo4_m_piAB77Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: clean up redundant conversions to bool
-To: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 07 Nov 2023 21:29:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,68 +70,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Bhawanpreet.Lakha@amd.com, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- skhan@linuxfoundation.org, alexander.deucher@amd.com, harry.wentland@amd.com,
- christian.koenig@amd.com, linux-kernel-mentees@lists.linux.dev
+Cc: linux-doc@vger.kernel.org, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, Hunter Chasens <hunter.chasens18@ncf.edu>,
+ alexander.deucher@amd.com, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 7, 2023 at 4:44=E2=80=AFAM Jos=C3=A9 Pekkarinen
-<jose.pekkarinen@foxhound.fi> wrote:
->
-> This patch will address the following couple of warnings retrieved by
-> using coccinelle, where there is an explicit conversion to bool that
-> are redundant.
->
-> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c:94:102-107: WARN=
-ING: conversion to bool not needed here
-> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c:102:72-77: WARNI=
-NG: conversion to bool not needed here
->
-> Signed-off-by: Jos=C3=A9 Pekkarinen <jose.pekkarinen@foxhound.fi>
+Resolves Sphinx unexpected indentation warning when compiling
+documentation (e.g. `make htmldocs`). Replaces tabs with spaces and adds
+a literal block to keep vertical formatting of the
+example power state list.
 
-Thanks for the patch, but this was already fixed by Srinivasan a while ago.
+Signed-off-by: Hunter Chasens <hunter.chasens18@ncf.edu>
+---
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index 517b9fb4624c..576202bf64f3 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -989,12 +989,13 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
+  * Reading back the files will show you the available power levels within
+  * the power state and the clock information for those levels. If deep sleep is
+  * applied to a clock, the level will be denoted by a special level 'S:'
+- * E.g.,
+- *	S: 19Mhz *
+- *	0: 615Mhz
+- *	1: 800Mhz
+- *	2: 888Mhz
+- *	3: 1000Mhz
++ * E.g., ::
++ *
++ *  S: 19Mhz *
++ *  0: 615Mhz
++ *  1: 800Mhz
++ *  2: 888Mhz
++ *  3: 1000Mhz
+  *
+  *
+  * To manually adjust these states, first select manual using
+-- 
+2.42.0
 
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c b/d=
-rivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> index 32d3086c4cb7..5ce542b1f860 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-> @@ -91,7 +91,7 @@ bool amdgpu_dm_setup_replay(struct dc_link *link, struc=
-t amdgpu_dm_connector *ac
->         pr_config.replay_supported =3D true;
->         pr_config.replay_power_opt_supported =3D 0;
->         pr_config.replay_enable_option |=3D pr_enable_option_static_scree=
-n;
-> -       pr_config.replay_timing_sync_supported =3D aconnector->max_vfreq =
->=3D 2 * aconnector->min_vfreq ? true : false;
-> +       pr_config.replay_timing_sync_supported =3D aconnector->max_vfreq =
->=3D 2 * aconnector->min_vfreq;
->
->         if (!pr_config.replay_timing_sync_supported)
->                 pr_config.replay_enable_option &=3D ~pr_enable_option_gen=
-eral_ui;
-> @@ -99,7 +99,7 @@ bool amdgpu_dm_setup_replay(struct dc_link *link, struc=
-t amdgpu_dm_connector *ac
->         debug_flags =3D (union replay_debug_flags *)&pr_config.debug_flag=
-s;
->         debug_flags->u32All =3D 0;
->         debug_flags->bitfields.visual_confirm =3D
-> -               link->ctx->dc->debug.visual_confirm =3D=3D VISUAL_CONFIRM=
-_REPLAY ? true : false;
-> +               link->ctx->dc->debug.visual_confirm =3D=3D VISUAL_CONFIRM=
-_REPLAY;
->
->         link->replay_settings.replay_feature_enabled =3D true;
->
-> --
-> 2.39.2
->
