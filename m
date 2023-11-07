@@ -2,63 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B827E4AB0
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 22:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3347E4658
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Nov 2023 17:46:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C43DB10E6BA;
-	Tue,  7 Nov 2023 21:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF32E10E029;
+	Tue,  7 Nov 2023 16:46:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
- [IPv6:2607:f8b0:4864:20::b33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C153110E6BA
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 21:28:40 +0000 (UTC)
-Received: by mail-yb1-xb33.google.com with SMTP id
- 3f1490d57ef6-daead9cde1eso19576276.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Nov 2023 13:28:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ncf.edu; s=google; t=1699392520; x=1699997320; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=5GrfKC2IvsZBEgQFQYe2RhJApLNUugeSPWTjf04uUac=;
- b=jW0dtq3xrp3B9qkZxYmlxqJs9D/XZR11aOSwhJ1DDQS7kcEFBJ8NOwodxFRmma11X5
- g17EmP+5mmzam3ZM5HPmpPMt6fSvV9x42UsgbTXw7vodEQ0r3dO6xn57GWOgRdyAsOaK
- nrdTghv0yOgY+XRh+hTtN494sr51VOgGCPRL97gNRRSeKU6lbWaTzGdTkm9oT0CNNItQ
- 5LOT8J3gCejZIaw4omTU/YntQ9sFipelUg2ix6aRL6+PvN9lCqqdTKJ6X7BQMP5boquB
- wgit4DQarRpdF9XcQgq6pvAg1I6G2dRd1bzBk+kbkKdKb+Bm080k5fQzmzi+uMoLeX/i
- ee8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699392520; x=1699997320;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=5GrfKC2IvsZBEgQFQYe2RhJApLNUugeSPWTjf04uUac=;
- b=IroMTEJkLDMhv3PuRiyXdtIPrxEpo77E1T8opSDScnRfD8W1O0TrQuX89G7Bi0oZ8s
- XwldkxWqdhky/B6f4oSbkonRb9vhvPgV3KjE/HJcNNQwPfswSTdI9UWYjqhtkT9vboeh
- ZfGjF/cvaVIntMpKkArN6gmDM0WiJ8M7DkVHi9LdUeWWa7lWCO+YiILl/avqrZofecsC
- ukJunbtk5cBUUJXmrpTnu0vPsZqpKvCCQhPJFATMnXW+7wl5mD7HMPAe+6BXuRaUikrm
- IRMEmEIYUHY+vHJnknRF7QmIMltqSOm/fZrTS+bsUv/1AZcnwlWQdGOzzWyqOdA2CT5S
- sWHA==
-X-Gm-Message-State: AOJu0YyNs8pOT9kZVtmXrQ9G1EfzxK3qPkZfrz3bKjvklTlIJIP2nlfu
- WF4I20lrDioa5UI7PHCSqkVtNGLnY8sfOOnPsbHXJg==
-X-Google-Smtp-Source: AGHT+IEVGxWjSPfH29B0f+BhNDDfe9GVs/2MnfzycBPjOvD0xg9LpfAOaj+zUSsjtvyDbSoQfjhDcg==
-X-Received: by 2002:a25:97c8:0:b0:d9a:6b46:f49d with SMTP id
- j8-20020a2597c8000000b00d9a6b46f49dmr9749055ybo.59.1699392519826; 
- Tue, 07 Nov 2023 13:28:39 -0800 (PST)
-Received: from Lux.hsd1.fl.comcast.net ([2601:580:8201:d0::4174])
- by smtp.gmail.com with ESMTPSA id
- j186-20020a25d2c3000000b00da06575fbc8sm5657649ybg.2.2023.11.07.13.28.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Nov 2023 13:28:39 -0800 (PST)
-From: Hunter Chasens <hunter.chasens18@ncf.edu>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH v3] drm: amd: Resolve Sphinx unexpected indentation warning
-Date: Tue,  7 Nov 2023 11:28:30 -0500
-Message-ID: <20231107162830.36856-1-hunter.chasens18@ncf.edu>
-X-Mailer: git-send-email 2.42.0
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org
+ [IPv6:2001:67c:2050:0:465::101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B773810E029
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Nov 2023 16:46:33 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4SPvHp13t3z9sqs;
+ Tue,  7 Nov 2023 17:46:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1699375590;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=IxdoJ4c3a2OHv/hdoxmB51kAnBxs7RW+qrX8vQhzNSY=;
+ b=PL5wndRAQVJKGC1seHM8fqox9HQSo3Q3mHNnrmeJRTts4ycSiFg3wvwE/q2y1cjsAYA36S
+ b35wNXwiAhwzkYsXCtl+FYZmx6em4ddfrJueRH0kISrlhQ3+MuhGskkfDKZ9v9eoy9k4/J
+ C8cczW9m3FPQ2YPAg5NkSvdAx/C8qqKKV5IDFivqktisxvN8E1Vl1R2Zw3OLkKD45MkdAu
+ lH5w0JagNqaINfCIsIRNwY+wMkQJga3c6moyD6fQ7GoGNIBbw4mg2AS9GiZ4RcVAhtuctf
+ iaw9i7oElcF38zeKqICAm5x1EJxhMb/SQv2NKEtCMLonDk9tKe+BJ7mpsHWGyw==
+Message-ID: <693780d8-ea44-efa1-dbbd-00864f993e76@mailbox.org>
+Date: Tue, 7 Nov 2023 17:46:28 +0100
 MIME-Version: 1.0
+Subject: Re: [PATCH] drm/amdgpu: move buffer funcs setting up a level
+Content-Language: en-CA
+To: Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+References: <20231025171928.3318505-1-alexander.deucher@amd.com>
+ <96db9e3d-4636-4da4-b4d1-ca3f5fd8d887@gmail.com>
+ <CADnq5_ORyv9MDfUd3NPDw+APUunDjkTW4Bx4z0FoCiK+s_i+uw@mail.gmail.com>
+ <04db543c-7aec-4550-878f-a9753142130e@gmail.com>
+ <a8a0eb47-3aca-4c87-b5f7-dc54e5667944@gmail.com>
+ <CADnq5_PS64jYS_Y3kGW27m-kuWP+FQFiaVcOaZiB=JLSgPnXBQ@mail.gmail.com>
+ <CADnq5_MBgNQPzZmvBagzUdi94X=rr-h=aaE334RzVozgOHU64g@mail.gmail.com>
+ <bfb3d504-61c9-43e8-b3b3-2d8193e54d81@gmail.com>
+ <CADnq5_OB0OvtqJf5nue-XsTZxOcnfN0Sy6pyryW_GF_Y+S6eYg@mail.gmail.com>
+ <CADnq5_OkTuEJ+i+MpfZprSjkGcG99OVSndwyZYWiYEDMEvatgw@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <CADnq5_OkTuEJ+i+MpfZprSjkGcG99OVSndwyZYWiYEDMEvatgw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 07 Nov 2023 21:29:09 +0000
+X-MBO-RS-ID: 8cdad4d6122c372ce32
+X-MBO-RS-META: a1feriyj47dwgctp7hauekaier8igzzn
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,47 +65,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Hunter Chasens <hunter.chasens18@ncf.edu>,
- alexander.deucher@amd.com, airlied@gmail.com, christian.koenig@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>, Leo Liu <leo.liu@amd.com>,
+ amd-gfx@lists.freedesktop.org, Luben Tuikov <ltuikov89@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Resolves Sphinx unexpected indentation warning when compiling
-documentation (e.g. `make htmldocs`). Replaces tabs with spaces and adds
-a literal block to keep vertical formatting of the
-example power state list.
+On 11/7/23 15:47, Alex Deucher wrote:
+> On Tue, Nov 7, 2023 at 9:19 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+>> On Tue, Nov 7, 2023 at 5:52 AM Christian König
+>> <ckoenig.leichtzumerken@gmail.com> wrote:
+>>> Am 03.11.23 um 23:10 schrieb Alex Deucher:
+>>>> On Fri, Nov 3, 2023 at 4:17 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+>>>>> On Thu, Oct 26, 2023 at 4:17 PM Luben Tuikov <ltuikov89@gmail.com> wrote:
+>>>>>> Pushed to drm-misc-next.
+>>>>> BTW, I'm seeing the following on older GPUs with VCE and UVD even with
+>>>>> this patch:
+>>>>> [   11.886024] amdgpu 0000:0a:00.0: [drm] *ERROR* drm_sched_job_init:
+>>>>> entity has no rq!
+>>>>> [   11.886028] amdgpu 0000:0a:00.0: [drm:amdgpu_ib_ring_tests
+>>>>> [amdgpu]] *ERROR* IB test failed on uvd (-2).
+>>>>> [   11.889927] amdgpu 0000:0a:00.0: [drm] *ERROR* drm_sched_job_init:
+>>>>> entity has no rq!
+>>>>> [   11.889930] amdgpu 0000:0a:00.0: [drm:amdgpu_ib_ring_tests
+>>>>> [amdgpu]] *ERROR* IB test failed on vce0 (-2).
+>>>>> [   11.890172] [drm:process_one_work] *ERROR* ib ring test failed (-2).
+>>>>> Seems to be specific to UVD and VCE, I don't see anything similar with
+>>>>> VCN, but the flows for both are pretty similar.  Not sure why we are
+>>>>> not seeing it for VCN.  Just a heads up if you have any ideas.  Will
+>>>>> take a closer look next week.
+>>>> + Leo
+>>>>
+>>>> I found the problem.  We set up scheduling entities for UVD and VCE
+>>>> specifically and not for any other engines.  I don't remember why
+>>>> offhand.  I'm guessing maybe to deal with the session limits on UVD
+>>>> and VCE?  If so I'm not sure of a clean way to fix this.
+>>>
+>>> I haven't looked through all my mails yet so could be that Leo has
+>>> already answered this.
+>>>
+>>> The UVD/VCE entities are used for the older chips where applications
+>>> have to use create/destroy messages to the firmware.
+>>>
+>>> If an application exits without cleaning up their handles the kernel
+>>> sends the appropriate destroy messages itself. For an example see
+>>> amdgpu_uvd_free_handles().
+>>>
+>>> We used to initialize those entities with separate calls after the
+>>> scheduler had been brought up, see amdgpu_uvd_entity_init() for an example.
+>>>
+>>> But this was somehow messed up and we now do the call to
+>>> amdgpu_uvd_entity_init() at the end of *_sw_init() instead of _late_init().
+>>>
+>>> I suggest to just come up with a function which can be used for the
+>>> late_init() callback of the UVD/VCE blocks.
+>>
+>> I guess the issue is that we only need to initialize the entity once
+>> so sw_init makes sense.  All of the other functions get called at
+>> resume time, etc.  I think we could probably put it into
+>> amdgpu_device_init_schedulers() somehow.
+> 
+> I think something like this might do the trick.
 
-Signed-off-by: Hunter Chasens <hunter.chasens18@ncf.edu>
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+This does indeed fix the IB test failures for me with Bonaire.
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 517b9fb4624c..576202bf64f3 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -989,12 +989,13 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
-  * Reading back the files will show you the available power levels within
-  * the power state and the clock information for those levels. If deep sleep is
-  * applied to a clock, the level will be denoted by a special level 'S:'
-- * E.g.,
-- *	S: 19Mhz *
-- *	0: 615Mhz
-- *	1: 800Mhz
-- *	2: 888Mhz
-- *	3: 1000Mhz
-+ * E.g., ::
-+ *
-+ *  S: 19Mhz *
-+ *  0: 615Mhz
-+ *  1: 800Mhz
-+ *  2: 888Mhz
-+ *  3: 1000Mhz
-  *
-  *
-  * To manually adjust these states, first select manual using
+
+There are still
+
+[drm] Fence fallback timer expired on ring sdma0
+
+messages, that might be a separate regression though.
+
+
 -- 
-2.42.0
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
