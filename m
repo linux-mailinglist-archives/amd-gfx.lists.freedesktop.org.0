@@ -2,92 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68EC77E5E6B
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 20:12:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6A77E5DBD
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 20:00:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB3DE10E196;
-	Wed,  8 Nov 2023 19:12:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E38410E190;
+	Wed,  8 Nov 2023 19:00:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2078.outbound.protection.outlook.com [40.107.101.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3722510E196
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Nov 2023 19:12:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TwhgBbQaJ/SafOymGLmWGPWtCHRPCgwyJo4t9c/zz1ezY7EAvB2j7v8cjsrTrf+KTCMQjE0FVJwsZhCeSmPBsZZQtvT5LAthRbM7WTZYAExe7MgwYHvfin5FFHypGvZKdOqTeA5YgInnqelSanjstfS7xfmx86aYMSh4vHdHPYSWlRC4meXJC0KJT8+azS+Iweyr5FMIcpMJ2yO6KfITXdkrvDtjUwRCDSnDS1sCacW57UCkMWoIHnrOhss+PCFfW57xo61B8yAadAXn3Md540QDnRF6TgrDWdEFx8z2A5xaok2xzmng7OsBFEB6Y9obNaNii4GJofb7JkV6U1pkTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P2BQMn/B2H8rin/wnVnB791vTwoyrhaCqk/TZopfPus=;
- b=Rdwkk+VMUXIjx+rE+rdHWI5SzA7Lx/hkedmjm7MzPXPegm3M5+/XyLdagIVciidwUgVz+2jIHw+QFF3rvH7i437bDp3Cq7yjas0ScjvucNAjQgiUAQTohlSr0p46SwOI4I+2qIA3q0etwfV1eSth2a2YP5F/c6x2jDxohQOlYDYXlwlQX2p/K4n9CTSu31z+Pm+l+m3P9Pdt8JmEx3CQ6Cj0BMilDJOltYa0eVTYVCyqlPoN7uGwwc4dvCp7jtbT7lY+ROP5ax3pUQasJWi+NRku6FT4e9poY9cd9sgGTyVpZc3B6++lNHdSo7y7bB5heairxliwSt2jsHoLrM2Leg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P2BQMn/B2H8rin/wnVnB791vTwoyrhaCqk/TZopfPus=;
- b=U08M6TOZGAPnbcFxZ2ROuunMEXqFXpgi1lOC01hMQUye9n1X2lnn+vYHTk51UwGaweiACVqG414XLKK4u2jJA0UYMrszd0Dtt5XGJCrp8eNasfT+iT0BdWHQQOwjnU+x6Wine7J/dgjESrycvLkeR+WKSgfL/ujoblPZkKNQEyc=
-Received: from MN2PR02CA0021.namprd02.prod.outlook.com (2603:10b6:208:fc::34)
- by SJ2PR12MB9238.namprd12.prod.outlook.com (2603:10b6:a03:55d::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Wed, 8 Nov
- 2023 19:12:51 +0000
-Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:fc:cafe::62) by MN2PR02CA0021.outlook.office365.com
- (2603:10b6:208:fc::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.18 via Frontend
- Transport; Wed, 8 Nov 2023 19:12:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6977.16 via Frontend Transport; Wed, 8 Nov 2023 19:12:50 +0000
-Received: from dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Wed, 8 Nov
- 2023 13:12:48 -0600
-From: Alex Hung <alex.hung@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/20] drm/amd/display: Promote DC to 3.2.260
-Date: Wed, 8 Nov 2023 11:44:35 -0700
-Message-ID: <20231108185501.45359-21-alex.hung@amd.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231108185501.45359-1-alex.hung@amd.com>
-References: <20231108185501.45359-1-alex.hung@amd.com>
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6706710E827;
+ Wed,  8 Nov 2023 19:00:32 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-1ef36a04931so4162127fac.2; 
+ Wed, 08 Nov 2023 11:00:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699470031; x=1700074831; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=otxnVkd8YgWVTzG3H7cvr+93qyokKFzdStJbXRE7UUc=;
+ b=IfOxWUJAPjvX0Hp1jtRJQNEa2l+sDjS65S7p67ujgAB+VpW6J5LPZL/Ddy2SovRvC0
+ zf83P1B9MQTRw3ioh/MfLXvkZPIFNqvDZWYhAIjfbFCPV0ebIJ7ImhCA41VK3lIPt7tZ
+ ln9YLoaGBlQljX3nGNVjgQ8rtCR3UkuWVHKOP2fD7mryK8MHJ0bbcyLYLS113mcvRn6Y
+ SS1GQ5PcGfnOVJVLS4vYZ5kTsJwvV/J1hSV4mX+kOBLUq7Vxjxl8Y+JDnfzdRmvnCbLY
+ qaWywVurvFnEf4utpMtjsXcpgBXUjT6CCHDv1Ot/JmMo4gK75x5tEH9dD56J23Wdjgrk
+ x30w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699470031; x=1700074831;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=otxnVkd8YgWVTzG3H7cvr+93qyokKFzdStJbXRE7UUc=;
+ b=F+cqD+uVahEub/8j3r3C7Ib47pGnRKth/iH5cPSZ8nOXYdi31C4DQsL3ngHJXKku6l
+ C1jYf+x0Uu0d95hIuk6ZhIQUhfqVtMuFYtfBswn4UWKE6hGyGSgLTghl2sxrynxkZ4ti
+ rLWChTgXeVqmIMb5A/jlQ9kixiWLVJPL7F+OkW+lqLmnttuU69+ywO33XJij4i9TOsyE
+ 4W2bZU5gke0oVRu5Y/ujT26+mRekmJt6CF5wM8evMPuLixylFkoSikAYKJYKLNiex8gl
+ ikGYRgtdm0N0/junz6QFBXcm/kcEaIbLlje+ysuhZrO9S9ZXHsCrVWkO6/u0ZHJvoZHB
+ ORwA==
+X-Gm-Message-State: AOJu0Yx059FSBFwSYt+cv/MJ5dJoRd5Cvd7IgeR48PvMs7ewWcl15MZ0
+ DkUb3JbZvCx0CMdz0fLysnH9E96n7wBekhyDyyM=
+X-Google-Smtp-Source: AGHT+IHvpi3a4SBVR+ik6OpPcUARXpDbAmpBYewfy5UA+w+qqJFFTZ6OeD4JVSJcj/4uYdeGrClnwBQQdXADX431yUk=
+X-Received: by 2002:a05:6870:470b:b0:1e9:d158:2465 with SMTP id
+ b11-20020a056870470b00b001e9d1582465mr3028814oaq.17.1699470031642; Wed, 08
+ Nov 2023 11:00:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|SJ2PR12MB9238:EE_
-X-MS-Office365-Filtering-Correlation-Id: 001c1551-07eb-4350-f865-08dbe08eb3b8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UMMhchua0JEhZOwA6k0ky4FqZ+uefKQkoO7Pu5qMvASkjl8GWv/rIuyyAMsPPVfYckFp9GjSsCpHJhfBARYnOmghbwYwO3YqbLLyME5TqBq1K4Lh5Vwz/aiows+Sq7ZaiklDDoTO7vrbzcyeoK9WFhGblBcnO9AVzOsC9ik5EICZphVAg3XxqydBuScaGttF3LcMe/qG7QakiMyqbmcqHnuZjC5rqiHWb43QY0iibAIjuGkXarrVu0r6GFh652RVnGc4t9/jZFEGn9xRh4Dt+lhKgwdNUjevUeWgLDCrQrn9lY85+sobRJH6pmutcEpHNvCiBReO5aAp95egLjv3U/LEY5ns+bf++D4kyBCx7ERf9mZOuAnIwLZN3O/KYfyGFQ3z/MnHLRNuv00F64thIHGlkXyB83SJVWCU17u7yohFXlVmayaVvYdqvKDGDiJM/5J6PR26b/eNGru2asBVzR6xPG2zwkDqde1YttOOkzLNFcaF9tZR6wTSm96i4G9EIN7gxlZ3FcVYQLbar8/FdldZyPJRD7Bblj0m+ZcvfOo6zOFXVAv1YjaihnW/2lXCOsyWRJc5hsEZARnmYDaj9aaZ0zKXlnvnLf5LzlWN7OnWv4VEP06f2lTfrKTVEyoBHa/qY+nWDUAlJURob0JvhMN5RYELJrWXf8RK60freKbMkXTCvIQCiq5H6QRta+Mhw6VX1EQ33meEnYbvtc+6ZpUzD0m8dzuaAGHtBoVYMbjG8jqO5+v9yz8PnjIRJTOcs2jWaC158UQoRos14ZCCHg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(376002)(39860400002)(396003)(346002)(230922051799003)(64100799003)(451199024)(82310400011)(186009)(1800799009)(36840700001)(40470700004)(46966006)(7696005)(6666004)(478600001)(1076003)(2616005)(4326008)(26005)(5660300002)(2906002)(16526019)(70206006)(70586007)(54906003)(6916009)(8676002)(336012)(41300700001)(8936002)(316002)(426003)(83380400001)(44832011)(356005)(36860700001)(47076005)(86362001)(82740400003)(36756003)(81166007)(40460700003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 19:12:50.7810 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 001c1551-07eb-4350-f865-08dbe08eb3b8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9238
+References: <20231029093926.137766-1-jose.pekkarinen@foxhound.fi>
+ <d56cd927-49fc-cb4e-8abd-abc539e4d276@amd.com>
+ <e095fae915d44ccc186d5e5ee74ec119@foxhound.fi>
+In-Reply-To: <e095fae915d44ccc186d5e5ee74ec119@foxhound.fi>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 8 Nov 2023 14:00:19 -0500
+Message-ID: <CADnq5_NjUnC_nsaDCgma8u=eBKv4qMb1L214QEY9S75tA=2vTA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: remove duplicated argument
+To: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,54 +69,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric
- Cyr <aric.cyr@amd.com>, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Alex Hung <alex.hung@amd.com>,
- jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
- wayne.lin@amd.com, Harry.Wentland@amd.com, agustin.gutierrez@amd.com
+Cc: sunpeng.li@amd.com, qingqing.zhuo@amd.com, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ Zhongwei.Zhang@amd.com, alex.hung@amd.com,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, dri-devel@lists.freedesktop.org,
+ sunran001@208suo.com, skhan@linuxfoundation.org, alexander.deucher@amd.com,
+ Jun.Lei@amd.com, linux-kernel-mentees@lists.linuxfoundation.org,
+ Yao.Wang1@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+Applied.  Thanks!
 
-- Add missing chips for HDCP
-- Add new command to disable replay timing resync
-- Fix encoder disable logic
-- Enable DSC Flag in MST Mode Validation
-- Change the DMCUB mailbox memory location from FB to inbox
-- Add disable timeout option
-- Negate IPS allow and commit bits
-- Enable DCN clock gating for DCN35
-- Prefer currently used OTG master when acquiring free pipe
-- Try to acquire a free OTG master not used in cur ctx first
-- Clear dpcd_sink_ext_caps if not set
-- Enable fast plane updates on DCN3.2 and above
-- Add null checks for 8K60 lightup
-- Refactor resource into component directory
-- Fix DSC not Enabled on Direct MST Sink
-- Guard against invalid RPTR/WPTR being set
-- Enable CM low mem power optimization
-- Fix a debugfs null pointer error
-
-Acked-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 18ab453bfdb1..e6f109bbf468 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -49,7 +49,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.259"
-+#define DC_VER "3.2.260"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.42.0
-
+On Wed, Nov 8, 2023 at 3:52=E2=80=AFAM Jos=C3=A9 Pekkarinen
+<jose.pekkarinen@foxhound.fi> wrote:
+>
+> On 2023-10-30 15:54, Aurabindo Pillai wrote:
+> > On 10/29/2023 5:39 AM, Jos=C3=A9 Pekkarinen wrote:
+> >> Spotted by coccicheck, there is a redundant check for
+> >> v->SourcePixelFormat[k] !=3D dm_444_16. This patch will
+> >> remove it. The corresponding output follows.
+> >>
+> >> drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c:5130:86=
+-122:
+> >> duplicated argument to && or ||
+> >>
+> >> Signed-off-by: Jos=C3=A9 Pekkarinen <jose.pekkarinen@foxhound.fi>
+> >> ---
+> >>   drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c | 2
+> >> +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git
+> >> a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+> >> b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+> >> index ad741a723c0e..3686f1e7de3a 100644
+> >> --- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+> >> +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+> >> @@ -5128,7 +5128,7 @@ void
+> >> dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib
+> >> *mode_l
+> >>                      ViewportExceedsSurface =3D true;
+> >>              if (v->SourcePixelFormat[k] !=3D dm_444_64 &&
+> >> v->SourcePixelFormat[k] !=3D dm_444_32 && v->SourcePixelFormat[k] !=3D
+> >> dm_444_16
+> >> -                            && v->SourcePixelFormat[k] !=3D dm_444_16=
+ &&
+> >> v->SourcePixelFormat[k] !=3D dm_444_8 && v->SourcePixelFormat[k] !=3D
+> >> dm_rgbe) {
+> >> +                            && v->SourcePixelFormat[k] !=3D dm_444_8 =
+&& v->SourcePixelFormat[k]
+> >> !=3D dm_rgbe) {
+> >>                      if (v->ViewportWidthChroma[k] > v->SurfaceWidthC[=
+k] ||
+> >> v->ViewportHeightChroma[k] > v->SurfaceHeightC[k]) {
+> >>                              ViewportExceedsSurface =3D true;
+> >>                      }
+> >
+> > Thanks for catching.
+> >
+> > Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+>
+>      Sorry to bring this up, I just wanted to check whether this
+> has been applied in the following pulls or not.
+>
+>      Thanks!
+>
+>      Jos=C3=A9.
