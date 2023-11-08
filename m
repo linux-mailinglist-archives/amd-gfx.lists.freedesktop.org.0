@@ -2,39 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4302E7E5866
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 15:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE087E5868
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 15:11:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDB0810E772;
-	Wed,  8 Nov 2023 14:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8844610E775;
+	Wed,  8 Nov 2023 14:11:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8465110E3A7
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Nov 2023 07:05:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0810A10E0B7;
+ Wed,  8 Nov 2023 07:30:03 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 465DDB811FB;
- Wed,  8 Nov 2023 07:05:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B40C433C7;
- Wed,  8 Nov 2023 07:05:15 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTP id 628F4B81590;
+ Wed,  8 Nov 2023 07:30:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F2BDC433C8;
+ Wed,  8 Nov 2023 07:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1699427115;
- bh=7xc9G6SOZ4q68s8IZylizrktOjXd9+dgnshxbYYHsuQ=;
+ s=korg; t=1699428601;
+ bh=yo7b1LGNFyvDpF1t3rH3P/9deVIKXquQeoyvxzFhZ0M=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZVFTMZaPA5PF/9QIu4jL8SdPCqKcsqrusDTcLgOnVw3If1KL96LjObTi8ad0EeqM9
- r/lmrZX0HDrhswdfwYRRD3+AY2kYsbsviOAkvf7BLT9dinwaUPpEjApfG3CQLZH6Xx
- Pc5iCrv11W1azmZOI1sLOLrIzf+TR3BB8TIcP7Cs=
-Date: Wed, 8 Nov 2023 08:05:12 +0100
+ b=CkhXJ7Ewr/fNRkHHqlD8wzG3L5thil15gOltKdbJxoYBn9ZW/PdFIWeOTEb95ES9h
+ S062er0V6eQzPe82wMFHixIkfWeYoclSgNATcdBmNt9WIxjjIXNS4Q0yRmT6GAIE5+
+ dFXsFvg2TYOp5HHIq7IR01jIPslm/BClcHAsS+0M=
+Date: Wed, 8 Nov 2023 08:29:58 +0100
 From: Greg KH <gregkh@linuxfoundation.org>
-To: Li Ma <li.ma@amd.com>
-Subject: Re: [PATCH] r8169: fix ASPM-related issues on a number of systems
- with NIC version from RTL8168h
-Message-ID: <2023110845-factual-dawn-7d68@gregkh>
-References: <20231108033359.3948216-1-li.ma@amd.com>
+To: =?iso-8859-1?Q?Jos=E9?= Pekkarinen <jose.pekkarinen@foxhound.fi>
+Subject: Re: [PATCH] drm/amd/pm: replace 1-element arrays with flexible-array
+ members
+Message-ID: <2023110835-magnolia-prune-02d0@gregkh>
+References: <20231108065436.13969-1-jose.pekkarinen@foxhound.fi>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231108033359.3948216-1-li.ma@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231108065436.13969-1-jose.pekkarinen@foxhound.fi>
 X-Mailman-Approved-At: Wed, 08 Nov 2023 14:11:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,31 +48,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: yifan1.zhang@amd.com, amd-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- mario.limonciello@amd.com, Alexander.Deucher@amd.com,
- "David S . Miller" <davem@davemloft.net>,
- Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, skhan@linuxfoundation.org, alexander.deucher@amd.com,
+ evan.quan@amd.com, airlied@gmail.com, christian.koenig@amd.com,
+ linux-kernel-mentees@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 08, 2023 at 11:34:00AM +0800, Li Ma wrote:
-> From: Heiner Kallweit <hkallweit1@gmail.com>
+On Wed, Nov 08, 2023 at 08:54:35AM +0200, José Pekkarinen wrote:
+> The following case seems to be safe to be replaced with a flexible array
+> to clean up the added coccinelle warning. This patch will just do it.
 > 
-> This effectively reverts 4b5f82f6aaef. On a number of systems ASPM L1
-> causes tx timeouts with RTL8168h, see referenced bug report.
+> drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h:76:38-63: WARNING use flexible-array member instead (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays)
 > 
-> Fixes: 4b5f82f6aaef ("r8169: enable ASPM L1/L1.1 from RTL8168h")
-> Cc: stable@vger.kernel.org
-> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=217814
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> Signed-off-by: David S. Miller <davem@davemloft.net>
-> (cherry picked from commit 90ca51e8c654699b672ba61aeaa418dfb3252e5e)
+> Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
 > ---
->  drivers/net/ethernet/realtek/r8169_main.c | 4 ----
->  1 file changed, 4 deletions(-)
+>  drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+> index c7b61222d258..1ce4087005f0 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+> @@ -73,7 +73,7 @@ struct smu8_register_index_data_pair {
+>  
+>  struct smu8_ih_meta_data {
+>  	uint32_t command;
+> -	struct smu8_register_index_data_pair register_index_value_pair[1];
+> +	struct smu8_register_index_data_pair register_index_value_pair[];
 
-Is this a proposed stable tree patch?  If so, what kernel(s) are you
-wanting it applied to?
+Did you just change this structure size without any need to change any
+code as well?  How was this tested?
 
 thanks,
 
