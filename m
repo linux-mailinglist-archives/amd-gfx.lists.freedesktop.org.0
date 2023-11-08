@@ -1,53 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D817E586B
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 15:12:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4302E7E5866
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Nov 2023 15:11:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EBB710E77D;
-	Wed,  8 Nov 2023 14:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDB0810E772;
+	Wed,  8 Nov 2023 14:11:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2400 seconds by postgrey-1.36 at gabe;
- Wed, 08 Nov 2023 08:18:55 UTC
-Received: from 20.mo550.mail-out.ovh.net (20.mo550.mail-out.ovh.net
- [188.165.45.168])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88EAB10E484
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Nov 2023 08:18:55 +0000 (UTC)
-Received: from director8.ghost.mail-out.ovh.net (unknown [10.109.143.18])
- by mo550.mail-out.ovh.net (Postfix) with ESMTP id 91C4726BCD
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Nov 2023 07:02:58 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-lkwnp (unknown [10.110.115.9])
- by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 9A5291FD24;
- Wed,  8 Nov 2023 07:02:57 +0000 (UTC)
-Received: from RCM-web9.webmail.mail.ovh.net ([151.80.29.21])
- by ghost-submission-6684bf9d7b-lkwnp with ESMTPSA
- id nOucGqEyS2V5+woArb8c/A
- (envelope-from <jose.pekkarinen@foxhound.fi>); Wed, 08 Nov 2023 07:02:57 +0000
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8465110E3A7
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Nov 2023 07:05:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id 465DDB811FB;
+ Wed,  8 Nov 2023 07:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B40C433C7;
+ Wed,  8 Nov 2023 07:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1699427115;
+ bh=7xc9G6SOZ4q68s8IZylizrktOjXd9+dgnshxbYYHsuQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ZVFTMZaPA5PF/9QIu4jL8SdPCqKcsqrusDTcLgOnVw3If1KL96LjObTi8ad0EeqM9
+ r/lmrZX0HDrhswdfwYRRD3+AY2kYsbsviOAkvf7BLT9dinwaUPpEjApfG3CQLZH6Xx
+ Pc5iCrv11W1azmZOI1sLOLrIzf+TR3BB8TIcP7Cs=
+Date: Wed, 8 Nov 2023 08:05:12 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Li Ma <li.ma@amd.com>
+Subject: Re: [PATCH] r8169: fix ASPM-related issues on a number of systems
+ with NIC version from RTL8168h
+Message-ID: <2023110845-factual-dawn-7d68@gregkh>
+References: <20231108033359.3948216-1-li.ma@amd.com>
 MIME-Version: 1.0
-Date: Wed, 08 Nov 2023 09:02:56 +0200
-From: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
-To: Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] drm/amd/pm: clean up redundant comparisons with 0
-In-Reply-To: <f98d840d-f3ff-47e1-b609-2cfe33c65cb5@roeck-us.net>
-References: <20231107082910.92508-1-jose.pekkarinen@foxhound.fi>
- <98e8490e-6608-47a8-890c-f1fe894dac7f@roeck-us.net>
- <65d132b0dbef66039fd6938ecbc2bf68@foxhound.fi>
- <f98d840d-f3ff-47e1-b609-2cfe33c65cb5@roeck-us.net>
-User-Agent: Roundcube Webmail/1.4.15
-Message-ID: <b15e6759f51beed255036b9b3c7c6740@foxhound.fi>
-X-Sender: jose.pekkarinen@foxhound.fi
-Organization: Foxhound Ltd.
-X-Originating-IP: 192.42.116.216
-X-Webmail-UserID: jose.pekkarinen@foxhound.fi
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 3648478649106343617
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedruddukedguddtudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepggffhffvvefujghffgfkgihoihgtgfesthekjhdttderjeenucfhrhhomheplfhoshorucfrvghkkhgrrhhinhgvnhcuoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqeenucggtffrrghtthgvrhhnpeekhfeguddufeegvdelgedtvdffgeehvddtkeevkeejvedvgeeitdefleehtdeitdenucfkphepuddvjedrtddrtddruddpudelvddrgedvrdduudeirddvudeipdduhedurdektddrvdelrddvudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqedpnhgspghrtghpthhtohepuddprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdfovfetjfhoshhtpehmohehhedtpdhmohguvgepshhmthhpohhuth
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231108033359.3948216-1-li.ma@amd.com>
 X-Mailman-Approved-At: Wed, 08 Nov 2023 14:11:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,64 +47,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, jdelvare@suse.com, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, skhan@linuxfoundation.org,
- alexander.deucher@amd.com, evan.quan@amd.com, airlied@gmail.com,
- christian.koenig@amd.com, linux-kernel-mentees@lists.linux.dev
+Cc: yifan1.zhang@amd.com, amd-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ mario.limonciello@amd.com, Alexander.Deucher@amd.com,
+ "David S . Miller" <davem@davemloft.net>,
+ Heiner Kallweit <hkallweit1@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2023-11-07 20:03, Guenter Roeck wrote:
-> On 11/7/23 09:26, José Pekkarinen wrote:
->> On 2023-11-07 16:08, Guenter Roeck wrote:
->>> On 11/7/23 00:29, José Pekkarinen wrote:
->>>> There is a couple of function return checks of functions that return
->>>> unsigned values, and local variables to hold them are also unsigned, 
->>>> so
->>>> checking if they are negative will always return false. This patch 
->>>> will
->>>> remove them, as well as the never reached code.
->>>> 
->>>> drivers/gpu/drm/amd/pm/amdgpu_pm.c:2801:5-8: WARNING: Unsigned 
->>>> expression compared with zero: val < 0
->>>> drivers/gpu/drm/amd/pm/amdgpu_pm.c:2814:5-8: WARNING: Unsigned 
->>>> expression compared with zero: val < 0
->>>> 
->>>> Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
->>>> ---
->>>>   drivers/gpu/drm/amd/pm/amdgpu_pm.c | 4 ----
->>>>   1 file changed, 4 deletions(-)
->>>> 
->>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c 
->>>> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> index 8bb2da13826f..e7bb1d324084 100644
->>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->>>> @@ -2798,8 +2798,6 @@ static ssize_t 
->>>> amdgpu_hwmon_show_power_avg(struct device *dev,
->>>>       unsigned int val;
->>>>         val = amdgpu_hwmon_get_power(dev, 
->>>> AMDGPU_PP_SENSOR_GPU_AVG_POWER);
->>>> -    if (val < 0)
->>>> -        return val;
->>>> 
->>> 
->>> This is reporting errors returned from amdgpu_hwmon_get_power() as
->>> large integers.
->> 
->>      Alright, that case it is a false positive, thanks for the 
->> comment!
->> 
+On Wed, Nov 08, 2023 at 11:34:00AM +0800, Li Ma wrote:
+> From: Heiner Kallweit <hkallweit1@gmail.com>
 > 
+> This effectively reverts 4b5f82f6aaef. On a number of systems ASPM L1
+> causes tx timeouts with RTL8168h, see referenced bug report.
 > 
-> No, it isn't a false positive. The fix is wrong. The variable should be 
-> declared
-> 'int val', not 'unsigned int val'.
+> Fixes: 4b5f82f6aaef ("r8169: enable ASPM L1/L1.1 from RTL8168h")
+> Cc: stable@vger.kernel.org
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=217814
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: David S. Miller <davem@davemloft.net>
+> (cherry picked from commit 90ca51e8c654699b672ba61aeaa418dfb3252e5e)
+> ---
+>  drivers/net/ethernet/realtek/r8169_main.c | 4 ----
+>  1 file changed, 4 deletions(-)
 
-     Sorry I may have missunderstood your comment, I certainly can do the
-minor fix then.
+Is this a proposed stable tree patch?  If so, what kernel(s) are you
+wanting it applied to?
 
-     Thanks!
+thanks,
 
-     José.
+greg k-h
