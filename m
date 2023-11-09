@@ -1,69 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A917E6718
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Nov 2023 10:48:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1487E6C92
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Nov 2023 15:43:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D8D10E1F9;
-	Thu,  9 Nov 2023 09:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00A8610E8B5;
+	Thu,  9 Nov 2023 14:43:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F182710E1F9
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 09:48:54 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id
- 4fb4d7f45d1cf-53de8fc1ad8so972833a12.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Nov 2023 01:48:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699523333; x=1700128133; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=zI3JAeZLlSX/PMhrIdaWaAEe3wMM8uOfVKj+q3rvDS0=;
- b=REovOceRqFW2vsASeQmHAjzxDFgEkId+EhsTD5/8wG/nd1EXOxsN6MJAfNE48IYFhi
- WaP/JiV6Pg7TaEyrhhRGJt2wCVG0lkz3d0Kav0Xpmr0nI9fTMTmzDLZ3mAbnh3KahNB0
- IwmaYkPB+scVoiB6PqLz7hO9gLcYMf9OxeciRNSA4t7RMwISDBkj+AJ35ghq1o+Zntcy
- e8QRJfuZzXPxMWnLBk39+RI0YG48JRLGxaX/TmZp2ok1tS5dW7Ogqaq2CZQjiu1IKLBC
- siVG+fnq3xEOtzEKUeLMzY/yFzmmjO/itKOoFZgdmjxyNCdLjQmuIcKhAiTTDjQ5YdaY
- jDiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699523333; x=1700128133;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=zI3JAeZLlSX/PMhrIdaWaAEe3wMM8uOfVKj+q3rvDS0=;
- b=reymwxRHBwB9jJVbujm+q6JleJOF5wtP04/5cWV9zCFwF/LKLhf6y9B87mY2wxO3pj
- 5/NiLDqSPsMUpYAoLbS4s8dtLUdJdQ+Rhy1N4BHB/pWMTyFdx3mfTWjMcWd65xkUkVxE
- TZpNjcA5ax9a3IML83LvkiJas9iYslzXn7fzAJqL9yC0QFbGp8+IPzNTIQSl6tIlL+Ag
- akHb9ZOsqqKOzsVL5mNOeqyYM6GxNO642vIZqoKGmU1bwCg20ho2utf21pt4g5CHkLr4
- Ac50k7+Hlhr2H1QCQ0Ruhr9XoAxL27z5FxJm03CgehzVIfTuBS/1E9CrWZV5rE8StxBk
- kYTg==
-X-Gm-Message-State: AOJu0YzkEP20o5PShRJM4HxTuAnHUUtjC9JoAp7zk6HdoeQln2axNdfi
- vDJ8oWUFgIJvJ+LFRlzRwdzvuZudU65KUv/V
-X-Google-Smtp-Source: AGHT+IH7c6KRWVRrI6jkP3EoIruORsBsZvxFrd+YGcqVq3Usa62V0axotUja4U/ILyawCgewNBLrIQ==
-X-Received: by 2002:a50:cd57:0:b0:543:ba03:9b3b with SMTP id
- d23-20020a50cd57000000b00543ba039b3bmr3580221edj.25.1699523333166; 
- Thu, 09 Nov 2023 01:48:53 -0800 (PST)
-Received: from able.fritz.box ([2a00:e180:1516:6100:36ac:9121:5531:de23])
- by smtp.gmail.com with ESMTPSA id
- d14-20020a05640208ce00b0054130b1bc77sm7792401edz.51.2023.11.09.01.48.52
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Nov 2023 01:48:52 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: lower CS errors to debug severity
-Date: Thu,  9 Nov 2023 10:48:51 +0100
-Message-Id: <20231109094851.674657-2-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231109094851.674657-1-christian.koenig@amd.com>
-References: <20231109094851.674657-1-christian.koenig@amd.com>
+X-Greylist: delayed 104625 seconds by postgrey-1.36 at gabe;
+ Thu, 09 Nov 2023 11:59:35 UTC
+Received: from 6.mo581.mail-out.ovh.net (6.mo581.mail-out.ovh.net
+ [188.165.39.218])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD5F110E8B0
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:59:35 +0000 (UTC)
+Received: from director4.ghost.mail-out.ovh.net (unknown [10.108.20.52])
+ by mo581.mail-out.ovh.net (Postfix) with ESMTP id 3A1962B617
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:54:09 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-mtzwj (unknown [10.110.115.240])
+ by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 85C921FE5E;
+ Thu,  9 Nov 2023 11:54:08 +0000 (UTC)
+Received: from RCM-web7.webmail.mail.ovh.net ([151.80.29.19])
+ by ghost-submission-6684bf9d7b-mtzwj with ESMTPSA
+ id RRNyHmDITGUefgQAf8sC0A
+ (envelope-from <jose.pekkarinen@foxhound.fi>); Thu, 09 Nov 2023 11:54:08 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Date: Thu, 09 Nov 2023 13:54:07 +0200
+From: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
+To: Greg KH <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH] drm/amd/pm: replace 1-element arrays with flexible-array
+ members
+In-Reply-To: <2023110916-tinfoil-concur-77d8@gregkh>
+References: <20231108065436.13969-1-jose.pekkarinen@foxhound.fi>
+ <2023110835-magnolia-prune-02d0@gregkh>
+ <1b20f2e4ddc0b0e94aa9a1f9c76ff75c@foxhound.fi>
+ <2023110916-tinfoil-concur-77d8@gregkh>
+User-Agent: Roundcube Webmail/1.4.15
+Message-ID: <ee757d648a601ba3530e0eeb1c5d178e@foxhound.fi>
+X-Sender: jose.pekkarinen@foxhound.fi
+Organization: Foxhound Ltd.
+X-Originating-IP: 109.70.100.69
+X-Webmail-UserID: jose.pekkarinen@foxhound.fi
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 14438821884044027585
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedruddvuddgfedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihoihgtgfesthekjhdttderjeenucfhrhhomheplfhoshorucfrvghkkhgrrhhinhgvnhcuoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqeenucggtffrrghtthgvrhhnpeehieduleeufeeggfeuhefgueekjeegtdehudefvdduteefudevkeelfeduheejtdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupddutdelrdejtddruddttddrieelpdduhedurdektddrvdelrdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqedpnhgspghrtghpthhtohepuddprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
+X-Mailman-Approved-At: Thu, 09 Nov 2023 14:43:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,29 +61,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, skhan@linuxfoundation.org, alexander.deucher@amd.com,
+ evan.quan@amd.com, airlied@gmail.com, christian.koenig@amd.com,
+ linux-kernel-mentees@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Otherwise userspace can spam the logs by using incorrect input values.
+On 2023-11-09 11:06, Greg KH wrote:
+> On Thu, Nov 09, 2023 at 10:43:50AM +0200, José Pekkarinen wrote:
+>> On 2023-11-08 09:29, Greg KH wrote:
+>> > On Wed, Nov 08, 2023 at 08:54:35AM +0200, José Pekkarinen wrote:
+>> > > The following case seems to be safe to be replaced with a flexible
+>> > > array
+>> > > to clean up the added coccinelle warning. This patch will just do it.
+>> > >
+>> > > drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h:76:38-63:
+>> > > WARNING use flexible-array member instead (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays)
+>> > >
+>> > > Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
+>> > > ---
+>> > >  drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h | 2 +-
+>> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+>> > > b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+>> > > index c7b61222d258..1ce4087005f0 100644
+>> > > --- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+>> > > +++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
+>> > > @@ -73,7 +73,7 @@ struct smu8_register_index_data_pair {
+>> > >
+>> > >  struct smu8_ih_meta_data {
+>> > >  	uint32_t command;
+>> > > -	struct smu8_register_index_data_pair register_index_value_pair[1];
+>> > > +	struct smu8_register_index_data_pair register_index_value_pair[];
+>> >
+>> > Did you just change this structure size without any need to change any
+>> > code as well?  How was this tested?
+>> 
+>>     I didn't find any use of that struct member, if I missed
+>> something here, please let me know and I'll happily address any
+>> needed further work.
+> 
+> I don't think this is even a variable array.  It's just a one element
+> one, which is fine, don't be confused by the coccinelle "warning" here,
+> it's fired many false-positives and you need to verify this properly
+> with the driver authors first before changing anything.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+      My apologies to you, and anybody that feels the same, it is not my
+intention to bother with mistaken patches, I just assume that this patch
+or any other from me, will go to review process, where it should be fine
+if the patch is right, wrong, need further work, or further testing 
+either
+from my side or anybody else, and at the end of the day I need to do
+patches if I want to find my mentorship patches, and graduate.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index aafedb344c1b..af844c98f295 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1442,7 +1442,7 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 		if (r == -ENOMEM)
- 			DRM_ERROR("Not enough memory for command submission!\n");
- 		else if (r != -ERESTARTSYS && r != -EAGAIN)
--			DRM_ERROR("Failed to process the buffer list %d!\n", r);
-+			DRM_DEBUG("Failed to process the buffer list %d!\n", r);
- 		goto error_fini;
- 	}
- 
--- 
-2.34.1
+> In short, you just changed the size of this structure, are you _sure_
+> you can do that?  And yes, it doesn't look like this field is used, but
+> the structure is, so be careful.
 
+     I don't know, let check it out together and see where this goes.
+
+     José.
