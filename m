@@ -1,55 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1487E6C92
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Nov 2023 15:43:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE0F7E6C8D
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Nov 2023 15:42:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00A8610E8B5;
-	Thu,  9 Nov 2023 14:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 248AE10E221;
+	Thu,  9 Nov 2023 14:42:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 104625 seconds by postgrey-1.36 at gabe;
- Thu, 09 Nov 2023 11:59:35 UTC
-Received: from 6.mo581.mail-out.ovh.net (6.mo581.mail-out.ovh.net
- [188.165.39.218])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5F110E8B0
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:59:35 +0000 (UTC)
-Received: from director4.ghost.mail-out.ovh.net (unknown [10.108.20.52])
- by mo581.mail-out.ovh.net (Postfix) with ESMTP id 3A1962B617
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 11:54:09 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-mtzwj (unknown [10.110.115.240])
- by director4.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 85C921FE5E;
- Thu,  9 Nov 2023 11:54:08 +0000 (UTC)
-Received: from RCM-web7.webmail.mail.ovh.net ([151.80.29.19])
- by ghost-submission-6684bf9d7b-mtzwj with ESMTPSA
- id RRNyHmDITGUefgQAf8sC0A
- (envelope-from <jose.pekkarinen@foxhound.fi>); Thu, 09 Nov 2023 11:54:08 +0000
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on20629.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0423F10E21B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Nov 2023 14:42:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ft9czZ1idWLn4SDcIgBB6EQGHMxbHi3H4Q3WQNIV+QChYdppUjflzgouFhsdBhSw+6t3ExOGF2aeSaKLOfHNYYpFUUj+6UHP8CLQ4/uLYEy5dk+xdU37eJw/4YgXtcZdg661rORFcXQYr+YpYv2lkw/1uJzCeeBhWXU/ttTWtI8fGZdEiukTVw02OGwb18IqrDFKR+IZFFPn4dqX0BQaioviQo0VJuRCAR8ztzlnQNVzk0kuS4FO0ZKNx0M8j/WNhu7wayzCcymWxWEUfb4z17kpXSYLk5B8Fk2ddCJNt3jHXqy0HWPdKcUO7gAjQTnYTpTZ5934q9TdpqXA8FD9rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jAbnx/IvtGuE0EG18CXOwDE9m1M1n5mm9iDjdGNXNXU=;
+ b=IFhYChI6sqoYB6FIk0MwfiunQ63w8E7kuzumnOMcbEtIsBRUTNAAdJ6T5VxlP3l5/lIhk7CSndG27yBbr9x+kzWcgyEwbZllQFnSr0ji92iNW0FhPQZF4h5i04DN8Xy3+FW+mteXrnpvZVk+y72o2bZmn4LE5LD/hz51lOiQHy5vJx4aqJwIPE+j1CU8+C8PR/UyrTAozo40WJE6kgebUI4+GQsaadoODsWtj7nvjGb+dIPn2V75y1+3y+XAaMeDPyPcpD8R9+K2WOsZXs4wXqleKNJkIc2uOxHeA02+rt/sab/muPxGmFU39zqfm+FJwZVOgHSi8NGphnLntTYtFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jAbnx/IvtGuE0EG18CXOwDE9m1M1n5mm9iDjdGNXNXU=;
+ b=0vfF5VDv0jG9b3BXLp4EYPO3DMrrEFx0vg7wMQcYoIL/6jz3hGx0aqMmhv6LLYliXrqHj1Jkjnj+/30KIjNNTY08co5sADDCBJQmixWiG6z7ESYT4/+tBiLPLigrUBtWynOWyMuF7QwIbhMOVUmKTY/rIxp4FYjckN3iQYi4Ym8=
+Received: from BL0PR02CA0054.namprd02.prod.outlook.com (2603:10b6:207:3d::31)
+ by MW4PR12MB7484.namprd12.prod.outlook.com (2603:10b6:303:212::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.19; Thu, 9 Nov
+ 2023 14:42:01 +0000
+Received: from BL6PEPF0001AB4B.namprd04.prod.outlook.com
+ (2603:10b6:207:3d:cafe::b9) by BL0PR02CA0054.outlook.office365.com
+ (2603:10b6:207:3d::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.19 via Frontend
+ Transport; Thu, 9 Nov 2023 14:42:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4B.mail.protection.outlook.com (10.167.242.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6977.16 via Frontend Transport; Thu, 9 Nov 2023 14:42:01 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Thu, 9 Nov
+ 2023 08:42:00 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/3] drm/amdgpu/gmc11: disable AGP aperture
+Date: Thu, 9 Nov 2023 09:41:41 -0500
+Message-ID: <20231109144143.502132-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Date: Thu, 09 Nov 2023 13:54:07 +0200
-From: =?UTF-8?Q?Jos=C3=A9_Pekkarinen?= <jose.pekkarinen@foxhound.fi>
-To: Greg KH <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH] drm/amd/pm: replace 1-element arrays with flexible-array
- members
-In-Reply-To: <2023110916-tinfoil-concur-77d8@gregkh>
-References: <20231108065436.13969-1-jose.pekkarinen@foxhound.fi>
- <2023110835-magnolia-prune-02d0@gregkh>
- <1b20f2e4ddc0b0e94aa9a1f9c76ff75c@foxhound.fi>
- <2023110916-tinfoil-concur-77d8@gregkh>
-User-Agent: Roundcube Webmail/1.4.15
-Message-ID: <ee757d648a601ba3530e0eeb1c5d178e@foxhound.fi>
-X-Sender: jose.pekkarinen@foxhound.fi
-Organization: Foxhound Ltd.
-X-Originating-IP: 109.70.100.69
-X-Webmail-UserID: jose.pekkarinen@foxhound.fi
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 14438821884044027585
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedruddvuddgfedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihoihgtgfesthekjhdttderjeenucfhrhhomheplfhoshorucfrvghkkhgrrhhinhgvnhcuoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqeenucggtffrrghtthgvrhhnpeehieduleeufeeggfeuhefgueekjeegtdehudefvdduteefudevkeelfeduheejtdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeduvdejrddtrddtrddupddutdelrdejtddruddttddrieelpdduhedurdektddrvdelrdduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqedpnhgspghrtghpthhtohepuddprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdfovfetjfhoshhtpehmohehkedupdhmohguvgepshhmthhpohhuth
-X-Mailman-Approved-At: Thu, 09 Nov 2023 14:43:40 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4B:EE_|MW4PR12MB7484:EE_
+X-MS-Office365-Filtering-Correlation-Id: c19d04b5-7475-4262-8700-08dbe1320883
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 32i/keKRXoA9hW9xlwq74V/O2ARQ8aR+4zVvl+7Au/HtCTqd3zbF45rtczzwvLztiMPOjufR+Lk0M9e5T53NheSL3uBMzqYLaqS1n7l4rwquJA4/uoI4qiBpuYMAeYqMSBheT2o/6DIbY+LkmCzmtbhUcQVBxQpKLDGXkR2uUgFLrbInCQSD+g1YC/VxuD9rPTWbIiFw5K6Iw3VdO9Yc3HiwvKcmpryDIoV2KqdvhrDjVaFHm3A3F7msQP2JGCEK6A0WBwXJmvz3PK292mYduP44nwUUH7u774xeRJ4eiDlLhIlTMt9Ghp6pKMi5AErzpIo2PzZf1p1ORhSVKeOxz3FrnX27q6auiPjC6hzPl/iOaxnWyLdec0kf8+xT1ObvqHOTY3zF0JUvB/HV7omcarBMlFSr4Jv/urb8OpxXZ72jsEp5quz6pW0XT2NvLBQNtJ6vwWBezw06J/mV1+ommkJBk4DUqOIDliVtKgPyqfFRfJFqr+lIvajkEJmtlVKGrdqVYp/aEAHBzazAD8FIjJzUoP8+BDxB+QMonxoCbOYNVur5DycdtsY9JgWzAT6JtaNdibyTPN9snLFwVwbrZc9JJZ6SWZF9frkpHwxMmfy23cF5eVa+4+gd72181GH4+i1Qhas0ck87GWEdR3Eii6F8rIHbS8BRcOSgKs5uoE61CrHcdkQca42bCdVhbLcC58lIz/tMQTfeyB31UxLP+MlqMLGhINKWAGJcskHxJy08R2nQl00Q+1VlDyINl48ZNt7mYGg5NO2bivt/6Z2URA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(451199024)(64100799003)(82310400011)(186009)(1800799009)(46966006)(36840700001)(40470700004)(40460700003)(5660300002)(2906002)(41300700001)(4744005)(36860700001)(86362001)(36756003)(6916009)(316002)(70586007)(81166007)(356005)(82740400003)(70206006)(1076003)(2616005)(26005)(16526019)(6666004)(7696005)(478600001)(83380400001)(47076005)(336012)(426003)(8936002)(8676002)(4326008)(40480700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2023 14:42:01.0040 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c19d04b5-7475-4262-8700-08dbe1320883
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7484
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,66 +98,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, skhan@linuxfoundation.org, alexander.deucher@amd.com,
- evan.quan@amd.com, airlied@gmail.com, christian.koenig@amd.com,
- linux-kernel-mentees@lists.linux.dev
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2023-11-09 11:06, Greg KH wrote:
-> On Thu, Nov 09, 2023 at 10:43:50AM +0200, José Pekkarinen wrote:
->> On 2023-11-08 09:29, Greg KH wrote:
->> > On Wed, Nov 08, 2023 at 08:54:35AM +0200, José Pekkarinen wrote:
->> > > The following case seems to be safe to be replaced with a flexible
->> > > array
->> > > to clean up the added coccinelle warning. This patch will just do it.
->> > >
->> > > drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h:76:38-63:
->> > > WARNING use flexible-array member instead (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays)
->> > >
->> > > Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
->> > > ---
->> > >  drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h | 2 +-
->> > >  1 file changed, 1 insertion(+), 1 deletion(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
->> > > b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
->> > > index c7b61222d258..1ce4087005f0 100644
->> > > --- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
->> > > +++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu8_smumgr.h
->> > > @@ -73,7 +73,7 @@ struct smu8_register_index_data_pair {
->> > >
->> > >  struct smu8_ih_meta_data {
->> > >  	uint32_t command;
->> > > -	struct smu8_register_index_data_pair register_index_value_pair[1];
->> > > +	struct smu8_register_index_data_pair register_index_value_pair[];
->> >
->> > Did you just change this structure size without any need to change any
->> > code as well?  How was this tested?
->> 
->>     I didn't find any use of that struct member, if I missed
->> something here, please let me know and I'll happily address any
->> needed further work.
-> 
-> I don't think this is even a variable array.  It's just a one element
-> one, which is fine, don't be confused by the coccinelle "warning" here,
-> it's fired many false-positives and you need to verify this properly
-> with the driver authors first before changing anything.
+We've had misc reports of random IOMMU page faults when
+this is used.  It's just a rarely used optimization anyway, so
+let's just disable it.
 
-      My apologies to you, and anybody that feels the same, it is not my
-intention to bother with mistaken patches, I just assume that this patch
-or any other from me, will go to review process, where it should be fine
-if the patch is right, wrong, need further work, or further testing 
-either
-from my side or anybody else, and at the end of the day I need to do
-patches if I want to find my mentorship patches, and graduate.
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> In short, you just changed the size of this structure, are you _sure_
-> you can do that?  And yes, it doesn't look like this field is used, but
-> the structure is, so be careful.
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 6dce9b29f675..e1cac5da9c4b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -640,9 +640,6 @@ static void gmc_v11_0_vram_gtt_location(struct amdgpu_device *adev,
+ 	amdgpu_gmc_set_agp_default(adev, mc);
+ 	amdgpu_gmc_vram_location(adev, &adev->gmc, base);
+ 	amdgpu_gmc_gart_location(adev, mc, AMDGPU_GART_PLACEMENT_HIGH);
+-	if (!amdgpu_sriov_vf(adev) ||
+-	    (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(11, 5, 0)))
+-		amdgpu_gmc_agp_location(adev, mc);
+ 
+ 	/* base offset of vram pages */
+ 	if (amdgpu_sriov_vf(adev))
+-- 
+2.41.0
 
-     I don't know, let check it out together and see where this goes.
-
-     José.
