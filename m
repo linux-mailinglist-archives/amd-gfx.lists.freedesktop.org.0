@@ -1,46 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A8347E85E9
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Nov 2023 23:57:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C9997E91E8
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Nov 2023 19:01:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C08C810E2A4;
-	Fri, 10 Nov 2023 22:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADDBE10E0DA;
+	Sun, 12 Nov 2023 18:01:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACFCD10E2A4;
- Fri, 10 Nov 2023 22:53:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=tOYDo1cN44RiDSLhxs/Illj/iOMmKhabusTff9O6hu0=; b=v71dnxDYZHCZAkGzhtHw4hR1y6
- a8dMFJswTCTC5/DAovSq9dmPAJ0JabpQZLRHRmFhIftoCZBuQvsPUmbrqlQsg4mhxDVe8js0KQiPL
- CTB/0jhgj8xqMqAWzYScg38eGDA/A1fuQajZ5VQFDhh4pEHKRfbyZLyv6qwZG7J4aNRa/YRtS9rQK
- f2+IelZQwXFWHV9LZXgY1+upS4Gg4+0snZLevvaR7VmCqa4pWktkkiCUNhGDEcyh6Ka9EKA9G5HYD
- MwSDwPq5xhNEADoxPkUFTsbaNJeuxjbGeUIbnZtkReqIoixjBJWgfqgnC+Gr0sgtVM0tGx3JFjt0X
- 6VLdZXnA==;
-Received: from [50.53.46.231] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1r1aNf-009aVR-2f; Fri, 10 Nov 2023 22:53:39 +0000
-Message-ID: <3027ec81-304a-4501-808f-67596e61fb9f@infradead.org>
-Date: Fri, 10 Nov 2023 14:53:39 -0800
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 808B710E242
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 23:32:05 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ 5b1f17b1804b1-4084095722aso19561945e9.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 15:32:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699659124; x=1700263924; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=G0Xxx3+DUmKqCjOHgRxC9Cu8pQOaIoyEbq7uXsJmyuo=;
+ b=NRIIDSGhC1KCkpZNDUvFce5VoinJP+am3iVEUsZLl2J34+YVwESJew+2Y4ijuVnOLb
+ V8N+qHfNpIzWxfg3pOD0OPlsVpUUOzruz2FzLtTrDyz54pzEZkp3K+ssWhoK1CCMmWxx
+ f9VwmBljkDFdXS2w8V3LV/xgcxBh20UKJGqa8vKVh8h14V4Kcg7e5+y3deFpzX8oeCBn
+ qj6QT3YqPyk+wYqLfTwAvq4dZK6eqEEMRzrUvRadIPPTGk5onLRgfJS0DOi3WtSON5Oo
+ vfbpsBUHH62i57bgK9ITDMcBBhUHBPdg8UcpadmjDPC1E4Hgco3bqp6iqCx7k7rcaKJE
+ Fs+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699659124; x=1700263924;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=G0Xxx3+DUmKqCjOHgRxC9Cu8pQOaIoyEbq7uXsJmyuo=;
+ b=v+bLjvXrBNLuCmB1KP3OsLuL3vJGuSkB8KiFR0i/TEEHzcw+jwu0/j9DJhUt9FtvN9
+ StfSuFRSehWIPs7MwqQRW1qRiuNSMgWt+I90qUa2J03EOO+snFuODHitmAENtGqm5BjD
+ KA7O9cfsRxCDGvLYBFoqIbGxqJI3TwPwxf82Dxh+asxfHT9m1VhdjpEoijKl9DXi1zn6
+ h2rMWh7neqttH4N9xdFab5+LcQg5i59A2Ks0XgxzyeX8leVTFH3RCQ9+nfbYnLImVN4A
+ 7g63BEUyjbqmpUzJowEWoxxST5mcTtMVP5QFDHVgwxEQ0zgCr8fOaJHbWSWEiKYKueX6
+ JvSw==
+X-Gm-Message-State: AOJu0Yy3cyHG63ZM1hF0sN/RcztqwzNeygYHRIuZ2ey6vF0alDnsITVY
+ T/JNHnuotC3zM3r7JtPA1dWejKboSOZ/EDdkKExLlFKdY537vQ==
+X-Google-Smtp-Source: AGHT+IFG6URo6uQE2p8wiMVe/XtEaUyefdx6hpALNvAZBpUx688Cz2eYMzmFqf0yRanMiS5kiR+oZO/fKeOyOUJm7K8=
+X-Received: by 2002:a05:6000:1567:b0:319:867e:97d7 with SMTP id
+ 7-20020a056000156700b00319867e97d7mr500266wrz.52.1699659123266; Fri, 10 Nov
+ 2023 15:32:03 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd: Document device reset methods
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20231110155548.20599-1-andrealmeid@igalia.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20231110155548.20599-1-andrealmeid@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 10 Nov 2023 22:57:22 +0000
+From: J Fra <jfra4799@gmail.com>
+Date: Fri, 10 Nov 2023 17:31:52 -0600
+Message-ID: <CAE584xbwK36APghuq_83W6KD2XHNY99-NmH+M1a3kZufyYp8WA@mail.gmail.com>
+Subject: Re: [PATCH v7d 00/23] fix DRM_USE_DYNAMIC_DEBUG=y regression
+To: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000004819e60609d4ba44"
+X-Mailman-Approved-At: Sun, 12 Nov 2023 18:01:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,61 +63,17 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, ray.huang@amd.com, christian.koenig@amd.com,
- kernel-dev@igalia.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi--
+--0000000000004819e60609d4ba44
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/10/23 07:55, André Almeida wrote:
-> Document what each amdgpu driver reset method does.
-> 
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index a79d53bdbe13..500f86c79eb7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -504,6 +504,26 @@ struct amdgpu_allowed_register_entry {
->  	bool grbm_indexed;
->  };
->  
-> +/**
-> + * enum amd_reset_method - Methods for resetting AMD GPU devices
-> + *
-> + * @AMD_RESET_METHOD_NONE: The device will not be reset.
-> + * @AMD_RESET_LEGACY: Method reserved for SI/CIK asics.
 
-                                                    ASICs.
 
-> + * @AMD_RESET_MODE0: High level PCIe reset.
-> + * @AMD_RESET_MODE1: Resets each IP block (SDMA, GFX, VCN, etc.) individually.
-> + *                   Suitable only for some discrete GPUs.
-> + * @AMD_RESET_MODE2: Resets only the GFX block. Useful for APUs, giving that
-> + *                   the rest of IP blocks and SMU is shared with the CPU.
-> + * @AMD_RESET_BACO: BACO (Bus Alive, Chip Off) method powers off and on the card
-> + *                  but without powering off the PCI bus. Suitable only for
-> + *                  discrete GPUs.
-> + * @AMD_RESET_PCI: Does a full bus reset, including powering on and off the
-> + *                 card.
-> + *
-> + * Methods available for AMD GPU driver for resetting the device. Not all
-> + * methods are suitable for every device. User can overwrite the method using
+--0000000000004819e60609d4ba44
+Content-Type: text/html; charset="UTF-8"
 
-s/overwrite/override/
-would make more sense to me.
+<div dir="auto"></div>
 
-Otherwise looks good. Thanks.
-
-> + * module parameter `reset_method`.
-> + */
->  enum amd_reset_method {
->  	AMD_RESET_METHOD_NONE = -1,
->  	AMD_RESET_METHOD_LEGACY = 0,
-
--- 
-~Randy
+--0000000000004819e60609d4ba44--
