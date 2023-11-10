@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E9B57E91E4
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Nov 2023 19:01:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A437E91E6
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Nov 2023 19:01:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C798F10E0AB;
-	Sun, 12 Nov 2023 18:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A1A10E0D5;
+	Sun, 12 Nov 2023 18:01:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED01110E242
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 23:32:55 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id
- 5b1f17b1804b1-40859c466efso18514485e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 15:32:55 -0800 (PST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4052410E242
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 23:32:56 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id
+ ffacd0b85a97d-32f7bd27c2aso1683122f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 15:32:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20230601; t=1699659174; x=1700263974; darn=lists.freedesktop.org;
  h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
  :date:message-id:reply-to;
- bh=PEexQZqE3V4Gt2x3gKRVHcIjmSEfb18+gb5XTY6vv/Y=;
- b=aQBQ7FJo8WGv5cDdGWbJDGXEP8TpZkD376DKCcHuE3A5f1l2HTBvmPR1NQRXD7J9La
- JmgpgP5o7GJWYEgJFDhDDn0zkCsaNHLBgC0Hw/77T0hC0ZLC43+89xyeH6ypJjkhKjj4
- 0ZoLEGT/s83igdWwYgAIhQMiSXP5qb3BWL885jMEUH42ecYixd6gJs2Hy3Px2mvf1aa/
- nQqtGODw01DDIQv0VgbAwCCHLZ5gc06F/boYW71xPFQ4FENaR8WhXwZmwPzq9SrhfeR+
- 3MscmhPTfXzNQBWK1+15OiRoTpvKh4oCS5DJAbjYgHqDrKxzrVivQDrkOQtLPW8BxL9E
- lgSg==
+ bh=HpQQWTdBqHFTmJNUoiy1oT/yZ78ycZkY/c+sOqBhWe8=;
+ b=SkuASrkdMEbSZOgAZ1TxHv8ife0Vp5gmDOU3HSezFOgtYlGKAgbKqSrGMsid7kIshu
+ +5M8ZgoS8wdRSSdXJE9cxW6titzQeZ+oF+Spe20yrvhixROOw9mIyAzVX4eHXZ2Gozqf
+ a2wmNG/D1Fq5O3XkNdNJAp8VzQ+UTwVkU4LFLbvTHq+L9lc/chU1xhDoHsonyuVq0QGz
+ pwLaVS7xkayCUSKJ3//BeFCBSxVMqGEOnt1DDI6uGr4OUEgpMEv9WMuyvDJzsWfBpSEa
+ Mg5gz3qBZjSO5YWIoV8ydKj6I04A4rFyP/FxWq9F86soU7++sKcQAzIkIW6vGyXyoYUM
+ pRCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20230601; t=1699659174; x=1700263974;
  h=to:subject:message-id:date:from:mime-version:x-gm-message-state
  :from:to:cc:subject:date:message-id:reply-to;
- bh=PEexQZqE3V4Gt2x3gKRVHcIjmSEfb18+gb5XTY6vv/Y=;
- b=flc/r5X5/jDqFZuLtTsv9i4mWOTUqhmRgSw83/KUULAJY0IV9rDSDQjEzJx71KNRfv
- AWyhTJzoY+7u8UKE1GAwBsAKsNMg4L9ZhPgKLK52nle5tFvXWZC4pF+pYlKZUBrqiyw7
- fHwtUjlDk7I4c2+c0UF/Ko3+mv97d9c4MpJeFrBhkwc7tbgKhMciyehtnzKjingi4SXJ
- 39ylHiALrYbMjPQzRjb9d0nraoFN6BZGVVMgSG/7IB1VPmw6snQGkRPVmI7VNqkUzgjn
- mCFBnc3If5S8ct9NYnwZ4YU9aaxoJ7+VPHx9hEEkkjKCjQtdDFX9qZ8UkFfqkcGV35iq
- Pj3A==
-X-Gm-Message-State: AOJu0Yweud2Ii79BuKeEIEwjhk/5L4bxkxT1HzrUXAvbFqZB3VIED6g7
- qhUkoQZfc8K+A5UqaZTKZQaVEhmE4VAH1ZPgxYhOnPGRrg7bijaX
-X-Google-Smtp-Source: AGHT+IEPhz/A9Po6wc880pzJiye6WJvVY8UfQTfT8mNcW3Mb4kql2Ay7GSXJuuoox8sJJ0MKaKEWGMz0CWl4cfGOp6I=
-X-Received: by 2002:a05:6000:18a6:b0:32f:8ace:f0b7 with SMTP id
- b6-20020a05600018a600b0032f8acef0b7mr515393wri.12.1699659174073; Fri, 10 Nov
+ bh=HpQQWTdBqHFTmJNUoiy1oT/yZ78ycZkY/c+sOqBhWe8=;
+ b=Lj7mFUtCWKeS/hz7ECsjkcTN64Llhy2rJX3x2fxvmBDn5fmVsiVqr3MiZZl0xKqBlo
+ h1QMDXe7WlTFjJ3t9/hU2HZ9opKR11kjJKhsr3/BiD5EZdFB+/C7O1+Tuhws9x9LrGUV
+ cB+VjlEX53iS63wsv21dxHvSTycBrO7PW1TUraleDAsf/Hd+PTuEFJEnmk7jZFmAnj3L
+ Nb6vESfWSY3CF44vmHZKglOdrq98pCO+qOQA6GKdsw2NeFmt+n8Fy5VzUu7/D7d3eQW5
+ sys40djkov7X+qgbiZNpN6womDVt/FfXOvkaJIosYYaN+3dPmrG2WUzbCt+FOgFoylaY
+ PAuw==
+X-Gm-Message-State: AOJu0YyuUQQfqtsy7SpX/9ItwriWQaNXyyxBIdQkY5pIZAGKbXVVP9/P
+ vkHXeJ50YE0oxwMcfdzwbzk95KljRdUWWBMDFFdixcX/8bp6mDTR
+X-Google-Smtp-Source: AGHT+IFSv0SRci0nz3+D4ShjG9cVywVZyzHs8uOz55coeo5oYeugzp56ZZwOYFUPdULmabKlWz7PxbIHtBVqiWcAGJE=
+X-Received: by 2002:adf:fccd:0:b0:32d:5cc0:2f0c with SMTP id
+ f13-20020adffccd000000b0032d5cc02f0cmr473702wrs.40.1699659174408; Fri, 10 Nov
  2023 15:32:54 -0800 (PST)
 MIME-Version: 1.0
 From: J Fra <jfra4799@gmail.com>
-Date: Fri, 10 Nov 2023 17:32:34 -0600
-Message-ID: <CAE584xY3twxGyvF+Ep3a_3vtAEA_ZoObUAKjE=rTRjd4HsvtAA@mail.gmail.com>
-Subject: Re: [PATCH v7d 02/23] dyndbg: reword "class unknown,
- " to "class:_UNKNOWN_"
+Date: Fri, 10 Nov 2023 17:32:43 -0600
+Message-ID: <CAE584xaTsBzyJ1kEzJJwPV+=7RVr3CX45VVHGoWujYHsdgwe7A@mail.gmail.com>
+Subject: Re: [PATCH v7d 04/23] dyndbg: replace classmap list with a vector
 To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="0000000000004f5a6e0609d4bdc5"
+Content-Type: multipart/alternative; boundary="0000000000005476700609d4bd00"
 X-Mailman-Approved-At: Sun, 12 Nov 2023 18:01:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,14 +66,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---0000000000004f5a6e0609d4bdc5
+--0000000000005476700609d4bd00
 Content-Type: text/plain; charset="UTF-8"
 
 
 
---0000000000004f5a6e0609d4bdc5
+--0000000000005476700609d4bd00
 Content-Type: text/html; charset="UTF-8"
 
 <div dir="auto"></div>
 
---0000000000004f5a6e0609d4bdc5--
+--0000000000005476700609d4bd00--
