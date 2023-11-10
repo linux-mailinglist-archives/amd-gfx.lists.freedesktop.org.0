@@ -1,117 +1,117 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E8E7E8232
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Nov 2023 20:07:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E4D7E8238
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Nov 2023 20:07:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34EB910E18C;
-	Fri, 10 Nov 2023 19:07:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD52D10E1BA;
+	Fri, 10 Nov 2023 19:07:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on20609.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5b::609])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F192810E18C
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 19:07:05 +0000 (UTC)
+ (mail-bn8nam12on20621.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::621])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C7810E1B3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Nov 2023 19:07:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=buwvdYSNApsijdDCkobVGrB301fSEOk5VBpa+gr6gXocjBex00EHlykrso2aNklfM2q8DjW0AaK6ScKJ4a7CmvGo7+J97B3FLzvnYg+pPWrRKjD4mmZy2//ASRTqZalizZCJUTd2cUV198f7gdAjjOhg5KjXYEWRGUs0M33xI4mL7vCW174NAkoxr3UBuifbncDZYVtLlNtVB0G3EL7zUwo6O/oT9JiuPfK+OwXcblus95BX5YdBZ+aT1cjiQ12K/F1ZP5Xe5PzoIjUNZTVTLIn+gf7TPQ+qfKOeQT2Yx5aja+kEgTrmXhX0V/PWVYSTmkCFkt0/HhFaUpQR8KHVeg==
+ b=egxiHPHPDDVs4D42HV0Sl9iEMsvQ6Eq/MN2cJ+N7hvYrBGSPq5C/Ak0q5hsWuOMyw4CIVGyGuvbACD2q52vVWcvFNAuLEYVS4VIdrEKkdk4xW+iX0Hgc/XJ+uzRN4nC7iEvf0WU71/dhj8I6l3gM3JcbJhEpBq97Su/J0huxDhG4NUAapSQE2pV0J8qvhjltsikSA9sPzr+dsJerjazN/8BTcH0q5LN5ibWfCfKeOBf6EzWEIYnco0Of0XZAjsKS6JZqOWq1FoSGzGeJbszd9RAFqyx616kKcOBCOU3dihLO6zLQOlITGnlN3Cz1mKuStq9o3TJN122LYTpK2+abUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/FnOETHX9YLZaj4gIE6OaOQ3gV0mCclycheczHEjhAE=;
- b=C1FFnSzC1l1AUnQVjwoQXg+vQftxQ8+TxUzrtEcAunPm+OpDMJ6uT4sXaWOrWaGLNOfOygb0msrCm7MSCqa4R7O99e+vhcuJllnP8ALJcLDS/e1NKoZZx76EnPTOJ+kvO8713p9EaHR78og3b1V5JOI4dmQirNIMqSOxA5dLCw6velupWGUZkbJcxzvk5EfwH4e501iS9G0HiibcUqHuNqRo46CuQWeoD0eKTlOJ9ne4bCMM98fl/Tk24XF3k1UuUFFwuWSe6WTRD8cDIkm4pLFQ6ny3od8sHwMyO8lrfwxu9aIDpSpjdcLvDx23Miv7YOdpsRU4lRshsUjxdpYLlQ==
+ bh=wI3grxqDN2sKET4n6s2cHJ0kD28hnFQNDwG1F2tnMHc=;
+ b=L94QSA4eysSpgPfo5S7/EKe3erXXnxQvFhZ+wXXCy+lghUm1dZ5X23Qe27pUeoDoBlAdlrZgJH1OcI00QO1IOEqmO1DMyX9mW3NmwE+W3mUvZYdwAYf8PfZGks9bncIDdrxWVO8/eXfBKDtyb5Hb9pllZgcslPVZ1TjEJK3q79aQJp4+vlwNcSSUkEiSabWWhQgccw/6mLNk32fr3MHEUHNpFKC3w6aBk6KJUompmhW73I3DgwOmkUHLUaxZEXh5ZPGsoXyjjvehPTvRyDdbAU2/PhjndN5MtPaBCgGiwuf6AMaTe63zBbQKzo+quB+aPcZgvuwQm2Jpv368OmQvRw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FnOETHX9YLZaj4gIE6OaOQ3gV0mCclycheczHEjhAE=;
- b=ZKofAtCId/qDTgih8qZycKy5/Ne2DrAF5DaFbode3JOKiQGc7TcMoVLZDPhuQgZwxhoyYIXX3WabZlgN+fIBKAy99MyVH5+ZN6tiZkVEOD3DLT2hW2uLU+/FNBA4oqm+679BaJ5oXz3nQv3WWG/VnPelZMGq/X9eQbdmQLfNlqk=
+ bh=wI3grxqDN2sKET4n6s2cHJ0kD28hnFQNDwG1F2tnMHc=;
+ b=iUTlE5PZoryKRabusmbA2YLU0qIDltKxBCMrMwyExHn86VCmd6iKTMqyZT8AQgi5Zhb+6BjMKOA8Mg5Y2ZR0QrPTRsC1yIJSpvySg2QeIKFQVVtLnH4RaiP3RmVuCXlWdDH3Wd4HksrRRtSSm7fa7yENuGR5TP3GdRYsTuKZOzE=
 Received: from DM6PR12MB5021.namprd12.prod.outlook.com (2603:10b6:5:208::17)
  by SA1PR12MB8721.namprd12.prod.outlook.com (2603:10b6:806:38d::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.19; Fri, 10 Nov
- 2023 19:07:03 +0000
+ 2023 19:07:18 +0000
 Received: from DM6PR12MB5021.namprd12.prod.outlook.com
  ([fe80::e8ff:474a:c306:f230]) by DM6PR12MB5021.namprd12.prod.outlook.com
  ([fe80::e8ff:474a:c306:f230%7]) with mapi id 15.20.6954.028; Fri, 10 Nov 2023
- 19:07:03 +0000
+ 19:07:18 +0000
 From: "Yat Sin, David" <David.YatSin@amd.com>
 To: "Zhu, James" <James.Zhu@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 19/24] drm/amdkfd: enable pc sampling stop
-Thread-Topic: [PATCH 19/24] drm/amdkfd: enable pc sampling stop
-Thread-Index: AQHaDlddRVB0fVi35E+uwYwzW6/mBrBz9JOg
-Date: Fri, 10 Nov 2023 19:07:03 +0000
-Message-ID: <DM6PR12MB50211E7128EDF3D5D6067B9295AEA@DM6PR12MB5021.namprd12.prod.outlook.com>
+Subject: RE: [PATCH 17/24] drm/amdkfd: add setting trap pc sampling flag
+Thread-Topic: [PATCH 17/24] drm/amdkfd: add setting trap pc sampling flag
+Thread-Index: AQHaDldbV5T0I5RYc0+iqVWUEJ8/S7BzxsCA
+Date: Fri, 10 Nov 2023 19:07:18 +0000
+Message-ID: <DM6PR12MB502180B96D016360B30CA16D95AEA@DM6PR12MB5021.namprd12.prod.outlook.com>
 References: <20231103131139.766920-1-James.Zhu@amd.com>
- <20231103131139.766920-20-James.Zhu@amd.com>
-In-Reply-To: <20231103131139.766920-20-James.Zhu@amd.com>
+ <20231103131139.766920-18-James.Zhu@amd.com>
+In-Reply-To: <20231103131139.766920-18-James.Zhu@amd.com>
 Accept-Language: en-CA, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=24956ba8-78e2-492f-ae23-6f9ed1907c61;
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=55336e25-923c-49c0-b85d-e2045f439f8c;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-11-10T19:03:45Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-11-10T16:19:45Z;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: DM6PR12MB5021:EE_|SA1PR12MB8721:EE_
-x-ms-office365-filtering-correlation-id: 6e3965f1-9b41-4a22-3766-08dbe2203976
+x-ms-office365-filtering-correlation-id: 49fa058c-4aae-445e-7b6a-08dbe2204275
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4c4oe5//wQvAdHifSwG1SkPz0FeGKyvyNqMTZVYZq9auobpZXD+vw8SvFhvXtDrrEtg1sMM/+86b9Sx68TyUZ1tj4XDFrqyCLAcijf79eKE9UOfgnq3Xjsjumlbtt9sHX8Pu5diGupYlZwCX6+m5wQnzu5LCTwJXyKd0a0D9A3Am70bnfyz0YJUqMp2rH8j24u9H2/oylfb5mVdnhSfwrqH1wHUDmlU9vwYU+lZwNTJheC7dcW8aJgUa1E/LwsCDPUSawGf2GJ4oS9lyaGbMvoz8vm7hc0UbC1S/vVy2xzdqratRxY7npqTPOL2D2HW9pN3r05Dz1pH01y+D6zg0Cs4LUNTYN8MUiJl4HIhLywvSHXpO/yZ96t0fjoTp0aF5aghsfg9i0AlT7Dqqqhm50ogagdV8lSd7UomLKhPsL9jTNjK6YHo9jJYW6TlHOzw14SB75BJbSPw8PvtwYtY0ZpaKs5gVdQT5qKz4ou9jw12+KKqaLKjANWuvYN5NeqYJrkpGYyqILlfFTZGr+Oe1IlXFi4zho3fX09wOIYIXuBs07eXWmL5rzdPZgWA+2BWsbIodnMdvQ9j4XIQ7NtUxqM3E9n4v9zBYchmwGRY/JpgwTReEoPB2+elyR+hN3LgD
+x-microsoft-antispam-message-info: SBSfCP/Zk+M4eVUB3tqcM+qYiVxE3yDNhZ1dfqdjwrupYEjxarRk4Ek1mteFgHEmfuEoFIorDoFyvKbtsAyO60EGtQLa7/OQG6G4jdRzMi99YX+HJUFKtqifft6ZnSIcJdDpA07Lf0xKnDo3HG0aWKvtbCc76tNs+TLgFS2wm8Ph9A8e0fNL3S+vpEg+dCefwqR/WdxWlBtylAh1dW3DT7FW94bP8ij6lacpcxmCu42Xu/Dv5DlZ7tfBY3CcnlWe/lk0y1FrF6raxxIOCJcYJzq4EYF2qhT0VJEH85etMAt23C/VzSF+SwTN8LT8OUItZ7qlT/0uqr7kz7tv0iHhknpFJ+O6TxSsvuESHN7rt83zjjUL5xCeS8/JzeXlhDQ6tkF84RwoyXyYQaFiiVjW0unT8jdqnSd0yeerBCBGA55RG9ee3NMCy7NCo5EIfPccIROc8IP8H0LHLpjFmwllob4H4DcmAY/t60Q/mV+DzxSgWY7p9Su4p+LFApxWujUuYSUpieTJGl0NrsncA3Yh+94r4064zwG0T58HElLF8ZTGIqOnt3d83qZOfPovMgbQO+3EkNxcqvGV+zeE5oDtRaXUJDrYsqooFGzdiLXdIxtN5q4+hBQ4I3XFBWE2zN+8
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB5021.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(136003)(396003)(346002)(366004)(39860400002)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(33656002)(66899024)(38070700009)(8936002)(83380400001)(316002)(26005)(66476007)(66446008)(64756008)(76116006)(66946007)(54906003)(110136005)(66556008)(2906002)(52536014)(4326008)(55016003)(5660300002)(478600001)(53546011)(8676002)(71200400001)(7696005)(6506007)(9686003)(122000001)(38100700002)(86362001)(41300700001);
+ SFS:(13230031)(376002)(136003)(396003)(346002)(366004)(39860400002)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(33656002)(38070700009)(8936002)(83380400001)(316002)(26005)(66476007)(66446008)(64756008)(76116006)(66946007)(54906003)(110136005)(66556008)(2906002)(52536014)(4326008)(55016003)(5660300002)(478600001)(53546011)(8676002)(71200400001)(7696005)(6506007)(9686003)(122000001)(38100700002)(86362001)(41300700001);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dcu3gCJdHjUejf9rer5vI95Xqrqx1bw9yc9D0wFeZVv6R4X9KTOOc3ByhwSB?=
- =?us-ascii?Q?lkL6A6UQZ6OdHW67joDWsWKXnqGSLFEJuQwo34wI8wSPdRpHlTwC7ILA6LIq?=
- =?us-ascii?Q?hOxH8eoG9M0u+uaW5V5Nfli5eBZqg0DCUUc90MWAfgWBfKZPnRfXIz7rPxSb?=
- =?us-ascii?Q?Vqxy0Qowa43t+X5PkAjyREerDn9LZxBrYeRWn9EL89gB/FPz12DGGu0D8g99?=
- =?us-ascii?Q?hwXOATTqQIoJWJwq0cbPyiovXIvOlY5ofe2E1gaejEl83DcppWLRkXoYtO6N?=
- =?us-ascii?Q?twUFS+VF8kyhOEawL1mpfE9YhfY6EmcZ9fBikcIcUrrPbHa5tGjJaSlGSXN7?=
- =?us-ascii?Q?DEYkXnFFts41IWy+l9oQeDDuyYuNBt8N8WmVNLCarypH1XGDyy2hgEIrcoko?=
- =?us-ascii?Q?6FKE1mjDB+Ig2uG0JiwqR4jnuDL43Bx3ziXlhova4qlt//DjpKWhIXgItq4E?=
- =?us-ascii?Q?TiOuxO4IFO8bbT/Gw46+Eh3UWZLVu9zx4H8nS5o0Zxk8jqrBjIQGk12BYEiU?=
- =?us-ascii?Q?opsh2nPjIXAo4QOvuA/apKwZj3R+YRMlVMQISTo7J1n/zFALERAi6Dt2d1h8?=
- =?us-ascii?Q?lhA9602XWAkDTUHSfT2nMAEGwMhJXnoKPzJWsFWRrM8DunI0prlPn3fXHnhz?=
- =?us-ascii?Q?+wtFQY2d0rE036uoypbHCmtpxJzhwsXpR8TA7VbbngZ+kX/YjWBzEsHP7P1d?=
- =?us-ascii?Q?betWATmCopUJVsvq586kaxnogogcAw7eDl2zIuPqVauDAys2RhOaNmuZcUKA?=
- =?us-ascii?Q?lLW6IKvGuqQDyKcExbn2X/1rjUCbjw+pfhsiUTngAzJW39jdzilDyq+Q4b2o?=
- =?us-ascii?Q?fzL7QMHw+ZQd9OpvRtsUiSnnELtwXMvCTR5aTPAvLHlRHpiTEsAMrDa/NDgB?=
- =?us-ascii?Q?a4S8N405tUpMS9cRXp4FxYrmdsob6veay4u8A0R0gUlmmulpa7MXuje2913E?=
- =?us-ascii?Q?VI4Wrdy9Rg2eKE0G3XkOB8GPejZWMpbhXai7LYzX3Hs0Mftbs8UixkYbR1V/?=
- =?us-ascii?Q?8zVqPge3o+3fpqNtL6qGlezfZhlAjRlGWgpE8c+V7QV5av74FILeFBmxIIT7?=
- =?us-ascii?Q?g/7PXhMtPxiO5oP4ePnv/hd30L7Xi58oEjkgTaswiu0YEGJspX7bC34N26Vp?=
- =?us-ascii?Q?9yCHb4HjuU0UeYcPc6JZAjy6g4358LeMABoo0zdUvPht3g+mBP7pPDBNgFpc?=
- =?us-ascii?Q?NemyZ9j82n+buE7oOjPc+b6kULMkI3/S1IIDs1Wbp8KCvVeqU/xvHeESUJFI?=
- =?us-ascii?Q?KygdGM3WUsi+zSQSQPRtjsWHEiFGzavGmkpt4nr8dE5ZbxFWEPH5t+ZeNJWz?=
- =?us-ascii?Q?QW+PD7g4oDoYdZCvRbRQ9Qqvo9bRs5L022ozn52xiLwJCjV4N/0McDp7dWhJ?=
- =?us-ascii?Q?zdzNFEqHQ3c621QUFtGNgHWfWh3MrGhZw8UGojPfreFpfMnbvz4ruClu9cWL?=
- =?us-ascii?Q?HvQPk80ByxY+zga1FeFZTDSFG90ZCgg9UDDKOBBq+VK7mXEJkvPwiggmmhiY?=
- =?us-ascii?Q?yMBvoqUjOUxHdPv69bp2r8nF1fXAvCmrVTvDdcAa6zfCEGXqKiYp6ClYK1/0?=
- =?us-ascii?Q?Keo0fty4rE0jnO4CQ6Y=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xpO9Iz2yklCxXcPj5MzTmwjXLHBY9AEmMYzQ6OoqDnBdJomGn7zXzgcwxPdp?=
+ =?us-ascii?Q?Tbrl+0GqU1qLSXt2hi5/nS6DYMJ/Rix5P/Z7ZruJEMRaksGP0hG/cLJVUzmU?=
+ =?us-ascii?Q?LM7vR/hYCLRzjOyw8lpXY7fviJxRvLDB9UczDVBODAiNFmriAZC1Ow1/yeff?=
+ =?us-ascii?Q?GqSOnThWUE/4mRPVyPQDam3RAbMZYNlF3nlqCjwXB0VXFXgLi3PTRTotakoi?=
+ =?us-ascii?Q?gCBAvNZaYt9TiIaeTSAK/1+gN+BGguHiGL3a3phjRYTv4ZVMANL/MqHf74Yv?=
+ =?us-ascii?Q?ehwRfbHstjKKKM10tBfKUrGRpll1Y+HFZFqm9RFZGbMpzgUcZ7DdznAxIlT6?=
+ =?us-ascii?Q?th2QPjGk1Gze7b8QasXtDlHWDzTGQ9b3F6f6hPw6/N1NUlucuXTnCt8ZOMYF?=
+ =?us-ascii?Q?lewEYxcHLs41ztBbzOv1Al+yZsIXF2NlP/p8zwiudZNQOvWNJmRZBli/JCLJ?=
+ =?us-ascii?Q?fSrU73fTtX0MemkId+T4T5zUS6zAJKR0egdR52F8lcU0Dv1ihMX9FnFBax3m?=
+ =?us-ascii?Q?F4WK4ThyFR2wOPT8byqOmlAK6KjBsClFNvYenNucXJ/FRo3R2gZWm+9rFYZ3?=
+ =?us-ascii?Q?PZQc3NBy2lg39w0GfE4t6qjOO16jDt9Ae4kuZfbc134kYpdPZObDkLlY8K9+?=
+ =?us-ascii?Q?S55OsK9YGt8YVmUeCq1anyHRuiKd99I0f9x7qVXLbYKXEz3ivP6seplGoPmo?=
+ =?us-ascii?Q?FWYd3mCLX3bBpKFF01l1whvabUXonNiHMnIN2iIGRVPYdc9wE6/WpWYbVscE?=
+ =?us-ascii?Q?+BUodKe5ry8Fo9AEWT0q+SmRFzyB4DCvbYs2KTCvaVfZM02mxpRZu/FmJUwZ?=
+ =?us-ascii?Q?6DG6YD4YafgWW4gMUCcnolFQeRwQqDL60nUyRT7s60QqHhg9/9DGQ1+8MQN3?=
+ =?us-ascii?Q?zgQIdQ+VBZo4jcR+PLwChta65fPR97+RJaLtZflVvI/zI0oSRWDX+hKfb+ML?=
+ =?us-ascii?Q?o+6TNv5mpQFNer/Nl49T/GDeqUO24IGonQjXK0H7Bec5uZffujI/KjW32YN0?=
+ =?us-ascii?Q?H1jKBSlNA8P8dmDvBNDj5cXo8ipIxT8AAW+9F2OlEdsHUMy7MvNAACT6a2N8?=
+ =?us-ascii?Q?S0W5ivNFUZYwz2dgHd1xyoIJuI2eO8QhMtCBG8O3hrxm8sB1+6E0HSdqhX0N?=
+ =?us-ascii?Q?pU242N6+cVOys9MhLsAcNtrsG52zXy7y4Ely1gLWuJnvVkmN8R84bQqIC/ZL?=
+ =?us-ascii?Q?wSjH1fa991gnNdDj/jIgKNXj97jQr3DA+yL8/qzD/CWlcVMB1dNYzu3EJa1G?=
+ =?us-ascii?Q?vL2ghHEKxfBCHdUqeQNy3vcDlpODwon32jxTvSjaGRg54ijE3zM7uGBz/LWG?=
+ =?us-ascii?Q?1a9FxgtZoLFoKwhZBfPR/HHnRobKJZ1ztyyqnONxjRp+LpjMY4eyBBKlYURa?=
+ =?us-ascii?Q?MSPkMZrKGlZ5ZtDJOWsgKKnDTBlV7q+4y56W/oL4YxPBZFBKzzWAXZa+Ihrb?=
+ =?us-ascii?Q?uadQxFikWqT1Xu8vUc4mcUDU+0n7omkfw34+Lk85VmiOwSuQSld2Qg2pHsDO?=
+ =?us-ascii?Q?OKTChITKl3Hwl9QZ86jt+lThnrd93OKVIoSpGYIfQbR4FKua3VQ6N79Dx5KQ?=
+ =?us-ascii?Q?IBA/YpvfMidSQIBOui8=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB5021.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e3965f1-9b41-4a22-3766-08dbe2203976
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2023 19:07:03.3549 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49fa058c-4aae-445e-7b6a-08dbe2204275
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2023 19:07:18.4680 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Fg9ZU5agiZbg9lYMh3yDw/4gG7edN0PixajIkS9i1s+CKb+aEG6eNjofUWON5OlHlh2uNBQwtSB0ErAPoOmdbA==
+X-MS-Exchange-CrossTenant-userprincipalname: LTL7N+svqN9uqS/LWrX9ZsZ6uLdcZNSShorlSAnr2X6/xdqzY59o2ZI5ALmeMn+H+c/UTLltwd1PP2uUnho4nQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8721
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -131,6 +131,8 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [AMD Official Use Only - General]
 
+I would recommend merging this with patch 16, but up to you.
+
 > -----Original Message-----
 > From: Zhu, James <James.Zhu@amd.com>
 > Sent: Friday, November 3, 2023 9:12 AM
@@ -138,92 +140,65 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 > Cc: Kuehling, Felix <Felix.Kuehling@amd.com>; Greathouse, Joseph
 > <Joseph.Greathouse@amd.com>; Yat Sin, David <David.YatSin@amd.com>; Zhu,
 > James <James.Zhu@amd.com>
-> Subject: [PATCH 19/24] drm/amdkfd: enable pc sampling stop
+> Subject: [PATCH 17/24] drm/amdkfd: add setting trap pc sampling flag
 >
-> Enable pc sampling stop.
+> Add setting trap pc sampling flag.
 >
 > Signed-off-by: James Zhu <James.Zhu@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 28 +++++++++++++++++--
-> -
->  drivers/gpu/drm/amd/amdkfd/kfd_priv.h        |  2 ++
->  2 files changed, 27 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  2 ++
+>  drivers/gpu/drm/amd/amdkfd/kfd_process.c | 13 +++++++++++++
+>  2 files changed, 15 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-> index 33d003ca0093..2c4ac5b4cc4b 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-> @@ -108,10 +108,32 @@ static int kfd_pc_sample_start(struct
-> kfd_process_device *pdd,
->       return 0;
->  }
->
-> -static int kfd_pc_sample_stop(struct kfd_process_device *pdd)
-> +static int kfd_pc_sample_stop(struct kfd_process_device *pdd,
-> +                                     struct pc_sampling_entry *pcs_entry=
-)
->  {
-> -     return -EINVAL;
-> +     bool pc_sampling_stop =3D false;
-> +
-> +     pcs_entry->enabled =3D false;
-> +     mutex_lock(&pdd->dev->pcs_data.mutex);
-For the START/STOP/DESTROY ioctls, I think we can hold pdd->dev->pcs_data.m=
-utex through the whole IOCTL. Then we would not have to deal with the inter=
-mediate states where the START/STOP/DESTROY are happening at the same time.
-
-> +     pdd->dev->pcs_data.hosttrap_entry.base.active_count--;
-> +     if (!pdd->dev->pcs_data.hosttrap_entry.base.active_count) {
-> +             WRITE_ONCE(pdd->dev-
-> >pcs_data.hosttrap_entry.base.stop_enable, true);
-> +             pc_sampling_stop =3D true;
-> +     }
-> +     mutex_unlock(&pdd->dev->pcs_data.mutex);
->
-> +     if (pc_sampling_stop) {
-> +             kfd_process_set_trap_pc_sampling_flag(&pdd->qpd,
-> +                     pdd->dev-
-> >pcs_data.hosttrap_entry.base.pc_sample_info.method,
-> +false);
-> +
-> +             mutex_lock(&pdd->dev->pcs_data.mutex);
-> +             pdd->dev->pcs_data.hosttrap_entry.base.target_simd =3D 0;
-> +             pdd->dev->pcs_data.hosttrap_entry.base.target_wave_slot =3D=
- 0;
-> +             WRITE_ONCE(pdd->dev-
-> >pcs_data.hosttrap_entry.base.stop_enable, false);
-> +             mutex_unlock(&pdd->dev->pcs_data.mutex);
-> +     }
-> +
-> +     return 0;
->  }
->
->  static int kfd_pc_sample_create(struct kfd_process_device *pdd, @@ -251,=
-7
-> +273,7 @@ int kfd_pc_sample(struct kfd_process_device *pdd,
->               if (!pcs_entry->enabled)
->                       return -EALREADY;
->               else
-> -                     return kfd_pc_sample_stop(pdd);
-> +                     return kfd_pc_sample_stop(pdd, pcs_entry);
->       }
->
->       return -EINVAL;
 > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
 > b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> index 613910e0d440..badaa4d68cc4 100644
+> index 642558026d16..6670534f47b8 100644
 > --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
 > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -259,6 +259,8 @@ struct kfd_dev;
->  struct kfd_dev_pc_sampling_data {
->       uint32_t use_count;         /* Num of PC sampling sessions */
->       uint32_t active_count;      /* Num of active sessions */
-> +     uint32_t target_simd;       /* target simd for trap */
-> +     uint32_t target_wave_slot;  /* target wave slot for trap */
->       bool stop_enable;           /* pc sampling stop in process */
->       struct idr pc_sampling_idr;
->       struct kfd_pc_sample_info pc_sample_info;
+> @@ -1186,6 +1186,8 @@ void kfd_process_set_trap_handler(struct
+> qcm_process_device *qpd,
+>                                 uint64_t tma_addr);
+>  void kfd_process_set_trap_debug_flag(struct qcm_process_device *qpd,
+>                                    bool enabled);
+> +void kfd_process_set_trap_pc_sampling_flag(struct qcm_process_device *qp=
+d,
+> +                                  enum kfd_ioctl_pc_sample_method method=
+,
+> bool enabled);
+>
+>  /* CWSR initialization */
+>  int kfd_process_init_cwsr_apu(struct kfd_process *process, struct file *=
+filep);
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> index a0b729c65a7c..d22d804f180d 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> @@ -1454,6 +1454,19 @@ void kfd_process_set_trap_debug_flag(struct
+> qcm_process_device *qpd,
+>       }
+>  }
+>
+> +void kfd_process_set_trap_pc_sampling_flag(struct qcm_process_device *qp=
+d,
+> +                                  enum kfd_ioctl_pc_sample_method method=
+,
+> bool enabled) {
+> +     if (qpd->cwsr_kaddr) {
+> +             volatile unsigned long *tma =3D
+> +                     (volatile unsigned long *)(qpd->cwsr_kaddr +
+> KFD_CWSR_TMA_OFFSET);
+> +             if (enabled)
+> +                     set_bit(method, &tma[2]);
+> +             else
+> +                     clear_bit(method, &tma[2]);
+> +     }
+> +}
+> +
+>  /*
+>   * On return the kfd_process is fully operational and will be freed when=
+ the
+>   * mm is released
 > --
 > 2.25.1
 
