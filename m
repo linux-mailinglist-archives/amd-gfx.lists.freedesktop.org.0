@@ -1,93 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813F47E8E5C
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Nov 2023 05:46:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DEE7E91E5
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Nov 2023 19:01:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B06AB10E111;
-	Sun, 12 Nov 2023 04:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7A610E0CB;
+	Sun, 12 Nov 2023 18:01:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2067.outbound.protection.outlook.com [40.107.92.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D873D10E111
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Nov 2023 04:46:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cnLq87CeK1SxDNdtN1R2rvptL4xiDuctFZCzUqE0KMzWXQpLg95PR9GelZPtZxNNBbdxOUqoDt10XersHCRZwJN6KAydVf+TdsbRpFmV8OeQN8jgHSS6v+Af1LcjYg/sKBWN2mZOzsGHYS8PvGzg5TeeH8ADA7AQubyNPYHY6E3TVPTo/ts+K4hu23tovG9kDuYAfM1yDvbbLfkWjN78ZsGx1jSsE+r9G0XPGpbHm3lnX/4LC0KAie8Mn+3FGUuC6Dn6DJQQyKLkLPsDJzrId4JtgFjbmr1qAKKyKuXUK2q2LrOm4ljn/WvlP7EkX2hn16V/bZ1E33+WIqADynpRLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ho7iJnGCgO8BIeQ/vGbeoCOwB78pFuBqq5JsTC74ZTA=;
- b=DA3sSKnqZeTeaDqfWoDBGfPhUEotczeLischscOh8KuR8emdQH7zilFSPIJ0PjPZwGKVzsY4ryMpHIkiytTcaSGTkgHKXhHQZ/EnyLcKTN3uUuUTEKid3rSQ+q5en8Zw7FmRpsHCIpsEyiHCUC9MOISPWb9tNwAiXILFwgN3JeBZtqgJ+IbJ1A/73ZDAKvrcIYXeQZLfiqby+AWJSAKYnT1JXPvTvYMO1e8OrAnighzYk2MGPAh91BGiArDNY8TOfGtN0LHpoQPiintvbNHbtJAQ0KJ6oU4Blnq9xdxNrMiZQ7+XZuLEAXwjNKIxibBkkjJ84KEDQcnh+K1lVbx24Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ho7iJnGCgO8BIeQ/vGbeoCOwB78pFuBqq5JsTC74ZTA=;
- b=OLAn7ws4xVVqPOC9x4CccnB80kfbpdtF9+nBwS8S3C+u3ndlNfF/WS8G/q9TJErKZszuTEKmqlWfLexJes5MrdyPHI38LA5+duy/NrzG1FSkIjeiV1rsMzuvns0H4etGydqTLK0Bqvf2NlUavhgZp8HiHLr3IY2VoAiKnsaOFqY=
-Received: from DS7PR03CA0197.namprd03.prod.outlook.com (2603:10b6:5:3b6::22)
- by BY5PR12MB4918.namprd12.prod.outlook.com (2603:10b6:a03:1df::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.19; Sun, 12 Nov
- 2023 04:45:59 +0000
-Received: from DS1PEPF0001709A.namprd05.prod.outlook.com
- (2603:10b6:5:3b6:cafe::8b) by DS7PR03CA0197.outlook.office365.com
- (2603:10b6:5:3b6::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.28 via Frontend
- Transport; Sun, 12 Nov 2023 04:45:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF0001709A.mail.protection.outlook.com (10.167.18.104) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7002.13 via Frontend Transport; Sun, 12 Nov 2023 04:45:58 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Sat, 11 Nov 2023 22:45:56 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>
-Subject: [PATCH] Add function parameter 'xcc_mask' not described in
- 'amdgpu_vm_flush_compute_tlb'
-Date: Sun, 12 Nov 2023 10:15:34 +0530
-Message-ID: <20231112044534.1637245-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
+ [IPv6:2607:f8b0:4864:20::1030])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53DD410E023;
+ Sun, 12 Nov 2023 11:12:14 +0000 (UTC)
+Received: by mail-pj1-x1030.google.com with SMTP id
+ 98e67ed59e1d1-2809414efa9so2835933a91.1; 
+ Sun, 12 Nov 2023 03:12:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699787534; x=1700392334; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=G+55ZTGhMjEEAdR3Q2pbonSohtI5yVDsnlk8FCcFkC4=;
+ b=UGao8EGIzAqLeq/T1/QfvFLZBHfi9ORMveWZbVXlGC8DtuN+ydpAnaDJDBHmmHyTsg
+ SF2/UHMAoowcj4rhIgMdcqxWOcnnWYu748mxsKbgzpFM6eEF6bcjV/7n1UvkjnP6kmyZ
+ y2+Ck5ir0qzXrrp3MUIReoLwiHcSGoyBC21FIYTJny4MDcEbVCZiFruFFRcSSo8enFGJ
+ pyR/RT0gQe1uLm8/dsjJ+OQgoSJjiZy6jKmA/hGFiOICHw5Zg052BluQ3ZKkJ61cHXgn
+ uFLiXubwqUPKNKYcoWCk5lYb1RBKDMKejMTT5gVMR8kiVrMiIfHA58VdOHMgMm5oWQKO
+ z4+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699787534; x=1700392334;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=G+55ZTGhMjEEAdR3Q2pbonSohtI5yVDsnlk8FCcFkC4=;
+ b=rI5HvcLdg60t3WO3e7F4Nlq80CMOg3JBnW3Foo5b7JqgqRnPzZcnFcf6eV2Xyb8qYx
+ Pyhy4WTErLsB0vUBVoViH7u9hnQ27Mr4L/6Mo9urVbtCJQvyJabWhXnPtMIG95lYFIak
+ JzezsHJ1Wg4KN86o/OqgBU5Oh2FCqReADjsCnPaYrm23Wbg/z775GzdT2vKf57g+YV4o
+ jwIXPb0sPuEihNh0EoF0GV2NPhC4erOPiQKZhN8pKB0/IDz/5dP6/dIzWUFCN62Nd2O2
+ 97KchzD/mRLZ5I1tnBQAdd9YiP0EU4G8MZwK1GVcfNidW9Y3NC+3Wm1uXgs9cIZcbU6W
+ +qCg==
+X-Gm-Message-State: AOJu0YxbWOXaCkw8igQ1SGH3RPkEJgiTXXb5cAxtFsLZtuT7oIIGDxDV
+ IGZKggICefCcqHShZOpVT3Y=
+X-Google-Smtp-Source: AGHT+IFvMkqibgudVNnMV3yhatFdkpPr3of/XWNfE4D0B2iM8UBxCbBVW1C1jAN+Dcv+M7MuwkXzxQ==
+X-Received: by 2002:a17:903:32c1:b0:1cc:453f:517b with SMTP id
+ i1-20020a17090332c100b001cc453f517bmr3656953plr.0.1699787533628; 
+ Sun, 12 Nov 2023 03:12:13 -0800 (PST)
+Received: from archie.me ([103.131.18.64]) by smtp.gmail.com with ESMTPSA id
+ w13-20020a170902d3cd00b001ca86a9caccsm2432043plb.228.2023.11.12.03.12.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 12 Nov 2023 03:12:13 -0800 (PST)
+Received: by archie.me (Postfix, from userid 1000)
+ id 76E781029976F; Sun, 12 Nov 2023 18:12:10 +0700 (WIB)
+Date: Sun, 12 Nov 2023 18:12:10 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Phillip Susi <phill@thesusis.net>, Luben Tuikov <luben.tuikov@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: Radeon regression in 6.6 kernel
+Message-ID: <ZVCzCrkdRJy9AHd2@archie.me>
+References: <87edgv4x3i.fsf@vps.thesusis.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001709A:EE_|BY5PR12MB4918:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff88e639-b886-4ab6-23db-08dbe33a43f0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tvVK+aDbONtxfRnNAk2qQUWKbJoWvyhz4hHLj5YwWkpi4gxyp/BNMMQZOy7v0NM7JaZDRjkz7E6kj9+09tA1LMtnfaTzi8bUCoQTOBozcWLnBeJN41W4em4+M4CMXkUotzgWgxHX7fZfYIl73IeJWqLvguJRmhHyvma1LiHINNU/RNdN06bwHId9u1A8UwzLNQIWTJ+mnKntwTTMAKC163ruG8zGHJ2vNqRyNcuoM9vt7w5bWGu+YAeeWR+jGp/iS8LGmVwZjMpt+sZxhYjX2mlvjh0ZuqTt/BSpmchn6HlKL0zrrQQld2fPgBDqBHX3sZVVniCJwlucJPkEFVxWRJBfROpuzOe6qGDfQkcetPwHnRxYM1Xt1mqMfpZTyM1sdVhdX5Q/09WtaaNHBNtidJTKfbf0ZNkYFoUUF7lr3zxU4vsmAPW5yacrIksn2dVISjs21bPJZu0y/Sb7/bKUd1CIAK7SBIUCfUoSgWUq8PHyMcEN/XIhEsNFQc38woX97vphcusnsccmiDxLNp8EjRSJ5Fmy1WyBl5FcYCJuDYgT6Rxz8lqhQg4WNenGicTcD5y66sg5VpruaYlY3XqqsOzKGr03KW7AGcJr1eO8JGqipz+1Qm4JoM7rbPwU/EIdPjZFILx7Cy5NSvNO0U/wou76wm/7Jk8nPBDlzUm6JztHi0/lfrbALROJ4HFPStEnDLRh1/8l7QED0UVy0hzXKGtgltC6d1157cYvJ+wvnsV1AptUa44DnRGJdCDKPEFZhlvSF1+dsmvMySAKqqTM4cKoZUiMuvKTAcZDWINOdY3Zx+YtTw887vJjHwqbWj5l
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(136003)(39850400004)(376002)(346002)(230922051799003)(230173577357003)(230273577357003)(451199024)(64100799003)(1800799009)(82310400011)(186009)(36840700001)(46966006)(40470700004)(110136005)(316002)(70586007)(70206006)(54906003)(6636002)(478600001)(40460700003)(6666004)(8936002)(5660300002)(86362001)(4744005)(41300700001)(2906002)(36756003)(8676002)(4326008)(44832011)(66574015)(426003)(336012)(82740400003)(83380400001)(2616005)(26005)(16526019)(1076003)(81166007)(356005)(47076005)(40480700001)(7696005)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2023 04:45:58.9695 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff88e639-b886-4ab6-23db-08dbe33a43f0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709A.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4918
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="1vHvAQQxV2JwhpFr"
+Content-Disposition: inline
+In-Reply-To: <87edgv4x3i.fsf@vps.thesusis.net>
+X-Mailman-Approved-At: Sun, 12 Nov 2023 18:01:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,38 +76,152 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>,
+ Linux Regressions <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes the below:
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:1373: warning: Function parameter or member 'xcc_mask' not described in 'amdgpu_vm_flush_compute_tlb'
+--1vHvAQQxV2JwhpFr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Sat, Nov 11, 2023 at 07:46:41PM -0500, Phillip Susi wrote:
+> I had been testing some things on a post 6.6-rc5 kernel for a week or
+> two and then when I pulled to a post 6.6 release kernel, I found that
+> system suspend was broken.  It seems that the radeon driver failed to
+> suspend, leaving the display dead, the wayland display server hung, and
+> the system still running.  I have been trying to bisect it for the last
+> few days and have only been able to narrow it down to the following 3
+> commits:
+>=20
+> There are only 'skip'ped commits left to test.
+> The first bad commit could be any of:
+> 56e449603f0ac580700621a356d35d5716a62ce5
+> c07bf1636f0005f9eb7956404490672286ea59d3
+> b70438004a14f4d0f9890b3297cd66248728546c
+> We cannot bisect more!
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index be084cbe7501..cd4970c2efc5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1360,7 +1360,7 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *adev,
-  * @adev: amdgpu_device pointer
-  * @vm: requested vm
-  * @flush_type: flush type
-- *
-+ * @xcc_mask: mask of XCCs for the XCCs available on ASIC.
-  * Flush TLB if needed for a compute VM.
-  *
-  * Returns:
--- 
-2.34.1
+Please show the full bisect log, and also tell why these commits are
+skipped.
 
+>=20
+> It appears that there was a late merge in the 6.6 window that originally
+> forked from the -rc2, as many of the later commits that I bisected had
+> that version number.
+>=20
+> I couldn't get it more narrowed down because I had to skip the
+> surrounding commits because they wouldn't even boot up to a gui desktop,
+> let alone try to suspend.
+>=20
+> When system suspend fails, I find the following in my syslog after I
+> have to magic-sysrq reboot because the the display is dead:
+>=20
+> Nov 11 18:44:39 faldara kernel: PM: suspend entry (deep)
+> Nov 11 18:44:39 faldara kernel: Filesystems sync: 0.035 seconds
+> Nov 11 18:44:40 faldara kernel: Freezing user space processes
+> Nov 11 18:44:40 faldara kernel: Freezing user space processes completed (=
+elapsed 0.001 seconds)
+> Nov 11 18:44:40 faldara kernel: OOM killer disabled.
+> Nov 11 18:44:40 faldara kernel: Freezing remaining freezable tasks
+> Nov 11 18:44:40 faldara kernel: Freezing remaining freezable tasks comple=
+ted (elapsed 0.001 seconds)
+> Nov 11 18:44:40 faldara kernel: printk: Suspending console(s) (use no_con=
+sole_suspend to debug)
+> Nov 11 18:44:40 faldara kernel: serial 00:01: disabled
+> Nov 11 18:44:40 faldara kernel: e1000e: EEE TX LPI TIMER: 00000011
+> Nov 11 18:44:40 faldara kernel: sd 4:0:0:0: [sdb] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 1:0:0:0: [sda] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 5:0:0:0: [sdc] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 4:0:0:0: [sdb] Stopping disk
+> Nov 11 18:44:40 faldara kernel: sd 1:0:0:0: [sda] Stopping disk
+> Nov 11 18:44:40 faldara kernel: sd 5:0:0:0: [sdc] Stopping disk
+> Nov 11 18:44:40 faldara kernel: amdgpu: Move buffer fallback to memcpy un=
+available
+> Nov 11 18:44:40 faldara kernel: [TTM] Buffer eviction failed
+> Nov 11 18:44:40 faldara kernel: [drm] evicting device resources failed
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: pci_pm_suspend()=
+: amdgpu_pmops_suspend+0x0/0x80 [amdgpu] returns -19
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: dpm_run_callback=
+(): pci_pm_suspend+0x0/0x170 returns -19
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: failed to suspen=
+d async: error -19
+> Nov 11 18:44:40 faldara kernel: PM: Some devices failed to suspend, or ea=
+rly wake event detected
+> Nov 11 18:44:40 faldara kernel: xhci_hcd 0000:06:00.0: xHC error in resum=
+e, USBSTS 0x401, Reinit
+> Nov 11 18:44:40 faldara kernel: usb usb3: root hub lost power or was reset
+> Nov 11 18:44:40 faldara kernel: usb usb4: root hub lost power or was reset
+> Nov 11 18:44:40 faldara kernel: serial 00:01: activated
+> Nov 11 18:44:40 faldara kernel: nvme nvme0: 4/0/0 default/read/poll queues
+> Nov 11 18:44:40 faldara kernel: ata8: SATA link down (SStatus 0 SControl =
+300)
+> Nov 11 18:44:40 faldara kernel: ata7: SATA link down (SStatus 0 SControl =
+300)
+> Nov 11 18:44:40 faldara kernel: ata4: SATA link up 1.5 Gbps (SStatus 113 =
+SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata1: SATA link down (SStatus 4 SControl =
+300)
+> Nov 11 18:44:40 faldara kernel: ata3: SATA link down (SStatus 4 SControl =
+300)
+> Nov 11 18:44:40 faldara kernel: ata4.00: configured for UDMA/133
+> Nov 11 18:44:40 faldara kernel: OOM killer enabled.
+> Nov 11 18:44:40 faldara kernel: Restarting tasks ... done.
+> Nov 11 18:44:40 faldara kernel: random: crng reseeded on system resumption
+> Nov 11 18:44:40 faldara kernel: PM: suspend exit
+> Nov 11 18:44:40 faldara kernel: PM: suspend entry (s2idle)
+> Nov 11 18:44:40 faldara systemd-networkd[384]: enp0s31f6: Gained IPv6LL
+> Nov 11 18:44:40 faldara avahi-daemon[668]: Joining mDNS multicast group o=
+n interface enp0s31f6.IPv6 with address fe80::3ad5:47ff:fe0f:488a.
+>=20
+> My video card is this:
+>=20
+> 03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]=
+ Navi 23 (rev c7) (prog-if 00 [VGA controller])
+>         Subsystem: Gigabyte Technology Co., Ltd Navi 23
+>         Flags: bus master, fast devsel, latency 0, IRQ 139
+>         Memory at e0000000 (64-bit, prefetchable) [size=3D256M]
+>         Memory at f0000000 (64-bit, prefetchable) [size=3D2M]
+>         I/O ports at e000 [size=3D256]
+>         Memory at f7900000 (32-bit, non-prefetchable) [size=3D1M]
+>         Expansion ROM at 000c0000 [disabled] [size=3D128K]
+>         Capabilities: [48] Vendor Specific Information: Len=3D08 <?>
+>         Capabilities: [50] Power Management version 3
+>         Capabilities: [64] Express Legacy Endpoint, MSI 00
+>         Capabilities: [a0] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+>         Capabilities: [100] Vendor Specific Information: ID=3D0001 Rev=3D=
+1 Len=3D010 <?>
+>         Capabilities: [150] Advanced Error Reporting
+>         Capabilities: [200] Physical Resizable BAR
+>         Capabilities: [240] Power Budgeting <?>
+>         Capabilities: [270] Secondary PCI Express
+>         Capabilities: [2a0] Access Control Services
+>         Capabilities: [2d0] Process Address Space ID (PASID)
+>         Capabilities: [320] Latency Tolerance Reporting
+>         Capabilities: [410] Physical Layer 16.0 GT/s <?>
+>         Capabilities: [440] Lane Margining at the Receiver <?>
+>         Kernel driver in use: amdgpu
+>         Kernel modules: amdgpu
+
+Anyway, thanks for the regression report. I'm adding it to regzbot:
+
+#regzbot ^introduced: 56e449603f0ac5..b70438004a14f4
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--1vHvAQQxV2JwhpFr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZVCzBwAKCRD2uYlJVVFO
+o+DZAQCDDeaRfKfJ++74bg7JPWkbAXui9dTN7+gLunw8DVMBbQD+JnoHXEOPGE4a
+btucfJJN5hXnoyn84CKbM+m1tReawAA=
+=mJkJ
+-----END PGP SIGNATURE-----
+
+--1vHvAQQxV2JwhpFr--
