@@ -2,116 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CED367EAB74
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 09:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E82167EA4ED
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Nov 2023 21:36:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5366910E1C7;
-	Tue, 14 Nov 2023 08:18:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6A610E41E;
+	Mon, 13 Nov 2023 20:36:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47EB810E162;
- Mon, 13 Nov 2023 18:32:36 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- 5b1f17b1804b1-4083ac51d8aso38931265e9.2; 
- Mon, 13 Nov 2023 10:32:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699900354; x=1700505154; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
- :to:content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=L0wxdL/i8QqbWOI4oHziGSktf3E2yrNaekZPZMrm2H0=;
- b=F6LuIBhNEPtCALMDMiPtMcVMS/PF8r1m0A8Hrm2ojfbbhVpH5MRkXc+8zrTxNkr/hl
- t88oqVt7jEA1ArAf5uYiP0ICtobzjHUO1/XhLY2aHKwIMGl67z80kRekV86wfQGodd7r
- DVXIsKTrk0IOYiZdpr/ebIIxu1nNBso8UdO/I9VPqQrwtFfo87M1joHk5uw5m1IlEdWM
- P9KdglVzjLEs8O3M14d/UYOweNtfBE1Tsmf/URJut1dK3aHkKx5hAfAa+ZEZMwuHoGha
- oTSDCI2FZsaP0GP/WmSt4tpDX+mzGjEl2adIgqZhePwzXVl3yXksYPZIf0nVygXFmtVM
- tl7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699900354; x=1700505154;
- h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
- :to:content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=L0wxdL/i8QqbWOI4oHziGSktf3E2yrNaekZPZMrm2H0=;
- b=lMXRbEHDfpIWGjS1EgjB3SJapdL1NyAbz4HvL8EYDZwZ3AID/I+LZDd/iHM+tcRUiq
- gdcUK1TJBUdYgDbugpzdBNOlcrSaliEDeHG6f23l3hpYV7cU15NHclspheCQpcx6sq0O
- +Yq373dMUjIT5Pb9BbeG1j4du5i8kH9w9PAvLC6BHaSGlfzkpFzfj4DKF1zCd5b0OcX1
- tHk0FhmYPZkosRx3rs2+DRmpQSYoVVCe2sAZO/DNCX3f5pNMuB72/RBRQmlSU7hBxjKU
- 887fW1BFGvMvhUl40WgQ9koyBF/tXoVrpXFZ4eBoBJZUS9I24Ubk+f+5xP0HLMB+opUa
- L4xg==
-X-Gm-Message-State: AOJu0YyotaXaYprmsmMGflBgXaoQ1NfNflnTF/WL2V/hFfrshXxQ0yPg
- mbixaAeuSLm4ZgvBUom5K5M=
-X-Google-Smtp-Source: AGHT+IEvX7xzuRggU3xZGMBbDMlEfJbaFPogaFwEGoMGfRqe8yk1ROAXGyKMspm4ePkQhUnieenyyg==
-X-Received: by 2002:a05:6000:1846:b0:32d:b2e0:ed79 with SMTP id
- c6-20020a056000184600b0032db2e0ed79mr5054539wri.67.1699900354494; 
- Mon, 13 Nov 2023 10:32:34 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e16:fe00:c172:813e:6561:e5e7?
- (dynamic-2a01-0c22-6e16-fe00-c172-813e-6561-e5e7.c22.pool.telefonica.de.
- [2a01:c22:6e16:fe00:c172:813e:6561:e5e7])
- by smtp.googlemail.com with ESMTPSA id
- w10-20020a5d680a000000b0032d893d8dc8sm5997872wru.2.2023.11.13.10.32.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 Nov 2023 10:32:33 -0800 (PST)
-Message-ID: <0aa0c4c6-8afb-4605-bb21-5704b922bd34@gmail.com>
-Date: Mon, 13 Nov 2023 19:32:33 +0100
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2059.outbound.protection.outlook.com [40.107.101.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1105C10E030
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Nov 2023 20:36:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VcSlsxkesW1AS1SqmQE2STYO0sNH5t2iNyr0SReO5/CD+cC8C8qK1rI4NDFxSubqeH6vLuOact20G/o7390iaxtzQov95LIU6so+EeTGY1U+Iky7l9LoGg6Ng0fkPx2q8+pSisFeJ9VhUcyFwunSKv2FWETezWrEqr9PJIMIHPBeA/xyXzwL8LMEzL/wO7CzUyTRdBauyhhKmJNVFUfXAWljd8ZXY7vLm5rUzqU/d7h/fYJLFk8Mc7gwRX5bN5KeEBvgZNoSQQdGqLpBXih0FdFiRo0tZthQmc7bD73hGVBs45u71ntzxePsX7oS02e7aLJCoI9jL3f9UvzYdv2iGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ciR8Be1IGRT9U5XOAw7aeDWrPYbLdlxedG/vGz6kbm8=;
+ b=UDS+VRgi8Shiv3OCzgIm6Krl9bvZr1mqO3/clt3rAE9EGVfUcP6308xLyZT0kpsKSVW+tGdjo26kUug5j7aBaCNcbSZ/96OdMFzrOCRLTVWQYJvAPTe7472n6g4BUwEZUe6X5gG16Gy21KCwRJvMUsiP1Y1WmGnUZYxjstO0GB6kGk2hhJLKkcb4Ns/t1TNeODdZG4xQubcweJAThHqH9t2QeAkC3W4D12wEWfIgvfT5wCEkLjdHWN1BC+cl6S+86cE02hvQqOhpPY5ZJSPJ1Z1VELfi4fymng1bBHx8QA3kjMjn8AJ3ZkzEC2alTFUQFbvMl/F+wYfV8EGOoLL28Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ciR8Be1IGRT9U5XOAw7aeDWrPYbLdlxedG/vGz6kbm8=;
+ b=yn1ZufVUB6N6cM6rBvOA/7EbIku9FiFKIXW6U9/p7HD5+zCl2Dlii32DupEZajbcQRnBi8LSEZiRXYtLOZ0Z3DSluPfTvxbrbi6DpzgdrI1M+4vVQVLXDmSZScFGsfQ2BaCO18zHcK6SmTHqHC3el40QJUpWMWr1Dl+cyy10yM8=
+Received: from DM6PR07CA0088.namprd07.prod.outlook.com (2603:10b6:5:337::21)
+ by CY8PR12MB7684.namprd12.prod.outlook.com (2603:10b6:930:87::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Mon, 13 Nov
+ 2023 20:36:32 +0000
+Received: from CY4PEPF0000EE37.namprd05.prod.outlook.com
+ (2603:10b6:5:337:cafe::84) by DM6PR07CA0088.outlook.office365.com
+ (2603:10b6:5:337::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31 via Frontend
+ Transport; Mon, 13 Nov 2023 20:36:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EE37.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7002.13 via Frontend Transport; Mon, 13 Nov 2023 20:36:31 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Mon, 13 Nov
+ 2023 14:36:30 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/display: fix a NULL pointer dereference in
+ amdgpu_dm_i2c_xfer()
+Date: Mon, 13 Nov 2023 14:09:49 -0600
+Message-ID: <20231113200949.2457-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/20] drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:
- remove I2C_CLASS_DDC support
-Content-Language: en-US
-To: Harry Wentland <harry.wentland@amd.com>, Wolfram Sang <wsa@kernel.org>
-References: <20231113112344.719-1-hkallweit1@gmail.com>
- <20231113112344.719-4-hkallweit1@gmail.com>
- <e4ee224f-8f18-4922-ac1c-4612b8e021d8@amd.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- xsFNBF/0ZFUBEAC0eZyktSE7ZNO1SFXL6cQ4i4g6Ah3mOUIXSB4pCY5kQ6OLKHh0FlOD5/5/
- sY7IoIouzOjyFdFPnz4Bl3927ClT567hUJJ+SNaFEiJ9vadI6vZm2gcY4ExdIevYHWe1msJF
- MVE4yNwdS+UsPeCF/6CQQTzHc+n7DomE7fjJD5J1hOJjqz2XWe71fTvYXzxCFLwXXbBiqDC9
- dNqOe5odPsa4TsWZ09T33g5n2nzTJs4Zw8fCy8rLqix/raVsqr8fw5qM66MVtdmEljFaJ9N8
- /W56qGCp+H8Igk/F7CjlbWXiOlKHA25mPTmbVp7VlFsvsmMokr/imQr+0nXtmvYVaKEUwY2g
- 86IU6RAOuA8E0J5bD/BeyZdMyVEtX1kT404UJZekFytJZrDZetwxM/cAH+1fMx4z751WJmxQ
- J7mIXSPuDfeJhRDt9sGM6aRVfXbZt+wBogxyXepmnlv9K4A13z9DVLdKLrYUiu9/5QEl6fgI
- kPaXlAZmJsQfoKbmPqCHVRYj1lpQtDM/2/BO6gHASflWUHzwmBVZbS/XRs64uJO8CB3+V3fa
- cIivllReueGCMsHh6/8wgPAyopXOWOxbLsZ291fmZqIR0L5Y6b2HvdFN1Xhc+YrQ8TKK+Z4R
- mJRDh0wNQ8Gm89g92/YkHji4jIWlp2fwzCcx5+lZCQ1XdqAiHQARAQABzSZIZWluZXIgS2Fs
- bHdlaXQgPGhrYWxsd2VpdDFAZ21haWwuY29tPsLBjgQTAQgAOBYhBGxfqY/yOyXjyjJehXLe
- ig9U8DoMBQJf9GRVAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHLeig9U8DoMSycQ
- AJbfg8HZEK0ljV4M8nvdaiNixWAufrcZ+SD8zhbxl8GispK4F3Yo+20Y3UoZ7FcIidJWUUJL
- axAOkpI/70YNhlqAPMsuudlAieeYZKjIv1WV5ucNZ3VJ7dC+dlVqQdAr1iD869FZXvy91KhJ
- wYulyCf+s4T9YgmLC6jLMBZghKIf1uhSd0NzjyCqYWbk2ZxByZHgunEShOhHPHswu3Am0ftt
- ePaYIHgZs+Vzwfjs8I7EuW/5/f5G9w1vibXxtGY/GXwgGGHRDjFM7RSprGOv4F5eMGh+NFUJ
- TU9N96PQYMwXVxnQfRXl8O6ffSVmFx4H9rovxWPKobLmqQL0WKLLVvA/aOHCcMKgfyKRcLah
- 57vGC50Ga8oT2K1g0AhKGkyJo7lGXkMu5yEs0m9O+btqAB261/E3DRxfI1P/tvDZpLJKtq35
- dXsj6sjvhgX7VxXhY1wE54uqLLHY3UZQlmH3QF5t80MS7/KhxB1pO1Cpcmkt9hgyzH8+5org
- +9wWxGUtJWNP7CppY+qvv3SZtKJMKsxqk5coBGwNkMms56z4qfJm2PUtJQGjA65XWdzQACib
- 2iaDQoBqGZfXRdPT0tC1H5kUJuOX4ll1hI/HBMEFCcO8++Bl2wcrUsAxLzGvhINVJX2DAQaF
- aNetToazkCnzubKfBOyiTqFJ0b63c5dqziAgzsFNBF/0ZFUBEADF8UEZmKDl1w/UxvjeyAeX
- kghYkY3bkK6gcIYXdLRfJw12GbvMioSguvVzASVHG8h7NbNjk1yur6AONfbUpXKSNZ0skV8V
- fG+ppbaY+zQofsSMoj5gP0amwbwvPzVqZCYJai81VobefTX2MZM2Mg/ThBVtGyzV3NeCpnBa
- 8AX3s9rrX2XUoCibYotbbxx9afZYUFyflOc7kEpc9uJXIdaxS2Z6MnYLHsyVjiU6tzKCiVOU
- KJevqvzPXJmy0xaOVf7mhFSNQyJTrZpLa+tvB1DQRS08CqYtIMxRrVtC0t0LFeQGly6bOngr
- ircurWJiJKbSXVstLHgWYiq3/GmCSx/82ObeLO3PftklpRj8d+kFbrvrqBgjWtMH4WtK5uN5
- 1WJ71hWJfNchKRlaJ3GWy8KolCAoGsQMovn/ZEXxrGs1ndafu47yXOpuDAozoHTBGvuSXSZo
- ythk/0EAuz5IkwkhYBT1MGIAvNSn9ivE5aRnBazugy0rTRkVggHvt3/7flFHlGVGpBHxFUwb
- /a4UjJBPtIwa4tWR8B1Ma36S8Jk456k2n1id7M0LQ+eqstmp6Y+UB+pt9NX6t0Slw1NCdYTW
- gJezWTVKF7pmTdXszXGxlc9kTrVUz04PqPjnYbv5UWuDd2eyzGjrrFOsJEi8OK2d2j4FfF++
- AzOMdW09JVqejQARAQABwsF2BBgBCAAgFiEEbF+pj/I7JePKMl6Fct6KD1TwOgwFAl/0ZFUC
- GwwACgkQct6KD1TwOgxUfg//eAoYc0Vm4NrxymfcY30UjHVD0LgSvU8kUmXxil3qhFPS7KA+
- y7tgcKLHOkZkXMX5MLFcS9+SmrAjSBBV8omKoHNo+kfFx/dUAtz0lot8wNGmWb+NcHeKM1eb
- nwUMOEa1uDdfZeKef/U/2uHBceY7Gc6zPZPWgXghEyQMTH2UhLgeam8yglyO+A6RXCh+s6ak
- Wje7Vo1wGK4eYxp6pwMPJXLMsI0ii/2k3YPEJPv+yJf90MbYyQSbkTwZhrsokjQEaIfjrIk3
- rQRjTve/J62WIO28IbY/mENuGgWehRlTAbhC4BLTZ5uYS0YMQCR7v9UGMWdNWXFyrOB6PjSu
- Trn9MsPoUc8qI72mVpxEXQDLlrd2ijEWm7Nrf52YMD7hL6rXXuis7R6zY8WnnBhW0uCfhajx
- q+KuARXC0sDLztcjaS3ayXonpoCPZep2Bd5xqE4Ln8/COCslP7E92W1uf1EcdXXIrx1acg21
- H/0Z53okMykVs3a8tECPHIxnre2UxKdTbCEkjkR4V6JyplTS47oWMw3zyI7zkaadfzVFBxk2
- lo/Tny+FX1Azea3Ce7oOnRUEZtWSsUidtIjmL8YUQFZYm+JUIgfRmSpMFq8JP4VH43GXpB/S
- OCrl+/xujzvoUBFV/cHKjEQYBxo+MaiQa1U54ykM2W4DnHb1UiEf5xDkFd4=
-In-Reply-To: <e4ee224f-8f18-4922-ac1c-4612b8e021d8@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 14 Nov 2023 08:18:02 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|CY8PR12MB7684:EE_
+X-MS-Office365-Filtering-Correlation-Id: b23209b6-23c2-4034-feed-08dbe488387f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FczrHCPK0SENVcXNR0ub2o5EYqjZwijKD++DEyMaOevPej2t57z7lQYI+pWxpD+zK9Re4ccyFw+Is6Fk/Twt+BONtEXkT1MbjUShmLk8rfeOo5Ez4z4nNcYYrx8bu5fwJ/gZV9pgEHBG4yfjHUWvYPx4VHVlLQY0bDMdzSbh6+cpdssDhsDepnw1Z6hG/G4eEFjOqexeD3PyjqFpiK9EB6PcyxC5+IxPN93zyIM34HCUpM1tY+PXxOLrT/qBKmJTdkFIqoRtJKPYAzIZwJoY4awSuVsrWV8ubLjl75pspQYckBgr4TyWjw2Z3rejMylhVXPiRZYwcF+/F7R1bEAu0Imfxvjs2+RncCN2iYvP2mksJdF+Z5zP5DszlNIH7rl9KmaQkL9mK/6hawTUPhN8LbH1FTReXGducQQjR07F66TpbTVzM3rFJlvB74RkEqQaQzqONLtFao9jrSbgmqRww1GNAsnb5IDtsIdEUiKUz3gKyuE+MM0VyH0CZdx+wzZbdOWwO2MRO02ikrAMfHOhN/LoiQjY6BQ3HZQlPbbEA297kx/FZhYwIe/Xu+tN6wu8hgdYuv26Ui3a65OCu+3KmzYsohJ6AqffGgHBusRQRnE6HdjlrPg52oggiLtF/oPf/RGAriUjAxlmFNYSQ2lLcPDF7u0O80w4O+qV9yt6ZXWlbSE/1rFfRBN7qdEgBnc7oacbto+9x8l5zrjkPolj3nhhj9SMSCP9HBpPmaj9vRbhNaD7FGOEnrI8/t7+QUXM77ApTl+XPOhkPyM5UcSk4QHA7Z3y8NIuCt85tjbYx6g=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(186009)(451199024)(82310400011)(1800799009)(64100799003)(36840700001)(46966006)(40470700004)(26005)(1076003)(16526019)(82740400003)(336012)(426003)(86362001)(5660300002)(47076005)(356005)(2616005)(81166007)(40480700001)(7696005)(36860700001)(478600001)(6666004)(36756003)(966005)(70206006)(70586007)(316002)(6916009)(54906003)(40460700003)(8676002)(4326008)(8936002)(44832011)(2906002)(41300700001)(70780200001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2023 20:36:31.6717 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b23209b6-23c2-4034-feed-08dbe488387f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE37.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7684
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,51 +98,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Rodrigo.Siqueira@amd.com, Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 13.11.2023 18:50, Harry Wentland wrote:
-> Please just use "drm/amd/display:" as tag in the commit subject.
-> 
-Thanks, noted. Tags have been automatically created by Coccinelle's splitpatch.
+When ddc_service_construct() is called, it explicitly checks both the
+link type and whether there is something on the link which will
+dictate whether the pin is marked as hw_supported.
 
-> With that fixed, this is
-> Acked-by: Harry Wentland <harry.wentland@amd.com>
-> 
-> Harry
-> 
-> On 2023-11-13 06:23, Heiner Kallweit wrote:
->> After removal of the legacy EEPROM driver and I2C_CLASS_DDC support in
->> olpc_dcon there's no i2c client driver left supporting I2C_CLASS_DDC.
->> Class-based device auto-detection is a legacy mechanism and shouldn't
->> be used in new code. So we can remove this class completely now.
->>
->> Preferably this series should be applied via the i2c tree.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>
->> ---
->>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    1 -
->>  1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 6f99f6754..ae1edc6ab 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -7529,7 +7529,6 @@ create_i2c(struct ddc_service *ddc_service,
->>  	if (!i2c)
->>  		return NULL;
->>  	i2c->base.owner = THIS_MODULE;
->> -	i2c->base.class = I2C_CLASS_DDC;
->>  	i2c->base.dev.parent = &adev->pdev->dev;
->>  	i2c->base.algo = &amdgpu_dm_i2c_algo;
->>  	snprintf(i2c->base.name, sizeof(i2c->base.name), "AMDGPU DM i2c hw bus %d", link_index);
->>
-> 
+If the pin isn't set or the link is not set (such as from
+unloading/reloading amdgpu in an IGT test) then fail the
+amdgpu_dm_i2c_xfer() call.
+
+Cc: stable@vger.kernel.org
+Fixes: 22676bc500c2 ("drm/amd/display: Fix dmub soft hang for PSR 1")
+Link: https://github.com/fwupd/fwupd/issues/6327
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+v1->v2:
+ * Fix a memory leak
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index adbeb2c897b5..f6b31c108180 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7463,6 +7463,9 @@ static int amdgpu_dm_i2c_xfer(struct i2c_adapter *i2c_adap,
+ 	int i;
+ 	int result = -EIO;
+ 
++	if (!ddc_service->ddc_pin || !ddc_service->ddc_pin->hw_info.hw_supported)
++		return result;
++
+ 	cmd.payloads = kcalloc(num, sizeof(struct i2c_payload), GFP_KERNEL);
+ 
+ 	if (!cmd.payloads)
+-- 
+2.34.1
 
