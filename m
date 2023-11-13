@@ -1,69 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746627EAB71
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 09:18:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FFE7EAB76
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 09:18:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35F9C10E1BE;
-	Tue, 14 Nov 2023 08:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2D0B10E1C9;
+	Tue, 14 Nov 2023 08:18:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDB3410E358;
- Mon, 13 Nov 2023 11:37:17 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id
- a640c23a62f3a-9e28724ac88so657454966b.2; 
- Mon, 13 Nov 2023 03:37:17 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905C110E35C;
+ Mon, 13 Nov 2023 11:42:17 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id
+ a640c23a62f3a-9d242846194so639283366b.1; 
+ Mon, 13 Nov 2023 03:42:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699875436; x=1700480236; darn=lists.freedesktop.org;
- h=content-transfer-encoding:autocrypt:subject:from:cc:to
- :content-language:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=DgL+h1xvkV19EYm8iY1TRE4bSspx8QceS9CKDbQWUdE=;
- b=euwJGlJNEUeYwzD+nTFTA6tjgtNHP2XfvztCDmuj8R8ubWsVGjJaKfYRzGFau/g4tc
- GynXjgOryyX7eQQipvTiXb0W1kq5bgpEbgbprdwsLnEZ/7pL4nhjL9HTnaW75hXYy0EE
- ce3O9y7Uw1qlq7Pe73xmz4g1rPOqHPwtDv4qOguU5YeOK7hn8JraTA3X0c4CuCnNZ8C9
- K2/s+80m6KNC0RCimWnNnge6/rcl8t38NhkrmrkPSn2y/bdl54y1BLo8evnrFLw7jKvw
- SWo+w/wTqpiMtaEEObPRijP1lRpbHff2JNVfTDBz6LNEJFZ/YutTdesmvHD6fVBiCEJ4
- KsvA==
+ d=gmail.com; s=20230601; t=1699875736; x=1700480536; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+ :from:content-language:subject:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=+0mLfvvdd3U9C62qkI5x9CxndLXgVsSBv8YYoccslrs=;
+ b=lLrDO+np6JTc4gdJJ8CVAHAusAuqJyWe3vpvuay+OENNzUAsN6IdMAzcg27H0LiRfy
+ 3p+YVB8SJTa4xpkdLGdycPSOVPlGRPAsDFQ0S5Ik2X3Of1GpWuJrLMCXVci9QNUOnXfF
+ CB0KuaveA30e6u3CK7ZtBz69GJuVFLLL3Otih/f8V+wCCiAbsLuHNI39fyxWc3ZGFsE3
+ XNUFCQPm300sXwsgW3tnNpn818N0qBiU/ZQaL9xu2p9yoOZOkOACsEMHP79WznObPplB
+ RFMzUckoE1TfSEbGD+duQvK/oveAiY3KbgMbY0B+p/LQIfmAM3qrycWP2P8TR3BqDPAc
+ SB8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699875436; x=1700480236;
- h=content-transfer-encoding:autocrypt:subject:from:cc:to
- :content-language:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=DgL+h1xvkV19EYm8iY1TRE4bSspx8QceS9CKDbQWUdE=;
- b=G9RkAPH2Ycr+I36MhnAiY73hSXZH5P3vplnRwLT0U2S5pKihkjPaCO0Xl8sM2zZLGA
- Ka2qvpTirz77+PtzBruUgpo+zElV+UD6WYasyxCIF+Mp8/fDkXucRsfK7m5agZALH4zt
- gG8YO3+pRbO9advCxddxvyOh3lAERFjpq9CM6ur1PjuNpPM7doCMHOxS5FILu8yNQt2D
- NYP9jaZMEJzGU98k6TIzQgGTTTBBroTr+mczenbf1jQNVZ6dUNlyMh//8zyazNj145kW
- FUTFdRBZkgQBt8yhmfnutMDbHirF3XdEe5OmEByjWrJz2NntpXYDBtfs6RzAY8MpI18S
- 3T6w==
-X-Gm-Message-State: AOJu0Yzwr5W+tbcRq3Vg14iKgv+4NP+Hg7a6i4B+kugi5eKYi2b7CVR2
- qAW4CgBZ0Q4P6gl0WeNkzgM=
-X-Google-Smtp-Source: AGHT+IFEqHqhLdUMGiCY9qRSeJATe2WDRNYP1706/LoUMXQwgB2L6HSCW/GqTT4mEMVGXIFV7KFjZg==
-X-Received: by 2002:a17:906:a187:b0:9dd:9ba7:690d with SMTP id
- s7-20020a170906a18700b009dd9ba7690dmr4390106ejy.14.1699875436133; 
- Mon, 13 Nov 2023 03:37:16 -0800 (PST)
+ d=1e100.net; s=20230601; t=1699875736; x=1700480536;
+ h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+ :from:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=+0mLfvvdd3U9C62qkI5x9CxndLXgVsSBv8YYoccslrs=;
+ b=qjyHOIzkOhElA0FOMfjeUrukFxXcXuFvth05BzOKmDtXH7u6E3V+K/Wt5G1Out2Jkm
+ A19KfF39i5QjIOi3UIRc0/Ij7YU4J9k7rE84glxJfi5i3GrKD3MnhIOJQrLCqvNzVPd/
+ X3Awr2h39uEQo/u6rHkXFZyU4/F5PVwWvgizLUghoyBHQFPuJYknoly2FI96efqWEuG4
+ WAC+14V8BvPnwmVeCy6Pp+pggihssEC16ekp7devNtdkD3PZW9QRkEl1XytSvHLcL/ud
+ +NC2PA9Uga2TomTWD5NaAkbK9lgEnz8Pf+GIsU1YA71rDtJ3OgywrvTg8kcxKN+EnGmI
+ PVTQ==
+X-Gm-Message-State: AOJu0YzFpdHw1S4U9SObEiBtjDJVhU0TktPQagABMSg/P+5LkNOhOeWq
+ v6gvIC9wb9ED6GvCUg37tw4=
+X-Google-Smtp-Source: AGHT+IE8wYUKmcn/50egMvlxlwG8174bKkF8+030/n+eZOTzY0JRYFfjcptOWJUr4wzyKfMSBgRpcw==
+X-Received: by 2002:a17:906:4914:b0:9bd:dfaa:3f3 with SMTP id
+ b20-20020a170906491400b009bddfaa03f3mr4401062ejq.7.1699875735907; 
+ Mon, 13 Nov 2023 03:42:15 -0800 (PST)
 Received: from ?IPV6:2a01:c22:6e16:fe00:5105:d737:3805:1e81?
  (dynamic-2a01-0c22-6e16-fe00-5105-d737-3805-1e81.c22.pool.telefonica.de.
  [2a01:c22:6e16:fe00:5105:d737:3805:1e81])
  by smtp.googlemail.com with ESMTPSA id
- t17-20020a1709064f1100b009e60b72dd17sm3863344eju.100.2023.11.13.03.37.15
+ r25-20020a170906351900b009ddaa2183d4sm3866510eja.42.2023.11.13.03.42.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 Nov 2023 03:37:15 -0800 (PST)
-Message-ID: <839c0546-9bad-4b5a-9216-d5e3bab32370@gmail.com>
-Date: Mon, 13 Nov 2023 12:37:15 +0100
+ Mon, 13 Nov 2023 03:42:15 -0800 (PST)
+Message-ID: <7510e716-5970-44a1-bb10-8e8418d743c3@gmail.com>
+Date: Mon, 13 Nov 2023 12:42:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/pm: Remove I2C_CLASS_SPD support
 Content-Language: en-US
-To: Evan Quan <evan.quan@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+From: Heiner Kallweit <hkallweit1@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel@ffwll.ch>, Wolfram Sang <wsa@kernel.org>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] drm/amd/pm: Remove I2C_CLASS_SPD support
+References: <839c0546-9bad-4b5a-9216-d5e3bab32370@gmail.com>
 Autocrypt: addr=hkallweit1@gmail.com; keydata=
  xsFNBF/0ZFUBEAC0eZyktSE7ZNO1SFXL6cQ4i4g6Ah3mOUIXSB4pCY5kQ6OLKHh0FlOD5/5/
  sY7IoIouzOjyFdFPnz4Bl3927ClT567hUJJ+SNaFEiJ9vadI6vZm2gcY4ExdIevYHWe1msJF
@@ -107,6 +109,7 @@ Autocrypt: addr=hkallweit1@gmail.com; keydata=
  H/0Z53okMykVs3a8tECPHIxnre2UxKdTbCEkjkR4V6JyplTS47oWMw3zyI7zkaadfzVFBxk2
  lo/Tny+FX1Azea3Ce7oOnRUEZtWSsUidtIjmL8YUQFZYm+JUIgfRmSpMFq8JP4VH43GXpB/S
  OCrl+/xujzvoUBFV/cHKjEQYBxo+MaiQa1U54ykM2W4DnHb1UiEf5xDkFd4=
+In-Reply-To: <839c0546-9bad-4b5a-9216-d5e3bab32370@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 14 Nov 2023 08:18:02 +0000
@@ -127,56 +130,20 @@ Cc: "open list:AMD KFD" <dri-devel@lists.freedesktop.org>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I2C_CLASS_SPD was used to expose the EEPROM content to user space,
-via the legacy eeprom driver. Now that this driver has been removed,
-we can remove I2C_CLASS_SPD support. at24 driver with explicit
-instantiation should be used instead.
+On 13.11.2023 12:37, Heiner Kallweit wrote:
+> I2C_CLASS_SPD was used to expose the EEPROM content to user space,
+> via the legacy eeprom driver. Now that this driver has been removed,
+> we can remove I2C_CLASS_SPD support. at24 driver with explicit
+> instantiation should be used instead.
+> 
+> If in doubt this patch could be applied via the i2c tree.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
 
-If in doubt this patch could be applied via the i2c tree.
+The mail to Evan couldn't be delivered. Maybe MAINTAINERS needs to be updated?
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c   | 1 -
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 1 -
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 1 -
- 3 files changed, 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 1a6675d70..bc56a29e6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -1527,7 +1527,6 @@ static int aldebaran_i2c_control_init(struct smu_context *smu)
- 	smu_i2c->port = 0;
- 	mutex_init(&smu_i2c->mutex);
- 	control->owner = THIS_MODULE;
--	control->class = I2C_CLASS_SPD;
- 	control->dev.parent = &adev->pdev->dev;
- 	control->algo = &aldebaran_i2c_algo;
- 	snprintf(control->name, sizeof(control->name), "AMDGPU SMU 0");
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index 82c4e1f1c..c0e62bab9 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -2720,7 +2720,6 @@ static int smu_v13_0_0_i2c_control_init(struct smu_context *smu)
- 		smu_i2c->port = i;
- 		mutex_init(&smu_i2c->mutex);
- 		control->owner = THIS_MODULE;
--		control->class = I2C_CLASS_SPD;
- 		control->dev.parent = &adev->pdev->dev;
- 		control->algo = &smu_v13_0_0_i2c_algo;
- 		snprintf(control->name, sizeof(control->name), "AMDGPU SMU %d", i);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 891605d49..9de91bd77 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -1884,7 +1884,6 @@ static int smu_v13_0_6_i2c_control_init(struct smu_context *smu)
- 		smu_i2c->port = i;
- 		mutex_init(&smu_i2c->mutex);
- 		control->owner = THIS_MODULE;
--		control->class = I2C_CLASS_SPD;
- 		control->dev.parent = &adev->pdev->dev;
- 		control->algo = &smu_v13_0_6_i2c_algo;
- 		snprintf(control->name, sizeof(control->name), "AMDGPU SMU %d", i);
--- 
-2.42.1
+Generating server: SATLEXMB03.amd.com
+evan.quan@amd.com
+Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
 
