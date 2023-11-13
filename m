@@ -1,118 +1,118 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15FFE7EAB76
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 09:18:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480CE7E9B64
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Nov 2023 12:50:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D0B10E1C9;
-	Tue, 14 Nov 2023 08:18:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D52810E35E;
+	Mon, 13 Nov 2023 11:50:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 905C110E35C;
- Mon, 13 Nov 2023 11:42:17 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id
- a640c23a62f3a-9d242846194so639283366b.1; 
- Mon, 13 Nov 2023 03:42:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699875736; x=1700480536; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
- :from:content-language:subject:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=+0mLfvvdd3U9C62qkI5x9CxndLXgVsSBv8YYoccslrs=;
- b=lLrDO+np6JTc4gdJJ8CVAHAusAuqJyWe3vpvuay+OENNzUAsN6IdMAzcg27H0LiRfy
- 3p+YVB8SJTa4xpkdLGdycPSOVPlGRPAsDFQ0S5Ik2X3Of1GpWuJrLMCXVci9QNUOnXfF
- CB0KuaveA30e6u3CK7ZtBz69GJuVFLLL3Otih/f8V+wCCiAbsLuHNI39fyxWc3ZGFsE3
- XNUFCQPm300sXwsgW3tnNpn818N0qBiU/ZQaL9xu2p9yoOZOkOACsEMHP79WznObPplB
- RFMzUckoE1TfSEbGD+duQvK/oveAiY3KbgMbY0B+p/LQIfmAM3qrycWP2P8TR3BqDPAc
- SB8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699875736; x=1700480536;
- h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
- :from:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+0mLfvvdd3U9C62qkI5x9CxndLXgVsSBv8YYoccslrs=;
- b=qjyHOIzkOhElA0FOMfjeUrukFxXcXuFvth05BzOKmDtXH7u6E3V+K/Wt5G1Out2Jkm
- A19KfF39i5QjIOi3UIRc0/Ij7YU4J9k7rE84glxJfi5i3GrKD3MnhIOJQrLCqvNzVPd/
- X3Awr2h39uEQo/u6rHkXFZyU4/F5PVwWvgizLUghoyBHQFPuJYknoly2FI96efqWEuG4
- WAC+14V8BvPnwmVeCy6Pp+pggihssEC16ekp7devNtdkD3PZW9QRkEl1XytSvHLcL/ud
- +NC2PA9Uga2TomTWD5NaAkbK9lgEnz8Pf+GIsU1YA71rDtJ3OgywrvTg8kcxKN+EnGmI
- PVTQ==
-X-Gm-Message-State: AOJu0YzFpdHw1S4U9SObEiBtjDJVhU0TktPQagABMSg/P+5LkNOhOeWq
- v6gvIC9wb9ED6GvCUg37tw4=
-X-Google-Smtp-Source: AGHT+IE8wYUKmcn/50egMvlxlwG8174bKkF8+030/n+eZOTzY0JRYFfjcptOWJUr4wzyKfMSBgRpcw==
-X-Received: by 2002:a17:906:4914:b0:9bd:dfaa:3f3 with SMTP id
- b20-20020a170906491400b009bddfaa03f3mr4401062ejq.7.1699875735907; 
- Mon, 13 Nov 2023 03:42:15 -0800 (PST)
-Received: from ?IPV6:2a01:c22:6e16:fe00:5105:d737:3805:1e81?
- (dynamic-2a01-0c22-6e16-fe00-5105-d737-3805-1e81.c22.pool.telefonica.de.
- [2a01:c22:6e16:fe00:5105:d737:3805:1e81])
- by smtp.googlemail.com with ESMTPSA id
- r25-20020a170906351900b009ddaa2183d4sm3866510eja.42.2023.11.13.03.42.15
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 Nov 2023 03:42:15 -0800 (PST)
-Message-ID: <7510e716-5970-44a1-bb10-8e8418d743c3@gmail.com>
-Date: Mon, 13 Nov 2023 12:42:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: Remove I2C_CLASS_SPD support
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2060.outbound.protection.outlook.com [40.107.223.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4301A10E35E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Nov 2023 11:50:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nICBT2kmcO4GMJmp2i2Lu7mThB/PJqWWrXzvRNzJK+TPtQYYKB/v5xkaHH9aVDKHt9wpoJMkyFqxm0I1FgBNzMrL7k+wjGyiYd3fRv9x3xQmmzvVzGe8damlWGGX8swUCOkq2NQhyjDrgyXHE1HX00Ds5wRu4zih3qZMUzU5B601O5s6HLxf++eC22nRG/Gst7VkMaZzxbK9FMu2FsJdFcfo6lYOjXqyXT7KuHTK95eL45BELodY44qZFvh154yK6a0dtIA8/aMnbQ2vOOQELOvSwh8sReKZ/pqYeaz8+TAxA04wVNvqJ30bNjLQDjw+RPzlFlpsb4g0kUcawQ0aMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JllmCmhbXsBCxMELSm7hCJkMm5DsZRHc2yrrz9Q8c2A=;
+ b=T87BGkKOO+iH51PZxUcQOsoOvy2ULbk7xXe3QNpva9PthQO/fQJE0CVUn1V/a+/TbDQB8sTHb6aGsY6onelMJ8J5icVTu2jOxyGrGS+6krWyOTc9vTxu8y8PHWhTiWu0/fm82QMNLgBocAPR2/l4nJnccu+DOayeko5Cnzy0UUk7jHXoLBiVMSZLzdWvRO2avB/TgirNaJSC+KeFRqfS7g7Qc1trswRcZrDmWMTqjNLiQEp6GRCrMSvhMlKqJ2pnUZjdmpo/pRrHftp9VXSmkIaDoeazQwkg/bkCmd/ZkuT+0wNuu74zGGlNpOHEU6Y9MxmzDVallGddIUs4F8XFbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JllmCmhbXsBCxMELSm7hCJkMm5DsZRHc2yrrz9Q8c2A=;
+ b=gomS7F+hoqJ/phEtVGgUlMiLdOds/Wfopejn32R6TCRl/q+ylR48DxgpFD4Cr8myFkQKtp2iDtHNoUTo2YsBsMazNFSDZrPXUhdjgqINTSppzLAV5xqvdRPQTdG+NWo5HU/TrTJMiTuOHXjJ1W/NTS9YOwmlkc6NMJJnu982P/4=
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
+ by SA1PR12MB6993.namprd12.prod.outlook.com (2603:10b6:806:24c::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.28; Mon, 13 Nov
+ 2023 11:50:11 +0000
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::f0fa:4908:b418:96d2]) by BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::f0fa:4908:b418:96d2%7]) with mapi id 15.20.6977.029; Mon, 13 Nov 2023
+ 11:50:11 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Ma, Le" <Le.Ma@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 1/1] drm/amdgpu: finalizing mem_partitions at the end of
+ GMC v9 sw_fini
+Thread-Topic: [PATCH 1/1] drm/amdgpu: finalizing mem_partitions at the end of
+ GMC v9 sw_fini
+Thread-Index: AQHaFh08HmpPqgacB06i7ofC1qDUTLB4Irsg
+Date: Mon, 13 Nov 2023 11:50:11 +0000
+Message-ID: <BN9PR12MB525785F6456E91F083ECDD45FCB3A@BN9PR12MB5257.namprd12.prod.outlook.com>
+References: <20231113103607.12366-1-le.ma@amd.com>
+In-Reply-To: <20231113103607.12366-1-le.ma@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Wolfram Sang <wsa@kernel.org>
-References: <839c0546-9bad-4b5a-9216-d5e3bab32370@gmail.com>
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- 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
-In-Reply-To: <839c0546-9bad-4b5a-9216-d5e3bab32370@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 14 Nov 2023 08:18:02 +0000
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=33dbe28b-23bb-401c-b3fd-2689924627b7;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-11-13T11:49:38Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SA1PR12MB6993:EE_
+x-ms-office365-filtering-correlation-id: 2ec0df53-507e-40a3-f8c0-08dbe43eb123
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZFhOCxb5M7OJANkLYQsrKfihjBLmo8OI/FztR++cUic37nZsn32sC/0hF21jjhPIlgakfsqJ3wep0joMNhSFROsR7agi03ltuBDUedVBbnKufSwMrnpIiVoQ1L+x1OHjrmJdmFPzPRjcrIToon5yUyVhIQkxa0B2DX4APoUZKSOX/qgrqDJrC4RVZv6HZX8airkdm3oZzQtdun5gs8ryU0PCmiPlanIp03B0aCCLvB+Ar08A28H0KfzB2Q40PFHFyBz+qbZSmWQPnJ9KwovDS+ULVzjHgFgVIDSCYemA6IHfvMgRDnootvDxJEpEBJOM8l0knvyp2PvoV079mBwKYArq/Xp9lxZgcosG8WSmJQBg6nSJkrpN8rWgOVexumlYnBGBktFOBvQQD+fFdDDTMxRdMaJUi5oOnMnvnYAqk9KUphCJmHzu6wyW6YqQbH0Uh8uVBwUZQkUyPzTCiQtx094/laJDj17hwTh0YqYv0/an0LywBc0gRmVkRW+Va+wLMKkOQ0fP8Nvkeny4ymnp0GGIBqBZZqkHEvl6rvLHUkfLztRPaYEsgclHUabTKq9ehIBK+DQjIhJ1+p4y8XQZMcExvv839yoheXgtJ/Y1SScOIkzXrW4i8ZslIabuTJco
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(366004)(136003)(346002)(39860400002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(8676002)(8936002)(52536014)(316002)(66946007)(76116006)(66556008)(66476007)(66446008)(64756008)(110136005)(2906002)(33656002)(41300700001)(86362001)(5660300002)(83380400001)(55016003)(38070700009)(122000001)(26005)(38100700002)(478600001)(71200400001)(9686003)(53546011)(7696005)(6506007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hEIjx0CIA4IxfcLZ0WMxaIRbVfLrT4XvVKwDcHRTGA69nGmFSY3EH07Hz9AM?=
+ =?us-ascii?Q?+4clrZY3H49Fhe8sz7KlecF1gRIVA6CQNziubQH+mYroAxU20y69kEo1K2jh?=
+ =?us-ascii?Q?zdiOqKe25P2L+13BJJfIQsQ7eDkBsNN5QG0C8M/wjBAZrpJMux9uOc1F7AQP?=
+ =?us-ascii?Q?QcFjYOl28gBfCOtDgAj4utEbLgQ+Yik/v/XehSOTmHdSO/53siE843aWrlZc?=
+ =?us-ascii?Q?Qqb7qmda86AI73Mu+JTI3wNZOtXudoLLwbzwEsbVxDHaRy3aMrCA0FLbuz2i?=
+ =?us-ascii?Q?YQBaM0GrGApg1WZoJ1HzLQv4ZVIXffoFnQUfoa06RAkAxHdRMI5kREQJBPz7?=
+ =?us-ascii?Q?QOzbXqPUtLU/GAj9O/AUojWdOuGCXzXIAByFifEOAnBpPYJgAcdQD3/Xlcsw?=
+ =?us-ascii?Q?LSw4htE+4/zcOJgjO7gpgMjcVlZBtYp7aXfY5SUrtzB10ncd+9ZWJlBxBEF9?=
+ =?us-ascii?Q?1RGlyjZ6EWBKccsmnyfZPaHZgiqTJ/TaDCrMzVJsXVpQ7nIIMIb2RteZDEji?=
+ =?us-ascii?Q?siM7xJeAQq7sAzYD/unmgT9MzSyHl/JHgOik+sybngaTd7SQaqzrP+2pzXkt?=
+ =?us-ascii?Q?bY6CrHBbMa0AbZgVEtfOjCcWa4FruDJjm4S4oNZcPNA1++CjsxYYYLCh8sMK?=
+ =?us-ascii?Q?nNrxoXdiR06OARjBYxgk+u+/RB9AB49v62mqJh/DSyLJlmEYv2tDW5g+mPfw?=
+ =?us-ascii?Q?27yeiLzsxAf9z+xUEn3Hwf4z2tcdRq3yfMSbYOHFWtn8/1mT7UE93AxLFY7f?=
+ =?us-ascii?Q?Wose+RnQYptZQSkZ9UwrsLkFc7TTRaRYmQ3+eHImHqdbmvyUqOLP6A7vixjK?=
+ =?us-ascii?Q?3igdan+9ldHHu/bw0Dyyurex0RmfkXoa+XV1MGjJE+QjJM2+LfRMLHyevZxz?=
+ =?us-ascii?Q?K8VSsDJXBWzYSoQYoILlVxAKR/ESuWUdIEYyI+rUDfrAbu4aIghbZlZvsp8L?=
+ =?us-ascii?Q?vrb7yVP194368kMUsV0KhPxhR00yKLRPE1JxeTCY0gRLbfquqxrzxjjJVhQ4?=
+ =?us-ascii?Q?SnCETMxueuoWTZ8s5MXTD2t/OIh6vCHWHhlgRbigjWw6sYuK9nlN8KoVAmXc?=
+ =?us-ascii?Q?qJJ5NOKWs/vOdoy3+0fCy06bBDJ9unfmAEtv+Eu86SJKqlJYVcayQspqi2cR?=
+ =?us-ascii?Q?M1tHx0xkK4yzebksuQHySP4jOlNnf5lGYr02s/PATXsoqz4cztVvbkM/nPdo?=
+ =?us-ascii?Q?xQsvyiLBLDtrxWJAOOyKSnTL2m/dLAz4NnphLnSg0mQ25yQPXxWz5JNp5Ems?=
+ =?us-ascii?Q?3jHehnVQFaSATO2K/NAs1x1IWUDJxTMCt9tzeO8SFTimUNO9x7jkFtmgwRTm?=
+ =?us-ascii?Q?H7KAsKvhnLVNLc8qxkTcknAKiUuA/bCOvMFIrMtmVDdryV9tzNxPrk+1tYBC?=
+ =?us-ascii?Q?BYCyztUkoDBqdQj5E+WEr8DlhUUCwisuI2Uv7LYOaNsRotRp5YEOujW3KSgt?=
+ =?us-ascii?Q?497rouChw+C1gXBrpzGdwgVsd0SvUI9pycV5oeQorHssaw1Kb+gBrDV9MzxQ?=
+ =?us-ascii?Q?+38c005mSZhQ1Q3+dt4emyDvZCfegCKSdXTDOM42CpdpfRQpbMs+G/TVLjam?=
+ =?us-ascii?Q?RYQVUjCcw/z+cEnE9rXVfFy/fW4RKwbNFtehm3ac?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ec0df53-507e-40a3-f8c0-08dbe43eb123
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2023 11:50:11.3982 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: P6/Yahb2YwSpoHd1KfKzcbrVwZNqGc7l9txjHQqnEmYcWFaA/WpN/HtaargsECzC0iqlUHxGLur4AUDzjQoURA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6993
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,26 +124,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:AMD KFD" <dri-devel@lists.freedesktop.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 13.11.2023 12:37, Heiner Kallweit wrote:
-> I2C_CLASS_SPD was used to expose the EEPROM content to user space,
-> via the legacy eeprom driver. Now that this driver has been removed,
-> we can remove I2C_CLASS_SPD support. at24 driver with explicit
-> instantiation should be used instead.
-> 
-> If in doubt this patch could be applied via the i2c tree.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
+[AMD Official Use Only - General]
 
-The mail to Evan couldn't be delivered. Maybe MAINTAINERS needs to be updated?
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Generating server: SATLEXMB03.amd.com
-evan.quan@amd.com
-Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
+Regards,
+Hawking
+-----Original Message-----
+From: Ma, Le <Le.Ma@amd.com>
+Sent: Monday, November 13, 2023 18:36
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: [PATCH 1/1] drm/amdgpu: finalizing mem_partitions at the end of GM=
+C v9 sw_fini
+
+The valid num_mem_partitions is required during ttm pool fini, thus move th=
+e cleanup at the end of the function.
+
+Signed-off-by: Le Ma <le.ma@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/am=
+dgpu/gmc_v9_0.c
+index bde25eb4ed8e..c1f2f166f064 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -2170,8 +2170,6 @@ static int gmc_v9_0_sw_fini(void *handle)
+
+        if (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(9, 4, 3))
+                amdgpu_gmc_sysfs_fini(adev);
+-       adev->gmc.num_mem_partitions =3D 0;
+-       kfree(adev->gmc.mem_partitions);
+
+        amdgpu_gmc_ras_fini(adev);
+        amdgpu_gem_force_release(adev);
+@@ -2185,6 +2183,9 @@ static int gmc_v9_0_sw_fini(void *handle)
+        amdgpu_bo_free_kernel(&adev->gmc.pdb0_bo, NULL, &adev->gmc.ptr_pdb0=
+);
+        amdgpu_bo_fini(adev);
+
++       adev->gmc.num_mem_partitions =3D 0;
++       kfree(adev->gmc.mem_partitions);
++
+        return 0;
+ }
+
+--
+2.38.1
 
