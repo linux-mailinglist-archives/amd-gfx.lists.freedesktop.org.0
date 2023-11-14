@@ -2,59 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CB57EAE5A
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 11:55:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CA07EBF40
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 10:15:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7C710E1F6;
-	Tue, 14 Nov 2023 10:55:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB4610E50B;
+	Wed, 15 Nov 2023 09:15:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com
- [IPv6:2607:f8b0:4864:20::f2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37A5410E1F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 10:55:50 +0000 (UTC)
-Received: by mail-qv1-xf2e.google.com with SMTP id
- 6a1803df08f44-6708d2df1a3so7605626d6.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 02:55:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699959349; x=1700564149; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=iz/8sUCEjt69vJ4XCsLR7jS+dcEmOCYO3kX5c/nwzcc=;
- b=mY40aDnfeAlhRVM9vXKKAZ2AtagI9DSNmo4Hh3GVl+UOH9byC/x4W2P3FT6Eypo/+F
- j2TJAM6iBEWGNrUGy/rhzh/tGlzu/OCvh8d9+P5g8tkjs7M8lu/3tW+3hWsPkMnqFch/
- g1v0YhfPFEdBd+NsYCBgxF+hSXx/tl6xR5jwaoNDsJwN3PEHCOy7NjFmtrbsAfPjVSEQ
- i6H14y61oMI/ThWjcmWcT7diN0FEHTs6B0dG9R1t5j0ax0wQuhERLH/iCAhUqCGPAnhI
- nHEZ/5RbeYQFjc0YJgbqWGjrAx34qPsPrYE7a6jAGoMzzywOdoPpxVu/2jX/9SrOcoRh
- JpAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699959349; x=1700564149;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=iz/8sUCEjt69vJ4XCsLR7jS+dcEmOCYO3kX5c/nwzcc=;
- b=xS5yqpoBiPJbxJpuWWSApzFiSuFgmZWivpwEpDA0LVFh5wGg9XAS8wzlAeN9z70OCK
- 4ezD3HmWusvuUIvKhhcrTueWici1jQc41fFWjI4ep+8DBXJPi3BYjxRSXgEXETyRBDmr
- VluEmN2GZi430g0GM5Opkazt+vqXa0jqKStA0aIK8rMPe9AAZtig43y+8r0ApvhVTuIx
- xhA9kE9ecwnFo+I0/lpX8VqXPoTW+wafaXDZqBp2JC9z0qDVHBEpmojcdriA72WW7BM0
- SSBrejVWh4C4r/5MQmi/Ree8z3MpNtBF+2qHDxUJq5jpnGSbLmDJNX99vxPY1GK2gl4z
- cbyw==
-X-Gm-Message-State: AOJu0Yy/eAM9r8eX3Af0drvRoS+obeQYcUhpa2VDDaayJrtb2ojJA98b
- M3JA2yR2iW3/FS2SJlEsunlP86lkt/NE3vg1FXs=
-X-Google-Smtp-Source: AGHT+IG7ap8IuRRxIfvqMo1zHHQzkuGEMlwEuAGQI+uH+u//FH8jud6DRfHdd8gd40Zrpjl6T2q9as8IxpGZhmdEVVA=
-X-Received: by 2002:a0c:e80d:0:b0:66d:6111:5c5f with SMTP id
- y13-20020a0ce80d000000b0066d61115c5fmr1838674qvn.2.1699959348918; Tue, 14 Nov
- 2023 02:55:48 -0800 (PST)
+Received: from 10.mo576.mail-out.ovh.net (10.mo576.mail-out.ovh.net
+ [46.105.73.241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB38610E203
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 11:41:35 +0000 (UTC)
+Received: from director6.ghost.mail-out.ovh.net (unknown [10.109.156.194])
+ by mo576.mail-out.ovh.net (Postfix) with ESMTP id D4D432E203
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 11:34:06 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-b2n22 (unknown [10.110.103.249])
+ by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id C796C1FD91;
+ Tue, 14 Nov 2023 11:34:03 +0000 (UTC)
+Received: from foxhound.fi ([37.59.142.106])
+ by ghost-submission-6684bf9d7b-b2n22 with ESMTPSA
+ id zqp4KytbU2UpiAAAZEbziQ
+ (envelope-from <jose.pekkarinen@foxhound.fi>); Tue, 14 Nov 2023 11:34:03 +0000
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-106R006f8a2c5f3-9a69-4238-9eb7-c409d0b8b06f,
+ 39B655737E19CE8DAD14488E69459E8CEBC9C448)
+ smtp.auth=jose.pekkarinen@foxhound.fi
+X-OVh-ClientIp: 83.100.46.156
+From: =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ skhan@linuxfoundation.org
+Subject: [PATCH] drm/amd/display: fix ptr comparison to 0
+Date: Tue, 14 Nov 2023 13:33:56 +0200
+Message-Id: <20231114113356.127779-1-jose.pekkarinen@foxhound.fi>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Tue, 14 Nov 2023 15:55:38 +0500
-Message-ID: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
-Subject: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
- flashing bar with a picture of the desktop background on white screen
-To: alvin.lee2@amd.com, hersenxs.wu@amd.com, daniel.wheeler@amd.com, 
- "Deucher, Alexander" <alexander.deucher@amd.com>, 
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 6570188909338076865
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrudefvddgvdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheplfhoshorucfrvghkkhgrrhhinhgvnhcuoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqeenucggtffrrghtthgvrhhnpeeftdelueetieetvdettdetueeivedujeefffdvteefkeelhefhleelfeetteejjeenucfkphepuddvjedrtddrtddruddpkeefrddutddtrdegiedrudehiedpfeejrdehledrudegvddruddtieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjohhsvgdrphgvkhhkrghrihhnvghnsehfohighhhouhhnugdrfhhiqedpnhgspghrtghpthhtohepuddprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdfovfetjfhoshhtpehmohehjeeipdhmohguvgepshhmthhpohhuth
+X-Mailman-Approved-At: Wed, 15 Nov 2023 09:15:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,42 +55,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stylon.wang@amd.com, charlene.liu@amd.com, daniel.miess@amd.com,
+ Qingqing.Zhuo@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Jos=C3=A9=20Pekkarinen?= <jose.pekkarinen@foxhound.fi>,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, yang.lee@linux.alibaba.com,
+ airlied@gmail.com, colin.i.king@gmail.com,
+ linux-kernel-mentees@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-Yesterday came the 6.7-rc1 kernel.
-And surprisingly it turned out it is not working with my LG C3.
-I use this OLED TV as my primary monitor.
-After login to GNOME I see a horizontal flashing bar with a picture of
-the desktop background on white screen.
-Demonstration: https://youtu.be/7F76VfRkrVo
+This patch will address the following coccinelle warning where a pointer
+is compared to 0 instead of NULL.
 
-I made a bisection.
-And bisect said that the first bad commit is:
-commit ed6e2782e9747508888f671e1101250bb19045be
-Author: Alvin Lee <alvin.lee2@amd.com>
-Date:   Mon Oct 23 14:33:16 2023 -0400
+drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c:5423:19-20: WARNING comparing pointer to 0
 
-    drm/amd/display: For cursor P-State allow for SubVP
+Fixes: 7966f319c66d9 ("drm/amd/display: Introduce DML2")
+Signed-off-by: José Pekkarinen <jose.pekkarinen@foxhound.fi>
+---
+ drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-    [Description]
-    - Similar to FPO, SubVP should also force cursor P-State
-      allow instead of relying on natural assertion
-    - Implement code path to force and unforce cursor P-State
-      allow for SubVP
-
-    Reviewed-by: Samson Tam <samson.tam@amd.com>
-    Acked-by: Hersen Wu <hersenxs.wu@amd.com>
-    Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
-    Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-
- drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c | 17 ++---------------
- 1 file changed, 2 insertions(+), 15 deletions(-)
-
-My hardware specs: https://linux-hardware.org/?probe=1c989dab38
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+index 510be909cd75..7dceaa486841 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+@@ -5420,7 +5420,7 @@ static void CalculateOutputLink(
+ 					*OutBpp = TruncToValidBPP((1 - Downspreading / 100) * 13500, OutputLinkDPLanes, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output,
+ 												OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, RequiredSlots);
+ 
+-					if (OutBpp == 0 && PHYCLKD32PerState < 20000 / 32 && DSCEnable == dml_dsc_enable_if_necessary && ForcedOutputLinkBPP == 0) {
++					if (OutBpp == NULL && PHYCLKD32PerState < 20000 / 32 && DSCEnable == dml_dsc_enable_if_necessary && ForcedOutputLinkBPP == 0) {
+ 						*RequiresDSC = true;
+ 						LinkDSCEnable = true;
+ 						*OutBpp = TruncToValidBPP((1 - Downspreading / 100) * 13500, OutputLinkDPLanes, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output,
 -- 
-Best Regards,
-Mike Gavrilov.
+2.39.2
+
