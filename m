@@ -2,45 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA967EBF42
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 10:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CB57EAE5A
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Nov 2023 11:55:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66FB110E50D;
-	Wed, 15 Nov 2023 09:15:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE7C710E1F6;
+	Tue, 14 Nov 2023 10:55:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 397 seconds by postgrey-1.36 at gabe;
- Tue, 14 Nov 2023 09:38:00 UTC
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73F9710E1E2
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 09:38:00 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id A170A1C0050; Tue, 14 Nov 2023 10:31:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
- t=1699954281;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=CODz8NstgmK92moXl+UOkCNSWzwauPKSWbUcbQNR6vc=;
- b=czasQl0YeQ5W+RSIiEMH8+ShxacJhxOxWAjh6P/5BRH6rK2eZU4z3Ko9aLSDCMlQIreHfL
- vhBaiZANOPqhbezEb/rKXFn4lTxMZo7Gd4RtCKj+eLOgIV5tBuwy+sFascrkKUf66y4ZDz
- fTZmcHV5xjCnffI/qz1h7FpaVYj1074=
-Date: Tue, 14 Nov 2023 10:31:21 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH AUTOSEL 6.6 09/11] drm/amd: Fix UBSAN
- array-index-out-of-bounds for Powerplay headers
-Message-ID: <ZVM+af4bbB/Hx5Pd@duo.ucw.cz>
-References: <20231112132736.175494-1-sashal@kernel.org>
- <20231112132736.175494-9-sashal@kernel.org>
- <CADnq5_OyK=rDH38Q8Kiyq9BhWuihgd8wX7XKAffxwkO4w+ksog@mail.gmail.com>
- <ZVEewK-GAnRsrPA3@sashalap>
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com
+ [IPv6:2607:f8b0:4864:20::f2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37A5410E1F6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 10:55:50 +0000 (UTC)
+Received: by mail-qv1-xf2e.google.com with SMTP id
+ 6a1803df08f44-6708d2df1a3so7605626d6.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Nov 2023 02:55:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699959349; x=1700564149; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=iz/8sUCEjt69vJ4XCsLR7jS+dcEmOCYO3kX5c/nwzcc=;
+ b=mY40aDnfeAlhRVM9vXKKAZ2AtagI9DSNmo4Hh3GVl+UOH9byC/x4W2P3FT6Eypo/+F
+ j2TJAM6iBEWGNrUGy/rhzh/tGlzu/OCvh8d9+P5g8tkjs7M8lu/3tW+3hWsPkMnqFch/
+ g1v0YhfPFEdBd+NsYCBgxF+hSXx/tl6xR5jwaoNDsJwN3PEHCOy7NjFmtrbsAfPjVSEQ
+ i6H14y61oMI/ThWjcmWcT7diN0FEHTs6B0dG9R1t5j0ax0wQuhERLH/iCAhUqCGPAnhI
+ nHEZ/5RbeYQFjc0YJgbqWGjrAx34qPsPrYE7a6jAGoMzzywOdoPpxVu/2jX/9SrOcoRh
+ JpAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699959349; x=1700564149;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=iz/8sUCEjt69vJ4XCsLR7jS+dcEmOCYO3kX5c/nwzcc=;
+ b=xS5yqpoBiPJbxJpuWWSApzFiSuFgmZWivpwEpDA0LVFh5wGg9XAS8wzlAeN9z70OCK
+ 4ezD3HmWusvuUIvKhhcrTueWici1jQc41fFWjI4ep+8DBXJPi3BYjxRSXgEXETyRBDmr
+ VluEmN2GZi430g0GM5Opkazt+vqXa0jqKStA0aIK8rMPe9AAZtig43y+8r0ApvhVTuIx
+ xhA9kE9ecwnFo+I0/lpX8VqXPoTW+wafaXDZqBp2JC9z0qDVHBEpmojcdriA72WW7BM0
+ SSBrejVWh4C4r/5MQmi/Ree8z3MpNtBF+2qHDxUJq5jpnGSbLmDJNX99vxPY1GK2gl4z
+ cbyw==
+X-Gm-Message-State: AOJu0Yy/eAM9r8eX3Af0drvRoS+obeQYcUhpa2VDDaayJrtb2ojJA98b
+ M3JA2yR2iW3/FS2SJlEsunlP86lkt/NE3vg1FXs=
+X-Google-Smtp-Source: AGHT+IG7ap8IuRRxIfvqMo1zHHQzkuGEMlwEuAGQI+uH+u//FH8jud6DRfHdd8gd40Zrpjl6T2q9as8IxpGZhmdEVVA=
+X-Received: by 2002:a0c:e80d:0:b0:66d:6111:5c5f with SMTP id
+ y13-20020a0ce80d000000b0066d61115c5fmr1838674qvn.2.1699959348918; Tue, 14 Nov
+ 2023 02:55:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="paJBZC1F9+gCvnp8"
-Content-Disposition: inline
-In-Reply-To: <ZVEewK-GAnRsrPA3@sashalap>
-X-Mailman-Approved-At: Wed, 15 Nov 2023 09:15:52 +0000
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Tue, 14 Nov 2023 15:55:38 +0500
+Message-ID: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
+Subject: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
+ flashing bar with a picture of the desktop background on white screen
+To: alvin.lee2@amd.com, hersenxs.wu@amd.com, daniel.wheeler@amd.com, 
+ "Deucher, Alexander" <alexander.deucher@amd.com>, 
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,61 +66,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>,
- stable@vger.kernel.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi,
+Yesterday came the 6.7-rc1 kernel.
+And surprisingly it turned out it is not working with my LG C3.
+I use this OLED TV as my primary monitor.
+After login to GNOME I see a horizontal flashing bar with a picture of
+the desktop background on white screen.
+Demonstration: https://youtu.be/7F76VfRkrVo
 
---paJBZC1F9+gCvnp8
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I made a bisection.
+And bisect said that the first bad commit is:
+commit ed6e2782e9747508888f671e1101250bb19045be
+Author: Alvin Lee <alvin.lee2@amd.com>
+Date:   Mon Oct 23 14:33:16 2023 -0400
 
-Hi!
+    drm/amd/display: For cursor P-State allow for SubVP
 
-> > > From: Alex Deucher <alexander.deucher@amd.com>
-> > >=20
-> > > [ Upstream commit 49afe91370b86566857a3c2c39612cf098110885 ]
-> > >=20
-> > > For pptable structs that use flexible array sizes, use flexible array=
-s.
-> > >=20
-> > > Link: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2039926
-> > > Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-> > > Acked-by: Christian K=F6nig <christian.koenig@amd.com>
-> > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > Signed-off-by: Sasha Levin <sashal@kernel.org>
-> >=20
-> > I don't think any of these UBSAN flexible array changes are stable mate=
-rial.
->=20
-> I'll drop it, but in general we've been taking kasan/ubsan/kcsan/...
-> annotation fixes since it enables (easier) testing on the LTS trees, and
-> for example finding issues specific to those LTS trees.
+    [Description]
+    - Similar to FPO, SubVP should also force cursor P-State
+      allow instead of relying on natural assertion
+    - Implement code path to force and unforce cursor P-State
+      allow for SubVP
 
-I believe they should not be in stable, either.
+    Reviewed-by: Samson Tam <samson.tam@amd.com>
+    Acked-by: Hersen Wu <hersenxs.wu@amd.com>
+    Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+    Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-In any case, Documentation/process/stable-kernel-rules.rst should be
-updated, because it contradicts current practice.
+ drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c | 17 ++---------------
+ 1 file changed, 2 insertions(+), 15 deletions(-)
 
-Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+My hardware specs: https://linux-hardware.org/?probe=1c989dab38
 
---paJBZC1F9+gCvnp8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZVM+aQAKCRAw5/Bqldv6
-8mtwAKCOdMnLlfmoCA/L8EwU7sO7zQZxOACfbkjh4IwjOXNImQ69u5j7dz7e4Bs=
-=B0dk
------END PGP SIGNATURE-----
-
---paJBZC1F9+gCvnp8--
+-- 
+Best Regards,
+Mike Gavrilov.
