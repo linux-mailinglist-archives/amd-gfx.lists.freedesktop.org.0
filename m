@@ -1,118 +1,122 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4670C7EBD4D
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 08:01:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AC17EBF6E
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 10:27:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 546E910E4F2;
-	Wed, 15 Nov 2023 07:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49DB210E518;
+	Wed, 15 Nov 2023 09:27:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2064.outbound.protection.outlook.com [40.107.101.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87B010E4F2
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 07:01:20 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50FE10E505;
+ Wed, 15 Nov 2023 09:27:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EfrvANdc3bIuQ2KGcuE5IjJs9+nr7ZotRSUBL+Kx3tfwQW6gxrtb8lgzH56rcd8KHYQsipsxo34Rh96g2AEhXYuSvl9DLujfkacq/BpnRE5PgV1rP0OdLa8vuIBQ1XtCaBxw+f4Wzp3PYQTkSR6ZJ+xm2GFnVpiKqmktC++uW7K3yy92U+9BOwaz2mlIx0VXYgljqlF0Bz6VV8RsRfkRBquG/2yLXbBBAnR73j3Gre0oFFJbI9niobzOElk2rWmdamQ7w7bFLhq/F5sY10ZDwsUieea9OHtWgNwXOPX+86KAwZ/PlZaXjey0kehrZ9ym3U21Mse3aL+20viu1lIkdw==
+ b=KB4jXWaMHQocntYZYp4+TiuX4tQAFA4GUgw9ALQBvDliUvqSXrt84dGFNkg3wTHIsxmGklB4V54TOFQ3hACH/meww69hVUcLWCbz767bQtsU6xlzNKt6WBhkGybxHwp6JTLtrYQRCAfwX+YLzrbZedvP0ioGcEUqFBNOKAbEfdGRLH7OjOvzFLiPa3pZO1eVmBrzq4xNkMDeQg+CexpiEuDxlTvGTnfxYnx9wGKCy6iNHmWgTZH4QTiwJgWpRPM5GTelf0m9cwse7N7sKN0Og4fls+Uau17rr2Fn2Px2nOEMplaGUgy3hw4pvD+zKKq1ideWIc9YyLxXow9PR69Jtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q3ZOH2ZVrTQvOAu/htldVFQkoVNuULEAMo3X6yTylDI=;
- b=lOheaVfiZz35e02h7Dbkzt6uBzHvVlZ6OKysBokbyj6OyIJdB0s4IqsFdqTouN218bJmrCpMguOuMTYir1emVIg/Cy9516WAAwGZyP87xa1W5PBf+g9xTrIfXqWICze7+dyzsF1nO06TezadAx3RdP9yzkMxgoK18jaTdzPMFlTwXuMzfXTm+TceZUsrfHPu9zgROBS4iewFPmIacyt5iPdU3Hi7uXo6K5yqI7aJ1VwC84VyZS9QadmzAinH8ShQ6Fr/xYZCtN3M0II/x4ulLFva4L287vZWq5KKaO/qAfmQmr8+/+WJtq6KwvL8w4BNPCccgf3IKkbJQz5DPh876A==
+ bh=BZPyNGxoeVgDtj8QVEiAyklHT19cFxs3qEW/nOdus/o=;
+ b=cuWge0SW8jQS4tld9IZLoWqGAF1E/9ckLNmB8TFRdNxrr32IyhSJl0ePfi9zgRZtPT+ggPUGlwvjBn6rFBbBgH7hD/nlMvty91iEKoEf7PCyt8g/JXKgWLFuGkq9fNVtd20MvNxvlL7JVZFBuUndSqp5a8XJtdd6WdXWYvdsJTvm3iyjmhLaZ9hoMxumFpi5qsdH33uhpDdwM2VIQJCNaFXKuQz9ntwEWaj8Ja2S4JYWP3wIlpfLf3ew1UfoCYNF4CX45Q9WONPXqBRQ5ajusw2GQ9Aw88iSr1G0oubgU0D5lRtG1o/ZmjsT25dRd20PBi2TBNMukeGr0Na/+QOjyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q3ZOH2ZVrTQvOAu/htldVFQkoVNuULEAMo3X6yTylDI=;
- b=b7OEpEN/L4Ri5B7dMN6lXmwlnLLUqu2W07c8XcQz1YIhg7WrYHaQEW+y4CxJV2QG8NPSFh2TT8hYj9vwyNo6bgb3joc+o4iWV+tZ4p4TQGSg5wnGLDm+3VKHCzXHqlrIAgvD6RgwVc76B55gAtfVtdkp0WZjdJIBAFdqQJueFfU=
+ bh=BZPyNGxoeVgDtj8QVEiAyklHT19cFxs3qEW/nOdus/o=;
+ b=t1yyerzs38ZUckQVafeEfpDapJNb3rsGau2B6i4ne91LNcd8rWgXQDcycWAhZTuzNtWOYClxXHTMizSfGjlDR/7H8XKFvYOHQtM45Mx2tF0nONoKztjWyn+myf9Sx3Yg5o2xQPGkTXl2mjBk5m0JfBJrXKl5TlF7cuB1G3THp70=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CH3PR12MB8756.namprd12.prod.outlook.com (2603:10b6:610:17f::8)
+ by CY5PR12MB6406.namprd12.prod.outlook.com (2603:10b6:930:3d::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Wed, 15 Nov
- 2023 07:01:18 +0000
+ 2023 09:27:41 +0000
 Received: from BN8PR12MB3587.namprd12.prod.outlook.com
  ([fe80::ca80:8f1c:c11:ded3]) by BN8PR12MB3587.namprd12.prod.outlook.com
  ([fe80::ca80:8f1c:c11:ded3%7]) with mapi id 15.20.6977.033; Wed, 15 Nov 2023
- 07:01:18 +0000
-Message-ID: <1726343b-b0ab-43be-91ff-8d0fa12f6944@amd.com>
-Date: Wed, 15 Nov 2023 08:01:14 +0100
+ 09:27:41 +0000
+Message-ID: <5fa7aab7-3bf9-4491-a822-fd686efa5376@amd.com>
+Date: Wed, 15 Nov 2023 10:27:31 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Add function parameter 'xcc_mask' not described in
- 'amdgpu_vm_flush_compute_tlb'
+Subject: Re: [PATCH v3 2/7] drm/radeon: Switch from
+ pci_is_thunderbolt_attached() to dev_is_removable()
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Lukas Wunner <lukas@wunner.de>
+References: <20231114200755.14911-1-mario.limonciello@amd.com>
+ <20231114200755.14911-3-mario.limonciello@amd.com>
 Content-Language: en-US
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
-References: <20231112044534.1637245-1-srinivasan.shanmugam@amd.com>
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20231112044534.1637245-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20231114200755.14911-3-mario.limonciello@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0223.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ac::16) To BN8PR12MB3587.namprd12.prod.outlook.com
+X-ClientProxiedBy: FR4P281CA0030.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c9::7) To BN8PR12MB3587.namprd12.prod.outlook.com
  (2603:10b6:408:43::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|CH3PR12MB8756:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2cd3aa44-0bc6-4315-ebd4-08dbe5a8aaa1
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|CY5PR12MB6406:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9838de35-dc39-486e-96b5-08dbe5bd1d7f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oBS7IiVLrwFlmUhCtAxBgyHLzKv0Cpirp4L4sEdq5coqrblZqBY76WHnN8h1PKCLM13zu7nN+FicRVRYlg9nki7ADxUcV4ciGh07FkR74xzmOc3YenFgIrzYHZn05mLb2vVwz2tjx8qfGForp+C8gEINvDcHMr+CIUt2ZtMGX0KtFpnD11j172UyofXNAPTQrxTZ3L+1gKCMVF3hx9sh6v/V7wslSpPy1YlbUaLk8qEzBh5N8gnA6mVfCl7lbXeN+rfX733TdHfwwZ4xfli4KgwmxapSal9OAatVRGoiOn5bXo9idS61TRCgD8AU0rUOphPl67N+WisOAsKMcKSyKlRmozIFbYfyBrvou1JcRMmINjeANOfNNgUvD4MKkadaYFRFMmodKOWQhxK81IQnUUHn63JNZh6D9Juxg6Ygck6os7K9ZA7AU20FqOlbwF0QM0VX6OJvNVpJnSwRJ0m7KoAfzCFYg6B0JfPDmn8GY4jeoQs70JMdXzsvNs9tp6mpaYY2N+wfNAW7x72TYcNifTsGkS8gwLVPcY7uNyxgSn/iwCtZTDwbonDht7z2qYUOSXY/Ew91YFHsyTfMUF2Jaiy/qRg/Q3gOeaoGWmpcvKIdOghVfEzhA3heaOxQce1gBxRxwwSZe/shooiMxf5Z/rPelnZ602pPkiRI/0YuLxJgcl8nE8M6PRPS1xuVPmuQ
+X-Microsoft-Antispam-Message-Info: LK3jqHBnRo450t+gkHEjXGxCcJQUQgLWMQ0+JMk5b6KIVgVwNSHwoZvk2a4isChY5PZyYS0kOV7JUqbddO5WbWWcac+qT9z5b1d9VoMJqrAn1DbjDRdZNedAc7kE1IUdetsm9tPke7shKLaKfYefSR0YRSBGDX40nisy3HrKyspyuaQ2CY4Gcgr5hCaMrCbaLuPWD6jXiP9GBIYuLcw+QE8N0HXwBMaZt8WE7J3p6P+N5UzeJGkJnUsbDcYON7R2lZBVsJa2MOm2AFalSxoU2+IRH6U2Tq4VjIFyam0eiix0/k5vKSMuLy8tTeodeOgvNleL2P5WhDTErLPk/Jsran4guktZ3tYHLI2BNm9gq5j1ZkQxah36XJgpBIdOMPp8Xv779OJeDkeAx8+h/lhUK7R6zdQmv75BXw5zYkvsEED4JQpvjkSSBFPCuZmPwgqaCtRqQc29zmN40zfOok4EcanGJ1Drx6c3B+bDAX+GEmPOb9hNy/g0Zj4Z+Sb9N9djwt0HyYZVcmR7twC8cdq0KOhmUG+BfvN/z0O+NNyT9bSiLFmgs+9+UtuSuRPD1dBGlWGjukkY6U5Hxa/8Xw38+/ZPvtzgeh8qdF4W2jcIxPRdPIKX4RUaG+JhapCzUoedzyzf82RiXYvNfWzJxnC8oLUxD+ko2bYU4r5D7zR5mv+f0dzJRM3ag/PrcOycih3a
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(366004)(376002)(396003)(39860400002)(230173577357003)(230922051799003)(230273577357003)(451199024)(64100799003)(186009)(1800799009)(110136005)(41300700001)(31686004)(2906002)(6506007)(6666004)(5660300002)(8936002)(36756003)(8676002)(4326008)(31696002)(316002)(66946007)(6636002)(86362001)(6486002)(66476007)(2616005)(6512007)(26005)(66556008)(478600001)(66574015)(83380400001)(38100700002)(43740500002)(45980500001);
+ SFS:(13230031)(346002)(376002)(396003)(366004)(136003)(39860400002)(230273577357003)(230173577357003)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(66556008)(66476007)(6506007)(41300700001)(26005)(2616005)(6666004)(66574015)(6512007)(83380400001)(4326008)(8676002)(7416002)(5660300002)(8936002)(2906002)(6486002)(316002)(478600001)(110136005)(66946007)(54906003)(36756003)(86362001)(31696002)(38100700002)(31686004)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHFOMnpSbklmK2tBakRCd0R5U1A5QnZmN2llQlhQMUF4ejNGK25LY0lIL0ky?=
- =?utf-8?B?Z0kzWmU4YThXTWkxNzNBZHVneEdDUk51aU0rVmRxczhkcXFWbnhLOTd6Nko5?=
- =?utf-8?B?blN6a1Z1ekxXVVpxMFMyZkpnbzhJV0E5a0xzYlhuWjRNVUt2eDUrYVNlTXF5?=
- =?utf-8?B?eC8wdkprbWlTa3Z1MDNhK2hrUkVxR2N5TmVPUzZpNmpMWm42YS8wZ3ZWU1VD?=
- =?utf-8?B?LzZ1dWJOZE5ic0RleklvRmhsL045UXc3QWFtdDBUVURqQVNTYURCNG03NVYy?=
- =?utf-8?B?dlE2OVJDZ1VjaDVmNzRVQUxiSjRnVTRiRXBXL1ZZQm5JQ21pOXRHL3RNajly?=
- =?utf-8?B?clM0aG4xeVBmeVhMRXd5SU1OemtFa0ZyQVhNMUw5Wk1OeGhzcURzV1VUSSt6?=
- =?utf-8?B?cDZWdmYyQUxzaWhMSVZaaWlXL21WVDNYZWpkc0xjcElvaWY0ZGEwNVB1SWFH?=
- =?utf-8?B?M3RrcnhOcVh3VjNMZGlvUlV2aURpQjh4TU9GV05oUkVnekwrOVU5SGJjenZK?=
- =?utf-8?B?ZWwxL2kxRFlkUzNEOURxZko0dnpKV1FBb3BMcmphb0RNdS9UMzI1V2w4Zjlj?=
- =?utf-8?B?TzhOQzAwZGlhdnVERzdZLzZVam94M0htMkI0dHNvNlNkSUtvcitBSnVnY2hL?=
- =?utf-8?B?TklKUjkxTzVWVDBMa2RkdlZXUHJnQXAwekVORWVQMXIrT1p1R3gvSmNnZFZ1?=
- =?utf-8?B?S2tkQkN6WEszZjBpNnpYVXd5b1dsYUJseDRIR0JuV29oVnFqOE9TYjVneXI4?=
- =?utf-8?B?ZVVpdURhU1BwQXladGJ3QndTcW1aY2hZcHVaNTBHQVRwSThQaTJqN01zTnVR?=
- =?utf-8?B?ZHZFZjJQWk9nWS9LWWlFcWVPSDhGMGw2ZnpKYzlLOHBaekdBVjVyeTZRT1dr?=
- =?utf-8?B?cmRCZmhCTFJxSng3OFVCbVc5ZlhYMFF2SUxkUnZWeTMyUGV3RjIySkZaWDJ6?=
- =?utf-8?B?YTQ1YjVINWN2dDl1Qkd0Ykp5QlFSRkhXMkgxWnZIc0U5ekRkOUNXT0NKV3F5?=
- =?utf-8?B?dmVPRHlqVVMzdDdnYm9VbDJCMFdLeWNHNnBTNWJYTVBKUk56ZHQ2MGFJLzQ2?=
- =?utf-8?B?bHozNVJrZUNYVzlXV05rVnBWR3o4bnJvS3NzeUtsMFBqamJiK0VwN09EcXpx?=
- =?utf-8?B?RTgvNFRrNUxSWXJBVG9qaFJVbUlvWVNTcVBLSnE2SUNHMHorS1k0WWxvViti?=
- =?utf-8?B?RmpTeHBWdHpGdnBldlk3bVFScWRnNmVyaEpSRkZKSXFQTG1lQVJOM044cit5?=
- =?utf-8?B?MnhJWFRRaGNEektBODVEaG1sSUdJN2xTRWMxTXdTRit5dlFiYTZMZ3U2M0Q2?=
- =?utf-8?B?M0ZGRS9oMHY3eWE0dWlCdGdJRGxFbGh3SGlleFVjRjlwZk8rdmRFaGVWKyt2?=
- =?utf-8?B?S1hpeVFkNnhaUUNaZjJIRzRxMWZhalZjWVVKdjJJbERRYjZsVTNyMXFiMVBx?=
- =?utf-8?B?OHJOTytramd0VDMwcTdkUGJ5aHZhdnJuQ281NVNRMTFVVFlFZzg3c2RiMkY2?=
- =?utf-8?B?MWJaRnh6UkcwWnZtN0ZTWW9oaVlmZHlpNHhKUDZiTThNLzBhbXBmbzJSc1VO?=
- =?utf-8?B?Zy83aC82SUJvRVZLZ3JXQWRRemhiSm9oSEtLUFZLZ2tJeWdmV29tRlpuM3NX?=
- =?utf-8?B?c0QvYXNYOUlpNE5XTkhOV09uc2YyandZdVY3OTF0R3hnS0Y0SWNjeUliT2py?=
- =?utf-8?B?VHU4Zm5OcVc5S2ozc1B4WU1BbUZ5NW9jQStuc0w5VmdhSG5IRjVjQkc0U3lQ?=
- =?utf-8?B?eVpVT1QwRkhuQXRIczVCcEw0VWhlNFBubkMvVnRzOFJCWjZzQzdHaGRrZ2di?=
- =?utf-8?B?UkN0bHVIMWxGZnlQTzdobGVGai9kS2ViRDFrSzdjL2lKSkRRaExtaEpVYWZL?=
- =?utf-8?B?eksxYlRsZ3Y1ZW5SUXE0eVIwQS8rODVQeDRYMGQ3MWxPMmtUb2hDK0ZXSXlo?=
- =?utf-8?B?YlhXVTBKdU5RRlJRVnRZVEpkNm52bWxJVCsrdDF2bSt4c0VlYU55TUU3Zi8x?=
- =?utf-8?B?d1hlL0thTitQN0FtKzRhRG1hWG42bEsySjhIdGRKY3JOeVdra0kwM1JnbjIz?=
- =?utf-8?B?STNaUEt4emwyb3FIU2lwdWppTmphNWwxVVlhSlVMS0tOa0ZEdXl0RzBsV1dt?=
- =?utf-8?Q?yWLY=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXJYdjRlODYwQkFaN253QkNlRUVmWEtrd1dGenQ3V3JGbXhhN216dm9UTUMz?=
+ =?utf-8?B?MDN6eGsrZlhockZOREQ3eUJ6OE9ueE83NnVUZ29Camp0eWlWSFpxa2hXM0tr?=
+ =?utf-8?B?YUFxdjg3c3hrRmEvVTBta0licXljQzA1M21TL2IvczRSN3NYNXVucWI2UTQy?=
+ =?utf-8?B?YTNiYVdzV3dOeDNqUnNwRXB0eER0ZFI3WlNYcGxtQUpwdy81bHgyeHFrUjRZ?=
+ =?utf-8?B?bE1VT085dGRudlNXOVdwVVdRZDB5TGlTTlowR1JjQVEzdEZKZkc1dFFWZDB6?=
+ =?utf-8?B?dEFHUHpucGZkcGc5MXFOVHR5OVdnRzhIckZSQzBlVFVFd0ZYUzNBcFltWkEx?=
+ =?utf-8?B?NldlTVduVWZrWHFaUmNWT0EwTVArNTJnTkdGYmVhY3pEOG5aWFJGa0puRmdw?=
+ =?utf-8?B?dHM1eTc2VlFPTitHRWNrZkEvNDRhWFNwZFgzUE42cFhKYUlXVUxIVjVnOEw0?=
+ =?utf-8?B?RmxaVGNyMmk4Rk1IZlZjcldkQmhZU3RmL3RWc0VmRGpxbmc2UStSYjRaYTNx?=
+ =?utf-8?B?c0N3K3ZGdFhZemxac2tSQmQ0eC9VNXh5cER3SjFMTVFMaEc2ZG10bE9IOUsv?=
+ =?utf-8?B?dnJZVUhTckhjM3pUQ0EzUEZLSmZzcnhtZXRXNTdsbGMwRm8ybEYxRVkrQXhp?=
+ =?utf-8?B?ZVJTWDN6SHBsRzJjQXBjR3d6MkowZnFveVdIRVgxTWt2TEFscWluWUJKb25C?=
+ =?utf-8?B?cWNmZ0hnMDR4T0tFaDk3cjRBclBTN01jZ2RjalowUXZmVFlaM1dOYWJtQVpP?=
+ =?utf-8?B?NnQ1YzRsd2llQ0pvc2RrNjd3ODk0VmhaMm1BeGMrQTBhVExWVzM1MXhYcUt0?=
+ =?utf-8?B?TlJqeDlEbGdyNldoQTlPWFpnTkdEb2NYZVJjRTZadERTeWw2Ny9FN0pTcDFq?=
+ =?utf-8?B?ejVPSHBJdGVva0I3WUQ3R0tidHU2RHUwd2V2WVJnYlYvc3Z3Yk54N1lickN2?=
+ =?utf-8?B?SVBQR3pIR2w3ZlA2eVd5K1JJYlppazVNbWNvYlhaVC85VDdVRmtiUnNxNXNi?=
+ =?utf-8?B?ZXZtK044RElrRi9FS0RFUTV3MEtxTExCRkszc1FoRUptZVBPYkNBVk5pdkZU?=
+ =?utf-8?B?Vm1Od1F2UVhmQjBtWmkreHRZQUV5cUxmUGtSOXRMbFBZKzYyYWpvRlA5WjRC?=
+ =?utf-8?B?eVVibGU5eldyYXJ2UEwrSUpnZHZnOE9FUDYyZ2ROM0k5RGRZL1lsTTRtTXFG?=
+ =?utf-8?B?ZTdUVjB2Y3JvRTB1NU5QaXB6RUlENm5jbVNqbDRZQ2RxKzM2Y01hZEFaUEJa?=
+ =?utf-8?B?aDQ1b3RPamdjakRicDNPeWJCQlRsamRCbGFlYWhUQ0RreUZ3dG9Cd29UZTlI?=
+ =?utf-8?B?Z29meHVPZmNBMStxait2TVFXMUxwQzdRK0F0S2hPY0IzeHhmcmJPRzh2THpw?=
+ =?utf-8?B?NGoybHJCMXZpNjhTT1JxdTY0c2x0Y3lJS0ZTWFpSNTVmYW5YK0kvYjR2a0xS?=
+ =?utf-8?B?dm9aeERDbXp6dE9Pd25DZVlMenRCeGVBbmtOSnlURnE4MXNzRGRWcGRiUFZv?=
+ =?utf-8?B?VVlFVU04anUycFhZUnA5LzY1TjZjQ0NFRGZjYTROb3FjYVNiNExqVHV0UEVE?=
+ =?utf-8?B?aGx6bHpyOEF4dk0zUmdzVWtGK0tpMUwyN1VOaDhVUStwYXYxUlJ3Uk9FZ0M4?=
+ =?utf-8?B?T1Z0Uk03ZzZUSTc1a1ZxQ3NEZ2Y5Mzg0OVowZk1BNTA3YjhpQzBTenRTS0hO?=
+ =?utf-8?B?T0pBVllhcTRJU01OdkR3ZnAvUWNCVXhvNGlFWWlEVEVyVGNKcndaR01GVkFa?=
+ =?utf-8?B?U1hBSzJ4cllaQWNpNk1YYWVLMkRhQVZrbERBaHdFSCtSTkpLT0RBakQ2MG81?=
+ =?utf-8?B?TGZBTXFLTnpmNEJ3Rysra3VlQWo3YkUxL09LeVpuTkg4RkR3WE1IakZrcW9v?=
+ =?utf-8?B?Z1JjRkJnWHQ1YVlETVhFS3BMNEFQVWcvSkNLcEpiRDYvMTlPcEIzVm1PNU9z?=
+ =?utf-8?B?a1RocTBJMnJxN2dSWnRrcElJdmNWVkJnUmNwcHFDb2xDakRTdmdqTDZjMzNn?=
+ =?utf-8?B?YllReWl2N1NlK0ZoWG8zRXNoYUNJYjRVcUtjOGF2ZFI1ZUlYTFhrN1lINEYy?=
+ =?utf-8?B?SDBGa2FBYmxFcGE4dkEva0pXTFhyR1d5cElZTlArSUhteHB1K3A2dmlIQkp5?=
+ =?utf-8?Q?OjVY=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cd3aa44-0bc6-4315-ebd4-08dbe5a8aaa1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9838de35-dc39-486e-96b5-08dbe5bd1d7f
 X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2023 07:01:18.6580 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2023 09:27:41.1544 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KZvv0AgGxn+w0skwNQpbOaxjZ5F80/tPNWVbBjM04lzg8GzZ9wGmYLqrKQ1JEkv6
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8756
+X-MS-Exchange-CrossTenant-UserPrincipalName: dvgEbFTAbdDZz3cgVD6DopAkmg9xa5k20G41pCVcC3cF2DRqBDrj/tbP0cPLQhcl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6406
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,44 +128,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+ =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>, Xinhui Pan <Xinhui.Pan@amd.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <dri-devel@lists.freedesktop.org>,
+ "open list:ACPI" <linux-acpi@vger.kernel.org>,
+ Danilo Krummrich <dakr@redhat.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, "Maciej W . Rozycki" <macro@orcam.me.uk>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Felix that looks a bit fishy to me, can you take a look?
-
-Why are we giving the xcc_mask as parameter here? IIRC the partition a 
-VM is used with is fixed because the page tables are created 
-individually for each partition.
-
-Thanks,
-Christian.
-
-Am 12.11.23 um 05:45 schrieb Srinivasan Shanmugam:
-> Fixes the below:
+Am 14.11.23 um 21:07 schrieb Mario Limonciello:
+> pci_is_thunderbolt_attached() looks at the hierarchy of the PCIe device
+> to determine if any bridge along the way has the is_thunderbolt bit set.
+> This bit will only be set when one of the devices in the hierarchy is an
+> Intel Thunderbolt device.
 >
-> drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:1373: warning: Function parameter or member 'xcc_mask' not described in 'amdgpu_vm_flush_compute_tlb'
+> However PCIe devices can be connected to USB4 hubs and routers which won't
+> necessarily set the is_thunderbolt bit. These devices will however be
+> marked as externally facing which means they are marked removable by
+> pci_set_removable().
 >
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> Look whether the device is marked removable to determine it's
+> connected to a Thunderbolt controller or USB4 router.
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+
+Acked-by: Christian König <christian.koenig@amd.com> for this one.
+
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> v2->v3:
+>   * Update commit message
+> ---
+>   drivers/gpu/drm/radeon/radeon_device.c | 4 ++--
+>   drivers/gpu/drm/radeon/radeon_kms.c    | 2 +-
+>   2 files changed, 3 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index be084cbe7501..cd4970c2efc5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -1360,7 +1360,7 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *adev,
->    * @adev: amdgpu_device pointer
->    * @vm: requested vm
->    * @flush_type: flush type
-> - *
-> + * @xcc_mask: mask of XCCs for the XCCs available on ASIC.
->    * Flush TLB if needed for a compute VM.
->    *
->    * Returns:
+> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+> index afbb3a80c0c6..ba0ca0694d18 100644
+> --- a/drivers/gpu/drm/radeon/radeon_device.c
+> +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> @@ -1429,7 +1429,7 @@ int radeon_device_init(struct radeon_device *rdev,
+>   
+>   	if (rdev->flags & RADEON_IS_PX)
+>   		runtime = true;
+> -	if (!pci_is_thunderbolt_attached(rdev->pdev))
+> +	if (!dev_is_removable(&rdev->pdev->dev))
+>   		vga_switcheroo_register_client(rdev->pdev,
+>   					       &radeon_switcheroo_ops, runtime);
+>   	if (runtime)
+> @@ -1519,7 +1519,7 @@ void radeon_device_fini(struct radeon_device *rdev)
+>   	radeon_bo_evict_vram(rdev);
+>   	radeon_audio_component_fini(rdev);
+>   	radeon_fini(rdev);
+> -	if (!pci_is_thunderbolt_attached(rdev->pdev))
+> +	if (!dev_is_removable(&rdev->pdev->dev))
+>   		vga_switcheroo_unregister_client(rdev->pdev);
+>   	if (rdev->flags & RADEON_IS_PX)
+>   		vga_switcheroo_fini_domain_pm_ops(rdev->dev);
+> diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
+> index a16590c6247f..ead912a58ab8 100644
+> --- a/drivers/gpu/drm/radeon/radeon_kms.c
+> +++ b/drivers/gpu/drm/radeon/radeon_kms.c
+> @@ -138,7 +138,7 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
+>   	if ((radeon_runtime_pm != 0) &&
+>   	    radeon_has_atpx() &&
+>   	    ((flags & RADEON_IS_IGP) == 0) &&
+> -	    !pci_is_thunderbolt_attached(pdev))
+> +	    !dev_is_removable(&pdev->dev))
+>   		flags |= RADEON_IS_PX;
+>   
+>   	/* radeon_device_init should report only fatal error
 
