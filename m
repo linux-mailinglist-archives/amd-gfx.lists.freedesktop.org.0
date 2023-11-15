@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34C67ECED8
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 20:44:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D54197ECEDF
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Nov 2023 20:44:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183B410E58E;
-	Wed, 15 Nov 2023 19:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2360910E597;
+	Wed, 15 Nov 2023 19:44:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6D5810E1A8
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 19:44:46 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3BF410E1A8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Nov 2023 19:44:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jZlyJ5YVmFcwYmBIETufHiMkR37cFPH04TVgSKzpJpB8xMsOGhKdUkx2TZp36JcQ3GHze4e/0t9E8zmtiZuJaHvdJoKV62OeUJQT1a0vjahtBSt8mKyCO8GRijeeHt2VMFPsItSYi1IC3nWdVRTXPqnzcgSf5+bM1ADBdIglZZ3PcaKIn7MBq0KsmAtP+X87BV5Forx9Lqved19/mQskAiimxJoH/c7f3bQ8anKbJpK5jo1w8oUjwk8krg9dGYCO6KKB/p2GfMQgXtBt7M5pwBt2WHeLcmBEMyYW0VRNzsvUjaslmDh7kkTCZD6i/3Mamlu5rkn8x8o0JabqwuqQiA==
+ b=YrOvMx0wbY7fU2FGYYLSIQulGawCSr4gSPcykcOpNsn6VrgXbhcBeNYIg6L4C3hlUXPP/nb/4q8AgibnoA/68la13DkswC59gwdxY3LL5q5y429x4JvYPQr8CrYCp17f8y5NWcxoLDh6DshkmRdMHCWWgho1MQVttwzAVFUU2QZo+IK/H21jlXbXwzqu7qgLx0IlMELuEiwlHlcQ3MWwqB9JluPvD9T/rSn7/zKd3iAyBviQSw3n1zgRQJWMLSTjU82vkNAEX5XijaPx5FCfw45uhZYaAPBdfzYzYG1P1JC2xTnW48OYN5wNlfptHfDqLJ7Ne7niN3+/xFYo6QomtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0hAmpNkKuIH+x9OCcbEXYuMlzBvQ/YX+GYOJQ2Vpj34=;
- b=SDFAAjPjZ1VAy01cJwe64I+CrPnUK+jBNMS2mTG1cz62SXNsNq3zLaj0ie8r6Xx11Gyf4z5HPEzBbsTxzOnrNFXWNOMzA7cWYmy97/r61tRarmv0DmBbXXe1h7l4YVFOeEuR3b7a4lueOFSKKzXhNVZpE0GciNyYLCgtxkL5JckYY3G6ftBwpefgHqZ8f8LsXEtraDWfugRXNjk8QiMSewqJ5KNNnfwNA/dbBhUbt15jfMYlVV+Uer+5z4ByLnwqUdI3mL2ggP3ofCAUYYW+3b7tyoWqwBT7ZIFKbHVQuAjPyTSge1aBbEpHGx3R4OBo/qff8Mrfa78hiQ9idAHHkg==
+ bh=XNR8hZY8hlIIL3z7rW+Tq1aQ8lEWh23a+zqLqeJXlWg=;
+ b=bfeqZqWDNXjoHdiVho6Xt6EgnoGCzzHPd/n+0C3YCp4KsXW6yJhxkYGPGLMXBG/MUtmZmN56/O5BASlG4yJyEmQSCXiQYpiWHMlMjWTwi5v48tJBBAWX2oqwjFY5cQrThBtsqCXf4gPgNOEw+NRNGj6zZvX6VzJh8ZQzOKiC0y4hI97hFahcTes94akRlp58cOCDXTurrKfF7rubs2quJekGfV3/ncEHuj5CVjs5E1A1ubybK6clrjxwQt9WLiqH9gKhvld5BbFgPnXbYTuWsfx/FTDfZzOd9C9qPhziNzHCy28xglrE5KL9GT/qbW7iiRZ4XAj47gt81zVdomfEaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0hAmpNkKuIH+x9OCcbEXYuMlzBvQ/YX+GYOJQ2Vpj34=;
- b=SgU6N6m+raI6NsFNEzktTWNHv6CCYl6wlOzOt1TpN5+SRelMuEJ4egW4sqK2pIpGak3r0zGWyBYzX3ICyEAvE/f3rR6xXqDSd13IMBiL1BMt3Sh5crTwTjIuS/PTsu6CcKMj2qreYP67x4cd7/3R6wMPAuTFgK/0Otn9su8mKUE=
-Received: from MN2PR14CA0009.namprd14.prod.outlook.com (2603:10b6:208:23e::14)
- by BL3PR12MB6427.namprd12.prod.outlook.com (2603:10b6:208:3b6::11)
+ bh=XNR8hZY8hlIIL3z7rW+Tq1aQ8lEWh23a+zqLqeJXlWg=;
+ b=J71gwuO4+gVjYJyuBrL13CmnlIxVdd4nqy9iWYmCxECdoZ9ZrXpd0a0p5hqLnGq02spUzn0lNGcfW4kZHn3rFnu/GKDwymzEFK3vOEL1WnlmC4Kh4nNvoCDOXQioSpOsFi/gK5RsRAcexOvDJoxFIsGr+4sfeHrEeo4GK4WOimM=
+Received: from MN2PR14CA0014.namprd14.prod.outlook.com (2603:10b6:208:23e::19)
+ by MN0PR12MB6031.namprd12.prod.outlook.com (2603:10b6:208:3cd::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.20; Wed, 15 Nov
- 2023 19:44:44 +0000
-Received: from BL6PEPF0001AB77.namprd02.prod.outlook.com
- (2603:10b6:208:23e:cafe::ae) by MN2PR14CA0009.outlook.office365.com
- (2603:10b6:208:23e::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Wed, 15 Nov
+ 2023 19:44:45 +0000
+Received: from BL6PEPF0001AB74.namprd02.prod.outlook.com
+ (2603:10b6:208:23e:cafe::c6) by MN2PR14CA0014.outlook.office365.com
+ (2603:10b6:208:23e::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.17 via Frontend
- Transport; Wed, 15 Nov 2023 19:44:44 +0000
+ Transport; Wed, 15 Nov 2023 19:44:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB77.mail.protection.outlook.com (10.167.242.170) with Microsoft
+ BL6PEPF0001AB74.mail.protection.outlook.com (10.167.242.167) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7002.19 via Frontend Transport; Wed, 15 Nov 2023 19:44:44 +0000
+ 15.20.7002.20 via Frontend Transport; Wed, 15 Nov 2023 19:44:45 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Wed, 15 Nov
- 2023 13:44:42 -0600
+ 2023 13:44:43 -0600
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 30/35] drm/amd/display: Remove config update
-Date: Wed, 15 Nov 2023 14:40:43 -0500
-Message-ID: <20231115194332.39469-31-hamza.mahfooz@amd.com>
+Subject: [PATCH 31/35] drm/amd/display: Fix conversions between bytes and KB
+Date: Wed, 15 Nov 2023 14:40:44 -0500
+Message-ID: <20231115194332.39469-32-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231115194332.39469-1-hamza.mahfooz@amd.com>
 References: <20231115194332.39469-1-hamza.mahfooz@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB77:EE_|BL3PR12MB6427:EE_
-X-MS-Office365-Filtering-Correlation-Id: e51a5d24-51fc-4d6b-7153-08dbe6135119
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB74:EE_|MN0PR12MB6031:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d545c7b-b68f-47a5-5faf-08dbe61351d2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mIeGUHTmEU4/CTckaMJYgN8qqZbRavsqwe8xazXaO/X5nZ0cpd/uSw9hovwo4irTLOcllyJJWiUtptTIzr+pTTR52YCM1Iet25xfDOFD1sDerlAmeZR6Aj7JTLoGtO8Z9HGbSJxvOiO0fl8ps41UBKs9UXwyXXsegbHcCgTybNO6wEn6qI6jna8rsFmFez6ENQHHh6DMmv/f7RDYSoQPo3s8+4j0xyjZsAEYj8Q3BMnevidYhPSFayKemfZ+vrrxBH4hAVx4Xo3l0F0avashOKU0FodZ8B0liDB71U7C8GxTVDmYeyKK61mUkxK312f0LFekpxdy/9wFv87LqULPBofhU5lugVk8NtKmyu0W5vnEKhGnsNlXG7p3y0CjjXnWSz0B3N/xLVrRFFCFn4y6VZkE3KJX4Mmj8+QiTSm/0Dxrjo1PcHAh9uSsaP5PfGYT7H0MgGL61BzHPhn0lCMed4MmIPMfv93xRHr8EmEMfc12nd2cWl1ch+BAhV9L/Kwtg3DHInjOse7s+/uW72UNh/ZKDYHWoboFsOcWoJdi0s8yY18MzS8/BYxi2BxVFrRnpS6RQi95YdRuEMYHckNsf3b6pZRRAggUOK7gdXYieHJFjP8aQfy33vljktKSmKBkL1Rw3Rc2bESDDoWJFz+Pkh+yBcBkxW+HRr0RkGB2g5ZR67zYhnBzYBhP4AM+sOe/3fmXY/fqXGITH8JFK6FrcOiXnNWtxR8mJcbbKTyYk7Rl022WLufvau/jFY3lm6gSQnvBQmGvA1g7BZIexkMPjLle04/mpXupeRn8N1oAEMWkhniDk3QBPUqNnx7J3BnY
+X-Microsoft-Antispam-Message-Info: 07xB6z9bkCaw0txnb0PMbUaSCCTGRrlPXYHRp2FNmpmRsKt8LnKU3xlNgphjEsxCu0TdHwnBUuv7HdcuTy30oen0KxxDNLGZFlN2BnHdzXDcFeShn+yRSK0V6lLKGir2649PLzcv9w3tQhdl0aC8XAtBIsjJPb0LQjbKDzhKGClgCKshvIeTB5FjWnQ5IexA4PApzHc8kCW5APtsnoKyKWnqpopeYbVVJHAvCBYGLny3xAmyqMe8Vl27AdFkdgNTdrvqEODZtdHk/OhJn1BI6sy4MtCIhp46+Xg6yKuh7eeY+fQUslANyQdRiYNlqJ2fEqPTKBKMHlLN+PCupGrUCm8kYXEmcwZzW5LJAX5dSSyJJ2BwFjhKRNLOjSYeVCvr/xk8cWH1NyfO8UINZrGN+2CJ+nokG0p49KQYs0HWBYp9m7JSngPcueF0IwhLfIdU7rS00MasIr1QeNWQXQ/Lh+2BijiPwBIV2LRP7pNUjw+CKk7o/h65dycGuWLgbXFj2a8Np5jHfSEM71UiC4AdpCfd9KMsu+Q6tDAz3UbAUUlFVR+4eQkGh2F8aDbCSVN3gLHuuUn2iCc8BhgHr0fhmWLPBINtMYTl58gmkk/Gf+8mCQiS2TyL9QguNPjVtpKzODV496KOLEKsXlWH4/16ZmG8KUMR10BYkCnGuOwMLTdszwjc6q5qaX0hGEWN+o/nDIy+GYLHqqu/X50Mja+b/jbhUpNDoPzLIBboGv3AIEjfihwXWTnetyYmhMcvCf+W9nM1W8+B27M0ojvlP6HKDCrBTKxmSJLdqg4n2y8iZlLvFqwmYu7OuzMqCJVxA1zxLyJdFe0/eZiXnlupEfa0rQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(136003)(396003)(346002)(39860400002)(230922051799003)(186009)(1800799009)(82310400011)(64100799003)(451199024)(36840700001)(46966006)(40470700004)(81166007)(426003)(1076003)(336012)(83380400001)(356005)(82740400003)(47076005)(26005)(16526019)(36860700001)(478600001)(2616005)(86362001)(40480700001)(70586007)(54906003)(70206006)(316002)(6916009)(40460700003)(4326008)(8936002)(8676002)(5660300002)(44832011)(36756003)(2906002)(41300700001)(36900700001)(16060500005);
+ SFS:(13230031)(4636009)(376002)(136003)(396003)(39860400002)(346002)(230922051799003)(186009)(1800799009)(82310400011)(64100799003)(451199024)(40470700004)(36840700001)(46966006)(40460700003)(86362001)(82740400003)(36756003)(2616005)(26005)(1076003)(5660300002)(8676002)(4326008)(8936002)(16526019)(54906003)(2906002)(426003)(83380400001)(336012)(316002)(70586007)(70206006)(6916009)(478600001)(44832011)(356005)(81166007)(40480700001)(36860700001)(41300700001)(47076005)(36900700001)(16060500005)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2023 19:44:44.2133 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e51a5d24-51fc-4d6b-7153-08dbe6135119
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2023 19:44:45.4253 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d545c7b-b68f-47a5-5faf-08dbe61351d2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB77.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB74.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6427
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6031
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,7 +100,7 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, stable@vger.kernel.org,
  Taimur Hassan <syed.hassan@amd.com>, jerry.zuo@amd.com,
  Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
  Hamza Mahfooz <hamza.mahfooz@amd.com>, wayne.lin@amd.com,
@@ -112,29 +112,121 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Taimur Hassan <syed.hassan@amd.com>
 
 [Why]
-Prevent overwrite of dc->config.use_default_clock_table, as it should be
-pre-configured.
+There are a number of instances where we convert HostVMMinPageSize or
+GPUVMMinPageSize from bytes to KB by dividing (rather than multiplying) and
+vice versa.
+Additionally, in some cases, a parameter is passed through DML in KB but
+later checked as if it were in bytes.
 
+Cc: stable@vger.kernel.org
 Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Taimur Hassan <syed.hassan@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/display/dc/dml2/display_mode_core.c    | 18 +++++++++---------
+ .../display/dc/dml2/dml2_translation_helper.c  |  4 ++--
+ 2 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-index 53eefba0b9dc..1a0ed1c7e2d4 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-@@ -1876,7 +1876,7 @@ static bool dcn35_resource_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+index fe1f97e03aa5..2e7fe46fc689 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+@@ -6277,7 +6277,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 				mode_lib->ms.NoOfDPPThisState,
+ 				mode_lib->ms.dpte_group_bytes,
+ 				s->HostVMInefficiencyFactor,
+-				mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++				mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 				mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels);
  
- 	/* Use pipe context based otg sync logic */
- 	dc->config.use_pipe_ctx_sync_logic = true;
--	dc->config.use_default_clock_table = false;
-+
- 	/* read VBIOS LTTPR caps */
- 	{
- 		if (ctx->dc_bios->funcs->get_lttpr_caps) {
+ 		s->NextMaxVStartup = s->MaxVStartupAllPlanes[j];
+@@ -6355,7 +6355,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 				CalculatePrefetchSchedule_params->GPUVMEnable = mode_lib->ms.cache_display_cfg.plane.GPUVMEnable;
+ 				CalculatePrefetchSchedule_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 				CalculatePrefetchSchedule_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+-				CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++				CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 				CalculatePrefetchSchedule_params->DynamicMetadataEnable = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataEnable[k];
+ 				CalculatePrefetchSchedule_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 				CalculatePrefetchSchedule_params->DynamicMetadataLinesBeforeActiveRequired = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataLinesBeforeActiveRequired[k];
+@@ -6533,7 +6533,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMEnable,
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels,
+ 						mode_lib->ms.cache_display_cfg.plane.GPUVMEnable,
+-						mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++						mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 						mode_lib->ms.PDEAndMetaPTEBytesPerFrame[j][k],
+ 						mode_lib->ms.MetaRowBytes[j][k],
+ 						mode_lib->ms.DPTEBytesPerRow[j][k],
+@@ -7678,7 +7678,7 @@ dml_bool_t dml_core_mode_support(struct display_mode_lib_st *mode_lib)
+ 		CalculateVMRowAndSwath_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 		CalculateVMRowAndSwath_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 		CalculateVMRowAndSwath_params->GPUVMMinPageSizeKBytes = mode_lib->ms.cache_display_cfg.plane.GPUVMMinPageSizeKBytes;
+-		CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++		CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 		CalculateVMRowAndSwath_params->PTEBufferModeOverrideEn = mode_lib->ms.cache_display_cfg.plane.PTEBufferModeOverrideEn;
+ 		CalculateVMRowAndSwath_params->PTEBufferModeOverrideVal = mode_lib->ms.cache_display_cfg.plane.PTEBufferMode;
+ 		CalculateVMRowAndSwath_params->PTEBufferSizeNotExceeded = mode_lib->ms.PTEBufferSizeNotExceededPerState;
+@@ -7948,7 +7948,7 @@ dml_bool_t dml_core_mode_support(struct display_mode_lib_st *mode_lib)
+ 		UseMinimumDCFCLK_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 		UseMinimumDCFCLK_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 		UseMinimumDCFCLK_params->NumberOfActiveSurfaces = mode_lib->ms.num_active_planes;
+-		UseMinimumDCFCLK_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++		UseMinimumDCFCLK_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 		UseMinimumDCFCLK_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 		UseMinimumDCFCLK_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 		UseMinimumDCFCLK_params->ImmediateFlipRequirement = s->ImmediateFlipRequiredFinal;
+@@ -8690,7 +8690,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 	CalculateVMRowAndSwath_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 	CalculateVMRowAndSwath_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 	CalculateVMRowAndSwath_params->GPUVMMinPageSizeKBytes = mode_lib->ms.cache_display_cfg.plane.GPUVMMinPageSizeKBytes;
+-	CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++	CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 	CalculateVMRowAndSwath_params->PTEBufferModeOverrideEn = mode_lib->ms.cache_display_cfg.plane.PTEBufferModeOverrideEn;
+ 	CalculateVMRowAndSwath_params->PTEBufferModeOverrideVal = mode_lib->ms.cache_display_cfg.plane.PTEBufferMode;
+ 	CalculateVMRowAndSwath_params->PTEBufferSizeNotExceeded = s->dummy_boolean_array[0];
+@@ -8796,7 +8796,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			mode_lib->ms.cache_display_cfg.hw.DPPPerSurface,
+ 			locals->dpte_group_bytes,
+ 			s->HostVMInefficiencyFactor,
+-			mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++			mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 			mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels);
+ 
+ 	locals->TCalc = 24.0 / locals->DCFCLKDeepSleep;
+@@ -8986,7 +8986,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			CalculatePrefetchSchedule_params->GPUVMEnable = mode_lib->ms.cache_display_cfg.plane.GPUVMEnable;
+ 			CalculatePrefetchSchedule_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 			CalculatePrefetchSchedule_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+-			CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++			CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 			CalculatePrefetchSchedule_params->DynamicMetadataEnable = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataEnable[k];
+ 			CalculatePrefetchSchedule_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 			CalculatePrefetchSchedule_params->DynamicMetadataLinesBeforeActiveRequired = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataLinesBeforeActiveRequired[k];
+@@ -9231,7 +9231,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMEnable,
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels,
+ 						mode_lib->ms.cache_display_cfg.plane.GPUVMEnable,
+-						mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++						mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 						locals->PDEAndMetaPTEBytesFrame[k],
+ 						locals->MetaRowByte[k],
+ 						locals->PixelPTEBytesPerRow[k],
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+index 2b9638c6d9b0..48caa34a5ce7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+@@ -515,8 +515,8 @@ void dml2_translate_socbb_params(const struct dc *in, struct soc_bounding_box_st
+ 	out->do_urgent_latency_adjustment = in_soc_params->do_urgent_latency_adjustment;
+ 	out->dram_channel_width_bytes = (dml_uint_t)in_soc_params->dram_channel_width_bytes;
+ 	out->fabric_datapath_to_dcn_data_return_bytes = (dml_uint_t)in_soc_params->fabric_datapath_to_dcn_data_return_bytes;
+-	out->gpuvm_min_page_size_kbytes = in_soc_params->gpuvm_min_page_size_bytes * 1024;
+-	out->hostvm_min_page_size_kbytes = in_soc_params->hostvm_min_page_size_bytes * 1024;
++	out->gpuvm_min_page_size_kbytes = in_soc_params->gpuvm_min_page_size_bytes / 1024;
++	out->hostvm_min_page_size_kbytes = in_soc_params->hostvm_min_page_size_bytes / 1024;
+ 	out->mall_allocated_for_dcn_mbytes = (dml_uint_t)in_soc_params->mall_allocated_for_dcn_mbytes;
+ 	out->max_avg_dram_bw_use_normal_percent = in_soc_params->max_avg_dram_bw_use_normal_percent;
+ 	out->max_avg_fabric_bw_use_normal_percent = in_soc_params->max_avg_fabric_bw_use_normal_percent;
 -- 
 2.42.0
 
