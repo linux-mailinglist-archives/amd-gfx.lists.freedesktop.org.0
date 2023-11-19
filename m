@@ -2,68 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2207F178A
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F177A7F1786
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65EEA10E419;
-	Mon, 20 Nov 2023 15:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C89610E40F;
+	Mon, 20 Nov 2023 15:40:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6247488FAE;
- Sat, 18 Nov 2023 17:42:34 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- 5b1f17b1804b1-4083dbc43cfso3834945e9.3; 
- Sat, 18 Nov 2023 09:42:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700329353; x=1700934153; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=aXnYU9L0SxzpQBJjG8833LUnrTfJuWwdCW2h6rtJH0c=;
- b=V0IIEnVAJbk3l6lMor0Vc4V9j+6CNX+m4pEo00OPku4pcIStI4x2NZUnXTC7I0rxUO
- hRXCTwAKSchE3e93JA0lbmRLLqaaoMnArrk9IyZ2l5oJLnC2OIInYv7OvPeQv8I4ck5V
- Lw0s79YErPaFasrr3li9AzaXTqPhpDvtlYb+xi2ezMJiyS2WeLyheCEMf/dHluMlSe3K
- LXfKYfl4Dk55b1WdKvvedpKYTkDWc/fTc9LzJpWxKJJ1kiIDQr7sGJaTvSdAez5JkFX1
- j1S6oj5YdT4QoPcTRx1OeDCwQRU4vrfTlBYTgcDmZGcXVmWJnf0viFkCJh91UlyOL5hE
- K12A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700329353; x=1700934153;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=aXnYU9L0SxzpQBJjG8833LUnrTfJuWwdCW2h6rtJH0c=;
- b=JTMfoKPV2OB+e2Ow/UGu7r4SGuewwm8GQFFyArxIy86klImrW3FLvfNOWLqimqoY0Q
- tBHbkP/iM/NTShLT2YhARmop8WzyLB5Qon2aFSV54VZpDdAdnPFIGb8+j1uinY25apZb
- asxrGWX75w9WqqiFOPn4Z0XdWXXRBIUPuMNUFhZNOQrMUcphmZjCu8xNEPqe5a53nnQN
- WPCAxg9r2dydGHLUc4EETbC0mywxOJY5j3mHAfiqI5rnFy6mjz4Jnc+tYqNvP6lWgPhv
- kSJCVVlG+gv0XzYfPkkMLBfFGEW9UPSSaZ7mk0t55XZVhP7SNmWQ/kf6Z5AlTtZ6PTrB
- QETg==
-X-Gm-Message-State: AOJu0Yz15KofnDDb6LFkQQDql0OpgBthExnaJbrilgob60XJQMHhYpqP
- lUddX3QlyP5da0iGxj8cE7s=
-X-Google-Smtp-Source: AGHT+IH+vVNTNRuNzx5HCBAwdawDR0oj+mid80kQSKCziiwvte/UEe7naf5BwwoyEL1Bwr25F9JxEg==
-X-Received: by 2002:a05:600c:1f94:b0:408:4160:1528 with SMTP id
- je20-20020a05600c1f9400b0040841601528mr2146365wmb.30.1700329352609; 
- Sat, 18 Nov 2023 09:42:32 -0800 (PST)
-Received: from zotac.lan.
- (dynamic-2a01-0c22-77bf-8300-2223-08ff-fe18-0310.c22.pool.telefonica.de.
- [2a01:c22:77bf:8300:2223:8ff:fe18:310])
- by smtp.gmail.com with ESMTPSA id
- y10-20020a05600c340a00b004068de50c64sm6964211wmp.46.2023.11.18.09.42.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Nov 2023 09:42:32 -0800 (PST)
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Wolfram Sang <wsa@kernel.org>,
-	Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v2 07/20] drivers/gpu/drm: remove I2C_CLASS_DDC support
-Date: Sat, 18 Nov 2023 18:42:07 +0100
-Message-ID: <20231118174221.851-8-hkallweit1@gmail.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231118174221.851-1-hkallweit1@gmail.com>
-References: <20231118174221.851-1-hkallweit1@gmail.com>
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3595810E06D;
+ Sun, 19 Nov 2023 06:32:57 +0000 (UTC)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1r4bMV-0000Gj-3u; Sun, 19 Nov 2023 07:32:55 +0100
+Message-ID: <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
+Date: Sun, 19 Nov 2023 07:32:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: Radeon regression in 6.6 kernel
+Content-Language: en-US, de-DE
+To: Phillip Susi <phill@thesusis.net>, Luben Tuikov <luben.tuikov@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <87edgv4x3i.fsf@vps.thesusis.net>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <87edgv4x3i.fsf@vps.thesusis.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1700375577;
+ 88fa1715; 
+X-HE-SMSGID: 1r4bMV-0000Gj-3u
 X-Mailman-Approved-At: Mon, 20 Nov 2023 15:40:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,52 +47,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Heiner Kallweit <hkallweit1@gmail.com>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Linux kernel regressions list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-After removal of the legacy EEPROM driver and I2C_CLASS_DDC support in
-olpc_dcon there's no i2c client driver left supporting I2C_CLASS_DDC.
-Class-based device auto-detection is a legacy mechanism and shouldn't
-be used in new code. So we can remove this class completely now.
+Lo!
 
-Preferably this series should be applied via the i2c tree.
+On 12.11.23 01:46, Phillip Susi wrote:
+> I had been testing some things on a post 6.6-rc5 kernel for a week or
+> two and then when I pulled to a post 6.6 release kernel, I found that
+> system suspend was broken.  It seems that the radeon driver failed to
+> suspend, leaving the display dead, the wayland display server hung, and
+> the system still running.  I have been trying to bisect it for the last
+> few days and have only been able to narrow it down to the following 3
+> commits:
+> 
+> There are only 'skip'ped commits left to test.
+> The first bad commit could be any of:
+> 56e449603f0ac580700621a356d35d5716a62ce5
+> c07bf1636f0005f9eb7956404490672286ea59d3
+> b70438004a14f4d0f9890b3297cd66248728546c
+> We cannot bisect more!
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Hmm, not a single reply from the amdgpu folks. Wondering how we can
+encourage them to look into this.
 
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c |    1 -
- drivers/gpu/drm/radeon/radeon_i2c.c     |    1 -
- 2 files changed, 2 deletions(-)
+Phillip, reporting issues by mail should still work, but you might have
+more luck here, as that's where the amdgpu afaics prefer to track bugs:
+https://gitlab.freedesktop.org/drm/amd/-/issues
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-index 82608df43..d79cb13e1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-@@ -175,7 +175,6 @@ struct amdgpu_i2c_chan *amdgpu_i2c_create(struct drm_device *dev,
- 
- 	i2c->rec = *rec;
- 	i2c->adapter.owner = THIS_MODULE;
--	i2c->adapter.class = I2C_CLASS_DDC;
- 	i2c->adapter.dev.parent = dev->dev;
- 	i2c->dev = dev;
- 	i2c_set_adapdata(&i2c->adapter, i2c);
-diff --git a/drivers/gpu/drm/radeon/radeon_i2c.c b/drivers/gpu/drm/radeon/radeon_i2c.c
-index 314d066e6..3d174390a 100644
---- a/drivers/gpu/drm/radeon/radeon_i2c.c
-+++ b/drivers/gpu/drm/radeon/radeon_i2c.c
-@@ -918,7 +918,6 @@ struct radeon_i2c_chan *radeon_i2c_create(struct drm_device *dev,
- 
- 	i2c->rec = *rec;
- 	i2c->adapter.owner = THIS_MODULE;
--	i2c->adapter.class = I2C_CLASS_DDC;
- 	i2c->adapter.dev.parent = dev->dev;
- 	i2c->dev = dev;
- 	i2c_set_adapdata(&i2c->adapter, i2c);
+When you file an issue there, please mention it here.
 
+Furthermore it might help if you could verify if 6.7-rc1 (or rc2, which
+comes out later today) or 6.6.2-rc1 improve things.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
+
+#regzbot poke
+
+
+> It appears that there was a late merge in the 6.6 window that originally
+> forked from the -rc2, as many of the later commits that I bisected had
+> that version number.
+> 
+> I couldn't get it more narrowed down because I had to skip the
+> surrounding commits because they wouldn't even boot up to a gui desktop,
+> let alone try to suspend.
+> 
+> When system suspend fails, I find the following in my syslog after I
+> have to magic-sysrq reboot because the the display is dead:
+> 
+> Nov 11 18:44:39 faldara kernel: PM: suspend entry (deep)
+> Nov 11 18:44:39 faldara kernel: Filesystems sync: 0.035 seconds
+> Nov 11 18:44:40 faldara kernel: Freezing user space processes
+> Nov 11 18:44:40 faldara kernel: Freezing user space processes completed (elapsed 0.001 seconds)
+> Nov 11 18:44:40 faldara kernel: OOM killer disabled.
+> Nov 11 18:44:40 faldara kernel: Freezing remaining freezable tasks
+> Nov 11 18:44:40 faldara kernel: Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
+> Nov 11 18:44:40 faldara kernel: printk: Suspending console(s) (use no_console_suspend to debug)
+> Nov 11 18:44:40 faldara kernel: serial 00:01: disabled
+> Nov 11 18:44:40 faldara kernel: e1000e: EEE TX LPI TIMER: 00000011
+> Nov 11 18:44:40 faldara kernel: sd 4:0:0:0: [sdb] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 1:0:0:0: [sda] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 5:0:0:0: [sdc] Synchronizing SCSI cache
+> Nov 11 18:44:40 faldara kernel: sd 4:0:0:0: [sdb] Stopping disk
+> Nov 11 18:44:40 faldara kernel: sd 1:0:0:0: [sda] Stopping disk
+> Nov 11 18:44:40 faldara kernel: sd 5:0:0:0: [sdc] Stopping disk
+> Nov 11 18:44:40 faldara kernel: amdgpu: Move buffer fallback to memcpy unavailable
+> Nov 11 18:44:40 faldara kernel: [TTM] Buffer eviction failed
+> Nov 11 18:44:40 faldara kernel: [drm] evicting device resources failed
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: pci_pm_suspend(): amdgpu_pmops_suspend+0x0/0x80 [amdgpu] returns -19
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: dpm_run_callback(): pci_pm_suspend+0x0/0x170 returns -19
+> Nov 11 18:44:40 faldara kernel: amdgpu 0000:03:00.0: PM: failed to suspend async: error -19
+> Nov 11 18:44:40 faldara kernel: PM: Some devices failed to suspend, or early wake event detected
+> Nov 11 18:44:40 faldara kernel: xhci_hcd 0000:06:00.0: xHC error in resume, USBSTS 0x401, Reinit
+> Nov 11 18:44:40 faldara kernel: usb usb3: root hub lost power or was reset
+> Nov 11 18:44:40 faldara kernel: usb usb4: root hub lost power or was reset
+> Nov 11 18:44:40 faldara kernel: serial 00:01: activated
+> Nov 11 18:44:40 faldara kernel: nvme nvme0: 4/0/0 default/read/poll queues
+> Nov 11 18:44:40 faldara kernel: ata8: SATA link down (SStatus 0 SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata7: SATA link down (SStatus 0 SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata4: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata1: SATA link down (SStatus 4 SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata3: SATA link down (SStatus 4 SControl 300)
+> Nov 11 18:44:40 faldara kernel: ata4.00: configured for UDMA/133
+> Nov 11 18:44:40 faldara kernel: OOM killer enabled.
+> Nov 11 18:44:40 faldara kernel: Restarting tasks ... done.
+> Nov 11 18:44:40 faldara kernel: random: crng reseeded on system resumption
+> Nov 11 18:44:40 faldara kernel: PM: suspend exit
+> Nov 11 18:44:40 faldara kernel: PM: suspend entry (s2idle)
+> Nov 11 18:44:40 faldara systemd-networkd[384]: enp0s31f6: Gained IPv6LL
+> Nov 11 18:44:40 faldara avahi-daemon[668]: Joining mDNS multicast group on interface enp0s31f6.IPv6 with address fe80::3ad5:47ff:fe0f:488a.
+> 
+> My video card is this:
+> 
+> 03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23 (rev c7) (prog-if 00 [VGA controller])
+>         Subsystem: Gigabyte Technology Co., Ltd Navi 23
+>         Flags: bus master, fast devsel, latency 0, IRQ 139
+>         Memory at e0000000 (64-bit, prefetchable) [size=256M]
+>         Memory at f0000000 (64-bit, prefetchable) [size=2M]
+>         I/O ports at e000 [size=256]
+>         Memory at f7900000 (32-bit, non-prefetchable) [size=1M]
+>         Expansion ROM at 000c0000 [disabled] [size=128K]
+>         Capabilities: [48] Vendor Specific Information: Len=08 <?>
+>         Capabilities: [50] Power Management version 3
+>         Capabilities: [64] Express Legacy Endpoint, MSI 00
+>         Capabilities: [a0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+>         Capabilities: [100] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
+>         Capabilities: [150] Advanced Error Reporting
+>         Capabilities: [200] Physical Resizable BAR
+>         Capabilities: [240] Power Budgeting <?>
+>         Capabilities: [270] Secondary PCI Express
+>         Capabilities: [2a0] Access Control Services
+>         Capabilities: [2d0] Process Address Space ID (PASID)
+>         Capabilities: [320] Latency Tolerance Reporting
+>         Capabilities: [410] Physical Layer 16.0 GT/s <?>
+>         Capabilities: [440] Lane Margining at the Receiver <?>
+>         Kernel driver in use: amdgpu
+>         Kernel modules: amdgpu
