@@ -1,94 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9537F0293
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Nov 2023 20:33:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C71767F0493
+	for <lists+amd-gfx@lfdr.de>; Sun, 19 Nov 2023 07:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D74410E369;
-	Sat, 18 Nov 2023 19:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C62B10E0CC;
+	Sun, 19 Nov 2023 06:47:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20628.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::628])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F7610E187
- for <amd-gfx@lists.freedesktop.org>; Sat, 18 Nov 2023 19:33:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fF/yd7QZiBdwtDJouGjUmv0GIxbw1RrINtdiwKKYKV2OaFZjRU7bNmXubOY68MPIbctEl7QXRTcI1Q9smtyj/xdrbuY+Fp+T8fwNDG21Yq2NswvPesxtKci1rpr/vbqHAXghy9BgyoBm+rYKNmBjsHK6ITCXEAHNZ1nQi0yM87nwBsVBjxGqKpVWCzaZ6dnd7RZf5gn73u2pZhjApXRPFU0dFeLfpr7uBi1nUFV8z2nBYHs0i5ioIOdJ6nb1osreMDi5a0N20mRJjIsbMp/f5LGpIVxS1ppDWi+KRTnBPkdFJtOCSw4atETzDzBgF5AHgNJ3Fkf6yNAnifOZUm7PVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J6G0oyUjQOnR9yTjZokWWwMk1/gMR9SRf8LNA54A4Hs=;
- b=B0VY0cDBxM+dJnbk2t4g+bxvZm9XPvZg2/V14JdZimRmmiBDa2yQBxsH1fmV3gDh+TJDx4MCTDtvvc4jjPSX1rg+xf9Fg4ZBiMpko5q0Yv2IhkUtvG4OsIDeYYxQjIe9kBQhUWBBAHJnqk+awdehkckdejecPK1bkfULnj7iMMAjjbmUh53CpU6/pRIZy+bOtVm0D9z8TnT57S96vHskP3kH1Hpja91VrgR1dckW1lGO2zpH1sZwVJxMOrfUj7059UKpdzqMEp+6R9igjTJxYrgVeOsmmv5SWN+nTwSEAL77ApHaGvLhaxnKLVll7IHleULRs/RtQb34Ax0iT05Sow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J6G0oyUjQOnR9yTjZokWWwMk1/gMR9SRf8LNA54A4Hs=;
- b=pSL56HmFVAbynIwbsaAnFQwusv5G4hfpMGDffwp1UCbqPoW5TnJXO2imAMYmiY4xIRLqp6EgBKAp+xhr0ksfWRUoQqUDVZJ58V8Zxohe1uA7NU/4yCCBddWPOMQfq7Un6vIItGoBj4GiS7voILXIWv9o46SrTRqq3QFZqqjDVX4=
-Received: from BLAP220CA0018.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::23)
- by LV2PR12MB5895.namprd12.prod.outlook.com (2603:10b6:408:173::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Sat, 18 Nov
- 2023 19:33:12 +0000
-Received: from BL6PEPF0001AB4E.namprd04.prod.outlook.com
- (2603:10b6:208:32c:cafe::5b) by BLAP220CA0018.outlook.office365.com
- (2603:10b6:208:32c::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23 via Frontend
- Transport; Sat, 18 Nov 2023 19:33:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB4E.mail.protection.outlook.com (10.167.242.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7025.12 via Frontend Transport; Sat, 18 Nov 2023 19:33:12 +0000
-Received: from quartz-7b1chost.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Sat, 18 Nov
- 2023 13:33:11 -0600
-From: Yazen Ghannam <yazen.ghannam@amd.com>
-To: <linux-edac@vger.kernel.org>
-Subject: [PATCH 20/20] EDAC/mce_amd: Add support for FRU Text in MCA
-Date: Sat, 18 Nov 2023 13:32:48 -0600
-Message-ID: <20231118193248.1296798-21-yazen.ghannam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231118193248.1296798-1-yazen.ghannam@amd.com>
-References: <20231118193248.1296798-1-yazen.ghannam@amd.com>
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3BF10E0CC;
+ Sun, 19 Nov 2023 06:47:15 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id
+ a640c23a62f3a-9d242846194so453887966b.1; 
+ Sat, 18 Nov 2023 22:47:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1700376433; x=1700981233; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=sWWstq9VEzb+u3ForlZQdBiFb99f3/DYp4agyqbW5EU=;
+ b=J3gnRNph7yqECKtC2SUWygsJvT5+UD9C4dPZps1w1F92+29qkQnG2a+mkuLe9rLfrN
+ pdc3HFh98IlfwtmefKSvKmmraIfBcRRMfDN8reOqk2I91Zu4uJTkqWCfD//CJZx/nbqi
+ AhXkptdjGI2GNMl8yffJsioLm2KbXkLN7QbOhgqnEKH5s07dvCFaO0s8xp9M/7xz6Qfd
+ F/JjeO9dH2NXvkidckrjICchcadWOKCZl6py+Yt8Pp7JBeQiexlthMoaBcmWmVFuazNs
+ d7zzUXMCXTCIeqlyBHXt3Km/dPEEJsEXIsQLAwyurjJXinuSKLkEHIpYqh3vB61N9T5I
+ k22A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1700376433; x=1700981233;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sWWstq9VEzb+u3ForlZQdBiFb99f3/DYp4agyqbW5EU=;
+ b=mO96eFvhHC5Zocm04J50m8xnPYtfBEp1U+FfSrkDo9F1waS/iZey9W6ZBrpk5Elgtn
+ LceB0ZjfJCNeNcN5RKqH4uicSeCqWOgSJD59OhIrdY6GGRbSFUBGCz/YwGT8N+LOR5sN
+ RlaSUxgXgjR5TCLaUYxQE1pdZBW02BdRZEb70VsAt0ErEBntgYRTZOFO2DqmRtYL8Gv9
+ Ytfz9jj4mn072vA3G4F4oTWsWMx7VD2VShGcksX4qvMEXlAShV67P8WBWmYOgCBc2DdT
+ +0OkQpBbtKAGxl7kC6ccoubSkfpaT/xL+dnQ/mQ1QIwOBXOoHA06UWSHrNBXz8GC5WeY
+ Nu+A==
+X-Gm-Message-State: AOJu0YwM+A5ZMaXr/LRn+xTaBmwCULXXUkr6UO8s9iSpPrS2TBkGf5jD
+ CKQFFpDX9IAkiqNiwOSkFrDmEidR2yx9zLNtOJQ=
+X-Google-Smtp-Source: AGHT+IFLNYwN5aPDqVp9nauy22AjSvZ5hVHdqJZuBwEFqmr6KS+jP04ZULl0PxzMF602oe1DOWARDCaSrSEte4v5yec=
+X-Received: by 2002:a17:907:7283:b0:9f7:b6c2:cd3b with SMTP id
+ dt3-20020a170907728300b009f7b6c2cd3bmr2888671ejc.5.1700376433186; Sat, 18 Nov
+ 2023 22:47:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4E:EE_|LV2PR12MB5895:EE_
-X-MS-Office365-Filtering-Correlation-Id: e159d9d2-14ea-4c17-4f41-08dbe86d3419
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7fFQPBD/cpnZIiwtbYIsa1KOZ4JahrumpknEqmlYjESdjFe0ak7kC+VGmlJCIuyIQz58AIVAVSiQSg+htlxHRvEnxtPs9F+mDmWpyMPVKt04n2mWqYMBf4PV0jEhjarTxi/sLle8UUbnKO/MdcC7YAHH9x4kbFwD2kMStrgAskqEux8ycHbv/V2IXFbXzXzbNnap54O6AaR2pEcT1EnhjOOJjvgZcQrmTeyn8iLJjpuYxFJobHvzw1fk6L3o87LcQxxLt2E7sJ2UyiCJFdhoWt7EaHf1Ii5fjdC9ONsceLyEmdO3Y09RnmwWcmMPRC9ATO7iSWYDR7N8vhlHp6sYbiZxdlub8QoGVGs3ZiP3dAxuyIxN9DSEwOxAWvw7y5BIGPixhGuAyzUJvacty+1gXI6kimU3/OH9CCWZs/Zyq7jh5oc73SxPy0/IT3cQNP/mOTjJ4Yi+ie3uZmEvng5QRgU62WuYF11tATqdgQ+lJoy03ypnWe1+dGrQIML7dsLxS5Pv9CiJgIB+YBNsyZeGlgswC9HfVqbTAc/LtJsZCLxTks/wtpx4fHXCzEO57sfOTlaxyL01CbstLY+Z5qf2EhMqIXh20O5tnBS9IfMNTPT3K6dbEHV3n1nhDHDrszEVt8/GbfiKcCej2Y+VuHXYoniF7WxDqoyL3AuryRSgizUs3N9LBFmABhPuKzeT2+qPt8JhrgSv9z6HZKhvxN9F58r0D6kbHk+brFU9n//NKgy7/UdyhnPivELjvtwq8UrQoDbMZQqTEMjxG+xdvs93VIHmyEM6N0REtVdsNNvY9rU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(136003)(39860400002)(346002)(376002)(230922051799003)(230173577357003)(230273577357003)(451199024)(1800799012)(186009)(82310400011)(64100799003)(46966006)(36840700001)(478600001)(36756003)(26005)(336012)(426003)(7696005)(41300700001)(2616005)(6666004)(81166007)(356005)(16526019)(36860700001)(86362001)(47076005)(82740400003)(83380400001)(1076003)(2906002)(4326008)(8676002)(8936002)(70206006)(70586007)(54906003)(44832011)(316002)(6916009)(40480700001)(5660300002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2023 19:33:12.5741 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e159d9d2-14ea-4c17-4f41-08dbe86d3419
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4E.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5895
+References: <87edgv4x3i.fsf@vps.thesusis.net>
+ <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
+In-Reply-To: <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
+From: Dave Airlie <airlied@gmail.com>
+Date: Sun, 19 Nov 2023 16:47:01 +1000
+Message-ID: <CAPM=9tw-8pQWFso0zuLqpsqd5BSHWtc4As9ttdjY-DDr70EMqQ@mail.gmail.com>
+Subject: Re: Radeon regression in 6.6 kernel
+To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,144 +66,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tony.luck@intel.com, x86@kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Avadhut.Naik@amd.com,
- Smita.KoralahalliChannabasappa@amd.com, Yazen
- Ghannam <yazen.ghannam@amd.com>, linux-trace-kernel@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Phillip Susi <phill@thesusis.net>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-A new "FRU Text in MCA" feature is defined where the Field Replaceable
-Unit (FRU) Text for a device is represented by a string in the new
-MCA_SYND1 and MCA_SYND2 registers. This feature is supported per MCA
-bank, and it is advertised by the McaFruTextInMca bit (MCA_CONFIG[9]).
+>
+> On 12.11.23 01:46, Phillip Susi wrote:
+> > I had been testing some things on a post 6.6-rc5 kernel for a week or
+> > two and then when I pulled to a post 6.6 release kernel, I found that
+> > system suspend was broken.  It seems that the radeon driver failed to
+> > suspend, leaving the display dead, the wayland display server hung, and
+> > the system still running.  I have been trying to bisect it for the last
+> > few days and have only been able to narrow it down to the following 3
+> > commits:
+> >
+> > There are only 'skip'ped commits left to test.
+> > The first bad commit could be any of:
+> > 56e449603f0ac580700621a356d35d5716a62ce5
+> > c07bf1636f0005f9eb7956404490672286ea59d3
+> > b70438004a14f4d0f9890b3297cd66248728546c
+> > We cannot bisect more!
+>
+> Hmm, not a single reply from the amdgpu folks. Wondering how we can
+> encourage them to look into this.
+>
+> Phillip, reporting issues by mail should still work, but you might have
+> more luck here, as that's where the amdgpu afaics prefer to track bugs:
+> https://gitlab.freedesktop.org/drm/amd/-/issues
+>
+> When you file an issue there, please mention it here.
+>
+> Furthermore it might help if you could verify if 6.7-rc1 (or rc2, which
+> comes out later today) or 6.6.2-rc1 improve things.
 
-The FRU Text is populated dynamically for each individual error state
-(MCA_STATUS, MCA_ADDR, et al.). This handles the case where an MCA bank
-covers multiple devices, for example, a Unified Memory Controller (UMC)
-bank that manages two DIMMs.
+It would also be good to test if reverting any of these is possible or not.
 
-Print the FRU Text string, if available, when decoding an MCA error.
+File the gitlab issue and we should poke amd a but more to take a look.
 
-Also, add field for MCA_CONFIG MSR in struct mce_hw_err as vendor specific
-error information and save the value of the MSR. The very value can then be
-exported through tracepoint for userspace tools like rasdaemon to print FRU
-Text, if available.
-
- Note: Checkpatch checks/warnings are ignored to maintain coding style.
-
-[Yazen: Add Avadhut as co-developer for wrapper changes. ]
-
-Co-developed-by: Avadhut Naik <Avadhut.Naik@amd.com>
-Signed-off-by: Avadhut Naik <Avadhut.Naik@amd.com>
-Signed-off-by: Yazen Ghannam <yazen.ghannam@amd.com>
----
- arch/x86/include/asm/mce.h     |  2 ++
- arch/x86/kernel/cpu/mce/apei.c |  2 ++
- arch/x86/kernel/cpu/mce/core.c |  3 +++
- drivers/edac/mce_amd.c         | 21 ++++++++++++++-------
- 4 files changed, 21 insertions(+), 7 deletions(-)
-
-diff --git a/arch/x86/include/asm/mce.h b/arch/x86/include/asm/mce.h
-index 1bd3f1e41dbb..7e2a3dba0cf3 100644
---- a/arch/x86/include/asm/mce.h
-+++ b/arch/x86/include/asm/mce.h
-@@ -59,6 +59,7 @@
-  *  - TCC bit is present in MCx_STATUS.
-  */
- #define MCI_CONFIG_MCAX		0x1
-+#define MCI_CONFIG_FRUTEXT	BIT_ULL(9)
- #define MCI_IPID_MCATYPE_OLD	0xFFFF0000
- #define MCI_IPID_HWID_OLD	0xFFF
- #define MCI_IPID_MCATYPE	GENMASK_ULL(63, 48)
-@@ -199,6 +200,7 @@ struct mce_hw_err {
- 		struct {
- 			u64 synd1;
- 			u64 synd2;
-+			u64 config;
- 		} amd;
- 	} vi;
- };
-diff --git a/arch/x86/kernel/cpu/mce/apei.c b/arch/x86/kernel/cpu/mce/apei.c
-index d01c9b272e2f..c8312e160117 100644
---- a/arch/x86/kernel/cpu/mce/apei.c
-+++ b/arch/x86/kernel/cpu/mce/apei.c
-@@ -155,6 +155,8 @@ int apei_smca_report_x86_error(struct cper_ia_proc_ctx *ctx_info, u64 lapic_id)
- 		fallthrough;
- 	/* MCA_CONFIG */
- 	case 4:
-+		err.vi.amd.config = *(i_mce + 3);
-+		fallthrough;
- 	/* MCA_MISC0 */
- 	case 3:
- 		m->misc = *(i_mce + 2);
-diff --git a/arch/x86/kernel/cpu/mce/core.c b/arch/x86/kernel/cpu/mce/core.c
-index e153a21bdb1b..b9da1cd0fb88 100644
---- a/arch/x86/kernel/cpu/mce/core.c
-+++ b/arch/x86/kernel/cpu/mce/core.c
-@@ -204,6 +204,8 @@ static void __print_mce(struct mce_hw_err *err)
- 			pr_cont("SYND2 %llx ", err->vi.amd.synd2);
- 		if (m->ipid)
- 			pr_cont("IPID %llx ", m->ipid);
-+		if (err->vi.amd.config)
-+			pr_cont("CONFIG %llx ", err->vi.amd.config);
- 	}
- 
- 	pr_cont("\n");
-@@ -661,6 +663,7 @@ static noinstr void mce_read_aux(struct mce_hw_err *err, int i)
- 
- 	if (mce_flags.smca) {
- 		m->ipid = mce_rdmsrl(MSR_AMD64_SMCA_MCx_IPID(i));
-+		err->vi.amd.config = mce_rdmsrl(MSR_AMD64_SMCA_MCx_CONFIG(i));
- 
- 		if (m->status & MCI_STATUS_SYNDV) {
- 			m->synd = mce_rdmsrl(MSR_AMD64_SMCA_MCx_SYND(i));
-diff --git a/drivers/edac/mce_amd.c b/drivers/edac/mce_amd.c
-index 4d2929770620..2b738bd7889b 100644
---- a/drivers/edac/mce_amd.c
-+++ b/drivers/edac/mce_amd.c
-@@ -1278,6 +1278,7 @@ amd_decode_mce(struct notifier_block *nb, unsigned long val, void *data)
- 	struct mce_hw_err *err = (struct mce_hw_err *)data;
- 	struct mce *m = &err->m;
- 	unsigned int fam = x86_family(m->cpuid);
-+	u64 mca_config = err->vi.amd.config;
- 	int ecc;
- 
- 	if (m->kflags & MCE_HANDLED_CEC)
-@@ -1297,11 +1298,7 @@ amd_decode_mce(struct notifier_block *nb, unsigned long val, void *data)
- 		((m->status & MCI_STATUS_PCC)	? "PCC"	  : "-"));
- 
- 	if (boot_cpu_has(X86_FEATURE_SMCA)) {
--		u32 low, high;
--		u32 addr = MSR_AMD64_SMCA_MCx_CONFIG(m->bank);
--
--		if (!rdmsr_safe(addr, &low, &high) &&
--		    (low & MCI_CONFIG_MCAX))
-+		if (mca_config & MCI_CONFIG_MCAX)
- 			pr_cont("|%s", ((m->status & MCI_STATUS_TCC) ? "TCC" : "-"));
- 
- 		pr_cont("|%s", ((m->status & MCI_STATUS_SYNDV) ? "SyndV" : "-"));
-@@ -1336,8 +1333,18 @@ amd_decode_mce(struct notifier_block *nb, unsigned long val, void *data)
- 
- 		if (m->status & MCI_STATUS_SYNDV) {
- 			pr_cont(", Syndrome: 0x%016llx\n", m->synd);
--			pr_emerg(HW_ERR "Syndrome1: 0x%016llx, Syndrome2: 0x%016llx",
--				 err->vi.amd.synd1, err->vi.amd.synd2);
-+			if (mca_config & MCI_CONFIG_FRUTEXT) {
-+				char frutext[17];
-+
-+				memset(frutext, 0, sizeof(frutext));
-+				memcpy(&frutext[0], &err->vi.amd.synd1, 8);
-+				memcpy(&frutext[8], &err->vi.amd.synd2, 8);
-+
-+				pr_emerg(HW_ERR "FRU Text: %s", frutext);
-+			} else {
-+				pr_emerg(HW_ERR "Syndrome1: 0x%016llx, Syndrome2: 0x%016llx",
-+					 err->vi.amd.synd1, err->vi.amd.synd2);
-+			}
- 		}
- 
- 		pr_cont("\n");
--- 
-2.34.1
-
+Dave.
