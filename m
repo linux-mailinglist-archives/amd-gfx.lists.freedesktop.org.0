@@ -1,64 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6647A7F1785
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354837F1788
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6C010E40D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEC110E416;
 	Mon, 20 Nov 2023 15:40:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0689310E19D;
- Sun, 19 Nov 2023 10:14:54 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id
- a640c23a62f3a-9c773ac9b15so460390466b.2; 
- Sun, 19 Nov 2023 02:14:53 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F83010E19D;
+ Sun, 19 Nov 2023 10:14:57 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id
+ a640c23a62f3a-9f27af23441so462789466b.2; 
+ Sun, 19 Nov 2023 02:14:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700388892; x=1700993692; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1700388895; x=1700993695; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=cyZ/cbQESDC/MGT/kN0ThvfGObcymEWZy6uoIIRVQcA=;
- b=Z0ToENAqsQLAQbCbW8QFiK4QslmA4LffzE+nlBDuU/sQmDO9/O1KLN5kjRDSoSwm3y
- E+Pg3pVohT7A8XNCq8FysFXmEdI/j6V5NbQcj2Avq+CB/MATJ3rfCpw0txEsoYaQLEwK
- B2BFWJ7VjfXNdp0Xgb4ylu7I7vfoVqQqtEBN3x7Cs3rUJFyr3yAk1zTpoj+hbdFhUDsR
- Xd6yGTDxp3jWfjMwXD5Yiw+nZ29WvSDWNslAwcOG/fSc3lLWe6QeVcQ0tsnqoiROaWMW
- CG6eIK8LcsK18RsTDe33qmkH5qiJJUrKk1sqB6wZviFWOFXb3kRTlosLIrKMNNdG184k
- 3rhw==
+ bh=aXnYU9L0SxzpQBJjG8833LUnrTfJuWwdCW2h6rtJH0c=;
+ b=PtDdXlrXW80Shn8D19JM1joNx9qJBt9q2PnpmCUSpx/SeJw6QQBvqsGhwtKLEAJoxN
+ aJsMVYovzseL3WSKozwUNNOq4Dxs478IYYMFf/xkj4TMAKlN6KXcZD6iogWfRQB7RMmh
+ FotVIp61H9A4DxHCu3gP4p8MxWjRd1MJb+W8MLLfB3tGDManQ4PFc5hYYk1KUXiWf5E/
+ kF8DoGfreE2gwxZ9bRM9DMOFtBYyI/ZBmWpVixJxQAABN1xkZZ5Oh1M1o0LDgvWE8Uu6
+ fmUeynSiSqUMwv+YnuGpmpV66gyvwQSUXp0b5XOwx/uMZ6uv7iUaKm3FR2KQkdO1OBd/
+ fysw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700388892; x=1700993692;
+ d=1e100.net; s=20230601; t=1700388895; x=1700993695;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=cyZ/cbQESDC/MGT/kN0ThvfGObcymEWZy6uoIIRVQcA=;
- b=rw0VA/u406Fd3CshmIQIHWFeDVN2CDia4Dlcn/NPzoL5YfwNuEC1gNkeT2jdxL5adu
- cYrR7Y1tj2Gg1LtAu1YPuXgX/etpykFa29JYqRmjRO12ADeXfHLdNoBhDQKcTDtXdFoQ
- KvFMFNkh2iNGhhej4l0ajMC/AyfRhXgNqgCMnk+L1n/q6e6E0nP5X1LCV8ACnBHAvxC+
- zpKTPihleCB+8HetTpZv6rKfSBwpItekNZnmzLzlkEx/fqaJpCKRpoI1crgluf817h3c
- B11ilBV7WFhgjOn+gTsXnj2R/retU4mRWveDOODrQ1Iiyu0LUOyKUnWOpdWNDenoZmcJ
- IKMw==
-X-Gm-Message-State: AOJu0YydgS1h7i1mwJFWruM5wGCZY59MmJEWGTI4jUGmdQSyid8WB58B
- tHm1n5Ex/6muiDLCKdb737HMfAJXZoo72Q==
-X-Google-Smtp-Source: AGHT+IHpCHj1EcCfnxWb2sNRSzs45S3cm1uALa2nvx3KgSG12OobKbSms5AW5GyKzojkEb4lxF1FVw==
-X-Received: by 2002:a17:907:c018:b0:9bd:bbc1:1c5f with SMTP id
- ss24-20020a170907c01800b009bdbbc11c5fmr3589189ejc.35.1700388892263; 
- Sun, 19 Nov 2023 02:14:52 -0800 (PST)
+ bh=aXnYU9L0SxzpQBJjG8833LUnrTfJuWwdCW2h6rtJH0c=;
+ b=Y7mFPzIGU0jkDXN7ibGmO0kCDa1zceRTbBe9KWeFpJoaVQVJOosyoIFfHF2XBb9UD3
+ vc3afJGL7jdfQO+v9w8Pluk23lQb7i583fRAgrTXX9QfNEpqqAo8O8YZJWVmeyizlWIA
+ 3vorkAdT3jYdCfpjusj8YGZihMx0M+CRyw4GnswWYN08yia69Tdo9bXTX4jRw6Byw8lD
+ C/1QvTCIK1cITq9My2QpIJHlEHIx80XeSRNyy9DqxLpjxYITFxZyPA/SnufiPG1HZW3J
+ 8XvSxAdMA9NtWxjDWpnr/1fNfDzWCKg9g9UCctPfxU4Zz5xdj5Xf0nEBj43MlAKmFp9D
+ qpgw==
+X-Gm-Message-State: AOJu0YzyphDl9qqfGRA02gzxrczROZMPHKE+7UhDzv8PdkNNxeF/O1m0
+ B728ZV3EGSYK29T4BCwxGWE=
+X-Google-Smtp-Source: AGHT+IGcxHwORYlBS6UfqYLTAlk7jFkDNf4Zgyz4V+4rMe/1cLzpIIDW4QHLGADivIY95M311Q5DQg==
+X-Received: by 2002:a17:906:10d2:b0:9fd:f325:1317 with SMTP id
+ v18-20020a17090610d200b009fdf3251317mr304396ejv.24.1700388895427; 
+ Sun, 19 Nov 2023 02:14:55 -0800 (PST)
 Received: from zotac.lan.
  (dynamic-2a01-0c23-bde4-3e00-2223-08ff-fe18-0310.c23.pool.telefonica.de.
  [2a01:c23:bde4:3e00:2223:8ff:fe18:310])
  by smtp.gmail.com with ESMTPSA id
- p20-20020a17090628d400b009928b4e3b9fsm2743581ejd.114.2023.11.19.02.14.51
+ p20-20020a17090628d400b009928b4e3b9fsm2743581ejd.114.2023.11.19.02.14.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Nov 2023 02:14:51 -0800 (PST)
+ Sun, 19 Nov 2023 02:14:55 -0800 (PST)
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Wolfram Sang <wsa@kernel.org>,
-	Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH v3 03/20] drm/amd/display: remove I2C_CLASS_DDC support
-Date: Sun, 19 Nov 2023 11:14:28 +0100
-Message-ID: <20231119101445.4737-4-hkallweit1@gmail.com>
+	Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH v3 07/20] drivers/gpu/drm: remove I2C_CLASS_DDC support
+Date: Sun, 19 Nov 2023 11:14:32 +0100
+Message-ID: <20231119101445.4737-8-hkallweit1@gmail.com>
 X-Mailer: git-send-email 2.42.1
 In-Reply-To: <20231119101445.4737-1-hkallweit1@gmail.com>
 References: <20231119101445.4737-1-hkallweit1@gmail.com>
@@ -76,11 +76,10 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+Cc: dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  linux-i2c@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ David Airlie <airlied@gmail.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Heiner Kallweit <hkallweit1@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -93,27 +92,36 @@ be used in new code. So we can remove this class completely now.
 
 Preferably this series should be applied via the i2c tree.
 
-Acked-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
 ---
-v2:
-- adjust tag in commit subject
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c |    1 -
+ drivers/gpu/drm/radeon/radeon_i2c.c     |    1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 6f99f6754..ae1edc6ab 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7529,7 +7529,6 @@ create_i2c(struct ddc_service *ddc_service,
- 	if (!i2c)
- 		return NULL;
- 	i2c->base.owner = THIS_MODULE;
--	i2c->base.class = I2C_CLASS_DDC;
- 	i2c->base.dev.parent = &adev->pdev->dev;
- 	i2c->base.algo = &amdgpu_dm_i2c_algo;
- 	snprintf(i2c->base.name, sizeof(i2c->base.name), "AMDGPU DM i2c hw bus %d", link_index);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+index 82608df43..d79cb13e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+@@ -175,7 +175,6 @@ struct amdgpu_i2c_chan *amdgpu_i2c_create(struct drm_device *dev,
+ 
+ 	i2c->rec = *rec;
+ 	i2c->adapter.owner = THIS_MODULE;
+-	i2c->adapter.class = I2C_CLASS_DDC;
+ 	i2c->adapter.dev.parent = dev->dev;
+ 	i2c->dev = dev;
+ 	i2c_set_adapdata(&i2c->adapter, i2c);
+diff --git a/drivers/gpu/drm/radeon/radeon_i2c.c b/drivers/gpu/drm/radeon/radeon_i2c.c
+index 314d066e6..3d174390a 100644
+--- a/drivers/gpu/drm/radeon/radeon_i2c.c
++++ b/drivers/gpu/drm/radeon/radeon_i2c.c
+@@ -918,7 +918,6 @@ struct radeon_i2c_chan *radeon_i2c_create(struct drm_device *dev,
+ 
+ 	i2c->rec = *rec;
+ 	i2c->adapter.owner = THIS_MODULE;
+-	i2c->adapter.class = I2C_CLASS_DDC;
+ 	i2c->adapter.dev.parent = dev->dev;
+ 	i2c->dev = dev;
+ 	i2c_set_adapdata(&i2c->adapter, i2c);
 
