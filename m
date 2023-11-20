@@ -2,85 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3D67F1792
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B51417F1281
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 12:54:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA20910E424;
-	Mon, 20 Nov 2023 15:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35F4C10E3A9;
+	Mon, 20 Nov 2023 11:54:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8329D10E395
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 10:54:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1700477660;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2zUAf0kRwyhFacdVDNduqaFmW+J2nhNnMJ6K916lSRE=;
- b=JF4Fp2nnhphCjILUdJ6p0Q5YtN11BxnU1nzbUUcvyCLhCgyk1IQqPz9YDQ2fpgVcS57Q1Q
- xkhmG7U+YiPmcLhUxSjfT3+XCQahkaY8mVPYyeR2g9tjJUMbuifUg4V4d60LKGTgv6jy29
- OnfVC9PyYiUTBON91VQL4c2ORJ0rpD8=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-152-gbEoHwsLNse6ulyO5lhiHQ-1; Mon, 20 Nov 2023 05:54:19 -0500
-X-MC-Unique: gbEoHwsLNse6ulyO5lhiHQ-1
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-a00436b5d6bso18476066b.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 02:54:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700477658; x=1701082458;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2zUAf0kRwyhFacdVDNduqaFmW+J2nhNnMJ6K916lSRE=;
- b=iyErTMaNcRJlzL7TwR/Zy3epWYF22ZCv9YR9E/3aA1/rL2jyJRSetiNHpRTawAB+Wm
- 9r4Xhhz/pHlWoluq+Zk8/Ywu2VBXuTv6JJfLU5RfiFA36BVJAQXH05xhqc5TReMa4t3a
- jCfBfe0a/EtdetPyDcYBP4nQTlxxfBKxwPE72jc0f8MJ4mt1qoyawZyNv4OjPR7IuItC
- poZM9siN9K0+dRbnr2qJuqYQ5qo8OGTo3mhs9tR/+WXROuDNBwQ7fKvVN2K++7adkc8U
- 7lW+R6cn9pPjl4Ns49deYfqyPZCc7Zihww5Kmo44wGw8Fqxb5LHNFCOX8M3Mi22h0pD9
- 45tw==
-X-Gm-Message-State: AOJu0YyUSLgpfsYIlGhl7slSBNqdRNLuMh37umHUS/hqjuX6yRnb7xsl
- ZGFeYPvhJ1Eqp7UVAxk3HR+GrJYYzQuNYPoi3i3faa6e5yIS8nhgtlEUhlENTRTasAuNBP5xehX
- cyXIc40GZBGPF8Lby0dMrdP4V+Q==
-X-Received: by 2002:a17:906:32c7:b0:9e7:3af8:1fd0 with SMTP id
- k7-20020a17090632c700b009e73af81fd0mr5202189ejk.76.1700477658014; 
- Mon, 20 Nov 2023 02:54:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEgoytvF8lwwp8rKx8884Oj65m/vmtmib1MiNPAMSTReWskVDTF1HFC8OJm9t7uAUXBc0cvnQ==
-X-Received: by 2002:a17:906:32c7:b0:9e7:3af8:1fd0 with SMTP id
- k7-20020a17090632c700b009e73af81fd0mr5202175ejk.76.1700477657734; 
- Mon, 20 Nov 2023 02:54:17 -0800 (PST)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- jx27-20020a170906ca5b00b009fda627abd9sm1262032ejb.79.2023.11.20.02.54.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Nov 2023 02:54:16 -0800 (PST)
-Message-ID: <76d4f18e-a349-4337-a301-ffebb8f1c5e8@redhat.com>
-Date: Mon, 20 Nov 2023 11:54:16 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 195AF10E3A6;
+ Mon, 20 Nov 2023 11:54:43 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5225C21910;
+ Mon, 20 Nov 2023 11:54:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1700481281; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=+BbKPUbHPzU0kVHMtlK4uGYphHbBYVCpEYwEyZO91tM=;
+ b=wd2zWLJ94ChoogDYqDYKN17KNyoIbbtMAPAaw8+EdGMZfMU8i4jztw+jguj0SP4AcNlQUK
+ wOnr7EoiDC4ht5L+W1QL2u4NZi7D9QLzzwsL1wUZlR9VkTXEgZZmnpi1ISoIh820LhqAiI
+ mg5TzpIuBfbEJ7YBgYt59l/y++jzT1o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1700481281;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=+BbKPUbHPzU0kVHMtlK4uGYphHbBYVCpEYwEyZO91tM=;
+ b=RxtC8KYD1c9Sw+IqElk5w3IJluDmjJy1+BAL0hGQAs1p7PxpfQ1tNwNlKhp2kddNwAg/6+
+ qUnazDKHL5s9+GBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2AB9313499;
+ Mon, 20 Nov 2023 11:54:41 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 68B1CQFJW2UZRwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 20 Nov 2023 11:54:41 +0000
+Message-ID: <73a16f1e-3556-49b3-bd19-8b510f6af3fd@suse.de>
+Date: Mon, 20 Nov 2023 12:54:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 0/9] Enable Wifi RFI interference mitigation feature
- support
-To: "Ma, Jun" <majun@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- amd-gfx@lists.freedesktop.org, lenb@kernel.org, johannes@sipsolutions.net,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, alexander.deucher@amd.com, Lijo.Lazar@amd.com,
- mario.limonciello@amd.com
-References: <20231017025358.1773598-1-Jun.Ma2@amd.com>
- <5f85eb72-3f34-4006-85ca-2a2181113008@amd.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <5f85eb72-3f34-4006-85ca-2a2181113008@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 20 Nov 2023 15:40:24 +0000
+Subject: Re: [PATCH 1/3] Revert "drm/prime: Unexport helpers for fd/handle
+ conversion"
+Content-Language: en-US
+To: Felix Kuehling <Felix.Kuehling@amd.com>, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+References: <20231117214419.418556-1-Felix.Kuehling@amd.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20231117214419.418556-1-Felix.Kuehling@amd.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------UrvhLqhWtCbaxYH84Qwv2bQh"
+Authentication-Results: smtp-out1.suse.de;
+	none
+X-Spam-Level: 
+X-Spam-Score: -6.19
+X-Spamd-Result: default: False [-6.19 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; XM_UA_NO_VERSION(0.01)[];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_THREE(0.00)[4];
+ TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ MIME_GOOD(-0.20)[multipart/signed,multipart/mixed,text/plain];
+ HAS_ATTACHMENT(0.00)[]; NEURAL_HAM_LONG(-0.95)[-0.954];
+ BAYES_HAM(-3.00)[100.00%];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.14)[-0.720]; MIME_BASE64_TEXT(0.10)[];
+ SIGNED_PGP(-2.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+,1:+,2:+,3:~];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]
+X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,105 +111,173 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
+Cc: christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------UrvhLqhWtCbaxYH84Qwv2bQh
+Content-Type: multipart/mixed; boundary="------------dWKkU0a2HafLfc9ITbUHXsgz";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Felix Kuehling <Felix.Kuehling@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com
+Message-ID: <73a16f1e-3556-49b3-bd19-8b510f6af3fd@suse.de>
+Subject: Re: [PATCH 1/3] Revert "drm/prime: Unexport helpers for fd/handle
+ conversion"
+References: <20231117214419.418556-1-Felix.Kuehling@amd.com>
+In-Reply-To: <20231117214419.418556-1-Felix.Kuehling@amd.com>
 
-On 10/19/23 08:17, Ma, Jun wrote:
-> ping...
-> Any other comments?
+--------------dWKkU0a2HafLfc9ITbUHXsgz
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Patches 1/9 and 2/9 look reasonable, once the questions about
-use of the _DSM vs directly calling the WBRF ACPI method are
-resolved I can merge patches 1/9 and 2/9 and create an immutable
-feature branch based on 6.7-rc1 + these 2 patches.
+SGkNCg0KQW0gMTcuMTEuMjMgdW0gMjI6NDQgc2NocmllYiBGZWxpeCBLdWVobGluZzoNCj4g
+VGhpcyByZXZlcnRzIGNvbW1pdCA3MWE3OTc0YWM3MDE5YWZlZWMxMDVhNTQ0NDdhZTFkYzcy
+MTZjYmIzLg0KPiANCj4gVGhlc2UgaGVscGVyIGZ1bmN0aW9ucyBhcmUgbmVlZGVkIGZvciBL
+RkQgdG8gZXhwb3J0IGFuZCBpbXBvcnQgRE1BQnVmcw0KPiB0aGUgcmlnaHQgd2F5IHdpdGhv
+dXQgZHVwbGljYXRpbmcgdGhlIHRyYWNraW5nIG9mIERNQUJ1ZnMgYXNzb2NpYXRlZCB3aXRo
+DQo+IEdFTSBvYmplY3RzIHdoaWxlIGVuc3VyaW5nIHRoYXQgbW92ZSBub3RpZmllciBjYWxs
+YmFja3MgYXJlIHdvcmtpbmcgYXMNCj4gaW50ZW5kZWQuDQoNCkknbSB1bmhhcHB5IHRvIHNl
+ZSB0aGVzZSBmdW5jdGlvbnMgbWFraW5nIGEgY29tZWJhY2suIFRoZXkgYXJlIHRoZSANCmJv
+aWxlci1wbGF0ZSBsb2dpYyB0aGF0IGFsbCBkcml2ZXJzIHNob3VsZCB1c2UuIEhpc3Rvcmlj
+YWxseSwgZHJpdmVycyANCmRpZCBhIGxvdCBvbmUgdGhpbmdzIGluIHRoZWlyIEdFTSBjb2Rl
+IHRoYXQgd2FzIG9ubHkgc2VtaS1jb3JyZWN0LiANClVuaWZ5aW5nIG1vc3Qgb2YgdGhhdCBt
+YWRlIHRoZSBtZW1vcnkgbWFuYWdlbWVudCBtb3JlIHJlYWRhYmxlLiBOb3QgDQpnaXZpbmcg
+YmFjayBkcml2ZXJzIHRvIG9wdGlvbiBvZiB0aW5rZXJpbmcgd2l0aCB0aGlzIG1pZ2h0IGJl
+IA0KcHJlZmVyYWJsZS4gVGhlIHJzcCBob29rcyBpbiBzdHJ1Y3QgZHJtX2RyaXZlciwgcHJp
+bWVfZmRfdG9faGFuZGxlIGFuZCANCnByaW1lX2hhbmRsZV90b19mZCwgYXJlIG9ubHkgdGhl
+cmUgZm9yIHZtd2dmeC4NCg0KSWYgeW91IHdhbnQgdG8gaG9vayBpbnRvIHByaW1lIGltcG9y
+dCBhbmQgZXhwb3J0LCB0aGVyZSBhcmUgDQpkcm1fZHJpdmVyLmdlbV9wcmltZV9pbXBvcnQg
+YW5kIGRybV9nZW1fb2JqZWN0X2Z1bmNzLmV4cG9ydC4gSXNuJ3QgaXQgDQpwb3NzaWJsZSB0
+byBtb3ZlIHRoZSBhZGRpdGlvbmFsIGNvZGUgYmVoaW5kIHRoZXNlIHBvaW50ZXJzPw0KDQpC
+ZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPiBDQzogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hy
+aXN0aWFuLmtvZW5pZ0BhbWQuY29tPg0KPiBDQzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1t
+ZXJtYW5uQHN1c2UuZGU+DQo+IFNpZ25lZC1vZmYtYnk6IEZlbGl4IEt1ZWhsaW5nIDxGZWxp
+eC5LdWVobGluZ0BhbWQuY29tPg0KPiAtLS0NCj4gICBkcml2ZXJzL2dwdS9kcm0vZHJtX3By
+aW1lLmMgfCAzMyArKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0NCj4gICBpbmNs
+dWRlL2RybS9kcm1fcHJpbWUuaCAgICAgfCAgNyArKysrKysrDQo+ICAgMiBmaWxlcyBjaGFu
+Z2VkLCAyNSBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3ByaW1lLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
+X3ByaW1lLmMNCj4gaW5kZXggNjNiNzA5YTY3NDcxLi44MzRhNWUyOGFiYmUgMTAwNjQ0DQo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcHJpbWUuYw0KPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vZHJtX3ByaW1lLmMNCj4gQEAgLTI3OCw3ICsyNzgsNyBAQCB2b2lkIGRybV9nZW1f
+ZG1hYnVmX3JlbGVhc2Uoc3RydWN0IGRtYV9idWYgKmRtYV9idWYpDQo+ICAgfQ0KPiAgIEVY
+UE9SVF9TWU1CT0woZHJtX2dlbV9kbWFidWZfcmVsZWFzZSk7DQo+ICAgDQo+IC0vKg0KPiAr
+LyoqDQo+ICAgICogZHJtX2dlbV9wcmltZV9mZF90b19oYW5kbGUgLSBQUklNRSBpbXBvcnQg
+ZnVuY3Rpb24gZm9yIEdFTSBkcml2ZXJzDQo+ICAgICogQGRldjogZHJtX2RldmljZSB0byBp
+bXBvcnQgaW50bw0KPiAgICAqIEBmaWxlX3ByaXY6IGRybSBmaWxlLXByaXZhdGUgc3RydWN0
+dXJlDQo+IEBAIC0yOTIsOSArMjkyLDkgQEAgRVhQT1JUX1NZTUJPTChkcm1fZ2VtX2RtYWJ1
+Zl9yZWxlYXNlKTsNCj4gICAgKg0KPiAgICAqIFJldHVybnMgMCBvbiBzdWNjZXNzIG9yIGEg
+bmVnYXRpdmUgZXJyb3IgY29kZSBvbiBmYWlsdXJlLg0KPiAgICAqLw0KPiAtc3RhdGljIGlu
+dCBkcm1fZ2VtX3ByaW1lX2ZkX3RvX2hhbmRsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0K
+PiAtCQkJCSAgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBpbnQgcHJpbWVfZmQs
+DQo+IC0JCQkJICAgICAgdWludDMyX3QgKmhhbmRsZSkNCj4gK2ludCBkcm1fZ2VtX3ByaW1l
+X2ZkX3RvX2hhbmRsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0KPiArCQkJICAgICAgIHN0
+cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBpbnQgcHJpbWVfZmQsDQo+ICsJCQkgICAgICAg
+dWludDMyX3QgKmhhbmRsZSkNCj4gICB7DQo+ICAgCXN0cnVjdCBkbWFfYnVmICpkbWFfYnVm
+Ow0KPiAgIAlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iajsNCj4gQEAgLTM2MCw2ICszNjAs
+NyBAQCBzdGF0aWMgaW50IGRybV9nZW1fcHJpbWVfZmRfdG9faGFuZGxlKHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYsDQo+ICAgCWRtYV9idWZfcHV0KGRtYV9idWYpOw0KPiAgIAlyZXR1cm4g
+cmV0Ow0KPiAgIH0NCj4gK0VYUE9SVF9TWU1CT0woZHJtX2dlbV9wcmltZV9mZF90b19oYW5k
+bGUpOw0KPiAgIA0KPiAgIGludCBkcm1fcHJpbWVfZmRfdG9faGFuZGxlX2lvY3RsKHN0cnVj
+dCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsDQo+ICAgCQkJCSBzdHJ1Y3QgZHJtX2Zp
+bGUgKmZpbGVfcHJpdikNCj4gQEAgLTQwOCw3ICs0MDksNyBAQCBzdGF0aWMgc3RydWN0IGRt
+YV9idWYgKmV4cG9ydF9hbmRfcmVnaXN0ZXJfb2JqZWN0KHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsDQo+ICAgCXJldHVybiBkbWFidWY7DQo+ICAgfQ0KPiAgIA0KPiAtLyoNCj4gKy8qKg0K
+PiAgICAqIGRybV9nZW1fcHJpbWVfaGFuZGxlX3RvX2ZkIC0gUFJJTUUgZXhwb3J0IGZ1bmN0
+aW9uIGZvciBHRU0gZHJpdmVycw0KPiAgICAqIEBkZXY6IGRldiB0byBleHBvcnQgdGhlIGJ1
+ZmZlciBmcm9tDQo+ICAgICogQGZpbGVfcHJpdjogZHJtIGZpbGUtcHJpdmF0ZSBzdHJ1Y3R1
+cmUNCj4gQEAgLTQyMSwxMCArNDIyLDEwIEBAIHN0YXRpYyBzdHJ1Y3QgZG1hX2J1ZiAqZXhw
+b3J0X2FuZF9yZWdpc3Rlcl9vYmplY3Qoc3RydWN0IGRybV9kZXZpY2UgKmRldiwNCj4gICAg
+KiBUaGUgYWN0dWFsIGV4cG9ydGluZyBmcm9tIEdFTSBvYmplY3QgdG8gYSBkbWEtYnVmIGlz
+IGRvbmUgdGhyb3VnaCB0aGUNCj4gICAgKiAmZHJtX2dlbV9vYmplY3RfZnVuY3MuZXhwb3J0
+IGNhbGxiYWNrLg0KPiAgICAqLw0KPiAtc3RhdGljIGludCBkcm1fZ2VtX3ByaW1lX2hhbmRs
+ZV90b19mZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0KPiAtCQkJCSAgICAgIHN0cnVjdCBk
+cm1fZmlsZSAqZmlsZV9wcml2LCB1aW50MzJfdCBoYW5kbGUsDQo+IC0JCQkJICAgICAgdWlu
+dDMyX3QgZmxhZ3MsDQo+IC0JCQkJICAgICAgaW50ICpwcmltZV9mZCkNCj4gK2ludCBkcm1f
+Z2VtX3ByaW1lX2hhbmRsZV90b19mZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0KPiArCQkJ
+ICAgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCB1aW50MzJfdCBoYW5kbGUsDQo+
+ICsJCQkgICAgICAgdWludDMyX3QgZmxhZ3MsDQo+ICsJCQkgICAgICAgaW50ICpwcmltZV9m
+ZCkNCj4gICB7DQo+ICAgCXN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqOw0KPiAgIAlpbnQg
+cmV0ID0gMDsNCj4gQEAgLTUwNiw2ICs1MDcsNyBAQCBzdGF0aWMgaW50IGRybV9nZW1fcHJp
+bWVfaGFuZGxlX3RvX2ZkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+ICAgDQo+ICAgCXJl
+dHVybiByZXQ7DQo+ICAgfQ0KPiArRVhQT1JUX1NZTUJPTChkcm1fZ2VtX3ByaW1lX2hhbmRs
+ZV90b19mZCk7DQo+ICAgDQo+ICAgaW50IGRybV9wcmltZV9oYW5kbGVfdG9fZmRfaW9jdGwo
+c3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4gICAJCQkJIHN0cnVjdCBk
+cm1fZmlsZSAqZmlsZV9wcml2KQ0KPiBAQCAtODY0LDkgKzg2Niw5IEBAIEVYUE9SVF9TWU1C
+T0woZHJtX3ByaW1lX2dldF9jb250aWd1b3VzX3NpemUpOw0KPiAgICAqIEBvYmo6IEdFTSBv
+YmplY3QgdG8gZXhwb3J0DQo+ICAgICogQGZsYWdzOiBmbGFncyBsaWtlIERSTV9DTE9FWEVD
+IGFuZCBEUk1fUkRXUg0KPiAgICAqDQo+IC0gKiBUaGlzIGlzIHRoZSBpbXBsZW1lbnRhdGlv
+biBvZiB0aGUgJmRybV9nZW1fb2JqZWN0X2Z1bmNzLmV4cG9ydCBmdW5jdGlvbnMNCj4gLSAq
+IGZvciBHRU0gZHJpdmVycyB1c2luZyB0aGUgUFJJTUUgaGVscGVycy4gSXQgaXMgdXNlZCBh
+cyB0aGUgZGVmYXVsdCBmb3INCj4gLSAqIGRyaXZlcnMgdGhhdCBkbyBub3Qgc2V0IHRoZWly
+IG93bi4NCj4gKyAqIFRoaXMgaXMgdGhlIGltcGxlbWVudGF0aW9uIG9mIHRoZSAmZHJtX2dl
+bV9vYmplY3RfZnVuY3MuZXhwb3J0IGZ1bmN0aW9ucyBmb3IgR0VNIGRyaXZlcnMNCj4gKyAq
+IHVzaW5nIHRoZSBQUklNRSBoZWxwZXJzLiBJdCBpcyB1c2VkIGFzIHRoZSBkZWZhdWx0IGlu
+DQo+ICsgKiBkcm1fZ2VtX3ByaW1lX2hhbmRsZV90b19mZCgpLg0KPiAgICAqLw0KPiAgIHN0
+cnVjdCBkbWFfYnVmICpkcm1fZ2VtX3ByaW1lX2V4cG9ydChzdHJ1Y3QgZHJtX2dlbV9vYmpl
+Y3QgKm9iaiwNCj4gICAJCQkJICAgICBpbnQgZmxhZ3MpDQo+IEBAIC05NjIsOSArOTY0LDEw
+IEBAIEVYUE9SVF9TWU1CT0woZHJtX2dlbV9wcmltZV9pbXBvcnRfZGV2KTsNCj4gICAgKiBA
+ZGV2OiBkcm1fZGV2aWNlIHRvIGltcG9ydCBpbnRvDQo+ICAgICogQGRtYV9idWY6IGRtYS1i
+dWYgb2JqZWN0IHRvIGltcG9ydA0KPiAgICAqDQo+IC0gKiBUaGlzIGlzIHRoZSBpbXBsZW1l
+bnRhdGlvbiBvZiB0aGUgZ2VtX3ByaW1lX2ltcG9ydCBmdW5jdGlvbnMgZm9yIEdFTQ0KPiAt
+ICogZHJpdmVycyB1c2luZyB0aGUgUFJJTUUgaGVscGVycy4gSXQgaXMgdGhlIGRlZmF1bHQg
+Zm9yIGRyaXZlcnMgdGhhdCBkbw0KPiAtICogbm90IHNldCB0aGVpciBvd24gJmRybV9kcml2
+ZXIuZ2VtX3ByaW1lX2ltcG9ydC4NCj4gKyAqIFRoaXMgaXMgdGhlIGltcGxlbWVudGF0aW9u
+IG9mIHRoZSBnZW1fcHJpbWVfaW1wb3J0IGZ1bmN0aW9ucyBmb3IgR0VNIGRyaXZlcnMNCj4g
+KyAqIHVzaW5nIHRoZSBQUklNRSBoZWxwZXJzLiBEcml2ZXJzIGNhbiB1c2UgdGhpcyBhcyB0
+aGVpcg0KPiArICogJmRybV9kcml2ZXIuZ2VtX3ByaW1lX2ltcG9ydCBpbXBsZW1lbnRhdGlv
+bi4gSXQgaXMgdXNlZCBhcyB0aGUgZGVmYXVsdA0KPiArICogaW1wbGVtZW50YXRpb24gaW4g
+ZHJtX2dlbV9wcmltZV9mZF90b19oYW5kbGUoKS4NCj4gICAgKg0KPiAgICAqIERyaXZlcnMg
+bXVzdCBhcnJhbmdlIHRvIGNhbGwgZHJtX3ByaW1lX2dlbV9kZXN0cm95KCkgZnJvbSB0aGVp
+cg0KPiAgICAqICZkcm1fZ2VtX29iamVjdF9mdW5jcy5mcmVlIGhvb2sgd2hlbiB1c2luZyB0
+aGlzIGZ1bmN0aW9uLg0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX3ByaW1lLmgg
+Yi9pbmNsdWRlL2RybS9kcm1fcHJpbWUuaA0KPiBpbmRleCBhN2FiZjlmM2U2OTcuLjJhMWQw
+MWU1YjU2YiAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX3ByaW1lLmgNCj4gKysr
+IGIvaW5jbHVkZS9kcm0vZHJtX3ByaW1lLmgNCj4gQEAgLTYwLDEyICs2MCwxOSBAQCBlbnVt
+IGRtYV9kYXRhX2RpcmVjdGlvbjsNCj4gICANCj4gICBzdHJ1Y3QgZHJtX2RldmljZTsNCj4g
+ICBzdHJ1Y3QgZHJtX2dlbV9vYmplY3Q7DQo+ICtzdHJ1Y3QgZHJtX2ZpbGU7DQo+ICAgDQo+
+ICAgLyogY29yZSBwcmltZSBmdW5jdGlvbnMgKi8NCj4gICBzdHJ1Y3QgZG1hX2J1ZiAqZHJt
+X2dlbV9kbWFidWZfZXhwb3J0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+ICAgCQkJCSAg
+ICAgIHN0cnVjdCBkbWFfYnVmX2V4cG9ydF9pbmZvICpleHBfaW5mbyk7DQo+ICAgdm9pZCBk
+cm1fZ2VtX2RtYWJ1Zl9yZWxlYXNlKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmKTsNCj4gICAN
+Cj4gK2ludCBkcm1fZ2VtX3ByaW1lX2ZkX3RvX2hhbmRsZShzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LA0KPiArCQkJICAgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBpbnQgcHJp
+bWVfZmQsIHVpbnQzMl90ICpoYW5kbGUpOw0KPiAraW50IGRybV9nZW1fcHJpbWVfaGFuZGxl
+X3RvX2ZkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+ICsJCQkgICAgICAgc3RydWN0IGRy
+bV9maWxlICpmaWxlX3ByaXYsIHVpbnQzMl90IGhhbmRsZSwgdWludDMyX3QgZmxhZ3MsDQo+
+ICsJCQkgICAgICAgaW50ICpwcmltZV9mZCk7DQo+ICsNCj4gICAvKiBoZWxwZXIgZnVuY3Rp
+b25zIGZvciBleHBvcnRpbmcgKi8NCj4gICBpbnQgZHJtX2dlbV9tYXBfYXR0YWNoKHN0cnVj
+dCBkbWFfYnVmICpkbWFfYnVmLA0KPiAgIAkJICAgICAgIHN0cnVjdCBkbWFfYnVmX2F0dGFj
+aG1lbnQgKmF0dGFjaCk7DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERy
+aXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0K
+RnJhbmtlbnN0cmFzc2UgMTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8g
+VG90ZXYsIEFuZHJldyBNeWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4N
+CkhSQiAzNjgwOSAoQUcgTnVlcm5iZXJnKQ0K
 
-I'll then also send a pull-request to the wifi /resp amdgpu
-maintainers from this branch.
+--------------dWKkU0a2HafLfc9ITbUHXsgz--
 
-I see no acks / reviews from the wifi folks yet,
-so once that immutable feature branch is ready the first
-thing to do is try to get the wifi folks to review + merge WBRF
-support.
+--------------UrvhLqhWtCbaxYH84Qwv2bQh
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-Note I plan to not actually merge the feature branch
-into for-next until the wifi folks are happy with the code.
+-----BEGIN PGP SIGNATURE-----
 
-This way if changes are necessary I can do a v2 feature branch
-and the wifi folks can merge that instead.
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmVbSQAFAwAAAAAACgkQlh/E3EQov+D7
+nQ/+JvnWty6lfvBqN/LbxLVhz0p+XrvIfzYRdE5pGYo1SgorJzMabfqBIm1+w33KGnuiE89hKC4f
+PI+7DkdUGq6Cal24yskKMNuXKnE1dJ7cnw0V5ms5zueC+n9Cr/uBck0RVFCpmF2mGJP0f8pvGTfD
+KX3aTAzPi3ghUPe+DWbdkIoJ7KmKZ1PGQUwurzbKPZPAdQeWSurNlwu/3AUMRHqj2Lm//7UGcs4O
+XLYi7OzCeQaDFG+SqHLTzdQs8r2hiY43YkP8ofPYD6gHCuP6gcts6lbWoYwvIGM/UiqGMdxPgXt6
+Zgp2OmJ+d6TGiFiwLMx9CEwGONYx+hdmCagWpUT6KQxx0y5WBfqNqbPI3neSnSyEt6Oe6ZMUGch6
+45X9SP+p0YJqihzkrG7TOnpNztkJODJjt17C0lPtuYLrJLRgxu5v2icLhWIEwK4dtzZ7Loo1plIa
+WFZZgYhgoAA2SyfEN/sETIjEppwMbGR9OTRtgpkMDAjxSpgOR7oEKauO3Liu9QknURLVQBNat4mW
+ZS39n4jxGc1mX3UOvSEfjXG7g56glF2S6LLk8yOmB9BDo3RLcUIUey+RyEYJdHL9spRTlq2sFpWF
+DkiJPWSvtdEyUerLdrbFE7b2MrveXT8Pkba9rDdahbsvj2lYedVqVsQ+Xp41n5dVsmwYq2mbPFra
+k18=
+=vSRm
+-----END PGP SIGNATURE-----
 
-Regards,
-
-Hans
-
-
-
-
-> On 10/17/2023 10:53 AM, Ma Jun wrote:
->> Due to electrical and mechanical constraints in certain platform designs there
->> may be likely interference of relatively high-powered harmonics of the (G-)DDR
->> memory clocks with local radio module frequency bands used by Wifi 6/6e/7. To
->> mitigate possible RFI interference we introuduced WBRF(Wifi Band RFI mitigation Feature).
->> Producers can advertise the frequencies in use and consumers can use this information
->> to avoid using these frequencies for sensitive features.
->>
->> The whole patch set is based on Linux 6.5.0. With some brief introductions
->> as below:
->> Patch1:      Document about WBRF
->> Patch2:      Core functionality setup for WBRF feature support
->> Patch3 - 4:  Bring WBRF support to wifi subsystem.
->> Patch5 - 9:  Bring WBRF support to AMD graphics driver.
->>
->> Evan Quan (7):
->>   cfg80211: expose nl80211_chan_width_to_mhz for wide sharing
->>   wifi: mac80211: Add support for WBRF features
->>   drm/amd/pm: update driver_if and ppsmc headers for coming wbrf feature
->>   drm/amd/pm: setup the framework to support Wifi RFI mitigation feature
->>   drm/amd/pm: add flood detection for wbrf events
->>   drm/amd/pm: enable Wifi RFI mitigation feature support for SMU13.0.0
->>   drm/amd/pm: enable Wifi RFI mitigation feature support for SMU13.0.7
->>
->> Ma Jun (2):
->>   Documentation/driver-api: Add document about WBRF mechanism
->>   platform/x86/amd: Add support for AMD ACPI based Wifi band RFI
->>     mitigation feature
->>
->>  Documentation/driver-api/wbrf.rst             |  71 +++
->>  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  17 +
->>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 214 +++++++++
->>  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  33 ++
->>  .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  14 +-
->>  .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  14 +-
->>  .../pm/swsmu/inc/pmfw_if/smu_v13_0_0_ppsmc.h  |   3 +-
->>  .../pm/swsmu/inc/pmfw_if/smu_v13_0_7_ppsmc.h  |   3 +-
->>  drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h  |   3 +-
->>  drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h  |   3 +
->>  .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |   9 +
->>  .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  60 +++
->>  .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  59 +++
->>  drivers/gpu/drm/amd/pm/swsmu/smu_internal.h   |   3 +
->>  drivers/platform/x86/amd/Kconfig              |  15 +
->>  drivers/platform/x86/amd/Makefile             |   1 +
->>  drivers/platform/x86/amd/wbrf.c               | 422 ++++++++++++++++++
->>  include/linux/acpi_amd_wbrf.h                 | 101 +++++
->>  include/linux/ieee80211.h                     |   1 +
->>  include/net/cfg80211.h                        |   8 +
->>  net/mac80211/Makefile                         |   2 +
->>  net/mac80211/chan.c                           |   9 +
->>  net/mac80211/ieee80211_i.h                    |   9 +
->>  net/mac80211/main.c                           |   2 +
->>  net/mac80211/wbrf.c                           | 105 +++++
->>  net/wireless/chan.c                           |   3 +-
->>  27 files changed, 1180 insertions(+), 6 deletions(-)
->>  create mode 100644 Documentation/driver-api/wbrf.rst
->>  create mode 100644 drivers/platform/x86/amd/wbrf.c
->>  create mode 100644 include/linux/acpi_amd_wbrf.h
->>  create mode 100644 net/mac80211/wbrf.c
->>
-> 
-
+--------------UrvhLqhWtCbaxYH84Qwv2bQh--
