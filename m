@@ -1,117 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993757F1771
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:36:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455E27F17F3
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:55:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA12210E40A;
-	Mon, 20 Nov 2023 15:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19BFD10E078;
+	Mon, 20 Nov 2023 15:55:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2083.outbound.protection.outlook.com [40.107.212.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAB0D10E04E;
- Mon, 20 Nov 2023 15:36:18 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BDDA10E06F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 15:55:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GS+qN7AWaYjGnRe+RfEGEhpNqVbNGbdtXXcslmWwWyCsCfkt9DcqBeRrnHO4atWXS+1jy3sK4oSOjQlHmFfnLeFQSZrJePovhi9L9qP2ZcBh2+5NgsBbaE2DWlP693JKrztXl6jYzHbattpjVGMpYwGevq2FAHx5Sq3bJJROZnenl9Bj3nQ1t4ypG8g/RZMAyEGA/XwLhpW1MuivFH20TkP32zbx33AuVuBJqjDft7L5sD/WRp8UZzVR1p9ETtM5gOZt5XLQVglkw/vbUlRQBeScBRYgP6BwtH3JSTN6hLx+fAl9vZ2n3i1OjklI3KPQxog5LLzUvP6N/EzXpcVNSg==
+ b=iQdub3rFfeQt6ce3Fiqa0OOb7wpyV/9ldPOffIi9/K2vzfuHdqedjQ0R1Uzkkmz3xgo8/pnLzsDc84kc2obhdfbRrIe7g2pIn2eVtNI4LFq+zZoAmd9i4ORaKYLAPcUS2mrO244VKS1SPs1P0dlYr/gk6W2Q0awgKwcyzvw99awkVIHftsVaBlUMknbkj1aTzJnNSWx9waHbwdALP3mpsEUwOfffu6JRK24uRrFfTcicaq/5D3EOKLfYvZJkfmEQSWix0hEqE6GREcswtWbUc0m7CToHG09N1v5Ap6TnxJeiJNpdm+MIhA3KWbTzVV5W5a66Yrk5GoJjxyaFSFt08g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m5Msi3veq7g2BYPRCBLmE6LY9CBzSyijyYsZSKUQIg0=;
- b=ehY8sOEV1iA5kcA3e/wSfuMg7uRofLHEsIrfa4Km/LZ0c4Ot3kBbmf0HSf9G86rBR6MYLgpXbUlDmM5t08MrhvT9Vhv8XymENA1oMLfAmrPuN5f9+yIWIpSnKDwqERGbUzffedYkKN9IwuzIvKZ8IH1ZMKctL97Da6PAAhS9GRzngAWr386uPg0bEAXBATZ33dl6E83GosOh2VUFoojDBa30gC+j2zQPDKbY+bPduslQouxucXjtHb/dTKFOgERYdmzwiX60OQ/+B+cc4oAZkeSDGiS2B1a78RXpvh885FSPCnfbJcB5VIe1/0xrM7vMBdCHqcLZtj6LVmBupkj/ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=A8bwJT49m27cYY03dSQj/tBtYrBLwL4qe6QWOzjW21M=;
+ b=IrLLgkkTNZgh0xbZ0HQ2O+4wG7DUkA8/Gc3Y3jo9dSwOBstfjBoC9TgzNAPxea2GqX/gqf/gA5zoCFptnB6RKOgkdpCUiPDkQiCvv9e+uM9lIukzdQDuW0Xx23eTCmDu+PZBnp6v2Qhryvw94O+t34A44W1FVIZ2GlsuPpE4mjpDIDGm9ZrWte/u9yup/MsZ9/DW8Ph8PYshMbhPAbt2H/eBXVAZ05JGnZXGavjAs2vQDazZ8AHXJazpNHKIpbfqBqXdO47jZs17KTstZMBtrB6jsR0mczybQo6dCTeEmOepSsUla7KDsSLi5LIu2Hu5och8deZu0pJxllmf/c+/eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m5Msi3veq7g2BYPRCBLmE6LY9CBzSyijyYsZSKUQIg0=;
- b=GYrrbbtes60H8C78j1/xJFah2u8E64ecsD5WK8foWEcWK7YzrlpuY6v6GYyI4NVjkMU1tt5CUNIy361yjV8UsAym/eiPtTC4c5uigSjMH6UGYhiKLHRCbJaQ57lj5fj4hZhzRa6IzqTQQCY/3EhBVqlnuW3V9xqA0Qwrodlci9E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- DS7PR12MB6168.namprd12.prod.outlook.com (2603:10b6:8:97::8) with
+ bh=A8bwJT49m27cYY03dSQj/tBtYrBLwL4qe6QWOzjW21M=;
+ b=qDfqQIAiWyXqMf5Jc0UqAlgSkvuByVtRyal5p+zjh9ldQ10riYbqXLaQ3mPE3P2ImwgWk5gtckt1g0n3+WFSEAOKLNcYe0K/zib+4ePb6go5/xSAMBk83pKiCDCYiB046naaMuys+ZXtAgb8qOgKnMcqqGFPB8h8d2HJkNIdxEk=
+Received: from MW4PR03CA0076.namprd03.prod.outlook.com (2603:10b6:303:b6::21)
+ by DM4PR12MB6373.namprd12.prod.outlook.com (2603:10b6:8:a4::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7002.27; Mon, 20 Nov 2023 15:36:15 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::5588:7117:d54e:9466]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::5588:7117:d54e:9466%7]) with mapi id 15.20.7002.027; Mon, 20 Nov 2023
- 15:36:15 +0000
-Message-ID: <22a0edcb-26fa-415a-a05a-e4d807e2b703@amd.com>
-Date: Mon, 20 Nov 2023 10:36:12 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Bug 218168] New: amdgpu: kfd_topology.c warning: the frame size
- of 1408 bytes is larger than 1024 bytes
-To: bugzilla-daemon@kernel.org, dri-devel@lists.freedesktop.org
-References: <bug-218168-2300@https.bugzilla.kernel.org/>
-Content-Language: en-US
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <bug-218168-2300@https.bugzilla.kernel.org/>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQXPR0101CA0063.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00:14::40) To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
+ 15.20.7002.27; Mon, 20 Nov 2023 15:55:50 +0000
+Received: from MWH0EPF000971E8.namprd02.prod.outlook.com
+ (2603:10b6:303:b6:cafe::2a) by MW4PR03CA0076.outlook.office365.com
+ (2603:10b6:303:b6::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.17 via Frontend
+ Transport; Mon, 20 Nov 2023 15:55:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000971E8.mail.protection.outlook.com (10.167.243.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7025.12 via Frontend Transport; Mon, 20 Nov 2023 15:55:50 +0000
+Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 20 Nov
+ 2023 09:55:49 -0600
+From: James Zhu <James.Zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2 07/24] drm/amdkfd: check pcs_enrty valid
+Date: Mon, 20 Nov 2023 10:55:15 -0500
+Message-ID: <20231120155515.2523038-1-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231103131139.766920-8-James.Zhu@amd.com>
+References: <20231103131139.766920-8-James.Zhu@amd.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|DS7PR12MB6168:EE_
-X-MS-Office365-Filtering-Correlation-Id: f40ba01d-c6f6-4ad4-e50e-08dbe9de6ead
+X-MS-TrafficTypeDiagnostic: MWH0EPF000971E8:EE_|DM4PR12MB6373:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7a99c35-814b-4a32-5505-08dbe9e12b47
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kAXf1ThykHo5M26v3JI0TgNHRB5qZwZV82CLtbe5UL2zrJZXggKw+bqO7McJpFa1NQkhDBxxTK4rgsEW5haOEnabf+IjGkPyAHMnhl99/yrK35Cut3YiNVxPBLXPv6jwBW3hRMXDxWTIkHkWKjMKRSqpoHWuiGJa64FWzIDWpTVJTTSg6FrE3yOhylQMyD9oIl9pdciqnAPrZG593k7FfFjeBp3Xt4T/O53vezhymCZlGK89vX5EMnnKmRIsQImi9uTuplACdyvboJONl6Hfjb4xb4iPcKmzmQ8gDFzW5LZi99cX/HCUZkv+Sr130yEP+ZZrWsWb3OQn8MJU1Piulg3cfl8CnqvU/yocvC+g4j/AGgtCbLXrCkHV+AQgbOdshQBcwYsAbWRrzMxwkRjBn9z4LxV2x45BJpkqDs5VyOdLTmj262ua6jgmR/UC75vigaVHZ+S2Rhl4is/739lXMK+EDbWvMOKf8e11BTEFrG0ToL/7R9WrE1z8O3K6cC2BCxbpT0IQl7Q/3x/0tSYfs6l8Lawk0ywSNwevUu04uAS4VABmlNZfClqw5FuaetjzieEMi/3mIjuH+Fa9eRbRDo73451zqNmzXhg/dDXacncoxPoEn3potHWGM/WdfzxHMixod+bKTCtapZTEzBN8VseoS7hNX7a4wHcvZaJVuaW1wSoh/eVKdusaJswghvvp
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(376002)(136003)(346002)(39860400002)(230273577357003)(230173577357003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(83380400001)(6512007)(53546011)(26005)(4326008)(8676002)(41300700001)(38100700002)(8936002)(2906002)(4744005)(44832011)(5660300002)(478600001)(6486002)(966005)(6506007)(6666004)(66476007)(66556008)(66946007)(316002)(36756003)(86362001)(31696002)(31686004)(2616005)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: gJ38yYUozw3nzI6/Yf/AM9f2YwGKxO2R3Shy4Z7CZMSitQbyKfvA3wDXBC41LBuUiKpPfAZDOGdC/AxjnpdhxX9PVQ73yoaiRGR55sBGWgFDK9FbVyIwO7BXfRsC3aDeguLl/sQBVnKBtZFFWx1qUQduK3H1905jPyA6yEga5iIGW7kJESuJMhbXYron1YBOILef4IXUYLTkBIQHWKk6mtboxOIka0JjLQ5tw4kF+Xnba2cyh0znmQbMHQpLFy6z/OnQwkXduHL/iwRGZsN+PXcwYelONRgTeMkFnIt5+76hbjhn7qNwQ8pRjRaBLVkuE47V4CaYSUsA3nbEbTOmigwB/RKBGmXYVhyEEDWzUheXpFB8zQYk/QWNudeqm78UqDWJUyd2jLUBNEQJw3uVskSpJpwOChtZyqYgXxGRzQ6lknA1d98TX905mZPv5bBQBQ2QD1H+C+NdCkweUHHcLYfzxiEonBjB6IR/7JR8pVwYbA7gwAqHPxdZGHGCYpsiXfInACgVeaETDM+elUQOyqJMzp+w0QeDIPKlo1HwFDTKT4Nv8pNq/lTn89OOxiW8Sosnxw2CzqeeGyj6JUAQRcoeGL2oROutSxmS3dCE6vim/L5lgSd4/c3ylffdgI3rPK+MTTC30UWcOLdR5X8I9+uOH/yJt5OO/3JItBzdrcfMRBc484jsw0PvIGHkHeNlL00nKQnh7+acUZA0WYbRmTmXGdt2V826AT2zGwsn+qYbfHQcUZxBuUmWVZZxWUBioaR3QpFNJbQf4e+pDRQGAA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(346002)(376002)(136003)(39860400002)(230922051799003)(186009)(64100799003)(451199024)(82310400011)(1800799012)(40470700004)(46966006)(36840700001)(82740400003)(83380400001)(336012)(426003)(16526019)(36756003)(86362001)(40460700003)(36860700001)(81166007)(47076005)(356005)(6916009)(70586007)(70206006)(54906003)(316002)(8676002)(4326008)(8936002)(41300700001)(5660300002)(2906002)(1076003)(40480700001)(7696005)(2616005)(26005)(478600001)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXByS2VGUXNKL0JtVHo2ekZaaVB6Yk9tVWdwUXZxY1JxQ0phUlE1emxNRmpN?=
- =?utf-8?B?Mkp5VDBhcXpXcy9SMGhSYjA4aS9tWGcwazExSUVobHBMWEZ5T2tuaGxkK3cy?=
- =?utf-8?B?bDNDaUkwVEhGamppMmI4VnJleFBJL2xDeDhjMEZGdzlTOENQN2M0ekhRN01V?=
- =?utf-8?B?OTJxZ2lqL21CdXpHM093eDQ4b3dhVGZ2MFR1UisvUUgrRi9CTmNnMFBvV014?=
- =?utf-8?B?cldEU3VBK1R0OHlSWDFaN0RXTVlrVnV0K1ByMUdlZGVZc29NaUFhQnZPSnNO?=
- =?utf-8?B?MnMvbGFNRnpKL2JiRUR2NFlmdUc0eDFaYmVaaVNtM010NWFWUlljL0paa2o5?=
- =?utf-8?B?M2dIUC9raG12b1pPSUo4dEZ5UGZmQWZSL1lBMnBOb0pDL0NESHNIVDM1QXNa?=
- =?utf-8?B?UnB5cjV4U3pmOENpNm1vNmVIekRkb3JJbnRjYU1Falc3clNEZ2w0Y293cHlL?=
- =?utf-8?B?MlF2b3VrMXhNejlOc2k5U2Z0eml1amNuY3N3QmNONHpNQVYzdkhyVXlVaGxj?=
- =?utf-8?B?eUdlUzU3d0EvUmU4RlJua2UvTUdPc3dQM2owNkpJN2FDZ3RHZldNem96MURB?=
- =?utf-8?B?TzFqckkvcGdVTzlaYlhpcUQ4M1loek12ZXAyK3ZHaGI5VzFEYU5YWUVRSGJL?=
- =?utf-8?B?cEVsLzBVd0xRUnRZQVZjdXFUOFdDZndRbEI3bUUxcEtUY1V6aVdSQ2l1THgr?=
- =?utf-8?B?V24vZ21tc2tyaHhsQk1EcEplVHNJcnp1MGttTFdvamlHRWpuRWM2Qi9XMUo1?=
- =?utf-8?B?cWJIdGpSelQybkpMaWUyS0I0aFl3ejRuN3VlNEQvcUF2RlJNNlFMTE9CMmhT?=
- =?utf-8?B?Q0IrTUJyMlFiVmUyak5mV09ramxWUldlMDA5Ym5XcEJ5enZUUEdqMVNXY2lU?=
- =?utf-8?B?VmR0VDBpeitYeDhFd3BGK2RhUHRFZ0lvVjQ5c2FTVXlBV29NWGlVMnkzVktU?=
- =?utf-8?B?dWx5R0xhODNHelFla013K056Q216L2tzSVQ1bi9wYkxEd3gyWDZ5R3JodlpP?=
- =?utf-8?B?VHBvS09leitaNDNyV3dvWnllTk5nZkw0VlY4NGNGTmpsaDYvbkhNS2xheUNY?=
- =?utf-8?B?MzJ4NlJBK3V1RXNvWHBTdDBtUzlsTWMzd040TU5xU3dlemRuTHZBTitVR1c1?=
- =?utf-8?B?VDVydm5TNDRJMElVYVU2ZGNCR1h3ZVZNMjlRYUlhRWptdXo5OE10UzNjT21u?=
- =?utf-8?B?WCsyODVBUGpoeSt5dXNhc0tGbENzSWJ4K1ZBM2RpZXRXK3hmdkZjSEZyNDJa?=
- =?utf-8?B?SkI3WStTV3JLNm9ZeFNKWVBPSmZ6Q0NKRk50aEdDMDVQeko5d3BGcXRBcm8w?=
- =?utf-8?B?bmxOeHpBVVN2UENVZ1ZGaUtTallBemdkTmx6bXVHNDM4dHF2aTJKeHhYS2Zh?=
- =?utf-8?B?UVZsTDMvdFZPNGoxZXp5U2dLVUNWSXU2NHo0aEhicDlwbWY1VTl4Q1ZadUtv?=
- =?utf-8?B?ZkNWVkNMRDJEMXpmTWo0c0hJbGp5YnVCQjVOQ2dRak5wNVlDZWxLQVBUczJY?=
- =?utf-8?B?M3pON0UzQVp2VHJEVEk5Uks0UEFyWDJhVm9JYlMrekVKZEZLU0xOYUY2OFNW?=
- =?utf-8?B?dEZMTWpOSmk4eWFVWjI5NDFFQldUQStIb29kUUhpRGZkNU4zSzdXLzU4RW9y?=
- =?utf-8?B?Ykd2NFVGcTI4aE9vRzdlQ3QzUjdoMkZQOEtnVW1BVnFqcGd2aUo3VTRtR2Ru?=
- =?utf-8?B?RjNGQ3VUVHEwaTBETGRhbFpaLzlGNjRmQm1PdUp4bkRnZ2VsMXFzOXRURU4w?=
- =?utf-8?B?VVRjS1ZSRnJMT3ZOelZxRzNPNHFFT2E3RDB2YUN1WHR3SUplVFpuTTJyWkps?=
- =?utf-8?B?ZTkzZW9yNUU0MTcvS0NYbFJlbDEwRTkyVDBETU1jMXhOV0JaV0ZyQU5tUU0z?=
- =?utf-8?B?ako1Z2pOTHJwdGF3SWRUNUEzLys5TEF4cGJNTnNEc3hPL3BFQ1RYM0hseE42?=
- =?utf-8?B?UDAwY2Z6M2NQV1FHaXFUTzRkNTRRT1pBQmg5VHlBVDhWUXREbnIzS3puVDIy?=
- =?utf-8?B?SU80bHdKbHQ0eWREN1Era1V5Q1paV2dMeG9wb2t4cU5NV29yNGx4SHNPZmc4?=
- =?utf-8?B?elFycUxLbG9qUjNmOVF6Sys5NEFOY2hEUTc3aGE4Nm9NN29haVRTajBROVJG?=
- =?utf-8?Q?oDjr/4Tr9vd5bLE0e1j9yu4ej?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f40ba01d-c6f6-4ad4-e50e-08dbe9de6ead
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2023 15:36:15.3449 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2023 15:55:50.4659 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7a99c35-814b-4a32-5505-08dbe9e12b47
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OMrgyKNy4DoNlWbBKeM7xOxxXI4io/DZozmVUEOOQ6/+xKSwNsrYF8ElNof8gR9LgPy479/DcT4lqcaVoX4grw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6168
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000971E8.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6373
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,43 +99,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Felix.kuehling@amd.com, joseph.greathouse@amd.com, jamesz@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-+ amd-gfx
-+ Felix
+Check pcs_entry valid for pc sampling ioctl.
 
-On 11/20/23 10:16, bugzilla-daemon@kernel.org wrote:
-> https://bugzilla.kernel.org/show_bug.cgi?id=218168
-> 
->              Bug ID: 218168
->             Summary: amdgpu: kfd_topology.c warning: the frame size of 1408
->                      bytes is larger than 1024 bytes
->             Product: Drivers
->             Version: 2.5
->            Hardware: All
->                  OS: Linux
->              Status: NEW
->            Severity: normal
->            Priority: P3
->           Component: Video(DRI - non Intel)
->            Assignee: drivers_video-dri@kernel-bugs.osdl.org
->            Reporter: bluesun654@gmail.com
->          Regression: No
-> 
-> Trying to compile Linux 6.6.2 with GCC 13.2.1 and CONFIG_WERROR=y:
-> 
-> [...]
-> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: In function
-> 'kfd_topology_add_device':
-> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:2082:1: error: the frame
-> size of 1408 bytes is larger than 1024 bytes [-Werror=frame-larger-than=]
->   2082 | }
->        | ^
-> cc1: all warnings being treated as errors
-> [...]
-> 
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 30 ++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
+index 4c9fc48e1a6a..36366c8847de 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
+@@ -179,6 +179,21 @@ static int kfd_pc_sample_destroy(struct kfd_process_device *pdd, uint32_t trace_
+ int kfd_pc_sample(struct kfd_process_device *pdd,
+ 					struct kfd_ioctl_pc_sample_args __user *args)
+ {
++	struct pc_sampling_entry *pcs_entry;
++
++	if (args->op != KFD_IOCTL_PCS_OP_QUERY_CAPABILITIES &&
++		args->op != KFD_IOCTL_PCS_OP_CREATE) {
++
++		mutex_lock(&pdd->dev->pcs_data.mutex);
++		pcs_entry = idr_find(&pdd->dev->pcs_data.hosttrap_entry.base.pc_sampling_idr,
++				args->trace_id);
++		mutex_unlock(&pdd->dev->pcs_data.mutex);
++
++		if (!pcs_entry ||
++			pcs_entry->pdd != pdd)
++			return -EINVAL;
++	}
++
+ 	switch (args->op) {
+ 	case KFD_IOCTL_PCS_OP_QUERY_CAPABILITIES:
+ 		return kfd_pc_sample_query_cap(pdd, args);
+@@ -187,13 +202,22 @@ int kfd_pc_sample(struct kfd_process_device *pdd,
+ 		return kfd_pc_sample_create(pdd, args);
+ 
+ 	case KFD_IOCTL_PCS_OP_DESTROY:
+-		return kfd_pc_sample_destroy(pdd, args->trace_id);
++		if (pcs_entry->enabled)
++			return -EBUSY;
++		else
++			return kfd_pc_sample_destroy(pdd, args->trace_id);
+ 
+ 	case KFD_IOCTL_PCS_OP_START:
+-		return kfd_pc_sample_start(pdd);
++		if (pcs_entry->enabled)
++			return -EALREADY;
++		else
++			return kfd_pc_sample_start(pdd);
+ 
+ 	case KFD_IOCTL_PCS_OP_STOP:
+-		return kfd_pc_sample_stop(pdd);
++		if (!pcs_entry->enabled)
++			return -EALREADY;
++		else
++			return kfd_pc_sample_stop(pdd);
+ 	}
+ 
+ 	return -EINVAL;
 -- 
-Hamza
+2.25.1
 
