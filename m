@@ -1,111 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930EE7F1795
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EECDD7F1798
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Nov 2023 16:40:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E937B10E42B;
-	Mon, 20 Nov 2023 15:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8217110E421;
+	Mon, 20 Nov 2023 15:40:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D771110E02E;
- Sun, 19 Nov 2023 21:57:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
- t=1700431034; x=1701035834; i=deller@gmx.de;
- bh=GZw86HrxI4KNbAsNQxkedUxJj0YIJUQmH1y/U7vq1Ng=;
- h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
- In-Reply-To;
- b=kMPNqmEr/O4vxRmUfGYFNYHKdQM4FjsFXv+r+JR5RQentvXpWvSfK1PAaLRbWEII
- n4gE9wjNLeIij0plx5gfQPgPsGbJEtviEasJInTFHPaOVXNw6gICe09ZS8Ra/cyDu
- sD5GPVjbbH2fTCCsaCnz3JQ0NVEkJsFoakQZAG14PdBP+5Adl117127MQVFuL8bYm
- wkM0jHFFUeiQR9CIadLUWrXfRzSPEpHOJ18SQcWFpMfpzJyY2tp2Uq6mwo5GfESGB
- lwjXjp+KyyENmAqEmPgLN4gsrOXHJ6ZSeQU/xVW9F8VGV9tuO5fLn8/LYltNnFHYD
- r9EKeS/5wjADzrNmlA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.20.60] ([94.134.146.64]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDhhX-1rEUc30rkl-00AmGw; Sun, 19
- Nov 2023 22:51:04 +0100
-Message-ID: <106b818d-ad4b-4539-a159-751e2108d77e@gmx.de>
-Date: Sun, 19 Nov 2023 22:51:01 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC9110E395
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 10:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1700476511;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=WDa5Zifa699JA7DgA6NqBUl602nqWvF/0Qs0z1ItO6s=;
+ b=XSX1aJAVxBnOE2QsM2OlWcbguDnWIqcnzEwk4C6NS2+mS729v+8oKcOCLdy1Juu1GZQQNc
+ KxatyVcpqvAGDK8EfbhR7yZp8tCmMBkZKQDVyK/DFpwo/E7DQEzxvxFO1Mt65zQxxSaZGZ
+ E5holZuu05dxMyNK0CdKu6eLLPrL+vc=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-257-vp4T6mAVP0C12s4yC5sLqg-1; Mon, 20 Nov 2023 05:35:09 -0500
+X-MC-Unique: vp4T6mAVP0C12s4yC5sLqg-1
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-9e27cc6dbf0so304269166b.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Nov 2023 02:35:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1700476508; x=1701081308;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=WDa5Zifa699JA7DgA6NqBUl602nqWvF/0Qs0z1ItO6s=;
+ b=vbz58TVEUnO1pjBx+0ARuWBGFgOJ1vJ+05d2gRxjVQocsUYL8PavtK8tAun9uPjbrr
+ 0ZOCTCk+Fbl9rCh8/HjgCLlUVE+FalSZWWilHCaJXcpjdvgWIWfI5EPb89oGP99ECHnG
+ W0AHWUJpnVRIrj1NcMdSaLHpFxyeCPXuOmtpCw2Kw5fwziaZ8ZN6COTIQr2nqABe/q/2
+ bpiXF2TUANH1FxJnGYEAKaJaj8PKE10i7QTi2J0nKWIlCjT0pxA3DaRZ3ZH16GLpKgN5
+ na6EjcwlFLGFcqguPnOt32Ah/1SyIMbgSKxGLYVmB8dHcLMuBpqbNtUhKG7+nhY5QiiF
+ moDA==
+X-Gm-Message-State: AOJu0Yz5uZLcZj3RAnNICyPt9VegJVuahgwx64ZNn0Qir1mSMM1bK/6k
+ Hpow3Dsi8Nmnpltvt3ZRrViIxJJPEn9B0/PQoghJhUaqiqbSSn6xCcZfQmo4AkfiT6YwoMrdOV3
+ wG8Oy+E1/WYjiR50x/3BILQHNPQ==
+X-Received: by 2002:a17:907:c24b:b0:9ae:6ad0:f6db with SMTP id
+ tj11-20020a170907c24b00b009ae6ad0f6dbmr6930269ejc.71.1700476508610; 
+ Mon, 20 Nov 2023 02:35:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFtYB3LpQ2jUhXembvmGnwIAULaeNK5MwYtq0w1lhRVzSiXtm7qVIWAoEoosVuqDagxql3aow==
+X-Received: by 2002:a17:907:c24b:b0:9ae:6ad0:f6db with SMTP id
+ tj11-20020a170907c24b00b009ae6ad0f6dbmr6930238ejc.71.1700476507968; 
+ Mon, 20 Nov 2023 02:35:07 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ p27-20020a1709060ddb00b009fc50ebb062sm1745968eji.4.2023.11.20.02.35.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 20 Nov 2023 02:35:07 -0800 (PST)
+Message-ID: <db2051d0-c847-4d3b-98da-4f4f68a5b30b@redhat.com>
+Date: Mon, 20 Nov 2023 11:35:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 00/20] remove I2C_CLASS_DDC support
-Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>, Wolfram Sang <wsa@kernel.org>,
- intel-gfx@lists.freedesktop.org
-References: <20231119112826.5115-1-hkallweit1@gmail.com>
- <e40b913f-379f-4b6e-a0d2-844887a17284@gmx.de>
- <b336a8e3-44e7-4f56-a950-5155675b5628@gmail.com>
- <bd4be069-b86d-4a69-aa0f-71257f93691f@gmail.com>
-From: Helge Deller <deller@gmx.de>
-Autocrypt: addr=deller@gmx.de; keydata=
- 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
-In-Reply-To: <bd4be069-b86d-4a69-aa0f-71257f93691f@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Provags-ID: V03:K1:4bo0YQp4nOX04fSlYKU7Ed7/Lx5pYstzA4JPyY4mAXCHdJpljs3
- yDd16cdeh0gpASf/ZInpwaZcM23Ih+PXc+ledOmLjOwybtxI+dQvoN3Ii81KHFb9+qriDX0
- u4h7DchrevyaHQ1ae714S54Y7JiqdBj1ZGyD2Ivq+axKYXxVpGJqoQnP7NEaF0sV7o2tumQ
- /R1hkMAw27qE6kexZk1iw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:ysBm8rYSgaU=;i94dSAp6PfZAIH7+417JicQwWsM
- 12xTxz5urKRkAZjKmwbzyhAAPRtPrUZkutye3orWngoGmxKb221OqIcAovhZlwA1vyGU0L7Yb
- HPhn6LwTklmoEiu+VwvwwqRovEaas5Bnu8Etf3eAgiPKRpJKONh4DwPvi3aazupVybl0JLbbj
- iMMP7JEmeHIFXNwsnASEnksa9i1N2cxRGKpFj5ZhomWTNIK10jgtdtrzHuaryRL78iureIcUr
- SbGgm45L4SiCweQ6AQkJJMPJr/pgn7s/uQRr/8hy8mahnpgdPdGl7kRZonfpqJgBeGKF+4WmK
- GYmUfUXAZcjelvRBf5j88lc45osBgvH/F/wxaOoiQX039OlsKNT5SUM8czunT/CjCqfyRkToL
- FgvH4gt8pW3Ig2/SBUb4L1iQSQOQuzIiGmmLm7a6s2R7udvxMuQdV2hTXOeY2iQw7yaCA8QFM
- jp78emRdl3gCPCqU3prSvj/fnla0YmerSNrQ8IlG5R1+VCRLVwbbNEbN/D7oZqhHMzQwMADgL
- KNDHNgZJKMIvsvZfGkEtk7nEN0wXYYuQnmsXnELUYEd466Uko4m+6kiL/RnI8oppJFBw3TzAZ
- M6TAQsuzMzl+AvN24i2GX5Qs35ea1AaMIhR/0ZD9okwrOG3IdflF1CVNR8YBkhH9WDbrb4qDw
- B27hl2j7fPVP9DvvvzkKK5oxuZQbVHHTTedFYOhmd/rHekL00Qj1RCP/pusqzxcWc3IfmSBrg
- 94jGJfcw3oPvrqvxJ3H7dJpDqrFML5kGF6HCera74j/jdacp9jmKUV48W096+R2X5O/Nekq1w
- DD5VFLFYkF0t87X0/PFRyV3nKnkoPYgIsUQ0Xb6LwVcAMVrkRAyC7Z3L8zgn3npqnZZXfqyEv
- gLTZN/97aJ/K6kIiPXpLmJl6P8xllbCXSEWmkuxqGuYomuflSCBM/vJn0NrC0hoAoRYBMAKuL
- JTRtYI4q1LXwTETN5bko5kk8b2o=
+Subject: Re: [PATCH v12 1/9] Documentation/driver-api: Add document about WBRF
+ mechanism
+To: Ma Jun <Jun.Ma2@amd.com>, amd-gfx@lists.freedesktop.org, lenb@kernel.org, 
+ johannes@sipsolutions.net, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, alexander.deucher@amd.com,
+ Lijo.Lazar@amd.com, mario.limonciello@amd.com
+References: <20231017025358.1773598-1-Jun.Ma2@amd.com>
+ <20231017025358.1773598-2-Jun.Ma2@amd.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20231017025358.1773598-2-Jun.Ma2@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 20 Nov 2023 15:40:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -118,88 +91,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yongqin Liu <yongqin.liu@linaro.org>, amd-gfx@lists.freedesktop.org,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, linux-sunxi@lists.linux.dev,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org, Jocelyn Falempe <jfalempe@redhat.com>,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, John Stultz <jstultz@google.com>,
- freedreno@lists.freedesktop.org,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: linux-doc@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMTEvMTkvMjMgMjE6NTEsIEhlaW5lciBLYWxsd2VpdCB3cm90ZToNCj4gT24gMTkuMTEuMjAy
-MyAyMTo0OCwgSGVpbmVyIEthbGx3ZWl0IHdyb3RlOg0KPj4gT24gMTkuMTEuMjAyMyAyMToyOCwg
-SGVsZ2UgRGVsbGVyIHdyb3RlOg0KPj4+IE9uIDExLzE5LzIzIDEyOjI4LCBIZWluZXIgS2FsbHdl
-aXQgd3JvdGU6DQo+Pj4+IEFmdGVyIHJlbW92YWwgb2YgdGhlIGxlZ2FjeSBFRVBST00gZHJpdmVy
-IGFuZCBJMkNfQ0xBU1NfRERDIHN1cHBvcnQgaW4NCj4+Pj4gb2xwY19kY29uIHRoZXJlJ3Mgbm8g
-aTJjIGNsaWVudCBkcml2ZXIgbGVmdCBzdXBwb3J0aW5nIEkyQ19DTEFTU19EREMuDQo+Pj4+IENs
-YXNzLWJhc2VkIGRldmljZSBhdXRvLWRldGVjdGlvbiBpcyBhIGxlZ2FjeSBtZWNoYW5pc20gYW5k
-IHNob3VsZG4ndA0KPj4+PiBiZSB1c2VkIGluIG5ldyBjb2RlLiBTbyB3ZSBjYW4gcmVtb3ZlIHRo
-aXMgY2xhc3MgY29tcGxldGVseSBub3cuDQo+Pj4+DQo+Pj4+IFByZWZlcmFibHkgdGhpcyBzZXJp
-ZXMgc2hvdWxkIGJlIGFwcGxpZWQgdmlhIHRoZSBpMmMgdHJlZS4NCj4+Pg0KPj4+IFRoZSBmYmRl
-diBjaGFuZ2VzIGxvb2sgYXQgbGVhc3Qgb2sgc28gZmFyLCBzbzoNCj4+PiBBY2tlZC1ieTogSGVs
-Z2UgRGVsbGVyIDxkZWxsZXJAZ214LmRlPsKgwqAgI2ZiZGV2DQo+Pj4NCj4+IEkgdGhpbmsgdGhp
-cyByZWZlcnMgdG8gcGF0Y2ggNSBvZiB0aGUgc2VyaWVzLiBDb3VsZCB5b3UgcGxlYXNlIHJlcGx5
-DQo+PiB0byBwYXRjaCA1IGluc3RlYWQgb2YgdGhlIGNvdmVyIGxldHRlciB3aXRoIHlvdXIgYWNr
-ZWQtYnkgc28gdGhhdA0KPj4gcGF0Y2h3b3JrIGdldHMgaXQgcmlnaHQ/IFRoYW5rcyENCj4+DQo+
-IFNvcnJ5LCBqdXN0IGxvb2tlZCBhdCB3aGVyZSB5b3UgYXJlIGluIFRvLCBub3QgQ2MuDQo+IFNv
-IHlvdXIgYWNrIGluY2x1ZGVzIHBhdGNoZXMgNiwgOSwgMTAsIDEzPw0KDQpZZXMuDQoNCkhlbGdl
-DQogIA0KPj4+DQo+Pj4+IHYyOg0KPj4+PiAtIGNoYW5nZSB0YWcgaW4gY29tbWl0IHN1YmplY3Qg
-b2YgcGF0Y2ggMDMNCj4+Pj4gLSBhZGQgYWNrIHRhZ3MNCj4+Pj4gdjM6DQo+Pj4+IC0gZml4IGEg
-Y29tcGlsZSBlcnJvciBpbiBwYXRjaCA1DQo+Pj4+DQo+Pj4+IFNpZ25lZC1vZmYtYnk6IEhlaW5l
-ciBLYWxsd2VpdCA8aGthbGx3ZWl0MUBnbWFpbC5jb20+DQo+Pj4+DQo+Pj4+IC0tLQ0KPj4+Pg0K
-Pj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2kyYy5jwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
-cGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZlcnMv
-Z3B1L2RybS9hc3QvYXN0X2kyYy5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5
-cy9kdy1oZG1pLmPCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBkcml2ZXJz
-L2dwdS9kcm0vZGlzcGxheS9kcm1fZHBfaGVscGVyLmPCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDC
-oMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvZHJtX2RwX21zdF90b3Bv
-bG9neS5jwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9nbWE1
-MDAvY2R2X2ludGVsX2RwLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+
-Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvaW50ZWxfZ21idXMuY8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vZ21hNTAw
-L29ha3RyYWlsX2hkbWlfaTJjLmPCoMKgwqDCoMKgwqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAg
-ZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfaW50ZWxfc2R2by5jwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMv
-aGlibWNfZHJtX2kyYy5jwqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9nbWJ1cy5jwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+
-Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc2R2by5jwqDCoMKgwqDC
-oMKgwqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2xvb25nc29uL2xz
-ZGNfaTJjLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDC
-oCBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2hkbWlfZGRjLmPCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL21nYWcyMDAvbWdhZzIw
-MF9pMmMuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJp
-dmVycy9ncHUvZHJtL21zbS9oZG1pL2hkbWlfaTJjLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9p
-MmMuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRy
-aXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9pbm5vX2hkbWkuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcmszMDY2
-X2hkbWkuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZl
-cnMvZ3B1L2RybS9zdW40aS9zdW40aV9oZG1pX2kyYy5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8
-wqDCoMKgIDEgLQ0KPj4+PiAgwqAgZHJpdmVycy92aWRlby9mYmRldi9jb3JlL2ZiX2RkYy5jwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZl
-cnMvdmlkZW8vZmJkZXYvY3liZXIyMDAwZmIuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBkcml2ZXJzL3ZpZGVvL2ZiZGV2L2k3NDBmYi5jwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+
-ICDCoCBkcml2ZXJzL3ZpZGVvL2ZiZGV2L2ludGVsZmIvaW50ZWxmYl9pMmMuY8KgwqDCoMKgwqDC
-oMKgwqAgfMKgwqAgMTUgKysrKystLS0tLS0tLS0tDQo+Pj4+ICDCoCBkcml2ZXJzL3ZpZGVvL2Zi
-ZGV2L21hdHJveC9pMmMtbWF0cm94ZmIuY8KgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMTIgKysrKy0t
-LS0tLS0tDQo+Pj4+ICDCoCBkcml2ZXJzL3ZpZGVvL2ZiZGV2L3MzZmIuY8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRy
-aXZlcnMvdmlkZW8vZmJkZXYvdGRmeGZiLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0NCj4+Pj4gIMKgIGRyaXZlcnMvdmlkZW8vZmJkZXYvdHJp
-ZGVudGZiLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxIC0N
-Cj4+Pj4gIMKgIGRyaXZlcnMvdmlkZW8vZmJkZXYvdmlhL3ZpYV9pMmMuY8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCBpbmNsdWRlL2xpbnV4L2ky
-Yy5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHzCoMKgwqAgMSAtDQo+Pj4+ICDCoCAzMSBmaWxlcyBjaGFuZ2VkLCA5IGluc2VydGlv
-bnMoKyksIDQ3IGRlbGV0aW9ucygtKQ0KPj4+Pg0KPj4+DQo+Pg0KPiANCg0K
+Hi,
+
+On 10/17/23 04:53, Ma Jun wrote:
+> Add documentation about AMD's Wifi band RFI mitigation (WBRF) mechanism
+> explaining the theory and how it is used.
+> 
+> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> ---
+>  Documentation/driver-api/wbrf.rst | 73 +++++++++++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/driver-api/wbrf.rst
+> 
+> diff --git a/Documentation/driver-api/wbrf.rst b/Documentation/driver-api/wbrf.rst
+> new file mode 100644
+> index 000000000000..8561840263b3
+> --- /dev/null
+> +++ b/Documentation/driver-api/wbrf.rst
+> @@ -0,0 +1,73 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +=================================
+> +WBRF - Wifi Band RFI Mitigations
+> +=================================
+> +Due to electrical and mechanical constraints in certain platform designs
+> +there may be likely interference of relatively high-powered harmonics of
+> +the GPU memory clocks with local radio module frequency bands used by
+> +certain Wifi bands.
+> +
+> +To mitigate possible RFI interference producers can advertise the
+> +frequencies in use and consumers can use this information to avoid using
+> +these frequencies for sensitive features.
+> +
+> +When a platform is known to have this issue with any contained devices,
+> +the platform designer will advertise the availability of this feature via
+> +ACPI devices with a device specific method (_DSM).
+> +* Producers with this _DSM will be able to advertise the frequencies in use.
+> +* Consumers with this _DSM will be able to register for notifications of
+> +frequencies in use.
+> +
+> +Some general terms
+> +==================
+> +Producer: such component who can produce high-powered radio frequency
+> +Consumer: such component who can adjust its in-use frequency in
+> +           response to the radio frequencies of other components to
+> +           mitigate the possible RFI.
+> +
+> +To make the mechanism function, those producers should notify active use
+> +of their particular frequencies so that other consumers can make relative
+> +internal adjustments as necessary to avoid this resonance.
+> +
+> +ACPI interface
+> +==============
+> +Although initially used by for wifi + dGPU use cases, the ACPI interface
+> +can be scaled to any type of device that a platform designer discovers
+> +can cause interference.
+> +
+> +The GUID used for the _DSM is 7B7656CF-DC3D-4C1C-83E9-66E721DE3070.
+> +
+> +3 functions are available in this _DSM:
+> +
+> +* 0: discover # of functions available
+> +* 1: record RF bands in use
+> +* 2: retrieve RF bands in use
+> +
+> +Driver programming interface
+> +============================
+> +.. kernel-doc:: drivers/platform/x86/amd/wbrf.c
+> +
+> +Sample Usage
+> +=============
+> +The expected flow for the producers:
+> +1) During probe, call `acpi_amd_wbrf_supported_producer` to check if WBRF
+> +can be enabled for the device.
+> +2) On using some frequency band, call `acpi_amd_wbrf_add_remove` with 'add'
+> +param to get other consumers properly notified.
+> +3) Or on stopping using some frequency band, call
+> +`acpi_amd_wbrf_add_remove` with 'remove' param to get other consumers notified.
+> +
+> +The expected flow for the consumers:
+> +1) During probe, call `acpi_amd_wbrf_supported_consumer` to check if WBRF
+> +can be enabled for the device.
+> +2) Call `amd_wbrf_register_notifier` to register for notification
+> +of frequency band change(add or remove) from other producers.
+
+> +3) Call the `amd_wbrf_retrieve_freq_band` intentionally to retrieve
+> +current active frequency bands considering some producers may broadcast
+> +such information before the consumer is up.
+
+"intentionally" in this sentence should be "initially" (I presume).
+
+With that fixed and Ilpo's review comments addressed you may add my:
+
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+
+to this patch.
+
+Regards,
+
+Hans
+
+
+
+
+> +4) On receiving a notification for frequency band change, run
+> +`amd_wbrf_retrieve_freq_band` again to retrieve the latest
+> +active frequency bands.
+> +5) During driver cleanup, call `amd_wbrf_unregister_notifier` to
+> +unregister the notifier.
+
