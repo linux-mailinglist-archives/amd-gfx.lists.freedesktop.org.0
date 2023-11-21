@@ -2,67 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD1C57F3040
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Nov 2023 15:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A83B67F3126
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Nov 2023 15:38:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4379310E096;
-	Tue, 21 Nov 2023 14:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C0D10E17F;
+	Tue, 21 Nov 2023 14:38:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80DE610E02C;
- Tue, 21 Nov 2023 14:05:51 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-1f03d9ad89fso3134973fac.1; 
- Tue, 21 Nov 2023 06:05:51 -0800 (PST)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB8510E17F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 14:38:25 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id
+ 5b1f17b1804b1-4083f61322fso25957015e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 06:38:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700575550; x=1701180350; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JicfpEa3uNWDUz2NDkVsyh217wG6PJj7MozXv7sFA4w=;
- b=VnqrX9hZzzlnkcVS0uLxllOAsddAh/mM/8gqRibK7Npe91cpe9o7LHuT6yehTedqB/
- A1/6Fuzjq/5+rbZPMGrlhI9Kdwz7bFLUCfU+MtoPgLdTj3S8agyZVbqtabls+5lZtfPY
- 6q7Eb9jLSTm8oNTXDR5HFzEu6jDeTXe+LZzYJGCHi5RpOzPcBENIXgdEkqhPQXE/oxJ4
- kpURjQ6bJLmdTrd2qyeJjRys1LajuCmRk+Rd71tbrF7lvQT6dEl9rh/cDOS300vzvgFg
- Yx/i6PQ7fCbZ7knQDSMgCQkdomF34BnmMXz2czseQlnGXnYjDhH76VDtoul5Zv2nejp7
- DAnQ==
+ d=gmail.com; s=20230601; t=1700577504; x=1701182304; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=wu7le8MWEYGHdpcPG9fxejUt4GWGGitEsI+NWKoEUn0=;
+ b=lFiArmfU71Qw0BiWlQ+MAsVvJ+uPf4S7WYZHGYtHlyTzqDvIOT3uKyynhkl7Y5sGfp
+ MsbBG9Ie50/zFANzfK3AMtFQY+V+VMCgL4jk4qs+Q5AxAxP7mkGt6mIFRzgeImlP2D+f
+ n61sKFy6GtBpmwb85XSLUOlTCOj+n3alXmRjTlsB2bU0NIW9zNcxEiD5g6F50vGdU9jV
+ FI3dk1RigyVDjdHXE4Z87YHGAyFlaRQxqXW2P9QL2yUqCxCN3ROHGkxODJ9gehhAL/qN
+ Xve9QdKT5cBHVgKZU1/gBW/04I4lRMzKZ1nJ7n8yFMlOI0gvT/Bux++aY45i9WHOTtFC
+ DnNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700575550; x=1701180350;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JicfpEa3uNWDUz2NDkVsyh217wG6PJj7MozXv7sFA4w=;
- b=U08pTa6BEzBoEoHeHrN5LF53LexUbhoHnmzS57qQDLdsSFXUsWEwOdn+Pv1UISsooE
- z4FkLGAqr3KyJhidLHQhOFn0jZ+IZlK11Dor+cSmptsEo3YjcIlf5h72fykXbGqGTNL7
- miNYLfs7iMyE+mgSa8rMzPeULiSROW87fbcP8VGW2guFjBF8oARz+56cKp5X8T9JKPM/
- 4V2YqrUM9AWu8yoIEQVmyStFXUMuZ+FGp562bYZB8FlLgAKclXXtPw6AB6C3Wn6ILAXk
- QSIPXBnbpG3cuDTlDYY3Tm22KpHwh1T/sPby7NClEugL2FGnnUuUSQwU4T1H6mDG/oHL
- avGw==
-X-Gm-Message-State: AOJu0YwhOGVIOhmqxbzjTBByqbQXkfh6x6vvTgjUXbz556MkB1PLSoWy
- JEvpDprkzam7imrGWPACVdVY4ZuTSGILgFxaht0=
-X-Google-Smtp-Source: AGHT+IHKHQMKS3b1gLqqox30Lk4uUwKC52JYW8VCEcKNOaYp9uPK894sLiFLuA30J+s9SqYcbYaSE9jt5JVjnAUgiXE=
-X-Received: by 2002:a05:6871:7398:b0:1f5:994:9853 with SMTP id
- na24-20020a056871739800b001f509949853mr13022151oac.22.1700575550741; Tue, 21
- Nov 2023 06:05:50 -0800 (PST)
+ d=1e100.net; s=20230601; t=1700577504; x=1701182304;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=wu7le8MWEYGHdpcPG9fxejUt4GWGGitEsI+NWKoEUn0=;
+ b=K5HCiX7OcdrIcK8auWKxELT/lXziqFsOb8oWd5ZumHXf6gwXSNBiMVrDDMU35aGnGr
+ QrEW9OqrLUgjUudn5k7Wpx9LSu80WOn0jBg2Y+jf0kbc5etQzuBFPu24UZUEFCLbu3g+
+ Q7SZsrRG7sWO68Q14B8CjJ5L9nE1DVR1Qhe6Qq6WSBYpGUPQCeFXaN9Xenad5w6G1qvv
+ kqtv41pC+nDtDhjFANSnY1hjmBMPrjjxXNFnzEU3GIxrsjrjHTFWWU0FWk6W2457cKQ4
+ wHl0mYgk3Gt9btDoMpt8ZYh6I2rCScN4SW/fKaCtb3n6SguPH6rBMKh9rrJxdEy2Lt21
+ ub1w==
+X-Gm-Message-State: AOJu0Yz9UQ4BRfSm01Qfr617Jb2sMoDIuFrImE7RWoworqvJtm3t9cUs
+ Ulfrgfe9fJEXnw2MU2mM6QU=
+X-Google-Smtp-Source: AGHT+IFAMQcqrNPWhCBaEi/j1kV6tml1kgjOCYpERRM9ICx4VtlP8qKBEhvkwtDNTVXj/2BCRbf4Yw==
+X-Received: by 2002:a05:6000:111:b0:332:c441:70aa with SMTP id
+ o17-20020a056000011100b00332c44170aamr5116087wrx.26.1700577503843; 
+ Tue, 21 Nov 2023 06:38:23 -0800 (PST)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ c7-20020adffb47000000b00332c0aace23sm9762899wrs.105.2023.11.21.06.38.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 21 Nov 2023 06:38:23 -0800 (PST)
+Message-ID: <b7e49776-787a-40da-9f96-8de2b5debdfa@gmail.com>
+Date: Tue, 21 Nov 2023 15:38:20 +0100
 MIME-Version: 1.0
-References: <87edgv4x3i.fsf@vps.thesusis.net>
- <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
- <CAPM=9tw-8pQWFso0zuLqpsqd5BSHWtc4As9ttdjY-DDr70EMqQ@mail.gmail.com>
- <bdb238b6-60c7-4f26-81d0-9e62cd5dd326@gmail.com>
- <CADnq5_NVGS1XykxGxpcu_bpPbzboCUJQkcCF3r+0N9a23KUgiQ@mail.gmail.com>
- <96e2e13c-f01c-4baf-a9a3-cbaa48fb10c7@amd.com>
- <CADnq5_NBfeAXEyQw0gnSd67=tR-bUKg8w=10+4z9pGGuRnP9uw@mail.gmail.com>
- <87bkbodp51.fsf@vps.thesusis.net>
-In-Reply-To: <87bkbodp51.fsf@vps.thesusis.net>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 21 Nov 2023 09:05:39 -0500
-Message-ID: <CADnq5_Nh4wCFY10Ha9dTGWvehPCdY2zxfERtFuoeF5_xA+P=QA@mail.gmail.com>
-Subject: Re: Radeon regression in 6.6 kernel
-To: Phillip Susi <phill@thesusis.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: fix memory overflow in the IB test
+Content-Language: en-US
+To: Tim Huang <Tim.Huang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20231121062533.664725-1-Tim.Huang@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20231121062533.664725-1-Tim.Huang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,32 +74,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-kernel@vger.kernel.org,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Luben Tuikov <luben.tuikov@amd.com>, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 20, 2023 at 5:40=E2=80=AFPM Phillip Susi <phill@thesusis.net> w=
-rote:
+Am 21.11.23 um 07:25 schrieb Tim Huang:
+> Fix a memory overflow issue in the gfx IB test
+> for some ASICs. At least 20 bytes are needed for
+> the IB test packet.
 >
-> Alex Deucher <alexdeucher@gmail.com> writes:
->
-> > Yes.  Those changes went into 6.7 though, not 6.6 AFAIK.  Maybe I'm
-> > misunderstanding what the original report was actually testing.  If it
-> > was 6.7, then try reverting:
-> > 56e449603f0ac580700621a356d35d5716a62ce5
-> > b70438004a14f4d0f9890b3297cd66248728546c
->
-> I had been running v6.6-rc5 before pulling.  It looks like that got me
-> somewhere between v6.6 and v6.7-rc1.  Reverting those two commits fixes
-> it.
+> Signed-off-by: Tim Huang <Tim.Huang@amd.com>
 
-Does reverting 56e449603f0ac580700621a356d35d5716a62ce5 alone fix it?
-Can you also attach your full dmesg log for the failed suspend?
+Good catch.
 
-Alex
+> ---
+>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c   | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 2 +-
+>   4 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> index 0c6133cc5e57..f281eecaeeec 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> @@ -419,7 +419,7 @@ static int gfx_v11_0_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   		adev->wb.wb[index] = cpu_to_le32(0xCAFEDEAD);
+>   		cpu_ptr = &adev->wb.wb[index];
+>   
+> -		r = amdgpu_ib_get(adev, NULL, 16, AMDGPU_IB_POOL_DIRECT, &ib);
+> +		r = amdgpu_ib_get(adev, NULL, 20, AMDGPU_IB_POOL_DIRECT, &ib);
+>   		if (r) {
+>   			DRM_ERROR("amdgpu: failed to get ib (%ld).\n", r);
+>   			goto err1;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+> index 885ebd703260..4b0eda46405f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+> @@ -883,7 +883,7 @@ static int gfx_v8_0_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   	gpu_addr = adev->wb.gpu_addr + (index * 4);
+>   	adev->wb.wb[index] = cpu_to_le32(0xCAFEDEAD);
+>   	memset(&ib, 0, sizeof(ib));
+> -	r = amdgpu_ib_get(adev, NULL, 16,
+> +	r = amdgpu_ib_get(adev, NULL, 20,
+>   					AMDGPU_IB_POOL_DIRECT, &ib);
+
+Not the fault of your patch, but the indentation here and below seems to 
+be wrong, please check your patch with checkpatch.pl.
+
+When you don't get a warning feel free to add Reviewed-by: Christian 
+König <christian.koenig@amd.com>.
+
+Regards,
+Christian.
+
+>   	if (r)
+>   		goto err1;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index e3ff6e46f3f7..a55710bf6e01 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -1039,7 +1039,7 @@ static int gfx_v9_0_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   	gpu_addr = adev->wb.gpu_addr + (index * 4);
+>   	adev->wb.wb[index] = cpu_to_le32(0xCAFEDEAD);
+>   	memset(&ib, 0, sizeof(ib));
+> -	r = amdgpu_ib_get(adev, NULL, 16,
+> +	r = amdgpu_ib_get(adev, NULL, 20,
+>   					AMDGPU_IB_POOL_DIRECT, &ib);
+>   	if (r)
+>   		goto err1;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> index 40d06d32bb74..603988e49cd5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> @@ -297,7 +297,7 @@ static int gfx_v9_4_3_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   	gpu_addr = adev->wb.gpu_addr + (index * 4);
+>   	adev->wb.wb[index] = cpu_to_le32(0xCAFEDEAD);
+>   	memset(&ib, 0, sizeof(ib));
+> -	r = amdgpu_ib_get(adev, NULL, 16,
+> +	r = amdgpu_ib_get(adev, NULL, 20,
+>   			  AMDGPU_IB_POOL_DIRECT, &ib);
+>   	if (r)
+>   		goto err1;
+
