@@ -1,64 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B697F487E
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Nov 2023 15:05:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D0B7F487A
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Nov 2023 15:05:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B23F810E64A;
-	Wed, 22 Nov 2023 14:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCBA10E645;
+	Wed, 22 Nov 2023 14:05:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDD2F10E253
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 03:06:27 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id
- d2e1a72fcca58-6be1bc5aa1cso6365940b3a.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 19:06:27 -0800 (PST)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21EF110E253
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 03:06:29 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id
+ d2e1a72fcca58-6cb55001124so310680b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 19:06:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1700622387; x=1701227187; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1700622388; x=1701227188; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=xQTyfvTA/sT9rfHfHNgSFRFvzietrqmBvaroSzp1CzI=;
- b=kqDa1l0SFNK8I0UmSRPYq5Totg+A+dltq8plBO3oEKgTogUIlSCsNBF+leACgpNIST
- KDxwIF8BDzTcopL7HCK8LstcH4QFfzaPZiGwAtKTOkMgYg9OGwJZPPXGMQi5WoTUDdgF
- o8cNF+r2JiU6Fj38gB2DkDHfDriMOQ3NxkK5kMfqhoRFcHugANaYBQMI6aXkgyHsodjG
- 0y4qJM2ApnlNitDPep9Rw+hyPMqvhouSM5IiN5kmKveCY+M77WulbeRAlo9bAhJ6NMVG
- x03x0rxDsMb49in5gAdaTaYHB3PprWazM8w5cWmtYTn/Kpusl0iyUEWdQc98z6d+8CWH
- yJfw==
+ bh=/Qgh5NSWFVqrYvvpg0jEH3io2ggLKyOiM/1ZRjzAMrY=;
+ b=mAt84/9lm14N4r6RaTXZvNoGnUUmeN0puecKTHDYfmFMTnjs+2hSHZ00D0PGRHkgHZ
+ EKqiwQhCu9aXirROBgtyuPO/iD/DO3jstkp/KVtcNYE92QbSLGDzAOTsnBQc9qjbu5BJ
+ UkAMLtcYVS8BxFvn7GdhtNOgq7lq01hL6o4Z5wouRAhmaOjd3JEhh7PddSIC914P28nK
+ iTtx7SFZxfrQ0xZRg2RIklZssNugMRmFbmmuOAh/0H1R1WQrpur2x/C/20Wn6RkYJ3EN
+ Y0UPAUoapXdz+jbDty9SlIsf/V9Fl0kWn9P4vnfQgG+VrJ3Nk0hD83VdPGns7B96Nz88
+ /kuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700622387; x=1701227187;
+ d=1e100.net; s=20230601; t=1700622388; x=1701227188;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=xQTyfvTA/sT9rfHfHNgSFRFvzietrqmBvaroSzp1CzI=;
- b=G5wQzTL12HAiLQki8rIbSJ7uswWf3uSw0nq2sLK/zRTrVT4I2swDW4NSnQbbpH1H2A
- cyCcD7WARZWxM82nkYEqsHdSlP2+FT/em5VSSpIRnV7QOa/5pw1bG/A/ciG61UJWC9L9
- 1cED2ELclCJvNs9CWJr0smRAMY/oOcIa4xxI0/MLakhcg/w54mchDKMSEJJD3H+c/B/c
- hHoM+LqBBqQwXfirceP9yBoPuEX8nXpQUyySHerNhSN276YnvuxK6ZYNU5WR+rlSHd6p
- 7M9y+8jvt1dPDfS4+jzEAHWif++7YGOX2wuF4lR7r/PUqrNHO+OZ6JAFSaPhHvwcnmQA
- /ziw==
-X-Gm-Message-State: AOJu0Yw/Vv8P1jZIhkJ0RhNk1CC6952PPunFW5usNnAO0YAdUhm3AjWm
- FDfG5ZMKZSlkQpGQSJussJKYmg==
-X-Google-Smtp-Source: AGHT+IHMBi1+1x3Yt/bfrl9gyv/iDKPNW7+yCziyo+xCTBYWw/hNzj1p+tHsCVOZgnyBdWAdN+80eQ==
-X-Received: by 2002:a05:6a20:78a2:b0:186:2389:a73e with SMTP id
- d34-20020a056a2078a200b001862389a73emr933242pzg.55.1700622387226; 
- Tue, 21 Nov 2023 19:06:27 -0800 (PST)
+ bh=/Qgh5NSWFVqrYvvpg0jEH3io2ggLKyOiM/1ZRjzAMrY=;
+ b=II5V4o7SC5kg+3g1UHcRMiwOWA2Z0SO26hXnqHDNi0Gyf4WRell8tRnsLh/LyZRjyf
+ tWTXH7H6H9+/uhv25ygYVxObAdauKIlk1lousdu06kF2offDQqeO2bvkWICSXdnkxrdp
+ ucqQ9NtBXHHVjnABDBgVXSturA6aFx7tQMGhlh9LPjTpJzqMye/cKYG/B1orXP3zfpVh
+ zXuS9zRmxGQQnfQO9r0jL8edm76Cy5BK+MTjcXvCXSf7Pgv683efLqFl2xrBbMB0p/hq
+ jwrJRwKwKsxuzjul71a2Z2mEts8k6s5q2HCdW4Z0YOF2kSx7Qktd2b5QNtqbJzSvxWJN
+ 73MA==
+X-Gm-Message-State: AOJu0YxLad5S1+7l4b+Xn4UH3v5JQjR3oyWzR8/fL1A90iscBfBBOhrA
+ YtN96iGiSx5dy9noEuw9RUOzpQ==
+X-Google-Smtp-Source: AGHT+IERIccwRaRQ+wlnx1zMjy0fsc3cDGpf4RjMA9LPr92p23dqVKDgXQEo3A0Wn14b3XN9NyJnpA==
+X-Received: by 2002:a05:6a20:7da0:b0:17a:4871:63fd with SMTP id
+ v32-20020a056a207da000b0017a487163fdmr1833586pzj.0.1700622388655; 
+ Tue, 21 Nov 2023 19:06:28 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- s2-20020aa78282000000b006a77343b0ccsm8614917pfm.89.2023.11.21.19.06.26
+ s2-20020aa78282000000b006a77343b0ccsm8614917pfm.89.2023.11.21.19.06.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Nov 2023 19:06:26 -0800 (PST)
+ Tue, 21 Nov 2023 19:06:28 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
  Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  linux-riscv@lists.infradead.org
-Subject: [PATCH 1/3] riscv: Add support for kernel-mode FPU
-Date: Tue, 21 Nov 2023 19:05:13 -0800
-Message-ID: <20231122030621.3759313-2-samuel.holland@sifive.com>
+Subject: [PATCH 2/3] riscv: Factor out riscv-march-y to a separate Makefile
+Date: Tue, 21 Nov 2023 19:05:14 -0800
+Message-ID: <20231122030621.3759313-3-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231122030621.3759313-1-samuel.holland@sifive.com>
 References: <20231122030621.3759313-1-samuel.holland@sifive.com>
@@ -84,53 +84,69 @@ Cc: Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is needed to support recent hardware in the amdgpu DRM driver. The
-FPU code in that driver is not performance-critical, so only provide the
-minimal support.
+Since it is not possible to incrementally add/remove extensions from the
+compiler's ISA string by appending arguments, any code that wants to
+modify the ISA string must recreate the whole thing. To support this,
+factor out the logic for generating the -march argument so it can be
+reused where needed.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
- arch/riscv/include/asm/switch_to.h | 14 ++++++++++++++
- arch/riscv/kernel/process.c        |  3 +++
- 2 files changed, 17 insertions(+)
+ arch/riscv/Makefile     | 12 +-----------
+ arch/riscv/Makefile.isa | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+), 11 deletions(-)
+ create mode 100644 arch/riscv/Makefile.isa
 
-diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index f90d8e42f3c7..4b15f1292fc4 100644
---- a/arch/riscv/include/asm/switch_to.h
-+++ b/arch/riscv/include/asm/switch_to.h
-@@ -63,6 +63,20 @@ static __always_inline bool has_fpu(void)
- 	return riscv_has_extension_likely(RISCV_ISA_EXT_f) ||
- 		riscv_has_extension_likely(RISCV_ISA_EXT_d);
- }
+diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+index a74be78678eb..c738eafe67a0 100644
+--- a/arch/riscv/Makefile
++++ b/arch/riscv/Makefile
+@@ -58,22 +58,12 @@ ifeq ($(CONFIG_SHADOW_CALL_STACK),y)
+ 	KBUILD_LDFLAGS += --no-relax-gp
+ endif
+ 
+-# ISA string setting
+-riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32ima
+-riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64ima
+-riscv-march-$(CONFIG_FPU)		:= $(riscv-march-y)fd
+-riscv-march-$(CONFIG_RISCV_ISA_C)	:= $(riscv-march-y)c
+-riscv-march-$(CONFIG_RISCV_ISA_V)	:= $(riscv-march-y)v
+-
+ ifdef CONFIG_TOOLCHAIN_NEEDS_OLD_ISA_SPEC
+ KBUILD_CFLAGS += -Wa,-misa-spec=2.2
+ KBUILD_AFLAGS += -Wa,-misa-spec=2.2
+-else
+-riscv-march-$(CONFIG_TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI) := $(riscv-march-y)_zicsr_zifencei
+ endif
+ 
+-# Check if the toolchain supports Zihintpause extension
+-riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
++include $(srctree)/arch/riscv/Makefile.isa
+ 
+ # Remove F,D,V from isa string for all. Keep extensions between "fd" and "v" by
+ # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
+diff --git a/arch/riscv/Makefile.isa b/arch/riscv/Makefile.isa
+new file mode 100644
+index 000000000000..e10c77e26fe6
+--- /dev/null
++++ b/arch/riscv/Makefile.isa
+@@ -0,0 +1,15 @@
++# SPDX-License-Identifier: GPL-2.0-only
 +
-+static inline void kernel_fpu_begin(void)
-+{
-+	preempt_disable();
-+	fstate_save(current, task_pt_regs(current));
-+	csr_set(CSR_SSTATUS, SR_FS);
-+}
++# ISA string setting
++riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32ima
++riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64ima
++riscv-march-$(CONFIG_FPU)		:= $(riscv-march-y)fd
++riscv-march-$(CONFIG_RISCV_ISA_C)	:= $(riscv-march-y)c
++riscv-march-$(CONFIG_RISCV_ISA_V)	:= $(riscv-march-y)v
 +
-+static inline void kernel_fpu_end(void)
-+{
-+	csr_clear(CSR_SSTATUS, SR_FS);
-+	fstate_restore(current, task_pt_regs(current));
-+	preempt_enable();
-+}
- #else
- static __always_inline bool has_fpu(void) { return false; }
- #define fstate_save(task, regs) do { } while (0)
-diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-index 4f21d970a129..6a18bc709d1c 100644
---- a/arch/riscv/kernel/process.c
-+++ b/arch/riscv/kernel/process.c
-@@ -225,3 +225,6 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
- 	p->thread.sp = (unsigned long)childregs; /* kernel sp */
- 	return 0;
- }
++ifndef CONFIG_TOOLCHAIN_NEEDS_OLD_ISA_SPEC
++riscv-march-$(CONFIG_TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI) := $(riscv-march-y)_zicsr_zifencei
++endif
 +
-+EXPORT_SYMBOL_GPL(__fstate_save);
-+EXPORT_SYMBOL_GPL(__fstate_restore);
++# Check if the toolchain supports Zihintpause extension
++riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
 -- 
 2.42.0
 
