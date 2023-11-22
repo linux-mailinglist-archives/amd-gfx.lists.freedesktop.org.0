@@ -1,70 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6387F4879
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Nov 2023 15:05:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8317F487B
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Nov 2023 15:05:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C456F10E63F;
-	Wed, 22 Nov 2023 14:05:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5998010E648;
+	Wed, 22 Nov 2023 14:05:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
- [IPv6:2607:f8b0:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A166810E253
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Nov 2023 03:06:30 +0000 (UTC)
-Received: by mail-pf1-x433.google.com with SMTP id
- d2e1a72fcca58-6bd0e1b1890so5123668b3a.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Nov 2023 19:06:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1700622390; x=1701227190; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oBSDlJJdl9cJTZEKARyFff2b3kLrE8gro26mzSoUMfg=;
- b=jUwoNNTs4DrsH6MJ3HKfPD3aDjjbM/Pskf4LrOXmBP+AOdHWmXqUCOXJzxq+MYveAv
- 8s6ua4Z8sqZw73POK4hun8h66LPUZD+7NpW6oNRZtYYrwqVFQAijSRxzaNURVQJZmxP7
- romItC8DXqgc/4WpUKn+f2COHotjjA3CMDFunTT9vbL1Jzb/9j3+NMNcXPWeDrcKhGcP
- XshSU0r26UTX2Bl35QYC6YMYNoG4gIWLrNhKtqnG3F3IFLLSxF5JI2YbgelGdAbhPSmW
- LImQ36HGt9NGrU1Pn3dsFOo1R3oRD+ieRmXFL/BuVXvKxR8trG9g76BC/Sz4FtoWYHX5
- ciwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700622390; x=1701227190;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=oBSDlJJdl9cJTZEKARyFff2b3kLrE8gro26mzSoUMfg=;
- b=Dnb/HxXPNzqM3XL921SdJ3ysxpaHzuMpJnBqwxT+lMV5gbACguYA6ZBrP5RhQtGhtK
- ccEIJxEZDSodRHMGKgntm8xAKYXbJOnqBInEBTNrPBnQIhEL8YEMC++plY2Kl6IzWV5g
- oJJtY6OUdiJrGoepxarGgZJb2mPLxHvF72Mr1KSZ7fiosU9I25zxvS03/cKVieeK6lOh
- Ps5fMaUYmfsvsiNbAONnrwfdxpOH4oBntVWZHO7TPVqs0MZdd47i67eTAYjD5TDMfXEZ
- Uvz0NiRAvh3QjDvn4qUt0uykedUN7kYVOY9+i4/yLQv3CNqR0MTa5opKPgC4Puydjt9n
- tDMw==
-X-Gm-Message-State: AOJu0YyulMroqfUZRdxwc4vrtmzen303KugsB8LXvb+w2Z6Z6XLb8oYu
- c3bVKKEM4aTrs77lFknVDNcLFw==
-X-Google-Smtp-Source: AGHT+IGAWRMig9MTM8HwbUunWOHJsJ/tdXoUczvav4ujcqkNnMcjGyNXeyS3D3MD4r1LtBjigmKHkw==
-X-Received: by 2002:a05:6a00:98e:b0:6cb:cdd0:76f7 with SMTP id
- u14-20020a056a00098e00b006cbcdd076f7mr417804pfg.21.1700622390174; 
- Tue, 21 Nov 2023 19:06:30 -0800 (PST)
-Received: from sw06.internal.sifive.com ([4.53.31.132])
- by smtp.gmail.com with ESMTPSA id
- s2-20020aa78282000000b006a77343b0ccsm8614917pfm.89.2023.11.21.19.06.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Nov 2023 19:06:29 -0800 (PST)
-From: Samuel Holland <samuel.holland@sifive.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- linux-riscv@lists.infradead.org
-Subject: [PATCH 3/3] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
-Date: Tue, 21 Nov 2023 19:05:15 -0800
-Message-ID: <20231122030621.3759313-4-samuel.holland@sifive.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231122030621.3759313-1-samuel.holland@sifive.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA1E10E5DC;
+ Wed, 22 Nov 2023 08:33:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=c3B+JcPJMghWo+nJ71PzWYCU8IF2ZA/XTIwpeIzvQJc=; b=iry9qYaAzZ72Yw7RgNmlMyzxch
+ uBcG/uUni+Zl/djnDtICDx2l+t+X3Ms06RvQs4Lb3itE+ICRA3BnUQ28ve4901i8R99Of7L2yah8D
+ RblXmxBNOT8SZ7EBXHivnR/9JonEkP8AEz38O1JNMe914sZQ5FMz2k2Jr39lzxrjJl/9/hXlr6jaT
+ 12mYDAlJbu2ZIMzyAGZU06bSsjjuQnN46n5Ddo7tAMPWslUGtxgB2dPGvggIsGAiGH+vRaouJkXNV
+ grvsGAUvQL6fLENnXHV+maDUx3GbhmSxIZtB7YLNaGffCD8FCcCGJH+zdWAY+BERdes5OswtdPonj
+ UpNoiBaA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
+ Linux)) id 1r5ifs-0014GP-2o; Wed, 22 Nov 2023 08:33:32 +0000
+Date: Wed, 22 Nov 2023 00:33:32 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH 1/3] riscv: Add support for kernel-mode FPU
+Message-ID: <ZV283NfE/K5zLXDD@infradead.org>
 References: <20231122030621.3759313-1-samuel.holland@sifive.com>
+ <20231122030621.3759313-2-samuel.holland@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231122030621.3759313-2-samuel.holland@sifive.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Wed, 22 Nov 2023 14:05:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,108 +50,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Palmer Dabbelt <palmer@dabbelt.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ linux-riscv@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
-architectures. Enabling hardware FP requires overriding the ISA string
-for the relevant compilation units.
+On Tue, Nov 21, 2023 at 07:05:13PM -0800, Samuel Holland wrote:
+> +static inline void kernel_fpu_begin(void)
+> +{
+> +	preempt_disable();
+> +	fstate_save(current, task_pt_regs(current));
+> +	csr_set(CSR_SSTATUS, SR_FS);
+> +}
+> +
+> +static inline void kernel_fpu_end(void)
+> +{
+> +	csr_clear(CSR_SSTATUS, SR_FS);
+> +	fstate_restore(current, task_pt_regs(current));
+> +	preempt_enable();
+> +}
 
-Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
----
-
- drivers/gpu/drm/amd/display/Kconfig            | 5 ++++-
- drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c | 6 ++++--
- drivers/gpu/drm/amd/display/dc/dml/Makefile    | 6 ++++++
- drivers/gpu/drm/amd/display/dc/dml2/Makefile   | 6 ++++++
- 4 files changed, 20 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index 901d1961b739..49b33b2f6701 100644
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@ -8,7 +8,10 @@ config DRM_AMD_DC
- 	depends on BROKEN || !CC_IS_CLANG || ARM64 || RISCV || SPARC64 || X86_64
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
- 	# !CC_IS_CLANG: https://github.com/ClangBuiltLinux/linux/issues/1752
--	select DRM_AMD_DC_FP if (X86 || LOONGARCH || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
-+	select DRM_AMD_DC_FP if ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG
-+	select DRM_AMD_DC_FP if PPC64 && ALTIVEC
-+	select DRM_AMD_DC_FP if RISCV && FPU
-+	select DRM_AMD_DC_FP if LOONGARCH || X86
- 	help
- 	  Choose this option if you want to use the new display engine
- 	  support for AMDGPU. This adds required support for Vega and
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-index 4ae4720535a5..834dca0396f1 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-@@ -35,6 +35,8 @@
- #include <asm/neon.h>
- #elif defined(CONFIG_LOONGARCH)
- #include <asm/fpu.h>
-+#elif defined(CONFIG_RISCV)
-+#include <asm/switch_to.h>
- #endif
- 
- /**
-@@ -89,7 +91,7 @@ void dc_fpu_begin(const char *function_name, const int line)
- 	depth = __this_cpu_inc_return(fpu_recursion_depth);
- 
- 	if (depth == 1) {
--#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
-+#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH) || defined(CONFIG_RISCV)
- 		kernel_fpu_begin();
- #elif defined(CONFIG_PPC64)
- 		if (cpu_has_feature(CPU_FTR_VSX_COMP))
-@@ -122,7 +124,7 @@ void dc_fpu_end(const char *function_name, const int line)
- 
- 	depth = __this_cpu_dec_return(fpu_recursion_depth);
- 	if (depth == 0) {
--#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
-+#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH) || defined(CONFIG_RISCV)
- 		kernel_fpu_end();
- #elif defined(CONFIG_PPC64)
- 		if (cpu_has_feature(CPU_FTR_VSX_COMP))
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index ea7d60f9a9b4..5c8f840ef323 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -43,6 +43,12 @@ dml_ccflags := -mfpu=64
- dml_rcflags := -msoft-float
- endif
- 
-+ifdef CONFIG_RISCV
-+include $(srctree)/arch/riscv/Makefile.isa
-+# Remove V from the ISA string, like in arch/riscv/Makefile, but keep F and D.
-+dml_ccflags := -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)([^v_]*)v?/\1\2/')
-+endif
-+
- ifdef CONFIG_CC_IS_GCC
- ifneq ($(call gcc-min-version, 70100),y)
- IS_OLD_GCC = 1
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/Makefile b/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-index acff3449b8d7..15ad6e3a2173 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-@@ -42,6 +42,12 @@ dml2_ccflags := -mfpu=64
- dml2_rcflags := -msoft-float
- endif
- 
-+ifdef CONFIG_RISCV
-+include $(srctree)/arch/riscv/Makefile.isa
-+# Remove V from the ISA string, like in arch/riscv/Makefile, but keep F and D.
-+dml2_ccflags := -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)([^v_]*)v?/\1\2/')
-+endif
-+
- ifdef CONFIG_CC_IS_GCC
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
--- 
-2.42.0
+Is there any critical reason to inline these two?  I'd much rather see
+them out of line and exported instead of the low-level helpers.
 
