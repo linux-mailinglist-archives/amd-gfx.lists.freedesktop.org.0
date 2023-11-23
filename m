@@ -2,71 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13EBA7F6C75
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Nov 2023 07:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D877F6E43
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Nov 2023 09:34:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00A9A10E33C;
-	Fri, 24 Nov 2023 06:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B7410E7AA;
+	Fri, 24 Nov 2023 08:34:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0586B10E2E7;
- Fri, 24 Nov 2023 06:43:59 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id
- ffacd0b85a97d-332ce50450dso974133f8f.1; 
- Thu, 23 Nov 2023 22:43:58 -0800 (PST)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BBEF10E034;
+ Thu, 23 Nov 2023 09:40:46 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id
+ a640c23a62f3a-a00b01955acso88921166b.1; 
+ Thu, 23 Nov 2023 01:40:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700808237; x=1701413037; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=pM+/h9Co8SjkLd9Igncj0NF1FqghL66ToHBhvvebQBc=;
- b=aVNm6SAMZFJloynVRH/pS+di8jnJiTUqyR3H6GIBHxV8kX+JGfTJA026ZbZunGnB/U
- ylHbCrDYSFSCyPha79mw9KADa+A8bRDSQDlQ2k8quJEGCwQbdCnwQz4KACIxyz4qmtjc
- UrMgUJhkUQr2GHZDgjQHI2ex66Q8rqpbJYN+52ZDd8BTf1lUGkgsaHrKs/sHQQMkkMJ8
- zhl/uwd1zOLXWWTsFN1ResGEaAUlTpXzX0gsyLqwD+sgKLx9vVH1VU7GWJTeWUOuFQt+
- /Jqpz9SCEwtu0Sps505ODc/eSq4HA1XpjzvIPhXEmOAzAGCZgB72+dr81KxMOC0vT68d
- hYvg==
+ d=gmail.com; s=20230601; t=1700732445; x=1701337245; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=NrHROUSPlT4bN2lnsfzxw2GPuZ9Bx12dzaePQbmqgMk=;
+ b=L5j7qckcIS7IMi0vqb6ghctXoaT8vRqEOy7RNY5CGf+Ek/SLZa2jnp9SEIh8/Cumi2
+ rKxPGu2fkK8rSgQoNYeplVJVrVrq5XOOnKI1q5u284P58CYSZhlTrHZdrTJE/YnX8t+I
+ 0pNrOBqhhP2EXDgZBLoTHewu7/XovHWqKEwlYWjqHdEl9rZ/HzFPgnYgTavR2HaPcSV3
+ gLf6Bwcmucp6dW7rSTTfLhpAL0QM1CwDq6kaLOzWLFurmTFfx8MnvPQAafFnSp0Mprrl
+ YBrjgOdUM/4u9t2q3hneMM9GKNIaylQGVZEXQlYhLNMi+cHE5BJ05K1dSs1LShl0c1Uh
+ sCQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700808237; x=1701413037;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pM+/h9Co8SjkLd9Igncj0NF1FqghL66ToHBhvvebQBc=;
- b=on+Hydwdt/LfCnfl7bbBb+m+zKPd5BeonRX1YC43givqkkkUdsTpEjaZBzq+7+9VEc
- Twd1pi7H//m2Fs33GKQqxmhC65ysFzfdJ4lwC/jjszsZQYQBvTlIojF/O+SeYW9M5VvX
- Bvf8JZPVBR3KgDCkrwW9k9+ThJ05Oy7vs9a6eVyuM8c4jfK4fB7IPHj/M0CO9ZBZjjhZ
- VaBo5UrS0L/lForQyqjzdqRXm2DWkQzD7C3RrYJ8GbcTfrjcy4cd4pDShIPHrtAiudQc
- 03sD/M0/c4GoU1fMZxRzB2seiuc+rqSK2DWpsq6wz9NgQT7pS9pZMI4OUuGATWLnq5hG
- p4Ww==
-X-Gm-Message-State: AOJu0YzZl54a2LWf9Y8yvO2mFO95LKqfy7FmW73+zyoa8wPwvRyiypaf
- L21JPBiKe111wXHt4AmM2aA=
-X-Google-Smtp-Source: AGHT+IHjgor7iE1uOggBwcoRUHwr7VTC6Ou5ytb+vu0r3QSNoLqnP1i2RjdOYKGbUENidKbG9QjYWw==
-X-Received: by 2002:a05:6000:b8f:b0:332:c409:2c80 with SMTP id
- dl15-20020a0560000b8f00b00332c4092c80mr1237964wrb.48.1700808237092; 
- Thu, 23 Nov 2023 22:43:57 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ d=1e100.net; s=20230601; t=1700732445; x=1701337245;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=NrHROUSPlT4bN2lnsfzxw2GPuZ9Bx12dzaePQbmqgMk=;
+ b=bvQDjyUWdWRbnXyPyn05XTljOKTIUXTEUsxNqKcEXPbWETI2ZmXFY/EyFejey7Kz7/
+ NO759O1g03yJn3buTYIbSNZxCaatkf07z2C5NVmne3KKYHnKyANgKFjqchPuuf+FT1iv
+ 42H0Ti8nFzXh5VilFvJBpWqbusB7lULT57gAzbWcpVoMRSlf7ewLRlrFRg2uyuI9NQSI
+ XazC25u+2Q10qVs5/lKYorHgFKL7KzB6rXilt1g9hw37bk/ZvfWvKDYIEZn8i+V8kBYg
+ S7TTrr4RJlvWZSioC0qMgtatSINNuyubFBoaXaQ6t/89+TgBzZiTZTYygdKNUc9zfX0M
+ D8aQ==
+X-Gm-Message-State: AOJu0Yz5S7TfvUhBJaypS6E99Q2mv0eeac/FbE/N6Wug7VcSaOtJTm9z
+ PB2+ZI+pQ9YUzDIeGo616TE=
+X-Google-Smtp-Source: AGHT+IH3UA4nrdAqScERrRmQjf0/m1eRztQQIu3xcCY1PXQ8GvVHymqtee93zJ05NL2jqGs5ig2nmA==
+X-Received: by 2002:a17:906:290:b0:a01:b9bd:878 with SMTP id
+ 16-20020a170906029000b00a01b9bd0878mr3573689ejf.14.1700732444513; 
+ Thu, 23 Nov 2023 01:40:44 -0800 (PST)
+Received: from zotac.lan.
+ (dynamic-2a01-0c23-c0f2-3200-2223-08ff-fe18-0310.c23.pool.telefonica.de.
+ [2a01:c23:c0f2:3200:2223:8ff:fe18:310])
  by smtp.gmail.com with ESMTPSA id
- m6-20020a056000180600b00332e73f8231sm1795851wrh.39.2023.11.23.22.43.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 Nov 2023 22:43:56 -0800 (PST)
-Message-ID: <e5086e55-814c-4db8-b708-9e1701c1fc6b@gmail.com>
-Date: Fri, 24 Nov 2023 07:43:54 +0100
+ s9-20020a1709066c8900b009e5ce1acb01sm546199ejr.103.2023.11.23.01.40.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Nov 2023 01:40:44 -0800 (PST)
+From: Heiner Kallweit <hkallweit1@gmail.com>
+To: Wolfram Sang <wsa@kernel.org>,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCH v5 00/20] remove I2C_CLASS_DDC support
+Date: Thu, 23 Nov 2023 10:40:20 +0100
+Message-ID: <20231123094040.592-1-hkallweit1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] Revert "drm/prime: Unexport helpers for fd/handle
- conversion"
-Content-Language: en-US
-To: Felix Kuehling <felix.kuehling@amd.com>, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-References: <20231117214419.418556-1-Felix.Kuehling@amd.com>
- <4293cfca-6775-44bb-b6f6-81c98491941b@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <4293cfca-6775-44bb-b6f6-81c98491941b@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 24 Nov 2023 08:34:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,175 +73,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Yongqin Liu <yongqin.liu@linaro.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>, amd-gfx@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, linux-sunxi@lists.linux.dev,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, Sean Paul <sean@poorly.run>,
+ linux-arm-kernel@lists.infradead.org, Jocelyn Falempe <jfalempe@redhat.com>,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, John Stultz <jstultz@google.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, freedreno@lists.freedesktop.org,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 23.11.23 um 20:36 schrieb Felix Kuehling:
-> [+Alex]
->
-> On 2023-11-17 16:44, Felix Kuehling wrote:
->
->> This reverts commit 71a7974ac7019afeec105a54447ae1dc7216cbb3.
->>
->> These helper functions are needed for KFD to export and import DMABufs
->> the right way without duplicating the tracking of DMABufs associated 
->> with
->> GEM objects while ensuring that move notifier callbacks are working as
->> intended.
->>
->> CC: Christian König <christian.koenig@amd.com>
->> CC: Thomas Zimmermann <tzimmermann@suse.de>
->> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
->
-> Re: our discussion about v2 of this patch: If this version is 
-> acceptable, can I get an R-b or A-b?
+After removal of the legacy EEPROM driver and I2C_CLASS_DDC support in
+olpc_dcon there's no i2c client driver left supporting I2C_CLASS_DDC.
+Class-based device auto-detection is a legacy mechanism and shouldn't
+be used in new code. So we can remove this class completely now.
 
- From my side feel free to add my Acked-by, I don't see how else you 
-want to cleanly export DMA-bufs.
+Preferably this series should be applied via the i2c tree.
 
-Regards,
-Christian.
+v2:
+- change tag in commit subject of patch 03
+- add ack tags
+v3:
+- fix a compile error in patch 5
+v4:
+- more ack and review tags
+v5:
+- more acks
 
->
-> I would like to get this patch into drm-next as a prerequisite for 
-> patches 2 and 3. I cannot submit it to the current 
-> amd-staging-drm-next because the patch I'm reverting doesn't exist 
-> there yet.
->
-> Patch 2 and 3 could go into drm-next as well, or go through Alex's 
-> amd-staging-drm-next branch once patch 1 is in drm-next. Alex, how do 
-> you prefer to coordinate this?
->
-> Regards,
->   Felix
->
->
->> ---
->>   drivers/gpu/drm/drm_prime.c | 33 ++++++++++++++++++---------------
->>   include/drm/drm_prime.h     |  7 +++++++
->>   2 files changed, 25 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
->> index 63b709a67471..834a5e28abbe 100644
->> --- a/drivers/gpu/drm/drm_prime.c
->> +++ b/drivers/gpu/drm/drm_prime.c
->> @@ -278,7 +278,7 @@ void drm_gem_dmabuf_release(struct dma_buf *dma_buf)
->>   }
->>   EXPORT_SYMBOL(drm_gem_dmabuf_release);
->>   -/*
->> +/**
->>    * drm_gem_prime_fd_to_handle - PRIME import function for GEM drivers
->>    * @dev: drm_device to import into
->>    * @file_priv: drm file-private structure
->> @@ -292,9 +292,9 @@ EXPORT_SYMBOL(drm_gem_dmabuf_release);
->>    *
->>    * Returns 0 on success or a negative error code on failure.
->>    */
->> -static int drm_gem_prime_fd_to_handle(struct drm_device *dev,
->> -                      struct drm_file *file_priv, int prime_fd,
->> -                      uint32_t *handle)
->> +int drm_gem_prime_fd_to_handle(struct drm_device *dev,
->> +                   struct drm_file *file_priv, int prime_fd,
->> +                   uint32_t *handle)
->>   {
->>       struct dma_buf *dma_buf;
->>       struct drm_gem_object *obj;
->> @@ -360,6 +360,7 @@ static int drm_gem_prime_fd_to_handle(struct 
->> drm_device *dev,
->>       dma_buf_put(dma_buf);
->>       return ret;
->>   }
->> +EXPORT_SYMBOL(drm_gem_prime_fd_to_handle);
->>     int drm_prime_fd_to_handle_ioctl(struct drm_device *dev, void *data,
->>                    struct drm_file *file_priv)
->> @@ -408,7 +409,7 @@ static struct dma_buf 
->> *export_and_register_object(struct drm_device *dev,
->>       return dmabuf;
->>   }
->>   -/*
->> +/**
->>    * drm_gem_prime_handle_to_fd - PRIME export function for GEM drivers
->>    * @dev: dev to export the buffer from
->>    * @file_priv: drm file-private structure
->> @@ -421,10 +422,10 @@ static struct dma_buf 
->> *export_and_register_object(struct drm_device *dev,
->>    * The actual exporting from GEM object to a dma-buf is done 
->> through the
->>    * &drm_gem_object_funcs.export callback.
->>    */
->> -static int drm_gem_prime_handle_to_fd(struct drm_device *dev,
->> -                      struct drm_file *file_priv, uint32_t handle,
->> -                      uint32_t flags,
->> -                      int *prime_fd)
->> +int drm_gem_prime_handle_to_fd(struct drm_device *dev,
->> +                   struct drm_file *file_priv, uint32_t handle,
->> +                   uint32_t flags,
->> +                   int *prime_fd)
->>   {
->>       struct drm_gem_object *obj;
->>       int ret = 0;
->> @@ -506,6 +507,7 @@ static int drm_gem_prime_handle_to_fd(struct 
->> drm_device *dev,
->>         return ret;
->>   }
->> +EXPORT_SYMBOL(drm_gem_prime_handle_to_fd);
->>     int drm_prime_handle_to_fd_ioctl(struct drm_device *dev, void *data,
->>                    struct drm_file *file_priv)
->> @@ -864,9 +866,9 @@ EXPORT_SYMBOL(drm_prime_get_contiguous_size);
->>    * @obj: GEM object to export
->>    * @flags: flags like DRM_CLOEXEC and DRM_RDWR
->>    *
->> - * This is the implementation of the &drm_gem_object_funcs.export 
->> functions
->> - * for GEM drivers using the PRIME helpers. It is used as the 
->> default for
->> - * drivers that do not set their own.
->> + * This is the implementation of the &drm_gem_object_funcs.export 
->> functions for GEM drivers
->> + * using the PRIME helpers. It is used as the default in
->> + * drm_gem_prime_handle_to_fd().
->>    */
->>   struct dma_buf *drm_gem_prime_export(struct drm_gem_object *obj,
->>                        int flags)
->> @@ -962,9 +964,10 @@ EXPORT_SYMBOL(drm_gem_prime_import_dev);
->>    * @dev: drm_device to import into
->>    * @dma_buf: dma-buf object to import
->>    *
->> - * This is the implementation of the gem_prime_import functions for GEM
->> - * drivers using the PRIME helpers. It is the default for drivers 
->> that do
->> - * not set their own &drm_driver.gem_prime_import.
->> + * This is the implementation of the gem_prime_import functions for 
->> GEM drivers
->> + * using the PRIME helpers. Drivers can use this as their
->> + * &drm_driver.gem_prime_import implementation. It is used as the 
->> default
->> + * implementation in drm_gem_prime_fd_to_handle().
->>    *
->>    * Drivers must arrange to call drm_prime_gem_destroy() from their
->>    * &drm_gem_object_funcs.free hook when using this function.
->> diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
->> index a7abf9f3e697..2a1d01e5b56b 100644
->> --- a/include/drm/drm_prime.h
->> +++ b/include/drm/drm_prime.h
->> @@ -60,12 +60,19 @@ enum dma_data_direction;
->>     struct drm_device;
->>   struct drm_gem_object;
->> +struct drm_file;
->>     /* core prime functions */
->>   struct dma_buf *drm_gem_dmabuf_export(struct drm_device *dev,
->>                         struct dma_buf_export_info *exp_info);
->>   void drm_gem_dmabuf_release(struct dma_buf *dma_buf);
->>   +int drm_gem_prime_fd_to_handle(struct drm_device *dev,
->> +                   struct drm_file *file_priv, int prime_fd, 
->> uint32_t *handle);
->> +int drm_gem_prime_handle_to_fd(struct drm_device *dev,
->> +                   struct drm_file *file_priv, uint32_t handle, 
->> uint32_t flags,
->> +                   int *prime_fd);
->> +
->>   /* helper functions for exporting */
->>   int drm_gem_map_attach(struct dma_buf *dma_buf,
->>                  struct dma_buf_attachment *attach);
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
+---
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c           |    1 -
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    1 -
+ drivers/gpu/drm/ast/ast_i2c.c                     |    1 -
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c         |    1 -
+ drivers/gpu/drm/display/drm_dp_helper.c           |    1 -
+ drivers/gpu/drm/display/drm_dp_mst_topology.c     |    1 -
+ drivers/gpu/drm/gma500/cdv_intel_dp.c             |    1 -
+ drivers/gpu/drm/gma500/intel_gmbus.c              |    1 -
+ drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c        |    1 -
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c           |    1 -
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c   |    1 -
+ drivers/gpu/drm/i915/display/intel_gmbus.c        |    1 -
+ drivers/gpu/drm/i915/display/intel_sdvo.c         |    1 -
+ drivers/gpu/drm/loongson/lsdc_i2c.c               |    1 -
+ drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c           |    1 -
+ drivers/gpu/drm/mgag200/mgag200_i2c.c             |    1 -
+ drivers/gpu/drm/msm/hdmi/hdmi_i2c.c               |    1 -
+ drivers/gpu/drm/radeon/radeon_i2c.c               |    1 -
+ drivers/gpu/drm/rockchip/inno_hdmi.c              |    1 -
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c            |    1 -
+ drivers/gpu/drm/sun4i/sun4i_hdmi_i2c.c            |    1 -
+ drivers/video/fbdev/core/fb_ddc.c                 |    1 -
+ drivers/video/fbdev/cyber2000fb.c                 |    1 -
+ drivers/video/fbdev/i740fb.c                      |    1 -
+ drivers/video/fbdev/intelfb/intelfb_i2c.c         |   15 +++++----------
+ drivers/video/fbdev/matrox/i2c-matroxfb.c         |   12 ++++--------
+ drivers/video/fbdev/s3fb.c                        |    1 -
+ drivers/video/fbdev/tdfxfb.c                      |    1 -
+ drivers/video/fbdev/tridentfb.c                   |    1 -
+ drivers/video/fbdev/via/via_i2c.c                 |    1 -
+ include/linux/i2c.h                               |    1 -
+ 31 files changed, 9 insertions(+), 47 deletions(-)
