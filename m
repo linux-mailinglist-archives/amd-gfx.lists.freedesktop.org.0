@@ -1,48 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690BE7F9BE9
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Nov 2023 09:39:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE8F7FA187
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Nov 2023 14:54:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAF0E10E1E1;
-	Mon, 27 Nov 2023 08:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B946610E2A5;
+	Mon, 27 Nov 2023 13:54:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 866F810E02C
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Nov 2023 14:40:24 +0000 (UTC)
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1r7GJ4-0001v2-7I; Sun, 26 Nov 2023 15:40:22 +0100
-Message-ID: <a1d74498-9c71-4e46-9db3-58baac89dc36@leemhuis.info>
-Date: Sun, 26 Nov 2023 15:40:21 +0100
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC3A10E24E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Nov 2023 11:44:09 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 1A39440E0031; 
+ Mon, 27 Nov 2023 11:44:07 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id jX3lP-NCWyzG; Mon, 27 Nov 2023 11:44:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1701085444; bh=ELUYa989rs/Q1r1rMywu+qeroXaCS1TWL2jrEJWHU/c=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=F9s9/X26C/Ph1w0ByD8+3ZfuBni82sHS+PZZQGhOjHo9mS2lG7eNWR7Mz9XD9Vq5j
+ 6MQHqt5O4u4aOadL7lRzoCplG+zmulYwF/G+CRspKgli0frzKixPTswX14g3g+/0ZE
+ OQN/byGnJnVOcN1nI6bWr3+x6ddxiZMZ8AN17FaA2PEoCOU9XTfmcfd8ivhtBwDnqb
+ pomyoGGn1gr/5sf9AAwphLVxZGUHcWyT2AWOeoc/4OyAt7DXuoXc0jmkpm1Nttr6PD
+ ci5h+Pm3DlG43yZZDCyPytiFb/IenmIJRaEGNL1IyHVviTaYi3TEF5ehHhZftQBGHu
+ 16tcvitSASIsfZnUmHuXkV77jy/7rFOThAUN8pfWfB9VZjCZu3w12LuAOsRqHU0C3d
+ gikrjfbunIk0FIJ9vI22EJJ5M/Rhevcfqt0UCs6YYq2VmQhRS3lg7ZFAXOVvwwxZNO
+ iAJMuNhjfO6dKtnasl2JFTeFzg8QM5v2XODy4bTPU3B4fBQTlnzOqApZxQwEZa5WE+
+ Rd4xZRXD2BcRNH24H68NeDFDa/lOFb/erIsa3dd5bv9a92AGTAjj6AtyWEnrCUBPuB
+ GLx1ity7vFD0pgYZNsnCBG+zrDKnb26rRb4AorjVAnfjCT9hyk39bvBCI2wSchU5Vj
+ p7vWocI9Ym1Ad0c6dGO4QaY4=
+Received: from zn.tnic (pd95304da.dip0.t-ipconnect.de [217.83.4.218])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 84EA040E01A5;
+ Mon, 27 Nov 2023 11:43:55 +0000 (UTC)
+Date: Mon, 27 Nov 2023 12:43:49 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Yazen Ghannam <yazen.ghannam@amd.com>
+Subject: Re: [PATCH 05/20] x86/mce/amd: Use helper for UMC bank type check
+Message-ID: <20231127114349.GMZWSA9QADGqCXnTYe@fat_crate.local>
+References: <20231118193248.1296798-1-yazen.ghannam@amd.com>
+ <20231118193248.1296798-6-yazen.ghannam@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
- flashing bar with a picture of the desktop background on white screen
-Content-Language: en-US, de-DE
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Lee, Alvin" <Alvin.Lee2@amd.com>
-References: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
- <CABXGCsOqbLRHSkiz79NkVQ-wUtR7y-ZFHvhMw0+JJ_cY2AZmSw@mail.gmail.com>
- <CABXGCsPE9=Qp3Jg5hkRsTQoNgODnS_cXFU1d+hg3Baob40AaAA@mail.gmail.com>
- <edc5b75b-c08d-4c62-ae5e-089ffac27772@amd.com>
- <CABXGCsO=pdxorK9pO7qBPJM-xvgPPtpZqxLvQO4t2AK5qW3vcA@mail.gmail.com>
- <DM8PR12MB5400EAB81E5FA10F4309A732D1B1A@DM8PR12MB5400.namprd12.prod.outlook.com>
- <CABXGCsNpEh7GjFPvx=rz6ZeB7Kx4iqV-e8HyFKyhNau2S5gENw@mail.gmail.com>
- <99ef9596-d4f8-49e2-acbe-ed7486310f84@amd.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-In-Reply-To: <99ef9596-d4f8-49e2-acbe-ed7486310f84@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1701009624;
- 1af263c4; 
-X-HE-SMSGID: 1r7GJ4-0001v2-7I
-X-Mailman-Approved-At: Mon, 27 Nov 2023 08:39:45 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231118193248.1296798-6-yazen.ghannam@amd.com>
+X-Mailman-Approved-At: Mon, 27 Nov 2023 13:54:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,45 +64,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "Wheeler,
- Daniel" <Daniel.Wheeler@amd.com>, "Wu, Hersen" <hersenxs.wu@amd.com>, "Mahfooz,
- Hamza" <Hamza.Mahfooz@amd.com>,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Cc: tony.luck@intel.com, x86@kernel.org, Avadhut.Naik@amd.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Smita.KoralahalliChannabasappa@amd.com, linux-trace-kernel@vger.kernel.org,
+ linux-edac@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 16.11.23 11:46, Christian König wrote:
-> Am 15.11.23 um 21:08 schrieb Mikhail Gavrilov:
->> On Wed, Nov 15, 2023 at 11:39 PM Lee, Alvin <Alvin.Lee2@amd.com> wrote:
->>> This change has a DMCUB dependency - are you able to update your
->>> DMCUB version as well?
->>>
->> I can confirm this issue was gone after updating firmware.
->>
->> ❯ dmesg | grep DMUB
->> [   11.496679] [drm] Loading DMUB firmware via PSP: version=0x07002300
->> [   12.000314] [drm] DMUB hardware initialized: version=0x07002300
-> 
-> Mhm, that's a quite ugly problem.
-> 
-> The driver is supposed to work with older firmware as well or at least
-> issue a warning and provide a reasonable fallback.
-> 
-> How are we going to handle this?
+On Sat, Nov 18, 2023 at 01:32:33PM -0600, Yazen Ghannam wrote:
+> @@ -714,14 +721,10 @@ static bool legacy_mce_is_memory_error(struct mce *m)
+>   */
+>  static bool smca_mce_is_memory_error(struct mce *m)
+>  {
+> -	enum smca_bank_types bank_type;
+> -
+>  	if (XEC(m->status, 0x3f))
+>  		return false;
+>  
+> -	bank_type = smca_get_bank_type(m->extcpu, m->bank);
+> -
+> -	return bank_type == SMCA_UMC || bank_type == SMCA_UMC_V2;
+> +	return smca_umc_bank_type(m->ipid);
 
-What happened to this regression? This thread looks stalled and from a
-quick search on lore and the amdgpu issue tracker it seems the issue
-wasn't discussed anywhere else during the last 10 days, but I might have
-missed something.
+	return FIELD_GET(MCI_IPID_HWID, ipid) == IPID_TYPE_UMC;
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-If I did something stupid, please tell me, as explained on that page.
+after having done:
 
-#regzbot poke
+#define IPID_TYPE_UMC	0x96;
+
+and you don't need that silly helper.
+
+And then you can do more cleanups ontop by doing
+
+        /* Unified Memory Controller MCA type */
+        { SMCA_UMC,      HWID_MCATYPE(IPID_TYPE_UMC, 0x0)        },
+        { SMCA_UMC_V2,   HWID_MCATYPE(IPID_TYPE_UMC, 0x1)        },
+
+and have all the numbering properly defined and abstracted away.
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
