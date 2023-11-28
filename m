@@ -1,64 +1,122 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C0C7FBCB4
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 15:28:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB2C7FBD8D
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 16:00:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E129F10E552;
-	Tue, 28 Nov 2023 14:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73AAE10E560;
+	Tue, 28 Nov 2023 15:00:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
- [IPv6:2001:4860:4864:20::35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA7E10E551;
- Tue, 28 Nov 2023 14:28:23 +0000 (UTC)
-Received: by mail-oa1-x35.google.com with SMTP id
- 586e51a60fabf-1fa1c3755afso1495601fac.1; 
- Tue, 28 Nov 2023 06:28:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701181703; x=1701786503; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1tmejyirwISX4dtXX4YWaEBQtRgR13R/FrRlHHYvz9E=;
- b=CCh1Egy6ZwlsFjbmxCLlNIHCw/DvczY5fe1SdvkSNcvS8BwwYhhGhTGh8EMD3hFXOA
- IkUnDhwnxJX6rcWsZG9u8tZaHi14UitQ35K5zdmxOhqitns0rhkvrgfEoAyxzKWh9RC7
- XiehEweHhN6GKksJdL7LPOKmRRapuJeG4tnrY/WmHmNA0yzLcqrUoLhEc5BcjA5eOgSu
- RHDLhwNwDOtr78LCIxuEph7eV+8Wwp4SZMf2IXtODlC69HzcNAs7H3Xt1wzARIT6CgEX
- 3fEHDBmInpmWdU/59VeR6F6U5+hp0eAADibpJPDm/PT1vXuJ+JT/dfZEjBXBJ3kVUXpV
- 6i4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701181703; x=1701786503;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=1tmejyirwISX4dtXX4YWaEBQtRgR13R/FrRlHHYvz9E=;
- b=uF9zlnR09gv/RQuTZyG0NFZ9yiX+bXew+635Pfq2qjLawInQ038A63eSICdu2im8IO
- kvaBAyAzguo60bhS6bXNbudFcNcS30HpRGuviBiJ3ualYC7KHCHi9RKEyPmmAr8wqkAg
- cfUXq9lKuzujlry2czm7QxTKHEj2rWc/AT9pBlb7lROvLOiH4tCHpsUVEADCyAMkQynM
- 2EVm4kz7N/N3sYanCHEWGddExDX4nqoLY7Hl/g9O7B5QQkc6jfJLkozsBHgTzLUOkNha
- 6pkyefLf0OLbsXLHOVZuJZxSzzNCg4YgEbg1ep27kus8niPZJYVkMSw0Ioi66O/zxVDA
- HxqQ==
-X-Gm-Message-State: AOJu0YyEmvt0qxxCRQ5KtP8G5vFREfwL55q0m1DFfVxMIH+0hcnLgGIu
- My4WIHHpxzedkTFi+OR5F/H9MxlPMDaDWOa2nfo=
-X-Google-Smtp-Source: AGHT+IHqvv5vkT2KyCNQ9HDx6yVhLVzpq+34e4q3Z60lsALZ2oCr3sOI+M40yctwzPkYJsqvJprCy82Lb0EPxBoUqlE=
-X-Received: by 2002:a05:6870:b510:b0:1fa:25d6:9010 with SMTP id
- v16-20020a056870b51000b001fa25d69010mr5653711oap.18.1701181702740; Tue, 28
- Nov 2023 06:28:22 -0800 (PST)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2082.outbound.protection.outlook.com [40.107.223.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02D0B10E560
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 15:00:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DnLhZ8k8GGQqO9G3vY4hIZiCceTZ0uXNYU8sEK3QsRWyTlDDd2ZA2YDqQk40Ll9Zs0Ar2OP755r6pOS36xDljlaYvjrB++MND+eiSH/Eg6j2kgYdNKA1KOSZgez6IJJekHQnEy1DWFsX2mrg3gGPo5pqQBH9sStPFgh0AGELZ5/q4s1p2In6/HplcS4nIZa0ZiCyKwOOoqWVhbc4uepItUWNt0Rpu68unJG/OpZbS/LB7o98zrVDilbTqDbtVrB/Np0iDXNv5ju0oOGZ8qCLPeUkPPPxs2x04dEIPXb120nQTQ3b8HknDe9TeqUpFNutIGmRPQ2Udj6XVX6V5380/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wTqniOpa4btowbFYgvnoa2Kh9shBapBvPMYw4rv62H4=;
+ b=X9GTxK8/2HNrkqFcwW7jwCx1BP9uKI5StJusxc2hOt7Icx8PQCUrdUtSK0VdOd3eSoQXIn62cDeA7ehgv1I+4gzixF88LJlqrFXTi7XgdUZduja2El3GHTwIocT68IQIUInm6eKR7Xw/RPB2d5L0DnfU+50rumE55j0PphwYzCW0fgjNbtFBmWV1bAZS0+Ni9avSOSeN0NgFppNtFwuxbjQQLCqSpr7JfKV3D3Fjzp4qpLZSGg7iuzJUJG1igj6qfDzDLYUrTNpinJdH4QGrDAUnbNvb/laxQRtBQjWIs9uaaC7RTEb7S8V4cfizpk8rw0uXlEVpt2BrEDa9Dkvlcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wTqniOpa4btowbFYgvnoa2Kh9shBapBvPMYw4rv62H4=;
+ b=V4W7GU1nhuUlUFwjwuDYv774ClMm5qTZoG7hDaxyPuKISCRgqD3YqQ6Nuu5olvamhhQ0w6fbkLhjG7DCR+V2BIiiL4H7zQvhSeJzD/2fco3WeFltM5v1qvnc7mik4qQI1NruFIYS0pgLqWLeX2Vh9thEFMdVIYcl7sBa9PiDZjs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by DS7PR12MB8290.namprd12.prod.outlook.com (2603:10b6:8:d8::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Tue, 28 Nov
+ 2023 15:00:19 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::7bfc:e32b:f362:60f3]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::7bfc:e32b:f362:60f3%5]) with mapi id 15.20.7025.022; Tue, 28 Nov 2023
+ 15:00:19 +0000
+Message-ID: <4558e54e-f0e9-4810-8c49-437b588f2d72@amd.com>
+Date: Tue, 28 Nov 2023 10:00:16 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Fix uninitialized return value
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ "Lazar, Lijo" <lijo.lazar@amd.com>, Alex Deucher <alexdeucher@gmail.com>
+References: <20231127182945.1109556-1-lijo.lazar@amd.com>
+ <ac4bc87d-7ae1-45d3-8f85-0e294289ad3a@gmail.com>
+ <CADnq5_NA0fi8cGvrSzCtmtsWpgKhaG4O8T6cW+ObJoCm=iwzSQ@mail.gmail.com>
+ <1c1877d8-c062-4648-950b-4e05f568b356@gmail.com>
+ <a61886fc-358c-4f89-961d-8145f70d31ee@amd.com>
+ <4664a573-da9a-4d48-bee7-4b2bef3081b6@gmail.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+In-Reply-To: <4664a573-da9a-4d48-bee7-4b2bef3081b6@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBPR0101CA0076.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:4::9) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
-References: <20231117195626.13599-1-alexander.deucher@amd.com>
- <a42a4321-9dce-4c76-9578-8ea665b874f8@gmail.com>
-In-Reply-To: <a42a4321-9dce-4c76-9578-8ea665b874f8@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 28 Nov 2023 09:28:11 -0500
-Message-ID: <CADnq5_NiHRhDJt+bkdy35GPfTaTUdSRrf_aVVQobfFgayHP2hw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: add shared fdinfo stats
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- Rob Clark <robdclark@gmail.com>, 
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|DS7PR12MB8290:EE_
+X-MS-Office365-Filtering-Correlation-Id: 657f52fc-42ab-44e7-6937-08dbf022bcd8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: h7YbbN8wy2wlFtZpIHnaCX+JqTbF386sKLqK0dhDC3KGh3Wn8cDJtcwW7asbEk2PQK9RF1VhmVkjhjR+0c7qMSlQsHIy+dGVuPTTJocaD3xh0If2nt5s2R7p7DdKETrozmOZA6M+KfoUVrmuMxwMNopRDcGY/q3QVc7BsrylglLMNC+3KDOsiMtw+nsfjmb9+cpU5MYl+3pP3yn4DW0nGcgvBU1frXRC393uRcJQ7S+xYhVSot24G2ukZqB84o+0APwr/4zumD46XucC7+fn3hl1BG/h0VpZC5lU0sqjoxnlHIXsM3wKMUmlfFGY+H6HmsViVbG7FdV8q/d5Mrrsf1r24tUxq2vavt23flF8PV3zE6mdn4r9Fv6UJs37N1TpU+z46/56pbiR7jdIVz//RfCPZ0jHYoFfXixjRPQ5iVCrDQucxENIQ5dz/Zw297V2af8kfH4X8nqiolYhn2ANQL3+rJAhx5evu428kDC2uRJW12iWiNcaF8eiHfN9zjdtcTnnU+pdtiqy0wl7FVbrS40WLQZXfYvmQyGTmQD62as3/E2qLFmpiUqdCiSJ3+23giuHpCjs+U9Sqph1RSoBGm9W3gdJK/KC/4bbQQQk8dZy+QqFpfgiBpxl8Y7a+VqBTnkk9MR6Z80+znlKeulWcu8Tj7ttvOujfbWKqs8/9/AYpOkAP/xskvknoMwb1U73
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(366004)(136003)(39860400002)(376002)(346002)(230273577357003)(230173577357003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(86362001)(31696002)(41300700001)(2906002)(4001150100001)(6486002)(66476007)(26005)(66556008)(2616005)(66946007)(110136005)(6666004)(6512007)(6506007)(53546011)(478600001)(8936002)(8676002)(4326008)(83380400001)(5660300002)(36756003)(44832011)(316002)(66574015)(38100700002)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmdBRU5UZ2tRV1VvSVBmb0h1UktNaDlMSjF2Y2RJejI0SHJLUkhyaWhmb1dy?=
+ =?utf-8?B?cUduZUFIanJiMEQrY080NGY1VFdLWGVnTXdweThPMER1VC9hU2VPQWRUUXE0?=
+ =?utf-8?B?YWFIbkpiaGhDbEJBUUszcWZrd2x5VzJ2cHNWTi9NbjZHVFpueW1XQ1J0SUdZ?=
+ =?utf-8?B?bHg5YkRhZkJTM3FNRTRaT1IzZXBoTS9qRS80aFhiQ3I1SUxPVnA3WDVQRG1q?=
+ =?utf-8?B?TGhSdEFnWFJRNkRwOUdWZVpwNHpsOWVST0c4K2Z6bkNWdlFCc2QzMG00MXNi?=
+ =?utf-8?B?Z3lPUFZRUlJsVTZMWXVzSVNUUlAyNzJ4UGVTTERqak4zOW1teDlURDFPQlB6?=
+ =?utf-8?B?S3JwS0hkY0F0QVBvWmVrendWQk1jd3pMTHlrdnV5MnVxMEY4WmxEcGR3R1Rh?=
+ =?utf-8?B?QTI0VGg5d3ZrRkxWRmFiRFVKdW1IOWJtcW9ybDJrOGFqd01OaVZ3eHZoamxQ?=
+ =?utf-8?B?MVNSLzQ1endaQU90dHpWdTBheXJnYXI1V0dsL0dXV1hCZHVqbmZ6dkNRaUxz?=
+ =?utf-8?B?UXA0UFhNcVJVNmlEaU04alN3Uk5UdFZaYytPNTlGcXdBclQxU3R0RS9aZVdJ?=
+ =?utf-8?B?RUtQb3ZKK3dvbHg3V3hETlpiTVM1Ukh3Y29MRStTMVN0REorb1N4NEtCclRD?=
+ =?utf-8?B?ZWFmOFJPRDdPWTBELzJXbnVUTktkSE84MHFET1lNMWtVVDFJb2JUNHhFM1RY?=
+ =?utf-8?B?Wk5zVjlia0xZclBsWGlXNWRiR25mWVNJMmlGb3pqcFBrZnVrUE51RTZQRW90?=
+ =?utf-8?B?Qkt3dmRJTnJNMUhTS3U2TE5ZSDV5YTZBTjY5UGRFcDVsTTBpZUlhZjFlRGV2?=
+ =?utf-8?B?OGVtQXZFOG5TckQvNiszUU1aN1owL1BPSlBPNHdtRzFuaDB1cTdsS3JnWFhV?=
+ =?utf-8?B?cml4ditBV2pUTkZnbmdYSWhqTzN4MnZuRVVNbWZ0Wlc4b2FRNk1GVXhOb0tH?=
+ =?utf-8?B?WEhyeDFqNDdiQnlLaS90Qmx4VVVPdENyYW13WEVGam5DaTQvZWwxMlh4RjY5?=
+ =?utf-8?B?Y1prdTEwdUFJbkdIb1ArNGdoMDJhMGFGbm9abVU1NlQ5YXY1U0JnN2xqN1Nl?=
+ =?utf-8?B?YTFIRExwbnBFVVRBeVREY0lGSXdneXVzVDNZdTRUMkZXM1owTThXZzg0Z0Vp?=
+ =?utf-8?B?ckxkTDByQk5GcUZ1VDRUMnI0Q05wd01MaUkwekpPWHpwZlBHcWpOeEJNZm5p?=
+ =?utf-8?B?ejZGTFd4bkNvWURZWWdSUHZJWGdNUHUxdXJqSnk2WEphc0IrMzNpdzNjM3o5?=
+ =?utf-8?B?alFwREErNjBmcEVrL01qd2E4cnJNblFvak9nVUtmQnZ4YUNKZ21xL3pYeVFh?=
+ =?utf-8?B?dVZmeE8wcTY0UTIxVVI1SlZydVhKMjBCeUNwMm5JUk9PRDFPVS9xalJyZkFO?=
+ =?utf-8?B?M2hnSkRQd0JCUHNDWkVEMFlpR09UbEZ5Y0RraE11VHJLUzVWQjNTVjlNb3Nn?=
+ =?utf-8?B?TEVLb0oramJHV1d2QmR1cXVOa2xKVU5OdS9pcTJTc2RmSnVuZk9taUg4Yy9O?=
+ =?utf-8?B?V3R2NCtHMDNDdlA5bkR3bUQzN0tZQmpJNmNxUzVmWGpLbWxxblN0RE00bk1z?=
+ =?utf-8?B?ZVk4QlBjcHlyNnRIZFpnVndCQjFhTHZVVUNrVFd6a0E4bmhseWNKMEhTaTdr?=
+ =?utf-8?B?S2xIRmtsVC95TXdlN3p5anZGZUFGRkxUa3hLendUdGFadjIrMGF2b1VSNnFF?=
+ =?utf-8?B?bWxGZUhmY1RxenVGbFpFL2VmaXgwbko2VXMzSURJakFMQkZrdUl1aGZkd05G?=
+ =?utf-8?B?WTJJeklPanpiT29pQTZCYndBOThTMkpFdkFXbW1td1FwT1lsSHIxSnhKWUZx?=
+ =?utf-8?B?MU5YWW5IVS9Fenplb04rTlgyMENFSkw5bENZQW1zdElUdGVyRkpNOGR6ME9r?=
+ =?utf-8?B?bVBjb1JBMEN6MnA5RVBaNm5zRm9UVTBVRHg3WkFaTnhRSHFNSGhXYlhZR3JK?=
+ =?utf-8?B?ejlZSUxMc0krM1g5RVkybVk1VmdGcEx6VzRxQ0tYeWZaQTMzYlNFVFU2em03?=
+ =?utf-8?B?ZmV0WW52MjNpRFRNYzN3ODgvRXJkQktIOEhERW9odzR3aG8wYi9MUVcrK3BC?=
+ =?utf-8?B?K2JqdjBlZ0FnNE5iZE5EQVJmQ3FJM043dnZYRmxnM05GUElMSnZHZW1nOG5a?=
+ =?utf-8?Q?BHrUZBvqkhsLpQ3qhTutT58S0?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 657f52fc-42ab-44e7-6937-08dbf022bcd8
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 15:00:19.2057 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IFSbNNiRanPnGNoZSdJkwB+q2tDIXtzkJjjE7t7cgCLi/ruLZTy6oAiH/1m8t7jJ78YFlqdnryblq9Gqa4csHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8290
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,129 +128,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 9:17=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
+On 2023-11-28 8:18, Christian König wrote:
+> Am 28.11.23 um 10:49 schrieb Lazar, Lijo:
+>>
+>> On 11/28/2023 3:07 PM, Christian König wrote:
+>>> Am 27.11.23 um 22:55 schrieb Alex Deucher:
+>>>> On Mon, Nov 27, 2023 at 2:22 PM Christian König
+>>>> <ckoenig.leichtzumerken@gmail.com> wrote:
+>>>>> Am 27.11.23 um 19:29 schrieb Lijo Lazar:
+>>>>>> The return value is uniinitialized if ras context is NULL.
+>>>>>>
+>>>>>> Fixes: 0f4c8faa043c (drm/amdgpu: Move mca debug mode decision to 
+>>>>>> ras)
+>>>>>>
+>>>>>> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 2 +-
+>>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c 
+>>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+>>>>>> index 1a8668a63e67..f6b47ebce9d6 100644
+>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+>>>>>> @@ -3410,7 +3410,7 @@ int amdgpu_ras_reset_gpu(struct 
+>>>>>> amdgpu_device *adev)
+>>>>>>    int amdgpu_ras_set_mca_debug_mode(struct amdgpu_device *adev, 
+>>>>>> bool enable)
+>>>>>>    {
+>>>>>>        struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+>>>>>> -     int ret;
+>>>>>> +     int ret = 0;
+>>>>> That's usually considered very bad coding style and complained 
+>>>>> about by
+>>>>> automated checkers.
+>>>>>
+>>>>> Instead explicitly set the return value in the code paths not 
+>>>>> actually
+>>>>> setting it.
+>>>> In this case, the function is so short, I think it makes things less
+>>>> readable to do that.
+>>>
+>>> Yeah, indeed but that doesn't help us with the coding style checkers.
+>>
+>> Are these checkers for real? I see many instances of variable 
+>> initialization including in core kernel code (ex: workqueue) code.
 >
-> Am 17.11.23 um 20:56 schrieb Alex Deucher:
-> > Add shared stats.  Useful for seeing shared memory.
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
-> >   3 files changed, 21 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_fdinfo.c
-> > index 5706b282a0c7..c7df7fa3459f 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> > @@ -97,6 +97,10 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struc=
-t drm_file *file)
-> >                  stats.requested_visible_vram/1024UL);
-> >       drm_printf(p, "amd-requested-gtt:\t%llu KiB\n",
-> >                  stats.requested_gtt/1024UL);
-> > +     drm_printf(p, "drm-shared-vram:\t%llu KiB\n", stats.vram_shared/1=
-024UL);
-> > +     drm_printf(p, "drm-shared-gtt:\t%llu KiB\n", stats.gtt_shared/102=
-4UL);
-> > +     drm_printf(p, "drm-shared-cpu:\t%llu KiB\n", stats.cpu_shared/102=
-4UL);
-> > +
-> >       for (hw_ip =3D 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
-> >               if (!usage[hw_ip])
-> >                       continue;
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_object.c
-> > index d79b4ca1ecfc..c24f7b2c04c1 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> > @@ -1287,25 +1287,36 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
-> >                         struct amdgpu_mem_stats *stats)
-> >   {
-> >       uint64_t size =3D amdgpu_bo_size(bo);
-> > +     struct drm_gem_object *obj;
-> >       unsigned int domain;
-> > +     bool shared;
-> >
-> >       /* Abort if the BO doesn't currently have a backing store */
-> >       if (!bo->tbo.resource)
-> >               return;
-> >
-> > +     obj =3D &bo->tbo.base;
-> > +     shared =3D obj->handle_count > 1;
+> Yes, I've got multiple complains about that already.
 >
-> Interesting approach but I don't think that this is correct.
+> What people basically seem to do is to search for patterns like "int 
+> ret = 0;... ret = whatever();.. return ret;" with cocci.
 >
-> The handle_count is basically how many GEM handles are there for BO, so
-> for example it doesn't catch sharing things with V4L.
+> This then results in a note that an initialization isn't necessary and 
+> should be avoided.
+
+Isn't that the opposite of defensive programming? If you write your 
+kernel code in Rust, all your local variables will be implicitly 
+initialized. In C you have to do it yourself. And the compiler is 
+notoriously inconsistent warning about uninitialized variables.
+
+Regards,
+   Felix
+
+
 >
-> What we should probably rather do is to take a look if
-> bo->tbo.base.dma_buf is NULL or not.
-
-+Rob, dri-devel
-
-This is what the generic drm helper code does.  See
-drm_show_memory_stats().  If that is not correct that code should
-probably be fixed too.
-
-Alex
-
+> Same for things like return after else, e.g. when you have something 
+> like this "if (...) { ret = whatever(); if (ret) return ret; } else { 
+> ... ret = 0;} return ret;".
 >
 > Regards,
 > Christian.
 >
->
-> > +
-> >       domain =3D amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-> >       switch (domain) {
-> >       case AMDGPU_GEM_DOMAIN_VRAM:
-> >               stats->vram +=3D size;
-> >               if (amdgpu_bo_in_cpu_visible_vram(bo))
-> >                       stats->visible_vram +=3D size;
-> > +             if (shared)
-> > +                     stats->vram_shared +=3D size;
-> >               break;
-> >       case AMDGPU_GEM_DOMAIN_GTT:
-> >               stats->gtt +=3D size;
-> > +             if (shared)
-> > +                     stats->gtt_shared +=3D size;
-> >               break;
-> >       case AMDGPU_GEM_DOMAIN_CPU:
-> >       default:
-> >               stats->cpu +=3D size;
-> > +             if (shared)
-> > +                     stats->cpu_shared +=3D size;
-> >               break;
-> >       }
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_object.h
-> > index d28e21baef16..0503af75dc26 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> > @@ -138,12 +138,18 @@ struct amdgpu_bo_vm {
-> >   struct amdgpu_mem_stats {
-> >       /* current VRAM usage, includes visible VRAM */
-> >       uint64_t vram;
-> > +     /* current shared VRAM usage, includes visible VRAM */
-> > +     uint64_t vram_shared;
-> >       /* current visible VRAM usage */
-> >       uint64_t visible_vram;
-> >       /* current GTT usage */
-> >       uint64_t gtt;
-> > +     /* current shared GTT usage */
-> > +     uint64_t gtt_shared;
-> >       /* current system memory usage */
-> >       uint64_t cpu;
-> > +     /* current shared system memory usage */
-> > +     uint64_t cpu_shared;
-> >       /* sum of evicted buffers, includes visible VRAM */
-> >       uint64_t evicted_vram;
-> >       /* sum of evicted buffers due to CPU access */
+>>
+>> Thanks
+>>
+>> Lijo
+>>
+>>>
+>>> We could do something like this instead:
+>>>
+>>> if (!con)
+>>>     return 0;
+>>>
+>>> ret = amdgpu_mca_smu_set_debug_mode(adev, enable);
+>>> ...
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+>>>>
+>>>>> Regards,
+>>>>> Christian.
+>>>>>
+>>>>>>        if (con) {
+>>>>>>                ret = amdgpu_mca_smu_set_debug_mode(adev, enable);
+>>>
 >
