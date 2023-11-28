@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDC57FBCBF
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 15:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC977FBCB9
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 15:30:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057F010E55B;
-	Tue, 28 Nov 2023 14:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF4910E553;
+	Tue, 28 Nov 2023 14:30:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 372 seconds by postgrey-1.36 at gabe;
- Tue, 28 Nov 2023 11:43:32 UTC
-Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com
- [91.218.175.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04A9610E180
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 11:43:32 +0000 (UTC)
-Message-ID: <6e4600d4-702b-4093-ab36-38a3b4258a58@linux.dev>
+X-Greylist: delayed 639 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Nov 2023 11:47:58 UTC
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::ad])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C12410E4E2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Nov 2023 11:47:58 +0000 (UTC)
+Message-ID: <ee38d09e-52f2-4b32-b3bb-95b3c93a19e5@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1701171436;
+ t=1701172076;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=0I+W9bsb+kBg+427S8NtEnibAk7cRKVUP+7Q4R1dJ8M=;
- b=uVNmItZzZAlYPc6oY5zlKm6bvGWmpXicsQrXklpzYc6asRAbT2v3EGCskvzdPnJScGAL+l
- B7bIzLMFAy6zNVIlfC2magkq4P7abKHxr0OkBUZ+msULdzk0gpCDpydN58pBxi7ZwwGR1n
- CtsKS2BEdVAhHCw6z3oDtZBVs8a5lSc=
-Date: Tue, 28 Nov 2023 19:37:09 +0800
+ bh=PEP0y6b8YPmo3TxW7nBtwEPxFe/V/Vxl7mo9MWFelXo=;
+ b=Ejwq/Nb1at/Q5qXPoigj1GLhEKkL0bsy7BytA11hnyUyV8hNzBHFXGn4ApW57XR1tu+VI9
+ hhS0YN8B7+usiNrEJdMbA/WD4UvHg8iz85mAtIb+o0hirliNFiSt5JQ42yhwhQjUYCfwG8
+ aQgEjTOXQ5kwduFvdQ5ONDjE1twdIA8=
+Date: Tue, 28 Nov 2023 19:47:48 +0800
 MIME-Version: 1.0
-Subject: Re: [3/8] drm/loongson: Do not include <drm/drm_plane_helper.h>
+Subject: Re: [7/8] drm/simpledrm: Do not include <drm/drm_plane_helper.h>
+Content-Language: en-US
 To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, daniel@ffwll.ch, airlied@gmail.com
-References: <20231128104723.20622-4-tzimmermann@suse.de>
-Content-Language: en-US
+References: <20231128104723.20622-8-tzimmermann@suse.de>
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <20231128104723.20622-4-tzimmermann@suse.de>
+In-Reply-To: <20231128104723.20622-8-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
@@ -60,8 +60,6 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-Thank you for the patch.
-
 
 On 2023/11/28 18:45, Thomas Zimmermann wrote:
 > Remove unnecessary include statements for <drm/drm_plane_helper.h>.
@@ -70,24 +68,22 @@ On 2023/11/28 18:45, Thomas Zimmermann wrote:
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-
 Reviewed-by: Sui Jingfeng <suijingfeng@loongson.cn>
-Tested-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
 
 > ---
->   drivers/gpu/drm/loongson/lsdc_plane.c | 1 -
+>   drivers/gpu/drm/tiny/simpledrm.c | 1 -
 >   1 file changed, 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/loongson/lsdc_plane.c b/drivers/gpu/drm/loongson/lsdc_plane.c
-> index 0d50946332229..d227a2c1dcf16 100644
-> --- a/drivers/gpu/drm/loongson/lsdc_plane.c
-> +++ b/drivers/gpu/drm/loongson/lsdc_plane.c
-> @@ -9,7 +9,6 @@
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_framebuffer.h>
->   #include <drm/drm_gem_atomic_helper.h>
+> diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/simpledrm.c
+> index 34bbbd7b53dd9..7ce1c46176750 100644
+> --- a/drivers/gpu/drm/tiny/simpledrm.c
+> +++ b/drivers/gpu/drm/tiny/simpledrm.c
+> @@ -25,7 +25,6 @@
+>   #include <drm/drm_gem_shmem_helper.h>
+>   #include <drm/drm_managed.h>
+>   #include <drm/drm_modeset_helper_vtables.h>
 > -#include <drm/drm_plane_helper.h>
+>   #include <drm/drm_probe_helper.h>
 >   
->   #include "lsdc_drv.h"
->   #include "lsdc_regs.h"
+>   #define DRIVER_NAME	"simpledrm"
