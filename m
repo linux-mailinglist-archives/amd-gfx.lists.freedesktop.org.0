@@ -1,59 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D53A7FBCBB
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 15:30:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C05D37FBCC3
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Nov 2023 15:30:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8248F10E555;
-	Tue, 28 Nov 2023 14:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21DCF10E561;
+	Tue, 28 Nov 2023 14:30:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com
- [209.85.128.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3B3510E51E;
- Tue, 28 Nov 2023 13:16:20 +0000 (UTC)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-5cdc0b3526eso35578137b3.1; 
- Tue, 28 Nov 2023 05:16:20 -0800 (PST)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
+ [209.85.128.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8305010E516;
+ Tue, 28 Nov 2023 13:17:08 +0000 (UTC)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-5c85e8fdd2dso51477147b3.2; 
+ Tue, 28 Nov 2023 05:17:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701177379; x=1701782179;
+ d=1e100.net; s=20230601; t=1701177427; x=1701782227;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=S9th/BD77eUlMr387q5dkgInc/R3bzqxX0OMMyBPcVw=;
- b=gouNp6o7Gg7vcqO5QbkJ0SVHfggjK51GDVdkyasB6LncCjyNERN+J+u6IYdtnpwYSs
- dKygrnXQCnDrC5KjRjKOXKG0MlhcIn/UlDTjZbYcKpB7Qvbyt9HJVS+kYCGGdSBvvlf3
- k+v4wCyI8UAcGW+oyxbvH98mS9dqWqZFwFn/8OnRw00YfBquxlvJZloRGBZo9AF+fxOX
- ESN8HiUE0lSko2tmhTH2WfcMi5QNPzIopNcrMsmcgxjOcjEDw8Hxu2kgvGFI7uHf1qcw
- SWNAuLOhNx/rkpDX16i2AV1UiZLlZeUpR6nfVPYz8jpxtQNZ8wGd51qkBc1iXsRxcsWt
- LL8g==
-X-Gm-Message-State: AOJu0YzDAP6r4Li+n4oAAOxmm1lxQfWgxpLqb66fS2OwrpFSlw+5Q+gC
- Sdfxop/H2YEwzuyO0StBt4wcyhWOZg8ZTw==
-X-Google-Smtp-Source: AGHT+IF+rSxToUFGCq1pPOiP0zt9FuEobqwRM9vhHMDJvXhN8MmXLyxJFNgGj7zbv1LkEYaKvVC5Ew==
-X-Received: by 2002:a0d:cf47:0:b0:5cd:ef57:ce3a with SMTP id
- r68-20020a0dcf47000000b005cdef57ce3amr11664000ywd.0.1701177379301; 
- Tue, 28 Nov 2023 05:16:19 -0800 (PST)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com.
- [209.85.128.178]) by smtp.gmail.com with ESMTPSA id
- m12-20020a81d24c000000b0058427045833sm3831531ywl.133.2023.11.28.05.16.18
+ bh=C7Lbj/iDgIl6mIwZwAI8rICbFPBFEI97XQcR55PL1mE=;
+ b=M10An7KumR0rmgHUmj9nII5G62ElANaYq1/inG3maRl7VSlIIKfJHQfoDNRQufw5NH
+ HS3jlGnM1aWoZra/07MpHshF+GtiROX1m2q214tTeqvvA/Unm7y4r17Davk9MH6EdS5v
+ xz9qWxpDg6Nqkuruaju76IG+EmpDPYH8xUjnoF1zu5MmYyJBfxDLjqVka9rqrOdcJtfu
+ yYtzuSaMIkCJUTiaFTfBMjXLa9LXBlhUGQ0PF7fTVnT+f3RDyBrEHiuoG05HnlHUyljY
+ /xdjX1d/tlB26NRk/YNfMWZJhA8VsiTdUyePiBfpyFwQjFxx1Aey6XedSlgIGh/ixhPy
+ QAsQ==
+X-Gm-Message-State: AOJu0YzikSut1+Y7hIbKbrbYwPN95ELrNVzndqo4wzlVfMGi9VDWkQ/L
+ wbnQLBS4wq1aeWuENEgmTZT+dSmh4azpwA==
+X-Google-Smtp-Source: AGHT+IEmkuEyRIyL5B9VCKYlIeo6zE/5zfUPiYOJIw1EJXUWYfCc3Egt3Bofi5VLYXEvIEyMlu9gew==
+X-Received: by 2002:a0d:cf43:0:b0:5ca:607e:b16e with SMTP id
+ r64-20020a0dcf43000000b005ca607eb16emr14001306ywd.0.1701177427368; 
+ Tue, 28 Nov 2023 05:17:07 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com.
+ [209.85.219.181]) by smtp.gmail.com with ESMTPSA id
+ gz17-20020a05690c471100b005cdd3869173sm3473141ywb.46.2023.11.28.05.17.06
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Nov 2023 05:16:18 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id
- 00721157ae682-5d1f8bc279aso1001267b3.1; 
- Tue, 28 Nov 2023 05:16:18 -0800 (PST)
-X-Received: by 2002:a25:d287:0:b0:db4:c7c:ede0 with SMTP id
- j129-20020a25d287000000b00db40c7cede0mr14829349ybg.24.1701177377982; Tue, 28
- Nov 2023 05:16:17 -0800 (PST)
+ Tue, 28 Nov 2023 05:17:06 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id
+ 3f1490d57ef6-da3b4b7c6bdso5218868276.2; 
+ Tue, 28 Nov 2023 05:17:06 -0800 (PST)
+X-Received: by 2002:a05:6902:49:b0:d9a:cd50:b99a with SMTP id
+ m9-20020a056902004900b00d9acd50b99amr14894279ybh.12.1701177425865; Tue, 28
+ Nov 2023 05:17:05 -0800 (PST)
 MIME-Version: 1.0
 References: <20231128104723.20622-1-tzimmermann@suse.de>
- <20231128104723.20622-6-tzimmermann@suse.de>
-In-Reply-To: <20231128104723.20622-6-tzimmermann@suse.de>
+ <20231128104723.20622-5-tzimmermann@suse.de>
+In-Reply-To: <20231128104723.20622-5-tzimmermann@suse.de>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 28 Nov 2023 14:16:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU3R=JkCeaM3m_TO_EOBbgut7qr_PJTJbTgs=CU05bgTQ@mail.gmail.com>
-Message-ID: <CAMuHMdU3R=JkCeaM3m_TO_EOBbgut7qr_PJTJbTgs=CU05bgTQ@mail.gmail.com>
-Subject: Re: [PATCH 5/8] drm/solomon: Do not include <drm/drm_plane_helper.h>
+Date: Tue, 28 Nov 2023 14:16:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUkcnx3WdPXHLq+NJCv9O+tWyhzwZR-VFcY69sciGioSQ@mail.gmail.com>
+Message-ID: <CAMuHMdUkcnx3WdPXHLq+NJCv9O+tWyhzwZR-VFcY69sciGioSQ@mail.gmail.com>
+Subject: Re: [PATCH 4/8] drm/shmobile: Do not include <drm/drm_plane_helper.h>
 To: Thomas Zimmermann <tzimmermann@suse.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,7 +85,8 @@ e.de> wrote:
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
