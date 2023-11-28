@@ -1,87 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B65227FCE06
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 05:45:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF9E7FCE93
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 06:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6579810E5F1;
-	Wed, 29 Nov 2023 04:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C105010E134;
+	Wed, 29 Nov 2023 05:58:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com
- [IPv6:2607:f8b0:4864:20::f2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CFE310E5EF;
- Wed, 29 Nov 2023 04:45:08 +0000 (UTC)
-Received: by mail-qv1-xf2d.google.com with SMTP id
- 6a1803df08f44-679da764efdso34930526d6.2; 
- Tue, 28 Nov 2023 20:45:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701233107; x=1701837907; darn=lists.freedesktop.org;
- h=in-reply-to:autocrypt:from:references:cc:to:content-language
- :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=d7Y0qZNLFICjLrmGifWVjYtYxOxOp0Zj6BSl0M+oReQ=;
- b=M57qEJjHELKP8ht17hv4Uj0qA6K1tCfm/M0/bPXAy4GN0eopa1w/RdOmz2RTK6QktQ
- 5Mg9RCNCvTM0pCJmrYadB/YAG8Rh6nASKEe0AaUV1SD2ivaGpTCkzsw6eyb8Lz6RvAZp
- Jl+QSo4BinBXcq8VLtWxkU79Hb1ITjobgdhO3UlO0GMVocBPG0K6Nm9MsvzT7UOvdJ4w
- cOGe8Fd8TkM8YuIBnJNq6XmlzvkT122KT8yojsQEccJisUAdmc8Os5Ov6n54ePEHAp8K
- s3ZqnslWnLYLsKhrcz+mtPsfeioZPUnGetgeE4n8/PJhhkjfRuDEVRAH/0NWPmbjMGWs
- IROA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701233107; x=1701837907;
- h=in-reply-to:autocrypt:from:references:cc:to:content-language
- :subject:user-agent:mime-version:date:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=d7Y0qZNLFICjLrmGifWVjYtYxOxOp0Zj6BSl0M+oReQ=;
- b=LTQL4CS4BCjdWiIMmV4pJ/EX+pOB6WKXPzEXmh/L76tWXDDSsrqYzIAiE5DcKx0JdL
- T0zv5Qp9RAbeehRaH16vebxx/kn4mQi0JSXqkz/N2p3ZG/VwU8Z7OpZQZHSZBg/VF1m1
- DeJFTkG3D7WS2gwxb27a+PWqEMJerh8Zf9Th5K//XigbCOVR1whY+XxQCkHMMyJKT6R0
- v8fkmHkuA9zcs23BJ2dt+Os/T4VM8pie7NsIg5nOO6pW9HIHv68zPdc9lVNDlPrTM4If
- 0CEKwQpwhaKRxxnGuinzHTO6NQEjNi3swbU/ALibvWRL9qOZsT1pfVhwgPLWwtCE7rz/
- ItJw==
-X-Gm-Message-State: AOJu0YxyHcKRbH00B8/HTjWz0BQFh2cCMvUatixIC3u1oqykKm3Qb69r
- 7yuGL6RCQ5qJDkf8MyVkYSo=
-X-Google-Smtp-Source: AGHT+IGuTwbMcogkXsTn/hgaHHthLzunhkCa/ta+F0yax0RoSK2iaf26YLDOyUGXPYctUebz/mtuJA==
-X-Received: by 2002:a05:6214:104f:b0:67a:f89:22e5 with SMTP id
- l15-20020a056214104f00b0067a0f8922e5mr19243475qvr.3.1701233107388; 
- Tue, 28 Nov 2023 20:45:07 -0800 (PST)
-Received: from [192.168.2.14] ([76.65.20.140])
- by smtp.gmail.com with ESMTPSA id
- y10-20020a056214016a00b0067a53aa6df2sm1604358qvs.46.2023.11.28.20.45.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Nov 2023 20:45:06 -0800 (PST)
-Message-ID: <95fe9b5b-05ce-4462-9973-9aca306bc44f@gmail.com>
-Date: Tue, 28 Nov 2023 23:44:57 -0500
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34AC910E068
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 05:58:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ua7xuxM5ftvGUmf+mzKCn0ok/i8P2fA8D9sPayXglktWTMA8Nuv8bJX+P6gZY/SnhdxqHGUeUh4GV3MomyVQDCExmW7GxZnkXq+hjD1TO5dijKbAnechvViucp+m8RfdMpC7IN7uridyWTHbMaS2frSVMOE0lDjEgtAwsq5SJYRdEtXkeHoOJj5rsnwZW2xrKsOzY1nNJjatV9KLwz7pJswJ/qJj4tu9pUpnowIotLnEYHwNPDNi/ayerGk/p4iTY3Vq+hHXUsahbpA9Xkm+94Ha2J/GEXmN4CfRkKaG62wNLIi/1gGM3WqCvg7WxCEei3NC0BJdf/3KwbLcF4p8Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HzHnGLQ80srrX6dTm7j56NUyD4ykkmgjfhLqDodrrGU=;
+ b=bFvngGvk54LQMqtlpEFSPMGaQNqyxVaNW6P7NnO1NLVDrMu3SVJNjetNmXt2Sco63rA8CzZWyR5H9L7OCua84WaIuIJ9ifNCT8TbunpTmHXPqETk4Uzc2mkTtfnqBrqBqmkI3lmGMESbr+SSNHlemsH6myF+emo2vPVpg+YW8U3Eul7JRwsyIaI54zzmHGiMAbQ6SE7mn6g9hkBpMjc16m6CmQ5pDNAUaz6yPEZS39toWDNNzf7+bYvlB3rXgrCvClVqBRc6AQAEMxVcRyTdWfqSsFU4lJJJUtO4+Ko8f4IQQFpWMbrKfphONTeyUYxyi8CNU5WQPlU7XuynN+4Nqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HzHnGLQ80srrX6dTm7j56NUyD4ykkmgjfhLqDodrrGU=;
+ b=EyHargYQJDNVS+cRSFOYiS/Vdbg4GQvr9/s5t+kN6SjttTmvWt9/I5JCXDqy49Ce/kBRp7PY130Pn+7oVQN9HvYxgWFvkn0oIOWj5P1tbtyOq4a40r8t6r4QI1B3l+ytq4WyZGXRaCdKoGu/IcQIgiAcu0w5WOahR6o1L5wMUgI=
+Received: from BLAP220CA0014.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::19)
+ by SA0PR12MB4415.namprd12.prod.outlook.com (2603:10b6:806:70::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Wed, 29 Nov
+ 2023 05:58:26 +0000
+Received: from BL02EPF0001A102.namprd05.prod.outlook.com
+ (2603:10b6:208:32c:cafe::ea) by BLAP220CA0014.outlook.office365.com
+ (2603:10b6:208:32c::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22 via Frontend
+ Transport; Wed, 29 Nov 2023 05:58:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A102.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Wed, 29 Nov 2023 05:58:25 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 28 Nov
+ 2023 23:58:25 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/3] Obey amdgpu.runpm even on BOCO systems
+Date: Tue, 28 Nov 2023 12:52:35 -0600
+Message-ID: <20231128185238.187381-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.5.0
-Subject: Re: Radeon regression in 6.6 kernel
-Content-Language: en-CA, en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Phillip Susi <phill@thesusis.net>
-References: <87edgv4x3i.fsf@vps.thesusis.net>
- <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
- <CAPM=9tw-8pQWFso0zuLqpsqd5BSHWtc4As9ttdjY-DDr70EMqQ@mail.gmail.com>
- <bdb238b6-60c7-4f26-81d0-9e62cd5dd326@gmail.com>
- <CADnq5_NVGS1XykxGxpcu_bpPbzboCUJQkcCF3r+0N9a23KUgiQ@mail.gmail.com>
- <96e2e13c-f01c-4baf-a9a3-cbaa48fb10c7@amd.com>
- <CADnq5_NBfeAXEyQw0gnSd67=tR-bUKg8w=10+4z9pGGuRnP9uw@mail.gmail.com>
- <87jzq2ixtm.fsf@vps.thesusis.net>
- <CADnq5_Ou-MVVm0rdWDmDnJNLkWUayXzO26uCEtz3ucNa4Ghy2w@mail.gmail.com>
-From: Luben Tuikov <ltuikov89@gmail.com>
-Autocrypt: addr=ltuikov89@gmail.com; keydata=
- xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
- Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
- eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
- AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
- JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
- cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
- 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
- aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
-In-Reply-To: <CADnq5_Ou-MVVm0rdWDmDnJNLkWUayXzO26uCEtz3ucNa4Ghy2w@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------B9KvWMDdbyeGAXg0IZipz9I3"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A102:EE_|SA0PR12MB4415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25eff1a3-79a8-4db7-366f-08dbf0a033d2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: x/52VG/A7z0KQXkeUv5B4N+LMluwP1aZqNx30NCgFa3TzGY5uLh6lVbW+jKurlF4aPK/4Tk7D2AUHg5n6t6Bv5LWIg6/I8pk/V+TNeXyFxxmHV17HveMkXKUJ1U2bHIQeHRSrZt71mskBHLeqEqI6k8eLn7CS0JFioEkA3GDmBBvhgeZtoaVa3FmMeGWR2C9aBBU0mgJIMdASzO3hF65gk4cSFov1Np6K0s/fVcxSJ6AnZBDJ/4ntMNbJDRFNhn2EquSicYf7AMer8wdNLVmFl+y51nMiE6BRg03E6dNhQ+P0PxS6pbk9iDz9FXrBUUKmB8FNoOhlglmMcwwvASXxa7MfZHw6gUYE1POZ+sE9TNPivXawRhHSAXdtbby67LLtQwvVVoprMxBlPLTknxehu9ujxEZPe6yeaVWtMOw3V1S8YTN4Bl9zepIPyN+Swa0a9LnOlH2r0TAy4tF8fJ2kjFAspms9PoeD92Z1iOf0E7leTv4vdlExx6zjusj+XmYtqy9zwhNxT5Y1QVuBRUrTazuYzRYMWN6zKmZecwQWPEkT4N/WMPdDNvL9PRsvGopKOjtnq8ljFQiT5aPRjGXW1A9fk5LDyrkJe2fZZSreXS/vJr67ZCmv5nHeY9DzGA1JQXK32rm3990kB9wZxwpegnHtSFKUaPhBEc0T87jf85Nz9/Pc0boEEoRkTBKdoLqtC0DiffNUpXXhYUKlYeNSXJy3YPjq6hp2x6MdZdA9exdkpv0QkrRMh1hO0cWjucznuOuyLBKGF+3IW5JEUxqsw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(136003)(396003)(376002)(39860400002)(346002)(230922051799003)(186009)(82310400011)(1800799012)(64100799003)(451199024)(46966006)(36840700001)(40470700004)(5660300002)(4744005)(44832011)(40480700001)(41300700001)(8936002)(4326008)(8676002)(2906002)(316002)(6916009)(54906003)(70586007)(70206006)(40460700003)(47076005)(36860700001)(36756003)(2616005)(1076003)(478600001)(81166007)(7696005)(426003)(26005)(336012)(6666004)(16526019)(356005)(83380400001)(86362001)(82740400003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 05:58:25.7592 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25eff1a3-79a8-4db7-366f-08dbf0a033d2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A102.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,136 +97,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- ltuikov89@gmail.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Jun.Ma2@amd.com, Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------B9KvWMDdbyeGAXg0IZipz9I3
-Content-Type: multipart/mixed; boundary="------------zdhIbyuVIrAPRu0RHztAccg6";
- protected-headers="v1"
-From: Luben Tuikov <ltuikov89@gmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>, Phillip Susi <phill@thesusis.net>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-kernel@vger.kernel.org,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- ltuikov89@gmail.com
-Message-ID: <95fe9b5b-05ce-4462-9973-9aca306bc44f@gmail.com>
-Subject: Re: Radeon regression in 6.6 kernel
-References: <87edgv4x3i.fsf@vps.thesusis.net>
- <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
- <CAPM=9tw-8pQWFso0zuLqpsqd5BSHWtc4As9ttdjY-DDr70EMqQ@mail.gmail.com>
- <bdb238b6-60c7-4f26-81d0-9e62cd5dd326@gmail.com>
- <CADnq5_NVGS1XykxGxpcu_bpPbzboCUJQkcCF3r+0N9a23KUgiQ@mail.gmail.com>
- <96e2e13c-f01c-4baf-a9a3-cbaa48fb10c7@amd.com>
- <CADnq5_NBfeAXEyQw0gnSd67=tR-bUKg8w=10+4z9pGGuRnP9uw@mail.gmail.com>
- <87jzq2ixtm.fsf@vps.thesusis.net>
- <CADnq5_Ou-MVVm0rdWDmDnJNLkWUayXzO26uCEtz3ucNa4Ghy2w@mail.gmail.com>
-In-Reply-To: <CADnq5_Ou-MVVm0rdWDmDnJNLkWUayXzO26uCEtz3ucNa4Ghy2w@mail.gmail.com>
+I've found that on a system that supports BOCO when I try to override
+it that it still uses BOCO.  This is because module parameter use is
+intermingled with automatic detection.
 
---------------zdhIbyuVIrAPRu0RHztAccg6
-Content-Type: multipart/mixed; boundary="------------sNB7zEQc118Idxyi1MymNAMe"
+This series moves automatic detection after module parameter use
+and makes all callers obey the result.
 
---------------sNB7zEQc118Idxyi1MymNAMe
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Mario Limonciello (3):
+  drm/amd: Fix handling of amdgpu.runpm on systems with BOCO
+  drm/amd: Introduce new enum for BAMACO
+  drm/amd: Drop calls for checking "support" for BACO/BOCO/PX
 
-On 2023-11-28 17:13, Alex Deucher wrote:
-> On Mon, Nov 27, 2023 at 6:24=E2=80=AFPM Phillip Susi <phill@thesusis.ne=
-t> wrote:
->>
->> Alex Deucher <alexdeucher@gmail.com> writes:
->>
->>>> In that case those are the already known problems with the scheduler=
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  7 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 34 ++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 80 +++++++++++--------
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  1 +
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  3 +-
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    |  2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |  5 +-
+ 7 files changed, 77 insertions(+), 55 deletions(-)
 
->>>> changes, aren't they?
->>>
->>> Yes.  Those changes went into 6.7 though, not 6.6 AFAIK.  Maybe I'm
->>> misunderstanding what the original report was actually testing.  If i=
-t
->>> was 6.7, then try reverting:
->>> 56e449603f0ac580700621a356d35d5716a62ce5
->>> b70438004a14f4d0f9890b3297cd66248728546c
->>
->> At some point it was suggested that I file a gitlab issue, but I took
->> this to mean it was already known and being worked on.  -rc3 came out
->> today and still has the problem.  Is there a known issue I could track=
-?
->>
->=20
-> At this point, unless there are any objections, I think we should just
-> revert the two patches
-Uhm, no.
+-- 
+2.34.1
 
-Why "the two" patches?
-
-This email, part of this thread,
-
-https://lore.kernel.org/all/87r0kircdo.fsf@vps.thesusis.net/
-
-clearly states that reverting *only* this commit,
-56e449603f0ac5 drm/sched: Convert the GPU scheduler to variable number of=
- run-queues
-*does not* mitigate the failed suspend. (Furthermore, this commit doesn't=
- really change
-anything operational, other than using an allocated array, instead of a s=
-tatic one, in DRM,
-while the 2nd patch is solely contained within the amdgpu driver code.)
-
-Leaving us with only this change,
-b70438004a14f4 drm/amdgpu: move buffer funcs setting up a level
-to be at fault, as the kernel log attached in the linked email above show=
-s.
-
-The conclusion is that only b70438004a14f4 needs reverting.
---=20
-Regards,
-Luben
-
---------------sNB7zEQc118Idxyi1MymNAMe
-Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
-PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
-QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
-BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
-MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
-bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
-9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
-OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
-z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
-=3DqCaZ
------END PGP PUBLIC KEY BLOCK-----
-
---------------sNB7zEQc118Idxyi1MymNAMe--
-
---------------zdhIbyuVIrAPRu0RHztAccg6--
-
---------------B9KvWMDdbyeGAXg0IZipz9I3
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZWbByQUDAAAAAAAKCRBMFUeUMaM0r6jz
-AP4zTPvRhz6Cv17QqsLz2rphQRnP0Y53BGjckIVgs/JMUAD/R/QYTr1qhzapp2VOHTym3teg3yR4
-P0cKURfARvAUOw0=
-=1QtL
------END PGP SIGNATURE-----
-
---------------B9KvWMDdbyeGAXg0IZipz9I3--
