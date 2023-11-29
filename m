@@ -2,93 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093E77FCE95
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 06:58:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D7B27FCE29
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 06:15:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBEBA10E350;
-	Wed, 29 Nov 2023 05:58:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 070B810E5F7;
+	Wed, 29 Nov 2023 05:15:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2075.outbound.protection.outlook.com [40.107.94.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC5410E068
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 05:58:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SD17Y3k72EGkB81WblEq7a4fs/2twWih2AHF10LdOSgynoeg6zzVKVCg6a+MeHfHodQSotd+UqNT3HVjRtkRAJqjSaTCryfeaWrXvML7T8KkprSCJoU6IV8Pk4rO53uH2L5Nfoj9W8eU5p5QbGyT817JZaTkG8G5ERHwjFiQtNyHako4HYCZaCCT9ucXf9BUI7/XNOgwDPzb8Y3D0QT34Y45uZhESEloT3NDhfcIy88GWE1GLot2HdLAatjiLaZ/o9l2QeY2fBhbggKjaVmr1vN6GpzBOmWZodQVTmkEKtGcufcwCgwh+YIm5KU6wMJEtATC0nMbKGyGSDt1WV1uYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QxHD9lvqd+FbKgUB93iaCDRaTHOUMNbKWlcXfI7+hcI=;
- b=FWrKYsznfih3SLQ064o6ccQBvEwMec7qD6YWn+2T2QXLuh7w34HJ3WaAwTylK5J2Yzkc53cqURrsuYHhEYbK/x4/8vtcQ9QjgxxGCrbZYhUa5GMxZ2BDCbLDf2Q3rgihAaPbEjCxs+Xm1pmRmmjP8YrFc9BOijC/AwoeoPzx9fWgBU2E+LMPV1MAIK6dHfB+osFuAhtXgwxU1aVOr00wB2h3uVBv4l/Clzw0/wfIIbTHZzAXWqWsz3WSQSujkvhryAFpw4oH9cWJDs/1uYI91dzrvU2cTCD1+NTI61jtH8tiEy7UN7IQTJyi5XKCOHyFqzIvibQZTJ81OLOL8JHusQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QxHD9lvqd+FbKgUB93iaCDRaTHOUMNbKWlcXfI7+hcI=;
- b=uR5G9OO+ZP0FniLZq9GpNpEBjpv0JV9bwOdVkvqwRIhypjPp+mjKsgb6Gx7SYMvnbs6syrFi0JDmuHAKXR6VldSX8+F2v4kUPIctWqoQbI/gHw/kqCZU9PZ2e66WcUgIqPLLmlWVAYfdCv43ci5hnezrDL2yYCWaJgekU/LYReo=
-Received: from BL0PR03CA0016.namprd03.prod.outlook.com (2603:10b6:208:2d::29)
- by CH3PR12MB8484.namprd12.prod.outlook.com (2603:10b6:610:158::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Wed, 29 Nov
- 2023 05:58:27 +0000
-Received: from BL02EPF0001A106.namprd05.prod.outlook.com
- (2603:10b6:208:2d:cafe::4c) by BL0PR03CA0016.outlook.office365.com
- (2603:10b6:208:2d::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29 via Frontend
- Transport; Wed, 29 Nov 2023 05:58:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A106.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Wed, 29 Nov 2023 05:58:27 +0000
-Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 28 Nov
- 2023 23:58:26 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amd: Drop calls for checking "support" for
- BACO/BOCO/PX
-Date: Tue, 28 Nov 2023 12:52:38 -0600
-Message-ID: <20231128185238.187381-4-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231128185238.187381-1-mario.limonciello@amd.com>
-References: <20231128185238.187381-1-mario.limonciello@amd.com>
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65E7410E17C;
+ Wed, 29 Nov 2023 05:15:12 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id
+ a640c23a62f3a-9fa45e75ed9so856448766b.1; 
+ Tue, 28 Nov 2023 21:15:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701234911; x=1701839711; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7Q9CRtsR/lkt7Cw/fHi7bDvZN/itsXqjiup0ZTmySxA=;
+ b=Du02PcJLivS87nM16v2WxQfdJB63pi7B0nNrCnpgBFn0OYI/9YG6yeABNlD94+fxUK
+ PRGBEghXReSKgKSFSnN/DLHfKZrIIsJtCcw3I4XDYzUbJCKwa5otjnyQK1O4owClE0Il
+ oyymHEbs/I0KICo0NkowwEUE+vD8m9SFXem8mLzTdtgq2DgPbWtY/pJYkQlqLctnJ5QC
+ 1pGuYOG0yuNONzQZtwfKrV07HaZ/h5USHA4dWSpFbSCjEz0BeDEXIWwCosvRxgUEri8b
+ rBmnJyw4oS+yYKXt4AZgK3lYioQgKxGtoMsPrqQMgOC15Ty2tuXQropwgn5+UXQoJYmJ
+ J4Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701234911; x=1701839711;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7Q9CRtsR/lkt7Cw/fHi7bDvZN/itsXqjiup0ZTmySxA=;
+ b=u/vqGmJSEozfzxeBixenW/sZ/DXEWQJ2Bh6fXTxw1J6TcsXEqp+dhW/FgSUUDmFlEp
+ oYbRVT9Vq2mck2HcqhkrxIftE6PanTI+T3uWAiwzn4dROlKmOinODvYQlQEXibN3M1fJ
+ xVL0aZJJgSC/voteI33xOlEB4NBnVrgf7W0lR+M++0RWYbrmWAaPvpa7JNf4rgDjE6Io
+ RYHPP3jPqtE/+NeSNvM4hmyeRbj8oy3uRGJbI8Ngr1tN3KAGcGjvboPqTt9QWV7/G7rv
+ 5i5790BdiZVlhvGBJKGTt7m/Ep3LmKRXMUg/Wps1Ng/SWvQzZeOiX8npKm8yce/UWvm4
+ bbKw==
+X-Gm-Message-State: AOJu0YyFK+/VAtnZL4OSKY2jvgJtBLoh0YsTzme3+dw+uGuX61/uJX+Q
+ 1nXI+MS0cM1xK+REDARaA94yOZxRhTHrJ43X4eU=
+X-Google-Smtp-Source: AGHT+IF8BQbzvC8JUMcPZoTIvdOo/gY/kUL91mdf8zioqThU2TU+yw6ExoLa9toWLp2NMd4yrs5b7C6bb/cyNxAjx+o=
+X-Received: by 2002:a17:906:5299:b0:a00:8706:c82e with SMTP id
+ c25-20020a170906529900b00a008706c82emr13477614ejm.18.1701234910430; Tue, 28
+ Nov 2023 21:15:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A106:EE_|CH3PR12MB8484:EE_
-X-MS-Office365-Filtering-Correlation-Id: fbd298ac-8c3b-487a-85f0-08dbf0a034ec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nZBNiGqTQKnMDVYY/oajnE+Jag7y5FZbOntElAEeCSzKxsCxE+1kKCO6nNyf1kRhhiArO5Z1JpFtd8TkQ2yNjz3RSMtkxz1MEMvb0IP1fInRQShHcKsfBt3tLmJoOUh2/1qbJSTf6+9i3WY1BZ33mquL3Mqtub85fCZI3oK7EvI09ezRToAuFKHfSc9dvp4d5xpS+DMbXZvHrUvy8NbXCNBHsYnw5MmsparK12ya7cjLpfz1A4a4reVNlptUXRFdbxz9wg0iSjiCVqgB1eoDcGreQDgRKBEAnO7gUT6lrdGlprBc9uyeVgmTzRW5Pf/BIiwv0Pl37jYX5UCkSqR784DFBYdf3uFE04/xDAfUmMN7/pSItj8vz27yRDLmPfsQWiC/ZcVyE4q39xElY4yamhNwSDBkUWRS70eN+HJrfub+oxteO9P4Ax6uUdFv8NSbT4HNzV0mqe5E/aRM/8GlHnvKXsp0ZquBR5JSk87S6RVH8+KPNI6g4qtFC5pRKDx044WUnoSoWzHYtGl97oP2p5HlJg2WSVP32qhmY1VSUNoMBE7k4mmEEdHmsfiOPoK5o41JO0oGPaXNoAV2/h3QJOFYewnqKrXbawioouzNQSqF0bI6GvChGnNacdoETHQsJZSr6+d5LD19O7d7hGeMdt6dMSQOWMUiqErlKuS+K9Xycjsv2/WB+Y+DaaXByvCtcF0reA3L9aSsbSvwm/bDgk+tGtSsEiqE0xfMtGc8090X1J5ZYQpKCCPMQK2Wmmzs6ZbevTqZcm02du+r9p2HQQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(376002)(396003)(346002)(230922051799003)(82310400011)(1800799012)(451199024)(186009)(64100799003)(40470700004)(36840700001)(46966006)(83380400001)(81166007)(356005)(47076005)(336012)(8936002)(82740400003)(7696005)(8676002)(426003)(70586007)(70206006)(36860700001)(54906003)(316002)(4326008)(86362001)(44832011)(6916009)(5660300002)(478600001)(40480700001)(36756003)(41300700001)(2906002)(16526019)(6666004)(2616005)(1076003)(26005)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 05:58:27.5938 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbd298ac-8c3b-487a-85f0-08dbf0a034ec
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A106.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8484
+References: <20231128125025.4449-1-weixi.zhu@huawei.com>
+ <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+In-Reply-To: <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 29 Nov 2023 15:14:58 +1000
+Message-ID: <CAPM=9tx-d-Au_bjX0vYxv6OwqiSjmbbMC7ebWpTsQgFNddWDuw@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory management)
+ for external memory devices
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,194 +69,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jun.Ma2@amd.com, Mario Limonciello <mario.limonciello@amd.com>
+Cc: joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, leonro@nvidia.com, apopple@nvidia.com,
+ amd-gfx@lists.freedesktop.org, mgorman@suse.de, ziy@nvidia.com,
+ zhi.a.wang@intel.com, rcampbell@nvidia.com, jgg@nvidia.com,
+ weixi.zhu@openeuler.sh, jhubbard@nvidia.com, intel-gfx@lists.freedesktop.org,
+ mhairgrove@nvidia.com, zhenyuw@linux.intel.com, jglisse@redhat.com,
+ Weixi Zhu <weixi.zhu@huawei.com>, rodrigo.vivi@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ tvrtko.ursulin@linux.intel.com, Felix.Kuehling@amd.com, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org, ogabbay@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As the module parameter can be used to control behavior, all parts
-of the driver should obey what has been programmed by user or
-detected by auto mode rather than what "can" be supported.
+On Tue, 28 Nov 2023 at 23:07, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
+>
+> Am 28.11.23 um 13:50 schrieb Weixi Zhu:
+> > The problem:
+> >
+> > Accelerator driver developers are forced to reinvent external MM subsys=
+tems
+> > case by case, because Linux core MM only considers host memory resource=
+s.
+> > These reinvented MM subsystems have similar orders of magnitude of LoC =
+as
+> > Linux MM (80K), e.g. Nvidia-UVM has 70K, AMD GPU has 14K and Huawei NPU=
+ has
+> > 30K. Meanwhile, more and more vendors are implementing their own
+> > accelerators, e.g. Microsoft's Maia 100. At the same time,
+> > application-level developers suffer from poor programmability -- they m=
+ust
+> > consider parallel address spaces and be careful about the limited devic=
+e
+> > DRAM capacity. This can be alleviated if a malloc()-ed virtual address =
+can
+> > be shared by the accelerator, or the abundant host DRAM can further
+> > transparently backup the device local memory.
+> >
+> > These external MM systems share similar mechanisms except for the
+> > hardware-dependent part, so reinventing them is effectively introducing
+> > redundant code (14K~70K for each case). Such developing/maintaining is =
+not
+> > cheap. Furthermore, to share a malloc()-ed virtual address, device driv=
+ers
+> > need to deeply interact with Linux MM via low-level MM APIs, e.g. MMU
+> > notifiers/HMM. This raises the bar for driver development, since develo=
+pers
+> > must understand how Linux MM works. Further, it creates code maintenanc=
+e
+> > problems -- any changes to Linux MM potentially require coordinated cha=
+nges
+> > to accelerator drivers using low-level MM APIs.
+> >
+> > Putting a cache-coherent bus between host and device will not make thes=
+e
+> > external MM subsystems disappear. For example, a throughput-oriented
+> > accelerator will not tolerate executing heavy memory access workload wi=
+th
+> > a host MMU/IOMMU via a remote bus. Therefore, devices will still have
+> > their own MMU and pick a simpler page table format for lower address
+> > translation overhead, requiring external MM subsystems.
+> >
+> > --------------------
+> >
+> > What GMEM (Generalized Memory Management [1]) does:
+> >
+> > GMEM extends Linux MM to share its machine-independent MM code. Only
+> > high-level interface is provided for device drivers. This prevents
+> > accelerator drivers from reinventing the wheel, but relies on drivers t=
+o
+> > implement their hardware-dependent functions declared by GMEM. GMEM's k=
+ey
+> > interface include gm_dev_create(), gm_as_create(), gm_as_attach() and
+> > gm_dev_register_physmem(). Here briefly describe how a device driver
+> > utilizes them:
+> > 1. At boot time, call gm_dev_create() and registers the implementation =
+of
+> >     hardware-dependent functions as declared in struct gm_mmu.
+> >       - If the device has local DRAM, call gm_dev_register_physmem() to
+> >         register available physical addresses.
+> > 2. When a device context is initialized (e.g. triggered by ioctl), chec=
+k if
+> >     the current CPU process has been attached to a gmem address space
+> >     (struct gm_as). If not, call gm_as_create() and point current->mm->=
+gm_as
+> >     to it.
+> > 3. Call gm_as_attach() to attach the device context to a gmem address s=
+pace.
+> > 4. Invoke gm_dev_fault() to resolve a page fault or prepare data before
+> >     device computation happens.
+> >
+> > GMEM has changed the following assumptions in Linux MM:
+> >    1. An mm_struct not only handle a single CPU context, but may also h=
+andle
+> >       external memory contexts encapsulated as gm_context listed in
+> >       mm->gm_as. An external memory context can include a few or all of=
+ the
+> >       following parts: an external MMU (that requires TLB invalidation)=
+, an
+> >       external page table (that requires PTE manipulation) and external=
+ DRAM
+> >       (that requires physical memory management).
+>
+> Well that is pretty much exactly what AMD has already proposed with KFD
+> and was rejected for rather good reasons.
 
-Drop calls to all functions that check for BACO/BOCO/PX runpm modes
-and instead use the variable that is programmed when device is probed.
+> >
+> > MMU functions
+> > The MMU functions peer_map() and peer_unmap() overlap other functions,
+> > leaving a question if the MMU functions should be decoupled as more bas=
+ic
+> > operations. Decoupling them could potentially prevent device drivers
+> > coalescing these basic steps within a single host-device communication
+> > operation, while coupling them makes it more difficult for device drive=
+rs
+> > to utilize GMEM interface.
+>
+> Well to be honest all of this sounds like history to me. We have already
+> seen the same basic approach in KFD, HMM and to some extend in TTM as wel=
+l.
+>
+> And all of them more or less failed. Why should this here be different?
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  7 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 34 ++++++++++++----------
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c  |  3 +-
- 3 files changed, 24 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 1181fe4baf0f..8f7377b37f2f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1822,9 +1822,10 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
- 					enum vga_switcheroo_state state)
- {
- 	struct drm_device *dev = pci_get_drvdata(pdev);
-+	struct amdgpu_device *adev = drm_to_adev(dev);
- 	int r;
- 
--	if (amdgpu_device_supports_px(dev) && state == VGA_SWITCHEROO_OFF)
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX && state == VGA_SWITCHEROO_OFF)
- 		return;
- 
- 	if (state == VGA_SWITCHEROO_ON) {
-@@ -4244,7 +4245,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
- 		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
- 
--	px = amdgpu_device_supports_px(ddev);
-+	px = (adev->pm.rpm_mode == AMDGPU_RUNPM_PX);
- 
- 	if (px || (!dev_is_removable(&adev->pdev->dev) &&
- 				apple_gmux_detect(NULL, NULL)))
-@@ -4392,7 +4393,7 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
- 	kfree(adev->fru_info);
- 	adev->fru_info = NULL;
- 
--	px = amdgpu_device_supports_px(adev_to_drm(adev));
-+	px = (adev->pm.rpm_mode == AMDGPU_RUNPM_PX);
- 
- 	if (px || (!dev_is_removable(&adev->pdev->dev) &&
- 				apple_gmux_detect(NULL, NULL)))
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index e39f3a334c9d..12fb8398fb45 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2248,10 +2248,10 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 
- 	if (adev->pm.rpm_mode != AMDGPU_RUNPM_NONE) {
- 		/* only need to skip on ATPX */
--		if (amdgpu_device_supports_px(ddev))
-+		if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX)
- 			dev_pm_set_driver_flags(ddev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
- 		/* we want direct complete for BOCO */
--		if (amdgpu_device_supports_boco(ddev))
-+		if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO)
- 			dev_pm_set_driver_flags(ddev->dev, DPM_FLAG_SMART_PREPARE |
- 						DPM_FLAG_SMART_SUSPEND |
- 						DPM_FLAG_MAY_SKIP_RESUME);
-@@ -2284,7 +2284,8 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 		 * into D0 state. Then there will be a PMFW-aware D-state
- 		 * transition(D0->D3) on runpm suspend.
- 		 */
--		if (amdgpu_device_supports_baco(ddev) &&
-+		if ((adev->pm.rpm_mode == AMDGPU_RUNPM_BACO ||
-+		     adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO) &&
- 		    !(adev->flags & AMD_IS_APU) &&
- 		    (adev->asic_type >= CHIP_NAVI10))
- 			amdgpu_get_secondary_funcs(adev);
-@@ -2466,7 +2467,7 @@ static int amdgpu_pmops_prepare(struct device *dev)
- 	/* Return a positive number here so
- 	 * DPM_FLAG_SMART_SUSPEND works properly
- 	 */
--	if (amdgpu_device_supports_boco(drm_dev) &&
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO &&
- 	    pm_runtime_suspended(dev))
- 		return 1;
- 
-@@ -2664,7 +2665,7 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	}
- 
- 	adev->in_runpm = true;
--	if (amdgpu_device_supports_px(drm_dev))
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX)
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
- 
- 	/*
-@@ -2674,7 +2675,7 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	 * platforms.
- 	 * TODO: this may be also needed for PX capable platform.
- 	 */
--	if (amdgpu_device_supports_boco(drm_dev))
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO)
- 		adev->mp1_state = PP_MP1_STATE_UNLOAD;
- 
- 	ret = amdgpu_device_prepare(drm_dev);
-@@ -2683,15 +2684,15 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	ret = amdgpu_device_suspend(drm_dev, false);
- 	if (ret) {
- 		adev->in_runpm = false;
--		if (amdgpu_device_supports_boco(drm_dev))
-+		if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO)
- 			adev->mp1_state = PP_MP1_STATE_NONE;
- 		return ret;
- 	}
- 
--	if (amdgpu_device_supports_boco(drm_dev))
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO)
- 		adev->mp1_state = PP_MP1_STATE_NONE;
- 
--	if (amdgpu_device_supports_px(drm_dev)) {
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX) {
- 		/* Only need to handle PCI state in the driver for ATPX
- 		 * PCI core handles it for _PR3.
- 		 */
-@@ -2700,9 +2701,10 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 		pci_ignore_hotplug(pdev);
- 		pci_set_power_state(pdev, PCI_D3cold);
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
--	} else if (amdgpu_device_supports_boco(drm_dev)) {
-+	} else if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO) {
- 		/* nothing to do */
--	} else if (amdgpu_device_supports_baco(drm_dev)) {
-+	} else if (adev->pm.rpm_mode == AMDGPU_RUNPM_BACO ||
-+		   adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO) {
- 		amdgpu_device_baco_enter(drm_dev);
- 	}
- 
-@@ -2725,7 +2727,7 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 	if (!pci_device_is_present(adev->pdev))
- 		adev->no_hw_access = true;
- 
--	if (amdgpu_device_supports_px(drm_dev)) {
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX) {
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
- 
- 		/* Only need to handle PCI state in the driver for ATPX
-@@ -2737,22 +2739,22 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 		if (ret)
- 			return ret;
- 		pci_set_master(pdev);
--	} else if (amdgpu_device_supports_boco(drm_dev)) {
-+	} else if (adev->pm.rpm_mode == AMDGPU_RUNPM_BOCO) {
- 		/* Only need to handle PCI state in the driver for ATPX
- 		 * PCI core handles it for _PR3.
- 		 */
- 		pci_set_master(pdev);
--	} else if (amdgpu_device_supports_baco(drm_dev)) {
-+	} else if (adev->pm.rpm_mode == AMDGPU_RUNPM_BACO) {
- 		amdgpu_device_baco_exit(drm_dev);
- 	}
- 	ret = amdgpu_device_resume(drm_dev, false);
- 	if (ret) {
--		if (amdgpu_device_supports_px(drm_dev))
-+		if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX)
- 			pci_disable_device(pdev);
- 		return ret;
- 	}
- 
--	if (amdgpu_device_supports_px(drm_dev))
-+	if (adev->pm.rpm_mode == AMDGPU_RUNPM_PX)
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_ON;
- 	adev->in_runpm = false;
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index f464610a959f..d7977185f4e2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1618,7 +1618,8 @@ static int smu_disable_dpms(struct smu_context *smu)
- 	bool use_baco = !smu->is_apu &&
- 		((amdgpu_in_reset(adev) &&
- 		  (amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_BACO)) ||
--		 ((adev->in_runpm || adev->in_s4) && amdgpu_asic_supports_baco(adev)));
-+		 ((adev->in_runpm || adev->in_s4) &&
-+		 (adev->pm.rpm_mode == AMDGPU_RUNPM_BACO || adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO)));
- 
- 	/*
- 	 * For SMU 13.0.0 and 13.0.7, PMFW will handle the DPM features(disablement or others)
--- 
-2.34.1
+Any info we have on why this has failed to work in the past would be
+useful to provide. This is one of those cases where we may not have
+documented the bad ideas to stop future developers from thinking they
+are bad.
 
+I do think we would want more common code in this area, but I would
+think we'd have it more on the driver infrastructure side, than in the
+core mm.
+
+Dave.
