@@ -1,48 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9E27FD259
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 10:22:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAFF7FD1EF
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 10:14:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DAF410E12C;
-	Wed, 29 Nov 2023 09:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D46B710E2E9;
+	Wed, 29 Nov 2023 09:14:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 419 seconds by postgrey-1.36 at gabe;
- Wed, 29 Nov 2023 08:40:31 UTC
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com
- [95.215.58.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21F010E0AA;
- Wed, 29 Nov 2023 08:40:31 +0000 (UTC)
-Message-ID: <04355714-3519-48f6-a5c6-15608b131e71@ingalls.rocks>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ingalls.rocks;
- s=key1; t=1701246808;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7cbpFsE7FcsGwKJEpvfC1Wki3/2feMNJnrhcrC6Kcxk=;
- b=IT1ArPecscFvD8wYJohp14tZxU9viiOZ9iH5Dfjc6FdiZ4yNtcF0eNKNDplNyhYuq3ursa
- ZCZ1bNzTGDbYa8bvJa2HqmmC1Yl8QGMnSsD5wgSXZsdv3VQxhR+H4sVE1n0hPuJ955ThTg
- /IfVwYyDNQ0AG0p/VqoJ2GcDhhoFT20=
-Date: Wed, 29 Nov 2023 03:33:22 -0500
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2045.outbound.protection.outlook.com [40.107.100.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97AD810E2E9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 09:14:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U2cfFHHeDeFiCLooG5ULV4Y5cWTQwS5qQTrWUOBOv2GsxM89hfAxRH/51uSmaGbmlGSHMxUftpTvLkWRULx0p8MQVx1FcZ3e7lCH4gQGiFPMqhW0IbzDLFRjwua1jlsnfRJJDnCqi5H5xdrSVgzZvb400/tuTyb1I7Y9p2PV1iqMmwcudD6rzES/iYaKp/F4gDE5wpRjHFYMAL5ieNQaHxZ2M5UqGOJuh8nPrhS520rv4di/QSra/Jptp918wVmrcEH322VeqdPryJR3q+GrFhcDXdecigeSFZoEreyCiAWU9zfQo3QPKA7leHJZLWRVwRQlPhZVv8erp3mZELWn6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PoJPycadL82MEI2NmZi8qBF6BV+yEdYWmuTJ1CoC2/M=;
+ b=kodnF05OJgZ/HM1KXjFhxvr2bTBvQMF3/K6us5kY4xlJqtZTxsCeX+pABQRRnHObFup9wjLVGbxTo1N8g0T/NtEKRWWkWHaOCq3j3ND5R4qLTttq5f8dJc3KfgE8Sxg9taBqijwsBq/tJdqvasoutXhfJzws89Py2hUtZscM08EVfpBqc+tVv5N5pwUKonS4FUdUXMbB1BAJxEtSymPolOZmJzQW8mUpAOSd5sZ6uwxVnyXuiL4op34eR7saGw+g7NjDzqRuUpQxRNzxWVzfbYpKeKwPQ7wqK45RGih6Whs5Q3OOkifwwQ2nsI5wWM2BRHJifRTiTQEyzKbND2JUqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PoJPycadL82MEI2NmZi8qBF6BV+yEdYWmuTJ1CoC2/M=;
+ b=BV5S/+sY4iqbk5DdyQkGGUID3iq2+dOdI9XHir0+OPNqy6hKsZlNj03jRqOLdxjfGh2fvd+RCqfKRNAydsU5YZBvt877dLX+LWcoEg3VjDrIZsnRaIFmsoqifAeMUmEry7Sjri4KPmVDcn8frJJyKc/TpuMwjQciEqccQ0McaLQ=
+Received: from SJ0PR03CA0344.namprd03.prod.outlook.com (2603:10b6:a03:39c::19)
+ by DS7PR12MB8292.namprd12.prod.outlook.com (2603:10b6:8:e2::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Wed, 29 Nov
+ 2023 09:14:23 +0000
+Received: from CO1PEPF000042AD.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c:cafe::5c) by SJ0PR03CA0344.outlook.office365.com
+ (2603:10b6:a03:39c::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22 via Frontend
+ Transport; Wed, 29 Nov 2023 09:14:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000042AD.mail.protection.outlook.com (10.167.243.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7046.17 via Frontend Transport; Wed, 29 Nov 2023 09:14:22 +0000
+Received: from compile-server.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 29 Nov
+ 2023 03:14:17 -0600
+From: Ma Jun <Jun.Ma2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <lenb@kernel.org>, <hdegoede@redhat.com>, 
+ <johannes@sipsolutions.net>, <davem@davemloft.net>, <edumazet@google.com>, 
+ <kuba@kernel.org>, <pabeni@redhat.com>, <alexander.deucher@amd.com>,
+ <Lijo.Lazar@amd.com>, <mario.limonciello@amd.com>, <netdev@vger.kernel.org>,
+ <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <platform-driver-x86@vger.kernel.org>
+Subject: [PATCH v14 0/9] Enable Wifi RFI interference mitigation feature
+ support
+Date: Wed, 29 Nov 2023 17:13:39 +0800
+Message-ID: <20231129091348.3972539-1-Jun.Ma2@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: Re: [RFC PATCH 2/6] mm/gmem: add arch-independent abstraction to
- track address mapping status
-Content-Language: en-US
-To: Weixi Zhu <weixi.zhu@huawei.com>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, akpm@linux-foundation.org
-References: <20231128125025.4449-1-weixi.zhu@huawei.com>
- <20231128125025.4449-3-weixi.zhu@huawei.com>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: emily <emily@ingalls.rocks>
-In-Reply-To: <20231128125025.4449-3-weixi.zhu@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Wed, 29 Nov 2023 09:22:55 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042AD:EE_|DS7PR12MB8292:EE_
+X-MS-Office365-Filtering-Correlation-Id: a23e42c6-29d0-4c35-7e64-08dbf0bb9366
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0BI02vUAwkV8Ji/5C2edrJ05MzeATiaEXAIMdcueNp+7xVqdTaxDYvW8lHCdg1ctvYXaC+CT/LmNkpENpHOZFQLvaaNai+aTR7UpahgQWRk3ZuLv+/diGPizYslWAhFVmf2Usij9q7RuQfWi33T5EHpTFrid6A7hH4fCWLNGVgcr3MREpHvkHOI/ySTU7+zyHRXhehfrTSYICsHeYBrpCGAyK8W/mfr3ZJaq1IdzBxcsBxYsULuf9B8XUNxWY8jmricbIsKqXHoMWxxa5/bNawiif6JsvcIzpvD/ytB/lfEjPSv/zigz8eBedYwyLA39xE2Twy9VHhcuHiJ79e/DQx7vjGukpRlgHtnI8fudsORkc0SsJMDIeLXUjAzqRfPiHnNHEw8nCQEfmtySwnv27s5ZPVFYD/hdbJPloQqJRn+p4uLqNVHojvOe0tZMMzF/NwEuyYbNrrduF3bH5v4DN2eh9ikTCZIn6zFADIXDZzq0hqk0J/d66cvLJ5qKSofrwDfOGw4IND3zS0spPqvAOodt/pF37FhRpBMCN34uXN0Qvk+q0oo0+nvRwlIkrM+QIcAUEgm0JkrWUfUIWPf+FWzwGsyDMRTTd7FSjMEDZgS67JVFhxP3LxcDDoFGaWOCk9qIZC8N6EGGCMA0v6vzuaUCmxPO+c5LryD9jBEyLZtE4PnGhmfg9nZykKNC6PZpyhzchoGl22xjxhXxhMUFwN1e8z9FnHup3lXc3G7dTrl7M/GvRO4Uiajv+6P8w72nDaBdkcTK58hYMnUWn42xbLQpUapv28wjr5pgvUWC8jg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(346002)(136003)(376002)(39860400002)(230922051799003)(64100799003)(451199024)(82310400011)(186009)(1800799012)(40470700004)(46966006)(36840700001)(86362001)(16526019)(81166007)(356005)(2906002)(921008)(41300700001)(47076005)(36860700001)(26005)(4326008)(426003)(7416002)(8936002)(2616005)(54906003)(70586007)(1076003)(7696005)(6666004)(110136005)(478600001)(70206006)(5660300002)(8676002)(83380400001)(336012)(36756003)(316002)(40460700003)(40480700001)(82740400003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 09:14:22.4013 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a23e42c6-29d0-4c35-7e64-08dbf0bb9366
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AD.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8292
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,421 +103,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gvt-dev@lists.freedesktop.org, rcampbell@nvidia.com,
- mhairgrove@nvidia.com, jgg@nvidia.com, weixi.zhu@openeuler.sh,
- jhubbard@nvidia.com, intel-gfx@lists.freedesktop.org, apopple@nvidia.com,
- Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org,
- tvrtko.ursulin@linux.intel.com, ogabbay@kernel.org, jglisse@redhat.com,
- mgorman@suse.de, ziy@nvidia.com, rodrigo.vivi@intel.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, leonro@nvidia.com,
- Felix.Kuehling@amd.com, zhi.a.wang@intel.com
+Cc: Ma Jun <Jun.Ma2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Due to electrical and mechanical constraints in certain platform designs there
+may be likely interference of relatively high-powered harmonics of the (G-)DDR
+memory clocks with local radio module frequency bands used by Wifi 6/6e/7. To
+mitigate possible RFI interference we introuduced WBRF(Wifi Band RFI mitigation Feature).
+Producers can advertise the frequencies in use and consumers can use this information
+to avoid using these frequencies for sensitive features.
 
-On 11/28/23 07:50, Weixi Zhu wrote:
-> This patch adds an abstraction layer, struct vm_object, that maintains
-> per-process virtual-to-physical mapping status stored in struct gm_mapping.
-> For example, a virtual page may be mapped to a CPU physical page or to a
-> device physical page. Struct vm_object effectively maintains an
-> arch-independent page table, which is defined as a "logical page table".
-> While arch-dependent page table used by a real MMU is named a "physical
-> page table". The logical page table is useful if Linux core MM is extended
-> to handle a unified virtual address space with external accelerators using
-> customized MMUs.
->
-> In this patch, struct vm_object utilizes a radix
-> tree (xarray) to track where a virtual page is mapped to. This adds extra
-> memory consumption from xarray, but provides a nice abstraction to isolate
-> mapping status from the machine-dependent layer (PTEs). Besides supporting
-> accelerators with external MMUs, struct vm_object is planned to further
-> union with i_pages in struct address_mapping for file-backed memory.
->
-> The idea of struct vm_object is originated from FreeBSD VM design, which
-> provides a unified abstraction for anonymous memory, file-backed memory,
-> page cache and etc[1].
->
-> Currently, Linux utilizes a set of hierarchical page walk functions to
-> abstract page table manipulations of different CPU architecture. The
-> problem happens when a device wants to reuse Linux MM code to manage its
-> page table -- the device page table may not be accessible to the CPU.
-> Existing solution like Linux HMM utilizes the MMU notifier mechanisms to
-> invoke device-specific MMU functions, but relies on encoding the mapping
-> status on the CPU page table entries. This entangles machine-independent
-> code with machine-dependent code, and also brings unnecessary restrictions.
-> The PTE size and format vary arch by arch, which harms the extensibility.
->
-> [1] https://docs.freebsd.org/en/articles/vm-design/
->
-> Signed-off-by: Weixi Zhu <weixi.zhu@huawei.com>
-> ---
->   include/linux/gmem.h     | 120 +++++++++++++++++++++++++
->   include/linux/mm_types.h |   4 +
->   mm/Makefile              |   2 +-
->   mm/vm_object.c           | 184 +++++++++++++++++++++++++++++++++++++++
->   4 files changed, 309 insertions(+), 1 deletion(-)
->   create mode 100644 mm/vm_object.c
->
-> diff --git a/include/linux/gmem.h b/include/linux/gmem.h
-> index fff877873557..529ff6755a99 100644
-> --- a/include/linux/gmem.h
-> +++ b/include/linux/gmem.h
-> @@ -9,11 +9,131 @@
->   #ifndef _GMEM_H
->   #define _GMEM_H
->   
-> +#include <linux/mm_types.h>
-> +
->   #ifdef CONFIG_GMEM
-> +
-> +#define GM_PAGE_CPU	0x10 /* Determines whether page is a pointer or a pfn number. */
-> +#define GM_PAGE_DEVICE	0x20
-> +#define GM_PAGE_NOMAP	0x40
-> +#define GM_PAGE_WILLNEED	0x80
-> +
-> +#define GM_PAGE_TYPE_MASK	(GM_PAGE_CPU | GM_PAGE_DEVICE | GM_PAGE_NOMAP)
-> +
-> +struct gm_mapping {
-> +	unsigned int flag;
-> +
-> +	union {
-> +		struct page *page;	/* CPU node */
-> +		struct gm_dev *dev;	/* hetero-node. TODO: support multiple devices */
-> +		unsigned long pfn;
-> +	};
-> +
-> +	struct mutex lock;
-> +};
-> +
-> +static inline void gm_mapping_flags_set(struct gm_mapping *gm_mapping, int flags)
-> +{
-> +	if (flags & GM_PAGE_TYPE_MASK)
-> +		gm_mapping->flag &= ~GM_PAGE_TYPE_MASK;
-> +
-> +	gm_mapping->flag |= flags;
-> +}
-> +
-> +static inline void gm_mapping_flags_clear(struct gm_mapping *gm_mapping, int flags)
-> +{
-> +	gm_mapping->flag &= ~flags;
-> +}
-> +
-> +static inline bool gm_mapping_cpu(struct gm_mapping *gm_mapping)
-> +{
-> +	return !!(gm_mapping->flag & GM_PAGE_CPU);
-> +}
-> +
-> +static inline bool gm_mapping_device(struct gm_mapping *gm_mapping)
-> +{
-> +	return !!(gm_mapping->flag & GM_PAGE_DEVICE);
-> +}
-> +
-> +static inline bool gm_mapping_nomap(struct gm_mapping *gm_mapping)
-> +{
-> +	return !!(gm_mapping->flag & GM_PAGE_NOMAP);
-> +}
-> +
-> +static inline bool gm_mapping_willneed(struct gm_mapping *gm_mapping)
-> +{
-> +	return !!(gm_mapping->flag & GM_PAGE_WILLNEED);
-> +}
-> +
->   /* h-NUMA topology */
->   void __init hnuma_init(void);
-> +
-> +/* vm object */
-> +/*
-> + * Each per-process vm_object tracks the mapping status of virtual pages from
-> + * all VMAs mmap()-ed with MAP_PRIVATE | MAP_PEER_SHARED.
-> + */
-> +struct vm_object {
-> +	spinlock_t lock;
-> +
-> +	/*
-> +	 * The logical_page_table is a container that holds the mapping
-> +	 * information between a VA and a struct page.
-> +	 */
-> +	struct xarray *logical_page_table;
-> +	atomic_t nr_pages;
-> +};
-> +
-> +int __init vm_object_init(void);
-> +struct vm_object *vm_object_create(struct mm_struct *mm);
-> +void vm_object_drop_locked(struct mm_struct *mm);
-> +
-> +struct gm_mapping *alloc_gm_mapping(void);
-> +void free_gm_mappings(struct vm_area_struct *vma);
-> +struct gm_mapping *vm_object_lookup(struct vm_object *obj, unsigned long va);
-> +void vm_object_mapping_create(struct vm_object *obj, unsigned long start);
-> +void unmap_gm_mappings_range(struct vm_area_struct *vma, unsigned long start,
-> +			     unsigned long end);
-> +void munmap_in_peer_devices(struct mm_struct *mm, unsigned long start,
-> +			    unsigned long end);
->   #else
->   static inline void hnuma_init(void) {}
-> +static inline void __init vm_object_init(void)
-> +{
-> +}
-> +static inline struct vm_object *vm_object_create(struct vm_area_struct *vma)
-> +{
-> +	return NULL;
-> +}
-> +static inline void vm_object_drop_locked(struct vm_area_struct *vma)
-> +{
-> +}
-> +static inline struct gm_mapping *alloc_gm_mapping(void)
-> +{
-> +	return NULL;
-> +}
-> +static inline void free_gm_mappings(struct vm_area_struct *vma)
-> +{
-> +}
-> +static inline struct gm_mapping *vm_object_lookup(struct vm_object *obj,
-> +						  unsigned long va)
-> +{
-> +	return NULL;
-> +}
-> +static inline void vm_object_mapping_create(struct vm_object *obj,
-> +					    unsigned long start)
-> +{
-> +}
-> +static inline void unmap_gm_mappings_range(struct vm_area_struct *vma,
-> +					   unsigned long start,
-> +					   unsigned long end)
-> +{
-> +}
-> +static inline void munmap_in_peer_devices(struct mm_struct *mm,
-> +					  unsigned long start,
-> +					  unsigned long end)
-> +{
-> +}
->   #endif
->   
->   #endif /* _GMEM_H */
-> diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-> index 957ce38768b2..4e50dc019d75 100644
-> --- a/include/linux/mm_types.h
-> +++ b/include/linux/mm_types.h
-> @@ -31,6 +31,7 @@
->   
->   struct address_space;
->   struct mem_cgroup;
-> +struct vm_object;
->   
->   /*
->    * Each physical page in the system has a struct page associated with
-> @@ -974,6 +975,9 @@ struct mm_struct {
->   #endif
->   		} lru_gen;
->   #endif /* CONFIG_LRU_GEN */
-> +#ifdef CONFIG_GMEM
-> +		struct vm_object *vm_obj;
-> +#endif
->   	} __randomize_layout;
->   
->   	/*
-> diff --git a/mm/Makefile b/mm/Makefile
-> index f48ea2eb4a44..d2dfab012c96 100644
-> --- a/mm/Makefile
-> +++ b/mm/Makefile
-> @@ -138,4 +138,4 @@ obj-$(CONFIG_IO_MAPPING) += io-mapping.o
->   obj-$(CONFIG_HAVE_BOOTMEM_INFO_NODE) += bootmem_info.o
->   obj-$(CONFIG_GENERIC_IOREMAP) += ioremap.o
->   obj-$(CONFIG_SHRINKER_DEBUG) += shrinker_debug.o
-> -obj-$(CONFIG_GMEM) += gmem.o
-> +obj-$(CONFIG_GMEM) += gmem.o vm_object.o
-> diff --git a/mm/vm_object.c b/mm/vm_object.c
-> new file mode 100644
-> index 000000000000..4e76737e0ca1
-> --- /dev/null
-> +++ b/mm/vm_object.c
-> @@ -0,0 +1,184 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * arch/alpha/boot/bootp.c
-> + *
-> + * Copyright (C) 1997 Jay Estabrook
-> + *
-> + * This file is used for creating a bootp file for the Linux/AXP kernel
-> + *
-> + * based significantly on the arch/alpha/boot/main.c of Linus Torvalds
-> + */
+The whole patch set is based on Linux 6.7.0-rc1. With some brief introductions
+as below:
+Patch1:      Document about WBRF
+Patch2:      Core functionality setup for WBRF feature support
+Patch3 - 4:  Bring WBRF support to wifi subsystem.
+Patch5 - 9:  Bring WBRF support to AMD graphics driver.
 
+Evan Quan (6):
+  cfg80211: expose nl80211_chan_width_to_mhz for wide sharing
+  wifi: mac80211: Add support for WBRF features
+  drm/amd/pm: update driver_if and ppsmc headers for coming wbrf feature
+  drm/amd/pm: setup the framework to support Wifi RFI mitigation feature
+  drm/amd/pm: add flood detection for wbrf events
+  drm/amd/pm: enable Wifi RFI mitigation feature support for SMU13.0.7
 
-i believe you have made a mistake here. you will likely want to correct 
-the information in this comment.
+Ma Jun (3):
+  Documentation/driver-api: Add document about WBRF mechanism
+  platform/x86/amd: Add support for AMD ACPI based Wifi band RFI
+    mitigation feature
+  drm/amd/pm: enable Wifi RFI mitigation feature support for SMU13.0.0
 
-> +#include <linux/mm.h>
-> +#include <linux/gmem.h>
-> +
-> +/*
-> + * Sine VM_OBJECT maintains the logical page table under each VMA, and each VMA
-> + * points to a VM_OBJECT. Ultimately VM_OBJECTs must be maintained as long as VMA
-> + * gets changed: merge, split, adjust
-> + */
-> +static struct kmem_cache *vm_object_cachep;
-> +static struct kmem_cache *gm_mapping_cachep;
-> +
-> +static inline void release_gm_mapping(struct gm_mapping *mapping)
-> +{
-> +	kmem_cache_free(gm_mapping_cachep, mapping);
-> +}
-> +
-> +static inline struct gm_mapping *lookup_gm_mapping(struct vm_object *obj,
-> +						   unsigned long pindex)
-> +{
-> +	return xa_load(obj->logical_page_table, pindex);
-> +}
-> +
-> +int __init vm_object_init(void)
-> +{
-> +	vm_object_cachep = KMEM_CACHE(vm_object, 0);
-> +	if (!vm_object_cachep)
-> +		goto out;
-> +
-> +	gm_mapping_cachep = KMEM_CACHE(gm_mapping, 0);
-> +	if (!gm_mapping_cachep)
-> +		goto free_vm_object;
-> +
-> +	return 0;
-> +free_vm_object:
-> +	kmem_cache_destroy(vm_object_cachep);
-> +out:
-> +	return -ENOMEM;
-> +}
-> +
-> +/*
-> + * Create a VM_OBJECT and attach it to a mm_struct
-> + * This should be called when a task_struct is created.
-> + */
-> +struct vm_object *vm_object_create(struct mm_struct *mm)
-> +{
-> +	struct vm_object *obj = kmem_cache_alloc(vm_object_cachep, GFP_KERNEL);
-> +
-> +	if (!obj)
-> +		return NULL;
-> +
-> +	spin_lock_init(&obj->lock);
-> +
-> +	/*
-> +	 * The logical page table maps va >> PAGE_SHIFT
-> +	 * to pointers of struct gm_mapping.
-> +	 */
-> +	obj->logical_page_table = kmalloc(sizeof(struct xarray), GFP_KERNEL);
-> +	if (!obj->logical_page_table) {
-> +		kmem_cache_free(vm_object_cachep, obj);
-> +		return NULL;
-> +	}
-> +
-> +	xa_init(obj->logical_page_table);
-> +	atomic_set(&obj->nr_pages, 0);
-> +
-> +	return obj;
-> +}
-> +
-> +/* This should be called when a mm no longer refers to a VM_OBJECT */
-> +void vm_object_drop_locked(struct mm_struct *mm)
-> +{
-> +	struct vm_object *obj = mm->vm_obj;
-> +
-> +	if (!obj)
-> +		return;
-> +
-> +	/*
-> +	 * We must enter this with VMA write-locked, which is unfortunately a
-> +	 * giant lock.
-> +	 */
-> +	mmap_assert_write_locked(mm);
-> +	mm->vm_obj = NULL;
-> +
-> +	xa_destroy(obj->logical_page_table);
-> +	kfree(obj->logical_page_table);
-> +	kmem_cache_free(vm_object_cachep, obj);
-> +}
-> +
-> +/*
-> + * Given a VA, the page_index is computed by
-> + * page_index = address >> PAGE_SHIFT
-> + */
-> +struct gm_mapping *vm_object_lookup(struct vm_object *obj, unsigned long va)
-> +{
-> +	return lookup_gm_mapping(obj, va >> PAGE_SHIFT);
-> +}
-> +EXPORT_SYMBOL_GPL(vm_object_lookup);
-> +
-> +void vm_object_mapping_create(struct vm_object *obj, unsigned long start)
-> +{
-> +
-> +	unsigned long index = start >> PAGE_SHIFT;
-> +	struct gm_mapping *gm_mapping;
-> +
-> +	if (!obj)
-> +		return;
-> +
-> +	gm_mapping = alloc_gm_mapping();
-> +	if (!gm_mapping)
-> +		return;
-> +
-> +	__xa_store(obj->logical_page_table, index, gm_mapping, GFP_KERNEL);
-> +}
-> +
-> +/* gm_mapping will not be release dynamically */
-> +struct gm_mapping *alloc_gm_mapping(void)
-> +{
-> +	struct gm_mapping *gm_mapping = kmem_cache_zalloc(gm_mapping_cachep, GFP_KERNEL);
-> +
-> +	if (!gm_mapping)
-> +		return NULL;
-> +
-> +	gm_mapping_flags_set(gm_mapping, GM_PAGE_NOMAP);
-> +	mutex_init(&gm_mapping->lock);
-> +
-> +	return gm_mapping;
-> +}
-> +
-> +/* This should be called when a PEER_SHAERD vma is freed */
-> +void free_gm_mappings(struct vm_area_struct *vma)
-> +{
-> +	struct gm_mapping *gm_mapping;
-> +	struct vm_object *obj;
-> +
-> +	obj = vma->vm_mm->vm_obj;
-> +	if (!obj)
-> +		return;
-> +
-> +	XA_STATE(xas, obj->logical_page_table, vma->vm_start >> PAGE_SHIFT);
-> +
-> +	xa_lock(obj->logical_page_table);
-> +		xas_for_each(&xas, gm_mapping, vma->vm_end >> PAGE_SHIFT) {
-> +		release_gm_mapping(gm_mapping);
-> +		xas_store(&xas, NULL);
-> +	}
-> +	xa_unlock(obj->logical_page_table);
-> +}
-> +
-> +void unmap_gm_mappings_range(struct vm_area_struct *vma, unsigned long start,
-> +			    unsigned long end)
-> +{
-> +	struct xarray *logical_page_table;
-> +	struct gm_mapping *gm_mapping;
-> +	struct page *page = NULL;
-> +
-> +	if (!vma->vm_mm->vm_obj)
-> +		return;
-> +
-> +	logical_page_table = vma->vm_mm->vm_obj->logical_page_table;
-> +	if (!logical_page_table)
-> +		return;
-> +
-> +	XA_STATE(xas, logical_page_table, start >> PAGE_SHIFT);
-> +
-> +	xa_lock(logical_page_table);
-> +	xas_for_each(&xas, gm_mapping, end >> PAGE_SHIFT) {
-> +		page = gm_mapping->page;
-> +		if (page && (page_ref_count(page) != 0)) {
-> +			put_page(page);
-> +			gm_mapping->page = NULL;
-> +		}
-> +	}
-> +	xa_unlock(logical_page_table);
-> +}
+ Documentation/driver-api/wbrf.rst             |  78 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  17 +
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 208 +++++++++++
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  42 +++
+ .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |   3 +-
+ .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |   3 +-
+ .../pm/swsmu/inc/pmfw_if/smu_v13_0_0_ppsmc.h  |   5 +-
+ .../pm/swsmu/inc/pmfw_if/smu_v13_0_7_ppsmc.h  |   3 +-
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_types.h  |   3 +-
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h  |   4 +
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |  48 +++
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  22 ++
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  13 +
+ drivers/gpu/drm/amd/pm/swsmu/smu_internal.h   |   3 +
+ drivers/platform/x86/amd/Kconfig              |  15 +
+ drivers/platform/x86/amd/Makefile             |   1 +
+ drivers/platform/x86/amd/wbrf.c               | 337 ++++++++++++++++++
+ include/linux/acpi_amd_wbrf.h                 |  94 +++++
+ include/net/cfg80211.h                        |   9 +
+ net/mac80211/Makefile                         |   2 +
+ net/mac80211/chan.c                           |   9 +
+ net/mac80211/ieee80211_i.h                    |   7 +
+ net/mac80211/main.c                           |   2 +
+ net/mac80211/wbrf.c                           |  95 +++++
+ net/wireless/chan.c                           |   3 +-
+ 26 files changed, 1020 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/driver-api/wbrf.rst
+ create mode 100644 drivers/platform/x86/amd/wbrf.c
+ create mode 100644 include/linux/acpi_amd_wbrf.h
+ create mode 100644 net/mac80211/wbrf.c
+
+-- 
+2.34.1
+
