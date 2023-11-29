@@ -1,123 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181597FDE53
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 18:26:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5808A7FDF69
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 19:40:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 466CE10E370;
-	Wed, 29 Nov 2023 17:26:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29A8C10E052;
+	Wed, 29 Nov 2023 18:40:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2080.outbound.protection.outlook.com [40.107.102.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0090B10E370
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 17:26:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZOYjOSeX3yCgE3FgG4LB20ltWzrmnGVAjXxMecs3Poj7Z4vn8/nSrK0fkBgmqcOHx+W3eK72Abm/2uq1iQTvRAcRskxzzUllnI00JBbsvNnYOH1KyN9kNc8Kr6gvtwvtbXTW7rnPyUJ7+CjI1mKVdZiWPZqIpW49SHtWr+Vf/5ZAUIU29zjC1iZKpnBxnlbofIrv9IxwlkjNAkI/vRNJO93hN/K9v8tHf/uuBlVviiTq3KjedCxyn7oDOFMwwR+BWWLPnptEU0Oc+erZ0eobH6MU9qQMJE3VmXMRjXoAAvhPLc4/wIY2rZvc8dxaiAj71DL9mA7jdbGpusWYvCGTGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0QyTTQgV6hkmajaKflSgvz0YeNp0ADekIOT3BnEXqog=;
- b=O91gzX5Sq49SVpblQOdTu4tNeScUDqcmmBJIJiPVi/4m09fUKLGXeOqUtyXG4KEFMx74P+ySSx4cqCTsqHilHDQRONj1N5iz0RP90pEjPnWu/DO1DMsgY5Q+EMB/4rSFHDxaiw4VBktER/0wDgTlYUKvQlWzBOWux46NOHfaZYa1ZBubup97kULg2P9bYSbp8p5AawfLVe8UNbCl9csg5sRKPif6iesTAHbp5uy3YjMw3+5r9i0LaiX/SZ5rgsLkwQfX1Vwv53ASYU8vzAD5hjYV39EqCjwtBdaU5DS4tTyowSQJOjSqxGPe7ew7f77czLUkmVw4ANuXZaMJ2LYBTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0QyTTQgV6hkmajaKflSgvz0YeNp0ADekIOT3BnEXqog=;
- b=qGMG5TMv7RP47neU0jU/Ymghn1oJhYyhTOBFvqsEhuRwLbL8BmHjIIayCUvCerTjDlO4fyFDfvuHPGGSjB+mv/N7OVkIT9wO1CTzYkMlYk6KwS3Cy0rrfCLS/co9aSmYBeOLjjOOo0MAKBgJRye0Jp8ryqwhW4XtHHs0qtP9Tdc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by BN9PR12MB5066.namprd12.prod.outlook.com (2603:10b6:408:133::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Wed, 29 Nov
- 2023 17:26:33 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::83d7:9c4f:4d9b:1f2a]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::83d7:9c4f:4d9b:1f2a%5]) with mapi id 15.20.7046.015; Wed, 29 Nov 2023
- 17:26:33 +0000
-Message-ID: <c76148d0-d5da-4c64-b080-8147b5491946@amd.com>
-Date: Wed, 29 Nov 2023 11:26:29 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 3/9] cfg80211: expose nl80211_chan_width_to_mhz for
- wide sharing
-Content-Language: en-US
-To: Ma Jun <Jun.Ma2@amd.com>, amd-gfx@lists.freedesktop.org, lenb@kernel.org, 
- hdegoede@redhat.com, johannes@sipsolutions.net, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- alexander.deucher@amd.com, Lijo.Lazar@amd.com, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20231129091348.3972539-1-Jun.Ma2@amd.com>
- <20231129091348.3972539-4-Jun.Ma2@amd.com>
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <20231129091348.3972539-4-Jun.Ma2@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DM5PR08CA0047.namprd08.prod.outlook.com
- (2603:10b6:4:60::36) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA1710E052
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 18:40:35 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id
+ 46e09a7af769-6d84ec109fbso84697a34.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 10:40:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701283234; x=1701888034; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vk7JrAawAHloaVnarymRWt/jZosO9ViYZILZNMgjEHI=;
+ b=RZ83c6lffrKqOW9ey9Xj/kxq9pQLmtSsAG7hq0Ul8bNBj5glH2BG8idK88+s3RnLPi
+ 6NNJY8bCq+/6eW8CrdOgRIZlzLEU1EWtR5B1AtUz2SALOQYSWecDEdQG1Od+wgfHFW2e
+ o//MH883b7LCf/CAkonKHRvyW7gb1wstxcb/tsSHbREASE0xADrRL7PEL+zth+Ir63Pg
+ Hyv1kriTcFoTTFKUrSZZkFwo9l1Navddvvz0HDKdkAwedAF4WOn4OilJEfDTp2Kkdc2K
+ qaHxwikPkOUvjWppbr4rPpGgEm127Yti5yQ9uSXwkD/QOvVe9O0cSCZzXvdOMxjJNeLa
+ aU+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701283234; x=1701888034;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vk7JrAawAHloaVnarymRWt/jZosO9ViYZILZNMgjEHI=;
+ b=JOXbIVtV+BDW2MQemsIHF+Le+MWEuJHAnDIU7zq9rV79SdFoLFhrk9k3yT4yktlR/L
+ cZ/adGVO+KuunGnBrwdsD2Fi3VQh+OjU3uFt4bQMsVDJ7vQojdfjZI+vtW4GhEsbpJno
+ t+PukWG5dH+aMN3m2rmRbxRl/CJ/158RX+8OiYWa8jnJufFVnZoEbTEkLHW2FdpEvlTt
+ 5zCEFp/OTBNoOdT3aPuQI0wZYEcWbM4bNqtwSZ23+EY6iv9n2WtP3noz+b7TpY4KuY9w
+ qBc/3HXrSlmodpaSqmqJGR/BHaTRDxAM8w4XDSI/yOqayVtHclCBN1rmoGqvLswWOi/0
+ FfjA==
+X-Gm-Message-State: AOJu0YxveDhZOJ9y1307CERwr5WGLjSgmgiLydSMr5kt8NxYcs/du/Ji
+ cqLTHJkyBf676VramWyNBUWhEZqWNwnYsk+UnB4=
+X-Google-Smtp-Source: AGHT+IGwuN8j/pNmEdCqGQigFXy++KsVa/CRDkhx5tt7E9BjTCyo5ukIXAEs91xuvuIUiY9H962LAgQSi5WRmn2N4nw=
+X-Received: by 2002:a05:6870:f783:b0:1ea:746d:16f7 with SMTP id
+ fs3-20020a056870f78300b001ea746d16f7mr27324881oab.6.1701283234217; Wed, 29
+ Nov 2023 10:40:34 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|BN9PR12MB5066:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e143049-49cd-48b6-de16-08dbf100555a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y5ZpoFpiCSjz1raOeTAs6qRL5oiKOfXX38aFV+GOoTC3+kdrwTzSoUKaQsOE5ZXRGdgV2XrvnEAiFF8tksBklpQzTEV1M0Ww3MOCz+0e5YOOGpv7nxxlPoj1qGETYC3zu1g/+A/XWxd6dci/qhSHJAIWkjy6hOQ97GIAl6CfolZKVqrPhgzExYt4fxNl8PN4nzog0R0sXSVkUzD/MMI7kW0pwZt5H3swHjvMaN7XT6XtzjvqXwJbkEMMEVxObJEF7EWYY8LewylSryvBYqz6WEYyBfDCLd7WWkQf04gRjOu22YdswD8ttcfcOjNS4Qi92gP4LYmjccw9cWfIhULQDsrlEoCePTG+5gWNW2KGYQCV81sr+/RuCaTMp82MoMgYN3cj/wf32PsKobfQGA+FYySCp2XsZzVxzp29sr6l8uHHRJ4Jn5a7LpSvoRpSmjX92wgb2hPFA1hyA8yWcGN/JuiH3v6BoL3Zl65qNAjiexjowdc6NPUu1dzqqjp6PyZf4SyC6yc4JMGgJ2UKcoYYBNfFQs4r6smZYB7tGu8/BtyOk2ROJwDpzaQ3wUPV7iUc8+yOqnRltQtAWO7rbSfyOP/An7s1C6FiHyglYoqgPv/U1lwBZxa03WG+nh7uIdCy/S3YD2TJodpPPU54h1QW8NSz09j0MakDdk7nl2BYpDw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(396003)(136003)(39860400002)(366004)(346002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(66946007)(66556008)(316002)(6486002)(53546011)(66476007)(6506007)(478600001)(6512007)(83380400001)(36756003)(86362001)(38100700002)(2616005)(44832011)(4326008)(5660300002)(7416002)(8676002)(8936002)(6666004)(921008)(41300700001)(31696002)(31686004)(45080400002)(2906002)(26005)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RU5SUWprQnloSmdJSG9pYndDV0piN3RZUjBlVG1iRGF6ZEtMQS9EMHdvd0l4?=
- =?utf-8?B?L0doYU1PcnRLcHQyVkl5L1dMWG9SLzkyV1k1OGFDaWYxMkhzYVd2d2J2NmFF?=
- =?utf-8?B?RGZHZVNNT1ZpNFVxbTNidzBnM25ObW1FMHR0UTg4aUVkT3Rqd3YzbkxWWStF?=
- =?utf-8?B?SVlsNnFyZCs2R2g4MUdUNk91ZmhJd09kUUJkYmM2ZHE5eENScTQ3STRsUXhT?=
- =?utf-8?B?b3YzMlpOdmlhb21PODlaR1JnWkNZOFJ6T2U4djNSNTViblhVYVdqYlVIdHdz?=
- =?utf-8?B?ZnpnWDFMQ1JtTlo2THdsMXFKbkV4Y05xeW9NWnNISXZ2L1VlR3RKeUxwdjA2?=
- =?utf-8?B?U3FvUlRxcHBtSXZCRW1XaFkraXhnMWgrdGNHNUZIZmxwcnBiYTgwRm0vVVZY?=
- =?utf-8?B?dXlwSTFhcTMvMkZNVjVITzZlTlZLQ3ZHRUhaODgyeVRaUElvOGEva29QMFhQ?=
- =?utf-8?B?Q2RHMnJkUUtULzlDeDQvTzdEVytQMlVRajhOam45dXlpR2VYRjhDa1gyR0Fh?=
- =?utf-8?B?c2ozQ05vT0NEOEJlTmo3dGo4M3oyMXZYZ2dFNGJHcWFXZ2N6Ylc0bDVPc0Yw?=
- =?utf-8?B?dGcvUUMwUGxRWmhuRkc4ZWUyckpiM2hKeG8yTTAvQS9GRURRM3o5QkcwNk5j?=
- =?utf-8?B?bzNpaVFrUHpsVFU3eGxuNFpYZTdxNWhyUGZ3dXdkNDVRdHdzdXFpczRrUm5w?=
- =?utf-8?B?cmsxbkZnVllVM0R5eml5dC9XZkxZNUFtbTNRZ29kUk1hVzhLbFRLalNFd01M?=
- =?utf-8?B?N3A4bkNtWU1pTUZXQjNPaVFMUnhWbEY0WmxSekNjNitGS3RkWlBQUjM4M0pX?=
- =?utf-8?B?Z213WWY2eFUyUHNJS2laWWVjMnExL2llakxjME95dnovTVZsT1RDcCtXUjM5?=
- =?utf-8?B?ZVRMejJDYkNrdWRuL1Y0WUJOTVo1MXVnNFd2M2VxUFRweFNsdkE4VkxITm5D?=
- =?utf-8?B?Si9sQVd6aEFDZS9LWktOc3NtUHo5WDA2VXVGV1JxN0xQSmtteU5BcnNJblpE?=
- =?utf-8?B?UXNDS3BwVGI3dXlRZmtjTmszcEI0czdWNkhOYTl4ZUtjZWw2UGVqRWlzQ3po?=
- =?utf-8?B?SEJGT2pQT0t0bHNkVFNqcGhmYndsdG9YSy9FS01iRkpOcVBjSjdjd1o5RTUz?=
- =?utf-8?B?UVFoYyt4b3V2MnBTTG5tazRvMm1KK2RvT0VjRXl4U2hZRk1DbkRPbWQ3U09h?=
- =?utf-8?B?M3VkcHRIMkNtYk80SnIzZGpBMnVhck4ybXNnQXpzSGlmNE1kcGV4RDBUVkpa?=
- =?utf-8?B?RFFaMDRhc1ZXWnRITDU5cng4UmZIeFNmU1B2ZUxWS2VtSFVJcm92OE5OMGVF?=
- =?utf-8?B?WUV0dTljdmhtTzhNNUF6MlBqejY4Z3Urd1NOUVcyM2x0L2tuUGh1djMvb1ZE?=
- =?utf-8?B?TDdtdVlYSElFSG1CNDhzckNGY2YxU3BOQlJTN21LeGFmaDd2OGlnVjR2ZXlZ?=
- =?utf-8?B?ZnhBdThBeWpwMjd2ckFKWFROU3p2U013Zk9ma0pUeGNUNnd3b1ViMDNBVEgx?=
- =?utf-8?B?NVNYbnY1WThBTmpMTXZRekdkejZvWURDQW82QnozRE80R2dZZE1KS1JTdGVv?=
- =?utf-8?B?TGVlbWo3U3lRNWpxYlFNakxyTmtnZG1Ma094MjVhT3dFNUx4N1hpK2x0Q3Zk?=
- =?utf-8?B?aDJxZnlROWl0cHF6VS95enppbGpBOWJ0N3B5bkRLZFdqRVdDNk8vSTI4bGxn?=
- =?utf-8?B?MWZ3Tld5ODJCVFNGL1ZWR0xnWVhmbHV5ZE50TU9pQ1dvTlhzNU9qaFBiVFJy?=
- =?utf-8?B?alNwd1Zkb2Z2dHFHUHZLTHNmaWhIR0ZsUVFYbzdEMVhjNFpSVmtTcTlFSW5o?=
- =?utf-8?B?Z25GVXBWSFptRndZdWU4Nk95OXpobml3YXgrVSs2c3pxendhYWFJKzZ4R2RJ?=
- =?utf-8?B?V2Z2T1Y5bFkxMVZTNGI4QlFpK3VSMDN5bHJDRFBWTFVhejZJaEh3WGxOQVQx?=
- =?utf-8?B?Z01PWHJLWmhoODF1UVBWdWVXcmw0SWEycEU4OTJzWHNHSmhDNzhqTDVrTm8y?=
- =?utf-8?B?dVJKUy84N08xcUNMbkJzQlFrUStzVlhSZDZaSVBOY1BFV0hVV213Y0ZyTytp?=
- =?utf-8?B?RFg0VkFWM3hCWEhGTENjYVdXVzM5dU5SNlFkWXBhUHlCN3JWbm9qOHVkWDJN?=
- =?utf-8?Q?tzh9fqpUq3ZrJU/YozAy2D09d?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e143049-49cd-48b6-de16-08dbf100555a
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 17:26:33.8608 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HcO1/neCC+Hm9/nZJCtdl7p0aFUaDPFppcXR89YZA2LkBPKFRG7XIbdhGBsD8u9TufQP0G7ObkunmB6GZFHi1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5066
+References: <20231129085156.30698-1-Jun.Ma2@amd.com>
+ <d21116d8-9747-4b0f-b574-18b0d5558f16@amd.com>
+In-Reply-To: <d21116d8-9747-4b0f-b574-18b0d5558f16@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 29 Nov 2023 13:40:22 -0500
+Message-ID: <CADnq5_P0rArhq19Hq6_tBb2jB5OdY+TCtyb6ops12M2rJ6Owqw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Add a new module param to disable d3cold
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,75 +68,154 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Evan Quan <quanliangl@hotmail.com>
+Cc: Alexander.Deucher@amd.com, Ma Jun <Jun.Ma2@amd.com>, Kenneth.Feng@amd.com,
+ kevinyang.wang@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11/29/2023 03:13, Ma Jun wrote:
-> From: Evan Quan <quanliangl@hotmail.com>
-> 
-> The newly added WBRF feature needs this interface for channel
-> width calculation.
-> 
-> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
-> Signed-off-by: Evan Quan <quanliangl@hotmail.com>
+On Wed, Nov 29, 2023 at 1:02=E2=80=AFPM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> On 11/29/2023 02:51, Ma Jun wrote:
+> > Some platforms can't resume from d3cold state, So add a
+> > new module parameter to disable d3cold state for debugging
+> > purpose or workaround.
+> >
+> > Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> > ---
+>
+> This patch is essentially an 'amdgpu knob' for d3cold on the root port.
+> At least for debugging purposes we also have a sysfs file
+> 'd3cold_allowed' that will enact the same behavior.
+>
+> I do have a patch that I proposed to PCI core that stops d3cold_allowed
+> from working in favor of requesting pcie_port_pm=3Doff to be used instead
+> for debugging purposes.
+>
+> However that's a 'relatively big' debugging knob however as it will
+> apply to all PCIe root ports.
+>
+> Considering above I'm in favor of this being available as a localized
+> debugging path for just the root port the dGPU is connected to.
 
-I think the order should be the other way around for these SoB as 
-"you're signing off on Evan's work".
+What functionality does this option provide that runpm=3D0 does not?
+AFAIK, the pci core should not enter d3cold at runtime if the driver
+doesn't call pm_runtime_allow().
 
-Otherwise LGTM.
+Alex
 
-Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-> 
-> --
-> v8->v9:
->    - correct typo(Mhz -> MHz) (Johnson)
-> v13:
->   - Fix the format issue (IIpo Jarvinen)
-> ---
->   include/net/cfg80211.h | 9 +++++++++
->   net/wireless/chan.c    | 3 ++-
->   2 files changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-> index b137a33a1b68..08f0d7184167 100644
-> --- a/include/net/cfg80211.h
-> +++ b/include/net/cfg80211.h
-> @@ -976,6 +976,15 @@ const struct cfg80211_chan_def *
->   cfg80211_chandef_compatible(const struct cfg80211_chan_def *chandef1,
->   			    const struct cfg80211_chan_def *chandef2);
->   
-> +/**
-> + * nl80211_chan_width_to_mhz - get the channel width in MHz
-> + * @chan_width: the channel width from &enum nl80211_chan_width
-> + *
-> + * Return: channel width in MHz if the chan_width from &enum nl80211_chan_width
-> + * is valid. -1 otherwise.
-> + */
-> +int nl80211_chan_width_to_mhz(enum nl80211_chan_width chan_width);
-> +
->   /**
->    * cfg80211_chandef_valid - check if a channel definition is valid
->    * @chandef: the channel definition to check
-> diff --git a/net/wireless/chan.c b/net/wireless/chan.c
-> index 2d21e423abdb..dfb4893421d7 100644
-> --- a/net/wireless/chan.c
-> +++ b/net/wireless/chan.c
-> @@ -141,7 +141,7 @@ static bool cfg80211_edmg_chandef_valid(const struct cfg80211_chan_def *chandef)
->   	return true;
->   }
->   
-> -static int nl80211_chan_width_to_mhz(enum nl80211_chan_width chan_width)
-> +int nl80211_chan_width_to_mhz(enum nl80211_chan_width chan_width)
->   {
->   	int mhz;
->   
-> @@ -190,6 +190,7 @@ static int nl80211_chan_width_to_mhz(enum nl80211_chan_width chan_width)
->   	}
->   	return mhz;
->   }
-> +EXPORT_SYMBOL(nl80211_chan_width_to_mhz);
->   
->   static int cfg80211_chandef_get_width(const struct cfg80211_chan_def *c)
->   {
-
+>
+> Some comments below though:
+>
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++++
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 8 ++++++++
+> >   3 files changed, 16 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu.h
+> > index a9f54df9d33e..db9f60790267 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -166,6 +166,7 @@ extern char amdgpu_lockup_timeout[AMDGPU_MAX_TIMEOU=
+T_PARAM_LENGTH];
+> >   extern int amdgpu_dpm;
+> >   extern int amdgpu_fw_load_type;
+> >   extern int amdgpu_aspm;
+> > +extern int amdgpu_d3cold;
+> >   extern int amdgpu_runtime_pm;
+> >   extern uint amdgpu_ip_block_mask;
+> >   extern int amdgpu_bapm;
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index 22b6a910b7f2..90501c44e7d0 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -264,6 +264,13 @@ bool amdgpu_device_supports_px(struct drm_device *=
+dev)
+> >   bool amdgpu_device_supports_boco(struct drm_device *dev)
+> >   {
+> >       struct amdgpu_device *adev =3D drm_to_adev(dev);
+> > +     struct pci_dev *parent;
+> > +
+> > +     if (!amdgpu_d3cold) {
+> > +             parent =3D pcie_find_root_port(adev->pdev);
+> > +             pci_d3cold_disable(parent);
+> > +             return false;
+> > +     }
+> >
+> >       if (adev->has_pr3 ||
+> >           ((adev->flags & AMD_IS_PX) && amdgpu_is_atpx_hybrid()))
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_drv.c
+> > index 5f14f04cb553..c9fbb8bd4169 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > @@ -145,6 +145,7 @@ char amdgpu_lockup_timeout[AMDGPU_MAX_TIMEOUT_PARAM=
+_LENGTH];
+> >   int amdgpu_dpm =3D -1;
+> >   int amdgpu_fw_load_type =3D -1;
+> >   int amdgpu_aspm =3D -1;
+> > +int amdgpu_d3cold =3D -1;
+>
+> If this was chained to a larger workaround (such as automatically
+> applying to a DMI quirk) it would make sense as int and with using
+> -1 for auto.  However there is a pretty dramatic downside for using this
+> knob that it can break s2idle.
+>
+> In my testing I've found that the following happens on an A+A design
+> after s2idle with this parameter in use.
+>
+> [   70.572270] pcieport 0000:01:00.0: Unable to change power state from
+> D3cold to D0, device inaccessible
+> [   70.572481] pcieport 0000:02:00.0: Unable to change power state from
+> D3cold to D0, device inaccessible
+> [   72.855769] amdgpu 0000:03:00.0: not ready 1023ms after resume; waitin=
+g
+> [   73.943545] amdgpu 0000:03:00.0: not ready 2047ms after resume; waitin=
+g
+> [   76.055602] amdgpu 0000:03:00.0: not ready 4095ms after resume; waitin=
+g
+> [   80.279550] amdgpu 0000:03:00.0: not ready 8191ms after resume; waitin=
+g
+> [   88.983562] amdgpu 0000:03:00.0: not ready 16383ms after resume; waiti=
+ng
+> [  105.879581] amdgpu 0000:03:00.0: not ready 32767ms after resume; waiti=
+ng
+> [  142.743646] amdgpu 0000:03:00.0: not ready 65535ms after resume;
+> giving up
+> [  142.743793] amdgpu 0000:03:00.0: Unable to change power state from
+> D3cold to D0, device inaccessible
+> [  142.804011] snd_hda_intel 0000:03:00.1: Unable to change power state
+> from D3cold to D0, device inaccessible
+>
+> So I don't see us ever automatically using this and it should be
+> debugging only.  IOW this doesn't need to be integer; it can be boolean.
+>
+> >   int amdgpu_runtime_pm =3D -1;
+> >   uint amdgpu_ip_block_mask =3D 0xffffffff;
+> >   int amdgpu_bapm =3D -1;
+> > @@ -359,6 +360,13 @@ module_param_named(fw_load_type, amdgpu_fw_load_ty=
+pe, int, 0444);
+> >   MODULE_PARM_DESC(aspm, "ASPM support (1 =3D enable, 0 =3D disable, -1=
+ =3D auto)");
+> >   module_param_named(aspm, amdgpu_aspm, int, 0444);
+> >
+> > +/**
+> > + * DOC: d3cold (int)
+>
+> If you flip it to boolean as I suggested this should probably either
+> rename to disable_d3cold or you should default to TRUE.
+>
+> > + * To disable d3cold (1 =3D enable, 0 =3D disable). The default is -1 =
+(auto, enabled).
+> > + */
+> > +MODULE_PARM_DESC(d3cold, "d3cold support (1 =3D enable, 0 =3D disable,=
+ -1 =3D auto)");
+> > +module_param_named(d3cold, amdgpu_d3cold, int, 0444);
+> > +
+> >   /**
+> >    * DOC: runpm (int)
+> >    * Override for runtime power management control for dGPUs. The amdgp=
+u driver can dynamically power down
+>
