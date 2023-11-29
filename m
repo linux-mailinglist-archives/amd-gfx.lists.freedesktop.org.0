@@ -2,98 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C7A7FD20F
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 10:15:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF947FD4B0
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Nov 2023 11:50:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2814B10E359;
-	Wed, 29 Nov 2023 09:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A407410E4B5;
+	Wed, 29 Nov 2023 10:50:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2048.outbound.protection.outlook.com [40.107.243.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DBB510E359
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 09:15:14 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2046.outbound.protection.outlook.com [40.107.101.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2284910E4B5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Nov 2023 10:50:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aXuzmrGRYTl7IP+YQ66/6pRGCiboNLnUVpiNfKoNxn5scLmTuC+1s+lSDn85Ti/IrWc1k23o8Ww4h4EGTP9Dvy1w11cLgL++EIcfhgk/EJW7HXq1WBioT/0amJON0cHUDNbmWUfLga+KpsThPZmvQBMdwFk3XQiSUCnoVRUtWWl4aGX1J8jYTt77N0J72gE31dQ3HxutgFrk7jbDgPdylfAuCAbRa/opu/Hzsl47stCNdnob22lBntRM+hoddNRQrUxlN5sS6IZkz5lNDAw0bOQDWo8xoLOHd1ECz+zQlGOi0zl1E4b2hWl+/y49w8f5jll4gXrJ8Sdc0fIpsjLwvw==
+ b=EnQVj28rIssmDJYYMmM2EUhYLxhBSU4C2tOvhH20dwqlqFhsERFnQzGvJ9ipCnXCnsykDVXB3g10PnWa7kh0z3brDii6Kaxlp80RUFK4hlWH+KDdO5KoXgkIzu8iyROE8NU7T+NcSfcK4mzR0pw4IKdlUo4RXxrBVL+7U4dfYxzXps095iIQFYypdp423VkpwTBrC477UT4EyIPwA/7BJi9ISwgY2os+wnlx9NF/KF77SIpDLQSdgcRG/GyiCGCJ3ssHMRF7xB9uoPPZv4TpgtimyoopuDr8UB2cBod3fJGDhujsmqbjAMHVpWkn5T5v4dzwv4ihFtEVtZXjVss4TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/FG/v7ogyS6xo4c1TLYkdS7kjTNds9VBLaPwExQZrCs=;
- b=e53e3lEKYBVSAsXrAu+26wPxhnbXsfj4B6fP8GIJ+ZgCFkf2jetrJJlmMUrEMvV9jCVYUaH0ivY3hmeu6OYX3D6FM4pwnKXhg//5to3jGqf9Fsw7JRN2aCtqLe0w0nm+wacMWXHtFG8RyZzIzEb9T7C8f1sK+RWGHqi/QhUxRBjL+O88WyTruMSM/2N7e19uGQrbS6AX0eeK03ddF0uzb9ripknRDK8io3twk4GEeafBWwt+kccIadLHXc/cVH0sr3KfC74HET6d3x/f7iusQMP3SLiK2WG24tFojeLy07jyFNCdBfD17h/osFdjDONcrAAtqRL7BuYO18oDV5GxEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=B6wbTbOGPhEyz6bWLf3ys3kXbFXfJZVkrWMgI5tq8ck=;
+ b=LNmMcp4CNUTIF+Qbh7jaKk7GbavGB3MDNmO0L2UxChvYLhFoEW9usiCtqNySXzDgkPfb6/p1CSmHpb0OFKzFl49oWvL+6VIYUisZrNVad7UCi3cAJiKm98MJf8J8tYx2YR4ePnFtfjfB7KTDozQqJ//kwaz5iwfWAuNng1czD3NBrCL9b4fR3zQ4PcB47f9ISvZ8GL7DYiy8fFP9ovwQnAxxf2YdIVcLUNBbdNJfA2qRImYO0067u3HdVxVS6I04b6XeBxys9ZtNWpOYrzVQngl/+WaiowVUNuqq5hy6JuwLGFu6wDlqmxZUtmz2k8fxipwmoanawS9HjGZWePR3uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FG/v7ogyS6xo4c1TLYkdS7kjTNds9VBLaPwExQZrCs=;
- b=1dGHcVWFqDHv1m1AE38ElJnELDjpOa2Jy9uJf/1FCKrd0z5sjF5KMxInyy11QqXdwzWO22rzJVsH/5Y6XH8l7k7U5UPhHNAN8pLl5GDetDSkfohfLUtQ+08nJzXAhCd7WMgA//3XS9ALp+5Nw3yXPRCrHHDUFqP5mMeGmV5WLnc=
-Received: from MN2PR15CA0008.namprd15.prod.outlook.com (2603:10b6:208:1b4::21)
- by LV3PR12MB9401.namprd12.prod.outlook.com (2603:10b6:408:21c::22)
+ bh=B6wbTbOGPhEyz6bWLf3ys3kXbFXfJZVkrWMgI5tq8ck=;
+ b=kmB24TDW2JGk43RGDjG3bC/wEzmkK6+5bSsDYNo4PxZti1WxpVFwo+JNtmM6QSzVQzaWCLujZMiOEwwtziIi4y2lcGC4pB9RdxBGtrq7JLdw9PlUXTjJ64cWa3iiVOLbeiFDEzCIYu36GYn79Ni2XXVP4t50OxAZ9Vudhu+IAm0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
+ by SN7PR12MB6816.namprd12.prod.outlook.com (2603:10b6:806:264::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Wed, 29 Nov
- 2023 09:15:10 +0000
-Received: from MN1PEPF0000ECD6.namprd02.prod.outlook.com
- (2603:10b6:208:1b4:cafe::2d) by MN2PR15CA0008.outlook.office365.com
- (2603:10b6:208:1b4::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.24 via Frontend
- Transport; Wed, 29 Nov 2023 09:15:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000ECD6.mail.protection.outlook.com (10.167.242.135) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Wed, 29 Nov 2023 09:15:10 +0000
-Received: from compile-server.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 29 Nov
- 2023 03:15:04 -0600
-From: Ma Jun <Jun.Ma2@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <lenb@kernel.org>, <hdegoede@redhat.com>, 
- <johannes@sipsolutions.net>, <davem@davemloft.net>, <edumazet@google.com>, 
- <kuba@kernel.org>, <pabeni@redhat.com>, <alexander.deucher@amd.com>,
- <Lijo.Lazar@amd.com>, <mario.limonciello@amd.com>, <netdev@vger.kernel.org>,
- <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <platform-driver-x86@vger.kernel.org>
-Subject: [PATCH v14 9/9] drm/amd/pm: enable Wifi RFI mitigation feature
- support for SMU13.0.7
-Date: Wed, 29 Nov 2023 17:13:48 +0800
-Message-ID: <20231129091348.3972539-10-Jun.Ma2@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231129091348.3972539-1-Jun.Ma2@amd.com>
-References: <20231129091348.3972539-1-Jun.Ma2@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Wed, 29 Nov
+ 2023 10:50:07 +0000
+Received: from BYAPR12MB4614.namprd12.prod.outlook.com
+ ([fe80::2ae2:fc53:6bad:72f0]) by BYAPR12MB4614.namprd12.prod.outlook.com
+ ([fe80::2ae2:fc53:6bad:72f0%3]) with mapi id 15.20.7046.023; Wed, 29 Nov 2023
+ 10:50:06 +0000
+Message-ID: <5bab756e-a155-42c8-8459-d795466ccbc2@amd.com>
+Date: Wed, 29 Nov 2023 16:19:58 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/amd: Fix handling of amdgpu.runpm on systems with
+ BOCO
+Content-Language: en-US
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20231128185238.187381-1-mario.limonciello@amd.com>
+ <20231128185238.187381-2-mario.limonciello@amd.com>
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20231128185238.187381-2-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0040.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:98::9) To BYAPR12MB4614.namprd12.prod.outlook.com
+ (2603:10b6:a03:a6::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD6:EE_|LV3PR12MB9401:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0fc49ef-0bad-41c6-cc74-08dbf0bbafcb
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4614:EE_|SN7PR12MB6816:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd27f056-e356-4d20-f49e-08dbf0c8f2c9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AgRmZ8hC+ZuwEjzVvo+/PcGzlA8VquqnvEMbOiaVqTa4MaF8KIykKcCX7h5pHEd5jjpEtAKIvM5AfxzwKtoWJeljj/4aZV/HOiEyFaGwGgc7XwieL1NwbYnbilNn8mPv901iac9AqEJ5wRUDXxzTX0XRZralobocPhkRPKh/b0optOeKalRtvLe2FC2+yafIcfh+vGU5CQu5DUNUYPbl0wEMa23BSRjhYZAA70sXO41IVduty86sANBs5cTVEf3oN+KJUkv1CBwI3MCxtmIXODo+Bt874L8FZMo/4zc0Ji5Y3u0MM8SC4fWg/73Lc43Jd+Vda59QcJuLgyAyJAP82MXBkBYfVWoby2KpUsA0+rvQCylQaFMYIUXrqq7V4d59TAfU6dvFiBKp/hRxljrHje2mR0zxhtbqHA5kz2B6V57bAda17R688td1q47KaRRaMFq+K4nboomcBOwnYQVg1Ifdl9hIc+qE9QSDCdqlI80JZ3M60LmqMhaTFMYnoGSp0KrnPtTvgD3sznt+9KeBBknN+alIoy/oXIb0F0mUEprP6Z2Mxurq1nL4vOWRUPbUc+r3Yt4DlZQjZ33NUzRRhQigra4aLLVRaWaSukzDmktTAfdANYG5shZcQ8kKYIygOdP9M85oD/+UmSOJsp3Htgl0EPo1K3w4m6zkgWNX5/5SlCTUfjWhXCmptZfSztPF2jrmUOmOpGPYZuQNbhcoh5cvSLZtIH/SwgpmJQSykXRdXCnAtYzTvk1yShSvPpBQ+H6Dq250KPpOtplTpy35/YOBuFKh9QvaxDWfTDqXPpnvGxNrLKFtf696sV2pBXuM9hXXFyOgxMMH007nM5usYw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(376002)(396003)(346002)(136003)(230173577357003)(230922051799003)(230273577357003)(451199024)(1800799012)(64100799003)(186009)(82310400011)(40470700004)(36840700001)(40480700001)(2616005)(426003)(45080400002)(16526019)(1076003)(478600001)(26005)(336012)(40460700003)(6666004)(356005)(82740400003)(81166007)(921008)(36756003)(86362001)(41300700001)(7416002)(2906002)(5660300002)(83380400001)(32650700002)(7696005)(36860700001)(316002)(54906003)(4326008)(8676002)(70586007)(70206006)(110136005)(8936002)(36900700001);
+X-Microsoft-Antispam-Message-Info: uOypZ5oHErqO9RSd5aqDBah2DuZaS3/A/W1MxrXs1oMH4WLLL+8FisVlAjiiAyr9xvwd7YZ+UHugAThxHNJfxNlnhSM8ugxy/XW3ZYCBLmC23bPhX7mr/H5MIcv7zJre6AZn7l57cnLhPkVwg/FCUk68lTepCnCNM8VcaC8dsbk3ID21ZBMqS99vcpFtQ8Aollsjw64+Tysp4FuffG8frdrN/VIxhU06zBiXlRz4+JjVb+DdcARAE+ZpeO43bcIm2QtenaOenb0LOx/Qeblow+QyI3XdBNlU2iu5SOE9E8zVKn4kUuZ1CeBbwJKGQrBD4ZB2RZjcV9/nMaiWEPjCz7g7iXBw5DHDeW7ry+DrEOE1pZ9tqiMYNx+rEt/mHnOxwloAGMIx2MABcfE2dl/JfGzOOWZjwmRv6NBnFHR+4mVhm4w6djzaKCOUusS0gGf5Hvx/iFb/tEbcwsvjsnCRwc1gDV6taA5kMfefGgd+5U1jvmv599zJyq4WGem+WGF1sHQQFEFUTlU8L1lBVnu6BjAMbFt73Rb11mksbuZ1C7SsSXls15Q8SKXk28OFNXOqhr5ysb6kYF4LPi/ghfXW6xLpGUoCrSg6vyk0MXSEVt0jRqTI7jbe3PAqCo8ipW6iphsVaJphWjsTKyZ8WVhF8Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(366004)(346002)(396003)(136003)(39860400002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(83380400001)(26005)(2616005)(66476007)(66946007)(66556008)(316002)(2906002)(4326008)(8676002)(8936002)(5660300002)(86362001)(31696002)(41300700001)(6506007)(6666004)(36756003)(6512007)(53546011)(478600001)(6486002)(31686004)(38100700002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OE5iempJOWNKdklOK0xxM3N2amEzdGU4VzUxanliUEpVbVQ5TXN5ZGZoWXlu?=
+ =?utf-8?B?WlRtZG9USnpRenp1ZlMrYWxJVmlrL05veVp5YzJLbi9RQ1dUeEM2R0hSUFMx?=
+ =?utf-8?B?WjBwWEpqdHdnNTg4QzVLNHN6K2hQb3ZQdzZVVnRwUmZpNzFzYW9yTjR5Vits?=
+ =?utf-8?B?UnoreE4yazVRU2dZWHlnYVZnTVR3V1ZZYUxGcHRZZVlSZGl4SjdIZnNGdU40?=
+ =?utf-8?B?SGFtMFA2MkNtZ3ZKMVdZK3lWWlFFc01PbG41a2R0VWl1WngxRzAvcTFuMVFN?=
+ =?utf-8?B?Q2NOaG5FZXRqdGcvdjhQNUhVSUFTekhnNHhLdWhEUUlzL0JZdHBCQWpQR1hz?=
+ =?utf-8?B?VGtsS0dYSTRNZFJiTHNZQXdxNElvYzE4SlVhWWpPcjVZV2Y1QzF5NE4vYUlC?=
+ =?utf-8?B?SkNXSTViS1ovOCtEZ1ZGRllPenFseFFpSHNSZGpqVkRkUDMyazVKNkw0ZFZP?=
+ =?utf-8?B?dXhKcnlCNUtGclc5dmR1UDdaKzNjVHNSR0JCZlptU2JoZldpZE05U21rd05X?=
+ =?utf-8?B?SjFCTDVXdWVNRWltMGt4bmZjZ2FJMW91TExNcDEwQ3VPNFlPbFNJc2FkU0tX?=
+ =?utf-8?B?WmVWeXlLM0xnUDVwaUFLQzBKdUljVHR6UXB5SW1uZ1dhTHUvaXhwOVR0dTdH?=
+ =?utf-8?B?N3ljRWtrT0QySVR4OG0zNkp1U29uVHVOdnpFaEJCc0lFQ0hsUWlrRTJxVERl?=
+ =?utf-8?B?SDFMQmwwdWZvMldSSjhmTEkrTnBVYWhlNng4S2dQUW16OVArMVhtWk5YWlo0?=
+ =?utf-8?B?YkRtaDQvMVRFanRCQVgrZHFOUGZITFZXajN3UldyL0ZDWW5KOFh5Ujg5S0hD?=
+ =?utf-8?B?aE0vMGIxbGlVYURwU3Mrb0FYS2VtSzMwK3pCWFFBOEJTNU1wWUhENFZoVnI5?=
+ =?utf-8?B?WmRhbVBRYnRNeEhsUktWWVdoVFNKc1dvenp1WEIvbDZxczZSUTNDTG9ucS8y?=
+ =?utf-8?B?aFFvakpVYTNMOTQ2TGVJSWNsRUkrcm53d01UVTJmY2hlRllVMjdqMHZ2bHd4?=
+ =?utf-8?B?MVZaTnBFMmkzc2hvRE1IR2RuWWxZVjlub2h3bHV4THV0VnFlZ25PNHlieTBt?=
+ =?utf-8?B?YUZsb0RaV0pKOEczdE5pU0thQWVFU2c0NGpUNE0vV0NTT1BCSzAxdU5YWjU2?=
+ =?utf-8?B?SWNWZlczYzVhSzVleW1lZUR4ZmNMZmVIMGt0OCtyanB2SUZuUHBPVFZiRk52?=
+ =?utf-8?B?SHdXQ3R2bDJYUWtWQ0o0c21GR09CVUpaS0luUmJ2RU03a0lsTzV5QlRWOE9T?=
+ =?utf-8?B?NnlaZXR5M0w1OUJjVjNFK1dsaGZqVEZRSFZvYzhsVmU4d0duQThjRmZiK2lO?=
+ =?utf-8?B?RCtpVzB3N0dicTFTMkxMSVVRbGVRdGtLYmdITjhHVTArN085RC9OK2Y0cjFw?=
+ =?utf-8?B?c0NRS3ZNR2ZTcXFHb2V5T2p0QXcrN0IxVGFmN1gxS3d1dDBRRFo1UDY4SVpm?=
+ =?utf-8?B?UlNwajRwSlpJa0Vib244SGJRWVZ1VXB2N0hqK3VLY1VjckttS2pESEo2U1h2?=
+ =?utf-8?B?cU81ZnhEdDhvVDhSNG15SVB0aW5nS3hhZkRRVE5ITVE0bWFjN0JaeVNKRUFx?=
+ =?utf-8?B?Y0g3SDFna2hLUEVhRzVGVnl4ZE12RG9WUWYvVTVYOWVnd0hET20yV2cyR2JW?=
+ =?utf-8?B?MDFyWWdvRXc0Tm5YMStYK3NmYzRFemFTaUZTTVpRUFo2dE5ESXNkaDNpcERl?=
+ =?utf-8?B?bitKd0Z0MnpmWVh1dDdsWkNaamdNT1dPendnazlQcDhjcTRqVERzQXhCRW1i?=
+ =?utf-8?B?Vkk4R0UzVmlrSC8vSzdoQWJFL1d4MW9HU2RGVzNtTk1DekRKSjArcjJWdVdy?=
+ =?utf-8?B?cGQ2VnNuOFhQVXpBY25HMkVRcnA2TFFIREtKZ1ovYm5pZGxmNDVFajBQOWw1?=
+ =?utf-8?B?QlR3K0VUUHhFTjVLL3lSVTFVMTZwajdUVzJZZ0w0T25MWDNxNCsrRjRMelhh?=
+ =?utf-8?B?TnpZUExKYWlKTmpaN29yakdGd0xCTVZJbE5xOEpCN3ZMMm0vSCtQSUVkRnN1?=
+ =?utf-8?B?WW8xWkdMRVVnaE9IU2pGYjRhRTRlTk03MkhYbElsa1d6UmtYNzR6L0FYSldh?=
+ =?utf-8?B?UC9CYnhFd29rN0NubU1WT0ZQSlVPUHczMkJ5ZmFEcWs1djlheDNEcTZUUmpC?=
+ =?utf-8?Q?rraRtre+CXzX/t8G3ISLhp8oW?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 09:15:10.1507 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0fc49ef-0bad-41c6-cc74-08dbf0bbafcb
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd27f056-e356-4d20-f49e-08dbf0c8f2c9
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 10:50:06.4764 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD6.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9401
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GVz9L4ZuTK3sAxvoQbyB9HccWIrX8kcMldP3vgg7rXcmquhX7KFQOGz7+drGrWcl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6816
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,79 +125,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ma Jun <Jun.Ma2@amd.com>, Evan Quan <quanliangl@hotmail.com>
+Cc: Jun.Ma2@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Evan Quan <quanliangl@hotmail.com>
 
-Fulfill the SMU13.0.7 support for Wifi RFI mitigation feature.
 
-Signed-off-by: Evan Quan <quanliangl@hotmail.com>
-Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
-Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
---
-v10->v11:
-  - downgrade the prompt level on message failure(Lijo)
-v13:
- - Fix the format issue (IIpo Jarvinen)
- - Remove duplicate code (IIpo Jarvinen)
----
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On 11/29/2023 12:22 AM, Mario Limonciello wrote:
+> On products that support both BOCO and BACO it should be possible
+> to override the BOCO detection and force BACO by amdgpu.runpm=1 but
+> this doesn't work today.
+> 
+> Adjust the logic used in amdgpu_driver_load_kms() to make sure that
+> module parameters are looked at first and only use automatic policies
+> in the -1 or -2 cases.
+> 
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 80 +++++++++++++++----------
+>   1 file changed, 48 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index b5ebafd4a3ad..29381da08fd5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -121,6 +121,53 @@ void amdgpu_register_gpu_instance(struct amdgpu_device *adev)
+>   	mutex_unlock(&mgpu_info.mutex);
+>   }
+>   
+> +static void amdgpu_driver_set_runtime_pm_mode(struct amdgpu_device *adev)
+> +{
+> +	struct drm_device *dev = adev_to_drm(adev);
+> +
+> +	adev->pm.rpm_mode = AMDGPU_RUNPM_NONE;
+> +
+> +	switch (amdgpu_runtime_pm) {
+> +	case -1:
+> +	case -2:
+> +		break;
+> +	case 0:
+> +	default:
+> +		return;
+> +	case 1:
+> +		if (amdgpu_device_supports_baco(dev))
+> +			adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> +		else
+> +			dev_err(adev->dev, "BACO is not supported on this ASIC\n");
+> +		return;
+> +	case 2:
+> +		// TODO: adjust plumbing to be able to pull PP table to check MACO support as well
+> +		if (amdgpu_device_supports_baco(dev))
+> +			adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> +		else
+> +			dev_err(adev->dev, "BAMACO is not supported on this ASIC\n");
+> +		return;
+> +	}
+> +
+> +	if (amdgpu_device_supports_px(dev)) {
+> +		adev->pm.rpm_mode = AMDGPU_RUNPM_PX;
+> +		dev_info(adev->dev, "Using ATPX for runtime pm\n");
+> +	} else if (amdgpu_device_supports_boco(dev)) {
+> +		adev->pm.rpm_mode = AMDGPU_RUNPM_BOCO;
+> +		dev_info(adev->dev, "Using BOCO for runtime pm\n");
+> +	} else if (amdgpu_device_supports_baco(dev)) {
+> +		if (adev->asic_type == CHIP_VEGA10) {
+> +			/* enable BACO as runpm mode if noretry=0 */
+> +			if (!adev->gmc.noretry)
+> +				adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> +		} else {
+> +			adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-index 81eafed76045..eb507cbf5c3d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
-@@ -140,6 +140,7 @@ static struct cmn2asic_msg_mapping smu_v13_0_7_message_map[SMU_MSG_MAX_COUNT] =
- 	MSG_MAP(AllowGpo,			PPSMC_MSG_SetGpoAllow,           0),
- 	MSG_MAP(GetPptLimit,			PPSMC_MSG_GetPptLimit,                 0),
- 	MSG_MAP(NotifyPowerSource,		PPSMC_MSG_NotifyPowerSource,           0),
-+	MSG_MAP(EnableUCLKShadow,		PPSMC_MSG_EnableUCLKShadow,            0),
- };
- 
- static struct cmn2asic_mapping smu_v13_0_7_clk_map[SMU_CLK_COUNT] = {
-@@ -222,6 +223,7 @@ static struct cmn2asic_mapping smu_v13_0_7_table_map[SMU_TABLE_COUNT] = {
- 	TAB_MAP(ACTIVITY_MONITOR_COEFF),
- 	[SMU_TABLE_COMBO_PPTABLE] = {1, TABLE_COMBO_PPTABLE},
- 	TAB_MAP(OVERDRIVE),
-+	TAB_MAP(WIFIBAND),
- };
- 
- static struct cmn2asic_mapping smu_v13_0_7_pwr_src_map[SMU_POWER_SOURCE_COUNT] = {
-@@ -512,6 +514,9 @@ static int smu_v13_0_7_tables_init(struct smu_context *smu)
- 		       AMDGPU_GEM_DOMAIN_VRAM);
- 	SMU_TABLE_INIT(tables, SMU_TABLE_COMBO_PPTABLE, MP0_MP1_DATA_REGION_SIZE_COMBOPPTABLE,
- 			PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
-+	SMU_TABLE_INIT(tables, SMU_TABLE_WIFIBAND,
-+		       sizeof(WifiBandEntryTable_t), PAGE_SIZE,
-+		       AMDGPU_GEM_DOMAIN_VRAM);
- 
- 	smu_table->metrics_table = kzalloc(sizeof(SmuMetricsExternal_t), GFP_KERNEL);
- 	if (!smu_table->metrics_table)
-@@ -2567,6 +2572,11 @@ static int smu_v13_0_7_set_df_cstate(struct smu_context *smu,
- 					       NULL);
- }
- 
-+static bool smu_v13_0_7_wbrf_support_check(struct smu_context *smu)
-+{
-+	return smu->smc_fw_version > 0x00524600;
-+}
-+
- static const struct pptable_funcs smu_v13_0_7_ppt_funcs = {
- 	.get_allowed_feature_mask = smu_v13_0_7_get_allowed_feature_mask,
- 	.set_default_dpm_table = smu_v13_0_7_set_default_dpm_table,
-@@ -2635,6 +2645,9 @@ static const struct pptable_funcs smu_v13_0_7_ppt_funcs = {
- 	.set_mp1_state = smu_v13_0_7_set_mp1_state,
- 	.set_df_cstate = smu_v13_0_7_set_df_cstate,
- 	.gpo_control = smu_v13_0_gpo_control,
-+	.is_asic_wbrf_supported = smu_v13_0_7_wbrf_support_check,
-+	.enable_uclk_shadow = smu_v13_0_enable_uclk_shadow,
-+	.set_wbrf_exclusion_ranges = smu_v13_0_set_wbrf_exclusion_ranges,
- };
- 
- void smu_v13_0_7_set_ppt_funcs(struct smu_context *smu)
--- 
-2.34.1
+On VG20/ARCT, older logic doesn't use BACO as runpm mode unless forced. 
+This logic breaks it.
+
+Thanks,
+Lijo
+> +		}
+> +		if (adev->pm.rpm_mode == AMDGPU_RUNPM_BACO)
+> +			dev_info(adev->dev, "Using BACO for runtime pm\n");
+> +	}
+> +}
+> +
+>   /**
+>    * amdgpu_driver_load_kms - Main load function for KMS.
+>    *
+> @@ -149,38 +196,7 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
+>   		goto out;
+>   	}
+>   
+> -	adev->pm.rpm_mode = AMDGPU_RUNPM_NONE;
+> -	if (amdgpu_device_supports_px(dev) &&
+> -	    (amdgpu_runtime_pm != 0)) { /* enable PX as runtime mode */
+> -		adev->pm.rpm_mode = AMDGPU_RUNPM_PX;
+> -		dev_info(adev->dev, "Using ATPX for runtime pm\n");
+> -	} else if (amdgpu_device_supports_boco(dev) &&
+> -		   (amdgpu_runtime_pm != 0)) { /* enable boco as runtime mode */
+> -		adev->pm.rpm_mode = AMDGPU_RUNPM_BOCO;
+> -		dev_info(adev->dev, "Using BOCO for runtime pm\n");
+> -	} else if (amdgpu_device_supports_baco(dev) &&
+> -		   (amdgpu_runtime_pm != 0)) {
+> -		switch (adev->asic_type) {
+> -		case CHIP_VEGA20:
+> -		case CHIP_ARCTURUS:
+> -			/* enable BACO as runpm mode if runpm=1 */
+> -			if (amdgpu_runtime_pm > 0)
+> -				adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> -			break;
+> -		case CHIP_VEGA10:
+> -			/* enable BACO as runpm mode if noretry=0 */
+> -			if (!adev->gmc.noretry)
+> -				adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> -			break;
+> -		default:
+> -			/* enable BACO as runpm mode on CI+ */
+> -			adev->pm.rpm_mode = AMDGPU_RUNPM_BACO;
+> -			break;
+> -		}
+> -
+> -		if (adev->pm.rpm_mode == AMDGPU_RUNPM_BACO)
+> -			dev_info(adev->dev, "Using BACO for runtime pm\n");
+> -	}
+> +	amdgpu_driver_set_runtime_pm_mode(adev);
+>   
+>   	/* Call ACPI methods: require modeset init
+>   	 * but failure is not fatal
 
