@@ -2,71 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC547FF013
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Nov 2023 14:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7677FF1A8
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Nov 2023 15:21:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA32F10E6FB;
-	Thu, 30 Nov 2023 13:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFFEB10E70A;
+	Thu, 30 Nov 2023 14:21:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2CC10E2FF;
- Thu, 30 Nov 2023 13:26:22 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- 5b1f17b1804b1-40b4a8db331so7721775e9.3; 
- Thu, 30 Nov 2023 05:26:22 -0800 (PST)
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com
+ [IPv6:2001:4860:4864:20::34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4648610E70A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 14:21:44 +0000 (UTC)
+Received: by mail-oa1-x34.google.com with SMTP id
+ 586e51a60fabf-1f03d9ad89fso460738fac.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 06:21:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701350780; x=1701955580; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=kMjMwDQeJ7U3HaJX4ZxhNthwT8vrdAeuzz7BaoFMnjY=;
- b=JAhl2sDTvuoabwWpyFNweBEIpafGo7b5e6Y5EaSqnbvFoVijFm/zVr9jrt+euDbOns
- 9ycp/0V0Y5bG3QZtXkjx75/hFzr0cOHMqzwyTVaEsHsK/YgQeUkvKtEsICmRu7f/8ZMA
- ItQd/QGpumq/zAy0fwwamiGUIiFWBrCZeUwAoOwkGRkoIC6srLzoB2SWKMsZEu2JP8Ns
- Dah/CIQQucyIFt1jNCGNoIdOHvtgXhUFrTnvlO/FECqWCeU73TVXT3hjJ7JWAHtAVj9M
- yF9esZ2ItuNGYcppqqxbdduGjjuELSPoLoT408xKpCA2+YKqyGC05AZ9vMcFGivaC9z3
- WX5w==
+ d=gmail.com; s=20230601; t=1701354103; x=1701958903; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=L+bKXwT05UG+snhgwAmWWj5n9+Zmy3GUtPSkIexOUaM=;
+ b=cUFd5HZ/D1c+5L2k14DdzBFX5QkFUWc6ZJz1KNU8Uqj6L5i/htzQU46vgwCoUfaxYO
+ Pf4RGPQAmp4LjXYMJ0LBZ7ROvupbWVIm/bVYiOqjqyaMDwT6+HCTd20b3JZappaC8xk+
+ HwhrIyfEsqVpHpYqKP3KLtBuIqjvZTUFbvRh5R6VMw6dn7zgiu2HIsufxBS2azyE50Xi
+ piVKc8BbhuuGrlnIV+WRoGMqc9vMsTqv19cNxyX1vrXy7chclDDAGBMFiKilgpIevSiw
+ iyr+RocgkGnaLrULSR6mj4X/nz3G38uIpo2HRXPoe/uQV2GS6IvGHUFT69wWNngmtGMu
+ JdwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701350780; x=1701955580;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=kMjMwDQeJ7U3HaJX4ZxhNthwT8vrdAeuzz7BaoFMnjY=;
- b=Rpl6L/WbV2bKXS8199WtXxn8OV7K2szm6UnXAdQnG0A65xiUWQsiSSJqbQRvONCQ9z
- sKdoSaqCEFSjwISoJa/7GYNIidv8895CPycFC+RqxNOKXO0F0rzxStXOQztKUBwkddPs
- hyrdmadwUVmunqf1azaexXJPQLl8S4G4YwSA2l9kIaPFHyyU9rrJ8tABB1DynQtyzMWu
- 3XqoJLERofq1WaFaM4aoZTYiSW5Uzf0q/mN9JbNp5vPoURR7NtvEFblpdv85Wz9o9Gnl
- sLLjI6AHXFqgOwNtQroY0GuDJltZV9G/iQX6zG5RWB2h089erPXp+6c5brPVOyKd4QdL
- PfSA==
-X-Gm-Message-State: AOJu0Yw6v5ar1hmRUBjmiPLczjQf05K3SKAa64MGa07bFCam/loYVYot
- L9gCnomvXeE9ird2wZKkOUw=
-X-Google-Smtp-Source: AGHT+IF4VK2RMM99vHoNOTjMS8JYwZng9oa3EJPG40jI+yusE7jKXL9SAsLKU4Q7PP0rLS8URV59NA==
-X-Received: by 2002:a05:600c:a04:b0:40b:47f0:66b5 with SMTP id
- z4-20020a05600c0a0400b0040b47f066b5mr8748485wmp.26.1701350780275; 
- Thu, 30 Nov 2023 05:26:20 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- v9-20020a05600c470900b004063cd8105csm5706905wmo.22.2023.11.30.05.26.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Nov 2023 05:26:19 -0800 (PST)
-Message-ID: <1e10c821-1981-4c9c-8243-dc4592bf9102@gmail.com>
-Date: Thu, 30 Nov 2023 14:26:18 +0100
+ d=1e100.net; s=20230601; t=1701354103; x=1701958903;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=L+bKXwT05UG+snhgwAmWWj5n9+Zmy3GUtPSkIexOUaM=;
+ b=Ac825k12+/9MccqGW4d7R+49/1RtrhUpYXmhoBhlXM3a66WpYBVkerf/VhXHvGJoTU
+ P/Jkn+OFUrVbyZA2UwKn47Pfx7WsBIU1DMj545n0/V2MWDyZuC+WGPDOl+x9BMiG8oNd
+ //JKuNkmD34FSYtum2eQQDgn/A47H+nNBPV8Dy5ozz0kKsHsGk6leX6dOKLdcdog6fcv
+ rswb/isMis/xbO4k60cml+HxHZA0qOo7U2KuIWMYFs/ILAzsVRrqovN3pkkGsqAszyjg
+ j4YBIKSwJdhQ8m4X+xR2MN6hOpLh77mpVI3H7ibVgWVfJ6kWlxz2/fC4l/PgI61zY2ip
+ WLag==
+X-Gm-Message-State: AOJu0YwrWZfdFSeWEtHVwZDxrDdxp8cdEH1ebeJcB/zrhXet2G6w3ar4
+ JGrH4RPdkgmArT5my74HSexo5rEHi2P+PQJ/AhM=
+X-Google-Smtp-Source: AGHT+IEN8bNPEtMhOLYgkptd7ppzSMcfMpmGNxRItboBNznWfGRujGxufs1DcG3NaH+etX2MTh4T+mb96pfEnErO7IU=
+X-Received: by 2002:a05:6870:612c:b0:1fa:26b3:a03d with SMTP id
+ s44-20020a056870612c00b001fa26b3a03dmr21211720oae.39.1701354103073; Thu, 30
+ Nov 2023 06:21:43 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Linaro-mm-sig] Re: [PATCH] dma-buf: Correct the documentation of
- name and exp_name symbols
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <20231122160556.24948-1-Ramesh.Errabolu@amd.com>
- <c5ae3f32-0779-4583-8fe6-92f5dea5ede6@amd.com>
- <CADnq5_OJbURbVzXVypohp7gCjE+ckHkEnDD67H7KTDJZt_e3HA@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_OJbURbVzXVypohp7gCjE+ckHkEnDD67H7KTDJZt_e3HA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231129085156.30698-1-Jun.Ma2@amd.com>
+ <CADnq5_NX1hfyq34+HkVirXxS28j69-hFdH-q9jwnfDwmdcBsLA@mail.gmail.com>
+ <42d53ace-3cfb-469a-ad10-f2a2ee8609fb@amd.com>
+In-Reply-To: <42d53ace-3cfb-469a-ad10-f2a2ee8609fb@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 30 Nov 2023 09:21:31 -0500
+Message-ID: <CADnq5_PCTjUNwRHwb7sAynqRF98w=e09eYHbck3SFsvC-CgPzQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Add a new module param to disable d3cold
+To: "Ma, Jun" <majun@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,64 +69,119 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, Ramesh Errabolu <Ramesh.Errabolu@amd.com>,
- dri-devel@lists.freedesktop.org, sumit.semwal@linaro.org,
- linux-media@vger.kernel.org
+Cc: kevinyang.wang@amd.com, amd-gfx@lists.freedesktop.org,
+ Ma Jun <Jun.Ma2@amd.com>, mario.limonciello@amd.com, Alexander.Deucher@amd.com,
+ Kenneth.Feng@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 29.11.23 um 22:18 schrieb Alex Deucher:
-> On Wed, Nov 22, 2023 at 1:58 PM Christian König
-> <christian.koenig@amd.com> wrote:
->> Am 22.11.23 um 17:05 schrieb Ramesh Errabolu:
->>> Fix the documentation of struct dma_buf members name and exp_name
->>> as to how these members are to be used and accessed.
->>>
->>> Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
->> Reviewed-by: Christian König <christian.koenig@amd.com>
-> Please apply this to drm-misc.
+On Thu, Nov 30, 2023 at 1:29=E2=80=AFAM Ma, Jun <majun@amd.com> wrote:
+>
+> Hi Alex,
+>
+> On 11/30/2023 12:39 AM, Alex Deucher wrote:
+> > On Wed, Nov 29, 2023 at 11:37=E2=80=AFAM Ma Jun <Jun.Ma2@amd.com> wrote=
+:
+> >>
+> >> Some platforms can't resume from d3cold state, So add a
+> >> new module parameter to disable d3cold state for debugging
+> >> purpose or workaround.
+> >
+> > Doesn't the runpm parameter already handle this?  If you set runpm=3D0,
+> > that should disable d3cold.
+> >
+> runpm=3D0  prevents calls to driver runtime_suspend/resume functions.
+> While d3cold=3D0 allows calls to runtime_suspend/resume functions and put=
+s
+> the device in d3hot state instead of d3cold.
 
-Done, thanks for the reminder.
+But d3hot doesn't actually power down the card so it won't save any
+power.  If we want to disable d3cold and still use runtime pm, it's
+better to try and use BACO.
 
-Christian.
+Alex
 
 >
-> Alex
+> Regards,
+> Ma Jun
 >
->>> ---
->>>    include/linux/dma-buf.h | 11 +++++++----
->>>    1 file changed, 7 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
->>> index 3f31baa3293f..8ff4add71f88 100644
->>> --- a/include/linux/dma-buf.h
->>> +++ b/include/linux/dma-buf.h
->>> @@ -343,16 +343,19 @@ struct dma_buf {
->>>        /**
->>>         * @exp_name:
->>>         *
->>> -      * Name of the exporter; useful for debugging. See the
->>> -      * DMA_BUF_SET_NAME IOCTL.
->>> +      * Name of the exporter; useful for debugging. Must not be NULL
->>>         */
->>>        const char *exp_name;
->>>
->>>        /**
->>>         * @name:
->>>         *
->>> -      * Userspace-provided name; useful for accounting and debugging,
->>> -      * protected by dma_resv_lock() on @resv and @name_lock for read access.
->>> +      * Userspace-provided name. Default value is NULL. If not NULL,
->>> +      * length cannot be longer than DMA_BUF_NAME_LEN, including NIL
->>> +      * char. Useful for accounting and debugging. Read/Write accesses
->>> +      * are protected by @name_lock
->>> +      *
->>> +      * See the IOCTLs DMA_BUF_SET_NAME or DMA_BUF_SET_NAME_A/B
->>>         */
->>>        const char *name;
->>>
->> _______________________________________________
->> Linaro-mm-sig mailing list -- linaro-mm-sig@lists.linaro.org
->> To unsubscribe send an email to linaro-mm-sig-leave@lists.linaro.org
-
+> > Alex
+> >
+> >>
+> >> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> >> ---
+> >>  drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
+> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++++
+> >>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 8 ++++++++
+> >>  3 files changed, 16 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu.h
+> >> index a9f54df9d33e..db9f60790267 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> @@ -166,6 +166,7 @@ extern char amdgpu_lockup_timeout[AMDGPU_MAX_TIMEO=
+UT_PARAM_LENGTH];
+> >>  extern int amdgpu_dpm;
+> >>  extern int amdgpu_fw_load_type;
+> >>  extern int amdgpu_aspm;
+> >> +extern int amdgpu_d3cold;
+> >>  extern int amdgpu_runtime_pm;
+> >>  extern uint amdgpu_ip_block_mask;
+> >>  extern int amdgpu_bapm;
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_device.c
+> >> index 22b6a910b7f2..90501c44e7d0 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >> @@ -264,6 +264,13 @@ bool amdgpu_device_supports_px(struct drm_device =
+*dev)
+> >>  bool amdgpu_device_supports_boco(struct drm_device *dev)
+> >>  {
+> >>         struct amdgpu_device *adev =3D drm_to_adev(dev);
+> >> +       struct pci_dev *parent;
+> >> +
+> >> +       if (!amdgpu_d3cold) {
+> >> +               parent =3D pcie_find_root_port(adev->pdev);
+> >> +               pci_d3cold_disable(parent);
+> >> +               return false;
+> >> +       }
+> >>
+> >>         if (adev->has_pr3 ||
+> >>             ((adev->flags & AMD_IS_PX) && amdgpu_is_atpx_hybrid()))
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_drv.c
+> >> index 5f14f04cb553..c9fbb8bd4169 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> >> @@ -145,6 +145,7 @@ char amdgpu_lockup_timeout[AMDGPU_MAX_TIMEOUT_PARA=
+M_LENGTH];
+> >>  int amdgpu_dpm =3D -1;
+> >>  int amdgpu_fw_load_type =3D -1;
+> >>  int amdgpu_aspm =3D -1;
+> >> +int amdgpu_d3cold =3D -1;
+> >>  int amdgpu_runtime_pm =3D -1;
+> >>  uint amdgpu_ip_block_mask =3D 0xffffffff;
+> >>  int amdgpu_bapm =3D -1;
+> >> @@ -359,6 +360,13 @@ module_param_named(fw_load_type, amdgpu_fw_load_t=
+ype, int, 0444);
+> >>  MODULE_PARM_DESC(aspm, "ASPM support (1 =3D enable, 0 =3D disable, -1=
+ =3D auto)");
+> >>  module_param_named(aspm, amdgpu_aspm, int, 0444);
+> >>
+> >> +/**
+> >> + * DOC: d3cold (int)
+> >> + * To disable d3cold (1 =3D enable, 0 =3D disable). The default is -1=
+ (auto, enabled).
+> >> + */
+> >> +MODULE_PARM_DESC(d3cold, "d3cold support (1 =3D enable, 0 =3D disable=
+, -1 =3D auto)");
+> >> +module_param_named(d3cold, amdgpu_d3cold, int, 0444);
+> >> +
+> >>  /**
+> >>   * DOC: runpm (int)
+> >>   * Override for runtime power management control for dGPUs. The amdgp=
+u driver can dynamically power down
+> >> --
+> >> 2.34.1
+> >>
