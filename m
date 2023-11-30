@@ -2,62 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621CC7FF42E
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Nov 2023 16:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 532EE7FF7BE
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Nov 2023 18:06:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D958910E727;
-	Thu, 30 Nov 2023 15:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BCD310E741;
+	Thu, 30 Nov 2023 17:06:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
- [IPv6:2a00:1450:4864:20::22a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B603710E720;
- Thu, 30 Nov 2023 15:58:53 +0000 (UTC)
-Received: by mail-lj1-x22a.google.com with SMTP id
- 38308e7fff4ca-2c9c82a976bso13194971fa.3; 
- Thu, 30 Nov 2023 07:58:53 -0800 (PST)
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
+ [IPv6:2607:f8b0:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5347610E74B;
+ Thu, 30 Nov 2023 17:06:31 +0000 (UTC)
+Received: by mail-ot1-x32d.google.com with SMTP id
+ 46e09a7af769-6d7e56f6845so715133a34.0; 
+ Thu, 30 Nov 2023 09:06:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701359932; x=1701964732; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1701363990; x=1701968790; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=dMfpPWvvOS/pqqTijpiTUrfaw4nNKBiKYLTOjNXXmQM=;
- b=ENMuqosXixRRwUDdF3OomG1xC2Lut6c+Lae6U7Pc/Ea6ZofJEw+Y8H8x0q2aNT4XzD
- dX0arxOgmep+tSkl7IRxWaD0lBknh3PcJip/Hkhd7qcIwzXNaCwnjAqbgEQ2Ngmh2F4K
- irkl7ksX82i8OEBqWK+IiBEnkAdOjFjXqfC30AA/03KebaUXJlZZAQD1wZkQqjSWDTdI
- WDM9OLIeYMapzh6PUJyljwejQrcXRgEpzpitQgg5DCuAWQK+tBvc8ep6Fp+M15WX3/Mp
- ad7R7ULGXNWe/0sJuV2SaPTU/XP+7DIC5xDAD/hJ/mckFvt4PW0zBFBGkIK37VmKIEF7
- zjEw==
+ bh=MlJsnM9X8S1R1QU50aDaUxRnifVbK+6ZZXWm1jW3cRo=;
+ b=cF1NmBpQDCG0jfNtr8Kp0dninWSZ02eUNlP84URbYOqZRGsCXNgRYT/JwW3QZAk2CU
+ 3ycA1YPw9oca0g3lHd/yuelb8+jt519PRS87lUeH1cXErv1yEibtHcjyhOlfMu3E8QSJ
+ Xl73bimkHfo87QKGYpxFl2OhYzk+xP4Ep4LeTTewqNiy1Y+o3zFtCOVz8N+sP8RkgMSh
+ Ge8M0Gv26YmHTKhExY7YgL4XoE0mKbOkwyoNg0IPNWPCzesm1/CVsuSrD8xOAQgd4pnd
+ u2h94MYmtpbRbJY6bhu3WM+ZLHQdt8nof4uVXVEoFsdomdazoQhF4vVrEKnvL5By8Urh
+ qaaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701359932; x=1701964732;
+ d=1e100.net; s=20230601; t=1701363990; x=1701968790;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=dMfpPWvvOS/pqqTijpiTUrfaw4nNKBiKYLTOjNXXmQM=;
- b=wSfYPDeqNplY+IWMyaFcPKslW5bxrIN+z61as9MADiIzpZxPURjP0YpmXukIuh6Fir
- h3brM9lH/8OiSA+XLxUwVi1mEtsBMWNDb6hsMcF5gqCLAZuTtnrB4mB1vCBoTLH2d5qf
- +woc6twnIO07QD1kT1G1XhK2OwH4kHptoHf7PpFecnIql0TcdqTIX4ERZU/0+R9cPHcY
- J2Cixgse9KxgzjMw9JVweMolZgeE1FTyBEfRL6jBiGvqIhAUu9mk7bcawJDxjkaQkjHD
- O33xs0RTe/Rf6U1NVB45v5CzXTXw6wx/YrJ2XC3XPzvAFhg7To9xXSDsQc49VrlViyhP
- JHKw==
-X-Gm-Message-State: AOJu0YykqY6k8RNur12kqLCfNTLbgLI8kpDg2V8esivwoNu45KJT1F6t
- US3NXsxaD9u+783dU0HTmRea/lQt66I4oPLnQU6F0MmG
-X-Google-Smtp-Source: AGHT+IH2AjCWu6xpohb9lGVdGtan2lRuEIdIaB760syTV7hgBQ9rT+fD5P5Wca9J9sqwNrI6WWsQUm+/KOJ6TaK6rQM=
-X-Received: by 2002:ac2:55ad:0:b0:50b:bfaa:317b with SMTP id
- y13-20020ac255ad000000b0050bbfaa317bmr5044312lfg.11.1701359931507; Thu, 30
- Nov 2023 07:58:51 -0800 (PST)
+ bh=MlJsnM9X8S1R1QU50aDaUxRnifVbK+6ZZXWm1jW3cRo=;
+ b=PtBGsK/gy+XTPXoYm/B5Um1TAcOYCax+1PalKjxEe4jO0BgwirdsmCs4At3SMQuEsz
+ cewViEixTrQRAHFQDwEmAvseVS9Oq37jl+me44mez7wtg3ixDOhlhKzkDyWEPii9NuCP
+ S8hjfCTzEDOFd9pKZOwKeZ9RbeoSVcuiSsrXTCVf3/1gkLkzqsDJNpCtzXCOlg3gR3df
+ j/6kaTeJzKpmjr4Tk4y+EPdRElP35PErml8RewkdzifeRORJ5kK9n9m7fw5RARny1x5C
+ aCaj9R1DCU4yxyMsxNfwGp25JZxEAUr5fZOxqi+W6Le7g2JYHLd5i5IjWKiWiHpGKQdf
+ LaXA==
+X-Gm-Message-State: AOJu0Yx4kWGmUGDq7D5KZ7ltARB+CL6W/s2Be1C1hWsUixcua400wKvq
+ 1MjUHgDYZORppxvX2zSdAXr32Pzh5yS90Np8JA8=
+X-Google-Smtp-Source: AGHT+IEKdlosNmIQ5WeWVkNt7+fGwMIv0iwX5QXmSbUiiJUhBwH4O/QquYnAvbeL0qpC1g0R62JMDvqxfN7qssEs27Y=
+X-Received: by 2002:a05:6870:2888:b0:1fa:1c34:98e9 with SMTP id
+ gy8-20020a056870288800b001fa1c3498e9mr25202035oab.30.1701363990540; Thu, 30
+ Nov 2023 09:06:30 -0800 (PST)
 MIME-Version: 1.0
-References: <20231117195626.13599-1-alexander.deucher@amd.com>
- <a42a4321-9dce-4c76-9578-8ea665b874f8@gmail.com>
- <CADnq5_NiHRhDJt+bkdy35GPfTaTUdSRrf_aVVQobfFgayHP2hw@mail.gmail.com>
- <CAF6AEGvVdnTsj1DZjOYn6YaygEqsJDkAUzbF_thgAw2CTLfBxA@mail.gmail.com>
- <9853f121-be57-4be1-9fc6-247254a12653@gmail.com>
-In-Reply-To: <9853f121-be57-4be1-9fc6-247254a12653@gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 30 Nov 2023 07:58:38 -0800
-Message-ID: <CAF6AEGtvB0Cf=c==TOaYFYWHUDQg5x8TuJNUHm--Nz5x786cdw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: add shared fdinfo stats
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+References: <20231129152230.7931-1-n.zhandarovich@fintech.ru>
+In-Reply-To: <20231129152230.7931-1-n.zhandarovich@fintech.ru>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 30 Nov 2023 12:06:19 -0500
+Message-ID: <CADnq5_O+O-395Brq+OHR3YEDaeTwQsMseJynv4Mm3L-KotO-5g@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon/r600_cs: Fix possible int overflows in
+ r600_cs_check_reg()
+To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -71,182 +68,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexdeucher@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>, Rob Clark <robdclark@chromium.org>,
- amd-gfx@lists.freedesktop.org,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 30, 2023 at 5:13=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 28.11.23 um 18:52 schrieb Rob Clark:
-> > On Tue, Nov 28, 2023 at 6:28=E2=80=AFAM Alex Deucher <alexdeucher@gmail=
-.com> wrote:
-> >> On Tue, Nov 28, 2023 at 9:17=E2=80=AFAM Christian K=C3=B6nig
-> >> <ckoenig.leichtzumerken@gmail.com> wrote:
-> >>> Am 17.11.23 um 20:56 schrieb Alex Deucher:
-> >>>> Add shared stats.  Useful for seeing shared memory.
-> >>>>
-> >>>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++++
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +++++++++++
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  6 ++++++
-> >>>>    3 files changed, 21 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gp=
-u/drm/amd/amdgpu/amdgpu_fdinfo.c
-> >>>> index 5706b282a0c7..c7df7fa3459f 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> >>>> @@ -97,6 +97,10 @@ void amdgpu_show_fdinfo(struct drm_printer *p, st=
-ruct drm_file *file)
-> >>>>                   stats.requested_visible_vram/1024UL);
-> >>>>        drm_printf(p, "amd-requested-gtt:\t%llu KiB\n",
-> >>>>                   stats.requested_gtt/1024UL);
-> >>>> +     drm_printf(p, "drm-shared-vram:\t%llu KiB\n", stats.vram_share=
-d/1024UL);
-> >>>> +     drm_printf(p, "drm-shared-gtt:\t%llu KiB\n", stats.gtt_shared/=
-1024UL);
-> >>>> +     drm_printf(p, "drm-shared-cpu:\t%llu KiB\n", stats.cpu_shared/=
-1024UL);
-> >>>> +
-> >>>>        for (hw_ip =3D 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
-> >>>>                if (!usage[hw_ip])
-> >>>>                        continue;
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gp=
-u/drm/amd/amdgpu/amdgpu_object.c
-> >>>> index d79b4ca1ecfc..c24f7b2c04c1 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> >>>> @@ -1287,25 +1287,36 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *=
-bo,
-> >>>>                          struct amdgpu_mem_stats *stats)
-> >>>>    {
-> >>>>        uint64_t size =3D amdgpu_bo_size(bo);
-> >>>> +     struct drm_gem_object *obj;
-> >>>>        unsigned int domain;
-> >>>> +     bool shared;
-> >>>>
-> >>>>        /* Abort if the BO doesn't currently have a backing store */
-> >>>>        if (!bo->tbo.resource)
-> >>>>                return;
-> >>>>
-> >>>> +     obj =3D &bo->tbo.base;
-> >>>> +     shared =3D obj->handle_count > 1;
-> >>> Interesting approach but I don't think that this is correct.
-> >>>
-> >>> The handle_count is basically how many GEM handles are there for BO, =
-so
-> >>> for example it doesn't catch sharing things with V4L.
-> >>>
-> >>> What we should probably rather do is to take a look if
-> >>> bo->tbo.base.dma_buf is NULL or not.
-> >> +Rob, dri-devel
-> >>
-> >> This is what the generic drm helper code does.  See
-> >> drm_show_memory_stats().  If that is not correct that code should
-> >> probably be fixed too.
-> > OTOH, v4l doesn't expose fdinfo.  What "shared" is telling you is
-> > whether the BO is counted multiple times when you look at all
-> > processes fdinfo.
->
-> Oh, then that's not fully correct either.
->
-> You can have multiple handles for the same GEM object in a single client
-> as well.
->
-> This for example happens when you interact with KMS to get an handle for
-> a displayed BO.
+Applied.  Thanks!
 
-so, the handle is unique per drm_file which is (at least usually)
-unique per process.  The handle_count is agnostic to _how_ you got the
-handle (ie. via flink or dma-buf)
-
-> DRM flink was one of the major other reasons, but I hope we are not
-> using that widely any more.
+On Wed, Nov 29, 2023 at 10:28=E2=80=AFAM Nikita Zhandarovich
+<n.zhandarovich@fintech.ru> wrote:
 >
-> What exactly is the purpose? To avoid counting a BO multiple times
-> because you go over the handles in the common code?
+> While improbable, there may be a chance of hitting integer
+> overflow when the result of radeon_get_ib_value() gets shifted
+> left.
 >
-> If yes than I would say use obj->handle_count in the common code and
-> ob->dma_buf in amdgpu because that is certainly unique.
-
-Because the drm_file is (usually) unique per process, the purpose was
-to show the amount of memory that is getting counted against multiple
-processes.  The intention behind using handle_count was just that it
-didn't care _how_ the buffer was shared, just that it is mapped into
-more than a single drm_file.
-
-Maybe amd userspace is doing something unique that I'm not aware of?
-
-BR,
--R
-
-> Regards,
-> Christian.
+> Avoid it by casting one of the operands to larger data type (u64).
 >
-> >
-> > But I guess it would be ok to look for obj->handle_count > 1 || obj->dm=
-a_buf
-> >
-> > BR,
-> > -R
-> >
-> >> Alex
-> >>
-> >>> Regards,
-> >>> Christian.
-> >>>
-> >>>
-> >>>> +
-> >>>>        domain =3D amdgpu_mem_type_to_domain(bo->tbo.resource->mem_ty=
-pe);
-> >>>>        switch (domain) {
-> >>>>        case AMDGPU_GEM_DOMAIN_VRAM:
-> >>>>                stats->vram +=3D size;
-> >>>>                if (amdgpu_bo_in_cpu_visible_vram(bo))
-> >>>>                        stats->visible_vram +=3D size;
-> >>>> +             if (shared)
-> >>>> +                     stats->vram_shared +=3D size;
-> >>>>                break;
-> >>>>        case AMDGPU_GEM_DOMAIN_GTT:
-> >>>>                stats->gtt +=3D size;
-> >>>> +             if (shared)
-> >>>> +                     stats->gtt_shared +=3D size;
-> >>>>                break;
-> >>>>        case AMDGPU_GEM_DOMAIN_CPU:
-> >>>>        default:
-> >>>>                stats->cpu +=3D size;
-> >>>> +             if (shared)
-> >>>> +                     stats->cpu_shared +=3D size;
-> >>>>                break;
-> >>>>        }
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gp=
-u/drm/amd/amdgpu/amdgpu_object.h
-> >>>> index d28e21baef16..0503af75dc26 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-> >>>> @@ -138,12 +138,18 @@ struct amdgpu_bo_vm {
-> >>>>    struct amdgpu_mem_stats {
-> >>>>        /* current VRAM usage, includes visible VRAM */
-> >>>>        uint64_t vram;
-> >>>> +     /* current shared VRAM usage, includes visible VRAM */
-> >>>> +     uint64_t vram_shared;
-> >>>>        /* current visible VRAM usage */
-> >>>>        uint64_t visible_vram;
-> >>>>        /* current GTT usage */
-> >>>>        uint64_t gtt;
-> >>>> +     /* current shared GTT usage */
-> >>>> +     uint64_t gtt_shared;
-> >>>>        /* current system memory usage */
-> >>>>        uint64_t cpu;
-> >>>> +     /* current shared system memory usage */
-> >>>> +     uint64_t cpu_shared;
-> >>>>        /* sum of evicted buffers, includes visible VRAM */
-> >>>>        uint64_t evicted_vram;
-> >>>>        /* sum of evicted buffers due to CPU access */
+> Found by Linux Verification Center (linuxtesting.org) with static
+> analysis tool SVACE.
+>
+> Fixes: 1729dd33d20b ("drm/radeon/kms: r600 CS parser fixes")
+> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+> ---
+>  drivers/gpu/drm/radeon/r600_cs.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/r600_cs.c b/drivers/gpu/drm/radeon/r6=
+00_cs.c
+> index 638f861af80f..6cf54a747749 100644
+> --- a/drivers/gpu/drm/radeon/r600_cs.c
+> +++ b/drivers/gpu/drm/radeon/r600_cs.c
+> @@ -1275,7 +1275,7 @@ static int r600_cs_check_reg(struct radeon_cs_parse=
+r *p, u32 reg, u32 idx)
+>                         return -EINVAL;
+>                 }
+>                 tmp =3D (reg - CB_COLOR0_BASE) / 4;
+> -               track->cb_color_bo_offset[tmp] =3D radeon_get_ib_value(p,=
+ idx) << 8;
+> +               track->cb_color_bo_offset[tmp] =3D (u64)radeon_get_ib_val=
+ue(p, idx) << 8;
+>                 ib[idx] +=3D (u32)((reloc->gpu_offset >> 8) & 0xffffffff)=
+;
+>                 track->cb_color_base_last[tmp] =3D ib[idx];
+>                 track->cb_color_bo[tmp] =3D reloc->robj;
+> @@ -1302,7 +1302,7 @@ static int r600_cs_check_reg(struct radeon_cs_parse=
+r *p, u32 reg, u32 idx)
+>                                         "0x%04X\n", reg);
+>                         return -EINVAL;
+>                 }
+> -               track->htile_offset =3D radeon_get_ib_value(p, idx) << 8;
+> +               track->htile_offset =3D (u64)radeon_get_ib_value(p, idx) =
+<< 8;
+>                 ib[idx] +=3D (u32)((reloc->gpu_offset >> 8) & 0xffffffff)=
+;
+>                 track->htile_bo =3D reloc->robj;
+>                 track->db_dirty =3D true;
+> --
+> 2.25.1
 >
