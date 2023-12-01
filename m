@@ -1,70 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2ED800262
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 05:09:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2AA80025D
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 05:09:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56DF10E7B2;
-	Fri,  1 Dec 2023 04:09:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4922110E012;
+	Fri,  1 Dec 2023 04:09:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
- [IPv6:2607:f8b0:4864:20::1035])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE24A10E78A
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 00:30:45 +0000 (UTC)
-Received: by mail-pj1-x1035.google.com with SMTP id
- 98e67ed59e1d1-28655c04da3so244944a91.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 16:30:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701390645; x=1701995445; darn=lists.freedesktop.org;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=caGgQN2zt8grZs3U0xbayh8pbJ7WuHPF2boIZk41q/I=;
- b=PVsgq7xg7O0VYcEFVJXNMbwgGpx0aauuLWi68lzYw0XkOjcZK+rIrPp1kZsW69dUs+
- G6JtiNb7i5kcPvNVjieEjrgBQfs2rsxgBSrZ1xVbNgZO+KkH4VbYJ7pjNcLjq5pTE8NH
- w7nOioAUmhW7LJX7NFx41kUOg+hUS1VuCWrlTQUmN1vPDv0jyoVV9QdpCGVTIOcnga1p
- C9+O+u2OsELowW6qgaDnco/bHUW2fnrwv6RS5NBHCZKdUjcdQ/aNACnqtZwwy+u/zh8e
- qHTI9gX8EJXgPVngYuwkRG1M4Rjuohp9lYDS/UZOck1gen7uAY426D5F/l6XxyIGOX0o
- AHNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701390645; x=1701995445;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=caGgQN2zt8grZs3U0xbayh8pbJ7WuHPF2boIZk41q/I=;
- b=IrEsxSow8ytDe5+ZDSZjztBpd43L7y21qSdrVO27sbm7HtTwmI3ITA70Xe9L5FfXJ7
- kxvbYvJ9CCCOHZxYiaYtGov8pQOXmphpY1t2d5Oxb4HfnWH1mbFDuoNfBdND9XQ9IP7K
- NIyjKRmD590lYNNwac0ql+lQztEo8m7iKxw0krD3Szq8Z21M/xLfiKP2PdGpNFwnAVwY
- yGsfUhMkD+uEywhYioylQx2p9DLdblK5yQhM8VpmvIPZLiOTInMMj7LdDtW2ac309z3m
- 2eAUkebA1WXNU0H9oGByxdQw1NawsioMSeWcVNofsRfg4dgKWa3x+RpR7K6BrTSBKxeS
- fv2Q==
-X-Gm-Message-State: AOJu0Yz9c7A4wI2sMIox7zwXPyH42Vt4rvmZkKBr57zU23xrZOWtuom7
- AyKF+fuq6gBNlBWT6NAS00Ennhp3yog28w==
-X-Google-Smtp-Source: AGHT+IGavLSgfLIFqgzeRpJJkSpkkqVUuQDRKrB/Bufnp+gm00i5dOUOGGZIZ3Pf4HupAYvGp4kBGg==
-X-Received: by 2002:a17:90a:62cb:b0:286:4827:807d with SMTP id
- k11-20020a17090a62cb00b002864827807dmr3313646pjs.23.1701390645269; 
- Thu, 30 Nov 2023 16:30:45 -0800 (PST)
-Received: from [192.168.0.106] ([103.131.18.64])
- by smtp.gmail.com with ESMTPSA id
- c12-20020a17090a020c00b0028089fdce19sm2092716pjc.52.2023.11.30.16.30.42
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Nov 2023 16:30:44 -0800 (PST)
-Message-ID: <8da256ea-b069-44f0-9cc2-93482c2f5eec@gmail.com>
-Date: Fri, 1 Dec 2023 07:30:40 +0700
+X-Greylist: delayed 448 seconds by postgrey-1.36 at gabe;
+ Fri, 01 Dec 2023 02:43:45 UTC
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com
+ [IPv6:2001:41d0:203:375::ac])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEF810E7AB
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 02:43:45 +0000 (UTC)
+Message-ID: <9a741d8d-a699-4fe8-af59-f90c91014d01@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1701398175;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EIETJb62GcJnMc0HG5pRvWQuoXMY9gZZynhystY1S+g=;
+ b=ZZyzjJQWQ2LuSvhxg2XyMudBtyeZupmuAAnvmKHiwQ+cISrZEQwCONl2svSSzC0iMFByAQ
+ u/8MQxOL1o4lub/0CjMMm58jAsESsW0JcN9g3bzVvzGoQAKuXcSu6dHSO9Zps4rSSQoC93
+ iTR4J7EEcdkpBG1hYmDGsbImU9l4c6A=
+Date: Fri, 1 Dec 2023 10:36:08 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+Subject: Re: [1/8] drm/plane-helper: Move drm_plane_helper_atomic_check() into
+ udl
+To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, daniel@ffwll.ch, airlied@gmail.com
+References: <20231128104723.20622-2-tzimmermann@suse.de>
 Content-Language: en-US
-To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Regressions <regressions@lists.linux.dev>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-Subject: Fwd: Thinkpad X13 AMD: Problems with external monitor wake up after
- suspend
-Content-Type: text/plain; charset=UTF-8
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20231128104723.20622-2-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 01 Dec 2023 04:09:00 +0000
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Fri, 01 Dec 2023 04:08:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,37 +53,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>, Oliver Schmidt <oliver@luced.de>,
- Wayne Lin <wayne.lin@amd.com>
+Cc: javierm@redhat.com, amd-gfx@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, laurent.pinchart@ideasonboard.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-I notice a regression report on Bugzilla [1]. Quoting from it:
 
-> Since kernel version 6.1.57 I have problems with external monitor wakeup after suspend on Thinkpad X13 AMD Gen2 Notebook.
-> 
-> Notebook is in docking station with closed lid. Suspend & Resume. The external monitor gets no signal. After randomly typing Ctrl+Alt+Fn for switchung consoles, the monitor at some point gets signal and is usable again.
-> 
-> It worked with kernel 6.1.56.
-> 
-> I managed to compile a 6.1.57 kernel and also a 6.1.64 kernel by reverting the changes from commit ec5fa9 "drm/amd/display: Adjust the MST resume flow" (https://github.com/torvalds/linux/commit/ec5fa9fcdeca69edf7dab5ca3b2e0ceb1c08fe9a?diff=split&w=1?diff=split&w=1) and with this suspend & resume worked like before without any problems.
-> 
-> I reported this also to the Manjaro's support forum, since I tried this on Manjaro Linux (https://forum.manjaro.org/t/problems-with-external-monitor-wake-up-after-suspend/151840).
+On 2023/11/28 18:45, Thomas Zimmermann wrote:
+> The udl driver is the only caller of drm_plane_helper_atomic_check().
+> Move the function into the driver. No functional changes.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>   drivers/gpu/drm/drm_plane_helper.c | 32 ------------------------------
+>   drivers/gpu/drm/udl/udl_modeset.c  | 19 ++++++++++++++++--
+>   include/drm/drm_plane_helper.h     |  2 --
+>   3 files changed, 17 insertions(+), 36 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_plane_helper.c b/drivers/gpu/drm/drm_plane_helper.c
+> index 5e95089676ff8..7982be4b0306d 100644
+> --- a/drivers/gpu/drm/drm_plane_helper.c
+> +++ b/drivers/gpu/drm/drm_plane_helper.c
+> @@ -279,35 +279,3 @@ void drm_plane_helper_destroy(struct drm_plane *plane)
+>   	kfree(plane);
+>   }
+>   EXPORT_SYMBOL(drm_plane_helper_destroy);
+> -
+> -/**
+> - * drm_plane_helper_atomic_check() - Helper to check plane atomic-state
+> - * @plane: plane to check
+> - * @state: atomic state object
+> - *
+> - * Provides a default plane-state check handler for planes whose atomic-state
+> - * scale and positioning are not expected to change since the plane is always
+> - * a fullscreen scanout buffer.
+> - *
+> - * This is often the case for the primary plane of simple framebuffers. See
+> - * also drm_crtc_helper_atomic_check() for the respective CRTC-state check
+> - * helper function.
+> - *
+> - * RETURNS:
+> - * Zero on success, or an errno code otherwise.
+> - */
+> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct drm_atomic_state *state)
+> -{
+> -	struct drm_plane_state *new_plane_state = drm_atomic_get_new_plane_state(state, plane);
+> -	struct drm_crtc *new_crtc = new_plane_state->crtc;
+> -	struct drm_crtc_state *new_crtc_state = NULL;
+> -
+> -	if (new_crtc)
+> -		new_crtc_state = drm_atomic_get_new_crtc_state(state, new_crtc);
+> -
+> -	return drm_atomic_helper_check_plane_state(new_plane_state, new_crtc_state,
+> -						   DRM_PLANE_NO_SCALING,
+> -						   DRM_PLANE_NO_SCALING,
+> -						   false, false);
+> -}
+> -EXPORT_SYMBOL(drm_plane_helper_atomic_check);
 
-See Bugzilla for the full thread.
 
-Anyway, I'm adding this regression to regzbot:
+Since this function is removed, does the comments of the drm_crtc_helper_atomic_check()
+function (in the drm_crtc_helper.c) need to update as well? I'm ask because I see the
+comments of the drm_crtc_helper_atomic_check() still referencing this function.
 
-#regzbot introduced: ec5fa9fcdeca69 https://bugzilla.kernel.org/show_bug.cgi?id=218211
-#regzbot title: MST resume flow adjustment breaks external monitor wakeup after suspend on Thinkpad X13
-#regzbot link: https://forum.manjaro.org/t/problems-with-external-monitor-wake-up-after-suspend/151840
 
-Thanks.
-
-[1]: https://bugzilla.kernel.org/show_bug.cgi?id=218211
-
--- 
-An old man doll... just what I always wanted! - Clara
+> diff --git a/drivers/gpu/drm/udl/udl_modeset.c b/drivers/gpu/drm/udl/udl_modeset.c
+> index 40876bcdd79a4..7702359c90c22 100644
+> --- a/drivers/gpu/drm/udl/udl_modeset.c
+> +++ b/drivers/gpu/drm/udl/udl_modeset.c
+> @@ -21,7 +21,6 @@
+>   #include <drm/drm_gem_framebuffer_helper.h>
+>   #include <drm/drm_gem_shmem_helper.h>
+>   #include <drm/drm_modeset_helper_vtables.h>
+> -#include <drm/drm_plane_helper.h>
+>   #include <drm/drm_probe_helper.h>
+>   #include <drm/drm_vblank.h>
+>   
+> @@ -261,6 +260,22 @@ static const uint64_t udl_primary_plane_fmtmods[] = {
+>   	DRM_FORMAT_MOD_INVALID
+>   };
+>   
+> +static int udl_primary_plane_helper_atomic_check(struct drm_plane *plane,
+> +						 struct drm_atomic_state *state)
+> +{
+> +	struct drm_plane_state *new_plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct drm_crtc *new_crtc = new_plane_state->crtc;
+> +	struct drm_crtc_state *new_crtc_state = NULL;
+> +
+> +	if (new_crtc)
+> +		new_crtc_state = drm_atomic_get_new_crtc_state(state, new_crtc);
+> +
+> +	return drm_atomic_helper_check_plane_state(new_plane_state, new_crtc_state,
+> +						   DRM_PLANE_NO_SCALING,
+> +						   DRM_PLANE_NO_SCALING,
+> +						   false, false);
+> +}
+> +
+>   static void udl_primary_plane_helper_atomic_update(struct drm_plane *plane,
+>   						   struct drm_atomic_state *state)
+>   {
+> @@ -296,7 +311,7 @@ static void udl_primary_plane_helper_atomic_update(struct drm_plane *plane,
+>   
+>   static const struct drm_plane_helper_funcs udl_primary_plane_helper_funcs = {
+>   	DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
+> -	.atomic_check = drm_plane_helper_atomic_check,
+> +	.atomic_check = udl_primary_plane_helper_atomic_check,
+>   	.atomic_update = udl_primary_plane_helper_atomic_update,
+>   };
+>   
+> diff --git a/include/drm/drm_plane_helper.h b/include/drm/drm_plane_helper.h
+> index 3a574e8cd22f4..75f9c4830564a 100644
+> --- a/include/drm/drm_plane_helper.h
+> +++ b/include/drm/drm_plane_helper.h
+> @@ -26,7 +26,6 @@
+>   
+>   #include <linux/types.h>
+>   
+> -struct drm_atomic_state;
+>   struct drm_crtc;
+>   struct drm_framebuffer;
+>   struct drm_modeset_acquire_ctx;
+> @@ -42,7 +41,6 @@ int drm_plane_helper_update_primary(struct drm_plane *plane, struct drm_crtc *cr
+>   int drm_plane_helper_disable_primary(struct drm_plane *plane,
+>   				     struct drm_modeset_acquire_ctx *ctx);
+>   void drm_plane_helper_destroy(struct drm_plane *plane);
+> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct drm_atomic_state *state);
+>   
+>   /**
+>    * DRM_PLANE_NON_ATOMIC_FUNCS - Default plane functions for non-atomic drivers
