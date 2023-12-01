@@ -1,42 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF70B800BFE
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D77E800C06
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A6610E8A2;
-	Fri,  1 Dec 2023 13:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA82D10E895;
+	Fri,  1 Dec 2023 13:29:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2056.outbound.protection.outlook.com [40.107.212.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C24310E893
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:53 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2053.outbound.protection.outlook.com [40.107.237.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1289010E881
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VbvJs9uJXX4fZX/oTCtCaXKzEgKyTIpUh+9IETAF4i7FthFCURrDeBboDoupudn86lhY1ssfeGlNXLe8L7Nfnz+Atb1s73n8UZdxELIKDBbgmOCX2A7Zma+INlPObNmYmobO4GJAVg33JYigPxvLyZntOlY+TjOJWrkbJON1KHt8vx+Is7u19AaJ0OfttuWH929yiMgMhJyakBm6/Swoxj6EGbma184SuBjxXxY4H6SBOnbYC43B4zCsnoiZ7rCy2WVaItOcgReDVTluM1+fwkg0wdc6VMYfC3heMo1+t0pfJJBGXCT52oDBlQOYoggaNPvyu/2LFyZgJbRifn9/Xg==
+ b=N/yzLIvFBSuIGAnRwOqfe00ErcNByed8G+hWQDHjSiaPWm30OZnPEJChdYZdFrTn4fqaaN3B0bviU8whk2uPP4xxKiEp5EZMc+puBQ23osqqTIoX79EcnR2BzNqqVs67rtAB1Q6lIuHwPkGKouUAsfi82yoI6VUv/nSSwo3ztJFGp3S+CWQxdwNGaKvM5ZTmc3M+YupwOALpwc337jsOmpH7HfJ78jymDd2OgHqkWSXZv7zRkl+A/awi1UP8SKR7gy6NkV7k9Gu22EnSUZsXgLmA6iStftJG64bWBj2+DTUxS7xYgor4enWqmumdnANKVoVUo23bHMkjMjjYTubbzw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hu7V4Kr0UGl/DYviHBelS17TnIE5BsMYxp19x9e8TDc=;
- b=hrlelb6Q2Mei6e2i9K5vi2YTKCshP2smKMNSFHeedHfFv/HxjsxK1mDPF2471YVLaOi5u9HTYcvujHpJKCQoCNv9TeW2MbxBbDmrfrm48Cc0iwDNi6iIt4D/qdwocZIaLsooz1ykR+zi/pmtuoe+4nKkHrzBlKSoDeDl/CRE0QeDQW2Xe5vEIlO1Poqh0KagMCfvbyb77aQwYavr3ZxjKJrWVyQzdug+8uHtD1Qw5eSRs+vwx1A10ZuSODVYFrkY6mDdSBBEg855mMrAaJDiKh+qaSF3E3Gjwz4Fgz7QD80TXi3ggQqYarmgAa6eoW/x7NtoesZs0o3lW+on3MRPGw==
+ bh=p1bihNCPA7XvadYmmFmGjQoMddfjIo2JmxaYnlLR9AQ=;
+ b=MyqZe7Hz+k8M8VX92tyigNmOsz/Wk5fIVfGtA6wZsmfRukqwd9cNClseB/4/sZZan2j4A3i+fixefgqYxtR5A3pH1TiV5Sg0TOHnfg87VtrM6pJJTXyvOK1fWespzHBBPRNXNZTMNCdLjJVyWeKlBy+kwNdAjZq8X7cbvYDiirGDWMe7zc+4KSa9g3aOhz62seHid+vYwehYZIBi+d3ciASQG+38JY2lps7LpSFpHELag+DqsOFjyJY9VnCzYLCojEMokRX+rTONVyM/4VUOaQ/Fbp5Y8374S9ZMCZNmsuKlbFiTs8yLSM0J9lQ0fJWT1iGFTBP5+ECmB3aBs6zzBQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hu7V4Kr0UGl/DYviHBelS17TnIE5BsMYxp19x9e8TDc=;
- b=5fr0DVs3tzO1dSPNaDwP2gC5TVbIPWKAPvB8g3q5X01NLmze1NWZkbHTOWoAC9teXOX98lfyKMiBN9ScfgTqLi7HcUcpXY4Ta4AqvzxJ6tKAyh24C2OGVvrDgYb4jixwK8DDMNRxy35GywbAGSTRvhfDUalS0YjkngIeKPycsr4=
-Received: from DM6PR02CA0037.namprd02.prod.outlook.com (2603:10b6:5:177::14)
- by DM4PR12MB5723.namprd12.prod.outlook.com (2603:10b6:8:5e::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.27; Fri, 1 Dec 2023 13:28:46 +0000
-Received: from DS2PEPF00003441.namprd04.prod.outlook.com
- (2603:10b6:5:177:cafe::65) by DM6PR02CA0037.outlook.office365.com
- (2603:10b6:5:177::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29 via Frontend
- Transport; Fri, 1 Dec 2023 13:28:46 +0000
+ bh=p1bihNCPA7XvadYmmFmGjQoMddfjIo2JmxaYnlLR9AQ=;
+ b=BJ2VpjFTOpSSM8tZfppkQEFrsLAKMKO5fZYigpF2PtWWnWBs8Fz55Wz9HiUWp+8zFSAgHJlmdJN/+XeE5BETFNuclGlCgBq3VnNgHJTzoI8jxnOo5KVvWIrs643hGcfP9y2dTJCY0wYzQTr7Ylkx91/Cw67gVk2cn/lGPr/TZ8c=
+Received: from BYAPR04CA0001.namprd04.prod.outlook.com (2603:10b6:a03:40::14)
+ by CH0PR12MB5316.namprd12.prod.outlook.com (2603:10b6:610:d7::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
+ 2023 13:28:48 +0000
+Received: from DS2PEPF00003448.namprd04.prod.outlook.com
+ (2603:10b6:a03:40:cafe::15) by BYAPR04CA0001.outlook.office365.com
+ (2603:10b6:a03:40::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
+ Transport; Fri, 1 Dec 2023 13:28:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -44,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003441.mail.protection.outlook.com (10.167.17.68) with Microsoft
+ DS2PEPF00003448.mail.protection.outlook.com (10.167.17.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:46 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:48 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:28:43 -0600
+ 2023 07:28:45 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 24/47] drm/amd/display: add support for DTO genarated dscclk
-Date: Fri, 1 Dec 2023 06:25:20 -0700
-Message-ID: <20231201132731.2354141-25-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 25/47] drm/amd/display: Avoid virtual stream encoder if not
+ explicitly requested
+Date: Fri, 1 Dec 2023 06:25:21 -0700
+Message-ID: <20231201132731.2354141-26-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
@@ -67,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003441:EE_|DM4PR12MB5723:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08a9abc0-0692-4d83-d6af-08dbf2717225
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003448:EE_|CH0PR12MB5316:EE_
+X-MS-Office365-Filtering-Correlation-Id: c07da080-8bcc-4b16-9739-08dbf2717367
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EvjjwePxEbIWmQx4AZQLpyF7jgG0Sya+7irKCzlOzGsmpq0bBT1bXdR/R13W+GUCgWQ0OocwB8BnTEW1J7LcxGwRUEN2K/HFkTBin3/rj5+AXosRerVcAq0aUtx7zqDSRNKdx+ot+fYB/29FE+u6ml7FN/rAzeXNpUXAD9qfupf9K4aSXxI05cRFz59jjAzTiv3Jgf/Ml6rywE5QvjFNmaWP+cr6sxsvY+QBQ0Mv3V+fHpCnIgXbKItl+HbfFII9w/0bZuMVulKkZ8T9Wn+1MKWzapAYQhChECI1E17M9GbLWQMAxh2ul9Fah3nKhx/eCwVTEqXfXBiAbttEIHH741OQ9gMKe8HZA0a6Zsa1HtoQTjvGkgtqnz/4y2k6FG2vhm3TcBqnRaUAvq5pTuidB0K657jQ8sCxlpglZDi8+CD3BT+cFO4vm5N0NMZR0ePGZzlI54iYdCeotWGsKasYySpUZQW5oTWjcy4t68Q+0ZS4dpbRKOHkZmdkw7h5DERrqcq0V1yWWwQH0S8FwiStVBDBZwG1lovyxqLCNumStflWCRytzGQwyHmIUIeJAo+exawmfgrRDVdDpW0oF32TcGfMJqsM8zPQDWee6OouTfsyPerYxQDbBo8vOlxlI4joAU7/hcQw8lQFI8eZbahcGif2+Q6L/SzE/2BJlDdfoZvhd3M/ELnn6DVJxdKfHtwqF9Cl6Wt1fzYoVw//m5UrEuQBD9W0Hb/OavjajN5u/hCGZa4rlymyuGmhwv7hXkO8TRUNw4jLlN+KpxYON16mWg==
+X-Microsoft-Antispam-Message-Info: 7gkZSYi5hLTu4Ti7r7H1nQfcgrdylLUgJHNm3F4S13jOfwRWECN1JrVB+nkC/GUbavoddB7arm2DvkZGdyiAWAzEHdsQbrRv/N6uGj5YfkkthMraYm8H4oSNR7pqkmRvHxpB8j+ZB7gzm4Yb4+9V2oVQwQyKfD2/FxeC38VgziO50I6Mwutg0WZklmm/pOrarHw06p9FJcrDU+hLm7VFYnkDNqkJrNnfFmpM1Sa+oIMEo5AYGi39T0lrVdg4GtCgZYlDvCrVXXbSJGvBINtsJ4TB2094BOuViVKUCq7Mn+P8wjzyNm+FzAt6/1brEucLkCEq/rjOLmE0nq2GA8m1eMkQMVAY8nGDB6nUUhK8rteFsKkJZwu0rkp1XRKtAFiZe892Q0IyjP3mz/Oca34C9H74LV4j2OFjW6OYxk1IJkaXgFJ2hrQZWWYnc+NQgs6ioWS41QVIE8zZJrkiOMBN0+qYeuInJz0+bKO3Ah9c6xGKhVif5UO+KXsGDyS2MYHqpZ9ePAakilcAj34zPsb5/PqXZrBeRtYhQKi6pS5nfuyhaFlN3h7vMbr4PU5i2xB+fG88iPJ9f70o5hH7oLFxpQCsOrn5UbGA83L4pBmrr/8eYOdIIIP+1hXi2NhkCD6SVJzXclqgob28m4188L2PvFXVvxUpraxNw7UxeKpUGh0bncXDxu0LWELBr0TIi02/29iPjzYlWDBuo9JIu7baVDPNRglVqV1rdLagjRJesRdrupbKQlPWKAgSHMXQQKq6m5b775qBM2uO3qopoF8cZg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(39860400002)(346002)(376002)(396003)(230922051799003)(1800799012)(82310400011)(186009)(64100799003)(451199024)(46966006)(36840700001)(40470700004)(2616005)(426003)(336012)(8936002)(8676002)(86362001)(36860700001)(81166007)(47076005)(356005)(83380400001)(82740400003)(4326008)(16526019)(26005)(40480700001)(1076003)(40460700003)(478600001)(6666004)(70206006)(54906003)(6916009)(316002)(70586007)(2906002)(36756003)(41300700001)(5660300002)(36900700001);
+ SFS:(13230031)(4636009)(376002)(346002)(39860400002)(396003)(136003)(230922051799003)(186009)(64100799003)(82310400011)(1800799012)(451199024)(36840700001)(46966006)(40470700004)(86362001)(40460700003)(336012)(16526019)(1076003)(83380400001)(426003)(2616005)(6666004)(36860700001)(47076005)(8936002)(4326008)(8676002)(5660300002)(41300700001)(2906002)(478600001)(316002)(6916009)(54906003)(70206006)(70586007)(26005)(36756003)(81166007)(356005)(82740400003)(40480700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:46.2584 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08a9abc0-0692-4d83-d6af-08dbf2717225
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:48.3670 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c07da080-8bcc-4b16-9739-08dbf2717367
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003441.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003448.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5723
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5316
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,181 +101,42 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, jerry.zuo@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo
- Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
- Wenjing Liu <wenjing.liu@amd.com>, solomon.chiu@amd.com,
- Daniel Wheeler <daniel.wheeler@amd.com>, Aurabindo.Pillai@amd.com,
- hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Chaitanya Dhere <chaitanya.dhere@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com
+ Harry Wentland <harry.wentland@amd.com>, qingqing.zhuo@amd.com,
+ Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
+ solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Aurabindo.Pillai@amd.com, Alex Hung <alex.hung@amd.com>, hamza.mahfooz@amd.com,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-Current implementation will choose to use refclk as dscclk. This is not
-recommended by hardware team as refclk is a fixed value which could
-cause unnecessary power consumption or it could be not enough for large
-DSC timings. So we are adding new interfaces so we could switch to use
-dynamically generated DSCCLK by DTO. So DSCCLK is programmable based on
-current pixel clock and dispclk.
+Virtual stream encoder should not be a free match for thunderbolt or
+usbc, and thus should be avoided.
 
-Reviewed-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 25 +++++++++++++++++
- drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |  4 +++
- .../gpu/drm/amd/display/dc/link/link_dpms.c   | 27 ++++++++++++++++++-
- 3 files changed, 55 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/resource/dcn10/dcn10_resource.c   | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-index 5f7f474ef51c..5c323718ec90 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-@@ -989,9 +989,22 @@ static int calc_mpc_flow_ctrl_cnt(const struct dc_stream_state *stream,
- static void update_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- {
- 	struct display_stream_compressor *dsc = pipe_ctx->stream_res.dsc;
-+	struct dc *dc = pipe_ctx->stream->ctx->dc;
- 	struct dc_stream_state *stream = pipe_ctx->stream;
- 	struct pipe_ctx *odm_pipe;
- 	int opp_cnt = 1;
-+	struct dccg *dccg = dc->res_pool->dccg;
-+	/* It has been found that when DSCCLK is lower than 16Mhz, we will get DCN
-+	 * register access hung. When DSCCLk is based on refclk, DSCCLk is always a
-+	 * fixed value higher than 16Mhz so the issue doesn't occur. When DSCCLK is
-+	 * generated by DTO, DSCCLK would be based on 1/3 dispclk. For small timings
-+	 * with DSC such as 480p60Hz, the dispclk could be low enough to trigger
-+	 * this problem. We are implementing a workaround here to keep using dscclk
-+	 * based on fixed value refclk when timing is smaller than 3x16Mhz (i.e
-+	 * 48Mhz) pixel clock to avoid hitting this problem.
-+	 */
-+	bool should_use_dto_dscclk = (dccg->funcs->set_dto_dscclk != NULL) &&
-+			stream->timing.pix_clk_100hz > 480000;
- 
- 	ASSERT(dsc);
- 	for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe)
-@@ -1014,12 +1027,16 @@ static void update_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- 
- 		dsc->funcs->dsc_set_config(dsc, &dsc_cfg, &dsc_optc_cfg);
- 		dsc->funcs->dsc_enable(dsc, pipe_ctx->stream_res.opp->inst);
-+		if (should_use_dto_dscclk)
-+			dccg->funcs->set_dto_dscclk(dccg, dsc->inst);
- 		for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 			struct display_stream_compressor *odm_dsc = odm_pipe->stream_res.dsc;
- 
- 			ASSERT(odm_dsc);
- 			odm_dsc->funcs->dsc_set_config(odm_dsc, &dsc_cfg, &dsc_optc_cfg);
- 			odm_dsc->funcs->dsc_enable(odm_dsc, odm_pipe->stream_res.opp->inst);
-+			if (should_use_dto_dscclk)
-+				dccg->funcs->set_dto_dscclk(dccg, odm_dsc->inst);
- 		}
- 		dsc_cfg.dc_dsc_cfg.num_slices_h *= opp_cnt;
- 		dsc_cfg.pic_width *= opp_cnt;
-@@ -1039,9 +1056,13 @@ static void update_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- 				OPTC_DSC_DISABLED, 0, 0);
- 
- 		/* disable DSC block */
-+		if (dccg->funcs->set_ref_dscclk)
-+			dccg->funcs->set_ref_dscclk(dccg, pipe_ctx->stream_res.dsc->inst);
- 		dsc->funcs->dsc_disable(pipe_ctx->stream_res.dsc);
- 		for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 			ASSERT(odm_pipe->stream_res.dsc);
-+			if (dccg->funcs->set_ref_dscclk)
-+				dccg->funcs->set_ref_dscclk(dccg, odm_pipe->stream_res.dsc->inst);
- 			odm_pipe->stream_res.dsc->funcs->dsc_disable(odm_pipe->stream_res.dsc);
- 		}
- 	}
-@@ -1124,6 +1145,10 @@ void dcn32_update_odm(struct dc *dc, struct dc_state *context, struct pipe_ctx *
- 		if (!pipe_ctx->next_odm_pipe && current_pipe_ctx->next_odm_pipe &&
- 				current_pipe_ctx->next_odm_pipe->stream_res.dsc) {
- 			struct display_stream_compressor *dsc = current_pipe_ctx->next_odm_pipe->stream_res.dsc;
-+			struct dccg *dccg = dc->res_pool->dccg;
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn10/dcn10_resource.c
+index af1b31f4e69a..d08d10969251 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn10/dcn10_resource.c
+@@ -1250,7 +1250,10 @@ struct stream_encoder *dcn10_find_first_free_match_stream_enc_for_link(
+ 			/* Store first available for MST second display
+ 			 * in daisy chain use case
+ 			 */
+-			j = i;
 +
-+			if (dccg->funcs->set_ref_dscclk)
-+				dccg->funcs->set_ref_dscclk(dccg, dsc->inst);
- 			/* disconnect DSC block from stream */
- 			dsc->funcs->dsc_disconnect(dsc);
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-index ce2f0c0e82bd..6b44557fcb1a 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h
-@@ -201,6 +201,10 @@ struct dccg_funcs {
- 			struct dccg *dccg,
- 			enum streamclk_source src,
- 			uint32_t otg_inst);
-+	void (*set_dto_dscclk)(
-+			struct dccg *dccg,
-+			uint32_t dsc_inst);
-+	void (*set_ref_dscclk)(struct dccg *dccg, uint32_t dsc_inst);
- };
- 
- #endif //__DAL_DCCG_H__
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index b16b2e14312e..5fe8b4871c77 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -776,10 +776,26 @@ static bool dp_set_dsc_on_rx(struct pipe_ctx *pipe_ctx, bool enable)
-  */
- void link_set_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- {
-+	/* TODO: Move this to HWSS as this is hardware programming sequence not a
-+	 * link layer sequence
-+	 */
- 	struct display_stream_compressor *dsc = pipe_ctx->stream_res.dsc;
-+	struct dc *dc = pipe_ctx->stream->ctx->dc;
- 	struct dc_stream_state *stream = pipe_ctx->stream;
- 	struct pipe_ctx *odm_pipe;
- 	int opp_cnt = 1;
-+	struct dccg *dccg = dc->res_pool->dccg;
-+	/* It has been found that when DSCCLK is lower than 16Mhz, we will get DCN
-+	 * register access hung. When DSCCLk is based on refclk, DSCCLk is always a
-+	 * fixed value higher than 16Mhz so the issue doesn't occur. When DSCCLK is
-+	 * generated by DTO, DSCCLK would be based on 1/3 dispclk. For small timings
-+	 * with DSC such as 480p60Hz, the dispclk could be low enough to trigger
-+	 * this problem. We are implementing a workaround here to keep using dscclk
-+	 * based on fixed value refclk when timing is smaller than 3x16Mhz (i.e
-+	 * 48Mhz) pixel clock to avoid hitting this problem.
-+	 */
-+	bool should_use_dto_dscclk = (dccg->funcs->set_dto_dscclk != NULL) &&
-+			stream->timing.pix_clk_100hz > 480000;
- 	DC_LOGGER_INIT(dsc->ctx->logger);
- 
- 	for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe)
-@@ -802,11 +818,15 @@ void link_set_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- 
- 		dsc->funcs->dsc_set_config(dsc, &dsc_cfg, &dsc_optc_cfg);
- 		dsc->funcs->dsc_enable(dsc, pipe_ctx->stream_res.opp->inst);
-+		if (should_use_dto_dscclk)
-+			dccg->funcs->set_dto_dscclk(dccg, dsc->inst);
- 		for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
- 			struct display_stream_compressor *odm_dsc = odm_pipe->stream_res.dsc;
- 
- 			odm_dsc->funcs->dsc_set_config(odm_dsc, &dsc_cfg, &dsc_optc_cfg);
- 			odm_dsc->funcs->dsc_enable(odm_dsc, odm_pipe->stream_res.opp->inst);
-+			if (should_use_dto_dscclk)
-+				dccg->funcs->set_dto_dscclk(dccg, odm_dsc->inst);
- 		}
- 		dsc_cfg.dc_dsc_cfg.num_slices_h *= opp_cnt;
- 		dsc_cfg.pic_width *= opp_cnt;
-@@ -856,9 +876,14 @@ void link_set_dsc_on_stream(struct pipe_ctx *pipe_ctx, bool enable)
- 		}
- 
- 		/* disable DSC block */
-+		if (dccg->funcs->set_ref_dscclk)
-+			dccg->funcs->set_ref_dscclk(dccg, pipe_ctx->stream_res.dsc->inst);
- 		pipe_ctx->stream_res.dsc->funcs->dsc_disable(pipe_ctx->stream_res.dsc);
--		for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe)
-+		for (odm_pipe = pipe_ctx->next_odm_pipe; odm_pipe; odm_pipe = odm_pipe->next_odm_pipe) {
-+			if (dccg->funcs->set_ref_dscclk)
-+				dccg->funcs->set_ref_dscclk(dccg, odm_pipe->stream_res.dsc->inst);
- 			odm_pipe->stream_res.dsc->funcs->dsc_disable(odm_pipe->stream_res.dsc);
-+		}
- 	}
- }
- 
++			if (pool->stream_enc[i]->id != ENGINE_ID_VIRTUAL)
++				j = i;
++
+ 			if (link->ep_type == DISPLAY_ENDPOINT_PHY && pool->stream_enc[i]->id ==
+ 					link->link_enc->preferred_engine)
+ 				return pool->stream_enc[i];
 -- 
 2.42.0
 
