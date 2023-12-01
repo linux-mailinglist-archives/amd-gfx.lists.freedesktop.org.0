@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 722F8800C03
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E897F800C09
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3687310E893;
-	Fri,  1 Dec 2023 13:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC0EC10E8A0;
+	Fri,  1 Dec 2023 13:29:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3598710E880
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:29:04 +0000 (UTC)
+ (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8143310E889
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:29:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B6gdP+E0VUyvxeoBXR1gjrwzmvAKnow+ad6FyifISlGr/x6f47A4TcI2Ckza6BraLc3aD1pwzxh4xAep56zu+uajEi5xYVlKqHmA8DyTAZQ94LM6mmAtKdw5II7Gfb/A0PAo2Lw9W3vh0Rn1eLtOavu9B/AOyGdV3RYMh+0d624OORTVGvwaztC9wmlQzJnHmNa1dfwxEtbj4EM3k9oBaMgrQWhIeR9suj5XoLK8dIAPu4pTrBXSCfN3zQRGiqIJ72Jq4eFnhpKx1/wdnJ3UKXG2GI30QUtnLk9Nsoe44CE7QlxHKClXZf8vceBKwviN/RzZFI53LOGalkPuaA4cAA==
+ b=RK/s3doHExC/FzB+As2KLa59TA3KcWRlPJ9J+gTq+zqhfGVJuauMDRwDtJvKARGrpx1ITVul/QZricLmouvk3prUiYpCpUd+pBhIxejCsB4nChDnDwZLvq6UBH233dOEhxuwwr6oyX7DSSnVxBJEDygG8tRNSmcZkftw0fAC+aLMcf6WX4zu6XOecK5xMahsQPOz4oHCIg1DKVdhssgZAhrBYxvQnAkAaCKDPLxBESmGW74NfkC/QVSwknz0HsrTTJ2Dcm7v1ekKL1RgpJvm551hEfcopUn1WHCQCi4JXZLx5zNl/IDf6SeY3cjr4AmEPEBAj6pKOOKhCS6UszlfeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HVLEyCpwv/zs+9t0/V3bod+WYH3wIJ5pnSeGyrRf8pM=;
- b=BNLakVsa0zTBBT3JVQ7/+lmTxCc77RpK/Q7Qovvta+LGCIep5vZX8P9/Inkxk6+asHANps0nXl9uhu1uuACNkQt8PiQvufiYURCHQqAwh4Z4IoNf9H80yTVZVFwBi0Ah1ZtXADhzOvZMJyPSuXw83gSE2ZqwWIpAK5t8s8SnpZvF2foiS8Q96keHVViJuLcY2BExkQmpi5HFPBiBm76lRSTzo74DURm4XWM9zKHiAu8EKoeoYkWatWufXML2a2ITo093ldaFzn0VlOhaXFRYCedyor79KX06pajDusWl9s0lVJa6HyW7A7fP0oll84pCd1Qsx/Srv0+JdIXbFXJJqQ==
+ bh=huvqNnXKFbRdfVn8ex1yubxEd+h3/ULgvmeiDXAU3+Q=;
+ b=A8CkU6jhToHVwqt7UfiKDKu5bu3899KzvUytgMDrzzI19H9Uwz7j1TZYox0KO/6upI9LfkQs8hiCkN95K9XHT9N72fY2z4W+mwgAXgi1X81FKwm63a6C4+qqhSWHda6baJMossV0PxDStlncrnaHhQOJa1guh+ksf8PGxtzT+12PKElsS1+XNdAt24oeEkUeLKIiji2DfuwSymjs/oMb2WAR3xwDI+oZwxzZoUReoLa5AfJP1y6lWBZLh4O9dCWgCQ9ZzKtKwcey++3W1KzEqTuZP8iihU+TuoHm39FA9yFKyJQNzHE70GUnmuFDA+62wtHHC12pvPaPC8zjEkl8yA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HVLEyCpwv/zs+9t0/V3bod+WYH3wIJ5pnSeGyrRf8pM=;
- b=Rr+Pk8AKDKz+oJ5D/SHUao4YzFneDYhfc9Y4oiWop9ZWCnjI+GtkIf5umzUu4cadpUMVUQS9liDPamK5Rzny1/BKioO2+bKlCpHWjTEC+GICAM+Q1Jtkeu9YTPKa8DAkKhf0gVyNeFLzSjrc8fo55l9IB1OtkZm/TG4lDOKQAcM=
-Received: from DS0PR17CA0018.namprd17.prod.outlook.com (2603:10b6:8:191::18)
- by SJ2PR12MB7991.namprd12.prod.outlook.com (2603:10b6:a03:4d1::12) with
+ bh=huvqNnXKFbRdfVn8ex1yubxEd+h3/ULgvmeiDXAU3+Q=;
+ b=Yhifrox3FN52OKAm64+Fuczc5UmqaCOGyVAbOgfddvHVzbyqaCO6/e9Usp9riMFTxZTAZ8L3heoNLmEhRLEGi8e9cn2yiXKqQ78Wz2lnZt7NmZOsaRqngfIRqJrmDLeBY7+ilma5Bxq/l4TWn3fjXVD5Q4Ooe4ViunUGN0SU44o=
+Received: from DS0PR17CA0007.namprd17.prod.outlook.com (2603:10b6:8:191::14)
+ by SA1PR12MB7271.namprd12.prod.outlook.com (2603:10b6:806:2b8::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Fri, 1 Dec
- 2023 13:29:00 +0000
+ 2023 13:29:05 +0000
 Received: from DS2PEPF00003447.namprd04.prod.outlook.com
- (2603:10b6:8:191:cafe::dc) by DS0PR17CA0018.outlook.office365.com
- (2603:10b6:8:191::18) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:191:cafe::c5) by DS0PR17CA0007.outlook.office365.com
+ (2603:10b6:8:191::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
- Transport; Fri, 1 Dec 2023 13:29:00 +0000
+ Transport; Fri, 1 Dec 2023 13:29:05 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DS2PEPF00003447.mail.protection.outlook.com (10.167.17.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:29:00 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:29:05 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:28:48 -0600
+ 2023 07:29:00 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 26/47] drm/amd/display: Skip entire amdgpu_dm build if
- !CONFIG_DRM_AMD_DC
-Date: Fri, 1 Dec 2023 06:25:22 -0700
-Message-ID: <20231201132731.2354141-27-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 27/47] drm/amd/display: Create one virtual connector in DC
+Date: Fri, 1 Dec 2023 06:25:23 -0700
+Message-ID: <20231201132731.2354141-28-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|SJ2PR12MB7991:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3299a527-8b60-4ef5-658d-08dbf2717aaa
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|SA1PR12MB7271:EE_
+X-MS-Office365-Filtering-Correlation-Id: 216909ab-2366-48cc-b970-08dbf2717da7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KHdRRntdFEwScK/rS46+w6SaWhwHcy49qmTaLqHngsUw3rUA3eINqjQ0NKaLPSftifjEtc4bGj1TJpEaGA+ftDq4Pr1Da5QRgZ6WqKn1d5uOr2GKDP9NWj8LoVECubO/x0bVZW9uVaSZEzzPHAF9qxO3DuHePyn/+nYjl9MVfMlfKTGmZsPefFS7EtMwwbQ4lKCXDp3XpyMpt2QW1pOSUUzrkHTJQDASz2n/zE9Bu7h7Ao6Bl6qqC7In1ghHrdMoWMBGKmMcAjM6BSYdTknYz2zCLM7NQ5HafqUvXiMm20eABP9wiZO1mrmJtoQwRXOYzbUY+s76ly/zdTA7u+a9TSPEtkN+RgqZfj56j07wktBdc0tgpD4jsycU9Az0U/PvDRGnQUhN3oPHgiZkcZw1qSuRsVoWPAr7vAJMm4KIHkChbVqnSFdjiu80jPmusZPKzHyjLg9R8fz0fxPWQbU+g+ARYq1GonkLX3lFCJkqqZbvqIUL0qo4Kz4efoVsHUTwVZwjU5saRp/CJ3bZscfuGOcYJrccuqbuagqhOumI84rWCTqRMxXc2vtGtO38S1phom06Fjj6sfc+FXnz1770bMwnybKPYfcPBG3AAggmyQa8cX6EiR9hsetuUtKb0GE3vByeqcVHPsAFmASMGuWHTqEJZQT0B95K+FKqkAMsPif+NgrlTiFZITLVaOCd67eZYpaib+7hOKs0Yn1jG1P4fuId6Hp39v6XBknee0bu9UQxp54FtDtzC7DFTBCRGK9+pBzfjYfKKOuiOWEbdaiMsw==
+X-Microsoft-Antispam-Message-Info: Tic89sA2z7w8gN73XwRhCIHEFO7RQ46PkmFqEnytxJjI4qFYJy8ax7ezpbXEd/wDRW+C1MuCf0aoYsQQK+eL+qTCTRjcJIwA/6H2DIHLqYt7UmLRmMm0CD6wlQpBHV7Bw8eiPgJV9E6XtT1txGbm2UtbrL073ykk8y/Io3egG0VutqjKep2kDm7Fp+sX+Z/EahvS/oL2kg8o9BftZjiQhsJUaeV3NZuWNX6vMKDlSGNj39/giUbTYYHLkzpU6HQ3ZPMPdymJOqko+rJAzbKNZ6LPqzgfUI5I8eC0IblUpZ2fFOFU+VWy02LpHwLffgvx8jDbq2wJYiI01Eff8Y2djULRXI4sPuYbAk0ajAA8XZrYYgITDS5foqOkXwbb2L6imoruunZ/Yo12NkqI1yQljP8cDATqmW39uEGgLFlzANpsql7jTQLFa6ejqByZ/QcjVtM1N7Jeq+gnGd167k3ITs+o0x6Gh0g+MOSB80Hoo+n6acI1TB495A3Fw8w2ySKs/XlvozQqXlYHfur5Tx3IDSnHx9IpIJTzyaW7Wa8Wu18veOu/HG6WCzqks30x+3gxNgyym5V5sB0K1hVcc9HDbrboDIAvTBr0oAiOK/NtAOSM9Omq8s/q0HK/WKK08T13WVw7PJ8WOZydPzrN4ueVAM4o50J8wISlXj4Ci+j4APf03ZV7+J7tpq/vpX00Tx2YMemkdGzK3bVg73kxSibwFiweQTbA9i+mAxdN6JdeyGqSwOJjYAOpP66iguegBroJTDtvccinRu1tc17jphBJYw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(376002)(39860400002)(136003)(396003)(230922051799003)(451199024)(82310400011)(64100799003)(186009)(1800799012)(40470700004)(46966006)(36840700001)(81166007)(83380400001)(40460700003)(356005)(47076005)(2906002)(54906003)(26005)(2616005)(1076003)(70586007)(70206006)(6916009)(86362001)(316002)(8936002)(4326008)(8676002)(5660300002)(16526019)(6666004)(478600001)(41300700001)(82740400003)(336012)(426003)(36756003)(40480700001)(36860700001)(36900700001);
+ SFS:(13230031)(4636009)(376002)(396003)(346002)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(82310400011)(1800799012)(186009)(40470700004)(46966006)(36840700001)(6666004)(36860700001)(40480700001)(8676002)(36756003)(356005)(47076005)(81166007)(5660300002)(82740400003)(8936002)(41300700001)(478600001)(83380400001)(70206006)(54906003)(70586007)(2616005)(1076003)(40460700003)(4326008)(26005)(86362001)(6916009)(316002)(16526019)(336012)(426003)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:29:00.5489 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3299a527-8b60-4ef5-658d-08dbf2717aaa
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:29:05.5646 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 216909ab-2366-48cc-b970-08dbf2717da7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003447.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7991
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7271
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,59 +110,67 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Harry Wentland <harry.wentland@amd.com>
 
-[WHY]
-Previously this only excluded build for a few amdgpu_dm
-binaries which makes no sense.
-
-[HOW]
-Wrap the entire Makefile in "ifneq ($(CONFIG_DRM_AMD_DC),)"
+[WHAT]
+Prepare a virtual connector for writeback.
 
 Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/Makefile | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 11 +++++++++--
+ .../gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  3 ++-
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-index 8bf94920d23e..063205ecb137 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-@@ -25,22 +25,24 @@
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 8cb92d941cd9..21a7db337d8c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1672,6 +1672,10 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+ 	init_data.nbio_reg_offsets = adev->reg_offset[NBIO_HWIP][0];
+ 	init_data.clk_reg_offsets = adev->reg_offset[CLK_HWIP][0];
  
++	/* Enable DWB for tested platforms only */
++	if (adev->ip_versions[DCE_HWIP][0] >= IP_VERSION(3, 0, 0))
++		init_data.num_virtual_links = 1;
++
+ 	INIT_LIST_HEAD(&adev->dm.da_list);
  
+ 	retrieve_dmi_info(&adev->dm);
+@@ -4447,6 +4451,11 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 			continue;
+ 		}
  
-+ifneq ($(CONFIG_DRM_AMD_DC),)
- AMDGPUDM = \
- 	amdgpu_dm.o \
- 	amdgpu_dm_plane.o \
- 	amdgpu_dm_crtc.o \
- 	amdgpu_dm_irq.o \
- 	amdgpu_dm_mst_types.o \
--	amdgpu_dm_color.o
-+	amdgpu_dm_color.o \
-+	amdgpu_dm_services.o \
-+	amdgpu_dm_helpers.o \
-+	amdgpu_dm_pp_smu.o \
-+	amdgpu_dm_psr.o \
-+	amdgpu_dm_replay.o
++		link = dc_get_link_at_index(dm->dc, i);
++
++		if (link->connector_signal == SIGNAL_TYPE_VIRTUAL)
++			continue;
++
+ 		aconnector = kzalloc(sizeof(*aconnector), GFP_KERNEL);
+ 		if (!aconnector)
+ 			goto fail;
+@@ -4465,8 +4474,6 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 			goto fail;
+ 		}
  
- ifdef CONFIG_DRM_AMD_DC_FP
- AMDGPUDM += dc_fpu.o
- endif
- 
--ifneq ($(CONFIG_DRM_AMD_DC),)
--AMDGPUDM += amdgpu_dm_services.o amdgpu_dm_helpers.o amdgpu_dm_pp_smu.o amdgpu_dm_psr.o amdgpu_dm_replay.o
--endif
+-		link = dc_get_link_at_index(dm->dc, i);
 -
- AMDGPUDM += amdgpu_dm_hdcp.o
+ 		if (!dc_link_detect_connection_type(link, &new_connection_type))
+ 			DRM_ERROR("KMS: Failed to detect connector\n");
  
- ifneq ($(CONFIG_DEBUG_FS),)
-@@ -52,3 +54,4 @@ subdir-ccflags-y += -I$(FULL_AMD_DISPLAY_PATH)/dc
- AMDGPU_DM = $(addprefix $(AMDDALPATH)/amdgpu_dm/,$(AMDGPUDM))
- 
- AMD_DISPLAY_FILES += $(AMDGPU_DM)
-+endif
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+index 97798cee876e..5d62805f3bdf 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
+@@ -96,7 +96,8 @@ static void enable_memory_low_power(struct dc *dc)
+ 	if (dc->debug.enable_mem_low_power.bits.vpg && dc->res_pool->stream_enc[0]->vpg->funcs->vpg_powerdown) {
+ 		// Power down VPGs
+ 		for (i = 0; i < dc->res_pool->stream_enc_count; i++)
+-			dc->res_pool->stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->stream_enc[i]->vpg);
++			if (dc->res_pool->stream_enc[i]->vpg)
++				dc->res_pool->stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->stream_enc[i]->vpg);
+ #if defined(CONFIG_DRM_AMD_DC_FP)
+ 		for (i = 0; i < dc->res_pool->hpo_dp_stream_enc_count; i++)
+ 			dc->res_pool->hpo_dp_stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->hpo_dp_stream_enc[i]->vpg);
 -- 
 2.42.0
 
