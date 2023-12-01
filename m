@@ -2,90 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739368000B2
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 01:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2ED800262
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 05:09:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E361D10E07A;
-	Fri,  1 Dec 2023 00:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B56DF10E7B2;
+	Fri,  1 Dec 2023 04:09:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2060.outbound.protection.outlook.com [40.107.102.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E67A010E07A
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 00:58:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HBDl5GFDfQl2+Mh4LyQXnI7oX4KoCAbj7Gc9icemyFffMdJSChSZMCbErdUPVrMcZPdOt95sCU4tnpsRdEDaW0xSDo6AmTnyIFV5gAUySvVi7/hovyc3DcZyAea7fa1jrb+o+Cqp3OpVYb9twRdXG1JlWH3toLfiCTReVR3ySF0p9dI8awH/2ihuTWO2RARNCGjvnV/Yxcp9Bji4m4IiNXb0Pbje7R6MT307eMbum7P10VAkB0F+lh0sLJbyuPsPgrC4TiJ6eFAQEQuYgR1iber+/grYDCf3DjlhOQhYFa640HV6dhhAQoAkw3txgKoMDv5XbdlFTdpeGB85RHqu4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O95LlRrfqsaTk5z3+eEE+LLMzz38mK5BhSQUnEjPUQc=;
- b=e6j5UVDOsrFkNOZx6G9QKcZd1/e4u4JloZDlQZiQKn+0f23boqCdRor/XofSvXZLDGtnBT2UKmL/yVonyOqaxUbnQ6BLQ5lUhjSxoaxpUD0s/lb9JBuGlVmfMUATapdw5JzPujQGcMc89iv3I+ptl1Pyyo+XzBp8PrSJKFEAuE3+mgBwKMfrwbZ4dTbDiLwMInMSAVqL/k3Ic9Bd5HaJCXq/EG4ikThKEv/1QIjiOfs36oey+TTrSVXIr9+GzhTfZuLlPh83Aruh/VWgEfJtrgcz0MQqbTByNBFNQosiHCZdQMp1jsPQMgWw6W37NgpR0LKTcfY0WubO82hJoHmvpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O95LlRrfqsaTk5z3+eEE+LLMzz38mK5BhSQUnEjPUQc=;
- b=nSheuJSZ4AOXJq0tXelw3hQl+hWdAFZzTRO/ucia53BEngEN5FJR9Fb/OxrPwtYHerooonWMZrLEKgi7AbYFSx1M/Ejdg04kZf1BDOB0SYbH8/LOG0/WkBXbjDughdlnslc7Qh2OzIsr1xUZgCFVOgdtsxkADJ3+0DQch365rOA=
-Received: from PH0P220CA0006.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::15)
- by DM4PR12MB5168.namprd12.prod.outlook.com (2603:10b6:5:397::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Fri, 1 Dec
- 2023 00:58:07 +0000
-Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10b6:510:d3:cafe::56) by PH0P220CA0006.outlook.office365.com
- (2603:10b6:510:d3::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24 via Frontend
- Transport; Fri, 1 Dec 2023 00:58:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 00:58:07 +0000
-Received: from jenkins-jiadong-1.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 30 Nov 2023 18:58:06 -0600
-From: <jiadong.zhu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: disable MCBP by default
-Date: Fri, 1 Dec 2023 08:57:51 +0800
-Message-ID: <20231201005751.4194154-1-jiadong.zhu@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
+ [IPv6:2607:f8b0:4864:20::1035])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE24A10E78A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 00:30:45 +0000 (UTC)
+Received: by mail-pj1-x1035.google.com with SMTP id
+ 98e67ed59e1d1-28655c04da3so244944a91.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Nov 2023 16:30:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701390645; x=1701995445; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=caGgQN2zt8grZs3U0xbayh8pbJ7WuHPF2boIZk41q/I=;
+ b=PVsgq7xg7O0VYcEFVJXNMbwgGpx0aauuLWi68lzYw0XkOjcZK+rIrPp1kZsW69dUs+
+ G6JtiNb7i5kcPvNVjieEjrgBQfs2rsxgBSrZ1xVbNgZO+KkH4VbYJ7pjNcLjq5pTE8NH
+ w7nOioAUmhW7LJX7NFx41kUOg+hUS1VuCWrlTQUmN1vPDv0jyoVV9QdpCGVTIOcnga1p
+ C9+O+u2OsELowW6qgaDnco/bHUW2fnrwv6RS5NBHCZKdUjcdQ/aNACnqtZwwy+u/zh8e
+ qHTI9gX8EJXgPVngYuwkRG1M4Rjuohp9lYDS/UZOck1gen7uAY426D5F/l6XxyIGOX0o
+ AHNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701390645; x=1701995445;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=caGgQN2zt8grZs3U0xbayh8pbJ7WuHPF2boIZk41q/I=;
+ b=IrEsxSow8ytDe5+ZDSZjztBpd43L7y21qSdrVO27sbm7HtTwmI3ITA70Xe9L5FfXJ7
+ kxvbYvJ9CCCOHZxYiaYtGov8pQOXmphpY1t2d5Oxb4HfnWH1mbFDuoNfBdND9XQ9IP7K
+ NIyjKRmD590lYNNwac0ql+lQztEo8m7iKxw0krD3Szq8Z21M/xLfiKP2PdGpNFwnAVwY
+ yGsfUhMkD+uEywhYioylQx2p9DLdblK5yQhM8VpmvIPZLiOTInMMj7LdDtW2ac309z3m
+ 2eAUkebA1WXNU0H9oGByxdQw1NawsioMSeWcVNofsRfg4dgKWa3x+RpR7K6BrTSBKxeS
+ fv2Q==
+X-Gm-Message-State: AOJu0Yz9c7A4wI2sMIox7zwXPyH42Vt4rvmZkKBr57zU23xrZOWtuom7
+ AyKF+fuq6gBNlBWT6NAS00Ennhp3yog28w==
+X-Google-Smtp-Source: AGHT+IGavLSgfLIFqgzeRpJJkSpkkqVUuQDRKrB/Bufnp+gm00i5dOUOGGZIZ3Pf4HupAYvGp4kBGg==
+X-Received: by 2002:a17:90a:62cb:b0:286:4827:807d with SMTP id
+ k11-20020a17090a62cb00b002864827807dmr3313646pjs.23.1701390645269; 
+ Thu, 30 Nov 2023 16:30:45 -0800 (PST)
+Received: from [192.168.0.106] ([103.131.18.64])
+ by smtp.gmail.com with ESMTPSA id
+ c12-20020a17090a020c00b0028089fdce19sm2092716pjc.52.2023.11.30.16.30.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 30 Nov 2023 16:30:44 -0800 (PST)
+Message-ID: <8da256ea-b069-44f0-9cc2-93482c2f5eec@gmail.com>
+Date: Fri, 1 Dec 2023 07:30:40 +0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|DM4PR12MB5168:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb59f43d-7eba-436b-2bfb-08dbf20894f6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y3g7yNUuyy3WKIKwtNTsDPnTK/HshCGWSSsMCxfSKRdumIP5jVAkW5f04ycUgojBcyO22wDB5lAJJKDayjIMGHNY2eOUuS9U4thhv6lRo0Q2oC5ZY6HNaXWW8ORvvzLjC8sn/Oo2iTXbf70QhqryW4tgtAGmnc7zaUr727/qbLOA594s0DD4+QMvQZvMz8pfHLAxCnzSwwteP8kgZG/NsPNOuyo+M2qaoKt803lPz+qVEte0kf1WsrD06U44+qaA5h5O/2ju6pLlhrcCzlqq1KWB1mB8vuc3e5rrY74+ghS34OYUDYVVs9hE3irfkDy5aopSE0idqUgjKPjSWWBoSOM0EDpFFuU/6CvbiKULWf3+1BiDdiYA01tm8WYb9OsmeDW2NwNkayjWUsEgkK6s2YGB6XzUi1diR91oVtgFjz3JSpM5FDhqgddDs4MCfqIRNEyxMrJImXEAqEBORyyZhKdYfkNmJIebClXQKa5Bl2/sqKwRHeI3ix1dd4F6RIT58P0JSLNx1pYpdPECvfEbQmmdTTtzgSw18YxYJ/hcPMGi5WLO3ehohw68iGW3UPola2WVJpCAE0qdSW7il2VeZ1OmYOeIFJYd7m3qz/P9c6imQ1jsf27h/RVM9Uo4cEFZxqS1ZafqZEQCuUxNCKj3m+7aXkXkC8VGzhksU1KIs73ahdBk1h2bvW11Nn4OKfWQ8a2IFrJNSnMODE7nzN0fMggoobmp5dsGgrnlRAHO605puMoldhaAdbUZfYhJ57CLH3/UYQ8OSx/qLq/6rXmJvg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(396003)(346002)(376002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(82310400011)(46966006)(40470700004)(36840700001)(86362001)(40460700003)(83380400001)(26005)(1076003)(6666004)(7696005)(2616005)(47076005)(426003)(36860700001)(478600001)(8936002)(5660300002)(8676002)(41300700001)(336012)(4744005)(2876002)(2906002)(16526019)(4326008)(316002)(81166007)(6916009)(70206006)(70586007)(36756003)(356005)(82740400003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 00:58:07.5253 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb59f43d-7eba-436b-2bfb-08dbf20894f6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5168
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+Subject: Fwd: Thinkpad X13 AMD: Problems with external monitor wake up after
+ suspend
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 01 Dec 2023 04:09:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,36 +76,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiadong Zhu <Jiadong.Zhu@amd.com>
+Cc: Stylon Wang <stylon.wang@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Oliver Schmidt <oliver@luced.de>,
+ Wayne Lin <wayne.lin@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jiadong Zhu <Jiadong.Zhu@amd.com>
+Hi,
 
-Disable MCBP(mid command buffer preemption) by default as old Mesa
-hangs with it. We shall not enable the feature that breaks old usermode
-driver.
+I notice a regression report on Bugzilla [1]. Quoting from it:
 
-Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ----
- 1 file changed, 4 deletions(-)
+> Since kernel version 6.1.57 I have problems with external monitor wakeup after suspend on Thinkpad X13 AMD Gen2 Notebook.
+> 
+> Notebook is in docking station with closed lid. Suspend & Resume. The external monitor gets no signal. After randomly typing Ctrl+Alt+Fn for switchung consoles, the monitor at some point gets signal and is usable again.
+> 
+> It worked with kernel 6.1.56.
+> 
+> I managed to compile a 6.1.57 kernel and also a 6.1.64 kernel by reverting the changes from commit ec5fa9 "drm/amd/display: Adjust the MST resume flow" (https://github.com/torvalds/linux/commit/ec5fa9fcdeca69edf7dab5ca3b2e0ceb1c08fe9a?diff=split&w=1?diff=split&w=1) and with this suspend & resume worked like before without any problems.
+> 
+> I reported this also to the Manjaro's support forum, since I tried this on Manjaro Linux (https://forum.manjaro.org/t/problems-with-external-monitor-wake-up-after-suspend/151840).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 21b8a8f2b622..280fcad9ce93 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3690,10 +3690,6 @@ static void amdgpu_device_set_mcbp(struct amdgpu_device *adev)
- 		adev->gfx.mcbp = true;
- 	else if (amdgpu_mcbp == 0)
- 		adev->gfx.mcbp = false;
--	else if ((amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(9, 0, 0)) &&
--		 (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(10, 0, 0)) &&
--		 adev->gfx.num_gfx_rings)
--		adev->gfx.mcbp = true;
- 
- 	if (amdgpu_sriov_vf(adev))
- 		adev->gfx.mcbp = true;
+See Bugzilla for the full thread.
+
+Anyway, I'm adding this regression to regzbot:
+
+#regzbot introduced: ec5fa9fcdeca69 https://bugzilla.kernel.org/show_bug.cgi?id=218211
+#regzbot title: MST resume flow adjustment breaks external monitor wakeup after suspend on Thinkpad X13
+#regzbot link: https://forum.manjaro.org/t/problems-with-external-monitor-wake-up-after-suspend/151840
+
+Thanks.
+
+[1]: https://bugzilla.kernel.org/show_bug.cgi?id=218211
+
 -- 
-2.25.1
-
+An old man doll... just what I always wanted! - Clara
