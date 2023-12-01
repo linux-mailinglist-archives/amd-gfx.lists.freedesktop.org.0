@@ -1,43 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629BC800BEF
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:28:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B66E800BF0
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:28:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2011910E874;
-	Fri,  1 Dec 2023 13:28:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1B810E88F;
+	Fri,  1 Dec 2023 13:28:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECFCE10E874
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:12 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2061b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::61b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E8010E874
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l3kYluCbdr6CyvYia6oesNFrZUWLdruGst3LOeLe+tBUZvb0HlxCv6sJOF3lTWm9dUozPLts83PV/wME3yyHK3DjMlhBh3puL9GLseIIpHstfyu/2lv413ppIB2HCVl4vAC0NJPQUXhvGPqbgLdZorqznFzio7i52tCPU+l3uUeFEjfvHj0ky+CZABdykMqLqo+Itt5uEKaQqzMP7Y2wnKhVCyIfuaNCjTragslzYtBcp7mv2GG41tEyneXbg1sIq4Fm/uZv4d7XlYTPl7jA0gOjc23BmtqwWtiAPjKN91BE9PrNvjeE0XLBo4WPoWZaOqIrQdsvtvJAe1lOGeQ6iA==
+ b=GuC+AZSHeODBn+wlQwa2uAXk/TmMfmr7u0LKK3xQ5DmNNN210z52hRsPCfP8NtzI/uXVAGo3M2PoYC0EN9Xs4qupuARHfQcGjafT5p0hpQZb1QhNgaeN4qUEQuZV1qRFrOTG4zEV4WoWmz0vUfEuQjDA77bBUIA582yH8+cEuWQOZ67w5LPJ9MftonGu8oZ73lgiw0knXlpi6x+a3KL/k9wQGyxZveTZN8Z7yfj86XivAcjI/ERwZRCCkqXu8mU5VA8WJ8tAUTAq4LBGZdSihEJGcy3PML1cD5a9sbTpOIXYo3cYbmnRutmJ7BWyVdEZaO52C2NnGO07NHOqXWVANQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0tB19tQMEosiKl7+8nhiCxor3DnTW6XO4LsRABjXadU=;
- b=NWDsAQ63/Co4pbIbHaY0wIrnNXwTknQ5zSibOrA2z+oTgq7bT4Jty4rY09xJKfIJjEoDti61bJ0ZDfyKtPdU6RSOlh38UGv4imKAA3U43bj5gA2IPFV5/ulA21luCAk98aZfg2GSU54IuAan9kjAtPzxxtd2TmL9xj/bYoZJKfEIFk2BtBGmgchJ5LkeY4OC++FQAUuHBJcVMg/3jgygnPQ93c0w1HSTiLlgZi13/g4CfJjz6uQiLi0G9MsO+tOBvU/cGcgAoQHagxjxVbwIvEVLwcvWZN21RR66JeaJfq+/EkbNRrFq0LouwuyJgoGPk/dtFEfoTJdsf5jzD4cMiw==
+ bh=JiNBWiarm56EG0TfgDcIPXIYOUyN9Q5asF2vDsexG8I=;
+ b=hauJn8YqJAS0GzTBTzHejPkR46qDwEks4Mji/I5Xoln7g71V7oi6HoRC1it4C9OiOG7A9bKui0/Fp1j4eoHtLZ+ntCSSwDwz2Wk9+NFC0YdSdiy949T7Q+xSIgMJK4JgbxUuCPWxQ/rYjQfSN5ZdSxvZ8in/3YGxMfpU4Ve9GCCAHhj3J3d4R4S1aGlc1yp2H5dTqtYZgDDOhDAF5dpVWJb7A3LsNDxPm+L42UqI5yvR/VD8Bp79NElqlvmh8XgUSb4QRRYnqGhXuyWcafgdrk04clDzdRwfgHK9WcdE1zc0CCHOXTppAAjBxhGefoWqyv8MIPTsGH1rZzmrNFDhfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0tB19tQMEosiKl7+8nhiCxor3DnTW6XO4LsRABjXadU=;
- b=ajbnaP9bFaaWN+myVCXCEQ0Ze5Z3wi8+Zw/VdwvlqgEchUHdwKiqKBnAi4b4t3mFuhKXNPV6x9PUwZZK0MsdWRNhOlxN80ybXvhmK80nhS9CZN4CSPPRxwpEMwgVqS3xDHBWjk6vb9wLLiSu0PEbx7g6R94Ua3N/eckXeFdzuMQ=
-Received: from CH2PR16CA0003.namprd16.prod.outlook.com (2603:10b6:610:50::13)
- by DM6PR12MB4861.namprd12.prod.outlook.com (2603:10b6:5:1bd::12) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=JiNBWiarm56EG0TfgDcIPXIYOUyN9Q5asF2vDsexG8I=;
+ b=DqdmAnTVPpuv5t7xgpjUuGJp2wNU1waPgHPcSm3B1TxMtFeS1g+zd5c/Id2L+9j1nLcKZ5xUXkOk/+Llz8jwbPHdKkh7QYslTcF4rwoX4inqeMUYeT9JqdUUJT0cdI2tAcYEyPHpNBrWtiB+DwixgQJcAeQX+CBz0mY0kRwiM4U=
+Received: from BYAPR04CA0036.namprd04.prod.outlook.com (2603:10b6:a03:40::49)
+ by PH8PR12MB6745.namprd12.prod.outlook.com (2603:10b6:510:1c0::10)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
- 2023 13:28:09 +0000
-Received: from DS2PEPF00003443.namprd04.prod.outlook.com
- (2603:10b6:610:50:cafe::ab) by CH2PR16CA0003.outlook.office365.com
- (2603:10b6:610:50::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
- Transport; Fri, 1 Dec 2023 13:28:09 +0000
+ 2023 13:28:12 +0000
+Received: from DS2PEPF00003448.namprd04.prod.outlook.com
+ (2603:10b6:a03:40:cafe::96) by BYAPR04CA0036.outlook.office365.com
+ (2603:10b6:a03:40::49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24 via Frontend
+ Transport; Fri, 1 Dec 2023 13:28:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
+ DS2PEPF00003448.mail.protection.outlook.com (10.167.17.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:09 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:11 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:28:07 -0600
+ 2023 07:28:09 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/47] drm/amd/display: Change dither policy for 10bpc to round
-Date: Fri, 1 Dec 2023 06:25:03 -0700
-Message-ID: <20231201132731.2354141-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 08/47] drm/amd/display: Increase scratch buffer size
+Date: Fri, 1 Dec 2023 06:25:04 -0700
+Message-ID: <20231201132731.2354141-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|DM6PR12MB4861:EE_
-X-MS-Office365-Filtering-Correlation-Id: accd7a8f-3250-498a-6e57-08dbf2715c51
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003448:EE_|PH8PR12MB6745:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d2b5972-fa10-4cef-3d71-08dbf2715d9a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yrlIBu6J9NVtbfcVuxEi2Rp/TMqRsQ1LJXYK5vwWy1/BmcFla3rJKUHGDmbfmnoX0nLfsSULoZ9jnCjjvg/uiywNn0pF/rC0HrDeFWrja3txY8uD6/FYnTc5IZTZAPlbTH1P4anghnkRT7W4vaWG4Cy63WV+WQtsteh5IRPoMyo8D8RYplw3h4u+aCypW7vuxL0GEHrSve0qHjw5YYJNpJ4l62O4PuW6KeSjiLBEvJJG26LrL4QQ5deU9SXfDO/V9eRzYPhrvMGWrdk6fweeEhbcKpYqnFfH/0fhnE+zSa0DZnFOMhKv/TICVO3thabFCZ9kmv0sO6YI8HzeUQLJIEHP9+vyHn0Ip9YXJWJmZQVP9TVMsvm87iGBa7ckoOV+G/RIIb0ZksJEjx2MzcQ8MHbV7w4hQ88PyVCXgJIruGkK0Sjjpx7sWuOuNoKy3yhOuE9iaxM23JdSr04KrXqfh8yBlbYEx+LF/S/1L/hWBC1FIfG+0MfKh+VVixpCorE2F6zksYXt3WFAuucR9kyXM/wk7PYC4VDBxEEMfVo0LJgvCzvQo5JMaZm5iUYiZCylJVr8ZMLwpKTCmPHKVHFo0Lzm6YbSQWNm4YS9zDK9Ow8NLm7n3LQuw6Fs7zwXahAZmuWbTcRLzNVwmVg8S4hleL7NkY0Fx1L4GOWnA3ye4gi5W25iFsjt1USy5dQEUq24fP/7TqnPeUAqlOK6FEo47dKc1R2GW7np/npc7Jm7RzZqO9h1h4B+BxiF4Bo7+ajpTocGc6pMccSYjScVkk8QaQ==
+X-Microsoft-Antispam-Message-Info: RoXGKpigBHCkwJdI0/IS6usit75EwsLH0gh6COLE/mZOrIIKBs4YfiKRW2gXnqC6aOfa2bmNoU4Ami7oWXAkyp6U+ewwZt/QpCbFqP+/E88HkSpSfPkYQDaIrI38sZ16MdN2MaKsoK1139DUpUM48Cz/cCD6l+Rv5wScPDqoX0Ev/NstRB/DS1vEeSbCrTntj0N3CLGiHkFytFHYRPIbWjlTXGypoLUnIfluqn/weL35rK2h/f6YC8zhl8i9oCgZYI80apbzC5YXQvRBiKZL7NQ2GBW4obWrRSLYAlWpGCNRG3m7fiQBt/AFDah0OgLVSQ5I2sear0V8kj+E3a+FOYNcSmZuaBvnk1lvi8ScagQUJGAMgrRjCRYmpp3CTLYYG6XqHFdVbQud5WwoDRmJXLZhIBqidmttim9HaVcJmsTp+wHjQeg8dQ8YL0ri+vPSuXKPn2fxSNLnWtjbJazyyXOay4Dl7at+1lHARhpbjbBrHJ/9CI7dNyu+hUTOlL8b+9G7MMAaVi9Hl3l6kaODuBQ9TP7RgaWXuFtc12RoADyIq31+FdzOrJZAO2XB3Ba5KInDFPjsswW5ZanZYktSfxJ+KanUNpOU9Gv0JSWxFazTbKgWY5ntBGYrJsG9AvG+XMv5ooymAE7XLECgF0vMryh03x23GIh450r9rwhOGc+VYyfUTvhCAkqRn/d1lP0kGuSJgA7GCcS6PL4l6Q2Qgmr9t+JBWXHzQkb5GzaKdcKpZ/Z//gmw4GQPL3mtPyhR9OjuQpZ0/eUnvdJM5911DQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(396003)(376002)(39860400002)(346002)(230922051799003)(1800799012)(451199024)(64100799003)(82310400011)(186009)(36840700001)(46966006)(40470700004)(40460700003)(426003)(336012)(83380400001)(82740400003)(36756003)(86362001)(81166007)(356005)(47076005)(36860700001)(70586007)(70206006)(4326008)(8676002)(8936002)(54906003)(6916009)(316002)(40480700001)(5660300002)(2906002)(2616005)(1076003)(16526019)(478600001)(26005)(6666004)(41300700001)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(346002)(376002)(39860400002)(230922051799003)(451199024)(1800799012)(82310400011)(186009)(64100799003)(46966006)(36840700001)(40470700004)(426003)(336012)(83380400001)(82740400003)(16526019)(26005)(478600001)(6666004)(2616005)(1076003)(40480700001)(8936002)(70586007)(70206006)(4326008)(316002)(54906003)(6916009)(8676002)(36860700001)(81166007)(356005)(47076005)(5660300002)(4744005)(2906002)(86362001)(36756003)(41300700001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:09.6342 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: accd7a8f-3250-498a-6e57-08dbf2715c51
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:11.7891 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d2b5972-fa10-4cef-3d71-08dbf2715d9a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003443.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003448.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4861
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6745
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,59 +100,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>,
- Krunoslav Kovac <krunoslav.kovac@amd.com>, Anthony Koo <anthony.koo@amd.com>,
- jerry.zuo@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo Siqueira <rodrigo.siqueira@amd.com>,
- roman.li@amd.com, solomon.chiu@amd.com,
- Daniel Wheeler <daniel.wheeler@amd.com>, Aurabindo.Pillai@amd.com,
- hamza.mahfooz@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Josip Pavic <josip.pavic@amd.com>, jerry.zuo@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
+ solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
  agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Krunoslav Kovac <krunoslav.kovac@amd.com>
+From: Josip Pavic <josip.pavic@amd.com>
 
-We use spatial dither by default for all output bpc (6/8/10). While it
-makes some sense for FP16, for ARGB2101010 surfaces it makes little
-sense as even if we skip color pipeline to preserve bit accuracy,
-spatial dither adds random noise so a few percent pixels are 1 bit off.
-This commit chages the 10bpc out dither policy to rounding.
+[Why]
+Larger data blocks are expected to be transferred between driver and FW
+in the future.
 
-Also, in Polaris/Vega times, policy used to be round for 10bpc out; it
-looks like it got inadvertently changed for Navi. Difference is only
-detectable with capture cards.
+[How]
+Embiggen the scratch buffer to a cromulent size.
 
-Reviewed-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Anthony Koo <anthony.koo@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Signed-off-by: Krunoslav Kovac <krunoslav.kovac@amd.com>
+Signed-off-by: Josip Pavic <josip.pavic@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index f3a9fdd2340d..0a63dcd1cff3 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -4773,7 +4773,7 @@ void resource_build_bit_depth_reduction_params(struct dc_stream_state *stream,
- 			option = DITHER_OPTION_SPATIAL8;
- 			break;
- 		case COLOR_DEPTH_101010:
--			option = DITHER_OPTION_SPATIAL10;
-+			option = DITHER_OPTION_TRUN10;
- 			break;
- 		default:
- 			option = DITHER_OPTION_DISABLE;
-@@ -4799,6 +4799,8 @@ void resource_build_bit_depth_reduction_params(struct dc_stream_state *stream,
- 			option == DITHER_OPTION_TRUN10_SPATIAL8_FM6) {
- 		fmt_bit_depth->flags.TRUNCATE_ENABLED = 1;
- 		fmt_bit_depth->flags.TRUNCATE_DEPTH = 2;
-+		if (option == DITHER_OPTION_TRUN10)
-+			fmt_bit_depth->flags.TRUNCATE_MODE = 1;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 38360adc53d9..a329a6ecf4dd 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -64,7 +64,7 @@
  
- 	/* special case - Formatter can only reduce by 4 bits at most.
+ 
+ /* Default scratch mem size. */
+-#define DMUB_SCRATCH_MEM_SIZE (256)
++#define DMUB_SCRATCH_MEM_SIZE (1024)
+ 
+ /* Number of windows in use. */
+ #define DMUB_NUM_WINDOWS (DMUB_WINDOW_TOTAL)
 -- 
 2.42.0
 
