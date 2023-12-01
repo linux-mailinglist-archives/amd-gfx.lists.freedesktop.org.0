@@ -2,92 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19717800C20
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B284F800CE4
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 15:09:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A64D10E8AA;
-	Fri,  1 Dec 2023 13:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0F98897D4;
+	Fri,  1 Dec 2023 14:09:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2078.outbound.protection.outlook.com [40.107.94.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D96F10E89F
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:29:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fjiGZVwIRgJ/zWTwAcsdsgCo3RMj9bShcK7vTwvVyVFXQbXgEd0RIt8gIZoQVelYiUMC9fobgnuWmVptEmbnWVyxtU3UkPcjc+u3p47FX1PI0zhd3s7tMDV+KSr8to0WkqwQ36vVhklyVIYlWyjbJbhOpDev9Ip2UMO0GE/jfYIuWhRWbyzfyfdtJPOctbJ0NnLA1CM2bijSJe3wJevXwxxCr3QGrstxwmlUvLsFS4hY6dQ3mtlRbDUZk4Y/B3K2tGpIYruf6jXBSalu/gc1XpKCc6AlEWrkSS5ZRU/58UfrAvjn0KPA6CJvtFINXx8eMGP4VAAgGqrrNZGLiOQQJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o/yvYZtp5KNMdXxruEsf12rrnQI/N3TdIXRTCp4ZvTI=;
- b=QqeMKxwPbFiemDwPxxM+mnU+hs7q57Lsy+T1f4MoAjVZVS5j/x1epM1+MxRRa8WeJAMVLB+VWayrfRMwjhIdO95ZYmSYvQ8tUz15Zad8JlpirIuLDkRjRd8g84Cy91mfY5y39Ea6UbVtYny1ns53tJCdHZ9zNY5nRqX2OnLmXBKwkILaMoTYeesU4JA2+FLql/ISXQPQeetLGq1j9scViaPIawFkmwHgbsXPJZhIGOP6vFBOgEOKc7yOexcWh82hFINvW4Xj74OH+Vr0wYvKKNvOZAYOFo8EJ7w4T1SHXSIM9ztWOmYBVTy7dGnIIlRKtzajTtyuJuqlzv0U/NGc3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o/yvYZtp5KNMdXxruEsf12rrnQI/N3TdIXRTCp4ZvTI=;
- b=cogPrz9E60pRI2lQZZdFtp3bJsX9eo/k2xG6o8M7dfM+woHwPtTevK9WSZh9foTTQZ7f29hnrLMTJd/8zaryw10dLB/cW8k/FpYHs8/+L0NlKOIu66RZjajJYXw2bkPAKABs0HS+5FSmCd0fAF02RAAW3bt/EG9uzhldpMNK6ZY=
-Received: from CY5PR15CA0166.namprd15.prod.outlook.com (2603:10b6:930:81::14)
- by IA1PR12MB6554.namprd12.prod.outlook.com (2603:10b6:208:3a2::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
- 2023 13:29:44 +0000
-Received: from CY4PEPF0000E9D9.namprd05.prod.outlook.com
- (2603:10b6:930:81:cafe::15) by CY5PR15CA0166.outlook.office365.com
- (2603:10b6:930:81::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
- Transport; Fri, 1 Dec 2023 13:29:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D9.mail.protection.outlook.com (10.167.241.77) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:29:43 +0000
-Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:29:41 -0600
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 47/47] drm/amd/display: 3.2.263
-Date: Fri, 1 Dec 2023 06:25:43 -0700
-Message-ID: <20231201132731.2354141-48-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
-References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
+X-Greylist: delayed 40882 seconds by postgrey-1.36 at gabe;
+ Fri, 01 Dec 2023 13:57:41 UTC
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com
+ [95.215.58.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B07810E8AD
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:57:40 +0000 (UTC)
+Message-ID: <af7717b2-cd10-491f-99c1-285016fabf84@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1701439059;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=TpJd6OhPomyp5ChF2rTctC6wWRE0tLx+lrrgumMFAT8=;
+ b=APm60MBJHMnUhRiRKzDRTK23FqD7Zh9GRI880BxjRs+qjL+MmWWRUQCsaA6MFa7BoqauHz
+ QuMJU/oNucHzFVhcHfWh6vcrc/B7VtcarG+072r+Q3jvs7xfqtFECZsxGtghHtUIKgqdq5
+ Cg1kztA9PqCJNsJvgm1L6ByCEnqPUrM=
+Date: Fri, 1 Dec 2023 21:57:26 +0800
 MIME-Version: 1.0
+Subject: Re: [1/8] drm/plane-helper: Move drm_plane_helper_atomic_check() into
+ udl
+To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, daniel@ffwll.ch, airlied@gmail.com
+References: <20231128104723.20622-2-tzimmermann@suse.de>
+ <9a741d8d-a699-4fe8-af59-f90c91014d01@linux.dev>
+ <038bc33b-1bc9-4dbc-bea3-d17a3d37abf0@suse.de>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <038bc33b-1bc9-4dbc-bea3-d17a3d37abf0@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D9:EE_|IA1PR12MB6554:EE_
-X-MS-Office365-Filtering-Correlation-Id: a302e959-c05e-4723-4bf7-08dbf2719479
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yveX4usjQN8tT7B4dKXd7LHbuWzTvsdDciNoCCy+90cmd1iApSkankvks2OpjLJpKHVlg9SksRFvPmvh7zv9kBa0R6Ek3M1EdDfMhh2aemByJoIXgR6owpPIp4ceriDm/1MX7WfOF6bXm3mDx3/hnYg+cw8jpl9bEyS0Cy8fT8rCFC7rWd5fBxGoq2Qd2NfRz9dzXNJXJfZjzBGaAzhP+sC7qqOE4bl6F2OdQAcq7SKq1TM7cmIK/DkYReJ9832kiqWB4v8lsiUAHaKkN9HBHKzJfK1xmnnYDBxbrWy1VU/2cO/PtqndZ/YxDeqm4z09iZYNtx6bDDm/g/IY5KPJS/+Jq3prkeg8qU6oa64XGMfeLK9K4q9tfUB6bDE2KQ/zEg0i0YQKOh/sJZ4DrJFae0NMcFrUkb4hBvDYSpGpird56BACl0JxwKW6iILGHRKKj8qCvKAoRvUvFkfcJW4DL7DlAkQTVp/STrYaqrTfBdf3MW9l/aZe6tT11B/4ekC0VY3oR7Nmpr/R6706iA0zFdeBbxwBsJy7XxS+qLIXRgI4RQ9Jb3/z3gDi3qBYbahbiUr0leVeRXREoJo0pt+AevzSkhjeyn2xA4YewKFIeEjXkL+bWCX+YL2MprlcQUpAER2Lrlo3eZL5CpVkya7TJ7sxmdDg1UhxFUUexl6jz/bvztXJtIoSHO22rFdx/KonkfTL6qkB9L/Li72ni9MyBsxIoYkmQGl7qiJdX4G16elBQjA9zh7IJw7Wo3BfV7oZzz0HIU+2/6ISltw/jI2ngQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(396003)(346002)(376002)(230922051799003)(1800799012)(451199024)(64100799003)(82310400011)(186009)(36840700001)(40470700004)(46966006)(40460700003)(426003)(336012)(83380400001)(82740400003)(36756003)(86362001)(81166007)(356005)(47076005)(36860700001)(70586007)(70206006)(8936002)(4326008)(8676002)(54906003)(6916009)(316002)(40480700001)(5660300002)(4744005)(2906002)(2616005)(1076003)(16526019)(478600001)(26005)(41300700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:29:43.8166 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a302e959-c05e-4723-4bf7-08dbf2719479
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D9.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6554
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Fri, 01 Dec 2023 14:09:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,42 +55,175 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>, jerry.zuo@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
- solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
- Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com
+Cc: amd-gfx@lists.freedesktop.org, javierm@redhat.com,
+ dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ laurent.pinchart@ideasonboard.com, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+Hi,
 
-This version brings along following fixes:
 
-* Enable writeback.
-* Add multiple fixes for DML2 and DCN35.
-* Introduce small code style adjustments.
+On 2023/12/1 16:22, Thomas Zimmermann wrote:
+> Hi
+>
+> Am 01.12.23 um 03:36 schrieb Sui Jingfeng:
+>> Hi,
+>>
+>>
+>> On 2023/11/28 18:45, Thomas Zimmermann wrote:
+>>> The udl driver is the only caller of drm_plane_helper_atomic_check().
+>>> Move the function into the driver. No functional changes.
+>>>
+>>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>> ---
+>>>   drivers/gpu/drm/drm_plane_helper.c | 32 
+>>> ------------------------------
+>>>   drivers/gpu/drm/udl/udl_modeset.c  | 19 ++++++++++++++++--
+>>>   include/drm/drm_plane_helper.h     |  2 --
+>>>   3 files changed, 17 insertions(+), 36 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_plane_helper.c 
+>>> b/drivers/gpu/drm/drm_plane_helper.c
+>>> index 5e95089676ff8..7982be4b0306d 100644
+>>> --- a/drivers/gpu/drm/drm_plane_helper.c
+>>> +++ b/drivers/gpu/drm/drm_plane_helper.c
+>>> @@ -279,35 +279,3 @@ void drm_plane_helper_destroy(struct drm_plane 
+>>> *plane)
+>>>       kfree(plane);
+>>>   }
+>>>   EXPORT_SYMBOL(drm_plane_helper_destroy);
+>>> -
+>>> -/**
+>>> - * drm_plane_helper_atomic_check() - Helper to check plane 
+>>> atomic-state
+>>> - * @plane: plane to check
+>>> - * @state: atomic state object
+>>> - *
+>>> - * Provides a default plane-state check handler for planes whose 
+>>> atomic-state
+>>> - * scale and positioning are not expected to change since the plane 
+>>> is always
+>>> - * a fullscreen scanout buffer.
+>>> - *
+>>> - * This is often the case for the primary plane of simple 
+>>> framebuffers. See
+>>> - * also drm_crtc_helper_atomic_check() for the respective 
+>>> CRTC-state check
+>>> - * helper function.
+>>> - *
+>>> - * RETURNS:
+>>> - * Zero on success, or an errno code otherwise.
+>>> - */
+>>> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct 
+>>> drm_atomic_state *state)
+>>> -{
+>>> -    struct drm_plane_state *new_plane_state = 
+>>> drm_atomic_get_new_plane_state(state, plane);
+>>> -    struct drm_crtc *new_crtc = new_plane_state->crtc;
+>>> -    struct drm_crtc_state *new_crtc_state = NULL;
+>>> -
+>>> -    if (new_crtc)
+>>> -        new_crtc_state = drm_atomic_get_new_crtc_state(state, 
+>>> new_crtc);
+>>> -
+>>> -    return drm_atomic_helper_check_plane_state(new_plane_state, 
+>>> new_crtc_state,
+>>> -                           DRM_PLANE_NO_SCALING,
+>>> -                           DRM_PLANE_NO_SCALING,
+>>> -                           false, false);
+>>> -}
+>>> -EXPORT_SYMBOL(drm_plane_helper_atomic_check);
+>>
+>>
+>> Since this function is removed, does the comments of the 
+>> drm_crtc_helper_atomic_check()
+>> function (in the drm_crtc_helper.c) need to update as well? I'm ask 
+>> because I see the
+>> comments of the drm_crtc_helper_atomic_check() still referencing this 
+>> function.
+>
+> Good point. I'll update that comment. Thanks for reviewing.
+>
+OK,  with this trivial problem solved:
 
-Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 35a654fa97ee..5f87fc12bb8a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -49,7 +49,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.262"
-+#define DC_VER "3.2.263"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.42.0
+Acked-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
+
+> Best regards
+> Thomas
+>
+>>
+>>
+>>> diff --git a/drivers/gpu/drm/udl/udl_modeset.c 
+>>> b/drivers/gpu/drm/udl/udl_modeset.c
+>>> index 40876bcdd79a4..7702359c90c22 100644
+>>> --- a/drivers/gpu/drm/udl/udl_modeset.c
+>>> +++ b/drivers/gpu/drm/udl/udl_modeset.c
+>>> @@ -21,7 +21,6 @@
+>>>   #include <drm/drm_gem_framebuffer_helper.h>
+>>>   #include <drm/drm_gem_shmem_helper.h>
+>>>   #include <drm/drm_modeset_helper_vtables.h>
+>>> -#include <drm/drm_plane_helper.h>
+>>>   #include <drm/drm_probe_helper.h>
+>>>   #include <drm/drm_vblank.h>
+>>> @@ -261,6 +260,22 @@ static const uint64_t 
+>>> udl_primary_plane_fmtmods[] = {
+>>>       DRM_FORMAT_MOD_INVALID
+>>>   };
+>>> +static int udl_primary_plane_helper_atomic_check(struct drm_plane 
+>>> *plane,
+>>> +                         struct drm_atomic_state *state)
+>>> +{
+>>> +    struct drm_plane_state *new_plane_state = 
+>>> drm_atomic_get_new_plane_state(state, plane);
+>>> +    struct drm_crtc *new_crtc = new_plane_state->crtc;
+>>> +    struct drm_crtc_state *new_crtc_state = NULL;
+>>> +
+>>> +    if (new_crtc)
+>>> +        new_crtc_state = drm_atomic_get_new_crtc_state(state, 
+>>> new_crtc);
+>>> +
+>>> +    return drm_atomic_helper_check_plane_state(new_plane_state, 
+>>> new_crtc_state,
+>>> +                           DRM_PLANE_NO_SCALING,
+>>> +                           DRM_PLANE_NO_SCALING,
+>>> +                           false, false);
+>>> +}
+>>> +
+>>>   static void udl_primary_plane_helper_atomic_update(struct 
+>>> drm_plane *plane,
+>>>                              struct drm_atomic_state *state)
+>>>   {
+>>> @@ -296,7 +311,7 @@ static void 
+>>> udl_primary_plane_helper_atomic_update(struct drm_plane *plane,
+>>>   static const struct drm_plane_helper_funcs 
+>>> udl_primary_plane_helper_funcs = {
+>>>       DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
+>>> -    .atomic_check = drm_plane_helper_atomic_check,
+>>> +    .atomic_check = udl_primary_plane_helper_atomic_check,
+>>>       .atomic_update = udl_primary_plane_helper_atomic_update,
+>>>   };
+>>> diff --git a/include/drm/drm_plane_helper.h 
+>>> b/include/drm/drm_plane_helper.h
+>>> index 3a574e8cd22f4..75f9c4830564a 100644
+>>> --- a/include/drm/drm_plane_helper.h
+>>> +++ b/include/drm/drm_plane_helper.h
+>>> @@ -26,7 +26,6 @@
+>>>   #include <linux/types.h>
+>>> -struct drm_atomic_state;
+>>>   struct drm_crtc;
+>>>   struct drm_framebuffer;
+>>>   struct drm_modeset_acquire_ctx;
+>>> @@ -42,7 +41,6 @@ int drm_plane_helper_update_primary(struct 
+>>> drm_plane *plane, struct drm_crtc *cr
+>>>   int drm_plane_helper_disable_primary(struct drm_plane *plane,
+>>>                        struct drm_modeset_acquire_ctx *ctx);
+>>>   void drm_plane_helper_destroy(struct drm_plane *plane);
+>>> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct 
+>>> drm_atomic_state *state);
+>>>   /**
+>>>    * DRM_PLANE_NON_ATOMIC_FUNCS - Default plane functions for 
+>>> non-atomic drivers
+>
