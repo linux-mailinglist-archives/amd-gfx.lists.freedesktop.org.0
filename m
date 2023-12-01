@@ -2,48 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B284F800CE4
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 15:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CF7800CC4
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 15:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0F98897D4;
-	Fri,  1 Dec 2023 14:09:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E09EC10E11A;
+	Fri,  1 Dec 2023 14:01:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 40882 seconds by postgrey-1.36 at gabe;
- Fri, 01 Dec 2023 13:57:41 UTC
-Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com
- [95.215.58.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B07810E8AD
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:57:40 +0000 (UTC)
-Message-ID: <af7717b2-cd10-491f-99c1-285016fabf84@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1701439059;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=TpJd6OhPomyp5ChF2rTctC6wWRE0tLx+lrrgumMFAT8=;
- b=APm60MBJHMnUhRiRKzDRTK23FqD7Zh9GRI880BxjRs+qjL+MmWWRUQCsaA6MFa7BoqauHz
- QuMJU/oNucHzFVhcHfWh6vcrc/B7VtcarG+072r+Q3jvs7xfqtFECZsxGtghHtUIKgqdq5
- Cg1kztA9PqCJNsJvgm1L6ByCEnqPUrM=
-Date: Fri, 1 Dec 2023 21:57:26 +0800
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
+ [IPv6:2607:f8b0:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3573E10E11A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 14:00:18 +0000 (UTC)
+Received: by mail-ot1-x329.google.com with SMTP id
+ 46e09a7af769-6d84ddd642fso289213a34.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 Dec 2023 06:00:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701439217; x=1702044017; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x4h0GzYhSoUOQbMnxxD9Owb7UN6jQfA/M3JhpWVqQyM=;
+ b=KnpCRPRr7DIAXCB/lbLcmMnkZMi4QODnm+ompV/WfBaZLDU8NmP7vMCtn9OMF774f8
+ QfFn3t4ZDOFvddg1NThYMkMMfYeWizvYFAoe/QIW5xt69kckSegDZYcHR8BR0FJr9OYV
+ ITTxlqg5vzC4p8uFRPr85JDFpqz0OStIn4UDzRA1IN3sYSIDgH9+4Orbhb0i8WCNYei0
+ +SNDqA7jCAeI5Qk49tcUY3HfLZ6DjZWP725yuwVDNwTkz8kr6nZaQMYir2vkE2vgOcXi
+ lm/y9IHz2pKIgknhp3gmcfIQSOmJxIfH5sicXmSXrdL417I0YI4XBs2+0rvKvHA1Wqnm
+ 9iRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701439217; x=1702044017;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=x4h0GzYhSoUOQbMnxxD9Owb7UN6jQfA/M3JhpWVqQyM=;
+ b=SNx7ZtVv/TxaqmzXQ07qTbe2oG/RJVlG6dhdbDdGVsaLmZlrEndZoNxDKSVYYx5fkW
+ ROKULYOVfYd9PnmyLYsXVbkPDJsNVQwm0Oe43R0KHFkqmbwHqFFrux7xJ29va2MwItfD
+ 2kVd2pEXLdo5UQABg6kMSeqf/y2CoRcsiHO9ZkUuQrmho9WZbodjy+Z7v44purw/64Ea
+ JmWZ15OE3qpFiBK9f6LJV8ffRTvd6RNaENq/yBIRbpkpgyfCjZ4sroWVUbDj+uIVHkgT
+ gtsE5qWHfyO+9sxoueejhD90tYiKbhE4kRsnaXliEfKzhcQBk6RfmxbgQqXd/TWkh2dq
+ VMNw==
+X-Gm-Message-State: AOJu0YwFxOjSjiMed0EFkJgDWJkNR7KbHpsqbJtJzJ6bd7m6jSp20Sxe
+ 31uhKuoYJOAkSWxUtn7QF3ZGKEIdFXxvIL5g18Rd5ZVX
+X-Google-Smtp-Source: AGHT+IF83ZslT2JGYy2ccG0II9MD2TFOVXEneNjyiH+yZKgomFUCY1wgovideO0Riw4IYDfrC1xEIZeteP1GYTukQ/Q=
+X-Received: by 2002:a05:6870:be89:b0:1f5:ccc2:b21e with SMTP id
+ nx9-20020a056870be8900b001f5ccc2b21emr32325156oab.41.1701439217291; Fri, 01
+ Dec 2023 06:00:17 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [1/8] drm/plane-helper: Move drm_plane_helper_atomic_check() into
- udl
-To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, daniel@ffwll.ch, airlied@gmail.com
-References: <20231128104723.20622-2-tzimmermann@suse.de>
- <9a741d8d-a699-4fe8-af59-f90c91014d01@linux.dev>
- <038bc33b-1bc9-4dbc-bea3-d17a3d37abf0@suse.de>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <038bc33b-1bc9-4dbc-bea3-d17a3d37abf0@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Fri, 01 Dec 2023 14:09:07 +0000
+References: <20231201073636.1190113-1-lijo.lazar@amd.com>
+ <20231201073636.1190113-3-lijo.lazar@amd.com>
+In-Reply-To: <20231201073636.1190113-3-lijo.lazar@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 1 Dec 2023 09:00:05 -0500
+Message-ID: <CADnq5_M7WdSgJc2Gd8zZi2Pb-2RxWMryN5diFk7CjCbUTNcmyw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/amdgpu: Avoid querying DRM MGCG status
+To: Lijo Lazar <lijo.lazar@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,175 +68,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, javierm@redhat.com,
- dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- laurent.pinchart@ideasonboard.com, linux-arm-kernel@lists.infradead.org
+Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-
-On 2023/12/1 16:22, Thomas Zimmermann wrote:
-> Hi
+On Fri, Dec 1, 2023 at 3:32=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wrot=
+e:
 >
-> Am 01.12.23 um 03:36 schrieb Sui Jingfeng:
->> Hi,
->>
->>
->> On 2023/11/28 18:45, Thomas Zimmermann wrote:
->>> The udl driver is the only caller of drm_plane_helper_atomic_check().
->>> Move the function into the driver. No functional changes.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> ---
->>>   drivers/gpu/drm/drm_plane_helper.c | 32 
->>> ------------------------------
->>>   drivers/gpu/drm/udl/udl_modeset.c  | 19 ++++++++++++++++--
->>>   include/drm/drm_plane_helper.h     |  2 --
->>>   3 files changed, 17 insertions(+), 36 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_plane_helper.c 
->>> b/drivers/gpu/drm/drm_plane_helper.c
->>> index 5e95089676ff8..7982be4b0306d 100644
->>> --- a/drivers/gpu/drm/drm_plane_helper.c
->>> +++ b/drivers/gpu/drm/drm_plane_helper.c
->>> @@ -279,35 +279,3 @@ void drm_plane_helper_destroy(struct drm_plane 
->>> *plane)
->>>       kfree(plane);
->>>   }
->>>   EXPORT_SYMBOL(drm_plane_helper_destroy);
->>> -
->>> -/**
->>> - * drm_plane_helper_atomic_check() - Helper to check plane 
->>> atomic-state
->>> - * @plane: plane to check
->>> - * @state: atomic state object
->>> - *
->>> - * Provides a default plane-state check handler for planes whose 
->>> atomic-state
->>> - * scale and positioning are not expected to change since the plane 
->>> is always
->>> - * a fullscreen scanout buffer.
->>> - *
->>> - * This is often the case for the primary plane of simple 
->>> framebuffers. See
->>> - * also drm_crtc_helper_atomic_check() for the respective 
->>> CRTC-state check
->>> - * helper function.
->>> - *
->>> - * RETURNS:
->>> - * Zero on success, or an errno code otherwise.
->>> - */
->>> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct 
->>> drm_atomic_state *state)
->>> -{
->>> -    struct drm_plane_state *new_plane_state = 
->>> drm_atomic_get_new_plane_state(state, plane);
->>> -    struct drm_crtc *new_crtc = new_plane_state->crtc;
->>> -    struct drm_crtc_state *new_crtc_state = NULL;
->>> -
->>> -    if (new_crtc)
->>> -        new_crtc_state = drm_atomic_get_new_crtc_state(state, 
->>> new_crtc);
->>> -
->>> -    return drm_atomic_helper_check_plane_state(new_plane_state, 
->>> new_crtc_state,
->>> -                           DRM_PLANE_NO_SCALING,
->>> -                           DRM_PLANE_NO_SCALING,
->>> -                           false, false);
->>> -}
->>> -EXPORT_SYMBOL(drm_plane_helper_atomic_check);
->>
->>
->> Since this function is removed, does the comments of the 
->> drm_crtc_helper_atomic_check()
->> function (in the drm_crtc_helper.c) need to update as well? I'm ask 
->> because I see the
->> comments of the drm_crtc_helper_atomic_check() still referencing this 
->> function.
+> MP0 v13.0.6 SOCs don't support DRM MGCG.
 >
-> Good point. I'll update that comment. Thanks for reviewing.
+> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/soc15.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-OK,  with this trivial problem solved:
-
-
-Acked-by: Sui Jingfeng <suijingfeng@loongson.cn>
-
-
-> Best regards
-> Thomas
+> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amd=
+gpu/soc15.c
+> index 9043ebf1e161..15033efec2ba 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+> @@ -1430,7 +1430,8 @@ static void soc15_common_get_clockgating_state(void=
+ *handle, u64 *flags)
+>         if (adev->hdp.funcs && adev->hdp.funcs->get_clock_gating_state)
+>                 adev->hdp.funcs->get_clock_gating_state(adev, flags);
 >
->>
->>
->>> diff --git a/drivers/gpu/drm/udl/udl_modeset.c 
->>> b/drivers/gpu/drm/udl/udl_modeset.c
->>> index 40876bcdd79a4..7702359c90c22 100644
->>> --- a/drivers/gpu/drm/udl/udl_modeset.c
->>> +++ b/drivers/gpu/drm/udl/udl_modeset.c
->>> @@ -21,7 +21,6 @@
->>>   #include <drm/drm_gem_framebuffer_helper.h>
->>>   #include <drm/drm_gem_shmem_helper.h>
->>>   #include <drm/drm_modeset_helper_vtables.h>
->>> -#include <drm/drm_plane_helper.h>
->>>   #include <drm/drm_probe_helper.h>
->>>   #include <drm/drm_vblank.h>
->>> @@ -261,6 +260,22 @@ static const uint64_t 
->>> udl_primary_plane_fmtmods[] = {
->>>       DRM_FORMAT_MOD_INVALID
->>>   };
->>> +static int udl_primary_plane_helper_atomic_check(struct drm_plane 
->>> *plane,
->>> +                         struct drm_atomic_state *state)
->>> +{
->>> +    struct drm_plane_state *new_plane_state = 
->>> drm_atomic_get_new_plane_state(state, plane);
->>> +    struct drm_crtc *new_crtc = new_plane_state->crtc;
->>> +    struct drm_crtc_state *new_crtc_state = NULL;
->>> +
->>> +    if (new_crtc)
->>> +        new_crtc_state = drm_atomic_get_new_crtc_state(state, 
->>> new_crtc);
->>> +
->>> +    return drm_atomic_helper_check_plane_state(new_plane_state, 
->>> new_crtc_state,
->>> +                           DRM_PLANE_NO_SCALING,
->>> +                           DRM_PLANE_NO_SCALING,
->>> +                           false, false);
->>> +}
->>> +
->>>   static void udl_primary_plane_helper_atomic_update(struct 
->>> drm_plane *plane,
->>>                              struct drm_atomic_state *state)
->>>   {
->>> @@ -296,7 +311,7 @@ static void 
->>> udl_primary_plane_helper_atomic_update(struct drm_plane *plane,
->>>   static const struct drm_plane_helper_funcs 
->>> udl_primary_plane_helper_funcs = {
->>>       DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
->>> -    .atomic_check = drm_plane_helper_atomic_check,
->>> +    .atomic_check = udl_primary_plane_helper_atomic_check,
->>>       .atomic_update = udl_primary_plane_helper_atomic_update,
->>>   };
->>> diff --git a/include/drm/drm_plane_helper.h 
->>> b/include/drm/drm_plane_helper.h
->>> index 3a574e8cd22f4..75f9c4830564a 100644
->>> --- a/include/drm/drm_plane_helper.h
->>> +++ b/include/drm/drm_plane_helper.h
->>> @@ -26,7 +26,6 @@
->>>   #include <linux/types.h>
->>> -struct drm_atomic_state;
->>>   struct drm_crtc;
->>>   struct drm_framebuffer;
->>>   struct drm_modeset_acquire_ctx;
->>> @@ -42,7 +41,6 @@ int drm_plane_helper_update_primary(struct 
->>> drm_plane *plane, struct drm_crtc *cr
->>>   int drm_plane_helper_disable_primary(struct drm_plane *plane,
->>>                        struct drm_modeset_acquire_ctx *ctx);
->>>   void drm_plane_helper_destroy(struct drm_plane *plane);
->>> -int drm_plane_helper_atomic_check(struct drm_plane *plane, struct 
->>> drm_atomic_state *state);
->>>   /**
->>>    * DRM_PLANE_NON_ATOMIC_FUNCS - Default plane functions for 
->>> non-atomic drivers
+> -       if (amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP_VERSION(13, 0, 2=
+)) {
+> +       if ((amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP_VERSION(13, 0, =
+2)) &&
+> +           (amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D IP_VERSION(13, 0, =
+6))) {
+>                 /* AMD_CG_SUPPORT_DRM_MGCG */
+>                 data =3D RREG32(SOC15_REG_OFFSET(MP0, 0, mmMP0_MISC_CGTT_=
+CTRL0));
+>                 if (!(data & 0x01000000))
+> --
+> 2.25.1
 >
