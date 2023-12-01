@@ -1,44 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CCA4800C21
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:31:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8683A800C13
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77EEC10E89C;
-	Fri,  1 Dec 2023 13:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8544F10E8A5;
+	Fri,  1 Dec 2023 13:29:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2060a.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8d::60a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157F110E89B
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:29:24 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87E8910E89C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:29:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X2Gp0edRVPttuA0YEUMEyUfv99Ir8tOuS+x1oHVFOkUV9RzhHN3xG8qsOI/ptTh93gVLYJ/DMfYUXw6dwcwbCVmyV5JXxJrGz4h0Eg61BdU85hTSwY30azdBGMsviekHHM9YNYOGjK1lzv0VqEXzrm/TyFcTg/xtlPEH8o7lMWjjxNnfHc7UPx9zL8twqp5rBcGdnjfa5UlWdcoUoanOm9NHj4TXavwWPxMutCdRySFOgI4+d31XUePvd+QrrD87KsTDAU/Q5XqmnHSnEbIB2HE38w4a1L0GDXV7N8IvcVSR46miD8JvtxeQ9Wk3FE7nXNzwpmZKA05i7DIJUDvVjw==
+ b=nYzV2sGuGKsoJ+QvHxqPEOr0nensvgZeDwbOBc+3FRRe8CwXFP2dVBIfdFSXzpIcRDFfKscroFituzY82P47TLqRMo+fMzZ8gl6IH174VNOoi+DlAfxr939NzG1q6Jd2LjdsnRh7zlHvB7n4piOBJ/0G+jflFLxU4Q+TrMPCi/6AGZYEI4Z4JBI5sud6VpNvvAiVgGrTXXiZAZ730KOEbUpJVGNdU9UWV2V9Y9j7PF/mCncSXFTSfzs3S61wjDmsqvVejD/s7+dXveQZbtXhc0l0BV6xqnuO3ctrYkfkL+qOICt8YKDRKnFPBeJuWqsp8ODabD4zZf6NwE3XlZMmrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/GKpUNEy6VPwguQ/6id6e9IPQvNuYJ9oc7jbdXr19JA=;
- b=GZXGC7mvfnkKe2UBSmReV2VLfGDo3LzIOP32owjpiAr6ANWiOcX2ysEDC5VOFNCaK7GkjlQ7vKTnLZAZNaiZ0+DW5rz+F8HcPKdI0KYeX5eLGmTY/nvh1R4xaZ/OJq4MBDlSOautrNvLTIxbdifSdd+1WOf7OYxLf2mXwUMbRD/LZBbH5u8q+lnT4ojBn9MKp+CWHKPN6X8nZ56HlAAmUgLSWkj7rVc2/Azi3KJ5/ozMUTWHPYSaY2x377+hCh+srP4FQwzRh/njfvXYnKlmfO/e0kRnYoXgbvsIPEh0Nz/aZBWniv3pLHEjFwHCOIkm4e1oPpQNMRCd/JUdnrotFQ==
+ bh=LQFFV+zu1NqfpuR3jV8AthVPRoQEwv2XxaiQTQeA9p0=;
+ b=ZlGP1kgEjR6SoHTZ+L5sRbM4AddhFO02rrFv088gN6Zbm43GDoZvwNxq/RlLVs6QqHxLP61J56NBNtSky8JL3QI5mjvWhCf5plBUaGZtetM+G9HD+MaR0K32EwFFUxGkg2cAychRO8PWXn47kQgCsM1tjiuRMufDihbkAwv5zhszgkQYhsD73dDemzuSqmiuyH6iwVRtOtoLry6A5QyoEgCvRLWni1Vrq+yb0CTyFZZGUQjJkJfJTDnZmhCPI3b7OE+hj70KzDBl/kXyaa4GHt8D4drPEi+nqNqSv2TTWVxRHB7oJ9jgPdbMNxpRZ/hfN9lOZCcJkETNSB8RMBy4pw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/GKpUNEy6VPwguQ/6id6e9IPQvNuYJ9oc7jbdXr19JA=;
- b=uFTlRzdV9dGRWsZ9C76UmeK0WUMFogernL3YEmY261UrkX05IkmSeorSXLuY8Xh+82rS07OgxwvK/+IdroA9oF8C0bHud2o1HlNEVFf47ZLUKbEL8TNXiFxNKJ7ELBdFGumdudqd9aopLcbC5Jy8KGnITX7PCK0nmI/zikNQwSU=
-Received: from CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35)
- by PH7PR12MB6812.namprd12.prod.outlook.com (2603:10b6:510:1b6::15)
+ bh=LQFFV+zu1NqfpuR3jV8AthVPRoQEwv2XxaiQTQeA9p0=;
+ b=juUicpsbKzPbJ1lOhQVRAjml7WThuDMAYwTKJljJi6CYp0wbWlPxnviKdguqvy0ifSa9WVCuymNI7YRxgssD10dQISJUxyalifjIxTXkN91xb7R0hQsgvffwySfJ7kfcXVWUOWEduHnQg43Hwy0jHjzwKWG2gd5utgYWgZ/jWrU=
+Received: from CH2PR16CA0022.namprd16.prod.outlook.com (2603:10b6:610:50::32)
+ by BL1PR12MB5078.namprd12.prod.outlook.com (2603:10b6:208:313::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Fri, 1 Dec
- 2023 13:29:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
+ 2023 13:29:23 +0000
 Received: from DS2PEPF00003443.namprd04.prod.outlook.com
- (2603:10b6:610:50:cafe::94) by CH2PR16CA0025.outlook.office365.com
- (2603:10b6:610:50::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
- Transport; Fri, 1 Dec 2023 13:29:20 +0000
+ (2603:10b6:610:50:cafe::d0) by CH2PR16CA0022.outlook.office365.com
+ (2603:10b6:610:50::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.30 via Frontend
+ Transport; Fri, 1 Dec 2023 13:29:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:29:19 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:29:22 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:29:16 -0600
+ 2023 07:29:18 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 35/47] drm/amd/display: Hande writeback request from userspace
-Date: Fri, 1 Dec 2023 06:25:31 -0700
-Message-ID: <20231201132731.2354141-36-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 36/47] drm/amd/display: Add writeback enable/disable in dc
+Date: Fri, 1 Dec 2023 06:25:32 -0700
+Message-ID: <20231201132731.2354141-37-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|PH7PR12MB6812:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5889a896-a780-4280-b17f-08dbf2718630
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|BL1PR12MB5078:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64c24060-dae3-49c5-2519-08dbf271880b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8VcNuKhTzqKRvYM2yQ+/BGoR75qXMCFDhxe2Fh6IqDYHuXMrV69WaYYYKDXxGm+IMGrPer+nilsGblYs8Wab3bFn/77vxicVPGEpgbR9jp4cvBLqOErv8V5PToKRsut+tUjCS9d/SWGDHHp2zwiMJTFO7dP5KuY7jzW9BZ/NqNL8hMvcAxM0pKMpZfd9/dmHh8hR/gjURgshbGA6JZnkgrwPYgi+Y/jajwRMe1wA1Yil6dU3XXX3tRnjOpbbhWbMoh9za3fplLtDRKsMdrNtZraOG1HU/jbm7JYwaFgK6szlWp6zKje2IzCe70J0D2LTygTtduhvH5ltJ1OcWkJ/8db6HPDwBr1BwKIC/GBhzhX1eAdQk1BgFm4+CSrg81sWaabGnY4lALz4ilGqYZVzonqoYi50yPetu96dIict9Ww3e2LatLwBg47CJM1syrTy3CpPmLzaLTr89g2SNw6kMJ0u/MDWBLPPKT9vIFdQWzPLoJw+aNsP8it4gly0+J85Wcn4TljDGrIG+vKVmm6iAkhMj5r1ZMdJE+vfv4uIfMZpkD6vHAWmxjzc/3vOXnytnhrXjyz/p5Eg5HkfWM1/NydFjUPDP7bvKg7hpSp6m9Bxvuhz+DX1K2TSXgFy6bVg8/gJiZJd+ES5hWjnAI/rH0BaJ1WycLaQUVJUQA+9bVTrlpX9iDm53m7PH5tJlrqocDIM5EGLaYkATgHeqQQ1/YI65N+h/9RhkPiCt/WjJurFtDH9TgXGvWfTK50c4Yyb/yLfrgfTT1GQI5I6nM+MPA==
+X-Microsoft-Antispam-Message-Info: 73pHxfRxkIaQm8mAGUchnSFHPaHDCTf6CspGXhGZK3fm+jY/6MY0yG+vEcrrNeHaHbuRcsGBWw6XKJD5VtRdHIX1xLTI4L42gbsXb30snrAYwn7UWvahnAQxbSXGuQQYJvc5rtVkamGaqaupOoGmBpSV8CWml6ariusfJFtzzilsBAVIasxI+sqKgLorFciuvi1z5A6o59+/Ez1ao1D64DLM7+I2FEsuKB58zVYHN8p275B+UB4pXqp7J3rGBIxC4WUVvOgR5sDswqWID60Dl+tsCkZQvLM+WV05UbFpXs8xT+gvBv3UOH15wWBfIYf6myyNX/I/FfeG6wdg+PBGOQyt80pWZ+CWyzR8HSptTgnCrpXXEU6wvFFpCJJUKNw0Sf+eCC1hrO1mSJEdbi2P41kq+oKeh9LZjxmar/pTWG3+TcAbmNJALbD8ppH9aNlHQE0FcZlLXldBWegunWh3VTQFJYNbUw90CH6EONF+8viBsvUSE3EI5do94S+Olu1C6oDJqRbEuLNB40BqsY9YU0sA9XtFKcd/i2CqYUkMolcB7kNlxORyEaoG2i+8tyBhxFuwwg3UwZg7VrlrCCzlTPsbexRJN4qXaLByx4QDasdMTz9US/09GF5doMYod7CidrhTJFy1vu8SRZSPaFNBHI2211tc29glv9/RgL3kEynNemeC7nElEQOurpA9xaAB1FnaHGBcii4DsZsb7BrrRHDTEpHs4fUVzTf/+mMuu0IP6N+VzEiE2wtszSRntxZetOtNkkil0iCTyKkaS38VXA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(346002)(376002)(396003)(39860400002)(230922051799003)(1800799012)(64100799003)(451199024)(82310400011)(186009)(46966006)(36840700001)(40470700004)(336012)(83380400001)(40480700001)(426003)(40460700003)(86362001)(5660300002)(70206006)(2906002)(36756003)(16526019)(6916009)(36860700001)(41300700001)(2616005)(26005)(1076003)(6666004)(47076005)(70586007)(82740400003)(356005)(81166007)(54906003)(316002)(478600001)(8676002)(8936002)(4326008)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(346002)(376002)(39860400002)(230922051799003)(451199024)(1800799012)(82310400011)(186009)(64100799003)(46966006)(36840700001)(40470700004)(426003)(336012)(83380400001)(82740400003)(16526019)(26005)(478600001)(6666004)(2616005)(1076003)(40480700001)(8936002)(70586007)(70206006)(4326008)(316002)(54906003)(6916009)(8676002)(36860700001)(81166007)(356005)(47076005)(5660300002)(2906002)(86362001)(36756003)(41300700001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:29:19.8840 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5889a896-a780-4280-b17f-08dbf2718630
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:29:22.9933 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64c24060-dae3-49c5-2519-08dbf271880b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003443.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6812
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5078
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,237 +111,81 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Handle writeback requests and fill in the required information for DWB
-programming and setup.
+The enable and disable writeback calls need to be included in the
+coressponding functions in dc_stream.
 
 Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |   3 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 159 ++++++++++++++++++
- 2 files changed, 162 insertions(+)
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   | 33 +++++++++++++++++++
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |  4 +++
+ 2 files changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index 32fe05c810c6..a166d7684719 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -416,6 +416,9 @@ struct amdgpu_crtc {
- 
- 	int otg_inst;
- 	struct drm_pending_vblank_event *event;
-+
-+	bool wb_pending;
-+	struct drm_writeback_connector *wb_conn;
- };
- 
- struct amdgpu_encoder_atom_dig {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index aeb4a4e25450..04e06665eb0d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -575,6 +575,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
- {
- 	struct common_irq_params *irq_params = interrupt_params;
- 	struct amdgpu_device *adev = irq_params->adev;
-+	struct drm_writeback_job *job;
- 	struct amdgpu_crtc *acrtc;
- 	unsigned long flags;
- 	int vrr_active;
-@@ -583,6 +584,21 @@ static void dm_crtc_high_irq(void *interrupt_params)
- 	if (!acrtc)
- 		return;
- 
-+	if (acrtc->wb_pending) {
-+		if (acrtc->wb_conn) {
-+			spin_lock_irqsave(&acrtc->wb_conn->job_lock, flags);
-+			job = list_first_entry_or_null(&acrtc->wb_conn->job_queue,
-+						       struct drm_writeback_job,
-+						       list_entry);
-+			spin_unlock_irqrestore(&acrtc->wb_conn->job_lock, flags);
-+
-+			if (job)
-+				drm_writeback_signal_completion(acrtc->wb_conn, 0);
-+		} else
-+			DRM_ERROR("%s: no amdgpu_crtc wb_conn\n", __func__);
-+		acrtc->wb_pending = false;
-+	}
-+
- 	vrr_active = amdgpu_dm_crtc_vrr_active_irq(acrtc);
- 
- 	drm_dbg_vbl(adev_to_drm(adev),
-@@ -8619,6 +8635,12 @@ static void amdgpu_dm_crtc_copy_transient_flags(struct drm_crtc_state *crtc_stat
- 	stream_state->mode_changed = drm_atomic_crtc_needs_modeset(crtc_state);
- }
- 
-+static void dm_clear_writeback(struct amdgpu_display_manager *dm,
-+			      struct dm_crtc_state *crtc_state)
-+{
-+	dc_stream_remove_writeback(dm->dc, crtc_state->stream, 0);
-+}
-+
- static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 					struct dc_state *dc_state)
- {
-@@ -8628,9 +8650,34 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
- 	struct dm_crtc_state *dm_old_crtc_state, *dm_new_crtc_state;
-+	struct drm_connector_state *old_con_state;
-+	struct drm_connector *connector;
- 	bool mode_set_reset_required = false;
- 	u32 i;
- 
-+	/* Disable writeback */
-+	for_each_old_connector_in_state(state, connector, old_con_state, i) {
-+		struct dm_connector_state *dm_old_con_state;
-+		struct amdgpu_crtc *acrtc;
-+
-+		if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
-+			continue;
-+
-+		old_crtc_state = NULL;
-+
-+		dm_old_con_state = to_dm_connector_state(old_con_state);
-+		if (!dm_old_con_state->base.crtc)
-+			continue;
-+
-+		acrtc = to_amdgpu_crtc(dm_old_con_state->base.crtc);
-+		if (acrtc)
-+			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
-+
-+		dm_old_crtc_state = to_dm_crtc_state(old_crtc_state);
-+
-+		dm_clear_writeback(dm, dm_old_crtc_state);
-+	}
-+
- 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state,
- 				      new_crtc_state, i) {
- 		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
-@@ -8767,6 +8814,97 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index 4bdf105d1d71..e71d622098d7 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -467,6 +467,25 @@ bool dc_stream_add_writeback(struct dc *dc,
+ 		struct dwbc *dwb = dc->res_pool->dwbc[wb_info->dwb_pipe_inst];
+ 		dwb->otg_inst = stream_status->primary_otg_inst;
  	}
- }
- 
-+static void dm_set_writeback(struct amdgpu_display_manager *dm,
-+			      struct dm_crtc_state *crtc_state,
-+			      struct drm_connector *connector,
-+			      struct drm_connector_state *new_con_state)
-+{
-+	struct drm_writeback_connector *wb_conn = drm_connector_to_writeback(connector);
-+	struct amdgpu_crtc *acrtc;
-+	struct dc_writeback_info *wb_info;
-+	struct pipe_ctx *pipe = NULL;
-+	struct amdgpu_framebuffer *afb;
-+	int i = 0;
 +
-+	wb_info = kzalloc(sizeof(*wb_info), GFP_KERNEL);
-+	if (!wb_info) {
-+		DRM_ERROR("Failed to allocate wb_info\n");
-+		return;
++	if (!dc->hwss.update_bandwidth(dc, dc->current_state)) {
++		dm_error("DC: update_bandwidth failed!\n");
++		return false;
 +	}
 +
-+	acrtc = to_amdgpu_crtc(wb_conn->encoder.crtc);
-+	if (!acrtc) {
-+		DRM_ERROR("no amdgpu_crtc found\n");
-+		return;
-+	}
++	/* enable writeback */
++	if (dc->hwss.enable_writeback) {
++		struct dwbc *dwb = dc->res_pool->dwbc[wb_info->dwb_pipe_inst];
 +
-+	afb = to_amdgpu_framebuffer(new_con_state->writeback_job->fb);
-+	if (!afb) {
-+		DRM_ERROR("No amdgpu_framebuffer found\n");
-+		return;
-+	}
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		if (dm->dc->current_state->res_ctx.pipe_ctx[i].stream == crtc_state->stream) {
-+			pipe = &dm->dc->current_state->res_ctx.pipe_ctx[i];
-+			break;
++		if (dwb->funcs->is_enabled(dwb)) {
++			/* writeback pipe already enabled, only need to update */
++			dc->hwss.update_writeback(dc, wb_info, dc->current_state);
++		} else {
++			/* Enable writeback pipe from scratch*/
++			dc->hwss.enable_writeback(dc, wb_info, dc->current_state);
 +		}
 +	}
 +
-+	/* fill in wb_info */
-+	wb_info->wb_enabled = true;
-+
-+	wb_info->dwb_pipe_inst = 0;
-+	wb_info->dwb_params.dwbscl_black_color = 0;
-+	wb_info->dwb_params.hdr_mult = 0x1F000;
-+	wb_info->dwb_params.csc_params.gamut_adjust_type = CM_GAMUT_ADJUST_TYPE_BYPASS;
-+	wb_info->dwb_params.csc_params.gamut_coef_format = CM_GAMUT_REMAP_COEF_FORMAT_S2_13;
-+	wb_info->dwb_params.output_depth = DWB_OUTPUT_PIXEL_DEPTH_10BPC;
-+	wb_info->dwb_params.cnv_params.cnv_out_bpc = DWB_CNV_OUT_BPC_10BPC;
-+
-+	/* width & height from crtc */
-+	wb_info->dwb_params.cnv_params.src_width = acrtc->base.mode.crtc_hdisplay;
-+	wb_info->dwb_params.cnv_params.src_height = acrtc->base.mode.crtc_vdisplay;
-+	wb_info->dwb_params.dest_width = acrtc->base.mode.crtc_hdisplay;
-+	wb_info->dwb_params.dest_height = acrtc->base.mode.crtc_vdisplay;
-+
-+	wb_info->dwb_params.cnv_params.crop_en = false;
-+	wb_info->dwb_params.stereo_params.stereo_enabled = false;
-+
-+	wb_info->dwb_params.cnv_params.out_max_pix_val = 0x3ff;	// 10 bits
-+	wb_info->dwb_params.cnv_params.out_min_pix_val = 0;
-+	wb_info->dwb_params.cnv_params.fc_out_format = DWB_OUT_FORMAT_32BPP_ARGB;
-+	wb_info->dwb_params.cnv_params.out_denorm_mode = DWB_OUT_DENORM_BYPASS;
-+
-+	wb_info->dwb_params.out_format = dwb_scaler_mode_bypass444;
-+
-+	wb_info->dwb_params.capture_rate = dwb_capture_rate_0;
-+
-+	wb_info->dwb_params.scaler_taps.h_taps = 4;
-+	wb_info->dwb_params.scaler_taps.v_taps = 4;
-+	wb_info->dwb_params.scaler_taps.h_taps_c = 2;
-+	wb_info->dwb_params.scaler_taps.v_taps_c = 2;
-+	wb_info->dwb_params.subsample_position = DWB_INTERSTITIAL_SUBSAMPLING;
-+
-+	wb_info->mcif_buf_params.luma_pitch = afb->base.pitches[0];
-+	wb_info->mcif_buf_params.chroma_pitch = afb->base.pitches[1];
-+
-+	for (i = 0; i < DWB_MCIF_BUF_COUNT; i++) {
-+		wb_info->mcif_buf_params.luma_address[i] = afb->address;
-+		wb_info->mcif_buf_params.chroma_address[i] = 0;
-+	}
-+
-+	wb_info->mcif_buf_params.p_vmid = 1;
-+	wb_info->mcif_warmup_params.p_vmid = 1;
-+	wb_info->writeback_source_plane = pipe->plane_state;
-+
-+	dc_stream_add_writeback(dm->dc, crtc_state->stream, wb_info);
-+
-+	acrtc->wb_pending = true;
-+	acrtc->wb_conn = wb_conn;
-+	drm_writeback_queue_job(wb_conn, new_con_state);
-+}
-+
- /**
-  * amdgpu_dm_atomic_commit_tail() - AMDgpu DM's commit tail implementation.
-  * @state: The atomic state to commit
-@@ -9099,6 +9237,27 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 			amdgpu_dm_commit_planes(state, dev, dm, crtc, wait_for_vblank);
- 	}
+ 	return true;
+ }
  
-+	/* Enable writeback */
-+	for_each_new_connector_in_state(state, connector, new_con_state, i) {
-+		struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
-+		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
-+
-+		if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
-+			continue;
-+
-+		if (!new_con_state->writeback_job)
-+			continue;
-+
-+		new_crtc_state = NULL;
-+
-+		if (acrtc)
-+			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
-+
-+		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
-+
-+		dm_set_writeback(dm, dm_new_crtc_state, connector, new_con_state);
+@@ -511,6 +530,20 @@ bool dc_stream_remove_writeback(struct dc *dc,
+ 	}
+ 	stream->num_wb_info = j;
+ 
++	/* recalculate and apply DML parameters */
++	if (!dc->hwss.update_bandwidth(dc, dc->current_state)) {
++		dm_error("DC: update_bandwidth failed!\n");
++		return false;
 +	}
 +
- 	/* Update audio instances for each connector. */
- 	amdgpu_dm_commit_audio(dev, state);
++	/* disable writeback */
++	if (dc->hwss.disable_writeback) {
++		struct dwbc *dwb = dc->res_pool->dwbc[dwb_pipe_inst];
++
++		if (dwb->funcs->is_enabled(dwb))
++			dc->hwss.disable_writeback(dc, dwb_pipe_inst);
++	}
++
+ 	return true;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
+index d71faf2ecd41..fd8a8c10a201 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
+@@ -367,6 +367,10 @@ void dcn30_enable_writeback(
+ 	DC_LOG_DWB("%s dwb_pipe_inst = %d, mpcc_inst = %d",\
+ 		__func__, wb_info->dwb_pipe_inst,\
+ 		wb_info->mpcc_inst);
++
++	/* Warmup interface */
++	dcn30_mmhubbub_warmup(dc, 1, wb_info);
++
+ 	/* Update writeback pipe */
+ 	dcn30_set_writeback(dc, wb_info, context);
  
 -- 
 2.42.0
