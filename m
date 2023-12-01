@@ -1,76 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DEDC800CE8
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 15:09:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E0D800CE6
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 15:09:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4A210E8AB;
-	Fri,  1 Dec 2023 14:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4122410E119;
+	Fri,  1 Dec 2023 14:09:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEAEF10E827
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 09:23:45 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3647110E827
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 09:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1701422625;
+ s=mimecast20190719; t=1701422980;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=J/HNsGBAY9tCftPYDhpctNf5+8xRFRhgnlekGos4DSM=;
- b=gbc2wyV/2pVmiQsMouEQfqvcpIF3ZnGmSV/Pq8AUFLKiTWhq1j81hIk994uHJNq1nEYu/O
- 52eikidvnF9CaWNyVki/+fyPoQhkjxX3/UcHAptk02v2iZSnvWXX6EqaXi1ZtZcpr+uJaX
- hD/2uncpkIhJD/GH03h6g/9bxiphMVc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=aHQs+9zlQ8PVnO/IT7ptVfgOYh9mlV/hOr1XHdCyFZs=;
+ b=KpRcPHrGOVUY0EBwqCgxGv1RT9pqTtduBQKWaeYGKPwOnOXyk3U5fSbeZJvoFyAAoTWWAH
+ jlNjnmtohh6KZisupr5PQZk5XRDQgza40TiQn2pt7GokfmPEqSGkD9pohIBJ2YbbPXdLpt
+ G/FuIO1sOB4GmzTo+yjV07Vj3OL7O48=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-614-jY2TJqwmP-G18D9OATgMMQ-1; Fri, 01 Dec 2023 04:23:41 -0500
-X-MC-Unique: jY2TJqwmP-G18D9OATgMMQ-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-40b349b9711so16121795e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Dec 2023 01:23:41 -0800 (PST)
+ us-mta-591-ykmWB2krMoiIj2q8X0XfKw-1; Fri, 01 Dec 2023 04:29:38 -0500
+X-MC-Unique: ykmWB2krMoiIj2q8X0XfKw-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3330881541eso1537955f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 Dec 2023 01:29:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701422620; x=1702027420;
+ d=1e100.net; s=20230601; t=1701422977; x=1702027777;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
+ :references:cc:to:content-language:subject:user-agent:mime-version
  :date:message-id:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=J/HNsGBAY9tCftPYDhpctNf5+8xRFRhgnlekGos4DSM=;
- b=BVPaL4VlNeWqpMAMIgP2tARXtUuXin2rJVmmgNiUVgTb2mGGCG2LHdj0pFRxweFfqQ
- 4C9pbO9BMMRv/cX6vjngtLjoZFQBN1EoCTiKkBqoZj9RoTWNI5aWBPknbXuzgLxpXDkS
- xYZLhQcAUmFUugDsJhVrxsW3RlTNy1FlbPPUzf/SxHe1aaeBRmI8xqQt5R/pJ+KCfaQ5
- Iw8Ra5B+PtHobkGE5gudBnezhZqXwusA8cE1AXAeK41tPE0a1XLsLMcH1W+oFrGneT2S
- RLG1Qq5B1m4P7My/R0JEpdLTnzfcIhEqY9+UfUEtTLh4SyIM/vV2RBZo2rA0t/y1gDJ+
- C5wQ==
-X-Gm-Message-State: AOJu0YzHlTTS1hDI4C75gndq8Mn1GqNERo46v65yd17qbWsIfy4eE/Mq
- yGZK4TbRQj7VRbtPV3rrjUOeYJkOnqNDtoRpzZnhi1+UIleqRf8k90YF2Gg9ub0ebcpVOw8J9kJ
- BxWQm2+xYqpD5f6F4DsUOTNuTzQ==
-X-Received: by 2002:a05:600c:1da7:b0:40b:5e59:cca0 with SMTP id
- p39-20020a05600c1da700b0040b5e59cca0mr256592wms.129.1701422620576; 
- Fri, 01 Dec 2023 01:23:40 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFbj59aKrdp1bwC45vVYTH//o6ADwu3HnhrokcgPLEaEt76aIWUxif6MnQKy43m6yymBTuLpg==
-X-Received: by 2002:a05:600c:1da7:b0:40b:5e59:cca0 with SMTP id
- p39-20020a05600c1da700b0040b5e59cca0mr256570wms.129.1701422620020; 
- Fri, 01 Dec 2023 01:23:40 -0800 (PST)
+ bh=aHQs+9zlQ8PVnO/IT7ptVfgOYh9mlV/hOr1XHdCyFZs=;
+ b=EiaWDpqpK9ALaj4XXIK/3+63MY9kXiCA/+aX9DNpxbe4Ybmz+2RKJ3SVIRe0MQqa9h
+ Tp2zGqb0YulCBS55kFD/0Imd1pucMVUkhLrvJIjfvojjXFCHA9dLwkTH7DY3L9wBeZy8
+ OZVRH8BaPk7jJJ8aHGeuNawaB/EeAXA6XlQ2TN3wBXPxHkJMIwrzO0K7Ggivti2qRoNl
+ 81ao14Jk93SBGUyI577LDIvnWovOZaHmsVeHMrN+k39sok6ElOJgg56VLiv9PmlwDhFq
+ g8/IooRLtjbKfqm53mV1OGQh8o/O7iKIoadqqPzUt4hOQIWODD2l/j8yHxsmQnVn0hDI
+ CXbw==
+X-Gm-Message-State: AOJu0YzcRcQk4YRwq9InD0H9fFFvrIQWGYFD2TLe8fpLwqahx6xJi/1J
+ CB1J7ROzNbyEv+zME1qSVe9vds43ZInenvLZrOtpsBKKLtPLPLZFA8DscapQLycl/1upU4tu/2j
+ gK+rGVLjp7EadYlQTvsP67JN8cg==
+X-Received: by 2002:a05:6000:1a45:b0:333:2fd2:6f4e with SMTP id
+ t5-20020a0560001a4500b003332fd26f4emr645099wry.88.1701422977196; 
+ Fri, 01 Dec 2023 01:29:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH6bydnphRGhaq+ilbhxPmQBEgxvJKTbvX6HdXyxqISzaG1u0FQwN4zQjzt0whtGPIn363OgA==
+X-Received: by 2002:a05:6000:1a45:b0:333:2fd2:6f4e with SMTP id
+ t5-20020a0560001a4500b003332fd26f4emr645087wry.88.1701422976743; 
+ Fri, 01 Dec 2023 01:29:36 -0800 (PST)
 Received: from ?IPV6:2003:cb:c726:4100:c308:78e3:8f80:52ac?
  (p200300cbc7264100c30878e38f8052ac.dip0.t-ipconnect.de.
  [2003:cb:c726:4100:c308:78e3:8f80:52ac])
  by smtp.gmail.com with ESMTPSA id
- k18-20020a05600c1c9200b0040b38292253sm8469404wms.30.2023.12.01.01.23.38
+ y17-20020adfee11000000b003330a1d35b6sm3708872wrn.115.2023.12.01.01.29.35
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 01 Dec 2023 01:23:39 -0800 (PST)
-Message-ID: <e4eb5a24-e9cf-4944-9614-df5f5f3a7163@redhat.com>
-Date: Fri, 1 Dec 2023 10:23:37 +0100
+ Fri, 01 Dec 2023 01:29:36 -0800 (PST)
+Message-ID: <135306b4-2f94-4266-8f72-90315bb846b4@redhat.com>
+Date: Fri, 1 Dec 2023 10:29:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/6] mm/gmem: add arch-independent abstraction to
- track address mapping status
-To: Weixi Zhu <weixi.zhu@huawei.com>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, akpm@linux-foundation.org
+Subject: Re: [RFC PATCH 0/6] Supporting GMEM (generalized memory management)
+ for external memory devices
+To: zhuweixi <weixi.zhu@huawei.com>, Dave Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 References: <20231128125025.4449-1-weixi.zhu@huawei.com>
- <20231128125025.4449-3-weixi.zhu@huawei.com>
+ <9308a79d-e312-4e6d-98fe-75dc6d0fbeda@amd.com>
+ <CAPM=9tx-d-Au_bjX0vYxv6OwqiSjmbbMC7ebWpTsQgFNddWDuw@mail.gmail.com>
+ <a07fd33c6f9e44418c528de06f89707e@huawei.com>
+ <188814aa-4f55-40c6-961c-6105c89d76f3@redhat.com>
+ <f4ec70345800432caa94d662f49370f6@huawei.com>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -117,7 +121,7 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <20231128125025.4449-3-weixi.zhu@huawei.com>
+In-Reply-To: <f4ec70345800432caa94d662f49370f6@huawei.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
@@ -135,129 +139,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
- leonro@nvidia.com, apopple@nvidia.com, amd-gfx@lists.freedesktop.org,
- mgorman@suse.de, ziy@nvidia.com, zhi.a.wang@intel.com, rcampbell@nvidia.com,
- jgg@nvidia.com, weixi.zhu@openeuler.sh, jhubbard@nvidia.com,
- intel-gfx@lists.freedesktop.org, mhairgrove@nvidia.com,
- jani.nikula@linux.intel.com, jglisse@redhat.com, zhenyuw@linux.intel.com,
- rodrigo.vivi@intel.com, intel-gvt-dev@lists.freedesktop.org,
- tvrtko.ursulin@linux.intel.com, Felix.Kuehling@amd.com, Xinhui.Pan@amd.com,
- christian.koenig@amd.com, alexander.deucher@amd.com, ogabbay@kernel.org
+Cc: "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "leonro@nvidia.com" <leonro@nvidia.com>,
+ "apopple@nvidia.com" <apopple@nvidia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "mgorman@suse.de" <mgorman@suse.de>, "ziy@nvidia.com" <ziy@nvidia.com>,
+ "zhi.a.wang@intel.com" <zhi.a.wang@intel.com>,
+ "rcampbell@nvidia.com" <rcampbell@nvidia.com>,
+ "jgg@nvidia.com" <jgg@nvidia.com>,
+ "weixi.zhu@openeuler.sh" <weixi.zhu@openeuler.sh>,
+ "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "mhairgrove@nvidia.com" <mhairgrove@nvidia.com>,
+ "zhenyuw@linux.intel.com" <zhenyuw@linux.intel.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Zeng,
+ Oak" <oak.zeng@intel.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 28.11.23 13:50, Weixi Zhu wrote:
-> This patch adds an abstraction layer, struct vm_object, that maintains
-> per-process virtual-to-physical mapping status stored in struct gm_mapping.
-> For example, a virtual page may be mapped to a CPU physical page or to a
-> device physical page. Struct vm_object effectively maintains an
-> arch-independent page table, which is defined as a "logical page table".
-> While arch-dependent page table used by a real MMU is named a "physical
-> page table". The logical page table is useful if Linux core MM is extended
-> to handle a unified virtual address space with external accelerators using
-> customized MMUs.
+On 01.12.23 03:44, zhuweixi wrote:
+> Thanks!
 
-Which raises the question why we are dealing with anonymous memory at 
-all? Why not go for shmem if you are already only special-casing VMAs 
-with a MMAP flag right now?
+I hope you understood that that was a joke :)
 
-That would maybe avoid having to introduce controversial BSD design 
-concepts into Linux, that feel like going a step backwards in time to me 
-and adding *more* MM complexity.
+> I am planning to present GMEM in Linux MM Alignment Sessions so I can collect more input from the mm developers.
 
-> 
-> In this patch, struct vm_object utilizes a radix
-> tree (xarray) to track where a virtual page is mapped to. This adds extra
-> memory consumption from xarray, but provides a nice abstraction to isolate
-> mapping status from the machine-dependent layer (PTEs). Besides supporting
-> accelerators with external MMUs, struct vm_object is planned to further
-> union with i_pages in struct address_mapping for file-backed memory.
+Sounds good. But please try inviting key HMM/driver developer as well.
 
-A file already has a tree structure (pagecache) to manage the pages that 
-are theoretically mapped. It's easy to translate from a VMA to a page 
-inside that tree structure that is currently not present in page tables.
+Most of the core-mm folks attending that meeting are not that familiar 
+with these concepts and they are usually not happy about:
 
-Why the need for that tree structure if you can just remove anon memory 
-from the picture?
+(1) More core-MM complexity for things that can be neatly handled in
+     separate subsystems with the existing infrastructure already.
 
-> 
-> The idea of struct vm_object is originated from FreeBSD VM design, which
-> provides a unified abstraction for anonymous memory, file-backed memory,
-> page cache and etc[1].
+(2) One new way of doing things why the other things remain in place.
 
-:/
+(3) New MMAP flags. Usually you have a hard time getting this in.
+     Sometimes, there are other ways (e.g., special-purpose file-
+     systems).
 
-> Currently, Linux utilizes a set of hierarchical page walk functions to
-> abstract page table manipulations of different CPU architecture. The
-> problem happens when a device wants to reuse Linux MM code to manage its
-> page table -- the device page table may not be accessible to the CPU.
-> Existing solution like Linux HMM utilizes the MMU notifier mechanisms to
-> invoke device-specific MMU functions, but relies on encoding the mapping
-> status on the CPU page table entries. This entangles machine-independent
-> code with machine-dependent code, and also brings unnecessary restrictions.
-
-Why? we have primitives to walk arch page tables in a non-arch specific 
-fashion and are using them all over the place.
-
-We even have various mechanisms to map something into the page tables 
-and get the CPU to fault on it, as if it is inaccessible (PROT_NONE as 
-used for NUMA balancing, fake swap entries).
-
-> The PTE size and format vary arch by arch, which harms the extensibility.
-
-Not really.
-
-We might have some features limited to some architectures because of the 
-lack of PTE bits. And usually the problem is that people don't care 
-enough about enabling these features on older architectures.
-
-If we ever *really* need more space for sw-defined data, it would be 
-possible to allocate auxiliary data for page tables only where required 
-(where the features apply), instead of crafting a completely new, 
-auxiliary datastructure with it's own locking.
-
-So far it was not required to enable the feature we need on the 
-architectures we care about.
-
-> 
-> [1] https://docs.freebsd.org/en/articles/vm-design/
-
-In the cover letter you have:
-
-"The future plan of logical page table is to provide a generic 
-abstraction layer that support common anonymous memory (I am looking at 
-you, transparent huge pages) and file-backed memory."
-
-Which I doubt will happen; there is little interest in making anonymous 
-memory management slower, more serialized, and wasting more memory on 
-metadata.
-
-Note that you won't make many friends around here with statements like 
-"To be honest, not using a logical page table for anonymous memory is 
-why Linux THP fails compared with FreeBSD's superpage".
-
-I read one paper that makes such claims (I'm curious how you define 
-"winning"), and am aware of some shortcomings. But I am not convinced 
-that a second datastructure "is why Linux THP fails". It just requires 
-some more work to get it sorted under Linux (e.g., allocate THP, PTE-map 
-it and map inaccessible parts PROT_NONE, later collapse it in-place into 
-a PMD), and so far, there was not a lot of interest that I am ware of to 
-even start working on that.
-
-So if there is not enough pain for companies to even work on that in 
-Linux, maybe FreeBSD superpages are "winning" "on paper" only? Remember 
-that the target audience here are Linux developers.
-
-
-But yeah, this here is all designed around the idea "core MM is extended 
-to handle a unified virtual address space with external accelerators 
-using customized MMUs." and then trying to find other arguments why it's 
-a good idea, without going too much into detail why it's all unsolvable 
-without that.
-
-The first thing to sort out if we even want that, and some discussions 
-here already went into the direction of "likely not". Let's see.
+(4) Changing controversial core-mm design decisions to handle corner
+     cases.
 
 -- 
 Cheers,
