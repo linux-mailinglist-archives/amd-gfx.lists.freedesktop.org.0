@@ -2,42 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D8E800BE7
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:28:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A16800BEB
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:28:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A45710E871;
-	Fri,  1 Dec 2023 13:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0A210E879;
+	Fri,  1 Dec 2023 13:28:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4454110E871
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:27:58 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::61e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 569CE10E873
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ercqnczaO++JwxeJYcZHVlrDmpBkB7bxSPVEwXLF4Y5C+4f+xYdYRvrX03/ZJpvzoKmLartEWrqA8KZU2XYhSkOhO5AWpb0MerqU8mwjJZTDrWCivgRgyGRo86VLvSJrsSIUOnHKhDOnP4cqNyzNgKb5newq40R6dCSMMOHPsDueuaXJq9a1EODleZZBIMVNOZuge+nItWcGj7npeRKKMjdmaAzO8t8Cyb9cH74kc4Ohx1hKB8nJkchP3aMRcEo/GgS9Z0ltTrIaX2JKUWZ+zneQ15B1FaeY4Xh71Ha3caZyNM6rLB/NiTPjAaUI1oacq6UKYXUzWJIFmIGuIPJB6w==
+ b=gcHRPtliBDy6jBgU/vWAlD7ByvEd2WDLV4Uv2D4ciG0YjxxVBLvdOsDh5cJeL8hKsA48S909hCEN9zi3ST+aL8tjLLVyhtbF6Ri7GV+SrzgFX17Z2tRXk60Gqc75+fMrGfiO9iGHWrHHen2cVXFc+2a/VBG/ytl58OSL/H7hDAIm/bKeCDEF0bCglPWyL4MB2ZSSwysTDRnVGv+I3NszEftuBk376hEScXJ66+OCdUQBPshn0WBzafYjtcjEt8StvBdFu3+TWpDo3zRWI36A/Ao0OK1PDmypcEdbWWDPK5cE/iNPkL2FouOpsK9ctmYPclU6S2YrJaPZFA8dpVLeSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mf0Rmn+VNxPNIx2+AN9yjMh84ZgaED1wfO0NEn+LvkI=;
- b=H7FUmFCAdz4G6Mppc5j6cvCa1r8gaJTzl4zm7WDZaMNx462lOU+4E/eYUaIgg1DY61nqrR2OqmRoyyuTdb2KhOkeYi/MkJYtP92J1QQvkf/txhG6Fo47h8rEb9N9PrsxyOs+bzfHuAie5BIprMmiXZjU9F7i1L93qGm0yCUhghAI8cqIZ5isHMDEpLvvBP61uQe/3TFruPAzWGN8MvjkX307nsNZ9OC7Dkaa+VOQe6m0pFNmNO36DBm79s7upuF73hydecO6M0SMoi8FrLm5yI1/dnNMcLx7T5KtgT0gvEW06rKRGDWgAaESjnMAvjqci3nJ3rDqnH31lvz9wghiJw==
+ bh=dGDO8l31FUur2Nb8P9bTqM1mWXvxF7zzJSIxse5vZ+U=;
+ b=KWxVo16d+kKtcC55pujAgBjszkU8EayNT2GnNEmvYegWBic81PpIKl9N9WajSbKabFA7qCrq3Xf+way7qPgXIU/xdUygPER/PnOJCj5c5+hWWUzR1xk4Fv0h+9gYCnYoGcX/j58NQaWqGF18F/orDAv+1C5QHv30YmYYs+sT94yidOHqLiGrGy9npGNyUGaShHTtDU2wtLaVYux4YuXCVbst7CTP0aqN8SuvvvxmMJUuSsekz6SltQg71Yb/U5e9kcsZKZmiKI2LLByGuS6bShZfohDXVe2e6CfLh8HLWOV98OHu/xI3esUQTPdqZYeYJg9tWVGQth8mZ2ruqbp4RQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mf0Rmn+VNxPNIx2+AN9yjMh84ZgaED1wfO0NEn+LvkI=;
- b=JgxiJfFV8t7A8DaR/khdTLCFm4bUXj+zHNncWdy41m4CVZ7K0/ARaUTQYG3SRg3UZ4HrMBR99PuKyPD0d7iQccFzV1L0P9qQrOxf+Jg0hiTuTvMeeBn6Z+5MYs6BJqQgHUnwbb/yIEc7kbmWNA3yZ8toe9WiK3py5C0QEazGse0=
-Received: from CH2PR05CA0001.namprd05.prod.outlook.com (2603:10b6:610::14) by
- CH2PR12MB4135.namprd12.prod.outlook.com (2603:10b6:610:7c::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.24; Fri, 1 Dec 2023 13:27:54 +0000
-Received: from DS2PEPF00003441.namprd04.prod.outlook.com
- (2603:10b6:610:0:cafe::d4) by CH2PR05CA0001.outlook.office365.com
- (2603:10b6:610::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.15 via Frontend
- Transport; Fri, 1 Dec 2023 13:27:54 +0000
+ bh=dGDO8l31FUur2Nb8P9bTqM1mWXvxF7zzJSIxse5vZ+U=;
+ b=OpXQI/g34l3u4H8dHdZHNnv6s9p0pPg1wSr1i6+VhNnsu5T9AUS8MmXqp7dz9yGjG3LDNnFGY1t22Ofc0AyrGaMaQotxSmHNMn06ni/cuVwLnyrvCg2RxWB6SGNInoECa6OyqL+Fssgoun1sQXismj9sV9TaSUoSg/CIXiormFI=
+Received: from CH0P221CA0047.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::28)
+ by CY8PR12MB7362.namprd12.prod.outlook.com (2603:10b6:930:52::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.22; Fri, 1 Dec
+ 2023 13:27:56 +0000
+Received: from DS2PEPF00003442.namprd04.prod.outlook.com
+ (2603:10b6:610:11d:cafe::8e) by CH0P221CA0047.outlook.office365.com
+ (2603:10b6:610:11d::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27 via Frontend
+ Transport; Fri, 1 Dec 2023 13:27:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +46,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003441.mail.protection.outlook.com (10.167.17.68) with Microsoft
+ DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:27:54 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:27:56 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:27:52 -0600
+ 2023 07:27:53 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/47] DC Patches December 1, 2023
-Date: Fri, 1 Dec 2023 06:24:56 -0700
-Message-ID: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 01/47] drm/amd/display: Optimize fast validation cases
+Date: Fri, 1 Dec 2023 06:24:57 -0700
+Message-ID: <20231201132731.2354141-2-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
+References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003441:EE_|CH2PR12MB4135:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3b4a2704-254a-4f9e-f0e8-08dbf2715337
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|CY8PR12MB7362:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ba75d3d-fcdd-4c5e-aeab-08dbf2715479
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zE2BeIClvBz+dr3S0I4F7efp9sKtw2GoGp31oynIqHGHF23jl805De84gLEg3WDoaWlReRpCYLBmIAE/KvCGtp/S/SB4Z+ZAY2OQnmKNHYPWb6WhP38JmZBWAV0a+8Y/emwJQcMvEZeaIqwPdysJkjKfGuvpgZGfiHSxMytL055EZV5qZ33/IQRSxuZryDVqpWsnc65SoDVuDRyCq1KnyQ+DHM8E4UwqpPYVw9/vWyryW/HFROHsDf1NgoG6B/GIpEa7+QHRrQJcfoo/UClVhf+IS+aLUtiUl87uhofyMsttCUbTEkOBBXx2LhhVb0AGBtOw0/Z9dPzlwOLWqAbtRnBucYdzxvCDNcQndCHHdLubUZw9mD92sylAINzTahUAWa5pyRyfYg97NQhJ29CE7kgLy6bDr1xMP/+4DiYjnbRcrJPHOBngvSKCDTLaqt9vSU69+SggqcBrwZVPSWWkH4Qj82CdfzOypu75MBNHVarM2EAHb580qBht/zoV9yLxGo3YOjGxJXvBDsTQFQjUkM5yk8YiswKvNPVqEKnkFGnltfEkw2BxxdAc+xDCyrxeZ1bG9iEa6kbGu0Now9X8OHlK9v6yqn4MkNjqiDvqskXMp+C/FAnq81QXi3KTty7F7HV4CZjox+7JyLVRLIlBUq33nYPZWpThv1gFiWyBvlh0tYFaAWSAdClOxf6qZ5+gYG5tSholkmxahKC3wPpYvWEZktcxp2qQW/fLJlAOKLl25pcRw8wsmC9dQpc6MPopPzGLnYYrDneCbjSkFyJOfA==
+X-Microsoft-Antispam-Message-Info: tYPX0TmZN6wkXOJolHb73HLqBm8KGotboOfBHGA+u/Cpmx4cBgz6AoahJ7vvdMLnV7o6lftv1R+eIdLIR/YWxBae6TihlfQKGNoJ4yjDMswDi70yZpczICMVnwhxiE4f/C8s1nhjPg2VYL3SobhO5J0qoUOJn2QNVGje03oeF+0OZ6V/uJyh8gCqEPMSF7tFrnnVnsOmvt7RtM2kg2qzIiMqgykMUf85h7x8f247ndrkGbA4hRSaFrThAwv2h895J6l9Wy9SzVC9RzhsWWcaL/fy3v3YJGsPRVDfuPhwFSAFic95ZnGmkJy/ApN98mAj989SPaJ34oTEjOct9EnwH+uNhoa9Icx+jm7ljl6JQBpcdAA+HZX1HRIdhU+W+JVazaaAtPp2e0peT1YQLC7tgZ4DMbxqhx0VYk6c0liBIbvDSdTjd8og5a3XfVguuMwVb09Z59/HF6Bpx48LP1uYAdZfZVNy7Mmg37DfJBWpj9X/3F4cJiyPbAjhlhwNp/Hzu6W3ZCAtwTEavYweiDp5+aDPhCh/r5HVWFwr7b5EzaXZTnS95Lc9dw+I+/mcfwrlw4fU6Jj1ERSJR8S4kx/tWrsDUYvK9qwvp+7hpV05SoupBwXRuTdLyOKINUSPp0pNjfOWZ211lZiCCbnxahjx2A94T0Amwknko7AwkpDH4aomnLBz4ak8wdmHdMD85IzOleTJ7JRz3Ws6R3LoiDmHw4pj1xbPkKXBRP8o012aSVyBkqUWAoBG/MqIf9R33T4ONOsbuLEP7HOfTPRZEoi0e6yGOsEWt6Oj0WoOkCrQJXo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(396003)(39860400002)(376002)(136003)(230922051799003)(1800799012)(82310400011)(64100799003)(451199024)(186009)(40470700004)(36840700001)(46966006)(47076005)(40480700001)(2906002)(5660300002)(82740400003)(83380400001)(41300700001)(86362001)(36860700001)(8676002)(40460700003)(16526019)(8936002)(4326008)(1076003)(70586007)(70206006)(26005)(336012)(426003)(356005)(36756003)(316002)(81166007)(478600001)(54906003)(6916009)(2616005)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(376002)(346002)(136003)(396003)(230922051799003)(64100799003)(186009)(82310400011)(1800799012)(451199024)(40470700004)(36840700001)(46966006)(40460700003)(26005)(16526019)(2616005)(478600001)(356005)(336012)(1076003)(426003)(36860700001)(41300700001)(47076005)(70206006)(8676002)(8936002)(70586007)(83380400001)(4326008)(54906003)(6916009)(2906002)(316002)(81166007)(82740400003)(5660300002)(36756003)(86362001)(40480700001)(36900700001)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:27:54.3677 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b4a2704-254a-4f9e-f0e8-08dbf2715337
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:27:56.4762 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ba75d3d-fcdd-4c5e-aeab-08dbf2715479
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003441.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4135
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7362
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,195 +100,174 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, jerry.zuo@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com,
- Daniel Wheeler <daniel.wheeler@amd.com>, Aurabindo.Pillai@amd.com,
- hamza.mahfooz@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com
+Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>, jerry.zuo@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
+ solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ Alvin Lee <alvin.lee2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we
-highlight:
+From: Alvin Lee <alvin.lee2@amd.com>
 
-* Enable writeback.
-* Add multiple fixes for DML2 and DCN35.
-* Introduce small code style adjustments.
+Optimize fast validation cases to only validate the highest voltage
+level. This works because during fast validation we only care if the
+mode can be supported or not (at any vlevel).
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+Reviewed-by: Aric Cyr <aric.cyr@amd.com>
+Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+---
+ .../dc/dml/dcn30/display_mode_vba_30.c        | 29 +++++++++++--------
+ .../dc/resource/dcn30/dcn30_resource.c        |  2 ++
+ 2 files changed, 19 insertions(+), 12 deletions(-)
 
-Thanks
-Siqueira
-
-
-Alex Hung (12):
-  drm/amd/display: Avoid virtual stream encoder if not explicitly
-    requested
-  drm/amd/display: Initialize writeback connector
-  drm/amd/display: Check writeback connectors in
-    create_validate_stream_for_sink
-  drm/amd/display: Hande writeback request from userspace
-  drm/amd/display: Add writeback enable/disable in dc
-  drm/amd/display: Fix writeback_info never got updated
-  drm/amd/display: Validate hw_points_num before using it
-  drm/amd/display: Fix writeback_info is not removed
-  drm/amd/display: Add writeback enable field (wb_enabled)
-  drm/amd/display: Setup for mmhubbub3_warmup_mcif with big buffer
-  drm/amd/display: Add new set_fc_enable to struct dwbc_funcs
-  drm/amd/display: Disable DWB frame capture to emulate oneshot
-
-Alvin Lee (2):
-  drm/amd/display: Optimize fast validation cases
-  drm/amd/display: Use channel_width = 2 for vram table 3.0
-
-Aric Cyr (1):
-  drm/amd/display: 3.2.263
-
-Charlene Liu (4):
-  drm/amd/display: initialize all the dpm level's stutter latency
-  drm/amd/display: insert drv-pmfw log + rollback to new context
-  drm/amd/display: revert removing otg toggle w/a back when no active
-    display
-  drm/amd/display: keep domain24 power on if eDP not exist
-
-Chris Park (1):
-  drm/amd/display: Update BIOS FW info table revision
-
-Daniel Miess (1):
-  drm/amd/display: Add missing dcn35 RCO registers
-
-Dennis Chan (1):
-  drm/amd/display: Fix Replay Desync Error IRQ handler
-
-Dillon Varone (1):
-  drm/amd/display: Add dml2 copy functions
-
-George Shen (1):
-  drm/amd/display: Skip DPIA-specific DP LL automation flag for non-DPIA
-    links
-
-Harry Wentland (7):
-  drm/amd/display: Skip entire amdgpu_dm build if !CONFIG_DRM_AMD_DC
-  drm/amd/display: Create one virtual connector in DC
-  drm/amd/display: Skip writeback connector when we get
-    amdgpu_dm_connector
-  drm/amd/display: Return drm_connector from
-    find_first_crtc_matching_connector
-  drm/amd/display: Use drm_connector in create_stream_for_sink
-  drm/amd/display: Create amdgpu_dm_wb_connector
-  drm/amd/display: Create fake sink and stream for writeback connector
-
-Ilya Bakoulin (1):
-  drm/amd/display: Fix MST PBN/X.Y value calculations
-
-Ivan Lipski (1):
-  drm/amd/display: Add monitor patch for specific eDP
-
-Johnson Chen (1):
-  drm/amd/display: Fix null pointer
-
-Josip Pavic (1):
-  drm/amd/display: Increase scratch buffer size
-
-Krunoslav Kovac (1):
-  drm/amd/display: Change dither policy for 10bpc to round
-
-Lewis Huang (1):
-  drm/amd/display: Pass pwrseq inst for backlight and ABM
-
-Michael Strauss (1):
-  drm/amd/display: Only enumerate top local sink as DP2 output
-
-Nicholas Kazlauskas (1):
-  drm/amd/display: Pass debug watermarks through to DCN35 DML2
-
-Nicholas Susanto (1):
-  drm/amd/display: Fix disable_otg_wa logic
-
-Relja Vojvodic (2):
-  drm/amd/display: Add ODM check during pipe split/merge validation
-  drm/amd/display: Added delay to DPM log
-
-Rodrigo Siqueira (2):
-  drm/amd/display: Adjust code style
-  drm/amd/display: Update code comment to be more accurate
-
-Roman Li (1):
-  drm/amd/display: Fix array-index-out-of-bounds in dml2
-
-Wenjing Liu (1):
-  drm/amd/display: add support for DTO genarated dscclk
-
-Yihan Zhu (1):
-  drm/amd/display: add MPC MCM 1D LUT clock gating programming
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |   4 +
- .../gpu/drm/amd/display/amdgpu_dm/Makefile    |  14 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 356 ++++++++++++++++--
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  10 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |   3 +
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   6 +
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |  22 +-
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   4 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  | 215 +++++++++++
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.h  |  36 ++
- .../drm/amd/display/dc/bios/bios_parser2.c    |  76 ++--
- .../drm/amd/display/dc/bios/command_table2.c  |  12 +-
- .../drm/amd/display/dc/bios/command_table2.h  |   2 +-
- .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |  26 +-
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  |  25 +-
- .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.c  |  43 ++-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  18 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   4 +-
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |  80 +++-
- drivers/gpu/drm/amd/display/dc/dc.h           |  10 +-
- .../gpu/drm/amd/display/dc/dc_bios_types.h    |   2 +-
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |   4 +
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c |   8 +-
- .../gpu/drm/amd/display/dc/dce/dmub_abm_lcd.c |   7 +-
- .../gpu/drm/amd/display/dc/dce/dmub_abm_lcd.h |   2 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h |  32 ++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c  |  23 ++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dwb.h  |   2 +
- .../drm/amd/display/dc/dcn30/dcn30_dwb_cm.c   |   3 +
- .../amd/display/dc/dcn31/dcn31_panel_cntl.c   |   5 +-
- .../gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c  |   3 +-
- .../display/dc/dcn32/dcn32_resource_helpers.c |  26 ++
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dccg.c |  62 ++-
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dccg.h |  51 +++
- .../dc/dml/dcn30/display_mode_vba_30.c        |  29 +-
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |   3 +
- .../drm/amd/display/dc/dml/dcn35/dcn35_fpu.c  |  19 +
- .../amd/display/dc/dml2/display_mode_core.c   |   6 +-
- .../display/dc/dml2/dml2_translation_helper.c |   4 +-
- .../gpu/drm/amd/display/dc/dml2/dml2_utils.c  |  11 +
- .../drm/amd/display/dc/dml2/dml2_wrapper.c    |  29 +-
- .../drm/amd/display/dc/dml2/dml2_wrapper.h    |   4 +
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  16 +-
- .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   |  36 +-
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |   4 +
- .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |   3 +-
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  25 ++
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  22 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/abm.h   |   3 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |   4 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h   |   4 +
- .../drm/amd/display/dc/inc/hw/panel_cntl.h    |   2 +
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |  40 +-
- .../drm/amd/display/dc/link/link_factory.c    |  59 ++-
- .../dc/link/protocols/link_dp_irq_handler.c   |  18 +-
- .../dc/link/protocols/link_dp_training_dpia.c |   4 +-
- .../dc/resource/dcn10/dcn10_resource.c        |   5 +-
- .../dc/resource/dcn30/dcn30_resource.c        |   2 +
- .../dc/resource/dcn32/dcn32_resource.h        |   2 +
- .../dc/resource/dcn35/dcn35_resource.c        |   2 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  14 +-
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |   2 +-
- 62 files changed, 1328 insertions(+), 240 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.h
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+index 3686f1e7de3a..63c48c29ba49 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+@@ -3542,7 +3542,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ {
+ 	struct vba_vars_st *v = &mode_lib->vba;
+ 	int MinPrefetchMode, MaxPrefetchMode;
+-	int i;
++	int i, start_state;
+ 	unsigned int j, k, m;
+ 	bool   EnoughWritebackUnits = true;
+ 	bool   WritebackModeSupport = true;
+@@ -3553,6 +3553,11 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 
+ 	/*MODE SUPPORT, VOLTAGE STATE AND SOC CONFIGURATION*/
+ 
++	if (mode_lib->validate_max_state)
++		start_state = v->soc.num_states - 1;
++	else
++		start_state = 0;
++
+ 	CalculateMinAndMaxPrefetchMode(
+ 		mode_lib->vba.AllowDRAMSelfRefreshOrDRAMClockChangeInVblank,
+ 		&MinPrefetchMode, &MaxPrefetchMode);
+@@ -3851,7 +3856,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 			v->SingleDPPViewportSizeSupportPerPlane,
+ 			&v->ViewportSizeSupport[0][0]);
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (j = 0; j < 2; j++) {
+ 			v->MaxDispclkRoundedDownToDFSGranularity = RoundToDFSGranularityDown(v->MaxDispclk[i], v->DISPCLKDPPCLKVCOSpeed);
+ 			v->MaxDppclkRoundedDownToDFSGranularity = RoundToDFSGranularityDown(v->MaxDppclk[i], v->DISPCLKDPPCLKVCOSpeed);
+@@ -4007,7 +4012,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 
+ 	/*Total Available Pipes Support Check*/
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (j = 0; j < 2; j++) {
+ 			if (v->TotalNumberOfActiveDPP[i][j] <= v->MaxNumDPP) {
+ 				v->TotalAvailablePipesSupport[i][j] = true;
+@@ -4046,7 +4051,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 		}
+ 	}
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+ 			v->RequiresDSC[i][k] = false;
+ 			v->RequiresFEC[i][k] = false;
+@@ -4174,7 +4179,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 			}
+ 		}
+ 	}
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		v->DIOSupport[i] = true;
+ 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+ 			if (!v->skip_dio_check[k] && v->BlendingAndTiming[k] == k && (v->Output[k] == dm_dp || v->Output[k] == dm_edp || v->Output[k] == dm_hdmi)
+@@ -4185,7 +4190,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 		}
+ 	}
+ 
+-	for (i = 0; i < v->soc.num_states; ++i) {
++	for (i = start_state; i < v->soc.num_states; ++i) {
+ 		v->ODMCombine4To1SupportCheckOK[i] = true;
+ 		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
+ 			if (v->BlendingAndTiming[k] == k && v->ODMCombineEnablePerState[i][k] == dm_odm_combine_mode_4to1
+@@ -4197,7 +4202,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 
+ 	/* Skip dscclk validation: as long as dispclk is supported, dscclk is also implicitly supported */
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		v->NotEnoughDSCUnits[i] = false;
+ 		v->TotalDSCUnitsRequired = 0.0;
+ 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+@@ -4217,7 +4222,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	}
+ 	/*DSC Delay per state*/
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+ 			if (v->OutputBppPerState[i][k] == BPP_INVALID) {
+ 				v->BPP = 0.0;
+@@ -4333,7 +4338,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 		v->cursor_bw[k] = v->NumberOfCursors[k] * v->CursorWidth[k][0] * v->CursorBPP[k][0] / 8.0 / (v->HTotal[k] / v->PixelClock[k]) * v->VRatio[k];
+ 	}
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (j = 0; j < 2; j++) {
+ 			for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+ 				v->swath_width_luma_ub_this_state[k] = v->swath_width_luma_ub_all_states[i][j][k];
+@@ -5075,7 +5080,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 
+ 	/*PTE Buffer Size Check*/
+ 
+-	for (i = 0; i < v->soc.num_states; i++) {
++	for (i = start_state; i < v->soc.num_states; i++) {
+ 		for (j = 0; j < 2; j++) {
+ 			v->PTEBufferSizeNotExceeded[i][j] = true;
+ 			for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+@@ -5136,7 +5141,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	}
+ 	/*Mode Support, Voltage State and SOC Configuration*/
+ 
+-	for (i = v->soc.num_states - 1; i >= 0; i--) {
++	for (i = v->soc.num_states - 1; i >= start_state; i--) {
+ 		for (j = 0; j < 2; j++) {
+ 			if (v->ScaleRatioAndTapsSupport == 1 && v->SourceFormatPixelAndScanSupport == 1 && v->ViewportSizeSupport[i][j] == 1
+ 					&& v->DIOSupport[i] == 1 && v->ODMCombine4To1SupportCheckOK[i] == 1
+@@ -5158,7 +5163,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	}
+ 	{
+ 		unsigned int MaximumMPCCombine = 0;
+-		for (i = v->soc.num_states; i >= 0; i--) {
++		for (i = v->soc.num_states; i >= start_state; i--) {
+ 			if (i == v->soc.num_states || v->ModeSupport[i][0] == true || v->ModeSupport[i][1] == true) {
+ 				v->VoltageLevel = i;
+ 				v->ModeIsSupported = v->ModeSupport[i][0] == true || v->ModeSupport[i][1] == true;
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+index 2b6dcb489b90..37a64186f324 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
+@@ -1682,6 +1682,7 @@ noinline bool dcn30_internal_validate_bw(
+ 		 * We don't actually support prefetch mode 2, so require that we
+ 		 * at least support prefetch mode 1.
+ 		 */
++		context->bw_ctx.dml.validate_max_state = fast_validate;
+ 		context->bw_ctx.dml.soc.allow_dram_self_refresh_or_dram_clock_change_in_vblank =
+ 			dm_allow_self_refresh;
+ 
+@@ -1691,6 +1692,7 @@ noinline bool dcn30_internal_validate_bw(
+ 			memset(merge, 0, sizeof(merge));
+ 			vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
+ 		}
++		context->bw_ctx.dml.validate_max_state = false;
+ 	}
+ 
+ 	dml_log_mode_support_params(&context->bw_ctx.dml);
 -- 
 2.42.0
 
