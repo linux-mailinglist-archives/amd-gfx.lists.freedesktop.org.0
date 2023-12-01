@@ -1,43 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA77800C00
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 113F4800C02
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Dec 2023 14:29:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D6D10E880;
-	Fri,  1 Dec 2023 13:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB17910E888;
+	Fri,  1 Dec 2023 13:29:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2049.outbound.protection.outlook.com [40.107.237.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04A110E8A5
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:43 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2062f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8a::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F04D410E8A6
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Dec 2023 13:28:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dSyv6zCMzc3+jkngTvXkHrN7p+j4NEgapa3v3W85GR19YgRWtObuvqntf9DI3DTGVUDgXgStvoK9O+kmw9+l9iQOIuvucH1Zrq2kj2hSEqJtB1kJfIOORA7oZOsWa2a41ALZ7FGP6aHyZnQi2qqcsjo8UIJ9H9BAIigt2PQrwNZBcHa+nCSNeaUShWUie2rnZjS/P+miCC8YcnrVOyiaiG/JbNb2Xx85q+weXJzOE+hi9tYDyxBD29zLXjYiWAsq/W2yiUAFsTHsIjmAaWusL/8A4CCZbAg4M8Ddm5v0zUYrGhMlnkDLsYvY8vOETqy3Zv7nl0gPvOdTcNzQRcTgyg==
+ b=NuMzruHXuqe0b4X4TiMoFMz5e21QmfMYg7W4weB86liitzsluhRwiJqsmvoA5XfhpZzsOfUEhvDNVRVTUGauxYdkUGDLLv/gV5mu+UzgYj4hjp7uhcdD0XywFFWvwfl7PdS8Boxoi39Wb8P4gGM0QE/fu68PiR9m0SZS1++ulM8+wh7UTxnwaCBphfzkRUmqAZJeEoop+MezlCNikO0kSp5v5JQTcXUcDtCD8tLk9B3JfNd8QpH8ViJDksMnJy+tgsPSCwRwdI6owOcpUASWKxgrjEG3tXLBy/CNWLal2KQo94r9xrKUOkJX243Ehuysn76RSO+3mRinXjTtKOmo3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b9B9IEUzBdnk58M2WxV7eEaWlyChSTXcRk/XvXGGgOo=;
- b=HPr2Dd1zZP/UuiwS2gKCIpjScVzW4aOQmivvEOjBhuQ9UEOchTP1/4o38rY4H5N4ajE1Of3AnAq2P+3e9Llc7+WStUPYzaRk3tKA0e3jRhKlMN04AmPYWsnHzi6SYMX01QIPyUzVP4tTMvItv8AaQiJClcyMgO4IX0S/KA5IiD2nNGla+p1SRf7cWHw9xwMw1ePAwE0S+gKiH307aGBE+RDZBZJG4rTBbzowKisc5xSKbsy9q7ntzPBmlQi0XtclkGkTShs4swyROv1/42KXqSyg8XlPI/ziAWew+gPaPlosPSKIYkiBTad6bZu/W0fGv5VK2hnpdXclw+mWNcvAJQ==
+ bh=FO8kvYjctkjVpSAhWoJKZI8pWASLGZL43ZvKgwka/GU=;
+ b=cB6qcUV3kS3CuOiqhAKJ5n9dy3YwQEwYduw/2cvoWHa5ilwm1poynTCXiTO3cb8VE9mJJSFx9oukn0Z3PWz1dMTXRcPuJngte5ktMrF0oMTQoBnTe0RvP4dbGekvN8zOfOuAZe+xnCDsdBQbzT8nrEFO3//37ire5M/loVXjgfoTFsuoMwT9NztSUMZuC/LHR+tiCmwf8rgOmRbAsfLnW0ZD0DlUhZvyIqmT1WkTrX3vbQFSBMPY9Z6XSwkIagraKg66KQjj6DRbyzUD1H8AmWHnhQqwh3L/jnYOTieKA2my8o9f3fofZkD4smrGxoVAZ0CPB3YBCbnM4DuGIcRrew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b9B9IEUzBdnk58M2WxV7eEaWlyChSTXcRk/XvXGGgOo=;
- b=M2dLDcIrBEZoK2+kNyEX37yBjJTIs2zv946w4hOwkZYGLhAwxnw4y2b0a4cEYU1+J/yj5KGDS+nelVW1WtXFNUWJD/WWnEpuG94umRMMYVLiBsP/S1EuwO9U93mkBGyxC1R1FrKff7RVNP4UgxRTXLakCiGT0EpgDRFqWUqxTps=
-Received: from DS0PR17CA0005.namprd17.prod.outlook.com (2603:10b6:8:191::6) by
- BL0PR12MB4898.namprd12.prod.outlook.com (2603:10b6:208:1c7::17) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=FO8kvYjctkjVpSAhWoJKZI8pWASLGZL43ZvKgwka/GU=;
+ b=jsn5EE+3Z7YfmIjMeNvojOzjFJFx6clp4XaoH15Rrs9gnebLAis/YNG8DE0O0TSUmqimkx6jlZuuHfKNOL530e9dzR7a1w7LWlBGJQQ7RgtNpkduXZ7sG+LMGuxadRuiMQSKcZ41N5eEW4Vuco1tQiC/lEZuHffo2LDMR2+KYaU=
+Received: from CH2PR16CA0029.namprd16.prod.outlook.com (2603:10b6:610:50::39)
+ by PH7PR12MB7185.namprd12.prod.outlook.com (2603:10b6:510:201::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.27; Fri, 1 Dec
- 2023 13:28:40 +0000
-Received: from DS2PEPF00003447.namprd04.prod.outlook.com
- (2603:10b6:8:191:cafe::81) by DS0PR17CA0005.outlook.office365.com
- (2603:10b6:8:191::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.29 via Frontend
- Transport; Fri, 1 Dec 2023 13:28:39 +0000
+ 2023 13:28:42 +0000
+Received: from DS2PEPF00003443.namprd04.prod.outlook.com
+ (2603:10b6:610:50:cafe::e4) by CH2PR16CA0029.outlook.office365.com
+ (2603:10b6:610:50::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24 via Frontend
+ Transport; Fri, 1 Dec 2023 13:28:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003447.mail.protection.outlook.com (10.167.17.74) with Microsoft
+ DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:39 +0000
+ 15.20.7046.17 via Frontend Transport; Fri, 1 Dec 2023 13:28:41 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 1 Dec
- 2023 07:28:37 -0600
+ 2023 07:28:39 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 21/47] drm/amd/display: add MPC MCM 1D LUT clock gating
- programming
-Date: Fri, 1 Dec 2023 06:25:17 -0700
-Message-ID: <20231201132731.2354141-22-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 22/47] drm/amd/display: Add dml2 copy functions
+Date: Fri, 1 Dec 2023 06:25:18 -0700
+Message-ID: <20231201132731.2354141-23-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
 References: <20231201132731.2354141-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003447:EE_|BL0PR12MB4898:EE_
-X-MS-Office365-Filtering-Correlation-Id: 165630ea-07f6-4c7c-cd08-08dbf2716e49
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|PH7PR12MB7185:EE_
+X-MS-Office365-Filtering-Correlation-Id: badd6a90-0fe0-4948-2433-08dbf2716f8f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n84jqgO8wYbtInl96CK69VbCYTxA175ltWAw8XNZmYt0uzU4d0d30F30OYkgXvTqcC5BHJsB1L0/0HRwjrGcuQTa7Tm+8OvhjmCiW4OQrJV+U11odTujzVk4adx0pF9+QRMjL0EIRVJin+8xbWEZct2x1TyCISKdnqr4STiWS2vAxIS1i9tMPqAY/txERl/E1QdP7P7or/MEv9ZrOjCNn7YKoq9HzKweE1pA4DfDqNnQ2uNOfcUwb4PIOwKv0Z4t5roDIvZJEBBhO/S5dwe2Ti9e2P22HW6D8CKwjp7AH6xONT179EWsVNHw+hk+bzlKVgBU/bpa/TiqzTqwh3fo98g0rMKgUSR7McUODcAaiVmFLbr2J5lJEHApYe7RO3pHvuscd1C5GN6gLdngi/Db9U1N32asfWD+2uZEga+Tr2nLzw+frMEm5JqZ4JPem71be6KEyztI2HoSXXWZ9E5BfhvDpNkGkaGwAKiubCl6cy9Vm5EtNcdr0F5Q96dIdYUZ6bok9/9pjl3kQPyGlxtt5SMJGwTikgHBYs6p4lfEmSrBLMTk4g7lr/I0HMYNV1gY00tKaOwzNiHEVV+lSWEr5PJ4fyxpB7HCin0rwpc3FTNDRPBeIy4ZIhAwpzf7/ai0dZTP19z8y6i+p6rGlsSNEJvpTPNcuhvnBHP5oRaN+yYEiu0KeIkQdVzoNjC1nLkppb7l0d1d43yc53QEJaXoH6WDbQUT0uVMzwSL3+jVGXDwwYbfM8B2mUqJ9dXZrDYuOvtj201i8X0/lTughHxS1A==
+X-Microsoft-Antispam-Message-Info: f5eXZPuBVdQuxs6GsGItYGASwLDtB2S+rYqfKANajz2GFkf3/KVb1M+MJ70W7biWPVmxFYugW8OaXJOfw8EUw8YQO4AK1yzBezA59jKmJJnIWKdDmJmt6cnw+jDqayCK42K7bve/9DD4OpE5m4WrR/Xtl/HoqDvQ5TLnITWb2QkW2ZgBur8PZtdl0hfol6cOxVVmkTJtMYSlCEj8jLo8xPe2rje2PycF151ZQKvy2EJ0nl1wIIedakWePQbaePPLkrigh94c7TACBIPMUAFSrGZuFbLng8ra+utLKuSFF0kTnHibblDSfBZJwc5d6LOe1MntOjS2xti/I5VUbHsgz8NR5rQ7+32seQwwXzrNbvaez9aQ3gtKVovA8vwDml2rhxkS/nJOePsIJHFrgdJB6bx/BTZj/Iioj40EK/9lxkXWv/2jA45bu3qIQF11Qf7LKl5JQ/7CitNe1PAbmQ8gbBR2rTJ0WL5H7IDLl8uYl5qqaF9IM4EqeGAyKJB0XiOTmuuXya3AJj9aQC6glbDxfXNgfHx9BaPgmByE8CjJ/MB+KIINg/Yv9xZPXvPunBaSx/ENMfjdLQR7p+aHTw/rGGUrFf3NbCIpNiDLsHxBh+xM9DIpjbcZ0YPqdQndQfc25OA6G54JfRbSc6//qoXf2p0u3jG8vpkUVQSFGZwjH6ReZVxEmaooBVT/0ML0cR/EhX/F2GGw1e9z1/JSoYsyoHpJO/tGMjltkjwRiGZ3eZ5/qM/OjEI6iuUs+1QsSToKEsPkPWkdx0gAmdo+a1sXFQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(376002)(346002)(396003)(136003)(230922051799003)(82310400011)(186009)(451199024)(1800799012)(64100799003)(46966006)(36840700001)(40470700004)(1076003)(5660300002)(2906002)(8676002)(316002)(6916009)(54906003)(4326008)(70586007)(70206006)(8936002)(40480700001)(16526019)(26005)(41300700001)(6666004)(478600001)(2616005)(83380400001)(426003)(336012)(40460700003)(47076005)(36860700001)(82740400003)(356005)(81166007)(86362001)(36756003)(36900700001);
+ SFS:(13230031)(4636009)(396003)(346002)(376002)(136003)(39860400002)(230922051799003)(1800799012)(451199024)(186009)(82310400011)(64100799003)(36840700001)(46966006)(40470700004)(2906002)(4326008)(8676002)(8936002)(336012)(26005)(16526019)(316002)(41300700001)(54906003)(6916009)(70206006)(70586007)(1076003)(5660300002)(426003)(2616005)(83380400001)(40480700001)(47076005)(36860700001)(356005)(81166007)(82740400003)(40460700003)(86362001)(6666004)(478600001)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:39.7832 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 165630ea-07f6-4c7c-cd08-08dbf2716e49
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 13:28:41.9310 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: badd6a90-0fe0-4948-2433-08dbf2716f8f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003447.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003443.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4898
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,60 +100,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Yihan Zhu <yihan.zhu@amd.com>, jerry.zuo@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
- solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
- Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Chris Park <chris.park@amd.com>, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Dillon Varone <dillon.varone@amd.com>,
+ jerry.zuo@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo
+ Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com, solomon.chiu@amd.com,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Aurabindo.Pillai@amd.com,
+ hamza.mahfooz@amd.com, wayne.lin@amd.com,
+ Chaitanya Dhere <chaitanya.dhere@amd.com>, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yihan Zhu <yihan.zhu@amd.com>
+From: Dillon Varone <dillon.varone@amd.com>
 
-Missing clock gating programming blocks memory power on from boot up.
+Add function to handle deep copying dml2 context.
 
-Reviewed-by: Chris Park <chris.park@amd.com>
+Reviewed-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
 Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Signed-off-by: Yihan Zhu <yihan.zhu@amd.com>
+Signed-off-by: Dillon Varone <dillon.varone@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c               | 3 ++-
- drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 15 +++-------
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    | 29 ++++++++++++++++++-
+ .../drm/amd/display/dc/dml2/dml2_wrapper.h    |  4 +++
+ 3 files changed, 36 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c
-index 994b21ed272f..e789e654c387 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_mpc.c
-@@ -71,12 +71,13 @@ void mpc32_power_on_blnd_lut(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index eab713c0da0d..102d00a9a24f 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2258,23 +2258,16 @@ struct dc_state *dc_copy_state(struct dc_state *src_ctx)
  {
- 	struct dcn30_mpc *mpc30 = TO_DCN30_MPC(mpc);
+ 	int i, j;
+ 	struct dc_state *new_ctx = kvmalloc(sizeof(struct dc_state), GFP_KERNEL);
+-#ifdef CONFIG_DRM_AMD_DC_FP
+-	struct dml2_context *dml2 =  NULL;
+-#endif
  
-+	REG_SET(MPCC_MCM_MEM_PWR_CTRL[mpcc_id], 0, MPCC_MCM_1DLUT_MEM_PWR_DIS, power_on);
+ 	if (!new_ctx)
+ 		return NULL;
+ 	memcpy(new_ctx, src_ctx, sizeof(struct dc_state));
+ 
+ #ifdef CONFIG_DRM_AMD_DC_FP
+-	if (new_ctx->bw_ctx.dml2) {
+-		dml2 = kzalloc(sizeof(struct dml2_context), GFP_KERNEL);
+-		if (!dml2)
+-			return NULL;
+-
+-		memcpy(dml2, src_ctx->bw_ctx.dml2, sizeof(struct dml2_context));
+-		new_ctx->bw_ctx.dml2 = dml2;
+-	}
++	if (new_ctx->bw_ctx.dml2 && !dml2_create_copy(&new_ctx->bw_ctx.dml2, src_ctx->bw_ctx.dml2)) {
++		dc_release_state(new_ctx);
++		return NULL;
++ 	}
+ #endif
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+index 8f231418870f..9d354fde6908 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+@@ -691,10 +691,15 @@ bool dml2_validate(const struct dc *in_dc, struct dc_state *context, bool fast_v
+ 	return out;
+ }
+ 
++static inline struct dml2_context *dml2_allocate_memory(void)
++{
++	return (struct dml2_context *) kzalloc(sizeof(struct dml2_context), GFP_KERNEL);
++}
 +
- 	if (mpc->ctx->dc->debug.enable_mem_low_power.bits.cm) {
- 		if (power_on) {
- 			REG_UPDATE(MPCC_MCM_MEM_PWR_CTRL[mpcc_id], MPCC_MCM_1DLUT_MEM_PWR_FORCE, 0);
- 			REG_WAIT(MPCC_MCM_MEM_PWR_CTRL[mpcc_id], MPCC_MCM_1DLUT_MEM_PWR_STATE, 0, 1, 5);
- 		} else if (!mpc->ctx->dc->debug.disable_mem_low_power) {
--			ASSERT(false);
- 			/* TODO: change to mpc
- 			 *  dpp_base->ctx->dc->optimized_required = true;
- 			 *  dpp_base->deferred_reg_writes.bits.disable_blnd_lut = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-index 1a0ed1c7e2d4..13324422ff50 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-@@ -736,7 +736,7 @@ static const struct dc_debug_options debug_defaults_drv = {
- 			.i2c = true,
- 			.dmcu = false, // This is previously known to cause hang on S3 cycles if enabled
- 			.dscl = true,
--			.cm = false,
-+			.cm = true,
- 			.mpc = true,
- 			.optc = true,
- 			.vpg = true,
+ bool dml2_create(const struct dc *in_dc, const struct dml2_configuration_options *config, struct dml2_context **dml2)
+ {
+ 	// Allocate Mode Lib Ctx
+-	*dml2 = (struct dml2_context *) kzalloc(sizeof(struct dml2_context), GFP_KERNEL);
++	*dml2 = dml2_allocate_memory();
+ 
+ 	if (!(*dml2))
+ 		return false;
+@@ -745,3 +750,25 @@ void dml2_extract_dram_and_fclk_change_support(struct dml2_context *dml2,
+ 	*fclk_change_support = (unsigned int) dml2->v20.dml_core_ctx.ms.support.FCLKChangeSupport[0];
+ 	*dram_clk_change_support = (unsigned int) dml2->v20.dml_core_ctx.ms.support.DRAMClockChangeSupport[0];
+ }
++
++void dml2_copy(struct dml2_context *dst_dml2,
++	struct dml2_context *src_dml2)
++{
++	/* copy Mode Lib Ctx */
++	memcpy(dst_dml2, src_dml2, sizeof(struct dml2_context));
++}
++
++bool dml2_create_copy(struct dml2_context **dst_dml2,
++	struct dml2_context *src_dml2)
++{
++	/* Allocate Mode Lib Ctx */
++	*dst_dml2 = dml2_allocate_memory();
++
++	if (!(*dst_dml2))
++		return false;
++
++	/* copy Mode Lib Ctx */
++	dml2_copy(*dst_dml2, src_dml2);
++
++	return true;
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+index fe15baa4bf09..0de6886969c6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+@@ -191,6 +191,10 @@ bool dml2_create(const struct dc *in_dc,
+ 				 struct dml2_context **dml2);
+ 
+ void dml2_destroy(struct dml2_context *dml2);
++void dml2_copy(struct dml2_context *dst_dml2,
++	struct dml2_context *src_dml2);
++bool dml2_create_copy(struct dml2_context **dst_dml2,
++	struct dml2_context *src_dml2);
+ 
+ /*
+  * dml2_validate - Determines if a display configuration is supported or not.
 -- 
 2.42.0
 
