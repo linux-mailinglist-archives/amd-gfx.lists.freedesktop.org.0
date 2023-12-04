@@ -1,85 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3638035E1
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Dec 2023 15:04:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DAE2803624
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Dec 2023 15:13:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A57EE10E26A;
-	Mon,  4 Dec 2023 14:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA3210E1DE;
+	Mon,  4 Dec 2023 14:13:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2FF610E137
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Dec 2023 13:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1701694836;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FriHzOMQp/2DueNm6yNB4UNP5qaRQJmWiziJsVzEw8g=;
- b=FZ4xFNkdCzA/ueekOjFF3csPdrhY2ZNuvk/6PPf76X/PjZV7HBVeBBHuD7kn3opuXQ6Ilm
- 5QRwpPe7pYDrO3f78YTdcA7uLOeIfMVzS2lRNhptSbLdV3DRS5OVNn6nckd8R8Y4KIO1st
- rvwfiOFaNXzdMSg/nsIek/lDFtviNgM=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-56-rz8lkc-VPQOWLtT7zf3SdQ-1; Mon, 04 Dec 2023 08:00:34 -0500
-X-MC-Unique: rz8lkc-VPQOWLtT7zf3SdQ-1
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-2ca0a40faa4so4973461fa.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 04 Dec 2023 05:00:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701694832; x=1702299632;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=FriHzOMQp/2DueNm6yNB4UNP5qaRQJmWiziJsVzEw8g=;
- b=RA11n08EPuX12c27Yev5cXqRX9VWNglIiA97FVPFSODK3JZVcZOAMZlekDobel3zqS
- FJCCO/JdGfF1Ps19ytONA8g6hgnkM5tTvYIKbGoioX8CmzNlUuWd1XFzl2rq5mtJQp73
- 1drxHshQPq1pfskV5B9SoSFUOCcpkLtmB6h4gwVmihVJanwTpx0l4xQbgHJ6GjqS31ob
- SfB9qs8l/1Ru+jUKvpR09TwPS+4ENq6pSRgSqG/F2IJUMx1+RR5UFft34IoO+9wlE/04
- bnUAQbJczO6QLCx6uQxRe/mGWoCnMtVyRukNLly6B42LF7RZEKfv+Pc3oziysA9zK0Hk
- Xu/w==
-X-Gm-Message-State: AOJu0YwpgDYhzjiLNdQNUR1vVcatCBWQbcM9zlhpNKu+CwNrcsJCMbiR
- BBghIGX2FIaLPuMaJ6gUWmnFgOJhmFZP9/FExkCBWXs0drh9vDe1IKWo4P6vaMuApdLSHzQ80K/
- eZkgiCyxBPQx/rKyVBZgdfa7qIJnxxdQ1FA==
-X-Received: by 2002:a2e:7815:0:b0:2ca:960:ecf with SMTP id
- t21-20020a2e7815000000b002ca09600ecfmr407472ljc.38.1701694831778; 
- Mon, 04 Dec 2023 05:00:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEUDlL3PQDaunfbKm5bm9nZExcQclP036JU8t7gUe6hkMIGG85ZkiV9yFlmISmoVd9Fx18tFQ==
-X-Received: by 2002:a2e:7815:0:b0:2ca:960:ecf with SMTP id
- t21-20020a2e7815000000b002ca09600ecfmr407450ljc.38.1701694831370; 
- Mon, 04 Dec 2023 05:00:31 -0800 (PST)
-Received: from [10.40.98.142] ([78.108.130.194])
- by smtp.gmail.com with ESMTPSA id
- p7-20020a17090635c700b009fc576e26e6sm5238674ejb.80.2023.12.04.05.00.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 04 Dec 2023 05:00:30 -0800 (PST)
-Message-ID: <99de0223-6d28-4379-ac2a-ef093ee0386c@redhat.com>
-Date: Mon, 4 Dec 2023 14:00:29 +0100
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC18210E1DE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Dec 2023 14:13:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jrzg/Yxur/gKhKWCSnfE0FgyAgkHQGX0dYWX5EIcBF98B+YNQuzCZe4MBHwQ+hocE7xeMK0H8w0E6TBlDMVyGw25jYwgRn3DKxAX6WMkNeTHG1d9uCJP4s+YiGPwMT5YHf/cel9eE6nM8FVvnosx8qVPs/nzeleAZpyxQG9Mhuu+leNqV1+KnW5JxJP+kcxT04oApTu5bV52yMNTs3PbvqlLqM7ldZK+s0EXaZH872XxlV4sPeoKSaFF570OCKZfYyniRQvkxvypGX35f3+yKUoCRn/qnzonb67Foe3XDZuzKbAuauPBReoCTb6Z04yObh4D/XhGqzugczMnR8zuxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bJLfk/KGOg2ckSgm9ji92eLfCnw5NPHEmIKsHJnWvKM=;
+ b=HJAJHzl6Qbtihi3uSQJlX2AazpE5F5qSoRnnE8kk2bqqthxeUKra5CsHh3MtS5GsAfmoD44eZV6QAdQ8UuvH4YUdbABIGLJkkpPP/95SM8r49FWSmUzc5oMYxCpX48rGl9GQ74kZmvFQJrHNhEjbpzlZOc1nLAkKKxPutre2WAIZL2quyWoiWm4dSgMSZitFX+gNfxsLxZSGzuMZyVa1DHMB7r+EBDG2iuJUFd0+qyLne3Sn/+JnxpKblgR2V/Spxb/zfZNKzHKiB0bPNUAnl7nMmxdinYsWFBPPnwveHkCtuI0XNtF/qf6ANNKgJx4NEOCVYMjoCOiBb1yZImKFkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bJLfk/KGOg2ckSgm9ji92eLfCnw5NPHEmIKsHJnWvKM=;
+ b=RQun7Onk1xkbV7nwvqevT2t4Zy1WdkAxVxiRxWYuikLUSlMHXAbCNwj/fDLw7k3hz7/XScBeM/uZOo0zsSt6yhR8sowELv4dOnrG3tZAdtDjhurB5EZqTED8VDJAQ69MDz7okr+hmn55e8zBnrLH/0fvDpYFlP3D0neWF6Id20g=
+Received: from BL1PR13CA0016.namprd13.prod.outlook.com (2603:10b6:208:256::21)
+ by SJ0PR12MB6808.namprd12.prod.outlook.com (2603:10b6:a03:47a::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33; Mon, 4 Dec
+ 2023 14:13:28 +0000
+Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
+ (2603:10b6:208:256:cafe::b5) by BL1PR13CA0016.outlook.office365.com
+ (2603:10b6:208:256::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.23 via Frontend
+ Transport; Mon, 4 Dec 2023 14:13:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7068.20 via Frontend Transport; Mon, 4 Dec 2023 14:13:28 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 4 Dec
+ 2023 08:13:27 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: fix buffer funcs setting order on suspend
+Date: Mon, 4 Dec 2023 09:13:07 -0500
+Message-ID: <20231204141307.20647-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 2/9] platform/x86/amd: Add support for AMD ACPI based
- Wifi band RFI mitigation feature
-To: Ma Jun <Jun.Ma2@amd.com>, amd-gfx@lists.freedesktop.org, lenb@kernel.org, 
- johannes@sipsolutions.net, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, alexander.deucher@amd.com,
- Lijo.Lazar@amd.com, mario.limonciello@amd.com, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20231129091348.3972539-1-Jun.Ma2@amd.com>
- <20231129091348.3972539-3-Jun.Ma2@amd.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20231129091348.3972539-3-Jun.Ma2@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 04 Dec 2023 14:04:11 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|SJ0PR12MB6808:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85c89db2-6216-41c9-2065-08dbf4d32ffa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ALgX3dL8nHarQ9SzyUoj3DXkgdH2kqbnGx9DM3PSE3Ac6ptJvJxasmpcEa9M4yIjB9yQFEGKLZiQL2jnqkWel9myJW6qCmk1H0ytAYavGdNnNMpT7BpyQIqGbV41dsvhq7+x/hPXIj1YiCmSQEbCt0mGB0/bz/kH89XH5v2cdScYr7Qko7Bs9l49JjCJAUJz7KFkzfmHz9zkm8N0sqmR+o7s4E0RQUOJmy4HPtH/IRbZIOsX1UJQ5Cf6fVnmMlzihOb8unjZBByAiBrnChKrxVeUUZ0SM02OxJHLUCgze96SQ8LxdIEOEMh41DiGl4kNssxRjWzw/OO7Vw8lc2tLF3oR0qQnZlC444sqJKlxHaxlO5nnnecIBe0Q+k6xgOLpdGWyAe2h/dXanQTypd9etW8ToLNdFfbBrwD45ks/Mkc5mqmLcFBE+unM0Egw7nixC0MUY75Jh00wkBKnc4qK+g6pLMMkWGWn8wbrEiLetiASY7XNe6cpTWx/3wkungQfNfbW0RnO7N1uxPBOl3nGCcm6MWqtba/5JP3nFvsKeY5eAeedgdbbV0XkjifoPh8+zSUmAIkzWiWHpcIJ8ngwi9ds1U8Nw/mE0Oy2FgKSSZDIvG4o8Br25mw6AaYKPzvfP5e8wO0SQCvbCoklYYhue5Hr8SCOBAWijE3MxtsMROFtnNFh4MEVWjHk1+HdQUVks6jkQ9W056guPJ89CXZf8n4NlJ/Y0ON3EaST1XmIGuqWfPZeStQGzw9VSoSgwcqLMdjUmX+t5euHEyK7EqCcaA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(376002)(396003)(39860400002)(136003)(230922051799003)(64100799003)(82310400011)(1800799012)(186009)(451199024)(46966006)(40470700004)(36840700001)(1076003)(2616005)(4326008)(8676002)(8936002)(7696005)(47076005)(40480700001)(356005)(81166007)(83380400001)(36860700001)(16526019)(426003)(336012)(82740400003)(26005)(966005)(478600001)(40460700003)(6666004)(70206006)(70586007)(54906003)(316002)(6916009)(2906002)(36756003)(41300700001)(86362001)(5660300002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 14:13:28.2474 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85c89db2-6216-41c9-2065-08dbf4d32ffa
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DE.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6808
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,147 +97,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Evan Quan <quanliangl@hotmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Phillip Susi <phill@thesusis.net>,
+ Luben Tuikov <ltuikov89@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+We need to disable this after the last eviction
+call, but before we disable the SDMA IP.
 
-On 11/29/23 10:13, Ma Jun wrote:
-> Due to electrical and mechanical constraints in certain platform designs
-> there may be likely interference of relatively high-powered harmonics of
-> the (G-)DDR memory clocks with local radio module frequency bands used
-> by Wifi 6/6e/7.
-> 
-> To mitigate this, AMD has introduced a mechanism that devices can use to
-> notify active use of particular frequencies so that other devices can make
-> relative internal adjustments as necessary to avoid this resonance.
-> 
-> Co-developed-by: Evan Quan <quanliangl@hotmail.com>
-> Signed-off-by: Evan Quan <quanliangl@hotmail.com>
-> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
-> 
-> --
-> v11:
->  - fix typo(Simon)
-> v12:
->  - Fix the code logic (Rafael)
->  - Move amd_wbrf.c to drivers/platform/x86/amd/wbrf.c
->  - Updated Evan's email because he's no longer at AMD.Thanks
-> for his work in earlier versions.
-> v13:
->  - Fix the format issue (IIpo Jarvinen)
->  - Add comment for some functions
-> v14:
->  - Use the apci_check_dsm and acpi_evaluate_dsm (Hans de Goede)
+Fixes: b70438004a14 ("drm/amdgpu: move buffer funcs setting up a level")
+Link: https://lore.kernel.org/r/87edgv4x3i.fsf@vps.thesusis.net
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: Phillip Susi <phill@thesusis.net>
+Cc: Luben Tuikov <ltuikov89@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thank you this is much better.
-
-I notice that the #define ACPI_AMD_WBRF_METHOD	"\\WBRF"
-still exists though and that this is still used in
-static bool acpi_amd_wbrf_supported_system(void).
-
-I think it might be better to just remove
-these 2 all together.
-
-Checking if a DSM with the expected GUID is present
-and if that has the correct bits set in its supported
-mask should be enough.
-
-And on future systems the implementer may decide to
-not have a WBRF helper function at all and instead
-handle everything in the _DSM method.
-
-So the "\\WBRF" check seems to be checking for
-what really is an implementation detail.
-
-2 other very small remarks:
-
-> +/**
-> + * acpi_amd_wbrf_supported_producer - determine if the WBRF can be enabled
-> + *                                    for the device as a producer
-> + *
-> + * @dev: device pointer
-> + *
-> + * Check if the platform equipped with necessary implementations to
-> + * support WBRF for the device as a producer.
-> + *
-> + * Return:
-> + * true if WBRF is supported, otherwise returns false
-> + */
-> +bool acpi_amd_wbrf_supported_producer(struct device *dev)
-> +{
-> +	struct acpi_device *adev;
-> +
-> +	adev = ACPI_COMPANION(dev);
-> +	if (!adev)
-> +		return false;
-> +
-> +	if (!acpi_amd_wbrf_supported_system())
-> +		return false;
-> +
-> +
-> +	return acpi_check_dsm(adev->handle, &wifi_acpi_dsm_guid,
-> +			      WBRF_REVISION, BIT(WBRF_RECORD));
-> +}
-> +EXPORT_SYMBOL_GPL(acpi_amd_wbrf_supported_producer);
-
-Please don't use double empty lines, one empty line to separate things
-is enough.
-
-> +
-> +/**
-> + * acpi_amd_wbrf_supported_consumer - determine if the WBRF can be enabled
-> + *                                    for the device as a consumer
-> + *
-> + * @dev: device pointer
-> + *
-> + * Determine if the platform equipped with necessary implementations to
-> + * support WBRF for the device as a consumer.
-> + *
-> + * Return:
-> + * true if WBRF is supported, otherwise returns false.
-> + */
-> +bool acpi_amd_wbrf_supported_consumer(struct device *dev)
-> +{
-> +	struct acpi_device *adev;
-> +
-> +	adev = ACPI_COMPANION(dev);
-> +	if (!adev)
-> +		return false;
-> +
-> +	if (!acpi_amd_wbrf_supported_system())
-> +		return false;
-> +
-> +	return acpi_check_dsm(adev->handle, &wifi_acpi_dsm_guid,
-> +			      WBRF_REVISION, BIT(WBRF_RETRIEVE));
-> +}
-> +EXPORT_SYMBOL_GPL(acpi_amd_wbrf_supported_consumer);
-> +
-> +/**
-> + * amd_wbrf_retrieve_freq_band - retrieve current active frequency
-> + *                                     bands
-
-You may go a bit over the 80 chars limit, please just make this
-a single line:
-
- * amd_wbrf_retrieve_freq_band - retrieve current active frequency bands
-
-> + *
-> + * @dev: device pointer
-> + * @out: output structure containing all the active frequency bands
-> + *
-> + * Retrieve the current active frequency bands which were broadcasted
-> + * by other producers. The consumer who calls this API should take
-> + * proper actions if any of the frequency band may cause RFI with its
-> + * own frequency band used.
-> + *
-> + * Return:
-> + * 0 for getting wifi freq band successfully.
-> + * Returns a negative error code for failure.
-> + */
-
-Regards,
-
-Hans
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index f29d0faf956e..b76ec5ec04c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4593,8 +4593,6 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+ 
+ 	amdgpu_ras_suspend(adev);
+ 
+-	amdgpu_ttm_set_buffer_funcs_status(adev, false);
+-
+ 	amdgpu_device_ip_suspend_phase1(adev);
+ 
+ 	if (!adev->in_s0ix)
+@@ -4604,6 +4602,8 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+ 	if (r)
+ 		return r;
+ 
++	amdgpu_ttm_set_buffer_funcs_status(adev, false);
++
+ 	amdgpu_fence_driver_hw_fini(adev);
+ 
+ 	amdgpu_device_ip_suspend_phase2(adev);
+-- 
+2.42.0
 
