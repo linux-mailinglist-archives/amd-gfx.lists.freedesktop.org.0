@@ -1,55 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB588051CC
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Dec 2023 12:15:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7CC8056B9
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Dec 2023 15:05:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6D1910E23C;
-	Tue,  5 Dec 2023 11:15:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9985810E545;
+	Tue,  5 Dec 2023 14:05:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93B410E23C;
- Tue,  5 Dec 2023 11:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701774928; x=1733310928;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NtqRqAaSN8bHzbwU6WekMXe7XL+AeersMYsyODUzhOc=;
- b=H6pNfMzHWba/P3WE7f6CVJNcA05UhBWn+JiWHd8jGxUknNKymi+ll1/O
- Aa2mimrVrQyy0Y926QYv226MNS0it3eiDuWimQoMRHQbHBRHBxbhmeyef
- jxmgdrWUwxpwOgQG+vW2mgsbm9ES82yniZDbyxPsPkplWk2uxt1sR0OmE
- /iEuVQvGDyxDpDuzJ4SIUJ/dA6kBgtFBkPKn1WE2c7lbeIUDjbYz8UizS
- nIcgt8MrBrvpaEwaYqX6KoLS7XJ2s3T/ipoH3z+6xtlDRBWM/FTs+M4cZ
- Cs5szoj0eMu+MZMfpjCT84F6MKGnd4kMDD5egkviggbmUYXcrwT5WJU3M g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="7223274"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="7223274"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 03:15:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="720663324"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="720663324"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
- by orsmga003.jf.intel.com with ESMTP; 05 Dec 2023 03:15:25 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rATOc-0008qM-27;
- Tue, 05 Dec 2023 11:15:22 +0000
-Date: Tue, 5 Dec 2023 19:15:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 5/6] drm/amdgpu: Auto-validate DMABuf imports in compute
- VMs
-Message-ID: <202312051955.xACUCivN-lkp@intel.com>
-References: <20231201233438.1709981-5-Felix.Kuehling@amd.com>
+X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Dec 2023 09:25:49 UTC
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be
+ [IPv6:2a02:1800:120:4::f00:14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7CA10E232
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Dec 2023 09:25:49 +0000 (UTC)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:f143:dd2b:2cfe:eb7c])
+ by xavier.telenet-ops.be with bizsmtp
+ id JZLk2B00X5Tnyl201ZLk4P; Tue, 05 Dec 2023 10:20:46 +0100
+Received: from geert (helo=localhost)
+ by ramsan.of.borg with local-esmtp (Exim 4.95)
+ (envelope-from <geert@linux-m68k.org>) id 1rARbg-00B2oN-N4;
+ Tue, 05 Dec 2023 10:20:44 +0100
+Date: Tue, 5 Dec 2023 10:20:44 +0100 (CET)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Dave Airlie <airlied@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Subject: amdgpu header files (was: Re: [git pull] drm for 6.7-rc1)
+In-Reply-To: <CAPM=9txd+1FtqU-R_8Zr_UePUzu7QUWsDBV1syKBo16v_gx2XQ@mail.gmail.com>
+Message-ID: <45db1e4b-afbe-8bf5-6c4-945bdacb11f3@linux-m68k.org>
+References: <CAPM=9txd+1FtqU-R_8Zr_UePUzu7QUWsDBV1syKBo16v_gx2XQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231201233438.1709981-5-Felix.Kuehling@amd.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Mailman-Approved-At: Tue, 05 Dec 2023 14:05:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +45,95 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Felix,
+On Tue, 31 Oct 2023, Dave Airlie wrote:
+> This is the main drm pull request for 6.7.
 
-kernel test robot noticed the following build errors:
+> Highlights:
+> - AMD adds some more upcoming HW platforms
 
-[auto build test ERROR on next-20231201]
-[cannot apply to drm-misc/drm-misc-next drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.7-rc3 v6.7-rc2 v6.7-rc1 v6.7-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> Alex Deucher (24):
+>      drm/amdgpu: update to the latest GC 11.5 headers
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Felix-Kuehling/drm-amdkfd-Export-DMABufs-from-KFD-using-GEM-handles/20231202-073833
-base:   next-20231201
-patch link:    https://lore.kernel.org/r/20231201233438.1709981-5-Felix.Kuehling%40amd.com
-patch subject: [PATCH 5/6] drm/amdgpu: Auto-validate DMABuf imports in compute VMs
-config: powerpc-randconfig-001-20231203 (https://download.01.org/0day-ci/archive/20231205/202312051955.xACUCivN-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231205/202312051955.xACUCivN-lkp@intel.com/reproduce)
+> Candice Li (8):
+>      drm/amd: Add umc v12_0_0 ip headers
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312051955.xACUCivN-lkp@intel.com/
+> Lang Yu (57):
+>      drm/amdgpu: add gc headers for gc 11.5.0
+>      drm/amdgpu: add mmhub 3.3.0 headers
+>      drm/amdgpu: add VPE 6.1.0 header files
+>      drm/amdgpu: add UMSCH 4.0 register headers
 
-All errors (new ones prefixed by >>):
+> Li Ma (11):
+>      drm/amdgpu: add header files for MP 14.0.0
+>      drm/amdgpu: fix missing stuff in NBIO v7.11
 
-   powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/amdgpu_gem.o: in function `amdgpu_gem_object_open':
->> amdgpu_gem.c:(.text.amdgpu_gem_object_open+0x150): undefined reference to `amdgpu_amdkfd_bo_validate_and_fence'
+> Qingqing Zhuo (38):
+>      drm/amd/display: Add dcn35 register header files
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Saleemkhan Jamadar (9):
+>      drm/amdgpu: add vcn 4_0_5 header files
+
+> Yang Wang (16):
+>      drm/amd/pm: add smu_13_0_6 mca dump support
+
+> benl (3):
+>      drm/amdgpu: add nbio 7.11 registers
+
+> .../amd/include/asic_reg/dcn/dcn_3_5_0_offset.h    | 15255 +++++
+> .../amd/include/asic_reg/dcn/dcn_3_5_0_sh_mask.h   | 53412 +++++++++++++++++
+> .../drm/amd/include/asic_reg/gc/gc_11_5_0_offset.h | 10000 ++++
+> .../amd/include/asic_reg/gc/gc_11_5_0_sh_mask.h    | 36579 ++++++++++++
+> .../include/asic_reg/mmhub/mmhub_3_3_0_offset.h    |  1395 +
+> .../include/asic_reg/mmhub/mmhub_3_3_0_sh_mask.h   |  6722 +++
+> .../amd/include/asic_reg/mp/mp_13_0_6_sh_mask.h    |    28 +
+> .../drm/amd/include/asic_reg/mp/mp_14_0_0_offset.h |   359 +
+> .../amd/include/asic_reg/mp/mp_14_0_0_sh_mask.h    |   534 +
+> .../amd/include/asic_reg/nbio/nbio_7_11_0_offset.h |  9400 +++
+> .../include/asic_reg/nbio/nbio_7_11_0_sh_mask.h    | 57857 +++++++++++++++++++
+> .../amd/include/asic_reg/umc/umc_12_0_0_offset.h   |    33 +
+> .../amd/include/asic_reg/umc/umc_12_0_0_sh_mask.h  |    95 +
+> .../amd/include/asic_reg/vcn/vcn_4_0_0_offset.h    |   422 +
+> .../amd/include/asic_reg/vcn/vcn_4_0_0_sh_mask.h   |   882 +
+> .../amd/include/asic_reg/vcn/vcn_4_0_5_offset.h    |  1797 +
+> .../amd/include/asic_reg/vcn/vcn_4_0_5_sh_mask.h   |  8614 +++
+> .../amd/include/asic_reg/vpe/vpe_6_1_0_offset.h    |  1553 +
+> .../amd/include/asic_reg/vpe/vpe_6_1_0_sh_mask.h   |  4393 ++
+
+These huge files can be reduced by 50%: all the *_SHIFT definitions are
+redundant, as they can be derived from the corresponding *_MASK
+definitions at compile-time, cfr. <linux/bitfield.h>.
+
+E.g.:
+
+#define AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER__SHIFT        0x0
+#define AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_RESET__SHIFT  0xf
+#define AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_MASK          0x00FFL
+#define AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_RESET_MASK    0x8000L
+
+AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER__SHIFT =
+ 	__bf_shf(AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_MASK)
+AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_RESET__SHIFT =
+ 	__bf_shf(AZCONTROLLER0_CORB_READ_POINTER__CORB_READ_POINTER_RESET_MASK)
+
+set_reg_field_value_masks() takes a shift and a mask, while it
+could calculate the shift at run-time.
+set_reg_field_values() takes pairs of shifts and masks, but the shifts
+are not needed; lots of tables can be halved, etc...
+
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
