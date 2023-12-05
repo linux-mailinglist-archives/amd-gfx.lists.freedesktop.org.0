@@ -2,45 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF4E38056B8
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Dec 2023 15:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0712C805609
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Dec 2023 14:34:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B35E10E543;
-	Tue,  5 Dec 2023 14:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 896D110E534;
+	Tue,  5 Dec 2023 13:34:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3047E10E14D
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 Dec 2023 13:23:08 +0000 (UTC)
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1rAVOE-0003ki-M3; Tue, 05 Dec 2023 14:23:06 +0100
-Message-ID: <d6849d4b-5b47-46e6-8cb3-a4a01f99f95c@leemhuis.info>
-Date: Tue, 5 Dec 2023 14:23:05 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C006F10E52F;
+ Tue,  5 Dec 2023 13:34:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701783250; x=1733319250;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3ZG5O8x+XN9jfQ3hj5aUyeJvVs/G1In0ZVS8u9rOfn8=;
+ b=R6bPzUjkI1eOGPThWtKmIifaBXGTOtTDDdIoenbHVTUAfjwcqZkjWuRR
+ 9bM29kiSsW/CKjlyXVFjUFYVVVkglYKPDJiNCA39n20h3xQbrcmWFZ/fc
+ KSmW1zl9Qdhkg9n2u2WSslict2c6m704fjde0SB8y7hdcB0/iFz/csjY1
+ yYVhpeqyIQNeFT2w5ckerZDmBG1iFimgighnDl0PIkMP75gM0U/pRhafk
+ hmRso7YPc01Xug2UWpPGbnMeTNTyGEvHBppvaXf4OXHghmw6aoSi0O5l9
+ HfVl3/+YoNintB2xzjeUCIZbPrQ8Bgp2E/ZWPa4gUxOYYO5SNUZ8kEpZW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="396688883"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="396688883"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 05:34:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="747232463"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="747232463"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+ by orsmga006.jf.intel.com with ESMTP; 05 Dec 2023 05:34:08 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rAVYp-000939-0g;
+ Tue, 05 Dec 2023 13:34:05 +0000
+Date: Tue, 5 Dec 2023 21:32:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 5/6] drm/amdgpu: Auto-validate DMABuf imports in compute
+ VMs
+Message-ID: <202312052136.JfzEpgBw-lkp@intel.com>
+References: <20231201233438.1709981-5-Felix.Kuehling@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
- flashing bar with a picture of the desktop background on white screen
-Content-Language: en-US, de-DE
-To: Alex Deucher <alexdeucher@gmail.com>, "Lee, Alvin" <Alvin.Lee2@amd.com>
-References: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
- <CABXGCsOqbLRHSkiz79NkVQ-wUtR7y-ZFHvhMw0+JJ_cY2AZmSw@mail.gmail.com>
- <CABXGCsPE9=Qp3Jg5hkRsTQoNgODnS_cXFU1d+hg3Baob40AaAA@mail.gmail.com>
- <edc5b75b-c08d-4c62-ae5e-089ffac27772@amd.com>
- <CABXGCsO=pdxorK9pO7qBPJM-xvgPPtpZqxLvQO4t2AK5qW3vcA@mail.gmail.com>
- <DM8PR12MB5400EAB81E5FA10F4309A732D1B1A@DM8PR12MB5400.namprd12.prod.outlook.com>
- <CADnq5_P8aRkj340FtBJKsZDnV8iOCmdmCHDWKHGca+4UtfNy1A@mail.gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-In-Reply-To: <CADnq5_P8aRkj340FtBJKsZDnV8iOCmdmCHDWKHGca+4UtfNy1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1701782588;
- 1c2f113c; 
-X-HE-SMSGID: 1rAVOE-0003ki-M3
-X-Mailman-Approved-At: Tue, 05 Dec 2023 14:05:51 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231201233438.1709981-5-Felix.Kuehling@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,63 +60,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, "Wheeler,
- Daniel" <Daniel.Wheeler@amd.com>, "Wu, Hersen" <hersenxs.wu@amd.com>, "Mahfooz,
- Hamza" <Hamza.Mahfooz@amd.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 27.11.23 19:11, Alex Deucher wrote:
-> On Wed, Nov 15, 2023 at 1:52 PM Lee, Alvin <Alvin.Lee2@amd.com> wrote:
->>
->> [AMD Official Use Only - General]
->>
->> This change has a DMCUB dependency - are you able to update your DMCUB version as well?
->>
->> This version mismatch issue is something I'll need to fix in driver for Linux.
-> 
-> @Mahfooz, Hamza @Alvin Lee any update on a fix for this?
+Hi Felix,
 
-Still no news afaics. Or was there any progress I missed?
+kernel test robot noticed the following build errors:
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-If I did something stupid, please tell me, as explained on that page.
+[auto build test ERROR on next-20231201]
+[cannot apply to drm-misc/drm-misc-next drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.7-rc3 v6.7-rc2 v6.7-rc1 v6.7-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-#regzbot poke
+url:    https://github.com/intel-lab-lkp/linux/commits/Felix-Kuehling/drm-amdkfd-Export-DMABufs-from-KFD-using-GEM-handles/20231202-073833
+base:   next-20231201
+patch link:    https://lore.kernel.org/r/20231201233438.1709981-5-Felix.Kuehling%40amd.com
+patch subject: [PATCH 5/6] drm/amdgpu: Auto-validate DMABuf imports in compute VMs
+config: x86_64-randconfig-161-20231203 (https://download.01.org/0day-ci/archive/20231205/202312052136.JfzEpgBw-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231205/202312052136.JfzEpgBw-lkp@intel.com/reproduce)
 
->> -----Original Message-----
->> From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
->> Sent: Wednesday, November 15, 2023 1:22 PM
->> To: Mahfooz, Hamza <Hamza.Mahfooz@amd.com>
->> Cc: Lee, Alvin <Alvin.Lee2@amd.com>; Wu, Hersen <hersenxs.wu@amd.com>; Wheeler, Daniel <Daniel.Wheeler@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; Linux List Kernel Mailing <linux-kernel@vger.kernel.org>; amd-gfx list <amd-gfx@lists.freedesktop.org>
->> Subject: Re: regression/bisected/6.7rc1: Instead of desktop I see a horizontal flashing bar with a picture of the desktop background on white screen
->>
->> On Wed, Nov 15, 2023 at 11:14 PM Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
->>>
->>> What version of DMUB firmware are you on?
->>> The easiest way to find out would be using the following:
->>>
->>> # dmesg | grep DMUB
->>>
->>
->> Sapphire AMD Radeon RX 7900 XTX PULSE OC:
->> ❯ dmesg | grep DMUB
->> [   14.341362] [drm] Loading DMUB firmware via PSP: version=0x07002100
->> [   14.725547] [drm] DMUB hardware initialized: version=0x07002100
->>
->> Reference GIGABYTE Radeon RX 7900 XTX 24G:
->> ❯ dmesg | grep DMUB
->> [   11.405115] [drm] Loading DMUB firmware via PSP: version=0x07002100
->> [   11.773395] [drm] DMUB hardware initialized: version=0x07002100
->>
->>
->> --
->> Best Regards,
->> Mike Gavrilov.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312052136.JfzEpgBw-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   ld: drivers/gpu/drm/amd/amdgpu/amdgpu_gem.o: in function `amdgpu_gem_object_open':
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c:208: undefined reference to `amdgpu_amdkfd_bo_validate_and_fence'
+
+
+vim +208 drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+
+   156	
+   157	/*
+   158	 * Call from drm_gem_handle_create which appear in both new and open ioctl
+   159	 * case.
+   160	 */
+   161	static int amdgpu_gem_object_open(struct drm_gem_object *obj,
+   162					  struct drm_file *file_priv)
+   163	{
+   164		struct amdgpu_bo *abo = gem_to_amdgpu_bo(obj);
+   165		struct amdgpu_device *adev = amdgpu_ttm_adev(abo->tbo.bdev);
+   166		struct amdgpu_fpriv *fpriv = file_priv->driver_priv;
+   167		struct amdgpu_vm *vm = &fpriv->vm;
+   168		struct amdgpu_bo_va *bo_va;
+   169		struct mm_struct *mm;
+   170		int r;
+   171	
+   172		mm = amdgpu_ttm_tt_get_usermm(abo->tbo.ttm);
+   173		if (mm && mm != current->mm)
+   174			return -EPERM;
+   175	
+   176		if (abo->flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID &&
+   177		    abo->tbo.base.resv != vm->root.bo->tbo.base.resv)
+   178			return -EPERM;
+   179	
+   180		r = amdgpu_bo_reserve(abo, false);
+   181		if (r)
+   182			return r;
+   183	
+   184		bo_va = amdgpu_vm_bo_find(vm, abo);
+   185		if (!bo_va)
+   186			bo_va = amdgpu_vm_bo_add(adev, vm, abo);
+   187		else
+   188			++bo_va->ref_count;
+   189		amdgpu_bo_unreserve(abo);
+   190	
+   191		/* Validate and add eviction fence to DMABuf imports with dynamic
+   192		 * attachment in compute VMs. Re-validation will be done by
+   193		 * amdgpu_vm_validate_evicted_bos and the fence will be updated by
+   194		 * amdgpu_vm_fence_imports in amdgpu_amdkfd_gpuvm_restore_process_bos.
+   195		 *
+   196		 * Nested locking below for the case that a GEM object is opened in
+   197		 * kfd_mem_export_dmabuf. Since the lock below is only taken for imports,
+   198		 * but not for export, this is a different lock class that cannot lead to
+   199		 * circular lock dependencies.
+   200		 */
+   201		if (!vm->is_compute_context || !vm->process_info)
+   202			return 0;
+   203		if (!obj->import_attach ||
+   204		    !dma_buf_is_dynamic(obj->import_attach->dmabuf))
+   205			return 0;
+   206		mutex_lock_nested(&vm->process_info->lock, 1);
+   207		if (!WARN_ON(!vm->process_info->eviction_fence)) {
+ > 208			r = amdgpu_amdkfd_bo_validate_and_fence(abo, AMDGPU_GEM_DOMAIN_GTT,
+   209								&vm->process_info->eviction_fence->base);
+   210			if (r)
+   211				dev_warn(adev->dev, "%d: validate_and_fence failed: %d\n",
+   212					 vm->task_info.pid, r);
+   213		}
+   214		mutex_unlock(&vm->process_info->lock);
+   215	
+   216		return 0;
+   217	}
+   218	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
