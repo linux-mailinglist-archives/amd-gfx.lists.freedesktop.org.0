@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD3E8095D5
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Dec 2023 23:54:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 693938095DA
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Dec 2023 23:54:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3237C10E0DA;
-	Thu,  7 Dec 2023 22:54:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080E310E14B;
+	Thu,  7 Dec 2023 22:54:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2089.outbound.protection.outlook.com [40.107.102.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CCB610E0DA
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 22:54:39 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2068.outbound.protection.outlook.com [40.107.96.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F3E10E0E7
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 22:54:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZFX9je2HEk7/oySRtfupMnkI7Vre1Sh/vsifFiIdzLqASxPMRKGGoMTTKuTM3zKtBSsJUM/fl88WGNE6qAOaqIMOK9DOUr/LTfQdEnpfzG00jJpeyVC+5rhQ7TPh5UP7foxLqubLilWHOYgbYPJhR+U7U0YHhaUVJqynPjFsSqJZcMjGBlHdeAmG+3UxUIcUFIm0QHHoTer1UVvSMRI04w04qnrSmhNspyFLYWmYQZsMvY5V9JQ8Qa6PVYAguJFXm6B6VtlnQtqswHUIvV9zHIzPfr1lSIHnJReeAffKSx2bBzovGFTNwp7vmaD/eliQcd50iTRrUboS1Zemn9CuhA==
+ b=LDdtQuVYteqo6d1ARTecVUs46y8NNlPUQF475pPe18A/LYBCcIwZL2x+fPW5FnpN9g/wzUoe5FID6VegudKKgs1p4HJU2/YVcbHhuWCkZOqLjTDuFlL8SP+XOdMwW6CU835RkHOA+EkXgSiNQBJyFdP3p3NUyofxpKjPuGL5lB3rL2CgB4B3+DDjkyKsUvGa/g2lkdZOqUTxzeKT+0q+QqgRcLav2si+ECp+SV7O+RbnLJL1qKgQ9UHML3yxhRURm3OJ5SZWRJVvIisNBFrloHrVUlMU6jEIb6buhhfMx9MRADMfkC2p2vnosu2OM2xHXY20Au9THJaAWpQSDOmVeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jJf4MITlGcom2Yrss9RBdEDT4+r+QLRu85/wrXI8QQI=;
- b=MidsdB6i0ZZfbSt2qfT9WosF0Cq6oAgkN3djfB3TyY0UONoGNwIl40/ZbNEQLeJVY5x47KH0yNlZoqnhnsvY1TjDBkm89hLlCNeyMtCc82t+HQN1AnYbRJK2iocwx6VRHjGKlYm0uAT694H1RwnvbXLK8eqDC1uOfqSvObGldgSPTjsulyGDRrFp5boD0Hh9s/QqeviogS7rHaOfJw56r/Q2h9yMUr9yYwuqs+rCFEIWFBm61qg3UWG8Bfma7oT7/sMlsThJUdWknzJvH6osVvpjyPhjtuUwQQ6PvQS9aCRsWI/B+1yXiAG7eVa8UpHldou3gx3wNu0SKGRCTPA0PA==
+ bh=IZiK0cxNyCS9aegZP6qC4ztCu0oZP335usKTwECNFKM=;
+ b=HozOtlysbxveA1jTrGPVn//oFfjPvB5xwKUF+yqgMS7HQFNL9sfwBj1a2BMQ8FIAzuoDUkSjERtkzyqfwEqRDivVacBBlX9DSM/cv4T+IY5/FLd20zreCKApEDxUoN+ZB3jhiz1e/c//yzdq2ABXkBTwmTKM6TzFkNuOFKWr2JxacoN87op4YrnWo0tT1neYbZznntyVPYxifisE3TEthODF/cEHvufCfCHk6RqCLrTNc4mMzMKnQkXJf0aSq2NZB+Rs3xmq7pY/oUidEuACXJJVE6TvLWfGenHlUxXfO/u/NFUwb0rgTD/4hhUML1y/EfZr2OxapvduNKgV5OjGrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jJf4MITlGcom2Yrss9RBdEDT4+r+QLRu85/wrXI8QQI=;
- b=ls/hznZm/jQZKovChPScY+No9PweMRrzfFUH2m4ZLZK2Nv3OHW7m+VNUX4lS8oWkGfuDpaVAAM8iD01CmA8Hu+tpUpopjygiDY1ACm1/EZUBHrw8znyHCDfLtXAEya8dhlpDZT38cHKg3d7PrQji8AGWmD1M69hhze2XKhT+B40=
-Received: from CH2PR20CA0019.namprd20.prod.outlook.com (2603:10b6:610:58::29)
- by MW3PR12MB4393.namprd12.prod.outlook.com (2603:10b6:303:2c::22)
+ bh=IZiK0cxNyCS9aegZP6qC4ztCu0oZP335usKTwECNFKM=;
+ b=d9/CKxUTJ3q6/9rfnYZH3e4VxBdAck1AEgqOpcLEvtZlW3ELpYZSRcYYdL93akJPYAk0iWV/YXhjlszb/fUnVHvJ1vfxuCz4j9QDSR11l6M0LlNR3GiWHewWN9UxJsMhJxXp1Y31lE3/qjWtMzg71VaEzk9pKE4WFjw3FemKP8U=
+Received: from CH2PR20CA0005.namprd20.prod.outlook.com (2603:10b6:610:58::15)
+ by PH7PR12MB7968.namprd12.prod.outlook.com (2603:10b6:510:272::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Thu, 7 Dec
- 2023 22:54:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.25; Thu, 7 Dec
+ 2023 22:54:38 +0000
 Received: from DS2PEPF0000343A.namprd02.prod.outlook.com
- (2603:10b6:610:58:cafe::50) by CH2PR20CA0019.outlook.office365.com
- (2603:10b6:610:58::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34 via Frontend
- Transport; Thu, 7 Dec 2023 22:54:36 +0000
+ (2603:10b6:610:58:cafe::42) by CH2PR20CA0005.outlook.office365.com
+ (2603:10b6:610:58::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33 via Frontend
+ Transport; Thu, 7 Dec 2023 22:54:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DS2PEPF0000343A.mail.protection.outlook.com (10.167.18.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7068.20 via Frontend Transport; Thu, 7 Dec 2023 22:54:36 +0000
+ 15.20.7068.20 via Frontend Transport; Thu, 7 Dec 2023 22:54:37 +0000
 Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 7 Dec
  2023 16:54:35 -0600
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 02/23] drm/amdkfd: add pc sampling support
-Date: Thu, 7 Dec 2023 17:54:01 -0500
-Message-ID: <20231207225422.4057292-3-James.Zhu@amd.com>
+Subject: [PATCH v2 03/23] drm/amdkfd: enable pc sampling query
+Date: Thu, 7 Dec 2023 17:54:02 -0500
+Message-ID: <20231207225422.4057292-4-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231207225422.4057292-1-James.Zhu@amd.com>
 References: <20231207225422.4057292-1-James.Zhu@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343A:EE_|MW3PR12MB4393:EE_
-X-MS-Office365-Filtering-Correlation-Id: 584236b2-16d7-4173-2990-08dbf7777c93
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343A:EE_|PH7PR12MB7968:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b02996c-41eb-4785-4ae6-08dbf7777d16
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KS8Y5WQAedUupRw2fFePBCeaPLi4DESdrPZ0j+fW9/D09Xqjz9zCf/ONW474cZkBK5y9KzaiocQNj7tWWKqiMnjqnk+jn9RKuZhWbKyTWTpOMjhdg8kbrGJ7j7CMH35E3oulgviOeaR+QHzMjjLAaHPBhNetdwl20Su9quiBWS9xn+cWWWkVe2yAL6QwTst00S4ta83aXTxsBKE0WZ1HbNMpy+RLF1qOnmV3jET1Jcx7MWS9G8YOjrN5QlBIa4gz60N6C/m3CvzcBIJGljDt5ASKTtbg83ROcc15GF3TeV0RmXP/oFanzY7XrKVISZnnQyfehXy45mkbEDnN91UwNgij8G67RMx9IdEhO2UjIl2gCWMpVUNpm07egppNG42joRlSPwuFGPot3ZOPEI+r1DPCrJy63SNg32NKKySKXr2SzSajUamhI6SB6RfuXInE2lV6FOWPSTe/zJ7vPAlkG4x7FeN1h0akwZI8y/KGOU5rVgVyhgAsX1TAEnkdkMsCg5an7UMVqgdh8nJBeP99LTWVxP4rhuAS1dJ18/Dil/b3TJCeFzVUrVhWGMcZ8OVvuFjzV9M4ZugxZaN9NFaYgNpqTXJnuKJF5Nk5iClUGnu6eihFTJcfdp49nRh+Isai26uYcsOg2alfJh4RZu0FTOQ2lM715//vqYWsg1x8Uij/wdDukk1361b9gZVayu0X7OzpbWIODIdOA3YvAJmk5HKuCVkQeNeTvOpAMuylZyKW5cJp7M1wV8D4FWpRjwNSV9A2gD/KGvuqqP/erzoYGQ==
+X-Microsoft-Antispam-Message-Info: 7ew2H6qN1KfvjFNh8pMIna9UDd2ubOSJuqE2Jgy7hLAhRU2co0ZsO9yjvnerBWTD0zw3EYXWUQKiLvyb/gV4tw14gM5VobIrhlxk0+FBE/dc8MzzgfxihKhwfZAoCn3ERrv3ThUesWZ68Lr6bLe+8woovAytPvOk/aqEb5hmYBbmYmuaZmQDrZCzk1yUyYvfVpeu+BsVtJ43iDCH1IWaV+7Degp11YbsdnACy8f/n2Wj7pCz5aa5mEyVPL7aX/of4hMRJW6plSRuZo/Q6Ts5GYJNQDlaw92r8gaG0h0r/+qXRLTndzggxN+DAr49P99sCQ2Oahvmkau93ZgELThM3FNojz3AM4CEEkmlTZRNXJ5df08Z+MiJGxBEH9DFds+yNROJs2w4nkURtmFZMS8jzhSBVI0NP4Pwqp09z8P2yvzzFl1pNJL5tJiLdWv5ne+BpEzp+zkz7/J/mzr0XVCUKDo9IDuFm68sYTh/TNJMQtAl7lVhN8cjzYwwNIIQUbvBtL+Txk4PGGNPnjau3PsDO1oTU4kyMgNm5bQAa3DZpHazsjHwGNeLNac2anabP0GCNWNW30OLDFWXAy4PFOJ7Cl7u1O8N3VGEYxtL9mJlmESwGng5qJq4K0viXv2q3YQpKNyl4UmLA0QflVpN8oPclCQNiAEEC9BqCK1IcFZgy0A2uxvJczR+SwfZ/OdHsbfXDMsmOc1L0V3gMuEjO5ySAE62h4khyvIqEXSxfzhNi44WeK5F7DX4WuVtZssSdg9DwuLy2/15U3Fd+1mjJtMFQg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(376002)(136003)(346002)(39860400002)(230922051799003)(64100799003)(1800799012)(451199024)(82310400011)(186009)(46966006)(36840700001)(40470700004)(36860700001)(82740400003)(83380400001)(6666004)(478600001)(40480700001)(4326008)(2616005)(8936002)(8676002)(6916009)(1076003)(70586007)(316002)(54906003)(70206006)(426003)(7696005)(47076005)(356005)(81166007)(16526019)(336012)(26005)(2906002)(5660300002)(40460700003)(66899024)(41300700001)(86362001)(36756003)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(39860400002)(376002)(346002)(230922051799003)(1800799012)(186009)(64100799003)(82310400011)(451199024)(40470700004)(36840700001)(46966006)(41300700001)(47076005)(5660300002)(336012)(83380400001)(426003)(2906002)(2616005)(16526019)(86362001)(40480700001)(36860700001)(26005)(1076003)(40460700003)(356005)(4326008)(7696005)(36756003)(8676002)(81166007)(6666004)(6916009)(70206006)(54906003)(70586007)(478600001)(316002)(8936002)(82740400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 22:54:36.5464 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 584236b2-16d7-4173-2990-08dbf7777c93
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 22:54:37.4214 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b02996c-41eb-4785-4ae6-08dbf7777d16
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343A.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4393
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7968
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,259 +105,83 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: David Yat Sin <david.yatsin@amd.com>
 
-Add pc sampling functions in amdkfd.
+Enable pc sampling to query system capability.
 
 Co-developed-by: James Zhu <James.Zhu@amd.com>
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 Signed-off-by: David Yat Sin <david.yatsin@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/Makefile          |  3 +-
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c     | 44 +++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 78 ++++++++++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h | 34 +++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h        | 13 ++++
- 5 files changed, 171 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
- create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
+ drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 54 +++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/Makefile b/drivers/gpu/drm/amd/amdkfd/Makefile
-index a5ae7bcf44eb..790fd028a681 100644
---- a/drivers/gpu/drm/amd/amdkfd/Makefile
-+++ b/drivers/gpu/drm/amd/amdkfd/Makefile
-@@ -57,7 +57,8 @@ AMDKFD_FILES	:= $(AMDKFD_PATH)/kfd_module.o \
- 		$(AMDKFD_PATH)/kfd_int_process_v11.o \
- 		$(AMDKFD_PATH)/kfd_smi_events.o \
- 		$(AMDKFD_PATH)/kfd_crat.o \
--		$(AMDKFD_PATH)/kfd_debug.o
-+		$(AMDKFD_PATH)/kfd_debug.o \
-+		$(AMDKFD_PATH)/kfd_pc_sampling.o
- 
- ifneq ($(CONFIG_DEBUG_FS),)
- AMDKFD_FILES += $(AMDKFD_PATH)/kfd_debugfs.o
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index f6d4748c1980..1a3a8ded9c93 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -41,6 +41,7 @@
- #include "kfd_priv.h"
- #include "kfd_device_queue_manager.h"
- #include "kfd_svm.h"
-+#include "kfd_pc_sampling.h"
- #include "amdgpu_amdkfd.h"
- #include "kfd_smi_events.h"
- #include "amdgpu_dma_buf.h"
-@@ -1750,6 +1751,38 @@ static int kfd_ioctl_svm(struct file *filep, struct kfd_process *p, void *data)
- }
- #endif
- 
-+static int kfd_ioctl_pc_sample(struct file *filep,
-+				   struct kfd_process *p, void __user *data)
-+{
-+	struct kfd_ioctl_pc_sample_args *args = data;
-+	struct kfd_process_device *pdd;
-+	int ret;
-+
-+	if (sched_policy == KFD_SCHED_POLICY_NO_HWS) {
-+		pr_err("PC Sampling does not support sched_policy %i", sched_policy);
-+		return -EINVAL;
-+	}
-+
-+	mutex_lock(&p->mutex);
-+	pdd = kfd_process_device_data_by_id(p, args->gpu_id);
-+
-+	if (!pdd) {
-+		pr_debug("could not find gpu id 0x%x.", args->gpu_id);
-+		ret = -EINVAL;
-+	} else {
-+		pdd = kfd_bind_process_to_device(pdd->dev, p);
-+		if (IS_ERR(pdd)) {
-+			pr_debug("failed to bind process %p with gpu id 0x%x", p, args->gpu_id);
-+			ret = -ESRCH;
-+		} else {
-+			ret = kfd_pc_sample(pdd, args);
-+		}
-+	}
-+	mutex_unlock(&p->mutex);
-+
-+	return ret;
-+}
-+
- static int criu_checkpoint_process(struct kfd_process *p,
- 			     uint8_t __user *user_priv_data,
- 			     uint64_t *priv_offset)
-@@ -3224,6 +3257,9 @@ static const struct amdkfd_ioctl_desc amdkfd_ioctls[] = {
- 
- 	AMDKFD_IOCTL_DEF(AMDKFD_IOC_DBG_TRAP,
- 			kfd_ioctl_set_debug_trap, 0),
-+
-+	AMDKFD_IOCTL_DEF(AMDKFD_IOC_PC_SAMPLE,
-+			kfd_ioctl_pc_sample, KFD_IOC_FLAG_PERFMON),
- };
- 
- #define AMDKFD_CORE_IOCTL_COUNT	ARRAY_SIZE(amdkfd_ioctls)
-@@ -3300,6 +3336,14 @@ static long kfd_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
- 		}
- 	}
- 
-+	/* PC Sampling Monitor */
-+	if (unlikely(ioctl->flags & KFD_IOC_FLAG_PERFMON)) {
-+		if (!capable(CAP_PERFMON) && !capable(CAP_SYS_ADMIN)) {
-+			retcode = -EACCES;
-+			goto err_i1;
-+		}
-+	}
-+
- 	if (cmd & (IOC_IN | IOC_OUT)) {
- 		if (asize <= sizeof(stack_kdata)) {
- 			kdata = stack_kdata;
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-new file mode 100644
-index 000000000000..a7e78ff42d07
---- /dev/null
+index a7e78ff42d07..49fecbc7013e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright 2023 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
+@@ -25,10 +25,62 @@
+ #include "amdgpu_amdkfd.h"
+ #include "kfd_pc_sampling.h"
+ 
++struct supported_pc_sample_info {
++	uint32_t ip_version;
++	const struct kfd_pc_sample_info *sample_info;
++};
 +
-+#include "kfd_priv.h"
-+#include "amdgpu_amdkfd.h"
-+#include "kfd_pc_sampling.h"
++const struct kfd_pc_sample_info sample_info_hosttrap_9_0_0 = {
++	0, 1, ~0ULL, 0, KFD_IOCTL_PCS_METHOD_HOSTTRAP, KFD_IOCTL_PCS_TYPE_TIME_US };
 +
-+static int kfd_pc_sample_query_cap(struct kfd_process_device *pdd,
-+					struct kfd_ioctl_pc_sample_args __user *user_args)
-+{
-+	return -EINVAL;
-+}
++struct supported_pc_sample_info supported_formats[] = {
++	{ IP_VERSION(9, 4, 1), &sample_info_hosttrap_9_0_0 },
++	{ IP_VERSION(9, 4, 2), &sample_info_hosttrap_9_0_0 },
++};
 +
-+static int kfd_pc_sample_start(struct kfd_process_device *pdd)
-+{
-+	return -EINVAL;
-+}
+ static int kfd_pc_sample_query_cap(struct kfd_process_device *pdd,
+ 					struct kfd_ioctl_pc_sample_args __user *user_args)
+ {
+-	return -EINVAL;
++	uint64_t sample_offset;
++	int num_method = 0;
++	int i;
 +
-+static int kfd_pc_sample_stop(struct kfd_process_device *pdd)
-+{
-+	return -EINVAL;
++	for (i = 0; i < ARRAY_SIZE(supported_formats); i++)
++		if (KFD_GC_VERSION(pdd->dev) == supported_formats[i].ip_version)
++			num_method++;
 +
-+}
-+
-+static int kfd_pc_sample_create(struct kfd_process_device *pdd,
-+					struct kfd_ioctl_pc_sample_args __user *user_args)
-+{
-+	return -EINVAL;
-+}
-+
-+static int kfd_pc_sample_destroy(struct kfd_process_device *pdd, uint32_t trace_id)
-+{
-+	return -EINVAL;
-+
-+}
-+
-+int kfd_pc_sample(struct kfd_process_device *pdd,
-+					struct kfd_ioctl_pc_sample_args __user *args)
-+{
-+	switch (args->op) {
-+	case KFD_IOCTL_PCS_OP_QUERY_CAPABILITIES:
-+		return kfd_pc_sample_query_cap(pdd, args);
-+
-+	case KFD_IOCTL_PCS_OP_CREATE:
-+		return kfd_pc_sample_create(pdd, args);
-+
-+	case KFD_IOCTL_PCS_OP_DESTROY:
-+		return kfd_pc_sample_destroy(pdd, args->trace_id);
-+
-+	case KFD_IOCTL_PCS_OP_START:
-+		return kfd_pc_sample_start(pdd);
-+
-+	case KFD_IOCTL_PCS_OP_STOP:
-+		return kfd_pc_sample_stop(pdd);
++	if (!num_method) {
++		pr_debug("PC Sampling not supported on GC_HWIP:0x%x.",
++			pdd->dev->adev->ip_versions[GC_HWIP][0]);
++		return -EOPNOTSUPP;
 +	}
 +
-+	return -EINVAL;
-+}
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
-new file mode 100644
-index 000000000000..4eeded4ea5b6
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
-@@ -0,0 +1,34 @@
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-+/*
-+ * Copyright 2023 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
++	if (!user_args->sample_info_ptr) {
++		user_args->num_sample_info = num_method;
++		return 0;
++	}
 +
-+#ifndef KFD_PC_SAMPLING_H_
-+#define KFD_PC_SAMPLING_H_
++	if (user_args->num_sample_info < num_method) {
++		user_args->num_sample_info = num_method;
++		pr_debug("Sample info buffer is not large enough, "
++			 "ASIC requires space for %d kfd_pc_sample_info entries.", num_method);
++		return -ENOSPC;
++	}
 +
-+#include "amdgpu.h"
-+#include "kfd_priv.h"
++	sample_offset = user_args->sample_info_ptr;
++	for (i = 0; i < ARRAY_SIZE(supported_formats); i++) {
++		if (KFD_GC_VERSION(pdd->dev) == supported_formats[i].ip_version) {
++			int ret = copy_to_user((void __user *) sample_offset,
++				supported_formats[i].sample_info, sizeof(struct kfd_pc_sample_info));
++			if (ret) {
++				pr_debug("Failed to copy PC sampling info to user.");
++				return -EFAULT;
++			}
++			sample_offset += sizeof(struct kfd_pc_sample_info);
++		}
++	}
 +
-+int kfd_pc_sample(struct kfd_process_device *pdd,
-+					struct kfd_ioctl_pc_sample_args __user *args);
-+
-+#endif /* KFD_PC_SAMPLING_H_ */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 45366b4ca976..99426182bfc6 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -144,6 +144,19 @@ enum kfd_ioctl_flags {
- 	 * we also allow ioctls with SYS_ADMIN capability.
- 	 */
- 	KFD_IOC_FLAG_CHECKPOINT_RESTORE = BIT(0),
-+
-+	/*
-+	 * @KFD_IOC_FLAG_PERFMON:
-+	 * Performance monitoring feature, GPU performance monitoring can allow users
-+	 * to gather some information about other processes. PC sampling can allow
-+	 * users to infer information about wavefronts from other processes that are
-+	 * running on the same CUs, such as which execution units they are using. As
-+	 * such, this type of performance monitoring should be protected and only
-+	 * available to users with sufficient capabilities: either CAP_PERFMON, or,
-+	 * for backwards compatibility, CAP_SYS_ADMIN.
-+	 */
-+
-+	KFD_IOC_FLAG_PERFMON = BIT(1),
- };
- /*
-  * Kernel module parameter to specify maximum number of supported queues per
++	return 0;
+ }
+ 
+ static int kfd_pc_sample_start(struct kfd_process_device *pdd)
 -- 
 2.25.1
 
