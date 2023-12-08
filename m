@@ -2,65 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0846280AB7F
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 19:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB7080AD21
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 20:33:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0763410E1D9;
-	Fri,  8 Dec 2023 18:00:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9178B10EB01;
+	Fri,  8 Dec 2023 19:33:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com
- [IPv6:2001:4860:4864:20::34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE41310E1D9
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 18:00:06 +0000 (UTC)
-Received: by mail-oa1-x34.google.com with SMTP id
- 586e51a60fabf-1f5bd86ceb3so1443874fac.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 08 Dec 2023 10:00:06 -0800 (PST)
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com
+ [IPv6:2607:f8b0:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D46E510EB01
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 19:33:43 +0000 (UTC)
+Received: by mail-ot1-x32b.google.com with SMTP id
+ 46e09a7af769-6d9e9f3a3abso665054a34.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Dec 2023 11:33:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702058406; x=1702663206; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1702064023; x=1702668823; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=QAi/B4U+jgW+YuYqCxhuBSo96hHgz/wZrPHdVwF39q0=;
- b=kCfiaQDBcHr8+BhicDCHf6F10q2Sesj9MvrzOIFXc41S634Ck5lT7nsvp4z1185AVH
- QsHVl+y7o4m+EJq0q94dfRo3hCc6jEfoeCyFZxos6dyicjaXKnOERY0FpXsR3xMJlrgm
- asaAxjG008yA0O9gsHKSadEIofYhAEFcHQ27dEH0ryFUWGwCrxikVp+yN8fG+7Xdz6Eg
- zV5cBOnmvlLwOWkFQEq8gDnBpoAcBKaw/cuVXDmmZ3YpfimWUhOY1gIwcoANQ6eG6ikN
- uk52E1Dh39aq3ZwmXMeNoGqxwUxHlKWUEh7PyEuE2LfwGAfQjyxU2eSoTE/L38gTCs+Z
- O5xw==
+ bh=yO9UfXZ6mrjiI1zwzPN+H6NzGSQqsGMopocf5HPCIEI=;
+ b=QTAbx5GWUaxr5N9tv+yIG7TFkFSMGJ4/nSK2hCgJMZ4un1fpxOogsb6buq90Upp3Fc
+ etcuGsoZWWQGHlRmFvAFRJAQ9GXqlfiUvNFUlYl9wpcp5GWdIKMyitGBQgQsBioxnuoM
+ 1TI2XzG2pZGChQAaTTI0yxkaHzdQyu9jICWq6GaoEJfv84wtM8WVpgahj/6QSyWGVzlv
+ HAqnP5xrnAvQp/zWHfuryUHcftM7i/LOALa6Ss20/UnXvkXDvDzUhGEowm4kdZv0DSlJ
+ OiK8JBTrd2/CzgrZLLh58O11an4BeR+bN8MsDUHLRmeqFOfSZLHVXtxIBhjT/kN/gNsw
+ 6Izw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702058406; x=1702663206;
+ d=1e100.net; s=20230601; t=1702064023; x=1702668823;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QAi/B4U+jgW+YuYqCxhuBSo96hHgz/wZrPHdVwF39q0=;
- b=Roc4Zei25ESCqJE3zfaL+x27mFhPBDYhTM4bFs2pxZUiQB06MT2uWIwBQyRL0FGKms
- hFcFGUKagFSbjxmygkyHWdis2qpuxXW1p6npQ6gHjMpIdocJyG7a2MKoQV8r0FW9ek+S
- q75lrwQZqN/JiDYwQYYEyBtN4o+feulXWaNU9e31/rlDvrTUyu032I2XxSL9zjrJeq56
- +LHRTNsqKfJvpHJDua+DV79wuXaXQOLyYET2HA8PJmp0aGz+Shb7miNetWm/FppyB5tV
- 287T4rYQhaBZPpH4gtr7kH/YkAvx4y2hJanOi1Z0SXQQsjsDM6IUJw+23KZhISca5JeB
- 2xuw==
-X-Gm-Message-State: AOJu0YwOgyT2iydTjuZDsUKk14OCfXVwbDTFCCVAi6wguXuB5Cq4w9pu
- dtFBigGoYUkpvQnlFzCN9EKhEG01Yke9EK20mtdrpH11
-X-Google-Smtp-Source: AGHT+IGnBHeuTRGYfVfv5rMAvDSZ90uJEJX430HHoO9AQuaOYRcoiIiIO0iaEY/L1iVcjdaB3ZH1dK87WbLjMOc68nA=
-X-Received: by 2002:a05:6870:858d:b0:1fa:df72:9ed5 with SMTP id
- f13-20020a056870858d00b001fadf729ed5mr472449oal.38.1702058405694; Fri, 08 Dec
- 2023 10:00:05 -0800 (PST)
+ bh=yO9UfXZ6mrjiI1zwzPN+H6NzGSQqsGMopocf5HPCIEI=;
+ b=e6Y1qtpTVbtfLs/DVl0kZ1bN7A7eFOZqNMhX9ICz5PXnCAkV0bZiATSqDnkkje0c17
+ 2cGWYWsFLPClTy2hHWjBfyueFhCoikvfsmOf9iWqYLV4orhUNUIZhlcgptfUl3R6MzzC
+ 4VKfMSHAwp356Q60iKD0B/nHQK92ZChcVsb5KVqIwAGAxQTYwI/ojDw98Sn8OLpIWi5c
+ rkMbPRN44Dd0wW1nF/RX1MhmfM/LbRvfq7RaeUXyXKkuZsUoY0Vx+oSvXqf3x9Yuf6s7
+ cfWR6gKr7nF3xx3YjyCWMst8t88D8awxXm+kcYcUrOEOLqWfJpHM0ErUcSG1gN6Zlvbb
+ Z2EQ==
+X-Gm-Message-State: AOJu0YzCxQZhtOXPoXDXW42BEdKvYtsPgJYl/F5u9p5EAu61iuIYELyq
+ 8/iEm00S1P42DWzxofhap9QchN/ab8PsJjFX5aI=
+X-Google-Smtp-Source: AGHT+IEHybLnpb6vB8azlId+2NNhy5Fd/DcEObu2rL9+7RNXfwQfIXovrxu7gA4BFHeCge6+10q0xqRVlcDTIKia6hE=
+X-Received: by 2002:a05:6870:b625:b0:1fb:75b:2fdb with SMTP id
+ cm37-20020a056870b62500b001fb075b2fdbmr662694oab.114.1702064022832; Fri, 08
+ Dec 2023 11:33:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20231202001740.120840-1-friedrich.vock@gmx.de>
- <3525f437-9537-4fb4-80d0-65acd9d55d2f@gmx.de>
- <3cf226b8-c80b-43f6-9f6c-9610d224717a@amd.com>
- <1939f568-f780-4e34-b5c5-dab461f93b57@gmx.de>
- <8041be7c-64d5-4b1d-a734-4326db98f256@amd.com>
- <CAAxE2A6Kdj5TBCdZRoT_t+cABzf9tsNCvJLZAVCE66F5pz5yXQ@mail.gmail.com>
- <5de028e5-d24c-4e98-96aa-e3d18720ab6a@froggi.es>
-In-Reply-To: <5de028e5-d24c-4e98-96aa-e3d18720ab6a@froggi.es>
+References: <20231127223234.891204-1-alexander.deucher@amd.com>
+ <CADnq5_OpHe527RoVPzgyj_TOw+RT=dZnfmfB7TGWD=8Zzt10cQ@mail.gmail.com>
+ <84229452-a063-46d2-bc04-46c38b2911ff@gmail.com>
+In-Reply-To: <84229452-a063-46d2-bc04-46c38b2911ff@gmail.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 8 Dec 2023 12:59:54 -0500
-Message-ID: <CADnq5_PrvUZXvsLY6fsvigrF+SEwwKZCN5MCF=Zo-RggGJrd1A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Enable tunneling on high-priority compute
- queues
-To: Joshua Ashton <joshua@froggi.es>
+Date: Fri, 8 Dec 2023 14:33:31 -0500
+Message-ID: <CADnq5_MpACqkTkrhNHwqyWF9=mydxbg3q0RAhTcwKtajuqZ6ug@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu/debugfs: fix error code when smc register
+ accessors are NULL
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -74,106 +70,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 8, 2023 at 12:27=E2=80=AFPM Joshua Ashton <joshua@froggi.es> wr=
-ote:
+On Fri, Dec 8, 2023 at 8:24=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
 >
-> FWIW, we are shipping this right now in SteamOS Preview channel
-> (probably going to Stable soon) and it seems to be working as expected
-> and fixing issues there in instances we need to composite, compositor
-> work we are forced to do would take longer than the compositor redzone
-> to vblank.
->
-> Previously in high gfx workloads like Cyberpunk using 100% of the GPU,
-> we would consistently miss the deadline as composition could take
-> anywhere from 2-6ms fairly randomly.
->
-> Now it seems the time for the compositor's work to complete is pretty
-> consistent and well in-time in gpuvis for every frame.
+> The second patch never made it into my inbox, but the first one is
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>.
 
-I was mostly just trying to look up the information to verify that it
-was set up correctly, but I guess Marek already did and provided you
-with that info, so it's probably fine as is.
-
->
-> The only times we are not meeting deadline now is when there is an
-> application using very little GPU and finishes incredibly quick, and the
-> compositor is doing significantly more work (eg. FSR from 800p -> 4K or
-> whatever), but that's a separate problem that can likely be solved by
-> inlining some of the composition work with the client's dmabuf work if
-> it has focus to avoid those clock bubbles.
->
-> I heard some musings about dmabuf deadline kernel work recently, but not
-> sure if any of that is applicable to AMD.
-
-I think something like a workload hint would be more useful.  We did a
-few patch sets to allow userspace to provide a hint to the kernel
-about the workload type so the kernel could adjust the power
-management heuristics accordingly, but there were concerns that the
-UMDs would have to maintain application lists to select which
-heuristic worked best for each application.  Maybe it would be better
-to provide a general classification?  E.g., if the GL or vulkan app
-uses these extensions, it's probably a compute type application vs
-something more graphics-y.  The usual trade-off between power and
-performance.  In general, just letting the firmware pick the clock
-based on perf counters generally seems to work the best.  Maybe a
-general workload hint set by the compositor based on the content type
-it's displaying would be a better option (video vs gaming vs desktop)?
-
-The deadline stuff doesn't really align well with what we can do with
-our firmware and seems ripe for abuse.  Apps can just ask for high
-clocks all the time which is great for performance, but not great for
-power.  Plus there is not much room for anything other than max clocks
-since you don't know how big the workload is or which clocks are the
-limiting factor.
+Thanks.  Patch 2:
+https://patchwork.freedesktop.org/patch/569132/
 
 Alex
 
 >
-> - Joshie =F0=9F=90=B8=E2=9C=A8
+> Christian.
 >
-> On 12/8/23 15:33, Marek Ol=C5=A1=C3=A1k wrote:
-> > On Fri, Dec 8, 2023 at 9:57=E2=80=AFAM Christian K=C3=B6nig <christian.=
-koenig@amd.com
-> > <mailto:christian.koenig@amd.com>> wrote:
+> Am 07.12.23 um 18:39 schrieb Alex Deucher:
+> > Ping on this series?
 > >
-> >     Am 08.12.23 um 12:43 schrieb Friedrich Vock:
-> >      > On 08.12.23 10:51, Christian K=C3=B6nig wrote:
-> >      >> Well longer story short Alex and I have been digging up the
-> >      >> documentation for this and as far as we can tell this isn't cor=
-rect.
-> >      > Huh. I initially talked to Marek about this, adding him in Cc.
+> > Alex
 > >
-> >     Yeah, from the userspace side all you need to do is to set the bit =
-as
-> >     far as I can tell.
-> >
-> >      >>
-> >      >> You need to do quite a bit more before you can turn on this fea=
-ture.
-> >      >> What userspace side do you refer to?
-> >      > I was referring to the Mesa merge request I made
-> >      > (https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/26462
-> >     <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/26462>).
-> >      > If/When you have more details about what else needs to be done, =
-feel
-> >      > free to let me know.
-> >
-> >     For example from the hardware specification explicitly states that =
-the
-> >     kernel driver should make sure that only one app/queue is using thi=
-s at
-> >     the same time. That might work for now since we should only have a
-> >     single compute priority queue, but we are not 100% sure yet.
-> >
-> >
-> > This is incorrect. While the hw documentation says it's considered
-> > "unexpected programming", it also says that the hardware algorithm
-> > handles it correctly and it describes what happens in this case:
-> > Tunneled waves from different queues are treated as equal.
-> >
-> > Marek
+> > On Mon, Nov 27, 2023 at 5:52=E2=80=AFPM Alex Deucher <alexander.deucher=
+@amd.com> wrote:
+> >> Should be -EOPNOTSUPP.
+> >>
+> >> Fixes: 5104fdf50d32 ("drm/amdgpu: Fix a null pointer access when the s=
+mc_rreg pointer is NULL")
+> >> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> >> ---
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 4 ++--
+> >>   1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_debugfs.c
+> >> index 0e61ebdb3f3e..8d4a3ff65c18 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> >> @@ -755,7 +755,7 @@ static ssize_t amdgpu_debugfs_regs_smc_read(struct=
+ file *f, char __user *buf,
+> >>          int r;
+> >>
+> >>          if (!adev->smc_rreg)
+> >> -               return -EPERM;
+> >> +               return -EOPNOTSUPP;
+> >>
+> >>          if (size & 0x3 || *pos & 0x3)
+> >>                  return -EINVAL;
+> >> @@ -814,7 +814,7 @@ static ssize_t amdgpu_debugfs_regs_smc_write(struc=
+t file *f, const char __user *
+> >>          int r;
+> >>
+> >>          if (!adev->smc_wreg)
+> >> -               return -EPERM;
+> >> +               return -EOPNOTSUPP;
+> >>
+> >>          if (size & 0x3 || *pos & 0x3)
+> >>                  return -EINVAL;
+> >> --
+> >> 2.42.0
+> >>
 >
