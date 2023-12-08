@@ -2,70 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C2480A465
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 14:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CFE80A5A9
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 15:36:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 938FB10E1BE;
-	Fri,  8 Dec 2023 13:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F354C10EA9E;
+	Fri,  8 Dec 2023 14:36:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A08EA10E1BE
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 13:24:24 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id
- ffacd0b85a97d-3334a701cbbso2125881f8f.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 08 Dec 2023 05:24:24 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79B5810E964
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 14:36:25 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id
+ 4fb4d7f45d1cf-54dcfca54e0so2524557a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Dec 2023 06:36:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702041863; x=1702646663; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=ZOcLPk4rPX3jDSIw82dL6cO5sH5pCmGSDNWWXhAuILo=;
- b=jSeAQXy0KPn3pTDKGGC2kZC+yeZ8C8GtBtJ0078M/4eZczdjaFEdSQGGBWjDcdKULN
- NvhbflCawPpt/sKqk0oUqwzstuQvC8DKiVpVKwfw4O4P1eqC4ehLarMe7zb70Fv20gRV
- T3203O2dmZLePMUBtP3R4aKtK4v391lkrEAEypy281w+BoLVcpoCLyfoMjJfRV/kvX+9
- Nz3Tm2bMJBUVM0VgIxIobR8fmUtvGndNeGnjHpQaLNQhzIBRur7wGk0qiytT+KiM5ggC
- 4kq/S1kvWTZDLjWL/7IuPjh7QVTqfctwg59N1nAazHNU7dEi5LDP0gnRIBT/eiEMnzhH
- YekQ==
+ d=gmail.com; s=20230601; t=1702046184; x=1702650984; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=nHuhQlAH0QW3XEd+T02ebmp4b9ydUf875g/dR4GJJmw=;
+ b=JTOJ0W+TiMorDIQB9M9GBkVO7XVqN4Iud79jDsi/RQA0RaDbRqnWiv7t6Gfj8F1/oV
+ Z3CKUMPvoXZpWcwkF+Adtb0fjmd71Ck3mlb8KRxXT2FY9s29gabvtzzSdlbrn6D4CNC6
+ tVPKv3/Fj9w+09IfMatjNI7ArIcAiwl3uWlNTEq6icH+/Q9eW0kb+UCJL3sV4tlZR0HJ
+ CS6EF8SG2jA8f9ZUcDebhjcB26htE1WBbjti5E2qJD1gW0xw+FDvd/zYpW82UkTqAlov
+ wH889I6vdTDI4SkA70NG5xxwegAiNRvxI6pOQQjX9mwHxrvpSPnq8WbbQFlH/tCQ2Cqv
+ RI5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702041863; x=1702646663;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ZOcLPk4rPX3jDSIw82dL6cO5sH5pCmGSDNWWXhAuILo=;
- b=fLfZsdIBffLUzlOhn/ykRaoWbm0kavlFiRBYyYE1uPsyaWzJLdpdCGOHdwJVwcBq4k
- nHArq1V9yl8N2/+eZwa+DFI4j/nNjNDLUsmaUU2YtfA84OlTLknSM41t2yy8wI98JHVb
- JeQT8HnwQPVGLoPrst0LPJOGtSEVbuSTdvoaCFsxgRVxMhAPTB5bgxkAV2/rCnY2fdpl
- Zaptw01gUWQp6S6YkENFmUtjFAkOG+C6su4XA4zFxbKnGrxT8Dp9JsgHVy/x79lpilIW
- tHBqCFjJptYFiuyL/hXklT78asQsHp0R7u+PE3IWYny0nP4cXo05oJsFcwVzEljyO3DK
- Xdyw==
-X-Gm-Message-State: AOJu0YyxcyuEfPKgBcYoqwPwHt+R0hfVzHNmKgDrYdDs28AlLCos00JC
- ju6O2T5bjMNrpnck/CJzAfI=
-X-Google-Smtp-Source: AGHT+IHjfPN7AMcvUdy92ta2xRqlfEIEqA+XcRQ9FVOIS1pOxqJD/5NwJBbNjmLe4ao6d/yTy6ZuCQ==
-X-Received: by 2002:a5d:6242:0:b0:333:3c06:b433 with SMTP id
- m2-20020a5d6242000000b003333c06b433mr16389wrv.0.1702041862796; 
- Fri, 08 Dec 2023 05:24:22 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- k18-20020a5d5192000000b0033339027c89sm2023394wrv.108.2023.12.08.05.24.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 08 Dec 2023 05:24:22 -0800 (PST)
-Message-ID: <84229452-a063-46d2-bc04-46c38b2911ff@gmail.com>
-Date: Fri, 8 Dec 2023 14:24:20 +0100
+ d=1e100.net; s=20230601; t=1702046184; x=1702650984;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=nHuhQlAH0QW3XEd+T02ebmp4b9ydUf875g/dR4GJJmw=;
+ b=AMaMqkFp8QlsczOV94JdcayxxILyMt6NGi5Qv6tsnhtuAP+rfe2eYrjMpRm272gvL8
+ TAIVm91uceE3CplTks+mZLdUYbMKDBHA+dZQhFDGlQvC2Ize7jPEbQ+XwrF64WQ+oBn4
+ PTQIyFSVylxEu8M1OfihH7x9w/Z/hkEyTD1scfcO+xpQAI4nrR/hA1RObNh90RziKGeu
+ cxpk7MY/+eqhRJbZksBID2nlz9zBiakYDRrK7txhNDxA8jyskAPA3bvx1yOdvIIo7eRg
+ EMGq+SR1PuxIjaCpjTj1NH2dZ/eM5KtL0n8BScCMGeQHR7L6b1SYnij24MvxDeGKqDdL
+ 4Lmw==
+X-Gm-Message-State: AOJu0YxEzOohPWQjY+LWLR3kFvrjZ9bm2LgpCDbu7skbyKiPa5Ik7UBi
+ anYysk08GzMDui9s5+truTR2zcVgLkAt4OdkX/1XHDip
+X-Google-Smtp-Source: AGHT+IFZSKzDXCODgcna8z3v56k8F69LrNpWfuAv7dao68Yxt/f3gIsE0uc71gXD2meJseTGpARYePfNhMcGpMSJUbg=
+X-Received: by 2002:a17:906:161b:b0:a19:a1ba:da6a with SMTP id
+ m27-20020a170906161b00b00a19a1bada6amr40462ejd.145.1702046183537; Fri, 08 Dec
+ 2023 06:36:23 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu/debugfs: fix error code when smc register
- accessors are NULL
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20231127223234.891204-1-alexander.deucher@amd.com>
- <CADnq5_OpHe527RoVPzgyj_TOw+RT=dZnfmfB7TGWD=8Zzt10cQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_OpHe527RoVPzgyj_TOw+RT=dZnfmfB7TGWD=8Zzt10cQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231202001740.120840-1-friedrich.vock@gmx.de>
+ <3525f437-9537-4fb4-80d0-65acd9d55d2f@gmx.de>
+ <3cf226b8-c80b-43f6-9f6c-9610d224717a@amd.com>
+In-Reply-To: <3cf226b8-c80b-43f6-9f6c-9610d224717a@amd.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Fri, 8 Dec 2023 09:35:46 -0500
+Message-ID: <CAAxE2A5B03OEzeeHYRHpmy5E_M0M1EY-cP4uDYzrwAbbBUZFqA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Enable tunneling on high-priority compute
+ queues
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/alternative; boundary="00000000000029422f060c00826c"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,52 +68,318 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The second patch never made it into my inbox, but the first one is 
-Reviewed-by: Christian König <christian.koenig@amd.com>.
+--00000000000029422f060c00826c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Christian.
+It's correct according to our documentation.
 
-Am 07.12.23 um 18:39 schrieb Alex Deucher:
-> Ping on this series?
+Reviewed-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
+
+Marek
+
+On Fri, Dec 8, 2023 at 5:47=E2=80=AFAM Christian K=C3=B6nig <christian.koen=
+ig@amd.com>
+wrote:
+
+> Well longer story short Alex and I have been digging up the
+> documentation for this and as far as we can tell this isn't correct.
 >
-> Alex
+> You need to do quite a bit more before you can turn on this feature.
+> What userspace side do you refer to?
 >
-> On Mon, Nov 27, 2023 at 5:52 PM Alex Deucher <alexander.deucher@amd.com> wrote:
->> Should be -EOPNOTSUPP.
->>
->> Fixes: 5104fdf50d32 ("drm/amdgpu: Fix a null pointer access when the smc_rreg pointer is NULL")
->> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> index 0e61ebdb3f3e..8d4a3ff65c18 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> @@ -755,7 +755,7 @@ static ssize_t amdgpu_debugfs_regs_smc_read(struct file *f, char __user *buf,
->>          int r;
->>
->>          if (!adev->smc_rreg)
->> -               return -EPERM;
->> +               return -EOPNOTSUPP;
->>
->>          if (size & 0x3 || *pos & 0x3)
->>                  return -EINVAL;
->> @@ -814,7 +814,7 @@ static ssize_t amdgpu_debugfs_regs_smc_write(struct file *f, const char __user *
->>          int r;
->>
->>          if (!adev->smc_wreg)
->> -               return -EPERM;
->> +               return -EOPNOTSUPP;
->>
->>          if (size & 0x3 || *pos & 0x3)
->>                  return -EINVAL;
->> --
->> 2.42.0
->>
+> Regards,
+> Christian.
+>
+> Am 08.12.23 um 09:19 schrieb Friedrich Vock:
+> > Friendly ping on this one.
+> > Userspace side got merged, so would be great to land this patch too :)
+> >
+> > On 02.12.23 01:17, Friedrich Vock wrote:
+> >> This improves latency if the GPU is already busy with other work.
+> >> This is useful for VR compositors that submit highly latency-sensitive
+> >> compositing work on high-priority compute queues while the GPU is busy
+> >> rendering the next frame.
+> >>
+> >> Userspace merge request:
+> >> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/26462
+> >>
+> >> Signed-off-by: Friedrich Vock <friedrich.vock@gmx.de>
+> >> ---
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu.h      |  1 +
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 10 ++++++----
+> >>   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   |  3 ++-
+> >>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   |  3 ++-
+> >>   4 files changed, 11 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> index 9505dc8f9d69..4b923a156c4e 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> >> @@ -790,6 +790,7 @@ struct amdgpu_mqd_prop {
+> >>       uint64_t eop_gpu_addr;
+> >>       uint32_t hqd_pipe_priority;
+> >>       uint32_t hqd_queue_priority;
+> >> +    bool allow_tunneling;
+> >>       bool hqd_active;
+> >>   };
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> >> index 231d49132a56..4d98e8879be8 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+> >> @@ -620,6 +620,10 @@ static void amdgpu_ring_to_mqd_prop(struct
+> >> amdgpu_ring *ring,
+> >>                       struct amdgpu_mqd_prop *prop)
+> >>   {
+> >>       struct amdgpu_device *adev =3D ring->adev;
+> >> +    bool is_high_prio_compute =3D ring->funcs->type =3D=3D
+> >> AMDGPU_RING_TYPE_COMPUTE &&
+> >> + amdgpu_gfx_is_high_priority_compute_queue(adev, ring);
+> >> +    bool is_high_prio_gfx =3D ring->funcs->type =3D=3D
+> >> AMDGPU_RING_TYPE_GFX &&
+> >> + amdgpu_gfx_is_high_priority_graphics_queue(adev, ring);
+> >>
+> >>       memset(prop, 0, sizeof(*prop));
+> >>
+> >> @@ -637,10 +641,8 @@ static void amdgpu_ring_to_mqd_prop(struct
+> >> amdgpu_ring *ring,
+> >>        */
+> >>       prop->hqd_active =3D ring->funcs->type =3D=3D AMDGPU_RING_TYPE_K=
+IQ;
+> >>
+> >> -    if ((ring->funcs->type =3D=3D AMDGPU_RING_TYPE_COMPUTE &&
+> >> -         amdgpu_gfx_is_high_priority_compute_queue(adev, ring)) ||
+> >> -        (ring->funcs->type =3D=3D AMDGPU_RING_TYPE_GFX &&
+> >> -         amdgpu_gfx_is_high_priority_graphics_queue(adev, ring))) {
+> >> +    prop->allow_tunneling =3D is_high_prio_compute;
+> >> +    if (is_high_prio_compute || is_high_prio_gfx) {
+> >>           prop->hqd_pipe_priority =3D AMDGPU_GFX_PIPE_PRIO_HIGH;
+> >>           prop->hqd_queue_priority =3D AMDGPU_GFX_QUEUE_PRIORITY_MAXIM=
+UM;
+> >>       }
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> >> index c8a3bf01743f..73f6d7e72c73 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> >> @@ -6593,7 +6593,8 @@ static int gfx_v10_0_compute_mqd_init(struct
+> >> amdgpu_device *adev, void *m,
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, ENDIAN_SWAP, 1);
+> >>   #endif
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, UNORD_DISPATCH, 0)=
+;
+> >> -    tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, TUNNEL_DISPATCH, 0)=
+;
+> >> +    tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, TUNNEL_DISPATCH,
+> >> +                prop->allow_tunneling);
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, PRIV_STATE, 1);
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, KMD_QUEUE, 1);
+> >>       mqd->cp_hqd_pq_control =3D tmp;
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >> b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >> index c659ef0f47ce..bdcf96df69e6 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >> @@ -3847,7 +3847,8 @@ static int gfx_v11_0_compute_mqd_init(struct
+> >> amdgpu_device *adev, void *m,
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, RPTR_BLOCK_SIZE,
+> >>                   (order_base_2(AMDGPU_GPU_PAGE_SIZE / 4) - 1));
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, UNORD_DISPATCH, 0)=
+;
+> >> -    tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, TUNNEL_DISPATCH, 0)=
+;
+> >> +    tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, TUNNEL_DISPATCH,
+> >> +                prop->allow_tunneling);
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, PRIV_STATE, 1);
+> >>       tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, KMD_QUEUE, 1);
+> >>       mqd->cp_hqd_pq_control =3D tmp;
+> >> --
+> >> 2.43.0
+> >>
+>
+>
 
+--00000000000029422f060c00826c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>It&#39;s correct according to our documentation.<br><=
+/div><div><br></div><div>Reviewed-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"=
+mailto:marek.olsak@amd.com" target=3D"_blank">marek.olsak@amd.com</a>&gt;</=
+div><div><br></div><div>Marek<br></div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 8, 2023 at 5:47=E2=80=AF=
+AM Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@amd.com" tar=
+get=3D"_blank">christian.koenig@amd.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">Well longer story short Alex and I h=
+ave been digging up the <br>
+documentation for this and as far as we can tell this isn&#39;t correct.<br=
+>
+<br>
+You need to do quite a bit more before you can turn on this feature. <br>
+What userspace side do you refer to?<br>
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+Am 08.12.23 um 09:19 schrieb Friedrich Vock:<br>
+&gt; Friendly ping on this one.<br>
+&gt; Userspace side got merged, so would be great to land this patch too :)=
+<br>
+&gt;<br>
+&gt; On 02.12.23 01:17, Friedrich Vock wrote:<br>
+&gt;&gt; This improves latency if the GPU is already busy with other work.<=
+br>
+&gt;&gt; This is useful for VR compositors that submit highly latency-sensi=
+tive<br>
+&gt;&gt; compositing work on high-priority compute queues while the GPU is =
+busy<br>
+&gt;&gt; rendering the next frame.<br>
+&gt;&gt;<br>
+&gt;&gt; Userspace merge request:<br>
+&gt;&gt; <a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/merge_reques=
+ts/26462" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freedesktop.o=
+rg/mesa/mesa/-/merge_requests/26462</a><br>
+&gt;&gt;<br>
+&gt;&gt; Signed-off-by: Friedrich Vock &lt;<a href=3D"mailto:friedrich.vock=
+@gmx.de" target=3D"_blank">friedrich.vock@gmx.de</a>&gt;<br>
+&gt;&gt; ---<br>
+&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 1 +<br>
+&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 10 ++++++----<br=
+>
+&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c=C2=A0=C2=A0 |=C2=A0 =
+3 ++-<br>
+&gt;&gt; =C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c=C2=A0=C2=A0 |=C2=A0 =
+3 ++-<br>
+&gt;&gt; =C2=A0 4 files changed, 11 insertions(+), 6 deletions(-)<br>
+&gt;&gt;<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h <br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+&gt;&gt; index 9505dc8f9d69..4b923a156c4e 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
+&gt;&gt; @@ -790,6 +790,7 @@ struct amdgpu_mqd_prop {<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint64_t eop_gpu_addr;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t hqd_pipe_priority;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t hqd_queue_priority;<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 bool allow_tunneling;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool hqd_active;<br>
+&gt;&gt; =C2=A0 };<br>
+&gt;&gt;<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c <br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c<br>
+&gt;&gt; index 231d49132a56..4d98e8879be8 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c<br>
+&gt;&gt; @@ -620,6 +620,10 @@ static void amdgpu_ring_to_mqd_prop(struct <b=
+r>
+&gt;&gt; amdgpu_ring *ring,<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct amdgpu_=
+mqd_prop *prop)<br>
+&gt;&gt; =C2=A0 {<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct amdgpu_device *adev =3D ring=
+-&gt;adev;<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 bool is_high_prio_compute =3D ring-&gt;funcs-&=
+gt;type =3D=3D <br>
+&gt;&gt; AMDGPU_RING_TYPE_COMPUTE &amp;&amp;<br>
+&gt;&gt; + amdgpu_gfx_is_high_priority_compute_queue(adev, ring);<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 bool is_high_prio_gfx =3D ring-&gt;funcs-&gt;t=
+ype =3D=3D <br>
+&gt;&gt; AMDGPU_RING_TYPE_GFX &amp;&amp;<br>
+&gt;&gt; + amdgpu_gfx_is_high_priority_graphics_queue(adev, ring);<br>
+&gt;&gt;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 memset(prop, 0, sizeof(*prop));<br>
+&gt;&gt;<br>
+&gt;&gt; @@ -637,10 +641,8 @@ static void amdgpu_ring_to_mqd_prop(struct <b=
+r>
+&gt;&gt; amdgpu_ring *ring,<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prop-&gt;hqd_active =3D ring-&gt;fu=
+ncs-&gt;type =3D=3D AMDGPU_RING_TYPE_KIQ;<br>
+&gt;&gt;<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0 if ((ring-&gt;funcs-&gt;type =3D=3D AMDGPU_RIN=
+G_TYPE_COMPUTE &amp;&amp;<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 amdgpu_gfx_is_hi=
+gh_priority_compute_queue(adev, ring)) ||<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (ring-&gt;funcs-&gt;ty=
+pe =3D=3D AMDGPU_RING_TYPE_GFX &amp;&amp;<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 amdgpu_gfx_is_hi=
+gh_priority_graphics_queue(adev, ring))) {<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 prop-&gt;allow_tunneling =3D is_high_prio_comp=
+ute;<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 if (is_high_prio_compute || is_high_prio_gfx) =
+{<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prop-&gt;hq=
+d_pipe_priority =3D AMDGPU_GFX_PIPE_PRIO_HIGH;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prop-&gt;hq=
+d_queue_priority =3D AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c <br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+&gt;&gt; index c8a3bf01743f..73f6d7e72c73 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
+&gt;&gt; @@ -6593,7 +6593,8 @@ static int gfx_v10_0_compute_mqd_init(struct=
+ <br>
+&gt;&gt; amdgpu_device *adev, void *m,<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, ENDIAN_SWAP, 1);<br>
+&gt;&gt; =C2=A0 #endif<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, UNORD_DISPATCH, 0);<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, =
+TUNNEL_DISPATCH, 0);<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, =
+TUNNEL_DISPATCH,<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 prop-&gt;allow_tunneling);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, PRIV_STATE, 1);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, KMD_QUEUE, 1);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mqd-&gt;cp_hqd_pq_control =3D tmp;<=
+br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c <br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
+&gt;&gt; index c659ef0f47ce..bdcf96df69e6 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
+&gt;&gt; @@ -3847,7 +3847,8 @@ static int gfx_v11_0_compute_mqd_init(struct=
+ <br>
+&gt;&gt; amdgpu_device *adev, void *m,<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, RPTR_BLOCK_SIZE,<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (order_base_2(AMDGPU_GPU_PAGE_SIZE / 4=
+) - 1));<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, UNORD_DISPATCH, 0);<br>
+&gt;&gt; -=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, =
+TUNNEL_DISPATCH, 0);<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_PQ_CONTROL, =
+TUNNEL_DISPATCH,<br>
+&gt;&gt; +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 prop-&gt;allow_tunneling);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, PRIV_STATE, 1);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D REG_SET_FIELD(tmp, CP_HQD_P=
+Q_CONTROL, KMD_QUEUE, 1);<br>
+&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mqd-&gt;cp_hqd_pq_control =3D tmp;<=
+br>
+&gt;&gt; -- <br>
+&gt;&gt; 2.43.0<br>
+&gt;&gt;<br>
+<br>
+</blockquote></div>
+
+--00000000000029422f060c00826c--
