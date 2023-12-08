@@ -2,62 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7781809E5E
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E186809E51
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AAB010EA3A;
-	Fri,  8 Dec 2023 08:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D509710EA2C;
+	Fri,  8 Dec 2023 08:37:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
- [IPv6:2607:f8b0:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A80B810E9CA
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:04 +0000 (UTC)
-Received: by mail-pg1-x530.google.com with SMTP id
- 41be03b00d2f7-5c5f0e325a6so1235286a12.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:04 -0800 (PST)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7BC110E9CA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:05 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-1d0b2752dc6so15623065ad.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1702014904; x=1702619704; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1702014905; x=1702619705; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=cT/f+zG+eBk9GDNM3PRDRS7FWs4vWVwDUJpda1v2enk=;
- b=NYGr//KATa+FPqcXCvA61mLQ5wG2M23M8siz2Tbtzh6HCWlNlIIxDRxsq1mxbpiW7y
- eNjSj/BJcDUPMqD/+2C5F5CTqXZV1kRd+1xZ+KMeOWev+KdFDAgK3cjXd8VTqw9LRUsD
- OIwFYPqUVLtBu1czYnyoEJLMeY52qflmhZPMit41/2QV1L3Wc4bqkFXhhMvuxMRd34d7
- AR0YVpOQQWalXH8owyJKey1k/FIZBUau5DOjsH8SO705D2tVaDcppO2SkoA/5Ip4lQog
- riVAMzosqFGmFQEOKiry6Q6RjCnN6lhf2Y5q0WAKk9c9MQKl/eFIEelY9m8k97e3tybE
- rcsA==
+ bh=9S9qeMKPrbOjny9ys0DNZnwzZdal5DwwFbQdO5IaRKs=;
+ b=ajmDgaycqjG7X8u+mM87C7x82AOu6Fvpam55DJVR+aYnQbea9T7euAbC/s6UQ9hE7p
+ qenvpDG+7kGD5POdyx5/h9CtC7d8TaEnIqxENRjvtkWi74+UmuHvZJcmgnOqgxZ7Ucus
+ oKZPxU1klTRSGfHc4y0nOlp/RnGNqPTpZl/h17rcpIJBn7VY8ub9RLZhDePoxhZR5WRk
+ rH0cOkEU4e9523aTdwjewcGpVAjOQcH+kllWUNAB52yssTZpUNw7boMQsJhtqn+01O0f
+ 0OS5JRT3Pj4CCsK9wLI9D8lnFtgWjSnGCday7oKj778t/+Ou2Bm/HDjFwI2hIaPpT0yw
+ HgqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702014904; x=1702619704;
+ d=1e100.net; s=20230601; t=1702014905; x=1702619705;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=cT/f+zG+eBk9GDNM3PRDRS7FWs4vWVwDUJpda1v2enk=;
- b=Q2E+a1949HIDhRrNKrIGf92yWVJxc+ZedKLIdj3Tyw3CxSz8hyKu/YKf+87Rw8SugP
- mbCr50C+4v7flpjkafRA+WQ9xKALAgMBJM8zQYsijZrbImg91Ho52jOxwK/FTznkNpSP
- cKWkdPgcinWkzT/GwxroPxsx4wzn3Ex6wfKGeGVmnaCcXAdLVvfUppZWuLpN84OxVcZ0
- 9k0dl/C70F5/2cYqWkjbpmMDQiv0IHWtkuhFwVrq/rIHXHiRv3u5XMr3THuN5TQFtUPC
- S22228M3UIT+SAdcbGUj9VKCCFA86t4ghCZEGbkRSoDD9B60q6MB9k2az2fKoWPhFI08
- xcdw==
-X-Gm-Message-State: AOJu0YwKuz2YuSGMdRg1j6AVEIyRAUTpcZR2BY/uXuv51SbXEvXPrsnP
- GDWMgBZoH1PBV7BkrlGBKPZQsg==
-X-Google-Smtp-Source: AGHT+IHjHZOPQupU2gBIY1LJy6ZLE2Spe4muScdMLjHj9er/qEsoCLB+Of3eLXhwYzBMH5NUihe96w==
-X-Received: by 2002:a05:6a20:160a:b0:190:14d9:4797 with SMTP id
- l10-20020a056a20160a00b0019014d94797mr1355279pzj.4.1702014904099; 
- Thu, 07 Dec 2023 21:55:04 -0800 (PST)
+ bh=9S9qeMKPrbOjny9ys0DNZnwzZdal5DwwFbQdO5IaRKs=;
+ b=cFMwn0SoN787FmmavBAAHn4TFhb9uvUd1L+puEzCnFdCVX+Am4QtLmxoCoaOlWNhAZ
+ DzF6ROxNVPs2pLuL+2d20PtMBlcEEpKucObkBCiLQSzqr/e0Lzn3sV8SCX+1rLphh0q0
+ GSPZHYu0Q8XfcTIcdcciU1DFzO8FElHJ4Y/Sp55T3B+Y23/7bFhmuAAYcrd1/Y803ULB
+ 3ZqdHK7iHN+ZSAks/YT7Oqj56k6saTpR6zQt1z4CfyaZcAWQhCHEOu3kdvBXdRj8eQNG
+ orCeaprhjezaf4pTb/va9iERmK2d+WTsmmHgp/ecndPIVUinUv8q7kWb8XsuSFH8eVsO
+ 0CyA==
+X-Gm-Message-State: AOJu0YyFmPZvLuSpL+rYhXd2qrOjNpqJ8N2xgVY74c0UJRHldUNyfUc+
+ QQQ5kGELT6BzyhrZZvl39nT9Yg==
+X-Google-Smtp-Source: AGHT+IHfVmDuQcwcTNkJBCCNyd1od5dj0sgf6cJP7ZkJkjT+CFkpOEIDhByDVUVjY+z9LFISOIDfEQ==
+X-Received: by 2002:a17:902:6844:b0:1cf:b190:ea07 with SMTP id
+ f4-20020a170902684400b001cfb190ea07mr2955137pln.21.1702014905389; 
+ Thu, 07 Dec 2023 21:55:05 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.03
+ s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Dec 2023 21:55:03 -0800 (PST)
+ Thu, 07 Dec 2023 21:55:05 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
  linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
  linux-riscv@lists.infradead.org, Christoph Hellwig <hch@infradead.org>
-Subject: [RFC PATCH 01/12] arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
-Date: Thu,  7 Dec 2023 21:54:31 -0800
-Message-ID: <20231208055501.2916202-2-samuel.holland@sifive.com>
+Subject: [RFC PATCH 02/12] ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+Date: Thu,  7 Dec 2023 21:54:32 -0800
+Message-ID: <20231208055501.2916202-3-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231208055501.2916202-1-samuel.holland@sifive.com>
 References: <20231208055501.2916202-1-samuel.holland@sifive.com>
@@ -80,60 +80,72 @@ Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Several architectures provide an API to enable the FPU and run
-floating-point SIMD code in kernel space. However, the function names,
-header locations, and semantics are inconsistent across architectures,
-and FPU support may be gated behind other Kconfig options.
+ARM provides an equivalent to the common kernel-mode FPU API, but in a
+different header and using different function names. Add a wrapper
+header, and export CFLAGS adjustments as found in lib/raid6/Makefile.
 
-Provide a standard way for architectures to declare that kernel space
-FPU support is available. Architectures selecting this option must
-implement what is currently the most common API (kernel_fpu_begin() and
-kernel_fpu_end(), plus a new function kernel_fpu_available()) and
-provide the appropriate CFLAGS for compiling floating-point C code.
-
-Suggested-by: Christoph Hellwig <hch@infradead.org>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
- Makefile     | 4 ++++
- arch/Kconfig | 9 +++++++++
- 2 files changed, 13 insertions(+)
+ arch/arm/Kconfig           |  1 +
+ arch/arm/Makefile          |  7 +++++++
+ arch/arm/include/asm/fpu.h | 17 +++++++++++++++++
+ 3 files changed, 25 insertions(+)
+ create mode 100644 arch/arm/include/asm/fpu.h
 
-diff --git a/Makefile b/Makefile
-index 511b5616aa41..e65c186cf2c9 100644
---- a/Makefile
-+++ b/Makefile
-@@ -969,6 +969,10 @@ KBUILD_CFLAGS	+= $(CC_FLAGS_CFI)
- export CC_FLAGS_CFI
- endif
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index f8567e95f98b..92e21a4a2903 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -14,6 +14,7 @@ config ARM
+ 	select ARCH_HAS_FORTIFY_SOURCE
+ 	select ARCH_HAS_KEEPINITRD
+ 	select ARCH_HAS_KCOV
++	select ARCH_HAS_KERNEL_FPU_SUPPORT if KERNEL_MODE_NEON
+ 	select ARCH_HAS_MEMBARRIER_SYNC_CORE
+ 	select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
+ 	select ARCH_HAS_PTE_SPECIAL if ARM_LPAE
+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
+index 5ba42f69f8ce..1dd860dba5f5 100644
+--- a/arch/arm/Makefile
++++ b/arch/arm/Makefile
+@@ -130,6 +130,13 @@ endif
+ # Accept old syntax despite ".syntax unified"
+ AFLAGS_NOWARN	:=$(call as-option,-Wa$(comma)-mno-warn-deprecated,-Wa$(comma)-W)
  
-+# Architectures can define flags to add/remove for floating-point support
-+export CC_FLAGS_FPU
-+export CC_FLAGS_NO_FPU
++# The GCC option -ffreestanding is required in order to compile code containing
++# ARM/NEON intrinsics in a non C99-compliant environment (such as the kernel)
++CC_FLAGS_FPU	:= -ffreestanding
++# Enable <arm_neon.h>
++CC_FLAGS_FPU	+= -isystem $(shell $(CC) -print-file-name=include)
++CC_FLAGS_FPU	+= -march=armv7-a -mfloat-abi=softfp -mfpu=neon
 +
- ifneq ($(CONFIG_FUNCTION_ALIGNMENT),0)
- KBUILD_CFLAGS += -falign-functions=$(CONFIG_FUNCTION_ALIGNMENT)
- endif
-diff --git a/arch/Kconfig b/arch/Kconfig
-index f4b210ab0612..6df834e18e9c 100644
---- a/arch/Kconfig
-+++ b/arch/Kconfig
-@@ -1478,6 +1478,15 @@ config ARCH_HAS_NONLEAF_PMD_YOUNG
- 	  address translations. Page table walkers that clear the accessed bit
- 	  may use this capability to reduce their search space.
- 
-+config ARCH_HAS_KERNEL_FPU_SUPPORT
-+	bool
-+	help
-+	  An architecture should select this option if it supports running
-+	  floating-point code in kernel space. It must export the functions
-+	  kernel_fpu_available(), kernel_fpu_begin(), and kernel_fpu_end() from
-+	  <asm/fpu.h>, and define CC_FLAGS_FPU and/or CC_FLAGS_NO_FPU as
-+	  necessary in its Makefile.
+ ifeq ($(CONFIG_THUMB2_KERNEL),y)
+ CFLAGS_ISA	:=-Wa,-mimplicit-it=always $(AFLAGS_NOWARN)
+ AFLAGS_ISA	:=$(CFLAGS_ISA) -Wa$(comma)-mthumb
+diff --git a/arch/arm/include/asm/fpu.h b/arch/arm/include/asm/fpu.h
+new file mode 100644
+index 000000000000..d01ca06e700a
+--- /dev/null
++++ b/arch/arm/include/asm/fpu.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * linux/arch/arm/include/asm/fpu.h
++ *
++ * Copyright (C) 2023 SiFive
++ */
 +
- source "kernel/gcov/Kconfig"
- 
- source "scripts/gcc-plugins/Kconfig"
++#ifndef __ASM_FPU_H
++#define __ASM_FPU_H
++
++#include <asm/neon.h>
++
++#define kernel_fpu_available()	cpu_has_neon()
++#define kernel_fpu_begin()	kernel_neon_begin()
++#define kernel_fpu_end()	kernel_neon_end()
++
++#endif /* ! __ASM_FPU_H */
 -- 
 2.42.0
 
