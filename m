@@ -2,62 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192AB809E50
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7781809E5E
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB3A10EA2A;
-	Fri,  8 Dec 2023 08:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AAB010EA3A;
+	Fri,  8 Dec 2023 08:37:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
- [IPv6:2607:f8b0:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A53E10E9CA
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:03 +0000 (UTC)
-Received: by mail-pl1-x62a.google.com with SMTP id
- d9443c01a7336-1cfabcbda7bso21575425ad.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:03 -0800 (PST)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
+ [IPv6:2607:f8b0:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A80B810E9CA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:04 +0000 (UTC)
+Received: by mail-pg1-x530.google.com with SMTP id
+ 41be03b00d2f7-5c5f0e325a6so1235286a12.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1702014903; x=1702619703; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=jIC4glHzB+IOAGM7YCu4gQFdGXeLpWj/I7OZVSGOh7k=;
- b=hhVTcG9F/VQOh/BVAhswyvYrv0LlY+xlgu5i7HiJKi8EkbO08tDafCi+K3AujLrIYT
- H2XXh5qujPa4q5nY1XXUGHTOrWLkbVTEWLwuEQI9gkJXoRW8LMYUqvveP3f4lybZpwWm
- Yjq/z3ZB+KPinxB1cg2kLyl3tdbg6BZuTb9BJd07KQ0h9h+GoaJoNEL8inFhNc/wSom4
- MOKrr6i1AQtVjWvpqOcy5YV2pXqitGGR/sjCVo9vVOb5Is4MUTTL3JHxg2yhaZLyS8Nz
- PJOYDmubjsA9gb7Lo9+t5/bfN6UqOR0dbCdPzzoglJQ40X76kYjjpplKC5gegZcI0Eyq
- WzFQ==
+ d=sifive.com; s=google; t=1702014904; x=1702619704; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cT/f+zG+eBk9GDNM3PRDRS7FWs4vWVwDUJpda1v2enk=;
+ b=NYGr//KATa+FPqcXCvA61mLQ5wG2M23M8siz2Tbtzh6HCWlNlIIxDRxsq1mxbpiW7y
+ eNjSj/BJcDUPMqD/+2C5F5CTqXZV1kRd+1xZ+KMeOWev+KdFDAgK3cjXd8VTqw9LRUsD
+ OIwFYPqUVLtBu1czYnyoEJLMeY52qflmhZPMit41/2QV1L3Wc4bqkFXhhMvuxMRd34d7
+ AR0YVpOQQWalXH8owyJKey1k/FIZBUau5DOjsH8SO705D2tVaDcppO2SkoA/5Ip4lQog
+ riVAMzosqFGmFQEOKiry6Q6RjCnN6lhf2Y5q0WAKk9c9MQKl/eFIEelY9m8k97e3tybE
+ rcsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702014903; x=1702619703;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jIC4glHzB+IOAGM7YCu4gQFdGXeLpWj/I7OZVSGOh7k=;
- b=u0J/Bvyl4N6/GZj9tu4lJHOVfYmA4hKnSJjSX+NSb/3zVoAbp8/3Lj3iP5ey/ktxLa
- lgE8du7Nf11oaHGmOKY/yRQDek8ERMLfLNuvWNc4XjrjDtDwnY4JB5Hv1ZtLuy9YSx1n
- J6XCcsXGbNTBlaZgGDh81ajeOzfd2tGj89Y9LKRXCabjLjvGYxkKn7cpA44CRJbxKSqa
- EPB1z+gRrwYoTK4y52xdhhL0C9SKsLivqkGwOwMrF3IxF6ndETl3B451iLUmG5QFRo1B
- itaLCScK3FXMwNSq6DxDznUEEpHURNRdzN1Kln28Wy1eOnKq605UiQtuSAnwA6nboxw5
- SMdg==
-X-Gm-Message-State: AOJu0Yx+ElFMkjYOw5BgZLeIixDo8+KCOQe2dWn9+qH4zH5hmOcLoFYS
- N/0MFa2wu7ZAVNmPZzHoBr2pLw==
-X-Google-Smtp-Source: AGHT+IHobgnIbAqUwh0qy5g87XS9Ops6tA3mZ0Tbbi2vny+WXvVENlMrplaMBh4oGzh2rC3HGh0NRQ==
-X-Received: by 2002:a17:902:c20c:b0:1d0:6ffd:610c with SMTP id
- 12-20020a170902c20c00b001d06ffd610cmr481032pll.46.1702014902890; 
- Thu, 07 Dec 2023 21:55:02 -0800 (PST)
+ d=1e100.net; s=20230601; t=1702014904; x=1702619704;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=cT/f+zG+eBk9GDNM3PRDRS7FWs4vWVwDUJpda1v2enk=;
+ b=Q2E+a1949HIDhRrNKrIGf92yWVJxc+ZedKLIdj3Tyw3CxSz8hyKu/YKf+87Rw8SugP
+ mbCr50C+4v7flpjkafRA+WQ9xKALAgMBJM8zQYsijZrbImg91Ho52jOxwK/FTznkNpSP
+ cKWkdPgcinWkzT/GwxroPxsx4wzn3Ex6wfKGeGVmnaCcXAdLVvfUppZWuLpN84OxVcZ0
+ 9k0dl/C70F5/2cYqWkjbpmMDQiv0IHWtkuhFwVrq/rIHXHiRv3u5XMr3THuN5TQFtUPC
+ S22228M3UIT+SAdcbGUj9VKCCFA86t4ghCZEGbkRSoDD9B60q6MB9k2az2fKoWPhFI08
+ xcdw==
+X-Gm-Message-State: AOJu0YwKuz2YuSGMdRg1j6AVEIyRAUTpcZR2BY/uXuv51SbXEvXPrsnP
+ GDWMgBZoH1PBV7BkrlGBKPZQsg==
+X-Google-Smtp-Source: AGHT+IHjHZOPQupU2gBIY1LJy6ZLE2Spe4muScdMLjHj9er/qEsoCLB+Of3eLXhwYzBMH5NUihe96w==
+X-Received: by 2002:a05:6a20:160a:b0:190:14d9:4797 with SMTP id
+ l10-20020a056a20160a00b0019014d94797mr1355279pzj.4.1702014904099; 
+ Thu, 07 Dec 2023 21:55:04 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.02
+ s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Dec 2023 21:55:02 -0800 (PST)
+ Thu, 07 Dec 2023 21:55:03 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
  linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
  linux-riscv@lists.infradead.org, Christoph Hellwig <hch@infradead.org>
-Subject: [RFC PATCH 00/12] Unified cross-architecture kernel-mode FPU API
-Date: Thu,  7 Dec 2023 21:54:30 -0800
-Message-ID: <20231208055501.2916202-1-samuel.holland@sifive.com>
+Subject: [RFC PATCH 01/12] arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
+Date: Thu,  7 Dec 2023 21:54:31 -0800
+Message-ID: <20231208055501.2916202-2-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231208055501.2916202-1-samuel.holland@sifive.com>
+References: <20231208055501.2916202-1-samuel.holland@sifive.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 08 Dec 2023 08:37:01 +0000
@@ -77,85 +80,60 @@ Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This series supersedes my earier RISC-V specific series[1].
+Several architectures provide an API to enable the FPU and run
+floating-point SIMD code in kernel space. However, the function names,
+header locations, and semantics are inconsistent across architectures,
+and FPU support may be gated behind other Kconfig options.
 
-This series unifies the kernel-mode FPU API across several architectures
-by wrapping the existing functions (where needed) in consistently-named
-functions placed in a consistent header location, with mostly the same
-semantics: they can be called from preemptible or non-preemptible task
-context, and are not assumed to be reentrant. Architectures are also
-expected to provide CFLAGS adjustments for compiling FPU-dependent code.
-For the moment, SIMD/vector units are out of scope for this common API.
+Provide a standard way for architectures to declare that kernel space
+FPU support is available. Architectures selecting this option must
+implement what is currently the most common API (kernel_fpu_begin() and
+kernel_fpu_end(), plus a new function kernel_fpu_available()) and
+provide the appropriate CFLAGS for compiling floating-point C code.
 
-This allows us to remove the ifdeffery and duplicated Makefile logic at
-each FPU user. It then implements the common API on RISC-V, and converts
-a couple of users to the new API: the AMDGPU DRM driver, and the FPU
-self test.
+Suggested-by: Christoph Hellwig <hch@infradead.org>
+Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+---
 
-The underlying goal of this series is to allow using newer AMD GPUs
-(e.g. Navi) on RISC-V boards such as SiFive's HiFive Unmatched. Those
-GPUs need CONFIG_DRM_AMD_DC_FP to initialize, which requires kernel-mode
-FPU support.
+ Makefile     | 4 ++++
+ arch/Kconfig | 9 +++++++++
+ 2 files changed, 13 insertions(+)
 
-[1]: https://lore.kernel.org/linux-riscv/20231122030621.3759313-1-samuel.holland@sifive.com/
-
-
-Samuel Holland (12):
-  arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
-  ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-  ARM: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
-  arm64: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-  lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
-  LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-  powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-  x86: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-  riscv: Add support for kernel-mode FPU
-  drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
-  selftests/fpu: Move FP code to a separate translation unit
-  selftests/fpu: Allow building on other architectures
-
- Makefile                                      |  4 ++
- arch/Kconfig                                  |  9 +++++
- arch/arm/Kconfig                              |  1 +
- arch/arm/Makefile                             |  7 ++++
- arch/arm/include/asm/fpu.h                    | 17 +++++++++
- arch/arm/lib/Makefile                         |  3 +-
- arch/arm64/Kconfig                            |  1 +
- arch/arm64/Makefile                           |  9 ++++-
- arch/arm64/include/asm/fpu.h                  | 17 +++++++++
- arch/loongarch/Kconfig                        |  1 +
- arch/loongarch/Makefile                       |  5 ++-
- arch/loongarch/include/asm/fpu.h              |  1 +
- arch/powerpc/Kconfig                          |  1 +
- arch/powerpc/Makefile                         |  5 ++-
- arch/powerpc/include/asm/fpu.h                | 28 ++++++++++++++
- arch/riscv/Kconfig                            |  1 +
- arch/riscv/Makefile                           |  3 ++
- arch/riscv/include/asm/fpu.h                  | 26 +++++++++++++
- arch/riscv/kernel/Makefile                    |  1 +
- arch/riscv/kernel/kernel_mode_fpu.c           | 28 ++++++++++++++
- arch/x86/Kconfig                              |  1 +
- arch/x86/Makefile                             | 20 ++++++++++
- arch/x86/include/asm/fpu.h                    | 13 +++++++
- drivers/gpu/drm/amd/display/Kconfig           |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 33 +----------------
- drivers/gpu/drm/amd/display/dc/dml/Makefile   | 36 +-----------------
- drivers/gpu/drm/amd/display/dc/dml2/Makefile  | 36 +-----------------
- lib/Kconfig.debug                             |  2 +-
- lib/Makefile                                  | 26 ++-----------
- lib/raid6/Makefile                            | 31 ++++------------
- lib/{test_fpu.c => test_fpu_glue.c}           | 37 +++----------------
- lib/test_fpu_impl.c                           | 35 ++++++++++++++++++
- 32 files changed, 255 insertions(+), 185 deletions(-)
- create mode 100644 arch/arm/include/asm/fpu.h
- create mode 100644 arch/arm64/include/asm/fpu.h
- create mode 100644 arch/powerpc/include/asm/fpu.h
- create mode 100644 arch/riscv/include/asm/fpu.h
- create mode 100644 arch/riscv/kernel/kernel_mode_fpu.c
- create mode 100644 arch/x86/include/asm/fpu.h
- rename lib/{test_fpu.c => test_fpu_glue.c} (71%)
- create mode 100644 lib/test_fpu_impl.c
-
+diff --git a/Makefile b/Makefile
+index 511b5616aa41..e65c186cf2c9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -969,6 +969,10 @@ KBUILD_CFLAGS	+= $(CC_FLAGS_CFI)
+ export CC_FLAGS_CFI
+ endif
+ 
++# Architectures can define flags to add/remove for floating-point support
++export CC_FLAGS_FPU
++export CC_FLAGS_NO_FPU
++
+ ifneq ($(CONFIG_FUNCTION_ALIGNMENT),0)
+ KBUILD_CFLAGS += -falign-functions=$(CONFIG_FUNCTION_ALIGNMENT)
+ endif
+diff --git a/arch/Kconfig b/arch/Kconfig
+index f4b210ab0612..6df834e18e9c 100644
+--- a/arch/Kconfig
++++ b/arch/Kconfig
+@@ -1478,6 +1478,15 @@ config ARCH_HAS_NONLEAF_PMD_YOUNG
+ 	  address translations. Page table walkers that clear the accessed bit
+ 	  may use this capability to reduce their search space.
+ 
++config ARCH_HAS_KERNEL_FPU_SUPPORT
++	bool
++	help
++	  An architecture should select this option if it supports running
++	  floating-point code in kernel space. It must export the functions
++	  kernel_fpu_available(), kernel_fpu_begin(), and kernel_fpu_end() from
++	  <asm/fpu.h>, and define CC_FLAGS_FPU and/or CC_FLAGS_NO_FPU as
++	  necessary in its Makefile.
++
+ source "kernel/gcov/Kconfig"
+ 
+ source "scripts/gcc-plugins/Kconfig"
 -- 
 2.42.0
 
