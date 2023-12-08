@@ -1,54 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B565809E55
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5327809E4A
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6810F10EA1E;
-	Fri,  8 Dec 2023 08:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA9710EA25;
+	Fri,  8 Dec 2023 08:37:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 467 seconds by postgrey-1.36 at gabe;
- Fri, 08 Dec 2023 02:53:06 UTC
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C97AC10E013;
- Fri,  8 Dec 2023 02:53:06 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.165])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4Smb8p73Fsz5SgR;
- Fri,  8 Dec 2023 10:45:14 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4Smb8h3dhrz64Yj5;
- Fri,  8 Dec 2023 10:45:08 +0800 (CST)
-Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4Smb8b4FnLz5B101;
- Fri,  8 Dec 2023 10:45:03 +0800 (CST)
-Received: from xaxapp02.zte.com.cn ([10.88.97.241])
- by mse-fl2.zte.com.cn with SMTP id 3B82itc9067680;
- Fri, 8 Dec 2023 10:44:55 +0800 (+08)
- (envelope-from yang.guang5@zte.com.cn)
-Received: from mapi (xaxapp02[null]) by mapi (Zmail) with MAPI id mid31;
- Fri, 8 Dec 2023 10:44:56 +0800 (CST)
-Date: Fri, 8 Dec 2023 10:44:56 +0800 (CST)
-X-Zmail-TransId: 2afa657283282d5-bc543
-X-Mailer: Zmail v1.0
-Message-ID: <202312081044568085747@zte.com.cn>
-Mime-Version: 1.0
-From: <yang.guang5@zte.com.cn>
-To: <harry.wentland@amd.com>
-Subject: =?UTF-8?B?W1BBVENIIGxpbnV4LW5leHRdIGRybS9hbWQvZGlzcGxheTogcmVwbGFjZSBremFsbG9jIGFuZCBtZW1jcHkgd2l0aCBrbWVtZHVw?=
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-fl2.zte.com.cn 3B82itc9067680
-X-Fangmail-Gw-Spam-Type: 0
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 65728339.001/4Smb8p73Fsz5SgR
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
+ [IPv6:2607:f8b0:4864:20::112e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 351A710E12E
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 04:17:04 +0000 (UTC)
+Received: by mail-yw1-x112e.google.com with SMTP id
+ 00721157ae682-5cfc3a48ab2so14665767b3.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 20:17:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sifive.com; s=google; t=1702009023; x=1702613823; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=f7vp8x0oDP3EbH3U6bJ7KDFrE+BpYL9j1ysozmjTXzU=;
+ b=Wv3cuwhM+D3K7idFle1sQiM/tS8GC7eKR8eBYMFXpcCBBBnDR3OD7KRGncrRrhImhv
+ PZd+cb8ECuPMetTJZezws6aSOwOp4JCa20QsiV2Ue3/GAEliT/nudsWpimJqgpJtgibf
+ e/+UEbHHwikVM3O4ufZuZbnabc3RojG1OTerQPG2/LFZjA+eCMBB0HXV8rT5/8ICmAgR
+ +f+03JTb8ruyM2wsLEkOiteUUb6Q0l1ra8QEMJO71MHWpCWNPVGUGJW+zHYnLy063PDD
+ YQc5GjkTxiV0WRYOoF22z7X6EV+zlY1zss/UvMUT3ZYAYf7rxr6Fkb5apwnCDkrZXanf
+ 0RKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702009023; x=1702613823;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=f7vp8x0oDP3EbH3U6bJ7KDFrE+BpYL9j1ysozmjTXzU=;
+ b=QnMqm7RcgVj/xoJkqCb9vcvI1cnf/AvaFP3dr//NQtWErE47JJuf5FA/T/OmzQ4BFo
+ 7YJyxJUTmyDv7BEwatQuSQ2X1jt8xPxJIAqGrYYocoXBwO5BqX7bs54+gK55uT/Dhoh0
+ QnS8HEZhRgVwxuWHnDlsXhAFbmCRXhMCYJ9ll+IDvUJn0rnREnnja45kFZoOpX4pY9tx
+ Y1N22JIViG2lNevopgqdIfWd4KGeba8vr704x2lIUEAl2n6EdaZWejCTlgSRRBUE0vcZ
+ SeI5cPBtO6J7P9lQ+Je7z2NH8xBM0mpQCwhfk87mVCGd2mOZQ2o8O7if4837F98+e8nj
+ x2nw==
+X-Gm-Message-State: AOJu0YzBax2skgvyT9w1A+ftsHcVS2HLmQb0LWoXmp6fvuV7/CoaeDF3
+ 4kOS2bLWWavKCx4fGQgDersUJA==
+X-Google-Smtp-Source: AGHT+IFJ7rl316vQtE3r+S2OEJohJzfcnMzp0IFjlp1x5P7qNhZsNS2qZXmMmO5ixQp4wMXH8QWNgg==
+X-Received: by 2002:a0d:e690:0:b0:5d7:1941:abb with SMTP id
+ p138-20020a0de690000000b005d719410abbmr3581208ywe.86.1702009023272; 
+ Thu, 07 Dec 2023 20:17:03 -0800 (PST)
+Received: from ?IPV6:2600:1700:2000:b002:41c5:bf1:860b:1e95?
+ ([2600:1700:2000:b002:41c5:bf1:860b:1e95])
+ by smtp.gmail.com with ESMTPSA id
+ q5-20020a0ce9c5000000b0067ac1c30e80sm468893qvo.120.2023.12.07.20.17.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 07 Dec 2023 20:17:02 -0800 (PST)
+Message-ID: <86d857bf-a833-4529-aba9-391c49a3550b@sifive.com>
+Date: Thu, 7 Dec 2023 22:17:01 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] riscv: Add support for kernel-mode FPU
+Content-Language: en-US
+To: Christoph Hellwig <hch@infradead.org>
+References: <20231122030621.3759313-1-samuel.holland@sifive.com>
+ <20231122030621.3759313-2-samuel.holland@sifive.com>
+ <ZV283NfE/K5zLXDD@infradead.org>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <ZV283NfE/K5zLXDD@infradead.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 08 Dec 2023 08:37:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,47 +78,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, aric.cyr@amd.com,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, gabe.teeger@amd.com,
- sunpeng.li@amd.com, cgel.zte@gmail.com, qingqing.zhuo@amd.com,
- xinhui.pan@amd.com, rodrigo.siqueira@amd.com, linux-kernel@vger.kernel.org,
- samson.tam@amd.com, chen.haonan2@zte.com.cn, chiawen.huang@amd.com,
- wenjing.liu@amd.com, alvin.lee2@amd.com, jiang.xuexin@zte.com.cn,
- alexander.deucher@amd.com, jun.lei@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Palmer Dabbelt <palmer@dabbelt.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ linux-riscv@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yang Guang <yang.guang5@zte.com.cn>
+Hi Christoph,
 
-Convert kzalloc/memcpy operations to memdup makes for 
-cleaner code and avoids memcpy() failures
+On 2023-11-22 2:33 AM, Christoph Hellwig wrote:
+> On Tue, Nov 21, 2023 at 07:05:13PM -0800, Samuel Holland wrote:
+>> +static inline void kernel_fpu_begin(void)
+>> +{
+>> +	preempt_disable();
+>> +	fstate_save(current, task_pt_regs(current));
+>> +	csr_set(CSR_SSTATUS, SR_FS);
+>> +}
+>> +
+>> +static inline void kernel_fpu_end(void)
+>> +{
+>> +	csr_clear(CSR_SSTATUS, SR_FS);
+>> +	fstate_restore(current, task_pt_regs(current));
+>> +	preempt_enable();
+>> +}
+> 
+> Is there any critical reason to inline these two?  I'd much rather see
+> them out of line and exported instead of the low-level helpers.
 
-Signed-off-by: Chen Haonan <chen.haonan2@zte.com.cn>
----
- drivers/gpu/drm/amd/display/dc/core/dc.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+No, I will define them out of line in v2.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 76b47f178127..867e1a0fdef6 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2264,12 +2264,10 @@ struct dc_state *dc_copy_state(struct dc_state *src_ctx)
+Regards,
+Samuel
 
- #ifdef CONFIG_DRM_AMD_DC_FP
- 	if (new_ctx->bw_ctx.dml2) {
--		dml2 = kzalloc(sizeof(struct dml2_context), GFP_KERNEL);
--		if (!dml2)
--			return NULL;
--
--		memcpy(dml2, src_ctx->bw_ctx.dml2, sizeof(struct dml2_context));
--		new_ctx->bw_ctx.dml2 = dml2;
-+		dml2 = kmemdup(src_ctx->bw_ctx.dml2, sizeof(struct dml2_context), GFP_KERNEL);
-+		if (!dml2)
-+			return NULL;
-+		new_ctx->bw_ctx.dml2 = dml2;
- 	}
- #endif
-
--- 
-2.25.1
