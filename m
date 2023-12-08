@@ -2,62 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF79809E53
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E4C809E5C
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD99110EA2D;
-	Fri,  8 Dec 2023 08:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F04D810EA57;
+	Fri,  8 Dec 2023 08:37:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
- [IPv6:2607:f8b0:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7508B10E9CD
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:09 +0000 (UTC)
-Received: by mail-pf1-x430.google.com with SMTP id
- d2e1a72fcca58-6ce94f62806so1087043b3a.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:09 -0800 (PST)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEED310E9D0
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:10 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-1d0a5422c80so15560265ad.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1702014909; x=1702619709; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1702014910; x=1702619710; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=oJ/tAo5hDwQPfRruz9afcRfXvkx00dxKddYKFVNcdvc=;
- b=iaavN1W4rj4WNA6ufNA5QtTGTONoop7bwSekMaqga5lZ3ZVQ54LoISEaLH+ozKjHT1
- Fr0GRHlDW15gx3PU7HD9GaZXEVQ1y9YTxw0++1r+znEq16DzGbZ6xgctwCL5V/5czQ3y
- M+D3qedPVEhpGQCjcSIlMPMdAHfSxnO/DFLY3VXjTiSon934ec5e/CHhhlV9VfhxkUi3
- pP8NoP5Q8VHUUKhBWlN8Hg3NV6MyNapXjNAXM2zcOr/c06FAIPnv1bcRN/HEw3cNmaoW
- BON0FSTRDwkR0aKjW6ZyTQv3DKezClEJxcfAh7FvyzKCxLrBu+Z9K0hpwaB8TfQv5aJS
- 3LHQ==
+ bh=kq9/CzymS2t6cI6IAaf6StcamgWHCvrnQt5+bd0vsJ4=;
+ b=VTfWNZX4yGnIJAbbllqSDmwGMDIWz9NE43OYtdx1W3RAc/t5G8d4Vy0ksYrmS3HBIr
+ jcq6xnBT/xdedg4zUUiwDixae9OTtIaHBCq3iW74CRYDo/YhiJ2m07L0FzuV62U3gtYD
+ tHFvXMOvTDgAfioxorhWfZ6pyENV6MlA83Ep8mTSeZNY2SxbL7UG7DcqaYi9lpHVkzLr
+ clWSlVD3hFOePQ9dwjkEQhU/poKJnLJlNnSFOVdGI8m/woBANUGzAZCNQM7D3L2HpqF3
+ uNF4CnxlmoBqn6SmFzjyQ3ioCresoq/aNjSiH7ti3pfv+YdyF1bGCcUlcEwinQWUf/v2
+ clJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702014909; x=1702619709;
+ d=1e100.net; s=20230601; t=1702014910; x=1702619710;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=oJ/tAo5hDwQPfRruz9afcRfXvkx00dxKddYKFVNcdvc=;
- b=RhUjFj65c4cSrwI8JM1A0UFXB08nG2hsVVwrAX7k+dmDYgzyOTbXP0RIOgWeZIohFX
- tr7s0dK9ONtNPyehnSxckpUnM0reU0c19gN96uGmgs3IBV4L2qwPbQGN9DhdNP/G8V1/
- SAVjNc+KgVNKqHINvv/yG6Zjp3zqI1drKTIXaoU+vLWWBSRSTt8NHhnbCRSNcq68qegb
- hCDE2e8uU8pduqCzNEIz7jv90CtOibgUcXs3vSHOFBLKxWnavratf2faH8olshQXMFaz
- SrC9PumjPlO3cTQTT8dAoJtFNPOVR2SQGYwhkCN+gfVliQh4hhJv1oKZc1vrKeCG8WH2
- xu3g==
-X-Gm-Message-State: AOJu0YxrdWlaME4h0NQPpDWz9c7FIDH4IzT2GsigA3E1mnjRLEurQakD
- F0oaIhpByZY3CT6An8+dAgIKAQ==
-X-Google-Smtp-Source: AGHT+IHgMEmtold3cNsq0/10/gSamuXTn7dqDmNr7pkUJjR3cZZJuyMG6U/Bp0CgIPL33Lkbwgh+tw==
-X-Received: by 2002:a05:6a20:4282:b0:181:74fe:ba83 with SMTP id
- o2-20020a056a20428200b0018174feba83mr4264495pzj.40.1702014909013; 
- Thu, 07 Dec 2023 21:55:09 -0800 (PST)
+ bh=kq9/CzymS2t6cI6IAaf6StcamgWHCvrnQt5+bd0vsJ4=;
+ b=AIWf+GicgiPF9byv25OZGR+Aff0XwbIb2a7brRa+Q3pz/09/mU8ZkM3E3PlApOWFsB
+ 1V2RuB6xzMy30Wbv4IHc5acEthvAr+KNGFe+563yHepBJnENHlUl4KqMRxsPnSZlkDqu
+ PfmmymrremueE8IWQR977cCWc5xZ9d2cGRCvdOUTbQkqBF0RCHchEUIyA4+ARb0XkkVo
+ t16wGot1WbvTY/bEYZ4Jy7h2lstBNZhLFv6nZweYqcnSR9Q5/D3mL8BVyJc+AO9b4Szo
+ RdAV78ikAht3Yog+4Cud3m2QPRW4XseBJyVlK0TiY/zu6F0BsPzF9iObStZzxBpEL21G
+ NxJA==
+X-Gm-Message-State: AOJu0YzAHvE6S6GjzAty5qc2FvRdnqJ4rbCRmPsZ6KWIloifM/09fUAb
+ u0vlEpOFT/xtyloG/FNQVWaIFA==
+X-Google-Smtp-Source: AGHT+IHV6F7Dn38rHWvZV+XaXS58Ch7TWuC4F5MVn7OmuYlLci2zlP9Fr0nUwpZzieoBTkpnbrTn6A==
+X-Received: by 2002:a17:903:2290:b0:1b8:90bd:d157 with SMTP id
+ b16-20020a170903229000b001b890bdd157mr4496557plh.26.1702014910345; 
+ Thu, 07 Dec 2023 21:55:10 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.08
+ s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Dec 2023 21:55:08 -0800 (PST)
+ Thu, 07 Dec 2023 21:55:09 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
  linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
  linux-riscv@lists.infradead.org, Christoph Hellwig <hch@infradead.org>
-Subject: [RFC PATCH 05/12] lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
-Date: Thu,  7 Dec 2023 21:54:35 -0800
-Message-ID: <20231208055501.2916202-6-samuel.holland@sifive.com>
+Subject: [RFC PATCH 06/12] LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+Date: Thu,  7 Dec 2023 21:54:36 -0800
+Message-ID: <20231208055501.2916202-7-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231208055501.2916202-1-samuel.holland@sifive.com>
 References: <20231208055501.2916202-1-samuel.holland@sifive.com>
@@ -80,64 +80,65 @@ Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Now that CC_FLAGS_FPU is exported and can be used anywhere in the source
-tree, use it instead of duplicating the flags here.
+LoongArch already provides kernel_fpu_begin() and kernel_fpu_end() in
+asm/fpu.h, so it only needs to add kernel_fpu_available() and export
+the CFLAGS adjustments.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
- lib/raid6/Makefile | 31 ++++++++-----------------------
- 1 file changed, 8 insertions(+), 23 deletions(-)
+ arch/loongarch/Kconfig           | 1 +
+ arch/loongarch/Makefile          | 5 ++++-
+ arch/loongarch/include/asm/fpu.h | 1 +
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/lib/raid6/Makefile b/lib/raid6/Makefile
-index 1c5420ff254e..309fea97efc6 100644
---- a/lib/raid6/Makefile
-+++ b/lib/raid6/Makefile
-@@ -33,25 +33,6 @@ CFLAGS_REMOVE_vpermxor8.o += -msoft-float
+diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+index ee123820a476..65d4475565b8 100644
+--- a/arch/loongarch/Kconfig
++++ b/arch/loongarch/Kconfig
+@@ -15,6 +15,7 @@ config LOONGARCH
+ 	select ARCH_HAS_CPU_FINALIZE_INIT
+ 	select ARCH_HAS_FORTIFY_SOURCE
+ 	select ARCH_HAS_KCOV
++	select ARCH_HAS_KERNEL_FPU_SUPPORT if CPU_HAS_FPU
+ 	select ARCH_HAS_NMI_SAFE_THIS_CPU_OPS
+ 	select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
+ 	select ARCH_HAS_PTE_SPECIAL
+diff --git a/arch/loongarch/Makefile b/arch/loongarch/Makefile
+index 204b94b2e6aa..f5c4f7e921db 100644
+--- a/arch/loongarch/Makefile
++++ b/arch/loongarch/Makefile
+@@ -25,6 +25,9 @@ endif
+ 32bit-emul		= elf32loongarch
+ 64bit-emul		= elf64loongarch
+ 
++CC_FLAGS_FPU		:= -mfpu=64
++CC_FLAGS_NO_FPU		:= -msoft-float
++
+ ifdef CONFIG_DYNAMIC_FTRACE
+ KBUILD_CPPFLAGS += -DCC_USING_PATCHABLE_FUNCTION_ENTRY
+ CC_FLAGS_FTRACE := -fpatchable-function-entry=2
+@@ -46,7 +49,7 @@ ld-emul			= $(64bit-emul)
+ cflags-y		+= -mabi=lp64s
  endif
- endif
  
--# The GCC option -ffreestanding is required in order to compile code containing
--# ARM/NEON intrinsics in a non C99-compliant environment (such as the kernel)
--ifeq ($(CONFIG_KERNEL_MODE_NEON),y)
--NEON_FLAGS := -ffreestanding
--# Enable <arm_neon.h>
--NEON_FLAGS += -isystem $(shell $(CC) -print-file-name=include)
--ifeq ($(ARCH),arm)
--NEON_FLAGS += -march=armv7-a -mfloat-abi=softfp -mfpu=neon
--endif
--CFLAGS_recov_neon_inner.o += $(NEON_FLAGS)
--ifeq ($(ARCH),arm64)
--CFLAGS_REMOVE_recov_neon_inner.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon1.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon2.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon4.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon8.o += -mgeneral-regs-only
--endif
--endif
--
- quiet_cmd_unroll = UNROLL  $@
-       cmd_unroll = $(AWK) -v N=$* -f $(srctree)/$(src)/unroll.awk < $< > $@
+-cflags-y			+= -pipe -msoft-float
++cflags-y			+= -pipe $(CC_FLAGS_NO_FPU)
+ LDFLAGS_vmlinux			+= -static -n -nostdlib
  
-@@ -75,10 +56,14 @@ targets += vpermxor1.c vpermxor2.c vpermxor4.c vpermxor8.c
- $(obj)/vpermxor%.c: $(src)/vpermxor.uc $(src)/unroll.awk FORCE
- 	$(call if_changed,unroll)
+ # When the assembler supports explicit relocation hint, we must use it.
+diff --git a/arch/loongarch/include/asm/fpu.h b/arch/loongarch/include/asm/fpu.h
+index c2d8962fda00..3177674228f8 100644
+--- a/arch/loongarch/include/asm/fpu.h
++++ b/arch/loongarch/include/asm/fpu.h
+@@ -21,6 +21,7 @@
  
--CFLAGS_neon1.o += $(NEON_FLAGS)
--CFLAGS_neon2.o += $(NEON_FLAGS)
--CFLAGS_neon4.o += $(NEON_FLAGS)
--CFLAGS_neon8.o += $(NEON_FLAGS)
-+CFLAGS_neon1.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon2.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon4.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon8.o += $(CC_FLAGS_FPU)
-+CFLAGS_REMOVE_neon1.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon2.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon4.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon8.o += $(CC_FLAGS_NO_FPU)
- targets += neon1.c neon2.c neon4.c neon8.c
- $(obj)/neon%.c: $(src)/neon.uc $(src)/unroll.awk FORCE
- 	$(call if_changed,unroll)
+ struct sigcontext;
+ 
++#define kernel_fpu_available() cpu_has_fpu
+ extern void kernel_fpu_begin(void);
+ extern void kernel_fpu_end(void);
+ 
 -- 
 2.42.0
 
