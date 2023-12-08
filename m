@@ -2,72 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F96809E5D
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 192AB809E50
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 09:37:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D474510EA43;
-	Fri,  8 Dec 2023 08:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB3A10EA2A;
+	Fri,  8 Dec 2023 08:37:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com
- [IPv6:2607:f8b0:4864:20::a2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D11910E990
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:04:45 +0000 (UTC)
-Received: by mail-vk1-xa2f.google.com with SMTP id
- 71dfb90a1353d-4b2cef60577so452141e0c.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:04:45 -0800 (PST)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A53E10E9CA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 05:55:03 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-1cfabcbda7bso21575425ad.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 07 Dec 2023 21:55:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1702011884; x=1702616684; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=YCezDiITLYZlXZkoiENFPkRYgXSgvqAlJqwCHapkHlo=;
- b=cdYAnVD14BYHYe/SVCeTv+SjPXnX7YnIlbygAABMK7jfdvsovBAOR7EhmzWk1yV5S1
- JE+70m4g7rzU+0699JX4m6WHu/yLSN48Ztzk+G0JX9kcCn4YNAUWiSMkFytWdyllOZo+
- +WWxWyDUXhtUfle9pA48o8t24OYKrJPFNXmbUsWiu8QUjNbNeEHAK0veTR+QQmKmvw61
- X6mNpzOg9+dWsmMz6vFlTP0kYtHKrukkR3lBk3UQhMfOGP3uUaTsSyQquksFrS0mc9AC
- JtqyXLwbrSbRm3V/i+bjnshtF+kzFRkIS3pspoaDs6Cxfyg9QdW+TCz3MPXSXlDzPfLQ
- DrhQ==
+ d=sifive.com; s=google; t=1702014903; x=1702619703; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=jIC4glHzB+IOAGM7YCu4gQFdGXeLpWj/I7OZVSGOh7k=;
+ b=hhVTcG9F/VQOh/BVAhswyvYrv0LlY+xlgu5i7HiJKi8EkbO08tDafCi+K3AujLrIYT
+ H2XXh5qujPa4q5nY1XXUGHTOrWLkbVTEWLwuEQI9gkJXoRW8LMYUqvveP3f4lybZpwWm
+ Yjq/z3ZB+KPinxB1cg2kLyl3tdbg6BZuTb9BJd07KQ0h9h+GoaJoNEL8inFhNc/wSom4
+ MOKrr6i1AQtVjWvpqOcy5YV2pXqitGGR/sjCVo9vVOb5Is4MUTTL3JHxg2yhaZLyS8Nz
+ PJOYDmubjsA9gb7Lo9+t5/bfN6UqOR0dbCdPzzoglJQ40X76kYjjpplKC5gegZcI0Eyq
+ WzFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702011884; x=1702616684;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=YCezDiITLYZlXZkoiENFPkRYgXSgvqAlJqwCHapkHlo=;
- b=Hkwettg3F4HkcFnHcKU3UKBW2E3mcF2T8UZXAPwAXFBC8zIioIzqnn3dfOxyqQd3hL
- T1FRku2MlH41HeoA+ntm+9Zrr+/fk2bx/hsek11/yOEWq2CewelY8VIsSL54htGtdTmK
- ob42fgI4otkSul3nET6/8w9MpuKzhiGETJ+Lj/DBivM99MtnjEDy69ZQ27h3VQG80C6N
- lZa6oLqqIS/p46yd7zvhM3ed8v+3xUHjrYDaR5hw4RhricTbDUHlMV2THZSXnoXuLwh9
- 18pif3mOana/+UQn6yj583Bx+XeKGlfYBH/uuwMFEA2Jy/wdG923utWNwE7ZYJnYVepm
- ZVNg==
-X-Gm-Message-State: AOJu0YyBUNMJHyXhch56Y/y503UQ+6uicamfExfKiHjozrrINvJAjMQa
- sc6MXf3cbkcB0LpdxJ2mzsKOAA==
-X-Google-Smtp-Source: AGHT+IHd3xhGQZwcUIcLtaS/NPIhQH51OI4srkcBz6UdtbLizYUKJjw8nicEQTdHb0F/v/M3ROTE/Q==
-X-Received: by 2002:a1f:c843:0:b0:4b2:c555:389 with SMTP id
- y64-20020a1fc843000000b004b2c5550389mr2948641vkf.31.1702011884531; 
- Thu, 07 Dec 2023 21:04:44 -0800 (PST)
-Received: from ?IPV6:2600:1700:2000:b002:41c5:bf1:860b:1e95?
- ([2600:1700:2000:b002:41c5:bf1:860b:1e95])
+ d=1e100.net; s=20230601; t=1702014903; x=1702619703;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=jIC4glHzB+IOAGM7YCu4gQFdGXeLpWj/I7OZVSGOh7k=;
+ b=u0J/Bvyl4N6/GZj9tu4lJHOVfYmA4hKnSJjSX+NSb/3zVoAbp8/3Lj3iP5ey/ktxLa
+ lgE8du7Nf11oaHGmOKY/yRQDek8ERMLfLNuvWNc4XjrjDtDwnY4JB5Hv1ZtLuy9YSx1n
+ J6XCcsXGbNTBlaZgGDh81ajeOzfd2tGj89Y9LKRXCabjLjvGYxkKn7cpA44CRJbxKSqa
+ EPB1z+gRrwYoTK4y52xdhhL0C9SKsLivqkGwOwMrF3IxF6ndETl3B451iLUmG5QFRo1B
+ itaLCScK3FXMwNSq6DxDznUEEpHURNRdzN1Kln28Wy1eOnKq605UiQtuSAnwA6nboxw5
+ SMdg==
+X-Gm-Message-State: AOJu0Yx+ElFMkjYOw5BgZLeIixDo8+KCOQe2dWn9+qH4zH5hmOcLoFYS
+ N/0MFa2wu7ZAVNmPZzHoBr2pLw==
+X-Google-Smtp-Source: AGHT+IHobgnIbAqUwh0qy5g87XS9Ops6tA3mZ0Tbbi2vny+WXvVENlMrplaMBh4oGzh2rC3HGh0NRQ==
+X-Received: by 2002:a17:902:c20c:b0:1d0:6ffd:610c with SMTP id
+ 12-20020a170902c20c00b001d06ffd610cmr481032pll.46.1702014902890; 
+ Thu, 07 Dec 2023 21:55:02 -0800 (PST)
+Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- i14-20020a0cf38e000000b0067a33133420sm494592qvk.110.2023.12.07.21.04.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 Dec 2023 21:04:44 -0800 (PST)
-Message-ID: <4f277982-fffb-4fe1-bc02-007633400f31@sifive.com>
-Date: Thu, 7 Dec 2023 23:04:43 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
-Content-Language: en-US
-To: Nathan Chancellor <nathan@kernel.org>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20231122030621.3759313-1-samuel.holland@sifive.com>
- <20231122030621.3759313-4-samuel.holland@sifive.com>
- <20231123-headdress-mold-0dd7a74477f7@wendy>
- <20231130004224.GE2513828@dev-arch.thelio-3990X>
+ s22-20020a170902989600b001ce5b859a59sm786250plp.305.2023.12.07.21.55.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 07 Dec 2023 21:55:02 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <20231130004224.GE2513828@dev-arch.thelio-3990X>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+ linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
+ linux-riscv@lists.infradead.org, Christoph Hellwig <hch@infradead.org>
+Subject: [RFC PATCH 00/12] Unified cross-architecture kernel-mode FPU API
+Date: Thu,  7 Dec 2023 21:54:30 -0800
+Message-ID: <20231208055501.2916202-1-samuel.holland@sifive.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 08 Dec 2023 08:37:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,56 +72,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, arnd@arndb.de, Leo Li <sunpeng.li@amd.com>,
- David Airlie <airlied@gmail.com>, Pan Xinhui <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Palmer Dabbelt <palmer@dabbelt.com>,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, linux-riscv@lists.infradead.org,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Nathan,
+This series supersedes my earier RISC-V specific series[1].
 
-On 2023-11-29 6:42 PM, Nathan Chancellor wrote:
-> On Thu, Nov 23, 2023 at 02:23:01PM +0000, Conor Dooley wrote:
->> On Tue, Nov 21, 2023 at 07:05:15PM -0800, Samuel Holland wrote:
->>> RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
->>> architectures. Enabling hardware FP requires overriding the ISA string
->>> for the relevant compilation units.
->>
->> Ah yes, bringing the joy of frame-larger-than warnings to RISC-V:
->> ../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:58:13: warning: stack frame size (2416) exceeds limit (2048) in 'DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation' [-Wframe-larger-than]
-> 
-> :(
-> 
->> Nathan, have you given up on these being sorted out?
-> 
-> Does your configuration have KASAN (I don't think RISC-V supports
-> KCSAN)? It is possible that dml/dcn32 needs something similar to commit
-> 6740ec97bcdb ("drm/amd/display: Increase frame warning limit with KASAN
-> or KCSAN in dml2")?
-> 
-> I am not really interested in playing whack-a-mole with these warnings
-> like I have done in the past for the reasons I outlined here:
-> 
-> https://lore.kernel.org/20231019205117.GA839902@dev-arch.thelio-3990X/
+This series unifies the kernel-mode FPU API across several architectures
+by wrapping the existing functions (where needed) in consistently-named
+functions placed in a consistent header location, with mostly the same
+semantics: they can be called from preemptible or non-preemptible task
+context, and are not assumed to be reentrant. Architectures are also
+expected to provide CFLAGS adjustments for compiling FPU-dependent code.
+For the moment, SIMD/vector units are out of scope for this common API.
 
-I also see one of these with clang 17 even with KASAN disabled:
+This allows us to remove the ifdeffery and duplicated Makefile logic at
+each FPU user. It then implements the common API on RISC-V, and converts
+a couple of users to the new API: the AMDGPU DRM driver, and the FPU
+self test.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:37:6:
-warning: stack frame size (2208) exceeds limit (2048) in 'dml32_recalculate'
-[-Wframe-larger-than]
-void dml32_recalculate(struct display_mode_lib *mode_lib)
+The underlying goal of this series is to allow using newer AMD GPUs
+(e.g. Navi) on RISC-V boards such as SiFive's HiFive Unmatched. Those
+GPUs need CONFIG_DRM_AMD_DC_FP to initialize, which requires kernel-mode
+FPU support.
 
-     ^
-1532/2208 (69.38%) spills, 676/2208 (30.62%) variables
+[1]: https://lore.kernel.org/linux-riscv/20231122030621.3759313-1-samuel.holland@sifive.com/
 
-So I'm in favor of just raising the limit for these files for clang, like you
-suggested in the linked thread.
 
-Regards,
-Samuel
+Samuel Holland (12):
+  arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+  arm64: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
+  LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  x86: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  riscv: Add support for kernel-mode FPU
+  drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
+  selftests/fpu: Move FP code to a separate translation unit
+  selftests/fpu: Allow building on other architectures
+
+ Makefile                                      |  4 ++
+ arch/Kconfig                                  |  9 +++++
+ arch/arm/Kconfig                              |  1 +
+ arch/arm/Makefile                             |  7 ++++
+ arch/arm/include/asm/fpu.h                    | 17 +++++++++
+ arch/arm/lib/Makefile                         |  3 +-
+ arch/arm64/Kconfig                            |  1 +
+ arch/arm64/Makefile                           |  9 ++++-
+ arch/arm64/include/asm/fpu.h                  | 17 +++++++++
+ arch/loongarch/Kconfig                        |  1 +
+ arch/loongarch/Makefile                       |  5 ++-
+ arch/loongarch/include/asm/fpu.h              |  1 +
+ arch/powerpc/Kconfig                          |  1 +
+ arch/powerpc/Makefile                         |  5 ++-
+ arch/powerpc/include/asm/fpu.h                | 28 ++++++++++++++
+ arch/riscv/Kconfig                            |  1 +
+ arch/riscv/Makefile                           |  3 ++
+ arch/riscv/include/asm/fpu.h                  | 26 +++++++++++++
+ arch/riscv/kernel/Makefile                    |  1 +
+ arch/riscv/kernel/kernel_mode_fpu.c           | 28 ++++++++++++++
+ arch/x86/Kconfig                              |  1 +
+ arch/x86/Makefile                             | 20 ++++++++++
+ arch/x86/include/asm/fpu.h                    | 13 +++++++
+ drivers/gpu/drm/amd/display/Kconfig           |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 33 +----------------
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   | 36 +-----------------
+ drivers/gpu/drm/amd/display/dc/dml2/Makefile  | 36 +-----------------
+ lib/Kconfig.debug                             |  2 +-
+ lib/Makefile                                  | 26 ++-----------
+ lib/raid6/Makefile                            | 31 ++++------------
+ lib/{test_fpu.c => test_fpu_glue.c}           | 37 +++----------------
+ lib/test_fpu_impl.c                           | 35 ++++++++++++++++++
+ 32 files changed, 255 insertions(+), 185 deletions(-)
+ create mode 100644 arch/arm/include/asm/fpu.h
+ create mode 100644 arch/arm64/include/asm/fpu.h
+ create mode 100644 arch/powerpc/include/asm/fpu.h
+ create mode 100644 arch/riscv/include/asm/fpu.h
+ create mode 100644 arch/riscv/kernel/kernel_mode_fpu.c
+ create mode 100644 arch/x86/include/asm/fpu.h
+ rename lib/{test_fpu.c => test_fpu_glue.c} (71%)
+ create mode 100644 lib/test_fpu_impl.c
+
+-- 
+2.42.0
 
