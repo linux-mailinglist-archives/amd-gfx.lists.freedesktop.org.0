@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D96980AFF2
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 23:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9ED80B056
+	for <lists+amd-gfx@lfdr.de>; Sat,  9 Dec 2023 00:01:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D764E10EB4F;
-	Fri,  8 Dec 2023 22:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC2E10EB58;
+	Fri,  8 Dec 2023 23:01:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB7AA10EB4F
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 22:53:49 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2055.outbound.protection.outlook.com [40.107.100.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5DB410EB58
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 23:01:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jFViTOsf9gR5nypYTj7uFWJ6FvHgSRALCKHSGdqOUqOswfrT4REI89P+ubCTlBFw4uadS+h6sU5Mo4Ly7G/Fs5JJittgEKy9rk2t7llVJpc0ClOncMuI+uXqqxC/0XTwwNezFtEJXcB56gkylpsakRIg2ize8r7wJcoOSgW7uJOMZ6PeSIvQs702QW/MyGYFKYOU4weuakUdgiHForompdXPolJo3/VzZrsTJ9giaP4fVZODvM2aA0FNQ4SlG7Lxts47oVNCn/qErgsotZtXBeh7mrzTJV+i8k5i/IzZ33v9CgjZPwxaDgqLVf8YtLHcn5S62grQ7KMg2e0X+ObB5g==
+ b=fUqeonKhmB3jWuRa8O0VklX7Qn/VqS3RvztCk7bIhGSffRzL0J1mSAk+S8oCssjjvAA8xZxkT4BRGOZJodyoa9Zy7ssfBsC+2nU3pADT133LgBiCm6WWDil2O0GtDIS7I8VYNng5ieRjPW8YKBYz7laERCCpPW/boR/hJvM8zL4kDD+VOKw2tqHDK3Iz8ZPnv5MbgN5nk7w+UGTpyNApDPoXJ0N6+5eMcL9QLXropVVNTkbmhTky+aVY7sdGD5vWmvZDMTjDpqDW6xqeKjUW5x8AijiWHk2yxWNAymVgz294IzSFaX9AIfN92HUUVUpkU24vmwJZ3vYhuFRltD+xJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OXf44zhAVDAFHBK60q0VfMnCR8pAKut0p1igJLxv2vs=;
- b=E68p/MNIcUbYgT6GRhYjfxNpMYVvIv3UZakqi/85eDBhmzZmAB5Y6zT3FUBpXLaZ9lz5BumXT2YVXBDrejw7jk+uMkPCoVoHxPkprylUsqgWPtnwxe8pFIfSOTX7kqRS6CRaFNJ7I2Pp3X6N9golAhHSlk1PLSMfYuoqCBtK6OLWk4HIooiaBgn1BOQ71ELFD/HXKPck2B2Ys3ZzjAHrXUp0sakL/c/oD7UhVQ1F/9iNULacskEAMas98BbpVCOxihv91xTEADFiTgnfNcXImKsfWmDkv2eZjH6xa14MEfBz0o+rtM95TZXyEEyVVtN7ZAiMpfs0oBarR2JVbOrNAQ==
+ bh=iDadxi/axGzBP+e6H3pC1dImJLUc4mGYTNEuh4U2ats=;
+ b=ZnTMA2qFepXgtxcNXOsKoAGLTszfHfiUgMT4mZurBeCT/Wcs9CaAhUASM94wBjZgncapbY8dExI/9iPU96n1Calp3pOP2Y3nc5TGfcVCXBfcMTJuYlspleSUHCFMdo0iZhPcHauzYq63hzZudsGBcuDq7tWWy5QsKme8hp0UKVPUs+msGUmmDN5kdHTcChV4clZ0yZSiU2bc24c04TjmXimjL8TMbkBewe4GdNhUFL0q0u5YZJ6mD0HKx1j7s/RjwZlrm2mNLdh2VO4m8+eHBoLuf60HaxQk0I/LFrnFgEaW/gy6RsgVSXQ9En6OSK84unSoBJ6VGfmprsr70u0OMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OXf44zhAVDAFHBK60q0VfMnCR8pAKut0p1igJLxv2vs=;
- b=KECyiH6N8AbQCWb9CkwTufzLTN71eyATNenw7+T0PMTMRWM7OCTzYbMA+Lnh8niGdH63J3sPZormvwPmmCyxXVMUrFzCbdI8AulqEto6JP6dF4pk798+8bXSVFBXUQGVAIFRaF7rOnHblSaxaj9f8i+jfEiIHRl20wpoVH+LkmQ=
-Received: from PA7P264CA0359.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:37c::19)
- by DM4PR12MB6303.namprd12.prod.outlook.com (2603:10b6:8:a3::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7068.28; Fri, 8 Dec 2023 22:53:47 +0000
-Received: from SN1PEPF00026368.namprd02.prod.outlook.com
- (2603:10a6:102:37c:cafe::31) by PA7P264CA0359.outlook.office365.com
- (2603:10a6:102:37c::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.28 via Frontend
- Transport; Fri, 8 Dec 2023 22:53:46 +0000
+ bh=iDadxi/axGzBP+e6H3pC1dImJLUc4mGYTNEuh4U2ats=;
+ b=oj6p7OAN+RYq/qJagzCERoPXKtBNaRzOTxQ/mxO/yxfWNk7o5icQQ+LpwOZramdpM9BzWeA6aJruHHNJMORI5cDY+aireljVeyRyQGwE8+XpLzc3Ui8e/JjuSywrWZ9xIuofIENh4rpyMmhuwGGE8k3MwawyRXxJ/TF8bgNoHoA=
+Received: from DS7PR03CA0028.namprd03.prod.outlook.com (2603:10b6:5:3b8::33)
+ by DS7PR12MB5933.namprd12.prod.outlook.com (2603:10b6:8:7c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Fri, 8 Dec
+ 2023 23:01:16 +0000
+Received: from DS1PEPF0001709C.namprd05.prod.outlook.com
+ (2603:10b6:5:3b8:cafe::27) by DS7PR03CA0028.outlook.office365.com
+ (2603:10b6:5:3b8::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.29 via Frontend
+ Transport; Fri, 8 Dec 2023 23:01:16 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF00026368.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ DS1PEPF0001709C.mail.protection.outlook.com (10.167.18.106) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7091.18 via Frontend Transport; Fri, 8 Dec 2023 22:53:45 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.7091.18 via Frontend Transport; Fri, 8 Dec 2023 23:01:16 +0000
+Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 8 Dec
- 2023 16:53:44 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
+ 2023 17:01:15 -0600
+From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2] drm/amdgpu/sdma5.2: add begin/end_use ring callbacks
-Date: Fri, 8 Dec 2023 17:53:28 -0500
-Message-ID: <20231208225328.25651-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.42.0
+Subject: [PATCH 1/2] drm/amdgpu: increase hmm range get pages timeout
+Date: Fri, 8 Dec 2023 18:01:04 -0500
+Message-ID: <20231208230105.733781-1-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00026368:EE_|DM4PR12MB6303:EE_
-X-MS-Office365-Filtering-Correlation-Id: b30c507c-0123-4e1a-372a-08dbf840884e
+X-MS-TrafficTypeDiagnostic: DS1PEPF0001709C:EE_|DS7PR12MB5933:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf4ac977-e72f-449d-38dd-08dbf841953d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WO3+WzNSgE/HAZBQAfVRzdz1N33O35vmHzJSe9Sj1gB0mKxQ+4nh2yOU5tZLZ1axh4Teryza8rshYXYM7f5FS33nOl4xhV/21CDeOFWwr6MlIF6sjAmu6aQ5onmQlcx6R8eOgS/vzCAc0sVbs2kKdtSUXtlp/RatbYIB/TxjP7w3WWMQaYg+GyCgIZoC0qN7Ir+AWGyWdFvYVerOQ7dl1P7s7w9bxHmUI8C+3+IjVoYoYeQMuk/69rCEApcWLMG5HXU2sYzDCDVNIgJ40orcMJ2LofcSF9BOijWbIK3h84j4e2uGm22JTidBdmktk9QveBVt8TA181IMWrj15oO/692v8X5Gr9ChBaK5FSbGO7NBrt+lUxKapWkS/oPWa4e3uqaCCEG8K/FZRkPYiTjFUnCzxaBbyY5nsdz0lHc/OcqdZP689tDd9f9wGfS3Jmz6ti2QpBhmL1PGkkoSyCWpPik+RAO5XatkWZ+RSYGtShKSPKqvv6mqAHOOEXLAtlMT25DUGnP8IubOdwX8Lz8K+uDR+CenBQ+TbKjlhQtyss/Uk+A5e0m8SpQJ3nlZOC/FWHmkrz2hbpYr4RaSrHBTUvXKOPAQRKHUVUHS2x9eaVvP2Vu0Bm1AenAP2ujLIUAgts5eAKcdC3zjGcTbefXRc5x8WJDVDjaucd+1scKevmgu3/ZoQ6ABp6rC5o+p4b/KH4k9RCPdiQM44pSY7V6AxkFFy4MLoQ/vmuuhl/NXST9DrziHeUD2uS5GqE2xykjV
+X-Microsoft-Antispam-Message-Info: WFxzNbgzSdrSeGZ1jQ3XCjbXrFAPPgTspgVYrsh1JGNnxM/wHQPupT5aMxt/1jsp5XI4tEGqm5bZNI6Z6naxH+Zk9PnnR0mEp2MIbR6OqZ2MBzWfFO3lKTmGxbchZqeLzii/p75/hL5fcNIhOxegDO7nhnkFnoVs9IKHlbSpdvzN7KkoYcBRjMx/JbjjBK4v6vQTaBvcGbzwM8N/cnhD96vcdSh9xR8MRyDTRnjdr0lerMTPfcTpyue/Bo6xGiXtYwE6z64hs5pZX5uNjLlt73jOuL2l5Wace2zzJVL5bVhlDvAQr4SeGSeTGLNNpWmPOovXHXp9Pu3ngqzRi5hcWAwMvcJhlv2vTOaGQQiURbk2Guk2rBk4v6vtIi/7ah+CVWjcZ4aS6CpCI8EFz05bUluVeroJBJK2LEfoBsl2AzDXrLbm5gE/ieF2oCgpqEqlXq1/0aZdOPuQgeUqMWuK2xIHC9ES41xCGprMdcjfBKhc4seGzbJvcyiDjz80xucQwIbLhMjva8PzUhdwqvo7SBmxdSTuFDMXYrjo/6la1qoAmGY3Gs2hbKHMNNqSIzY+oYJhysrJ8IfGXx7ssbCDO8IKdb6fbhCLpJrnYV5Bu4lZykmYSxu2JxOU9jg2BwpIrOQrZvHuI26nhqb9+vwOJ5Caew+uYAzPwVc/chZXpV7oLjvhiJP7FfKyMd7paQVXnfgAwBpul9wOfB3dBw+sObUnXZ1IVy33oMrX5yX3GSefOCSSCuwry/kX1lbJFJpv2QAOZkZeudkTD7g1vdIRkg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(39860400002)(136003)(376002)(396003)(230922051799003)(451199024)(64100799003)(82310400011)(1800799012)(186009)(46966006)(40470700004)(36840700001)(40460700003)(2906002)(47076005)(5660300002)(36860700001)(41300700001)(86362001)(36756003)(81166007)(82740400003)(1076003)(356005)(2616005)(16526019)(966005)(26005)(336012)(7696005)(8676002)(478600001)(8936002)(4326008)(6666004)(83380400001)(70586007)(70206006)(54906003)(6916009)(426003)(316002)(40480700001)(36900700001);
+ SFS:(13230031)(4636009)(346002)(39860400002)(376002)(396003)(136003)(230922051799003)(64100799003)(451199024)(82310400011)(1800799012)(186009)(46966006)(36840700001)(40470700004)(40480700001)(40460700003)(2906002)(36860700001)(41300700001)(5660300002)(36756003)(6916009)(8676002)(316002)(4326008)(426003)(7696005)(356005)(81166007)(478600001)(6666004)(16526019)(2616005)(8936002)(70586007)(54906003)(82740400003)(26005)(70206006)(86362001)(47076005)(1076003)(83380400001)(336012)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 22:53:45.0854 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b30c507c-0123-4e1a-372a-08dbf840884e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 23:01:16.2655 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf4ac977-e72f-449d-38dd-08dbf841953d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026368.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709C.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6303
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5933
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,66 +97,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: Philip.Yang@amd.com, Felix.kuehling@amd.com, jamesz@amd.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add begin/end_use ring callbacks to disallow GFXOFF when
-SDMA work is submitted and allow it again afterward.
+When application tries to allocate all system memory and cause memory
+to swap out. Needs more time for hmm_range_fault to validate the
+remaining page for allocation. To be safe, increase timeout value to
+1 second for 64MB range.
 
-This should avoid corner cases where GFXOFF is erroneously
-entered when SDMA is still active.  For now just allow/disallow
-GFXOFF in the begin and end helpers until we root cause the
-issue.  This should not impact power as SDMA usage is pretty
-minimal and GFXOSS should not be active when SDMA is active
-anyway, this just makes it explicit.
-
-v2: move everything into sdma5.2 code.  No reason for this
-to be generic at this point.
-
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2220
-Reviewed-by: Mario Limonciello <mario.limonciello@amd.com> (v1)
-Tested-by: Mario Limonciello <mario.limonciello@amd.com> (v1)
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index 2e35f3571774..89f7955739f7 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -1643,6 +1643,20 @@ static void sdma_v5_2_get_clockgating_state(void *handle, u64 *flags)
- 		*flags |= AMD_CG_SUPPORT_SDMA_LS;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+index 081267161d40..b24eb5821fd1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+@@ -190,8 +190,8 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_notifier *notifier,
+ 		pr_debug("hmm range: start = 0x%lx, end = 0x%lx",
+ 			hmm_range->start, hmm_range->end);
  
-+static void sdma_v5_2_ring_begin_use(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	amdgpu_gfx_off_ctrl(adev, false);
-+}
-+
-+static void sdma_v5_2_ring_end_use(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	amdgpu_gfx_off_ctrl(adev, true);
-+}
-+
- const struct amd_ip_funcs sdma_v5_2_ip_funcs = {
- 	.name = "sdma_v5_2",
- 	.early_init = sdma_v5_2_early_init,
-@@ -1690,6 +1704,8 @@ static const struct amdgpu_ring_funcs sdma_v5_2_ring_funcs = {
- 	.test_ib = sdma_v5_2_ring_test_ib,
- 	.insert_nop = sdma_v5_2_ring_insert_nop,
- 	.pad_ib = sdma_v5_2_ring_pad_ib,
-+	.begin_use = sdma_v5_2_ring_begin_use,
-+	.end_use = sdma_v5_2_ring_end_use,
- 	.emit_wreg = sdma_v5_2_ring_emit_wreg,
- 	.emit_reg_wait = sdma_v5_2_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = sdma_v5_2_ring_emit_reg_write_reg_wait,
+-		/* Assuming 128MB takes maximum 1 second to fault page address */
+-		timeout = max((hmm_range->end - hmm_range->start) >> 27, 1UL);
++		/* Assuming 64MB takes maximum 1 second to fault page address */
++		timeout = max((hmm_range->end - hmm_range->start) >> 26, 1UL);
+ 		timeout *= HMM_RANGE_DEFAULT_TIMEOUT;
+ 		timeout = jiffies + msecs_to_jiffies(timeout);
+ 
 -- 
-2.42.0
+2.25.1
 
