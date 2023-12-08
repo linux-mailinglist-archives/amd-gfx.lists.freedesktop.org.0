@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA068095EC
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Dec 2023 23:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E192809765
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Dec 2023 01:42:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36D5B10E9AE;
-	Thu,  7 Dec 2023 22:54:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EEDD10E1A7;
+	Fri,  8 Dec 2023 00:42:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 432FD10E226
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 Dec 2023 22:54:53 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB1E10E1A7
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Dec 2023 00:42:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ui767HgxB0cbZEzEBEZUQHQuworKKZac5ZWWWikikbTbCYZsJovOciIfJEPocXdx69B5tTh9h9SGxwCXXL2vsH5nEQ6rk/8kNHJ9SRQBBqPIMGlZsKOmtUn+UxlSx6UZzOEMc9OYf2h8HxYdjBC7ZJcdll2HUqTLR40PzIXs2nClgzLdNfwfAW4H5/l9WM7GtdL21hdOd+OuR8j86djX5kYc4uyVob5Rkpq9iptrQr6nRLqs2TM6TrZInXSHzTjQkUuZCtnfQ1I+mqBun7W/Spi4xQPkgsW5Frt2g1Zrb/4optuq0c0mx4FCKvtj8rDqh02uIiDjlFlQqMO7B8okaA==
+ b=aa8c3fhS3xBqlhm7dC6IhCG/czFp9zBEq/hx5yywNpWdTKrMFbfVYSMVNckoJ+gbnnlmGS7ohxVVH6tKvKJlAW29WfaF6pU6F8e8Npv5z0HGZzMpI1YZwjQP7cgSa0zpXCSHM9VAJLdxBKArZ4CfSSGHGX4yXks3tx6VESM8V/zIxwaMemYbhVWp8iAPXzbUBXMzrDzOPBJuqYImJPunyCnB2m5RW+/pXCcXSqRbPdB9jtisD2SZKJmXuOWN+q8bzEAtEfD8H6ygIUosxxUK4Er38wr7S8qR9WWkpkuLqHfNp17yUa779Qbw98ee3v5C++W2kb3M+JMSNPgyXSkK/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OEM29RccBBbd1xNSCYLa8APCVBeGTb5+dOrmRfFZVEw=;
- b=SXlgprabLCBpYFBy+fM2LwkvFQfLeMpo3ZN8Vlj0LL082tQ612eBHfbR4RD81blH9v8mPBZfuF+vAKpB0lev1RDclD8AZwC/ioAPbA9tEBwyOPnTWQDjDvIGNPlypufSbaSorlYDpABEs24UXHDHzIYThEzQy/TFNB1/rYZcCSZtjOEW+unI1DTQk/Rx3mcd2mDbsRePQfiUkXOuOjJtPw6urEJd9VXFBpbvJcQJTFLvjugJd6Uk7kbP9NPKPwJKvHdpYNSjmUBZjqHCvUNjl89qrRxiuA2tEDDhQxmqDkq28eWX6g0gESX477tI4ue8KxjTav8GzuV+DBE6NbdEJg==
+ bh=3mx57GLyYwMR9Aqxg643qvHLvZ4ER2BgztzCdeQa8yM=;
+ b=j6JWXKpvJbUcoh6gVlqtGf7KaHno4+CBZ59WlJwtLhlDtJczKCR/a0rI27Bx66mmu+B1mRuchPomowl3m2PRCyg3R34Pdtkrge/pQLt1HGQWUCuM+1+jhsRwgwNzCQr1Ji+N9oHocFb/lf8CuRaZJL6kxNupmpBApETdvGaxK2GCq6rGihjf/XDj131vJwPXVGmfYLtN0dWewjP7YFcA7CwpuZ9jZELQpDK4yTQFm+IBCj1QYeiDPGijoYmGdVVFkcAx8YfuGS8F5QPZi1TEc9Ozpcc4wg6KQ5NRctTXX1vYBAylIHSnMUchUgYsNqXRDOi/B3K2w3XSV8OVPIG7jg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OEM29RccBBbd1xNSCYLa8APCVBeGTb5+dOrmRfFZVEw=;
- b=Fi+gLCmRVhgSxV1uKUbcZxHMb8uQ+w7Bf4EFuLhsobqIeH+ztmjmNOsvqAI0M8l7P33QtVF3RHzIcTE0I/O1iDOVUCqJYPt+lz7VJu5e8q6ULMx19dPHXaVM7wZh6c3yZX5EYvPcIuCEs6Aw3REuviAk1rm2Bw1RkVaIgT++gnI=
-Received: from DM6PR03CA0034.namprd03.prod.outlook.com (2603:10b6:5:40::47) by
- SN7PR12MB7788.namprd12.prod.outlook.com (2603:10b6:806:345::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7068.27; Thu, 7 Dec 2023 22:54:51 +0000
-Received: from DS2PEPF0000343D.namprd02.prod.outlook.com
- (2603:10b6:5:40:cafe::69) by DM6PR03CA0034.outlook.office365.com
- (2603:10b6:5:40::47) with Microsoft SMTP Server (version=TLS1_2,
+ bh=3mx57GLyYwMR9Aqxg643qvHLvZ4ER2BgztzCdeQa8yM=;
+ b=Nve8IiBK8AVxs4ju8wS8ZLGZ4UhvN7WvCL0cIGyETleMnEoWFpwJqjwPx4b+oHuWPTEAJ5AmDtH6hfUnFGaeXJi8hvc7bGqBFzYnwN4Xyctr/WECX0d2SMPLAjryDFFkz3+t1ycns7pPRMMnHhdwuu5mDn1bRyeQTrpAUpKIJfA=
+Received: from SN7PR04CA0052.namprd04.prod.outlook.com (2603:10b6:806:120::27)
+ by LV3PR12MB9142.namprd12.prod.outlook.com (2603:10b6:408:198::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Fri, 8 Dec
+ 2023 00:42:39 +0000
+Received: from SN1PEPF00026369.namprd02.prod.outlook.com
+ (2603:10b6:806:120:cafe::16) by SN7PR04CA0052.outlook.office365.com
+ (2603:10b6:806:120::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34 via Frontend
- Transport; Thu, 7 Dec 2023 22:54:51 +0000
+ Transport; Fri, 8 Dec 2023 00:42:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF0000343D.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ SN1PEPF00026369.mail.protection.outlook.com (10.167.241.134) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7068.20 via Frontend Transport; Thu, 7 Dec 2023 22:54:51 +0000
-Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.7068.20 via Frontend Transport; Fri, 8 Dec 2023 00:42:38 +0000
+Received: from H-4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 7 Dec
- 2023 16:54:48 -0600
-From: James Zhu <James.Zhu@amd.com>
+ 2023 18:42:37 -0600
+From: Vignesh Chander <Vignesh.Chander@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 23/23] drm/amdkfd: bump kfd ioctl minor version for pc
- sampling availability
-Date: Thu, 7 Dec 2023 17:54:22 -0500
-Message-ID: <20231207225422.4057292-24-James.Zhu@amd.com>
+Subject: [PATCH] drm/amdgpu: xgmi_fill_topology_info
+Date: Thu, 7 Dec 2023 18:42:11 -0600
+Message-ID: <20231208004211.3720802-1-Vignesh.Chander@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231207225422.4057292-1-James.Zhu@amd.com>
-References: <20231207225422.4057292-1-James.Zhu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343D:EE_|SN7PR12MB7788:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33cd77d8-5846-43d9-409a-08dbf777855c
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026369:EE_|LV3PR12MB9142:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a979539-3721-4036-e1ad-08dbf7869422
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wDxFg6C2bhfl1JN9xx3GzNRGRsPg8UT6ib2Bzt+GGoyVrD38Wo8Fk4qoLXh7wGLKJjsfa6REDtW6mpqVzQYwoFA2SgTARq9utvZKgzLqkUI8BBB//Kou+MlL04H/Ob7QK1RKu4gqvuaq7CBP0OyhHSmgfvIy42NEji6nIYz7sESVfz/l1FsoZwB+/YFdO85xPrf8LqTTbBOGXAmcyZkXLXG3JoIzYseBLPnzUzEB03lZXef55jW6RYbvJ5rrH+NwHNBHqJXHi2e6sd4U2gOz4Bpc+B5z3cBalU1z4OBEAb+d7rkAL3sC2cvF0AOCRfXBD660cwfr+D4WMabLSH1d0nT3LkGCoK7QKYoWClio0NKQWnXtQazRGJZw5FjWtUYKLVuSUCQYoCmsZ/o04m+BF88mEovoofYpyfZWlfA9vUMxSXT5ehGR5nxAuCLQkgDcTlDX04H5n0NijAQbNxjEVYc232uiFqUauu9WF8Uo/KFmbaD7eWPmoGN9y/diKgOIN8zuiqooG0LM4Kme2zh0Iyh/L4P0OiJLrqsvltgqI+v2827LrsKleb6J5ROGkVqWDGLGXLSUippxJBpNlcMZR+wGTv3ddiyamDINMEILNBYi1sqnq2bc8qrVd2j8H7L+XwA2hWERC8KdvX+TGc1u53EShZ+APT996YCenYTzV9QeToNGzwdqXUOaJRy1UDix0x22LnuSyiOwltvZXDZgO4EPDE1fw1wbZ65cjx/zXjZ9uRU7ubIJMKDsZjc7pZ8ATVdXt6kufewORB/qaL7ZUA==
+X-Microsoft-Antispam-Message-Info: 5gTIBW7RPcGktrLvXufpfCVhXQkt2PlyD1PrPhpRDrtCJPkMGqonZ/2IgVSniiF/+LXiuhGS2BHBIuJlxGBEO/zovAHolnPCge+QZOCF2sYmrWPfG3cVG3kiX/YBG9SnQmjcjWR8fsvtXbPszFQdFaYcMmmAnLPZuZUHHIbNS1w1nldjBeAmy+y2zrmbY57jJU8IUFayBVyJVFkbER3raWfy3DHUfHzUBH4LSUPJUL6tDSU6XKPwlrQhvN7mNlPvSlv7Pf+kr8uqiqTKoUSzv2uyDMmAVExBJ9qAUxA50TdSPfcRLxjnR+GtN6kLYRUXtEoJPq56yiosUTlovbN9H2SfuHGKqiXR22A29+b4Y0swXDqyyj7Lwz7n/YsXGwBmqsrLJj7QMjvJFZA6IY6N7YjhIgRHSQmktLKHi8p/A6ClELdDeR8m4ke4iq2rB9W12/6/bqPzdhQe1cMwyTCqLxPGnAt3x195npn65w1OAxYe4AoS3akPJztLP1/dTmIKoHdiWT9ZwcGAhF1AMgCXiyZ/Hfyr2E2VNvAOwJap46xCpnuKb7almyYcU9672fcIMtifBfBdkZavbaUB8bzSf+RTq1okS2ZNcIVyWHIkr/8GexaRmbmmI9xaLXgrAT3wljw5EWxY/s7VcwVWQBIUfXi6lK9SltlmKm1Ky1+Xokjeng/izbOwt+oW4DUYXV5cRyxbHcPhAK4MwEgcYKMWXVapRL+C4dPcPiVr+48fRIl3jYdoPoTKBtEIDUQcffeRa51tFuSOoY0lN5wjcnVfCQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(396003)(376002)(346002)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(82310400011)(36840700001)(46966006)(40470700004)(2616005)(336012)(426003)(40460700003)(83380400001)(26005)(1076003)(16526019)(86362001)(41300700001)(4326008)(2906002)(4744005)(5660300002)(8936002)(8676002)(54906003)(70206006)(36756003)(316002)(6916009)(70586007)(7696005)(6666004)(478600001)(47076005)(40480700001)(36860700001)(81166007)(356005)(82740400003)(36900700001);
+ SFS:(13230031)(4636009)(376002)(346002)(136003)(39860400002)(396003)(230922051799003)(64100799003)(451199024)(1800799012)(82310400011)(186009)(40470700004)(36840700001)(46966006)(316002)(70206006)(6916009)(54906003)(70586007)(40460700003)(2906002)(41300700001)(5660300002)(86362001)(36756003)(81166007)(4326008)(356005)(82740400003)(8676002)(8936002)(26005)(336012)(83380400001)(6666004)(7696005)(16526019)(36860700001)(47076005)(1076003)(2616005)(40480700001)(478600001)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 22:54:51.2860 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33cd77d8-5846-43d9-409a-08dbf777855c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 00:42:38.5424 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a979539-3721-4036-e1ad-08dbf7869422
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026369.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7788
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9142
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,34 +97,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.kuehling@amd.com, joseph.greathouse@amd.com, jamesz@amd.com
+Cc: Lijo.Lazar@amd.com, Zhigang.Luo@amd.com,
+ Vignesh Chander <Vignesh.Chander@amd.com>, Jonathan.Kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-    Bump the minor version to declare pc sampling feature is now
-    available.
+1. Use the mirrored topology info to fill links for VF.
+The new solution is required to simplify and optimize host driver logic.
+Only use the new solution for VFs that support full duplex and
+extended_peer_link_info otherwise the info would be incomplete.
 
-Signed-off-by: James Zhu <James.Zhu@amd.com>
+2. avoid calling extended_link_info on VF as its not supported
+
+Signed-off-by: Vignesh Chander <Vignesh.Chander@amd.com>
 ---
- include/uapi/linux/kfd_ioctl.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c  |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 58 ++++++++++++++++++++----
+ 2 files changed, 52 insertions(+), 10 deletions(-)
 
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 1bd1347effea..62d8642d3d1c 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -40,9 +40,10 @@
-  * - 1.12 - Add DMA buf export ioctl
-  * - 1.13 - Add debugger API
-  * - 1.14 - Update kfd_event_data
-+ * - 1.15 - Add PC Sampling ioctl
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 14
-+#define KFD_IOCTL_MINOR_VERSION 15
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index a21045d018f2..1bf975b8d083 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -1433,8 +1433,8 @@ int psp_xgmi_get_topology_info(struct psp_context *psp,
+ 			 get_extended_data) ||
+ 			amdgpu_ip_version(psp->adev, MP0_HWIP, 0) ==
+ 				IP_VERSION(13, 0, 6);
+-		bool ta_port_num_support = psp->xgmi_context.xgmi_ta_caps &
+-						EXTEND_PEER_LINK_INFO_CMD_FLAG;
++		bool ta_port_num_support = amdgpu_sriov_vf(psp->adev) ? 0 :
++				psp->xgmi_context.xgmi_ta_caps & EXTEND_PEER_LINK_INFO_CMD_FLAG;
  
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
+ 		/* popluate the shared output buffer rather than the cmd input buffer
+ 		 * with node_ids as the input for GET_PEER_LINKS command execution.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 44d8c1a11e1b..dd82d73daed6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -823,6 +823,28 @@ static int amdgpu_xgmi_initialize_hive_get_data_partition(struct amdgpu_hive_inf
+ 	return 0;
+ }
+ 
++void amdgpu_xgmi_fill_topology_info(struct amdgpu_device *adev,
++	struct amdgpu_device *peer_adev)
++{
++	struct psp_xgmi_topology_info *top_info = &adev->psp.xgmi_context.top_info;
++	struct psp_xgmi_topology_info *peer_info = &peer_adev->psp.xgmi_context.top_info;
++
++	for (int i = 0; i < peer_info->num_nodes; i++) {
++		if (peer_info->nodes[i].node_id == adev->gmc.xgmi.node_id) {
++			for (int j = 0; j < top_info->num_nodes; j++) {
++				if (top_info->nodes[j].node_id == peer_adev->gmc.xgmi.node_id) {
++					peer_info->nodes[i].num_hops = top_info->nodes[j].num_hops;
++					peer_info->nodes[i].is_sharing_enabled =
++							top_info->nodes[j].is_sharing_enabled;
++					peer_info->nodes[i].num_links =
++							top_info->nodes[j].num_links;
++					return;
++				}
++			}
++		}
++	}
++}
++
+ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ {
+ 	struct psp_xgmi_topology_info *top_info;
+@@ -897,18 +919,38 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 				goto exit_unlock;
+ 		}
+ 
+-		/* get latest topology info for each device from psp */
+-		list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
+-			ret = psp_xgmi_get_topology_info(&tmp_adev->psp, count,
+-					&tmp_adev->psp.xgmi_context.top_info, false);
++		if (amdgpu_sriov_vf(adev) &&
++			psp->xgmi_context.xgmi_ta_caps & EXTEND_PEER_LINK_INFO_CMD_FLAG) {
++			/* only get topology for VF being init if it can support full duplex */
++			ret = psp_xgmi_get_topology_info(&adev->psp, count,
++						&adev->psp.xgmi_context.top_info, false);
+ 			if (ret) {
+-				dev_err(tmp_adev->dev,
++				dev_err(adev->dev,
+ 					"XGMI: Get topology failure on device %llx, hive %llx, ret %d",
+-					tmp_adev->gmc.xgmi.node_id,
+-					tmp_adev->gmc.xgmi.hive_id, ret);
+-				/* To do : continue with some node failed or disable the whole hive */
++					adev->gmc.xgmi.node_id,
++					adev->gmc.xgmi.hive_id, ret);
++				/* To do: continue with some node failed or disable the whole hive*/
+ 				goto exit_unlock;
+ 			}
++
++			/* fill the topology info for peers instead of getting from PSP */
++			list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
++				amdgpu_xgmi_fill_topology_info(adev, tmp_adev);
++			}
++		} else {
++			/* get latest topology info for each device from psp */
++			list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
++				ret = psp_xgmi_get_topology_info(&tmp_adev->psp, count,
++					&tmp_adev->psp.xgmi_context.top_info, false);
++				if (ret) {
++					dev_err(tmp_adev->dev,
++						"XGMI: Get topology failure on device %llx, hive %llx, ret %d",
++						tmp_adev->gmc.xgmi.node_id,
++						tmp_adev->gmc.xgmi.hive_id, ret);
++					/* To do : continue with some node failed or disable the whole hive */
++					goto exit_unlock;
++				}
++			}
+ 		}
+ 
+ 		/* get topology again for hives that support extended data */
+
+base-commit: 44cb338138f7670ce2e1f8b9ef14e32c6ace282c
 -- 
 2.25.1
 
