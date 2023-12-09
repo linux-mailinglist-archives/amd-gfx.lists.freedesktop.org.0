@@ -1,91 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF46480C11D
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 07:05:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7B980C329
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 09:29:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 117D210E06F;
-	Mon, 11 Dec 2023 06:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4A210E35A;
+	Mon, 11 Dec 2023 08:29:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2082.outbound.protection.outlook.com [40.107.94.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CF9010E06F
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 06:04:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TaJ/+5VtnytUAZaLlc8nDQWRvSfw2bch5yZe+PQWxQ10elZ7qVcB4tFmzsE+1soTweTODfnkHRxrV3Yah5MVXYHKredzWgw3/J0uea/T1tY0oaQpd7Tq1owUSAiJMW4DnTJqIAzdZl63p1sXGzmP+PQDHmW9yzXh4L23SZlgMxVG0r2HhvJ30lNoe9k4e/tnp+mG83pTtg/Ddr6TMB2haLEndEznATb4bB44c44e1O3vM786yBAh0ydXZHC8dhb35MVFvp4ZiFjDc9Zek4dBpgEfRzoxWbJsDPgyDwtRhCfSfQuj3o3awVwnSGGIqR8bm+SMkOXYbrMND2LX+X/3TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2VUE62sF6BH8p7j/1kR1wAefyWKM2H7xaC/+/RMOeHQ=;
- b=nGf7H/GBDGkk34BGzNrZ0d2CkByvCOdT/urmn/pDqNuRD1dyiUzUWe20lXjfLpVu9ruG4cVwxfheDl54IuO+5Df/BOr0mLHwTzwI6ikQfxe5/+1XNaHrlGfoPqWM56cfdJducpWHcsw8CeBywjttQsuamMbj+XC4Bs4+4dmgp+/VC9hGrdbxrkz5FsL8qVKmBMF5AomONoYzdMHDQrRknDDniseAaNsa/84YNJEGUmabWMBlI0IB04pB/kkIJXdGe13Tvd8J+1XXbBuaArXJgaE86fmxeSOgEzZ/i0NIwzbSfO0XF/0DbF3hFG/xyhsHzQc05AKQudzohcOXjMivww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2VUE62sF6BH8p7j/1kR1wAefyWKM2H7xaC/+/RMOeHQ=;
- b=0qAwz6DLAGAe5HdqySqXAy2EZaf85hRL3t2kgnhZmoTuJzihnCisOFMuO2D7mJScgeYBnHZ4Tui+ihtCR/IKaRtq7jxNxYAVB/dMGpnCWUsJpl872rtIziQ/kNR4LogTSPgZi0pqsrG+H1Iyv3AdsDsQN40CvsNi33vB0k5ufJg=
-Received: from CY5P221CA0160.NAMP221.PROD.OUTLOOK.COM (2603:10b6:930:6a::12)
- by CH2PR12MB4860.namprd12.prod.outlook.com (2603:10b6:610:6c::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Mon, 11 Dec
- 2023 06:04:53 +0000
-Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
- (2603:10b6:930:6a:cafe::81) by CY5P221CA0160.outlook.office365.com
- (2603:10b6:930:6a::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32 via Frontend
- Transport; Mon, 11 Dec 2023 06:04:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7091.18 via Frontend Transport; Mon, 11 Dec 2023 06:04:52 +0000
-Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 11 Dec
- 2023 00:04:51 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Disable PSR-SU on Parade 0803 TCON again
-Date: Sat, 9 Dec 2023 14:08:30 -0600
-Message-ID: <20231209200830.379629-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 410 seconds by postgrey-1.36 at gabe;
+ Sat, 09 Dec 2023 20:46:03 UTC
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+ [64.147.123.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8969F10E28B
+ for <amd-gfx@lists.freedesktop.org>; Sat,  9 Dec 2023 20:46:03 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.west.internal (Postfix) with ESMTP id 71AF13200A10;
+ Sat,  9 Dec 2023 15:39:08 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+ by compute5.internal (MEProxy); Sat, 09 Dec 2023 15:39:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:sender
+ :subject:subject:to:to; s=fm1; t=1702154347; x=1702240747; bh=nA
+ pf9oaznILOB+bOEKeTCqS0+E9iMtrHOKNgiCZPnf8=; b=nqixXGn/qgsSYwLhji
+ Pk7AHucq7sOmZ5xV7f8NxIs2Bypt/sSPfonlIOyX4uFw9IIBIM6UpabIKFU/Q1T8
+ HbgPb7QPEtRtCQYUITouprUCXUaSWsXuMtO7e857eD70IEMB8OBC+krG2s1vJs11
+ 7JfXGnKuK1rngnVWnNGY5/kL2k6BYPZEOmozrh+VXB6/gq9ww0Dy1rhzUiCxgD0b
+ ucaYhl5fYXWMeT0qDoqsr8PutI3Y0e5b0ved6rf22QA1h7RaaNOa5yhqb9OVCqtf
+ dhMUGtv5PHnv8aslN6ks3TUDP2WlQN+84NtcQ13qsU2hK/mk/UWY6n+x6fSX5PPL
+ RTfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; t=1702154347; x=1702240747; bh=nApf9oaznILOB
+ +bOEKeTCqS0+E9iMtrHOKNgiCZPnf8=; b=E2Hu6Hkx16494KxIz37zzPeHrqHU+
+ +Btk4U8HPNVSdxhLMyqzBmbU2tpsiOopPlbNXwlAxsj8B3ERm884+GYKcZN1dSGh
+ oBhEAv6qDw1Oc1QWDow/Wy9Reeedk9TnS+KOf5x55mktCDMtR0c4eATojEMJX+in
+ 4Dmu24QPaDO/LPGQ9e63MGoTvRref3z/EWtqbmcdda6DNN+TC56B46VRvv0E6SEP
+ Yy9XHxDN+lwLRvCSIT6mQFlVMP5vpThWwHOoBz2A0C/5poGI387xh8QeaN5N2TXk
+ FUYBbKhnnnZvUGH9qofig10Qwo9RCUeC597NVh4CLEe6xukPow9f1lR3g==
+X-ME-Sender: <xms:a9B0Zfib413GnDb6e0EhQlyXh3FlDQDG_60N50GrNnCK7lBniFD29w>
+ <xme:a9B0ZcBUoJh4xwRwq63NclpFBCmJ4wHmvTqIlqRstuabLpbFqJ9RDx4tuTWQMtFrt
+ SyKrxvqNWskA96ZS0Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudekkedgudegudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+ rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+ htthgvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeu
+ feehudenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:a9B0ZfHtyKCEGLX6rLgXxfohUPPoYL6LBaZkICr7MwjshweRq9Lp3g>
+ <xmx:a9B0ZcRBY5ifpZ1WJDTg0yFZh4Cdk7G_4HmdosGAuRLtG_oZXyZ3Tw>
+ <xmx:a9B0ZczcTOQDZ-sdzQbvzdigiB-F_hJmDw_1OkEC4SdoYTJApDpyJA>
+ <xmx:a9B0ZRIlkv02LwxHqcn9uTWdA1PQNbMzR3BKCsvozjcb9Azm7nczaA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 453DAB60089; Sat,  9 Dec 2023 15:39:07 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-Id: <5090a015-5b6f-44be-bb25-d2ca3fdf5d40@app.fastmail.com>
+In-Reply-To: <4f277982-fffb-4fe1-bc02-007633400f31@sifive.com>
+References: <20231122030621.3759313-1-samuel.holland@sifive.com>
+ <20231122030621.3759313-4-samuel.holland@sifive.com>
+ <20231123-headdress-mold-0dd7a74477f7@wendy>
+ <20231130004224.GE2513828@dev-arch.thelio-3990X>
+ <4f277982-fffb-4fe1-bc02-007633400f31@sifive.com>
+Date: Sat, 09 Dec 2023 21:38:45 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Samuel Holland" <samuel.holland@sifive.com>,
+ "Nathan Chancellor" <nathan@kernel.org>,
+ "Conor.Dooley" <conor.dooley@microchip.com>
+Subject: Re: [PATCH 3/3] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|CH2PR12MB4860:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee4a21eb-d384-4a15-53f7-08dbfa0f177d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nAfsyHUFCwZqY9tvYt6Te6PR1Q0W7cwuEInwYaAwjA/MnJB4FF+t1MZAMRy4GWi7WBjz9vOY7wshQx398FhS2horEVHWjQTy4/JzbeL3X9XeS0wN4A4QWeNIilXPdtPiA1G267HVeVMIxkM8pMY/OL71MfSGL0aC1MLgppjMdSu/fw4uWpop6BSTB52KwkaXrU/zmD56PwV9QVwniwf1VH4Jhvl/1bUlUOJDKzzW5ih96kzEMb97ae4tbyI+dd1R1LMrEO0dY+4jq1sM3LJtHPyBC8x88T+mmebuzyWKm3jknCdcirEcfDRy3pBpXUzYwvoppMN3Pvoi97eOSYNbFsREf7ZJbAd7geyg+rF4gqbMdFyKew4nZFiDWq7KW5cpMn8v024rspHe9GK2VdN231juiWpW8qGoflERTKbLtRJ2pqeWbro/5+8D/ORf/uPVhNHoqgpe9gWV5vOps0TyFd1OI+Z4HbkdqwM+yA2pwM90Ah/A/G6w+GLWPbFECGU31B36oFfmlLbbq0wqP5wxgmij5sjK96IcM7jfgqrKcDshJvlGPvDeUrW3M2bWJZh3ar2h3qIwQ+ellOhcOVQfZ5Qjatqs7dpJzF1uCDZ3xHe2yzl6OpQn2Nyfiv021hxgwkrZo3129Jyr60fj1sww84CytD3z+/WSKsJ8e3qBVdTQdwUv5Au6Q11zDvkxvsPmlIUFAdXbEXszpdAaGebiaqincp6l2Px08qJxxo+1hTDiegYTary1L5MRBN7/Md0UyAVjgqRtF4YVO7oKYd1OgQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(396003)(376002)(39860400002)(136003)(230922051799003)(64100799003)(82310400011)(451199024)(186009)(1800799012)(40470700004)(46966006)(36840700001)(2616005)(1076003)(36756003)(7696005)(6666004)(478600001)(316002)(70206006)(6916009)(54906003)(70586007)(8676002)(40460700003)(86362001)(4326008)(44832011)(356005)(81166007)(82740400003)(36860700001)(47076005)(8936002)(40480700001)(426003)(336012)(83380400001)(26005)(16526019)(5660300002)(41300700001)(2906002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 06:04:52.7506 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee4a21eb-d384-4a15-53f7-08dbfa0f177d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3F.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4860
+X-Mailman-Approved-At: Mon, 11 Dec 2023 08:29:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,48 +90,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: binli@gnome.org, stable@vger.kernel.org,
- Hamza Mahfooz <Hamza.Mahfooz@amd.com>, aaron.ma@canonical.com,
- Marc Rossi <Marc.Rossi@amd.com>, Mario Limonciello <mario.limonciello@amd.com>
+Cc: llvm@lists.linux.dev, Leo Li <sunpeng.li@amd.com>,
+ Dave Airlie <airlied@gmail.com>, Pan Xinhui <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Palmer Dabbelt <palmer@dabbelt.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, linux-riscv@lists.infradead.org,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When screen brightness is rapidly changed and PSR-SU is enabled the
-display hangs on panels with this TCON even on the latest DCN 3.1.4
-microcode (0x8002a81 at this time).
+On Fri, Dec 8, 2023, at 06:04, Samuel Holland wrote:
+> On 2023-11-29 6:42 PM, Nathan Chancellor wrote:
+>> On Thu, Nov 23, 2023 at 02:23:01PM +0000, Conor Dooley wrote:
+>>> On Tue, Nov 21, 2023 at 07:05:15PM -0800, Samuel Holland wrote:
+>>>> RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
+>>>> architectures. Enabling hardware FP requires overriding the ISA string
+>>>> for the relevant compilation units.
+>>>
+>>> Ah yes, bringing the joy of frame-larger-than warnings to RISC-V:
+>>> ../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:58:13: warning: stack frame size (2416) exceeds limit (2048) in 'DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation' [-Wframe-larger-than]
+>> 
+>> :(
+>> 
+>>> Nathan, have you given up on these being sorted out?
+>> 
+>> Does your configuration have KASAN (I don't think RISC-V supports
+>> KCSAN)? It is possible that dml/dcn32 needs something similar to commit
+>> 6740ec97bcdb ("drm/amd/display: Increase frame warning limit with KASAN
+>> or KCSAN in dml2")?
+>> 
+>> I am not really interested in playing whack-a-mole with these warnings
+>> like I have done in the past for the reasons I outlined here:
+>> 
+>> https://lore.kernel.org/20231019205117.GA839902@dev-arch.thelio-3990X/
+>
+> I also see one of these with clang 17 even with KASAN disabled:
+>
+> drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:37:6:
+> warning: stack frame size (2208) exceeds limit (2048) in 'dml32_recalculate'
+> [-Wframe-larger-than]
+> void dml32_recalculate(struct display_mode_lib *mode_lib)
+>
+>      ^
+> 1532/2208 (69.38%) spills, 676/2208 (30.62%) variables
+>
+> So I'm in favor of just raising the limit for these files for clang, like you
+> suggested in the linked thread.
 
-This was disabled previously as commit 072030b17830 ("drm/amd: Disable
-PSR-SU on Parade 0803 TCON") but reverted as commit 1e66a17ce546 ("Revert
-"drm/amd: Disable PSR-SU on Parade 0803 TCON"") in favor of testing for
-a new enough microcode (commit cd2e31a9ab93 ("drm/amd/display: Set minimum
-requirement for using PSR-SU on Phoenix")).
+How about just adding a BUG_ON(IS_ENABLED(CONFIG_RISCV))
+in that function? That should also avoid the build failure
+but give a better indication of where the problem is
+if someone actually runs into that function and triggers
+a runtime stack overflow.
 
-As hangs are still happening specifically with this TCON, disable PSR-SU
-again for it until it can be root caused.
-
-Cc: stable@vger.kernel.org
-Cc: aaron.ma@canonical.com
-Cc: binli@gnome.org
-Cc: Marc Rossi <Marc.Rossi@amd.com>
-Cc: Hamza Mahfooz <Hamza.Mahfooz@amd.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/display/modules/power/power_helpers.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-index a522a7c02911..1675314a3ff2 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-@@ -839,6 +839,8 @@ bool is_psr_su_specific_panel(struct dc_link *link)
- 				((dpcd_caps->sink_dev_id_str[1] == 0x08 && dpcd_caps->sink_dev_id_str[0] == 0x08) ||
- 				(dpcd_caps->sink_dev_id_str[1] == 0x08 && dpcd_caps->sink_dev_id_str[0] == 0x07)))
- 				isPSRSUSupported = false;
-+			else if (dpcd_caps->sink_dev_id_str[1] == 0x08 && dpcd_caps->sink_dev_id_str[0] == 0x03)
-+				isPSRSUSupported = false;
- 			else if (dpcd_caps->psr_info.force_psrsu_cap == 0x1)
- 				isPSRSUSupported = true;
- 		}
--- 
-2.34.1
-
+      Arnd
