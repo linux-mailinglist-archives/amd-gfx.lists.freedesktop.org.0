@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D2B80CC10
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 14:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7761180CBAE
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 14:53:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B08110E437;
-	Mon, 11 Dec 2023 13:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD0810E3F9;
+	Mon, 11 Dec 2023 13:53:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BEA10E3DA
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 12:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
- s=201909; t=1702297420;
- bh=ODAUXRjain77XOmoPnKy1MNIInbnbbNcYLIa9FPn8ks=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=nIVA8V0yVj+ZMN8x89h2gJxxT4+cCTauZuj8Ht7cflzgnHnN4ITpBMOV1xWo7AIlq
- Qb+tJKhKhRta6FIYqIPB6IjCP4IRbYllJ3J3dFQkrZ5gBhylzYOFVQ0olRQRq0XFRq
- mToIUeHe7mjunplXY3/T3inRVriUXVwwqHAyMT8ZrNdDNjb78fGIZ7jZefsf1Xa8DY
- kagFMIi8wqGn8H2LFlRDsc9/abaI9Ajeo1k+5RyvhTShHF9xXBTFIlBig9ReYi7rDb
- 14jHwg99Lq6Mb4L4gts5PmojrjCNJA0P9GJfiVGM/34KY923DExlNs08GewB4rxZRl
- xDIjF0NgfU/GA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Spgrp6jZHz4xGM;
- Mon, 11 Dec 2023 23:23:38 +1100 (AEDT)
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Samuel Holland <samuel.holland@sifive.com>,
- linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
- linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
- linux-riscv@lists.infradead.org, Christoph Hellwig <hch@infradead.org>,
- Timothy Pearson <tpearson@raptorengineering.com>
-Subject: Re: [RFC PATCH 10/12] drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
-In-Reply-To: <20231208055501.2916202-11-samuel.holland@sifive.com>
-References: <20231208055501.2916202-1-samuel.holland@sifive.com>
- <20231208055501.2916202-11-samuel.holland@sifive.com>
-Date: Mon, 11 Dec 2023 23:23:35 +1100
-Message-ID: <87h6kpdj20.fsf@mail.lhotse>
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE6C10E0FC;
+ Mon, 11 Dec 2023 13:53:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 98477CE11FD;
+ Mon, 11 Dec 2023 13:53:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63448C433C7;
+ Mon, 11 Dec 2023 13:53:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1702302820;
+ bh=E3HvMWrzxH7i22ZqpKfLSV8bBoSMTUJVt3sCZ2TVNJM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=O2PL0dBut2fzPOgbpOTfEs6o0D/tbaqSAcl9piB+ItcTASzeoEc9k+j5+M7cuvs6w
+ 4jVRJHEv3D+QezKn64Q0Q2jzGl6wv2/9j5l22t+bpV4MwhtOtDg0s1byp8PX7W1yUk
+ amly+WgNHYr7M/lbLLUzv2mWuMJPCzjiGvTeT08evlCj5QRLgM20nrC4DgOtnHh6cS
+ kYzQBp/xThy8sjwXbvF4I7sHN3On3w2dxWLb3fYOaCOLBVMT9iYKgbNQ2pXXFSKIuk
+ gxW6qZ5TQTe/4NoLbBMKZustWyuC2vYv4zkNnwUWXRCVYxbJd8MZspNKAYrj9Iq07/
+ 5rtQp6K5dRqkg==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.6 38/47] drm/amd/display: Use channel_width = 2 for
+ vram table 3.0
+Date: Mon, 11 Dec 2023 08:50:39 -0500
+Message-ID: <20231211135147.380223-38-sashal@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231211135147.380223-1-sashal@kernel.org>
+References: <20231211135147.380223-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Mon, 11 Dec 2023 13:57:12 +0000
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.6.5
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,141 +54,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>
+Cc: Sasha Levin <sashal@kernel.org>, felipe.clark@amd.com,
+ amd-gfx@lists.freedesktop.org, sunran001@208suo.com,
+ dri-devel@lists.freedesktop.org, sunpeng.li@amd.com, airlied@gmail.com,
+ ruanjinjie@huawei.com, Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com,
+ Samson Tam <samson.tam@amd.com>, tony.tascioglu@amd.com, drv@mailo.com,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Alvin Lee <alvin.lee2@amd.com>,
+ daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
+ harry.wentland@amd.com, christian.koenig@amd.com, mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Samuel,
+From: Alvin Lee <alvin.lee2@amd.com>
 
-Thanks for trying to clean all this up.
+[ Upstream commit fec05adc40c25a028c9dfa9d540f800a2d433f80 ]
 
-One problem below.
+VBIOS has suggested to use channel_width=2 for any ASIC that uses vram
+info 3.0. This is because channel_width in the vram table no longer
+represents the memory width
 
-Samuel Holland <samuel.holland@sifive.com> writes:
-> Now that all previously-supported architectures select
-> ARCH_HAS_KERNEL_FPU_SUPPORT, this code can depend on that symbol instead
-> of the existing list of architectures. It can also take advantage of the
-> common kernel-mode FPU API and method of adjusting CFLAGS.
->
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-...
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-> index 4ae4720535a5..b64f917174ca 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-> @@ -87,20 +78,9 @@ void dc_fpu_begin(const char *function_name, const int line)
->  	WARN_ON_ONCE(!in_task());
->  	preempt_disable();
->  	depth = __this_cpu_inc_return(fpu_recursion_depth);
-> -
->  	if (depth == 1) {
-> -#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
-> +		BUG_ON(!kernel_fpu_available());
->  		kernel_fpu_begin();
-> -#elif defined(CONFIG_PPC64)
-> -		if (cpu_has_feature(CPU_FTR_VSX_COMP))
-> -			enable_kernel_vsx();
-> -		else if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP))
-> -			enable_kernel_altivec();
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Reviewed-by: Samson Tam <samson.tam@amd.com>
+Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index 484d62bcf2c2e..c523561471484 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -2398,7 +2398,13 @@ static enum bp_result get_vram_info_v30(
+ 		return BP_RESULT_BADBIOSTABLE;
  
-Note altivec.
-
-> -		else if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
-> -			enable_kernel_fp();
-> -#elif defined(CONFIG_ARM64)
-> -		kernel_neon_begin();
-> -#endif
->  	}
->  
->  	TRACE_DCN_FPU(true, function_name, line, depth);
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> index ea7d60f9a9b4..5aad0f572ba3 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> @@ -25,40 +25,8 @@
->  # It provides the general basic services required by other DAL
->  # subcomponents.
->  
-> -ifdef CONFIG_X86
-> -dml_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
-> -dml_ccflags := $(dml_ccflags-y) -msse
-> -endif
-> -
-> -ifdef CONFIG_PPC64
-> -dml_ccflags := -mhard-float -maltivec
-> -endif
-
-And altivec is enabled in the flags there.
-
-That doesn't match your implementation for powerpc in patch 7, which
-only deals with float.
-
-I suspect the AMD driver actually doesn't need altivec enabled, but I
-don't know that for sure. It compiles without it, but I don't have a GPU
-to actually test. I've added Timothy on Cc who added the support for
-powerpc to the driver originally, hopefully he has a test system.
-
-Anyway if that's true that it doesn't need altivec we should probably do
-a lead-up patch that drops altivec from the AMD driver explicitly, eg.
-as below.
-
-cheers
-
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-index 4ae4720535a5..0de16796466b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-@@ -92,11 +92,7 @@ void dc_fpu_begin(const char *function_name, const int line)
- #if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
- 		kernel_fpu_begin();
- #elif defined(CONFIG_PPC64)
--		if (cpu_has_feature(CPU_FTR_VSX_COMP))
--			enable_kernel_vsx();
--		else if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP))
--			enable_kernel_altivec();
--		else if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
-+		if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
- 			enable_kernel_fp();
- #elif defined(CONFIG_ARM64)
- 		kernel_neon_begin();
-@@ -125,11 +121,7 @@ void dc_fpu_end(const char *function_name, const int line)
- #if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
- 		kernel_fpu_end();
- #elif defined(CONFIG_PPC64)
--		if (cpu_has_feature(CPU_FTR_VSX_COMP))
--			disable_kernel_vsx();
--		else if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP))
--			disable_kernel_altivec();
--		else if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
-+		if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
- 			disable_kernel_fp();
- #elif defined(CONFIG_ARM64)
- 		kernel_neon_end();
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 6042a5a6a44f..554c39024a40 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -31,7 +31,7 @@ dml_ccflags := $(dml_ccflags-y) -msse
- endif
+ 	info->num_chans = info_v30->channel_num;
+-	info->dram_channel_width_bytes = (1 << info_v30->channel_width) / 8;
++	/* As suggested by VBIOS we should always use
++	 * dram_channel_width_bytes = 2 when using VRAM
++	 * table version 3.0. This is because the channel_width
++	 * param in the VRAM info table is changed in 7000 series and
++	 * no longer represents the memory channel width.
++	 */
++	info->dram_channel_width_bytes = 2;
  
- ifdef CONFIG_PPC64
--dml_ccflags := -mhard-float -maltivec
-+dml_ccflags := -mhard-float
- endif
- 
- ifdef CONFIG_ARM64
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/Makefile b/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-index acff3449b8d7..7b51364084b5 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/Makefile
-@@ -30,7 +30,7 @@ dml2_ccflags := $(dml2_ccflags-y) -msse
- endif
- 
- ifdef CONFIG_PPC64
--dml2_ccflags := -mhard-float -maltivec
-+dml2_ccflags := -mhard-float
- endif
- 
- ifdef CONFIG_ARM64
+ 	return result;
+ }
+-- 
+2.42.0
+
