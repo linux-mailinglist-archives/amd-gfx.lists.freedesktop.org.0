@@ -1,45 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14DF80D1CD
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 17:31:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054D680D3A1
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 18:23:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC2410E4C5;
-	Mon, 11 Dec 2023 16:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D88F10E0FE;
+	Mon, 11 Dec 2023 17:23:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEEFB10E4A4
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 16:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=M7NmYC/Iylm9myghHwqILim55SAUt9QrM+UZYk0eJlw=; b=4HnagbOJonb+x6IstHctUf9ht4
- OgV9P3OzAjZHHA+wBtF3soPL+84Q+8Ow5Dy+Tg0bBJi3pKlWMRn6liq03gzvVmLmsFiCJI27eai8K
- fDXtdcjcHZd8wWhJL+qm6215qCWUBTk0SSEkFbHcTftQnohN5Hi6VkRi96prYI6ZEUUuB5AUk7Guc
- D9X+eZ+K8uOeZaoUNo8SiBLHKOnwDO3kAo3gmg8rt4tz3gjcpi7P4JxDrWh6dxAIw71FcJuR8VYxM
- fyHVNAJN8VaRlFrugZy7Zo3+h08hWIvvbKWHPS5UWSdMFd30eF60CpVfSXPKE8CB0PmMzSlO2Lvm+
- kTdvx7ZQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
- Linux)) id 1rCizm-005kHT-2F; Mon, 11 Dec 2023 16:19:02 +0000
-Date: Mon, 11 Dec 2023 08:19:02 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [RFC PATCH 12/12] selftests/fpu: Allow building on other
- architectures
-Message-ID: <ZXc2diNGXH8vaEZ8@infradead.org>
-References: <20231208055501.2916202-1-samuel.holland@sifive.com>
- <20231208055501.2916202-13-samuel.holland@sifive.com>
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
+ [IPv6:2001:4860:4864:20::2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C30B10E124;
+ Mon, 11 Dec 2023 17:23:12 +0000 (UTC)
+Received: by mail-oa1-x2f.google.com with SMTP id
+ 586e51a60fabf-1efabc436e4so3270586fac.1; 
+ Mon, 11 Dec 2023 09:23:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702315391; x=1702920191; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=PjWlkl7RLfvyUu1Wp3IwYJ9TdVasWn4eiJ+vWXnx6qw=;
+ b=fuO93Dbs4PrSmHkV4gwAzWGX9iysb0o+rsCot6fRqTiENDdM57gYTRaofXQYPTBAOJ
+ n5at5ZSZezXtUK61TLktmM1vkgBMu0Fhl2NfKZbgWKvef6l1G68pRneRHAFHMW9fm7z7
+ J6HKEPN+SO76vSl1VSRpa0EQTl/gxgz7T/a1eCjWW63FpMlTjQCfF+t/9SKwy8s4jpF9
+ xdJ8OkjmyssyzJY4zLcw5Mm1cjTgjmaBx8+voc/cNrt6qoa+fPEv2HFV41XHCIDd8lwp
+ CACw7FiWbxzbWs6Yw9D6JITTTHXvH1Quec7eq41iAS/LTxbVxKdka5eDAUCBoTU/v+zm
+ AlJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702315391; x=1702920191;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PjWlkl7RLfvyUu1Wp3IwYJ9TdVasWn4eiJ+vWXnx6qw=;
+ b=X4dPW58BT+4MkJLeUuY1TI3+cfkIT8MYQ1WuU4yHKtBN1c/JbfbhLklIH/zLApYGp8
+ 1Ec4C/BBnlejY3POc/pVLJPHPT0dKgJHCrPajfCtw5+hZl6dhJIaXo67brlSRQv9uos3
+ oR2BD4SvdhsfEoUUU5OMWyaNsoJD/PI7Uo2Oly0KOakdHsIj/ysJdEt0cZCsvhkZMM52
+ vSFcosgAR5llNZIyfJdEFnP/VM1BOubLILJu/iXGeS1WcLSVKzu37udD9vgyN+67ZRzb
+ i2WdKnBKLrP7yvFxLjke5AxuCAsBMrmt68XCAMj5yP2vqbHUybaVp9gnI1ruZc8Tbam7
+ 5AmA==
+X-Gm-Message-State: AOJu0YzTUDg0DV88l/AszUgHK5F9yk8aALgHGlSvy4i7UAVoi+PlsUTA
+ pg8f+CIh64ZXB/gPqOGiAsJSVcy9kgoTXnnoF/k=
+X-Google-Smtp-Source: AGHT+IHC/nWmvQid9AdBCE/8sBKp01t4jHvuokijxO/t58qrFBUqFpkFpivBU9bCULRAxjkXRQJTJZVbojPhzqt9n28=
+X-Received: by 2002:a05:6870:1b0f:b0:1fb:75a:c415 with SMTP id
+ hl15-20020a0568701b0f00b001fb075ac415mr3988556oab.62.1702315391460; Mon, 11
+ Dec 2023 09:23:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231208055501.2916202-13-samuel.holland@sifive.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Mon, 11 Dec 2023 16:31:45 +0000
+References: <20231207151142.929349-1-Arunpravin.PaneerSelvam@amd.com>
+ <20231207151142.929349-2-Arunpravin.PaneerSelvam@amd.com>
+ <d30b7992-5c39-49f5-889c-c31d4994a5c3@amd.com>
+ <CADnq5_PdWUDVK0mvMgyTyogMnT-DD2nhXHarO+BLg9BjtGPRGA@mail.gmail.com>
+ <473652dd-8ca1-436b-aa52-eb85eb0e98df@gmail.com>
+In-Reply-To: <473652dd-8ca1-436b-aa52-eb85eb0e98df@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 11 Dec 2023 12:22:59 -0500
+Message-ID: <CADnq5_NabQ4Cm=q+ONsAmU5S6XwvM=4kB1Ux93Tta6Qv0S527g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Enable clear page functionality
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,13 +71,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
- loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ alexander.deucher@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ matthew.auld@intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Looks good:
+On Mon, Dec 11, 2023 at 4:50=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 08.12.23 um 20:53 schrieb Alex Deucher:
+>
+> [SNIP]
+>
+> You also need a functionality which resets all cleared blocks to
+> uncleared after suspend/resume.
+>
+> No idea how to do this, maybe Alex knows of hand.
+>
+> Since the buffers are cleared on creation, is there actually anything to =
+do?
+>
+>
+> Well exactly that's the problem, the buffers are no longer always cleared=
+ on creation with this patch.
+>
+> Instead we clear on free, track which areas are cleared and clear only th=
+e ones which aren't cleared yet on creation.
+>
+> So some cases need special handling. E.g. when the engine is not initiali=
+zed yet or suspend/resume.
+>
+> In theory after a suspend/resume cycle the VRAM is cleared to zeros, but =
+in practice that's not always true.
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+The vbios asic_init table will clear vram on boards with RAS, but not on ot=
+hers.
+
+Alex
