@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9111080D0AB
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 17:12:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9BEB80D0B1
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 17:12:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 067C510E121;
-	Mon, 11 Dec 2023 16:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A3E10E49A;
+	Mon, 11 Dec 2023 16:12:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from bombadil.infradead.org (bombadil.infradead.org
  [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E42F10E493
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 16:07:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E410F10E488
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 16:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
  :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=rJnz7vJXFXZ+s+GFQzKJTUyedjcYLhX/g9SREbHLG/g=; b=uiSOGsUEndY59UZcDr2nsLhwOC
- xvo3UYY9rZM2tEcqicOJ3+pK/HBNuqe8cRF/YePTNrlnG4zEVCdK0AQjLk3MzTpYv281FU9lszRTk
- qm6YETmBLeEz0F19k0Zqua9SNRnhKuRhLxo46IPt3fYZDgibBA6L+ErLtap/OcZnqgF1BlymMVgOc
- cqM3QsrC/ZEXXIn0sLxNA0LePNNoq3DFdu9Wg+6cZzvuax1t/aFd+/trtecIfsjyJsWT61Bg62uor
- t9PGL3ktjHrepi3yXR3LcVqoyoHO4LJKUBN/egey8BXily4PDedmA4YzBp/8DmxqoVw7capk9MQAX
- jCcMos6g==;
+ bh=7/9PVAoW+mQkYndhB1mGTPqj7a0+NR0wxr/3ILbUkfI=; b=TeWHg8VZSEjB97ULraUC03LR2V
+ 9GC7hrJ0A2gqejqPepZpofgeBkUk0EVbz/vD0fh6fK/Pusr93obgkapD9TgcuvEfVgLqAQyhawo1/
+ QPRqUA+ePWr2UqnfeEquAZ6BVqZqgaTn3YvcN9HdTFXdhb/6CADXiwbbw1vcgtF2p9HTQXlKVlqSM
+ eyF/Q02AbITgCJ7jsrkAJcFCeERnZF8MxEjneMz/1yh8P8Ty73TErCHiYVQIIlTHviIQXJooTFonT
+ hJXhhHFfFXybb/NYo+IqCrGs2rePIPKcPL+CZA/221GjtLICb55HO+UalInlQyqUmSHQgFSksIjFb
+ gemr5Klw==;
 Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
- Linux)) id 1rCioq-005epY-0W; Mon, 11 Dec 2023 16:07:44 +0000
-Date: Mon, 11 Dec 2023 08:07:44 -0800
+ Linux)) id 1rCipZ-005fBl-02; Mon, 11 Dec 2023 16:08:29 +0000
+Date: Mon, 11 Dec 2023 08:08:28 -0800
 From: Christoph Hellwig <hch@infradead.org>
 To: Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [RFC PATCH 06/12] LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-Message-ID: <ZXcz0NVitD1pQJ5V@infradead.org>
+Subject: Re: [RFC PATCH 07/12] powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+Message-ID: <ZXcz/Bi6xP1CYK60@infradead.org>
 References: <20231208055501.2916202-1-samuel.holland@sifive.com>
- <20231208055501.2916202-7-samuel.holland@sifive.com>
+ <20231208055501.2916202-8-samuel.holland@sifive.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231208055501.2916202-7-samuel.holland@sifive.com>
+In-Reply-To: <20231208055501.2916202-8-samuel.holland@sifive.com>
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
  bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Mon, 11 Dec 2023 16:12:41 +0000
@@ -57,10 +57,11 @@ Cc: linux-arch@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 07, 2023 at 09:54:36PM -0800, Samuel Holland wrote:
-> LoongArch already provides kernel_fpu_begin() and kernel_fpu_end() in
-> asm/fpu.h, so it only needs to add kernel_fpu_available() and export
-> the CFLAGS adjustments.
+On Thu, Dec 07, 2023 at 09:54:37PM -0800, Samuel Holland wrote:
+> PowerPC provides an equivalent to the common kernel-mode FPU API, but in
+> a different header and using different function names. The PowerPC API
+> also requires a non-preemptible context. Add a wrapper header, and
+> export the CFLAGS adjustments.
 
 Looks good:
 
