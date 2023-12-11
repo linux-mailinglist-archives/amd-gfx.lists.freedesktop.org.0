@@ -2,63 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA2D80CF7B
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 16:27:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 727EC80D1D8
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Dec 2023 17:33:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E932F10E476;
-	Mon, 11 Dec 2023 15:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEECF10E4C7;
+	Mon, 11 Dec 2023 16:33:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com
- [IPv6:2001:4860:4864:20::2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6CEF10E476
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 15:27:32 +0000 (UTC)
-Received: by mail-oa1-x2d.google.com with SMTP id
- 586e51a60fabf-1fab887fab8so3460630fac.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 07:27:32 -0800 (PST)
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
+ [IPv6:2001:4860:4864:20::32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D6C10E4C7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 16:32:05 +0000 (UTC)
+Received: by mail-oa1-x32.google.com with SMTP id
+ 586e51a60fabf-1eb39505ba4so2799886fac.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 08:32:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702308452; x=1702913252; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=MfbKV2/TY0MfyawkcDgwd2rGAqmms78JFhMnLhUszH0=;
- b=ItP2FmggmOV6NrMYNjeNrvmLokju3jm2cYNZevbrj4DGzqn57UDa+nfWirhI4X9IyH
- VzV+9sK2ETkmbMHfan2TzAlUzuyo7AAas9jEoiClcfCxF1vXvai7dEGPBrLGES8NX5+9
- ceJdlAb4GsaAXX/Ac/ToZOcR7pp4dodcYDGx8XfiKpPGLMKiwMWuvIyh8fpvFoxqS9Kw
- Zodpf473+ftS30G+NL6clXsR8DD1zlLWPU2oOmxalcveIVoLilzwuiE548kVEIneADSt
- KKPniO5TrIDbgDLEiwMiQw5vdv1iuD+Vt56hLXM5/fQOOiN+IYXhpqaBM8Mth5OeCIMe
- dx6A==
+ d=sifive.com; s=google; t=1702312324; x=1702917124; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=olWTkTTTDMqyGniJrt96EJYeNEaxv5XjfscB27aHKBI=;
+ b=nq5qDJ5AYNuZwztPxfjVSirV0LiWsvc0wLIqY2ksliqxxJNVkH6THqRiiBJWcAcoEd
+ V2numixAei/LXGgHRioUv/Phg7LxFVHvaXa/KnZ47RpA5RgpiBXiZp9k2ADaiVqCiFtL
+ 1bLsOpbxNFKbB69sVkDJt/mokw1G7ySe/D/Fx3pVjBbVs4yhYuGLNnK7NwcTypVu2idD
+ K32ZDJnsvqysYMmTcH2cYwQgVEle7BL3dqkLqf00E+uajZFeEyOTjTVMZBBCZf/zIppH
+ qDNucVpPJiyDzOSOTeQYch68u23pr+ZyPZrvVKh4cQm8d9C+SQuCi1Bk0OpadufYsIwq
+ hXCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702308452; x=1702913252;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=MfbKV2/TY0MfyawkcDgwd2rGAqmms78JFhMnLhUszH0=;
- b=GIREGZELakciMHTOlb/zKUbBeMV1w2hC2sHX4mCPKFZvGTmTQTXt7D3yQiQz4mP3sG
- F3wbEtbciajfQn3y9MRBN1sKcBd1bFFysr1H6XNoBwBCZfwvMr13bote72IjNBmXic9P
- pYppFdDUnk7sAPF+JLWCAkGyyMF0tUZYIh189brH1MzyErkrk0ti5z+JVMHwCnbKRh97
- ENvDpjoVf3lDUBjzYOD10QuXluEchQ83v3mB0U5rZWLVpRti9j4WgJdxTQizEp+mc+7t
- aFRvoprjJhvs47NbGAqf6IYOBT3l0mr9ituuJfUQVdyKHZHl9sHJsrRZkuPJK0RfFFzQ
- Xv+A==
-X-Gm-Message-State: AOJu0YzCRjBVarIqIBUfl16fv9+IYLmDfunA7OswNCHsRAXGwnqSQq8/
- BLkH8+QGixmuGqenJypBw5zqVr1Ycc7d/8scJQQ=
-X-Google-Smtp-Source: AGHT+IG47sj6ougdG5tZAq3pwxJM83q+ankLP1ExYCnj8m+DGDohDP/ngyWyaNlX5BmakhSLo/EonuSm6eoGu5HEvI8=
-X-Received: by 2002:a05:6870:350d:b0:1fb:1304:56b7 with SMTP id
- k13-20020a056870350d00b001fb130456b7mr5788311oah.7.1702308451822; Mon, 11 Dec
- 2023 07:27:31 -0800 (PST)
+ d=1e100.net; s=20230601; t=1702312324; x=1702917124;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=olWTkTTTDMqyGniJrt96EJYeNEaxv5XjfscB27aHKBI=;
+ b=iBoYPXFg3DQ0xP5hZJ90SinS/yt/5hqn0i+EWOtK0vYrrpQ5IQaHo9KJBKCN6lZpRB
+ EsvLxXJWRf/JR3xZef7HJ+wyZo+RB/pzfzHFVU7BYrqFKgmUXa4LPSrtIrH5+x0ABHOP
+ 4j19X+Q2mrPoIhHl0i4FsGvwM5ULtKrbi9olOdUUXuWsumNh2VdeMfnLKbvhIpNc13/T
+ AtaqSXPLlG8Mv24k/aMUaAEnzO9BdTxD7Ob7cD1AKYMTOvj6SI8kNOyoHVFXbX9jr0V4
+ V3F+T9xuy909rw69I+lrsjF8kesJHn3DePdTCQLgQkjT5CtOaA7C09qL+sk7Abwzh2pk
+ Zn1Q==
+X-Gm-Message-State: AOJu0YzmF7bTkmSBdgWakJiFcrIbZY8PEzmPS7YW0jxYuppw7zUoblNh
+ NCGqnD6utPBBcs8w35k6gOEeMwFnclVse1tN5Z5KUQ==
+X-Google-Smtp-Source: AGHT+IHkgREgetJtJ3CpZeBOhCg+lo0iJmAL4cDPZHyGGcooXLGdNWNZrDMNjy7Xl75SejBdf5W5Lg==
+X-Received: by 2002:a05:6358:9209:b0:170:1d30:56e0 with SMTP id
+ d9-20020a056358920900b001701d3056e0mr5134113rwb.30.1702309233725; 
+ Mon, 11 Dec 2023 07:40:33 -0800 (PST)
+Received: from ?IPV6:2600:1700:2000:b002:f8a3:26ec:ac85:392e?
+ ([2600:1700:2000:b002:f8a3:26ec:ac85:392e])
+ by smtp.gmail.com with ESMTPSA id
+ s6-20020a0cf646000000b0067ec9faed23sm1463005qvm.142.2023.12.11.07.40.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 11 Dec 2023 07:40:33 -0800 (PST)
+Message-ID: <ae9b5592-549d-4a6a-82c8-9545ab8eb924@sifive.com>
+Date: Mon, 11 Dec 2023 09:40:32 -0600
 MIME-Version: 1.0
-References: <6395b87b-7cb6-4412-b6e5-e6075353fb6d@redhat.com>
- <b2a4dfa9-e3ec-4c90-bb53-f2e6c70603b2@gmail.com>
- <23850b71-f530-4094-81cc-26cd762dc231@amd.com>
-In-Reply-To: <23850b71-f530-4094-81cc-26cd762dc231@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 11 Dec 2023 10:27:20 -0500
-Message-ID: <CADnq5_OXRrGRH6iyFc_kfP2BARyav4uw3X0kuV3tP-7VXv3tMw@mail.gmail.com>
-Subject: Re: [GIT PULL] mmutable branch between pdx86 amd wbrf branch and wifi
- / amdgpu due for the v6.8 merge window
-To: Mario Limonciello <mario.limonciello@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20231122030621.3759313-1-samuel.holland@sifive.com>
+ <20231122030621.3759313-4-samuel.holland@sifive.com>
+ <20231123-headdress-mold-0dd7a74477f7@wendy>
+ <20231130004224.GE2513828@dev-arch.thelio-3990X>
+ <4f277982-fffb-4fe1-bc02-007633400f31@sifive.com>
+ <5090a015-5b6f-44be-bb25-d2ca3fdf5d40@app.fastmail.com>
+ <07d27191-12b6-4c84-b80e-75c618df9de4@sifive.com>
+ <CADnq5_O+ozkwQAEn3K_=-pB2L0+pbc+tbPU0CEwOTa+QysogAg@mail.gmail.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <CADnq5_O+ozkwQAEn3K_=-pB2L0+pbc+tbPU0CEwOTa+QysogAg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 11 Dec 2023 16:33:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,137 +83,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- linux-wireless <linux-wireless@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Ma Jun <Jun.Ma2@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Johannes Berg <johannes@sipsolutions.net>,
+Cc: Pan Xinhui <Xinhui.Pan@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Leo Li <sunpeng.li@amd.com>, llvm@lists.linux.dev,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
+ "Conor.Dooley" <conor.dooley@microchip.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>, linux-riscv@lists.infradead.org,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 11, 2023 at 10:20=E2=80=AFAM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> On 12/11/2023 08:47, Christian K=C3=B6nig wrote:
-> > Am 11.12.23 um 12:02 schrieb Hans de Goede:
-> >> Hi Wifi and AMDGPU maintainers,
-> >>
-> >> Here is a pull-request for the platform-drivers-x86 parts of:
-> >>
-> >> https://lore.kernel.org/platform-driver-x86/20231211100630.2170152-1-J=
-un.Ma2@amd.com/
-> >>
-> >>  From my pov the pdx86 bits are ready and the
-> >> platform-drivers-x86-amd-wbrf-v6.8-1 tag can be merged by you to merge
-> >> the wifi-subsys resp. the amdgpu driver changes on top.
-> >
-> > The few comments I had for the amdgpu patches were addressed and I
-> > honestly don't have time to take a detailed look at the general framewo=
-rk.
-> >
-> > So perfectly fine to merge that stuff from my side. Alex or Mario might
-> > have some additional comments, but I think they will give their go as w=
-ell.
->
-> My feedback has been taken into account already, I'm happy with the
-> series now.
->
-> I'm a bit confused how exactly the drm/amd patches get applied though.
-> Is it like this:
-> 1) immutable branch for platform-x86
-> 2) immutable branch for platform-x86 merged into wlan-next
-> 3) immutable branch for platform-x86 merged into drm-next?
-> 4) wlan-next and drm-next come together for 6.8
->
-> Normally stuff from amd-staging-drm-next is put into the drm-next branch
-> and then merge through the drm.
->
-> amd-staging-drm-next tracks a much older tree so I'm thinking merging
-> the immutable branch for platform-x86 won't work.
->
-> Maybe the right answer is that the "immutable branch gets merged into
-> drm-next" and we just have some cherry-picks for all the commits into
-> amd-staging-drm-next so we can compile but Alex doesn't put them as part
-> of the next PR to drm-next.  When ASDN rebased to 6.8 or newer they
-> would drop off.
+Hi Alex,
 
-amd-staging-drm-next is just our development branch, the actual
-amdgpu-next branch is:
-https://gitlab.freedesktop.org/agd5f/linux/-/commits/drm-next
-I'll merge the platform branch there and then apply the amdgpu patches on t=
-op.
-For amd-staging-drm-next, we can just apply the whole set since that
-branch is just for development so there won't be any conflicts with
-upstream.
+On 2023-12-11 9:17 AM, Alex Deucher wrote:
+> On Sun, Dec 10, 2023 at 5:10 AM Samuel Holland
+> <samuel.holland@sifive.com> wrote:
+>>
+>> Hi Arnd,
+>>
+>> On 2023-12-09 2:38 PM, Arnd Bergmann wrote:
+>>> On Fri, Dec 8, 2023, at 06:04, Samuel Holland wrote:
+>>>> On 2023-11-29 6:42 PM, Nathan Chancellor wrote:
+>>>>> On Thu, Nov 23, 2023 at 02:23:01PM +0000, Conor Dooley wrote:
+>>>>>> On Tue, Nov 21, 2023 at 07:05:15PM -0800, Samuel Holland wrote:
+>>>>>>> RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
+>>>>>>> architectures. Enabling hardware FP requires overriding the ISA string
+>>>>>>> for the relevant compilation units.
+>>>>>>
+>>>>>> Ah yes, bringing the joy of frame-larger-than warnings to RISC-V:
+>>>>>> ../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:58:13: warning: stack frame size (2416) exceeds limit (2048) in 'DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation' [-Wframe-larger-than]
+>>>>>
+>>>>> :(
+>>>>>
+>>>>>> Nathan, have you given up on these being sorted out?
+>>>>>
+>>>>> Does your configuration have KASAN (I don't think RISC-V supports
+>>>>> KCSAN)? It is possible that dml/dcn32 needs something similar to commit
+>>>>> 6740ec97bcdb ("drm/amd/display: Increase frame warning limit with KASAN
+>>>>> or KCSAN in dml2")?
+>>>>>
+>>>>> I am not really interested in playing whack-a-mole with these warnings
+>>>>> like I have done in the past for the reasons I outlined here:
+>>>>>
+>>>>> https://lore.kernel.org/20231019205117.GA839902@dev-arch.thelio-3990X/
+>>>>
+>>>> I also see one of these with clang 17 even with KASAN disabled:
+>>>>
+>>>> drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:37:6:
+>>>> warning: stack frame size (2208) exceeds limit (2048) in 'dml32_recalculate'
+>>>> [-Wframe-larger-than]
+>>>> void dml32_recalculate(struct display_mode_lib *mode_lib)
+>>>>
+>>>>      ^
+>>>> 1532/2208 (69.38%) spills, 676/2208 (30.62%) variables
+>>>>
+>>>> So I'm in favor of just raising the limit for these files for clang, like you
+>>>> suggested in the linked thread.
+>>>
+>>> How about just adding a BUG_ON(IS_ENABLED(CONFIG_RISCV))
+>>> in that function? That should also avoid the build failure
+>>> but give a better indication of where the problem is
+>>> if someone actually runs into that function and triggers
+>>> a runtime stack overflow.
+>>
+>> Won't that break actual users of the driver, trading an unlikely but
+>> theoretically possible stack overflow for a guaranteed crash? The intent of this
+>> series is that I have one of these GPUs plugged in to a RISC-V board, and I want
+>> to use it.
+> 
+> Does this patch address the issue?
+> https://gitlab.freedesktop.org/agd5f/linux/-/commit/72ada8603e36291ad91e4f40f10ef742ef79bc4e
 
-Alex
+No, I get the warning without any of these debugging options enabled. I can
+reproduce with just defconfig + CONFIG_DRM_AMDGPU=m when built with clang 17.
 
->
-> >
-> > Regards,
-> > Christian.
-> >
-> >>
-> >> This only adds kernel internal API, so if in the future the API needs
-> >> work that can be done.
-> >>
-> >> I've not merged this branch into pdx86/for-next yet, since I see
-> >> little use in merging it without any users. I'll merge it once either
-> >> the wifi or amdgpu changes are also merged
-> >> (and if some blocking issues get identified before either are merged I
-> >> can prepare a new pull-request fixing the issues).
-> >>
-> >> Regards,
-> >>
-> >> Hans
-> >>
-> >>
-> >>
-> >> The following changes since commit
-> >> b85ea95d086471afb4ad062012a4d73cd328fa86:
-> >>
-> >>    Linux 6.7-rc1 (2023-11-12 16:19:07 -0800)
-> >>
-> >> are available in the Git repository at:
-> >>
-> >>
-> >> git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x=
-86.git tags/platform-drivers-x86-amd-wbrf-v6.8-1
-> >>
-> >> for you to fetch changes up to 58e82a62669da52e688f4a8b89922c1839bf100=
-1:
-> >>
-> >>    platform/x86/amd: Add support for AMD ACPI based Wifi band RFI
-> >> mitigation feature (2023-12-11 11:33:44 +0100)
-> >>
-> >> ----------------------------------------------------------------
-> >> Immutable branch between pdx86 amd wbrf branch and wifi / amdgpu due
-> >> for the v6.8 merge window
-> >>
-> >> platform-drivers-x86-amd-wbrf-v6.8-1: v6.7-rc1 + AMD WBRF support
-> >> for merging into the wifi subsys and amdgpu driver for 6.8.
-> >>
-> >> ----------------------------------------------------------------
-> >> Ma Jun (2):
-> >>        Documentation/driver-api: Add document about WBRF mechanism
-> >>        platform/x86/amd: Add support for AMD ACPI based Wifi band RFI
-> >> mitigation feature
-> >>
-> >>   Documentation/driver-api/index.rst |   1 +
-> >>   Documentation/driver-api/wbrf.rst  |  78 +++++++++
-> >>   drivers/platform/x86/amd/Kconfig   |  14 ++
-> >>   drivers/platform/x86/amd/Makefile  |   1 +
-> >>   drivers/platform/x86/amd/wbrf.c    | 317
-> >> +++++++++++++++++++++++++++++++++++++
-> >>   include/linux/acpi_amd_wbrf.h      |  91 +++++++++++
-> >>   6 files changed, 502 insertions(+)
-> >>   create mode 100644 Documentation/driver-api/wbrf.rst
-> >>   create mode 100644 drivers/platform/x86/amd/wbrf.c
-> >>   create mode 100644 include/linux/acpi_amd_wbrf.h
-> >>
-> >
->
+Regards,
+Samuel
+
