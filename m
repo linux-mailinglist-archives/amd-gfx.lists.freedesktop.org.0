@@ -2,91 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98615810AC9
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Dec 2023 08:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C80B5810C94
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Dec 2023 09:39:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17E9710E24F;
-	Wed, 13 Dec 2023 07:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C9B10E721;
+	Wed, 13 Dec 2023 08:38:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20601.outbound.protection.outlook.com
- [IPv6:2a01:111:f403:2412::601])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F4810E037
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Dec 2023 07:02:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DJSmDl5ScNKlxp/dQ/OntHvzR05rP84Xs1lloWRtdiJKh/YDxMwvjRxapYh9Tbd6dAC8joCkFmCSn902O3Mb7Ap1R7v/dfw4Ekue+Y8vSyjGxioPbZstt57Q0GFs7qEFM1acwaQ2IX9sVNpSm6ZpY+ZzIZ7n1KGqtt5lLh1XZ4Mdwoa952UwVKwEFv+Vy5zHPGK/L9wTeUsPC1Yzy/4m4Ma5yWolfnJXmawHPFkMOQ3CiR1U3KitCY8aYw2Q9KRPl5RKO6Y9LXEkGbd3HmBm2M0lOkTGoF8LTgu5EVSAVyNu7PEfG0VXjKpfSJR6Rw7S+mBs++R6tXsFFU/CfyujVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c3SIC3YxPppID3PfjnoyBndQHMgaRAgz6wnIJWTq6J4=;
- b=WLOUhKK7dPYG0Nq5o9/vjS4jNKhzyr1uICgNJywhcP6vddKqSgk4diV6IWTNKLByHzu8mrwdyAIVTiK+EMlNkoYk5WInpgDxqmMBmtFYr0FbzIV/kABXDBrHRhJ9M7ojie8XH9atteglrTfto8akNrY4vzLPXaRv9tQrlxOG2mpjGMGIqHKTC5rogyAKzY3zN7gjJVKsJ+jxTZIKyJF970/arFQGmNIPZ694yy0VpbS9BmbspC9uivjxxXIipc/KxPswzPvvKQ7asSGRvBLiwie3oUycjkO4657RpdT4ASoZb2mhSxyiHJKA1hzHY9kJNwDZ8vEM7XEO67aPpvkVfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c3SIC3YxPppID3PfjnoyBndQHMgaRAgz6wnIJWTq6J4=;
- b=3eq9JHWaNZMmFFDftS8WfktyroxrkrBH3D6Ria4GUKe9+eKnT3CJweo+osu/gfEfFBtlOjckO7FeVjm+JECaut7kFKqxCaGY3sW2kBHHbXJtlt9ulM0SvgcDElro+SH6+O0MucwaH2Y6ufy+m18qDEIN8QMYGJUdtwVUGw2SFj8=
-Received: from BL1PR13CA0173.namprd13.prod.outlook.com (2603:10b6:208:2bd::28)
- by BN9PR12MB5306.namprd12.prod.outlook.com (2603:10b6:408:103::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26; Wed, 13 Dec
- 2023 07:02:01 +0000
-Received: from BL6PEPF0001AB58.namprd02.prod.outlook.com
- (2603:10b6:208:2bd:cafe::a2) by BL1PR13CA0173.outlook.office365.com
- (2603:10b6:208:2bd::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26 via Frontend
- Transport; Wed, 13 Dec 2023 07:02:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB58.mail.protection.outlook.com (10.167.241.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7091.26 via Frontend Transport; Wed, 13 Dec 2023 07:02:01 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 13 Dec
- 2023 01:02:00 -0600
-Received: from kenneth-mlse-vm.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via
- Frontend Transport; Wed, 13 Dec 2023 01:01:59 -0600
-From: Kenneth Feng <kenneth.feng@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/pm: add power save mode workload for smu 13.0.10
-Date: Wed, 13 Dec 2023 15:01:57 +0800
-Message-ID: <20231213070157.972391-1-kenneth.feng@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8C410E0D5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 23:31:37 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id
+ af79cd13be357-77f35b70944so381115285a.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 15:31:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702423896; x=1703028696; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:user-agent:date:message-id
+ :subject:from:cc:to:from:to:cc:subject:date:message-id:reply-to;
+ bh=bUkrAqsNZDipecIKdgep5YJgfJkpnoeFR9tV2P0/CVI=;
+ b=ChbZC9w9xEJp8hJGM/sldHp5VnwNB9VzyjcdaaoENl7P2rO3XYp8Q5HE2RYyyguz2Z
+ flX/knOGHM1Oiyj7PyMt3jS0CM49ksV96g+T53yZZKEkZJS2TLxr58FIidNgNLEB7h1m
+ aSAM604TCyBs8VdMpEL/L8e2PoAIpjZ5ZPhqf/AQnC8sttQYWJ+JfKtlSYFr4KXugTQW
+ XuYC9ukCKRNLOkRinD8/tcTToMd+72PfdQWh2qUNDY7gFIAw4jvG2JEq3YE5IeZCNBFL
+ kZ0NjCXexaDCUu1fR1FMKY0LyaN1B82VfZZFzdbLE+U6bDDLA3C3wxtCV5vuxqz0c3a3
+ s4cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702423896; x=1703028696;
+ h=content-transfer-encoding:mime-version:user-agent:date:message-id
+ :subject:from:cc:to:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bUkrAqsNZDipecIKdgep5YJgfJkpnoeFR9tV2P0/CVI=;
+ b=HGNEMyETZ375sqJEXR13i8+AN+AJ0L/hUmev+DA8YOaehNn8P2FrlINagDAzj/eJhk
+ l4tQJroN9g12QtHIF97hLQExp1pEJ+an9EhhioRi8CT3T1oFpSesNcvBv1F+X6b7VbX/
+ tjkUw11D10n4vv3qbN8MkaB7FbiJdYirz9WQkFdDRIRQLvrAL0HhHNKk2PsBZIEeweUv
+ Rj0dAh7rsdfnqymyOHKB6D1VV5MjgRT6lorxwAITmDsYlt2lm5xgJz2rKi7xZFkk++ZN
+ ze9N69lXnyAROQopJ7WFVxJp/Wg1EdOBLkIyg5TZeA977Vddx+xMRQ8Zkcyy+mK343BJ
+ RF2Q==
+X-Gm-Message-State: AOJu0YyH9drs+/CN4fMZRpOZuWRREvSP2z+wkPV29qK4AeWFI6DXnQox
+ 6iNGjbNEDBZdhOYnOvVSjvzW8xxSbw==
+X-Google-Smtp-Source: AGHT+IFnEBMb/1kNAabQhPqpIwzqhQ/yL/C2XGBrclcybcx7/0ZRWNO4HWvaIzYuvA4HpOmRNtE/pw==
+X-Received: by 2002:a05:620a:26a0:b0:77f:5d7:6a66 with SMTP id
+ c32-20020a05620a26a000b0077f05d76a66mr8537756qkp.23.1702423896604; 
+ Tue, 12 Dec 2023 15:31:36 -0800 (PST)
+Received: from [120.7.1.23] (198-84-239-141.cpe.teksavvy.com. [198.84.239.141])
+ by smtp.gmail.com with ESMTPSA id
+ bm27-20020a05620a199b00b0077d62e78db9sm4063251qkb.128.2023.12.12.15.31.35
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 12 Dec 2023 15:31:36 -0800 (PST)
+To: LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org
+From: Woody Suwalski <terraluna977@gmail.com>
+Subject: [PATCH v2] drm/radeon: Prevent multiple debug error lines on suspend
+Message-ID: <90172f4c-7cf7-b4ac-d630-42198bb80d62@gmail.com>
+Date: Tue, 12 Dec 2023 18:31:34 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 SeaMonkey/2.53.18
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB58:EE_|BN9PR12MB5306:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb1861da-c580-4bcd-c122-08dbfba967c3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cpwoNUsd9ht2ZgsG7bfry0qbH1YmF+10de+W9o6AvhJbaffuA3Vlh/jfnJ3lnpByiDyybR99+aRpY9uKhH8zJy+JGNJA8wLcuarXWpHiOMv4pL9AIUqd7NMbAQ56eMCUT6Yph/UoA1pYa8Qy2lj6j5jlddGbBt4hlub9OAb4wJQJiKQr0o0SQdJmGQefb8xpiOBM6Zrvv2uZjp8zOIxeVip6g+it4nehyXzm/kYM/S4FN8o9pF8ywBfhMqq0hYfFamKhKg2F9xDDAmStJ1zVTQW9pb/aF/HqRkUx5qzHpbHfTXPPfb65paFSaJuXnxlsHUL+JF9PhNV2enYjDiVsSdCbt0ZQzFhOlNVk7HJ4AnBpkutowXpDYGMG0bLekuWK5mIdq5rHVc+NqK69nwoeniklDAzVgJPdu4x2EZ2fkc4nJOEGf3RVZiu2K1YCEpk2rPRvZ7HQT9xs7JxTB9Ht26U7ehyjuNSgu2PuiYCCw82FNnUfGXYm53z3ihvKfDIWQMtbtuGDD+gS98wss7U2I+KT1NI1dRzM8cvG2cbsmmHeYzFlyg8igwmoF7Y0Me6lkbgHcILw6fJ25V3W7BFlde2NL8mGHCe4yFaKtobFcbKDG5whhoB2LrGJ4g1TQPsUfINYsh5PO5JN3x/+9us63T6FdK7dUfWspN/dAMD+m6rxKbVdA2WMmbflckxuw7ouzunxHtNvXErZU349YEnowDmDTAIihN1ex3pylKG3lf+K0rWeXM6LmWBNXVHIxQ/SuJPeohRbXzYzCJmnmIOVhQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(396003)(39860400002)(136003)(376002)(230922051799003)(82310400011)(64100799003)(1800799012)(451199024)(186009)(40470700004)(46966006)(36840700001)(41300700001)(356005)(40480700001)(5660300002)(4326008)(8676002)(8936002)(6916009)(86362001)(36860700001)(40460700003)(70206006)(70586007)(47076005)(82740400003)(316002)(81166007)(44832011)(2906002)(36756003)(336012)(426003)(83380400001)(1076003)(26005)(2616005)(478600001)(7696005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 07:02:01.1359 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb1861da-c580-4bcd-c122-08dbfba967c3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB58.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5306
+X-Mailman-Approved-At: Wed, 13 Dec 2023 08:38:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,53 +72,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Feng <kenneth.feng@amd.com>
+Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ "<christian.koenig@amd.com>" <christian.koenig@amd.com>,
+ Woody Suwalski <terraluna977@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add power save mode workload for smu 13.0.10, so that in compute mode,
-pmfw will add 35mv voltage margin since some applications requres higher
-voltages.
+Fix to avoid multiple debug error lines printed on every suspend by 
+Radeon driver's debugfs.
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
----
- .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  | 23 +++++++++++--------
- 1 file changed, 13 insertions(+), 10 deletions(-)
+radeon_debugfs_init() calls debugfs_create_file() for every ring.
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index a24aa886c636..231122622a9c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -2545,16 +2545,19 @@ static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
- 
- 	workload_mask = 1 << workload_type;
- 
--	/* Add optimizations for SMU13.0.0.  Reuse the power saving profile */
--	if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_COMPUTE &&
--	    (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 0)) &&
--	    ((smu->adev->pm.fw_version == 0x004e6601) ||
--	     (smu->adev->pm.fw_version >= 0x004e7400))) {
--		workload_type = smu_cmn_to_asic_specific_index(smu,
--							       CMN2ASIC_MAPPING_WORKLOAD,
--							       PP_SMC_POWER_PROFILE_POWERSAVING);
--		if (workload_type >= 0)
--			workload_mask |= 1 << workload_type;
-+	/* Add optimizations for SMU13.0.0/10.  Reuse the power saving profile */
-+	if (smu->power_profile_mode == PP_SMC_POWER_PROFILE_COMPUTE) {
-+		if ((amdgpu_ip_version(smu->adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 0) &&
-+			((smu->adev->pm.fw_version == 0x004e6601) ||
-+			(smu->adev->pm.fw_version >= 0x004e7300))) ||
-+			(amdgpu_ip_version(smu->adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 10) &&
-+			 smu->adev->pm.fw_version >= 0x00504500)) {
-+			workload_type = smu_cmn_to_asic_specific_index(smu,
-+														   CMN2ASIC_MAPPING_WORKLOAD,
-+														   PP_SMC_POWER_PROFILE_POWERSAVING);
-+			if (workload_type >= 0)
-+				workload_mask |= 1 << workload_type;
-+		}
- 	}
- 
- 	return smu_cmn_send_smc_msg_with_param(smu,
--- 
-2.34.1
+This results in printing multiple error lines to the screen and dmesg 
+similar to this:
+
+[   92.378726] debugfs: File 'radeon_ring_gfx' in directory 
+'0000:00:01.0' already present!
+[   92.378732] debugfs: File 'radeon_ring_cp1' in directory 
+'0000:00:01.0' already present!
+[   92.378734] debugfs: File 'radeon_ring_cp2' in directory 
+'0000:00:01.0' already present!
+[   92.378737] debugfs: File 'radeon_ring_dma1' in directory 
+'0000:00:01.0' already present!
+[   92.378739] debugfs: File 'radeon_ring_dma2' in directory 
+'0000:00:01.0' already present!
+[   92.380775] debugfs: File 'radeon_ring_uvd' in directory 
+'0000:00:01.0' already present!
+[   92.406620] debugfs: File 'radeon_ring_vce1' in directory 
+'0000:00:01.0' already present!
+[   92.406624] debugfs: File 'radeon_ring_vce2' in directory 
+'0000:00:01.0' already present!
+
+
+Patch v1: The fix was to run lookup() for the file before trying to 
+(re)create that debug file.
+Patch v2: Call the radeon_debugfs_init() only once when radeon ring is 
+initialized (as suggested  by Christian K. - thanks)
+
+Signed-off-by: Woody Suwalski <terraluna977@gmail.com>
+
+diff --git a/drivers/gpu/drm/radeon/radeon_ring.c 
+b/drivers/gpu/drm/radeon/radeon_ring.c
+index e6534fa9f1fb..38048593bb4a 100644
+--- a/drivers/gpu/drm/radeon/radeon_ring.c
++++ b/drivers/gpu/drm/radeon/radeon_ring.c
+@@ -413,6 +413,7 @@ int radeon_ring_init(struct radeon_device *rdev, 
+struct radeon_ring *ring, unsig
+              dev_err(rdev->dev, "(%d) ring map failed\n", r);
+              return r;
+          }
++        radeon_debugfs_ring_init(rdev, ring);
+      }
+      ring->ptr_mask = (ring->ring_size / 4) - 1;
+      ring->ring_free_dw = ring->ring_size / 4;
+@@ -421,7 +422,6 @@ int radeon_ring_init(struct radeon_device *rdev, 
+struct radeon_ring *ring, unsig
+          ring->next_rptr_gpu_addr = rdev->wb.gpu_addr + index;
+          ring->next_rptr_cpu_addr = &rdev->wb.wb[index/4];
+      }
+-    radeon_debugfs_ring_init(rdev, ring);
+      radeon_ring_lockup_update(rdev, ring);
+      return 0;
+  }
 
