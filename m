@@ -1,52 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20EA680EF49
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 15:49:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16AB380EE4C
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 15:03:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7D710E602;
-	Tue, 12 Dec 2023 14:49:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECAA610E03D;
+	Tue, 12 Dec 2023 14:03:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1810E1CD;
- Tue, 12 Dec 2023 13:53:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702389226; x=1733925226;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+3lHOrz2iNZ5BiwoCQtwsUK0FLciuRrcFHfVaTqSzC8=;
- b=ipuckBliDn/mpSW0TzvqS6YX9rzS72KmttvOLE71EnvKwp7H9hNle7bd
- KWvsrskmE/oZb3ZCewLqX2uSQfZbvFwLSF3CrozxGr4wtB4MnjVzdtZ3C
- qINvgT1EuqMibuGoC1lH66gRBaf/yisd5mOVm4FEtDnpRnvbgZwoumepG
- mYL6FLNu528/bfdp7Ye398Opx06EJJZRoynr9uh1jI0QDVY7fZLr52MOp
- fUS7OSrtcn3l26RLdlIK/HwgUwST3jR1FnGX2PcwGp+l6f4njGWgNyRrQ
- NfVjQqgQfLbF7BvepuOGyzo9E26PxuKAX3kMoNuJQb18cfnvXSnLnaKN+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="16359519"
-X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="16359519"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 05:53:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="946768063"
-X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="946768063"
-Received: from ggilardi-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.252.49.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2023 05:53:42 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/radeon: include drm/drm_edid.h only where needed
-Date: Tue, 12 Dec 2023 15:53:38 +0200
-Message-Id: <20231212135338.3816669-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2069.outbound.protection.outlook.com [40.107.220.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 394C710E03D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 14:03:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WCcN4fZ/ANH2IrizSezNxG0Yzp3hAvD2RAIYiUMCwmtFzU1C20+1oe1i6TrIFC2+heAgGdhzpXRU2cH/2JPlY4LBjguX3WhIIw7kZO8cf6LIgnD3l2+FR6MS+k8JV+kBCgxLimsgN+GJY4lLxoan1kqp5nXFuPA5O9F4V5LuAkOx5PkGPp/mFwITvVRy9jvVjNapPepTOjvjHibf94bg0WkoSgH1d2sEFZQ/05JxIdLSuzZfeLfh/hJULh61aO1yo9HCFC5E+swhN3tnVvHc9LGc9qMVD1ofy+LTyj5nJQes4UGWkMEg2hYX1gCA8DqWvkGiXKFuu/O5xNlQfSBOPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=smV21adI1W86NUuEwBHP+4fowaMqIFgbMoWxWKe9SBY=;
+ b=j3tSaDoUS4y5y9gJtMW7auA5CKSH31z9rLPK8srM8uvs+0qh//n20RMGHGWNWA1A85VjW1ZMZcol4F9RfNecz3siEyVsKVp1mNLIlMOLkZwzVjS4hiEvkXc8rT1GBKZf9ap90OSGEkxjNTUESGp9GPp3VBzw860/942aCWgVNeFIPCSzMmwPJdgl+52QK3ngLhp+DT34sGOqoIole7PxBb6DyUMLkhGXFLpAbTu8Fv+1GXxMAuQBRLjxAiQ80ILZDdnt6AF3SaSo4RUHPLrDsG8tQZUx4LM1uURb9kkojPDumMcwBkcfqrDxKtrz7sKhGzrko0uYn2uMpMwr784nag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=smV21adI1W86NUuEwBHP+4fowaMqIFgbMoWxWKe9SBY=;
+ b=TlY+bGG3qjvXSDuuaSyrSbJkxC3cqitUUn0MdDmjI0hKZzZEbVLcp5n9GX/ezyMhI8VG6CUdSUPcMvgx7YzrhYSWxB9IIdajmRYw9Pwa9alXXnjVfM+JMeDdpsQ0tfVYo3/dB5dvkl42KJA38vaccXyoAkw8p0AuHe/gwbybw80=
+Received: from CH5PR05CA0016.namprd05.prod.outlook.com (2603:10b6:610:1f0::21)
+ by DS0PR12MB6606.namprd12.prod.outlook.com (2603:10b6:8:d2::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32; Tue, 12 Dec
+ 2023 14:03:41 +0000
+Received: from SN1PEPF00026367.namprd02.prod.outlook.com
+ (2603:10b6:610:1f0:cafe::2f) by CH5PR05CA0016.outlook.office365.com
+ (2603:10b6:610:1f0::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26 via Frontend
+ Transport; Tue, 12 Dec 2023 14:03:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7091.26 via Frontend Transport; Tue, 12 Dec 2023 14:03:40 +0000
+Received: from hawzhang-System-Product-Master.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Tue, 12 Dec 2023 08:03:34 -0600
+From: Hawking Zhang <Hawking.Zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, Stanley Yang <Stanley.Yang@amd.com>,
+ "Yang Wang" <kevinyang.wang@amd.com>
+Subject: [PATCH] drm/amdgpu: Switch to aca bank for xgmi pcs err cnt
+Date: Tue, 12 Dec 2023 22:03:04 +0800
+Message-ID: <20231212140304.11894-1-Hawking.Zhang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 12 Dec 2023 14:49:31 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|DS0PR12MB6606:EE_
+X-MS-Office365-Filtering-Correlation-Id: 483dd30a-374f-4305-19d5-08dbfb1b24ff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dX7ywJQ1souqSDiL8znT8VOxFAL5IuBTvhydfyDwHhC/sABS7ZfhJ1UNEI6lgmzWMqyogNpdjdAxdIHqbZGoJgeyNWBzVeKOjSJSUj1KKcKcjnNZuCaKPBxCL6O5++2s4u5k+osCbi8uKzm4A3WS/9GoAXEvYcePdr/IBpMgVi8GeLQ3AehCaKcjZRWx7CvpUwsNnCIMKucVJfz3yGABwiBTKwwbKI0TAfehhSfMcWxc/GmV9F3hCEXqM6IIBY6E0/XIbACrZJ52us1mMS9LKFWfFrNhpli4xdliNr03/3ksi0KN/zZxN9JB6sTwqX/sw8bhplHIcIl32/Rr9CMmee+GZfbvDNnwlo3TGWAOQ3YUH5szJkYONSlQYif5eAeE5kwrSA8quw079pRidnmEwr1qpVUES1SoTAo2pzi4TZlIHjg5Wv749DdAs/9/7LsotUkzhV5DusB/IdvbuJFuh1ULpVhJubR8R+wud0sI/NurtzV+/x780Be7yV1Ua6Oegb5xauZCIpVdREDi4f4ze20nq9DxjeSaNVIXiuP7zDLTdurFuczihTWn0FG5yvBExyJ7M8WukndUqBV40nQXXabp4FQ9nOWJu6MvFM2Pq6NtiAz6WlvbhdqIjTIq751zBYY2vnmXFERliUWtNwqcSDPKPsFbPKcFe6z3ZZvdJSm+sI8dEJ0jp/YwE+8FL1UZth5LbPwjO+FutMDNk6NXllGxzDZmBY1GuzAtSDBpjdLH1ufoV+dOxKdX0ys1DpejHdHvzYLP0sIrJ9buvqGShA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(136003)(396003)(39860400002)(376002)(346002)(230922051799003)(64100799003)(82310400011)(451199024)(186009)(1800799012)(46966006)(36840700001)(40470700004)(40480700001)(41300700001)(2906002)(40460700003)(5660300002)(316002)(4326008)(8676002)(8936002)(70586007)(70206006)(6636002)(356005)(82740400003)(2616005)(36860700001)(110136005)(81166007)(86362001)(36756003)(47076005)(16526019)(6666004)(478600001)(336012)(1076003)(7696005)(26005)(426003)(83380400001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 14:03:40.4725 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 483dd30a-374f-4305-19d5-08dbfb1b24ff
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026367.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6606
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,171 +97,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Including drm_edid.h from radeon_mode.h causes the rebuild of more than
-a hundred files when drm_edid.h is modified, while there are only a
-handful of files that actually need to include drm_edid.h.
+Instead of software managed counters.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 ---
- drivers/gpu/drm/radeon/atombios_encoders.c | 1 +
- drivers/gpu/drm/radeon/dce3_1_afmt.c       | 1 +
- drivers/gpu/drm/radeon/dce6_afmt.c         | 1 +
- drivers/gpu/drm/radeon/evergreen.c         | 1 +
- drivers/gpu/drm/radeon/evergreen_hdmi.c    | 1 +
- drivers/gpu/drm/radeon/radeon_atombios.c   | 1 +
- drivers/gpu/drm/radeon/radeon_audio.c      | 1 +
- drivers/gpu/drm/radeon/radeon_audio.h      | 4 +++-
- drivers/gpu/drm/radeon/radeon_combios.c    | 1 +
- drivers/gpu/drm/radeon/radeon_encoders.c   | 1 +
- drivers/gpu/drm/radeon/radeon_mode.h       | 2 +-
- 11 files changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h              | 2 ++
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 6 ++++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 4aca09cab4b8..6e537c5bd295 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -29,6 +29,7 @@
- #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
+index e51e8918e667..b399f1b62887 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
+@@ -46,6 +46,8 @@
+ #define MCA_REG__STATUS__ERRORCODEEXT(x)	MCA_REG_FIELD(x, 21, 16)
+ #define MCA_REG__STATUS__ERRORCODE(x)		MCA_REG_FIELD(x, 15, 0)
  
- #include <drm/drm_crtc_helper.h>
-+#include <drm/drm_edid.h>
- #include <drm/drm_file.h>
- #include <drm/drm_modeset_helper_vtables.h>
- #include <drm/radeon_drm.h>
-diff --git a/drivers/gpu/drm/radeon/dce3_1_afmt.c b/drivers/gpu/drm/radeon/dce3_1_afmt.c
-index e8fe239b9d79..324e9b765098 100644
---- a/drivers/gpu/drm/radeon/dce3_1_afmt.c
-+++ b/drivers/gpu/drm/radeon/dce3_1_afmt.c
-@@ -21,6 +21,7 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- #include <linux/hdmi.h>
-+#include <drm/drm_edid.h>
- 
- #include "radeon.h"
- #include "radeon_asic.h"
-diff --git a/drivers/gpu/drm/radeon/dce6_afmt.c b/drivers/gpu/drm/radeon/dce6_afmt.c
-index 4a1d5447eac1..4c06f47453fd 100644
---- a/drivers/gpu/drm/radeon/dce6_afmt.c
-+++ b/drivers/gpu/drm/radeon/dce6_afmt.c
-@@ -21,6 +21,7 @@
-  *
-  */
- #include <linux/hdmi.h>
-+#include <drm/drm_edid.h>
- 
- #include "dce6_afmt.h"
- #include "radeon.h"
-diff --git a/drivers/gpu/drm/radeon/evergreen.c b/drivers/gpu/drm/radeon/evergreen.c
-index f0ae087be914..a424b86008b8 100644
---- a/drivers/gpu/drm/radeon/evergreen.c
-+++ b/drivers/gpu/drm/radeon/evergreen.c
-@@ -26,6 +26,7 @@
- #include <linux/pci.h>
- #include <linux/slab.h>
- 
-+#include <drm/drm_edid.h>
- #include <drm/drm_vblank.h>
- #include <drm/radeon_drm.h>
- #include <drm/drm_fourcc.h>
-diff --git a/drivers/gpu/drm/radeon/evergreen_hdmi.c b/drivers/gpu/drm/radeon/evergreen_hdmi.c
-index 5f3078f8ab95..681119c91d94 100644
---- a/drivers/gpu/drm/radeon/evergreen_hdmi.c
-+++ b/drivers/gpu/drm/radeon/evergreen_hdmi.c
-@@ -26,6 +26,7 @@
-  */
- #include <linux/hdmi.h>
- 
-+#include <drm/drm_edid.h>
- #include <drm/radeon_drm.h>
- #include "evergreen_hdmi.h"
- #include "radeon.h"
-diff --git a/drivers/gpu/drm/radeon/radeon_atombios.c b/drivers/gpu/drm/radeon/radeon_atombios.c
-index 85c4bb186203..3596ea4a8b60 100644
---- a/drivers/gpu/drm/radeon/radeon_atombios.c
-+++ b/drivers/gpu/drm/radeon/radeon_atombios.c
-@@ -27,6 +27,7 @@
- #include <linux/pci.h>
- 
- #include <drm/drm_device.h>
-+#include <drm/drm_edid.h>
- #include <drm/radeon_drm.h>
- 
- #include "radeon.h"
-diff --git a/drivers/gpu/drm/radeon/radeon_audio.c b/drivers/gpu/drm/radeon/radeon_audio.c
-index 279bf130a18c..053058c5c1fa 100644
---- a/drivers/gpu/drm/radeon/radeon_audio.c
-+++ b/drivers/gpu/drm/radeon/radeon_audio.c
-@@ -26,6 +26,7 @@
- #include <linux/component.h>
- 
- #include <drm/drm_crtc.h>
-+#include <drm/drm_edid.h>
- #include <drm/drm_eld.h>
- #include "dce6_afmt.h"
- #include "evergreen_hdmi.h"
-diff --git a/drivers/gpu/drm/radeon/radeon_audio.h b/drivers/gpu/drm/radeon/radeon_audio.h
-index 05e67867469b..dacaaa007051 100644
---- a/drivers/gpu/drm/radeon/radeon_audio.h
-+++ b/drivers/gpu/drm/radeon/radeon_audio.h
-@@ -27,7 +27,9 @@
- 
- #include <linux/types.h>
- 
--#define RREG32_ENDPOINT(block, reg)		\
-+struct cea_sad;
++#define MCA_REG__MISC0__ERRCNT(x)		MCA_REG_FIELD(x, 43, 32)
 +
-+#define RREG32_ENDPOINT(block, reg)				\
- 	radeon_audio_endpoint_rreg(rdev, (block), (reg))
- #define WREG32_ENDPOINT(block, reg, v)	\
- 	radeon_audio_endpoint_wreg(rdev, (block), (reg), (v))
-diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
-index 2620efc7c675..6952b1273b0f 100644
---- a/drivers/gpu/drm/radeon/radeon_combios.c
-+++ b/drivers/gpu/drm/radeon/radeon_combios.c
-@@ -28,6 +28,7 @@
- #include <linux/pci.h>
+ #define MCA_REG__SYND__ERRORINFORMATION(x)	MCA_REG_FIELD(x, 17, 0)
  
- #include <drm/drm_device.h>
-+#include <drm/drm_edid.h>
- #include <drm/radeon_drm.h>
+ enum amdgpu_mca_ip {
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index ddd782fbee7a..3998c9b31d07 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -2537,13 +2537,15 @@ static int mca_pcs_xgmi_mca_get_err_count(const struct mca_ras_info *mca_ras, st
+ 					  uint32_t *count)
+ {
+ 	u32 ext_error_code;
++	u32 err_cnt;
  
- #include "radeon.h"
-diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
-index 9cb6401fe97e..3de3dce9e89d 100644
---- a/drivers/gpu/drm/radeon/radeon_encoders.c
-+++ b/drivers/gpu/drm/radeon/radeon_encoders.c
-@@ -26,6 +26,7 @@
+ 	ext_error_code = MCA_REG__STATUS__ERRORCODEEXT(entry->regs[MCA_REG_IDX_STATUS]);
++	err_cnt = MCA_REG__MISC0__ERRCNT(entry->regs[MCA_REG_IDX_MISC0]);
  
- #include <linux/pci.h>
+ 	if (type == AMDGPU_MCA_ERROR_TYPE_UE && ext_error_code == 0)
+-		*count = 1;
++		*count = err_cnt;
+ 	else if (type == AMDGPU_MCA_ERROR_TYPE_CE && ext_error_code == 6)
+-		*count = 1;
++		*count = err_cnt;
  
-+#include <drm/drm_edid.h>
- #include <drm/drm_device.h>
- #include <drm/radeon_drm.h>
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index 1decdcec0264..59c4db13d90a 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -32,13 +32,13 @@
- 
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_crtc.h>
--#include <drm/drm_edid.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_fixed.h>
- #include <drm/drm_modeset_helper_vtables.h>
- #include <linux/i2c.h>
- #include <linux/i2c-algo-bit.h>
- 
-+struct edid;
- struct radeon_bo;
- struct radeon_device;
- 
+ 	return 0;
+ }
 -- 
-2.39.2
+2.17.1
 
