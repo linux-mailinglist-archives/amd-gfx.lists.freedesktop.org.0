@@ -1,67 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4839880E11A
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 02:52:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DED80F465
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 18:21:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A121410E060;
-	Tue, 12 Dec 2023 01:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E11C10E63B;
+	Tue, 12 Dec 2023 17:21:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400D310E060
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 01:52:49 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id
- a640c23a62f3a-a1ca24776c3so1262232866b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Dec 2023 17:52:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702345967; x=1702950767; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=tcsqxaL4flCCT5BFcYcFQa5xlm0vUAhz15fmFCcpB/s=;
- b=N878oyRy+FctspfgXGPlgH4/pQ4lrRlEzrSmWR0aP+k9S4nLn6ubrkXyqVmn35uAF/
- 9FG1+BVokJsoS7a+Zx+9ej/EpRCGhVxDutxenp1Li56db48oEZTsRs/Azf1nX60K/ELP
- hZhumHJws+pIIc9LRmhVoeiau401B7P2Ri3Q9x0jBw34X8n6GWefmM0qW3MWT0DKZkeG
- RyD/x3xni8lil/WNv4aObgkKJnOMDEHxD4wirpXzHRcTISQtyTcIenmipy/puIW7ZNNp
- U0JK83fhcVdo0G9Zv4+D6vIQmf8V7eqUinVgIsoKpN/X++SmHlW0ePLm+BtnJScnkqfh
- sBVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702345967; x=1702950767;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=tcsqxaL4flCCT5BFcYcFQa5xlm0vUAhz15fmFCcpB/s=;
- b=sTbaNKQw7TpAW8MEbGwNBxHej4ULBWC+CBpsKQTl8Hkq/bKPdO4uD5Us/0AiyGBWyv
- lvifEQBgfUEDXQj1X8zey9BZCUvepspBirem/k1B9AkQDujEV/3urbyQjgS+VqzckGiI
- 57H8lrrYgefdg6PgyQ1xhdDhP3EGA3eC3kMvUsMtprOMVNX/+R84KKzM2WfOGao0SxMZ
- /z+ojMwSnr33hHAwzxk/P2hxL4vUvh6aYCpX0obdwRnfMHn1mxzHTJm6G84KrpD9Q0Yt
- ezVHyqrkoM++6/AL7bHv8rmD3ah6xloRK/7seV7kzcIMuklQQNTgCDpiV06rP0YsNorV
- 9Y1Q==
-X-Gm-Message-State: AOJu0YyeRKYwzp4RqFiBwgpYlompbzforFwyZ9UUMayQtqlHynK0+vTo
- 8pnQXE/Wu7Miw6rVu+O16I/6klSZkrjQAjic5BXQlmYs
-X-Google-Smtp-Source: AGHT+IE2s4uz2z4jx8PPpRdyTrnvLhSzB60rkXZL/Ha43mvTM2daEPhx5OtmzTGzCywCid2ErtKzKpIRh9woDfMTpis=
-X-Received: by 2002:a17:906:5a6b:b0:a18:a5b1:31a9 with SMTP id
- my43-20020a1709065a6b00b00a18a5b131a9mr6033436ejc.12.1702345967370; Mon, 11
- Dec 2023 17:52:47 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C10D210E63B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 17:21:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KzMKSZ0Md9LhF0GXy1VYd3gSNfzL7w11RpefLUoVaAlaHQcXR2xnnQouIaJkedX3C36k9tKef14JUEkcU6oLwTLPn2KTAX8h+3O163vjnvWb4iZ/y2y1EBjqxSAqr+MYNdX2B4duoIaF073YFE/bC4LktWI4fJT/uUZGn/pbJXKUXQ3P64G6ImBh/rYW/39gUcan1wYTGZwj0JDuv1ZHY5yYpgY21nBpQAWMC8IEkQLQPCv4bduPMXvQ5EtBuz68yKI7LsJR3IJiMOV/EVihUnugx6dMTHcP3+OcUCQWN2Q120s99s2TK2GQ68vxqzDcmBubjdK5I6fhaKUpxe7T2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eEfy3KooIK0Yct/CGwsOgEC14i41HNOppOT7Ay0Q/e8=;
+ b=OvOHM/mq2GhGImL3vwYEqpXpbJLDCkre++njiwBFUIZdNcUi6RYNKtAipFdLc+gfzzI9roHn8+3nJzLSeUp4789Dqx+cz/EwolkZT2bVa0kTh6Ono32eL6vYwrFyDRgEPtc+apc+a2U4uje6GYuevA0tHmayw+eZB/SlaP31InezK0jV/uSJWJMPISqT907e8tj9o8zzW18nE9m2+MM3n3eoT+LyrjqsFNNpcIqDsOhnBLmKmtljatvC03ax8uMgB34H46y306RTp6n43G1hpMgzZIqwmcu2tUwWlufPcYMp11rhjB70qxQyWPstNKAOu63mifhki1J2a2ZL8K7Oog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eEfy3KooIK0Yct/CGwsOgEC14i41HNOppOT7Ay0Q/e8=;
+ b=qmFskwTeRKVn/TSWjWAUJ1/eWFwelVN2JMxO2ez21AzE+3e9ixb9h7pGrwXGcBOzMncHOH/xzc8EG5emFKMzDu5H/Vb935Z8oNTD48/DCmTs9CyKe9cSiW79QQzSK6HOxD9E+N+jCMpEwxIshPdfyhndlMSF9KroYw9QDXj3fkE=
+Received: from SJ2PR07CA0002.namprd07.prod.outlook.com (2603:10b6:a03:505::25)
+ by MN2PR12MB4254.namprd12.prod.outlook.com (2603:10b6:208:1d0::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Tue, 12 Dec
+ 2023 17:21:40 +0000
+Received: from MWH0EPF000989EB.namprd02.prod.outlook.com
+ (2603:10b6:a03:505:cafe::6a) by SJ2PR07CA0002.outlook.office365.com
+ (2603:10b6:a03:505::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26 via Frontend
+ Transport; Tue, 12 Dec 2023 17:21:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000989EB.mail.protection.outlook.com (10.167.241.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7091.26 via Frontend Transport; Tue, 12 Dec 2023 17:21:39 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 12 Dec
+ 2023 11:21:38 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd: Fix a probing order problem on SDMA 2.4
+Date: Tue, 12 Dec 2023 01:09:16 -0600
+Message-ID: <20231212070916.141121-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20231202001740.120840-1-friedrich.vock@gmx.de>
- <3525f437-9537-4fb4-80d0-65acd9d55d2f@gmx.de>
- <3cf226b8-c80b-43f6-9f6c-9610d224717a@amd.com>
- <1939f568-f780-4e34-b5c5-dab461f93b57@gmx.de>
- <8041be7c-64d5-4b1d-a734-4326db98f256@amd.com>
- <CAAxE2A6Kdj5TBCdZRoT_t+cABzf9tsNCvJLZAVCE66F5pz5yXQ@mail.gmail.com>
- <5de028e5-d24c-4e98-96aa-e3d18720ab6a@froggi.es>
- <CADnq5_PrvUZXvsLY6fsvigrF+SEwwKZCN5MCF=Zo-RggGJrd1A@mail.gmail.com>
-In-Reply-To: <CADnq5_PrvUZXvsLY6fsvigrF+SEwwKZCN5MCF=Zo-RggGJrd1A@mail.gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Mon, 11 Dec 2023 20:52:11 -0500
-Message-ID: <CAAxE2A73ZJZsB=vvTZXCd-1icQ7dJVCN2V6i=NxVYxa3JeGnCA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Enable tunneling on high-priority compute
- queues
-To: Alex Deucher <alexdeucher@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000ab84bb060c464e38"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989EB:EE_|MN2PR12MB4254:EE_
+X-MS-Office365-Filtering-Correlation-Id: 027799dc-f830-4de0-2b53-08dbfb36cd72
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DdhLP74UM2zAwUQQQT0v9eenlyWszpcxseemFif2pTepOj451DbFjn3RinxcoGjIsKeeTW9OtGecsbtyFTVtHt/77PpmsI5aOK+zBqrRtwAD81Er63prJWywLiprJoGRoWWsyJeei4sAMzGlA46Ogv8IaTSQQ1bSii8dPSLblflfX/ES0tei7TSef8NkYHYdBd/oMBJKBiomSPmWOtDEHEjWJ9NC+dpRS3BNUzdT3JJj/ctcEHg+myRxFHiARcinAkVuO75FU9vwD4Wbo1fU8ND2qvopT2S335ZoIcU0wKcc9kCB1lE22ofeMErM9M8AYHC/zyjTnkRWEI0F9lPNpQl1c3ICSWGvGsEpUKjVK57BpqLrMTg3DTJ1N0GI3lJadEbma/qWovxuqxfEKvCqDXbrA2sIB9328/jd4BPKLF9A2qZzwnF5hYb01c80ZmMNZRqgwowh0oAoLWwahDaZoB7lrN5V89imDQHYlnb1POaARxaZaowwwH2S225bNXO3rOOXdPatAtek4L+N6PtXz7+IIWamf2/e1N678uTrsGPV1+wBK4hN+d4Fz+34U18HOUvzBKNinCxL2ZdxVzOhyUpdQ18vbq9jxXNSErc/LUXf+in5j4meHcBCPzZNvuGcAknuqEW5SCPCnE/dGTZvolwfTHb3/txRBjWtkX4wMjH9mEhRITGW0y19VgALo9TDTnNLc4rTjHGQR1ORU11xh0JLKjgjeZYmdGmYgeNVDEfZUwWbnA5THyK0/Cls1RgV
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(376002)(396003)(136003)(39860400002)(230922051799003)(64100799003)(451199024)(82310400011)(186009)(1800799012)(36840700001)(46966006)(40470700004)(41300700001)(2906002)(40480700001)(44832011)(4326008)(426003)(336012)(6666004)(7696005)(8676002)(8936002)(40460700003)(6916009)(5660300002)(316002)(966005)(36756003)(82740400003)(356005)(70206006)(1076003)(2616005)(26005)(16526019)(478600001)(70586007)(86362001)(47076005)(81166007)(36860700001)(83380400001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 17:21:39.5111 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 027799dc-f830-4de0-2b53-08dbfb36cd72
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989EB.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4254
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,158 +97,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, Joshua Ashton <joshua@froggi.es>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000ab84bb060c464e38
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+commit 751e293f2c99 ("drm/amd: Move microcode init from sw_init to
+early_init for SDMA v2.4") made a fateful mistake in
+`adev->sdma.num_instances` wasn't declared when sdma_v2_4_init_microcode()
+was run. This caused probing to fail.
 
-On Fri, Dec 8, 2023 at 1:37=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com>=
- wrote:
+Move the declaration to right before sdma_v2_4_init_microcode().
 
-> On Fri, Dec 8, 2023 at 12:27=E2=80=AFPM Joshua Ashton <joshua@froggi.es> =
-wrote:
-> >
-> > FWIW, we are shipping this right now in SteamOS Preview channel
-> > (probably going to Stable soon) and it seems to be working as expected
-> > and fixing issues there in instances we need to composite, compositor
-> > work we are forced to do would take longer than the compositor redzone
-> > to vblank.
-> >
-> > Previously in high gfx workloads like Cyberpunk using 100% of the GPU,
-> > we would consistently miss the deadline as composition could take
-> > anywhere from 2-6ms fairly randomly.
-> >
-> > Now it seems the time for the compositor's work to complete is pretty
-> > consistent and well in-time in gpuvis for every frame.
->
-> I was mostly just trying to look up the information to verify that it
-> was set up correctly, but I guess Marek already did and provided you
-> with that info, so it's probably fine as is.
->
-> >
-> > The only times we are not meeting deadline now is when there is an
-> > application using very little GPU and finishes incredibly quick, and th=
-e
-> > compositor is doing significantly more work (eg. FSR from 800p -> 4K or
-> > whatever), but that's a separate problem that can likely be solved by
-> > inlining some of the composition work with the client's dmabuf work if
-> > it has focus to avoid those clock bubbles.
-> >
-> > I heard some musings about dmabuf deadline kernel work recently, but no=
-t
-> > sure if any of that is applicable to AMD.
->
-> I think something like a workload hint would be more useful.  We did a
-> few patch sets to allow userspace to provide a hint to the kernel
-> about the workload type so the kernel could adjust the power
-> management heuristics accordingly, but there were concerns that the
-> UMDs would have to maintain application lists to select which
-> heuristic worked best for each application.  Maybe it would be better
-> to provide a general classification?  E.g., if the GL or vulkan app
-> uses these extensions, it's probably a compute type application vs
-> something more graphics-y.  The usual trade-off between power and
-> performance.  In general, just letting the firmware pick the clock
-> based on perf counters generally seems to work the best.  Maybe a
-> general workload hint set by the compositor based on the content type
-> it's displaying would be a better option (video vs gaming vs desktop)?
->
-> The deadline stuff doesn't really align well with what we can do with
-> our firmware and seems ripe for abuse.  Apps can just ask for high
-> clocks all the time which is great for performance, but not great for
-> power.  Plus there is not much room for anything other than max clocks
-> since you don't know how big the workload is or which clocks are the
-> limiting factor.
->
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3043
+Fixes: 751e293f2c99 ("drm/amd: Move microcode init from sw_init to early_init for SDMA v2.4")
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Max clocks also decrease performance due to thermal and power limits.
-You'll get more performance and less heat if you let the GPU turn off idle
-blocks and boost clocks for busy blocks.
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
+index 45377a175250..8d5d86675a7f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
+@@ -813,12 +813,12 @@ static int sdma_v2_4_early_init(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 	int r;
+ 
++	adev->sdma.num_instances = SDMA_MAX_INSTANCE;
++
+ 	r = sdma_v2_4_init_microcode(adev);
+ 	if (r)
+ 		return r;
+ 
+-	adev->sdma.num_instances = SDMA_MAX_INSTANCE;
+-
+ 	sdma_v2_4_set_ring_funcs(adev);
+ 	sdma_v2_4_set_buffer_funcs(adev);
+ 	sdma_v2_4_set_vm_pte_funcs(adev);
+-- 
+2.34.1
 
-Marek
-
---000000000000ab84bb060c464e38
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, Dec 8, 2023 at 1:37=E2=80=AFPM Alex Deucher &lt;<a href=3D"m=
-ailto:alexdeucher@gmail.com">alexdeucher@gmail.com</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">On Fri, Dec 8, 2023 at 12=
-:27=E2=80=AFPM Joshua Ashton &lt;<a href=3D"mailto:joshua@froggi.es" target=
-=3D"_blank">joshua@froggi.es</a>&gt; wrote:<br>
-&gt;<br>
-&gt; FWIW, we are shipping this right now in SteamOS Preview channel<br>
-&gt; (probably going to Stable soon) and it seems to be working as expected=
-<br>
-&gt; and fixing issues there in instances we need to composite, compositor<=
-br>
-&gt; work we are forced to do would take longer than the compositor redzone=
-<br>
-&gt; to vblank.<br>
-&gt;<br>
-&gt; Previously in high gfx workloads like Cyberpunk using 100% of the GPU,=
-<br>
-&gt; we would consistently miss the deadline as composition could take<br>
-&gt; anywhere from 2-6ms fairly randomly.<br>
-&gt;<br>
-&gt; Now it seems the time for the compositor&#39;s work to complete is pre=
-tty<br>
-&gt; consistent and well in-time in gpuvis for every frame.<br>
-<br>
-I was mostly just trying to look up the information to verify that it<br>
-was set up correctly, but I guess Marek already did and provided you<br>
-with that info, so it&#39;s probably fine as is.<br>
-<br>
-&gt;<br>
-&gt; The only times we are not meeting deadline now is when there is an<br>
-&gt; application using very little GPU and finishes incredibly quick, and t=
-he<br>
-&gt; compositor is doing significantly more work (eg. FSR from 800p -&gt; 4=
-K or<br>
-&gt; whatever), but that&#39;s a separate problem that can likely be solved=
- by<br>
-&gt; inlining some of the composition work with the client&#39;s dmabuf wor=
-k if<br>
-&gt; it has focus to avoid those clock bubbles.<br>
-&gt;<br>
-&gt; I heard some musings about dmabuf deadline kernel work recently, but n=
-ot<br>
-&gt; sure if any of that is applicable to AMD.<br>
-<br>
-I think something like a workload hint would be more useful.=C2=A0 We did a=
-<br>
-few patch sets to allow userspace to provide a hint to the kernel<br>
-about the workload type so the kernel could adjust the power<br>
-management heuristics accordingly, but there were concerns that the<br>
-UMDs would have to maintain application lists to select which<br>
-heuristic worked best for each application.=C2=A0 Maybe it would be better<=
-br>
-to provide a general classification?=C2=A0 E.g., if the GL or vulkan app<br=
->
-uses these extensions, it&#39;s probably a compute type application vs<br>
-something more graphics-y.=C2=A0 The usual trade-off between power and<br>
-performance.=C2=A0 In general, just letting the firmware pick the clock<br>
-based on perf counters generally seems to work the best.=C2=A0 Maybe a<br>
-general workload hint set by the compositor based on the content type<br>
-it&#39;s displaying would be a better option (video vs gaming vs desktop)?<=
-br>
-<br>
-The deadline stuff doesn&#39;t really align well with what we can do with<b=
-r>
-our firmware and seems ripe for abuse.=C2=A0 Apps can just ask for high<br>
-clocks all the time which is great for performance, but not great for<br>
-power.=C2=A0 Plus there is not much room for anything other than max clocks=
-<br>
-since you don&#39;t know how big the workload is or which clocks are the<br=
->
-limiting factor.<br></blockquote><div><br></div><div>Max clocks also decrea=
-se performance due to thermal and power limits. You&#39;ll get more perform=
-ance and less heat if you let the GPU turn off idle blocks and boost clocks=
- for busy blocks.<br></div><div><br></div><div>Marek<br></div><br></div></d=
-iv>
-
---000000000000ab84bb060c464e38--
