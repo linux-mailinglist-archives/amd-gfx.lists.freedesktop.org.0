@@ -2,57 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2436980E937
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 11:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0B680EF4A
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 15:49:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94D710E56A;
-	Tue, 12 Dec 2023 10:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F7E10E62A;
+	Tue, 12 Dec 2023 14:49:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 557 seconds by postgrey-1.36 at gabe;
- Tue, 12 Dec 2023 10:36:46 UTC
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1E0F10E5DC
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 10:36:46 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4SqFDG1T0dz9scX;
- Tue, 12 Dec 2023 11:27:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1702376846;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=58P3JNEYx9mmRZIOmo8kasp3J+9hMC6Zn51UD4g+cZ0=;
- b=kMveWgR/2QCGS6ptl94VUDYEgDMH+9M2rCqtsW4a7JKRZ3CT4iMPD6StvSEghuk/A07tOH
- nUcNGzRmQen5Tfz3VLdp6h9ri4vNESqW76dKwpv3Vyl3GAmfTndH3b43Wm1s2R4mxg4YAA
- EHNBs+l6wayLN8yIKABPj2XdZ9Yk0w9vgQ4bwQNfAy+ASLwXoxWj1JlXMZi5ywJE3WOX3m
- TzBHnd5VfGKfCCbjKqsBjopPTvkLWlVMdvALIx7HwJITXsiCKesEtErYv9YjRQERitlWc9
- 3990eiOF0fGTXSMCaT0un2PMNIWeV7ws/j4d0CaLf9hCqnSVYninLB2wMzNX6Q==
-Message-ID: <01dfba7e-59f8-4d82-938f-38ed2c2a68e9@mailbox.org>
-Date: Tue, 12 Dec 2023 11:27:24 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A1F10E021;
+ Tue, 12 Dec 2023 13:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702389197; x=1733925197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s4181d0kZpZWey5BSxddKajn3GhPQcRbN7YFEbC7gvA=;
+ b=WHGCOvLPQi0tB+1kggotlmByRf7944KftZScuygYa+jhaV8rJ2naNu1p
+ 9QOOZINEM07ZI3dcSB1VRqFiNNy4Y/SWJdbUgBjttCbCBM6kaklRK9Dpm
+ dX7t8JELpUGpxSiW2JhfoCefGczNjaDuZYNsXj+X4HdNNyVXLlbJMyfZS
+ TbcyOdhJYDOaj/M07Qlu7uKx924hACpPMDsl1UUjq4rLh0xLEC5GIOlDL
+ JlwfErCOljAfI2Ttk300lM2mPtp2XBzXPkEZmUvoP3EJs+1Z7WN9AeNBx
+ Uq429f27lN/2mmhcGf2nDUQTQtEjruJlxiN6qTOalBdXo7t7HmYU4orMZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="16359381"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="16359381"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 05:53:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="946767998"
+X-IronPort-AV: E=Sophos;i="6.04,270,1695711600"; d="scan'208";a="946767998"
+Received: from ggilardi-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.49.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2023 05:53:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amd: include drm/drm_edid.h only where needed
+Date: Tue, 12 Dec 2023 15:53:09 +0200
+Message-Id: <20231212135309.3816484-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: Re: [PATCH] drm/amdgpu: Enable tunneling on high-priority compute
- queues
-Content-Language: en-CA
-To: Alex Deucher <alexdeucher@gmail.com>, Joshua Ashton <joshua@froggi.es>
-References: <20231202001740.120840-1-friedrich.vock@gmx.de>
- <3525f437-9537-4fb4-80d0-65acd9d55d2f@gmx.de>
- <3cf226b8-c80b-43f6-9f6c-9610d224717a@amd.com>
- <1939f568-f780-4e34-b5c5-dab461f93b57@gmx.de>
- <8041be7c-64d5-4b1d-a734-4326db98f256@amd.com>
- <CAAxE2A6Kdj5TBCdZRoT_t+cABzf9tsNCvJLZAVCE66F5pz5yXQ@mail.gmail.com>
- <5de028e5-d24c-4e98-96aa-e3d18720ab6a@froggi.es>
- <CADnq5_PrvUZXvsLY6fsvigrF+SEwwKZCN5MCF=Zo-RggGJrd1A@mail.gmail.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-In-Reply-To: <CADnq5_PrvUZXvsLY6fsvigrF+SEwwKZCN5MCF=Zo-RggGJrd1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: ea12223fad331156142
-X-MBO-RS-META: m7p6peqjtmjogbuos4wgs95rtuj8tep5
+X-Mailman-Approved-At: Tue, 12 Dec 2023 14:49:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,42 +58,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2023-12-08 18:59, Alex Deucher wrote:
-> On Fri, Dec 8, 2023 at 12:27 PM Joshua Ashton <joshua@froggi.es> wrote:
->>
->> I heard some musings about dmabuf deadline kernel work recently, but not
->> sure if any of that is applicable to AMD.
-> 
-> I think something like a workload hint would be more useful.  We did a
-> few patch sets to allow userspace to provide a hint to the kernel
-> about the workload type so the kernel could adjust the power
-> management heuristics accordingly, but there were concerns that the
-> UMDs would have to maintain application lists to select which
-> heuristic worked best for each application.  Maybe it would be better
-> to provide a general classification?  E.g., if the GL or vulkan app
-> uses these extensions, it's probably a compute type application vs
-> something more graphics-y.  The usual trade-off between power and
-> performance.  In general, just letting the firmware pick the clock
-> based on perf counters generally seems to work the best.  Maybe a
-> general workload hint set by the compositor based on the content type
-> it's displaying would be a better option (video vs gaming vs desktop)?
+Including drm_edid.h from amdgpu_mode.h causes the rebuild of literally
+hundreds of files when drm_edid.h is modified, while there are only a
+handful of files that actually need to include drm_edid.h.
 
-Low clocks can be an issue even for normal desktop workloads, so doubtful that this would be a complete solution.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h                    | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c                    | 1 +
+ drivers/gpu/drm/amd/amdgpu/atombios_encoders.c              | 1 +
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c                      | 1 +
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c                      | 1 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 1 +
+ 6 files changed, 6 insertions(+), 1 deletion(-)
 
-
-> The deadline stuff doesn't really align well with what we can do with
-> our firmware and seems ripe for abuse.  Apps can just ask for high
-> clocks all the time which is great for performance, but not great for
-> power.
-
-Maybe the firmware power management heuristics could be derived from the system power profile and fence deadline? E.g. the power profile defines the upper and lower boundaries, the upper boundary is used while there's a pending fence deadline, otherwise the lower boundary.
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+index 32fe05c810c6..3802ccdf6f55 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+@@ -32,7 +32,6 @@
+ 
+ #include <drm/display/drm_dp_helper.h>
+ #include <drm/drm_crtc.h>
+-#include <drm/drm_edid.h>
+ #include <drm/drm_encoder.h>
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_framebuffer.h>
+@@ -51,6 +50,7 @@ struct amdgpu_device;
+ struct amdgpu_encoder;
+ struct amdgpu_router;
+ struct amdgpu_hpd;
++struct edid;
+ 
+ #define to_amdgpu_crtc(x) container_of(x, struct amdgpu_crtc, base)
+ #define to_amdgpu_connector(x) container_of(x, struct amdgpu_connector, base)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+index db6fc0cb18eb..453a4b786cfc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0+
+ 
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_edid.h>
+ #include <drm/drm_simple_kms_helper.h>
+ #include <drm/drm_vblank.h>
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+index 3ee219aa2891..7672abe6c140 100644
+--- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
++++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+@@ -28,6 +28,7 @@
+ 
+ #include <acpi/video.h>
+ 
++#include <drm/drm_edid.h>
+ #include <drm/amdgpu_drm.h>
+ #include "amdgpu.h"
+ #include "amdgpu_connectors.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+index bb666cb7522e..587ee632a3b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+@@ -21,6 +21,7 @@
+  *
+  */
+ 
++#include <drm/drm_edid.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_modeset_helper_vtables.h>
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+index 7af277f61cca..f22ec27365bd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+@@ -21,6 +21,7 @@
+  *
+  */
+ 
++#include <drm/drm_edid.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_modeset_helper_vtables.h>
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index b599efda3b19..6f8128130b62 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -27,6 +27,7 @@
+ #include <drm/display/drm_dp_mst_helper.h>
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_edid.h>
+ #include <drm/drm_fixed.h>
+ #include "dm_services.h"
+ #include "amdgpu.h"
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.39.2
 
