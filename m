@@ -1,61 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBF480F35F
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 17:41:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C1E80F4B8
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 18:37:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3354610E612;
-	Tue, 12 Dec 2023 16:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D314F10E097;
+	Tue, 12 Dec 2023 17:37:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C408D10E612
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 16:41:52 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-1f5bd86ceb3so4279806fac.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 08:41:52 -0800 (PST)
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
+ [IPv6:2001:4860:4864:20::2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFF510E097
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 17:37:37 +0000 (UTC)
+Received: by mail-oa1-x2e.google.com with SMTP id
+ 586e51a60fabf-20307e91258so412407fac.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Dec 2023 09:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702399312; x=1703004112; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1702402656; x=1703007456; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hRdrB8cd28H/2/Izbx2aUiI9Yik6mjNLx89/vPRuiT0=;
- b=EW9P+EtcwZEESbGOGQNZf79a8bsL+dT1DzGrme9Ei29D5epTs7zucDxB2ieXv//jmo
- lTcLFemuKcKt4ERJkFcHBhaCGvloEt4T04T/VN+vU4QkLgGiZveZISxcjkYIj4bgfabh
- OU3GJ+tspmIYvPKKhyUux2sIiAstO1deSe9AAPlsCQZPuaScBffKdTTC6d/w/dYsfe6L
- RedBp4dX2UIbyUulaNVgJ8bm755fUCXmJ0i+CocBf/flOL/ZtVEAkEEQ3Uqv9Rim8iQy
- Y70I0hqoqpqRuXtQyeiwHW0Pzww0SDiAYU3RWqWhb2Fyx6JQ+uScpqU+2bZwNFXtYLa9
- 1dNA==
+ bh=dFkhAJLiwIxHh++89ELP8nkjMv4+dq2MXQkC+Zq/D5A=;
+ b=RYFOFrkLpwXnVjucPlvHpPlhSZLeAC/SwnHL9n6XtI9x7u9TGHInc/U1f9BNZnBu4R
+ kBtcmKy795X4k3iTDOvlmjIqtz/a+oWTcHPfbLc3TVnl08/uQmSh3c6KOShxRJgG8ElK
+ 4hRgxBArX7kLqB5EcOGvhr5bh2stSM5ZUyWFmhvsNSa7UFlnSjFd5bVqVPHFw/mEzrxb
+ gkdLkJJC6Ilo2X015TlaYVY4mCWKGeNm3KTdb9+VT+YZqb+DP4PA0ScKNGzSHmPtD2M1
+ 5g/m/oRcndEkh11K9Qob92U9qV8QpR8bTpaXeuS4OmE88DzZsnCrf4+xzmojSeu6c+LW
+ o2lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702399312; x=1703004112;
+ d=1e100.net; s=20230601; t=1702402656; x=1703007456;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hRdrB8cd28H/2/Izbx2aUiI9Yik6mjNLx89/vPRuiT0=;
- b=DKvN5c23aHKORWHLG4KhJ3mIhf1icWop6hAjk2AN0y51t4hSX/22mWAHg4sjsZbT8F
- TPunuqAr5nAC0C3Q/O4G68bqVe4QxS8/H7WdcR0BFeFmpxJ8ucYycEBMb6ObqXeXTK/9
- ishB2G5qi9tifxjTD0BpYbrWGHrAUn45SE+3eUD3cdUuW/Hn9u1xuwd82+MthkNmM/M1
- 2v0D5wGjZEmkNjKGCPujWRDYHA66JY2Z8nSK+/fhacg/3VVBO05jbfzP9AHKfw0Znbwa
- fLTdWun0W6d7I6eXprsQJToj3x6pszNATCI9+amRxRgtB4baSdtrWESruWbmHrb2uzeX
- FVbw==
-X-Gm-Message-State: AOJu0YwhN0Tiu5m/nNghnZt4Qmato7cy86VdTiLesf5sakgWt03m4pvg
- 4tQ6obZtp8YlcMB4JBjiCGKYWAG64YiPKi4EbUg=
-X-Google-Smtp-Source: AGHT+IE8T/ikLkFXi7N3tOYjDQb/4Wsf/bEp9kibW34I6ENqYarhzFArv5a//G8zYaNUisaAoNIG/cX0Su07oh64vTQ=
-X-Received: by 2002:a05:6870:c1cf:b0:203:89b:4597 with SMTP id
- i15-20020a056870c1cf00b00203089b4597mr840428oad.40.1702399311894; Tue, 12 Dec
- 2023 08:41:51 -0800 (PST)
+ bh=dFkhAJLiwIxHh++89ELP8nkjMv4+dq2MXQkC+Zq/D5A=;
+ b=XkBhZ8KEbop/J2S7AZX0aB/FBGr6uJdjzAHpIL3PKkVfCdVjZs+Oga8+hE2Un0V4JG
+ By9GKYZUj8DTty2YR0gW1BUoDlvxglIHvuxbhT1tA5HYQx9fl4obc+VFzkfS9FCLDKxu
+ t0Osyyz/ejaxPGQpU77LVJKmfyJ07i0gGWKmtRifFXTRcuSkZnlyEV6BBCXo21YWVSh0
+ q3yrrP8yvKIYvD0Lq2YfESGFJaKpj/2gpa7bxCR+0EeMNcJi18hvpLaSF/DX0/A0U48u
+ WFhaeAcrbxl0W5EHBkLqLgFtd6X1Ff91mYeht9GSB4nY/uO4Vjd+5ONUfMOQBZP3yU2w
+ nBQA==
+X-Gm-Message-State: AOJu0Yyhx8fFe9Cycy5unxfTo0w/ygutCdlgLbgA9pTJzuIxXxswUp6S
+ /YxnD646V/cEaZETGALZWSBuFCjGGhjlAm0JGnkKeKNe
+X-Google-Smtp-Source: AGHT+IHbNuai8febFp3np72wUeHmNJ/19KfbQR7tOmYIP2/k2aQddFz47WSqta3wsev8dtguosgC398kKxfTgxPLWLM=
+X-Received: by 2002:a05:6871:5ca:b0:1fb:75a:7794 with SMTP id
+ v10-20020a05687105ca00b001fb075a7794mr6501323oan.69.1702402656451; Tue, 12
+ Dec 2023 09:37:36 -0800 (PST)
 MIME-Version: 1.0
-References: <6395b87b-7cb6-4412-b6e5-e6075353fb6d@redhat.com>
- <3a06ae67808800386117c90714637ef9a0267b37.camel@sipsolutions.net>
- <c4dc3d03-5241-4b2b-b0ff-6517f063ba29@amd.com>
-In-Reply-To: <c4dc3d03-5241-4b2b-b0ff-6517f063ba29@amd.com>
+References: <20231212070916.141121-1-mario.limonciello@amd.com>
+In-Reply-To: <20231212070916.141121-1-mario.limonciello@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 12 Dec 2023 11:41:40 -0500
-Message-ID: <CADnq5_PEDDAjjMOKpeLAHoFVCgbo6Sg8iVWC7sX4Ntn-PHk90g@mail.gmail.com>
-Subject: Re: [GIT PULL] mmutable branch between pdx86 amd wbrf branch and wifi
- / amdgpu due for the v6.8 merge window
+Date: Tue, 12 Dec 2023 12:37:25 -0500
+Message-ID: <CADnq5_MsKJVMya0n18oOmUFOyq8wYZwAAFuaA13KC-odT5N5Qw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd: Fix a probing order problem on SDMA 2.4
 To: Mario Limonciello <mario.limonciello@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,48 +67,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ma Jun <Jun.Ma2@amd.com>, linux-wireless <linux-wireless@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Johannes Berg <johannes@sipsolutions.net>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 12, 2023 at 11:25=E2=80=AFAM Mario Limonciello
+On Tue, Dec 12, 2023 at 12:30=E2=80=AFPM Mario Limonciello
 <mario.limonciello@amd.com> wrote:
 >
-> On 12/12/2023 03:46, Johannes Berg wrote:
-> > On Mon, 2023-12-11 at 12:02 +0100, Hans de Goede wrote:
-> >> Hi Wifi and AMDGPU maintainers,
-> >>
-> >> Here is a pull-request for the platform-drivers-x86 parts of:
-> >>
-> >> https://lore.kernel.org/platform-driver-x86/20231211100630.2170152-1-J=
-un.Ma2@amd.com/
-> >>
-> >>  From my pov the pdx86 bits are ready and the platform-drivers-x86-amd=
--wbrf-v6.8-1 tag can be merged by you to merge the wifi-subsys resp. the am=
-dgpu driver changes on top.
-> >>
-> >> This only adds kernel internal API, so if in the future the API needs =
-work that can be done.
-> >
-> > OK, thanks! I've pulled this into wireless-next, and applied the two
-> > wireless related patches on top.
-> >
-> > I guess if AMDGPU does the same, it will combine nicely in 6.8.
-> >
-> > johannes
+> commit 751e293f2c99 ("drm/amd: Move microcode init from sw_init to
+> early_init for SDMA v2.4") made a fateful mistake in
+> `adev->sdma.num_instances` wasn't declared when sdma_v2_4_init_microcode(=
+)
+> was run. This caused probing to fail.
 >
-> Yup, I've pulled the whole series into amd-staging-drm-next for now and
-> I expect as long as we have no problems with it reported under our
-> testing Alex or Christian will do the same include drm/amd portions of
-> it in an upcoming drm-next pull request.
+> Move the declaration to right before sdma_v2_4_init_microcode().
+>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3043
+> Fixes: 751e293f2c99 ("drm/amd: Move microcode init from sw_init to early_=
+init for SDMA v2.4")
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-I've pushed out an updated -next branch as well:
-https://gitlab.freedesktop.org/agd5f/linux/-/commits/drm-next
+FWIW, looks like cik_sdma.c and sdma_v3_0.c never switched their
+microcode init to early init.
 
-Alex
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c b/drivers/gpu/drm/amd=
+/amdgpu/sdma_v2_4.c
+> index 45377a175250..8d5d86675a7f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c
+> @@ -813,12 +813,12 @@ static int sdma_v2_4_early_init(void *handle)
+>         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+>         int r;
+>
+> +       adev->sdma.num_instances =3D SDMA_MAX_INSTANCE;
+> +
+>         r =3D sdma_v2_4_init_microcode(adev);
+>         if (r)
+>                 return r;
+>
+> -       adev->sdma.num_instances =3D SDMA_MAX_INSTANCE;
+> -
+>         sdma_v2_4_set_ring_funcs(adev);
+>         sdma_v2_4_set_buffer_funcs(adev);
+>         sdma_v2_4_set_vm_pte_funcs(adev);
+> --
+> 2.34.1
+>
