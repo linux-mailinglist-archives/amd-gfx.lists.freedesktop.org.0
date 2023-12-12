@@ -1,59 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C470080EF47
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 15:49:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0375380EF66
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Dec 2023 15:55:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90F9A10E605;
-	Tue, 12 Dec 2023 14:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979D110E627;
+	Tue, 12 Dec 2023 14:55:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB3E10E636;
- Tue, 12 Dec 2023 14:49:27 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-1feeea75fbfso3832716fac.3; 
- Tue, 12 Dec 2023 06:49:27 -0800 (PST)
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C94210E604;
+ Tue, 12 Dec 2023 14:55:33 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id
+ 5614622812f47-3b9db318839so4103512b6e.3; 
+ Tue, 12 Dec 2023 06:55:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702392566; x=1702997366; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1702392932; x=1702997732; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=DgTjeJvWVAAyCDCbyX/bwHn2R9G65E0KphCM1IqMCd4=;
- b=c4yW0DuaM+NvwTYzip2owAUtjF+k2dlCp7DKYE1Mi0jRZVUzdLwBQWHmrYd7qEg6gx
- 6WXI4j/uLcXku3Io2xGCRdm78Rk8WP/0fxA+O7mgVkaffL/f8YKAQHkQU8BjoRGjP7h5
- hrzBLqPQEYkJxEnOfUVgU48WxBfl5tSqTxsnzI2NgTLG4J0nWL6bna6iP1x75Yc/pHNX
- /cWYmrXRfX58umGZAZs7e7Laat3XaR8KySFFudtYTVJgYqiyk5MOQstQdhX1/sJbqtjR
- gr7FSws8RRtBirlR1lL0H60zXaRXNjrHYu3zEH2ipY2isC3czrOq31ETB3/tyjERZmAj
- YRGg==
+ bh=FC/Vpfr7MIARIwnwGGWmXjjUlNgWi23Htq/xmbvsJCk=;
+ b=h8Gmi0276XNDO9IzKB7uvvJiruHn2vfDw3ntUg0J/qx9G8L//AQyP24TeEoSgLfbzp
+ 9cARCMTcO2F7JO74ALRbDZXmqqoAU9s5e64+8G2/dgJxAOZ7FvD5vC68Kyet6CjY+KVI
+ QK8zSVqaMVk4Mi53GQMy6MzKc03B3xOecvQDwdtULgRXcz0Sffe6BaCwmI7e36uktVka
+ w9usdl+Php5i6V2Aoqd6y0QUtmYEoaKF5DesJn/meDARf17EvktiyJZON0f9R6jQkKhh
+ YsihNoUfu7TIIyl4MQEdDytzKPEyyH173y5gpe30NAI/srPNdG4K+uru7pbZsDmL2oQA
+ 1KiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702392566; x=1702997366;
+ d=1e100.net; s=20230601; t=1702392932; x=1702997732;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=DgTjeJvWVAAyCDCbyX/bwHn2R9G65E0KphCM1IqMCd4=;
- b=YUTdjI0YJU6sDVEZkASTebyhszVEHnUAlil7J8nXdg34vJr4ZM92/VP0g1snH4UAA1
- 7viQNMASGfrHBxQ5oSbCIhlIVIgQvKFVvksPhxISbJymGM09BGfgWHnmHNrFAhNt9B6K
- zasbkFcIBU4y6ciUpMdHOSANXsHKbE7eoRSylvJNaqIzlhtGeLTOehCBsx/I3e1vEGM9
- hrVxXEWPxt96UCcly/eChnk4S1ShC4/oo6PmssE6nfkgjhqo2TgcF+/vQKRFfk/KQmVM
- 56kq4QN+re8ZCaBfjNT8qcnSVGPE62PxUdqvE/lptajRlcoX6HqTThmC8kwmV7eFEhFv
- Oo2w==
-X-Gm-Message-State: AOJu0YyFLxYxossrQW+ZzlIQqfNp6X9ciwFQjV6AXowasvr5rWzBFJTl
- PWdKg4gAlX+nH/945y1Xkqj0KCwgPSP77ZgZ3jnUnApY
-X-Google-Smtp-Source: AGHT+IHDe08mrta9MqfG8PLSGxgOf1rYe4vW3KtVg6E89kn4J33kjleioJ8keDjg+uHcfgPqP8adfvclN2RGvxxRz9M=
-X-Received: by 2002:a05:6870:164d:b0:1fb:75a:c43d with SMTP id
- c13-20020a056870164d00b001fb075ac43dmr6265445oae.102.1702392565918; Tue, 12
- Dec 2023 06:49:25 -0800 (PST)
+ bh=FC/Vpfr7MIARIwnwGGWmXjjUlNgWi23Htq/xmbvsJCk=;
+ b=ZpHrD/u6zBXpWG1Qey8AwezFxLsB6gM/TODWGxguIPDbyjD6soDer2nosmd7INU1FV
+ ZvU9oJIVrhvKcLUlFU7/3k8qGtYxrzeU9uFoYqpXVtwXebSxLVR7iTd31aVVgr68iloN
+ ug7TznziaVB1JP1vwB6q/K9mx1eXKZ+BtMuwAJDx0aT9AouzL4dticLU9EF96BDLECix
+ kK0N02vqKIUB8r0ejYrGFDWHeo4r9ZgtQAK4dWc5pk/1NKcfo1WXtPrKorxo66rntYhs
+ NA+47tB08JiiPMRmMRkWWHoVaYUr3nPNx/7e9iV0COBKt5voZ90TcRLIrMpsNju3vyEg
+ Pz6w==
+X-Gm-Message-State: AOJu0Yw1x6UULZhGrbsrSamlmfvepaSGUEP/y/XURk+oX1tH1LVyssd/
+ c31BWYYxnLfjdMxolP4+5z7BpAfgItBDrooOKvk=
+X-Google-Smtp-Source: AGHT+IHq+QzxCX8gQUM6S0hC7Fo7q1dTCZTgvw/J1vuRyfhGGu2MpPtuJGqJYnc/6KWnfR91d4qZpois0AOaWLPWIjw=
+X-Received: by 2002:a05:6870:f155:b0:1fb:75a:c417 with SMTP id
+ l21-20020a056870f15500b001fb075ac417mr5948435oac.64.1702392932689; Tue, 12
+ Dec 2023 06:55:32 -0800 (PST)
 MIME-Version: 1.0
-References: <20231212135309.3816484-1-jani.nikula@intel.com>
-In-Reply-To: <20231212135309.3816484-1-jani.nikula@intel.com>
+References: <87edgv4x3i.fsf@vps.thesusis.net>
+ <559d0fa5-953a-4a97-b03b-5eb1287c83d8@leemhuis.info>
+ <CAPM=9tw-8pQWFso0zuLqpsqd5BSHWtc4As9ttdjY-DDr70EMqQ@mail.gmail.com>
+ <bdb238b6-60c7-4f26-81d0-9e62cd5dd326@gmail.com>
+ <CADnq5_NVGS1XykxGxpcu_bpPbzboCUJQkcCF3r+0N9a23KUgiQ@mail.gmail.com>
+ <96e2e13c-f01c-4baf-a9a3-cbaa48fb10c7@amd.com>
+ <CADnq5_NBfeAXEyQw0gnSd67=tR-bUKg8w=10+4z9pGGuRnP9uw@mail.gmail.com>
+ <87jzq2ixtm.fsf@vps.thesusis.net>
+ <CADnq5_Ou-MVVm0rdWDmDnJNLkWUayXzO26uCEtz3ucNa4Ghy2w@mail.gmail.com>
+ <95fe9b5b-05ce-4462-9973-9aca306bc44f@gmail.com>
+ <CADnq5_MYEWx=e1LBLeVs0UbR5_xEScjDyw_-75mLe8RAMnqh6g@mail.gmail.com>
+ <CADnq5_OC=JFpGcN0oGbTF5xYEt4X3r0=jEY6hJ12W8CzYq1+cA@mail.gmail.com>
+ <9595b8bf-e64d-4926-9263-97e18bcd7d05@gmail.com>
+ <CADnq5_N6DF-huOzgaVygvS5N_j_oNUEC1aa4zRsZTzx8GOD_aw@mail.gmail.com>
+ <CADnq5_PgMxoW=4iabtgeHydwye-6DvwvCyETdfBToEpuYWocmA@mail.gmail.com>
+ <CADnq5_P0S7Jem0e4K6mG2+bboG8P56nELaGC1p4Pfx-8eV-BjQ@mail.gmail.com>
+ <CADnq5_Oy6RMyJ52TbsxVjZ=0p=wYJHduE4X8B3DiYnqHYJUAvw@mail.gmail.com>
+ <87edg3koka.fsf@vps.thesusis.net>
+ <CADnq5_PtSV1C6Up78XX8ejExqaiM-wzHVFhCRtxboS1Y4cF-Ow@mail.gmail.com>
+ <87y1e05me4.fsf@vps.thesusis.net> <87r0jsw9g3.fsf@vps.thesusis.net>
+In-Reply-To: <87r0jsw9g3.fsf@vps.thesusis.net>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 12 Dec 2023 09:49:14 -0500
-Message-ID: <CADnq5_MXryfUJpwgosfHCY4Z-Fd1mmDq8apr8BW5tJBMRzCcRQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: include drm/drm_edid.h only where needed
-To: Jani Nikula <jani.nikula@intel.com>
+Date: Tue, 12 Dec 2023 09:55:21 -0500
+Message-ID: <CADnq5_MYSCd32p2doPMN1_vcrUZvHMDPn83LU-0oVBS6fuRVuA@mail.gmail.com>
+Subject: Re: Radeon regression in 6.6 kernel
+To: Phillip Susi <phill@thesusis.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,120 +86,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
+ Luben Tuikov <ltuikov89@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Danilo Krummrich <dakr@redhat.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied with some minor fixups for our -next tree.
+On Mon, Dec 11, 2023 at 7:28=E2=80=AFPM Phillip Susi <phill@thesusis.net> w=
+rote:
+>
+> Phillip Susi <phill@thesusis.net> writes:
+>
+> > And it works, but 6.7-rc5 does not, even though it includes that patch.
+> > Here's the syslog from the attempt.  I'll start bisecting again.
+>
+> I checked out the patch that got merged upstream and it also fails.  I
+> looked at the two commits, and I see what happened.  Your original patch
+> MOVED the call to amdgpu_ttm_set_buffer_funcs_status().  The one that
+> got merged into Linus' tree instead DUPLICATES the call.  Oops?
+>
 
-Thanks!
+Yeah, I messed up the patch somehow when I applied it.  Fix up already
+queued up to add the missing chunk.
 
 Alex
-
-On Tue, Dec 12, 2023 at 9:10=E2=80=AFAM Jani Nikula <jani.nikula@intel.com>=
- wrote:
->
-> Including drm_edid.h from amdgpu_mode.h causes the rebuild of literally
-> hundreds of files when drm_edid.h is modified, while there are only a
-> handful of files that actually need to include drm_edid.h.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h                    | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c                    | 1 +
->  drivers/gpu/drm/amd/amdgpu/atombios_encoders.c              | 1 +
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c                      | 1 +
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c                      | 1 +
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 1 +
->  6 files changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_mode.h
-> index 32fe05c810c6..3802ccdf6f55 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> @@ -32,7 +32,6 @@
->
->  #include <drm/display/drm_dp_helper.h>
->  #include <drm/drm_crtc.h>
-> -#include <drm/drm_edid.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fixed.h>
->  #include <drm/drm_framebuffer.h>
-> @@ -51,6 +50,7 @@ struct amdgpu_device;
->  struct amdgpu_encoder;
->  struct amdgpu_router;
->  struct amdgpu_hpd;
-> +struct edid;
->
->  #define to_amdgpu_crtc(x) container_of(x, struct amdgpu_crtc, base)
->  #define to_amdgpu_connector(x) container_of(x, struct amdgpu_connector, =
-base)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_vkms.c
-> index db6fc0cb18eb..453a4b786cfc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0+
->
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_simple_kms_helper.h>
->  #include <drm/drm_vblank.h>
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu=
-/drm/amd/amdgpu/atombios_encoders.c
-> index 3ee219aa2891..7672abe6c140 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> @@ -28,6 +28,7 @@
->
->  #include <acpi/video.h>
->
-> +#include <drm/drm_edid.h>
->  #include <drm/amdgpu_drm.h>
->  #include "amdgpu.h"
->  #include "amdgpu_connectors.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd=
-/amdgpu/dce_v10_0.c
-> index bb666cb7522e..587ee632a3b8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> @@ -21,6 +21,7 @@
->   *
->   */
->
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <drm/drm_modeset_helper_vtables.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/dce_v11_0.c
-> index 7af277f61cca..f22ec27365bd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> @@ -21,6 +21,7 @@
->   *
->   */
->
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <drm/drm_modeset_helper_vtables.h>
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index b599efda3b19..6f8128130b62 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -27,6 +27,7 @@
->  #include <drm/display/drm_dp_mst_helper.h>
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_fixed.h>
->  #include "dm_services.h"
->  #include "amdgpu.h"
-> --
-> 2.39.2
->
