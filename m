@@ -1,62 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD0681389D
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 18:34:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7B43813A21
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 19:39:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F06C410E9AD;
-	Thu, 14 Dec 2023 17:34:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B5F10E254;
+	Thu, 14 Dec 2023 18:39:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com
- [IPv6:2607:f8b0:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5791710E99A;
- Thu, 14 Dec 2023 17:34:30 +0000 (UTC)
-Received: by mail-oi1-x230.google.com with SMTP id
- 5614622812f47-3ba0dfc9001so2149719b6e.2; 
- Thu, 14 Dec 2023 09:34:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1702575269; x=1703180069; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=STnAG2tRSPrRkoOyuykDwCt+Qlz6ek3eimHvGihmNs0=;
- b=Y3elb+a3olxTHs674EJnRk2y3qDYljYqyTpe2dPdFnCX8+ewrZsY6ywTbuRd8RLx1T
- /N51B6iPDtMUdQtvyeNkIt25wLDMlgM9xMeZcNr46NsEArsBb7ZMU7BBGJNdUUPKwLMN
- KVbMQBbwEG26PAGID6jKkrYoZf1go/X2osQVdoufM6rG83szKaOuCYXtu35Xy7SH0b7E
- nmvaMuLwhF9vDEJHH7pEecHshAkpQhe2JMKexuyfTiFBLbwROxTZHL28tYD6B3TwqIz+
- k/Xwr7EzY9IMu1gY6sNIz5nhh3tL50bEmcvkoXJh+yuvV8QAGkD9aamP7lg/j/T+JFvp
- ehSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1702575269; x=1703180069;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=STnAG2tRSPrRkoOyuykDwCt+Qlz6ek3eimHvGihmNs0=;
- b=AFFiSm5KL7IFieZ2g0das4hCpb1HdA0uAiyDXsoxNYSS9jeDlcftZOWzrQNyQkZ5rH
- yEMp2R+s/L8P1YQA+u3+2ZBxljAoQ3Arl9hNXa/kz69xJR6FgL8A42wwtobOQZoDsn9c
- rbXhy00ZMcBpsmg4sy731xfHYL8BtnFz5qliMY5DbGm+ndHi9fBFhJ14BvGCTcwo8tHg
- izpedO85Z1y6Sl9Yhy7aifhM25Lfj31XDI/K5VpBTWdt7phEVS0zJ/bL7rOl3CnkX099
- B/yMEPNbszwjX0j0DvcXlPg0B5FXAZ4SOCqZpzAYUfpVw8aruonspKcT+Xp8gj2AT22q
- z1/A==
-X-Gm-Message-State: AOJu0Yzhhmd+rzMJaDzIVhFQutnDEbLItqorgQB66rhOHigrAmdxMsbB
- BMDfeJcGUO+G1gecfnc9Hgngwj9uih2Ah5I2FsU=
-X-Google-Smtp-Source: AGHT+IEKWXuqR4paEmw7Kggq1mLCq+BUvr4vk5F8v0KAOYf0b9vtgQXx3a98CVOwSkts3/orRPdk1lsku2mdk6IYLwg=
-X-Received: by 2002:a05:6871:230e:b0:1fb:75b:2bb0 with SMTP id
- sf14-20020a056871230e00b001fb075b2bb0mr6987571oab.108.1702575269550; Thu, 14
- Dec 2023 09:34:29 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2294410E254
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Dec 2023 18:39:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kkz90nVoutE/fN6Z90zStM7pRYR7xsdWWFSsJuGgEkci3WPNbYo2pqxt/+CrAgURKJwRYsdjy3CY9ouJt3cNEyxgCxBKwJCMFLpoCNhrKI8eFruR0KyTfX8wDUWgKo7jENDnge6mULwRCjpHrpvkX0lGVtsRfGXWSRwUtAj/DPN4OTNn29HWObq+apldHNH9fwoilnrV5hT8DFkjE86U4vo+fwsp/QofO33glpbcE97QP8/5pGbmfIyP3uoQW+qgFXIKceWX+nz1BBd3KIUo8yY2b+dsxCbirAhQzOJU/l/iZcKdfhWKrPEVpqsb6iQC4BtU+M0aRyv7NfnLPEccUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8MQ7n2TAHFLgFvWVbrvCSxuk7TXRDcLjYOv7MRcMEIM=;
+ b=ISTBgcQk4CG6A4K/IltBuBesQ6dQn4Si4E6/R4AI73mqHH+s8VZEPYDuSwKbQN0O8IlZ/BY5uUh+HtULrOqcse6vX/Ml2EIxlpNUbhiIWMWLQ+aa9uOCi8mYdKl655LFSj0jJ+HLnP/ATiIRrbdnRM6sipg6zqWNImqnaRWBptetsC+7n61ADbmq1tG06eqvJuvqkFD48Dxvh1q6Tg/Si71Ku4Kyeo6SfAKbghJaTdTGJe9GzHnIBX50ccqaXh9vgnKpnfxVCgjyBbZRbgQhcSRHtglZksn7OcP0/MyE668o4XiXDjVngky6ePj+6qTpG3muSJShAnPBm9J8YNUfFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8MQ7n2TAHFLgFvWVbrvCSxuk7TXRDcLjYOv7MRcMEIM=;
+ b=fasZwoV1D7SHtPvC9d3Wdd+y+3w0kgqTLrzLgPjmIvZuBtCrfm8Y5eWgMfBhZe/akGhrrtOvTmix4vjX0wwF90t+GSeleLdiPi9iGFMHkK++XIBTbJPDgcAyaAjp4AcGAkZDK1KSm91Q+DKsLeNPdQF6Cp1qIMu5H7dH1QjgS8A=
+Received: from BYAPR07CA0038.namprd07.prod.outlook.com (2603:10b6:a03:60::15)
+ by MN0PR12MB5859.namprd12.prod.outlook.com (2603:10b6:208:37a::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Thu, 14 Dec
+ 2023 18:38:57 +0000
+Received: from MWH0EPF000989E7.namprd02.prod.outlook.com
+ (2603:10b6:a03:60:cafe::3e) by BYAPR07CA0038.outlook.office365.com
+ (2603:10b6:a03:60::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28 via Frontend
+ Transport; Thu, 14 Dec 2023 18:38:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000989E7.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7091.26 via Frontend Transport; Thu, 14 Dec 2023 18:38:57 +0000
+Received: from eric-hp-elitebook-845-g7.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Thu, 14 Dec 2023 12:38:55 -0600
+From: Eric Huang <jinhuieric.huang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdkfd: fix NULL ptr for debugger mes flush on non-mes
+ asics
+Date: Thu, 14 Dec 2023 13:38:39 -0500
+Message-ID: <20231214183839.129977-1-jinhuieric.huang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20231214165941.3484829-1-alexious@zju.edu.cn>
-In-Reply-To: <20231214165941.3484829-1-alexious@zju.edu.cn>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 14 Dec 2023 12:34:18 -0500
-Message-ID: <CADnq5_NO23GM_Mo=GNC5wXy-r6yfz3W6VM_7tZsbMivsCO6VyA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/pm: fix a double-free in
- amdgpu_parse_extended_power_table
-To: Zhipeng Lu <alexious@zju.edu.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989E7:EE_|MN0PR12MB5859:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39986df1-d977-4c19-e00f-08dbfcd3ee8c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dKNr4Hy9Y4M1TkIMeS2dwo8M+bML/XEj+atlWuVSzIwWWFcGxJLNf777kzEurXlfnRSx05DhTQm5fmb/fOYGcNTMqEeqfE5B/y89Kd1wd6YyL6wdeEIDKfQKr9MK7mqUIULtXABAsWCvEojFfpodfvF1EdDctMoF+g0MCyl3UxqxeKug0OOei/1ENeJX1ggejn7cDy/ViQunGsQypmVLGYoVxoR9DwvjgO6M2TRzMRU5bCOqD+ShPkILEyrj2pjx6rvGW1IDlP/DzzXNa0+yxCUmHCr9f90XKCp33dztblhypJUBeHO2VG7OLR3IqkTos8A3TJHYUcK02kqHqpfbhtoQaIJm/BDZ/HRok1gJiNI6Cl/s3boDjxN1Uis9e4W0BNR2UhLovofxudmcOnNwJ11XlelNRmHe4qDZHymZkxIXI9TtX1BZZHQ8ociJ6hsHLhWl36oK3CD7pSXCqdrTTHxVxmGQGqCuK4pi6RqzgwmcukTtIDLkr8CSIXF0/vcZ426+Pko2n+kRhbwSX/sMZCLsROMVjq49WJdoip9aDy/qbBlvAeqfJpWGDBJqmd2iya1gz4CEgrkRVqQapDTSuDX7ozNPQBED+pxf0/Ek3LtnDgs0LM+AF3NZ0aZaJy0CQpesF5ebWLEmDtSVFvpKFtFWvX10o0DZekVqee6eru01k0SnFhK+cyDzvkHymALJB9RtD+LyxiUN9QS+/xgjWcy2IwSXFVUFHKaYvDA6mwjw1MFoeXXXcdv+MfdNGALGv8jdxJzckSf817HD796LIw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(376002)(136003)(396003)(346002)(230922051799003)(82310400011)(1800799012)(186009)(451199024)(64100799003)(36840700001)(46966006)(40470700004)(40460700003)(1076003)(36860700001)(5660300002)(47076005)(16526019)(2616005)(26005)(336012)(36756003)(86362001)(4744005)(70586007)(6916009)(40480700001)(82740400003)(70206006)(41300700001)(83380400001)(426003)(2906002)(81166007)(478600001)(356005)(7696005)(8936002)(4326008)(8676002)(316002)(6666004)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 18:38:57.1847 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39986df1-d977-4c19-e00f-08dbfcd3ee8c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989E7.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5859
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,271 +98,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lijo Lazar <lijo.lazar@amd.com>, Kees Cook <keescook@chromium.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Azeem Shaikh <azeemshaikh38@gmail.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Eric Huang <jinhuieric.huang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+The field adev->mes.funcs is NULL in function amdgpu_mes_flush_shader_debugger
+on non-mes asics, add mes enabling check for call this func to
+resolve the error.
 
-On Thu, Dec 14, 2023 at 12:20=E2=80=AFPM Zhipeng Lu <alexious@zju.edu.cn> w=
-rote:
->
-> The amdgpu_free_extended_power_table is called in every error-handling
-> paths of amdgpu_parse_extended_power_table. However, after the following
-> call chain of returning:
->
-> amdgpu_parse_extended_power_table
->   |-> kv_dpm_init / si_dpm_init
->       (the only two caller of amdgpu_parse_extended_power_table)
->         |-> kv_dpm_sw_init / si_dpm_sw_init
->             (the only caller of kv_dpm_init / si_dpm_init, accordingly)
->               |-> kv_dpm_fini / si_dpm_fini
->                   (goto dpm_failed in xx_dpm_sw_init)
->                     |-> amdgpu_free_extended_power_table
->
-> As above, the amdgpu_free_extended_power_table is called twice in this
-> returning chain and thus a double-free is triggered. Similarily, the
-> last kfree in amdgpu_parse_extended_power_table also cause a double free
-> with amdgpu_free_extended_power_table in kv_dpm_fini.
->
-> Fixes: 84176663e70d ("drm/amd/pm: create a new holder for those APIs used=
- only by legacy ASICs(si/kv)")
-> Signed-off-by: Zhipeng Lu <alexious@zju.edu.cn>
-> ---
->  .../gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c    | 52 +++++--------------
->  1 file changed, 13 insertions(+), 39 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c b/drivers/gpu=
-/drm/amd/pm/legacy-dpm/legacy_dpm.c
-> index 81fb4e5dd804..60377747bab4 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/legacy_dpm.c
-> @@ -272,10 +272,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                  le16_to_cpu(power_info->pplib4.usVddcDep=
-endencyOnSCLKOffset));
->                         ret =3D amdgpu_parse_clk_voltage_dep_table(&adev-=
->pm.dpm.dyn_state.vddc_dependency_on_sclk,
->                                                                  dep_tabl=
-e);
-> -                       if (ret) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (ret)
->                                 return ret;
-> -                       }
->                 }
->                 if (power_info->pplib4.usVddciDependencyOnMCLKOffset) {
->                         dep_table =3D (ATOM_PPLIB_Clock_Voltage_Dependenc=
-y_Table *)
-> @@ -283,10 +281,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                  le16_to_cpu(power_info->pplib4.usVddciDe=
-pendencyOnMCLKOffset));
->                         ret =3D amdgpu_parse_clk_voltage_dep_table(&adev-=
->pm.dpm.dyn_state.vddci_dependency_on_mclk,
->                                                                  dep_tabl=
-e);
-> -                       if (ret) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (ret)
->                                 return ret;
-> -                       }
->                 }
->                 if (power_info->pplib4.usVddcDependencyOnMCLKOffset) {
->                         dep_table =3D (ATOM_PPLIB_Clock_Voltage_Dependenc=
-y_Table *)
-> @@ -294,10 +290,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                  le16_to_cpu(power_info->pplib4.usVddcDep=
-endencyOnMCLKOffset));
->                         ret =3D amdgpu_parse_clk_voltage_dep_table(&adev-=
->pm.dpm.dyn_state.vddc_dependency_on_mclk,
->                                                                  dep_tabl=
-e);
-> -                       if (ret) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (ret)
->                                 return ret;
-> -                       }
->                 }
->                 if (power_info->pplib4.usMvddDependencyOnMCLKOffset) {
->                         dep_table =3D (ATOM_PPLIB_Clock_Voltage_Dependenc=
-y_Table *)
-> @@ -305,10 +299,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                  le16_to_cpu(power_info->pplib4.usMvddDep=
-endencyOnMCLKOffset));
->                         ret =3D amdgpu_parse_clk_voltage_dep_table(&adev-=
->pm.dpm.dyn_state.mvdd_dependency_on_mclk,
->                                                                  dep_tabl=
-e);
-> -                       if (ret) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (ret)
->                                 return ret;
-> -                       }
->                 }
->                 if (power_info->pplib4.usMaxClockVoltageOnDCOffset) {
->                         ATOM_PPLIB_Clock_Voltage_Limit_Table *clk_v =3D
-> @@ -339,10 +331,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                 kcalloc(psl->ucNumEntries,
->                                         sizeof(struct amdgpu_phase_sheddi=
-ng_limits_entry),
->                                         GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.phase_shedding_limits=
-_table.entries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.phase_shedding_limits=
-_table.entries)
->                                 return -ENOMEM;
-> -                       }
->
->                         entry =3D &psl->entries[0];
->                         for (i =3D 0; i < psl->ucNumEntries; i++) {
-> @@ -383,10 +373,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                         ATOM_PPLIB_CAC_Leakage_Record *entry;
->                         u32 size =3D cac_table->ucNumEntries * sizeof(str=
-uct amdgpu_cac_leakage_table);
->                         adev->pm.dpm.dyn_state.cac_leakage_table.entries =
-=3D kzalloc(size, GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.cac_leakage_table.ent=
-ries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.cac_leakage_table.ent=
-ries)
->                                 return -ENOMEM;
-> -                       }
->                         entry =3D &cac_table->entries[0];
->                         for (i =3D 0; i < cac_table->ucNumEntries; i++) {
->                                 if (adev->pm.dpm.platform_caps & ATOM_PP_=
-PLATFORM_CAP_EVV) {
-> @@ -438,10 +426,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                 sizeof(struct amdgpu_vce_clock_voltage_de=
-pendency_entry);
->                         adev->pm.dpm.dyn_state.vce_clock_voltage_dependen=
-cy_table.entries =3D
->                                 kzalloc(size, GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.vce_clock_voltage_dep=
-endency_table.entries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.vce_clock_voltage_dep=
-endency_table.entries)
->                                 return -ENOMEM;
-> -                       }
->                         adev->pm.dpm.dyn_state.vce_clock_voltage_dependen=
-cy_table.count =3D
->                                 limits->numEntries;
->                         entry =3D &limits->entries[0];
-> @@ -493,10 +479,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                 sizeof(struct amdgpu_uvd_clock_voltage_de=
-pendency_entry);
->                         adev->pm.dpm.dyn_state.uvd_clock_voltage_dependen=
-cy_table.entries =3D
->                                 kzalloc(size, GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.uvd_clock_voltage_dep=
-endency_table.entries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.uvd_clock_voltage_dep=
-endency_table.entries)
->                                 return -ENOMEM;
-> -                       }
->                         adev->pm.dpm.dyn_state.uvd_clock_voltage_dependen=
-cy_table.count =3D
->                                 limits->numEntries;
->                         entry =3D &limits->entries[0];
-> @@ -525,10 +509,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                 sizeof(struct amdgpu_clock_voltage_depend=
-ency_entry);
->                         adev->pm.dpm.dyn_state.samu_clock_voltage_depende=
-ncy_table.entries =3D
->                                 kzalloc(size, GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.samu_clock_voltage_de=
-pendency_table.entries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.samu_clock_voltage_de=
-pendency_table.entries)
->                                 return -ENOMEM;
-> -                       }
->                         adev->pm.dpm.dyn_state.samu_clock_voltage_depende=
-ncy_table.count =3D
->                                 limits->numEntries;
->                         entry =3D &limits->entries[0];
-> @@ -548,10 +530,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                  le16_to_cpu(ext_hdr->usPPMTableOffset));
->                         adev->pm.dpm.dyn_state.ppm_table =3D
->                                 kzalloc(sizeof(struct amdgpu_ppm_table), =
-GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.ppm_table) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.ppm_table)
->                                 return -ENOMEM;
-> -                       }
->                         adev->pm.dpm.dyn_state.ppm_table->ppm_design =3D =
-ppm->ucPpmDesign;
->                         adev->pm.dpm.dyn_state.ppm_table->cpu_core_number=
- =3D
->                                 le16_to_cpu(ppm->usCpuCoreNumber);
-> @@ -583,10 +563,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                                 sizeof(struct amdgpu_clock_voltage_depend=
-ency_entry);
->                         adev->pm.dpm.dyn_state.acp_clock_voltage_dependen=
-cy_table.entries =3D
->                                 kzalloc(size, GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.acp_clock_voltage_dep=
-endency_table.entries) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.acp_clock_voltage_dep=
-endency_table.entries)
->                                 return -ENOMEM;
-> -                       }
->                         adev->pm.dpm.dyn_state.acp_clock_voltage_dependen=
-cy_table.count =3D
->                                 limits->numEntries;
->                         entry =3D &limits->entries[0];
-> @@ -606,10 +584,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                         ATOM_PowerTune_Table *pt;
->                         adev->pm.dpm.dyn_state.cac_tdp_table =3D
->                                 kzalloc(sizeof(struct amdgpu_cac_tdp_tabl=
-e), GFP_KERNEL);
-> -                       if (!adev->pm.dpm.dyn_state.cac_tdp_table) {
-> -                               amdgpu_free_extended_power_table(adev);
-> +                       if (!adev->pm.dpm.dyn_state.cac_tdp_table)
->                                 return -ENOMEM;
-> -                       }
->                         if (rev > 0) {
->                                 ATOM_PPLIB_POWERTUNE_Table_V1 *ppt =3D (A=
-TOM_PPLIB_POWERTUNE_Table_V1 *)
->                                         (mode_info->atom_context->bios + =
-data_offset +
-> @@ -645,10 +621,8 @@ int amdgpu_parse_extended_power_table(struct amdgpu_=
-device *adev)
->                         ret =3D amdgpu_parse_clk_voltage_dep_table(
->                                         &adev->pm.dpm.dyn_state.vddgfx_de=
-pendency_on_sclk,
->                                         dep_table);
-> -                       if (ret) {
-> -                               kfree(adev->pm.dpm.dyn_state.vddgfx_depen=
-dency_on_sclk.entries);
-> +                       if (ret)
->                                 return ret;
-> -                       }
->                 }
->         }
->
-> --
-> 2.34.1
->
+Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index 8e55e78fce4e..43eff221eae5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -87,7 +87,8 @@ void kfd_process_dequeue_from_device(struct kfd_process_device *pdd)
+ 		return;
+ 
+ 	dev->dqm->ops.process_termination(dev->dqm, &pdd->qpd);
+-	amdgpu_mes_flush_shader_debugger(dev->adev, pdd->proc_ctx_gpu_addr);
++	if (dev->kfd->shared_resources.enable_mes)
++		amdgpu_mes_flush_shader_debugger(dev->adev, pdd->proc_ctx_gpu_addr);
+ 	pdd->already_dequeued = true;
+ }
+ 
+-- 
+2.34.1
+
