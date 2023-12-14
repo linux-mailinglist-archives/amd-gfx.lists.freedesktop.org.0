@@ -2,47 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB80A81366F
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 17:39:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 475868134B5
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 16:27:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA0310E0AD;
-	Thu, 14 Dec 2023 16:39:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB97610E1AD;
+	Thu, 14 Dec 2023 15:27:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from zg8tmtyylji0my4xnjqumte4.icoremail.net
- (zg8tmtyylji0my4xnjqumte4.icoremail.net [162.243.164.118])
- by gabe.freedesktop.org (Postfix) with ESMTP id E90BD10E1AA;
- Thu, 14 Dec 2023 15:59:37 +0000 (UTC)
-Received: from luzhipeng.223.5.5.5 (unknown [115.200.224.93])
- by mail-app2 (Coremail) with SMTP id by_KCgBnbU1ZJntlOkaTAA--.62179S2;
- Thu, 14 Dec 2023 23:59:22 +0800 (CST)
-From: Zhipeng Lu <alexious@zju.edu.cn>
-To: alexious@zju.edu.cn
-Subject: [PATCH] drm/amd/pm: fix a double-free in si_dpm_init
-Date: Thu, 14 Dec 2023 23:24:11 +0800
-Message-Id: <20231214152413.3483199-1-alexious@zju.edu.cn>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com
+ [IPv6:2607:f8b0:4864:20::c2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAEDB10E1A5;
+ Thu, 14 Dec 2023 15:27:08 +0000 (UTC)
+Received: by mail-oo1-xc2f.google.com with SMTP id
+ 006d021491bc7-5906988ab8dso3647766eaf.0; 
+ Thu, 14 Dec 2023 07:27:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702567628; x=1703172428; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RQPQZjgJy3gqYdaJqPCEjYdalaI4tsnH21GXtDs8Yzk=;
+ b=TX7RJXOHFxRD4ZTiw7rcZnHTHOOIfkatLhqeunGtiUXJsoSYoWE21Im4NsGRAjDMyJ
+ sYBdIIe9Ut5fxHBno0hVNd1MdUqP0rN2M3/Av/Ne6++lNcOH+sZFrTctuGiaHvy/cII8
+ uK/TzSlnLHJeFKcweTxFJ6Lt6carpsO2tIKAM+Dfo2GL+5uGMRu1bK0zfWwf9dnqY96a
+ I7MXo/LtaCMm6g0Q6WZgoq6+C4FshalZGpatl3wEBdUVOqjOZo7X4xvNAlmE/TyUQ6py
+ 8fuy6A1YJibtqLopQL7L2ewwB7Ju9NsGrJNV+gZx/Nb3levRNNrmWAzLpTBsgPVn2x1/
+ NXXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702567628; x=1703172428;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=RQPQZjgJy3gqYdaJqPCEjYdalaI4tsnH21GXtDs8Yzk=;
+ b=UhECD9Q7u4rlwhStbO/QgxWX6jamiFqyFI2ayd/GxOsDhHej8L6Zm/aMIvf3CDsDyJ
+ KVPpjHN019y0WMMpVN+B5/RCBeZKUmAAxv9Je22lZbe4U5vubqKeF1amcaXRb/PJgQou
+ uwqMVC2l7I4FiW4NbmtiSt6niZTtcIzoE+3cVoTJUbWHrrCCeP1PMCMlQp3v5NRkOdDJ
+ D1Tl3EX9r867AcMfPhbK1kCEjCfxaGb+7DFzPeaJoMN5DlpTL+6+9gYMnw7ySXBWrgNJ
+ AmdNpAA8aH0IgVByl+LwNfnVPfp8YQDvC4P3KEAHlsAyFwrUH2+pfjDWydgATB6MI5OG
+ Cnfg==
+X-Gm-Message-State: AOJu0YzkNkzyZGuGv4JYsl8EqQXmvrVKwfLBjOrA8mQn/0/4YDxWqyU7
+ Kbig4vBMzLv181nvBg8HjqKetX0ecESPod8D4Fc=
+X-Google-Smtp-Source: AGHT+IFxaUhMiZjLyo8TSQCHB2je7fkWGNaqTddpcZklvoyg8gxDKp/bPrzox5hejyW2il5ejMtz4rlwVUvZjrPf978=
+X-Received: by 2002:a05:6870:171e:b0:203:5573:9f17 with SMTP id
+ h30-20020a056870171e00b0020355739f17mr572625oae.115.1702567628088; Thu, 14
+ Dec 2023 07:27:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: by_KCgBnbU1ZJntlOkaTAA--.62179S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7urykCF1UJr43Zr15tr1xuFg_yoW8XFWxpF
- Z3GF98K3yUJF48t3ZrXF10gr1Duw40kay8GrWjkw13A3W5ZF1v9rZ3A3yqqFW8uFZ7ur42
- g34qv34DZr4Ikw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvj14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
- JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
- xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43
- MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
- 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWU
- JVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfU5s
- jjDUUUU
-X-CM-SenderInfo: qrsrjiarszq6lmxovvfxof0/
-X-Mailman-Approved-At: Thu, 14 Dec 2023 16:39:23 +0000
+References: <20231214010154.47054-1-yang.lee@linux.alibaba.com>
+In-Reply-To: <20231214010154.47054-1-yang.lee@linux.alibaba.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 14 Dec 2023 10:26:56 -0500
+Message-ID: <CADnq5_OK9+7VcXU9p1gyTcgmjAP=1p=WO1-UZKKEe8jyp83cgw@mail.gmail.com>
+Subject: Re: [PATCH -next] drm/amd/pm: Remove unneeded semicolon
+To: Yang Li <yang.lee@linux.alibaba.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,49 +67,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lijo Lazar <lijo.lazar@amd.com>, Guchun Chen <guchun.chen@amd.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Zhenneng Li <lizhenneng@kylinos.cn>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- Maruthi Bayyavarapu <maruthi.bayyavarapu@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When the allocation of
-adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries fails,
-amdgpu_free_extended_power_table is called to free some fields of adev.
-However, when the control flow returns to si_dpm_sw_init, it goes to
-label dpm_failed and calls si_dpm_fini, which calls
-amdgpu_free_extended_power_table again and free those fields again. Thus
-a double-free is triggered.
+Applied.  Thanks!
 
-Fixes: 841686df9f7d ("drm/amdgpu: add SI DPM support (v4)")
-Signed-off-by: Zhipeng Lu <alexious@zju.edu.cn>
----
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index fc8e4ac6c8e7..df4f20293c16 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -7379,10 +7379,9 @@ static int si_dpm_init(struct amdgpu_device *adev)
- 		kcalloc(4,
- 			sizeof(struct amdgpu_clock_voltage_dependency_entry),
- 			GFP_KERNEL);
--	if (!adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries) {
--		amdgpu_free_extended_power_table(adev);
-+	if (!adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries)
- 		return -ENOMEM;
--	}
-+
- 	adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.count = 4;
- 	adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].clk = 0;
- 	adev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].v = 0;
--- 
-2.34.1
-
+On Wed, Dec 13, 2023 at 8:02=E2=80=AFPM Yang Li <yang.lee@linux.alibaba.com=
+> wrote:
+>
+> ./drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c:1418:2-3: Unneeded semicolon
+>
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=3D7743
+> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/=
+amd/pm/swsmu/amdgpu_smu.c
+> index d409857fd622..c16703868e5c 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -1415,7 +1415,7 @@ static int smu_wbrf_event_handler(struct notifier_b=
+lock *nb,
+>                 break;
+>         default:
+>                 return NOTIFY_DONE;
+> -       };
+> +       }
+>
+>         return NOTIFY_OK;
+>  }
+> --
+> 2.20.1.7.g153144c
+>
