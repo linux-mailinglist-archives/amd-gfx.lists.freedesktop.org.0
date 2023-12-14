@@ -2,91 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53A58139B7
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 19:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D18D7813748
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Dec 2023 18:06:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1A1410E1C3;
-	Thu, 14 Dec 2023 18:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B6D10E1C5;
+	Thu, 14 Dec 2023 17:06:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18F4710E1CA
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Dec 2023 18:16:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EzUSvoq61zpA3TrLPxTyPMguhN0RjGc75HhQcKm8QpFEDBKW+xP/bRfDkZ3GAz1PsF+P31Idjzp7Aic18bdMY9dZwkReURKqVMSMzvtrPa3wQ+sMqy7GXMLaMAFMqbPKN1mzD9TsOYWaYdvJhwiZ601G1F3nWP29dfWIZRhhbkXC4QGVbcj6Tmj0/tHMffvwRDwjdhf41yB0dogpxNWsYLWp0Xd8T6D6gOwUEX5NqFJzYRO8/8pSnwnTeK5unYfP1EhHWqZyn+BUFfnUiuGC6h5SVflDB49Zm52BT3sa4VPyBaR/X7gOKCxnOFYjo767Nv3Q0LUsee6Di17iIle3Eg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0VgQcdRO5ABGuAWklLUU7gJFv0MC7Xn/kPPWb8Sn9Ro=;
- b=fuUP51dSv9AOZXqOVS2XNuaJSqcINeHXwGk6ajN1SrS+zzFBcUp6QUHEY5+4KKXbpcTSnuKZ2OozU34P1vgIzofVrqzuJHwdmn+bkfoSfaSTjkOlTaPbITalz0Y8TyieDxYYHm2C/flZWcEUvx6Z4z1YHLHDFNN4aokwGBOmEqbZRYPOYfdevn3h0Y390oSyio0CvzcIr8TZWJcN/RQEacxXjPDQ1bh17Fhd8qyVEZqGyejj/k2I38sV+K5LcbIvhvqWePNPwxvZF7yWxrQ50fVbS8xAHTckuEA4+x5ej4jz0rQi73SlBk0Kz8yUQh9zbWcagYJBHTuWi19aUUOK8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0VgQcdRO5ABGuAWklLUU7gJFv0MC7Xn/kPPWb8Sn9Ro=;
- b=S8fhC/AuzxWzF/qUS//9nS5nSHwFlOf6ZVsPRjT+cFH042/JuxOk8tFUXPlNcC2TfapE+urmroIrMvZDUzpItSVcaI3Mt4CpTUcy42HzTXmKpNnFO9QFoqgg9cmd18520SnHKUv4NwMCYN7HgoDRwro+YPHd+Ey3mBGnY2acA+k=
-Received: from DS7PR03CA0094.namprd03.prod.outlook.com (2603:10b6:5:3b7::9) by
- DM4PR12MB5213.namprd12.prod.outlook.com (2603:10b6:5:394::16) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7091.28; Thu, 14 Dec 2023 18:16:13 +0000
-Received: from DS1PEPF00017093.namprd03.prod.outlook.com
- (2603:10b6:5:3b7:cafe::a4) by DS7PR03CA0094.outlook.office365.com
- (2603:10b6:5:3b7::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26 via Frontend
- Transport; Thu, 14 Dec 2023 18:16:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF00017093.mail.protection.outlook.com (10.167.17.136) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7091.26 via Frontend Transport; Thu, 14 Dec 2023 18:16:13 +0000
-Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 14 Dec
- 2023 12:16:13 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd: Make SW CTF handler cope with different
- read_sensor() results
-Date: Thu, 14 Dec 2023 10:45:47 -0600
-Message-ID: <20231214164547.6739-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A93710E971;
+ Thu, 14 Dec 2023 17:06:38 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id
+ 5614622812f47-3b9f8c9307dso5156056b6e.0; 
+ Thu, 14 Dec 2023 09:06:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702573597; x=1703178397; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=lw0RodZSdxJA0iLxv7tkLpUrFdAojr9L6Vs6gKIIOys=;
+ b=IGV4SZ0T76WQHOCl19uMqvHWwrgTDor26NGm3W0es6uRg3csPniLhuyErLpkpjt9TL
+ drPt/htqprR8cdvyDxW7ZqM1EgD3z60VxF5sfz/d660wO7BBuglMI3cdavpX95QCegDM
+ O2U4LDP2cUP72G3Vqrch9Oq41ls9WrgUfpfcV9D3Z9WzVa0zyMj78vw1xlUF02/TO7k9
+ 4PlJeyCP1pUZQr9qkLejEC+O8dKy5Bo+3tPvEuuObxYCnHiDi+k0lPQgWkmAPr8Z/MZH
+ cRqIvatVLv3lTF12zU8YbBVVlLhv1k2oO6eButDtrg7+AtihI9IfLCo/eVOZOqtR6ad9
+ +QxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702573597; x=1703178397;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=lw0RodZSdxJA0iLxv7tkLpUrFdAojr9L6Vs6gKIIOys=;
+ b=ZtbSjASM/5O6sjtQCN/ZMrv0xY/rEQeOss94ZhzUc+VmY0R/kM8nmjd8j6XXxf4elI
+ rdBxa+aSuK/HapVBXSOQ+OTgENEE2qMZ09+PQCQx/zldJNVwb2hSn/CbgKPQ0AMfYE7o
+ O1M09fXXce93q6QSIE9aS8yXXt5t1ARrkS4E2Y5FjFSnJmKcVdBfWw8ygy1f5cq4wmqa
+ MPRWYUwQYuwg1SymE6DGL+6OvP2JsO8pQhKDPbyHII/UsX7RtGAZ0A8JoESJ2Jlzhq7A
+ 34Jn7M5Jq3wl3wdYnjfSQeW51cbKBdyy35XQVYX6RXIlaM7TM6W0bgRsadMirLEEvfvs
+ H9Ng==
+X-Gm-Message-State: AOJu0YzUHYGm1tip38CWlQn6iN4dSyw7dx56d61qbc9wnL7Fj9fSNIFQ
+ fVPco/eTI1c4l1T5UOZWPl4rkmGZQC3pDwhULiY=
+X-Google-Smtp-Source: AGHT+IExNNoad7Bj8XQBRJ5WCf95CmDbkzKCuwvVnxC9gAiPmYDsKYy6JXEAUEPxTCZKr8tl2TD7sMsnEmTVcPwK7m8=
+X-Received: by 2002:a05:6870:168c:b0:203:2e8b:1a1d with SMTP id
+ j12-20020a056870168c00b002032e8b1a1dmr3061586oae.11.1702573597292; Thu, 14
+ Dec 2023 09:06:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017093:EE_|DM4PR12MB5213:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79cdcf54-9126-4335-9441-08dbfcd0c1d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v9M8nqkV4qH/QWvK3gBBpwfWzALwdque8qU/BPSgn9y0ODjMFAcew6BnXTTSOaP9qpmC7khk5/wSlqJxB/nl+IWLXNucvZcYtxfE1Ge154RYWdYIuv3+Fd8bMonW8QbU+ve6go6tltYPbzHc19hsJ4o4udJ2cHZhh3y4BepfGngB8Ze6LZ6BIMs19aDTc71nGQlPFXbv2sZggN16a6RO1Rn9y6LustEx1lh28sEJdL9aXs+nJzUemqf/fpS0sNGgLN/NxI34X5gfnQ2UDHXr4Dy1WJp6d25tyYIVUhxPaLHuOc1P3Toh8A5tR5hII0Jrcfh2gCoZJyxvPhVTrA7NZbjnYZl+8X/6X0hRkmZDlTReJgzkQ7yF2BSW7bzaEpbYxKxsoQtedhCLI6W/nFr8u6JY14QFPm5LLtRIR4nT8fI/1PNSAYrdQWJmpskHGNd0PvprtNtdp3HOIX0fvjsAJiRyzHj2yI7wMitlPzBOsx4/0HOz5cJ/hL7k1J4gWNs4okOEJ16YjHOmbyjHrO6pzZNi0WyJe4FYx6ygJESHaPy8CYtyuBiIHvZhfxIAB73eKsLjUkjUP/P3opJmwkW9PymZi8pGraQyzOCj75XQgfXdfewJO9tl3x7Rx5JuVEofOgqJ8Kd7wjhmW4aWi017GURpcTIC70LYhWT7wpIIUGH5+GI/RzxWfo3oGkWmDaYjBRcn6D0rEL/dnPXc79OKlMItzZ4o5AJqoSMHfBnx3gLE3Mvyy3OfiaNLS3CrQ+us+QFJXpcLqAjGi9NKpf2wa0WjHokGMy/WvmdZjE44v7gKd+kOi22yVlj/5JlnivmM
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(136003)(39860400002)(396003)(346002)(230922051799003)(230173577357003)(230273577357003)(64100799003)(186009)(82310400011)(451199024)(1800799012)(36840700001)(40470700004)(46966006)(44832011)(6916009)(8936002)(16526019)(316002)(8676002)(4326008)(70586007)(83380400001)(336012)(426003)(47076005)(7696005)(6666004)(478600001)(2616005)(26005)(70206006)(5660300002)(2906002)(41300700001)(1076003)(36756003)(81166007)(356005)(36860700001)(82740400003)(86362001)(40460700003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 18:16:13.7869 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79cdcf54-9126-4335-9441-08dbfcd0c1d8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017093.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5213
+References: <20231214162500.3483936-1-alexious@zju.edu.cn>
+In-Reply-To: <20231214162500.3483936-1-alexious@zju.edu.cn>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 14 Dec 2023 12:06:26 -0500
+Message-ID: <CADnq5_MYKE+GssKugrLZ-0zj1=JxJayxxp4kviVh6kOPi2abZg@mail.gmail.com>
+Subject: Re: [PATCH] drivers/amd/pm: fix a use-after-free in
+ kv_parse_power_table
+To: Zhipeng Lu <alexious@zju.edu.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,60 +68,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Jammy Zhou <Jammy.Zhou@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Le Ma <le.ma@amd.com>, dri-devel@lists.freedesktop.org,
+ Ran Sun <sunran001@208suo.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The SW CTF handler assumes that the read_sensor() call always succeeds
-and has updated `hotspot_tmp`, but this may not be guaranteed.
+Applied.  Thanks!
 
-For example some of the read_sensor() callbacks will return 0 when a RAS
-interrupt is triggered in which case `hotspot_tmp` won't be updated.
-
-Adjust the logic to catch this circumstance and output a warning.
-
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index e1a5ee911dbb..5473fda5c6aa 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1163,21 +1163,23 @@ static void smu_swctf_delayed_work_handler(struct work_struct *work)
- 	struct smu_temperature_range *range =
- 				&smu->thermal_range;
- 	struct amdgpu_device *adev = smu->adev;
--	uint32_t hotspot_tmp, size;
-+	uint32_t hotspot_tmp = 0, size;
- 
- 	/*
- 	 * If the hotspot temperature is confirmed as below SW CTF setting point
- 	 * after the delay enforced, nothing will be done.
- 	 * Otherwise, a graceful shutdown will be performed to prevent further damage.
- 	 */
--	if (range->software_shutdown_temp &&
--	    smu->ppt_funcs->read_sensor &&
--	    !smu->ppt_funcs->read_sensor(smu,
--					 AMDGPU_PP_SENSOR_HOTSPOT_TEMP,
--					 &hotspot_tmp,
--					 &size) &&
--	    hotspot_tmp / 1000 < range->software_shutdown_temp)
--		return;
-+	if (range->software_shutdown_temp && smu->ppt_funcs->read_sensor) {
-+		int r = smu->ppt_funcs->read_sensor(smu,
-+						    AMDGPU_PP_SENSOR_HOTSPOT_TEMP,
-+						    &hotspot_tmp,
-+						    &size);
-+		if (!r && hotspot_tmp &&
-+		    (hotspot_tmp / 1000 < range->software_shutdown_temp))
-+			return;
-+		dev_warn(adev->dev, "Failed to read hotspot temperature: %d\n", r);
-+	}
- 
- 	dev_emerg(adev->dev, "ERROR: GPU over temperature range(SW CTF) detected!\n");
- 	dev_emerg(adev->dev, "ERROR: System is going to shutdown due to GPU SW CTF!\n");
--- 
-2.34.1
-
+On Thu, Dec 14, 2023 at 11:57=E2=80=AFAM Zhipeng Lu <alexious@zju.edu.cn> w=
+rote:
+>
+> When ps allocated by kzalloc equals to NULL, kv_parse_power_table
+> frees adev->pm.dpm.ps that allocated before. However, after the control
+> flow goes through the following call chains:
+>
+> kv_parse_power_table
+>   |-> kv_dpm_init
+>         |-> kv_dpm_sw_init
+>               |-> kv_dpm_fini
+>
+> The adev->pm.dpm.ps is used in the for loop of kv_dpm_fini after its
+> first free in kv_parse_power_table and causes a use-after-free bug.
+>
+> Fixes: a2e73f56fa62 ("drm/amdgpu: Add support for CIK parts")
+> Signed-off-by: Zhipeng Lu <alexious@zju.edu.cn>
+> ---
+>  drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c b/drivers/gpu/drm=
+/amd/pm/legacy-dpm/kv_dpm.c
+> index 5d28c951a319..5cb4725c773f 100644
+> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
+> @@ -2735,10 +2735,8 @@ static int kv_parse_power_table(struct amdgpu_devi=
+ce *adev)
+>                 non_clock_info =3D (struct _ATOM_PPLIB_NONCLOCK_INFO *)
+>                         &non_clock_info_array->nonClockInfo[non_clock_arr=
+ay_index];
+>                 ps =3D kzalloc(sizeof(struct kv_ps), GFP_KERNEL);
+> -               if (ps =3D=3D NULL) {
+> -                       kfree(adev->pm.dpm.ps);
+> +               if (ps =3D=3D NULL)
+>                         return -ENOMEM;
+> -               }
+>                 adev->pm.dpm.ps[i].ps_priv =3D ps;
+>                 k =3D 0;
+>                 idx =3D (u8 *)&power_state->v2.clockInfoIndex[0];
+> --
+> 2.34.1
+>
