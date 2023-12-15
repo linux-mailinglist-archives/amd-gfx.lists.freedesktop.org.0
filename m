@@ -1,47 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD718141DA
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 07:35:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C81B8143CD
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 09:40:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96B5A10E329;
-	Fri, 15 Dec 2023 06:35:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF6510E354;
+	Fri, 15 Dec 2023 08:40:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB1910E95A
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 06:35:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id EA377CE27AD;
- Fri, 15 Dec 2023 06:35:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCD7C433C8;
- Fri, 15 Dec 2023 06:35:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1702622140;
- bh=Dn71pnp1Fex8QG4wBzzTBZfQB4hdIO33Nsn74V1lK2I=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=fOePsk9bBNBlA1shPOJMUTrvU7RBq6fRxexVtCBTacxkiDhTiMOfoZEHdCUC7Ati7
- j5dSki9HgTHaM81FW66DPJB9K5hLaFvNiTsLRbip71VCTu3ifwEsf1fTvqu+5h9lxW
- d3OJiI6+tJk1gkIfsO6GTQr7v+P59e/rQHR5BUeXyknGpsKtOHrdkWDKRNywBA9cwk
- TO2pAy8gttM30GwW2ueLNioLr0X3ia5uLs3ACi0EmdZ0npsrc69fS2jW+nrOeAoqIl
- AG3mJZNaFjSyuLJ7jmMK6JrKy0+hkNFnf8dViVPT4GqdmmwJzG5+6yNj+cDaqz9G0f
- l95v+vmnK5zpA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Subject: Re: [GIT PULL] mmutable branch between pdx86 amd wbrf branch and
- wifi / amdgpu due for the v6.8 merge window
-References: <6395b87b-7cb6-4412-b6e5-e6075353fb6d@redhat.com>
- <87le9w4u6v.fsf@kernel.org>
- <8bd60010-7534-4c22-9337-c4219946d8d6@amd.com>
-Date: Fri, 15 Dec 2023 08:35:35 +0200
-In-Reply-To: <8bd60010-7534-4c22-9337-c4219946d8d6@amd.com> (Mario
- Limonciello's message of "Thu, 14 Dec 2023 10:47:01 -0600")
-Message-ID: <87bkasm0qw.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
+ [IPv6:2607:f8b0:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFED10E055;
+ Fri, 15 Dec 2023 05:21:19 +0000 (UTC)
+Received: by mail-pf1-x432.google.com with SMTP id
+ d2e1a72fcca58-6cea5548eb2so263481b3a.0; 
+ Thu, 14 Dec 2023 21:21:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702617678; x=1703222478; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=s+5lBSVYnqDcPFtwn8gCQhYwDjCzvbLiJIKd8Yzo52s=;
+ b=GTtIM8vMdBPCQEjYgPJ7UlNHD3zlbjHtFHwCRAV/mQOVUFi743LNrHl4UzlOJLo1O+
+ BdGQ53nI4l3yfvGoTljJtNdw83z9QwR0lr5GtVCLkhwph1JwRffK6dbTFsSyrfySFhNv
+ Kxtn9ufRAfZGD3N4Tqj9LndwpX0266zhyU/RDdnzSjvBKosEZU9zVOIj22dhZ0MohddK
+ y1nUbAKF7y8uIMDseFIeNJd91TL2/u/VaUgVi27IfMk/JFEVsI4fP8z1g6hY58BNspQY
+ +8WM373CbGI7JCh4Of7Bxu/jyHLcVhTwRGnmyoLcMuex8Al0ib7gJPVKion1QYqa5wUV
+ c+tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702617678; x=1703222478;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=s+5lBSVYnqDcPFtwn8gCQhYwDjCzvbLiJIKd8Yzo52s=;
+ b=dFlUDFvRbxhsqlBzp6TA3cdSx1MyqdXFAnBncAf09jHOqlBNELxsnztCqFkDcsDALF
+ +5QT29+TvS30WDpzhPvwVunfc4dl4wvK/LXHMltWIDoTzHUWd8iNRyS2ySiHzmU3E2w0
+ dLwmYLFFmflKxR6oqnk8tVaFWrOXRz9nBA7oFghG7XoZowCY6lKaxzN1+IvG2CMsiwpH
+ LFpTTRwSMTgfCf+RZt3BwJTNc47aVP4KKSK+rjhFHommKlO4SwyIFKOURn6YwB7V6MkK
+ AFtnXI59n/rvveOZsR4OQwpfQ5iMhto6KH9p0w2Kjj+vuLRteuzMOO2IBYeoXbBBVvaC
+ qhXg==
+X-Gm-Message-State: AOJu0YxTe+KPKbLpNtuVSiStAWSc7jxO7dWmEJwYFMRQCs9rjj/DUn16
+ bTd4gwrThzwsjVzSYyNL8Ls=
+X-Google-Smtp-Source: AGHT+IFht6jswMwabNafHJ7W/vy2mXm7pcUSJHVjGcuN971hwNVXm68KGLw+XrOGkEqilBvD4XKa5Q==
+X-Received: by 2002:a05:6a00:2e10:b0:6d0:9913:3363 with SMTP id
+ fc16-20020a056a002e1000b006d099133363mr8892948pfb.46.1702617678480; 
+ Thu, 14 Dec 2023 21:21:18 -0800 (PST)
+Received: from localhost.localdomain ([202.137.218.19])
+ by smtp.gmail.com with ESMTPSA id
+ y20-20020a056a00191400b00688435a9915sm12608593pfi.189.2023.12.14.21.21.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Dec 2023 21:21:18 -0800 (PST)
+From: Ghanshyam Agrawal <ghanshyam1898@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, Hawking.Zhang@amd.com,
+ candice.li@amd.com, Le.Ma@amd.com, lijo.lazar@amd.com
+Subject: [PATCH] gpu: drm: amd: fixed typos
+Date: Fri, 15 Dec 2023 10:50:33 +0530
+Message-Id: <20231215052033.550509-1-ghanshyam1898@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 15 Dec 2023 08:39:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,70 +72,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ma Jun <Jun.Ma2@amd.com>, linux-wireless <linux-wireless@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Johannes Berg <johannes@sipsolutions.net>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Ghanshyam Agrawal <ghanshyam1898@gmail.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Mario Limonciello <mario.limonciello@amd.com> writes:
+Fixed multiple typos in atomfirmware.h
 
-> On 12/14/2023 10:36, Kalle Valo wrote:
->
->> Hans de Goede <hdegoede@redhat.com> writes:
->> 
->>> Hi Wifi and AMDGPU maintainers,
->>>
->>> Here is a pull-request for the platform-drivers-x86 parts of:
->>>
->>> https://lore.kernel.org/platform-driver-x86/20231211100630.2170152-1-Jun.Ma2@amd.com/
->>>
->>>  From my pov the pdx86 bits are ready and the
->>> platform-drivers-x86-amd-wbrf-v6.8-1 tag can be merged by you to merge
->>> the wifi-subsys resp. the amdgpu driver changes on top.
->>>
->>> This only adds kernel internal API, so if in the future the API
->>> needs work that can be done.
->>>
->>> I've not merged this branch into pdx86/for-next yet, since I see
->>> little use in merging it without any users. I'll merge it once either
->>> the wifi or amdgpu changes are also merged (and if some blocking
->>> issues get identified before either are merged I can prepare a new
->>> pull-request fixing the issues).
->> I was testing latest wireless-testing with ath11k and noticed this:
->> [  370.796884] ath11k_pci 0000:06:00.0: WBRF is not supported
->> I think that's just spam and not really necessary. Could someone
->> remove
->> that or change to a debug message, please?
->> 
->
-> Do you have dynamic debug turned up perhaps?  It's already supposed to
-> be a dbg message.
->
-> +	dev_dbg(dev, "WBRF is %s supported\n",
-> +		local->wbrf_supported ? "" : "not");
+Signed-off-by: Ghanshyam Agrawal <ghanshyam1898@gmail.com>
+---
+ drivers/gpu/drm/amd/include/atomfirmware.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Oh, I should have checked that. I do have it enabled:
-
-CONFIG_DYNAMIC_DEBUG=y
-CONFIG_DYNAMIC_DEBUG_CORE=y
-
-But that shouldn't enable the debug message unless I specifically enable
-it via debugfs, right? But then I noticed this in net/mac80211/Makefile:
-
-ccflags-y += -DDEBUG
-
-I'm guessing this is the reason why the debug message is always printed?
-
-It looks like wbrf.c has the only dev_dbg() call in mac80211, all others
-use the macros from net/mac80211/debug.h. I think wbrf.c should also use
-one of the macros from debug.h and not dev_dbg().
-
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index fa7d6ced786f..41d553921adf 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -210,7 +210,7 @@ atom_bios_string          = "ATOM"
+ };
+ */
+ 
+-#pragma pack(1)                          /* BIOS data must use byte aligment*/
++#pragma pack(1)                          /* BIOS data must use byte alignment */
+ 
+ enum atombios_image_offset{
+   OFFSET_TO_ATOM_ROM_HEADER_POINTER          = 0x00000048,
+@@ -452,7 +452,7 @@ struct atom_dtd_format
+   uint8_t   refreshrate;
+ };
+ 
+-/* atom_dtd_format.modemiscinfo defintion */
++/* atom_dtd_format.modemiscinfo definition */
+ enum atom_dtd_format_modemiscinfo{
+   ATOM_HSYNC_POLARITY    = 0x0002,
+   ATOM_VSYNC_POLARITY    = 0x0004,
+@@ -645,7 +645,7 @@ struct lcd_info_v2_1
+   uint32_t reserved1[8];
+ };
+ 
+-/* lcd_info_v2_1.panel_misc defintion */
++/* lcd_info_v2_1.panel_misc definition */
+ enum atom_lcd_info_panel_misc{
+   ATOM_PANEL_MISC_FPDI            =0x0002,
+ };
+@@ -683,7 +683,7 @@ enum atom_gpio_pin_assignment_gpio_id {
+   /* gpio_id pre-define id for multiple usage */
+   /* GPIO use to control PCIE_VDDC in certain SLT board */
+   PCIE_VDDC_CONTROL_GPIO_PINID = 56,
+-  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC swithing feature is enable */
++  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC switching feature is enable */
+   PP_AC_DC_SWITCH_GPIO_PINID = 60,
+   /* VDDC_REGULATOR_VRHOT_GPIO_PINID in Gpio_Pin_LutTable, VRHot feature is enable */
+   VDDC_VRHOT_GPIO_PINID = 61,
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
