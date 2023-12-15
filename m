@@ -1,46 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55108143CC
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 09:40:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6CF8143CE
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 09:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33A4310E346;
-	Fri, 15 Dec 2023 08:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CEBF10E990;
+	Fri, 15 Dec 2023 08:40:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C96D510E322;
- Fri, 15 Dec 2023 05:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=eGH+77gu0FXXkUseAHfipZghMBnS03gjwpqhBgPZoHQ=; b=SbtJkMQpZoAzWjW62w/zxVm9rA
- PvWTcYFvUfgvpqPMUgSC+yl2UHjaQu/0Z80DbHySmZUfRngkvxrQmymhJEgN/Tv6oj2B+CTlgNUI3
- ytoxCa+RiLdbCN5KIdGf6FoVNnxtXY5xoPZTpmkz8jzy2dPSUiQ22CUr8da2kAln4xWDNjdilBN6a
- H96q8sgG/9UWfBOjC6xSTvXia1klmJMe4z0ivXxpZk/3rtdK0du6+3sXDBQqOOyZf19LqMg2Alszm
- lHRPVppTyI/esklYIIchIpyHWNNS1b2WHAXbyIbntos55U/x9r8Iqh+Nd8qZSAhFDCxuV1I+WOlEa
- cukB6akg==;
-Received: from [50.53.46.231] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1rE0lE-00244d-0e; Fri, 15 Dec 2023 05:29:20 +0000
-Message-ID: <5a58e510-e5b4-42ae-95a3-257ca802212a@infradead.org>
-Date: Thu, 14 Dec 2023 21:29:19 -0800
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F24510E32A;
+ Fri, 15 Dec 2023 06:55:13 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id
+ d2e1a72fcca58-6cebcf8a48aso274356b3a.3; 
+ Thu, 14 Dec 2023 22:55:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702623313; x=1703228113; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=wW3WF9+yE7Fm8DHl64+vajrAUnSKM81cqUzh0Jur8M8=;
+ b=dUxcZAbVwoRKJdvdzbi5Kq0NkBqZNNiPDK8g13sArnK2nJeStEEdYgAct54BO2gaE3
+ VHGlXqPsHStisXmlc0mdHOdjeapbyE40glRfF5Xl+vMPtNQn/ePWx/80k1IZgemg5eI/
+ 1QQbfQZOZ6oHDeTPxeL9ZObyQ6Vuga8bCzzdjzuHC61SI5yVbFDOtaXwipEO8C1jqBGm
+ sRGZ9RLaB+tnkj8Zn4YzRmiLJoo9kh9GVS4450UOojXm68NiWSgAMZFIkyUYlVyZgoC6
+ /5lH+CwM1+37ZiPZfJBnobvpK13UvWAXBWHyalFoY6AdB3SXSyVUINBsxv+0zeZx18Ni
+ fq6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702623313; x=1703228113;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=wW3WF9+yE7Fm8DHl64+vajrAUnSKM81cqUzh0Jur8M8=;
+ b=ID81PM5f2rYx4eJBuYZNLLZyZ8V6sNRqnKPmwqvERPiettJKnCSunqp0/3v0UctyKo
+ fEWfItFWAJs+JdtQaqnR2GxUVHmf6aXd18C0I5cW9SkS8FHUp4CPjbwXlRNxVTmDCMfk
+ N6RssEDs8WgsmPkBJohwE72imqVrKezAHfwKxPd1QD5iRTbt6GLDQ+QR6na4hkMlShPB
+ h7SrMPF9XTCQxU1chXHhQ7B99mhjHB1VFJDLKBhwsf874YtBe79rjM+9rD5P0CX4dhO5
+ U1iawVlfeYNyKMHKXHe+T2kIDR5VjdCBizQH5rv5HQI+HNDM9VNOESQddgXPupzy6MYK
+ UNhw==
+X-Gm-Message-State: AOJu0YyHBYRH2MhdRd4jd3k/LL5/FSMI/Hhljl93gyJUOZsG55M28Ntr
+ JlwqBXHIfmpR/0EVk6qppSeFAlCxS5nmlA1TMog=
+X-Google-Smtp-Source: AGHT+IGPkfV7hNbg63dlvmC9Me/aKmPpSuwzxEZdk0PYRCQAfXjtY5wCwqdgCiwgYgU1akmtIIUMwo4xZdFuEsr0N30=
+X-Received: by 2002:a05:6a00:4653:b0:6ce:6f99:4ec4 with SMTP id
+ kp19-20020a056a00465300b006ce6f994ec4mr14009886pfb.1.1702623313006; Thu, 14
+ Dec 2023 22:55:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] gpu: drm: amd: fixed typos
-Content-Language: en-US
-To: Ghanshyam Agrawal <ghanshyam1898@gmail.com>, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, Hawking.Zhang@amd.com, candice.li@amd.com, Le.Ma@amd.com,
- lijo.lazar@amd.com
 References: <20231215052033.550509-1-ghanshyam1898@gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20231215052033.550509-1-ghanshyam1898@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <5a58e510-e5b4-42ae-95a3-257ca802212a@infradead.org>
+In-Reply-To: <5a58e510-e5b4-42ae-95a3-257ca802212a@infradead.org>
+From: Ghanshyam Agrawal <ghanshyam1898@gmail.com>
+Date: Fri, 15 Dec 2023 12:24:36 +0530
+Message-ID: <CAG-Bmocu0nL-AW=nR7ZaTG4fzRvw4XSq5grk4N-wDRF0opMR4Q@mail.gmail.com>
+Subject: Re: [PATCH] gpu: drm: amd: fixed typos
+To: Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 15 Dec 2023 08:39:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,92 +69,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: lijo.lazar@amd.com, Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Le.Ma@amd.com, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, candice.li@amd.com,
+ airlied@gmail.com, christian.koenig@amd.com, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi--
+On Fri, Dec 15, 2023 at 10:59=E2=80=AFAM Randy Dunlap <rdunlap@infradead.or=
+g> wrote:
+>
+> Hi--
+>
+> On 12/14/23 21:20, Ghanshyam Agrawal wrote:
+> > Fixed multiple typos in atomfirmware.h
+> >
+> > Signed-off-by: Ghanshyam Agrawal <ghanshyam1898@gmail.com>
+> > ---
+> >  drivers/gpu/drm/amd/include/atomfirmware.h | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/d=
+rm/amd/include/atomfirmware.h
+> > index fa7d6ced786f..41d553921adf 100644
+> > --- a/drivers/gpu/drm/amd/include/atomfirmware.h
+> > +++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+> > @@ -210,7 +210,7 @@ atom_bios_string          =3D "ATOM"
+> >  };
+> >  */
+> >
+> > -#pragma pack(1)                          /* BIOS data must use byte al=
+igment*/
+> > +#pragma pack(1)                          /* BIOS data must use byte al=
+ignment */
+> >
+> >  enum atombios_image_offset{
+> >    OFFSET_TO_ATOM_ROM_HEADER_POINTER          =3D 0x00000048,
+> > @@ -452,7 +452,7 @@ struct atom_dtd_format
+> >    uint8_t   refreshrate;
+> >  };
+> >
+> > -/* atom_dtd_format.modemiscinfo defintion */
+> > +/* atom_dtd_format.modemiscinfo definition */
+> >  enum atom_dtd_format_modemiscinfo{
+> >    ATOM_HSYNC_POLARITY    =3D 0x0002,
+> >    ATOM_VSYNC_POLARITY    =3D 0x0004,
+> > @@ -645,7 +645,7 @@ struct lcd_info_v2_1
+> >    uint32_t reserved1[8];
+> >  };
+> >
+> > -/* lcd_info_v2_1.panel_misc defintion */
+> > +/* lcd_info_v2_1.panel_misc definition */
+> >  enum atom_lcd_info_panel_misc{
+> >    ATOM_PANEL_MISC_FPDI            =3D0x0002,
+> >  };
+> > @@ -683,7 +683,7 @@ enum atom_gpio_pin_assignment_gpio_id {
+> >    /* gpio_id pre-define id for multiple usage */
+> >    /* GPIO use to control PCIE_VDDC in certain SLT board */
+> >    PCIE_VDDC_CONTROL_GPIO_PINID =3D 56,
+> > -  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC swithin=
+g feature is enable */
+> > +  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC switchi=
+ng feature is enable */
+>
+> s/enable/enabled/
+>
+> >    PP_AC_DC_SWITCH_GPIO_PINID =3D 60,
+> >    /* VDDC_REGULATOR_VRHOT_GPIO_PINID in Gpio_Pin_LutTable, VRHot featu=
+re is enable */
+>
+> Ditto.
+> There may be a few more that need this same treatment.
+>
+> >    VDDC_VRHOT_GPIO_PINID =3D 61,
+>
+> The other changes look good as far as they go, but codespell reports
+> a few more misspellings to consider:
+>
+> atomfirmware.h:213: aligment =3D=3D> alignment
+> atomfirmware.h:257: Offest =3D=3D> Offset
+> atomfirmware.h:258: Offest =3D=3D> Offset
+> atomfirmware.h:390: Offest =3D=3D> Offset
+> atomfirmware.h:455: defintion =3D=3D> definition
+> atomfirmware.h:648: defintion =3D=3D> definition
+> atomfirmware.h:686: swithing =3D=3D> switching
+> atomfirmware.h:704: calcualted =3D=3D> calculated
+> atomfirmware.h:967: compability =3D=3D> compatibility
+> atomfirmware.h:981: intenal =3D=3D> internal
+> atomfirmware.h:993: intenal =3D=3D> internal
+> atomfirmware.h:3469: sequece =3D=3D> sequence
+> atomfirmware.h:3507: indiate =3D=3D> indicate
+> atomfirmware.h:4429: stucture =3D=3D> structure
+> atomfirmware.h:4430: stucture =3D=3D> structure
+> atomfirmware.h:4462: regiser =3D=3D> register
+>
+>
+> thanks.
+> --
+> #Randy
+> https://people.kernel.org/tglx/notes-about-netiquette
+> https://subspace.kernel.org/etiquette.html
 
-On 12/14/23 21:20, Ghanshyam Agrawal wrote:
-> Fixed multiple typos in atomfirmware.h
-> 
-> Signed-off-by: Ghanshyam Agrawal <ghanshyam1898@gmail.com>
-> ---
->  drivers/gpu/drm/amd/include/atomfirmware.h | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
-> index fa7d6ced786f..41d553921adf 100644
-> --- a/drivers/gpu/drm/amd/include/atomfirmware.h
-> +++ b/drivers/gpu/drm/amd/include/atomfirmware.h
-> @@ -210,7 +210,7 @@ atom_bios_string          = "ATOM"
->  };
->  */
->  
-> -#pragma pack(1)                          /* BIOS data must use byte aligment*/
-> +#pragma pack(1)                          /* BIOS data must use byte alignment */
->  
->  enum atombios_image_offset{
->    OFFSET_TO_ATOM_ROM_HEADER_POINTER          = 0x00000048,
-> @@ -452,7 +452,7 @@ struct atom_dtd_format
->    uint8_t   refreshrate;
->  };
->  
-> -/* atom_dtd_format.modemiscinfo defintion */
-> +/* atom_dtd_format.modemiscinfo definition */
->  enum atom_dtd_format_modemiscinfo{
->    ATOM_HSYNC_POLARITY    = 0x0002,
->    ATOM_VSYNC_POLARITY    = 0x0004,
-> @@ -645,7 +645,7 @@ struct lcd_info_v2_1
->    uint32_t reserved1[8];
->  };
->  
-> -/* lcd_info_v2_1.panel_misc defintion */
-> +/* lcd_info_v2_1.panel_misc definition */
->  enum atom_lcd_info_panel_misc{
->    ATOM_PANEL_MISC_FPDI            =0x0002,
->  };
-> @@ -683,7 +683,7 @@ enum atom_gpio_pin_assignment_gpio_id {
->    /* gpio_id pre-define id for multiple usage */
->    /* GPIO use to control PCIE_VDDC in certain SLT board */
->    PCIE_VDDC_CONTROL_GPIO_PINID = 56,
-> -  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC swithing feature is enable */
-> +  /* if PP_AC_DC_SWITCH_GPIO_PINID in Gpio_Pin_LutTable, AC/DC switching feature is enable */
+Hi Randy,
 
-s/enable/enabled/
+Thanks for your feedback. I will correct the grammatical errors.
 
->    PP_AC_DC_SWITCH_GPIO_PINID = 60,
->    /* VDDC_REGULATOR_VRHOT_GPIO_PINID in Gpio_Pin_LutTable, VRHot feature is enable */
+Regarding the other codespell suggestions, if I make the changes
+then checkpatch script gives a lot of errors and warnings. Some
+are related to usage of tabs, line lengths etc. Being a beginner
+in the linux kernel development, I am not sure how to fix
+(or whether to ignore) those warnings. Would it be okay if I
+proceed with only the small number of changes I have suggested
+with this patch itself?
 
-Ditto.
-There may be a few more that need this same treatment.
-
->    VDDC_VRHOT_GPIO_PINID = 61,
-
-The other changes look good as far as they go, but codespell reports
-a few more misspellings to consider:
-
-atomfirmware.h:213: aligment ==> alignment
-atomfirmware.h:257: Offest ==> Offset
-atomfirmware.h:258: Offest ==> Offset
-atomfirmware.h:390: Offest ==> Offset
-atomfirmware.h:455: defintion ==> definition
-atomfirmware.h:648: defintion ==> definition
-atomfirmware.h:686: swithing ==> switching
-atomfirmware.h:704: calcualted ==> calculated
-atomfirmware.h:967: compability ==> compatibility
-atomfirmware.h:981: intenal ==> internal
-atomfirmware.h:993: intenal ==> internal
-atomfirmware.h:3469: sequece ==> sequence
-atomfirmware.h:3507: indiate ==> indicate
-atomfirmware.h:4429: stucture ==> structure
-atomfirmware.h:4430: stucture ==> structure
-atomfirmware.h:4462: regiser ==> register
-
-
-thanks.
--- 
-#Randy
-https://people.kernel.org/tglx/notes-about-netiquette
-https://subspace.kernel.org/etiquette.html
+Thanks & Regards,
+Ghanshyam Agrawal
