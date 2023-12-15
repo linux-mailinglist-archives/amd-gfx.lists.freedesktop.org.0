@@ -1,42 +1,31 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A25A814C42
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 17:00:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26651814C50
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Dec 2023 17:01:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C4A810EA65;
-	Fri, 15 Dec 2023 16:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77D5B89F01;
+	Fri, 15 Dec 2023 16:00:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20601.outbound.protection.outlook.com
- [IPv6:2a01:111:f403:2412::601])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95D1E10EA5F
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 16:00:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hNvgRftfIeVbg+Ohj2mKCC4QQWA11k/fY0ZugJRv8dEhyHYlD7OOGHocYqgYKHd6voC9TzywlAI6Kk9vB8gr5ejr55xDppgrIp2Tc8asTdkaisPlOQewsc+H86A+9RwOFkUliSuS/p6mabfcqSQ0OBS8cn8vi9If7Jb+VU3R3fGPRCJ8XHffa4ToYL3wXaO6I2Ju+XZUUp3iQKxtwMPpzMZ1D6PQoei8mnZWgQGmIMWQf16VJtCx7NIqMZ+HmgALIPSAUuUie2zLWZOTrzakPDbb/YtTb+PputQ7Rd30PORjd2q1YfGjP/oisDvFOjkAlM/ML5DSpYlPRdJnEwadWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hmlhLimzIk9uebLFrJB7EVqNgvOg1iCy3jLa2NPtDAI=;
- b=bau9GvvBZoCSTxu5KW+QGGsda9EODxrNOFzBFZ9hRp0x9Yc1FPzeK/+kzYZjzvVbH7/yCBLZPm+2b4bMXI2ayQ81411KtzMGgzq0AvZrxJRahZ5jEGZgjTz/VfiKY4bE12xouPCeqUG2mXeit2j/kAekR1aBLsQtE4u4BwDq2xcNTbRON6HbY4b9qBUyIeg5WxEyDzi17JYYGzhFu9G0bxrSWWOi32Qdg112wRcIgJnBhwV2e0lKeoLpd0tDVjSC8k+KAqXBo0CVski+YLD/AAyl0gB+Z3yavsliZJerBdZ+ycEdIfhsCh4pP+MmFgPuLlOwmmD9ldPf/Tic7aV/jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::61f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCAC10EA6A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Dec 2023 16:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hmlhLimzIk9uebLFrJB7EVqNgvOg1iCy3jLa2NPtDAI=;
- b=dOg1TtSTuyIgk8N/MPlTZybEOU6gL3bFzwVRmum6v2DqWO9UMzfbXvYGAO8fjTYJFFOapR/cEstbtp4liOsmcouYvn+i1TWAeyv7tdmhbv5glWCzK4mTN91v4NxJoLIpWDT27zhX+Gj+dGi7W4MYxgWo9ViEawES6aoOC16+bIg=
-Received: from SN1PR12CA0091.namprd12.prod.outlook.com (2603:10b6:802:21::26)
- by DM6PR12MB4514.namprd12.prod.outlook.com (2603:10b6:5:2a7::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31; Fri, 15 Dec
- 2023 16:00:44 +0000
+ bh=ujatcylXHCmGOYHFBq/USAc36TNTCdluPM6ejHtjvXk=;
+ b=XLbCA3868HxSoGzymQibAwk1SG0RbcARfUKTqWQ3/47Vc05busAYudIlp3x4XMf8FEHksbZjUgjG3Hzaz1Yr8gm4KOpnxUW4B61mERTV8Wq7gzwTIE00c4SBuCc5CM/a14GYBqrpsloN76E0zsqlwpWw5z0AjjsQw5V+A0xcVHc=
+Received: from SN1PR12CA0114.namprd12.prod.outlook.com (2603:10b6:802:21::49)
+ by MW4PR12MB6778.namprd12.prod.outlook.com (2603:10b6:303:1e8::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.32; Fri, 15 Dec
+ 2023 16:00:45 +0000
 Received: from SN1PEPF00026369.namprd02.prod.outlook.com
- (2603:10b6:802:21:cafe::99) by SN1PR12CA0091.outlook.office365.com
- (2603:10b6:802:21::26) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:802:21:cafe::fe) by SN1PR12CA0114.outlook.office365.com
+ (2603:10b6:802:21::49) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31 via Frontend
  Transport; Fri, 15 Dec 2023 16:00:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -52,12 +41,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 15 Dec
- 2023 10:00:39 -0600
+ 2023 10:00:40 -0600
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 10/24] drm/amdkfd: trigger pc sampling trap for gfx v9
-Date: Fri, 15 Dec 2023 10:59:37 -0500
-Message-ID: <20231215155951.811884-11-James.Zhu@amd.com>
+Subject: [PATCH v3 11/24] drm/amdkfd/gfx9: enable host trap
+Date: Fri, 15 Dec 2023 10:59:38 -0500
+Message-ID: <20231215155951.811884-12-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231215155951.811884-1-James.Zhu@amd.com>
 References: <20231215155951.811884-1-James.Zhu@amd.com>
@@ -69,26 +58,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00026369:EE_|DM6PR12MB4514:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2878c543-5ae6-45bc-3737-08dbfd86fe9d
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026369:EE_|MW4PR12MB6778:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e1b7105-3408-4708-d20b-08dbfd86fed8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: liZMOUfWiA1ivxWnMq1qWaF21ycP5qXU0aMT6O1FzLZoFA3R2EJ4oGwxKaPS1c6sZdrw/bBeIHJUlJ77bTvuHeR/maKJZbblL3TGn5+o8lCFoux0HzXiDPixMpgG7qGUcu2Oz3pjl8xtBa+wJTHz5aiI8xYbRm+eme+RYC4HKYg5dbYX5d4ACE2dqdmW1o8X2eO5rQ6Mh/943O9bYvycSijmvxfzOWY1+g9gv0wsq03rFKhLpFXALaEez7JGJUmngu2AB8TL/b/ibO7wg+WtTerJ43sVJrZtMflovHAcTTLBoReuPIAQR60KYY5hm5mcWl2faWUK7fdbq9rXI+Elo0Pcto+FOYpiAjVQWUz4QFpcM606RsWPIaHabuMw1EBMTjXZIXkJYVy4aTx3geI9oeDGJ7rZwyx+cmzirEJT6PdIp9HVoS720r/DoFg+QfoErRxgcM8FQsp4BsX3WVUAGRCm/9BgibgEE3kuK9fLirXmo32RaxR/SVgr3IE/2TomkMvY6/9XlAiIlHUszFlYiI7j5o6xlwQ2OUOTfbbSrqwS5miu2XOZZwJJvoWBILpk3V3FbahU8zaymKjm1IESxehAXVVDxttSrUDmdjVbZYz7ZshQvKC5kVlwUJrzPVZ2zUEaId4IwY0MwWM52wJOPAA/SvHP/i4Gd1d7fBJnCr64US5PShIqJbHqplJiH2LTgBRcPQ4AhKy9uqe8Wg+UX8wXJDlTRD7KpWcL8N9x2aCv+YeccbJv98K4PmfnuHwEDk/L4eowNr+zV0jsoq3/Vw==
+X-Microsoft-Antispam-Message-Info: vhpUtEumryOYc1USORryfhbTuRxXN8gT63KP5ENhLltD7U0pLuJOym33PTHOr+YL/KJNHjjO4SFU5NucKy81ajKGPOVFFp5+ilmjvfXRHdr7sxg/vW5Rg/6IhzJK/pCO9z+F6tDg7JyadkzcwdfH3qvVKhhNogk8w23axujBLo8Xvt3KKF6dZZDNUHQPlrOA+tF8oWXSwx5Qx327jM0vn/v93ReFa/jFE3cstz6NbFza8dBfaMtxLed7oDgYHn04V8cv5rnn/QvrmUnBw+8q1dL1v2NbAmQBihB8WKo/N4yFLTkHChuMluiZkpXPJks6Ntne/r6pMDnBFiNE+QwGfDy/DEZuk0Ub9kfT1WYpWPc/qPYQY97F+5ErvBgY7vhiqJA4t/igbelVx0dJcktaaBbaD/1SCDlYiqwgNizsDKftF8rscOuYWvbQCUiFtLbYTVUO3e28tNnPR0Jf4uL3PZh8dnXwty5KQiGdWUiGtK/pzEBVZK3PDQMMnWmoZRyiKShn3Ft1BvYjShK5nOKh3X/28sxDvYWSEHk+culrsYsrp9ESDsmJ+wUKT83xS3Sk9PzZBwnTwE5uzgcrQW5DOv/daWySXBQjUI4EH6jkbts6HdxlSiBIyaOSUDrsS2lUoc0P4rbUX0hVHvGDY0Zbaz1alOzjzJji45kN+Ha+jSjB/qEmgUQsB36iTANMMUoNyPsKrYypKGJkPpCX7knwqNpxkPT+UghmXlqxZ4LJo61Pp4ceVfQ5fWEyM5sVaRoQUJ4NeteBcxF82SIxH8To0g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(346002)(136003)(39860400002)(376002)(230922051799003)(82310400011)(1800799012)(64100799003)(451199024)(186009)(40470700004)(46966006)(36840700001)(40480700001)(40460700003)(316002)(356005)(81166007)(82740400003)(36756003)(86362001)(26005)(47076005)(83380400001)(16526019)(2616005)(1076003)(336012)(426003)(478600001)(2906002)(54906003)(6916009)(70586007)(70206006)(7696005)(5660300002)(8936002)(8676002)(4326008)(41300700001)(36860700001)(36900700001);
+ SFS:(13230031)(4636009)(136003)(376002)(39860400002)(346002)(396003)(230922051799003)(451199024)(82310400011)(186009)(64100799003)(1800799012)(46966006)(40470700004)(36840700001)(70206006)(70586007)(4326008)(8936002)(8676002)(316002)(6916009)(54906003)(478600001)(41300700001)(5660300002)(2906002)(86362001)(36756003)(2616005)(1076003)(36860700001)(83380400001)(40480700001)(356005)(426003)(82740400003)(16526019)(26005)(81166007)(47076005)(40460700003)(336012)(7696005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 16:00:44.1593 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2878c543-5ae6-45bc-3737-08dbfd86fe9d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 16:00:44.5499 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e1b7105-3408-4708-d20b-08dbfd86fed8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026369.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4514
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6778
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,76 +93,210 @@ Cc: Felix.kuehling@amd.com, joseph.greathouse@amd.com, jamesz@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Implement trigger pc sampling trap for gfx v9.
+Enable host trap.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 36 +++++++++++++++++++
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h |  7 ++++
- 2 files changed, 43 insertions(+)
+ .../gpu/drm/amd/amdkfd/cwsr_trap_handler.h    | 63 +++++++++++--------
+ .../drm/amd/amdkfd/cwsr_trap_handler_gfx9.asm | 24 ++++---
+ 2 files changed, 52 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-index 5a35a8ca8922..7d8c0e13ac12 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-@@ -1144,6 +1144,42 @@ void kgd_gfx_v9_program_trap_handler_settings(struct amdgpu_device *adev,
- 	kgd_gfx_v9_unlock_srbm(adev, inst);
- }
+diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
+index df75863393fc..747426bd5181 100644
+--- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
++++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
+@@ -274,14 +274,14 @@ static const uint32_t cwsr_trap_gfx8_hex[] = {
  
-+uint32_t kgd_gfx_v9_trigger_pc_sample_trap(struct amdgpu_device *adev,
-+					    uint32_t vmid,
-+					    uint32_t max_wave_slot,
-+					    uint32_t max_simd,
-+					    uint32_t *target_simd,
-+					    uint32_t *target_wave_slot,
-+					    enum kfd_ioctl_pc_sample_method method)
-+{
-+	if (method == KFD_IOCTL_PCS_METHOD_HOSTTRAP) {
-+		uint32_t value = 0;
+ 
+ static const uint32_t cwsr_trap_gfx9_hex[] = {
+-	0xbf820001, 0xbf820258,
++	0xbf820001, 0xbf82025e,
+ 	0xb8f8f802, 0x8978ff78,
+ 	0x00020006, 0xb8fbf803,
+ 	0x866eff78, 0x00002000,
+ 	0xbf840009, 0x866eff6d,
+ 	0x00ff0000, 0xbf85001e,
+ 	0x866eff7b, 0x00000400,
+-	0xbf850055, 0xbf8e0010,
++	0xbf85005b, 0xbf8e0010,
+ 	0xb8fbf803, 0xbf82fffa,
+ 	0x866eff7b, 0x03c00900,
+ 	0xbf850015, 0x866eff7b,
+@@ -294,7 +294,7 @@ static const uint32_t cwsr_trap_gfx9_hex[] = {
+ 	0xbf850007, 0xb8eef801,
+ 	0x866eff6e, 0x00000800,
+ 	0xbf850003, 0x866eff7b,
+-	0x00000400, 0xbf85003a,
++	0x00000400, 0xbf850040,
+ 	0xb8faf807, 0x867aff7a,
+ 	0x001f8000, 0x8e7a8b7a,
+ 	0x8977ff77, 0xfc000000,
+@@ -303,13 +303,16 @@ static const uint32_t cwsr_trap_gfx9_hex[] = {
+ 	0xb8fbf813, 0x8efa887a,
+ 	0xbf0d8f7b, 0xbf840002,
+ 	0x877bff7b, 0xffff0000,
+-	0xc0031bbd, 0x00000010,
+-	0xbf8cc07f, 0x8e6e976e,
+-	0x8977ff77, 0x00800000,
+-	0x87776e77, 0xc0071bbd,
+-	0x00000000, 0xbf8cc07f,
++	0xc0031c3d, 0x00000010,
++	0xc0071bbd, 0x00000000,
+ 	0xc0071ebd, 0x00000008,
+-	0xbf8cc07f, 0x86ee6e6e,
++	0xbf8cc07f, 0x8671ff6d,
++	0x01000000, 0xbf840004,
++	0x92f1ff70, 0x00010001,
++	0xbf840016, 0xbf820005,
++	0x86708170, 0x8e709770,
++	0x8977ff77, 0x00800000,
++	0x87777077, 0x86ee6e6e,
+ 	0xbf840001, 0xbe801d6e,
+ 	0x866eff6d, 0x01ff0000,
+ 	0xbf850005, 0x8778ff78,
+@@ -1098,14 +1101,14 @@ static const uint32_t cwsr_trap_nv1x_hex[] = {
+ };
+ 
+ static const uint32_t cwsr_trap_arcturus_hex[] = {
+-	0xbf820001, 0xbf8202d4,
++	0xbf820001, 0xbf8202da,
+ 	0xb8f8f802, 0x8978ff78,
+ 	0x00020006, 0xb8fbf803,
+ 	0x866eff78, 0x00002000,
+ 	0xbf840009, 0x866eff6d,
+ 	0x00ff0000, 0xbf85001e,
+ 	0x866eff7b, 0x00000400,
+-	0xbf850055, 0xbf8e0010,
++	0xbf85005b, 0xbf8e0010,
+ 	0xb8fbf803, 0xbf82fffa,
+ 	0x866eff7b, 0x03c00900,
+ 	0xbf850015, 0x866eff7b,
+@@ -1118,7 +1121,7 @@ static const uint32_t cwsr_trap_arcturus_hex[] = {
+ 	0xbf850007, 0xb8eef801,
+ 	0x866eff6e, 0x00000800,
+ 	0xbf850003, 0x866eff7b,
+-	0x00000400, 0xbf85003a,
++	0x00000400, 0xbf850040,
+ 	0xb8faf807, 0x867aff7a,
+ 	0x001f8000, 0x8e7a8b7a,
+ 	0x8977ff77, 0xfc000000,
+@@ -1127,13 +1130,16 @@ static const uint32_t cwsr_trap_arcturus_hex[] = {
+ 	0xb8fbf813, 0x8efa887a,
+ 	0xbf0d8f7b, 0xbf840002,
+ 	0x877bff7b, 0xffff0000,
+-	0xc0031bbd, 0x00000010,
+-	0xbf8cc07f, 0x8e6e976e,
+-	0x8977ff77, 0x00800000,
+-	0x87776e77, 0xc0071bbd,
+-	0x00000000, 0xbf8cc07f,
++	0xc0031c3d, 0x00000010,
++	0xc0071bbd, 0x00000000,
+ 	0xc0071ebd, 0x00000008,
+-	0xbf8cc07f, 0x86ee6e6e,
++	0xbf8cc07f, 0x8671ff6d,
++	0x01000000, 0xbf840004,
++	0x92f1ff70, 0x00010001,
++	0xbf840016, 0xbf820005,
++	0x86708170, 0x8e709770,
++	0x8977ff77, 0x00800000,
++	0x87777077, 0x86ee6e6e,
+ 	0xbf840001, 0xbe801d6e,
+ 	0x866eff6d, 0x01ff0000,
+ 	0xbf850005, 0x8778ff78,
+@@ -1578,14 +1584,14 @@ static const uint32_t cwsr_trap_arcturus_hex[] = {
+ };
+ 
+ static const uint32_t cwsr_trap_aldebaran_hex[] = {
+-	0xbf820001, 0xbf8202df,
++	0xbf820001, 0xbf8202e5,
+ 	0xb8f8f802, 0x8978ff78,
+ 	0x00020006, 0xb8fbf803,
+ 	0x866eff78, 0x00002000,
+ 	0xbf840009, 0x866eff6d,
+ 	0x00ff0000, 0xbf85001e,
+ 	0x866eff7b, 0x00000400,
+-	0xbf850055, 0xbf8e0010,
++	0xbf85005b, 0xbf8e0010,
+ 	0xb8fbf803, 0xbf82fffa,
+ 	0x866eff7b, 0x03c00900,
+ 	0xbf850015, 0x866eff7b,
+@@ -1598,7 +1604,7 @@ static const uint32_t cwsr_trap_aldebaran_hex[] = {
+ 	0xbf850007, 0xb8eef801,
+ 	0x866eff6e, 0x00000800,
+ 	0xbf850003, 0x866eff7b,
+-	0x00000400, 0xbf85003a,
++	0x00000400, 0xbf850040,
+ 	0xb8faf807, 0x867aff7a,
+ 	0x001f8000, 0x8e7a8b7a,
+ 	0x8977ff77, 0xfc000000,
+@@ -1607,13 +1613,16 @@ static const uint32_t cwsr_trap_aldebaran_hex[] = {
+ 	0xb8fbf813, 0x8efa887a,
+ 	0xbf0d8f7b, 0xbf840002,
+ 	0x877bff7b, 0xffff0000,
+-	0xc0031bbd, 0x00000010,
+-	0xbf8cc07f, 0x8e6e976e,
+-	0x8977ff77, 0x00800000,
+-	0x87776e77, 0xc0071bbd,
+-	0x00000000, 0xbf8cc07f,
++	0xc0031c3d, 0x00000010,
++	0xc0071bbd, 0x00000000,
+ 	0xc0071ebd, 0x00000008,
+-	0xbf8cc07f, 0x86ee6e6e,
++	0xbf8cc07f, 0x8671ff6d,
++	0x01000000, 0xbf840004,
++	0x92f1ff70, 0x00010001,
++	0xbf840016, 0xbf820005,
++	0x86708170, 0x8e709770,
++	0x8977ff77, 0x00800000,
++	0x87777077, 0x86ee6e6e,
+ 	0xbf840001, 0xbe801d6e,
+ 	0x866eff6d, 0x01ff0000,
+ 	0xbf850005, 0x8778ff78,
+diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx9.asm b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx9.asm
+index e506411ad28a..6880340c25af 100644
+--- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx9.asm
++++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx9.asm
+@@ -104,6 +104,10 @@ var SQ_WAVE_IB_STS_RCNT_FIRST_REPLAY_MASK	= 0x1F8000
+ 
+ var SQ_WAVE_MODE_DEBUG_EN_MASK		=   0x800
+ 
++var TMA_HOST_TRAP_EN_SHIFT               =   1
++var TMA_HOST_TRAP_EN_SIZE                =   1
++var TMA_HOST_TRAP_EN_BFE                 =   (TMA_HOST_TRAP_EN_SHIFT | (TMA_HOST_TRAP_EN_SIZE << 16))
 +
-+		value = REG_SET_FIELD(value, SQ_CMD, CMD, SQ_IND_CMD_CMD_TRAP);
-+		value = REG_SET_FIELD(value, SQ_CMD, MODE, SQ_IND_CMD_MODE_SINGLE);
-+
-+		/* select *target_simd */
-+		value = REG_SET_FIELD(value, SQ_CMD, SIMD_ID, *target_simd);
-+		/* select *target_wave_slot */
-+		value = REG_SET_FIELD(value, SQ_CMD, WAVE_ID, (*target_wave_slot)++);
-+
-+		mutex_lock(&adev->grbm_idx_mutex);
-+		amdgpu_gfx_select_se_sh(adev, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0);
-+		WREG32_SOC15(GC, 0, mmSQ_CMD, value);
-+		mutex_unlock(&adev->grbm_idx_mutex);
-+
-+		*target_wave_slot %= max_wave_slot;
-+		if (!(*target_wave_slot)) {
-+			(*target_simd)++;
-+			*target_simd %= max_simd;
-+		}
-+	} else {
-+		pr_debug("PC Sampling method %d not supported.", method);
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
- const struct kfd2kgd_calls gfx_v9_kfd2kgd = {
- 	.program_sh_mem_settings = kgd_gfx_v9_program_sh_mem_settings,
- 	.set_pasid_vmid_mapping = kgd_gfx_v9_set_pasid_vmid_mapping,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
-index ce424615f59b..b47b926891a8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
-@@ -101,3 +101,10 @@ void kgd_gfx_v9_build_grace_period_packet_info(struct amdgpu_device *adev,
- 					       uint32_t grace_period,
- 					       uint32_t *reg_offset,
- 					       uint32_t *reg_data);
-+uint32_t kgd_gfx_v9_trigger_pc_sample_trap(struct amdgpu_device *adev,
-+					    uint32_t vmid,
-+					    uint32_t max_wave_slot,
-+					    uint32_t max_simd,
-+					    uint32_t *target_simd,
-+					    uint32_t *target_wave_slot,
-+					    enum kfd_ioctl_pc_sample_method method);
+ var TTMP_SAVE_RCNT_FIRST_REPLAY_SHIFT	=   26			// bits [31:26] unused by SPI debug data
+ var TTMP_SAVE_RCNT_FIRST_REPLAY_MASK	=   0xFC000000
+ var TTMP_DEBUG_TRAP_ENABLED_SHIFT	=   23
+@@ -288,17 +292,21 @@ L_FETCH_2ND_TRAP:
+     s_or_b32        ttmp15, ttmp15, 0xFFFF0000
+ L_NO_SIGN_EXTEND_TMA:
+ 
+-    s_load_dword    ttmp2, [ttmp14, ttmp15], 0x10 glc:1 // debug trap enabled flag
+-    s_waitcnt       lgkmcnt(0)
+-    s_lshl_b32      ttmp2, ttmp2, TTMP_DEBUG_TRAP_ENABLED_SHIFT
+-    s_andn2_b32     s_save_ib_sts, s_save_ib_sts, TTMP_DEBUG_TRAP_ENABLED_MASK
+-    s_or_b32        s_save_ib_sts, s_save_ib_sts, ttmp2
+-
++    s_load_dword    ttmp4, [ttmp14, ttmp15], 0x10 glc:1 // enable flags from 1st level TMA
+     s_load_dwordx2  [ttmp2, ttmp3], [ttmp14, ttmp15], 0x0 glc:1 // second-level TBA
+-    s_waitcnt       lgkmcnt(0)
+     s_load_dwordx2  [ttmp14, ttmp15], [ttmp14, ttmp15], 0x8 glc:1 // second-level TMA
+     s_waitcnt       lgkmcnt(0)
+-
++    s_and_b32       ttmp5, s_save_pc_hi, S_SAVE_PC_HI_HT_MASK // host trap request
++    s_cbranch_scc0  L_NOT_HT
++    s_bfe_u32       ttmp5, ttmp4, TMA_HOST_TRAP_EN_BFE // extract host_trap_en to ttmp5[0]
++    s_cbranch_scc0  L_EXIT_TRAP // HT requested, but host traps not enabled
++    s_branch        L_GOTO_2ND_TRAP
++L_NOT_HT:
++    s_and_b32       ttmp4, ttmp4, 0x1 // debug_enable bit left over
++    s_lshl_b32      ttmp4, ttmp4, TTMP_DEBUG_TRAP_ENABLED_SHIFT
++    s_andn2_b32     s_save_ib_sts, s_save_ib_sts, TTMP_DEBUG_TRAP_ENABLED_MASK
++    s_or_b32        s_save_ib_sts, s_save_ib_sts, ttmp4
++L_GOTO_2ND_TRAP:
+     s_and_b64       [ttmp2, ttmp3], [ttmp2, ttmp3], [ttmp2, ttmp3]
+     s_cbranch_scc0  L_NO_NEXT_TRAP // second-level trap handler not been set
+     s_setpc_b64     [ttmp2, ttmp3] // jump to second-level trap handler
 -- 
 2.25.1
 
