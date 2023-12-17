@@ -2,52 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69FA28179E0
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 Dec 2023 19:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73321817994
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Dec 2023 19:24:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9CA210E2A2;
-	Mon, 18 Dec 2023 18:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E57E110E2CD;
+	Mon, 18 Dec 2023 18:23:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1005910E29D;
- Mon, 18 Dec 2023 18:43:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702924991; x=1734460991;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2vkJ9UdkhUfc3Fyby+XZ9UErCG79JcAlyG3GkbzZWro=;
- b=X+T4s/otdF4gIwAHv5Sh4kqWtXJuUKFCSnCAbxfU5i6terInGZWc35o/
- bj43FtwX8yDoNt6CP2E2QWI1+DxPuxSVMIApAXvgOD0YiMeJ+QGOawVlR
- M2QUcsnSCgYOxmu/PywhBe/iP8IwreaJOT4Xk2xYkkVx7A19+JztxPlqr
- CyxD407dVKfHP29qcfMWDPnH+yR8RZuOTjDS2J6NpQIcOpYC1O8Cdpeg/
- q/oFxVkc4IFqaK5HdxmNh+rY/HwOSoCh29Ry6Oy7Raknj2Wn0sglSlQLs
- nx3xg9GlcUy+o667A17tv+vBPLp2jDjYLDVZ0rA8XbiC4d8gvOyMOqTFe A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="16984800"
-X-IronPort-AV: E=Sophos;i="6.04,284,1695711600"; d="scan'208";a="16984800"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2023 11:13:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10927"; a="1106708317"
-X-IronPort-AV: E=Sophos;i="6.04,284,1695711600"; d="scan'208";a="1106708317"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
- by fmsmga005.fm.intel.com with ESMTP; 17 Dec 2023 11:13:44 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rEwa6-0003M2-0y;
- Sun, 17 Dec 2023 19:13:42 +0000
-Date: Mon, 18 Dec 2023 03:13:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 1/2] drm/buddy: Implement tracking clear page feature
-Message-ID: <202312180258.cty6XurG-lkp@intel.com>
-References: <20231214134240.3183-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com
+ [209.85.161.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE0F810E15B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Dec 2023 18:22:02 +0000 (UTC)
+Received: by mail-oo1-f46.google.com with SMTP id
+ 006d021491bc7-5909156aea9so700797eaf.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Dec 2023 10:22:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1702923722; x=1703528522; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3m+jVYqp6EcLXJ5MZmOR+viJOCSvxMGKIzUXoWZT6+4=;
+ b=W9/vsaQBzOvzMXLsUCXz19CDPCZQVyFRGV04N88cvDVKW74up+XS8+L7SIhefbtta6
+ +vDgtd32xRvcmzDU0O5q70vDwablhir2Od7fP6GEyz7l89mR5g5ZVSGqsiJ9pGygzsXy
+ ZxQ3mL9fxXBXImD0twCmrTMiMqSbcB41lMNtSL2I0EvBQgIPjwj2dMiM2R+o22+KEMiT
+ J12MG4xkZDZ7vsdxPCf/lm8qCO6sLNSZNs1sghJDcQnZoR2XdXPnLvlEVHjwcZYtz7oT
+ RtlzMSozi8u6i6BgQUMQ/eUIcNkGgDuujZq2CYY0VWj7A8XZf4mxWrRYTH37bIz2td75
+ YIHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1702923722; x=1703528522;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=3m+jVYqp6EcLXJ5MZmOR+viJOCSvxMGKIzUXoWZT6+4=;
+ b=Rx/va11t5jQdCzeuOEz6R2BPQ4qFijVMS4nPstMrtXZ/jVu9vrIQ78xeT+Rd6Bf3U1
+ 2tAGEnjIkx1hMIFTuqGzuwlneb/xY3T0IngM4Cs/rxitzLUoeWj9qONUOSBj78fkpvzN
+ UDJ0Qmi+ciHXQmxIyxle9kkcIVoQ/Uatoox9OuA3HKvGeXeVQ3KlE0QAW4k0CCl/v3vj
+ ZRHYxy5b2tnwPF2je3q5dtBFqkgPQbfAA1cqFbChLKoW6LwK235AuKw36Hr+wrMg/3H9
+ KHOpn8xBNDfVjNmgZy/C2PTQ/1Efhqu1bOPKvFH+8S298uAvIGABmbxFrTN9AjssGo4R
+ rYlQ==
+X-Gm-Message-State: AOJu0YwBDIkQCGR6erlrQ62Q8oLwJu87TV6vtKkASnxr2oSmMAKGYkI1
+ TgEb/uIdcbXnX3FS1TnyZryYLVmE0w28pFyPVj17cNvo3Jd2VYlRgAo=
+X-Google-Smtp-Source: AGHT+IGwtlG0iYeuePZ8xUWo+zC56EnNODNKOb/8LKp9UBeZ8RrgL2+kY3r7chk8zMGQcxxG2CcbKZdqmnp8p9LKCDQ=
+X-Received: by 2002:ad4:5228:0:b0:67a:a601:ce4 with SMTP id
+ r8-20020ad45228000000b0067aa6010ce4mr27159450qvq.6.1702849175956; Sun, 17 Dec
+ 2023 13:39:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214134240.3183-1-Arunpravin.PaneerSelvam@amd.com>
+References: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
+ <886c29fc-0b0c-4f7c-a2fa-f015a2b51fa3@amd.com>
+In-Reply-To: <886c29fc-0b0c-4f7c-a2fa-f015a2b51fa3@amd.com>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Mon, 18 Dec 2023 02:39:25 +0500
+Message-ID: <CABXGCsNY2aR93pX0AtWUZ1v0QLj3ANoDmS13HCcdN-c4htHbtg@mail.gmail.com>
+Subject: Re: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
+ flashing bar with a picture of the desktop background on white screen
+To: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +69,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- felix.kuehling@amd.com, matthew.auld@intel.com, oe-kbuild-all@lists.linux.dev,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, daniel.wheeler@amd.com,
+ hersenxs.wu@amd.com, alvin.lee2@amd.com, "Deucher,
+ Alexander" <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Arunpravin,
+On Fri, Dec 15, 2023 at 9:14=E2=80=AFPM Hamza Mahfooz <hamza.mahfooz@amd.co=
+m> wrote:
+>
+> Can you try the following patch with old fw (version 0x07002100 should
+> be fine)?: https://patchwork.freedesktop.org/patch/572298/
+>
 
-kernel test robot noticed the following build warnings:
+Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com> on 7900XTX hardw=
+are.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm/drm-next drm-exynos/exynos-drm-next drm-tip/drm-tip linus/master v6.7-rc5 next-20231215]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Can I ask?
+What does SubVP actually do?
+I read on Phoronix that this is new feature of DCN 3.2 hardware
+https://www.phoronix.com/news/AMDGPU-Linux-6.5-Improvements
+But I didn't notice that anything began to work better after enabling
+this feature.
+On the contrary, my kernel logs began to become overgrown with
+unpleasant errors.
+See here: https://gitlab.freedesktop.org/drm/amd/-/issues/2796
+I bisected this issue and bisect heads me to commit
+299004271cbf0315da327c4bd67aec3e7041cb32 which enables SubVP high
+refresh rate.
+But without SubVP I also had 120Hz and 4K. So I ask again what is the
+profit of SubVP?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Arunpravin-Paneer-Selvam/drm-amdgpu-Enable-clear-page-functionality/20231214-214811
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20231214134240.3183-1-Arunpravin.PaneerSelvam%40amd.com
-patch subject: [PATCH v3 1/2] drm/buddy: Implement tracking clear page feature
-config: arc-randconfig-001-20231215 (https://download.01.org/0day-ci/archive/20231218/202312180258.cty6XurG-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231218/202312180258.cty6XurG-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312180258.cty6XurG-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> scripts/kernel-doc: drivers/gpu/drm/drm_buddy.c:337: warning: Function parameter or struct member 'flags' not described in 'drm_buddy_free_list'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Best Regards,
+Mike Gavrilov.
