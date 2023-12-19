@@ -1,64 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF93818D3A
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Dec 2023 18:01:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B749818D68
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Dec 2023 18:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F68010E4D4;
-	Tue, 19 Dec 2023 17:01:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BED710E4FA;
+	Tue, 19 Dec 2023 17:04:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
- [IPv6:2001:4860:4864:20::2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46DB010E4D2
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 17:01:24 +0000 (UTC)
-Received: by mail-oa1-x2f.google.com with SMTP id
- 586e51a60fabf-1f066fc2a2aso1564410fac.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 09:01:24 -0800 (PST)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8052310E195;
+ Tue, 19 Dec 2023 14:19:33 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ 5b1f17b1804b1-40c38de1ee4so46077135e9.0; 
+ Tue, 19 Dec 2023 06:19:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1703005283; x=1703610083; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=A86hRA+Z/z0c3itpc9F8Zb+jzXF87R/S8fePRsyMfBI=;
- b=ci+fLuE0EjXHGWHCoSmbrhItXajkMN25nNR49ddi63RsemNv8I8K+m/wXG4aUudo+n
- nxwtXsMv62p3qVF0eN+rzkKDse+ltB7JEBeb1SoMK0AzDtxMpqumcHc0hkluomRijWma
- gYf2+nub1DJnKWPZtD3bG6411x9U9pRNWK1b//9AVHHIMAvbbvS7tVVDg91X7l3irmDR
- kUpZGzKMm+afmp2pu5le+wepPu5rgNtXb8VCK3eQC1LuB5v5CoSJwOnnKtfnfEL7p9M9
- 9SGPDm+6EoOQIzB5C9Q2rXBctQQmFhrkrPWgkLJoWJ7HbxtSdAa29iY8CPaVQebdqCZN
- 1DJQ==
+ d=gmail.com; s=20230601; t=1702995572; x=1703600372; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Pejp2iczdWxF7uQVAlzk9w8bQVEry9Ccx9GLBVSdAiw=;
+ b=VvGnAe607WqS+RxBOmHxZSAZW6Mp7VRwtYWffTHYw5eUyCkL/ab8MpY04fJ2h9MEot
+ pHUJjxcxx70swKG5KbsKTjNfgl3gRJ4KPia2nsni4RrXgEvdhuP5Ku2kikLBvoykCkPz
+ ipgZtDOW7oiuDE0gBADOrgIJtDvuHweI2sCcW+GR+yrwhrNtoTUhngebPrqsAb4U334H
+ neL2S1pfwTCbi1wTWmzCvjCeaKwRk6Ll2qqRuHEwXdFIhMTgxIeH1ajUVzblgSv9mUeV
+ X5kNF2xz/Iz7pkkazfPvWE5X0AnasRtziYsMvpfrZKqR1YNtYCpfzHuuFh+Qq7ySqQtS
+ CYEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703005283; x=1703610083;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=A86hRA+Z/z0c3itpc9F8Zb+jzXF87R/S8fePRsyMfBI=;
- b=i+LM8lYNvEjpcFrB+Cll/zNv3FFvlYkzCxYlP4Ubl2XIUOQvP03zUyYYVg0mtvzKmG
- YJHam0YNPma6X0Q9bmZGWovwjmydZaL5wsnqAcCRtP2uTNFz3zXRzQ+/pApe2HFVLUwX
- iSRwGEDuEvUF/kOP09JWgv+ETY48JvkkoExmVRP98enr///uc3gFjnKk7JQryTzKCtEL
- 64wj1pfNYu0yDBCiHedoMZMwTVPlcgyhO6kBnqX8KLUuQQ7TJCGeqcQ1g9ApjC2sW5U8
- sdTxU5XtUkQv7V5ReyON42mIBdT4QrLjWseP2HTXvtUHpFLZ3bOaVH3Ehiy2OsUS6Qbo
- 45mA==
-X-Gm-Message-State: AOJu0YwFjENNmaqJGSTUhO6jMxp6u8p3Z0DBKOlBjaZy9d24hmBrkM28
- 4qWr+v9FKOMsgDPXq8Og1bZALwmeJPipP39uMj8=
-X-Google-Smtp-Source: AGHT+IGeUl1MbfNOrgjTYrpo1XVU9xDLT+jahGnrtMt7bHVd/782HmAf9UnjIXS2bvOujgh/sfDglT+PmJ4FtTz/qzI=
-X-Received: by 2002:a05:6870:6ec7:b0:1fb:75b:2ba4 with SMTP id
- qv7-20020a0568706ec700b001fb075b2ba4mr10647440oab.96.1703005283322; Tue, 19
- Dec 2023 09:01:23 -0800 (PST)
+ d=1e100.net; s=20230601; t=1702995572; x=1703600372;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Pejp2iczdWxF7uQVAlzk9w8bQVEry9Ccx9GLBVSdAiw=;
+ b=IGwhu6apRiQ0u+9QPiOCvGia4rZrMP0B8Yry2V6Jk+dM0OQO+rDD1WCqkz6j45xe00
+ wbpcJQZWzx5RTo7GIwWlKZq3rkEEjSXSJHRwWUDdUbGgpJ+CzG2o0qKBCViLxKPiVS4+
+ vtF1zyF4QlYbPbZPlf4DHAGqaPDRXIVIZTPm0UhCUWX7XNXMsusX1rZSlm8ftqYHUV3d
+ fbrGTf4hITLx9/CgykdyFiZCq7FqGZcG7X98VLukLh/4LE3e0OzWSXL0hVhAkyxge+MD
+ WGby6T0c1SbQOU2g/8SKJSIxSL4P2LtoOrGbvRHz2FG8eI3WTRkHEvw1qTSnAA5gGP24
+ JmPg==
+X-Gm-Message-State: AOJu0YzHkcDeQHvGlzpPcygMhn6eYVV0ah3ApwW1QMieglHIV4af2X2a
+ 329cmkq0VUpX95Gp9W5yGg0=
+X-Google-Smtp-Source: AGHT+IF1aG81n3QckfqzCx5kXe1hHH5po9wN30gDtf7kGI9NGXY6aka+rEQuePN7k7d7rWgIRVEHuA==
+X-Received: by 2002:a05:600c:2043:b0:40c:6204:d597 with SMTP id
+ p3-20020a05600c204300b0040c6204d597mr4952779wmg.65.1702995571614; 
+ Tue, 19 Dec 2023 06:19:31 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ d1-20020adfe841000000b00333404e9935sm8390805wrn.54.2023.12.19.06.19.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Dec 2023 06:19:31 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: remove redundant initialization of variable
+ remainder
+Date: Tue, 19 Dec 2023 14:19:30 +0000
+Message-Id: <20231219141930.367426-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <CABXGCsNRb0QbF2pKLJMDhVOKxyGD6-E+8p-4QO6FOWa6zp22_A@mail.gmail.com>
- <886c29fc-0b0c-4f7c-a2fa-f015a2b51fa3@amd.com>
- <CABXGCsNY2aR93pX0AtWUZ1v0QLj3ANoDmS13HCcdN-c4htHbtg@mail.gmail.com>
-In-Reply-To: <CABXGCsNY2aR93pX0AtWUZ1v0QLj3ANoDmS13HCcdN-c4htHbtg@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 19 Dec 2023 12:01:11 -0500
-Message-ID: <CADnq5_Nj3pP4MNnGz+WZZFOtWrXE5-jYQsbkHyCkxWYV-HJrCw@mail.gmail.com>
-Subject: Re: regression/bisected/6.7rc1: Instead of desktop I see a horizontal
- flashing bar with a picture of the desktop background on white screen
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 19 Dec 2023 17:04:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +78,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, daniel.wheeler@amd.com,
- hersenxs.wu@amd.com, alvin.lee2@amd.com, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 18, 2023 at 1:31=E2=80=AFPM Mikhail Gavrilov
-<mikhail.v.gavrilov@gmail.com> wrote:
->
-> On Fri, Dec 15, 2023 at 9:14=E2=80=AFPM Hamza Mahfooz <hamza.mahfooz@amd.=
-com> wrote:
-> >
-> > Can you try the following patch with old fw (version 0x07002100 should
-> > be fine)?: https://patchwork.freedesktop.org/patch/572298/
-> >
->
-> Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com> on 7900XTX har=
-dware.
->
-> Can I ask?
-> What does SubVP actually do?
-> I read on Phoronix that this is new feature of DCN 3.2 hardware
-> https://www.phoronix.com/news/AMDGPU-Linux-6.5-Improvements
-> But I didn't notice that anything began to work better after enabling
-> this feature.
-> On the contrary, my kernel logs began to become overgrown with
-> unpleasant errors.
-> See here: https://gitlab.freedesktop.org/drm/amd/-/issues/2796
-> I bisected this issue and bisect heads me to commit
-> 299004271cbf0315da327c4bd67aec3e7041cb32 which enables SubVP high
-> refresh rate.
-> But without SubVP I also had 120Hz and 4K. So I ask again what is the
-> profit of SubVP?
+Variable remainder is being initialized with a value that is never read,
+the assignment is redundant and can be removed. Also add a newline
+after the declaration to clean up the coding style.
 
-IIRC, SubVP is a power saving feature which allows us to dynamically
-adjust the memory clocks in more cases with narrow blanking periods.
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/amd/display/dc/basics/conversion.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/conversion.c b/drivers/gpu/drm/amd/display/dc/basics/conversion.c
+index e295a839ab47..1090d235086a 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/conversion.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/conversion.c
+@@ -103,7 +103,8 @@ void convert_float_matrix(
+ 
+ static uint32_t find_gcd(uint32_t a, uint32_t b)
+ {
+-	uint32_t remainder = 0;
++	uint32_t remainder;
++
+ 	while (b != 0) {
+ 		remainder = a % b;
+ 		a = b;
+-- 
+2.39.2
+
