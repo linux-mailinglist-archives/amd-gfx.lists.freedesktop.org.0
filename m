@@ -2,59 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F6D818D66
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Dec 2023 18:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF257818FF4
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Dec 2023 19:47:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A2610E4F6;
-	Tue, 19 Dec 2023 17:04:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1A710E0A9;
+	Tue, 19 Dec 2023 18:47:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
- [IPv6:2001:4860:4864:20::30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86AF110E4F6
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 17:04:30 +0000 (UTC)
-Received: by mail-oa1-x30.google.com with SMTP id
- 586e51a60fabf-1fb33059466so3199524fac.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 09:04:30 -0800 (PST)
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
+ [IPv6:2001:4860:4864:20::35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1D210E0A9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 18:47:05 +0000 (UTC)
+Received: by mail-oa1-x35.google.com with SMTP id
+ 586e51a60fabf-203fb334415so353570fac.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Dec 2023 10:47:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1703005469; x=1703610269; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1703011624; x=1703616424; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=3spGZBDe0Pi/VYD6DNIE9qFDQo4F4dfi8lDByABGa2o=;
- b=Vqbly8mRe/Ej7UIYWNVAAUQgAe93phHQu4vryc7PA9fk4RSTVfXRxSLdHYNm1yzjLJ
- xceZH7xiL144tu67GAqZpq8pqL4BAi5dqjrTI58PEByzCr85srbBQEBqYCIAaIH5vOxB
- i1ibbkVnOgK+3iSgFxd4ADbR8rBNClL1WTidRXxAg1L/bRi2ZPHONk0SG1zmSA0laBKH
- skT4ZbAyFZidLOu/Vy1GKpeIvdT4tWEWi3a/WslTmXmHwQNunSwMYpUCms2vSWAFcT+g
- YDBKEVKgesfjJMgTzHtFNhmmn4NZSOqwKZi2DpcB7rsTCf/c1VqZCyN4Tpv6wU2mMsdu
- yaMA==
+ bh=SbidS0bTvnEtHIOS3+H+m846/MioW8M24+Egl2sOK88=;
+ b=Uiq+SEQyS8YVCd6tJbNZMw5bqfARx912xpuANQyl4Dra+7TpmsGvRDJAxJ+mL8Obj6
+ /Gs55Sp/D4VVr40XmhAsLKDwXKwIJ0yS5Uxy+63N5zr+MdJDnjGVpNvnBP1ldemVwzj7
+ 6jcAjfkMZ8IMNFQm/5MF3CeIXdaxY9aQMmOwBJih4vdbIBUYUDc7cgmPlyLw3HZ75A17
+ 5G3TUZxO2lFmDR1Qp5Am9Net+PZmQu9eawKbKA04mu7tbsbZxKvgRW4IZ75eT5ZeJU89
+ KSoupL7YggSCCYSgGVEzFd8k2oBowokd/Xb/pVu0fFqAmcxIiIrFgjw5syzDa9iQU+DX
+ 4d9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703005469; x=1703610269;
+ d=1e100.net; s=20230601; t=1703011624; x=1703616424;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=3spGZBDe0Pi/VYD6DNIE9qFDQo4F4dfi8lDByABGa2o=;
- b=PlrEjpjs0f110gbg+FHqfAP6WQOd/+YNN8xXnRa14pXH5DhQJLxE0o5iqdk+/0gxs+
- j0+ogCCpVgGhlWQlgKXpI/NVdWNGDA2zszXfPj+gf4gzAwC6kDcZPlrc8eSmg4v/2itL
- 2kKjTauTxW0KUtIeX1gukfIB2LvcJe3CF74O0K+oicNYQgfmHFg79YadWoaDTaG726Cu
- B23tV/RoZmU8PHubLFYRhKjYPZC1FczX1mlyVguboOD6x+HBFkK6wC8+/6RaDF6PAXoh
- aaBm4hK6VenshCOYQ6y0eCkz+OEnr+9DhL2wEGLr9PK9JRB9hP3sCb5oMeqeiifbwUkW
- EA6w==
-X-Gm-Message-State: AOJu0YwCkD/8hZwL45X5yXQfMA+9Fxn8x2fSxHB2OqL8b2CC1KHXnZeW
- BnOYn36iKBguxWUleKUxFhpnNOA4mxJZ6laLgfJLnmvH
-X-Google-Smtp-Source: AGHT+IEu4TGtErG3iW9wLsuxcz0Rf6tgZbPRb27H6CblwshegXbW4WK6xq/EJT1UxLdgW7M10OTHY1fI1M3dBMWaSO4=
-X-Received: by 2002:a05:6870:b48d:b0:203:f9c5:7dda with SMTP id
- y13-20020a056870b48d00b00203f9c57ddamr612796oap.75.1703005469697; Tue, 19 Dec
- 2023 09:04:29 -0800 (PST)
+ bh=SbidS0bTvnEtHIOS3+H+m846/MioW8M24+Egl2sOK88=;
+ b=cGW7vZYPv+09xowZrfMnhjuXhBYO5GrxuoK1B4NZcavIfNagE9cTEk4280OFXe1tu2
+ GHj7TpV2s5JoY7pfIqbgjn78Yu8OxwjvguHwX43R2MPFpXHznx0Pz4kseIFE2Yt+bRwA
+ H5HS39idTprg/Ka+oGrFQM/QgyRQ8Q6bjTaHQEHBuKmwZcB+6ZgY5EWCryLbABUwDn+2
+ bpEOo+bk9TUQksye1O8QJ+D8kjB3GUwELg4gAwudH7Rn12bqfgo8UFvYf8Qg6MtblFjE
+ WMzALgIQy+nZ59eLKRnK7AekviUdAfgSiRYetPkQ96ejfw03jE8yTOVogImRT+hxF70V
+ +uCw==
+X-Gm-Message-State: AOJu0YxcUYSzxwXOmz6pbjlJzhaXDmB/yAljr+4t41LPz1PmsQVROufT
+ 9Wk9nYNJFAIPobsmQ4BnNiXmUNtw58IRGZO4pRdjf1rC
+X-Google-Smtp-Source: AGHT+IFKT9F8fqw25vUhe7gUvgYI7wUbtQ+U5onSTbzkO3nw7iO4QrSYp6DK1nqq5Y0u8Flzk0tdTJ7CfpreTniCiJQ=
+X-Received: by 2002:a05:6870:9a10:b0:203:e866:5141 with SMTP id
+ fo16-20020a0568709a1000b00203e8665141mr2237931oab.56.1703011624668; Tue, 19
+ Dec 2023 10:47:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20231219092340.1601929-1-Jack.Xiao@amd.com>
-In-Reply-To: <20231219092340.1601929-1-Jack.Xiao@amd.com>
+References: <c31dc9e8-b969-c736-709c-382c032f4979@applied-asynchrony.com>
+ <a67cb2d1-f02b-9998-01c5-e0e18729da82@applied-asynchrony.com>
+In-Reply-To: <a67cb2d1-f02b-9998-01c5-e0e18729da82@applied-asynchrony.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 19 Dec 2023 12:04:18 -0500
-Message-ID: <CADnq5_NAzBZj+SXc7iY5ZWUgxGCmt3A+PsVRRx59YWx4=toXYg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/gfx11: need acquire mutex before access
- CP_VMID_RESET
-To: Jack Xiao <Jack.Xiao@amd.com>
+Date: Tue, 19 Dec 2023 13:46:53 -0500
+Message-ID: <CADnq5_MkYY+-_9XEWFOn_2G0zrd25+xMRbeCxXuDbu=7EX1Npw@mail.gmail.com>
+Subject: Re: Regression in 6.6: trying to set DPMS mode kills radeon (r600)
+To: =?UTF-8?Q?Holger_Hoffst=C3=A4tte?= <holger@applied-asynchrony.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,70 +68,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org,
- Hawking.Zhang@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 19, 2023 at 4:30=E2=80=AFAM Jack Xiao <Jack.Xiao@amd.com> wrote=
-:
+On Mon, Dec 18, 2023 at 1:52=E2=80=AFPM Holger Hoffst=C3=A4tte
+<holger@applied-asynchrony.com> wrote:
 >
-> It's required to take the gfx mutex before access to CP_VMID_RESET,
-> for there is a race condition with CP firmware to write the register.
+> On 2023-12-16 18:36, Holger Hoffst=C3=A4tte wrote:
 >
-> Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> <snip>
+> > The affected machine is an older SandyBridge dektop with a fanless
+> > r600 Redwood GPU, using the radeon driver. "Recently" - some time
+> > after the last few 6.6.x stable updates - it started to die with GPU
+> > lockups. I first blamed this on standby/resume - because why not? - but
+> > this turned out to be wrong; the real culprit is DPMS.
+> >
+> > I use xfce-power-manager as "screensaver" to turn off the display after
+> > inacitvity. This can be configured in two ways: "suspend" and "poweroff=
+".
+> > I've been using "poweroff" since forever without problems, until now.
+> >
+> > The symptom is that everything works fine until the screensaver kicks i=
+n
+> > and tries to turn the monitor off, which sends the radeon driver and th=
+e GPU
+> > into a complete tailspin.
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v11_0.c
-> index bdcf96df69e6..ae3370d34d11 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -4518,6 +4518,22 @@ static int gfx_v11_0_soft_reset(void *handle)
->                 }
->         }
+> <snip>
 >
+> > Eventually the screensaver tries to switch off the monitor via DPMS "po=
+weroff" method and
+> > this greatly upsets the GPU:
+> >
+> > Dec 12 20:39:59 ragnarok kernel: radeon 0000:01:00.0: ring 0 stalled fo=
+r more than 10140msec
+> > Dec 12 20:39:59 ragnarok kernel: radeon 0000:01:00.0: GPU lockup (curre=
+nt fence id 0x0000000000000002 last fence id 0x0000000000000003 on ring 0)
+>
+> In the meantime I have confirmed that all this is still more complicated:
+> even using the "suspend" method only works after boot, not after a system=
+ suspend
+> cycle. Yes, weird but reproducible.
+>
+> I have tried to chase down the problematic release, and as suspected this
+> started to happen with 6.6.5; 6.6.4 is fine.
+>
+> Based on this information I found the offending commits and reverted them
+> in order from 6.6.7, which fixes everything for me:
+>
+> b0399e22ada0 "drm/amd/display: Remove power sequencing check"
+> 45f98fccb1f6 "drm/amd/display: Refactor edp power control"
 
-We probably want a CPU mutex or spinlock to protect this as well
-unless this is already protected by the reset lock.
+Those patches are for amdgpu.  From the logs in your original post,
+you are using the radeon driver.  They two are completely separate
+drivers.  I don't see how those patches could be related.  That code
+would never even execute.
 
 Alex
-
-> +       /* Try to require the gfx mutex before access to CP_VMID_RESET */
-> +       for (i =3D 0; i < adev->usec_timeout; i++) {
-> +               /* Request with MeId=3D2, PipeId=3D0 */
-> +               tmp =3D REG_SET_FIELD(0, CP_GFX_INDEX_MUTEX, REQUEST, 1);
-> +               tmp =3D REG_SET_FIELD(tmp, CP_GFX_INDEX_MUTEX, CLIENTID, =
-4);
-> +               WREG32_SOC15(GC, 0, regCP_GFX_INDEX_MUTEX, tmp);
-> +               if (RREG32_SOC15(GC, 0, regCP_GFX_INDEX_MUTEX) =3D=3D tmp=
-)
-> +                       break;
-> +               udelay(1);
-> +       }
-> +
-> +       if (i >=3D adev->usec_timeout) {
-> +               printk("Failed to require the gfx mutex during soft reset=
-\n");
-> +               return -EINVAL;
-> +       }
-> +
->         WREG32_SOC15(GC, 0, regCP_VMID_RESET, 0xfffffffe);
->
->         // Read CP_VMID_RESET register three times.
-> @@ -4526,6 +4542,10 @@ static int gfx_v11_0_soft_reset(void *handle)
->         RREG32_SOC15(GC, 0, regCP_VMID_RESET);
->         RREG32_SOC15(GC, 0, regCP_VMID_RESET);
->
-> +       /* release the gfx mutex */
-> +       tmp =3D REG_SET_FIELD(tmp, CP_GFX_INDEX_MUTEX, REQUEST, 0);
-> +       WREG32_SOC15(GC, 0, regCP_GFX_INDEX_MUTEX, tmp);
-> +
->         for (i =3D 0; i < adev->usec_timeout; i++) {
->                 if (!RREG32_SOC15(GC, 0, regCP_HQD_ACTIVE) &&
->                     !RREG32_SOC15(GC, 0, regCP_GFX_HQD_ACTIVE))
-> --
-> 2.41.0
->
