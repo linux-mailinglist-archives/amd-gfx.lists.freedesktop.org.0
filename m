@@ -2,62 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B4D81F690
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Dec 2023 11:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7B9681F699
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Dec 2023 11:02:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29BAD10E00D;
-	Thu, 28 Dec 2023 10:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9C410E0AB;
+	Thu, 28 Dec 2023 10:02:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
- [IPv6:2607:f8b0:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 618C410E02D
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Dec 2023 01:42:28 +0000 (UTC)
-Received: by mail-oi1-x22e.google.com with SMTP id
- 5614622812f47-3bbbc6bcc78so1364705b6e.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Dec 2023 17:42:28 -0800 (PST)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6198610E1B5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Dec 2023 01:42:29 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id
+ d2e1a72fcca58-6d099d316a8so5281252b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Dec 2023 17:42:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1703727747; x=1704332547; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1703727749; x=1704332549; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=UB0U1us+sHbYZzCVyIg23Xjh36gyEMV3F74ABUc7NA8=;
- b=KFs9/5QCDVZUaufxcxoyF38bljhREEdvOPGqufktvshME+wiFjxg8880pHGqoJyTqv
- ux7TTSJuAPa5m0MOjXBHqoCuyNy970kr6N7hBaOABN3aSKuZi4vByqcUZcBv137h8Nfh
- qlbHWtqtnVd8hZumDoOLCW3uOtClwbnvRfQitDgQIv8aIawbgbpMCFZwz2CG7q0+D4vg
- z3a0uAovRUhxhA1WmZjABd91Fn6XBw5aD1Duo2S7cbdiNzVDFxMeYLYY3cA/9EiBEWG2
- BooK1JNE0idzvJdPItxf4bjoZhK3QWGPfYm3bF28G2DgmLpfghUhymfuIH16rJooOJ2T
- kfBw==
+ bh=BoxXzLgzl7b5Y0xu5pjyo/VkU/XWb+SGTLxU4jp8p0k=;
+ b=YZ912498pHhLaUHxJkKoV6RPnaIhZKcPlTIaGuV23owgx+nlBO4JUPGqhBuFIt0w6f
+ pBKBgbde39pyVuq2khynspBNZejgH0Nd4l2KqC6Sqq8ra0nLwMYDWoSbD0Kp9OQGtENM
+ 83t237GYytMS0yDTuRKJkEhvl7iukzE0lHjKJxYN2Nt5hWrgEl77k1l/lzFebYb8N7ci
+ 2kNmhPkMzum3jcSkwkZlHA8UleiREe5oyVgpS0SM6WiHSmIBwaCSHAKnMIjhELiTHSUG
+ FZQPv9gs7Ze1cJLAP2NRcIdwyME0yjSqOzBl94RPfXUBdYp7hgmsm/TURzYebKHWyOdJ
+ B6jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703727747; x=1704332547;
+ d=1e100.net; s=20230601; t=1703727749; x=1704332549;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=UB0U1us+sHbYZzCVyIg23Xjh36gyEMV3F74ABUc7NA8=;
- b=t72Z7QReeKDqASDZnjonFBT72A7yij3dMTr+B9grHf6BvzF+J+SL15A/YM+wqVjtNi
- SN5pjCmeJXBMyE50QfIug2bkkaN3Rbs4gbvmUk6Jn8B+30FkZyPEK+j9XjCexM47SakX
- vWo1CxaeIrkfr2Vj0+/Pal8A9i+1vH3B7OLY0suj6R/y6QTaOZ9h9OLRKgniTmlTB/W/
- CDkwbtw7CruJR5Yyu6R7ekNxvJbQuFipRaigCrH3wpoFJAEh2Rkk55sZhZFPRWhzUjCe
- UvHvX/Wul8LaM4uE629neks5Q5EqcVtfGtyY/JUbMZYwdnKhRTaM8RVwvrLaFfxhuqOq
- Rz2Q==
-X-Gm-Message-State: AOJu0YyUxUnPaRMWaBHxIqiVMfVrqF/O+1ViKLYuZw8zGcokGvpU8FHI
- Nw1VxxKeDeHrPsZha7EJ6UbJnAZB7jCEUQ==
-X-Google-Smtp-Source: AGHT+IGpivtFhMAB3UbcfS1StWXrUWSkj+hLT17JMH2Q4rov0k82hYGdvWTiR/shQbloO22mN5mO3A==
-X-Received: by 2002:a05:6808:148e:b0:3bb:c453:df38 with SMTP id
- e14-20020a056808148e00b003bbc453df38mr2614480oiw.60.1703727747728; 
- Wed, 27 Dec 2023 17:42:27 -0800 (PST)
+ bh=BoxXzLgzl7b5Y0xu5pjyo/VkU/XWb+SGTLxU4jp8p0k=;
+ b=U2Cm/5UhN203VaqfcKh9YKIipnTRFnxMGFsOj31QuXeDCW3WqIS8gnQ2ixLOO2GJqG
+ fYH/rMgC7BV+SunnnDueKZhMI6icOhQNY+H2YQR00rHZ9FyN1qRpIu1Die5V+Zx3edX7
+ QX+5YQrvlZh6nJ/NMDioo6yNd2i4RHFc2w6RkDzKHobzZHa2TenQvsSjcL8qwcNxOAzu
+ NAWZw7M7PhHqsL805RGLH7ewUYVjmpBTQO1beRQUo+QaHP8krUBtsm0wSpp3s5e+90Df
+ GOUcaIlgnIzaSeOt+KzrjbaB0vygG2cAogtbguZ/7h6yUS35ujVabv6hCVh2VCvqL3wk
+ bdFA==
+X-Gm-Message-State: AOJu0YwXxZu9HD1xKRLIT9EkIIx3WJXSbhAx4u2LEgNYqaFhRlQnkpVB
+ +THrUwf1BQX2NcitT4QPGLV/7lZQisKf5A==
+X-Google-Smtp-Source: AGHT+IFXwothAr5BJIcCMrRvq4/mKzewsdDIu4/j3geKR8xiDFkrXQfFhz/93Qk1mZI7uGYnkNSdng==
+X-Received: by 2002:a05:6a00:4c81:b0:6d9:bc67:82a with SMTP id
+ eb1-20020a056a004c8100b006d9bc67082amr5349494pfb.54.1703727748958; 
+ Wed, 27 Dec 2023 17:42:28 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- g24-20020aa78758000000b006d49ed3effasm7335440pfo.63.2023.12.27.17.42.26
+ g24-20020aa78758000000b006d49ed3effasm7335440pfo.63.2023.12.27.17.42.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Dec 2023 17:42:27 -0800 (PST)
+ Wed, 27 Dec 2023 17:42:28 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
  x86@kernel.org, linux-riscv@lists.infradead.org,
  Christoph Hellwig <hch@lst.de>
-Subject: [PATCH v2 04/14] arm64: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-Date: Wed, 27 Dec 2023 17:41:54 -0800
-Message-ID: <20231228014220.3562640-5-samuel.holland@sifive.com>
+Subject: [PATCH v2 05/14] arm64: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+Date: Wed, 27 Dec 2023 17:41:55 -0800
+Message-ID: <20231228014220.3562640-6-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231228014220.3562640-1-samuel.holland@sifive.com>
 References: <20231228014220.3562640-1-samuel.holland@sifive.com>
@@ -81,76 +81,35 @@ Cc: linux-arch@vger.kernel.org, amd-gfx@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-arm64 provides an equivalent to the common kernel-mode FPU API, but in a
-different header and using different function names. Add a wrapper
-header, and export CFLAGS adjustments as found in lib/raid6/Makefile.
+Now that CC_FLAGS_FPU is exported and can be used anywhere in the source
+tree, use it instead of duplicating the flags here.
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
 Changes in v2:
- - Remove file name from header comment
+ - New patch for v2
 
- arch/arm64/Kconfig           |  1 +
- arch/arm64/Makefile          |  9 ++++++++-
- arch/arm64/include/asm/fpu.h | 15 +++++++++++++++
- 3 files changed, 24 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/include/asm/fpu.h
+ arch/arm64/lib/Makefile | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 7b071a00425d..485ac389ac11 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -30,6 +30,7 @@ config ARM64
- 	select ARCH_HAS_GCOV_PROFILE_ALL
- 	select ARCH_HAS_GIGANTIC_PAGE
- 	select ARCH_HAS_KCOV
-+	select ARCH_HAS_KERNEL_FPU_SUPPORT if KERNEL_MODE_NEON
- 	select ARCH_HAS_KEEPINITRD
- 	select ARCH_HAS_MEMBARRIER_SYNC_CORE
- 	select ARCH_HAS_NMI_SAFE_THIS_CPU_OPS
-diff --git a/arch/arm64/Makefile b/arch/arm64/Makefile
-index 9a2d3723cd0f..4a65f24c7998 100644
---- a/arch/arm64/Makefile
-+++ b/arch/arm64/Makefile
-@@ -36,7 +36,14 @@ ifeq ($(CONFIG_BROKEN_GAS_INST),y)
- $(warning Detected assembler with broken .inst; disassembly will be unreliable)
+diff --git a/arch/arm64/lib/Makefile b/arch/arm64/lib/Makefile
+index 29490be2546b..13e6a2829116 100644
+--- a/arch/arm64/lib/Makefile
++++ b/arch/arm64/lib/Makefile
+@@ -7,10 +7,8 @@ lib-y		:= clear_user.o delay.o copy_from_user.o		\
+ 
+ ifeq ($(CONFIG_KERNEL_MODE_NEON), y)
+ obj-$(CONFIG_XOR_BLOCKS)	+= xor-neon.o
+-CFLAGS_REMOVE_xor-neon.o	+= -mgeneral-regs-only
+-CFLAGS_xor-neon.o		+= -ffreestanding
+-# Enable <arm_neon.h>
+-CFLAGS_xor-neon.o		+= -isystem $(shell $(CC) -print-file-name=include)
++CFLAGS_xor-neon.o		+= $(CC_FLAGS_FPU)
++CFLAGS_REMOVE_xor-neon.o	+= $(CC_FLAGS_NO_FPU)
  endif
  
--KBUILD_CFLAGS	+= -mgeneral-regs-only	\
-+# The GCC option -ffreestanding is required in order to compile code containing
-+# ARM/NEON intrinsics in a non C99-compliant environment (such as the kernel)
-+CC_FLAGS_FPU	:= -ffreestanding
-+# Enable <arm_neon.h>
-+CC_FLAGS_FPU	+= -isystem $(shell $(CC) -print-file-name=include)
-+CC_FLAGS_NO_FPU	:= -mgeneral-regs-only
-+
-+KBUILD_CFLAGS	+= $(CC_FLAGS_NO_FPU) \
- 		   $(compat_vdso) $(cc_has_k_constraint)
- KBUILD_CFLAGS	+= $(call cc-disable-warning, psabi)
- KBUILD_AFLAGS	+= $(compat_vdso)
-diff --git a/arch/arm64/include/asm/fpu.h b/arch/arm64/include/asm/fpu.h
-new file mode 100644
-index 000000000000..2ae50bdce59b
---- /dev/null
-+++ b/arch/arm64/include/asm/fpu.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2023 SiFive
-+ */
-+
-+#ifndef __ASM_FPU_H
-+#define __ASM_FPU_H
-+
-+#include <asm/neon.h>
-+
-+#define kernel_fpu_available()	cpu_has_neon()
-+#define kernel_fpu_begin()	kernel_neon_begin()
-+#define kernel_fpu_end()	kernel_neon_end()
-+
-+#endif /* ! __ASM_FPU_H */
+ lib-$(CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE) += uaccess_flushcache.o
 -- 
 2.42.0
 
