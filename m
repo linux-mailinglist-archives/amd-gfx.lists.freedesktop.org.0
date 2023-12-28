@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB7E81F012
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Dec 2023 17:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4FA381F695
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Dec 2023 11:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39EBE8903B;
-	Wed, 27 Dec 2023 16:12:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 065FC10E138;
+	Thu, 28 Dec 2023 10:02:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD28810E11F
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Dec 2023 05:52:29 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- 98e67ed59e1d1-28c17b6f91bso767360a91.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Dec 2023 21:52:29 -0800 (PST)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
+ [IPv6:2607:f8b0:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB3110E02D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Dec 2023 01:42:23 +0000 (UTC)
+Received: by mail-pf1-x429.google.com with SMTP id
+ d2e1a72fcca58-6d9aa51571fso2622369b3a.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Dec 2023 17:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1703656349; x=1704261149; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Xsm5Ju4rKSSyd/yy5bB4YOrfNpuRcRC6WiB2aAOy3+k=;
- b=VWB/fPRb5EL2w/rkryAdCk6M6V6ysqh/sBRPrh841Y1ix81R9X1IUFyAooYIqq4wss
- 3lq8mPSpa9teiSUQV/3FKpq93DHc35HFW3nZ0HtyNn65+OPac9C2KoyvqCjTXUsEFkL6
- M7y4xUYcGui7H3J0PCBrSQMIzJeHMJLSaqH3whU/3bh1280Dwizsdn5FsKDsGJML5Xg+
- aJRWey7mQDeczlSKgBLYHllkLa3eJ7jft6WZv7wDQhnIqeK2SEli867w0iJi1nB3SaDi
- bHQZMVrZUGwrqrmNXJX1cBmh1RkS2aZbxYQGA4xQHVar+rslx2T2CQChkPI09qJzASX5
- 7cZA==
+ d=sifive.com; s=google; t=1703727742; x=1704332542; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=LKYKCC0iAyjtmcl9i3gxZmi/p+HZhZfirGb7twXi050=;
+ b=aHilkPBkME2ct+PhlTviuGwBc1OWhXglFQ0/8NoqIIM+B4cqx4neeT1qeaeR+ONqEs
+ jtXTpC5R9mIAnRmUtjL/I6pjlyqkICT16VzNPFLVcHp5Zq4SF+AN6ulcLq72wk3c+2fP
+ w9SnEWwdfMu8QXvRi3lQC2X/qYF+mx/MpVbqI9ScYwv32r+dHNZJefgs0Y9MfnwX3iCS
+ 9PWpGTQoudqzWcU/vMFx/CY5FuXUrErwOfgq9MfF4KeJo2BzYzAycr7ei68KexeQeLPU
+ cqLtvrBpdYaLxbmaJFyJSSUsZOCDCVMBgb6tKEW541BZu3xdX8kxNCcnV2+Go15Wt7R5
+ 8cSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703656349; x=1704261149;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Xsm5Ju4rKSSyd/yy5bB4YOrfNpuRcRC6WiB2aAOy3+k=;
- b=BYKNCXREz14Rk0DkpM71UMdVwEcBsOTWgQj7z1L27uCWL5lV0RznOPRXumhTvjGom4
- 3kIv3XMaSvBoRmBkkhxk7dFMsh0gr6Tbfc7S5JI45g5ueZ7MPMoVaqe5BzP5Rp0O00Ml
- 0qpxyQvo6ARmRjQbXMGWhPPOMtA+lXUApMAyeH+xQ5KSFrnsS/Y7dN1xkk6DafJiGTd9
- mcHCwdt+e70Ua1ZbhCWWHRNn1v/mchvUwoxDq+2bI7PZJCmpM5K1uj0YON71dW54QWVm
- RhdEOk9EU2Z0b5qI6LuNzASWtrg/UA8PfzBvuUVIhG/H/ooURPe2OteiBxS39SVlf0S3
- Y5VA==
-X-Gm-Message-State: AOJu0YwlrbfODs96saRZU6PmULASVozRMoJkvjXye2ypUM0lCTvZn+Ir
- tUtfJHwcyVN6zTe6FUZjVnvE69ETGqcfzQ==
-X-Google-Smtp-Source: AGHT+IExDYQd4jUOqkatAsAW34ElSyA+4kT9esf58JKswXuRFYVF514ypvVLQK7Ao04wa/jziw4ymg==
-X-Received: by 2002:a17:90b:3c2:b0:28c:374f:8028 with SMTP id
- go2-20020a17090b03c200b0028c374f8028mr1108023pjb.27.1703656349153; 
- Tue, 26 Dec 2023 21:52:29 -0800 (PST)
-Received: from archie.me ([103.131.18.64]) by smtp.gmail.com with ESMTPSA id
- e15-20020a170902ed8f00b001cfed5524easm11020411plj.288.2023.12.26.21.52.28
+ d=1e100.net; s=20230601; t=1703727742; x=1704332542;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=LKYKCC0iAyjtmcl9i3gxZmi/p+HZhZfirGb7twXi050=;
+ b=j2NtpL9PJ1mFrFf9CgdZZ3aqJJb0B1MtvQwkNrlvsN2+uant1+vIJduO6eP2Jx+HNR
+ OI1PEUhAxTbgQiElydNiKR4KbdVKXjve/NxtUm085k6XxhWlK05NKZCDMjwKxyByg8eM
+ 3Z11F/dxhwgLLpYvvQM8nr+bnpyW+Yd6BYOtj41eJKaENDNRFz6/IHKHjl6hBorEPBn0
+ mc8LnpcJ0WBgrodGxsl2BYS3IdGIXONw+JAvV5nUJ3+b+61b/qAtZXBNcevF4dFkimtH
+ x5kMHxw9azoWcpUlHB58Yp2gAmLywWM3GQwT80zKJGhvqCv/51cFCTwGe7/+Hu+b/TTW
+ /Gdw==
+X-Gm-Message-State: AOJu0YznPlKWzFbHBxWxliB4GqTO51FMrU9FuEciD7+G4NIyKPmp6Rwq
+ pZBkM8pzfkQXLp0b5moOwgWOVtLbM3rQaQ==
+X-Google-Smtp-Source: AGHT+IHZ0/JideaaZYntOkNOqAPh5V/QL/d8QFy5AdTRppdgJDCkExfUqVkpEa+jpNl3GOmHDV7Ddw==
+X-Received: by 2002:a05:6a00:1d05:b0:6d9:bfb8:e37c with SMTP id
+ a5-20020a056a001d0500b006d9bfb8e37cmr6112797pfx.41.1703727742547; 
+ Wed, 27 Dec 2023 17:42:22 -0800 (PST)
+Received: from sw06.internal.sifive.com ([4.53.31.132])
+ by smtp.gmail.com with ESMTPSA id
+ g24-20020aa78758000000b006d49ed3effasm7335440pfo.63.2023.12.27.17.42.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Dec 2023 21:52:28 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
- id D253811564AAC; Wed, 27 Dec 2023 12:52:23 +0700 (WIB)
-Date: Wed, 27 Dec 2023 12:52:23 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Marcelo Mendes <marcelomspessoto@gmail.com>
-Subject: Re: [PATCH] Removing duplicate copyright text
-Message-ID: <ZYu7l9LiCJWdw0CB@archie.me>
-References: <20231226235741.4376-1-marcelomspessoto@gmail.com>
- <ZYuMRZU85plJiVWO@archie.me>
- <CAB4W1t5GsDUEUT6m_qHeEBC=gnQxyebY8W0n5uF1GGAh5yLgtw@mail.gmail.com>
+ Wed, 27 Dec 2023 17:42:22 -0800 (PST)
+From: Samuel Holland <samuel.holland@sifive.com>
+To: linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ x86@kernel.org, linux-riscv@lists.infradead.org,
+ Christoph Hellwig <hch@lst.de>
+Subject: [PATCH v2 00/14] Unified cross-architecture kernel-mode FPU API
+Date: Wed, 27 Dec 2023 17:41:50 -0800
+Message-ID: <20231228014220.3562640-1-samuel.holland@sifive.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="7Tqr7xErRV4RDN7U"
-Content-Disposition: inline
-In-Reply-To: <CAB4W1t5GsDUEUT6m_qHeEBC=gnQxyebY8W0n5uF1GGAh5yLgtw@mail.gmail.com>
-X-Mailman-Approved-At: Wed, 27 Dec 2023 16:12:36 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 28 Dec 2023 10:02:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,47 +72,113 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, harry.wentland@amd.com,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>
+Cc: linux-arch@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>,
+ loongarch@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This series unifies the kernel-mode FPU API across several architectures
+by wrapping the existing functions (where needed) in consistently-named
+functions placed in a consistent header location, with mostly the same
+semantics: they can be called from preemptible or non-preemptible task
+context, and are not assumed to be reentrant. Architectures are also
+expected to provide CFLAGS adjustments for compiling FPU-dependent code.
+For the moment, SIMD/vector units are out of scope for this common API.
 
---7Tqr7xErRV4RDN7U
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This allows us to remove the ifdeffery and duplicated Makefile logic at
+each FPU user. It then implements the common API on RISC-V, and converts
+a couple of users to the new API: the AMDGPU DRM driver, and the FPU
+self test.
 
-On Tue, Dec 26, 2023 at 11:49:09PM -0300, Marcelo Mendes wrote:
-> Hello Bagas,
->=20
-> I'm sorry for that. I will send another mail of this patch with your
-> recommendations.
->=20
+The underlying goal of this series is to allow using newer AMD GPUs
+(e.g. Navi) on RISC-V boards such as SiFive's HiFive Unmatched. Those
+GPUs need CONFIG_DRM_AMD_DC_FP to initialize, which requires kernel-mode
+FPU support.
 
-Please don't top-post; reply inline with appropriate context instead.
-And don't send HTML emails as mailing lists don't like such.
+Previous versions:
+v1: https://lore.kernel.org/linux-kernel/20231208055501.2916202-1-samuel.holland@sifive.com/
+v0: https://lore.kernel.org/linux-kernel/20231122030621.3759313-1-samuel.holland@sifive.com/
 
-When sending v2 (aka rerolling), mark it as such when generating patches
-by passing `-v 2` to git-format-patch(1). And don't be rushed to send
-the reroll; wait at least a day to allow reviewers to review before
-reroll. If there are any comments from them, you should address them too.
+Changes in v2:
+ - Add documentation explaining the built-time and runtime APIs
+ - Add a linux/fpu.h header for generic isolation enforcement
+ - Remove file name from header comment
+ - Clean up arch/arm64/lib/Makefile, like for arch/arm
+ - Remove RISC-V architecture-specific preprocessor check
+ - Split altivec removal to a separate patch
+ - Use linux/fpu.h instead of asm/fpu.h in consumers
+ - Declare test_fpu() in a header
 
-See you in v2!
+Michael Ellerman (1):
+  drm/amd/display: Only use hard-float, not altivec on powerpc
 
---=20
-An old man doll... just what I always wanted! - Clara
+Samuel Holland (13):
+  arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+  arm64: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  arm64: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+  lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
+  LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  x86: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  riscv: Add support for kernel-mode FPU
+  drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
+  selftests/fpu: Move FP code to a separate translation unit
+  selftests/fpu: Allow building on other architectures
 
---7Tqr7xErRV4RDN7U
-Content-Type: application/pgp-signature; name="signature.asc"
+ Documentation/core-api/floating-point.rst     | 78 +++++++++++++++++++
+ Documentation/core-api/index.rst              |  1 +
+ Makefile                                      |  5 ++
+ arch/Kconfig                                  |  6 ++
+ arch/arm/Kconfig                              |  1 +
+ arch/arm/Makefile                             |  7 ++
+ arch/arm/include/asm/fpu.h                    | 15 ++++
+ arch/arm/lib/Makefile                         |  3 +-
+ arch/arm64/Kconfig                            |  1 +
+ arch/arm64/Makefile                           |  9 ++-
+ arch/arm64/include/asm/fpu.h                  | 15 ++++
+ arch/arm64/lib/Makefile                       |  6 +-
+ arch/loongarch/Kconfig                        |  1 +
+ arch/loongarch/Makefile                       |  5 +-
+ arch/loongarch/include/asm/fpu.h              |  1 +
+ arch/powerpc/Kconfig                          |  1 +
+ arch/powerpc/Makefile                         |  5 +-
+ arch/powerpc/include/asm/fpu.h                | 28 +++++++
+ arch/riscv/Kconfig                            |  1 +
+ arch/riscv/Makefile                           |  3 +
+ arch/riscv/include/asm/fpu.h                  | 16 ++++
+ arch/riscv/kernel/Makefile                    |  1 +
+ arch/riscv/kernel/kernel_mode_fpu.c           | 28 +++++++
+ arch/x86/Kconfig                              |  1 +
+ arch/x86/Makefile                             | 20 +++++
+ arch/x86/include/asm/fpu.h                    | 13 ++++
+ drivers/gpu/drm/amd/display/Kconfig           |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 35 +--------
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   | 36 +--------
+ drivers/gpu/drm/amd/display/dc/dml2/Makefile  | 36 +--------
+ include/linux/fpu.h                           | 12 +++
+ lib/Kconfig.debug                             |  2 +-
+ lib/Makefile                                  | 26 +------
+ lib/raid6/Makefile                            | 31 ++------
+ lib/test_fpu.h                                |  8 ++
+ lib/{test_fpu.c => test_fpu_glue.c}           | 37 ++-------
+ lib/test_fpu_impl.c                           | 37 +++++++++
+ 37 files changed, 343 insertions(+), 190 deletions(-)
+ create mode 100644 Documentation/core-api/floating-point.rst
+ create mode 100644 arch/arm/include/asm/fpu.h
+ create mode 100644 arch/arm64/include/asm/fpu.h
+ create mode 100644 arch/powerpc/include/asm/fpu.h
+ create mode 100644 arch/riscv/include/asm/fpu.h
+ create mode 100644 arch/riscv/kernel/kernel_mode_fpu.c
+ create mode 100644 arch/x86/include/asm/fpu.h
+ create mode 100644 include/linux/fpu.h
+ create mode 100644 lib/test_fpu.h
+ rename lib/{test_fpu.c => test_fpu_glue.c} (71%)
+ create mode 100644 lib/test_fpu_impl.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.42.0
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZYu7kwAKCRD2uYlJVVFO
-o1UCAP9TiBj/fIiGJmgCvf+j92xuF8SnsZYURkswkTmiEAwilwEAkWigOnNnWcZC
-aI05d64L0t/EMQKRKyZBMxZeDa5aRAU=
-=OzmJ
------END PGP SIGNATURE-----
-
---7Tqr7xErRV4RDN7U--
