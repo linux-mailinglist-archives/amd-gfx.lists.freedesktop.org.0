@@ -2,45 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C6AC81F696
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Dec 2023 11:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A09B81F691
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Dec 2023 11:02:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE00D10E0FC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4EE10E042;
 	Thu, 28 Dec 2023 10:02:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918E910E039
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Dec 2023 03:19:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
- s=201909; t=1703733552;
- bh=EfJurZriD67cDIIwfiSM+kPHFvEVVHjMJmp7iWbFTLU=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=nfF7UQxSvEFaj4zjVVDZFGc/PuImmuvaZ3mEKMBJyLZm//iqAnLT0yisJQwrCU7S0
- bVxB5akL39HmDbuq/jT4FGLf0kG7kMimzsxsXVIQl/mVEy6wniHoOa3HjFqSvwg89c
- FwIVvXQps64q92tRsf80IoYSQySfoqSCVs6siW9OBv42MMkw4ViUAtXCJbfNsKG6jA
- JedpVqkGyrM26BxsJG65GhzLbngP100uf6zRb8p8DvCR1wTRoUbRUvXTe88wX+1nMn
- fbLyXQTIPhHG72UC0XCwCWZ6EhuHxg/PdFGez6CnLQRSkY31By3C1FxLqqZHNiIIU8
- bOMIA4nGmREWg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4T0tyk6hCKz4wxx;
- Thu, 28 Dec 2023 14:19:10 +1100 (AEDT)
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Samuel Holland <samuel.holland@sifive.com>,
- linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
- x86@kernel.org, linux-riscv@lists.infradead.org, Christoph Hellwig
- <hch@lst.de>
-Subject: Re: [PATCH v2 08/14] powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-In-Reply-To: <20231228014220.3562640-9-samuel.holland@sifive.com>
+X-Greylist: delayed 494 seconds by postgrey-1.36 at gabe;
+ Thu, 28 Dec 2023 06:27:24 UTC
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5630010E067
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Dec 2023 06:27:24 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id C325868C4E; Thu, 28 Dec 2023 07:19:05 +0100 (CET)
+Date: Thu, 28 Dec 2023 07:19:04 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v2 01/14] arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
+Message-ID: <20231228061904.GA12475@lst.de>
 References: <20231228014220.3562640-1-samuel.holland@sifive.com>
- <20231228014220.3562640-9-samuel.holland@sifive.com>
-Date: Thu, 28 Dec 2023 14:19:08 +1100
-Message-ID: <87wmszj9oz.fsf@mail.lhotse>
+ <20231228014220.3562640-2-samuel.holland@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231228014220.3562640-2-samuel.holland@sifive.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Thu, 28 Dec 2023 10:02:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,30 +40,17 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- Samuel Holland <samuel.holland@sifive.com>
+Cc: linux-arch@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+ x86@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, loongarch@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ Christoph Hellwig <hch@lst.de>, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Samuel Holland <samuel.holland@sifive.com> writes:
-> PowerPC provides an equivalent to the common kernel-mode FPU API, but in
-> a different header and using different function names. The PowerPC API
-> also requires a non-preemptible context. Add a wrapper header, and
-> export the CFLAGS adjustments.
->
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
->
-> (no changes since v1)
->
->  arch/powerpc/Kconfig           |  1 +
->  arch/powerpc/Makefile          |  5 ++++-
->  arch/powerpc/include/asm/fpu.h | 28 ++++++++++++++++++++++++++++
->  3 files changed, 33 insertions(+), 1 deletion(-)
->  create mode 100644 arch/powerpc/include/asm/fpu.h
+Thanks for all the great documentation!
 
-Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
+Looks good:
 
-cheers
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+
