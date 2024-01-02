@@ -1,52 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D7A8220CE
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jan 2024 19:13:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B320822066
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jan 2024 18:30:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9909210E1D5;
-	Tue,  2 Jan 2024 18:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91DAB10E209;
+	Tue,  2 Jan 2024 17:30:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1936B10E1F3
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jan 2024 16:54:02 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
- [209.85.167.44]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 433F133F06C
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jan 2024 16:54:00 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1704214440; bh=rYJotU0eFIgjvtSo85T7on5RWlF3XVy4G/qHcAn3l7o=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=a9Ah6gPklqrl2ITdWgHw1EHIFqxoVAjerXy4MhVWnRzjRFP5BqvICljfwNLVHTpDf
- ZWdD5By4iwr0qdeWwKd5ap39h3BeD2k4FfTUFz1/fEFItjiQ+CBJgFeC4lfqbZ/Wns
- iyFlQmd4fbQTcavGhGow9tKUleteWPUICY0P4nMyfhohxNHkzV28iFM7HcKsGNWYu8
- 1goHc9BZWchQyEJMauFWB9z4LhSfS2Mf9bf5V+g1DfY8VzqCf91JHUoMnUT0p7f1Tr
- /s4sM5B7Rle9cvBbEAZfLYeI21czQkj+Gj9V9LHuflIWs/R0mZ9/Cz+C19AydnTxbD
- HrluErrbrZDxw==
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-50e9e5c97e1so1111521e87.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Jan 2024 08:54:00 -0800 (PST)
-X-Gm-Message-State: AOJu0YxVMbZsrFedo7G+RHZ1+dqh7RsMDp0RiuQviJF93AmBZUnOhA4I
- 7vOEwrXkvJ4zn5iocrxlJRs/uJu273nPGPCHwSg=
-X-Google-Smtp-Source: AGHT+IG9BqdbGvi9qkT+jtqXKyOlZyqDhaP5CnXUHWo4r+VwWfwEyNODqVS551m1nl2w6PlPCWytdLfKfTRVuQQL6tM=
-X-Received: by 2002:a05:6512:3404:b0:50e:9e5b:497 with SMTP id
- i4-20020a056512340400b0050e9e5b0497mr1127479lfr.137.1704214439330; Tue, 02
- Jan 2024 08:53:59 -0800 (PST)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E75A610E235
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jan 2024 17:30:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VBRVt/p4iBJDrPdt0kdH6rYdpvavKHLQaazNjPsO6DoE12unreU9c2S/J5s+wXLHr6Qm0uHaM6R/kN2Zd/GNFC2Vb6YdVQSM11UHAJbwvwMP7gz7tXEzyXBgtnPg3Hk6YN5o0XQaoTU1ej55vTpKahkZIihTSScOy1HYA25j8RfCZy+i4YaIVWvnZJ9dAFST447hAOslYd/0VXtt9QA5zVW6u0NvLVKOGKDAcN6uIqQsGwiU2N4Noy+I4CWgpzaE5LKCdJoDJXo9bYWM9O1eWnzKXirBVjNNiNrQRbJqlvCa/XYRJD60D/JWwiwLM4k3nfDh744An5BSsjkK3K4xgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fn6myp8MiR89bR1gl5377/BTA1jilAEA7d6J5FE7Ykk=;
+ b=SnjO8bw65ca83C2svF69BnP6TOKBnLQXlkHZrDJDh31CNiNZYaefclRxwBzXqGGCDkiMWtBzh/M8kiGY6c3xL6ULmlrE8rtNj8c1pkAzgxfYO2aPSDMoqrIvB92hPnPLd+mFM11qg5iWbvoglOGheGtL6TL5mZLOexJGMbkkk131NzJzboDCZCVmGTL6TNRKvxNDh1Z3YiulbEgvtZ5d40ESPZvi8AbqfyviEKDeuC7XvXYm71R2k1za9UZnf8nW2UQLB/LwjWPqWhiz1P8FWMfZQzNmUGUAYSVOazfgVZziWP3Bq1l2iTnJoc5uSdkyCq7/UgHFbPSZNSTIgiXHgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fn6myp8MiR89bR1gl5377/BTA1jilAEA7d6J5FE7Ykk=;
+ b=uZvtTh8RTnPYN1MVgztsBB97JWrForpqAhuS+NDnNYaTGOchECJPM03syB85Fbkr86pw3XkPy2J9kVkGu5geUn+PpHfYJCjha2Al8Ctg8cH2cVzmLLEp/hSVKfzXEF+k+/9cQoSVAtIDrg4qLDV5KJQTEO9w1UL1x4M9o/vqZYs=
+Received: from DM6PR02CA0080.namprd02.prod.outlook.com (2603:10b6:5:1f4::21)
+ by DS0PR12MB8199.namprd12.prod.outlook.com (2603:10b6:8:de::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Tue, 2 Jan
+ 2024 17:30:26 +0000
+Received: from DS1PEPF00017090.namprd03.prod.outlook.com
+ (2603:10b6:5:1f4:cafe::28) by DM6PR02CA0080.outlook.office365.com
+ (2603:10b6:5:1f4::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.24 via Frontend
+ Transport; Tue, 2 Jan 2024 17:30:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF00017090.mail.protection.outlook.com (10.167.17.132) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7159.9 via Frontend Transport; Tue, 2 Jan 2024 17:30:26 +0000
+Received: from ubuntu22.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 2 Jan
+ 2024 11:30:25 -0600
+From: Victor Lu <victorchengchi.lu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/4] drm/amdgpu: Improve error checking in
+ amdgpu_virt_rlcg_reg_rw
+Date: Tue, 2 Jan 2024 12:30:10 -0500
+Message-ID: <20240102173013.5543-1-victorchengchi.lu@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20240101182836.817565-1-joshua@froggi.es>
- <554945c2-bb85-497a-ba88-b486eadd8a3c@froggi.es>
-In-Reply-To: <554945c2-bb85-497a-ba88-b486eadd8a3c@froggi.es>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Tue, 2 Jan 2024 17:53:48 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGxJ9demMm-85LFimEQGqj2J5-2-RRsOeKRss3Wr=X3j1A@mail.gmail.com>
-Message-ID: <CAFZQkGxJ9demMm-85LFimEQGqj2J5-2-RRsOeKRss3Wr=X3j1A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Fix sending VSC (+ colorimetry) packets
- for DP/eDP displays without PSR
-To: Joshua Ashton <joshua@froggi.es>
-Content-Type: multipart/alternative; boundary="000000000000470dda060df958f8"
-X-Mailman-Approved-At: Tue, 02 Jan 2024 18:13:20 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017090:EE_|DS0PR12MB8199:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b2f45e9-32fd-4a1e-281f-08dc0bb88230
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wBKIU9soHZF4skizma10iaRWvPt9LwmAgOVoSk6NDJbx2tziWgM/X0W0rZtIuAgwh51Ld5k+UU4Ffh4ou09qPHyO+53ILzl6V/GDggix7Uw6k38SU+jGsiopouSJTmAqMVs6hwZVlATBPJsPQst1uA5knhLaFdeFa70gnqWNfx8NNW3ChJtVG4h+ymJqKwJxdtwxGPaBxv6aesx03VVtcOPpCbwqvlRebOiaBZuhviTRXNaxrc6xSj/Y28TfIRRBvSnIEogAQkjNIW0T6lJvHb5bGNCEKYwKRjWRX28JVZD72hNitvnpYDM1YQxqjr5TuwOyS8fAFF5H6BXAEfITdk3mn8wyMjxjzVOIaqBTSTbWCLAnO2gCm2dtYMGh95B2YhPegH04bZPnxm3C+UMUpxf6m1QTr6udAHcRcl4/QnmcMjF7VmA7mx1vVrC12h7TR72c2A0y12gHbaxUWx652jaF/ymvU+mbYlWbysXG9tRKLiZQ8r62EkQzzO07FJBatAYN42EaMuyqIHCrvwIAML6d52NykuTF0YRJmVeu2lqjWqTPHUoC6X5nfEmeWmj+wBvRbLueAAvMqqQDCGO1RZwX+BYAVqKBT6Aq0NgkLWLu08y9oKMy27VJIsvXaRTSKTZzQ2qrZEqKMnjW5ZFMJtDgbk661p19hHknOSOJxAcjOQgqTIZoHuVE/Q++HKULJy1a4bnJumdRWsSPz7Qc6mu4vvG8Hx8lteJpH8fWqq+JL5bxU7oT7zuPlPPnlrGN3JBRQWkvPMX0E9Go5ow/FA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(346002)(396003)(136003)(376002)(39860400002)(84040400005)(230922051799003)(64100799003)(186009)(82310400011)(451199024)(1800799012)(46966006)(40470700004)(36840700001)(36756003)(40480700001)(40460700003)(70586007)(7696005)(6916009)(70206006)(86362001)(426003)(336012)(83380400001)(41300700001)(82740400003)(81166007)(356005)(2616005)(26005)(1076003)(47076005)(16526019)(4326008)(2906002)(6666004)(478600001)(36860700001)(8936002)(8676002)(5660300002)(316002)(54906003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jan 2024 17:30:26.5068 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b2f45e9-32fd-4a1e-281f-08dc0bb88230
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017090.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8199
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,293 +98,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Melissa Wen <mwen@igalia.com>, Harry Wentland <harry.wentland@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Vignesh.Chander@amd.com, Victor Lu <victorchengchi.lu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000470dda060df958f8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The current error detection only looks for a timeout.
+This should be changed to also check scratch_reg1 for any errors
+returned from RLCG.
 
-Hi,
+Also add a new error value.
 
-I tested the patch and it fixes the issue for me too. Consider it
-Tested-By Xaver Hugl <xaver.hugl@kde.org>
+Signed-off-by: Victor Lu <victorchengchi.lu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 8 ++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h | 2 ++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-- Xaver
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index 0dcff2889e25..3cd085569515 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -1022,7 +1022,7 @@ u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
+ 		 * SCRATCH_REG0 	= read/write value
+ 		 * SCRATCH_REG1[30:28]	= command
+ 		 * SCRATCH_REG1[19:0]	= address in dword
+-		 * SCRATCH_REG1[26:24]	= Error reporting
++		 * SCRATCH_REG1[27:24]	= Error reporting
+ 		 */
+ 		writel(v, scratch_reg0);
+ 		writel((offset | flag), scratch_reg1);
+@@ -1036,7 +1036,8 @@ u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
+ 			udelay(10);
+ 		}
+ 
+-		if (i >= timeout) {
++		tmp = readl(scratch_reg1);
++		if (i >= timeout || (tmp & AMDGPU_RLCG_SCRATCH1_ERROR_MASK) != 0) {
+ 			if (amdgpu_sriov_rlcg_error_report_enabled(adev)) {
+ 				if (tmp & AMDGPU_RLCG_VFGATE_DISABLED) {
+ 					dev_err(adev->dev,
+@@ -1047,6 +1048,9 @@ u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
+ 				} else if (tmp & AMDGPU_RLCG_REG_NOT_IN_RANGE) {
+ 					dev_err(adev->dev,
+ 						"register is not in range, rlcg failed to program reg: 0x%05x\n", offset);
++				} else if (tmp & AMDGPU_RLCG_INVALID_XCD_ACCESS) {
++					dev_err(adev->dev,
++						"invalid xcd access, rlcg failed to program reg: 0x%05x\n", offset);
+ 				} else {
+ 					dev_err(adev->dev,
+ 						"unknown error type, rlcg failed to program reg: 0x%05x\n", offset);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+index d4207e44141f..447af2e4aef0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+@@ -40,11 +40,13 @@
+ #define AMDGPU_RLCG_MMHUB_WRITE        (0x2 << 28)
+ 
+ /* error code for indirect register access path supported by rlcg for sriov */
++#define AMDGPU_RLCG_INVALID_XCD_ACCESS		0x8000000
+ #define AMDGPU_RLCG_VFGATE_DISABLED		0x4000000
+ #define AMDGPU_RLCG_WRONG_OPERATION_TYPE	0x2000000
+ #define AMDGPU_RLCG_REG_NOT_IN_RANGE		0x1000000
+ 
+ #define AMDGPU_RLCG_SCRATCH1_ADDRESS_MASK	0xFFFFF
++#define AMDGPU_RLCG_SCRATCH1_ERROR_MASK	0xF000000
+ 
+ /* all asic after AI use this offset */
+ #define mmRCC_IOV_FUNC_IDENTIFIER 0xDE5
+-- 
+2.34.1
 
-Am Mo., 1. Jan. 2024 um 22:37 Uhr schrieb Joshua Ashton <joshua@froggi.es>:
-
->  From the issue:
->
-> ```
-> Thank you for for fixing this!
-> I built a custom kernel with this patch on the fedora rawhide kernel
-> (6.7.0-0.rc8.61.fc40.x86_64) and now the colors look correct. SDR
-> content is now displayed as sRGB and HDR/WCG content can use the full
-> capabilities of the display.
-> I currently don't have a desktop mail client installed to comment on the
-> mailing list directly, so I'll post it here (not sure if it counts or
-> matters =F0=9F=98=80 )
->
-> Tested-By: Simon Berz <simon@berz.me>
-> ```
->
-> - Joshie =F0=9F=90=B8=E2=9C=A8
->
-> On 1/1/24 18:28, Joshua Ashton wrote:
-> > The check for sending the vsc infopacket to the display was gated behin=
-d
-> > PSR (Panel Self Refresh) being enabled.
-> >
-> > The vsc infopacket also contains the colorimetry (specifically the
-> > container color gamut) information for the stream on modern DP.
-> >
-> > PSR is typically only supported on mobile phone eDP displays, thus this
-> > was not getting sent for typical desktop monitors or TV screens.
-> >
-> > This functionality is needed for proper HDR10 functionality on DP as it
-> > wants BT2020 RGB/YCbCr for the container color space.
-> >
-> > Signed-off-by: Joshua Ashton <joshua@froggi.es>
-> >
-> > Cc: Harry Wentland <harry.wentland@amd.com>
-> > Cc: Xaver Hugl <xaver.hugl@gmail.com>
-> > Cc: Melissa Wen <mwen@igalia.com>
-> > ---
-> >   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   |  8 +++++---
-> >   .../amd/display/modules/info_packet/info_packet.c   | 13 ++++++++----=
--
-> >   2 files changed, 13 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 2845c884398e..6dff56408bf4 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -6233,8 +6233,9 @@ create_stream_for_sink(struct drm_connector
-> *connector,
-> >
-> >       if (stream->signal =3D=3D SIGNAL_TYPE_HDMI_TYPE_A)
-> >               mod_build_hf_vsif_infopacket(stream,
-> &stream->vsp_infopacket);
-> > -
-> > -     if (stream->link->psr_settings.psr_feature_enabled ||
-> stream->link->replay_settings.replay_feature_enabled) {
-> > +     else if (stream->signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT ||
-> > +                      stream->signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_M=
-ST ||
-> > +                      stream->signal =3D=3D SIGNAL_TYPE_EDP) {
-> >               //
-> >               // should decide stream support vsc sdp colorimetry
-> capability
-> >               // before building vsc info packet
-> > @@ -6250,8 +6251,9 @@ create_stream_for_sink(struct drm_connector
-> *connector,
-> >               if (stream->out_transfer_func->tf =3D=3D
-> TRANSFER_FUNCTION_GAMMA22)
-> >                       tf =3D TRANSFER_FUNC_GAMMA_22;
-> >               mod_build_vsc_infopacket(stream, &stream->vsc_infopacket,
-> stream->output_color_space, tf);
-> > -             aconnector->psr_skip_count =3D AMDGPU_DM_PSR_ENTRY_DELAY;
-> >
-> > +             if (stream->link->psr_settings.psr_feature_enabled)
-> > +                     aconnector->psr_skip_count =3D
-> AMDGPU_DM_PSR_ENTRY_DELAY;
-> >       }
-> >   finish:
-> >       dc_sink_release(sink);
-> > diff --git
-> a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-> b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-> > index 84f9b412a4f1..738ee763f24a 100644
-> > --- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-> > +++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-> > @@ -147,12 +147,15 @@ void mod_build_vsc_infopacket(const struct
-> dc_stream_state *stream,
-> >       }
-> >
-> >       /* VSC packet set to 4 for PSR-SU, or 2 for PSR1 */
-> > -     if (stream->link->psr_settings.psr_version =3D=3D DC_PSR_VERSION_=
-SU_1)
-> > -             vsc_packet_revision =3D vsc_packet_rev4;
-> > -     else if (stream->link->replay_settings.config.replay_supported)
-> > +     if (stream->link->psr_settings.psr_feature_enabled) {
-> > +             if (stream->link->psr_settings.psr_version =3D=3D
-> DC_PSR_VERSION_SU_1)
-> > +                     vsc_packet_revision =3D vsc_packet_rev4;
-> > +             else if (stream->link->psr_settings.psr_version =3D=3D
-> DC_PSR_VERSION_1)
-> > +                     vsc_packet_revision =3D vsc_packet_rev2;
-> > +     }
-> > +
-> > +     if (stream->link->replay_settings.config.replay_supported)
-> >               vsc_packet_revision =3D vsc_packet_rev4;
-> > -     else if (stream->link->psr_settings.psr_version =3D=3D
-> DC_PSR_VERSION_1)
-> > -             vsc_packet_revision =3D vsc_packet_rev2;
-> >
-> >       /* Update to revision 5 for extended colorimetry support */
-> >       if (stream->use_vsc_sdp_for_colorimetry)
->
->
-
---000000000000470dda060df958f8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I tested the patch and i=
-t fixes the issue for me too. Consider it</div><div>Tested-By Xaver Hugl &l=
-t;<a href=3D"mailto:xaver.hugl@kde.org">xaver.hugl@kde.org</a>&gt;</div><di=
-v><br></div><div>- Xaver<br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">Am Mo., 1. Jan. 2024 um 22:37=C2=A0Uhr sc=
-hrieb Joshua Ashton &lt;<a href=3D"mailto:joshua@froggi.es">joshua@froggi.e=
-s</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=C2=
-=A0From the issue:<br>
-<br>
-```<br>
-Thank you for for fixing this!<br>
-I built a custom kernel with this patch on the fedora rawhide kernel <br>
-(6.7.0-0.rc8.61.fc40.x86_64) and now the colors look correct. SDR <br>
-content is now displayed as sRGB and HDR/WCG content can use the full <br>
-capabilities of the display.<br>
-I currently don&#39;t have a desktop mail client installed to comment on th=
-e <br>
-mailing list directly, so I&#39;ll post it here (not sure if it counts or <=
-br>
-matters =F0=9F=98=80 )<br>
-<br>
-Tested-By: Simon Berz &lt;<a href=3D"mailto:simon@berz.me" target=3D"_blank=
-">simon@berz.me</a>&gt;<br>
-```<br>
-<br>
-- Joshie =F0=9F=90=B8=E2=9C=A8<br>
-<br>
-On 1/1/24 18:28, Joshua Ashton wrote:<br>
-&gt; The check for sending the vsc infopacket to the display was gated behi=
-nd<br>
-&gt; PSR (Panel Self Refresh) being enabled.<br>
-&gt; <br>
-&gt; The vsc infopacket also contains the colorimetry (specifically the<br>
-&gt; container color gamut) information for the stream on modern DP.<br>
-&gt; <br>
-&gt; PSR is typically only supported on mobile phone eDP displays, thus thi=
-s<br>
-&gt; was not getting sent for typical desktop monitors or TV screens.<br>
-&gt; <br>
-&gt; This functionality is needed for proper HDR10 functionality on DP as i=
-t<br>
-&gt; wants BT2020 RGB/YCbCr for the container color space.<br>
-&gt; <br>
-&gt; Signed-off-by: Joshua Ashton &lt;<a href=3D"mailto:joshua@froggi.es" t=
-arget=3D"_blank">joshua@froggi.es</a>&gt;<br>
-&gt; <br>
-&gt; Cc: Harry Wentland &lt;<a href=3D"mailto:harry.wentland@amd.com" targe=
-t=3D"_blank">harry.wentland@amd.com</a>&gt;<br>
-&gt; Cc: Xaver Hugl &lt;<a href=3D"mailto:xaver.hugl@gmail.com" target=3D"_=
-blank">xaver.hugl@gmail.com</a>&gt;<br>
-&gt; Cc: Melissa Wen &lt;<a href=3D"mailto:mwen@igalia.com" target=3D"_blan=
-k">mwen@igalia.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c=C2=A0 =
-=C2=A0|=C2=A0 8 +++++---<br>
-&gt;=C2=A0 =C2=A0.../amd/display/modules/info_packet/info_packet.c=C2=A0 =
-=C2=A0| 13 ++++++++-----<br>
-&gt;=C2=A0 =C2=A02 files changed, 13 insertions(+), 8 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drive=
-rs/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-&gt; index 2845c884398e..6dff56408bf4 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
-&gt; @@ -6233,8 +6233,9 @@ create_stream_for_sink(struct drm_connector *con=
-nector,<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (stream-&gt;signal =3D=3D SIGNAL_TYPE_HDM=
-I_TYPE_A)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mod_build_hf_vsi=
-f_infopacket(stream, &amp;stream-&gt;vsp_infopacket);<br>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&gt;psr_settings.psr_feature_=
-enabled || stream-&gt;link-&gt;replay_settings.replay_feature_enabled) {<br=
->
-&gt; +=C2=A0 =C2=A0 =C2=A0else if (stream-&gt;signal =3D=3D SIGNAL_TYPE_DIS=
-PLAY_PORT ||<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 stream-&gt;signal =3D=3D SIGNAL_TYPE_DISPLAY_PORT_MST ||<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 stream-&gt;signal =3D=3D SIGNAL_TYPE_EDP) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0//<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0// should decide=
- stream support vsc sdp colorimetry capability<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0// before buildi=
-ng vsc info packet<br>
-&gt; @@ -6250,8 +6251,9 @@ create_stream_for_sink(struct drm_connector *con=
-nector,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (stream-&gt;o=
-ut_transfer_func-&gt;tf =3D=3D TRANSFER_FUNCTION_GAMMA22)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0tf =3D TRANSFER_FUNC_GAMMA_22;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mod_build_vsc_in=
-fopacket(stream, &amp;stream-&gt;vsc_infopacket, stream-&gt;output_color_sp=
-ace, tf);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0aconnector-&gt;psr_sk=
-ip_count =3D AMDGPU_DM_PSR_ENTRY_DELAY;<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&=
-gt;psr_settings.psr_feature_enabled)<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0aconnector-&gt;psr_skip_count =3D AMDGPU_DM_PSR_ENTRY_DELAY;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0finish:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0dc_sink_release(sink);<br>
-&gt; diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_pack=
-et.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c<br>
-&gt; index 84f9b412a4f1..738ee763f24a 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c<br=
->
-&gt; +++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c<br=
->
-&gt; @@ -147,12 +147,15 @@ void mod_build_vsc_infopacket(const struct dc_st=
-ream_state *stream,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* VSC packet set to 4 for PSR-SU, or 2 for =
-PSR1 */<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&gt;psr_settings.psr_version =
-=3D=3D DC_PSR_VERSION_SU_1)<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0vsc_packet_revision =
-=3D vsc_packet_rev4;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0else if (stream-&gt;link-&gt;replay_settings.conf=
-ig.replay_supported)<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&gt;psr_settings.psr_feature_=
-enabled) {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&=
-gt;psr_settings.psr_version =3D=3D DC_PSR_VERSION_SU_1)<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0vsc_packet_revision =3D vsc_packet_rev4;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0else if (stream-&gt;l=
-ink-&gt;psr_settings.psr_version =3D=3D DC_PSR_VERSION_1)<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0vsc_packet_revision =3D vsc_packet_rev2;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
-&gt; +<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0if (stream-&gt;link-&gt;replay_settings.config.re=
-play_supported)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0vsc_packet_revis=
-ion =3D vsc_packet_rev4;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0else if (stream-&gt;link-&gt;psr_settings.psr_ver=
-sion =3D=3D DC_PSR_VERSION_1)<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0vsc_packet_revision =
-=3D vsc_packet_rev2;<br>
-&gt;=C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Update to revision 5 for extended colorim=
-etry support */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (stream-&gt;use_vsc_sdp_for_colorimetry)<=
-br>
-<br>
-</blockquote></div>
-
---000000000000470dda060df958f8--
