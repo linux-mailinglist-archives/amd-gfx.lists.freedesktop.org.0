@@ -1,120 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F626823099
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Jan 2024 16:33:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B018230EF
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Jan 2024 17:02:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAAF010E2DF;
-	Wed,  3 Jan 2024 15:33:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA7410E102;
+	Wed,  3 Jan 2024 16:02:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2053.outbound.protection.outlook.com [40.107.101.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F2E10E2B2
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jan 2024 15:33:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NeCHY+bBGgdkt3o7rZFSg6l/ZKL79koYM6cC22gfJhAp6ZDALVyOGBbdHdqBDIV0DqaL4MkLKOcfAMyZ9E1NTqAbOyb5JejwVpfccenF8czIgyUfMjtdltX5vdqY3OhbCZInuxuQ60jWuK8vfAuGHAo/mrRR4qnNQHIX73Ibpq6IFC2adsbHUO5Ka/v1bXJPI2PL4owXOdNNuycWnqdQxomhHWoBp4DjEGNnJ3lCAu6Cu0dFGVi9rBrk++2CwFHzjCjFEIruqZxUAcxwXIdJPBHeD8UVAOrrb7uDl4zGUxPaWM/pPxGmKOAeZBCi/y4BgBQoGguCBuS70Z88lYNKxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0uqHNylpTiTzkcENe4Tnw8e1dOeFgl4cOg7Q+0NBayA=;
- b=fw9pZ6ski8VM2TAgBrMHs2092BMn1WNlKbnA4yRejlfxBrT2zLREgKwoqIBSfOqEo/pkGtfVTrAwA8XBfDkQMjs6bisUIMvc5jERv9hDobFHHG4BBDTHBS0Jj9W4OqiSTTaHTUtcQsiusHjV7tYBvIVx40exyYpc5hT35LzzCrS3LiWhmSZ0RWIoA240xzccrVmYbIRrEHpIpN6+SsnirVeKUAIndvEjH9r+zb6I0RW7wM0vqfR+lX4QUZfsKROOKnW2h6/KgI/eADh/l/P7uJjntqnUeAyZAGdBPuSfwDWBg4a+67vBaQo4eF6irKHSMlYifcr2pk3dGdpsthghuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0uqHNylpTiTzkcENe4Tnw8e1dOeFgl4cOg7Q+0NBayA=;
- b=idoiHk33DjMerJ8+7/uZ3P08IY6VRrp/WwgTjHchvQxeuAHcz6iHEybzgSi20g/bEnvISAq53QpGZs/SK+FBAPvfitFRyL4cVsx+ZYlco0SuwVZ5LNoHTYlofb623+bjvo3aLlJuORjEpD8m3E0P51W+5B4o5JLit13GWq9Q670=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4599.namprd12.prod.outlook.com (2603:10b6:a03:107::22)
- by CY5PR12MB6275.namprd12.prod.outlook.com (2603:10b6:930:20::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.13; Wed, 3 Jan
- 2024 15:33:00 +0000
-Received: from BYAPR12MB4599.namprd12.prod.outlook.com
- ([fe80::eab2:927a:4a27:29a5]) by BYAPR12MB4599.namprd12.prod.outlook.com
- ([fe80::eab2:927a:4a27:29a5%6]) with mapi id 15.20.7159.013; Wed, 3 Jan 2024
- 15:32:59 +0000
-Message-ID: <10b32f43-7b0c-1232-1070-cf51731c5d5f@amd.com>
-Date: Wed, 3 Jan 2024 09:32:57 -0600
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] Revert "drm/amdkfd: Relocate TBA/TMA to opposite side of
- VM hole"
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Kaibo Ma <ent3rm4n@gmail.com>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>
-References: <20240103043000.23971-1-ent3rm4n@gmail.com>
- <CADnq5_NexkgrEKbM39QVGo+hOmd2G0Yc0sui3jWuJsKAyb3ONg@mail.gmail.com>
-From: Jay Cornwall <jay.cornwall@amd.com>
-In-Reply-To: <CADnq5_NexkgrEKbM39QVGo+hOmd2G0Yc0sui3jWuJsKAyb3ONg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SN6PR08CA0004.namprd08.prod.outlook.com
- (2603:10b6:805:66::17) To BYAPR12MB4599.namprd12.prod.outlook.com
- (2603:10b6:a03:107::22)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24DA710E050;
+ Wed,  3 Jan 2024 15:41:16 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id C5E09601D5;
+ Wed,  3 Jan 2024 15:41:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20BDC433C8;
+ Wed,  3 Jan 2024 15:41:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1704296474;
+ bh=aEJnG2VlNw6NSwF4y8+XKqOc5IR7JWeAEFNGBBFHiLg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=qLFtTi2a/GL9P10mlSrOO9kHj1j77DENeV6ovGrlwE/FViNfIXSzY5oysBG1YO3mw
+ lLisUCDB9n5oR6mngtgnlHotZXcb8M6Bc90NgQ1r5GqDpCBfHv4dQeONFGbpYU2G5X
+ rLkaSRCCnpKPyP5hBCoZgHmTmb8muTuAgIXifoMk=
+Date: Wed, 3 Jan 2024 16:41:11 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Subject: Re: [RFC PATCH] drm/amd/display: fix bandwidth validation failure on
+ DCN 2.1
+Message-ID: <2024010301-diameter-debatable-ec3b@gregkh>
+References: <20231229163821.144599-1-mwen@igalia.com>
+ <e8d478fe-a66b-4165-b2bc-ca5b263034c5@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4599:EE_|CY5PR12MB6275:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5088793e-727f-47c7-82e2-08dc0c71443f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vBesXY+wpV7RSoWrnuOln/Wn67AodYzD1sOu8j1SW2s5xhGknVxBFRFd/9spREE/ct457XnOqSikzJVpL263wszfapykR3oYF37n92k/IzP23PK3wDP5DNTn/Bz0RJEQJ1SjgO+TBR7vXtnHvKdzVN9NAI7WkhRQtY1sWBpA6sd6ytVgOnhKnDxlrEURmKaCT1oRdiLWJ8mHJ7YBD5i+4eKmMg4Myr4aNVTHqmwRSONMCxMHw10TjwuKP+bWd0pgkkjeG//IurXlyF/Y24hX7lL+iCKEt50we7CNCn4eXYjbSrDblV1eo6qoi3SFZkEuBF/GgKlzWKOqRAaA4hKh9/CSfN5+k86jOY/VGW/RL8i5UqknFnG0cKrECuzZ/HgRSThD6GE02Us1QQTV/6kVUKeWk2JFcJeyq3hATE45a7WOOTd+scET7ahjEyqZccXBeVW1lbVI+wWr4DtTmbGGfPZEzZN8QHinSn7BSgkE1F6C1QOTTQhkei9HqN5yLv6a9LpaPa7FGsNg3WX3EmoXboJVZ6hpxPHPLDjH8kaKqQyquFRmERGzCh90qbpazE9F9iwPd9HbgPYimMDOLKr+BBGZVDa7BckeoM5mc6hky/MB+f4NThbB2IoBSjLeZ+Uj
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4599.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(376002)(366004)(39860400002)(346002)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(31686004)(36756003)(66476007)(53546011)(6506007)(6512007)(66556008)(66946007)(31696002)(86362001)(38100700002)(41300700001)(83380400001)(6486002)(26005)(2616005)(2906002)(44832011)(478600001)(6636002)(4326008)(966005)(316002)(110136005)(5660300002)(8936002)(8676002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTJyVDlxSTVLcHZTeVdhNXZYT3czbVFUbThsWVZzQi9UTHJPSUlCRWIwQmR4?=
- =?utf-8?B?Q1BMYUtmdVQvcEZEdkVCRExLYlRISVpObCtlNCtWU0R4eHhZVDM2REoxTDlB?=
- =?utf-8?B?OWZJb1JOY0hicHZFY3JpWXYzWWs1ME9zMFFycUNLWlVwbVdldkdXNm1TaGtj?=
- =?utf-8?B?SjBCeExhaXhoaU1lbXdKYUZ3VVpIZUlkNXpYNTl5OGZXRVB2c0VjRnRuNzMz?=
- =?utf-8?B?UUFOYzkydmhtM1ZlUHBZcDY3WVBzZEVmT3NacW91YnFaZVVvd0FIUnh0QktX?=
- =?utf-8?B?OG54WU9FenFUM0JmbW1pS0VXUmV2V0tEZVM5QUZyMWtndGFZVG1lS1pRZXJ3?=
- =?utf-8?B?RDZYMXRyQTM1aHVZZXFaQkVheUNWaS85b0tmeUNrRkkzRlp2SkRKQXVhcWlu?=
- =?utf-8?B?RGsvelNXbjB6ZWlOaE11T0RCWFJiZlJJT1lNQjlRRUZIZmhDL3BUZ0dXUHps?=
- =?utf-8?B?ZHVJWnlYbUpudmlJSFgrSGZTVlFoRElwV252a216dUIrS2JHTkVDTGRPb0U1?=
- =?utf-8?B?S1JjZEkxTUtRSzIxV0prK0J3amhJRGNkdTZvcGdObUVrZDJpTzBiWXZxcXhY?=
- =?utf-8?B?WVBJaGgzT0ZHVGQxcFh5MXlQVmxkM25aalVHbEtrSkh2blNyNUdWZGpIOTc2?=
- =?utf-8?B?d1c3UnMyeWlCRk1UQ3B3UHQ4WVFHeFVjYjRXaVplY29tYmJqVUxXU2k5MlV3?=
- =?utf-8?B?NURiQ29iam1nenVWTWtlSlIxYTZ3NmEycGJMQkNwdDlaWHJnaEhzRXJHTEkw?=
- =?utf-8?B?NEprajBiSi9odm42QXJSbWhkbDJxdnBuNmx4bTJMZ3Jsb0lIK2VRM3g3Q1ov?=
- =?utf-8?B?emtHNkxPKzNYQ05mcUFQc0l5Z1pYbjh5a2FUYW5IMU0xZEI0TVVBTlEzMjIx?=
- =?utf-8?B?akpYUGNYeVl3SkN0NGxzZWRsR0xsMHRYd28wYjFtUUovQUE1UTEyQ3psNVVQ?=
- =?utf-8?B?VVdNQWdKTlZlNFlJNVEyVk1EZzd4dUZuczJRWndzZ1A3MmsvQm1BRFdCbENu?=
- =?utf-8?B?bUZtc2Y0SHlHc3FHSUtlZkZ6UHVPbUp2YUk1U0tGd1VxamNuRkRwaVFMcmo5?=
- =?utf-8?B?dHAySW50WGo0a0NpZmJqMWVvMmo0cjRrdEZYcWdMZFk5YWpCdlVyQUljcllN?=
- =?utf-8?B?MFRJWDY0OThwYmR2d096Zk1nUkFEbllWbHF2YW5tVlU5MVpKTGllNzdqY3RM?=
- =?utf-8?B?M3NXK3NEN1ZNcXBiTzhqUEp6R0s4ZEdIYURiZEpVWVJucEhRTW1PQnJGTkxp?=
- =?utf-8?B?MitsbzVWMkJiS0g3WUhDVUFhOG5jQklSV283NkxoS3RJYkNRVklaVWdaeUE0?=
- =?utf-8?B?WnArY0F5aTRvUjBPelNrU0wrNG9zeUdIVVk2dDJFVFVDVlZjVFZBVFlNMkE4?=
- =?utf-8?B?Uyt2aUNoMjJYbFkvUHQxNzdKOWU0bExkTlRUeml5cjdsaURVVEVJT1BHb0U5?=
- =?utf-8?B?WHI1aWM3Q3I5RG9jQkNWV09iZkw1Wk5neHNueitkOEkxcENVTHNjQ1VxRjVS?=
- =?utf-8?B?Z2hBODF2WW5NSGc1K0xnUEt6am45UFo5M3pzY1kzSWpxbXhPQjE3V2hjRWdI?=
- =?utf-8?B?SEpxcE8yTHF4eGU4aFRyWmNtZ0hnTGJtblpjVUpsUnRpY1VQUzFkMVF1UG9J?=
- =?utf-8?B?TGJVMlArc1QrVWdHM0cyWlMwbGJjeGwrQXVRL0Y3alNWY1U3Si9QQVlpcmcz?=
- =?utf-8?B?M2dESkFwcUZZeXhxaGZQUDJEbmp1UXV6NE42RlUrVm9OK0U5MGpCT0o3R0ZB?=
- =?utf-8?B?ZGc4MHZsMitTc3d6SE5QeDZWQVdnZmJnTGs5aVVjOHlEZ3EvMzI3NE5VZVZF?=
- =?utf-8?B?Um40c25ibjdjV09CUEZtRE5XbWZwSThaUmIxYVB2c2tTZzNxWTZaY01XU2lt?=
- =?utf-8?B?SWR2ZjBjM2g4dEtOeFptdTlqY1BnK2JEQUpVQXdWV0tGRE9ONkh1NmJNVldu?=
- =?utf-8?B?bzBHeWVLOEdwaUY1V1RTWFVnSHBya0hGTXdvaFQ4RmxMUURHbUxoZXBXOVFt?=
- =?utf-8?B?eDNWa3BDRGZjN1NDZGU5QWJEdk1aeVR5aGlITDNHRTRBRUR5UDZqQmE3RjRn?=
- =?utf-8?B?VDdLU1l5MnF6UE9zUzQxRDRveWdpUUFKYlpGODlnSHlwdndmakxWSzYwZHRi?=
- =?utf-8?Q?ztlLB0YQIoFWKryuFbk+pr9ka?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5088793e-727f-47c7-82e2-08dc0c71443f
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4599.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2024 15:32:59.8030 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iB9JB1C4Y8jggxzym5CChOSsDyrUvmzJJX8xgPcum5Fk1yTNajMi+8WnqMWAWkSv/GkB7+nojzNFkn+3hs/+1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6275
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e8d478fe-a66b-4165-b2bc-ca5b263034c5@amd.com>
+X-Mailman-Approved-At: Wed, 03 Jan 2024 16:02:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,90 +49,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, sunpeng.li@amd.com, airlied@gmail.com,
+ qingqing.zhuo@amd.com, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, dri-devel@lists.freedesktop.org,
+ Melissa Wen <mwen@igalia.com>, Alex Hung <alex.hung@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>, amd-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/3/2024 09:19, Alex Deucher wrote:
-> + Jay, Felix
+On Wed, Jan 03, 2024 at 09:44:18AM -0500, Hamza Mahfooz wrote:
+> On 12/29/23 11:25, Melissa Wen wrote:
+> > IGT `amdgpu/amd_color/crtc-lut-accuracy` fails right at the beginning of
+> > the test execution, during atomic check, because DC rejects the
+> > bandwidth state for a fb sizing 64x64. The test was previously working
+> > with the deprecated dc_commit_state(). Now using
+> > dc_validate_with_context() approach, the atomic check needs to perform a
+> > full state validation. Therefore, set fast_validation to false in the
+> > dc_validate_global_state call for atomic check.
+> > 
+> > Fixes: b8272241ff9d ("drm/amd/display: Drop dc_commit_state in favor of dc_commit_streams")
+> > Signed-off-by: Melissa Wen <mwen@igalia.com>
+> > ---
+> > 
+> > Hi,
+> > 
+> > It's a long story. I was inspecting this bug report:
+> > - https://gitlab.freedesktop.org/drm/amd/-/issues/2016
+> > and noticed the IGT test `igt@amdgpu/amd_color@crtc-lut-accuracy`
+> > mentioned there wasn't even being executed on a laptop with DCN 2.1
+> > (HP HP ENVY x360 Convertible 13-ay1xxx/8929). The test fails right at
+> > the beginning due to an atomic check rejection, as below:
+> > 
+> > Starting subtest: crtc-lut-accuracy
+> > (amd_color:14772) igt_kms-CRITICAL: Test assertion failure function igt_display_commit_atomic, file ../lib/igt_kms.c:4530:
+> > (amd_color:14772) igt_kms-CRITICAL: Failed assertion: ret == 0
+> > (amd_color:14772) igt_kms-CRITICAL: Last errno: 22, Invalid argument
+> > (amd_color:14772) igt_kms-CRITICAL: error: -22 != 0
+> > Stack trace:
+> >    #0 ../lib/igt_core.c:1989 __igt_fail_assert()
+> >    #1 [igt_display_commit_atomic+0x44]
+> >    #2 ../tests/amdgpu/amd_color.c:159 __igt_unique____real_main395()
+> >    #3 ../tests/amdgpu/amd_color.c:395 main()
+> >    #4 ../sysdeps/nptl/libc_start_call_main.h:74 __libc_start_call_main()
+> >    #5 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+> >    #6 [_start+0x21]
+> > Subtest crtc-lut-accuracy failed.
+> > 
+> > Checking dmesg, we can see that a bandwidth validation failure causes
+> > the atomic check rejection:
+> > 
+> > [  711.147663] amdgpu 0000:04:00.0: [drm] Mode Validation Warning: Unknown Status failed validation.
+> > [  711.147667] [drm:amdgpu_dm_atomic_check [amdgpu]] DC global validation failure: Bandwidth validation failure (BW and Watermark) (13)
+> > [  711.147772] [drm:amdgpu_irq_dispatch [amdgpu]] Unregistered interrupt src_id: 243 of client_id:8
+> > [  711.148033] [drm:amdgpu_dm_atomic_check [amdgpu]] Atomic check failed with err: -22
+> > 
+> > I also noticed that the atomic check doesn't fail if I change the fb
+> > width and height used in the test from 64 to 66, and I can get the test
+> > execution back (and with success). However, I recall that all test cases
+> > of IGT `amd_color` were working in the past, so I bisected and found the
+> > first bad commit:
+> > 
+> > b8272241ff9d drm/amd/display: Drop dc_commit_state in favor of dc_commit_streams
+> > 
+> > Bringing the `dc_commit_state` machinery back also prevents the
+> > bandwidth validation failure, but the commit above says
+> > dc_commit_streams validation is more complete than dc_commit_state, so I
+> > discarded this approach.
+> > 
+> > After some debugging and code inspection, I found out that avoiding fast
+> > validation on dc_validate_global_state during atomic check solves the
+> > issue, but I'm not sure if this change may affect performance. I
+> > compared exec time of some IGT tests and didn't see any differences, but
+> > I recognize it doesn't provide enough evidence.
+> > 
+> > What do you think about this change? Should I examine other things? Do
+> > you see any potential issue that I should investigate? Could you
+> > recommend a better approach to assess any side-effect of not enabling
+> > fast validation in the atomic check?
+> > 
+> > Please, let me know your thoughts.
 > 
-> On Wed, Jan 3, 2024 at 5:16 AM Kaibo Ma <ent3rm4n@gmail.com> wrote:
->>
->> That commit causes NULL pointer dereferences in dmesgs when
->> running applications using ROCm, including clinfo, blender,
->> and PyTorch, since v6.6.1. Revert it to fix blender again.
->>
->> This reverts commit 96c211f1f9ef82183493f4ceed4e347b52849149.
->>
->> Closes: https://github.com/ROCm/ROCm/issues/2596
->> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2991
->> Signed-off-by: Kaibo Ma <ent3rm4n@gmail.com>
->> ---
->>  drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c | 26 ++++++++++----------
->>  1 file changed, 13 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
->> index 62b205dac..6604a3f99 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
->> @@ -330,12 +330,6 @@ static void kfd_init_apertures_vi(struct kfd_process_device *pdd, uint8_t id)
->>         pdd->gpuvm_limit =
->>                 pdd->dev->kfd->shared_resources.gpuvm_size - 1;
->>
->> -       /* dGPUs: the reserved space for kernel
->> -        * before SVM
->> -        */
->> -       pdd->qpd.cwsr_base = SVM_CWSR_BASE;
->> -       pdd->qpd.ib_base = SVM_IB_BASE;
->> -
->>         pdd->scratch_base = MAKE_SCRATCH_APP_BASE_VI();
->>         pdd->scratch_limit = MAKE_SCRATCH_APP_LIMIT(pdd->scratch_base);
->>  }
->> @@ -345,18 +339,18 @@ static void kfd_init_apertures_v9(struct kfd_process_device *pdd, uint8_t id)
->>         pdd->lds_base = MAKE_LDS_APP_BASE_V9();
->>         pdd->lds_limit = MAKE_LDS_APP_LIMIT(pdd->lds_base);
->>
->> -       pdd->gpuvm_base = PAGE_SIZE;
->> +        /* Raven needs SVM to support graphic handle, etc. Leave the small
->> +         * reserved space before SVM on Raven as well, even though we don't
->> +         * have to.
->> +         * Set gpuvm_base and gpuvm_limit to CANONICAL addresses so that they
->> +         * are used in Thunk to reserve SVM.
->> +         */
->> +        pdd->gpuvm_base = SVM_USER_BASE;
->>         pdd->gpuvm_limit =
->>                 pdd->dev->kfd->shared_resources.gpuvm_size - 1;
->>
->>         pdd->scratch_base = MAKE_SCRATCH_APP_BASE_V9();
->>         pdd->scratch_limit = MAKE_SCRATCH_APP_LIMIT(pdd->scratch_base);
->> -
->> -       /*
->> -        * Place TBA/TMA on opposite side of VM hole to prevent
->> -        * stray faults from triggering SVM on these pages.
->> -        */
->> -       pdd->qpd.cwsr_base = pdd->dev->kfd->shared_resources.gpuvm_size;
->>  }
->>
->>  int kfd_init_apertures(struct kfd_process *process)
->> @@ -413,6 +407,12 @@ int kfd_init_apertures(struct kfd_process *process)
->>                                         return -EINVAL;
->>                                 }
->>                         }
->> +
->> +                        /* dGPUs: the reserved space for kernel
->> +                         * before SVM
->> +                         */
->> +                        pdd->qpd.cwsr_base = SVM_CWSR_BASE;
->> +                        pdd->qpd.ib_base = SVM_IB_BASE;
->>                 }
->>
->>                 dev_dbg(kfd_device, "node id %u\n", id);
->> --
->> 2.42.0
->>
+> We shouldn't be doing fast updates when lock_and_validation_needed is
+> true, so this seems to be correct.
+> 
+> Which is to say, applied, thanks!
+> 
+> Cc: stable@vger.kernel.org
 
-I saw a segfault issue in Mesa yesterday. Not sure about the others, but I don't know how to make this change while compatibility with older UMDs.
+<formletter>
 
-So I agree, let's revert it.
+This is not the correct way to submit patches for inclusion in the
+stable kernel tree.  Please read:
+    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+for how to do this properly.
 
-Reviewed-by: Jay Cornwall <jay.cornwall@amd.com>
+</formletter>
