@@ -2,42 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E525982456F
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jan 2024 16:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A59E5824571
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jan 2024 16:53:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6657A10E4DB;
-	Thu,  4 Jan 2024 15:53:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5FD410E4E4;
+	Thu,  4 Jan 2024 15:53:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2045.outbound.protection.outlook.com [40.107.96.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB38C10E4CD
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 15:53:29 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on20600.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::600])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF78810E4DF
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jan 2024 15:53:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HiFt6A6hrkablevEoI2Sga70nGIJu8Urb2oN/UvUCN/BiFb69KGqaGAYWI/Rt7d4f8eUZc42/Y09B0Ao+x5Ge7BCSoT8C04vBKcbz9QzkICvhQbULuK8MJkPlNp2xeY9g8Ukyic3B79E6Dc7BOpE6brGkRZAn7CkLvUsTbFZJIi+mhHkeCczr3tlf28God2kv+5OpnuliHRhF/xNv2yRevnSDSgL/MW7WA4pgiEr7IwjDMw6f9eoTlR0rUgkRGe5vCxNsg5yCuR8RNfEJZrwgexSbCMqDqzIgg1e5PW1KRaaKwt2tP0fg7rDGUIOWP1HNtPuyDwEK7Hs98tmEa5mrA==
+ b=VR2xJdGg/3+T5MMbLKAcK7VJFgOizj5cp5eniIcYdolurueb43ez3tFBoPQovF3TACW5d8DeOAWGh+2NX5H52vM+8fMqF5sNPpPK+y3gSLT8AaQglc/4GUBd4hNvFPMRPBD9czPa/u5Bpq+Czcg85BTn2vgJ/AXc18hGcD6ro09kWjUVBSWpp6/uYtB6PPUiaORLYTCTHz0PwwGfu2BkYblu1VWJhFyJ50RGRjDg7EDz8teeYD2cyWsBQ66/37Rr/V0/ZsrxFT8YC3loPbsaoD2FK2/w35UYgI0MTpxMTQ4rhQA2OKXhOONP5NAjaQYyyKD+adcWaH6fB+n6XhVn3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h6V2+wTZ/it97KEwTTFCd5uamj0N4lGWQZB5ODgQw7o=;
- b=Mnyne7JuFADjKIDSSONQceVKbkIClqt5xOM/p4Dk1vPzxMkZIykzAoqwvPPiOxbDPlVjLfpo+e/ERG9JNXIGctHSHc7mBEZHqKAI4c72EAcs8bXnbbNSi86tw5F2Czg21UTpouJm0HbgyQ49VNmgGO1Vnz3tlrGm7rBAFLj959OmQhhBvk2SwucJ28aiz86cXYnqjSb1NT0kxxlc5wKAqfPZ4sk+XmXr/n3DbVpMcj4/qCbYG3uZGHa573eaOPXQm//EbMzmjjxVvCJRcsreYw36NnYGQL1phVw2p7pJAj/TsHDml1d/NlXDL2o5UUMpuU9RPfK4IS7CuLr942hjcg==
+ bh=bgK37/Z468TZU29vWjna+ldHfD/OFzFfrySSt+t1+II=;
+ b=UjY2WPh52n4vususoApk1dJhhqEElGgOfX/PDcFde5VAsH07BV4cWFvbz/DvBQtRU9jOiwl2LE00sZq8zPwzqsnVQBnK+DEi7JaBCLHz0f2yXowczMD6EVT8YumXRQv8HtrBvDWoAzG94lMZIkhLxVszfjCQPRVEHK7HtjEYJGB5UXZzNHVWaEI8Wicdyt3qL7RqYQuHm3Liba49b88QVQLpYURkgQyl04dGlY+kpIFAv+wAd/ST5NoDhIaTqAKsgNVbrAyZ1NDPVG+NXjTd1qFAigLIqNSU7ENHT+BO7Ad5tPpfDFKziuCBVc4cRQrqCUuM7abJC0J7XjLxHcI5Vg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h6V2+wTZ/it97KEwTTFCd5uamj0N4lGWQZB5ODgQw7o=;
- b=5HkUO/BawQCG3yMUrM9xwDAD+LVrS+H6BF3vUqrXCRMMxPx6QktRiP6gueVZM/jOa09+aDuNwlfjGQkE2nv1CQBl/MpbSkAFATlzMoFhQrCB1dslTLt3b0u6ZUugmwvwmtWPHKUOMzbJdtEiGAXPIXeurMbBZfBqLbJafYT0ob8=
-Received: from PH0P220CA0016.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::19)
- by CO6PR12MB5473.namprd12.prod.outlook.com (2603:10b6:303:13e::8) with
+ bh=bgK37/Z468TZU29vWjna+ldHfD/OFzFfrySSt+t1+II=;
+ b=hicEGjZwxpZvJ4Huj3g89eF/X4cXDyjZyGVOsDzppxNF7zJKFpGJum71BLpnuMRnCFU221b14rToyXLhNHv08NGisL8EHW1GSNwBxLMvQj5DknMUO7U2tinTy9ZSopwvSJ/lSX8lDqfjnkywq6pQClMCi4oFibd0M2CP/lPtUNg=
+Received: from PH0P220CA0001.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::6) by
+ PH0PR12MB7957.namprd12.prod.outlook.com (2603:10b6:510:281::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.16; Thu, 4 Jan
  2024 15:53:27 +0000
 Received: from SA2PEPF000015CC.namprd03.prod.outlook.com
- (2603:10b6:510:d3:cafe::ce) by PH0P220CA0016.outlook.office365.com
- (2603:10b6:510:d3::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.15 via Frontend
- Transport; Thu, 4 Jan 2024 15:53:26 +0000
+ (2603:10b6:510:d3:cafe::8e) by PH0P220CA0001.outlook.office365.com
+ (2603:10b6:510:d3::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.16 via Frontend
+ Transport; Thu, 4 Jan 2024 15:53:27 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +48,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SA2PEPF000015CC.mail.protection.outlook.com (10.167.241.202) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7159.9 via Frontend Transport; Thu, 4 Jan 2024 15:53:26 +0000
+ 15.20.7159.9 via Frontend Transport; Thu, 4 Jan 2024 15:53:27 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 4 Jan
- 2024 09:53:21 -0600
+ 2024 09:53:23 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 06/10] drm/amd/display: Request usb4 bw for mst streams
-Date: Thu, 4 Jan 2024 08:51:02 -0700
-Message-ID: <20240104155238.454117-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/10] Revert "drm/amd/display: Fix conversions between bytes
+ and KB"
+Date: Thu, 4 Jan 2024 08:51:03 -0700
+Message-ID: <20240104155238.454117-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240104155238.454117-1-Rodrigo.Siqueira@amd.com>
 References: <20240104155238.454117-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +70,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|CO6PR12MB5473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79c3285e-a7f2-4408-08d5-08dc0d3d4a0f
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|PH0PR12MB7957:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66bc9957-cdd1-4d7a-1481-08dc0d3d4abd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YIakrtQbVyYIf7tIQi5FcZFmtgfvcRcNoHVWcIVw4tUD4Gz/hldzEu//FmJbkIjZJ8oo/0LJCPnqiYVm6T73gnO6+pUXWHDMyzfl7b7WijUnaIw2Tmgkt5OKw/ZND2qhn+OE8BEu96UjJBqafUPUDNOV1xDykjopuwHqUkaoAWRXAbwOmK99MNcocOCEwv8O6N1DEsi5f271L+lIvPNyBfS6eN1ojPAg16AFjM2ntmX23nBs922R12nEcspwxeIYtEyZdm+WrFUbLfeAfMcWa+iynrtx7GJedAuXpD4V9U1l6pGkHFaeFGsEehzvlsR+aWlSGVIm6ipBpjLAV8V8cqeBuv6zLUHnLnjLRkD69iYeWGMDJC+uoMFpBuJvNdEUTmkdqJ83/ukLcwVPfSYcUg3FIaoRvNOTkFyDPRJ/i+muyQeFlwgyr/pdLpm8UIfx3Kl9IO4PVKr0zuYCy4ARX5TbyymwNw79kwHOALvKs+EfkiV/pCs+W1Rg8G/heBREffa93M/3VKm+ws0Hn6VGXNv8y4lRbnl9Gdb7s0ngr8C+1NFiOpT9gPrWu4LuPIcqj/PlqXrEYXjrvzmt0EgVx7QET819jR8ncAbshj00q/YkHGkfv11Y0i0PQUXjFPYzkOMSENDs/gX2Qtths/hfLznHF8xg+I8GeVkMJuCZFXmG5/pvxogAz1J5poSxijMmPEBsy885rK3ZbiqaGmK+Z6W/BbRM790pblw4u7FRcm5xU7H7hXzK1GFSCZQDKkjY7lOrKK3KrnbVyEG/OgvINQ==
+X-Microsoft-Antispam-Message-Info: DD/QY2qWS2gV3lVewrHpm3r1EeT0jCi+cv0c0PhMO60CLzPTpn8N0SfQOblzzS3XN2yXvp9hF5aZYEhbxp7apPYEDAWfqTWujQCTYB4i+hKuGPSHkmrfMX/4ImgKN58sZ4WJdoqZm2KmW1BWqt5YNV6eyYd0Jbbe4o6qnykRzs8oXcMUAQ8BWfXSzJav0ppaoAgLzuic0hKI5MDndzrwuFEcY8AwhdLmDGkSwF2nLji5l//tcCXe5HJQN1KhqWCOo+rUp7GaW1AyaP9Jynb0pbS3CqG1lpEu3m1CtAN5a1AFjeeys8Xey0BQkb3NO5QDXIO48Etv1TlCT3Xqg+ffvMavswztaHvQYEFC2X5Jes3MZ5UG8mCt6i4nR+nsOWDJBV6/bSY8WkbKWWOJTpe828mtg/cSOv8tBbfcy6qvKrF9VO80X0sa6xDvnsnf+PHqek9nZh+IsSOak64uUlYCRmz0Yx9zDib5gFp0G+v6zxBWyJT4COUKTgvGFf+WP5ZTKBGEZtX0lXARRfQK2qAAmvQ1NQIy0X9Ne+WSVjq8WbpEdLOaziYewk1HsCb+d1PHejFHFUod/Cg5W44pDOCZEhsPqE9gd6H4/K4iPcYpQKTP/IvzufaT3la40+Zhgfx5KjiK3G1NksfaxkbGN/8Nb5V9vMvVk/ZNiqtgvb7YJoCP/xoA5QDb+HKLRjBdpEaETBONn03salyZoONRXv9ueQmM+xoxzzQmdv2tRN4/nRDFu6G2ign+ki9fybty4MU8MIK4E0cPYeYKkqvqDnz873o5YSKdx6Cs4xCwyRb9VTI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(346002)(376002)(396003)(230922051799003)(82310400011)(186009)(64100799003)(451199024)(1800799012)(46966006)(40470700004)(36840700001)(40460700003)(40480700001)(36756003)(66899024)(478600001)(70586007)(70206006)(86362001)(16526019)(83380400001)(66574015)(47076005)(2616005)(81166007)(356005)(426003)(26005)(1076003)(5660300002)(336012)(30864003)(316002)(2906002)(6916009)(6666004)(4326008)(54906003)(82740400003)(41300700001)(36860700001)(8936002)(8676002)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(346002)(396003)(376002)(136003)(230922051799003)(64100799003)(186009)(1800799012)(82310400011)(451199024)(46966006)(40470700004)(36840700001)(426003)(336012)(26005)(6666004)(478600001)(1076003)(83380400001)(47076005)(16526019)(5660300002)(2906002)(41300700001)(70586007)(54906003)(8936002)(316002)(6916009)(8676002)(4326008)(70206006)(82740400003)(36860700001)(36756003)(86362001)(81166007)(2616005)(356005)(40480700001)(40460700003)(36900700001)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 15:53:26.5495 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79c3285e-a7f2-4408-08d5-08dc0d3d4a0f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 15:53:27.5339 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66bc9957-cdd1-4d7a-1481-08dc0d3d4abd
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5473
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7957
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,374 +101,114 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, jerry.zuo@amd.com, Sunpeng.Li@amd.com,
+Cc: stylon.wang@amd.com, Daniel Miess <daniel.miess@amd.com>, jerry.zuo@amd.com,
+ Charlene Liu <charlene.liu@amd.com>, Sunpeng.Li@amd.com,
  Rodrigo Siqueira <rodrigo.siqueira@amd.com>, roman.li@amd.com,
  solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
  Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Harry.Wentland@amd.com, Cruise Hung <cruise.hung@amd.com>,
- agustin.gutierrez@amd.com, Peichen Huang <peichen.huang@amd.com>
+ Harry.Wentland@amd.com, agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Peichen Huang <peichen.huang@amd.com>
+From: Daniel Miess <daniel.miess@amd.com>
 
-[WHY]
-When usb4 bandwidth allocation mode is enabled, driver need to request
-bandwidth from connection manager. For mst link,  the requested
-bandwidth should be big enough for all remote streams.
+This reverts commit 058d7bea47e9d9fd43dc0503b6403071c3429d91.
 
-[HOW]
-- If mst link, the requested bandwidth should be the sum of all mst
-  streams bandwidth added with dp MTPH overhead.
-- Allocate/deallcate usb4 bandwidth when setting dpms on/off.
-- When doing display mode validation, driver also need to consider total
-  bandwidth of all mst streams for mst link.
+The previous commit causes failure to light up for 1080p
+eDP + 8k HDMI panel combo.
 
-Reviewed-by: Cruise Hung <cruise.hung@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
 Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Signed-off-by: Peichen Huang <peichen.huang@amd.com>
+Signed-off-by: Daniel Miess <daniel.miess@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_types.h     | 12 ++--
- .../gpu/drm/amd/display/dc/link/link_dpms.c   | 42 ++++++++++---
- .../drm/amd/display/dc/link/link_validation.c | 60 +++++++++++++++----
- .../dc/link/protocols/link_dp_dpia_bw.c       | 59 +++++++++++++-----
- .../dc/link/protocols/link_dp_dpia_bw.h       |  9 +++
- 5 files changed, 144 insertions(+), 38 deletions(-)
+ .../amd/display/dc/dml2/display_mode_core.c    | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index 4f276169e05a..b08ccb8c68bc 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -1140,23 +1140,25 @@ struct dc_panel_config {
- 	} ilr;
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+index b95bf27f2fe2..a6b938a12de1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+@@ -6229,7 +6229,7 @@ static void set_calculate_prefetch_schedule_params(struct display_mode_lib_st *m
+ 				CalculatePrefetchSchedule_params->GPUVMEnable = mode_lib->ms.cache_display_cfg.plane.GPUVMEnable;
+ 				CalculatePrefetchSchedule_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 				CalculatePrefetchSchedule_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+-				CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++				CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 				CalculatePrefetchSchedule_params->DynamicMetadataEnable = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataEnable[k];
+ 				CalculatePrefetchSchedule_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 				CalculatePrefetchSchedule_params->DynamicMetadataLinesBeforeActiveRequired = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataLinesBeforeActiveRequired[k];
+@@ -6329,7 +6329,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 				mode_lib->ms.NoOfDPPThisState,
+ 				mode_lib->ms.dpte_group_bytes,
+ 				s->HostVMInefficiencyFactor,
+-				mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++				mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 				mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels);
  
-+#define MAX_SINKS_PER_LINK 4
-+
- /*
-  *  USB4 DPIA BW ALLOCATION STRUCTS
-  */
- struct dc_dpia_bw_alloc {
--	int sink_verified_bw;  // The Verified BW that sink can allocated and use that has been verified already
--	int sink_allocated_bw; // The Actual Allocated BW that sink currently allocated
--	int sink_max_bw;       // The Max BW that sink can require/support
-+	int remote_sink_req_bw[MAX_SINKS_PER_LINK]; // BW requested by remote sinks
-+	int link_verified_bw;  // The Verified BW that link can allocated and use that has been verified already
-+	int link_max_bw;       // The Max BW that link can require/support
-+	int allocated_bw;      // The Actual Allocated BW for this DPIA
- 	int estimated_bw;      // The estimated available BW for this DPIA
- 	int bw_granularity;    // BW Granularity
-+	int dp_overhead;       // DP overhead in dp tunneling
- 	bool bw_alloc_enabled; // The BW Alloc Mode Support is turned ON for all 3:  DP-Tx & Dpia & CM
- 	bool response_ready;   // Response ready from the CM side
- 	uint8_t nrd_max_lane_count; // Non-reduced max lane count
- 	uint8_t nrd_max_link_rate; // Non-reduced max link rate
- };
+ 		s->NextMaxVStartup = s->MaxVStartupAllPlanes[j];
+@@ -6542,7 +6542,7 @@ static void dml_prefetch_check(struct display_mode_lib_st *mode_lib)
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMEnable,
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels,
+ 						mode_lib->ms.cache_display_cfg.plane.GPUVMEnable,
+-						mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++						mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 						mode_lib->ms.PDEAndMetaPTEBytesPerFrame[j][k],
+ 						mode_lib->ms.MetaRowBytes[j][k],
+ 						mode_lib->ms.DPTEBytesPerRow[j][k],
+@@ -7687,7 +7687,7 @@ dml_bool_t dml_core_mode_support(struct display_mode_lib_st *mode_lib)
+ 		CalculateVMRowAndSwath_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 		CalculateVMRowAndSwath_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 		CalculateVMRowAndSwath_params->GPUVMMinPageSizeKBytes = mode_lib->ms.cache_display_cfg.plane.GPUVMMinPageSizeKBytes;
+-		CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++		CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 		CalculateVMRowAndSwath_params->PTEBufferModeOverrideEn = mode_lib->ms.cache_display_cfg.plane.PTEBufferModeOverrideEn;
+ 		CalculateVMRowAndSwath_params->PTEBufferModeOverrideVal = mode_lib->ms.cache_display_cfg.plane.PTEBufferMode;
+ 		CalculateVMRowAndSwath_params->PTEBufferSizeNotExceeded = mode_lib->ms.PTEBufferSizeNotExceededPerState;
+@@ -7957,7 +7957,7 @@ dml_bool_t dml_core_mode_support(struct display_mode_lib_st *mode_lib)
+ 		UseMinimumDCFCLK_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 		UseMinimumDCFCLK_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 		UseMinimumDCFCLK_params->NumberOfActiveSurfaces = mode_lib->ms.num_active_planes;
+-		UseMinimumDCFCLK_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++		UseMinimumDCFCLK_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 		UseMinimumDCFCLK_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 		UseMinimumDCFCLK_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 		UseMinimumDCFCLK_params->ImmediateFlipRequirement = s->ImmediateFlipRequiredFinal;
+@@ -8699,7 +8699,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 	CalculateVMRowAndSwath_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+ 	CalculateVMRowAndSwath_params->GPUVMMaxPageTableLevels = mode_lib->ms.cache_display_cfg.plane.GPUVMMaxPageTableLevels;
+ 	CalculateVMRowAndSwath_params->GPUVMMinPageSizeKBytes = mode_lib->ms.cache_display_cfg.plane.GPUVMMinPageSizeKBytes;
+-	CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++	CalculateVMRowAndSwath_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 	CalculateVMRowAndSwath_params->PTEBufferModeOverrideEn = mode_lib->ms.cache_display_cfg.plane.PTEBufferModeOverrideEn;
+ 	CalculateVMRowAndSwath_params->PTEBufferModeOverrideVal = mode_lib->ms.cache_display_cfg.plane.PTEBufferMode;
+ 	CalculateVMRowAndSwath_params->PTEBufferSizeNotExceeded = s->dummy_boolean_array[0];
+@@ -8805,7 +8805,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			mode_lib->ms.cache_display_cfg.hw.DPPPerSurface,
+ 			locals->dpte_group_bytes,
+ 			s->HostVMInefficiencyFactor,
+-			mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++			mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 			mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels);
  
--#define MAX_SINKS_PER_LINK 4
--
- enum dc_hpd_enable_select {
- 	HPD_EN_FOR_ALL_EDP = 0,
- 	HPD_EN_FOR_PRIMARY_EDP_ONLY,
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index 5fe8b4871c77..3de148004c06 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -2005,17 +2005,11 @@ static enum dc_status enable_link_dp(struct dc_state *state,
- 		}
- 	}
- 
--	/*
--	 * If the link is DP-over-USB4 do the following:
--	 * - Train with fallback when enabling DPIA link. Conventional links are
-+	/* Train with fallback when enabling DPIA link. Conventional links are
- 	 * trained with fallback during sink detection.
--	 * - Allocate only what the stream needs for bw in Gbps. Inform the CM
--	 * in case stream needs more or less bw from what has been allocated
--	 * earlier at plug time.
- 	 */
--	if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA) {
-+	if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA)
- 		do_fallback = true;
--	}
- 
- 	/*
- 	 * Temporary w/a to get DP2.0 link rates to work with SST.
-@@ -2197,6 +2191,32 @@ static enum dc_status enable_link(
- 	return status;
- }
- 
-+static bool allocate_usb4_bandwidth_for_stream(struct dc_stream_state *stream, int bw)
-+{
-+	return true;
-+}
-+
-+static bool allocate_usb4_bandwidth(struct dc_stream_state *stream)
-+{
-+	bool ret;
-+
-+	int bw = dc_bandwidth_in_kbps_from_timing(&stream->timing,
-+			dc_link_get_highest_encoding_format(stream->sink->link));
-+
-+	ret = allocate_usb4_bandwidth_for_stream(stream, bw);
-+
-+	return ret;
-+}
-+
-+static bool deallocate_usb4_bandwidth(struct dc_stream_state *stream)
-+{
-+	bool ret;
-+
-+	ret = allocate_usb4_bandwidth_for_stream(stream, 0);
-+
-+	return ret;
-+}
-+
- void link_set_dpms_off(struct pipe_ctx *pipe_ctx)
- {
- 	struct dc  *dc = pipe_ctx->stream->ctx->dc;
-@@ -2232,6 +2252,9 @@ void link_set_dpms_off(struct pipe_ctx *pipe_ctx)
- 	update_psp_stream_config(pipe_ctx, true);
- 	dc->hwss.blank_stream(pipe_ctx);
- 
-+	if (pipe_ctx->stream->link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA)
-+		deallocate_usb4_bandwidth(pipe_ctx->stream);
-+
- 	if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
- 		deallocate_mst_payload(pipe_ctx);
- 	else if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT &&
-@@ -2474,6 +2497,9 @@ void link_set_dpms_on(
- 		}
- 	}
- 
-+	if (pipe_ctx->stream->link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA)
-+		allocate_usb4_bandwidth(pipe_ctx->stream);
-+
- 	if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
- 		allocate_mst_payload(pipe_ctx);
- 	else if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT &&
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_validation.c b/drivers/gpu/drm/amd/display/dc/link/link_validation.c
-index b45fda96eaf6..8fe66c367850 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_validation.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_validation.c
-@@ -346,23 +346,61 @@ enum dc_status link_validate_mode_timing(
- 	return DC_OK;
- }
- 
-+/*
-+ * This function calculates the bandwidth required for the stream timing
-+ * and aggregates the stream bandwidth for the respective dpia link
-+ *
-+ * @stream: pointer to the dc_stream_state struct instance
-+ * @num_streams: number of streams to be validated
-+ *
-+ * return: true if validation is succeeded
-+ */
- bool link_validate_dpia_bandwidth(const struct dc_stream_state *stream, const unsigned int num_streams)
- {
--	bool ret = true;
--	int bw_needed[MAX_DPIA_NUM];
--	struct dc_link *link[MAX_DPIA_NUM];
--
--	if (!num_streams || num_streams > MAX_DPIA_NUM)
--		return ret;
-+	int bw_needed[MAX_DPIA_NUM] = {0};
-+	struct dc_link *dpia_link[MAX_DPIA_NUM] = {0};
-+	int num_dpias = 0;
- 
- 	for (uint8_t i = 0; i < num_streams; ++i) {
-+		if (stream[i].signal == SIGNAL_TYPE_DISPLAY_PORT) {
-+			/* new dpia sst stream, check whether it exceeds max dpia */
-+			if (num_dpias >= MAX_DPIA_NUM)
-+				return false;
- 
--		link[i] = stream[i].link;
--		bw_needed[i] = dc_bandwidth_in_kbps_from_timing(&stream[i].timing,
--				dc_link_get_highest_encoding_format(link[i]));
-+			dpia_link[num_dpias] = stream[i].link;
-+			bw_needed[num_dpias] = dc_bandwidth_in_kbps_from_timing(&stream[i].timing,
-+					dc_link_get_highest_encoding_format(dpia_link[num_dpias]));
-+			num_dpias++;
-+		} else if (stream[i].signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
-+			uint8_t j = 0;
-+			/* check whether its a known dpia link */
-+			for (; j < num_dpias; ++j) {
-+				if (dpia_link[j] == stream[i].link)
-+					break;
-+			}
-+
-+			if (j == num_dpias) {
-+				/* new dpia mst stream, check whether it exceeds max dpia */
-+				if (num_dpias >= MAX_DPIA_NUM)
-+					return false;
-+				else {
-+					dpia_link[j] = stream[i].link;
-+					num_dpias++;
-+				}
-+			}
-+
-+			bw_needed[j] += dc_bandwidth_in_kbps_from_timing(&stream[i].timing,
-+				dc_link_get_highest_encoding_format(dpia_link[j]));
-+		}
- 	}
- 
--	ret = dpia_validate_usb4_bw(link, bw_needed, num_streams);
-+	/* Include dp overheads */
-+	for (uint8_t i = 0; i < num_dpias; ++i) {
-+		int dp_overhead = 0;
-+
-+		dp_overhead = link_dp_dpia_get_dp_overhead_in_dp_tunneling(dpia_link[i]);
-+		bw_needed[i] += dp_overhead;
-+	}
- 
--	return ret;
-+	return dpia_validate_usb4_bw(dpia_link, bw_needed, num_dpias);
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
-index a7aa8c9da868..4ef1a6a1d129 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
-@@ -54,12 +54,18 @@ static bool get_bw_alloc_proceed_flag(struct dc_link *tmp)
- static void reset_bw_alloc_struct(struct dc_link *link)
- {
- 	link->dpia_bw_alloc_config.bw_alloc_enabled = false;
--	link->dpia_bw_alloc_config.sink_verified_bw = 0;
--	link->dpia_bw_alloc_config.sink_max_bw = 0;
-+	link->dpia_bw_alloc_config.link_verified_bw = 0;
-+	link->dpia_bw_alloc_config.link_max_bw = 0;
-+	link->dpia_bw_alloc_config.allocated_bw = 0;
- 	link->dpia_bw_alloc_config.estimated_bw = 0;
- 	link->dpia_bw_alloc_config.bw_granularity = 0;
-+	link->dpia_bw_alloc_config.dp_overhead = 0;
- 	link->dpia_bw_alloc_config.response_ready = false;
--	link->dpia_bw_alloc_config.sink_allocated_bw = 0;
-+	link->dpia_bw_alloc_config.nrd_max_lane_count = 0;
-+	link->dpia_bw_alloc_config.nrd_max_link_rate = 0;
-+	for (int i = 0; i < MAX_SINKS_PER_LINK; i++)
-+		link->dpia_bw_alloc_config.remote_sink_req_bw[i] = 0;
-+	DC_LOG_DEBUG("reset usb4 bw alloc of link(%d)\n", link->link_index);
- }
- 
- #define BW_GRANULARITY_0 4 // 0.25 Gbps
-@@ -210,8 +216,8 @@ static int get_host_router_total_dp_tunnel_bw(const struct dc *dc, uint8_t hr_in
- 				link_dpia_primary->dpia_bw_alloc_config.bw_alloc_enabled) &&
- 				(link_dpia_secondary->hpd_status &&
- 				link_dpia_secondary->dpia_bw_alloc_config.bw_alloc_enabled)) {
--				total_bw += link_dpia_primary->dpia_bw_alloc_config.estimated_bw +
--					link_dpia_secondary->dpia_bw_alloc_config.sink_allocated_bw;
-+					total_bw += link_dpia_primary->dpia_bw_alloc_config.estimated_bw +
-+						link_dpia_secondary->dpia_bw_alloc_config.allocated_bw;
- 			} else if (link_dpia_primary->hpd_status &&
- 					link_dpia_primary->dpia_bw_alloc_config.bw_alloc_enabled) {
- 				total_bw = link_dpia_primary->dpia_bw_alloc_config.estimated_bw;
-@@ -264,7 +270,7 @@ static void set_usb4_req_bw_req(struct dc_link *link, int req_bw)
- 
- 	/* Error check whether requested and allocated are equal */
- 	req_bw = requested_bw * (Kbps_TO_Gbps / link->dpia_bw_alloc_config.bw_granularity);
--	if (req_bw == link->dpia_bw_alloc_config.sink_allocated_bw) {
-+	if (req_bw == link->dpia_bw_alloc_config.allocated_bw) {
- 		DC_LOG_ERROR("%s: Request bw equals to allocated bw for link(%d)\n",
- 			__func__, link->link_index);
- 	}
-@@ -387,9 +393,9 @@ void dpia_handle_bw_alloc_response(struct dc_link *link, uint8_t bw, uint8_t res
- 		DC_LOG_DEBUG("%s: BW REQ SUCCESS for DP-TX Request for link(%d)\n",
- 			__func__, link->link_index);
- 		DC_LOG_DEBUG("%s: current allocated_bw(%d), new allocated_bw(%d)\n",
--			__func__, link->dpia_bw_alloc_config.sink_allocated_bw, bw_needed);
-+			__func__, link->dpia_bw_alloc_config.allocated_bw, bw_needed);
- 
--		link->dpia_bw_alloc_config.sink_allocated_bw = bw_needed;
-+		link->dpia_bw_alloc_config.allocated_bw = bw_needed;
- 
- 		link->dpia_bw_alloc_config.response_ready = true;
- 		break;
-@@ -427,8 +433,8 @@ int dpia_handle_usb4_bandwidth_allocation_for_link(struct dc_link *link, int pea
- 	if (link->hpd_status && peak_bw > 0) {
- 
- 		// If DP over USB4 then we need to check BW allocation
--		link->dpia_bw_alloc_config.sink_max_bw = peak_bw;
--		set_usb4_req_bw_req(link, link->dpia_bw_alloc_config.sink_max_bw);
-+		link->dpia_bw_alloc_config.link_max_bw = peak_bw;
-+		set_usb4_req_bw_req(link, link->dpia_bw_alloc_config.link_max_bw);
- 
- 		do {
- 			if (timeout > 0)
-@@ -440,8 +446,8 @@ int dpia_handle_usb4_bandwidth_allocation_for_link(struct dc_link *link, int pea
- 
- 		if (!timeout)
- 			ret = 0;// ERROR TIMEOUT waiting for response for allocating bw
--		else if (link->dpia_bw_alloc_config.sink_allocated_bw > 0)
--			ret = link->dpia_bw_alloc_config.sink_allocated_bw;
-+		else if (link->dpia_bw_alloc_config.allocated_bw > 0)
-+			ret = link->dpia_bw_alloc_config.allocated_bw;
- 	}
- 	//2. Cold Unplug
- 	else if (!link->hpd_status)
-@@ -450,7 +456,6 @@ int dpia_handle_usb4_bandwidth_allocation_for_link(struct dc_link *link, int pea
- out:
- 	return ret;
- }
--
- bool link_dp_dpia_allocate_usb4_bandwidth_for_stream(struct dc_link *link, int req_bw)
- {
- 	bool ret = false;
-@@ -458,7 +463,7 @@ bool link_dp_dpia_allocate_usb4_bandwidth_for_stream(struct dc_link *link, int r
- 
- 	DC_LOG_DEBUG("%s: ENTER: link(%d), hpd_status(%d), current allocated_bw(%d), req_bw(%d)\n",
- 		__func__, link->link_index, link->hpd_status,
--		link->dpia_bw_alloc_config.sink_allocated_bw, req_bw);
-+		link->dpia_bw_alloc_config.allocated_bw, req_bw);
- 
- 	if (!get_bw_alloc_proceed_flag(link))
- 		goto out;
-@@ -523,3 +528,29 @@ bool dpia_validate_usb4_bw(struct dc_link **link, int *bw_needed_per_dpia, const
- 
- 	return ret;
- }
-+
-+int link_dp_dpia_get_dp_overhead_in_dp_tunneling(struct dc_link *link)
-+{
-+	int dp_overhead = 0, link_mst_overhead = 0;
-+
-+	if (!get_bw_alloc_proceed_flag((link)))
-+		return dp_overhead;
-+
-+	/* if its mst link, add MTPH overhead */
-+	if ((link->type == dc_connection_mst_branch) &&
-+		!link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED) {
-+		/* For 8b/10b encoding: MTP is 64 time slots long, slot 0 is used for MTPH
-+		 * MST overhead is 1/64 of link bandwidth (excluding any overhead)
-+		 */
-+		const struct dc_link_settings *link_cap =
-+			dc_link_get_link_cap(link);
-+		uint32_t link_bw_in_kbps =
-+			link_cap->link_rate * link_cap->lane_count * LINK_RATE_REF_FREQ_IN_KHZ * 8;
-+		link_mst_overhead = (link_bw_in_kbps / 64) + ((link_bw_in_kbps % 64) ? 1 : 0);
-+	}
-+
-+	/* add all the overheads */
-+	dp_overhead = link_mst_overhead;
-+
-+	return dp_overhead;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
-index 981bc4eb6120..3b6d8494f9d5 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
-@@ -99,4 +99,13 @@ void dpia_handle_bw_alloc_response(struct dc_link *link, uint8_t bw, uint8_t res
-  */
- bool dpia_validate_usb4_bw(struct dc_link **link, int *bw_needed, const unsigned int num_dpias);
- 
-+/*
-+ * Obtain all the DP overheads in dp tunneling for the dpia link
-+ *
-+ * @link: pointer to the dc_link struct instance
-+ *
-+ * return: DP overheads in DP tunneling
-+ */
-+int link_dp_dpia_get_dp_overhead_in_dp_tunneling(struct dc_link *link);
-+
- #endif /* DC_INC_LINK_DP_DPIA_BW_H_ */
+ 	locals->TCalc = 24.0 / locals->DCFCLKDeepSleep;
+@@ -8995,7 +8995,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 			CalculatePrefetchSchedule_params->GPUVMEnable = mode_lib->ms.cache_display_cfg.plane.GPUVMEnable;
+ 			CalculatePrefetchSchedule_params->HostVMEnable = mode_lib->ms.cache_display_cfg.plane.HostVMEnable;
+ 			CalculatePrefetchSchedule_params->HostVMMaxNonCachedPageTableLevels = mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels;
+-			CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes;
++			CalculatePrefetchSchedule_params->HostVMMinPageSize = mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024;
+ 			CalculatePrefetchSchedule_params->DynamicMetadataEnable = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataEnable[k];
+ 			CalculatePrefetchSchedule_params->DynamicMetadataVMEnabled = mode_lib->ms.ip.dynamic_metadata_vm_enabled;
+ 			CalculatePrefetchSchedule_params->DynamicMetadataLinesBeforeActiveRequired = mode_lib->ms.cache_display_cfg.plane.DynamicMetadataLinesBeforeActiveRequired[k];
+@@ -9240,7 +9240,7 @@ void dml_core_mode_programming(struct display_mode_lib_st *mode_lib, const struc
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMEnable,
+ 						mode_lib->ms.cache_display_cfg.plane.HostVMMaxPageTableLevels,
+ 						mode_lib->ms.cache_display_cfg.plane.GPUVMEnable,
+-						mode_lib->ms.soc.hostvm_min_page_size_kbytes,
++						mode_lib->ms.soc.hostvm_min_page_size_kbytes * 1024,
+ 						locals->PDEAndMetaPTEBytesFrame[k],
+ 						locals->MetaRowByte[k],
+ 						locals->PixelPTEBytesPerRow[k],
 -- 
 2.43.0
 
