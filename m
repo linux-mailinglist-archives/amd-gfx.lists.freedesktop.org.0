@@ -2,71 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83A782548F
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jan 2024 14:39:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 983538254C6
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Jan 2024 15:02:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9CC10E600;
-	Fri,  5 Jan 2024 13:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2401110E047;
+	Fri,  5 Jan 2024 14:02:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC5510E5FB
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jan 2024 13:39:54 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- 5b1f17b1804b1-40d2e56f3a6so3251125e9.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Jan 2024 05:39:54 -0800 (PST)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F15AF10E047
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jan 2024 14:02:46 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-204ec50010eso678594fac.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 05 Jan 2024 06:02:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1704461992; x=1705066792; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=rjnzLFjqdDvtiFgTEx7litURemLOsyCYAhz3ZoGhFlA=;
- b=Xk3nHmXNOWi1zPlZYUwpjxD3RnlT0nzu+wTnsLKK1WR5ZlD7tbbSRc1dnp02I7iW/L
- GefGswhqFnXXlW6+DrtHJ2ukETfPNR7POC+nDwz41T/Qiunix1YY7v5GQNdbOKY4eZnq
- XGUFjPpGW/PkoRVZb3IwRa8EFJHJ3/c/6gTasIt4xiJcHchZdNB1fxzEpaLJOuISqiYt
- lCLb70EJymGnpZpu4WARpho7KyQ6D9lvox54QAaYprkTa8cQl42iMRs/hodWnuhBN9/v
- Z7vHCz/FLmsfp3O8HjP0LyuV72BcPzHvrYDMGmSj9hkGdAMTWV/Fo7EStDYnAw1u2ug/
- aWIA==
+ d=gmail.com; s=20230601; t=1704463366; x=1705068166; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=iXJd6bIfgI4JVHpvXvSqGZc1mxLUUdw43IM9bFZL2Ek=;
+ b=D2eKWkTd7ugqIPsDEmL0Er+NfDMeDE1m4YciuJFre8bt3Yznaz2rMCfkHR0nxXkzCy
+ FM060NTPHq3PScKAzeDBrvOR5F0HT9WuvZGVpy+q6EFbmNJOaM0IH6E/P8XjkwAB0BuD
+ r3h0XuQNTbHB2saXUa9GnjGS37Ptv8+EYfLGPrycO+syLfqujjaO+cWfyWzBaAm/50FF
+ 7kckFbfzD4WKmNLrtU4PBmmiuny4RUiWpqtYpaLZoBmzRSt5rudm/TYSlGUQYot2WVdr
+ j65ZYHQ6yNHvEFLq5RlCf8mzeB1W7GnTyWHhNn4O2WmoNGARYQ7z3jI9Yd1qYLb0XFCt
+ L7Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704461992; x=1705066792;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rjnzLFjqdDvtiFgTEx7litURemLOsyCYAhz3ZoGhFlA=;
- b=gCUTOYDEsXfimDcP1cZleWszGmMJx5KjSdM8feDnDcgGkfpvEywtJNrfxtVaZc6Gik
- 1bdyNPDbU21/l3noyEyOGFdiVslNNQcvCmvDsa2NQLJkycwQSGyRStuBvB4Tg1H4nt+n
- xkrvV7MglyzfFiCp9XTmv3EGNIwKfFEhh5PwYRpsc+uBOJKWl6WvC62etZAutPatw5S2
- ZYjaPFEAk7jiGIhyff28iK72VfRnQ12FwjL2UJvg78Tys9DByJMyQR0wTnNzxotL6Qa8
- s1Ddo0U6KhSkYk6s8Ns7UYMpMonk/FoUcNjoVTNVbJTZ591a373kLnN8bKir96RS4IVF
- GbIg==
-X-Gm-Message-State: AOJu0YwZcqR8mCYRlgRhVj/V37ALalz0GI8wk73LOTRsKBIRZy8wKYXi
- DVc1AL5QSM8d+07FycPC5d29+DMXcys=
-X-Google-Smtp-Source: AGHT+IHjv9L/74J/u8X/1OLFh1bHhuaa6wcZELzXQArF0vjmLFF5MJJ42hhey9eAmkmLWQwPXrh7Og==
-X-Received: by 2002:a05:600c:c89:b0:40d:8ed9:ce8c with SMTP id
- fj9-20020a05600c0c8900b0040d8ed9ce8cmr1180721wmb.120.1704461992398; 
- Fri, 05 Jan 2024 05:39:52 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- y5-20020a056000108500b003366a9cb0d1sm1414841wrw.92.2024.01.05.05.39.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Jan 2024 05:39:52 -0800 (PST)
-Message-ID: <3d92db26-dc1b-48d7-84e1-2e509742f174@gmail.com>
-Date: Fri, 5 Jan 2024 14:39:50 +0100
+ d=1e100.net; s=20230601; t=1704463366; x=1705068166;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=iXJd6bIfgI4JVHpvXvSqGZc1mxLUUdw43IM9bFZL2Ek=;
+ b=cAOYVBap0PTZw3z1SrfSMtqh2KOMV/XFg4iCj3Kyp4iarZbQJzHuDSJW2LeSJT1hO6
+ zxIWZHzMwiguGnLMyz3Xjc7SyujUNvPRX9wl+PajVSjb+Zh/+o5EMsZZ8pF229ZN68Uz
+ HuAKESlAPp25HRI+gZyZqMG3e6L0PawqoadJdbIThwjvu22QBsywVTjiUApiRPgPX5t1
+ VjOpEZqDl9QpAQbgPAiW2bN/MAHXjpBNny/BKEW6I5XzsXGlW+vywDZRRD/vd8pdFUa4
+ JzQ6b4AQS2gV7Ji+VpITUfjitPdbi+s8KmkcL6jZ9Oe0K1qt0Wxuj5KVKNKUonrH+T4E
+ TLcA==
+X-Gm-Message-State: AOJu0Yz00dhXdqAdROHV+s5Kj8VJBIawrFJ40byOSCLaFrkPpX6MH2Sf
+ OPmYcnbm4ZMdu+hLwogFLL+Yb0696s9LIqvVQfU=
+X-Google-Smtp-Source: AGHT+IHjWbruYP6fVQynzYaFrhhseKBInqMrnlu2kT+9A1lkN5JZe4nVUqp5wDykEKRFp+W/UG7q0ke7NdshpGmo1Nc=
+X-Received: by 2002:a05:6871:a68f:b0:204:24c4:3330 with SMTP id
+ wh15-20020a056871a68f00b0020424c43330mr1902409oab.44.1704463365986; Fri, 05
+ Jan 2024 06:02:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Check resize bar register when system uses
- large bar
-Content-Language: en-US
-To: "Ma, Jun" <majun@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20231219055802.304678-1-Jun.Ma2@amd.com>
- <5c64d777-510d-4440-b1b6-aaccd7bb71a0@gmail.com>
- <8fd5d4dc-e781-475e-b90f-b43001ab224b@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <8fd5d4dc-e781-475e-b90f-b43001ab224b@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231213212729.1965153-1-alexander.deucher@amd.com>
+In-Reply-To: <20231213212729.1965153-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 5 Jan 2024 09:02:34 -0500
+Message-ID: <CADnq5_MkzcTThbTdGqeOw6ffCSRDhk=LMENkriF_iavGO3fZiQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] drm/amdgpu: fix avg vs input power reporting on smu7
+To: Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,92 +67,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, mario.limonciello@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 21.12.23 um 02:58 schrieb Ma, Jun:
-> Hi Christian,
+Ping on this series?
+
+Alex
+
+On Wed, Dec 13, 2023 at 4:55=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
+.com> wrote:
 >
+> Hawaii, Bonaire, Fiji, and Tonga support average power, the others
+> support current power.
 >
-> On 12/20/2023 10:10 PM, Christian König wrote:
->> Am 19.12.23 um 06:58 schrieb Ma Jun:
->>> Print a warnning message if the system can't access
->>> the resize bar register when using large bar.
->> Well pretty clear NAK, we have embedded use cases where this would
->> trigger an incorrect warning.
->>
->> What should that be good for in the first place?
->>
-> Some customer platforms do not enable mmconfig for various reasons, such as
-> bios bug, and therefore cannot access the GPU extend configuration
-> space through mmio.
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
 >
-> Therefore, when the system enters the d3cold state and resumes,
-> the amdgpu driver fails to resume because the extend configuration
-> space registers of GPU can't be restored. At this point, Usually we
-> only see some failure dmesg log printed by amdgpu driver, it is
-> difficult to find the root cause.
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/driver=
+s/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> index 11372fcc59c8..a2c7b2e111fa 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> @@ -3995,6 +3995,7 @@ static int smu7_read_sensor(struct pp_hwmgr *hwmgr,=
+ int idx,
+>         uint32_t sclk, mclk, activity_percent;
+>         uint32_t offset, val_vid;
+>         struct smu7_hwmgr *data =3D (struct smu7_hwmgr *)(hwmgr->backend)=
+;
+> +       struct amdgpu_device *adev =3D hwmgr->adev;
 >
-> So I thought it would be helpful to print some warning messages at
-> the beginning to identify problems quickly.
-
-Interesting bug, but we can't do this here. We have a couple of devices 
-where the REBAR cap isn't enabled for some reason (or not correctly 
-enabled).
-
-In this case this would print a warning even when there isn't anything 
-wrong.
-
-What we could potentially do is to check for the MSI extension, that 
-should always be there if I'm not completely mistaken.
-
-But how does this hardware platform even works without the extended mmio 
-space? I mean we can't even enable/disable MSI in that configuration if 
-I'm not completely mistaken.
-
-Regards,
-Christian.
-
+>         /* size must be at least 4 bytes for all sensors */
+>         if (*size < 4)
+> @@ -4038,7 +4039,21 @@ static int smu7_read_sensor(struct pp_hwmgr *hwmgr=
+, int idx,
+>                 *size =3D 4;
+>                 return 0;
+>         case AMDGPU_PP_SENSOR_GPU_INPUT_POWER:
+> -               return smu7_get_gpu_power(hwmgr, (uint32_t *)value);
+> +               if ((adev->asic_type !=3D CHIP_HAWAII) &&
+> +                   (adev->asic_type !=3D CHIP_BONAIRE) &&
+> +                   (adev->asic_type !=3D CHIP_FIJI) &&
+> +                   (adev->asic_type !=3D CHIP_TONGA))
+> +                       return smu7_get_gpu_power(hwmgr, (uint32_t *)valu=
+e);
+> +               else
+> +                       return -EOPNOTSUPP;
+> +       case AMDGPU_PP_SENSOR_GPU_AVG_POWER:
+> +               if ((adev->asic_type !=3D CHIP_HAWAII) &&
+> +                   (adev->asic_type !=3D CHIP_BONAIRE) &&
+> +                   (adev->asic_type !=3D CHIP_FIJI) &&
+> +                   (adev->asic_type !=3D CHIP_TONGA))
+> +                       return -EOPNOTSUPP;
+> +               else
+> +                       return smu7_get_gpu_power(hwmgr, (uint32_t *)valu=
+e);
+>         case AMDGPU_PP_SENSOR_VDDGFX:
+>                 if ((data->vr_config & VRCONF_VDDGFX_MASK) =3D=3D
+>                     (VR_SVI2_PLANE_2 << VRCONF_VDDGFX_SHIFT))
+> --
+> 2.42.0
 >
-> Regards,
-> Ma Jun
->
->> Regards,
->> Christian.
->>
->>> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
->>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 +++++++++-
->>>    1 file changed, 9 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> index 4b694696930e..e7aedb4bd66e 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>> @@ -1417,6 +1417,12 @@ void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb)
->>>    		__clear_bit(wb, adev->wb.used);
->>>    }
->>>    
->>> +static inline void amdgpu_find_rb_register(struct amdgpu_device *adev)
->>> +{
->>> +	if (!pci_find_ext_capability(adev->pdev, PCI_EXT_CAP_ID_REBAR))
->>> +		DRM_WARN("System can't access the resize bar register,please check!!\n");
->>> +}
->>> +
->>>    /**
->>>     * amdgpu_device_resize_fb_bar - try to resize FB BAR
->>>     *
->>> @@ -1444,8 +1450,10 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
->>>    
->>>    	/* skip if the bios has already enabled large BAR */
->>>    	if (adev->gmc.real_vram_size &&
->>> -	    (pci_resource_len(adev->pdev, 0) >= adev->gmc.real_vram_size))
->>> +	    (pci_resource_len(adev->pdev, 0) >= adev->gmc.real_vram_size)) {
->>> +		amdgpu_find_rb_register(adev);
->>>    		return 0;
->>> +	}
->>>    
->>>    	/* Check if the root BUS has 64bit memory resources */
->>>    	root = adev->pdev->bus;
-
