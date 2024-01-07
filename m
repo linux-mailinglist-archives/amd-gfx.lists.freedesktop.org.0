@@ -1,55 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18568262B2
-	for <lists+amd-gfx@lfdr.de>; Sun,  7 Jan 2024 03:39:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4AB28269AE
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jan 2024 09:41:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0CE910E00F;
-	Sun,  7 Jan 2024 02:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F18E410E18D;
+	Mon,  8 Jan 2024 08:41:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26A3310E00F
- for <amd-gfx@lists.freedesktop.org>; Sun,  7 Jan 2024 02:39:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id E916A60B4C
- for <amd-gfx@lists.freedesktop.org>; Sun,  7 Jan 2024 02:39:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9225CC433CD
- for <amd-gfx@lists.freedesktop.org>; Sun,  7 Jan 2024 02:39:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1704595156;
- bh=jJbJktSdzhdzV2bS3gu5EK0DeDy7WfVB0EYasXcaPjw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=G/2dWfbsLN9WwONooqF8NP5eFXFFOXQ5R6pDJXrL/Xza8jKUMjyzLISO/JNRMvYNn
- ebjH0gTMb0U4Prs0XDY60enG/LtvrGLzWjVf7Zzw8H2mYYP9S0qsp8K7Ce6UKsNFDs
- luwaMAnTvjVJM9HUnldij5bMjLFAarf4NscxczzeoYtSCV5eoStKqOMNDLTmu19xze
- aMrbfKIfNiIj8X1DZgs468Zb9C+7WcgK9ZNAOjucthSo1/0cLBg7F7C6N6JPLcTfxU
- QUG04tPdXEPjgcJtJhrAkM9utpizPYOwvU0ipsvKaL5YnYtdbnpOYvyKg5CDhYcl0N
- TIVY824fazJig==
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-50e7ddd999bso811326e87.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 06 Jan 2024 18:39:16 -0800 (PST)
-X-Gm-Message-State: AOJu0YzLwQLSzcGS++r6Lpsz6v9I7t5cue9jiw8uqi1NIRS5B2vDaiDN
- f2ltxQV60t9dUroUVDcH5QiqZMsp59+Q+fK6oz8=
-X-Google-Smtp-Source: AGHT+IE666iz2mwVRCBnzGP5r7CatHWfsTic6W1ztccc+lpU8OH145j+/Z8tY3bo1scDBlBwbi74pfIJZJaXjjloGT8=
-X-Received: by 2002:a05:6512:3a82:b0:50e:8ead:3889 with SMTP id
- q2-20020a0565123a8200b0050e8ead3889mr731610lfu.75.1704595154779; Sat, 06 Jan
- 2024 18:39:14 -0800 (PST)
+X-Greylist: delayed 699 seconds by postgrey-1.36 at gabe;
+ Sun, 07 Jan 2024 13:19:11 UTC
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3DC810E013;
+ Sun,  7 Jan 2024 13:19:11 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1704632830; bh=QAb1xU4JKbRPoLcalM9q1eA+hq8zVqofoDj3r0FUJ00=;
+ h=From:To:Cc:Subject:Date:From;
+ b=PLXjChloIKCd+RB8Wotl/908+CQI8DEeB3BihElbplNWQOyZuAvfqDbsbnHrr5uDv
+ Z0aK2hDBLMfol7RSe+kH+lU6Z5UBx8dj443eSeVJtCTQjUL3QVUfuiT0n+XmJhTimP
+ OOk3KWSAFgnLuxiWHAfBJR83EeloyEPgnX+p/v7sC1WydrXshBooqmUnhdDc5KU+qe
+ AG3CDaeRUxvzDAkjb7HWYIjhBIld1mSENiBZVZW+JZ6RMeobxS1yCmLOKIrmrVB+FV
+ hWc9gVvzgOeC5A7R00O+4POzQTU3fGdbNqg7iJL9w2xEuSFQY9QCNqv0sVj3Zv7azO
+ BBMNVVvL43DZQ==
+Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 407D74Tv1165051
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Sun, 7 Jan 2024 15:07:04 +0200
+Received: (from dhirschfeld@localhost)
+ by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id
+ 407D748a1165050; Sun, 7 Jan 2024 15:07:04 +0200
+From: Dafna Hirschfeld <dhirschfeld@habana.ai>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH v2] drm/amdkfd: fixes for HMM mem allocation
+Date: Sun,  7 Jan 2024 15:07:00 +0200
+Message-Id: <20240107130700.1165029-1-dhirschfeld@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20231228014220.3562640-1-samuel.holland@sifive.com>
- <20231228014220.3562640-8-samuel.holland@sifive.com>
- <CAAhV-H5TJPqRcgS6jywWDSNsCvd-PsVacgxgoiF-fJ00ZnS4uA@mail.gmail.com>
- <84389bc3-f2e7-49c5-a820-de60ee00f8a7@sifive.com>
-In-Reply-To: <84389bc3-f2e7-49c5-a820-de60ee00f8a7@sifive.com>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Sun, 7 Jan 2024 10:39:07 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4JxP-j5A7KuNSBncZkHF9i3O1njCtMjVkd3=RNbE5Q7w@mail.gmail.com>
-Message-ID: <CAAhV-H4JxP-j5A7KuNSBncZkHF9i3O1njCtMjVkd3=RNbE5Q7w@mail.gmail.com>
-Subject: Re: [PATCH v2 07/14] LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-To: Samuel Holland <samuel.holland@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 08 Jan 2024 08:41:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,77 +52,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, loongarch@lists.linux.dev,
- WANG Xuerui <git@xen0n.name>, linux-riscv@lists.infradead.org,
- linuxppc-dev@lists.ozlabs.org, Christoph Hellwig <hch@lst.de>,
- linux-arm-kernel@lists.infradead.org
+Cc: ogabbay@kernel.org, Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, Dafna Hirschfeld <dhirschfeld@habana.ai>,
+ alexander.deucher@amd.com, Felix Kuehling <felix.kuehling@amd.com>,
+ obitton@habana.ai
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 4, 2024 at 11:58=E2=80=AFPM Samuel Holland
-<samuel.holland@sifive.com> wrote:
->
-> Hi Huacai,
->
-> On 2024-01-04 3:55 AM, Huacai Chen wrote:
-> > Hi, Samuel,
-> >
-> > On Thu, Dec 28, 2023 at 9:42=E2=80=AFAM Samuel Holland
-> > <samuel.holland@sifive.com> wrote:
-> >>
-> >> LoongArch already provides kernel_fpu_begin() and kernel_fpu_end() in
-> >> asm/fpu.h, so it only needs to add kernel_fpu_available() and export
-> >> the CFLAGS adjustments.
-> >>
-> >> Acked-by: WANG Xuerui <git@xen0n.name>
-> >> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> >> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> >> ---
-> >>
-> >> (no changes since v1)
-> >>
-> >>  arch/loongarch/Kconfig           | 1 +
-> >>  arch/loongarch/Makefile          | 5 ++++-
-> >>  arch/loongarch/include/asm/fpu.h | 1 +
-> >>  3 files changed, 6 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-> >> index ee123820a476..65d4475565b8 100644
-> >> --- a/arch/loongarch/Kconfig
-> >> +++ b/arch/loongarch/Kconfig
-> >> @@ -15,6 +15,7 @@ config LOONGARCH
-> >>         select ARCH_HAS_CPU_FINALIZE_INIT
-> >>         select ARCH_HAS_FORTIFY_SOURCE
-> >>         select ARCH_HAS_KCOV
-> >> +       select ARCH_HAS_KERNEL_FPU_SUPPORT if CPU_HAS_FPU
-> >>         select ARCH_HAS_NMI_SAFE_THIS_CPU_OPS
-> >>         select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
-> >>         select ARCH_HAS_PTE_SPECIAL
-> >> diff --git a/arch/loongarch/Makefile b/arch/loongarch/Makefile
-> >> index 4ba8d67ddb09..1afe28feaba5 100644
-> >> --- a/arch/loongarch/Makefile
-> >> +++ b/arch/loongarch/Makefile
-> >> @@ -25,6 +25,9 @@ endif
-> >>  32bit-emul             =3D elf32loongarch
-> >>  64bit-emul             =3D elf64loongarch
-> >>
-> >> +CC_FLAGS_FPU           :=3D -mfpu=3D64
-> >> +CC_FLAGS_NO_FPU                :=3D -msoft-float
-> > We will add LoongArch32 support later, maybe it should be -mfpu=3D32 in
-> > that case, and do other archs have the case that only support FP32?
->
-> Do you mean that LoongArch32 does not support double-precision FP in hard=
-ware?
-> At least both of the consumers in this series use double-precision, so my=
- first
-> thought is that LoongArch32 could not select ARCH_HAS_KERNEL_FPU_SUPPORT.
-Then is it possible to introduce CC_FLAGS_SP_FPU and CC_FLAGS_DP_FPU?
-I think there may be some place where SP FP is enough.
+Fix err return value and reset pgmap->type after checking it.
 
-Huacai
+Fixes: c83dee9b6394 ("drm/amdkfd: add SPM support for SVM")
+Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+Signed-off-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
+---
+v2: remove unrelated DOC fix and add 'Fixes' tag.
 
->
-> Regards,
-> Samuel
->
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+index 6c25dab051d5..b8680e0753ca 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+@@ -1021,7 +1021,7 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
+ 	} else {
+ 		res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
+ 		if (IS_ERR(res))
+-			return -ENOMEM;
++			return PTR_ERR(res);
+ 		pgmap->range.start = res->start;
+ 		pgmap->range.end = res->end;
+ 		pgmap->type = MEMORY_DEVICE_PRIVATE;
+@@ -1037,10 +1037,10 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
+ 	r = devm_memremap_pages(adev->dev, pgmap);
+ 	if (IS_ERR(r)) {
+ 		pr_err("failed to register HMM device memory\n");
+-		/* Disable SVM support capability */
+-		pgmap->type = 0;
+ 		if (pgmap->type == MEMORY_DEVICE_PRIVATE)
+ 			devm_release_mem_region(adev->dev, res->start, resource_size(res));
++		/* Disable SVM support capability */
++		pgmap->type = 0;
+ 		return PTR_ERR(r);
+ 	}
+ 
+-- 
+2.34.1
+
