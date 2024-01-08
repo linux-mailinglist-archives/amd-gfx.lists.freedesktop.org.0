@@ -1,46 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E295182716A
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jan 2024 15:32:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9F2827168
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jan 2024 15:32:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A4A010E236;
-	Mon,  8 Jan 2024 14:32:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A7810E073;
+	Mon,  8 Jan 2024 14:32:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A3C10E1D5
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jan 2024 09:37:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=nTS1Uj9X0YK5sE131pQWTs2iFDkjMx4GKaOmTl5jpqE=; b=Fy176uqqVZeORczKkanJckGA3E
- rjRR9SFWlqdBWFeQhMUeo2x5lV8XpdYa4GI0iYUzJ6xe4JfoH/ClDNDCMVJub0LPMWEwUwd8I8dr0
- WwH6zcQyiGmBNcE7Fs8axj5Vg+MNCFSetI0lVOGPKPgwxoNDApJeoPP6xe17PMl4YbYUkYENMyduB
- f083OT27kxtEMpbQucthM3SKI66TxkTOiSrMzwOmJqYthGOqjcJQX6LHBVpu97K2Nyn2Uoe2m6xiJ
- DGQPT42ehYs1d42jNISUDZY/OxsBiSJHVw2pJE0uDLbTxsdKq7BFvXx0o48duef+zb5iDUsv9NZhu
- bOOsB0Vw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
- Linux)) id 1rMm44-004Uoy-0z; Mon, 08 Jan 2024 09:37:00 +0000
-Date: Mon, 8 Jan 2024 01:37:00 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Huacai Chen <chenhuacai@kernel.org>
-Subject: Re: [PATCH v2 07/14] LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
-Message-ID: <ZZvCPMcYq6KBs7ND@infradead.org>
-References: <20231228014220.3562640-1-samuel.holland@sifive.com>
- <20231228014220.3562640-8-samuel.holland@sifive.com>
- <CAAhV-H5TJPqRcgS6jywWDSNsCvd-PsVacgxgoiF-fJ00ZnS4uA@mail.gmail.com>
- <84389bc3-f2e7-49c5-a820-de60ee00f8a7@sifive.com>
- <CAAhV-H4JxP-j5A7KuNSBncZkHF9i3O1njCtMjVkd3=RNbE5Q7w@mail.gmail.com>
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Jan 2024 09:46:19 UTC
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A49BB10E1E2;
+ Mon,  8 Jan 2024 09:46:19 +0000 (UTC)
+X-UUID: 0194aff85b42445fb4cd05c6b8915c12-20240108
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35, REQID:895988ca-c91d-48e2-b272-9200b13a11ca, IP:20,
+ URL:0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+ ON:release,TS:5
+X-CID-INFO: VERSION:1.1.35, REQID:895988ca-c91d-48e2-b272-9200b13a11ca, IP:20,
+ UR
+ L:0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+ :release,TS:5
+X-CID-META: VersionHash:5d391d7, CLOUDID:b93fed2e-1ab8-4133-9780-81938111c800,
+ B
+ ulkID:240108174111PW07QMQM,BulkQuantity:0,Recheck:0,SF:17|19|44|66|38|24|1
+ 02,TC:nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
+ L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD,TF_CID_SPAM_FSI
+X-UUID: 0194aff85b42445fb4cd05c6b8915c12-20240108
+X-User: lizhenneng@kylinos.cn
+Received: from localhost.localdomain [(116.128.244.171)] by mailgw
+ (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
+ with ESMTP id 286747945; Mon, 08 Jan 2024 17:41:08 +0800
+From: Zhenneng Li <lizhenneng@kylinos.cn>
+To: Marek Olsak <marek.olsak@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH libdrm 1/2] amdgpu: fix parameter of amdgpu_cs_ctx_create2
+Date: Mon,  8 Jan 2024 17:40:51 +0800
+Message-Id: <20240108094052.171721-1-lizhenneng@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAAhV-H4JxP-j5A7KuNSBncZkHF9i3O1njCtMjVkd3=RNbE5Q7w@mail.gmail.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 08 Jan 2024 14:32:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,19 +60,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>,
- loongarch@lists.linux.dev, WANG Xuerui <git@xen0n.name>,
- linux-riscv@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
- Christoph Hellwig <hch@lst.de>, linux-arm-kernel@lists.infradead.org
+Cc: Zhenneng Li <lizhenneng@kylinos.cn>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 07, 2024 at 10:39:07AM +0800, Huacai Chen wrote:
-> > Do you mean that LoongArch32 does not support double-precision FP in hardware?
-> > At least both of the consumers in this series use double-precision, so my first
-> > thought is that LoongArch32 could not select ARCH_HAS_KERNEL_FPU_SUPPORT.
-> Then is it possible to introduce CC_FLAGS_SP_FPU and CC_FLAGS_DP_FPU?
-> I think there may be some place where SP FP is enough.
+In order to pass the correct priority parameter to the kernel,
+we must change priority type from uint32_t to int32_t.
 
-Let's defer that until it is actually neeed.
+Signed-off-by: Zhenneng Li <lizhenneng@kylinos.cn>
+---
+ amdgpu/amdgpu.h    | 2 +-
+ amdgpu/amdgpu_cs.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/amdgpu/amdgpu.h b/amdgpu/amdgpu.h
+index 9bdbf366..f46753f3 100644
+--- a/amdgpu/amdgpu.h
++++ b/amdgpu/amdgpu.h
+@@ -896,7 +896,7 @@ int amdgpu_bo_list_update(amdgpu_bo_list_handle handle,
+  *
+ */
+ int amdgpu_cs_ctx_create2(amdgpu_device_handle dev,
+-			 uint32_t priority,
++			 int32_t priority,
+ 			 amdgpu_context_handle *context);
+ /**
+  * Create GPU execution Context
+diff --git a/amdgpu/amdgpu_cs.c b/amdgpu/amdgpu_cs.c
+index 49fc16c3..eb72c638 100644
+--- a/amdgpu/amdgpu_cs.c
++++ b/amdgpu/amdgpu_cs.c
+@@ -49,7 +49,7 @@ static int amdgpu_cs_reset_sem(amdgpu_semaphore_handle sem);
+  * \return  0 on success otherwise POSIX Error code
+ */
+ drm_public int amdgpu_cs_ctx_create2(amdgpu_device_handle dev,
+-				     uint32_t priority,
++				     int32_t priority,
+ 				     amdgpu_context_handle *context)
+ {
+ 	struct amdgpu_context *gpu_context;
+-- 
+2.34.1
+
