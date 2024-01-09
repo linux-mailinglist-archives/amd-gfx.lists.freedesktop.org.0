@@ -2,45 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 818FE82949D
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 09:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B47BE828F84
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 23:16:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8097110E564;
-	Wed, 10 Jan 2024 08:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2654410E51F;
+	Tue,  9 Jan 2024 22:16:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3F1210E526
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 21:59:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1704837568; x=1705096768;
- bh=zFJlvdoHi+80uHe4nsHwfxOX+C2fSev6/fyWdUmNMvQ=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=r0Rmwm9Dynhr5/9cuHX0XGSJ2u2q0GY3GCoqyz/58UuvR7ght/58qxFPNuWf/piLc
- ZyCd8/sOu4wmFSseBAHXmDW/nGAWXOHGmsYS8kEu/Gacx883n3y3HIoH5In/mFrjRp
- hTXtY5HWqk045XiwYa3HAklfkbIBG744ASkTPLHbxEHLz/NFTC5trZXACh5A6QzTfa
- s/jbcNP01LLEilNIJjm1yICumgwR2n4tMVUIlgHFWiguiieO04dTvDqdjmAFhZ/P/O
- n3YQT00VL5c6A78/cboBJv0IafVx74t7uVM/vhqJUhgPUWnPNx6ivMg9Mgis52Z8q0
- b5y96Y8nh7pQA==
-Date: Tue, 09 Jan 2024 21:59:11 +0000
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-From: Alexander Koskovich <AKoskovich@protonmail.com>
-Subject: RE: Documentation for RGB strip on RX 7900 XTX (Reference)
-Message-ID: <q_oRbF5mexY0ttw_MbcyqUd1KQIr1Ny7pg5sCCcIpor4AKUwktVDvuwoUpW0JO-rJXxJnyB5zOQ4JDYGRM2vNWeC2tMAsEto2JHlN6o-4Tk=@protonmail.com>
-In-Reply-To: <BL1PR12MB5144B46479ABF320088A4976F76A2@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <oCYzPIgXFcQ3jdqAKY2upsY5qq23yOba06RkrzD5Bfai97jMWxGvBsaOiKi1k5oZvNg7IoJLE6jAA6BLGFXt08WbBEtdgJA4snn7khZ0JFM=@protonmail.com>
- <BL1PR12MB514454D5E625F71BB0E6A8B6F76B2@BL1PR12MB5144.namprd12.prod.outlook.com>
- <xgXz7D0Xgjysg4ZLJpfd1ryjeEoM2fKFn9W5WIGBGxc6WSxcYxTZPzwKRNbqPYcDIf8P1zuDr5SYqSvl36GqzW8TimxvO7BGDq5S_zv8v3g=@protonmail.com>
- <BL1PR12MB5144D58D8EDA16731BA48102F76A2@BL1PR12MB5144.namprd12.prod.outlook.com>
- <Z8njgokdcTunZi6xnF-M7IGXA4_xj14qJE91X07_kII2oHfXkYWS45kIoKR3en9EIFyylWj5U_VFOjZkqcgbN_14JkeMlNtsRc13Jjvro58=@protonmail.com>
- <BL1PR12MB5144B46479ABF320088A4976F76A2@BL1PR12MB5144.namprd12.prod.outlook.com>
-Feedback-ID: 37836827:user:proton
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D11A610E51F;
+ Tue,  9 Jan 2024 22:16:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 902D461578;
+ Tue,  9 Jan 2024 22:16:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA61FC433F1;
+ Tue,  9 Jan 2024 22:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1704838610;
+ bh=EHvco0VkqOSJGuxdue1TEtXAL00jI8VZrVZxCAuX2+E=;
+ h=From:Subject:Date:To:Cc:From;
+ b=qB46A5SpFD/NpmrZNfvwVgTddKr4FozL/Nm6NTWqjJuavIDeYbyWj8WbTz/AJAYAd
+ rCq1xH2+lrNbAzymhVqtxXCmJQYKKBtigLbuskx+y07oOM7Fuhn5KtE5lAQldU86ff
+ zsHlTOsJZDWVdq5RMMJKOsWvG0Sf8ZHgtVjZur4CTnnCh2KmHRiE+g9IYh0N3JSxTK
+ HD8CBIbqmmGPG+MOnwgxTifgp44rGjZZFXk0l6vXeduRl6TLk9LScel7oWlPR5uz1g
+ UsvtcwNt/LBd82QaDZxv1VzpZC3HDPVzq86WEch1mZNDSm/ODiPUOVtCeJtXC34hlE
+ 7d2vmCHDFTLIQ==
+From: Nathan Chancellor <nathan@kernel.org>
+Subject: [PATCH 0/3] Update LLVM Phabricator and Bugzilla links
+Date: Tue, 09 Jan 2024 15:16:28 -0700
+Message-Id: <20240109-update-llvm-links-v1-0-eb09b59db071@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 10 Jan 2024 08:01:54 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALzFnWUC/x3MQQqAIBBA0avErBtQi8CuEi0kpxoyCy0JwrsnL
+ d/i/xciBaYIffVCoMSRD18g6wqm1fiFkG0xKKFaIYXG+7TmInQu7ejYbxGtaGZtu1aTJCjdGWj
+ m538OY84fszs+Z2MAAAA=
+To: akpm@linux-foundation.org
+X-Mailer: b4 0.13-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2460; i=nathan@kernel.org;
+ h=from:subject:message-id; bh=EHvco0VkqOSJGuxdue1TEtXAL00jI8VZrVZxCAuX2+E=;
+ b=owGbwMvMwCUmm602sfCA1DTG02pJDKlzj17YHOFbeqmmzSTv+Yl3Dvc2pO2+wn2gftPWtOlmz
+ ZFzErc87ShlYRDjYpAVU2Spfqx63NBwzlnGG6cmwcxhZQIZwsDFKQATcYlj+J+VsOtwv+FtLr6v
+ L2ptJLoTJ1xwvPM+afI7W55fz9vnRocyMsxLsi56rXP33S6VMzNvVJ4tXR/xeu4ma9Zvvc8ruWO
+ PdPIDAA==
+X-Developer-Key: i=nathan@kernel.org; a=openpgp;
+ fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,135 +58,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: linux-efi@vger.kernel.org, kvm@vger.kernel.org, llvm@lists.linux.dev,
+ ast@kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, kasan-dev@googlegroups.com,
+ linux-kselftest@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arch@vger.kernel.org, linux-s390@vger.kernel.org, mykolal@fb.com,
+ daniel@iogearbox.net, andrii@kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org, bridge@lists.linux.dev,
+ Nathan Chancellor <nathan@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, patches@lists.linux.dev,
+ linux-security-module@vger.kernel.org, linux-crypto@vger.kernel.org,
+ bpf@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Is the AIB/OEM for this board not AMD?
-https://www.amd.com/en/products/graphics/amd-radeon-rx-7900xtx
+This series updates all instances of LLVM Phabricator and Bugzilla links
+to point to GitHub commits directly and LLVM's Bugzilla to GitHub issue
+shortlinks respectively.
 
+I split up the Phabricator patch into BPF selftests and the rest of the
+kernel in case the BPF folks want to take it separately from the rest of
+the series, there are obviously no dependency issues in that case. The
+Bugzilla change was mechanical enough and should have no conflicts.
 
+I am aiming this at Andrew and CC'ing other lists, in case maintainers
+want to chime in, but I think this is pretty uncontroversial (famous
+last words...).
 
-On Tuesday, January 9th, 2024 at 4:53 PM, Deucher, Alexander <Alexander.Deu=
-cher@amd.com> wrote:
+---
+Nathan Chancellor (3):
+      selftests/bpf: Update LLVM Phabricator links
+      arch and include: Update LLVM Phabricator links
+      treewide: Update LLVM Bugzilla links
 
+ arch/arm64/Kconfig                                 |  4 +--
+ arch/powerpc/Makefile                              |  4 +--
+ arch/powerpc/kvm/book3s_hv_nested.c                |  2 +-
+ arch/riscv/Kconfig                                 |  2 +-
+ arch/riscv/include/asm/ftrace.h                    |  2 +-
+ arch/s390/include/asm/ftrace.h                     |  2 +-
+ arch/x86/power/Makefile                            |  2 +-
+ crypto/blake2b_generic.c                           |  2 +-
+ drivers/firmware/efi/libstub/Makefile              |  2 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c           |  2 +-
+ drivers/media/test-drivers/vicodec/codec-fwht.c    |  2 +-
+ drivers/regulator/Kconfig                          |  2 +-
+ include/asm-generic/vmlinux.lds.h                  |  2 +-
+ include/linux/compiler-clang.h                     |  2 +-
+ lib/Kconfig.kasan                                  |  2 +-
+ lib/raid6/Makefile                                 |  2 +-
+ lib/stackinit_kunit.c                              |  2 +-
+ mm/slab_common.c                                   |  2 +-
+ net/bridge/br_multicast.c                          |  2 +-
+ security/Kconfig                                   |  2 +-
+ tools/testing/selftests/bpf/README.rst             | 32 +++++++++++-----------
+ tools/testing/selftests/bpf/prog_tests/xdpwall.c   |  2 +-
+ .../selftests/bpf/progs/test_core_reloc_type_id.c  |  2 +-
+ 23 files changed, 40 insertions(+), 40 deletions(-)
+---
+base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+change-id: 20240109-update-llvm-links-d03f9d649e1e
 
->=20
->=20
-> [AMD Official Use Only - General]
->=20
-> > -----Original Message-----
-> > From: Alexander Koskovich AKoskovich@protonmail.com
-> > Sent: Tuesday, January 9, 2024 3:27 PM
-> > To: Deucher, Alexander Alexander.Deucher@amd.com
-> > Cc: amd-gfx@lists.freedesktop.org
-> > Subject: RE: Documentation for RGB strip on RX 7900 XTX (Reference)
-> >=20
-> > Doe AMD have documentation on the i2c data that gets sent currently
-> > though? I was hoping to figure out what you need to change in the comma=
-nd
-> > that gets sent to change stuff like brightness, color (red, green, blue=
-), rainbow,
-> > morse code, etc.
->=20
->=20
-> It depends on the LED controller used by the AIB/OEM. The programming seq=
-uence is dependent on the LED controller.
->=20
-> Alex
->=20
-> > On Tuesday, January 9th, 2024 at 10:10 AM, Deucher, Alexander
-> > Alexander.Deucher@amd.com wrote:
-> >=20
-> > > [Public]
-> > >=20
-> > > > -----Original Message-----
-> > > > From: Alexander Koskovich AKoskovich@protonmail.com
-> > > > Sent: Monday, January 8, 2024 7:22 PM
-> > > > To: Deucher, Alexander Alexander.Deucher@amd.com
-> > > > Cc: amd-gfx@lists.freedesktop.org
-> > > > Subject: RE: Documentation for RGB strip on RX 7900 XTX (Reference)
-> > > >=20
-> > > > Currently the reference cooler from AMD does not have an existing
-> > > > RGB controller for OpenRGB, that's why I was looking for
-> > > > documentation on the I2C commands to send to the second SMU, so I
-> > > > don't risk bricking my card by sending wrong commands during
-> > > > development somehow.
-> > > >=20
-> > > > writeSetCMDWithData:
-> > > > **************************************************************
-> > > > adli2c.iSize =3D sizeof(ADLI2C)
-> > > > adli2c.iAction =3D ADL_DL_I2C_ACTIONWRITE adli2c.iAddress =3D 0xb4
-> > > > adli2c.iSpeed =3D 100
-> > > > 0 --------------------------------------------------
-> > > > Dev 0: ADL_Display_WriteAndReadSMUI2C(0, &adli2c) =3D 0
-> > > > adli2c.iDataSize =3D
-> > > > 24 i2cData[0]~[24]
-> > > > 40 51 2c 01 00 00 ff 00 ff ff ff cc 00 cc 00 00 00 ff ff ff ff ff f=
-f
-> > > > ff
-> > > >=20
-> > > > From the RGB app's logs this is an example of what the official AMD
-> > > > application on Windows is sending when it changes colors on the RGB=
- strip.
-> > > >=20
-> > > > From this can it be assumed the AMD card is using the latter method
-> > > > you mentioned with the second SMU I2C bus, in which case no driver
-> > > > changes would be needed?
-> > >=20
-> > > IIRC, each AIB/OEM uses its own preferred RGB controller. The referen=
-ce
-> > > board just defines which i2c buses can be used. The RGB control appli=
-cation is
-> > > just a userspace app provided by the AIB/OEM that calls ADL to talk t=
-o
-> > > whichever i2c bus the vendor put their RGB controller on. On Linux yo=
-u can do
-> > > something similar using the i2c_dev module to open a connection to th=
-e i2c
-> > > bus driver provided by the kernel. I believe that is what openRGB doe=
-s today.
-> > > It looks like you already have the programming sequence above.
-> > >=20
-> > > Alex
-> > >=20
-> > > > On Monday, January 8th, 2024 at 5:32 PM, Deucher, Alexander
-> > > > Alexander.Deucher@amd.com wrote:
-> > > >=20
-> > > > > [Public]
-> > > > >=20
-> > > > > > -----Original Message-----
-> > > > > > From: amd-gfx amd-gfx-bounces@lists.freedesktop.org On Behalf O=
-f
-> > > > > > Alexander Koskovich
-> > > > > > Sent: Sunday, January 7, 2024 11:19 PM
-> > > > > > To: amd-gfx@lists.freedesktop.org
-> > > > > > Subject: Documentation for RGB strip on RX 7900 XTX (Reference)
-> > > > > >=20
-> > > > > > Hello,
-> > > > > >=20
-> > > > > > I was wondering if AMD would be able provide any documentation
-> > > > > > for the RGB strip on the reference cooler
-> > > > > > (https://www.amd.com/en/products/graphics/amd-radeon-rx-
-> > > > > > 7900xtx)?
-> > > > > > It
-> > > > > > looks to be handled via I2C commands to the SMU, but having
-> > > > > > proper documentation would be extremely helpful.
-> > > > >=20
-> > > > > It depends on the AIB/OEM and how they designed the specific
-> > > > > board. The RGB controller will either be attached to the DDCVGA
-> > > > > i2c bus on the display hardware or the second SMU i2c bus. The
-> > > > > former will require changes to the amdgpu display code to registe=
-r
-> > > > > display i2c buses that are not used by the display connectors on =
-the
-> > > > > board so they can be used by 3rd party applications.
-> > > > > Currently we only register i2c buses used for display connectors.
-> > > > > The latter buses are already registered with the i2c subsystem
-> > > > > since they are used for other things like EEPROMs on server and
-> > > > > workstation cards and should be available via standard Linux i2c
-> > > > > APIs. I'm not sure what i2c LED controllers each AIB vendor uses
-> > > > > off hand. https://openrgb.org/index.html would probably be a good
-> > > > > resource for that information.
-> > > > >=20
-> > > > > Alex
+Best regards,
+-- 
+Nathan Chancellor <nathan@kernel.org>
+
