@@ -2,63 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78FB82809B
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 09:24:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE97827CB0
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 03:06:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44D010E6D8;
-	Tue,  9 Jan 2024 08:24:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2DF10E156;
+	Tue,  9 Jan 2024 02:06:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 377B610E297;
- Tue,  9 Jan 2024 01:51:05 +0000 (UTC)
-X-UUID: 9afc5db5ea9c429291d955778aa66c2b-20240109
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35, REQID:cceb3edc-46f5-4556-9e8b-c68a3ae13a27, IP:10,
- URL:0,TC:3,Content:-25,EDM:25,RT:0,SF:25,FILE:0,BULK:0,RULE:Release_Ham,AC
- TION:release,TS:38
-X-CID-INFO: VERSION:1.1.35, REQID:cceb3edc-46f5-4556-9e8b-c68a3ae13a27, IP:10,
- UR
- L:0,TC:3,Content:-25,EDM:25,RT:0,SF:25,FILE:0,BULK:0,RULE:Release_Ham,ACTI
- ON:release,TS:38
-X-CID-META: VersionHash:5d391d7, CLOUDID:c180088e-e2c0-40b0-a8fe-7c7e47299109,
- B
- ulkID:24010909505952X584T3,BulkQuantity:0,Recheck:0,SF:66|38|24|17|19|44|3
- 3|102,TC:0,Content:0,EDM:5,IP:-2,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
- L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR, TF_CID_SPAM_FAS, TF_CID_SPAM_FSD,
- TF_CID_SPAM_ERI, TF_CID_SPAM_FSI
-X-UUID: 9afc5db5ea9c429291d955778aa66c2b-20240109
-Received: from node2.com.cn [(39.156.73.10)] by mailgw
- (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
- with ESMTP id 1520001951; Tue, 09 Jan 2024 09:50:56 +0800
-Received: from node2.com.cn (localhost [127.0.0.1])
- by node2.com.cn (NSMail) with SMTP id E2811B80758A;
- Tue,  9 Jan 2024 09:50:55 +0800 (CST)
-Received: by node2.com.cn (NSMail, from userid 0)
- id C5CAEB807587; Tue,  9 Jan 2024 09:50:55 +0800 (CST)
-From: =?UTF-8?B?5p2O55yf6IO9?= <lizhenneng@kylinos.cn>
-Subject: =?UTF-8?B?5Zue5aSNOiBSZTogW1BBVENIIGxpYmRybSAxLzJdIGFtZGdwdTogZml4IHBhcmFtZXRlciBvZiBhbWRncHVfY3NfY3R4X2NyZWF0ZTI=?=
-To: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>,
- =?UTF-8?B?TWFyZWsgT2xzYWs=?= <marek.olsak@amd.com>,
- =?UTF-8?B?UGllcnJlLUVyaWMgUGVsbG91eC1QcmF5ZXI=?=
- <pierre-eric.pelloux-prayer@amd.com>, 
- =?UTF-8?B?ZHJpLWRldmVs?= <dri-devel@lists.freedesktop.org>,
- =?UTF-8?B?YW1kLWdmeA==?= <amd-gfx@lists.freedesktop.org>,
-Date: Tue, 09 Jan 2024 09:50:55 +0800
-X-Mailer: NSMAIL 7.0.0
-Message-ID: <xrg6qu5muv-xriqmgzqig@nsmail7.0.0--kylin--1>
-X-Israising: 0
-X-Seclevel-1: 0
-X-Seclevel: 0
-X-Delaysendtime: Tue, 09 Jan 2024 09:50:55 +0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on20600.outbound.protection.outlook.com
+ [IPv6:2a01:111:f403:2416::600])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF65010E156
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 02:06:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L03kW9S2mP1yfbuYHLAtq9ZArqe2ftwTXLuD1+PXh15QZibLY610TGz+FHtU3uZqZ31ILkVzBZfMlL942V7ZDZxrJdtkGCuGoy+2Sk843nHoUsmw8DRF9WyjLGQ1QRBcvfqg1KEdfiylCSADMgs7sG5szj/kPsRPM828YtUlMIhJFRlVRLDw/TLj+WheduVTAetNkoReegylVIynB1X8rWAiGSS0FK6LId4O+T77FwGnBAoZiZWSsFF0R9WrvNZhpS/E9YprYY2n6j8BRgVfviUjjGu2obA2dkQhi16TJRd1tnPTTvyjmRFJpPnoIZckbftop+hyT7hEmW0MYBqpAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bmNsd3eeS1GEwae+u4lmj7GkdsjrmlScOcPma3CUhXs=;
+ b=Xv0lbrD6vDNhi603W27pQ90tNWxD6d8RFE1yd2g7qrkt9owNmR3UxCAf6rV0X+VvpNPklRMVz06o5iCaixhDec8YQ+k1NfE2cbR7EsRhN8rdhcMRLg4qU6yKlZG+y3t6YNX8jMMR1qj8V3IN7RzAy8q3BCq6OSvYUIx+5jQdPo2n4z84z/qgNJvsCwbD0TvYei/Gl4AgTV26ywF5T2P1lih0qaaNYUZq96cqwcgmi79a2Tts6syb/V1sxzCvqW83Z7sz5m3YBINYNSDzmW3OSFKzU/j8ji8/bkznSrayCt0vfSNJCLenXncebIhu8hcVYTv6oob9L6PwippiwVbXMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bmNsd3eeS1GEwae+u4lmj7GkdsjrmlScOcPma3CUhXs=;
+ b=uwBmOHYwBlYe1XvAPy/+FAItmVlvfXcvyVstfDlBUvj/Bo3ESyc5mgaHDxvWPOY8AVy0gzZIfH1crN8Kt8zqHPEdy58IUP6SIclYVRo/CVCXxKzEMSMShxGtTDhr/RPJZeqi2VS/jDY1sD1UJd73IS2yweori8itI2PHJoi3q3c=
+Received: from CH0PR04CA0114.namprd04.prod.outlook.com (2603:10b6:610:75::29)
+ by SA1PR12MB7442.namprd12.prod.outlook.com (2603:10b6:806:2b5::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.17; Tue, 9 Jan
+ 2024 02:06:49 +0000
+Received: from DS3PEPF000099D5.namprd04.prod.outlook.com
+ (2603:10b6:610:75:cafe::ee) by CH0PR04CA0114.outlook.office365.com
+ (2603:10b6:610:75::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23 via Frontend
+ Transport; Tue, 9 Jan 2024 02:06:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099D5.mail.protection.outlook.com (10.167.17.6) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7181.13 via Frontend Transport; Tue, 9 Jan 2024 02:06:49 +0000
+Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 8 Jan
+ 2024 20:06:47 -0600
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdgpu: update headers for nbio v7.11
+Date: Tue, 9 Jan 2024 10:06:09 +0800
+Message-ID: <20240109020610.1132395-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary=nsmail-10ztlolp9fe-10zuvmf4b97
-X-ns-mid: webmail-659ca67f-10ukqnnt
-X-ope-from: <lizhenneng@kylinos.cn>
-X-Mailman-Approved-At: Tue, 09 Jan 2024 08:24:17 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D5:EE_|SA1PR12MB7442:EE_
+X-MS-Office365-Filtering-Correlation-Id: 988f5765-2ad5-4499-a7d5-08dc10b7a3cc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wEe/8V0ngUysrpCl8bpKKFRmzySV3plLu+g30T+kawHHqPggY/urjpmN2PncP/w86zlc6GsQ7RMdj90PTZ+IDvXXGyn24N5cYUA87damYtE2yvcjLzFPbwMP9mNkouFUEVZdw2VO8tQcgwel297WK/XLPLcyk5BLxKm9WtzSfnEVCnLc6TbtQSAaDPzF7i3MsCncuIR39uhsnTkotEw7FbTO/XfvaYWQd7lwoHb7E/h6w5BxCPkDk/zXNzlL2IUmDHQgSdQscZ7T7PfKXZo8B5Kr/W7agE0Dxb/bObjJQdzyMwaktuvGUbXNLNw2//tLj86D0nsgflgztPTpDk/cCJvWbRHpUuQERdxyO5ST9bTPQ9JhziEdTeNkTzPx6aK0f15F+Dxh/3NqkIP+wYuW08PT79CxI61w1n2O6aG3J82Nh6c08mXpxGYzbs5SModho8XcIAvwrChQcVwtf4NP/mhq+2cnlq9I3qNtHf3QUeTXGlcwXeAe4L4xE4mJ7wcvxxPRfZMUU7ym91cOOPch5PTkqoQjI0bjBoG0vpfmqi05YOaLCxg9Dnt6xed+ACTe9K+dWGu4joAlFlAvpJTexI31yMdQWln2Ha9CJ8s881PCq20VrI4JQQMGruQgr/c58Sue0+nbvy7BBm6+5V2jCvNhmjXAbudFYczLGgDR4rS84FXC1shh61Q0o+CtRFMjISruDvyk/j2ZxdhRRfjswbeT/jnZYYRE8RmO69D/WmN1vADc3vdDK4DMLUzjhqRl38FV+UyKbyiAc6F4hM6OvQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(376002)(136003)(396003)(346002)(39860400002)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(82310400011)(40470700004)(46966006)(36840700001)(426003)(1076003)(26005)(6666004)(2616005)(336012)(478600001)(7696005)(83380400001)(47076005)(41300700001)(5660300002)(15650500001)(70206006)(316002)(8676002)(8936002)(2906002)(54906003)(36860700001)(82740400003)(70586007)(4326008)(6916009)(36756003)(81166007)(86362001)(356005)(16526019)(40480700001)(40460700003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2024 02:06:49.2144 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 988f5765-2ad5-4499-a7d5-08dc10b7a3cc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D5.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7442
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,83 +98,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Yifan
+ Zhang <yifan1.zhang@amd.com>, Lang.Yu@amd.com, Li.Ma@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This message is in MIME format.
+This patch is to update headers for nbio v7.11.
 
---nsmail-10ztlolp9fe-10zuvmf4b97
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h    | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-PHA+V2hlbiB0aGUgcHJpb3JpdHkgdmFsdWUgaXMgcGFzc2VkIHRvIHRoZSBr
-ZXJuZWwsIHRoZSBrZXJuZWwgY29tcGFyZXMgaXQgd2l0aCB0aGUgZm9sbG93
-aW5nIHZhbHVlczo8L3A+CjxwPiNkZWZpbmUgQU1ER1BVX0NUWF9QUklPUklU
-WV9WRVJZX0xPVyZuYnNwOyZuYnNwOyZuYnNwOyAtMTAyMzxicj4jZGVmaW5l
-IEFNREdQVV9DVFhfUFJJT1JJVFlfTE9XJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IC01MTI8YnI+I2RlZmluZSBB
-TURHUFVfQ1RYX1BSSU9SSVRZX05PUk1BTCZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyAwPGJyPiNkZWZpbmUgQU1ER1BVX0NUWF9QUklPUklUWV9I
-SUdIJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IDUxMjxicj4jZGVmaW5lIEFNREdQVV9DVFhfUFJJT1JJVFlfVkVSWV9ISUdI
-Jm5ic3A7Jm5ic3A7IDEwMjM8L3A+CjxwPklmIHByaW9yaXR5IGlzIHVpbnQz
-Ml90LCB3ZSBjYW4ndCBzZXQgTE9XIGFuZCBWRVJZX0xPVyB2YWx1ZSB0byBr
-ZXJuZWwgY29udGV4dCBwcmlvcml0eSw8L3A+CjxwPllvdSBjYW4gcmVmZXIg
-dG8gdGhlIGtlcm5lbCBmdW5jdGlvbiBhbWRncHVfY3R4X3ByaW9yaXR5X3Bl
-cm1pdCwgaWYgcHJpb3JpdHkgaXMgZ3JlYXRlcjwvcD4KPHA+dGhhbiAwLCBh
-bmQgdGhpcyBwcm9jZXNzIGhhcyBub3QmbmJzcDsgQ0FQX1NZU19OSUNFIGNh
-cGliaWxpdHkgb3IgRFJNX01BU1RFUiBwZXJtaXNzaW9uLDwvcD4KPHA+dGhp
-cyBwcm9jZXNzIHdpbGwgYmUgZXhpdGVkLjxicj48YnI+PGJyPjxicj48YnI+
-PGJyPi0tLS08L3A+CjxkaXYgaWQ9ImNzMmNfbWFpbF9zaWdhdHVyZSI+PC9k
-aXY+CjxwPiZuYnNwOzwvcD4KPGRpdiBpZD0icmUiIHN0eWxlPSJtYXJnaW4t
-bGVmdDogMC41ZW07IHBhZGRpbmctbGVmdDogMC41ZW07IGJvcmRlci1sZWZ0
-OiAxcHggc29saWQgZ3JlZW47Ij48YnI+PGJyPjxicj4KPGRpdiBzdHlsZT0i
-YmFja2dyb3VuZC1jb2xvcjogI2Y1ZjdmYTsiPjxzdHJvbmc+5Li744CA6aKY
-77yaPC9zdHJvbmc+PHNwYW4gaWQ9InN1YmplY3QiPlJlOiBbUEFUQ0ggbGli
-ZHJtIDEvMl0gYW1kZ3B1OiBmaXggcGFyYW1ldGVyIG9mIGFtZGdwdV9jc19j
-dHhfY3JlYXRlMjwvc3Bhbj4gPGJyPjxzdHJvbmc+5pel44CA5pyf77yaPC9z
-dHJvbmc+PHNwYW4gaWQ9ImRhdGUiPjIwMjQtMDEtMDkgMDA6Mjg8L3NwYW4+
-IDxicj48c3Ryb25nPuWPkeS7tuS6uu+8mjwvc3Ryb25nPjxzcGFuIGlkPSJm
-cm9tIj5DaHJpc3RpYW4gS8O2bmlnPC9zcGFuPiA8YnI+PHN0cm9uZz7mlLbk
-u7bkurrvvJo8L3N0cm9uZz48c3BhbiBpZD0idG8iIHN0eWxlPSJ3b3JkLWJy
-ZWFrOiBicmVhay1hbGw7Ij7mnY7nnJ/og707TWFyZWsgT2xzYWs7UGllcnJl
-LUVyaWMgUGVsbG91eC1QcmF5ZXI7ZHJpLWRldmVsO2FtZC1nZng7PC9zcGFu
-PjwvZGl2Pgo8YnI+CjxkaXYgaWQ9ImNvbnRlbnQiPgo8ZGl2IGNsYXNzPSJ2
-aWV3ZXJfcGFydCIgc3R5bGU9InBvc2l0aW9uOiByZWxhdGl2ZTsiPgo8ZGl2
-PkFtIDA4LjAxLjI0IHVtIDEwOjQwIHNjaHJpZWIgWmhlbm5lbmcgTGk6PGJy
-PiZndDsgSW4gb3JkZXIgdG8gcGFzcyB0aGUgY29ycmVjdCBwcmlvcml0eSBw
-YXJhbWV0ZXIgdG8gdGhlIGtlcm5lbCw8YnI+Jmd0OyB3ZSBtdXN0IGNoYW5n
-ZSBwcmlvcml0eSB0eXBlIGZyb20gdWludDMyX3QgdG8gaW50MzJfdC48YnI+
-PGJyPkh1aSB3aGF0PyBXaHkgc2hvdWxkIGl0IG1hdHRlciBpZiB0aGUgcGFy
-YW1ldGVyIGlzIHNpZ25lZCBvciBub3Q/PGJyPjxicj5UaGF0IGRvZXNuJ3Qg
-c2VlbSB0byBtYWtlIHNlbnNlLjxicj48YnI+UmVnYXJkcyw8YnI+Q2hyaXN0
-aWFuLjxicj48YnI+Jmd0Ozxicj4mZ3Q7IFNpZ25lZC1vZmYtYnk6IFpoZW5u
-ZW5nIExpIDxicj4mZ3Q7IC0tLTxicj4mZ3Q7IGFtZGdwdS9hbWRncHUuaCB8
-IDIgKy08YnI+Jmd0OyBhbWRncHUvYW1kZ3B1X2NzLmMgfCAyICstPGJyPiZn
-dDsgMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRp
-b25zKC0pPGJyPiZndDs8YnI+Jmd0OyBkaWZmIC0tZ2l0IGEvYW1kZ3B1L2Ft
-ZGdwdS5oIGIvYW1kZ3B1L2FtZGdwdS5oPGJyPiZndDsgaW5kZXggOWJkYmYz
-NjYuLmY0Njc1M2YzIDEwMDY0NDxicj4mZ3Q7IC0tLSBhL2FtZGdwdS9hbWRn
-cHUuaDxicj4mZ3Q7ICsrKyBiL2FtZGdwdS9hbWRncHUuaDxicj4mZ3Q7IEBA
-IC04OTYsNyArODk2LDcgQEAgaW50IGFtZGdwdV9ib19saXN0X3VwZGF0ZShh
-bWRncHVfYm9fbGlzdF9oYW5kbGUgaGFuZGxlLDxicj4mZ3Q7ICo8YnI+Jmd0
-OyAqLzxicj4mZ3Q7IGludCBhbWRncHVfY3NfY3R4X2NyZWF0ZTIoYW1kZ3B1
-X2RldmljZV9oYW5kbGUgZGV2LDxicj4mZ3Q7IC0gdWludDMyX3QgcHJpb3Jp
-dHksPGJyPiZndDsgKyBpbnQzMl90IHByaW9yaXR5LDxicj4mZ3Q7IGFtZGdw
-dV9jb250ZXh0X2hhbmRsZSAqY29udGV4dCk7PGJyPiZndDsgLyoqPGJyPiZn
-dDsgKiBDcmVhdGUgR1BVIGV4ZWN1dGlvbiBDb250ZXh0PGJyPiZndDsgZGlm
-ZiAtLWdpdCBhL2FtZGdwdS9hbWRncHVfY3MuYyBiL2FtZGdwdS9hbWRncHVf
-Y3MuYzxicj4mZ3Q7IGluZGV4IDQ5ZmMxNmMzLi5lYjcyYzYzOCAxMDA2NDQ8
-YnI+Jmd0OyAtLS0gYS9hbWRncHUvYW1kZ3B1X2NzLmM8YnI+Jmd0OyArKysg
-Yi9hbWRncHUvYW1kZ3B1X2NzLmM8YnI+Jmd0OyBAQCAtNDksNyArNDksNyBA
-QCBzdGF0aWMgaW50IGFtZGdwdV9jc19yZXNldF9zZW0oYW1kZ3B1X3NlbWFw
-aG9yZV9oYW5kbGUgc2VtKTs8YnI+Jmd0OyAqIFxyZXR1cm4gMCBvbiBzdWNj
-ZXNzIG90aGVyd2lzZSBQT1NJWCBFcnJvciBjb2RlPGJyPiZndDsgKi88YnI+
-Jmd0OyBkcm1fcHVibGljIGludCBhbWRncHVfY3NfY3R4X2NyZWF0ZTIoYW1k
-Z3B1X2RldmljZV9oYW5kbGUgZGV2LDxicj4mZ3Q7IC0gdWludDMyX3QgcHJp
-b3JpdHksPGJyPiZndDsgKyBpbnQzMl90IHByaW9yaXR5LDxicj4mZ3Q7IGFt
-ZGdwdV9jb250ZXh0X2hhbmRsZSAqY29udGV4dCk8YnI+Jmd0OyB7PGJyPiZn
-dDsgc3RydWN0IGFtZGdwdV9jb250ZXh0ICpncHVfY29udGV4dDs8YnI+PGJy
-PjwvZGl2Pgo8L2Rpdj4KPC9kaXY+CjwvZGl2Pg==
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
+index 7ee3d291120d..6f80bfa7e41a 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_7_11_0_offset.h
+@@ -8707,10 +8707,10 @@
+ #define regBIF_BX1_MM_CFGREGS_CNTL_BASE_IDX                                                             2
+ #define regBIF_BX1_BX_RESET_CNTL                                                                        0x00f0
+ #define regBIF_BX1_BX_RESET_CNTL_BASE_IDX                                                               2
+-#define regBIF_BX1_INTERRUPT_CNTL                                                                       0x8e11
+-#define regBIF_BX1_INTERRUPT_CNTL_BASE_IDX                                                              5
+-#define regBIF_BX1_INTERRUPT_CNTL2                                                                      0x8e12
+-#define regBIF_BX1_INTERRUPT_CNTL2_BASE_IDX                                                             5
++#define regBIF_BX1_INTERRUPT_CNTL                                                                       0x00f1
++#define regBIF_BX1_INTERRUPT_CNTL_BASE_IDX                                                              2
++#define regBIF_BX1_INTERRUPT_CNTL2                                                                      0x00f2
++#define regBIF_BX1_INTERRUPT_CNTL2_BASE_IDX                                                             2
+ #define regBIF_BX1_CLKREQB_PAD_CNTL                                                                     0x00f8
+ #define regBIF_BX1_CLKREQB_PAD_CNTL_BASE_IDX                                                            2
+ #define regBIF_BX1_BIF_FEATURES_CONTROL_MISC                                                            0x00fb
+-- 
+2.37.3
 
---nsmail-10ztlolp9fe-10zuvmf4b97--
