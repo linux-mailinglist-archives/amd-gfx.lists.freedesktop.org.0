@@ -2,77 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1DA828C74
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 19:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B129828E46
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 20:55:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7627810E48F;
-	Tue,  9 Jan 2024 18:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C15710E510;
+	Tue,  9 Jan 2024 19:55:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D2210E4E0
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 18:11:55 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- 5b1f17b1804b1-40d88fff7faso34056715e9.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jan 2024 10:11:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1704823914; x=1705428714; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1K35iyXrIjP9JEaVNwNgowQ2gmFwtnlNnPCP001WTzs=;
- b=T9ErnVxmP3A7CbGfOx5/rcrNiR+1zok+b70FkTq3omeJifjvUx0Rs4zrHR33DY2WG8
- 0P0DNB84PsNW206wNkrHelewbYD7rrI5dfAFydVOHUaLtezZAioGd6uCOfFcXnvjNFEn
- cUXVy82V+yRWCeSjYcbIuk7SXGEq4yFUZbLdY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704823914; x=1705428714;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=1K35iyXrIjP9JEaVNwNgowQ2gmFwtnlNnPCP001WTzs=;
- b=P+6b/izyZFtjcfsk2NYZ6+q2iPDnSVdk/dzOCD2STXn2n5DSFcwcXdj8Myhz2+1n5J
- BudeSnIyqgRq6WaxZaeVbSqwUFXxORv9Jrt8Pjfk94CttJgofsmlXfo8+TYxbunLf3s6
- tGs+f0HLglg9QEbyVdB/SkcdzkGoN4Kcg1PeU7OGois81kxiqfW/UOZ5w/NfW2TBreqV
- 3kMy/79Lwc9dxGYADK5WkC0g2P0RX/Z/YX9heUtPkYTLSfOfvTRwwqHUbROvlQvXKbjG
- eQxVUAGyiqjaOkU+tDRzJpQ+CbkN3GUKR+mdgS4d8Exj3bWRFtk9IMAlNiGNgO8gKcxC
- 6SzQ==
-X-Gm-Message-State: AOJu0YxHRIrTMhAL4vnffTvg/h8u2VU1X+hMMMiDbDJVZiIi9c63wmEQ
- J11If+OK6YxwsjJoozp4ydNOitY+skAB5ocbHS5f7uh1Ddj/vA==
-X-Google-Smtp-Source: AGHT+IHCvkhLBDjMnPPg6VS4Uza9HPKoHPU28wAqqAGezxMnCAYYxMWKNpbjFIpaRNQwjFu2XbHG4A==
-X-Received: by 2002:a05:600c:5251:b0:40c:24b1:8d07 with SMTP id
- fc17-20020a05600c525100b0040c24b18d07mr1582485wmb.192.1704823913857; 
- Tue, 09 Jan 2024 10:11:53 -0800 (PST)
-Received: from andri-workstation.turninn.appdynamic.com
- ([2a01:8280:aa07:ad:7285:c2ff:fef0:4baf])
- by smtp.gmail.com with ESMTPSA id
- n25-20020a05600c3b9900b0040e527602c8sm2104579wms.9.2024.01.09.10.11.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Jan 2024 10:11:53 -0800 (PST)
-From: Andri Yngvason <andri@yngvason.is>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: [PATCH 7/7] drm/i915/display: Add handling for new "preferred color
- format" property
-Date: Tue,  9 Jan 2024 18:11:04 +0000
-Message-ID: <20240109181104.1670304-8-andri@yngvason.is>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240109181104.1670304-1-andri@yngvason.is>
-References: <20240109181104.1670304-1-andri@yngvason.is>
-MIME-Version: 1.0
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2086.outbound.protection.outlook.com [40.107.92.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1852810E510
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 19:55:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XF2fvco/Ul0wfJH8GEw+gi8XI6G/QKC+1e0ZINOOK+Dicxe3Sw3UJRLutwXTgePpGaGbpazRLeYHmN7Uh+Ty/rmQ5B4rMh87ddwqNf3Ei4UPftPzgPpZfcZVD7xCUrDwS6XJB0yaThE3wJFtKC+MsqBlG1fzl1ttTqEDP9goZ/J2bcPHPk2u3gJtfd/dkft5aTk/DCang9Kse9hQicXptB2OFGJ+tcu8pgp8K3PiBQY0zdSaBqnqyx5T+NuC+cHHd3lXef8elI9q8MOYqD4fR5C5FJFXJwvhJGyyHBK/kEJnZTPa1a1LOrYuW2p3UNrInj9xzpxKMHhvL8OqoeCVLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i7ExeyVJg8Qkec9DpSNMdWKJW2ZX3f6h8igAMVJq5NI=;
+ b=FELQALM0Wn870rq16a7XyLwyi3HAZeGRnPGuSdg10vo0x2WcJ+rrCIvPFwVp5SOqOCJoaUVEYt3tnfHgqsIxXoCMir0tT34TxNbuOqqAwXRAVqCmx2rP+Vj+cNO0Ba8tBLRP90f7s2NT59F/+1+MQ04+YZem2pmqDc11Lsu8dkdHxf3cVa+tHJXeBkN1rCLirxb4VThWuxbLOchoFPJGqk0FTNh9vsIUC0Q7CUkIstIdCwcZJfueLrirdFlC+f6/s/ArJ8vq306NMjGUabiLIAqzALNbQYrq+I419p8NxJRsM6ojtJ2H8VXIRJzBDddxRmRjR6rmVF4XCsMVXTGN5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i7ExeyVJg8Qkec9DpSNMdWKJW2ZX3f6h8igAMVJq5NI=;
+ b=H022ZuzyylCqx+wbtavvTdr0QLHPoPyMQbUXlxzGSqyZOlE1zs0GZveGRJeBrtO16xe1R5JDLkVKW+JJrSWwASC9VADwF7IAxGJyNS3BE7aYipLRst7Z7iy+jN1hRqlrDkmnFx+wmoRzNXbsV2ageoCGIUq0UfOZIwPsoxr8lW8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
+ by IA1PR12MB6041.namprd12.prod.outlook.com (2603:10b6:208:3d7::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Tue, 9 Jan
+ 2024 19:55:41 +0000
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::766c:af4:a36c:2c79]) by DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::766c:af4:a36c:2c79%3]) with mapi id 15.20.7159.020; Tue, 9 Jan 2024
+ 19:55:41 +0000
+Message-ID: <4bafabe1-a5e0-26e5-8e85-ec4d6aa00ff1@amd.com>
+Date: Tue, 9 Jan 2024 14:55:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] amd/amdkfd: Set correct svm range actual loc after
+ spliting
+Content-Language: en-US
+To: "Chen, Xiaogang" <xiaogang.chen@amd.com>,
+ Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20240108223651.14997-1-Philip.Yang@amd.com>
+ <ba63e6cf-8162-1d99-00d6-62e4165a6b04@amd.com>
+From: Philip Yang <yangp@amd.com>
+In-Reply-To: <ba63e6cf-8162-1d99-00d6-62e4165a6b04@amd.com>
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 09 Jan 2024 18:21:50 +0000
+X-ClientProxiedBy: YQZPR01CA0183.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:8b::27) To DM4PR12MB5149.namprd12.prod.outlook.com
+ (2603:10b6:5:390::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|IA1PR12MB6041:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e39216b-55b6-4fb2-a657-08dc114cf54e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gjB7OBpiIytgSnFyb7cHuh6RzWqJrb8e5L6sruR+o5xne4UrRavFKfuYab3GAJ6SiO5LphIR/wCjgfy18S3aqZ3rxPGSDiD99oiuPrPcJZDdWVwDLwrJrc7RT9hOLf7noRUS4YbZYT73wB/XXWkE5UT1mw1rTKL1HMG4vFxrNZhSQB4ZscyN+TrCJW/KbQgo7T2PA0ca+rjGwOskNk5g7J3UOjHO4FXAiG3jEajQKALkOFSpsZWYmEphs9eb4eqskgEofsmwCo6jF2qry6AE0g7ejBsfw+6MKlnnWVbbUW03HOplOjTE3rjqIwOZBDlaLRjGuhvyleWK6hOgQo+Y3c1TS5+9aIm4RRHC8Qdp2ExWtSkg8Ep4j6kuccySyCTZmnWk4V1KZXf1sHqQfH/v9rz6kpsvNopaqRjzPtc8SNQr2L1H50LEBcCM6k5s6RkBFyVDvCOZQr7sYbOM90q//kkecV8O8SxlPtM2Tp9ZZimToeQOLS7QrZM0IHVmSWWfsliCHsxFoQcnP5grE0k5fSUcPB0IQran7oA1Ok2h9hQRUpR8psLR+lJqfvcltPfWKL7Xnw6RgzfUr+4rlgCEtE7Y11ucAopIzE3/2GQQ2oXCBZ+5blxgjEDi7KVYG++//GEsMwm19Tz6zG8STv1G9w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(396003)(136003)(366004)(376002)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(31686004)(2906002)(5660300002)(478600001)(4326008)(41300700001)(66946007)(2616005)(66556008)(8676002)(36756003)(110136005)(8936002)(66476007)(316002)(31696002)(6512007)(6486002)(6506007)(53546011)(26005)(83380400001)(38100700002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cW9lUFlNZTdNTXJFMUdzTU95Z3B6b1h4K2xCVHhYQ3JCYzhTcUlHQmcxMTdk?=
+ =?utf-8?B?QnZwbmVDOEc5amxPY2hBdjN4bmhOeDVvanFnWVF4U1ozS0JSR2ZCMnRtUTFQ?=
+ =?utf-8?B?WWVJSUlQTk9zdUVWSDl3dFhSdU9CRXJlMG1XaHdFNXE0V0FqYXBSM2traU43?=
+ =?utf-8?B?UWFCUlN2N0xuNzQvcmx2WnRiRHlacjgweEM3ZTd3N0FrU3BodVVQZnMxOUI2?=
+ =?utf-8?B?MGxaTG5ZOWhFV0VzVnRjbW9hVERUWUlxS3F3V05DeldKZnlhLzE3SEx6WjVa?=
+ =?utf-8?B?UG5acGR5YWEyR1hWVHl2V0dnKzc2OVZEM09Fa2ZBNHNadUw2Sy81Y3U4cE8v?=
+ =?utf-8?B?eGhCKzdUOFNhbDJDT1lxaU9CSHRxdFVLTldFbm1sQmVqSFF5azJWV0FEK1Qv?=
+ =?utf-8?B?T2FZbUlieUJwQmFiRzY2NFJkd0RqcGY5UWNobjliNnRmVk43anAxYkRQeFha?=
+ =?utf-8?B?NDAvdkc4VFVlMGlhNnlXVDZpRTE3Y2NNajZ6Yk56THEvYmVLd3JaRXVPVkVN?=
+ =?utf-8?B?QXpnWnJGSXpVSnljSzFyemxodnlOMXM3N0oyWW1aZ21Bc1FmdEg2ajBPanV0?=
+ =?utf-8?B?VXg3M3U2RmkyMW1lbkZPeXNjd2tEMHNPZlU4R0dHZ2twb00wTDB6cVhEYUpi?=
+ =?utf-8?B?VGE4dU91SFNvMmdoVEkyam52MzhXS1hMVEdlNDFIVDFUQ3RUNlZMblh4bVdo?=
+ =?utf-8?B?U1JEQzE0YnNPeExGVnBRY05mTXlrSS9uM3dycFp0Y1QyOGR2MGlyYndidEt4?=
+ =?utf-8?B?aGh2Ky9DUWZQR3B2QktMZ3hZRHd4Q0FaVXB2ZVVUclJhVWp5bVJ5KzNmVXFh?=
+ =?utf-8?B?S2ozZXNvME5UVmdCZEdtM0s2cE9FT0QyNFlUWlNWaU10bmtlV3hLU3JMbTU4?=
+ =?utf-8?B?Q0hvMmVnU2w1aFZ1NFRXdDI4ODYrbjE3NlFjU3FEalZHbXRXNjdhZ1FwSkZj?=
+ =?utf-8?B?ZTU4bHJ3UzZhbUM4cHZhYjlmVld6UFlHSG5JVVZXZ3JJNFpoSEtkMk1mR09R?=
+ =?utf-8?B?OVdlUmYwakdVOXdpLzFqWXZGRkQ5ejIxazZ1RFR1T0VPR1M2WDBiM2YvQ2tH?=
+ =?utf-8?B?cjJ4QjJ4VHhlMmFFZmNiaVM0YTlRRDhKa0tZZ1hzT2xhVVRUMlVhR2N2SWg2?=
+ =?utf-8?B?V0tmbFZYZ0lrRXBtQ05UTkJabDdSVlpsc1RON0d4WmlOYXpLNVdyY1hYaUFO?=
+ =?utf-8?B?bXJTNGt4bHppamdpZDh0Q24yeVlJbmRMa1ZGSkxlZmtqTzVVRDgvUE9Vb1hX?=
+ =?utf-8?B?Myt1MVlYUEdidFl1NC9IUTIyMUJLa2FvNGZqdHJTVGsrMXZsRHc5WW83SXRx?=
+ =?utf-8?B?cUJHY2pzbi9XUGdGcFU5QWE2Mlk3VTEzdGE1clY1MXJCMEtkT2tpNDBCVVJp?=
+ =?utf-8?B?cTRjUENQaVY3WGZGVjRJSVhWMEdCbit6R3cwd1B4dGE2aFBGZXJJWDl5NkEy?=
+ =?utf-8?B?SDJCc2VJaytYOHNYcVJGamo3Rk1YSVdNeVpwN1h5L3NqbHFlNUsweVN2dXcy?=
+ =?utf-8?B?bE9iSEFWbTl5dE5Ya3d6TEZyOUMyNTc1YUR1cGxES25KeWxBYmpFbzJPQWdH?=
+ =?utf-8?B?MEJ3aU92VGJCNGdOZ1ZMMXRXVEpQaURyVkJzeWZYTW9Uc2N1NEVna2hvc0w1?=
+ =?utf-8?B?UGQ5Lzl3Tkl1em83V3prcUxrNXNZVzVjS0t5dkNkdENjd2lpVmdNWjF1Z1VS?=
+ =?utf-8?B?d2RscE9pVWNWb3NDM2kwaGR4SWcxTzM5STB2VmdlRGdOWVoydEJ5Q1NpRjhZ?=
+ =?utf-8?B?VlRRYzRQcDZDS080NE1RV2xqdkNnYnZBT0pHb0trT1hIeDY2bG5FczVrZnZu?=
+ =?utf-8?B?TFhtdXdhSFA0bmgyMm9Db3FGbUNwQTV5b1daZndSOSszekhIQm1WMkFUZGEv?=
+ =?utf-8?B?Vk5CRTZtZ3hKM0RRUXB1b1hYcHlIRjlvWDExSHM0aThBdXhKNHMyYzlFOTQr?=
+ =?utf-8?B?cVlhekVUdERBTFBJY3RiejFQZ3p0UVNhL2JNSWo3VkdKalVEb01wYXZ6K2FY?=
+ =?utf-8?B?bGFhSmFDd1JzV1dNQmRwNnBaNDFSNm56bElPWkJ1Z2FNblZRN0lCYkNBVDU1?=
+ =?utf-8?B?WWtMWXFBcFRvbUFiSE9TdTlQWi9oR0FPdGVzOWZVa1pEdVdOWWhsYTN3amdW?=
+ =?utf-8?Q?GvG7CS/8tetk4JaRekhpI20+V?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e39216b-55b6-4fb2-a657-08dc114cf54e
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2024 19:55:41.2589 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4TEvd8E0EJeTNYqYlAUwmN0mK4s5LuKDfFQmalem/jaDg3sqWMzHFZswyn1WpBKY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6041
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,130 +126,151 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>,
- dri-devel@lists.freedesktop.org
+Cc: Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Werner Sembach <wse@tuxedocomputers.com>
-
-This commit implements the "preferred color format" drm property for the
-Intel GPU driver.
-
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-Co-developed-by: Andri Yngvason <andri@yngvason.is>
-Signed-off-by: Andri Yngvason <andri@yngvason.is>
-Tested-by: Andri Yngvason <andri@yngvason.is>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 16 ++++++++++------
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  5 +++++
- drivers/gpu/drm/i915/display/intel_hdmi.c   | 12 +++++++++---
- 3 files changed, 24 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c40fe8a847614..f241798660d0b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2698,21 +2698,23 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
--	bool ycbcr_420_only;
-+	bool ycbcr_420_output;
- 	int ret;
- 
--	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
-+	ycbcr_420_output = drm_mode_is_420_only(info, adjusted_mode) ||
-+			   (conn_state->preferred_color_format == DRM_COLOR_FORMAT_YCBCR420 &&
-+			    drm_mode_is_420_also(&connector->base.display_info, adjusted_mode));
- 
--	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
-+	crtc_state->sink_format = ycbcr_420_output ? INTEL_OUTPUT_FORMAT_YCBCR420 :
-+						     INTEL_OUTPUT_FORMAT_RGB;
-+
-+	if (ycbcr_420_output && !connector->base.ycbcr_420_allowed) {
- 		drm_dbg_kms(&i915->drm,
- 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
- 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
--	} else {
--		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
- 	}
- 
- 	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
--
- 	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
- 					   respect_downstream_limits);
- 	if (ret) {
-@@ -5912,9 +5914,11 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
- 	intel_attach_broadcast_rgb_property(connector);
- 	if (HAS_GMCH(dev_priv)) {
- 		drm_connector_attach_max_bpc_property(connector, 6, 10);
-+		drm_connector_attach_preferred_color_format_property(connector);
- 		drm_connector_attach_active_color_format_property(connector);
- 	} else if (DISPLAY_VER(dev_priv) >= 5) {
- 		drm_connector_attach_max_bpc_property(connector, 6, 12);
-+		drm_connector_attach_preferred_color_format_property(connector);
- 		drm_connector_attach_active_color_format_property(connector);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index e7574ca0604e6..4a850eb9b8d4d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1210,6 +1210,11 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 		drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP MST init failed, skipping.\n",
- 			    connector->name, connector->base.id);
- 
-+	connector->preferred_color_format_property =
-+		intel_dp->attached_connector->base.preferred_color_format_property;
-+	if (connector->preferred_color_format_property)
-+		drm_connector_attach_preferred_color_format_property(connector);
-+
- 	connector->active_color_format_property =
- 		intel_dp->attached_connector->base.active_color_format_property;
- 	if (connector->active_color_format_property)
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ce0221f90de92..3030589d245d7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2214,19 +2214,24 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	const struct drm_display_info *info = &connector->base.display_info;
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
--	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
-+	bool ycbcr_420_output;
- 	int ret;
- 
-+	ycbcr_420_output = drm_mode_is_420_only(info, adjusted_mode) ||
-+			   (conn_state->preferred_color_format == DRM_COLOR_FORMAT_YCBCR420 &&
-+			    drm_mode_is_420_also(&connector->base.display_info, adjusted_mode));
-+
- 	crtc_state->sink_format =
--		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_only);
-+		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_output);
- 
--	if (ycbcr_420_only && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
-+	if (ycbcr_420_output && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
- 		drm_dbg_kms(&i915->drm,
- 			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
- 		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
- 	}
- 
- 	crtc_state->output_format = intel_hdmi_output_format(crtc_state);
-+
- 	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
- 	if (ret) {
- 		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-@@ -2613,6 +2618,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
- 
- 	if (!HAS_GMCH(dev_priv)) {
- 		drm_connector_attach_max_bpc_property(connector, 8, 12);
-+		drm_connector_attach_preferred_color_format_property(connector);
- 		drm_connector_attach_active_color_format_property(connector);
- 	}
- }
--- 
-2.43.0
-
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2024-01-08 18:17, Chen, Xiaogang
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:ba63e6cf-8162-1d99-00d6-62e4165a6b04@amd.com">With a
+      nitpick below, this patch is
+      <br>
+      <br>
+      Reviewed-by:Xiaogang Chen<a class="moz-txt-link-rfc2396E" href="mailto:Xiaogang.Chen@amd.com">&lt;Xiaogang.Chen@amd.com&gt;</a>
+      <br>
+      <br>
+      On 1/8/2024 4:36 PM, Philip Yang wrote:
+      <br>
+      <blockquote type="cite">After range spliting, set new range and
+        old range actual_loc:
+        <br>
+        new range actual_loc is 0 if new-&gt;vram_pages is 0.
+        <br>
+        old range actual_loc is 0 if old-&gt;vram_pages -
+        new-&gt;vram_pages == 0.
+        <br>
+        <br>
+        Signed-off-by: Philip Yang <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a>
+        <br>
+        ---
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 8 +++++---
+        <br>
+        &nbsp; 1 file changed, 5 insertions(+), 3 deletions(-)
+        <br>
+        <br>
+        diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+        b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+        <br>
+        index cc24f30f88fb..cb09e1d3a643 100644
+        <br>
+        --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+        <br>
+        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+        <br>
+        @@ -362,7 +362,6 @@ svm_range *svm_range_new(struct
+        svm_range_list *svms, uint64_t start,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;prange-&gt;child_list);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; atomic_set(&amp;prange-&gt;invalid, 0);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prange-&gt;validate_timestamp = 0;
+        <br>
+        -&nbsp;&nbsp;&nbsp; prange-&gt;vram_pages = 0;
+        <br>
+      </blockquote>
+      I think it is better to keep it, also:
+      <br>
+      <br>
+      +new-&gt;actual_loc = 0;
+      <br>
+      <br>
+      though not necessary as prange is allocated by kzalloc, just keep
+      consistent with previous statements, or remove
+      <br>
+      <br>
+      atomic_set(&amp;prange-&gt;invalid, 0);
+      <br>
+      prange-&gt;validate_timestamp = 0;
+      <br>
+      <br>
+      too.
+      <br>
+    </blockquote>
+    <p>kzalloc memset prange to 0, we should remove unnecessary 0
+      assignment. prange-&gt;validate_timestamp will be removed
+      completely in the following patch.</p>
+    <p>Will send out v2 patch to fix other related issues.<br>
+    </p>
+    <p>Regards,</p>
+    <p>Philip<br>
+    </p>
+    <blockquote type="cite" cite="mid:ba63e6cf-8162-1d99-00d6-62e4165a6b04@amd.com">
+      <br>
+      Regards
+      <br>
+      Xiaogang
+      <br>
+      <br>
+      <blockquote type="cite">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        mutex_init(&amp;prange-&gt;migrate_mutex);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_init(&amp;prange-&gt;lock);
+        <br>
+        &nbsp; @@ -980,8 +979,12 @@ svm_range_split_pages(struct svm_range
+        *new, struct svm_range *old,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+        -&nbsp;&nbsp;&nbsp; if (old-&gt;actual_loc)
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (old-&gt;actual_loc &amp;&amp; new-&gt;vram_pages) {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; old-&gt;vram_pages -= new-&gt;vram_pages;
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;actual_loc = old-&gt;actual_loc;
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!old-&gt;vram_pages)
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; old-&gt;actual_loc = 0;
+        <br>
+        +&nbsp;&nbsp;&nbsp; }
+        <br>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+        <br>
+        &nbsp; }
+        <br>
+        @@ -1058,7 +1061,6 @@ svm_range_split_adjust(struct svm_range
+        *new, struct svm_range *old,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;flags = old-&gt;flags;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;preferred_loc = old-&gt;preferred_loc;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;prefetch_loc = old-&gt;prefetch_loc;
+        <br>
+        -&nbsp;&nbsp;&nbsp; new-&gt;actual_loc = old-&gt;actual_loc;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;granularity = old-&gt;granularity;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new-&gt;mapped_to_gpu = old-&gt;mapped_to_gpu;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bitmap_copy(new-&gt;bitmap_access, old-&gt;bitmap_access,
+        MAX_GPU_INSTANCE);
+        <br>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
