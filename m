@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CD0828C2E
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 19:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C198828C2B
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jan 2024 19:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B26F510E4C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4389110E4CE;
 	Tue,  9 Jan 2024 18:11:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6664710E4C9
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 18:11:23 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- 5b1f17b1804b1-40e461c1f5cso27485185e9.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jan 2024 10:11:23 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFCB10E4B2
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 18:11:30 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ 5b1f17b1804b1-40d604b4b30so25383935e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jan 2024 10:11:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1704823882; x=1705428682; darn=lists.freedesktop.org;
+ d=yngvason.is; s=google; t=1704823888; x=1705428688; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=j5TmlSqr2R0DSFOwP1jgxjjJC7p4LGOYCLeSujiTr2s=;
- b=NKCsu7OQaYqUVnTtK0YHAPYDu4Zx1rUDr03LvnGrqVfiWy0XI0IXRt3ilgiesLbrqs
- atlDRzuImJT0yj/l6kTfscl/DavmYRudG3qBy9aQoCGvuEzFPnSiC1JWuLXr6DB0LD1s
- t9DQEoYbTVA5tOGG2SO/8TP0uvL346AI9h2y0=
+ bh=iv1CfwfAn7ER1wsoqgpUMaFNsB1LA0XxFCM2c1c7OSw=;
+ b=HLEdhawx9TLy78EIHTLt/ln1N8Nn5Ak/7DVVMBVFgB96qMgl5xIyjzDQ3PTkrzI2Hb
+ KMp0A4gLwV1zAU04RFPSuBWIKE2EaQfhwSZFNtkTAtYbBo3i/LW8auhn4a7QEvqoRS5V
+ xD24tVVVRZzUSsPriO7Uh0zGZJ5EEj/WZCXac=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704823882; x=1705428682;
+ d=1e100.net; s=20230601; t=1704823888; x=1705428688;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=j5TmlSqr2R0DSFOwP1jgxjjJC7p4LGOYCLeSujiTr2s=;
- b=cjCiDKsz9yIYm6+Cj4HSQYXJBL8cI7IdIB6knxNQLPeNTGGQ2hIedB/pLi0WoZ5psE
- lwvcPm6hcX54TvkC6TcciFqOIuR/leAhRmmQjOqRHBFGxjf7ylKQluABd84HNb408GUK
- jOnS2V28cxvMXWkBScvME1cdFeE9v0Is/as+MZSU9em9V8Aa1ocgkQ4fFuuiHOtc1MRY
- gzqbXqRRcf+iW+znwZy6MUxLiWSj+QbTI/F5MwfunK3n2ASg7FjoQjdFjL9wfHlOQJbU
- S1El3h4B+Xe4vNJYohRLwCSjOpdYO6sCm+p213WPZhoI9Ws/blnv+dNqxQ5KNRGpF3US
- q1kw==
-X-Gm-Message-State: AOJu0YzJpIiOeF3z+jDeLSnf34zhpzXghXBKnzyfyUap7DOdeC97Y6I9
- WRBVs5rZOohVFvAMGyrpdDoAwxMFM2e7Hw==
-X-Google-Smtp-Source: AGHT+IE8mUwmBNyBZAX/TyOCIvUTmkvOp0uvsitYL/5KGkF2V5MZ5MAl58F6Q1VC6O24Tg7pMyScTA==
-X-Received: by 2002:a05:600c:468b:b0:40d:8909:b3a3 with SMTP id
- p11-20020a05600c468b00b0040d8909b3a3mr2205592wmo.20.1704823881662; 
- Tue, 09 Jan 2024 10:11:21 -0800 (PST)
+ bh=iv1CfwfAn7ER1wsoqgpUMaFNsB1LA0XxFCM2c1c7OSw=;
+ b=j5Xcz9inSrcNFNnCwEvvbKIKW5ROtQ8q1QEl6SS6JDYd91Fo/hgONKeEpX24OjxSov
+ BtBMXfUejoqmnpo7UgD90RQ90uVxO1mcVdDEZkHY/EW6Du8hPEZtF/uVEfP4Mq+JfSb5
+ a9Ceqg9NkIO/AiBrsKltLr6Re3VurS+LzIyVgPLmiq21Pn9qvKlzdnMWyhDyBUw6JyfC
+ G68WQTIIw1zn3pHTOWBHW17xNMh20B/cfCwJ7fqrbT0EIpUFEh8tFgW6uKFYFdFgSObM
+ MXTYR3G4iC0izxHT4gg7obQM03II4CamJzRyYm/MFF/k4wvzWt2WaUwdfrLm9QX13u9Y
+ k5BQ==
+X-Gm-Message-State: AOJu0Ywnh54GNJqZoHzN+dTxNobu+3UcUJH1e6LncpQcSUMpMSBBiLo9
+ xQDiBrXhb8KUg04ivPXqnpBsUTKpy5xjqw==
+X-Google-Smtp-Source: AGHT+IHW+vnqtWq9qmMkX3cIDIbzoDHeml8A7NAyBIdCumvkqdPXyTH0vlksZ0ndiZHQzAVFE7zyJg==
+X-Received: by 2002:a05:600c:298c:b0:40d:5aea:c89b with SMTP id
+ r12-20020a05600c298c00b0040d5aeac89bmr648932wmd.64.1704823888508; 
+ Tue, 09 Jan 2024 10:11:28 -0800 (PST)
 Received: from andri-workstation.turninn.appdynamic.com
  ([2a01:8280:aa07:ad:7285:c2ff:fef0:4baf])
  by smtp.gmail.com with ESMTPSA id
- n25-20020a05600c3b9900b0040e527602c8sm2104579wms.9.2024.01.09.10.11.19
+ n25-20020a05600c3b9900b0040e527602c8sm2104579wms.9.2024.01.09.10.11.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Jan 2024 10:11:21 -0800 (PST)
+ Tue, 09 Jan 2024 10:11:27 -0800 (PST)
 From: Andri Yngvason <andri@yngvason.is>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
@@ -63,10 +63,10 @@ To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: [PATCH 1/7] drm/amd/display: Remove unnecessary
- SIGNAL_TYPE_HDMI_TYPE_A check
-Date: Tue,  9 Jan 2024 18:10:58 +0000
-Message-ID: <20240109181104.1670304-2-andri@yngvason.is>
+Subject: [PATCH 2/7] drm/uAPI: Add "active color format" drm property as
+ feedback for userspace
+Date: Tue,  9 Jan 2024 18:10:59 +0000
+Message-ID: <20240109181104.1670304-3-andri@yngvason.is>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240109181104.1670304-1-andri@yngvason.is>
 References: <20240109181104.1670304-1-andri@yngvason.is>
@@ -93,40 +93,142 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Werner Sembach <wse@tuxedocomputers.com>
 
-Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check that was performed in the
-drm_mode_is_420_only() case, but not in the drm_mode_is_420_also() &&
-force_yuv420_output case.
+Add a new general drm property "active color format" which can be used by
+graphic drivers to report the used color format back to userspace.
 
-Without further knowledge if YCbCr 4:2:0 is supported outside of HDMI,
-there is no reason to use RGB when the display
-reports drm_mode_is_420_only() even on a non HDMI connection.
+There was no way to check which color format got actually used on a given
+monitor. To surely predict this, one must know the exact capabilities of
+the monitor, the GPU, and the connection used and what the default
+behaviour of the used driver is (e.g. amdgpu prefers YCbCr 4:4:4 while i915
+prefers RGB). This property helps eliminating the guessing on this point.
 
-This patch also moves both checks in the same if-case. This  eliminates an
-extra else-if-case.
+In the future, automatic color calibration for screens might also depend on
+this information being available.
 
 Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
 Signed-off-by: Andri Yngvason <andri@yngvason.is>
 Tested-by: Andri Yngvason <andri@yngvason.is>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/drm_connector.c | 63 +++++++++++++++++++++++++++++++++
+ include/drm/drm_connector.h     | 10 ++++++
+ 2 files changed, 73 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c8c00c2a5224a..10e041a3b2545 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5524,10 +5524,7 @@ static void fill_stream_properties_from_drm_display_mode(
- 	timing_out->v_border_bottom = 0;
- 	/* TODO: un-hardcode */
- 	if (drm_mode_is_420_only(info, mode_in)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
--		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if (drm_mode_is_420_also(info, mode_in)
--			&& aconnector->force_yuv420_output)
-+			|| (drm_mode_is_420_also(info, mode_in) && aconnector->force_yuv420_output))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
- 	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
- 			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index c3725086f4132..30d62e505d188 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -1061,6 +1061,14 @@ static const struct drm_prop_enum_list drm_dp_subconnector_enum_list[] = {
+ 	{ DRM_MODE_SUBCONNECTOR_Native,	     "Native"    }, /* DP */
+ };
+ 
++static const struct drm_prop_enum_list drm_active_color_format_enum_list[] = {
++	{ 0, "not applicable" },
++	{ DRM_COLOR_FORMAT_RGB444, "rgb" },
++	{ DRM_COLOR_FORMAT_YCBCR444, "ycbcr444" },
++	{ DRM_COLOR_FORMAT_YCBCR422, "ycbcr422" },
++	{ DRM_COLOR_FORMAT_YCBCR420, "ycbcr420" },
++};
++
+ DRM_ENUM_NAME_FN(drm_get_dp_subconnector_name,
+ 		 drm_dp_subconnector_enum_list)
+ 
+@@ -1390,6 +1398,15 @@ static const u32 dp_colorspaces =
+  *	drm_connector_attach_max_bpc_property() to create and attach the
+  *	property to the connector during initialization.
+  *
++ * active color format:
++ *	This read-only property tells userspace the color format actually used
++ *	by the hardware display engine "on the cable" on a connector. The chosen
++ *	value depends on hardware capabilities, both display engine and
++ *	connected monitor. Drivers shall use
++ *	drm_connector_attach_active_color_format_property() to install this
++ *	property. Possible values are "not applicable", "rgb", "ycbcr444",
++ *	"ycbcr422", and "ycbcr420".
++ *
+  * Connectors also have one standardized atomic property:
+  *
+  * CRTC_ID:
+@@ -2451,6 +2468,52 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ }
+ EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+ 
++/**
++ * drm_connector_attach_active_color_format_property - attach "active color format" property
++ * @connector: connector to attach active color format property on.
++ *
++ * This is used to check the applied color format on a connector.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_attach_active_color_format_property(struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop;
++
++	if (!connector->active_color_format_property) {
++		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "active color format",
++						drm_active_color_format_enum_list,
++						ARRAY_SIZE(drm_active_color_format_enum_list));
++		if (!prop)
++			return -ENOMEM;
++
++		connector->active_color_format_property = prop;
++	}
++
++	drm_object_attach_property(&connector->base, prop, 0);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_attach_active_color_format_property);
++
++/**
++ * drm_connector_set_active_color_format_property - sets the active color format property for a
++ * connector
++ * @connector: drm connector
++ * @active_color_format: color format for the connector currently active "on the cable"
++ *
++ * Should be used by atomic drivers to update the active color format over a connector.
++ */
++void drm_connector_set_active_color_format_property(struct drm_connector *connector,
++						    u32 active_color_format)
++{
++	drm_object_property_set_value(&connector->base, connector->active_color_format_property,
++				      active_color_format);
++}
++EXPORT_SYMBOL(drm_connector_set_active_color_format_property);
++
+ /**
+  * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
+  * @connector: connector to attach the property on.
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index fe88d7fc6b8f4..9ae73cfdceeb1 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1699,6 +1699,12 @@ struct drm_connector {
+ 	 */
+ 	struct drm_property *privacy_screen_hw_state_property;
+ 
++	/**
++	 * @active_color_format_property: Default connector property for the
++	 * active color format to be driven out of the connector.
++	 */
++	struct drm_property *active_color_format_property;
++
+ #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+ #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+ #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+@@ -2053,6 +2059,10 @@ void drm_connector_attach_privacy_screen_provider(
+ 	struct drm_connector *connector, struct drm_privacy_screen *priv);
+ void drm_connector_update_privacy_screen(const struct drm_connector_state *connector_state);
+ 
++int drm_connector_attach_active_color_format_property(struct drm_connector *connector);
++void drm_connector_set_active_color_format_property(struct drm_connector *connector,
++						    u32 active_color_format);
++
+ /**
+  * struct drm_tile_group - Tile group metadata
+  * @refcount: reference count
 -- 
 2.43.0
 
