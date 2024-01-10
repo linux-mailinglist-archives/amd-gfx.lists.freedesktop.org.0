@@ -1,62 +1,94 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31DAB829D04
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 15:58:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E568F82970F
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 11:13:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F23D10E60D;
-	Wed, 10 Jan 2024 14:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A61310E746;
+	Wed, 10 Jan 2024 10:13:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com
- [IPv6:2607:f8b0:4864:20::1135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85C5910E5A1
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 10:12:09 +0000 (UTC)
-Received: by mail-yw1-x1135.google.com with SMTP id
- 00721157ae682-5f254d1a6daso38026447b3.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 02:12:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1704881528; x=1705486328; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=96G7DIyssciX4jnAzNrTPlryo3sWO8sgy39soI2lLIM=;
- b=aiBYE17WJRr4FhbVQVOqHd5sUD6rek/aCjpVDlxRv7qYTDi6HYYmZ9JPKOVOxNUrpH
- HmtNi8+3yhTG6e56XRvSkDoN/dFyNwHUKgYKYDFu7EVAVOvWHWyIj61P7NHEL5upkrQ/
- ef/5tDW+KQ8/Dqjqn2DDxCKJg45d8bM2xfLV0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704881528; x=1705486328;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=96G7DIyssciX4jnAzNrTPlryo3sWO8sgy39soI2lLIM=;
- b=EKCjZyI5CoN47suuVzHffvVS9LMuPcTmWdHAZi70pDlE/7YaWgUK7RO8zyR87+bSBi
- vIvT0HSRycM1aosYY/QmvUSMiZ+/oeDocrKAaxx1HbmkxDAHST3f8pzpRkl8nSYSa3jY
- 5GOuW82vBOgeXWXvM2JfVuK7vng1IbqfRyFWU6OlYdsWkUSaqoYhBjuAIiVjEvNJNpFx
- s6O02dFhFFVhyArRcbycat5Ujve9x7FK8OzuEOERUHKuL4IHXgQoAY4gP57hgugxlGcq
- HLYnYJ+s+1KbQSHS9RfyAxYwNz6/PH9mtpfMpShSc2UPJ8CuhtRVfZL7f0f3szukK2Fg
- uuZg==
-X-Gm-Message-State: AOJu0YxWWIBmGmZUrGyzy8siNr1/Rqp2rC1OqHJtGc++PTTd4t3Pfm5O
- OU14TZvIgDVgS096fyv6uhCfqjhUluG/XRCEB7eRCZfQe7a64A==
-X-Google-Smtp-Source: AGHT+IGS4RF/sw1vbqlkX/KGSnVK4rjCwYusB936/yIZemFr40lAz/v1ty4wbuIZQF+WlPwAE3a+cK+ILR852Vcqmd4=
-X-Received: by 2002:a25:f822:0:b0:dbf:227a:a2c with SMTP id
- u34-20020a25f822000000b00dbf227a0a2cmr504361ybd.126.1704881528497; Wed, 10
- Jan 2024 02:12:08 -0800 (PST)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2060a.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::60a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E159610E747
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 10:13:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U1T93HStsqZeRDtJdlsy2HjBrGzqQ1WGJ5zXXshE5hT9KubuhJKzYTgS3t7Cbe+TtvoysIacpym7R0XluT4Zo/swG1/locU8tXHWreSyfNKrWWXlvloUl5m1fJpjMmkl83vtYQQvGJa9szKgmDoJOLdIIpOaQ6/2Z1hOYQ3Cz/3RO2OTwm30OJkaNGjSX8/diZzGP95ENT5cZxFnxfeLkZpaPOlF8dwXE3A/+1tcEbBJ1WLhye9ffLfnfJCD+ba8avl09bUahLhxeZ2npRtYS5e+BlAfM1vE21VqWxFwJFlYBx6hYiSsiQ+QzwXKEoQ1g1eCE0akU6YaGQ3WLz4UUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T8TOrkNm/olB/YPtFUTzGoef9BBf3+EbiyVr0YEm3/w=;
+ b=Iy+aB4S6HaXDXskKpPNLJV2Wl1prLrrfoxYqUhbecfWxi+JecxwpL3YSueoUipe0yfEylMmivQN6SvObw5ddB9WBPmOQYx/9vi///WJ9GDgdOerlMur+69LFTMGCAVo6giL7xcMsACjFISxHI7NcmSMw0Sq9eG2xvZ12LpPerzVg0s66nOQIkUNl1eToa+XWwCQ1S2913ioVuPBjsS+ODVDw9Lnh3sBE5UnaeunCUyaDig263Pw9mndyWEXPAofVbSJLQWN6iab7CGMvqBGJ4c6ChzZastKarQi2rHwiDxVQ3SsZzj/XXfsWI5qqaCrK8mwW7LO9Fsx6EnBGNtarFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T8TOrkNm/olB/YPtFUTzGoef9BBf3+EbiyVr0YEm3/w=;
+ b=oMPU732cHi6oy30vmmsvewdG1ds9qA6CqLZCPxRSd7wBFc/YmgPgdcddjHEdIh8kT4Izy8JGczIz6+NS6nNi2qjeLANNu+Au6QSVKZg5mOYoCkciy2Su8QsZSATi+U2s74NFCZhSkN1uYt4rdQOnYiLfVFMlcufs6v6gejTNqCM=
+Received: from MW4PR03CA0257.namprd03.prod.outlook.com (2603:10b6:303:b4::22)
+ by SJ2PR12MB8978.namprd12.prod.outlook.com (2603:10b6:a03:545::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Wed, 10 Jan
+ 2024 10:13:52 +0000
+Received: from CO1PEPF000042A7.namprd03.prod.outlook.com
+ (2603:10b6:303:b4:cafe::cc) by MW4PR03CA0257.outlook.office365.com
+ (2603:10b6:303:b4::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17 via Frontend
+ Transport; Wed, 10 Jan 2024 10:13:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000042A7.mail.protection.outlook.com (10.167.243.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7181.13 via Frontend Transport; Wed, 10 Jan 2024 10:13:52 +0000
+Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 10 Jan
+ 2024 04:13:46 -0600
+From: Ma Jun <Jun.Ma2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <Alexander.Deucher@amd.com>
+Subject: [PATCH v3] drm/amdgpu: Check extended configuration space register
+ when system uses large bar
+Date: Wed, 10 Jan 2024 18:13:19 +0800
+Message-ID: <20240110101319.695169-1-Jun.Ma2@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-6-andri@yngvason.is>
- <qdwv7sagqs5nmmsy5lko5hypldanfodafyzamrs3loj3n7jzlr@n5bacxkknkj4>
-In-Reply-To: <qdwv7sagqs5nmmsy5lko5hypldanfodafyzamrs3loj3n7jzlr@n5bacxkknkj4>
-From: Andri Yngvason <andri@yngvason.is>
-Date: Wed, 10 Jan 2024 10:11:32 +0000
-Message-ID: <CAFNQBQzijyE4wR34AOLM45m+ryx128igVKO9zPJ5-M3afFQMxQ@mail.gmail.com>
-Subject: Re: [PATCH 5/7] drm/uAPI: Add "preferred color format" drm property
- as setting for userspace
-To: Maxime Ripard <mripard@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 10 Jan 2024 14:58:28 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042A7:EE_|SJ2PR12MB8978:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e9c827b-12e7-4e8a-6ef0-08dc11c4d872
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: N6mqqmwvtBO7iMJZxv89jqoZr2fgUt3R/nTqrgbIPT1nCX8k4M0r5QGI6yF9f2DEI17goiKr2u/hpKdxj4XpfOUQln+wqEShZrt2CTUt+9rHjyvyqp/NlRPIvW7SUPPFO3p0ktz2yzBk96fm9gKEW5PHQE/HpmNPcEKyJvQVZDgraWFV5mleVpgEoIFRSLxPvO4drZ+LOdz574hpjIJc5n2YFo9S05rvRh0bzHASQ9N1dbuOVEui3uhDh9AMZWgBcMSyNQXBFH7uKja6Z+9pGpv7dePPZY4TWtzX0lDbTFrZrYcKo55jqzOdeSaSS7zlQSYG2m5irfpHFXCbgCdxCMYl8+EpygD2XwM8+V8WhltTxQjpEtN6FlOlOgq9o2PRpa2DL5U4SxZvOsBD8f2hfwp+q9PRzkiEC9SIrAxC/K0yAvE39Z2MiYvnOrDXsMvJrYbHZL/mc5RCkFffINndAIYfxhKuZ8Hyapby/twOjgp4dEoBbalMkgQROQkTd9ArdS4i8jVCV1kkdblwyubdgREzeRD+TmlSxqfVaWRk4JzFrNy0whQSlnJVYdDWk9h7I0NoCFjTlKVqOrJAjNoXllS1z97/K5NaLw/re6i1hVWcgJ391aoxLmOb+N54BMoloHilFbml+2HSz0MpXKmih5gQYQ7Cz3aVJ8E0tMP/IaHkfuL3VxRxzHo+n7lEraioj1IXp3RJfadXxMbD+9cwei+BtY/UzRGeJfCs7A5SErZ/7dhXq8QGuNA2hQmA/ZG90oTHyA4G+H1Qch5aEruxmg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(376002)(346002)(136003)(39860400002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(82310400011)(40470700004)(46966006)(36840700001)(16526019)(336012)(426003)(70586007)(316002)(6636002)(478600001)(70206006)(110136005)(7696005)(6666004)(4326008)(26005)(40460700003)(40480700001)(1076003)(2616005)(2906002)(5660300002)(83380400001)(8936002)(8676002)(47076005)(36860700001)(82740400003)(81166007)(41300700001)(356005)(86362001)(36756003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 10:13:52.0845 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e9c827b-12e7-4e8a-6ef0-08dc11c4d872
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A7.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8978
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +100,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Werner Sembach <wse@tuxedocomputers.com>, Simon Ser <contact@emersion.fr>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Dan Carpenter <dan.carpenter@oracle.com>
+Cc: Ma Jun <Jun.Ma2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Some customer platforms do not enable mmconfig for various reasons,
+such as bios bug, and therefore cannot access the GPU extend configuration
+space through mmio.
 
-mi=C3=B0., 10. jan. 2024 kl. 09:27 skrifa=C3=B0i Maxime Ripard <mripard@ker=
-nel.org>:
-> On Tue, Jan 09, 2024 at 06:11:02PM +0000, Andri Yngvason wrote:
-> > From: Werner Sembach <wse@tuxedocomputers.com>
-> >
-> > Add a new general drm property "preferred color format" which can be us=
-ed
-> > by userspace to tell the graphic drivers to which color format to use.
-> >
-> > Possible options are:
-> >     - auto (default/current behaviour)
-> >     - rgb
-> >     - ycbcr444
-> >     - ycbcr422 (not supported by both amdgpu and i915)
-> >     - ycbcr420
-> >
-> > In theory the auto option should choose the best available option for t=
-he
-> > current setup, but because of bad internal conversion some monitors loo=
-k
-> > better with rgb and some with ycbcr444.
->
-> I looked at the patch and I couldn't find what is supposed to happen if
-> you set it to something else than auto, and the driver can't match that.
-> Are we supposed to fallback to the "auto" behaviour, or are we suppose
-> to reject the mode entirely?
->
-> The combination with the active output format property suggests the
-> former, but we should document it explicitly.
+When the system enters the d3cold state and resumes, the amdgpu driver
+fails to resume because the extend configuration space registers of
+GPU can't be restored. At this point, Usually we only see some failure
+dmesg log printed by amdgpu driver, it is difficult to find the root
+cause.
 
-It is also my understanding that it should fall back to the "auto"
-behaviour. I will add this to the documentation.
+Therefor print a warnning message if the system can't access the
+extended configuration space register when using large bar.
 
-Thanks,
-Andri
+Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+---
+v2:
+- Check the register at 0x100 but not resize bar register
+- Modify the commit message
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 4b694696930e..629de7f2908c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1442,6 +1442,10 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+ 	if (amdgpu_sriov_vf(adev))
+ 		return 0;
+ 
++	/* PCI_EXT_CAP_ID_VNDR extended capability is located at 0x100 */
++	if (!pci_find_ext_capability(adev->pdev, PCI_EXT_CAP_ID_VNDR))
++		DRM_WARN("System can't access extended configuration space,please check!!\n");
++
+ 	/* skip if the bios has already enabled large BAR */
+ 	if (adev->gmc.real_vram_size &&
+ 	    (pci_resource_len(adev->pdev, 0) >= adev->gmc.real_vram_size))
+-- 
+2.34.1
+
