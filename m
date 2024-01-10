@@ -1,54 +1,81 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD91D829B06
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 14:14:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F16C829B2B
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 14:27:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BFE010E7A0;
-	Wed, 10 Jan 2024 13:14:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A625D10E5A2;
+	Wed, 10 Jan 2024 13:27:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
- Wed, 10 Jan 2024 13:14:22 UTC
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85C2F10E7FF;
- Wed, 10 Jan 2024 13:14:22 +0000 (UTC)
-Received: from [192.168.42.20] (p5de453e7.dip0.t-ipconnect.de [93.228.83.231])
- (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id C562B2FC005B;
- Wed, 10 Jan 2024 14:14:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1704892461;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=D3XXWzf6RfsompBPEpJXXqoA3QY72hJE9BCknBlltgU=;
- b=tFOiG5JGP63gUPxytuSaXh/9yy7SdS7kKoiE7F9gkO9wjO53+5d/H/jqPdNpMuqTjvGHft
- 5DQe+5DPNJez8uLzSscCUnvJ3yoCroj6fr/rGUf0B+1bO27Wyr7h0rL9JcST9M0Q94BjTG
- ZJXjiUdQlmZjvUbgXnM+Tij+l93L6nA=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-Message-ID: <67808818-ee34-4d04-ad90-cd5c6eb9bb26@tuxedocomputers.com>
-Date: Wed, 10 Jan 2024 14:14:20 +0100
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com
+ [IPv6:2607:f8b0:4864:20::f29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C4910E5A2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 13:26:59 +0000 (UTC)
+Received: by mail-qv1-xf29.google.com with SMTP id
+ 6a1803df08f44-67f95d69115so29270706d6.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 05:26:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1704893219; x=1705498019;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=wuoo03iviwWHkadCNQ9VBPxTicDGZj9k5/ZvAak2Qbc=;
+ b=T9FRykmg8L+l14EsdwJ1dozIvW8JrmpTXYd34Uj88i+542Fsf1qq55P4LCwBTnfO8g
+ tkqPghm5GIieDyadYduPcKJS6tLSPjl9EkC/f5OUHpgOdiP2Xb5OIB8CvK92lvuef5Lk
+ srulcna2OB2P8TvaEg40Pmwz4uoARhtv8w4PxDZrUu89ozsF+Im/8A1kMt1xLdHq4SG3
+ Rt9yxPz7oJdZmWj3a6VE+C9Nk27hlX86HWtOtkEHGwBtIbHkXQZnhBmzr6oGHg7XZ3np
+ GTwbJpb5gL+id59BldvMZl4g9Ra0HHnwjKFPgcvST9JejAJMs6x1ApnTDkz50d61OlDA
+ Dv5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1704893219; x=1705498019;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=wuoo03iviwWHkadCNQ9VBPxTicDGZj9k5/ZvAak2Qbc=;
+ b=r8JrQ7H3ZKePTiwOWWtpM7pG3sXc1p/w5MCl7JCrSmUhnrFWeSi1adXGDqyiOS4TiR
+ lvyRD16JD1CWj1luWxQAm6ofRoM8voEzPuJpxnCdjg7njSQRy+7IYhpn3hvcnUGMD20S
+ vurBQW3t2X8pZ5YQrxbfW74oB51GE8ADVicodj1COaB+50x5J/OzAe75EvqQvXERoq4d
+ 8hODLNBdTh5MbXAu+hPNCJ16gkOSA9ScNrhiHUSbVy8sKqAiGthCT3W5qxuTPI7KtsKG
+ 83GOd5MYwD8pKT+pFYNemdMXoBh2F+zAwYHBvKJq98wzp633HF+Ua73hze7XE91AVd6I
+ xs5Q==
+X-Gm-Message-State: AOJu0Yx14TjzUS8X5C4zAxqHBJz0B5K8qFnHYygqXDaMvQt4zE8vEpl7
+ z14K8zn+xIaqa1RSW2+k3zJmaqhlqV8vDJ8Z9FVnWKcdMejXQA==
+X-Google-Smtp-Source: AGHT+IGdIXuMwkWII7EUXBHcbytK3jAqcLwzlJCM9W48o+05Ly6ZHA8R+Kz3tpJUp7CvP/x73Q5f0ChjbDvYlVh7+7A=
+X-Received: by 2002:a05:6214:1630:b0:680:f8b7:44fe with SMTP id
+ e16-20020a056214163000b00680f8b744femr985896qvw.13.1704893218734; Wed, 10 Jan
+ 2024 05:26:58 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] drm/amd/display: Add handling for new "active color
- format" property
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>, Andri Yngvason <andri@yngvason.is>
 References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-4-andri@yngvason.is>
- <ZZ57Nl3CnRMPcfbj@phenom.ffwll.local>
- <CAFNQBQzo17cK4M-S=Mje8Lxub9Y74xFGj7iEq57vKJr47oiz5Q@mail.gmail.com>
- <CAKMK7uGhMCwbztGdEmG4gFgpyhw6j-JFow-AaprFxcX710=qXA@mail.gmail.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-In-Reply-To: <CAKMK7uGhMCwbztGdEmG4gFgpyhw6j-JFow-AaprFxcX710=qXA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ <20240109181104.1670304-3-andri@yngvason.is>
+ <CAPj87rNan8B5urDFkmD_Vti4to6p3NmvXYsTFQTNg-Ue2ieDug@mail.gmail.com>
+ <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
+ <ZZ509L_kmVC4IUBW@phenom.ffwll.local>
+In-Reply-To: <ZZ509L_kmVC4IUBW@phenom.ffwll.local>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Wed, 10 Jan 2024 13:26:46 +0000
+Message-ID: <CAPj87rOiS8F=oDW3iE=bgFyfeJnYhy8kPF2v-uYOq3xgYtVPAg@mail.gmail.com>
+Subject: Re: [PATCH 2/7] drm/uAPI: Add "active color format" drm property as
+ feedback for userspace
+To: Andri Yngvason <andri@yngvason.is>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, Simon Ser <contact@emersion.fr>, 
+ Werner Sembach <wse@tuxedocomputers.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,69 +87,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-Am 10.01.24 um 14:09 schrieb Daniel Vetter:
-> On Wed, 10 Jan 2024 at 13:53, Andri Yngvason <andri@yngvason.is> wrote:
->> mið., 10. jan. 2024 kl. 11:10 skrifaði Daniel Vetter <daniel@ffwll.ch>:
->>> On Tue, Jan 09, 2024 at 06:11:00PM +0000, Andri Yngvason wrote:
->>>> +     /* Extract information from crtc to communicate it to userspace as connector properties */
->>>> +     for_each_new_connector_in_state(state, connector, new_con_state, i) {
->>>> +             struct drm_crtc *crtc = new_con_state->crtc;
->>>> +             struct dc_stream_state *stream;
->>>> +
->>>> +             if (crtc) {
->>>> +                     new_crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
->>>> +                     dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
->>>> +                     stream = dm_new_crtc_state->stream;
->>>> +
->>>> +                     if (stream) {
->>>> +                             drm_connector_set_active_color_format_property(connector,
->>>> +                                     convert_dc_pixel_encoding_into_drm_color_format(
->>>> +                                             dm_new_crtc_state->stream->timing.pixel_encoding));
->>>> +                     }
->>>> +             } else {
->>>> +                     drm_connector_set_active_color_format_property(connector, 0);
->>> Just realized an even bigger reason why your current design doesn't work:
->>> You don't have locking here.
->>>
->>> And you cannot grab the required lock, which is
->>> drm_dev->mode_config.mutex, because that would result in deadlocks. So
->>> this really needs to use the atomic state based design I've described.
->>>
->> Maybe we should just drop "actual color format" and instead fail the
->> modeset if the "preferred color format" property cannot be satisfied?
->> It seems like the simplest thing to do here, though it is perhaps less
->> convenient for userspace. In that case, the "preferred color format"
->> property should just be called "color format".
-> Yeah that's more in line with how other atomic properties work. This
-> way userspace can figure out what works with a TEST_ONLY commit too.
-> And for this to work you probably want to have an "automatic" setting
-> too.
-> -Sima
+On Wed, 10 Jan 2024 at 10:44, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Tue, Jan 09, 2024 at 11:12:11PM +0000, Andri Yngvason wrote:
+> > =C5=A3ri., 9. jan. 2024 kl. 22:32 skrifa=C4=91i Daniel Stone <daniel@fo=
+oishbar.org>:
+> > > How does userspace determine what's happened without polling? Will it
+> > > only change after an `ALLOW_MODESET` commit, and be guaranteed to be
+> > > updated after the commit has completed and the event being sent?
+> > > Should it send a HOTPLUG event? Other?
+> > >
+> >
+> > Userspace does not determine what's happened without polling. The purpo=
+se
+> > of this property is not for programmatic verification that the preferre=
+d
+> > property was applied. It is my understanding that it's mostly intended =
+for
+> > debugging purposes. It should only change as a consequence of modesetti=
+ng,
+> > although I didn't actually look into what happens if you set the "prefe=
+rred
+> > color format" outside of a modeset.
+>
+> This feels a bit irky to me, since we don't have any synchronization and
+> it kinda breaks how userspace gets to know about stuff.
+>
+> For context the current immutable properties are all stuff that's derived
+> from the sink (like edid, or things like that). Userspace is guaranteed t=
+o
+> get a hotplug event (minus driver bugs as usual) if any of these change,
+> and we've added infrastructure so that the hotplug event even contains th=
+e
+> specific property so that userspace can avoid re-read (which can cause
+> some costly re-probing) them all.
 
-The problem with TEST_ONLY probing is that color format settings are 
-interdependent: https://gitlab.freedesktop.org/drm/amd/-/issues/476#note_966634
+Right.
 
-So changing any other setting may require every color format to be TEST_ONLY 
-probed again.
+> [...]
+>
+> This thing here works entirely differently, and I think we need somewhat
+> new semantics for this:
+>
+> - I agree it should be read-only for userspace, so immutable sounds right=
+.
+>
+> - But I also agree with Daniel Stone that this should be tied more
+>   directly to the modeset state.
+>
+> So I think the better approach would be to put the output type into
+> drm_connector_state, require that drivers compute it in their
+> ->atomic_check code (which in the future would allow us to report it out
+> for TEST_ONLY commits too), and so guarantee that the value is updated
+> right after the kms ioctl returns (and not somewhen later for non-blockin=
+g
+> commits).
 
-Greetings
+That's exactly the point. Whether userspace gets an explicit
+notification or it has to 'know' when to read isn't much of an issue -
+just as long as it's well defined. I think the suggestion of 'do it in
+atomic_check and then it's guaranteed to be readable when the commit
+completes' is a good one.
 
-Werner
+I do still have some reservations - for instance, why do we have the
+fallback to auto when userspace has explicitly requested a certain
+type? - but they may have been covered previously.
 
+Cheers,
+Daniel
