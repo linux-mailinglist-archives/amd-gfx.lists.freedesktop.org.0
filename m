@@ -2,66 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35A9829C9F
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 15:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C24829D05
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 15:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CDE810E012;
-	Wed, 10 Jan 2024 14:31:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6FA10E612;
+	Wed, 10 Jan 2024 14:58:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50CD010E012
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 14:31:54 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id
- a640c23a62f3a-a28b0207c1dso337906766b.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 06:31:54 -0800 (PST)
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com
+ [IPv6:2607:f8b0:4864:20::d34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F44510E06A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 14:51:40 +0000 (UTC)
+Received: by mail-io1-xd34.google.com with SMTP id
+ ca18e2360f4ac-7bb0af58134so196510239f.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 06:51:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1704897112; x=1705501912; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=w3P5wEoA4t7fBbanC8dBZreTJKUcVszdddLkhLz5SOE=;
- b=a+pYnTmfFeOSr3qtZTiSaf9Zvduaj8dKHcA7HQ9eI+txnfhUKC/SUHI1kP43+x/nfR
- NfX8DPyoVrFR8xXlryBZCBks6RmAxDFVm1N53E/847qBSe1GBB45yiJf1o0mY8HjAIJ1
- bI+fopXLdwsPWxMRcsJGXDkbnqpQH3zh6oFOaSbMRnPq+KJzIbESXf5RbvvI9whcCVgB
- HDCtCUUyWwrNoGNX8S97IiUpwAnJ2ZUyyDDTYU9NVpwLrjEiOmiZjyhnlAZyAimBnZbm
- Cgbpraw/BqYsflJeiUjPPCUKIH3y0dvOnhHe+KavRUFBeY+5V7Xmr6uqO1kDnLRd+tQs
- e37Q==
+ d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1704898299; x=1705503099;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:to:from:cc
+ :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=UlRr87AfARWxTIrPYo3v1voc73TzaNkp96EPHRmj2xU=;
+ b=TFPMhkd/lN/lVAXaq7iWJrHnkVLsp73LyHNEKFLmpTg93FW2bHCKL+WlNGFb+pqP75
+ dhmXHgIlK9Lx+nmj+u5Jybskpx+5dGoS4+ZkqVSuOVIvfZ5rkW5otbgnFIFx7xBRpRc4
+ eWWFgpQmh4FO2wbC18+GIBVA1AyQAbhGhfFGnyAMqhuERVs+NT/VaKb3p/fHOc26wQTj
+ zzqrBIfNfK8loeVCNNYCuNi4KzSFPVHS2v3Viupa+LMRlzpHKjLVbsB3EibiNNTnU7To
+ A9s2pa8yMZliPQ5dYSzJfZlbGCtaz3l+1hqCjpQaDmCfjn6ymDI9wmqx9JDZLueXA3kB
+ D0TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704897112; x=1705501912;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=w3P5wEoA4t7fBbanC8dBZreTJKUcVszdddLkhLz5SOE=;
- b=R8jEg5ILahzM0bCDfZaqEhT0PPrkc61TVB6Yt6AfJiE5kZXbBlB5tSNp/p2cyDkcar
- xXIql12Xr4Y4FiSQZs5HSnb9ehk55V0diTzIuq/rkBQ5+7bJzxn7lYuTNFsVMzWn3DKs
- JJL77SW8+oJabF4eTXH+o0weEkIz1nYo7ENEnlJutQaVVQrXbirKwm94K7JPtzhncXxE
- IQJeeecLTViHdKz5DyS3vXYasYvmdQXdy/2W8pi01NdSzvGjorASESun3Bh+hiwAP+Lx
- uonS6cT4pEiysyXzfj7rVNJ0xBvFEUKytTEXacIeUPuM99d67eZF2gF868jkuHOa5l0I
- JOPg==
-X-Gm-Message-State: AOJu0YzVfwIZIcAa1pkFLIRIdUXaygnNkGqSn80dk0Nav9N5ZsupHzDO
- 4I3KfEv2OVHxPFBzQ2pY1hI=
-X-Google-Smtp-Source: AGHT+IFIoHi8x5HF3LHJ2PftHusOmIZEo+/X3EGhG6MTCt3hMoLLRf6xMmCJNt+DdWALL0wjaxL0iw==
-X-Received: by 2002:a17:907:cb07:b0:a2c:4bb:5d94 with SMTP id
- um7-20020a170907cb0700b00a2c04bb5d94mr264955ejc.36.1704897112280; 
- Wed, 10 Jan 2024 06:31:52 -0800 (PST)
-Received: from able.fritz.box ([2a00:e180:1508:d200:1766:59b4:a7b7:3141])
- by smtp.gmail.com with ESMTPSA id
- i22-20020a170906091600b00a28148beabdsm2146227ejd.102.2024.01.10.06.31.50
+ d=1e100.net; s=20230601; t=1704898299; x=1705503099;
+ h=content-transfer-encoding:mime-version:message-id:to:from:cc
+ :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UlRr87AfARWxTIrPYo3v1voc73TzaNkp96EPHRmj2xU=;
+ b=sYfDUNNG4xHR7ywCtIYH0Ss3FC+R/oBzcUxGPZi4seI4pWT8/PWfTaDxgRpLZdptHq
+ /1dU6utVr637mKFCTFg7JacyeXw7O3OHQCwaxItIyh9SeLCE/IHDaoeTl+O0i0RI+XM6
+ tRpLdYWz47d0I64TuRL2w6a/6z/iK2n6cP7WUwrKEBZHE1bUudEP/7mWQhyLQchihvLI
+ oYVxioI4k479PYDmisb2dtfKRK6cNYR4fWwUPr8iz8+qHTcTKZVntBBoF0XjkDbuXO6i
+ 59Sc0C+uG1kkOvvX6rwnFeflWiWUnXmBF3ch6RT9t+A5ECwsfZlZG/4dExqcBPzf0Gkv
+ gtWA==
+X-Gm-Message-State: AOJu0YyVq4wYFCdTH2GMIMPhxyRpTTMMhOiU5b3ZR1QamLLqzDBarD3/
+ nWay9EElYcojrjYxGEUK7YHzh3zm3KVn1A==
+X-Google-Smtp-Source: AGHT+IESMcbobMlRjbgJYfocjXsZ0yo/qo6i1dK8eo1VFgWRNLIDb9r8HTjU5OKJKjNYljfVT1tLPg==
+X-Received: by 2002:a05:6602:131d:b0:7bc:838:6665 with SMTP id
+ h29-20020a056602131d00b007bc08386665mr986219iov.28.1704898299159; 
+ Wed, 10 Jan 2024 06:51:39 -0800 (PST)
+Received: from localhost ([192.184.165.199]) by smtp.gmail.com with ESMTPSA id
+ k12-20020a02c64c000000b0046e304dc641sm1319869jan.95.2024.01.10.06.51.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Jan 2024 06:31:51 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: Lijo.Lazar@amd.com, YiPeng.Chai@amd.com, Alexander.Deucher@amd.com,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: revert "Adjust removal control flow for smu
- v13_0_2"
-Date: Wed, 10 Jan 2024 15:31:49 +0100
-Message-Id: <20240110143149.2446-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+ Wed, 10 Jan 2024 06:51:38 -0800 (PST)
+Date: Wed, 10 Jan 2024 06:51:38 -0800 (PST)
+X-Google-Original-Date: Wed, 10 Jan 2024 06:51:33 PST (-0800)
+Subject: Re: [PATCH v2 10/14] riscv: Add support for kernel-mode FPU
+In-Reply-To: <20231228014220.3562640-11-samuel.holland@sifive.com>
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: samuel.holland@sifive.com
+Message-ID: <mhng-3e4b97f6-8310-487e-9f9a-1d19d6e42a1e@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 10 Jan 2024 14:58:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,190 +72,133 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-arch@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, samuel.holland@sifive.com,
+ loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, Christoph Hellwig <hch@lst.de>,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Calling amdgpu_device_ip_resume_phase1() during shutdown leaves the
-HW in an active state and is an unbalanced use of the IP callbacks.
+On Wed, 27 Dec 2023 17:42:00 PST (-0800), samuel.holland@sifive.com wrote:
+> This is motivated by the amdgpu DRM driver, which needs floating-point
+> code to support recent hardware. That code is not performance-critical,
+> so only provide a minimal non-preemptible implementation for now.
+>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> ---
+>
+> Changes in v2:
+>  - Remove RISC-V architecture-specific preprocessor check
+>
+>  arch/riscv/Kconfig                  |  1 +
+>  arch/riscv/Makefile                 |  3 +++
+>  arch/riscv/include/asm/fpu.h        | 16 ++++++++++++++++
+>  arch/riscv/kernel/Makefile          |  1 +
+>  arch/riscv/kernel/kernel_mode_fpu.c | 28 ++++++++++++++++++++++++++++
+>  5 files changed, 49 insertions(+)
+>  create mode 100644 arch/riscv/include/asm/fpu.h
+>  create mode 100644 arch/riscv/kernel/kernel_mode_fpu.c
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 24c1799e2ec4..4d4d1d64ce34 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -27,6 +27,7 @@ config RISCV
+>  	select ARCH_HAS_GCOV_PROFILE_ALL
+>  	select ARCH_HAS_GIGANTIC_PAGE
+>  	select ARCH_HAS_KCOV
+> +	select ARCH_HAS_KERNEL_FPU_SUPPORT if FPU
+>  	select ARCH_HAS_MMIOWB
+>  	select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
+>  	select ARCH_HAS_PMEM_API
+> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+> index a74be78678eb..2e719c369210 100644
+> --- a/arch/riscv/Makefile
+> +++ b/arch/riscv/Makefile
+> @@ -81,6 +81,9 @@ KBUILD_CFLAGS += -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64i
+>
+>  KBUILD_AFLAGS += -march=$(riscv-march-y)
+>
+> +# For C code built with floating-point support, exclude V but keep F and D.
+> +CC_FLAGS_FPU  := -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)([^v_]*)v?/\1\2/')
+> +
+>  KBUILD_CFLAGS += -mno-save-restore
+>  KBUILD_CFLAGS += -DCONFIG_PAGE_OFFSET=$(CONFIG_PAGE_OFFSET)
+>
+> diff --git a/arch/riscv/include/asm/fpu.h b/arch/riscv/include/asm/fpu.h
+> new file mode 100644
+> index 000000000000..91c04c244e12
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/fpu.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2023 SiFive
+> + */
+> +
+> +#ifndef _ASM_RISCV_FPU_H
+> +#define _ASM_RISCV_FPU_H
+> +
+> +#include <asm/switch_to.h>
+> +
+> +#define kernel_fpu_available()	has_fpu()
+> +
+> +void kernel_fpu_begin(void);
+> +void kernel_fpu_end(void);
+> +
+> +#endif /* ! _ASM_RISCV_FPU_H */
+> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
+> index fee22a3d1b53..662c483e338d 100644
+> --- a/arch/riscv/kernel/Makefile
+> +++ b/arch/riscv/kernel/Makefile
+> @@ -62,6 +62,7 @@ obj-$(CONFIG_MMU) += vdso.o vdso/
+>
+>  obj-$(CONFIG_RISCV_MISALIGNED)	+= traps_misaligned.o
+>  obj-$(CONFIG_FPU)		+= fpu.o
+> +obj-$(CONFIG_FPU)		+= kernel_mode_fpu.o
+>  obj-$(CONFIG_RISCV_ISA_V)	+= vector.o
+>  obj-$(CONFIG_SMP)		+= smpboot.o
+>  obj-$(CONFIG_SMP)		+= smp.o
+> diff --git a/arch/riscv/kernel/kernel_mode_fpu.c b/arch/riscv/kernel/kernel_mode_fpu.c
+> new file mode 100644
+> index 000000000000..0ac8348876c4
+> --- /dev/null
+> +++ b/arch/riscv/kernel/kernel_mode_fpu.c
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2023 SiFive
+> + */
+> +
+> +#include <linux/export.h>
+> +#include <linux/preempt.h>
+> +
+> +#include <asm/csr.h>
+> +#include <asm/fpu.h>
+> +#include <asm/processor.h>
+> +#include <asm/switch_to.h>
+> +
+> +void kernel_fpu_begin(void)
+> +{
+> +	preempt_disable();
+> +	fstate_save(current, task_pt_regs(current));
+> +	csr_set(CSR_SSTATUS, SR_FS);
+> +}
+> +EXPORT_SYMBOL_GPL(kernel_fpu_begin);
+> +
+> +void kernel_fpu_end(void)
+> +{
+> +	csr_clear(CSR_SSTATUS, SR_FS);
+> +	fstate_restore(current, task_pt_regs(current));
+> +	preempt_enable();
+> +}
+> +EXPORT_SYMBOL_GPL(kernel_fpu_end);
 
-Using the IP callbacks like this can lead to memory leaks, double
-free and imbalanced reference counters.
+Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-Leaving the HW in an active state can lead to DMA accesses to memory now
-freed by the driver.
+assuming you want to keep these together -- it touches a lot of stuff, 
+so LMK if you want me to pick something up.
 
-Both is a complete no-go for driver unload so completely revert the
-workaround for now.
-
-This reverts commit f5c7e7797060255dbc8160734ccc5ad6183c5e04.
-
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 32 +---------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 32 ----------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h  |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h   |  1 -
- 4 files changed, 1 insertion(+), 65 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index a39c9fea55c4..313316009039 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5232,7 +5232,6 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 	struct amdgpu_device *tmp_adev = NULL;
- 	bool need_full_reset, skip_hw_reset, vram_lost = false;
- 	int r = 0;
--	bool gpu_reset_for_dev_remove = 0;
- 
- 	/* Try reset handler method first */
- 	tmp_adev = list_first_entry(device_list_handle, struct amdgpu_device,
-@@ -5252,10 +5251,6 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 		test_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
- 	skip_hw_reset = test_bit(AMDGPU_SKIP_HW_RESET, &reset_context->flags);
- 
--	gpu_reset_for_dev_remove =
--		test_bit(AMDGPU_RESET_FOR_DEVICE_REMOVE, &reset_context->flags) &&
--			test_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
--
- 	/*
- 	 * ASIC reset has to be done on all XGMI hive nodes ASAP
- 	 * to allow proper links negotiation in FW (within 1 sec)
-@@ -5298,18 +5293,6 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 		amdgpu_ras_intr_cleared();
- 	}
- 
--	/* Since the mode1 reset affects base ip blocks, the
--	 * phase1 ip blocks need to be resumed. Otherwise there
--	 * will be a BIOS signature error and the psp bootloader
--	 * can't load kdb on the next amdgpu install.
--	 */
--	if (gpu_reset_for_dev_remove) {
--		list_for_each_entry(tmp_adev, device_list_handle, reset_list)
--			amdgpu_device_ip_resume_phase1(tmp_adev);
--
--		goto end;
--	}
--
- 	list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
- 		if (need_full_reset) {
- 			/* post card */
-@@ -5543,11 +5526,6 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	int i, r = 0;
- 	bool need_emergency_restart = false;
- 	bool audio_suspended = false;
--	bool gpu_reset_for_dev_remove = false;
--
--	gpu_reset_for_dev_remove =
--			test_bit(AMDGPU_RESET_FOR_DEVICE_REMOVE, &reset_context->flags) &&
--				test_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
- 
- 	/*
- 	 * Special case: RAS triggered and full reset isn't supported
-@@ -5585,7 +5563,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	if (!amdgpu_sriov_vf(adev) && (adev->gmc.xgmi.num_physical_nodes > 1)) {
- 		list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
- 			list_add_tail(&tmp_adev->reset_list, &device_list);
--			if (gpu_reset_for_dev_remove && adev->shutdown)
-+			if (adev->shutdown)
- 				tmp_adev->shutdown = true;
- 		}
- 		if (!list_is_first(&adev->reset_list, &device_list))
-@@ -5670,10 +5648,6 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- retry:	/* Rest of adevs pre asic reset from XGMI hive. */
- 	list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
--		if (gpu_reset_for_dev_remove) {
--			/* Workaroud for ASICs need to disable SMC first */
--			amdgpu_device_smu_fini_early(tmp_adev);
--		}
- 		r = amdgpu_device_pre_asic_reset(tmp_adev, reset_context);
- 		/*TODO Should we stop ?*/
- 		if (r) {
-@@ -5705,9 +5679,6 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		r = amdgpu_do_asic_reset(device_list_handle, reset_context);
- 		if (r && r == -EAGAIN)
- 			goto retry;
--
--		if (!r && gpu_reset_for_dev_remove)
--			goto recover_end;
- 	}
- 
- skip_hw_reset:
-@@ -5763,7 +5734,6 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		amdgpu_ras_set_error_query_ready(tmp_adev, true);
- 	}
- 
--recover_end:
- 	tmp_adev = list_first_entry(device_list_handle, struct amdgpu_device,
- 					    reset_list);
- 	amdgpu_device_unlock_reset_domain(tmp_adev->reset_domain);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 852cec98ff26..b7de48effe7f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2336,38 +2336,6 @@ amdgpu_pci_remove(struct pci_dev *pdev)
- 		pm_runtime_forbid(dev->dev);
- 	}
- 
--	if (amdgpu_ip_version(adev, MP1_HWIP, 0) == IP_VERSION(13, 0, 2) &&
--	    !amdgpu_sriov_vf(adev)) {
--		bool need_to_reset_gpu = false;
--
--		if (adev->gmc.xgmi.num_physical_nodes > 1) {
--			struct amdgpu_hive_info *hive;
--
--			hive = amdgpu_get_xgmi_hive(adev);
--			if (hive->device_remove_count == 0)
--				need_to_reset_gpu = true;
--			hive->device_remove_count++;
--			amdgpu_put_xgmi_hive(hive);
--		} else {
--			need_to_reset_gpu = true;
--		}
--
--		/* Workaround for ASICs need to reset SMU.
--		 * Called only when the first device is removed.
--		 */
--		if (need_to_reset_gpu) {
--			struct amdgpu_reset_context reset_context;
--
--			adev->shutdown = true;
--			memset(&reset_context, 0, sizeof(reset_context));
--			reset_context.method = AMD_RESET_METHOD_NONE;
--			reset_context.reset_req_dev = adev;
--			set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
--			set_bit(AMDGPU_RESET_FOR_DEVICE_REMOVE, &reset_context.flags);
--			amdgpu_device_gpu_recover(adev, NULL, &reset_context);
--		}
--	}
--
- 	amdgpu_driver_unload_kms(dev);
- 
- 	/*
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-index b0335a1c5e90..19899f6b9b2b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
-@@ -32,7 +32,6 @@ enum AMDGPU_RESET_FLAGS {
- 
- 	AMDGPU_NEED_FULL_RESET = 0,
- 	AMDGPU_SKIP_HW_RESET = 1,
--	AMDGPU_RESET_FOR_DEVICE_REMOVE = 2,
- };
- 
- struct amdgpu_reset_context {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
-index 6cab882e8061..1592c63b3099 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
-@@ -43,7 +43,6 @@ struct amdgpu_hive_info {
- 	} pstate;
- 
- 	struct amdgpu_reset_domain *reset_domain;
--	uint32_t device_remove_count;
- 	atomic_t ras_recovery;
- };
- 
--- 
-2.34.1
-
+Thanks!
