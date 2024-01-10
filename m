@@ -2,62 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B0C829498
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 09:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E718291A4
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jan 2024 01:56:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13E2810E106;
-	Wed, 10 Jan 2024 08:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6794310E540;
+	Wed, 10 Jan 2024 00:56:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com
- [IPv6:2607:f8b0:4864:20::1132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1C5C10E540
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jan 2024 23:22:14 +0000 (UTC)
-Received: by mail-yw1-x1132.google.com with SMTP id
- 00721157ae682-5e7f0bf46a2so32061407b3.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jan 2024 15:22:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1704842534; x=1705447334; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ebXuRtZ+jV+LA1Jw2fSqPglODs+5bJfr1352MU2Bcvc=;
- b=buezkh/sz/8UH/j9wzjq8v0q2nK84OMpbU13PfWDxchWFp79gdjJ8wrcWFUkSCpptR
- 0GmyN8gMxX0H8cnmf8Nzrzx+Xtr8Q0WP86C+VybnL4u2S2LHDoFbfrMteGxMnFbtHvu+
- JdxgtyZ1pHq7hevYQYba2p3yqQ5H3BLCDGmhY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704842534; x=1705447334;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ebXuRtZ+jV+LA1Jw2fSqPglODs+5bJfr1352MU2Bcvc=;
- b=B912QulnsaWQHTsSdn2QTZ2FOnAaoVhWMGL3GltJjjfYDTm/ZTzaYvRI1XnNKXQG5w
- DNSuuaxgdrD7wI54858gDHSMpE4L6bcU5zV2VR27jwgGQowHADLRCGMQGFdgqjZGuYu8
- a3tTq33ezkNh+RUayGEcpFMxWNjDxqhstsnkuEljewnmY7/EMWvQ2I2X50k6LaoN7jVE
- vapLorwHN6fs7bnWUCxfcT9J7HwNabL9Pc5BiiyiHZOzB7s931dEGggkcquVsNEVA7XA
- vkLcHoXHcvZu4Pqj/lvK7eEz4vgWpOA631/sq7LHZVI7AJi4rkMxIIlG1vc/dOuHbfeC
- iJag==
-X-Gm-Message-State: AOJu0YzyvugM7hQ8/DG6JEVe3mTrqQhBEmhcHynsN0pvXELDFH70hrnY
- oKg60CWQE8Hl5CNjAGBf1WJ9GPlKU3crR6kk3q20gjZ52fLDTw==
-X-Google-Smtp-Source: AGHT+IE8JDGH9ecjWUCMBMUouMOhuyEPG+0LSA+8kz0oPtVDBlLstNCfdQ5skELRjOnAGKeDWrBS6QE4QfdwIuqGTVo=
-X-Received: by 2002:a81:4857:0:b0:5ee:1ca0:b7ef with SMTP id
- v84-20020a814857000000b005ee1ca0b7efmr258078ywa.42.1704842533828; Tue, 09 Jan
- 2024 15:22:13 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D089610E542
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jan 2024 00:56:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jbbrsj9N9IDRBL9eJwosnbc9ED67qgL0W1MPbNiA2uYe0jdCEf0I572zcrDgXUMOnRhn+nywzLabCcxZpRlJVkmuJHWXiC9rCxhzi9Eq0tJyWUqGRQkA2EALh5PKFl5DswFZtVu5PAiC0UTcnBpT/NwLtSjOJJo8SitnZypW80V6xZzlYT1fZ/UiLD+WmnCzp3Pv7Bj+gAJbd7bjuXmnm5sbHT/ZNWDRo2Pgj4odu/aUxIZ/0ACbdQPpqVyrTrZIDwiBoP9go68utDaXYz9NZ+Qg4jwRqc1hrEaYgO0hmEaVIAUFKMk3e0ZBMdAlqh1ZhAxfaRTrmr3X6PcXWPKXQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6E18YkOdIaPZlrHCgb7/kUMeRBWyIbKOqxqOOWN/h6o=;
+ b=UeRLo6pqwsxmgVteNz/vmzB9I7Fg8xWxKQBMFHombS2KOD4r7WS468dw1GNYJdZMB8YBORZP/1LQ60rRywVbHh2tPZrP2lkUBlcy2Zk11pHf1v7M0m3K3oOmc+30VD5KgnLayo2YKt2SUL48DMOFLCphpAp3OLrR1SjqMdb5Zwl/lqJ4vzRtK6WluHhlLdpiaxmHD67XUCmzNfb4aAD0gCj1STGXA5xye/8RjE8jCNlaOcY/6OYukL6oCnLelGH1zthY2c3f9G/RFTJmlm+5CF/yajylK9ZuM+USrgGC/QEWvujAD95x6Bq8Gq35Ae100uTPHVB77iyELdgBdhcBQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6E18YkOdIaPZlrHCgb7/kUMeRBWyIbKOqxqOOWN/h6o=;
+ b=llXo14jwM3poC5wQR8ktaad4lp0Ya8L8yXk7aroKAWfeWmwiNjsjtrRhqL5IJgXT12dq0eHJ+jo/tD84HR4wHOCl7v/GVnpMvWPQcBOpHLKcG6BscygtVX3SiziIUOsZaqYvsForzRBQujHisytAurFsDvj6YQPAXOze1vVkKsI=
+Received: from DM6PR04CA0012.namprd04.prod.outlook.com (2603:10b6:5:334::17)
+ by SJ2PR12MB8652.namprd12.prod.outlook.com (2603:10b6:a03:53a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Wed, 10 Jan
+ 2024 00:56:03 +0000
+Received: from DS1PEPF00017094.namprd03.prod.outlook.com
+ (2603:10b6:5:334:cafe::97) by DM6PR04CA0012.outlook.office365.com
+ (2603:10b6:5:334::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17 via Frontend
+ Transport; Wed, 10 Jan 2024 00:56:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF00017094.mail.protection.outlook.com (10.167.17.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7181.14 via Frontend Transport; Wed, 10 Jan 2024 00:56:02 +0000
+Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 9 Jan
+ 2024 18:55:59 -0600
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: update regGL2C_CTRL4 value in golden setting
+Date: Wed, 10 Jan 2024 08:55:38 +0800
+Message-ID: <20240110005538.1151650-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-References: <20240109181104.1670304-1-andri@yngvason.is>
- <20240109181104.1670304-3-andri@yngvason.is>
- <CAPj87rNan8B5urDFkmD_Vti4to6p3NmvXYsTFQTNg-Ue2ieDug@mail.gmail.com>
- <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
-In-Reply-To: <CAFNQBQwiqqSRqzXAnC035UWCGF3=GGFR5SpDd=biPTOEA+cWbQ@mail.gmail.com>
-From: Andri Yngvason <andri@yngvason.is>
-Date: Tue, 9 Jan 2024 23:21:38 +0000
-Message-ID: <CAFNQBQxM3dxdWRRY28jyXi4PZbgh7V+L7L6W1HQn40PwUGPNaA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] drm/uAPI: Add "active color format" drm property as
- feedback for userspace
-To: Daniel Stone <daniel@fooishbar.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 10 Jan 2024 08:01:54 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017094:EE_|SJ2PR12MB8652:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67db6c1c-156a-423e-0611-08dc1176eb1d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tKvomRZEFkxCkkdbw58TxH/ukKjLmz39x1+g68TBYms1wv2JyzS3o+v7DzcNDv5OZ7XKEZDN8yYwPndEdE+0b3WZ+s+F3XsQ13nMjTpbYQb/6aR7XOI6reVZ5TLWX5t6B9qauwL/obgp4mqxjWzWzbWfbdkb1ruhfVkwGTLJGx/jAKBYmY97NhOW61xxrfly8k62d3w/K1aj7rpQAUiIVLQWAPD+LT02wV96m0kyxbKWWnXF5ZBIZ55YJiDGETqG6lqHU4+OAT9Q094PhbDWFqSvw2lXgxd+78TryQq+3vcyfb1whDdSB0eCYGAqtPwxuODh0BG6qHCUag6U9mgiwj05nOpXr+PJUQ0jc3KpBSkkFIv0+HH/cLoRmQNOsYYNRMUKGpzpcAtlQV5v4++Y+KYGvlvAl2OfBXaRz6HH+o/HApryZOQtBoRPZ5asJBPodSQ+uMHYMFi6bm+4l51G+vOYZAS0x7VRUvhzJQiaOoXRYeqpY8sUFxOBQzQUBy7+2/n1HL6kKgUL3+Vo4vBMMrhxEy3trOZLi4/kuYbFOLumsmeA6ePVvavAwiV35XrrFdueZ6MC1SiXduCCJcABuYZSk5wsgQh8ocU8X/Wp8Aj1Hf5cvSqQGQneWar96c0ypLmtDT7Bwewf4x2NC1SJaDS8bkdukc9/w5kU8dvyXe8VhOXtSkIzU1ePC4srI4vnpRHvwJw8vCz8V+9zFC6B4LbF4gxUES1M7lEApUvm3DhEbstuAmx8HMcK1LnBKfZ4zbqRVAOQXgDh5H9DtAyptg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(376002)(346002)(39860400002)(136003)(230922051799003)(1800799012)(451199024)(82310400011)(186009)(64100799003)(46966006)(36840700001)(40470700004)(36756003)(6666004)(1076003)(2616005)(26005)(426003)(336012)(478600001)(7696005)(47076005)(36860700001)(5660300002)(2906002)(15650500001)(83380400001)(41300700001)(6916009)(70206006)(16526019)(4326008)(70586007)(8676002)(8936002)(316002)(54906003)(82740400003)(81166007)(356005)(86362001)(40460700003)(40480700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 00:56:02.7347 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67db6c1c-156a-423e-0611-08dc1176eb1d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017094.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8652
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,62 +97,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Werner Sembach <wse@tuxedocomputers.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simon Ser <contact@emersion.fr>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alexander.Deucher@amd.com, Tim.Huang@amd.com, Lang.Yu@amd.com,
+ Li.Ma@amd.com, Yifan Zhang <yifan1.zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+This patch to update regGL2C_CTRL4 in golden setting.
 
-Please excuse my misconfigured email client. HTML was accidentally
-enabled in my previous messages, so I'll re-send it for the benefit of
-mailing lists.
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-=C3=BEri., 9. jan. 2024 kl. 22:32 skrifa=C3=B0i Daniel Stone <daniel@fooish=
-bar.org>:
->
-> On Tue, 9 Jan 2024 at 18:12, Andri Yngvason <andri@yngvason.is> wrote:
-> > + * active color format:
-> > + *     This read-only property tells userspace the color format actual=
-ly used
-> > + *     by the hardware display engine "on the cable" on a connector. T=
-he chosen
-> > + *     value depends on hardware capabilities, both display engine and
-> > + *     connected monitor. Drivers shall use
-> > + *     drm_connector_attach_active_color_format_property() to install =
-this
-> > + *     property. Possible values are "not applicable", "rgb", "ycbcr44=
-4",
-> > + *     "ycbcr422", and "ycbcr420".
->
-> How does userspace determine what's happened without polling? Will it
-> only change after an `ALLOW_MODESET` commit, and be guaranteed to be
-> updated after the commit has completed and the event being sent?
-> Should it send a HOTPLUG event? Other?
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 36c4efd89dc5..43dec9dfb3fc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -119,7 +119,7 @@ static const struct soc15_reg_golden golden_settings_gc_11_5_0[] = {
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL, 0xffffffff, 0xf37fff3f),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL3, 0xfffffffb, 0x00f40188),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL4, 0xf0ffffff, 0x8000b007),
++	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL4, 0xf0ffffff, 0x80009007),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_CL_ENHANCE, 0xf1ffffff, 0x00880007),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regPC_CONFIG_CNTL_1, 0xffffffff, 0x00010000),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x01030000),
+-- 
+2.37.3
 
-Userspace does not determine what's happened without polling. The
-purpose of this property is not for programmatic verification that the
-preferred property was applied. It is my understanding that it's
-mostly intended for debugging purposes. It should only change as a
-consequence of modesetting, although I didn't actually look into what
-happens if you set the "preferred color format" outside of a modeset.
-
-The way I've implemented things in sway, calling the
-"preferred_signal_format" command triggers a modeset with the
-"preferred color format" set and calling "get_outputs", immediately
-queries the "actual color format" and displays it.
-
-Regards,
-Andri
