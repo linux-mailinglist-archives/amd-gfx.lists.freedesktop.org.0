@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C2082AA25
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jan 2024 10:04:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 418C182AA67
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jan 2024 10:05:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4C0810E86B;
-	Thu, 11 Jan 2024 09:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6BBF10E8A4;
+	Thu, 11 Jan 2024 09:05:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from m16.mail.163.com (m15.mail.163.com [45.254.50.220])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4229510E7F3;
- Thu, 11 Jan 2024 07:59:08 +0000 (UTC)
+Received: from m16.mail.163.com (m15.mail.163.com [45.254.50.219])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A067A10E18A;
+ Thu, 11 Jan 2024 08:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=CtQllylb5rBy8xA4pm
- EMdjJuK4Xkx/RYOeVF0Un8bi0=; b=m2qMZ9WYQ8y6fIYNLa6VLyMFQzYCv7a1JA
- M5R28m+zOSwNChTRuDX4zFhOxLguxNytXtYDsquX5j2tDfCznoRYucaNjbiqudDj
- cR1zPgGMCxUGUz2lybSoBWfeEWrFBAKEkIEPIcCqxohEIOPWNCMwlGJnyyL8LCT3
- 0GuXKLiIs=
+ s=s110527; h=From:Subject:Date:Message-Id; bh=EdwkIfTSeV+DEasRQ1
+ DrTVemJN0cc/VUOnUfemJESuA=; b=LoRzmpVsm/tfsGH7czRoYTCM1z2lLGz/WW
+ S1urIPDX1dY2reDQ1/8uhTu5YurDU0AQk12EWZBb50RnxK4oUMPolIhHJSOLvEtQ
+ nHZG+9p8ecR3aWwzwBOyzBSmF1lYX0poxPk0oYwNDcnCTirQLpx+iaLFUMoHDydO
+ PF6kx9pxs=
 Received: from localhost.localdomain (unknown [182.148.14.173])
- by gzga-smtp-mta-g0-1 (Coremail) with SMTP id _____wDH9wPAn59lXj0QAA--.3875S2; 
- Thu, 11 Jan 2024 15:58:56 +0800 (CST)
+ by gzga-smtp-mta-g0-4 (Coremail) with SMTP id _____wD3X+DKoZ9l4YOTAA--.19175S2;
+ Thu, 11 Jan 2024 16:07:39 +0800 (CST)
 From: GuoHua Chen <chenguohua_716@163.com>
 To: daniel@ffwll.ch, Xinhui.Pan@amd.com, airlied@gmail.com,
  christian.koenig@amd.com, alexander.deucher@amd.com
-Subject: [PATCH] drm/radeon: Clean up errors in smu7_discrete.h
-Date: Thu, 11 Jan 2024 07:58:54 +0000
-Message-Id: <20240111075854.11116-1-chenguohua_716@163.com>
+Subject: [PATCH] drm/radeon/rv770: Clean up errors in rv770_dpm.c
+Date: Thu, 11 Jan 2024 08:07:35 +0000
+Message-Id: <20240111080735.11217-1-chenguohua_716@163.com>
 X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: _____wDH9wPAn59lXj0QAA--.3875S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxKw4fur17XrWfKr17Zr13urg_yoW7CryUpF
- WUKw4IgFZ5Ar13W345AwsYvr4agry5tr1UGr9ruw4Fqw42yrW2kF12ka1UCrWaqws3C393
- JFsxtF12grWxAFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UwFxUUUUUU=
+X-CM-TRANSID: _____wD3X+DKoZ9l4YOTAA--.19175S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tFWrKF4fKr1DurWDGrWfZrb_yoW8Jw1Upw
+ 4S93s8ursxAr1Y9a129a18KryfW3WkJFy2qr4xG3WjkayUJryUAFZI9r43JF93KF929Fy7
+ tFyIgry7ua10yr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UzUDAUUUUU=
 X-Originating-IP: [182.148.14.173]
-X-CM-SenderInfo: xfkh0w5xrk3tbbxrlqqrwthudrp/xtbBEBRi1mVOBk7vVQABso
-X-Mailman-Approved-At: Thu, 11 Jan 2024 09:04:24 +0000
+X-CM-SenderInfo: xfkh0w5xrk3tbbxrlqqrwthudrp/xtbBEAdi1mVOBk8scQABsd
+X-Mailman-Approved-At: Thu, 11 Jan 2024 09:04:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,182 +54,35 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: open brace '{' following struct go on the same line
+ERROR: space prohibited before that close parenthesis ')'
 
 Signed-off-by: GuoHua Chen <chenguohua_716@163.com>
 ---
- drivers/gpu/drm/radeon/smu7_discrete.h | 51 +++++++++-----------------
- 1 file changed, 17 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/radeon/rv770_dpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/smu7_discrete.h b/drivers/gpu/drm/radeon/smu7_discrete.h
-index 0b0b404ff091..1f63cbbd6515 100644
---- a/drivers/gpu/drm/radeon/smu7_discrete.h
-+++ b/drivers/gpu/drm/radeon/smu7_discrete.h
-@@ -35,8 +35,7 @@
- #define SMU7_NUM_GPU_TES 1
- #define SMU7_NUM_NON_TES 2
+diff --git a/drivers/gpu/drm/radeon/rv770_dpm.c b/drivers/gpu/drm/radeon/rv770_dpm.c
+index ef2f1a048cfe..e3e1f6833f12 100644
+--- a/drivers/gpu/drm/radeon/rv770_dpm.c
++++ b/drivers/gpu/drm/radeon/rv770_dpm.c
+@@ -1010,7 +1010,7 @@ int rv770_populate_initial_mvdd_value(struct radeon_device *rdev,
+ 	struct rv7xx_power_info *pi = rv770_get_pi(rdev);
  
--struct SMU7_SoftRegisters
--{
-+struct SMU7_SoftRegisters {
-     uint32_t        RefClockFrequency;
-     uint32_t        PmTimerP;
-     uint32_t        FeatureEnables;
-@@ -89,8 +88,7 @@ struct SMU7_SoftRegisters
- 
- typedef struct SMU7_SoftRegisters SMU7_SoftRegisters;
- 
--struct SMU7_Discrete_VoltageLevel
--{
-+struct SMU7_Discrete_VoltageLevel {
-     uint16_t    Voltage;
-     uint16_t    StdVoltageHiSidd;
-     uint16_t    StdVoltageLoSidd;
-@@ -100,8 +98,7 @@ struct SMU7_Discrete_VoltageLevel
- 
- typedef struct SMU7_Discrete_VoltageLevel SMU7_Discrete_VoltageLevel;
- 
--struct SMU7_Discrete_GraphicsLevel
--{
-+struct SMU7_Discrete_GraphicsLevel {
-     uint32_t    Flags;
-     uint32_t    MinVddc;
-     uint32_t    MinVddcPhases;
-@@ -131,8 +128,7 @@ struct SMU7_Discrete_GraphicsLevel
- 
- typedef struct SMU7_Discrete_GraphicsLevel SMU7_Discrete_GraphicsLevel;
- 
--struct SMU7_Discrete_ACPILevel
--{
-+struct SMU7_Discrete_ACPILevel {
-     uint32_t    Flags;
-     uint32_t    MinVddc;
-     uint32_t    MinVddcPhases;
-@@ -153,8 +149,7 @@ struct SMU7_Discrete_ACPILevel
- 
- typedef struct SMU7_Discrete_ACPILevel SMU7_Discrete_ACPILevel;
- 
--struct SMU7_Discrete_Ulv
--{
-+struct SMU7_Discrete_Ulv {
-     uint32_t    CcPwrDynRm;
-     uint32_t    CcPwrDynRm1;
-     uint16_t    VddcOffset;
-@@ -165,8 +160,7 @@ struct SMU7_Discrete_Ulv
- 
- typedef struct SMU7_Discrete_Ulv SMU7_Discrete_Ulv;
- 
--struct SMU7_Discrete_MemoryLevel
--{
-+struct SMU7_Discrete_MemoryLevel {
-     uint32_t    MinVddc;
-     uint32_t    MinVddcPhases;
-     uint32_t    MinVddci;
-@@ -206,8 +200,7 @@ struct SMU7_Discrete_MemoryLevel
- 
- typedef struct SMU7_Discrete_MemoryLevel SMU7_Discrete_MemoryLevel;
- 
--struct SMU7_Discrete_LinkLevel
--{
-+struct SMU7_Discrete_LinkLevel {
-     uint8_t     PcieGenSpeed;
-     uint8_t     PcieLaneCount;
-     uint8_t     EnabledForActivity;
-@@ -220,8 +213,7 @@ struct SMU7_Discrete_LinkLevel
- typedef struct SMU7_Discrete_LinkLevel SMU7_Discrete_LinkLevel;
- 
- 
--struct SMU7_Discrete_MCArbDramTimingTableEntry
--{
-+struct SMU7_Discrete_MCArbDramTimingTableEntry {
-     uint32_t McArbDramTiming;
-     uint32_t McArbDramTiming2;
-     uint8_t  McArbBurstTime;
-@@ -230,15 +222,13 @@ struct SMU7_Discrete_MCArbDramTimingTableEntry
- 
- typedef struct SMU7_Discrete_MCArbDramTimingTableEntry SMU7_Discrete_MCArbDramTimingTableEntry;
- 
--struct SMU7_Discrete_MCArbDramTimingTable
--{
-+struct SMU7_Discrete_MCArbDramTimingTable {
-     SMU7_Discrete_MCArbDramTimingTableEntry entries[SMU__NUM_SCLK_DPM_STATE][SMU__NUM_MCLK_DPM_LEVELS];
- };
- 
- typedef struct SMU7_Discrete_MCArbDramTimingTable SMU7_Discrete_MCArbDramTimingTable;
- 
--struct SMU7_Discrete_UvdLevel
--{
-+struct SMU7_Discrete_UvdLevel {
-     uint32_t VclkFrequency;
-     uint32_t DclkFrequency;
-     uint16_t MinVddc;
-@@ -250,8 +240,7 @@ struct SMU7_Discrete_UvdLevel
- 
- typedef struct SMU7_Discrete_UvdLevel SMU7_Discrete_UvdLevel;
- 
--struct SMU7_Discrete_ExtClkLevel
--{
-+struct SMU7_Discrete_ExtClkLevel {
-     uint32_t Frequency;
-     uint16_t MinVoltage;
-     uint8_t  MinPhases;
-@@ -260,8 +249,7 @@ struct SMU7_Discrete_ExtClkLevel
- 
- typedef struct SMU7_Discrete_ExtClkLevel SMU7_Discrete_ExtClkLevel;
- 
--struct SMU7_Discrete_StateInfo
--{
-+struct SMU7_Discrete_StateInfo {
-     uint32_t SclkFrequency;
-     uint32_t MclkFrequency;
-     uint32_t VclkFrequency;
-@@ -285,8 +273,7 @@ struct SMU7_Discrete_StateInfo
- typedef struct SMU7_Discrete_StateInfo SMU7_Discrete_StateInfo;
- 
- 
--struct SMU7_Discrete_DpmTable
--{
-+struct SMU7_Discrete_DpmTable {
-     SMU7_PIDController                  GraphicsPIDController;
-     SMU7_PIDController                  MemoryPIDController;
-     SMU7_PIDController                  LinkPIDController;
-@@ -406,23 +393,20 @@ typedef struct SMU7_Discrete_DpmTable SMU7_Discrete_DpmTable;
- #define SMU7_DISCRETE_MC_REGISTER_ARRAY_SIZE 16
- #define SMU7_DISCRETE_MC_REGISTER_ARRAY_SET_COUNT SMU7_MAX_LEVELS_MEMORY
- 
--struct SMU7_Discrete_MCRegisterAddress
--{
-+struct SMU7_Discrete_MCRegisterAddress {
-     uint16_t s0;
-     uint16_t s1;
- };
- 
- typedef struct SMU7_Discrete_MCRegisterAddress SMU7_Discrete_MCRegisterAddress;
- 
--struct SMU7_Discrete_MCRegisterSet
--{
-+struct SMU7_Discrete_MCRegisterSet {
-     uint32_t value[SMU7_DISCRETE_MC_REGISTER_ARRAY_SIZE];
- };
- 
- typedef struct SMU7_Discrete_MCRegisterSet SMU7_Discrete_MCRegisterSet;
- 
--struct SMU7_Discrete_MCRegisters
--{
-+struct SMU7_Discrete_MCRegisters {
-     uint8_t                             last;
-     uint8_t                             reserved[3];
-     SMU7_Discrete_MCRegisterAddress     address[SMU7_DISCRETE_MC_REGISTER_ARRAY_SIZE];
-@@ -431,8 +415,7 @@ struct SMU7_Discrete_MCRegisters
- 
- typedef struct SMU7_Discrete_MCRegisters SMU7_Discrete_MCRegisters;
- 
--struct SMU7_Discrete_FanTable
--{
-+struct SMU7_Discrete_FanTable {
- 	uint16_t FdoMode;
- 	int16_t  TempMin;
- 	int16_t  TempMed;
+ 	if ((pi->s0_vid_lower_smio_cntl & pi->mvdd_mask_low) ==
+-	     (pi->mvdd_low_smio[MVDD_LOW_INDEX] & pi->mvdd_mask_low) ) {
++	     (pi->mvdd_low_smio[MVDD_LOW_INDEX] & pi->mvdd_mask_low)) {
+ 		voltage->index = MVDD_LOW_INDEX;
+ 		voltage->value = cpu_to_be16(MVDD_LOW_VALUE);
+ 	} else {
+@@ -1260,7 +1260,7 @@ static int rv770_construct_vddc_table(struct radeon_device *rdev)
+ 		pi->vddc_mask_low = gpio_mask;
+ 		if (i > 0) {
+ 			if ((pi->vddc_table[i].low_smio !=
+-			     pi->vddc_table[i - 1].low_smio ) ||
++			     pi->vddc_table[i - 1].low_smio) ||
+ 			     (pi->vddc_table[i].high_smio !=
+ 			      pi->vddc_table[i - 1].high_smio))
+ 				vddc_index++;
 -- 
 2.17.1
 
