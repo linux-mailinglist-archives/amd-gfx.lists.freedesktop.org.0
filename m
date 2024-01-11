@@ -2,40 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDA882AA5E
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jan 2024 10:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9649782AA2E
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jan 2024 10:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2799E10E884;
-	Thu, 11 Jan 2024 09:04:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C73910E87B;
+	Thu, 11 Jan 2024 09:04:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.9])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0D47110E03A;
- Thu, 11 Jan 2024 06:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=t732zg/+MQiSxojyTX
- cqVLEyzZ2m2fg7s1KLd4hC/uA=; b=myfp5jWtvkRf7tSvYoWsZLGpXR8eSsF0yU
- undp5bmE5dYG69ZuItk7zNiM1oeFEiUlOiIy60oMak4fTAEPU66N3pwy/mhaxm6/
- VTYx3796wcy+dTfYj7PwN0Say3+iNnWEwlWRkCuPBXazE34MuIU/3MJixQmsakyw
- clIOJv+jY=
+Received: from m16.mail.163.com (m15.mail.163.com [45.254.50.219])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 184F110E7EC
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jan 2024 07:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id; bh=9lukI8SBkQG9zpqO5L
+ 6Qao513Fv/h55G2lHZZ61xhh4=; b=W7p/7LNdekAnk7oAL+0y7h9tYwHFc5veLz
+ IPl9BujWYYmwVYidH1Yi7+D6/ttxfIDhW1XBFqZzxDTtzErlIn9vgrgq3oLKihbr
+ ez/Ae14VHFG1MM6t0VXcJkeeuj8VaT2xk47o+XBl2ejE8bTc4DGXrs4sB/mAEPLM
+ Oj4BBg6Lg=
 Received: from localhost.localdomain (unknown [182.148.14.173])
- by gzga-smtp-mta-g1-3 (Coremail) with SMTP id _____wD3P9iZi59lDsoyAA--.41287S2;
- Thu, 11 Jan 2024 14:32:57 +0800 (CST)
-From: chenxuebing <chenxb_99091@126.com>
-To: airlied@gmail.com, christian.koenig@amd.com, daniel@ffwll.ch,
- Xinhui.Pan@amd.com, alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/include/vega20_ip_offset: Clean up errors in
- vega20_ip_offset.h
-Date: Thu, 11 Jan 2024 06:32:56 +0000
-Message-Id: <20240111063256.8610-1-chenxb_99091@126.com>
+ by gzga-smtp-mta-g0-5 (Coremail) with SMTP id _____wDHT6hXl59lBIyRAA--.19755S2;
+ Thu, 11 Jan 2024 15:23:03 +0800 (CST)
+From: GuoHua Chen <chenguohua_716@163.com>
+To: alexander.deucher@amd.com, Xinhui.Pan@amd.com, daniel@ffwll.ch,
+ christian.koenig@amd.com, airlied@gmail.com
+Subject: [PATCH] drm/radeon: Clean up errors in si_dpm.c
+Date: Thu, 11 Jan 2024 07:23:01 +0000
+Message-Id: <20240111072301.10229-1-chenguohua_716@163.com>
 X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: _____wD3P9iZi59lDsoyAA--.41287S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3XrW3XFW3tF43WFy5WF4xXrb_yoWxZrWDpF
- y5J34UGF409345JF13Jw1UGr45Jr4qyFyUtr1Utw13Jw1YqF1kJrn5tr48Ja1rGFy3Ka47
- GF1kArWUXw4DWaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UUxhLUUUUU=
+X-CM-TRANSID: _____wDHT6hXl59lBIyRAA--.19755S2
+X-Coremail-Antispam: 1Uf129KBjvAXoWfGF45WrWUJw18CF4DZFy3XFb_yoW8Xr4xKo
+ WfJFy8Ja1rur1xZ34xXrnxJF4ava9Yy3Z5uwnrJws5u3W2qFWYkFy7Xws5A3W7W345Xw1a
+ y3W7Kay3XrWrAay3n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+ AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU1T5lUUUUU
 X-Originating-IP: [182.148.14.173]
-X-CM-SenderInfo: hfkh05lebzmiizr6ij2wof0z/1tbiOhtixWVEuX4KIAAAsK
+X-CM-SenderInfo: xfkh0w5xrk3tbbxrlqqrwthudrp/1tbiqBxi1mVOBk8XmgAAsv
 X-Mailman-Approved-At: Thu, 11 Jan 2024 09:04:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -48,203 +47,448 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, chenxuebing <chenxb_99091@126.com>
+Cc: GuoHua Chen <chenguohua_716@163.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: open brace '{' following struct go on the same line
-ERROR: spaces required around that '=' (ctx:WxV)
+ERROR: that open brace { should be on the previous line
 
-Signed-off-by: chenxuebing <chenxb_99091@126.com>
+Signed-off-by: GuoHua Chen <chenguohua_716@163.com>
 ---
- .../gpu/drm/amd/include/vega20_ip_offset.h    | 78 +++++++++----------
- 1 file changed, 38 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/radeon/si_dpm.c | 132 +++++++++++---------------------
+ 1 file changed, 44 insertions(+), 88 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/include/vega20_ip_offset.h b/drivers/gpu/drm/amd/include/vega20_ip_offset.h
-index 1deb68f3d334..92cf2d9e767f 100644
---- a/drivers/gpu/drm/amd/include/vega20_ip_offset.h
-+++ b/drivers/gpu/drm/amd/include/vega20_ip_offset.h
-@@ -25,139 +25,137 @@
- #define MAX_SEGMENT                                        6
+diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
+index fbf968e3f6d7..9deb91970d4d 100644
+--- a/drivers/gpu/drm/radeon/si_dpm.c
++++ b/drivers/gpu/drm/radeon/si_dpm.c
+@@ -46,8 +46,7 @@
  
+ #define SCLK_MIN_DEEPSLEEP_FREQ     1350
  
--struct IP_BASE_INSTANCE
+-static const struct si_cac_config_reg cac_weights_tahiti[] =
 -{
-+struct IP_BASE_INSTANCE {
-     unsigned int segment[MAX_SEGMENT];
++static const struct si_cac_config_reg cac_weights_tahiti[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0xc, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x0, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x101, SISLANDS_CACCONFIG_CGIND },
+@@ -111,8 +110,7 @@ static const struct si_cac_config_reg cac_weights_tahiti[] =
+ 	{ 0xFFFFFFFF }
  };
  
--struct IP_BASE
+-static const struct si_cac_config_reg lcac_tahiti[] =
 -{
-+struct IP_BASE {
-     struct IP_BASE_INSTANCE instance[MAX_INSTANCE];
- } __maybe_unused;
++static const struct si_cac_config_reg lcac_tahiti[] = {
+ 	{ 0x143, 0x0001fffe, 1, 0x3, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x143, 0x00000001, 0, 0x1, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x146, 0x0001fffe, 1, 0x3, SISLANDS_CACCONFIG_CGIND },
+@@ -203,13 +201,11 @@ static const struct si_cac_config_reg lcac_tahiti[] =
+ 
+ };
+ 
+-static const struct si_cac_config_reg cac_override_tahiti[] =
+-{
++static const struct si_cac_config_reg cac_override_tahiti[] = {
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_powertune_data powertune_data_tahiti =
+-{
++static const struct si_powertune_data powertune_data_tahiti = {
+ 	((1 << 16) | 27027),
+ 	6,
+ 	0,
+@@ -239,8 +235,7 @@ static const struct si_powertune_data powertune_data_tahiti =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_tahiti =
+-{
++static const struct si_dte_data dte_data_tahiti = {
+ 	{ 1159409, 0, 0, 0, 0 },
+ 	{ 777, 0, 0, 0, 0 },
+ 	2,
+@@ -257,8 +252,7 @@ static const struct si_dte_data dte_data_tahiti =
+ 	false
+ };
+ 
+-static const struct si_dte_data dte_data_tahiti_pro =
+-{
++static const struct si_dte_data dte_data_tahiti_pro = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -275,8 +269,7 @@ static const struct si_dte_data dte_data_tahiti_pro =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_new_zealand =
+-{
++static const struct si_dte_data dte_data_new_zealand = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0 },
+ 	{ 0x29B, 0x3E9, 0x537, 0x7D2, 0 },
+ 	0x5,
+@@ -293,8 +286,7 @@ static const struct si_dte_data dte_data_new_zealand =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_aruba_pro =
+-{
++static const struct si_dte_data dte_data_aruba_pro = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -311,8 +303,7 @@ static const struct si_dte_data dte_data_aruba_pro =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_malta =
+-{
++static const struct si_dte_data dte_data_malta = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -329,8 +320,7 @@ static const struct si_dte_data dte_data_malta =
+ 	true
+ };
+ 
+-static struct si_cac_config_reg cac_weights_pitcairn[] =
+-{
++static struct si_cac_config_reg cac_weights_pitcairn[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x8a, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x0, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x0, SISLANDS_CACCONFIG_CGIND },
+@@ -394,8 +384,7 @@ static struct si_cac_config_reg cac_weights_pitcairn[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg lcac_pitcairn[] =
+-{
++static const struct si_cac_config_reg lcac_pitcairn[] = {
+ 	{ 0x98, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x98, 0x00000001, 0, 0x1, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x104, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+@@ -485,13 +474,11 @@ static const struct si_cac_config_reg lcac_pitcairn[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_override_pitcairn[] =
+-{
++static const struct si_cac_config_reg cac_override_pitcairn[] = {
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_powertune_data powertune_data_pitcairn =
+-{
++static const struct si_powertune_data powertune_data_pitcairn = {
+ 	((1 << 16) | 27027),
+ 	5,
+ 	0,
+@@ -521,8 +508,7 @@ static const struct si_powertune_data powertune_data_pitcairn =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_pitcairn =
+-{
++static const struct si_dte_data dte_data_pitcairn = {
+ 	{ 0, 0, 0, 0, 0 },
+ 	{ 0, 0, 0, 0, 0 },
+ 	0,
+@@ -539,8 +525,7 @@ static const struct si_dte_data dte_data_pitcairn =
+ 	false
+ };
+ 
+-static const struct si_dte_data dte_data_curacao_xt =
+-{
++static const struct si_dte_data dte_data_curacao_xt = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -557,8 +542,7 @@ static const struct si_dte_data dte_data_curacao_xt =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_curacao_pro =
+-{
++static const struct si_dte_data dte_data_curacao_pro = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -575,8 +559,7 @@ static const struct si_dte_data dte_data_curacao_pro =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_neptune_xt =
+-{
++static const struct si_dte_data dte_data_neptune_xt = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -593,8 +576,7 @@ static const struct si_dte_data dte_data_neptune_xt =
+ 	true
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_chelsea_pro[] =
+-{
++static const struct si_cac_config_reg cac_weights_chelsea_pro[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -658,8 +640,7 @@ static const struct si_cac_config_reg cac_weights_chelsea_pro[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_chelsea_xt[] =
+-{
++static const struct si_cac_config_reg cac_weights_chelsea_xt[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -723,8 +704,7 @@ static const struct si_cac_config_reg cac_weights_chelsea_xt[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_heathrow[] =
+-{
++static const struct si_cac_config_reg cac_weights_heathrow[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -788,8 +768,7 @@ static const struct si_cac_config_reg cac_weights_heathrow[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_cape_verde_pro[] =
+-{
++static const struct si_cac_config_reg cac_weights_cape_verde_pro[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -853,8 +832,7 @@ static const struct si_cac_config_reg cac_weights_cape_verde_pro[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_cape_verde[] =
+-{
++static const struct si_cac_config_reg cac_weights_cape_verde[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -918,8 +896,7 @@ static const struct si_cac_config_reg cac_weights_cape_verde[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg lcac_cape_verde[] =
+-{
++static const struct si_cac_config_reg lcac_cape_verde[] = {
+ 	{ 0x98, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x98, 0x00000001, 0, 0x1, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x104, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+@@ -977,13 +954,11 @@ static const struct si_cac_config_reg lcac_cape_verde[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_override_cape_verde[] =
+-{
++static const struct si_cac_config_reg cac_override_cape_verde[] = {
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_powertune_data powertune_data_cape_verde =
+-{
++static const struct si_powertune_data powertune_data_cape_verde = {
+ 	((1 << 16) | 0x6993),
+ 	5,
+ 	0,
+@@ -1013,8 +988,7 @@ static const struct si_powertune_data powertune_data_cape_verde =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_cape_verde =
+-{
++static const struct si_dte_data dte_data_cape_verde = {
+ 	{ 0, 0, 0, 0, 0 },
+ 	{ 0, 0, 0, 0, 0 },
+ 	0,
+@@ -1031,8 +1005,7 @@ static const struct si_dte_data dte_data_cape_verde =
+ 	false
+ };
+ 
+-static const struct si_dte_data dte_data_venus_xtx =
+-{
++static const struct si_dte_data dte_data_venus_xtx = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x71C, 0xAAB, 0xE39, 0x11C7, 0x0 },
+ 	5,
+@@ -1049,8 +1022,7 @@ static const struct si_dte_data dte_data_venus_xtx =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_venus_xt =
+-{
++static const struct si_dte_data dte_data_venus_xt = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0xBDA, 0x11C7, 0x17B4, 0x1DA1, 0x0 },
+ 	5,
+@@ -1067,8 +1039,7 @@ static const struct si_dte_data dte_data_venus_xt =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_venus_pro =
+-{
++static const struct si_dte_data dte_data_venus_pro = {
+ 	{  0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x11C7, 0x1AAB, 0x238E, 0x2C72, 0x0 },
+ 	5,
+@@ -1085,8 +1056,7 @@ static const struct si_dte_data dte_data_venus_pro =
+ 	true
+ };
+ 
+-static struct si_cac_config_reg cac_weights_oland[] =
+-{
++static struct si_cac_config_reg cac_weights_oland[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x153, SISLANDS_CACCONFIG_CGIND },
+@@ -1150,8 +1120,7 @@ static struct si_cac_config_reg cac_weights_oland[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_mars_pro[] =
+-{
++static const struct si_cac_config_reg cac_weights_mars_pro[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x43, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x29, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0xAF, SISLANDS_CACCONFIG_CGIND },
+@@ -1215,8 +1184,7 @@ static const struct si_cac_config_reg cac_weights_mars_pro[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_mars_xt[] =
+-{
++static const struct si_cac_config_reg cac_weights_mars_xt[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x43, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x29, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0xAF, SISLANDS_CACCONFIG_CGIND },
+@@ -1280,8 +1248,7 @@ static const struct si_cac_config_reg cac_weights_mars_xt[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_oland_pro[] =
+-{
++static const struct si_cac_config_reg cac_weights_oland_pro[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x43, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x29, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0xAF, SISLANDS_CACCONFIG_CGIND },
+@@ -1345,8 +1312,7 @@ static const struct si_cac_config_reg cac_weights_oland_pro[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_weights_oland_xt[] =
+-{
++static const struct si_cac_config_reg cac_weights_oland_xt[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x43, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x29, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0xAF, SISLANDS_CACCONFIG_CGIND },
+@@ -1410,8 +1376,7 @@ static const struct si_cac_config_reg cac_weights_oland_xt[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg lcac_oland[] =
+-{
++static const struct si_cac_config_reg lcac_oland[] = {
+ 	{ 0x98, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x98, 0x00000001, 0, 0x1, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x104, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+@@ -1457,8 +1422,7 @@ static const struct si_cac_config_reg lcac_oland[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg lcac_mars_pro[] =
+-{
++static const struct si_cac_config_reg lcac_mars_pro[] = {
+ 	{ 0x98, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x98, 0x00000001, 0, 0x1, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x104, 0x0001fffe, 1, 0x2, SISLANDS_CACCONFIG_CGIND },
+@@ -1504,13 +1468,11 @@ static const struct si_cac_config_reg lcac_mars_pro[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_cac_config_reg cac_override_oland[] =
+-{
++static const struct si_cac_config_reg cac_override_oland[] = {
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_powertune_data powertune_data_oland =
+-{
++static const struct si_powertune_data powertune_data_oland = {
+ 	((1 << 16) | 0x6993),
+ 	5,
+ 	0,
+@@ -1540,8 +1502,7 @@ static const struct si_powertune_data powertune_data_oland =
+ 	true
+ };
+ 
+-static const struct si_powertune_data powertune_data_mars_pro =
+-{
++static const struct si_powertune_data powertune_data_mars_pro = {
+ 	((1 << 16) | 0x6993),
+ 	5,
+ 	0,
+@@ -1571,8 +1532,7 @@ static const struct si_powertune_data powertune_data_mars_pro =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_oland =
+-{
++static const struct si_dte_data dte_data_oland = {
+ 	{ 0, 0, 0, 0, 0 },
+ 	{ 0, 0, 0, 0, 0 },
+ 	0,
+@@ -1589,8 +1549,7 @@ static const struct si_dte_data dte_data_oland =
+ 	false
+ };
+ 
+-static const struct si_dte_data dte_data_mars_pro =
+-{
++static const struct si_dte_data dte_data_mars_pro = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -1607,8 +1566,7 @@ static const struct si_dte_data dte_data_mars_pro =
+ 	true
+ };
+ 
+-static const struct si_dte_data dte_data_sun_xt =
+-{
++static const struct si_dte_data dte_data_sun_xt = {
+ 	{ 0x1E8480, 0x3D0900, 0x989680, 0x2625A00, 0x0 },
+ 	{ 0x0, 0x0, 0x0, 0x0, 0x0 },
+ 	5,
+@@ -1626,8 +1584,7 @@ static const struct si_dte_data dte_data_sun_xt =
+ };
  
  
--static const struct IP_BASE ATHUB_BASE            ={ { { { 0x00000C20, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE ATHUB_BASE = { { { { 0x00000C20, 0, 0, 0, 0, 0 } },
-+                                         { { 0, 0, 0, 0, 0, 0 } },
-+                                         { { 0, 0, 0, 0, 0, 0 } },
-+                                         { { 0, 0, 0, 0, 0, 0 } },
-+                                         { { 0, 0, 0, 0, 0, 0 } },
-+                                         { { 0, 0, 0, 0, 0, 0 } } } };
-+static const struct IP_BASE CLK_BASE  = { { { { 0x00016C00, 0x00016E00, 0x00017000, 0x00017200, 0x0001B000, 0x0001B200 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE CLK_BASE            ={ { { { 0x00016C00, 0x00016E00, 0x00017000, 0x00017200, 0x0001B000, 0x0001B200 } },
-+static const struct IP_BASE DCE_BASE = { { { { 0x00000012, 0x000000C0, 0x000034C0, 0, 0, 0 } },
-+                                       { { 0, 0, 0, 0, 0, 0 } },
-+                                       { { 0, 0, 0, 0, 0, 0 } },
-+                                       { { 0, 0, 0, 0, 0, 0 } },
-+                                       { { 0, 0, 0, 0, 0, 0 } },
-+                                       { { 0, 0, 0, 0, 0, 0 } } } };
-+static const struct IP_BASE DF_BASE = { { { { 0x00007000, 0, 0, 0, 0, 0 } },
-+                                      { { 0, 0, 0, 0, 0, 0 } },
-+                                      { { 0, 0, 0, 0, 0, 0 } },
-+                                      { { 0, 0, 0, 0, 0, 0 } },
-+                                      { { 0, 0, 0, 0, 0, 0 } },
-+                                      { { 0, 0, 0, 0, 0, 0 } } } };
-+static const struct IP_BASE FUSE_BASE = { { { { 0x00017400, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE DCE_BASE            ={ { { { 0x00000012, 0x000000C0, 0x000034C0, 0, 0, 0 } },
-+static const struct IP_BASE GC_BASE = { { { { 0x00002000, 0x0000A000, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE DF_BASE            ={ { { { 0x00007000, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE HDP_BASE = { { { { 0x00000F20, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE FUSE_BASE            ={ { { { 0x00017400, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE MMHUB_BASE = { { { { 0x0001A000, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE GC_BASE            ={ { { { 0x00002000, 0x0000A000, 0, 0, 0, 0 } },
-+static const struct IP_BASE MP0_BASE = { { { { 0x00016000, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE HDP_BASE            ={ { { { 0x00000F20, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE MP1_BASE = { { { { 0x00016000, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE MMHUB_BASE            ={ { { { 0x0001A000, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE NBIO_BASE = { { { { 0x00000000, 0x00000014, 0x00000D20, 0x00010400, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE MP0_BASE            ={ { { { 0x00016000, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE OSSSYS_BASE = { { { { 0x000010A0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE MP1_BASE            ={ { { { 0x00016000, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE SDMA0_BASE = { { { { 0x00001260, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE NBIO_BASE            ={ { { { 0x00000000, 0x00000014, 0x00000D20, 0x00010400, 0, 0 } },
-+static const struct IP_BASE SDMA1_BASE = { { { { 0x00001860, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE OSSSYS_BASE            ={ { { { 0x000010A0, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE SMUIO_BASE = { { { { 0x00016800, 0x00016A00, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE SDMA0_BASE            ={ { { { 0x00001260, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE THM_BASE = { { { { 0x00016600, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE SDMA1_BASE            ={ { { { 0x00001860, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE UMC_BASE = { { { { 0x00014000, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE SMUIO_BASE            ={ { { { 0x00016800, 0x00016A00, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE THM_BASE            ={ { { { 0x00016600, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE UMC_BASE            ={ { { { 0x00014000, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } },
--                                        { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE UVD_BASE            ={ { { { 0x00007800, 0x00007E00, 0, 0, 0, 0 } },
-+static const struct IP_BASE UVD_BASE = { { { { 0x00007800, 0x00007E00, 0, 0, 0, 0 } },
-                                         { { 0, 0x00009000, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
- /* Adjust VCE_BASE to make vce_4_1 use vce_4_0 offset header files*/
--static const struct IP_BASE VCE_BASE            ={ { { { 0x00007E00/* 0x00008800 */, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE VCE_BASE = { { { { 0x00007E00/* 0x00008800 */, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE XDMA_BASE            ={ { { { 0x00003400, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE XDMA_BASE = { { { { 0x00003400, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } } } };
--static const struct IP_BASE RSMU_BASE            ={ { { { 0x00012000, 0, 0, 0, 0, 0 } },
-+static const struct IP_BASE RSMU_BASE = { { { { 0x00012000, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
-                                         { { 0, 0, 0, 0, 0, 0 } },
+-static const struct si_cac_config_reg cac_weights_hainan[] =
+-{
++static const struct si_cac_config_reg cac_weights_hainan[] = {
+ 	{ 0x0, 0x0000ffff, 0, 0x2d9, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x22b, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x1, 0x0000ffff, 0, 0x21c, SISLANDS_CACCONFIG_CGIND },
+@@ -1691,8 +1648,7 @@ static const struct si_cac_config_reg cac_weights_hainan[] =
+ 	{ 0xFFFFFFFF }
+ };
+ 
+-static const struct si_powertune_data powertune_data_hainan =
+-{
++static const struct si_powertune_data powertune_data_hainan = {
+ 	((1 << 16) | 0x6993),
+ 	5,
+ 	0,
 -- 
 2.17.1
 
