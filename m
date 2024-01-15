@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA08982E2C0
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jan 2024 23:52:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6442B82E2BC
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jan 2024 23:51:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0646010E3AB;
-	Mon, 15 Jan 2024 22:51:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0619810E3BD;
+	Mon, 15 Jan 2024 22:51:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0549810E3A3
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 22:51:30 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2057.outbound.protection.outlook.com [40.107.100.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5E010E3B4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jan 2024 22:51:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mcE3CryegDZIwVEHjfYibXjl6yYXnlWDzVmmotK0//JUqkbBopGCZFWQt7flrYUGbZj20RkU5hbAVdfzY+3ZCunN+yaUpHTOMnZLJThGv8VCGzU7CRNHjkNAeeQgoSW6ewdaqJRkdZghjTQ+oNRr3ulmghAdFvK/6Z+squMat/m9sbr4YVh1bkjO3AmT4VyAjkLgdxsqKMRE0MQi0K7MnJFxAv6IeukaKOTXijSqGrT+ZiHfrvHmaFJb1hbUE5p+a2WVWFtNavhU9PTRCbxeFhOnFDdsY/a7ReUKq7n11+EJW+xwbqQXGZGJe9OtE3t3yZPX5rBVdQB3RPyPbLt9ZA==
+ b=c5ZdGIfFFwrPDhUXigHXWZmTIzlVQJLVlekO7Ev8TcejMj69EphxImjnzPIYOY1LidcgbE1XSfB4yqEA8GqAcmxJpTkCwB7IXJpzKNrPmgabumwgcbXTW3erubl1fJF/TPlvR6PpEbqqMU7bcQtCN6WsWR/hglqaLd1GpjY4S/fByNEsb1z6AyHXm2UPh7z+uPLO41LNFvRFXT0iZ1DUqLl0GQIY3cmPz7BFL+50u6HbsnlTDOjRxflr/Nw9is2+vaApzGIOSEBNS3JsiwTScJkAQLXSkmliF/cyAfV6Jc1bSaC+ZxqaCYPlexYrgR7CD5lftMoMbkIYfWHoLxVkMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CPww9bKQZGHCY5XMdksDIMm1F+M1NMlKQRrWUTLjY04=;
- b=fZ8b/aH5r+QVRySDgL2QutIZvLjaxbjAzirI6cbfTuMC3gN2rzN44YyFbZC3/tmfGat/jtwzWJU5cp0xMtDPLpWYW67GuP7sGF5IT8Ylb9gPpEw+v5/qwRiWMRmL9QBEiSVOdMsC5oMC8PWCcVWWZcvnaxQMx/VWD4rlO+hKYFxfPTUhFYvfedz7mjt0zrgygEdGsrIKiZiNoNQAHwzwUpKIMDL3J+fBPrruVPtas85TEePWWBnGrO9u2LcIDffvwmIQf5/j2nBXc/lL+gu7fqYZA0uP4isQ0gn35tkQ+nTWSQCr3ojiS2C9KEJ5OFdtJwKI9H69zOdo6mApIqO+4Q==
+ bh=FcqpAn+uOXvtWQlQusrzm8APkjFvwJvC7V6An3IFc7I=;
+ b=f8IQUDfFT9kImIPx4Uyg/IwQ3Y9jZHlYkcbrvZNaSONChVw63t0TTHMQYIW1zesRWcRooUP1eleTO3rV+qaxmXHWeyUEqb2xRvMAEOvFQ/7qkihMvQKXXwXeq9fI47rZ2L95iWnUd+56eC3tmkhOuASEZt9fWzEwrZTDRcGT5nLfco6ZjV5ajuYDeNuo8cH/Fwhk65XNpsLTZoX3RbD7inAVbzAemtXsFcUizV4VnGX+049wl17D6QFRs8SuIxlQ15m5PgHUqQ65vHZSBVlvSgmDeyMX+rv8V2oA5bI+xt9Dd2rA16fAwgBBtdfpQAhLhPijaWa1cTxKkUJAGfuVbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CPww9bKQZGHCY5XMdksDIMm1F+M1NMlKQRrWUTLjY04=;
- b=IrIE96IaB5NKKk4vOtujdOuFZdz1NwiGLDhnLhxaT/NZuNF3RAC14YhvS2NzGPS5ltavkjKVS2yBuMHTDW5GVL5ofcLQTZUhLozT6sPrxw7Bxm7bf25NG8fi3az5dmPAcEK3jrH+jKw/YQJxZA0ex8e4nOo/qziUJ7RSEXozCEU=
-Received: from SA9PR13CA0179.namprd13.prod.outlook.com (2603:10b6:806:28::34)
- by LV8PR12MB9134.namprd12.prod.outlook.com (2603:10b6:408:180::21)
+ bh=FcqpAn+uOXvtWQlQusrzm8APkjFvwJvC7V6An3IFc7I=;
+ b=suhgNn/+nCsSfjofPRM1mpetw+bzVqIKkflEFmwGfJApIdrhf0hkZAt6+Na5lZGcUVD70VW+hN0y38B85F59eW2KQT7oBiFRYplqOWie71ZzeYwyyvIe6qn1y+emE3G1DtHeJH/3RyucvefaUjDhdL20rLprnaxz/AjKRUHvTKE=
+Received: from SA9PR13CA0175.namprd13.prod.outlook.com (2603:10b6:806:28::30)
+ by CH2PR12MB4232.namprd12.prod.outlook.com (2603:10b6:610:a4::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23; Mon, 15 Jan
  2024 22:51:24 +0000
 Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
- (2603:10b6:806:28:cafe::6d) by SA9PR13CA0179.outlook.office365.com
- (2603:10b6:806:28::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.17 via Frontend
+ (2603:10b6:806:28:cafe::b3) by SA9PR13CA0175.outlook.office365.com
+ (2603:10b6:806:28::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.19 via Frontend
  Transport; Mon, 15 Jan 2024 22:51:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -54,9 +54,9 @@ Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2024 16:51:22 -0600
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v4 4/7] amd/amdkfd: Unmap range from GPU based on granularity
-Date: Mon, 15 Jan 2024 17:49:47 -0500
-Message-ID: <20240115224950.3300-4-Philip.Yang@amd.com>
+Subject: [PATCH v4 5/7] drm/amdkfd: Change range granularity update bitmap_map
+Date: Mon, 15 Jan 2024 17:49:48 -0500
+Message-ID: <20240115224950.3300-5-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20240115224950.3300-1-Philip.Yang@amd.com>
 References: <20240115224950.3300-1-Philip.Yang@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|LV8PR12MB9134:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a135c3b-e749-42fa-063d-08dc161c7ff1
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|CH2PR12MB4232:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d10ad69-7c3e-4de6-2a6c-08dc161c8036
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3k41oSWTHwN78ylq5fa5sqzBVkVRWjBLODdqFH+E5k2+FFqnotAEL38EoN08g80rBR6jzL5F98ICA69WuXcx1KTEBomRB4CsWVIGZAGK95N0LzKb1OSu+gF7vmCyOjdaiQouHiBO8vJe4/39BeDnJaIjyhoOJOKtMYjE6GyaRyjHxBp2FNrrMdsx3nsSHrvdbVHvCed0Q6b+rQF0gdRdv+HrClDEV7cplNOj9ucSllJIX3a3SLuNhvDO5/q4ka98kxd5AqCl5QJ+IppDKJA54clu4E0spXnqGGOO4dAoA01mUnAATmmhhLGnMJtiXjmJ8Nep9P4k8H9/UgfKNJAyL0Y4iqesprWZisBpUnMtacmSZs36Q+YfbqWfig+S9DjiTF4QcmYwugw1El1BinS3rUvjQdPxfxrc0StZC1kFf5KxtZulYCA/qLyGjcl9tL6oNlbKpIVmVNPvfUDb6bbzAfK/bnJsLfHLVYWsnqfplKGbmfU0Ov61LxIozh6Q2KHooz1WgQqaiPXofY+m8jm/QitolmCxkDkFCgiXNh5VizTf3IQO3mJ9MyXHRQxktOWJGmVQVMYJr/kC5S6LPmjWNVauAJX297h0Fz08gWkLm+qVHeIJ0kLlNHd0HIWc6CX8P8xR88cXe2dgNE+LpOyKSoVcE3DPQAvoPjMiAI6EA6qw59Lb7Dp28fHOPIZFHyeimLTsf8FzoHGdWkSr75ai53HcXmgInfrdyTAyHlh197Nx3iFfs242FwHn8K5iXZHU/+vca8oEPDxN8culXh/upw==
+X-Microsoft-Antispam-Message-Info: xCWQnatuagN3lxXAR+IpJmjG5NRu9cqmSvakqpAPT1Ge+7rTyN5+S0j91PUTd0qHrPvaKc6rE7foLquoMDfVBFC6DzDrwLlrnKv/x0dCIwoboAxG8CKdnvY3keR9mc8vqX2IGIfVCk1jNKZ29kvOFA41pioiHRaa9FWRYx922la1nbJMJwPpYKfA5K2KVcUob4asRt2muIw55bP1UHGbPbu0Aqg3M8+V76NjohzFUfPuZb/ymY5qAbR4IMmDkttFNr0ZdWRRJqGDpjyOLOZ1XY8+B6yvLC8npMF6QWAz00viQj8VlqqLqnBp5/YtkVIRBLCcSWjj9IbTNDzLzmD0M5USNhl3V5iqoTA9yZNoYnC3U5ZGMR9JVAmTmuuqOuRoDW/ShWeiyfuOoFXbApFvDEjS3dZhlS1zcvUeHU1DXCXDnybYnVh46Phq+oxw7ZBXWw99HPfjzYZsiAVIKnjb6E9PCDbwjb80X/4HjbVvveeNzrrolUwA2IjuHq3eDtC1LKkVqtJ9+VwqfJ3xRYQQ5iJabJDPrbPG/wJaa7GiDMV/Q+LKBd4RVgSYTX2YafIY+36yEnLCYIgASAvSxqpmtqYshPrL4/CF+87UAnqf01+uJ1mSdVlibWlZBmgvrtbz7uDGfoA1tg86uiUm5rM6jfLrg/Z/Zj55DKXZePz2eGiei3V8FnQVElnYm/LbRikzK2/CBHBCRGWT29XcwAsRw2iEthfo8VlbykU8kkhWlC5zmQvZh5J8O/DJ0Ue1sq58XSKcT1F3JDHQ9hTf6KpOCA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(64100799003)(186009)(82310400011)(451199024)(1800799012)(36840700001)(46966006)(40470700004)(356005)(40480700001)(40460700003)(86362001)(83380400001)(47076005)(36756003)(81166007)(82740400003)(8676002)(6666004)(8936002)(4326008)(5660300002)(26005)(16526019)(1076003)(2616005)(426003)(36860700001)(70586007)(70206006)(316002)(6916009)(54906003)(7696005)(2906002)(41300700001)(336012)(478600001)(36900700001);
+ SFS:(13230031)(4636009)(376002)(136003)(39860400002)(346002)(396003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(82310400011)(40470700004)(36840700001)(46966006)(41300700001)(82740400003)(47076005)(83380400001)(36860700001)(36756003)(86362001)(356005)(81166007)(70206006)(70586007)(316002)(54906003)(6916009)(8936002)(2906002)(8676002)(4326008)(5660300002)(15650500001)(2616005)(1076003)(16526019)(426003)(336012)(26005)(478600001)(6666004)(7696005)(40480700001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2024 22:51:24.0540 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a135c3b-e749-42fa-063d-08dc161c7ff1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2024 22:51:24.5227 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d10ad69-7c3e-4de6-2a6c-08dc161c8036
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA50.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9134
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4232
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,105 +103,81 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When MMU notifier invalidate the range, align the start and last address
-to range granularity to unmap from GPU and update bitmap_map flag.
-Skip unmap from GPU if range is already unmapped based on bitmap_map
-flag. This  avoids unmap 1 page from GPU and flush TLB, also solve
-the rocgdb CWSR migration related issue.
-
-Unmap the range from cpu will remove the range and split the range, this
-cannot align the start and last address to range granularity. Change
-to split the range and bitmap_map flag first, then unmap the range
-from GPU. If unmapping from GPU first, the bitmap_map flag is updated,
-split range may get incorrect bitmap_map for the remaining ranges.
+When changing the svm range granularity, update the svm range
+bitmap_map based on new range granularity.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 42 +++++++++++++++++++---------
- 1 file changed, 29 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 49 +++++++++++++++++++++++++++-
+ 1 file changed, 48 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index a003406db067..7a30c3e58234 100644
+index 7a30c3e58234..ebc4cce801bf 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -2114,6 +2114,13 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
- 	} else {
- 		unsigned long s, l;
- 		uint32_t trigger;
-+		u64 size = 1UL << prange->granularity;
-+
-+		if (!svm_range_partial_mapped(prange, start, last)) {
-+			pr_debug("svms 0x%p [0x%lx 0x%lx] unmapped already\n",
-+				 prange->svms, start, last);
-+			return 0;
-+		}
+@@ -757,6 +757,53 @@ svm_range_check_attr(struct kfd_process *p,
+ 	return 0;
+ }
  
- 		if (event == MMU_NOTIFY_MIGRATE)
- 			trigger = KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY_MIGRATE;
-@@ -2122,16 +2129,17 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
- 
- 		pr_debug("invalidate unmap svms 0x%p [0x%lx 0x%lx] from GPUs\n",
- 			 prange->svms, start, last);
++static void
++svm_range_change_granularity(struct svm_range *prange, u8 value)
++{
++	struct kfd_process *p = container_of(prange->svms, struct kfd_process, svms);
++	u32 new_nbits, old_nbits, i, n;
++	unsigned long *new_bits, *old_bits;
++	u32 gpuidx;
 +
- 		list_for_each_entry(pchild, &prange->child_list, child_list) {
- 			mutex_lock_nested(&pchild->lock, 1);
--			s = max(start, pchild->start);
--			l = min(last, pchild->last);
-+			s = svm_range_align_start(start, pchild->start, size);
-+			l = svm_range_align_last(last, pchild->last, size);
- 			if (l >= s)
- 				svm_range_unmap_from_gpus(pchild, s, l, trigger);
- 			mutex_unlock(&pchild->lock);
- 		}
--		s = max(start, prange->start);
--		l = min(last, prange->last);
-+		s = svm_range_align_start(start, prange->start, size);
-+		l = svm_range_align_last(last, prange->last, size);
- 		if (l >= s)
- 			svm_range_unmap_from_gpus(prange, s, l, trigger);
- 	}
-@@ -2645,24 +2653,32 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 
- 	list_for_each_entry(pchild, &prange->child_list, child_list) {
- 		mutex_lock_nested(&pchild->lock, 1);
--		s = max(start, pchild->start);
--		l = min(last, pchild->last);
--		if (l >= s)
--			svm_range_unmap_from_gpus(pchild, s, l, trigger);
- 		svm_range_unmap_split(mm, prange, pchild, start, last);
- 		mutex_unlock(&pchild->lock);
- 	}
--	s = max(start, prange->start);
--	l = min(last, prange->last);
--	if (l >= s)
--		svm_range_unmap_from_gpus(prange, s, l, trigger);
- 	svm_range_unmap_split(mm, prange, prange, start, last);
--
- 	if (unmap_parent)
- 		svm_range_add_list_work(svms, prange, mm, SVM_OP_UNMAP_RANGE);
- 	else
- 		svm_range_add_list_work(svms, prange, mm,
- 					SVM_OP_UPDATE_RANGE_NOTIFIER);
++	if (prange->granularity == value)
++		return;
 +
-+	list_for_each_entry(pchild, &prange->child_list, child_list) {
-+		if (pchild->work_item.op != SVM_OP_UNMAP_RANGE)
++	old_nbits = svm_range_map_nbits(prange->start, prange->last, prange->granularity);
++	new_nbits = svm_range_map_nbits(prange->start, prange->last, value);
++	if (new_nbits > old_nbits) {
++		n = new_nbits / old_nbits;
++		if (new_nbits % old_nbits)
++			n++;
++	} else {
++		n = old_nbits / new_nbits;
++		if (old_nbits % new_nbits)
++			n++;
++	}
++
++	pr_debug("prange 0x%p [0x%lx 0x%lx] bitmap_map nbits %d -> %d\n",
++		 prange, prange->start, prange->last, old_nbits, new_nbits);
++
++	for_each_set_bit(gpuidx, p->svms.bitmap_supported, p->n_pdds) {
++		old_bits = prange->bitmap_map[gpuidx];
++		if (bitmap_empty(old_bits, old_nbits))
 +			continue;
 +
-+		s = max(start, pchild->start);
-+		l = min(last, pchild->last);
-+		if (l >= s)
-+			svm_range_unmap_from_gpus(pchild, s, l, trigger);
-+	}
-+	if (prange->work_item.op == SVM_OP_UNMAP_RANGE) {
-+		s = max(start, prange->start);
-+		l = min(last, prange->last);
-+		if (l >= s)
-+			svm_range_unmap_from_gpus(prange, s, l, trigger);
-+	}
++		new_bits = bitmap_zalloc(new_nbits, GFP_KERNEL);
++		if (!new_bits)
++			return;
 +
- 	schedule_deferred_list_work(svms);
- 
- 	kfd_unref_process(p);
++		for_each_set_bit(i, old_bits, old_nbits) {
++			if (new_nbits > old_nbits)
++				bitmap_set(new_bits, i * n, n);
++			else
++				bitmap_set(new_bits, i / n, 1);
++		}
++		prange->bitmap_map[gpuidx] = new_bits;
++		bitmap_free(old_bits);
++	}
++	prange->granularity = value;
++}
++
+ static void
+ svm_range_apply_attrs(struct kfd_process *p, struct svm_range *prange,
+ 		      uint32_t nattr, struct kfd_ioctl_svm_attribute *attrs,
+@@ -801,7 +848,7 @@ svm_range_apply_attrs(struct kfd_process *p, struct svm_range *prange,
+ 			prange->flags &= ~attrs[i].value;
+ 			break;
+ 		case KFD_IOCTL_SVM_ATTR_GRANULARITY:
+-			prange->granularity = min_t(uint32_t, attrs[i].value, 0x3F);
++			svm_range_change_granularity(prange, min_t(u32, attrs[i].value, 0x3F));
+ 			break;
+ 		default:
+ 			WARN_ONCE(1, "svm_range_check_attrs wasn't called?");
 -- 
 2.35.1
 
