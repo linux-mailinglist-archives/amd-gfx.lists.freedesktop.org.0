@@ -2,65 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B16B83078A
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jan 2024 15:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0122B8307BD
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jan 2024 15:15:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECBFC10E00D;
-	Wed, 17 Jan 2024 14:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7871810E6AE;
+	Wed, 17 Jan 2024 14:15:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com
- [209.85.219.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE33D10E685
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 12:59:52 +0000 (UTC)
-Received: by mail-yb1-f170.google.com with SMTP id
- 3f1490d57ef6-dc202317415so2617742276.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 04:59:52 -0800 (PST)
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com
+ [209.85.160.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E18D610E6AE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 14:15:10 +0000 (UTC)
+Received: by mail-oa1-f48.google.com with SMTP id
+ 586e51a60fabf-210aaf2af35so193076fac.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jan 2024 06:15:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yngvason.is; s=google; t=1705496332; x=1706101132; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1705500849; x=1706105649; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
- b=fiBbfYk4wwmjtLZ40390nITMMsIv9Ck2vBZMNG3C0YQ+HPGyvIMEkSvlP4WmdsVYeS
- RVRL9lye2Zvi5mslxwZ5HAQaVSC0xSthCuCuAXPKJsqxE3XROTII6DWnmP9VhofTrQfw
- Dcb6vv8XNsG84elv6dQCX74lV5G+VERjrrHxg=
+ bh=bQj2SR0tQ9b33YQSAypj8qp5bSuca1UhDyIbQ1YeOQY=;
+ b=PBVYvxBGqqvtgnkAtRqETHdoxzo8Uq+Ze3/4Q/s6FxjK9yDht741U5pDngTukJK2Iq
+ Arq0j8Xh+a6DdsrIacQ+OtRzeKvPutZDf4i2ej+bgbmBnEBaon1+p5SqG+Kw25jH4ZEf
+ JKIj0UGQSY0ZPxRg315QS01xMwfoPzWprVIqpt+SCOe5Zo+nwJ/GR/2xB3UK6jpoYcUU
+ xqWZMr8Gd784HiYeRyetsuS3akqyOdJhw6J3NpTZ4eLgfJpJy4TYiIyIs4l+tMJ99v/w
+ 9PWCMg6WeVjIdd7PXPYzUfmJnCtABDIUTtPYmpRHOjn487/e/XK6C53uHq4A9niG4SEs
+ 3FHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705496332; x=1706101132;
+ d=1e100.net; s=20230601; t=1705500849; x=1706105649;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=XriBTYniGk9gYChkPK4rAFLbx+9FKjxjuGOHKZN5d5Q=;
- b=Xp2EZqN3muWZXkJ7BhK4HhzRIjHLD1LMNqyCithZvYs+6oyZhY0OflcXzR9UBJQ6Hk
- Rp39T9kNpDlIdsYArvWDc6aY2eg/8pLFRmvfh7JzcYeh5xMWsjHsolci5GVNTRe28bzC
- Qf0NhJMPxFueSgU/PVZFf4Vv1ANrCyUB5WrHDXXAWer20WHTVmq821+ZaHbSNqpoG6GJ
- dIMg1GOuYqGrexlEFLt/sB5FtxYoYF8fGwLWDtVsq/sNvh4KcJZYX72W14tzbwaM3ktC
- 21rQ7bmipRh9ya7JbKCptAA+noj5AxIrpALMW69k8/XHbHJS0CP15LJfU9+eOq92VUSL
- JZYw==
-X-Gm-Message-State: AOJu0Ywyi1A53Pcqqo5pr3tLsWrws2+0MQAODDTFJz8pRAvdndw9G9XF
- 9//y2YhaxXKsNDWf6VCAitDG1ePSrZQJ4NPjTgftnDYLiLPBLw==
-X-Google-Smtp-Source: AGHT+IGJIW7uSGphtKFOvMwfljCQ/8rZhpwJOWe7mVWX8TVan9ezOmBt2LWw5SFFQ9yDj8Zksn+cwqmk3E0OCdyRY5E=
-X-Received: by 2002:a25:ae42:0:b0:dbd:7f9e:8190 with SMTP id
- g2-20020a25ae42000000b00dbd7f9e8190mr4998501ybe.67.1705496331697; Wed, 17 Jan
- 2024 04:58:51 -0800 (PST)
+ bh=bQj2SR0tQ9b33YQSAypj8qp5bSuca1UhDyIbQ1YeOQY=;
+ b=eVKg5dy1Azzbd5yLPfTnCiSBOzvdlQPoay3bPq6/iQrPXPfUWFEfyJ6UbS+K/MBzOv
+ EqxiWX25rDqVmFvpSzjNg0iH13xgVOhLDK5calf/gD19+KKfaElajXl94irFJaS/YIeh
+ n5lBgekGLb/uKjuQx1JTU0dQvMXConKuKf+KocQTAimE9REyKwwaTv0iIYItXhbnugLR
+ 4KCvUjlTx3Vaz/cr6JtJwAORUFZ2LldioD16peXNLJ6c+07ANTWyGSE0ltuUTP/nphkG
+ IXh+1oCz/3AOxcSbOdrhr4K/PDp6cpcULQPjPXx9M4JPBtdv3XO9/xNJ7KzKDEQ2Kxp9
+ XaqA==
+X-Gm-Message-State: AOJu0YwphzZUj3/5Hy8DPeXvfTCUDVVRGK2246XlfQQkPPH1Y5+v7F+F
+ nE7egikeyFzGKUW3ei3eUagmyhcQkvLJjm1X1hU=
+X-Google-Smtp-Source: AGHT+IE/SLbYO5ZDm8bL3G59nwauObwFxAPVe/Ci3RXxCuUiRVcY2R7PK8ly7Pcm5NUytrY+Yk7vdFsw8xFwi9lyCoI=
+X-Received: by 2002:a05:6871:878d:b0:210:a45b:5ec0 with SMTP id
+ td13-20020a056871878d00b00210a45b5ec0mr724212oab.37.1705500849555; Wed, 17
+ Jan 2024 06:14:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20240115160554.720247-1-andri@yngvason.is>
- <20240115160554.720247-3-andri@yngvason.is>
- <20240116114235.GA311990@toolbox>
- <CAFNQBQz3TNj_7BSmFw4CFMNuR4B+1d+y3f058s+rzTuzdYogqA@mail.gmail.com>
- <20240116132918.GB311990@toolbox>
- <CAFNQBQyfWmfu5T7bgZDZFGfyhsxQi7YXmY_wPc9Y+mm5iSspXQ@mail.gmail.com>
- <20240117112150.4399d0bb@eldfell>
-In-Reply-To: <20240117112150.4399d0bb@eldfell>
-From: Andri Yngvason <andri@yngvason.is>
-Date: Wed, 17 Jan 2024 12:58:15 +0000
-Message-ID: <CAFNQBQwoGvSF1ryOPUUnedYUG64HqFQNXjMf6R7piufN64Vc=g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] drm/uAPI: Add "force color format" drm property as
- setting for userspace
-To: Pekka Paalanen <ppaalanen@gmail.com>
+References: <20240117085229.981555-1-Jun.Ma2@amd.com>
+In-Reply-To: <20240117085229.981555-1-Jun.Ma2@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 17 Jan 2024 09:13:57 -0500
+Message-ID: <CADnq5_NUFJYOdNa2sm4y_KU108EUvwpR7MxTQySwdK+S=1G1hA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/pm: Fix the power source flag error
+To: Ma Jun <Jun.Ma2@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 17 Jan 2024 14:05:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,257 +67,125 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Sebastian Wick <sebastian.wick@redhat.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- Werner Sembach <wse@tuxedocomputers.com>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alexander.Deucher@amd.com, Kenneth.Feng@amd.com, kevinyang.wang@amd.com,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-mi=C3=B0., 17. jan. 2024 kl. 09:21 skrifa=C3=B0i Pekka Paalanen <ppaalanen@=
-gmail.com>:
+On Wed, Jan 17, 2024 at 4:01=E2=80=AFAM Ma Jun <Jun.Ma2@amd.com> wrote:
 >
-> On Tue, 16 Jan 2024 14:11:43 +0000
-> Andri Yngvason <andri@yngvason.is> wrote:
+> The power source flag should be updated when
+> [1] System receives an interrupt indicating that the power source
+> has changed.
+> [2] System resumes from suspend or runtime suspend
 >
-> > =C3=BEri., 16. jan. 2024 kl. 13:29 skrifa=C3=B0i Sebastian Wick
-> > <sebastian.wick@redhat.com>:
-> > >
-> > > On Tue, Jan 16, 2024 at 01:13:13PM +0000, Andri Yngvason wrote:
-> > [...]
-> > > > =C5=9Fri., 16. jan. 2024 kl. 11:42 skrifa=C4=9Fi Sebastian Wick
-> > > > <sebastian.wick@redhat.com>:
-> > > > >
-> > > > > On Mon, Jan 15, 2024 at 04:05:52PM +0000, Andri Yngvason wrote:
-> > > > > > From: Werner Sembach <wse@tuxedocomputers.com>
-> > > > > >
-> > > > > > Add a new general drm property "force color format" which can b=
-e used
-> > > > > > by userspace to tell the graphics driver which color format to =
-use.
-> > > > >
-> > > > > I don't like the "force" in the name. This just selects the color
-> > > > > format, let's just call it "color format" then.
-> > > > >
-> > > >
-> > > > In previous revisions, this was "preferred color format" and "actua=
-l
-> > > > color format", of which the latter has been dropped. I recommend
-> > > > reading the discussion for previous revisions.
-> > >
-> > > Please don't imply that I didn't read the thread I'm answering to.
+> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 24 +++++++++++--------
+>  .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    |  2 ++
+>  .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |  2 ++
+>  3 files changed, 18 insertions(+), 10 deletions(-)
 >
-> FYI, I have not read this thread.
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/=
+amd/pm/swsmu/amdgpu_smu.c
+> index c16703868e5c..e16d22e30a8a 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -24,6 +24,7 @@
 >
+>  #include <linux/firmware.h>
+>  #include <linux/pci.h>
+> +#include <linux/power_supply.h>
+>  #include <linux/reboot.h>
+>
+>  #include "amdgpu.h"
+> @@ -793,6 +794,17 @@ static int smu_apply_default_config_table_settings(s=
+truct smu_context *smu)
+>         return smu_set_config_table(smu, &adev->pm.config_table);
+>  }
+>
+> +static void smu_update_power_source(struct amdgpu_device *adev)
+> +{
+> +       if (power_supply_is_system_supplied() > 0)
+> +               adev->pm.ac_power =3D true;
+> +       else
+> +               adev->pm.ac_power =3D false;
+> +
+> +       if (is_support_sw_smu(adev))
 
-pq, You did not read this summary?
-https://lore.kernel.org/dri-devel/CAFNQBQwjeJaX6B4oewpgASMUd5_nxZYMxUfdOG29=
-4CTVGBTd1w@mail.gmail.com/
+Do we need this check here?  This is the sw_smu code.
 
-You partook in the discussion on IRC. Please read it and tell me if I
-misunderstood anything.
-
-Sebastian, I apologise. You clearly read it as you even replied to it!
-
-> > >
-> > > > There are arguments for adding "actual color format" later and if i=
-t
-> > > > is added later, we'd end up with "color format" and "actual color
-> > > > format", which might be confusing, and it is why I chose to call it
-> > > > "force color format" because it clearly communicates intent and
-> > > > disambiguates it from "actual color format".
-> > >
-> > > There is no such thing as "actual color format" in upstream though.
-> > > Basing your naming on discarded ideas is not useful. The thing that s=
-ets
-> > > the color space for example is called "Colorspace", not "force
-> > > colorspace".
-> > >
-> >
-> > Sure, I'm happy with calling it whatever people want. Maybe we can
-> > have a vote on it?
+> +               smu_set_ac_dc(adev->powerplay.pp_handle);
+> +}
+> +
+>  static int smu_late_init(void *handle)
+>  {
+>         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+> @@ -817,16 +829,8 @@ static int smu_late_init(void *handle)
+>          * handle the switch automatically. Driver involvement
+>          * is unnecessary.
+>          */
+> -       if (!smu->dc_controlled_by_gpio) {
+> -               ret =3D smu_set_power_source(smu,
+> -                                          adev->pm.ac_power ? SMU_POWER_=
+SOURCE_AC :
+> -                                          SMU_POWER_SOURCE_DC);
+> -               if (ret) {
+> -                       dev_err(adev->dev, "Failed to switch to %s mode!\=
+n",
+> -                               adev->pm.ac_power ? "AC" : "DC");
+> -                       return ret;
+> -               }
+> -       }
+> +       if (!smu->dc_controlled_by_gpio)
+> +               smu_update_power_source(adev);
 >
-> It would sound strange to say "force color format" =3D "auto". Just drop
-> the "force" of it.
+>         if ((amdgpu_ip_version(adev, MP1_HWIP, 0) =3D=3D IP_VERSION(13, 0=
+, 1)) ||
+>             (amdgpu_ip_version(adev, MP1_HWIP, 0) =3D=3D IP_VERSION(13, 0=
+, 3)))
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu=
+/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+> index 2e7f8d5cfc28..8047150fddd4 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+> @@ -1442,10 +1442,12 @@ static int smu_v11_0_irq_process(struct amdgpu_de=
+vice *adev,
+>                         case 0x3:
+>                                 dev_dbg(adev->dev, "Switched to AC mode!\=
+n");
+>                                 schedule_work(&smu->interrupt_work);
+> +                               adev->pm.ac_power =3D true;
+>                                 break;
+>                         case 0x4:
+>                                 dev_dbg(adev->dev, "Switched to DC mode!\=
+n");
+>                                 schedule_work(&smu->interrupt_work);
+> +                               adev->pm.ac_power =3D false;
+>                                 break;
+>                         case 0x7:
+>                                 /*
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu=
+/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+> index 771a3d457c33..c486182ff275 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+> @@ -1379,10 +1379,12 @@ static int smu_v13_0_irq_process(struct amdgpu_de=
+vice *adev,
+>                         case 0x3:
+>                                 dev_dbg(adev->dev, "Switched to AC mode!\=
+n");
+>                                 smu_v13_0_ack_ac_dc_interrupt(smu);
+> +                               adev->pm.ac_power =3D true;
+>                                 break;
+>                         case 0x4:
+>                                 dev_dbg(adev->dev, "Switched to DC mode!\=
+n");
+>                                 smu_v13_0_ack_ac_dc_interrupt(smu);
+> +                               adev->pm.ac_power =3D false;
+>                                 break;
+>                         case 0x7:
+>                                 /*
+> --
+> 2.34.1
 >
-> If and when we need the feedback counterpart, it could be an immutable
-> prop called "active color format" where "auto" is not a valid value, or
-> something in the new "output properties" design Sima has been thinking
-> of.
-
-There seems to be consensus for calling it "color format"
-
->
-> > > > [...]
-> > > > > > @@ -1396,6 +1404,15 @@ static const u32 dp_colorspaces =3D
-> > > > > >   *   drm_connector_attach_max_bpc_property() to create and att=
-ach the
-> > > > > >   *   property to the connector during initialization.
-> > > > > >   *
-> > > > > > + * force color format:
-> > > > > > + *   This property is used by userspace to change the used col=
-or format. When
-> > > > > > + *   used the driver will use the selected format if valid for=
- the hardware,
-> > > > >
-> > > > > All properties are always "used", they just can have different va=
-lues.
-> > > > > You probably want to talk about the auto mode here.
-> > > >
-> > > > Maybe we can say something like: If userspace does not set the
-> > > > property or if it is explicitly set to zero, the driver will select
-> > > > the appropriate color format based on other constraints.
-> > >
-> > > The property can be in any state without involvement from user space.
-> > > Don't talk about setting it, talk about the state it is in:
-> > >
-> > >   When the color format is auto, the driver will select a format.
-> > >
-> >
-> > Ok.
-> >
-> > > > >
-> > > > > > + *   sink, and current resolution and refresh rate combination=
-. Drivers to
-> > > > >
-> > > > > If valid? So when a value is not actually supported user space ca=
-n still
-> > > > > set it? What happens then? How should user space figure out if th=
-e
-> > > > > driver and the sink support the format?
-> > > >
-> > > > The kernel does not expose this property unless it's implemented in=
- the driver.
-> > >
-> > > If the driver simply doesn't support *one format*, the enum value for
-> > > that format should not be exposed, period. This isn't about the prope=
-rty
-> > > on its own.
-> >
-> > Right, understood. You mean that enum should only contain values that
-> > are supported by the driver.
->
-> Yes. When a driver installs a property, it can choose which of the enum
-> entries are exposed. That cannot be changed later though, so the list
-> cannot live by the currently connected sink, only by what the driver
-> and display controlled could ever do.
-
-Yes, and I think that basing it also on the connected sink's
-capabilities would just add complexity for very little gain. In fact,
-I think that limiting it based on the driver's capabilities is also
-over-engineering, but I don't mind adding it if that's what people
-really want.
-
->
-> > > > This was originally "preferred color format". Perhaps the
-> > > > documentation should better reflect that it is now a mandatory
-> > > > constraint which fails the modeset if not satisfied.
-> > >
-> > > That would definitely help.
-> > >
-> > > > >
-> > > > > For the Colorspace prop, the kernel just exposes all formats it s=
-upports
-> > > > > (independent of the sink) and then makes it the job of user space=
- to
-> > > > > figure out if the sink supports it.
-> > > > >
-> > > > > The same could be done here. Property value is exposed if the dri=
-ver
-> > > > > supports it in general, commits can fail if the driver can't supp=
-ort it
-> > > > > for a specific commit because e.g. the resolution or refresh rate=
-. User
-> > > > > space must look at the EDID/DisplayID/mode to figure out the supp=
-orted
-> > > > > format for the sink.
-> > > >
-> > > > Yes, we can make it possible for userspace to discover which modes =
-are
-> > > > supported by the monitor, but there are other constraints that need=
- to
-> > > > be satisfied. This was discussed in the previous revision.
-> > >
-> > > I mean, yes, that's what I said. User space would then only be
-> > > responsible for checking the sink capabilities and the atomic check
-> > > would take into account other (non-sink) constraints.
-> >
-> > Since we need to probe using TEST_ONLY anyway, we'll end up with two
-> > mechanisms to do the same thing where one of them depends on the other
-> > for completeness.
->
-> What do you mean by "same thing"?
-
-I thought that it would be clear that I did not mean that they were
-literally equal. This was discussed on IRC and summarised in the email
-message that I linked to above. Excerpt:
-"I asked if it made sense to add color format capabilities to the mode info
-struct, but the conclusion was that it wouldn't really be useful because we
-need TEST_ONLY anyway to see if the color format setting is compatible with
-other settings."
-
->
-> Neither HDMI nor DisplayPort have a feedback message saying your
-> infoframe contents are unacceptable, that I know of. Even if there was,
-> it would come too late for failing the atomic commit ioctl in
-> non-blocking mode.
->
-> In general, display signalling is that you send whatever to the sink,
-> and hope for the best.
->
-> EDID is used to describe what the sink can accept, so in theory the
-> kernel could parse EDID for all of these details and reject atomic
-> commits that attempt unsupported configurations. However, EDID are also
-> notoriously buggy. They are good for a best guess, but I believe it is
-> useful to be able to try "unsupported" things. IIRC, PS VR2
-> intentionally lies for instance.
->
-> Even if the kernel did reject everything based on EDID, the only way
-> today for userspace to know what should work is to parse the EDID
-> itself. TEST_ONLY trials lead to a combinatorial explosion too easily.
-> So userspace is already expected to parse EDID, with the major
-> exception being video mode lists that are explicitly provided by the
-> kernel in UAPI.
-
-I thought that everyone agreed that display settings GUIs don't suffer
-from combinatorial explosion because settings are selected in a
-predefined order so they don't need to test all permutations.
-
->
-> EDID and DisplayID standards also evolve. The kernel could be behind
-> userspace in chasing them, which was the reason why the kernel does not
-> validate HDR_OUTPUT_METADATA against EDID.
->
-> The design of today with HDR_OUTPUT_METADATA and whatnot is
-> that userspace is responsible for checking sink capabilities, and
-> atomic check is responsible for driver and display controller
-> capabilities.
-
-I'm not really sure where you're going with this. Are you for or
-against userspace parsing EDID instead of getting the information from
-the kernel?
-
->
-> > > > In any case, these things can be added later and need not be a part=
- of
-> > > > this change set.
-> > >
-> > > No, this is the contract between the kernel and user space and has to=
- be
-> > > figured out before we can merge new uAPI.
->
-> Indeed.
-
-I don't see how adding something later to cut down on the
-combinatorial explosion can possibly break any kind of contract in the
-way things are currently implemented. Can anyone provide examples of
-how things can go wrong in this particular instance?
-
-Thanks,
-Andri
