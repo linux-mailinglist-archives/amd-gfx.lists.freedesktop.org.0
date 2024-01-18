@@ -2,35 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E89A831519
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jan 2024 09:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B8A883151D
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jan 2024 09:52:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBC9810E151;
-	Thu, 18 Jan 2024 08:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E092A10E08A;
+	Thu, 18 Jan 2024 08:52:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E20410E013;
- Wed, 17 Jan 2024 14:50:45 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 17 Jan
- 2024 17:45:18 +0300
-Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 17 Jan
- 2024 17:45:18 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/radeon/ni_dpm: remove redundant NULL check
-Date: Wed, 17 Jan 2024 06:45:14 -0800
-Message-ID: <20240117144514.11007-1-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Thu, 18 Jan 2024 02:28:41 UTC
+Received: from out30-99.freemail.mail.aliyun.com
+ (out30-99.freemail.mail.aliyun.com [115.124.30.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACD2610E0ED
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jan 2024 02:28:41 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R561e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045176;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0W-r4shC_1705544597; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0W-r4shC_1705544597) by smtp.aliyun-inc.com;
+ Thu, 18 Jan 2024 10:23:25 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Subject: [PATCH] drm/amd/display: Simplify the calculation of variables
+Date: Thu, 18 Jan 2024 10:23:15 +0800
+Message-Id: <20240118022315.107671-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
 X-Mailman-Approved-At: Thu, 18 Jan 2024 08:52:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -43,40 +42,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, sunpeng.li@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- lvc-project@linuxtesting.org
+ daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-'leakage_table' will always be successfully initialized as a pointer
-to '&rdev->pm.dpm.dyn_state.cac_leakage_table'.
+./drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c:703:47-49: WARNING !A || A && B is equivalent to !A || B.
 
-Remove unnecessary check if only to silence static checkers.
-
-Found by Linux Verification Center (linuxtesting.org) with static
-analysis tool Svace.
-
-Fixes: 69e0b57a91ad ("drm/radeon/kms: add dpm support for cayman (v5)")
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=7931
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/radeon/ni_dpm.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/ni_dpm.c b/drivers/gpu/drm/radeon/ni_dpm.c
-index 3e1c1a392fb7..e08559c44a5c 100644
---- a/drivers/gpu/drm/radeon/ni_dpm.c
-+++ b/drivers/gpu/drm/radeon/ni_dpm.c
-@@ -3103,9 +3103,6 @@ static int ni_init_simplified_leakage_table(struct radeon_device *rdev,
- 	u32 smc_leakage, max_leakage = 0;
- 	u32 scaling_factor;
- 
--	if (!leakage_table)
--		return -EINVAL;
--
- 	table_size = leakage_table->count;
- 
- 	if (eg_pi->vddc_voltage_table.count != table_size)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+index a0ce681b26c6..118aaf4389bc 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_dc_resource_mgmt.c
+@@ -700,9 +700,9 @@ static void free_unused_pipes_for_plane(struct dml2_context *ctx, struct dc_stat
+ 	for (i = 0; i < ctx->config.dcn_pipe_count; i++) {
+ 		if (state->res_ctx.pipe_ctx[i].plane_state == plane &&
+ 			state->res_ctx.pipe_ctx[i].stream->stream_id == stream_id &&
+-			(!is_plane_duplicate || (is_plane_duplicate &&
++			(!is_plane_duplicate ||
+ 			ctx->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_plane_index[state->res_ctx.pipe_ctx[i].pipe_idx] == plane_index)) &&
+-			!is_pipe_used(pool, state->res_ctx.pipe_ctx[i].pipe_idx)) {
++			!is_pipe_used(pool, state->res_ctx.pipe_ctx[i].pipe_idx) {
+ 			free_pipe(&state->res_ctx.pipe_ctx[i]);
+ 		}
+ 	}
+-- 
+2.20.1.7.g153144c
+
