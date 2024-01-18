@@ -2,92 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF27831B71
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jan 2024 15:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0179A831F65
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jan 2024 19:55:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47E4D10E82F;
-	Thu, 18 Jan 2024 14:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C0E10E8B6;
+	Thu, 18 Jan 2024 18:55:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2071.outbound.protection.outlook.com [40.107.212.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 319F510E81B
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jan 2024 14:34:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FPfHyHlKG9xlW4+WEPa+14laA59HB+h2BtyjT2w2+unt+SPxkSQBRR1zEEQTabPFM7bkyxuqFf+gNSCptLmajyA0WtxPysPnyLj6SAspvvCNb9B8eDyVGzLmB17cQbdX4wOlXnUMQOAQQ+GViWqshor5PmngUquNMuFFmIV9CHJtk/EBBZuyS+t0dhEBz9NX1+ckQwIOwLciCDTR+esHC4laJ3pZoSqOlPYXrD/d23fKTZX+bqiR/zmD7oBVdMIVS/0w2sr7F+jzTtr2+kq8Z5b9OEgjCWnUTaXyWsCwrTxnKwrleUqsMYHAi5Zx4C6gJNa8F5PIhi3Ikdy1q49Z4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xsPZ62yr9y3u6lbqjsT1R9RpkQp6qD9uuATFdO9T8ug=;
- b=PQJNbYE/3lENGkMO5YNqXx62JCqHtdYGhQYesqqm4GaacjnZ3wpOZlTw0EFG04qjezxZZx1N0pwSiErdcF55CHkOHoZJYh5YswIXWNYqnOkAYCQY2ZgfpIZ6KTOdK0z727WuL/HgGs2BN+gdoiBPIcI20W83BUd6V6wvj8E8/Mynm/LkCABXTv98WuoO9BcuSKwxuYthUYuh0LCejo/hNiWnmMrQx5Zwn9EWoh8ts+gOkssLyECVx3IWi1NDRJ5ra1MZzKLuLJ/mdI4yxlPLJ1K84G9x7fEquGHIXS5sy3jGYVXju5sKTh0aCB0Xcdj2BQsTFL7xtkqbfi89czh5OA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xsPZ62yr9y3u6lbqjsT1R9RpkQp6qD9uuATFdO9T8ug=;
- b=aBeWnYLXxkThbFAkFthHX0ePeuIDAciRJFY+UlfmuAI5lxaoiZ+PmaZZcdM7OVJoiB8ejOgc6sdX0pZRg5w99tTraLJi911LwRrhCdiV9AtORWQ/Xz/DEo47zSvV58PTJaKwNb5s9hSDCJptNeXBUqbe4gpvBWhse5seFTQGerw=
-Received: from PH0PR07CA0114.namprd07.prod.outlook.com (2603:10b6:510:4::29)
- by BL0PR12MB4914.namprd12.prod.outlook.com (2603:10b6:208:1c4::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
- 2024 14:34:50 +0000
-Received: from SN1PEPF0002529F.namprd05.prod.outlook.com
- (2603:10b6:510:4:cafe::63) by PH0PR07CA0114.outlook.office365.com
- (2603:10b6:510:4::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24 via Frontend
- Transport; Thu, 18 Jan 2024 14:34:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SN1PEPF0002529F.mail.protection.outlook.com (10.167.242.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7202.16 via Frontend Transport; Thu, 18 Jan 2024 14:34:49 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 18 Jan
- 2024 08:34:45 -0600
-Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Thu, 18 Jan 2024 08:34:45 -0600
-From: <Roman.Li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/12] drm/amd/display: Promote DAL to 3.2.269
-Date: Thu, 18 Jan 2024 09:34:00 -0500
-Message-ID: <20240118143400.1001088-13-Roman.Li@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240118143400.1001088-1-Roman.Li@amd.com>
-References: <20240118143400.1001088-1-Roman.Li@amd.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA7E810E050
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jan 2024 18:55:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+ t=1705604109; x=1706208909; i=friedrich.vock@gmx.de;
+ bh=BQot/HwWxxkVEnmFFNYRZKYKx1/1WdJ5aeSBjwMO1gc=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+ b=mDkpa7hXsUHIJ6TOsEDGBtfZfOF8fhAWR1nov3Ho0eISsDiYZQEfbBKhNBoA7Sh1
+ 9P3ZrdKg8n7uMXBn5UAqKHaTSUvHYTuk8GzsR1Tm7zAN3if2pG0gTKGAe0f8cA6Yx
+ ORGTcO96P21F1nJ5bsqYSJstAXLg+o7KWeWNLfgcR1h36TwpEKtlH7WODvKqCf7aC
+ 7SweUiFmynBGwqu2CV5aDduU2huCEsVnJ8dcL5RerkG1vTzeRi1XOxR2gsXCzanig
+ fyfTVMfcGZfwGmDCEEHEKgCmi74cIjf+I8HY56zdecyRl+wg3rf7PfaftNDiBnW9w
+ 84wTDNrqqSJEum0KBg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from arch.fritz.box ([213.152.118.80]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MKbgE-1rgyUj2MjU-00KxYY; Thu, 18
+ Jan 2024 19:55:09 +0100
+From: Friedrich Vock <friedrich.vock@gmx.de>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v2 1/2] drm/amdgpu: Reset IH OVERFLOW_CLEAR bit
+Date: Thu, 18 Jan 2024 19:54:01 +0100
+Message-ID: <20240118185402.919396-1-friedrich.vock@gmx.de>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529F:EE_|BL0PR12MB4914:EE_
-X-MS-Office365-Filtering-Correlation-Id: faab8b11-d4f1-459d-6adb-08dc1832a083
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dcjb2TjOJTJ0ORejt1Ht3Q47jiI6cEBGjC3l5fNAHzDerePnuIPjyanK9b9l8iZsW9YKtj5QieayPru6nybkdidc5YKyqiyRcT02hYaSXuHPFLpzvYtj3FJsCKIeBymqqoPDcNcVxncvY4vGnMQ4hHQeaKJdvwPdYhugEkmO8GPUId0g2oG+g3hSgtqyQLVKw7f9BF3uiK9b+O1v3jsZPMh18b44bK6QbKh82V20dWOnZfnXhxi87Y3T8RyTJsXGcOdQGDMtYgX4Cugbh/ks7laQkt0x2WO/EBygz88kwV4ApFDEdv3Y8RPN4hu26RWeEgkYYKYjatzc0jb82a3Iuq9jdHKkZYWXP0BqRNdrVESQdSqH5GdiWu9ip0VgQOno/n7T8JhB3SXRyCjRXYEw6pqdXtsbViDXMCQ9O2BPuJvSaynwoD7RrRAyvAnIopHdTMCerjD7IfPkIEZ69Fv9H75CyqxSGyPAstKBojf6ZgSlnsQfd5o99Aa9gFHN9HhWkqBAdWhTgig/Eg0mh+gnbSSon3i9qYFoZf8xRkv4m+nZK7VrwjWgQ8DmakDm0ZEtYuuohQJAn1L1X9XiWHCBAxgn3y355LSeyo3n7ARspvPqmPqLPbJg0XvaQU+R5hRNoyKXAyZgdYgZw2G9oT5h85Hge3qiygTQBUvWcO4QeM/Myp1UY3jL1YJq9iDEfvAPjL3H/89gQ+Z/p7cuFe9PpOJ7nhZcVtF2oBvoiz/S2RVPhsKF8qqgm2SKfElzinfstw5Hvk0CgMvLMglfIFVTLw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(136003)(376002)(396003)(346002)(39860400002)(230922051799003)(186009)(451199024)(64100799003)(82310400011)(1800799012)(40470700004)(46966006)(36840700001)(40480700001)(40460700003)(7696005)(8936002)(83380400001)(1076003)(426003)(336012)(4326008)(8676002)(5660300002)(47076005)(6916009)(316002)(54906003)(70206006)(70586007)(6666004)(478600001)(26005)(2616005)(356005)(81166007)(82740400003)(2876002)(2906002)(4744005)(36756003)(41300700001)(86362001)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 14:34:49.9541 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: faab8b11-d4f1-459d-6adb-08dc1832a083
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529F.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4914
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:GXAe47ypdqtPByJHeqZQn5TAOQl+vZBOZ5JrJeNTE/225rqM/G8
+ m7cIy2xVWYtRJxRq0AxvdB9eH4JOm1TNS26uRUzpbD0XCTOPBR2VA30roLfoqtomiZy448g
+ isz7En8rquYwKstofH9WReVAgIX7/8PlbxEqx6xPAfo4U0O26fKPaW3P/Zmq/CFA89YDHEb
+ BVFAFQ45aWkv5eTYfaM/w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:mzc9lE8tzrI=;j2ZNATdezVYwG4eD7pvA1k4gIxW
+ sFryjyqDrj5q+CL8ZTseXPHStDP9dR8B7S+2dLK36c4mWXxsaLNr15XBVSBRCG6xzWvhMF3Sb
+ bAx+rM/06JAEWHxQ6oKEEvVDkTQ4FsUGDKfR2xV1Mh3dYokMEkW7uoR3pOckTLen0TSdzEbc6
+ 1qNsFCOojooS99/SexheDeDLT9IFLYxJKBfX+dVsi+l80GZTYbFaM3Hi0OcPoWzBa3Ed/d/Cf
+ qge6yqj3pIIJpAdthOd1dgXTMNG0fVEFnNwnmeLOHAPefQzMFkya+WERhRQ76r9O+PqtCguoS
+ uo4GJaDJPOoxmwI19IQYwmq0TQksk5EL1lonnNrjGBNdStTYFFll6xsgtqAucgzgJg2kY6Eoj
+ dnr18aYe9WWa7cgrxcN9R3bM7fQPDN1+wCO1vSpYCEPiAjVSt0n4bxrskuCXXCsPvuOP8iDqC
+ kxq1cuZ2VTp1M3yWmmOCkFjDLBGz0ZM7dvy/v2NXJ4MP7PHhd9nhUcuypgLssmJ+IqBPLA4hB
+ Ge8Ooz/M3JNPdvf2FCwlifDX2H/uE68pSKxN/8CkMeGvJlCQVJf/H60H5cwx4ry3yfJHnB5EZ
+ BjQPkcdzCrhDDBEIQxut+EsAUXJEUvd3DqzgjjsZdTmFyoSlIMHpzkrN9WUzWZxMO4oSAtPQ6
+ 9eGRftPmDhnCeSui1lTjILe60M1v0r5PluB7U7tNHbdPQ/hni40AbW44hKvoWLSjMlt/nSMyy
+ RLGDvF8E/qSZv5eqF7WuESt+6P8a6Ac936bK6ArVJDUT+AU6WaGJc3z7k39q1fuvOfUdoXlxf
+ 6cYhmOIkbWaA1GHP78VVq3gkyztAeecGCVCeJKeQADo1+cPrCcQlruRUDYEjbdhic3MQNU/Yi
+ SiKLSXgDPPgGYvtaifzzJKLlGygBY088BgxM088QyjRIvNe3NIZ0PuDpaT9oDm4zO2PIBbQw4
+ f0/dlWWt0wErek4BB1EKQj2Qoy4=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,43 +66,248 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, chiahsuan.chung@amd.com, Sunpeng.Li@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, jerry.zuo@amd.com,
- Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com, wayne.lin@amd.com,
- Harry.Wentland@amd.com, agustin.gutierrez@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>, stable@vger.kernel.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Joshua Ashton <joshua@froggi.es>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+Allows us to detect subsequent IH ring buffer overflows as well.
 
-- FW Release 0.0.201.0
-- Fix resizing video window for dcn321
-- Fix timing bandwidth calculation for HDMI
-- Fix null-deref in dml2 assigned pipe search
-- Add GART memory support for dmcub
-- Add power_state and pme_pending flag
-- Add usb4_bw_alloc_support flag
-- Revert "Rework DC Z10 restore
+Cc: Joshua Ashton <joshua@froggi.es>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+Cc: stable@vger.kernel.org
 
-Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Signed-off-by: Friedrich Vock <friedrich.vock@gmx.de>
+=2D--
+v2: Reset CLEAR_OVERFLOW bit immediately after setting it
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index cb1899772426..8ef322b6c724 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -51,7 +51,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.268"
-+#define DC_VER "3.2.269"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.34.1
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h  | 2 ++
+ drivers/gpu/drm/amd/amdgpu/cik_ih.c     | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/cz_ih.c      | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/iceland_ih.c | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/ih_v6_0.c    | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/ih_v6_1.c    | 8 ++++++++
+ drivers/gpu/drm/amd/amdgpu/navi10_ih.c  | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/si_ih.c      | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/tonga_ih.c   | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/vega10_ih.c  | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/vega20_ih.c  | 7 +++++++
+ 11 files changed, 71 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ih.h
+index 508f02eb0cf8..6041ec727f06 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
+@@ -69,6 +69,8 @@ struct amdgpu_ih_ring {
+ 	unsigned		rptr;
+ 	struct amdgpu_ih_regs	ih_regs;
+
++	bool overflow;
++
+ 	/* For waiting on IH processing at checkpoint. */
+ 	wait_queue_head_t wait_process;
+ 	uint64_t		processed_timestamp;
+diff --git a/drivers/gpu/drm/amd/amdgpu/cik_ih.c b/drivers/gpu/drm/amd/amd=
+gpu/cik_ih.c
+index 6f7c031dd197..bbadf2e530b8 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/cik_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/cik_ih.c
+@@ -204,6 +204,13 @@ static u32 cik_ih_get_wptr(struct amdgpu_device *adev=
+,
+ 		tmp =3D RREG32(mmIH_RB_CNTL);
+ 		tmp |=3D IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
+ 		WREG32(mmIH_RB_CNTL, tmp);
++
++		/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++		 * can be detected.
++		 */
++		tmp &=3D ~IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
++		WREG32(mmIH_RB_CNTL, tmp);
++		ih->overflow =3D true;
+ 	}
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/cz_ih.c b/drivers/gpu/drm/amd/amdg=
+pu/cz_ih.c
+index b8c47e0cf37a..e5c4ed44bad9 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/cz_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/cz_ih.c
+@@ -216,6 +216,12 @@ static u32 cz_ih_get_wptr(struct amdgpu_device *adev,
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32(mmIH_RB_CNTL, tmp);
+
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32(mmIH_RB_CNTL, tmp);
++	ih->overflow =3D true;
+
+ out:
+ 	return (wptr & ih->ptr_mask);
+diff --git a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c b/drivers/gpu/drm/amd=
+/amdgpu/iceland_ih.c
+index aecad530b10a..075e5c1a5549 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
+@@ -215,6 +215,12 @@ static u32 iceland_ih_get_wptr(struct amdgpu_device *=
+adev,
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32(mmIH_RB_CNTL, tmp);
+
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32(mmIH_RB_CNTL, tmp);
++	ih->overflow =3D true;
+
+ out:
+ 	return (wptr & ih->ptr_mask);
+diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c b/drivers/gpu/drm/amd/am=
+dgpu/ih_v6_0.c
+index d9ed7332d805..d0a5a08edd55 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+@@ -418,6 +418,13 @@ static u32 ih_v6_0_get_wptr(struct amdgpu_device *ade=
+v,
+ 	tmp =3D RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++	ih->overflow =3D true;
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c b/drivers/gpu/drm/amd/am=
+dgpu/ih_v6_1.c
+index 8fb05eae340a..6bf4f210ef74 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
+@@ -418,6 +418,14 @@ static u32 ih_v6_1_get_wptr(struct amdgpu_device *ade=
+v,
+ 	tmp =3D RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++	ih->overflow =3D true;
++
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/=
+amdgpu/navi10_ih.c
+index e64b33115848..cdbe7d01490e 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+@@ -442,6 +442,13 @@ static u32 navi10_ih_get_wptr(struct amdgpu_device *a=
+dev,
+ 	tmp =3D RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++	ih->overflow =3D true;
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/si_ih.c b/drivers/gpu/drm/amd/amdg=
+pu/si_ih.c
+index 9a24f17a5750..398fbc296cac 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/si_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/si_ih.c
+@@ -119,6 +119,13 @@ static u32 si_ih_get_wptr(struct amdgpu_device *adev,
+ 		tmp =3D RREG32(IH_RB_CNTL);
+ 		tmp |=3D IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
+ 		WREG32(IH_RB_CNTL, tmp);
++
++		/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++		 * can be detected.
++		 */
++		tmp &=3D ~IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
++		WREG32(IH_RB_CNTL, tmp);
++		ih->overflow =3D true;
+ 	}
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c b/drivers/gpu/drm/amd/a=
+mdgpu/tonga_ih.c
+index 917707bba7f3..1d1e064be7d8 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
+@@ -219,6 +219,13 @@ static u32 tonga_ih_get_wptr(struct amdgpu_device *ad=
+ev,
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32(mmIH_RB_CNTL, tmp);
+
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32(mmIH_RB_CNTL, tmp);
++	ih->overflow =3D true;
++
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c b/drivers/gpu/drm/amd/=
+amdgpu/vega10_ih.c
+index d364c6dd152c..619087a4c4ae 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+@@ -373,6 +373,13 @@ static u32 vega10_ih_get_wptr(struct amdgpu_device *a=
+dev,
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
+
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++	ih->overflow =3D true;
++
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c b/drivers/gpu/drm/amd/=
+amdgpu/vega20_ih.c
+index ddfc6941f9d5..f42f8e5dbe23 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
+@@ -421,6 +421,13 @@ static u32 vega20_ih_get_wptr(struct amdgpu_device *a=
+dev,
+ 	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 1);
+ 	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
+
++	/* Unset the CLEAR_OVERFLOW bit immediately so new overflows
++	 * can be detected.
++	 */
++	tmp =3D REG_SET_FIELD(tmp, IH_RB_CNTL, WPTR_OVERFLOW_CLEAR, 0);
++	WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
++	ih->overflow =3D true;
++
+ out:
+ 	return (wptr & ih->ptr_mask);
+ }
+=2D-
+2.43.0
 
