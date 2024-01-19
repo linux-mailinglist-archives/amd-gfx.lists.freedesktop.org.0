@@ -2,127 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D769832F56
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jan 2024 20:19:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E88CB832FAF
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jan 2024 21:19:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85F3F10E1E1;
-	Fri, 19 Jan 2024 19:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78EF310E1CE;
+	Fri, 19 Jan 2024 20:19:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D509910E1E1
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jan 2024 19:19:05 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4FED10E1CE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jan 2024 20:19:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hZ+JEC9A5T8PNPPM2DdCWKOlOZgtoN989G2D2avIQhjPH0/bm1BOCD+7h/zMrff1GJjeVSf9dCApc6xPB3fWNYCn556gLP9hVNXpIjvggLb5jxERXKpVkdQ/tt2qZygXL7y6TKtJfbpK3105afFLZvv2b08gxSBvwzEP3mNlLaQVD3hLLuvd0rLeMVIdPvDqpLD0joliURFpzcHhGDzEhukLMKFJiCRmQF7ntXJlf5L64iDyHqeH0sMkyVFuEMAQW09jK2AnLpLEiG7leGed4DH+PsRZRHisSTKOZbRI/fdk3E1QeY8VNrgk/uwQCK1YqC3fKY/ibDhimAz8zslUKA==
+ b=g1FV/gjAgP6rIY+FeFRuyl94tkr4eTZuoSlDusJumRLf9yuwr+1MJ9aV1B8gK2wKLPf8zVWe/xhFJAQtiRXR+5lOBmPHvcz2K0+vYKr0Tg8E8Zb7K5ECxwIyv8iaxU57rvLJfdP/rxCuJU88VTrKApY9XksnK5IVp/RJ3zP6xY0fdtDoaFDtYbaxXDzsJxdpK3qsWkxZemMy48ZaAmXI0uonzEc66I7EYe8+Dvf+ZxoTiyAzVtNksD3cUteT3xdnB1BmZWFYeQ4TUF21n8EWzrtQdW5hBPM/VlHJDohiVhayx2gIF/JNuiJSaEq5XoRyp0I17JxE4JxhIpQ6+HtTxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=znSnyLlMp1Cqg7n71nAt38y6zEmhmZbTY6f+ojIJS6E=;
- b=ABeJlobu6B6z6x8k/dPgaRP6Lm+LcvBfS1pZ9A6Ksd8jGTfz0j3kUpvRQ817hjsr0hhrrkjVdSbplurAGhxlHLfNoAeIyt+dhNWAIQLSUEzgm4eyA4u2z/2nO542JEdAEr5JlpT+Il9LsTT5zxw3APfOoGxkatUNBUsKfoifihRb6o7i+kr7NuicLTdss4CLHtqf4oGV3CuPqfhjjDh5MfKZddJIgXKomBsHPlF0k8RX53LXCv+9IJICZo5NmNdBPtl9G9vrFWgUix/0N3BlugsbfiMIOZ0+zHz+Zp1Pgo6kaVWKrURuKplURwHu8xZ2+XQEkgPp8pRIGrKip7EfNA==
+ bh=5SLk8HaN0MnprP4V/EQ97tDxhg73r0IadKtzhjNyGYY=;
+ b=n6IExt3cwk5nx2QFMqHIzEu5+PTyq7BRpJF4sgipMSnX4Np7K0JxvC8Vbzh07hncU0HfSPXa3TXUfHvnUbsqRofNVzeP3mjUqU7ksiraoLjh+E6Id68M9FQK52P/ytRX5zMhz8QeuvCL9vIwytq3LTvXI5jMubzY+fHrZLIs1/XQjDSPZAZbW685FmjHbe4AuC9sE3+VNqu/gXgh098An/zcMLWyy/taNEVhwahBVwOgWCBV98GelFhWpjGZs14XdQrHDJjfug/LPn8krZivRIYLELstmRSrBjpE+xTtsyIPixtyRQbAuOCRBrK8SrQ1+JjT/cqJEga/QRDpXRy1NQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=znSnyLlMp1Cqg7n71nAt38y6zEmhmZbTY6f+ojIJS6E=;
- b=VRnNrwU6NTFZ0zYt0qQceS9NCuG7WOBQuFA815jcqajXoE9bGb9ZmYiQM/GDJcH3a9e21FNYo6QGPunHKwEuY1rLeDXEFjMSWZzq6yr5uNlsgu603tbfWdJwhjluCc39hBSv7ALnB2IqFoSxFKkkV7NUs674+Yuli+t4TNKHqk0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by SJ1PR12MB6242.namprd12.prod.outlook.com (2603:10b6:a03:457::6)
+ bh=5SLk8HaN0MnprP4V/EQ97tDxhg73r0IadKtzhjNyGYY=;
+ b=Us4ysA2vC4JEhLCFJsOPHNokjFKGiAMZ5vSHepFYUvXqsKszGZsURe8v+hThLxmSdY2syHFtQhloVWDoewE5LGJCVk8rTi73cntw/bRzeTPIXln6XG0hR0UkWk0bQgpMB2yhYftFOLyOIoh5VyojN0qwd0iqyjc/lm4jTL0Naoc=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
- 2024 19:18:59 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::ed98:3dd5:fe85:ead7]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::ed98:3dd5:fe85:ead7%4]) with mapi id 15.20.7202.026; Fri, 19 Jan 2024
- 19:18:59 +0000
-Message-ID: <6590bae2-406d-4f45-a3e9-5dc6653925cf@amd.com>
-Date: Fri, 19 Jan 2024 14:18:57 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu: Reset IH OVERFLOW_CLEAR bit after writing
- rptr
+ 2024 20:19:44 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::a952:d50:fdc8:fc95]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::a952:d50:fdc8:fc95%7]) with mapi id 15.20.7202.026; Fri, 19 Jan 2024
+ 20:19:44 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] Revert "drm/amd/pm: fix the high voltage and temperature
+ issue"
+Thread-Topic: [PATCH] Revert "drm/amd/pm: fix the high voltage and temperature
+ issue"
+Thread-Index: AQHaSxRGxNIWFhvOGkO6OvcXfx6yB7Dhk1kF
+Date: Fri, 19 Jan 2024 20:19:44 +0000
+Message-ID: <BL1PR12MB5144CE12BC49681460E25742F7702@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20240119091600.30188-1-mario.limonciello@amd.com>
+In-Reply-To: <20240119091600.30188-1-mario.limonciello@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Friedrich Vock <friedrich.vock@gmx.de>, Alex Deucher
- <alexdeucher@gmail.com>, Christian Koenig <christian.koenig@amd.com>
-References: <20240114130008.868941-1-friedrich.vock@gmx.de>
- <69cec077-4011-4738-bbb0-8fb1e6f52159@gmail.com>
- <abdfec21-2642-4c68-8c51-cdfba54928aa@gmx.de>
- <577a8451-0791-4bd1-8c6c-61a7cc293174@gmail.com>
- <d15ac325-e830-4e11-a239-56eaeddecae8@gmx.de>
- <e977939c-db01-4b14-8494-0bdad5be7a8a@gmail.com>
- <CADnq5_Nb=ruoA2j-mHrQbxHY=yzwGm2kKjDiQ+ajk3urKKLing@mail.gmail.com>
- <42af4788-10bb-4107-bd1a-05f15dc9c1fa@gmx.de>
- <4d3e3c70-3307-4068-9416-613a19f587d4@gmail.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-In-Reply-To: <4d3e3c70-3307-4068-9416-613a19f587d4@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBPR01CA0111.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::11) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|SJ1PR12MB6242:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d94366b-f9b8-4476-3e6a-08dc19237ce7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: o8GQywrI3fZaQvR2RHmemM9HZ1HBlotK/CBbXEMeRLA1WUK+mjt3kk7+5/CPuzLmKkeIwzVqZUx+LZ1PyG7uiE6sIGQXMs50chsOwC1d1FIrnOBclH0KFUia2d934dRGN+q/UYV7rUk/DU1T5XJD/ogzCDRkKVGkGQoZLNxVW2/FDrN8gp0WDliEo5zqy3jXBe3mIv/eKBw5bc1mhSZUxGg0feYwveEIcLyDlT+eiTQcNHxHJgS5R/e8kAXWxED35MLnVcnpOgpiW1dgWRtjZ9pRVC8lrrjsF+1m7Wr7F2kY4SQ9SdAE/WRFBXxL2GgEIPVZTweuWqw3XCdHnXBXr+Y2yKWEbH3P6AitZRQmlU7vGYVGxCh7HOfKAw4TWJJNlp35r3X1k5u4H4mdF2PIHIVfpoN5UXw51JDlJDL2mYjF0m+LNGFqzcYgKRsLoUk/iri0UDUaebbItyBqdk//fpK5w7ioMuZR3n1J14o8EhCqY7YiZgBaygC7asQnNVvmx7lXTIaNCX8Xpo2VoOnvdviGbM9UzayMk05kAc2DEbZ8F2RWLN8Zhdi5aV4ieFuloR/eSh+Wwgxmb+gTyjI7HeG6g3ipDb295udkSHZ3Tc9akv3+Zu1Ymo86ZARP9Qe6c1Z8RKj8iCb1yLgPK0u9JOrV4PTE2+GGHOniD3aCA4c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(366004)(136003)(346002)(376002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(2906002)(26005)(83380400001)(2616005)(38100700002)(41300700001)(8676002)(8936002)(6636002)(316002)(54906003)(5660300002)(66476007)(30864003)(66556008)(66946007)(4326008)(110136005)(44832011)(66574015)(6506007)(6512007)(36916002)(6486002)(53546011)(478600001)(36756003)(31696002)(86362001)(31686004)(21314003)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=True;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-01-19T20:19:43.719Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|LV2PR12MB5869:EE_
+x-ms-office365-filtering-correlation-id: f4e2583e-a714-4ca9-383b-08dc192bf98a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BCuenzpt7naSKUcElbwizF8P26sxzRkcjLobA5gbW+R7w1oc5vPEn5XmEc8n8Dy1MVwC7Idtk2jc5UACKcRsejFslCfZO64TD2SkLAjFYolvOOKaAEv9izbnnL/76N8Xzn6CGTtTPzPjJifq8ICsa796IPJha2wlpuBao9AoXJqpmgLg/bVAZnt9q+dPPoG3JcQelZgCNX8XGit0SZz/C9BL02YsN7nA/CP2JTtdHI/w+HnjY8IrgtWAyURsqAaoPk7luKnjKdOJsCoDu2xbX2C7Jejfur9xJkPMwbNOri6llIO9EcpW1z0VB8oZtJyezglhUiO9r20XKzc+1DW5Ev8MwKUWID/4FipgpJ1zNbcTzdbHJf5Yf2z0wBuXl4dicKkm9jn+TxeruAXEz8Udo/Iv7mDUqFlvGIeaa/nNhTpZyE+F2OyHid7XCnxiGfqLYx4f1XHOtXG0XEiq/1fwvdDU7k4oVqBTKhNObwp5seI5Bnal276vKFOAzd6CqWXeHdRnPdqqzny7jUMTMNLyKMaPfCOU5skx9d7xrqdKPqqBzFrpRAyyQ7Tyc+8hZBbMu2j0omZumqStFbYS9qvUSKA2AqlQhyNtB6F9sy4n8Dz1HTFL+v/cpSspLxNC4oRk
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(39860400002)(346002)(396003)(366004)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(26005)(9686003)(83380400001)(76116006)(54906003)(122000001)(38100700002)(5660300002)(4326008)(8676002)(316002)(52536014)(8936002)(64756008)(966005)(66476007)(53546011)(110136005)(71200400001)(478600001)(7696005)(2906002)(66446008)(66556008)(66946007)(6506007)(38070700009)(86362001)(33656002)(166002)(55016003)(19627405001)(41300700001)(309714004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHB0Z1JJallGNGd1UWk5THZqRUVPWi9wcTQ3cjFnblZFdzlUaFJDUzJxSGg1?=
- =?utf-8?B?ZjgwdllWN2JTS3FwN0xYVmg4am5yRDFOQ1RNb3FMd3plQU9mb3RqbUpJV1h1?=
- =?utf-8?B?VTFOemxSTVZjRWkvVUZ5dWM2WkxwWlBuYTV4M0pRekNLMmJTWlNqRFNhRGdx?=
- =?utf-8?B?cjBXeXJNQk4wbHVYWjhwRTVQNzBxOTBiUW9XWVB3TWdXVlFvNXFHZmRjb0xW?=
- =?utf-8?B?RnprM2dOaElva3diZGdqa2J5aitqdUVhNzQ2ZksrVE1TcVliQUFCL1d4NHp2?=
- =?utf-8?B?MDNHRkplYUs0dFg5QWZzSS9ycEphalAyZWhpeVdOL2NjT3BFZnlzT2pTYTNR?=
- =?utf-8?B?ZXU4Skt1QnhhNkcvRlpJY3JNV3VJeXZ6a2xJUVZESml2QlJvTG5WMUg5NVRt?=
- =?utf-8?B?REFlbjRJY2VVSkEySCtIbGtiZ2cySEtacFBQN3VmRUdsU2pqU1g1Y1RHM0lq?=
- =?utf-8?B?TzFLNFpOYVhYSGpwRzBMVGRydzJFVE5nMmlGdEJLWFRMQnhOeHR2aTNwN0Vv?=
- =?utf-8?B?N0g0eWdFaEZnV08yVlZ1aGgrdU9FSHdCY2dzWDMyOXBPM0dYNUZaUzJhQUlF?=
- =?utf-8?B?UDlmSzdUMUFQU1JVbVFoRUNuOVNzZy9SVEYrUWYrWWI4NkFTNEUzV21TV3Jl?=
- =?utf-8?B?anp1RkhTc1V4b29zNkVIYWEyZ3FuaEdsZ0s2aHRTWk9HUU1rQ0tpaUJWSTdP?=
- =?utf-8?B?anNzYWVVYjNoWjZIbFVDTWJTU3RhQjFtY2tqdEVnb05BcGtVMlFqc0dFaFdp?=
- =?utf-8?B?NkoxdnEydi8wamwwMnlqL0M3eFRSUkxSWkhSTWhrMk5Eb1NWSnpLblRNODQz?=
- =?utf-8?B?VGp5N2wxVEd6SzVKR0piRnozTkkzOTlYVzJWaXVtY2pBaXZpTnhSQzUxaXhR?=
- =?utf-8?B?MVVpRDhtYUtlWTF0K29Yd2p2WmF1VUNVL1ZxMm9TaVpKNTZWdy9NK0tkdTZU?=
- =?utf-8?B?THl3akkwSENWaEdhM2lYazJtOThMNThwWkU0OWJDOFhyRkMrSnRqQzQ4SHdj?=
- =?utf-8?B?MHdYZ2dHUWl3MldxWG54VVo0UkFlSHp0ajBLdlhsMHQyRlRUWVUxWCtYQ0Fr?=
- =?utf-8?B?T0VRa3k2U1BCTitWMW5xbW5kM09PVHZBVVcvS1BVMndOSVpFQlE1VnRabUFD?=
- =?utf-8?B?enlwWDk2NUk5U2N5bmlPdExSTFlSNWZLL1ZidTVCbVVWenozRGtBNlhCazRC?=
- =?utf-8?B?MUdlNS9rb0tlaEh2a0xpK0NvSlhDaEVPcmhYc0hTcU93aFIySnNyMXpHOWRv?=
- =?utf-8?B?VmFHSXVHRWVOY1J4eFRBMGhYL1dHRXBDaEg0ZTh1TVNHdis0YzFMNmRrNkdo?=
- =?utf-8?B?eWFoalBMNVBmNnIyYmpsaVkzeEV4aUFyay83a0VpaTd2dGYreTBFMldGY2RP?=
- =?utf-8?B?eVRMQWF0WFEvSEp6U2tHd00vQ1FNS0Z2K2lQZTdPbkZSaURFOU15SElRam1s?=
- =?utf-8?B?K1c2WUZXWGtWK3JRUkoxUU1seUY3MUtpV1MrRTIrYUU3WkVkeG51dXhmTW5H?=
- =?utf-8?B?MjdvWkFuenNIc0REVWREL0lTQXdiaFhFTER1RDg3aG1ydEhTbkgyZHVyd2wx?=
- =?utf-8?B?THhyM2JzYmJFcjRVOEpacHBLWms5eS92N1hROExDN0RrUThoNm9GbmU0L1I1?=
- =?utf-8?B?NlUyL09hSm1ycUNXOThpSEdTRitZOWlUaEIvWldzNWw5ZTBRUWtzT0U0L3pq?=
- =?utf-8?B?RXFFMllHY2k4OWx5eEdWUVNMU2JlbS9GVVg4cXlWQUFsQmFQS3dCNUNnMk1w?=
- =?utf-8?B?eUJ4MGxpQ1BlYXBRSEtWcmM4YVZseE91L1JDTXlOUFlYaFpzZ05QdlhqZFIy?=
- =?utf-8?B?RVFLaUVHbmNlV2JCTmNhNGZTZ3pGSHA5OTlkMWRkY0xQS2tXdnVJT1ZManUx?=
- =?utf-8?B?aEpMcFB2R2xuelFpRUg3U2J3K3hieHVTQjJJMHh3bTRwNU0yeDlyQU1TakpH?=
- =?utf-8?B?VStaamV6UjVnM1hIZTB6S3FLb0hhei9YK04xSDlvOElSbmtKVkRJUEtHMVdR?=
- =?utf-8?B?andSSDZROHRiR2hMalpGRjFNeG1lWXFqcjFLcUN6d1V2UDQ5a1hUd0RBanJ6?=
- =?utf-8?B?TzI1S3pWeHk5YTVleWY1TmdqeW5QMGhvYjVuaWZyZEZQc1hqcERVOHRIdnY3?=
- =?utf-8?Q?ZXB5wrdVNTlbGYiEKl9KRpbYd?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zYFLb0lCaNGaUCstgBTaOA5KgSS45ER5yUnUgNu+Ut9RpIPUwzaanjXDyy7E?=
+ =?us-ascii?Q?ZbPWVBtL7HydO3/TLulh09tAVCX3IoEyJPSPMf0oBJ+mfhOPi8BuxJDNw7Sk?=
+ =?us-ascii?Q?MvJ7RulUjDRKqZzVashRtJSR7gpPdoFUYQHLYK8hj4PdEl6iUOjW5I6lk6QM?=
+ =?us-ascii?Q?gonFCtVSLgohteVMM1REhY6wgsOvvQ6sRqefVEQDcWfik0CWOh9pyPmX3Z4R?=
+ =?us-ascii?Q?tnOtdb3xSyNa+xu/q+AgMFJlQGElgFgQr0jNawlRiY2AcJPqEHniZ1c/qKLG?=
+ =?us-ascii?Q?eqpWQmwfobCMCanuYaMAD4c9QaDArkPpdTb8Ed8dOzSDoxPoww39elQb9i2x?=
+ =?us-ascii?Q?nRaagFoROvjINLts3U2aJOtrcLMTZSRriLd7h8ayS+Wiawak6FImnV9VgLNM?=
+ =?us-ascii?Q?66a8vn1PgBzrhxN7Nmuy4zgjlZGPbsOgXa+sVEIxq66QTDPzkzYTJQwbQiFp?=
+ =?us-ascii?Q?h4PrpDBP1FdRFZLTCFHR1PR6o9TXCu/CDlh8nuGrCWuWPfCJJ6TqtyToOOFc?=
+ =?us-ascii?Q?8XsrPuCMqXmiUZbZxEx+oNwmwzhQB9SS1BFq3dls0PlGefprjdhJedkoYCz1?=
+ =?us-ascii?Q?i8wPKa67+CE4CUEK2J/B6us7I0xAzQdZexuaxGmnyooECzi+vOSNyIwHuAUT?=
+ =?us-ascii?Q?SAd7MjD1vcT8Nq/VvU6cxs8H+l/gXz17lHeyNV2LFFzQnDeFncIxFrB1d8kL?=
+ =?us-ascii?Q?CQFSb1EBKBQYtBCU2Lr+BM0S1SnOsHY7jAiys3j1KEBQPCtG1WsV7BDUO5tF?=
+ =?us-ascii?Q?MNOFCOpzdbo1KOGzZWAvqv8W4gS5MvHO/TQqjwc2EuagdyFdr7a26+Azgncn?=
+ =?us-ascii?Q?dVzoYHZqFC4YR+ZmAbov0RVkAFwEaKVi+153fCKEiSEZdze6B4Oz/brzNng6?=
+ =?us-ascii?Q?AqQEst/n0XGf/l0GK/HDexttB+SyTWQOijbBiBOJrSapydOhwpqFN4hE2kkZ?=
+ =?us-ascii?Q?88h/dZ7lPyF10xZyWQrxoEhSc7WAhSIkyHzUQBIJ0KeR3wRkkN/kIwJDHCkg?=
+ =?us-ascii?Q?0uz5LeA3pyZ6IlY3SCQCkZDXeNfaUQercRAzvpEgh5/vmcUEX+CyWsE9sUb4?=
+ =?us-ascii?Q?+wdKR1JpBRhWFemgSVyw+pBdf4In0NbX7l22c31lQ5zxtEWDkRApKRVxQVB/?=
+ =?us-ascii?Q?I7whIXXcJzOgrEVc4Iylp1e5aG72C26m1kDJozk+YXP4JfZKuEmVaOdU47cp?=
+ =?us-ascii?Q?xbUph8e6ux7Z3Ss2LnZrEtEtiVaU6uN94skQHMgLlGmh6K5PJgzFwshkFVn1?=
+ =?us-ascii?Q?rmnIyvvJUteQZ6RqFQnmxWEZIOBnIHF32T6QbBmyu19DNfKOThNDuOZQW9zX?=
+ =?us-ascii?Q?+9estmL8bvWloEVb4X3oYJMwqUQSR6D5L4jnsrsNxtTL1pV1KbtNTMNq9UaS?=
+ =?us-ascii?Q?VJQ3d1hKMCgJOb4YNmTU9/VeA6WL1qYCoMaChO1dO4gwiyEmsg1O23KS/BYM?=
+ =?us-ascii?Q?c1EJdrwUWA6V9xjD1ycPyKflyAdnOEamKOquqZywN4bhg0Fm5z7rtjAB5B+A?=
+ =?us-ascii?Q?Z31lX+qK69iYvl8qJ2W7zhu8G1YQJE06cVqdB8aJGloSjcTenhnse7R6iKK0?=
+ =?us-ascii?Q?stjniUPWLSX6JIdRdU8=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB5144CE12BC49681460E25742F7702BL1PR12MB5144namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d94366b-f9b8-4476-3e6a-08dc19237ce7
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2024 19:18:59.1305 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aSmgl1gmWg3vfR9rPViaRWx388Fj698s8F6/ShEvbwlk4wn8Tox63kRwqLKah2ok5koOrZ/uMI1KZJReemER4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6242
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4e2583e-a714-4ca9-383b-08dc192bf98a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2024 20:19:44.0300 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: b4znJibZV/Rxn1E78xelJuI9WKrGKM2VnNm+LP55gzYZIOm5DY94dMXMfo09TI0Lj6yVHP10AGPE79+XS+Hpjw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5869
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,553 +123,572 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Joshua Ashton <joshua@froggi.es>
+Cc: "Feng, Kenneth" <Kenneth.Feng@amd.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-01-18 07:07, Christian König wrote:
-> Am 18.01.24 um 00:44 schrieb Friedrich Vock:
->> On 18.01.24 00:00, Alex Deucher wrote:
->>> [SNIP]
->>>>>>> Right now, IH overflows, even if they occur repeatedly, only get
->>>>>>> registered once. If not registering IH overflows can trivially 
->>>>>>> lead to
->>>>>>> system crashes, it's amdgpu's current handling that is broken.
->>>>>> It's years that we last tested this but according to the HW
->>>>>> documentation this should work fine.
->>>>>>
->>>>>> What could potentially happen is that the IH has silenced the source
->>>>>> of the overflow. We never implemented resetting those, but in this
->>>>>> case that here won't help either.
->>>>>>
->>>>> If the IH silenced the page faults (which quite clearly cause the
->>>>> overflow here), then how are the page faults still logged in dmesg?
->>>> There should be a hardware rate limit for the page faults, e.g. there
->>>> can only be X faults reported in N clock cycles and then a delay is
->>>> inserted.
->>> @Christian Koenig  Is that tied to xnack (i.e., noretry)?  The default
->>> is noretry=1 on gfx10.3 and newer.  But it can be overridden. It was
->>> not set on some older kernels, maybe that is the problem? @Friedrich
->>> Vock does setting amdgpu.noretry=1 fix the issue?
->>
->>
->> No, amdgpu.noretry=1 does not change anything.
->
-> Well the good news first the hw engineer answered rather quickly. The 
-> bad news is that the hardware really doesn't work as documented in 
-> multiple ways.
->
-> First of all the CLEAR bit is a level and not a trigger, so the 
-> intention to clear it is indeed correct. For now please modify this 
-> patch so that the CLEAR bit is set and cleared directly after setting 
-> it, this way we should be able to detect further overflows immediately.
->
-> Then the APU the Steam Deck uses simply doesn't have the filter 
-> function for page faults in the hardware, the really bad news is it 
-> also doesn't have the extra IH rings where we could re-route the 
-> faults to prevent overflows.
->
-> That full explains the behavior you have been seeing, but doesn't 
-> really provide a doable solution to mitigate this problem.
->
-> I'm going to dig deeper into the hw documentation and specification to 
-> see if we can use a different feature to avoid the overflow.
+--_000_BL1PR12MB5144CE12BC49681460E25742F7702BL1PR12MB5144namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-If we're not enabling retry faults, then each wave front should generate 
-at most one fault. You should be able to avoid overflows by making the 
-IH ring large enough to accommodate one fault per wave front.
+[AMD Official Use Only - General]
 
-If the faults are coming from SDMA, that may be another problem. I'm not 
-sure whether it can generate multiple no-retry faults from the same queue.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Mario Li=
+monciello <mario.limonciello@amd.com>
+Sent: Friday, January 19, 2024 4:16 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Feng, Kenneth <Kenneth.Feng@amd.com>; Limonciello, Mario <Mario.Limonci=
+ello@amd.com>; stable@vger.kernel.org <stable@vger.kernel.org>
+Subject: [PATCH] Revert "drm/amd/pm: fix the high voltage and temperature i=
+ssue"
 
-Regards,
-   Felix
+This reverts commit 5f38ac54e60562323ea4abb1bfb37d043ee23357.
+This causes issues with rebooting and the 7800XT.
+
+Cc: Kenneth Feng <kenneth.feng@amd.com>
+Cc: stable@vger.kernel.org
+Fixes: 5f38ac54e605 ("drm/amd/pm: fix the high voltage and temperature issu=
+e")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3062
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 24 ++++----------
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 33 ++-----------------
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  1 -
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c  |  8 +----
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c  |  8 +----
+ 5 files changed, 11 insertions(+), 63 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_device.c
+index b4c19e3d0bf1..56d9dfa61290 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4131,23 +4131,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+                                 }
+                         }
+                 } else {
+-                       switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
+-                       case IP_VERSION(13, 0, 0):
+-                       case IP_VERSION(13, 0, 7):
+-                       case IP_VERSION(13, 0, 10):
+-                               r =3D psp_gpu_reset(adev);
+-                               break;
+-                       default:
+-                               tmp =3D amdgpu_reset_method;
+-                               /* It should do a default reset when loadin=
+g or reloading the driver,
+-                                * regardless of the module parameter reset=
+_method.
+-                                */
+-                               amdgpu_reset_method =3D AMD_RESET_METHOD_NO=
+NE;
+-                               r =3D amdgpu_asic_reset(adev);
+-                               amdgpu_reset_method =3D tmp;
+-                               break;
+-                       }
+-
++                       tmp =3D amdgpu_reset_method;
++                       /* It should do a default reset when loading or rel=
+oading the driver,
++                        * regardless of the module parameter reset_method.
++                        */
++                       amdgpu_reset_method =3D AMD_RESET_METHOD_NONE;
++                       r =3D amdgpu_asic_reset(adev);
++                       amdgpu_reset_method =3D tmp;
+                         if (r) {
+                                 dev_err(adev->dev, "asic reset on init fai=
+led\n");
+                                 goto failed;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/am=
+d/pm/swsmu/amdgpu_smu.c
+index c16703868e5c..961cd2aaf137 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -733,7 +733,7 @@ static int smu_early_init(void *handle)
+         smu->adev =3D adev;
+         smu->pm_enabled =3D !!amdgpu_dpm;
+         smu->is_apu =3D false;
+-       smu->smu_baco.state =3D SMU_BACO_STATE_NONE;
++       smu->smu_baco.state =3D SMU_BACO_STATE_EXIT;
+         smu->smu_baco.platform_support =3D false;
+         smu->user_dpm_profile.fan_mode =3D -1;
+
+@@ -1961,31 +1961,10 @@ static int smu_smc_hw_cleanup(struct smu_context *s=
+mu)
+         return 0;
+ }
+
+-static int smu_reset_mp1_state(struct smu_context *smu)
+-{
+-       struct amdgpu_device *adev =3D smu->adev;
+-       int ret =3D 0;
+-
+-       if ((!adev->in_runpm) && (!adev->in_suspend) &&
+-               (!amdgpu_in_reset(adev)))
+-               switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
+-               case IP_VERSION(13, 0, 0):
+-               case IP_VERSION(13, 0, 7):
+-               case IP_VERSION(13, 0, 10):
+-                       ret =3D smu_set_mp1_state(smu, PP_MP1_STATE_UNLOAD)=
+;
+-                       break;
+-               default:
+-                       break;
+-               }
+-
+-       return ret;
+-}
+-
+ static int smu_hw_fini(void *handle)
+ {
+         struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+         struct smu_context *smu =3D adev->powerplay.pp_handle;
+-       int ret;
+
+         if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_is_pp_one_vf(adev))
+                 return 0;
+@@ -2003,15 +1982,7 @@ static int smu_hw_fini(void *handle)
+
+         adev->pm.dpm_enabled =3D false;
+
+-       ret =3D smu_smc_hw_cleanup(smu);
+-       if (ret)
+-               return ret;
+-
+-       ret =3D smu_reset_mp1_state(smu);
+-       if (ret)
+-               return ret;
+-
+-       return 0;
++       return smu_smc_hw_cleanup(smu);
+ }
+
+ static void smu_late_fini(void *handle)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/dr=
+m/amd/pm/swsmu/inc/amdgpu_smu.h
+index 2aa4fea87314..66e84defd0b6 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+@@ -424,7 +424,6 @@ enum smu_reset_mode {
+ enum smu_baco_state {
+         SMU_BACO_STATE_ENTER =3D 0,
+         SMU_BACO_STATE_EXIT,
+-       SMU_BACO_STATE_NONE,
+ };
+
+ struct smu_baco_context {
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+index 231122622a9c..bc8bd67c48ac 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+@@ -2748,13 +2748,7 @@ static int smu_v13_0_0_set_mp1_state(struct smu_cont=
+ext *smu,
+
+         switch (mp1_state) {
+         case PP_MP1_STATE_UNLOAD:
+-               ret =3D smu_cmn_send_smc_msg_with_param(smu,
+-                                                                          =
+               SMU_MSG_PrepareMp1ForUnload,
+-                                                                          =
+               0x55, NULL);
+-
+-               if (!ret && smu->smu_baco.state =3D=3D SMU_BACO_STATE_EXIT)
+-                       ret =3D smu_v13_0_disable_pmfw_state(smu);
+-
++               ret =3D smu_cmn_set_mp1_state(smu, mp1_state);
+                 break;
+         default:
+                 /* Ignore others */
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+index 59606a19e3d2..0906221231ea 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+@@ -2504,13 +2504,7 @@ static int smu_v13_0_7_set_mp1_state(struct smu_cont=
+ext *smu,
+
+         switch (mp1_state) {
+         case PP_MP1_STATE_UNLOAD:
+-               ret =3D smu_cmn_send_smc_msg_with_param(smu,
+-                                                                          =
+               SMU_MSG_PrepareMp1ForUnload,
+-                                                                          =
+               0x55, NULL);
+-
+-               if (!ret && smu->smu_baco.state =3D=3D SMU_BACO_STATE_EXIT)
+-                       ret =3D smu_v13_0_disable_pmfw_state(smu);
+-
++               ret =3D smu_cmn_set_mp1_state(smu, mp1_state);
+                 break;
+         default:
+                 /* Ignore others */
+--
+2.34.1
 
 
+--_000_BL1PR12MB5144CE12BC49681460E25742F7702BL1PR12MB5144namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Thanks,
-> Christian.
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;font-=
+style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[AMD Official Use Only - General]<br>
+</p>
+<br>
+<div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; color: rgb(0, 0, 0);">Acked-by: Alex Deuch=
+er &lt;alexander.deucher@amd.com&gt;</span></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Mario Limonciello &lt;mario.l=
+imonciello@amd.com&gt;<br>
+<b>Sent:</b> Friday, January 19, 2024 4:16 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;; Limonciello, Mario &=
+lt;Mario.Limonciello@amd.com&gt;; stable@vger.kernel.org &lt;stable@vger.ke=
+rnel.org&gt;<br>
+<b>Subject:</b> [PATCH] Revert &quot;drm/amd/pm: fix the high voltage and t=
+emperature issue&quot;</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">This reverts commit 5f38ac54e60562323ea4abb1bfb37d=
+043ee23357.<br>
+This causes issues with rebooting and the 7800XT.<br>
+<br>
+Cc: Kenneth Feng &lt;kenneth.feng@amd.com&gt;<br>
+Cc: stable@vger.kernel.org<br>
+Fixes: 5f38ac54e605 (&quot;drm/amd/pm: fix the high voltage and temperature=
+ issue&quot;)<br>
+Closes: <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/issues/3062">ht=
+tps://gitlab.freedesktop.org/drm/amd/-/issues/3062</a><br>
+Signed-off-by: Mario Limonciello &lt;mario.limonciello@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_device.c&nbsp;&nbsp;&nbsp; | 24 +++=
++----------<br>
+&nbsp;drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c&nbsp;&nbsp;&nbsp;&nbsp; | 3=
+3 ++-----------------<br>
+&nbsp;drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |&nbsp; 1 -<br>
+&nbsp;.../drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c&nbsp; |&nbsp; 8 +----<br=
 >
->>
->> Regards,
->> Friedrich
->>
->>> Alex
->>>
->>>>>>> The possibility of a repeated IH overflow in between reading the 
->>>>>>> wptr
->>>>>>> and updating the rptr is a good point, but how can we detect 
->>>>>>> that at
->>>>>>> all? It seems to me like we can't set the OVERFLOW_CLEAR bit at all
->>>>>>> then, because we're guaranteed to miss any overflows that happen 
->>>>>>> while
->>>>>>> the bit is set.
->>>>>> When an IH overflow is signaled we clear that flag by writing 1 into
->>>>>> the OVERFLOW_CLEAR bit and skip one entry in the IH ring buffer.
->>>>>>
->>>>>> What can of course happen is that the IH ring buffer overflows more
->>>>>> than this single entry and we process IVs which are potentially
->>>>>> corrupted, but we won't miss any additional overflows since we only
->>>>>> start processing after resetting the flag.
->>>>>>
->>>>>> An IH overflow is also something you should *never* see in a
->>>>>> production system. This is purely for driver bringup and as fallback
->>>>>> when there is a severe incorrect programming of the HW.
->>>>>>
->>>>>> The only exception of that is page fault handling on MI products
->>>>>> because of a hardware bug, to mitigate this we are processing page
->>>>>> faults on a separate IH ring on those parts.
->>>>>>
->>>>>> On all other hw generations the IH should have some rate limit 
->>>>>> for the
->>>>>> number of faults generated per second, so that the CPU is always 
->>>>>> able
->>>>>> to catch up.
->>>>> I'm wondering if there is another bug in here somewhere. Your
->>>>> explanation of how it's supposed to work makes a lot of sense, but 
->>>>> from
->>>>> what I can tell it doesn't work that way when I test it.
->>>>>
->>>>>  From the printk_ratelimit stats it would seem like >2000 faults 
->>>>> arrive
->>>>> in less than a second, so perhaps your theory about fault interrupt
->>>>> ratelimiting not working is correct (but it's hard for me to 
->>>>> verify what
->>>>> is going on without the documentation).
->>>> I'm going to ping the relevant engineer and putting someone on the 
->>>> task
->>>> to take a look.
->>>>
->>>> Thanks,
->>>> Christian.
->>>>
->>>>> Regards,
->>>>> Friedrich
->>>>>
->>>>>> Regards,
->>>>>> Christian.
->>>>>>
->>>>>>> Regards,
->>>>>>> Friedrich
->>>>>>>
->>>>>>>> When you clear the overflow again when updating the RPTR you could
->>>>>>>> loose another overflow which might have happened in between and so
->>>>>>>> potentially process corrupted IVs.
->>>>>>>>
->>>>>>>> That can trivially crash the system.
->>>>>>>>
->>>>>>>> Regards,
->>>>>>>> Christian.
->>>>>>>>
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    static int cik_ih_early_init(void *handle)
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/cz_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/cz_ih.c
->>>>>>>>> index b8c47e0cf37a..076559668573 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/cz_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/cz_ih.c
->>>>>>>>> @@ -215,7 +215,7 @@ static u32 cz_ih_get_wptr(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> -
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>> @@ -266,7 +266,19 @@ static void cz_ih_decode_iv(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>    static void cz_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                   struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>> +
->>>>>>>>>        WREG32(mmIH_RB_RPTR, ih->rptr);
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    static int cz_ih_early_init(void *handle)
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
->>>>>>>>> index aecad530b10a..1a5e668643d1 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
->>>>>>>>> @@ -214,7 +214,7 @@ static u32 iceland_ih_get_wptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> -
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>> @@ -265,7 +265,19 @@ static void iceland_ih_decode_iv(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void iceland_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                    struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>> +
->>>>>>>>>        WREG32(mmIH_RB_RPTR, ih->rptr);
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    static int iceland_ih_early_init(void *handle)
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
->>>>>>>>> index d9ed7332d805..ce8f7feec713 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
->>>>>>>>> @@ -418,6 +418,8 @@ static u32 ih_v6_0_get_wptr(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>        tmp = RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>> +
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>>    }
->>>>>>>>> @@ -459,6 +461,7 @@ static void ih_v6_0_irq_rearm(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void ih_v6_0_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                       struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>>        struct amdgpu_ih_regs *ih_regs;
->>>>>>>>>
->>>>>>>>>        if (ih->use_doorbell) {
->>>>>>>>> @@ -472,6 +475,16 @@ static void ih_v6_0_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>            ih_regs = &ih->ih_regs;
->>>>>>>>>            WREG32(ih_regs->ih_rb_rptr, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    /**
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
->>>>>>>>> index 8fb05eae340a..668788ad34d9 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
->>>>>>>>> @@ -418,6 +418,8 @@ static u32 ih_v6_1_get_wptr(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>        tmp = RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>> +
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>>    }
->>>>>>>>> @@ -459,6 +461,7 @@ static void ih_v6_1_irq_rearm(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void ih_v6_1_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                       struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>>        struct amdgpu_ih_regs *ih_regs;
->>>>>>>>>
->>>>>>>>>        if (ih->use_doorbell) {
->>>>>>>>> @@ -472,6 +475,16 @@ static void ih_v6_1_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>            ih_regs = &ih->ih_regs;
->>>>>>>>>            WREG32(ih_regs->ih_rb_rptr, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    /**
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
->>>>>>>>> index e64b33115848..0bdac923cb4d 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
->>>>>>>>> @@ -442,6 +442,7 @@ static u32 navi10_ih_get_wptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>        tmp = RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>>    }
->>>>>>>>> @@ -483,6 +484,7 @@ static void navi10_ih_irq_rearm(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void navi10_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                       struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>>        struct amdgpu_ih_regs *ih_regs;
->>>>>>>>>
->>>>>>>>>        if (ih == &adev->irq.ih_soft)
->>>>>>>>> @@ -499,6 +501,16 @@ static void navi10_ih_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>            ih_regs = &ih->ih_regs;
->>>>>>>>>            WREG32(ih_regs->ih_rb_rptr, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    /**
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/si_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/si_ih.c
->>>>>>>>> index 9a24f17a5750..ff35056d2b54 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/si_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/si_ih.c
->>>>>>>>> @@ -119,6 +119,7 @@ static u32 si_ih_get_wptr(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>            tmp = RREG32(IH_RB_CNTL);
->>>>>>>>>            tmp |= IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
->>>>>>>>>            WREG32(IH_RB_CNTL, tmp);
->>>>>>>>> +        ih->overflow = true;
->>>>>>>>>        }
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>>    }
->>>>>>>>> @@ -147,7 +148,18 @@ static void si_ih_decode_iv(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>    static void si_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                   struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>> +
->>>>>>>>>        WREG32(IH_RB_RPTR, ih->rptr);
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32(IH_RB_CNTL);
->>>>>>>>> +        tmp &= ~IH_RB_CNTL__WPTR_OVERFLOW_CLEAR_MASK;
->>>>>>>>> +        WREG32(IH_RB_CNTL, tmp);
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    static int si_ih_early_init(void *handle)
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
->>>>>>>>> index 917707bba7f3..6f5090d3db48 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
->>>>>>>>> @@ -218,6 +218,7 @@ static u32 tonga_ih_get_wptr(struct 
->>>>>>>>> amdgpu_device
->>>>>>>>> *adev,
->>>>>>>>>        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>> @@ -268,6 +269,8 @@ static void tonga_ih_decode_iv(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void tonga_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                      struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>> +
->>>>>>>>>        if (ih->use_doorbell) {
->>>>>>>>>            /* XXX check if swapping is necessary on BE */
->>>>>>>>>            *ih->rptr_cpu = ih->rptr;
->>>>>>>>> @@ -275,6 +278,16 @@ static void tonga_ih_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>        } else {
->>>>>>>>>            WREG32(mmIH_RB_RPTR, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32(mmIH_RB_CNTL);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32(mmIH_RB_CNTL, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    static int tonga_ih_early_init(void *handle)
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
->>>>>>>>> index d364c6dd152c..bb005924f194 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
->>>>>>>>> @@ -372,6 +372,7 @@ static u32 vega10_ih_get_wptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>        tmp = RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>> @@ -413,6 +414,7 @@ static void vega10_ih_irq_rearm(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void vega10_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                       struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>>        struct amdgpu_ih_regs *ih_regs;
->>>>>>>>>
->>>>>>>>>        if (ih == &adev->irq.ih_soft)
->>>>>>>>> @@ -429,6 +431,16 @@ static void vega10_ih_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>            ih_regs = &ih->ih_regs;
->>>>>>>>>            WREG32(ih_regs->ih_rb_rptr, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    /**
->>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
->>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
->>>>>>>>> index ddfc6941f9d5..bb725a970697 100644
->>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
->>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
->>>>>>>>> @@ -420,6 +420,7 @@ static u32 vega20_ih_get_wptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>        tmp = RREG32_NO_KIQ(ih_regs->ih_rb_cntl);
->>>>>>>>>        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR, 1);
->>>>>>>>>        WREG32_NO_KIQ(ih_regs->ih_rb_cntl, tmp);
->>>>>>>>> +    ih->overflow = true;
->>>>>>>>>
->>>>>>>>>    out:
->>>>>>>>>        return (wptr & ih->ptr_mask);
->>>>>>>>> @@ -462,6 +463,7 @@ static void vega20_ih_irq_rearm(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>    static void vega20_ih_set_rptr(struct amdgpu_device *adev,
->>>>>>>>>                       struct amdgpu_ih_ring *ih)
->>>>>>>>>    {
->>>>>>>>> +    u32 tmp;
->>>>>>>>>        struct amdgpu_ih_regs *ih_regs;
->>>>>>>>>
->>>>>>>>>        if (ih == &adev->irq.ih_soft)
->>>>>>>>> @@ -478,6 +480,16 @@ static void vega20_ih_set_rptr(struct
->>>>>>>>> amdgpu_device *adev,
->>>>>>>>>            ih_regs = &ih->ih_regs;
->>>>>>>>>            WREG32(ih_regs->ih_rb_rptr, ih->rptr);
->>>>>>>>>        }
->>>>>>>>> +
->>>>>>>>> +    /* If we overflowed previously (and thus set the 
->>>>>>>>> OVERFLOW_CLEAR
->>>>>>>>> bit),
->>>>>>>>> +     * reset it here to detect more overflows if they occur.
->>>>>>>>> +     */
->>>>>>>>> +    if (ih->overflow) {
->>>>>>>>> +        tmp = RREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl);
->>>>>>>>> +        tmp = REG_SET_FIELD(tmp, IH_RB_CNTL, 
->>>>>>>>> WPTR_OVERFLOW_CLEAR,
->>>>>>>>> 0);
->>>>>>>>> +        WREG32_NO_KIQ(ih->ih_regs.ih_rb_cntl, tmp);
->>>>>>>>> +        ih->overflow = false;
->>>>>>>>> +    }
->>>>>>>>>    }
->>>>>>>>>
->>>>>>>>>    /**
->>>>>>>>> -- 
->>>>>>>>> 2.43.0
->>>>>>>>>
+&nbsp;.../drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c&nbsp; |&nbsp; 8 +----<br=
 >
+&nbsp;5 files changed, 11 insertions(+), 63 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_device.c<br>
+index b4c19e3d0bf1..56d9dfa61290 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
+@@ -4131,23 +4131,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; } else {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (amdgpu_i=
+p_version(adev, MP1_HWIP, 0)) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(=
+13, 0, 0):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(=
+13, 0, 7):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(=
+13, 0, 10):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D psp_gpu_reset(adev);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp =3D amdgpu_reset_method;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* It should do a default reset when loadin=
+g or reloading the driver,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * regardless of the module parameter =
+reset_method.<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_reset_method =3D AMD_RESET_METHOD_NO=
+NE;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_asic_reset(adev);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_reset_method =3D tmp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+-<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp =3D amdgpu_r=
+eset_method;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* It should do =
+a default reset when loading or reloading the driver,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * regardle=
+ss of the module parameter reset_method.<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_reset_met=
+hod =3D AMD_RESET_METHOD_NONE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_asi=
+c_reset(adev);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_reset_met=
+hod =3D tmp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r=
+) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev_err(adev-&gt;dev, &quot;asic=
+ reset on init failed\n&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto failed;<br>
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/am=
+d/pm/swsmu/amdgpu_smu.c<br>
+index c16703868e5c..961cd2aaf137 100644<br>
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c<br>
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c<br>
+@@ -733,7 +733,7 @@ static int smu_early_init(void *handle)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;adev =3D adev;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;pm_enabled =3D !!a=
+mdgpu_dpm;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;is_apu =3D false;<=
+br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_baco.state =3D SMU_BACO_S=
+TATE_NONE;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_baco.state =3D SMU_BACO_S=
+TATE_EXIT;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;smu_baco.platform_=
+support =3D false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smu-&gt;user_dpm_profile.f=
+an_mode =3D -1;<br>
+&nbsp;<br>
+@@ -1961,31 +1961,10 @@ static int smu_smc_hw_cleanup(struct smu_context *s=
+mu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+&nbsp;}<br>
+&nbsp;<br>
+-static int smu_reset_mp1_state(struct smu_context *smu)<br>
+-{<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D smu-&g=
+t;adev;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret =3D 0;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((!adev-&gt;in_runpm) &amp;&amp; (=
+!adev-&gt;in_suspend) &amp;&amp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; (!amdgpu_in_reset(adev)))<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; case IP_VERSION(13, 0, 0):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; case IP_VERSION(13, 0, 7):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; case IP_VERSION(13, 0, 10):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_set_=
+mp1_state(smu, PP_MP1_STATE_UNLOAD);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; default:<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; }<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+-}<br>
+-<br>
+&nbsp;static int smu_hw_fini(void *handle)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev=
+ =3D (struct amdgpu_device *)handle;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct smu_context *smu =
+=3D adev-&gt;powerplay.pp_handle;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev) =
+&amp;&amp; !amdgpu_sriov_is_pp_one_vf(adev))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return 0;<br>
+@@ -2003,15 +1982,7 @@ static int smu_hw_fini(void *handle)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pm.dpm_enabled =
+=3D false;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_smc_hw_cleanup(smu);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; return ret;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_reset_mp1_state(smu);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; return ret;<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return smu_smc_hw_cleanup(smu);<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static void smu_late_fini(void *handle)<br>
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/dr=
+m/amd/pm/swsmu/inc/amdgpu_smu.h<br>
+index 2aa4fea87314..66e84defd0b6 100644<br>
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h<br>
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h<br>
+@@ -424,7 +424,6 @@ enum smu_reset_mode {<br>
+&nbsp;enum smu_baco_state {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SMU_BACO_STATE_ENTER =3D 0=
+,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SMU_BACO_STATE_EXIT,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SMU_BACO_STATE_NONE,<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;struct smu_baco_context {<br>
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c<br>
+index 231122622a9c..bc8bd67c48ac 100644<br>
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c<br>
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c<br>
+@@ -2748,13 +2748,7 @@ static int smu_v13_0_0_set_mp1_state(struct smu_cont=
+ext *smu,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (mp1_state) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_MP1_STATE_UNLOAD:<=
+br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_cmn_send_smc_msg_with_param(smu,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; SMU_MSG_PrepareMp1ForUnload,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 0x55, NULL);<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (!ret &amp;&amp; smu-&gt;smu_baco.state =3D=3D SMU_BACO_STATE=
+_EXIT)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_v13_=
+0_disable_pmfw_state(smu);<br>
+-<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_cmn_set_mp1_state(smu, mp1_state);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; /* Ignore others */<br>
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
+index 59606a19e3d2..0906221231ea 100644<br>
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
+@@ -2504,13 +2504,7 @@ static int smu_v13_0_7_set_mp1_state(struct smu_cont=
+ext *smu,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (mp1_state) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case PP_MP1_STATE_UNLOAD:<=
+br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_cmn_send_smc_msg_with_param(smu,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; SMU_MSG_PrepareMp1ForUnload,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; 0x55, NULL);<br>
+-<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (!ret &amp;&amp; smu-&gt;smu_baco.state =3D=3D SMU_BACO_STATE=
+_EXIT)<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D smu_v13_=
+0_disable_pmfw_state(smu);<br>
+-<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D smu_cmn_set_mp1_state(smu, mp1_state);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; /* Ignore others */<br>
+-- <br>
+2.34.1<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB5144CE12BC49681460E25742F7702BL1PR12MB5144namp_--
