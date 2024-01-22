@@ -2,46 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16D6836778
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jan 2024 16:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89ECD83677D
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jan 2024 16:15:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 688BF10F3C8;
-	Mon, 22 Jan 2024 15:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C3210F3D7;
+	Mon, 22 Jan 2024 15:15:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1BB10F3C8;
- Mon, 22 Jan 2024 15:14:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06AF310F3CB;
+ Mon, 22 Jan 2024 15:15:44 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 57B6BCE2B2D;
- Mon, 22 Jan 2024 15:14:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB7A4C43390;
- Mon, 22 Jan 2024 15:14:48 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 0EBAFCE2B24;
+ Mon, 22 Jan 2024 15:15:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B9BC433C7;
+ Mon, 22 Jan 2024 15:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1705936490;
- bh=mzi5NHP8bCYjNBU9rs2CUmq+0f5UYRsaFPEx5gp8MLk=;
+ s=k20201202; t=1705936540;
+ bh=EFenuZeTfK4htTwIGJoDpBTqQUk9QC/xPh9GsknP7mo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XEsC+y3RG9tL5IErV1zXHWvZmgo3XD43k2oLu18sBLTCxekoTS7Kl2XeXir3SApD4
- kY4j4C6QcFOP8ohK30ZTM4/3eu4hDgZygkwDnpv5Ni5fkR5UWmMuaKU2LilP898pDW
- 6+lCZIyvbNkKyPb2hzKYsCO27Nlr1grprAXZTS9sZCRaZ48CYRlHRpae2f9wVbX0Fu
- Nlksk5t5hRntdxS3gA/FTNDjiOsFPRkgzFjhyKJCoYixLhvT68Xw+X+zBQ5FzsoB54
- f9CQKNVLEWwUBTDYVY5o+4p4daMGgR6fIYu2Xlig6XkfD9yCa4jbzGhtHl3gd3o7o0
- 82LAuRcLnCVLA==
+ b=kK3HR8ovikzmiCl+OGQPgnX+Kh43K8j1ziqdt9S6p6RQGyjNPGYH5yTYTRqTLavyO
+ lKPFomQ9j6KlMlx/jRN3440NCpOOKOxtJQijw7VYxWC2r7o1y5zrUC9ypjtFcsHsQk
+ 1vhEWD+g5ugg/pWxg/ifMuRvv7+0D9PPJlYbRdQ2sRFVeYKfqLTH5k6VG0xmP41FKy
+ GEvXSw3OXTgkiCcMVteMfbjvucB+/EZGDE8BGFDCAY0oVRZswYTgB/DfMIQJKqPJJn
+ +9bmgw967RJMdglS1Q3IkrZc5VpHfPmz85w9NEBnPW2+gAO1dpgq7UzAo7rVi92SRd
+ suvQkdB+O4OUA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 34/35] drm/amdgpu: Drop 'fence' check in
- 'to_amdgpu_amdkfd_fence()'
-Date: Mon, 22 Jan 2024 10:12:31 -0500
-Message-ID: <20240122151302.995456-34-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 07/28] drm/amd/display: Fix tiled display
+ misalignment
+Date: Mon, 22 Jan 2024 10:14:33 -0500
+Message-ID: <20240122151521.996443-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240122151302.995456-1-sashal@kernel.org>
-References: <20240122151302.995456-1-sashal@kernel.org>
+In-Reply-To: <20240122151521.996443-1-sashal@kernel.org>
+References: <20240122151521.996443-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.147
+X-stable-base: Linux 5.10.208
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,49 +53,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>, airlied@gmail.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, aric.cyr@amd.com, dillon.varone@amd.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ sunpeng.li@amd.com, airlied@gmail.com, Qingqing.Zhuo@amd.com,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, samson.tam@amd.com,
+ christian.koenig@amd.com,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ wenjing.liu@amd.com, Hamza Mahfooz <hamza.mahfooz@amd.com>, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, jun.lei@amd.com,
+ harry.wentland@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ alvin.lee2@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+From: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
 
-[ Upstream commit bf2ad4fb8adca89374b54b225d494e0b1956dbea ]
+[ Upstream commit c4b8394e76adba4f50a3c2696c75b214a291e24a ]
 
-Return value of container_of(...) can't be null, so null check is not
-required for 'fence'. Hence drop its NULL check.
+[Why]
+When otg workaround is applied during clock update, otgs of
+tiled display went out of sync.
 
-Fixes the below:
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c:93 to_amdgpu_amdkfd_fence() warn: can 'fence' even be NULL?
+[How]
+To call dc_trigger_sync() after clock update to sync otgs again.
 
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-index 1d0dbff87d3f..fb66e888ab3f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-@@ -90,7 +90,7 @@ struct amdgpu_amdkfd_fence *to_amdgpu_amdkfd_fence(struct dma_fence *f)
- 		return NULL;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 36a9e9c84ed4..272252cd0500 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1440,6 +1440,10 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
+ 		wait_for_no_pipes_pending(dc, context);
+ 		/* pplib is notified if disp_num changed */
+ 		dc->hwss.optimize_bandwidth(dc, context);
++		/* Need to do otg sync again as otg could be out of sync due to otg
++		 * workaround applied during clock update
++		 */
++		dc_trigger_sync(dc, context);
+ 	}
  
- 	fence = container_of(f, struct amdgpu_amdkfd_fence, base);
--	if (fence && f->ops == &amdkfd_fence_ops)
-+	if (f->ops == &amdkfd_fence_ops)
- 		return fence;
- 
- 	return NULL;
+ 	context->stream_mask = get_stream_mask(dc, context);
 -- 
 2.43.0
 
