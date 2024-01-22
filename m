@@ -2,42 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1925D8366B7
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jan 2024 16:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF538366CF
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jan 2024 16:07:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E96910F323;
-	Mon, 22 Jan 2024 15:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A1110EF2E;
+	Mon, 22 Jan 2024 15:07:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B2F410F320;
- Mon, 22 Jan 2024 15:06:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2398510F2A8;
+ Mon, 22 Jan 2024 15:07:18 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id C633ACE2B22;
- Mon, 22 Jan 2024 15:06:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D763C43399;
- Mon, 22 Jan 2024 15:06:36 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id EBBE9CE2B18;
+ Mon, 22 Jan 2024 15:07:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E17FC433F1;
+ Mon, 22 Jan 2024 15:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1705935998;
- bh=t4szPEH73ERPUcFP+yabDVdAL8MA+TsN97r2lOYwNvA=;
+ s=k20201202; t=1705936031;
+ bh=SGfn8d3Lh6PFke4hVCxeGPdjtPNX+Tp/pt2c5AA0Zo8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ljIxy1dN2RTA+h6A4CssR3L3btDn2i5Rsz6wXQ6zlGiS9p5cAVMRGmYa+qt1fmXw0
- 4nndERyYapSlXPNADiGXcKOf5D8U0f9ZF9tLDZoAYoRgkFTM9AcPbhMd++j0pMaiI4
- 5Rf/ArWI9Yov8KGmzgqzeliOosx8XTb5QkviSrxha9kYO0C5zKrL9fsKXZ+CIK0jMw
- gTnE9FI9/MmNViJ8sFXQkQ2owz3tUVHCaypmiEQ/ksuSM926Nqwe3qf4FArbcVyMg+
- p5aRacmFPbTlBY9B6sZRFJ4Uwye9OAx62gKd4gMZEA21q1HGsGczNPd4eYf14h/n8W
- XCzP/gimF1W9Q==
+ b=jBfKpSUwwnmBxb34gTsBskvvDM8cRWdtnzW9eeA9VsdyIv6bKerQk+9EhcNOT7qFN
+ rgdY32vvHfiy8OLhIrpspw/2+97rkCQqJMqmzpjM0TJlG+wvvh8AF7d+EtSp63btFZ
+ HFQoBMqDCUMMC+WTrA1t/g+LUk7fPxNNxoKPNIZaCbDmxALGmjmUItmmFj80n0540i
+ x7Lke5McytQaxYzaWrfFGiUtc7dQshMu1m+d68GvkzdpoDL3JR0I2vQGuIFoiJkRTh
+ XRAxH4G/wduEhCLuxtd5XFvPoq4EPR7Ajte3i0ll8QJScZoAGD2TvxNf2c2yDLbVdq
+ Wq4CCYLYvHOsw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 45/73] drm/amdkfd: fix mes set shader debugger
- process management
-Date: Mon, 22 Jan 2024 10:01:59 -0500
-Message-ID: <20240122150432.992458-45-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.6 50/73] drm/amdgpu: fix ftrace event amdgpu_bo_move
+ always move on same heap
+Date: Mon, 22 Jan 2024 10:02:04 -0500
+Message-ID: <20240122150432.992458-50-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122150432.992458-1-sashal@kernel.org>
 References: <20240122150432.992458-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.6.13
@@ -53,165 +54,123 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Tim.Huang@amd.com, Jack.Xiao@amd.com,
- Jonathan Kim <jonathan.kim@amd.com>, guchun.chen@amd.com,
- shashank.sharma@amd.com, Felix.Kuehling@amd.com, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, Alice Wong <shiwei.wong@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Eric Huang <jinhuieric.huang@amd.com>, airlied@gmail.com,
- christian.koenig@amd.com, shaoyun.liu@amd.com
+Cc: Hongkun.Zhang@amd.com, "Wang, Beyond" <Wang.Beyond@amd.com>,
+	Wang@freedesktop.org, pierre-eric.pelloux-prayer@amd.com,
+	lijo.lazar@amd.com, dri-devel@lists.freedesktop.org, Jun.Ma2@amd.com,
+	airlied@gmail.com, Sasha Levin <sashal@kernel.org>,
+	guchun.chen@amd.com, amd-gfx@lists.freedesktop.org,
+	matthew.auld@intel.com, Philip.Yang@amd.com,
+	srinivasan.shanmugam@amd.com, Lyndon.Li@amd.com, marek.olsak@amd.com,
+	maarten.lankhorst@linux.intel.com, Felix.Kuehling@amd.com,
+	Xinhui.Pan@amd.com, rajneesh.bhardwaj@amd.com, mukul.joshi@amd.com,
+	daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
+	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Kim <jonathan.kim@amd.com>
+From: "Wang, Beyond" <Wang.Beyond@amd.com>
 
-[ Upstream commit bd33bb1409b494558a2935f7bbc7842def957fcd ]
+[ Upstream commit 94aeb4117343d072e3a35b9595bcbfc0058ee724 ]
 
-MES provides the driver a call to explicitly flush stale process memory
-within the MES to avoid a race condition that results in a fatal
-memory violation.
+Issue: during evict or validate happened on amdgpu_bo, the 'from' and
+'to' is always same in ftrace event of amdgpu_bo_move
 
-When SET_SHADER_DEBUGGER is called, the driver passes a memory address
-that represents a process context address MES uses to keep track of
-future per-process calls.
+where calling the 'trace_amdgpu_bo_move', the comment says move_notify
+is called before move happens, but actually it is called after move
+happens, here the new_mem is same as bo->resource
 
-Normally, MES will purge its process context list when the last queue
-has been removed.  The driver, however, can call SET_SHADER_DEBUGGER
-regardless of whether a queue has been added or not.
+Fix: move trace_amdgpu_bo_move from move_notify to amdgpu_bo_move
 
-If SET_SHADER_DEBUGGER has been called with no queues as the last call
-prior to process termination, the passed process context address will
-still reside within MES.
-
-On a new process call to SET_SHADER_DEBUGGER, the driver may end up
-passing an identical process context address value (based on per-process
-gpu memory address) to MES but is now pointing to a new allocated buffer
-object during KFD process creation.  Since the MES is unaware of this,
-access of the passed address points to the stale object within MES and
-triggers a fatal memory violation.
-
-The solution is for KFD to explicitly flush the process context address
-from MES on process termination.
-
-Note that the flush call and the MES debugger calls use the same MES
-interface but are separated as KFD calls to avoid conflicting with each
-other.
-
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-Tested-by: Alice Wong <shiwei.wong@amd.com>
-Reviewed-by: Eric Huang <jinhuieric.huang@amd.com>
+Signed-off-by: Wang, Beyond <Wang.Beyond@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       | 31 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h       | 10 +++---
- .../amd/amdkfd/kfd_process_queue_manager.c    |  1 +
- drivers/gpu/drm/amd/include/mes_v11_api_def.h |  3 +-
- 4 files changed, 40 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 13 +------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  4 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  5 +++--
+ 3 files changed, 5 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index 6aa75052309f..15c67fa404ff 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -885,6 +885,11 @@ int amdgpu_mes_set_shader_debugger(struct amdgpu_device *adev,
- 	op_input.op = MES_MISC_OP_SET_SHADER_DEBUGGER;
- 	op_input.set_shader_debugger.process_context_addr = process_context_addr;
- 	op_input.set_shader_debugger.flags.u32all = flags;
-+
-+	/* use amdgpu mes_flush_shader_debugger instead */
-+	if (op_input.set_shader_debugger.flags.process_ctx_flush)
-+		return -EINVAL;
-+
- 	op_input.set_shader_debugger.spi_gdbg_per_vmid_cntl = spi_gdbg_per_vmid_cntl;
- 	memcpy(op_input.set_shader_debugger.tcp_watch_cntl, tcp_watch_cntl,
- 			sizeof(op_input.set_shader_debugger.tcp_watch_cntl));
-@@ -904,6 +909,32 @@ int amdgpu_mes_set_shader_debugger(struct amdgpu_device *adev,
- 	return r;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index ace837cfa0a6..173b43a5aa13 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1250,19 +1250,15 @@ int amdgpu_bo_get_metadata(struct amdgpu_bo *bo, void *buffer,
+  * amdgpu_bo_move_notify - notification about a memory move
+  * @bo: pointer to a buffer object
+  * @evict: if this move is evicting the buffer from the graphics address space
+- * @new_mem: new information of the bufer object
+  *
+  * Marks the corresponding &amdgpu_bo buffer object as invalid, also performs
+  * bookkeeping.
+  * TTM driver callback which is called when ttm moves a buffer.
+  */
+-void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
+-			   bool evict,
+-			   struct ttm_resource *new_mem)
++void amdgpu_bo_move_notify(struct ttm_buffer_object *bo, bool evict)
+ {
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct amdgpu_bo *abo;
+-	struct ttm_resource *old_mem = bo->resource;
  
-+int amdgpu_mes_flush_shader_debugger(struct amdgpu_device *adev,
-+				     uint64_t process_context_addr)
-+{
-+	struct mes_misc_op_input op_input = {0};
-+	int r;
-+
-+	if (!adev->mes.funcs->misc_op) {
-+		DRM_ERROR("mes flush shader debugger is not supported!\n");
-+		return -EINVAL;
-+	}
-+
-+	op_input.op = MES_MISC_OP_SET_SHADER_DEBUGGER;
-+	op_input.set_shader_debugger.process_context_addr = process_context_addr;
-+	op_input.set_shader_debugger.flags.process_ctx_flush = true;
-+
-+	amdgpu_mes_lock(&adev->mes);
-+
-+	r = adev->mes.funcs->misc_op(&adev->mes, &op_input);
-+	if (r)
-+		DRM_ERROR("failed to set_shader_debugger\n");
-+
-+	amdgpu_mes_unlock(&adev->mes);
-+
-+	return r;
-+}
-+
- static void
- amdgpu_mes_ring_to_queue_props(struct amdgpu_device *adev,
- 			       struct amdgpu_ring *ring,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index a27b424ffe00..c2c88b772361 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -291,9 +291,10 @@ struct mes_misc_op_input {
- 			uint64_t process_context_addr;
- 			union {
- 				struct {
--					uint64_t single_memop : 1;
--					uint64_t single_alu_op : 1;
--					uint64_t reserved: 30;
-+					uint32_t single_memop : 1;
-+					uint32_t single_alu_op : 1;
-+					uint32_t reserved: 29;
-+					uint32_t process_ctx_flush: 1;
- 				};
- 				uint32_t u32all;
- 			} flags;
-@@ -369,7 +370,8 @@ int amdgpu_mes_set_shader_debugger(struct amdgpu_device *adev,
- 				const uint32_t *tcp_watch_cntl,
- 				uint32_t flags,
- 				bool trap_en);
--
-+int amdgpu_mes_flush_shader_debugger(struct amdgpu_device *adev,
-+				uint64_t process_context_addr);
- int amdgpu_mes_add_ring(struct amdgpu_device *adev, int gang_id,
- 			int queue_type, int idx,
- 			struct amdgpu_mes_ctx_data *ctx_data,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index 77649392e233..7f5aab1fb8f5 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -87,6 +87,7 @@ void kfd_process_dequeue_from_device(struct kfd_process_device *pdd)
+ 	if (!amdgpu_bo_is_amdgpu_bo(bo))
  		return;
- 
- 	dev->dqm->ops.process_termination(dev->dqm, &pdd->qpd);
-+	amdgpu_mes_flush_shader_debugger(dev->adev, pdd->proc_ctx_gpu_addr);
- 	pdd->already_dequeued = true;
+@@ -1279,13 +1275,6 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
+ 	/* remember the eviction */
+ 	if (evict)
+ 		atomic64_inc(&adev->num_evictions);
+-
+-	/* update statistics */
+-	if (!new_mem)
+-		return;
+-
+-	/* move_notify is called before move happens */
+-	trace_amdgpu_bo_move(abo, new_mem->mem_type, old_mem->mem_type);
  }
  
-diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-index b1db2b190187..e07e93167a82 100644
---- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-+++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-@@ -571,7 +571,8 @@ struct SET_SHADER_DEBUGGER {
- 		struct {
- 			uint32_t single_memop : 1;  /* SQ_DEBUG.single_memop */
- 			uint32_t single_alu_op : 1; /* SQ_DEBUG.single_alu_op */
--			uint32_t reserved : 30;
-+			uint32_t reserved : 29;
-+			uint32_t process_ctx_flush : 1;
- 		};
- 		uint32_t u32all;
- 	} flags;
+ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+index d28e21baef16..a3ea8a82db23 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+@@ -344,9 +344,7 @@ int amdgpu_bo_set_metadata (struct amdgpu_bo *bo, void *metadata,
+ int amdgpu_bo_get_metadata(struct amdgpu_bo *bo, void *buffer,
+ 			   size_t buffer_size, uint32_t *metadata_size,
+ 			   uint64_t *flags);
+-void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
+-			   bool evict,
+-			   struct ttm_resource *new_mem);
++void amdgpu_bo_move_notify(struct ttm_buffer_object *bo, bool evict);
+ void amdgpu_bo_release_notify(struct ttm_buffer_object *bo);
+ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo);
+ void amdgpu_bo_fence(struct amdgpu_bo *bo, struct dma_fence *fence,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 4e51dce3aab5..f573909332c0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -545,10 +545,11 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
+ 			return r;
+ 	}
+ 
++	trace_amdgpu_bo_move(abo, new_mem->mem_type, old_mem->mem_type);
+ out:
+ 	/* update statistics */
+ 	atomic64_add(bo->base.size, &adev->num_bytes_moved);
+-	amdgpu_bo_move_notify(bo, evict, new_mem);
++	amdgpu_bo_move_notify(bo, evict);
+ 	return 0;
+ }
+ 
+@@ -1555,7 +1556,7 @@ static int amdgpu_ttm_access_memory(struct ttm_buffer_object *bo,
+ static void
+ amdgpu_bo_delete_mem_notify(struct ttm_buffer_object *bo)
+ {
+-	amdgpu_bo_move_notify(bo, false, NULL);
++	amdgpu_bo_move_notify(bo, false);
+ }
+ 
+ static struct ttm_device_funcs amdgpu_bo_driver = {
 -- 
 2.43.0
 
