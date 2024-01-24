@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307C383B58B
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jan 2024 00:22:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F8883B58A
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jan 2024 00:22:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F27B810EA84;
-	Wed, 24 Jan 2024 23:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFBF10F097;
+	Wed, 24 Jan 2024 23:22:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2069.outbound.protection.outlook.com [40.107.95.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D236B10E69B
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 23:22:11 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2041.outbound.protection.outlook.com [40.107.101.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB7A10F097
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 23:22:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XHcx1akqmu/4yt72cM4JJGNNyojiyZVOYIEg6x2AkSK65HtCd9OyDD7Ep/NeZSvGsBhs15qrGYg74piqtNFR8fvfaZsb8jKKNUi7FccHnzxroOdfuq0JDA7LHyhUu1IMgf3ACBU5LWORS+h4swiPWIHZpLqZXoBw2oMB9DVBQkKwUcEEZqDt6jhXkdE9AjH1GIFRcZQu/+E65Pfa5kQi8HsjP8yuzwFgi7uNDQ4YqX2JQ96Ffep/RPzdDxJyfyim0zRZKdDOz+ZZqSFvFhn2C2O+jQtBa4UiChm3q3yfkIT1G0L6PHWeuyiM5xtKqqTF9aMsTO4N8u1G60x823mmiw==
+ b=UiYLHRleQsVeSGngk+VgsOwe2DhQm2Tupz129Ss0tYlV61qRUe4TuT+XiahifefVRiXS5mAJ9EPeVZk1Ld4pq8hcs5vDqXn514ucF9icomRVvOtGeAv1B+vKWKgCXZey0bU/EIWyLbbBoeidLU1JO4a8SECpBaDiZXLfE9YFt7cS7aOKi2waUlYZwmyUsv18GjEzV4jGe/WFcJvHGk6K7l5GQuJ/FeFY80HotVdnjaED0ONfAf/u+UhLonESayi+ZVnFEZWIpGkvghyvGpij0+2zYDS67O59jL9Fd8v4+6l7Lyv+AFC12fo372P6cTGWZUwfcAyi8p2i+U9/ryxR7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xE3GDrFQ4y52bZVjCkgqb/dh6mgY/uXGEHmLaT9bfrE=;
- b=ZXqIV+H5JX2G0+246JgjP7VUmI0GVQjRu4XBeQAdHD5TrkRBEZ9A7oUQ8tXKP6ecdd77MaNPGPijrD8A0tG1MRW1cs1xn3/A2J+TJ+wAV7S78tWtJ4I+YYzs4cg7gdfZ8BcSfR5l+jx/vMMNO2swhZ9wmIjhP1ElmTOWJAHJOsGmb7dN3XypC0gn5NhWY70yGUgycD8EusV5kDXvuUJv2fZhTOppPZiSd/2aq73Vw8IDC4UQ5o4savhHOrvsd7YDERcwQcNShY2Lk08llHbart3gdvUVgdI/+KuOVEhBP6+i5104F+bp0lYbldrvnWv5wm4cHDN9NpbHuB49/pTynQ==
+ bh=HvtXFI8CwzHL/0KgfNT5Kui6AWeJMq0yDNlc0zrJUaU=;
+ b=mMDSn2OcAK8XSzpV62e/Pv7J0NAB+FAL4uET4YDkQsJni09xz36lA2ZAx8zoSaPhGWlUnOUSuZ6n01vorYwz4t5aVVgJ4kISWnjFxuBDyWl9FBl2NRrg+g+p9NKbxLJFoXQsrr3YQCzKy4ZGfW6zrNkseqWZJkoWoUw2zNySdJ5HsLxUK+hPYYNdfZIHuPWXyh7PrgGgKGboCoxJCQ/4hKm0s5I1kG6B2OAwI9hBcpw40pwkMWnMjSy5BDLI5aTOmMPV/UqUDYqkP85miiaWuiT15+iPzTZ6dPZ3MMqruplwaYAQm8ghMyYOWG6AmQyVaaCXZja4rLLcbM4w2AlLmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xE3GDrFQ4y52bZVjCkgqb/dh6mgY/uXGEHmLaT9bfrE=;
- b=tBQHq6Gb+mP/jHOKQWUi9LP6GGK/ZCtuvjOYQJh3fPaOQ+u5+jNiWd9c+/A8I39gbfPEPeXpTeEDohh8eu8rD+OgW54Kh2TCvVGXoUPA9xDF6wg/1EUhsnbfGB0QziJLDPeFdz/87moeLK97GYL3rFCg9tQL4h8Hstm/uZpAMyY=
-Received: from CH0PR03CA0340.namprd03.prod.outlook.com (2603:10b6:610:11a::28)
- by PH7PR12MB9151.namprd12.prod.outlook.com (2603:10b6:510:2e9::10)
+ bh=HvtXFI8CwzHL/0KgfNT5Kui6AWeJMq0yDNlc0zrJUaU=;
+ b=CiYR8Fu9cszCcHAw5zl3uFdVvtiveyYI1OErk3VJz7cArzLHAJJ3qsSzJWW8F3+aTAaU+ojBafMljkVaaFPWh7NxL12RGKJV1dnhfqeR5aLccxE/g0+HMoj0yLrA5otOf9/tl1ee/cZfh0hE1G/c4qv3OKlWLpDFlvdpyfo1wv4=
+Received: from CH0PR03CA0343.namprd03.prod.outlook.com (2603:10b6:610:11a::14)
+ by PH8PR12MB7182.namprd12.prod.outlook.com (2603:10b6:510:229::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Wed, 24 Jan
- 2024 23:22:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.29; Wed, 24 Jan
+ 2024 23:22:14 +0000
 Received: from DS3PEPF000099D7.namprd04.prod.outlook.com
- (2603:10b6:610:11a:cafe::f0) by CH0PR03CA0340.outlook.office365.com
- (2603:10b6:610:11a::28) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:610:11a:cafe::5) by CH0PR03CA0343.outlook.office365.com
+ (2603:10b6:610:11a::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37 via Frontend
- Transport; Wed, 24 Jan 2024 23:22:05 +0000
+ Transport; Wed, 24 Jan 2024 23:22:13 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DS3PEPF000099D7.mail.protection.outlook.com (10.167.17.8) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7202.16 via Frontend Transport; Wed, 24 Jan 2024 23:22:05 +0000
+ 15.20.7202.16 via Frontend Transport; Wed, 24 Jan 2024 23:22:13 +0000
 Received: from MKM-L1-ZHLUO987.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 24 Jan
- 2024 17:22:04 -0600
+ 2024 17:22:12 -0600
 From: Zhigang Luo <Zhigang.Luo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/3] drm/amdgpu: Add RAS_POISON_READY host response message
-Date: Wed, 24 Jan 2024 18:21:42 -0500
-Message-ID: <20240124232143.7201-2-Zhigang.Luo@amd.com>
+Subject: [PATCH 3/3] amdgpu/drm: Use vram manager for virtualization page
+ retirement
+Date: Wed, 24 Jan 2024 18:21:43 -0500
+Message-ID: <20240124232143.7201-3-Zhigang.Luo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240124232143.7201-1-Zhigang.Luo@amd.com>
 References: <20240124232143.7201-1-Zhigang.Luo@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099D7:EE_|PH7PR12MB9151:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e1e04ac-9a98-45b1-b069-08dc1d33472b
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D7:EE_|PH8PR12MB7182:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7e8c870-4a12-41e6-ed45-08dc1d334c37
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Lyd9hN3VwTQXymfN13z2F5QOWTwso6m6yindES5hUQWXXx2R1wuOJB+o2nK/ZSPpJDwXdmlRipPGEU/WCgpIB6BZGPmSyw349sQaMzEc1QzETT4slcCq2WG1rgNShx24HTPA43q8I2jYHbwv6umtxproeXqwnBt5oUXl5hnF4c0ry5BNL5fG7TuMp0oh/sq9qXj5iDwVAIMTPblV/DQp/Am7ikJyYXhyLHq8OGr4UtGyYXrCbTuvxIrTvIpZzU2D+j/1bPANj5YY+dEJw+Wi1IiRJvkCZaRVk2/PVl5bqdKMWnZ61ZjMZvHZDIW61yTvvysla1LK3Ik4EW17ZJXBFpjpC5LTWXOjWrKO6q4J6FMTIb4bM0PWTq+LlD+oadsH0EOX88OHbKTLnHgfW0PxZflJgd2W4UbWogIvXExqCkxRTrIf8MLjIRA65sP/X6z6v7EpDIfyrRdi1VhpJp5trmS60hWVOfkkYhCeQAjygIDMY2NijmbyDtjcuQ8h7Yp/fZ+t60QY/s1DW2TJck6KRkRjYRSTi4m95sHqn2+uX7yu1K8HrkB3KB8BRK/qj70m9aULH6849MCNQ86AexnRYuuMJaUg5BB42UeZF8J6Aldcari+FTsN4n8SVphG+n4Iuim/pwMqD1/i3Qho0QAHU9fF/uV1jOminiAZqRXRcRE631bpG7utnJLE4UffjWi2+m2jX7crI978cpNl5echbmUEwcYRCpQu2+vQ6d6HKzPm0Kj/dtOaxMi64FkFgMhkg5qpBkPyNrPjuXtsyqeG3Q==
+X-Microsoft-Antispam-Message-Info: de3gyZDN2JBrvbsYJJIcp/2b+cFOIWczdZFGL+fTMD9pWFiN5Ne7Ye5XjQsjNDeW5+km7jHZ2LMbB9pVSfxsFnErQaXxGYa5WNnJHmm3wi1nlQgiQcdef+t0OkIbdUCQ/GOQThtWlF3eWLGyXfhqpBTdGjNxQZDazv9I3LvFHyAtHGVF+tihF/rzgXoc2AKEqgxDuP8HzW6tdIlrHcA+YD45VVJCYSsIm2vv5ODxtMqBc/xdUeIPYXgehqP0sCfOW8x59TQPsURIdDqItM5bqXGlUsarJMpC8jUJQLWyu9zaLg1OVt/xLwJbykhFDVx5EKPfsu367g4nKgnZZig3OYEwCYUKrItdQI6j0tpUXa4S/tu2PS/pRcjybTAl+r23HHifVU697J+/gYCGPIIkVS4c4kZN4q5sYYMBykqP4EYuqdVJd61+4TG+TFvRkFhlxMZFFS8GpfMlAme/G3da0MTNXsBc1AFSk79WXQ6ocSS/2pfyJ/eU078lWb9QvJ3a3rdwk1iqfgjKVZS3Fd9MFnVQJxECgDMFhDdo9PIPhsqJZN8jkstb3LfabKO3vmvrTJY0KP++zcijCNROjlK3flPZymK3pRDo70n0S6Ki5fs3ah2jHBi1oliJemjJTzE6fBWlnb1BDQ61eIOtXfpEs686mDXR4XTSR76VtdhN93YtbQvq0eZutJQOfbCV0s/Jti2jRsRmzwXlKn+bieG4IFua3VqHICJ1mF8mO2Qw5HjxyTmX5OPBFYh1pBUhhi/uzYhtHr22XiiyUjURN54Yvw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(39860400002)(376002)(346002)(136003)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(82310400011)(46966006)(40470700004)(36840700001)(16526019)(36756003)(86362001)(2906002)(81166007)(26005)(6666004)(356005)(7696005)(316002)(2616005)(41300700001)(1076003)(40480700001)(426003)(336012)(478600001)(70206006)(83380400001)(70586007)(5660300002)(54906003)(82740400003)(6916009)(15650500001)(40460700003)(47076005)(4326008)(8676002)(36860700001)(8936002)(36900700001);
+ SFS:(13230031)(4636009)(396003)(39860400002)(136003)(346002)(376002)(230922051799003)(82310400011)(186009)(64100799003)(1800799012)(451199024)(46966006)(40470700004)(36840700001)(40460700003)(40480700001)(16526019)(47076005)(336012)(1076003)(36756003)(83380400001)(41300700001)(86362001)(356005)(70206006)(26005)(36860700001)(426003)(2616005)(70586007)(6666004)(2906002)(54906003)(81166007)(7696005)(316002)(478600001)(6916009)(8936002)(82740400003)(4326008)(5660300002)(8676002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 23:22:05.3569 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e1e04ac-9a98-45b1-b069-08dc1d33472b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 23:22:13.8257 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7e8c870-4a12-41e6-ed45-08dc1d334c37
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D7.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9151
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7182
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,56 +107,79 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Victor Skvortsov <victor.skvortsov@amd.com>
 
-In a non-FLR page avoidance scenario, the host driver will
-provide the bad pages in the pf2vf exchange region.
-
-Adding a new host response message to indicate when the
-pf2vf exchange region has been updated.
+In runtime, use vram manager for virtualization page retirement.
 
 Signed-off-by: Victor Skvortsov <victor.skvortsov@amd.com>
-Change-Id: I58d5d11d959d91ad5723d33fddb93570c259e245
+Change-Id: Ia8fe6c7d4e4acae9d3a953b3ba4567e8fc6de0fa
 ---
- drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c | 5 +++++
- drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h | 1 +
- 2 files changed, 6 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 30 ++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-index d0a018da3c7a..c49bf87d4b0b 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-@@ -170,6 +170,9 @@ static int xgpu_nv_send_access_requests_with_param(struct amdgpu_device *adev,
- 	case IDH_REQ_GPU_INIT_DATA:
- 		event = IDH_REQ_GPU_INIT_DATA_READY;
- 		break;
-+	case IDH_RAS_POISON:
-+		if (data1 != 0)
-+			event = IDH_RAS_POISON_READY;
- 	default:
- 		break;
- 	}
-@@ -437,8 +440,10 @@ static void xgpu_nv_ras_poison_handler(struct amdgpu_device *adev,
- 	if (amdgpu_ip_version(adev, UMC_HWIP, 0) < IP_VERSION(12, 0, 0)) {
- 		xgpu_nv_send_access_requests(adev, IDH_RAS_POISON);
- 	} else {
-+		amdgpu_virt_fini_data_exchange(adev);
- 		xgpu_nv_send_access_requests_with_param(adev,
- 					IDH_RAS_POISON,	block, 0, 0);
-+		amdgpu_virt_init_data_exchange(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index f5c66e0038b5..6ff7d3fb2008 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -250,11 +250,11 @@ static int amdgpu_virt_init_ras_err_handler_data(struct amdgpu_device *adev)
+ 	if (!*data)
+ 		goto data_failure;
+ 
+-	bps = kmalloc_array(align_space, sizeof((*data)->bps), GFP_KERNEL);
++	bps = kmalloc_array(align_space, sizeof(*(*data)->bps), GFP_KERNEL);
+ 	if (!bps)
+ 		goto bps_failure;
+ 
+-	bps_bo = kmalloc_array(align_space, sizeof((*data)->bps_bo), GFP_KERNEL);
++	bps_bo = kmalloc_array(align_space, sizeof(*(*data)->bps_bo), GFP_KERNEL);
+ 	if (!bps_bo)
+ 		goto bps_bo_failure;
+ 
+@@ -287,8 +287,10 @@ static void amdgpu_virt_ras_release_bp(struct amdgpu_device *adev)
+ 
+ 	for (i = data->last_reserved - 1; i >= 0; i--) {
+ 		bo = data->bps_bo[i];
+-		amdgpu_bo_free_kernel(&bo, NULL, NULL);
+-		data->bps_bo[i] = bo;
++		if (bo) {
++			amdgpu_bo_free_kernel(&bo, NULL, NULL);
++			data->bps_bo[i] = bo;
++		}
+ 		data->last_reserved = i;
  	}
  }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-index d0221ce08769..1e8fd90cab43 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.h
-@@ -51,6 +51,7 @@ enum idh_event {
- 	IDH_FAIL,
- 	IDH_QUERY_ALIVE,
- 	IDH_REQ_GPU_INIT_DATA_READY,
-+	IDH_RAS_POISON_READY,
- 
- 	IDH_TEXT_MESSAGE = 255,
- };
+@@ -328,6 +330,8 @@ static void amdgpu_virt_ras_reserve_bps(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_virt *virt = &adev->virt;
+ 	struct amdgpu_virt_ras_err_handler_data *data = virt->virt_eh_data;
++	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
++	struct ttm_resource_manager *man = &mgr->manager;
+ 	struct amdgpu_bo *bo = NULL;
+ 	uint64_t bp;
+ 	int i;
+@@ -343,12 +347,18 @@ static void amdgpu_virt_ras_reserve_bps(struct amdgpu_device *adev)
+ 		 * 2) a ras bad page has been reserved (duplicate error injection
+ 		 *    for one page);
+ 		 */
+-		if (amdgpu_bo_create_kernel_at(adev, bp << AMDGPU_GPU_PAGE_SHIFT,
+-					       AMDGPU_GPU_PAGE_SIZE,
+-					       &bo, NULL))
+-			DRM_DEBUG("RAS WARN: reserve vram for retired page %llx fail\n", bp);
+-
+-		data->bps_bo[i] = bo;
++		if  (ttm_resource_manager_used(man)) {
++			amdgpu_vram_mgr_reserve_range(&adev->mman.vram_mgr,
++				bp << AMDGPU_GPU_PAGE_SHIFT,
++				AMDGPU_GPU_PAGE_SIZE);
++			data->bps_bo[i] = NULL;
++		} else {
++			if (amdgpu_bo_create_kernel_at(adev, bp << AMDGPU_GPU_PAGE_SHIFT,
++							AMDGPU_GPU_PAGE_SIZE,
++							&bo, NULL))
++				DRM_DEBUG("RAS WARN: reserve vram for retired page %llx fail\n", bp);
++			data->bps_bo[i] = bo;
++		}
+ 		data->last_reserved = i + 1;
+ 		bo = NULL;
+ 	}
 -- 
 2.25.1
 
