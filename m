@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30F783A27E
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jan 2024 08:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C589683A283
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jan 2024 08:03:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA9310F63A;
-	Wed, 24 Jan 2024 07:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD1E10F640;
+	Wed, 24 Jan 2024 07:02:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2053.outbound.protection.outlook.com [40.107.92.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35D8210F639
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 07:02:24 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C34C10F639
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jan 2024 07:02:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LyYw4/gUeOwEnwQPh7Jo/9ZRKHethK6pVSbiDHjA3hZelQh9tsuRiJkVKYqMgiYKclLO8H1p4VsTt6O9b8mEx5eyV7gijU3yTiZJx5IVSXQP3o3UXoKp7xxRL2ptmZl0+OevZlySTFZIH/KF1ys/thpY+6WcnzYPs/dsNwciM1zre99CHnCBPmwClUrxvtDeBKNZoyWAhG0UJRPoF1a9+DCKZnVHVkS8BjnM5BEs29rgKrKIHk6LTid5MJr9PDfNiRCTKUW1nMd/EL/E+cIzY4nQr+q7XBhWTyiQHJsDE4Lv2Shr/VFRK4PmTqeIrH0BlfUSxsZkkA9gfTlSwkWoMA==
+ b=jzM7lWJ9XjAit5R1WRJyKO0cCrxiMGpaNi/sE4qSaeltqZ1j2JoQGzDCcDFEcWdBuFvqbvwxibybZGVhyFY84KGXWNYfOzFeb7V5dUZAqwWFIQuVuFm2MOu4uXZh2WJcqOOCT1AltAw1FZGEdZdNWe5pwbNhX3DCEqQvzPXvWZWj4Msf4XjYjXsP6Oh4LtMkIWX5d86C9ZVYueJeSQzKk62GFwQaP8zY+t/Gwh9fAylTb+g9Gj6dT2xsDNHQdigB+iEjoR2Uu6ZWC1ZvLdurzRK5WwgW+yJuw2UmOCcnFzICZY2SY2sL78QGhgvHXoVE8n2wD2I7b4qT8ahgtTmp8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rd9862Uyct1ffcQ2rZNlcrARc791UhwPrdgZAlkQNI0=;
- b=HdVh+e6aRB9doG6zDGEY+v1Q0o47wHKYeJl74ga6jvYlAaiXJ82m/nGonbGWvEoZ7WHWOnWoRDSzcd5Xy9/ZFDLdAi8TKmrPdbYu41kTIjNFcCFdA0j5rfkxcJFQV/6TTVKSAghIeIgpdmtosRcQlt7HbI10t2Q6MiyrLmGAvANbpHodFvvVusX88UeQmW4xQpc6gCAr4dnrPVq4cXn4YyFeE28twGftPCrABP0tbaOMyt/pmTsDplqZJbFmNcX7VPL683BCdEaJCpca6fsWpwy8fyfKBqwrtO4WkCsgjhTLnKyjsWmxoXD5sA7BwAFbDov1ZaMtN5RX6Zb21K8khA==
+ bh=u6MFnNlZE9PlKERTrqrzqYxHy2lK67r0GDfNNmOyXOc=;
+ b=c9K6oM3/Zc98C2iGOY/dEu38zG8IecXnpFaxSLdwSqoNrylfW+tvhcrkDJRubRQ26FDCknQtHQofAPhmEg23uXcUihYJrRgF/6yyRg7+ppEl9urmLQtIqK0VbGSWM4lz1bQuPmRQQF1IR7EJ7ZccVnY68O5MUNYAIj/n5vm8NwswS44yNxcxLm0zyLC9FBLRaljI86bw45PM2ZU/lO7sbZROMhSMrS0NdOK6Z8BeQhnTuRddVs8hqh16eHhGhLvRO8AvcQyOfF3ZpfSGWvAVqr0H5rw4krPgSPMMLkedn4YpwWggvWaQSNgWRkPPHOwybqxiTt5lRM816JNBYuf1ug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rd9862Uyct1ffcQ2rZNlcrARc791UhwPrdgZAlkQNI0=;
- b=g7NJocjHtNZwZ1U9MyuKo21UyMaFbmeUL8ooDkTSGWSUqJYLhuU3c1/XA9/DUwlg+peLxPv+u5AMo7JtcD0GnIWxUc5bE0FUIhwAX3oxwXRLyyOcwvFWe1mAwVkhRPcjOBUi5WcwPlZrWEjYCnw1e6o6X/rCwKDVYtaKxapCtds=
-Received: from MW4PR04CA0060.namprd04.prod.outlook.com (2603:10b6:303:6a::35)
- by MN0PR12MB5954.namprd12.prod.outlook.com (2603:10b6:208:37d::15)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=u6MFnNlZE9PlKERTrqrzqYxHy2lK67r0GDfNNmOyXOc=;
+ b=CIXt0l169JcFo/JmhFVUqUj+Sb7JcxdoR9lBXnn7ZbkYhjCZPmPGZAy/9cEYaJrbJQt0kYgLfJc2a3WZR/bFoC8YLCrDt2x4oovEuBIFUY92niEsT79M3Z3b5OllZaznk4trd9fG9b202sqiKGnzxIoSws5Py/3K7PIXZoXxldc=
+Received: from MW4PR03CA0160.namprd03.prod.outlook.com (2603:10b6:303:8d::15)
+ by DM6PR12MB4250.namprd12.prod.outlook.com (2603:10b6:5:21a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37; Wed, 24 Jan
- 2024 07:02:21 +0000
-Received: from CO1PEPF000044FC.namprd21.prod.outlook.com
- (2603:10b6:303:6a:cafe::f1) by MW4PR04CA0060.outlook.office365.com
- (2603:10b6:303:6a::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.38 via Frontend
- Transport; Wed, 24 Jan 2024 07:02:21 +0000
+ 2024 07:02:24 +0000
+Received: from CO1PEPF000044F6.namprd21.prod.outlook.com
+ (2603:10b6:303:8d:cafe::c6) by MW4PR03CA0160.outlook.office365.com
+ (2603:10b6:303:8d::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.37 via Frontend
+ Transport; Wed, 24 Jan 2024 07:02:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000044FC.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1PEPF000044F6.mail.protection.outlook.com (10.167.241.196) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7228.0 via Frontend Transport; Wed, 24 Jan 2024 07:02:21 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7228.0 via Frontend Transport; Wed, 24 Jan 2024 07:02:23 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 24 Jan
- 2024 01:02:15 -0600
+ 2024 01:02:19 -0600
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 24 Jan
- 2024 01:02:15 -0600
+ 2024 01:02:19 -0600
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Wed, 24 Jan 2024 01:02:12 -0600
+ Transport; Wed, 24 Jan 2024 01:02:16 -0600
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/22] Revert "drm/amd/display: initialize all the dpm level's
- stutter latency"
-Date: Wed, 24 Jan 2024 15:01:39 +0800
-Message-ID: <20240124070159.1900622-3-chiahsuan.chung@amd.com>
+Subject: [PATCH 03/22] drm/amd/display: Wait before sending idle allow and
+ after idle disallow
+Date: Wed, 24 Jan 2024 15:01:40 +0800
+Message-ID: <20240124070159.1900622-4-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240124070159.1900622-1-chiahsuan.chung@amd.com>
 References: <20240124070159.1900622-1-chiahsuan.chung@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044FC:EE_|MN0PR12MB5954:EE_
-X-MS-Office365-Filtering-Correlation-Id: 118b7a41-59bb-4dcd-0d9c-08dc1caa693c
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F6:EE_|DM6PR12MB4250:EE_
+X-MS-Office365-Filtering-Correlation-Id: abd51b8b-798a-440c-1f61-08dc1caa6a9e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ehNNsZ3FFCSsyDU1elxliUrmX6+au46BRekp3aAKawHxdANlQyTK6ujVo7Z5HxDMFn8HX+NPWbSMvq1SFcIlGcrGGhip4LXkm1xdIAz9Q6gehvtABch+/51vXxqLa1P//dj26juvHUaQMKyd2XPPpCN02H9o7D4GoXGYdVex7tp82xJUx4FLRlu7m/aolHv0/NcZPlsQRIJcAjceF1798u/vV2QTxDjdzklPMSyJtnHqIYAIAE183OMyKaVJcrxLvGWOclegOBnr647mldlJU953JMXljqRouUtfZbg6GHKvI9Z2mg2Cv3HN9FPraXxrJi1uz6/SG9on6DirjPJcTc1Slzc5etoXWlL2wnr7hFBvWtTa/Ran7E2EwlScEPC/+2tlxVtQiGH3YqPIPfwkx0kJmLT9I5PYIcmsGyBNc5xvy97+fIpJBAR0OcyUbuUv5jhC4YvqxyhS2z0bRjd+oNWGPCEm7QtwMBgTlIeDE8keAG/UJamRS/+0f1CQ/bkoh5ufzuGjM9x7EY192/OBTdW65qc03DqohV4BOtfzsUcJ5lJte5qDNAMyuWfYeym1t+l+Hb9isiQEc7sZ1383RoE2d8npow6FcKGgdzuAE3LfejD4LR//7mqx/rYDnwRDpDmQI5/FblhTqqvH09qhWoLoQwjpN6qX6Af7/cjwo0ATmW7Z3NJfmXqb7kRh4tLxTk4qV9skRHgLAeq2ZEmoIF7G4nRe3B1TKeTwodYwliVGYnBpvUW6x+6X8vXBIrTrWVStjDqwUP4grQyOmHmnAQ==
+X-Microsoft-Antispam-Message-Info: ElqR/PzQbfiTyOK0G+InCVSbXa2nPIuGEImMyspYsFAtXdqCuPj8ERwhXWHWN/21MSbTiRksJCz5SX2oPUqvtI8vF6QH1Os/coekLvrXHnZPfb+86hbZ6Cghxh/m6Z8FHnMFkT4Kq6nJ0x8v8M2stYrtC3glhBEGm9jOKhBH2sjwx9JJ1WusqJEXQI1Bjjgft0iOW6owg3gc233BX7z1QhofTe5hzTWRMMsCC135b9pVtWAT9deR8vq2o/9tvf29R0IKCO88vMljZbWo0rEVS58EvnOEAJEABjEVnhqQtiRQYDU5GJ3lw+ysYr6DZTKd70vxfeJjna9X7jBga1MvTpVjDpA6QeXnpEps5VhsulOhqvP4uvwr4388GGPo7l+2FAHoIY5PwNsXwUIglRW9fHeXjNgS1ux8zAxYucguKpBrm2BLKA+JwF1jXOqMfBlLJZw0HHY6cY1R+XxB07LWed48IjUb/scIMRt4n/NL5k/35IqwFxfCZZh3dCnoqEgyO9psh5vaM2TMAb1i5Trs+cLEXj2yC/SZjlztEmBrAR8lR9ciKrRTGOWcTJ3XXZdnv7aGAI9KPTuOAfY0V4NC/BtEIMtuotEVl2e7aJScHjhJOe2fQ0leNilInbvOcBWSdG0AiCc7c+Fup40cPQwHg+RUwBclS19/Z5PVG6s16yneQEZPpUcvJZ8aQ6OCMxehsa1eWaLbHr5xjZBvT/dFz3zAov2AojFK1zYDKvU/1I1ZpFLGckpayVhVtqFrV8d1s0SXpRwm60CmgH/x3ZFHYA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(396003)(136003)(346002)(376002)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(82310400011)(40470700004)(36840700001)(46966006)(83380400001)(82740400003)(70206006)(47076005)(86362001)(36756003)(2906002)(41300700001)(81166007)(36860700001)(356005)(54906003)(316002)(8676002)(7696005)(70586007)(6666004)(426003)(2616005)(5660300002)(478600001)(4326008)(1076003)(8936002)(336012)(26005)(40460700003)(40480700001)(6916009)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(376002)(396003)(136003)(346002)(230922051799003)(82310400011)(186009)(1800799012)(451199024)(64100799003)(36840700001)(40470700004)(46966006)(40480700001)(40460700003)(2616005)(8676002)(4326008)(8936002)(5660300002)(336012)(426003)(83380400001)(54906003)(47076005)(1076003)(7696005)(316002)(6916009)(70206006)(6666004)(478600001)(26005)(70586007)(36860700001)(81166007)(356005)(82740400003)(2906002)(36756003)(41300700001)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 07:02:21.3766 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 118b7a41-59bb-4dcd-0d9c-08dc1caa693c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 07:02:23.7127 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: abd51b8b-798a-440c-1f61-08dc1caa6a9e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044FC.namprd21.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F6.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5954
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4250
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,50 +104,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <charlene.liu@amd.com>, Muhammad Ahmed <ahmed.ahmed@amd.com>,
- chiahsuan.chung@amd.com, Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
- hersenxs.wu@amd.com, wayne.lin@amd.com, Harry.Wentland@amd.com,
- agustin.gutierrez@amd.com
+Cc: Charlene Liu <charlene.liu@amd.com>, chiahsuan.chung@amd.com,
+ Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
+ wayne.lin@amd.com, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <charlene.liu@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Revert commit beca01e909cf
-("drm/amd/display: initialize all the dpm level's stutter latency")
+[Why]
+We want acknowledgment of the driver idle disallow from DMCUB before
+continuing with any further programming.
 
-Because it causes some regression
+For idle allow we want to minimize the chance of DMCUB actively
+interacing with other firmware components on the system (eg. PMFW)
+at the same time.
 
-Reviewed-by: Muhammad Ahmed <ahmed.ahmed@amd.com>
+[How]
+Ensure that DMCUB isn't in the middle of processing other command
+submissions prior to allowing idle and after disallowing idle by
+inserting a wait before the allow and by changing the wait type for
+the idle disallow.
+
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-index 64d01a9cd68c..8b0f930be5ae 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-@@ -341,9 +341,6 @@ void dml2_init_soc_states(struct dml2_context *dml2, const struct dc *in_dc,
- 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index 2b79a0e5638e..c365cca05718 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -1195,6 +1195,9 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
+ 	if (dc->debug.dmcub_emulation)
+ 		return;
+ 
++	if (!dc->ctx->dmub_srv || !dc->ctx->dmub_srv->dmub)
++		return;
++
+ 	memset(&cmd, 0, sizeof(cmd));
+ 	cmd.idle_opt_notify_idle.header.type = DMUB_CMD__IDLE_OPT;
+ 	cmd.idle_opt_notify_idle.header.sub_type = DMUB_CMD__IDLE_OPT_DCN_NOTIFY_IDLE;
+@@ -1205,13 +1208,15 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
+ 	cmd.idle_opt_notify_idle.cntl_data.driver_idle = allow_idle;
+ 
+ 	if (allow_idle) {
++		dc_dmub_srv_wait_idle(dc->ctx->dmub_srv);
++
+ 		if (dc->hwss.set_idle_state)
+ 			dc->hwss.set_idle_state(dc, true);
  	}
  
--	if (dml2->config.bbox_overrides.clks_table.num_states)
--			p->in_states->num_states = dml2->config.bbox_overrides.clks_table.num_states;
--
- 	/* Override from passed values, if available */
- 	for (i = 0; i < p->in_states->num_states; i++) {
- 		if (dml2->config.bbox_overrides.sr_exit_latency_us) {
-@@ -400,6 +397,7 @@ void dml2_init_soc_states(struct dml2_context *dml2, const struct dc *in_dc,
- 	}
- 	/* Copy clocks tables entries, if available */
- 	if (dml2->config.bbox_overrides.clks_table.num_states) {
-+		p->in_states->num_states = dml2->config.bbox_overrides.clks_table.num_states;
+ 	/* NOTE: This does not use the "wake" interface since this is part of the wake path. */
+ 	/* We also do not perform a wait since DMCUB could enter idle after the notification. */
+-	dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_NO_WAIT);
++	dm_execute_dmub_cmd(dc->ctx, &cmd, allow_idle ? DM_DMUB_WAIT_TYPE_NO_WAIT : DM_DMUB_WAIT_TYPE_WAIT);
+ }
  
- 		for (i = 0; i < dml2->config.bbox_overrides.clks_table.num_entries_per_clk.num_dcfclk_levels; i++) {
- 			p->in_states->state_array[i].dcfclk_mhz = dml2->config.bbox_overrides.clks_table.clk_entries[i].dcfclk_mhz;
+ static void dc_dmub_srv_exit_low_power_state(const struct dc *dc)
 -- 
 2.34.1
 
