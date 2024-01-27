@@ -2,48 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A8F8400FE
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 876DC8400F4
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:10:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281B211269E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BCBB1126C8;
 	Mon, 29 Jan 2024 09:10:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from stravinsky.debian.org (stravinsky.debian.org [82.195.75.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0DA10FEE8;
- Sat, 27 Jan 2024 13:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org; 
- s=smtpauto.stravinsky;
- h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=j460abbTum7jLNtngWFF5CRs5bwdXXz1lvyWrkSYPzk=; b=uVHZlZhCfQdnSp6dsj9Nlhtchc
- DSGCEUCM+wrgBIMiOn73gCyvtSXb2NqDVbVW0L44Vh3ZSXasjRSErRiaI7Anunli/KfisUGZBLm++
- WiNd90gsZR3XcnCRyxmwaGOLirL8e7LzIf4ePDs2QaiLNbVuVz1hfJ7mlV+OZ/ai67267yUZNO0uK
- VouoyYcEB8qA1vMHcigst7M+yLlqMISPUGjNY+N4M+KBwzzRawHTKvTFBjL8zQ/q9aFaznovTZFoh
- IkKgUbEbhLKOifYRhAgrBU6kTJzBYfctYsqG224B1KbRT8ryaw4FeXSiYk/2NJGPDsPAh2EInpC4F
- oaL87Dog==;
-Received: from authenticated user by stravinsky.debian.org with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <carnil@debian.org>)
- id 1rTiWQ-003UJH-4O; Sat, 27 Jan 2024 13:14:58 +0000
-Received: by eldamar.lan (Postfix, from userid 1000)
- id 195E9BE2DE0; Sat, 27 Jan 2024 14:14:57 +0100 (CET)
-Date: Sat, 27 Jan 2024 14:14:57 +0100
-From: Salvatore Bonaccorso <carnil@debian.org>
-To: Patrice Duroux <patrice.duroux@gmail.com>, 1061449@bugs.debian.org,
- Lewis Huang <lewis.huang@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>,
- Phil Hsieh <phil.hsieh@amd.com>,
- Rodrigo Siqueira <rodrigo.siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: Bug#1061449: linux-image-6.7-amd64: a boot message from amdgpu
-Message-ID: <ZbUB0YWxEET3Y0xA@eldamar.lan>
-References: <170612149675.7169.757906919183146487.reportbug@kos-moceratops.home>
+X-Greylist: delayed 1759 seconds by postgrey-1.36 at gabe;
+ Sat, 27 Jan 2024 18:50:43 UTC
+Received: from www254.your-server.de (www254.your-server.de [188.40.28.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCAC710ED91;
+ Sat, 27 Jan 2024 18:50:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=windeck-gymnasium.de; s=windeck_hetzner; h=Content-Type:In-Reply-To:From:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+ bh=cCh/PG7HRY+2FusfuHZo8+iALKdUcyERh3vLdxoPf1s=; b=KteZMf4OwCFYpPItblGjeL5KNk
+ 1Kous0K9GVq6Sya6vet1uTTLCJO/0pzu/grhLItaR2DiCOZ6Pb7Q2CQ0AUynL65xuL5p8Ct+F0KgB
+ F+1UbU6BndYH8DWfzpqlMeDBA/W5CBEdWJCvtZSYE/+sgGyz7iRMZhKQqJs7mZWW5Aioxp4fqk2fN
+ 2OrDsBJZx/+T/IIsT12DC8IWgSl1eMD8xuHK50PDD/WsR+hN2yhyrtIc1xEdIc3loZVQqkGNb5FNT
+ HS8ev8OxJlGSHjjeMcU1xvS6Eiti8RqFyHk9+pg22WK/K8775lclMtCJxXkYBsdIf+9xH8So8UUsF
+ W1d5kmJA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+ by www254.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+ (Exim 4.94.2) (envelope-from <administrator@windeck-gymnasium.de>)
+ id 1rTnIu-000KXb-9B; Sat, 27 Jan 2024 19:21:20 +0100
+Received: from [2003:c2:2700:8b00:abb7:33fa:4db1:a46e]
+ by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <administrator@windeck-gymnasium.de>)
+ id 1rTnIt-000K5o-KP; Sat, 27 Jan 2024 19:21:19 +0100
+Message-ID: <945c2362-9245-438c-9235-59e6773111b1@windeck-gymnasium.de>
+Date: Sat, 27 Jan 2024 19:21:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <170612149675.7169.757906919183146487.reportbug@kos-moceratops.home>
-X-Debian-User: carnil
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: add panel_power_savings sysfs entry to
+ eDP connectors
+To: Hamza Mahfooz <hamza.mahfooz@amd.com>
+References: <20240126222300.119292-1-hamza.mahfooz@amd.com>
+Content-Language: de-DE
+From: =?UTF-8?Q?Dominik_F=C3=B6rderer?= <administrator@windeck-gymnasium.de>
+Autocrypt: addr=administrator@windeck-gymnasium.de; keydata=
+ xsBNBFKEx0EBCACd+Hh66bJTTKR2iOs4HhtIzDjZl17s3eOLhYYpTAbCbhuCDzvTOhUTuu3z
+ kB1invo1QlleId5WtW2c4GTXTKpRy0H9tPLuH0eGJNV2YbfakqSDNRXf/azZQjgjrMps7YES
+ ibXG2fE1vV4jxsV0Uurq/+lEaW99Jynnti+aiCw7XDopDz2OFC20oZ968ulxB5AB5s/uK2lY
+ PYZy7rEPZWsv/3sxHwKogt8XOM3xoz59nyBq1+jqMQuIRgDry5GvPUF6y/yapA9eCQO7dhHe
+ 5gA8uttA7nicQc109EIZyZ1NN/qmyvf/Xuku3nyhHC+AD2VBog5TpWzqE/MKKk+tVTJvABEB
+ AAHNNkRvbWluaWsgRsO2cmRlcmVyIDxhZG1pbmlzdHJhdG9yQHdpbmRlY2stZ3ltbmFzaXVt
+ LmRlPsLAjwQTAQgAOQIbIwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4AWIQSUjWmA/4wJ5usw
+ UNfDRud6+gdeXgUCXZ7oLQAKCRDDRud6+gdeXrQlB/9YwT0UJeLilU5Fqmh2NDOhn4dCsLNq
+ yNnKt3d88wxnonz6Z3j+Nn/3sKt0LgyinQx6dNuhp67DibpYDw01GomnSlcmdAQ/YG7y4CB5
+ Mtcszm7gYUSUd1FlYwgpkAC3CEhLDJTyuuLZ3KNUIxITonp+ui3CrXTBF+vrRGvZq9WiyNcp
+ s6LsQHWKw5VgvGhLklkjG5fxWj6EOI1N9T2VcLt41ZuVcDg9Vn/Je3/6n/g7UjFAsVPydvdm
+ /37HGp/crj7+GKy9XMDRJfKddObAQ6w0NRpky+JFtnMuZXHEDy3dfO+K2cX66Jtr0kdjLiT4
+ 77kd9acZ6B6QGJSq6WeO8/T2zsBNBFKEx0EBCADaI8479bL9mlzZYMNo+H+62mj35DDg6Oxl
+ kgsEu/oKK8PY1gBbWOjiKZTP4ty3aw+0XsNsdVbbXV0rYvUvnyPIQoImIu77q/hw7OTJcjNI
+ G3XCnSFgQW8r2aooFTqFQpq4o9IiVKAPLviHi3XipOLLisGYKEen3NtNXyc1vFFHu7d3qeaP
+ X1hpmwizoQ10WpUvYkaLa0vFcRWyRzhf8reDlU9t2c/YV+eGjl4WSmxEEDehYZGMO02pxo2P
+ F05FZorKWJ/9eL5xBkKB9TmldgFmtDF4Xeykz1+USxDacTCy05GSVD7eegkfIeVpgphiuP0u
+ yQ1BJjg2HTO3AfWF3YUzABEBAAHCwHYEGAEIACACGwwWIQSUjWmA/4wJ5uswUNfDRud6+gde
+ XgUCXZ7oOgAKCRDDRud6+gdeXilFB/0bVk9EFIbxl1EuYfvtESz/5+ixMQ7d5nNv4XlcrxY+
+ ayfqAGzuJ1tvCtuHtiGJSTx4Ta83ysSbRYEexppLbJINjBr5J4R4wL6SOxj6Y0+JUZ1YJKmb
+ D9K4BRknNuxdRZO/AmZ2TwrGemirAIf0EZFAPi4Uvp/xZs2svXTU6P4jb8p9MohEQCpaoQIe
+ LAiFzLfK2eJMGjrQMFhnRe2pv7z54qLQ4wYdG1CGUkXivul+4y0yhp3W2mu5XSqxa0Tkzhy1
+ X8x6aSSiURHeu7RPJnlBgFJbfhggsj4ZO0Yz5chC0YCu3CTMm/e6BgphRTxl8wFoQ3+STrT5
+ dPs3WyUXqakj
+In-Reply-To: <20240126222300.119292-1-hamza.mahfooz@amd.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------acHOrLA0e0X0SGLsitEsjtU1"
+X-Authenticated-Sender: administrator@windeck-gymnasium.de
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27167/Sat Jan 27 10:40:34 2024)
 X-Mailman-Approved-At: Mon, 29 Jan 2024 09:10:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,158 +86,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------acHOrLA0e0X0SGLsitEsjtU1
+Content-Type: multipart/mixed; boundary="------------FmWQ3gdavx0ywoUh9fuMSTb0";
+ protected-headers="v1"
+From: =?UTF-8?Q?Dominik_F=C3=B6rderer?= <administrator@windeck-gymnasium.de>
+To: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Message-ID: <945c2362-9245-438c-9235-59e6773111b1@windeck-gymnasium.de>
+Subject: Re: [PATCH] drm/amd/display: add panel_power_savings sysfs entry to
+ eDP connectors
+References: <20240126222300.119292-1-hamza.mahfooz@amd.com>
+In-Reply-To: <20240126222300.119292-1-hamza.mahfooz@amd.com>
 
-In Debian (https://bugs.debian.org/1061449) we got the following
-quotred report:
+--------------FmWQ3gdavx0ywoUh9fuMSTb0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On Wed, Jan 24, 2024 at 07:38:16PM +0100, Patrice Duroux wrote:
-> Package: src:linux
-> Version: 6.7.1-1~exp1
-> Severity: normal
-> 
-> Dear Maintainer,
-> 
-> Giving a try to 6.7, here is a message extracted from dmesg:
-> 
-> [    4.177226] ------------[ cut here ]------------
-> [    4.177227] WARNING: CPU: 6 PID: 248 at
-> drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_factory.c:387
-> construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.177658] Modules linked in: amdgpu(+) i915(+) sd_mod drm_exec amdxcp
-> gpu_sched drm_buddy nvme i2c_algo_bit drm_suballoc_helper drm_display_helper
-> ahci nvme_core hid_generic crc32_pclmul libahci crc32c_intel t10_pi cec libata
-> crc64_rocksoft_generic ghash_clmulni_intel rc_core drm_ttm_helper
-> crc64_rocksoft sha512_ssse3 i2c_hid_acpi ttm rtsx_pci_sdmmc i2c_hid xhci_pci
-> crc_t10dif sha512_generic mmc_core scsi_mod xhci_hcd drm_kms_helper video hid
-> crct10dif_generic intel_lpss_pci crct10dif_pclmul i2c_i801 sha256_ssse3
-> intel_lpss crc64 thunderbolt drm e1000e usbcore sha1_ssse3 rtsx_pci i2c_smbus
-> scsi_common crct10dif_common idma64 usb_common battery wmi button aesni_intel
-> crypto_simd cryptd
-> [    4.177689] CPU: 6 PID: 248 Comm: (udev-worker) Not tainted 6.7-amd64 #1
-> Debian 6.7.1-1~exp1
-> [    4.177691] Hardware name: Dell Inc. Precision 7540/0T2FXT, BIOS 1.29.0
-> 11/03/2023
-> [    4.177692] RIP: 0010:construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.178050] Code: b9 01 00 00 00 83 fe 01 74 40 48 8b 82 f8 03 00 00 89 f2
-> 48 c7 c6 00 35 a7 c1 48 8b 40 10 48 8b 00 48 8b 78 08 e8 ba b7 5b fb <0f> 0b 49
-> 8b 87 d0 01 00 00 b9 0f 00 00 00 48 8b 80 e8 04 00 00 48
-> [    4.178052] RSP: 0018:ffffaad300857408 EFLAGS: 00010246
-> [    4.178053] RAX: 0000000000000000 RBX: ffff96df636a1700 RCX:
-> c0000000ffffefff
-> [    4.178054] RDX: 0000000000000000 RSI: 00000000ffffefff RDI:
-> 0000000000000001
-> [    4.178055] RBP: ffff96df4d379c00 R08: 0000000000000000 R09:
-> ffffaad3008571d0
-> [    4.178056] R10: 0000000000000003 R11: ffffffffbded2428 R12:
-> ffffaad300857474
-> [    4.178057] R13: ffffffffc1933140 R14: ffffaad3008577d0 R15:
-> ffff96df43e82000
-> [    4.178058] FS:  00007fcd5d9648c0(0000) GS:ffff96e2cc380000(0000)
-> knlGS:0000000000000000
-> [    4.178060] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [    4.178061] CR2: 00007fcd5d932a6d CR3: 0000000103e9a004 CR4:
-> 00000000003706f0
-> [    4.178062] DR0: 0000000000000000 DR1: 0000000000000000 DR2:
-> 0000000000000000
-> [    4.178063] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7:
-> 0000000000000400
-> [    4.178063] Call Trace:
-> [    4.178066]  <TASK>
-> [    4.178067]  ? construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.178422]  ? __warn+0x81/0x130
-> [    4.178426]  ? construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.178784]  ? report_bug+0x171/0x1a0
-> [    4.178787]  ? handle_bug+0x3c/0x80
-> [    4.178789]  ? exc_invalid_op+0x17/0x70
-> [    4.178790]  ? asm_exc_invalid_op+0x1a/0x20
-> [    4.178793]  ? construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.179149]  ? construct_phy+0xb26/0xd60 [amdgpu]
-> [    4.179507]  link_create+0x1b2/0x200 [amdgpu]
-> [    4.179865]  create_links+0x135/0x420 [amdgpu]
-> [    4.180196]  dc_create+0x321/0x640 [amdgpu]
-> [    4.180529]  amdgpu_dm_init.isra.0+0x2a0/0x1ed0 [amdgpu]
-> [    4.180881]  ? sysvec_apic_timer_interrupt+0xe/0x90
-> [    4.180883]  ? asm_sysvec_apic_timer_interrupt+0x1a/0x20
-> [    4.180885]  ? delay_tsc+0x37/0xa0
-> [    4.180889]  dm_hw_init+0x12/0x30 [amdgpu]
-> [    4.181240]  amdgpu_device_init+0x1e42/0x24a0 [amdgpu]
-> [    4.181517]  amdgpu_driver_load_kms+0x19/0x190 [amdgpu]
-> [    4.181793]  amdgpu_pci_probe+0x165/0x4c0 [amdgpu]
-> [    4.182067]  local_pci_probe+0x42/0xa0
-> [    4.182070]  pci_device_probe+0xc7/0x240
-> [    4.182072]  really_probe+0x19b/0x3e0
-> [    4.182075]  ? __pfx___driver_attach+0x10/0x10
-> [    4.182076]  __driver_probe_device+0x78/0x160
-> [    4.182078]  driver_probe_device+0x1f/0x90
-> [    4.182079]  __driver_attach+0xd2/0x1c0
-> [    4.182081]  bus_for_each_dev+0x85/0xd0
-> [    4.182083]  bus_add_driver+0x116/0x220
-> [    4.182085]  driver_register+0x59/0x100
-> [    4.182087]  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
-> [    4.182356]  do_one_initcall+0x58/0x320
-> [    4.182359]  do_init_module+0x60/0x240
-> [    4.182361]  init_module_from_file+0x89/0xe0
-> [    4.182364]  idempotent_init_module+0x120/0x2b0
-> [    4.182366]  __x64_sys_finit_module+0x5e/0xb0
-> [    4.182367]  do_syscall_64+0x61/0x120
-> [    4.182370]  ? do_syscall_64+0x70/0x120
-> [    4.182372]  entry_SYSCALL_64_after_hwframe+0x6e/0x76
-> [    4.182375] RIP: 0033:0x7fcd5e130f19
-> [    4.182376] Code: 08 89 e8 5b 5d c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 89
-> f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01
-> f0 ff ff 73 01 c3 48 8b 0d cf 1e 0d 00 f7 d8 64 89 01 48
-> [    4.182378] RSP: 002b:00007ffd314afa38 EFLAGS: 00000246 ORIG_RAX:
-> 0000000000000139
-> [    4.182379] RAX: ffffffffffffffda RBX: 00005611ee7f84d0 RCX:
-> 00007fcd5e130f19
-> [    4.182380] RDX: 0000000000000000 RSI: 00007fcd5e2644f5 RDI:
-> 0000000000000024
-> [    4.182381] RBP: 0000000000000000 R08: 0000000000000040 R09:
-> 00005611ee7d3140
-> [    4.182382] R10: 0000000000000038 R11: 0000000000000246 R12:
-> 00007fcd5e2644f5
-> [    4.182383] R13: 0000000000020000 R14: 00005611ee7f0670 R15:
-> 0000000000000000
-> [    4.182385]  </TASK>
-> [    4.182385] ---[ end trace 0000000000000000 ]---
-> 
-> 
-> I do not know if this is something interesting and just a warning.
-> Otherwise this amdgpu is a second device on my laptop system:
-> 
-> $ inxi -G
-> Graphics:
->   Device-1: Intel CoffeeLake-H GT2 [UHD Graphics 630] driver: i915 v: kernel
->   Device-2: AMD Lexa XT [Radeon PRO WX 3200] driver: amdgpu v: kernel
->   Device-3: Sunplus Innovation Integrated_Webcam_HD driver: uvcvideo
->     type: USB
->   Display: wayland server: X.Org v: 23.2.4 with: Xwayland v: 23.2.4
->     compositor: gnome-shell v: 45.3 driver: X: loaded: amdgpu,modesetting
->     unloaded: fbdev,radeon,vesa dri: iris gpu: i915 resolution: 1920x1080~60Hz
->   API: EGL v: 1.5 drivers: iris,radeonsi,swrast
->     platforms: gbm,wayland,x11,surfaceless,device
->   API: OpenGL v: 4.6 vendor: intel mesa v: 23.3.3-3 renderer: Mesa Intel
->     UHD Graphics 630 (CFL GT2)
->   API: Vulkan v: 1.3.268 drivers: intel,radv,llvmpipe
->     surfaces: xcb,xlib,wayland
+SSd2ZSBhcHBsaWVkIHRoZSBwYXRjaCB0byA2LjcuMi4gVGhlIGRldmljZSB0aGVuIHNob3dz
+IHVwIHVuZGVyOg0KDQp8L3N5cy9kZXZpY2VzL3BjaTAwMDA6MDAvMDAwMDowMDowOC4xLzAw
+MDA6YzE6MDAuMC9kcm0vY2FyZDEvY2FyZDEtZURQLTEvYW1kZ3B1L3BhbmVsX3Bvd2VyX3Nh
+dmluZ3N8DQp8fHwob24gRnJhbWV3b3JrIExhcHRvcCAxMyBhbWQgNzg0MFUgd2l0aCA3ODBN
+KS58DQp8fA0KQWZ0ZXIgYSBmZXcgdGVzdHMgaSBjYW4gc2F5IHRoYXQgYXQgbGVhc3QgaW4g
+bXkgc3lzdGVtIGl04oCZcyBub3Qgd29ya2luZy4gDQpTZXR0aW5nIGEgdmFsdWUgYmV0d2Vl
+biAwIGFuZCA0IGluIC9zeXMvLi4uL3BhbmVsX3Bvd2VyX3NhdmluZ3MgY2hhbmdlcyANCm5v
+dGhpbmcgaW4gdGhlIHBhbmVsIGJlaGF2aW9yLiBUaGVyZSBhcmUgbm8gZXJyb3JzIGluIGtl
+cm5lbCBsb2cuDQoNClNldHRpbmcgYW4gYWJtbGV2ZWwgdmlhIGtlcm5lbCBvcHRpb24gc3Rp
+bGwgd29ya3MgYXMgaW50ZW5kZWQuDQoNCnx8QW4gb3RoZXIgaW52ZXN0aWdhdGlvbiBpcywg
+dGhhdCB3aGVuIHNldHRpbmcgYWJtbGV2ZWw9MCB2aWEga2VybmVsIA0Kb3B0aW9uIHRoZSB2
+YWx1ZSBzaG93biBpbiAvc3lzLy4uLi9wYW5lbF9wb3dlcl9zYXZpbmdzIGlzIDI1NSBpbnN0
+ZWFkIG9mIA0KMC4gRm9yIGFibWxldmUgdmFsdWVzIDEgdG8gNCBzZXQgdmlhIGtlcm5lbCBv
+cHRpb24gdGhlIHZhbHVlcyBzaG93biBpbiANCi9zeXMvLi4uL3BhbmVsX3Bvd2VyX3Nhdmlu
+Z3MgYXJlIHRoZSBzYW1lLg0KDQoNCnx8DQoNCkFtIDI2LjAxLjI0IHVtIDIzOjIyIHNjaHJp
+ZWIgSGFtemEgTWFoZm9vejoNCj4gV2Ugd2FudCBwcm9ncmFtcyBiZXNpZGVzIHRoZSBjb21w
+b3NpdG9yIHRvIGJlIGFibGUgdG8gZW5hYmxlIG9yIGRpc2FibGUNCj4gcGFuZWwgcG93ZXIg
+c2F2aW5nIGZlYXR1cmVzLiBIb3dldmVyLCBzaW5jZSB0aGV5IGFyZSBjdXJyZW50bHkgb25s
+eQ0KPiBjb25maWd1cmFibGUgdGhyb3VnaCBEUk0gcHJvcGVydGllcywgdGhhdCBpc24ndCBw
+b3NzaWJsZS4gU28sIHRvIHJlbWVkeQ0KPiB0aGF0IGlzc3VlIGludHJvZHVjZSBhIG5ldyAi
+cGFuZWxfcG93ZXJfc2F2aW5ncyIgc3lzZnMgYXR0cmlidXRlLg0KPg0KPiBDYzogTWFyaW8g
+TGltb25jaWVsbG8gPG1hcmlvLmxpbW9uY2llbGxvQGFtZC5jb20+DQo+IFNpZ25lZC1vZmYt
+Ynk6IEhhbXphIE1haGZvb3ogPGhhbXphLm1haGZvb3pAYW1kLmNvbT4NCj4gLS0tDQo+ICAg
+Li4uL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIHwgNTkgKysr
+KysrKysrKysrKysrKysrKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA1OSBpbnNlcnRpb25zKCsp
+DQo+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1
+X2RtL2FtZGdwdV9kbS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9k
+bS9hbWRncHVfZG0uYw0KPiBpbmRleCBjZDk4YjM1NjUxNzguLmIzZmNkODMzMDE1ZCAxMDA2
+NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
+cHVfZG0uYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2Rt
+L2FtZGdwdV9kbS5jDQo+IEBAIC02NTM0LDYgKzY1MzQsNTggQEAgYW1kZ3B1X2RtX2Nvbm5l
+Y3Rvcl9hdG9taWNfZHVwbGljYXRlX3N0YXRlKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
+ZWN0b3IpDQo+ICAgCXJldHVybiAmbmV3X3N0YXRlLT5iYXNlOw0KPiAgIH0NCj4gICANCj4g
+K3N0YXRpYyBzc2l6ZV90IHBhbmVsX3Bvd2VyX3NhdmluZ3Nfc2hvdyhzdHJ1Y3QgZGV2aWNl
+ICpkZXZpY2UsDQo+ICsJCQkJCXN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICphdHRyLA0KPiAr
+CQkJCQljaGFyICpidWYpDQo+ICt7DQo+ICsJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
+Y3RvciA9IGRldl9nZXRfZHJ2ZGF0YShkZXZpY2UpOw0KPiArCXN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYgPSBjb25uZWN0b3ItPmRldjsNCj4gKwlzc2l6ZV90IHZhbDsNCj4gKw0KPiArCWRy
+bV9tb2Rlc2V0X2xvY2soJmRldi0+bW9kZV9jb25maWcuY29ubmVjdGlvbl9tdXRleCwgTlVM
+TCk7DQo+ICsJdmFsID0gdG9fZG1fY29ubmVjdG9yX3N0YXRlKGNvbm5lY3Rvci0+c3RhdGUp
+LT5hYm1fbGV2ZWw7DQo+ICsJZHJtX21vZGVzZXRfdW5sb2NrKCZkZXYtPm1vZGVfY29uZmln
+LmNvbm5lY3Rpb25fbXV0ZXgpOw0KPiArDQo+ICsJcmV0dXJuIHN5c2ZzX2VtaXQoYnVmLCAi
+JWx1XG4iLCB2YWwpOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgc3NpemVfdCBwYW5lbF9wb3dl
+cl9zYXZpbmdzX3N0b3JlKHN0cnVjdCBkZXZpY2UgKmRldmljZSwNCj4gKwkJCQkJIHN0cnVj
+dCBkZXZpY2VfYXR0cmlidXRlICphdHRyLA0KPiArCQkJCQkgY29uc3QgY2hhciAqYnVmLCBz
+aXplX3QgY291bnQpDQo+ICt7DQo+ICsJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rv
+ciA9IGRldl9nZXRfZHJ2ZGF0YShkZXZpY2UpOw0KPiArCXN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYgPSBjb25uZWN0b3ItPmRldjsNCj4gKwlsb25nIHZhbDsNCj4gKwlpbnQgcmV0Ow0KPiAr
+DQo+ICsJcmV0ID0ga3N0cnRvbChidWYsIDAsICZ2YWwpOw0KPiArDQo+ICsJaWYgKHJldCkN
+Cj4gKwkJcmV0dXJuIHJldDsNCj4gKw0KPiArCWlmICh2YWwgPCAwIHx8IHZhbCA+IDQpDQo+
+ICsJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+ICsJZHJtX21vZGVzZXRfbG9jaygmZGV2LT5t
+b2RlX2NvbmZpZy5jb25uZWN0aW9uX211dGV4LCBOVUxMKTsNCj4gKwl0b19kbV9jb25uZWN0
+b3Jfc3RhdGUoY29ubmVjdG9yLT5zdGF0ZSktPmFibV9sZXZlbCA9IHZhbCA/Og0KPiArCQlB
+Qk1fTEVWRUxfSU1NRURJQVRFX0RJU0FCTEU7DQo+ICsJZHJtX21vZGVzZXRfdW5sb2NrKCZk
+ZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rpb25fbXV0ZXgpOw0KPiArDQo+ICsJcmV0dXJuIGNv
+dW50Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgREVWSUNFX0FUVFJfUlcocGFuZWxfcG93ZXJf
+c2F2aW5ncyk7DQo+ICsNCj4gK3N0YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICphbWRncHVfYXR0
+cnNbXSA9IHsNCj4gKwkmZGV2X2F0dHJfcGFuZWxfcG93ZXJfc2F2aW5ncy5hdHRyLA0KPiAr
+CU5VTEwNCj4gK307DQo+ICsNCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dy
+b3VwIGFtZGdwdV9ncm91cCA9IHsNCj4gKwkubmFtZSA9ICJhbWRncHUiLA0KPiArCS5hdHRy
+cyA9IGFtZGdwdV9hdHRycw0KPiArfTsNCj4gKw0KPiAgIHN0YXRpYyBpbnQNCj4gICBhbWRn
+cHVfZG1fY29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
+bm5lY3RvcikNCj4gICB7DQo+IEBAIC02NTQxLDYgKzY1OTMsMTMgQEAgYW1kZ3B1X2RtX2Nv
+bm5lY3Rvcl9sYXRlX3JlZ2lzdGVyKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
+DQo+ICAgCQl0b19hbWRncHVfZG1fY29ubmVjdG9yKGNvbm5lY3Rvcik7DQo+ICAgCWludCBy
+Ow0KPiAgIA0KPiArCWlmIChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9NT0RF
+X0NPTk5FQ1RPUl9lRFApIHsNCj4gKwkJciA9IHN5c2ZzX2NyZWF0ZV9ncm91cCgmY29ubmVj
+dG9yLT5rZGV2LT5rb2JqLA0KPiArCQkJCSAgICAgICAmYW1kZ3B1X2dyb3VwKTsNCj4gKwkJ
+aWYgKHIpDQo+ICsJCQlyZXR1cm4gcjsNCj4gKwl9DQo+ICsNCj4gICAJYW1kZ3B1X2RtX3Jl
+Z2lzdGVyX2JhY2tsaWdodF9kZXZpY2UoYW1kZ3B1X2RtX2Nvbm5lY3Rvcik7DQo+ICAgDQo+
+ICAgCWlmICgoY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9DT05ORUNU
+T1JfRGlzcGxheVBvcnQpIHx8DQoNCi0tIA0KRG9taW5payBGw7ZyZGVyZXIgKE5ldHp3ZXJr
+YWRtaW5pc3RyYXRvcikNCldpbmRlY2stR3ltbmFzaXVtIELDvGhsDQpIdW1ib2xkdHN0ci4g
+Mw0KVGVsLiAwNzIyMy85NDA5NTg1DQoNCg==
 
-Analysis showed that this appears to be a regression from b17ef04bf3a4
-("drm/amd/display: Pass pwrseq inst for backlight and ABM"). Does that
-ring some bells?
+--------------FmWQ3gdavx0ywoUh9fuMSTb0--
 
-See: https://bugs.debian.org/1061449#27
+--------------acHOrLA0e0X0SGLsitEsjtU1
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-#regzbot introduced: b17ef04bf3a4
-#regzbot link: https://bugs.debian.org/1061449
-#regzbot title: Regression by b17ef04bf3a4 ("drm/amd/display: Pass pwrseq inst for backlight and ABM")
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-Salvatore
+wsB5BAABCAAjFiEElI1pgP+MCebrMFDXw0bnevoHXl4FAmW1SZ4FAwAAAAAACgkQw0bnevoHXl74
+IQf/VZ6ne/BrNrp+eZ5acwNrqVIoWptGrH5oqmTkqCOD6xIfyOW4o2Odxp96fLcYsQp43gXiJtbU
+mAv/AC8Hgqw+j/nHYYgAebpTQV+TLdyygqXiv6EToyANNLpSp4SW9qiuiKUad7pq9stakc6lUqKa
+bPb7ANSUZDudtuJLd3RauRdgVoLRdEpnai8gnb6J3LKqL3spoDbOx5HQwSt02JdS5m33wi2zrqr4
+c1ncuk97ILns2WLqHAmXk67UiI2PPzfVK3R0qTarxzLfI4eQMPT8sAJIr77hG3LAZOLWEoY/eOHo
+ZqP972+bvMx0ZDWbNjEMfzoeVLn90eAtq2SGNaTyXg==
+=967L
+-----END PGP SIGNATURE-----
+
+--------------acHOrLA0e0X0SGLsitEsjtU1--
