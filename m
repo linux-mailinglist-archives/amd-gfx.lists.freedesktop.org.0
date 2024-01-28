@@ -2,66 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6F68400F6
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 301158400FB
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:10:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A66401126D1;
-	Mon, 29 Jan 2024 09:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0EE011267C;
+	Mon, 29 Jan 2024 09:10:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
- [209.85.222.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 751DD112726
- for <amd-gfx@lists.freedesktop.org>; Sun, 28 Jan 2024 16:20:38 +0000 (UTC)
-Received: by mail-qk1-f181.google.com with SMTP id
- af79cd13be357-783cdbecfe2so68207185a.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 28 Jan 2024 08:20:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706458777; x=1707063577; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xkFK2+4N/mKaw8xs4tJly4vP7nov7ElLkbj/0fopy7I=;
- b=Ipbj5hjPwOh/FXniEogVH8F4uqrenERkbmXPAyZS4CE8XJ+zlaVqsv+7mDl1Rz2RQz
- 3if5rm+fHrW86kjrmvAtn+2tYaysuaLMmAicIIck8AWBaMIaQlLOCJWoAE0tUOkn5aIZ
- Bd5AwE4zqDgo/ZXxwF/iEwN/CYh2jykT+LaS74UvQ/VLtCxPw9XFKBm4OjODqmpo+PYe
- K8giWXKTtyRByk0LBPp1C9VkkZg8W+qsfypR6VlpldJDFCK5Lc5YlnSMUKKlxGb0H2tU
- OGLjD6kR8JexXckO4BfKcTZV2MeJMbIPY/1JZ+rusz9o8npzDhAdi65w3n9Qf2ljZad7
- z74Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706458777; x=1707063577;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xkFK2+4N/mKaw8xs4tJly4vP7nov7ElLkbj/0fopy7I=;
- b=adS7p1uvEavyK+FE+MfhMqxrTvGLq5xPM5lWqkI+ikICis5107Q19Cg2VlMfPKdADu
- yjpYHTxhzumvR6pBOm/QT4/YLagy1HTxt+Du9M+fdxLAc48hKdmc/f3QDx7Cq6eL5L3J
- yuRsS+c6D0bZ/oLS745Ze8IjNu90R74z3U3OxVfvXSV2s0K7YvtGPmmZBoOOECobljl2
- aSvMLfMJFoledP73tQjKbjPd2Mk1WepIAJs100pxgE73+osQ/BHG4PXau68Bmg6NkuGr
- g5jkPo9PtcXsSMdaS0zNXjWuPFvlFSiH+Z4K6hmW+fOqtXLNMfhO+y7Ktb8+Gz932f9Y
- 9RPA==
-X-Gm-Message-State: AOJu0YyaHK50ZvD/yj4CElPwwNVLx3waKh3HQbTZuZlEY3KbaZAWYZ6q
- 93E4cSk4kLgW3kBDZZO8Pe8V4ctE059KSG4umrwTYcLsq64gUaEEhq/G3XiY
-X-Google-Smtp-Source: AGHT+IGFSgMVqucX22+edrfVWHvd0GKeHnqURs5EsjsKWLWMmLHl0S1nOPgjhJ5kFJoXuYoqOqEyvA==
-X-Received: by 2002:a05:6214:48d:b0:686:9443:87b1 with SMTP id
- pt13-20020a056214048d00b00686944387b1mr6314250qvb.2.1706458777340; 
- Sun, 28 Jan 2024 08:19:37 -0800 (PST)
-Received: from davidm-laptop.home
- (hlfxns018gw-134-41-187-249.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [134.41.187.249]) by smtp.gmail.com with ESMTPSA id
- a23-20020a05620a067700b007838362da2dsm2336155qkh.111.2024.01.28.08.19.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 28 Jan 2024 08:19:36 -0800 (PST)
-From: David McFarland <corngood@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/1] drm/amd: Don't init MEC2 firmware when it fails to load
-Date: Sun, 28 Jan 2024 12:18:06 -0400
-Message-Id: <20240128161803.1224103-2-corngood@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240128161803.1224103-1-corngood@gmail.com>
-References: <20240128161803.1224103-1-corngood@gmail.com>
+Received: from www254.your-server.de (www254.your-server.de [188.40.28.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1433C10E500;
+ Sun, 28 Jan 2024 18:33:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=windeck-gymnasium.de; s=windeck_hetzner; h=Content-Transfer-Encoding:
+ MIME-Version:Content-Type:In-Reply-To:References:Subject:To:From:Message-ID:
+ Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+ bh=pLIQI3W41b4CWYuYVFr//9ggDBCy+rm1o0L2EOl+CKg=; b=Jepu72W9RObtxs6+VaNrQPZ3L6
+ 5MfKQzTxj0GmqCrb//zcSZmaz8yHk5M1boKir84sW1w7P1etNv3Q211HLAhT5sbu+/WKBL+bpGS0L
+ 6O1fxll8k7C7mRmr0KqsXVNOWnZmtQX+Nl9UGZEldMzazL7ElC9xYVtbdpCrhd/OSLNthMDdrwoqi
+ jwA8NBNasDhqFEDO7mKBPQx70P+j0A0QAkRbIzXImkIQsGVSG/Nczf4myipHTaNsAUyrNNKO9viMa
+ ofSitOP910nKSBdfx6yDh9R1Lm5XwUwOwx32J/z86Ft7S7LZi4YeB7FDvzLTtNBJ3GhWalePhmC2Y
+ 6SxBdmwg==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+ by www254.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+ (Exim 4.94.2) (envelope-from <administrator@windeck-gymnasium.de>)
+ id 1rU9xx-000Lgb-JV; Sun, 28 Jan 2024 19:33:13 +0100
+Received: from [192.168.0.34] (helo=webmail.your-server.de)
+ by sslproxy04.your-server.de with esmtpsa
+ (TLSv1.2:ECDHE-RSA-CHACHA20-POLY1305:256) (Exim 4.92)
+ (envelope-from <administrator@windeck-gymnasium.de>)
+ id 1rU9xw-000LyX-VK; Sun, 28 Jan 2024 19:33:12 +0100
+Received: from p200300C227008B00aBB733Fa4DB1a46e.dip0.t-ipconnect.de
+ (p200300C227008B00aBB733Fa4DB1a46e.dip0.t-ipconnect.de
+ [2003:c2:2700:8b00:abb7:33fa:4db1:a46e]) by webmail.your-server.de (Horde
+ Framework) with HTTPS; Sun, 28 Jan 2024 19:33:12 +0100
+Date: Sun, 28 Jan 2024 19:33:12 +0100
+Message-ID: <20240128193312.Horde.LVLLBfWU20JOoAAZklOkEat@webmail.your-server.de>
+From: administrator@windeck-gymnasium.de
+To: amd-gfx@lists.freedesktop.org, Hamza Mahfooz <hamza.mahfooz@amd.com>
+Subject: Re: [PATCH] drm/amd/display: add panel_power_savings sysfs entry to
+ eDP connectors
+References: <20240126222300.119292-1-hamza.mahfooz@amd.com>
+ <e6bedb02-a3b4-4351-b41e-6f635a77c0ef@windeck-gymnasium.de>
+In-Reply-To: <e6bedb02-a3b4-4351-b41e-6f635a77c0ef@windeck-gymnasium.de>
+User-Agent: Horde Application Framework 5
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 MIME-Version: 1.0
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: administrator@windeck-gymnasium.de
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27168/Sun Jan 28 10:37:47 2024)
 X-Mailman-Approved-At: Mon, 29 Jan 2024 09:10:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,41 +64,120 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David McFarland <corngood@gmail.com>, mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The same calls are made directly above, but conditional on the firmware
-loading and validating successfully.
+I've applied the patch to 6.7.2. The device then shows up under:
 
-Fixes: 9931b67690cf ("drm/amd: Load GFX10 microcode during early_init")
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 --
- 1 file changed, 2 deletions(-)
+/sys/devices/pci0000:00/0000:00:08.1/0000:c1:00.0/drm/card1/card1-eDP-1/amdgpu/panel_power_savings
+(on Framework Laptop 13 amd 7840U with 780M).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index d63cab294883..b0ba68016a02 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -4022,18 +4022,16 @@ static int gfx_v10_0_init_microcode(struct amdgpu_device *adev)
- 	err = amdgpu_ucode_request(adev, &adev->gfx.mec2_fw, fw_name);
- 	if (!err) {
- 		amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2);
- 		amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2_JT);
- 	} else {
- 		err = 0;
- 		adev->gfx.mec2_fw = NULL;
- 	}
--	amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2);
--	amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2_JT);
- 
- 	gfx_v10_0_check_fw_write_wait(adev);
- out:
- 	if (err) {
- 		amdgpu_ucode_release(&adev->gfx.pfp_fw);
- 		amdgpu_ucode_release(&adev->gfx.me_fw);
- 		amdgpu_ucode_release(&adev->gfx.ce_fw);
- 		amdgpu_ucode_release(&adev->gfx.rlc_fw);
--- 
-2.40.1
+After a few tests i can say that at least in my system it’s not  
+working. Setting a value between 0 and 4 in
+/sys/.../panel_power_savings changes nothing in the panel behavior.  
+There are no errors in kernel log.
+
+Setting an abmlevel via kernel option still works as intended.
+
+The issue can be resolved if one set the panel_power_savings value and  
+after that change the display resolution to a lower value and than  
+switch back. For example this script works:
+
+xterm -e 'echo 0 | sudo tee  
+/sys/devices/pci0000:00/0000:00:08.1/0000:c1:00.0/drm/card1/card1-eDP-1/amdgpu/panel_power_savings'
+gnome-randr modify -m 1920x1200@59.999 eDP-1 && gnome-randr modify -m  
+2256x1504@59.999 eDP-1
+
+> Am 26.01.24 um 23:22 schrieb Hamza Mahfooz:
+> We want programs besides the compositor to be able to enable or disable
+> panel power saving features. However, since they are currently only
+> configurable through DRM properties, that isn't possible. So, to remedy
+> that issue introduce a new "panel_power_savings" sysfs attribute.
+>
+> Cc: Mario Limonciello <mario.limonciello@amd.com>
+> Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+> ---
+> .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 59 +++++++++++++++++++
+> 1 file changed, 59 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index cd98b3565178..b3fcd833015d 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -6534,6 +6534,58 @@  
+> amdgpu_dm_connector_atomic_duplicate_state(struct drm_connector  
+> *connector)
+> return &new_state->base;
+> }
+> +static ssize_t panel_power_savings_show(struct device *device,
+> + struct device_attribute *attr,
+> + char *buf)
+> +{
+> + struct drm_connector *connector = dev_get_drvdata(device);
+> + struct drm_device *dev = connector->dev;
+> + ssize_t val;
+> +
+> + drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
+> + val = to_dm_connector_state(connector->state)->abm_level;
+> + drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> +
+> + return sysfs_emit(buf, "%lu\n", val);
+> +}
+> +
+> +static ssize_t panel_power_savings_store(struct device *device,
+> + struct device_attribute *attr,
+> + const char *buf, size_t count)
+> +{
+> + struct drm_connector *connector = dev_get_drvdata(device);
+> + struct drm_device *dev = connector->dev;
+> + long val;
+> + int ret;
+> +
+> + ret = kstrtol(buf, 0, &val);
+> +
+> + if (ret)
+> + return ret;
+> +
+> + if (val < 0 || val > 4)
+> + return -EINVAL;
+> +
+> + drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
+> + to_dm_connector_state(connector->state)->abm_level = val ?:
+> + ABM_LEVEL_IMMEDIATE_DISABLE;
+> + drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> +
+> + return count;
+> +}
+> +
+> +static DEVICE_ATTR_RW(panel_power_savings);
+> +
+> +static struct attribute *amdgpu_attrs[] = {
+> + &dev_attr_panel_power_savings.attr,
+> + NULL
+> +};
+> +
+> +static const struct attribute_group amdgpu_group = {
+> + .name = "amdgpu",
+> + .attrs = amdgpu_attrs
+> +};
+> +
+> static int
+> amdgpu_dm_connector_late_register(struct drm_connector *connector)
+> {
+> @@ -6541,6 +6593,13 @@ amdgpu_dm_connector_late_register(struct  
+> drm_connector *connector)
+> to_amdgpu_dm_connector(connector);
+> int r;
+> + if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
+> + r = sysfs_create_group(&connector->kdev->kobj,
+> + &amdgpu_group);
+> + if (r)
+> + return r;
+> + }
+> +
+> amdgpu_dm_register_backlight_device(amdgpu_dm_connector);
+> if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
+
+
 
