@@ -2,91 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20FF841B5F
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 06:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 797A3841E1F
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 09:43:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A569112D9F;
-	Tue, 30 Jan 2024 05:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0607E112330;
+	Tue, 30 Jan 2024 08:42:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2082.outbound.protection.outlook.com [40.107.237.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3632A112D9F
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 05:20:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a5Cd3gCN4FnLszOXMqSlV63dTdRUfPLzCgvC+P8bjyQfkD0XU1MPREp/hpgbfsn9s8kv8TWbglq3u+eJGxbTZbrEvqubMR1RayCgOriaImsqb2EXLOuqf63yd1btaZ3VYRoCzkckbAVUjFaA77DBlpEpvbfkp7IDIniTUv5K3mwDP226KwqQiX7XYxhonfACEo8V+Ooo4KL3NHWyV6vxAllJpsxbwEx8nwSmlJxuPjUogTrV+QHvo6JDgM0CERdlYFoYAVFl7qt//PcgLNJwpmEIm5Fjxc9MfFAbM5p9+8QLUo/D8BTv5e6uammF4DWavtN3B18NALwpA8T02yhnlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TIaBk5xaXK8ylGb8Awuw1KlRbzXI3WX67iZ13u1BwBo=;
- b=S3rx2eAXBIvZbZ5Gw9OXRk6HXZ2MO0fCi7+ngopQfRK0ISehuKfb5TuPy88FCddMRCMTRXklSug/Jy+eXxZ6QP0Eb60hxrhPTkTcwZvugA8r/B5Q8um0tqIXSRXxW87YgNC4a7CnbGUgOuYynWTR3RhkZayjH+wrd7jaV0CkbqB0xnnGjbPAFIp0uYHJODdZVrqRwUY+VL4ZNdPtvn34fYJOUCLb+3Zt/fPXS8tiHjLxaJ5wKRvijJ33kHnvmcx36rSptHKzDySOrlBf6sO7fqiiO8pKjk5Hd2KC1hJ2jNAXJVeJ8TIP6fys9nJJdPXpjAD+2k/XLbc0hDOFVs3qcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TIaBk5xaXK8ylGb8Awuw1KlRbzXI3WX67iZ13u1BwBo=;
- b=MoiBbSV4+zjoLe+t32dmAZtscok5ggCpHEWu9WparzDET4aCifLy6e40rDcJa6SzbLbhbeto0y4npkqkgjLylJNpeJ1oSp+Y0GLrpOqqzX0mIbzWFq78TehBLG0qxObZTLTFbaGPvpyRr+1YKNHrmx1I6XwrnpAy7h+KsVS/+gM=
-Received: from MW4PR02CA0030.namprd02.prod.outlook.com (2603:10b6:303:16d::18)
- by CH3PR12MB7569.namprd12.prod.outlook.com (2603:10b6:610:146::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Tue, 30 Jan
- 2024 05:20:05 +0000
-Received: from MWH0EPF000989EC.namprd02.prod.outlook.com
- (2603:10b6:303:16d:cafe::2e) by MW4PR02CA0030.outlook.office365.com
- (2603:10b6:303:16d::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
- Transport; Tue, 30 Jan 2024 05:20:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000989EC.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Tue, 30 Jan 2024 05:20:05 +0000
-Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 29 Jan
- 2024 23:19:48 -0600
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2] drm/amdgpu: drm/amdgpu: remove golden setting for gfx
- 11.5.0
-Date: Tue, 30 Jan 2024 13:19:30 +0800
-Message-ID: <20240130051930.3418642-1-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.37.3
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFFAB1127C9;
+ Mon, 29 Jan 2024 09:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1706520613; x=1738056613;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=y4HS+uVRW9WTygboGvo9yA3ZMYqEE+/M8DxBQGlLi/4=;
+ b=ncEdJQwiFZi8VaAp0lLOXyvRzJaSJDngdAiZh+Ixbg0srmsSRs0QzfiA
+ 9gfPQ4WUwUUy/Bvx09p9uFigqZaRjvDMpBluYOa22cRcFAG5S8jzsvZ6L
+ gF1oUc9YqBtabw/netmf0UL4rwHVuex62jTLbmwwk9Rvh3zwMzv4y0eEF
+ W8k408kFDDKRRIm9dH6i0MxzQwv9+0CKRaB5lnhIkj09NiTz3hRwPzpcZ
+ TJ8OLAdB5SYU/62lBqDd/ElPmzoCjEYjnQzg+ZlzYd0vF4p0QsYXWSSG6
+ kLa29/BekG+rTBRRhV5/td1sLUHOUaUSe8bu0McAjbOm7XztlqkSq0lYx g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10967"; a="21431513"
+X-IronPort-AV: E=Sophos;i="6.05,226,1701158400"; d="scan'208";a="21431513"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 01:30:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,226,1701158400"; d="scan'208";a="29726648"
+Received: from hbrandbe-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.53])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2024 01:30:03 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>, Melissa Wen
+ <mwen@igalia.com>, airlied@gmail.com, alexander.deucher@amd.com,
+ alex.hung@amd.com, christian.koenig@amd.com, daniel@ffwll.ch,
+ harry.wentland@amd.com, Rodrigo.Siqueira@amd.com, sunpeng.li@amd.com,
+ Xinhui.Pan@amd.com
+Subject: Re: [RFC PATCH 0/2] drm/amd/display: switch amdgpu_dm_connector to
+In-Reply-To: <5fdad82b-3f14-4bb4-9f49-b8397419204d@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240126163429.56714-1-mwen@igalia.com>
+ <5fdad82b-3f14-4bb4-9f49-b8397419204d@amd.com>
+Date: Mon, 29 Jan 2024 11:30:00 +0200
+Message-ID: <87o7d4jxlz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000989EC:EE_|CH3PR12MB7569:EE_
-X-MS-Office365-Filtering-Correlation-Id: 325b3e9a-69f9-4dd6-ad9e-08dc21531e29
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NKfighsIaQ5aa1vgiJfVtg2esCga+EjGZNNsHTxwobz9HORD3haepsJaKASiNB2j6MkNQ7HinqXH1cPjDGCCcxsmPlJwOuEB0BUhWXNIHhxzSx+Y3QU/j4fXeKcJAZQwgBVJ6kgCeK2R/VWYfIxe/fgL8xoGp1TmPma1gve80stFxjzy0UEdoVCjkrL6N4siZJuDOljuzOpm0UyMIr6QVZu2gUquzFgPFk6NG3Q1bTsyLxR3+4ZA3+W7q8oPj/H20nErOXQwi7hUC/53c1KUsqKBroG1Y1Wbuh2MS7TCcRzkUuEPB80TtN71C4laCxIUVS4M4WMMVg340GYtttE4jWQqqQ0e4KmGXPO5tIl5LThBhzgAbrjT6Ai7wNVagcpd7umasGO98tIMgQVTBEnVpA1jNfrEPZWikY5u66itta70lmikDyne809vJaC3Gy3+JYzUKzlHo+jBlQ/j0nX3ryhQ12tco0tMd1VpXBO4jpCQKKkFEiFjKDLaOIKWy9pCfyXsXk/PLddJRKr2g3Z1VdMG99Ci7FM7G2tZkbamGNalRgv/Ms7t4yyT4b3pVKssTxWffPV5uKDMt8ff/kVCZi3fuD6qzQIkzEsVYPc/WZT5dEdnTLcrhlWuEja2vuYQE/nHc1KtyL1ddeL22nCAAoIXERCf2LUwjcaTz4/NmhnQ5P5msCaqr5t4YohVafMHLMbm81QFsoRoTMbEbdud8nTIPqEhcyuXxd7rL3/3CmRVfo42qgpcBp9T4Fu+sxtFShmdTHcCfj5x1DjtBv3Iug==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(451199024)(1800799012)(186009)(82310400011)(64100799003)(36840700001)(40470700004)(46966006)(83380400001)(47076005)(1076003)(2616005)(426003)(336012)(26005)(36860700001)(16526019)(82740400003)(7696005)(81166007)(4326008)(5660300002)(8936002)(6916009)(8676002)(478600001)(6666004)(2906002)(70586007)(54906003)(41300700001)(316002)(70206006)(356005)(86362001)(36756003)(40460700003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 05:20:05.0255 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 325b3e9a-69f9-4dd6-ad9e-08dc21531e29
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989EC.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7569
+X-Mailman-Approved-At: Tue, 30 Jan 2024 08:42:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,58 +62,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Tim.Huang@amd.com, Lang.Yu@amd.com,
- christian.koenig@amd.com, Yifan Zhang <yifan1.zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No need to set GC golden settings in driver from gfx 11.5.0 onwards.
+On Fri, 26 Jan 2024, Mario Limonciello <mario.limonciello@amd.com> wrote:
+> On 1/26/2024 10:28, Melissa Wen wrote:
+>> Hi,
+>> 
+>> I'm debugging a null-pointer dereference when running
+>> igt@kms_connector_force_edid and the way I found to solve the bug is to
+>> stop using raw edid handler in amdgpu_connector_funcs_force and
+>> create_eml_sink in favor of managing resouces via sruct drm_edid helpers
+>> (Patch 1). The proper solution seems to be switch amdgpu_dm_connector
+>> from struct edid to struct drm_edid and avoid the usage of different
+>> approaches in the driver (Patch 2). However, doing it implies a good
+>> amount of work and validation, therefore I decided to send this RFC
+>> first to collect opinions and check if there is any parallel work on
+>> this side. It's a working in progress.
+>> 
+>> The null-pointer error trigger by the igt@kms_connector_force_edid test
+>> was introduced by:
+>> - e54ed41620f ("drm/amd/display: Remove unwanted drm edid references")
+>> 
+>> You can check the error trace in the first patch.
+>> 
+>> This series was tested with kms_hdmi_inject and kms_force_connector. No
+>> null-pointer error, kms_hdmi_inject is successul and kms_force_connector
+>> is sucessful after the second execution - the force-edid subtest
+>> still fails in the first run (I'm still investigating).
+>> 
+>> There is also a couple of cast warnings to be addressed - I'm looking
+>> for the best replacement.
+>> 
+>> I appreciate any feedback and testing.
+>
+> So I'm actually a little bit worried by hardcoding EDID_LENGTH in this 
+> series.
+>
+> I have some other patches that I'm posting later on that let you get the 
+> EDID from _DDC BIOS method too.  My observation was that the EDID can be 
+> anywhere up to 512 bytes according to the ACPI spec.
+>
+> An earlier version of my patch was using EDID_LENGTH when fetching it 
+> and the EDID checksum failed.
+>
+> I'll CC you on the post, we probably want to get your changes and mine 
+> merged together.
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 22 ----------------------
- 1 file changed, 22 deletions(-)
+One of the main points of struct drm_edid is that it tracks the
+allocation size separately.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index c1e000010760..2fb1342d5bd9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -107,23 +107,6 @@ static const struct soc15_reg_golden golden_settings_gc_11_0_1[] =
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xfcffffff, 0x0000000a)
- };
- 
--static const struct soc15_reg_golden golden_settings_gc_11_5_0[] = {
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regDB_DEBUG5, 0xffffffff, 0x00000800),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGB_ADDR_CONFIG, 0x0c1807ff, 0x00000242),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGCR_GENERAL_CNTL, 0x1ff1ffff, 0x00000500),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2A_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL, 0xffffffff, 0xf37fff3f),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL3, 0xfffffffb, 0x00f40188),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL4, 0xf0ffffff, 0x80009007),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_CL_ENHANCE, 0xf1ffffff, 0x00880007),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regPC_CONFIG_CNTL_1, 0xffffffff, 0x00010000),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x01030000),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL2, 0x007f0000, 0x00000000),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xffcfffff, 0x0000200a),
--	SOC15_REG_GOLDEN_VALUE(GC, 0, regUTCL1_CTRL_2, 0xffffffff, 0x0000048f)
--};
--
- #define DEFAULT_SH_MEM_CONFIG \
- 	((SH_MEM_ADDRESS_MODE_64 << SH_MEM_CONFIG__ADDRESS_MODE__SHIFT) | \
- 	 (SH_MEM_ALIGNMENT_MODE_UNALIGNED << SH_MEM_CONFIG__ALIGNMENT_MODE__SHIFT) | \
-@@ -304,11 +287,6 @@ static void gfx_v11_0_init_golden_registers(struct amdgpu_device *adev)
- 						golden_settings_gc_11_0_1,
- 						(const u32)ARRAY_SIZE(golden_settings_gc_11_0_1));
- 		break;
--	case IP_VERSION(11, 5, 0):
--		soc15_program_register_sequence(adev,
--						golden_settings_gc_11_5_0,
--						(const u32)ARRAY_SIZE(golden_settings_gc_11_5_0));
--		break;
- 	default:
- 		break;
- 	}
+We should simply not trust edid->extensions, because most of the time it
+originates from outside the kernel.
+
+Using drm_edid and immediately drm_edid_raw() falls short. That function
+should only be used during migration to help. And yeah, it also means
+EDID parsing should be done in drm_edid.c, and not spread out all over
+the subsystem.
+
+
+BR,
+Jani.
+
+
+>
+>> 
+>> Melissa
+>> 
+>> Melissa Wen (2):
+>>    drm/amd/display: fix null-pointer dereference on edid reading
+>>    drm/amd/display: switch amdgpu_dm_connector to use struct drm_edid
+>> 
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 78 ++++++++++---------
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  4 +-
+>>   .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  9 ++-
+>>   .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 23 +++---
+>>   4 files changed, 60 insertions(+), 54 deletions(-)
+>> 
+>
+
 -- 
-2.37.3
-
+Jani Nikula, Intel
