@@ -2,63 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4C6841E23
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 09:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C7F841E20
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 09:43:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E87D0112E49;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 642D3112E0E;
 	Tue, 30 Jan 2024 08:42:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
- [209.85.160.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A00F1112B76
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 22:20:50 +0000 (UTC)
-Received: by mail-qt1-f174.google.com with SMTP id
- d75a77b69052e-4280f3ec702so9339771cf.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 14:20:50 -0800 (PST)
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
+ [209.85.219.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A2B10EA75
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 22:21:16 +0000 (UTC)
+Received: by mail-qv1-f45.google.com with SMTP id
+ 6a1803df08f44-68c3fbc48e0so2033686d6.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 14:21:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706566787; x=1707171587; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1706566815; x=1707171615; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=rXIXfE1IaW1LDC/wdh4qZU8N1MZsXJXUAM05+N35GNs=;
- b=U+cIrsWT8MJEOFaqK53TzMW4k0qsdDG7hiod/rOOuqasZn2lOV3GBBUg9ce7WRO32J
- 0MW1SSRAf8knJvGa9uOj++pDC5ZDIILc9XYE0d9jG5srPJRT4sfgLk9YoyR1r/MIA5Dc
- hX2B4DBHpqy2D7Uvu6N+K33D0NMOsnNHHYoGZrTLV562kvQz6tYjju8mDiUgqN5uS9cl
- FjxEPjELxIA5uhcLBW0jV3ub8AKlLDD0/D0WoKFL38xh9q5ViIr4VqMZw4I0Y5t4n73J
- Z1gQoASYNff3cXJ5aS9eWVC3SSy1dqOcJVOxjw57f691Tvtn5fDTpXH6bymagFsICaGH
- sdxg==
+ bh=gmoc6TMIM1XGef1GU+/KvkFMgd0OCyZYaEfBRT5oYnM=;
+ b=a7XDu0DGJ48XFgW8m7Aq0b77Bb3ptHPbAHbVv06M7J68dfJwk6XvZyUaQsV6o5yRpF
+ jvLuCvTiTasHzpJ54hFg9gy65jWQRNkUWandrnQzl/BNi8tW98n3Glk37IDFnSELUizh
+ xv8G3/vsJS53UsLtl+BuHro6od7Qvd6BX2JvlsZwQU2vIQgDB0bTEXzgDuaF84fyu+k4
+ yAV1pWH9Q1SF2wjOBDWW5jBqlquFLBY0L6XOaLEYejgnI7oDalTCfW5fJrok8dZDPj5e
+ 3XszZbeWyhp9WBj7VmorYyrN8toKEZFlGZfqoItv77rtesOBHY+Y6Wznjc8l0304uH7z
+ JrCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706566787; x=1707171587;
+ d=1e100.net; s=20230601; t=1706566815; x=1707171615;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=rXIXfE1IaW1LDC/wdh4qZU8N1MZsXJXUAM05+N35GNs=;
- b=edxhBF5RyC5BwPsP1Dk5JfcHZnAjl0eRQFt5qeTCZp9C0Cq2rOFqlugn8yjX5bWLw4
- 4X87Z9LnZkYU/IJk2kJSM//zYMhzk/W7HlouOF2XlV9MNiBpU784MJduKCN6d9Fztsxl
- 34b0FyDGKqeTYu3yOCXUvnt1EmYOt0NGD/X7vF8W5hCvEwCRyng/IN529zH7hdCBqy/p
- ontQq3y/MbFWgdNXimLXjBl7unJkj/wLpEXjUsQ8HQdjU2TGKGvIwmk9yywC/ILQcbip
- fQdloYAjcx1/8GOQMRRYcjT95pR+M80n6j9DqMOC8aveqFuoS3/hwYW0PvSJ7isyDvZk
- ToQg==
-X-Forwarded-Encrypted: i=0;
- AJvYcCWrdrzwjuCwSorcHTUHi78p/suVpWSEAm4NWYDcwoOQ++2aQPLpukrleIguEfPIs9Doi9cXQrMa3SuD2IGTkbFc/ICJj3+Iw/+z1j+TWQ==
-X-Gm-Message-State: AOJu0YzicO5t+xArrF+gY9FA0ckQZ7lbXvEar4BvuFQNykj3dqFzcFKt
- JQDxGbONGZ4oiHyGLCIgRp+M3h0hQIVJgiwng4AJjPyJ1a+6Idhl
-X-Google-Smtp-Source: AGHT+IH0q8D88BVwnCXKJ9VHC8a29Z0VKkrOf3H+BeqLkLV+1WD6BqZaCfU+dIJh5KMU8L2q3Z1GlA==
-X-Received: by 2002:a05:620a:2455:b0:783:f7e2:8feb with SMTP id
- h21-20020a05620a245500b00783f7e28febmr5668393qkn.4.1706566787087; 
- Mon, 29 Jan 2024 14:19:47 -0800 (PST)
+ bh=gmoc6TMIM1XGef1GU+/KvkFMgd0OCyZYaEfBRT5oYnM=;
+ b=cDCvydiqTCQaYM+z3lZV/mu3s/OgPJbvywdcP9Nd/OWceXNSxLLQT9cFCr2yDmHZpy
+ yz5VkbQyqrEGOedAOl9JjMPnfa3IriLJjf54NH6+zrP3zFFHb/cd5akb7CxLhQE+QjvM
+ jciGiqnlAq/Aimxrcl75LOOPhzi1EhdqRZGjS3Im1TVp61eODJHJ0h8vlvHEaQjhVn1P
+ uhaqxnpAQYDwCc6vDMVqq5FnLcCYusOEemCsBchBQnRk+KEu8rRhfhs3p9NMbgVjOCt+
+ xNld2Mt581brf1ZtLhEgjZdhAgWvFyrjYukTryQhAClxIq0meYklv292M7qU8TVa4Yro
+ Vpsg==
+X-Gm-Message-State: AOJu0YweXZF6K21rF9bHJhwQRA8FV8QATpSV2VpnIMRGakmitIBvjlvi
+ 0J3IN3a39wxkmXEuJfNK14r96XWGQXZly9rKT+YeqKEfiDTL4BHS3ik3NKze
+X-Google-Smtp-Source: AGHT+IE2nGhFMHeKNbnOEOC7+Y7A45i3GR3qEYq5mky0uUF1YSSFYJGpGFnEcgleeVN6zpDYN7doxg==
+X-Received: by 2002:a05:620a:2944:b0:784:7b7:78f1 with SMTP id
+ n4-20020a05620a294400b0078407b778f1mr1228902qkp.6.1706566815224; 
+ Mon, 29 Jan 2024 14:20:15 -0800 (PST)
 Received: from davidm-laptop.home
  (hlfxns018gw-134-41-187-249.dhcp-dynamic.fibreop.ns.bellaliant.net.
  [134.41.187.249]) by smtp.gmail.com with ESMTPSA id
- x12-20020a05620a0ecc00b0078366823711sm2009468qkm.119.2024.01.29.14.19.46
+ x12-20020a05620a0ecc00b0078366823711sm2009468qkm.119.2024.01.29.14.20.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Jan 2024 14:19:46 -0800 (PST)
+ Mon, 29 Jan 2024 14:20:14 -0800 (PST)
 From: David McFarland <corngood@gmail.com>
 To: mario.limonciello@amd.com
-Subject: [PATCH v2 0/1] drm/amd: Don't init MEC2 firmware when it fails to load
-Date: Mon, 29 Jan 2024 18:18:19 -0400
-Message-Id: <20240129221817.8797-1-corngood@gmail.com>
+Subject: [PATCH v2 1/1] drm/amd: Don't init MEC2 firmware when it fails to load
+Date: Mon, 29 Jan 2024 18:18:22 -0400
+Message-Id: <20240129221817.8797-2-corngood@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <8bda643f-314d-4947-83a4-8ad536dfdc41@amd.com>
 References: <8bda643f-314d-4947-83a4-8ad536dfdc41@amd.com>
@@ -80,19 +78,30 @@ Cc: David McFarland <corngood@gmail.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> Sorry to be pedantic; but I realized after I tried to apply this is
-> missing a S-o-b.  Can you please add one?
+The same calls are made directly above, but conditional on the firmware
+loading and validating successfully.
 
-Of course, here you go.  I left it off because I wasn't 100% sure about
-the intention of your previous change.
-
-
-David McFarland (1):
-  drm/amd: Don't init MEC2 firmware when it fails to load
+Fixes: 9931b67690cf ("drm/amd: Load GFX10 microcode during early_init")
+Signed-off-by: David McFarland <corngood@gmail.com>
+---
+v2: signed off
 
  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 --
  1 file changed, 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index d63cab294883..b0ba68016a02 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4027,8 +4027,6 @@ static int gfx_v10_0_init_microcode(struct amdgpu_device *adev)
+ 		err = 0;
+ 		adev->gfx.mec2_fw = NULL;
+ 	}
+-	amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2);
+-	amdgpu_gfx_cp_init_microcode(adev, AMDGPU_UCODE_ID_CP_MEC2_JT);
+ 
+ 	gfx_v10_0_check_fw_write_wait(adev);
+ out:
 -- 
 2.40.1
 
