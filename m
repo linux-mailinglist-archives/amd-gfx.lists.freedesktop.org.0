@@ -2,91 +2,117 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F7F840100
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:11:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF0F8401A9
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:32:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53FE6112731;
-	Mon, 29 Jan 2024 09:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E711127CD;
+	Mon, 29 Jan 2024 09:31:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBAB71126D1
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 09:10:33 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB3051127C7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 09:31:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XP0pyAcc2xY6T7whhi7p50maGA0TyVXpjnQAGFwSru0sgqVk/V5vYsN5wiWn/TscdQN50olaglsMYA5oQq+Dex/oasV+bsYeHbeS6c1rniXUO4OTQCKd+i6LVLzDP1GolzjAludyrJOXtnmZkghL7i7SHzNtQMXq6R4a1C6ILOe16yPkCluaTKAcSSg5S7h/a9Re6rao2VAZJiQQPiO2U9pOYblFUB24Mhh6u/RoFjucM+mSTxXXDh4LKeNH/VKYQMk5Dy5lxLiQwhqc/HOWsX6rKXT1YR0mKqM7zscC+fOVaTWXTCGfmLdeVLTzJZXOl6urGfMxNUBCj4ddqjlZpg==
+ b=BFM/+2UbzQT7ABXjkU6adBf5/M5iN4ZK+wgAxGVblutOSWuBgtXb+P3L5NW1tWeEyghPqMBAzdNUW6mbYyrKsa4apS7uZjnnqQmh6EyZVfJB8rh046Rup0gv9icY5KG91sFtVT2z7bRgOngsd6k5Pm4uZFacIikZ5x8/HmNj57YXvFHakqcFgIbwkxJvHf4XxEGmh0DBm0nEKnB554D34ZKkwgS+JtoNal+2KLXP+RYa8jpJF1ERl44bR8l2DXfukC3JRxXRSV0S3v72YXkS685DA+PyDkOKJTPCBfY9ujq5zWmvTUXKkN7JD5bXFHBW7I4kR3V/M2452wK1AaMslw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eeIG5sJaHqbKEgr9T6uS/sGw22lRJDxZzN5gURd0K5Y=;
- b=hkEC40Gsni/qp1GP23U2de09M0py89jw3AMzGhLCEwNRrD9/5G7WZorhI1DSWMnXdAC43D4wl3tRGP+R/OD2sh1dr2MKZZR8VsrlmF1LC/N9rJ/YL8BzjSZMx8vtsOYYSvLm2LoeDLkQXhBHuZeODfzd4s89Tt/DxY5fr6X6ibveXMbQ6f/4B39DzaoO0fz2/Ib4WFRl2r3VOgIjO4bHRLWvLtl1wECZTfysT2JVtZdqbIXntMjz3GUSLz895CxNkrzBN0acI2pSMwj8MDwgbY6eSHkH9LYO6+a3ZnIVG6SSot9dOinIwr8RCqeFA0ALIqmmfOvTeVxNwSeseHm2mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=WabR18187nOfaKqXoae/PcnXb0zFSNV0CaYiWKLbh/g=;
+ b=JwPxwq+2mxH3jGTsDHnJJ3yVoPPlKo+xngKOGaQWG83axatkB+02ciMFQfUskB7SqzvmZwp9jM+UAKkRtrfL+gF07iAu9hQZ7hvk+4CzxRIPH1pBcI8GNDPQfN60OJixWo0SqK+/fbsYHH5hPFLY+XqU/pYNi6tXK3LG8WwInxEXEi4igL2XI+Mqdm/Ef65a1K0m5ESbIS7JL8SlHN0DjvnnaTFNqbU2KA+R5S22dGIzZQIKqQXaiXzsNiU9FFApufNxLAVq/xVnMzN52y76Rydc1pFojxgjfV4C12DXWW7+XDicYoE+1nnzvSpZFnqCIPSsfsWhzqfBbFv6/VpyfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eeIG5sJaHqbKEgr9T6uS/sGw22lRJDxZzN5gURd0K5Y=;
- b=CJrN5fIRLfVnLUs+bRq0sVc+5i7ROU7HR9oLdHVRzoMVCv0kcKSIjR1X8qh3FULfrqIr+lo4+27NUMxAH85twJYVlmJiyxRZhM/JHzeRuLyo3sUG7VnFxGRzl8lRDAJ6HG0eX9x3v0JeXxoDL/ZZyv0Urf2ZK6lK39lWGYGzaW8=
-Received: from LV3P220CA0012.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:234::17)
- by PH7PR12MB6718.namprd12.prod.outlook.com (2603:10b6:510:1b1::11)
+ bh=WabR18187nOfaKqXoae/PcnXb0zFSNV0CaYiWKLbh/g=;
+ b=jzwA695NwMXFvdvkF6q9vxvECzBzvGr/6pebSdBeSgw6CULs8PpYmoo3Jme3Y10f/GjLl8zx3VhUsv+babp0hAjS4+ajzdIFzL58j4UMHUJezNXRliTm1epBNCq03NT7WedmHAwM7ho2ulY4fIVDbtEnGJU+42h7OVF6baA3xVg=
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
+ by SN7PR12MB7452.namprd12.prod.outlook.com (2603:10b6:806:299::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
- 2024 09:10:15 +0000
-Received: from BN3PEPF0000B074.namprd04.prod.outlook.com
- (2603:10b6:408:234:cafe::bd) by LV3P220CA0012.outlook.office365.com
- (2603:10b6:408:234::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
- Transport; Mon, 29 Jan 2024 09:10:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN3PEPF0000B074.mail.protection.outlook.com (10.167.243.119) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Mon, 29 Jan 2024 09:10:15 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 29 Jan
- 2024 03:10:12 -0600
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: use helper macro HW_ERR instead of Hardware error
- string
-Date: Mon, 29 Jan 2024 17:10:00 +0800
-Message-ID: <20240129091000.2068752-1-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B074:EE_|PH7PR12MB6718:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9d8073c-729a-4a54-28c5-08dc20aa1b1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0aWIglhvqnwFYjSKa6SSSX5bdyRkc5svyamHWFdPe5xrBTszbEv8amKtF2lsA8/gmbMyx6l1eghzH3DsPwnwm+K53fipwsw5DUbzFgag5CNP1NgM1XNl2fzXISOR+eISAED8NNYBibFZP1YkpOsbORgI8/vBSmPIoH89ClQgV6wNNg+mVGjDT3jojKb2FgsQkV8RBDEYXP0O5ZxRU6xrYpbRW/o6A38Iz2P8ckqimPPlKtxbHjtQChxqvdKwbwMVL3mYVraRlCqCxfZp6KMmL/6swo0Q+0kFFfjZtqvEAWIMueecERvYVPonu/VgyJ45ab0F9l8hCKv9pOsOgl2TkQg6US9GXF6wRrrJ4tIVpLSoMpf5RXjlG+UrQsqJJy8IxojJjzG3It0NkmWotOBOY+ZGc4sh5E9KECbZ/7Nmf0wNvsjbyacEaAwQQYBMWv1txxcg+hDF6W7eTeoNkzMAUd8Kk3kzRkTmfk4/ecpS+BA4PPWuG63/LeSw1UdhF0nY7VBoE+fHsDfIGzkgn8xS0EDIgii9hPbgOz9RDgzZl4SQ7y8rFS/HjBW9B3XQ/6Sp3Kt0xq2U4fqRrKThXiXzNhCCBQDlgi5QzKHwExY3AUBLCMu8SjS5iV7JGswNEdJUl4yiPN3Ur9aZ+eMxeqtZtzD+pHMIaGR8iZFz31jv2fz+cLHPPtxrLNDCJUeBM/QRrExV6IoidPmnpNkO57yyzLASajRahFmgcGWoZxVhzF4Jsg+2P74CvUFWBl+B0buT4cYqqLROQv8BvISq4FHmGg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(136003)(346002)(396003)(376002)(230922051799003)(64100799003)(82310400011)(1800799012)(451199024)(186009)(36840700001)(46966006)(40470700004)(40460700003)(40480700001)(83380400001)(86362001)(356005)(36756003)(81166007)(82740400003)(36860700001)(47076005)(2616005)(1076003)(26005)(426003)(336012)(16526019)(7696005)(2906002)(478600001)(6916009)(6666004)(41300700001)(316002)(70586007)(70206006)(54906003)(8936002)(4326008)(5660300002)(8676002)(36900700001);
+ 2024 09:31:52 +0000
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::353:e785:731:7b81]) by BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::353:e785:731:7b81%3]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
+ 09:31:51 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: use helper macro HW_ERR instead of Hardware
+ error string
+Thread-Topic: [PATCH] drm/amdgpu: use helper macro HW_ERR instead of Hardware
+ error string
+Thread-Index: AQHaUpMDHIKB/MKRek+9B9PMBVxh2bDwhrTQ
+Date: Mon, 29 Jan 2024 09:31:51 +0000
+Message-ID: <BN9PR12MB5257568E8E2489667E507020FC7E2@BN9PR12MB5257.namprd12.prod.outlook.com>
+References: <20240129091000.2068752-1-kevinyang.wang@amd.com>
+In-Reply-To: <20240129091000.2068752-1-kevinyang.wang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=485be92b-9947-460b-950b-66d274efeea2;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-01-29T09:31:24Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SN7PR12MB7452:EE_
+x-ms-office365-filtering-correlation-id: 1ae1690f-8e67-4c7c-20c7-08dc20ad200a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: GwaZlbpx9Ij7KbdLjGlmOfA8M1P5wZFAMSqCm5gEcdor/9G8F6XnOeeMiKHlc5p4mybiHQcx5PH+PZ/6XJgD0V3UuPwwXof4q+Ne6OcdHso5F3TiLRJU49Ovh+GoRzHVp20G9EqcqKDZy1/DeBptRP7j6dxn8VjcBz9S9GKqT1ho8e+eO5m53XV5MprUROZTluYpM0spu9deiAL7CiVu9lYgDmtNytdnZXaNOK0sJTBs0hZfnhcRUbeWhMpLHqd83iFCedd5UGurIy1pXXUo4NCYJSir9Lq967J+nlt0HYKwXVI8T6vowWI21UH0GokF9iKiEQJskoNz9XFegAD5GYEs1XdM0YEwJIETj6K82oMg5kiDUlDiLpUznwN1fmGivwZNPWXnhXVodTcE9WThuoYtFnVIH4UU/SAbsZWyhyMj+P/cgvrrZAhuzA8u4JlKxlLg02F+HrPoYJHaA9KnNdghICQIeseGgndmtJP4iGXM2AYjIXjPnu9rJo9pgDEdByvh8gSrZvShcWo0MgnEbUFaiDG8w+AcURrz9hPXo6S4ilsbKpQPB4jcWflQdYaRVsLTx0oj0g5x5tZuSFp7nEkczNYm2csteHuMpl/cNDoFjKjL1PLSEYfn/sREeZZN
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(366004)(136003)(346002)(396003)(376002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(55016003)(83380400001)(33656002)(86362001)(38070700009)(122000001)(26005)(38100700002)(9686003)(53546011)(6506007)(7696005)(2906002)(478600001)(41300700001)(110136005)(76116006)(316002)(71200400001)(66556008)(66476007)(66446008)(64756008)(66946007)(8936002)(4326008)(5660300002)(52536014)(8676002);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dM+ReoQgLo/GGU87SsvUSFjQcvrckLw/mdC52smyVgLf6gzoNFC0YGSXJDUl?=
+ =?us-ascii?Q?cBk0P0CoSGdo4tPUDOgycCp+0sKC3j6q5e9JK4h4vxqOf4yHkk438R75LL5X?=
+ =?us-ascii?Q?2t087IeRZQkw1e36qKoOoSkX/OBqk3i3XNdoQDENhgLNJelRrKi1yo+IgB6l?=
+ =?us-ascii?Q?TdZh2GLbT5rVYAgVyVo/LZ7L2RqxVDLWXjmn0c9bZ9QhzTbPi+qvoq8673Nf?=
+ =?us-ascii?Q?HbRtqDNArjc85OEwP0nlKLn3ZJGswwhPChb8k3KItWlD9AP++pfdHFZRvOz3?=
+ =?us-ascii?Q?lK9GO4ekf2gPfogsBNCIdu82j9l+x8WZruqS9VPnUatw5O+HQHQdsS9Gc2+B?=
+ =?us-ascii?Q?wfLCWyz/vB30OwH8vGdtGHEZa0nVHe/FBWE6Yq3ul2iy7ueC4k5H5i4Urmle?=
+ =?us-ascii?Q?13fXX5u1hi+eQ8YaS6WqCCH0nYhjanv74I5xgJ9F8ikdf3CjuC9/r06fDRCP?=
+ =?us-ascii?Q?1iopoF/kSjoif2oTITnEzuRBJapocHIYVP4UikfdR8vul//QO7KtPqEZUsS0?=
+ =?us-ascii?Q?U2MpPxXCUklLt8IsdYexZlkEYXL0y8d+F6MbEDUFm/dPiibOWaR1HgPzpVoy?=
+ =?us-ascii?Q?W683/v46AI2ewUGLH13+E6fZryllRC0kFZMcV+Ry/XRxzRFHWnVDsT4BfFC2?=
+ =?us-ascii?Q?+I5cZceR1PQ0bOLy8ZB4ukFi1HahrbUUyhuvQMND0J1ZTH526pAHWD6YAqh+?=
+ =?us-ascii?Q?diME/VR5Bkr23xUZIxxpfkna/0q0KrlAXTxUkFQeMAvqdIV0dxM5px4AihgF?=
+ =?us-ascii?Q?hsxHncLay0GA68uBOqUjdryhCopqL3c1HKo3eMHLqMO7Cowzz9js2z0bSFy3?=
+ =?us-ascii?Q?6xNDiKn0XFSYNO7M4ul5DKqOxLAaEKWeoN+SQpFDt0TgGkDT4X+d9Xv0c0mR?=
+ =?us-ascii?Q?1qoWymBKVKmJh9jQjBkLPrlMbhL6wM36FHbjNpNcBHv07Mnnrq4SgMc/g8tL?=
+ =?us-ascii?Q?IepYo7c5/5s7gw+YhaIxgqHBfWxLKpKGHrUBOEi8lfXwMOCzw9+dlIwQ0AXW?=
+ =?us-ascii?Q?dbxVjgxaDXI1B15e+qIsd6S+HHEMBLKMpfFgMyN1k5k1ACEW+daplKt/r2+N?=
+ =?us-ascii?Q?1w6jvR5CrpdJrvqfA2OPtG7WxSyuU2u0g4QVKwL4kJGlnAdI+yK7mOCpAtCJ?=
+ =?us-ascii?Q?9ahBQJ6LHsCKrAfy/qh2f2eXUVM3VJvZ2swrSWWFktqk1ThWIM3M5ZiSguxT?=
+ =?us-ascii?Q?bS9QO62pLV+01qsjJLmMWhkMvU+JFBUNDvCLc7aIu9qWFIM513AecvWtvu5m?=
+ =?us-ascii?Q?tpoVmAZfnBhfrydzfDGSr3C4+sweykCe66/xxAaI+0Bt6kYoo7xlXwZBsPbA?=
+ =?us-ascii?Q?U+g8uguUqL8sPyzUczdUCTHr8iaQwl/047XzXOYlsMWbtxqWcM7QLNEweEv/?=
+ =?us-ascii?Q?Df4lZYY6nVGG5gWhmcAncvE/KQWDZaMHWdzu33op8pgxT+PW+UGvWAUhyLPL?=
+ =?us-ascii?Q?iETbVkpw075bQ/6FczfpfJQxda8rKAOw8h7eXOvfjcgEOdySjNYpgfAPd8sg?=
+ =?us-ascii?Q?xQegtSo149ftVMPsrnIDyvUO/lMndHgzWPbXEucWZaUQ7pPUMYKn05boZwne?=
+ =?us-ascii?Q?Va1jeuVyvYvBh9zHq9I=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 09:10:15.1011 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9d8073c-729a-4a54-28c5-08dc20aa1b1f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B074.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6718
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ae1690f-8e67-4c7c-20c7-08dc20ad200a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2024 09:31:51.8592 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KF+JnEnnKtOAvkQ8nW6Lo6P9h8F1Dp2PGbaHlIyJH1pBkO+iTJF9wBrL/AGFwvi9HUHBT9gpdNKIh/BPXk/dBQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7452
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,63 +124,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tao.zhou1@amd.com, Yang Wang <kevinyang.wang@amd.com>,
- hawking.zhang@amd.com
+Cc: "Zhou1, Tao" <Tao.Zhou1@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
+
+[AMD Official Use Only - General]
+
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+
+Regards,
+Hawking
+-----Original Message-----
+From: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+Sent: Monday, January 29, 2024 17:10
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>;=
+ Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+Subject: [PATCH] drm/amdgpu: use helper macro HW_ERR instead of Hardware er=
+ror string
 
 use helper macro HW_ERR to instead of Hardwareare error string.
 
 Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c | 12 ++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c |  4 ++--  drivers/gpu/drm/amd/amd=
+gpu/amdgpu_mca.c | 12 ++++++------
  2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_aca.c
 index d7d2ec3ce399..be525cf3a182 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-@@ -120,10 +120,10 @@ static void aca_smu_bank_dump(struct amdgpu_device *adev, int idx, int total, st
- {
- 	int i;
- 
--	dev_info(adev->dev, "[Hardware error] Accelerator Check Architecture events logged\n");
-+	dev_info(adev->dev, HW_ERR "Accelerator Check Architecture events logged\n");
- 	/* plus 1 for output format, e.g: ACA[08/08]: xxxx */
- 	for (i = 0; i < ARRAY_SIZE(aca_regs); i++)
--		dev_info(adev->dev, "[Hardware error] ACA[%02d/%02d].%s=0x%016llx\n",
-+		dev_info(adev->dev, HW_ERR "ACA[%02d/%02d].%s=0x%016llx\n",
- 			 idx + 1, total, aca_regs[i].name, bank->regs[aca_regs[i].reg_idx]);
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
+@@ -120,10 +120,10 @@ static void aca_smu_bank_dump(struct amdgpu_device *a=
+dev, int idx, int total, st  {
+        int i;
+
+-       dev_info(adev->dev, "[Hardware error] Accelerator Check Architectur=
+e events logged\n");
++       dev_info(adev->dev, HW_ERR "Accelerator Check Architecture events
++logged\n");
+        /* plus 1 for output format, e.g: ACA[08/08]: xxxx */
+        for (i =3D 0; i < ARRAY_SIZE(aca_regs); i++)
+-               dev_info(adev->dev, "[Hardware error] ACA[%02d/%02d].%s=3D0=
+x%016llx\n",
++               dev_info(adev->dev, HW_ERR "ACA[%02d/%02d].%s=3D0x%016llx\n=
+",
+                         idx + 1, total, aca_regs[i].name, bank->regs[aca_r=
+egs[i].reg_idx]);  }
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_mca.c
 index 6452c09f22c6..24ad4b97177b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
-@@ -212,16 +212,16 @@ int amdgpu_mca_smu_set_debug_mode(struct amdgpu_device *adev, bool enable)
- 
- static void amdgpu_mca_smu_mca_bank_dump(struct amdgpu_device *adev, int idx, struct mca_bank_entry *entry)
- {
--	dev_info(adev->dev, "[Hardware error] Accelerator Check Architecture events logged\n");
--	dev_info(adev->dev, "[Hardware error] aca entry[%02d].STATUS=0x%016llx\n",
-+	dev_info(adev->dev, HW_ERR "Accelerator Check Architecture events logged\n");
-+	dev_info(adev->dev, HW_ERR "aca entry[%02d].STATUS=0x%016llx\n",
- 		 idx, entry->regs[MCA_REG_IDX_STATUS]);
--	dev_info(adev->dev, "[Hardware error] aca entry[%02d].ADDR=0x%016llx\n",
-+	dev_info(adev->dev, HW_ERR "aca entry[%02d].ADDR=0x%016llx\n",
- 		 idx, entry->regs[MCA_REG_IDX_ADDR]);
--	dev_info(adev->dev, "[Hardware error] aca entry[%02d].MISC0=0x%016llx\n",
-+	dev_info(adev->dev, HW_ERR "aca entry[%02d].MISC0=0x%016llx\n",
- 		 idx, entry->regs[MCA_REG_IDX_MISC0]);
--	dev_info(adev->dev, "[Hardware error] aca entry[%02d].IPID=0x%016llx\n",
-+	dev_info(adev->dev, HW_ERR "aca entry[%02d].IPID=0x%016llx\n",
- 		 idx, entry->regs[MCA_REG_IDX_IPID]);
--	dev_info(adev->dev, "[Hardware error] aca entry[%02d].SYND=0x%016llx\n",
-+	dev_info(adev->dev, HW_ERR "aca entry[%02d].SYND=0x%016llx\n",
- 		 idx, entry->regs[MCA_REG_IDX_SYND]);
- }
- 
--- 
+@@ -212,16 +212,16 @@ int amdgpu_mca_smu_set_debug_mode(struct amdgpu_devic=
+e *adev, bool enable)
+
+ static void amdgpu_mca_smu_mca_bank_dump(struct amdgpu_device *adev, int i=
+dx, struct mca_bank_entry *entry)  {
+-       dev_info(adev->dev, "[Hardware error] Accelerator Check Architectur=
+e events logged\n");
+-       dev_info(adev->dev, "[Hardware error] aca entry[%02d].STATUS=3D0x%0=
+16llx\n",
++       dev_info(adev->dev, HW_ERR "Accelerator Check Architecture events l=
+ogged\n");
++       dev_info(adev->dev, HW_ERR "aca entry[%02d].STATUS=3D0x%016llx\n",
+                 idx, entry->regs[MCA_REG_IDX_STATUS]);
+-       dev_info(adev->dev, "[Hardware error] aca entry[%02d].ADDR=3D0x%016=
+llx\n",
++       dev_info(adev->dev, HW_ERR "aca entry[%02d].ADDR=3D0x%016llx\n",
+                 idx, entry->regs[MCA_REG_IDX_ADDR]);
+-       dev_info(adev->dev, "[Hardware error] aca entry[%02d].MISC0=3D0x%01=
+6llx\n",
++       dev_info(adev->dev, HW_ERR "aca entry[%02d].MISC0=3D0x%016llx\n",
+                 idx, entry->regs[MCA_REG_IDX_MISC0]);
+-       dev_info(adev->dev, "[Hardware error] aca entry[%02d].IPID=3D0x%016=
+llx\n",
++       dev_info(adev->dev, HW_ERR "aca entry[%02d].IPID=3D0x%016llx\n",
+                 idx, entry->regs[MCA_REG_IDX_IPID]);
+-       dev_info(adev->dev, "[Hardware error] aca entry[%02d].SYND=3D0x%016=
+llx\n",
++       dev_info(adev->dev, HW_ERR "aca entry[%02d].SYND=3D0x%016llx\n",
+                 idx, entry->regs[MCA_REG_IDX_SYND]);  }
+
+--
 2.34.1
 
