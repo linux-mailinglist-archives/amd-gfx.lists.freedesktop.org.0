@@ -2,48 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D8084015C
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BA88400EA
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jan 2024 10:08:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD981127C0;
-	Mon, 29 Jan 2024 09:24:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA07810FA5A;
+	Mon, 29 Jan 2024 09:07:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2091 seconds by postgrey-1.36 at gabe;
- Mon, 29 Jan 2024 09:24:45 UTC
-Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6641127C0
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 09:24:45 +0000 (UTC)
-Received: from [194.136.85.206] (port=46446 helo=eldfell)
- by whm50.louhi.net with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
- (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rUNKy-0007D5-0Q;
- Mon, 29 Jan 2024 10:49:52 +0200
-Date: Mon, 29 Jan 2024 10:49:34 +0200
-From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-To: =?UTF-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>
-Subject: Re: [PATCH v3 1/3] drm/atomic: Allow drivers to write their own
- plane check for async flips
-Message-ID: <20240129104934.0b887ec7@eldfell>
-In-Reply-To: <20240128212515.630345-2-andrealmeid@igalia.com>
-References: <20240128212515.630345-1-andrealmeid@igalia.com>
- <20240128212515.630345-2-andrealmeid@igalia.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45DE410F6A1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jan 2024 09:07:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a/XRWQagIH2qGO0o9e/3Yz5dzoxZQvQ8VIY8sKs2VRvpizQ4ig22wyoPcF6F8tcdXIunXjkK3k60g4yS22OLQlRIYvouebA331M5QehIBitFFxXrFKnOm7wlRttvlRX+1rmPuDxiXso7e2mxGWVVpR2IUp4PqLcBxuFhcsknfiBL6fIPIMXVyyYEOhul1FJ5jlC8bWe9UVk+ty+6CGhNaO1quGyJwYbpLs4mh5PXEMHsss48VBjNlxUWj/SQYOHPPdq78aJgUWQw8Mfq2NcuQjT5YA6r+2pZEYidHMWXDvkyKt6KBa92VjGE86QLhHY3b9NkpHuNIZfl0wjlBH662Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uqe1OwDpw170pjRjzUxYxg1P34PuuClNEw7DyDRnGQw=;
+ b=Z+Zl8D7A8Zcp+11Aao2TXt3NhYL02Q9p8fOFEugEoGVf2te1VIydrP23E7651WbMcqJLYlbvPRSutdk9KOo8YosQ87A3cLpgfntt9sijliM6WpoMjNqwoV9HKmKiKs3DH2KSKqTQIr+46KsQX6kw1ocyizayEsKWSV6+4/8G7niBibvveC5O1M5T9tsxOE6CK0ocq1NH+OilsjW/O07weNPxjmqahDXBg8vUWJWFWq3FQXbKQfPmPqKLGS1dGB70i5VuTRFz4vt1AoLV1L5qEHpapfNRTvy3SZcLrdZ1Ch0hHi4v8memCCGS9HhpGXFt8uCIaPmxuw+bDp2pKtXf8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uqe1OwDpw170pjRjzUxYxg1P34PuuClNEw7DyDRnGQw=;
+ b=kMs47YOS3H61iKL7YS+SrjeYBn9kQlYwmK7cBaG7IkKMY8MjwuMLrwmy+j22Q7OBbwF5+sev3jdHsaffIH6ixPPArNly/Qh28L6QgGDfsVoWgFe/+5QO1Jr31sVtLDwk8eZHqdlbGxFRdcvEt1iUGjw/0Sm0BwP9bZN1Xl0rbzE=
+Received: from DM6PR12CA0003.namprd12.prod.outlook.com (2603:10b6:5:1c0::16)
+ by PH7PR12MB5877.namprd12.prod.outlook.com (2603:10b6:510:1d5::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
+ 2024 09:07:27 +0000
+Received: from DS3PEPF000099E1.namprd04.prod.outlook.com
+ (2603:10b6:5:1c0:cafe::f6) by DM6PR12CA0003.outlook.office365.com
+ (2603:10b6:5:1c0::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
+ Transport; Mon, 29 Jan 2024 09:07:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS3PEPF000099E1.mail.protection.outlook.com (10.167.17.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7249.19 via Frontend Transport; Mon, 29 Jan 2024 09:07:27 +0000
+Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 29 Jan
+ 2024 03:07:21 -0600
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: remove golden setting for gfx 11.5.0
+Date: Mon, 29 Jan 2024 17:06:11 +0800
+Message-ID: <20240129090611.2716545-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/CyNE1g.rxLQR/tPHNy8jH2s";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - whm50.louhi.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - haloniitty.fi
-X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
- pekka.paalanen@haloniitty.fi
-X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099E1:EE_|PH7PR12MB5877:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52ca5c59-1bb5-4918-87ba-08dc20a9b72e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sAao4/WP8gfI8mJmv7MykgHN1f0eicLD3ldlRawvNaLPKwdu4yR24y5JWoPUAtqgXssLdyxdt2q4HTiE7jxrt1OnQ0/Jt5Rm3IkkGcJbzXXPZWKcpSEi+CUKUgJlRmMQybKGEiUdbnzDnrYoiQcBlCsUEh/ej/lsyO0h6IzIC/Wbcg07gUg8NzBQW/urJ8t0ycGFtCcxhjXohxfHFZUEf9hNa6/VicuxgVtwmLyVTtgixifImQ623XRebRm62CponG/oNzcq2Wvu31eiXKI3zFxZKR+1evvJxBF9wHgS1gHCrQic6MgdRhmNPSA1TykfOpGtriHf7I/jzDAOKQquc3oYsgjC3d3YDf9yzIPEXEpdpCRWXiSds5qF3CoFcsEKfaPhyXjMx8Woww2oSVj7K+YAQizA4buZJJLP1UaW3xalPoYo2ftgTNb1CC2u7Adzo5dg1G8yOjP60HqQyz6Idjkk/KTg76wlMOUuqRhRq3guTcLAru0NWpjeADrtsjdLkPbYEgm06Ur6jBj+G8/h8eku0vzfem2Rcg48OSTq22fzYs4xos7U2tsDlbuoFAvsk0aKf8XzHcv0dbs8jjJylHXsGsUuNkFZi5INBVHSiH/JiDI02cjJh4i0al3m57nijvShvF1Ly0CESfm1jcV/YK7D5BG0EB/Xp/dE4K/C8awteMZWSKDTAjpmVZVp+OICqDm/58zQlxmYKtAOoDp86dFfPV5lEf9A20Klf3KvWhz2ah4gnYYpauR1geTrlT1VY4QIic+xe1ZyoFn+c+xIDA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(346002)(376002)(136003)(396003)(230922051799003)(451199024)(64100799003)(82310400011)(1800799012)(186009)(36840700001)(40470700004)(46966006)(41300700001)(16526019)(2616005)(336012)(426003)(1076003)(26005)(40460700003)(40480700001)(36860700001)(316002)(54906003)(36756003)(6916009)(47076005)(478600001)(7696005)(83380400001)(6666004)(82740400003)(81166007)(356005)(5660300002)(2906002)(70206006)(70586007)(86362001)(8676002)(4326008)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 09:07:27.3828 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52ca5c59-1bb5-4918-87ba-08dc20a9b72e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099E1.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5877
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,259 +97,78 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel@ffwll.ch, 'Marek =?UTF-8?B?T2zFocOhayc=?= <maraeo@gmail.com>,
- Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>,
- Simon Ser <contact@emersion.fr>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Xaver Hugl <xaver.hugl@gmail.com>,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
- alexander.deucher@amd.com, Joshua Ashton <joshua@froggi.es>,
- Daniel Stone <daniel@fooishbar.org>, Dave Airlie <airlied@gmail.com>,
- christian.koenig@amd.com, ville.syrjala@linux.intel.com
+Cc: Alexander.Deucher@amd.com, Tim.Huang@amd.com, Lang.Yu@amd.com,
+ christian.koenig@amd.com, Yifan Zhang <yifan1.zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/CyNE1g.rxLQR/tPHNy8jH2s
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+No need to set golden settings in driver from gfx 11.5.0 onwards
 
-On Sun, 28 Jan 2024 18:25:13 -0300
-Andr=C3=A9 Almeida <andrealmeid@igalia.com> wrote:
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 32 ++------------------------
+ 1 file changed, 2 insertions(+), 30 deletions(-)
 
-> Some hardware are more flexible on what they can flip asynchronously, so
-> rework the plane check so drivers can implement their own check, lifting
-> up some of the restrictions.
->=20
-> Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
-> ---
-> v3: no changes
->=20
->  drivers/gpu/drm/drm_atomic_uapi.c | 62 ++++++++++++++++++++++---------
->  include/drm/drm_atomic_uapi.h     | 12 ++++++
->  include/drm/drm_plane.h           |  5 +++
->  3 files changed, 62 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index aee4a65d4959..6d5b9fec90c7 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -620,7 +620,7 @@ static int drm_atomic_plane_set_property(struct drm_p=
-lane *plane,
->  	return 0;
->  }
-> =20
-> -static int
-> +int
->  drm_atomic_plane_get_property(struct drm_plane *plane,
->  		const struct drm_plane_state *state,
->  		struct drm_property *property, uint64_t *val)
-> @@ -683,6 +683,7 @@ drm_atomic_plane_get_property(struct drm_plane *plane,
-> =20
->  	return 0;
->  }
-> +EXPORT_SYMBOL(drm_atomic_plane_get_property);
-> =20
->  static int drm_atomic_set_writeback_fb_for_connector(
->  		struct drm_connector_state *conn_state,
-> @@ -1026,18 +1027,54 @@ int drm_atomic_connector_commit_dpms(struct drm_a=
-tomic_state *state,
->  	return ret;
->  }
-> =20
-> -static int drm_atomic_check_prop_changes(int ret, uint64_t old_val, uint=
-64_t prop_value,
-> +int drm_atomic_check_prop_changes(int ret, uint64_t old_val, uint64_t pr=
-op_value,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index c1e000010760..4e99af904e04 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -90,10 +90,6 @@ MODULE_FIRMWARE("amdgpu/gc_11_5_0_me.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_0_mec.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_0_rlc.bin");
+ 
+-static const struct soc15_reg_golden golden_settings_gc_11_0[] = {
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL, 0x20000000, 0x20000000)
+-};
+-
+ static const struct soc15_reg_golden golden_settings_gc_11_0_1[] =
+ {
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regCGTT_GS_NGG_CLK_CTRL, 0x9fff8fff, 0x00000010),
+@@ -104,24 +100,8 @@ static const struct soc15_reg_golden golden_settings_gc_11_0_1[] =
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_SC_ENHANCE_3, 0xfffffffd, 0x00000008),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_SC_VRS_SURFACE_CNTL_1, 0xfff891ff, 0x55480100),
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x01030000),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xfcffffff, 0x0000000a)
+-};
+-
+-static const struct soc15_reg_golden golden_settings_gc_11_5_0[] = {
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regDB_DEBUG5, 0xffffffff, 0x00000800),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGB_ADDR_CONFIG, 0x0c1807ff, 0x00000242),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGCR_GENERAL_CNTL, 0x1ff1ffff, 0x00000500),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2A_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL, 0xffffffff, 0xf37fff3f),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL3, 0xfffffffb, 0x00f40188),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL4, 0xf0ffffff, 0x80009007),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_CL_ENHANCE, 0xf1ffffff, 0x00880007),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regPC_CONFIG_CNTL_1, 0xffffffff, 0x00010000),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x01030000),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL2, 0x007f0000, 0x00000000),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xffcfffff, 0x0000200a),
+-	SOC15_REG_GOLDEN_VALUE(GC, 0, regUTCL1_CTRL_2, 0xffffffff, 0x0000048f)
++	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xfcffffff, 0x0000000a),
++	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL, 0x20000000, 0x20000000)
+ };
+ 
+ #define DEFAULT_SH_MEM_CONFIG \
+@@ -304,17 +284,9 @@ static void gfx_v11_0_init_golden_registers(struct amdgpu_device *adev)
+ 						golden_settings_gc_11_0_1,
+ 						(const u32)ARRAY_SIZE(golden_settings_gc_11_0_1));
+ 		break;
+-	case IP_VERSION(11, 5, 0):
+-		soc15_program_register_sequence(adev,
+-						golden_settings_gc_11_5_0,
+-						(const u32)ARRAY_SIZE(golden_settings_gc_11_5_0));
+-		break;
+ 	default:
+ 		break;
+ 	}
+-	soc15_program_register_sequence(adev,
+-					golden_settings_gc_11_0,
+-					(const u32)ARRAY_SIZE(golden_settings_gc_11_0));
+ 
+ }
+ 
+-- 
+2.37.3
 
-Hi,
-
-should the word "async" be somewhere in the function name?
-
->  					 struct drm_property *prop)
->  {
->  	if (ret !=3D 0 || old_val !=3D prop_value) {
->  		drm_dbg_atomic(prop->dev,
-> -			       "[PROP:%d:%s] No prop can be changed during async flip\n",
-> +			       "[PROP:%d:%s] This prop cannot be changed during async flip\n",
->  			       prop->base.id, prop->name);
->  		return -EINVAL;
->  	}
-> =20
->  	return 0;
->  }
-> +EXPORT_SYMBOL(drm_atomic_check_prop_changes);
-> +
-> +/* plane changes may have exceptions, so we have a special function for =
-them */
-> +static int drm_atomic_check_plane_changes(struct drm_property *prop,
-> +					  struct drm_plane *plane,
-> +					  struct drm_plane_state *plane_state,
-> +					  struct drm_mode_object *obj,
-> +					  u64 prop_value, u64 old_val)
-> +{
-> +	struct drm_mode_config *config =3D &plane->dev->mode_config;
-> +	int ret;
-> +
-> +	if (plane->funcs->check_async_props)
-> +		return plane->funcs->check_async_props(prop, plane, plane_state,
-> +							     obj, prop_value, old_val);
-
-Is it really ok to allow drivers to opt-in to also *reject* the FB_ID
-and IN_FENCE_FD props on async commits?
-
-Either intentionally or by accident.
-
-> +
-> +	/*
-> +	 * if you are trying to change something other than the FB ID, your
-> +	 * change will be either rejected or ignored, so we can stop the check
-> +	 * here
-> +	 */
-> +	if (prop !=3D config->prop_fb_id) {
-> +		ret =3D drm_atomic_plane_get_property(plane, plane_state,
-> +						    prop, &old_val);
-> +		return drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
-
-When I first read this code, it seemed to say: "If the prop is not
-FB_ID, then do the usual prop change checking that happens on all
-changes, not only async.". Reading this patch a few more times over, I
-finally realized drm_atomic_check_prop_changes() is about async
-specifically.
-
-> +	}
-> +
-> +	if (plane_state->plane->type !=3D DRM_PLANE_TYPE_PRIMARY) {
-> +		drm_dbg_atomic(prop->dev,
-> +			       "[OBJECT:%d] Only primary planes can be changed during async f=
-lip\n",
-> +			       obj->id);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> =20
->  int drm_atomic_set_property(struct drm_atomic_state *state,
->  			    struct drm_file *file_priv,
-> @@ -1100,7 +1137,6 @@ int drm_atomic_set_property(struct drm_atomic_state=
- *state,
->  	case DRM_MODE_OBJECT_PLANE: {
->  		struct drm_plane *plane =3D obj_to_plane(obj);
->  		struct drm_plane_state *plane_state;
-> -		struct drm_mode_config *config =3D &plane->dev->mode_config;
-> =20
->  		plane_state =3D drm_atomic_get_plane_state(state, plane);
->  		if (IS_ERR(plane_state)) {
-> @@ -1108,19 +1144,11 @@ int drm_atomic_set_property(struct drm_atomic_sta=
-te *state,
->  			break;
->  		}
-> =20
-> -		if (async_flip && prop !=3D config->prop_fb_id) {
-> -			ret =3D drm_atomic_plane_get_property(plane, plane_state,
-> -							    prop, &old_val);
-> -			ret =3D drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
-> -			break;
-> -		}
-> -
-> -		if (async_flip && plane_state->plane->type !=3D DRM_PLANE_TYPE_PRIMARY=
-) {
-> -			drm_dbg_atomic(prop->dev,
-> -				       "[OBJECT:%d] Only primary planes can be changed during async =
-flip\n",
-> -				       obj->id);
-> -			ret =3D -EINVAL;
-> -			break;
-> +		if (async_flip) {
-> +			ret =3D drm_atomic_check_plane_changes(prop, plane, plane_state,
-
-Should there be "async" somewhere in the name of
-drm_atomic_check_plane_changes()?
-
-
-Thanks,
-pq
-
-> +							     obj, prop_value, old_val);
-> +			if (ret)
-> +				break;
->  		}
-> =20
->  		ret =3D drm_atomic_plane_set_property(plane,
-> diff --git a/include/drm/drm_atomic_uapi.h b/include/drm/drm_atomic_uapi.h
-> index 4c6d39d7bdb2..d65fa8fbbca0 100644
-> --- a/include/drm/drm_atomic_uapi.h
-> +++ b/include/drm/drm_atomic_uapi.h
-> @@ -29,6 +29,8 @@
->  #ifndef DRM_ATOMIC_UAPI_H_
->  #define DRM_ATOMIC_UAPI_H_
-> =20
-> +#include <linux/types.h>
-> +
->  struct drm_crtc_state;
->  struct drm_display_mode;
->  struct drm_property_blob;
-> @@ -37,6 +39,9 @@ struct drm_crtc;
->  struct drm_connector_state;
->  struct dma_fence;
->  struct drm_framebuffer;
-> +struct drm_mode_object;
-> +struct drm_property;
-> +struct drm_plane;
-> =20
->  int __must_check
->  drm_atomic_set_mode_for_crtc(struct drm_crtc_state *state,
-> @@ -53,4 +58,11 @@ int __must_check
->  drm_atomic_set_crtc_for_connector(struct drm_connector_state *conn_state,
->  				  struct drm_crtc *crtc);
-> =20
-> +int drm_atomic_plane_get_property(struct drm_plane *plane,
-> +				  const struct drm_plane_state *state,
-> +				  struct drm_property *property, uint64_t *val);
-> +
-> +int drm_atomic_check_prop_changes(int ret, uint64_t old_val, uint64_t pr=
-op_value,
-> +				  struct drm_property *prop);
-> +
->  #endif
-> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
-> index c6565a6f9324..73dac8d76831 100644
-> --- a/include/drm/drm_plane.h
-> +++ b/include/drm/drm_plane.h
-> @@ -540,6 +540,11 @@ struct drm_plane_funcs {
->  	 */
->  	bool (*format_mod_supported)(struct drm_plane *plane, uint32_t format,
->  				     uint64_t modifier);
-> +
-> +	int (*check_async_props)(struct drm_property *prop, struct drm_plane *p=
-lane,
-> +				 struct drm_plane_state *plane_state,
-> +				 struct drm_mode_object *obj,
-> +				 u64 prop_value, u64 old_val);
->  };
-> =20
->  /**
-
-
---Sig_/CyNE1g.rxLQR/tPHNy8jH2s
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmW3Zp4ACgkQI1/ltBGq
-qqc8ehAAooc9fYyi2pAyuNuCwLMhuUV+A791NMTj40g1r5gP0brsb6TlW+iX8+Ge
-rNYw4wHQRPKqAhhd/JywuMR1YP/tRHLrOZiG2381ZWk8QJmhW6aT1Q3RtojeraxK
-ubNMvzadC7Di6VmkKVvH/9rLgCs79Brz2nAEAPCdEWJ/Q4fiXhajk8maKM4Zf21l
-q3+AVBpIbP0OFpvw+HKu1EkDV8TdlWHRJYebWR+ju5L7LxDStSL5PuUFNA2TFWbG
-kQfpoS4TLmeM2BA4GjaADB32mo5a6y6GEAHolGsp9AHxRrCaN0+wCLObNmCgz/Xs
-EcylMgMUvHWJuL9Nhr2UzDwb668fJa2Drirmx62bXubjsmqTEMACvmdiLtYNPFHd
-tmrskOq2jquNsYdSOO1lyNsrU5wL27mOR2qkY/L/niMKtKOxD+e7SNzYe8YiJDAT
-gup/t+jSEVj5uEP9Fh5KWQLjGpv5M7ZOx4El3BZ5OfmD48lEkUWm4Ol4Cvwgn79d
-7+x62h69VWFskO05OLt/c7rkCiPxMwl6JDQA7GXSS5lAkjFVfrlIPDlT62E7xWTm
-TH0gdwCKbZNh81QuZ7hxKX6GLyk5Z9Ir5SzX8kHRdnMENiyKWLtW9rIvj7nCCgli
-PMckBk7wycSe6xUZkDBsDsJpreMhNDu/oXn1Tl+unqMWmfStaUk=
-=19nM
------END PGP SIGNATURE-----
-
---Sig_/CyNE1g.rxLQR/tPHNy8jH2s--
