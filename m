@@ -2,91 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9428425F3
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 14:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6238426D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 15:23:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA221130B3;
-	Tue, 30 Jan 2024 13:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9057811314E;
+	Tue, 30 Jan 2024 14:23:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE02B1130AC
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 13:15:16 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAF7511314E;
+ Tue, 30 Jan 2024 14:23:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n7wOsWA3qg+hYG7Gj5QJygdq5AqlZcalxuzNKxdStUKDHWvwGNmGWYv4G8xdWvh22G8r5b3Nkv3HnKG+T9G+LbaoM9MnVYXkGoi591ZB2g1OCWRmF+eRWpjLspeKZVQncRP+EkhYeaQxWUvb3kfr5Sfb5aegfJEEYpqoi0KRgevVZyor2S+XNxEJvYRdmGYj7xBWZnta2y5+JvuCcZdqzUrHVNmmHrVHSmGLM6pR9pQCNDUcJBZgzcPPuwSqwxKxrckyIHYq460Wt7NemI+4yP6CqX+zF4qP8inZ4sGVhMYIImDAj5HExVKcH6fWgJ8hPI5Vn0XzdjhFH5nFJldxLg==
+ b=YvQ391GeCclD+7kbAbGT9OhI3iKw58DT2K/h8nLFplnR0c1/i7fKe3k6UdkuVjPFahurOafcfkkW/hea4rI2D+ruLpXjuhCwPW4pwiEnfMpZpy1RnmPYbfCFZBenpQaSIW2kPliUAJ1qQ8ujhmzR+PTZdC/T7NSFDYV0imA7livbPbchO7zWW0HtFi/YSpYuq3V0lcsyGNxaJP30Z/E/ee8AExxJv69VjDENOptMsTIDGmehw1fHk+EHzIYalW/KTKdhtEnqE4pjV3QgrWhVr2DU2YV+H+CX2p0l+7KJ0Hrrq8svOEodvRnD7ROb0oOVoEmJ3ovwfBK659zsO6z3Iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PEwqW/iPtxqZ79DDYaOpGWn4coW2EcWvd0hS7MLtgCE=;
- b=gAwT8R0zdURBFpQ0/wp4Acq6gJpp0lvip1KQ9Yj9MmJy83MxsvVCpgK0q8KN8VoXwH/rL/3C8D0P31F3qOofX15c+CQPibtgH/ZomMTTUMaq04zJOFCgVdwdop+HXnvNtXLx74D2Q7fwjD8RSlLoyo+MFptOnwQvre5PrtNq3Y8haRvosAmGs7FPMb+0zAIoHDDDACksjWLHX8yhUByt1gkoRV/jZg1gS4tHlcqWYf0bv47KXZDzKedDVc0J26iX1AbAH4ic6AAGEL5ZmcDWHYxORTYnH4I6FexYrWYhCANHLKn+xX3/09M5N/D9EbQrRRc15g5FzQSft6oOIofyfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=E2rCcywr7dw/yC/vDiH7ocw6cJBpdN7ePTafQfOVw5Y=;
+ b=agaXHdDHg4Jub2XSzc9UJ5+0KGeA+zedtvKY6s3dQ1pDoKJyA7arJljFC64QeHQAc0CQjvkOwEGlqGGwPv6v26Cp37/xXsWbna4FR1A1bjBPUHbLUnFd/S/nhcdpeIUTdQ/m0znMPT8ov+zqt9GZ0L7nMDiClEScYY1GcpSB6d40kJDrUwDJMqzbq2UiUG0Ar05esZT5sLypkiTSDDftOe2H8PmcCchfZV3o8ke0W84IV3I+dtvYwM/e6aKLA9B3UYbsaeazONKkk46R9taja3y60dmrV2WLrGulzcT1J+TZQM7syLJt+nhSQp96IP+M73dZ4BkPzm302lWrJs8Vlg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PEwqW/iPtxqZ79DDYaOpGWn4coW2EcWvd0hS7MLtgCE=;
- b=GpUWcFMH4V0VOcTF33PG3/2KE2q8Em2qhAzn6q/3LBt3D3xj5ZLzBw4+rColPQaliIbJHuX/npqybxPtHi6zW+kZr1jYimO760YfRUVBIvhTpJAtX7n/Dfxl9WFZDl42Z15cnuPYudK9D47hyXWxlyq/ET0ocYShTOuU+sVBWts=
-Received: from DM6PR07CA0116.namprd07.prod.outlook.com (2603:10b6:5:330::13)
- by CYYPR12MB8937.namprd12.prod.outlook.com (2603:10b6:930:cb::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.26; Tue, 30 Jan
- 2024 13:15:15 +0000
-Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
- (2603:10b6:5:330:cafe::3) by DM6PR07CA0116.outlook.office365.com
- (2603:10b6:5:330::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
- Transport; Tue, 30 Jan 2024 13:15:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7181.14 via Frontend Transport; Tue, 30 Jan 2024 13:15:14 +0000
-Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 30 Jan
- 2024 07:15:10 -0600
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: remove asymmetrical irq disabling in vcn 4.0.5
- suspend
-Date: Tue, 30 Jan 2024 21:14:57 +0800
-Message-ID: <20240130131457.3433971-1-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.37.3
+ bh=E2rCcywr7dw/yC/vDiH7ocw6cJBpdN7ePTafQfOVw5Y=;
+ b=lCJJiGOKPXEA4PoJtWnzDWEifZo6Qys8qmW8MfD8iuGw5hUEXRwjN/cNWQv87ILwq+IlkMwJ6IrTZiH7dRXXIbLlO+OLb/SxCAuWQG12bKePmxGULaeqnKPQJq5+Sf39j9ZORHDBjkVltHlLLibHw5RrKq8mjEF/Le+ycVhHI5I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by BL0PR12MB4993.namprd12.prod.outlook.com (2603:10b6:208:17e::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Tue, 30 Jan
+ 2024 14:23:38 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::e1fb:4123:48b1:653%4]) with mapi id 15.20.7228.029; Tue, 30 Jan 2024
+ 14:23:38 +0000
+Message-ID: <97c50e01-ee33-4ac8-975c-f645c2ed49c6@amd.com>
+Date: Tue, 30 Jan 2024 15:23:30 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] drm/virtio: Implement device_attach
+Content-Language: en-US
+To: Julia Zhang <julia.zhang@amd.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, David Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Erik Faye-Lund <kusmabite@gmail.com>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?=
+ <marek.olsak@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Honglei Huang <honglei1.huang@amd.com>, Chen Jiqian <Jiqian.Chen@amd.com>,
+ Huang Rui <ray.huang@amd.com>, David Stevens <stevensd@chromium.org>
+References: <20240129103118.3258781-1-julia.zhang@amd.com>
+ <ZbjZJ3qQzdOksnb2@phenom.ffwll.local> <ZbjaebswTCxmlwu0@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <ZbjaebswTCxmlwu0@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR5P281CA0031.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f3::7) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|CYYPR12MB8937:EE_
-X-MS-Office365-Filtering-Correlation-Id: 070fafec-040b-42d9-fe0d-08dc21957f3b
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL0PR12MB4993:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a28ce12-3304-42d0-14ff-08dc219f0ce3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rCaWMNOtwUSMvAhBBdnwj5SIvwXG61D/2CL1NPSehuVl6fXGOSibkwEtjKXa+l3hhiEAhQ5yK4gVGueoiygh/N27LW9EB9IjzODlM3DAyPVT3yUzmhyriVB+xqs0iv1nVKaef9HiQopIrVh7J5V2fCQzSg9bt5TtY/p6VIGTLO54yBmiVT9w2RVEvBG/54HMPZFXlXzLlIFTQ+qJx+XmcetGiQ+atwdhB0yJF/UReeMQ4b0w4wnmRzcAPsPFjx2qoihgJII16xjOVl9L3U9LzuvQgkXo6aDxhzBLZ0paj/HEDzcVUbgrcEI32vXQO/7xoLJo+gVQmiZmw0Ipd6Xy3a5w1eT+d+6aqfUV3sSHH+8QB6it5SAWczxQED5bZ+QtizaYadP3IeiTQFni9y0VetjCrF9JAjO2pbAbBCoybeeFe0nCWiF1mYX+PoKemtj/GK2g+jtUBLKDHLkEwqR+0afttFtWa6h7zzLnExVXUF1N2BnQ1l2sA7m+3SotekXA/eX9hIO5cNBI6VxE6uqQmmCBLsLLt5kJ+d/+3CjKaja35algk8/+XFsHe1a2R3ed+4u+IFWc2II4blDpQAJahm8QORzf6Ouk8J7xlnQ9FK9ktcAc8heq4u4KYjx28uCMrxcBpGddfkpKWp3oIny/aOFEXLdi5T0LOldksSfmo6LAN0udDAm2BSPektTVGj8D0tjX1cOYAe7elZdHOY64/dFvmYL2bmsKoK/xkKv6d3VwG54yWvciI6XIWUweWgw4XbS3PcFv4huO9BYAml3Q/Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(376002)(136003)(396003)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(82310400011)(1800799012)(46966006)(40470700004)(36840700001)(41300700001)(82740400003)(81166007)(356005)(40460700003)(40480700001)(316002)(36860700001)(47076005)(86362001)(70206006)(54906003)(6916009)(70586007)(7696005)(8676002)(8936002)(4326008)(336012)(426003)(5660300002)(2616005)(478600001)(26005)(6666004)(1076003)(16526019)(2906002)(83380400001)(36756003)(36900700001);
+X-Microsoft-Antispam-Message-Info: lnEwszdm2nhs6g5Fr9nY4aMvILpcvbq1JPH7eE4LR/67SE2N01nAyGVaz5iP+Y8uHzkysWBJljgYl/e/NKXZFl+yaDGU1xYQsF8r3HVW2+IY+2g28w4x4L+hMNeFG0UQsXauDYhZ+BSWZxFCWIkI/IpmMPlNc00ii3mwz/M15lJswvVi5OHgkAKO6kzny2EJ1uwmaENk1+CxKCJj/m3/u+dj+Goi4jXeoBUrtsd9R9IhonVeNz2cNphSFzHHKTyFuN9JKzerFnnLiwHohYAipbxYUvmjJWJK9HlgFl6LGCTeGmo0bMxQeNWqTCntg8iz7U18q+0bO1wo8quKqDRExte88ZZkj8e09tJlGfza07BTnKgMZf9XKn/9e07kdEPcwHl5oTpErTXWLH3gEtXtYtA1HBH2GWUL1qcb9jxH6j7HP2pEr94uWCgB2dEpsEYdKBDMYwq7VAubyqa0QLrWjLr5SKyaFCc6AnQlIlkMnB0M3FABWq7O0XIWXg+QPzvtrLKj5MLIOth6MQyBqiBBeuayjSCs9Fht8fhkh+jodU0wpcH7P0Qc5pcIwTIrNKewnX5jI+1gKtkwVTFZ2gE9yaV6SlqVX8ANEQn1kpwVqftXjEFgErMUsIUXZ3xeFtcuTFPihH5W+L5gpMICoYJ+wdd28eAsthlQ8WHiwTav2eo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(396003)(366004)(136003)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(83380400001)(2616005)(7416002)(6512007)(26005)(38100700002)(5660300002)(8936002)(2906002)(6506007)(8676002)(478600001)(966005)(41300700001)(6486002)(66556008)(110136005)(66476007)(6666004)(66946007)(316002)(31696002)(86362001)(921011)(36756003)(31686004)(66899024)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUN5amFyelo1Z0JKazFZTU1rcGs1TUtIelBvZkR0eURUZzQ4c3E4djVzRUtH?=
+ =?utf-8?B?QkdNR3NIUWl2dVdMUWV2UThSU0VqTjhXVTJ3N0M2cngxdHpaQTFQMDBxRFZv?=
+ =?utf-8?B?T005WDVtOFQ4RVdJaHU3SGdWVFdPWEY4ZGtIS1VmWmtjT2hZelVRU1VCeXB4?=
+ =?utf-8?B?WERJOUJDZjdjWmk1V2kzME8wVlVLZElWMHIrcnpxVlV2WHJHMUlmTUFVckI3?=
+ =?utf-8?B?OU5qTW8xSDkzbHg1NFpubjVsZnpjRDVGVkhXMTk3ZlIyc3NJLzFNZEpRMm9N?=
+ =?utf-8?B?Ni8vTm9KRnJUY0Y1Vk9ycyt0d3pIV3lVK0tEcWx4SUU1ZHBMWEs3bGh3VDZV?=
+ =?utf-8?B?T2NhaDJTUzQxcFp4QnNTU0FIWFFnREhNckpoa1pQdHBUaXJ0QTA5Nnk4NjJP?=
+ =?utf-8?B?eWZoc1cxeGRhWCtzVTdyS1dZRXVIbjR0ZDhOVElBNXF4MXVrK1VDSmFxU0gx?=
+ =?utf-8?B?dFZiSUFWd0paTVIwanhvRWN6c1RmVzdselVNY1VzeGN0am0xQ3RnN3M1TEhQ?=
+ =?utf-8?B?RmRWVkVuQTh5R2VxMjI2WW5SQ1B0cVd0V2F4V1Rkd2pvb1F4YnZuL2R3VVBV?=
+ =?utf-8?B?MmgzUGhTUHlQUCtxVjliY1NEMmVyS29oMW9TSGY0NE1JSjZySm1Ua1RKK0ty?=
+ =?utf-8?B?a1FZR2xoSmNpSU9qeTQyUTVmSDhmZTgyVW1CY0I5eUJGVk9taFQ2RllHT2lY?=
+ =?utf-8?B?T2VqMk5iUm9Oc0lJVm16WEtwUzloZnNnZFo1UktwSG53eGJHaWp6YkdhWFVM?=
+ =?utf-8?B?dkpBS3ZLbmx1SE1Mc3ArZndsd3Y3ODV1aTlNQlJtNWhaSDRPYmZKR0ZHUVcz?=
+ =?utf-8?B?Z3FzTTQ4TE1WcUdJbUJGSEpFdXpCRkRBSzlDUldHQ3dGZHhWM1BqSFM1dThP?=
+ =?utf-8?B?bnhXTXRQMTNwRTR3MHVnVDBRb1NSMHBwWW5TNHhZNFZaZkM4REZ6OG9HRUc5?=
+ =?utf-8?B?K3NFRUhHbER4RUZORUJ0TGtYanBDQmpkUWJ5U1NUbGV6Tzl4NDhTYWFUVjl5?=
+ =?utf-8?B?NEJqSDA3NktXZEJocU83NG9HRGlMNTVVQTQrempuTUo5NGhXTk1XbklXNkpD?=
+ =?utf-8?B?UDhyMFUxVE9sZStSTkRxdkpYMGRlbXVRZnNtY0RRbTdOeHE1a1E1aDdvVzlx?=
+ =?utf-8?B?eEF4Z29oMHROeWxVKzJlLy81aGhhbGkvdGFiaXFnYkV6cDhvZjQ5UUZXbnc0?=
+ =?utf-8?B?eUI5NXhWVUNIOUxqaE5QUWJ6VWlJTmVJV2htRXRXMkwzekNyZmIvUnkvckhQ?=
+ =?utf-8?B?bWc0R0RMMGEzbWdGQlNLc1lWL1gxWnUwczdpcThkWVN2UDdjSWFhWUxVUTNI?=
+ =?utf-8?B?Q1dSZk9ZbWFjR3JPOVE4UmlDbFNac0RLNmVnN0FKRzBzVVZaM0w5ajNFcHNz?=
+ =?utf-8?B?VC84Vk5qVHVORWFzaXNMek1JM0hSWXl2SVdJZTVvUG01U3hnMFA3bkV5L2Zt?=
+ =?utf-8?B?YWdGL3V3dE10WHF6T0ptZURncVdYTk92Zk1IbE56SzM1WGREWE1qSkpZOUxU?=
+ =?utf-8?B?bTRiVEZPTEducE94ODZjRnRzaW5TMjFtU3A3MDhiZ3ZZZ2hLQjlxS3JSM3Bi?=
+ =?utf-8?B?aWh6Mk1aamZhMzF3a1JlT21DZERWb0Q3dUF4YkJubjdYZTE1ZHNpZGhyUzFD?=
+ =?utf-8?B?ZGNMSGFnK3liQXJjc2QwNWRBUzZHKzVmbjFVN0JwNnE3blRQNE9mNzJ5ZUdn?=
+ =?utf-8?B?UHlGZWZDOXhoTkFkZnVOK2xYdWZhMHloejlWR0lSQkJNWU5ZTnJ5eHltZmpP?=
+ =?utf-8?B?TU9OOEY1S0JmMHBwOFc0N3BhUUozMmN3SFhOOUp6L2ViVzZhaTMxNlNqb2pp?=
+ =?utf-8?B?cWltVkNtcHlFRFBhN1JPdjdNd3M1dzFobHVHUHltYm9aWmRGemFHOVFoWDVv?=
+ =?utf-8?B?MjBSUi9QQisxdHdLQU1tdFc4S25GZkVJNWoveFZTcnVDZzVUNSt2REEvQ2Iv?=
+ =?utf-8?B?QTVEaFNnQ0xFTmxHd2hPUXc5cmd0RWRGTjAyajZpMm54OXY2YTFxbnJjSHF0?=
+ =?utf-8?B?WG5MQ2s0UnpRcUl1NnBqc2ladkp1Nkd0M2t0MSthK3BDZFJLWThjdHEzd0Js?=
+ =?utf-8?B?ZWJqUm5Pc28xWHJueFQ4cTl3SnZKUzlGamVBUGIvcmVuU0ZLajQrelFUd0tt?=
+ =?utf-8?Q?/0Kxllksrr6U3Qb4Z5x5yrq7D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 13:15:14.6375 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 070fafec-040b-42d9-fe0d-08dc21957f3b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a28ce12-3304-42d0-14ff-08dc219f0ce3
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 14:23:38.0988 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBE.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8937
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9BlaZ5zjhSUllO4p/bu5IOLJT89t2qqcCUbT8FR4A5tUiJlUW/NuxeBK5cMpEnVX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4993
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,99 +134,155 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Veerabadhran.Gopalakrishnan@amd.com,
- saleemkhan.jamadar@amd.com, Yifan Zhang <yifan1.zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There is no irq enabled in vcn 4.0.5 resume, causing wrong amdgpu_irq_src status.
-Beside, current set function callbacks are empty with no real effect.
+Am 30.01.24 um 12:16 schrieb Daniel Vetter:
+> On Tue, Jan 30, 2024 at 12:10:31PM +0100, Daniel Vetter wrote:
+>> On Mon, Jan 29, 2024 at 06:31:19PM +0800, Julia Zhang wrote:
+>>> As vram objects don't have backing pages and thus can't implement
+>>> drm_gem_object_funcs.get_sg_table callback. This removes drm dma-buf
+>>> callbacks in virtgpu_gem_map_dma_buf()/virtgpu_gem_unmap_dma_buf()
+>>> and implement virtgpu specific map/unmap/attach callbacks to support
+>>> both of shmem objects and vram objects.
+>>>
+>>> Signed-off-by: Julia Zhang <julia.zhang@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/virtio/virtgpu_prime.c | 40 +++++++++++++++++++++++---
+>>>   1 file changed, 36 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/virtio/virtgpu_prime.c b/drivers/gpu/drm/virtio/virtgpu_prime.c
+>>> index 44425f20d91a..b490a5343b06 100644
+>>> --- a/drivers/gpu/drm/virtio/virtgpu_prime.c
+>>> +++ b/drivers/gpu/drm/virtio/virtgpu_prime.c
+>>> @@ -49,11 +49,26 @@ virtgpu_gem_map_dma_buf(struct dma_buf_attachment *attach,
+>>>   {
+>>>   	struct drm_gem_object *obj = attach->dmabuf->priv;
+>>>   	struct virtio_gpu_object *bo = gem_to_virtio_gpu_obj(obj);
+>>> +	struct sg_table *sgt;
+>>> +	int ret;
+>>>   
+>>>   	if (virtio_gpu_is_vram(bo))
+>>>   		return virtio_gpu_vram_map_dma_buf(bo, attach->dev, dir);
+>>>   
+>>> -	return drm_gem_map_dma_buf(attach, dir);
+>>> +	sgt = drm_prime_pages_to_sg(obj->dev,
+>>> +				    to_drm_gem_shmem_obj(obj)->pages,
+>>> +				    obj->size >> PAGE_SHIFT);
+>>> +	if (IS_ERR(sgt))
+>>> +		return sgt;
+>>> +
+>>> +	ret = dma_map_sgtable(attach->dev, sgt, dir, DMA_ATTR_SKIP_CPU_SYNC);
+>>> +	if (ret) {
+>>> +		sg_free_table(sgt);
+>>> +		kfree(sgt);
+>>> +		return ERR_PTR(ret);
+>>> +	}
+>>> +
+>>> +	return sgt;
+>>>   }
+>>>   
+>>>   static void virtgpu_gem_unmap_dma_buf(struct dma_buf_attachment *attach,
+>>> @@ -63,12 +78,29 @@ static void virtgpu_gem_unmap_dma_buf(struct dma_buf_attachment *attach,
+>>>   	struct drm_gem_object *obj = attach->dmabuf->priv;
+>>>   	struct virtio_gpu_object *bo = gem_to_virtio_gpu_obj(obj);
+>>>   
+>>> +	if (!sgt)
+>>> +		return;
+>>> +
+>>>   	if (virtio_gpu_is_vram(bo)) {
+>>>   		virtio_gpu_vram_unmap_dma_buf(attach->dev, sgt, dir);
+>>> -		return;
+>>> +	} else {
+>>> +		dma_unmap_sgtable(attach->dev, sgt, dir, DMA_ATTR_SKIP_CPU_SYNC);
+>>> +		sg_free_table(sgt);
+>>> +		kfree(sgt);
+>>>   	}
+>>> +}
+>>> +
+>>> +static int virtgpu_gem_device_attach(struct dma_buf *dma_buf,
+>>> +				     struct dma_buf_attachment *attach)
+>>> +{
+>>> +	struct drm_gem_object *obj = attach->dmabuf->priv;
+>>> +	struct virtio_gpu_object *bo = gem_to_virtio_gpu_obj(obj);
+>>> +	int ret = 0;
+>>> +
+>>> +	if (!virtio_gpu_is_vram(bo) && obj->funcs->pin)
+>>> +		ret = obj->funcs->pin(obj);
+>>>   
+>>> -	drm_gem_unmap_dma_buf(attach, sgt, dir);
+>>> +	return ret;
+>> This doesn't look like what I've expected. There should be no need to
+>> change the map/unmap functions, especially not for the usual gem bo case.
+>> We should definitely keep using the exact same code for that. Instead all
+>> I expected is roughly
+>>
+>> virtgpu_gem_device_attach()
+>> {
+>> 	if (virtio_gpu_is_vram(bo)) {
+>> 		if (can_access_virtio_vram_directly(attach->dev)
+>> 			return 0;
+>> 		else
+>> 			return -EBUSY;
+>> 	} else {
+>> 		return drm_gem_map_attach();
+>> 	}
+>> }
+>>
+>> Note that I think can_access_virtio_vram_directly() needs to be
+>> implemented first. I'm not even sure it's possible, might be that all the
+>> importers need to set the attachment->peer2peer flag. Which is why this
+>> thing exists really. But that's a pile more work to do.
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 17 -----------------
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 19 -------------------
- 2 files changed, 36 deletions(-)
+Yeah, that is really just speculative. All importers need to set the 
+peer2peer flag just in case.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 169ed400ee7b..8ab01ae919d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -2017,22 +2017,6 @@ static int vcn_v4_0_set_powergating_state(void *handle, enum amd_powergating_sta
- 	return ret;
- }
- 
--/**
-- * vcn_v4_0_set_interrupt_state - set VCN block interrupt state
-- *
-- * @adev: amdgpu_device pointer
-- * @source: interrupt sources
-- * @type: interrupt types
-- * @state: interrupt states
-- *
-- * Set VCN block interrupt state
-- */
--static int vcn_v4_0_set_interrupt_state(struct amdgpu_device *adev, struct amdgpu_irq_src *source,
--      unsigned type, enum amdgpu_interrupt_state state)
--{
--	return 0;
--}
--
- /**
-  * vcn_v4_0_set_ras_interrupt_state - set VCN block RAS interrupt state
-  *
-@@ -2097,7 +2081,6 @@ static int vcn_v4_0_process_interrupt(struct amdgpu_device *adev, struct amdgpu_
- }
- 
- static const struct amdgpu_irq_src_funcs vcn_v4_0_irq_funcs = {
--	.set = vcn_v4_0_set_interrupt_state,
- 	.process = vcn_v4_0_process_interrupt,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-index 2eda30e78f61..49e4c3c09aca 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -269,8 +269,6 @@ static int vcn_v4_0_5_hw_fini(void *handle)
- 				vcn_v4_0_5_set_powergating_state(adev, AMD_PG_STATE_GATE);
- 			}
- 		}
--
--		amdgpu_irq_put(adev, &adev->vcn.inst[i].irq, 0);
- 	}
- 
- 	return 0;
-@@ -1668,22 +1666,6 @@ static int vcn_v4_0_5_set_powergating_state(void *handle, enum amd_powergating_s
- 	return ret;
- }
- 
--/**
-- * vcn_v4_0_5_set_interrupt_state - set VCN block interrupt state
-- *
-- * @adev: amdgpu_device pointer
-- * @source: interrupt sources
-- * @type: interrupt types
-- * @state: interrupt states
-- *
-- * Set VCN block interrupt state
-- */
--static int vcn_v4_0_5_set_interrupt_state(struct amdgpu_device *adev, struct amdgpu_irq_src *source,
--		unsigned type, enum amdgpu_interrupt_state state)
--{
--	return 0;
--}
--
- /**
-  * vcn_v4_0_5_process_interrupt - process VCN block interrupt
-  *
-@@ -1726,7 +1708,6 @@ static int vcn_v4_0_5_process_interrupt(struct amdgpu_device *adev, struct amdgp
- }
- 
- static const struct amdgpu_irq_src_funcs vcn_v4_0_5_irq_funcs = {
--	.set = vcn_v4_0_5_set_interrupt_state,
- 	.process = vcn_v4_0_5_process_interrupt,
- };
- 
--- 
-2.37.3
+What happens under the hood is that IOMMU redirects the "VRAM" memory 
+access to whatever address the DMA-buf on the host is pointing to 
+(system, VRAM, doorbell, IOMMU, whatever).
+
+I'm also not 100% sure if all the cache snooping is done correctly in 
+all cases, but for now it seems to work.
+
+>>
+>> Frankly the more I look at the original patch that added vram export
+>> support the more this just looks like a "pls revert, this is just too
+>> broken".
+> The commit I mean is this one: ea5ea3d8a117 ("drm/virtio: support mapping
+> exported vram"). The commit message definitely needs to cite that one, and
+> also needs a cc: stable because not rejecting invalid imports is a pretty
+> big deal.
+
+Yeah, I've pointed out that commit in an internal discussion as well. I 
+was just not aware that it's that severely broken.
+
+Regards,
+Christian.
+
+>
+> Also adding David.
+> -Sima
+>
+>> We should definitely not open-code any functions for the gem_bo export
+>> case, which your patch seems to do? Or maybe I'm just extremely confused.
+>> -Sima
+>>
+>>>   
+>>>   static const struct virtio_dma_buf_ops virtgpu_dmabuf_ops =  {
+>>> @@ -83,7 +115,7 @@ static const struct virtio_dma_buf_ops virtgpu_dmabuf_ops =  {
+>>>   		.vmap = drm_gem_dmabuf_vmap,
+>>>   		.vunmap = drm_gem_dmabuf_vunmap,
+>>>   	},
+>>> -	.device_attach = drm_gem_map_attach,
+>>> +	.device_attach = virtgpu_gem_device_attach,
+>>>   	.get_uuid = virtgpu_virtio_get_uuid,
+>>>   };
+>>>   
+>>> -- 
+>>> 2.34.1
+>>>
+>> -- 
+>> Daniel Vetter
+>> Software Engineer, Intel Corporation
+>> http://blog.ffwll.ch
 
