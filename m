@@ -2,120 +2,114 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970D3842A8D
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 18:11:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D97842C2D
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jan 2024 19:56:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 290131131E3;
-	Tue, 30 Jan 2024 17:11:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E84F7113444;
+	Tue, 30 Jan 2024 18:55:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85E21131D2;
- Tue, 30 Jan 2024 17:11:14 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB8611344A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jan 2024 18:55:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IYUHGmg/x2Mcc/nESIx4YD7gmCcNDpuW8QUSgzwD4YOglbiSprorL+ByXejWT+hTuHyGMeH4b2rPWwysGMYXlIyZA+qlFE9VS74vuLE9MykNpdoTT3qQl5kDjKUMLz0Xdiq9wJlxI7XRLuLW1BH8w62VsflKR73yIJUu1BZTScTcDzkqWMzpnqWEQc272HYth+xfZno5pNuv1eX8fyCOcESGzOLXo71TUY3XL3euB2f7WUKXxGca2jkwGabENpcSc5qJqs2CzPvaetm8PYM3BQtcUM2+oS9zxyKUvoikl60RUwzDWA3m82sud57myF8RySyG3LWGyXwrbQ1mbtdg+g==
+ b=leMMm7uDcsUYFL8sPSJi2vZFQeLVkuKGPWxZMMIjrrRjlW5fSXmiDjr3En3QrWiiZwD98g198oJyVm9rKX7iQvx/m5K3wovDcbUxhA0pg/YggaLg0Zciu1NUgFMYlOErTXIi6XJWOuiQr+c+Mfmk//z2U4ApqB8nAvSxM6cXBugqmJxgXE1ZM/UDruqgQd+5fF6SXnL2RCbdWwPpFvtY12SkRygyWLDMXO9TWAEE347kkkH+PKo7GfIF3A2Vwxu6L13y0WbNHWmX7dm5CWCmEUz/ThCMEoUfxwK01y3O3T1r1AamtBm7uxWJWEI+R9eFBXL5eFoEAjFOgSk+r5S2hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VLduJzD5k+0ZEqlPnd8PrXyv5Dlq6kz+3kGK6SQv7Q4=;
- b=DprLtVA2JWDGvuRy79Kcjiv9J21YEfEFUdbPHfleaeigJpG3GeBewPh3bEfVrkKIWojrPCsFSIh3v28zFdFT52fHcFXxv3IJfxDErw7HQFoVzXMjHj+42P4tWJqz4cgUR27ZcoQWI5vkxHqK5fGMeO0m7rMLIhk9th7h3UKdBbFIXDAQsXAri7LxyTnCSQVdebn/WYsx390dYtqskpFNvtFf49k5Gk0f/kkkO6xW0ekfo+DIbzriM31NWKoovfD1Bs0Lmwo03i+5L21enZt0SXBDRuBK0L9QugsPlgbze6Rq4PeUq2KVUwsEu/qxnf0h6X4MH/efXs8wMLmCt+fAdg==
+ bh=PbzQJ/qpPiEsVU+njryIC9JTX8rsXo4D5eNaYca3LJw=;
+ b=Va2c9QoAHx9yj2H1dfmW5xwBUxJGySxe5vyv1bzx09qBLh8TvTrNo6uxK7wv+UHL9/GCufMn1FIQ9I8HdumQclXCraebpcIhjOW+xSi9VqfkthM6bK+ONORfX6gofnTqCxTRD1VfQALx8ceseOo+GJ0+pb/KeYxJH7SRNpPNkwPTyAXqU6MwkzEMk/Q7XvFWILlh9SWS/kisbI4/z2IvUulx+7/3An4OlJTL2u5q01H/gR6djfK+QiGUX+P/awYH4EZMQotGPF9weA6RstxRj3PFNzelwMf2qo8LFnjaZUAcUQgvIAOOQpWTD+24NREBGtM2OOw3U9NF2ytL94nqwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VLduJzD5k+0ZEqlPnd8PrXyv5Dlq6kz+3kGK6SQv7Q4=;
- b=0AD7g69z5l6OPp/cW9AeJazYTvdAH7vP6PWgmjQ2MCaOrzYQLwUWz72yNoldPakgjPF5lNUHKg/80IQbejLoVCi33+sYforsvJLvm7mTU37vWgnmJlEraWa19BAIwVnCQzss1/TBmGbv6MzXT3DBkMd+qMwKwWCav7FrGprMnyY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- IA1PR12MB6308.namprd12.prod.outlook.com (2603:10b6:208:3e4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Tue, 30 Jan
- 2024 17:11:11 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::c64d:9152:25d4:c658]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::c64d:9152:25d4:c658%4]) with mapi id 15.20.7228.035; Tue, 30 Jan 2024
- 17:11:11 +0000
-Message-ID: <03d7040c-7b77-4498-8d5f-aa928c83aa23@amd.com>
-Date: Tue, 30 Jan 2024 12:11:08 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm: add drm_gem_object_is_shared_for_memory_stats()
- helper
+ bh=PbzQJ/qpPiEsVU+njryIC9JTX8rsXo4D5eNaYca3LJw=;
+ b=tDz6eIvuD8UakaseU1d1jRGZ0OOPyuqLabjIU+nuTwfyXw/romy3j/NP+c17QgTCYNa0uJ2g+UchYFUDyob6c008fFmlU6j/qNTusjXoaYJDHlS0dlJ8h6i1qwrjbPBAW4/GpEL/ujhO1o6yXlMMneYl7N+T1oYXwIcZozHKIQ0=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by CH3PR12MB8584.namprd12.prod.outlook.com (2603:10b6:610:164::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Tue, 30 Jan
+ 2024 18:55:19 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::9288:f78d:b34e:9b52]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::9288:f78d:b34e:9b52%7]) with mapi id 15.20.7228.029; Tue, 30 Jan 2024
+ 18:55:19 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Zhang, Yifan" <Yifan1.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: remove golden setting for gfx 11.5.0
+Thread-Topic: [PATCH] drm/amdgpu: remove golden setting for gfx 11.5.0
+Thread-Index: AQHaUpKVpHM+BiWNf0W4BD6ZHImIx7DytoHJ
+Date: Tue, 30 Jan 2024 18:55:19 +0000
+Message-ID: <BL1PR12MB5144E7FAD020BDDE96F162CFF77D2@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20240129090611.2716545-1-yifan1.zhang@amd.com>
+In-Reply-To: <20240129090611.2716545-1-yifan1.zhang@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
- daniel@ffwll.ch
-References: <20240130161235.3237122-1-alexander.deucher@amd.com>
- <20240130161235.3237122-3-alexander.deucher@amd.com>
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <20240130161235.3237122-3-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQZPR01CA0035.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:86::6) To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|IA1PR12MB6308:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43f40169-f845-43ac-2c36-08dc21b674ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 15fWVGf5zraC64ErlnnkYPuGrfeZkEMJNgElntKaoq/WN9+AxuxuQzMY7jH6Odq7N3CIWBNe9IRztpZw4AG0zoa4WEdkiGzeTEtgcnP6nrak9hXaf/DQLvgAsr12d7tMFK8V1pqkuHklcqT/N34W729+oG68upqQkaTak9cTz2sow1tlFJn+ytTnfbY/j1yLiN6lTlnRb4pl7iDOuEfbZ0eyIIMGtDGwpSKiWUqaiAbv1WJSDL3c0x6hzl9sCaQGcuPapX1ayHq/QWrcC0oTZwR0x+V/t/tpuMvnIIDtoIkzD9+vfsxTC+HsxVWbuEjcXk+RJTELy7MbOZrbJeT9WclMMUyvJhNCFTKz7FC1Iw606OwbvEcUSbWRjC0xh1QfNaWIgldG0+x5bTrT8QtydienG+y2baz+jYy2qCkMz55Y4T9dMUO9TW8/8MFukjnTT178azh4G7ELe5Rr2TtX86POq4eqfs22BnyqYIGuV6/Lp+4yeTWcH8I8y93uFkjqegT41cmDi7rCoaEhaBsuadBPX1E4rheFAs/y9q/+gjFqGEnHEMDMCd24FN3GOj0/KylAO9fyg2SZlyFYEHUHqk3773NEUztIi0VXN6q4UP9y2ZMOS1TtOaq2O1X5mIhtQ7ssOQE1fOyuwDqTkZy7Ow==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(376002)(136003)(396003)(39860400002)(346002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(26005)(2616005)(41300700001)(31686004)(966005)(66476007)(36756003)(316002)(6512007)(478600001)(6486002)(53546011)(6506007)(6666004)(83380400001)(38100700002)(2906002)(31696002)(86362001)(66556008)(66946007)(5660300002)(8676002)(44832011)(8936002)(43740500002)(45980500001);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=True;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-01-30T18:55:19.295Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|CH3PR12MB8584:EE_
+x-ms-office365-filtering-correlation-id: e1ab1ef0-9994-49d4-e6b2-08dc21c5017a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lvWJN1lSjXmmXcwC0VoSD6YfN0/jj1UOKAVj9G/9atyr+eoHYQluvKHCXzi+m+Vt5LOvCMejZp14cJ1M0/PgS38YZFtloric6gR5+tL0H/5GrX7cqBqLSx+SggnwEOCDpXzMXZgnrHg+R28uek8ZdKT/quNda1b4yqPRLY8tgz06YOGYMBJEPn10k+4mjuX/edyMrCT/PVt9oJe3QyykG9ATX9Wgt95LC2SYChI9yHHI+dSnEKwF8qxVtyvXTOwIVdXUisQFdC0ooPfndczc/aRfUXWdPxh1MzLK4eI+1NOviNh0HjoeI/rN3MLLCy1CwhVqXFW1LjsVC6eooOFk7F7O8/sJ2I0WizvjkMsaQkJIiP/waKN3Mcqt+2/rfqhIeMD2bSt8cXarzRDa+czk7yCJdegFJ1V9Z9FBZtNJeePZL0/bIfIfgANiEYKy0E4NAh1XkM7LXQse1GVkMHPCsb4SCMgWSkRaveZbaqDDx/nLZ2xB+pioXZOr8A1FuRoNuherWFIeOpzyyfTlZFkC6xuygWZDbACaxgCzT7zxX15QhGJ9rB1VfKzZc5tlGXWkRU7pxXmLUMES4nJ9PV2ViBxdZwRy+s3fx31qUpYuTaJnlhexHkkZu2+3ztdmbJAF
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(346002)(39860400002)(136003)(396003)(366004)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(19627405001)(41300700001)(122000001)(38100700002)(55016003)(91956017)(54906003)(6506007)(8936002)(86362001)(7696005)(316002)(66556008)(8676002)(66476007)(110136005)(66446008)(53546011)(64756008)(66946007)(33656002)(5660300002)(9686003)(52536014)(4326008)(478600001)(2906002)(26005)(71200400001)(76116006)(83380400001)(38070700009);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djFHTU5qUURkUWpYYnMvcnRpZ0ZpZDRPR29oZS81WmNBZ0kwQmM0K0F3bHpG?=
- =?utf-8?B?d1dEcm5NV2daWnNyNjFoSVI0c3RkYmtHQUh1TFRyOWM3UzhzeG9TOTZhanZW?=
- =?utf-8?B?NjJoNVFkNUl6M1dBVmgrZ3hFdjcrcXU0N1cxQ0pacVFRYlUxam5Vbk1FV3BW?=
- =?utf-8?B?b0xWSDloSkZCRHlWR2pwcm5XTllraHpmeVJGdmFFVjdDWDNlSkI4U3pzMHd6?=
- =?utf-8?B?c21LbXhFemlWYTVNOUtXRDRYbXRjaHdWMnYxNGd2elM5ZW1WMEh6Umw1cS9u?=
- =?utf-8?B?OTRMRzEwME1SbmhMNkQvRmxYV0lLL01ta1FTeDBwL1F4ZURUMkNjM3JiNmRX?=
- =?utf-8?B?K21ZY01Fd1NMamplb2hkZ3o1TUJFdDBPdXdhZzB1cGN2QUsyOHZNbDNKOGJE?=
- =?utf-8?B?L1NUenNMMnlMWWpWeXRxTnhBSFF3aGFIejNORVMzdnRBZFhkV0VaUFd3dFkr?=
- =?utf-8?B?Z2ZHYVYydmpBTUtLK3d3dlhoWUdEQUovbFZiUkQxa093WXRydEsrZjZZcm40?=
- =?utf-8?B?akFGRmZPQm5WQ1FteVdkK05jTnNWQVAwSlg3akVyMWp1dTdmWERjZjh5Tm1t?=
- =?utf-8?B?U3dyN2dWMUJTL3BKd2RaNVdKa1BtWk96V2diRWRkSjRZVnF6R2E0L2FId2x0?=
- =?utf-8?B?S0JSTi9yV2kyZG1DeDJNQ2NlWFUxUnZoZ25GbkE4TWJYWEtzVGx0MHY3SzVy?=
- =?utf-8?B?VFZHbmVwY0ordEQvcUlYK2NVKzFRZkRUNU43NTl6M1V1dlFBeldVVFovWW1K?=
- =?utf-8?B?SURTa0o3SURuaHZXN2dCTHpSS3B1MlRVVDROeHBCbFpxUlROMWxOdFBZTDEz?=
- =?utf-8?B?UnhkUE1oMzRkbXFtS2V2bFdaZENJOWtpWDd3STZVWlpFYmwzSitPdkIzZ3FG?=
- =?utf-8?B?RGIwYTd5VklGM1VSTmsrSjMzZnFBOGlUMU8zZGlGRHE4TlBrdTJiekpuZEUx?=
- =?utf-8?B?NEpKanRjYmlEUUc0eE9sWkZXcW9ac0dHbnUrQzFQSDdPcVFJdVJXcTdyOWdu?=
- =?utf-8?B?aGJKeUEyT20xSWhCNWtvZzFFRUJ0ekZHZWx5SUJlWkZSemE1bkxaVDFRMG5O?=
- =?utf-8?B?RXYyOXdyTkcwVjVnb1hWbi9JaHFudHBKTlorNXpCaWZwb29iU1J4TE9OdFI5?=
- =?utf-8?B?S3pYWmNyRzdPYmJmbTRjejMvZ0NZT0RUbXhrZlEydytCZURib09vTWVhL3Bl?=
- =?utf-8?B?Z09lV1hERFdMdlF0akVodmlNZi9BWmJXYXQwNEgwbmNBTWdaYVJKbGJCQWJK?=
- =?utf-8?B?TTljNWJNTkFpSG95b1RRN0NNQ0NTNWpTS2I0ajJGZHdhWHhnRTRRa0t6K2wx?=
- =?utf-8?B?ZGgzKzRnalNUSGVRRk9ZN1BZZWNpdk4xWnBGbHhCNnBmZHpaMTZpSGg1UTg4?=
- =?utf-8?B?SmZhdUJvdzhBa241ekdySVRINVdvS3pFc3k0RE1xeTVydGsvODhiemVFRllB?=
- =?utf-8?B?NDJibzFhcVpMNHFNK1lLSDBOME5IdFZDcG5kT25SbVY0eFNaNXZxQ0owQW9V?=
- =?utf-8?B?Q2pRL3pMQmg2NWJZTktpTUNpRHE2dFdKaVB4OENpU1lDUmdUUkoyOEF2eGJt?=
- =?utf-8?B?Y3hNa2FrbTE5VGJWNS9CTkFkdDRRUVV1M2FmMHkwaEpDQ3NLUFgyUTFWVGJS?=
- =?utf-8?B?a3ZiS2RmVkJ0TFJ3NjVsKzZEaGV0TDdvVEkvRTNUaFZmOTNHTG5QSmVRai9F?=
- =?utf-8?B?enVpb2JuanJ0OExlbHRBakJvVVM0Tm1hNFZlSmsvT2U3SFoyV1JFM3d1WnNp?=
- =?utf-8?B?RW51QksrV0NjM1FvY3Z5K3NZRHZZRncxN2dxeHZ0KzVzRE1vcG14clYzdlRH?=
- =?utf-8?B?NXl1bnd0eVdseXVzclRJWGI4L0VDM1NZMWJiY0dPMnY4Mzl3Z1ZCbWR5U3Fn?=
- =?utf-8?B?OUx3Q25TMENCMlRLUStsb0VlN3FYYU5BSUt2MzZIM3RsZ3loMVpKVi9uaHVD?=
- =?utf-8?B?d3dFbllWbUpHaUl4WmZYNytha1R1NnRQdFZFViswQ2VYU3VWRGJRMkp1NUp1?=
- =?utf-8?B?Qkg5Rm1WV1pVUTkxd3dFb3cyVnpmU08rQXo4S0ZwYmcvL291MGhpNUMwWUpS?=
- =?utf-8?B?WWxkSjljdTdaNjQ3TC9DYlVueDlIcnB2TnRWZUFRY3BFZHNrMWoyRUlISXA3?=
- =?utf-8?Q?pq9TnHpjr75t4NxvyLkxvVY8Y?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Qv3rhdS4ANw2nRHWI0XtbCF0ZaK9pqqWoxfpAs4QzcY6qCGTTAE1rY+jsAsn?=
+ =?us-ascii?Q?DaEZ2+f9RiMEQoXu+1u1n6EHqHx8QYTBjTY7cohGJEPKxi2K+YswnA6sgdcb?=
+ =?us-ascii?Q?BISKyDlonXflTkdj0BOROZH21fM8Fp7dAoV6+QNdwT/vtjMl15oICUsa6fuH?=
+ =?us-ascii?Q?/eOjvJ7RvC3iRRrbt4GmYCY97gX99LVHT4jULUbYZ0VbtqOguUJhhu120Ixt?=
+ =?us-ascii?Q?e3bHO8Jq0fCgHHm4PzI2UR4DKVkFIGVkSGzOIDgroxMq3qr4+BrP4aQ6KBLG?=
+ =?us-ascii?Q?OaIrXLoU0jeVS8ObqcyGFDPvQeExhH8CG9Xl1984ik+apN2TJA/wQT4yweEP?=
+ =?us-ascii?Q?XiLBDbPE/D7qfA+3dfmFTVF44URFiq0nwIjQK2o9RTmVlkSTUxsSlwzhYkOS?=
+ =?us-ascii?Q?LNREMHA7B8kIFPMGsDd/1p1y/taWCxqljy3YYNm0TV6DeSnROJ3Q3n2gp2AZ?=
+ =?us-ascii?Q?P/VkBkWud7j8reKVR6o3xxFYQK4kBMrPBvT87FMPOc3BMCuAud0N8JXOeQHh?=
+ =?us-ascii?Q?+53OH7A/6CK9kQbPltUPDitq07TNG9pY9cDft9UuzlGPRHj4prLIy6YWLNhU?=
+ =?us-ascii?Q?UYClGrQJTvfYqlfdP7Oj68IiAy9stoaig34YJxlK3sZQyFUHfDdSjjOs4YWC?=
+ =?us-ascii?Q?WF0fO8IwZj7qW7pkOW3cIeUlSxiCzPYw9LjZai2sqtbg1/84HHj7hK1MeITO?=
+ =?us-ascii?Q?HBV0dTEWOhqjMM73HtVYeqgQBeSeJVOC2eVI8+mQ4cjgH1pPqSNT7Cq2GtSe?=
+ =?us-ascii?Q?zPUhm+jhFGYHDbnlJZ9daZqxKABZLt9Cil2FBGzO6BOfs1FDlmnry7oOQhPf?=
+ =?us-ascii?Q?PrYCg+eb87vPbtWxqZXBb/QfifV59jNcgavrL3b9y8DdsxSbrPB8Ecz6LZr1?=
+ =?us-ascii?Q?K5r8mEAP2Htk0YNwh+E3z/rDf3Yskd1IGX+2u00dBHklHw9rz1roUVCrC9DU?=
+ =?us-ascii?Q?/q9HnjdkwQ7GAIQfPTTm2xY8B5Su6V6/9zoMVFAXwhDoRwUqjmcL/XAmAg4f?=
+ =?us-ascii?Q?Ek7pH+VNYI+LtW6mkuKG+2yZQfNRVcvpKnVCFYDphCMCDF0S5QRu3MQAVcLN?=
+ =?us-ascii?Q?VqHQ6Crxs6NiPVosy0QL6891dp/Gskq7q8TSCk88Kl2OIk1e/L6nHQR0jn/D?=
+ =?us-ascii?Q?ImACiOfguPfkSV3bz1lQnlJ7/n4M7xuUCb98ndIl55Y50fYcQivdpNGL0vgi?=
+ =?us-ascii?Q?ObmIH87CnoQSsTlfGaRmFDdaJx7LC81Dqg7x8S20SoPlKI9VGq+F9kiIAJD8?=
+ =?us-ascii?Q?meGFMaosNgipZbX/fRD7EFUHhgGpzzoDakRAj+ZDNLp+vPvDcJtMRanalC7B?=
+ =?us-ascii?Q?TIQV4PUbZSvIqYt7L2PkZhEmVY9LM6UJL0U/MtUbMESJpZDXuAd6KFNAuGHW?=
+ =?us-ascii?Q?9ck7ijKy2Sh0ThKkmhfg9JQ5DC/mwsJHqJTnhmaBAHdcGdcmj2XA7FJTjBCS?=
+ =?us-ascii?Q?93VzZ7KP2LhMFeGVqpNQfQwGMyh6q/ZFwpNzutaqRJYXt1iacwdbAfduFiWW?=
+ =?us-ascii?Q?n6rYD4NKBowOkEo7+MuI/SnIpafEDdIbRJ9uRkJwGXo/wD9jtNdGy0r6ScJ7?=
+ =?us-ascii?Q?3MTvOv6nuavYYyLaawA=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB5144E7FAD020BDDE96F162CFF77D2BL1PR12MB5144namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43f40169-f845-43ac-2c36-08dc21b674ee
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 17:11:11.0352 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eL7MQqn65WcSw1pF+x/s5UMftPhJdlRnY3nJqrLxvNsrb8s7GpfPHzSTI7iRZ4mQTdNka+bjbo+ljf4hONAg8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6308
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1ab1ef0-9994-49d4-e6b2-08dc21c5017a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2024 18:55:19.6421 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +PjdgAhNJSJGVUkLVnGI67O//mbGTi/LHVCGtLx3c5/QljIRmC//QLtpduQSC5yLtBCGOxpYY3x71BX06tbDqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8584
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,66 +121,292 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Huang, Tim" <Tim.Huang@amd.com>, "Yu, Lang" <Lang.Yu@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 1/30/24 11:12, Alex Deucher wrote:
-> Add a helper so that drm drivers can consistently report
-> shared status via the fdinfo shared memory stats interface.
-> 
-> In addition to handle count, show buffers as shared if they
-> are shared via dma-buf as well (e.g., shared with v4l or some
-> other subsystem).
-> 
-> Link: https://lore.kernel.org/all/20231207180225.439482-1-alexander.deucher@amd.com/
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/drm_gem.c | 16 ++++++++++++++++
->   include/drm/drm_gem.h     |  1 +
->   2 files changed, 17 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 44a948b80ee1..71b5f628d828 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -1506,3 +1506,19 @@ int drm_gem_evict(struct drm_gem_object *obj)
->   	return 0;
->   }
->   EXPORT_SYMBOL(drm_gem_evict);
-> +
-> +/**
-> + * drm_gem_object_is_shared_for_memory_stats - helper for shared memory stats
-> + *
-> + * This helper should only be used for fdinfo shared memory stats to determine
-> + * if a GEM object is shared.
-> + *
-> + * @obj: obj in question
-> + */
-> +bool drm_gem_object_is_shared_for_memory_stats(struct drm_gem_object *obj)
-> +{
-> +	if ((obj->handle_count > 1) || obj->dma_buf)
-> +		return true;
-> +	return false;
+--_000_BL1PR12MB5144E7FAD020BDDE96F162CFF77D2BL1PR12MB5144namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-nit: you can simplify this to:
-	return (obj->handle_count > 1) || obj->dma_buf;
+[AMD Official Use Only - General]
 
-(It maybe worth just inlining this to drm_gem.h).
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: Zhang, Yifan <Yifan1.Zhang@amd.com>
+Sent: Monday, January 29, 2024 4:06 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Chri=
+stian.Koenig@amd.com>; Huang, Tim <Tim.Huang@amd.com>; Yu, Lang <Lang.Yu@am=
+d.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>
+Subject: [PATCH] drm/amdgpu: remove golden setting for gfx 11.5.0
 
-> +}
-> +EXPORT_SYMBOL(drm_gem_object_is_shared_for_memory_stats);
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 369505447acd..86a9c696f038 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -552,6 +552,7 @@ unsigned long drm_gem_lru_scan(struct drm_gem_lru *lru,
->   			       bool (*shrink)(struct drm_gem_object *obj));
->   
->   int drm_gem_evict(struct drm_gem_object *obj);
-> +bool drm_gem_object_is_shared_for_memory_stats(struct drm_gem_object *obj);
->   
->   #ifdef CONFIG_LOCKDEP
->   /**
--- 
-Hamza
+No need to set golden settings in driver from gfx 11.5.0 onwards
 
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 32 ++------------------------
+ 1 file changed, 2 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gfx_v11_0.c
+index c1e000010760..4e99af904e04 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -90,10 +90,6 @@ MODULE_FIRMWARE("amdgpu/gc_11_5_0_me.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_0_mec.bin");
+ MODULE_FIRMWARE("amdgpu/gc_11_5_0_rlc.bin");
+
+-static const struct soc15_reg_golden golden_settings_gc_11_0[] =3D {
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL, 0x20000000, 0x20000000)
+-};
+-
+ static const struct soc15_reg_golden golden_settings_gc_11_0_1[] =3D
+ {
+         SOC15_REG_GOLDEN_VALUE(GC, 0, regCGTT_GS_NGG_CLK_CTRL, 0x9fff8fff,=
+ 0x00000010),
+@@ -104,24 +100,8 @@ static const struct soc15_reg_golden golden_settings_g=
+c_11_0_1[] =3D
+         SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_SC_ENHANCE_3, 0xfffffffd, 0x00=
+000008),
+         SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_SC_VRS_SURFACE_CNTL_1, 0xfff89=
+1ff, 0x55480100),
+         SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x010300=
+00),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xfcffffff, 0x0000000a)
+-};
+-
+-static const struct soc15_reg_golden golden_settings_gc_11_5_0[] =3D {
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regDB_DEBUG5, 0xffffffff, 0x00000800)=
+,
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGB_ADDR_CONFIG, 0x0c1807ff, 0x0000=
+0242),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGCR_GENERAL_CNTL, 0x1ff1ffff, 0x00=
+000500),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2A_ADDR_MATCH_MASK, 0xffffffff, =
+0xfffffff3),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_ADDR_MATCH_MASK, 0xffffffff, =
+0xfffffff3),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL, 0xffffffff, 0xf37fff3f)=
+,
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL3, 0xfffffffb, 0x00f40188=
+),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C_CTRL4, 0xf0ffffff, 0x80009007=
+),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_CL_ENHANCE, 0xf1ffffff, 0x00880=
+007),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regPC_CONFIG_CNTL_1, 0xffffffff, 0x00=
+010000),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x0103000=
+0),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_CNTL2, 0x007f0000, 0x00000000),
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xffcfffff, 0x0000200a)=
+,
+-       SOC15_REG_GOLDEN_VALUE(GC, 0, regUTCL1_CTRL_2, 0xffffffff, 0x000004=
+8f)
++       SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL2, 0xfcffffff, 0x0000000a)=
+,
++       SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_CNTL, 0x20000000, 0x20000000)
+ };
+
+ #define DEFAULT_SH_MEM_CONFIG \
+@@ -304,17 +284,9 @@ static void gfx_v11_0_init_golden_registers(struct amd=
+gpu_device *adev)
+                                                 golden_settings_gc_11_0_1,
+                                                 (const u32)ARRAY_SIZE(gold=
+en_settings_gc_11_0_1));
+                 break;
+-       case IP_VERSION(11, 5, 0):
+-               soc15_program_register_sequence(adev,
+-                                               golden_settings_gc_11_5_0,
+-                                               (const u32)ARRAY_SIZE(golde=
+n_settings_gc_11_5_0));
+-               break;
+         default:
+                 break;
+         }
+-       soc15_program_register_sequence(adev,
+-                                       golden_settings_gc_11_0,
+-                                       (const u32)ARRAY_SIZE(golden_settin=
+gs_gc_11_0));
+
+ }
+
+--
+2.37.3
+
+
+--_000_BL1PR12MB5144E7FAD020BDDE96F162CFF77D2BL1PR12MB5144namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;font-=
+style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+[AMD Official Use Only - General]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Zhang, Yifan &lt;Yifa=
+n1.Zhang@amd.com&gt;<br>
+<b>Sent:</b> Monday, January 29, 2024 4:06 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Koenig, Ch=
+ristian &lt;Christian.Koenig@amd.com&gt;; Huang, Tim &lt;Tim.Huang@amd.com&=
+gt;; Yu, Lang &lt;Lang.Yu@amd.com&gt;; Zhang, Yifan &lt;Yifan1.Zhang@amd.co=
+m&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: remove golden setting for gfx 11.5.0</f=
+ont>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">No need to set golden settings in driver from gfx =
+11.5.0 onwards<br>
+<br>
+Signed-off-by: Yifan Zhang &lt;yifan1.zhang@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 32 ++-----------------------=
+-<br>
+&nbsp;1 file changed, 2 insertions(+), 30 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/gfx_v11_0.c<br>
+index c1e000010760..4e99af904e04 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
+@@ -90,10 +90,6 @@ MODULE_FIRMWARE(&quot;amdgpu/gc_11_5_0_me.bin&quot;);<br=
+>
+&nbsp;MODULE_FIRMWARE(&quot;amdgpu/gc_11_5_0_mec.bin&quot;);<br>
+&nbsp;MODULE_FIRMWARE(&quot;amdgpu/gc_11_5_0_rlc.bin&quot;);<br>
+&nbsp;<br>
+-static const struct soc15_reg_golden golden_settings_gc_11_0[] =3D {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_=
+CNTL, 0x20000000, 0x20000000)<br>
+-};<br>
+-<br>
+&nbsp;static const struct soc15_reg_golden golden_settings_gc_11_0_1[] =3D<=
+br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC,=
+ 0, regCGTT_GS_NGG_CLK_CTRL, 0x9fff8fff, 0x00000010),<br>
+@@ -104,24 +100,8 @@ static const struct soc15_reg_golden golden_settings_g=
+c_11_0_1[] =3D<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC,=
+ 0, regPA_SC_ENHANCE_3, 0xfffffffd, 0x00000008),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC,=
+ 0, regPA_SC_VRS_SURFACE_CNTL_1, 0xfff891ff, 0x55480100),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC,=
+ 0, regTA_CNTL_AUX, 0xf7f7ffff, 0x01030000),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_=
+CNTL2, 0xfcffffff, 0x0000000a)<br>
+-};<br>
+-<br>
+-static const struct soc15_reg_golden golden_settings_gc_11_5_0[] =3D {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regDB_D=
+EBUG5, 0xffffffff, 0x00000800),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGB_A=
+DDR_CONFIG, 0x0c1807ff, 0x00000242),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGCR_=
+GENERAL_CNTL, 0x1ff1ffff, 0x00000500),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2A=
+_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C=
+_ADDR_MATCH_MASK, 0xffffffff, 0xfffffff3),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C=
+_CTRL, 0xffffffff, 0xf37fff3f),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C=
+_CTRL3, 0xfffffffb, 0x00f40188),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regGL2C=
+_CTRL4, 0xf0ffffff, 0x80009007),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regPA_C=
+L_ENHANCE, 0xf1ffffff, 0x00880007),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regPC_C=
+ONFIG_CNTL_1, 0xffffffff, 0x00010000),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_C=
+NTL_AUX, 0xf7f7ffff, 0x01030000),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTA_C=
+NTL2, 0x007f0000, 0x00000000),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_=
+CNTL2, 0xffcfffff, 0x0000200a),<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regUTCL=
+1_CTRL_2, 0xffffffff, 0x0000048f)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_=
+CNTL2, 0xfcffffff, 0x0000000a),<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SOC15_REG_GOLDEN_VALUE(GC, 0, regTCP_=
+CNTL, 0x20000000, 0x20000000)<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;#define DEFAULT_SH_MEM_CONFIG \<br>
+@@ -304,17 +284,9 @@ static void gfx_v11_0_init_golden_registers(struct amd=
+gpu_device *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; golden_sett=
+ings_gc_11_0_1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (const u32)=
+ARRAY_SIZE(golden_settings_gc_11_0_1));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(11, 5, 0):<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; soc15_program_register_sequence(adev,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; golden_settings_gc_11_=
+5_0,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (const u32)ARRAY_SIZE(=
+golden_settings_gc_11_5_0));<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soc15_program_register_sequence(adev,=
+<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; golden_settings_gc_11_0,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; (const u32)ARRAY_SIZE(golden_settings_gc_11_0));<br>
+&nbsp;<br>
+&nbsp;}<br>
+&nbsp;<br>
+-- <br>
+2.37.3<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB5144E7FAD020BDDE96F162CFF77D2BL1PR12MB5144namp_--
