@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBBDA84487D
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jan 2024 21:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 457A9844885
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jan 2024 21:14:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D9E110F318;
-	Wed, 31 Jan 2024 20:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C945010FC12;
+	Wed, 31 Jan 2024 20:14:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2070.outbound.protection.outlook.com [40.107.223.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D46310F318
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 20:12:45 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2057.outbound.protection.outlook.com [40.107.220.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B73D10FC12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 20:14:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jhlZ1mvJwSApRQADWM0smOPN4kjgugES6tjT2yolLmmq4vpRrPcm5V0YfRZkNZKqzBWALoE2m226wPXIFOBCo91zY7GfTW7Yl5C2xf4Gyf9bckLUCdE7hCoKP5YTU+jROcD9LXFTQnUNk2jqW0JSsxj1rdOx1bTKERiT5bPM/PQgdNuTsVvGkVFVJtcQ991fNisJ1s2v9JyIgNvnwxNhPy+PEJgSGk/oWlF331DDNXxeP/VcQyr3IbgsCvaUcMI8RKVAr+aMQntFVZl2vgaSpGlrIfY9dAaAL2iUXDguCStbZ24HjYvDzYzRxVa3ICxArXBfsLCDj94j2cER54be7Q==
+ b=bHj+8ECfkjES+ZzAf/0RpwthiV3wn/9hZjfMFBYxRgAaLt3GXbDyH6SfcJEKld63/EUO/o8yRL5NKt+6v/hEBekGDcrN+Rtw9a1plUKsYh6ufZERuaqQQbxjWGOwfxQvBXAV/vOMNImQV7OZii0cQ8CjwjkL9giOYz8MPawUBYnFf0R6eP+fuXSafn15jiwHL0eUvQAPlWNzYU8+ZTPmXghgCtROEsMGGvhVHtLzkTpZZbrZq7mNZnLI11EigSaCbp3zaYBbCtbIboy1kKR1TlcLv23YGVdDTC+XhAzT64Ue9A7EHSB4An5xLijBtA9d2XEZc3T7JoliDqFFmPmABw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tuJ8yvWO6hHYSwQG1gQ/AE0qGxtvtgQSwmZk+GutvbU=;
- b=hEdvG8NEdCaxtsw66tNHUcPX2nUyTUFawMPtdMH70GriN/qlMceOtrkILYLA7s39oMnIKyG88lGL0tARld0/1w74WEknVfu5FPZTKOTq+Yh8O0Ga9rvj7RKXmRQ4GPZ1/0+LpepT/NNBWLwbDZ+kx1lInl6uHnKHom6aKM5XfBTHP3E0k5CtbNxWbTlRdwnVkE6TEay/qz0Ndq79qu6fYFpBSTbE80kNrvkPLkA1g4y9CRQ4+RijdgbD7H5bOTdD7JkDN/8V4VFn/OCnXsruQZsbuxlaiQJ5wwqbot4PrLRnurnqKXgpBRrumyLXujleHeqSj2Lyr5BPEmml/gYvOg==
+ bh=PT/XL6eREQ5HrGPIcO6iwTx3Fes9KOLNbpS1gbjYjpQ=;
+ b=TYzfLMtJvQOWFqHVTrcuyP5x55sg+Q3vD92bU+xUOT/cQY9ezvwG3uyM4bm6JBRh118ipTcGa3v75dJXkhRZjdOP8xw44nV4q1LVYITbpyjnf2bXrYRyu8eWlslSUmP5HoY5n+80eZ+mORK9e+lKLBFByNVPfRFlYwOROLa6kjmCpquvEHBNKCqiKVlLkyNoPWo8myhuDwAN4b7DXU2iAjAbHu2+DduzN9szE2ZCDW9gn+RxUE1K1Pec4eTsdvmgyDl8kAQE80wLFSWGXMRrBdmY2sJNHlRt/ODxQvMJKeEQiVFm/JvQkITmOqoCKB5AlodhG8bc4mbOhyUK8nBQ1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tuJ8yvWO6hHYSwQG1gQ/AE0qGxtvtgQSwmZk+GutvbU=;
- b=J5XQbYbnP59nr+xQifO0eWMghADB2AjlGMMl8ADXZzci3RfsvjJ/DsSizdHqeZ8IY4KCDoLhIBtv6oPnwAQNfN6CyarOzt/TsOitEhRy78RcnKF1C95ACWdAriWnnOvNPna5VTa8623EJBoJXYAf7jLW4zKRihNBHgh3pPseBJA=
-Received: from SA0PR11CA0100.namprd11.prod.outlook.com (2603:10b6:806:d1::15)
- by BN9PR12MB5338.namprd12.prod.outlook.com (2603:10b6:408:103::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.8; Wed, 31 Jan
- 2024 20:12:42 +0000
-Received: from SN1PEPF0002636C.namprd02.prod.outlook.com
- (2603:10b6:806:d1:cafe::73) by SA0PR11CA0100.outlook.office365.com
- (2603:10b6:806:d1::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22 via Frontend
- Transport; Wed, 31 Jan 2024 20:12:42 +0000
+ bh=PT/XL6eREQ5HrGPIcO6iwTx3Fes9KOLNbpS1gbjYjpQ=;
+ b=GB98pkjWTpaSNDAUAUfJWq7wv0BxnQiYRHbkmm8KSKTyErgvNxfzcaUlnDVxrt6YZ3CTgnQ5FLB4hDk8tcfYuW3lCqt/kqOvn374O+8cE2jqoKSoaeCBcSg2wUP+Bz8gTL5DYfJMKehcABw80yesA186XD5Rd9D5Z/JCrT7hJc0=
+Received: from SN7PR18CA0016.namprd18.prod.outlook.com (2603:10b6:806:f3::20)
+ by CY5PR12MB6551.namprd12.prod.outlook.com (2603:10b6:930:41::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Wed, 31 Jan
+ 2024 20:14:20 +0000
+Received: from SN1PEPF00026367.namprd02.prod.outlook.com
+ (2603:10b6:806:f3:cafe::33) by SN7PR18CA0016.outlook.office365.com
+ (2603:10b6:806:f3::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34 via Frontend
+ Transport; Wed, 31 Jan 2024 20:14:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF0002636C.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Wed, 31 Jan 2024 20:12:42 +0000
+ 15.20.7249.19 via Frontend Transport; Wed, 31 Jan 2024 20:14:19 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 31 Jan
- 2024 14:12:40 -0600
+ 2024 14:12:41 -0600
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/21] drm/amd/display: correct static screen event mask
-Date: Wed, 31 Jan 2024 15:11:10 -0500
-Message-ID: <20240131201220.19106-5-hamza.mahfooz@amd.com>
+Subject: [PATCH 05/21] drm/amd/display: Add more checks for exiting idle in DC
+Date: Wed, 31 Jan 2024 15:11:11 -0500
+Message-ID: <20240131201220.19106-6-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240131201220.19106-1-hamza.mahfooz@amd.com>
 References: <20240131201220.19106-1-hamza.mahfooz@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636C:EE_|BN9PR12MB5338:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8bcd6d4-0e2c-436a-1b1d-08dc2298fb2f
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|CY5PR12MB6551:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ad4cd90-a373-4485-1c82-08dc2299355a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a+jLNroV1zEBW94BMm7SbRrn8GLsM1EIvFIPAPG0cEhvWiQrTAW4fWdPZmqi9gjtPR+mRvySX81LfgLjtj7L5WvaSri22id1+7G/1XY0Xjo5EcPjXKHTxrxpmvZ5+yMsHP76NQko3hCwlcHOjUBFBiisDn+pZJpigyiEno2BjRDsVePYzvkvo3AkZ1zb4hMRrIGZ6FtGcOFvm8Ev7tIuzoRBGnttyAW2ogZDYSJjq46LH195k79FtRbNVAmU1mjTrzlLRZCY3H4WX8NJqVn8XSgJySP0LVNLSbi+0ElHxIw725IBlkEdVH1l/3Lg03uQerZKwMfOr4DcozPwYqbQQmoMGiD2pRqXxQ0Rm60KWHlVYQxBzdtzjs/tcZx9SBYLFwy/edoUqXdfxr9twzFRopmduwqWZkPkAMOeRCgHpfhLIdRwGOYe5lXQrmCjImVqWXWSjChreQLXpzvYXnKWR+mLC84PP1kw+8o1bOXDQ3YJYR5A+f2MsXExTHG1dXS9UcfqntF3kUpszEKFdEQACdX4qUQe/nfqPy1RyMmfgbbfhbAzNjFmiiGWADN7rxg+c+TnzMPlZC/wrn56mMaC6zWvsHHcLEMfYiA/cXo7yOcagWNZh8eX7vAlo+VzhQdixDWRtOpHu+KpJHGs4MkJldHCWhLZzHhGdS209orPOXHX1HgdHya1D/D6osgVbl8UtiA7MlvzVu3bhSX5pqwxUOx8XUZDTGzODMp08tMQ9oLOuu2i9hhfc0l8CN3ywPuNboEDuww1w4XnhYjQ+EMtb6jN5c8QKA3vdm9yxi2IaDWLe9kZ2PJtmfPW0j4mVgk9
+X-Microsoft-Antispam-Message-Info: 1U0aSMW+dTzx+1t0Dpgh49+yY2rSkv8XBErqnXLuJMzS2kOSKjCNICwGHZroIVSVdkU81h5hfgzfaxy9TeNXRkrlQud9SDxGylbN8vLHvb5miPGb4qwX7Vn6N9GP17KUSXh0BCV3URUmBDZy68DKVIrp4ex9lO4dMxT6NYxRVjmjzLnnZtWq+Rl1mFpGDT9EmugyBlfrN95cX1L1dsfw0V8oEzzmjN3YfgBXPX/21fiICIkLSZ+oMzSQtOnrqBJzZ0cMmMo6SaApcp5OZwsjGqQ+TlE/cQBoTQwYAzE6dpryOPU8apbytTfUiGTKFznK9ddJ6U1T3QVTSnAKAXfm9UeTazyVH2N2aomx6TOHpoHclP3yLK6GnxV3z9tdzh9a17anAYMe0GHRT9ae0uuo6/wdQUcNTQ1/QecPZipAQNJqyd6+yFX1TMxkM6RJawe/GZmiKJtQ2VWMshKTy5KtmDVnO63xUkULY0yjaGtzBtTPX5pMQWlQmSXkZUSmXCDFtxzG7rCXSnNbOE6W8OdSmxwoKZGI2UsTCFJRp1laQPKAVCxw/a6yEKku+PZiff77J+sC0scL34T8nWou4Iqw7wSASNUvAN1VnE11VncomxYl8HFRgZGFDFJwRxuv0w2iTgEgh+FlKvWlbywVWABwfh0sTSu/WMhm+GsXY49CClVUtEXLeafaFa9Wm+eVJw2/anbqni7zeK7bVvjzQ1xFabVLG9q40hiqBemZMyejny1JWji95flZas8jDliaYhgNZSayvwY3O+HasD14bEH4jpxer6Eq23JVN7Ese4PdJeLxygTu26ads5iFe4+HVB9p
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(396003)(136003)(376002)(39860400002)(230922051799003)(82310400011)(186009)(64100799003)(451199024)(1800799012)(40470700004)(46966006)(36840700001)(41300700001)(4326008)(44832011)(8936002)(70206006)(8676002)(2906002)(5660300002)(86362001)(70586007)(316002)(54906003)(6916009)(356005)(36756003)(81166007)(47076005)(82740400003)(478600001)(6666004)(36860700001)(83380400001)(1076003)(26005)(336012)(2616005)(426003)(16526019)(40480700001)(40460700003)(16060500005)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(346002)(396003)(376002)(136003)(230922051799003)(64100799003)(186009)(82310400011)(1800799012)(451199024)(40470700004)(36840700001)(46966006)(40480700001)(40460700003)(83380400001)(41300700001)(82740400003)(36756003)(86362001)(70206006)(356005)(81166007)(36860700001)(1076003)(2616005)(26005)(47076005)(336012)(16526019)(426003)(316002)(6916009)(2906002)(70586007)(54906003)(6666004)(478600001)(44832011)(4326008)(8676002)(8936002)(5660300002)(16060500005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 20:12:42.3528 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8bcd6d4-0e2c-436a-1b1d-08dc2298fb2f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 20:14:19.9268 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ad4cd90-a373-4485-1c82-08dc2299355a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002636C.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026367.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5338
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6551
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,103 +99,328 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <charlene.liu@amd.com>, chiahsuan.chung@amd.com,
- Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Allen Pan <allen.pan@amd.com>, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
- hersenxs.wu@amd.com, Hamza Mahfooz <hamza.mahfooz@amd.com>, wayne.lin@amd.com,
- Harry.Wentland@amd.com, agustin.gutierrez@amd.com
+Cc: chiahsuan.chung@amd.com, Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, stable@vger.kernel.org, jerry.zuo@amd.com,
+ Aurabindo.Pillai@amd.com, hersenxs.wu@amd.com,
+ Ovidiu Bunea <ovidiu.bunea@amd.com>, wayne.lin@amd.com, Harry.Wentland@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Allen Pan <allen.pan@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-Hardware register definition changed
+Any interface that touches registers needs to wake up the system.
 
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+[How]
+Add a new interface dc_exit_ips_for_hw_access that wraps the check
+for IPS support and insert it into the public DC interfaces that
+touch registers.
+
+We don't re-enter, since we expect that the enter/exit to have been done
+on the DM side.
+
+Cc: stable@vger.kernel.org # 6.1+
+Reviewed-by: Ovidiu Bunea <ovidiu.bunea@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Allen Pan <allen.pan@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 21 +++++++++++++++++--
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.h   |  3 +++
- .../amd/display/dc/hwss/dcn35/dcn35_init.c    |  2 +-
- .../amd/display/dc/hwss/dcn351/dcn351_init.c  |  2 +-
- 4 files changed, 24 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 42 +++++++++++++++++++
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   | 18 ++++++++
+ .../gpu/drm/amd/display/dc/core/dc_surface.c  |  2 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ 4 files changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index 8b6c49622f3b..4b92df23ff0d 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -1342,8 +1342,8 @@ void dcn35_set_drr(struct pipe_ctx **pipe_ctx,
- {
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 2db361aeaf25..eb803d4d3478 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -417,6 +417,8 @@ bool dc_stream_adjust_vmin_vmax(struct dc *dc,
+ 	if (!memcmp(&stream->adjust, adjust, sizeof(*adjust)))
+ 		return true;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	stream->adjust.v_total_max = adjust->v_total_max;
+ 	stream->adjust.v_total_mid = adjust->v_total_mid;
+ 	stream->adjust.v_total_mid_frame_num = adjust->v_total_mid_frame_num;
+@@ -457,6 +459,8 @@ bool dc_stream_get_last_used_drr_vtotal(struct dc *dc,
+ 
  	int i = 0;
- 	struct drr_params params = {0};
--	// DRR set trigger event mapped to OTG_TRIG_A (bit 11) for manual control flow
--	unsigned int event_triggers = 0x800;
-+	// DRR set trigger event mapped to OTG_TRIG_A
-+	unsigned int event_triggers = 0x2;//Bit[1]: OTG_TRIG_A
- 	// Note DRR trigger events are generated regardless of whether num frames met.
- 	unsigned int num_frames = 2;
  
-@@ -1377,3 +1377,20 @@ void dcn35_set_drr(struct pipe_ctx **pipe_ctx,
- 		}
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		struct pipe_ctx *pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ 
+@@ -487,6 +491,8 @@ bool dc_stream_get_crtc_position(struct dc *dc,
+ 	bool ret = false;
+ 	struct crtc_position position;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		struct pipe_ctx *pipe =
+ 				&dc->current_state->res_ctx.pipe_ctx[i];
+@@ -606,6 +612,8 @@ bool dc_stream_configure_crc(struct dc *dc, struct dc_stream_state *stream,
+ 	if (pipe == NULL)
+ 		return false;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	/* By default, capture the full frame */
+ 	param.windowa_x_start = 0;
+ 	param.windowa_y_start = 0;
+@@ -665,6 +673,8 @@ bool dc_stream_get_crc(struct dc *dc, struct dc_stream_state *stream,
+ 	struct pipe_ctx *pipe;
+ 	struct timing_generator *tg;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ 		if (pipe->stream == stream)
+@@ -689,6 +699,8 @@ void dc_stream_set_dyn_expansion(struct dc *dc, struct dc_stream_state *stream,
+ 	int i;
+ 	struct pipe_ctx *pipe_ctx;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		if (dc->current_state->res_ctx.pipe_ctx[i].stream
+ 				== stream) {
+@@ -724,6 +736,8 @@ void dc_stream_set_dither_option(struct dc_stream_state *stream,
+ 	if (option > DITHER_OPTION_MAX)
+ 		return;
+ 
++	dc_exit_ips_for_hw_access(stream->ctx->dc);
++
+ 	stream->dither_option = option;
+ 
+ 	memset(&params, 0, sizeof(params));
+@@ -748,6 +762,8 @@ bool dc_stream_set_gamut_remap(struct dc *dc, const struct dc_stream_state *stre
+ 	bool ret = false;
+ 	struct pipe_ctx *pipes;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		if (dc->current_state->res_ctx.pipe_ctx[i].stream == stream) {
+ 			pipes = &dc->current_state->res_ctx.pipe_ctx[i];
+@@ -765,6 +781,8 @@ bool dc_stream_program_csc_matrix(struct dc *dc, struct dc_stream_state *stream)
+ 	bool ret = false;
+ 	struct pipe_ctx *pipes;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		if (dc->current_state->res_ctx.pipe_ctx[i].stream
+ 				== stream) {
+@@ -791,6 +809,8 @@ void dc_stream_set_static_screen_params(struct dc *dc,
+ 	struct pipe_ctx *pipes_affected[MAX_PIPES];
+ 	int num_pipes_affected = 0;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < num_streams; i++) {
+ 		struct dc_stream_state *stream = streams[i];
+ 
+@@ -1769,6 +1789,8 @@ void dc_enable_stereo(
+ 	int i, j;
+ 	struct pipe_ctx *pipe;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		if (context != NULL) {
+ 			pipe = &context->res_ctx.pipe_ctx[i];
+@@ -1788,6 +1810,8 @@ void dc_enable_stereo(
+ void dc_trigger_sync(struct dc *dc, struct dc_state *context)
+ {
+ 	if (context->stream_count > 1 && !dc->debug.disable_timing_sync) {
++		dc_exit_ips_for_hw_access(dc);
++
+ 		enable_timing_multisync(dc, context);
+ 		program_timing_sync(dc, context);
  	}
- }
-+void dcn35_set_static_screen_control(struct pipe_ctx **pipe_ctx,
-+		int num_pipes, const struct dc_static_screen_params *params)
-+{
-+	unsigned int i;
-+	unsigned int triggers = 0;
-+
-+	if (params->triggers.surface_update)
-+		triggers |= 0x200;/*bit 9  : 10 0000 0000*/
-+	if (params->triggers.cursor_update)
-+		triggers |= 0x8;/*bit3*/
-+	if (params->triggers.force_trigger)
-+		triggers |= 0x1;
-+	for (i = 0; i < num_pipes; i++)
-+		pipe_ctx[i]->stream_res.tg->funcs->
-+			set_static_screen_control(pipe_ctx[i]->stream_res.tg,
-+					triggers, params->num_frames);
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-index fd66316e33de..c354efa6c1b2 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
-@@ -90,4 +90,7 @@ uint32_t dcn35_get_idle_state(const struct dc *dc);
- void dcn35_set_drr(struct pipe_ctx **pipe_ctx,
- 		int num_pipes, struct dc_crtc_timing_adjust adjust);
+@@ -2044,6 +2068,8 @@ enum dc_status dc_commit_streams(struct dc *dc,
+ 	if (!streams_changed(dc, streams, stream_count))
+ 		return res;
  
-+void dcn35_set_static_screen_control(struct pipe_ctx **pipe_ctx,
-+		int num_pipes, const struct dc_static_screen_params *params);
++	dc_exit_ips_for_hw_access(dc);
 +
- #endif /* __DC_HWSS_DCN35_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
-index 29a93dbc6631..a93073055e7b 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
-@@ -70,7 +70,7 @@ static const struct hw_sequencer_funcs dcn35_funcs = {
- 	.update_bandwidth = dcn20_update_bandwidth,
- 	.set_drr = dcn35_set_drr,
- 	.get_position = dcn10_get_position,
--	.set_static_screen_control = dcn31_set_static_screen_control,
-+	.set_static_screen_control = dcn35_set_static_screen_control,
- 	.setup_stereo = dcn10_setup_stereo,
- 	.set_avmute = dcn30_set_avmute,
- 	.log_hw_state = dcn10_log_hw_state,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-index e5cb7fb8b2d4..ab17fa1c64e8 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-@@ -69,7 +69,7 @@ static const struct hw_sequencer_funcs dcn351_funcs = {
- 	.update_bandwidth = dcn20_update_bandwidth,
- 	.set_drr = dcn10_set_drr,
- 	.get_position = dcn10_get_position,
--	.set_static_screen_control = dcn31_set_static_screen_control,
-+	.set_static_screen_control = dcn35_set_static_screen_control,
- 	.setup_stereo = dcn10_setup_stereo,
- 	.set_avmute = dcn30_set_avmute,
- 	.log_hw_state = dcn10_log_hw_state,
+ 	DC_LOG_DC("%s: %d streams\n", __func__, stream_count);
+ 
+ 	for (i = 0; i < stream_count; i++) {
+@@ -3373,6 +3399,8 @@ static void commit_planes_for_stream_fast(struct dc *dc,
+ 	int i, j;
+ 	struct pipe_ctx *top_pipe_to_program = NULL;
+ 	struct dc_stream_status *stream_status = NULL;
++	dc_exit_ips_for_hw_access(dc);
++
+ 	dc_z10_restore(dc);
+ 
+ 	top_pipe_to_program = resource_get_otg_master_for_stream(
+@@ -3527,6 +3555,8 @@ static void commit_planes_for_stream(struct dc *dc,
+ 	// dc->current_state anymore, so we have to cache it before we apply
+ 	// the new SubVP context
+ 	subvp_prev_use = false;
++	dc_exit_ips_for_hw_access(dc);
++
+ 	dc_z10_restore(dc);
+ 	if (update_type == UPDATE_TYPE_FULL)
+ 		wait_for_outstanding_hw_updates(dc, context);
+@@ -4409,6 +4439,8 @@ bool dc_update_planes_and_stream(struct dc *dc,
+ 	bool is_plane_addition = 0;
+ 	bool is_fast_update_only;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	populate_fast_updates(fast_update, srf_updates, surface_count, stream_update);
+ 	is_fast_update_only = fast_update_only(dc, fast_update, srf_updates,
+ 			surface_count, stream_update, stream);
+@@ -4529,6 +4561,8 @@ void dc_commit_updates_for_stream(struct dc *dc,
+ 	int i, j;
+ 	struct dc_fast_update fast_update[MAX_SURFACES] = {0};
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	populate_fast_updates(fast_update, srf_updates, surface_count, stream_update);
+ 	stream_status = dc_stream_get_status(stream);
+ 	context = dc->current_state;
+@@ -4713,6 +4747,8 @@ void dc_set_power_state(
+ 	case DC_ACPI_CM_POWER_STATE_D0:
+ 		dc_state_construct(dc, dc->current_state);
+ 
++		dc_exit_ips_for_hw_access(dc);
++
+ 		dc_z10_restore(dc);
+ 
+ 		dc->hwss.init_hw(dc);
+@@ -4854,6 +4890,12 @@ void dc_allow_idle_optimizations(struct dc *dc, bool allow)
+ 		dc->idle_optimizations_allowed = allow;
+ }
+ 
++void dc_exit_ips_for_hw_access(struct dc *dc)
++{
++	if (dc->caps.ips_support)
++		dc_allow_idle_optimizations(dc, false);
++}
++
+ bool dc_dmub_is_ips_idle_state(struct dc *dc)
+ {
+ 	uint32_t idle_state = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index 54670e0b1518..51a970fcb5d0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -423,6 +423,8 @@ bool dc_stream_add_writeback(struct dc *dc,
+ 		return false;
+ 	}
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	wb_info->dwb_params.out_transfer_func = stream->out_transfer_func;
+ 
+ 	dwb = dc->res_pool->dwbc[wb_info->dwb_pipe_inst];
+@@ -493,6 +495,8 @@ bool dc_stream_fc_disable_writeback(struct dc *dc,
+ 		return false;
+ 	}
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	if (dwb->funcs->set_fc_enable)
+ 		dwb->funcs->set_fc_enable(dwb, DWB_FRAME_CAPTURE_DISABLE);
+ 
+@@ -542,6 +546,8 @@ bool dc_stream_remove_writeback(struct dc *dc,
+ 		return false;
+ 	}
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	/* disable writeback */
+ 	if (dc->hwss.disable_writeback) {
+ 		struct dwbc *dwb = dc->res_pool->dwbc[dwb_pipe_inst];
+@@ -557,6 +563,8 @@ bool dc_stream_warmup_writeback(struct dc *dc,
+ 		int num_dwb,
+ 		struct dc_writeback_info *wb_info)
+ {
++	dc_exit_ips_for_hw_access(dc);
++
+ 	if (dc->hwss.mmhubbub_warmup)
+ 		return dc->hwss.mmhubbub_warmup(dc, num_dwb, wb_info);
+ 	else
+@@ -569,6 +577,8 @@ uint32_t dc_stream_get_vblank_counter(const struct dc_stream_state *stream)
+ 	struct resource_context *res_ctx =
+ 		&dc->current_state->res_ctx;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		struct timing_generator *tg = res_ctx->pipe_ctx[i].stream_res.tg;
+ 
+@@ -597,6 +607,8 @@ bool dc_stream_send_dp_sdp(const struct dc_stream_state *stream,
+ 	dc = stream->ctx->dc;
+ 	res_ctx = &dc->current_state->res_ctx;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		struct pipe_ctx *pipe_ctx = &res_ctx->pipe_ctx[i];
+ 
+@@ -628,6 +640,8 @@ bool dc_stream_get_scanoutpos(const struct dc_stream_state *stream,
+ 	struct resource_context *res_ctx =
+ 		&dc->current_state->res_ctx;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		struct timing_generator *tg = res_ctx->pipe_ctx[i].stream_res.tg;
+ 
+@@ -664,6 +678,8 @@ bool dc_stream_dmdata_status_done(struct dc *dc, struct dc_stream_state *stream)
+ 	if (i == MAX_PIPES)
+ 		return true;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	return dc->hwss.dmdata_status_done(pipe);
+ }
+ 
+@@ -698,6 +714,8 @@ bool dc_stream_set_dynamic_metadata(struct dc *dc,
+ 
+ 	pipe_ctx->stream->dmdata_address = attr->address;
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	dc->hwss.program_dmdata_engine(pipe_ctx);
+ 
+ 	if (hubp->funcs->dmdata_set_attributes != NULL &&
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
+index 19a2c7140ae8..19140fb65787 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_surface.c
+@@ -161,6 +161,8 @@ const struct dc_plane_status *dc_plane_get_status(
+ 		break;
+ 	}
+ 
++	dc_exit_ips_for_hw_access(dc);
++
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		struct pipe_ctx *pipe_ctx =
+ 				&dc->current_state->res_ctx.pipe_ctx[i];
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 74c871917eaf..53919c0eb1e3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -2325,6 +2325,7 @@ bool dc_is_plane_eligible_for_idle_optimizations(struct dc *dc, struct dc_plane_
+ 				struct dc_cursor_attributes *cursor_attr);
+ 
+ void dc_allow_idle_optimizations(struct dc *dc, bool allow);
++void dc_exit_ips_for_hw_access(struct dc *dc);
+ bool dc_dmub_is_ips_idle_state(struct dc *dc);
+ 
+ /* set min and max memory clock to lowest and highest DPM level, respectively */
 -- 
 2.43.0
 
