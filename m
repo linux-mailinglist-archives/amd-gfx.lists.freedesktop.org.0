@@ -2,41 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140DC844893
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jan 2024 21:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE71B844898
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jan 2024 21:16:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E51210FC19;
-	Wed, 31 Jan 2024 20:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1A5710FCD0;
+	Wed, 31 Jan 2024 20:15:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2083.outbound.protection.outlook.com [40.107.243.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2EE10FCD7
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 20:15:52 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2047.outbound.protection.outlook.com [40.107.93.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5A6710FCD0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jan 2024 20:15:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FZ6TSDHiZWrr/HNYEf3LQro/UrQwXgAU+27bUsz5iyZqzuzX4UF0By7i9a7sw8f9CBXLtf8RHKOFQji2kbCS81w+jZvrm4s7yaev0otN6XQ4c0ZP0DZAzfghOC/NLIxCCJ/lTPGTxTfpXwDPB0mljn8W49KCr6nnjWeIgDZSoRQa1lL7xLLVfppkpOggOdlNB4g9CUkQdt56czdAsbGKbCT69djwDj8rud/sIyharfSM/Pyj34/QjKZ2yvL9G1bMzYxq1VhairwQmLxnLduJb2Otjpwi2QUwYDtTg4fuEMVCAUiSaCDElIbTXvqjCFPHM9kwvCrwTWU9RYvafGmi0g==
+ b=eLxhQ2BpdSlaJsDJRQhmV6QmrNyFLvFNdREjrr3Br2kXRDd0GTIQXjW0qC9iBvm5L3u24VvNSCbPdmkbYyLdOiX3klgmTKmLlW9fnFnvc+aGzqcloGmwjQAp1a/DhROSh4HhYvBcD67DjO0/PvMbk5a49xjP/fmUmY5eQ+zi5CV2RQUlMxLIQTCQFeeeUGHsMsEhP42XA9sL62+NIhXlKzSgQtiLZQyVE6vvU+lPXrc7Jw+nUah94wVFw5WLTdn+KWvlruE0uRm/wBqdxTJvuMs0AcrJEnsUz7iF5JNfTLyzOksNknD4x6LZBK5JWf2/rR9E5A8OctNiRer99vSQjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CiROGyWKDuIl5zbMb3PIp+xXM337ozdqHldugy18UsA=;
- b=YkYnDBCUFTI3I72cybSqs86Yd98hXEBcXMsH9epC9NdZesHy7x0rJv3LNE779+SToCYDKaZwguL3sx3hH3VPzRZJ9u4AEEF4qwYxNpHAvsql+PSI4LlcuCb94q0R1gTGGlWy5Sk/gXyGQVrvr/9ccyxcC+burzgfSaW+VNMpLqmj1+c3/LaRFnY49+m0u9q8DAg8299QXgHZ+rFPKxpmi+fmLrbZHLMkrKmIUmvLuvHsKM5Io6Z1tn/gWYgWirVO7fgN1vFRUIsEA30BY1UhKRFWaLAOls7s1FSuP1b5M5R+4kgkvwln6x6F3RGuLOF3t3RlK4fcq4A8D8y+Gwz69A==
+ bh=T9BS6qoMxp/bvBjpxQNfp+Rr24YdSfsKzJMSipbcizg=;
+ b=SXNeNEwFjOIkWR28NzedLhUQ6QVjsccdOkxFtr5nGk12c3Jbl273MJhQLoBN2tjFI0c70iSeSrFrg21CnbCbRDUN15+DcqyoZRY5Ai91D9egqb8fH6/QZYVe9MtzQV66IUWLmuxeHfjjGnkaz/uIYpZMi6X8upl8LL4FTTnmnzeFRyBC9PzcTF8NfE5x//x3ESvn+dcXpGh7hPW0Ymjlf3QIYHKPgxD8x5wCBorewpvguaHMSTtJzXmaf36YuR6HaMv4Gtq86tDO7jKIoJbOB6qtnu13kLEodND7jJEsVih48EHfNCwabddC2fr5DXVXB3ssB2FqMzoDlF2QXAMeVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CiROGyWKDuIl5zbMb3PIp+xXM337ozdqHldugy18UsA=;
- b=i1dzO6D3UeH9hd4gEh+lzd/GCr2Lb95cmeN9yDmDlo2jaB/22WSvxYHY5dxjz4EndIIOJyxB4Z0HjkdLUdvxZDSw8nh6BksbtqsofDfurrj51aJ5yW7iNhkQASt5/n6bH6uk/g5DYXZkO0a8qCCb/8zLmeXh258VHZWEzCVRtwg=
-Received: from SN6PR01CA0010.prod.exchangelabs.com (2603:10b6:805:b6::23) by
- IA0PR12MB7530.namprd12.prod.outlook.com (2603:10b6:208:440::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7228.34; Wed, 31 Jan 2024 20:15:46 +0000
+ bh=T9BS6qoMxp/bvBjpxQNfp+Rr24YdSfsKzJMSipbcizg=;
+ b=XNkoBWyZNzGLpccdlGUJLSkngiowj/LlVAqMeV4xP7JG98I2C3RxeAZ7oAVHfhooB/vdjzgrCLwDXoWQXCo9ojF0fbZDtnGT/Wp0cMsiqRNPE8/X7bA4T4Lm/eAJhiI+r/caCXISgKGIHAx5DadKbf6b5bV5N2cz7lRIEP4MXI4=
+Received: from SN6PR01CA0021.prod.exchangelabs.com (2603:10b6:805:b6::34) by
+ SA1PR12MB8162.namprd12.prod.outlook.com (2603:10b6:806:33a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Wed, 31 Jan
+ 2024 20:15:47 +0000
 Received: from SN1PEPF0002636E.namprd02.prod.outlook.com
- (2603:10b6:805:b6:cafe::6e) by SN6PR01CA0010.outlook.office365.com
- (2603:10b6:805:b6::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22 via Frontend
- Transport; Wed, 31 Jan 2024 20:15:45 +0000
+ (2603:10b6:805:b6:cafe::f2) by SN6PR01CA0021.outlook.office365.com
+ (2603:10b6:805:b6::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23 via Frontend
+ Transport; Wed, 31 Jan 2024 20:15:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SN1PEPF0002636E.mail.protection.outlook.com (10.167.241.139) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Wed, 31 Jan 2024 20:15:45 +0000
+ 15.20.7249.19 via Frontend Transport; Wed, 31 Jan 2024 20:15:47 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 31 Jan
- 2024 14:14:52 -0600
+ 2024 14:15:19 -0600
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/21] drm/amd/display: Update phantom pipe enable / disable
- sequence
-Date: Wed, 31 Jan 2024 15:11:22 -0500
-Message-ID: <20240131201220.19106-17-hamza.mahfooz@amd.com>
+Subject: [PATCH 17/21] drm/amd/display: Drop legacy code
+Date: Wed, 31 Jan 2024 15:11:23 -0500
+Message-ID: <20240131201220.19106-18-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240131201220.19106-1-hamza.mahfooz@amd.com>
 References: <20240131201220.19106-1-hamza.mahfooz@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636E:EE_|IA0PR12MB7530:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7b536087-4afd-4f84-857d-08dc22996848
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002636E:EE_|SA1PR12MB8162:EE_
+X-MS-Office365-Filtering-Correlation-Id: 441a1493-4118-4951-a205-08dc22996947
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PoE//CzC6U4nEkw/8PFQ3vQdjdJsU8yVmVoQwCb2+r+EX5z6mrDQrY+SpylnJN8KsglkW7tZ5u69mvmHsMu+iJl1UKyv2uqZIhWAzbgezvXjJPmVLMcO00x1nexO0hmBj5fKX8mzLv2LGvmUwe+bf8HAdj01btyft8pmGmlx4i6VGCExr8wvqtPBAYTqCbMaUgkZ1C0nNDuHZ7VfSjcpjLQovuBTwZRqXnNAyvSPpbRfRTmd1Kp3qjBwAHicmZ7xnpzscetDgt7mB+XdVU2hw+xuGcyO5ix23oYvT5ruijsuFg4gStEh/0zAqShKUMMLxl22qWxtcW/mFG+rksQWQ1/J7NnPgHzUnGsfsLScNfSv7MJ20+ri92xpxSbBNhYeKhA7QBU7eB/bt+M5nOLPeN5NKS21XHLy0IEs2Rqn0kPOyRq/0QNXYKj0JSGBpm5HJ9ZPyfJOWKkI7HzArKjU2pL2mOdShKNGDHQSe+o201gImNMtpvf9KTX9wIkRRtFEV/B+SoIHnKsUtthP2xt98vUHhWpS1X8ExHEB0QQouIebrYNo5vUKJWjBFfz/08+WR+UwoYefyB61t1EzSrKi21GzDEwy0Y6RQ3BuCFyjNaq18ycB++g1/q/knQ4EUR1EtwPEMQeVMC5zlIE6s1zMC0L0+JcKaD7iPjEBlxat6nADTccyh/Os6dAKkl9oAdRl7xN9zqy13eWGWxmW0YLtecGNk/F4gESwBxUnH8B5Apr/6qzgJ5PzrLkQUfB/Qm+Pye3PNv5ESJJHCFkO0JiolQ==
+X-Microsoft-Antispam-Message-Info: XYC1B0IBMhW8jcMAy3k1l6KbaOE+nr8fvnDrpjPxmqgddzgJbFzIgFOxaDZl/61MolcHk78Z5PxFr4Q9Co3jC7p+v2Y2lLjADAu/nQL4bXzC6a+fmvPNXDYJ0IU2Q4QVOieQLWRLIz1j0iDkdM/pzpuWexCWqTFjiRO32Isl5PhF92xGxzZL5lgy9J/AsxQKhx1ZS9Qs6viXnmSb9pkPjoHFxcDzPEleUjPuKgt2pkvmZFWITpHgvtd3OHxc4EoqGszo7cf3SFu9iyR9Fhvt/R+OINEWtqyxxK05Bq6GI4TSmhERb/sDd4En4Rhw/vYQphBp0m/vdyOCf1rlgh1fOwcB2W+rUXpDOxnSCFm5HEEkUEC3GA6/qqrk5Y3dSD6M+Xxqj0H3qQnifdDoA5cOsIETrZcGJOHe0Oz1Je0crJPOLqtXVXqq2q5roOACzMsS9Xsul7WX42Tppq62nvh34L3+SGiv6uy+2ksrhnLHkbPFaSKZ7q7SpsQXC4LtR58Y32VTb2Eb3r8ZZuhcsXrx8uz1h0CMZVjYI66zxg8/CE7KzCYLj5sItCFgo/IKwqd2eM0VbfU+/3ZSxi7iYGcsBOqrqlpbgLs99MJnXslOFonLU+P/JflZutiCAMaa4VI3znNwBJbQ5B3cosG2OzQbDegVRtfl71OLtR3NhSDNxCv15QdJH9Bz8K7ujmmGUJNUJwj0WgM6TjWW6ohetjKay00e8u1yZ27mhRSmoYvJo1ATuS3Xks+asKWe538iW5vuQfDC2ufxwwPvE2QP+ARaYYSipbIntYe/VSws+NFPh7/pkOJGcJSZsmctwrxVYTdL
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(230922051799003)(186009)(82310400011)(451199024)(1800799012)(40470700004)(36840700001)(46966006)(40460700003)(70586007)(70206006)(54906003)(30864003)(15650500001)(5660300002)(44832011)(2906002)(316002)(47076005)(8936002)(6916009)(8676002)(4326008)(508600001)(356005)(81166007)(36756003)(86362001)(36860700001)(26005)(336012)(16526019)(6666004)(426003)(1076003)(2616005)(83380400001)(36900700001)(16060500005);
+ SFS:(13230031)(4636009)(136003)(346002)(39860400002)(376002)(396003)(230922051799003)(1800799012)(64100799003)(451199024)(82310400011)(186009)(36840700001)(46966006)(40470700004)(16526019)(83380400001)(426003)(1076003)(336012)(2616005)(26005)(81166007)(82740400003)(36860700001)(4326008)(8936002)(8676002)(44832011)(5660300002)(2906002)(54906003)(70206006)(316002)(6666004)(478600001)(70586007)(6916009)(41300700001)(47076005)(356005)(86362001)(36756003)(40480700001)(40460700003)(36900700001)(16060500005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 20:15:45.3910 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b536087-4afd-4f84-857d-08dc22996848
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 20:15:47.0629 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 441a1493-4118-4951-a205-08dc22996947
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002636E.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7530
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8162
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,293 +99,208 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chiahsuan.chung@amd.com, Samson Tam <samson.tam@amd.com>,
- Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- stable@vger.kernel.org, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
- hersenxs.wu@amd.com, Alvin Lee <alvin.lee2@amd.com>, wayne.lin@amd.com,
- Harry.Wentland@amd.com, agustin.gutierrez@amd.com,
- Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: chiahsuan.chung@amd.com, Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
+ hersenxs.wu@amd.com, Hamza Mahfooz <hamza.mahfooz@amd.com>, wayne.lin@amd.com,
+ Harry.Wentland@amd.com, agustin.gutierrez@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Previously we would call apply_ctx_to_hw to enable and disable
-phantom pipes. However, apply_ctx_to_hw can potentially update
-non-phantom pipes as well which is undesired. Instead of calling
-apply_ctx_to_hw as a whole, call the relevant helpers for each
-phantom pipe when enabling / disabling which will avoid us modifying
-hardware state for non-phantom pipes unknowingly.
+Display code keeps getting improvements, and because of that, some
+legacy code is left behind. This commit drops some of those unused
+codes.
 
-The use case is for an FRL display where FRL_Update is requested
-by the display. In this case link_state_valid flag is cleared in
-a passive callback thread and should be handled in the next stream /
-link update. However, due to the call to apply_ctx_to_hw for the
-phantom pipes during a flip, the main pipes were modified outside
-of the desired sequence (driver does not handle link_state_valid = 0
-on flips).
-
-Cc: stable@vger.kernel.org # 6.6+
-Reviewed-by: Samson Tam <samson.tam@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  4 +-
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  4 +-
- .../amd/display/dc/hwss/dce110/dce110_hwseq.h |  4 +
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  2 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.h   |  4 +
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 76 ++++++++++++++++---
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.h   |  2 +
- .../amd/display/dc/hwss/dcn32/dcn32_init.c    |  3 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  1 +
- .../display/dc/hwss/hw_sequencer_private.h    |  7 ++
- 10 files changed, 94 insertions(+), 13 deletions(-)
+ .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c     |  4 ----
+ .../amd/display/dc/clk_mgr/dcn301/dcn301_smu.c  |  4 ----
+ .../amd/display/dc/clk_mgr/dcn31/dcn31_smu.c    |  4 ----
+ .../amd/display/dc/clk_mgr/dcn314/dcn314_smu.c  |  6 ------
+ .../amd/display/dc/clk_mgr/dcn315/dcn315_smu.c  |  4 ----
+ .../amd/display/dc/clk_mgr/dcn316/dcn316_smu.c  |  4 ----
+ .../gpu/drm/amd/display/dc/core/dc_resource.c   | 17 -----------------
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h     |  1 -
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 11 -----------
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn32.c   |  2 --
+ 10 files changed, 57 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index c81f8af5d374..72512903f88f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3851,7 +3851,9 @@ static void commit_planes_for_stream(struct dc *dc,
- 		 * programming has completed (we turn on phantom OTG in order
- 		 * to complete the plane disable for phantom pipes).
- 		 */
--		dc->hwss.apply_ctx_to_hw(dc, context);
-+
-+		if (dc->hwss.disable_phantom_streams)
-+			dc->hwss.disable_phantom_streams(dc, context);
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+index 8c9d45e5b13b..d72acbb049b1 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+@@ -185,10 +185,6 @@ int rn_vbios_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int reque
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
  
- 	if (update_type != UPDATE_TYPE_FAST)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 88170ab0ec7e..a390a9ef81d2 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -1528,7 +1528,7 @@ static enum dc_status dce110_enable_stream_timing(
- 	return DC_OK;
- }
- 
--static enum dc_status apply_single_controller_ctx_to_hw(
-+enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 		struct pipe_ctx *pipe_ctx,
- 		struct dc_state *context,
- 		struct dc *dc)
-@@ -2355,7 +2355,7 @@ enum dc_status dce110_apply_ctx_to_hw(
- 		if (pipe_ctx->top_pipe || pipe_ctx->prev_odm_pipe)
- 			continue;
- 
--		status = apply_single_controller_ctx_to_hw(
-+		status = dce110_apply_single_controller_ctx_to_hw(
- 				pipe_ctx,
- 				context,
- 				dc);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-index 08028a1779ae..ed3cc3648e8e 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.h
-@@ -39,6 +39,10 @@ enum dc_status dce110_apply_ctx_to_hw(
- 		struct dc *dc,
- 		struct dc_state *context);
- 
-+enum dc_status dce110_apply_single_controller_ctx_to_hw(
-+		struct pipe_ctx *pipe_ctx,
-+		struct dc_state *context,
-+		struct dc *dc);
- 
- void dce110_enable_stream(struct pipe_ctx *pipe_ctx);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 7557e58f58b2..bc0a21957e33 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -2671,7 +2671,7 @@ void dcn20_setup_vupdate_interrupt(struct dc *dc, struct pipe_ctx *pipe_ctx)
- 		tg->funcs->setup_vertical_interrupt2(tg, start_line);
- }
- 
--static void dcn20_reset_back_end_for_pipe(
-+void dcn20_reset_back_end_for_pipe(
- 		struct dc *dc,
- 		struct pipe_ctx *pipe_ctx,
- 		struct dc_state *context)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
-index 90316327e6fc..5c874f7b0683 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
-@@ -86,6 +86,10 @@ enum dc_status dcn20_enable_stream_timing(
- void dcn20_disable_stream_gating(struct dc *dc, struct pipe_ctx *pipe_ctx);
- void dcn20_enable_stream_gating(struct dc *dc, struct pipe_ctx *pipe_ctx);
- void dcn20_setup_vupdate_interrupt(struct dc *dc, struct pipe_ctx *pipe_ctx);
-+void dcn20_reset_back_end_for_pipe(
-+		struct dc *dc,
-+		struct pipe_ctx *pipe_ctx,
-+		struct dc_state *context);
- void dcn20_init_blank(
- 		struct dc *dc,
- 		struct timing_generator *tg);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-index 6c9299c7683d..aa36d7a56ca8 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-@@ -1474,9 +1474,44 @@ void dcn32_update_dsc_pg(struct dc *dc,
- 	}
- }
- 
-+void dcn32_disable_phantom_streams(struct dc *dc, struct dc_state *context)
-+{
-+	struct dce_hwseq *hws = dc->hwseq;
-+	int i;
-+
-+	for (i = dc->res_pool->pipe_count - 1; i >= 0 ; i--) {
-+		struct pipe_ctx *pipe_ctx_old =
-+			&dc->current_state->res_ctx.pipe_ctx[i];
-+		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
-+
-+		if (!pipe_ctx_old->stream)
-+			continue;
-+
-+		if (dc_state_get_pipe_subvp_type(dc->current_state, pipe_ctx_old) != SUBVP_PHANTOM)
-+			continue;
-+
-+		if (pipe_ctx_old->top_pipe || pipe_ctx_old->prev_odm_pipe)
-+			continue;
-+
-+		if (!pipe_ctx->stream || pipe_need_reprogram(pipe_ctx_old, pipe_ctx) ||
-+				(pipe_ctx->stream && dc_state_get_pipe_subvp_type(context, pipe_ctx) != SUBVP_PHANTOM)) {
-+			struct clock_source *old_clk = pipe_ctx_old->clock_source;
-+
-+			if (hws->funcs.reset_back_end_for_pipe)
-+				hws->funcs.reset_back_end_for_pipe(dc, pipe_ctx_old, dc->current_state);
-+			if (hws->funcs.enable_stream_gating)
-+				hws->funcs.enable_stream_gating(dc, pipe_ctx_old);
-+			if (old_clk)
-+				old_clk->funcs->cs_power_down(old_clk);
-+		}
-+	}
-+}
-+
- void dcn32_enable_phantom_streams(struct dc *dc, struct dc_state *context)
- {
- 	unsigned int i;
-+	enum dc_status status = DC_OK;
-+	struct dce_hwseq *hws = dc->hwseq;
- 
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-@@ -1497,16 +1532,39 @@ void dcn32_enable_phantom_streams(struct dc *dc, struct dc_state *context)
- 		}
- 	}
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
--		struct pipe_ctx *new_pipe = &context->res_ctx.pipe_ctx[i];
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n", actual_dcfclk_set_mhz, actual_dcfclk_set_mhz * 1000);
+-#endif
 -
--		if (new_pipe->stream && dc_state_get_pipe_subvp_type(context, new_pipe) == SUBVP_PHANTOM) {
--			// If old context or new context has phantom pipes, apply
--			// the phantom timings now. We can't change the phantom
--			// pipe configuration safely without driver acquiring
--			// the DMCUB lock first.
--			dc->hwss.apply_ctx_to_hw(dc, context);
--			break;
-+		struct pipe_ctx *pipe_ctx_old =
-+					&dc->current_state->res_ctx.pipe_ctx[i];
-+		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
-+
-+		if (pipe_ctx->stream == NULL)
-+			continue;
-+
-+		if (dc_state_get_pipe_subvp_type(context, pipe_ctx) != SUBVP_PHANTOM)
-+			continue;
-+
-+		if (pipe_ctx->stream == pipe_ctx_old->stream &&
-+			pipe_ctx->stream->link->link_state_valid) {
-+			continue;
- 		}
-+
-+		if (pipe_ctx_old->stream && !pipe_need_reprogram(pipe_ctx_old, pipe_ctx))
-+			continue;
-+
-+		if (pipe_ctx->top_pipe || pipe_ctx->prev_odm_pipe)
-+			continue;
-+
-+		if (hws->funcs.apply_single_controller_ctx_to_hw)
-+			status = hws->funcs.apply_single_controller_ctx_to_hw(
-+					pipe_ctx,
-+					context,
-+					dc);
-+
-+		ASSERT(status == DC_OK);
-+
-+#ifdef CONFIG_DRM_AMD_DC_FP
-+		if (hws->funcs.resync_fifo_dccg_dio)
-+			hws->funcs.resync_fifo_dccg_dio(hws, dc, context);
-+#endif
- 	}
+ 	return actual_dcfclk_set_mhz * 1000;
  }
  
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
-index cecf7f0f5671..069e20bc87c0 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
-@@ -111,6 +111,8 @@ void dcn32_update_dsc_pg(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
+index e4f96b6fd79d..19e5b3be9275 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
+@@ -180,10 +180,6 @@ int dcn301_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int request
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
  
- void dcn32_enable_phantom_streams(struct dc *dc, struct dc_state *context);
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n", actual_dcfclk_set_mhz, actual_dcfclk_set_mhz * 1000);
+-#endif
+-
+ 	return actual_dcfclk_set_mhz * 1000;
+ }
  
-+void dcn32_disable_phantom_streams(struct dc *dc, struct dc_state *context);
-+
- void dcn32_init_blank(
- 		struct dc *dc,
- 		struct timing_generator *tg);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-index 0980df6c65ea..2b073123d3ed 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-@@ -109,6 +109,7 @@ static const struct hw_sequencer_funcs dcn32_funcs = {
- 	.get_dcc_en_bits = dcn10_get_dcc_en_bits,
- 	.commit_subvp_config = dcn32_commit_subvp_config,
- 	.enable_phantom_streams = dcn32_enable_phantom_streams,
-+	.disable_phantom_streams = dcn32_disable_phantom_streams,
- 	.subvp_pipe_control_lock = dcn32_subvp_pipe_control_lock,
- 	.update_visual_confirm_color = dcn10_update_visual_confirm_color,
- 	.subvp_pipe_control_lock_fast = dcn32_subvp_pipe_control_lock_fast,
-@@ -159,6 +160,8 @@ static const struct hwseq_private_funcs dcn32_private_funcs = {
- 	.set_pixels_per_cycle = dcn32_set_pixels_per_cycle,
- 	.resync_fifo_dccg_dio = dcn32_resync_fifo_dccg_dio,
- 	.is_dp_dig_pixel_rate_div_policy = dcn32_is_dp_dig_pixel_rate_div_policy,
-+	.apply_single_controller_ctx_to_hw = dce110_apply_single_controller_ctx_to_hw,
-+	.reset_back_end_for_pipe = dcn20_reset_back_end_for_pipe,
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
+index 32279c5db724..6904e95113c1 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
+@@ -202,10 +202,6 @@ int dcn31_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int requeste
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
  
- void dcn32_hw_sequencer_init_functions(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index 91b1b43a728f..f89f205e42a1 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -381,6 +381,7 @@ struct hw_sequencer_funcs {
- 			struct dc_cursor_attributes *cursor_attr);
- 	void (*commit_subvp_config)(struct dc *dc, struct dc_state *context);
- 	void (*enable_phantom_streams)(struct dc *dc, struct dc_state *context);
-+	void (*disable_phantom_streams)(struct dc *dc, struct dc_state *context);
- 	void (*subvp_pipe_control_lock)(struct dc *dc,
- 			struct dc_state *context,
- 			bool lock,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
-index 6137cf09aa54..b3c62a82cb1c 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
-@@ -165,8 +165,15 @@ struct hwseq_private_funcs {
- 	void (*set_pixels_per_cycle)(struct pipe_ctx *pipe_ctx);
- 	void (*resync_fifo_dccg_dio)(struct dce_hwseq *hws, struct dc *dc,
- 			struct dc_state *context);
-+	enum dc_status (*apply_single_controller_ctx_to_hw)(
-+			struct pipe_ctx *pipe_ctx,
-+			struct dc_state *context,
-+			struct dc *dc);
- 	bool (*is_dp_dig_pixel_rate_div_policy)(struct pipe_ctx *pipe_ctx);
- #endif
-+	void (*reset_back_end_for_pipe)(struct dc *dc,
-+			struct pipe_ctx *pipe_ctx,
-+			struct dc_state *context);
- };
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n", actual_dcfclk_set_mhz, actual_dcfclk_set_mhz * 1000);
+-#endif
+-
+ 	return actual_dcfclk_set_mhz * 1000;
+ }
  
- struct dce_hwseq {
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_smu.c
+index 07baa10a8647..c4af406146b7 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_smu.c
+@@ -220,12 +220,6 @@ int dcn314_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int request
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
+ 
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n",
+-			actual_dcfclk_set_mhz,
+-			actual_dcfclk_set_mhz * 1000);
+-#endif
+-
+ 	return actual_dcfclk_set_mhz * 1000;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
+index 1042cf1a3ab0..879f1494c4cd 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
+@@ -215,10 +215,6 @@ int dcn315_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int request
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
+ 
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n", actual_dcfclk_set_mhz, actual_dcfclk_set_mhz * 1000);
+-#endif
+-
+ 	return actual_dcfclk_set_mhz * 1000;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+index 3ed19197a755..8b82092b91cd 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+@@ -189,10 +189,6 @@ int dcn316_smu_set_hard_min_dcfclk(struct clk_mgr_internal *clk_mgr, int request
+ 			VBIOSSMC_MSG_SetHardMinDcfclkByFreq,
+ 			khz_to_mhz_ceil(requested_dcfclk_khz));
+ 
+-#ifdef DBG
+-	smu_print("actual_dcfclk_set_mhz %d is set to : %d\n", actual_dcfclk_set_mhz, actual_dcfclk_set_mhz * 1000);
+-#endif
+-
+ 	return actual_dcfclk_set_mhz * 1000;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index bb750c3d17f8..96ea283bd169 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1871,23 +1871,6 @@ int resource_find_any_free_pipe(struct resource_context *new_res_ctx,
+ 
+ bool resource_is_pipe_type(const struct pipe_ctx *pipe_ctx, enum pipe_type type)
+ {
+-#ifdef DBG
+-	if (pipe_ctx->stream == NULL) {
+-		/* a free pipe with dangling states */
+-		ASSERT(!pipe_ctx->plane_state);
+-		ASSERT(!pipe_ctx->prev_odm_pipe);
+-		ASSERT(!pipe_ctx->next_odm_pipe);
+-		ASSERT(!pipe_ctx->top_pipe);
+-		ASSERT(!pipe_ctx->bottom_pipe);
+-	} else if (pipe_ctx->top_pipe) {
+-		/* a secondary DPP pipe must be signed to a plane */
+-		ASSERT(pipe_ctx->plane_state)
+-	}
+-	/* Add more checks here to prevent corrupted pipe ctx. It is very hard
+-	 * to debug this issue afterwards because we can't pinpoint the code
+-	 * location causing inconsistent pipe context states.
+-	 */
+-#endif
+ 	switch (type) {
+ 	case OTG_MASTER:
+ 		return !pipe_ctx->prev_odm_pipe &&
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index 0684a0b93637..ae30fe2b6d0d 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -450,7 +450,6 @@ struct dmub_srv_create_params {
+ 	struct dmub_srv_base_funcs funcs;
+ 	struct dmub_srv_hw_funcs *hw_funcs;
+ 	void *user_ctx;
+-	struct dc_context *dc_ctx;
+ 	enum dmub_asic asic;
+ 	uint32_t fw_version;
+ 	bool is_virtual;
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index aaa211c828ed..59b96136871e 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -26,15 +26,6 @@
+ #ifndef DMUB_CMD_H
+ #define DMUB_CMD_H
+ 
+-#if defined(_TEST_HARNESS) || defined(FPGA_USB4)
+-#include "dmub_fw_types.h"
+-#include "include_legacy/atomfirmware.h"
+-
+-#if defined(_TEST_HARNESS)
+-#include <string.h>
+-#endif
+-#else
+-
+ #include <asm/byteorder.h>
+ #include <linux/types.h>
+ #include <linux/string.h>
+@@ -42,8 +33,6 @@
+ 
+ #include "atomfirmware.h"
+ 
+-#endif // defined(_TEST_HARNESS) || defined(FPGA_USB4)
+-
+ //<DMUB_TYPES>==================================================================
+ /* Basic type definitions. */
+ 
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
+index 2daa1e0c8061..305463b8f110 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
+@@ -32,8 +32,6 @@
+ #include "dcn/dcn_3_2_0_offset.h"
+ #include "dcn/dcn_3_2_0_sh_mask.h"
+ 
+-#define DCN_BASE__INST0_SEG2                       0x000034C0
+-
+ #define BASE_INNER(seg) ctx->dcn_reg_offsets[seg]
+ #define CTX dmub
+ #define REGS dmub->regs_dcn32
 -- 
 2.43.0
 
