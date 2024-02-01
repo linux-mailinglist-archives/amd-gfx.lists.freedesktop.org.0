@@ -2,54 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AC88459DD
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 15:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE1584597F
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 15:01:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E25310EE6D;
-	Thu,  1 Feb 2024 14:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40DF10EDF9;
+	Thu,  1 Feb 2024 14:01:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="NfpvEQuL";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="QRKftlcT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KiNVTDm9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (unknown [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9C110EDBA
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 13:53:54 +0000 (UTC)
-Date: Thu, 1 Feb 2024 14:53:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1706795623;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=D0G8Dha4ClhGh5Nvr9o98y/nqFzsgiWcwq3lRMSXSTY=;
- b=NfpvEQuL3VR6PNyf7jiRcN9ed3PbNVRL/9hXwgDCM1tywsV5rz0s+kW1Q1kN/LN6LGxlWi
- r6GmiksodHoEqpbai4ZbjB3JoH18f4S1DnaA5jYbS1GleJbeGDdXK+wMCfNS43Ddm/Sxoy
- DrtgPD/uJPKXHkx9SHvjvKGDqS+fMn0yDuY2uUO0fJn4gZLItRpaTPquE6wbRVz81XAZc9
- fGpuWBVU45sv3JGXFuR//3gOfU9HEuMk/W1PoPeOaA0L0Qg09x7+BAFkBKCKudF7g3/qqb
- UPSAZ3KxeisdvgBGLg2cQ5cfkhlac8i2sEItG7tUDft8UEEvBLp3w9D66CuRIQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1706795623;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=D0G8Dha4ClhGh5Nvr9o98y/nqFzsgiWcwq3lRMSXSTY=;
- b=QRKftlcTdZWRZc7HBsspNgirWdMZ198wSl5r8Acy7E8NKRlX7xaG80WhlWh2NMib8EN7qJ
- cH/QjJzh5k7ArWBg==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: amd-gfx@lists.freedesktop.org
-Subject: Re: [bug report] drm/amd/display: Simplify the per-CPU usage.
-Message-ID: <20240201135342.4dhm3bWG@linutronix.de>
-References: <e31dedcc-1aa8-4430-a2f5-9e37ca25410f@moroto.mountain>
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC0F410EDFA
+ for <amd-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 14:01:35 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-3392b045e0aso482788f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 01 Feb 2024 06:01:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1706796094; x=1707400894; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=6ZLqgVwSelq37BUp4ErOCd0BgDVgpawiYXc4dDhRtUk=;
+ b=KiNVTDm9sFSiCUdYfUZeNvw9ddP46nHJ9u06d+srCE0Ktb/ED17g1mu9VfT4TCD2vS
+ HnZTDUZGQrLkTQL+Rd7j5GyP5mjE2uxcM+cWsDSjWlqfQ5BW+ez/d09xVHa1jqRcZmli
+ YbTwpPRFfyd/d7rMNNwhzwf5kjkx61G+vE0HPAAMSBe5NxiiqtOt84c2Z3fIjhvQmjVb
+ DfankT86S3MMZxTS/mLLF6eB+fvH+4HfH2TaaVG5tWNHrC36vf6OAqY+hetu/n403IM0
+ IOMB14Q9QwsKBmhzmPEK1Z+Ua+A0o89ED1AONGSR2AvorNvS8PZKH+2+Di1HdqwaMhDV
+ 4iIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1706796094; x=1707400894;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6ZLqgVwSelq37BUp4ErOCd0BgDVgpawiYXc4dDhRtUk=;
+ b=R9yfjhmbhTrZ72J4GvK3zgRgwc76dx6qCMrPZmBKdlmnU+ow2CJSNdcpXgW/LqRR22
+ s7hqKp+MaRmEx4x4P/2ay2FdmjVrsGG3gWgyzteacgTk/Yr/Ls5UAii8krlI0IrpgOet
+ 1I8+fMJSPUvm/3s80wrERCGAOGjUIFnoceOy1vfmYFehwbb9vwdwW+RBx41NHJApL8wN
+ rAR/8PElfnYWbhWPV4jvjsFHz+mr7N321HmehZxZreLbp/9Nwq5NNoezMIpETKYIcn4a
+ ZoBayv0JnveCnHwlhjTavKzQXOWLAkb78R5gpWsmO5Rx1gEgWtCrDkPZjZiOi5hrOi4h
+ UYDA==
+X-Gm-Message-State: AOJu0YwntRm/RUvCK+vG4d5jdaf7QR0iLzXrqGh/59rWsB7fJ1yie2/n
+ 6cjTT6fpYFMvuSyFC4u7rCDrRj3QRJ6jVVx1SCLedqBGHbFNCsJnrrHpQOXB
+X-Google-Smtp-Source: AGHT+IFJYJu3XijN+wxtL+IbP+SEAhbYaMcir0wSM7rN2uN5TpUB+Bhm6ihsg8t6iInPP9vyr6LLug==
+X-Received: by 2002:adf:ecca:0:b0:33a:e93c:e1c8 with SMTP id
+ s10-20020adfecca000000b0033ae93ce1c8mr3479474wro.47.1706796093906; 
+ Thu, 01 Feb 2024 06:01:33 -0800 (PST)
+X-Forwarded-Encrypted: i=0;
+ AJvYcCVR4Fp1vQk/EfJ6xOMdiD9eyj77QHTbvAWGe5bI7Ts8dp+AjeZMfHaKES4hw/r8Io3kySMxdHwJ2YYYigtmrklhFAhVoYQ/Odg23lFkUg==
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ x18-20020a5d54d2000000b0033b14e447d1sm1689339wrv.1.2024.02.01.06.01.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 01 Feb 2024 06:01:33 -0800 (PST)
+Message-ID: <b5132e7f-2fcb-4ad2-8a12-8479feb6415a@gmail.com>
+Date: Thu, 1 Feb 2024 15:01:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <e31dedcc-1aa8-4430-a2f5-9e37ca25410f@moroto.mountain>
-X-Mailman-Approved-At: Thu, 01 Feb 2024 14:17:33 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: fix typo in parameter description
+Content-Language: en-US
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20240111155837.3460096-1-alexander.deucher@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240111155837.3460096-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +82,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-02-01 15:18:04 [+0300], Dan Carpenter wrote:
-> Hello Sebastian Andrzej Siewior,
-Hi Dan,
+Am 11.01.24 um 16:58 schrieb Alex Deucher:
+> Missing space.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-> The patch de5e73dc6baf: "drm/amd/display: Simplify the per-CPU
-> usage." from Sep 21, 2023 (linux-next), leads to the following Smatch
-> static checker warning:
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Did I introduce that or has it been made visible?
-That change adds preempt_disable() to DC_FP_START() but this was there
-already, just hidden. For x86 it is done within kernel_fpu_begin().
+And sorry that this took so long. I'm still trying to catch up to my mails.
 
-> drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn30/dcn30_resource.c:=
-2385 dcn30_resource_construct() warn: sleeping in atomic context
-> drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn32/dcn32_resource.c:=
-2136 dcn32_resource_construct() warn: sleeping in atomic context
->=20
-> drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn30/dcn30_resource.c
->     2263 static bool dcn30_resource_construct(
->     2264         uint8_t num_virtual_links,
->     2265         struct dc *dc,
->     2266         struct dcn30_resource_pool *pool)
->     2267 {
-=E2=80=A6
->     2281=20
->     2282         DC_FP_START();
->                  ^^^^^^^^^^^^^^
-> Preempt disabled here.
-=E2=80=A6
->     2383         /* Clock Sources for Pixel Clock*/
->     2384         pool->base.clock_sources[DCN30_CLK_SRC_PLL0] =3D
-> --> 2385                         dcn30_clock_source_create(ctx, ctx->dc_b=
-ios,
->                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-> sleeping allocation here.
->=20
+Christian.
 
-Correct you are. But there is more. Later is also dccg30_create() and
-dcn30_hubbub_create() and probably a few other, too.
-Could we please restructure the init-phase so that the memory allocation
-happen outside of DC_FP_START(). Is DC_FP_START() even needed here?
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 5c9caf5fa075..0712d5867849 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -366,7 +366,7 @@ module_param_named(aspm, amdgpu_aspm, int, 0444);
+>    * Setting the value to 0 disables this functionality.
+>    * Setting the value to -2 is auto enabled with power down when displays are attached.
+>    */
+> -MODULE_PARM_DESC(runpm, "PX runtime pm (2 = force enable with BAMACO, 1 = force enable with BACO, 0 = disable, -1 = auto, -2 = autowith displays)");
+> +MODULE_PARM_DESC(runpm, "PX runtime pm (2 = force enable with BAMACO, 1 = force enable with BACO, 0 = disable, -1 = auto, -2 = auto with displays)");
+>   module_param_named(runpm, amdgpu_runtime_pm, int, 0444);
+>   
+>   /**
 
-> regards,
-> dan carpenter
-
-Sebastian
