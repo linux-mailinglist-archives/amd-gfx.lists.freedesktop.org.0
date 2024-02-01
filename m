@@ -2,72 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE1584597F
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 15:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F10C8459DC
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 15:17:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E40DF10EDF9;
-	Thu,  1 Feb 2024 14:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AAC510EE60;
+	Thu,  1 Feb 2024 14:17:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KiNVTDm9";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bsCyB5Yb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC0F410EDFA
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 14:01:35 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-3392b045e0aso482788f8f.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 01 Feb 2024 06:01:35 -0800 (PST)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6403210EE3D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 14:04:02 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id
+ 4fb4d7f45d1cf-55f19a3ca7aso3975745a12.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 01 Feb 2024 06:04:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1706796094; x=1707400894; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=6ZLqgVwSelq37BUp4ErOCd0BgDVgpawiYXc4dDhRtUk=;
- b=KiNVTDm9sFSiCUdYfUZeNvw9ddP46nHJ9u06d+srCE0Ktb/ED17g1mu9VfT4TCD2vS
- HnZTDUZGQrLkTQL+Rd7j5GyP5mjE2uxcM+cWsDSjWlqfQ5BW+ez/d09xVHa1jqRcZmli
- YbTwpPRFfyd/d7rMNNwhzwf5kjkx61G+vE0HPAAMSBe5NxiiqtOt84c2Z3fIjhvQmjVb
- DfankT86S3MMZxTS/mLLF6eB+fvH+4HfH2TaaVG5tWNHrC36vf6OAqY+hetu/n403IM0
- IOMB14Q9QwsKBmhzmPEK1Z+Ua+A0o89ED1AONGSR2AvorNvS8PZKH+2+Di1HdqwaMhDV
- 4iIQ==
+ d=linaro.org; s=google; t=1706796240; x=1707401040; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rFDVRJNBRsaRzHz9IblUYxmWZQpYsWhtku96dG0sauo=;
+ b=bsCyB5Yb5uUWiQvt3JlG0nq0r/HMf+Ph8cOlCGiIeLsoF2CyFUH0ARxSFS+NZ+/htb
+ naDV1Nq9UPHw2aIJwlilUEBw1FonxzXn2pypymllzrZAN9lnN8WCYkJX93y0I3d1jvor
+ KQL6oIaScD7W+k43wofRGE2UALSwNR+HDQGdpr2v1At3mmKJ0LegJCz9ov7bxfmAptR1
+ hoxBomLoWOPfSwd5i7rZZOSRSNHMxRVNCkScgcqbF/s8LxPlqioTC0JtWwN1X/R8389f
+ ybTxjjUyPOxwHUWlYqWXmBhS4XBVNzlI05adb1FD8dp+r6dLcPgF39ZqcfW29A2EMRFF
+ UkiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706796094; x=1707400894;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6ZLqgVwSelq37BUp4ErOCd0BgDVgpawiYXc4dDhRtUk=;
- b=R9yfjhmbhTrZ72J4GvK3zgRgwc76dx6qCMrPZmBKdlmnU+ow2CJSNdcpXgW/LqRR22
- s7hqKp+MaRmEx4x4P/2ay2FdmjVrsGG3gWgyzteacgTk/Yr/Ls5UAii8krlI0IrpgOet
- 1I8+fMJSPUvm/3s80wrERCGAOGjUIFnoceOy1vfmYFehwbb9vwdwW+RBx41NHJApL8wN
- rAR/8PElfnYWbhWPV4jvjsFHz+mr7N321HmehZxZreLbp/9Nwq5NNoezMIpETKYIcn4a
- ZoBayv0JnveCnHwlhjTavKzQXOWLAkb78R5gpWsmO5Rx1gEgWtCrDkPZjZiOi5hrOi4h
- UYDA==
-X-Gm-Message-State: AOJu0YwntRm/RUvCK+vG4d5jdaf7QR0iLzXrqGh/59rWsB7fJ1yie2/n
- 6cjTT6fpYFMvuSyFC4u7rCDrRj3QRJ6jVVx1SCLedqBGHbFNCsJnrrHpQOXB
-X-Google-Smtp-Source: AGHT+IFJYJu3XijN+wxtL+IbP+SEAhbYaMcir0wSM7rN2uN5TpUB+Bhm6ihsg8t6iInPP9vyr6LLug==
-X-Received: by 2002:adf:ecca:0:b0:33a:e93c:e1c8 with SMTP id
- s10-20020adfecca000000b0033ae93ce1c8mr3479474wro.47.1706796093906; 
- Thu, 01 Feb 2024 06:01:33 -0800 (PST)
+ d=1e100.net; s=20230601; t=1706796240; x=1707401040;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rFDVRJNBRsaRzHz9IblUYxmWZQpYsWhtku96dG0sauo=;
+ b=fWT6tIRJh33QNgBJJVcj4uR+MRAy/R0yIkNJxx/jvV9j6ys+O9Os1wMUb0ubpZE7yv
+ KzCMebvXZOAJUM/KdXWRKSJWHIovWz8Q6sdfLpu3dGLG/4rRgp2gOy01Vc3WrPolQfn4
+ 9G6q3IXBrzi+I7MKtGzi2oD7syl38Yxzy+d030g7ho7FfwAzL5SUS1lnrmcbkShpZ5sd
+ /B2s2z+I69rEay/XfzQXGvmYVViSriia5Uu5htFdmo3Lz7BynCgbWH0j648QM4metg9r
+ QFyt1MVu8Z14RXRTNTaZirZL0EiQqiy+dh2IweNLqsngGO6TkK2Swqr6ORNLYDGJI0JI
+ KveQ==
+X-Gm-Message-State: AOJu0YwhkYO8sk2HxLXlKAxjiwCFlxwOJCZgQtH0Ygwxog3ahTVJ+WaT
+ 7Z50Sb13VaxljHHDD9GIgRVe13IKF7nRzh/lDi63XMpcYG5qPQEQ1QNGCNerirw=
+X-Google-Smtp-Source: AGHT+IHyEVnbywVMnW3si6EXMTH7Lpq1yKcsKHLU5Gbz02t3cBtlm1g85oXrlv8j+qWlMftyIMLtWg==
+X-Received: by 2002:a17:906:b0e:b0:a36:804c:ee36 with SMTP id
+ u14-20020a1709060b0e00b00a36804cee36mr4369087ejg.0.1706796240598; 
+ Thu, 01 Feb 2024 06:04:00 -0800 (PST)
 X-Forwarded-Encrypted: i=0;
- AJvYcCVR4Fp1vQk/EfJ6xOMdiD9eyj77QHTbvAWGe5bI7Ts8dp+AjeZMfHaKES4hw/r8Io3kySMxdHwJ2YYYigtmrklhFAhVoYQ/Odg23lFkUg==
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- x18-20020a5d54d2000000b0033b14e447d1sm1689339wrv.1.2024.02.01.06.01.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 Feb 2024 06:01:33 -0800 (PST)
-Message-ID: <b5132e7f-2fcb-4ad2-8a12-8479feb6415a@gmail.com>
-Date: Thu, 1 Feb 2024 15:01:26 +0100
+ AJvYcCU6eoCsEEn/9JLw+iUVSKKFvE44QNeaUaSRsGdlxvooufJ9lGGhqkohOwR430FVWZynk1rUTMJDylWL+GaFw9DWofgiIll4OdA=
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ vk6-20020a170907cbc600b00a36cd7bb2casm419168ejc.120.2024.02.01.06.03.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Feb 2024 06:03:59 -0800 (PST)
+Date: Thu, 1 Feb 2024 17:03:55 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: amd-gfx@lists.freedesktop.org
+Subject: Re: [bug report] drm/amd/display: Simplify the per-CPU usage.
+Message-ID: <e2de2a0c-8e02-44a1-bdfb-403e7b91b64f@moroto.mountain>
+References: <e31dedcc-1aa8-4430-a2f5-9e37ca25410f@moroto.mountain>
+ <20240201135342.4dhm3bWG@linutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: fix typo in parameter description
-Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20240111155837.3460096-1-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20240111155837.3460096-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240201135342.4dhm3bWG@linutronix.de>
+X-Mailman-Approved-At: Thu, 01 Feb 2024 14:17:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,32 +81,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 11.01.24 um 16:58 schrieb Alex Deucher:
-> Missing space.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+On Thu, Feb 01, 2024 at 02:53:42PM +0100, Sebastian Andrzej Siewior wrote:
+> On 2024-02-01 15:18:04 [+0300], Dan Carpenter wrote:
+> > Hello Sebastian Andrzej Siewior,
+> Hi Dan,
+> 
+> > The patch de5e73dc6baf: "drm/amd/display: Simplify the per-CPU
+> > usage." from Sep 21, 2023 (linux-next), leads to the following Smatch
+> > static checker warning:
+> 
+> Did I introduce that or has it been made visible?
+> That change adds preempt_disable() to DC_FP_START() but this was there
+> already, just hidden. For x86 it is done within kernel_fpu_begin().
+> 
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Sorry, yeah, the bug was there before.  I don't know why this shows up
+as a new warning.  Probably it's because AMD driver files were renamed...
+Smatch parses kernel_fpu_begin() correctly and sees the preempt_disable()
+but I didn't know it disables preemption so it's likely human error on
+my part.
 
-And sorry that this took so long. I'm still trying to catch up to my mails.
-
-Christian.
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index 5c9caf5fa075..0712d5867849 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -366,7 +366,7 @@ module_param_named(aspm, amdgpu_aspm, int, 0444);
->    * Setting the value to 0 disables this functionality.
->    * Setting the value to -2 is auto enabled with power down when displays are attached.
->    */
-> -MODULE_PARM_DESC(runpm, "PX runtime pm (2 = force enable with BAMACO, 1 = force enable with BACO, 0 = disable, -1 = auto, -2 = autowith displays)");
-> +MODULE_PARM_DESC(runpm, "PX runtime pm (2 = force enable with BAMACO, 1 = force enable with BACO, 0 = disable, -1 = auto, -2 = auto with displays)");
->   module_param_named(runpm, amdgpu_runtime_pm, int, 0444);
->   
->   /**
+regards,
+dan carpenter
 
