@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37EB18462A9
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 22:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB588846334
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Feb 2024 23:12:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC1110E060;
-	Thu,  1 Feb 2024 21:34:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C3B10E979;
+	Thu,  1 Feb 2024 22:11:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fU5xkyIO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4/ipnymN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D632410E060
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Feb 2024 21:34:03 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2069.outbound.protection.outlook.com [40.107.94.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDBE10E7D5;
+ Thu,  1 Feb 2024 22:11:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q0tfqPK4gV30sZr3Z4F5LoCKk/826bT7pFCfYFb6rX/2OdzctOmyLEIUN9qU/Fj5h8KngzZQxvRwLwSwqC+fhpJWsHYt4ptn6pASK/aKhD3GeSRxHq6U8tGkmvaVbMHFhzO064BlGi81bMLiCTvmzEpy1fq+i8pCG2GF1LDnXyDHLnH4pyyoAB1AZBP2/I/Cyi6La0YOZYtA0AbfoRO9fSbCx6kzABiBnm0xbIq2Tl9H2/voKkex5P5gWshPyncK9AEe/Ze5Jf1Weyc++NU7huIU4ssVEVr+Ts9R1T+zJ83rp0O/heoU/JaMrTqw75p1cCwRKxW1APLv6he9oXtl5A==
+ b=RLHYWmOkUyMDzKP8NuoeoDXByr8JYgdje/oTnsFs+Tns/NWIpomypmWOfdr3bswZFkLqc3qlqgNj4SleW94+Np+AcQtveujo8Cd/oTluA8sB/++bieBr51LGPiYD8Oq7SqneNaG03fRYKBmJdi0cBI4nHbpJJv/NMU0eroQ2kFlyxxwZhbeQ34MWslXxJD2uGG+aMNcmaUE/CsfMKSNpvKVaFg1uJ8f8amN9rsVOtPaQIth+KVlynJcaAEE8mKcvyjvumOngaj4ZZBdFkA0FAZdLzPL+i8BmVl68k5pNGJXyG5Ud5e+ejjEhj/4/00slVqZ006JZKh3YWXR6OC0K5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WHN9UK/xAmh12PWmdkxTTfD1xBDJTm/xM6L4b7fIenY=;
- b=BYHhqUneIoeLkORYTMUMMMjXcFxolrpSEVs7v/b4jxnLOODf/J+nVm/eWGia8nLoOq4eMQkt0YeO22wAXBf0Vd1hcX4O3B4yqr4Ars2KzQ3phKPcWQszOzWp98i6xcItyMd1krt1CPrj8WfhGNLF0r882vPaGk0+7EFmVPX4qw7SpOyFNy6dtOjI74IthFSj2insthRfN66YfYqq47AcZRQjnUhF4ghpx4KJxLUDMvmkutkWgNBGdSXWdmlnic26i7KGBCpiCYmhJyvvK01zCIgiJTUeg2/cyTNyfK6wkmfZ20KBxs7hnQVwO3HKmK708bYRVQ5eO/YsMRHsUM9oSA==
+ bh=xCywjw5D8vgHFCTQux8e8mViMEgVBwqXflFfsD5FsvI=;
+ b=nTX+5VRt8Qs/7HUMjHJzSMWxCjnmSyNQAduMUU1vr3v9buPddEhSb5yD15eROvMonYCNM2FTbRUyDYybOL+sWkhyXMcrV2FJJZDlqsVoQare5yBVGIX83GO5QhpF0g7SwcL5eaF2MrjMH5LTfBPL4s/eqHG9SxFLlih0aVPKPLJJavd2sEVOsrmRJ2mTZypyP1HpHHo1m7waqTUQb8GsN3xAux89YQMbIvEmbKZ/nBue1yYDRgpvZB+aiV4wqfDxOyai1cP0a5D9WQKsQ3mHZh99ULVrql0t/77TqXDKCp/goaFBfN2421rvMEsG51u0xggybqvE2LVA1YFtvQXSUA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WHN9UK/xAmh12PWmdkxTTfD1xBDJTm/xM6L4b7fIenY=;
- b=fU5xkyIOfCr0m2taeiiwGBDpw6ZoaJ13S4U6vfelbQwPcYZkUk81yGjulWVKAHtFcPl2JPL584xWkCrPGRG+896NCvGxTz5+gU+4GSwagNlRy9s2Haz4hUNunxiE8goL2ocDk4MkQsi+/WijkHivfk/JtKyrprI5mZD8nYrztAE=
-Received: from BN8PR04CA0037.namprd04.prod.outlook.com (2603:10b6:408:d4::11)
- by IA0PR12MB8205.namprd12.prod.outlook.com (2603:10b6:208:400::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Thu, 1 Feb
- 2024 21:33:58 +0000
-Received: from BN2PEPF000044AB.namprd04.prod.outlook.com
- (2603:10b6:408:d4:cafe::6b) by BN8PR04CA0037.outlook.office365.com
- (2603:10b6:408:d4::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.28 via Frontend
- Transport; Thu, 1 Feb 2024 21:33:58 +0000
+ bh=xCywjw5D8vgHFCTQux8e8mViMEgVBwqXflFfsD5FsvI=;
+ b=4/ipnymNbePiEYucEnJn2edsBbf8qRfXfmvqxkflVjjpjsicP1BtJoxZQL6DrWNIzEVmBD2Z/UVr644rIWu8tBeMlRoB9gtYc3DJuwhS71eFFf2HNZYALTF/spReEGEYepdgFHIBT9D5F8LYKEHDC26fqFqjT+gsjpsCNRIlDak=
+Received: from DM6PR05CA0044.namprd05.prod.outlook.com (2603:10b6:5:335::13)
+ by SA3PR12MB9092.namprd12.prod.outlook.com (2603:10b6:806:37f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Thu, 1 Feb
+ 2024 22:11:38 +0000
+Received: from DS1PEPF00017090.namprd03.prod.outlook.com
+ (2603:10b6:5:335:cafe::8f) by DM6PR05CA0044.outlook.office365.com
+ (2603:10b6:5:335::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22 via Frontend
+ Transport; Thu, 1 Feb 2024 22:11:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,52 +48,54 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN2PEPF000044AB.mail.protection.outlook.com (10.167.243.106) with Microsoft
+ DS1PEPF00017090.mail.protection.outlook.com (10.167.17.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Thu, 1 Feb 2024 21:33:58 +0000
-Received: from lmoriche-tr.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.7249.19 via Frontend Transport; Thu, 1 Feb 2024 22:11:38 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 1 Feb
- 2024 15:33:57 -0600
-From: Laurent Morichetti <laurent.morichetti@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <jay.cornwall.six@amd.com>, Laurent Morichetti
- <laurent.morichetti@amd.com>, Lancelot Six <lancelot.six@amd.com>, "Jay
- Cornwall" <jay.cornwall@amd.com>
-Subject: [PATCH v2] amdkfd: pass debug exceptions to second-level trap handler
-Date: Thu, 1 Feb 2024 13:33:34 -0800
-Message-ID: <20240201213334.1275083-1-laurent.morichetti@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <c0621e89-8f69-7b18-92fb-37c91c678760@amd.com>
-References: <c0621e89-8f69-7b18-92fb-37c91c678760@amd.com>
+ 2024 16:11:36 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>, 
+ Harry Wentland <harry.wentland@amd.com>, "Rafael J . Wysocki"
+ <rafael@kernel.org>, Hans de Goede <hdegoede@redhat.com>
+CC: "open list:ACPI" <linux-acpi@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>, Melissa Wen <mwen@igalia.com>, "Mark
+ Pearson" <mpearson-lenovo@squebb.ca>, Mario Limonciello
+ <mario.limonciello@amd.com>
+Subject: [PATCH v3 0/5] Add support for fetching EDID from ACPI _DDC
+Date: Thu, 1 Feb 2024 16:11:14 -0600
+Message-ID: <20240201221119.42564-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044AB:EE_|IA0PR12MB8205:EE_
-X-MS-Office365-Filtering-Correlation-Id: 365dfdc8-5090-4b72-c56e-08dc236d7fbe
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017090:EE_|SA3PR12MB9092:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50a28923-d0db-41fc-f83d-08dc2372c2df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AbxZ04V79pdWbA9kd/PDgPdiRC4kfROL4pcBB7wc3VlDclAHbcxtsRTznHYVxZO3Bbr+pdfiWsfh5Qa9Me22Q/El4ZjMKVEda6Snbp1UDJ4fHWRIGUa0LfD6nDa+QKsduuuKipmy2Rme+byt0TJzKAqfJLZgyEE3vPi0LP+CZfJOYPIFIqFUcPvIsaNJq/Gw0Zy9gzAO8WS8Jzp7cYMZ7LkxrAsauM9vyr8Vq1O9zowLkz0VjxduiGv30pUFCYGVu0mMvjgYSmwHxp9ocg7bxvKOD0PzXv01W6b9T/BXlXnM2SBtRVyU8RvcQwFDs69RbzH35e2mJ1M+PeWDEaxN0VYQt48RPequvyEV2is1Lz/CknGdHpPrM1z+i4iv720qNPBGJr1RivHIhWv7s2pf7reKKmEiNzQYNJK4PbXoE1sLo+k6dprf7wzkyOeV3o6IG38+lrZMqll6MOneSzO/5u/BniHgG1JOrlPUTK/TZW+hyLVOwlfQ9VaBRm9D3pviGE+6s6ylWxSZwiHkjBPCbtKmQyJDULT0wTxdF0EjSgDrf/HBFPireUmPWzOS/xyGg3J9JBJQD1wkRAVO3ODwBms43C2ld3IGouXZci3L0KHzKI0lReG5Fh+a5M3OzG5/QKkC/a3kmKCETH3VP1hIjiXEvjflRAzKBOstrN5qwZzeCglNzko5zvKgjLOLal/ZA2O3TjVPPOjKAHfOvIiwGPzse1dVMO8MUs293NJ3jBNc4swALVUAOkntR3q/OFLzBQU8CgxIYoay6fuKd/7ilA==
+X-Microsoft-Antispam-Message-Info: yKrFFOERkdfW2MwYhDxYdyRQTegaMSSuWMDGIBeZn2/g2iO+1VMHp6/K6Qazy3tobMja5lXgwTTrtYa0kkk9ZxIyg5Ly9cfUJgzTAiOd0ktIwgcKgAlnpSFz0ndlrriEE6uogSOpaqyQ/lGUJBkLeqODQaaNO6EMeFDUH+tgfrTLiNA+7nz+j1UFQ1pPXcAey5aYgrT8tS/40u5DsbquFZN+27p7nsrt1uLHS2xP7a/T+82LkZuU3GcfKHqKnEAMGWbP4k1Yji+L4Ms5LdLBbwHNemdhEy99TcGI1DTqqJ4GeTuAXwko99VOccHWx1E+0wGdWwMwx67SHov+LUEDaGtxd4fhQgoJpX4rijdFFJq21Txl/X9RA1GSXLmtVb+SxBHNllCdfElIbRazgk6QNfJUCYMNTGHL8uaAqAs0H9KTr0uS5kGrJTK3P1cfSgjBUurx1RpZ9YT3HNk9F+0K/2damTynnzxTu4stypItBKKj+Sj8g/G7Krv0tPIv0EZc4zZt858D5rvK34COqJ0h1IBveOwypP/cJ9CKlIVrG9JcLBAvs9fjiNhvhnex7DOqwba+E63D+bEC1nkYJGWMpi3RglneI/6fXAwfc1xDvWql01UKFTmXCsUmzUY3PNTBtuYuJO4bRfXr+pAY3JRJH50kAP6N9icePPX/9JHch2BqR64NlbKP6hfldjM2KrrjW/cgKB5xiBZmUsJwXkahLh8iX5uxQxdaBWD7x7V7rpMJOCsvbvuHs+M1NLLWxO1N
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(346002)(136003)(39860400002)(376002)(230922051799003)(451199024)(186009)(64100799003)(82310400011)(1800799012)(36840700001)(46966006)(40470700004)(54906003)(316002)(8676002)(8936002)(70586007)(70206006)(4326008)(478600001)(6916009)(86362001)(5660300002)(2906002)(41300700001)(36756003)(44832011)(47076005)(83380400001)(336012)(40460700003)(40480700001)(26005)(16526019)(356005)(1076003)(2616005)(36860700001)(82740400003)(81166007)(426003)(7696005)(6666004)(36900700001);
+ SFS:(13230031)(4636009)(136003)(39860400002)(376002)(396003)(346002)(230922051799003)(451199024)(82310400011)(1800799012)(64100799003)(186009)(40470700004)(36840700001)(46966006)(83380400001)(426003)(2906002)(336012)(2616005)(1076003)(16526019)(36860700001)(5660300002)(26005)(82740400003)(47076005)(70206006)(54906003)(966005)(8676002)(110136005)(70586007)(6666004)(4326008)(7696005)(8936002)(44832011)(316002)(478600001)(86362001)(41300700001)(81166007)(356005)(40460700003)(40480700001)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 21:33:58.0915 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 365dfdc8-5090-4b72-c56e-08dc236d7fbe
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 22:11:38.1688 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50a28923-d0db-41fc-f83d-08dc2372c2df
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044AB.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017090.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8205
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9092
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,74 +110,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Call the 2nd level trap handler if the cwsr handler is entered with any
-one of wave_start, wave_end, or trap_after_inst exceptions.
+Some laptops ship an EDID in the BIOS encoded in the _DDC method that
+differs than the EDID directly on the laptop panel for $REASONS.
 
-Signed-off-by: Laurent Morichetti <laurent.morichetti@amd.com>
-Tested-by: Lancelot Six <lancelot.six@amd.com>
-Reviewed-by: Jay Cornwall <jay.cornwall@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h  |  2 +-
- .../drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm  | 17 ++++++++++++++++-
- 2 files changed, 17 insertions(+), 2 deletions(-)
+This is the EDID that is used by the AMD Windows driver, and so sometimes
+different results are found in different operating systems.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
-index d1caaf0e6a7c..2e9b64edb8d2 100644
---- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
-+++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
-@@ -2518,7 +2518,7 @@ static const uint32_t cwsr_trap_gfx11_hex[] = {
- 	0x8b6eff7b, 0x00000400,
- 	0xbfa20045, 0xbf830010,
- 	0xb8fbf803, 0xbfa0fffa,
--	0x8b6eff7b, 0x00000900,
-+	0x8b6eff7b, 0x00160900,
- 	0xbfa20015, 0x8b6eff7b,
- 	0x000071ff, 0xbfa10008,
- 	0x8b6fff7b, 0x00007080,
-diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
-index 71b3dc0c7363..7568ff3af978 100644
---- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
-+++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
-@@ -81,6 +81,11 @@ var SQ_WAVE_TRAPSTS_POST_SAVECTX_SHIFT		= 11
- var SQ_WAVE_TRAPSTS_POST_SAVECTX_SIZE		= 21
- var SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK		= 0x800
- var SQ_WAVE_TRAPSTS_EXCP_HI_MASK		= 0x7000
-+#if ASIC_FAMILY >= CHIP_PLUM_BONITO
-+var SQ_WAVE_TRAPSTS_WAVE_START_MASK		= 0x20000
-+var SQ_WAVE_TRAPSTS_WAVE_END_MASK		= 0x40000
-+var SQ_WAVE_TRAPSTS_TRAP_AFTER_INST_MASK	= 0x100000
-+#endif
- 
- var SQ_WAVE_MODE_EXCP_EN_SHIFT			= 12
- var SQ_WAVE_MODE_EXCP_EN_ADDR_WATCH_SHIFT	= 19
-@@ -92,6 +97,16 @@ var SQ_WAVE_IB_STS_RCNT_FIRST_REPLAY_MASK	= 0x003F8000
- 
- var SQ_WAVE_MODE_DEBUG_EN_MASK			= 0x800
- 
-+#if ASIC_FAMILY < CHIP_PLUM_BONITO
-+var S_TRAPSTS_NON_MASKABLE_EXCP_MASK		= SQ_WAVE_TRAPSTS_MEM_VIOL_MASK|SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK
-+#else
-+var S_TRAPSTS_NON_MASKABLE_EXCP_MASK		= SQ_WAVE_TRAPSTS_MEM_VIOL_MASK		|\
-+						  SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK	|\
-+						  SQ_WAVE_TRAPSTS_WAVE_START_MASK	|\
-+						  SQ_WAVE_TRAPSTS_WAVE_END_MASK		|\
-+						  SQ_WAVE_TRAPSTS_TRAP_AFTER_INST_MASK
-+#endif
-+
- // bits [31:24] unused by SPI debug data
- var TTMP11_SAVE_REPLAY_W64H_SHIFT		= 31
- var TTMP11_SAVE_REPLAY_W64H_MASK		= 0x80000000
-@@ -224,7 +239,7 @@ L_NOT_HALTED:
- 	// Check non-maskable exceptions. memory_violation, illegal_instruction
- 	// and xnack_error exceptions always cause the wave to enter the trap
- 	// handler.
--	s_and_b32	ttmp2, s_save_trapsts, SQ_WAVE_TRAPSTS_MEM_VIOL_MASK|SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK
-+	s_and_b32	ttmp2, s_save_trapsts, S_TRAPSTS_NON_MASKABLE_EXCP_MASK
- 	s_cbranch_scc1	L_FETCH_2ND_TRAP
- 
- 	// Check for maskable exceptions in trapsts.excp and trapsts.excp_hi.
+This series adds a new DRM helper that will use acpi_video to fetch the
+EDID.
 
-base-commit: c4b562a17829454713e45219fa754be1bfda9004
+On amdgpu when an eDP panel is found the BIOS
+is checked first for an EDID and that used as a preference if found.
+
+On nouveau it replaces the previous local function doing a similar role.
+
+This does *not* use struct drm_edid as this will require more involved
+amdgpu display driver work that will come separately as part of follow-ups
+to: https://lore.kernel.org/amd-gfx/20240126163429.56714-1-mwen@igalia.com/
+
+v2-v3:
+ * Clean up some of the 'select ACPI_VIDEO' kconfig spaghetti reported by LKP
+ * Drop the 'select ACPI_VIDEO' from the DRM drivers
+
+Mario Limonciello (5):
+  ACPI: video: Handle fetching EDID that is longer than 256 bytes
+  drm: Add drm_get_acpi_edid() helper
+  drm/amd: Fetch the EDID from _DDC if available for eDP
+  drm/nouveau: Use drm_get_acpi_edid() helper
+  drm: Drop unneeded selects in DRM drivers
+
+ drivers/acpi/acpi_video.c                     | 25 +++----
+ drivers/gpu/drm/Kconfig                       |  5 ++
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |  7 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  8 ++
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 ++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  9 ++-
+ drivers/gpu/drm/drm_edid.c                    | 73 +++++++++++++++++++
+ drivers/gpu/drm/gma500/Kconfig                |  6 --
+ drivers/gpu/drm/i915/Kconfig                  |  7 --
+ drivers/gpu/drm/nouveau/nouveau_acpi.c        | 27 -------
+ drivers/gpu/drm/nouveau/nouveau_acpi.h        |  2 -
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
+ drivers/gpu/drm/radeon/Kconfig                |  7 --
+ drivers/gpu/drm/xe/Kconfig                    |  6 --
+ include/drm/drm_edid.h                        |  1 +
+ 17 files changed, 116 insertions(+), 84 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
