@@ -2,74 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1173A8498D1
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Feb 2024 12:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFEE849D34
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Feb 2024 15:40:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC8A1124D8;
-	Mon,  5 Feb 2024 11:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5050410FA03;
+	Mon,  5 Feb 2024 14:40:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fUVmXrdm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XYBTCKL4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0911124D8
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 11:28:56 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-51137c8088dso3991523e87.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 05 Feb 2024 03:28:56 -0800 (PST)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A24510F58E
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Feb 2024 12:22:11 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-5114a21176cso620444e87.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 05 Feb 2024 04:22:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707132534; x=1707737334; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=TcnrZiFoKqoviNxRH/t3HUNFg1NWrZniLXis+Ehl3kQ=;
- b=fUVmXrdmMXHKrmAjCK4u/uBpsRi2bgA+AzKmehgnz9exvtvup3tfeLWeiZn2Q3aEhf
- 3lYqvOAGdkDGTmZF863kKnT7fVSb3DfMrz8DOo2o3cxnjRchubNw9yEdEqHZScKvpiKv
- TvqaoT82tEOZK5UF2ZxpIMnNS3YsQsodbjW+dgyAQog5e8VBn+xJ+8RfU6yhQvWRNzh3
- N3Ruhfw7nOtvfrwvyVSVFkUj6yEyUlfq6CwwQetpoJW6WYzaXbHCGL0qR37SS8+KJcGk
- LvicTfXRF0h/ij5xnDgzA0qnv7mJhOjd8GBGPAA4ulCm3lYx2M6cJ67BLC4fbHYRfC1r
- 8Ptg==
+ d=gmail.com; s=20230601; t=1707135729; x=1707740529; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=DsTopB40v8e+57R3FP+15KsfdhxipZbBAJNJON7l3mE=;
+ b=XYBTCKL4WHyA1iza8ey5d/HDTNvKBZWAI91gPxd9nSQBYG0ATZ60tJC6q1Gs407wa2
+ u9cuY3y8vWQzMTi4dAFml6ufIKIH1ZFk3VuOBrHihJPNpOUSFNRhh2m+3jebTaW6aJT8
+ bOfuBzVwJJZR9qYiKgn0x5B5GZRIZR35VjfOg9ebvAcjr2RRf+FFSRj4e4bXkC/3fi1C
+ /6q6ZFkADBjbD8dISxxRZJuV8usKYynxWaNsqMS0gBECde4kQyPtTWhvv5nDQAzK8+89
+ udc0a2ztjxLbyM2wk3X6cBedH6Z21QIXCLb8/hDEnnwE8mZk2BKsnIOAxe4Q83tPy+90
+ Hf4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707132534; x=1707737334;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=TcnrZiFoKqoviNxRH/t3HUNFg1NWrZniLXis+Ehl3kQ=;
- b=dL//iOMFJR365Fjb1nwrl+DMEuKWHc+bgSLc6VMLjHrrUHvCIlWE95dNbMO2QhLC6O
- xa2g4JSUN9QLj1pdDRRy2cKATEgAtbRugFFAzJQ5cH6OOW1dkaz1beOyB/apiKCyPMuh
- ZAJUkCEtmvfC5HixdI5FqwmCDxIarVNd++vkuMsYgvGJU5G6V6TmNWKUb+hYv0tRYtsu
- icdVu7jgSLmDH61nuSd1FGQPQ+azjDRTEiQ9oyYb44QOPbS58PvGkbrqfiSWE3R+dr/h
- 3zVK6UY+Dx/ExFAcrr2s0n69VaZ5+YGgrCed7UViiOvYKsWVox++e4mT1z0jgRfXLF1O
- vg4Q==
-X-Gm-Message-State: AOJu0Yx9aan6dluYub7qGqjImXCje+fnG6brbnZ3IqWCjzQX/nnoKi9Z
- iDbKctvjdzeYWbgRLjEbgbE0HGcY4WbLlSkV0PAnn9xx9N8Vhhjx
-X-Google-Smtp-Source: AGHT+IHduzacAbB+gmsJTfUXIU/uuqegqXDQipzDg06tYFlUORm6tm/gFiQIkB2iylDysb5O+TBzgg==
-X-Received: by 2002:ac2:5238:0:b0:511:4943:6066 with SMTP id
- i24-20020ac25238000000b0051149436066mr3046237lfl.25.1707132534315; 
- Mon, 05 Feb 2024 03:28:54 -0800 (PST)
+ d=1e100.net; s=20230601; t=1707135729; x=1707740529;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=DsTopB40v8e+57R3FP+15KsfdhxipZbBAJNJON7l3mE=;
+ b=ZPQO1vhSds0t6HyQ8Uq8qPwa+hKK8zK3Ll6GsxldJ/YtepC6cnV2yrddB1HR9SkrMS
+ 9p0RD2CCRTWkg0lqlgb/Ekmw4ID9WbCPLHlW5PYjxTHFRqq+6qeXlDHP0pWz/AHasNDU
+ z66WqC0oS/SVeV99yCgCp2+SbLO5fDk0fbuSiCkJJwDBzp7FT0RhKluIgm4TZGT7VDgQ
+ sVKvkKIYcK1i4TJ63Tk9s1iNSwWXdRJWWgttmlKvKZ45iawTbnODZs06Em9TfTn0dkKO
+ rRD8Mo8PAsk4YoVnt1dkHFAqq/VYC0Gwn3ZJpBmSGcEZKtUCavzP5sVdvvetsIugvbrc
+ c0OQ==
+X-Gm-Message-State: AOJu0YwTyKjVyBg9tj90OR6Y66AlikbcMUI0JMF1rlQ7/amXiy44Mlv4
+ OyYQvELQ3q5MMYD3O3dDiuO1m4N+jFQeMulHq7WlAWX+t3pzXnMq
+X-Google-Smtp-Source: AGHT+IEOF08DEpMV/aE/bR6THEAkaKyqbsTR+aZvoSd+B423zZBGK06bqHI29Me8zUQgNkJYYs7TIg==
+X-Received: by 2002:a05:6512:1055:b0:511:536b:89e with SMTP id
+ c21-20020a056512105500b00511536b089emr1248133lfb.0.1707135728790; 
+ Mon, 05 Feb 2024 04:22:08 -0800 (PST)
 X-Forwarded-Encrypted: i=0;
- AJvYcCUGg9Ncywyi1UvMZFL0Fsb4Xpf05vHlc2PN+5pEVK5/JEIZ2r/ER06DGI0d4oAKnSSJ45cXkUZcLNmG4OHRHhzjmOu3MgfgRPE1+OHBijH+NXixyZwCaXaZq5XziX9zxSppM9UE1Oqy05yad4OsfJHrtfxYQzPlh4poVjjU96rLVdQ8SuPO2beI2AYW7SjCrau8wb1fF4tFNWNalcO5tPFBmHzLxFEf25RKtZepOYKGHPEheTibxZ7ldG5fzoXZuW2JgowWjYR3dwZfEu8=
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- bi7-20020a05600c3d8700b0040fdd18f6fasm1448578wmb.39.2024.02.05.03.28.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 05 Feb 2024 03:28:53 -0800 (PST)
-Message-ID: <db589d23-6e15-4b54-845f-fb719e59949d@gmail.com>
-Date: Mon, 5 Feb 2024 12:28:51 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+ AJvYcCUhuGx+c5f52OKpYK4sIjM/j/qWUhfNP+BN/x2fhUnmjyAzVzpkMsHvapI0lc9LK4pbGDi3BGiiv1Ui42/31CQYcszxMRDVgM+61GVxVdDlh4vzLszfdlRR7gvACXgCSXb0WU7Ug/ZdPF3oiugFfnbr13PshUReJyFZl7XFrubNFxuT2iPzsm4L1p23j8e16x6ieuHxCeik5Ok2K87jhnv+JehO17/7b04fUeVDyw==
+Received: from localhost ([193.209.96.43]) by smtp.gmail.com with ESMTPSA id
+ w13-20020a05651234cd00b00511560092e3sm27526lfr.298.2024.02.05.04.22.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 05 Feb 2024 04:22:08 -0800 (PST)
+Date: Mon, 5 Feb 2024 14:22:07 +0200
+From: Zhi Wang <zhi.wang.linux@gmail.com>
+To: Emily Deng <Emily.Deng@amd.com>
+Cc: <amd-gfx@lists.freedesktop.org>, <bhelgaas@google.com>,
+ <alex.williamson@redhat.com>, <linux-pci@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>
 Subject: Re: [PATCH] PCI: Add vf reset notification for pf
-Content-Language: en-US
-To: Emily Deng <Emily.Deng@amd.com>, amd-gfx@lists.freedesktop.org,
- bhelgaas@google.com, alex.williamson@redhat.com, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org
-References: <20240204061257.1408243-1-Emily.Deng@amd.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <20240205142207.0000685a.zhi.wang.linux@gmail.com>
 In-Reply-To: <20240204061257.1408243-1-Emily.Deng@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20240204061257.1408243-1-Emily.Deng@amd.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 05 Feb 2024 14:40:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,65 +84,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 04.02.24 um 07:12 schrieb Emily Deng:
-> When a vf has been reset, the pf wants to get notification to remove the vf
-> out of schedule.
->
+On Sun, 4 Feb 2024 14:12:57 +0800
+Emily Deng <Emily.Deng@amd.com> wrote:
+
+> When a vf has been reset, the pf wants to get notification to remove
+> the vf out of schedule.
+> 
 > Solution:
-> Add the callback function in pci_driver sriov_vf_reset_notification. When
-> vf reset happens, then call this callback function.
-
-Well that doesn't make much sense. As other already noted as well a VF 
-should be an encapsulated representation of a physical devices 
-functionality.
-
-AMD implemented that a bit different with a hypervisor to control which 
-PF functionality a VF exposes, but that doesn't mean that we can leak 
-this AMD specific handling into the common Linux PCI subsystem.
-
-Additional to that a technical blocker is that when a VF is passed into 
-a VM you don't have access to the PF any more to make this reset 
-notification.
-
-Regards,
-Christian.
-
->
+> Add the callback function in pci_driver sriov_vf_reset_notification.
+> When vf reset happens, then call this callback function.
+> 
 > Signed-off-by: Emily Deng <Emily.Deng@amd.com>
 > ---
->   drivers/pci/pci.c   | 8 ++++++++
->   include/linux/pci.h | 1 +
->   2 files changed, 9 insertions(+)
->
+>  drivers/pci/pci.c   | 8 ++++++++
+>  include/linux/pci.h | 1 +
+>  2 files changed, 9 insertions(+)
+> 
 > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
 > index 60230da957e0..aca937b05531 100644
 > --- a/drivers/pci/pci.c
 > +++ b/drivers/pci/pci.c
 > @@ -4780,6 +4780,14 @@ EXPORT_SYMBOL_GPL(pcie_flr);
->    */
->   int pcie_reset_flr(struct pci_dev *dev, bool probe)
->   {
+>   */
+>  int pcie_reset_flr(struct pci_dev *dev, bool probe)
+>  {
 > +	struct pci_dev *pf_dev;
 > +
 > +	if (dev->is_virtfn) {
 > +		pf_dev = dev->physfn;
 > +		if (pf_dev->driver->sriov_vf_reset_notification)
-> +			pf_dev->driver->sriov_vf_reset_notification(pf_dev, dev);
+> +
+> pf_dev->driver->sriov_vf_reset_notification(pf_dev, dev);
 > +	}
 > +
->   	if (dev->dev_flags & PCI_DEV_FLAGS_NO_FLR_RESET)
->   		return -ENOTTY;
->   
+>  	if (dev->dev_flags & PCI_DEV_FLAGS_NO_FLR_RESET)
+>  		return -ENOTTY;
+>  
 > diff --git a/include/linux/pci.h b/include/linux/pci.h
 > index c69a2cc1f412..4fa31d9b0aa7 100644
 > --- a/include/linux/pci.h
 > +++ b/include/linux/pci.h
 > @@ -926,6 +926,7 @@ struct pci_driver {
->   	int  (*sriov_configure)(struct pci_dev *dev, int num_vfs); /* On PF */
->   	int  (*sriov_set_msix_vec_count)(struct pci_dev *vf, int msix_vec_count); /* On PF */
->   	u32  (*sriov_get_vf_total_msix)(struct pci_dev *pf);
-> +	void  (*sriov_vf_reset_notification)(struct pci_dev *pf, struct pci_dev *vf);
->   	const struct pci_error_handlers *err_handler;
->   	const struct attribute_group **groups;
->   	const struct attribute_group **dev_groups;
+>  	int  (*sriov_configure)(struct pci_dev *dev, int num_vfs);
+> /* On PF */ int  (*sriov_set_msix_vec_count)(struct pci_dev *vf, int
+> msix_vec_count); /* On PF */ u32  (*sriov_get_vf_total_msix)(struct
+> pci_dev *pf);
+> +	void  (*sriov_vf_reset_notification)(struct pci_dev *pf,
+> struct pci_dev *vf); const struct pci_error_handlers *err_handler;
+>  	const struct attribute_group **groups;
+>  	const struct attribute_group **dev_groups;
 
+Hi:
+
+I would suggest you can provide a cover letter including a complete
+picture that tells the background, detailed problem statement, the
+solutions and plus the users. As this seems very like a generic change,
+it needs a better justification to convince folks why this is the best
+solution. Without a complete picture, the solution just looks like a
+workaround.
+
+Thanks,
+Zhi.
