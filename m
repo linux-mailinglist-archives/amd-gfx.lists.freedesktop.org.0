@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908A384BA72
+	by mail.lfdr.de (Postfix) with ESMTPS id 2900284BA71
 	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 16:59:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577AF112CB2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF36112CAF;
 	Tue,  6 Feb 2024 15:59:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kraj8LgY";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wmY0nCRq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 323B9112CA5
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22158112CA2
  for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:59:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PBx9xwx1r/b6JmAB0niCNBht9lSXEXt5/CwSPjwvqdeWAzvQudSYkyyJrCCF8xFJEjT0ZhPAp4Bxm7gdlD9v5YqTwMAy3iafjzPdYx39RTrRoviEaC/k+vl0mA0B/Qc1IOkK3c9O3ENJST5MQ+FMS8D5FJFu/utxWkiMItV4cdv8hQ884lAeO6kHVi9zeNf3J3bsfULxpFenHzBDythqd67oFNrvAYDKKmgcE5Nxnx47wXzPpk8t1LUenvO0dkmw+NF44SZ76vXiPWNUCv83rzufWq3boqDw9H1M8KNQcjO4qCbbBD3Ai5MNMriay7tYYUlwJy2HhD38MlUalw9sfA==
+ b=hhQWC5f+X+oq1HbmhWTfhXB8QcEiJ4K4F5D9Bpxd/mIWya6Nt6bsnnQfudOmhn5itUNsJSy6DaMFAPhIisW84VMVH6KEG0jOlTBl4uTPJkMjTd5QyCbPWi4Zv5WiPnGf5FTZURpIc2EdYjbzNhxsf8LyHAqSe1NVxK2hlOS+JAZZxtF/wtOCnNDZFT114rCY7el2dCWjCPzSF8Z7KzXjeHcpRfrMkd5KrTlhfWtnricBxVNSzkyBdQuw5duLrGHrnWSbBn9IloOWjeJlY1Q5BTNcdjuo+gPljDE8TbLgIgoSHO0SsyGgtCZWg3TXMiH/MFQ9pD0GXhydcBMx/JTvfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZZS+lN12K9bgIMwJSSPcC0UpNYq+BlU0nAbFi6y9kjs=;
- b=lQKvpuUnzH8jUBfMaJaWa44YF4j08SsRg/408pbVTY4HCjLPS9JHxrxJJ8w0hEd2gd2XjfqLAFpIg7iGET/WBnCEYVrlz4CJmVKcJvQC8CkDh2lCWG7eZcklhUwE5F845bdD1il2r3ACYSSawFQB3uuVjeUmZRK5x5ZAsB2IyE3AuLi98EYjFpn1rYVHW54pUs7UZAPGtTtCGz4w3s1smN0kVZLtSdE8WU6lY7czKrRDU6kUR5cUNKLy91zwJcmmaWxHMsvtv7pvrmfwhThdmRIlU7CD7JPEt0e99nrJdLUa9N9pLjSUy+dE0XKhXsJCpyzfQ8V5OV3ojswRLP26JA==
+ bh=hGqhSL/S9Qlob3VVaMi875KTpuICsMjIC5dyVkpiAAM=;
+ b=HXMHPIZEjorl954xMlyGSi4/iMezpTMkZfsvLOz2V+Xj2div7/OicilvM9+l4nEhB4BzRxbPgifhMSnfB87ij6uhmm+oXa3kXuz+wkidHntSMoL4a080pY0ymKaGmlUieBMyiAGH/bhX5rpC/eoZE7BqMKlY814SlLPTdUtkzjwXizNTE9BEjCAq4U5opZJuSCyU3CMsh1goHnf/1463oHG8Bcd3fIo1g14cHQYZNPnYu909ySGdOtvYE5jXVpSeNflAuFLPYCpeHxBRVz/wJMJ+rSOrZc1LflwVKBHbNkZgUx3G5PBHE1WDyK5dx//PFH7h7sV0iCpo4XEB1qNqNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZZS+lN12K9bgIMwJSSPcC0UpNYq+BlU0nAbFi6y9kjs=;
- b=kraj8LgY8F8VOjlUOdNXQF68ftI0zAV3PVeV3lx9E+1a5eXbv/QmSIDua+lVu9EDRAdEIXhd1IEF7leoWK2bKku4ps9OsyG/jhnq6Gz9v4WtUpgTxeUJUxudJLali+CRLVAhDscN4FQyoByqa+xOf2YKfJc+UyzTeXDaBKfc8cw=
-Received: from BY3PR04CA0027.namprd04.prod.outlook.com (2603:10b6:a03:217::32)
- by SA0PR12MB4509.namprd12.prod.outlook.com (2603:10b6:806:9e::16)
+ bh=hGqhSL/S9Qlob3VVaMi875KTpuICsMjIC5dyVkpiAAM=;
+ b=wmY0nCRqzcG+hEhcYivDlQ585nBO9pq2RW1FwhCCAp9m9Rb15GbNX/zTs3Zuxcl4c/itUWP2lthd0QTjiuvNr+M/Gd8EybyTe934+aPuG9Y0UroyEahxNIq5qBlK30IP7QHxK3AZ/aD201dsOSCAZidqh3xc/hQGM6T+Y41xhJE=
+Received: from SJ0PR03CA0216.namprd03.prod.outlook.com (2603:10b6:a03:39f::11)
+ by SA1PR12MB5669.namprd12.prod.outlook.com (2603:10b6:806:237::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.16; Tue, 6 Feb
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.14; Tue, 6 Feb
  2024 15:59:45 +0000
-Received: from SJ1PEPF00001CE1.namprd05.prod.outlook.com
- (2603:10b6:a03:217:cafe::c4) by BY3PR04CA0027.outlook.office365.com
- (2603:10b6:a03:217::32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SJ1PEPF00001CDD.namprd05.prod.outlook.com
+ (2603:10b6:a03:39f:cafe::33) by SJ0PR03CA0216.outlook.office365.com
+ (2603:10b6:a03:39f::11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
  Transport; Tue, 6 Feb 2024 15:59:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -48,21 +48,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CE1.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SJ1PEPF00001CDD.mail.protection.outlook.com (10.167.242.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.7202.16 via Frontend Transport; Tue, 6 Feb 2024 15:59:45 +0000
 Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 6 Feb
- 2024 09:59:41 -0600
+ 2024 09:59:42 -0600
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Felix.kuehling@amd.com>, <joseph.greathouse@amd.com>,
- <vladimir.indic@amd.com>, <david.yatsin@amd.com>, <jamesz@amd.com>
-Subject: [PATCH v4 22/24] drm/amdkfd: add pc sampling release when process
- release
-Date: Tue, 6 Feb 2024 10:59:18 -0500
-Message-ID: <20240206155920.3171418-23-James.Zhu@amd.com>
+ <vladimir.indic@amd.com>, <david.yatsin@amd.com>, <jamesz@amd.com>, "David
+ Yat Sin" <David.YatSin@amd.com>
+Subject: [PATCH v4 23/24] drm/amdkfd: Set debug trap bit when enabling PC
+ Sampling
+Date: Tue, 6 Feb 2024 10:59:19 -0500
+Message-ID: <20240206155920.3171418-24-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240206155920.3171418-1-James.Zhu@amd.com>
 References: <20240206155920.3171418-1-James.Zhu@amd.com>
@@ -74,26 +75,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE1:EE_|SA0PR12MB4509:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd0eb2ee-4404-478e-e1b2-08dc272ca379
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|SA1PR12MB5669:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c1fade7-759d-430e-99dd-08dc272ca37d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CSt4uAoFqw78pGY7YQr0TIhtbCAtDxC8nUgxdzLmGoXUNkYQQoKqQb/tTf7/z99DQbS9ks+gdUi70CzVxY9uxQzIXKLKh64MrlzemRAGUcL4ZGpfToOVmk5q3mMIDF5frR7xTL7RupXWAhy93dAbmhev9x5QF0KWwcDLnGNYW21+g/lExOXgeBxnbRfC+M4TIi8P5FBVE6AO77nH7Ik1mujziiDdGpwDXAC9Z8NcaWD5Rlrc9ZWrbz7oChdMkrkJf8XuP++ZNHwr854g4/6/ITMQ79g4qFYSs5MgnvT3QTVsJEs/j0sMa8RW3tYgqlKAW500Mqz870g7xKcM0+2mAsdJ+IRrIZksj4HHrShXiFov3ONwKdYY89sRkrZeDQRoJ4KsxSWfszGVhQFgG65GGOLGof3XT90+Tz3PYqrwbLrXZ50BvoBp74HVmIuPHkO6+rzBt2s7OVpmLdBkSe5SFHOIEDYr1OBYjv0ZvipmxQJTU4AtNCinH1AmFCEiV7EHksOdNSxFSqfpF9Wep4q2EXCR8i+MkXoXADTQ3pRnepvRIj+giQyStxs6aRzTpW9rkJHO5F9wIQDIOLj5DqDZLvado7Fuh1UWM5jqJjOpUrABCv3eYl9nyJggown7mHEro7ZJ1o+CCYz7CV1KEBnABVMLxefswlDOcRBKNvHJH+LSntzbjLaYOTNcrq2XsanCRpxG+mb+iTTaBeTEnOuvSuoQS47yFUGU3U+0K/5qg0kBjKqWXr8LrXNJJVG5Rht9tfFNIOLxKJZADBknOIz/uw==
+X-Microsoft-Antispam-Message-Info: tbx4FSNrOPg7or88OOi4wb0gYUa9RUDCi+Ihp68MbXKAZh0dD1qDBJB2zs6lUS9YXw7g/2X4TguUTu9uq+SXVxF7lbyL3PmxPci0MF6Xaf2I9t7aKLDTuZNkJz3h3FWJA/sUD6oR8dNdvZALxroTfOIjZn9E5AhW5LTtq2Xqk+W0G+8XGIMbsQWZrkm8BXd7+rvqEhYh4ZbheA+/O4UfvkQTStlxMQwg2zLqpnI5vVamzSovkji1tGVfEona5aXic7Rc6+K3sT3FfuW0rbXVq8qif5Bb8A1phji0vJAUN7DQSaEFPzNjVzLtcFpKENmmeafUCHY4Q8BJMYljMpnEAKYUA46p5wAMUpzUrufmSTCyXys/788Nme0ieoLXCWNMsoxPWKTmpSjz8k0OjaChuP/JDAy3jLykNQtn7kr6kMZo9+NMNyMe39/sXuwmfklcIFDA5S+UhLJcQN/+simfkcVjre+6KttV1Og4FoYrd8jnI8QKZMI7BKo9cTB/3PzZe+eJ6NprLAmlSjtYlrY+dPjcWC00XOgrlNwycHCKlsRlP24NkzpZWi8IPag59gBHMagmiCcwCWImJuoEotJz2fDXd6e3wpPHyIbSX2T75LUyhiGWNpn9+ECmJKcYddNpMkkyMadp1A773wCEmRpzwe534/p0um+BTRWCCc2f/IGvlMIMd/5sasx+g4b9s4Nn4yg1HypV+dOpmjYOKdmEYf48mYNc4Ku8Y77C6pLw3ZFTRY1FF1Gv/TEE+MlATdnSqQyu+HnpGH3/FwQpPEr9wA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(376002)(346002)(136003)(396003)(230922051799003)(186009)(1800799012)(451199024)(82310400011)(64100799003)(46966006)(40470700004)(36840700001)(356005)(26005)(16526019)(81166007)(41300700001)(2616005)(426003)(336012)(47076005)(83380400001)(1076003)(82740400003)(478600001)(8936002)(8676002)(36860700001)(316002)(6666004)(2906002)(6916009)(70586007)(4326008)(5660300002)(70206006)(86362001)(54906003)(7696005)(40480700001)(40460700003)(36756003)(36900700001);
+ SFS:(13230031)(4636009)(39860400002)(346002)(396003)(376002)(136003)(230922051799003)(1800799012)(82310400011)(186009)(451199024)(64100799003)(40470700004)(46966006)(36840700001)(7696005)(26005)(8936002)(426003)(6666004)(47076005)(336012)(8676002)(2616005)(1076003)(16526019)(5660300002)(6916009)(4326008)(36756003)(2906002)(70206006)(54906003)(70586007)(316002)(41300700001)(86362001)(478600001)(81166007)(40480700001)(40460700003)(36860700001)(356005)(83380400001)(82740400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:59:45.3235 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd0eb2ee-4404-478e-e1b2-08dc272ca379
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:59:45.3479 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c1fade7-759d-430e-99dd-08dc272ca37d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDD.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4509
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5669
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,84 +109,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add pc sampling release when process release, it will force to
-stop all activate sessions with this process.
+From: David Yat Sin <David.YatSin@amd.com>
 
+We need the SPI_GDBG_PER_VMID_CNTL.TRAP_EN bit to be set during PC
+Sampling so that the TTMP registers are valid inside the sampling data.
+runtime_info.ttmp_setup will be cleared when the user application
+does the AMDKFD_IOC_RUNTIME_ENABLE ioctl without
+KFD_RUNTIME_ENABLE_MODE_ENABLE_MASK flag on exit.
+
+It is also not valid to have the debugger attached to a process while PC
+sampling is enabled so adding some checks to prevent this.
+
+Signed-off-by: David Yat Sin <David.YatSin@amd.com>
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 25 ++++++++++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_process.c     |  3 +++
- 3 files changed, 29 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c     | 30 ++++++--------------
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c       | 26 +++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.h       |  3 ++
+ drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 13 +++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h        |  3 ++
+ 5 files changed, 54 insertions(+), 21 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index d9cac97c54c0..bc37f3ee2c66 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -2804,26 +2804,9 @@ static int runtime_enable(struct kfd_process *p, uint64_t r_debug,
+ 
+ 	p->runtime_info.runtime_state = DEBUG_RUNTIME_STATE_ENABLED;
+ 	p->runtime_info.r_debug = r_debug;
+-	p->runtime_info.ttmp_setup = enable_ttmp_setup;
+ 
+-	if (p->runtime_info.ttmp_setup) {
+-		for (i = 0; i < p->n_pdds; i++) {
+-			struct kfd_process_device *pdd = p->pdds[i];
+-
+-			if (!kfd_dbg_is_rlc_restore_supported(pdd->dev)) {
+-				amdgpu_gfx_off_ctrl(pdd->dev->adev, false);
+-				pdd->dev->kfd2kgd->enable_debug_trap(
+-						pdd->dev->adev,
+-						true,
+-						pdd->dev->vm_info.last_vmid_kfd);
+-			} else if (kfd_dbg_is_per_vmid_supported(pdd->dev)) {
+-				pdd->spi_dbg_override = pdd->dev->kfd2kgd->enable_debug_trap(
+-						pdd->dev->adev,
+-						false,
+-						0);
+-			}
+-		}
+-	}
++	if (enable_ttmp_setup)
++		kfd_dbg_enable_ttmp_setup(p);
+ 
+ retry:
+ 	if (p->debug_trap_enabled) {
+@@ -2972,10 +2955,10 @@ static int kfd_ioctl_set_debug_trap(struct file *filep, struct kfd_process *p, v
+ 		goto out;
+ 	}
+ 
+-	/* Check if target is still PTRACED. */
+ 	rcu_read_lock();
++	/* Check if target is still PTRACED. */
+ 	if (target != p && args->op != KFD_IOC_DBG_TRAP_DISABLE
+-				&& ptrace_parent(target->lead_thread) != current) {
++			&& ptrace_parent(target->lead_thread) != current) {
+ 		pr_err("PID %i is not PTRACED and cannot be debugged\n", args->pid);
+ 		r = -EPERM;
+ 	}
+@@ -2985,6 +2968,11 @@ static int kfd_ioctl_set_debug_trap(struct file *filep, struct kfd_process *p, v
+ 		goto out;
+ 
+ 	mutex_lock(&target->mutex);
++	if (!!target->pc_sampling_ref) {
++		pr_debug("Cannot enable debug trap on PID:%d because PC Sampling active\n", args->pid);
++		r = -EBUSY;
++		goto unlock_out;
++	}
+ 
+ 	if (args->op != KFD_IOC_DBG_TRAP_ENABLE && !target->debug_trap_enabled) {
+ 		pr_err("PID %i not debug enabled for op %i\n", args->pid, args->op);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+index d889e3545120..8d836c65c636 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+@@ -1120,3 +1120,29 @@ void kfd_dbg_set_enabled_debug_exception_mask(struct kfd_process *target,
+ 
+ 	mutex_unlock(&target->event_mutex);
+ }
++
++void kfd_dbg_enable_ttmp_setup(struct kfd_process *p)
++{
++	int i;
++
++	if (p->runtime_info.ttmp_setup)
++		return;
++
++	p->runtime_info.ttmp_setup = true;
++	for (i = 0; i < p->n_pdds; i++) {
++		struct kfd_process_device *pdd = p->pdds[i];
++
++		if (!kfd_dbg_is_rlc_restore_supported(pdd->dev)) {
++			amdgpu_gfx_off_ctrl(pdd->dev->adev, false);
++			pdd->dev->kfd2kgd->enable_debug_trap(
++					pdd->dev->adev,
++					true,
++					pdd->dev->vm_info.last_vmid_kfd);
++		} else if (kfd_dbg_is_per_vmid_supported(pdd->dev)) {
++			pdd->spi_dbg_override = pdd->dev->kfd2kgd->enable_debug_trap(
++					pdd->dev->adev,
++					false,
++					0);
++		}
++	}
++}
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
+index fd0ff64d4184..d7ce0b119dd0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
+@@ -90,6 +90,9 @@ int kfd_dbg_trap_device_snapshot(struct kfd_process *target,
+ 
+ void kfd_dbg_set_enabled_debug_exception_mask(struct kfd_process *target,
+ 					uint64_t exception_set_mask);
++
++void kfd_dbg_enable_ttmp_setup(struct kfd_process *p);
++
+ /*
+  * If GFX off is enabled, chips that do not support RLC restore for the debug
+  * registers will disable GFX off temporarily for the entire debug session.
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-index ea9478c3738a..783844ddd82f 100644
+index 783844ddd82f..4777cfefbb08 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-@@ -337,6 +337,31 @@ static int kfd_pc_sample_destroy(struct kfd_process_device *pdd, uint32_t trace_
+@@ -24,6 +24,7 @@
+ #include "kfd_priv.h"
+ #include "amdgpu_amdkfd.h"
+ #include "kfd_pc_sampling.h"
++#include "kfd_debug.h"
+ #include "kfd_device_queue_manager.h"
+ 
+ struct supported_pc_sample_info {
+@@ -312,6 +313,14 @@ static int kfd_pc_sample_create(struct kfd_process_device *pdd,
+ 	pcs_entry->pdd = pdd;
+ 	user_args->trace_id = (uint32_t)i;
+ 
++	/*
++	 * Set SPI_GDBG_PER_VMID_CNTL.TRAP_EN so that TTMP registers are valid in the sampling data
++	 * p->runtime_info.ttmp_setup will be cleared when user application calls runtime_disable
++	 * on exit.
++	 */
++	kfd_dbg_enable_ttmp_setup(pdd->process);
++	pdd->process->pc_sampling_ref++;
++
+ 	pr_debug("alloc pcs_entry = %p, trace_id = 0x%x on gpu 0x%x", pcs_entry, i, pdd->dev->id);
+ 
  	return 0;
- }
+@@ -323,6 +332,7 @@ static int kfd_pc_sample_destroy(struct kfd_process_device *pdd, uint32_t trace_
+ 	pr_debug("free pcs_entry = %p, trace_id = 0x%x on gpu 0x%x",
+ 		pcs_entry, trace_id, pdd->dev->id);
  
-+void kfd_pc_sample_release(struct kfd_process_device *pdd)
-+{
-+	struct pc_sampling_entry *pcs_entry;
-+	struct idr *idp;
-+	uint32_t id;
++	pdd->process->pc_sampling_ref--;
+ 	mutex_lock(&pdd->dev->pcs_data.mutex);
+ 	pdd->dev->pcs_data.hosttrap_entry.base.use_count--;
+ 	idr_remove(&pdd->dev->pcs_data.hosttrap_entry.base.pc_sampling_idr, trace_id);
+@@ -381,6 +391,9 @@ int kfd_pc_sample(struct kfd_process_device *pdd,
+ 		if (!pcs_entry ||
+ 			pcs_entry->pdd != pdd)
+ 			return -EINVAL;
++	} else if (pdd->process->debug_trap_enabled) {
++		pr_debug("Cannot have PC Sampling and debug trap simultaneously");
++		return -EBUSY;
+ 	}
+ 
+ 	switch (args->op) {
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 372727b5d945..cce99478118b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -1021,6 +1021,9 @@ struct kfd_process {
+ 	struct semaphore runtime_enable_sema;
+ 	bool is_runtime_retry;
+ 	struct kfd_runtime_info runtime_info;
 +
-+	/* force to release all PC sampling task for this process */
-+	idp = &pdd->dev->pcs_data.hosttrap_entry.base.pc_sampling_idr;
-+	do {
-+		pcs_entry = NULL;
-+		mutex_lock(&pdd->dev->pcs_data.mutex);
-+		idr_for_each_entry(idp, pcs_entry, id) {
-+			if (pcs_entry->pdd != pdd)
-+				continue;
-+			break;
-+		}
-+		mutex_unlock(&pdd->dev->pcs_data.mutex);
-+		if (pcs_entry) {
-+			if (pcs_entry->enabled)
-+				kfd_pc_sample_stop(pdd, pcs_entry);
-+			kfd_pc_sample_destroy(pdd, id, pcs_entry);
-+		}
-+	} while (pcs_entry);
-+}
-+
- int kfd_pc_sample(struct kfd_process_device *pdd,
- 					struct kfd_ioctl_pc_sample_args __user *args)
- {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
-index 4eeded4ea5b6..6175563ca9be 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.h
-@@ -30,5 +30,6 @@
++	/* Indicates process' PC Sampling ref cnt*/
++	uint32_t pc_sampling_ref;
+ };
  
- int kfd_pc_sample(struct kfd_process_device *pdd,
- 					struct kfd_ioctl_pc_sample_args __user *args);
-+void kfd_pc_sample_release(struct kfd_process_device *pdd);
- 
- #endif /* KFD_PC_SAMPLING_H_ */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 4a450abf9fa9..bbad0b0848df 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -43,6 +43,7 @@ struct mm_struct;
- #include "kfd_svm.h"
- #include "kfd_smi_events.h"
- #include "kfd_debug.h"
-+#include "kfd_pc_sampling.h"
- 
- /*
-  * List of struct kfd_process (field kfd_process).
-@@ -1021,6 +1022,8 @@ static void kfd_process_destroy_pdds(struct kfd_process *p)
- 		pr_debug("Releasing pdd (topology id %d) for process (pasid 0x%x)\n",
- 				pdd->dev->id, p->pasid);
- 
-+		kfd_pc_sample_release(pdd);
-+
- 		kfd_process_device_destroy_cwsr_dgpu(pdd);
- 		kfd_process_device_destroy_ib_mem(pdd);
- 
+ #define KFD_PROCESS_TABLE_SIZE 5 /* bits: 32 entries */
 -- 
 2.25.1
 
