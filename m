@@ -2,118 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0D284BE65
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 21:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F8384BE6D
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 21:07:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9680112DC5;
-	Tue,  6 Feb 2024 20:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC84C112DCB;
+	Tue,  6 Feb 2024 20:07:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4efZxdfc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TDWVRqPb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A995112DC8
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 20:06:19 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2060.outbound.protection.outlook.com [40.107.93.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1EFC112DC9
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 20:07:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P1oOjlpdbOvk/VnS0QbBCAvmD6ghthts+Drif2ruiw7ZpUMxVWDc2wTLbq0ehna6yjvKAdUWjqzLKoKjIXUquREvqLapXehIZWUEDHskEDmHe/23/z4v1A2c4BZHedtF+IN1CiXOOXU1JDKjVRAPCcRZ+GDXIpXeHRN2z7F7OacqOy9iVtjDQN+K8Wbg9NFPJHjTr0cir00leudB6NiVjuL/nfST1no+pgiiqSVZl5DpZsHhODo3m23LuB3qPnu80RWrERmtxowRZeFkIA/s/9VTZehAKQfKEJ9aOHYVTKZdJPRW5P9Q9vAoRWeygUBd+dT5nt91gE+OISWzR8XU2Q==
+ b=YcQrfgt84MGNEPypmXxGTut3W5F0njFaEpm+W14NkM+LQlligOE6lTNlh5vFjxkmr8gXBTe37RwB5bPGGYmmOAAouUvv3+Hn47OjRLyOH7ZpGGnKBtP2PsMwMDwsU5cboPkuEO4SvLQWCYtqZt4IiI6jQd2RgyPR/0QWuJDzDYR7qEUJZ/nhz1zm6HE9KNpXV1XSD6Bvo7Dj1z2m9x7eZz/Huz+aGBdVxi1hXy24BmBn15pod93f2x8jwwMDl1mR/7hV14W4rDK39qJnBXALClx/LvAGuRMGUDBoy9w5qVZUBMLSNlbRDC7qvodG4quJqs4ZkmHZhCJxAHh/h/Uk4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VjvtpOcEHARttkmgJLl/5rUnbYrYnoHLWz6Nrae7xX4=;
- b=eNN0CAgZQeiw3f2mD2UGFCRGbg36oJq+slQ1sguBbxiVNg4jPMEbudTLWYa4ddx6kCv5FjJqgNnNohIgc5Z6sbOFkJTU3xPKt92Gq1l93MngPQqOKY2eVAtwZNcGe+lJYPMgOhwkDJ7/l/ciNbM2FqcISGVFdVSh0D2ImRPZPzU6gTi3ld6VAJDXHKbwVPQrHh5c5Lmm1M+GUyEKUoOkYG7cGgtuCOts8iNJZqWudy6Qe6feoeTQcn5WMCAWOHlwqjN2BRJbLf+/gglQpFxV3TuWp4aWwmJ6HYnOoqf1+WGgoSLHbBc/C4iRMejE1RocJaL9k1l7viFJKFSlNntVWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=ncJbbcBysQbPhl0Be1Rzl09sa20If5kaUJdj54KbIZc=;
+ b=ZL/v1cWL89EAfCIk848qnMWn1iFiaFCqY7kipzuMg9xfF98Ry+rV6AVDVMcJcUXxri/eJFLKZlTXfF2mN6uoo4ss3va8mf21tJcMx6PhII4ynCuWpRhCrqoanWUHZ96Icyp9jCn0JCUywXG2z4UQyP8nAmx0ADhc/gLNTupZUMAaYb+fougY5c/FI0tti89YjRQt702F6OSW0bleqRc+PUyTt+G4BkYBsHpuWUsOaS2n9S4/ezaft76a8QC01Ms1q6jUCxk+vCm3oaKBlv+GwwhxtM3aURgHPrp5EbF8xU56knOAl0vAgIlkiQYNa5sR5kA9NjxXOogA4kUbXQOJVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VjvtpOcEHARttkmgJLl/5rUnbYrYnoHLWz6Nrae7xX4=;
- b=4efZxdfcW9wAA1IOhB8HInDNIPF6mf1j9+SL403mBg1gD52SoTU/xb9j4SIQ/uhMVTLEP9p2mQNhTM4mjVYfvKeUQsV6XcHqYxQv/gJ5CXxYmrq4QacdQyrrrUYw2EPKjagwtPffYy2xbpjGW81NVmh3vQAix7UG8cc0pkkhnKA=
-Received: from BL3PR12MB6425.namprd12.prod.outlook.com (2603:10b6:208:3b4::7)
- by CY5PR12MB6527.namprd12.prod.outlook.com (2603:10b6:930:30::13)
+ bh=ncJbbcBysQbPhl0Be1Rzl09sa20If5kaUJdj54KbIZc=;
+ b=TDWVRqPbGyZpC0rVGPiLYDDUvN8pemc+aOjhVeSIKZPMRf0nSNGuzEB9P81U7m863gUQO81w/etWvoMMs3BI+eA5/uQCmMasu0yUfQmh5FhcPxswuDOElZm4zI16qcVhalbY1tjLIYg1kmy4UKZ2ZJsLpTTPGE4H0P99Rm2/fD8=
+Received: from SN7PR04CA0196.namprd04.prod.outlook.com (2603:10b6:806:126::21)
+ by SJ0PR12MB7083.namprd12.prod.outlook.com (2603:10b6:a03:4ae::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.14; Tue, 6 Feb
- 2024 20:06:10 +0000
-Received: from BL3PR12MB6425.namprd12.prod.outlook.com
- ([fe80::a1f9:8073:1b53:8779]) by BL3PR12MB6425.namprd12.prod.outlook.com
- ([fe80::a1f9:8073:1b53:8779%5]) with mapi id 15.20.7270.012; Tue, 6 Feb 2024
- 20:06:10 +0000
-From: "Joshi, Mukul" <Mukul.Joshi@amd.com>
-To: "Russell, Kent" <Kent.Russell@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdkfd: Fix L2 cache size reporting in GFX9.4.3
-Thread-Topic: [PATCH] drm/amdkfd: Fix L2 cache size reporting in GFX9.4.3
-Thread-Index: AQHaWScmk7skoPyTuUSCJWb/4yuISrD9vUFA
-Date: Tue, 6 Feb 2024 20:06:10 +0000
-Message-ID: <BL3PR12MB64252107FFFBDCFAE77D9F3AEE462@BL3PR12MB6425.namprd12.prod.outlook.com>
-References: <20240206180545.626910-1-kent.russell@amd.com>
-In-Reply-To: <20240206180545.626910-1-kent.russell@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=79a2657e-0a7b-4a03-ae06-b42de747dee3;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-02-06T20:05:06Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL3PR12MB6425:EE_|CY5PR12MB6527:EE_
-x-ms-office365-filtering-correlation-id: 27932309-b281-43de-08bf-08dc274f0fd5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +aNb7K0ol7tlDYZ0Q+DH4ihFrpVR7d9ra86R/Yipkl2VNOC7CsrXSDEeUp4HZ+/jEDyTM+hujCKavj+gfYJ+MQs8HtjnefJU0ohSekRqcuSvr6dm1IFOO1wk+9BMn8OQ+qi+HnhPLFly7f0WfUoXd2QDqdJHS+x0LZ8S07iejxbShK6ebIIwo9r0/fms83SPgi9CwSDMxAjI3F8nbSeOdwLro1LhQcPJV7pHtMYklPfcDxoiI4B6H2y7zmPEeVgFr9ElupGxRN/aDgQwj6KwfC37K0sO5M9SWFWev6lWzH4Q5ObbeCJbh3PsabwOnojftY1LAWDqdzkswZUcp721pyy5ezYi0y+cmb5BC6uvFwL6VLP2eIe5oEF8/08Fg1zFrMH9xdPAwcrK2m16EcHELgHQrS43kdzsr6A7HR16YuAgYaqSvHJwFJzAJnrALwMrRwbQ2CAfVIYDKBilCesFMDPiNfbaFdOzVRu6CKO/lHDRqmxQuVgwBGypFSLq99nenQ3K7jWhcdbLtIwHSdVDz1RPK6/uMD/9KN7P8MIhHgBe47qStAFO5McZJbuQN4PdbSa2i2VlqEpPyWLGTJ0Gwd3mbREeuEptdkCNMW1+SRqyj+SbOVynEVtH0pfVC/BO
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR12MB6425.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(376002)(366004)(346002)(39860400002)(396003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(41300700001)(9686003)(26005)(6506007)(7696005)(86362001)(64756008)(5660300002)(55016003)(66946007)(8676002)(8936002)(33656002)(66476007)(53546011)(66446008)(316002)(110136005)(122000001)(478600001)(52536014)(71200400001)(38100700002)(76116006)(83380400001)(2906002)(38070700009)(66556008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Y2JBkKvu6bEvjOWoak00D3tMa8IFNtoyUrHMdV4ECvtwwVNfcQ9IvDT2OTJt?=
- =?us-ascii?Q?muX2GyOponJhL198/DaDPgHYoVGvojYV8OcJhgr/SFmUxe8uQsnYbSubkEZe?=
- =?us-ascii?Q?XEC++7gsPbrIW2toXKMH+A5SDYqdK/4wF6tVSjZnh9q8b+V0Mh888ZicBAFa?=
- =?us-ascii?Q?mCQGZ6vWf+ujOdELLseznmOjcHEpk6PWGHIFOWu2m+FcLM18uWnhx87yxnmf?=
- =?us-ascii?Q?y4dXkOSE03SDV8nw/rmgZn5xLnxvzz1zpw5u7u+zD9R+xg5uUQsqbLdOrbQ2?=
- =?us-ascii?Q?wjmoSJHdY/EU3yk/+DrQuXDxtm0M+RDeM0/lzEZMwiuEa3kWo7QCFiYXlx5/?=
- =?us-ascii?Q?Wv/qISaa06LrCVkmHZFEZfe1UhbPMw0o2Cb//s9hKhQn2vLNb60z4BgBUrkz?=
- =?us-ascii?Q?d7V5C/hV+u8LrldiF3/d46OdVpYunRsAz/TG/dY0+N4ike77z1P/5BtytvRn?=
- =?us-ascii?Q?oAljX7wlKeTprHwPCwRd11EV3V0wmAgeZhUIy4HeTsncrhBah3NjV9cnUyPa?=
- =?us-ascii?Q?fXE0jKGkaLwgTnnMtvhPyLyMkcLIugL/Lk2yttdKi83k8S3P8r6RoLdMGhVN?=
- =?us-ascii?Q?jes+sbkNzaLz/Zo5nduVj8Ouy59S6OHEWTR23Zkv76/XIAzEfvY9ko5liezU?=
- =?us-ascii?Q?mbEmPtM/+qNdX8k9W2XgEVRDKZ3USa4d6uvOarjp3ys5QEiWnHdgY7i6c0Ec?=
- =?us-ascii?Q?AwsgQFjc1+ERP8OBllQYrt7Ly8r/yE7PdqWkYYPM5ve3TKIrRevS7SnBnv9p?=
- =?us-ascii?Q?mmKqLi2HnhTfM8sWncCiUKqaUKAMbaEkT1i3Or9w+OMsNRnPuq3fPQOT7T5X?=
- =?us-ascii?Q?cHNxUCuZblnTdxGMdz5irvmycDjZQY74uVjmohOkwadjy3kC+rOUAC9a9k6J?=
- =?us-ascii?Q?8tE7oEMrulatuCDIGrucJAW1BABgMf+Uyqg9FylCQ7ZpvYQZcdmEHWg2i480?=
- =?us-ascii?Q?iz+PvGkUSEGQZlRuzFE8TuC6OSkw3gCFQSWnKvbjcqhxwbdkcln2sk3Lp226?=
- =?us-ascii?Q?N0GF3Wh8D4d5V6phRPTL+ToU4vkUR6dp/aFOi6XZZqXlBBybdSYNQU/x967W?=
- =?us-ascii?Q?6cOZRIYa2keb2iskmWAqsdXcif6IQZCy5eON7iMuq+gm5SokyHGa+H2/QLcJ?=
- =?us-ascii?Q?iX01pE0GoGUL7Uot/P4xKGDkXuUuutA7eAXMe0Tw6aWHIltsGKy8GEOsR8I1?=
- =?us-ascii?Q?ucgMhb/jwre4Awt0oCp/Zya6aRU1R+sl0uhgxPH1P93UP6xqYwNVFnsFrwcl?=
- =?us-ascii?Q?Cjc466AhwcT0DTP7sn1AvdsnBSx+qW6/8qQHmY/F7IfsxQaSNVLbG1UfW75G?=
- =?us-ascii?Q?D1jDP5IJ0BJcUWTpu4rynbnUMO8I6eGjKyuBMUmH2Rmeu1hZB7u3Bnr3jpDk?=
- =?us-ascii?Q?EUWtZsJLH8ewBtKxxmhFLgNl4gh3hBZrNp//VICw+VDZANYJY73vxIDQOU4Z?=
- =?us-ascii?Q?pddcGIJuCoKGY54jtFnT6hMp9LmvY7gJ39pqpVVCw1YXhWgw9foRJmQG210j?=
- =?us-ascii?Q?WsEGfyERBYdcjFZYRgB6ioQm4nXr89rOJoyKZQXVRVMh/vGdw61UC5yqtZIu?=
- =?us-ascii?Q?02uc2gMY1fuV2gm8c7c=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2024 20:06:55 +0000
+Received: from SA2PEPF0000150B.namprd04.prod.outlook.com
+ (2603:10b6:806:126:cafe::9b) by SN7PR04CA0196.outlook.office365.com
+ (2603:10b6:806:126::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
+ Transport; Tue, 6 Feb 2024 20:06:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF0000150B.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7249.19 via Frontend Transport; Tue, 6 Feb 2024 20:06:54 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 6 Feb
+ 2024 14:06:53 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Jonathan Kim <jonathan.kim@amd.com>, Jonathan Kim <Jonathan.Kim@amd.com>, 
+ Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdkfd: fill in data for control stack header for gfx10
+Date: Tue, 6 Feb 2024 15:06:36 -0500
+Message-ID: <20240206200639.1670753-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF0000150B:EE_|SJ0PR12MB7083:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1b40f8d-d6ef-485b-3609-08dc274f2a85
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aCCEN+6MtlqdYvNtCYoRuuO176LH9DmFJBAnG8/5ejduSqramOy1jfsGPUl6W+J9lsVXHgs7rX144FXJ7zXTgmj85je6YM1+fEgIunz0bBOiu3MBoxfegpFkdgzJXJVTBxc0dKF86OlT91WuXqSIezP74PJWtH4FThVmH8UOCPAoTkOXyzet6+5LM2sujXqpeyi1gOtvL9ttkwh5Ao9u6Pqvs/v/yf9jrinhJGBsYYo1D79l6wWZZF8yAvumb1KNmJG7rASFB49C+gp4jL6A3K8pfmKOWL5iSpxKV/EepO9wZTSuLMm/K6L6t3+OG7SIKHzsOl9/6Ie6A/2f/yateb0LGVGmTPqs6E0LA8Dol0ATAQ6iJvP/6/JEoghwx7Wfxvuo/WBMUr/s2QFoV5DgWfRd0P8RpcbEh59limfTpXszxbBReLaQ1gCnh2dLs5I+De6CyRBAwJKq8JHsu8xE5UeNYLeTsS5CP8B8iabT8BfmdKNcr50Y+6DdrJXL6rqlS4i9snFduiehWpAan3oPenwEsKOSjYXNTwBjxiRz09mzXioYQFtGlfyOipvx9UDg+Y4UcEOm2PXGSNYuIXD6QunKEg1Avp0ftXCjfg1QcN/zNeiISQG+18rs8amJeiveORdoU1tmInXhytfW27N+BtFJmCSUPOgRgoWJcRgi6Rl95qKI74C5Yau4Xy06/YLwwl/qxNgCVe/O68XwqH/1VfWEOVZeNx8wzAgX+MKTCQXWfd/WXxozbgCbLaHa2urpkj0drAyjlUWEM5WFDBtpDg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(230922051799003)(451199024)(64100799003)(82310400011)(186009)(1800799012)(40470700004)(36840700001)(46966006)(36756003)(40480700001)(40460700003)(478600001)(86362001)(426003)(1076003)(336012)(356005)(36860700001)(47076005)(82740400003)(41300700001)(70586007)(16526019)(83380400001)(2616005)(5660300002)(8676002)(6916009)(2906002)(8936002)(6666004)(70206006)(4326008)(54906003)(81166007)(316002)(26005)(7696005)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6425.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27932309-b281-43de-08bf-08dc274f0fd5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2024 20:06:10.0897 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vjXGIk4vW5mNXdh9tD0G0FzdTbWWiGEvuK8s60t6qMuAf/UbKVeKlHe2M7Y3szvRV5Aa4isDSTmocLYsYaun5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6527
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 20:06:54.8259 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1b40f8d-d6ef-485b-3609-08dc274f2a85
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF0000150B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7083
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,48 +106,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+From: Jonathan Kim <jonathan.kim@amd.com>
 
-The commit description needs a Fixes tag of the offending commit.
-With that fixed, this patch is:
+The debugger requires the control stack header to be filled in to
+update_waves.
 
-Reviewed-by: Mukul Joshi <mukul.joshi@amd.com>
+Signed-off-by: Jonathan Kim <Jonathan.Kim@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h | 25 ++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-> -----Original Message-----
-> From: Russell, Kent <Kent.Russell@amd.com>
-> Sent: Tuesday, February 6, 2024 1:06 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Joshi, Mukul <Mukul.Joshi@amd.com>; Russell, Kent
-> <Kent.Russell@amd.com>
-> Subject: [PATCH] drm/amdkfd: Fix L2 cache size reporting in GFX9.4.3
->
-> Its currently incorrectly multiplied by number of XCCs in the partition
->
-> Signed-off-by: Kent Russell <kent.russell@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> index 3df2a8ad86fb..64bf2a56f010 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> @@ -1640,9 +1640,7 @@ static int fill_in_l2_l3_pcache(struct
-> kfd_cache_properties **props_ext,
->               else
->                       mode =3D UNKNOWN_MEMORY_PARTITION_MODE;
->
-> -             if (pcache->cache_level =3D=3D 2)
-> -                     pcache->cache_size =3D
-> pcache_info[cache_type].cache_size * num_xcc;
-> -             else if (mode)
-> +             if (mode)
->                       pcache->cache_size =3D
-> pcache_info[cache_type].cache_size / mode;
->               else
->                       pcache->cache_size =3D
-> pcache_info[cache_type].cache_size;
-> --
-> 2.34.1
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+index 57bf5e513f4d..e5cc697a3ca8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+@@ -128,6 +128,31 @@ struct mqd_manager {
+ 	uint32_t mqd_size;
+ };
+ 
++struct mqd_user_context_save_area_header {
++	/* Byte offset from start of user context
++	 * save area to the last saved top (lowest
++	 * address) of control stack data. Must be
++	 * 4 byte aligned.
++	 */
++	uint32_t control_stack_offset;
++
++	/* Byte size of the last saved control stack
++	 * data. Must be 4 byte aligned.
++	 */
++	uint32_t control_stack_size;
++
++	/* Byte offset from start of user context save
++	 * area to the last saved base (lowest address)
++	 * of wave state data. Must be 4 byte aligned.
++	 */
++	uint32_t wave_state_offset;
++
++	/* Byte size of the last saved wave state data.
++	 * Must be 4 byte aligned.
++	 */
++	uint32_t wave_state_size;
++};
++
+ struct kfd_mem_obj *allocate_hiq_mqd(struct kfd_node *dev,
+ 				struct queue_properties *q);
+ 
+-- 
+2.42.0
 
