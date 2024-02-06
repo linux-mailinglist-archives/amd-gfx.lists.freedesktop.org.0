@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF33484BA5E
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 16:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F299684BA60
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 16:59:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2CE110F6DC;
-	Tue,  6 Feb 2024 15:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAE4F10F9D4;
+	Tue,  6 Feb 2024 15:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZNwN5f/Q";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2K1hwZ+o";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10C1010F6DC
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:59:40 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADCE010F9C6
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 15:59:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qo4idSjvFk+ToiP4R80fRURar+pcmZBUHF8z8WAt6rzf28dvKEEecgu4RFpKN0R0bajJfNI907fEPltMtlXW1Y+AAQQIt+895MQzbZWQyz00ODe3gn+WM/uGaSYUKmQzzrBhjuke6/BxOkEzeua05sP6Mh0QyWN4GdnJomphZnOTiw58Dy4GBbUnNlTbWtomoy1WKPxQfxYhh7EI+TaFFkUKJsllyEywfQ1HNuNWuclUGQ95JLvMgHc3oogQpBtsy6PTpuy1QvAitlyX0vdgpFLyU4FS12ctAjQKhTH6JmyisAdj/cH/AP2k0yG7qD3CtKnr+MzgBV6XKFFEpiyqIQ==
+ b=IzmKJ0Q2H7aAeuNc8wi1aSeu2d6m30aAja3SZ4coytzOAdxbd3EL5CV851RlsCjecIHP/MiMVSCs28H2P8AkDbD8ZBAZO5QoKIkSov2LqSTzXgJO5i2B9l0RYXzbPy730zkAsOnfyHNTcpZ2y6Hkqko4Ihe3fiBp8zDGumwcCo0i68+Y/yhYR1sh8RlHz6lVHkFSalulFQG6Um62Mv4JMS4+18NeFQZJKUo0+IXdx57smJug7vsdTiEJYr9cJ08c6mT9sxdSCqEHHArsuWCPI1OBMqTV6ZF85sW1YiXOi4equj/wxx/V9WGA1WPr3j3KZu8gbSzeHBkxYdiIsafDzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0k8usYKW5iClkSKO2ineHPgnkROdu9PqYreKe3Bxwv4=;
- b=Up5sGYBFMI0WAehQrONsX22PDcoN/y7Udhu78D081rlB10fS8s0NXUES3S+ZWb31IbbCxlk89L6XMe1O14q6DKZ5azG+X1JsF5rfsHZ4tvqZhwTpwrQ2Md1izbMkH9epRUM+YqR77/rXR8f/tF/B9rAoLu6FdYVuDXlj9p3T5DrzpSnXFrmmhbfozfI3uemw4IJ91B4+HG4xQoAvtKzMjD43PrC69P8ES6ojRvlxUzkSzFrA6r42r/crHpDEebPqpjeSNi8Yuv8XCZ+9TDfostpz9nVjeztnftE1PwS2HFuUNJCq0R6jlTkxpeRRb/LpV26tacEtUX3oaaVcfPZI8A==
+ bh=OiquO9urztiOn6dUfyhy4eXnK2lpfmEIpW1xEmJzCKo=;
+ b=CImDwGk0XUAS3bsEUJSL39gAYzSWQxC8O4HbXGNFplOPBX82vQllO3ela3eOGKOu/Kg/BVBd2/P4i5jB3q5rpgq/Vm93iyxYwwV/fkRrZwrUYNkiVazhG8G3Fk9fFmlodDSXCeNVacJzbugw9t4ECTbxAzUvSh4m4wZIIJ+muvFy3XOn4cLSKh7riJxxA5CEcjA5mjymC+mrqeV8wXIDDXBBesnBRg4tvubiN/ivogbHzAcLR+ZiR0tqY5+ZXANqs8XBkuh81NSZp3MeIDz9QPOuTVWlkHGh7V8Wac2Cq5XWdSpVB2eBPdX91cUleeMywLQ9hkO1PaEYvTjPrSwTuA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0k8usYKW5iClkSKO2ineHPgnkROdu9PqYreKe3Bxwv4=;
- b=ZNwN5f/Qii92elfkxcCiLbJXxl0vkMAicfGHhBLsoyr916/NjVLq9E4G9zOeHWiMvOLDygcf/z4xr8ljVFQ5Zxgxu3a4nmrcq/9xmYz4vmRwrsd89yLtPYnplgORzdAbokdOZCxTVY6e0Es581cI9LcSwLRSjQ37fWUYVM7uRSU=
-Received: from SJ0PR03CA0225.namprd03.prod.outlook.com (2603:10b6:a03:39f::20)
- by BL0PR12MB4899.namprd12.prod.outlook.com (2603:10b6:208:1cf::8)
+ bh=OiquO9urztiOn6dUfyhy4eXnK2lpfmEIpW1xEmJzCKo=;
+ b=2K1hwZ+o2sTzsscuWpjj6y3ePSxGjf09Lxeiv499b7HVk1CsMANpjJ6ROqlM2F8XAJB98I7quPMa3MmU6K5AeQVBD5vjDJd5CTLiywyEKzJ6EKmhLZsIT8qeyubdqF6Ff4hemlrAhEYulBU+fx/D5mSjqJlo3vE3pkSO8oZuffM=
+Received: from BY3PR04CA0009.namprd04.prod.outlook.com (2603:10b6:a03:217::14)
+ by IA1PR12MB8077.namprd12.prod.outlook.com (2603:10b6:208:3f4::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.15; Tue, 6 Feb
- 2024 15:59:36 +0000
-Received: from SJ1PEPF00001CDD.namprd05.prod.outlook.com
- (2603:10b6:a03:39f:cafe::1a) by SJ0PR03CA0225.outlook.office365.com
- (2603:10b6:a03:39f::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Tue, 6 Feb
+ 2024 15:59:39 +0000
+Received: from SJ1PEPF00001CE1.namprd05.prod.outlook.com
+ (2603:10b6:a03:217:cafe::94) by BY3PR04CA0009.outlook.office365.com
+ (2603:10b6:a03:217::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
- Transport; Tue, 6 Feb 2024 15:59:35 +0000
+ Transport; Tue, 6 Feb 2024 15:59:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,9 +48,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CDD.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SJ1PEPF00001CE1.mail.protection.outlook.com (10.167.242.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7202.16 via Frontend Transport; Tue, 6 Feb 2024 15:59:35 +0000
+ 15.20.7202.16 via Frontend Transport; Tue, 6 Feb 2024 15:59:37 +0000
 Received: from jz-tester2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 6 Feb
@@ -59,9 +59,9 @@ From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Felix.kuehling@amd.com>, <joseph.greathouse@amd.com>,
  <vladimir.indic@amd.com>, <david.yatsin@amd.com>, <jamesz@amd.com>
-Subject: [PATCH v4 03/24] drm/amdkfd: enable pc sampling query
-Date: Tue, 6 Feb 2024 10:58:59 -0500
-Message-ID: <20240206155920.3171418-4-James.Zhu@amd.com>
+Subject: [PATCH v4 04/24] drm/amdkfd: add pc sampling mutex
+Date: Tue, 6 Feb 2024 10:59:00 -0500
+Message-ID: <20240206155920.3171418-5-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240206155920.3171418-1-James.Zhu@amd.com>
 References: <20240206155920.3171418-1-James.Zhu@amd.com>
@@ -73,26 +73,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|BL0PR12MB4899:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97431a72-b2ba-48e5-94f5-08dc272c9d80
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE1:EE_|IA1PR12MB8077:EE_
+X-MS-Office365-Filtering-Correlation-Id: 282e4164-f880-48e2-6418-08dc272c9eee
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nyRuE4hSMJz1BLzlsXEusoMyRJuTuI0MJXXTf7h3XkbaF8Lscjrdf+JeqbBYFlgpub7+c/544tna90R9b0zKgH0Nl8vA5pRWMw+ViBvzJtje35BDaFLx2uj23N1C60K9quwgpaQ1VLWaCfwhxOXwDuSRaSj9g9DHcGZ7dTA0JEVXDJKLV4JS5G92+ftXSL0DFgdxQIkUhqhTeKmTpjKTlz12AYC6AgN4xF6wB64i+TwLP4kaodF78CiGW+HK8cKtyzoWB+fNUVMXXG49N/ZU182c83S5hFiNceEAN1NBoswqAF/63T/oaJnsyMzkXWPSIhJs2hxxR/UBFxUCIa3oqhhgTKJGNVvZ1JbH+wxDf9dxBbJa4QApgqpONLpMQjoVZoCyPToyHCADyIDeypkEmP4qWyEsGtH+Xv342r3EAb6C/VvSPeMMzfeiMf1e6PZXgDQWxnIvMdWMcgr67tlJJ34uCZAEpiTF82hmPiaKFBPFu6w/DYEz3gwYnb2gyFnDK0Xf+llwMgdfvVK5KOlRNdHHzcM+AhFZwkCSu1KexnJkVaOqaWFIiMU2cr0zgojytOVFoAbMR+RcdBzYGTiWT51sR6t+A+Avh++6Exl5I5HVvHYM7DFQjkaKru7DK8/OFIr5dewOb8OmOoZcw0kmFW37pF/BAa9vz15DfRAIN4DKfk3rebUtPewtsSd4I6ODQJyyx0lVy9TPXgyfT1P11gqkyzeiferSumEPxKt4YhizZrjZZMmJulAAnHSLKTVdvcJQkgQW+bWt0ozDUazEbQ==
+X-Microsoft-Antispam-Message-Info: 0nxB/Jduu+tYMoSDOv9gsFluk78cPEK/n8Qx+DB8x0HM+EUM5xyU/Vz0uG6wRMTLhQ1uQ2yOSEgmtjmtaLCS2idgPrTiNFS4EItJ33rjd6o8T92nr4m0Nryux9AcwWQVtwW+T5km46vtS4qBLpco9uh8D0kx7J9XHc5Lebl2KkP4H6+HKD341k5hWJbR3/BsJRro9QuY48oLJqa1kaY/SzlLi4e15bQdmR5AVQ210vqhycpgoWfQqGs48sRBqf7sM2XiIFVgojKCKnbdF/0LDmZXVfLRSHDzUc8SYrsxtG4WZyrJatastupER82Swbp8/aw+KiIdo1nFjPiUkdpndDrU1tFc0M+jTmiv74CfutA0hGh8LKi4Np4m/3eK9AblCXSRMPRKLDstliQDWZPw4KYr+lXuzjOqbmUqmf2YE2cAS0L0AL6n+qUyoLaZvoQw8Ni9XO/O4f4p2/HZ8r6sRmyYpJWXW/cLe9/TnjVMZQOMYMMkxo+VLpJ1GqZgy5b+s3EFiJ+YLfeJmy7kvGPxJnYltbt9WBn59QBwHASIYVqLkAMUkpHGoMR6SoqfTiN6jpcRcGQPEVEqsotjyUW0DVrchQYU04hisjADqpyX+UpN/Fecya52Q2HduDOhPi9V9S4QbacsK22XJYojJH+ci5fDMJBxRaAfwo0MHY4ACRx9CEF8AJftfziEDt4A3Jf+ZyfQfdakZSObqiQDdoN40aF3+BIK+4HG5vRqc5KVTVppazA6LipcLe75hd3wZuz8zwHOKsGjmMQXhHvDOnsUGA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(396003)(39860400002)(346002)(136003)(230922051799003)(186009)(82310400011)(64100799003)(451199024)(1800799012)(40470700004)(46966006)(36840700001)(2616005)(70586007)(6916009)(70206006)(54906003)(83380400001)(1076003)(316002)(426003)(336012)(16526019)(26005)(478600001)(86362001)(7696005)(41300700001)(6666004)(5660300002)(40480700001)(40460700003)(4326008)(36756003)(8936002)(36860700001)(2906002)(81166007)(8676002)(47076005)(82740400003)(356005)(36900700001);
+ SFS:(13230031)(4636009)(396003)(346002)(136003)(39860400002)(376002)(230922051799003)(1800799012)(451199024)(82310400011)(186009)(64100799003)(36840700001)(46966006)(40470700004)(36756003)(83380400001)(47076005)(16526019)(26005)(2616005)(336012)(1076003)(478600001)(82740400003)(356005)(81166007)(70586007)(7696005)(8936002)(36860700001)(8676002)(70206006)(4326008)(426003)(54906003)(2906002)(5660300002)(6666004)(316002)(6916009)(86362001)(40460700003)(41300700001)(40480700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:59:35.3011 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97431a72-b2ba-48e5-94f5-08dc272c9d80
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:59:37.6829 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 282e4164-f880-48e2-6418-08dc272c9eee
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4899
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8077
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,96 +107,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Yat Sin <david.yatsin@amd.com>
+Add pc sampling mutex per node, and do init/destroy in node init.
 
-Enable pc sampling to query system capability.
-
-Co-developed-by: James Zhu <James.Zhu@amd.com>
 Signed-off-by: James Zhu <James.Zhu@amd.com>
-Signed-off-by: David Yat Sin <david.yatsin@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c | 65 +++++++++++++++++++-
- 1 file changed, 64 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 12 ++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h   |  7 +++++++
+ 2 files changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-index a7e78ff42d07..e9277c9beec7 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_pc_sampling.c
-@@ -25,10 +25,73 @@
- #include "amdgpu_amdkfd.h"
- #include "kfd_pc_sampling.h"
- 
-+struct supported_pc_sample_info {
-+	uint32_t ip_version;
-+	const struct kfd_pc_sample_info *sample_info;
-+};
-+
-+const struct kfd_pc_sample_info sample_info_hosttrap_9_0_0 = {
-+	0, 1, ~0ULL, 0, KFD_IOCTL_PCS_METHOD_HOSTTRAP, KFD_IOCTL_PCS_TYPE_TIME_US };
-+
-+struct supported_pc_sample_info supported_formats[] = {
-+	{ IP_VERSION(9, 4, 1), &sample_info_hosttrap_9_0_0 },
-+	{ IP_VERSION(9, 4, 2), &sample_info_hosttrap_9_0_0 },
-+};
-+
- static int kfd_pc_sample_query_cap(struct kfd_process_device *pdd,
- 					struct kfd_ioctl_pc_sample_args __user *user_args)
- {
--	return -EINVAL;
-+	uint64_t sample_offset;
-+	int num_method = 0;
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(supported_formats); i++)
-+		if (KFD_GC_VERSION(pdd->dev) == supported_formats[i].ip_version)
-+			num_method++;
-+
-+	if (!num_method) {
-+		pr_debug("PC Sampling not supported on GC_HWIP:0x%x.",
-+			pdd->dev->adev->ip_versions[GC_HWIP][0]);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	ret = 0;
-+	mutex_lock(&pdd->dev->pcs_data.mutex);
-+	if (user_args->flags != KFD_IOCTL_PCS_QUERY_TYPE_FULL &&
-+			pdd->dev->pcs_data.hosttrap_entry.base.use_count) {
-+		/* If we already have a session, restrict returned list to current method  */
-+		user_args->num_sample_info = 1;
-+
-+		if (user_args->sample_info_ptr)
-+			ret = copy_to_user((void __user *) user_args->sample_info_ptr,
-+				&pdd->dev->pcs_data.hosttrap_entry.base.pc_sample_info,
-+				sizeof(struct kfd_pc_sample_info));
-+		mutex_unlock(&pdd->dev->pcs_data.mutex);
-+		return ret ? -EFAULT : 0;
-+	}
-+	mutex_unlock(&pdd->dev->pcs_data.mutex);
-+
-+	if (!user_args->sample_info_ptr || user_args->num_sample_info < num_method) {
-+		user_args->num_sample_info = num_method;
-+		pr_debug("ASIC requires space for %d kfd_pc_sample_info entries.", num_method);
-+		return -ENOSPC;
-+	}
-+
-+	sample_offset = user_args->sample_info_ptr;
-+	for (i = 0; i < ARRAY_SIZE(supported_formats); i++) {
-+		if (KFD_GC_VERSION(pdd->dev) == supported_formats[i].ip_version) {
-+			ret = copy_to_user((void __user *) sample_offset,
-+				supported_formats[i].sample_info, sizeof(struct kfd_pc_sample_info));
-+			if (ret) {
-+				pr_debug("Failed to copy PC sampling info to user.");
-+				return -EFAULT;
-+			}
-+			sample_offset += sizeof(struct kfd_pc_sample_info);
-+		}
-+	}
-+
-+	return 0;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 0a9cf9dfc224..0e24e011f66b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -533,6 +533,16 @@ static void kfd_smi_init(struct kfd_node *dev)
+ 	spin_lock_init(&dev->smi_lock);
  }
  
- static int kfd_pc_sample_start(struct kfd_process_device *pdd)
++static void kfd_pc_sampling_init(struct kfd_node *dev)
++{
++	mutex_init(&dev->pcs_data.mutex);
++}
++
++static void kfd_pc_sampling_exit(struct kfd_node *dev)
++{
++	mutex_destroy(&dev->pcs_data.mutex);
++}
++
+ static int kfd_init_node(struct kfd_node *node)
+ {
+ 	int err = -1;
+@@ -563,6 +573,7 @@ static int kfd_init_node(struct kfd_node *node)
+ 	}
+ 
+ 	kfd_smi_init(node);
++	kfd_pc_sampling_init(node);
+ 
+ 	return 0;
+ 
+@@ -593,6 +604,7 @@ static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsigned int num_nodes)
+ 		kfd_topology_remove_device(knode);
+ 		if (knode->gws)
+ 			amdgpu_amdkfd_free_gws(knode->adev, knode->gws);
++		kfd_pc_sampling_exit(knode);
+ 		kfree(knode);
+ 		kfd->nodes[i] = NULL;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index ae9a41670909..f55195fea3df 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -269,6 +269,11 @@ struct kfd_vmid_info {
+ 
+ struct kfd_dev;
+ 
++/* Per device PC Sampling data */
++struct kfd_dev_pc_sampling {
++	struct mutex mutex;
++};
++
+ struct kfd_node {
+ 	unsigned int node_id;
+ 	struct amdgpu_device *adev;     /* Duplicated here along with keeping
+@@ -322,6 +327,8 @@ struct kfd_node {
+ 	struct kfd_local_mem_info local_mem_info;
+ 
+ 	struct kfd_dev *kfd;
++
++	struct kfd_dev_pc_sampling pcs_data;
+ };
+ 
+ struct kfd_dev {
 -- 
 2.25.1
 
