@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C5884BE7B
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 21:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 354D884BE9B
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Feb 2024 21:22:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B9A112DDD;
-	Tue,  6 Feb 2024 20:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 782F9112DE6;
+	Tue,  6 Feb 2024 20:22:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="itLDG148";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uyBBsTl9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA462112DDA
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 20:18:15 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBF42112DE6
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Feb 2024 20:22:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cUXEU0SdGYeyq34lBG17VKN4Ptcuemf1AdZ/25CMuNsHlXzJXo9CAq30ewxUE0TdZYMkR2tRZNhnQuelx4JZ2mt1RM8HlPV8kHKiVDidQ6I4ANBZJ76m73XDfecDtpCyeBamSWHem8yR3lPvjd2obwZBveZCkRWS7RoEMKTtrCSLctI1Hl/SQpGGQTIjumPzgxNbyashz4rJaHsXaFddKdJs0OLTZIoNa9j2Zs/ryibBu0osjiXiWt5RRD3NzWOoAaSGphhLxEzNd8D2yk2YkhUgJIEDUkdC+U8agDaYw+PTgWriKBThf/yjZ/rdhldwe29aM5cm/2bRK8E5vEHOlw==
+ b=bLA44jE4boUY6DNDXwhnAsD+SKKJWYNb5poigCvt4TvVAfsRONjW2Jd7fLQe6CVH1k0B7geyLtHInTCIZ10NMfg6ETn78N9apUcGxyU8xX0yRHW49dvAvFS7sy3wtMwzOywqcuQV+f8qgea1dx2UE4VFMKoOvSdnN75vbat6+CU6fj1BGEAOP7t+Pp8rjfIA610jbLysiy6Yykki2h2iWNC5inJixfirk6KgvLtAaAU+bawQmzwMF2/EljuuUFGFXSk4g9kl5EkVEjfWDEDag6iECzXfB+kLma4wFjdqv0EHwKs9JDV6Sb3gj8b8x3+XItUlC5+dTjqG7ppvw0m7+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Tz+4x5zTT2zNmT/UtUvVJr7OT2MUDhOKGT778spYHTU=;
- b=RlB0fgU8VH/nx/M8wRzAJ+ud9D4Wmv5Q2nHR4h/6xdyzn4CE6p1yfe4y8vr9IVftwC37puFy5vNSAQhBL9gfblOgIDquMhQxFqPRVmh9fVWoBKMABUzpkmaI9Nwjy8pWxxEwzzsXgHQaPS66LMx3WY6b1QXPb8GcVV2tyNveBHPkCp7g9Chg7Q+FC0uaIQeiKwHt+3+IYCKAtKnW0/FD2aFJ/1Kenyo1QuTMN9O8TEJK3YHXrPYvjO9+E/j4SxHJn98SF8PJpob8qYpyyCr/EvbehJy4TxXVnSfBRTqiTeMSQ0oTsn/wFyvRIdk28rn7duPljZv4AFTyZWxzlKeiHQ==
+ bh=08+ioCOJxt5LWdcN0Ev6mmCAbaZnjB5O238olwUTGss=;
+ b=mV2ED/O7Nj3SwAw6+iaz4aPnKQdgqkXkwXL2wzpFAXSjcgL3rdQXL/J4M4uoNzkDw2Y+Zj6OyMnNYGHCNaEiwVw2lnXd/aTBxESfsCfC9B7tPbJpGP4n4AOleuUfyR9QqplnzF0jaVD/u/VNPY0RRHRMJ0Sp+8EX4mgCl2HOk5HAjSn0P1nnnkwgBKcMXlV61JVZLk8BLPk33jr72lZHUED4jQ+g45j0bQzk6bGGFqzKfHXhf7zt5K8ZAEV/hXcnKBzmekoqCh/YUiAFYVcVwWl1TOIrmFWVwHz5Pl+pQoeLZ4fPMvMmImJXgfxZSndg9QoyqjmS6hVdqe8YiCaKjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tz+4x5zTT2zNmT/UtUvVJr7OT2MUDhOKGT778spYHTU=;
- b=itLDG1481nSg0dvqPtE3zgw8owZjI4E3fsoLD0J9rlgsgGQIejsRWTH6jbJSGMJGsk4/4UOmKlQFWdchfkbNacraH8B0YcNJVHFaHSLZvyHmbTaN33s4SAw3DxRQGn2ba9W7FO0aQQFhwSJxviyIvG6TlDpxTY53NRDZCxKTnQs=
-Received: from BY5PR20CA0003.namprd20.prod.outlook.com (2603:10b6:a03:1f4::16)
- by SA0PR12MB4528.namprd12.prod.outlook.com (2603:10b6:806:9e::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.14; Tue, 6 Feb
- 2024 20:18:13 +0000
-Received: from SJ5PEPF000001C9.namprd05.prod.outlook.com
- (2603:10b6:a03:1f4:cafe::1) by BY5PR20CA0003.outlook.office365.com
- (2603:10b6:a03:1f4::16) with Microsoft SMTP Server (version=TLS1_2,
+ bh=08+ioCOJxt5LWdcN0Ev6mmCAbaZnjB5O238olwUTGss=;
+ b=uyBBsTl9oFMLwcFUN0Aj7eP07FVo6ZQPqf4dCK5cg2zu7g8xzBbZEIaCHAHbeklzppdZlhIqJnv1yifyMe1t1ojlE3sOHSn25UehJE7A11KOPQFhV5PJ1qYcN2pmcZTZnpi9ZQaFjy5l3eM6pAYwY5VwH4lnpFlZ+cIfVd65qjs=
+Received: from BL0PR0102CA0072.prod.exchangelabs.com (2603:10b6:208:25::49) by
+ LV3PR12MB9165.namprd12.prod.outlook.com (2603:10b6:408:19f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.11; Tue, 6 Feb
+ 2024 20:22:45 +0000
+Received: from MN1PEPF0000F0DF.namprd04.prod.outlook.com
+ (2603:10b6:208:25:cafe::88) by BL0PR0102CA0072.outlook.office365.com
+ (2603:10b6:208:25::49) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
- Transport; Tue, 6 Feb 2024 20:18:13 +0000
+ Transport; Tue, 6 Feb 2024 20:22:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,23 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ5PEPF000001C9.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ MN1PEPF0000F0DF.mail.protection.outlook.com (10.167.242.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Tue, 6 Feb 2024 20:18:13 +0000
+ 15.20.7249.19 via Frontend Transport; Tue, 6 Feb 2024 20:22:43 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 6 Feb
- 2024 14:18:11 -0600
+ 2024 14:22:43 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Likun Gao <Likun.Gao@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- "Alex Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu/discovery: Add lsdma v7_0 ip block
-Date: Tue, 6 Feb 2024 15:17:51 -0500
-Message-ID: <20240206201751.1671125-3-alexander.deucher@amd.com>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 0/3] IH 7.0 support
+Date: Tue, 6 Feb 2024 15:22:25 -0500
+Message-ID: <20240206202227.1671475-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240206201751.1671125-1-alexander.deucher@amd.com>
-References: <20240206201751.1671125-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -73,26 +70,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C9:EE_|SA0PR12MB4528:EE_
-X-MS-Office365-Filtering-Correlation-Id: 24b1f2c3-1719-4619-4059-08dc2750bf0b
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DF:EE_|LV3PR12MB9165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46bb41cb-6c9d-462d-086c-08dc2751603a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: X6NMHeWnPz/eeRcAURtGEkCUmBxTSRPKr0oMbX1QTSkmDUnDbIJ8Md5w2E+3ub/F0oOxV+qELsqz9dRA8n3XAXgxP5kAogmHygCf6s0nuH0MiDWLYQXK91ymW87uYMBQbIh11cnpLWAVbGUyyAgP3yC16+xaPs2h8skXYyitQ1NyyEaVY2GEzQwtHR7Gu/tI0nIiBkjJzknFP0Lemyy5nJQxkf3d8mTkA/wF0FV3q8Bk3zGVQ2D4+2Rf2KyeSfnSBxFF1yLHTFxYwkAFbHLJbIv/3FsbGzYJymfZDh4aBLFl5hLWA5Xyc8JfNcAICd4e+qivzmf2PlyV+OzKT8OiAlac+j0saPiDuhlsjzZkU4Wq1ZJBqTQQuLT6t2usYFsjT4DIP0yfAU4z7l4w5AROIQvOzi8HpK7+q3KDy0eAWVoaPTS/dZy62V0KAwQqrLGKoLtmzeIzzG75Yelial2yOz6lTx2ey4+NI3Iovtg/m3x5NKFKsLdHf/XgP39rYz+lF7UAkwat9vDrOZsD24/HXblC1K3/JoDpecl8vGQL55lue+k1kDuIQAHqcNwUckKHsn87S94qvhEQFf7Xm0jblWOlpWo3JVmo4jKV2zfgF29J1rkz1kxpUUvpkFGN+Az/dYpSnWOA42XJgCB4cBksrl82w213vCQfVRu9GenkB4jzcDGKwmdFjf64ZXAhgmSlPmvMnoI+2PsiWSiCfmIsu+Sr1qny85CWZLf9DSmtIUtL4I12tqzaD5fvedwa2hX+A+3ibkA8ybYSpZhzzznegw==
+X-Microsoft-Antispam-Message-Info: SlxxAEwU85KpQGqLSVeE1Cew+hupWE/KFRVnUWQEpGAVg/aB9DvCfp8VPzsPwSkcZEVBprPGdhd1T1+SlXTsg6+spwxIqhuhi8nFIryGQJCwFwGqDwCAL5zuQNOVRIkpOc/uMAe223VXzlzPzKBc+QstlGWoMg6aDM+PWNbm0SKVPtC9f2CR02f0N54rKay64kSWwkhqhiY5BGNNMSibptYXwo+mFf1MF0f+xxSjy/r9GytCxtTE4ugTr9cN/jSYKGn+lh9p6Tk2T6ndYvUkdn1JZLq8UrjppefC7Jc4VMQAtFSC7jwlqC7S34QLsZmwxFugWCf3xFmUbooU7SsIFrwbjaXIQMVHmMTAikkk2Y4Zo2hQFwIKBEG1+nMRmhTTzBduAyMtMuuLPaadAfe/Dk4j7oRGB544Qi6o8AA1n8TKPMrR4PCzxmzFoqI0IQ/YB602PRbm8ApQuFGSil2g+AI7aRIOWD2H3c6OU8Mj0rmkEYTvfvApkX8hY27cmbpbehTPg4K2WwRDvDjmpZFwhNCoqJBAw+iTI+VF0ttR9sgimqWmC2z59rcLr7TcG9haHi4vpnciK1pIq2EeCPDAZF1LOYP/O1em2kaTlO/c/YDGJTI4vCzNsj5CXsiyvg5gooiLDZFeANvXvpXS6MbYFuQ7fzmzG5m7UG09j46JmveilURAKEj045aYSA3m9yYbLouJPPkZI2vchclQMYAFKzRckIEXaCJgKn8/ZIvD9K7rc3yvHEFt856zgqSkIm3UEIcLhqDHB2GKyl7gH2bqBg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(376002)(136003)(346002)(39860400002)(230922051799003)(1800799012)(451199024)(82310400011)(186009)(64100799003)(46966006)(36840700001)(40470700004)(40480700001)(40460700003)(2616005)(1076003)(36860700001)(36756003)(478600001)(86362001)(82740400003)(41300700001)(426003)(6666004)(83380400001)(26005)(47076005)(336012)(16526019)(81166007)(7696005)(356005)(2906002)(54906003)(6916009)(5660300002)(8936002)(4326008)(316002)(8676002)(70586007)(70206006)(36900700001);
+ SFS:(13230031)(4636009)(376002)(39860400002)(136003)(396003)(346002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(82310400011)(46966006)(36840700001)(40470700004)(40460700003)(40480700001)(83380400001)(41300700001)(8676002)(70586007)(6916009)(36756003)(86362001)(356005)(2616005)(1076003)(82740400003)(336012)(36860700001)(26005)(47076005)(81166007)(426003)(16526019)(7696005)(316002)(478600001)(5660300002)(8936002)(4326008)(2906002)(6666004)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 20:18:13.4570 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24b1f2c3-1719-4619-4059-08dc2750bf0b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 20:22:43.9549 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46bb41cb-6c9d-462d-086c-08dc2751603a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C9.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DF.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4528
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9165
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,42 +104,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+This series adds support for IH 7.0.x.  IH is the interrupt handler
+on the GPU.  Interrupts are written to a ring buffer and the driver
+walks the ring buffer handling the interrupt packets.
 
-Add lsdma v7_0 ip block.
+Patch 1 adds the new register headers and is very large, so I've
+omitted it.
 
-v2: squash in updates (Alex)
+Hawking Zhang (1):
+  drm/amdgpu: Add osssys v7_0_0 ip headers (v4)
 
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Likun Gao (2):
+  drm/amdgpu: Add ih v7_0 ip block support
+  drm/amdgpu/discovery: Add ih v7_0 ip block
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 93c84a1c1d3e..e941aeb6f16a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -75,6 +75,7 @@
- #include "sdma_v5_2.h"
- #include "sdma_v6_0.h"
- #include "lsdma_v6_0.h"
-+#include "lsdma_v7_0.h"
- #include "vcn_v2_0.h"
- #include "jpeg_v2_0.h"
- #include "vcn_v3_0.h"
-@@ -2641,6 +2642,10 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(6, 0, 3):
- 		adev->lsdma.funcs = &lsdma_v6_0_funcs;
- 		break;
-+	case IP_VERSION(7, 0, 0):
-+	case IP_VERSION(7, 0, 1):
-+		adev->lsdma.funcs = &lsdma_v7_0_funcs;
-+		break;
- 	default:
- 		break;
- 	}
+ drivers/gpu/drm/amd/amdgpu/Makefile           |    3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |    4 +
+ drivers/gpu/drm/amd/amdgpu/ih_v7_0.c          |  766 ++++++++++++
+ drivers/gpu/drm/amd/amdgpu/ih_v7_0.h          |   28 +
+ .../asic_reg/oss/osssys_7_0_0_offset.h        |  279 +++++
+ .../asic_reg/oss/osssys_7_0_0_sh_mask.h       | 1029 +++++++++++++++++
+ 6 files changed, 2108 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/ih_v7_0.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/oss/osssys_7_0_0_offset.h
+ create mode 100644 drivers/gpu/drm/amd/include/asic_reg/oss/osssys_7_0_0_sh_mask.h
+
 -- 
 2.42.0
 
