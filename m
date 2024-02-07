@@ -2,63 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996DC84D341
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Feb 2024 21:52:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E6884D343
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Feb 2024 21:52:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6F310E4C4;
-	Wed,  7 Feb 2024 20:52:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A61210E59B;
+	Wed,  7 Feb 2024 20:52:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vvSTuZz8";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Glubopty";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5299410E460
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 20:52:25 +0000 (UTC)
+ (mail-bn7nam10on2084.outbound.protection.outlook.com [40.107.92.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C5D10E483
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 20:52:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IvZi/K19iXafghSSnWRjRSjh1CDHex4i7fu/7KnyP3lc/X6hvEOtL6tvM+lLcMEPsz7uPbtwDwntS5gNBqJqyzz2IrjKH24hOuIz5gQgVmT/QcG5rceOC0rg5C2t7m7YWOCLUGczXxCjoLNqqHDCDxLnxxNrXI/8cUFcuJKvL1+nhQ0yWdqRRrSC6UiOAo0vaxswL3D4UpX4J3QMWquhv/b+QNHSK2RFEuzU3bz1J2KkIMkLu1vFGxNHUmnX9NC1AStlAPCbUcKN7BeZ/ul1SikD6bPr5oNABsOOo9T3iyKaM6ude3VxcrnD1GJxYBg/PR5P2CHedjJGJAYwpmHcxQ==
+ b=BanOd8ZhuE7xBkWtUwdgMQPcaNnYo2q611IggaagJYkzex+RYl79g2oO9UOK2eGsPjUWII0baCtdEmhJWjwfhwIjVFb4mdn2mA/0LuSSl3Ai0fOQ8RbY6U1Y1++r1nSqlSp1MBhxwRBb/9XwFqf74e1bf/x3xRBIDNlSlOXUHz34ilc4pHtgCqjzhgUlTE4BxZKb/RstznP3m2TeA0DrPj22NYb6I8uupo8yJFVdoB1Wji5ZCe8SlnHFX6CbyamdmRB1iiowiXY+LMFOc9k/B62eFeKvDzMoHjyGMIdh+jTGzGmwLp/T4/J/IBzkaoRLGNpKd8BQjiUK3DdknIr9dQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=heEjFPlA1i+6gfCZC7ArCgZwFltR8YwalZDLMp2ub0E=;
- b=kFbjabT7FHL/5k7GY0P88NCRSLeHRd1RPkX5o/Az94sXnPIo6+yBPEfz8PNJCu62GHoeD206FHwmQmR/Fe/qr1mdLtdvm9O3p6aRPC7cb4R90894S/g7vjxtGIgeNABe2GKGta/ijr2JEBxxys4kYFHHXBb8iNHBpGImDDcU1k5sbxVF+V/8iOBzg73wIEKJ8xjNIp/zQpJ9ohMZpkv178EmQ8tjov+GmPhq7nUYUBoD3hMY+LSHQSzZZespvR2KFjZCZNYHCDDn0GzuhwPQlAJYkwd+Jjm8IYjy+O8ULV4Q4fLIDj8519NDSVaIu+9Y4mpXW8NgTWRDKGYWn4TcGA==
+ bh=Lc/JXB2JFJupRWJe5JydW2WUa8grFO+iRVwCPHF1w8U=;
+ b=YY9b5+IofqQ4qubOBM6SVftXajfKet6kLGK6fDmpOV6BrcRDezcHulSDZEREsQDlpU6Tqt2mY5nbeCXtuZa65p1UFWAgpaIKaEwarPv6g3AwFo7CWz1Z9uFW6OvOUimhZoV71ZaUV0Qi62wVeQjbKem+kgSZUL2JUut+wLuDR4Zcn9sKZNA45dktjqmbOOiUWLSRgiDCMyOWN19NWRw0pvXFcfP+GqvYUZWIi7SOnRP2QWpRyBLp4nLLlKZK2KJF6hBy0f3vcHHV9jV+W+4m82MhVEJVCjklcUGOMT10PVU15JK7vAehmd/frIrl3fKAf8um4ct4XMfT0vExi/+fFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=heEjFPlA1i+6gfCZC7ArCgZwFltR8YwalZDLMp2ub0E=;
- b=vvSTuZz8TVQP8aNZNSS1K7DWxvRvhG+oaLz4D8ZrP58wO3Yf/7WY+iKIEtboQiE3uvh4mNmszQQXLEHATXfq2Cgb8saXez0eZ9a50pH36NVKJpoW+LrUuu2TlSCJRkzTWyQkXbYf/E+kbOYE2F21JRqyq2vejBE6PUO00wU+AUw=
-Received: from DM6PR18CA0021.namprd18.prod.outlook.com (2603:10b6:5:15b::34)
- by BL1PR12MB5352.namprd12.prod.outlook.com (2603:10b6:208:314::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.16; Wed, 7 Feb
- 2024 20:52:21 +0000
-Received: from DS2PEPF0000343D.namprd02.prod.outlook.com
- (2603:10b6:5:15b:cafe::9a) by DM6PR18CA0021.outlook.office365.com
- (2603:10b6:5:15b::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
- Transport; Wed, 7 Feb 2024 20:52:20 +0000
+ bh=Lc/JXB2JFJupRWJe5JydW2WUa8grFO+iRVwCPHF1w8U=;
+ b=Gluboptyfwjlint4GcXTd4x1FwHQKPomstZpmGBRrnVXJI7pEDfIDl+yC8OSxLqzHdkFUCgR5THoZE4m9lo9WTn//Lume+jMEJvRtN6gsL7wvvS1hhFlTKCPmaoTVxwFFBAJ+NDJfX7BIjONhVfQg+/6dwNouUdaXGbdPiZeqS0=
+Received: from SJ0PR05CA0110.namprd05.prod.outlook.com (2603:10b6:a03:334::25)
+ by PH7PR12MB9075.namprd12.prod.outlook.com (2603:10b6:510:2f0::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Wed, 7 Feb
+ 2024 20:52:23 +0000
+Received: from SJ1PEPF00001CE8.namprd03.prod.outlook.com
+ (2603:10b6:a03:334:cafe::c8) by SJ0PR05CA0110.outlook.office365.com
+ (2603:10b6:a03:334::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23 via Frontend
+ Transport; Wed, 7 Feb 2024 20:52:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS2PEPF0000343D.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00001CE8.mail.protection.outlook.com (10.167.242.24) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Wed, 7 Feb 2024 20:52:20 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7249.19 via Frontend Transport; Wed, 7 Feb 2024 20:52:23 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 7 Feb
  2024 14:52:18 -0600
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 7 Feb
- 2024 14:52:17 -0600
+ 2024 14:52:18 -0600
 Received: from manjaura.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
  Transport; Wed, 7 Feb 2024 14:52:17 -0600
@@ -67,12 +67,10 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, George Shen
- <george.shen@amd.com>, Martin Leung <martin.leung@amd.com>
-Subject: [PATCH 14/15] Revert "drm/amd/display: Add left edge pixel for
- YCbCr422/420 + ODM pipe split"
-Date: Wed, 7 Feb 2024 15:50:49 -0500
-Message-ID: <20240207205200.1608684-15-aurabindo.pillai@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Aric Cyr <aric.cyr@amd.com>
+Subject: [PATCH 15/15] drm/amd/display: 3.2.272
+Date: Wed, 7 Feb 2024 15:50:50 -0500
+Message-ID: <20240207205200.1608684-16-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240207205200.1608684-1-aurabindo.pillai@amd.com>
 References: <20240207205200.1608684-1-aurabindo.pillai@amd.com>
@@ -81,26 +79,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343D:EE_|BL1PR12MB5352:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf5e3038-00a2-4d54-b3fe-08dc281eadc9
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE8:EE_|PH7PR12MB9075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a659822-20e3-4f80-5cde-08dc281eaf6b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HwKL0uWIV8osA+VzfEIpiz+9yHGWlc+fNap5mumx0ay5N4dlu6vyCoWcc+tHwWMidkxO0EZ/ZmN6pyy0BCrfqInBujlhgv3C+F+rt2WIozUBGdS+81V/Je5ZX239LHksuTZSsjX1+ox1iE2ihNEZ15PipXlpXR7sITyhf6salVCZwstN+n3nMLYUI5jmsrrvdnBjORY+ZDev5gVpvKjL/w325sjaWuCkcvuq/1K1HT6BEeWuhTEtzdnbxKWw0GFAegG/ZGjvSNWvo8/WR+23W9mGtjWM9+sJrXXPy2CwgFoRmF49cOwNxN6cs+MuQ+6+0Wp+WG70OxkMx4Jbp6KT1h+aLLheU1r1dsWaCH9cB02uCEKn4Ui8p96RjB8xVPyjnGxojXBZWJtNROlIuJ9wzwBqAos9U23+QwcPaRadRWmuEE6no1RQNml6ZXQFSqUKHAh4WDOdrffBuE9BBbAQ4bmIK8cdF/zVntnQ6dZ2j1uY8QcayJVS8s07rbMcPWfMo1DJELey3neY7DXa42RHtkXFND0Bnp4oHPqeZxuaOY9O8ctcVDN+dTnbhzGuVGweeyPY+o8ZfqdSPoQ6/VpreHtckQz46XbZdMHwc5IzZOo=
+X-Microsoft-Antispam-Message-Info: eyLxa0bBtDgXd1Vlt/3iRDb3Zz7f6Tjfj4IB1nVjk5ISm2XIvzKyvcXMdo5C67KKnM/xL2xeFjdgBal5T88tU0fcgj6IkDaj5b3KIp7VH3bRYUUHPLMtyrHR3jYoiQCXple8wzO8vqxzKn4OJioB0tmBSkvs6JTn6cE28Lz2M9YRZuak/Msipyv5LdY0zKdVwiZa3EZ0lynxTsRycMvenA5zKCGkt2YHamZuFqRXdPcyYvufE29kuy7zHDp1IAoI40T+6gn9CoPf4IbEbNAnzCZ0qmyud8VauWVdAbNj/hkEKvnEu3q1jx06Pftz8e/8XbTB9QQzbjIICmkp3X+HFy1DQN1v6tEA+meSh+5CXFhJLhDYAVfviZl/hKretal9hEm6ujqFqksgpcxs/ZD4SA1EE0gOn8P1PEKu6LPk0vQZl6UQHyYBOcIaLvpyEPyqinSvbF6tvNGJRch1nEXTrvmUf9NADV++S440+lm5dJem+5fYUea8pmalbwJpGHxMlax/E00OiZ0n8VDF5yIIvAZ204MdzyJbzF0tFvkG81r31WdaFzLgxCX8d121bDHaW1wPE7a6kJJg2uIl9/p9TLlcIFnig7NGv0JHQpZ1xrs=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(6029001)(4636009)(346002)(39860400002)(396003)(136003)(376002)(230922051799003)(64100799003)(186009)(82310400011)(451199024)(1800799012)(46966006)(36840700001)(40470700004)(81166007)(54906003)(82740400003)(6916009)(83380400001)(356005)(2616005)(8676002)(336012)(6666004)(7696005)(26005)(1076003)(70586007)(316002)(70206006)(44832011)(86362001)(2906002)(5660300002)(426003)(4326008)(478600001)(8936002)(36756003)(41300700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(376002)(136003)(39860400002)(346002)(396003)(230922051799003)(186009)(82310400011)(1800799012)(64100799003)(451199024)(36840700001)(40470700004)(46966006)(1076003)(41300700001)(426003)(2616005)(26005)(6916009)(82740400003)(83380400001)(316002)(7696005)(336012)(356005)(478600001)(8936002)(6666004)(36756003)(81166007)(70586007)(86362001)(54906003)(70206006)(4744005)(4326008)(2906002)(5660300002)(8676002)(44832011);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 20:52:20.7699 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf5e3038-00a2-4d54-b3fe-08dc281eadc9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 20:52:23.5071 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a659822-20e3-4f80-5cde-08dc281eaf6b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343D.namprd02.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE8.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5352
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9075
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,159 +113,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: George Shen <george.shen@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-[Why/How]
-A regression was identified with the change to add left edge pixel for
-YCbCr422/420 + ODM combine cases.
+Summary:
 
-This reverts commit 8d09500a33f6a0e0df9cf17822fe51520d0df002
+* Revert some changes related to pixel encoding and clocks that cause
+  corruption
+* IPS hang fix and FGCG enable by default for DCN35
+* PSR-SU/Replay fixes
+* Plane clip size change treated as medium update
+* Fix for checking link alignment done during link training.
+* HDMI compliance test fixes and other improvements
 
-Reviewed-by: Martin Leung <martin.leung@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: George Shen <george.shen@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  4 --
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 37 -------------------
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  7 +---
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  2 -
- drivers/gpu/drm/amd/display/dc/inc/resource.h |  4 --
- 5 files changed, 1 insertion(+), 53 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 1d0fd69cc7bd..4d5194293dbd 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3098,10 +3098,6 @@ static bool update_planes_and_stream_state(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 181144541657..9b42f6fc8c69 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -51,7 +51,7 @@ struct aux_payload;
+ struct set_config_cmd_payload;
+ struct dmub_notification;
  
- 			if (otg_master && otg_master->stream->test_pattern.type != DP_TEST_PATTERN_VIDEO_MODE)
- 				resource_build_test_pattern_params(&context->res_ctx, otg_master);
--
--			if (otg_master && (otg_master->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR422 ||
--					otg_master->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR420))
--				resource_build_subsampling_params(&context->res_ctx, otg_master);
- 		}
- 	}
+-#define DC_VER "3.2.271"
++#define DC_VER "3.2.272"
  
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 96ea283bd169..1b7765bc5e5e 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -822,16 +822,6 @@ static struct rect calculate_odm_slice_in_timing_active(struct pipe_ctx *pipe_ct
- 			stream->timing.v_border_bottom +
- 			stream->timing.v_border_top;
- 
--	/* Recout for ODM slices after the first slice need one extra left edge pixel
--	 * for 3-tap chroma subsampling.
--	 */
--	if (odm_slice_idx > 0 &&
--			(pipe_ctx->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR422 ||
--				pipe_ctx->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR420)) {
--		odm_rec.x -= 1;
--		odm_rec.width += 1;
--	}
--
- 	return odm_rec;
- }
- 
-@@ -1448,7 +1438,6 @@ void resource_build_test_pattern_params(struct resource_context *res_ctx,
- 	enum controller_dp_test_pattern controller_test_pattern;
- 	enum controller_dp_color_space controller_color_space;
- 	enum dc_color_depth color_depth = otg_master->stream->timing.display_color_depth;
--	enum dc_pixel_encoding pixel_encoding = otg_master->stream->timing.pixel_encoding;
- 	int h_active = otg_master->stream->timing.h_addressable +
- 		otg_master->stream->timing.h_border_left +
- 		otg_master->stream->timing.h_border_right;
-@@ -1480,36 +1469,10 @@ void resource_build_test_pattern_params(struct resource_context *res_ctx,
- 		else
- 			params->width = last_odm_slice_width;
- 
--		/* Extra left edge pixel is required for 3-tap chroma subsampling. */
--		if (i != 0 && (pixel_encoding == PIXEL_ENCODING_YCBCR422 ||
--				pixel_encoding == PIXEL_ENCODING_YCBCR420)) {
--			params->offset -= 1;
--			params->width += 1;
--		}
--
- 		offset += odm_slice_width;
- 	}
- }
- 
--void resource_build_subsampling_params(struct resource_context *res_ctx,
--	struct pipe_ctx *otg_master)
--{
--	struct pipe_ctx *opp_heads[MAX_PIPES];
--	int odm_cnt = 1;
--	int i;
--
--	odm_cnt = resource_get_opp_heads_for_otg_master(otg_master, res_ctx, opp_heads);
--
--	/* For ODM slices after the first slice, extra left edge pixel is required
--	 * for 3-tap chroma subsampling.
--	 */
--	if (otg_master->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR422 ||
--			otg_master->stream->timing.pixel_encoding == PIXEL_ENCODING_YCBCR420) {
--		for (i = 0; i < odm_cnt; i++)
--			opp_heads[i]->stream_res.left_edge_extra_pixel = (i == 0) ? false : true;
--	}
--}
--
- bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- {
- 	const struct dc_plane_state *plane_state = pipe_ctx->plane_state;
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index f15ba7335336..c55d5155ecb9 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -1573,8 +1573,7 @@ static void dcn20_detect_pipe_changes(struct dc_state *old_state,
- 	 * makes this assumption at the moment with how hubp reset is matched to
- 	 * same index mpcc reset.
- 	 */
--	if (old_pipe->stream_res.opp != new_pipe->stream_res.opp ||
--			old_pipe->stream_res.left_edge_extra_pixel != new_pipe->stream_res.left_edge_extra_pixel)
-+	if (old_pipe->stream_res.opp != new_pipe->stream_res.opp)
- 		new_pipe->update_flags.bits.opp_changed = 1;
- 	if (old_pipe->stream_res.tg != new_pipe->stream_res.tg)
- 		new_pipe->update_flags.bits.tg_changed = 1;
-@@ -1962,10 +1961,6 @@ static void dcn20_program_pipe(
- 			pipe_ctx->stream_res.opp,
- 			&pipe_ctx->stream->bit_depth_params,
- 			&pipe_ctx->stream->clamping);
--
--		pipe_ctx->stream_res.opp->funcs->opp_program_left_edge_extra_pixel(
--			pipe_ctx->stream_res.opp,
--			pipe_ctx->stream_res.left_edge_extra_pixel);
- 	}
- 
- 	/* Set ABM pipe after other pipe configurations done */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index ebb659c327e0..3a6bf77a6873 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -333,8 +333,6 @@ struct stream_resource {
- 	uint8_t gsl_group;
- 
- 	struct test_pattern_params test_pattern_params;
--
--	bool left_edge_extra_pixel;
- };
- 
- struct plane_resource {
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-index b14d52e52fa2..77a60aa9f27b 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-@@ -107,10 +107,6 @@ void resource_build_test_pattern_params(
- 		struct resource_context *res_ctx,
- 		struct pipe_ctx *pipe_ctx);
- 
--void resource_build_subsampling_params(
--		struct resource_context *res_ctx,
--		struct pipe_ctx *pipe_ctx);
--
- bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx);
- 
- enum dc_status resource_build_scaling_params_for_context(
+ #define MAX_SURFACES 3
+ #define MAX_PLANES 6
 -- 
 2.43.0
 
