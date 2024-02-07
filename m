@@ -2,103 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E6884D343
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Feb 2024 21:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BAB84D3B2
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Feb 2024 22:23:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A61210E59B;
-	Wed,  7 Feb 2024 20:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0854C10E81F;
+	Wed,  7 Feb 2024 21:22:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Glubopty";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F97xpn3s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2084.outbound.protection.outlook.com [40.107.92.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06C5D10E483
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Feb 2024 20:52:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BanOd8ZhuE7xBkWtUwdgMQPcaNnYo2q611IggaagJYkzex+RYl79g2oO9UOK2eGsPjUWII0baCtdEmhJWjwfhwIjVFb4mdn2mA/0LuSSl3Ai0fOQ8RbY6U1Y1++r1nSqlSp1MBhxwRBb/9XwFqf74e1bf/x3xRBIDNlSlOXUHz34ilc4pHtgCqjzhgUlTE4BxZKb/RstznP3m2TeA0DrPj22NYb6I8uupo8yJFVdoB1Wji5ZCe8SlnHFX6CbyamdmRB1iiowiXY+LMFOc9k/B62eFeKvDzMoHjyGMIdh+jTGzGmwLp/T4/J/IBzkaoRLGNpKd8BQjiUK3DdknIr9dQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lc/JXB2JFJupRWJe5JydW2WUa8grFO+iRVwCPHF1w8U=;
- b=YY9b5+IofqQ4qubOBM6SVftXajfKet6kLGK6fDmpOV6BrcRDezcHulSDZEREsQDlpU6Tqt2mY5nbeCXtuZa65p1UFWAgpaIKaEwarPv6g3AwFo7CWz1Z9uFW6OvOUimhZoV71ZaUV0Qi62wVeQjbKem+kgSZUL2JUut+wLuDR4Zcn9sKZNA45dktjqmbOOiUWLSRgiDCMyOWN19NWRw0pvXFcfP+GqvYUZWIi7SOnRP2QWpRyBLp4nLLlKZK2KJF6hBy0f3vcHHV9jV+W+4m82MhVEJVCjklcUGOMT10PVU15JK7vAehmd/frIrl3fKAf8um4ct4XMfT0vExi/+fFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lc/JXB2JFJupRWJe5JydW2WUa8grFO+iRVwCPHF1w8U=;
- b=Gluboptyfwjlint4GcXTd4x1FwHQKPomstZpmGBRrnVXJI7pEDfIDl+yC8OSxLqzHdkFUCgR5THoZE4m9lo9WTn//Lume+jMEJvRtN6gsL7wvvS1hhFlTKCPmaoTVxwFFBAJ+NDJfX7BIjONhVfQg+/6dwNouUdaXGbdPiZeqS0=
-Received: from SJ0PR05CA0110.namprd05.prod.outlook.com (2603:10b6:a03:334::25)
- by PH7PR12MB9075.namprd12.prod.outlook.com (2603:10b6:510:2f0::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Wed, 7 Feb
- 2024 20:52:23 +0000
-Received: from SJ1PEPF00001CE8.namprd03.prod.outlook.com
- (2603:10b6:a03:334:cafe::c8) by SJ0PR05CA0110.outlook.office365.com
- (2603:10b6:a03:334::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23 via Frontend
- Transport; Wed, 7 Feb 2024 20:52:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CE8.mail.protection.outlook.com (10.167.242.24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Wed, 7 Feb 2024 20:52:23 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 7 Feb
- 2024 14:52:18 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 7 Feb
- 2024 14:52:18 -0600
-Received: from manjaura.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Wed, 7 Feb 2024 14:52:17 -0600
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
- <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
- <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Aric Cyr <aric.cyr@amd.com>
-Subject: [PATCH 15/15] drm/amd/display: 3.2.272
-Date: Wed, 7 Feb 2024 15:50:50 -0500
-Message-ID: <20240207205200.1608684-16-aurabindo.pillai@amd.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4446210E102;
+ Wed,  7 Feb 2024 21:22:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 743E361AA2;
+ Wed,  7 Feb 2024 21:22:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A1CC43399;
+ Wed,  7 Feb 2024 21:22:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1707340950;
+ bh=Rvq5RqfGg6LJ+Ejc2gITfRUd2FPM+YREG1dp/Y9t//8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=F97xpn3svbg2b1PE4n7ku2I9fmW8nlVgLPvUI6H0DVTUh5/eJtUPbMHDgQUT2lzds
+ JQSFqN+Pfd4DSZAtClVxXtlaxgJoW6BZoCl5aVJowphCaZdYbg+6kg4C8dAlG6ahJE
+ IeWoIGKMjt1OSGwCTg6Nx3TntUzH9HJtUlkM/1NA8RsgIlnyxd2Dw0xOOIy0iE0pZG
+ 4UvSUKiHE1lPzS+G2IT4mtdAuYi07jJzYs2yX4EpxB6GO3auUVDqnnRxT9//VyJAsn
+ 2j0ERYHfuKDVa2XUIfs+jNJvzvuiKOdKarVrQzJ8vXu0hUKr0qToj0Oo8rWYz4y2Zl
+ E3iLo7cnh5CmQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Mukul Joshi <mukul.joshi@amd.com>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ Felix.Kuehling@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.7 24/44] drm/amdkfd: Use correct drm device for
+ cgroup permission check
+Date: Wed,  7 Feb 2024 16:20:51 -0500
+Message-ID: <20240207212142.1399-24-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240207205200.1608684-1-aurabindo.pillai@amd.com>
-References: <20240207205200.1608684-1-aurabindo.pillai@amd.com>
+In-Reply-To: <20240207212142.1399-1-sashal@kernel.org>
+References: <20240207212142.1399-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.7.4
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE8:EE_|PH7PR12MB9075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a659822-20e3-4f80-5cde-08dc281eaf6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eyLxa0bBtDgXd1Vlt/3iRDb3Zz7f6Tjfj4IB1nVjk5ISm2XIvzKyvcXMdo5C67KKnM/xL2xeFjdgBal5T88tU0fcgj6IkDaj5b3KIp7VH3bRYUUHPLMtyrHR3jYoiQCXple8wzO8vqxzKn4OJioB0tmBSkvs6JTn6cE28Lz2M9YRZuak/Msipyv5LdY0zKdVwiZa3EZ0lynxTsRycMvenA5zKCGkt2YHamZuFqRXdPcyYvufE29kuy7zHDp1IAoI40T+6gn9CoPf4IbEbNAnzCZ0qmyud8VauWVdAbNj/hkEKvnEu3q1jx06Pftz8e/8XbTB9QQzbjIICmkp3X+HFy1DQN1v6tEA+meSh+5CXFhJLhDYAVfviZl/hKretal9hEm6ujqFqksgpcxs/ZD4SA1EE0gOn8P1PEKu6LPk0vQZl6UQHyYBOcIaLvpyEPyqinSvbF6tvNGJRch1nEXTrvmUf9NADV++S440+lm5dJem+5fYUea8pmalbwJpGHxMlax/E00OiZ0n8VDF5yIIvAZ204MdzyJbzF0tFvkG81r31WdaFzLgxCX8d121bDHaW1wPE7a6kJJg2uIl9/p9TLlcIFnig7NGv0JHQpZ1xrs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(136003)(39860400002)(346002)(396003)(230922051799003)(186009)(82310400011)(1800799012)(64100799003)(451199024)(36840700001)(40470700004)(46966006)(1076003)(41300700001)(426003)(2616005)(26005)(6916009)(82740400003)(83380400001)(316002)(7696005)(336012)(356005)(478600001)(8936002)(6666004)(36756003)(81166007)(70586007)(86362001)(54906003)(70206006)(4744005)(4326008)(2906002)(5660300002)(8676002)(44832011);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 20:52:23.5071 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a659822-20e3-4f80-5cde-08dc281eaf6b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9075
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,37 +65,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Mukul Joshi <mukul.joshi@amd.com>
 
-Summary:
+[ Upstream commit 4119734e06a7f30e7e8eb666692a58b85dca0269 ]
 
-* Revert some changes related to pixel encoding and clocks that cause
-  corruption
-* IPS hang fix and FGCG enable by default for DCN35
-* PSR-SU/Replay fixes
-* Plane clip size change treated as medium update
-* Fix for checking link alignment done during link training.
-* HDMI compliance test fixes and other improvements
+On GFX 9.4.3, for a given KFD node, fetch the correct drm device from
+XCP manager when checking for cgroup permissions.
 
-Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 181144541657..9b42f6fc8c69 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -51,7 +51,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 28162bfbe1b3..71445ab63b5e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -1482,10 +1482,15 @@ void kfd_dec_compute_active(struct kfd_node *dev);
  
--#define DC_VER "3.2.271"
-+#define DC_VER "3.2.272"
+ /* Cgroup Support */
+ /* Check with device cgroup if @kfd device is accessible */
+-static inline int kfd_devcgroup_check_permission(struct kfd_node *kfd)
++static inline int kfd_devcgroup_check_permission(struct kfd_node *node)
+ {
+ #if defined(CONFIG_CGROUP_DEVICE) || defined(CONFIG_CGROUP_BPF)
+-	struct drm_device *ddev = adev_to_drm(kfd->adev);
++	struct drm_device *ddev;
++
++	if (node->xcp)
++		ddev = node->xcp->ddev;
++	else
++		ddev = adev_to_drm(node->adev);
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
+ 	return devcgroup_check_permission(DEVCG_DEV_CHAR, DRM_MAJOR,
+ 					  ddev->render->index,
 -- 
 2.43.0
 
