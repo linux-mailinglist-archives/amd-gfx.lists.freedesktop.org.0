@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C999855247
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Feb 2024 19:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2061185524E
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Feb 2024 19:40:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED8A810E0AD;
-	Wed, 14 Feb 2024 18:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD2610E396;
+	Wed, 14 Feb 2024 18:40:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iGJNevv0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qr7Rwv4H";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6401410E182
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 18:40:39 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5C5110E0AD
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 18:40:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DAdWgTUzrgR+hb3llC1ywC9JgB9ePc8xunphZpb3E8pM0cUIylBfJq4PeIx096QuTedrwpg5gJvPMrRUwTB/+AwArkrdzB0Ww2bmgUuEMcCl+8wtjHHPWJ9qp/0biZorDXk/5Z1fTN06yHRVm1znzs2S4p7GmAFwWSUK/ovBvaU7OJvapQtJPKkAC/CECBHhiEzSTKGtCq+5+WCmKnfZQKYTCyHIYq190Tk3XO44cYIB0WHVsaz3L1k/HgwKTA/BZ7XVviZI/jucyeYvsHaOA3ZT/xt9yAZfQ16dhikhZHNk56yFrE6OYYdPOUOXDSmhY1vqLuZ2LEYKSO6XA5ZiQA==
+ b=gAYzImuL2E6gLrHm1efkob1XG3vzH5JsB9lWM1y9JXBD9c0W2kuaNyR3MsKajLaENtXPh15yRDsCqD/O1OoZOpr2d3CgYJy5hZXppqSDCvv165gRZSRtoWV8RccNikQ6XWZqR2sicd1pVM9D0y8oybny8hAatRrjcP3N7LPMa5MbYl7VuC7vSAjm6CsIKhd/WftjIoZXf1BX6O7PLIBMhg7docox7piGRmrq/QDNYoEZnT39JFC2R+5HPDNVePfhycu0/BTrHOGx5D4fjis/FcRn/Mp/AlmBGgF6dUMZMrUvLcCwBs1loR5QjKhu+2NhGn2DipjVIuh+Q3i2kSRU3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=abwC4IaYQqG1q06lhOwLc2jCpuv+0bSpcmj8KvltuVM=;
- b=I2pcBn9QtYrDyYyvSaKsTH+dWZ4Nk00+Po9Kw2ID51iL4O0WHs0UHVFSkUfYMu7yEJwdaBsFe1r5yK1OvImbCzQrlJ3cBXmrNCuBB5CrlqTwbq8lnpwosfSRJKWI+5LSI5oFnm+vZo1hfJcQo88X/SdAkjLWmqfXjAqo6PqcmY7sywHkNfbYPry2liBOhSZjm9MHkxnk2PxWLwo2jUbe4o1/bgMrlzSYSkr66qL85NUL9asvUurUKiTWX0SbtYfCohhW+dNONCFPOxnJCjk4LS4VKvJK2LAruDVzBWJm70FrHHsdA0EopsMM/Yxv4q2DAiNCMw+FLEnUA3eHRg9SEg==
+ bh=Xdobe9xvSDIlpxWCs8iH+9+DUpDtA4+dcHw4fK5aQlw=;
+ b=d8PL0KjD5COhL2ILlnzlkN6y7pBS+5r59J+1HxEanI8odNie5wgR00NOJc2KecLUyfC98i/iWv3cq+oWPaSbQEfvfsdkBLkmaDj/uS2ln6CLOxiRKvK3FIg23NoP1+Hv9pt856LbTO/L2fIxAff4JxOnYTsRZGfKl6d16cT18qlZRPW9lWlRXfgZVdyyi8+zXT7x3giWXHiPsbSE/wrJoINvI1Kgz0R/+wNb5xvDlKbmV6Sqfj/oczrUEfDsNuX/3js3sHhzzkIZDcradJJZaNaNVfO5BwYzS/GjY7wJWDipM7sHhGQMGu6O2y0SPFKXSPOiRLcaEomQA24nIw/r9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=abwC4IaYQqG1q06lhOwLc2jCpuv+0bSpcmj8KvltuVM=;
- b=iGJNevv0mqFc5JGvkL/xUeXlrSwqiePEoUSexVZS0Y1k10wfa1Bv0LRojoxrDZzqHQJshur7tMTB+Zpr/gRVCc2/WIS2DYPyZ2E68YNxB0fjYXJj5/Xu5TRwadoos5vnS2wmDMVnE8iMzF3cKDxYXnKOqMohSNk2nl6DJO+r7DQ=
-Received: from CH0PR03CA0297.namprd03.prod.outlook.com (2603:10b6:610:e6::32)
- by LV8PR12MB9419.namprd12.prod.outlook.com (2603:10b6:408:206::8)
+ bh=Xdobe9xvSDIlpxWCs8iH+9+DUpDtA4+dcHw4fK5aQlw=;
+ b=qr7Rwv4Hx3QevRNlz2z1r/JEf84EglBBbT+DG0WkTT5wfcBUhUrN8HN8lJWdvCDg4cbyhv1Kv5Tz8SvBD5KgSbf+PeWdKi8BE1ykS3VNi8D6HjjM7PA9fotm9BrhUyOgNIxr6iifsd2MCVtd4ZVy0Kbq5pkES9oMwuQbXNKeri8=
+Received: from BYAPR03CA0008.namprd03.prod.outlook.com (2603:10b6:a02:a8::21)
+ by IA0PR12MB8647.namprd12.prod.outlook.com (2603:10b6:208:480::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.25; Wed, 14 Feb
- 2024 18:40:36 +0000
-Received: from DS2PEPF00003439.namprd02.prod.outlook.com
- (2603:10b6:610:e6:cafe::51) by CH0PR03CA0297.outlook.office365.com
- (2603:10b6:610:e6::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39 via Frontend
- Transport; Wed, 14 Feb 2024 18:40:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26; Wed, 14 Feb
+ 2024 18:40:38 +0000
+Received: from DS2PEPF0000343F.namprd02.prod.outlook.com
+ (2603:10b6:a02:a8:cafe::2d) by BYAPR03CA0008.outlook.office365.com
+ (2603:10b6:a02:a8::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26 via Frontend
+ Transport; Wed, 14 Feb 2024 18:40:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,22 +48,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003439.mail.protection.outlook.com (10.167.18.36) with Microsoft
+ DS2PEPF0000343F.mail.protection.outlook.com (10.167.18.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Wed, 14 Feb 2024 18:40:36 +0000
+ 15.20.7292.25 via Frontend Transport; Wed, 14 Feb 2024 18:40:37 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 14 Feb
- 2024 12:40:34 -0600
+ 2024 12:40:35 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
  <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>
-Subject: [PATCH 04/17] drm/amd/display: Add SMU timeout check and retry
-Date: Wed, 14 Feb 2024 11:38:35 -0700
-Message-ID: <20240214184006.1356137-5-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 05/17] drm/amd/display: Remove redundant FPU guard
+Date: Wed, 14 Feb 2024 11:38:36 -0700
+Message-ID: <20240214184006.1356137-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240214184006.1356137-1-Rodrigo.Siqueira@amd.com>
 References: <20240214184006.1356137-1-Rodrigo.Siqueira@amd.com>
@@ -75,26 +75,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003439:EE_|LV8PR12MB9419:EE_
-X-MS-Office365-Filtering-Correlation-Id: e43a9efd-7bc4-4742-37f3-08dc2d8c6f11
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343F:EE_|IA0PR12MB8647:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f1cdc5b-293c-4edc-5d19-08dc2d8c6fee
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 947AouSYyvAScNt4jGH6jFKQe2jCSAY3KVUFD8AvbFD5MM4XL8Id/OFm6TK9s1j/iawqERhcwSDHCilP/0OB/KXh9bOZ0yf09JrQKO3sdhNOIArC0rdT8h/wQGfGLXLPyVipmrzvgGSsLNINxOQUgpgCnBkxQVbICJCusqIV2SvSK1dxfEPxd+FdkGEDhP4sB+BXKk3vK6+yywYLN2VPF1GkLSSYHUGNAENdp6T8KNuhfym7Y9NTBn82hLQwlSiVrdR4PHuTjNnq9cnJAEh/dpxTUZqbQa1CmR4w6UKdOzl0V+dfF/7d00nj58lU2CKV6gLfMUXnkWBv1rrd5UtFvHyar7GE8JtRmPI/rZ0KzXWtgOuLpp+dFJBkD1rz+EgYMeBOCAIOB0OqWRqSPKOneF9HDXV8goGY07mZoADp5LL90EG6wvjVRhq1SUR4x/95VdQa/a93aQdo++lSkv7Ed7G+n4viyq0IPDlaK53BDw13CVj0cePV9qB1DKF+8cXRmu2+8qFnhdXaaTxvud83Ir+vZiMYdjiS7XYmhzBwCOAZIZb2wEiSq5k8RINfJBY90AjmUSh82DaAm8BFaMKLHDML1c5xsyY1orR0tav4/DI=
+X-Microsoft-Antispam-Message-Info: U7n8SFVhHbWciOVtYh7Dr7DQeEnwlND5+i1fcfrpHIPlusgePDoaH9OiXE8bKlVbRmIXnoiU0HrIx7u3FOe2f2q9XujnwjBbmr8KWNUnzcQFhpE7YAruUYJX8TGeXNwX9cWIcR++LPgfqiK7qFQFqsoyxKGvbX4LZMQbfgZwc7lRGCyHMwQ+q2ykiT3uQYXNAAh6Hja+qiq3ckVx5sZVuLleqp7NjBpM6NsSirylDujpW1WVKwpNr4mnit8dAPpHEqduELpeWQHpj/A30sZXXpNNn5TFlfDtyB9yuCCCTARJs2+4gq4B80KL2KwyL63AjAH4mpg8e6eMmJu9okRdASRdXz9MI/bOPqsWlpb2Sb1isSPouHtHMJeuIgsS0rGXkmy59FYWh+dFXW5X9fhiPWJ5UBlpWISwA/m4tZBgeA4mkgYhM/p0In9qfBG27y6/Orr8W+EcPTBAyc1z50nSAbHAdCNxEJwLyAgoWEBl2lxRD4MhAkHxdsE9QO98kuik+GReaGGVGZWYNAwrlibbFYxNgk4VdyZxSAgz4EPSW5kkHWxaN3ltxoNS4I7m4q68iZq4EEp7MRrqSqWDy6tZT5sWRDmZdN208GmFnoxUi9A=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(39860400002)(346002)(376002)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(82310400011)(186009)(40470700004)(46966006)(36840700001)(41300700001)(5660300002)(336012)(82740400003)(2906002)(316002)(36756003)(4326008)(26005)(70206006)(426003)(16526019)(478600001)(70586007)(8676002)(2616005)(8936002)(1076003)(356005)(86362001)(81166007)(83380400001)(54906003)(6916009);
+ SFS:(13230031)(4636009)(346002)(39860400002)(376002)(136003)(396003)(230922051799003)(186009)(82310400011)(64100799003)(1800799012)(451199024)(46966006)(36840700001)(40470700004)(4326008)(5660300002)(8936002)(4744005)(41300700001)(8676002)(2906002)(86362001)(356005)(83380400001)(82740400003)(81166007)(36756003)(2616005)(1076003)(54906003)(426003)(316002)(16526019)(70586007)(336012)(6916009)(478600001)(70206006)(26005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 18:40:36.1057 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e43a9efd-7bc4-4742-37f3-08dc2d8c6f11
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2024 18:40:37.5394 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f1cdc5b-293c-4edc-5d19-08dc2d8c6fee
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003439.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343F.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9419
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8647
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,75 +109,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of only asserting in the case of the SMU wait time is not what
-we expect, add the SMU timeout check and try again.
+The function dcn32_build_wm_range_table call DC_FP_START/END. Drop the
+unnecessary FPU guard.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   | 11 ++++++++---
- .../drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c    |  6 +++++-
- 2 files changed, 13 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-index d72acbb049b1..23b390245b5d 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
-@@ -26,6 +26,10 @@
- #include "core_types.h"
- #include "clk_mgr_internal.h"
- #include "reg_helper.h"
-+#include "dm_helpers.h"
-+
-+#include "rn_clk_mgr_vbios_smu.h"
-+
- #include <linux/delay.h>
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
+index e64e45e4c833..ee5e7512a7ee 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
+@@ -243,10 +243,8 @@ void dcn32_init_clocks(struct clk_mgr *clk_mgr_base)
+ 	/* Get UCLK, update bounding box */
+ 	clk_mgr_base->funcs->get_memclk_states_from_smu(clk_mgr_base);
  
- #include "renoir_ip_offset.h"
-@@ -33,8 +37,6 @@
- #include "mp/mp_12_0_0_offset.h"
- #include "mp/mp_12_0_0_sh_mask.h"
+-	DC_FP_START();
+ 	/* WM range table */
+ 	dcn32_build_wm_range_table(clk_mgr);
+-	DC_FP_END();
+ }
  
--#include "rn_clk_mgr_vbios_smu.h"
--
- #define REG(reg_name) \
- 	(MP0_BASE.instance[0].segment[mm ## reg_name ## _BASE_IDX] + mm ## reg_name)
- 
-@@ -120,7 +122,10 @@ static int rn_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
- 
- 	result = rn_smu_wait_for_response(clk_mgr, 10, 200000);
- 
--	ASSERT(result == VBIOSSMC_Result_OK || result == VBIOSSMC_Result_UnknownCmd);
-+	if (IS_SMU_TIMEOUT(result)) {
-+		ASSERT(0);
-+		dm_helpers_smu_timeout(CTX, msg_id, param, 10 * 200000);
-+	}
- 
- 	/* Actual dispclk set is returned in the parameter register */
- 	return REG_READ(MP1_SMN_C2PMSG_83);
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
-index 19e5b3be9275..b4fb17b7a096 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
-@@ -29,6 +29,7 @@
- #include <linux/delay.h>
- 
- #include "dcn301_smu.h"
-+#include "dm_helpers.h"
- 
- #include "vangogh_ip_offset.h"
- 
-@@ -120,7 +121,10 @@ static int dcn301_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
- 
- 	result = dcn301_smu_wait_for_response(clk_mgr, 10, 200000);
- 
--	ASSERT(result == VBIOSSMC_Result_OK);
-+	if (IS_SMU_TIMEOUT(result)) {
-+		ASSERT(0);
-+		dm_helpers_smu_timeout(CTX, msg_id, param, 10 * 200000);
-+	}
- 
- 	/* Actual dispclk set is returned in the parameter register */
- 	return REG_READ(MP1_SMN_C2PMSG_83);
+ static void dcn32_update_clocks_update_dtb_dto(struct clk_mgr_internal *clk_mgr,
 -- 
 2.43.0
 
