@@ -2,74 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4D7855BA5
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 08:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1F8856362
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 13:39:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081B110E26A;
-	Thu, 15 Feb 2024 07:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F0E10E1B0;
+	Thu, 15 Feb 2024 12:39:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cfia/4I/";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="dnakbgrw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4900010E26A
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 07:28:03 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-33cddf4b4b5so373702f8f.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 23:28:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707982079; x=1708586879; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=J724PeHJWP0zxqy171puBImT652TP18ax4vddvoRtg8=;
- b=cfia/4I/H9P7S0dvtK7g44mR2cCf4OBhBb83jAo5Tq34Xd39aw6sKELf0gKYn5eJF3
- Zxcr5zukRkqKLBhixRBLEAUcB/MychsBFTUrBb5Q66G0zMWXqO2CvNuoRgwi+bH3iuQL
- P1u3RoO/b4dhn1kVnFaiDBA5oWMBc6BmjaTigWdHao/Oy7eZdib76IGTNmWx3xPanyPF
- 4buGcQZ0C7lSo4YKT33wnv52hav05n91tyu+yV5KhbwbKbut9raeW+QrDAW1lcmP/fZT
- BOIDjkaanLm5ElgQQpDcmhI1NFfKuh3llHjPHwnui8XVSt/VH6jQvg2wzrzrNmvpCiSU
- u9nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707982079; x=1708586879;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=J724PeHJWP0zxqy171puBImT652TP18ax4vddvoRtg8=;
- b=l0VgyxB9asoMKLnPXGPZd5EgjAdL5PXxcCl+IAyRSCVb66fLqBXP5uFf3BzKl8PPyE
- wtR3eppS17MslZzviJ3ySLe//Eg+Of8b3oE6DWD9p5TFDKsjZ1pEuErMbglK1xKW/e87
- 6FJ/KXbBQqUQ2O2pA03m53IC6I3aoiBwtil/f+oYSOfpFoD1r7wQGEAwEylgF9eRgk8p
- oxKobcwERPHvtO6yXWY+4ESlHhHCcqfq9kDTiRtx/NAt41+6rClEeRfIoBkY/UhUWpJV
- 34fbWsil9UX8/Pm4KxEQpp04JiqeoAwPI77VxDCKuKN4ip9QSQkkP0W/k1ri07784ngr
- lKTw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWfoaa+QGzzW5vTGxSHOBxDTNsh11H+T+zYJr2SHJDGLSs2eoGfus5w5SBmjNpvfLNw1Ksbs1KbRlM2vsAeEEyGRQVt75NTh057bBgG/w==
-X-Gm-Message-State: AOJu0YxyrEiErigtPhX+Go+9UvS0dYJgPtMzrU6TbVPlrgSvdYMXnZCD
- 2g9+SN9yvl30bvd8VUb/TUE/Wy9TMvdV5gex6lHEGVI/JGF4a/SnlLJjyjPI
-X-Google-Smtp-Source: AGHT+IF+vonNOk6L8dbFQPOV32lHI89nFZMVI8dNMJ6Ycwlhhgf9sZre6BlqOLKyjLxTg4GiZ59Lqw==
-X-Received: by 2002:adf:e90a:0:b0:33b:2513:496f with SMTP id
- f10-20020adfe90a000000b0033b2513496fmr809278wrm.66.1707982079111; 
- Wed, 14 Feb 2024 23:27:59 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- v5-20020a5d59c5000000b0033b1277e95dsm872219wry.77.2024.02.14.23.27.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 14 Feb 2024 23:27:58 -0800 (PST)
-Message-ID: <55944c59-2943-4557-ad23-eff38b548383@gmail.com>
-Date: Thu, 15 Feb 2024 08:27:57 +0100
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2055.outbound.protection.outlook.com [40.107.243.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46CD210E74B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 12:39:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QN+wImxCK/zh8zqvMcmE0FizBhboJSRizcEjViB+LUgltdoIA5Pg+1NjJPyg22KApYUXTYEwSxxaMOZq+bXKHffuB1RgxQciYD8evVfzXOSdOA7bwyuj6etoVx3+LqoT+Tru0bGgyNiXJ6XsJAF7JxprXzMZTq1MDBDawFdqFf/CRIBiSZaGcD9I0HlTPIH29DVb6uSGcvXp2J4UPqSe7xRjpGaQi9n5d6dA0n20TzZH8DjHfrhdXv7vYUvEiqFms9HhxElsP4N78x+TMe7YLc12seOrvE62yRrBsuIGVLACO2df6EAWODETMATLv/oyhsc5HiSebXmbUe4kJrjGRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=szvosJxIDP97TLyhh97L4ppIPpsm6jVR4NbhpViPDFc=;
+ b=ZoOcgU0zu7lVgLXKUdTx5loGAVbX9IXKZhsh1G60h6oG3GFes4oc7xMbV5Aa1VAKEe+a9OpLIMNrlNwHIZ1h6+xm342AUn0H8P01RgZuuc++7UUmXGx+di2zzBIW+I7OGNSe7aKsLS4ONPyf4V1d7NTQ+jBJPdQ9279W/9TlXLCtnfAOzv4+3EltQCpivlSDafmBj3Is7cu+dXjZKbfw9Ek0mEeJKVbokC9oUWW1V+zipZCsUIFpXfCnt8T/S+s9j13bY1Z3q0j1RlMW6phYD2DKBzZjLu32P+ZQzVkN2f5HJadvZdFPqmaRiq5TJHXmjOuV2COhlE6go3QqpaxhpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=szvosJxIDP97TLyhh97L4ppIPpsm6jVR4NbhpViPDFc=;
+ b=dnakbgrwMCczvuyxt5b9wy+IiI+zxbcjxCijD2rGtGLsGxRN/H+ExCUR+O4IyPphtff6mcz+JDFL+EZVSmE1PeHDKcZ8iCx1TUP3Bhw8PEyT90LzpquJOV/WbuKl9yIzCxrpu8ELf8ubI+TrC8xr80xWlp7BK+0IKqppclqBuqo=
+Received: from BN9PR03CA0369.namprd03.prod.outlook.com (2603:10b6:408:f7::14)
+ by CH3PR12MB9148.namprd12.prod.outlook.com (2603:10b6:610:19d::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.24; Thu, 15 Feb
+ 2024 12:39:00 +0000
+Received: from BN3PEPF0000B077.namprd04.prod.outlook.com
+ (2603:10b6:408:f7:cafe::62) by BN9PR03CA0369.outlook.office365.com
+ (2603:10b6:408:f7::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.26 via Frontend
+ Transport; Thu, 15 Feb 2024 12:39:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B077.mail.protection.outlook.com (10.167.243.122) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7292.25 via Frontend Transport; Thu, 15 Feb 2024 12:39:00 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 15 Feb 2024 06:38:58 -0600
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Likun Gao <Likun.Gao@amd.com>, Hawking Zhang
+ <Hawking.Zhang@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix missing parameter descriptions in ih_v7_0.c
+Date: Thu, 15 Feb 2024 18:08:45 +0530
+Message-ID: <20240215123845.2327190-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: bail on INFO IOCTL if the GPU is in reset
-Content-Language: en-US
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20240129155621.824237-1-alexander.deucher@amd.com>
- <BL1PR12MB514476B2675A7FEA612D6473F7482@BL1PR12MB5144.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <BL1PR12MB514476B2675A7FEA612D6473F7482@BL1PR12MB5144.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B077:EE_|CH3PR12MB9148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d1a4ee6-aaa6-4305-35cf-08dc2e2315ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: H0opj9L+OlgtfaERy2SI+jbE5Qv6GoFD0I1Fc7cRxXnrkQzSjqWhIfMWfa1lSAkqofeantmQqoJCykxnUNCrEX3mkE/mRiFCxJVYhOP6xF1OBHZQP72C2gYXdTfmiv7GFFZ6dg9mhYS8qp79NevZZ8Jzlav7SxNoepY/3DqeiU8jgRmsRFHz8WmSd5fri3w0r3IHccjZIuUvwFTQO+Yzzrpu9olleiZLOEMvz37IIGlSLKTaOxoB58j+5zVfJ8/yOlysDzBp/H3tZ4/J9qw3nM1wsbW3kAR8CxP7j9yAVo4XeWFFag66lZu1JtJc6FrbgowK0lrVrOKsX5uD8+Dz2Z24Di9HRK2LUBBOQ6iI80/tZ3fi6TW+496JpmQOG6wZMnf5nxm+K0jy+Vw12pjsgf0a8TA3vWl3/6V7p9UXsfYxNUOA00WbHFoF+ZNUZvPIoWnjoLM07A/Lf5xzAJK5ECwMLSe2aZ3dNV9uzPXRBnyCEeTgytU02jNHfm4gVMzp38Xhln/Imcrza9N3YOrMoLSkU3emzZV0YuY1+te/GDW4mT8ez00vfXZnMgBsrtbZ8DIL68h60ggvbe6AuhtZwckfPBcYKgMFoEeJ3aCTMSTEszxDsGOeqi0R0BXjs9Z8aa5ehaGOWhJlY/CfNpa5IZHUOZecySSvS4lfTBU7qYc=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(4636009)(39860400002)(376002)(396003)(346002)(136003)(230273577357003)(230922051799003)(451199024)(36860700004)(186009)(1800799012)(82310400011)(64100799003)(40470700004)(46966006)(36756003)(6636002)(110136005)(8936002)(1076003)(26005)(2616005)(336012)(4326008)(70206006)(66574015)(83380400001)(8676002)(54906003)(16526019)(5660300002)(70586007)(316002)(7696005)(86362001)(6666004)(82740400003)(356005)(81166007)(426003)(41300700001)(478600001)(2906002)(44832011);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2024 12:39:00.3761 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d1a4ee6-aaa6-4305-35cf-08dc2e2315ca
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B077.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9148
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,60 +107,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Well using this is in sysfs is a bug to begin with. This would prevent 
-starting new applications and crashing applications which don't expect 
-to get an -EPERM in return here.
+Rectifies kdoc warnings related to the 'ih' parameter in the
+'ih_v7_0_get_wptr', 'ih_v7_0_irq_rearm', and 'ih_v7_0_set_rptr'
+functions within the 'ih_v7_0.c' file.
 
-If we need to make operations mutual exclusive with resets then we need 
-to take the appropriate locks and *not* work around by abusing 
-amdgpu_in_reset().
+Fixes the below with gcc W=1:
+drivers/gpu/drm/amd/amdgpu/ih_v7_0.c:392: warning: Function parameter or member 'ih' not described in 'ih_v7_0_get_wptr'
+drivers/gpu/drm/amd/amdgpu/ih_v7_0.c:432: warning: Function parameter or member 'ih' not described in 'ih_v7_0_irq_rearm'
+drivers/gpu/drm/amd/amdgpu/ih_v7_0.c:458: warning: Function parameter or member 'ih' not described in 'ih_v7_0_set_rptr'
 
-The functionality of amdgpu_in_reset() is just to check in lower level 
-functions if we are inside the higher level reset thread and *not* 
-protect anybody from concurrent access.
+Fixes: b6ba7a165b13 ("drm/amdgpu: Add ih v7_0 ip block support")
+Cc: Likun Gao <Likun.Gao@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/ih_v7_0.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-I think we should probably completely nuke the underlying flag and using 
-the thread owner of the lock to prevent such an abuse.
-
-Regards,
-Christian.
-
-Am 12.02.24 um 21:56 schrieb Deucher, Alexander:
-> [AMD Official Use Only - General]
->
-> Ping?
->
->> -----Original Message-----
->> From: Deucher, Alexander <Alexander.Deucher@amd.com>
->> Sent: Monday, January 29, 2024 10:56 AM
->> To: amd-gfx@lists.freedesktop.org
->> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
->> Subject: [PATCH] drm/amdgpu: bail on INFO IOCTL if the GPU is in reset
->>
->> This avoids queries to read registers or query the SMU for telemetry data while
->> the GPU is in reset. This mirrors what we already do for sysfs.
->>
->> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> index a2df3025a754..d522e99c6f81 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
->> @@ -607,6 +607,9 @@ int amdgpu_info_ioctl(struct drm_device *dev, void
->> *data, struct drm_file *filp)
->>        int i, found, ret;
->>        int ui32_size = sizeof(ui32);
->>
->> +     if (amdgpu_in_reset(adev))
->> +             return -EPERM;
->> +
->>        if (!info->return_size || !info->return_pointer)
->>                return -EINVAL;
->>
->> --
->> 2.42.0
+diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+index 236806797b23..16fe428c0722 100644
+--- a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+@@ -378,9 +378,10 @@ static void ih_v7_0_irq_disable(struct amdgpu_device *adev)
+ }
+ 
+ /**
+- * ih_v7_0_get_wptr - get the IH ring buffer wptr
++ * ih_v7_0_get_wptr() - get the IH ring buffer wptr
+  *
+  * @adev: amdgpu_device pointer
++ * @ih: IH ring buffer to fetch wptr
+  *
+  * Get the IH ring buffer wptr from either the register
+  * or the writeback memory buffer.  Also check for
+@@ -425,6 +426,7 @@ static u32 ih_v7_0_get_wptr(struct amdgpu_device *adev,
+  * ih_v7_0_irq_rearm - rearm IRQ if lost
+  *
+  * @adev: amdgpu_device pointer
++ * @ih: IH ring to match
+  *
+  */
+ static void ih_v7_0_irq_rearm(struct amdgpu_device *adev,
+@@ -450,8 +452,7 @@ static void ih_v7_0_irq_rearm(struct amdgpu_device *adev,
+  * ih_v7_0_set_rptr - set the IH ring buffer rptr
+  *
+  * @adev: amdgpu_device pointer
+- *
+- * Set the IH ring buffer rptr.
++ * @ih: IH ring buffer to set rptr
+  */
+ static void ih_v7_0_set_rptr(struct amdgpu_device *adev,
+ 			       struct amdgpu_ih_ring *ih)
+-- 
+2.34.1
 
