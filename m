@@ -2,96 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9188485673C
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 16:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F8A856B1B
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 18:35:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1863710E96B;
-	Thu, 15 Feb 2024 15:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4F4E10E9FE;
+	Thu, 15 Feb 2024 17:35:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lBHWIkT5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FvRW1ntm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2079.outbound.protection.outlook.com [40.107.220.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D40F10E952
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 15:20:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PXZMFEzlPJ3mTgSyXEuf1dmhAuEQI4FO+libjI6y7KzdJTHppzk4SFPG21fj+v80ei1A30Tl0No17Vxz+jD2eTrOu+cDAa2RY7teQy82zqPja2frE7+0aM6K5JfbhKpU3YvwwIL94rHIBG5PctSvQFTSlW+cObYQuWPqgAdqIic9OecPsCH/I71JbdnA6gFSGO9XHFvsR74+wfVnHMdPdS1Z3Qiq0GHIOc14CcgfQ7BlM5UCQ3jDKSwqibPH4slv84rA/OHeXIByv9M29MbuXgFXPGQsi6pv/D3ncqLAkpjjnt15vJH+JAWil9WZnjTSJ9qxsumnuUItmyRwYtDwcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=whSjoTuDCfg9QPmKGkWQk1fhBtZfKM9u0SI7EoGaRNk=;
- b=bhv2KvLSMefMndm1EcW/90aDUhd1J9s5gZhERdu94H4cG00/fvjMumGREwVyvk9IXWO3gR/uBgN0iA5LrHVH+wZNT82GN4OXyXkk7MkGlkzXmWpZzytVDfvRN5WDuPsPEG6FHq02uSpz9hBG9bCZ2OJlc7lBsVGNqINMTIrtgUIKCG5b+k/5jZesXxv+Kz9iZ3V+2r2SPRbGaoythoOP1YH+kgiQiYF1sOrLrtFA4tnfFR2TXk5r96HWpBhITLSH7meBR41fHibggBav4AlDg8+50esyAtpSEf6+XnbcYflja/Yf/sqkz9ZTY5gqEp05sntWUDI3ij9B+WGXFjohQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=whSjoTuDCfg9QPmKGkWQk1fhBtZfKM9u0SI7EoGaRNk=;
- b=lBHWIkT54fKSOJ1W7pNYwg2JS3jgAMU2DgCdHvUB9GHCuXv7kFtypuuK1dJdY/SUuK09dmF+gYFM2EAgXr6ikV3jaaIfE+rYg2QyvDfcew7+nPb9lB0JEw9GSWMNvzcmPKqylpWSB7Xq35TIAtT24XZSYNsAveG5xRXb3imIbXs=
-Received: from BYAPR05CA0106.namprd05.prod.outlook.com (2603:10b6:a03:e0::47)
- by CO6PR12MB5426.namprd12.prod.outlook.com (2603:10b6:5:35d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.14; Thu, 15 Feb
- 2024 15:20:21 +0000
-Received: from SJ5PEPF000001D2.namprd05.prod.outlook.com
- (2603:10b6:a03:e0:cafe::8e) by BYAPR05CA0106.outlook.office365.com
- (2603:10b6:a03:e0::47) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.13 via Frontend
- Transport; Thu, 15 Feb 2024 15:20:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ5PEPF000001D2.mail.protection.outlook.com (10.167.242.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Thu, 15 Feb 2024 15:20:21 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 15 Feb
- 2024 09:20:15 -0600
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, Philip Yang <Philip.Yang@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: Output migrate end event if migration failed
-Date: Thu, 15 Feb 2024 10:18:30 -0500
-Message-ID: <20240215151830.22416-2-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20240215151830.22416-1-Philip.Yang@amd.com>
-References: <20240215151830.22416-1-Philip.Yang@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 716C510E41C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 17:35:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=7XmmXngG1uEWxWgt2/spHXsk6OAZVpsHgSvfNW3Ljio=; b=FvRW1ntmQ5Tw78uo+Kf31+RQlD
+ QVv8Rxmla0zsfw1P0EhedJxLZu9+dAKBCVHUtL50GUFYIqLrKvoPEyGoMXGWLM+/Gel0UdUQEGPIg
+ R0ITICnNd50dBfkkym7q0yUres0/+Z8Vpi2svQNG4/Vsqj3HLDhjPm4+sBZGPr5nWssejlaztYH1Q
+ +w/vB3+Eaw3aHTdtNL7nHsDzBCgT7VCkISXmouM7huJh+iwjaRJQCWFguiGLoQioxoq70h5Hgq3Zj
+ RC72WSDXv26O9zpFZvtYk0JvRBDcGWxrjZWjfgaIRDzou9YFEP45FK9KVrDP/rhUSSmT+lwzyqCHo
+ Edf/gQDA==;
+Received: from [186.193.11.42] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1rafdk-0009DA-Od; Thu, 15 Feb 2024 18:35:17 +0100
+From: Melissa Wen <mwen@igalia.com>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, sunpeng.li@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, alex.hung@amd.com
+Cc: amd-gfx@lists.freedesktop.org,
+	kernel-dev@igalia.com
+Subject: [PATCH] drm/amd/display: fix null-pointer dereference on edid reading
+Date: Thu, 15 Feb 2024 14:29:11 -0300
+Message-ID: <20240215173509.152760-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D2:EE_|CO6PR12MB5426:EE_
-X-MS-Office365-Filtering-Correlation-Id: da4f6837-291d-4245-d400-08dc2e39a065
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k85ZV5m8moe3AdjMBSrtXznQ3Ytzl9EnHRKNt3UmaULYxjj/w//LQJ0G1FZtvI7DCDdbcphHoTlBOWB3ZMHka119IF6P+PQCfufR41P0M8kYnGfcy9umZjmQKjkW2ugNWnJraNomesoZr6+llEG1f6MyColEUsmFNKj0+jvmIgcSMRRdoGJDnaZPjvVKEx94g7SLtVscUYfDaNRAd6QF/dDzpLsiEfseK0ZjNBw2E2FZYfVcB6R+MYfd1x/HNh3H2ZpNk1MOJ9ed3YftvERqgGPhL9xk8aItUno2Z/7ZpMMDKzIbqgiRqwpoAuv7wXW0mekTDU75OjNY6c2uPQxBWJIkBLBQGusHvrWOgfEl2RdI6lMLdvkZbTBJ7lK77RszWUxNWBH+p8MOJUQGMmBcuscFge4RZxJv8xzqbXl5SyYfJgp3hb1grrgf20Rn1Hsn9nmTBWOtnul4vbswfC0ooZnjYCQeD3TiPLCVuI977mmJwQWTuOgmm2hmnbRXy0/EOdCBT7QcHj4Oa9ZKuSpCvIQLMxxzIxz6CAZ2P4gkF3F144ryl6YVeDHw3Mimx0GKNK44PzFb6hNB4yzXg9OqBGft3yvkFKESid750piXLW8LCCeM++sardZP9Onlya4uMF4aN6Hmqqn829hcxsZgz0reRwosLGWzE81/8J9w7Bw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(376002)(346002)(39860400002)(396003)(136003)(230922051799003)(451199024)(186009)(64100799003)(82310400011)(1800799012)(36860700004)(40470700004)(46966006)(2906002)(8936002)(8676002)(5660300002)(4326008)(83380400001)(336012)(426003)(1076003)(2616005)(356005)(82740400003)(16526019)(26005)(36756003)(86362001)(81166007)(70586007)(316002)(6916009)(70206006)(54906003)(7696005)(478600001)(6666004)(41300700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2024 15:20:21.7559 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: da4f6837-291d-4245-d400-08dc2e39a065
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D2.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5426
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,119 +59,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To track the migrate end-event in case of a migration failure, always
-output migrate end event, with the failure result added to the existing
-migrate end event string.
+Use i2c adapter when there isn't aux_mode in dc_link to fix a
+null-pointer derefence that happens when running
+igt@kms_force_connector_basic in a system with DCN2.1 and HDMI connector
+detected as below:
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+[  +0.178146] BUG: kernel NULL pointer dereference, address: 00000000000004=
+c0
+[  +0.000010] #PF: supervisor read access in kernel mode
+[  +0.000005] #PF: error_code(0x0000) - not-present page
+[  +0.000004] PGD 0 P4D 0
+[  +0.000006] Oops: 0000 [#1] PREEMPT SMP NOPTI
+[  +0.000006] CPU: 15 PID: 2368 Comm: kms_force_conne Not tainted 6.5.0-asd=
+n+ #152
+[  +0.000005] Hardware name: HP HP ENVY x360 Convertible 13-ay1xxx/8929, BI=
+OS F.01 07/14/2021
+[  +0.000004] RIP: 0010:i2c_transfer+0xd/0x100
+[  +0.000011] Code: ea fc ff ff 66 0f 1f 84 00 00 00 00 00 90 90 90 90 90 9=
+0 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 41 54 55 53 <48>=
+ 8b 47 10 48 89 fb 48 83 38 00 0f 84 b3 00 00 00 83 3d 2f 80 16
+[  +0.000004] RSP: 0018:ffff9c4f89c0fad0 EFLAGS: 00010246
+[  +0.000005] RAX: 0000000000000000 RBX: 0000000000000005 RCX: 000000000000=
+0080
+[  +0.000003] RDX: 0000000000000002 RSI: ffff9c4f89c0fb20 RDI: 000000000000=
+04b0
+[  +0.000003] RBP: ffff9c4f89c0fb80 R08: 0000000000000080 R09: ffff8d8e0b15=
+b980
+[  +0.000003] R10: 00000000000380e0 R11: 0000000000000000 R12: 000000000000=
+0080
+[  +0.000002] R13: 0000000000000002 R14: ffff9c4f89c0fb0e R15: ffff9c4f89c0=
+fb0f
+[  +0.000004] FS:  00007f9ad2176c40(0000) GS:ffff8d90fe9c0000(0000) knlGS:0=
+000000000000000
+[  +0.000003] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  +0.000004] CR2: 00000000000004c0 CR3: 0000000121bc4000 CR4: 000000000075=
+0ee0
+[  +0.000003] PKRU: 55555554
+[  +0.000003] Call Trace:
+[  +0.000006]  <TASK>
+[  +0.000006]  ? __die+0x23/0x70
+[  +0.000011]  ? page_fault_oops+0x17d/0x4c0
+[  +0.000008]  ? preempt_count_add+0x6e/0xa0
+[  +0.000008]  ? srso_alias_return_thunk+0x5/0x7f
+[  +0.000011]  ? exc_page_fault+0x7f/0x180
+[  +0.000009]  ? asm_exc_page_fault+0x26/0x30
+[  +0.000013]  ? i2c_transfer+0xd/0x100
+[  +0.000010]  drm_do_probe_ddc_edid+0xc2/0x140 [drm]
+[  +0.000067]  ? srso_alias_return_thunk+0x5/0x7f
+[  +0.000006]  ? _drm_do_get_edid+0x97/0x3c0 [drm]
+[  +0.000043]  ? __pfx_drm_do_probe_ddc_edid+0x10/0x10 [drm]
+[  +0.000042]  edid_block_read+0x3b/0xd0 [drm]
+[  +0.000043]  _drm_do_get_edid+0xb6/0x3c0 [drm]
+[  +0.000041]  ? __pfx_drm_do_probe_ddc_edid+0x10/0x10 [drm]
+[  +0.000043]  drm_edid_read_custom+0x37/0xd0 [drm]
+[  +0.000044]  amdgpu_dm_connector_mode_valid+0x129/0x1d0 [amdgpu]
+[  +0.000153]  drm_connector_mode_valid+0x3b/0x60 [drm_kms_helper]
+[  +0.000000]  __drm_helper_update_and_validate+0xfe/0x3c0 [drm_kms_helper]
+[  +0.000000]  ? amdgpu_dm_connector_get_modes+0xb6/0x520 [amdgpu]
+[  +0.000000]  ? srso_alias_return_thunk+0x5/0x7f
+[  +0.000000]  drm_helper_probe_single_connector_modes+0x2ab/0x540 [drm_kms=
+_helper]
+[  +0.000000]  status_store+0xb2/0x1f0 [drm]
+[  +0.000000]  kernfs_fop_write_iter+0x136/0x1d0
+[  +0.000000]  vfs_write+0x24d/0x440
+[  +0.000000]  ksys_write+0x6f/0xf0
+[  +0.000000]  do_syscall_64+0x60/0xc0
+[  +0.000000]  ? srso_alias_return_thunk+0x5/0x7f
+[  +0.000000]  ? syscall_exit_to_user_mode+0x2b/0x40
+[  +0.000000]  ? srso_alias_return_thunk+0x5/0x7f
+[  +0.000000]  ? do_syscall_64+0x6c/0xc0
+[  +0.000000]  ? do_syscall_64+0x6c/0xc0
+[  +0.000000]  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+[  +0.000000] RIP: 0033:0x7f9ad46b4b00
+[  +0.000000] Code: 40 00 48 8b 15 19 b3 0d 00 f7 d8 64 89 02 48 c7 c0 ff f=
+f ff ff eb b7 0f 1f 00 80 3d e1 3a 0e 00 00 74 17 b8 01 00 00 00 0f 05 <48>=
+ 3d 00 f0 ff ff 77 58 c3 0f 1f 80 00 00 00 00 48 83 ec 28 48 89
+[  +0.000000] RSP: 002b:00007ffcbd3bd6d8 EFLAGS: 00000202 ORIG_RAX: 0000000=
+000000001
+[  +0.000000] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f9ad46b=
+4b00
+[  +0.000000] RDX: 0000000000000002 RSI: 00007f9ad48a7417 RDI: 000000000000=
+0009
+[  +0.000000] RBP: 0000000000000002 R08: 0000000000000064 R09: 000000000000=
+0000
+[  +0.000000] R10: 0000000000000000 R11: 0000000000000202 R12: 00007f9ad48a=
+7417
+[  +0.000000] R13: 0000000000000009 R14: 00007ffcbd3bd760 R15: 000000000000=
+0001
+[  +0.000000]  </TASK>
+[  +0.000000] Modules linked in: ctr ccm rfcomm snd_seq_dummy snd_hrtimer s=
+nd_seq snd_seq_device cmac algif_hash algif_skcipher af_alg bnep btusb btrt=
+l btbcm btintel btmtk bluetooth uvcvideo videobuf2_vmalloc sha3_generic vid=
+eobuf2_memops uvc jitterentropy_rng videobuf2_v4l2 videodev drbg videobuf2_=
+common ansi_cprng mc ecdh_generic ecc qrtr binfmt_misc hid_sensor_accel_3d =
+hid_sensor_magn_3d hid_sensor_gyro_3d hid_sensor_trigger industrialio_trigg=
+ered_buffer kfifo_buf industrialio snd_ctl_led joydev hid_sensor_iio_common=
+ rtw89_8852ae rtw89_8852a rtw89_pci snd_hda_codec_realtek rtw89_core snd_hd=
+a_codec_generic intel_rapl_msr ledtrig_audio intel_rapl_common snd_hda_code=
+c_hdmi mac80211 snd_hda_intel snd_intel_dspcfg kvm_amd snd_hda_codec snd_so=
+c_dmic snd_acp3x_rn snd_acp3x_pdm_dma libarc4 snd_hwdep snd_soc_core kvm sn=
+d_hda_core cfg80211 snd_pci_acp6x snd_pcm nls_ascii snd_timer hp_wmi snd_pc=
+i_acp5x nls_cp437 snd_rn_pci_acp3x ucsi_acpi sparse_keymap ccp snd platform=
+_profile snd_acp_config typec_ucsi irqbypass vfat sp5100_tco
+[  +0.000000]  snd_soc_acpi fat rapl pcspkr wmi_bmof roles rfkill rng_core =
+snd_pci_acp3x soundcore k10temp watchdog typec battery ac amd_pmc acpi_tad =
+button hid_sensor_hub hid_multitouch evdev serio_raw msr parport_pc ppdev l=
+p parport fuse loop efi_pstore configfs ip_tables x_tables autofs4 ext4 crc=
+16 mbcache jbd2 btrfs blake2b_generic dm_crypt dm_mod efivarfs raid10 raid4=
+56 async_raid6_recov async_memcpy async_pq async_xor async_tx libcrc32c crc=
+32c_generic xor raid6_pq raid1 raid0 multipath linear md_mod amdgpu amdxcp =
+i2c_algo_bit drm_ttm_helper ttm crc32_pclmul crc32c_intel drm_exec gpu_sche=
+d drm_suballoc_helper nvme ghash_clmulni_intel drm_buddy drm_display_helper=
+ sha512_ssse3 nvme_core ahci xhci_pci sha512_generic hid_generic xhci_hcd l=
+ibahci rtsx_pci_sdmmc t10_pi i2c_hid_acpi drm_kms_helper i2c_hid mmc_core l=
+ibata aesni_intel crc64_rocksoft_generic crypto_simd amd_sfh crc64_rocksoft=
+ scsi_mod usbcore cryptd crc_t10dif cec drm crct10dif_generic hid rtsx_pci =
+crct10dif_pclmul scsi_common rc_core crc64 i2c_piix4
+[  +0.000000]  usb_common crct10dif_common video wmi
+[  +0.000000] CR2: 00000000000004c0
+[  +0.000000] ---[ end trace 0000000000000000 ]---
+
+Fixes: e54ed41620f ("drm/amd/display: Remove unwanted drm edid references")
+Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c    | 16 ++++++++--------
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c |  5 +++--
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h |  2 +-
- include/uapi/linux/kfd_ioctl.h              |  7 ++++---
- 4 files changed, 16 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 480e222364d5..23cf9484331e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -445,15 +445,15 @@ svm_migrate_vma_to_vram(struct kfd_node *node, struct svm_range *prange,
- 	pr_debug("successful/cpages/npages 0x%lx/0x%lx/0x%lx\n",
- 			 mpages, cpages, migrate.npages);
- 
--	kfd_smi_event_migration_end(node, p->lead_thread->pid,
--				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				    0, node->id, trigger);
--
- 	svm_range_dma_unmap_dev(adev->dev, scratch, 0, npages);
- 
- out_free:
- 	kvfree(buf);
- out:
-+	kfd_smi_event_migration_end(node, p->lead_thread->pid,
-+				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				    0, node->id, trigger, r);
+Hi,
+
+I'm still working on the migration from edid to drm_edid, but I found a
+way to fix the issue using the current approach, so we don't need to
+delay this bug fix.
+
+BR,
+
+Melissa
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b9ac3d2f8029..9f67d9030c36 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6654,6 +6654,12 @@ static void amdgpu_dm_connector_funcs_force(struct d=
+rm_connector *connector)
+ 	struct dc_link *dc_link =3D aconnector->dc_link;
+ 	struct dc_sink *dc_em_sink =3D aconnector->dc_em_sink;
+ 	struct edid *edid;
++	struct i2c_adapter *ddc;
 +
- 	if (!r && mpages) {
- 		pdd = svm_range_get_pdd_by_node(prange, node);
- 		if (pdd)
-@@ -737,15 +737,15 @@ svm_migrate_vma_to_ram(struct kfd_node *node, struct svm_range *prange,
- 	svm_migrate_copy_done(adev, mfence);
- 	migrate_vma_finalize(&migrate);
- 
--	kfd_smi_event_migration_end(node, p->lead_thread->pid,
--				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				    node->id, 0, trigger);
--
- 	svm_range_dma_unmap_dev(adev->dev, scratch, 0, npages);
- 
- out_free:
- 	kvfree(buf);
- out:
-+	kfd_smi_event_migration_end(node, p->lead_thread->pid,
-+				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				    node->id, 0, trigger, r);
-+
- 	if (!r && cpages) {
- 		mpages = cpages - upages;
- 		pdd = svm_range_get_pdd_by_node(prange, node);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index 85465eb303a9..d1a567f8a8d9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -282,11 +282,12 @@ void kfd_smi_event_migration_start(struct kfd_node *node, pid_t pid,
- 
- void kfd_smi_event_migration_end(struct kfd_node *node, pid_t pid,
- 				 unsigned long start, unsigned long end,
--				 uint32_t from, uint32_t to, uint32_t trigger)
-+				 uint32_t from, uint32_t to, uint32_t trigger,
-+				 int result)
++	if (dc_link->aux_mode)
++		ddc =3D &aconnector->dm_dp_aux.aux.ddc;
++	else
++		ddc =3D &aconnector->i2c->base;
+=20
+ 	/*
+ 	 * Note: drm_get_edid gets edid in the following order:
+@@ -6661,7 +6667,7 @@ static void amdgpu_dm_connector_funcs_force(struct dr=
+m_connector *connector)
+ 	 * 2) firmware EDID if set via edid_firmware module parameter
+ 	 * 3) regular DDC read.
+ 	 */
+-	edid =3D drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
++	edid =3D drm_get_edid(connector, ddc);
+ 	if (!edid) {
+ 		DRM_ERROR("No EDID found on connector: %s.\n", connector->name);
+ 		return;
+@@ -6703,11 +6709,18 @@ static void create_eml_sink(struct amdgpu_dm_connec=
+tor *aconnector)
  {
- 	kfd_smi_event_add(pid, node, KFD_SMI_EVENT_MIGRATE_END,
- 			  KFD_EVENT_FMT_MIGRATE_END(ktime_get_boottime_ns(), pid,
--			  start, end - start, from, to, trigger));
-+			  start, end - start, from, to, trigger, result));
- }
- 
- void kfd_smi_event_queue_eviction(struct kfd_node *node, pid_t pid,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-index fa95c2dfd587..6c99eaa39f09 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-@@ -41,7 +41,7 @@ void kfd_smi_event_migration_start(struct kfd_node *node, pid_t pid,
- 			     uint32_t trigger);
- void kfd_smi_event_migration_end(struct kfd_node *node, pid_t pid,
- 			     unsigned long start, unsigned long end,
--			     uint32_t from, uint32_t to, uint32_t trigger);
-+			     uint32_t from, uint32_t to, uint32_t trigger, int r);
- void kfd_smi_event_queue_eviction(struct kfd_node *node, pid_t pid,
- 				  uint32_t trigger);
- void kfd_smi_event_queue_restore(struct kfd_node *node, pid_t pid);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 430c01f4148b..5220670a434d 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -601,6 +601,7 @@ struct kfd_ioctl_smi_events_args {
-  *    migrate_update: the GPU page is recovered by 'M' for migrate, 'U' for update
-  *    rescheduled: 'R' if the queue restore failed and rescheduled to try again
-  *    rw: 'W' for write page fault, 'R' for read page fault
-+ *    result: page mirgate result, 0 for success, otherwise error code
-  */
- #define KFD_EVENT_FMT_UPDATE_GPU_RESET(reset_seq_num)\
- 		"%x\n", (reset_seq_num)
-@@ -622,9 +623,9 @@ struct kfd_ioctl_smi_events_args {
- 		"%lld -%d @%lx(%lx) %x->%x %x:%x %d\n", (ns), (pid), (start), (size),\
- 		(from), (to), (prefetch_loc), (preferred_loc), (migrate_trigger)
- 
--#define KFD_EVENT_FMT_MIGRATE_END(ns, pid, start, size, from, to, migrate_trigger)\
--		"%lld -%d @%lx(%lx) %x->%x %d\n", (ns), (pid), (start), (size),\
--		(from), (to), (migrate_trigger)
-+#define KFD_EVENT_FMT_MIGRATE_END(ns, pid, start, size, from, to, migrate_trigger, result)\
-+		"%lld -%d @%lx(%lx) %x->%x %d %d\n", (ns), (pid), (start), (size),\
-+		(from), (to), (migrate_trigger), (result)
- 
- #define KFD_EVENT_FMT_QUEUE_EVICTION(ns, pid, node, evict_trigger)\
- 		"%lld -%d %x %d\n", (ns), (pid), (node), (evict_trigger)
--- 
-2.35.1
+ 	struct drm_connector *connector =3D &aconnector->base;
+ 	struct amdgpu_connector *amdgpu_connector =3D to_amdgpu_connector(&aconne=
+ctor->base);
++	struct dc_link *dc_link =3D aconnector->dc_link;
+ 	struct dc_sink_init_data init_params =3D {
+ 			.link =3D aconnector->dc_link,
+ 			.sink_signal =3D SIGNAL_TYPE_VIRTUAL
+ 	};
+ 	struct edid *edid;
++	struct i2c_adapter *ddc;
++
++	if (dc_link->aux_mode)
++		ddc =3D &aconnector->dm_dp_aux.aux.ddc;
++	else
++		ddc =3D &aconnector->i2c->base;
+=20
+ 	/*
+ 	 * Note: drm_get_edid gets edid in the following order:
+@@ -6715,7 +6728,7 @@ static void create_eml_sink(struct amdgpu_dm_connecto=
+r *aconnector)
+ 	 * 2) firmware EDID if set via edid_firmware module parameter
+ 	 * 3) regular DDC read.
+ 	 */
+-	edid =3D drm_get_edid(connector, &amdgpu_connector->ddc_bus->aux.ddc);
++	edid =3D drm_get_edid(connector, ddc);
+ 	if (!edid) {
+ 		DRM_ERROR("No EDID found on connector: %s.\n", connector->name);
+ 		return;
+--=20
+2.43.0
 
