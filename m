@@ -2,64 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C469A856569
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 15:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A527856536
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 15:01:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77BA010E879;
-	Thu, 15 Feb 2024 14:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B02910E81E;
+	Thu, 15 Feb 2024 14:01:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KqAPq62K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQ4kc547";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D6310E887;
- Thu, 15 Feb 2024 13:32:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96DAD10E7C6;
+ Thu, 15 Feb 2024 14:01:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1708003961; x=1739539961;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6rpcH0m9UcnLADJF2mMN2BFoCEixngqiqjxZKB2/Q2A=;
- b=KqAPq62K+Vl6Dnhks9nuocWaC08Kzifiv5oV1qkeJECqi+y0UkJK4OHy
- ZFrpyRnSxoCU0fKJd7rnPhV40JPRoO8LUf7PJ2gMdqxMmbKTehusfBaqF
- L+XExH6HxfV2UopcZJjWjO3a4e+9DIeY8xrXDJ9jdDF5Os5SHpj1KbZQT
- cIZqaves5vFq0vj51YQv8TyyzYaglCxP4d+JidEvtYjYUSD80nS2fV8Xr
- wwkmJ4qXgyGvJlYwLzflIYiRzQmay8+RFk7dOizvz4XhYFbhPOMj/ugNz
- sZGQtsDh5DKr3tkCYP0CikUOpHTRA005JFFR80uyXKdZZooAtOJigF933 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="1943642"
+ t=1708005669; x=1739541669;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=NU9Se3/hUjZuq4O8oLC6OrFNJO05DdvNQarp036H6Ss=;
+ b=VQ4kc547LXGXQkGJxkbAgnTRR2JkarAVA+jBpzXoTqW7j1wpkOpGp/Hz
+ tSAXc1F26lSCFHQG9d+xFWpYCQRz4aXSInMGKogq+hfrmtxRIkNJjMpbN
+ p4nrZARD0nZPN69R5tkJkSV/uzVk4RuFlOtFLhKWuyjqM2rOH2D8Fu9LH
+ lsOp2U8tJCajjg6AYHJy/hk/wZccsuq2RTK8SyTL8TbSn7zVbl3HGdsi4
+ aS/hf8bo3rOWOdO6/sKm4LLa1JtUIwfFIjoNcbgOXo8OrtyysSADbRp3A
+ tXyF5YuoHq6ksYpBjbz60MtfptRmFJisI6k3MEzyDh5XpwN1OMpWP3OQ8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="5867670"
 X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; 
-   d="scan'208";a="1943642"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2024 05:32:40 -0800
+   d="scan'208";a="5867670"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2024 06:01:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; d="scan'208";a="26690910"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
- ([10.246.32.150])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2024 05:32:35 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- dri-devel@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, linux-kernel@vger.kernel.org,
- linux-rdma@vger.kernel.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>,
- Dean Luick <dean.luick@cornelisnetworks.com>
-Subject: [PATCH 3/3] RDMA/hfi1: Use RMW accessors for changing LNKCTL2
-Date: Thu, 15 Feb 2024 15:31:55 +0200
-Message-Id: <20240215133155.9198-4-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240215133155.9198-1-ilpo.jarvinen@linux.intel.com>
-References: <20240215133155.9198-1-ilpo.jarvinen@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10984"; a="826416889"
+X-IronPort-AV: E=Sophos;i="6.06,161,1705392000"; d="scan'208";a="826416889"
+Received: from kraszkow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.13])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2024 06:01:04 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>
+Cc: "open list:ACPI" <linux-acpi@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>, Melissa Wen <mwen@igalia.com>, Mark
+ Pearson <mpearson-lenovo@squebb.ca>, Mario Limonciello
+ <mario.limonciello@amd.com>
+Subject: Re: [PATCH v5 1/3] drm: Add support to get EDID from ACPI
+In-Reply-To: <20240211055011.3583-2-mario.limonciello@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240211055011.3583-1-mario.limonciello@amd.com>
+ <20240211055011.3583-2-mario.limonciello@amd.com>
+Date: Thu, 15 Feb 2024 16:01:02 +0200
+Message-ID: <87eddd6d41.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 15 Feb 2024 14:09:43 +0000
+Content-Type: text/plain
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,73 +71,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Convert open coded RMW accesses for LNKCTL2 to use
-pcie_capability_clear_and_set_word() which makes its easier to
-understand what the code tries to do.
+On Sat, 10 Feb 2024, Mario Limonciello <mario.limonciello@amd.com> wrote:
+> Some manufacturers have intentionally put an EDID that differs from
+> the EDID on the internal panel on laptops.  Drivers that prefer to
+> fetch this EDID can set a bit on the drm_connector to indicate that
+> the DRM EDID helpers should try to fetch it and it is preferred if
+> it's present.
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+> v1->v2:
+>  * Split code from previous amdgpu specific helper to generic drm helper.
+> v2->v3:
+>  * Add an extra select to fix a variety of randconfig errors found from
+>    LKP robot.
+> v3->v4:
+>  * Return struct drm_edid
+> v4->v5:
+>  * Rename to drm_edid_read_acpi
+>  * Drop selects
+> ---
+>  drivers/gpu/drm/Kconfig     |   7 +++
+>  drivers/gpu/drm/drm_edid.c  | 113 +++++++++++++++++++++++++++++++++---
+>  include/drm/drm_connector.h |   6 ++
+>  include/drm/drm_edid.h      |   1 +
+>  4 files changed, 119 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 2520db0b776e..a49740c528b9 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -103,6 +103,13 @@ config DRM_KMS_HELPER
+>  	help
+>  	  CRTC helpers for KMS drivers.
+>  
+> +config DRM_ACPI_HELPER
+> +	tristate "ACPI support in DRM"
+> +	depends on DRM
+> +	depends on (ACPI_VIDEO || ACPI_VIDEO=n)
+> +	help
+> +	  ACPI helpers for DRM drivers.
+> +
+>  config DRM_DEBUG_DP_MST_TOPOLOGY_REFS
+>          bool "Enable refcount backtrace history in the DP MST helpers"
+>  	depends on STACKTRACE_SUPPORT
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 69c68804023f..096c278b6f66 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -28,6 +28,7 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+>  
+> +#include <acpi/video.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/cec.h>
+>  #include <linux/hdmi.h>
+> @@ -2188,6 +2189,62 @@ drm_do_probe_ddc_edid(void *data, u8 *buf, unsigned int block, size_t len)
+>  	return ret == xfers ? 0 : -1;
+>  }
+>  
+> +/**
+> + * drm_do_probe_acpi_edid() - get EDID information via ACPI _DDC
+> + * @data: struct drm_connector
+> + * @buf: EDID data buffer to be filled
+> + * @block: 128 byte EDID block to start fetching from
+> + * @len: EDID data buffer length to fetch
+> + *
+> + * Try to fetch EDID information by calling acpi_video_get_edid() function.
+> + *
+> + * Return: 0 on success or error code on failure.
+> + */
+> +static int
+> +drm_do_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
+> +{
+> +	struct drm_connector *connector = data;
+> +	struct drm_device *ddev = connector->dev;
+> +	struct acpi_device *acpidev = ACPI_COMPANION(ddev->dev);
+> +	unsigned char start = block * EDID_LENGTH;
+> +	void *edid;
+> +	int r;
+> +
+> +	if (!acpidev)
+> +		return -ENODEV;
+> +
+> +	switch (connector->connector_type) {
+> +	case DRM_MODE_CONNECTOR_LVDS:
+> +	case DRM_MODE_CONNECTOR_eDP:
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* fetch the entire edid from BIOS */
+> +	if (IS_REACHABLE(CONFIG_DRM_ACPI_HELPER)) {
+> +		r = acpi_video_get_edid(acpidev, ACPI_VIDEO_DISPLAY_LCD, -1, &edid);
+> +		if (r < 0) {
+> +			DRM_DEBUG_KMS("Failed to get EDID from ACPI: %d\n", r);
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		r = -EOPNOTSUPP;
+> +	}
+> +	if (len > r || start > r || start + len > r) {
+> +		r = -EINVAL;
+> +		goto cleanup;
+> +	}
+> +
+> +	memcpy(buf, edid + start, len);
+> +	r = 0;
+> +
+> +cleanup:
+> +	kfree(edid);
+> +
+> +	return r;
+> +}
+> +
+>  static void connector_bad_edid(struct drm_connector *connector,
+>  			       const struct edid *edid, int num_blocks)
+>  {
+> @@ -2621,7 +2678,8 @@ EXPORT_SYMBOL(drm_probe_ddc);
+>   * @connector: connector we're probing
+>   * @adapter: I2C adapter to use for DDC
+>   *
+> - * Poke the given I2C channel to grab EDID data if possible.  If found,
+> + * If the connector allows it, try to fetch EDID data using ACPI. If not found
+> + * poke the given I2C channel to grab EDID data if possible.  If found,
+>   * attach it to the connector.
+>   *
+>   * Return: Pointer to valid EDID or NULL if we couldn't find any.
+> @@ -2629,20 +2687,50 @@ EXPORT_SYMBOL(drm_probe_ddc);
+>  struct edid *drm_get_edid(struct drm_connector *connector,
+>  			  struct i2c_adapter *adapter)
+>  {
+> -	struct edid *edid;
+> +	struct edid *edid = NULL;
+>  
+>  	if (connector->force == DRM_FORCE_OFF)
+>  		return NULL;
+>  
+> -	if (connector->force == DRM_FORCE_UNSPECIFIED && !drm_probe_ddc(adapter))
+> -		return NULL;
+> +	if (connector->acpi_edid_allowed)
+> +		edid = _drm_do_get_edid(connector, drm_do_probe_acpi_edid, connector, NULL);
+> +
+> +	if (!edid) {
+> +		if (connector->force == DRM_FORCE_UNSPECIFIED && !drm_probe_ddc(adapter))
+> +			return NULL;
+> +		edid = _drm_do_get_edid(connector, drm_do_probe_ddc_edid, adapter, NULL);
+> +	}
 
-LNKCTL2 is not really owned by any driver because it is a collection of
-control bits that PCI core might need to touch. RMW accessors already
-have support for proper locking for a selected set of registers
-(LNKCTL2 is not yet among them but likely will be in the future) to
-avoid losing concurrent updates.
+Hmm. So do you want the presence of ACPI EDID to determine whether the
+display is there or not?
 
-Suggested-by: Lukas Wunner <lukas@wunner.de>
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Dean Luick <dean.luick@cornelisnetworks.com>
----
- drivers/infiniband/hw/hfi1/pcie.c | 30 ++++++++----------------------
- 1 file changed, 8 insertions(+), 22 deletions(-)
+Note how the override and firmware EDID mechanisms only override the
+EDID *contents*. They are orthogonal from connector forcing. So you can
+override the EDID, but still rely on the DDC probe to determine if the
+display is there.
 
-diff --git a/drivers/infiniband/hw/hfi1/pcie.c b/drivers/infiniband/hw/hfi1/pcie.c
-index 119ec2f1382b..7133964749f8 100644
---- a/drivers/infiniband/hw/hfi1/pcie.c
-+++ b/drivers/infiniband/hw/hfi1/pcie.c
-@@ -1207,14 +1207,11 @@ int do_pcie_gen3_transition(struct hfi1_devdata *dd)
- 		    (u32)lnkctl2);
- 	/* only write to parent if target is not as high as ours */
- 	if ((lnkctl2 & PCI_EXP_LNKCTL2_TLS) < target_vector) {
--		lnkctl2 &= ~PCI_EXP_LNKCTL2_TLS;
--		lnkctl2 |= target_vector;
--		dd_dev_info(dd, "%s: ..new link control2: 0x%x\n", __func__,
--			    (u32)lnkctl2);
--		ret = pcie_capability_write_word(parent,
--						 PCI_EXP_LNKCTL2, lnkctl2);
-+		ret = pcie_capability_clear_and_set_word(parent, PCI_EXP_LNKCTL2,
-+							 PCI_EXP_LNKCTL2_TLS,
-+							 target_vector);
- 		if (ret) {
--			dd_dev_err(dd, "Unable to write to PCI config\n");
-+			dd_dev_err(dd, "Unable to change parent PCI target speed\n");
- 			return_error = 1;
- 			goto done;
- 		}
-@@ -1223,22 +1220,11 @@ int do_pcie_gen3_transition(struct hfi1_devdata *dd)
- 	}
- 
- 	dd_dev_info(dd, "%s: setting target link speed\n", __func__);
--	ret = pcie_capability_read_word(dd->pcidev, PCI_EXP_LNKCTL2, &lnkctl2);
-+	ret = pcie_capability_clear_and_set_word(dd->pcidev, PCI_EXP_LNKCTL2,
-+						 PCI_EXP_LNKCTL2_TLS,
-+						 target_vector);
- 	if (ret) {
--		dd_dev_err(dd, "Unable to read from PCI config\n");
--		return_error = 1;
--		goto done;
--	}
--
--	dd_dev_info(dd, "%s: ..old link control2: 0x%x\n", __func__,
--		    (u32)lnkctl2);
--	lnkctl2 &= ~PCI_EXP_LNKCTL2_TLS;
--	lnkctl2 |= target_vector;
--	dd_dev_info(dd, "%s: ..new link control2: 0x%x\n", __func__,
--		    (u32)lnkctl2);
--	ret = pcie_capability_write_word(dd->pcidev, PCI_EXP_LNKCTL2, lnkctl2);
--	if (ret) {
--		dd_dev_err(dd, "Unable to write to PCI config\n");
-+		dd_dev_err(dd, "Unable to change device PCI target speed\n");
- 		return_error = 1;
- 		goto done;
- 	}
+The question is, how likely is it that the ACPI EDID is used not just
+because the actual EDID is bogus, but also because the display just
+doesn't respond to DDC at all?
+
+If possible, I'd like ACPI EDID to follow the override/firmware EDID
+semantics on this.
+
+>  
+> -	edid = _drm_do_get_edid(connector, drm_do_probe_ddc_edid, adapter, NULL);
+>  	drm_connector_update_edid_property(connector, edid);
+>  	return edid;
+>  }
+>  EXPORT_SYMBOL(drm_get_edid);
+>  
+> +/**
+> + * drm_edid_read_acpi - get EDID data, if available
+> + * @connector: connector we're probing
+> + *
+> + * Use the BIOS to attempt to grab EDID data if possible.
+> + *
+> + * The returned pointer must be freed using drm_edid_free().
+> + *
+> + * Return: Pointer to valid EDID or NULL if we couldn't find any.
+> + */
+> +const struct drm_edid *drm_edid_read_acpi(struct drm_connector *connector)
+> +{
+> +	const struct drm_edid *drm_edid;
+> +
+> +	if (connector->force == DRM_FORCE_OFF)
+> +		return NULL;
+
+If the caller handled all the connector->force stuff, this could be
+dropped.
+
+> +
+> +	drm_edid = drm_edid_read_custom(connector, drm_do_probe_acpi_edid, connector);
+> +
+> +	/* Note: Do *not* call connector updates here. */
+> +
+> +	return drm_edid;
+> +}
+> +EXPORT_SYMBOL(drm_edid_read_acpi);
+> +
+>  /**
+>   * drm_edid_read_custom - Read EDID data using given EDID block read function
+>   * @connector: Connector to use
+> @@ -2727,10 +2815,11 @@ const struct drm_edid *drm_edid_read_ddc(struct drm_connector *connector,
+>  EXPORT_SYMBOL(drm_edid_read_ddc);
+>  
+>  /**
+> - * drm_edid_read - Read EDID data using connector's I2C adapter
+> + * drm_edid_read - Read EDID data using BIOS or connector's I2C adapter
+>   * @connector: Connector to use
+>   *
+> - * Read EDID using the connector's I2C adapter.
+> + * Read EDID from BIOS if allowed by connector or by using the connector's
+> + * I2C adapter.
+>   *
+>   * The EDID may be overridden using debugfs override_edid or firmware EDID
+>   * (drm_edid_load_firmware() and drm.edid_firmware parameter), in this priority
+> @@ -2742,10 +2831,18 @@ EXPORT_SYMBOL(drm_edid_read_ddc);
+>   */
+>  const struct drm_edid *drm_edid_read(struct drm_connector *connector)
+>  {
+> +	const struct drm_edid *drm_edid = NULL;
+> +
+>  	if (drm_WARN_ON(connector->dev, !connector->ddc))
+>  		return NULL;
+>  
+> -	return drm_edid_read_ddc(connector, connector->ddc);
+> +	if (connector->acpi_edid_allowed)
+> +		drm_edid = drm_edid_read_acpi(connector);
+> +
+> +	if (!drm_edid)
+> +		drm_edid = drm_edid_read_ddc(connector, connector->ddc);
+
+This should be in drm_edid_read_ddc() not drm_edid_read(). Please let's
+not make the two behave any different. It would be really weird if one
+had an ACPI check and the other not.
+
+> +
+> +	return drm_edid;
+>  }
+>  EXPORT_SYMBOL(drm_edid_read);
+>  
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index fe88d7fc6b8f..74ed47f37a69 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1886,6 +1886,12 @@ struct drm_connector {
+>  
+>  	/** @hdr_sink_metadata: HDR Metadata Information read from sink */
+>  	struct hdr_sink_metadata hdr_sink_metadata;
+> +
+> +	/**
+> +	 * @acpi_edid_allowed: Get the EDID from the BIOS, if available.
+> +	 * This is only applicable to eDP and LVDS displays.
+> +	 */
+> +	bool acpi_edid_allowed;
+>  };
+>  
+>  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 518d1b8106c7..38b5e1b5c773 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -463,5 +463,6 @@ bool drm_edid_is_digital(const struct drm_edid *drm_edid);
+>  
+>  const u8 *drm_find_edid_extension(const struct drm_edid *drm_edid,
+>  				  int ext_id, int *ext_index);
+> +const struct drm_edid *drm_edid_read_acpi(struct drm_connector *connector);
+>  
+>  #endif /* __DRM_EDID_H__ */
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
