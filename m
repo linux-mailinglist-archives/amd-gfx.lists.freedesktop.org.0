@@ -2,76 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D635A855D3F
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 10:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D78EE855D46
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Feb 2024 10:03:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE68910E3D3;
-	Thu, 15 Feb 2024 09:03:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nqKMcGMc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E401510E423;
+	Thu, 15 Feb 2024 09:03:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2A9C10E0BE;
- Wed, 14 Feb 2024 22:44:43 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-1d7881b1843so2363225ad.3; 
- Wed, 14 Feb 2024 14:44:43 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com
+ [209.85.219.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5436A10E130
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Feb 2024 02:35:03 +0000 (UTC)
+Received: by mail-yb1-f171.google.com with SMTP id
+ 3f1490d57ef6-dc6d9a8815fso365029276.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Feb 2024 18:35:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1707950683; x=1708555483; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=52CHDYauU/a10vE3y6h2ooh2dWhu6+6HHCSiTcqK4zg=;
- b=nqKMcGMcAFvM4LJw33Va3kQJ5JMSEubMoDbxb7QiF9vPRx3ItRO2E+taeznq8D1Wkc
- 0//SOQsNg2JosHoTCOd+hYw7+/ktBec5r0WpKUwuRO4Reigbl6g9teosAe61OaAZzcl+
- 08LlhOUeYsG2HoEONy6ni9lpT7ON260KLKbTkuMsCeQ5JJgUitrG2XwhgE2Qo1LHhAI3
- xdIWhp5XhRWSPpvFGo06U5Q3MieX2wdVb0+p0WQQuo4Y782imP/OI1C4p4IuhSPVgQGJ
- eOey+kopOIgECidJTpCJ3+huf2bDbiiJRXYmHgfQACYTmW9RXaAEhrkJja2eHQcBL/3S
- TYsQ==
+ d=yonsei.ac.kr; s=google; t=1707964502; x=1708569302;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=ADIAZLg5NyPcjgvQblup/JkjHZ5QIpm5enZ4VNREUZo=;
+ b=l8dLmB3rTGNUm6oQ2XScZwrxxW4NHqdIcDdBgzW2opTjLz0HChUojRJ1DnryJDwx1n
+ zKY2LG2P/GPjJgSKTfZJTrEpqOTnnoifqVzZQSd9s+/kgQYFSJjlTdVQUJ7ESpOr5qeO
+ Dqa3XWalY+Ha/+XhnORM8ljVRzIDLq9v30X93CJ6O5DSW/+BpgNcJY1ZsqHAcGumRpJa
+ Af/ccqJVWQNl8ICFxSY0MKD3xBCl+kf9lp1eEAAr3IIws6N01HhzWPdmMH0UUcZ0pe1j
+ bci2Unc26DR0Vr9OAOU0gaTmf3Fvvng7GYeeZtoRyOqSM1+HeOd39SAtZYrKKx1WYHQt
+ rC+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1707950683; x=1708555483;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=52CHDYauU/a10vE3y6h2ooh2dWhu6+6HHCSiTcqK4zg=;
- b=B1zHFGiBi+/tn4pKf0nyI2TlyxuhnuskqRSPlYrCZFHLP4wOF0WMs8/QQLt7VwqAnI
- LUXZ3vE4ETQ2qdSwMjre4o0GWUFP8EyAb/rrv0Rha+XhlOMeg71Jg6kGDdlm6dQBGWb/
- Yyl4rtxGva89Ptj0ai3jR/WMFFCX51ZVP+sIfa8ykvUiVg+CS31kgmX7qsmuDqXhgvCG
- xjW3+Xc9mD4y1WHtecrHj/eacvBvdzVesoWssozn42eH0rebjT67UgsKFga9sUx17F9N
- SNWNTk9mOgS3U0U+emWUzAJeurrc1hxkl+3DCysWSJSTFUzTO1qDSj2u9nKHkugbTkwu
- sjFQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWPOeViZqnZhTsr2xmlA/yAz3qDFpGsGAuG3AutEkOe5hHq8Tie3BZO5hQ5CFeS4ko8tBr6IPdGufDcJ211AEO9xjl9I80yYw0rj8Ku8jvQr/OztI5y42GDadhdjKBfagYLv/upPbhNNIprkOBAFQ==
-X-Gm-Message-State: AOJu0YxTpT2w641ZwKRIqg+9zHYjnPFkJwmC3d3jbDaYwmZyIiRWpNwW
- ofHaBx+ez12xmrr3YhHRmjN9edWg5cVxT4aFrm8KLbkgi7qy6nc1
-X-Google-Smtp-Source: AGHT+IHThuCseJOtkAEkUVD/U78rJoGV3ZDVzYU76pLky/MI5VYa3CvRLgN29YUQdviclhelDO9eVA==
-X-Received: by 2002:a17:903:58d:b0:1d9:4282:4be8 with SMTP id
- jv13-20020a170903058d00b001d942824be8mr25058plb.25.1707950683457; 
- Wed, 14 Feb 2024 14:44:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCW3PbDyOGQjfxDvf/hogoNHhkMRpwgJg30QjQjhwObnfu2nN2Mnu1YNT2BkC+rTrcjuEW+j8OJVdq+nnLbV/RvdrIO0eYsASwXu9TXo0wMi9nVW6Fdr5ARMdOdgr3IVM0I0bCMqQnvoxEqN9fv2FNrAq6BDrOQcVyodAFfErO3pmMm+50u5nDmu87O0IhcWZzfQydm+lCwidFsvknqG3BRatBsLqfeTNDPcUGr+H8VMmMzr52gbLqFvNmTHoa8uy5M/2XYrWw+6q3IlcSHh250Gzj0ZzzITTR5b3zZ/3jxPfExjE676xCPE5HSnkp05gk7x9BClAYXcrrg96WoGI9zE1BRiTdnv1f3b
-Received: from localhost.localdomain ([179.225.251.251])
- by smtp.gmail.com with ESMTPSA id
- jv12-20020a170903058c00b001d6f29c12f7sm1077950plb.135.2024.02.14.14.44.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Feb 2024 14:44:42 -0800 (PST)
-From: Marcelo Mendes Spessoto Junior <marcelomspessoto@gmail.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: Marcelo Mendes Spessoto Junior <marcelomspessoto@gmail.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amd/display: clean codestyle errors
-Date: Wed, 14 Feb 2024 19:42:17 -0300
-Message-Id: <20240214224217.15514-4-marcelomspessoto@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240214224217.15514-1-marcelomspessoto@gmail.com>
-References: <20240214224217.15514-1-marcelomspessoto@gmail.com>
+ d=1e100.net; s=20230601; t=1707964502; x=1708569302;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ADIAZLg5NyPcjgvQblup/JkjHZ5QIpm5enZ4VNREUZo=;
+ b=ABw7yq6+25Ec1BpJNTkKx3mTnHVBdrKnk3wzbpN1u+t02GUUMQzXL1AAY2p7oCKlfa
+ zXjyGQ63L/D0tsMkUcH/Js4qciguyPfTH18fds8g2nnmYqCU867/HxKkd/7/Rs56q5Q8
+ nDqxC0YwmNgGKq4pjqWKY/OOzLFT9CHs0TptH9Xj7/LyJpRuKgoN0LVmOwcPekB73QEk
+ QA6BYjN42onaI6ouBmrpyWNCyvYfX/NcVQvHK+ESmksz5W+YmeS890D8k4dSR8TVzyyX
+ hSMC+XFTnqsGGouyKsY6ONwwoTatPJHzfR/12fHB+czS1sH30MbwtLo6BSRcbqBgr8Fl
+ 4VjQ==
+X-Gm-Message-State: AOJu0Yzy3XW+ZHGybZRi7NFr5txTXBfF3n6GvrTLLmuj0ISZDR0m/uds
+ Jg4XVxuSwAAHcOUWXzqpBxMGwYTBm0FrVbiGELunkdEHs4xH8lUdMFIfynGdegfmGDbS3CkKdtn
+ VIAMC1ByUgMBP0mVWg5isESM+FAChLWtHT1UtYQ==
+X-Google-Smtp-Source: AGHT+IEXuuF4ErTszfIvKd7vhUm+3tUrYG1fc/pQgUs5vvilzQ9SQdl1wduR4CyBGK6bOVTxALV+51WG4Q4sJIqP2BM=
+X-Received: by 2002:a5b:e88:0:b0:dcb:e462:6e10 with SMTP id
+ z8-20020a5b0e88000000b00dcbe4626e10mr453284ybr.58.1707964502234; Wed, 14 Feb
+ 2024 18:35:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: =?UTF-8?B?7KCV7KSA6rWQ?= <joonkyoj@yonsei.ac.kr>
+Date: Thu, 15 Feb 2024 11:34:51 +0900
+Message-ID: <CAKc8oVXOjNZLcJWh0+a8E7ttYxoH8sGNcu-Z4YAyey2CnuTyQQ@mail.gmail.com>
+Subject: Reporting a use-after-free in amdgpu
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com
+Cc: amd-gfx@lists.freedesktop.org, Dokyung Song <dokyungs@yonsei.ac.kr>, 
+ jisoo.jang@yonsei.ac.kr, yw9865@yonsei.ac.kr
+Content-Type: multipart/alternative; boundary="00000000000071f602061162794c"
 X-Mailman-Approved-At: Thu, 15 Feb 2024 09:03:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,30 +70,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use () for macro and adjust initial brace for dmub/src/dmub_dcn35.c
+--00000000000071f602061162794c
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Marcelo Mendes Spessoto Junior <marcelomspessoto@gmail.com>
----
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn35.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Hello,
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn35.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn35.c
-index 60223efc6..fa38a5ae6 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn35.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn35.c
-@@ -35,9 +35,10 @@
- #define BASE_INNER(seg) ctx->dcn_reg_offsets[seg]
- #define CTX dmub
- #define REGS dmub->regs_dcn35
--#define REG_OFFSET_EXP(reg_name) BASE(reg##reg_name##_BASE_IDX) + reg##reg_name
-+#define REG_OFFSET_EXP(reg_name) (BASE(reg##reg_name##_BASE_IDX) + reg##reg_name)
- 
--void dmub_srv_dcn35_regs_init(struct dmub_srv *dmub, struct dc_context *ctx) {
-+void dmub_srv_dcn35_regs_init(struct dmub_srv *dmub, struct dc_context *ctx)
-+{
- 	struct dmub_srv_dcn35_regs *regs = dmub->regs_dcn35;
- #define REG_STRUCT regs
- 
--- 
-2.39.2
+We would like to report a use-after-free bug in the AMDGPU DRM driver in
+the linux kernel 6.2 that we found with our customized Syzkaller.
+The bug can be triggered by sending a single amdgpu_gem_userptr_ioctl to
+the AMDGPU DRM driver, with invalid addr and size.
+We have tested that this bug can still be triggered in the latest RC
+kernel, v6.8-rc4.
 
+Steps to reproduce are as below.
+
+struct drm_amdgpu_gem_userptr *arg;
+arg = malloc(sizeof(struct drm_amdgpu_gem_userptr));
+arg->addr = 0xffffffffffff0000;
+arg->size = 0x80000000;
+arg->flags = 0x7;
+ioctl(AMDGPU_renderD128_DEVICE_FILE, 0xc1186451, arg);
+
+The KASAN report is as follows:
+==================================================================
+BUG: KASAN: use-after-free in switch_mm_irqs_off+0x89d/0xb70
+Read of size 8 at addr ffff88801f17bc00 by task syz-executor/386
+Call Trace:
+<TASK>
+switch_mm_irqs_off+0x89d/0xb70
+__schedule+0xa62/0x2630
+preempt_schedule_common+0x45/0xd0
+vfree+0x4d/0x60
+ttm_tt_fini+0xdf/0x1c0
+amdgpu_ttm_backend_destroy+0x9f/0xe0
+ttm_bo_cleanup_memtype_use+0x142/0x1f0
+ttm_bo_release+0x67d/0xc00
+ttm_bo_put+0x7c/0xa0
+amdgpu_bo_unref+0x3b/0x80
+amdgpu_gem_object_free+0x7f/0xc0
+drm_gem_object_free+0x5d/0x90
+amdgpu_gem_userptr_ioctl+0x452/0x7e0
+drm_ioctl_kernel+0x284/0x500
+drm_ioctl+0x55e/0xa50
+amdgpu_drm_ioctl+0xe3/0x1d0
+</TASK>
+
+Allocated by task 385:
+kmem_cache_alloc+0x174/0x300
+copy_process+0x32d1/0x6640
+kernel_clone+0xcd/0x690
+
+Freed by task 386:
+kmem_cache_free+0x13b/0x550
+mmu_interval_notifier_remove+0x4c8/0x610
+amdgpu_hmm_unregister+0x47/0x90
+amdgpu_gem_object_free+0x75/0xc0
+drm_gem_object_free+0x5d/0x90
+amdgpu_gem_userptr_ioctl+0x452/0x7e0
+drm_ioctl_kernel+0x284/0x500
+drm_ioctl+0x55e/0xa50
+amdgpu_drm_ioctl+0xe3/0x1d0
+
+The buggy address belongs to the object at ffff88801f17bb80
+which belongs to the cache mm_struct of size 2016
+The buggy address is located 128 bytes inside of
+2016-byte region [ffff88801f17bb80, ffff88801f17c360)
+
+The buggy address belongs to the physical page:
+page:000000002c2a61bd refcount:1 mapcount:0 mapping:0000000000000000
+index:0x0 pfn:0x1f178
+head:000000002c2a61bd order:3 compound_mapcount:0 subpages_mapcount:0
+compound_pincount:0
+memcg:ffff8880141aa301
+flags: 0x100000000010200(slab|head|node=0|zone=1)
+raw: 0100000000010200 ffff88800a44fc80 ffffea00006ca400 dead000000000004
+raw: 0000000000000000 00000000800f000f 00000001ffffffff ffff8880141aa301
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ffff88801f17bb00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ffff88801f17bb80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff88801f17bc00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+^
+ffff88801f17bc80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ffff88801f17bd00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+
+--00000000000071f602061162794c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<br><br>We would like to report a use-after-free bug=
+ in the AMDGPU DRM driver in the linux kernel 6.2 that we found with our cu=
+stomized Syzkaller.<br>The bug can be triggered by sending a single amdgpu_=
+gem_userptr_ioctl to the AMDGPU DRM driver, with invalid addr and size. <br=
+>We have tested that this bug can still be triggered in the latest RC kerne=
+l, v6.8-rc4.<br><br>Steps to reproduce are as below.<br><br>struct drm_amdg=
+pu_gem_userptr *arg;<br>arg =3D malloc(sizeof(struct drm_amdgpu_gem_userptr=
+));<br>arg-&gt;addr =3D 0xffffffffffff0000;<br>arg-&gt;size =3D 0x80000000;=
+<br>arg-&gt;flags =3D 0x7;<br>ioctl(AMDGPU_renderD128_DEVICE_FILE, 0xc11864=
+51, arg);<br><br>The KASAN report is as follows:<br>=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>BUG: KASAN: use-after-free in switch_mm_irqs=
+_off+0x89d/0xb70<br>Read of size 8 at addr ffff88801f17bc00 by task syz-exe=
+cutor/386<br>Call Trace:<br>&lt;TASK&gt;<br>switch_mm_irqs_off+0x89d/0xb70<=
+br>__schedule+0xa62/0x2630<br>preempt_schedule_common+0x45/0xd0<br>vfree+0x=
+4d/0x60<br>ttm_tt_fini+0xdf/0x1c0<br>amdgpu_ttm_backend_destroy+0x9f/0xe0<b=
+r>ttm_bo_cleanup_memtype_use+0x142/0x1f0<br>ttm_bo_release+0x67d/0xc00<br>t=
+tm_bo_put+0x7c/0xa0<br>amdgpu_bo_unref+0x3b/0x80<br>amdgpu_gem_object_free+=
+0x7f/0xc0<br>drm_gem_object_free+0x5d/0x90<br>amdgpu_gem_userptr_ioctl+0x45=
+2/0x7e0<br>drm_ioctl_kernel+0x284/0x500<br>drm_ioctl+0x55e/0xa50<br>amdgpu_=
+drm_ioctl+0xe3/0x1d0<br>&lt;/TASK&gt;<br><br>Allocated by task 385:<br>kmem=
+_cache_alloc+0x174/0x300<br>copy_process+0x32d1/0x6640<br>kernel_clone+0xcd=
+/0x690<br><br>Freed by task 386:<br>kmem_cache_free+0x13b/0x550<br>mmu_inte=
+rval_notifier_remove+0x4c8/0x610<br>amdgpu_hmm_unregister+0x47/0x90<br>amdg=
+pu_gem_object_free+0x75/0xc0<br>drm_gem_object_free+0x5d/0x90<br>amdgpu_gem=
+_userptr_ioctl+0x452/0x7e0<br>drm_ioctl_kernel+0x284/0x500<br>drm_ioctl+0x5=
+5e/0xa50<br>amdgpu_drm_ioctl+0xe3/0x1d0<br><br>The buggy address belongs to=
+ the object at ffff88801f17bb80<br>which belongs to the cache mm_struct of =
+size 2016<br>The buggy address is located 128 bytes inside of<br>2016-byte =
+region [ffff88801f17bb80, ffff88801f17c360)<br><br>The buggy address belong=
+s to the physical page:<br>page:000000002c2a61bd refcount:1 mapcount:0 mapp=
+ing:0000000000000000 index:0x0 pfn:0x1f178<br>head:000000002c2a61bd order:3=
+ compound_mapcount:0 subpages_mapcount:0 compound_pincount:0<br>memcg:ffff8=
+880141aa301<br>flags: 0x100000000010200(slab|head|node=3D0|zone=3D1)<br>raw=
+: 0100000000010200 ffff88800a44fc80 ffffea00006ca400 dead000000000004<br>ra=
+w: 0000000000000000 00000000800f000f 00000001ffffffff ffff8880141aa301<br>p=
+age dumped because: kasan: bad access detected<br><br>Memory state around t=
+he buggy address:<br>ffff88801f17bb00: fc fc fc fc fc fc fc fc fc fc fc fc =
+fc fc fc fc<br>ffff88801f17bb80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb =
+fb fb<br>&gt;ffff88801f17bc00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb=
+ fb<br>^<br>ffff88801f17bc80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb =
+fb<br>ffff88801f17bd00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb<br>=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
+
+--00000000000071f602061162794c--
