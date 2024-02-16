@@ -2,61 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AF3858064
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Feb 2024 16:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E7AB858061
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Feb 2024 16:14:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77C4610EADC;
-	Fri, 16 Feb 2024 15:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E29B610EB6A;
+	Fri, 16 Feb 2024 15:14:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4d756Ix";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com
- [209.85.219.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F35B010E4FE
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 09:21:01 +0000 (UTC)
-Received: by mail-yb1-f182.google.com with SMTP id
- 3f1490d57ef6-dcdb210cb6aso1901718276.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Feb 2024 01:21:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=yonsei.ac.kr; s=google; t=1708075260; x=1708680060;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=pCrAiFZrMJSXyid8fyIo/iMdjd+//f3ehOBrSVjtAG8=;
- b=bxiRNLg1baLmcKpi1Ew4Im2zKg9N7/DC4c8PyqtcGZndUjcVS1MWOET/rZlRNnLkQQ
- RkyLgnSGeTsy2OKIdUmJthvwimK2/maiMIiCor2GAT3m+yHRbP2w6VcAZT2S8wPBbt7z
- pok7f2TCUB/ABrpm86VVzo8sElqBr/58NeIbqS9c8HHfGs1IXe5962O0PaAQzOyZNgLZ
- KTI7RGhG8qjQgJm2D3uTEwwKFnRyBWhhQL8B3fH68fDYvigHKPmwW9zF0fAjgXZ6MOk6
- JanWaWYFKugEcNlFnAZPBBTPk4SH2BpJud32ohUbB6DFKRoSmQL3HUcz7rrs0JV1msWx
- L4MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708075260; x=1708680060;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=pCrAiFZrMJSXyid8fyIo/iMdjd+//f3ehOBrSVjtAG8=;
- b=MMJy0Q0U65OHAqAuth0DncLLno9t6E+MCw27P1Nv8CIDPkYIkk2i5FyiqtpbT2mXP0
- vUzp+cAHH+9bqxqcAsa5D1gSaacoFRmhIELzve59L1x6dZ7qUTtpQyPYDV45/PcIac6g
- ERBW1B/f9hTSHFuKVWiJlaJPbh748vHvB8+mtJrSPjRBUzyoCzgDNmJS7BnbTrjrcG2q
- JiimNDV3CmDPlL6M/MaJgholQs957sE8x+/86GI18UuArhsH/of9YqVpYCYk3laqwmiL
- bxW7o3ULylXdDyKy34rETJkuPXCIqQGWGzou3qMWC1/f+E4viRZbvQgUHWTwK+EMff+0
- EjeA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVRxa8FrrlTnun7w9MG/5jRPAjQmVnJhM9Bx5y7TOPIGB7xpBSRfcNmSpuv+TtfvLKkrLDgtFIy91kqMv2YmsNLCxFqfqz82pz1p8NL0Q==
-X-Gm-Message-State: AOJu0YzpAQWz4G4KTjMpX2cR/rFz4n4WQ+4QUc/v6aWVHTTlkOU7Tl9S
- fiGZzuY1NguHK7zMcWGglQUFdD7OVbTdvPDxIGFIncMuhzM+qfEj8lojdnQNpCU3BH/A6SX6ALS
- GCDyCgMEx+vS+aWympzr8g8H0//udCq3hs15EyQ==
-X-Google-Smtp-Source: AGHT+IHxlIZxY7zGT+vSMeQsXoIojkZERyHr872cnkvcwv3LQu9H5wsNsUBTWsv4GzeFuVozShFnKuqDzk9du8bRRh0=
-X-Received: by 2002:a25:2fcc:0:b0:dcd:26a8:7f84 with SMTP id
- v195-20020a252fcc000000b00dcd26a87f84mr3900918ybv.47.1708075260250; Fri, 16
- Feb 2024 01:21:00 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57B810E405;
+ Fri, 16 Feb 2024 09:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1708075344; x=1739611344;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=oPvDzzQc5vWK+p/SmqjSqNC1Wjp/9w/PnlwOfrdbPXU=;
+ b=Q4d756IxtSqoAlPUFLZrrzoVCJUit8zj7m/fhft/AbGahJ+UNZkKVscv
+ iIUVkYVoSOe93NycagCeUpT8iNuddP7c8bInNJ9utdzGyAuqHVygK2BuH
+ ILz7uNyyVXPPsXJz3qzRBkoh3jJHD4/GsRiZlSp+HgWq4yx6+YXNjpRRE
+ i5u9wVrxh4P8UwmX1n2KXgUoMr/uRG/8XoO+3ul0qw5kLoPmsEhqTQC+/
+ zy9czkt7jCC3lGVSBP3ALTFwQeUst6UEoW97m2rXFD/WnHkuHkG5+GSGU
+ F7SU8Krhf1TqB5Ky15+FnNe6bOpG56SyZvJVwhZAPU26x+fpUK9qnz2Ov w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10985"; a="2348352"
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; 
+   d="scan'208";a="2348352"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 01:22:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,164,1705392000"; d="scan'208";a="41282469"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.94.248.234])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2024 01:22:19 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 16 Feb 2024 11:22:13 +0200 (EET)
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, 
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, 
+ "Koenig, Christian" <Christian.Koenig@amd.com>, 
+ Lukas Wunner <lukas@wunner.de>
+Subject: RE: [PATCH 1/3] drm/radeon: Use RMW accessors for changing LNKCTL2
+In-Reply-To: <BL1PR12MB51440761895B3DF935840BF0F74D2@BL1PR12MB5144.namprd12.prod.outlook.com>
+Message-ID: <dd2da980-d114-e30e-fa91-79ff9ec353e7@linux.intel.com>
+References: <20240215133155.9198-1-ilpo.jarvinen@linux.intel.com>
+ <20240215133155.9198-2-ilpo.jarvinen@linux.intel.com>
+ <BL1PR12MB51440761895B3DF935840BF0F74D2@BL1PR12MB5144.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-From: Joonkyo Jung <joonkyoj@yonsei.ac.kr>
-Date: Fri, 16 Feb 2024 18:20:49 +0900
-Message-ID: <CAKc8oVX8ymfw864dFC9zQzD=JwsQCApKukrf6hXKKnRo7MQFAg@mail.gmail.com>
-Subject: Reporting a null-ptr-deref in amdgpu
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com
-Cc: Dokyung Song <dokyungs@yonsei.ac.kr>, jisoo.jang@yonsei.ac.kr,
- yw9865@yonsei.ac.kr, amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="00000000000023218206117c43d3"
+Content-Type: multipart/mixed; boundary="8323328-1671545761-1708075333=:1097"
 X-Mailman-Approved-At: Fri, 16 Feb 2024 15:13:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,95 +75,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000023218206117c43d3
-Content-Type: text/plain; charset="UTF-8"
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Hello,
+--8323328-1671545761-1708075333=:1097
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-We would like to report a null-ptr-deref bug in the AMDGPU DRM driver in
-the linux kernel v6.8-rc4 that we found with our customized Syzkaller.
-The bug can be triggered by sending two ioctls to the AMDGPU DRM driver in
-succession.
+On Thu, 15 Feb 2024, Deucher, Alexander wrote:
 
-The first ioctl amdgpu_ctx_ioctl will create a ctx, and return ctx_id = 1
-to the userspace.
-Second ioctl, actually any ioctl that will eventually call
-amdgpu_ctx_get_entity, carries this ctx_id and passes the context check.
-Here, for example, drm_amdgpu_wait_cs.
-Validations in amdgpu_ctx_get_entity can also be passed by the
-user-provided values from the ioctl arguments.
-This eventually leads to drm_sched_entity_init, where the null-ptr-deref
-will trigger on RCU_INIT_POINTER(entity->last_scheduled, NULL);
+> [Public]
+>=20
+> > -----Original Message-----
+> > From: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+> > Sent: Thursday, February 15, 2024 8:32 AM
+> > To: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-
+> > gfx@lists.freedesktop.org; Daniel Vetter <daniel@ffwll.ch>; David Airli=
+e
+> > <airlied@gmail.com>; Dennis Dalessandro
+> > <dennis.dalessandro@cornelisnetworks.com>; dri-
+> > devel@lists.freedesktop.org; Jason Gunthorpe <jgg@ziepe.ca>; Leon
+> > Romanovsky <leon@kernel.org>; linux-kernel@vger.kernel.org; linux-
+> > rdma@vger.kernel.org; Pan, Xinhui <Xinhui.Pan@amd.com>; Koenig, Christi=
+an
+> > <Christian.Koenig@amd.com>
+> > Cc: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>; Lukas Wunner
+> > <lukas@wunner.de>
+> > Subject: [PATCH 1/3] drm/radeon: Use RMW accessors for changing LNKCTL2
+> >
+> > Convert open coded RMW accesses for LNKCTL2 to use
+> > pcie_capability_clear_and_set_word() which makes its easier to understa=
+nd
+> > what the code tries to do.
+> >
+> > LNKCTL2 is not really owned by any driver because it is a collection of=
+ control
+> > bits that PCI core might need to touch. RMW accessors already have supp=
+ort
+> > for proper locking for a selected set of registers
+> > (LNKCTL2 is not yet among them but likely will be in the future) to avo=
+id losing
+> > concurrent updates.
+> >
+> > Suggested-by: Lukas Wunner <lukas@wunner.de>
+> > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+>=20
+> The radeon and amdgpu patches are:
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>=20
+> Are you looking for me to pick them up or do you want to land them as=20
+> part of some larger change?  Either way is fine with me.=20
 
-Steps to reproduce are as below.
-union drm_amdgpu_ctx *arg1;
-union drm_amdgpu_wait_cs *arg2;
+Hi,
 
-arg1 = malloc(sizeof(union drm_amdgpu_ctx));
-arg2 = malloc(sizeof(union drm_amdgpu_wait_cs));
+You please take them, I intentionally took them apart from the BW=20
+controller series so they can go through the usual trees, not along with=20
+the BW controller. (I don't expect the BW controller to be accepted during=
+=20
+this cycle).
 
-arg1->in.op = 0x1;
-ioctl(AMDGPU_renderD128_DEVICE_FILE, 0x140106442, arg1);
+--=20
+ i.
 
-arg2->in.handle = 0x0;
-arg2->in.timeout = 0x2000000000000;
-arg2->in.ip_type = 0x9;
-arg2->in.ip_instance = 0x0;
-arg2->in.ring = 0x0;
-arg2->in.ctx_id = 0x1;
-ioctl(AMDGPU_renderD128_DEVICE_FILE, 0xc0206449, arg2);
-
-The KASAN report is as follows:
-general protection fault, probably for non-canonical address
-0xdffffc0000000005: 0000 [#1] PREEMPT SMP KASAN NOPTI
-KASAN: null-ptr-deref in range [0x0000000000000028-0x000000000000002f]
-Call Trace:
- <TASK>
- ? drm_sched_entity_init+0x16e/0x650
- ? drm_sched_entity_init+0x208/0x650
- amdgpu_ctx_get_entity+0x944/0xc30
- amdgpu_cs_wait_ioctl+0x13d/0x3f0
- drm_ioctl_kernel+0x300/0x410
- drm_ioctl+0x648/0xb30
- amdgpu_drm_ioctl+0xc8/0x160
- </TASK>
-
-Should you need any more information, please do not hesitate to contact us.
-
-Best regards,
-Joonkyo Jung
-
---00000000000023218206117c43d3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<br><br>We would like to report a null-ptr-deref bug=
- in the AMDGPU DRM driver in the linux kernel v6.8-rc4 that we found with o=
-ur customized Syzkaller.<br>The bug can be triggered by sending two ioctls =
-to the AMDGPU DRM driver in succession.<br><br>The first ioctl amdgpu_ctx_i=
-octl will create a ctx, and return ctx_id =3D 1 to the userspace.<br>Second=
- ioctl, actually any ioctl that will eventually call amdgpu_ctx_get_entity,=
- carries this ctx_id and passes the context check.<br>Here, for example, dr=
-m_amdgpu_wait_cs.<br>Validations in amdgpu_ctx_get_entity can also be passe=
-d by the user-provided values from the ioctl arguments.<br>This eventually =
-leads to drm_sched_entity_init, where the null-ptr-deref will trigger on RC=
-U_INIT_POINTER(entity-&gt;last_scheduled, NULL);<br><br>Steps to reproduce =
-are as below.<br>union drm_amdgpu_ctx *arg1;<br>union drm_amdgpu_wait_cs *a=
-rg2;<br><br>arg1 =3D malloc(sizeof(union drm_amdgpu_ctx));<br>arg2 =3D mall=
-oc(sizeof(union drm_amdgpu_wait_cs));<br><br>arg1-&gt;in.op =3D 0x1;<br>ioc=
-tl(AMDGPU_renderD128_DEVICE_FILE, 0x140106442, arg1);<br><br>arg2-&gt;in.ha=
-ndle =3D 0x0;<br>arg2-&gt;in.timeout =3D 0x2000000000000;<br>arg2-&gt;in.ip=
-_type =3D 0x9;<br>arg2-&gt;in.ip_instance =3D 0x0;<br>arg2-&gt;in.ring =3D =
-0x0;<br>arg2-&gt;in.ctx_id =3D 0x1;<br>ioctl(AMDGPU_renderD128_DEVICE_FILE,=
- 0xc0206449, arg2);<br><br>The KASAN report is as follows:<br>general prote=
-ction fault, probably for non-canonical address 0xdffffc0000000005: 0000 [#=
-1] PREEMPT SMP KASAN NOPTI<br>KASAN: null-ptr-deref in range [0x00000000000=
-00028-0x000000000000002f]<br>Call Trace:<br>=C2=A0&lt;TASK&gt;<br>=C2=A0? d=
-rm_sched_entity_init+0x16e/0x650<br>=C2=A0? drm_sched_entity_init+0x208/0x6=
-50<br>=C2=A0amdgpu_ctx_get_entity+0x944/0xc30<br>=C2=A0amdgpu_cs_wait_ioctl=
-+0x13d/0x3f0<br>=C2=A0drm_ioctl_kernel+0x300/0x410<br>=C2=A0drm_ioctl+0x648=
-/0xb30<br>=C2=A0amdgpu_drm_ioctl+0xc8/0x160<br>=C2=A0&lt;/TASK&gt;<br><br>S=
-hould you need any more information, please do not hesitate to contact us.<=
-br><br>Best regards,<br>Joonkyo Jung<br></div>
-
---00000000000023218206117c43d3--
+--8323328-1671545761-1708075333=:1097--
