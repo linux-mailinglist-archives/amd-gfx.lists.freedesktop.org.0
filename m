@@ -2,76 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5687F8596A9
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Feb 2024 12:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4C78596AB
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Feb 2024 12:25:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4606D10E081;
-	Sun, 18 Feb 2024 11:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 494D410E083;
+	Sun, 18 Feb 2024 11:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="htUfiyMC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L5XCdc0S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F1610E1B1;
- Sat, 17 Feb 2024 16:31:49 +0000 (UTC)
-Received: by mail-pg1-f173.google.com with SMTP id
- 41be03b00d2f7-53fa455cd94so2153715a12.2; 
- Sat, 17 Feb 2024 08:31:49 -0800 (PST)
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com
+ [209.85.166.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E95E310E0A2;
+ Sat, 17 Feb 2024 20:27:09 +0000 (UTC)
+Received: by mail-il1-f170.google.com with SMTP id
+ e9e14a558f8ab-36524116e30so489985ab.0; 
+ Sat, 17 Feb 2024 12:27:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708187509; x=1708792309; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :from:to:cc:subject:date:message-id:reply-to;
- bh=SbUePhJ5HZco+8XwW7JGmkYmeD0cFur/br8JHm4eCLs=;
- b=htUfiyMC2U+cY7O5OBd3du3N8o1SX7ld2cF2qhRzKzVsX6tR8d1ijN1Xn2f1tTTmhy
- 4DXBPXdLqIWvlVn44mOEE5iu5vV4U5boMuGqENbFlKSluv20sALs0X+9bskT7Keugj2L
- ot6B/Fu+djKxrh8TQEGSlcmBfZIWEGbVoEN7lwK8Hgy5b9OGx/u0nKyuzcxOr6KwapnI
- GdP8kFn1HLSH3DEoXEb8ubFYwfGSTz2i4wWce3wylt8ku1i1jp9kuH95aYRaZqjyYaUI
- 9OzyQsVcPPEt42lHJkcDadrDJ5BAsMDYgXTeQ04dGP3F97IWyujAkIaU3+vhJ0l7RR0s
- wCVQ==
+ d=gmail.com; s=20230601; t=1708201629; x=1708806429; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=0jU+JJenIXaa9bCS59dcZ028Hl4nXmKY23u7rsLZfHg=;
+ b=L5XCdc0SzHL3dVcweP83d+JS7lI0zX/jrVavNmmkeIfXivZkb1Waa7k2GytsoaR+WZ
+ gVfmXBzW0EKRaGfMg4ymIzOtVPEhisMqNZBZlj9LZ8kDdA7uMvCqSLq5yQkp3zxSSZet
+ 0MKm2TLnTiEWXS8OJJAJnlFOFfeqO+ul7NpZ9DjotbbQgpy8I5YuW5KK3nHfZZSYV0f/
+ eL6srjJHaBuGa/VOr7mhxdHjp/PcolLhLAWc2ZItYELWaRPHnf9qv7wGfCsDbs2tEmx4
+ zvF+Zl3wSSeDTKu0yPYlieugwiKlvsdpz/S+sOgq+Ym+3AVPDQC59XuZAa3ngcDlMVqr
+ U+/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708187509; x=1708792309;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:sender
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=SbUePhJ5HZco+8XwW7JGmkYmeD0cFur/br8JHm4eCLs=;
- b=bd8ntGwifDP54PXdL1ywFD5rQWUYpW37antrkxXfv3n5SZuR9U38nuQbFWlyhGMhs7
- Xd5Dq0wJt9xVBWOV85QbdqmCBeE0D4YJsddxCuja6iH3/Brrws8KQx7iQ+72mRWLvlHc
- c2z2qD4jhEeSmP0xTPuuwWxMLC4CypCjKVtDnxfd8GhOGRI1XmHYs4Smx1xfQ4/+9E2o
- 0bf7EDMZv/7cTueTj46dfmjXheF5xp5tS0wlGF6pHOvMFliYpWt+h8Pht+MM0dofxr+O
- 68Uvlle1ful733oE8+VNjjz6DvLDvWkSwRHiaCRbmcTVwayxcYXpFbeAr3m0AWs8u6we
- AjSQ==
+ d=1e100.net; s=20230601; t=1708201629; x=1708806429;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=0jU+JJenIXaa9bCS59dcZ028Hl4nXmKY23u7rsLZfHg=;
+ b=t9cAwM7AObpnNJeZL+7tTSeRmo9ERy9L18w3up17FkqNlEhGaZtwG1CNBBAqTBQFHl
+ SXQbVjVY2BfEfnU+/pGoWz7lh/iuNSKN7tsbZcXsfs6HMf/Tf78FSZTSwI9UKYSY4//h
+ v0wVs0eiZ9hFDXbGKgpWOnMDvGB49h9a37lb6vmerXHtBOwuf17Gznynoc6YjQwBtJ6G
+ x0EjdriDJUq9KwC+PyPTuHrZ7p0ywLT+gi0oH1TnrEDmMYMTWp/pmPwkXOpLdtJOn4FP
+ nb96prTQHg4xq9lEqQdeC4wMkNH1nXEz9u/IKPFMRemIqA8xxALjU/A3P4PJgqueKwxM
+ QkMw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXiChe+uwcJSTKeDRnaKx3WqY9/Gr1C/nf7jfE+klE6Gj6YKUsqWVgpqwr6XGEsZZ//E5VYA5JI7L+omtpIhKu61rSftxk5zI7w4zeXexnoY3rJQXegqgFhbwVgcrz1r9cMh78YwnQs/LeZWPHltg==
-X-Gm-Message-State: AOJu0YwmDTVx9RjhUjt4Md1OVF69gMxu7GyumdxzDYeQl/eGBEbFjgRG
- Q9EPNnacwWRRXOZYdFhWTuQLaqE1Faq9fucGL9uP41JwSE6Vrhrt
-X-Google-Smtp-Source: AGHT+IGHtXjxjRmzrHmktbFcoQ6AOzSa0j7Xs/41gK9X+A9QlvcrIqXXFxmncHzXmMYB/bcm+P+Igg==
-X-Received: by 2002:a17:902:bd0a:b0:1d9:4ebd:b94d with SMTP id
- p10-20020a170902bd0a00b001d94ebdb94dmr7814293pls.55.1708187508931; 
- Sat, 17 Feb 2024 08:31:48 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ AJvYcCXCQ23+SEOlbECgZeDPEkA1eXyKgoS6LFw+5d2RP8CqJhEoTTao1poPgsS/zM8I10rLVtt7qQl99nKwOvtQPuEfXcJB6acwKJGQO6TNy8uvllRyKIEBLYg9jXRIauY6mAsikx+uNGFwv5UdBH3VVg==
+X-Gm-Message-State: AOJu0YybnO64rZC3TJ4JKlogR3tIR+Iz16g5gpeSJyYIYajw9uyz7F5A
+ UmpnYbS+iaahniYo19jdkPBfZVKwSRqHGPqVCeKYXVgtze7LYo5d
+X-Google-Smtp-Source: AGHT+IE1oH9VXEm8Fs5qpor1HJboa85CM4WrYoLZ8He4jl6c8N7tNtouxyAkrXjQO8H55jJIDuMwuQ==
+X-Received: by 2002:a92:dc06:0:b0:365:1dd9:ee6b with SMTP id
+ t6-20020a92dc06000000b003651dd9ee6bmr2148928iln.25.1708201628830; 
+ Sat, 17 Feb 2024 12:27:08 -0800 (PST)
+Received: from pop-os.. ([2804:14c:30:24b4:6901:1644:7f56:fce2])
  by smtp.gmail.com with ESMTPSA id
- e14-20020a170902cf4e00b001db523e58f6sm1625357plg.133.2024.02.17.08.31.48
+ p12-20020a170902eacc00b001dbb06b6133sm1785223pld.127.2024.02.17.12.27.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Feb 2024 08:31:48 -0800 (PST)
-Date: Sat, 17 Feb 2024 08:31:47 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- alexander.deucher@amd.com, matthew.auld@intel.com,
- mario.limonciello@amd.com, daniel@ffwll.ch
-Subject: Re: [PATCH v2 2/2] drm/tests/drm_buddy: add alloc_contiguous test
-Message-ID: <b59f744e-bc3d-4341-8586-4f4730aa351b@roeck-us.net>
-References: <20240214131853.5934-1-Arunpravin.PaneerSelvam@amd.com>
- <20240214131853.5934-2-Arunpravin.PaneerSelvam@amd.com>
+ Sat, 17 Feb 2024 12:27:08 -0800 (PST)
+From: =?UTF-8?q?T=C3=BAlio=20Fernandes?= <tuliomf09@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch
+Cc: =?UTF-8?q?T=C3=BAlio=20Fernandes?= <tuliomf09@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: clean unnecessary braces
+Date: Sat, 17 Feb 2024 17:20:15 -0300
+Message-Id: <20240217202015.2034288-1-tuliomf09@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240214131853.5934-2-Arunpravin.PaneerSelvam@amd.com>
 X-Mailman-Approved-At: Sun, 18 Feb 2024 11:25:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,31 +83,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 14, 2024 at 06:48:53PM +0530, Arunpravin Paneer Selvam wrote:
-> From: Matthew Auld <matthew.auld@intel.com>
-> 
-> Sanity check DRM_BUDDY_CONTIGUOUS_ALLOCATION.
-> 
-> v2: Fix checkpatch warnings.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3097
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Cc: Limonciello <mario.limonciello@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Clean unnecessary braces in dc/dcn32/dcn32_resource_helpers.c and dc/dcn32/dcn201_link_encoder.c
 
-Building csky:allmodconfig ... failed
-Building openrisc:allmodconfig ... failed
-Building parisc:allmodconfig ... failed
-Building xtensa:allmodconfig ... failed
+Signed-off-by: TÃºlio Fernandes <tuliomf09@gmail.com>
+---
+ .../display/dc/dcn32/dcn32_resource_helpers.c    | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
-[ and presumably all other 32-bit systems which enable this test ]
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
+index 87760600e154..e179dea148e7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
+@@ -110,14 +110,12 @@ uint32_t dcn32_helper_calculate_num_ways_for_subvp(
+ 		struct dc_state *context)
+ {
+ 	if (context->bw_ctx.bw.dcn.mall_subvp_size_bytes > 0) {
+-		if (dc->debug.force_subvp_num_ways) {
++		if (dc->debug.force_subvp_num_ways)
+ 			return dc->debug.force_subvp_num_ways;
+-		} else {
++		else
+ 			return dcn32_helper_mall_bytes_to_ways(dc, context->bw_ctx.bw.dcn.mall_subvp_size_bytes);
+-		}
+-	} else {
++	} else
+ 		return 0;
+-	}
+ }
+ 
+ void dcn32_merge_pipes_for_subvp(struct dc *dc,
+@@ -250,9 +248,9 @@ bool dcn32_is_psr_capable(struct pipe_ctx *pipe)
+ {
+ 	bool psr_capable = false;
+ 
+-	if (pipe->stream && pipe->stream->link->psr_settings.psr_version != DC_PSR_VERSION_UNSUPPORTED) {
++	if (pipe->stream && pipe->stream->link->psr_settings.psr_version != DC_PSR_VERSION_UNSUPPORTED)
+ 		psr_capable = true;
+-	}
++
+ 	return psr_capable;
+ }
+ 
+@@ -278,9 +276,9 @@ static void override_det_for_subvp(struct dc *dc, struct dc_state *context, uint
+ 		if (pipe_ctx->stream && pipe_ctx->plane_state && dc_state_get_pipe_subvp_type(context, pipe_ctx) != SUBVP_PHANTOM) {
+ 			if (dcn32_allow_subvp_high_refresh_rate(dc, context, pipe_ctx)) {
+ 
+-				if (pipe_ctx->stream->timing.v_addressable == 1080 && pipe_ctx->stream->timing.h_addressable == 1920) {
++				if (pipe_ctx->stream->timing.v_addressable == 1080 && pipe_ctx->stream->timing.h_addressable == 1920)
+ 					fhd_count++;
+-				}
++
+ 				subvp_high_refresh_count++;
+ 			}
+ 		}
+-- 
+2.34.1
 
---------------
-Error log:
-ERROR: modpost: "__umoddi3" [drivers/gpu/drm/tests/drm_buddy_test.ko] undefined!
-ERROR: modpost: "__moddi3" [drivers/gpu/drm/tests/drm_buddy_test.ko] undefined!
-
-Guenter
