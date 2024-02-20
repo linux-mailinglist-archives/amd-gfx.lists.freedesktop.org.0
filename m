@@ -2,97 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DDB85D08C
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Feb 2024 07:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2030285D24C
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Feb 2024 09:14:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BD4910E62B;
-	Wed, 21 Feb 2024 06:39:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="o9d++MWQ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACF9110E642;
+	Wed, 21 Feb 2024 08:14:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2075.outbound.protection.outlook.com [40.107.101.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0BA910E62B
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Feb 2024 06:39:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=khNhmzCG/XDhE4tV3e6DHm0QmD71ekeFNqKZJxtSNoxh/FXVsdrFLlLLnN88/1xlqlZebGgpFAVcFlYQu2Mnd5jKC8f+8+T9QAKx8jKWSByKhFCPpHKWOZRw90ZU60JLNxit4QWJ0U1L4upXwFIUgkwtIKfWGfH8jxQELVcCTE/QvrIJf1DbHisWTEG/XbpWMS+7XwXKQruaomKuHiiER55dKTe4PIfbRXwq11xA8Uai+TQ7K5dC+83Q5LwkpvM1I4GzgGBLVO22cnuM2EgdXKfG7PxZRsUj/GDVf2eUyuuDaIwrYxr9lyLYVEZuZHAGG99uhDikuaKS/fBt0gcg/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R4WnEOyOt5j+0Scj/EH5qLatg3GETGq8AJ7fX0eQJfc=;
- b=gKgCLXH86hew4JxoBnlLmbpfonf6eS5DaTiYo8P9+55Yx9ea5anIrIsAqPmnygN7/3xi6v2MxD8bHr2KwmG3jwMH9F2vlOcJVJYL/x7l1d50tq7+SwENkW73B1Lj84d6pikdICUCLbnjpWAf3vQz2M8yz7t80XNDvvtQNArKJHZgPmc0CNmkgZ/QivYZln8PCkDr90KBDdR/PHcx4eDtu5YcxV93eQ7+8XZPcuZAa2J1W//vL6sRaQU2QSNZssvpVCuZtTiJ/Ph29scvXFYsRKYrbQYR3uCZpcMjbggOcyPGZ/E5r3Spe3PE8myeoDGowGdVvGrdAseaUPdES+D9rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R4WnEOyOt5j+0Scj/EH5qLatg3GETGq8AJ7fX0eQJfc=;
- b=o9d++MWQRV2zOJJYKQZFdS1VE/b3EaKVQvzQPQu9ONsBwK8fgjwJ32TJA1K13k9hNQ1xF48k07KrHoJ+lpyADb5wE5siVqXFvF7b4qFj3TLr3jTL0GxmfpIHXyHTPQrih7rVwR8L7wfKroCGyQnf0hPwgFT1+xooO9wxIWNKYSQ=
-Received: from SA0PR11CA0068.namprd11.prod.outlook.com (2603:10b6:806:d2::13)
- by BY5PR12MB4049.namprd12.prod.outlook.com (2603:10b6:a03:201::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.20; Wed, 21 Feb
- 2024 06:39:05 +0000
-Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
- (2603:10b6:806:d2:cafe::97) by SA0PR11CA0068.outlook.office365.com
- (2603:10b6:806:d2::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.40 via Frontend
- Transport; Wed, 21 Feb 2024 06:39:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Wed, 21 Feb 2024 06:39:05 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 21 Feb 2024 00:39:02 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Aurabindo Pillai
- <aurabindo.pillai@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Roman Li
- <roman.li@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Qingqing Zhuo <Qingqing.Zhuo@amd.com>
-Subject: [PATCH] drm/amd/display: Prevent potential buffer overflow in
- map_hw_resources
-Date: Wed, 21 Feb 2024 12:08:50 +0530
-Message-ID: <20240221063850.293956-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7F5710E4A2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Feb 2024 15:03:48 +0000 (UTC)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1rcRes-0007dt-3Z; Tue, 20 Feb 2024 16:03:46 +0100
+Message-ID: <62bf771e-640a-45ab-a2de-3df459a9ed30@leemhuis.info>
+Date: Tue, 20 Feb 2024 16:03:43 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Kernel 6.7+ broke under-powering of my RX 6700XT. (Archlinux,
+ mesa/amdgpu)
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Greg KH <gregkh@linuxfoundation.org>, Roman Benes <benes@riadoklan.sk.eu.org>
+References: <ae64f04d-6e94-4da4-a740-78ea94e0552c@riadoklan.sk.eu.org>
+ <2024021732-framing-tactful-833d@gregkh>
+ <d369b45f-e1af-4117-83a5-3e429e3bfb23@leemhuis.info>
+ <CADnq5_OgPBtYpxBQ+aBmA2t7ob7EFPFWrF9OYXNgm00eEayMNA@mail.gmail.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <CADnq5_OgPBtYpxBQ+aBmA2t7ob7EFPFWrF9OYXNgm00eEayMNA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|BY5PR12MB4049:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac58c4fc-cec2-4557-adf2-08dc32a7cc9e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uI1MaeUNHde4ZvR8zFdEch28cnutyR3fRHyhbHktoUGOUvR3wJwPRwdwW1ajdjs8wwuuOLF+n347oX+mvDfKKJfNqjcUXHEIYNel2xmcToNAI6iNq+KG0JzJbT9maZJVBYwJLHQCPklGgcrVjTvp58eKBUhJStrc11Hk8+7CBXE0/O8XML483w9Y+d7uF5qjUXo8Dp8Z4HSw45ShJ/SfFIxUWvQpT7QGT9G30xKcSMH78qERp9EpdWj2bgI9irBqGQYCr7Kp/6Nkr8q7Q67sLqcjLS6RxlxNyz6758H97IazkN9eEMGJ4qZE+qmOxSuUXP6romPaCFe2jGbRLqrQsvq+2dQozE1F+HV0TyngVpk1AJghl9CX4xkIAVq2+8SIgXggy9PiRV9Gobxwb07zD+P7J+P0CF9ZW1G9i0jBDR/HDgtSXuTY4OjKDYoda/n3Yb57sp/9dI2xCNAuf5mMbMXm6rOly48D+lut6FWOth6gBselhuzxGUwTZZqVXR7LTueSNLqYbSxPMZ28laMa1jLwJXcGU1r9+2kieEurctYjHLcETgHO6Lef6NcUTIP8OQdDOR3BRExOunVj8X327aAiGhOmNVhwU946XpRS27o3Amu3qyTYBU6OemSONFaAwEn/Ydlmf5C781s9siNkk8OKrXBt3fcFz4zRxkJw+EE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(40470700004)(46966006); DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2024 06:39:05.3021 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac58c4fc-cec2-4557-adf2-08dc32a7cc9e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA50.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4049
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1708441428;
+ a5b4fd3c; 
+X-HE-SMSGID: 1rcRes-0007dt-3Z
+X-Mailman-Approved-At: Wed, 21 Feb 2024 08:14:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,50 +56,126 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Adds a check in the map_hw_resources function to prevent a
-potential buffer overflow. The function was accessing arrays using an
-index that could potentially be greater than the size of the arrays,
-leading to a buffer overflow.
+On 20.02.24 15:45, Alex Deucher wrote:
+> On Mon, Feb 19, 2024 at 9:47 AM Linux regression tracking (Thorsten
+> Leemhuis) <regressions@leemhuis.info> wrote:
+>>
+>> On 17.02.24 14:30, Greg KH wrote:
+>>> On Sat, Feb 17, 2024 at 02:01:54PM +0100, Roman Benes wrote:
+>>>> Minimum power limit on latest(6.7+) kernels is 190W for my GPU (RX 6700XT,
+>>>> mesa, archlinux) and I cannot get power cap as low as before(to 115W),
+>>>> neither with Corectrl, LACT or TuxClocker and /sys have a variable read-only
+>>>> even for root. This is not of above apps issue but of the kernel, I read
+>>>> similar issues from other bug reports of above apps. I downgraded to v6.6.10
+>>>> kernel and my 115W(under power)cap work again as before.
+>>>
+>> For the record and everyone that lands here: the cause is known now
+>> (it's 1958946858a62b ("drm/amd/pm: Support for getting power1_cap_min
+>> value") [v6.7-rc1]) and the issue afaics tracked here:
+>>
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/3183
+>>
+>> Other mentions:
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/3137
+>> https://gitlab.freedesktop.org/drm/amd/-/issues/2992
+>>
+>> Haven't seen any statement from the amdgpu developers (now CCed) yet on
+>> this there (but might have missed something!). From what I can see I
+>> assume this will likely be somewhat tricky to handle, as a revert
+>> overall might be a bad idea here. We'll see I guess.
+> 
+> The change aligns the driver what has been validated on each board
+> design.  Windows uses the same limits.  Using values lower than the
+> validated range can lead to undefined behavior and could potentially
+> damage your hardware.
 
-Adds a check to ensure that the index is within the bounds of
-the arrays. If the index is out of bounds, an error message is printed
-and the function returns early to prevent the buffer overflow.
+Thx for the reply! Yeah, I was expecting something along those lines.
 
-Reported by smatch:
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_wrapper.c:79 map_hw_resources() error: buffer overflow 'dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_stream_id' 6 <= 7
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_wrapper.c:81 map_hw_resources() error: buffer overflow 'dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_plane_id' 6 <= 7
+Nevertheless it afaics still is a regression in the eyes of many users.
+I'm not sure how Linus feels about this, but I wonder if we can find
+some solution here so that users that really want to, can continue to do
+what was possible out-of-the box before. Is that possible to realize or
+even supported already?
 
-Fixes: 482ce89eec1b ("drm/amd/display: Introduce DML2")
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Cc: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+And sure, those users would be running their hardware outside of its
+specifications. But is that different from overclocking (which the
+driver allows, doesn't it? If not by all means please correct me!)?
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-index 26307e599614..0531d54b3d68 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-@@ -76,6 +76,12 @@ static void map_hw_resources(struct dml2_context *dml2,
- 			in_out_display_cfg->hw.DLGRefClkFreqMHz = 50;
- 		}
- 		for (j = 0; j < mode_support_info->DPPPerSurface[i]; j++) {
-+			if (i >= __DML2_WRAPPER_MAX_STREAMS_PLANES__) {
-+				dml_print("DML::%s: Index out of bounds: i=%d,
-+					  __DML2_WRAPPER_MAX_STREAMS_PLANES__=%d\n",
-+					  __func__, i, __DML2_WRAPPER_MAX_STREAMS_PLANES__);
-+				return;
-+			}
- 			dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_stream_id[num_pipes] = dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_stream_id[i];
- 			dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_stream_id_valid[num_pipes] = true;
- 			dml2->v20.scratch.dml_to_dc_pipe_mapping.dml_pipe_idx_to_plane_id[num_pipes] = dml2->v20.scratch.dml_to_dc_pipe_mapping.disp_cfg_to_plane_id[i];
--- 
-2.34.1
+Ciao, Thorsten
 
+>> Roman posted something that apparently was meant to go to the list, so
+>> let me put it here:
+>>
+>> """
+>> UPDATE: User fililip already posted patch, but it need to be merged,
+>> discussion is on gitlab link below.
+>>
+>> (PS: I hope I am replying correctly to "all" now? - using original addr.)
+>>
+>>
+>>> it seems that commit was already found(see user's 'fililip' comment):
+>>>
+>>> https://gitlab.freedesktop.org/drm/amd/-/issues/3183
+>>> commit 1958946858a62b6b5392ed075aa219d199bcae39
+>>> Author: Ma Jun <Jun.Ma2@amd.com>
+>>> Date:   Thu Oct 12 09:33:45 2023 +0800
+>>>
+>>>     drm/amd/pm: Support for getting power1_cap_min value
+>>>
+>>>     Support for getting power1_cap_min value on smu13 and smu11.
+>>>     For other Asics, we still use 0 as the default value.
+>>>
+>>>     Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+>>>     Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
+>>>     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>>>
+>>> However, this is not good as it remove under-powering range too far. I
+>> was getting only about 7% less performance but 90W(!) less consumption
+>> when set to my 115W before. Also I wonder if we as a OS of options and
+>> freedom have to stick to such very high reference for min values without
+>> ability to override them through some sys ctrls. Commit was done by amd
+>> guy and I wonder if because of maybe this post that I made few months
+>> ago(business strategy?):
+>>>
+>>>
+>> https://www.reddit.com/r/Amd/comments/183gye7/rx_6700xt_from_230w_to_capped_115w_at_only_10/
+>>>
+>>> This is not a dangerous OC upwards where I can understand desire to
+>> protect HW, it is downward, having min cap at 190W when card pull on
+>> 115W almost same speed is IMO crazy to deny. We don't talk about default
+>> or reference values here either, just a move to lower the range of
+>> options for whatever reason.
+>>>
+>>> I don't know how much power you guys have over them, but please
+>> consider either reverting this change, or give us an option to set
+>> min_cap through say /sys (right now param is readonly, even for root).
+>>>
+>>>
+>>> Thank you in advance for looking into this, with regards:  Romano
+>> """
+>>
+>> And while at it, let me add this issue to the tracking as well
+>>
+>> [TLDR: I'm adding this report to the list of tracked Linux kernel
+>> regressions; the text you find below is based on a few templates
+>> paragraphs you might have encountered already in similar form.
+>> See link in footer if these mails annoy you.]
+>>
+>> Thanks for the report. To be sure the issue doesn't fall through the
+>> cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
+>> tracking bot:
+>>
+>> #regzbot introduced 1958946858a62b /
+>> #regzbot title drm: amdgpu: under-powering broke
+>>
+>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+>> --
+>> Everything you wanna know about Linux kernel regression tracking:
+>> https://linux-regtracking.leemhuis.info/about/#tldr
+>> That page also explains what to do if mails like this annoy you.
+> 
+> 
