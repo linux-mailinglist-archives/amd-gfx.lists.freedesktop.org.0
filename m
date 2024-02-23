@@ -2,55 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72062860BE5
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Feb 2024 09:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEEA3860C29
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Feb 2024 09:24:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B48C10EB1B;
-	Fri, 23 Feb 2024 08:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F9610E13D;
+	Fri, 23 Feb 2024 08:24:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ef7PVkdl";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 325F910EB14;
- Fri, 23 Feb 2024 08:11:18 +0000 (UTC)
-Received: from [192.168.1.137] ([213.144.156.170])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202402230911154834; Fri, 23 Feb 2024 09:11:15 +0100
-Message-ID: <2d7632f0-0783-4d82-9d81-dd6bd52d5db6@daenzer.net>
-Date: Fri, 23 Feb 2024 09:11:14 +0100
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2083.outbound.protection.outlook.com [40.107.94.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52E810E13D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Feb 2024 08:24:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aTk4wgCnhE4PBcxvc/oYDjZ3aTZ0KlyIkWO4kmEf4tqxStRwO7/KzyIDCxfsH1H9CxGs9v4LzXwUwnLfTDVCo3b+zNJzNDPOyZsfnVRcuH26BY5pSjt/o4tq3T0aLpylCL6QjdGhfOPAF8sJFIgcfa0vZOJuJ2UMdgtacd1XEsP18rpVD+Fnb0CbI85Hx4B9jRqphCrOyo6DpJccEHq4eprpyFLYFpOSFXFWgK0aGDTnRrd/nptSaA+mUtZdAVNBIdrikS1hwY6cVdQLbpXrrD2fVZXm2UqrbDKPKWRrf8u2/FbCY1Eh91jg59UyfJWVMV2r52ttKFRk+1kRHP27rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1G0jWfFjuUECH1uQwHPa4TM/GYSNrOg/T9r5NIkG8wM=;
+ b=dyOehccR99O3ROql8Xv/AWISLnPfqYa1oYQlaYE950gR1UevCXJKF6meaAApjNGHnU09qbhysONwEKZT6RDWvsB3e/AIcE2Rz+qQyli+Fl5GDEwGI2J6KOY6qLRT+QnDvlrS3p2Kf6EIbUkcHONN3Fud7qOFg3Xfmao0yzAGGcS9X/qrtg7X4z86XfLmxeUFDBGlggz4dURncFW8Ukhraooamfgl8WAN7e+8ozA692nWUV8odN2PQ5UPeQ+cwx6LFMVL/owgs9i63fK+JxVkH088hVWMbGBSAB6FtT/ne+tDj/1fxXsjPSjIE/Nyv6J4kWbll249OmNBUAGBJ7fkhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1G0jWfFjuUECH1uQwHPa4TM/GYSNrOg/T9r5NIkG8wM=;
+ b=Ef7PVkdl5CX4ZR+vt6ex8zbEcseHl26JC2N/J5U6wmeh+70DwG5U+R8a1S2MVbWlLQUSTGqEw1ch6TknuGphkP6AeB+cvBoHC7fjJZZBNp/406KMxWIO3ZPu6WFigVsjEQZzfHPXo8gmSw/PBmA+dN82nKUN5QkBFG94KBfZ0UM=
+Received: from SA9PR13CA0176.namprd13.prod.outlook.com (2603:10b6:806:28::31)
+ by MW4PR12MB7484.namprd12.prod.outlook.com (2603:10b6:303:212::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.24; Fri, 23 Feb
+ 2024 08:24:03 +0000
+Received: from SA2PEPF000015CC.namprd03.prod.outlook.com
+ (2603:10b6:806:28:cafe::f4) by SA9PR13CA0176.outlook.office365.com
+ (2603:10b6:806:28::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.11 via Frontend
+ Transport; Fri, 23 Feb 2024 08:24:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF000015CC.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7292.25 via Frontend Transport; Fri, 23 Feb 2024 08:24:02 +0000
+Received: from tao-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 23 Feb
+ 2024 02:24:00 -0600
+From: Tao Zhou <tao.zhou1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Tao Zhou <tao.zhou1@amd.com>
+Subject: [PATCH 1/5] drm/amdgpu: add new bit definitions for GC 9.0
+ PROTECTION_FAULT_STATUS
+Date: Fri, 23 Feb 2024 16:23:48 +0800
+Message-ID: <20240223082352.323583-1-tao.zhou1@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/amdgpu: Refuse to create a KMS FB for non-P2P
- exported dma-bufs
-Content-Language: de-CH-frami, en-CA
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20240222172821.16901-1-michel@daenzer.net>
- <3156ea34-0655-4b0f-9438-9113fb714373@amd.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-Autocrypt: addr=michel@daenzer.net; keydata=
- xsDiBDsehS8RBACbsIQEX31aYSIuEKxEnEX82ezMR8z3LG8ktv1KjyNErUX9Pt7AUC7W3W0b
- LUhu8Le8S2va6hi7GfSAifl0ih3k6Bv1Itzgnd+7ZmSrvCN8yGJaHNQfAevAuEboIb+MaVHo
- 9EMJj4ikOcRZCmQWw7evu/D9uQdtkCnRY9iJiAGxbwCguBHtpoGMxDOINCr5UU6qt+m4O+UD
- /355ohBBzzyh49lTj0kTFKr0Ozd20G2FbcqHgfFL1dc1MPyigej2gLga2osu2QY0ObvAGkOu
- WBi3LTY8Zs8uqFGDC4ZAwMPoFy3yzu3ne6T7d/68rJil0QcdQjzzHi6ekqHuhst4a+/+D23h
- Za8MJBEcdOhRhsaDVGAJSFEQB1qLBACOs0xN+XblejO35gsDSVVk8s+FUUw3TSWJBfZa3Imp
- V2U2tBO4qck+wqbHNfdnU/crrsHahjzBjvk8Up7VoY8oT+z03sal2vXEonS279xN2B92Tttr
- AgwosujguFO/7tvzymWC76rDEwue8TsADE11ErjwaBTs8ZXfnN/uAANgPM0jTWljaGVsIERh
- ZW56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD7CXgQTEQIAHgUCQFXxJgIbAwYLCQgHAwIDFQID
- AxYCAQIeAQIXgAAKCRBaga+OatuyAIrPAJ9ykonXI3oQcX83N2qzCEStLNW47gCeLWm/QiPY
- jqtGUnnSbyuTQfIySkLOwE0EOx6FRRAEAJZkcvklPwJCgNiw37p0GShKmFGGqf/a3xZZEpjI
- qNxzshFRFneZze4f5LhzbX1/vIm5+ZXsEWympJfZzyCmYPw86QcFxyZflkAxHx9LeD+89Elx
- bw6wT0CcLvSv8ROfU1m8YhGbV6g2zWyLD0/naQGVb8e4FhVKGNY2EEbHgFBrAAMGA/0VktFO
- CxFBdzLQ17RCTwCJ3xpyP4qsLJH0yCoA26rH2zE2RzByhrTFTYZzbFEid3ddGiHOBEL+bO+2
- GNtfiYKmbTkj1tMZJ8L6huKONaVrASFzLvZa2dlc2zja9ZSksKmge5BOTKWgbyepEc5qxSju
- YsYrX5xfLgTZC5abhhztpcJGBBgRAgAGBQI7HoVFAAoJEFqBr45q27IAlscAnjICalDn2zB1
- fXqoOkGsTwElvKa5AJ9FhyKJpysFRcejfdZwrwl9xb4oOg==
-In-Reply-To: <3156ea34-0655-4b0f-9438-9113fb714373@amd.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F23.65D85324.0062,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|MW4PR12MB7484:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9a2a1f2-6afb-4991-96ed-08dc3448cade
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cn/mcQxmfA+2h1nin0BhWvwrYHoIP2SL3bSYOU6VwXKt4w9O0WedkFnd4Ow7vp4QKJK/gN9DuMeMQ4hSGjtWBPOVNNODrFJP3BAH5KuqK4jAGEYi4Y7SlKXfwrHkjWeM3e7w/piGAYvLj+KZtqXXEnjYxq/hZSkSBvqxHJadcmqxnjYOfniM9q7QElgVRs8FJJysNuw232tCLZx0ySQc1m2sItoJjDFp/WciTB/1uniaAYh3XqxQGSxI8lnhNhMT0ozFY0RS41Hl3WieOnEiVK5B4HkH8r8m+MbIb8T2sveiIKGxxSI9Idhnpo9yfnop3BJ5wF1RGMrLx9j2mvWmK6kX2/2G0n51B3dLr3yioLwFhh2m9UDfXQARmZ9Q2eDoWIG3tROu2hpx2Yn+YEk5ExjRZRoPxn3IAq6GwrF1wcgoYSUOmIn0EW42rxRvNc2PVE39SjHL7WxP0oHUaKzBXX6PXBADqO9InqXU1fGaFE0VlrimMOQ8e3qL2GQ53pzUOM4rn517DfoFG+kVHmIX/bfBRoO2z2OrDrA5n0aI4Yikq3JJQ5f7zTDHVQ06mYWvv0Y6K7OnNcu/lj/CCf/vAorjEMOd+nvyxL9Ri7FW9AVqR9WH5Tb61IMDPb3ZVPGlZYC1OSXEEqBaeSD0p5fHwQgQB+i4Heu6nkvVFoEarZs=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(36860700004)(40470700004)(46966006); DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2024 08:24:02.5017 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9a2a1f2-6afb-4991-96ed-08dc3448cade
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7484
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,43 +104,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-02-23 08:06, Christian König wrote:
-> Am 22.02.24 um 18:28 schrieb Michel Dänzer:
->> From: Michel Dänzer <mdaenzer@redhat.com>
->>
->> Pinning the BO storage to VRAM for scanout would make it inaccessible
->> to non-P2P dma-buf importers.
-> 
-> Thinking more about it I don't think we can do this.
-> 
-> Using the BO in a ping/pong fashion for scanout and DMA-buf is actually valid, you just can't do both at the same time.
-> 
-> And if I'm not completely mistaken we actually have use cases for this at the moment,
+Add UCE and FED bit definitions.
 
-Those use cases don't have P2P & CONFIG_DMABUF_MOVE_NOTIFY?
+Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+---
+ drivers/gpu/drm/amd/include/asic_reg/gc/gc_9_0_sh_mask.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-(As discussed on the GitLab issue, AFAICT P2P could be made to work even without CONFIG_DMABUF_MOVE_NOTIFY, by pinning to VRAM instead of GTT for dma-buf sharing)
-
-
-> only as fallback but it would still break existing userspace and that is a no-go.
-
-I'm obviously aware of this general rule. There are exceptions though, and this might be one.
-
-
-> So rejecting things during CS and atomic commit is the best thing we can do.
-
-It's problematic for a Wayland compositor:
-
-The CS ioctl failing is awkward. With GL, I'm pretty sure it means the compositor would have to destroy the context and create a new one. Not sure about Vulkan, but I suspect it's painful there as well.
-
-Similarly for the KMS atomic commit ioctl. The compositor can't know why exactly it failed, all it gets is an error code.
-
-And there's no other way for the compositor to detect when both things can actually work concurrently.
-
-Together, this means the compositor always has to assume the worst case, and do workarounds such as using the scanout GPU to copy from the scanout buffer to another buffer for access from another GPU. Even when direct access from the other GPU would actually work fine.
-
-
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_9_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_9_0_sh_mask.h
+index efc16ddf274a..2dfa0e5b1aa3 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_9_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_9_0_sh_mask.h
+@@ -6822,6 +6822,8 @@
+ #define VM_L2_PROTECTION_FAULT_STATUS__VMID__SHIFT                                                            0x14
+ #define VM_L2_PROTECTION_FAULT_STATUS__VF__SHIFT                                                              0x18
+ #define VM_L2_PROTECTION_FAULT_STATUS__VFID__SHIFT                                                            0x19
++#define VM_L2_PROTECTION_FAULT_STATUS__UCE__SHIFT                                                             0x1d
++#define VM_L2_PROTECTION_FAULT_STATUS__FED__SHIFT                                                             0x1e
+ #define VM_L2_PROTECTION_FAULT_STATUS__MORE_FAULTS_MASK                                                       0x00000001L
+ #define VM_L2_PROTECTION_FAULT_STATUS__WALKER_ERROR_MASK                                                      0x0000000EL
+ #define VM_L2_PROTECTION_FAULT_STATUS__PERMISSION_FAULTS_MASK                                                 0x000000F0L
+@@ -6832,6 +6834,8 @@
+ #define VM_L2_PROTECTION_FAULT_STATUS__VMID_MASK                                                              0x00F00000L
+ #define VM_L2_PROTECTION_FAULT_STATUS__VF_MASK                                                                0x01000000L
+ #define VM_L2_PROTECTION_FAULT_STATUS__VFID_MASK                                                              0x1E000000L
++#define VM_L2_PROTECTION_FAULT_STATUS__UCE_MASK                                                               0x20000000L
++#define VM_L2_PROTECTION_FAULT_STATUS__FED_MASK                                                               0x40000000L
+ //VM_L2_PROTECTION_FAULT_ADDR_LO32
+ #define VM_L2_PROTECTION_FAULT_ADDR_LO32__LOGICAL_PAGE_ADDR_LO32__SHIFT                                       0x0
+ #define VM_L2_PROTECTION_FAULT_ADDR_LO32__LOGICAL_PAGE_ADDR_LO32_MASK                                         0xFFFFFFFFL
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.34.1
 
