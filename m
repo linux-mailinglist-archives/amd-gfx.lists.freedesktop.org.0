@@ -2,56 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C421860D10
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Feb 2024 09:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C05860D80
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Feb 2024 10:05:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A8210EB34;
-	Fri, 23 Feb 2024 08:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEBE610EB44;
+	Fri, 23 Feb 2024 09:05:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qDolvF2j";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9312810EB34;
- Fri, 23 Feb 2024 08:41:14 +0000 (UTC)
-Received: from [192.168.1.137] ([213.144.156.170])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202402230941100373; Fri, 23 Feb 2024 09:41:10 +0100
-Message-ID: <23242e69-416b-4bf4-9c65-4dd1b160f380@daenzer.net>
-Date: Fri, 23 Feb 2024 09:41:08 +0100
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 144F210EB44
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Feb 2024 09:05:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gB+7hdFlOOskD6owkzrogGWEx7HwFL+0ZwMun1PK+Hrx2SVmGZm+HAfM56aTcUop759KM0NnEk4ABMso5P+8ZBIWuOjRYXr2sMM6/Z2wgM/3TQp/rp9bLZwMaMnqsS+XV1jOhHdkEmvQiVpk6JoSqWFgibYqhhrvSW6M4c94P0CNLLPONN+tsLzXbQaLL2p4ybrnzSmaMGzJ5Qrx1FnWwMiCUsaajy7lSSYjvDVnjZEJZMR99vyryTij1vXon+og++b+76LPfpISz39okDOMmHHmx3jZs8Y3jIuuKrqUDeTrIPg3tmXKA1w/FYjx7lGgRlcLvbpjqZLvkHr/xsbXmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lt1VPSrlWkcxwM7ZBUg31wqxjT/BwG7jiDCzoCyrYn0=;
+ b=H7UknzMOmzpy4RBde2vE6hRTW/TSdP59FADx6XKFUfnB7w7cyPb9RpA3Ac2964ArQC5CeBxGMyZcGIaZLfiXlWmI9qDeIcydiYct2+Uh9E+avzoffieWv50o3yf7yO67bGcWsQ1kJE0NB6s4bjMnp0IqPLjmIhZrfKMv8xOQAVJPnxBcYQI/tEcrwYPla0HwmX8HhWLKZT822PBRvc0pxJWCD5Bq40367lT88CWZJ6jcD91h7u5j3B7Mfhpec46aIUy+qVxuvo20NF3sxYVIiMjjiT3c1kqwYiRQ2DRbHs1W0oK30EQZAnLJtkI+WbUQYnHK2Co0M/RQ5r5Ki36oig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lt1VPSrlWkcxwM7ZBUg31wqxjT/BwG7jiDCzoCyrYn0=;
+ b=qDolvF2jyEvPx5EpoIA5kskiXO7524tdj/24HcNA/sj4KxIfQcbVsDiouOn06mgO3UX/q67viXeDYHRv/hlFs3qXXI0Qh2ryPxy45NlPsQkibINCOwp8DdB6RIv//AlWfwVmlCpjympf8HNmg/N+TOmboBQjTSd4LGiZ7w3IPgg=
+Received: from IA1PR12MB6356.namprd12.prod.outlook.com (2603:10b6:208:3e0::5)
+ by SA1PR12MB6920.namprd12.prod.outlook.com (2603:10b6:806:258::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.22; Fri, 23 Feb
+ 2024 09:05:25 +0000
+Received: from IA1PR12MB6356.namprd12.prod.outlook.com
+ ([fe80::899e:d7d0:9e4b:7c44]) by IA1PR12MB6356.namprd12.prod.outlook.com
+ ([fe80::899e:d7d0:9e4b:7c44%7]) with mapi id 15.20.7316.023; Fri, 23 Feb 2024
+ 09:05:25 +0000
+From: "Zhang, Yifan" <Yifan1.Zhang@amd.com>
+To: "Huang, Tim" <Tim.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: reserve more memory for MES runtime DRAM
+Thread-Topic: [PATCH] drm/amdgpu: reserve more memory for MES runtime DRAM
+Thread-Index: AQHaZiMWbPntF7coWUq+3WkQm4dSjrEXoYpQ
+Date: Fri, 23 Feb 2024 09:05:25 +0000
+Message-ID: <IA1PR12MB63564FF0AB65B2E4DCC836D3C1552@IA1PR12MB6356.namprd12.prod.outlook.com>
+References: <20240223063801.1940129-1-Tim.Huang@amd.com>
+In-Reply-To: <20240223063801.1940129-1-Tim.Huang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=e0967d89-b87b-4149-80a9-07b0cce97822;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-02-23T09:01:37Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR12MB6356:EE_|SA1PR12MB6920:EE_
+x-ms-office365-filtering-correlation-id: f0d73ac0-ffbd-4624-022e-08dc344e92f7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0oIj/1kSyM/nO8DoKW+ba3c/H6qZfzq3tKFlLgzchNvzwLJRbW0QM5irJ/608uOn81sV9a4jG4fPW2DxC5vl0hqZUO/VMAydsQfDUeKF7LOYtZWgFl7wBUFhTnBlX0q5WTVH5wQaIEcd2IK3mDbBtZmlFosCAaZ0yXswAG0AgtL2eoNeTyL/QaMtTmeVdXANSaFv4y8eIglKxKWuy+tBiB15hMBHxt93oJOfh/izFClZk+PWitfOH/mJqVKO+5IsUNvV+kdP55xWSI3gpm9h+B6F8qzb5n7ADecq+S9B8VwKfC/3u5bZORpp3CkEmfTvL7p2qVB7lW/tdqubXfoarlqEqYWJH1PZaPWBaZANZqNijbtUI+707MNi1apHIXoMZiT2b27egdsEUksSq0AT3bYyvxNY4+awWW40IIdSEb4cWFWXlqdItR5oeigJhUkDGvFFvb0f/qg0Pq9f3SVJJYd76mB4+pCOwKh1pAEkeHCin1X9iSwF9mLMA/NnxW63Yr3C62j/KA+oZPmokQpoElPeFRcLUy1vXmLRVpAKdtBCmfvH0hvPaymR8mbfZxMNC9b6JFSPRZY3zPWlZEmbzDcTHvSAOE02Co/9f6nZr7/YaXM3SzHp7pSPys3rY0Va
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR12MB6356.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PmwpblE6e0CP04JZMxzE3UAzi9veUPokQOBkPMfa+rnpIszEwjSBC1sIjyLj?=
+ =?us-ascii?Q?9Knx7k7NnO5q3It472eGtNUTWHbyIzcH6NbGb6zSRfmnXAt44/5HzL1Bblbu?=
+ =?us-ascii?Q?kmygRCEpj2btt9cqgsHaivV/RVkLYSzpLxIHt0ht2WV0iBZYQN5+YaGUAaYH?=
+ =?us-ascii?Q?/sGrQzs2RbTEwqx12MXMU06gn0seaJo0rWmfbbsAcxjMk76af6FnJHR0beNM?=
+ =?us-ascii?Q?6HyxZyMOvMfTIrRfOJXCL1bW6JZ4SUsBbtUEe6Ll8H2sjGkU4Fsxam2VqjYI?=
+ =?us-ascii?Q?d7m3GxSGA3CUfmYfNDZreARKjOyjiSgg5Tds3+sCfUn9tAuT1VF9hATSlNTr?=
+ =?us-ascii?Q?1TPut13ow+AkyLTzSdcV+u1nH6nnditzU+bN9PZbcx0XvHv2Op8jdbu7SRzy?=
+ =?us-ascii?Q?BR9PBtGqJnWTneBd8co48ZsjG0XxkJbFwNU6GN9/RjdUdd2yUPHqhgIuAQFh?=
+ =?us-ascii?Q?XBBdhlhKM0d/WDNf1n3jf7Oz16ckZ4d+YgzknCj9wqDy8cZtxgCkI3mSHact?=
+ =?us-ascii?Q?sDnEPyv7e4e99Mq3swuzlQXJouj5SwbNmIcA6EnSGfZs/TkPYTqQvXSD+vgg?=
+ =?us-ascii?Q?XgkzKHbX+l+Lm/0dPtucsZfEkgrrIBDyQ7jsovX/fpZ40R3Nb+0vkGetR9sJ?=
+ =?us-ascii?Q?Evj/BM8VHL2XNJjjeZGGftcmFfNf5ddFE8L/CN3m2umxO1dgGK8fnw4RfXAL?=
+ =?us-ascii?Q?ua8hxdm5VkkT3cBLlXY6DjaJbTSBemDf4cycrW7P7IXT+dhJMswSf+A9iiGx?=
+ =?us-ascii?Q?1brLWDHUWCm4A5e0wl/sbjAJhjnMldNgXo9ulZdTjO5KHjkA+b32l8FkB+vh?=
+ =?us-ascii?Q?WIkwtd7LlfkDpfaTHCCN3S3VCphEyO1aY8QFl+6WAOcmogqsOLax/WxpPSXQ?=
+ =?us-ascii?Q?Ntqg5IIV1vPVqHi+32QRYG3LfY47GlsTEXAnVMBNvlXjU9D+EZU69nyLiFWN?=
+ =?us-ascii?Q?4NTowPeaMsGC+EEk0R0oGgJNSWnpcCN23llvIywq8mFWhIv4qDaugUlgWb26?=
+ =?us-ascii?Q?AZdBGv/HxsxuYo0i5claEot2ReU4ENl6wZAHtzymeOiGo52J4htp8WoqBHVe?=
+ =?us-ascii?Q?+Rj0T1CHRxrWwe5ZAD1rYOxVMOuXW10EvYTmxfJAF3l+9W4jTrYYvwFrOaOk?=
+ =?us-ascii?Q?j3KXaWpFk8L6t7C6nVPogpGEQHx1+YOyfk6y6nBiro4uRMxP1C23q6okdohz?=
+ =?us-ascii?Q?pIBzITA3b70DTVJvk7U+H6VTibdw2luI8ZOJVs7ztkA/c7uc2C0DYriGroJU?=
+ =?us-ascii?Q?yKNLfOMC4Ayr9H3Q+uuRmJuSJXRyERPy+9jBC0JGzY592y1qqb1n4FIX7hW2?=
+ =?us-ascii?Q?QbSsLsGeYU2EHKc1USlEhwEhOFY/0pRASjdByCeDtplxCTL8h/9Rg8oqn+5c?=
+ =?us-ascii?Q?2YPOTNpFFo67hBRhV0JDWXyOQYEBqrnwaA31C2g0JsnDVAPHrUziNXe2S1b+?=
+ =?us-ascii?Q?BYjrZDcR9ZD+OnTQcEqlmIzsOECYmtCOOXCh2fvl5Lub2K89vQlWnTPVJ4f+?=
+ =?us-ascii?Q?NRGNPWhaFQDO57FF4hXA55Bk0moXkHxvIRdKEToQarBxv7QGX3ElBeXuFdoc?=
+ =?us-ascii?Q?XDGkFT9f6tk3f/oaHL4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/amdgpu: Refuse to create a KMS FB for non-P2P
- exported dma-bufs
-Content-Language: de-CH-frami, en-CA
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20240222172821.16901-1-michel@daenzer.net>
- <3156ea34-0655-4b0f-9438-9113fb714373@amd.com>
- <2d7632f0-0783-4d82-9d81-dd6bd52d5db6@daenzer.net>
-Autocrypt: addr=michel@daenzer.net; keydata=
- xsDiBDsehS8RBACbsIQEX31aYSIuEKxEnEX82ezMR8z3LG8ktv1KjyNErUX9Pt7AUC7W3W0b
- LUhu8Le8S2va6hi7GfSAifl0ih3k6Bv1Itzgnd+7ZmSrvCN8yGJaHNQfAevAuEboIb+MaVHo
- 9EMJj4ikOcRZCmQWw7evu/D9uQdtkCnRY9iJiAGxbwCguBHtpoGMxDOINCr5UU6qt+m4O+UD
- /355ohBBzzyh49lTj0kTFKr0Ozd20G2FbcqHgfFL1dc1MPyigej2gLga2osu2QY0ObvAGkOu
- WBi3LTY8Zs8uqFGDC4ZAwMPoFy3yzu3ne6T7d/68rJil0QcdQjzzHi6ekqHuhst4a+/+D23h
- Za8MJBEcdOhRhsaDVGAJSFEQB1qLBACOs0xN+XblejO35gsDSVVk8s+FUUw3TSWJBfZa3Imp
- V2U2tBO4qck+wqbHNfdnU/crrsHahjzBjvk8Up7VoY8oT+z03sal2vXEonS279xN2B92Tttr
- AgwosujguFO/7tvzymWC76rDEwue8TsADE11ErjwaBTs8ZXfnN/uAANgPM0jTWljaGVsIERh
- ZW56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD7CXgQTEQIAHgUCQFXxJgIbAwYLCQgHAwIDFQID
- AxYCAQIeAQIXgAAKCRBaga+OatuyAIrPAJ9ykonXI3oQcX83N2qzCEStLNW47gCeLWm/QiPY
- jqtGUnnSbyuTQfIySkLOwE0EOx6FRRAEAJZkcvklPwJCgNiw37p0GShKmFGGqf/a3xZZEpjI
- qNxzshFRFneZze4f5LhzbX1/vIm5+ZXsEWympJfZzyCmYPw86QcFxyZflkAxHx9LeD+89Elx
- bw6wT0CcLvSv8ROfU1m8YhGbV6g2zWyLD0/naQGVb8e4FhVKGNY2EEbHgFBrAAMGA/0VktFO
- CxFBdzLQ17RCTwCJ3xpyP4qsLJH0yCoA26rH2zE2RzByhrTFTYZzbFEid3ddGiHOBEL+bO+2
- GNtfiYKmbTkj1tMZJ8L6huKONaVrASFzLvZa2dlc2zja9ZSksKmge5BOTKWgbyepEc5qxSju
- YsYrX5xfLgTZC5abhhztpcJGBBgRAgAGBQI7HoVFAAoJEFqBr45q27IAlscAnjICalDn2zB1
- fXqoOkGsTwElvKa5AJ9FhyKJpysFRcejfdZwrwl9xb4oOg==
-In-Reply-To: <2d7632f0-0783-4d82-9d81-dd6bd52d5db6@daenzer.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F22.65D85A27.002C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6356.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0d73ac0-ffbd-4624-022e-08dc344e92f7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2024 09:05:25.7379 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: t8lO2jIGWSAH12tsBOWlY23e2yAcr+iqBHV62k2gJ5dJxhrA+b6hMC6XdQUceXNd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6920
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,29 +128,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-02-23 09:11, Michel Dänzer wrote:
-> On 2024-02-23 08:06, Christian König wrote:
->>
->> So rejecting things during CS and atomic commit is the best thing we can do.
-> 
-> It's problematic for a Wayland compositor:
-> 
-> The CS ioctl failing is awkward. With GL, I'm pretty sure it means the compositor would have to destroy the context and create a new one. Not sure about Vulkan, but I suspect it's painful there as well.
-> 
-> Similarly for the KMS atomic commit ioctl. The compositor can't know why exactly it failed, all it gets is an error code.
-> 
-> And there's no other way for the compositor to detect when both things can actually work concurrently.
-> 
-> Together, this means the compositor always has to assume the worst case, and do workarounds such as using the scanout GPU to copy from the scanout buffer to another buffer for access from another GPU. Even when direct access from the other GPU would actually work fine.
+[AMD Official Use Only - General]
 
-It's worse for Xwayland:
+This patch is :
 
-It can't know if/when the Wayland compositor uses a buffer for scanout. It would have to assume the worst case whenever a buffer is owned by the compositor.
+Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
 
-Except Xwayland can't know which GPU a buffer is originally from. So it can't know when the workaround is actually needed, or which GPU it has to use for the workaround.
+Best Regards,
+Yifan
 
+-----Original Message-----
+From: Huang, Tim <Tim.Huang@amd.com>
+Sent: Friday, February 23, 2024 2:38 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zh=
+ang@amd.com>; Huang, Tim <Tim.Huang@amd.com>
+Subject: [PATCH] drm/amdgpu: reserve more memory for MES runtime DRAM
 
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+This patch fixes a MES firmware boot failure issue when backdoor loading th=
+e MES firmware.
+
+MES firmware runtime DRAM size is changed to 512k, the driver needs to rese=
+rve this amount of memory in FB, otherwise adjacent memory will be overwrit=
+ten by the MES firmware startup code.
+
+Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/a=
+mdgpu/mes_v11_0.c
+index 26d71a22395d..36127e204dfe 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -56,6 +56,7 @@ static int mes_v11_0_kiq_hw_init(struct amdgpu_device *ad=
+ev);  static int mes_v11_0_kiq_hw_fini(struct amdgpu_device *adev);
+
+ #define MES_EOP_SIZE   2048
++#define GFX_MES_DRAM_SIZE      0x80000
+
+ static void mes_v11_0_ring_set_wptr(struct amdgpu_ring *ring)  { @@ -475,7=
+ +476,13 @@ static int mes_v11_0_allocate_ucode_data_buffer(struct amdgpu_d=
+evice *adev,
+                   le32_to_cpu(mes_hdr->mes_ucode_data_offset_bytes));
+        fw_size =3D le32_to_cpu(mes_hdr->mes_ucode_data_size_bytes);
+
+-       r =3D amdgpu_bo_create_reserved(adev, fw_size,
++       if (fw_size > GFX_MES_DRAM_SIZE) {
++               dev_err(adev->dev, "PIPE%d ucode data fw size (%d) is great=
+er than dram size (%d)\n",
++                       pipe, fw_size, GFX_MES_DRAM_SIZE);
++               return -EINVAL;
++       }
++
++       r =3D amdgpu_bo_create_reserved(adev, GFX_MES_DRAM_SIZE,
+                                      64 * 1024,
+                                      AMDGPU_GEM_DOMAIN_VRAM |
+                                      AMDGPU_GEM_DOMAIN_GTT,
+@@ -611,8 +618,8 @@ static int mes_v11_0_load_microcode(struct amdgpu_devic=
+e *adev,
+        WREG32_SOC15(GC, 0, regCP_MES_MDBASE_HI,
+                     upper_32_bits(adev->mes.data_fw_gpu_addr[pipe]));
+
+-       /* Set 0x3FFFF (256K-1) to CP_MES_MDBOUND_LO */
+-       WREG32_SOC15(GC, 0, regCP_MES_MDBOUND_LO, 0x3FFFF);
++       /* Set 0x7FFFF (512K-1) to CP_MES_MDBOUND_LO */
++       WREG32_SOC15(GC, 0, regCP_MES_MDBOUND_LO, 0x7FFFF);
+
+        if (prime_icache) {
+                /* invalidate ICACHE */
+--
+2.39.2
 
