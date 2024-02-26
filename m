@@ -2,99 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975298682B5
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Feb 2024 22:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B268683F8
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Feb 2024 23:47:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F411810F194;
-	Mon, 26 Feb 2024 21:11:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A0410E5E3;
+	Mon, 26 Feb 2024 22:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qQhijzVT";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vdmmjwWC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2049.outbound.protection.outlook.com [40.107.237.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D818410F24B;
- Mon, 26 Feb 2024 21:11:39 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2089.outbound.protection.outlook.com [40.107.96.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3A2710E5E3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Feb 2024 22:47:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lQaNlHrwJDNuq0hhOVHR6ckyHpKS7DwcBU29LfPAs39ah6hhvg/7c1obmqLcJtzx2qXACVJBTL+fUuwmKfhi5nHX9oEAPatLlwnMR36xnHfrif8UDi+xOch8DTo83NtSbi4g6PDEpmCFTFuB8nyg6wzxurZjNK7qVFgYguR15bwR4VGIyKv30tTlKJPIGdVDe73OPtigmU4JrRiH15/F8goQMprDFlldq8GEyXCu6IugwTCpxbUvdQZZT4Vfwr0lnMc1E9FEw6Iw8ycJDAVq4LHXGT0/5n+JwpMu7wbwe35i6jZe0+tDhAPjghqMQ10PMZCGQ4hfYnDc3RAjIeY0ug==
+ b=U876Z1yGqneaaeHcmGl+q/OVaN0J+dkPkMSqp+0GQLatxFSOc0E4TxWAdXIOapaG4CAKmvgVCjg2R1pE3zFWh9xXrLHkJ0DsYqd4GHS86uyUEgyVgEdgx05vq+Mey4GkjM2dTOtmcxOSOfro9Ylw9TcOE+yTQKE4170oq1xGhOA/RLr4NLSsC3VG97kCRSVYuD549MtKPjFUwL5zseE6DNu9Y3fzCLDai6bDcbtQoVZI0B8rCGpcV09qPyV7Y8qT54awmxk+XwzDYejosrc5oI2mvSXIfzKu53SaDWMYl0FYIytBVepDmY6K9LQafPcagAYbuSs86ZCIkxohEWBz1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lqiOL+mdpBmkCeCP3qk8Mji52bf9GGejJjbqPrxjzbs=;
- b=ZCtDXcR4yaqflwhCDdY3v2ZaHSzBR7H5W7UzVRs5UxvaJujsozYB2uA044tjHIj72uRvIyZQnpjuE/GAWgMAzdw6cT9Ttc+2UtRg03brZTBWW//bIWJj+pNI2LavdLtY/KHxl6M/mIxeh8Vt1n6hnDASUV6OwygrZ7reVY3x1JDBtuXlvw6SmkUKEo5x6KF69hZM646pQtc78R/63bILPGCkgEfzFKsTAaTsiOL9AuHA3qjAqX2hn94AVqJH0nanagdju2cYgbDfIYa9EI/KRgw6ReY4MlRh1x/5un/ESgjWFSGxY+eUdPj+BTDwRt5eUgOC2iyorSiJVVwYOOcKxg==
+ bh=Cob5HlNbqz4Fqk8gNOOkV+RzRDDYcYTezfuwh0wDKAo=;
+ b=L5g16NW+7lK0cIguX7Ncoh3lij2pM62HaWCN8aNiX2ox4xgvYvx1zqScNxOTVw/3tMrHhacoliWNh0DcfNSgTyvj7zltRDCXpA8WF+2uPskjlEvrJeqVxeCVFcOyTTMZAlXGokTkqhKEwF+CzqiWLjn/8IbMRg+cxjxYC4OZJ5OOtSf2KSr9w3/ReNhqNi6jE3mYuOhy2UyUBbAc2eVkxraROhgQbfkfZM65oz+ZHYaeSyC4xXCECFGzEMCv69GaA54cj79py3RL9abPPaEr5C1aDi2SHwQvWRhhakPJc6LhlaOPsOCUjEt+Z0mo3a09nDaWrZXBOoSMxLlyUQ0lIQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lqiOL+mdpBmkCeCP3qk8Mji52bf9GGejJjbqPrxjzbs=;
- b=qQhijzVTk0sCjZ84EUqUz7AD4Ix0PVdkibEaGGgdGBq8kFu6IFq9B4LDqB/DsKUk3MjJ7kToXGqXk2xJniWb9xvQfQ93FP++fuOXEd+lOzACmJkH32CDEjq8cNzBBjEVgHjCbN1DkI5z4NbvQWnNVF6oFAuVjrr8a0xdKOx/srU=
-Received: from CH0PR04CA0081.namprd04.prod.outlook.com (2603:10b6:610:74::26)
- by CY8PR12MB7730.namprd12.prod.outlook.com (2603:10b6:930:85::17)
+ bh=Cob5HlNbqz4Fqk8gNOOkV+RzRDDYcYTezfuwh0wDKAo=;
+ b=vdmmjwWCJ3bxmhuHlqzJ4aVmJF83x8L0Oa9MO3YLj1eJ7dKulGCGJP6TKScyjyNP6NHAX/rIZnYKc8hqFgUep0Whhw93hhbYt7LlHwocxsj2cqUn/h8Vl0gKHMitQe5MKcD3vpt6NNX8gkK2egiGlavUtiVRwq2hm2IySPt9kOU=
+Received: from MN2PR04CA0017.namprd04.prod.outlook.com (2603:10b6:208:d4::30)
+ by BL3PR12MB6642.namprd12.prod.outlook.com (2603:10b6:208:38e::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.36; Mon, 26 Feb
- 2024 21:11:35 +0000
-Received: from DS2PEPF0000343D.namprd02.prod.outlook.com
- (2603:10b6:610:74:cafe::83) by CH0PR04CA0081.outlook.office365.com
- (2603:10b6:610:74::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.31; Mon, 26 Feb
+ 2024 22:47:28 +0000
+Received: from BL6PEPF0001AB4E.namprd04.prod.outlook.com
+ (2603:10b6:208:d4:cafe::ed) by MN2PR04CA0017.outlook.office365.com
+ (2603:10b6:208:d4::30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.49 via Frontend
- Transport; Mon, 26 Feb 2024 21:11:35 +0000
+ Transport; Mon, 26 Feb 2024 22:47:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS2PEPF0000343D.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4E.mail.protection.outlook.com (10.167.242.72) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Mon, 26 Feb 2024 21:11:34 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7292.25 via Frontend Transport; Mon, 26 Feb 2024 22:47:28 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 26 Feb
- 2024 15:11:32 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 26 Feb
- 2024 13:11:32 -0800
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 26 Feb 2024 15:11:32 -0600
-From: Harry Wentland <harry.wentland@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <wayland-devel@lists.freedesktop.org>, Alex Hung <alex.hung@amd.com>
-Subject: [RFC PATCH v4 42/42] drm/amd/display: add multiplier colorop
-Date: Mon, 26 Feb 2024 16:10:56 -0500
-Message-ID: <20240226211100.100108-43-harry.wentland@amd.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240226211100.100108-1-harry.wentland@amd.com>
-References: <20240226211100.100108-1-harry.wentland@amd.com>
+ 2024 16:47:26 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] Revert "drm/amd/pm: resolve reboot exception for si oland"
+Date: Mon, 26 Feb 2024 17:47:03 -0500
+Message-ID: <20240226224703.1254537-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343D:EE_|CY8PR12MB7730:EE_
-X-MS-Office365-Filtering-Correlation-Id: c176bb27-0e15-4daa-1160-08dc370f8375
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4E:EE_|BL3PR12MB6642:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec48e230-e542-4053-c46e-08dc371ce8ac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6E8VhAYbHvX6vdCjkv+w1E7wDqtPAHd4jw0xwsjc3xkny6FkvSn4la7BdUTgwC8bpUt3UPykt63tX44DAYIvOmfCpm0szghcpp0yGQSecyh5KHTLm2TXILtjMrHegGJifl1ZW8lgU+JaJqHG4Ho0y4cGZJt7f8EW76it8VX2fB318lYDZwcqKqjLOuiDxn1808hyNi7nnFBJLtwjUMcGLdrwlLWxpkjBmkNPiz2ogz/FyWQvRjk3bEfD8gdjxqLwTgmmNIpyh2ieMCwPS7v88qoLL3x22OD0fxD9n8fwx6LVPXXPqr0vnzVyvYOMQMDecKjhPLCVzA7uz/FPwc1xMCLHW9bbyhp008MPyErmCuUHJrvFqXMTWwCu+mUSmFYqBY+wKRJimzSO5BlOgwhKtlvNOeua13fSBijjI3rNUwvWxVl426a3sy2xvJfeSY7nGhvWl19i4NaMeyNxqzNtV23+AvGSc+01hSwbmwGvMWKCJY1xVjjwe0zXkbUlNmLlw4vp0JWTD+q27NvZxsB1v2nPJCmJcHQPvzhK0hGSYYHhy4o/3lkUz91LqKIos2N/+C/zrg83BojLBH2HQX/HH6ziAb/CeTQI07cV6sbD/j1EwY8JqBailY33sdRwW1vh/ntTHKZ8w0ZSMtcIdZqVurV0cqt5am9OJNolsARbVMDJIueZtf5eX2qrF0WijTaTjsI2HmBcElNWT0Cte+W0slwL0+ZqTXia3ghqq2NzCCRl9YEe4C7xdc/4CYSLgiz1
+X-Microsoft-Antispam-Message-Info: Y/vdcMQXH2jPg1HFi0E4OmDQEK9IAiHBurfIW4K2Bp2dUZfJl4CRFZXenZqMXn0QryGIkHSEqH7v10bHHsigIxlsfIoykssSMP+dDv6oQTWQJBdkiQc/HJeSiCiOBevubLhCfNV9Ayen3VxSdCu6Sm5cwmJhgHoZiDM8KGz9aBN1VCwSP7PKZVb3MQt0ZTQxffQl8z7zsQdI7EYw8HiDOwSSAuzRT9LtKTvx5awtAOIdIeqqJC0kdAna7ZDBgBpx/pkZ4NzOremQ6mRQkxSgRCnMQHKXXh79fK1UVPHWvoH5Vcw4sx1Wn8eV0fASpz2nQA3kCasQlZ1Ebag9+CPs0Rs6AmROzwXnZBQHeppVLdXnoP4XrzdIx/qLxETZJvYy0j5wJJv1YHE95CskGt4laV7oOr5WgiTtUj9oayP6cNO4mqi5FScN5L11Tx2nMFM9MPoezfr6ajPP+ZgdtWjicfeKjx2sjY4YS2UnYcFCAnhmD7z+Z8QVic+1T8Pf9VJ+R1IvFgZ4Ah482TCjf08up0tpuA1eYf4kA4Fuywq8Ufghdlcae5SfBTpRBuURKMsbzRgCrpwF+AHhiVNyNyh+V99XuZCJuB2iBX8JFhabwArmPr/OjRC4LqCu0bbSDfkIPROiJC7Tg61XHANMl5PaNo7uE4Yx0qjmgH4Cz7H4nWVT6CxfN74R+8wRtzzqJTsWMWBCfiDglB4orFcyFxfWK73C5c+iTDUTVqevKeQpe2g=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004); DIR:OUT; SFP:1101; 
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(36860700004)(82310400014); DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 21:11:34.8511 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c176bb27-0e15-4daa-1160-08dc370f8375
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2024 22:47:28.1547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec48e230-e542-4053-c46e-08dc371ce8ac
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343D.namprd02.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4E.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7730
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6642
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,114 +103,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Hung <alex.hung@amd.com>
+This reverts commit e490d60a2f76bff636c68ce4fe34c1b6c34bbd86.
 
-This adds support for a multiplier. This multiplier is
-programmed via the HDR Multiplier in DCN.
+This causes hangs on SI when DC is enabled and errors on driver
+reboot and power off cycles.
 
-With this change the following IGT tests pass:
-kms_colorop --run plane-XR30-XR30-multiply_125
-kms_colorop --run plane-XR30-XR30-multiply_inv_125
-
-The color pipeline now consists of the following colorops:
-1. 1D curve colorop
-2. 3x4 CTM
-3. Multiplier
-4. 1D curve colorop
-5. 1D LUT
-6. 1D curve colorop
-7. 1D LUT
-
-Signed-off-by: Alex Hung <alex.hung@amd.com>
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3216
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2755
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 40 +++++++++++++++++++
- .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 15 +++++++
- 2 files changed, 55 insertions(+)
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index ef50640b362b..b05e4fea8a08 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -1251,6 +1251,35 @@ __set_dm_plane_colorop_3x4_matrix(struct drm_plane_state *plane_state,
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+index e145d53a794ba..a586e0b7c47d1 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+@@ -6927,6 +6927,23 @@ static int si_dpm_enable(struct amdgpu_device *adev)
  	return 0;
  }
  
-+static int
-+__set_dm_plane_colorop_multiplier(struct drm_plane_state *plane_state,
-+				  struct dc_plane_state *dc_plane_state,
-+				  struct drm_colorop *colorop)
++static int si_set_temperature_range(struct amdgpu_device *adev)
 +{
-+	struct drm_colorop *old_colorop;
-+	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
-+	struct drm_atomic_state *state = plane_state->state;
-+	const struct drm_device *dev = colorop->dev;
-+	int i = 0;
++	int ret;
 +
-+	/* Multiplier */
-+	old_colorop = colorop;
-+	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-+		if (new_colorop_state->colorop == old_colorop &&
-+		    new_colorop_state->colorop->type == DRM_COLOROP_MULTIPLIER) {
-+			colorop_state = new_colorop_state;
-+			break;
-+		}
-+	}
++	ret = si_thermal_enable_alert(adev, false);
++	if (ret)
++		return ret;
++	ret = si_thermal_set_temperature_range(adev, R600_TEMP_RANGE_MIN, R600_TEMP_RANGE_MAX);
++	if (ret)
++		return ret;
++	ret = si_thermal_enable_alert(adev, true);
++	if (ret)
++		return ret;
 +
-+	if (colorop_state && !colorop_state->bypass && colorop->type == DRM_COLOROP_MULTIPLIER) {
-+		drm_dbg(dev, "Multiplier colorop with ID: %d\n", colorop->base.id);
-+		dc_plane_state->hdr_mult = amdgpu_dm_fixpt_from_s3132(colorop_state->multiplier);
-+	}
-+
-+	return 0;
++	return ret;
 +}
 +
- static int
- __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
- 			      struct dc_plane_state *dc_plane_state,
-@@ -1461,6 +1490,17 @@ amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
- 	if (ret)
- 		return ret;
+ static void si_dpm_disable(struct amdgpu_device *adev)
+ {
+ 	struct rv7xx_power_info *pi = rv770_get_pi(adev);
+@@ -7610,6 +7627,18 @@ static int si_dpm_process_interrupt(struct amdgpu_device *adev,
  
-+	/* Multiplier */
-+	colorop = colorop->next;
-+	if (!colorop) {
-+		drm_dbg(dev, "no multiplier colorop found\n");
-+		return -EINVAL;
-+	}
+ static int si_dpm_late_init(void *handle)
+ {
++	int ret;
++	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
 +
-+	ret = __set_dm_plane_colorop_multiplier(plane_state, dc_plane_state, colorop);
++	if (!adev->pm.dpm_enabled)
++		return 0;
++
++	ret = si_set_temperature_range(adev);
 +	if (ret)
 +		return ret;
-+
- 	/* 1D Curve & LUT - SHAPER TF & LUT */
- 	colorop = colorop->next;
- 	if (!colorop) {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-index ba42f1f6b620..b739d6cb3e6b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-@@ -84,6 +84,21 @@ int amdgpu_dm_initialize_default_pipeline(struct drm_plane *plane, struct drm_pr
++#if 0 //TODO ?
++	si_dpm_powergate_uvd(adev, true);
++#endif
+ 	return 0;
+ }
  
- 	prev_op = op;
- 
-+	/* Multiplier */
-+	op = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
-+	if (!op) {
-+		DRM_ERROR("KMS: Failed to allocate colorop\n");
-+		return -ENOMEM;
-+	}
-+
-+	ret = drm_colorop_mult_init(dev, op, plane);
-+	if (ret)
-+		return ret;
-+
-+	drm_colorop_set_next_property(prev_op, op);
-+
-+	prev_op = op;
-+
- 	/* 1D curve - SHAPER TF */
- 	op = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
- 	if (!op) {
 -- 
-2.44.0
+2.43.2
 
