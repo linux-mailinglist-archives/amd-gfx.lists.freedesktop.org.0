@@ -2,119 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0652686A8A5
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 08:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C10E86A997
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 09:11:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA8810E68B;
-	Wed, 28 Feb 2024 07:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9260710E8E8;
+	Wed, 28 Feb 2024 08:11:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YeZ1pclr";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="bATfyn+J";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2067.outbound.protection.outlook.com [40.107.243.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA96610E68B
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 07:03:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PiXo/iqa/YYU8jQNcrfyGEFRVW09SIL9dyCOMBpFEN9AJvlNlPSKYg/2R4JmEUbV7BugVyOrmzPLB681xEhxV2SLgzomiLDQwvWXGUOv6UAB8Rx3MNdm83RDJe5U2xwh7XO4OW/uzTyGnCIn6uNoanYUZStdkoYBSpi4DwlwVPGuSLk2PnDJshJKdTFsTnfsxlpuOggnK1JaT+hq7bjuiEUBGhgNSZsvoGOZR/1eSzptjng775QXccgGp14PeopV+DLseLCHv7ugMK+N8maUvn2jeL8I/Fts2OabDIz04K7zrQF+uyD9kr+mNA+KARKQ8x2i4foDhypWXvV/HpOOIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8RjL8CCK4Nvw58Jw/egtJ0R8jIc/n8Eqdv20A+qbN8A=;
- b=DD775Z3k7nqPF+cCjL9N9NBfEjOuRL6z0NDAYckvucCT0ZozsCpRGojWsvYdTjTPPREGkeyC8Hlbjxa61LEvi9Xdyv6XdkM6c6Xowh42hg1tyyF4ugBAszFnjtWL6Mz3WmuCHm4x/gNPeAtOnBvSgEk+5n6TI3W9FH3LpdRhte2dGq6SR65NRXI3PJcj+/4R3a93puYlN39vyMkhnlsZBwLFN3pR1pSQQjB2f7+Li44vfmLMezjnM2BHf6eGbxdcqgZjPfXqII01GHnnoAlG4kwB8hmfbD16geJazUAfU3p3o3F+iy6YDnufwO1muHm+T0oU3jVDahKFEi5QkV5UPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8RjL8CCK4Nvw58Jw/egtJ0R8jIc/n8Eqdv20A+qbN8A=;
- b=YeZ1pclrLbyFhmRyHxRUCl2Po/I+aBMw0CMuttWAzHdXvLbUg35zk22xNSJA2r85oLiE+jXhhHzZftu/KCvGFC1/EIsyinnL8PJCIMk8GaiYsr941AWkDmI8NjUNt+bkFMqeYJCIKlV390db1QoT1R2h20cnjWkxYmW4oL3ArVA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- IA1PR12MB6260.namprd12.prod.outlook.com (2603:10b6:208:3e4::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.31; Wed, 28 Feb
- 2024 07:03:32 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::a397:19eb:d2e8:a596]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::a397:19eb:d2e8:a596%6]) with mapi id 15.20.7316.034; Wed, 28 Feb 2024
- 07:03:32 +0000
-Message-ID: <8a2eb62b-c4db-43ca-9473-6fcb9e18203f@amd.com>
-Date: Wed, 28 Feb 2024 12:33:23 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdgpu: enable pp_od_clk_voltage for gfx 9.4.3
- SRIOV
-Content-Language: en-US
-To: Yang Wang <kevinyang.wang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Hawking.zhang@amd.com, Davis.Ming@amd.com, vignesh.chander@amd.com
-References: <20240228070036.4143328-1-kevinyang.wang@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20240228070036.4143328-1-kevinyang.wang@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0196.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:e9::8) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+X-Greylist: delayed 344 seconds by postgrey-1.36 at gabe;
+ Tue, 27 Feb 2024 17:10:45 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 632B510E952;
+ Tue, 27 Feb 2024 17:10:45 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 1162E40E019E; 
+ Tue, 27 Feb 2024 17:04:56 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id JtbHwZepHPL9; Tue, 27 Feb 2024 17:04:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1709053493; bh=n9r8ifQQ9RMSnetSq1rRyXQuHtEgteGjjXFVnfaR610=;
+ h=Date:From:To:Cc:Subject:From;
+ b=bATfyn+JJ/rRdYxdXM3vjvlgd6RVk8HPDBFyO8+InOHeZrAxI1Ym4xtc8WqqwXCpn
+ VRaguH/TYUzk2qQrz9EocMWOM81B/CLeGI/ShhKqPqrxqP9vrxpCFztCKcaQyiWjVR
+ 8oW7siJnXdPuL1+4DxsTWU66Gpnh0Cz9TH5u+cejpPzhSKT4FBMjeNu73D0E01+aAI
+ 0vlozHIBAhBmZohPtdwnLODB77vumfFSpCdPyDgMdaUeDXPmnS3LwM2/1JFb3d+asw
+ As1jNq/XYvk+AgCenEXllclW6U0d9vTUxmCG6ZFniwwLLx6KPPukpHUpdRpXPOTo4G
+ 9Gw2tzRS6welchK+rqxgfaW1qx4GBesoLU+ggMLA9nTinNpzzVgi9VNe18xJ/U99mB
+ J/mvoxTQD6XYmsh1IYkgAlTCEqHMN5i9Jr+qmbZuECY1FfD1vTZpDcYJ+D3Pv0zPwn
+ nrlRvZY5RSZcV+xf8l6ZbioXoUfhhUp5OqXVOdYdIG//5mjb1oV0M+InnpQwnA2b/G
+ N6wD7M3c8Gmf0jCUvTZBes5Fiudm4eDjKtL52o44xlYbmKOUJRB+iZR0FcW19QhY7S
+ WRhV0EeI3gJyiGxRsVSfLv5ZTkxeBA9k5VwnmdtKfs0gmBgYmDXr89lL0TOOL7DAQM
+ J8mp07eQMez+5KMqV5jpe/vM=
+Received: from zn.tnic (pd953021b.dip0.t-ipconnect.de [217.83.2.27])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7AFCF40E016B;
+ Tue, 27 Feb 2024 17:04:44 +0000 (UTC)
+Date: Tue, 27 Feb 2024 18:04:36 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: amdgpu kmemleaks
+Message-ID: <20240227170436.GDZd4WJO7edBGZ8y-u@fat_crate.local>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|IA1PR12MB6260:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08734970-ee52-4e4a-605a-08dc382b5fde
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8HIQbYNkeyT3qeNu9AyzNPqTnHh+wuoKfCDuRgwsWNFQvl0T4GBbegpPqyPBT/PPyhS1Zu4Hl/0Z/ITozfYll5Iy+oKpxWW5JrAiIzr7Q1XEu9QW3rLNeXpx4WdA9ZuXRwqr+z+zMo2Rkr4eWsjMR+F5YA6pAkAkWgnXwjLAcQqanAa7uuKGf89GW6w7HWgBGBLnTsHhLeM6gX4cMALoMB9LZLiaKE7uyYX6FC4moAFPNrOHuwaCV6eGLgF/iTd23ahQTKBmrqhpDWy1U9NWR0ZruU6rzxjyxK9/sKICNVSN89htKxGlm+maToCCua/u9qkD3wrRCqRueJ0bkqnNYA4x+2M8+FsHbjCa/p1Vmb45I+ag/hzlWblC9TKfkQCq9VBUVVDHy6yldsrOsEYQ60DvxHUhwX9deNY0EyM/t4CQeZrNctUekOzzaXIm8kWKjSFHE6axNP3bxtQIsaS/m59kXDgZhiH+7ALorNU+ubzKkUyW7vJshYZ/cPNHz1S1VoMTy6Wvlnu0Jwe+O77zCgvbLXAoBpnVFcE2h7IeEcRBIEm3rEB/+7XsR1AhvbH/fVdfsJz9EqnSKYR3RAg75Ja6W0YsuyEbZa9uw2weOw8FS9388WRgz3ChQt7cUmunVcIrnwMrnp0VeSAybDfZ1Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWNVU256aSt4ZnlQM1IzQkl5VVJnRkpSaFNFdnhUQVBLVHJWY3dsVHhLVjda?=
- =?utf-8?B?T3h2SWFNb3c1ZEZlajRxZmMrOTVSQWNYSDJXOWUvb1FlSmV4ZG9BYXI3amdC?=
- =?utf-8?B?aDYyVUJUTXp2K3p2RUQrWDRFVEorOFVWSXFuZ09XR0Z5bGgwelhveXA4bGc4?=
- =?utf-8?B?Sm92VjBQN3ZtbWovWmFxUTVJbGhCVU9RbVJ1UHZOTm8raHphN2JiM29YNVNF?=
- =?utf-8?B?YVBjQzZ3TFc4cndNUEt1YjBGN3ZKbE56VUp3SlhYb3dkU3pqeGpCZUtvUkFl?=
- =?utf-8?B?enZ0dkpVQ3MwSk44UHRnM2JIUTBuNWRmeVpKRjF5UVZ6MmFFQWtrbXJmRVlq?=
- =?utf-8?B?ZjhmWC8wY3ZoeVRDaTcvVHVVMzMvZWlLYzl1Mkhyd2VWYXVVdE95dmNlM2Ez?=
- =?utf-8?B?R2tjcWx0ZlhoU2hKU2Y5M3EyTXdPdlBwMXREdURRazNTV0laK2V0ZDNscEVG?=
- =?utf-8?B?SUkrWEhsYTk5MjBVcWNYU3JqUlluWGEvdi9naUxwNkJkNkppSElTZDd5cEx4?=
- =?utf-8?B?RlgxNTVzdVZMVFFNVGE2Qi9BWGZnR2E4SHQ3T2V5c0JKcWQ4dEE5QlBrK1dW?=
- =?utf-8?B?WWV5Y3dJYXljL1RqQ2Z2Mm96dndQVzFaQWtXN3Y3Z1d1VVc4VHdueTB3SWxh?=
- =?utf-8?B?dk1LWWZPMlhKL2hjZ2FHUDhWVkhXZ2lCVExNc2RvczRqYlpLd0tQeEVjSzNn?=
- =?utf-8?B?S0FVK3JsM3BQdFJZcFRWaGFvZnhCT3NXWDR4eUJUeDNhRzBkVTZvMUJHejl1?=
- =?utf-8?B?c081bmlzSnFKd2VRb2NSb3BaUXhib0pGZEF1Yk5lREFQTmZZOHBtSnFydmRx?=
- =?utf-8?B?MS84WkpFckFONEdVRW45Y1hpWVNVOUZmMzBJRktLWkZRUDhBUktxdEF1NEpo?=
- =?utf-8?B?U3krOVBmTjNtc01RMmtkcTM3WEEzR2QwUVVQd0dTLy8xejJLcnQ4bFVQNlpu?=
- =?utf-8?B?dTlFYlIvNXoxOExtdjJ0TzBaNTNPamFtcjl5SHRSTlpVK0dJWHlMYk1wRWJs?=
- =?utf-8?B?Y1RCSTVxOGhzV2xUTjArc2pyMkNnWDhya3RsNVhrbnRLRVdpUUg0YlpMUlFN?=
- =?utf-8?B?U1M4Q09EVzg2KzFtZHVKYVY3UUh1MUtCVmdzZFU3V1NYTzQ0eG5TY3NNSmlB?=
- =?utf-8?B?WVpsRjB4YjEyVG1RZ29TVnZlbklvM3hVa2VuUTNPRUQwcFowaWZCTFJ6ck1n?=
- =?utf-8?B?aFBIeXBtTmFJUUhTSXZTVFd4d3NuTEgxOTBqZmEyRGZuaWZLRm1yTytEOUNj?=
- =?utf-8?B?VGlDNUFrdmRCK0lKbkhzVVFabjJtM1lUMHVsMUxPYWFXV1V6T0EzeDg2UVF6?=
- =?utf-8?B?c3lsblVsdFNodkVBZzNVbURWb1VHQjJCUnAxZDFicCtNZjY3R2pUMDJyTHZH?=
- =?utf-8?B?bFJ1K0h4MHkrNjc0SUUwbjQrVk5MSVZ4ZlZZbkdjbTgzYnV1S2VxeUVvbGp6?=
- =?utf-8?B?eDE0N2FkenB2OThTdm5LTWhHd1dTaExKQ1VWTmZBemY3UUpuZ1RGNnVvUHpJ?=
- =?utf-8?B?V3hJMUFGYXgyUVpMbmF4U2cvRkI2SVFRRklOYjVhWTlUZWlsZmtXdm5iSGRY?=
- =?utf-8?B?aTZPWlNmVkFKZTR2U2F4OTFzajd3a0NPNnhKQjNLTG9oRGV5VE1Uc203VUM2?=
- =?utf-8?B?VGxaZXJLMXlpMmw4bFZ5a3pCbG9rTkVhblZHUHU5Tjk5c2VGVmwzQVZ2bmtZ?=
- =?utf-8?B?NG5Dc3BlR1JXUmpFbFY3UmNVQjFBWmxzS0NGSDUvaHZlNlc5WW1wYjJzUnlL?=
- =?utf-8?B?Q0FKc3ErdjdaNUl3US9sd3R1OE1WRVhENmVvbVkzT2pGbDQrV0Nab3VKS2RU?=
- =?utf-8?B?MG82S0dKckNBZEsvRlp5bkJ0c1dON29TMlFYV3ExQW1qS09uTzZmaHBLNHdB?=
- =?utf-8?B?SmptYndOeitlMTVHcU5nQ2t0RnNCRGtlOERHS1dCMDgvaU5SSzJTb1RVamIy?=
- =?utf-8?B?KzMzU2J6RmF5c0o0RWxzeEhzeENsVHJWMFVyQUJmMnM0enNzSFNYZVN5K3Bs?=
- =?utf-8?B?bnBMdDdBWTZ1SWFDcVpoRzFOcXpvbnZqcWw5NzJvM1hBdnVqUTVrQjQ0TnVU?=
- =?utf-8?B?Z25vZHJweWlFTnFGTGNySnJsYnhTOTN0OGZ0Qk50SFB2KytEQS9IZTE2Nzdx?=
- =?utf-8?Q?CLXBqBOgUuO/4xZsRqj9h08Th?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08734970-ee52-4e4a-605a-08dc382b5fde
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 07:03:32.6642 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qLPyiOMoIrNW/KLyqiu9TvKP9tJ7mCnCXCbqGwJhTJu9J04ziGILiM8Jl4YGCROO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6260
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+X-Mailman-Approved-At: Wed, 28 Feb 2024 08:11:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,82 +75,373 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi folks,
+
+anyone interested in a bunch of amdgpu kmemleak reports from latest Linus tree
++ tip?
+
+GPU is:
+
+[   11.317312] [drm] amdgpu kernel modesetting enabled.
+[   11.363627] [drm] initializing kernel modesetting (CARRIZO 0x1002:0x9874 0x103C:0x807E 0xC4).
+[   11.364077] [drm] register mmio base: 0xD0C00000
+[   11.364547] [drm] register mmio size: 262144
+[   11.365347] [drm] add ip block number 0 <vi_common>
+[   11.365580] [drm] add ip block number 1 <gmc_v8_0>
+[   11.365840] [drm] add ip block number 2 <cz_ih>
+[   11.366047] [drm] add ip block number 3 <gfx_v8_0>
+[   11.366263] [drm] add ip block number 4 <sdma_v3_0>
+[   11.366470] [drm] add ip block number 5 <powerplay>
+[   11.366662] [drm] add ip block number 6 <dm>
+[   11.366835] [drm] add ip block number 7 <uvd_v6_0>
+[   11.367022] [drm] add ip block number 8 <vce_v3_0>
+[   11.382774] [drm] BIOS signature incorrect 5b 7
+[   11.383002] resource: resource sanity check: requesting [mem 0x00000000000c0000-0x00000000000dffff], which spans more than PCI Bus 0000:00 [mem 0x000c0000-0x000cbfff window]
+[   11.383655] caller pci_map_rom+0x68/0x1d0 mapping multiple BARs
+[   11.384009] amdgpu 0000:00:01.0: amdgpu: Fetched VBIOS from ROM BAR
+[   11.384402] amdgpu: ATOM BIOS: SWBRT27354.001
+[   11.385827] [drm] UVD is enabled in physical mode
+[   11.386063] [drm] VCE enabled in physical mode
+[   11.386886] amdgpu 0000:00:01.0: vgaarb: deactivate vga console
+[   11.389089] Console: switching to colour dummy device 80x25
+[   11.389543] amdgpu 0000:00:01.0: amdgpu: Trusted Memory Zone (TMZ) feature not supported
+[   11.390482] [drm] vm size is 64 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
+[   11.390793] amdgpu 0000:00:01.0: amdgpu: VRAM: 512M 0x000000F400000000 - 0x000000F41FFFFFFF (512M used)
+[   11.391129] amdgpu 0000:00:01.0: amdgpu: GART: 1024M 0x000000FF00000000 - 0x000000FF3FFFFFFF
+[   11.391456] [drm] Detected VRAM RAM=512M, BAR=512M
+[   11.391632] [drm] RAM width 128bits UNKNOWN
+[   11.394546] [drm] amdgpu: 512M of VRAM memory ready
+[   11.394751] [drm] amdgpu: 7622M of GTT memory ready.
+[   11.395299] [drm] GART: num cpu pages 262144, num gpu pages 262144
+[   11.395813] [drm] PCIE GART of 1024M enabled (table at 0x000000F400A00000).
+[   11.404914] amdgpu: hwmgr_sw_init smu backed is smu8_smu
+[   11.407177] [drm] Found UVD firmware Version: 1.91 Family ID: 11
+[   11.407670] [drm] UVD ENC is disabled
+[   11.409969] [drm] Found VCE firmware Version: 52.4 Binary ID: 3
+[   11.412601] amdgpu: smu version 18.62.00
+[   11.419275] [drm] DM_PPLIB: values for Engine clock
+[   11.419480] [drm] DM_PPLIB:   300000
+[   11.419610] [drm] DM_PPLIB:   360000
+[   11.419740] [drm] DM_PPLIB:   423530
+[   11.419869] [drm] DM_PPLIB:   514290
+[   11.419998] [drm] DM_PPLIB:   626090
+[   11.420127] [drm] DM_PPLIB:   720000
+[   11.420327] [drm] DM_PPLIB: Validation clocks:
+[   11.420536] [drm] DM_PPLIB:    engine_max_clock: 72000
+[   11.420722] [drm] DM_PPLIB:    memory_max_clock: 80000
+[   11.420907] [drm] DM_PPLIB:    level           : 8
+[   11.421083] [drm] DM_PPLIB: values for Display clock
+[   11.421266] [drm] DM_PPLIB:   300000
+[   11.421395] [drm] DM_PPLIB:   400000
+[   11.421524] [drm] DM_PPLIB:   496560
+[   11.421652] [drm] DM_PPLIB:   626090
+[   11.421781] [drm] DM_PPLIB:   685720
+[   11.421910] [drm] DM_PPLIB:   757900
+[   11.422039] [drm] DM_PPLIB: Validation clocks:
+[   11.422201] [drm] DM_PPLIB:    engine_max_clock: 72000
+[   11.422386] [drm] DM_PPLIB:    memory_max_clock: 80000
+[   11.422572] [drm] DM_PPLIB:    level           : 8
+[   11.422746] [drm] DM_PPLIB: values for Memory clock
+[   11.422923] [drm] DM_PPLIB:   333000
+[   11.423052] [drm] DM_PPLIB:   800000
+[   11.423181] [drm] DM_PPLIB: Validation clocks:
+[   11.423342] [drm] DM_PPLIB:    engine_max_clock: 72000
+[   11.423528] [drm] DM_PPLIB:    memory_max_clock: 80000
+[   11.423713] [drm] DM_PPLIB:    level           : 8
+[   11.424561] [drm] Display Core v3.2.266 initialized on DCE 11.0
+[   11.516117] [drm] UVD initialized successfully.
+[   11.716119] [drm] VCE initialized successfully.
 
 
-On 2/28/2024 12:30 PM, Yang Wang wrote:
-> v1:
-> enabel pp_od_clk_voltage node for gfx 9.4.3 SRIOV and BM.
-> 
-> v2:
-> add onevf check for gfx 9.4.3
-> 
-> v3:
-> refine code check order to make function clearly.
-> 
-> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+unreferenced object 0xffff88810e6faa80 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 00 0a 28 0a 48 0a c8 0a 00 00 a0 05  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 5201319b):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<000000007b61fcfc>] do_detailed_mode+0x323/0x670
+    [<0000000079955120>] drm_for_each_detailed_block.part.0+0x34/0x180
+    [<000000009a087c6a>] _drm_edid_connector_add_modes.part.0+0x8f/0x10b0
+    [<00000000d791cdfb>] drm_add_edid_modes+0x14e/0x160
+    [<000000000a49b747>] amdgpu_dm_connector_get_modes+0x13b/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+unreferenced object 0xffff88810e6fa400 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    62 87 02 00 00 0a 28 0a 48 0a c8 0a 00 00 a0 05  b.....(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc af0a5c0b):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<000000007b61fcfc>] do_detailed_mode+0x323/0x670
+    [<0000000079955120>] drm_for_each_detailed_block.part.0+0x34/0x180
+    [<000000009a087c6a>] _drm_edid_connector_add_modes.part.0+0x8f/0x10b0
+    [<00000000d791cdfb>] drm_add_edid_modes+0x14e/0x160
+    [<000000000a49b747>] amdgpu_dm_connector_get_modes+0x13b/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+unreferenced object 0xffff88810e6fa080 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 80 02 28 0a 48 0a c8 0a 00 00 e0 01  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 56e320f1):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff88810e6fad80 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 20 03 28 0a 48 0a c8 0a 00 00 58 02  .... .(.H.....X.
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 6478e3b9):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff88810e6faf00 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 00 04 28 0a 48 0a c8 0a 00 00 00 03  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc f8073c6a):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff88810e6fa380 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 00 05 28 0a 48 0a c8 0a 00 00 d0 02  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 7690650b):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff88810e6fad00 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 00 05 28 0a 48 0a c8 0a 00 00 20 03  ......(.H..... .
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 70b12ae7):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff88810e6fa200 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 00 05 28 0a 48 0a c8 0a 00 00 00 04  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc b3fbb73c):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff888105e13580 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 a0 05 28 0a 48 0a c8 0a 00 00 84 03  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc a2fc9ebc):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff888105e13980 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 90 06 28 0a 48 0a c8 0a 00 00 1a 04  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc d157dc2e):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff888105e13e80 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 40 06 28 0a 48 0a c8 0a 00 00 b0 04  ....@.(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 954e8c7a):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff888105e13b80 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 80 07 28 0a 48 0a c8 0a 00 00 38 04  ......(.H.....8.
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 1fc84ee7):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
+unreferenced object 0xffff888105e13a80 (size 128):
+  comm "systemd-udevd", pid 1219, jiffies 4294895080
+  hex dump (first 32 bytes):
+    18 cb 03 00 80 07 28 0a 48 0a c8 0a 00 00 b0 04  ......(.H.......
+    aa 05 b4 05 dc 05 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace (crc 2e97b37a):
+    [<000000006e1e4989>] kmalloc_trace+0x25a/0x300
+    [<00000000ead03882>] drm_mode_duplicate+0x1f/0x50
+    [<000000001f333f56>] amdgpu_dm_connector_add_common_modes+0xc8/0x130 [amdgpu]
+    [<00000000704848b1>] amdgpu_dm_connector_get_modes+0x1e1/0x470 [amdgpu]
+    [<000000005f5da5a5>] amdgpu_dm_init.isra.0+0x12ed/0x1e50 [amdgpu]
+    [<00000000ee7b0caa>] dm_hw_init+0xe/0x20 [amdgpu]
+    [<00000000c2cf0e8f>] amdgpu_device_init+0x1f17/0x2530 [amdgpu]
+    [<000000009c22ce56>] amdgpu_driver_load_kms+0x23/0x1a0 [amdgpu]
+    [<000000008bc75f74>] amdgpu_pci_probe+0x1b5/0x550 [amdgpu]
+    [<0000000084a99ccb>] local_pci_probe+0x53/0xb0
+    [<000000003753ec80>] pci_device_probe+0xbc/0x1d0
+    [<0000000027472ad9>] really_probe+0x1a6/0x3f0
+    [<00000000e27cb5c7>] __driver_probe_device+0x78/0x160
+    [<00000000c5fbf154>] driver_probe_device+0x2d/0xb0
+    [<00000000649c4014>] __driver_attach+0xdc/0x1d0
+    [<0000000018e16ae6>] bus_for_each_dev+0x6a/0xb0
 
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+-- 
+Regards/Gruss,
+    Boris.
 
-Thanks,
-Lijo
-> ---
->  drivers/gpu/drm/amd/pm/amdgpu_pm.c | 32 +++++++++++++++++++++++++-----
->  1 file changed, 27 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> index 087d57850304..ad4e260c8052 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -2034,6 +2034,31 @@ static int ss_bias_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
->  	return 0;
->  }
->  
-> +static int pp_od_clk_voltage_attr_update(struct amdgpu_device *adev, struct amdgpu_device_attr *attr,
-> +					 uint32_t mask, enum amdgpu_device_attr_states *states)
-> +{
-> +	uint32_t gc_ver = amdgpu_ip_version(adev, GC_HWIP, 0);
-> +
-> +	*states = ATTR_STATE_SUPPORTED;
-> +
-> +	if (!amdgpu_dpm_is_overdrive_supported(adev)) {
-> +		*states = ATTR_STATE_UNSUPPORTED;
-> +		return 0;
-> +	}
-> +
-> +	/* Enable pp_od_clk_voltage node for gc 9.4.3 SRIOV/BM support */
-> +	if (gc_ver == IP_VERSION(9, 4, 3)) {
-> +		if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_is_pp_one_vf(adev))
-> +			*states = ATTR_STATE_UNSUPPORTED;
-> +		return 0;
-> +	}
-> +
-> +	if (!(attr->flags & mask))
-> +		*states = ATTR_STATE_UNSUPPORTED;
-> +
-> +	return 0;
-> +}
-> +
->  /* Following items will be read out to indicate current plpd policy:
->   *  - -1: none
->   *  - 0: disallow
-> @@ -2118,7 +2143,8 @@ static struct amdgpu_device_attr amdgpu_device_attrs[] = {
->  	AMDGPU_DEVICE_ATTR_RW(pp_sclk_od,				ATTR_FLAG_BASIC),
->  	AMDGPU_DEVICE_ATTR_RW(pp_mclk_od,				ATTR_FLAG_BASIC),
->  	AMDGPU_DEVICE_ATTR_RW(pp_power_profile_mode,			ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-> -	AMDGPU_DEVICE_ATTR_RW(pp_od_clk_voltage,			ATTR_FLAG_BASIC),
-> +	AMDGPU_DEVICE_ATTR_RW(pp_od_clk_voltage,			ATTR_FLAG_BASIC,
-> +			      .attr_update = pp_od_clk_voltage_attr_update),
->  	AMDGPU_DEVICE_ATTR_RO(gpu_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
->  	AMDGPU_DEVICE_ATTR_RO(mem_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
->  	AMDGPU_DEVICE_ATTR_RO(pcie_bw,					ATTR_FLAG_BASIC),
-> @@ -2163,10 +2189,6 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
->  	} else if (DEVICE_ATTR_IS(pp_dpm_fclk)) {
->  		if (mp1_ver < IP_VERSION(10, 0, 0))
->  			*states = ATTR_STATE_UNSUPPORTED;
-> -	} else if (DEVICE_ATTR_IS(pp_od_clk_voltage)) {
-> -		*states = ATTR_STATE_UNSUPPORTED;
-> -		if (amdgpu_dpm_is_overdrive_supported(adev))
-> -			*states = ATTR_STATE_SUPPORTED;
->  	} else if (DEVICE_ATTR_IS(mem_busy_percent)) {
->  		if ((adev->flags & AMD_IS_APU &&
->  		     gc_ver != IP_VERSION(9, 4, 3)) ||
+https://people.kernel.org/tglx/notes-about-netiquette
