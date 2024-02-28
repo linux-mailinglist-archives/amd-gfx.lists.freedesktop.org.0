@@ -2,61 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A08D86A998
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 09:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A25B86A996
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 09:11:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7AC610E947;
-	Wed, 28 Feb 2024 08:11:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="g3bMKRZR";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D27310E8C1;
+	Wed, 28 Feb 2024 08:11:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C1AD10E3A2;
- Tue, 27 Feb 2024 18:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1709057701;
- bh=+YGlht2j8DKNiyJTxizt7m7K6VT5e57wafvM3lFhmI0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=g3bMKRZR8z46141kcoZ+/3ISYqCWcnf2sDx309BP6HtZ5OMyM1xvUwcax9hAxy/B5
- 91N9GfiPOvoR2alFxNnQpooyTqAtUmAs7HqMK4pX8L7whYcPnyjZUgKN1r8u4hdUH+
- UJyn17e6HXA+5rPlTmHYhxPngj5uSP3icELO1rnNY5dGY7bN42Ot7nvW4LvB+ot4SJ
- CAUG+el9HsuiCmXP9KodUlbfOb8o2QlAVUATRalEsdXHFC1EaJ+nxfqwvOz5fR26aK
- b7fTsR1RrX7ubrIkRzSSVbLTTyjQTwLI9hmQapb+GkZp7FmwoVVsFrg2CWGAe2iGdc
- bLXAlX4YE+fZQ==
-Received: from [100.109.49.129] (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id CDEBB378000B;
- Tue, 27 Feb 2024 18:14:59 +0000 (UTC)
-Message-ID: <d854f70b-1d62-4da7-bfbd-2184456d1d25@collabora.com>
-Date: Tue, 27 Feb 2024 21:14:57 +0300
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 606A710E0D9;
+ Wed, 28 Feb 2024 01:44:44 +0000 (UTC)
+X-UUID: e372564b6c6346f5a530e4e7c953ba67-20240228
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37, REQID:88b45a86-72ae-420f-8cae-71d289904034, IP:10,
+ URL:0,TC:0,Content:0,EDM:25,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACT
+ ION:release,TS:20
+X-CID-INFO: VERSION:1.1.37, REQID:88b45a86-72ae-420f-8cae-71d289904034, IP:10,
+ UR
+ L:0,TC:0,Content:0,EDM:25,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:20
+X-CID-META: VersionHash:6f543d0, CLOUDID:494be480-4f93-4875-95e7-8c66ea833d57,
+ B
+ ulkID:240228094440JA95B6XN,BulkQuantity:0,Recheck:0,SF:66|38|24|17|19|44|1
+ 02,TC:nil,Content:0,EDM:5,IP:-2,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:
+ nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSI,TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD
+X-UUID: e372564b6c6346f5a530e4e7c953ba67-20240228
+X-User: yaolu@kylinos.cn
+Received: from localhost.localdomain [(116.128.244.169)] by mailgw
+ (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1595601688; Wed, 28 Feb 2024 09:44:37 +0800
+From: Lu Yao <yaolu@kylinos.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Lu Yao <yaolu@kylinos.cn>
+Subject: [PATCH] drm/amdgpu: Fix assignment errors in 'si_common_early_init'
+ functions
+Date: Wed, 28 Feb 2024 09:44:35 +0800
+Message-Id: <20240228014435.7234-1-yaolu@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/13] drm: Fix reservation locking for pin/unpin and
- console
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- christian.koenig@amd.com, sumit.semwal@linaro.org, robdclark@gmail.com,
- quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
- marijn.suijten@somainline.org, suijingfeng@loongson.cn, kherbst@redhat.com,
- lyude@redhat.com, dakr@redhat.com, airlied@redhat.com, kraxel@redhat.com,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, zack.rusin@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com
-Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20240227113853.8464-1-tzimmermann@suse.de>
-Content-Language: en-US
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20240227113853.8464-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 28 Feb 2024 08:11:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,70 +62,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+uvd_ctx_rreg/uvd_ctx_wreg correct value requires function pointer.
 
-Thank you for the patches!
+Signed-off-by: Lu Yao <yaolu@kylinos.cn>
+---
+ drivers/gpu/drm/amd/amdgpu/si.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 2/27/24 13:14, Thomas Zimmermann wrote:
-> Dma-buf locking semantics require the caller of pin and unpin to hold
-> the buffer's reservation lock. Fix DRM to adhere to the specs. This
-> enables to fix the locking in DRM's console emulation. Similar changes
-> for vmap and mmap have been posted at [1][2]
-> 
-> Most DRM drivers and memory managers acquire the buffer object's
-> reservation lock within their GEM pin and unpin callbacks. This
-> violates dma-buf locking semantics. We get away with it because PRIME
-> does not provide pin/unpin, but attach/detach, for which the locking
-> semantics is correct.
-> 
-> Patches 1 to 8 rework DRM GEM code in various implementations to
-> acquire the reservation lock when entering the pin and unpin callbacks.
-> This prepares them for the next patch. Drivers that are not affected
-> by these patches either don't acquire the reservation lock (amdgpu)
-> or don't need preparation (loongson).
-> 
-> Patch 9 moves reservation locking from the GEM pin/unpin callbacks
-> into drm_gem_pin() and drm_gem_unpin(). As PRIME uses these functions
-> internally it still gets the reservation lock.
-> 
-> With the updated GEM callbacks, the rest of the patchset fixes the
-> fbdev emulation's buffer locking. Fbdev emulation needs to keep its
-> GEM buffer object inplace while updating its content. This required
-> a implicit pinning and apparently amdgpu didn't do this at all.
-> 
-> Patch 10 introduces drm_client_buffer_vmap_local() and _vunmap_local().
-> The former function map a GEM buffer into the kernel's address space
-> with regular vmap operations, but keeps holding the reservation lock.
-> The _vunmap_local() helper undoes the vmap and releases the lock. The
-> updated GEM callbacks make this possible. Between the two calls, the
-> fbdev emulation can update the buffer content without have the buffer
-> moved or evicted. Update fbdev-generic to use vmap_local helpers,
-> which fix amdgpu. The idea of adding a "local vmap" has previously been
-> attempted at [3] in a different form.
-> 
-> Patch 11 adds implicit pinning to the DRM client's regular vmap
-> helper so that long-term vmap'ed buffers won't be evicted. This only
-> affects fbdev-dma, but GEM DMA helpers don't require pinning. So
-> there are no practical changes.
-> 
-> Patches 12 and 13 remove implicit pinning from the vmap and vunmap
-> operations in gem-vram and qxl. These pin operations are not supposed
-> to be part of vmap code, but were required to keep the buffers in place
-> for fbdev emulation. With the conversion o ffbdev-generic to to
-> vmap_local helpers, that code can finally be removed.
-
-Isn't it a common behaviour for all DRM drivers to implicitly pin BO
-while it's vmapped? I was sure it should be common /o\
-
-Why would you want to kmap BO that isn't pinned?
-
-Shouldn't TTM's vmap() be changed to do the pinning?
-
-I missed that TTM doesn't pin BO on vmap() and now surprised to see it.
-It should be a rather serious problem requiring backporting of the
-fixes, but I don't see the fixes tags on the patches (?)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index a757526153e5..455d49f7bd9c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -2032,8 +2032,8 @@ static int si_common_early_init(void *handle)
+ 	adev->pcie_wreg = &si_pcie_wreg;
+ 	adev->pciep_rreg = &si_pciep_rreg;
+ 	adev->pciep_wreg = &si_pciep_wreg;
+-	adev->uvd_ctx_rreg = si_uvd_ctx_rreg;
+-	adev->uvd_ctx_wreg = si_uvd_ctx_wreg;
++	adev->uvd_ctx_rreg = &si_uvd_ctx_rreg;
++	adev->uvd_ctx_wreg = &si_uvd_ctx_wreg;
+ 	adev->didt_rreg = NULL;
+ 	adev->didt_wreg = NULL;
+ 
 -- 
-Best regards,
-Dmitry
+2.25.1
 
