@@ -2,50 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0543C86B7B8
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 19:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D73E86B79C
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Feb 2024 19:47:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A166F10E296;
-	Wed, 28 Feb 2024 18:52:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D72EC10E69E;
+	Wed, 28 Feb 2024 18:47:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jsB+r/Ra";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Y7luqC8t";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2068.outbound.protection.outlook.com [40.107.102.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 416D510E296
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 18:52:35 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA5810E69E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Feb 2024 18:47:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IBZXdx2TA6EYXD9VVrQnKFKoy8Pl1mjU3oq5ouMAGJKdN4C2jFkEaqXoJjw0V/5iWSZYCsCq4pHC0OzyPGD9fpd3ERwasZTlyzyGJUlD1RNXID4ZhycQiE6yo16IOoY8IKby5flsJ5sukX8ZwNRNBNx7eIv6AH+NtoLyg4ER6bfabpW0beU/u2SlX0VeMdLfJBjTnQEwDcQPv/389CM1G8hpdoPl0qb0gBXF0VsfaJYLMcY7yQ/x2Im0R7wBseMT0nWLW1LEgSMD2hld4j5HBqF1HczIUONINV9yCWIQqtF0gbkmYxX97GRyJV47tmoeJVrxdFOTTPnl3d2AI5ICcA==
+ b=g9aSOoF3zJVC4puCrjrndX3RbSUTWQcxFxx0Z82CNsnj/RegmE2QYEGaRGeW84BURPNxb2YmlyXXoQghmp02IdGFdZHce8whdTw0cFI/w44nkcEArr2BiKbRRHpzCiYVnFqxGalW9IOZUiZmEwO2Hv1iOXBIFpAbQ1zEdrHFSibgtQaAlIBYmNR60BF+rOcw1IYulmO6drGHGtYcSWnpIO94h/8Vamcq3NBVaCwdHfFWXoQT0PsmtbduRFBIwe/ydZ2Q/SzK3W+DcOKpeS+otYr7wan/rvp5DUBOPgArIY15myhbnjHA5q9wvY2S0dd5OAdqHhbGHL8+fi9+eJMvLQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xVgVU7pLz6GZEjuEyCSk1wPybi5C2/HHYM8O3H94RjU=;
- b=S5gBFd5aKRjjL0u6kZJdv/7h+nuLuOJlcUSBsejP979VssopQvQDkdL5+RxhA9gyKDnDD0+2sOO/30gjMMrJzchcg1Vm+Zz6FJ1ljeSQCgVITaapkmtpUSGwz/CrLUoCcNGfFaZ9tVUHnHfNpB/mNEq/E7mag+AFuRtcaorVrLITHi3XXOnatnrGLavPaNLnrQ5L9xuJlv1zhNmNFgFUwzqpcI9hsyh4oLGT9gwyZifdF4cMby1iwofqCItEiu8pV7c42/x+vK8nNWZQAPfWk1pWi5RRk93pLzW9RjuCQIFLCAyM46laaM7PRA5yyiqEdfcORSsPH1FHzNDOwVA92Q==
+ bh=1d8mcepLpetEtgICKoQdhCSPBC3G/lOko34r8B00jXo=;
+ b=KhUCB/f46vI2PAWfWjeZEcr8OUEesmRsmMxJiQrvFC+95KRd+95Iivz3mhikHbmtV7x/tNd1kH2Jj47G3Y8EECChdogAcgWlUxLXYpzM9kKAB/w4pR2VbfYS+XeFMjCsapUoQFVPUn9bkNIiWzPBsZ3AaFrcMbc7PKKseO7Acov8R1AIRrOCBcdNdtCfOMXfKDo2QRRq30TYSg1rCpX3SvZPG7E9UMZ+WIqUcUrS37Xqw9jmlnq+FXo93HHa/0UUaTXp7Srd6BHJzKUlcPRFfWjvJUDvFc9ix1M3wrrx37/xX/PFCvHkCYyTnIfz2MToZQCVcj3VG+d78B0TMx8Xdw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xVgVU7pLz6GZEjuEyCSk1wPybi5C2/HHYM8O3H94RjU=;
- b=jsB+r/RaV7Nx3vBDLUNNuAoyk18qDWgW2dpbgC2A7LxNUMhWvDKrybWJuVRp/9z9Z2bXN+PT269S3vGkKXGqp9K6IbHF27I2afleD2IvTTAjAdRddvwHGMIMTvTrzSdekWpDsxaii0vDsyRX330P75SPlJQXTpz81RAWGWLQVLg=
-Received: from DM6PR12MB4974.namprd12.prod.outlook.com (2603:10b6:5:1bb::12)
- by CYYPR12MB8871.namprd12.prod.outlook.com (2603:10b6:930:c2::21) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=1d8mcepLpetEtgICKoQdhCSPBC3G/lOko34r8B00jXo=;
+ b=Y7luqC8tkqdjY/acysK2Wf+P12T69BmKw9q7zw8SSOkE0RzBKagxj3FjjjnAztQA432bTayTSpttlKp5GNBX1ot0iqNpw4HawdZ6wgfNOPUofpSBjslAoa+yMOO/ojqdyPMd9RejJSHzoLYnSZlkE8PfqflUznOiEJpFdelGoso=
+Received: from SA9PR10CA0030.namprd10.prod.outlook.com (2603:10b6:806:a7::35)
+ by IA0PR12MB7697.namprd12.prod.outlook.com (2603:10b6:208:433::19)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Wed, 28 Feb
- 2024 18:52:33 +0000
-Received: from PH8PR07CA0031.namprd07.prod.outlook.com (2603:10b6:510:2cf::11)
- by DM6PR12MB4974.namprd12.prod.outlook.com (2603:10b6:5:1bb::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Wed, 28 Feb
- 2024 18:47:34 +0000
-Received: from SN1PEPF000252A2.namprd05.prod.outlook.com
- (2603:10b6:510:2cf:cafe::b) by PH8PR07CA0031.outlook.office365.com
- (2603:10b6:510:2cf::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.28 via Frontend
- Transport; Wed, 28 Feb 2024 18:47:33 +0000
+ 2024 18:47:47 +0000
+Received: from SN1PEPF000252A3.namprd05.prod.outlook.com
+ (2603:10b6:806:a7:cafe::6f) by SA9PR10CA0030.outlook.office365.com
+ (2603:10b6:806:a7::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.27 via Frontend
+ Transport; Wed, 28 Feb 2024 18:47:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,23 +48,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000252A2.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SN1PEPF000252A3.mail.protection.outlook.com (10.167.242.10) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7292.25 via Frontend Transport; Wed, 28 Feb 2024 18:47:33 +0000
+ 15.20.7292.25 via Frontend Transport; Wed, 28 Feb 2024 18:47:46 +0000
 Received: from dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 28 Feb
- 2024 12:47:31 -0600
+ 2024 12:47:44 -0600
 From: Alex Hung <alex.hung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Alvin Lee <alvin.lee2@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, Alex Hung <alex.hung@amd.com>
-Subject: [PATCH 30/34] drm/amd/display: Backup and restore only on full updates
-Date: Wed, 28 Feb 2024 11:39:36 -0700
-Message-ID: <20240228183940.1883742-31-alex.hung@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Anthony Koo
+ <anthony.koo@amd.com>, Alex Hung <alex.hung@amd.com>
+Subject: [PATCH 31/34] drm/amd/display: Update DMUB flags and definitions
+Date: Wed, 28 Feb 2024 11:39:37 -0700
+Message-ID: <20240228183940.1883742-32-alex.hung@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240228183940.1883742-1-alex.hung@amd.com>
 References: <20240228183940.1883742-1-alex.hung@amd.com>
@@ -81,25 +76,25 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A2:EE_|DM6PR12MB4974:EE_|CYYPR12MB8871:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11791f03-c393-42a9-a4ec-08dc388db9b7
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A3:EE_|IA0PR12MB7697:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3424a3a-8642-4134-fc32-08dc388dc1a6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WIJVKtt7al5XHs7SVY02Hgmq09CIfHXKXYnxdNYrE/m0DFXZsVNGKGCzu4frcqg6wOl5S38P8QO0pAv4ZF2cR+oJcKoDhmzGRG2p/+SL+sm1cFlOXKYFg6dYzlzVHx3GkaD28wvyjyVkiiPcQbBbWq5Kyvn0who3RR+ft6mPyYp93foxCMYGqPwTL46rf8I40BPTzlI9ZXaYOAKfxRG2W+AQg4NYxBgCtOLDEFjxuf2RAX6ro1Paxqb9wMDn/rGNFV8veoJt1XZ4dkD2nRWb9PImGuXFeBwEj/SeMMLLxUaEPGFLolygURcqkaUknHRCGyauSJqfxpOZtNq2ykGPGrDQtM1Ofh7yqbi3/07Xd5L2wkevM9mhrEtTxZ68zplpKxdApd/meT+PPTD6oStf3enNHI9ZAoQOrvwFxyv+3QgDAtX+P3GNfPMTn053WnbLGdk9ZTwGIMW1/55paYd4KJ3duPFHi93Bv+2N28jHdQA574ZPf6cj0Jt2Bb6AK1Yd8EEx5Qwldh/UXU6G3oZ4nGZ8/yoe2OqfBCgfBofHlhtFvsb4/V/mj4qIGdmgRrQ/P20UzsC51lZwx7Fu4RgB4CdHyTkrpyElCO1vIGFCIknzdH1DOsEWxweiozw7FccT5MHE4lcs22n63W1TpcWMn1EUAOSE+TLnQ9m7U0BYstjXXcs7tXtVQcvxNgeQ4APk4DyCMjhD161mGDbsVPJ+CM8L8qyDfKp/Pnpe4TqZAyEXlXO8TZa6DJeVUONhoccV
+X-Microsoft-Antispam-Message-Info: ++YnbCUzqs0xYqCujpjTriltjedBJOS7TkVNNUJYj3HbVXh2NTLXF7dcb20KAWJH2avmlqlMBfGfEP+/1If/NF/YQ+kdHTKq2C0qWEvCKiz+jFhT97fEBF7p7qutz7U6gPZy9oUkuyVrti5mPN6xyFuFP8J5ficVqX8ELyuPhGlF1E5CBStEruW5sJsH+V/bKpjiW3/Y6XFqxFaLDgNKp1p11tY3SrWlgc8ME1kS6HdqDUTSapTrOIANu5HATl2odLEZo1Zl+o5RfH2CPdElycSYr4gHUSPw3d5S1uBCCPQimDnuFzEzxgnDJ3yb2wkThu89XHUJUOC+4dZQu2upA/KnJ2K9HRkCj7v69NBtMeZFFax7R0OFS/gSZS4T+30ZMbVGJZWLz8PA/H7kRLjzb8SlcpV7+J6rZpurXmBJ1zJ31HRRuFslpLI1r9b2yLb9BuC8dDmB8jblHZEkghSv2YR76tLIgWvYHNo9kggGAjWUNV5c64iCUIg02ZCFXnpOVxkWHvhfU3s6+w5XO6PEq/QUaVXa/MUEPOsBXWKrtN9WjSZnDyVFeHYutWus5HF7KrW5gwwVfCp/zskqQcxmpvcbVGDCtdYTh9hEoDRVzEWC6GWT/FuPAu13oa7r2h/lVi7V06697VkSb1kAwbB6nK0LhSJP8pvZF3bbudrJtaE7bmEh1jpPzZAZ6eKEdLpD+FIhR1YKtkDn2FyYAU1JzwtniYY3Wq23EwZzemQ4TocFO6SJCw6Oqd1DR/U3ujam
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230031)(36860700004)(82310400014); DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 18:47:33.6507 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11791f03-c393-42a9-a4ec-08dc388db9b7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 18:47:46.9478 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3424a3a-8642-4134-fc32-08dc388dc1a6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8871
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7697
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,305 +109,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Anthony Koo <anthony.koo@amd.com>
 
-[WHY & HOW]
-Since the backup and restore for plane and stream states has
-a significant amount of data to copy, we will change the backup
-and restore sequence to only take place during full updates.
+[WHAT]
+- Update replay residency tracing design to support more types
+  including tracking PHY and ALPM residency types
+- Add commands for Replay frame update count profiling
+- Enhance HWFQ with additional flags to allow for more
+  optimized IPS low power state residencies
+- Add new flag to indicate if a new frame update needed for
+  ABM to ramp up into steady state
 
-We will also move the scratch memory to struct dc instead of dc_state
-to avoid needing to allocate large amounts of memory every time
-we create a new DC state.
-
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
 Acked-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Anthony Koo <anthony.koo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  10 +-
- .../gpu/drm/amd/display/dc/core/dc_state.c    |   1 -
- drivers/gpu/drm/amd/display/dc/dc.h           | 164 ++++++++++--------
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  22 ---
- 4 files changed, 100 insertions(+), 97 deletions(-)
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.c  |  2 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 40 +++++++++++++++++--
+ 2 files changed, 38 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index d8967087335e..2105e4ba3384 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3162,9 +3162,10 @@ static bool update_planes_and_stream_state(struct dc *dc,
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
+index b010814706fe..4f559a025cf0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
+@@ -244,7 +244,7 @@ static void dmub_replay_residency(struct dmub_replay *dmub, uint8_t panel_inst,
+ 	uint16_t param = (uint16_t)(panel_inst << 8);
  
- 	context = dc->current_state;
--	backup_planes_and_stream_state(&dc->current_state->scratch, stream);
- 	update_type = dc_check_update_surfaces_for_stream(
- 			dc, srf_updates, surface_count, stream_update, stream_status);
-+	if (update_type == UPDATE_TYPE_FULL)
-+		backup_planes_and_stream_state(&dc->scratch.current_state, stream);
+ 	if (is_alpm)
+-		param |= REPLAY_RESIDENCY_MODE_ALPM;
++		param |= REPLAY_RESIDENCY_FIELD_MODE_ALPM;
  
- 	/* update current stream with the new updates */
- 	copy_stream_update_to_stream(dc, context, stream, stream_update);
-@@ -3267,7 +3268,8 @@ static bool update_planes_and_stream_state(struct dc *dc,
+ 	if (is_start)
+ 		param |= REPLAY_RESIDENCY_ENABLE;
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 4a650ac571d7..b81cd2649db3 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -194,6 +194,11 @@ union abm_flags {
+ 		 * of user backlight level.
+ 		 */
+ 		unsigned int abm_gradual_bl_change : 1;
++
++		/**
++		 * @abm_new_frame: Indicates if a new frame update needed for ABM to ramp up into steady
++		 */
++		unsigned int abm_new_frame : 1;
+ 	} bitfields;
  
- 	*new_context = context;
- 	*new_update_type = update_type;
--	backup_planes_and_stream_state(&context->scratch, stream);
-+	if (update_type == UPDATE_TYPE_FULL)
-+		backup_planes_and_stream_state(&dc->scratch.new_state, stream);
- 
- 	return true;
- 
-@@ -4321,7 +4323,7 @@ static bool commit_minimal_transition_based_on_current_context(struct dc *dc,
- 	 * This restores back the original stream and plane states associated
- 	 * with the current state.
- 	 */
--	restore_planes_and_stream_state(&dc->current_state->scratch, stream);
-+	restore_planes_and_stream_state(&dc->scratch.current_state, stream);
- 	intermediate_context = create_minimal_transition_state(dc,
- 			dc->current_state, &policy);
- 	if (intermediate_context) {
-@@ -4348,7 +4350,7 @@ static bool commit_minimal_transition_based_on_current_context(struct dc *dc,
- 	 * Restore stream and plane states back to the values associated with
- 	 * new context.
- 	 */
--	restore_planes_and_stream_state(&new_context->scratch, stream);
-+	restore_planes_and_stream_state(&dc->scratch.new_state, stream);
- 	return success;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_state.c b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-index 5cc7f8da209c..cce4e1c465b6 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-@@ -310,7 +310,6 @@ void dc_state_destruct(struct dc_state *state)
- 	memset(state->dc_dmub_cmd, 0, sizeof(state->dc_dmub_cmd));
- 	state->dmub_cmd_count = 0;
- 	memset(&state->perf_params, 0, sizeof(state->perf_params));
--	memset(&state->scratch, 0, sizeof(state->scratch));
- }
- 
- void dc_state_retain(struct dc_state *state)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 09c6a393642a..9629bd9252b4 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1004,76 +1004,6 @@ struct dc_current_properties {
- 	unsigned int cursor_size_limit;
+ 	unsigned int u32All;
+@@ -2937,18 +2942,47 @@ struct dmub_rb_cmd_psr_set_power_opt {
+ 	struct dmub_cmd_psr_set_power_opt_data psr_set_power_opt_data;
  };
  
--struct dc {
--	struct dc_debug_options debug;
--	struct dc_versions versions;
--	struct dc_caps caps;
--	struct dc_cap_funcs cap_funcs;
--	struct dc_config config;
--	struct dc_bounding_box_overrides bb_overrides;
--	struct dc_bug_wa work_arounds;
--	struct dc_context *ctx;
--	struct dc_phy_addr_space_config vm_pa_config;
--
--	uint8_t link_count;
--	struct dc_link *links[MAX_PIPES * 2];
--	struct link_service *link_srv;
--
--	struct dc_state *current_state;
--	struct resource_pool *res_pool;
--
--	struct clk_mgr *clk_mgr;
--
--	/* Display Engine Clock levels */
--	struct dm_pp_clock_levels sclk_lvls;
--
--	/* Inputs into BW and WM calculations. */
--	struct bw_calcs_dceip *bw_dceip;
--	struct bw_calcs_vbios *bw_vbios;
--	struct dcn_soc_bounding_box *dcn_soc;
--	struct dcn_ip_params *dcn_ip;
--	struct display_mode_lib dml;
--
--	/* HW functions */
--	struct hw_sequencer_funcs hwss;
--	struct dce_hwseq *hwseq;
--
--	/* Require to optimize clocks and bandwidth for added/removed planes */
--	bool optimized_required;
--	bool wm_optimized_required;
--	bool idle_optimizations_allowed;
--	bool enable_c20_dtm_b0;
--
--	/* Require to maintain clocks and bandwidth for UEFI enabled HW */
--
--	/* FBC compressor */
--	struct compressor *fbc_compressor;
--
--	struct dc_debug_data debug_data;
--	struct dpcd_vendor_signature vendor_signature;
--
--	const char *build_id;
--	struct vm_helper *vm_helper;
--
--	uint32_t *dcn_reg_offsets;
--	uint32_t *nbio_reg_offsets;
--	uint32_t *clk_reg_offsets;
--
--	/* Scratch memory */
--	struct {
--		struct {
--			/*
--			 * For matching clock_limits table in driver with table
--			 * from PMFW.
--			 */
--			struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
--		} update_bw_bounding_box;
--	} scratch;
--
--	struct dml2_configuration_options dml2_options;
--	enum dc_acpi_cm_power_state power_state;
--};
--
- enum frame_buffer_mode {
- 	FRAME_BUFFER_MODE_LOCAL_ONLY = 0,
- 	FRAME_BUFFER_MODE_ZFB_ONLY,
-@@ -1363,6 +1293,100 @@ struct dc_plane_info {
- 	int layer_index;
- };
- 
-+#include "dc_stream.h"
++/**
++ * Definition of Replay Residency GPINT command.
++ * Bit[0] - Residency mode for Revision 0
++ * Bit[1] - Enable/Disable state
++ * Bit[2-3] - Revision number
++ * Bit[4-7] - Residency mode for Revision 1
++ * Bit[8] - Panel instance
++ * Bit[9-15] - Reserved
++ */
 +
-+struct dc_scratch_space {
-+	/* used to temporarily backup plane states of a stream during
-+	 * dc update. The reason is that plane states are overwritten
-+	 * with surface updates in dc update. Once they are overwritten
-+	 * current state is no longer valid. We want to temporarily
-+	 * store current value in plane states so we can still recover
-+	 * a valid current state during dc update.
-+	 */
-+	struct dc_plane_state plane_states[MAX_SURFACE_NUM];
-+	struct dc_gamma gamma_correction[MAX_SURFACE_NUM];
-+	struct dc_transfer_func in_transfer_func[MAX_SURFACE_NUM];
-+	struct dc_3dlut lut3d_func[MAX_SURFACE_NUM];
-+	struct dc_transfer_func in_shaper_func[MAX_SURFACE_NUM];
-+	struct dc_transfer_func blend_tf[MAX_SURFACE_NUM];
-+
-+	struct dc_stream_state stream_state;
-+	struct dc_transfer_func out_transfer_func;
++enum pr_residency_mode {
++	PR_RESIDENCY_MODE_PHY = 0x0,
++	PR_RESIDENCY_MODE_ALPM,
++	PR_RESIDENCY_MODE_IPS2,
++	PR_RESIDENCY_MODE_FRAME_CNT,
 +};
 +
-+struct dc {
-+	struct dc_debug_options debug;
-+	struct dc_versions versions;
-+	struct dc_caps caps;
-+	struct dc_cap_funcs cap_funcs;
-+	struct dc_config config;
-+	struct dc_bounding_box_overrides bb_overrides;
-+	struct dc_bug_wa work_arounds;
-+	struct dc_context *ctx;
-+	struct dc_phy_addr_space_config vm_pa_config;
-+
-+	uint8_t link_count;
-+	struct dc_link *links[MAX_PIPES * 2];
-+	struct link_service *link_srv;
-+
-+	struct dc_state *current_state;
-+	struct resource_pool *res_pool;
-+
-+	struct clk_mgr *clk_mgr;
-+
-+	/* Display Engine Clock levels */
-+	struct dm_pp_clock_levels sclk_lvls;
-+
-+	/* Inputs into BW and WM calculations. */
-+	struct bw_calcs_dceip *bw_dceip;
-+	struct bw_calcs_vbios *bw_vbios;
-+	struct dcn_soc_bounding_box *dcn_soc;
-+	struct dcn_ip_params *dcn_ip;
-+	struct display_mode_lib dml;
-+
-+	/* HW functions */
-+	struct hw_sequencer_funcs hwss;
-+	struct dce_hwseq *hwseq;
-+
-+	/* Require to optimize clocks and bandwidth for added/removed planes */
-+	bool optimized_required;
-+	bool wm_optimized_required;
-+	bool idle_optimizations_allowed;
-+	bool enable_c20_dtm_b0;
-+
-+	/* Require to maintain clocks and bandwidth for UEFI enabled HW */
-+
-+	/* FBC compressor */
-+	struct compressor *fbc_compressor;
-+
-+	struct dc_debug_data debug_data;
-+	struct dpcd_vendor_signature vendor_signature;
-+
-+	const char *build_id;
-+	struct vm_helper *vm_helper;
-+
-+	uint32_t *dcn_reg_offsets;
-+	uint32_t *nbio_reg_offsets;
-+	uint32_t *clk_reg_offsets;
-+
-+	/* Scratch memory */
-+	struct {
-+		struct {
-+			/*
-+			 * For matching clock_limits table in driver with table
-+			 * from PMFW.
-+			 */
-+			struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
-+		} update_bw_bounding_box;
-+		struct dc_scratch_space current_state;
-+		struct dc_scratch_space new_state;
-+	} scratch;
-+
-+	struct dml2_configuration_options dml2_options;
-+	enum dc_acpi_cm_power_state power_state;
-+
-+};
-+
- struct dc_scaling_info {
- 	struct rect src_rect;
- 	struct rect dst_rect;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index e034cbb40620..b5b090197ad7 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -524,25 +524,6 @@ struct dc_dmub_cmd {
- 	enum dm_dmub_wait_type wait_type;
- };
+ #define REPLAY_RESIDENCY_MODE_SHIFT            (0)
+ #define REPLAY_RESIDENCY_ENABLE_SHIFT          (1)
++#define REPLAY_RESIDENCY_REVISION_SHIFT        (2)
++#define REPLAY_RESIDENCY_MODE2_SHIFT           (4)
  
--struct dc_scratch_space {
--	/* used to temporarily backup plane states of a stream during
--	 * dc update. The reason is that plane states are overwritten
--	 * with surface updates in dc update. Once they are overwritten
--	 * current state is no longer valid. We want to temporarily
--	 * store current value in plane states so we can still recover
--	 * a valid current state during dc update.
--	 */
--	struct dc_plane_state plane_states[MAX_SURFACE_NUM];
--	struct dc_gamma gamma_correction[MAX_SURFACE_NUM];
--	struct dc_transfer_func in_transfer_func[MAX_SURFACE_NUM];
--	struct dc_3dlut lut3d_func[MAX_SURFACE_NUM];
--	struct dc_transfer_func in_shaper_func[MAX_SURFACE_NUM];
--	struct dc_transfer_func blend_tf[MAX_SURFACE_NUM];
--
--	struct dc_stream_state stream_state;
--	struct dc_transfer_func out_transfer_func;
--};
--
- /**
-  * struct dc_state - The full description of a state requested by users
-  */
-@@ -624,9 +605,6 @@ struct dc_state {
- 	struct {
- 		unsigned int stutter_period_us;
- 	} perf_params;
--
--
--	struct dc_scratch_space scratch;
- };
+ #define REPLAY_RESIDENCY_MODE_MASK             (0x1 << REPLAY_RESIDENCY_MODE_SHIFT)
+-# define REPLAY_RESIDENCY_MODE_PHY             (0x0 << REPLAY_RESIDENCY_MODE_SHIFT)
+-# define REPLAY_RESIDENCY_MODE_ALPM            (0x1 << REPLAY_RESIDENCY_MODE_SHIFT)
+-# define REPLAY_RESIDENCY_MODE_IPS             0x10
++# define REPLAY_RESIDENCY_FIELD_MODE_PHY       (0x0 << REPLAY_RESIDENCY_MODE_SHIFT)
++# define REPLAY_RESIDENCY_FIELD_MODE_ALPM      (0x1 << REPLAY_RESIDENCY_MODE_SHIFT)
++
++#define REPLAY_RESIDENCY_MODE2_MASK            (0xF << REPLAY_RESIDENCY_MODE2_SHIFT)
++# define REPLAY_RESIDENCY_FIELD_MODE2_IPS      (0x1 << REPLAY_RESIDENCY_MODE2_SHIFT)
++# define REPLAY_RESIDENCY_FIELD_MODE2_FRAME_CNT    (0x2 << REPLAY_RESIDENCY_MODE2_SHIFT)
  
- struct replay_context {
+ #define REPLAY_RESIDENCY_ENABLE_MASK           (0x1 << REPLAY_RESIDENCY_ENABLE_SHIFT)
+ # define REPLAY_RESIDENCY_DISABLE              (0x0 << REPLAY_RESIDENCY_ENABLE_SHIFT)
+ # define REPLAY_RESIDENCY_ENABLE               (0x1 << REPLAY_RESIDENCY_ENABLE_SHIFT)
+ 
++#define REPLAY_RESIDENCY_REVISION_MASK         (0x3 << REPLAY_RESIDENCY_REVISION_SHIFT)
++# define REPLAY_RESIDENCY_REVISION_0           (0x0 << REPLAY_RESIDENCY_REVISION_SHIFT)
++# define REPLAY_RESIDENCY_REVISION_1           (0x1 << REPLAY_RESIDENCY_REVISION_SHIFT)
++
++/**
++ * Definition of a replay_state.
++ */
+ enum replay_state {
+ 	REPLAY_STATE_0			= 0x0,
+ 	REPLAY_STATE_1			= 0x10,
 -- 
 2.34.1
 
