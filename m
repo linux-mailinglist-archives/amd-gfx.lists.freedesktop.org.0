@@ -2,97 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34AC286E143
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Mar 2024 13:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7CA86E168
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Mar 2024 13:59:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B36C910EBA6;
-	Fri,  1 Mar 2024 12:46:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E428C10E2F7;
+	Fri,  1 Mar 2024 12:59:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HjTqU468";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LhMvdHEb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFF210E855
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Mar 2024 12:46:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TmQ0BB8mtGLwqkCyKcFaglD+G4mSRFbpVU62x35sf46xSQQ15dgDnUH6umJum5Emflf0y7bNp2QP5N9bM4RhgFe1yr79w4n6vasdqPT0ss5C7epPAo6uEnYHGHLoXpEoB40sJHhV2aesYFwYArSIoxFE0X8IWH7twdlx3B1O4Od0W+fy3GoU7OPILoHLxg+MAAbKVfZKAOeXYO0P0mRpMLaeBuiPwZ2cP4Le1zWQ+E1pnsAOJIwbyTRqgWMQ0D3SsQbUYt3rCcnF29eSts5ToS4uEKGMHELkgFqKZlPHEyV2yJYrxRULM1l3vH5eUSV8liGL/h/E1W87C+PrX9rFIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZA3wiGDouszXvsTMFFKyKgQuCM04mnEdOUNWwIAqK+Y=;
- b=Rk+s07kc665fXNuwPY0tf7iR9mOHt/lxLrjhJ3q/8NU30c8tsxt26oGEo3MltDuwcArizjpXCd6dChZIY5nWKTIX6d17trYepGUvwXiN3K60Dhozm7S+Wfl1fhx87Mh/jj9IXj4fAl1PbV4Nvxu8BHdG4vhI/ug+JeMczK9kVcpS6Q3cZR70JujmsnSC5VVH2x7Ms2ilVy81mGshdEKvq2ePfCF/VaVma/slvrfDNNZ1gVVm2cTBWmLPUCH7BTud18gSUu30PwzBSP5//ukmRc0qOt0ZsTvrf0M+9sRoKuu05pOe0/qD/iHecipL57zpJBRtfsx4aU8D0epc+br8jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZA3wiGDouszXvsTMFFKyKgQuCM04mnEdOUNWwIAqK+Y=;
- b=HjTqU4688T7BrhwCLJJFUX6r+DZcKyDC1CW4Hs5l/Ya2JOqghD7x+q3Y47QPhHbR50sCFuXs/PTwJjabs0heXOVVIZCZXgz9CALXgqKrAvPi8jvH/dbpEDRDhPRTR8d8qT7OkgcDypyfuVleHA0iY0dWuBA6HQYII+4neNIs1bQ=
-Received: from PH0P220CA0020.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::34)
- by IA1PR12MB8517.namprd12.prod.outlook.com (2603:10b6:208:449::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.34; Fri, 1 Mar
- 2024 12:46:12 +0000
-Received: from SN1PEPF0002BA4C.namprd03.prod.outlook.com
- (2603:10b6:510:d3:cafe::c) by PH0P220CA0020.outlook.office365.com
- (2603:10b6:510:d3::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.32 via Frontend
- Transport; Fri, 1 Mar 2024 12:46:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF0002BA4C.mail.protection.outlook.com (10.167.242.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7362.11 via Frontend Transport; Fri, 1 Mar 2024 12:46:11 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 1 Mar 2024 06:46:09 -0600
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, =?UTF-8?q?Nicolai=20H=C3=A4hnle?=
- <nicolai.haehnle@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix potential Spectre vulnerability in
- amdgpu_gfx_parse_disable_cu()
-Date: Fri, 1 Mar 2024 18:15:51 +0530
-Message-ID: <20240301124551.4038626-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD0410E2F7
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Mar 2024 12:59:12 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-412c23551e2so8670055e9.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 Mar 2024 04:59:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1709297950; x=1709902750; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=gECsXJicyzRrU3m5dJNwDaOoreYWs2mTwDR+PhQMf1w=;
+ b=LhMvdHEb5AuifGnh7F3l1MUK0wTmtYXDAaWMR6Vz3PWAcVsxDPnS2409Q9VJQhvxZc
+ a2zTchbbprt3bK6W7mAkEKUVWM6yARZFZGejBwenl9dntcgjY+XYxTSrdoY2OvC4XceH
+ 7KqTZX1yWPr4mf5vxLTHGNbr1X7gb6yWj+nsI60EvbpCFV9Ig2trnliJRHjBj7LREPWZ
+ Sc8V+vgomdTxPOEDng3ZKuVqF/hctG+rlPKRy1MfwCGEMMkRdFTs8B8bEYTXDEgha2I+
+ +rEqD1CdjgCf5A0mH09rOh3Sgq+T0o9K5InuKdfVQNytnnx2mQEHHzEjc9JDGSY1bklL
+ U4dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709297950; x=1709902750;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=gECsXJicyzRrU3m5dJNwDaOoreYWs2mTwDR+PhQMf1w=;
+ b=hW9xWUb23lfiiMMS6t/+S2Nad7C3G6wQtitiCdNpaqUNxqP4Hbbq3xnGmBEUL24naI
+ N1cdHpfhE9jUea2kWsq8avVTSnQq6OieBi1+q77d9lXntG2n2yrU9NQTIUEA69I1AVjE
+ TTKOqOQgLFnmCU3Y0ptxaZlwzj8C5z/NPzGbk8WVRB47n59gE4cAdXy8oPBbRa06WlBL
+ 3Wadu5x11yxUL9CwqbbIwNRzGjqPldXtjRqodnslxKqhO45gGZRh1b7vWU9EOE6iMWz7
+ PL4CUoMspAXiB1KaEwQ1LzeUJD2vx/T1BL47T3iiE6mY7ij6yfrpPC8NChzLNBROqGSY
+ 7eXw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCViVDN9FrpETmfZEJbNi8dK0uAYuIZK25uCwQxG76k2fq6DD5ip7nNQWXwb3D0J9KJDnjDZ/nb9mBGE3m9L8dKHyLMDgKM30CNPnTSH0Q==
+X-Gm-Message-State: AOJu0YyHjvFmElkBl2bNbrEQoaVfLw3VfF/l6c08kUSdr0TUdn0hqn2g
+ RJ2VRQPUqmj7sNJ5llbPqJG5sFXQZBFZ0Zz3xRd+PAVYqpBGoCnl
+X-Google-Smtp-Source: AGHT+IGsWMOVNO6cy1Wfw1rkuygCAatxqYPu2L691JQqOAXtE50p2RilRvqTKk209z6CgNdIEZZmmA==
+X-Received: by 2002:a05:600c:3513:b0:412:a397:c8f2 with SMTP id
+ h19-20020a05600c351300b00412a397c8f2mr2117959wmq.17.1709297950161; 
+ Fri, 01 Mar 2024 04:59:10 -0800 (PST)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ hg14-20020a05600c538e00b0041228b2e179sm5353063wmb.39.2024.03.01.04.59.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 01 Mar 2024 04:59:09 -0800 (PST)
+Message-ID: <33c50082-c9d2-425f-9f6d-74ed43ba565d@gmail.com>
+Date: Fri, 1 Mar 2024 13:59:08 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] drm/amdgpu: implement TLB flush fence
+Content-Language: en-US
+To: Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Philip Yang <yangp@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20240301110724.947-1-shashank.sharma@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240301110724.947-1-shashank.sharma@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4C:EE_|IA1PR12MB8517:EE_
-X-MS-Office365-Filtering-Correlation-Id: 74bd9706-4fab-4b65-f728-08dc39ed931a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: prX0xHMxgEHGo/yFywgNZd+rDaNJ779EcGHMgLXfJqBLAe/kkCcOvwDSDCXJXvVsk0sTWKstq82lqLbxANaUnvHCyTil+sFtqx+2THtvIlt7MMLYlFJobFCizPDlCshNxcp18oIki5mR+1xEUGrXacqbLqSqtDcxE0DHOIZRmwCAjJ1Gv8d7A+86EPiiC7l7rByTEbDtSnv0DerT7+A8+k+gg72Af4zQCDEf+d5UqeTcbRE32i70XLDmkCPM/tFdDJRi/cdRTE5X5tj7RgdcDYn58ASQVSNtJN4mcQFnY6uvY+TM5usvWzAxS2xVMWg8xDJO9mccXTWOIKYT31+bNsL1PoE2Km6H4999r2nvjudONFrnnpu3dZv31RQXSe36tzM+fI4T37KDu4VU+qFAuHJJRei2vUVFxkM3YmRqxLW3Tqa0fitfYQOKrQ2Y5L+OUfOcaON/aE0ZI0AaWRDrrXX+mVadm8nk3s2BwlMX6382IcuuMcADaUDVZqvjZ72pWtLDuazTE5PmzDGk+Zhr4JFb63Qv2XGyQ1ZxNXAalUqU+b7yyu1r2tx8dSlUfuFCRnAgfM96E37xAsOrK4Xd1Dc+0uMsMX0fEjm6buWnuhuEgPzBykTl4I7dn5dOzLmmiCEd0USGpMk1fn3EHYRj/KWrftARUTWekHihlhMgRZ6nfGusWrW7h+E8XgW0gPifdRSh/kGxqt6lKFV/fyHeCbn8MNDF2Njvmjuo4u1ihDHqhhoiuwgMWsPW9sPWcDLd
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(36860700004); DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 12:46:11.7193 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74bd9706-4fab-4b65-f728-08dc39ed931a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4C.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8517
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,67 +86,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The 'mask' array could be used in a way that would make the code
-vulnerable to a Spectre attack. The issue is likely related to the fact
-that the 'mask' array is being indexed using values that are derived
-from user input (the 'se' and 'sh' variables), which could potentially
-be manipulated by an attacker.
+Am 01.03.24 um 12:07 schrieb Shashank Sharma:
+> From: Christian König <christian.koenig@amd.com>
+>
+> The problem is that when (for example) 4k pages are replaced
+> with a single 2M page we need to wait for change to be flushed
+> out by invalidating the TLB before the PT can be freed.
+>
+> Solve this by moving the TLB flush into a DMA-fence object which
+> can be used to delay the freeing of the PT BOs until it is signaled.
+>
+> V2: (Shashank)
+>      - rebase
+>      - set dma_fence_error only in case of error
+>      - add tlb_flush fence only when PT/PD BO is locked (Felix)
+>      - use vm->pasid when f is NULL (Mukul)
+>
+> V4: - add a wait for (f->dependency) in tlb_fence_work (Christian)
+>      - move the misplaced fence_create call to the end (Philip)
+>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/Makefile           |   3 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  10 ++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   4 +
+>   .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  | 111 ++++++++++++++++++
+>   4 files changed, 127 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+> index fa26a4e3a99d..91ab4cf29b5b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -70,7 +70,8 @@ amdgpu-y += amdgpu_device.o amdgpu_doorbell_mgr.o amdgpu_kms.o \
+>   	amdgpu_cs.o amdgpu_bios.o amdgpu_benchmark.o \
+>   	atombios_dp.o amdgpu_afmt.o amdgpu_trace_points.o \
+>   	atombios_encoders.o amdgpu_sa.o atombios_i2c.o \
+> -	amdgpu_dma_buf.o amdgpu_vm.o amdgpu_vm_pt.o amdgpu_ib.o amdgpu_pll.o \
+> +	amdgpu_dma_buf.o amdgpu_vm.o amdgpu_vm_pt.o amdgpu_vm_tlb_fence.o \
+> +	amdgpu_ib.o amdgpu_pll.o \
+>   	amdgpu_ucode.o amdgpu_bo_list.o amdgpu_ctx.o amdgpu_sync.o \
+>   	amdgpu_gtt_mgr.o amdgpu_preempt_mgr.o amdgpu_vram_mgr.o amdgpu_virt.o \
+>   	amdgpu_atomfirmware.o amdgpu_vf_error.o amdgpu_sched.o \
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> index 0960e0a665d3..310aae6fb49b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> @@ -988,6 +988,15 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>   
+>   	r = vm->update_funcs->commit(&params, fence);
+>   
+> +	/* Prepare a TLB flush fence to be attached to PTs */
+> +	if (!unlocked && params.needs_flush && vm->is_compute_context) {
+> +		amdgpu_vm_tlb_fence_create(adev, vm, fence);
+> +
+> +		/* Makes sure no PD/PT is freed before the flush */
+> +		dma_resv_add_fence(vm->root.bo->tbo.base.resv, *fence,
+> +				   DMA_RESV_USAGE_BOOKKEEP);
+> +	}
+> +
+>   error_unlock:
+>   	amdgpu_vm_eviction_unlock(vm);
+>   	drm_dev_exit(idx);
+> @@ -2237,6 +2246,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>   
+>   	mutex_init(&vm->eviction_lock);
+>   	vm->evicting = false;
+> +	vm->tlb_fence_context = dma_fence_context_alloc(1);
+>   
+>   	r = amdgpu_vm_pt_create(adev, vm, adev->vm_manager.root_level,
+>   				false, &root, xcp_id);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> index 64b3f69efa57..298f604b8e5f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> @@ -341,6 +341,7 @@ struct amdgpu_vm {
+>   	atomic64_t		tlb_seq;
+>   	uint64_t		tlb_seq_va;
+>   	uint64_t		*tlb_seq_cpu_addr;
+> +	uint64_t		tlb_fence_context;
+>   
+>   	atomic64_t		kfd_last_flushed_seq;
+>   
+> @@ -594,5 +595,8 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
+>   				  uint64_t addr,
+>   				  uint32_t status,
+>   				  unsigned int vmhub);
+> +void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev,
+> +				 struct amdgpu_vm *vm,
+> +				 struct dma_fence **fence);
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+> new file mode 100644
+> index 000000000000..54c33c24fa46
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+> @@ -0,0 +1,111 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright 2023 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + */
+> +
+> +#include <linux/dma-fence.h>
+> +#include <linux/workqueue.h>
+> +
+> +#include "amdgpu.h"
+> +#include "amdgpu_vm.h"
+> +#include "amdgpu_gmc.h"
+> +
+> +struct amdgpu_tlb_fence {
+> +	struct dma_fence	base;
+> +	struct amdgpu_device	*adev;
+> +	struct dma_fence	*dependency;
+> +	struct work_struct	work;
+> +	spinlock_t		lock;
+> +	uint16_t		pasid;
+> +
+> +};
+> +
+> +static const char *amdgpu_tlb_fence_get_driver_name(struct dma_fence *fence)
+> +{
+> +	return "amdgpu tlb fence";
+> +}
+> +
+> +static const char *amdgpu_tlb_fence_get_timeline_name(struct dma_fence *f)
+> +{
+> +	return "amdgpu tlb timeline";
+> +}
+> +
+> +static void amdgpu_tlb_fence_work(struct work_struct *work)
+> +{
+> +	struct amdgpu_tlb_fence *f = container_of(work, typeof(*f), work);
+> +	int r;
+> +
+> +	if (f->dependency) {
+> +		dma_fence_wait(f->dependency, false);
+> +		f->dependency = dma_fence_get_stub();
 
-The array_index_nospec() function is typically used in these situations
-where an array index is derived from user input or other untrusted data.
-By sanitizing the index, it helps to ensure that even if an attacker can
-influence the index, they cannot use this to read sensitive data from
-other parts of the array or memory.
+That doesn't correctly drops the f->depency reference.
 
-The array indices are now sanitized using the array_index_nospec()
-function, which ensures that the index cannot be greater than the size
-of the array, helping to mitigate Spectre attacks.
+You need something like "dma_fence_put(f->depency); f->dependency = 
+NULL;" here instead.
 
-The array_index_nospec() function, takes two parameters: the array index
-and the maximum size of the array. It ensures that the array index is
-within the bounds of the array, i.e., it is less than the maximum size
-of the array.
+Apart from that looks good to me,
+Christian.
 
-If the array index is within bounds, the function returns the index. If
-the index is out of bounds, the function returns a safe index (usually
-0) instead. This prevents out-of-bounds reads that could potentially be
-exploited in a speculative execution attack.
-
-Reported by smatch:
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:136 amdgpu_gfx_parse_disable_cu() warn: potential spectre issue 'mask' [w]
-
-Fixes: 6f8941a23088 ("drm/amdgpu: add disable_cu parameter")
-Cc: Nicolai Hähnle <nicolai.haehnle@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 4835d6d899e7..2ef31dbdbc3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -24,6 +24,7 @@
-  */
- 
- #include <linux/firmware.h>
-+#include <linux/nospec.h>
- #include "amdgpu.h"
- #include "amdgpu_gfx.h"
- #include "amdgpu_rlc.h"
-@@ -132,8 +133,9 @@ void amdgpu_gfx_parse_disable_cu(unsigned int *mask, unsigned int max_se, unsign
- 		}
- 
- 		if (se < max_se && sh < max_sh && cu < 16) {
-+			unsigned int index = array_index_nospec(se * max_sh + sh, max_se * max_sh);
- 			DRM_INFO("amdgpu: disabling CU %u.%u.%u\n", se, sh, cu);
--			mask[se * max_sh + sh] |= 1u << cu;
-+			mask[index] |= 1u << cu;
- 		} else {
- 			DRM_ERROR("amdgpu: disable_cu %u.%u.%u is out of range\n",
- 				  se, sh, cu);
--- 
-2.34.1
+> +	}
+> +
+> +	r = amdgpu_gmc_flush_gpu_tlb_pasid(f->adev, f->pasid, 2, true, 0);
+> +	if (r) {
+> +		dev_err(f->adev->dev, "TLB flush failed for PASID %d.\n",
+> +			f->pasid);
+> +		dma_fence_set_error(&f->base, r);
+> +	}
+> +
+> +	dma_fence_signal(&f->base);
+> +	dma_fence_put(&f->base);
+> +}
+> +
+> +static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
+> +	.use_64bit_seqno = true,
+> +	.get_driver_name = amdgpu_tlb_fence_get_driver_name,
+> +	.get_timeline_name = amdgpu_tlb_fence_get_timeline_name
+> +};
+> +
+> +void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+> +				struct dma_fence **fence)
+> +{
+> +	struct amdgpu_tlb_fence *f;
+> +
+> +	f = kmalloc(sizeof(*f), GFP_KERNEL);
+> +	if (!f) {
+> +		/*
+> +		 * We can't fail since the PDEs and PTEs are already updated, so
+> +		 * just block for the dependency and execute the TLB flush
+> +		 */
+> +		if (*fence)
+> +			dma_fence_wait(*fence, false);
+> +
+> +		amdgpu_gmc_flush_gpu_tlb_pasid(adev, vm->pasid, 2, true, 0);
+> +		*fence = dma_fence_get_stub();
+> +		return;
+> +	}
+> +
+> +	f->adev = adev;
+> +	f->dependency = *fence;
+> +	f->pasid = vm->pasid;
+> +	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
+> +	spin_lock_init(&f->lock);
+> +
+> +	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+> +		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+> +
+> +	/* TODO: We probably need a separate wq here */
+> +	dma_fence_get(&f->base);
+> +	schedule_work(&f->work);
+> +
+> +	*fence = &f->base;
+> +}
 
