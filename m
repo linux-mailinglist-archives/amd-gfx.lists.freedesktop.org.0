@@ -2,76 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0F98703D6
-	for <lists+amd-gfx@lfdr.de>; Mon,  4 Mar 2024 15:16:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01670870541
+	for <lists+amd-gfx@lfdr.de>; Mon,  4 Mar 2024 16:19:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41CC01121E9;
-	Mon,  4 Mar 2024 14:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CAD910EE30;
+	Mon,  4 Mar 2024 15:19:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="Nyz5cy7d";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UCLIOvkx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424C01121F6
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 14:12:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:References:Reply-To:Cc:To:From:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=2ow5WoWCUnT2GPprP9SShU1PL2Ham9rFrhPnQ0r3S7Y=;
- t=1709561529; x=1709993529; b=Nyz5cy7d8QLbln3xoDShJhq7tONW/2usSVW5RSN7BwXFl10
- jwWupJ7ZWISmL/WeLC08Wx4sRP+Yk0tbs6mcWPuWamU7LlbN+kiYHm/QAF/ZC/smefkjqA29afwL+
- NJi7gDiqX0BDeW622rdxH0TVWBB02VryhypP8H2Po3BHHJdxOpgt6euqOfO/b0EWnfuGIiBA+un3F
- fxS8A7Pm2skQ4sZsPbr34FXYthrgM3H5zgaxLqFT6c3tGLE5kmFvIosepLgqW0ffqW0PBm7m/0i5c
- w/5LaJYb/te8ahSNAmUO3z8pjYXLm7uHgN/3sUr3Wv+dG8XsVWQT8o7GpgHMGhaA==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1rh92x-0000k1-W2; Mon, 04 Mar 2024 15:12:05 +0100
-Message-ID: <6e93a748-786e-4aca-9b97-65b25e664436@leemhuis.info>
-Date: Mon, 4 Mar 2024 15:12:03 +0100
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2062.outbound.protection.outlook.com [40.107.223.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4057F10EE30
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 Mar 2024 15:19:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fAnPoI1Ki/el8+uW65vA9gBp0ZW9RRQXU37yTrAX8DbV0A3IF3mHErv0s2hKL3/O7SENdwDnv8gKYgX1Pltn+Jdn8BtorDNcMfNTqc3qZckbil5t5IqG/2cHGBoHfKFPRRb5mf/8E8nlsmYOQjNVrPRz5ecC7u9YSCpYsGIiM/2lRWHl0q5uaU6jaIO0xv3vTygjaOsmzkow+K731xLJk7ZgOUtBTZl7MvOstljpsTwkdNhu7duKgNB3HoTZ+4z05mj+/2RdfpqhW328B9An9A6dJmwQie5hEe91ORb850HU4yxNscBWFg5zgrWQEbHGgy1qcmM9FjUHdpqMNgifkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wRNSoH5D435Hd7xA32qVEGdpnrAGEdjj1uJe6anN8yM=;
+ b=VOw5+j6FnI+E5F5q0MQNofwsaWSziuoE3Z64R2Ql6zFW365aP+vtjvE8ln+jo+fI4wEuLH+Tw3n/7wfZ3q15U5mbRx2Ur5FTagkJE4gta9rRkjqs1dGqrVAXfEEEMysiGWXxBlGk+ncxHMi0UwYbzhcs6JD55Ge07J3xG+zqgqWmRj0Ws2R+PgmlEbHvGhciIFwzzSRPZqc8LT+ZQP7mL/CJ3aM/61VjuBNwQBNbpaf7zvA3y/cjc48wZdiOrPvJPJ9du4N4MFheBq0Gg9lwCW5QdyhjFbhJfJ9rjGe23RpLHxMv9cs2GgHRBF3XSYkjkKlV/JUPmaychre1sqwp2w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wRNSoH5D435Hd7xA32qVEGdpnrAGEdjj1uJe6anN8yM=;
+ b=UCLIOvkxYIUyOdBmSH5aLXv40mrmnPDHx7cD+ufIaZWVRe4zste6j7IIHLHcpYBA+4XmvYQfurBW9i+XSAuuj4Os6DeRfUIQjq/L59djvpHKxbBMV3ZTg8QQVT+vub3Qj94Du/HkzqZytZtTqz18X7YYS7Jk5pY6fZJtSlfHA4U=
+Received: from DS7PR03CA0096.namprd03.prod.outlook.com (2603:10b6:5:3b7::11)
+ by DS0PR12MB7583.namprd12.prod.outlook.com (2603:10b6:8:13f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.38; Mon, 4 Mar
+ 2024 15:19:53 +0000
+Received: from CY4PEPF0000E9D1.namprd03.prod.outlook.com
+ (2603:10b6:5:3b7:cafe::ef) by DS7PR03CA0096.outlook.office365.com
+ (2603:10b6:5:3b7::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39 via Frontend
+ Transport; Mon, 4 Mar 2024 15:19:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D1.mail.protection.outlook.com (10.167.241.144) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7362.11 via Frontend Transport; Mon, 4 Mar 2024 15:19:52 +0000
+Received: from sdhume-SYS-7049GP-TRT.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 4 Mar 2024 09:19:51 -0600
+From: Samir Dhume <samir.dhume@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <samir.dhume@amd.com>, <lijo.lazar@amd.com>, <gavin.wan@amd.com>,
+ <leo.liu@amd.com>, <Alexander.Deucher@amd.com>
+Subject: [PATCH 1/3] drm/amdgpu: function to read physical xcc_id
+Date: Mon, 4 Mar 2024 10:19:29 -0500
+Message-ID: <20240304151931.802397-1-samir.dhume@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Kernel 6.7+ broke under-powering of my RX 6700XT. (Archlinux,
- mesa/amdgpu)
-Content-Language: en-US, de-DE
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-To: Alex Deucher <alexdeucher@gmail.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: Romano <romaniox@gmail.com>, Hans de Goede <hdegoede@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Greg KH <gregkh@linuxfoundation.org>
-References: <ae64f04d-6e94-4da4-a740-78ea94e0552c@riadoklan.sk.eu.org>
- <2024021732-framing-tactful-833d@gregkh>
- <d369b45f-e1af-4117-83a5-3e429e3bfb23@leemhuis.info>
- <CADnq5_OgPBtYpxBQ+aBmA2t7ob7EFPFWrF9OYXNgm00eEayMNA@mail.gmail.com>
- <62bf771e-640a-45ab-a2de-3df459a9ed30@leemhuis.info>
- <CADnq5_M4Zwv0_B1DoU_a8aNpyPVJj_PpjDG_oi3JkrGC5-hNgg@mail.gmail.com>
- <4bc8747a-d87f-423b-b0ce-8891e78ae094@redhat.com>
- <a6243c3b-d773-4693-88e9-033995616f12@leemhuis.info>
- <CADnq5_MHmz=HdGA22U-bk2b+4un70bmLzpbDyc3+tjzoRAnCeA@mail.gmail.com>
- <1aa3830d-ceb7-4eb1-b5bb-d6043684507f@gmail.com>
- <CADnq5_Nc+eEfXwaXfaTz75C9ww6ETVm_adCSfGsdD6OzguUQ6Q@mail.gmail.com>
- <3e077b5f-0684-4a07-9b74-ab242bb01975@gmail.com>
- <CADnq5_NszWGKVZZomTojAm_u7O-04M6x_ox4KXQC79OuGA9ARA@mail.gmail.com>
- <af6291d4-45c3-4eb6-95b8-14a5221e72a1@leemhuis.info>
- <CADnq5_Md1yQVxfxWBju7xrqZcU18KqfaJRGcE3tumCUy_3tHoA@mail.gmail.com>
- <521c02b9-d7c6-4c0f-8259-4b66cc6f9e84@leemhuis.info>
-In-Reply-To: <521c02b9-d7c6-4c0f-8259-4b66cc6f9e84@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1709561529;
- 8817d1c9; 
-X-HE-SMSGID: 1rh92x-0000k1-W2
-X-Mailman-Approved-At: Mon, 04 Mar 2024 14:16:56 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D1:EE_|DS0PR12MB7583:EE_
+X-MS-Office365-Filtering-Correlation-Id: 008aa719-5e28-43cf-4c06-08dc3c5e8a78
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lKS0DIX8aEyWLFvkOuGmPW3Z36q2eDWD0I7iuJeJpf3kEQMcYmKJJ2/CuVG+MFXV2G7sAG2DAZ1orufhvmXPv63RX2zH/n6dlncseUdHoZWG6nerKYzAvitFr3Zs4npCDOZyYPyVrb5Cdyq1mW/vLMm1/oU6KLzyPFou060DYaRxkstAoSxlgPy64+gWi34kHoEoirqvt/ysU2DeTneQOv1a0wAFqD4mtpuhq8sIQc8SyVYUcgYfByJwRZdd8i3ZkQcD0uHhlPLYtixQUPe6OQUH1WTkS9EWpr5B7Pk5x1OhPSQxVMBMyPHtdnNAcyRurLY4t/ExaXGcwP7UU9cnALA42j41CMtZacB5QF261UXG/NyB3ZxcfgYcOWa7vPB4FfYaf91KRprQqIxExLoRffJuBR6/4LI6cVRapWB5mVliL2xY3NSYxTSw7HSm5jR6U22dWguHXbZ9dtUmnpedxLf+ckwOFYuec6z2Y7HpYb7jxUC/GBRIQzRo4ifPOiccW60iVqF/0SvKCtZSKoX3RF7xZxakZDRPwT+NE3Xmd6WcTiJtX/lwOVe/5zACfRvlZ+XfAB9LPoQOrQY7VUQR2QH3tIb/zUntx7R7MGgaIYl5mSmIf3O462c3C7GUR2i9Sf4a/u8rPx9FXerEv2OCk/YUos6r5cwWnCXHfr037in6RR7rLvp6nwqMlwjVqJo7xiC35Qh7UDxDUYMOYVFx8p6bDB0s2lFRQIjYuU/pte/2hAp/9IZxkKEQ4lyL5myp
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(82310400014)(376005)(36860700004); DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2024 15:19:52.6562 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 008aa719-5e28-43cf-4c06-08dc3c5e8a78
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D1.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7583
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,38 +101,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 21.02.24 16:53, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 21.02.24 16:39, Alex Deucher wrote:
->> On Wed, Feb 21, 2024 at 1:06 AM Linux regression tracking (Thorsten
->> Leemhuis) <regressions@leemhuis.info> wrote:
->>>
->>> On 20.02.24 21:18, Alex Deucher wrote:
->>>> On Tue, Feb 20, 2024 at 2:41 PM Romano <romaniox@gmail.com> wrote:
->>>>>
->>>>> If the increased low range is allowed via boot option, like in proposed
->>>>> patch, user clearly made an intentional decision. Undefined, but won't
->>>>> fry his hardware for sure. Undefined is also overclocking in that
->>>>> matter. You can go out of range with ratio of voltage vs frequency(still
->>>>> within vendor's limits) for example and crash the system.
->>>
->>> But we have this "no regressions" rule for a reason. Adhering to it
->>> strictly would afaics be counter-productive in this situation, but give
->>> users some way to manually do what was possible before out-of-the box
->>> IMHO is the minimum we should do.
-> [...]
+Signed-off-by: Samir Dhume <samir.dhume@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h | 1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 6 ++++++
+ 2 files changed, 7 insertions(+)
 
-TWIMC, I mentioned this twice in mails to Linus, he didn't get involved,
-so I assume things are fine the way they are for him. And then it's of
-course totally fine for me, too. :-D
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 8fcf889ddce9..bebda5501cb7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -298,6 +298,7 @@ struct amdgpu_gfx_funcs {
+ 	int (*switch_partition_mode)(struct amdgpu_device *adev,
+ 				     int num_xccs_per_xcp);
+ 	int (*ih_node_to_logical_xcc)(struct amdgpu_device *adev, int ih_node);
++	int (*get_xcc_id)(struct amdgpu_device *adev, int inst);
+ };
+ 
+ struct sq_work {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index b53c8fd4e8cf..68508c19a9b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -669,6 +669,11 @@ static int gfx_v9_4_3_ih_to_xcc_inst(struct amdgpu_device *adev, int ih_node)
+ 	return xcc - 1;
+ }
+ 
++static int gfx_v9_4_3_get_xcc_id(struct amdgpu_device *adev, int inst)
++{
++	return RREG32_SOC15(GC, GET_INST(GC, inst), regCP_PSP_XCP_CTL);
++}
++
+ static const struct amdgpu_gfx_funcs gfx_v9_4_3_gfx_funcs = {
+ 	.get_gpu_clock_counter = &gfx_v9_4_3_get_gpu_clock_counter,
+ 	.select_se_sh = &gfx_v9_4_3_xcc_select_se_sh,
+@@ -678,6 +683,7 @@ static const struct amdgpu_gfx_funcs gfx_v9_4_3_gfx_funcs = {
+ 	.select_me_pipe_q = &gfx_v9_4_3_select_me_pipe_q,
+ 	.switch_partition_mode = &gfx_v9_4_3_switch_compute_partition,
+ 	.ih_node_to_logical_xcc = &gfx_v9_4_3_ih_to_xcc_inst,
++	.get_xcc_id = &gfx_v9_4_3_get_xcc_id,
+ };
+ 
+ static int gfx_v9_4_3_aca_bank_generate_report(struct aca_handle *handle,
+-- 
+2.34.1
 
-Thx again for all your help and sorry for causing trouble, but in my
-line of work these "might or might not be a regression from Linus
-viewpoint, so let's get him involved" sometimes just happen.
-
-Ciao, Thorsten
-
-#regzbot resolve: apparently not a regression from Linus viewpoint
