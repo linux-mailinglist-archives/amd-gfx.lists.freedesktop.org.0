@@ -2,66 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8E487213A
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Mar 2024 15:13:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D90F9872172
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Mar 2024 15:31:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A18A10E0A3;
-	Tue,  5 Mar 2024 14:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 590BA112B48;
+	Tue,  5 Mar 2024 14:31:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EzfH4ovb";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WBvULiGN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFFB110E0A3
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 14:13:49 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-6e5eb3dd2f8so2163857b3a.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 05 Mar 2024 06:13:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1709648029; x=1710252829; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NK/StaZZbObzLpdaocrQ0rbwJ+yrRS//FXROpgmbfZA=;
- b=EzfH4ovbSUYD7FGanePAk7GP2Cg2ld04wjwK7D0M4xM4Z+aBK16BRt3+iGS70MyGjF
- S37Oj5hKGefq/3MP2AoN56nu6+jZdpelfPGQVM12eopk5dCnlKyWrf7wOk7KswOKv8GS
- ELq7TddsV7II/BIz8Gqob9fpo5prPUeh9vp7b7aG0b9MuApyajmbKl49BPr1UJCR19Kg
- H2LoN+LqhQ6zRS7VxquzMsWPBvyBJfKH+IeVTZQm3k1Ttpd1EbQYO7P5dgC4epgs1wpS
- TovzH50UeSU762PQ5LrHyyOR+F10mssZdyrVj/mgEoAEmyHRFi2IWAWmUxxf1UuIKIP3
- A+Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709648029; x=1710252829;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=NK/StaZZbObzLpdaocrQ0rbwJ+yrRS//FXROpgmbfZA=;
- b=GBELW6IxoiVyZFG4VFUFPFEhnu1nHx+ihsFOVvp1IIaufic85t/2xLtCTDTD72veWD
- IeQcOlB3tfCJyfPlvElwIMMuA9mA2y4yf8Ss2dxX0Buco3uIXxv7ckZ+8iaX/TPjoQrS
- LRyRUZrarGkd5wd2Gg7Hob0yJytf3nDW8G7oEB8rUeAbBIu+QnnZ3kd1vYfFnEVx4Vug
- tOGmzyOqDWM23CawTJGfUrjdKQCSVu09rqH5Vt2I3eP2xBNDoC2auh1LTzJt+zuqqL9b
- yHI7XJ8nG3LpQl11c9p7plRr0rOnnQg70AJiIoS6ewLvRxX94fab7e/48Imc3v32Xs6J
- ZB0g==
-X-Gm-Message-State: AOJu0YyTTUo9D0A90s4w6Aag3OiKvttKrQbZxFomLcUucJJR1ylxndru
- jZpod6rtk2mzgDrQIx5x5EppIlToF3VYuZWdrJy/P77wbBkKbZIC04O9yTnyaoU3c3fGiXepnLW
- Kk5cimIL2OA/o8Zxu1ovGF2stp3E=
-X-Google-Smtp-Source: AGHT+IFFozveCgZWKbIXapRxP6aVVUA+7v8xdYCr+hTxFq5Xp5J9vSq3If9BuDTxVTes4l88MFNcHMZ4eUdeN2ZDY0Y=
-X-Received: by 2002:a05:6a20:d81a:b0:1a1:4846:116a with SMTP id
- iv26-20020a056a20d81a00b001a14846116amr2255349pzb.15.1709648028969; Tue, 05
- Mar 2024 06:13:48 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C140112B48
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Mar 2024 14:31:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gPMdnb/xJ4yg8PCcGMWfOrXGeh2dFO1c5Ztrp2dEXnHJcvnfI5ntKBrHoXMHWSycfS+ZSLO/bpY2R+CXjev3YAC9VJlbv9WT6QEbnzCZLFfF0fXyndzyHWIp1HFTubtUfaXK7TZdfe0Sq1X5XItgGAVmf7OONKaOZKimLBRawhiYRiNxZ7WZJpQTsfb9t1lVScTlDMNazOqNWLBmlPLGl2wVMgs7i+Za5XVM2QQddvXQHj5adyHXCkVCvpkMdOpn5/TdsIyNXNbdeJPF/nERsTjO1pIUNtHggdQWzDU5LqERi7037PUCHiYDsQk5J3ZsmG10TUuw1mixyh4nYkjisA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=faHkEXHztxP+JHFT6SO5wPbXolxgaf6qILcCechDWTw=;
+ b=fHTgaAv+hGQqqhvvf3hF5hfErYgRN8Jge8vS/Ad9aNFvsM6QKEXiosNgDoWzH8IFC7U4QoD0tXMXgDiJAtGu+E67OaDJlQrZrWRHSyMPY+FnnYSI4HFw6FmA47hlhwyoTTXxWYUlY1mAOOWGG4a3WX3WZa4binjruuNWnuGlVPQ6NWAru1VNK8aLk1euZNAUvcUxrnMOOll4K6JuUH1UAjkGxi83f/FaCjCIi7qbv3yYnBE0XZQM0qaWQZGYoAbMb42OX0RDVTve2Zqw+4o+LgphxiH1/TvYmHIP347j1tnKXZ7nzjVQSc3Im/1yunY8Rzgr5NaJX+YrK25A07GZVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=faHkEXHztxP+JHFT6SO5wPbXolxgaf6qILcCechDWTw=;
+ b=WBvULiGNueRhfDGp+WsYDSPFIdnUNE5gWxOycRH+FdlJMmJ8P4xCHfojUJUjrCfkNVHsqhGzW1LKOu4URcHAHxi7HX9+5w9SbfQ0YzBtfsN8VVzf3Nrf957pt7dQ0Xiwrw7FeVAmVgEg5kYiMgnKQAuYFPF2J8aFq7a3k3+8wQM=
+Received: from BYAPR05CA0037.namprd05.prod.outlook.com (2603:10b6:a03:74::14)
+ by DS0PR12MB8271.namprd12.prod.outlook.com (2603:10b6:8:fb::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7339.39; Tue, 5 Mar 2024 14:31:14 +0000
+Received: from CO1PEPF000042AE.namprd03.prod.outlook.com
+ (2603:10b6:a03:74:cafe::cf) by BYAPR05CA0037.outlook.office365.com
+ (2603:10b6:a03:74::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.23 via Frontend
+ Transport; Tue, 5 Mar 2024 14:31:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000042AE.mail.protection.outlook.com (10.167.243.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7362.11 via Frontend Transport; Tue, 5 Mar 2024 14:31:14 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 5 Mar
+ 2024 08:31:12 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Lang Yu <Lang.Yu@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/6] drm/amdgpu/vpe: add multi instance VPE support
+Date: Tue, 5 Mar 2024 09:30:48 -0500
+Message-ID: <20240305143053.1262593-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-References: <20240305011926.1518752-1-yifan1.zhang@amd.com>
-In-Reply-To: <20240305011926.1518752-1-yifan1.zhang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 5 Mar 2024 09:13:36 -0500
-Message-ID: <CADnq5_Ox1VJ0Nq3haK_F=ihrWFQ+stMOZqhXKYUa=U1eAGYvzA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: add dcn3.5.1 support
-To: Yifan Zhang <yifan1.zhang@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Hamza.Mahfooz@amd.com, Harry.Wentland@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000042AE:EE_|DS0PR12MB8271:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0f8413ee-c09a-4983-0afe-08dc3d20e958
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VJ45LZXqm86QyPkbqmEXhczMxcLMEbjcqbukTvNQec+bTxaKFTBQW4e87FwmZkAuHSobqk/U7Oavk4Zfvfj+YyxPdUracJJ7VXEKfN0gUBGNfsrw8816PvqzcvmlL4xUd6mt9e+4AU8mH9C57TAF2HaMQ31KjVOb9qZ5dZiOkTnpagJMTQfVwv3sc2vpqIqFoGvjIqVPHe1ZztSN6QtS9yC8h2+GCHjzhDSTUlzBlq/OA52ylId2Ie8W7Ub2nrz+HTN0M+NjsmhiWrrwkoQmc+yrUqncTldtQTtjpv5c6mUgiu9MTOFhnn0PNILpr0ORzL/XnSXuaULApLlFYdOAi/zFtM/xa3uXU1hyUdyEvEERP/ZbOwxBhDAdMJ9wlXnQCEADLKqCaiVoS4wwAUz1Jy+CWO49LbJq1YNfYOB6NWln+puw1ThJ6TgUNnO7POiDGM8bbnS7R0O/MIXk0YueF4VuteQP+Ll4v/9AgNQhGykazlHUIBDE0PyOoryHb1PISXGVoXLJojRTfnTo0bxQhvaGPTTfvLBMapSmLOQdd1P5//uz6hcgU2WpH1NWBTeBVaZ7Oj3RptovvqUsYQEAivXn53Y6bySH38wvs2TKFCHyhlFTfkNQV7N61EJ4pwpnlztV/SSUqXccpX1KZa4GA74fdr1l0lQlsa/VwnFXDay1SW8gQzZUuzAfdM8TPfMfQCtHm/UYRq/CHqV+7JD51ggtJyuhK97X39dtHVbMOwgCDEX3KagzyRtmZhzIet4d
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(36860700004)(82310400014)(376005); DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 14:31:14.1314 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f8413ee-c09a-4983-0afe-08dc3d20e958
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8271
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,33 +103,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 4, 2024 at 8:28=E2=80=AFPM Yifan Zhang <yifan1.zhang@amd.com> w=
-rote:
->
-> This patch to add dcn3.5.1 support.
->
-> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+From: Lang Yu <Lang.Yu@amd.com>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Add support for multi instance VPE processing.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_discovery.c
-> index 502333725b49..72701e7f09fc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -1936,6 +1936,7 @@ static int amdgpu_discovery_set_display_ip_blocks(s=
-truct amdgpu_device *adev)
->                 case IP_VERSION(3, 2, 0):
->                 case IP_VERSION(3, 2, 1):
->                 case IP_VERSION(3, 5, 0):
-> +               case IP_VERSION(3, 5, 1):
->                         if (amdgpu_sriov_vf(adev))
->                                 amdgpu_discovery_set_sriov_display(adev);
->                         else
-> --
-> 2.37.3
->
+Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h       | 4 ++++
+ 2 files changed, 13 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 641e540355399..b6bed77b454de 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -1319,6 +1319,15 @@ static int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 				}
+ 			}
+ 
++			if (le16_to_cpu(ip->hw_id) == VPE_HWID) {
++				if (adev->vpe.num_instances < AMDGPU_MAX_VPE_INSTANCES)
++					adev->vpe.num_instances++;
++				else
++					dev_err(adev->dev, "Too many VPE instances: %d vs %d\n",
++						adev->vpe.num_instances + 1,
++						AMDGPU_MAX_VPE_INSTANCES);
++			}
++
+ 			if (le16_to_cpu(ip->hw_id) == UMC_HWID) {
+ 				adev->gmc.num_umc++;
+ 				adev->umc.node_inst_num++;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
+index 1153ddaea64d6..ee6db04cf27be 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
+@@ -27,6 +27,8 @@
+ #include "amdgpu_irq.h"
+ #include "vpe_6_1_fw_if.h"
+ 
++#define AMDGPU_MAX_VPE_INSTANCES 2
++
+ struct amdgpu_vpe;
+ 
+ struct vpe_funcs {
+@@ -74,6 +76,8 @@ struct amdgpu_vpe {
+ 	uint32_t			*cmdbuf_cpu_addr;
+ 	struct delayed_work		idle_work;
+ 	bool				context_started;
++
++	uint32_t			num_instances;
+ };
+ 
+ int amdgpu_vpe_psp_update_sram(struct amdgpu_device *adev);
+-- 
+2.44.0
+
