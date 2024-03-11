@@ -2,54 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C515878FB6
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 09:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58840878119
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Mar 2024 14:59:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 188FC10FBB1;
-	Tue, 12 Mar 2024 08:30:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7217112AA1;
+	Mon, 11 Mar 2024 13:59:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="v4iEn+1n";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tfPtjYq3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE64E112A80;
- Mon, 11 Mar 2024 13:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1710164728;
- bh=etQPVIeGvQgyTSZasgOHIek7mA2WMk1LPG637qsf5+c=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=v4iEn+1nUs5M4IHZTU+k9h5Suiq7v0BGy8IwTM+3BIJQQo5iG+VJP/M/zKNFFGG3M
- QMCFj9cvEXmfJGoFiMBXcBeBz3pG2gwnZUCMb/ZV+EpQtWkasc8UPCsmiCWgcIiGEQ
- SrC9FeZ8DGaf+UtipLs4qa7VpufCVkzjpYgIwi6zOQcuOfgWX3RbnPS8R8b1MwfFPf
- C7SAuBk1vdvs7KbJMuW3Q5u/V7R0YcH2Z8lbe9wxG9LffcHHwXBT979NoG6ayZ4K5H
- pyoktUSgSLqCC05DKZya8aVNjiSS/Yl82N3cE6TEn+YPrJT4bq7GIHSdtCtz5HIZYJ
- fPrM/zCcN948A==
-Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1D5213780894;
- Mon, 11 Mar 2024 13:45:28 +0000 (UTC)
-Date: Mon, 11 Mar 2024 15:45:26 +0200
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <wayland-devel@lists.freedesktop.org>, Arthur Grillo
- <arthurgrillo@riseup.net>
-Subject: Re: [RFC PATCH v4 06/42] drm/vkms: Add kunit tests for VKMS LUT
- handling
-Message-ID: <20240311154526.1f8f6c4b.pekka.paalanen@collabora.com>
-In-Reply-To: <20240226211100.100108-7-harry.wentland@amd.com>
-References: <20240226211100.100108-1-harry.wentland@amd.com>
- <20240226211100.100108-7-harry.wentland@amd.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44566112A9F;
+ Mon, 11 Mar 2024 13:59:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gcusqxQY1nBbTh46uj44Ei2FIz/vFnJ3IHgCkNMU+ezpx8Y2yMgSFSaz8aMX/yJyulEIs+lMjeDN35iO2PneadKKEjgLHlBQ6Ym1X1W1OHypNd+hFT1Cvnc7dPAe5Qo1+cULmxfpy3evOIhuiuxUGer5k5OH//BElQnbi3kW7vO2Nq10CmrUtcJyWv5MVSfrvV+07wftD1t/7zjAccoomX2JwHmXcgYCd9duyiNDcA2kpLSOlPI9lP/7HQrA2Jf3y3b6iPQFqMFTrf5ptY5jZaCqX9rfVElEVyQRlKUUdv65jiB5yVyqRAG7OpxBR/W1HPSBM6QcWfygYMWaFNEmoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LEpA20NNDDBs75Ec8GcP8R1IC1Q0+KMRTGNo+rQIID0=;
+ b=Zh6/LTpb2yje1fABDvH8W+pJRq/xPFwrr0WS9AHnsUhgWHMZNp0MnHACM4vKXpyx+Sfz0Ch55GDWnbIGYj2M6CRYC2a5Rl2I9wwiENJjfF+IbAXo6EtXkf4sNN0SsMV+qVBjwZ29q0NRlZa5t12M+HkLZwJJVUwYbQvpMyRy+jjvq6kyvk7tBRlvwRH3h8z2+ax7OYQc14Hb24UL53OZPXGH7UaUMYS3jHxMVOAAnEH4VCxRrWdBgoUiFp7MhiReF+QsF3p6sXaqDNgMHv0Dv3ZJSLYQs5IQRFYUSqYX5kvOZwDrRlUHJGUfp8hAIb2amiWQCqAE71h93P6Px1Bk1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LEpA20NNDDBs75Ec8GcP8R1IC1Q0+KMRTGNo+rQIID0=;
+ b=tfPtjYq3oq1SVdRFC5qJ27H+wcffrDxsV3A8A1eP/25D1wPbL+0hoQ/MdM9WvsuIlmlD4tsKGmAKCYkkZCNfNFJ0l2HHwtzXTmoSx8OrDs7g1LjHuXyG349RhJTd7ZvKJpo2bR6KH719PyF87KCMSl+syH29t9/1b81wsYqFsjY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS0PR12MB8525.namprd12.prod.outlook.com (2603:10b6:8:159::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Mon, 11 Mar
+ 2024 13:59:33 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7362.031; Mon, 11 Mar 2024
+ 13:59:32 +0000
+Message-ID: <9e1dbcbc-f00e-417c-995e-d9c539292e03@amd.com>
+Date: Mon, 11 Mar 2024 14:59:27 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: add ring buffer information in devcoredump
+Content-Language: en-US
+To: Sunil Khatri <sunil.khatri@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Shashank Sharma <shashank.sharma@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20240311122212.13713-1-sunil.khatri@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240311122212.13713-1-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0192.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ab::11) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/3ma91tD+lI03d5cv3keYP/l";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-Mailman-Approved-At: Tue, 12 Mar 2024 08:30:06 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS0PR12MB8525:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1536601b-3968-42a2-f81a-08dc41d37a53
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eO12heOxhspDA7mnDtPt0q6fEqvI1rFuKetoaLs+C0dCRpH4BJrwLBQbYNd3n2wJ8vr9zxWpFKH2tt5F7IarVyUV5FOlWPPThPRrOhAOGurE2fX+rqu+e5RrIy0e5SBL1nLRL3SZlYTc6bT9I7LOxZMkpLmdxl3POENi5Xbu5p9xeBPuesPiiKwm429trKncPwurS/t+XJzsJ1iMfvcytDe7P78o+UBQ7p/RKVZFa7qP6uQ+CATOFLoQC4CdJhLy5wWG36Xez0kdC9XPbhPTjvapOpo2dSpcIe8b4df0pQGuwN608HcyZpqFYhF50qhuUrM1panIp4yEnDipMQeRnbdhAtPC0v6SjMLIvDhzhCgAaDfD9KKQmxrMUCyW2qXDPi3LO0Hzd6W+bzaeRpJ4pZH5ghDOXSUiwdC2kDD0ImQ4LsYQdJiBDnfpQ1EvD6snxyMlZPY/NaR0iWQtdCDwvRPtJCZ9IhN0ZC3rrnjfZunyKHRW4xHBfGathRZamefbLofK6Iz0QXgUOomnoiUlHcWBpTAFh8NQcCxIdPkR4CD6ra/CMihMEXbEE86QIdwruOH+dtNTtpsMg6V0fbP7xq/ZGLTM7M/fe6HhUjxaEKWwUgKl2i7yoVjvKlx/NFajCiGkLSkgErTuuRJGtBGJr3JByVVuZcRhaDCq0mSQaK0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2lTZlgwWmpMdHhqeTV6bW1PYWJrUitmZmhKUDFmcjh2NHF1THBvR0M2K3dS?=
+ =?utf-8?B?d3NCdUFnSzZRbU5lVk5qa3dSUHJyL0VEWFFpQmtYMWdnMzNhZnN5WncrOHVN?=
+ =?utf-8?B?b1dIamp6ZVhybHE1NFdudTBCKzRyZXhZRlR5SUFCOVVhSmMrdEtWN1c0MGlG?=
+ =?utf-8?B?RVE4TUJJLy9sYm44SUE5VkNRa2FxS1R1NmhGT3FBWUxJVUF4MWprRkcvNTht?=
+ =?utf-8?B?cmN6d1pTL1NnV29VSDUxa25jdXc3VjZyNGR3QmIxa2tyd2dmMkkyUXF1VVhu?=
+ =?utf-8?B?aC9DS0trTUhycGpsQWxLL2RyM1JpdnlNMjEvekU1YXpsQUtlRjd3Vnl2MXh2?=
+ =?utf-8?B?U0Q4RWJjSE1SOWp0RkRDQWMrWDBiNzJSNUwwYzRKSnNDc1dUbXJXSlFVU3Zj?=
+ =?utf-8?B?Zk8wdWR3WU1YNFFQa3FObG5wSG5nTHNqck5LZXVSRCswckN5NG96amFaS01S?=
+ =?utf-8?B?NTZwaGpJam1WRDd1L0E3UVgxSEtsOHY2ZkxnMnBlN2dCK1VjYW5tSk9VS3VX?=
+ =?utf-8?B?YTZkT3lienFRNEFXOVVQbmUzQjd5TGsxL3M5Mk5PRkVBcjBxMW9QOEpOQjFi?=
+ =?utf-8?B?Ylk0R2xNZmxOK0kwZVg4QzhFVkpKZ0w0ckEyaE1mQ3VZdGVGQSt1aEhVVnBa?=
+ =?utf-8?B?cVpCS241R3NBYlBmUXh6U2RwQnlYdE43Y3VoWlFHMTBlM3IxUXU0bGpPK1Za?=
+ =?utf-8?B?TG8ycTB4dDRkOTI1ZTlPazlIMEhpeEc3MGRQdGtUcXBQbkVQMmQydGN2T0E3?=
+ =?utf-8?B?NXJmYjd1MklkcmRVVjUzVXFYMklSeXRQcENpMGplTDBCbWpWckNJUmdQNXIx?=
+ =?utf-8?B?bHpZa1BtNjRtVk92cVRudjhmRitZK2pZMW5ZeThxMkRudzdsVmh0RlRicXRL?=
+ =?utf-8?B?Rmw5R25XQUhXL0w0Qlc3NnFTZFg4dHU5ZDEvemJjYXZSVlBDdy9yUVJZMzQw?=
+ =?utf-8?B?dFI4c2FRcXkxL2RDaW1IVGNKUnQyZzYvNEhNK2JJU2U2T0JDVzdjQ2lWbGVk?=
+ =?utf-8?B?RDhmZkZJSDlWU0podFRHQldpenJLaDRJbVFlVlliMkVjcnZnSUdwRTN4SEdx?=
+ =?utf-8?B?dUNTK3lTVUYrN0hLbW1jNzZ6ZXBHRmROTEZ5cUlTWC85WE54TXEyOUk0ZHkr?=
+ =?utf-8?B?UmQ0MHgyNGQ5OGY4ajVHRDJWTDF1N0VVMXZkT3UyZmtVL0VvYWhySXcwMHIx?=
+ =?utf-8?B?OEQzOW1PRXVKVTZwMmlnS0tnS3NyRzBHaUEyZCtZS3o1YzdtSVdwL21OYUxB?=
+ =?utf-8?B?NmNKamgzZ3phU1l3ZHBTT3VtV1pWRWJFTXRtQ1YrOEJpdDBtaFdoWU5zWVo4?=
+ =?utf-8?B?UW9GSmJnS3B4c0huMFUxOWdsKzMrQWdIUWRHRVQ4TU5SQy9XRy9TWDBUMWpJ?=
+ =?utf-8?B?SHdRRTBjUGlzbVh1OTZGcllKNk10bkRyWEJHQ21XRmRjc052bXRJaElCZFJz?=
+ =?utf-8?B?akRBc0h4VmFMN3NERVJYR0cxandPQjBDR3NZT1NFZ1g5ZVNOeXZrWTV2a2dY?=
+ =?utf-8?B?VEVJWjd6Y0xCU1BhQ25zVFh0aytSWUh5VytHQXZmd0J4WmN2TGJGSkxMM29X?=
+ =?utf-8?B?N29aVlc0cnJlUmdvREhnRlhPcmxnSDVLekNvcDA1NjAzNG8rb21DOWdDS3RK?=
+ =?utf-8?B?emp2RFRTUTlHQXhlYnB1UmxMYjYwNExycW1aVUlqQ0oyL3NOM056NDhZSWdY?=
+ =?utf-8?B?L3pUd2dCNWFPT2RQWjF3UTk4MVRhNS92RkdsYTBpKzlDWTNYTmlBMTR4UkJC?=
+ =?utf-8?B?eTZFcERzbEQrajBreTk4UkhLUUNSUDErU0RwT1NGUGpkT240WG9IN01nUWl4?=
+ =?utf-8?B?cTlIdDFrT3NjeDIwT3oyMzV6aHhMSHRCaDF0bFZmOTR5MlRQRDJKYmdoT1BS?=
+ =?utf-8?B?Z1dQaGQzTXRKNE8xQS9LcS9tcUd0MXhETDdyNEVLK0pQRXRtdXI2b2c2RWZp?=
+ =?utf-8?B?anNPL0FBQkZ1bGNGRmFYYjJyL1dySE9JeFZZakJTT0FwOE1JWjBFOE9SdGFp?=
+ =?utf-8?B?Q0dMeXBoZjE2NFhULzBTdUFqRXlGaGhETFhiSGJxWXNyQjZ0R1J4cGQzejdD?=
+ =?utf-8?B?VHdSdmxxNWduY2pGNDEzSDQ5OHEwb0tidTN5M1J6dERjODJxa1pHRTltYk5C?=
+ =?utf-8?Q?Rvlez9JwMhOKjKygZRJ9d2cA+?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1536601b-3968-42a2-f81a-08dc41d37a53
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 13:59:32.7210 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8RtJ1/CHr/w6dmeOtaxDOGuQSh1ygj82x/Q0wS/8OClJfMfLr6/Z/nEmzAsmF55r
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8525
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,328 +131,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/3ma91tD+lI03d5cv3keYP/l
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, 26 Feb 2024 16:10:20 -0500
-Harry Wentland <harry.wentland@amd.com> wrote:
 
-> Debugging LUT math is much easier when we can unit test
-> it. Add kunit functionality to VKMS and add tests for
->  - get_lut_index
->  - lerp_u16
->=20
-> v4:
->  - Test the critical points of the lerp function (Pekka)
->=20
-> v3:
->  - Use include way of testing static functions (Arthur)
->=20
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-> Cc: Arthur Grillo <arthurgrillo@riseup.net>
+Am 11.03.24 um 13:22 schrieb Sunil Khatri:
+> Add relevant ringbuffer information such as
+> rptr, wptr, ring name, ring size and also
+> the ring contents for each ring on a gpu reset.
+>
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 > ---
->  drivers/gpu/drm/vkms/Kconfig                  |   5 +
->  drivers/gpu/drm/vkms/tests/.kunitconfig       |   4 +
->  drivers/gpu/drm/vkms/tests/vkms_color_tests.c | 163 ++++++++++++++++++
->  drivers/gpu/drm/vkms/vkms_composer.c          |   8 +-
->  4 files changed, 178 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/gpu/drm/vkms/tests/.kunitconfig
->  create mode 100644 drivers/gpu/drm/vkms/tests/vkms_color_tests.c
->=20
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+> index 6d059f853adc..1992760039da 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+> @@ -215,6 +215,27 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+>   			   fault_info->status);
+>   	}
+>   
+> +	drm_printf(&p, "Ring buffer information\n");
+> +	for (int i = 0; i < coredump->adev->num_rings; i++) {
+> +		int j = 0;
+> +		struct amdgpu_ring *ring = coredump->adev->rings[i];
+> +
+> +		drm_printf(&p, "ring name: %s\n", ring->name);
+> +		drm_printf(&p, "Rptr: 0x%llx Wptr: 0x%llx\n",
+> +			   amdgpu_ring_get_rptr(ring) & ring->buf_mask,
+> +			   amdgpu_ring_get_wptr(ring) & ring->buf_mask);
 
-Hi Harry,
+Don't apply the mask here. We do have some use cases where the rptr and 
+wptr are outside the ring buffer.
 
-since fixed point math is hard, please allow me to nitpick so maybe
-these patches could be landed ahead of time.
+> +		drm_printf(&p, "Ring size in dwords: %d\n",
+> +			   ring->ring_size / 4);
 
-> diff --git a/drivers/gpu/drm/vkms/Kconfig b/drivers/gpu/drm/vkms/Kconfig
-> index b9ecdebecb0b..c1f8b343ff0e 100644
-> --- a/drivers/gpu/drm/vkms/Kconfig
-> +++ b/drivers/gpu/drm/vkms/Kconfig
-> @@ -13,3 +13,8 @@ config DRM_VKMS
->  	  a VKMS.
-> =20
->  	  If M is selected the module will be called vkms.
-> +
-> +config DRM_VKMS_KUNIT_TESTS
-> +	tristate "Tests for VKMS" if !KUNIT_ALL_TESTS
-> +	depends on DRM_VKMS && KUNIT
-> +	default KUNIT_ALL_TESTS
-> diff --git a/drivers/gpu/drm/vkms/tests/.kunitconfig b/drivers/gpu/drm/vk=
-ms/tests/.kunitconfig
-> new file mode 100644
-> index 000000000000..70e378228cbd
-> --- /dev/null
-> +++ b/drivers/gpu/drm/vkms/tests/.kunitconfig
-> @@ -0,0 +1,4 @@
-> +CONFIG_KUNIT=3Dy
-> +CONFIG_DRM=3Dy
-> +CONFIG_DRM_VKMS=3Dy
-> +CONFIG_DRM_VKMS_KUNIT_TESTS=3Dy
-> diff --git a/drivers/gpu/drm/vkms/tests/vkms_color_tests.c b/drivers/gpu/=
-drm/vkms/tests/vkms_color_tests.c
-> new file mode 100644
-> index 000000000000..fc73e48aa57c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/vkms/tests/vkms_color_tests.c
-> @@ -0,0 +1,163 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +
-> +#include <kunit/test.h>
-> +
-> +#include <drm/drm_fixed.h>
-> +
-> +#define TEST_LUT_SIZE 16
-> +
-> +static struct drm_color_lut test_linear_array[TEST_LUT_SIZE] =3D {
-> +	{ 0x0, 0x0, 0x0, 0 },
-> +	{ 0x1111, 0x1111, 0x1111, 0 },
-> +	{ 0x2222, 0x2222, 0x2222, 0 },
-> +	{ 0x3333, 0x3333, 0x3333, 0 },
-> +	{ 0x4444, 0x4444, 0x4444, 0 },
-> +	{ 0x5555, 0x5555, 0x5555, 0 },
-> +	{ 0x6666, 0x6666, 0x6666, 0 },
-> +	{ 0x7777, 0x7777, 0x7777, 0 },
-> +	{ 0x8888, 0x8888, 0x8888, 0 },
-> +	{ 0x9999, 0x9999, 0x9999, 0 },
-> +	{ 0xaaaa, 0xaaaa, 0xaaaa, 0 },
-> +	{ 0xbbbb, 0xbbbb, 0xbbbb, 0 },
-> +	{ 0xcccc, 0xcccc, 0xcccc, 0 },
-> +	{ 0xdddd, 0xdddd, 0xdddd, 0 },
-> +	{ 0xeeee, 0xeeee, 0xeeee, 0 },
-> +	{ 0xffff, 0xffff, 0xffff, 0 },
-> +};
-> +
-> +const struct vkms_color_lut test_linear_lut =3D {
-> +	.base =3D test_linear_array,
-> +	.lut_length =3D TEST_LUT_SIZE,
-> +	.channel_value2index_ratio =3D 0xf000fll
+Rather print the mask as additional value here.
 
-Where does 0xf000f come from? Could it be computed from DRM_FIXED_ONE
-and ARRAY_LENGTH()?
+> +		drm_printf(&p, "Ring contents\n");
+> +		drm_printf(&p, "Offset \t Value\n");
+> +
+> +		while (j < ring->ring_size) {
+> +			drm_printf(&p, "0x%x \t 0x%x\n", j, ring->ring[j/4]);
+> +			j += 4;
+> +		}
 
-> +};
-> +
-> +
-> +static void vkms_color_test_get_lut_index(struct kunit *test)
-> +{
-> +	int i;
-> +
-> +	KUNIT_EXPECT_EQ(test, drm_fixp2int(get_lut_index(&test_linear_lut, test=
-_linear_array[0].red)), 0);
-> +
-> +	for (i =3D 0; i < TEST_LUT_SIZE; i++)
-> +		KUNIT_EXPECT_EQ(test, drm_fixp2int_ceil(get_lut_index(&test_linear_lut=
-, test_linear_array[i].red)), i);
+> +		drm_printf(&p, "Ring dumped\n");
 
-Why this instead of
+That seems superfluous.
 
-+	for (i =3D 0; i < TEST_LUT_SIZE; i++)
-+		KUNIT_EXPECT_EQ(test, get_lut_index(&test_linear_lut, test_linear_array[=
-i].red), drm_int2fixp(i));
+Regards,
+Christian.
 
-and
+> +	}
+> +
+>   	if (coredump->reset_vram_lost)
+>   		drm_printf(&p, "VRAM is lost due to GPU reset!\n");
+>   	if (coredump->adev->reset_info.num_regs) {
 
-+	for (i =3D 0; i < 0xffff; i++)
-+		KUNIT_EXPECT_EQ(test, drm_fixp2int(get_lut_index(&test_linear_lut, i)), =
-i / 0x1111);
-
-?
-
-I think your original form is leaving quite much room for error in
-precision.
-
-> +}
-> +
-> +static void vkms_color_test_lerp(struct kunit *test)
-> +{
-> +	/*** half-way round down ***/
-> +	s64 t =3D 0x80000000 - 1;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x8);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x8);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0x8);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x10);
-> +
-> +
-> +	/*** half-way round up ***/
-> +	t =3D 0x80000000;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x8);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x9);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0x8);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x11);
-> +
-> +	/*** t =3D 0.0 ***/
-> +	t =3D 0x0;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x0);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x1);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0x1);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x10);
-> +
-> +	/*** t =3D 1.0 ***/
-> +	t =3D 0x100000000;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x10);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x10);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0xf);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x11);
-> +
-> +
-> +	/*** t =3D 0.0 + 1 ***/
-> +	t =3D 0x0 + 1;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x0);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x1);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0x1);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x10);
-> +
-> +	/*** t =3D 1.0 - 1 ***/
-> +	t =3D 0x100000000 - 1;
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x10, t), 0x10);
-> +
-> +	/* odd a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0x10, t), 0x10);
-> +
-> +	/* odd b */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x1, 0xf, t), 0xf);
-> +
-> +	/* b =3D a */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x10, t), 0x10);
-> +
-> +	/* b =3D a + 1 */
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x10, 0x11, t), 0x11);
-> +
-> +
-> +	/*** t chosen to verify the flipping point of result a (or b) to a+1 (o=
-r b-1) ***/
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x1, 0x80000000 - 1), 0x0);
-> +	KUNIT_EXPECT_EQ(test, lerp_u16(0x0, 0x1, 0x80000000), 0x1);
-
-What about b =3D 0xfffd also? The smaller number in b, and especially in
-b - a, the more precision error the rounding will forgive.
-
-> +}
-> +
-> +static struct kunit_case vkms_color_test_cases[] =3D {
-> +	KUNIT_CASE(vkms_color_test_get_lut_index),
-> +	KUNIT_CASE(vkms_color_test_lerp),
-> +	{}
-> +};
-> +
-> +static struct kunit_suite vkms_color_test_suite =3D {
-> +	.name =3D "vkms-color",
-> +	.test_cases =3D vkms_color_test_cases,
-> +};
-> +kunit_test_suite(vkms_color_test_suite);
-> +
-> +MODULE_LICENSE("GPL");
-> \ No newline at end of file
-> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
-vkms_composer.c
-> index e70cd473e3be..d178f2a400f6 100644
-> --- a/drivers/gpu/drm/vkms/vkms_composer.c
-> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
-> @@ -91,7 +91,7 @@ static void fill_background(const struct pixel_argb_u16=
- *background_color,
->  }
-> =20
->  // lerp(a, b, t) =3D a + (b - a) * t
-> -static u16 lerp_u16(u16 a, u16 b, s64 t)
-> +u16 lerp_u16(u16 a, u16 b, s64 t)
->  {
->  	s64 a_fp =3D drm_int2fixp(a);
->  	s64 b_fp =3D drm_int2fixp(b);
-> @@ -101,7 +101,7 @@ static u16 lerp_u16(u16 a, u16 b, s64 t)
->  	return drm_fixp2int_round(a_fp + delta);
-
-Given the past, I guess it wouldn't hurt if all drm fixp functions had
-a few tests of their own.
-
-
-Thanks,
-pq
-
->  }
-> =20
-> -static s64 get_lut_index(const struct vkms_color_lut *lut, u16 channel_v=
-alue)
-> +s64 get_lut_index(const struct vkms_color_lut *lut, u16 channel_value)
->  {
->  	s64 color_channel_fp =3D drm_int2fixp(channel_value);
-> =20
-> @@ -429,3 +429,7 @@ int vkms_set_crc_source(struct drm_crtc *crtc, const =
-char *src_name)
-> =20
->  	return ret;
->  }
-> +
-> +#ifdef CONFIG_DRM_VKMS_KUNIT_TESTS
-> +#include "tests/vkms_color_tests.c"
-> +#endif
-
-
---Sig_/3ma91tD+lI03d5cv3keYP/l
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXvCvYACgkQI1/ltBGq
-qqd0Hg//cupZg7EUEcGvadI9RT13UFBDy/nncgdbp1qQw9c9b1+sKhn90aTSA0jz
-4TKULCnuNco2I/HrNk+U/ftNDIV9L5/YSk+iYmvn3c+PgkK7lwsvkUARZZTJiixV
-GRZopuJifTnvwTlLGUJ70+coVfySznKnycSs2S1wVN8GdquMB+G0v/zxSe1XDkJi
-lYqZBJwAugm3he2aCddtGAgd0mlUwJr9jM0s+VdPyOAzsVritzFMEbGTwgaqDRSm
-H45dNpwVgbkDY8zVhrheX0PhidWKa4iM6UkXzs77AAEKaFv0Sy9vuhN4Jzuzao4g
-3GXvmko9+0Y2xf02BvDhbB58j7OEq8YkmKpGO0RiuymGZ0pmQDgeeiAjWD537b1W
-aooj4cUjjjj7/tb46tsjhh1r0tidqng2SAnpDEG8vj8KKWIwlmMBm5TEhOqLf942
-6FP23kZNsvKAfq70Z8vaRdBjdfTKCoZnFfHNDKcIfBFnbcjd0+bI5TYqsfDT91QX
-aEBDQ/iM6OMmFGMsu2gjWEtlRTvSWASoJaRUxZUQwhUqFiD4bjVn1+/xEuafg9iu
-dh4jZZWtp7Jcgr9TaA+0AwWAqvJjtbJjejSwqqHopu3Iu23M/R9Rv/LIz4+0bQ0K
-1hD/mF9CfiqOnpVYzq34Nqx9q++8ScnHJ64hvamja2RLymNEV0A=
-=2rEQ
------END PGP SIGNATURE-----
-
---Sig_/3ma91tD+lI03d5cv3keYP/l--
