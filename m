@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7A08790B2
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 10:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE498790B3
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 10:23:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67EC3112B70;
-	Tue, 12 Mar 2024 09:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B4A9112BB0;
+	Tue, 12 Mar 2024 09:23:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QAx+Z35M";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bBxIc+uu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2068.outbound.protection.outlook.com [40.107.94.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3592D112B70
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 09:22:54 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2056.outbound.protection.outlook.com [40.107.223.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F407B112B9C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 09:22:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oIL5h+XVYTPUvlh/9NrxVvvOkz72tLvnEFp2x0H9tlEio8BlOC/D1Ph3ahVuQ60sF0U3seu6DUfTPeehRlU7ppbZtjQptpq+L7e16Wk2mQ7KeFk+l3qvo0L0KETqKiZTtu5NaI0IXaxQ5b2EJiNTCZD8kBWR0fIkLYegt6xgltAX1cPseYDv04BKnctn0PDOEhVYenKXJEi+PLtFpB48hNH20iVf8pMEGCOULhWAN3dT1+nhE+ELM7H2qOjh8co6r3VU7B4RDlbqMxE0nBk/Bbwhd4p0yI4aEOpqLU6VkxbaZNV1O8dFPSg8B2dWTimq1RZOURG7kW+69bO+0PkcoA==
+ b=ac+OHf/RnMMLgR2DojEZr2Wm7wU5zdLHQRdJinVMR8OmmgNF0OK2cRdP3J5pj0BfBtUkZ08zM0Qz4i0I47vVYqmn6T9FDZaXy5CGg0ck7atL+UO3jX/rJN9yjOGSZ2AZII6q5/53ILUHH42oUC0hNJZOJSN9MAGcC8SBUnzpPpfGlknzu8nxa2taqiZsZ0f/IvDdz+HmKDx4h9NdqxYsi4q793JsKqhGeh8Ao3GyAsRVksJZ+jMytCPofhVWlJbMVlGVjUpUFX2Zh58hZVaTZWKkjeN/91Pn9dRpvnkbA3seGBrmIfJ+G78vUB4az7XmwdYIjhhEOMk3B2dJ4VresA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K3mLN2J6qclXAs+v9AjzhMfDbz2CuNGqOx6BM1uCBIU=;
- b=dF/iObggNGtQQkCeR9wIak91SXXsdFsuN0ftujMXFqX/RNgohnh/NEd908nEp7jmp/6Sp1kPDSM+C8sBZEQ6IbVxrb6sgV+1ZfSgTlGyZvJxoEbzWiqU0Ymk/pmiJ2HLNHCT42RIveN7W1cvCBbbpdpzwzQ9VrCGhb7s+dEiYsEgBHTQOI3EvzElK2fo+W8bEl001chDriq9HElV1D9GITFC/LIUkpOiw4ilmsF3wD4VIWVdCp2YnbAd6uYIFOcKHR16gYA5Cm8liwv+MLpbbIhEKBD31Z+CUuEOl+38YjG8VzS0j323lyjQwgu0qH32baZ648R0eObsZH8RVP+JSw==
+ bh=yeEwH61QSCJrCA9n12hElk61jZH2AOFHI+cQVIZc5Us=;
+ b=RahhxzWEWIxlDROKzGWAQL28aXSwtveEyUdPf2IcenQ5T4lc1jNoaTSAuDTyCYoTuifOU4a6che9PnMzwkQRWVKT22wqePggsIRTrbIeIP7XQqSyZ1yJI5IcPIf9RMKbshaNnzpREGF3u0YntDMZymGOitCQRc++5WDgh4FIX8xF10JNLIjqy7C/Grr3vlZopZcMUS6sBIigmGxQqv0+ajqY0PTCF0Z6fYGz045VUsJTbPCzixjhbNYmuf+jOSFQhQCZt7uFSsZYjZoxsvBIFt6jrABmAM1cpz+TmGKSJbJstzmls1TxVxJ3B+UZRv0buA1DxhoPmlxK2iJZulh8Wg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K3mLN2J6qclXAs+v9AjzhMfDbz2CuNGqOx6BM1uCBIU=;
- b=QAx+Z35M0zRAk/H2dje2KNbUaW4BD/xgHo9G7mlD7CEhOatgKGLHFQ4L87vAOF27RWmaFcgqOzmiql+sJM3jLm3XNd4DlyipWRD7lE4PkhxgJl9mvAM5DwybIKwUfNQpR95DuOM8fyzWZwVF02UAtR93UEjMaveKEI7BjftzltU=
-Received: from DM6PR03CA0021.namprd03.prod.outlook.com (2603:10b6:5:40::34) by
- MW4PR12MB7189.namprd12.prod.outlook.com (2603:10b6:303:224::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Tue, 12 Mar
- 2024 09:22:49 +0000
-Received: from DS2PEPF00003441.namprd04.prod.outlook.com
- (2603:10b6:5:40:cafe::2) by DM6PR03CA0021.outlook.office365.com
- (2603:10b6:5:40::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36 via Frontend
- Transport; Tue, 12 Mar 2024 09:22:49 +0000
+ bh=yeEwH61QSCJrCA9n12hElk61jZH2AOFHI+cQVIZc5Us=;
+ b=bBxIc+uuIvygeesGnDK2nalzDJYMmL9Iy28SIXqd0wyzcPIjk2JM5Ktlyz1LGL4vD1lI4/Q3rHaB35qy73Lr4IC1kmK6SH9hGp+YJeKeOlsqTyTVxN1kNq+yEnjrUpDnYvwoogqzV5YWb5hiIRhgPLti3xUY8LPYKxU7Z2gJfR4=
+Received: from CH2PR15CA0010.namprd15.prod.outlook.com (2603:10b6:610:51::20)
+ by PH7PR12MB6667.namprd12.prod.outlook.com (2603:10b6:510:1a9::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.32; Tue, 12 Mar
+ 2024 09:22:55 +0000
+Received: from DS2PEPF00003446.namprd04.prod.outlook.com
+ (2603:10b6:610:51:cafe::60) by CH2PR15CA0010.outlook.office365.com
+ (2603:10b6:610:51::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18 via Frontend
+ Transport; Tue, 12 Mar 2024 09:22:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,27 +48,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003441.mail.protection.outlook.com (10.167.17.68) with Microsoft
+ DS2PEPF00003446.mail.protection.outlook.com (10.167.17.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7386.12 via Frontend Transport; Tue, 12 Mar 2024 09:22:49 +0000
+ 15.20.7386.12 via Frontend Transport; Tue, 12 Mar 2024 09:22:54 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 12 Mar
- 2024 04:22:48 -0500
+ 2024 04:22:54 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 12 Mar 2024 04:22:44 -0500
+ Transport; Tue, 12 Mar 2024 04:22:49 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Zhongwei
- <zhongwei.zhang@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 18/43] drm/amd/display: To adjust dprefclk by down spread
- percentage
-Date: Tue, 12 Mar 2024 17:20:11 +0800
-Message-ID: <20240312092036.3283319-19-Wayne.Lin@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Nicholas Susanto
+ <nicholas.susanto@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 19/43] drm/amd/display: Enabling urgent latency adjustment for
+ DCN35
+Date: Tue, 12 Mar 2024 17:20:12 +0800
+Message-ID: <20240312092036.3283319-20-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20240312092036.3283319-1-Wayne.Lin@amd.com>
 References: <20240312092036.3283319-1-Wayne.Lin@amd.com>
@@ -79,26 +79,26 @@ Received-SPF: None (SATLEXMB04.amd.com: Wayne.Lin@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003441:EE_|MW4PR12MB7189:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78330e43-53c1-4a84-03ee-08dc4275fc61
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003446:EE_|PH7PR12MB6667:EE_
+X-MS-Office365-Filtering-Correlation-Id: f87fe07f-634b-4e3e-a974-08dc4275ffd4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h2lQ+mINMkfP4CL2Sga2arJlqsDMuTjlKhm4QAW8Gjrjq8Eq/dvYzFyMxeHVRm7gs34PJGAxMePhbVB3v3CyEwJ74MqXWmDoEoFX+L0OEfKANWnhE6PFP6kQFzHl/+nYM1EAP7aMKt7V/OEpLUuih8O/Xb11H7IB7d3ZNRfWRjkgGR5D6iXT317lQ+6rtjvEi/l2h0ea5T6ji4SkZuaCvCd4fC+U/F0K+brIKShNrOelSJZ7bQasiXmW+aEB16PAbB0N8vWP/wRVfH/iR9p7AT7pAFmCI/z8W93A0I3VbnAUIRez9E0cF3DXj2t7wit8OUzL81GpmkOrLs36t6O1kji4a6GKFZsPIUv65oLAIoK94B7sNRNEzioBCC4N1+B53wju89o/fG9xOV1fgCYA56/2glkvd/mkMg9lIHmEadlp4NOsC+leICGuiur2pjbCte0eHIXet8kkuQyJAgxkKZLXIvTAMZk4e3liKXci4gZRk+0irmAoET4TvRM3jx/U8DLvM/nAPtVzqNL/iCrxrHDOBN/wcZBiKtY6gkKu6dXADKwn4XUj8MKLBgRcW0ixjx0lXraiEvHf/vSyJYY3CSSpZHtHarVk/V1/lXIHthxVER6eY2fl8F6V6wix76wMnjkdJi6nk7BdXjhi44icZ6SGpWUnoO+N/hUp9jm89CvQhjkwR0C52ARIzlsugYHRe0y0JxAcxOYwCNTuMsbjBcBOiWQ6cf0xvzptykeBLpvnCjUoFfk6ifIEG03NBG02
+X-Microsoft-Antispam-Message-Info: MJXWhUPIUwvoIy1Od4ek1kBSucqAYWuJpasrC0401h9IWVW3k/yKwmOGQo4NA0uWIXReOrBPvZlsJeZ8X7DHvW9ItkqFXEN5MtOcaFt5C8dwCYtKWeWiumA2wqzZXVosZbHmFSdwX0UPqlTvsZ03pcKgm4RhBG4Eg3Ffzw/YX9++69Z64/QzSyD+hsve2XoUC5dXkIm10TWToPX0WwygnCpfmDdsYTV3BFiIJVBz+PNVQkPoVjGz6px/yJWlWQnttgtRLZdBDFlcshl1luL5rbjVM06HvNFOVm+SuVB0LY0y+hPmWm17V/V6Ek34GYDCq7pjM62IHFAEyq+IEFE7tBDiaHNUvvqDi0j/SK3vMnwzehElPdOHasr12uB9ZRVNRw8hgdjOOZ4nAYA2CHt3lR2l8IPARfnCjBHM9XTNGnE0O3IITO4+jwX7BLhekRyO9zx0zw3gjh4vC7EG2IH3sCGR0smqf1IjHZhtqDFqFdTkTafOMkblc6hAnUIiCzyoR+xr0r1i0AK5Rrcm4692r/+hQ5HxqdKGZwhXjS+6rkxakb8A7mDTCFPjfWJbwPCDPfqct+cd+ak8+zm0pqPrQ+o2gV3noC2l7aJHs81bhivXNAQ2TZvBwIqJwJVifUMMpPaM/XCP0tG/g2mHSKftiKIbJ8UnmQ/k1rnDbsoWUm9uYg/0BVgjJCiXDL4d8ZFeezxvuikUrWQSnxbQQHhO/K37vPNC+7l+HSLu8XujDB9lIcASZF2P0blY2dRr0E4W
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005); DIR:OUT;
+ SFS:(13230031)(376005)(36860700004)(1800799015)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 09:22:49.1653 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78330e43-53c1-4a84-03ee-08dc4275fc61
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 09:22:54.9720 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f87fe07f-634b-4e3e-a974-08dc4275ffd4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003441.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003446.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7189
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6667
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,112 +113,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Zhongwei <zhongwei.zhang@amd.com>
+From: Nicholas Susanto <nicholas.susanto@amd.com>
 
 [Why]
-OLED panels show no display for large vtotal timings.
+
+Underflow occurs when running netflix in a 4k144 eDP + 4k60 setup.
+Increasing DCFCLK or urgent latency watermark fixes the issue. Implementing
+this workaround for now while we figure out why this is happenning in DCN.
 
 [How]
-Check if spread spectrum is enabled and read from lut for spread spectrum
-percentage. Adjust dprefclk as required.
+
+Enable urgent latency adjustment and match the reference to existing ASIC
+that also see increased latency at low FCLK.
 
 Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Zhongwei <zhongwei.zhang@amd.com>
+Signed-off-by: Nicholas Susanto <nicholas.susanto@amd.com>
 ---
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index c6030bed95a0..96c3562276f4 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -73,6 +73,12 @@
- #define CLK1_CLK2_BYPASS_CNTL__CLK2_BYPASS_SEL_MASK		0x00000007L
- #define CLK1_CLK2_BYPASS_CNTL__CLK2_BYPASS_DIV_MASK		0x000F0000L
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
+index 80bebfc268db..4d7bcda8ef72 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn35/dcn35_fpu.c
+@@ -195,9 +195,9 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_5_soc = {
+ 	.dcn_downspread_percent = 0.5,
+ 	.gpuvm_min_page_size_bytes = 4096,
+ 	.hostvm_min_page_size_bytes = 4096,
+-	.do_urgent_latency_adjustment = 0,
++	.do_urgent_latency_adjustment = 1,
+ 	.urgent_latency_adjustment_fabric_clock_component_us = 0,
+-	.urgent_latency_adjustment_fabric_clock_reference_mhz = 0,
++	.urgent_latency_adjustment_fabric_clock_reference_mhz = 3000,
+ };
  
-+#define regCLK5_0_CLK5_spll_field_8				0x464b
-+#define regCLK5_0_CLK5_spll_field_8_BASE_IDX	0
-+
-+#define CLK5_0_CLK5_spll_field_8__spll_ssc_en__SHIFT	0xd
-+#define CLK5_0_CLK5_spll_field_8__spll_ssc_en_MASK		0x00002000L
-+
- #define REG(reg_name) \
- 	(ctx->clk_reg_offsets[reg ## reg_name ## _BASE_IDX] + reg ## reg_name)
- 
-@@ -410,6 +416,17 @@ static void dcn35_dump_clk_registers(struct clk_state_registers_and_bypass *regs
- {
- }
- 
-+static bool dcn35_is_spll_ssc_enabled(struct clk_mgr *clk_mgr_base)
-+{
-+	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
-+	struct dc_context *ctx = clk_mgr->base.ctx;
-+	uint32_t ssc_enable;
-+
-+	REG_GET(CLK5_0_CLK5_spll_field_8, spll_ssc_en, &ssc_enable);
-+
-+	return ssc_enable == 1;
-+}
-+
- static void init_clk_states(struct clk_mgr *clk_mgr)
- {
- 	uint32_t ref_dtbclk = clk_mgr->clks.ref_dtbclk_khz;
-@@ -424,7 +441,16 @@ static void init_clk_states(struct clk_mgr *clk_mgr)
- 
- void dcn35_init_clocks(struct clk_mgr *clk_mgr)
- {
-+	struct clk_mgr_internal *clk_mgr_int = TO_CLK_MGR_INTERNAL(clk_mgr);
- 	init_clk_states(clk_mgr);
-+
-+	// to adjust dp_dto reference clock if ssc is enable otherwise to apply dprefclk
-+	if (dcn35_is_spll_ssc_enabled(clk_mgr))
-+		clk_mgr->dp_dto_source_clock_in_khz =
-+			dce_adjust_dp_ref_freq_for_ss(clk_mgr_int, clk_mgr->dprefclk_khz);
-+	else
-+		clk_mgr->dp_dto_source_clock_in_khz = clk_mgr->dprefclk_khz;
-+
- }
- static struct clk_bw_params dcn35_bw_params = {
- 	.vram_type = Ddr4MemType,
-@@ -513,6 +539,28 @@ static DpmClocks_t_dcn35 dummy_clocks;
- 
- static struct dcn35_watermarks dummy_wms = { 0 };
- 
-+static struct dcn35_ss_info_table ss_info_table = {
-+	.ss_divider = 1000,
-+	.ss_percentage = {0, 0, 375, 375, 375}
-+};
-+
-+static void dcn35_read_ss_info_from_lut(struct clk_mgr_internal *clk_mgr)
-+{
-+	struct dc_context *ctx = clk_mgr->base.ctx;
-+	uint32_t clock_source;
-+
-+	REG_GET(CLK1_CLK2_BYPASS_CNTL, CLK2_BYPASS_SEL, &clock_source);
-+
-+	if (dcn35_is_spll_ssc_enabled(&clk_mgr->base) && (clock_source < ARRAY_SIZE(ss_info_table.ss_percentage))) {
-+		clk_mgr->dprefclk_ss_percentage = ss_info_table.ss_percentage[clock_source];
-+
-+		if (clk_mgr->dprefclk_ss_percentage != 0) {
-+			clk_mgr->ss_on_dprefclk = true;
-+			clk_mgr->dprefclk_ss_divider = ss_info_table.ss_divider;
-+		}
-+	}
-+}
-+
- static void dcn35_build_watermark_ranges(struct clk_bw_params *bw_params, struct dcn35_watermarks *table)
- {
- 	int i, num_valid_sets;
-@@ -1057,6 +1105,8 @@ void dcn35_clk_mgr_construct(
- 	dce_clock_read_ss_info(&clk_mgr->base);
- 	/*when clk src is from FCH, it could have ss, same clock src as DPREF clk*/
- 
-+	dcn35_read_ss_info_from_lut(&clk_mgr->base);
-+
- 	clk_mgr->base.base.bw_params = &dcn35_bw_params;
- 
- 	if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
+ void dcn35_build_wm_range_table_fpu(struct clk_mgr *clk_mgr)
 -- 
 2.37.3
 
