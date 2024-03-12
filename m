@@ -2,52 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9567E87A43A
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Mar 2024 09:50:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD1D879789
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 16:29:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1099410F702;
-	Wed, 13 Mar 2024 08:50:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA81E10F49D;
+	Tue, 12 Mar 2024 15:29:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="B1mvUxd4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="W2SZf3V+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B486D10E06C;
- Tue, 12 Mar 2024 15:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1710257254;
- bh=ueGqMyU8LdG1VrYuRqTqRDBACthQtZHAgLXZ2oJ42os=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=B1mvUxd4Mven6r26gNJDAHpNxCh2HuuiOxq4KOFlX5T7oV4uNkGmLbpGOm8ATfZlF
- 32g/OG+vyOnDinaEyhgfeiILwuS+0PFjnGv/5adWsXrh51Ep1ViUiu3loUg8dPmq1V
- S8jeOiHeAO82v+yjJwESTHR9vGpzZGXQKoIQY5g9Nu4EvQkXn7WEZfQLX9wB7oY85j
- Y2osiMRKcLFA6j02QZdSM6ON7K/N+RkwiVQhjQWfzPUlUwzX4cVskZEp4CKsxgK3vR
- VsfNM+0rUKcjqx8YRaktCu9grzaB4TpQRMhuT8k7fTVhYdjCjcCopRaThfIJJLzBbQ
- o+SWW6r8mSjuQ==
-Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12F8C37813DC;
- Tue, 12 Mar 2024 15:27:34 +0000 (UTC)
-Date: Tue, 12 Mar 2024 17:27:32 +0200
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <wayland-devel@lists.freedesktop.org>, Alex Hung <alex.hung@amd.com>
-Subject: Re: [RFC PATCH v4 17/42] drm/vkms: Add enumerated 1D curve colorop
-Message-ID: <20240312172732.68b58a70.pekka.paalanen@collabora.com>
-In-Reply-To: <20240226211100.100108-18-harry.wentland@amd.com>
-References: <20240226211100.100108-1-harry.wentland@amd.com>
- <20240226211100.100108-18-harry.wentland@amd.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2055.outbound.protection.outlook.com [40.107.244.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC3A10F49D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 15:29:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DtwtgjvDjj/p8/Rc5upwRE/oFew7Hf9xZppE92CU2woPnbPFKj/bBkA0Xqyijwk82kHW/CSnBwNjd5A7+6BhXLh5nL03zLwrCZWyA8UB2aI22urfaYgehUt9MmDoE+oNo7ZnYuyDqxd8U3Zj/zfRUDXqraJUictDm/jenWCyieFUr/2UsjMKzmQO3kCBg2Wm+yHX1SvQVFwHaOLgzGz1ZkbS+6aJyrWIs636BCZwQ8nxWKMKaPAI5iynjr+DSJzPBkxCLoNCovGnjXoui2fZpDVnK0lWsQeszRda5kp3dMPhVXRmeEJ7WvvWiyEJ/YURW5ZbCD8TU6SU70FemEM78Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LSwYcmeCNJMPQO4OIl3XfiI4V8dWNn8qA4GWHzyXFYM=;
+ b=mJlrHH3GJjxwxNwdmAVg2I4yxmiah7oXepJXpRqBgY3G1YEzZg/x/GllJTq1CB6Rve+J22iDVg8W2XbnRMyTAw7+XON71NuaN0AKr+ag64Djps5XmvsOTlc8RzpJGuwfDh+PBbZKXlZkEKk1232qSn78eY1PyiKU5r+Vq0u9aVjjT0tWMhUbZfpT1Oc0r71+bPxiMJ/vgd+MfrxCJxYLFz6Qs6Ov8L6QpmbdHkvYwx+dz1uQ1ABIDLLUkMaEfs/gYTURHVYHcP+zD3pMzMr6WlJx7f2+giiMRSrK4T/22W36uu8Vg0dCZnZbncI7sOdxpUuX4gc03mLaaaBCU1eD8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LSwYcmeCNJMPQO4OIl3XfiI4V8dWNn8qA4GWHzyXFYM=;
+ b=W2SZf3V+nNvoP23/LRwv1yrIVBXsajXNtXCVKx+jIFXPWOfqQm7APA79a8Lt5VaWBvDNY7fHHogJAncGtm5+4fFDoQ4MEoOOmO+zgIJUBW0YAL9kERkT2OmJ064+4gkIMiNvupLCa1ngTvbjLNxQL7C9Ze52TlnjkiQtZIPaHT0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by PH7PR12MB6906.namprd12.prod.outlook.com (2603:10b6:510:1b8::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Tue, 12 Mar
+ 2024 15:29:01 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::8d12:60ee:8dfb:daef]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::8d12:60ee:8dfb:daef%4]) with mapi id 15.20.7362.035; Tue, 12 Mar 2024
+ 15:29:01 +0000
+Message-ID: <97384480-823f-47c2-8d9d-53d6ca4b890b@amd.com>
+Date: Tue, 12 Mar 2024 11:28:57 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Get min/max vfreq from display_info
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20240312134728.14046-1-harry.wentland@amd.com>
+ <CADnq5_OsR1VpobKpDLhr+uKSBT05MUs42B1_PbazRT=P7AyASw@mail.gmail.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <CADnq5_OsR1VpobKpDLhr+uKSBT05MUs42B1_PbazRT=P7AyASw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBPR0101CA0178.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:f::21) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/d8C4qKOBpZDLf74P_bsanmm";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-Mailman-Approved-At: Wed, 13 Mar 2024 08:50:20 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|PH7PR12MB6906:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85b3107c-adbd-4121-767a-08dc42a9247f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Kp4HbYHf6w8I7iBBFg1GcNdh5PLx52WPH1r5EWCdcVZziyma6JwingPyfoP/TLs8PyQHHCemi/w0vKfwf5YvmjRVDbS9NJF1QfL6jIeZI+7FwX0SR3MPTpGD6KuVViUReNRt0Xatoctqyh3sprtL1kjfBy0GpuhFAipZxJuGse1zEM245fwRSU6PdEBxNvb/c95GHsjmR5QFeSN3+P0VgWhFQD7P0SferKG9MBg6Hr4MHN7UjerBtS8zri/1+h4wEY00T+Muc4hKu8WmUMwH5apTZsbf1D6xGLapseZzxPISMCH0OZZ2PCn7yYQ/EFigxWYx0eg9gS2L7kHjvSVRpesPy690cbjDbJSpOBGeYCzqcK7dDBxwlbTC3R9H0d0CMkCvkWjfxLEK1iSvzeiLm7JrUaRm+xx+aMPvVgdszc6+bRRXYkBqH5+hALd4qQDXQTUNbov7jTAcAhlH7PLXoGZYjStfaUh8rUhbyEz3EW/cE7wJB94BkcfyvPF2m22QBKYPDKSOO0PP5eawaUYfYrNIStdeIkAy+mtZ7mYX6BOragXRSvL5KfH0XlsOyHuQAm3NaXNwYpKPN20v6hAcGpI7wcHVchWw2v7H7U2ckBxisa9rg7vMAeNSuuUhUqqYrnkDRzNb0V/boKXgHwTocfRqJr5ZcQDZQsY0y52zxx0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0hUemZuOWVWY2JjbXc3bit4bG1BZGF6NHFtY2ZiUkxKNEpTdUJueG1zOUFI?=
+ =?utf-8?B?R2ZORU5kc2krUnBabHcyaSt5UnlhRlh4bmFvSTlvT05UdkpVYVVzMlNwVUxL?=
+ =?utf-8?B?WlZrakl1V2c4UXdNQVRZS0tocTFoc2NqaGR1cVNOQXZVZHlNOHlBMDVXZGNU?=
+ =?utf-8?B?UW1FdzRmUEZ2alZPb1QvWW9WMks1OGVmRWxlUFpsR0lrNG1WNDlMZlRRczVy?=
+ =?utf-8?B?QTJOVDExL3dvdnlKOVhZbk5saUlRSHhuK09sZ2FuVFV1QWlzakpIZTZjeVds?=
+ =?utf-8?B?dFdBRGk4RzQ1VmlJdExyRGZ0ellUQ3grLzUwUDR0OFNuaVVGc3ZmdHVEOVZJ?=
+ =?utf-8?B?VHNNODF5cmUxYWs1TllIODJ5dGV0TysxK1lnWmtXSTdNWWZGcytIMncrYmsv?=
+ =?utf-8?B?VzJnK2M0NXBsOWpiM0JUaXNoWS9ITTdKQXhJaXVsMUhKUE9VVnNTS0FGOTRp?=
+ =?utf-8?B?NGdCekdUYnMzU0RRMEZnWWZ3bHRYbjQ1clV1UndkZmFNc0ZGRWo1bXZVVmV5?=
+ =?utf-8?B?MThucGt1WS8rZFg2clBnMkR1ejFxK2NiK0M5SmtWYVllVy9QZk9kSERqVUYz?=
+ =?utf-8?B?Znc2MHAvcjFsQnRiSE5WUWJFRHpUWTd0REliOTdDcUJpZUxLUWw2VmYreHA5?=
+ =?utf-8?B?NGJXSVhOMXdKaVZleEgyN2hudGJkRXhFRzFUY2lvYmxTdW55WTBURUh3NDdm?=
+ =?utf-8?B?VldiMzJwQWozaFBkRkw1NlRLZHladlBPdGhZZkdqRjJqVDgrL3hDWllhaTVh?=
+ =?utf-8?B?U3pmMWluSFRSWXJNZEJSV2RQNkFqbC9sd3dxaUlVNjRORUxDSUZWdTYwWmNr?=
+ =?utf-8?B?S3A3RVBBa1FwREd1Q1RGNjMvZHY2ZkVua002QTlHcEd6d1Fmc0YvaC9sdG16?=
+ =?utf-8?B?VGdRZXdSSGdsTHNvcUJyUEdlbVgzTTE2YXdzVm9uNktpMER2TGVURzRlbWZz?=
+ =?utf-8?B?Q1lxSy9pOXY3dmdEbStFUGo4VVNLTTJjWlR0VGZpU2dSdFRjNktRTDE4VEVT?=
+ =?utf-8?B?bFdYcThidmxGak5aU3lHM25oYXhTV3dBY2dtd05wVTVPamJ6dHhmMGFxUnFi?=
+ =?utf-8?B?T1dEbGFJSTdTamZtT3JPdCtDTTBjYmg2MUVHVzFSRnBJMUFLVGFTei9JWmVa?=
+ =?utf-8?B?Um9wOVNLUWk4cDJDeDE4OWM1VGNMNGNDdFRTVktzRVdNYnJOUWFJMkJUU1FE?=
+ =?utf-8?B?TitVQ3FaMm1OZEpwNGY4ZkIxLzcxRnViU041RCtqb0hjb2NoWEkvUU5tZUdT?=
+ =?utf-8?B?dDFtMWRKNHVaTDFqbVJTR3JwRTh6K3ZUbm1USXFQWVR3Y003NUNOTk5zcXlQ?=
+ =?utf-8?B?Z2lIcUttNUdneHZCSTg4aGRwdHZma3pxeUtxeGNtdVJ2OFpWS2ZDTmplQWho?=
+ =?utf-8?B?TVRNVGtjcGpIZGJJTjc1RDVmR0laenU0K2c2ZGdhandqdVA5eDNHMUhyZGd5?=
+ =?utf-8?B?anlaU2lMYktPTUgzUkduS2h1a0JGV21OUW1FR3d3cit5TEZOTVU3bmdxMEVR?=
+ =?utf-8?B?K0FjMkFOeVNBQzY0b01QQStXcGd1Nld5VEdUb0tkZE8vR3NhYitqWXI3MVQ5?=
+ =?utf-8?B?V1NqZDUvVStNT0ZCL3ZMaUl3eGJKYVkxNjREMDJvOGVxNXhwa0xOSjlZYk02?=
+ =?utf-8?B?SmNjekpzbXJ6V3lzaXgvdmRsUlNGVGl5MzFBTHdUd3pwYWQ5ellSdDlVK3dy?=
+ =?utf-8?B?TmN2RVpxbTBLMVlRcDNCU0pWRHRUVjY2cWt6Y1VjZWpxZE1Vc1M2S0NCUHc3?=
+ =?utf-8?B?NmJZejVHV0RVbHdjNXFRektrcHBxYVV6ZzA5all1MlIxMUFjL1dCa3Y0OXhz?=
+ =?utf-8?B?bDU1OWcwbERneUdTTDVjWExTM2dQTWhEMGduQTN3cy9KUzBYMER5YmtiM25i?=
+ =?utf-8?B?NC9LT0hPOXVrL2RSWG5HbXp2UjZHKzBZdTFpNy9Na08xZWlvcHNPb3FaSE5C?=
+ =?utf-8?B?aGM2b0FZRk9lK3RhZy9BU3pxOWkyYjlDanVOOS9CTGNiNk5jRVVvekFVdlJa?=
+ =?utf-8?B?NVBoWUIvV3NDbnRkZml1dTJ2VXFXd1pOKy9vcWlDUy9KUGFTL3BiUmorRzdI?=
+ =?utf-8?B?T0NTSElOZ3Y5YzhNQ0s0K0FBaUZwMlY4S3dockMxZUVSb1g3Wi9HSjRmcWpN?=
+ =?utf-8?Q?31vRzYqGg8SmM5XqokKsXsXtQ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85b3107c-adbd-4121-767a-08dc42a9247f
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 15:29:01.1134 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qx3omfTzBted0XoenxFT90wROLUjruCGCWMEc2a4xM+cMZ+c0G87rF1ccSv6bEeq5kjLxBCSUwiiZZDmL+3CWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6906
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,204 +129,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/d8C4qKOBpZDLf74P_bsanmm
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, 26 Feb 2024 16:10:31 -0500
-Harry Wentland <harry.wentland@amd.com> wrote:
-
-> This patch introduces a VKMS color pipeline that includes two
-> drm_colorops for named transfer functions. For now the only ones
-> supported are sRGB EOTF, sRGB Inverse EOTF, and a Linear TF.
-> We will expand this in the future but I don't want to do so
-> without accompanying IGT tests.
->=20
-> We introduce a new vkms_luts.c file that hard-codes sRGB EOTF,
-> sRGB Inverse EOTF, and a linear EOTF LUT. These have been
-> generated with 256 entries each as IGT is currently testing
-> only 8 bpc surfaces. We will likely need higher precision
-> but I'm reluctant to make that change without clear indication
-> that we need it. We'll revisit and, if necessary, regenerate
-> the LUTs when we have IGT tests for higher precision buffers.
->=20
-> v4:
->  - Drop _tf_ from color_pipeline init function
->  - Pass supported TFs into colorop init
->  - Create bypass pipeline in DRM helper (Pekka)
->=20
-> v2:
->  - Add commit description
->  - Fix sRGB EOTF LUT definition
->  - Add linear and sRGB inverse EOTF LUTs
->=20
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> ---
->  drivers/gpu/drm/vkms/Makefile        |   4 +-
->  drivers/gpu/drm/vkms/vkms_colorop.c  |  70 +++
->  drivers/gpu/drm/vkms/vkms_composer.c |  45 ++
->  drivers/gpu/drm/vkms/vkms_drv.h      |   4 +
->  drivers/gpu/drm/vkms/vkms_luts.c     | 802 +++++++++++++++++++++++++++
->  drivers/gpu/drm/vkms/vkms_luts.h     |  12 +
->  drivers/gpu/drm/vkms/vkms_plane.c    |   2 +
->  7 files changed, 938 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
->  create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
->  create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
-
-...
-
-> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
-vkms_composer.c
-> index b90e446d5954..9493bdb1ba3f 100644
-> --- a/drivers/gpu/drm/vkms/vkms_composer.c
-> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
-> @@ -12,6 +12,7 @@
->  #include <linux/minmax.h>
-> =20
->  #include "vkms_drv.h"
-> +#include "vkms_luts.h"
-> =20
->  static u16 pre_mul_blend_channel(u16 src, u16 dst, u16 alpha)
->  {
-> @@ -163,6 +164,47 @@ static void apply_lut(const struct vkms_crtc_state *=
-crtc_state, struct line_buff
->  	}
->  }
-> =20
-> +static void pre_blend_color_transform(const struct vkms_plane_state *pla=
-ne_state, struct line_buffer *output_buffer)
-> +{
-> +	struct drm_colorop *colorop =3D plane_state->base.base.color_pipeline;
-> +
-> +	while (colorop) {
-
-I think this would be easier to read if you used
-
-	for (; colorop; colorop =3D colorop->next) {
-
-and
-
-> +		struct drm_colorop_state *colorop_state;
-> +
-> +		if (!colorop)
-> +			return;
-> +
-> +		/* TODO this is probably wrong */
-> +		colorop_state =3D colorop->state;
-> +
-> +		if (!colorop_state)
-> +			return;
-
-	if (colorop_state->bypass)
-		continue;
-
-Something about 'switch (colorop->type)' to pick a function pointer to
-call, but hard to see at this point of the series how that would work.
-
-However, you can pick between srgb_inv_eotf and srgb_eotf already here.
-Then inside the loop you can just call one set of
-apply_lut_to_channel_value() and not need conditionals and avoid
-indentation levels.
-
-> +
-> +		for (size_t x =3D 0; x < output_buffer->n_pixels; x++) {
-> +			struct pixel_argb_u16 *pixel =3D &output_buffer->pixels[x];
-> +
-> +			if (colorop->type =3D=3D DRM_COLOROP_1D_CURVE &&
-> +				colorop_state->bypass =3D=3D false) {
-> +				switch (colorop_state->curve_1d_type) {
-> +					case DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF:
-> +						pixel->r =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->r, =
-LUT_RED);
-> +						pixel->g =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->g, =
-LUT_GREEN);
-> +						pixel->b =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->b, =
-LUT_BLUE);
-> +						break;
-> +					case DRM_COLOROP_1D_CURVE_SRGB_EOTF:
-> +					default:
-> +						pixel->r =3D apply_lut_to_channel_value(&srgb_eotf, pixel->r, LUT_=
-RED);
-> +						pixel->g =3D apply_lut_to_channel_value(&srgb_eotf, pixel->g, LUT_=
-GREEN);
-> +						pixel->b =3D apply_lut_to_channel_value(&srgb_eotf, pixel->b, LUT_=
-BLUE);
-> +						break;
-> +				}
-> +			}
-
-else { aaargh_unknown_colorop(); }
-
-> +		}
-> +
-> +		colorop =3D colorop->next;
-> +	}
-> +}
-
-...
-
-> diff --git a/drivers/gpu/drm/vkms/vkms_luts.c b/drivers/gpu/drm/vkms/vkms=
-_luts.c
-> new file mode 100644
-> index 000000000000..6553d6d442b4
-> --- /dev/null
-> +++ b/drivers/gpu/drm/vkms/vkms_luts.c
-> @@ -0,0 +1,802 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +
-> +#include <drm/drm_mode.h>
-> +
-> +#include "vkms_drv.h"
-> +#include "vkms_luts.h"
-> +
-
-Here it would be really nice to explain how the tables were generated.
-
-> +static struct drm_color_lut linear_array[LUT_SIZE] =3D {
-> +	{ 0x0, 0x0, 0x0, 0 },
-
-...
-
-> +	{ 0xffff, 0xffff, 0xffff, 0 },
-> +};
-> +
-> +const struct vkms_color_lut linear_eotf =3D {
-> +	.base =3D linear_array,
-> +	.lut_length =3D LUT_SIZE,
-
-Why not use just 2 table entries for the linear array?
-
-I didn't see linear_eotf used at all? It could also just skip in the
-code, not need an array.
-
-> +	.channel_value2index_ratio =3D 0xff00ffll
-> +};
 
 
-Thanks,
-pq
+On 2024-03-12 10:58, Alex Deucher wrote:
+> On Tue, Mar 12, 2024 at 9:57 AM Harry Wentland <harry.wentland@amd.com> wrote:
+>>
+>> We need the min/max vfreq on the amdgpu_dm_connector in order to
+>> program VRR.
+>>
+>> Fixes: db3e4f1cbb84 ("drm/amd/display: Use freesync when `DRM_EDID_FEATURE_CONTINUOUS_FREQ` found")
+>> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+>> ---
+>>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 +++++--
+>>  1 file changed, 5 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index b1ca0aee0b30..cffb2655177c 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -11278,12 +11278,15 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+>>
+>>                 if (is_dp_capable_without_timing_msa(adev->dm.dc,
+>>                                                      amdgpu_dm_connector)) {
+>> -                       if (edid->features & DRM_EDID_FEATURE_CONTINUOUS_FREQ)
+>> +                       if (edid->features & DRM_EDID_FEATURE_CONTINUOUS_FREQ) {
+>>                                 freesync_capable = true;
+>> -                       else
+>> +                               amdgpu_dm_connector->min_vfreq = connector->display_info.monitor_range.min_vfreq;
+>> +                               amdgpu_dm_connector->max_vfreq = connector->display_info.monitor_range.max_vfreq;
+> 
+> Does this need special handling for DRM_EDID_RANGE_OFFSET_MIN_VFREQ
+> and DRM_EDID_RANGE_OFFSET_MAX_VFREQ as well (similar to the code below
+> it)?
+> 
 
---Sig_/d8C4qKOBpZDLf74P_bsanmm
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+get_monitor_range in drm_edid.c already handles it. I'm actually wondering
+if the "else" and "edid_check_required" case is still required now, as it
+essentially just duplicates the drm_edid code. But I don't want to rip it
+out in the same patch and without a bit of testing.
 
------BEGIN PGP SIGNATURE-----
+Harry
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXwdGQACgkQI1/ltBGq
-qqdYoQ//UaMaoW/CEU2QwU8iCYM/6T86SYJVkRIzv50dSvbtLzoLb2qg0KLCbptM
-269CrVj2R1s6f4JQPH8zYokxzVHfTZRp0eHurQIYFi3yXSPvsOlgC9i1LODPEGFj
-ZcN3j0Iw1B+VGk+RG2Tgmunrjhv5RmMHvFdAoyynHrN3qh009JrfjQAOD3tPn2lk
-QY159zt9UFoEotg0HWBZ+DLMu+KO/zVK060rpWczKXYB3R3lmuFHRKQumFkozJtT
-7Snh7aSzLQkbfLY52CwAjiNmDUvieObDGFEEd/5lMOa6C3QSS1A7w9m/TQwfzeGj
-EMskQPe5tT8eigec2vklBk+xCvz9JBzU2Zl2pm39XXNxaB4BQMQbx0262IWvSWZh
-W6TpDVYEX7rp0uOQU/lqlTEO8A3Di1SWzohocV5+eNYUEKzAbJXiI1EGZxxbHpiC
-C8q8bwW/9/R+UCV1IkghfHzwWxWngAUpX3Hjmj/USjrqMVEtky9UWlsXCOlN5iCy
-n7RtfWeXu0ALXJmFcx+d16IEhPrfwncEB3nCVaCilyFzxC2Zd/k2GnKiSgdISvuT
-wJ9tAgj73HNX+e8ps3N1yzkR+R3Oi1UDtHObS3XE5jSk0IyawMiSdL8BozEVHa3g
-ivNzYIoCczvoFDjvM4ir8EklmyOkR6m6dNRWRArPfGLSVNaqXCQ=
-=wtFW
------END PGP SIGNATURE-----
+> Alex
+> 
+>> +                       } else {
+>>                                 edid_check_required = edid->version > 1 ||
+>>                                                       (edid->version == 1 &&
+>>                                                        edid->revision > 1);
+>> +                       }
+>>                 }
+>>
+>>                 if (edid_check_required) {
+>> --
+>> 2.44.0
+>>
 
---Sig_/d8C4qKOBpZDLf74P_bsanmm--
