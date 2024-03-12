@@ -2,101 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1457F879776
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 16:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9567E87A43A
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Mar 2024 09:50:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBB5112401;
-	Tue, 12 Mar 2024 15:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1099410F702;
+	Wed, 13 Mar 2024 08:50:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="chcMDwsn";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="B1mvUxd4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2052.outbound.protection.outlook.com [40.107.244.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 324D7112401
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 15:24:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ec7pDWBb3PR04MrGOSP6bvX3slUQ5in+bPI3eaWmXgyHQvqei1NTaaJwyRiY1zomfH3OeZKj9p+AImLuF8hz2KOyUUNbc41mD1tVsVs+qsQ6BOKFRSK8yzECtlsDHkMlIe0lcW3pxP6esPkVouGK+qzN+mvSb6807EhKQ6JCmf2Jz0ob0DCECcOn+sEE19JsMfNYFCr8+w9KHtPcHGe94y6OoIUthLTzXMYZvZn4nlW8FkM0O492Ry5JunwxkE39IxpCbDUaCma8h8IaLx4tgYR30KgTh2NOViav4tp54C93HjZ4VkVqVJjsorQWafEecm9lixeKI8UXV+XqjC2lzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2S0dOsZcJrShJFsxrXH16MKEisKz5VXxd3EegTXbjwg=;
- b=CS4eypr+8GNpRr0h26wCz5vnin4RtrtYZnLzz4HqwckNkNc2k+A52mjIrpsAthrCrYMnBg60xq+0F111iDSD+7w1gemUXmbwEKYEV+4kiKUPKzU2DyBZlwSd5Gw+kNxApdExF0gcOcI2ApyDQJnNHh1+Nhyy3pUa4StNRf0TwaP45LZ7yRpY+HqfQ+T5oPzloihWeLi2YSfQ75dWKb21rVkUnM2xnxXwzRU97N/l5LUYL19q3ar7Nn99hOnX42vwBqoGKF7MnqUfg4I/qYRASyZOv0y4VLRgi3HFGoSFk2bYHXS/8SOfGMfYElzJant1QT1KpPLf8vwW9eBFGpiQig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2S0dOsZcJrShJFsxrXH16MKEisKz5VXxd3EegTXbjwg=;
- b=chcMDwsnDOP/oRWXP3nYfKxf2LA0njBZgtkuTsOqwj2H3VjDjVr08TcvNUjNTs4VG+O0FoXLYIscrp2SY6UhO5kZW/rsPyFz9Xq8kreEA0T4LB06LykUD+kfl6w3jeB6gZc+k6v135PN55Il/S0tUZiiq0X06ja4cwlXu5b+yIk=
-Received: from CH2PR18CA0025.namprd18.prod.outlook.com (2603:10b6:610:4f::35)
- by SA3PR12MB7974.namprd12.prod.outlook.com (2603:10b6:806:307::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Tue, 12 Mar
- 2024 15:24:29 +0000
-Received: from CH2PEPF00000140.namprd02.prod.outlook.com
- (2603:10b6:610:4f:cafe::78) by CH2PR18CA0025.outlook.office365.com
- (2603:10b6:610:4f::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36 via Frontend
- Transport; Tue, 12 Mar 2024 15:24:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CH2PEPF00000140.mail.protection.outlook.com (10.167.244.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7386.12 via Frontend Transport; Tue, 12 Mar 2024 15:24:28 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 12 Mar
- 2024 10:24:28 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 12 Mar
- 2024 10:24:27 -0500
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 12 Mar 2024 10:24:27 -0500
-From: Harry Wentland <harry.wentland@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH] Revert "drm/amd/display: Fix sending VSC (+ colorimetry)
- packets for DP/eDP displays without PSR"
-Date: Tue, 12 Mar 2024 11:24:25 -0400
-Message-ID: <20240312152425.171452-1-harry.wentland@amd.com>
-X-Mailer: git-send-email 2.44.0
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B486D10E06C;
+ Tue, 12 Mar 2024 15:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1710257254;
+ bh=ueGqMyU8LdG1VrYuRqTqRDBACthQtZHAgLXZ2oJ42os=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=B1mvUxd4Mven6r26gNJDAHpNxCh2HuuiOxq4KOFlX5T7oV4uNkGmLbpGOm8ATfZlF
+ 32g/OG+vyOnDinaEyhgfeiILwuS+0PFjnGv/5adWsXrh51Ep1ViUiu3loUg8dPmq1V
+ S8jeOiHeAO82v+yjJwESTHR9vGpzZGXQKoIQY5g9Nu4EvQkXn7WEZfQLX9wB7oY85j
+ Y2osiMRKcLFA6j02QZdSM6ON7K/N+RkwiVQhjQWfzPUlUwzX4cVskZEp4CKsxgK3vR
+ VsfNM+0rUKcjqx8YRaktCu9grzaB4TpQRMhuT8k7fTVhYdjCjcCopRaThfIJJLzBbQ
+ o+SWW6r8mSjuQ==
+Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 12F8C37813DC;
+ Tue, 12 Mar 2024 15:27:34 +0000 (UTC)
+Date: Tue, 12 Mar 2024 17:27:32 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <wayland-devel@lists.freedesktop.org>, Alex Hung <alex.hung@amd.com>
+Subject: Re: [RFC PATCH v4 17/42] drm/vkms: Add enumerated 1D curve colorop
+Message-ID: <20240312172732.68b58a70.pekka.paalanen@collabora.com>
+In-Reply-To: <20240226211100.100108-18-harry.wentland@amd.com>
+References: <20240226211100.100108-1-harry.wentland@amd.com>
+ <20240226211100.100108-18-harry.wentland@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: harry.wentland@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000140:EE_|SA3PR12MB7974:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61e33aa4-a4aa-4823-36ca-08dc42a8824c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GYGe6M0HApJt7EMhYhpEkCV4QDfjaicm0L/InE6C82De93XT6FELwnnXMLttOdGoJ0Vrk5krg3N7cmrBQrbaevuX9mNF2yg6JiY+2UYQiiE1j+y+0SrsNLtbFcSk7IDm+HKumm/qu4KRBE8uE7RQOMCvIytZ4KEfNc/5jhAHAlMReI2JyUejKJzLWSylVaAPIjAwEoeUf6xFa/ImJO+UND2yCB2jVP7PZrq6s6/2HPTbtmCIYhiGNl5OBlp8/R/HrGY/GUhwvvR7YfWuO+PN3GhvIDtpu+9CB6Y5R6yvHBEH/knagyYU15cDoYgWnI7uiiAW9W+zvS1jNknaibOz/JHYYVwjpWT7Kmly93Adli5pnpFXvYfxcxQP02facKhrfVyLYSpR47JPlnSkX9yS5+8bu7Igpvw9+6rTouU6ctqVo7WO5S/fU9dvuItOad0nDj3oWZE/9FKfUYuDEAWJyQl4nMytXB2T0b9uilFdB1kemjUQwcdL0O0hp9iA3efViGttWqxShx0tBU1QKKurlzEOmHDrpbD0WbuWm/5dSaRz/K3dt2cl6F6nZ6KkFCf4b43GgqRcuCVR/haqI48AdJhzW+4DyfoJpDkRXa3eNo/W019tEdwKkr3zzYgcr6NWkP32yu4N//FqpHJLAwQAoMvjrQqMfP1AH1Wja63BCDb5rjnX+zlhwhuX5AEOurlDYDiwZo5JxVKEj4OlZ3FLKQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 15:24:28.7114 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61e33aa4-a4aa-4823-36ca-08dc42a8824c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000140.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7974
+Content-Type: multipart/signed; boundary="Sig_/d8C4qKOBpZDLf74P_bsanmm";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Wed, 13 Mar 2024 08:50:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,75 +62,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This causes flicker on a bunch of eDP panels. The info_packet code
-also caused regressions on other OSes that we haven't' seen on Linux
-yet, but that is likely due to the fact that we haven't had a chance
-to test those environments on Linux.
+--Sig_/d8C4qKOBpZDLf74P_bsanmm
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-We'll need to revisit this.
+On Mon, 26 Feb 2024 16:10:31 -0500
+Harry Wentland <harry.wentland@amd.com> wrote:
 
-This reverts commit bfd4e0b7eb4467f9db5bb37268565afec6cf513e.
+> This patch introduces a VKMS color pipeline that includes two
+> drm_colorops for named transfer functions. For now the only ones
+> supported are sRGB EOTF, sRGB Inverse EOTF, and a Linear TF.
+> We will expand this in the future but I don't want to do so
+> without accompanying IGT tests.
+>=20
+> We introduce a new vkms_luts.c file that hard-codes sRGB EOTF,
+> sRGB Inverse EOTF, and a linear EOTF LUT. These have been
+> generated with 256 entries each as IGT is currently testing
+> only 8 bpc surfaces. We will likely need higher precision
+> but I'm reluctant to make that change without clear indication
+> that we need it. We'll revisit and, if necessary, regenerate
+> the LUTs when we have IGT tests for higher precision buffers.
+>=20
+> v4:
+>  - Drop _tf_ from color_pipeline init function
+>  - Pass supported TFs into colorop init
+>  - Create bypass pipeline in DRM helper (Pekka)
+>=20
+> v2:
+>  - Add commit description
+>  - Fix sRGB EOTF LUT definition
+>  - Add linear and sRGB inverse EOTF LUTs
+>=20
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> Signed-off-by: Alex Hung <alex.hung@amd.com>
+> ---
+>  drivers/gpu/drm/vkms/Makefile        |   4 +-
+>  drivers/gpu/drm/vkms/vkms_colorop.c  |  70 +++
+>  drivers/gpu/drm/vkms/vkms_composer.c |  45 ++
+>  drivers/gpu/drm/vkms/vkms_drv.h      |   4 +
+>  drivers/gpu/drm/vkms/vkms_luts.c     | 802 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/vkms/vkms_luts.h     |  12 +
+>  drivers/gpu/drm/vkms/vkms_plane.c    |   2 +
+>  7 files changed, 938 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/vkms/vkms_colorop.c
+>  create mode 100644 drivers/gpu/drm/vkms/vkms_luts.c
+>  create mode 100644 drivers/gpu/drm/vkms/vkms_luts.h
 
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3207
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3151
-Signed-off-by: Harry Wentland <harry.wentland@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   |  8 +++-----
- .../amd/display/modules/info_packet/info_packet.c   | 13 +++++--------
- 2 files changed, 8 insertions(+), 13 deletions(-)
+...
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index cffb2655177c..6a61eb4148ad 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6302,9 +6302,8 @@ create_stream_for_sink(struct drm_connector *connector,
- 
- 	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
- 		mod_build_hf_vsif_infopacket(stream, &stream->vsp_infopacket);
--	else if (stream->signal == SIGNAL_TYPE_DISPLAY_PORT ||
--			 stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST ||
--			 stream->signal == SIGNAL_TYPE_EDP) {
-+
-+	if (stream->link->psr_settings.psr_feature_enabled || stream->link->replay_settings.replay_feature_enabled) {
- 		//
- 		// should decide stream support vsc sdp colorimetry capability
- 		// before building vsc info packet
-@@ -6320,9 +6319,8 @@ create_stream_for_sink(struct drm_connector *connector,
- 		if (stream->out_transfer_func->tf == TRANSFER_FUNCTION_GAMMA22)
- 			tf = TRANSFER_FUNC_GAMMA_22;
- 		mod_build_vsc_infopacket(stream, &stream->vsc_infopacket, stream->output_color_space, tf);
-+		aconnector->psr_skip_count = AMDGPU_DM_PSR_ENTRY_DELAY;
- 
--		if (stream->link->psr_settings.psr_feature_enabled)
--			aconnector->psr_skip_count = AMDGPU_DM_PSR_ENTRY_DELAY;
- 	}
- finish:
- 	dc_sink_release(sink);
-diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-index 738ee763f24a..84f9b412a4f1 100644
---- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-+++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-@@ -147,15 +147,12 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
- 	}
- 
- 	/* VSC packet set to 4 for PSR-SU, or 2 for PSR1 */
--	if (stream->link->psr_settings.psr_feature_enabled) {
--		if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
--			vsc_packet_revision = vsc_packet_rev4;
--		else if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_1)
--			vsc_packet_revision = vsc_packet_rev2;
--	}
--
--	if (stream->link->replay_settings.config.replay_supported)
-+	if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
- 		vsc_packet_revision = vsc_packet_rev4;
-+	else if (stream->link->replay_settings.config.replay_supported)
-+		vsc_packet_revision = vsc_packet_rev4;
-+	else if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_1)
-+		vsc_packet_revision = vsc_packet_rev2;
- 
- 	/* Update to revision 5 for extended colorimetry support */
- 	if (stream->use_vsc_sdp_for_colorimetry)
--- 
-2.44.0
+> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
+vkms_composer.c
+> index b90e446d5954..9493bdb1ba3f 100644
+> --- a/drivers/gpu/drm/vkms/vkms_composer.c
+> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/minmax.h>
+> =20
+>  #include "vkms_drv.h"
+> +#include "vkms_luts.h"
+> =20
+>  static u16 pre_mul_blend_channel(u16 src, u16 dst, u16 alpha)
+>  {
+> @@ -163,6 +164,47 @@ static void apply_lut(const struct vkms_crtc_state *=
+crtc_state, struct line_buff
+>  	}
+>  }
+> =20
+> +static void pre_blend_color_transform(const struct vkms_plane_state *pla=
+ne_state, struct line_buffer *output_buffer)
+> +{
+> +	struct drm_colorop *colorop =3D plane_state->base.base.color_pipeline;
+> +
+> +	while (colorop) {
 
+I think this would be easier to read if you used
+
+	for (; colorop; colorop =3D colorop->next) {
+
+and
+
+> +		struct drm_colorop_state *colorop_state;
+> +
+> +		if (!colorop)
+> +			return;
+> +
+> +		/* TODO this is probably wrong */
+> +		colorop_state =3D colorop->state;
+> +
+> +		if (!colorop_state)
+> +			return;
+
+	if (colorop_state->bypass)
+		continue;
+
+Something about 'switch (colorop->type)' to pick a function pointer to
+call, but hard to see at this point of the series how that would work.
+
+However, you can pick between srgb_inv_eotf and srgb_eotf already here.
+Then inside the loop you can just call one set of
+apply_lut_to_channel_value() and not need conditionals and avoid
+indentation levels.
+
+> +
+> +		for (size_t x =3D 0; x < output_buffer->n_pixels; x++) {
+> +			struct pixel_argb_u16 *pixel =3D &output_buffer->pixels[x];
+> +
+> +			if (colorop->type =3D=3D DRM_COLOROP_1D_CURVE &&
+> +				colorop_state->bypass =3D=3D false) {
+> +				switch (colorop_state->curve_1d_type) {
+> +					case DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF:
+> +						pixel->r =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->r, =
+LUT_RED);
+> +						pixel->g =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->g, =
+LUT_GREEN);
+> +						pixel->b =3D apply_lut_to_channel_value(&srgb_inv_eotf, pixel->b, =
+LUT_BLUE);
+> +						break;
+> +					case DRM_COLOROP_1D_CURVE_SRGB_EOTF:
+> +					default:
+> +						pixel->r =3D apply_lut_to_channel_value(&srgb_eotf, pixel->r, LUT_=
+RED);
+> +						pixel->g =3D apply_lut_to_channel_value(&srgb_eotf, pixel->g, LUT_=
+GREEN);
+> +						pixel->b =3D apply_lut_to_channel_value(&srgb_eotf, pixel->b, LUT_=
+BLUE);
+> +						break;
+> +				}
+> +			}
+
+else { aaargh_unknown_colorop(); }
+
+> +		}
+> +
+> +		colorop =3D colorop->next;
+> +	}
+> +}
+
+...
+
+> diff --git a/drivers/gpu/drm/vkms/vkms_luts.c b/drivers/gpu/drm/vkms/vkms=
+_luts.c
+> new file mode 100644
+> index 000000000000..6553d6d442b4
+> --- /dev/null
+> +++ b/drivers/gpu/drm/vkms/vkms_luts.c
+> @@ -0,0 +1,802 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +
+> +#include <drm/drm_mode.h>
+> +
+> +#include "vkms_drv.h"
+> +#include "vkms_luts.h"
+> +
+
+Here it would be really nice to explain how the tables were generated.
+
+> +static struct drm_color_lut linear_array[LUT_SIZE] =3D {
+> +	{ 0x0, 0x0, 0x0, 0 },
+
+...
+
+> +	{ 0xffff, 0xffff, 0xffff, 0 },
+> +};
+> +
+> +const struct vkms_color_lut linear_eotf =3D {
+> +	.base =3D linear_array,
+> +	.lut_length =3D LUT_SIZE,
+
+Why not use just 2 table entries for the linear array?
+
+I didn't see linear_eotf used at all? It could also just skip in the
+code, not need an array.
+
+> +	.channel_value2index_ratio =3D 0xff00ffll
+> +};
+
+
+Thanks,
+pq
+
+--Sig_/d8C4qKOBpZDLf74P_bsanmm
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXwdGQACgkQI1/ltBGq
+qqdYoQ//UaMaoW/CEU2QwU8iCYM/6T86SYJVkRIzv50dSvbtLzoLb2qg0KLCbptM
+269CrVj2R1s6f4JQPH8zYokxzVHfTZRp0eHurQIYFi3yXSPvsOlgC9i1LODPEGFj
+ZcN3j0Iw1B+VGk+RG2Tgmunrjhv5RmMHvFdAoyynHrN3qh009JrfjQAOD3tPn2lk
+QY159zt9UFoEotg0HWBZ+DLMu+KO/zVK060rpWczKXYB3R3lmuFHRKQumFkozJtT
+7Snh7aSzLQkbfLY52CwAjiNmDUvieObDGFEEd/5lMOa6C3QSS1A7w9m/TQwfzeGj
+EMskQPe5tT8eigec2vklBk+xCvz9JBzU2Zl2pm39XXNxaB4BQMQbx0262IWvSWZh
+W6TpDVYEX7rp0uOQU/lqlTEO8A3Di1SWzohocV5+eNYUEKzAbJXiI1EGZxxbHpiC
+C8q8bwW/9/R+UCV1IkghfHzwWxWngAUpX3Hjmj/USjrqMVEtky9UWlsXCOlN5iCy
+n7RtfWeXu0ALXJmFcx+d16IEhPrfwncEB3nCVaCilyFzxC2Zd/k2GnKiSgdISvuT
+wJ9tAgj73HNX+e8ps3N1yzkR+R3Oi1UDtHObS3XE5jSk0IyawMiSdL8BozEVHa3g
+ivNzYIoCczvoFDjvM4ir8EklmyOkR6m6dNRWRArPfGLSVNaqXCQ=
+=wtFW
+-----END PGP SIGNATURE-----
+
+--Sig_/d8C4qKOBpZDLf74P_bsanmm--
