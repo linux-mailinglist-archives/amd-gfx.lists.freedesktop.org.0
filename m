@@ -2,60 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517DD878FB4
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 09:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FEDB878ED4
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 07:35:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF18110F1A9;
-	Tue, 12 Mar 2024 08:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D844E10F020;
+	Tue, 12 Mar 2024 06:35:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="HqhuOUUr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="p/DFR1VR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 587 seconds by postgrey-1.36 at gabe;
- Mon, 11 Mar 2024 22:46:43 UTC
-Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com
- [95.215.58.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFCD3112800
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Mar 2024 22:46:43 +0000 (UTC)
-Message-ID: <83e2d77c-d12b-4f4f-a759-8e97fd86eff5@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1710196614;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=kUQPkht64sWX7JVV8v7D7kaGK+/xr09KYmGxuaLQzAo=;
- b=HqhuOUUrijOnMo8iwXnOShESjlO2ucwqsLA1yJ3Ss3rkH6Yd1JmhQ4kEi35gjRlnEl+W5y
- WbO5+7os9DpccK6BVJft3mXh5wSgShvrwfDcOXvh0m84UdqUgJQjPU/E7xJsQIpKyNC+zm
- tIAJuScW36ApYLQ4wf4CbL+4aD0kEj4=
-Date: Tue, 12 Mar 2024 06:36:31 +0800
-MIME-Version: 1.0
-Subject: Re: [10/13] drm/fbdev-generic: Fix locking with
- drm_client_buffer_vmap_local()
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2083.outbound.protection.outlook.com [40.107.244.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2670410F020
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 06:35:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IrX8KfzD/7IkT9fX6S8DPpzguyEK4w5CobU7fP2CsV53dWVvwOhktmj0VFhA92kW3TDmn/mcxUZmb+zSQRRxlp0rsAgeyebD+eRmxLKnoynMQtzfthLqHl1i60bCb3kpgf6OB4xRTXNXsr7rrdEYo/9xadtQA54bEQ6doU6cx6uLYfuT4po5u0hZNgGDZ1L1xGss5UtCFdcLpkwj4yUCK4MVfcM7iZiV88I4hIFqOqRGGDudXXQ9Kr+I9faxzV3NWcbU6LdCuE/bEot6tppmjO9EaeOF2LW22SsYjQgNFm+PZSyBzDfTQbY+BoBfLQERM3NBDW6J1IR1GFP2oHy6UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=64TZZZw2Fhp8kBqKf1BLpSK/OXpcdexH2aXQLNxV6Yo=;
+ b=G8vY/NoTSwUgKybwuxKNFU8TAeZh+Xd74JLZLJkhHkMpYyqZuTBCaRbgT+5Z7Rro8eEVkH/UpVTJLBw6Cp8lNl7azdcaYnyzR9mXVH0HDW1yUQuob6j/eXmfkNb9QiqjflPxxWY6ulhmzrXiFgm6jUqEua09zO0z6vkZ0ma3DV37hPu0WW9er5SsFQCqRl+k4HR8NmlUe1o67PGOZpjYPtVZE14TY9eckEKePxaUQ0XcxsE9UzoIbH9t3kSh5Z7q7ec3vhmyTUHS5JoLvnGHovuWvx8g0NIEf0KKoiubcC9qh0TDAFVOIgNzpq9RHTuKY+Amn0r8e62hVkVhhXLtDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=64TZZZw2Fhp8kBqKf1BLpSK/OXpcdexH2aXQLNxV6Yo=;
+ b=p/DFR1VRGcvJaxRm4lQbJb4J5PbJ1Va31MMKw2jQdONXT62vnOUKcFCMmK6RuHmB0IKdGDjjdtjr/4vmCsh6i9fR0Wiwau/xRnqXJ+Z15x94VPlPZO26L3bqw9460n6e6yJe0u3/++3tc9YeJwIPwESditetoWr4jDB2uFKvx+Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM4PR12MB7600.namprd12.prod.outlook.com (2603:10b6:8:108::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Tue, 12 Mar
+ 2024 06:35:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7362.031; Tue, 12 Mar 2024
+ 06:35:05 +0000
+Message-ID: <dc026133-0071-4e3d-8b91-1b02f0fc178f@amd.com>
+Date: Tue, 12 Mar 2024 07:34:44 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: amdgpu_ttm_gart_bind set gtt bound flag
 Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- christian.koenig@amd.com, sumit.semwal@linaro.org,
- dmitry.osipenko@collabora.com, robdclark@gmail.com,
- quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
- marijn.suijten@somainline.org, kherbst@redhat.com, lyude@redhat.com,
- dakr@redhat.com, airlied@redhat.com, kraxel@redhat.com,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, zack.rusin@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com
-Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20240227113853.8464-11-tzimmermann@suse.de>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <20240227113853.8464-11-tzimmermann@suse.de>
+To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Felix.Kuehling@amd.com
+References: <20240311222119.29917-1-Philip.Yang@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240311222119.29917-1-Philip.Yang@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Tue, 12 Mar 2024 08:30:06 +0000
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0353.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f4::16) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB7600:EE_
+X-MS-Office365-Filtering-Correlation-Id: 446b0642-558d-4580-d35b-08dc425e8dc6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MV3lejtzC9stFawRiAt5EigBmdqPwkX1+pVmEmLwPkn6/qdrTaLsCLle3GsY3neCeruSCY8WbNHh0qclETRxCGkEkl1qiZ52VTkq58XYX8P7Pk84nVRPCzvwCqfnZWhF3CuEYbteyhMiAAYbuK80M1gVSvW4upeWB2PlPOMwhoRhZplCyiV2BTJN2F+qX2tCo5tTHOTj3llIQiRurcwOZKNpo3bOwX5QQte54ilddaYBUthTFuchUku4nFsulTxnNBXv1ODtfwSnzzyL/PqInfUNbwP0Yf0S1ep/ez/bSRmBfexPlhtdbwtgGlpmyrOwONN2mZnPYL/jiHBQHfg5hU7TIvF32IKB13dyCINbf6M0ieeC9+Tj8qI+k7olEcnfK/VeN562eOqT3BLFA1JeQcRtd/ydEozM2FkNL0X3vIQRpm/EL6Jt6YYKZAvgoigaBweSly0v0cJcBnlJ0xXWREJA4odDbB6bE3BMuWXUYhusxBRx6FyewDJXOLxZOfja0xXviIbzyFWXCOn03WhVz4q4gMIhjPl+fr4UevunF6S0OHVQk2qcf8+aYHR6mSR/87bvBjHwzJGFJ+5+QB60tZyMNno7wE88U5gq0C0siYisjgNwMP9WLk00HdOitA5UUcOdwOUWY4azBYWF91DB454eTWbRv7hZsUcEdrwtfL0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1pyd3BYRWo1dnlYUkJYakU1OE9ucXRQd3pQUWZ1TmlYNDhQcHZvQ3orTjhS?=
+ =?utf-8?B?UTdXM2tOcVJzVXEzOXdsWFVVZXdlMFE3OVFPQVFUbytyMjQwaXpWVjZ2YzE1?=
+ =?utf-8?B?aWdIa1NTNWJValNUQWZnQkNTM0p6RjdsQjNwaVB5NjFkRzFVYjhnam5WM25l?=
+ =?utf-8?B?UjNXSjZtMzBROCtNUkIrUHIwZlhvQzZBMUJrWmd6bFF0enJqT2pzTE9jVmVX?=
+ =?utf-8?B?U0lxQ1hsQWw5cUpQYnN6RUs3VnJscjdwUmF0dmdwZXdleFJ5aCtkTlJHZFVR?=
+ =?utf-8?B?VVZFWS9qa0lsUVgwcS9ZbDlHcmloYWFUaDkvdSswdmR3cU9KZDhKS3lRcjNz?=
+ =?utf-8?B?QnRGZWtzTlVHSUlBNDRja3N0N3pramNnU1k4NWZkQUdzMUp1RytQbVk3b1Fr?=
+ =?utf-8?B?dWhYbUI0QWoyNE9aM1NONmtOQ1VIY2QyZUxWMVFxOGZGVlU0NVdjdmNnaUty?=
+ =?utf-8?B?K3k4ekxzR09ZdWRrelIyZDNYclVzZzFVQnF4TStoZnducUsxQm1BaEJoQklw?=
+ =?utf-8?B?WDdoNW0vdHpmWjFac1VKb0xhOWdTWGlzYVljSEYxUFU3d285T2FNajJjMk42?=
+ =?utf-8?B?bi95bVN2bkVOT1FXMEZjSzY3dzRUbGJIRFA0OUV0QkFiWEVLVWpYUm40YURE?=
+ =?utf-8?B?aWt3cnluNzBXTlpGZzV1VTBISy85eC9aa2UrQjI1WWZ1WHpKdWVZNHZuU2Qz?=
+ =?utf-8?B?T3BwUWpIZVlES3BESXFiUWQ4V0ZObFNHUU40Y2pFSFNMdGZoUkhpb1BBN3B0?=
+ =?utf-8?B?ME9nV0YrUUhMOEF5OFByZmpySHY1Um9iQXBCSllqWVBTbm54TGEvdlVDTXZI?=
+ =?utf-8?B?RWFpSXRiY3NOckxvQUVLMm0yYXlIazVSK2wyVUJubTliZE9XK2UyNGhFb2Ex?=
+ =?utf-8?B?Rm4vTGcwelBERWszSFJBajdndUtZUXlsUENKSktoNGlPb3JNdUozS09QN1JY?=
+ =?utf-8?B?YWhqQlZHRkRzTUpTRFJpZEhGZFMxWUdYVXFtNDMrYWpyUm1YV3dwSTVNeEt5?=
+ =?utf-8?B?T1N0YkhtNGZ0OW54QzZDTjFjQTFDak4wbEQ0NmdQZ2J2dDdqWFZKcktvdXVM?=
+ =?utf-8?B?QXpQRUs2cDBtTStadmFGVGxTSERQVlEvZ2FhTVRSMG8xMlJhNyt4YUtvaEFI?=
+ =?utf-8?B?TlJJeXJDWHFpRG42UncwMkg2U0RIR1BrYWlUZWFOTUNkYitZUXZCMVREVnFK?=
+ =?utf-8?B?Uyt3a2NzUTZzRDZoQ0VwSDZHMGdyQmhuQ0d5QVhJSzRwZjh0TXdnUmRRNXR3?=
+ =?utf-8?B?YUp4aE5kM0RFWEVUZWtCQnltMm50eFFuMUlmUHMwRTJ6dGFlV094MWxPSUNz?=
+ =?utf-8?B?VnIyeUxXZmhTM3JGZWxSTUF3NnV1WDJNMTRaU0hPekJVdlBnUUt6bmlHd1lI?=
+ =?utf-8?B?U0h4SXhZYnQzK2hyMXczTzFydHUvK2ZFWFlSUTNGamR0VlRCdDdBWkxWYjIy?=
+ =?utf-8?B?NWo3V0kwUjVYcUpIemxGem00Q0FUM0R3UlJjTjhCeG9sekE4eG1kb1RnNFJi?=
+ =?utf-8?B?MWZZV2M4SjRZTUJ0RnJELzFvVUhrSmt5KzMydFVvelhQRUtjeEUxdXdrVUJQ?=
+ =?utf-8?B?bFIvWU5laDQ2eG1HVGozSWNKM29pRHNzTnE2TllyNmdGMDBycGhPaDk5R3VZ?=
+ =?utf-8?B?WkQ5bVdIejVaMTFYeUxQdXdzcUQwVkFraU93eXRjTUc0T0FnaGRxUE9Jc1JI?=
+ =?utf-8?B?MHJ1Y0Q2T0FGRU1DUGRYeUpxK0Qvc0laWlZHTWgvK21ueHU5bEJDZ3dyOFdQ?=
+ =?utf-8?B?ZFU2U0VxT1V2TVVDeEh5ZndSeUJwaW91RHZqWE5semRrYXhjOFdFai9hSnhZ?=
+ =?utf-8?B?OXBvQU9HSU82N2lDZTJHN0VVS0dvR2FnUm5RWWtmVjNhdy9VaUlOcE5VYUU2?=
+ =?utf-8?B?V1paZk9uUEcwalIvZlZWQ3d4SlpZcHdtcE1uV1lwQVZlNTZDVExSTzBRcHZS?=
+ =?utf-8?B?d1Z1aHFpam8rNmZMczJsZUl6WjdBNVZ0Y0owa2JwRWF4MDRqNjVRMkVua1RT?=
+ =?utf-8?B?VUlPWlF3a1lVTmxMRkxTQzR2K21zSnhyNUxRSGhPUlNSSDdxdDNBZENWcXJX?=
+ =?utf-8?B?MmxVNm9YNStvNEdORjF0a0V6cWtaQnJNM0R3QlVENUY2TXkwWmtsQjZkZ2RR?=
+ =?utf-8?Q?toVM=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 446b0642-558d-4580-d35b-08dc425e8dc6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 06:35:05.5354 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: onpdp+X32M27Hu50xJictmjH5c6hVI0+28M2peb468weUSTDLGfsXyVwCUVMXGGW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7600
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,147 +128,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Am 11.03.24 um 23:21 schrieb Philip Yang:
+> Otherwise amdgpu_ttm_backend_unbind will not clear the gart page table
+> and leave valid mapping entry to the stale system page.
+>
+> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 
+Good catch, that bug is probably in there for quite a while.
 
-On 2024/2/27 18:14, Thomas Zimmermann wrote:
-> Temporarily lock the fbdev buffer object during updates to prevent
-> memory managers from evicting/moving the buffer. Moving a buffer
-> object while update its content results in undefined behaviour.
->
-> Fbdev-generic updates its buffer object from a shadow buffer. Gem-shmem
-> and gem-dma helpers do not move buffer objects, so they are safe to be
-> used with fbdev-generic. Gem-vram and qxl are based on TTM, but pin
-> buffer objects are part of the vmap operation. So both are also safe
-> to be used with fbdev-generic.
->
-> Amdgpu and nouveau do not pin or lock the buffer object during an
-> update. Their TTM-based memory management could move the buffer object
-> while the update is ongoing.
->
-> The new vmap_local and vunmap_local helpers hold the buffer object's
-> reservation lock during the buffer update. This prevents moving the
-> buffer object on all memory managers.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+
 > ---
->   drivers/gpu/drm/drm_client.c        | 68 +++++++++++++++++++++++++----
->   drivers/gpu/drm/drm_fbdev_generic.c |  4 +-
->   drivers/gpu/drm/drm_gem.c           | 12 +++++
->   include/drm/drm_client.h            | 10 +++++
->   include/drm/drm_gem.h               |  3 ++
->   5 files changed, 87 insertions(+), 10 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 1 +
+>   1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
-> index 9403b3f576f7b..2cc81831236b5 100644
-> --- a/drivers/gpu/drm/drm_client.c
-> +++ b/drivers/gpu/drm/drm_client.c
-> @@ -304,6 +304,66 @@ drm_client_buffer_create(struct drm_client_dev *client, u32 width, u32 height,
->   	return ERR_PTR(ret);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 75c9fd2c6c2a..b0ed10f4de60 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -869,6 +869,7 @@ static void amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
+>   		amdgpu_gart_bind(adev, gtt->offset, ttm->num_pages,
+>   				 gtt->ttm.dma_address, flags);
+>   	}
+> +	gtt->bound = true;
 >   }
 >   
-> +/**
-> + * drm_client_buffer_vmap_local - Map DRM client buffer into address space
-> + * @buffer: DRM client buffer
-> + * @map_copy: Returns the mapped memory's address
-> + *
-> + * This function maps a client buffer into kernel address space. If the
-> + * buffer is already mapped, it returns the existing mapping's address.
-> + *
-> + * Client buffer mappings are not ref'counted. Each call to
-> + * drm_client_buffer_vmap_local() should be closely followed by a call to
-> + * drm_client_buffer_vunmap_local(). See drm_client_buffer_vmap() for
-> + * long-term mappings.
-> + *
-> + * The returned address is a copy of the internal value. In contrast to
-> + * other vmap interfaces, you don't need it for the client's vunmap
-> + * function. So you can modify it at will during blit and draw operations.
-> + *
-> + * Returns:
-> + *	0 on success, or a negative errno code otherwise.
-> + */
-> +int drm_client_buffer_vmap_local(struct drm_client_buffer *buffer,
-> +				 struct iosys_map *map_copy)
-> +{
-> +	struct drm_gem_object *gem = buffer->gem;
-> +	struct iosys_map *map = &buffer->map;
-> +	int ret;
-> +
-> +	drm_gem_lock(gem);
-> +
-> +	ret = drm_gem_vmap(gem, map);
-> +	if (ret)
-> +		goto err_drm_gem_vmap_unlocked;
-> +	*map_copy = *map;
-> +
-> +	return 0;
-> +
-> +err_drm_gem_vmap_unlocked:
-> +	drm_gem_unlock(gem);
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_client_buffer_vmap_local);
-> +
-> +/**
-> + * drm_client_buffer_vunmap_local - Unmap DRM client buffer
-> + * @buffer: DRM client buffer
-> + *
-> + * This function removes a client buffer's memory mapping established
-> + * with drm_client_buffer_vunmap_local(). Calling this function is only
-> + * required by clients that manage their buffer mappings by themselves.
-> + */
-> +void drm_client_buffer_vunmap_local(struct drm_client_buffer *buffer)
-> +{
-> +	struct drm_gem_object *gem = buffer->gem;
-> +	struct iosys_map *map = &buffer->map;
-> +
-> +	drm_gem_vunmap(gem, map);
-> +	drm_gem_unlock(gem);
-> +}
-> +EXPORT_SYMBOL(drm_client_buffer_vunmap_local);
-> +
->   /**
->    * drm_client_buffer_vmap - Map DRM client buffer into address space
->    * @buffer: DRM client buffer
-> @@ -331,14 +391,6 @@ drm_client_buffer_vmap(struct drm_client_buffer *buffer,
->   	struct iosys_map *map = &buffer->map;
->   	int ret;
->   
-> -	/*
-> -	 * FIXME: The dependency on GEM here isn't required, we could
-> -	 * convert the driver handle to a dma-buf instead and use the
-> -	 * backend-agnostic dma-buf vmap support instead. This would
-> -	 * require that the handle2fd prime ioctl is reworked to pull the
-> -	 * fd_install step out of the driver backend hooks, to make that
-> -	 * final step optional for internal users.
-> -	 */
->   	ret = drm_gem_vmap_unlocked(buffer->gem, map);
->   	if (ret)
->   		return ret;
-> diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
-> index d647d89764cb9..be357f926faec 100644
-> --- a/drivers/gpu/drm/drm_fbdev_generic.c
-> +++ b/drivers/gpu/drm/drm_fbdev_generic.c
-> @@ -197,14 +197,14 @@ static int drm_fbdev_generic_damage_blit(struct drm_fb_helper *fb_helper,
->   	 */
->   	mutex_lock(&fb_helper->lock);
->   
-> -	ret = drm_client_buffer_vmap(buffer, &map);
-> +	ret = drm_client_buffer_vmap_local(buffer, &map);
->   	if (ret)
->   		goto out;
->   
->   	dst = map;
-
-Then, please remove the local variable 'dst' (struct iosys_map) at here.
-As you said, the returned iosys_map is another copy of the original backup,
-we can play with this local variable at will, there no need to duplicate
-another time again.
-
-I have modified and tested with fbdev generic, no problem. With this trivial
-issue resolved. For fbdev-generic:
-
-
-Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
-
+>   /*
 
