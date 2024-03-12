@@ -2,122 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642BC878F04
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 08:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1347878FC1
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Mar 2024 09:32:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 981FD10E1B0;
-	Tue, 12 Mar 2024 07:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0F31123AA;
+	Tue, 12 Mar 2024 08:32:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="njyERGvD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cXw5tqRn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2069.outbound.protection.outlook.com [40.107.92.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0457410F0CC
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 07:14:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nk/pZovqrUiMRdslDYfXAilVIgGwvefPgbDdEI+b/pNOvDEWy3yZgX8jU5ktOjwNhtlLel6WaE/YKtTwCZpRsrUrnmUXwWmL8tRlmhX4y5fta2BvJdUbLKHvy2iJRA4PJ95mYih/1ezdJ55xBqTJd0+UMbMTFGfawxR2nCAgGDHgP8IeP+Nc9xmAEGNoDxBYNBjG62jzBBcgQfhkn5iKwoSFM9+xkdDSDowFZYIK/fXtu4sl5pvbC9D8Dwa6K5exNVFLq/pARHSMs9swNyvBOF1t8+lOmqq9vuCmgtG6eTmAfn/kPd6kceayBMU8HQuTG5FjlcdFbU2ZQ/OEUDM/cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9GDrAm/IpKmwH6dQi5jBZlO1QVkoWMvSXcou/Nv24sA=;
- b=YZxVjAIGu/uFWzj9WN2eMwEqn6XNHk6jnlxGfp5i9s2eqwfsJdvyrWOJo6B+dNWaKw19dQVUguhLfLL9jBay+DP1wU5zVRZJXMGUs8FVNxD7IDGPF9/pgsWTpW0MX1oGv1ItpWWWf8HnnY0FzG3bZ74rjgcewxYFWA8CWopZqORtUBYT5jECQKF9NRqM9oxrhVF2bAzMQFVDP/hdwgDy5jbwAoR8uT5eDLtEF+d/PrAByjAY3S2RuUUBh9l1u1IBiPfwFHE0E0O/XPvfzZjdkbWl+NY0IgGNmPklhDn0LrnSPupcWZepQeBybToS7Locp1WPQNL+mYq36D0xucyEXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9GDrAm/IpKmwH6dQi5jBZlO1QVkoWMvSXcou/Nv24sA=;
- b=njyERGvDK7uMp3wkco4BkVSrWmlOKxL+z3Mx9gOCE99tYYXPAKEHPZeJDL5L77bI9xvP4YobAAHSLIKr5yZyrpzWZFmFP/RT8GcIE7O3u2atBNwCNtoCxYUpmm6i+yTPwN58rpRBMXAUlb0xCsHUzUNUH0csWuFmRzWW+sy4haM=
-Received: from CH3PR12MB7762.namprd12.prod.outlook.com (2603:10b6:610:151::16)
- by CYYPR12MB8653.namprd12.prod.outlook.com (2603:10b6:930:c5::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Tue, 12 Mar
- 2024 07:14:28 +0000
-Received: from CH3PR12MB7762.namprd12.prod.outlook.com
- ([fe80::f6f6:edf3:d629:5bb]) by CH3PR12MB7762.namprd12.prod.outlook.com
- ([fe80::f6f6:edf3:d629:5bb%5]) with mapi id 15.20.7362.035; Tue, 12 Mar 2024
- 07:14:28 +0000
-From: "Gopalakrishnan, Veerabadhran (Veera)"
- <Veerabadhran.Gopalakrishnan@amd.com>
-To: "Jamadar, Saleemkhan" <Saleemkhan.Jamadar@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Liu, Leo"
- <Leo.Liu@amd.com>, "Sundararaju, Sathishkumar"
- <Sathishkumar.Sundararaju@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-CC: "Rao, Srinath" <Srinath.rao@amd.com>
-Subject: RE: [PATCH] drm/amdgpu/vcn: enable vcn1 fw load for VCN 4_0_6
-Thread-Topic: [PATCH] drm/amdgpu/vcn: enable vcn1 fw load for VCN 4_0_6
-Thread-Index: AQHadEvGE1ir7lOrpkWcBTkZL227arEzsRAw
-Date: Tue, 12 Mar 2024 07:14:28 +0000
-Message-ID: <CH3PR12MB7762467E4DF5D2CABB26764DFA2B2@CH3PR12MB7762.namprd12.prod.outlook.com>
-References: <20240312070550.2455243-1-saleemkhan.jamadar@amd.com>
-In-Reply-To: <20240312070550.2455243-1-saleemkhan.jamadar@amd.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=ce44c860-2e1c-4721-aec6-79abbd100483;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-03-12T07:13:48Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH3PR12MB7762:EE_|CYYPR12MB8653:EE_
-x-ms-office365-filtering-correlation-id: c63378ba-ba91-4ad0-05b9-08dc42640e77
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xhGm6i+HB5iBoV9qF+v8FVP++KZ0fNb0PD4cL6J1gk8LqqzCG6mIEk023dyXG8twH8uTNNS7ezqCpK2iROmtoM2lo83R3gblpf/FAG0+8KqieM6+cViHCdqidw/X8MgVzL4opd3za+e/s6qJkT1iGcv8YO9cb8EvtHEKOINFBnxJwHbbYRKlaDprVX2tQj0AmBlOFzYY/YhGrLcyhHqzOESs4EO9js/2AlgJOUrAiB7i704fANst8x4V8Kwu9vvl2xJtMjXJfKpuzCR3Of3DapM22U0yU1FqzEy4W9XV3At4Dp7ixE0Ix+9OtqQFYWfeNrzgM9cLLJ7icPl2cPFwCSMp9fGZJRJ0SSX1QZEZSrbRRkvrqCPWJ8ewbnQQ+OQ2aKzdFq3ZbUFDzKM/Bt4+fFIH7n+fM/eB1iPlIffnYooaQxpLxrNncwuLahYsyUKj6XFJOsGQmxH5nOs5FjZpTUM7Y3BGEojrtC15Ra+W2xkGI5MtO01hTWBvHr5DwLOWbkBwsspQLkQhJZOHw66qNwa25ME1D+joVr8OW7RRRlQJDW5Ls/W1z7LyXW4kX9f25puhPwmMP0uxgwzWU1rglIHuyvEoUIFQDgE1HKGpwfEIQvNN+1NHOpF7nWNTOi4TV0PmWUXk6mQIimQ4+7eug+lt6MCX6G7++YtaC3rEJv34SOZtGIK5iVAEyztneanALt7dvxy1ow65QdnhJaDpCdCEItLh+EZF2esFpcm4TqE=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR12MB7762.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JCxd3ACBLXcgDqSDrzMHKQyIG9z/xu2FH/mXxIk2tUuR8rqqp1S2UzFuUhZp?=
- =?us-ascii?Q?0xR20CNW+PCXL5xqJjvvz+OxGM4Heac+Ccb8n787N4N7/KCoqz3192X53FFB?=
- =?us-ascii?Q?AHJSR22FVc8wf3u3YSG4kUbwPXmOxU8RMkAwkNR7HNlgkczwH10mlqd9TpdN?=
- =?us-ascii?Q?g7+qVQJKzJ0Ch1VK6PPv6Y6CYPEfK6c6ySOZYVOOd1CcGYOg9ZpLlabMJKi2?=
- =?us-ascii?Q?VJx6qcX1CyIFTTouqtaqQVO3zbOo7AttkO0g3O8ncekm1OC8ncujJdK28PLv?=
- =?us-ascii?Q?yGaZodrLhhkBH3o+MhgNBSXnbwAsWYkcSosgPTmJUrOxNxJyv6hvVnlvjKoM?=
- =?us-ascii?Q?MDwa4J2B8s7FbPgUMx7c+W5a1o5RzL6gWzUYSIuNM9YBjVZ0Rm2XZXqqDFX7?=
- =?us-ascii?Q?R/T4JLMV6hnMkXJuL9LJ+QRVdYzxfjMJzzMQYAP+q/cu7BJ6hTusue2IX0LH?=
- =?us-ascii?Q?PKKFw2mpabfqXPVISB/aHNSV6bB7kbaHB2Jqwf3P2KS4s7/LJHe6Dqazv1z1?=
- =?us-ascii?Q?1NcJBvmvzVbPZyE2+1o+9pnovbYA4oHOh6EeAzABRqm4afwitcyXg9CkFUsx?=
- =?us-ascii?Q?QOuCRZh8NJRIaUJrTY1ftqdvMZ0+gY3Sw2MzFBlaUrFrtp7fzrc7K1aakxrd?=
- =?us-ascii?Q?SHb+Ustq01gOD2oJAzJ4qfAofYchWHyyh37rGQgpXmH67eVQ8Jxz55Bn5ivS?=
- =?us-ascii?Q?pxM64axUiGbrldL0XdvI+geAqqrhj1TtW71neDC6HeEgaJ/E1ndf+JurNOvy?=
- =?us-ascii?Q?MvIBuABTy/GPihVk/kCaKOf5+g/XGUr7ubifcd0fiAtq8CPEhHoJruZ9NEA6?=
- =?us-ascii?Q?8585cQhz/bswt8pkVPW0k6ZpsrTR2n/PFnA6tXkIHKClW9WJELMpxyq5BUJw?=
- =?us-ascii?Q?QQVm+XPZdmk3p7SYQGEsVPn+3R+92ZRh6EBqPwc37qdg4omoHYZWrm+X0t++?=
- =?us-ascii?Q?RW1owdpgoRVkmiN2d+TTzmVfw74z0eWcwgbXBX+uDIMa7pCm2Y9YGnzch6fO?=
- =?us-ascii?Q?Ehumbxh5mBOE/6SUU2MTlMsRDMlRCyDLIap8NKtXxTXzP5JDBTQD+ETS1o3m?=
- =?us-ascii?Q?jVDp9zUlrLvpfbnQoymd/jcp2AMafgHpbo4ovRevkdApyhRsdNbKKHszrsVm?=
- =?us-ascii?Q?o1Lpmf6ptq0aHKb+5UYCFTXelhgW5z9gZJSR2oW2+/gLcyjItK/WUZrlIdQ3?=
- =?us-ascii?Q?hA+U3kLO2mc9llXe0Bw9Op6FQrzQR8B2tzJqhgB6DOAAFxSq3U9SjwG08e4F?=
- =?us-ascii?Q?bBxOPrvRmOr6Sv93JpPlikD/AePqs2CtG1pIoJBZWpT4qD+RrRi4AQkc0Uoj?=
- =?us-ascii?Q?R+rSfLRuNKrbc9eILLFwkRcJyP83jrrz3x+UXh1CHHTUavROFrUHkIYLIb7p?=
- =?us-ascii?Q?8CWI1YCKE+469mIbp+0nIOF2Y836wef46T6BHZRPilkkbz3rYiEKCnXBtVax?=
- =?us-ascii?Q?ASfXXj9UgDZvtu7hOFRHOJ89ofTLROCkmBkEpp4X8x05989uYLg1FX3CIxEo?=
- =?us-ascii?Q?+a0A9DmQ1wQn2GA3dP3MWjeCoK7IdXW7Lo5utFLPZ/Ih3SfwEZMnGAXJHEKB?=
- =?us-ascii?Q?LMop8imGyX3trjj5B0o=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F099112444
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 08:31:58 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-413328344acso3680335e9.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Mar 2024 01:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710232317; x=1710837117; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=80Be8dF2UCxPaJ1w2MwWXCWYBlvJuvL7IjlBjfpljkE=;
+ b=cXw5tqRngq9DuGhu6jshrBE+lHqatBFsgIzplSe1xzfrMmQ3+zibFgpdSBofp/aXTE
+ 6c2ZWrAXkllcalFXCtpxAouDQeFjZbzTch1E+xUQ3Dimd+VVXtLBEa89veD0QOOfGvH4
+ hFHDGrMG7osTolCP+h7fDqqSWujh1EoAsOS5LvHuAHwKw76lMyrqVQl1qIvEc/48u1s+
+ +m7+/sLg5rdBx3sc1oCEPUog7Sg6+vVH36sxhpI3oREpsCODWlyKRZb+GugeQopfouIs
+ v1rEkhysEVaPuKcDnBs8wBK82A7MYDNOQ+Oo+lKm/AvITq1yMKDQdxrI/cAQPG7a5jon
+ ZSQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710232317; x=1710837117;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=80Be8dF2UCxPaJ1w2MwWXCWYBlvJuvL7IjlBjfpljkE=;
+ b=vtJgodwl/5QfV7eageczm+vA3DG/e28HkT/3GbMoxouuvxszegcQpqDMZZjpuYdknb
+ S+m9n8h3CdyqGcOem4BjLODxfS4GuCL2QzEq4F1/RO6IaKjwq5t1FhVITOi1s13JbUS2
+ iJK0eUrkqnTUOiw0Xc5zbpVkJpykwXb665Pm04sVdcvbkySCTP3ieF4A1a2UvJaHGiCm
+ /RD05kgD1MvfdI9pzDThGJa5IR6FSPYkx7gIcRUSE0kTxzEXvTmBzBUJ80BTnL2EgaU3
+ xYv90/Q+n28gS54rRSrGx7zSTk8XcNkHFuoWDOXLXtkpOGukgFeu77NxugIBcAMPhNXu
+ go6Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVL+f3HAXVBjZIpzjXhxMPhmvN1G6X3m1+B0BT7DKpuCdhitLVXimsXU3+i3B/Fg67fUDjrRfc+OpN+aFuFKTCd1t79/7WGz0bQkzV9qg==
+X-Gm-Message-State: AOJu0Yx4+ovq+x4udkzEcDLrEGvoA25rMcDDGHSjyGumEPa+/FNJhIuQ
+ PZvQYwvCiOFBRUIfrKCZZvfp9WRtq3s1Lc1ijHjjz3LMNxGMiWp/
+X-Google-Smtp-Source: AGHT+IG5DUWoqHYKjgzU/qVpzc36W/zZ/AoI4i8JaNHh3fRCddekEKoyMto7HUg57qGGrr1+xdksww==
+X-Received: by 2002:a05:600c:4f0e:b0:413:1212:3eed with SMTP id
+ l14-20020a05600c4f0e00b0041312123eedmr6441928wmq.3.1710232316519; 
+ Tue, 12 Mar 2024 01:31:56 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ p11-20020a05600c358b00b00412ebd587ebsm18323225wmq.3.2024.03.12.01.31.55
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 12 Mar 2024 01:31:55 -0700 (PDT)
+Message-ID: <dac63b64-7b25-439f-a883-393e37826fb3@gmail.com>
+Date: Tue, 12 Mar 2024 09:31:52 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB7762.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c63378ba-ba91-4ad0-05b9-08dc42640e77
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2024 07:14:28.6308 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: C1up+J8iyPVvTVeu+yCnuqrLrX+41ccN8QFvpZ1i11WKhpXhZLjUDTUJwXPOjSmTkETpGFDWqXx/ds+f5zINFw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8653
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] drm/amdgpu: implement TLB flush fence
+Content-Language: en-US
+To: "Sharma, Shashank" <shashank.sharma@amd.com>, Philip Yang
+ <yangp@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20240306144115.1007-1-shashank.sharma@amd.com>
+ <939a8f23-952f-8993-9c1c-178bb0fd42b5@amd.com>
+ <98f72106-e62e-ef02-ff9b-d92edeb6950d@amd.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <98f72106-e62e-ef02-ff9b-d92edeb6950d@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,501 +89,280 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
-
-Looks good to me.
-
-Reviewed-by: Veerabadhran Gopalakrishnan <Veerabadhran.Gopalakrishnan@amd.c=
-om>
-
-Regards,
-Veera
-
------Original Message-----
-From: Jamadar, Saleemkhan <Saleemkhan.Jamadar@amd.com>
-Sent: Tuesday, March 12, 2024 12:36 PM
-To: amd-gfx@lists.freedesktop.org; Jamadar, Saleemkhan <Saleemkhan.Jamadar@=
-amd.com>; Liu, Leo <Leo.Liu@amd.com>; Sundararaju, Sathishkumar <Sathishkum=
-ar.Sundararaju@amd.com>; Gopalakrishnan, Veerabadhran (Veera) <Veerabadhran=
-.Gopalakrishnan@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>
-Cc: Rao, Srinath <Srinath.rao@amd.com>
-Subject: [PATCH] drm/amdgpu/vcn: enable vcn1 fw load for VCN 4_0_6
-
-v1 - update the fw header for each vcn instance (Veera)
-
-VCN1 has different FW binary in VCN v4_0_6.
-Add changes to load the VCN1 fw binary
-
-Signed-off-by: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 38 ++++++++++++++++---------  dr=
-ivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  2 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   |  4 +--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   |  6 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   |  8 ++++--
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   |  6 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   |  6 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c |  6 ++--  drivers/gpu/drm/amd/amd=
-gpu/vcn_v4_0_5.c | 10 +++----  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c |  4=
- +--
- 10 files changed, 52 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vcn.c
-index b2535023764f..9c514a606a2f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -60,6 +60,7 @@
- #define FIRMWARE_VCN4_0_4              "amdgpu/vcn_4_0_4.bin"
- #define FIRMWARE_VCN4_0_5              "amdgpu/vcn_4_0_5.bin"
- #define FIRMWARE_VCN4_0_6              "amdgpu/vcn_4_0_6.bin"
-+#define FIRMWARE_VCN4_0_6_1            "amdgpu/vcn_4_0_6_1.bin"
- #define FIRMWARE_VCN5_0_0              "amdgpu/vcn_5_0_0.bin"
-
- MODULE_FIRMWARE(FIRMWARE_RAVEN);
-@@ -85,6 +86,7 @@ MODULE_FIRMWARE(FIRMWARE_VCN4_0_3);
- MODULE_FIRMWARE(FIRMWARE_VCN4_0_4);
- MODULE_FIRMWARE(FIRMWARE_VCN4_0_5);
- MODULE_FIRMWARE(FIRMWARE_VCN4_0_6);
-+MODULE_FIRMWARE(FIRMWARE_VCN4_0_6_1);
- MODULE_FIRMWARE(FIRMWARE_VCN5_0_0);
-
- static void amdgpu_vcn_idle_work_handler(struct work_struct *work); @@ -93=
-,14 +95,22 @@ int amdgpu_vcn_early_init(struct amdgpu_device *adev)  {
-        char ucode_prefix[30];
-        char fw_name[40];
--       int r;
-+       int r, i;
-
--       amdgpu_ucode_ip_version_decode(adev, UVD_HWIP, ucode_prefix, sizeof=
-(ucode_prefix));
--       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s.bin", ucode_prefix);
--       r =3D amdgpu_ucode_request(adev, &adev->vcn.fw, fw_name);
--       if (r)
--               amdgpu_ucode_release(&adev->vcn.fw);
-+       for (i =3D 0; i < adev->vcn.num_vcn_inst; i++) {
-+               amdgpu_ucode_ip_version_decode(adev, UVD_HWIP, ucode_prefix=
-, sizeof(ucode_prefix));
-+               snprintf(fw_name, sizeof(fw_name), "amdgpu/%s.bin", ucode_p=
-refix);
-+               if (amdgpu_ip_version(adev, UVD_HWIP, 0) =3D=3D  IP_VERSION=
-(4, 0, 6) &&
-+                       i =3D=3D 1) {
-+                       snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_%d.bi=
-n", ucode_prefix, i);
-+               }
-
-+               r =3D amdgpu_ucode_request(adev, &adev->vcn.fw[i], fw_name)=
-;
-+               if (r) {
-+                       amdgpu_ucode_release(&adev->vcn.fw[i]);
-+                       return r;
-+               }
-+       }
-        return r;
- }
-
-@@ -141,7 +151,7 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
-                }
-        }
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header *)adev->vcn.fw[0]->dat=
-a;
-        adev->vcn.fw_version =3D le32_to_cpu(hdr->ucode_version);
-
-        /* Bit 20-23, it is encode major and non-zero for new naming conven=
-tion.
-@@ -256,9 +266,10 @@ int amdgpu_vcn_sw_fini(struct amdgpu_device *adev)
-
-                for (i =3D 0; i < adev->vcn.num_enc_rings; ++i)
-                        amdgpu_ring_fini(&adev->vcn.inst[j].ring_enc[i]);
-+
-+               amdgpu_ucode_release(&adev->vcn.fw[j]);
-        }
-
--       amdgpu_ucode_release(&adev->vcn.fw);
-        mutex_destroy(&adev->vcn.vcn1_jpeg1_workaround);
-        mutex_destroy(&adev->vcn.vcn_pg_lock);
-
-@@ -354,11 +365,12 @@ int amdgpu_vcn_resume(struct amdgpu_device *adev)
-                        const struct common_firmware_header *hdr;
-                        unsigned int offset;
-
--                       hdr =3D (const struct common_firmware_header *)adev=
-->vcn.fw->data;
-+                       hdr =3D (const struct common_firmware_header *)adev=
-->vcn.fw[i]->data;
-                        if (adev->firmware.load_type !=3D AMDGPU_FW_LOAD_PS=
-P) {
-                                offset =3D le32_to_cpu(hdr->ucode_array_off=
-set_bytes);
-                                if (drm_dev_enter(adev_to_drm(adev), &idx))=
- {
--                                       memcpy_toio(adev->vcn.inst[i].cpu_a=
-ddr, adev->vcn.fw->data + offset,
-+                                       memcpy_toio(adev->vcn.inst[i].cpu_a=
-ddr,
-+                                                   adev->vcn.fw[i]->data +=
- offset,
-                                                    le32_to_cpu(hdr->ucode_=
-size_bytes));
-                                        drm_dev_exit(idx);
-                                }
-@@ -1043,11 +1055,11 @@ void amdgpu_vcn_setup_ucode(struct amdgpu_device *a=
-dev)
-        if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                const struct common_firmware_header *hdr;
-
--               hdr =3D (const struct common_firmware_header *)adev->vcn.fw=
-->data;
--
-                for (i =3D 0; i < adev->vcn.num_vcn_inst; i++) {
-                        if (adev->vcn.harvest_config & (1 << i))
-                                continue;
-+
-+                       hdr =3D (const struct common_firmware_header *)adev=
-->vcn.fw[i]->data;
-                        /* currently only support 2 FW instances */
-                        if (i >=3D 2) {
-                                dev_info(adev->dev, "More then 2 VCN FW ins=
-tances!\n"); @@ -1055,7 +1067,7 @@ void amdgpu_vcn_setup_ucode(struct amdgp=
-u_device *adev)
-                        }
-                        idx =3D AMDGPU_UCODE_ID_VCN + i;
-                        adev->firmware.ucode[idx].ucode_id =3D idx;
--                       adev->firmware.ucode[idx].fw =3D adev->vcn.fw;
-+                       adev->firmware.ucode[idx].fw =3D adev->vcn.fw[i];
-                        adev->firmware.fw_size +=3D
-                                ALIGN(le32_to_cpu(hdr->ucode_size_bytes), P=
-AGE_SIZE);
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vcn.h
-index 1985f71b4373..a418393d89ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -306,7 +306,7 @@ struct amdgpu_vcn_ras {  struct amdgpu_vcn {
-        unsigned                fw_version;
-        struct delayed_work     idle_work;
--       const struct firmware   *fw;    /* VCN firmware */
-+       const struct firmware   *fw[AMDGPU_MAX_VCN_INSTANCES];  /* VCN firm=
-ware */
-        unsigned                num_enc_rings;
-        enum amd_powergating_state cur_state;
-        bool                    indirect_sram;
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/am=
-dgpu/vcn_v1_0.c
-index 25ba27151ac0..aaceecd558cf 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-@@ -304,7 +304,7 @@ static int vcn_v1_0_resume(void *handle)
-  */
- static void vcn_v1_0_mc_resume_spg_mode(struct amdgpu_device *adev)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[0]->size + 4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-@@ -371,7 +371,7 @@ static void vcn_v1_0_mc_resume_spg_mode(struct amdgpu_d=
-evice *adev)
-
- static void vcn_v1_0_mc_resume_dpg_mode(struct amdgpu_device *adev)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[0]->size + 4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/am=
-dgpu/vcn_v2_0.c
-index 18794394c5a0..e357d8cf0c01 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-@@ -330,7 +330,7 @@ static int vcn_v2_0_resume(void *handle)
-  */
- static void vcn_v2_0_mc_resume(struct amdgpu_device *adev)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[0]->size + 4);
-        uint32_t offset;
-
-        if (amdgpu_sriov_vf(adev))
-@@ -386,7 +386,7 @@ static void vcn_v2_0_mc_resume(struct amdgpu_device *ad=
-ev)
-
- static void vcn_v2_0_mc_resume_dpg_mode(struct amdgpu_device *adev, bool i=
-ndirect)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[0]->size + 4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-@@ -1878,7 +1878,7 @@ static int vcn_v2_0_start_sriov(struct amdgpu_device =
-*adev)
-
-                init_table +=3D header->vcn_table_offset;
-
--               size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+               size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[0]->size + 4);
-
-                MMSCH_V2_0_INSERT_DIRECT_RD_MOD_WT(
-                        SOC15_REG_OFFSET(UVD, i, mmUVD_STATUS), diff --git =
-a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2=
-_5.c
-index aba403d71806..1cd8a94b0fbc 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -414,13 +414,15 @@ static int vcn_v2_5_resume(void *handle)
-  */
- static void vcn_v2_5_mc_resume(struct amdgpu_device *adev)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size;
-        uint32_t offset;
-        int i;
-
-        for (i =3D 0; i < adev->vcn.num_vcn_inst; ++i) {
-                if (adev->vcn.harvest_config & (1 << i))
-                        continue;
-+
-+               size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[i]->size + 4);
-                /* cache window 0: fw */
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                        WREG32_SOC15(VCN, i, mmUVD_LMI_VCPU_CACHE_64BIT_BAR=
-_LOW,
-@@ -469,7 +471,7 @@ static void vcn_v2_5_mc_resume(struct amdgpu_device *ad=
-ev)
-
- static void vcn_v2_5_mc_resume_dpg_mode(struct amdgpu_device *adev, int in=
-st_idx, bool indirect)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[inst_idx]->siz=
-e +
-+4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-@@ -1240,7 +1242,7 @@ static int vcn_v2_5_sriov_start(struct amdgpu_device =
-*adev)
-                        SOC15_REG_OFFSET(VCN, i, mmUVD_STATUS),
-                        ~UVD_STATUS__UVD_BUSY, UVD_STATUS__UVD_BUSY);
-
--               size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+               size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[i]->size + 4);
-                /* mc resume*/
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                        MMSCH_V1_0_INSERT_DIRECT_WT(
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/am=
-dgpu/vcn_v3_0.c
-index e02af4de521c..8f82fb887e9c 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -449,7 +449,7 @@ static int vcn_v3_0_resume(void *handle)
-  */
- static void vcn_v3_0_mc_resume(struct amdgpu_device *adev, int inst)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[inst]->size + =
-4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-@@ -499,7 +499,7 @@ static void vcn_v3_0_mc_resume(struct amdgpu_device *ad=
-ev, int inst)
-
- static void vcn_v3_0_mc_resume_dpg_mode(struct amdgpu_device *adev, int in=
-st_idx, bool indirect)  {
--       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4);
-+       uint32_t size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[inst_idx]->siz=
-e +
-+4);
-        uint32_t offset;
-
-        /* cache window 0: fw */
-@@ -1332,7 +1332,7 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device =
-*adev)
-                        mmUVD_STATUS),
-                        ~UVD_STATUS__UVD_BUSY, UVD_STATUS__UVD_BUSY);
-
--               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4=
-);
-+               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[i]->size =
-+ 4);
-
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                        MMSCH_V3_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCN, i=
-, diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v4_0.c
-index 8ab01ae919d2..832d15f7b5f6 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -382,7 +382,7 @@ static void vcn_v4_0_mc_resume(struct amdgpu_device *ad=
-ev, int inst)
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header *)adev->vcn.fw[inst]->=
-data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -442,7 +442,7 @@ static void vcn_v4_0_mc_resume_dpg_mode(struct amdgpu_d=
-evice *adev, int inst_idx  {
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header
-+*)adev->vcn.fw[inst_idx]->data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -1289,7 +1289,7 @@ static int vcn_v4_0_start_sriov(struct amdgpu_device =
-*adev)
-                        regUVD_STATUS),
-                        ~UVD_STATUS__UVD_BUSY, UVD_STATUS__UVD_BUSY);
-
--               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4=
-);
-+               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[i]->size =
-+ 4);
-
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                        MMSCH_V4_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCN, i=
-, diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v4_0_3.c
-index 810bbfccd6f2..203fa988322b 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -332,7 +332,7 @@ static void vcn_v4_0_3_mc_resume(struct amdgpu_device *=
-adev, int inst_idx)
-        uint32_t offset, size, vcn_inst;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header
-+*)adev->vcn.fw[inst_idx]->data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        vcn_inst =3D GET_INST(VCN, inst_idx);
-@@ -407,7 +407,7 @@ static void vcn_v4_0_3_mc_resume_dpg_mode(struct amdgpu=
-_device *adev, int inst_i
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header
-+*)adev->vcn.fw[inst_idx]->data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -894,7 +894,7 @@ static int vcn_v4_0_3_start_sriov(struct amdgpu_device =
-*adev)
-                MMSCH_V4_0_INSERT_DIRECT_RD_MOD_WT(SOC15_REG_OFFSET(VCN, 0,=
- regUVD_STATUS),
-                        ~UVD_STATUS__UVD_BUSY, UVD_STATUS__UVD_BUSY);
-
--               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw->size + 4=
-);
-+               cache_size =3D AMDGPU_GPU_PAGE_ALIGN(adev->vcn.fw[i]->size =
-+ 4);
-
-                if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) {
-                        MMSCH_V4_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCN, 0=
-, diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v4_0_5.c
-index 0468955338b7..501e53e69f2a 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -45,7 +45,7 @@
- #define mmUVD_DPG_LMA_DATA_BASE_IDX                                    reg=
-UVD_DPG_LMA_DATA_BASE_IDX
-
- #define VCN_VID_SOC_ADDRESS_2_0                                           =
-     0x1fb00
--#define VCN1_VID_SOC_ADDRESS_3_0                                       0x4=
-8300
-+#define VCN1_VID_SOC_ADDRESS_3_0                                       (0x=
-48300 + 0x38000)
-
- #define VCN_HARVEST_MMSCH                                                 =
-     0
-
-@@ -329,7 +329,7 @@ static void vcn_v4_0_5_mc_resume(struct amdgpu_device *=
-adev, int inst)
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header *)adev->vcn.fw[inst]->=
-data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -390,7 +390,7 @@ static void vcn_v4_0_5_mc_resume_dpg_mode(struct amdgpu=
-_device *adev, int inst_i
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header
-+*)adev->vcn.fw[inst_idx]->data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -486,7 +486,8 @@ static void vcn_v4_0_5_mc_resume_dpg_mode(struct amdgpu=
-_device *adev, int inst_i
-
-        /* VCN global tiling registers */
-        WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
--               VCN, 0, regUVD_GFX10_ADDR_CONFIG), adev->gfx.config.gb_addr=
-_config, 0, indirect);
-+               VCN, inst_idx, regUVD_GFX10_ADDR_CONFIG),
-+               adev->gfx.config.gb_addr_config, 0, indirect);
- }
-
- /**
-@@ -911,7 +912,6 @@ static int vcn_v4_0_5_start_dpg_mode(struct amdgpu_devi=
-ce *adev, int inst_idx, b
-                VCN, inst_idx, regUVD_MASTINT_EN),
-                UVD_MASTINT_EN__VCPU_EN_MASK, 0, indirect);
-
--
-        if (indirect)
-                amdgpu_vcn_psp_update_sram(adev, inst_idx, 0);
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v5_0_0.c
-index d6ee9958ba5f..bc60c554eb32 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-@@ -290,7 +290,7 @@ static void vcn_v5_0_0_mc_resume(struct amdgpu_device *=
-adev, int inst)
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header *)adev->vcn.fw[inst]->=
-data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
-@@ -351,7 +351,7 @@ static void vcn_v5_0_0_mc_resume_dpg_mode(struct amdgpu=
-_device *adev, int inst_i
-        uint32_t offset, size;
-        const struct common_firmware_header *hdr;
-
--       hdr =3D (const struct common_firmware_header *)adev->vcn.fw->data;
-+       hdr =3D (const struct common_firmware_header
-+*)adev->vcn.fw[inst_idx]->data;
-        size =3D AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) +=
- 8);
-
-        /* cache window 0: fw */
---
-2.25.1
+Am 11.03.24 um 15:37 schrieb Sharma, Shashank:
+>
+> On 07/03/2024 20:22, Philip Yang wrote:
+>>
+>>
+>> On 2024-03-06 09:41, Shashank Sharma wrote:
+>>> From: Christian König<christian.koenig@amd.com>
+>>>
+>>> The problem is that when (for example) 4k pages are replaced
+>>> with a single 2M page we need to wait for change to be flushed
+>>> out by invalidating the TLB before the PT can be freed.
+>>>
+>>> Solve this by moving the TLB flush into a DMA-fence object which
+>>> can be used to delay the freeing of the PT BOs until it is signaled.
+>>>
+>>> V2: (Shashank)
+>>>      - rebase
+>>>      - set dma_fence_error only in case of error
+>>>      - add tlb_flush fence only when PT/PD BO is locked (Felix)
+>>>      - use vm->pasid when f is NULL (Mukul)
+>>>
+>>> V4: - add a wait for (f->dependency) in tlb_fence_work (Christian)
+>>>      - move the misplaced fence_create call to the end (Philip)
+>>>
+>>> V5: - free the f->dependency properly (Christian)
+>>>
+>>> Cc: Christian Koenig<christian.koenig@amd.com>
+>>> Cc: Felix Kuehling<Felix.Kuehling@amd.com>
+>>> Cc: Rajneesh Bhardwaj<rajneesh.bhardwaj@amd.com>
+>>> Cc: Alex Deucher<alexander.deucher@amd.com>
+>>> Reviewed-by: Shashank Sharma<shashank.sharma@amd.com>
+>>> Signed-off-by: Christian König<christian.koenig@amd.com>
+>>> Signed-off-by: Shashank Sharma<shashank.sharma@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/Makefile           |   3 +-
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  10 ++
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   4 +
+>>>   .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  | 112 
+>>> ++++++++++++++++++
+>>>   4 files changed, 128 insertions(+), 1 deletion(-)
+>>>   create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile 
+>>> b/drivers/gpu/drm/amd/amdgpu/Makefile
+>>> index fa26a4e3a99d..91ab4cf29b5b 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+>>> @@ -70,7 +70,8 @@ amdgpu-y += amdgpu_device.o amdgpu_doorbell_mgr.o 
+>>> amdgpu_kms.o \
+>>>       amdgpu_cs.o amdgpu_bios.o amdgpu_benchmark.o \
+>>>       atombios_dp.o amdgpu_afmt.o amdgpu_trace_points.o \
+>>>       atombios_encoders.o amdgpu_sa.o atombios_i2c.o \
+>>> -    amdgpu_dma_buf.o amdgpu_vm.o amdgpu_vm_pt.o amdgpu_ib.o 
+>>> amdgpu_pll.o \
+>>> +    amdgpu_dma_buf.o amdgpu_vm.o amdgpu_vm_pt.o 
+>>> amdgpu_vm_tlb_fence.o \
+>>> +    amdgpu_ib.o amdgpu_pll.o \
+>>>       amdgpu_ucode.o amdgpu_bo_list.o amdgpu_ctx.o amdgpu_sync.o \
+>>>       amdgpu_gtt_mgr.o amdgpu_preempt_mgr.o amdgpu_vram_mgr.o 
+>>> amdgpu_virt.o \
+>>>       amdgpu_atomfirmware.o amdgpu_vf_error.o amdgpu_sched.o \
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> index 0960e0a665d3..310aae6fb49b 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> @@ -988,6 +988,15 @@ int amdgpu_vm_update_range(struct amdgpu_device 
+>>> *adev, struct amdgpu_vm *vm,
+>>>         r = vm->update_funcs->commit(&params, fence);
+>>>   +    /* Prepare a TLB flush fence to be attached to PTs */
+>>> +    if (!unlocked && params.needs_flush && vm->is_compute_context) {
+>>> +        amdgpu_vm_tlb_fence_create(adev, vm, fence);
+>>> +
+>>> +        /* Makes sure no PD/PT is freed before the flush */
+>>> +        dma_resv_add_fence(vm->root.bo->tbo.base.resv, *fence,
+>>> +                   DMA_RESV_USAGE_BOOKKEEP);
+>>> +    }
+>>> +
+>>>   error_unlock:
+>>>       amdgpu_vm_eviction_unlock(vm);
+>>>       drm_dev_exit(idx);
+>>> @@ -2237,6 +2246,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, 
+>>> struct amdgpu_vm *vm,
+>>>         mutex_init(&vm->eviction_lock);
+>>>       vm->evicting = false;
+>>> +    vm->tlb_fence_context = dma_fence_context_alloc(1);
+>>>         r = amdgpu_vm_pt_create(adev, vm, adev->vm_manager.root_level,
+>>>                   false, &root, xcp_id);
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h 
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>>> index 64b3f69efa57..298f604b8e5f 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>>> @@ -341,6 +341,7 @@ struct amdgpu_vm {
+>>>       atomic64_t        tlb_seq;
+>>>       uint64_t        tlb_seq_va;
+>>>       uint64_t        *tlb_seq_cpu_addr;
+>>> +    uint64_t        tlb_fence_context;
+>>>         atomic64_t        kfd_last_flushed_seq;
+>>>   @@ -594,5 +595,8 @@ void amdgpu_vm_update_fault_cache(struct 
+>>> amdgpu_device *adev,
+>>>                     uint64_t addr,
+>>>                     uint32_t status,
+>>>                     unsigned int vmhub);
+>>> +void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev,
+>>> +                 struct amdgpu_vm *vm,
+>>> +                 struct dma_fence **fence);
+>>>     #endif
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>> new file mode 100644
+>>> index 000000000000..51cddfa3f1e8
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+>>> @@ -0,0 +1,112 @@
+>>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>>> +/*
+>>> + * Copyright 2023 Advanced Micro Devices, Inc.
+>>> + *
+>>> + * Permission is hereby granted, free of charge, to any person 
+>>> obtaining a
+>>> + * copy of this software and associated documentation files (the 
+>>> "Software"),
+>>> + * to deal in the Software without restriction, including without 
+>>> limitation
+>>> + * the rights to use, copy, modify, merge, publish, distribute, 
+>>> sublicense,
+>>> + * and/or sell copies of the Software, and to permit persons to 
+>>> whom the
+>>> + * Software is furnished to do so, subject to the following 
+>>> conditions:
+>>> + *
+>>> + * The above copyright notice and this permission notice shall be 
+>>> included in
+>>> + * all copies or substantial portions of the Software.
+>>> + *
+>>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+>>> EXPRESS OR
+>>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+>>> MERCHANTABILITY,
+>>> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO 
+>>> EVENT SHALL
+>>> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, 
+>>> DAMAGES OR
+>>> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+>>> OTHERWISE,
+>>> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE 
+>>> USE OR
+>>> + * OTHER DEALINGS IN THE SOFTWARE.
+>>> + */
+>>> +
+>>> +#include <linux/dma-fence.h>
+>>> +#include <linux/workqueue.h>
+>>> +
+>>> +#include "amdgpu.h"
+>>> +#include "amdgpu_vm.h"
+>>> +#include "amdgpu_gmc.h"
+>>> +
+>>> +struct amdgpu_tlb_fence {
+>>> +    struct dma_fence    base;
+>>> +    struct amdgpu_device    *adev;
+>>> +    struct dma_fence    *dependency;
+>>> +    struct work_struct    work;
+>>> +    spinlock_t        lock;
+>>> +    uint16_t        pasid;
+>>> +
+>>> +};
+>>> +
+>>> +static const char *amdgpu_tlb_fence_get_driver_name(struct 
+>>> dma_fence *fence)
+>>> +{
+>>> +    return "amdgpu tlb fence";
+>>> +}
+>>> +
+>>> +static const char *amdgpu_tlb_fence_get_timeline_name(struct 
+>>> dma_fence *f)
+>>> +{
+>>> +    return "amdgpu tlb timeline";
+>>> +}
+>>> +
+>>> +static void amdgpu_tlb_fence_work(struct work_struct *work)
+>>> +{
+>>> +    struct amdgpu_tlb_fence *f = container_of(work, typeof(*f), work);
+>>> +    int r;
+>>> +
+>>> +    if (f->dependency) {
+>>> +        dma_fence_wait(f->dependency, false);
+>>> +        dma_fence_put(f->dependency);
+>>> +        f->dependency = NULL;
+>>> +    }
+>>> +
+>>> +    r = amdgpu_gmc_flush_gpu_tlb_pasid(f->adev, f->pasid, 2, true, 0);
+>>
+>> To flush all XCCs, as this is a corner case, we could start with this 
+>> to make it correct for SPX mode for now, with extra flush for other 
+>> modes.
+>>
+>>     int num_xcc = f->adev->gfx.xcc_mask ? 
+>> NUM_XCC(f->adev->gfx.xcc_mask) : 1;
+>>     uint32_t xcc_mask = GENMASK(num_xcc - 1, 0);
+>>     int i;
+>>
+>>     for_each_inst(i, xcc_mask)
+>>          r = amdgpu_gmc_flush_gpu_tlb_pasid(f->adev, f->pasid, 
+>> TLB_FLUSH_LEGACY, true, i);
+>
+> Thanks for this input, Philip.
+>
+> @Christian, your feedback for this ?
+
+IIRC Felix and I talked about that before. In theory each VM should only 
+clear one XCC, but in practice that won't work.
+
+I suggest to just make it another parameter and maybe separate fence 
+allocation from actually arming it.
+
+Christian.
+
+>
+> - Shashank
+>
+>>
+>> Regards,
+>> Philip
+>>> +    if (r) {
+>>> +        dev_err(f->adev->dev, "TLB flush failed for PASID %d.\n",
+>>> +            f->pasid);
+>>> +        dma_fence_set_error(&f->base, r);
+>>> +    }
+>>> +
+>>> +    dma_fence_signal(&f->base);
+>>> +    dma_fence_put(&f->base);
+>>> +}
+>>> +
+>>> +static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
+>>> +    .use_64bit_seqno = true,
+>>> +    .get_driver_name = amdgpu_tlb_fence_get_driver_name,
+>>> +    .get_timeline_name = amdgpu_tlb_fence_get_timeline_name
+>>> +};
+>>> +
+>>> +void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct 
+>>> amdgpu_vm *vm,
+>>> +                struct dma_fence **fence)
+>>> +{
+>>> +    struct amdgpu_tlb_fence *f;
+>>> +
+>>> +    f = kmalloc(sizeof(*f), GFP_KERNEL);
+>>> +    if (!f) {
+>>> +        /*
+>>> +         * We can't fail since the PDEs and PTEs are already 
+>>> updated, so
+>>> +         * just block for the dependency and execute the TLB flush
+>>> +         */
+>>> +        if (*fence)
+>>> +            dma_fence_wait(*fence, false);
+>>> +
+>>> +        amdgpu_gmc_flush_gpu_tlb_pasid(adev, vm->pasid, 2, true, 0);
+>>> +        *fence = dma_fence_get_stub();
+>>> +        return;
+>>> +    }
+>>> +
+>>> +    f->adev = adev;
+>>> +    f->dependency = *fence;
+>>> +    f->pasid = vm->pasid;
+>>> +    INIT_WORK(&f->work, amdgpu_tlb_fence_work);
+>>> +    spin_lock_init(&f->lock);
+>>> +
+>>> +    dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+>>> +               vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
+>>> +
+>>> +    /* TODO: We probably need a separate wq here */
+>>> +    dma_fence_get(&f->base);
+>>> +    schedule_work(&f->work);
+>>> +
+>>> +    *fence = &f->base;
+>>> +}
 
