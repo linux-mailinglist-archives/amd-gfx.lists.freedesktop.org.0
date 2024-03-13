@@ -2,121 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A2F87A1EE
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Mar 2024 04:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB85587A43B
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Mar 2024 09:50:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72F9F10EA77;
-	Wed, 13 Mar 2024 03:28:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CYXhqIss";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDCA10F703;
+	Wed, 13 Mar 2024 08:50:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB17B10EA77
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Mar 2024 03:28:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ct/zTPQshrTMkxTmQTYeAQJPy0ZyABKWeEJPtVzz3er9kL0bhLecmiYUz74P9oyKjtQnuKOMTV6V/tIGfsCFCbmzzCbnORbB9F8wkKRvQvKsPUm3TnQTHuswHPQ+BZ+j21gYBhj30pNZEhVmn3nTrMLZYBIkz2MM4NgAyV04T391D+tGXdQ9V/PGLp8JEj2ENGksue4AV8zp6zHbxpmqmvbhDgxOy2iLLLWBnBQ+C0TCtHmv0ERkwsUEVn+6OXvnwbCHGCGtlnj9o1LnxfIXyaXnnGJUim2puP6FylfWLoTTaedLiw4RiMRT/NPPoZ8mGsnrkolDWi6LQOOhtccp8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ToVjPGcY5ST9znNfGkKWrFl2da2ot4rbQwrf7LQru9s=;
- b=f+DfsSKct4ctkgXYa2XZs0PpjbOPq6VJMFd6IZ1BK3Q2QRDJHnEUTVONCMIIu0+7366pHDaGC8R2mhPlm4uXdhWaAnIsXzsulVubVy32F7oy13LT3GIi4qnP6+NNlOcdWse605bV5JSm8KbMRzFC7HM271NDGXi5jCoQnLar3XRhHVvBgVamu/YZmFNzXxfltmx26iSPqhk7eSOEh72053/Yuh7CC3x4R2WmAB+BBEocakHB/BwYScoMYRuCXQkMYBVD2a1L9rwbJx2SWVc71/djHv3k+r5CkRgP/vrwevu3G268G4nY/in6U+Wbwi0JEB0NLhWW6qZKzb55JEynIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ToVjPGcY5ST9znNfGkKWrFl2da2ot4rbQwrf7LQru9s=;
- b=CYXhqIss4P+b51AELNYYQmTxb+oeQF21OfpcqCAXsTdS7QZgfyHgl5KC17+9j2drsg//YaDPLZn5JelhpPzfrgDLZlNTaTXU9BvSmUFycCVIWEjwvdiNPUDNLHXA6lKbsjjm0meMli15ER2ncIaAGI0+JnHR9p67IWOXJ0mX4JI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- BL3PR12MB6403.namprd12.prod.outlook.com (2603:10b6:208:3b3::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.33; Wed, 13 Mar
- 2024 03:28:03 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::621:96e2:a3a0:486a]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::621:96e2:a3a0:486a%4]) with mapi id 15.20.7362.035; Wed, 13 Mar 2024
- 03:28:03 +0000
-Message-ID: <050e8df9-3de7-4e59-82b4-27632127a3e1@amd.com>
-Date: Wed, 13 Mar 2024 08:57:55 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/pm: Fix the ppfeature value
-Content-Language: en-US
-To: "Ma, Jun" <majun@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: Kenneth.Feng@amd.com, Alexander.Deucher@amd.com, kevinyang.wang@amd.com
-References: <20240312105934.2291792-1-Jun.Ma2@amd.com>
- <636b1578-08d7-4a6f-a499-6dec02c58aa5@amd.com>
- <5a0fc9c5-13d3-465b-b0c3-2431f1bd0995@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <5a0fc9c5-13d3-465b-b0c3-2431f1bd0995@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2P287CA0007.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:21b::7) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+X-Greylist: delayed 408 seconds by postgrey-1.36 at gabe;
+ Wed, 13 Mar 2024 06:28:02 UTC
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66CBC10E96B;
+ Wed, 13 Mar 2024 06:28:02 +0000 (UTC)
+X-QQ-mid: bizesmtp80t1710310709trkc2gr1
+X-QQ-Originating-IP: GLC8Iu67rXhV6eCFYKQmrbl6IkFlciWctK/Tvp2LRJk=
+Received: from john-PC ( [123.114.60.34]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Wed, 13 Mar 2024 14:18:27 +0800 (CST)
+X-QQ-SSF: 01400000000000E0L000000A0000000
+X-QQ-FEAT: RmDZc/K2LPGX8QM1YeXZshthElQ2uZpSSUsxNZv7fWEpt0RBL4E/tI9skKcKk
+ 5ZKVyGSJl6s0vhpvrJ0lBNIiqBablTIX6rfDaqRRdX6YMmoXIHmkJyt5dkxecksOnZBvLTS
+ BvY8b8+x3uU3l2ZZvXdM41PEGNgsaaYJIbyoSn8GSP+5p9ISHi7kqDiHsnaJ7aVOBgpCTeL
+ I75T0mKZGigjLTDDU29Hd1eflwxhYelYIPNV8gy3o3aadoOjBG2MIAeyshmJETwXq8tHCV0
+ 2Fp/Cz4T88wyf6HnXL0/43kW5pTFj8E6AiLizSKrWJitqyZfUkVGWf9+ZSEVUOEnFU+1tTi
+ Yk/Uh1FEKP4ICh+IFZEYZODJxIog/wakp2B9pTWCdpCzfemdPy8z/Q4ZgoHhT06jdcMv7t9
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 17432395954863793065
+Date: Wed, 13 Mar 2024 14:18:27 +0800
+From: Qiang Ma <maqianga@uniontech.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, srinivasan.shanmugam@amd.com,
+ sunran001@208suo.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] drm/amdgpu: Clear the hotplug interrupt ack bit
+ before hpd initialization
+Message-ID: <A65A2F93D9F165EC+20240313141827.40f30bd5@john-PC>
+In-Reply-To: <20240131075703.24600-1-maqianga@uniontech.com>
+References: <20240131075703.24600-1-maqianga@uniontech.com>
+Organization: UOS
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|BL3PR12MB6403:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc405381-d736-496b-287c-08dc430d96ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: q5WpmLPzj5JU4V+e8YzACRDPs6Nknx4mNLvmRGwacrozs4meAbdLp+7S7DoHtp2ETqLtFV3qyxz4Cor3hST3MTYKPUhFmasKUizlAlHLjQlWJecb/4L4FSEsN0F5GwSiu0sYn1niXQ2HJOBfVBtA51sblactzU/TxNOoZF5QcvdXiIx8NzcH30Jxr53OJljcobh9cXaoi1CkkJ/nzu+snrRNLP3Ph4kt6ILUUnDPZ9AlDFWuAcxLq+v6fnzbklBSwKDx0EMFXd2e5vDe24M7cqUgDzRZDpnOGscFdsYQ8npyJwSQthhenUeW58tf9o7rRwIzDfJ55wu1y1Km57JytZPZCvXlg//xYzbF5CRMjNfqHphp1qIZrqd9adIP4jXI8xIWuEOf6y+KPbbYhBtUHloiT6Hv2ta9vIJHce5W6oW6M9XSn9xBmMVRjIjp7XxZDmYmtizbe71tbVfnP0LeFL+kIQJWS3DUmUZQzICJjHyrS4huW4xbQAVhbVrByc+7sC0xq+vscYdUGb1LIZvt0INqdaCyNrwt7ApNbzEx2lHrnGUsSUBgxMjUVBnoP8DiKG7ie68gIJ2MWKlDUp8+SIfkMs7819DFeKojTTVFdOs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2hxVGRtNmR1QmpwWENYK21TbTRIVURQVjNTMHFoUlZQUGx0eU52NURRVXBG?=
- =?utf-8?B?OEFmRy9qMFl0N2ZXSE9zY0JIVktEVUF3aklnVldMQmlSV29DWVdERUpiaDNJ?=
- =?utf-8?B?UEp0Uk9YNXl1MjI5TmFVUEVXNGhNRkhBZTRaSGFWNlIxd3pxQWQ4SHBDSFVU?=
- =?utf-8?B?UUlXZk9JV3RvS1BnWTd1ZzZIcWRoRnZ6bHlWZlhYMUJNTUw5SFRwdnZXV0Nm?=
- =?utf-8?B?L2gwSGpvUENYR2RCdzRmdzhtT0t1Zmh5UlVXNWxNYytxdGJ5ODEyaGZ0Sk56?=
- =?utf-8?B?Ky9rYTZLVndmcHNucitrMXNSQ01uTzg4eUkxYlBkRVZvK1F0NVozM1l1djZN?=
- =?utf-8?B?U2FBRFFyZ0d1QnNjaERMQ0szcFRiQ2JzcEkxdktDcHVsWlR1djV5OCtkL3ZP?=
- =?utf-8?B?TFNMc0ZXakEwaDNDVDBydC9UN1VPUUFVNEQ1RmFLMTdsNkRzMCtHemU2ZDNP?=
- =?utf-8?B?NllUYlZBQ2dYRTc3Y1hhL08rSE9vT2tpK0NMVzN4WEdFay9NdFZsNVM0Mmcv?=
- =?utf-8?B?WHc5T08vTGNBRXZCQUprWEhuL2haWmpZSDFUeENDR0YzcWJmZkljWktHU01V?=
- =?utf-8?B?QWg5SzdneDBDWm9jWGVwRERMK2hHY2FyMlpWZUNWT240MmROVHpTdE9YL2N6?=
- =?utf-8?B?dVpPcklsNTE2amJrZFhCQ1hkM0hDUTBFaWZGTHk1UHZoOHB2RXRGbDFXVnVM?=
- =?utf-8?B?TGE4UkVjbXZ2d0xrTGgwMWJ1UUxJQXpabEVRVVUrZllBOWZaT0RYWDJ3WXFm?=
- =?utf-8?B?bHd4c2lGL1I1bmhuSXpNcDVEdlFoWEE5R1dSejhQa0pyZjcycy9BWG40Nnh3?=
- =?utf-8?B?ekhnc0EvbFdjUG91QXJTWUoyZCtaU2J4YTlrQVFIQTlRanRGbmIwcUFzOUVP?=
- =?utf-8?B?ZEVmeWZ1dTN0S3NicExUa1YzWTg3anhsbVl0TmRoZUErVFhPc2czc092YnJ4?=
- =?utf-8?B?YWl1alFsd05mRFNodXZQZ3BSMTB4R0F6N3FzbFljemdtd3FVT2ZSR2ZXNkNO?=
- =?utf-8?B?bjJZcHROTThMcFhNaTVkeWIxSWZYRWJObW1hY0VOWkhaTk1ucXU5MEdVZHJE?=
- =?utf-8?B?ZzJoZnMxRXI2T2JOelpuOHFkVzh0MXpjZ2s3d2JxT2JpQkthUU4yQzRBdlNZ?=
- =?utf-8?B?cUh2MGU0YmpjYVEyTzdFRVlnYjVDUUpqSEg2WGdweDRCL3loSThMMUV6c0o2?=
- =?utf-8?B?SXFLMWlNWWt6dFpOR2FCYi80eXJkaDJkM1FlZzJzQWw5YjcwTFlKemdTMTV1?=
- =?utf-8?B?VDBxR2E4eXlSWWNmeS8yQXB4RGRmaVNWMFpLbFZTV0pnZ1VRY0VBUHNpM01Q?=
- =?utf-8?B?dXp3NFdta24xTXphWU5Vdmwzbk8zL0xncEU2N05QUG1GWWE1bEpDbGhpb0xT?=
- =?utf-8?B?UTM5VCtlNWJoMFY5N2Y1RmZFd0RkKzhGdnRMNFdWMEYveGR2bit1MHA4L2JP?=
- =?utf-8?B?OHFnYkZIbnBZYmNKNmQ1dHp5NUxseUVKc3JRZno1ai90UzlOVm5TdmJ2bkIr?=
- =?utf-8?B?S1htV1VSVUQwOTBWZmJkVy9VTytscjVqMTJpeS9nOVZ5NzgrWjRsNXBLR3R0?=
- =?utf-8?B?bVRYNlNONGVQQXkxZTNCVTNIcWQvUlVHZGdsLzY2ajg2eDg4YnZkdXRVRkJV?=
- =?utf-8?B?WDIzVHVnRjNDb3ZLMHhQU0FlU3B4NzNWWWxlc1hya2VlUHhuaXZSbzMrRnIz?=
- =?utf-8?B?NHQrNkxBam5mc2RTMjFEb0FORVdOWE1DMG52Nkt3a2FPNzRqczFUN1hNK0Ny?=
- =?utf-8?B?aU01NUlzenhZYUFqN3EweHRZRkxhRDZQdm5wSTFUZTVaNDBWNmQrOUdvODV6?=
- =?utf-8?B?ck9HSnR2bWhtZW05ejNZY28zQTk1VEw3VUErZlQvMFBXdFNRQnJnUmJ3NVNW?=
- =?utf-8?B?ZEs3aDBJTU55WmxEMVJEcmpBV3B5SVFrMEJ4QjFBMTg5MlA3SmZjTXYrL0di?=
- =?utf-8?B?VkJzSkdIclRoU3FOVUlkVlVURllHTXRxYjNScktXT0VIeUFGTjdrUUpJUGRX?=
- =?utf-8?B?MWZhOExxbGlNZHFiQzlXMFVwU3duN0ZNR3JDbW1QMHpkK1dKcm9sL1hINWZ3?=
- =?utf-8?B?UzhtaHIrMFdreUxya1FndEpqMno2Yk41VzhhMUJ4ek93TlJVNTZyQlJORzQ5?=
- =?utf-8?Q?BEGFUmtK8cB2RDroC5FtBk4CW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc405381-d736-496b-287c-08dc430d96ef
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2024 03:28:02.9471 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TydzSGyvl8aD17YzBUvxI0uR4S0RLOvJuKRgYz61LV4vCtmBym1kbXKiv+kYdIIC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6403
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-Mailman-Approved-At: Wed, 13 Mar 2024 08:50:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,102 +61,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 31 Jan 2024 15:57:03 +0800
+Qiang Ma <maqianga@uniontech.com> wrote:
 
+Hello everyone, please help review this patch.
 
-On 3/13/2024 8:15 AM, Ma, Jun wrote:
+  Qiang Ma
+
+> Problem:
+> The computer in the bios initialization process, unplug the HDMI
+> display, wait until the system up, plug in the HDMI display, did not
+> enter the hotplug interrupt function, the display is not bright.
 > 
+> Fix:
+> After the above problem occurs, and the hpd ack interrupt bit is 1,
+> the interrupt should be cleared during hpd_init initialization so that
+> when the driver is ready, it can respond to the hpd interrupt
+> normally.
 > 
-> On 3/12/2024 8:57 PM, Lazar, Lijo wrote:
->>
->>
->> On 3/12/2024 4:29 PM, Ma Jun wrote:
->>> Sometimes user may want to enable the od feature
->>> by setting ppfeaturemask when loading amdgpu driver.
->>> However,not all Asics support this feature.
->>> So we need to restore the ppfeature value and print
->>> a warning info.
->>>
->>> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
->>> ---
->>>  drivers/gpu/drm/amd/pm/amdgpu_dpm.c     | 15 ++++++++++++---
->>>  drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h |  2 +-
->>>  2 files changed, 13 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->>> index f84bfed50681..d777056b2f9d 100644
->>> --- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
->>> @@ -1548,12 +1548,14 @@ int amdgpu_dpm_get_smu_prv_buf_details(struct amdgpu_device *adev,
->>>  	return ret;
->>>  }
->>>  
->>> -int amdgpu_dpm_is_overdrive_supported(struct amdgpu_device *adev)
->>> +bool amdgpu_dpm_is_overdrive_supported(struct amdgpu_device *adev)
->>>  {
->>> +	bool od_support;
->>> +
->>>  	if (is_support_sw_smu(adev)) {
->>>  		struct smu_context *smu = adev->powerplay.pp_handle;
->>>  
->>> -		return (smu->od_enabled || smu->is_apu);
->>> +		od_support = (smu->od_enabled || smu->is_apu);
->>>  	} else {
->>>  		struct pp_hwmgr *hwmgr;
->>>  
->>> @@ -1566,8 +1568,15 @@ int amdgpu_dpm_is_overdrive_supported(struct amdgpu_device *adev)
->>>  
->>>  		hwmgr = (struct pp_hwmgr *)adev->powerplay.pp_handle;
->>>  
->>> -		return hwmgr->od_enabled;
->>> +		od_support = hwmgr->od_enabled;
->>> +	}
->>> +
->>> +	if (!od_support && (adev->pm.pp_feature & PP_OVERDRIVE_MASK)) {
->>> +		adev->pm.pp_feature &= ~PP_OVERDRIVE_MASK;
->>> +		DRM_WARN("overdrive feature is not supported\n");
->>>  	}
->>> +
->>> +	return od_support;
->>
->> Instead of doing this inside DPM API, suggest to keep it outside towards
->> the end of initialization phase.
->>
+> Signed-off-by: Qiang Ma <maqianga@uniontech.com>
+> ---
+> v2:
+>  - Remove unused variable 'tmp'
+>  - Fixed function spelling errors
+>  
+> drivers/gpu/drm/amd/amdgpu/dce_v10_0.c |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 22 ++++++++++++++++++----
+>  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 22 ++++++++++++++++++----
+>  4 files changed, 40 insertions(+), 8 deletions(-)
 > 
-> This function is called before the driver creates the OD related sys interface,
-> which is almost the last initialization phase. I think there's probably not much
-> need to break the whole logic and call this function again anywhere else.
-> 
-amdgpu_dpm_* are meant as APIs and not meant to do internal manipulation
-of pp_feature with every invocation.
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c index
+> bb666cb7522e..12a8ba929a72 100644 ---
+> a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c +++
+> b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c @@ -51,6 +51,7 @@
+>  
+>  static void dce_v10_0_set_display_funcs(struct amdgpu_device *adev);
+>  static void dce_v10_0_set_irq_funcs(struct amdgpu_device *adev);
+> +static void dce_v10_0_hpd_int_ack(struct amdgpu_device *adev, int
+> hpd); 
+>  static const u32 crtc_offsets[] = {
+>  	CRTC0_REGISTER_OFFSET,
+> @@ -363,6 +364,7 @@ static void dce_v10_0_hpd_init(struct
+> amdgpu_device *adev) AMDGPU_HPD_DISCONNECT_INT_DELAY_IN_MS);
+>  		WREG32(mmDC_HPD_TOGGLE_FILT_CNTL +
+> hpd_offsets[amdgpu_connector->hpd.hpd], tmp); 
+> +		dce_v10_0_hpd_int_ack(adev,
+> amdgpu_connector->hpd.hpd); dce_v10_0_hpd_set_polarity(adev,
+> amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
+>  			       amdgpu_connector->hpd.hpd);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+> b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c index
+> 7af277f61cca..745e4fdffade 100644 ---
+> a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c +++
+> b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c @@ -51,6 +51,7 @@
+>  
+>  static void dce_v11_0_set_display_funcs(struct amdgpu_device *adev);
+>  static void dce_v11_0_set_irq_funcs(struct amdgpu_device *adev);
+> +static void dce_v11_0_hpd_int_ack(struct amdgpu_device *adev, int
+> hpd); 
+>  static const u32 crtc_offsets[] =
+>  {
+> @@ -387,6 +388,7 @@ static void dce_v11_0_hpd_init(struct
+> amdgpu_device *adev) AMDGPU_HPD_DISCONNECT_INT_DELAY_IN_MS);
+>  		WREG32(mmDC_HPD_TOGGLE_FILT_CNTL +
+> hpd_offsets[amdgpu_connector->hpd.hpd], tmp); 
+> +		dce_v11_0_hpd_int_ack(adev,
+> amdgpu_connector->hpd.hpd); dce_v11_0_hpd_set_polarity(adev,
+> amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
+> amdgpu_connector->hpd.hpd); }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+> b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c index
+> 143efc37a17f..28c4a735716b 100644 ---
+> a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c +++
+> b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c @@ -272,6 +272,21 @@ static
+> void dce_v6_0_hpd_set_polarity(struct amdgpu_device *adev,
+> WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
+>  
+> +static void dce_v6_0_hpd_int_ack(struct amdgpu_device *adev,
+> +				 int hpd)
+> +{
+> +	u32 tmp;
+> +
+> +	if (hpd >= adev->mode_info.num_hpd) {
+> +		DRM_DEBUG("invalid hdp %d\n", hpd);
+> +		return;
+> +	}
+> +
+> +	tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+> +	tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
+> +	WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+> +}
+> +
+>  /**
+>   * dce_v6_0_hpd_init - hpd setup callback.
+>   *
+> @@ -311,6 +326,7 @@ static void dce_v6_0_hpd_init(struct
+> amdgpu_device *adev) continue;
+>  		}
+>  
+> +		dce_v6_0_hpd_int_ack(adev,
+> amdgpu_connector->hpd.hpd); dce_v6_0_hpd_set_polarity(adev,
+> amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
+> amdgpu_connector->hpd.hpd); }
+> @@ -3088,7 +3104,7 @@ static int dce_v6_0_hpd_irq(struct
+> amdgpu_device *adev, struct amdgpu_irq_src *source,
+>  			    struct amdgpu_iv_entry *entry)
+>  {
+> -	uint32_t disp_int, mask, tmp;
+> +	uint32_t disp_int, mask;
+>  	unsigned hpd;
+>  
+>  	if (entry->src_data[0] >= adev->mode_info.num_hpd) {
+> @@ -3101,9 +3117,7 @@ static int dce_v6_0_hpd_irq(struct
+> amdgpu_device *adev, mask = interrupt_status_offsets[hpd].hpd;
+>  
+>  	if (disp_int & mask) {
+> -		tmp = RREG32(mmDC_HPD1_INT_CONTROL +
+> hpd_offsets[hpd]);
+> -		tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
+> -		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd],
+> tmp);
+> +		dce_v6_0_hpd_int_ack(adev, hpd);
+>  		schedule_delayed_work(&adev->hotplug_work, 0);
+>  		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
+>  	}
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+> b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c index
+> adeddfb7ff12..8ff2b5adfd95 100644 ---
+> a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c +++
+> b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c @@ -264,6 +264,21 @@ static
+> void dce_v8_0_hpd_set_polarity(struct amdgpu_device *adev,
+> WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
+>  
+> +static void dce_v8_0_hpd_int_ack(struct amdgpu_device *adev,
+> +				 int hpd)
+> +{
+> +	u32 tmp;
+> +
+> +	if (hpd >= adev->mode_info.num_hpd) {
+> +		DRM_DEBUG("invalid hdp %d\n", hpd);
+> +		return;
+> +	}
+> +
+> +	tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
+> +	tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
+> +	WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
+> +}
+> +
+>  /**
+>   * dce_v8_0_hpd_init - hpd setup callback.
+>   *
+> @@ -303,6 +318,7 @@ static void dce_v8_0_hpd_init(struct
+> amdgpu_device *adev) continue;
+>  		}
+>  
+> +		dce_v8_0_hpd_int_ack(adev,
+> amdgpu_connector->hpd.hpd); dce_v8_0_hpd_set_polarity(adev,
+> amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
+> amdgpu_connector->hpd.hpd); }
+> @@ -3176,7 +3192,7 @@ static int dce_v8_0_hpd_irq(struct
+> amdgpu_device *adev, struct amdgpu_irq_src *source,
+>  			    struct amdgpu_iv_entry *entry)
+>  {
+> -	uint32_t disp_int, mask, tmp;
+> +	uint32_t disp_int, mask;
+>  	unsigned hpd;
+>  
+>  	if (entry->src_data[0] >= adev->mode_info.num_hpd) {
+> @@ -3189,9 +3205,7 @@ static int dce_v8_0_hpd_irq(struct
+> amdgpu_device *adev, mask = interrupt_status_offsets[hpd].hpd;
+>  
+>  	if (disp_int & mask) {
+> -		tmp = RREG32(mmDC_HPD1_INT_CONTROL +
+> hpd_offsets[hpd]);
+> -		tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
+> -		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd],
+> tmp);
+> +		dce_v8_0_hpd_int_ack(adev, hpd);
+>  		schedule_delayed_work(&adev->hotplug_work, 0);
+>  		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
+>  	}
 
-This is indeed not the right way to do this. There is already another
-place during driver initialization -
-https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/amd/pm/amdgpu_pm.c#L4277
-
-This could be done even there.
-
-Thanks,
-Lijo
-
-> Regards,
-> Ma Jun
-> 
->> Thanks,
->> Lijo
->>
->>>  }
->>>  
->>>  int amdgpu_dpm_set_pp_table(struct amdgpu_device *adev,
->>> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->>> index 621200e0823f..0635f9d3a61a 100644
->>> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->>> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
->>> @@ -551,7 +551,7 @@ int amdgpu_dpm_debugfs_print_current_performance_level(struct amdgpu_device *ade
->>>  int amdgpu_dpm_get_smu_prv_buf_details(struct amdgpu_device *adev,
->>>  				       void **addr,
->>>  				       size_t *size);
->>> -int amdgpu_dpm_is_overdrive_supported(struct amdgpu_device *adev);
->>> +bool amdgpu_dpm_is_overdrive_supported(struct amdgpu_device *adev);
->>>  int amdgpu_dpm_set_pp_table(struct amdgpu_device *adev,
->>>  			    const char *buf,
->>>  			    size_t size);
