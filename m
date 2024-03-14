@@ -2,97 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F7A087C0D4
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Mar 2024 17:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C2687C9E3
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 09:24:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9962410E3DD;
-	Thu, 14 Mar 2024 16:01:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1220610FFDF;
+	Fri, 15 Mar 2024 08:24:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MVGYrdYO";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="29rXDjsT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2067.outbound.protection.outlook.com [40.107.101.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E23C10E3DD
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 16:01:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fvHh/D4qjcrGkp7oSoM1bRHxTYTpMvs3m4l5YaG8HJC5jW/utGQ9tZLnXJifJegZs8MgvvFf8wdXZfW/y/duMvmAvgifO8y5h+c3WuH0JiSKJfWfLXw2dNaZddiYcO/cEENm/xj9dmD2mAYMcgZUzucS/b/j7Yqbk496MeiXn+BZvu8/MBYuXfGJHozRGHCbF86GwTM3VVatpGa8xziwGjjEUeDbPrhzr/cnWi5ezhHk+CCt75/R+shsKnbKtSN1Ei9XXHWeL8ZOmYSQg1EUfa6xowdtE3baJiE2SIML8MdMs6CMAACLRXv1u1Y/f+DscW+BdQb5UE/anFfCigEbqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5bvHta5+gzpPiAZMeffP93J8j+eUaE+t9JYYiTHhLls=;
- b=bhSritdL1J5LPhYFd5u256f5moEE7g/wtbhXK4Zy70vwnyc56U5RBi5yVee7Cf/Wy0siS9IkftS2WWZ18xturGlKBA7OuFj595abUqw6Bodo03gi7P+RRYx9qo3n4Lmmd0O4s3xbP58afLRJb7W6h7SGRh4tUgxIdamV1qXLYDnEzmJFbNycCci4coD+Cw5eKeWU20S61DZmbJPjFeeBeiTIpPfzm2r46iMzQnzaYte5m3+I3YuQ7BRZUFuMZpq7Z3SPQqtitddd/dY8SEeC25BQteYfWw/FS5HeLXgG/vElR4/wsFEuCWN+dTfGGMj8e4+KK5gHkRgZPVFZaN7zaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5bvHta5+gzpPiAZMeffP93J8j+eUaE+t9JYYiTHhLls=;
- b=MVGYrdYO1c2fS3sRWEY5Yh6u3AaQ5ndopJW02Wt4jdTUBMyry3I2WrTOure78/Z4M29sui89FNvuMUXu841YSacQATUHqGwXJdTkQIS31zTOb/FFDrHMpuDZcwVHusbnswf4Hm3s0h49JaREwrtE+uspqIvFNM0QCWqQbzQH2ME=
-Received: from MW4PR03CA0037.namprd03.prod.outlook.com (2603:10b6:303:8e::12)
- by SJ2PR12MB8830.namprd12.prod.outlook.com (2603:10b6:a03:4d0::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Thu, 14 Mar
- 2024 16:01:15 +0000
-Received: from MWH0EPF000971E4.namprd02.prod.outlook.com
- (2603:10b6:303:8e:cafe::aa) by MW4PR03CA0037.outlook.office365.com
- (2603:10b6:303:8e::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35 via Frontend
- Transport; Thu, 14 Mar 2024 16:01:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000971E4.mail.protection.outlook.com (10.167.243.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7386.12 via Frontend Transport; Thu, 14 Mar 2024 16:01:14 +0000
-Received: from mukjoshi-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 14 Mar
- 2024 11:01:13 -0500
-From: Mukul Joshi <mukul.joshi@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, <Jay.Cornwall@amd.com>, Mukul Joshi
- <mukul.joshi@amd.com>, Jay Cornwall <jay.cornwall@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: Check preemption status on all XCDs
-Date: Thu, 14 Mar 2024 12:00:29 -0400
-Message-ID: <20240314160029.623784-2-mukul.joshi@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20240314160029.623784-1-mukul.joshi@amd.com>
-References: <20240314160029.623784-1-mukul.joshi@amd.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A8D10E295;
+ Thu, 14 Mar 2024 16:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1710432145;
+ bh=OebvIykPnKzFMgLsQYXofT9STmJeJ3CQ/dvUuXmK/2w=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=29rXDjsTaXvDSR5XeYHhZalxfUGQcTCkmIKYraxN+mMpUOTNsGt4tLgKcSqWjuncX
+ mGN+0z9gOemN8cRQHvnVaYqLI04kOJj2FoCHiqjuDP2vd3qKelULGy6ef3Met5tnNO
+ /9P0QM/IqIpgEUJMcOmMUx9lLRRwPjKOJaBljV9rNsIkvrzM0pgRFMvWK1k8KXpYNM
+ GfKD4HT/j2USDXqaMx1UNKqV7k1FbdBQAwqHMIOLLpvVX9PmOPKTTz5+oY/wPSX72a
+ tjIC1dh0pkqTLkzN8TI/jClz9DWv2Kso4sA4grPyq1GQ6owKASZbcUL/cX4A/pzSEF
+ 742ZyrdQdPm3g==
+Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7DF8B37820F5;
+ Thu, 14 Mar 2024 16:02:25 +0000 (UTC)
+Date: Thu, 14 Mar 2024 18:02:23 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <wayland-devel@lists.freedesktop.org>
+Subject: Re: [RFC PATCH v4 25/42] drm/vkms: Add tests for CTM handling
+Message-ID: <20240314180223.65ab8777.pekka.paalanen@collabora.com>
+In-Reply-To: <20240226211100.100108-26-harry.wentland@amd.com>
+References: <20240226211100.100108-1-harry.wentland@amd.com>
+ <20240226211100.100108-26-harry.wentland@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000971E4:EE_|SJ2PR12MB8830:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5af3682e-82d5-4b2f-b3a1-08dc443ffa20
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MQqizTmfTQHnp6ax1d1k613Xbl33G8rpUOfud92F6uAnN8InksxViXqelpGdWR3LCKG0FY6FBqf3RXo4tScYHybD6zAIvgl93sTGyW9OpU+2uI95w6AZ5Tmwa/TBg+rihNlt4DfKvsHyallhWKPD0DlKUU+mw4LsRCEHOrOo2ZFvH9ZmpM8fCbiEWjhwuOgnHlTOlR69+hIXwYTebHS/yZSD38LgnM5+L+Kgb1m6fio92eNnq+QbztdRA89+I+3lUrU4Uz18SVAxcLw/kYBgJV9sXh2FjX0MIxSaIVctcHxvzw3qvFOId4RiU5VAu3A6qZ4f5jnOOGNhHWuhzl8qPAN5xsIK7FFZCI7iucF57dBvs/iTvrQRu7+5U3vHMf37d9YceEM7hYNbYII7PY2Wu7itUjUCQWjhfXFFZVeatR2fiMvQ8EupmbnNCYBFMQWpWFwvWBVoqijxfiMm0c2+H+WhLmnQMF46a0V4zZFsaoZBWDRObT3SKKGGwNd/5xXCBSo/LYFqbIdAOmpVIR7uXOXIvXpiBXT3o8YDTNNQurcGD4+Vzmg7ljmlUqJYsqkDS+7L3LrSWMO2WIs5/nYb5iNtCTC1UPSzojsXRzDopgU4DKUtFR9036GWGs5I+WphhAAb95Bz0e9sg5BEKlmINWSRlUrt5XcjOZWB9wB4SwnZB37s/LzluRtD4lKe7jwzO1X5gjU+hvVZuiLR1tGBajzUnQNBZDPnxX8ret1skbPSqzVBJr0geKBRuaEX14kZ
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(1800799015)(36860700004)(376005); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 16:01:14.8280 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5af3682e-82d5-4b2f-b3a1-08dc443ffa20
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000971E4.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8830
+Content-Type: multipart/signed; boundary="Sig_/lB/ul+0s_RsGEiR.Q42ykxb";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Fri, 15 Mar 2024 08:24:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,221 +62,381 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch adds the following functionality:
-- Check the queue preemption status on all XCDs in a partition
-  for GFX 9.4.3.
-- Update the queue preemption debug message to print the queue
-  doorbell id for which preemption failed.
-- Change the signature of check preemption failed function to
-  return a bool instead of uint32_t and pass the MQD manager
-  as an argument.
+--Sig_/lB/ul+0s_RsGEiR.Q42ykxb
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Suggested-by: Jay Cornwall <jay.cornwall@amd.com>
-Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
----
- .../drm/amd/amdkfd/kfd_device_queue_manager.c |  3 +--
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c  | 18 +++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h  |  4 ++-
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c  |  4 +--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c  |  4 +--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c  |  4 +--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 25 ++++++++++++++++---
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c   |  4 +--
- 8 files changed, 52 insertions(+), 14 deletions(-)
+On Mon, 26 Feb 2024 16:10:39 -0500
+Harry Wentland <harry.wentland@amd.com> wrote:
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 1ce398ab0b3d..151fabf84040 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1997,8 +1997,7 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
- 	 * check those fields
- 	 */
- 	mqd_mgr = dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ];
--	if (mqd_mgr->check_preemption_failed(dqm->packet_mgr.priv_queue->queue->mqd)) {
--		dev_err(dev, "HIQ MQD's queue_doorbell_id0 is not 0, Queue preemption time out\n");
-+	if (mqd_mgr->check_preemption_failed(mqd_mgr, dqm->packet_mgr.priv_queue->queue->mqd)) {
- 		while (halt_if_hws_hang)
- 			schedule();
- 		return -ETIME;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-index 050a6936ff84..cbec8c87c984 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-@@ -290,3 +290,21 @@ uint64_t kfd_mqd_stride(struct mqd_manager *mm,
- {
- 	return mm->mqd_size;
- }
-+
-+bool kfd_check_hiq_mqd_doorbell_id(struct kfd_node *node, uint32_t doorbell_id,
-+				   uint32_t inst)
-+{
-+	if (doorbell_id) {
-+		struct device *dev = node->adev->dev;
-+
-+		if (KFD_GC_VERSION(node) == IP_VERSION(9, 4, 3))
-+			dev_err(dev, "XCC %d: Queue preemption failed for queue with doorbell_id: %x\n",
-+							inst, doorbell_id);
-+		else
-+			dev_err(dev, "Queue preemption failed for queue with doorbell_id: %x\n",
-+							doorbell_id);
-+		return true;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-index ba3eebb2ca6d..17cc1f25c8d0 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-@@ -119,7 +119,7 @@ struct mqd_manager {
- #if defined(CONFIG_DEBUG_FS)
- 	int	(*debugfs_show_mqd)(struct seq_file *m, void *data);
- #endif
--	uint32_t (*check_preemption_failed)(void *mqd);
-+	bool (*check_preemption_failed)(struct mqd_manager *mm, void *mqd);
- 	uint64_t (*mqd_stride)(struct mqd_manager *mm,
- 				struct queue_properties *p);
- 
-@@ -198,4 +198,6 @@ void kfd_get_hiq_xcc_mqd(struct kfd_node *dev,
- uint64_t kfd_hiq_mqd_stride(struct kfd_node *dev);
- uint64_t kfd_mqd_stride(struct mqd_manager *mm,
- 			struct queue_properties *q);
-+bool kfd_check_hiq_mqd_doorbell_id(struct kfd_node *node, uint32_t doorbell_id,
-+				   uint32_t inst);
- #endif /* KFD_MQD_MANAGER_H_ */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-index 8f9f56f7a8b0..05f3ac2eaef9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-@@ -206,11 +206,11 @@ static void __update_mqd(struct mqd_manager *mm, void *mqd,
- 	q->is_active = QUEUE_IS_ACTIVE(*q);
- }
- 
--static uint32_t check_preemption_failed(void *mqd)
-+static bool check_preemption_failed(struct mqd_manager *mm, void *mqd)
- {
- 	struct cik_mqd *m = (struct cik_mqd *)mqd;
- 
--	return m->queue_doorbell_id0;
-+	return kfd_check_hiq_mqd_doorbell_id(mm->dev, m->queue_doorbell_id0, 0);
- }
- 
- static void update_mqd(struct mqd_manager *mm, void *mqd,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-index d4cf7d845928..2eff37aaf827 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-@@ -224,11 +224,11 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
- 	q->is_active = QUEUE_IS_ACTIVE(*q);
- }
- 
--static uint32_t check_preemption_failed(void *mqd)
-+static bool check_preemption_failed(struct mqd_manager *mm, void *mqd)
- {
- 	struct v10_compute_mqd *m = (struct v10_compute_mqd *)mqd;
- 
--	return m->queue_doorbell_id0;
-+	return kfd_check_hiq_mqd_doorbell_id(mm->dev, m->queue_doorbell_id0, 0);
- }
- 
- static int get_wave_state(struct mqd_manager *mm, void *mqd,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-index 2b9f57c267eb..68dbc0399c87 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-@@ -278,11 +278,11 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
- 	q->is_active = QUEUE_IS_ACTIVE(*q);
- }
- 
--static uint32_t check_preemption_failed(void *mqd)
-+static bool check_preemption_failed(struct mqd_manager *mm, void *mqd)
- {
- 	struct v11_compute_mqd *m = (struct v11_compute_mqd *)mqd;
- 
--	return m->queue_doorbell_id0;
-+	return kfd_check_hiq_mqd_doorbell_id(mm->dev, m->queue_doorbell_id0, 0);
- }
- 
- static int get_wave_state(struct mqd_manager *mm, void *mqd,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-index 7c93a0932677..6bddc16808d7 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-@@ -316,11 +316,11 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
- }
- 
- 
--static uint32_t check_preemption_failed(void *mqd)
-+static bool check_preemption_failed(struct mqd_manager *mm, void *mqd)
- {
- 	struct v9_mqd *m = (struct v9_mqd *)mqd;
- 
--	return m->queue_doorbell_id0;
-+	return kfd_check_hiq_mqd_doorbell_id(mm->dev, m->queue_doorbell_id0, 0);
- }
- 
- static int get_wave_state(struct mqd_manager *mm, void *mqd,
-@@ -607,6 +607,24 @@ static int destroy_hiq_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
- 	return err;
- }
- 
-+static bool check_preemption_failed_v9_4_3(struct mqd_manager *mm, void *mqd)
-+{
-+	uint64_t hiq_mqd_size = kfd_hiq_mqd_stride(mm->dev);
-+	uint32_t xcc_mask = mm->dev->xcc_mask;
-+	int inst = 0, xcc_id;
-+	struct v9_mqd *m;
-+	bool ret = false;
-+
-+	for_each_inst(xcc_id, xcc_mask) {
-+		m = get_mqd(mqd + hiq_mqd_size * inst);
-+		ret |= kfd_check_hiq_mqd_doorbell_id(mm->dev,
-+					m->queue_doorbell_id0, inst);
-+		++inst;
-+	}
-+
-+	return ret;
-+}
-+
- static void get_xcc_mqd(struct kfd_mem_obj *mqd_mem_obj,
- 			       struct kfd_mem_obj *xcc_mqd_mem_obj,
- 			       uint64_t offset)
-@@ -881,15 +899,16 @@ struct mqd_manager *mqd_manager_init_v9(enum KFD_MQD_TYPE type,
- #if defined(CONFIG_DEBUG_FS)
- 		mqd->debugfs_show_mqd = debugfs_show_mqd;
- #endif
--		mqd->check_preemption_failed = check_preemption_failed;
- 		if (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 3)) {
- 			mqd->init_mqd = init_mqd_hiq_v9_4_3;
- 			mqd->load_mqd = hiq_load_mqd_kiq_v9_4_3;
- 			mqd->destroy_mqd = destroy_hiq_mqd_v9_4_3;
-+			mqd->check_preemption_failed = check_preemption_failed_v9_4_3;
- 		} else {
- 			mqd->init_mqd = init_mqd_hiq;
- 			mqd->load_mqd = kfd_hiq_load_mqd_kiq;
- 			mqd->destroy_mqd = destroy_hiq_mqd;
-+			mqd->check_preemption_failed = check_preemption_failed;
- 		}
- 		break;
- 	case KFD_MQD_TYPE_DIQ:
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-index dbc868e0363f..c1fafc502515 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-@@ -237,11 +237,11 @@ static void __update_mqd(struct mqd_manager *mm, void *mqd,
- 	q->is_active = QUEUE_IS_ACTIVE(*q);
- }
- 
--static uint32_t check_preemption_failed(void *mqd)
-+static bool check_preemption_failed(struct mqd_manager *mm, void *mqd)
- {
- 	struct vi_mqd *m = (struct vi_mqd *)mqd;
- 
--	return m->queue_doorbell_id0;
-+	return kfd_check_hiq_mqd_doorbell_id(mm->dev, m->queue_doorbell_id0, 0);
- }
- 
- static void update_mqd(struct mqd_manager *mm, void *mqd,
--- 
-2.35.1
+> A whole slew of tests for CTM handling that greatly helped in
+> debugging the CTM code. The extent of tests might seem a bit
+> silly but they're fast and might someday help save someone
+> else's day when debugging this.
+>=20
+> v4:
+>  - Comment on origin of bt709_enc matrix (Pekka)
+>  - Use full opaque alpha (Pekka)
+>  - Add additional check for Y < 0xffff (Pekka)
+>  - Remove unused code (Pekka)
+>  - Rename red, green, blue to Y, U, V where applicable
+>=20
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> ---
+>  drivers/gpu/drm/vkms/tests/vkms_color_tests.c | 251 ++++++++++++++++++
+>  drivers/gpu/drm/vkms/vkms_composer.c          |   2 +-
+>  2 files changed, 252 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/vkms/tests/vkms_color_tests.c b/drivers/gpu/=
+drm/vkms/tests/vkms_color_tests.c
+> index e6ac01dee830..83d07f7bae37 100644
+> --- a/drivers/gpu/drm/vkms/tests/vkms_color_tests.c
+> +++ b/drivers/gpu/drm/vkms/tests/vkms_color_tests.c
+> @@ -3,6 +3,7 @@
+>  #include <kunit/test.h>
+> =20
+>  #include <drm/drm_fixed.h>
+> +#include <drm/drm_mode.h>
+> =20
+>  #define TEST_LUT_SIZE 16
+> =20
+> @@ -181,11 +182,261 @@ static void vkms_color_srgb_inv_srgb(struct kunit =
+*test)
+>  	}
+>  }
+> =20
+> +#define FIXPT_HALF        (DRM_FIXED_ONE >> 1)
+> +#define FIXPT_QUARTER     (DRM_FIXED_ONE >> 2)
+> +
+> +const struct drm_color_ctm_3x4 test_matrix_3x4_50_desat =3D { {
+> +	FIXPT_HALF, FIXPT_QUARTER, FIXPT_QUARTER, 0,
+> +	FIXPT_QUARTER, FIXPT_HALF, FIXPT_QUARTER, 0,
+> +	FIXPT_QUARTER, FIXPT_QUARTER, FIXPT_HALF, 0
 
+These are supposed to be sign-magnitude, not fixed-point, to my
+understanding. It just happens that these specific values have the same
+bit pattern in both representations.
+
+
+> +} };
+> +
+> +static void vkms_color_ctm_3x4_50_desat(struct kunit *test)
+> +{
+> +	struct pixel_argb_s32 ref, out;
+> +
+> +	/* full white */
+> +	ref.a =3D 0xffff;
+> +	ref.r =3D 0xffff;
+> +	ref.g =3D 0xffff;
+> +	ref.b =3D 0xffff;
+> +
+> +	memcpy(&out, &ref, sizeof(out));
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_50_desat);
+> +
+> +	KUNIT_EXPECT_MEMEQ(test, &ref, &out, sizeof(out));
+> +
+> +	/* full black */
+> +	ref.a =3D 0xffff;
+> +	ref.r =3D 0x0;
+> +	ref.g =3D 0x0;
+> +	ref.b =3D 0x0;
+> +
+> +	memcpy(&out, &ref, sizeof(out));
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_50_desat);
+> +
+> +	KUNIT_EXPECT_MEMEQ(test, &ref, &out, sizeof(out));
+> +
+> +	/* 50% grey */
+> +	ref.a =3D 0xffff;
+> +	ref.r =3D 0x8000;
+> +	ref.g =3D 0x8000;
+> +	ref.b =3D 0x8000;
+> +
+> +	memcpy(&out, &ref, sizeof(out));
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_50_desat);
+> +
+> +	KUNIT_EXPECT_MEMEQ(test, &ref, &out, sizeof(out));
+> +
+> +	/* full red to 50% desat */
+> +	ref.a =3D 0xffff;
+> +	ref.r =3D 0x7fff;
+> +	ref.g =3D 0x3fff;
+> +	ref.b =3D 0x3fff;
+> +
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0xffff;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_50_desat);
+> +
+> +	KUNIT_EXPECT_MEMEQ(test, &ref, &out, sizeof(out));
+> +}
+> +
+> +/*
+> + * BT.709 encoding matrix
+> + *
+> + * Values printed from within IGT when converting
+> + * igt_matrix_3x4_bt709_enc to the fixed-point format expected
+> + * by DRM/KMS.
+
+Shouldn't that be sign-magnitude, not fixed point?
+
+I was hoping to get a reference to a spec like BT.709 and a formula for
+getting the blow out of it. IGT can change over time, and I don't know
+where IGT for that matrix from.
+
+But ok, this is a test with an arbitrary matrix, not necessarily the
+BT.709 matrix specifically.
+
+Btw. which BT.709 matrix is this? YUV->RGB, RGB->XYZ, or the inverse of
+one of those? Limited or full quantization range?
+
+Judging by the tests, I guess RGB->YUV full range.
+
+> + */
+> +const struct drm_color_ctm_3x4 test_matrix_3x4_bt709_enc =3D { {
+> +	0x00000000366cf400ull, 0x00000000b7175900ull, 0x0000000127bb300ull, 0,
+> +	0x800000001993b3a0ull, 0x800000005609fe80ull, 0x000000006f9db200ull, 0,
+> +	0x000000009d70a400ull, 0x800000008f011100ull, 0x800000000e6f9330ull, 0
+> +} };
+> +
+> +static void vkms_color_ctm_3x4_bt709(struct kunit *test)
+> +{
+> +	struct pixel_argb_s32 out;
+> +
+> +	/* full white to bt709 */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0xffff;
+> +	out.g =3D 0xffff;
+> +	out.b =3D 0xffff;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 255 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0xfe00);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x10000);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x0100);
+
+For all of these U/V too, you may want to enforce a range. The value
+must be approximately 0x100. Something like 0x17 would very wrong.
+
+Hmm, wait...
+
+Neutral color should have U and V neutral, that is, zero, right? So
+what is zero in this integer representation?
+
+You don't seem to be testing negative U or V...
+
+
+Thanks,
+pq
+
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x0100);
+> +
+> +	/* full black to bt709 */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x0;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 0 */
+> +	KUNIT_EXPECT_LT(test, out.r, 0x100);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x0100);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x0100);
+> +
+> +	/* gray to bt709 */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x7fff;
+> +	out.g =3D 0x7fff;
+> +	out.b =3D 0x7fff;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 127 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x7e00);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x8000);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x0100);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x0100);
+> +
+> +	/* =3D=3D red 255 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0xffff;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 54 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x3500);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x3700);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x0100);
+> +
+> +	/* V 157 */
+> +	KUNIT_EXPECT_GT(test, out.b, 0x9C00);
+> +	KUNIT_EXPECT_LT(test, out.b, 0x9E00);
+> +
+> +
+> +	/* =3D=3D green 255 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x0;
+> +	out.g =3D 0xffff;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 182 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0xB500);
+> +	KUNIT_EXPECT_LT(test, out.r, 0xB780); /* laxed by half*/
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x0100);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x0100);
+> +
+> +	/* =3D=3D blue 255 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x0;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0xffff;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 18 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x1100);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x1300);
+> +
+> +	/* U 111 */
+> +	KUNIT_EXPECT_GT(test, out.g, 0x6E00);
+> +	KUNIT_EXPECT_LT(test, out.g, 0x7000);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x0100);
+> +
+> +	/* =3D=3D red 140 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x8c8c;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 30 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x1D00);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x1F00);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x100);
+> +
+> +	/* V 87 */
+> +	KUNIT_EXPECT_GT(test, out.b, 0x5600);
+> +	KUNIT_EXPECT_LT(test, out.b, 0x5800);
+> +
+> +	/* =3D=3D green 140 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x0;
+> +	out.g =3D 0x8c8c;
+> +	out.b =3D 0x0;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 30 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x6400);
+> +	KUNIT_EXPECT_LT(test, out.r, 0x6600);
+> +
+> +	/* U 0 */
+> +	KUNIT_EXPECT_LT(test, out.g, 0x100);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x100);
+> +
+> +
+> +	/* =3D=3D blue 140 - bt709 enc =3D=3D */
+> +	out.a =3D 0xffff;
+> +	out.r =3D 0x0;
+> +	out.g =3D 0x0;
+> +	out.b =3D 0x8c8c;
+> +
+> +	apply_3x4_matrix(&out, &test_matrix_3x4_bt709_enc);
+> +
+> +	/* Y 30 */
+> +	KUNIT_EXPECT_GT(test, out.r, 0x900);
+> +	KUNIT_EXPECT_LT(test, out.r, 0xB00);
+> +
+> +	/* U 61 */
+> +	KUNIT_EXPECT_GT(test, out.g, 0x3C00);
+> +	KUNIT_EXPECT_LT(test, out.g, 0x3E00);
+> +
+> +	/* V 0 */
+> +	KUNIT_EXPECT_LT(test, out.b, 0x100);
+> +
+> +}
+> +
+>  static struct kunit_case vkms_color_test_cases[] =3D {
+>  	KUNIT_CASE(vkms_color_test_get_lut_index),
+>  	KUNIT_CASE(vkms_color_test_lerp),
+>  	KUNIT_CASE(vkms_color_test_linear),
+>  	KUNIT_CASE(vkms_color_srgb_inv_srgb),
+> +	KUNIT_CASE(vkms_color_ctm_3x4_50_desat),
+> +	KUNIT_CASE(vkms_color_ctm_3x4_bt709),
+>  	{}
+>  };
+> =20
+> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
+vkms_composer.c
+> index 8bbfce651526..2c5715242f91 100644
+> --- a/drivers/gpu/drm/vkms/vkms_composer.c
+> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
+> @@ -164,7 +164,7 @@ static void apply_lut(const struct vkms_crtc_state *c=
+rtc_state, struct line_buff
+>  	}
+>  }
+> =20
+> -static void apply_3x4_matrix(struct pixel_argb_s32 *pixel, const struct =
+drm_color_ctm_3x4 *matrix)
+> +void apply_3x4_matrix(struct pixel_argb_s32 *pixel, const struct drm_col=
+or_ctm_3x4 *matrix)
+>  {
+>  	s64 rf, gf, bf;
+> =20
+
+
+--Sig_/lB/ul+0s_RsGEiR.Q42ykxb
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXzH5AACgkQI1/ltBGq
+qqfFqhAAr0AiOdy/HOICE0PXjQKjyRXAaNot7DUhuQoJSQRxn9GjINFQXHLHL6eA
+On9XjRidYCvlVs5tj9qCC0/1oZjvg1dML6G3E2fp2WDQWHdGaBiWt0JoZj4VniLE
+QshBkrMmQBb05ITRzxkxRPyR6eRWJOomXkpHqL/U75oWnuwFJQqKT2ixvocbji3v
+YpesxMGTSXag0G0o2nvJmLdApD/y6Heo6WvJQBW/7SL6IfGENzvrJ/QDMA4lAQNf
+HYfFOzH6KqNlBQj5TOgGBKSJBzM7ZQ9pbwBfd5ZVg6Dhk6mVcQdo0IXw+IjI4o7u
+Ose04PN9PWLaQgJAOUfz9J1Bxo/Bx+OgTpsu14npvPj886ejmCAgOnDqZWb+/icL
+N2oozekELf3d67Ciwdkavm3seAvEsTxZ94JniraoSrHCsdFgSESkLIHZ9Q4CJU/X
+/eVJrIxw8WkVk3W4V2eNzeaC5kgHbvmW/EE30+ZK8tdV21YAbif/TGgwUsISpi+R
+U0V60hhzzxABCPe/tFOL0DuqZn9MhumpOJJIu4+qdgU6BhL2DfV8jQBV9pKDls+h
+JNAyuG/SHVWTlVbvP1D/ODAQgEanqhnJd77SFPTJYo5457oe2PsqMwPvwF4/fR+9
+uGCnaBK8yntCyR49ZHtpmgIyCYZ+5zGAd0XB77yTImhVv/aX9jo=
+=Fj1L
+-----END PGP SIGNATURE-----
+
+--Sig_/lB/ul+0s_RsGEiR.Q42ykxb--
