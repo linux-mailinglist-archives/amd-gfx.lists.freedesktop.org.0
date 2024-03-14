@@ -2,116 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4AC87BF4D
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Mar 2024 15:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096CD87C9E5
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 09:24:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36DBD10F4ED;
-	Thu, 14 Mar 2024 14:50:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A9610FFE7;
+	Fri, 15 Mar 2024 08:24:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2LyShoAu";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="lp2A1u66";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2072.outbound.protection.outlook.com [40.107.100.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3E610F4ED
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 14:50:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kSBz4o5TXNJEKyEp3Kta0QmotHn6P7oeX6kXxykvyC7CHsuTPc4zk1jPMEoFpWfawHBYx8NsIQnmyulodPBW7UIO1V/YUBEkLZ6uKJ4VdfSSiIW/yEiykJZD/1kkmmKuHU8i/qD0RUL1RCvr/fCXq45Q9kwz5/EnLJBfOkuzXrkGrZYFJOCjvWBfXXsRrjyImI0enyes7wdIbaDN3oqXKXNtV2k+Ez/V1fokePDAQq2LIwdFJwIi+QhdjI8Zx6rmLWlXyZClmio42/Elj9SYyKMPyN9V6cHHi3mlMip0ah05ZV+Hiry3Gavf4+rQ3DP/s9FcDOl3iwNymN7f61m7Hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DP55sZLSavRJcgVkSzjvwaDwA6eTlffMWwhBI6G0ND4=;
- b=mKGntT6xfX2rY53eyQaICRMbtjwRmZ7aVgv51jcy5VeKHSp0vDK1JZ8v/Tpzg1dpdmmgGcczlihRViRJRw/YFDzQibTXTtzejDnBnhVV0XUyyXqYq5FFd1GWcne74pHZKCFDXdVL5trYYB8dhrnohJrT9FnfLVGRr5RXq4oi/kabSaYzmJ/N+Bj7kz56nDMPhLWv2+EXWmrLGWI9rnwpnZzgyYR6yv3XuiwrfDrwBk2nq4V2e2eDp9C9BIIubUxhilkSfM0RwUt8cREAogIeAjrmJLzCgZm7wakHP5R7MHNl7dxqVfD+9A5j9sFADXvpXSRTuqLFWuimBkaJMAu8YQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DP55sZLSavRJcgVkSzjvwaDwA6eTlffMWwhBI6G0ND4=;
- b=2LyShoAuORTm8DRnoXSUGoUFzh/mWktebToPPVTLstQSRhCUWq27wlctDGwq9woqc4mQWBwaLNY8WaZes8cTxcdVTRMCPn+AB+YjVizFlf6XvG6lNyDpgOkAKs/Ydb8QG327LAD0+OZNFm2Sb79Pm6cNtg5YG7C51kvMS4gY/v4=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by MN2PR12MB4094.namprd12.prod.outlook.com (2603:10b6:208:15f::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Thu, 14 Mar
- 2024 14:50:15 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::b001:1430:f089:47ae]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::b001:1430:f089:47ae%7]) with mapi id 15.20.7362.035; Thu, 14 Mar 2024
- 14:50:15 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: correct the KGQ fallback message
-Thread-Topic: [PATCH] drm/amdgpu: correct the KGQ fallback message
-Thread-Index: AQHadSj/mOMTe4M9dUOwAkuY7NN937E3U3Gq
-Date: Thu, 14 Mar 2024 14:50:14 +0000
-Message-ID: <BL1PR12MB51442714D6C96B5F4487F84BF7292@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20240313092936.1274265-1-Prike.Liang@amd.com>
-In-Reply-To: <20240313092936.1274265-1-Prike.Liang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2024-03-14T14:50:14.637Z;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|MN2PR12MB4094:EE_
-x-ms-office365-filtering-correlation-id: a1c760da-aff8-49dc-aeb0-08dc44360ef9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: T6AV+ILzLSxeYGliBXEQFXjgSOrgRy2n7dEiiYG3g6VeO4ooHx6BGKdtltuB661/qVBiTlb4gQl9+/6GCnCt5XEJ+4Lq4OIOHv+MXsZ8KQEHOYhNPX3BpGC/kLqr0PMHaQxICYXfBIhrrDIglAPx4QMYIe92n4VnzLSbi+gWIQGrEn6xWNxy0lgMT5f/4Ttvue3+JjVidJdQs1lM3APRJw8qnAv3HWWe/pKC30l57CUpC4jiVLzF/H1b1QdEW/foQObf5OXNej2y+aHbmjxh0SP5J0x4fyzJdxAe1oh5umQshZ2yrmMldUV3TENDLkSvkVjNE88z7yIbppr9g82+cn7fSd2nef6k5CG5Tzr/WCmMBvrfaZeUtVYyPJQvAq8CmGva4l1x4/6y2TvnYcJGyrRnZ2/ltFRlvpvf9ofcK3nq/2lyqPFgrNkA0sKPUqXfvvGzNAFWhenbVaQPURmrw6ySfmfQ2RI4ug5Lz4qtzItUxtqaqyTu85Vl0ttvC2g56qWgxfTY3c2tk1N/iJzPBTvYReYl/D21/MNG8FnJKpVBSqxLHsvvH+x+7aAuubRWk5GjSUwoCYaiYiUKLZY3hlQjUGCq2y1EJWaoHGZWYyUO+T9p0OSulYVeg103XnSfrg9XObF4qyUTXAhD3J8vXE7EL1Bs6FGi5d2tj6N0EL+N20ZmoT63gfc+liw7yOxr6a/TwhQhCiljBzgzyEfXvA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?m4Yg58qXQVMyt/NLNK58EB75W9qBulLPJ6sqoP9Vhg7dg0jPOX0TW/9kKawU?=
- =?us-ascii?Q?wIz2ayHkas/fQCTuXA+fAe7Fs76XJAb2Xd8j5I/x896RR+wlpvKXQVRdZvwg?=
- =?us-ascii?Q?hrEyru11ihLTvFQTEUhTLqIyrnX5KhquIKcv5Ndv3J4NJVzf88oiCAeddp8G?=
- =?us-ascii?Q?aIQZnzI0na3cx610EKLZ7yZfUwc0cZTtsChdxLxFWitEFM4sRRH7QRbzwINl?=
- =?us-ascii?Q?6M6uzKUcj1o6vuicnCCb7C242w1Sv1/lj+D+vNz87aFj9dNJcaQXL/bn1Jsc?=
- =?us-ascii?Q?YS6NiFE1fhY1jA4L5hHjrrQli1PWzvieg15YwdVTJrNzEDtdbIXYYwrKjs+O?=
- =?us-ascii?Q?rqkS1tQObyFNpx0F5m6FkV5UfVuwCCfS7dHaQc+hLA5IjiwE/50ypvrYt2y4?=
- =?us-ascii?Q?JVUunT7oTYNKIzl0NvlmagFFFWbcwl6ltRfq6MBjJwkPVzJ8fF4UgHbvUmQb?=
- =?us-ascii?Q?El/0p+KzPSlv9x4B+eh0CoOZxnry/0VvDjQNqEGoBrIqa4x1OxUpKvCk9lfD?=
- =?us-ascii?Q?ImSDjdpGRIWK1wRQoQE4avRxVQMi/+MYjC5UQXgD2Nui7R43a3QmpuyQgQBW?=
- =?us-ascii?Q?PsRh8Tjoqx65zL6S/wZyLY+ebK8MyZfrD3IX0bj+lDoUiwweLsBSYCp2AII8?=
- =?us-ascii?Q?hrSxDNfB42hfsBbdEi7juc4BYFw7x2KgD0V/eX2L/7W466Zj2eEESOulDSTR?=
- =?us-ascii?Q?a1aDk0E2cU56WdhiOg7QkfuMILwgU0wWnRqvhkqmlvDwOzM+8T+TuH1iWvXP?=
- =?us-ascii?Q?B83SCNZ9hyWHj6SsmFreyqM0CRlaQ2wXc4lNtfMFZwJBcEHoGqPwy1om9S++?=
- =?us-ascii?Q?ZtrtYp4pEsjyWDADQvYH0uzvI5Kg/qGC/OKgRfhscuKL8auOfvRJrW2Uxs+7?=
- =?us-ascii?Q?cb6cupTw8f81lsQvF5tk4l0+YEMl9bfbesPZV/VtQkiBfjdCnST44xnNXDlI?=
- =?us-ascii?Q?7SpDU/F5UH2AP4rlOg6TqF57BMTCknsdqD2dXztYJj7tj6qSQs0RdgclYHpD?=
- =?us-ascii?Q?R9hLvg5tZz8kOlnjLzpejPqN8TqDefWXIGetBwR5sKmc0/V4RMz+tMjp7exS?=
- =?us-ascii?Q?VatFkkrXeWyyHctFnuUPXAlPYSKiRUDqkLStnuRinNIMGpM41/ooRZM3PipN?=
- =?us-ascii?Q?IgAF5x39TE+3ipYRSz2YvtxJIiOpwkIvecQ+69t19zN6zNHG7TmqQ2HY02je?=
- =?us-ascii?Q?64mDNxVtt6y8A+FxQC8yuahq0gGcrTLCkyTQGCWnZD0gh3MOQXWyARkVjRU0?=
- =?us-ascii?Q?ErxAj1SKlHyU0hvI+qW1ciPlZAUEC/E13NoVG5kpayCHibSN3ZqDEJI6VwOj?=
- =?us-ascii?Q?7jF4IKqiiTloDIEab/pSWliLzMG9hY0TG5gX1k3MbB7hKPNmUwUsl9gj3avv?=
- =?us-ascii?Q?PppohYcB+lvyQhhgS15rbYAgWVchwgO+Pcaz7PhhUTyzfwLzHo5Isq4mgdcI?=
- =?us-ascii?Q?Y07MlvZTIWd32xdgjwvqXWuaa+mUSecECllLVG9EWlohyS8IhA4bcJkxs4Vo?=
- =?us-ascii?Q?Glo/tYoUqav9d9g1LTEsR1rIgTKQbOdVhdll5XMpGrNmWKvvl6I3CUxlTQ1z?=
- =?us-ascii?Q?K5ZR0zebs4PfYLEsWDY=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BL1PR12MB51442714D6C96B5F4487F84BF7292BL1PR12MB5144namp_"
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBE4110E529;
+ Thu, 14 Mar 2024 15:23:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1710429837;
+ bh=VNcT3RuFVLB5eXXbqaDWJMjkWNlBbyMqSBKU6p8wgjU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=lp2A1u66JEpyrSUvs29wUITPceJmETVaB78xpcnLqIZSzr9EWBk4GtZGg/P1GugmO
+ B9/4q1Un0O3e61gY6a1il0Jkj24pr5bCoIdTLoESOxDY0hUoh8zMhonkGmy9Cq1xsp
+ aYZyTxP4ZJOEpDpNC3sAlDuPKndGeiVY1cqi3mTSt8WjO9TiaXwfP+zDlHIMlcoSRk
+ WvgPLRKRXBFF5QT8C88hh+ggt+N8p5aulDc49tHeL6sZTvIXXjG8oLxgM8j4CpPMUL
+ T144cmH6hCRHjwVKaurp38/+bcHzNNO+6ilRD62FUKZkDnMJtjMHa6DH8N0fa9R0Xs
+ BQn8Yl6iJrmJw==
+Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 192B1378209A;
+ Thu, 14 Mar 2024 15:23:57 +0000 (UTC)
+Date: Thu, 14 Mar 2024 17:23:39 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <wayland-devel@lists.freedesktop.org>
+Subject: Re: [RFC PATCH v4 23/42] drm/vkms: add 3x4 matrix in color pipeline
+Message-ID: <20240314172339.4cbf3a7b.pekka.paalanen@collabora.com>
+In-Reply-To: <20240226211100.100108-24-harry.wentland@amd.com>
+References: <20240226211100.100108-1-harry.wentland@amd.com>
+ <20240226211100.100108-24-harry.wentland@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1c760da-aff8-49dc-aeb0-08dc44360ef9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2024 14:50:14.9433 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZBq73YyyvOSdg3iLu691FKW/ynCm6Xgvlus3aezqXToX93RgHwledJ5OFAQQO/n3GA++vIZ4HImgy2uek70BrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4094
+Content-Type: multipart/signed; boundary="Sig_/9Zg0taUTa7H5G5hF=l+3vTq";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Fri, 15 Mar 2024 08:24:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,120 +62,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BL1PR12MB51442714D6C96B5F4487F84BF7292BL1PR12MB5144namp_
-Content-Type: text/plain; charset="us-ascii"
+--Sig_/9Zg0taUTa7H5G5hF=l+3vTq
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-[Public]
+On Mon, 26 Feb 2024 16:10:37 -0500
+Harry Wentland <harry.wentland@amd.com> wrote:
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: Liang, Prike <Prike.Liang@amd.com>
-Sent: Wednesday, March 13, 2024 5:29 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Liang, Prike <Prike.Lia=
-ng@amd.com>
-Subject: [PATCH] drm/amdgpu: correct the KGQ fallback message
+> We add two 3x4 matrices into the VKMS color pipeline. The reason
+> we're adding matrices is so that we can test that application
+> of a matrix and its inverse yields an output equal to the input
+> image.
 
-Fix the KGQ fallback function name, as this will
-help differentiate the failure in the KCQ enablement.
+You will test also cases where the matrix configuration will not
+produce output equal to input, right?
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Otherwise one can accidentally pass the matrix test by ignoring all
+matrices.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_gfx.c
-index 4835d6d899e7..d95555dc5485 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -686,7 +686,7 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, i=
-nt xcc_id)
-         r =3D amdgpu_ring_test_helper(kiq_ring);
-         spin_unlock(&kiq->ring_lock);
-         if (r)
--               DRM_ERROR("KCQ enable failed\n");
-+               DRM_ERROR("KGQ enable failed\n");
+> One complication with the matrix implementation has to do with
+> the fact that the matrix entries are in signed-magnitude fixed
+> point, whereas the drm_fixed.h implementation uses 2s-complement.
+> The latter one is the one that we want for easy addition and
+> subtraction, so we convert all entries to 2s-complement.
+>=20
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> ---
+>  drivers/gpu/drm/vkms/vkms_colorop.c  | 32 +++++++++++++++++++++++++++-
+>  drivers/gpu/drm/vkms/vkms_composer.c | 27 +++++++++++++++++++++++
+>  include/drm/drm_colorop.h            |  2 ++
+>  3 files changed, 60 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/vkms/vkms_colorop.c b/drivers/gpu/drm/vkms/v=
+kms_colorop.c
+> index d2db366da6d3..a0e54b2c1f7a 100644
+> --- a/drivers/gpu/drm/vkms/vkms_colorop.c
+> +++ b/drivers/gpu/drm/vkms/vkms_colorop.c
+> @@ -35,7 +35,37 @@ const int vkms_initialize_color_pipeline(struct drm_pl=
+ane *plane, struct drm_pro
+> =20
+>  	prev_op =3D op;
+> =20
+> -	/* 2nd op: 1d curve */
+> +	/* 2nd op: 3x4 matrix */
+> +	op =3D kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+> +	if (!op) {
+> +		DRM_ERROR("KMS: Failed to allocate colorop\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	ret =3D drm_colorop_ctm_3x4_init(dev, op, plane);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_colorop_set_next_property(prev_op, op);
+> +
+> +	prev_op =3D op;
+> +
+> +	/* 3rd op: 3x4 matrix */
+> +	op =3D kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+> +	if (!op) {
+> +		DRM_ERROR("KMS: Failed to allocate colorop\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	ret =3D drm_colorop_ctm_3x4_init(dev, op, plane);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_colorop_set_next_property(prev_op, op);
+> +
+> +	prev_op =3D op;
+> +
+> +	/* 4th op: 1d curve */
+>  	op =3D kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
+>  	if (!op) {
+>  		DRM_ERROR("KMS: Failed to allocate colorop\n");
+> diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/=
+vkms_composer.c
+> index d2101fa55aa3..8bbfce651526 100644
+> --- a/drivers/gpu/drm/vkms/vkms_composer.c
+> +++ b/drivers/gpu/drm/vkms/vkms_composer.c
+> @@ -164,6 +164,30 @@ static void apply_lut(const struct vkms_crtc_state *=
+crtc_state, struct line_buff
+>  	}
+>  }
+> =20
+> +static void apply_3x4_matrix(struct pixel_argb_s32 *pixel, const struct =
+drm_color_ctm_3x4 *matrix)
+> +{
+> +	s64 rf, gf, bf;
+> +
+> +	rf =3D drm_fixp_mul(drm_sm2fixp(matrix->matrix[0]), drm_int2fixp(pixel-=
+>r)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[1]), drm_int2fixp(pixel->g=
+)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[2]), drm_int2fixp(pixel->b=
+)) +
+> +	     drm_sm2fixp(matrix->matrix[3]);
 
-         return r;
- }
---
-2.34.1
+It would be nice if the driver had its private data for the matrix
+colorop state, so it could convert the matrix only once when userspace
+sets it.
 
 
---_000_BL1PR12MB51442714D6C96B5F4487F84BF7292BL1PR12MB5144namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Thanks,
+pq
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;font=
--style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[Public]<br>
-</p>
-<br>
-<div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Liang, Prike &lt;Prik=
-e.Liang@amd.com&gt;<br>
-<b>Sent:</b> Wednesday, March 13, 2024 5:29 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Liang, Pri=
-ke &lt;Prike.Liang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: correct the KGQ fallback message</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Fix the KGQ fallback function name, as this will<b=
-r>
-help differentiate the failure in the KCQ enablement.<br>
-<br>
-Signed-off-by: Prike Liang &lt;Prike.Liang@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 2 +-<br>
-&nbsp;1 file changed, 1 insertion(+), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_gfx.c<br>
-index 4835d6d899e7..d95555dc5485 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c<br>
-@@ -686,7 +686,7 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, i=
-nt xcc_id)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_ring_test_hel=
-per(kiq_ring);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_unlock(&amp;kiq-&gt;r=
-ing_lock);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; DRM_ERROR(&quot;KCQ enable failed\n&quot;);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; DRM_ERROR(&quot;KGQ enable failed\n&quot;);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;}<br>
--- <br>
-2.34.1<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
+> +
+> +	gf =3D drm_fixp_mul(drm_sm2fixp(matrix->matrix[4]), drm_int2fixp(pixel-=
+>r)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[5]), drm_int2fixp(pixel->g=
+)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[6]), drm_int2fixp(pixel->b=
+)) +
+> +	     drm_sm2fixp(matrix->matrix[7]);
+> +
+> +	bf =3D drm_fixp_mul(drm_sm2fixp(matrix->matrix[8]), drm_int2fixp(pixel-=
+>r)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[9]), drm_int2fixp(pixel->g=
+)) +
+> +	     drm_fixp_mul(drm_sm2fixp(matrix->matrix[10]), drm_int2fixp(pixel->=
+b)) +
+> +	     drm_sm2fixp(matrix->matrix[11]);
+> +
+> +	pixel->r =3D drm_fixp2int(rf);
+> +	pixel->g =3D drm_fixp2int(gf);
+> +	pixel->b =3D drm_fixp2int(bf);
+> +}
+> +
+>  static void apply_colorop(struct pixel_argb_s32 *pixel, struct drm_color=
+op *colorop)
+>  {
+>  	/* TODO is this right? */
+> @@ -185,6 +209,9 @@ static void apply_colorop(struct pixel_argb_s32 *pixe=
+l, struct drm_colorop *colo
+>  				DRM_DEBUG_DRIVER("unkown colorop 1D curve type %d\n", colorop_state-=
+>curve_1d_type);
+>  				break;
+>  		}
+> +	} else if (colorop->type =3D=3D DRM_COLOROP_CTM_3X4) {
+> +		if (colorop_state->data)
+> +			apply_3x4_matrix(pixel, (struct drm_color_ctm_3x4 *) colorop_state->d=
+ata->data);
+>  	}
+> =20
+>  }
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index 4aee29e161d6..8710e550790c 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -224,6 +224,8 @@ int drm_colorop_init(struct drm_device *dev, struct d=
+rm_colorop *colorop,
+> =20
+>  int drm_colorop_curve_1d_init(struct drm_device *dev, struct drm_colorop=
+ *colorop,
+>  			      struct drm_plane *plane, u64 supported_tfs);
+> +int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop =
+*colorop,
+> +			     struct drm_plane *plane);
+> =20
+>  struct drm_colorop_state *
+>  drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
 
---_000_BL1PR12MB51442714D6C96B5F4487F84BF7292BL1PR12MB5144namp_--
+
+--Sig_/9Zg0taUTa7H5G5hF=l+3vTq
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmXzFnsACgkQI1/ltBGq
+qqeW2hAAkswLaQZrCXe7Zsbze3mzvHrny69Hpvsuxej/HZMCJ9b5/9YHa6S4d/M4
+7TWZpELcfMvIPMKKX+uuPCEl5jrBJ8r/dJkYxLl8ItL1hPTkPXk0kP64cI19qetL
+VrpnplA2o5pGScHvA6uVY8hbtHfd5DzyTw59BtCi6ci4Jhof4m12WLLpo6Fw6WdT
+Q1JC+0mqqdbU5Hqo+XmTIZOBv8KklksIWwGMZmnlj0V9sJ9thNKkebaFfWUR3/wu
+QFe7y/bvuMZSPZVCSJIHzvEuyCEozsT9AHulFGARgAv/60ojbSWGsdAZQWNP3DIv
+yXVgo4HqQX8PWABD7JwfCjrb5LFJTJw5E4HXyN/TYr0Hq85Ch5zx5VqF59sSca9I
+pb7W1dVn4Mo8d8envYipWPwLUzFbTry8R+3+flbG7ELVp46T7NvX0dmp/31w9qNp
+FrpXiNqIbaAhT7WkrgEEVdZjE6l3MwGxj6AJwgxck3nv7oOyLshvvVJ6v2mOKSIw
+ulY3N7pGF+q44SRlwoSdFmzNl+aA69ebpTQhjMsmqu53ZpWCAganHN8II3LjEL/I
+XW16zjrQWhCIQkK4fyAhkY3O1PQ8JyzAlmp2D4DDcAcjSpM3imJXzI8wIJv3jahT
+7oM+T3K6tfxFz9iZ4iEwvMOWJTojjZCv4j7vsOb4sb/50jhc/k8=
+=91hl
+-----END PGP SIGNATURE-----
+
+--Sig_/9Zg0taUTa7H5G5hF=l+3vTq--
