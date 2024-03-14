@@ -2,81 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDDA87C9E8
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 09:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC8087C23E
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Mar 2024 18:51:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98CE410FFEB;
-	Fri, 15 Mar 2024 08:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1980A10FC5E;
+	Thu, 14 Mar 2024 17:51:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=cmpxchg-org.20230601.gappssmtp.com header.i=@cmpxchg-org.20230601.gappssmtp.com header.b="dYYTe1XJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cv4SXlOR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3C4C10EDE5
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 17:09:58 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id
- 6a1803df08f44-68f571be9ddso8148496d6.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Mar 2024 10:09:58 -0700 (PDT)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D612510FC5E;
+ Thu, 14 Mar 2024 17:51:55 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-29bd4dfbf56so956471a91.3; 
+ Thu, 14 Mar 2024 10:51:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cmpxchg-org.20230601.gappssmtp.com; s=20230601; t=1710436197; x=1711040997;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=wq3tDY8BbJifWyupgIyZpzh/9hWKNCkxl+BfruynXAQ=;
- b=dYYTe1XJU2M6Oz5ItN9uVdmRBCN8g8yCZFLPcCqbUuGVtA9frFsyByCCDSAoKGbypm
- ZVFqw2l32Vqebi0QaRzga3HaYVIBGZB6my60BL1Tb9IsAwqDjUSRVz4Qk1dZoEcdYxk3
- 5tV0xm4ldx2CAW8TyMq6sUbagB51Zc6maBXYVDJG42Ci84/PkfnklzWVkugJ2dogsKMh
- 4hJhpGOJtXpGwjAEGlRwmdMf4vzPo73n90x8BN9KpuBsQqWxAazFeDxYYWqGPkDLL69y
- cG0Cc6/gojglVk9ONICIXnlai4ZsDBE//wcZBPW35xQyX9krmVA9mqY6s3vqpGUqmlRF
- DTkg==
+ d=gmail.com; s=20230601; t=1710438715; x=1711043515; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=83o/z763nISRcPT8Ce4hg/uxvl1Iug2mRWFmiJSQha0=;
+ b=cv4SXlORGG8ziAQdUbUX2408E8LuFVjnvsqiJvZVJ5vHyQanwPrXXwPFafLjn9MELu
+ Ius5TwS/6U/gY9+Jt8ROV5QgXvX62+0SvHkhX096bVnGrfyc2UUdNEX3ISiHT0/4jLpr
+ hc0O/GDNJO6wRdfSEVUZMZh2Z6SQJIr71D04Y5hpApzmJ/HuUWy6NEkqRvLarCygWp/q
+ vfEtPS2dBcouz/8IVue/Sgk+IQXZJAdJVbJ9CEpRx86kkc/jjsDM/+kWdsYTzm4Ku1K1
+ QIOAaZSSQ/10/a2Hl4hSaN4MrAYh8Rkn5BtOVk0/pAbLoqaeUEj7wRraS2jeZi3Vhz05
+ pZfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710436197; x=1711040997;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=wq3tDY8BbJifWyupgIyZpzh/9hWKNCkxl+BfruynXAQ=;
- b=S2Qveg8Gd9ACu7UktDgmrX/ISgIFD5uvqXgnfd/o17RFU5EyX1LuPGu5VxsvqbQ2RJ
- 83L7Po6se+OyFcbZcG6eGX2NVIeQ3jkR9ws1TARZJc+zIZ0i7nxAe565Pc+E+hkuQ3iJ
- weDTFz9GWw2jLp1qq0TyOblkzacEOjMwOSkJ3MjX/n1Y/lJ9LZBg4xrUiTcpNHQt2giD
- g8cG3PeKO1u0YFd423eHGB8COo8p3r2IbZz3gOUCvBvel0prA8GkCEuD4tGaMTyOn/Ka
- 5qjqpLH18UbsW+a7ugH3gCYu/O9UKCL3zRBxzDS90M/q7oz0d2+oIF0h2Sz29l4/h80z
- mJsQ==
+ d=1e100.net; s=20230601; t=1710438715; x=1711043515;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=83o/z763nISRcPT8Ce4hg/uxvl1Iug2mRWFmiJSQha0=;
+ b=N3Z2WzjvbzHrujoIlTTSG5gSZrpxbgI1oiX+MlEKp9IC/dv+cX3femimfAHd20ogWX
+ iqs4FyU8rg5gRdE/VtT2Lh4Mndad0cgweOS/NO95YIUW7d3cGb7j+T+XhXHLF4NWZaTR
+ fu35mVn5r6cN9jNqF96GPRyvM9uab1OJOGjgrvuPsjMGn1xO7bz58rwudo5QswXp+lv2
+ 0Bn6c0t0aojGdsG6kPb92dXSIkVF6M1DJw21u0K3YpWe/Mp5PdkF+YcJQlbmczYJEpxG
+ lDn6Eb/uIzA77nnt7saYPFLAQVRAU0TloGdD94IugDvXnJCTo0iJFekdNBTbG4973jLx
+ sECA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUFUbCKUJq3Q65FoUvVQ535CiGmGAN/tr7lCw/0GqEsEpVqBba5g9x8uTyIU9+zKBRZYezs+9owSuZ0UeSMIV9JUmcL3leQTIqAGfEXbg==
-X-Gm-Message-State: AOJu0YyRW1fsBkgLtHy7hEB1nkTFTBZFWK4lbcwYfUOxwNmPHo0wUYyx
- cSpMYtpyOnMpcCC0Aq2ldrT7Vic4y+RQhwmjXmvFLkuUbMHvVW7cgDY0SHFBc8c=
-X-Google-Smtp-Source: AGHT+IG9aYKr3SLrUEGgyDZji2FG4IGp3KCRhhwIdIrak8oLuo4wulKWroEURFFbiWSVw95P6gj41A==
-X-Received: by 2002:a0c:d989:0:b0:691:6dd8:4606 with SMTP id
- y9-20020a0cd989000000b006916dd84606mr65545qvj.30.1710436197410; 
- Thu, 14 Mar 2024 10:09:57 -0700 (PDT)
-Received: from localhost
- (2603-7000-0c01-2716-da5e-d3ff-fee7-26e7.res6.spectrum.com.
- [2603:7000:c01:2716:da5e:d3ff:fee7:26e7])
- by smtp.gmail.com with ESMTPSA id
- z10-20020a056214040a00b00690d951b7d9sm700131qvx.6.2024.03.14.10.09.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Mar 2024 10:09:56 -0700 (PDT)
-Date: Thu, 14 Mar 2024 13:09:48 -0400
-From: Johannes Weiner <hannes@cmpxchg.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- "Sharma, Shashank" <Shashank.Sharma@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/amdgpu: fix deadlock while reading mqd from debugfs
-Message-ID: <20240314170948.GA581298@cmpxchg.org>
-References: <20240307221609.7651-1-hannes@cmpxchg.org>
- <c411dce6-faaf-46c3-8bb6-8c4db871e598@gmail.com>
+ AJvYcCV6K7kNwcarp7aSWl03vIFWBcyoH8zZu8bCJIhtmMcX2BtSuXvMZa3XZv/JMInXXJpinHHyjg1eAIhHgjWvacnaLrstOx2hA/8k9PfHxLQGP5N9FZ1fHK4svPXnPpmxAE1pFJyKVpeEKBhd7I8yxA==
+X-Gm-Message-State: AOJu0Yy/LDhrobu9KVQTFlfBrEMBHW6F+GpehpZxxsp/kdinLAff3hOb
+ Ne+O+N+woHFklBjDIM7MlotiXZGzdw6DIvkKwGpLQtE5wQmfsSySbftDb7SCbeZBdt8c5fz/b8M
+ yqKQtF7tHXjQWaeplsCvizc+4WfU=
+X-Google-Smtp-Source: AGHT+IGME2ZBAjfwN5W4buTyp4q6UKGQ3GqH2t3Nk3YFMv7LRHDx2QR5986+nNZie6GdhVNX/cqIqgT3EyzylKiQKAk=
+X-Received: by 2002:a17:90a:6c06:b0:29b:4d0b:66ab with SMTP id
+ x6-20020a17090a6c0600b0029b4d0b66abmr684578pjj.33.1710438715102; Thu, 14 Mar
+ 2024 10:51:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c411dce6-faaf-46c3-8bb6-8c4db871e598@gmail.com>
-X-Mailman-Approved-At: Fri, 15 Mar 2024 08:24:26 +0000
+References: <20240312124148.257067-1-sunil.khatri@amd.com>
+ <CADnq5_O-cyDkNLznZpvnZtz15Mi1_rkigirG80BmYJprP_udnw@mail.gmail.com>
+ <59cf081e-5924-42b5-a3f1-de8b012f09d1@amd.com>
+ <CADnq5_N0H75UU2aFTAkqUrdGxKPxBQUnodsH-bcpS-ZUqgUb3A@mail.gmail.com>
+ <32aad098-9392-4899-9839-1beaedcac8b8@amd.com>
+In-Reply-To: <32aad098-9392-4899-9839-1beaedcac8b8@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 14 Mar 2024 13:51:42 -0400
+Message-ID: <CADnq5_NvBsbmTteDKmzi1DZHPKGfoSMjW5TFfy2x60YDxydc=g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: add the IP information of the soc
+To: "Khatri, Sunil" <sukhatri@amd.com>
+Cc: Sunil Khatri <sunil.khatri@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,25 +85,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+On Thu, Mar 14, 2024 at 12:16=E2=80=AFPM Khatri, Sunil <sukhatri@amd.com> w=
+rote:
+>
+>
+> On 3/14/2024 8:12 PM, Alex Deucher wrote:
+> > On Thu, Mar 14, 2024 at 1:44=E2=80=AFAM Khatri, Sunil <sukhatri@amd.com=
+> wrote:
+> >>
+> >> On 3/14/2024 1:58 AM, Alex Deucher wrote:
+> >>> On Tue, Mar 12, 2024 at 8:41=E2=80=AFAM Sunil Khatri <sunil.khatri@am=
+d.com> wrote:
+> >>>> Add all the IP's information on a SOC to the
+> >>>> devcoredump.
+> >>>>
+> >>>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+> >>>> ---
+> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c | 19 ++++++++++++++++++=
++
+> >>>>    1 file changed, 19 insertions(+)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_reset.c
+> >>>> index a0dbccad2f53..611fdb90a1fc 100644
+> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+> >>>> @@ -196,6 +196,25 @@ amdgpu_devcoredump_read(char *buffer, loff_t of=
+fset, size_t count,
+> >>>>                              coredump->reset_task_info.process_name,
+> >>>>                              coredump->reset_task_info.pid);
+> >>>>
+> >>>> +       /* GPU IP's information of the SOC */
+> >>>> +       if (coredump->adev) {
+> >>>> +               drm_printf(&p, "\nIP Information\n");
+> >>>> +               drm_printf(&p, "SOC Family: %d\n", coredump->adev->f=
+amily);
+> >>>> +               drm_printf(&p, "SOC Revision id: %d\n", coredump->ad=
+ev->rev_id);
+> >>>> +
+> >>>> +               for (int i =3D 0; i < coredump->adev->num_ip_blocks;=
+ i++) {
+> >>>> +                       struct amdgpu_ip_block *ip =3D
+> >>>> +                               &coredump->adev->ip_blocks[i];
+> >>>> +                       drm_printf(&p, "IP type: %d IP name: %s\n",
+> >>>> +                                  ip->version->type,
+> >>>> +                                  ip->version->funcs->name);
+> >>>> +                       drm_printf(&p, "IP version: (%d,%d,%d)\n\n",
+> >>>> +                                  ip->version->major,
+> >>>> +                                  ip->version->minor,
+> >>>> +                                  ip->version->rev);
+> >>>> +               }
+> >>>> +       }
+> >>> I think the IP discovery table would be more useful.  Either walk the
+> >>> adev->ip_versions structure, or just include the IP discovery binary.
+> >> I did explore the adev->ip_versions and if i just go through the array
+> >> it doesn't give any useful information directly.
+> >> There are no ways to find directly from adev->ip_versions below things
+> >> until i also reparse the discovery binary again like done the discover=
+y
+> >> amdgpu_discovery_reg_base_init and walk through the headers of various
+> >> ips using discovery binary.
+> >> a. Which IP is available on soc or not.
+> >> b. How many instances are there
+> >> Also i again have to change back to major, minor and rev convention fo=
+r
+> >> this information to be useful. I am exploring it more if i find some
+> >> other information i will update.
+> >>
+> >> adev->ip_block[] is derived from ip discovery only for each block whic=
+h
+> >> is there on the SOC, so we are not reading information which isnt
+> >> applicable for the soc. We have name , type and version no of the IPs
+> >> available on the soc. If you want i could add no of instances of each =
+IP
+> >> too if you think that's useful information here. Could you share what
+> >> information is missing in this approach so i can include that.
+> > I was hoping to get the actual IP versions for the IPs from IP
+> > discovery rather than the versions from the ip_block array.  The
+> > latter are common so you can end up with the same version used across
+> > a wide variety of chips (e.g., all gfx10.x based chips use the same
+> > gfx 10 IP code even if the actual IP version is different for most of
+> > the chips).
+> Got it. let me check how to get it could be done rightly.
+> >
+> >> For dumping the IP discovery binary, i dont understand how that
+> >> information would be useful directly and needs to be decoded like we a=
+re
+> >> doing in discovery init. Please correct me if my understanding is wron=
+g
+> >> here.
+> > It's probably not a high priority, I was just thinking it might be
+> > useful to have in case there ended up being some problem related to
+> > the IP discovery table on some boards.  E.g., we'd know that all
+> > boards with a certain harvest config seem to align with a reported
+> > problem.  Similar for vbios.  It's more for telemetry.  E.g., all the
+> > boards reporting some problem have a particular powerplay config or
+> > whatever.
+> I got it.
+> But two points of contention here in my understanding. The dump works
+> only where there is reset and not sure if it could be used very early in
+> development of not. Second point is that devcoredump is 4096
+> bytes/4Kbyte of memory where we are dumping all the information. Not
+> sure if that could be increased but it might not be enough if we are
+> planning to dump all to it.
 
-On Fri, Mar 08, 2024 at 12:32:33PM +0100, Christian König wrote:
-> Am 07.03.24 um 23:07 schrieb Johannes Weiner:
-> > Lastly I went with an open loop instead of a memcpy() as I wasn't
-> > sure if that memory is safe to address a byte at at time.
+ah, ok.  Let's skip the IP versions in that case, we can use the
+family and rev_id and external_rev_id to look up the IP versions.
 
-Shashank pointed out to me in private that byte access would indeed be
-safe. However, after actually trying it it won't work because memcpy()
-doesn't play nice with mqd being volatile:
+Alex
 
-/home/hannes/src/linux/linux/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c: In function 'amdgpu_debugfs_mqd_read':
-/home/hannes/src/linux/linux/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c:550:22: warning: passing argument 1 of '__builtin_dynamic_object_size' discards 'volatil' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  550 |         memcpy(kbuf, mqd, ring->mqd_size);
-
-So I would propose leaving the patch as-is. Shashank, does that sound
-good to you?
-
-(Please keep me CC'd on replies, as I'm not subscribed to the graphics
-lists.)
-
-Thanks!
+>
+> Another point is since we have sysfs/debugfs/info ioctl etc information
+> available. We should sort out what really is helpful in debugging GPU
+> hang and that's added in devcore.
+>
+> Regards
+> Sunil
+>
+> >
+> > Alex
+> >
+> >
+> >>> Alex
+> >>>
+> >>>> +
+> >>>>           if (coredump->ring) {
+> >>>>                   drm_printf(&p, "\nRing timed out details\n");
+> >>>>                   drm_printf(&p, "IP Type: %d Ring Name: %s\n",
+> >>>> --
+> >>>> 2.34.1
+> >>>>
