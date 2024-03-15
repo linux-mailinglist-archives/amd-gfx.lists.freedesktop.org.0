@@ -2,94 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D525687D0DE
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 17:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E478E87D157
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 17:44:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9B311231F;
-	Fri, 15 Mar 2024 16:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E688510FE36;
+	Fri, 15 Mar 2024 16:44:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fgDvdL+X";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XxjP0+Fd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF10411231F
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 16:01:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RPzPFmrmJYpoKBTSQo+aCgPjlBq2SdNXRR1ch8qupr/HO+1mXElUlkxr/iKhYkhIoza+bc/VrR2azHGxFo6PqbhxADKA/yIfMU1p5/KDuMU+XSwLAjxpr2a/kIMHVTwjSdeAj67bVlifCIooKz+t4ifYYqoSAnHbg4YXaFWdOiVdJgITKZu894ncjH8dHLuc7aeCpSzv0VX2Gj6aYSz0s4Qj+f/SBKVfRBNOn9ey9yJ2LIhEEqBjYsIGlI8JMn7AuuNaClYsy63/lT4kKKT2wVLDlB6POCTs6yCAClR2C8Lm94UsBo7tiSK55KVEsY/0iehbQqXb4ogibWPmlKJG5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UFq6Fu/ipEqXvnAbokKf+DlkGsbpelwVmnPvsqj8zkA=;
- b=cgAXi9hcCNCDcIF1K3fLM6tv5hzaHRi8orbMG7Zi1uOTMyOQy4DrkrTSW+i1lioPIMUkY+7EJ6fGb4Xn9jXSKETz7u1qx7Gw+GO5PItNVjsPXZGTu8Z7IRVQKTVJjNut4UNFI5og4GrWApOSc3ckMOP4ZHY9OmkIxkK/IW2Cq6MS7TnJjF/mvoyUYd1FMsDA3DbumV2Kbl2rZ2C8dZ50wrK7pcwwDj7q4Xgw8cALYKcu1ZksblGYcLh+RcY2UdHN9AQOPwTxIdkaX5PBidRMhYlV58H2Ql+jY2XET6IYiU+bZHYG/IgXTdO37n8OhcGBaEI4N1dMMoah29ldBoMe5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UFq6Fu/ipEqXvnAbokKf+DlkGsbpelwVmnPvsqj8zkA=;
- b=fgDvdL+XRom2Q/+rawJEJJP3D1x40aRwvsWbAMzJa3XbCHqz1ZdNEwsTKHSae/BcOK2M7fiCv2So+S8YFPJO+smO5rhI9rE1197JANRgnpmiaZJvhB1/g/HpKCW4L6qGiqOjYEthdxGj6MrlqqL4wNBnbFPYsRiyLHR9UMqKdnc=
-Received: from BLAPR05CA0010.namprd05.prod.outlook.com (2603:10b6:208:36e::19)
- by PH7PR12MB6587.namprd12.prod.outlook.com (2603:10b6:510:211::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.20; Fri, 15 Mar
- 2024 16:01:24 +0000
-Received: from BL6PEPF0001AB56.namprd02.prod.outlook.com
- (2603:10b6:208:36e:cafe::ad) by BLAPR05CA0010.outlook.office365.com
- (2603:10b6:208:36e::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.8 via Frontend
- Transport; Fri, 15 Mar 2024 16:01:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB56.mail.protection.outlook.com (10.167.241.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7386.12 via Frontend Transport; Fri, 15 Mar 2024 16:01:24 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 15 Mar
- 2024 11:01:23 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] Documentation: add a page on amdgpu debugging
-Date: Fri, 15 Mar 2024 12:01:08 -0400
-Message-ID: <20240315160108.2595995-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.44.0
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E44110FE36
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 16:44:45 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-1dd9066b7c3so16655255ad.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 09:44:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710521085; x=1711125885; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2tsDhVW89tF+Qu8fD9oV+RCIpwRcajF+955rDL5O0Ec=;
+ b=XxjP0+Fd7OlZgj6+GTepUvxqEHN++fQx62jpKBpXcHLF/+YJuk+tQH/Tw0K56BN1wJ
+ G1LHXbUEQcEjrg2i5GinmlCO0Trk9yB7NPUgHhgPOjX+cqkLrbczBzqNJBkkcKE59Ltu
+ XTQUH+evT6uynrkwaKNwnp5ljBVDkinuz5fjSPtB7GjoNdpImj8v7ZhWNuNeyjuMkj0H
+ xpYe1h6drDscfeFHhJQANMYkhFuRZPFzeXU8ajVQdORH/DmfpRZjj3bql3YMFTQadc0k
+ 7tocEH6J7Y6mF8SjLsV7voLtlsHSgkfidDfzz7DayNmCBrIntFVQQ5BQIbte0u6bAzut
+ njyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710521085; x=1711125885;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2tsDhVW89tF+Qu8fD9oV+RCIpwRcajF+955rDL5O0Ec=;
+ b=PiwrJLEU4TPN3d6R/bTnyk0m75oNQkHUWluZkMV510dfNleI20FfUQnlYip5ETlWVk
+ dLNQHfW2t2SS41sdaiL88LQdhZx0lkY0ZnSSeZ4ZXiorKdalDjZ+qPvj7HJ58lslPT4V
+ TlKkpPbL7pIb7vmtgAwh2Qeb7uobB3CH4qnvnRgU2AJ13xZCieiMu1pUNDJPzB+hdoGa
+ ZwvgCtyh5uI9emM1S8jvCXctWmsuUDGdMIlR1+K2VpjH7M4CMw25UYHktaggZ4VOPCbC
+ Uo1+4m1uXR4pxaz4sDG/Sj/ApfSBedKXnasdMHmnVS8XdgMFysDAZs1+scwOq2uvAaWe
+ eLSA==
+X-Gm-Message-State: AOJu0YzecDeInhjNAKf4LbZDgN1O1LOL92YLPz8uYRSnchgfaMms+Lbi
+ 7aGIOvXC/MpRCuUEn0biPMEvntMycgDz6CV5KnzvqPIAZkdw8xDNioGV9EQQWm5jWJf0tCFduVo
+ zS9LOznvMpDOmdVpmVCJ7mvZCCmc=
+X-Google-Smtp-Source: AGHT+IEHwS1lQj7WDLBNziepsrqpAeaYo7/4IaoBEwwgVrEYUkZZ1ko1Ox/c2gWhESw8inXmFE0Oxo7kTCoudooCAr8=
+X-Received: by 2002:a17:903:1251:b0:1dc:696d:ec6e with SMTP id
+ u17-20020a170903125100b001dc696dec6emr5724853plh.21.1710521085287; Fri, 15
+ Mar 2024 09:44:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|PH7PR12MB6587:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04311480-97e7-4bb5-0d4b-08dc45092a13
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sVCu+gAV/0U+/rmJLc3W1yZ+Wo3exCZrud4LvT5J0csZdZShzsoY8K17eTdeK3DmMgPBsJYShB/aDcQL3JdAdJX16jDkARdnOTeB07JLj6MMrqLTHg2L5jiAu0LBGgag492mUaVTnpo5JwWowRpCcp7nDLyaWjBxg40tinJa1qscHfsxxmUCAcM1ZUP/UI6FSytb2+ftrmksJgJqRlemQK9RIZpj36Pc++1Aj/aTmypMrN7eCwPx3XOQVVbkape9LGWbuG61cLtaMj9oLYwycA2hyuuzyKACBtlNhvyX7I6RsJ3uYfY78gH0jvbXhBH8ngZ0on2hk8oSn4zVAbUbE0eoPOnEk69+URMz15XAEwdteSuROPhIQw/2q6N+cPByobOt97bBMn4fAdPO+sjxSR1gbg087J5w6EBDZnG5AJNceLtu4yZufWc/+IS3Wdntypa6VdL964eQvghObywOrX2+DswNgy58wg7zwCJbWLyG1jJmOaHk7/PyZ7scbkos1sVbfazk+uBkdwGSpPO1+CLvnL0PIgGqZERCd7kxuk57DIz/tVgNf71D3uFBlT2Ewf74UHJJt5W8IROkWro5kQzR7q0ZyQ2xIkHTKlwE1Y6pA0RXmAIljvqVRYfFS0gxdTjGLsHM/v7mSULj4gNugK0rs4iTzumgwSQaRHOtsKf/iyzDlq8nrCxP1BDEtUl7aRs3ab3qnxz5E46ynkPatA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400014)(36860700004)(376005); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 16:01:24.2212 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04311480-97e7-4bb5-0d4b-08dc45092a13
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB56.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6587
+References: <20240315160108.2595995-1-alexander.deucher@amd.com>
+In-Reply-To: <20240315160108.2595995-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 15 Mar 2024 12:44:33 -0400
+Message-ID: <CADnq5_PMfhTQ+=aSJ5DqCj3p5hjbQUHZsx=3xXc0FEqL_9WDiQ@mail.gmail.com>
+Subject: Re: [PATCH] Documentation: add a page on amdgpu debugging
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,113 +75,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Covers GPU page fault debugging and adds a reference
-to umr.
+On Fri, Mar 15, 2024 at 12:07=E2=80=AFPM Alex Deucher <alexander.deucher@am=
+d.com> wrote:
+>
+> Covers GPU page fault debugging and adds a reference
+> to umr.
+>
+> v2: update client ids to include SQC/G
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  Documentation/gpu/amdgpu/debugging.rst | 79 ++++++++++++++++++++++++++
+>  Documentation/gpu/amdgpu/index.rst     |  1 +
+>  2 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/gpu/amdgpu/debugging.rst
+>
+> diff --git a/Documentation/gpu/amdgpu/debugging.rst b/Documentation/gpu/a=
+mdgpu/debugging.rst
+> new file mode 100644
+> index 000000000000..8b7fdcdf1158
+> --- /dev/null
+> +++ b/Documentation/gpu/amdgpu/debugging.rst
+> @@ -0,0 +1,79 @@
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> + GPU Debugging
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +GPUVM Debugging
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +To aid in debugging GPU virtual memory related problems, the driver supp=
+orts a
+> +number of options module paramters:
+> +
+> +`vm_fault_stop` - If non-0, halt the GPU memory controller on a GPU page=
+ fault.
+> +
+> +`vm_update_mode` - If non-0, use the CPU to update GPU page tables rathe=
+r than
+> +the GPU.
+> +
+> +
+> +Decoding a GPUVM Page Fault
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> +
+> +If you see a GPU page fault in the kernel log, you can decode it to figu=
+re
+> +out what is going wrong in your application.  A page fault in your kerne=
+l
+> +log may look something like this:
+> +
+> +::
+> +
+> + [gfxhub0] no-retry page fault (src_id:0 ring:24 vmid:3 pasid:32777, for=
+ process glxinfo pid 2424 thread glxinfo:cs0 pid 2425)
+> +   in page starting at address 0x0000800102800000 from IH client 0x1b (U=
+TCL2)
+> + VM_L2_PROTECTION_FAULT_STATUS:0x00301030
+> +       Faulty UTCL2 client ID: TCP (0x8)
+> +       MORE_FAULTS: 0x0
+> +       WALKER_ERROR: 0x0
+> +       PERMISSION_FAULTS: 0x3
+> +       MAPPING_ERROR: 0x0
+> +       RW: 0x0
+> +
+> +First you have the memory hub, gfxhub and mmhub.  gfxhub is the memory
+> +hub used for graphics, compute, and sdma on some chips.  mmhub is the
+> +memory hub used for multi-media and sdma on some chips.
+> +
+> +Next you have the vmid and pasid.  If the vmid is 0, this fault was like=
+ly
+> +caused by the kernel driver or firmware.  If the vmid is non-0, it is ge=
+nerally
+> +a fault in a user application.  The pasid is used to link a vmid to a sy=
+stem
+> +process id.  If the process is active when the fault happens, the proces=
+s
+> +information will be printed.
+> +
+> +The GPU virtual address that caused the fault comes next.
+> +
+> +The client ID indicates the GPU block that caused the fault.
+> +Some common client IDs:
+> +
+> +- CB/DB: The color/depth backend of the graphics pipe
+> +- CPF: Command Processor Frontend
+> +- CPC: Command Processor Compute
+> +- CPG: Command Processor Graphics
+> +- TCP/SQC/SQG: Shaders
+> +- SDMA: SDMA engines
+> +- VCN: Video encode/decode engines
+> +- JPEG: JPEG engines
+> +
+> +PERMISSION_FAULTS describe what faults were encountered:
+> +
+> +- bit 0: the PTE was not valid
+> +- bit 1: the PTE read bit was not set
+> +- bit 2: the PTE write bit was not set
+> +- bit 3: the PTE execute bit was not set
+> +
+> +Finally, RW, indicates whether the access was a read (0) or a write (1).
+> +
+> +In the example above, a shader (cliend id =3D TCP) generated a read (RW =
+=3D 0x0) to
+> +an invalid page (PERMISSION_FAULTS =3D 0x3) at GPU virtual address
+> +0x0000800102800000.  The user can then inspect can then inspect their sh=
+ader
 
-v2: update client ids to include SQC/G
+removed the duplicated text above locally.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- Documentation/gpu/amdgpu/debugging.rst | 79 ++++++++++++++++++++++++++
- Documentation/gpu/amdgpu/index.rst     |  1 +
- 2 files changed, 80 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/debugging.rst
+Alex
 
-diff --git a/Documentation/gpu/amdgpu/debugging.rst b/Documentation/gpu/amdgpu/debugging.rst
-new file mode 100644
-index 000000000000..8b7fdcdf1158
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/debugging.rst
-@@ -0,0 +1,79 @@
-+===============
-+ GPU Debugging
-+===============
-+
-+GPUVM Debugging
-+===============
-+
-+To aid in debugging GPU virtual memory related problems, the driver supports a
-+number of options module paramters:
-+
-+`vm_fault_stop` - If non-0, halt the GPU memory controller on a GPU page fault.
-+
-+`vm_update_mode` - If non-0, use the CPU to update GPU page tables rather than
-+the GPU.
-+
-+
-+Decoding a GPUVM Page Fault
-+===========================
-+
-+If you see a GPU page fault in the kernel log, you can decode it to figure
-+out what is going wrong in your application.  A page fault in your kernel
-+log may look something like this:
-+
-+::
-+
-+ [gfxhub0] no-retry page fault (src_id:0 ring:24 vmid:3 pasid:32777, for process glxinfo pid 2424 thread glxinfo:cs0 pid 2425)
-+   in page starting at address 0x0000800102800000 from IH client 0x1b (UTCL2)
-+ VM_L2_PROTECTION_FAULT_STATUS:0x00301030
-+ 	Faulty UTCL2 client ID: TCP (0x8)
-+ 	MORE_FAULTS: 0x0
-+ 	WALKER_ERROR: 0x0
-+ 	PERMISSION_FAULTS: 0x3
-+ 	MAPPING_ERROR: 0x0
-+ 	RW: 0x0
-+
-+First you have the memory hub, gfxhub and mmhub.  gfxhub is the memory
-+hub used for graphics, compute, and sdma on some chips.  mmhub is the
-+memory hub used for multi-media and sdma on some chips.
-+
-+Next you have the vmid and pasid.  If the vmid is 0, this fault was likely
-+caused by the kernel driver or firmware.  If the vmid is non-0, it is generally
-+a fault in a user application.  The pasid is used to link a vmid to a system
-+process id.  If the process is active when the fault happens, the process
-+information will be printed.
-+
-+The GPU virtual address that caused the fault comes next.
-+
-+The client ID indicates the GPU block that caused the fault.
-+Some common client IDs:
-+
-+- CB/DB: The color/depth backend of the graphics pipe
-+- CPF: Command Processor Frontend
-+- CPC: Command Processor Compute
-+- CPG: Command Processor Graphics
-+- TCP/SQC/SQG: Shaders
-+- SDMA: SDMA engines
-+- VCN: Video encode/decode engines
-+- JPEG: JPEG engines
-+
-+PERMISSION_FAULTS describe what faults were encountered:
-+
-+- bit 0: the PTE was not valid
-+- bit 1: the PTE read bit was not set
-+- bit 2: the PTE write bit was not set
-+- bit 3: the PTE execute bit was not set
-+
-+Finally, RW, indicates whether the access was a read (0) or a write (1).
-+
-+In the example above, a shader (cliend id = TCP) generated a read (RW = 0x0) to
-+an invalid page (PERMISSION_FAULTS = 0x3) at GPU virtual address
-+0x0000800102800000.  The user can then inspect can then inspect their shader
-+code and resource descriptor state to determine what caused the GPU page fault.
-+
-+UMR
-+===
-+
-+`umr <https://gitlab.freedesktop.org/tomstdenis/umr>`_ is a general purpose
-+GPU debugging and diagnostics tool.  Please see the umr documentation for
-+more information about its capabilities.
-diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgpu/index.rst
-index 912e699fd373..847e04924030 100644
---- a/Documentation/gpu/amdgpu/index.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -15,4 +15,5 @@ Next (GCN), Radeon DNA (RDNA), and Compute DNA (CDNA) architectures.
-    ras
-    thermal
-    driver-misc
-+   debugging
-    amdgpu-glossary
--- 
-2.44.0
-
+> +code and resource descriptor state to determine what caused the GPU page=
+ fault.
+> +
+> +UMR
+> +=3D=3D=3D
+> +
+> +`umr <https://gitlab.freedesktop.org/tomstdenis/umr>`_ is a general purp=
+ose
+> +GPU debugging and diagnostics tool.  Please see the umr documentation fo=
+r
+> +more information about its capabilities.
+> diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgp=
+u/index.rst
+> index 912e699fd373..847e04924030 100644
+> --- a/Documentation/gpu/amdgpu/index.rst
+> +++ b/Documentation/gpu/amdgpu/index.rst
+> @@ -15,4 +15,5 @@ Next (GCN), Radeon DNA (RDNA), and Compute DNA (CDNA) a=
+rchitectures.
+>     ras
+>     thermal
+>     driver-misc
+> +   debugging
+>     amdgpu-glossary
+> --
+> 2.44.0
+>
