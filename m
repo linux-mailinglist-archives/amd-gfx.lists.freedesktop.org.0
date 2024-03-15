@@ -2,122 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C3387CD35
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 13:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C7D87CD7B
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 13:54:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D68B112209;
-	Fri, 15 Mar 2024 12:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3160112247;
+	Fri, 15 Mar 2024 12:54:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nrpvlxPT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LYJHkhuN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2060.outbound.protection.outlook.com [40.107.95.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF74811220E
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 12:23:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mYjrGntTefql5Ur4pO00Fif6TvLQ0ysWi+sErjl2r1//5DoKiz+g54GROd3Sc/3MtrOIxrU51NKrCav1I3lBFg1MhDEQVzkAlG6zIeNQxf3q6jOrwT3hG6RCFOptnnWhip7OkraviZXj5HZS/1U6QbnRvk/Y002qL7+gkQNZa/wEmUUOysTyvTnIfWETQYYYT1kgtBYhYlK/KZhIe52zqBeDpL/W/ek4bWQY85oQB9VgBv9m3/SJbX3gcX7t34wAxORVBxl2bzHjSUK06PQ0pRi1pGbmqDAO/L8mMYSDBUX2H7aCSvTlMULi/bPywel02nHpjV0QcNhx0esxkbo0iA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+AdXUppuGeUizoIfM0As0OFwfelLUnO6XDC4O8p5VyY=;
- b=iTA+JbDmNz5iAxlMsC4n3mpxnEQkyGYxmmqEfa22BexWFBXMGZFWkpsAoE7mZdJ0SxtIkfkJsMSTsJ+oZvgCfVncCI+7PsmvNRHHBMtbQ8hPruA27XaJ87vg4tXnZc6A7RfB2WlGGR00YzaswTvDF6AVgTQ59ibyoIOe/GZzQEUlHeHuYKiBH2hnXrS6F+aTbW2CvDPlixhmGXCfJT4uhh8S94zRGa11dBZnafSkio/Z6f2afsbYA8BYb8isW3GtFwD4Tt4hBhCc6MTCUXQ5dOIYCzk2qsYx6cJhNZlDAUnxQH/Z3nH6KJ3EN/rtkvz/kmEpVJQ6VHh/OqJ89EvfDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+AdXUppuGeUizoIfM0As0OFwfelLUnO6XDC4O8p5VyY=;
- b=nrpvlxPTG5McRZTfxxwzDzuWtf6C6aX4sKSo7bmIh/p8JklI9jLa6yGPBfeLYsPxq6l/E1KvDUbnUosidf8V2MzWCRiOfkLdd/1XDAsqq+MteuK6GFSz2j7wtcCpWaKRqJCa3zG3FIG9c+EGrzvY5BBYMunm6dap0TSOfrlhQnM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com (2603:10b6:8:142::5) by
- SJ2PR12MB8691.namprd12.prod.outlook.com (2603:10b6:a03:541::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.22; Fri, 15 Mar
- 2024 12:23:25 +0000
-Received: from DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::f349:addf:ae3e:814]) by DS0PR12MB7804.namprd12.prod.outlook.com
- ([fe80::f349:addf:ae3e:814%5]) with mapi id 15.20.7386.017; Fri, 15 Mar 2024
- 12:23:24 +0000
-Message-ID: <7190d590-dc75-4b27-965a-2cd2ea465836@amd.com>
-Date: Fri, 15 Mar 2024 17:53:16 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amdgpu: drop setting buffer funcs in sdma442
-Content-Language: en-US
-To: "Ma, Le" <Le.Ma@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Song, Asher"
- <Asher.Song@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20240315091607.1070927-1-le.ma@amd.com>
- <9b808afd-8daa-40e2-a4c9-365ef4bd63cd@amd.com>
- <CO6PR12MB53951B5DDF728C963913FB86F6282@CO6PR12MB5395.namprd12.prod.outlook.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <CO6PR12MB53951B5DDF728C963913FB86F6282@CO6PR12MB5395.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0065.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::16) To DS0PR12MB7804.namprd12.prod.outlook.com
- (2603:10b6:8:142::5)
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+ [209.85.215.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6285210E079
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 12:54:48 +0000 (UTC)
+Received: by mail-pg1-f171.google.com with SMTP id
+ 41be03b00d2f7-5d8b887bb0cso1557463a12.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 05:54:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710507287; x=1711112087; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uFjXCd8bcCsu32n851w/XlW3w6V7D5XNjxnjzZvTlh0=;
+ b=LYJHkhuNXeRx+WqEaGOthFJCxgG6ZFmiMy0sPX3BJrboFp4XlP780KClExSVvuNLn/
+ IploG9eybtaTYmA39fYTXXvvZsgXTKExWltUg3PivoxOhnmLxr5/Ll6GxDUeoq25WpOP
+ 81aAeuHa3Bw7Qo2SwzXhoUGXNiFWPB9Q5AKN+MBSaNWy6Yr+sk4Z9Y515hNvEmrPzHRo
+ h25QKEoZgso2MorYG+dE3rl8JMzNyARcutqK9PGwOI2id4V26jWogX3pWIX9C8tiBB2P
+ +rslYJvGC/hwZUkQsWpQJ/1WZTjHuI6IYcjSURPbavrp1KorIoP+4zVO6CbYUvqV4GSS
+ LgPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710507287; x=1711112087;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uFjXCd8bcCsu32n851w/XlW3w6V7D5XNjxnjzZvTlh0=;
+ b=UlWVlpw4re0OahbfQs/xlZ1r0ReEEZvpWSKsoasjYqsNQnRMqbsy3WOWN8Lt/8uWUM
+ xyR1FPMahK/cR1YsnLPf8WKWb7BdIq34lR1l3YGzEZJGgXIOAWDQ1OkUWUd2dEHQLlib
+ JXk2/ZY6Ct77Rp6i2OpUsTP3uk2tRwyg6Wi6QN9Ee0+ZW/7Ni+Uolh8035Q2XAlX9fXD
+ CJbL7QG4KTvfFwZbWKOM4UkNT9o68uDr2p9TtYgIMX5LzQAchLBZGbC/VjvwX/8Mn2Ux
+ 3bQWLYjnRp4woS3LI9rmqdKBatr9RWmGKelk9woww2foum4JeF2Lm568L7xumf2HfDFG
+ wGuw==
+X-Gm-Message-State: AOJu0Yyrgs4KjzER9rDE3CVJupL9xq7ZDVNpm5PtJ1+VUG9dR8LLDYaf
+ QuQsa/3LhcsQBc6lllwT/ewiZX8Vfg7/J6btNFOV49qs5smDlzWaYKxDVeoCOhHwMSJ220oiU8w
+ a5ZYLCnxx4SaMJef/8T7SMF7K9B/Ns6/o
+X-Google-Smtp-Source: AGHT+IE8x9tMM420CsY3tlV+7uVLeCBftYFlaITBiuzY3A4e814of0YA+lv5crn/P3+Gix0tfe7unttMVpy+2yQYFxw=
+X-Received: by 2002:a17:90a:ee93:b0:29b:acc6:c54f with SMTP id
+ i19-20020a17090aee9300b0029bacc6c54fmr4517214pjz.35.1710507287365; Fri, 15
+ Mar 2024 05:54:47 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7804:EE_|SJ2PR12MB8691:EE_
-X-MS-Office365-Filtering-Correlation-Id: e43da467-9f6c-4d2c-cef8-08dc44eab5eb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7l+e2WJ5uPoOVwTxS6e9+Ktw1Gnd+JkgL/Aq3mUD2tPXrTAAejbV40CwTYws2lcx5WwVjApUwov24uWi8JxbxD+oviia54xBFSyMnhNX+H5soyxirc4sEDphq1+hH9o77RKGwo8J/Neac+m5t7VTO0EhPVKPAywalidrRZGO0jVjjGUh9VDnbom3SAFXKA7izT/KhA2Cshj1k6EVTjmghXfgNUuNhJOUtgdILPYo2VJDcIUPs5iDbe+cPYOjE20AyFibcPLDRCMBAfHFT03nw1ocm8Rs1Fs5X/7wtzNzEQl2JwdrDYCDbPPFi5H4SpEOPjJtQan7X8+fyHVjMAk76CviLro48fWPD7E4vuZgccR1EurK5ooC4JcOVkk4K05dlTHxMRd9HsfNA5lMSIbZ3eEm5I1JFhGAA21Cs402d66XiToGHBtghJgkJ/CrIO+vwIqxsc4itTgbMa+Ppm8v9u4QT3SqRbUcC2p4YolfUI+ndj4qLRy4vXRAmCL4ucSG++s5qSzjkqahpe/qIMDf6X/5KfLDXLa9aKZaxWWC68+HygSRhTabj4+m2pOIHOQuZcdvdd3Rg/whQnykNkKZPQek9HEAZRf45J9jsGYX2FY3ygEAWD4pw1O7cbAIG88jWMGnxWMbi5quBhHLfbp9zp8ZuXOm+VjrgBscpRM5eXw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7804.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2w2c0ZlTlJYZlFKOE9hbjRscTNxWGRrYTcxN1NIZlRWR0lUa3g5d2JNY2Zm?=
- =?utf-8?B?OEhpOEwyM3piKzlhU2xlRzNpSlVHbGRSS1VBWFNyQkxMTHdPU1BXZW9rYm9l?=
- =?utf-8?B?NTkxbzdHMGJhbThGRmE1a01HRE92K2hweFEzOEFXaFprVHhoVC9RckQ5TE5P?=
- =?utf-8?B?VWZYRUg0K0E2MmpzNERpcHdwMzBvY1pOQUVBMXhPZ2xvSlBYcXRaQzhnN1Rv?=
- =?utf-8?B?SWZ1MldIRjFibndKd0U5VjY0aEQ4L2JBMlNLQ3dhcGJPb3c5V0lROVBXRUpn?=
- =?utf-8?B?TDc5Zi9nRFYzR1lGcXo2QTBtQkdMQjN0Q1VCMG5Vbk1rdHBBc3BMT0cwR0Nl?=
- =?utf-8?B?RW9Jdktqd0pId1ZrSTNZQ2tVb0x5U0lTUVpqU2h6ZnR1L3pZcTJwa09YclYv?=
- =?utf-8?B?YmgwQlQvdTBFRERLTWREdm5Pc2NldUpJQjVxWUtxYkV4N3RLUDl5U2lSSXVJ?=
- =?utf-8?B?R1ZmU3NzbWVteTIvYi8zVmMxVGsvQ215b0tURVo2OEY3WjBXV2FiWHoxYmk0?=
- =?utf-8?B?V25zeXdZeVU0UVhkUm9zcEp1anVtWnJLcjlpRTJCRW5HWU1xUzNWS0hyYVpS?=
- =?utf-8?B?R1NQSnlLeEo1WDVDdHlnUXhEVXlFQmJHNzBKSmZHN0NFYjBsMDNaWHpOK2xQ?=
- =?utf-8?B?bkY2bzhFeEVsVEhjdTFYMG5mdkNDUk1nenVmaG5TOTFEU1dEUDJBV3gxTThO?=
- =?utf-8?B?MFp0d1M0bmpReU16am9QVUorWjlaKzFUZFN2ZFpWaXE3V1VOcFlvT3RIWjZR?=
- =?utf-8?B?YldMZ3R0ZmxVUmhzczVrYzZMZUNGZVcvK0VET3orTmdzSE1COFZuTEoxaEIx?=
- =?utf-8?B?NUpxYWVVeFc0OHdMZ2hveGFoMzFqUXJ6T1hLYkRaVExWcG9nMUVvWkRmcjN6?=
- =?utf-8?B?d1QxQU1BUDdsMGs2OXlHaVJkR05KTUprT255RzV1NVgrUjZuc0l6a0gyOGhj?=
- =?utf-8?B?eitVWDZ5elJyWU81Q2kxRHZRTStxSEZTd3EvVUdUcXQxM2xiR2NBWThqMjN3?=
- =?utf-8?B?TFF1TVRzRC9ZNGJHUEJwRW80SXhkYyt1bTFGYUkxdWhyK3lTZ1JDUm5LMDZv?=
- =?utf-8?B?LzZWQ3duM1pHaEM3L0pVUzA5bWU5UXdJZGlVbWZublRTeURKRDlIaW51MFlq?=
- =?utf-8?B?NHN3bGpIUGVkWFBFRDVBR0dOTHBVVDl2UC9VbHp4SjFBNGJPWlBkVkFDNzYy?=
- =?utf-8?B?U0xPZ2ZIRndRWk5UZ1lsSVRCNkx3aXFJU1p6WUdlTi9ZNGMwSk9IYm5qbUth?=
- =?utf-8?B?K1Q3WmhGU08rVm1qTU5ld1NTTW5uTk94aU1JNTRwQW9sVkRRS2g5NHJZYm5n?=
- =?utf-8?B?cFplRndXaFBuYWFicXBGbzdXYmlqNE1OSmw3c3JSRTFKQUthWjRmczg1dXZJ?=
- =?utf-8?B?ckcxNzcyaHF6WFptYURFeFZMNy9VUlZnMGlZengzU0JPT21tamplNndLaE1n?=
- =?utf-8?B?RVY1VmFicm1FT080Mm41bFZmMENUQ25KT2kzWHRNOWNPNlpoWGNVU3ZGU1NV?=
- =?utf-8?B?VWYwT1JXdUtYYWhJT0lvUVVnbjd3cUZ0dVluVFk4K0Y1TDRHcEU3M2paS2Ur?=
- =?utf-8?B?U3A0U2RkOUdUV2Y0Vi80SEJrUGxubEQyUy9qczJ5dWRtcFZYaXN5ejRaU3R6?=
- =?utf-8?B?OHBCaCtLci9QdkEvOFN6S0pWTEM3NDEwQkw0SnZCRldoUEN5WjVmRnVIVTNL?=
- =?utf-8?B?VThDN21hNU41YTNOR2VHYnIyL2VDeWxBWVhvOFMwRTlKajJCYTVJVlZ3KzBm?=
- =?utf-8?B?dTBWRjlWUEZ1QlV4Ymw1RDd0aVpmOGE5UVZlVWdub2V4ZVVIWnJsWnV6L0Fs?=
- =?utf-8?B?b1g2MWh4TG1kcXVKK0ZodWxSSWZSUzduTVNJR2NCdy84L0RXZVYySzF4cEZG?=
- =?utf-8?B?N0pLZjkrMGN1aGNUV3VhYkgrb2ZVK0RjNGpXUkhVcE1hK2MrOWV4NGZUMDl5?=
- =?utf-8?B?MXBUTGhpZHU0VDFOZmg3ZUxKM0NRSFJnUUpaU0RTOWo5WTF4RFQ5aWx3d1lt?=
- =?utf-8?B?bVZ3a0VMd2VsSXRSdTluQ3AzMXF5SThGSG9lWSt5WDMvU2pZd1R0Nk5ITFR0?=
- =?utf-8?B?azl3OUlLSGgzSXRHazN4VEdoWHVYRnhPeEIzNEd2cXg0VGw2aGFZeDYxRmE2?=
- =?utf-8?Q?Geu6uVEDWOmqxYE/WlwM+9LAZ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e43da467-9f6c-4d2c-cef8-08dc44eab5eb
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7804.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 12:23:24.8674 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v41P9CuBZszDP8bP9RDMVs//XCmPdwLJTfTLpDROHYLIbmWWfFtIY6bmE76628Zg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8691
+References: <20240313114451.1592772-1-peytolee@amd.com>
+ <CADnq5_OTwaLWJ9LiicJu-hO+WDF6fPB5PFQWzAqopyrDVn6R5Q@mail.gmail.com>
+ <MN2PR12MB4373845FF59F1ACC83AAEFC986292@MN2PR12MB4373.namprd12.prod.outlook.com>
+ <CADnq5_MzsCoj0VMKkQecWfGS1UAXE7Xvje3eoNbTP7fbdvXHRQ@mail.gmail.com>
+ <MN2PR12MB437320223A607D4BAA8C182586282@MN2PR12MB4373.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB437320223A607D4BAA8C182586282@MN2PR12MB4373.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 15 Mar 2024 08:54:35 -0400
+Message-ID: <CADnq5_NciR_1wqRCSYTJ+nUsYbfGiEBJtt3cwzyvREODGkywWw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/vpe: power on vpe when hw_init
+To: "Lee, Peyton" <Peyton.Lee@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
+ Yifan" <Yifan1.Zhang@amd.com>, 
+ "Ma, Li" <Li.Ma@amd.com>, "Yu, Lang" <Lang.Yu@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,130 +82,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 3/15/2024 5:45 PM, Ma, Le wrote:
+On Thu, Mar 14, 2024 at 9:40=E2=80=AFPM Lee, Peyton <Peyton.Lee@amd.com> wr=
+ote:
+>
 > [AMD Official Use Only - General]
-> 
->  
->  
->> -----Original Message-----
->> From: Lazar, Lijo <_Lijo.Lazar@amd.com_ <mailto:Lijo.Lazar@amd.com>>
->> Sent: Friday, March 15, 2024 6:14 PM
->> To: Ma, Le <_Le.Ma@amd.com_ <mailto:Le.Ma@amd.com>>; _amd-gfx@lists.freedesktop.org_
-> <mailto:amd-gfx@lists.freedesktop.org>
->> Cc: Zhang, Hawking <_Hawking.Zhang@amd.com_ <mailto:Hawking.Zhang@amd.com>>; Song, Asher
->> <_Asher.Song@amd.com_ <mailto:Asher.Song@amd.com>>; Deucher, Alexander
-> <_Alexander.Deucher@amd.com_ <mailto:Alexander.Deucher@amd.com>>
->> Subject: Re: [PATCH 1/1] drm/amdgpu: drop setting buffer funcs in sdma442
->> 
->> 
->> 
->> On 3/15/2024 2:46 PM, Le Ma wrote:
->> > To fix the entity rq NULL issue. This setting has been moved to upper level.
->> >
->> 
->> Need to call amdgpu_ttm_set_buffer_funcs_status(adev, true/false) in
->> mode-2 reset handlers as well.
->  
-> Thanks for pointing out this. I think we can make another separated
-> patch to handle it for mode2 since this patch is for alignment purpose.
-> Actually, the set_buffer_funcs will not be unset/set in reset case as
-> the conditions below:
->  
-> void amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev, bool
-> enable)
-> {
->         struct ttm_resource_manager *man =
-> ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM);
->         uint64_t size;
->         int r;
->  
->         if (!adev->mman.initialized || amdgpu_in_reset(adev) ||
->             adev->mman.buffer_funcs_enabled == enable ||
-> adev->gmc.is_app_apu)
->                 return;
->  
->  
+>
+> Hi Alex
+>
+> > I think it will continue to be powered up until a VPE job comes in and =
+completes and the idle handler gets scheduled.  If a VPE job doesn't come i=
+n, it will stay powered up I think.
+> Yes, correct.
+> And after the VPE is called to do initialization, a simple test is execut=
+ed for checking VPE status, and the idle handler gets scheduled to power of=
+f the VPE when the test finished.
 
-Thanks for clarifying.
+Does the IB test take care of this?  I just want to confirm that we
+aren't leaving it powered up unless a user runs a VPE workload which
+might not happen.
 
-In this case, we don't require that since reset() condition is set. I
-saw amdgpu_ttm_set_buffer_funcs_status(tmp_adev, true) getting called in
-amdgpu_do_asic_reset(), thought it was affected by reset.
+Alex
 
-Thanks,
-Lijo
 
->> 
->> Thanks,
->> Lijo
->> 
->> > Fixes b70438004a14 ("drm/amdgpu: move buffer funcs setting up a
->> > level")
->> >
->> > Signed-off-by: Le Ma <_le.ma@amd.com_ <mailto:le.ma@amd.com>>
->> > ---
->> >  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 20 +-------------------
->> >  1 file changed, 1 insertion(+), 19 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
->> > b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
->> > index eaa4f5f49949..589a734982a7 100644
->> > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
->> > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
->> > @@ -431,16 +431,11 @@ static void sdma_v4_4_2_inst_gfx_stop(struct
->> amdgpu_device *adev,
->> >      struct amdgpu_ring *sdma[AMDGPU_MAX_SDMA_INSTANCES];
->> >      u32 doorbell_offset, doorbell;
->> >      u32 rb_cntl, ib_cntl;
->> > -   int i, unset = 0;
->> > +   int i;
->> >
->> >      for_each_inst(i, inst_mask) {
->> >              sdma[i] = &adev->sdma.instance[i].ring;
->> >
->> > -           if ((adev->mman.buffer_funcs_ring == sdma[i]) && unset != 1) {
->> > -                   amdgpu_ttm_set_buffer_funcs_status(adev, false);
->> > -                   unset = 1;
->> > -           }
->> > -
->> >              rb_cntl = RREG32_SDMA(i, regSDMA_GFX_RB_CNTL);
->> >              rb_cntl = REG_SET_FIELD(rb_cntl, SDMA_GFX_RB_CNTL,
->> RB_ENABLE, 0);
->> >              WREG32_SDMA(i, regSDMA_GFX_RB_CNTL, rb_cntl); @@ -
->> 490,17 +485,10 @@
->> > static void sdma_v4_4_2_inst_page_stop(struct amdgpu_device *adev,
->> >      struct amdgpu_ring *sdma[AMDGPU_MAX_SDMA_INSTANCES];
->> >      u32 rb_cntl, ib_cntl;
->> >      int i;
->> > -   bool unset = false;
->> >
->> >      for_each_inst(i, inst_mask) {
->> >              sdma[i] = &adev->sdma.instance[i].page;
->> >
->> > -           if ((adev->mman.buffer_funcs_ring == sdma[i]) &&
->> > -                   (!unset)) {
->> > -                   amdgpu_ttm_set_buffer_funcs_status(adev, false);
->> > -                   unset = true;
->> > -           }
->> > -
->> >              rb_cntl = RREG32_SDMA(i, regSDMA_PAGE_RB_CNTL);
->> >              rb_cntl = REG_SET_FIELD(rb_cntl, SDMA_PAGE_RB_CNTL,
->> >                                      RB_ENABLE, 0);
->> > @@ -950,13 +938,7 @@ static int sdma_v4_4_2_inst_start(struct
->> amdgpu_device *adev,
->> >                      r = amdgpu_ring_test_helper(page);
->> >                      if (r)
->> >                              return r;
->> > -
->> > -                   if (adev->mman.buffer_funcs_ring == page)
->> > -                           amdgpu_ttm_set_buffer_funcs_status(adev,
->> true);
->> >              }
->> > -
->> > -           if (adev->mman.buffer_funcs_ring == ring)
->> > -                   amdgpu_ttm_set_buffer_funcs_status(adev, true);
->> >      }
->> >
->> >      return r;
+>
+> Thanks,
+> Peyton
+>
+> -----=E5=8E=9F=E5=A7=8B=E9=83=B5=E4=BB=B6-----
+> =E5=AF=84=E4=BB=B6=E8=80=85: Alex Deucher <alexdeucher@gmail.com>
+> =E5=AF=84=E4=BB=B6=E6=97=A5=E6=9C=9F: Thursday, March 14, 2024 8:58 PM
+> =E6=94=B6=E4=BB=B6=E8=80=85: Lee, Peyton <Peyton.Lee@amd.com>
+> =E5=89=AF=E6=9C=AC: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Al=
+exander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>; Ma, Li <Li.M=
+a@amd.com>; Yu, Lang <Lang.Yu@amd.com>
+> =E4=B8=BB=E6=97=A8: Re: [PATCH] drm/amdgpu/vpe: power on vpe when hw_init
+>
+> On Wed, Mar 13, 2024 at 9:33=E2=80=AFPM Lee, Peyton <Peyton.Lee@amd.com> =
+wrote:
+> >
+> > [AMD Official Use Only - General]
+> >
+> > Hi Alex,
+> >
+> > There are two places where VPE will lose power: When there is a system =
+call to vpe_hw_fini(), and the vpe-thread finds that VEP has no jobs in the=
+ queue.
+> > This patch is to make sure that VPE is power up before loading firmware=
+.
+>
+> I think it will continue to be powered up until a VPE job comes in and co=
+mpletes and the idle handler gets scheduled.  If a VPE job doesn't come in,=
+ it will stay powered up I think.
+>
+> Alex
+>
+> >
+> > Thanks,
+> > Peyton
+> > -----=E5=8E=9F=E5=A7=8B=E9=83=B5=E4=BB=B6-----
+> > =E5=AF=84=E4=BB=B6=E8=80=85: Alex Deucher <alexdeucher@gmail.com>
+> > =E5=AF=84=E4=BB=B6=E6=97=A5=E6=9C=9F: Wednesday, March 13, 2024 9:17 PM
+> > =E6=94=B6=E4=BB=B6=E8=80=85: Lee, Peyton <Peyton.Lee@amd.com>
+> > =E5=89=AF=E6=9C=AC: amd-gfx@lists.freedesktop.org; Deucher, Alexander
+> > <Alexander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>; Ma,
+> > Li <Li.Ma@amd.com>; Yu, Lang <Lang.Yu@amd.com>
+> > =E4=B8=BB=E6=97=A8: Re: [PATCH] drm/amdgpu/vpe: power on vpe when hw_in=
+it
+> >
+> > On Wed, Mar 13, 2024 at 7:41=E2=80=AFAM Peyton Lee <peytolee@amd.com> w=
+rote:
+> > >
+> > > To fix mode2 reset failure.
+> > > Should power on VPE when hw_init.
+> >
+> > When does it get powered down again?  Won't this leave it powered up?
+> >
+> > Alex
+> >
+> > >
+> > > Signed-off-by: Peyton Lee <peytolee@amd.com>
+> > > ---
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
+> > > index 70c5cc80ecdc..ecfe0f36e83e 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
+> > > @@ -396,6 +396,12 @@ static int vpe_hw_init(void *handle)
+> > >         struct amdgpu_vpe *vpe =3D &adev->vpe;
+> > >         int ret;
+> > >
+> > > +       /* Power on VPE */
+> > > +       ret =3D amdgpu_device_ip_set_powergating_state(adev, AMD_IP_B=
+LOCK_TYPE_VPE,
+> > > +                                                    AMD_PG_STATE_UNG=
+ATE);
+> > > +       if (ret)
+> > > +               return ret;
+> > > +
+> > >         ret =3D vpe_load_microcode(vpe);
+> > >         if (ret)
+> > >                 return ret;
+> > > --
+> > > 2.34.1
+> > >
