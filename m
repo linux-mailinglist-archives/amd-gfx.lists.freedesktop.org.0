@@ -2,134 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4301587CFBA
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 16:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9340A87D120
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 17:22:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF1F10E260;
-	Fri, 15 Mar 2024 15:03:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9008112368;
+	Fri, 15 Mar 2024 16:22:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MpKp+4ZB";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="mHLd+vcN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2065.outbound.protection.outlook.com [40.107.220.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D69310E260;
- Fri, 15 Mar 2024 15:03:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ElMXVT7SsjssDYAq15nS7h17L8BRcQcdNkpAxTsdciRCoNkbCjNIOtEuA/RxbpTU58M8ddQCVAomow1nfgRC1o+c/sa5MuiqNTS+vRSyFYyKlmqZjJtcBdfANzla8A3IElffoHV0PPpUevCXFJd+32WaWKMDNq3B01OKJy1EmkID2g/YzwVbyuJrjmntinGXgrLCuSz26SGTebJitzDWacE5z2lEPB5Atzqsldest7KpAPpOJDdMc1r6C9FmPRZUg1zup7FXXRLI7HzIHD7qpI8/6tFe/GHKAWPhf/t/89+gY01YoOYEXDMqrJY+FzTOiwjJ/F3E4QJW2BL1p+Yy1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2SuwOCjBbLYkST//PsfWcv36UMFESUO0IP8x5avek5w=;
- b=mr1XFXsGrfHG3zne2UzEFWgnBs/00ZE9J05l5QPAvJz20KSjEdSAV1OH6P8QOUHAGid5HGHmLpKYLByd1UB3cjcM7T+42EsOWmTyiWa+XjlViDIi8THN4XjVIE4O4nCWXwQecfNCF4zHy8ASaARvaGm9JhIZGaDDYWI8dh1HxmRfotXgBYBO/nx52qpzwaSRbfuevMxdj99E6r2BEr30mbafpGaZnYhdWhAaNVek4X/OoGe3CHsN7ygkCreWinjFngKYPTigYd5qCR6BqmqV82ZoDZffNRe0hECWKiKnwyxifIKQL0qm+L3blrfqawX9QXjCG2stkLx1YMe4hGiRvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2SuwOCjBbLYkST//PsfWcv36UMFESUO0IP8x5avek5w=;
- b=MpKp+4ZBMSb+KrqaCN2C6/LDVx6N+jd6wsI97ZTg68FTtqlRCNEMscFx5/VSx9LDWINlDD6fAQPOi7XsrD4lijJJEXakM+loKm+FV0nsIe14Tu7omtt61vZPcmvmcUu1w+IIOWeisTbEAioIYFK9QgqCGUWxHSM2vBaOAtUnomY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by SJ2PR12MB9210.namprd12.prod.outlook.com (2603:10b6:a03:561::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.20; Fri, 15 Mar
- 2024 15:03:39 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::8099:8c89:7b48:beed]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::8099:8c89:7b48:beed%7]) with mapi id 15.20.7386.021; Fri, 15 Mar 2024
- 15:03:39 +0000
-Message-ID: <f6c3a153-ff64-4e9c-98f3-04c38fd75485@amd.com>
-Date: Fri, 15 Mar 2024 11:03:33 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] drivers: use new capable_any functionality
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_G=C3=B6ttsche?= <cgzones@googlemail.com>,
- linux-security-module@vger.kernel.org
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Stefan Haberland <sth@linux.ibm.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-s390@vger.kernel.org, bpf@vger.kernel.org
-References: <20240315113828.258005-1-cgzones@googlemail.com>
- <20240315113828.258005-5-cgzones@googlemail.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20240315113828.258005-5-cgzones@googlemail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBPR01CA0130.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::30) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D54310F55C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 15:16:14 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-413ef770363so17845095e9.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Mar 2024 08:16:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1710515772; x=1711120572; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=29w950Mjo10TxKJfti7sbRRg9YOuroRLPRcz7P9Xo18=;
+ b=mHLd+vcNqn4tHrxzOpq26YsDNfEHObYds82iyfAqatO74qiQXRrGjWV8BNtudcEpRe
+ RNz+D9CtU5oynV62ypAnvZ+3SB0sAIgyoSnfEqso7p3YaryNpscOJR2OjTUduGPs1jp3
+ 7N72PG5VGU2axQ13FVY3oUVdtHOJNljof0dqy/BxM14VuyFdpHxfhP6Nk5LyNAUVT3Yr
+ xfERpDAXj/oMqd2x+XCwVJ02jP7V/swKj0rqw7Kq8M2eKFsTI3EJwkXhPhJhXSncS4fl
+ O292NEnwOHne+1EWFBxWlTW/vDzA/a4i0i7eZJp8RcJjj71ntGCFMC7QOFa1xcAlfTbA
+ yD8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710515772; x=1711120572;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=29w950Mjo10TxKJfti7sbRRg9YOuroRLPRcz7P9Xo18=;
+ b=DnfmgwOTH9oSOT18YcgFM+UmAgFKKgpS18hGzknHFJ8MTB8JYldodQzM680oVQQMGU
+ eswYJdPqXGkUycYBpFjDNaWh8jnAzRXdPqIY7Z/Yvy1YMzY8bAp8WG84mRVPzWbcbgkM
+ nWnwk0exIy5HnMG+Zo+IB4y5DLeEiDObfZSBswp+APj/kGtSoqIa/uKXZOI+44RWzRQ+
+ H58XcAWQ96Kiex1BEMi20FwXsCf3Z1IuMz4YOJaCtYW1Dk/Lh9vskLka+FQbIi1Qg9an
+ WewZOCNU1wQzMEy7uB7iYdfbKQcL/ICp5kpHHPh8nMK9i11YX9y8gtg+tH96WvGvzav/
+ bzig==
+X-Gm-Message-State: AOJu0Yz05fmraCM/+izX+xWmd4Clilrj2Q8R3G89wVY5ULjJZOs62BbL
+ dnGQqkcGf1wQ4bPRlE1urxC8mC+DoYfN1cskFL5GWjbkoTt6OVAqfsH6ZPCRkzw=
+X-Google-Smtp-Source: AGHT+IFy+wg44hTur04HddaCTPodwmGbB+ZfhmCFCovMDzsPmUJGhg8pFbZNBb3/m8fvU5efU/y8Yw==
+X-Received: by 2002:a05:600c:46c9:b0:413:2ab7:4396 with SMTP id
+ q9-20020a05600c46c900b004132ab74396mr3347529wmo.18.1710515772284; 
+ Fri, 15 Mar 2024 08:16:12 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ m10-20020adffe4a000000b0033de10c9efcsm3355603wrs.114.2024.03.15.08.16.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Mar 2024 08:16:11 -0700 (PDT)
+Date: Fri, 15 Mar 2024 18:16:07 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: sunil.khatri@amd.com
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [bug report] drm/amdgpu: add ring buffer information in devcoredump
+Message-ID: <9a7c7f33-dd72-4fe0-918b-00b920f7635d@moroto.mountain>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|SJ2PR12MB9210:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71a63ed5-7878-47ae-1fdf-08dc45011899
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h47ZDeEuqRFmLYAKIfMZMVG6m8R3E+9Cm4vBQviHGOcbH4amWBl+7I0Cvm6ofzESW1F1J2vJMjIRbzlSF+7Nqa6iVZFYLs9wxnYFokEhgHCEm39umyIap38E8gwmbw/zYmA/dTDx17fHcGPAaFqoweutbBsi4nzxjeNoK3CS+L62hD7mvMQbshbuB+EK8AM0tPeBkSONyttP+8nh0MkJuJ3j8cQHzT8RO4u3K9cFJxqrGjiUwkhL5UImh7nDi586pfqVBzObDcAeL2exvyHfyBhZQAV7IT8RJHeVn/e04G17TMWnvMx/oeM4/prRPGs6KTrNE+dohKpHyV9X7n4Ag5xznVwFE2R8CvIHVklFvMpHfztyAoBJCUxL1lwpLt8kizI+WZaIMKFapDsbed5BkckPDJM7SRkGFLbj+x4r70ba37HjqcVszW+Sb/SAYy5fB7ZD/8WdxAGau3jpkk0ey5rboQ4sE5amU/LZaC2NPHGqTM/mXGQ2EueDNFdO+56Eo+Rf2ikwDsn93uJ4GM3bj/jNo/6ItBSDJQw4OXCMOkWwBOGHELfVrSzgI/qkoVtYfqI7ByDaqaFxP7+o5XTIS2zeIWICTRu+tWzUX1xSiQoZZHT5IHRlcKlpC+TYrCSkoMnI5ga8qlbL8qy/8IaniDJaHMYL8BFmFLWgPP6Ex7M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(7416005)(1800799015)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WDh1SnFsRTQwQUlqaW5PTjhJZ0ZMTWcreTEvd0VkMDc3c0tKa0dpSnFQb0xO?=
- =?utf-8?B?bjNZRGl1QXJNTk5uVXd2STRNY0xPdzRqNG45RG9oTWY5OTQyOFdYTS9VTmRV?=
- =?utf-8?B?MTU0R3VNRFVnbnpIbFhScjFmdnVBK0lIVDRnVnFZbGxWMmpidXFMZmhwM0Zh?=
- =?utf-8?B?WXI0TkdnQTdTbDMxemFKamZadnBFVGtxMnFBRFhYU0VuZ2hNc0tTTy8wZVZm?=
- =?utf-8?B?MnlvUDFtMm1xV0RUdE1iUkZCa3RrUWJRWGs3WCtQWTk2L0pyTi9MUW9kRUk4?=
- =?utf-8?B?OTFVUG9jcmVEaVF5N0ZQdmNLay9aVm5GOU5tekFJcW9xZFRtck1hOGpVR2Ir?=
- =?utf-8?B?SUQ1cFVMTXc4S0RFMDBxSXJ3T2lGRTdLdmh3V090NW5yOXFudU5tM1dEK1F3?=
- =?utf-8?B?aktrQit0VzhsMzczakZMVmdPSENhaG5jaGdtTTR1WldMZWFWcUh0d25sdGFX?=
- =?utf-8?B?R1k3WkFsSzhZRUdxb1JJNlYyaG5CT0FHcXlhWEZMNjNmLzBlR3dFd2JURFZ3?=
- =?utf-8?B?L2hzTm81MjFxRDZvN2NYTWFhL3NhY2pWS3ZpekVlcUVCY2lOOVVZVWgxTjFp?=
- =?utf-8?B?TzA3SXdiaGRnZnpXMW5DQXVaN094UzZNdmtSUi9MWFE5MTd3M3djUFZ5azVh?=
- =?utf-8?B?TmNVQlhiakhxSzY2TDVsbjZNWWJrMTRGa1QvaG4rdmFkREJSdjhuY2hMVVox?=
- =?utf-8?B?b0FvdGxRenhnYUZDWjc2NWk3c21FaDRYTlZ4MUd6SjJFYTRDRDRwd04rUHpG?=
- =?utf-8?B?NjBZdVhwY2FwWkJ2TmFvYVBFSTAxNVh3M3ZHVHFNbDRWbzlLM2tnSnpiWnVH?=
- =?utf-8?B?cldpbzBPT2FVY0p4NUNuUmlVTEJVWi9FY3RXeWIxNTh3ZFQ4cENBb0UxM1Vz?=
- =?utf-8?B?R2R3Y0RMYTVwQVpobGpnYWl3QXNUWE1xMGh3ZlRZUHlMTEh3MzZ0cUZTYzdC?=
- =?utf-8?B?dlRmOUVXVW5YNXgwM3FzKy9xVllRL2Z3dmQ4NVFra0FhcmQ3MWdnUTdUY1Rq?=
- =?utf-8?B?YWgvcFFjdWJvQ2haSHlSNXE3N1FhTll6Tnl0N0dKWG9FRXR3QkFFZDJUZ3po?=
- =?utf-8?B?d0VYYk9YVlN2dllWQmw5RmFBYjE0MDZ1RUJ2eXpzcHFENXBUZGZXaEZXL3h4?=
- =?utf-8?B?Zlp6eVdFYzVITkJRcS9lck5sbllmNmE4L2JrN3BWcjlYS1JlVjN1WUg2OGlX?=
- =?utf-8?B?clZPMDNsU3pEVUd1WndhUW94TDNkR2NDVlA3WENLVGRLSG91c0dXMkV4S0Nr?=
- =?utf-8?B?TDNOaHhaVlFUSGJXWklXNmcvMEdNZndEODM0OHBGR1c3dUlrZUFPMVd4RFhq?=
- =?utf-8?B?dGhzODUvcENlbGhGY1ZoTnRTZ1hIditCb2doSnZVRkh6RHREZnE2b2thVmFN?=
- =?utf-8?B?RTFHS3l3c0kvcGpobE93anNCeUY2VlBzMDZXOU1vdGRXNGt2cjgzdEF5RUd1?=
- =?utf-8?B?ZmFRbEpyTzFGdmprLzhVbnJFN3VPallMcllUUXBEWlNRZXdQZUxqVmVGOS9J?=
- =?utf-8?B?ZEp0THA5bXRZU0VlaytSSXZVSXI4djZGTndlTzR6d2pqdW16TUlkSE94eFVD?=
- =?utf-8?B?WlBQYVJPbzdaNmgvU1NyRy9HUXRua2FtWlZDUnJGTDd1ZDJURmpmU0ROajZu?=
- =?utf-8?B?dk9Od2gxNEcrazBhenhhMHJIdVJUeG5yWHlWTmRCMG1qNDVmdnlnVStCcjVl?=
- =?utf-8?B?NzdCOWRsSVZDQ1B2Q216clNVTGtCSjFEcmJ5V09YR0RMZ3ptVWdFWXNTVnU5?=
- =?utf-8?B?dW45YU9ZcmhOS25iY01YU2hCZDd1bXRlaU5hZ3dSMEVGYUlBMGIwVW14MElj?=
- =?utf-8?B?clpMUjFYS3dWYjA4Qy9SSFRZMzVzVGVZUVZDdURydHVOZUEyNEROSG9DWjZ3?=
- =?utf-8?B?dmhLbHEveHZSV0R1b3hwUnlJaUwzQ0RMZ2VTNE5kaDdGQlN4N3VvaC9QM0Na?=
- =?utf-8?B?VXBxdlE1bkhmNlZZNWNtemNESmp6d2ZMbWZXQ25kdlJSaFZUVjRYSFA3RHZj?=
- =?utf-8?B?ZjBXRFhwNE53QWNKdmExZWR6dU50TTJTeVE1cmFWdU1yaXdwc2hwZ1hIbS9C?=
- =?utf-8?B?cXU3ZUkxYk91N2lqVStvZ0puN3lLVkJZS2lHK01GUWRGVVRWLzR6L2dmU3Nh?=
- =?utf-8?Q?BKUVEYWU+eIoAs1PUYc4iAZhw?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71a63ed5-7878-47ae-1fdf-08dc45011899
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 15:03:39.0898 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n397wT+Wna3gIQhLwWRPZJj8CbGU1ZjnD/OZ9EdnFBtnE3XkAQpCdZ8x0YBYniGXlV1A299WBah0GQ4UfBhYxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9210
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 15 Mar 2024 16:22:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,66 +75,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-03-15 7:37, Christian Göttsche wrote:
-> Use the new added capable_any function in appropriate cases, where a
-> task is required to have any of two capabilities.
->
-> Reorder CAP_SYS_ADMIN last.
->
-> Signed-off-by: Christian Göttsche <cgzones@googlemail.com>
-> Acked-by: Alexander Gordeev <agordeev@linux.ibm.com> (s390 portion)
+Hello Sunil Khatri,
 
-Acked-by: Felix Kuehling <felix.kuehling@amd.com> (amdkfd portion)
+Commit 42742cc541bb ("drm/amdgpu: add ring buffer information in
+devcoredump") from Mar 11, 2024 (linux-next), leads to the following
+Smatch static checker warning:
 
+	drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c:219 amdgpu_devcoredump_read()
+	error: we previously assumed 'coredump->adev' could be null (see line 206)
 
-> ---
-> v4:
->     Additional usage in kfd_ioctl()
-> v3:
->     rename to capable_any()
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 3 +--
->   drivers/net/caif/caif_serial.c           | 2 +-
->   drivers/s390/block/dasd_eckd.c           | 2 +-
->   3 files changed, 3 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> index dfa8c69532d4..8c7ebca01c17 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> @@ -3290,8 +3290,7 @@ static long kfd_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
->   	 * more priviledged access.
->   	 */
->   	if (unlikely(ioctl->flags & KFD_IOC_FLAG_CHECKPOINT_RESTORE)) {
-> -		if (!capable(CAP_CHECKPOINT_RESTORE) &&
-> -						!capable(CAP_SYS_ADMIN)) {
-> +		if (!capable_any(CAP_CHECKPOINT_RESTORE, CAP_SYS_ADMIN)) {
->   			retcode = -EACCES;
->   			goto err_i1;
->   		}
-> diff --git a/drivers/net/caif/caif_serial.c b/drivers/net/caif/caif_serial.c
-> index ed3a589def6b..e908b9ce57dc 100644
-> --- a/drivers/net/caif/caif_serial.c
-> +++ b/drivers/net/caif/caif_serial.c
-> @@ -326,7 +326,7 @@ static int ldisc_open(struct tty_struct *tty)
->   	/* No write no play */
->   	if (tty->ops->write == NULL)
->   		return -EOPNOTSUPP;
-> -	if (!capable(CAP_SYS_ADMIN) && !capable(CAP_SYS_TTY_CONFIG))
-> +	if (!capable_any(CAP_SYS_TTY_CONFIG, CAP_SYS_ADMIN))
->   		return -EPERM;
->   
->   	/* release devices to avoid name collision */
-> diff --git a/drivers/s390/block/dasd_eckd.c b/drivers/s390/block/dasd_eckd.c
-> index 373c1a86c33e..8f9a5136306a 100644
-> --- a/drivers/s390/block/dasd_eckd.c
-> +++ b/drivers/s390/block/dasd_eckd.c
-> @@ -5384,7 +5384,7 @@ static int dasd_symm_io(struct dasd_device *device, void __user *argp)
->   	char psf0, psf1;
->   	int rc;
->   
-> -	if (!capable(CAP_SYS_ADMIN) && !capable(CAP_SYS_RAWIO))
-> +	if (!capable_any(CAP_SYS_RAWIO, CAP_SYS_ADMIN))
->   		return -EACCES;
->   	psf0 = psf1 = 0;
->   
+drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+    171 static ssize_t
+    172 amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+    173                         void *data, size_t datalen)
+    174 {
+    175         struct drm_printer p;
+    176         struct amdgpu_coredump_info *coredump = data;
+    177         struct drm_print_iterator iter;
+    178         int i;
+    179 
+    180         iter.data = buffer;
+    181         iter.offset = 0;
+    182         iter.start = offset;
+    183         iter.remain = count;
+    184 
+    185         p = drm_coredump_printer(&iter);
+    186 
+    187         drm_printf(&p, "**** AMDGPU Device Coredump ****\n");
+    188         drm_printf(&p, "version: " AMDGPU_COREDUMP_VERSION "\n");
+    189         drm_printf(&p, "kernel: " UTS_RELEASE "\n");
+    190         drm_printf(&p, "module: " KBUILD_MODNAME "\n");
+    191         drm_printf(&p, "time: %lld.%09ld\n", coredump->reset_time.tv_sec,
+    192                         coredump->reset_time.tv_nsec);
+    193 
+    194         if (coredump->reset_task_info.pid)
+    195                 drm_printf(&p, "process_name: %s PID: %d\n",
+    196                            coredump->reset_task_info.process_name,
+    197                            coredump->reset_task_info.pid);
+    198 
+    199         if (coredump->ring) {
+    200                 drm_printf(&p, "\nRing timed out details\n");
+    201                 drm_printf(&p, "IP Type: %d Ring Name: %s\n",
+    202                            coredump->ring->funcs->type,
+    203                            coredump->ring->name);
+    204         }
+    205 
+    206         if (coredump->adev) {
+                    ^^^^^^^^^^^^^^
+Check for NULL
+
+    207                 struct amdgpu_vm_fault_info *fault_info =
+    208                         &coredump->adev->vm_manager.fault_info;
+    209 
+    210                 drm_printf(&p, "\n[%s] Page fault observed\n",
+    211                            fault_info->vmhub ? "mmhub" : "gfxhub");
+    212                 drm_printf(&p, "Faulty page starting at address: 0x%016llx\n",
+    213                            fault_info->addr);
+    214                 drm_printf(&p, "Protection fault status register: 0x%x\n\n",
+    215                            fault_info->status);
+    216         }
+    217 
+    218         drm_printf(&p, "Ring buffer information\n");
+--> 219         for (int i = 0; i < coredump->adev->num_rings; i++) {
+                                    ^^^^^^^^^^^^^^
+Unchecked dereference
+
+    220                 int j = 0;
+    221                 struct amdgpu_ring *ring = coredump->adev->rings[i];
+    222 
+    223                 drm_printf(&p, "ring name: %s\n", ring->name);
+    224                 drm_printf(&p, "Rptr: 0x%llx Wptr: 0x%llx RB mask: %x\n",
+    225                            amdgpu_ring_get_rptr(ring),
+    226                            amdgpu_ring_get_wptr(ring),
+    227                            ring->buf_mask);
+    228                 drm_printf(&p, "Ring size in dwords: %d\n",
+    229                            ring->ring_size / 4);
+    230                 drm_printf(&p, "Ring contents\n");
+    231                 drm_printf(&p, "Offset \t Value\n");
+    232 
+    233                 while (j < ring->ring_size) {
+    234                         drm_printf(&p, "0x%x \t 0x%x\n", j, ring->ring[j/4]);
+    235                         j += 4;
+    236                 }
+    237         }
+    238 
+    239         if (coredump->reset_vram_lost)
+    240                 drm_printf(&p, "VRAM is lost due to GPU reset!\n");
+    241         if (coredump->adev->reset_info.num_regs) {
+                    ^^^^^^^^^^^^^^
+Here too
+
+    242                 drm_printf(&p, "AMDGPU register dumps:\nOffset:     Value:\n");
+    243 
+    244                 for (i = 0; i < coredump->adev->reset_info.num_regs; i++)
+    245                         drm_printf(&p, "0x%08x: 0x%08x\n",
+    246                                    coredump->adev->reset_info.reset_dump_reg_list[i],
+    247                                    coredump->adev->reset_info.reset_dump_reg_value[i]);
+    248         }
+    249 
+    250         return count - iter.remain;
+    251 }
+
+regards,
+dan carpenter
