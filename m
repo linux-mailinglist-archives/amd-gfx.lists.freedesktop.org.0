@@ -2,90 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A3A87CD68
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 13:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB82787CD11
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Mar 2024 13:13:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 705BB11221A;
-	Fri, 15 Mar 2024 12:46:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=googlemail.com header.i=@googlemail.com header.b="R7b9bhqn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C35A10F269;
+	Fri, 15 Mar 2024 12:13:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
- [209.85.218.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07DBC1121C2;
- Fri, 15 Mar 2024 11:39:03 +0000 (UTC)
-Received: by mail-ej1-f46.google.com with SMTP id
- a640c23a62f3a-a3ddc13bbb3so562203266b.0; 
- Fri, 15 Mar 2024 04:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20230601; t=1710502742; x=1711107542;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ajSGsc6A/F/qkby1cV3DFijz3ujuoh7yFblhBSAWTk4=;
- b=R7b9bhqnJUp3E8d4suy65iFCwcwScI5+MICGcrLDUXNqM3Ghlr9uZXCebETrFQU/85
- udeRglq0rpnFTtlbJbfPLyQxMb5crhiFP82FIlQdK9ajEECeU1gdfdV1ErGRA49UoZgd
- i0FFBFTIZuanV9Jx0/QZyVj4uNojq1jKZxKOY7COHIwji6l8bwss1UVyyHMbeCfPtyNC
- MW8qwNuRIO8R0T5BXDBaJzIvPg/lBwW2a423dpOMYJ/iCAg3V7E3EgDlO4MnfWqjWTvY
- 3SD/fZ5WRkVs2E7m6ULHhobxdCEfc/8UKVKYLrO17QV9YK112znBKsaptSqt6k5xTHzA
- 91KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710502742; x=1711107542;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ajSGsc6A/F/qkby1cV3DFijz3ujuoh7yFblhBSAWTk4=;
- b=FKQJQKPQ0qJ8mnjEN+VnMNTvm9vmH79kaK/fUseD9lC/VsbzXl9MiUKYJHD93OnZNd
- 8BxuvwmqNBP8NaEvl1KPS97vfV82GGX+MAGeKfxMWQdjF/49IzGgJ2HGZ8Wlg2xDvwmb
- DJg42uE1tfAEtXNH6KlqcivvR+jtambpFcTqLAdyDgGLt6f7AIGOH4XFBeakkBE2Rmrg
- zmsE6ijWw90dytFc01NRJ6Q2f9l+w+4lZfy2i9QtHhdysK+KH9lbkgWNxdfEXlPvMSQG
- DNwUGxAnpvQKiB4WiS4JCSbLlPjU3C1PnQLRgXATSPxAIoftGA8s0eO4Kk/MOB63Y5Mo
- HIJw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXfhAlF7tsmzg4IjzoEEqtvr/LeQfOQ5jERQ9U04iuqUNmh5Q86LbWflH/RUoLA+ObkT49SxtAXdwVz1Wf3gZV7OFL6AudL9e2moiKSsS4cyCP/r+Eyn2Y9w9766JocBwEvqE1Y83iHby5QUEX9TQ==
-X-Gm-Message-State: AOJu0Yzwep3sB55R2PiKRL6WYwOHSpPPHJxlHxd+vSTGh825+cpDIQ2N
- 2IWVLiOPTjl89XTw98K8xFVi0pjrZgbkRkBfo9mOpS1bR34cftPc
-X-Google-Smtp-Source: AGHT+IHJJjdK95FxiFWtuKqFb5okKLCX+Xl17xr9ZeV/oMTb5MlWFKMC//tYf9kBKFRK8DaZbTEwfQ==
-X-Received: by 2002:a17:906:1501:b0:a45:d7fb:8423 with SMTP id
- b1-20020a170906150100b00a45d7fb8423mr7825935ejd.9.1710502741739; 
- Fri, 15 Mar 2024 04:39:01 -0700 (PDT)
-Received: from ddev.DebianHome
- (dynamic-095-119-217-226.95.119.pool.telefonica.de. [95.119.217.226])
- by smtp.gmail.com with ESMTPSA id
- fg3-20020a056402548300b005682f47aea7sm1610024edb.94.2024.03.15.04.39.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Mar 2024 04:39:01 -0700 (PDT)
-From: =?UTF-8?q?Christian=20G=C3=B6ttsche?= <cgzones@googlemail.com>
-To: linux-security-module@vger.kernel.org
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA0910F13E;
+ Fri, 15 Mar 2024 12:13:23 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 42FCDHcQ406627; Fri, 15 Mar 2024 17:43:17 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 42FCDGq3406620;
+ Fri, 15 Mar 2024 17:43:16 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Stefan Haberland <sth@linux.ibm.com>,
- Jan Hoeppner <hoeppner@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-s390@vger.kernel.org, bpf@vger.kernel.org
-Subject: [PATCH 05/10] drivers: use new capable_any functionality
-Date: Fri, 15 Mar 2024 12:37:26 +0100
-Message-ID: <20240315113828.258005-5-cgzones@googlemail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240315113828.258005-1-cgzones@googlemail.com>
-References: <20240315113828.258005-1-cgzones@googlemail.com>
+ Shashank Sharma <shashank.sharma@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu: add the hw_ip version of all IP's
+Date: Fri, 15 Mar 2024 17:43:15 +0530
+Message-Id: <20240315121315.406601-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 15 Mar 2024 12:46:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,64 +44,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use the new added capable_any function in appropriate cases, where a
-task is required to have any of two capabilities.
+Add all the IP's version information on a SOC to the
+devcoredump.
 
-Reorder CAP_SYS_ADMIN last.
-
-Signed-off-by: Christian Göttsche <cgzones@googlemail.com>
-Acked-by: Alexander Gordeev <agordeev@linux.ibm.com> (s390 portion)
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
-v4:
-   Additional usage in kfd_ioctl()
-v3:
-   rename to capable_any()
----
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 3 +--
- drivers/net/caif/caif_serial.c           | 2 +-
- drivers/s390/block/dasd_eckd.c           | 2 +-
- 3 files changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c | 62 +++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index dfa8c69532d4..8c7ebca01c17 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -3290,8 +3290,7 @@ static long kfd_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
- 	 * more priviledged access.
- 	 */
- 	if (unlikely(ioctl->flags & KFD_IOC_FLAG_CHECKPOINT_RESTORE)) {
--		if (!capable(CAP_CHECKPOINT_RESTORE) &&
--						!capable(CAP_SYS_ADMIN)) {
-+		if (!capable_any(CAP_CHECKPOINT_RESTORE, CAP_SYS_ADMIN)) {
- 			retcode = -EACCES;
- 			goto err_i1;
- 		}
-diff --git a/drivers/net/caif/caif_serial.c b/drivers/net/caif/caif_serial.c
-index ed3a589def6b..e908b9ce57dc 100644
---- a/drivers/net/caif/caif_serial.c
-+++ b/drivers/net/caif/caif_serial.c
-@@ -326,7 +326,7 @@ static int ldisc_open(struct tty_struct *tty)
- 	/* No write no play */
- 	if (tty->ops->write == NULL)
- 		return -EOPNOTSUPP;
--	if (!capable(CAP_SYS_ADMIN) && !capable(CAP_SYS_TTY_CONFIG))
-+	if (!capable_any(CAP_SYS_TTY_CONFIG, CAP_SYS_ADMIN))
- 		return -EPERM;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+index a0dbccad2f53..3d4bfe0a5a7c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+@@ -29,6 +29,43 @@
+ #include "sienna_cichlid.h"
+ #include "smu_v13_0_10.h"
  
- 	/* release devices to avoid name collision */
-diff --git a/drivers/s390/block/dasd_eckd.c b/drivers/s390/block/dasd_eckd.c
-index 373c1a86c33e..8f9a5136306a 100644
---- a/drivers/s390/block/dasd_eckd.c
-+++ b/drivers/s390/block/dasd_eckd.c
-@@ -5384,7 +5384,7 @@ static int dasd_symm_io(struct dasd_device *device, void __user *argp)
- 	char psf0, psf1;
- 	int rc;
++const char *hw_ip_names[MAX_HWIP] = {
++	[GC_HWIP]		= "GC",
++	[HDP_HWIP]		= "HDP",
++	[SDMA0_HWIP]		= "SDMA0",
++	[SDMA1_HWIP]		= "SDMA1",
++	[SDMA2_HWIP]		= "SDMA2",
++	[SDMA3_HWIP]		= "SDMA3",
++	[SDMA4_HWIP]		= "SDMA4",
++	[SDMA5_HWIP]		= "SDMA5",
++	[SDMA6_HWIP]		= "SDMA6",
++	[SDMA7_HWIP]		= "SDMA7",
++	[LSDMA_HWIP]		= "LSDMA",
++	[MMHUB_HWIP]		= "MMHUB",
++	[ATHUB_HWIP]		= "ATHUB",
++	[NBIO_HWIP]		= "NBIO",
++	[MP0_HWIP]		= "MP0",
++	[MP1_HWIP]		= "MP1",
++	[UVD_HWIP]		= "UVD/JPEG/VCN",
++	[VCN1_HWIP]		= "VCN1",
++	[VCE_HWIP]		= "VCE",
++	[VPE_HWIP]		= "VPE",
++	[DF_HWIP]		= "DF",
++	[DCE_HWIP]		= "DCE",
++	[OSSSYS_HWIP]		= "OSSSYS",
++	[SMUIO_HWIP]		= "SMUIO",
++	[PWR_HWIP]		= "PWR",
++	[NBIF_HWIP]		= "NBIF",
++	[THM_HWIP]		= "THM",
++	[CLK_HWIP]		= "CLK",
++	[UMC_HWIP]		= "UMC",
++	[RSMU_HWIP]		= "RSMU",
++	[XGMI_HWIP]		= "XGMI",
++	[DCI_HWIP]		= "DCI",
++	[PCIE_HWIP]		= "PCIE",
++};
++
++
+ int amdgpu_reset_init(struct amdgpu_device *adev)
+ {
+ 	int ret = 0;
+@@ -196,6 +233,31 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+ 			   coredump->reset_task_info.process_name,
+ 			   coredump->reset_task_info.pid);
  
--	if (!capable(CAP_SYS_ADMIN) && !capable(CAP_SYS_RAWIO))
-+	if (!capable_any(CAP_SYS_RAWIO, CAP_SYS_ADMIN))
- 		return -EACCES;
- 	psf0 = psf1 = 0;
- 
++	/* GPU IP's information of the SOC */
++	if (coredump->adev) {
++
++		drm_printf(&p, "\nIP Information\n");
++		drm_printf(&p, "SOC Family: %d\n", coredump->adev->family);
++		drm_printf(&p, "SOC Revision id: %d\n", coredump->adev->rev_id);
++		drm_printf(&p, "SOC External Revision id: %d\n",
++			   coredump->adev->external_rev_id);
++
++		for (int i = 1; i < MAX_HWIP; i++) {
++			for (int j = 0; j < HWIP_MAX_INSTANCE; j++) {
++				int ver = coredump->adev->ip_versions[i][j];
++
++				if (ver)
++					drm_printf(&p, "HWIP: %s[%d][%d]: v%d.%d.%d.%d.%d\n",
++						   hw_ip_names[i], i, j,
++						   IP_VERSION_MAJ(ver),
++						   IP_VERSION_MIN(ver),
++						   IP_VERSION_REV(ver),
++						   IP_VERSION_VARIANT(ver),
++						   IP_VERSION_SUBREV(ver));
++			}
++		}
++	}
++
+ 	if (coredump->ring) {
+ 		drm_printf(&p, "\nRing timed out details\n");
+ 		drm_printf(&p, "IP Type: %d Ring Name: %s\n",
 -- 
-2.43.0
+2.34.1
 
