@@ -2,50 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FC287FA39
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Mar 2024 10:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E09F87FA37
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Mar 2024 10:00:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 717CF10F89A;
-	Tue, 19 Mar 2024 09:00:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B1710F890;
+	Tue, 19 Mar 2024 09:00:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Jwda0t+P";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1188 seconds by postgrey-1.36 at gabe;
- Tue, 19 Mar 2024 01:54:56 UTC
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA1810E20D
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Mar 2024 01:54:55 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.88.105])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4TzDkC3xRJz1Q9nH;
- Tue, 19 Mar 2024 09:32:51 +0800 (CST)
-Received: from kwepemm600013.china.huawei.com (unknown [7.193.23.68])
- by mail.maildlp.com (Postfix) with ESMTPS id C14991400F4;
- Tue, 19 Mar 2024 09:35:05 +0800 (CST)
-Received: from [10.174.178.46] (10.174.178.46) by
- kwepemm600013.china.huawei.com (7.193.23.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 19 Mar 2024 09:35:04 +0800
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 2e93f143ca010a5013528e1cfdc895f024fe8c21
-To: kernel test robot <lkp@intel.com>, Andrew Morton
- <akpm@linux-foundation.org>
-CC: Linux Memory Management List <linux-mm@kvack.org>,
- <amd-gfx@lists.freedesktop.org>, <bpf@vger.kernel.org>,
- <linux-fsdevel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-mtd@lists.infradead.org>, <linux-omap@vger.kernel.org>,
- <netdev@vger.kernel.org>
-References: <202403182219.XrvfZx4s-lkp@intel.com>
-From: Zhihao Cheng <chengzhihao1@huawei.com>
-Message-ID: <e7ca3f69-7052-616b-68db-f29a66b42edc@huawei.com>
-Date: Tue, 19 Mar 2024 09:35:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+ [209.85.167.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51A5B10E20D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Mar 2024 01:56:06 +0000 (UTC)
+Received: by mail-lf1-f48.google.com with SMTP id
+ 2adb3069b0e04-513c8b72b24so5556321e87.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Mar 2024 18:56:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710813364; x=1711418164; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/npr9ZBgPo4lt1K3xYl0Hg1IsU/NO66AdS2S7y8TJ2o=;
+ b=Jwda0t+PsMVLfEcrX2Dv8OHlh1j4sRKmS9KX+3WL/4M5lp73AwhYFRHaH7at3IM8Aa
+ O1+MZbD2m7G0QfQgQiCq33srAIseU+WHZVkNNt6KkfMSnZKFmIJsQRrukJECiaHf+Zt1
+ +ZVW+tKReeTDNIh0//qzm5tU3Pmv/oUilZrWLMpqkVGrH04/CJmoQRb57CzVdgf/jHII
+ IJfKjAHKj1BXYuIxJzz7YtU+KH43UnTxJlbefOa4e0eGoVztWpgJwhOQ1roDt1cXfudN
+ FhGqGVWcpto60bMV/yJjzyZSbbPqOfK05tBjGd8VUGpwsa8xXf/1R1RjKyAawzrc6JZS
+ r5iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710813364; x=1711418164;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/npr9ZBgPo4lt1K3xYl0Hg1IsU/NO66AdS2S7y8TJ2o=;
+ b=i2axFZ4ZuZzVeJn/H1frIAK0aDxL8m+iezM4SnjcC2LeD7VBP+nmkDRlrszFOXtDBd
+ eW/CL4EFIRDa9HPeq+O8egeeo0o7eYraSIMtIQnBihJYXrTr3ic3gscOhSUYpps9S2/m
+ bGxWGRtnBTcFC60xA2EtE4X+2YVmwtyNldj5agRJIvXhfT75JU5yupY5L85W8ZU/11g0
+ 5SNU6LBafiWvsLYgTCjhlLf0K2bGGYRtzFYkN83hschy68tNwtv8+yMAl9K1u30sRfS9
+ BNw/n0YrjDuhecguQH8pDrAioPvEb2Ncp7o/sGZdBHbprfIa4EWENvV0X/MKSla+u0FL
+ 9bLQ==
+X-Gm-Message-State: AOJu0YwA1s8Og3xT/8BqQ9kMDfsgpJOwRoILEngUD6MCgMvTVnvFeOGh
+ oopmtdjlB4GV0YgaGih6q7vKCdyLjAcJ3Q8H+ms6p2f52cyAfS0vwKWI+IGUed8pBX3w4AU/4YL
+ IuSdL5by36J6+aww3NVzhPRGFXoA=
+X-Google-Smtp-Source: AGHT+IExRMRPzOVhj9qi1Lc+VzoewkEnDD/KGB5hFwfMkT7V9AYpLZWs89VHTaZLzhpV62Ey+M1jykAAHkcwQHgMvhU=
+X-Received: by 2002:a19:5f5b:0:b0:513:e7ff:15b7 with SMTP id
+ a27-20020a195f5b000000b00513e7ff15b7mr598458lfj.59.1710813364016; Mon, 18 Mar
+ 2024 18:56:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <202403182219.XrvfZx4s-lkp@intel.com>
-Content-Type: text/plain; charset="gbk"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.46]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemm600013.china.huawei.com (7.193.23.68)
+References: <20240318065211.11097-1-kkartaltepe@gmail.com>
+ <CADnq5_MxfDSaOoD9J2DfdkM2wzX_HfRPkLv8CSSVPzJSKi1aUQ@mail.gmail.com>
+ <CACawnnzv5Ro32h3wJ_5EQ=9k=b8mGA4FEGjXbWTUP-jdmWERBg@mail.gmail.com>
+ <CADnq5_N4eZ9LbDRLwbAv0NVnmp1GrMwp+cDs4tP0FHwf1r7YRg@mail.gmail.com>
+ <CACawnnz17jd4f+VrVhx5oH_DmOSb7jSLGZnmj0PcOZeQ+=UD5A@mail.gmail.com>
+ <CADnq5_Mj_9=hBC47K5urr5VLTiaUQsv1Lib0uPTq8-XGSDh-tw@mail.gmail.com>
+ <CADnq5_OtProx-8d_0epm9TrYtE_rHLYDhEb6XrK9bgOPi7MicQ@mail.gmail.com>
+In-Reply-To: <CADnq5_OtProx-8d_0epm9TrYtE_rHLYDhEb6XrK9bgOPi7MicQ@mail.gmail.com>
+From: Kurt Kartaltepe <kkartaltepe@gmail.com>
+Date: Mon, 18 Mar 2024 18:55:52 -0700
+Message-ID: <CACawnnx8Z5jbBdzct9Omeq3Y6iJhMDTDy_C3DRPe9irjoHRn+Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Remove pci address checks from acpi_vfct_bios
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 19 Mar 2024 09:00:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,34 +82,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ÔÚ 2024/3/18 22:33, kernel test robot Ð´µÀ:
-> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-> branch HEAD: 2e93f143ca010a5013528e1cfdc895f024fe8c21  Add linux-next specific files for 20240318
-> 
-> Error/Warning ids grouped by kconfigs:
-> 
-> gcc_recent_errors
-> |-- arc-allmodconfig
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- arc-allyesconfig
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- arm-allmodconfig
-> |   |-- arch-arm-mach-omap2-prm33xx.c:warning:expecting-prototype-for-am33xx_prm_global_warm_sw_reset().-Prototype-was-for-am33xx_prm_global_sw_reset()-instead
-> |   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vcn.c:warning:.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- arm-allyesconfig
-> |   |-- arch-arm-mach-omap2-prm33xx.c:warning:expecting-prototype-for-am33xx_prm_global_warm_sw_reset().-Prototype-was-for-am33xx_prm_global_sw_reset()-instead
-> |   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vcn.c:warning:.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- arm64-defconfig
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- csky-allmodconfig
-> |   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vcn.c:warning:.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
-> |-- csky-allyesconfig
-> |   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vcn.c:warning:.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-> |   `-- fs-ubifs-journal.c:warning:expecting-prototype-for-wake_up_reservation().-Prototype-was-for-add_or_start_queue()-instead
+On Mon, Mar 18, 2024 at 12:57=E2=80=AFPM Alex Deucher <alexdeucher@gmail.co=
+m> wrote:
+>
+> On Mon, Mar 18, 2024 at 3:52=E2=80=AFPM Alex Deucher <alexdeucher@gmail.c=
+om> wrote:
+> >
+...
+> > Depends on the platform, but recent ones use VFCT.  That said, there
+> > should only ever be one IGPU in the system so I think we could just
+> > rely on the VID and DID for APUs in this case and check everything for
+> > dGPUs.
+>
+> Is there a reason why you need this option?  Even beyond this, I could
+> envision other problems related to APUs and ACPI if these changed.
+>
+> Alex
 
-Hi, Richard,
-I sent out the warning fix patch in 
-https://patchwork.ozlabs.org/project/linux-mtd/patch/20240227024204.1080739-1-chengzhihao1@huawei.com/
+So there are multiple factors in play. I am trying to make use of the
+lovely usb4/tb3 controllers on the 7940HS with the reportedly Intel
+Tamales Module 2 pci/pci bridge over the usb4 interface. This provides
+a handy way to expand the pcie bus but configuring ACPI and pcie
+topology isn't generally an option on consumer BIOS (unless you want
+to enlighten me). This leaves us in the situation where the bios can
+enumerate devices poorly resulting in inaccessible devices due to
+address conflicts. To resolve address conflicts the only option I'm
+aware of is pci=3Dassign-busses, maybe this could also be configured at
+runtime but assign-busses seemed nice in some ways.
+
+I havnt experienced any issues with the APU (graphics, hardware
+encoders/decoders) but I do think assign-busses might be renumbering
+again after suspend/resume/pci rescans but I need to debug further,
+maybe suspend/resume are just broken when ACPI addresses are wrong.
+Obviously the graphics user space (compositors, mesa might be working
+as expected) dont handle the device switching addresses while in use,
+for amdgpu kernel side I haven't inspected deeply yet.
+
+I'm not sure if this is the right approach to solving the problem, and
+given your input i'm considering it may be better, though not
+upstreamable, to implement renumbering only for specified devices like
+this pci bridge or investigate runtime management of the pci bus
+addresses. The current assign-busses implementation is quite the big
+hammer admittedly.
+
+--Kurt Kartaltepe
