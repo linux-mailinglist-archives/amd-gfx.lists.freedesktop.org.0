@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2B4880B55
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Mar 2024 07:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F6C4880B56
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Mar 2024 07:37:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BA1E10EEC6;
-	Wed, 20 Mar 2024 06:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A192B10E47D;
+	Wed, 20 Mar 2024 06:37:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2g4k6vTJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kJu4oTxF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2062.outbound.protection.outlook.com [40.107.212.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2182510EE9A
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 06:37:13 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 070BB10EE94
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 06:37:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aQi+kJEcvar/n3RKpobhtu+mWSsSjHzI4vic01jSAidRym9C2hYU5WMRoTaZQZ4CmSn3Wq/hK1pk9jC3OxOhVKW2G6Fg9y8E92yZAq6Lpr9SzT0e3wvXXv1EmLVz3QaxsgAVIS+A4l+GQbkSohlaumsZS8DZYWxLtiP3jrLC7k1w9MJKrr5vgQKb/w6Hkz5VpLCxSgja8nWybl11Abc7loc/aSKz3u7Ws87qoR9Hv0TRxwvT0CackrQYyYSAOCyGOhdjo9a3KyLiYCEoyy3AZkdkFzzCle/I69HMDus8/P9D17G4/2pJddiN3rL0fc3lvo/0jbQF2t8NmDQrb4lV/A==
+ b=GzM4hyBcysc7IEXeWm2Ixy+IYA9LOcVYzDCzq91ZiYt+Y3klO8to5FwbAr/pJdrl1I0Qq/b5nQJ/sphITXj+lCMRCo3n6rfqcXFPUTTg0EF8UBfGr3zThajwIpzZ1Q7zoCM2GKfuUvsxfXvYWBXdgOAD4kdpBmnSWyQ+31LJ3MK9fiM+lB4+fMOPLVMsjY2eoqM4Xfz3dT2YrzW/29If+h1C4gujIWdC45edtwQEYAhfXkUPVKm8gVsFyTRT0IVxAwlqeIDm/h238o6Ya24fw9/scLS6LCVA080bHBmaCbKYvJyjLTpFsRJnZE2snnXtqSO666OVamTXww7m7efeKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IhNFdeAPSVgwjfD1QTRhoto2fWxN9IkJZqk6bPVQ2eQ=;
- b=CqgNxy7KOtr6vaulBzYeCfwXwzFeeSrtUdaffZ9/aFQ5snA8TTDGGJ450tO3MZo3qN9jdXJe0aLlPIdcC16kWz5mifzQLWn2DPJFVTP50yuey2vf9/SbOkL0mow06g+rfDX0wP4suco+MXlLMu+bRfLpOF891pgSR/yOtjEROox1dyVqVSzAakESV8Wz1HYScs1muYsxrYQnPFPR+XYSAIciPK3O5OxM7WLVFQuJ5+F+0gS7FP8UM5HJiosL/zakYLYrcNNmnr0HL1/eB4Yjp22CZZUOdf2U0l32hIhKjge6CpEiW1OuTLhETklt1t196gYxQfyzngwhkq1VjTWx3Q==
+ bh=uYboNZkozLMIhj5pPUI0PXQKNUT7xSdnpOnnw4jNPCc=;
+ b=E9HyZi9TfvVtCtHUpCb1WgSdBgXd57vyRM14fIz2O99FPWGHvcS4FMH0iEbPdNrfREE22Wun2jcL+3zew4KsB+bbLOEOS2S2E1CFlLWNsrwJK9uieQBdjcB4yEtJSWQLs/Gki74w2BuQDpLHSDhgDYgIF4eb+nSA3fNXCoM0XU+Pwje9n6R2EXMEKyzb25LoF0k2/OzBAprjqIzLLK36AxlpTvvseA37qFUVbe1hsW3sas8xDzOBD1ZfY+iXxD5gqJgiOBd2gOoU8zvhCT67ju8jW688X7OTHfSO+V7NllBjKN0kOv1hjHI9H0sw6egtOfNKq7pb7Q5XAdC1ZPqM3A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IhNFdeAPSVgwjfD1QTRhoto2fWxN9IkJZqk6bPVQ2eQ=;
- b=2g4k6vTJBioneXCe2TatGcxja1/C98AzqfzhM2bjuaeDFtEFfrJzPUFrk65rbVTjr5mVk3aePVCK/DJW0+N+J1KWIY+7xULRffRtZzYKlhY+EgloHbCpjwnCKK/tBTF97GtrpEboYCVzHkMc0aLReMdRBrdJBDtej/zpqwprk4Y=
-Received: from BLAPR05CA0021.namprd05.prod.outlook.com (2603:10b6:208:36e::17)
- by CYXPR12MB9279.namprd12.prod.outlook.com (2603:10b6:930:d5::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.30; Wed, 20 Mar
- 2024 06:37:10 +0000
-Received: from BL6PEPF0001AB75.namprd02.prod.outlook.com
- (2603:10b6:208:36e:cafe::7a) by BLAPR05CA0021.outlook.office365.com
- (2603:10b6:208:36e::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.12 via Frontend
- Transport; Wed, 20 Mar 2024 06:37:10 +0000
+ bh=uYboNZkozLMIhj5pPUI0PXQKNUT7xSdnpOnnw4jNPCc=;
+ b=kJu4oTxFJxLJrkGdyUbCDnxPKRih6pJYK/Cghn1FmSnpBasirJcKVidO2tbbVV5wl2X+O1BAOP5wQeXrN421wC1l7Isa7r1R8Dz0GD3FOQPdohGmLOKm+x+7YLWkNxQt/phfWaMzbE33C1B3swOBWKB1ZZJ/BHAcYrI9s2mWtnU=
+Received: from BLAPR03CA0076.namprd03.prod.outlook.com (2603:10b6:208:329::21)
+ by SN7PR12MB6862.namprd12.prod.outlook.com (2603:10b6:806:265::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27; Wed, 20 Mar
+ 2024 06:37:14 +0000
+Received: from BL6PEPF0001AB76.namprd02.prod.outlook.com
+ (2603:10b6:208:329:cafe::d) by BLAPR03CA0076.outlook.office365.com
+ (2603:10b6:208:329::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27 via Frontend
+ Transport; Wed, 20 Mar 2024 06:37:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,26 +48,26 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB75.mail.protection.outlook.com (10.167.242.168) with Microsoft
+ BL6PEPF0001AB76.mail.protection.outlook.com (10.167.242.169) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Wed, 20 Mar 2024 06:37:10 +0000
+ 15.20.7409.10 via Frontend Transport; Wed, 20 Mar 2024 06:37:14 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 20 Mar
- 2024 01:37:09 -0500
+ 2024 01:37:12 -0500
 Received: from tom-r5.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 20 Mar 2024 01:37:07 -0500
+ Transport; Wed, 20 Mar 2024 01:37:10 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Sung Joon Kim <sungkim@amd.com>,
- Xi Liu <xi.liu@amd.com>
-Subject: [PATCH 16/22] drm/amd/display: Increase clock table size
-Date: Wed, 20 Mar 2024 14:35:50 +0800
-Message-ID: <20240320063556.1326615-17-chiahsuan.chung@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Sridevi Arvindekar
+ <sridevi.arvindekar@amd.com>, Alvin Lee <alvin.lee2@amd.com>
+Subject: [PATCH 17/22] drm/amd/display: Increase number of hpo dp link encoders
+Date: Wed, 20 Mar 2024 14:35:51 +0800
+Message-ID: <20240320063556.1326615-18-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240320063556.1326615-1-chiahsuan.chung@amd.com>
 References: <20240320063556.1326615-1-chiahsuan.chung@amd.com>
@@ -78,26 +78,26 @@ Received-SPF: None (SATLEXMB03.amd.com: chiahsuan.chung@amd.com does not
  designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB75:EE_|CYXPR12MB9279:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f592192-027a-4f6d-224a-08dc48a82be0
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB76:EE_|SN7PR12MB6862:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08175ac5-642c-4b3a-513a-08dc48a82df5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LqhxGD5DpjmQ4Q6DExSc2UryVk/zb9K5pRMKCvkbehlaHz7xLBbK7qThXutt9CZFSy/AHlkWxfZNnXLQV1LCfr8bXI6t3q0OrnI8hSlcMvsLx2e64kx7SKXmUJ0Q2H6JJSihs6NP8irZYglWzcb8+nhqKVmh9GLoWDev7jaVK/Od32yF/JrFIuxtWnLelYCDz735mS2gv9NeF+GxCRR6CkFKHupExwox/g0mVEMCPxBTRcIiJJXCF+06tFXVAhnc2oRULcmoOsMjHgopaViQ7pWvXQwLXUKE2dhAXiaBWMj+zMI+BBndUXDjZAxj0cprh0f/W1VI1dWUyrOnP4+1cOvtR9iv9R3XskKwxQ4netOcpAy/i8gdLx9kvn8JB435Id211TrG/3T0W4mnbAPtEBvTZLYOPsKkGvrRUv5tta5NmF6zFK3PJOaTHgVTJC+RXjcQuKsU0W0CVYReQfk9u6+vxpEWOrvXldc224t2gIRjC60IROyQj8cqaZKCU6MJ8gpG3/Q91kyAb/HZ2WoWb9HDcjWfKO+BgRhHDcqA+fW6FzUCzND+6Ysjc7N7fSkdHo9MZRbKGY2FdJKJhmhvSWAS7KH48Tk08GV8URDNPDeeBBFaMMg9FdVFHDBI/PavUGC9TosZT57/U08DvekoBrHIl7yAfHnlCjBuaj3BP5QQgKvLmpSoo9P8i0TuZc1oN9l5NRjV7evmPGWeXUj+rsBkxO2KkIw4j6RC9/OmR6C37LuA0vMW2pboazB1YSPG
+X-Microsoft-Antispam-Message-Info: JAzTi392LYi8YPjRKaUvydLS2MIThXxnGFLDvmGzuCEfhmMLDngs6bd8bhNpIlqXcIuCoALz/+G8wPHS+FqwYAscazB7ypvHbLWPYYOXdowNXRtwwHKBUyaiIuwOuEsxvr71FVaf23pZ9K6nFL0jOcU3fUvKyhAJwBa6/tiNv1fAIm+glh00OWpHsuT9hB8+MHjmIWLnsfaIQYEG4zwV9cAoVCE8stgHkvLSHLIVMhWIXZeLB2gm/kSbHmmnEKG2KHwzvUSPA+sUcoVfEe8RBr1xYN6IneREP3nLDYwUE+36cZWZ1SO1fV6eGGsKwkqMR9/FqPJIHUhiS++siodvRkzx/dI1wnEbnZ9sXrqXFw26LG/bV9V1M7Hy97aCavvMP48rUzu7PfOzU7MrQ/FY20zDfo3hYGkHXjv13rI0uusVVv/exdNgd/crPLzOf6rS17B2o3emDtkIPqZT8yFR1cSXGbQ1xa0oScVkQiTK/UOLMC/+yvByfzwldyqcfPEBw8S7vt9/rYApPPcFaV7OgGF7JRoR5ilQgnpeY8AxEHqgEdpfmF+Bk1VrihHs1bOsw0UWqck1P1Pb/rjyepuDmIvlbGLnTBt1Yk/gJowoGpOdNfGZ4vxH3t28IeDceKwSuDk/siM8q0LZNdG78sc3/F7bTWPf5r78PrmNl6w98VHV9Ilv/U6UvzmMq48IcAuQCcyqqq0Qi5b0Ip8hNDfD5G5X4LUpST3qRadoJKZWsbZm9EgkEiV260MyYCxAUrKX
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(36860700004)(82310400014)(1800799015)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 06:37:10.7113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f592192-027a-4f6d-224a-08dc48a82be0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 06:37:14.2056 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08175ac5-642c-4b3a-513a-08dc48a82df5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB75.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB76.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9279
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6862
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,61 +112,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Joon Kim <sungkim@amd.com>
+From: Sridevi Arvindekar <sridevi.arvindekar@amd.com>
 
-[why&how]
-To prevent out of bounds error, we need
-to increase the clock table size.
+[Why]
+Number of hpo dp2 link encoders is increased.
+Instances are changed.
 
-Reviewed-by: Xi Liu <xi.liu@amd.com>
+[How]
+Increased size in resource pool, init for each instance
+
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Sung Joon Kim <sungkim@amd.com>
+Signed-off-by: Sridevi Arvindekar <sridevi.arvindekar@amd.com>
 ---
- .../amd/display/dc/dml2/dml2_translation_helper.c  | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-index 0a4dff45731f..cf98411d0799 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-@@ -29,10 +29,7 @@
- #include "dml2_translation_helper.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
+index dcae23faeee3..c1835ad6550f 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
+@@ -47,7 +47,7 @@
+ #define MAX_DIG_LINK_ENCODERS 7
+ #define MAX_DWB_PIPES	1
+ #define MAX_HPO_DP2_ENCODERS	4
+-#define MAX_HPO_DP2_LINK_ENCODERS	2
++#define MAX_HPO_DP2_LINK_ENCODERS	4
  
- #define NUM_DCFCLK_STAS 5
--
--#if defined(CONFIG_DRM_AMD_DC_DCN3_51)
- #define NUM_DCFCLK_STAS_NEW 8
--#endif
- 
- void dml2_init_ip_params(struct dml2_context *dml2, const struct dc *in_dc, struct ip_params_st *out)
- {
-@@ -258,21 +255,20 @@ void dml2_init_soc_states(struct dml2_context *dml2, const struct dc *in_dc,
- 	struct dml2_policy_build_synthetic_soc_states_scratch *s = &dml2->v20.scratch.create_scratch.build_synthetic_socbb_scratch;
- 	struct dml2_policy_build_synthetic_soc_states_params *p = &dml2->v20.scratch.build_synthetic_socbb_params;
- 	unsigned int dcfclk_stas_mhz[NUM_DCFCLK_STAS];
--#if defined(CONFIG_DRM_AMD_DC_DCN3_51)
- 	unsigned int dcfclk_stas_mhz_new[NUM_DCFCLK_STAS_NEW];
- 	unsigned int dml_project = dml2->v20.dml_core_ctx.project;
--#endif
-+
- 	unsigned int i = 0;
- 	unsigned int transactions_per_mem_clock = 16; // project specific, depends on used Memory type
- 
--	p->dcfclk_stas_mhz = dcfclk_stas_mhz;
--	p->num_dcfclk_stas = NUM_DCFCLK_STAS;
--#if defined(CONFIG_DRM_AMD_DC_DCN3_51)
- 	if (dml_project == dml_project_dcn351) {
- 		p->dcfclk_stas_mhz = dcfclk_stas_mhz_new;
- 		p->num_dcfclk_stas = NUM_DCFCLK_STAS_NEW;
-+	} else {
-+		p->dcfclk_stas_mhz = dcfclk_stas_mhz;
-+		p->num_dcfclk_stas = NUM_DCFCLK_STAS;
- 	}
--#endif
-+
- 	p->in_bbox = in_bbox;
- 	p->out_states = out;
- 	p->in_states = &dml2->v20.scratch.create_scratch.in_states;
+ struct gamma_curve {
+ 	uint32_t offset;
 -- 
 2.34.1
 
