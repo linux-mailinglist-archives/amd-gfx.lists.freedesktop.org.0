@@ -2,105 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C170A880B45
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Mar 2024 07:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F26880B47
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Mar 2024 07:36:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C5310E805;
-	Wed, 20 Mar 2024 06:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BAB010ECBC;
+	Wed, 20 Mar 2024 06:36:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rsnsdxQ5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sYWcwpPF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2059.outbound.protection.outlook.com [40.107.244.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6831C10E805
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 06:36:21 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6E3D10EC6F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 06:36:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aJxXkFyb7h8pgHCiD23pNe80F09B/gnpuW17DpaPIGEgJBmE83BgQNDkoegyGTAZHk3EVvGPEIQfCpcw4uZYUAxrWN91yhmjqnn4b8hoIbGFdg/HBfWALYmJaEMN8Jg9H2M6nKVy2n/4NTPp1EtyCiF+qtoD4byiTyqpCETsD5FvLUpmtPeWlQ3lFE+netQfPnYn0pAlJ7Lexc0Y4pdr//6VBU1QDDT8PtdiIYnP5GesrK60DwbOwvUu38wItbt8lCMFuOii5PxKzRKaJokimkJaVL+UJWxdEPjloLWpfEYoNZokZQS8/F5laKd+bvtDsnCVyuOSUA9Mcm7KtYsKDA==
+ b=ILtXkRWbQOUNW5iKC4jsjT+Gy4y7zAlNyfAV+lt2gL/jhFYjIpV9fjAjg3Y+PT7ozGWMMMJQRFIejxT+z9vf3Q2I1PPQFm2QZg/6YkklxOywAAqg6nQvndFkq4h5SocoLgOOliEdTMQAkf62fUO7tX9yewBFJmGEQ9IdgAaL761Nnz3lsALbZeYSDXGqyqUIvMckSrKpmo9fsIXF0dyY9Wx6dYnYeK8QVL+v42tmRXaSdvw9yO0FLeNkGZVcCGSc2wB5jjIV98iSRdJTuNdwGB5tdQOBk2RP2BM0jkDjJxnXPVmRYAjj4MzjfnVjsafRL3hY8Qp1doewKmwGn4rcPA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YN9OlSxrtUNzJ95usc0FGJM173UnzbpL90qahWqYBaE=;
- b=SXB+2FKU6VoG0LIUmvQ/jJVe7X1NLLp5FX4qrNm2UF1zx1irgdyTEYgnmSCaoHh7MEIoFRE+jgksIqraPg4mEbjoGfUR2BVrbHrUhckKBj02NbOnl1bpWTcgstnLWpDIXyTwMcpIb8jc8+F67fpEwJsHNFZVHT4zKxTrG2Id9+ds3mNd8s+vnBpUxFtIocsiLS9J3hSOA++cF5kZBV9u1gMfAAuE2LuCWHPFhR2juVqgBLWkcQfQro3V6M0yp/xAGi/aC1L/XiIIKQtsiItrRYGRvtAoLdq1CgnpmZJf6LGSz0GV/0pelwaj7+4OeZrfjWFlTyJ713DmA3N6T9Tw3g==
+ bh=97ES3/AfayRBrUVFCbPDALmylH/ma+THHpQEooQT0DI=;
+ b=flw3cvbk3g1SpG2yzcJulj5JbK9yXxTpe3l3W5221yLdp4aEsM5noNUFnuM3wVu3vrXot4ABVcZi1+XQsPydtL+3FNXlW8MM/w0sKOlpw5sWh41OdAJSFaVpuQ+DrPDmIIY4/95zXdtYrMK/BbGjFyjPSg+Dbb7gJFDNP1KpTWxs9Xona0bKpTiobrgpdYAZpGhB7ml1I4WXNbfyk+o7hLsA9gJOpIY4vhk8tu3Q0NVdtk8wglYjOmisltZ67FSeqMC5Oas3G5AjJOh5MT1HCb5sZPnVGbZDLGuX857kzdWBlEl5ZCLCUcb0+I9lN6uxrjDVBFjp9bnp51p2WcHyTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YN9OlSxrtUNzJ95usc0FGJM173UnzbpL90qahWqYBaE=;
- b=rsnsdxQ5kwUpeR/fLBdAo1+jge/LI4QLv9jnZP/kx5h5FuFzHOcsF0mCopwGdBXW0D4UETPPJzLJuuYLJ7ZOZ3heDEA2gWqtmcyRlbhnk95NUWqfNtnznc7iHJKBW5zaKbQU7mAAH66oyG06GBaE4ibZbdEBKDKjg99sAYlz5Hw=
-Received: from BLAPR05CA0013.namprd05.prod.outlook.com (2603:10b6:208:36e::28)
- by CY8PR12MB7756.namprd12.prod.outlook.com (2603:10b6:930:85::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.27; Wed, 20 Mar
- 2024 06:36:18 +0000
-Received: from BL6PEPF0001AB75.namprd02.prod.outlook.com
- (2603:10b6:208:36e:cafe::b7) by BLAPR05CA0013.outlook.office365.com
- (2603:10b6:208:36e::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.12 via Frontend
- Transport; Wed, 20 Mar 2024 06:36:18 +0000
+ bh=97ES3/AfayRBrUVFCbPDALmylH/ma+THHpQEooQT0DI=;
+ b=sYWcwpPFdtWbBmw0buzm7GDtKhoiMOBNVv57Mr1KWmCuN/H+XKaK12lwvHYOTtT+E+E5+LI+UW0kukk9mwR8SMiB7wIy7yvpQMrZsQIBA9rytGboiqXBhb9twzxfnVD405SS3OEYA9vv5772O7qFs2MP38f+C3cdHKmitSoFXtU=
+Received: from BN8PR04CA0054.namprd04.prod.outlook.com (2603:10b6:408:d4::28)
+ by DS7PR12MB5910.namprd12.prod.outlook.com (2603:10b6:8:7b::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7386.34; Wed, 20 Mar 2024 06:36:22 +0000
+Received: from BN2PEPF000044A1.namprd02.prod.outlook.com
+ (2603:10b6:408:d4:cafe::af) by BN8PR04CA0054.outlook.office365.com
+ (2603:10b6:408:d4::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.28 via Frontend
+ Transport; Wed, 20 Mar 2024 06:36:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB75.mail.protection.outlook.com (10.167.242.168) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN2PEPF000044A1.mail.protection.outlook.com (10.167.243.152) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Wed, 20 Mar 2024 06:36:18 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7409.10 via Frontend Transport; Wed, 20 Mar 2024 06:36:21 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 20 Mar
- 2024 01:36:17 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 19 Mar
- 2024 23:36:17 -0700
+ 2024 01:36:21 -0500
 Received: from tom-r5.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 20 Mar 2024 01:36:14 -0500
+ Transport; Wed, 20 Mar 2024 01:36:18 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Taimur Hassan
- <syed.hassan@amd.com>, Charlene Liu <charlene.liu@amd.com>
-Subject: [PATCH 03/22] drm/amd/display: Send DTBCLK disable message on first
- commit
-Date: Wed, 20 Mar 2024 14:35:37 +0800
-Message-ID: <20240320063556.1326615-4-chiahsuan.chung@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Sung Joon Kim <sungkim@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 04/22] drm/amd/display: Remove read/write to external register
+Date: Wed, 20 Mar 2024 14:35:38 +0800
+Message-ID: <20240320063556.1326615-5-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240320063556.1326615-1-chiahsuan.chung@amd.com>
 References: <20240320063556.1326615-1-chiahsuan.chung@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: chiahsuan.chung@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB75:EE_|CY8PR12MB7756:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6297b30-acc3-4592-44d0-08dc48a80cc0
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A1:EE_|DS7PR12MB5910:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1614fc1-838f-42d5-6aab-08dc48a80eb8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZpPLiNwJg4Mrt1UyHvjlY7icfZex9khe3CiriSafz6Gys+0YH+7kgMiSdLH08CXvDDXIAhoPQjgI6qA3sMLTPpmDrfJXwA7XN1sWck1rLiwih5DiU6pXpfyJmzZD6xFEcW/PPCv0zgRfGWT33qZSZ//HwdR5d0S08Z1rNbu9OmkpqDf8aVk9WoHDMG3xmbHD4DTm4Ydv/gLUPP5D69S6wU4wpogBBVMDQQjehdWuCAZWhNc3GvFi5p0QkiQpXyUvyo90ef7oL0HZ1q8cqgjmkM+RUIZoTh4mR11b4mOyPbLT6sY0GtBHJ6AJd/yRciHQ0H0TrJ6F6UjD/b4enDdr86d25CWLPp6JAaUAMrXcJGGWYrwb34c0SY1/Ld0vA0tS52HuoEi8FY7HqvtLNaNAIf5s1BkLkVheomOm1nkl8kwOghiB8QDtLv5tMdZ4LkpSr5EHnKC4sU/LNFwQlvbRZikNr4kOt6S3RoA2Ridoco63lqDXJiADk+pbekca0cMxd1DPyCciQh7H8ko+BPLZJo42QXcNjTdxtGVu915I3SqgIE0QzvhYj5cOTLURvuv2rhI8a4a/MWk1Iukwq8MN8ed9Dk1NcdymZDXW4kDB8BYwP+7sjZQGtTEKoxF7jVwsQQm43bo3/RdoC09mjwCP5xIjAm2o3I9cxQLTen0yVtn2to08sbmXnwU29Cle05oEWoGxhCc9Q475PrhnsrJjvE9J9dr9uR7XKyibMBB+9YyX9KSXSqM74eurhPh84wEO
+X-Microsoft-Antispam-Message-Info: U+onZY6oZ9btdMVhS5nPHq/84vSgHeJeEho+BI9OX9+mIzNPI4cBdHBbTfvrr5w46eOwOleSFT4X2wHnOQWbXjpdhIdfqk2qNK8nXm0XKC1WiZbGYcWvStz5h/ogE+nkL/i8cwLhGfHrXSLrgiFE0MysJGWD1l6nE0eiSqUa/nDpgo9ZoJEtAx5sIzEi3VLCmXtKC+ddXPCjoubwcwEU1Kdv/Ngp4RnmY5maaxfWUxgVQ8y7Gt70uh14DAuatgogE9jTp25l/eJQ7MohEr2Wav3GM7wg7A7Py5J3zbLi2ylgng0iBCslbj3arG+NTall9gd2tiqVWGvcDsMMTy4Q+uqU8+s6jk9EO1HN66m9Ia7zHlv4tW8T5KjqkYPMrWkCGKa31VjuX62Tc6x3byeStVehREYv+/vCbOOkK2AD8TXJIAOdzXbixEaYn7bHaGjO4zz2KoSeyvyxEpozwosjPkOkfo4UF8XLY2CUKLfTxqtgZNPiOrLdtrVW2e41lsoe9WzJI0sMmApLLmeP3UCf9KRhAWy52Wzw53R6AVC4mxeo4yOcS4dlylow/3pYOA7uF3vpKK+exmzuXWmlsKUgjYBc58szkAwdHbyzr7ls9wEIpMHtOTSf1gC6Ktp96N1g0q54Pgtl3DGVFaexg5Qt9S/7Aw/D8xWY18ffhcKCsL1SVUMTqd+Jw/i0HHbpOIysT38+drmUH9t+OvuQ8oybcGAUzCSLrgmyAypOJyUx9sQeP4ORd+PzVhCJ53MCiwde
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(82310400014)(1800799015)(376005); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(376005)(36860700004)(82310400014)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 06:36:18.4931 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6297b30-acc3-4592-44d0-08dc48a80cc0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2024 06:36:21.8127 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1614fc1-838f-42d5-6aab-08dc48a80eb8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB75.namprd02.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A1.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7756
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5910
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,51 +112,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <syed.hassan@amd.com>
+From: Sung Joon Kim <sungkim@amd.com>
 
-[Why]
-Previous patch to allow DTBCLK disable didn't address boot case. Driver
-thinks DTBCLK is disabled by default, so we don't send disable message to
-PMFW. DTBCLK is then enabled at idle desktop on boot, burning power.
+[why&how]
+We need to remove the reference to these registers to
+prevent any usage in the future.
 
-[How]
-Set dtbclk_en to true on boot so that disable message is sent during first
-commit.
-
-Fixes: 27750e176a4f ("drm/amd/display: Allow DTBCLK disable for DCN35")
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Taimur Hassan <syed.hassan@amd.com>
+Signed-off-by: Sung Joon Kim <sungkim@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 38 -------------------
+ .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.c  | 21 ----------
+ .../amd/display/dc/clk_mgr/dcn35/dcn35_smu.h  |  2 -
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 16 --------
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.h   |  3 --
+ .../amd/display/dc/hwss/dcn35/dcn35_init.c    |  2 -
+ .../amd/display/dc/hwss/dcn351/dcn351_init.c  |  2 -
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |  2 -
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |  2 -
+ 9 files changed, 88 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index c6030bed95a0..dafa07671d00 100644
+index dafa07671d00..928d61f9f858 100644
 --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
 +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -73,6 +73,8 @@
- #define CLK1_CLK2_BYPASS_CNTL__CLK2_BYPASS_SEL_MASK		0x00000007L
- #define CLK1_CLK2_BYPASS_CNTL__CLK2_BYPASS_DIV_MASK		0x000F0000L
+@@ -842,35 +842,6 @@ static void dcn35_set_low_power_state(struct clk_mgr *clk_mgr_base)
+ 	}
+ }
  
-+#define SMU_VER_THRESHOLD 0x5D4A00 //93.74.0
-+
- #define REG(reg_name) \
- 	(ctx->clk_reg_offsets[reg ## reg_name ## _BASE_IDX] + reg ## reg_name)
- 
-@@ -412,9 +414,12 @@ static void dcn35_dump_clk_registers(struct clk_state_registers_and_bypass *regs
- 
- static void init_clk_states(struct clk_mgr *clk_mgr)
+-static void dcn35_set_ips_idle_state(struct clk_mgr *clk_mgr_base, bool allow_idle)
+-{
+-	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+-	struct dc *dc = clk_mgr_base->ctx->dc;
+-	uint32_t val = dcn35_smu_read_ips_scratch(clk_mgr);
+-
+-	if (dc->config.disable_ips == DMUB_IPS_ENABLE ||
+-		dc->config.disable_ips == DMUB_IPS_DISABLE_DYNAMIC) {
+-		val = val & ~DMUB_IPS1_ALLOW_MASK;
+-		val = val & ~DMUB_IPS2_ALLOW_MASK;
+-	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS1) {
+-		val |= DMUB_IPS1_ALLOW_MASK;
+-		val |= DMUB_IPS2_ALLOW_MASK;
+-	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2) {
+-		val = val & ~DMUB_IPS1_ALLOW_MASK;
+-		val |= DMUB_IPS2_ALLOW_MASK;
+-	} else if (dc->config.disable_ips == DMUB_IPS_DISABLE_IPS2_Z10) {
+-		val = val & ~DMUB_IPS1_ALLOW_MASK;
+-		val = val & ~DMUB_IPS2_ALLOW_MASK;
+-	}
+-
+-	if (!allow_idle) {
+-		val |= DMUB_IPS1_ALLOW_MASK;
+-		val |= DMUB_IPS2_ALLOW_MASK;
+-	}
+-
+-	dcn35_smu_write_ips_scratch(clk_mgr, val);
+-}
+-
+ static void dcn35_exit_low_power_state(struct clk_mgr *clk_mgr_base)
  {
-+	struct clk_mgr_internal *clk_mgr_int = TO_CLK_MGR_INTERNAL(clk_mgr);
- 	uint32_t ref_dtbclk = clk_mgr->clks.ref_dtbclk_khz;
- 	memset(&(clk_mgr->clks), 0, sizeof(struct dc_clocks));
+ 	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+@@ -890,13 +861,6 @@ static bool dcn35_is_ips_supported(struct clk_mgr *clk_mgr_base)
+ 	return ips_supported;
+ }
  
-+	if (clk_mgr_int->smu_ver >= SMU_VER_THRESHOLD)
-+		clk_mgr->clks.dtbclk_en = true; // request DTBCLK disable on first commit
- 	clk_mgr->clks.ref_dtbclk_khz = ref_dtbclk;	// restore ref_dtbclk
- 	clk_mgr->clks.p_state_change_support = true;
- 	clk_mgr->clks.prev_p_state_change_support = true;
+-static uint32_t dcn35_get_ips_idle_state(struct clk_mgr *clk_mgr_base)
+-{
+-	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+-
+-	return dcn35_smu_read_ips_scratch(clk_mgr);
+-}
+-
+ static void dcn35_init_clocks_fpga(struct clk_mgr *clk_mgr)
+ {
+ 	init_clk_states(clk_mgr);
+@@ -984,8 +948,6 @@ static struct clk_mgr_funcs dcn35_funcs = {
+ 	.set_low_power_state = dcn35_set_low_power_state,
+ 	.exit_low_power_state = dcn35_exit_low_power_state,
+ 	.is_ips_supported = dcn35_is_ips_supported,
+-	.set_idle_state = dcn35_set_ips_idle_state,
+-	.get_idle_state = dcn35_get_ips_idle_state
+ };
+ 
+ struct clk_mgr_funcs dcn35_fpga_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
+index 9e588c56c570..1399b41dfd1c 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.c
+@@ -487,24 +487,3 @@ int dcn35_smu_get_ips_supported(struct clk_mgr_internal *clk_mgr)
+ 	//smu_print("%s: VBIOSSMC_MSG_QueryIPS2Support return = %x\n", __func__, retv);
+ 	return retv;
+ }
+-
+-void dcn35_smu_write_ips_scratch(struct clk_mgr_internal *clk_mgr, uint32_t param)
+-{
+-	if (!clk_mgr->smu_present)
+-		return;
+-
+-	REG_WRITE(MP1_SMN_C2PMSG_71, param);
+-	//smu_print("%s: write_ips_scratch = %x\n", __func__, param);
+-}
+-
+-uint32_t dcn35_smu_read_ips_scratch(struct clk_mgr_internal *clk_mgr)
+-{
+-	uint32_t retv;
+-
+-	if (!clk_mgr->smu_present)
+-		return 0;
+-
+-	retv = REG_READ(MP1_SMN_C2PMSG_71);
+-	//smu_print("%s: dcn35_smu_read_ips_scratch = %x\n",  __func__, retv);
+-	return retv;
+-}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
+index 2b8e6959a03d..06cd3cc6d36e 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_smu.h
+@@ -198,6 +198,4 @@ int dcn35_smu_exit_low_power_state(struct clk_mgr_internal *clk_mgr);
+ int dcn35_smu_get_ips_supported(struct clk_mgr_internal *clk_mgr);
+ int dcn35_smu_get_dtbclk(struct clk_mgr_internal *clk_mgr);
+ int dcn35_smu_get_dprefclk(struct clk_mgr_internal *clk_mgr);
+-void dcn35_smu_write_ips_scratch(struct clk_mgr_internal *clk_mgr, uint32_t param);
+-uint32_t dcn35_smu_read_ips_scratch(struct clk_mgr_internal *clk_mgr);
+ #endif /* DAL_DC_35_SMU_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+index 26ab60deb12d..ad88edebcdfe 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+@@ -1337,22 +1337,6 @@ void dcn35_optimize_bandwidth(
+ 	}
+ }
+ 
+-void dcn35_set_idle_state(const struct dc *dc, bool allow_idle)
+-{
+-	// TODO: Find a more suitable communcation
+-	if (dc->clk_mgr->funcs->set_idle_state)
+-		dc->clk_mgr->funcs->set_idle_state(dc->clk_mgr, allow_idle);
+-}
+-
+-uint32_t dcn35_get_idle_state(const struct dc *dc)
+-{
+-	// TODO: Find a more suitable communcation
+-	if (dc->clk_mgr->funcs->get_idle_state)
+-		return dc->clk_mgr->funcs->get_idle_state(dc->clk_mgr);
+-
+-	return 0;
+-}
+-
+ void dcn35_set_drr(struct pipe_ctx **pipe_ctx,
+ 		int num_pipes, struct dc_crtc_timing_adjust adjust)
+ {
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
+index 7c33bea3f4e7..68f714143431 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.h
+@@ -84,9 +84,6 @@ void dcn35_dsc_pg_control(
+ 		unsigned int dsc_inst,
+ 		bool power_on);
+ 
+-void dcn35_set_idle_state(const struct dc *dc, bool allow_idle);
+-uint32_t dcn35_get_idle_state(const struct dc *dc);
+-
+ void dcn35_set_drr(struct pipe_ctx **pipe_ctx,
+ 		int num_pipes, struct dc_crtc_timing_adjust adjust);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
+index dce620d359a6..19b861349954 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_init.c
+@@ -121,8 +121,6 @@ static const struct hw_sequencer_funcs dcn35_funcs = {
+ 	.hw_block_power_up = dcn35_hw_block_power_up,
+ 	.hw_block_power_down = dcn35_hw_block_power_down,
+ 	.root_clock_control = dcn35_root_clock_control,
+-	.set_idle_state = dcn35_set_idle_state,
+-	.get_idle_state = dcn35_get_idle_state,
+ 	.set_long_vtotal = dcn35_set_long_vblank,
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
+index ab17fa1c64e8..f584266ca25a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
+@@ -120,8 +120,6 @@ static const struct hw_sequencer_funcs dcn351_funcs = {
+ 	.hw_block_power_up = dcn35_hw_block_power_up,
+ 	.hw_block_power_down = dcn35_hw_block_power_down,
+ 	.root_clock_control = dcn35_root_clock_control,
+-	.set_idle_state = dcn35_set_idle_state,
+-	.get_idle_state = dcn35_get_idle_state
+ };
+ 
+ static const struct hwseq_private_funcs dcn351_private_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+index 26ea86316e50..65df90842b83 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+@@ -424,8 +424,6 @@ struct hw_sequencer_funcs {
+ 		struct pg_block_update *update_state);
+ 	void (*root_clock_control)(struct dc *dc,
+ 		struct pg_block_update *update_state, bool power_on);
+-	void (*set_idle_state)(const struct dc *dc, bool allow_idle);
+-	uint32_t (*get_idle_state)(const struct dc *dc);
+ 	bool (*is_pipe_topology_transition_seamless)(struct dc *dc,
+ 			const struct dc_state *cur_ctx,
+ 			const struct dc_state *new_ctx);
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
+index 17e014d3bdc8..4f7480f60c85 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr.h
+@@ -281,8 +281,6 @@ struct clk_mgr_funcs {
+ 	void (*set_low_power_state)(struct clk_mgr *clk_mgr);
+ 	void (*exit_low_power_state)(struct clk_mgr *clk_mgr);
+ 	bool (*is_ips_supported)(struct clk_mgr *clk_mgr);
+-	void (*set_idle_state)(struct clk_mgr *clk_mgr, bool allow_idle);
+-	uint32_t (*get_idle_state)(struct clk_mgr *clk_mgr);
+ 
+ 	void (*init_clocks)(struct clk_mgr *clk_mgr);
+ 
 -- 
 2.34.1
 
