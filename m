@@ -2,50 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076A9881638
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Mar 2024 18:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F29DD885651
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 Mar 2024 10:21:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95F1310E362;
-	Wed, 20 Mar 2024 17:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9A7510E426;
+	Thu, 21 Mar 2024 09:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H9I1vSdV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QOCuzrJL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6CB10E362
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 17:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=0E2bDt9rUppJ8qCd/rU5mIYpdU0XdpgU3LtH6lO0XBw=; b=H9I1vSdVxNDXOwU5oER1ew6zkl
- ihGxtbQFygmDFqnC/6EEu3EM9H4w8Ue3cLLP5oPQbP7ZRVKaz0pIqxUyobF75zVPgreZGyglTo2Sr
- sgcuyifVNINvGipO/K8cnqb+4Mnd9HZ5xfrjydXf7h7FIzJv7VyJ+H6bBCI/DT7zwm3W6jUP6BzsE
- qcCfuATrnmQJZ0IzYX9BRA0Ky/Ir40MoT/KfkJFo2Fl1j2zK70XvDnXksci+x2KU9IpJo5Gime2GV
- lhlTXMbXd1k8S7XsSeVVFVt4tCNtTxtDjCTRlGkEQIpCfXSeZX67415qgYwPOHKKZeFFGBApkJPqE
- cbd0MBZQ==;
-Received: from [84.65.0.132] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1rmzUB-00D2FO-GU; Wed, 20 Mar 2024 18:12:19 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
+ [209.85.210.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8491B10E0C5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 18:32:31 +0000 (UTC)
+Received: by mail-ot1-f53.google.com with SMTP id
+ 46e09a7af769-6e682dbd84bso62093a34.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Mar 2024 11:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1710959550; x=1711564350; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=jvE/YAlLIID+4LJPvrVDJGXOyu18SAUsKjsPMay6KZ4=;
+ b=QOCuzrJLGYskHCyozL5w+obIDfg3bJJteO1DXM5waQfN9u7TIjdyC90VlAr/826OCB
+ 11ihWx4DekWR3nLoQsMuP586rEay+JoY19xS7ue0XurbsJr+SjmAVEXscuSeLjntbve9
+ MIywLB7wh3DuHLwqpDY6jf1GXD87NQ5rbkNXsTt/EQSGHNVsgKI/ref+FTwYH+z6jNk0
+ +CVIaB+JXnvqJsPBZGM7uQc5hUzQf8ii11ztd71yhqnOUCf4TMQhsAJ/CRB1wP8q3gty
+ DqASpzZOiqe2HYgrrf7mdfB08OVMi/R8JSk0/R228zGsLo9hyJ6IznLM7Xc0uQLXw8IB
+ bv3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710959550; x=1711564350;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=jvE/YAlLIID+4LJPvrVDJGXOyu18SAUsKjsPMay6KZ4=;
+ b=q0wi3jJ8kafl3HgnnpQsY4ZB3aDgMXevvJwbM68In7LyfnpdEPgbJJquyJziCsnpJQ
+ 8pyzNCz0n/kS6dJz9khApv8fhb2/dr4JQOmR4r35wgh7AFNRyyoEwHigV2HPM/YzRwJr
+ GdHxRCx4j8jYHjFG2sC89jc5pP3D79cRgjlbl8Tr7zt9lu908QV6INTdYDrENWQ7Ia+R
+ T9zVC6B3V9CizJjq3dU1lvR8t8JeqcaBuXoEoizSQGaeiyZZ+61GgDoPBJ0ggLU5v7DU
+ zwIePuS5bvwzDUnCu6jJIjzMG+/quHJ48urbNLca+Y5NDFlmKHBy1Kw4uhCJKIdCAqRN
+ Rdow==
+X-Gm-Message-State: AOJu0YzIdHcITmR/RXN10pc12V23G+aPaevvj1A+RMJ6YKzz8YuxJ7ne
+ p0Xvczc1uLXPI7ODlqZTCx9/5dir2PAqVlz/0hpWd63n/l18jo8Nwpai6mEO
+X-Google-Smtp-Source: AGHT+IG4OGiUysOk3I4lMirT0253dGaQZx6iGmF1x7TUZ53J8x5oPjp+NXADlQ8CgtXcqCTdMNvhiA==
+X-Received: by 2002:a05:6830:1d70:b0:6e6:8516:4866 with SMTP id
+ l16-20020a0568301d7000b006e685164866mr12997829oti.16.1710959550260; 
+ Wed, 20 Mar 2024 11:32:30 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:70:f702:9c77:c230:a0ba:a1a1])
+ by smtp.gmail.com with ESMTPSA id
+ r14-20020a056830448e00b006e67151c396sm2389930otv.33.2024.03.20.11.32.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 20 Mar 2024 11:32:29 -0700 (PDT)
+From: Mario Limonciello <superm1@gmail.com>
 To: amd-gfx@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>, Beyond Wang <Wang.Beyond@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v2] drm/amdgpu: Fix use after free in trace_amdgpu_bo_move
-Date: Wed, 20 Mar 2024 17:12:16 +0000
-Message-ID: <20240320171216.48248-1-tursulin@igalia.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Subject: [PATCH] drm/amd: Flush GFXOFF requests in prepare stage
+Date: Wed, 20 Mar 2024 13:32:21 -0500
+Message-ID: <20240320183221.5689-1-superm1@gmail.com>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240320144038.46706-1-tursulin@igalia.com>
-References: <20240320144038.46706-1-tursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 21 Mar 2024 09:21:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,138 +77,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tursulin@ursulin.net>
+From: Mario Limonciello <mario.limonciello@amd.com>
 
-Pipelined object migration will free up the old bo->resource, meaning
-the tracepoint added in 94aeb4117343 ("drm/amdgpu: fix ftrace event
-amdgpu_bo_move always move on same heap") will trigger an use after free
-when it dereferences the cached old_mem.
+If the system hasn't entered GFXOFF when suspend starts it can cause
+hangs accessing GC and RLC during the suspend stage.
 
-Fix it by caching the memory type locally, which is the only thing
-tracepoint wants to know about.
-
-While at it convert the whole function to use the cached memory types for
-consistency.
-
-v2:
- * Fix compilation.
-
-Signed-off-by: Tvrtko Ursulin <tursulin@ursulin.net>
-Fixes: 94aeb4117343 ("drm/amdgpu: fix ftrace event amdgpu_bo_move always move on same heap")
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3171
-Cc: Beyond Wang <Wang.Beyond@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: <stable@vger.kernel.org> # 6.1.y: 5095d5418193 ("drm/amd: Evict resources during PM ops prepare() callback")
+Cc: <stable@vger.kernel.org> # 6.1.y: cb11ca3233aa ("drm/amd: Add concept of running prepare_suspend() sequence for IP blocks")
+Cc: <stable@vger.kernel.org> # 6.1.y: 2ceec37b0e3d ("drm/amd: Add missing kernel doc for prepare_suspend()")
+Cc: <stable@vger.kernel.org> # 6.1.y: 3a9626c816db ("drm/amd: Stop evicting resources on APUs in suspend")
+Cc: <stable@vger.kernel.org> # 6.6.y: 5095d5418193 ("drm/amd: Evict resources during PM ops prepare() callback")
+Cc: <stable@vger.kernel.org> # 6.6.y: cb11ca3233aa ("drm/amd: Add concept of running prepare_suspend() sequence for IP blocks")
+Cc: <stable@vger.kernel.org> # 6.6.y: 2ceec37b0e3d ("drm/amd: Add missing kernel doc for prepare_suspend()")
+Cc: <stable@vger.kernel.org> # 6.6.y: 3a9626c816db ("drm/amd: Stop evicting resources on APUs in suspend")
+Cc: <stable@vger.kernel.org> # 6.1+
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3132
+Fixes: ab4750332dbe ("drm/amdgpu/sdma5.2: add begin/end_use ring callbacks")
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
-Beware this is a speculative fix for now based only on source code
-analysis and backtraces from 3171. It is also a bit on the churny side so
-I am happy to minimize it. But most importantly, given how I don't have
-any experience in amdgpu, I am looking for domain experts to either
-confirm or disprove my analysis.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 47 ++++++++++++-------------
- 1 file changed, 22 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 8722beba494e..81189aab5a04 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -452,10 +452,11 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 	struct amdgpu_device *adev;
- 	struct amdgpu_bo *abo;
- 	struct ttm_resource *old_mem = bo->resource;
-+	uint32_t new_mem_type = new_mem->mem_type;
-+	uint32_t old_mem_type;
- 	int r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 94bdb5fa6ebc..1fbaf7b81d69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4524,6 +4524,8 @@ int amdgpu_device_prepare(struct drm_device *dev)
+ 	if (r)
+ 		goto unprepare;
  
--	if (new_mem->mem_type == TTM_PL_TT ||
--	    new_mem->mem_type == AMDGPU_PL_PREEMPT) {
-+	if (new_mem_type == TTM_PL_TT || new_mem_type == AMDGPU_PL_PREEMPT) {
- 		r = amdgpu_ttm_backend_bind(bo->bdev, bo->ttm, new_mem);
- 		if (r)
- 			return r;
-@@ -464,20 +465,18 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 	abo = ttm_to_amdgpu_bo(bo);
- 	adev = amdgpu_ttm_adev(bo->bdev);
- 
--	if (!old_mem || (old_mem->mem_type == TTM_PL_SYSTEM &&
--			 bo->ttm == NULL)) {
-+	if (!old_mem || (old_mem->mem_type == TTM_PL_SYSTEM && bo->ttm == NULL)) {
- 		ttm_bo_move_null(bo, new_mem);
- 		goto out;
- 	}
--	if (old_mem->mem_type == TTM_PL_SYSTEM &&
--	    (new_mem->mem_type == TTM_PL_TT ||
--	     new_mem->mem_type == AMDGPU_PL_PREEMPT)) {
-+	old_mem_type = old_mem->mem_type;
-+	if (old_mem_type == TTM_PL_SYSTEM &&
-+	    (new_mem_type == TTM_PL_TT || new_mem_type == AMDGPU_PL_PREEMPT)) {
- 		ttm_bo_move_null(bo, new_mem);
- 		goto out;
- 	}
--	if ((old_mem->mem_type == TTM_PL_TT ||
--	     old_mem->mem_type == AMDGPU_PL_PREEMPT) &&
--	    new_mem->mem_type == TTM_PL_SYSTEM) {
-+	if ((old_mem_type == TTM_PL_TT || old_mem_type == AMDGPU_PL_PREEMPT) &&
-+	    new_mem_type == TTM_PL_SYSTEM) {
- 		r = ttm_bo_wait_ctx(bo, ctx);
- 		if (r)
- 			return r;
-@@ -488,22 +487,22 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 		goto out;
- 	}
- 
--	if (old_mem->mem_type == AMDGPU_PL_GDS ||
--	    old_mem->mem_type == AMDGPU_PL_GWS ||
--	    old_mem->mem_type == AMDGPU_PL_OA ||
--	    old_mem->mem_type == AMDGPU_PL_DOORBELL ||
--	    new_mem->mem_type == AMDGPU_PL_GDS ||
--	    new_mem->mem_type == AMDGPU_PL_GWS ||
--	    new_mem->mem_type == AMDGPU_PL_OA ||
--	    new_mem->mem_type == AMDGPU_PL_DOORBELL) {
-+	if (old_mem_type == AMDGPU_PL_GDS ||
-+	    old_mem_type == AMDGPU_PL_GWS ||
-+	    old_mem_type == AMDGPU_PL_OA ||
-+	    old_mem_type == AMDGPU_PL_DOORBELL ||
-+	    new_mem_type == AMDGPU_PL_GDS ||
-+	    new_mem_type == AMDGPU_PL_GWS ||
-+	    new_mem_type == AMDGPU_PL_OA ||
-+	    new_mem_type == AMDGPU_PL_DOORBELL) {
- 		/* Nothing to save here */
- 		ttm_bo_move_null(bo, new_mem);
- 		goto out;
- 	}
- 
- 	if (bo->type == ttm_bo_type_device &&
--	    new_mem->mem_type == TTM_PL_VRAM &&
--	    old_mem->mem_type != TTM_PL_VRAM) {
-+	    new_mem_type == TTM_PL_VRAM &&
-+	    old_mem_type != TTM_PL_VRAM) {
- 		/* amdgpu_bo_fault_reserve_notify will re-set this if the CPU
- 		 * accesses the BO after it's moved.
- 		 */
-@@ -511,10 +510,8 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 	}
- 
- 	if (adev->mman.buffer_funcs_enabled) {
--		if (((old_mem->mem_type == TTM_PL_SYSTEM &&
--		      new_mem->mem_type == TTM_PL_VRAM) ||
--		     (old_mem->mem_type == TTM_PL_VRAM &&
--		      new_mem->mem_type == TTM_PL_SYSTEM))) {
-+		if (((old_mem_type == TTM_PL_SYSTEM && new_mem_type == TTM_PL_VRAM) ||
-+		     (old_mem_type == TTM_PL_VRAM && new_mem_type == TTM_PL_SYSTEM))) {
- 			hop->fpfn = 0;
- 			hop->lpfn = 0;
- 			hop->mem_type = TTM_PL_TT;
-@@ -540,7 +537,7 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 			return r;
- 	}
- 
--	trace_amdgpu_bo_move(abo, new_mem->mem_type, old_mem->mem_type);
-+	trace_amdgpu_bo_move(abo, new_mem_type, old_mem_type);
- out:
- 	/* update statistics */
- 	atomic64_add(bo->base.size, &adev->num_bytes_moved);
++	flush_delayed_work(&adev->gfx.gfx_off_delay_work);
++
+ 	for (i = 0; i < adev->num_ip_blocks; i++) {
+ 		if (!adev->ip_blocks[i].status.valid)
+ 			continue;
 -- 
-2.44.0
+2.34.1
 
