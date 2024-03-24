@@ -2,97 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D42887C36
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Mar 2024 11:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF9F88818C
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Mar 2024 00:24:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9087310E0D3;
-	Sun, 24 Mar 2024 10:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0338410E463;
+	Sun, 24 Mar 2024 23:23:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="ZTfbJXAC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HFEDC3/9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 861D010E0D3
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Mar 2024 10:16:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1711275406; x=1711880206; i=friedrich.vock@gmx.de;
- bh=Uv2xrSKLBWumOo0xmtFmjYxfCZKunA5KsNLFy+qRAU8=;
- h=X-UI-Sender-Class:Date:From:Subject:To:References:In-Reply-To;
- b=ZTfbJXACVXZCxxCshJ8UKNvAUfQ1b+xrG4zDRtxSF1s5CCQ7VlBFGJd2tstEMcOj
- X/YL8YVmwXeeUFhpI92IDYI52TdcAX2Wz0vwDYJOfVfhz05SJJtE3ymV0gjIBsbJq
- 4ulS6uVcRK+qGB23I+rbNPoiaOrY5lyR+C2Cf5cFQ9/x9RtdZgjlBL67rQpUZ6gBV
- 0mGsqrwCsteoNyNantHeIX1Vl8fErUr8pVY/0KV3BU9gfR3DnK0Uz6YByEeFw6O+C
- NLMyPmJ1YlBLA1RP9vw03LgXbMyOlXY6GP0pFiyoBVIa9xuHWVigzi0oZtb5mavnQ
- 2IhTZwhTyeWfkTkJ4A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.177.3] ([213.152.118.97]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MBDnI-1rbdrc2ph8-00CfL2; Sun, 24
- Mar 2024 11:16:46 +0100
-Message-ID: <7eefc428-16b7-4f88-a99b-510203a244f9@gmx.de>
-Date: Sun, 24 Mar 2024 11:16:46 +0100
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1340710E463;
+ Sun, 24 Mar 2024 23:23:58 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-6e6bee809b8so3249962b3a.1; 
+ Sun, 24 Mar 2024 16:23:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1711322637; x=1711927437; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Yr2Cf82o25fp9daEntXPX2qWzpAZqJg/jLy0faLOqfo=;
+ b=HFEDC3/9BgvlkXygkRFkm6t8qjQ8BnzxydUfjvDBX/vD5G0Kj2wpq8hUJh2Rp4zHo/
+ lA+WiQbPpwR0GJ1YIiysw5Mwht6cQYZgEfDKj9u6vbqz5EMc4vI9N44Chqv6k0NbX57R
+ WTZr/kpMjHNvne2L4cA4sRt59O6ECCkCu6wHi/8x7OUpwMDg7u/csEjLfC7SNKJtgOMa
+ IZJsGP4EChj5Wo8v8RfxLCBliTAfIci+uhyyJhvYghj5PxtL+ADDS8+LYygS6ODrAySD
+ Zx8vcsoOrQZmhTG6jTHOMzzfMiZvMYPgPDZ3euojvee0wsKLytos89zOplOeyVutg5Hm
+ INbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1711322637; x=1711927437;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Yr2Cf82o25fp9daEntXPX2qWzpAZqJg/jLy0faLOqfo=;
+ b=NeBOrrZbs+qA2PyHHa/8cXwiinWFdhMBvPjRCDzHKLiYof/V/gXBNzikvGqy6IskVs
+ UV0OPGXXCOtSSiWNfmYC4Y1/JGWa6U04AV6mlQfSfBoHbHgSwFcQ5aJwP2yLHEkV5AvK
+ kpF5Zn074TauLaQhoKCSzZz1cFwwEksgB/e+d3n5qiwUUDx3NF5SBtZW7xk8KXs4YSW+
+ Bg9iIgMVJ8MM5whL2bmAygMt4kLQFr4ayC89RnpQ5yw5tUx8DoHmBj7pni+2IHnpFqHI
+ CwWEUvCLrPc5W6fiZb2S9baJQeGn6jFi1HXHAebI9F0cjIgC9/4fQ0Rsa3dEDqeggW6W
+ McYw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW3BqNtlIc6mD7VBl1Ayy1BbeAUUu2shLn10wVtodnhxCd8yXD6eIiV8+pTtpH1D/Z2BwKQNl8LR7vIk3GdpI3JhTuXErJWkPPZLvuCn2r23YfRYLpB1+PVDr4SZnRVOVJcze840ZXSD4Cy+aQNiw==
+X-Gm-Message-State: AOJu0YyfnNqgS0db0KWXTUDj8XEg6du2Pbyk04ltnFSvic8XSxq59Lu6
+ zTsm+EUVTVV6dsiKhZpAmH6PC/9IWMY7+r5SbLObCmOdwupUdJMMO9gDng91XkapmhnVTHpm3ht
+ s7s3G1vRnZHMa02YYplnNcMunv6j+ge28
+X-Google-Smtp-Source: AGHT+IFMOMfeUxQyKzPFnUMoVWDwkbdGKmRMYPWEC+HKw+YXJ9EhRRfrd0ilgf+Tk07qVbRcktkVNSKiwlufFCxvaZ0=
+X-Received: by 2002:a05:6a20:8ca7:b0:1a3:40e3:318a with SMTP id
+ k39-20020a056a208ca700b001a340e3318amr5663622pzh.60.1711322637106; Sun, 24
+ Mar 2024 16:23:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Friedrich Vock <friedrich.vock@gmx.de>
-Subject: Re: [PATCH] drm/amdgpu: always force full reset for SOC21
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20240324005220.2649840-1-alexander.deucher@amd.com>
-Content-Language: en-US
-Autocrypt: addr=friedrich.vock@gmx.de; keydata=
- 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
- f7+xmX0X3AMtWz/15Y+7cPO2
-In-Reply-To: <20240324005220.2649840-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20240307221609.7651-1-hannes@cmpxchg.org>
+ <c411dce6-faaf-46c3-8bb6-8c4db871e598@gmail.com>
+ <20240314170948.GA581298@cmpxchg.org> <20240323145247.GC448621@cmpxchg.org>
+ <c8efae98-3cf8-c21c-bfa4-d5998ab92a0e@amd.com>
+In-Reply-To: <c8efae98-3cf8-c21c-bfa4-d5998ab92a0e@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 24 Mar 2024 19:23:44 -0400
+Message-ID: <CADnq5_OGSLpLLEJqh86_SAZcqv-Cv6AmZJRZyaFtSmTHJ8ybxg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix deadlock while reading mqd from debugfs
+To: "Sharma, Shashank" <shashank.sharma@amd.com>
+Cc: Johannes Weiner <hannes@cmpxchg.org>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:4iqelcZzFFmOLavcE4bMr4uHAhpmowq3A/qGggG/Bf3aUY9o93U
- 5k49nlQTZjBu8KL88FSgQXRZsaRnfgC5DCHUzSinaq+v1kAyr25z5bbJ672PiAMtnboKbae
- zHy/gXRS1yrAVpNuO9huEH6fEX8C0Lqey+WX16J/4aiHoCcVRgALbVpx8EqUyvoNaf4hrYx
- PWiG/NFFmg4pbZO2Dk2bg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:1r0UFarRzM0=;p9h98voZcDIpfoG96GtgsWqjITN
- vosKXNT/6ConNRbKDSk6dBukJZ3wNFJpucFKlSBq3zwFsh7HhvCX4viCnjFOauj89biD7XMiu
- iT3web2hpvDeuL4QnHnVV/APvRAyuZ/Fj472ANuI2H13ev2T7B2irM8GdVi5leR9U4im+vS6i
- vKqkpV4CJHh6pHikq5Vh71+cYqq5MSR6Ni/qguzdw9C4afH9A+bjfHSuLKCA4uAHq3FjJ0UZE
- 5naG7A7ncwXXBQ0oH/2eV2ckBMSDJLHYp/jAPM0wDR2d8VCKfvscuZp7g2FVmZjlsSy0z6hTC
- HBNRXCjVNxdykOLIan+9LvgXWnZo/4ylapspz0WanJWjYfNVltIWCKa1BSOoqhp0wn6hNhEJ1
- QO9HumMnkP1ak0epMc8GB5uVk5fHHcw2ARna8FZnOm09wTk+NGjtXuwGX5qaX8JgbeJEPClpa
- b2apOfIpsbk+X1LipEIF5zAFMOSq675MLyMVnLITzWjIzNH8l7Kfna/KwlHU6PihtAbsQJ818
- 8LLrsKPLd4bccqF0rCH62o9bn4wkdpMh1arCpUQOVxzceFBLnLMLjwXaNHeQHS2flhrwwMy7C
- 9vfyBN2c6c6dBBiN72CEdW59QhCImpufoQ4XSboSoTDQCgd+cmmoCrfQLbSu/woFze9CHIS8o
- aN2nf3oks1AV2j1sqtpvOdf80xtQKyADSvmi15iuuhZTLSPmARzdrMQ/owFjJvYx0KMU/z1S0
- J7Rgm/5nh6cgbyAg7SsBQsIb9d+2q0n8aCMhgF028raipXU/rzAy12Ud5ac6Li9AJokqP8Qqr
- kRbXlqq7f0Sa8mps4Cl3c3Ht0fy9dccWWJoDdjlSUbaBI=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,45 +85,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 24.03.24 01:52, Alex Deucher wrote:
-> There are cases where soft reset seems to succeed, but
-> does not, so always use mode1/2 for now.
-
-Does "for now" mean that a proper fix is being worked on/will appear later=
-?
-
-Immediately falling back to full resets is a really bad experience, and
-it's especially catastrophic when only MODE1 is available.
-
-Of course, soft resets succeeding but leaving the GPU in a faulty state
-isn't acceptable either, but I think it's pretty important to keep the
-ability to do soft resets if at all possible.
-
-If it's not possible to wait with this until the proper fix is
-available, I hope that at least it can be reverted soon.
-
-Thanks,
-Friedrich
-
-> Signed-off-by: Alex Deucher<alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/soc21.c | 2 --
->   1 file changed, 2 deletions(-)
+On Sat, Mar 23, 2024 at 4:47=E2=80=AFPM Sharma, Shashank
+<shashank.sharma@amd.com> wrote:
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/am=
-dgpu/soc21.c
-> index 581a3bd11481..8526282f4da1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-> @@ -457,10 +457,8 @@ static bool soc21_need_full_reset(struct amdgpu_dev=
-ice *adev)
->   {
->   	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
->   	case IP_VERSION(11, 0, 0):
-> -		return amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC);
->   	case IP_VERSION(11, 0, 2):
->   	case IP_VERSION(11, 0, 3):
-> -		return false;
->   	default:
->   		return true;
->   	}
+>
+> On 23/03/2024 15:52, Johannes Weiner wrote:
+> > On Thu, Mar 14, 2024 at 01:09:57PM -0400, Johannes Weiner wrote:
+> >> Hello,
+> >>
+> >> On Fri, Mar 08, 2024 at 12:32:33PM +0100, Christian K=C3=B6nig wrote:
+> >>> Am 07.03.24 um 23:07 schrieb Johannes Weiner:
+> >>>> Lastly I went with an open loop instead of a memcpy() as I wasn't
+> >>>> sure if that memory is safe to address a byte at at time.
+> >> Shashank pointed out to me in private that byte access would indeed be
+> >> safe. However, after actually trying it it won't work because memcpy()
+> >> doesn't play nice with mqd being volatile:
+> >>
+> >> /home/hannes/src/linux/linux/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c:=
+ In function 'amdgpu_debugfs_mqd_read':
+> >> /home/hannes/src/linux/linux/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c:=
+550:22: warning: passing argument 1 of '__builtin_dynamic_object_size' disc=
+ards 'volatil' qualifier from pointer target type [-Wdiscarded-qualifiers]
+> >>    550 |         memcpy(kbuf, mqd, ring->mqd_size);
+> >>
+> >> So I would propose leaving the patch as-is. Shashank, does that sound
+> >> good to you?
+> > Friendly ping :)
+> >
+> > Shashank, is your Reviewed-by still good for this patch, given the
+> > above?
+>
+> Ah, sorry I missed this due to some parallel work, and just realized the
+> memcpy/volatile limitation.
+>
+> I also feel the need of protecting MQD read under a lock to avoid
+> parallel change in MQD while we do byte-by-byte copy, but I will add
+> that in my to-do list.
+>
+> Please feel free to use my R-b.
+
+Shashank, if the patch looks good, can you pick it up and apply it?
+
+Alex
+
+
+>
+> - Shashank
+>
+> > Thanks
