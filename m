@@ -2,37 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC6388953D
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Mar 2024 09:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612A488928F
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Mar 2024 08:09:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C17110E676;
-	Mon, 25 Mar 2024 08:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD5210E4A0;
+	Mon, 25 Mar 2024 07:09:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QE/7hIf4";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 368 seconds by postgrey-1.36 at gabe;
- Mon, 25 Mar 2024 06:39:08 UTC
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id 61B6E10E5D7;
- Mon, 25 Mar 2024 06:39:08 +0000 (UTC)
-Received: from localhost.localdomain (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPSA id E650A6029A552; 
- Mon, 25 Mar 2024 14:32:37 +0800 (CST)
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: Su Hui <suhui@nfschina.com>, Philip.Yang@amd.com, alex.sierra@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amdkfd: return negative error code in svm_ioctl()
-Date: Mon, 25 Mar 2024 14:31:49 +0800
-Message-Id: <20240325063148.3950639-1-suhui@nfschina.com>
-X-Mailer: git-send-email 2.30.2
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 379DD10E4A0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 07:09:50 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 2F04860DEF;
+ Mon, 25 Mar 2024 07:09:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7946AC433F1;
+ Mon, 25 Mar 2024 07:09:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1711350588;
+ bh=dGJkJbFdBqM1o9IeFZ+PlOQFJCVwRbT/Iii7yFVFMSI=;
+ h=From:To:Subject:Date:From;
+ b=QE/7hIf4k1WdMYvCLYH6NWECK80CO9rFwUlKJkwfZ3wfMTBHrGASomESh4jVHXrIM
+ QpknjzOPFaMLXXYDFsWUzeEjTgmzhhGoh2uEYo6ZaDnMv9KkNibR5UwQMPbzQWhjge
+ 4U/VOeJdCnGli7BcYDHsW1gEbczyXFxPW6Ouc/cZG194BBgVdKEra/Ri8v12n71hRy
+ yxHTeeLcfPlZ0eYRVyOfM4PT0y5mXYStStFcX/563oqrleQ+x1z/BtOj2RklJxNr4G
+ lE24FyJC+G1TiuwTkDXCNeL044b8fAkOJt1ES3F/I+1YxhlZB4bkmFEMKHpzoaZvPC
+ 5yzMMFW9kDEcg==
+From: Damien Le Moal <dlemoal@kernel.org>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Manivannan Sadhasivami <manivannan.sadhasivam@linaro.org>,
+ linux-scsi@vger.kernel.org,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Jaroslav Kysela <perex@perex.cz>, linux-sound@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ linux-serial@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+ platform-driver-x86@vger.kernel.org, ntb@lists.linux.dev,
+ Lee Jones <lee@kernel.org>, David Airlie <airlied@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ linux-rdma@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 00/28] Remove PCI_IRQ_LEGACY
+Date: Mon, 25 Mar 2024 16:09:11 +0900
+Message-ID: <20240325070944.3600338-1-dlemoal@kernel.org>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 25 Mar 2024 08:23:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,33 +64,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-svm_ioctl() should return negative error code in default case.
+This patch series removes the use of the depracated PCI_IRQ_LEGACY macro
+and replace it with PCI_IRQ_INTX. No functional change.
 
-Fixes: 42de677f7999 ("drm/amdkfd: register svm range")
-Signed-off-by: Su Hui <suhui@nfschina.com>
----
-Ps: When I try to compile this file, there is a error :
-drivers/gpu/drm/amd/amdkfd/kfd_migrate.c:28:10: fatal error: amdgpu_sync.h:
-No such file or directory.
+Damien Le Moal (28):
+  PCI: msi: Use PCI_IRQ_INTX
+  PCI: portdrv: Use PCI_IRQ_INTX
+  PCI: documentation: Use PCI_IRQ_INTX
+  sound: intel: Use PCI_IRQ_INTX
+  usb: hcd-pci: Use PCI_IRQ_INTX
+  tty: 8250_pci: Use PCI_IRQ_INTX
+  platform: intel_ips: Use PCI_IRQ_INTX
+  ntb: Use PCI_IRQ_INTX
+  mfd: intel-lpss-pci: Use PCI_IRQ_INTX
+  drm: amdgpu: Use PCI_IRQ_INTX
+  infiniband: qib: Use PCI_IRQ_INTX
+  infiniband: vmw_pvrdma: Use PCI_IRQ_INTX
+  misc: vmci_guest: Use PCI_IRQ_ALL_TYPES
+  net: xgbe: Use PCI_IRQ_INTX
+  net: aquantia atlantic: Use PCI_IRQ_INTX
+  net: atheros: alx: Use PCI_IRQ_INTX
+  net: realtek: r8169: Use PCI_IRQ_INTX
+  net: wangxun: Use PCI_IRQ_INTX
+  net: wireless: ath10k: Use references to INTX instead of LEGACY
+  net wireless; realtec: Use PCI_IRQ_INTX
+  scsi: arcmsr: Use PCI_IRQ_INTX
+  scsi: hpsa: Use PCI_IRQ_INTX
+  scsi: ipr: Use PCI_IRQ_INTX
+  scsi: megaraid: Use PCI_IRQ_INTX
+  scsi: mpt3sas: Use PCI_IRQ_INTX
+  scsi: pmcraid: Use PCI_IRQ_INTX
+  scsi: vmw_pvscsi: Do not use PCI_IRQ_LEGACY
+  PCI: Remove PCI_IRQ_LEGACY
 
-Maybe there are some steps I missed or this place need to be corrected?
+ Documentation/PCI/msi-howto.rst               |  2 +-
+ Documentation/PCI/pci.rst                     |  2 +-
+ .../translations/zh_CN/PCI/msi-howto.rst      |  2 +-
+ Documentation/translations/zh_CN/PCI/pci.rst  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c       |  2 +-
+ drivers/infiniband/hw/qib/qib_iba7220.c       |  2 +-
+ drivers/infiniband/hw/qib/qib_iba7322.c       |  5 ++-
+ drivers/infiniband/hw/qib/qib_pcie.c          |  2 +-
+ .../infiniband/hw/vmw_pvrdma/pvrdma_main.c    |  2 +-
+ drivers/mfd/intel-lpss-pci.c                  |  2 +-
+ drivers/misc/vmw_vmci/vmci_guest.c            |  3 +-
+ drivers/net/ethernet/amd/xgbe/xgbe-pci.c      |  2 +-
+ .../net/ethernet/aquantia/atlantic/aq_cfg.h   |  2 +-
+ .../net/ethernet/aquantia/atlantic/aq_hw.h    |  2 +-
+ .../net/ethernet/aquantia/atlantic/aq_nic.c   |  2 +-
+ .../ethernet/aquantia/atlantic/aq_pci_func.c  |  9 ++---
+ .../aquantia/atlantic/hw_atl/hw_atl_a0.c      |  2 +-
+ .../aquantia/atlantic/hw_atl/hw_atl_b0.c      |  2 +-
+ .../aquantia/atlantic/hw_atl2/hw_atl2.c       |  2 +-
+ drivers/net/ethernet/atheros/alx/main.c       |  2 +-
+ drivers/net/ethernet/realtek/r8169_main.c     |  2 +-
+ drivers/net/ethernet/wangxun/libwx/wx_lib.c   |  8 ++---
+ drivers/net/wireless/ath/ath10k/ahb.c         | 18 +++++-----
+ drivers/net/wireless/ath/ath10k/pci.c         | 36 +++++++++----------
+ drivers/net/wireless/ath/ath10k/pci.h         |  6 ++--
+ drivers/net/wireless/realtek/rtw88/pci.c      |  2 +-
+ drivers/net/wireless/realtek/rtw89/pci.c      |  2 +-
+ drivers/ntb/hw/idt/ntb_hw_idt.c               |  2 +-
+ drivers/pci/msi/api.c                         |  8 ++---
+ drivers/pci/pcie/portdrv.c                    |  8 ++---
+ drivers/platform/x86/intel_ips.c              |  2 +-
+ drivers/scsi/arcmsr/arcmsr_hba.c              |  2 +-
+ drivers/scsi/hpsa.c                           |  2 +-
+ drivers/scsi/ipr.c                            |  2 +-
+ drivers/scsi/megaraid/megaraid_sas_base.c     |  4 +--
+ drivers/scsi/mpt3sas/mpt3sas_base.c           |  2 +-
+ drivers/scsi/pmcraid.c                        |  2 +-
+ drivers/scsi/vmw_pvscsi.c                     |  2 +-
+ drivers/tty/serial/8250/8250_pci.c            |  2 +-
+ drivers/usb/core/hcd-pci.c                    |  3 +-
+ include/linux/pci.h                           |  7 ++--
+ sound/soc/intel/avs/core.c                    |  2 +-
+ 42 files changed, 84 insertions(+), 91 deletions(-)
 
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index f0f7f48af413..41c376f3fd27 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -4147,7 +4147,7 @@ svm_ioctl(struct kfd_process *p, enum kfd_ioctl_svm_op op, uint64_t start,
- 		r = svm_range_get_attr(p, mm, start, size, nattrs, attrs);
- 		break;
- 	default:
--		r = EINVAL;
-+		r = -EINVAL;
- 		break;
- 	}
- 
 -- 
-2.30.2
+2.44.0
 
