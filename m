@@ -2,98 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193AD8899C2
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Mar 2024 11:16:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A8088A05C
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Mar 2024 13:52:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB96910E70D;
-	Mon, 25 Mar 2024 10:16:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69BD810E867;
+	Mon, 25 Mar 2024 12:52:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CBBGMwtA";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="i6ljovrx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598EB10E713
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 10:16:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m71XuILx+Onu971rhiDl8z/pZtJoEuPfi86Z+pyfLPSzKcK6Llb3OwtyF6KOpVVDKVXaNvcqHsQbGQlCQWgI+nNdbyigfwGvPAwPPCKDISVh6QPr9NPNDwellxmRHCX6wv6PGGpo1xSISVqvplEEie5x75cSXwM9bF8zFbWb+E5BFqNszz29GuW+71R7oPkF1qgobYe8lmHFs7dqVpveNmCS+Zg0w66jT5eZGW4TKvea+tYa+eDlLy3uzcCpdMiMFyUmjfb7rPjFFuH52/Dy6zphGryoIgxEc61E8kCqwNI2VAjhLw47InvTuM9GgUgecT7XTMf38vyic658sE/OQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7aY83yzXbqK7Kuj4WIg9HeWaxbeBD4J2w0DN9RmfJSM=;
- b=LqK6fC9xA88YRQMbGM34g2xeFbHVTqEoqoOKR2uDFNRSb86qe3lD2HIYekFrnVXAkYSd7gSJA5n433egtzMfqDd2f1dESA+sZVlwMmxRa+XuJVI+ZCeBcmF8TAGXsLHmtJ6NrHL8yfwGAWuXzlT1iM1EXhje1ui+kF2/pw3VKzoLvUOCeiabVex/Oq739rOrdaeqPdtgJJjrKB4/qq4gfdxK9W99Gqp7jrjC6anYebhxXDCmCKADiUdofHkjLCgEv+MXwo4QSttVoBeOx+Pm0DtToo8Ji3cB/qWoUjRLWTe0IDtYw5nWkhSqcUruXGKzRceD6HWftzG9UsG1XPqtiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7aY83yzXbqK7Kuj4WIg9HeWaxbeBD4J2w0DN9RmfJSM=;
- b=CBBGMwtAX5CAUhElYs+WSh9ODEcspMo1Bt2cED2N5RNvXb6GYKHl3BSmtLPmgDOwv0TsoY3n/CEsun7XnOEsJ0rVqA2fPO0Pu6SiIfZnfHRuDOH3z/ksIHqBIlzHR+BZJlBu5+cFmSZBT6bKJBd88/xqkfMfXYpPdjTrajOOwPM=
-Received: from BYAPR06CA0005.namprd06.prod.outlook.com (2603:10b6:a03:d4::18)
- by DS0PR12MB8785.namprd12.prod.outlook.com (2603:10b6:8:14c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Mon, 25 Mar
- 2024 10:16:31 +0000
-Received: from CO1PEPF000042A7.namprd03.prod.outlook.com
- (2603:10b6:a03:d4:cafe::90) by BYAPR06CA0005.outlook.office365.com
- (2603:10b6:a03:d4::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
- Transport; Mon, 25 Mar 2024 10:16:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000042A7.mail.protection.outlook.com (10.167.243.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Mon, 25 Mar 2024 10:16:31 +0000
-Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 25 Mar
- 2024 05:16:29 -0500
-From: Ma Jun <Jun.Ma2@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Kenneth.Feng@amd.com>, <Alexander.Deucher@amd.com>,
- <kevinyang.wang@amd.com>, Ma Jun <Jun.Ma2@amd.com>
-Subject: [PATCH 5/5] drm/amdgpu/pm: Check AMDGPU_RUNPM_BAMACO when setting
- baco state
-Date: Mon, 25 Mar 2024 18:15:59 +0800
-Message-ID: <20240325101559.2807629-5-Jun.Ma2@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240325101559.2807629-1-Jun.Ma2@amd.com>
-References: <20240325101559.2807629-1-Jun.Ma2@amd.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F0310E100
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 11:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1711365195;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=QAPHGbxlJ6k982EnibWHBxa9+vZqkzt4vbnevEyQxDY=;
+ b=i6ljovrxAAxtvJII+5FvBck2e+Y+YtGgrYqG7qg0wLeKvICjtKddxa94WSc045W+j5P67U
+ 0GSPJYHBf1FupyAeHXOrIVlDAGU2R3BAjBQroPUBnv8F6uE+j1qu/D7GyecBcb/Ry2G38+
+ tGjgXqYK2YW2BQBhQ3E7rxvsTuk/veY=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-96-1QuSx88vPjyajLL4Q9A-vQ-1; Mon, 25 Mar 2024 07:13:14 -0400
+X-MC-Unique: 1QuSx88vPjyajLL4Q9A-vQ-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ 4fb4d7f45d1cf-5684345c0ebso5667050a12.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 04:13:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1711365193; x=1711969993;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=QAPHGbxlJ6k982EnibWHBxa9+vZqkzt4vbnevEyQxDY=;
+ b=usddxqBTQ7c7cxW2gIMEMfyvcnAZOfXzifPf8j6bJFEM66O2unCU4di4tmrP7zSV7M
+ xymxO7QpQNZRfuVAipP7qYSN6KyXjwB1mzRlldtnSjGHYDXg3cZGhSVUDS1tNxsgj8NL
+ QPtqimExhsOyW7jN8r40YuUyIXrFaofMAVQdBttSMlY72x3V6+cGz8wqn9qAHDHMe22k
+ iAXrW7g355A3yQPE2yGGXGel/iPJBy2545dnyCwzTRYRq16dulsLdUWr7HeVwYbM5ZVZ
+ r6qxYrVRbeRu861mcUcW/Bb2N94ux47tHvZniOeyLf2bq9QxhQBsCgWv4bTfJffghu68
+ RbxA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWdsDPbmyeBzh+eVe201zhIsg8+VPTiITOzmzgz+GdfDjkBxsgnhzYJ2tQIy3iHJNvzYPCJ5cWxJZH7Q5DvLxmeCEFRHWFSb0qwM0wzmQ==
+X-Gm-Message-State: AOJu0YxlncYgVl1e3r4xTrIBiRePpfAPBAspVaNjWVeSpLHkpBP7WTyN
+ OlstmUrkWzMqLxV5k/ELx5ntxXrpS3hWc4p0HkrnOsn5Cgx47yNwUuGTp1VEBKu9Ph5vFG7seaW
+ +qUwnu3gzXKnlNWZH6qJQP/2BAEfX6c/mHFTBSOBofZac1JETcVPOgLYBKrMe8VY=
+X-Received: by 2002:a50:8753:0:b0:568:aced:e5a0 with SMTP id
+ 19-20020a508753000000b00568acede5a0mr5705697edv.14.1711365193430; 
+ Mon, 25 Mar 2024 04:13:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHDFlIpB/lK3v3cbB5QOQ7Bbg8iNxhFwokSKMspks8TaBGXgxvtbwZi1GudHYxQskJStFdo7A==
+X-Received: by 2002:a50:8753:0:b0:568:aced:e5a0 with SMTP id
+ 19-20020a508753000000b00568acede5a0mr5705672edv.14.1711365193137; 
+ Mon, 25 Mar 2024 04:13:13 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ fi24-20020a056402551800b0056bfa6ad5eesm2530825edb.91.2024.03.25.04.13.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 25 Mar 2024 04:13:12 -0700 (PDT)
+Message-ID: <f677cad0-4387-4a79-b7bb-f7b0676e5418@redhat.com>
+Date: Mon, 25 Mar 2024 12:13:11 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A7:EE_|DS0PR12MB8785:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7409e87-593b-4264-06d7-08dc4cb4a458
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4gLrpRonwsvpW4VUtzq+eYadA49PpzoOqgXwtnZce7cfELBdtKBueDTr4/s0yXk1R/0yh5J+7voA+ZVKNgJx+O6zke0bdPe4cQShkKqYWgaFQ6b+ZoYHZmgAQrwTXYgGMCzhHEPi0pi3a6M5jKtrSaoUcbElmMiU+voQICG/WemK0rMY4kLudCtQ+hAwEDDY6n1uT7A6dDbm8cay9NlSGRrtl34htxyObT8dEyLQG11JqiadzfQnvcWeEzXccBsvTTj/eLLq4/fzBIseh8DjdiEGF8q2oO8pAR+EGAPC90BaOO4FcuLgMDHwsMnyZGpkmAtSlaHRRgaIhHphF0LUyAhhikisWCAYECvcqU0W99LK1VcgDulXP5nDgbYh79pZ+C7pavtv/seG/+mWCdnH3eRT+YMTbSJyixIwNAYjdD6k3wSm9IwmMioN8+Hjxn3y3GdnxSUdtjTzCOWE70hdlvq8/1fCGISH6Cd9oZps4eB9pNTcCc5PhXLPskxju4RJJ3aNQP5zU23N3GpqpwxUpUdK6q+vECjyGui41DlBLao4ei4LJifFLqPHioVuqv/L5zwdgUQ8lKUV3VwtyWG+Kj0RjH498f/dbPgtFS4Tl9lMFweYT7m7k8zgIQet1+Cal9YJJhJWYe+OVry8erKr2MBKXOoR/hD1fPbDPcBaLqZMnWdomftxHej2sXA3M0c79fFpl81SfByF1Vj+Vh6MRMtUNF5kqLpBqH/ABtXWs82wcnq+aGrbs0fiWMoPLkBc
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400014)(376005)(36860700004); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2024 10:16:31.3105 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7409e87-593b-4264-06d7-08dc4cb4a458
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A7.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8785
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/28] platform: intel_ips: Use PCI_IRQ_INTX
+To: Damien Le Moal <dlemoal@kernel.org>, linux-pci@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Manivannan Sadhasivami <manivannan.sadhasivam@linaro.org>,
+ linux-scsi@vger.kernel.org, "Martin K . Petersen"
+ <martin.petersen@oracle.com>, Jaroslav Kysela <perex@perex.cz>,
+ linux-sound@vger.kernel.org, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ linux-serial@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ ntb@lists.linux.dev, Lee Jones <lee@kernel.org>,
+ David Airlie <airlied@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@ziepe.ca>, linux-rdma@vger.kernel.org,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240325070944.3600338-1-dlemoal@kernel.org>
+ <20240325070944.3600338-8-dlemoal@kernel.org>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20240325070944.3600338-8-dlemoal@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 25 Mar 2024 12:52:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,70 +107,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Check AMDGPU_RUNPM_BAMACO intead of amdgpu_runtime_pm
-when setting baco state.
+Hi,
 
-Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c | 5 ++---
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c | 2 +-
- 3 files changed, 4 insertions(+), 5 deletions(-)
+On 3/25/24 8:09 AM, Damien Le Moal wrote:
+> Use the macro PCI_IRQ_INTX instead of the deprecated PCI_IRQ_LEGACY
+> macro.
+> 
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-index d0c6dad24458..a8046aaca936 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-@@ -1607,7 +1607,7 @@ int smu_v11_0_baco_set_state(struct smu_context *smu, enum smu_baco_state state)
- 		case IP_VERSION(11, 0, 11):
- 		case IP_VERSION(11, 0, 12):
- 		case IP_VERSION(11, 0, 13):
--			if (amdgpu_runtime_pm == 2)
-+			if (adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO)
- 				ret = smu_cmn_send_smc_msg_with_param(smu,
- 								      SMU_MSG_EnterBaco,
- 								      D3HOT_BAMACO_SEQUENCE,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index a65877eeaa8d..8247eeab3bd2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -2247,7 +2247,7 @@ static int smu_v13_0_baco_set_state(struct smu_context *smu,
- 	if (state == SMU_BACO_STATE_ENTER) {
- 		ret = smu_cmn_send_smc_msg_with_param(smu,
- 						      SMU_MSG_EnterBaco,
--						      (smu_baco->maco_support && amdgpu_runtime_pm != 1) ?
-+						      (adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO) ?
- 						      BACO_SEQ_BAMACO : BACO_SEQ_BACO,
- 						      NULL);
- 	} else {
-@@ -2292,13 +2292,12 @@ int smu_v13_0_baco_is_support(struct smu_context *smu)
- 
- int smu_v13_0_baco_enter(struct smu_context *smu)
- {
--	struct smu_baco_context *smu_baco = &smu->smu_baco;
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret;
- 
- 	if (adev->in_runpm && smu_cmn_is_audio_func_enabled(adev)) {
- 		return smu_v13_0_baco_set_armd3_sequence(smu,
--				(smu_baco->maco_support && amdgpu_runtime_pm != 1) ?
-+				(adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO) ?
- 					BACO_SEQ_BAMACO : BACO_SEQ_BACO);
- 	} else {
- 		ret = smu_v13_0_baco_set_state(smu, SMU_BACO_STATE_ENTER);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-index cc7cc2a6d871..39f130035ec8 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0.c
-@@ -1633,7 +1633,7 @@ int smu_v14_0_baco_set_state(struct smu_context *smu,
- 	if (state == SMU_BACO_STATE_ENTER) {
- 		ret = smu_cmn_send_smc_msg_with_param(smu,
- 						      SMU_MSG_EnterBaco,
--						      smu_baco->maco_support ?
-+						      (adev->pm.rpm_mode == AMDGPU_RUNPM_BAMACO) ?
- 						      BACO_SEQ_BAMACO : BACO_SEQ_BACO,
- 						      NULL);
- 	} else {
--- 
-2.34.1
+Thanks, patch looks good to me, feel free to merge
+this through whatever tree is convenient (or let me
+know if you want me to pick up just this one patch
+from the series).
+
+Acked-by: Hans de Goede <hdegoede@redhat.com>
+
+Regards,
+
+Hans
+
+
+
+
+> ---
+>  drivers/platform/x86/intel_ips.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/platform/x86/intel_ips.c b/drivers/platform/x86/intel_ips.c
+> index ba38649cc142..73ec4460a151 100644
+> --- a/drivers/platform/x86/intel_ips.c
+> +++ b/drivers/platform/x86/intel_ips.c
+> @@ -1505,7 +1505,7 @@ static int ips_probe(struct pci_dev *dev, const struct pci_device_id *id)
+>  	 * IRQ handler for ME interaction
+>  	 * Note: don't use MSI here as the PCH has bugs.
+>  	 */
+> -	ret = pci_alloc_irq_vectors(dev, 1, 1, PCI_IRQ_LEGACY);
+> +	ret = pci_alloc_irq_vectors(dev, 1, 1, PCI_IRQ_INTX);
+>  	if (ret < 0)
+>  		return ret;
+>  
 
