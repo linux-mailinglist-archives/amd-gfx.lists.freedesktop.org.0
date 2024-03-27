@@ -2,60 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB33890043
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 14:32:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F240789003D
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 14:32:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB04E11243A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAB7112431;
 	Thu, 28 Mar 2024 13:32:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=sifive.com header.i=@sifive.com header.b="BQ4KKOt5";
+	dkim=pass (2048-bit key; unprotected) header.d=sifive.com header.i=@sifive.com header.b="IOYd9Vos";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976FD10FFA7
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:02:07 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-1e04ac4209eso1714225ad.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 13:02:07 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E191110FFA7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:02:08 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-1dee5ef2a7bso1955035ad.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 13:02:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1711569727; x=1712174527; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1711569728; x=1712174528; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=JhRrF1Pu1wTofDEF5NDtSjXNjQrJmyXSgj6gSsLdD3o=;
- b=BQ4KKOt54se6d3ARo67vT32U4fZ+U9SY4rBn6XBJb6tgFBwPq7oNZmhm56rw/Vqazi
- 7eTP9pTzjli6nWmDqmrG/XGXNF/Nv74O8a+1cCXAgZL6c20fmGKSdyLThpi6wEVjQbwN
- uImoG2TgFpK6VTC2iRGmY8bbN/SLkONzO//vnLrD1klmEvsaeW1b77tLobuqErGYJdlZ
- OZCA/IKKcuFLQ7JTXjyY6OYcCni3xTVVRCvy+uoeryegF8QFnjL5CoGxi07tXipF5z5O
- 0jNLsFBHevSyx2rmPz8mhtBCwWW2wjori6Qp+K9oidhTJ+mcUu4MxQLqnyUoeb0ubrj/
- eMgQ==
+ bh=CZE0ell9od5iMx/niXSnkXHAkP7o0Zji40W4vIuo5Ic=;
+ b=IOYd9VosoM7br3UMzBIl/vo2SHHvIsLM6qkB+lSfH9o6Itl0iN2asZobTWd1B3rEX8
+ grfNZYW8mOmjs2GTjc4lsWKpdRxUGSEwPm0JSs7nQ1mbyQmudm3DtijMZ2O/Lfb2cYP/
+ 1HpTZDCTKiALgNoT6huAEf7sTIW8+KBjx2Mb3u6Q9y1TPzaSCfC9umHBtpVlHldsbQCB
+ jKMMRAS54RXpVQfNSLtL/c41oybv52JO4Cpqw6usNMczkBDq/aFWrhW6kpAGJ0qHisDJ
+ oc2lRd4rYR+H2AmikMS8kc2JVJ1eWh5MCtsKvkcK4zAG15xMFyPiPTWXoGjNt8woyakx
+ qoAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711569727; x=1712174527;
+ d=1e100.net; s=20230601; t=1711569728; x=1712174528;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JhRrF1Pu1wTofDEF5NDtSjXNjQrJmyXSgj6gSsLdD3o=;
- b=EQs2D0s317GXzWWFC//3717MglE4tgGTdtWWEXDxkWxlNXMfGOQoDCxf3vV1FfxvFe
- ObRf65uwB67GdXOL1WBzwKsIQ0vYVQsnSPQAMouwAzAZZgX7DIvV2WblF3JC2uGXoayI
- hVgmAxdWVU0LWraHu4PXXskhAwyDSKotSZiIKlV+4fN8x4MJaeiPdjCWGTr2iuxd1zBC
- Jpfvo+OfQQ8UvnAmy3EKA1DQFGspurkECHzf8omvURCIn+xbhYIJNzmWzqYsFe1xyu7Y
- vByXxNm0/DGj2bNd+V/1qPNpgsaSHnyraRLxTs3W7B0s82Kv6oMgNRviz9mqnQzt0oj+
- a4og==
+ bh=CZE0ell9od5iMx/niXSnkXHAkP7o0Zji40W4vIuo5Ic=;
+ b=va3irI68QBDINE6L9wg0ehNnP+COXYFk659hPZ+XGBeChT9A+d3o7fnRT5Eljt6ukl
+ I9sAmPx9jmCWsWUfd0HTHz+nBb0C3ZT7F6T/u4t6IT3dPT8rMqqgAKw88lv+hMQczyrb
+ Slvq3vdLiYSvcPAvKypBPOAMIOQaJsv4VbWbN5f1ORLG+W1YnUTAL+XQQyBNydEJuchW
+ O8edWY+F61W5rkl5QV0JPpmEL9hczFOgZvb2WbcUP6f/vEQ+Ml/AjufSzm5VdyLZk328
+ WE5neaIPA/kNK1BXa60UeaEGfbTZtHIBuKwJYZ6CQUrlXirSxVTZV+GPzD7b76RSIMGw
+ AGDA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWURpCvrfqO+etgFcwb2o00g3DFe9yBQ1U2oPNVdqANRzjdoseFgCDcdpqLNNHJLJAOQK2y0egtDTiZpQj37wyLpar8Ri9eAkL7Uv2rEA==
-X-Gm-Message-State: AOJu0YwiDmZaTL/qM3SQ8TF63N+faUVeZ3B2h0O6fO6T0wyT6mReIyvX
- e4l+b/23x9+0U90/3iM+PANxeQgfbJskV4jzd2zkoiFu80gQ+H12a+FXfD5o9QI=
-X-Google-Smtp-Source: AGHT+IFTdj+7xjr/hkuUZrog62OKlzxWVPjf6p/E+DdPaik3Rv7nG00gWJ8Kh9j7qP1eqTQJrGE0sw==
-X-Received: by 2002:a17:902:650e:b0:1de:eca6:483d with SMTP id
- b14-20020a170902650e00b001deeca6483dmr724908plk.27.1711569726983; 
- Wed, 27 Mar 2024 13:02:06 -0700 (PDT)
+ AJvYcCXv3xpux7NCgQGWdYXKicg16dQUwSLmsdGzrFwMO54ORe6MlSDkjKKr9bFoFNhYr68IcYzl3ETkujueGocLgWf+NfiOaqrlIwCRcYG5RQ==
+X-Gm-Message-State: AOJu0YxrExEFvwjv6jZOLjCSZbrZdxpa39Ho/lWpIzL+MCmC1ZTfd5e+
+ uzgkNdtm4gbh2/f1eaLayE1lAFRlPfDWLFmUFHSNDFKtWZR8aen0JPEINLzJnWg=
+X-Google-Smtp-Source: AGHT+IGM9v2q1Bg0jHlsJFItc73WPBzqi9soPcoc57OB2ZggdclEbNRISa4ohk9keY4487ms+Vhuaw==
+X-Received: by 2002:a17:902:d4d0:b0:1de:fbc2:99f0 with SMTP id
+ o16-20020a170902d4d000b001defbc299f0mr957547plg.2.1711569728307; 
+ Wed, 27 Mar 2024 13:02:08 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- u4-20020a170902e5c400b001dd0d0d26a4sm9446459plf.147.2024.03.27.13.02.06
+ u4-20020a170902e5c400b001dd0d0d26a4sm9446459plf.147.2024.03.27.13.02.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Mar 2024 13:02:06 -0700 (PDT)
+ Wed, 27 Mar 2024 13:02:07 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Andrew Morton <akpm@linux-foundation.org>,
  linux-arm-kernel@lists.infradead.org, x86@kernel.org
@@ -63,11 +63,10 @@ Cc: linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
  linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
  Christoph Hellwig <hch@lst.de>, loongarch@lists.linux.dev,
  amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Russell King <linux@armlinux.org.uk>, Will Deacon <will@kernel.org>
-Subject: [PATCH v3 06/14] lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
-Date: Wed, 27 Mar 2024 13:00:37 -0700
-Message-ID: <20240327200157.1097089-7-samuel.holland@sifive.com>
+ WANG Xuerui <git@xen0n.name>, Huacai Chen <chenhuacai@kernel.org>
+Subject: [PATCH v3 07/14] LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+Date: Wed, 27 Mar 2024 13:00:38 -0700
+Message-ID: <20240327200157.1097089-8-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240327200157.1097089-1-samuel.holland@sifive.com>
 References: <20240327200157.1097089-1-samuel.holland@sifive.com>
@@ -88,67 +87,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Now that CC_FLAGS_FPU is exported and can be used anywhere in the source
-tree, use it instead of duplicating the flags here.
+LoongArch already provides kernel_fpu_begin() and kernel_fpu_end() in
+asm/fpu.h, so it only needs to add kernel_fpu_available() and export
+the CFLAGS adjustments.
 
+Acked-by: WANG Xuerui <git@xen0n.name>
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
-(no changes since v1)
+Changes in v3:
+ - Rebase on v6.9-rc1
 
- lib/raid6/Makefile | 31 ++++++++-----------------------
- 1 file changed, 8 insertions(+), 23 deletions(-)
+ arch/loongarch/Kconfig           | 1 +
+ arch/loongarch/Makefile          | 5 ++++-
+ arch/loongarch/include/asm/fpu.h | 1 +
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/lib/raid6/Makefile b/lib/raid6/Makefile
-index 385a94aa0b99..c71984e04c4d 100644
---- a/lib/raid6/Makefile
-+++ b/lib/raid6/Makefile
-@@ -33,25 +33,6 @@ CFLAGS_REMOVE_vpermxor8.o += -msoft-float
+diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+index a5f300ec6f28..2266c6c41c38 100644
+--- a/arch/loongarch/Kconfig
++++ b/arch/loongarch/Kconfig
+@@ -18,6 +18,7 @@ config LOONGARCH
+ 	select ARCH_HAS_CURRENT_STACK_POINTER
+ 	select ARCH_HAS_FORTIFY_SOURCE
+ 	select ARCH_HAS_KCOV
++	select ARCH_HAS_KERNEL_FPU_SUPPORT if CPU_HAS_FPU
+ 	select ARCH_HAS_NMI_SAFE_THIS_CPU_OPS
+ 	select ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
+ 	select ARCH_HAS_PTE_SPECIAL
+diff --git a/arch/loongarch/Makefile b/arch/loongarch/Makefile
+index df6caf79537a..efb5440a43ec 100644
+--- a/arch/loongarch/Makefile
++++ b/arch/loongarch/Makefile
+@@ -26,6 +26,9 @@ endif
+ 32bit-emul		= elf32loongarch
+ 64bit-emul		= elf64loongarch
+ 
++CC_FLAGS_FPU		:= -mfpu=64
++CC_FLAGS_NO_FPU		:= -msoft-float
++
+ ifdef CONFIG_UNWINDER_ORC
+ orc_hash_h := arch/$(SRCARCH)/include/generated/asm/orc_hash.h
+ orc_hash_sh := $(srctree)/scripts/orc_hash.sh
+@@ -59,7 +62,7 @@ ld-emul			= $(64bit-emul)
+ cflags-y		+= -mabi=lp64s
  endif
- endif
  
--# The GCC option -ffreestanding is required in order to compile code containing
--# ARM/NEON intrinsics in a non C99-compliant environment (such as the kernel)
--ifeq ($(CONFIG_KERNEL_MODE_NEON),y)
--NEON_FLAGS := -ffreestanding
--# Enable <arm_neon.h>
--NEON_FLAGS += -isystem $(shell $(CC) -print-file-name=include)
--ifeq ($(ARCH),arm)
--NEON_FLAGS += -march=armv7-a -mfloat-abi=softfp -mfpu=neon
--endif
--CFLAGS_recov_neon_inner.o += $(NEON_FLAGS)
--ifeq ($(ARCH),arm64)
--CFLAGS_REMOVE_recov_neon_inner.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon1.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon2.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon4.o += -mgeneral-regs-only
--CFLAGS_REMOVE_neon8.o += -mgeneral-regs-only
--endif
--endif
--
- quiet_cmd_unroll = UNROLL  $@
-       cmd_unroll = $(AWK) -v N=$* -f $(srctree)/$(src)/unroll.awk < $< > $@
+-cflags-y			+= -pipe -msoft-float
++cflags-y			+= -pipe $(CC_FLAGS_NO_FPU)
+ LDFLAGS_vmlinux			+= -static -n -nostdlib
  
-@@ -75,10 +56,14 @@ targets += vpermxor1.c vpermxor2.c vpermxor4.c vpermxor8.c
- $(obj)/vpermxor%.c: $(src)/vpermxor.uc $(src)/unroll.awk FORCE
- 	$(call if_changed,unroll)
+ # When the assembler supports explicit relocation hint, we must use it.
+diff --git a/arch/loongarch/include/asm/fpu.h b/arch/loongarch/include/asm/fpu.h
+index c2d8962fda00..3177674228f8 100644
+--- a/arch/loongarch/include/asm/fpu.h
++++ b/arch/loongarch/include/asm/fpu.h
+@@ -21,6 +21,7 @@
  
--CFLAGS_neon1.o += $(NEON_FLAGS)
--CFLAGS_neon2.o += $(NEON_FLAGS)
--CFLAGS_neon4.o += $(NEON_FLAGS)
--CFLAGS_neon8.o += $(NEON_FLAGS)
-+CFLAGS_neon1.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon2.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon4.o += $(CC_FLAGS_FPU)
-+CFLAGS_neon8.o += $(CC_FLAGS_FPU)
-+CFLAGS_REMOVE_neon1.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon2.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon4.o += $(CC_FLAGS_NO_FPU)
-+CFLAGS_REMOVE_neon8.o += $(CC_FLAGS_NO_FPU)
- targets += neon1.c neon2.c neon4.c neon8.c
- $(obj)/neon%.c: $(src)/neon.uc $(src)/unroll.awk FORCE
- 	$(call if_changed,unroll)
+ struct sigcontext;
+ 
++#define kernel_fpu_available() cpu_has_fpu
+ extern void kernel_fpu_begin(void);
+ extern void kernel_fpu_end(void);
+ 
 -- 
 2.43.1
 
