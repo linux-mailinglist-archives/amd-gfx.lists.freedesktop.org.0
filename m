@@ -2,60 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC89890039
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 14:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8801F890036
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 14:32:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C48B11242B;
-	Thu, 28 Mar 2024 13:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E08FC11202F;
+	Thu, 28 Mar 2024 13:32:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=sifive.com header.i=@sifive.com header.b="E+Wr/JK/";
+	dkim=pass (2048-bit key; unprotected) header.d=sifive.com header.i=@sifive.com header.b="Y5C5zTMB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE95210FFA7
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:02:16 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-1dee5ef2a7bso1956335ad.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 13:02:16 -0700 (PDT)
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE5B10FFA7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:02:18 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-1e00d1e13a2so1947585ad.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 13:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sifive.com; s=google; t=1711569736; x=1712174536; darn=lists.freedesktop.org;
+ d=sifive.com; s=google; t=1711569738; x=1712174538; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WUVdv0rxxPa8lHoyIaYtKDRoPzXAvzEPK1q3j7PbRrc=;
- b=E+Wr/JK/24lc8NbOXeS3IApofT1FxdmBlkYjgyUbU5TRkd1pXRgArpP1i+11Y4dDst
- uD2yvXTTejq2z/TFfYdXlz6qGJG2U0WkanpFFpj0iNEYwP8RI3tbsQUroIPw5CQNXW/2
- fOcCuwSVDakR4G/NNYqZVn3hqgxULzn+XrNa6NL/WhGlbmeVVOZmpQ2Mdxf5ejht9oqs
- 4L/VNCDTYVaTiZ3aRJEQGYFKH4Nl8j8BQDYF6J8IeeKQQmIsXTIFOCMUHowrOJ+YO1SG
- dW++R7FjrEg5PVlyG4vmLTrr5c/DeCuYCIotqWmHpiBFAkkc1G2m8L6WZhTIPWpjcr8w
- LuLw==
+ bh=1KPYCb9S3Soscoa7gVsLkBiv/vc0d18dY2Lykf0pkTk=;
+ b=Y5C5zTMBWWRLTO+wS8EAmb5gH9ZqQus0EcpEXDxObSii481EkhalCy3B0ee/czzFTD
+ F/8fBYCqP6Tmjw6KbkODlO7YdgpkAjT2rSvzze4mspRMtGtEPAn2BC0jctNfZAkKHK8Y
+ aejEJJg0hX6Se5xKLN3FbJeXxVsckquceOi7DQhTTDT4FPPDoB7rQp3m/ntEaE6W9rJ0
+ lhoUkSQNtkggrAvhVpni6mkjKtlqFD7W5XNIyIhASp/PXcAAXLyU5DFbf8OU/+c9FLHy
+ QZ8bJzC8Exe6VbHkE9O2zMJ4XRlY0WDcrrLRj2fUG7jreAmxC6lMXRCfKq+Jh0qtonLK
+ a8SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711569736; x=1712174536;
+ d=1e100.net; s=20230601; t=1711569738; x=1712174538;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WUVdv0rxxPa8lHoyIaYtKDRoPzXAvzEPK1q3j7PbRrc=;
- b=uP1m6Ny7LtYQd5xVgicoxENWGRpaDY5ajDgbjnB9z8eqpvrRZqsfMcA/zEYXMEtMUV
- I/tInXmVHy5uOye98v/0+H8xwG2DTPFWNSsUEd3gNNkUQRKDpXzjV0ZoIiJNozxZS0jX
- Ox6nDqBvVhgazUqa0pmortj/dl5Gb0sjVBTcHRX+AE0nvuwN7L1mYIjYcOXYZB8xu11P
- JfAprXjhMxHqCk2T2Hfirv5nbhkDi/bIpVhHp98hZv+qVEziD0Dm5wYvRp24gAcGK/IT
- MlcNDmAoh+EOm9txsIwyIimUSxdz5JBbVMsGDWq4NJQ/b+MFQMX+4px+dOD/mDmqqywS
- fO5g==
+ bh=1KPYCb9S3Soscoa7gVsLkBiv/vc0d18dY2Lykf0pkTk=;
+ b=Bc3cAzqxHpxk+lYMIRXZYk9BNZyquBfao7778oG5Jz0F1WLqhxetBkO4Lh2ygiBCip
+ iSd4UGqyivdHDaHdPo2Kwl27SnyQ+SrkO/z92dU4iEn/OFLGIDn752zX4fSY4tAmNX++
+ JmsaUqx7Z2j44D0BtpdeWhi+WAKXPf2pWtCXKaHL7VShVd5IYTcc3lyOhtrsrOTVbUPt
+ dkS1sOjJvMCunOAQKcWNVu5OahXyoRw1WXv9f1vepygUn7hp7I9yhpAgWs5Dw9ACbyU0
+ VzrEJOZvj4KBtWxgsJlJUdzyI2IzBHPp9OrqrMRv//xlesi3OBSmFqW4V4JYaV4hSmth
+ iPng==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVyeuNua47iwkHbIw3VeAhathmAIuPwmyJvZIYr1pAx5vwAkt3U7x5m26X+efzfzRO2ZorpZUqvvMmVJFB498YPP+KRFK9g6xtlIKj5qA==
-X-Gm-Message-State: AOJu0YyZ89hq6/6/4tmAPpb0owOGPCDrWR1CixaSb6ocgHf6G+Cf3sly
- jMbS2v3U04DxCQ4yEXn1QJjN0V+dfDs/Hq84li0GJeli21b3dc+2M98b6UCik58=
-X-Google-Smtp-Source: AGHT+IElWB3obfH3WLoSJnhNdDLs9puYhG8ITpGoTToOUpNvi6XoJmk6eGirKGJFaRPnDc33GdSn9w==
-X-Received: by 2002:a17:902:b28c:b0:1e0:e85b:2d30 with SMTP id
- u12-20020a170902b28c00b001e0e85b2d30mr669199plr.42.1711569736542; 
- Wed, 27 Mar 2024 13:02:16 -0700 (PDT)
+ AJvYcCV9DQ90pG3t1G4IxDiePlfsuUyBk4l151eCyfG33p8jtphRy4zjOTeGUub99BHkm3tR8Pmlz43xmO4KFEngWUKqczpAeLEYfv9nonARGw==
+X-Gm-Message-State: AOJu0YzXJ1rldTKPqK/jA7YnM6yCKnN2JSPvuelAsDaxgxLtpG1ihO1q
+ tFIvG/WD8qlXQ1RsWtSGrVqloTegvm4oOwY/DcwnnfiYsiCQVzd1Sznm8FhLuKQ=
+X-Google-Smtp-Source: AGHT+IHiVrJt14UyveizhwLAq9XPpEU6ZyZvDdQzDZe0rjNysh7dZh6CYDZhY9eiiH2RA2j+uTxBcQ==
+X-Received: by 2002:a17:902:ec8b:b0:1e0:1f1d:bd38 with SMTP id
+ x11-20020a170902ec8b00b001e01f1dbd38mr622795plg.7.1711569737898; 
+ Wed, 27 Mar 2024 13:02:17 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
  by smtp.gmail.com with ESMTPSA id
- u4-20020a170902e5c400b001dd0d0d26a4sm9446459plf.147.2024.03.27.13.02.15
+ u4-20020a170902e5c400b001dd0d0d26a4sm9446459plf.147.2024.03.27.13.02.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Mar 2024 13:02:16 -0700 (PDT)
+ Wed, 27 Mar 2024 13:02:17 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Andrew Morton <akpm@linux-foundation.org>,
  linux-arm-kernel@lists.infradead.org, x86@kernel.org
@@ -63,10 +63,9 @@ Cc: linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
  linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
  Christoph Hellwig <hch@lst.de>, loongarch@lists.linux.dev,
  amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v3 13/14] selftests/fpu: Move FP code to a separate
- translation unit
-Date: Wed, 27 Mar 2024 13:00:44 -0700
-Message-ID: <20240327200157.1097089-14-samuel.holland@sifive.com>
+Subject: [PATCH v3 14/14] selftests/fpu: Allow building on other architectures
+Date: Wed, 27 Mar 2024 13:00:45 -0700
+Message-ID: <20240327200157.1097089-15-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.43.1
 In-Reply-To: <20240327200157.1097089-1-samuel.holland@sifive.com>
 References: <20240327200157.1097089-1-samuel.holland@sifive.com>
@@ -87,145 +86,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This ensures no compiler-generated floating-point code can appear
-outside kernel_fpu_{begin,end}() sections, and some architectures
-enforce this separation.
+Now that ARCH_HAS_KERNEL_FPU_SUPPORT provides a common way to compile
+and run floating-point code, this test is no longer x86-specific.
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
-(no changes since v2)
+(no changes since v1)
 
-Changes in v2:
- - Declare test_fpu() in a header
+ lib/Kconfig.debug   |  2 +-
+ lib/Makefile        | 25 ++-----------------------
+ lib/test_fpu_glue.c |  5 ++++-
+ 3 files changed, 7 insertions(+), 25 deletions(-)
 
- lib/Makefile                        |  3 ++-
- lib/test_fpu.h                      |  8 +++++++
- lib/{test_fpu.c => test_fpu_glue.c} | 32 +------------------------
- lib/test_fpu_impl.c                 | 37 +++++++++++++++++++++++++++++
- 4 files changed, 48 insertions(+), 32 deletions(-)
- create mode 100644 lib/test_fpu.h
- rename lib/{test_fpu.c => test_fpu_glue.c} (71%)
- create mode 100644 lib/test_fpu_impl.c
-
+diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+index c63a5fbf1f1c..f93e778e0405 100644
+--- a/lib/Kconfig.debug
++++ b/lib/Kconfig.debug
+@@ -2890,7 +2890,7 @@ config TEST_FREE_PAGES
+ 
+ config TEST_FPU
+ 	tristate "Test floating point operations in kernel space"
+-	depends on X86 && !KCOV_INSTRUMENT_ALL
++	depends on ARCH_HAS_KERNEL_FPU_SUPPORT && !KCOV_INSTRUMENT_ALL
+ 	help
+ 	  Enable this option to add /sys/kernel/debug/selftest_helpers/test_fpu
+ 	  which will trigger a sequence of floating point operations. This is used
 diff --git a/lib/Makefile b/lib/Makefile
-index ffc6b2341b45..fcb35bf50979 100644
+index fcb35bf50979..e44ad11f77b5 100644
 --- a/lib/Makefile
 +++ b/lib/Makefile
-@@ -133,7 +133,8 @@ FPU_CFLAGS += $(call cc-option,-msse -mpreferred-stack-boundary=3,-mpreferred-st
- endif
+@@ -110,31 +110,10 @@ CFLAGS_test_fprobe.o += $(CC_FLAGS_FTRACE)
+ obj-$(CONFIG_FPROBE_SANITY_TEST) += test_fprobe.o
+ obj-$(CONFIG_TEST_OBJPOOL) += test_objpool.o
  
+-#
+-# CFLAGS for compiling floating point code inside the kernel. x86/Makefile turns
+-# off the generation of FPU/SSE* instructions for kernel proper but FPU_FLAGS
+-# get appended last to CFLAGS and thus override those previous compiler options.
+-#
+-FPU_CFLAGS := -msse -msse2
+-ifdef CONFIG_CC_IS_GCC
+-# Stack alignment mismatch, proceed with caution.
+-# GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
+-# (8B stack alignment).
+-# See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53383
+-#
+-# The "-msse" in the first argument is there so that the
+-# -mpreferred-stack-boundary=3 build error:
+-#
+-#  -mpreferred-stack-boundary=3 is not between 4 and 12
+-#
+-# can be triggered. Otherwise gcc doesn't complain.
+-FPU_CFLAGS += -mhard-float
+-FPU_CFLAGS += $(call cc-option,-msse -mpreferred-stack-boundary=3,-mpreferred-stack-boundary=4)
+-endif
+-
  obj-$(CONFIG_TEST_FPU) += test_fpu.o
--CFLAGS_test_fpu.o += $(FPU_CFLAGS)
-+test_fpu-y := test_fpu_glue.o test_fpu_impl.o
-+CFLAGS_test_fpu_impl.o += $(FPU_CFLAGS)
+ test_fpu-y := test_fpu_glue.o test_fpu_impl.o
+-CFLAGS_test_fpu_impl.o += $(FPU_CFLAGS)
++CFLAGS_test_fpu_impl.o += $(CC_FLAGS_FPU)
++CFLAGS_REMOVE_test_fpu_impl.o += $(CC_FLAGS_NO_FPU)
  
  # Some KUnit files (hooks.o) need to be built-in even when KUnit is a module,
  # so we can't just use obj-$(CONFIG_KUNIT).
-diff --git a/lib/test_fpu.h b/lib/test_fpu.h
-new file mode 100644
-index 000000000000..4459807084bc
---- /dev/null
-+++ b/lib/test_fpu.h
-@@ -0,0 +1,8 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+
-+#ifndef _LIB_TEST_FPU_H
-+#define _LIB_TEST_FPU_H
-+
-+int test_fpu(void);
-+
-+#endif
-diff --git a/lib/test_fpu.c b/lib/test_fpu_glue.c
-similarity index 71%
-rename from lib/test_fpu.c
-rename to lib/test_fpu_glue.c
-index e82db19fed84..85963d7be826 100644
---- a/lib/test_fpu.c
+diff --git a/lib/test_fpu_glue.c b/lib/test_fpu_glue.c
+index 85963d7be826..eef282a2715f 100644
+--- a/lib/test_fpu_glue.c
 +++ b/lib/test_fpu_glue.c
-@@ -19,37 +19,7 @@
+@@ -17,7 +17,7 @@
+ #include <linux/module.h>
+ #include <linux/kernel.h>
  #include <linux/debugfs.h>
- #include <asm/fpu/api.h>
+-#include <asm/fpu/api.h>
++#include <linux/fpu.h>
  
--static int test_fpu(void)
--{
--	/*
--	 * This sequence of operations tests that rounding mode is
--	 * to nearest and that denormal numbers are supported.
--	 * Volatile variables are used to avoid compiler optimizing
--	 * the calculations away.
--	 */
--	volatile double a, b, c, d, e, f, g;
--
--	a = 4.0;
--	b = 1e-15;
--	c = 1e-310;
--
--	/* Sets precision flag */
--	d = a + b;
--
--	/* Result depends on rounding mode */
--	e = a + b / 2;
--
--	/* Denormal and very large values */
--	f = b / c;
--
--	/* Depends on denormal support */
--	g = a + c * f;
--
--	if (d > a && e > a && g > a)
--		return 0;
--	else
--		return -EINVAL;
--}
-+#include "test_fpu.h"
+ #include "test_fpu.h"
  
- static int test_fpu_get(void *data, u64 *val)
+@@ -38,6 +38,9 @@ static struct dentry *selftest_dir;
+ 
+ static int __init test_fpu_init(void)
  {
-diff --git a/lib/test_fpu_impl.c b/lib/test_fpu_impl.c
-new file mode 100644
-index 000000000000..777894dbbe86
---- /dev/null
-+++ b/lib/test_fpu_impl.c
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/errno.h>
-+
-+#include "test_fpu.h"
-+
-+int test_fpu(void)
-+{
-+	/*
-+	 * This sequence of operations tests that rounding mode is
-+	 * to nearest and that denormal numbers are supported.
-+	 * Volatile variables are used to avoid compiler optimizing
-+	 * the calculations away.
-+	 */
-+	volatile double a, b, c, d, e, f, g;
-+
-+	a = 4.0;
-+	b = 1e-15;
-+	c = 1e-310;
-+
-+	/* Sets precision flag */
-+	d = a + b;
-+
-+	/* Result depends on rounding mode */
-+	e = a + b / 2;
-+
-+	/* Denormal and very large values */
-+	f = b / c;
-+
-+	/* Depends on denormal support */
-+	g = a + c * f;
-+
-+	if (d > a && e > a && g > a)
-+		return 0;
-+	else
++	if (!kernel_fpu_available())
 +		return -EINVAL;
-+}
++
+ 	selftest_dir = debugfs_create_dir("selftest_helpers", NULL);
+ 	if (!selftest_dir)
+ 		return -ENOMEM;
 -- 
 2.43.1
 
