@@ -2,118 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD9E88FEFF
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 13:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3C0890042
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 14:32:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62E9110EFF7;
-	Thu, 28 Mar 2024 12:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA3C0112439;
+	Thu, 28 Mar 2024 13:32:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="20OyhnJV";
+	dkim=pass (2048-bit key; unprotected) header.d=sifive.com header.i=@sifive.com header.b="UjQCCjTl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4791210EFF7
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:29:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hqLfNU6Jgd+ev+QtN4x9+lQdqsZr1VqjFXbiDPvxBzHle4dYhFnFAhrlyMqEAe4vGvjYY/p22CckmCvftrzCUuMjx4a8wf1LiBlOzdhIJvVGGD3kInTx53n/LziYlzEVX3E2bFCR/q8bBId8ZqVTkm8rTzkQOyJLAol2xo+Icgjbs85vEF9MbfJL6rZp5auvLuKcwqkDCiIRqqjrbRPzAKwYBgWaeWLM8+ZpX5kJNMMY+655+Iw4UnU9b2i1ARJKgmZpX0Id+iFr01/vW2hf5QX3mNF0rAOMRKdvQI5XQJvjerDt/xwKkzX/ooOqPaaWC9n7qFFvIPYq3jmL11SM1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AgwZQpz3iAOEVRuhb9oy0uykRJptfS+VI8igVgG/I4U=;
- b=QIbE447q19uumEQP60BGUPSczYqG8GMXDJCykzh0nnZ4YWxc1fVevVug4i8+ihO/wA9L5Mw+h6GxyQSqAeec2NHpNOogqwX9Hk+EJuiAXtwJUloKmUmlTwClS4c6hT3AW30sc8DYOTd/hqIVhXfGRsiJfQ/2Zg8tHQ+6X4rtZh2j+Wmvmwhz11XaoT33N7Q9tGFxw3UUkgW1hTq4l/P39eXwqscGOFKoNDppSh+zMjwLaUmS9O+DG+3YwiwV7wjPLP+UwQ78CGwJq30z+6DrcekExvRAhnpPCuWw+yXBGHcU8RkkVQorM/TA7rbvL6A3WePc0YWhzdJGS987eVClFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AgwZQpz3iAOEVRuhb9oy0uykRJptfS+VI8igVgG/I4U=;
- b=20OyhnJVi4cMPGrD29+spbLIKsdqP1Ej5Tw03jkZdnhbDXZJw3VLG2IPAIWEaW7gafSuW8pdEzqTtveHMvZrHBOhmx9H/lJkgP3kdy9E3K3yYYE0h4ZyRx+nO+kkKJ6xukh6EDerse315e6SZWkBn3lqW0ER9RaudVYtdcWU4VE=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by PH7PR12MB7138.namprd12.prod.outlook.com (2603:10b6:510:1ee::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.32; Thu, 28 Mar
- 2024 12:29:13 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::74e4:f50f:79af:c996]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::74e4:f50f:79af:c996%7]) with mapi id 15.20.7409.031; Thu, 28 Mar 2024
- 12:29:13 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: implement IRQ_STATE_ENABLE for SDMA v4.4.2
-Thread-Topic: [PATCH] drm/amdgpu: implement IRQ_STATE_ENABLE for SDMA v4.4.2
-Thread-Index: AQHagPqfV8WlnfElCkS8fxdz0fIfdrFNFQzA
-Date: Thu, 28 Mar 2024 12:29:12 +0000
-Message-ID: <BN9PR12MB52572CFEE8455053D1205BE2FC3B2@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20240328102746.365376-1-tao.zhou1@amd.com>
-In-Reply-To: <20240328102746.365376-1-tao.zhou1@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=af06778e-3c5a-4090-8bc2-f5541e013965;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-03-28T12:28:56Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|PH7PR12MB7138:EE_
-x-ms-office365-filtering-correlation-id: 495367d5-6e2f-4d22-6b3f-08dc4f22ad03
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yzjUB/bPcK78z0cMl162HShC++ycIhr3WzbzlG3JYMVKfHsySRNDKLaCQJuA48lJXUVnqMteSOX1nWfKG7KlOyrYbDzDGUZnBsDTaKTd81z/WEnm3aHMAU5CVZ31qzyjbinJ4CZ2PgkcxtKF3gpQgR4xZCicl/eTllEsvfHUFTwlIDupTy1u6VuB0/GYVoixe+7WuPVaqKijyXgFEVtqkwx1nK4JS1W3/0yzOykqdsbhL11D6M1jHHh+fgCAaYnQS3QZIKOeRRr5y7LKs6RnWXi82Qp39Xze6G2fCfLh+bXzwDvWIwd9cfBk5c0VW0Gd98NIwOL6k2bspjDUrm9b3Eg8OAC64ouFhEmop129CZZ2FH9Cjo0IcI/4P1grT3XCuZ5TM8QsizpHxEeVF9aG3PmHkakCaTWsutnhFWocMVZJ8DmhQXBXqy8wA2WKRmBXClUK/e69fPTeNdQhJn3wCoFpbFOczLYMpbYvyGbmpsUSz32aiGqfin2RMYnQfqUSrWBcdzCQk1L+nOm6Wj3BjtRsyXTzGHgivyHl1BQAgfdJGllu2xANu1a/w4m84aMLBHueXwkUv2SY0yGQSlEd09N8iONI18Bve25SITyovLRsfh/peSOX8zcqRjZyeQmk6Qgwv5hNQ/xgbiwN1zHazjdf+aOGxuYLgxIqR0dQedKC/a/OTNN5V0ThkLxpXRItDJ1sQixgdMAP6teYJtzitcYk8xXDQ60Wlc2vndgQH4Q=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FEpaPkqplWAArwWTVt3Bx8y+fSgTdgCbqcF16opmF/kg7wdajU0uZ411B5Rz?=
- =?us-ascii?Q?FU4x+54gXHiqXZhRi0eap74ari/Q/aizAPRtzr+R6peezBm2yCl1BLg6c64x?=
- =?us-ascii?Q?Ic50aPodlV+fR47hZbD5FDstMA8gq+1RssUszjlfxeP6avP370QOo58qgfjP?=
- =?us-ascii?Q?ACGg9cnQSOxkEf7eZlz2jEagd9SIzgiUiW+13RN1BUniuOX3LMfI4WIEC9Sj?=
- =?us-ascii?Q?pGmOjPirp7fjrSu2JkDprG73jMEfwuwvTxS44n02wVlLnSFgQXw5Y8Bm/z0F?=
- =?us-ascii?Q?kHJBaMTnZipEC134xOWHUMLSjYisN0+IiAGUSGUe3bvjj5kziRj+g5+V+Wzv?=
- =?us-ascii?Q?FBlWO7zoZ+oDVQ8qdYYmmoHOxcKqEUCPWIjKyCIsSp8p2twYHyeI4u5Y4pxH?=
- =?us-ascii?Q?FDt+AjcW3ljHrt2O9uiXOiMeQmKnFUpn3M2HOYpNlZ+DoZmdzuvEJL/HiXi9?=
- =?us-ascii?Q?32vryjOtNly8VondE6bkOQVy54HVcGFQAKMXRA5NMake4pga3pTZ4+vwAo44?=
- =?us-ascii?Q?1H5aiipEgWnmEkvryuOYrAeW4hWVplgWXh73cPyWHhZY4DT4oampqZT3M41H?=
- =?us-ascii?Q?48uyeBvX7/LEmLatEYkdkqvi76tWSy1nzDKLFxQn2I3R9ZvsQioSvToOdor7?=
- =?us-ascii?Q?VfAePt4bSWlCPSsvpUABI7U1pCsrFtd1OxRGGgb424xBjrFK1dnf5X/9UDMp?=
- =?us-ascii?Q?KHsTqPD0zlbnCGVB0BQHz3FMoxtP+Xw9TsTi5+6fa2TPBVCA5r2zXC1JNsZt?=
- =?us-ascii?Q?gWkj543Z78dFW2r9b0k6Sjm0Fniw2EEo7vZxY3IGNW+JbvHidO+HGc405F9A?=
- =?us-ascii?Q?iWVmI4Zf009J38v+4AbVTd16lVeddf1oNHGo0tpXBth2CWU7ASUZ2nlbSWFm?=
- =?us-ascii?Q?uTBaVJ37f+2bksSpjcjuA14QZh+zGqwxS+MjkAJ2EKJqauTuXOnDyq12BX+e?=
- =?us-ascii?Q?dXCYW4yPj0leHzBURkmtsO4znyAl45ogBmJCi2J/H8XJB8/l4yaU5lpdecYV?=
- =?us-ascii?Q?VMGlDD0+N9lGzoOn2x3NbkwZgwNevC66lObgPJIjx4QXRKIfNA2hO6KgJRKI?=
- =?us-ascii?Q?kTgPCg4WFCP6CJzk10mKeMAXmsiepa4DkraByY/Fw/UZKWJlysOgbAOFB+H1?=
- =?us-ascii?Q?UT/pwtVEA1qnWT4LK9UQyHI4ASgimy3AnPUUXW4RuyS83mZfhFhSWn1xU04z?=
- =?us-ascii?Q?auuAj6Ica/8AseTFESxzlZ/0SPGSShdRoYixuK/dpwxhon0ajnvqrgTPXj5d?=
- =?us-ascii?Q?VOZHLGyfb7pSdLomwB/iRE9X5WneEYXA7ElwpfbbAXv11NcZeLBolc1HgQNL?=
- =?us-ascii?Q?kQAluZNqhML1+GlAFYRqgm4dH0496resbZUSot8A7Z0ay5ge+9pe9RiA4sBo?=
- =?us-ascii?Q?BQ38AyzwC8yqhrWEpDLLsANbnhESqqJe9aicQJg8aqAzPJOdAmg/ZfaII6p6?=
- =?us-ascii?Q?yWo7mf3Zbu4k900Nb6gWzqaOVpIgDQJsivt5klRiUFpMf32bT6ZxOXZTS/W/?=
- =?us-ascii?Q?4k3IPyN9uL6oO7Mv+OAVrTCJ9BJ+flZOMqaFiXmJ+c47B92EEYr3zfnE6SXK?=
- =?us-ascii?Q?+zD0+twoVQJwpWiR8Q0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14C610FFA7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:01:59 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-1dddbe47ac1so8985965ad.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 13:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sifive.com; s=google; t=1711569719; x=1712174519; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=IfyGhgpaDuL/FUm+Bqequ3n7X/gQ/Scu0/x5tn5zB10=;
+ b=UjQCCjTlOeUqE984p2zzQILVccnAiz4C72HrRlnApBhrHq14UT1Rf4hiDWAPO4VnsG
+ bwMCjGlcQCRdCYDBHAJY2mxK2NePdMslQyQCj2KG2AnkYMgIvtM++kD5+NP08vRzZ9Rl
+ iJCTjcqLkmvrYynxslPGGcARBsq+KzHw/6KxM8MEoUb7p6yVC1Tl9m8w7RKElSum4iNz
+ NtpSl6z08VpwpF4O/49hyw6p3bjAz1+ZbjdakCM8bD2sQSs7XKoRMh1Pnx52g45jUDPu
+ PAbjt2IAuJrwafITmD+NptA7JmzOvh0foB0jOpHGRug2IeHFWMLsW/RBtnULhpccWplo
+ Iiaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1711569719; x=1712174519;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=IfyGhgpaDuL/FUm+Bqequ3n7X/gQ/Scu0/x5tn5zB10=;
+ b=f0omXdJ8XZVhmyxTQP/pYnBzte9PNorrXev8OLJy/HDgyR3G/bObarQOIxQV+2TwlE
+ ogEQ/wwnzFFyiFKf46FP1cAFYTTkG+iNRyJL6bzoVLsMaGfXaeduyxPTJRHGZjwTgOgg
+ 6gqPDAU84DF8LbnEhclAV8ujTIkGQm8+pD82s9uRuu+LN6MdWWTZ0F3BZO/0zqp2W/Ch
+ WYPRJ+Ic4X8nvUB64tqWKrg84YY8ADX8i6z7Yo8jmmMyImM7YaJxDT7Og+nP9RCJXQjf
+ KUFW8bznIzwjArfay5r7L+7yunNNdO0tRC1MqaA2Jp+3LvjVOckcpYy22X/J/k2qVyl4
+ 2kPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWm+5dqs+nS5qeDqoJbf739aSv0j5FhdW+Ce/M+uNISVh/e5+rDYJY1GIe9JIQTQ7YLc6NzMqclFS4pked0wqk2jN6pbCtxFjSL9xDbdQ==
+X-Gm-Message-State: AOJu0YxNcMum/23wI+MPWkR4ligi4AKahCJaQ4up+rh8eaX2smRIwZ5X
+ +NN+XpZ+UCpHSEdwoJABKqcBxtXF9Dnb9VX4F70bym7+HTY41G2BcFeKT0A+uNs=
+X-Google-Smtp-Source: AGHT+IEARU4E/EcVAHx8vARVbt2kMjNg+KIZramOtQSdDofKvpaWh4CU2DiZjPQFyzvcMxh9ySg0ww==
+X-Received: by 2002:a17:902:d2cc:b0:1e0:e011:e3cb with SMTP id
+ n12-20020a170902d2cc00b001e0e011e3cbmr442983plc.15.1711569718923; 
+ Wed, 27 Mar 2024 13:01:58 -0700 (PDT)
+Received: from sw06.internal.sifive.com ([4.53.31.132])
+ by smtp.gmail.com with ESMTPSA id
+ u4-20020a170902e5c400b001dd0d0d26a4sm9446459plf.147.2024.03.27.13.01.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Mar 2024 13:01:58 -0700 (PDT)
+From: Samuel Holland <samuel.holland@sifive.com>
+To: Andrew Morton <akpm@linux-foundation.org>,
+ linux-arm-kernel@lists.infradead.org, x86@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ Christoph Hellwig <hch@lst.de>, loongarch@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, Samuel Holland <samuel.holland@sifive.com>,
+ Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>,
+ Russell King <linux@armlinux.org.uk>, Thomas Gleixner <tglx@linutronix.de>,
+ Will Deacon <will@kernel.org>, linux-doc@vger.kernel.org,
+ linux-kbuild@vger.kernel.org
+Subject: [PATCH v3 00/14] Unified cross-architecture kernel-mode FPU API
+Date: Wed, 27 Mar 2024 13:00:31 -0700
+Message-ID: <20240327200157.1097089-1-samuel.holland@sifive.com>
+X-Mailer: git-send-email 2.43.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 495367d5-6e2f-4d22-6b3f-08dc4f22ad03
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2024 12:29:12.9741 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CRF8rZP8UaYyDPUUI5ah/kOpgGH0NOTBTLHetA0vpsz3xyu0oH8vDckgBLxcQ7nKvSBt3CeF/LT8kkqXIDEH8A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7138
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 28 Mar 2024 13:32:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,47 +91,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+This series unifies the kernel-mode FPU API across several architectures
+by wrapping the existing functions (where needed) in consistently-named
+functions placed in a consistent header location, with mostly the same
+semantics: they can be called from preemptible or non-preemptible task
+context, and are not assumed to be reentrant. Architectures are also
+expected to provide CFLAGS adjustments for compiling FPU-dependent code.
+For the moment, SIMD/vector units are out of scope for this common API.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+This allows us to remove the ifdeffery and duplicated Makefile logic at
+each FPU user. It then implements the common API on RISC-V, and converts
+a couple of users to the new API: the AMDGPU DRM driver, and the FPU
+self test.
 
-Regards,
-Hawking
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Tao Zhou
-Sent: Thursday, March 28, 2024 18:28
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: [PATCH] drm/amdgpu: implement IRQ_STATE_ENABLE for SDMA v4.4.2
+The underlying goal of this series is to allow using newer AMD GPUs
+(e.g. Navi) on RISC-V boards such as SiFive's HiFive Unmatched. Those
+GPUs need CONFIG_DRM_AMD_DC_FP to initialize, which requires kernel-mode
+FPU support.
 
-SDMA_CNTL is not set in some cases, driver configures it by itself.
+Previous versions:
+v2: https://lore.kernel.org/linux-kernel/20231228014220.3562640-1-samuel.holland@sifive.com/
+v1: https://lore.kernel.org/linux-kernel/20231208055501.2916202-1-samuel.holland@sifive.com/
+v0: https://lore.kernel.org/linux-kernel/20231122030621.3759313-1-samuel.holland@sifive.com/
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Changes in v3:
+ - Rebase on v6.9-rc1
+ - Limit ARCH_HAS_KERNEL_FPU_SUPPORT to 64BIT
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd=
-/amdgpu/sdma_v4_4_2.c
-index 71c2f50530cb..d10ae4ce5ddd 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -1608,10 +1608,11 @@ static int sdma_v4_4_2_set_ecc_irq_state(struct amd=
-gpu_device *adev,
-                                          DRAM_ECC_INT_ENABLE, 0);
-                WREG32_SDMA(type, regSDMA_CNTL, sdma_cntl);
-                break;
--       /* sdma ecc interrupt is enabled by default
--        * driver doesn't need to do anything to
--        * enable the interrupt */
-        case AMDGPU_IRQ_STATE_ENABLE:
-+               sdma_cntl =3D REG_SET_FIELD(sdma_cntl, SDMA_CNTL,
-+                                         DRAM_ECC_INT_ENABLE, 1);
-+               WREG32_SDMA(type, regSDMA_CNTL, sdma_cntl);
-+               break;
-        default:
-                break;
-        }
---
-2.34.1
+Changes in v2:
+ - Add documentation explaining the built-time and runtime APIs
+ - Add a linux/fpu.h header for generic isolation enforcement
+ - Remove file name from header comment
+ - Clean up arch/arm64/lib/Makefile, like for arch/arm
+ - Remove RISC-V architecture-specific preprocessor check
+ - Split altivec removal to a separate patch
+ - Use linux/fpu.h instead of asm/fpu.h in consumers
+ - Declare test_fpu() in a header
+
+Michael Ellerman (1):
+  drm/amd/display: Only use hard-float, not altivec on powerpc
+
+Samuel Holland (13):
+  arch: Add ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  ARM: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+  arm64: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  arm64: crypto: Use CC_FLAGS_FPU for NEON CFLAGS
+  lib/raid6: Use CC_FLAGS_FPU for NEON CFLAGS
+  LoongArch: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  powerpc: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  x86: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+  riscv: Add support for kernel-mode FPU
+  drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
+  selftests/fpu: Move FP code to a separate translation unit
+  selftests/fpu: Allow building on other architectures
+
+ Documentation/core-api/floating-point.rst     | 78 +++++++++++++++++++
+ Documentation/core-api/index.rst              |  1 +
+ Makefile                                      |  5 ++
+ arch/Kconfig                                  |  6 ++
+ arch/arm/Kconfig                              |  1 +
+ arch/arm/Makefile                             |  7 ++
+ arch/arm/include/asm/fpu.h                    | 15 ++++
+ arch/arm/lib/Makefile                         |  3 +-
+ arch/arm64/Kconfig                            |  1 +
+ arch/arm64/Makefile                           |  9 ++-
+ arch/arm64/include/asm/fpu.h                  | 15 ++++
+ arch/arm64/lib/Makefile                       |  6 +-
+ arch/loongarch/Kconfig                        |  1 +
+ arch/loongarch/Makefile                       |  5 +-
+ arch/loongarch/include/asm/fpu.h              |  1 +
+ arch/powerpc/Kconfig                          |  1 +
+ arch/powerpc/Makefile                         |  5 +-
+ arch/powerpc/include/asm/fpu.h                | 28 +++++++
+ arch/riscv/Kconfig                            |  1 +
+ arch/riscv/Makefile                           |  3 +
+ arch/riscv/include/asm/fpu.h                  | 16 ++++
+ arch/riscv/kernel/Makefile                    |  1 +
+ arch/riscv/kernel/kernel_mode_fpu.c           | 28 +++++++
+ arch/x86/Kconfig                              |  1 +
+ arch/x86/Makefile                             | 20 +++++
+ arch/x86/include/asm/fpu.h                    | 13 ++++
+ drivers/gpu/drm/amd/display/Kconfig           |  2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 35 +--------
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   | 36 +--------
+ drivers/gpu/drm/amd/display/dc/dml2/Makefile  | 36 +--------
+ include/linux/fpu.h                           | 12 +++
+ lib/Kconfig.debug                             |  2 +-
+ lib/Makefile                                  | 26 +------
+ lib/raid6/Makefile                            | 31 ++------
+ lib/test_fpu.h                                |  8 ++
+ lib/{test_fpu.c => test_fpu_glue.c}           | 37 ++-------
+ lib/test_fpu_impl.c                           | 37 +++++++++
+ 37 files changed, 343 insertions(+), 190 deletions(-)
+ create mode 100644 Documentation/core-api/floating-point.rst
+ create mode 100644 arch/arm/include/asm/fpu.h
+ create mode 100644 arch/arm64/include/asm/fpu.h
+ create mode 100644 arch/powerpc/include/asm/fpu.h
+ create mode 100644 arch/riscv/include/asm/fpu.h
+ create mode 100644 arch/riscv/kernel/kernel_mode_fpu.c
+ create mode 100644 arch/x86/include/asm/fpu.h
+ create mode 100644 include/linux/fpu.h
+ create mode 100644 lib/test_fpu.h
+ rename lib/{test_fpu.c => test_fpu_glue.c} (71%)
+ create mode 100644 lib/test_fpu_impl.c
+
+-- 
+2.43.1
 
