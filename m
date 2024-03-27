@@ -2,57 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C4E88E077
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Mar 2024 13:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5EC88D52C
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Mar 2024 04:49:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF22F10FC58;
-	Wed, 27 Mar 2024 12:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB7810F788;
+	Wed, 27 Mar 2024 03:49:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TgUBhkMH";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 423 seconds by postgrey-1.36 at gabe;
- Wed, 27 Mar 2024 03:41:02 UTC
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.58.223])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3976B10F779;
- Wed, 27 Mar 2024 03:41:01 +0000 (UTC)
-X-QQ-mid: bizesmtp73t1711510263tc4rg3gd
-X-QQ-Originating-IP: XfrywTBYuK7/zCAjs1kVXhU1XAcSKnA8JwB99fELdNQ=
-Received: from john-PC ( [123.114.60.34]) by bizesmtp.qq.com (ESMTP) with 
- id ; Wed, 27 Mar 2024 11:31:01 +0800 (CST)
-X-QQ-SSF: 01400000000000E0L000000A0000000
-X-QQ-FEAT: JP/5YZ9VfwkIlLs5w7zd65s3OqQmT/KSBo6slcMJGn9hc6x7d7O2CUgdrxtee
- LlmFsByIBU4ZpnmnNQa5+QTJmjyPUrvVKBNT+svF1igV9fAWfLevHhgTp8ocxsB6uUXo6zH
- k57Vpl8FNiKFQ2AcpwoiItm7ySJL0UbfKQ4Z3t2ok1csAUqsJmcUfbg/V2GKWtkPzS8+s7o
- N61IOFRX907nl95TjveVVQsTccj6yS3FwxsZiJSaBMu7pLEjPZ3Gd2RZk9bDIDD70eYvirk
- ZXPZwbwtVik+jTPqPvzxyn+XB4YM2rjdYk1XmHbdk8OwtvcXJTl1xB7X5lCutJPIRYHbvqg
- aCLhqgva7J4W+HQyWnll69iqn0P47pRWJeP+BKGELDcpgII22ecSRgyC6tKmQt5QJCOxZMi
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 5425072357296016359
-Date: Wed, 27 Mar 2024 11:31:00 +0800
-From: Qiang Ma <maqianga@uniontech.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Cc: "Koenig, Christian" <Christian.Koenig@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "SHANMUGAM, SRINIVASAN"
- <SRINIVASAN.SHANMUGAM@amd.com>, "sunran001@208suo.com"
- <sunran001@208suo.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/amdgpu: Clear the hotplug interrupt ack bit
- before hpd initialization
-Message-ID: <933F2B53EE8DA7B7+20240327113100.6742ccd5@john-PC>
-In-Reply-To: <BL1PR12MB5144F6A9CAB0504C8AD5728CF7292@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20240131075703.24600-1-maqianga@uniontech.com>
- <A65A2F93D9F165EC+20240313141827.40f30bd5@john-PC>
- <BL1PR12MB5144F6A9CAB0504C8AD5728CF7292@BL1PR12MB5144.namprd12.prod.outlook.com>
-Organization: UOS
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+ [209.85.210.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C26C410F788
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 03:49:19 +0000 (UTC)
+Received: by mail-pf1-f182.google.com with SMTP id
+ d2e1a72fcca58-6e6b5432439so4869699b3a.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 20:49:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1711511359; x=1712116159; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ahizVKV3HxZnYGdzaZMwVxNLtGaVVu7SPtBSWPIU+1M=;
+ b=TgUBhkMHTTcDb5X6Q6oeybnhly4010+KvNQRHNa3V3aHblVRjLu16/hWRWm+WdOsws
+ IT34EBdyI2lu4mi66DRXPa322FB+5KOnFT5m6df9ekeI7tjRX7duJS5+X+8kEqRF0Cpk
+ oQQaywMwpYClSEJ4K6TRUTG7U/Ukj+gfNFod9TNF2OGORJW3RXgBrrXXFfO8Au+FQm+j
+ bjShtz64EzzSVqfnz54HJRa+Uya6N7vW6GgdHGce5iu3lQF1L5T+E0n+X2yfUvQuwseb
+ ZLLgZWVtyWUnQZw8qK2i55ywFxD9Z6jpjLmzcc2lemPcILb5kcOtfB0KbUpP7KSNjWNk
+ 2evw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1711511359; x=1712116159;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ahizVKV3HxZnYGdzaZMwVxNLtGaVVu7SPtBSWPIU+1M=;
+ b=Nm/pBzTu9qV4KYuliduXohvxzn8cNhT8GFk5rgZjMYHdKQpGf8WW825hJ92W62kM2w
+ yAonN5HrTCNUKvVObcdBR1HIwQaAviRp2Ng+9GX4NGqKkngHmprgVUWknqIMVzehB7JN
+ FrwCdQr8nTcC2QdJZl6oomNOVbzH+xkKjikRAtbNCDzlO4rofjStENwh4nid5kUvRnWu
+ Ub5nObeVB6gSXib9s9go4XtmWq+kQ1PZPCa+WW7gc81Ct701IRKoo6mm/pRnouZSlT89
+ aYxtjhskqVB62PElB/K8qZ1kNIE7acfM8WQKb+kG6Tihwta8CTb/F7bnpi30yVfuLZ9g
+ 4uBQ==
+X-Gm-Message-State: AOJu0YzG3i5t1i+89AKzO8/cymJJEk6QVJSln1Jh+vZUXL2hHWToZWPY
+ b++AK+iXKeNzz9SIf5zOQFvbib7Wmo9LERIxc+GqkIDyREBI81lvBAypv7ttvAhCsQqB0dt3ZJp
+ a0fU4iIj2XOe00SZVuAfv31B+Q+GzSmuD
+X-Google-Smtp-Source: AGHT+IEg7LIzuCNahzufViHYCcZDd17l8+YhB2BGqIGGIgOiswQJ18JvLBObdVqKlYKOHhGOjZAELKS9BayrvZ/Ac5w=
+X-Received: by 2002:a05:6a21:3a45:b0:1a3:5d2a:4001 with SMTP id
+ zu5-20020a056a213a4500b001a35d2a4001mr3409020pzb.44.1711511358945; Tue, 26
+ Mar 2024 20:49:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-Mailman-Approved-At: Wed, 27 Mar 2024 12:37:04 +0000
+References: <20240315160108.2595995-1-alexander.deucher@amd.com>
+ <CADnq5_PMfhTQ+=aSJ5DqCj3p5hjbQUHZsx=3xXc0FEqL_9WDiQ@mail.gmail.com>
+In-Reply-To: <CADnq5_PMfhTQ+=aSJ5DqCj3p5hjbQUHZsx=3xXc0FEqL_9WDiQ@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 26 Mar 2024 23:49:06 -0400
+Message-ID: <CADnq5_NXhigQc3OPO+ZJYW6_WOg8=yz92Jh1JFSUedwaWCtp5Q@mail.gmail.com>
+Subject: Re: [PATCH] Documentation: add a page on amdgpu debugging
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,226 +76,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 14 Mar 2024 14:40:40 +0000
-"Deucher, Alexander" <Alexander.Deucher@amd.com> wrote:
+ping?
 
-> [Public]
-> 
-> > -----Original Message-----
-> > From: Qiang Ma <maqianga@uniontech.com>
-> > Sent: Wednesday, March 13, 2024 2:18 AM
-> > To: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig,
-> > Christian <Christian.Koenig@amd.com>; Pan, Xinhui
-> > <Xinhui.Pan@amd.com>; airlied@gmail.com; daniel@ffwll.ch;
-> > SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
-> > sunran001@208suo.com Cc: amd-gfx@lists.freedesktop.org;
-> > dri-devel@lists.freedesktop.org; linux- kernel@vger.kernel.org
-> > Subject: Re: [PATCH v2] drm/amdgpu: Clear the hotplug interrupt ack
-> > bit before hpd initialization
+On Fri, Mar 15, 2024 at 12:44=E2=80=AFPM Alex Deucher <alexdeucher@gmail.co=
+m> wrote:
+>
+> On Fri, Mar 15, 2024 at 12:07=E2=80=AFPM Alex Deucher <alexander.deucher@=
+amd.com> wrote:
 > >
-> > On Wed, 31 Jan 2024 15:57:03 +0800
-> > Qiang Ma <maqianga@uniontech.com> wrote:
+> > Covers GPU page fault debugging and adds a reference
+> > to umr.
 > >
-> > Hello everyone, please help review this patch.  
-> 
-> This was applied back in January, sorry if I forget to reply.
-> 
+> > v2: update client ids to include SQC/G
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >  Documentation/gpu/amdgpu/debugging.rst | 79 ++++++++++++++++++++++++++
+> >  Documentation/gpu/amdgpu/index.rst     |  1 +
+> >  2 files changed, 80 insertions(+)
+> >  create mode 100644 Documentation/gpu/amdgpu/debugging.rst
+> >
+> > diff --git a/Documentation/gpu/amdgpu/debugging.rst b/Documentation/gpu=
+/amdgpu/debugging.rst
+> > new file mode 100644
+> > index 000000000000..8b7fdcdf1158
+> > --- /dev/null
+> > +++ b/Documentation/gpu/amdgpu/debugging.rst
+> > @@ -0,0 +1,79 @@
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > + GPU Debugging
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +GPUVM Debugging
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +To aid in debugging GPU virtual memory related problems, the driver su=
+pports a
+> > +number of options module paramters:
+> > +
+> > +`vm_fault_stop` - If non-0, halt the GPU memory controller on a GPU pa=
+ge fault.
+> > +
+> > +`vm_update_mode` - If non-0, use the CPU to update GPU page tables rat=
+her than
+> > +the GPU.
+> > +
+> > +
+> > +Decoding a GPUVM Page Fault
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+> > +
+> > +If you see a GPU page fault in the kernel log, you can decode it to fi=
+gure
+> > +out what is going wrong in your application.  A page fault in your ker=
+nel
+> > +log may look something like this:
+> > +
+> > +::
+> > +
+> > + [gfxhub0] no-retry page fault (src_id:0 ring:24 vmid:3 pasid:32777, f=
+or process glxinfo pid 2424 thread glxinfo:cs0 pid 2425)
+> > +   in page starting at address 0x0000800102800000 from IH client 0x1b =
+(UTCL2)
+> > + VM_L2_PROTECTION_FAULT_STATUS:0x00301030
+> > +       Faulty UTCL2 client ID: TCP (0x8)
+> > +       MORE_FAULTS: 0x0
+> > +       WALKER_ERROR: 0x0
+> > +       PERMISSION_FAULTS: 0x3
+> > +       MAPPING_ERROR: 0x0
+> > +       RW: 0x0
+> > +
+> > +First you have the memory hub, gfxhub and mmhub.  gfxhub is the memory
+> > +hub used for graphics, compute, and sdma on some chips.  mmhub is the
+> > +memory hub used for multi-media and sdma on some chips.
+> > +
+> > +Next you have the vmid and pasid.  If the vmid is 0, this fault was li=
+kely
+> > +caused by the kernel driver or firmware.  If the vmid is non-0, it is =
+generally
+> > +a fault in a user application.  The pasid is used to link a vmid to a =
+system
+> > +process id.  If the process is active when the fault happens, the proc=
+ess
+> > +information will be printed.
+> > +
+> > +The GPU virtual address that caused the fault comes next.
+> > +
+> > +The client ID indicates the GPU block that caused the fault.
+> > +Some common client IDs:
+> > +
+> > +- CB/DB: The color/depth backend of the graphics pipe
+> > +- CPF: Command Processor Frontend
+> > +- CPC: Command Processor Compute
+> > +- CPG: Command Processor Graphics
+> > +- TCP/SQC/SQG: Shaders
+> > +- SDMA: SDMA engines
+> > +- VCN: Video encode/decode engines
+> > +- JPEG: JPEG engines
+> > +
+> > +PERMISSION_FAULTS describe what faults were encountered:
+> > +
+> > +- bit 0: the PTE was not valid
+> > +- bit 1: the PTE read bit was not set
+> > +- bit 2: the PTE write bit was not set
+> > +- bit 3: the PTE execute bit was not set
+> > +
+> > +Finally, RW, indicates whether the access was a read (0) or a write (1=
+).
+> > +
+> > +In the example above, a shader (cliend id =3D TCP) generated a read (R=
+W =3D 0x0) to
+> > +an invalid page (PERMISSION_FAULTS =3D 0x3) at GPU virtual address
+> > +0x0000800102800000.  The user can then inspect can then inspect their =
+shader
+>
+> removed the duplicated text above locally.
+>
 > Alex
-
-Hi, Alex, it doesn't matter, please take some time to help review this
-patch.
-
-This patch mainly solves the problem that after unplugging the HDMI
-display during bios initialization, the display does not light up after
-the system starts.
-
-Qiang Ma
-> 
+>
+> > +code and resource descriptor state to determine what caused the GPU pa=
+ge fault.
+> > +
+> > +UMR
+> > +=3D=3D=3D
+> > +
+> > +`umr <https://gitlab.freedesktop.org/tomstdenis/umr>`_ is a general pu=
+rpose
+> > +GPU debugging and diagnostics tool.  Please see the umr documentation =
+for
+> > +more information about its capabilities.
+> > diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amd=
+gpu/index.rst
+> > index 912e699fd373..847e04924030 100644
+> > --- a/Documentation/gpu/amdgpu/index.rst
+> > +++ b/Documentation/gpu/amdgpu/index.rst
+> > @@ -15,4 +15,5 @@ Next (GCN), Radeon DNA (RDNA), and Compute DNA (CDNA)=
+ architectures.
+> >     ras
+> >     thermal
+> >     driver-misc
+> > +   debugging
+> >     amdgpu-glossary
+> > --
+> > 2.44.0
 > >
-> >   Qiang Ma
-> >  
-> > > Problem:
-> > > The computer in the bios initialization process, unplug the HDMI
-> > > display, wait until the system up, plug in the HDMI display, did
-> > > not enter the hotplug interrupt function, the display is not
-> > > bright.
-> > >
-> > > Fix:
-> > > After the above problem occurs, and the hpd ack interrupt bit is
-> > > 1, the interrupt should be cleared during hpd_init initialization
-> > > so that when the driver is ready, it can respond to the hpd
-> > > interrupt normally.
-> > >
-> > > Signed-off-by: Qiang Ma <maqianga@uniontech.com>
-> > > ---
-> > > v2:
-> > >  - Remove unused variable 'tmp'
-> > >  - Fixed function spelling errors
-> > >
-> > > drivers/gpu/drm/amd/amdgpu/dce_v10_0.c |  2 ++
-> > > drivers/gpu/drm/amd/amdgpu/dce_v11_0.c |  2 ++
-> > > drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 22
-> > > ++++++++++++++++++---  
-> > -  
-> > > drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 22
-> > > ++++++++++++++++++---  
-> > -  
-> > >  4 files changed, 40 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c index
-> > > bb666cb7522e..12a8ba929a72 100644 ---
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c +++
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c @@ -51,6 +51,7 @@
-> > >
-> > >  static void dce_v10_0_set_display_funcs(struct amdgpu_device
-> > > *adev); static void dce_v10_0_set_irq_funcs(struct amdgpu_device
-> > > *adev); +static void dce_v10_0_hpd_int_ack(struct amdgpu_device
-> > > *adev, int hpd);
-> > >  static const u32 crtc_offsets[] = {
-> > >     CRTC0_REGISTER_OFFSET,
-> > > @@ -363,6 +364,7 @@ static void dce_v10_0_hpd_init(struct
-> > > amdgpu_device *adev) AMDGPU_HPD_DISCONNECT_INT_DELAY_IN_MS);
-> > >             WREG32(mmDC_HPD_TOGGLE_FILT_CNTL +
-> > > hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
-> > > +           dce_v10_0_hpd_int_ack(adev,
-> > > amdgpu_connector->hpd.hpd); dce_v10_0_hpd_set_polarity(adev,
-> > > amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
-> > >                            amdgpu_connector->hpd.hpd); diff --git
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c index
-> > > 7af277f61cca..745e4fdffade 100644 ---
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c +++
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c @@ -51,6 +51,7 @@
-> > >
-> > >  static void dce_v11_0_set_display_funcs(struct amdgpu_device
-> > > *adev); static void dce_v11_0_set_irq_funcs(struct amdgpu_device
-> > > *adev); +static void dce_v11_0_hpd_int_ack(struct amdgpu_device
-> > > *adev, int hpd);
-> > >  static const u32 crtc_offsets[] =
-> > >  {
-> > > @@ -387,6 +388,7 @@ static void dce_v11_0_hpd_init(struct
-> > > amdgpu_device *adev) AMDGPU_HPD_DISCONNECT_INT_DELAY_IN_MS);
-> > >             WREG32(mmDC_HPD_TOGGLE_FILT_CNTL +
-> > > hpd_offsets[amdgpu_connector->hpd.hpd], tmp);
-> > > +           dce_v11_0_hpd_int_ack(adev,
-> > > amdgpu_connector->hpd.hpd); dce_v11_0_hpd_set_polarity(adev,
-> > > amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
-> > > amdgpu_connector->hpd.hpd); } diff --git
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c index
-> > > 143efc37a17f..28c4a735716b 100644 ---
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c +++
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c @@ -272,6 +272,21 @@  
-> > static  
-> > > void dce_v6_0_hpd_set_polarity(struct amdgpu_device *adev,
-> > > WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
-> > >
-> > > +static void dce_v6_0_hpd_int_ack(struct amdgpu_device *adev,
-> > > +                            int hpd)
-> > > +{
-> > > +   u32 tmp;
-> > > +
-> > > +   if (hpd >= adev->mode_info.num_hpd) {
-> > > +           DRM_DEBUG("invalid hdp %d\n", hpd);
-> > > +           return;
-> > > +   }
-> > > +
-> > > +   tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
-> > > +   tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
-> > > +   WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
-> > > +
-> > >  /**
-> > >   * dce_v6_0_hpd_init - hpd setup callback.
-> > >   *
-> > > @@ -311,6 +326,7 @@ static void dce_v6_0_hpd_init(struct  
-> > amdgpu_device  
-> > > *adev) continue;
-> > >             }
-> > >
-> > > +           dce_v6_0_hpd_int_ack(adev,
-> > > amdgpu_connector->hpd.hpd); dce_v6_0_hpd_set_polarity(adev,
-> > > amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
-> > > amdgpu_connector->hpd.hpd); } @@ -3088,7 +3104,7 @@ static int
-> > > dce_v6_0_hpd_irq(struct amdgpu_device *adev, struct amdgpu_irq_src
-> > > *source,
-> > >                         struct amdgpu_iv_entry *entry)  {
-> > > -   uint32_t disp_int, mask, tmp;
-> > > +   uint32_t disp_int, mask;
-> > >     unsigned hpd;
-> > >
-> > >     if (entry->src_data[0] >= adev->mode_info.num_hpd) { @@
-> > > -3101,9 +3117,7 @@ static int dce_v6_0_hpd_irq(struct
-> > > amdgpu_device *adev, mask = interrupt_status_offsets[hpd].hpd;
-> > >
-> > >     if (disp_int & mask) {
-> > > -           tmp = RREG32(mmDC_HPD1_INT_CONTROL +
-> > > hpd_offsets[hpd]);
-> > > -           tmp |=  
-> > DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;  
-> > > -           WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd],
-> > > tmp);
-> > > +           dce_v6_0_hpd_int_ack(adev, hpd);
-> > >             schedule_delayed_work(&adev->hotplug_work, 0);
-> > >             DRM_DEBUG("IH: HPD%d\n", hpd + 1);
-> > >     }
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c index
-> > > adeddfb7ff12..8ff2b5adfd95 100644 ---
-> > > a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c +++
-> > > b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c @@ -264,6 +264,21 @@  
-> > static  
-> > > void dce_v8_0_hpd_set_polarity(struct amdgpu_device *adev,
-> > > WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
-> > >
-> > > +static void dce_v8_0_hpd_int_ack(struct amdgpu_device *adev,
-> > > +                            int hpd)
-> > > +{
-> > > +   u32 tmp;
-> > > +
-> > > +   if (hpd >= adev->mode_info.num_hpd) {
-> > > +           DRM_DEBUG("invalid hdp %d\n", hpd);
-> > > +           return;
-> > > +   }
-> > > +
-> > > +   tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
-> > > +   tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
-> > > +   WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp); }
-> > > +
-> > >  /**
-> > >   * dce_v8_0_hpd_init - hpd setup callback.
-> > >   *
-> > > @@ -303,6 +318,7 @@ static void dce_v8_0_hpd_init(struct  
-> > amdgpu_device  
-> > > *adev) continue;
-> > >             }
-> > >
-> > > +           dce_v8_0_hpd_int_ack(adev,
-> > > amdgpu_connector->hpd.hpd); dce_v8_0_hpd_set_polarity(adev,
-> > > amdgpu_connector->hpd.hpd); amdgpu_irq_get(adev, &adev->hpd_irq,
-> > > amdgpu_connector->hpd.hpd); } @@ -3176,7 +3192,7 @@ static int
-> > > dce_v8_0_hpd_irq(struct amdgpu_device *adev, struct amdgpu_irq_src
-> > > *source,
-> > >                         struct amdgpu_iv_entry *entry)  {
-> > > -   uint32_t disp_int, mask, tmp;
-> > > +   uint32_t disp_int, mask;
-> > >     unsigned hpd;
-> > >
-> > >     if (entry->src_data[0] >= adev->mode_info.num_hpd) { @@
-> > > -3189,9 +3205,7 @@ static int dce_v8_0_hpd_irq(struct
-> > > amdgpu_device *adev, mask = interrupt_status_offsets[hpd].hpd;
-> > >
-> > >     if (disp_int & mask) {
-> > > -           tmp = RREG32(mmDC_HPD1_INT_CONTROL +
-> > > hpd_offsets[hpd]);
-> > > -           tmp |=  
-> > DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;  
-> > > -           WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd],
-> > > tmp);
-> > > +           dce_v8_0_hpd_int_ack(adev, hpd);
-> > >             schedule_delayed_work(&adev->hotplug_work, 0);
-> > >             DRM_DEBUG("IH: HPD%d\n", hpd + 1);
-> > >     }  
-> 
-> 
-
