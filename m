@@ -2,63 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573D48909CC
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 20:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 315E78909D3
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 20:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F9910F60E;
-	Thu, 28 Mar 2024 19:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6B2112184;
+	Thu, 28 Mar 2024 19:51:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fJ4qMIbn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4u4x43Ju";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2046.outbound.protection.outlook.com [40.107.237.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFDB10E652
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 19:51:45 +0000 (UTC)
+ (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3900D10F60E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 19:51:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BKFBW86hU4vnLAO95w3r5XW2xtSgxpxmZQqcKZEsMCTCRQ+i/SEiQHBdO2WunuZ9yWPWZghkLw4XfLJQvhXOXfhEsaBDLkNTL2BXpC5FwZsDAuIU2hweQcsQI9qhbyI6Pe2RY7fUiYGXZNE00z7MadJf8o3/9ziCVgsza8op2blUNRsL5Flf7gBBmdRurRGQ2MOFG8lRj/sk5q7BfGKmLj7wBl9AX7Ao82PobYHCMZ23tuO7Gk+6v4PN7cFK2WiVGR0SRZkZEa86V+0h7ohefa7FEMJp4h+FJItvlcoSormMtCZLt+QH4q/UsqXMrXyabmgiypxTAGg7ndWVQXB3aA==
+ b=gvSQHgCPT/xNSAi8RwzDwc+6JnpMIEBeXWbrE5YWwh9IFUqBPuWBYTYvyG87lTjm0aLLj0384/gwT48+JJudGXC+lR4KV2W3cLlmyZF3wO12QFCXit0qOTn97VitXZ9edz2ZFcXEOK5tt5LMFuK13TjzyGh8aAnyAHzef/61kkHVjrG5V1kJYlXwvt6074Yt7CIi8ywuEJa1JwUV/Mvi07Du4Bk75b3A5D5AN76/wRZrXeydLAahjTOQSsrEl0p5dQKJnEFfmu48uGyh0nwIqxE9VmMsD961Zpa6yuH9K1GEQI5CMUlHt5WMude44xXSuUqfmTYDiTsZaKabk6mjyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P49iRjeysFNvHAj+I3PubM/uiGLX496n71a32k9jKu0=;
- b=TX1A0sGNyiRIzFFMlN2wrLXaoHwHaovu36Pl3+HNICA+TqoQcU+w/vfbuqQ1WKN8NJzHl31k6oGQj4ON1c2qFPIg8eUZNntzJYqHtAWtZy/6sC7Sbbgm7PMBN6KtIN2UDHQkW4dQPakLS5h0vblgf4ttJ+MLSXLI6btafMZLIlZras1ojseVxfKrDu1tEosHdHEk2IbEEPxF03kZK1b1iPIY0DsfaB23dy9P0YOGR1s5DoICT+yl5Gh+5bmL4NyF2TjFl9caWggffV1LW2oa8I8PIar2WceG0I8FXcuiGXHDMfnsPxCyWAIneQPagwDf2raKSwBbokUfRevR1qktsw==
+ bh=PQbysL9tNCnJDaqohS3X0PUZRtGNBmul3eTy7bshFQc=;
+ b=kTYX8FVkNGlNTZ8P6lV9G+IsCRXlAlKbWnaUFTfoDUGCon6+OU8zqjSLyYFuvfQD8wEgHuMaERV9LwmqDld4lwQ2ERp2SvKj0zLcUUCFIthij78TIEeWlKIPOVlNncOABbqxqbe6Us/UpJPuC0y0Pg1CXuR0Y/NidQnIBYE7BkAO27sKS2yS9vXiO1BkPqXggqulaAwq2YucCGxdQR2Ue53EF9uPcoImCHti87ilKbJSRZ5fCQ98r99rOQkaqg0ishRQV2ZDNEh/jYUhjfy90/BmIk015g538FK+DgdsGiqIU8lSXxx0gsP1O+k26bs4NWTjpwZIwGIWEQuQmxdT+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P49iRjeysFNvHAj+I3PubM/uiGLX496n71a32k9jKu0=;
- b=fJ4qMIbnacdHIiecJ3VERVWYPOdLEeRvr3hr7IDceNL9VW+tCZ9gVl/JxdaToceY1ZgWnJrOpiI/JcON+CUM6E7chBojaYxX8feMtACswIHyxcV96FYaX+tzl09iw6uiD+PxrMweApjMJU6LxNSvoDajEuf6hp+qd4oVWqiqPHE=
-Received: from SJ0PR03CA0342.namprd03.prod.outlook.com (2603:10b6:a03:39c::17)
- by IA1PR12MB9032.namprd12.prod.outlook.com (2603:10b6:208:3f3::19)
+ bh=PQbysL9tNCnJDaqohS3X0PUZRtGNBmul3eTy7bshFQc=;
+ b=4u4x43JuRzrnS3nHAX2eNQBoPQiX3ZlScuqKMGFPIAKmP8qR7x49BksnJW+vIE8rT86ks3ZNWD/A2fsAyuXb1ixtAGwzJoA9bjBZCQ6+YQS6ecXret+L89cApKhyJtuxy4zC+CZkJ0oS73XCxwLSzPDZnOiqtV/nohATC/97bUQ=
+Received: from CH2PR11CA0009.namprd11.prod.outlook.com (2603:10b6:610:54::19)
+ by SA1PR12MB5671.namprd12.prod.outlook.com (2603:10b6:806:23b::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Thu, 28 Mar
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Thu, 28 Mar
  2024 19:51:39 +0000
-Received: from CO1PEPF000042AE.namprd03.prod.outlook.com
- (2603:10b6:a03:39c:cafe::d2) by SJ0PR03CA0342.outlook.office365.com
- (2603:10b6:a03:39c::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
+Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
+ (2603:10b6:610:54:cafe::d) by CH2PR11CA0009.outlook.office365.com
+ (2603:10b6:610:54::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26 via Frontend
  Transport; Thu, 28 Mar 2024 19:51:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042AE.mail.protection.outlook.com (10.167.243.43) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.7409.10 via Frontend Transport; Thu, 28 Mar 2024 19:51:38 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 28 Mar
- 2024 14:51:36 -0500
+ 2024 14:51:37 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 28 Mar
- 2024 14:51:36 -0500
+ 2024 14:51:37 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
  Transport; Thu, 28 Mar 2024 14:51:36 -0500
@@ -67,12 +67,12 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
  <Sunpeng.Li@amd.com>, <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, 
  <roman.li@amd.com>, <wayne.lin@amd.com>, <solomon.chiu@amd.com>,
- <agustin.gutierrez@amd.com>, <hamza.mahfooz@amd.com>, Dillon Varone
- <dillon.varone@amd.com>, Anthony Koo <anthony.koo@amd.com>
-Subject: [PATCH 10/43] drm/amd/display: Add dmub additional interface support
- for FAMS
-Date: Thu, 28 Mar 2024 15:50:14 -0400
-Message-ID: <20240328195047.2843715-11-Roman.Li@amd.com>
+ <agustin.gutierrez@amd.com>, <hamza.mahfooz@amd.com>, Wenjing Liu
+ <wenjing.liu@amd.com>, Alvin Lee <alvin.lee2@amd.com>
+Subject: [PATCH 11/43] drm/amd/display: update pipe topology log to support
+ subvp
+Date: Thu, 28 Mar 2024 15:50:15 -0400
+Message-ID: <20240328195047.2843715-12-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240328195047.2843715-1-Roman.Li@amd.com>
 References: <20240328195047.2843715-1-Roman.Li@amd.com>
@@ -83,26 +83,26 @@ Received-SPF: None (SATLEXMB05.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042AE:EE_|IA1PR12MB9032:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6ede0cb-f23f-4750-a34f-08dc4f607b73
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|SA1PR12MB5671:EE_
+X-MS-Office365-Filtering-Correlation-Id: 91e2c44a-3491-4175-35e1-08dc4f607b7c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: de8sQsYHOhCyr0WR3MAWbkJ3wIKS4uls76QbVjnh0+zccqByRDWaFkszkrgdir37e4QsaTMaEz1w1kbMYmag9IJrfuiFdRhZjP0YRYtZSgSGAAoKMikMHJ5dkxeGsHaUhcle/Ko9EY2RoEj647aiPolfE+5Gr2gIVmQpgqBN26wrrXFpVMPNw05lDA7zacBX6Rc0i0dPRUZ4XvLHGp/xnDjiLLk0BBRAZClzzvhliXbZwQkp6maNzdM9gUNRe5JgcNotMEh+vgD9Q5P1L16Hv7lc7+dD6GUjXSr80owZ7CoOERkrF63cV+U5xvR1OdjSGH8K8oYt+BCJtghWyo6+gSzKm6qV8gDPJXQj8u5N2v89yZ+QRWUS2MJc5cClW37Jvo1ynZfYVtRpU3LrwiMcqFj6z0JhL5I2FvBX0tpU9DLpxKkatxc2aqB+jhxi0OqoUdHcqJXX0LrEEVRkPSM/Y52enbbDmFQF/JG5QvGigbYzpKg2LmksAPz2O55YydU0IZZiBVy7i37qHTCymIrx61M4ZAZ8lsTsjoCUL4yXMaQ6yl+wjW8c6s4bfxGsuX6vcqBY5palGEDNiF4AXMuHvlsD6AKmaXtX1Xjlgb3oDa6lEsgRSA2KOGZRocQoUQSW5xbs8tLTfQkw/skk9IvFzzcybqCxiEFdOuH+DrR9oZx9qw8EUYxJjh1bI7V/67pk6ef1E3fzlTQIoCDkb0R+Ci0Nn+9lA4u4Vqt4AgqRIYuG6SpPQkA5hYbm5MY5zYjo
+X-Microsoft-Antispam-Message-Info: s7fRtBNO+qXkUvedlpECqo+3bKR2et1ihtTp8E/7ZkGBBLroVWOpKgCh91gCBu+zDVUO31MiSB9BQ5+2JTGNF/m2u7fWfd1kBc2yJqYl6NI8UHHINmSnExbgvZphxCFhzwIllQ0uTuiLJQdCazBHE25qVsCdu+sa+f1TQTG4RLSadFNLtCm/2aUMZTJCH5m/o8A//qIlD/KJf76u419G32NQXD56YvAU0IJ5vdeP4n/PCNYd70f+T+00Sf2TbrQAy3gy2wPUnvo0fpE+1wmSxk8nWSBfhJpx0vYMW9+47d9GKfhmFcLWUPGFiTkphg1rkDSXaOGhmk5WkHCozBCEFFMq9izqBvNowEpdGHaENshFGgv+bYi3nR2VbN/yhbm8zZWfwXknkS/QmInF4v3PY7UN0ebyKPl/zogqO+D5O+lgicGoMgDbPvWdzIyoUfq1E1ZmFwNj1Q5kQZ/FbSIDN6layHolBQ+K9kRpddaDei60vqhbm2XPm2rmHKmNuTiWk1i48EsGYWG89fYPWmKCLkbzOJB13QGsP0ELrvHYH6Hj3Y1kEmcn5ooyG02ABZ5eX6Isldjzpeb2hdQXgWEYJUzJMt1PmF0bSxaO+y4X/0hs/njgGEm86j815Xlu7rQphukC6Lo8BvLSmpMer6RjYevAhEk7J2g7EhPFqWlo++h7kK1jIzcLLvYt+7oyPVPoVa3zSDF6yO2sVs5cc9OdcATZZCeWBIHfiGjKBRVOi69ffb8yMWjv11kMa71//Ac8
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(82310400014)(1800799015)(36860700004); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 19:51:38.3898 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6ede0cb-f23f-4750-a34f-08dc4f607b73
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 19:51:38.5241 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91e2c44a-3491-4175-35e1-08dc4f607b7c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AE.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9032
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5671
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,106 +117,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dillon Varone <dillon.varone@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[WHY&HOW]
-Update dmub and driver interface for future FAMS revisions.
+[why]
+There is an ambiguity in subvp pipe topology log. The log doesn't show
+subvp relation to main stream and it is not clear that certain stream
+is an internal stream for subvp pipes.
 
-Reviewed-by: Anthony Koo <anthony.koo@amd.com>
+[how]
+Separate subvp pipe topology logging from main pipe topology. Log main
+stream indices instead of the internal stream for subvp pipes.
+The following is a sample log showing 2 streams with subvp enabled on
+both:
+
+   pipe topology update
+ ________________________
+| plane0  slice0  stream0|
+|DPP1----OPP1----OTG1----|
+| plane0  slice0  stream1|
+|DPP0----OPP0----OTG0----|
+|    (phantom pipes)     |
+| plane0  slice0  stream0|
+|DPP3----OPP3----OTG3----|
+| plane0  slice0  stream1|
+|DPP2----OPP2----OTG2----|
+|________________________|
+
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c | 2 +-
- drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c | 2 +-
- drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c | 2 +-
- drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c | 2 +-
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h         | 6 +++++-
- 5 files changed, 9 insertions(+), 5 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 96 +++++++++++++------
+ 1 file changed, 65 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index af3a26c2656b..1f3ddee1ec1b 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -799,7 +799,7 @@ void dcn30_init_hw(struct dc *dc)
- 	// Get DMCUB capabilities
- 	dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv);
- 	dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
--	dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
-+	dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver;
- }
- 
- void dcn30_set_avmute(struct pipe_ctx *pipe_ctx, bool enable)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-index a760f0c6fe98..9ab475a87545 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-@@ -273,7 +273,7 @@ void dcn31_init_hw(struct dc *dc)
- 	// Get DMCUB capabilities
- 	dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv);
- 	dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
--	dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
-+	dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver;
- }
- 
- void dcn31_dsc_pg_control(
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-index 0f522f8a7228..9aea4a088652 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-@@ -953,7 +953,7 @@ void dcn32_init_hw(struct dc *dc)
- 		dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
- 		dc->caps.dmub_caps.subvp_psr = dc->ctx->dmub_srv->dmub->feature_caps.subvp_psr_support;
- 		dc->caps.dmub_caps.gecc_enable = dc->ctx->dmub_srv->dmub->feature_caps.gecc_enable;
--		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
-+		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver;
- 
- 		if (dc->ctx->dmub_srv->dmub->fw_version <
- 		    DMUB_FW_VERSION(7, 0, 35)) {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index 9499295f4582..c2275a8b4ecc 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -349,7 +349,7 @@ void dcn35_init_hw(struct dc *dc)
- 	if (dc->ctx->dmub_srv) {
- 		dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv);
- 		dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
--		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
-+		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch_ver;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 601af21b2df9..c4a3484554b0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -2193,50 +2193,84 @@ static void resource_log_pipe(struct dc *dc, struct pipe_ctx *pipe,
  	}
+ }
  
- 	if (dc->res_pool->pg_cntl) {
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 3bd9911b6f3a..66eff38b9e80 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -97,6 +97,9 @@
- /* Maximum number of planes on any ASIC. */
- #define DMUB_MAX_PLANES 6
+-void resource_log_pipe_topology_update(struct dc *dc, struct dc_state *state)
++static void resource_log_pipe_for_stream(struct dc *dc, struct dc_state *state,
++		struct pipe_ctx *otg_master, int stream_idx)
+ {
+-	struct pipe_ctx *otg_master;
+ 	struct pipe_ctx *opp_heads[MAX_PIPES];
+ 	struct pipe_ctx *dpp_pipes[MAX_PIPES];
  
-+/* Maximum number of phantom planes on any ASIC */
-+#define DMUB_MAX_PHANTOM_PLANES (DMUB_MAX_PLANES) / 2
+-	int stream_idx, slice_idx, dpp_idx, plane_idx, slice_count, dpp_count;
++	int slice_idx, dpp_idx, plane_idx, slice_count, dpp_count;
+ 	bool is_primary;
+ 	DC_LOGGER_INIT(dc->ctx->logger);
+ 
++	slice_count = resource_get_opp_heads_for_otg_master(otg_master,
++			&state->res_ctx, opp_heads);
++	for (slice_idx = 0; slice_idx < slice_count; slice_idx++) {
++		plane_idx = -1;
++		if (opp_heads[slice_idx]->plane_state) {
++			dpp_count = resource_get_dpp_pipes_for_opp_head(
++					opp_heads[slice_idx],
++					&state->res_ctx,
++					dpp_pipes);
++			for (dpp_idx = 0; dpp_idx < dpp_count; dpp_idx++) {
++				is_primary = !dpp_pipes[dpp_idx]->top_pipe ||
++						dpp_pipes[dpp_idx]->top_pipe->plane_state != dpp_pipes[dpp_idx]->plane_state;
++				if (is_primary)
++					plane_idx++;
++				resource_log_pipe(dc, dpp_pipes[dpp_idx],
++						stream_idx, slice_idx,
++						plane_idx, slice_count,
++						is_primary);
++			}
++		} else {
++			resource_log_pipe(dc, opp_heads[slice_idx],
++					stream_idx, slice_idx, plane_idx,
++					slice_count, true);
++		}
 +
- /* Trace buffer offset for entry */
- #define TRACE_BUFFER_ENTRY_OFFSET  16
- 
-@@ -466,7 +469,7 @@ struct dmub_feature_caps {
- 	 * Max PSR version supported by FW.
- 	 */
- 	uint8_t psr;
--	uint8_t fw_assisted_mclk_switch;
-+	uint8_t fw_assisted_mclk_switch_ver;
- 	uint8_t reserved[4];
- 	uint8_t subvp_psr_support;
- 	uint8_t gecc_enable;
-@@ -4667,6 +4670,7 @@ union dmub_rb_cmd {
- 	 * Definition of a DMUB_CMD__PSP_ASSR_ENABLE command.
- 	 */
- 	struct dmub_rb_cmd_assr_enable assr_enable;
++	}
++}
 +
- };
++static int resource_stream_to_stream_idx(struct dc_state *state,
++		struct dc_stream_state *stream)
++{
++	int i, stream_idx = -1;
++
++	for (i = 0; i < state->stream_count; i++)
++		if (state->streams[i] == stream) {
++			stream_idx = i;
++			break;
++		}
++	return stream_idx;
++}
++
++void resource_log_pipe_topology_update(struct dc *dc, struct dc_state *state)
++{
++	struct pipe_ctx *otg_master;
++	int stream_idx, phantom_stream_idx;
++	DC_LOGGER_INIT(dc->ctx->logger);
++
+ 	DC_LOG_DC("    pipe topology update");
+ 	DC_LOG_DC("  ________________________");
+ 	for (stream_idx = 0; stream_idx < state->stream_count; stream_idx++) {
++		if (state->streams[stream_idx]->is_phantom)
++			continue;
++
+ 		otg_master = resource_get_otg_master_for_stream(
+ 				&state->res_ctx, state->streams[stream_idx]);
+-		if (!otg_master	|| otg_master->stream_res.tg == NULL) {
+-			DC_LOG_DC("topology update: otg_master NULL stream_idx %d!\n", stream_idx);
+-			return;
+-		}
+-		slice_count = resource_get_opp_heads_for_otg_master(otg_master,
+-				&state->res_ctx, opp_heads);
+-		for (slice_idx = 0; slice_idx < slice_count; slice_idx++) {
+-			plane_idx = -1;
+-			if (opp_heads[slice_idx]->plane_state) {
+-				dpp_count = resource_get_dpp_pipes_for_opp_head(
+-						opp_heads[slice_idx],
+-						&state->res_ctx,
+-						dpp_pipes);
+-				for (dpp_idx = 0; dpp_idx < dpp_count; dpp_idx++) {
+-					is_primary = !dpp_pipes[dpp_idx]->top_pipe ||
+-							dpp_pipes[dpp_idx]->top_pipe->plane_state != dpp_pipes[dpp_idx]->plane_state;
+-					if (is_primary)
+-						plane_idx++;
+-					resource_log_pipe(dc, dpp_pipes[dpp_idx],
+-							stream_idx, slice_idx,
+-							plane_idx, slice_count,
+-							is_primary);
+-				}
+-			} else {
+-				resource_log_pipe(dc, opp_heads[slice_idx],
+-						stream_idx, slice_idx, plane_idx,
+-						slice_count, true);
+-			}
++		resource_log_pipe_for_stream(dc, state, otg_master, stream_idx);
++	}
++	if (state->phantom_stream_count > 0) {
++		DC_LOG_DC(" |    (phantom pipes)     |");
++		for (stream_idx = 0; stream_idx < state->stream_count; stream_idx++) {
++			if (state->stream_status[stream_idx].mall_stream_config.type != SUBVP_MAIN)
++				continue;
  
- /**
++			phantom_stream_idx = resource_stream_to_stream_idx(state,
++					state->stream_status[stream_idx].mall_stream_config.paired_stream);
++			otg_master = resource_get_otg_master_for_stream(
++					&state->res_ctx, state->streams[phantom_stream_idx]);
++			resource_log_pipe_for_stream(dc, state, otg_master, stream_idx);
+ 		}
+ 	}
+ 	DC_LOG_DC(" |________________________|\n");
 -- 
 2.34.1
 
