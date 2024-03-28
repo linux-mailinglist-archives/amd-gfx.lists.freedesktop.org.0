@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5E58917D8
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Mar 2024 12:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDDA8917D3
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Mar 2024 12:32:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C4B112680;
-	Fri, 29 Mar 2024 11:33:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0BE11267C;
+	Fri, 29 Mar 2024 11:32:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ZThIqaKU";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="a5Q0K7+N";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
  [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A726610F9C4;
- Thu, 28 Mar 2024 14:33:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF68011248D;
+ Thu, 28 Mar 2024 15:17:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1711636401;
- bh=GXX9H4LZpP1x+lXm0nHvyD8Q1f9EJq2u0U0yTui/CM4=;
+ s=mail; t=1711639020;
+ bh=ev5Hj4kowoGeYRtU8OOEaZGkDO3TmD/BhMPV2cKhGRY=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=ZThIqaKUgV9UBNp7pYrqwNNWPQ8SEDcOZT/7dF+8nN8NnwA2VCb/NJ72dv6b+0uVQ
- GJq/ecwksu2ZIjBujqlJd1UxK0Gc4PACY31Sj+jlCxaFAN+Gwls5ZSLpw8fYZvNLJi
- bheyB7saSfWTYMUYdVx6Qh5t0cstqZLb9bFkQtRfOrDkG3GzXu7yhkm0YkktTKeqZU
- vYMDecXxkqyyR324L7VfH+VxiLP2hJN+b02JGJIjsJGQTPdJP+QcCMFRxJGbDmuD3C
- DCdsxYy+vc4f/A4cVKw0ZNu0xMdEBmXA15kYsJT/Jb8UBUf21mhS87rQ9KqmDOxnvT
- UozgOqfJCizmA==
+ b=a5Q0K7+NKN/FtkW1jhlg4mmKBDgzGHyvIdLnGMXbqASDHtQV5XYHKHNI29FmkwPGs
+ KeXZBDXPe3BJBa9C/V5MuMgX5lIX1BTXFgIkh/cHPX4Q4RfLws8YFc2mLbe9Psn2AM
+ 6NQc1+5XLNdz7q5YFOFCVyRVaCa5hT1CW0/Uzt9RpWtp3tRH+Ky8u7N5SDEemZm87W
+ fifGhXzJ2hvbRv82p05p38XDgFVGd1IBeeWdIIkE6ZHaV/348hTf22M4kEjGrQV6SU
+ 2o7vnXuIzT7GPraqgLZPnahhODQziqXVvqX3r7//OtzXAd8nKhch6IB7bX23Uq1JEx
+ 2yiFs4P1L4AWg==
 Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
  server-digest SHA256) (No client certificate requested)
  (Authenticated sender: pq)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id B35A7378211C;
- Thu, 28 Mar 2024 14:33:20 +0000 (UTC)
-Date: Thu, 28 Mar 2024 16:33:11 +0200
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id C4468378211C;
+ Thu, 28 Mar 2024 15:16:59 +0000 (UTC)
+Date: Thu, 28 Mar 2024 17:16:58 +0200
 From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: <sunpeng.li@amd.com>, Marius Vlad <marius.vlad@collabora.com>
+To: <sunpeng.li@amd.com>
 Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
  Joshua Ashton <joshua@froggi.es>, Michel =?UTF-8?B?RMOkbnplcg==?=
  <mdaenzer@redhat.com>, Chao Guo <chao.guo@nxp.com>, Xaver Hugl
@@ -44,14 +44,14 @@ Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
  <contact@emersion.fr>, Shashank Sharma <shashank.sharma@amd.com>, Harry
  Wentland <harry.wentland@amd.com>, "Sebastian Wick"
  <sebastian.wick@redhat.com>
-Subject: Re: [PATCH 0/2] drm/amdgpu/display: Make multi-plane configurations
- more flexible
-Message-ID: <20240328163311.34b58b39.pekka.paalanen@collabora.com>
-In-Reply-To: <20240315170959.165505-1-sunpeng.li@amd.com>
+Subject: Re: [PATCH 1/2] drm/amd/display: Introduce overlay cursor mode
+Message-ID: <20240328171658.25b1ffaf.pekka.paalanen@collabora.com>
+In-Reply-To: <20240315170959.165505-2-sunpeng.li@amd.com>
 References: <20240315170959.165505-1-sunpeng.li@amd.com>
+ <20240315170959.165505-2-sunpeng.li@amd.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/mtPXnjFILmf965yRvrRc6K7";
+Content-Type: multipart/signed; boundary="Sig_/=DZ=rnPVIjFG3hhH3Oi+MHL";
  protocol="application/pgp-signature"; micalg=pgp-sha256
 X-Mailman-Approved-At: Fri, 29 Mar 2024 11:32:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,150 +68,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/mtPXnjFILmf965yRvrRc6K7
-Content-Type: text/plain; charset=UTF-8
+--Sig_/=DZ=rnPVIjFG3hhH3Oi+MHL
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 15 Mar 2024 13:09:56 -0400
+On Fri, 15 Mar 2024 13:09:57 -0400
 <sunpeng.li@amd.com> wrote:
 
 > From: Leo Li <sunpeng.li@amd.com>
 >=20
-> These patches aim to make the amdgpgu KMS driver play nicer with composit=
-ors
-> when building multi-plane scanout configurations. They do so by:
+> [Why]
 >=20
-> 1. Making cursor behavior more sensible.
-> 2. Allowing placement of DRM OVERLAY planes underneath the PRIMARY plane =
-for
->    'underlay' configurations (perhaps more of a RFC, see below).
+> DCN is the display hardware for amdgpu. DRM planes are backed by DCN
+> hardware pipes, which carry pixel data from one end (memory), to the
+> other (output encoder).
 >=20
-> Please see the commit messages for details.
+> Each DCN pipe has the ability to blend in a cursor early on in the
+> pipeline. In other words, there are no dedicated cursor planes in DCN,
+> which makes cursor behavior somewhat unintuitive for compositors.
 >=20
+> For example, if the cursor is in RGB format, but the top-most DRM plane
+> is in YUV format, DCN will not be able to blend them. Because of this,
+> amdgpu_dm rejects all configurations where a cursor needs to be enabled
+> on top of a YUV formatted plane.
 >=20
-> For #2, the simplest way to accomplish this was to increase the value of =
-the
-> immutable zpos property for the PRIMARY plane. This allowed OVERLAY plane=
-s with
-> a mutable zpos range of (0-254) to be positioned underneath the PRIMARY f=
-or an
-> underlay scanout configuration.
+> From a compositor's perspective, when computing an allocation for
+> hardware plane offloading, this cursor-on-yuv configuration result in an
+> atomic test failure. Since the failure reason is not obvious at all,
+> compositors will likely fall back to full rendering, which is not ideal.
 >=20
-> Technically speaking, DCN hardware does not have a concept of primary or =
-overlay
-> planes - there are simply 4 general purpose hardware pipes that can be ma=
-ped in
-> any configuration. So the immutable zpos restriction on the PRIMARY plane=
- is
-> kind of arbitrary; it can have a mutable range of (0-254) just like the
-> OVERLAYs. The distinction between PRIMARY and OVERLAY planes is also some=
-what
-> arbitrary. We can interpret PRIMARY as the first plane that should be ena=
-bled on
-> a CRTC, but beyond that, it doesn't mean much for amdgpu.
->=20
-> Therefore, I'm curious about how compositors devs understand KMS planes a=
-nd
-> their zpos properties, and how we would like to use them. It isn't clear =
-to me
-> how compositors wish to interpret and use the DRM zpos property, or
-> differentiate between OVERLAY and PRIMARY planes, when it comes to settin=
-g up
-> multi-plane scanout.
+> Instead, amdgpu_dm can try to accommodate the cursor-on-yuv
+> configuration by opportunistically reserving a separate DCN pipe just
+> for the cursor. We can refer to this as "overlay cursor mode". It is
+> contrasted with "native cursor mode", where the native DCN per-pipe
+> cursor is used.
 
-You already quoted me on the Weston link, so I don't think I have
-anything to add. Sounds fine to me, and we don't have a standard plane
-arrangement algorithm that the kernel could optimize zpos ranges
-against, yet.
-
-> Ultimately, what I'd like to answer is "What can we do on the KMS driver =
-and DRM
-> plane API side, that can make building multi-plane scanout configurations=
- easier
-> for compositors?" I'm hoping we can converge on something, whether that be
-> updating the existing documentation to better define the usage, or update=
- the
-> API to provide support for something that is lacking.
-
-I think there probably should be a standardised plane arrangement
-algorithm in userspace, because the search space suffers from
-permutational explosion. Either there needs to be very few planes (max
-4 or 5 at-all-possible per CRTC, including shareable ones) for an
-exhaustive search to be feasible, or all planes should be more or less
-equal in capabilities and userspace employs some simplified or
-heuristic search.
-
-If the search algorithm is fixed, then drivers could optimize zpos
-ranges to have the algorithm find a solution faster.
-
-My worry is that userspace already has heuristic search algorithms that
-may start failing if drivers later change their zpos ranges to be more
-optimal for another algorithm.
-
-OTOH, as long as exhaustive search is feasible, then it does not matter
-how DRM drivers set up the zpos ranges.
-
-In any case, the zpos ranges should try to allow all possible plane
-arrangements while minimizing the number of arrangements that won't
-work. The absolute values of zpos are pretty much irrelevant, so I
-think setting one plane to have an immutable zpos is a good idea, even
-if it's not necessary by the driver. That is one less moving part, and
-only the relative ordering between the planes matters.
+I can't comment on the code, but this explanation sounds like a really
+good move!
 
 
 Thanks,
 pq
 
-> Some links to provide context and details:
-> * What is underlay?: https://gitlab.freedesktop.org/emersion/libliftoff/-=
-/issues/76
-> * Discussion on how to implement underlay on Weston: https://gitlab.freed=
-esktop.org/wayland/weston/-/merge_requests/1258#note_2325164
+> [How]
 >=20
-> Cc: Joshua Ashton <joshua@froggi.es>
-> Cc: Michel D=C3=A4nzer <mdaenzer@redhat.com>
-> Cc: Chao Guo <chao.guo@nxp.com>
-> Cc: Xaver Hugl <xaver.hugl@gmail.com>
-> Cc: Vikas Korjani <Vikas.Korjani@amd.com>
-> Cc: Robert Mader <robert.mader@posteo.de>
-> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Simon Ser <contact@emersion.fr>
-> Cc: Shashank Sharma <shashank.sharma@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Sebastian Wick <sebastian.wick@redhat.com>
+> On each crtc, compute whether the cursor plane should be enabled in
+> overlay mode (which currently, is iff the immediate plane below has a
+> YUV format). If it is, mark the CRTC as requesting overlay cursor mode.
 >=20
-> Leo Li (2):
->   drm/amd/display: Introduce overlay cursor mode
->   drm/amd/display: Move PRIMARY plane zpos higher
+> During DC validation, attempt to enable a separate DCN pipe for the
+> cursor if it's in overlay mode. If that fails, or if no overlay mode is
+> requested, then fallback to native mode.
 >=20
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 405 ++++++++++++++++--
+> Signed-off-by: Leo Li <sunpeng.li@amd.com>
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 309 +++++++++++++++---
 >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   7 +
 >  .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   1 +
->  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  28 +-
->  4 files changed, 391 insertions(+), 50 deletions(-)
->=20
+>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  13 +-
+>  4 files changed, 288 insertions(+), 42 deletions(-)
 
-
---Sig_/mtPXnjFILmf965yRvrRc6K7
+--Sig_/=DZ=rnPVIjFG3hhH3Oi+MHL
 Content-Type: application/pgp-signature
 Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmYFf6cACgkQI1/ltBGq
-qqfNtg//TtA5pQDAflmV9sN/T+8XLCcv8OUBqo5JzLWKOqH67QxUrbaMsY+wmHb9
-WcZOSJNKs8Ncmtv1smqELDKy+s0lXIRbef9WtkKXEUkDntuo4OrtkXcMLa4mf04W
-a7XA2zVeKLjANW0a5y87dzx3FEcb2IEmC0p55pTmKEHxBV8BDqHbcpLSQKfkZWkX
-j5aQ+m0hZIqMErJAp4ImzBVLVqFXAIE+A/zl9qvnMgRY/CtkeTqPaUA7iXOzuklB
-L6T6aqP3Dvcz9LOMiAKcwB+wuFJpcXawjSRXTB2xCr15wmRH8KWfbYcR8Tpwrk0t
-iqvAmJEZxbDdbe/j4LFDwJKiKlLpW7G0FCHaInz+aUeo4QDauCtplT+y6w+WfvWv
-zFoQIQElSoOGfnQAMlP6VK1yG/s1jeDROKD/p6FLQPz6N9mN+2Bjvb9SaWByEtnK
-ny7uvnqoi/Lazmc80V0jtgf/Mbl3fxigQrokLXDTEDBkDHysfh0SQJinxsqkndl4
-i0V9rliOGyyV9a64J6Gy0Amxkv5u6JOZlKLnE0msioL6Qhbinq44xBNPIK8b6sMt
-40kOGvE74Adc0slt4kP4Eho9RTaPUc2xR/Y260NMhEsYn3OJ1oR21+6LzVaDuyOG
-eFh1z/DBTTd2rUb4S5r5CEfD8kjcFGEi6/13rrR5ro7Cd5G32vs=
-=K109
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmYFieoACgkQI1/ltBGq
+qqcwBxAAk97QZfBlHlsDuYDhMeAkq/kUmUXdkgvypTAxJndMZXA7fYiNOSAeqrwZ
+XgXfQJF43uIwu+Yhf7R6YW+MK7FB2qdbwXd5gsLBmbdBq0n1j9p1BX6Bg3E4zaaX
+9cw9RuzPvGJ3odvcdpEPFe75bS+d78T6/5S2GG2kTTKC8IMRofLODCARs2AxrpqN
+4qGNqZzjgA462dpP8AJiHUOfDhXX7+nng9fPa5BCpkZYqav20yG9cjGNZZk9ilJ/
+SqPRidpgedZ/8jCgSIFdBUhuT8ht80vWqlkmcQhdS0eTMd/mACq+HuNiDe8aVVDC
+4riOzFoBKpzyjVCrHTSuKoO3yuevfggjZqJVKxOEultSyg7FpDB1B+8YUyU1zYKL
+h4EZO+cCDyIfbl/qeXwcnqazWMPAomsvZaIx7UMH9BwSzR+f/IU9eIWe09dbOIwL
+8gGC0tK+usmMBdMIM6oPFdqB3D377h8x/coQ5rJH2k5c6JJnNeZYel+y01MlHbqp
+6yJOcBW3RU3qV+o7lf1+hsO9ElutneVHiXuiAka8xZcRbO5GxryqhzGR5CbqVhZw
+iHRJBQhwSl55JLkMh4hcE4wUZMrVRFHoY3deNJNLAivIukfsjSz/WqdgZPg2/paE
+xKXBvu8S2vk6f6ohYrmdaEB3wY48CDvmtsYsyFzxC13N7f2P0EM=
+=XkHL
 -----END PGP SIGNATURE-----
 
---Sig_/mtPXnjFILmf965yRvrRc6K7--
+--Sig_/=DZ=rnPVIjFG3hhH3Oi+MHL--
