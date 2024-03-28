@@ -2,77 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC18D8909CE
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 20:51:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3ED8909C7
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Mar 2024 20:51:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83EA310FE85;
-	Thu, 28 Mar 2024 19:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5034710E5AB;
+	Thu, 28 Mar 2024 19:51:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uKfiDYFu";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V8OxZUL2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2064.outbound.protection.outlook.com [40.107.102.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2459D10F4F6
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 19:51:43 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3C510E588
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 19:51:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S83T+0WTiye+iWopIYSaykmn1V/LcQ0WBedyWC18nXBHSHRHeAukq+DbCVSiGklR9OjZEMJOFgvyrGl9hF54J80oiNoDQi5U3XOq4ToIRGeNnu1tGY30hH4kAFQGsUquWzLTSLmWNI0c60TG+AThzv9F7XKqgHL8r4rd9PbkswAM7uyg/IPI6NBGn+I2MQLnJi8tQkan+zR+qPwCIS5wTkBmg4PvTitALRmwpHhTi9rau4d2gZzo9uXL80S73cWKGEsmydJc6lNwfAzOtI6V2eeiIgzKo03wdyrhAh1GVtzj3wYIRERLMSb6oQlDjstMMInKsTalXZNc9dpZApIHRA==
+ b=EKcm9npMB4W84cTPP/DkU5EXpv5cPSFt1dQb2BhFwYQMdQ7n3wg96+612vidIsZRZ39n1/ULRKKxeqWYlwTdQMU4wcERcVVT2Xo6Z3yR8tlCjfKFCfNxX2t1IbwYrPXq1Q69pZX3HJmBCGOYWhhPBJcK8g5/YW2WQoPFr+PzcUUJyQdr5uUc4vZ/Mj8j6c4p0fwxNFAJ9ssHNROKrJGPDXIr/e6MAkey0QekD4wHS5jxuigJGCzp78HYe34SojEbCM6hMCJffEyRl/585x7fl87p50Bj+mrbEXOHU9l99FprwNr9BcWXxDnEOt+FkwRG3GxFlm/0/y4CJBmv2YkiIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cIMCRvZaxdMmMTvLiHbifvu1nYYpGRcHz4Ynv1wUgHY=;
- b=NidShM2GkCw5zRQ3118EcMiw9h8Wn23UBfSZg2TDurDzqI+gUW2pZH3EuKeOh1ITsskBdO+Xb6YpGn62w8HJYGg77P/0v4MRP78CngGCXdHzgC8exKa0BVFJl3GksN10rMVOUb7jzVcJqUejHAGJEOr0nt/w46b8r0CpXKL+Xsn9RTwTLREFfSsSTJpPz2JCKiS//m38g59WvuDaB2LPnOPc3xUqGUHO3uXEb5Pdg9ceqJQm+F9qm6B6iOi6CaYkqHTmP3zESZTsRNWpAExUX4zJ4sSatnO9fN/E1xwaBfrxtOPgYVwSm/hPwJoXLKG4/P6nIS8m3jTHaUVm0FDLIw==
+ bh=vHJspUUnpdQlltNbuxVqU7Se8dmp70v9a656UImNjxM=;
+ b=RGkPEfY6En9mR2pJ/zJ7F4ljsBXwILxLb9Dm/2kPKYyI3+EgB3ZdrAy/5jIhkKr2Z7yKj18uBUFQZvILuLUrqX8jYZtDhJXY9WOPDfuLwAHvKCitqEWVSR08To0ngF5nUSFr3HoHiAL6tkEHGdK84TVp79v8L/LCXRWoGE7xiZqNRXF8/N0RdZ8D5+gD0RTwHm3pao8m3wvJHVVAofWKnlzYXmt0o3yR9Gu+H63J/GqYTPxyQV/dv0Au3Ssfm64BFTJLuXrZ1BQaFoQP0NJrzx3gDdXmEjCp8tJwCCDlBTTfI9B+Y0UrxhYMiKNLBBRhCQkeik42N5GYkvM8L3ScbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cIMCRvZaxdMmMTvLiHbifvu1nYYpGRcHz4Ynv1wUgHY=;
- b=uKfiDYFuzl8J4uVLZP/H2DabVSouwqqzEf11OSSRGCBqq7WsNLkCVc40LOkaJZ8qX2lklcyY+sGDrn7nXRlH6hl6GND88lPfJblJnocLDjyphKVSRc32fKMOOQeOv2IYZQuDs7ii3xK0DKnUQEPF1l3zEvA8HszjrnKq1bEqARI=
-Received: from SJ0PR03CA0345.namprd03.prod.outlook.com (2603:10b6:a03:39c::20)
- by SN7PR12MB7955.namprd12.prod.outlook.com (2603:10b6:806:34d::17)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=vHJspUUnpdQlltNbuxVqU7Se8dmp70v9a656UImNjxM=;
+ b=V8OxZUL2BJJitjRTn+rDh6X7rir/TSJTPV4I8uQwNy+MrMzJ86Wylf39JLXpwIQWF2NxFJ+9g4+/zwC5P/ooT1esLOCbODjiJClqSwP18VWc4ll1t+0r6v64wJ4oEH332PPPf1gjP1UKR5/hVRj78A+Exrb2IzBh5LpfAk4BJVQ=
+Received: from CH2PR11CA0009.namprd11.prod.outlook.com (2603:10b6:610:54::19)
+ by DM3PR12MB9415.namprd12.prod.outlook.com (2603:10b6:8:1ac::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Thu, 28 Mar
- 2024 19:51:37 +0000
-Received: from CO1PEPF000042AE.namprd03.prod.outlook.com
- (2603:10b6:a03:39c:cafe::6c) by SJ0PR03CA0345.outlook.office365.com
- (2603:10b6:a03:39c::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
- Transport; Thu, 28 Mar 2024 19:51:37 +0000
+ 2024 19:51:38 +0000
+Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
+ (2603:10b6:610:54:cafe::ad) by CH2PR11CA0009.outlook.office365.com
+ (2603:10b6:610:54::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.26 via Frontend
+ Transport; Thu, 28 Mar 2024 19:51:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042AE.mail.protection.outlook.com (10.167.243.43) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Thu, 28 Mar 2024 19:51:37 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7409.10 via Frontend Transport; Thu, 28 Mar 2024 19:51:38 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 28 Mar
- 2024 14:51:35 -0500
+ 2024 14:51:36 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 28 Mar
  2024 14:51:35 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 28 Mar 2024 14:51:34 -0500
+ Transport; Thu, 28 Mar 2024 14:51:35 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
  <Sunpeng.Li@amd.com>, <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, 
  <roman.li@amd.com>, <wayne.lin@amd.com>, <solomon.chiu@amd.com>,
- <agustin.gutierrez@amd.com>, <hamza.mahfooz@amd.com>, Hersen Wu
- <hersenxs.wu@amd.com>
-Subject: [PATCH 08/43] drm/amd/display: FEC overhead should be checked once
- for mst slot nums
-Date: Thu, 28 Mar 2024 15:50:12 -0400
-Message-ID: <20240328195047.2843715-9-Roman.Li@amd.com>
+ <agustin.gutierrez@amd.com>, <hamza.mahfooz@amd.com>, Joshua Aberback
+ <joshua.aberback@amd.com>, Dillon Varone <dillon.varone@amd.com>
+Subject: [PATCH 09/43] drm/amd/display: handle invalid connector indices
+Date: Thu, 28 Mar 2024 15:50:13 -0400
+Message-ID: <20240328195047.2843715-10-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240328195047.2843715-1-Roman.Li@amd.com>
 References: <20240328195047.2843715-1-Roman.Li@amd.com>
@@ -83,26 +82,26 @@ Received-SPF: None (SATLEXMB05.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042AE:EE_|SN7PR12MB7955:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14276b70-dcd6-4433-5c4d-08dc4f607aca
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|DM3PR12MB9415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40bd28bb-34a6-416f-2619-08dc4f607b2b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QZVRhSg/2bW+/vsh1MIRn40OcOM4xC9cPvbRgHj1rGY7JY8Ew8Kow4xvCWPEBWZSYv++NMJXPhtIaQyuIqrzwwGZg/aje6TVgWBt94pEClwBSZSz/e2iWCXfBooDRffODLtY9cd1qECDUvEN75ZSsJ21qkk6Oi+VTf4q5aiankAI+/XruBTZ3CmVMeSx5drNhxQxg5hLZVVaID9dLHkEJz8WGt4Ywx7Xp4sK07IdU6WYf2W47vFaLUcGTkSdsotO5aQMrIEAfESmXr298slGnYbsl2vOZlLgSzxj9Y+7RCV+u6kaHB47TZVWcWtPx9xQqhuttp7osj8wtvKH+XTccHV4sPC530KvG2iRFNbTsjtcMyydv1TjqDcX1XMTbv/nm23EEfc6SLvYQwqdFulxR8WD+GIPklAcC5B/fKyIlkNR2fcv54tezXnIVv9FkrY6NZJSmbZSiw5Fl+Q23Cgro29LoyWRl/UPeaOIVyXmzLZECzR5gu/4Pgv1oJloajLHm4pOYLM8DVf0aA7ZxBG+y/vmUrsSc2dlaqRxPkMpAbFqPnjQ/EkTHLCcN3sqXU3Xl3JjQMuh9ihHRVjC54vqHaEixwSvSuIRpdHatJahtbeIRulK8Xm468FXQr40T9Tb7IC0H7x++NE1O4tCj40nVtN6ak5IXKffJEsRehUDqt7pEMyaYNPOZdfXfJ5wdwC0r5DmuV186TbZ5knz3SyJirvChuvDSaqt7QP2jvXugiiF8OmUsGNAXsK98GUN8hC/
+X-Microsoft-Antispam-Message-Info: JYJLA7SMxZSJzvdF6F0Y4nPeIMTMRvj20FE7dbYOKNO5oL9kloR9akTIwO2VGJECxLXtkJJipHr//HmA+d0MuiyeVBpZEl0Bdkb1bEY3MHzm/u98oCk1p2JHuJzPCIeejucexgex3CQQY53mICkSMJwHKY5bv8AurNAR2p3JHKjU8ZCWXzsVSSjMFf5hLr6wyjygFxSao3W6WOYLmYDnKu7IxcpGqjXiJsppIh7cXkrUovR+9euBOdXnhydkPjN7NVxtL/yyAAnw8momIuiiOAcaS67qancEYZVodhAxcAjirFs/ZMMZnmZ3/WRL5rLbYuhMmtdxUU9/Mvo6i2He6zD3pvilNfOxynnLqlLA5RVZ+KSBZVXFBdUTy9cK6t8b3g9+5/je62VHv0GZ3pU3fZJ0eGdrOWWyjwsMHDwKO2ZlFepmu8f/iIEI0dTS7sNed256hbAxuz2VTF/KdoMGGDWrqeommYPxuqA9/qkxjL9OxwEBedPhQEoHvaPsruc4bewYfeZcySe4ro3xavNB2ovweiqXBh6PoafD1kdMw0zCJqyTA1ENalerg8ZqFO358Q5L1gIGc0FrQSn+1R6hIm8tCMsavy9TroFE9J9XLMsr6v5v24KkCgIzj8kZFiAMHDrKiCeXRRINlibZgMk30Nx3LlKw+VzObk4sorj0cqBGwgtRUOA82yY9ozTBxXhbka1zGGexWeewqRKYcUDPvrxmT8k+90boCceOBleTEukmPQ1ZLBtfsBehQ+HuLC8u
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(36860700004)(82310400014); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(36860700004)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 19:51:37.3117 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14276b70-dcd6-4433-5c4d-08dc4f607aca
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 19:51:38.0397 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40bd28bb-34a6-416f-2619-08dc4f607b2b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AE.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7955
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,166 +116,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hersen Wu <hersenxs.wu@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
-[Why] Mst slot nums equals to pbn / pbn_div.
+[Why]
+The function to count the number of valid connectors does not
+guarantee that the first n indices are valid, only that there
+exist n valid indices. When invalid indices are present, this
+results in later valid connectors being missed, as processing
+would end after checking n indices.
 
-Today, pbn_div refers to dm_mst_get_pbn_divider ->
-dc_link_bandwidth_kbps. In dp_link_bandwidth_kbps,
-which includes effect of FEC overhead already. As
-result, we should not include effect of FEC overhead
-again while calculating pbn by kpbs_to_peak_pbn
-(stream_kbps).
+[How]
+ - count valid indices separately from total indices examined
+ - add explicit definition of MAX_LINKS
 
-[How] Include FEC overhead within dp_link_bandwidth_kbps.
-Remove FEC overhead from kbps_to_peak_pbn.
-
-Reviewed-by: Wayne Lin <wayne.lin@amd.com>
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Hersen Wu <hersenxs.wu@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
 Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 ---
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 37 +++++--------------
- .../display/amdgpu_dm/amdgpu_dm_mst_types.h   |  3 --
- 2 files changed, 10 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  | 2 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c     | 2 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  | 2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c                      | 3 ++-
+ drivers/gpu/drm/amd/display/dc/dc.h                           | 2 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h      | 2 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h             | 1 +
+ .../gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c   | 4 ++--
+ 8 files changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index ad3170b72a47..0b03e659fdf3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -791,25 +791,12 @@ struct dsc_mst_fairness_params {
- 	struct amdgpu_dm_connector *aconnector;
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+index 5ee87965a078..bb4f3bd7532e 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+@@ -503,7 +503,7 @@ static void dcn2_notify_link_rate_change(struct clk_mgr *clk_mgr_base, struct dc
  
--static uint16_t get_fec_overhead_multiplier(struct dc_link *dc_link)
--{
--	u8 link_coding_cap;
--	uint16_t fec_overhead_multiplier_x1000 = PBN_FEC_OVERHEAD_MULTIPLIER_8B_10B;
--
--	link_coding_cap = dc_link_dp_mst_decide_link_encoding_format(dc_link);
--	if (link_coding_cap == DP_128b_132b_ENCODING)
--		fec_overhead_multiplier_x1000 = PBN_FEC_OVERHEAD_MULTIPLIER_128B_132B;
--
--	return fec_overhead_multiplier_x1000;
--}
--
--static int kbps_to_peak_pbn(int kbps, uint16_t fec_overhead_multiplier_x1000)
-+static int kbps_to_peak_pbn(int kbps)
- {
- 	u64 peak_kbps = kbps;
+ 	clk_mgr->cur_phyclk_req_table[link->link_index] = link->cur_link_settings.link_rate * LINK_RATE_REF_FREQ_IN_KHZ;
  
- 	peak_kbps *= 1006;
--	peak_kbps *= fec_overhead_multiplier_x1000;
--	peak_kbps = div_u64(peak_kbps, 1000 * 1000);
-+	peak_kbps = div_u64(peak_kbps, 1000);
- 	return (int) DIV64_U64_ROUND_UP(peak_kbps * 64, (54 * 8 * 1000));
- }
+-	for (i = 0; i < MAX_PIPES * 2; i++) {
++	for (i = 0; i < MAX_LINKS; i++) {
+ 		if (clk_mgr->cur_phyclk_req_table[i] > max_phyclk_req)
+ 			max_phyclk_req = clk_mgr->cur_phyclk_req_table[i];
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index e3e1940198a9..f65bb4c21b7d 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -548,7 +548,7 @@ static void rn_notify_link_rate_change(struct clk_mgr *clk_mgr_base, struct dc_l
  
-@@ -910,12 +897,11 @@ static int increase_dsc_bpp(struct drm_atomic_state *state,
- 	int link_timeslots_used;
- 	int fair_pbn_alloc;
- 	int ret = 0;
--	uint16_t fec_overhead_multiplier_x1000 = get_fec_overhead_multiplier(dc_link);
+ 	clk_mgr->cur_phyclk_req_table[link->link_index] = link->cur_link_settings.link_rate * LINK_RATE_REF_FREQ_IN_KHZ;
  
- 	for (i = 0; i < count; i++) {
- 		if (vars[i + k].dsc_enabled) {
- 			initial_slack[i] =
--			kbps_to_peak_pbn(params[i].bw_range.max_kbps, fec_overhead_multiplier_x1000) - vars[i + k].pbn;
-+			kbps_to_peak_pbn(params[i].bw_range.max_kbps) - vars[i + k].pbn;
- 			bpp_increased[i] = false;
- 			remaining_to_increase += 1;
- 		} else {
-@@ -1011,7 +997,6 @@ static int try_disable_dsc(struct drm_atomic_state *state,
- 	int next_index;
- 	int remaining_to_try = 0;
- 	int ret;
--	uint16_t fec_overhead_multiplier_x1000 = get_fec_overhead_multiplier(dc_link);
+-	for (i = 0; i < MAX_PIPES * 2; i++) {
++	for (i = 0; i < MAX_LINKS; i++) {
+ 		if (clk_mgr->cur_phyclk_req_table[i] > max_phyclk_req)
+ 			max_phyclk_req = clk_mgr->cur_phyclk_req_table[i];
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+index 3271c8c7905d..4cb0db0ed92f 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+@@ -474,7 +474,7 @@ static void dcn30_notify_link_rate_change(struct clk_mgr *clk_mgr_base, struct d
  
- 	for (i = 0; i < count; i++) {
- 		if (vars[i + k].dsc_enabled
-@@ -1041,7 +1026,7 @@ static int try_disable_dsc(struct drm_atomic_state *state,
- 		if (next_index == -1)
- 			break;
+ 	clk_mgr->cur_phyclk_req_table[link->link_index] = link->cur_link_settings.link_rate * LINK_RATE_REF_FREQ_IN_KHZ;
  
--		vars[next_index].pbn = kbps_to_peak_pbn(params[next_index].bw_range.stream_kbps, fec_overhead_multiplier_x1000);
-+		vars[next_index].pbn = kbps_to_peak_pbn(params[next_index].bw_range.stream_kbps);
- 		ret = drm_dp_atomic_find_time_slots(state,
- 						    params[next_index].port->mgr,
- 						    params[next_index].port,
-@@ -1054,7 +1039,8 @@ static int try_disable_dsc(struct drm_atomic_state *state,
- 			vars[next_index].dsc_enabled = false;
- 			vars[next_index].bpp_x16 = 0;
- 		} else {
--			vars[next_index].pbn = kbps_to_peak_pbn(params[next_index].bw_range.max_kbps, fec_overhead_multiplier_x1000);
-+			vars[next_index].pbn = kbps_to_peak_pbn(
-+				params[next_index].bw_range.max_kbps);
- 			ret = drm_dp_atomic_find_time_slots(state,
- 							    params[next_index].port->mgr,
- 							    params[next_index].port,
-@@ -1083,7 +1069,6 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 	int count = 0;
- 	int i, k, ret;
- 	bool debugfs_overwrite = false;
--	uint16_t fec_overhead_multiplier_x1000 = get_fec_overhead_multiplier(dc_link);
+-	for (i = 0; i < MAX_PIPES * 2; i++) {
++	for (i = 0; i < MAX_LINKS; i++) {
+ 		if (clk_mgr->cur_phyclk_req_table[i] > max_phyclk_req)
+ 			max_phyclk_req = clk_mgr->cur_phyclk_req_table[i];
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 667655d0e5b9..c3510cdd0ec8 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -212,7 +212,8 @@ static bool create_links(
+ 		connectors_num,
+ 		num_virtual_links);
  
- 	memset(params, 0, sizeof(params));
+-	for (i = 0; i < connectors_num; i++) {
++	// condition loop on link_count to allow skipping invalid indices
++	for (i = 0; dc->link_count < connectors_num && i < MAX_LINKS; i++) {
+ 		struct link_init_data link_init_params = {0};
+ 		struct dc_link *link;
  
-@@ -1148,7 +1133,7 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 	/* Try no compression */
- 	for (i = 0; i < count; i++) {
- 		vars[i + k].aconnector = params[i].aconnector;
--		vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.stream_kbps, fec_overhead_multiplier_x1000);
-+		vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.stream_kbps);
- 		vars[i + k].dsc_enabled = false;
- 		vars[i + k].bpp_x16 = 0;
- 		ret = drm_dp_atomic_find_time_slots(state, params[i].port->mgr, params[i].port,
-@@ -1167,7 +1152,7 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 	/* Try max compression */
- 	for (i = 0; i < count; i++) {
- 		if (params[i].compression_possible && params[i].clock_force_enable != DSC_CLK_FORCE_DISABLE) {
--			vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.min_kbps, fec_overhead_multiplier_x1000);
-+			vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.min_kbps);
- 			vars[i + k].dsc_enabled = true;
- 			vars[i + k].bpp_x16 = params[i].bw_range.min_target_bpp_x16;
- 			ret = drm_dp_atomic_find_time_slots(state, params[i].port->mgr,
-@@ -1175,7 +1160,7 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 			if (ret < 0)
- 				return ret;
- 		} else {
--			vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.stream_kbps, fec_overhead_multiplier_x1000);
-+			vars[i + k].pbn = kbps_to_peak_pbn(params[i].bw_range.stream_kbps);
- 			vars[i + k].dsc_enabled = false;
- 			vars[i + k].bpp_x16 = 0;
- 			ret = drm_dp_atomic_find_time_slots(state, params[i].port->mgr,
-@@ -1656,13 +1641,11 @@ enum dc_status dm_dp_mst_is_port_support_mode(
- 		 */
- 		int pbn_div, slot_num, max_slot_num;
- 		enum dc_link_encoding_format link_encoding;
--		uint16_t fec_overhead_multiplier_x1000 =
--			get_fec_overhead_multiplier(stream->link);
- 		uint32_t stream_kbps =
- 			dc_bandwidth_in_kbps_from_timing(&stream->timing,
- 				dc_link_get_highest_encoding_format(stream->link));
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 29fd8daa9d15..3ed41cf6a59d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1327,7 +1327,7 @@ struct dc {
+ 	struct dc_phy_addr_space_config vm_pa_config;
  
--		pbn = kbps_to_peak_pbn(stream_kbps, fec_overhead_multiplier_x1000);
-+		pbn = kbps_to_peak_pbn(stream_kbps);
- 		pbn_div = dm_mst_get_pbn_divider(stream->link);
- 		slot_num = DIV_ROUND_UP(pbn, pbn_div);
+ 	uint8_t link_count;
+-	struct dc_link *links[MAX_PIPES * 2];
++	struct dc_link *links[MAX_LINKS];
+ 	struct link_service *link_srv;
  
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-index 37c820ab0fdb..fa84d34b7373 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-@@ -46,9 +46,6 @@
- #define SYNAPTICS_CASCADED_HUB_ID  0x5A
- #define IS_SYNAPTICS_CASCADED_PANAMERA(devName, data) ((IS_SYNAPTICS_PANAMERA(devName) && ((int)data[2] == SYNAPTICS_CASCADED_HUB_ID)) ? 1 : 0)
+ 	struct dc_state *current_state;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+index f4d4a68c91dc..4ba18ea57aad 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
+@@ -349,7 +349,7 @@ struct clk_mgr_internal {
+ 	enum dm_pp_clocks_state cur_min_clks_state;
+ 	bool periodic_retraining_disabled;
  
--#define PBN_FEC_OVERHEAD_MULTIPLIER_8B_10B	1031
--#define PBN_FEC_OVERHEAD_MULTIPLIER_128B_132B	1000
--
- enum mst_msg_ready_type {
- 	NONE_MSG_RDY_EVENT = 0,
- 	DOWN_REP_MSG_RDY_EVENT = 1,
+-	unsigned int cur_phyclk_req_table[MAX_PIPES * 2];
++	unsigned int cur_phyclk_req_table[MAX_LINKS];
+ 
+ 	bool smu_present;
+ 	void *wm_range_table;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
+index c1835ad6550f..c80ebb407add 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
+@@ -44,6 +44,7 @@
+  */
+ #define MAX_PIPES 6
+ #define MAX_PHANTOM_PIPES (MAX_PIPES / 2)
++#define MAX_LINKS (MAX_PIPES * 2)
+ #define MAX_DIG_LINK_ENCODERS 7
+ #define MAX_DWB_PIPES	1
+ #define MAX_HPO_DP2_ENCODERS	4
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+index 5491b707cec8..68a8fd7f84d0 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+@@ -166,7 +166,7 @@ static uint8_t get_lowest_dpia_index(struct dc_link *link)
+ 	uint8_t idx = 0xFF;
+ 	int i;
+ 
+-	for (i = 0; i < MAX_PIPES * 2; ++i) {
++	for (i = 0; i < MAX_LINKS; ++i) {
+ 
+ 		if (!dc_struct->links[i] ||
+ 				dc_struct->links[i]->ep_type != DISPLAY_ENDPOINT_USB4_DPIA)
+@@ -196,7 +196,7 @@ static int get_host_router_total_dp_tunnel_bw(const struct dc *dc, uint8_t hr_in
+ 	struct dc_link *link_dpia_primary, *link_dpia_secondary;
+ 	int total_bw = 0;
+ 
+-	for (uint8_t i = 0; i < (MAX_PIPES * 2) - 1; ++i) {
++	for (uint8_t i = 0; i < MAX_LINKS - 1; ++i) {
+ 
+ 		if (!dc->links[i] || dc->links[i]->ep_type != DISPLAY_ENDPOINT_USB4_DPIA)
+ 			continue;
 -- 
 2.34.1
 
