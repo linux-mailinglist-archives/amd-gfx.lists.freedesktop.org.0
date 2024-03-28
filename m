@@ -2,97 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609698916A9
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Mar 2024 11:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5E58917D8
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Mar 2024 12:33:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB434112635;
-	Fri, 29 Mar 2024 10:21:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C4B112680;
+	Fri, 29 Mar 2024 11:33:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SCyQpvmj";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ZThIqaKU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2049.outbound.protection.outlook.com [40.107.96.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA59A112637
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 10:21:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZKapShWTNnn1uSaSfRKVomq/MZyguWqUbJLCR9/KY9rDsvLISrSozZF1JFQ5oUBUG6Ot9IR/fTnsIdMHDBXZi3okeEACHTMtFDU2OveKZcOHT3wJaD1SVamrrNTh2rdYCGywXHWiH0joQNjLkHPUUzsUbkJuZ60rxxR+h+WFfJz/WjXLkyVsg1D0VdY18Ih6IsFe50S15xfqak92hHeSc+qitBvad0HWFb84Q7bB7ecGiVfZL7YAX/vxs60/jp+3+i2hks+xyN29ml1XMz9/DfxxwW9lKOQTL+m0BM05QNYp1OXvV95ANqAbPfm+H4hsU8w9VFF4O3BnW46TLfpPuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5SvEqTYbZ2cPE33xh6cIqiIaypB5uNNm3F2GbKja2bg=;
- b=ZZlY8OXDWrfYS2MMpi/kzLdtkrU7JiYqzUhUUwQclSB/Wr2m/LLZLGnfFOeBpfTNdyMgelSlB8LFSEDP2i3I/XXJjPO+N9DfmhILLearNygEk47sNkz9/rCkOPWGyVW83R429+PdGcTio87L7EVhOYI9Q+r4PuRPHrVIM5J9Ogdr0spw0IIt8hHfdpxwYTcHmf3CQMQNYXM/fWFGGEG9lj000N4lzZov6ji87UzWsB/tpm/8yohUpblmbwnB9IjWZGOX4LEj/FgoJyOTKrQRWMVJAh3PlLrIpmHZNY7qXNbTPhWG0Yyp9QqBpx+YZrXbk9/CNhChJ4oENzCgJbUs7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5SvEqTYbZ2cPE33xh6cIqiIaypB5uNNm3F2GbKja2bg=;
- b=SCyQpvmjUsXI68ffZOn65eZSWDonCj/x2I8FLDcwr+00NuqhKI/DjN197uBqrsjJGfWBP7mjKL9hQoMCOCiuMAmPpL/eYnOVNsZy1llfx6KJrc9WCg+M/3nNMzmoW/cFpsDwSyrPlez5j0n1BWjFum56Ux2ajgfnp0Ngmluxhjg=
-Received: from BYAPR02CA0023.namprd02.prod.outlook.com (2603:10b6:a02:ee::36)
- by CH3PR12MB8726.namprd12.prod.outlook.com (2603:10b6:610:17b::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Fri, 29 Mar
- 2024 10:21:03 +0000
-Received: from SJ1PEPF00001CDF.namprd05.prod.outlook.com
- (2603:10b6:a02:ee:cafe::c9) by BYAPR02CA0023.outlook.office365.com
- (2603:10b6:a02:ee::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
- Transport; Fri, 29 Mar 2024 10:21:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CDF.mail.protection.outlook.com (10.167.242.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Fri, 29 Mar 2024 10:21:02 +0000
-Received: from jenkins-mali-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 29 Mar
- 2024 05:21:00 -0500
-From: Li Ma <li.ma@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <richard.gong@amd.com>,
- <yifan1.zhang@amd.com>, Basavaraj Natikar <Basavaraj.Natikar@amd.com>
-Subject: [PATCH 8/8] HID: amd_sfh: Extend MP2 register access to SFH
-Date: Fri, 29 Mar 2024 18:17:50 +0800
-Message-ID: <20240329101748.3961982-8-li.ma@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240329101748.3961982-1-li.ma@amd.com>
-References: <20240329101748.3961982-1-li.ma@amd.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A726610F9C4;
+ Thu, 28 Mar 2024 14:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1711636401;
+ bh=GXX9H4LZpP1x+lXm0nHvyD8Q1f9EJq2u0U0yTui/CM4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ZThIqaKUgV9UBNp7pYrqwNNWPQ8SEDcOZT/7dF+8nN8NnwA2VCb/NJ72dv6b+0uVQ
+ GJq/ecwksu2ZIjBujqlJd1UxK0Gc4PACY31Sj+jlCxaFAN+Gwls5ZSLpw8fYZvNLJi
+ bheyB7saSfWTYMUYdVx6Qh5t0cstqZLb9bFkQtRfOrDkG3GzXu7yhkm0YkktTKeqZU
+ vYMDecXxkqyyR324L7VfH+VxiLP2hJN+b02JGJIjsJGQTPdJP+QcCMFRxJGbDmuD3C
+ DCdsxYy+vc4f/A4cVKw0ZNu0xMdEBmXA15kYsJT/Jb8UBUf21mhS87rQ9KqmDOxnvT
+ UozgOqfJCizmA==
+Received: from eldfell (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id B35A7378211C;
+ Thu, 28 Mar 2024 14:33:20 +0000 (UTC)
+Date: Thu, 28 Mar 2024 16:33:11 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: <sunpeng.li@amd.com>, Marius Vlad <marius.vlad@collabora.com>
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ Joshua Ashton <joshua@froggi.es>, Michel =?UTF-8?B?RMOkbnplcg==?=
+ <mdaenzer@redhat.com>, Chao Guo <chao.guo@nxp.com>, Xaver Hugl
+ <xaver.hugl@gmail.com>, Vikas Korjani <Vikas.Korjani@amd.com>, Robert Mader
+ <robert.mader@posteo.de>, "Sean Paul" <sean@poorly.run>, Simon Ser
+ <contact@emersion.fr>, Shashank Sharma <shashank.sharma@amd.com>, Harry
+ Wentland <harry.wentland@amd.com>, "Sebastian Wick"
+ <sebastian.wick@redhat.com>
+Subject: Re: [PATCH 0/2] drm/amdgpu/display: Make multi-plane configurations
+ more flexible
+Message-ID: <20240328163311.34b58b39.pekka.paalanen@collabora.com>
+In-Reply-To: <20240315170959.165505-1-sunpeng.li@amd.com>
+References: <20240315170959.165505-1-sunpeng.li@amd.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDF:EE_|CH3PR12MB8726:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc421887-257e-4e0b-55c6-08dc4fd9efc0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BBRDlqhGK4qrtyKs3ckrf8AWgNG7akZRI11cimL+GksP4jpa/E23STsxZEHYKT2lDlKRjJk7k4WrAYVl2qdKkCfk5TO508hywS+g87iORA6Tm/QxZ7ydZbOyhHTbYtzzjPbPMJNXuVhVSta4oY66/8cAnKJ9b6UEvWnVeMxWyb+/gukxFz9RQTCCnokZ0HCt3kcP+H9PzSD8/Blz7rCL4kHssiWe+Lfrx8U2XgHMdxoI3J3h71fAdl8Z7Ig9TiccacctngWuHUKcaHVfdlqQn47hg3jiWMIJreX0TgZgNRdj5nYA2szauyUNXMTGxg7cVsUgbVHdp4nxLGFUp1t+xVJdA8V8Vljc3m+8qU+1rLXlwOXO7dqkXNz5KyiNOiAY+HnsYBwdA02xzY+zWjKHNwP/vloKdA5ZPhsePlueexq860/XiNFxfNDW4/qnQ1RPwEIVWGFbhZd/UVQrZwYjB76uEP1b8Y0pratxogg1ko/B8GUPFYZ6J7M9SP3vZLULFXOhxXWor+FNvB+8TsMqg+xmWEu8NpCz8TKkTXp04gWj2dj9Uq5VT8+U6vDJlqWVoMvPXDiFYoGQTPGZPkNq1rfxWO5AR216hZ2RIqx5nmKGwqt5WmwIJiUXL5QWtmwnyJJEdxhYBrNBdw0chBwWeezeSa6cxgXUa+/hFP0EQDpOm+2nkLmmr6Vs9Bdn5gSdbfl2judZ1gwGSAI2FGrHjxx70xnQab5/0mg43umU1KPpPCtXQgGqqoNOPMhzjWkr
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(82310400014)(36860700004)(1800799015); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 10:21:02.7531 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc421887-257e-4e0b-55c6-08dc4fd9efc0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8726
+Content-Type: multipart/signed; boundary="Sig_/mtPXnjFILmf965yRvrRc6K7";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Fri, 29 Mar 2024 11:32:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,162 +68,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Basavaraj Natikar <Basavaraj.Natikar@amd.com>
+--Sig_/mtPXnjFILmf965yRvrRc6K7
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Various MP2 register sets are supported by newer processors. Therefore,
-extend MP2 register access to SFH.
+On Fri, 15 Mar 2024 13:09:56 -0400
+<sunpeng.li@amd.com> wrote:
 
-Signed-off-by: Basavaraj Natikar <Basavaraj.Natikar@amd.com>
-(cherry picked from commit 92e38c2b7ea7c7ef77a55cce3c312b9377761990)
----
- drivers/hid/amd-sfh-hid/amd_sfh_common.h           | 14 ++++++++++++++
- drivers/hid/amd-sfh-hid/amd_sfh_pcie.c             |  9 ++++++---
- drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_desc.c      |  2 +-
- drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_init.c      |  4 ++--
- drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_interface.c | 10 +++++-----
- 5 files changed, 28 insertions(+), 11 deletions(-)
+> From: Leo Li <sunpeng.li@amd.com>
+>=20
+> These patches aim to make the amdgpgu KMS driver play nicer with composit=
+ors
+> when building multi-plane scanout configurations. They do so by:
+>=20
+> 1. Making cursor behavior more sensible.
+> 2. Allowing placement of DRM OVERLAY planes underneath the PRIMARY plane =
+for
+>    'underlay' configurations (perhaps more of a RFC, see below).
+>=20
+> Please see the commit messages for details.
+>=20
+>=20
+> For #2, the simplest way to accomplish this was to increase the value of =
+the
+> immutable zpos property for the PRIMARY plane. This allowed OVERLAY plane=
+s with
+> a mutable zpos range of (0-254) to be positioned underneath the PRIMARY f=
+or an
+> underlay scanout configuration.
+>=20
+> Technically speaking, DCN hardware does not have a concept of primary or =
+overlay
+> planes - there are simply 4 general purpose hardware pipes that can be ma=
+ped in
+> any configuration. So the immutable zpos restriction on the PRIMARY plane=
+ is
+> kind of arbitrary; it can have a mutable range of (0-254) just like the
+> OVERLAYs. The distinction between PRIMARY and OVERLAY planes is also some=
+what
+> arbitrary. We can interpret PRIMARY as the first plane that should be ena=
+bled on
+> a CRTC, but beyond that, it doesn't mean much for amdgpu.
+>=20
+> Therefore, I'm curious about how compositors devs understand KMS planes a=
+nd
+> their zpos properties, and how we would like to use them. It isn't clear =
+to me
+> how compositors wish to interpret and use the DRM zpos property, or
+> differentiate between OVERLAY and PRIMARY planes, when it comes to settin=
+g up
+> multi-plane scanout.
 
-diff --git a/drivers/hid/amd-sfh-hid/amd_sfh_common.h b/drivers/hid/amd-sfh-hid/amd_sfh_common.h
-index ef5551c1eec5..e5620d7db569 100644
---- a/drivers/hid/amd-sfh-hid/amd_sfh_common.h
-+++ b/drivers/hid/amd-sfh-hid/amd_sfh_common.h
-@@ -19,6 +19,9 @@
- #define AMD_C2P_MSG(regno) (0x10500 + ((regno) * 4))
- #define AMD_P2C_MSG(regno) (0x10680 + ((regno) * 4))
- 
-+#define AMD_C2P_MSG_V1(regno) (0x10900 + ((regno) * 4))
-+#define AMD_P2C_MSG_V1(regno) (0x10500 + ((regno) * 4))
-+
- #define SENSOR_ENABLED			4
- #define SENSOR_DISABLED			5
- 
-@@ -55,6 +58,7 @@ struct amd_mp2_dev {
- 	struct sfh_dev_status dev_en;
- 	struct work_struct work;
- 	u8 init_done;
-+	u8 rver;
- };
- 
- struct amd_mp2_ops {
-@@ -81,4 +85,14 @@ void amd_sfh_clear_intr_v2(struct amd_mp2_dev *privdata);
- int amd_sfh_irq_init_v2(struct amd_mp2_dev *privdata);
- void amd_sfh_clear_intr(struct amd_mp2_dev *privdata);
- int amd_sfh_irq_init(struct amd_mp2_dev *privdata);
-+
-+static inline u64 amd_get_c2p_val(struct amd_mp2_dev *mp2, u32 idx)
-+{
-+	return mp2->rver == 1 ? AMD_C2P_MSG_V1(idx) :  AMD_C2P_MSG(idx);
-+}
-+
-+static inline u64 amd_get_p2c_val(struct amd_mp2_dev *mp2, u32 idx)
-+{
-+	return mp2->rver == 1 ? AMD_P2C_MSG_V1(idx) :  AMD_P2C_MSG(idx);
-+}
- #endif
-diff --git a/drivers/hid/amd-sfh-hid/amd_sfh_pcie.c b/drivers/hid/amd-sfh-hid/amd_sfh_pcie.c
-index 495ec1179ee5..9e97c26c4482 100644
---- a/drivers/hid/amd-sfh-hid/amd_sfh_pcie.c
-+++ b/drivers/hid/amd-sfh-hid/amd_sfh_pcie.c
-@@ -99,9 +99,9 @@ static void amd_stop_all_sensor_v2(struct amd_mp2_dev *privdata)
- 
- void amd_sfh_clear_intr_v2(struct amd_mp2_dev *privdata)
- {
--	if (readl(privdata->mmio + AMD_P2C_MSG(4))) {
--		writel(0, privdata->mmio + AMD_P2C_MSG(4));
--		writel(0xf, privdata->mmio + AMD_P2C_MSG(5));
-+	if (readl(privdata->mmio + amd_get_p2c_val(privdata, 4))) {
-+		writel(0, privdata->mmio + amd_get_p2c_val(privdata, 4));
-+		writel(0xf, privdata->mmio + amd_get_p2c_val(privdata, 5));
- 	}
- }
- 
-@@ -410,6 +410,9 @@ static int amd_mp2_pci_probe(struct pci_dev *pdev, const struct pci_device_id *i
- 
- 	privdata->sfh1_1_ops = (const struct amd_sfh1_1_ops *)id->driver_data;
- 	if (privdata->sfh1_1_ops) {
-+		if (boot_cpu_data.x86 >= 0x1A)
-+			privdata->rver = 1;
-+
- 		rc = devm_work_autocancel(&pdev->dev, &privdata->work, sfh1_1_init_work);
- 		if (rc)
- 			return rc;
-diff --git a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_desc.c b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_desc.c
-index 33fbdde8aff0..c8916afefa62 100644
---- a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_desc.c
-+++ b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_desc.c
-@@ -251,7 +251,7 @@ static u8 get_input_rep(u8 current_index, int sensor_idx, int report_id,
- 		break;
- 	case HPD_IDX:
- 		get_common_inputs(&hpd_input.common_property, report_id);
--		hpdstatus.val = readl(mp2->mmio + AMD_C2P_MSG(4));
-+		hpdstatus.val = readl(mp2->mmio + amd_get_c2p_val(mp2, 4));
- 		hpd_input.human_presence = hpdstatus.shpd.presence;
- 		report_size = sizeof(hpd_input);
- 		memcpy(input_report, &hpd_input, sizeof(hpd_input));
-diff --git a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_init.c b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_init.c
-index 9dbe6f4cb294..5b24d5f63701 100644
---- a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_init.c
-+++ b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_init.c
-@@ -172,7 +172,7 @@ static int amd_sfh1_1_hid_client_init(struct amd_mp2_dev *privdata)
- 		if (rc)
- 			goto cleanup;
- 
--		writel(0, privdata->mmio + AMD_P2C_MSG(0));
-+		writel(0, privdata->mmio + amd_get_p2c_val(privdata, 0));
- 		mp2_ops->start(privdata, info);
- 		status = amd_sfh_wait_for_response
- 				(privdata, cl_data->sensor_idx[i], ENABLE_SENSOR);
-@@ -298,7 +298,7 @@ static void amd_sfh_set_ops(struct amd_mp2_dev *mp2)
- 
- int amd_sfh1_1_init(struct amd_mp2_dev *mp2)
- {
--	u32 phy_base = readl(mp2->mmio + AMD_C2P_MSG(22));
-+	u32 phy_base = readl(mp2->mmio + amd_get_c2p_val(mp2, 22));
- 	struct device *dev = &mp2->pdev->dev;
- 	struct sfh_base_info binfo;
- 	int rc;
-diff --git a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_interface.c b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_interface.c
-index ae36312bc236..2de2668a0277 100644
---- a/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_interface.c
-+++ b/drivers/hid/amd-sfh-hid/sfh1_1/amd_sfh_interface.c
-@@ -20,7 +20,7 @@ static int amd_sfh_wait_response(struct amd_mp2_dev *mp2, u8 sid, u32 cmd_id)
- 	struct sfh_cmd_response cmd_resp;
- 
- 	/* Get response with status within a max of 10000 ms timeout */
--	if (!readl_poll_timeout(mp2->mmio + AMD_P2C_MSG(0), cmd_resp.resp,
-+	if (!readl_poll_timeout(mp2->mmio + amd_get_p2c_val(mp2, 0), cmd_resp.resp,
- 				(cmd_resp.response.response == 0 &&
- 				cmd_resp.response.cmd_id == cmd_id && (sid == 0xff ||
- 				cmd_resp.response.sensor_id == sid)), 500, 10000000))
-@@ -39,7 +39,7 @@ static void amd_start_sensor(struct amd_mp2_dev *privdata, struct amd_mp2_sensor
- 	cmd_base.cmd.sub_cmd_value = 1;
- 	cmd_base.cmd.sensor_id = info.sensor_idx;
- 
--	writel(cmd_base.ul, privdata->mmio + AMD_C2P_MSG(0));
-+	writel(cmd_base.ul, privdata->mmio + amd_get_c2p_val(privdata, 0));
- }
- 
- static void amd_stop_sensor(struct amd_mp2_dev *privdata, u16 sensor_idx)
-@@ -52,8 +52,8 @@ static void amd_stop_sensor(struct amd_mp2_dev *privdata, u16 sensor_idx)
- 	cmd_base.cmd.sub_cmd_value = 1;
- 	cmd_base.cmd.sensor_id = sensor_idx;
- 
--	writeq(0x0, privdata->mmio + AMD_C2P_MSG(1));
--	writel(cmd_base.ul, privdata->mmio + AMD_C2P_MSG(0));
-+	writeq(0x0, privdata->mmio + amd_get_c2p_val(privdata, 1));
-+	writel(cmd_base.ul, privdata->mmio + amd_get_c2p_val(privdata, 0));
- }
- 
- static void amd_stop_all_sensor(struct amd_mp2_dev *privdata)
-@@ -66,7 +66,7 @@ static void amd_stop_all_sensor(struct amd_mp2_dev *privdata)
- 	/* 0xf indicates all sensors */
- 	cmd_base.cmd.sensor_id = 0xf;
- 
--	writel(cmd_base.ul, privdata->mmio + AMD_C2P_MSG(0));
-+	writel(cmd_base.ul, privdata->mmio + amd_get_c2p_val(privdata, 0));
- }
- 
- static struct amd_mp2_ops amd_sfh_ops = {
--- 
-2.25.1
+You already quoted me on the Weston link, so I don't think I have
+anything to add. Sounds fine to me, and we don't have a standard plane
+arrangement algorithm that the kernel could optimize zpos ranges
+against, yet.
 
+> Ultimately, what I'd like to answer is "What can we do on the KMS driver =
+and DRM
+> plane API side, that can make building multi-plane scanout configurations=
+ easier
+> for compositors?" I'm hoping we can converge on something, whether that be
+> updating the existing documentation to better define the usage, or update=
+ the
+> API to provide support for something that is lacking.
+
+I think there probably should be a standardised plane arrangement
+algorithm in userspace, because the search space suffers from
+permutational explosion. Either there needs to be very few planes (max
+4 or 5 at-all-possible per CRTC, including shareable ones) for an
+exhaustive search to be feasible, or all planes should be more or less
+equal in capabilities and userspace employs some simplified or
+heuristic search.
+
+If the search algorithm is fixed, then drivers could optimize zpos
+ranges to have the algorithm find a solution faster.
+
+My worry is that userspace already has heuristic search algorithms that
+may start failing if drivers later change their zpos ranges to be more
+optimal for another algorithm.
+
+OTOH, as long as exhaustive search is feasible, then it does not matter
+how DRM drivers set up the zpos ranges.
+
+In any case, the zpos ranges should try to allow all possible plane
+arrangements while minimizing the number of arrangements that won't
+work. The absolute values of zpos are pretty much irrelevant, so I
+think setting one plane to have an immutable zpos is a good idea, even
+if it's not necessary by the driver. That is one less moving part, and
+only the relative ordering between the planes matters.
+
+
+Thanks,
+pq
+
+> Some links to provide context and details:
+> * What is underlay?: https://gitlab.freedesktop.org/emersion/libliftoff/-=
+/issues/76
+> * Discussion on how to implement underlay on Weston: https://gitlab.freed=
+esktop.org/wayland/weston/-/merge_requests/1258#note_2325164
+>=20
+> Cc: Joshua Ashton <joshua@froggi.es>
+> Cc: Michel D=C3=A4nzer <mdaenzer@redhat.com>
+> Cc: Chao Guo <chao.guo@nxp.com>
+> Cc: Xaver Hugl <xaver.hugl@gmail.com>
+> Cc: Vikas Korjani <Vikas.Korjani@amd.com>
+> Cc: Robert Mader <robert.mader@posteo.de>
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Simon Ser <contact@emersion.fr>
+> Cc: Shashank Sharma <shashank.sharma@amd.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Sebastian Wick <sebastian.wick@redhat.com>
+>=20
+> Leo Li (2):
+>   drm/amd/display: Introduce overlay cursor mode
+>   drm/amd/display: Move PRIMARY plane zpos higher
+>=20
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 405 ++++++++++++++++--
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   7 +
+>  .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   1 +
+>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  28 +-
+>  4 files changed, 391 insertions(+), 50 deletions(-)
+>=20
+
+
+--Sig_/mtPXnjFILmf965yRvrRc6K7
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmYFf6cACgkQI1/ltBGq
+qqfNtg//TtA5pQDAflmV9sN/T+8XLCcv8OUBqo5JzLWKOqH67QxUrbaMsY+wmHb9
+WcZOSJNKs8Ncmtv1smqELDKy+s0lXIRbef9WtkKXEUkDntuo4OrtkXcMLa4mf04W
+a7XA2zVeKLjANW0a5y87dzx3FEcb2IEmC0p55pTmKEHxBV8BDqHbcpLSQKfkZWkX
+j5aQ+m0hZIqMErJAp4ImzBVLVqFXAIE+A/zl9qvnMgRY/CtkeTqPaUA7iXOzuklB
+L6T6aqP3Dvcz9LOMiAKcwB+wuFJpcXawjSRXTB2xCr15wmRH8KWfbYcR8Tpwrk0t
+iqvAmJEZxbDdbe/j4LFDwJKiKlLpW7G0FCHaInz+aUeo4QDauCtplT+y6w+WfvWv
+zFoQIQElSoOGfnQAMlP6VK1yG/s1jeDROKD/p6FLQPz6N9mN+2Bjvb9SaWByEtnK
+ny7uvnqoi/Lazmc80V0jtgf/Mbl3fxigQrokLXDTEDBkDHysfh0SQJinxsqkndl4
+i0V9rliOGyyV9a64J6Gy0Amxkv5u6JOZlKLnE0msioL6Qhbinq44xBNPIK8b6sMt
+40kOGvE74Adc0slt4kP4Eho9RTaPUc2xR/Y260NMhEsYn3OJ1oR21+6LzVaDuyOG
+eFh1z/DBTTd2rUb4S5r5CEfD8kjcFGEi6/13rrR5ro7Cd5G32vs=
+=K109
+-----END PGP SIGNATURE-----
+
+--Sig_/mtPXnjFILmf965yRvrRc6K7--
