@@ -2,98 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706C9892701
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Mar 2024 23:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C44E892B51
+	for <lists+amd-gfx@lfdr.de>; Sat, 30 Mar 2024 14:31:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCDE10F4F8;
-	Fri, 29 Mar 2024 22:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 079D610E7A5;
+	Sat, 30 Mar 2024 13:31:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wJxcx+2z";
+	dkim=pass (2048-bit key; secure) header.d=math.uni-bielefeld.de header.i=@math.uni-bielefeld.de header.b="x5tk8xFW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B96210F4F8
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 22:59:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JPTCfrod//qzvEE+LTYv0M1SOf97asEezskcAqZy+O4dMDQeMr/11nLqeV/XtCt1NuyuzmAySPHfunMMoeXA8FAaH9fuwRyIl+/tfEemSxRR311n6zRRRZDZmdnR/2GukGoCaEaK0K6yc/o+jhCEOBiozXsynBSoQbWBCheDRsO5deZkqZH0zzv/0JkTLIjYr40ikh4QrCh/uvTgU5Kw6TbzeRtdqbCoAqe5vgrrj8VqsFyLB4VZh3tdrkqIgaPh7rr7wbL7mVyKTuWQB9DKnW40lRhcUDZUQU/XotgjvwnAPQcgzp2yHKikE77ykYXZskeUdSEH40Lz1JugKHp0qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zHFo3aj0TDiCF1+BNwFj2CO0Uh4Dp+8nZYbfckQ75m4=;
- b=jH19eO1Syi5Xkuuolckz7vUIlaZWYzA7DTwN5A4Es1EHW+9dRutSQoqa/HTYdg43S3afOwLcQ1Z/hp8S0izFsHqFW2TICgxjQigK1YRVbbmMpgIoTQfHNi/ObrC0jUmRB9xPMs5J1ya/7GTtegAZnblLOHpWWSOSDvOgyPIDcXVzeSX80M7ctaFYwciicsSH9QC5XyXCguMzFHI9sENi47eFNnmsPRN3s0DYoy3Jn8at//SQsPJYZ+fzIuy6PRZTCurBZ0p5/rgsxSPWOOLl5OCjEep9bM85vHSscbHdALe0HwgQdUeq7nPYAPLDTmJlr87jTuscJ+6wMthaGOBrGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zHFo3aj0TDiCF1+BNwFj2CO0Uh4Dp+8nZYbfckQ75m4=;
- b=wJxcx+2zjbEmN0Nv02fXh8SOcwNLbZS2lR+RADApR8whb/Kuw+Ej6nIF6eB2kX4vVM7g5VRaotF9iaFtW4W+mfhPUNOJF4oxLfBID21t3eAuINY9KdJyXHdXC82I0fvqtX5SG/V02hkCkvTe3ymQOKrTOdcys5DbRHdjA8Qiga0=
-Received: from DS7PR03CA0061.namprd03.prod.outlook.com (2603:10b6:5:3bb::6) by
- SA1PR12MB5614.namprd12.prod.outlook.com (2603:10b6:806:228::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.41; Fri, 29 Mar 2024 22:59:08 +0000
-Received: from CY4PEPF0000FCC4.namprd03.prod.outlook.com
- (2603:10b6:5:3bb:cafe::c1) by DS7PR03CA0061.outlook.office365.com
- (2603:10b6:5:3bb::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.41 via Frontend
- Transport; Fri, 29 Mar 2024 22:59:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000FCC4.mail.protection.outlook.com (10.167.242.106) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Fri, 29 Mar 2024 22:59:08 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 29 Mar
- 2024 17:59:06 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>, Muhammad Ahmed
- <ahmed.ahmed@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, Charlene Liu
- <charlene.liu@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>, Harry Wentland
- <harry.wentland@amd.com>
-Subject: [PATCH] Revert "drm/amd/display: fix USB-C flag update after enc10
- feature init"
-Date: Fri, 29 Mar 2024 18:58:52 -0400
-Message-ID: <20240329225852.9648-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.44.0
+Received: from smtp1.math.uni-bielefeld.de (smtp1.math.uni-bielefeld.de
+ [129.70.45.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C34112771;
+ Fri, 29 Mar 2024 15:08:15 +0000 (UTC)
+Received: from [192.168.0.100]
+ (dslb-088-068-075-039.088.068.pools.vodafone-ip.de [88.68.75.39])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by smtp1.math.uni-bielefeld.de (Postfix) with ESMTPSA id 8B44860613;
+ Fri, 29 Mar 2024 16:08:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=math.uni-bielefeld.de; s=default; t=1711724885;
+ bh=kyo1Ad43BuOTHxWe5GQYqSLm6b3RV5mvNXTMTY5jNjg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=x5tk8xFWVOxpyM+tom2a5qJURqK5k0iyba7xZAEMqnkyGvMfgGDyGa9ChvkzpFn1C
+ tcB4hxgfFnjd485lw27m/yCQunGjkFRbUgGQxRhuOA5LNJyAV6S0pFoZEv7CTtFshz
+ wJvDuTziUK57qnqPHv74qZ/xtiYX69tJfHiimJVGB9YRmA7Ud6R/aECmr2UWcjhVNJ
+ 4pD6+DD0vgz7h/d34lUqFIUk+NuAd82f7M1P0CfUePc0tuBwFb/WhBg/74BTA2Ni2o
+ WCLMHWmXkzhqLwfDuSRM/JqCewrHHSiBqgzT8lRkUCQg+IjoHpg8m94W+OBAHzi/Zs
+ STFzgRCaWDIRw==
+Message-ID: <ced3a1dc-4e09-467a-a8f8-0747f707b68f@math.uni-bielefeld.de>
+Date: Fri, 29 Mar 2024 16:07:59 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Add MSF panel to DPCD 0x317 patch list
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20240309014732.722139-1-tjakobi@math.uni-bielefeld.de>
+Content-Language: en-US
+From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+Autocrypt: addr=tjakobi@math.uni-bielefeld.de; keydata=
+ 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
+ JRHWPGCL3BhOxQ==
+In-Reply-To: <20240309014732.722139-1-tjakobi@math.uni-bielefeld.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC4:EE_|SA1PR12MB5614:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c98113d-9519-4de8-6eb6-08dc5043d725
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AP5ehUgHwA8w7w9Lb81BYmtQD9DhfPF7gnQBaLDElFLzhrpSt8RGuUxLix8yb1+H4A96hXJQLr9VusJpMRe3HimT9JvOm03cIn2bC3HlktJCrVrou5DnnlnKK57B8Ew8cQTlKSLx7VYUU/6Y2vP5xcwnyXCt4K9pmzcJlSnoL3bg1mMEL6rge6UAkXjVIrKK6c8vV7L+DYasCoHHcm/nq5pmMi7Y47XZx2bc0vPMmOo7biky3ZI4CohwPLCWI7ta0ncVbHztJkKxS/whdbxx3AnpJvoO6WYRPAOfWMfSmjS5KNOoWbJyV572iwOBNY4rs1zZMeTM7C2jKidsclEv3EOdA4jCTUHqXJa3BRSkRxRXMD1O3ytk/wpwzTbUgObA+3PhvFgC0KvkpnzF8Q0NLIfXxpmZPhekGQ68sBYlwyoxfzUr3D4+lPYa8uw2EvHriPwJGu01/vkz44t0YLLpxbNnb3EgRy5yye42NQcpSfhqByfg0In9n1jWLmVKyAGrBKpbBYQYugW11emCl5d0ph0K9ZNcXWTEAvLH3jyleCxYq86UMWrmTqHuR732QvSv9vQqqv+evduN3VXqYUhfCYUAcGQwGH/0+oX2RFNYcvHHhsAgbTvIO13lf0iLPIkHwbqBVaNfERBblNweosiVaK/QAF1W6oX3Zn8f28G5QS1EBU5hmGTwzyPcwyJYIKchw+TDAJ2JKcZDBRGDN0mAeg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400014)(376005)(36860700004); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 22:59:08.1415 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c98113d-9519-4de8-6eb6-08dc5043d725
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5614
+X-Mailman-Approved-At: Sat, 30 Mar 2024 13:31:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,66 +111,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit b5abd7f983e14054593dc91d6df2aa5f8cc67652.
+On 3/9/24 02:47, tjakobi@math.uni-bielefeld.de wrote:
 
-This change breaks DSC on 4k monitors at 144Hz over USB-C.
-
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3254
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: Muhammad Ahmed <ahmed.ahmed@amd.com>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Charlene Liu <charlene.liu@amd.com>
-Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
----
- .../gpu/drm/amd/display/dc/dcn32/dcn32_dio_link_encoder.c | 8 +++-----
- .../gpu/drm/amd/display/dc/dcn35/dcn35_dio_link_encoder.c | 4 ++--
- 2 files changed, 5 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_link_encoder.c
-index e224a028d68ac..8a0460e863097 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_link_encoder.c
-@@ -248,14 +248,12 @@ void dcn32_link_encoder_construct(
- 	enc10->base.hpd_source = init_data->hpd_source;
- 	enc10->base.connector = init_data->connector;
- 
--	enc10->base.preferred_engine = ENGINE_ID_UNKNOWN;
--
--	enc10->base.features = *enc_features;
- 	if (enc10->base.connector.id == CONNECTOR_ID_USBC)
- 		enc10->base.features.flags.bits.DP_IS_USB_C = 1;
- 
--	if (enc10->base.connector.id == CONNECTOR_ID_USBC)
--		enc10->base.features.flags.bits.DP_IS_USB_C = 1;
-+	enc10->base.preferred_engine = ENGINE_ID_UNKNOWN;
-+
-+	enc10->base.features = *enc_features;
- 
- 	enc10->base.transmitter = init_data->transmitter;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dio_link_encoder.c
-index 6e6ae3de08e4c..6864b6d174370 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dio_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn35/dcn35_dio_link_encoder.c
-@@ -184,6 +184,8 @@ void dcn35_link_encoder_construct(
- 	enc10->base.hpd_source = init_data->hpd_source;
- 	enc10->base.connector = init_data->connector;
- 
-+	if (enc10->base.connector.id == CONNECTOR_ID_USBC)
-+		enc10->base.features.flags.bits.DP_IS_USB_C = 1;
- 
- 	enc10->base.preferred_engine = ENGINE_ID_UNKNOWN;
- 
-@@ -238,8 +240,6 @@ void dcn35_link_encoder_construct(
- 	}
- 
- 	enc10->base.features.flags.bits.HDMI_6GB_EN = 1;
--	if (enc10->base.connector.id == CONNECTOR_ID_USBC)
--		enc10->base.features.flags.bits.DP_IS_USB_C = 1;
- 
- 	if (bp_funcs->get_connector_speed_cap_info)
- 		result = bp_funcs->get_connector_speed_cap_info(enc10->base.ctx->dc_bios,
--- 
-2.44.0
+> From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+>
+> This 8.4 inch panel is integrated in the Ayaneo Kun handheld
+> device. The panel resolution is 2560×1600, i.e. it has
+> portrait dimensions.
+>
+> Decoding the EDID shows:
+> Manufacturer: MSF
+> Model: 4099
+> Display Product Name: 'TV080WUM-NL0 '
+>
+> Judging from the product name this might be a clone of a
+> BOE panel, but with larger dimensions.
+>
+> Panel frequently shows non-functional backlight control. Adding
+> some debug prints to update_connector_ext_caps() shows that
+> something the OLED bit of ext_caps is set, and then the driver
+> assumes that backlight is controlled via AUX.
+>
+> Forcing backlight control to PWM via amdgpu.backlight=0 restores
+> backlight operation.
+>
+> Signed-off-by: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+> ---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> index 7a09a72e182f..5a017ba94e3c 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> @@ -68,6 +68,7 @@ static void apply_edid_quirks(struct edid *edid, struct dc_edid_caps *edid_caps)
+>   	case drm_edid_encode_panel_id('A', 'U', 'O', 0xE69B):
+>   	case drm_edid_encode_panel_id('B', 'O', 'E', 0x092A):
+>   	case drm_edid_encode_panel_id('L', 'G', 'D', 0x06D1):
+> +	case drm_edid_encode_panel_id('M', 'S', 'F', 0x1003):
+>   		DRM_DEBUG_DRIVER("Clearing DPCD 0x317 on monitor with panel id %X\n", panel_id);
+>   		edid_caps->panel_patch.remove_sink_ext_caps = true;
+>   		break;
+Gentle ping...
 
