@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D31892B60
-	for <lists+amd-gfx@lfdr.de>; Sat, 30 Mar 2024 14:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A65892B5A
+	for <lists+amd-gfx@lfdr.de>; Sat, 30 Mar 2024 14:31:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D87810E7F5;
-	Sat, 30 Mar 2024 13:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 046C810E7D2;
+	Sat, 30 Mar 2024 13:31:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QVFN7BIf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c48I5SJI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E8371127F9
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 17:28:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 414A81127FC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 17:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711733326; x=1743269326;
+ t=1711733417; x=1743269417;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=yFDVjGYfjWII0t1wE88WD1st8TP3w0lvfG9W2m2CZOE=;
- b=QVFN7BIfnn4x8y7CpO+mo+KH7FiVqfbhR6OvfgL/VD24ZsFFxuIJLG++
- wcZX+p57CZig7RkmU/l1z7i1CInY+mFguaalyrPK5iKWO81E0W9gycLCb
- RM9XV8TOoyjdHTL+lRLHOaWd1uzJ8ADSP1SWjElfllugUJNzd2MDrlA4p
- Wu0fkcPYmAzQmW89dY7wU4Sy60hW4kbBR5hzCIF5yBmKwyJImjBTxn+0j
- 9bzVf6AEhhsNfgxGVgSfsQLIxYdz+yUQk5W8dwKnxea7xXc+M+hamd19H
- N65mTUuF/k+G+rL9msFsgsMoVNo665fmKsKmNAmgUPEgGq401/PBB/6iX g==;
-X-CSE-ConnectionGUID: FZXbnUPrTT6XTgyAveWusA==
-X-CSE-MsgGUID: 3UtIYsgFTa65gWWXWQX5uw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="9882636"
+ bh=skmiPVy+9TKQ2YOwN5z49H0coa6SVnQShC/bqYFiK/I=;
+ b=c48I5SJIPwR+axUrPh8WKPG9Xmp+U1nOkEWOPu29HeEK6Rav38F0O/z/
+ SdndiDYOLISAoljPgHfYFIn9/2JbzTyBSC9v+irUK6tsvTBYHKtP6otHT
+ q4VHRCVy2daRQuZQfxxwFe9lE7D9Kx/zITvJjUQ2cd210KwvvKr78aNCl
+ rbUDvVy3NHwKXBNFhtgbiBtFS5qCH58gbyDKaDhnRNMEj02wIj9mqYIWW
+ vze8bPv+vuG3rJnFcXluJ1HVWV+Wn1oVczpWx6cdAga5R5dvQI894aVOR
+ cMDH6fPwbI6LjE3wIYc5taFWR5ag82coGG4Y+2dxLCPU5VxFMKN/gPPvE g==;
+X-CSE-ConnectionGUID: LWtFmvZARRWxtZup/Th9qQ==
+X-CSE-MsgGUID: 0mJ0zXbzQsK5m8IZllAIMQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="9882785"
 X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
-   d="scan'208";a="9882636"
+   d="scan'208";a="9882785"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 10:28:45 -0700
+ 29 Mar 2024 10:30:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="40178285"
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="40178522"
 Received: from sergeyko-mobl.amr.corp.intel.com (HELO [10.212.56.129])
  ([10.212.56.129])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 10:28:45 -0700
-Message-ID: <d2c3cd78-cdc6-4a39-9804-4f30402751b1@intel.com>
-Date: Fri, 29 Mar 2024 10:28:44 -0700
+ 29 Mar 2024 10:30:16 -0700
+Message-ID: <d795b1ac-5e3d-4450-8ca7-3da7f53a5482@intel.com>
+Date: Fri, 29 Mar 2024 10:30:15 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/15] x86: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
+Subject: Re: [PATCH v4 09/15] x86/fpu: Fix asm/fpu/types.h include guard
 To: Samuel Holland <samuel.holland@sifive.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  linux-arm-kernel@lists.infradead.org, x86@kernel.org
@@ -56,7 +56,7 @@ Cc: linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
  Dave Hansen <dave.hansen@linux.intel.com>, Ingo Molnar <mingo@redhat.com>,
  Thomas Gleixner <tglx@linutronix.de>
 References: <20240329072441.591471-1-samuel.holland@sifive.com>
- <20240329072441.591471-11-samuel.holland@sifive.com>
+ <20240329072441.591471-10-samuel.holland@sifive.com>
 Content-Language: en-US
 From: Dave Hansen <dave.hansen@intel.com>
 Autocrypt: addr=dave.hansen@intel.com; keydata=
@@ -102,7 +102,7 @@ Autocrypt: addr=dave.hansen@intel.com; keydata=
  MTsCeQDdjpgHsj+P2ZDeEKCbma4m6Ez/YWs4+zDm1X8uZDkZcfQlD9NldbKDJEXLIjYWo1PH
  hYepSffIWPyvBMBTW2W5FRjJ4vLRrJSUoEfJuPQ3vW9Y73foyo/qFoURHO48AinGPZ7PC7TF
  vUaNOTjKedrqHkaOcqB185ahG2had0xnFsDPlx5y
-In-Reply-To: <20240329072441.591471-11-samuel.holland@sifive.com>
+In-Reply-To: <20240329072441.591471-10-samuel.holland@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sat, 30 Mar 2024 13:31:09 +0000
@@ -121,27 +121,7 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 On 3/29/24 00:18, Samuel Holland wrote:
-> +#
-> +# CFLAGS for compiling floating point code inside the kernel.
-> +#
-> +CC_FLAGS_FPU := -msse -msse2
-> +ifdef CONFIG_CC_IS_GCC
-> +# Stack alignment mismatch, proceed with caution.
-> +# GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
-> +# (8B stack alignment).
-> +# See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53383
-> +#
-> +# The "-msse" in the first argument is there so that the
-> +# -mpreferred-stack-boundary=3 build error:
-> +#
-> +#  -mpreferred-stack-boundary=3 is not between 4 and 12
-> +#
-> +# can be triggered. Otherwise gcc doesn't complain.
-> +CC_FLAGS_FPU += -mhard-float
-> +CC_FLAGS_FPU += $(call cc-option,-msse -mpreferred-stack-boundary=3,-mpreferred-stack-boundary=4)
-> +endif
+> The include guard should match the filename, or it will conflict with
+> the newly-added asm/fpu.h.
 
-I was expecting to see this (now duplicate) hunk come _out_ of
-lib/Makefile somewhere in the series.
-
-Did I miss that, or is there something keeping the duplicate there?
+Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
