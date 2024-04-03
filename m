@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C445897934
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C8C2897936
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 599E2112E70;
-	Wed,  3 Apr 2024 19:51:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CE5112E75;
+	Wed,  3 Apr 2024 19:51:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cnVvANXo";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="aD7uhKrF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2043.outbound.protection.outlook.com [40.107.101.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCF2112E70
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 19:51:35 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2082.outbound.protection.outlook.com [40.107.212.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DE7B112E70
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 19:51:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RF1MuKovGSKPHsu9YY+wc23Ag+S7DXGMrOxaprh729Tnk2f6Tr0ueg03XihZMWVlomKkg1L5SsYVZETVEuDVULTIazRDn2RfX4VjJhnxbr/wl6GORF/1RUmJYWKO3jknYz2PjW4GNtaXeSB4JKPcWZmcnloUJMm3DiRwpPCmLsjDxwPMHn1oe0dr2H94Tjj1ObwLJITwlEZdBiNY/bgNRQ7bQXFDgIlsg3tvQtCX+8jI7VK0oxfb4wAWG55griEMy9cYEY8gDqjpUqLX2sOsD1wL8cn532zrbE4TMvLFTSZpKhuJ17RfpBwjGJptuPOBRjaWmnulNp3H52Ig+ygxZA==
+ b=FMs1yOpaJ0omVbOpAhIrZNZvqGNg8XBHXDBpE824SDZqvTbck8tzCAA1eRneMDp4FUmyn2JRa/BfVGjlWZTSewQ9l9YcMCPjqeomc2rLDs7sUOFw2zf+lBAynbwCeuoRE1U2AXE9+kv28y4JfreWtTPhPnBMW+2JRotzeR1TdSEbXEkfHJLXNwIVCt6hGCA3xwwDxjffjDyVZvif51g9EEufUbGqDkAS1ITE7XvLhdnuGs7HdJPaxNrGaWFq7z1psAo1kllGYVaoa16ELcLSPiHWKonCL+GytOKrvBCWDBQzcr4XfbrSteRW2l3Co4rWRtQ5p8adq1+rH9pFGbsIDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WTpk2vrGs33A7Sci1ZRILPgJFcsF6CwqYmEFFg4eJ/I=;
- b=kih1rcRKbiHYX5dijFVIjPi6M8R+BqQ28QNlAUh/DbW6HQAAt38dSFSceMXP0TD2AcSvxyNoVO2SkY+TGAkYdxPUzEx/ulW6ShjqXRwOe5Sn2YwcQzVeOjirLUQonHDiPt/3dAV0Sex+/2ihqY7S2gq517GpjYns8LWqkhhPG8WnfwJUBR7U5b1jAxFOT/4yuVPkyKBVrSw8U/wMpCQyljnexAqmtIOOx0qCZVKrVwpclj0kFfclyEfygbCrmdZmpIDX5RgSlHlIG3Y8at7FCy8rT+7KqNi8tv++nsVYNcoSlj9iSXR1xg3NEdfia+7BR45bzKKMxJH+KtKPDm6AMg==
+ bh=dzJtFNTsryAlmOx9p0/m1ry+5CqwFtrxcB+9Kt2ZlSY=;
+ b=Y3OdexVDf/4gO/bprWPD3BvxXKYrNbksfvNOqJ14vg5Qy5C8jwsGZ+E0KYpWj3o7GOIozAiKvKMtWuMqrJ9a2dXpa1PiA4GurgQsa2KGwRPEIyTXflhKR9BkBs6Ceu31rIqWEwmp5wRkiP1UMJIKPCTc2oxTArOQbLqXiiPo89nkkpG90nf9c7wXFXqBxCdqG4F62xNJ5f9QB4Lgqs/K+ti/LNMvoLlgHMANE9nv0HZu2MAJ/7CiT6kPHlE/6IqgSTRUEJQk49OZt/31+wmGv0R1MEmXEdMDNFvzyCh07Iq+EFaXoksN7Or7X5EkmRgS/Q5gIdobozvvb67F+eC8qA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WTpk2vrGs33A7Sci1ZRILPgJFcsF6CwqYmEFFg4eJ/I=;
- b=cnVvANXoRjfU3TWahaL3o5i8QvmZKWzSVj2yo3imlhUMtR/hqzkOxuG8cMAfyxiWRVNJUjF/rUMk5M2aGXNObBDAvGjO8UQJyWAXQ68I34tLYB9nK4ziVfSmrYFZ7LGz6H63s6o/I8y7iDLux9Diz+GI1pYS1h176apR46/tnhY=
-Received: from CH2PR12CA0022.namprd12.prod.outlook.com (2603:10b6:610:57::32)
- by IA1PR12MB6017.namprd12.prod.outlook.com (2603:10b6:208:3d7::8)
+ bh=dzJtFNTsryAlmOx9p0/m1ry+5CqwFtrxcB+9Kt2ZlSY=;
+ b=aD7uhKrFiycFa4j2PLGCnoRgcKc9Ce2KyUon5zQRLfXiTOjGUMUyMdwAg1mtZJ9QjcQuCDy4DD1F9XHRJyRzmuHizmuKNaUrAqVRrXgehytND8l5qz6RKJTv2anqtN6uCXvXtF1a+RLiih5KW419F5aetwJomgitgKgeL0PqWYY=
+Received: from CH2PR14CA0004.namprd14.prod.outlook.com (2603:10b6:610:60::14)
+ by MW4PR12MB7429.namprd12.prod.outlook.com (2603:10b6:303:21b::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
- 2024 19:51:31 +0000
-Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
- (2603:10b6:610:57:cafe::6d) by CH2PR12CA0022.outlook.office365.com
- (2603:10b6:610:57::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.19 via Frontend
- Transport; Wed, 3 Apr 2024 19:51:31 +0000
+ 2024 19:51:32 +0000
+Received: from CH1PEPF0000AD77.namprd04.prod.outlook.com
+ (2603:10b6:610:60:cafe::ac) by CH2PR14CA0004.outlook.office365.com
+ (2603:10b6:610:60::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39 via Frontend
+ Transport; Wed, 3 Apr 2024 19:51:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,24 +48,28 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
+ CH1PEPF0000AD77.mail.protection.outlook.com (10.167.244.55) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 19:51:31 +0000
+ 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 19:51:32 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Apr
- 2024 14:51:30 -0500
+ 2024 14:51:31 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Hamza Mahfooz
- <hamza.mahfooz@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>
-Subject: [PATCH 00/28] DC Patches April 3, 2024
-Date: Wed, 3 Apr 2024 15:48:50 -0400
-Message-ID: <20240403195116.25221-1-hamza.mahfooz@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Lewis Huang
+ <lewis.huang@amd.com>, Anthony Koo <anthony.koo@amd.com>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>
+Subject: [PATCH 01/28] drm/amd/display: Add option to configure mapping policy
+ for edp0 on dp1
+Date: Wed, 3 Apr 2024 15:48:51 -0400
+Message-ID: <20240403195116.25221-2-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240403195116.25221-1-hamza.mahfooz@amd.com>
+References: <20240403195116.25221-1-hamza.mahfooz@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -74,26 +78,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|IA1PR12MB6017:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08d12749-7856-4668-dcd2-08dc541775a9
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD77:EE_|MW4PR12MB7429:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6514dc7b-eb46-4b62-75f6-08dc5417762a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hSBG4WzJdpyBaSQeOmvSkdbz607gvEjsw9p7QZxtdm00g++aDBo1zkIb6BFFbXF7NcqzD91nCFGYwXw3VZxcPaC2hdMuvV/5qhASMCBf4h5HphZT5N72mvZwNqiTRbHKTaIZ9xe9oKM3hD4G/Qca48b4WJpQJmNO/vqHMCirbTOF/JzZjwZPqm6HjMV1Sng1oNla3x72ohpY6VTwEOLD6k8bRn8WyS3JlhWHIuKOiAmz13iRutHYl7bkmKnbABQi5mJ1jm2TN/e8ycW9O19fbqOkAhXcArqCEa3+2y6ygnnbn/zjnF7fHEmHy498s3GpALTuCRWYhSff+J44mY7SnOZJG4HTPvP26JaNjVjIjpgXyaJ5uogxsN9ZbLJobmTaceaUICTQB2GTTjmoEu1I878OBHH/Yh0+IdhTdFET8vt9ffDzDIy1RadalURG1/Wi0gkV1F5XUITxe8ViM1nB+uue/9/v9lfSY3I8PUyhf+g6dieOPp7Hd9wAaOtBFOTwDC4HN0nH9/7BRrWDLXzdtHl0N6/0dwpysAzmQaq7jyZVyDn1a9Xb0F8kp4zpT5IacL0iZXrQjc60fC0morlY++pJIiOMueDEsV7WbxGBXYoByGmzBF07AqkKoRPA9Gn5WVMhzLbjfWzYQeU9K5MefQt57iLmk4+0exBpKL8KD4KgBasJeI1z95WX2hG2s2Dy1y6le29qv/4Je7OCjW2kv7nCfFxEzDHngIAyBV0h3xP47Gyzl8vW4IWYv7KIgfC5
+X-Microsoft-Antispam-Message-Info: +XRTkph3/D4lB65/QCipc9rftiKNx32oUnnrXZcJ1RCE17R3y5AnM1466/R8Su5ghPRRysRawHrakGkkoKL23QPapjPbVRdcaF65OEHsn4uc32FI28TyoWDIaY4KrkuYrcbn+5w3I5F0+5gIsDnHrD59N9j2PZZJNXrlDxdtgCDxjyEjkz2OlN7Cwarog3cnTwfFuRMfVG2CJPjmHtdPmX/fJJIKrrUsCEBCvM3tEaODqfP3n7BreIcV5zxucd7P4OXeMiFgtqYnE6wroqu4ujqsaR3h2ZknybAjj6yHiFBO7URDulGheOyZGuOP6vYD22gkifA2mMl/KvphfSgv0Wt5HuaeaQWWwoPr0EJTq4u8FymUExLzUzMtdXoB9ZHqGwkud86SDKKUBz/GBXyiLDh6r+qTNmixkHakWs28BzffBVb7ZNMLBP1XqN1BYihrGw1UnGajNzhR5ec1f3+Jy0wIUvStvshbKeDSI5oPHDN/h8iHzLe/pRbm5WITiiFKf81uyKdFjufm0gX1/+PPftT2XQviQ4FKMnjfVL84/TC5pq2IJnb8aCulPjwDxerRScANhsUGbVIkL2IJ7NTAPHqV7cdKWojA64AWZyjPP5dP7Ly4eCe6+p/oE6hL+SPYubV15FmI9uhFCNhlfI017GhIxOS0EMUY5giHyKSv4SjDMHkqw5F0Nq2pGmyuObjwPH4B4AB3wRcBr0nr87fXZbbW5nkejcjUze0/kjutIS9miBbBfU3Xxe6UUKSy61K3
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(376005)(1800799015)(36860700004); DIR:OUT;
+ SFS:(13230031)(36860700004)(1800799015)(376005)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:31.4190 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08d12749-7856-4668-dcd2-08dc541775a9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:32.2617 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6514dc7b-eb46-4b62-75f6-08dc5417762a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD77.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6017
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7429
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,126 +112,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+From: Lewis Huang <lewis.huang@amd.com>
 
-Alex Hung (1):
-  drm/amd/display: Return max resolution supported by DWB
+[Why]
+We want flexibility to choose how pwrseq instance is mapped to eDP panel
 
-Allen Pan (1):
-  drm/amd/display: expand the non standard link rate for testing
+[How]
+Add configuration option to choose the pwrseq mapping policy.
+When enabled, allow fixed mapping between DIG inst to pwrseq inst.
 
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.212.0
+Reviewed-by: Anthony Koo <anthony.koo@amd.com>
+Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Lewis Huang <lewis.huang@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc.h                     | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_panel_cntl.c | 9 ++++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.280
-
-Charlene Liu (1):
-  drm/amd/display: add dwb support to dml2
-
-Dillon Varone (2):
-  drm/amd/display: Add driver support for future FAMS versions
-  drm/amd/display: Do not recursively call manual trigger programming
-
-Fudongwang (1):
-  drm/amd/display: fix disable otg wa logic in DCN316
-
-George Shen (1):
-  drm/amd/display: Rebuild test pattern params for
-    DP_TEST_PATTERN_VIDEO_MODE
-
-Harry Wentland (2):
-  drm/amd/display: Program VSC SDP colorimetry for all DP sinks >= 1.4
-  drm/amd/display: Set VSC SDP Colorimetry same way for MST and SST
-
-Lewis Huang (1):
-  drm/amd/display: Add option to configure mapping policy for edp0 on
-    dp1
-
-Parandhaman K (1):
-  drm/amd/display: refactor vpg.h
-
-Qili Lu (1):
-  Revert "drm/amd/display: Enabling urgent latency adjustment for DCN35"
-
-Rodrigo Siqueira (11):
-  drm/amd/display: Add V_TOTAL_REGS to dcn10
-  drm/amd/display: Add comments to improve the code readability
-  drm/amd/display: Adjust some includes used by display
-  drm/amd/display: Drop legacy code
-  drm/amd/display: Update resource capabilities and debug struct for
-    DCN201
-  drm/amd/display: Disable P010 Support of DCN 1.0
-  drm/amd/display: Update DCN10 resource
-  drm/amd/display: Add fallback configuration when set DRR
-  drm/amd/display: Add fallback configuration for set DRR in DCN10
-  drm/amd/display: Change DPCD address range
-  drm/amd/display: Reorganize dwb header
-
-Wenjing Liu (2):
-  drm/amd/display: always reset ODM mode in context when adding first
-    plane
-  drm/amd/display: fix an incorrect ODM policy assigned for subvp
-
-Zhongwei (1):
-  drm/amd/display: Adjust dprefclk by down spread percentage.
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 ++---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |  6 +-
- .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 -
- .../display/dc/clk_mgr/dcn10/rv1_clk_mgr.c    |  1 -
- .../dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c  |  1 -
- .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c  |  1 -
- .../amd/display/dc/clk_mgr/dcn31/dcn31_smu.c  |  1 -
- .../display/dc/clk_mgr/dcn315/dcn315_smu.c    |  2 +-
- .../dc/clk_mgr/dcn316/dcn316_clk_mgr.c        | 19 ++++--
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 50 ++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  5 +-
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  3 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  4 +-
- .../gpu/drm/amd/display/dc/core/dc_state.c    | 10 +++
- .../gpu/drm/amd/display/dc/core/dc_surface.c  | 20 ++++++
- drivers/gpu/drm/amd/display/dc/dc.h           |  6 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  2 +
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |  1 +
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |  5 ++
- .../gpu/drm/amd/display/dc/dc_plane_priv.h    |  1 +
- .../drm/amd/display/dc/dce/dce_clock_source.c |  8 +--
- .../gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h  | 23 +------
- .../amd/display/dc/dcn31/dcn31_panel_cntl.c   |  9 ++-
- .../gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h  |  1 +
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  2 +-
- .../drm/amd/display/dc/dml/dcn35/dcn35_fpu.c  |  4 +-
- .../amd/display/dc/dml2/display_mode_core.c   |  1 +
- .../amd/display/dc/dml2/display_mode_core.h   |  1 +
- .../dc/dml2/display_mode_lib_defines.h        |  2 +
- .../display/dc/dml2/dml2_translation_helper.c | 45 ++++++++++++-
- .../gpu/drm/amd/display/dc/dml2/dml2_utils.c  | 65 +++++++++++++++++++
- .../gpu/drm/amd/display/dc/dml2/dml2_utils.h  |  5 ++
- .../drm/amd/display/dc/dml2/dml2_wrapper.c    |  1 +
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  2 +-
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  3 +-
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  2 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h   | 30 +++++----
- .../amd/display/dc/inc/hw/stream_encoder.h    |  4 --
- drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h   | 53 +++++++++++++++
- drivers/gpu/drm/amd/display/dc/inc/resource.h |  7 --
- .../dc/link/accessories/link_dp_trace.c       |  1 -
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |  3 +-
- .../amd/display/dc/link/protocols/link_dpcd.c |  2 +-
- .../amd/display/dc/optc/dcn10/dcn10_optc.c    | 15 ++++-
- .../amd/display/dc/optc/dcn10/dcn10_optc.h    |  3 +
- .../amd/display/dc/optc/dcn20/dcn20_optc.c    | 10 ---
- .../amd/display/dc/optc/dcn32/dcn32_optc.c    | 14 ++--
- .../dc/resource/dce80/dce80_resource.c        |  1 -
- .../dc/resource/dcn10/dcn10_resource.c        |  4 +-
- .../dc/resource/dcn201/dcn201_resource.c      |  6 +-
- .../dc/resource/dcn21/dcn21_resource.c        | 33 +---------
- .../dc/resource/dcn32/dcn32_resource.c        | 28 ++++----
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  1 +
- 53 files changed, 387 insertions(+), 157 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 46be4845ec28..db87f9cdd567 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -437,6 +437,7 @@ struct dc_config {
+ 	bool usb4_bw_alloc_support;
+ 	bool allow_0_dtb_clk;
+ 	bool use_assr_psp_message;
++	bool support_edp0_on_dp1;
+ };
+ 
+ enum visual_confirm {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_panel_cntl.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_panel_cntl.c
+index 281be20b1a10..20c6fe48567f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_panel_cntl.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_panel_cntl.c
+@@ -173,5 +173,12 @@ void dcn31_panel_cntl_construct(
+ 		break;
+ 	}
+ 
+-	dcn31_panel_cntl->base.pwrseq_inst = pwrseq_inst;
++	if (dcn31_panel_cntl->base.ctx->dc->config.support_edp0_on_dp1)
++		//If supported, power sequencer mapping shall follow the DIG instance
++		dcn31_panel_cntl->base.pwrseq_inst = pwrseq_inst;
++	else
++		/* If not supported, pwrseq will be assigned in order,
++		 * so first pwrseq will be assigned to first panel instance (legacy behavior)
++		 */
++		dcn31_panel_cntl->base.pwrseq_inst = dcn31_panel_cntl->base.inst;
+ }
 -- 
 2.44.0
 
