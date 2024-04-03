@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F7089793D
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 008DF89793F
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDEEA112E72;
-	Wed,  3 Apr 2024 19:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E77F112E7D;
+	Wed,  3 Apr 2024 19:51:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SpicRFX7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XMzNMInJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2056.outbound.protection.outlook.com [40.107.94.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0F73112E72
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 19:51:49 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 601AB112E7A
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 19:51:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fvACiYJUsomAm3mWRXZwLX5LgsmXuFMgyfqathIUwTpFx8CqX7xD4uincjcNTlQevH8kJfjwEk8KT/6DoWJtYosT1L5l0QnzGm0ZiWlDxPgHhgv7PMoRiGp+EHuXdcMcLgGJB6Ucjt0Gs5wv756URDrtvKJ6VGuLiwEDXGHqVkajdWzmnAy2Y0GhS2ZSsMAo5Q0nj34CmeXLurUVudF8ZC9UBPlBq6rNSQqZuhzGNAyEF61W+Vx+nEtStNvFkYs0JVB+1A1BMy7vDJDnQxM0KXK7kK+P8IpY6VueKpMOjSCk5t1ItErbzTXnJZ26nM11JuFGqSmD1eRWHMVUE6Xclg==
+ b=PZIQwpm6NeALIYSbMSIxQtnNBi55GsrpkHHfcNRHicPjh5i1elgajnUIIepRFFOGGfIDjetaA/rPAPUkDDiwlWJU61Fhuqi/MaQ4lnqZQP4Pl+Gabc8jUOGvy6W7YGhwyavex76s4qRzppNXA6u1RXDuCn/tlypTtsqBouxbPUmNSOpZpqfOxQ+cH4PAUZ9947UUUwRGCmPKlXCJTkL+VyJNAzArPfC6ncKLnGd9qe2nFZKCWnUgDtGHVspEFAwf4M517b643gJCFJ81OlmTUaiV0eGZQ7NGfUq4y2P91EhrX7WTFwimhfev1GyfhbsKw9kyOzcJH6usF7SDzztgEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tPfXmBDlG5ESOxKM7YCxPCLI5dQJSxH+4QBFV1F2ypA=;
- b=jFMy/tvBjm2jPoMJkYVlwn5ZiEOz5VdLxBhPgaUQej37ny58BpMjfG+44DDe5TVYyZc4IuYIqYa3J/A5CVu8MTkz7AX2pKnyihQt+APpcyz5Dkx2YigCDT17f5OfJzRGuWsDqj2b0gHqmh3CI8bFJpjbUXqPbedNmNpkJ4/ics4Zj6thUhShjGMxkK+nw022g0TiWknJ3VDVEExsctnrTJMgZ1Sn+sdR9oSXwoFX7Q56B3g9t9hiylYMvD9R54lOo1DPSsVZ7lCMWMvF6NOrcqrvZxSHoWKyp6BchfJitbVKJLiAyhl/7D9Uaj+Ws6y5IjNc/95Yp+KuIbFmRzHMAQ==
+ bh=zKZwjS3LleGwUmkxmkNGFp4XKynvbCKBcXRdulja5nQ=;
+ b=c8mTyskH+K/mfLjTRoq+keb1ouHsFaDXwIByCZXof/hM0uhzENEq4K4o76CSA5YNX1WZZl9OQehmJYgrNojNyG+DEQ7wtBk8eYyhVnZV6g9i77Nu052IE3fMNgourRb9T3xoovJnbnomXsYx83tRWzwowEH9qywnnXQf+uFjRtWCH265JTACJlgLYPfpYQR0WC5qbk+fbAgW/R3qnhpQFXnmKpCDWlfkw11M1IslLnm+vVzK+l/8q/UJhfEk5anspRbcdcmclI3D73GhVGD6RrcI4aAivISWzAU1+4rGvAGvZIF7MkMR9gs0maZeggKDUbCgvImgwGGGYWbbF8qoiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tPfXmBDlG5ESOxKM7YCxPCLI5dQJSxH+4QBFV1F2ypA=;
- b=SpicRFX7Zi0tXgTI12BmrjbxlmZuUgCc3VlxFl6d4pW8SColARm+I3Lg4JgPhd6t5DHOv8hqa5PKRrPy5cLr5qM62IDSbp6tgGcTUgNgzras7AXogAA+PRWNQwOKZQs9yMp1o8mhltil+HP9mqxcvqcwayrDpLZAQykmp+amkAQ=
-Received: from CH0PR04CA0083.namprd04.prod.outlook.com (2603:10b6:610:74::28)
- by DS0PR12MB7509.namprd12.prod.outlook.com (2603:10b6:8:137::8) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=zKZwjS3LleGwUmkxmkNGFp4XKynvbCKBcXRdulja5nQ=;
+ b=XMzNMInJvxn9ZQv+XrxDoB6ZBgbj2KDOlR8NLtJLkJXBq8XVHiiU0yG6H3IynB32HTh4tI27Sg/2+5NqqID+LlDpRkmrkLhMzBDrLOG4LFgCK5WYSkyThf6hcEuiJSElmM7oUvg8WM9ge7g2b59GL5rPT7RovVeickyY7MEDNpM=
+Received: from CH0PR04CA0081.namprd04.prod.outlook.com (2603:10b6:610:74::26)
+ by SJ0PR12MB6855.namprd12.prod.outlook.com (2603:10b6:a03:47e::6)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
- 2024 19:51:46 +0000
+ 2024 19:51:47 +0000
 Received: from CH1PEPF0000AD74.namprd04.prod.outlook.com
- (2603:10b6:610:74:cafe::60) by CH0PR04CA0083.outlook.office365.com
- (2603:10b6:610:74::28) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:610:74:cafe::1d) by CH0PR04CA0081.outlook.office365.com
+ (2603:10b6:610:74::26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46 via Frontend
- Transport; Wed, 3 Apr 2024 19:51:46 +0000
+ Transport; Wed, 3 Apr 2024 19:51:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,22 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH1PEPF0000AD74.mail.protection.outlook.com (10.167.244.52) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 19:51:46 +0000
+ 15.20.7452.22 via Frontend Transport; Wed, 3 Apr 2024 19:51:47 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Apr
- 2024 14:51:38 -0500
+ 2024 14:51:39 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Parandhaman K
- <parandhaman.k@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Hamza Mahfooz
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Charlene Liu
+ <charlene.liu@amd.com>, Chris Park <chris.park@amd.com>, Hamza Mahfooz
  <hamza.mahfooz@amd.com>
-Subject: [PATCH 09/28] drm/amd/display: refactor vpg.h
-Date: Wed, 3 Apr 2024 15:48:59 -0400
-Message-ID: <20240403195116.25221-10-hamza.mahfooz@amd.com>
+Subject: [PATCH 10/28] drm/amd/display: add dwb support to dml2
+Date: Wed, 3 Apr 2024 15:49:00 -0400
+Message-ID: <20240403195116.25221-11-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240403195116.25221-1-hamza.mahfooz@amd.com>
 References: <20240403195116.25221-1-hamza.mahfooz@amd.com>
@@ -77,26 +77,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD74:EE_|DS0PR12MB7509:EE_
-X-MS-Office365-Filtering-Correlation-Id: dafb2d16-2222-4b39-3586-08dc54177ebf
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD74:EE_|SJ0PR12MB6855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4da81651-1b99-46d5-e326-08dc54177f0d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4NHT4CDTa091je0K+csv/D4k7rjgxubDb+3RJflRdUMA6Y3Nbei35MlCSIifY2JUSoh4p/WwB3O0QlFv7v+AoQdGDhxCDO651x+lyRZjxX85/i0dtz+Dg+KbogXP4Ee7IaI0hS3O+jbVS3EesMcGIUBN2Etwxg8CnxROqfWirnuPEiKp+bluxlYtK0bpLPZ8IhVmMlKP2/I+uQbR7xxRyMAzpmeF4tvO846WtADAvNUMZOpRsFt+uTiJIZbhmmnvy7aaSMEE8Il0cRa8bPng1h/TC172LAp3Iv/LyKUufz3fiYbVc21cXKBBGGTDRSx6NNIAZm5XWb4oMqkqY2ZYRnfMYoFlsAvkDV767NynobLPc8gywoqv/7SUql1fNzuohOWZMUOaX3EVsv8wLwmm9pGu3y+Ca3iH8c7d7ym45d4AD6VKfbXb6Ss78zj8YDrAPVq4U3mAGZJL8b/oOn2NxHv2JTbsWnsQPCaCDtEBB5uZWHuUNVW5EPlSGmhFaR7L/aQIumMhSi8exez5e3I4nBFxlH8wLmTZYKeexsKlViFq0YdjUPDPYtUoo7Hd8ebGaceO0RsiFqjt2vqYvs3Umj/2ooP4zy72OYcJkDdSq/KS64usU9iEcvztIvfMP4JXiDbwF08Df4fkXJeds7QW3CC+w+y+mSe0FpmNDYXkzi3VD1tLYKwBjoqDooOd6F+ENgHFnPoGJCmPHxzG1E93/A2woqyNgxtNEgONmD5z1q8jL1tZXkmtSZDD4KGqtQWt
+X-Microsoft-Antispam-Message-Info: Dtu6XkqSo7Mz1eY2K7xA+T7GsmK9lN81kZX46mctmmD+y4DwYT156r+tisqmyvw0PLFHcJMOe2fIyd67q9x7Yw6GiAXDXVIjl9wIrWcU2fBkMLplhWkTDcjr64WkdrRFmyDZU4c6dp3WZeYWEhyafuKKtd6P3oaz2FKn3i7tujy9NIqFNNn7M1jDX1lhw7LGdmyPd579r2ox7LXU+u6COgLcNx1CmSaOqNUSI0rlmTDYBpQAnWTMN/t3hFP6Bib5g7syfGGnTW3+MSjqkZxTcAuPplXW3LtxwBDlBCPgL+Yem1kQr1pBf1Oxd6irQlATL/UWqHcDbstqNxPuWFCwha5uvHh3G4fJKtPJsnq6xVyOMK4v4LlqhnfPDr1XS5z8gLh1vjmKxRRcGOx83xfBSw9aAUi9PCHMkFHV2ReyYJFaxg8tPNPSdQ5ZACEHsCgZgfY5bUYJRp5uWhFYiWC3nSBxOy8RaCZ6rlOPW+DLSJqOM6bdbfIlIMuzcyYttyOBgRl7mc26fTq8iNDBcq4g+SQhBvGTIxwcyVnCC4wkpMqRPb0aVOzH40i9ACMiGiiIDLHwEozJ/T+CXkn3yPzGchL6n41Wml1IBmWHiurwhiCePfko4fiUk9n4mqxTwfuOfxxg2+51tMzoLTcC7e4cqnHJcrx7lVACMpEQSbvvr6Ao/aIWEtRx5F73EN4c0Q29R2oXBVcNvRL3/Jrp++Xodbryye0Yw7s9zm6dPD27wkinsFTufPvrMFznL2I5gH9w
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015); DIR:OUT;
+ SFS:(13230031)(376005)(82310400014)(1800799015)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:46.6584 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dafb2d16-2222-4b39-3586-08dc54177ebf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:47.1740 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4da81651-1b99-46d5-e326-08dc54177f0d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD74.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7509
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6855
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,158 +111,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Parandhaman K <parandhaman.k@amd.com>
+From: Charlene Liu <charlene.liu@amd.com>
 
-why and how:
-as part of cleanup, need to refactor vpg. It was improperly referenced
-as a dcn specfic part of link. the dcn agnostic code needed was ripped out
-and put into vpg.h, now in dc/inc/hw.
+[why]
+dwb was not previosly a priority.
+now we need to enable dwb in dml2.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
+Limitation:
+HW DML assumes only one DWB
+one set of watermark for all 4 watermark sets
+one stream has one DWB only.
+WB scaling dml input has one set of scaling tap.
+(no chroma so far)
+
+needs to follow up
+
+Reviewed-by: Chris Park <chris.park@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Parandhaman K <parandhaman.k@amd.com>
+Signed-off-by: Charlene Liu <charlene.liu@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h  | 23 +-------
- .../gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h  |  1 +
- drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h   | 53 +++++++++++++++++++
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |  3 +-
- 4 files changed, 57 insertions(+), 23 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h
+ .../amd/display/dc/dml2/display_mode_core.c   |  1 +
+ .../amd/display/dc/dml2/display_mode_core.h   |  1 +
+ .../dc/dml2/display_mode_lib_defines.h        |  2 +
+ .../display/dc/dml2/dml2_translation_helper.c | 45 ++++++++++++-
+ .../gpu/drm/amd/display/dc/dml2/dml2_utils.c  | 65 +++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dml2/dml2_utils.h  |  5 ++
+ .../drm/amd/display/dc/dml2/dml2_wrapper.c    |  1 +
+ 7 files changed, 119 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
-index ed9a5549c389..466ba20b9c61 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_vpg.h
-@@ -26,6 +26,7 @@
- #ifndef __DAL_DCN30_VPG_H__
- #define __DAL_DCN30_VPG_H__
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+index 470dca3950c3..6255101737b5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.c
+@@ -10214,6 +10214,7 @@ dml_get_var_func(fraction_of_urgent_bandwidth_imm_flip, dml_float_t, mode_lib->m
+ dml_get_var_func(urgent_latency, dml_float_t, mode_lib->mp.UrgentLatency);
+ dml_get_var_func(clk_dcf_deepsleep, dml_float_t, mode_lib->mp.DCFCLKDeepSleep);
+ dml_get_var_func(wm_writeback_dram_clock_change, dml_float_t, mode_lib->mp.Watermark.WritebackDRAMClockChangeWatermark);
++dml_get_var_func(wm_writeback_urgent, dml_float_t, mode_lib->mp.Watermark.WritebackUrgentWatermark);
+ dml_get_var_func(stutter_efficiency, dml_float_t, mode_lib->mp.StutterEfficiency);
+ dml_get_var_func(stutter_efficiency_no_vblank, dml_float_t, mode_lib->mp.StutterEfficiencyNotIncludingVBlank);
+ dml_get_var_func(stutter_efficiency_z8, dml_float_t, mode_lib->mp.Z8StutterEfficiency);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.h b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.h
+index 8452485684f5..3116b88e99dc 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_core.h
+@@ -94,6 +94,7 @@ dml_get_var_decl(wm_usr_retraining, dml_float_t);
+ dml_get_var_decl(urgent_latency, dml_float_t);
  
-+#include "vpg.h"
+ dml_get_var_decl(wm_writeback_dram_clock_change, dml_float_t);
++dml_get_var_decl(wm_writeback_urgent, dml_float_t);
+ dml_get_var_decl(stutter_efficiency_no_vblank, dml_float_t);
+ dml_get_var_decl(stutter_efficiency, dml_float_t);
+ dml_get_var_decl(stutter_efficiency_z8, dml_float_t);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_lib_defines.h b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_lib_defines.h
+index de63364be01d..14d389525296 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/display_mode_lib_defines.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/display_mode_lib_defines.h
+@@ -41,6 +41,7 @@
+ #define DCN_DML__VM_PRESENT__1 1
+ #define DCN_DML__HOST_VM_PRESENT 1
+ #define DCN_DML__HOST_VM_PRESENT__1 1
++#define DCN_DML__DWB 1
  
- #define DCN30_VPG_FROM_VPG(vpg)\
- 	container_of(vpg, struct dcn30_vpg, base)
-@@ -132,28 +133,6 @@ struct dcn30_vpg_mask {
- 	VPG_DCN3_REG_FIELD_LIST(uint32_t);
- };
+ #include "dml_depedencies.h"
  
--struct vpg;
+@@ -59,6 +60,7 @@
+ #define __DML_NUM_PLANES__                              DCN_DML__NUM_PLANE
+ #define __DML_NUM_CURSORS__                             DCN_DML__NUM_CURSOR
+ #define __DML_DPP_INVALID__                             0
++#define __DML_NUM_DMB__                                 DCN_DML__DWB
+ #define __DML_PIPE_NO_PLANE__                           99
+ 
+ #define __DML_MAX_STATE_ARRAY_SIZE__        DCN_DML__NUM_PWR_STATE
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+index 151b480b3cea..f43a31cd2c8f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
+@@ -1061,7 +1061,46 @@ static void dml2_populate_pipe_to_plane_index_mapping(struct dml2_context *dml2,
+ 		plane_index = 0;
+ 	}
+ }
 -
--struct vpg_funcs {
--	void (*update_generic_info_packet)(
--		struct vpg *vpg,
--		uint32_t packet_index,
--		const struct dc_info_packet *info_packet,
--		bool immediate_update);
--
--	void (*vpg_poweron)(
--		struct vpg *vpg);
--
--	void (*vpg_powerdown)(
--		struct vpg *vpg);
--};
--
--struct vpg {
--	const struct vpg_funcs *funcs;
--	struct dc_context *ctx;
--	int inst;
--};
--
- struct dcn30_vpg {
- 	struct vpg base;
- 	const struct dcn30_vpg_registers *regs;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h
-index 0e76eabce441..609e58dbd056 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_vpg.h
-@@ -26,6 +26,7 @@
- #ifndef __DAL_DCN31_VPG_H__
- #define __DAL_DCN31_VPG_H__
++static void populate_dml_writeback_cfg_from_stream_state(struct dml_writeback_cfg_st *out,
++		unsigned int location, const struct dc_stream_state *in)
++{
++	if (in->num_wb_info > 0) {
++		for (int i = 0; i < __DML_NUM_DMB__; i++) {
++			const struct dc_writeback_info *wb_info = &in->writeback_info[i];
++			/*current dml support 1 dwb per stream, limitation*/
++			if (wb_info->wb_enabled) {
++				out->WritebackEnable[location] = wb_info->wb_enabled;
++				out->ActiveWritebacksPerSurface[location] = wb_info->dwb_params.cnv_params.src_width;
++				out->WritebackDestinationWidth[location] = wb_info->dwb_params.dest_width;
++				out->WritebackDestinationHeight[location] = wb_info->dwb_params.dest_height;
++
++				out->WritebackSourceWidth[location] = wb_info->dwb_params.cnv_params.crop_en ?
++					wb_info->dwb_params.cnv_params.crop_width :
++					wb_info->dwb_params.cnv_params.src_width;
++
++				out->WritebackSourceHeight[location] = wb_info->dwb_params.cnv_params.crop_en ?
++					wb_info->dwb_params.cnv_params.crop_height :
++					wb_info->dwb_params.cnv_params.src_height;
++				/*current design does not have chroma scaling, need to follow up*/
++				out->WritebackHTaps[location] = wb_info->dwb_params.scaler_taps.h_taps > 0 ?
++					wb_info->dwb_params.scaler_taps.h_taps : 1;
++				out->WritebackVTaps[location] = wb_info->dwb_params.scaler_taps.v_taps > 0 ?
++					wb_info->dwb_params.scaler_taps.v_taps : 1;
++
++				out->WritebackHRatio[location] = wb_info->dwb_params.cnv_params.crop_en ?
++					(double)wb_info->dwb_params.cnv_params.crop_width /
++						(double)wb_info->dwb_params.dest_width :
++					(double)wb_info->dwb_params.cnv_params.src_width /
++						(double)wb_info->dwb_params.dest_width;
++				out->WritebackVRatio[location] = wb_info->dwb_params.cnv_params.crop_en ?
++					(double)wb_info->dwb_params.cnv_params.crop_height /
++						(double)wb_info->dwb_params.dest_height :
++					(double)wb_info->dwb_params.cnv_params.src_height /
++						(double)wb_info->dwb_params.dest_height;
++			}
++		}
++	}
++}
+ void map_dc_state_into_dml_display_cfg(struct dml2_context *dml2, struct dc_state *context, struct dml_display_cfg_st *dml_dispcfg)
+ {
+ 	int i = 0, j = 0, k = 0;
+@@ -1106,6 +1145,10 @@ void map_dc_state_into_dml_display_cfg(struct dml2_context *dml2, struct dc_stat
  
-+#include "vpg.h"
+ 		populate_dml_timing_cfg_from_stream_state(&dml_dispcfg->timing, disp_cfg_stream_location, context->streams[i]);
+ 		populate_dml_output_cfg_from_stream_state(&dml_dispcfg->output, disp_cfg_stream_location, context->streams[i], current_pipe_context);
++		/*Call site for populate_dml_writeback_cfg_from_stream_state*/
++		populate_dml_writeback_cfg_from_stream_state(&dml_dispcfg->writeback,
++			disp_cfg_stream_location, context->streams[i]);
++
+ 		switch (context->streams[i]->debug.force_odm_combine_segments) {
+ 		case 2:
+ 			dml2->v20.dml_core_ctx.policy.ODMUse[disp_cfg_stream_location] = dml_odm_use_policy_combine_2to1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
+index 81b4e08f8098..0f8b3336e26d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
+@@ -404,6 +404,71 @@ void dml2_extract_watermark_set(struct dcn_watermarks *watermark, struct display
+ 	watermark->cstate_pstate.cstate_exit_z8_ns = dml_get_wm_z8_stutter(dml_core_ctx) * 1000;
+ }
  
- #define DCN31_VPG_FROM_VPG(vpg)\
- 	container_of(vpg, struct dcn31_vpg, base)
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h b/drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h
-new file mode 100644
-index 000000000000..51da368f5c3e
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/vpg.h
-@@ -0,0 +1,53 @@
-+/*
-+ * Copyright 2024 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ */
++unsigned int dml2_calc_max_scaled_time(
++		unsigned int time_per_pixel,
++		enum mmhubbub_wbif_mode mode,
++		unsigned int urgent_watermark)
++{
++	unsigned int time_per_byte = 0;
++	unsigned int total_free_entry = 0xb40;
++	unsigned int buf_lh_capability;
++	unsigned int max_scaled_time;
 +
-+#ifndef __DC_VPG_H__
-+#define __DC_VPG_H__
++	if (mode == PACKED_444) /* packed mode 32 bpp */
++		time_per_byte = time_per_pixel/4;
++	else if (mode == PACKED_444_FP16) /* packed mode 64 bpp */
++		time_per_byte = time_per_pixel/8;
 +
-+struct dc_context;
-+struct dc_info_packet;
++	if (time_per_byte == 0)
++		time_per_byte = 1;
 +
-+struct vpg;
++	buf_lh_capability = (total_free_entry*time_per_byte*32) >> 6; /* time_per_byte is in u6.6*/
++	max_scaled_time   = buf_lh_capability - urgent_watermark;
++	return max_scaled_time;
++}
 +
-+struct vpg_funcs {
-+	void (*update_generic_info_packet)(
-+		struct vpg *vpg,
-+		uint32_t packet_index,
-+		const struct dc_info_packet *info_packet,
-+		bool immediate_update);
++void dml2_extract_writeback_wm(struct dc_state *context, struct display_mode_lib_st *dml_core_ctx)
++{
++	int i, j = 0;;
++	struct mcif_arb_params *wb_arb_params = NULL;
++	struct dcn_bw_writeback *bw_writeback = NULL;
++	enum mmhubbub_wbif_mode wbif_mode = PACKED_444_FP16; /*for now*/
 +
-+	void (*vpg_poweron)(
-+		struct vpg *vpg);
++	if (context->stream_count != 0) {
++		for (i = 0; i < context->stream_count; i++) {
++			if (context->streams[i]->num_wb_info != 0)
++				j++;
++		}
++	}
++	if (j == 0) /*no dwb */
++		return;
++	for (i = 0; i < __DML_NUM_DMB__; i++) {
++		bw_writeback = &context->bw_ctx.bw.dcn.bw_writeback;
++		wb_arb_params = &context->bw_ctx.bw.dcn.bw_writeback.mcif_wb_arb[i];
 +
-+	void (*vpg_powerdown)(
-+		struct vpg *vpg);
-+};
++		for (j = 0 ; j < 4; j++) {
++			/*current dml only has one set of watermark, need to follow up*/
++			bw_writeback->mcif_wb_arb[i].cli_watermark[j] =
++					dml_get_wm_writeback_urgent(dml_core_ctx) * 1000;
++			bw_writeback->mcif_wb_arb[i].pstate_watermark[j] =
++					dml_get_wm_writeback_dram_clock_change(dml_core_ctx) * 1000;
++		}
++		if (context->res_ctx.pipe_ctx[i].stream->phy_pix_clk != 0) {
++			/* time_per_pixel should be in u6.6 format */
++			bw_writeback->mcif_wb_arb[i].time_per_pixel =
++				(1000000 << 6) / context->res_ctx.pipe_ctx[i].stream->phy_pix_clk;
++		}
++		bw_writeback->mcif_wb_arb[i].slice_lines = 32;
++		bw_writeback->mcif_wb_arb[i].arbitration_slice = 2;
++		bw_writeback->mcif_wb_arb[i].max_scaled_time =
++			dml2_calc_max_scaled_time(wb_arb_params->time_per_pixel,
++					wbif_mode, 	wb_arb_params->cli_watermark[0]);
++		/*not required any more*/
++		bw_writeback->mcif_wb_arb[i].dram_speed_change_duration =
++			dml_get_wm_writeback_dram_clock_change(dml_core_ctx) * 1000;
 +
-+struct vpg {
-+	const struct vpg_funcs *funcs;
-+	struct dc_context *ctx;
-+	int inst;
-+};
-+
-+#endif /* DC_INC_VPG_H_ */
-\ No newline at end of file
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index ce68476e69d5..938421e02770 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -55,6 +55,8 @@
- #include "dccg.h"
- #include "clk_mgr.h"
- #include "atomfirmware.h"
-+#include "vpg.h"
-+
- #define DC_LOGGER \
- 	dc_logger
- #define DC_LOGGER_INIT(logger) \
-@@ -67,7 +69,6 @@
- #define RETIMER_REDRIVER_INFO(...) \
- 	DC_LOG_RETIMER_REDRIVER(  \
- 		__VA_ARGS__)
--#include "dc/dcn30/dcn30_vpg.h"
++	}
++}
+ void dml2_initialize_det_scratch(struct dml2_context *in_ctx)
+ {
+ 	int i;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.h
+index 5842d6d3c4b6..04fcfe637119 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.h
+@@ -40,9 +40,14 @@ void dml2_util_copy_dml_output(struct dml_output_cfg_st *dml_output_array, unsig
+ unsigned int dml2_util_get_maximum_odm_combine_for_output(bool force_odm_4to1, enum dml_output_encoder_class encoder, bool dsc_enabled);
+ void dml2_copy_clocks_to_dc_state(struct dml2_dcn_clocks *out_clks, struct dc_state *context);
+ void dml2_extract_watermark_set(struct dcn_watermarks *watermark, struct display_mode_lib_st *dml_core_ctx);
++void dml2_extract_writeback_wm(struct dc_state *context, struct display_mode_lib_st *dml_core_ctx);
+ int dml2_helper_find_dml_pipe_idx_by_stream_id(struct dml2_context *ctx, unsigned int stream_id);
+ bool is_dtbclk_required(const struct dc *dc, struct dc_state *context);
+ bool dml2_is_stereo_timing(const struct dc_stream_state *stream);
++unsigned int dml2_calc_max_scaled_time(
++		unsigned int time_per_pixel,
++		enum mmhubbub_wbif_mode mode,
++		unsigned int urgent_watermark);
  
- #define MAX_MTP_SLOT_COUNT 64
- #define LINK_TRAINING_ATTEMPTS 4
+ /*
+  * dml2_dc_construct_pipes - This function will determine if we need additional pipes based
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+index abf946f089b3..9412d5384a41 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+@@ -640,6 +640,7 @@ static bool dml2_validate_and_build_resource(const struct dc *in_dc, struct dc_s
+ 		dml2_extract_watermark_set(&context->bw_ctx.bw.dcn.watermarks.b, &dml2->v20.dml_core_ctx);
+ 		memcpy(&context->bw_ctx.bw.dcn.watermarks.c, &dml2->v20.g6_temp_read_watermark_set, sizeof(context->bw_ctx.bw.dcn.watermarks.c));
+ 		dml2_extract_watermark_set(&context->bw_ctx.bw.dcn.watermarks.d, &dml2->v20.dml_core_ctx);
++		dml2_extract_writeback_wm(context, &dml2->v20.dml_core_ctx);
+ 		//copy for deciding zstate use
+ 		context->bw_ctx.dml.vba.StutterPeriod = context->bw_ctx.dml2->v20.dml_core_ctx.mp.StutterPeriod;
+ 
 -- 
 2.44.0
 
