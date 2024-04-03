@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FF9897945
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE232897948
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Apr 2024 21:51:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82A8112E84;
-	Wed,  3 Apr 2024 19:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A27112E88;
+	Wed,  3 Apr 2024 19:51:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="moRM/FOg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cVrQc28c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B8FC112E80
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6756112E83
  for <amd-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 19:51:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MbtuEVVJOgQLiU9oynSb0lQ6l8iDJrrthiivaWlbPWb3r2uSIlxHVOgoaE74pLsCRT2A7x1wvCgvdAm4jnkFy6vDMXYyyFlGW0pWCQCLMPn/sO3rCt9E3vo1DxKU+1kznJwO9oCAzVKC4HK0rL4vYB2uYUWtpHRLAB0gp8WSajkVDJhjoU0fEubDozvfXCRWL4KpXifrWXXDvKxkfGG2HDPMppMRJlat6+Qd/N8dgrbSzdAoQt+QSYdm8n6guw+Dm0Rfxgmi0aPVx2DqA5eTj4q1E8KN3bvOXJzFqCaH6qbnP7O+eJRa3GNvIOniv7eI5EGl1s4IuZwXv3MyPnwZ+g==
+ b=Xb/TvvHwloeOaJcap/8q+x/OG6mlOmC1J8IHs1c9jKWoudWZA1bsfLAgYuk0aG4AR/QhOQlDPibe2Ww4QFI4uKHS1SqNZUgMB0MqME43brOHAjULLmG+3+STMhtgWVa4AZxb+akRuVqeNFh9Jiu9GobULU5Ml5qi4kXHWxRR9VEnX8R5QSeHo3qulNExTtQJfm9xRCO7++ehe0OyNoSybfdJ25mJArxeBHbW3QAGLsS5uo4HtT7UHHNiwpFzWkSbIode1DMzQrlsljNfQPcRn8kJlYOkS3d0TxksTkcuWnxyfKY6nveNftJnPK63l20qad3ytn80YQUzsKf3q5pQVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RlOo9cy5ckUMDiJVsFImVJgzXC8g9UUFgXyr9IZBqaQ=;
- b=HLPuBh+njPE3AmnSYSMTp9eEKim9Mkqka6bJ4w90Y3gK95RRh9KViGgEJc9YDcMYfQ5li4qORRk8nTDgNZqq5qoA+RNbQ68J0jYmeugKpr0i+N6DuPjOos/x7d2OwhWMK9jqTj4BErBG7BHyINLwGre94TL1cynORQBG6VHXCwWdOE16hM6OB70NShle8OEMr5oL4B5VYK7bi/3udZnde4LxuF9kKbkdYeEVPwMWd5kqnBb9pbP6q2O6GO8ByZRSxJ+mpEEg8R+vx9vCROyAa0G1CpKuftaXSaWjyLuN3nvNd41gNCtTcjfbKzNAH4J5LSdlV0KYRC8M/pW0llRRXw==
+ bh=mZa01buEr19oPf/ha6/wS/UIiR3yIC31WEdtey2sDtc=;
+ b=iG23XmeHGi7daiHsEJ0IQ+wsuhntLIdX0GLeIni/jHxoJA3/R5ex/7xo6qwWuvUkPT0+SVlKZH/tRwHZ/QT8kJ28z4i2FGTuMGfVhKr5D3C2wuJ+u5STJxz1A8NnGJgpSpU+WW6fjRnOeiFGruo4TZOD172I8VPB16GG5VJdjlA5AbnTGDBQwpCGFaSrm1jYYIOq5EtPRGmQYUvTWLCNtaz0c6P5c47hmjkZHxr+7Y3vYDGX85CPzRo8xYn1bF3ip83rNlcmuAphrPYk/81+6kFd/7U8Hi32zdg/xCher545PhT7h5Zkg4pm9BkGin6NW0j9gK1E2gE1gJQbxJP1kA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RlOo9cy5ckUMDiJVsFImVJgzXC8g9UUFgXyr9IZBqaQ=;
- b=moRM/FOgBnHbgALVLCxlMM3FxdViWtZg1nlJYq6Ar763CEsM+ns7jVothPqlR/1mW2zH4G3vOuu+bN2cMp+7s10E4lUt42/RdOvfDW1vpUSK3SHGmtsxvzMsVSRLO9PXVXvG462/oG6wwvPKCjb3xRSKUmYHWgPw5nlyz33rw/A=
-Received: from CH0PR04CA0090.namprd04.prod.outlook.com (2603:10b6:610:74::35)
- by DM6PR12MB4419.namprd12.prod.outlook.com (2603:10b6:5:2aa::20) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=mZa01buEr19oPf/ha6/wS/UIiR3yIC31WEdtey2sDtc=;
+ b=cVrQc28c+rDVZzKE88+rjUNaX+d+/KhMvSjFRGFiulIKD4qymsSxB8tXtVlUrKMGMuex5dKKyyZMuT+Ba/kHf43YYcQn9mcpHYKpUmoshJKZdz2+rMxRtQpyvhjOumv4aD3gNKVx58CflNLZkjVCW9ZLNkt7XDPxWKg/mIDyuPA=
+Received: from CH0PR04CA0083.namprd04.prod.outlook.com (2603:10b6:610:74::28)
+ by IA1PR12MB8312.namprd12.prod.outlook.com (2603:10b6:208:3fc::16)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Wed, 3 Apr
  2024 19:51:52 +0000
 Received: from CH1PEPF0000AD74.namprd04.prod.outlook.com
- (2603:10b6:610:74:cafe::2c) by CH0PR04CA0090.outlook.office365.com
- (2603:10b6:610:74::35) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:610:74:cafe::78) by CH0PR04CA0083.outlook.office365.com
+ (2603:10b6:610:74::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46 via Frontend
  Transport; Wed, 3 Apr 2024 19:51:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -54,7 +54,7 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 3 Apr
- 2024 14:51:45 -0500
+ 2024 14:51:46 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -62,9 +62,10 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
  <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Hamza Mahfooz
  <hamza.mahfooz@amd.com>
-Subject: [PATCH 17/28] drm/amd/display: Add V_TOTAL_REGS to dcn10
-Date: Wed, 3 Apr 2024 15:49:07 -0400
-Message-ID: <20240403195116.25221-18-hamza.mahfooz@amd.com>
+Subject: [PATCH 18/28] drm/amd/display: Add comments to improve the code
+ readability
+Date: Wed, 3 Apr 2024 15:49:08 -0400
+Message-ID: <20240403195116.25221-19-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240403195116.25221-1-hamza.mahfooz@amd.com>
 References: <20240403195116.25221-1-hamza.mahfooz@amd.com>
@@ -76,26 +77,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD74:EE_|DM6PR12MB4419:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc591664-4d11-4115-6f9d-08dc54178225
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD74:EE_|IA1PR12MB8312:EE_
+X-MS-Office365-Filtering-Correlation-Id: 682dbe4a-4f13-4db5-5b62-08dc54178231
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rI3CHu7dHudq+S46KplTqBChYbZt3DK6GdGmEi6LiiHn3taoCggoaYxNhQV0af67bMCn0Ttp9+KgOT8M4pqjEdqOFmfPxRVdMyzC5Q0/Sflxls9So+SQ5IapMDySYVnHD7AOvmKcK/u8uEoSQEmBOeNAtUxBKV1kbvMsoIpVr76Prr30sjf1PmXQXMNERtUQIhKn4FVxaxMQSSvRAdH7pfzqDCHeMlviJKGK9d81HvvY6HlGQhv7NtQ8xy5V7X4yLIyFHTqe+zNdtZNjB4qT3SgINllwXlSSYbvJvwIg+YbO1belY05C7bxHN6iN6mUzlIzQx6z47k/fmk3A1WXADvH/jxU653nu27zyTs7qrDj9FbvAwf9dkobvxsq1hHIxgB3X60Q2zsZuyIgQc+c7vbB6atywp3i8lnwJNb+x7RHuW9+RZXPc6s1IYb4NHIeFMJHzfsWOX9IvPc+a2Q5AUg0f4+a2/r5d/yH3bBcU1B/BNqEckGzmcT5ecXcRybFd6t+IF2O2Sve3gl7DO/W6X1tlEYYh36SKksslJQGz2OkYS16v/RuGcxYHIcdwAhO0ZQBlkQ/BuakPTUzN9PMw1ONRFIxLDRwvD4u3GYEDnjNQQGx38QRV7KLxl2EdxzV7h6+f6kam0Zj7K8AVADB6y81BPQ2IOjXcUdt3+epj+D6ox+s4+E1rERh1ZTcsz0iW21FfOSPCU88YdwnlsLncn2YFrm3IYwukTzl3nD9XBr00ZZIcm9dNhK7302wpgXXm
+X-Microsoft-Antispam-Message-Info: cFWpZLbsW66yIwXT63weeSIB34tg6RyBmXeeaPl4jJfXn3bIPnAQSQJd/amp20i4ZvcZ3m/hIGY6YrHBAt5DOFRtoxhKVrzBb1MFI5P4sbxJ074zEQeCbOcc/2QAmJNF2DDTADFUNhGFEXO0BErmhUWmYXWyHLSb1e/bh7y8/HnaMcV1L5mIm2T0P1hcLKTMPkWTS+krmvlNeHZiifFmSwmcWMgCVww9k7Xg3mznwgsUhYoM997gPoT4htdN37LPszS3dYELi4Tj8HNPJf4PubohgBWmk0CwmI9Ke3etfu/7r1Qc0HOhCEDEIryrVjFj8Xn3gDhO7eX1tILFQhDG5QDBb0HChJntDdZGnRTlmi45ItIM1XjXfcVyqeVySkmpm9/0ivUmpbXOqEPii9ppk5pxSdcp/b4Q2XE28VNusmmKphqocoTx/6M4lZyAkkHcKN+VUNhQROqAv9rC0vMnHoNcNpmegWQTlHkzfR9SBD5pL+D4aJiT28GPSKtUDL+qPck4+86j8wS9rQC2e2jpxQtHkcf7sfzlCFJLXADcUFNHW/eRKHSniVDKFrClY2ebwOGqvtbQKN7QjJ57wpzp1wSl7/KKXSKo7a5k7nPsqMkLntdKlZ6qHraNQh/j7dOGTrMdn7KHZZ3vfeKwzJTCLcr5hszBH8bnahC9m6sWnER6jVD8kV2lfNtZRoQhQO9AtdtU8bZcen8szjMagKRb2PWcpGDx40Sh95WCNYT99AoTup02z7fELX89kGw8Nta9
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(1800799015)(376005)(82310400014); DIR:OUT;
+ SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:52.3615 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc591664-4d11-4115-6f9d-08dc54178225
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2024 19:51:52.4396 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 682dbe4a-4f13-4db5-5b62-08dc54178231
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD74.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4419
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8312
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,36 +113,55 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-DCN10 OPTC is used by other DCNs, and in some cases it might be useful
-to have V_TOTAL_REGS available. This commit add V_TOTAL_REGS as part of
-the TG field.
+This commit just introduce some basic comments that helps to understand
+the overall behavior of some structs.
 
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h                 | 2 ++
+ drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c  | 1 -
+ .../gpu/drm/amd/display/dc/resource/dcn201/dcn201_resource.c    | 1 +
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-index 8a45d26b7531..2f3bd7648ba7 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-@@ -517,12 +517,15 @@ struct dcn_optc_registers {
- 	type MANUAL_FLOW_CONTROL;\
- 	type MANUAL_FLOW_CONTROL_SEL;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index 3fab7c5bf093..028b2f971e36 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -339,7 +339,9 @@ struct stream_resource {
+ };
  
-+#define V_TOTAL_REGS(type)
-+
- #define TG_REG_FIELD_LIST(type) \
- 	TG_REG_FIELD_LIST_DCN1_0(type)\
- 	type OTG_V_SYNC_MODE;\
- 	type OTG_DRR_TRIGGER_WINDOW_START_X;\
- 	type OTG_DRR_TRIGGER_WINDOW_END_X;\
- 	type OTG_DRR_V_TOTAL_CHANGE_LIMIT;\
-+	V_TOTAL_REGS(type)\
- 	type OTG_OUT_MUX;\
- 	type OTG_M_CONST_DTO_PHASE;\
- 	type OTG_M_CONST_DTO_MODULO;\
+ struct plane_resource {
++	/* scl_data is scratch space required to program a plane */
+ 	struct scaler_data scl_data;
++	/* Below pointers to hw objects are required to enable the plane */
+ 	struct hubp *hubp;
+ 	struct mem_input *mi;
+ 	struct input_pixel_processor *ipp;
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+index 35a2cce0c2b8..56ee45e12b46 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+@@ -56,7 +56,6 @@
+ #include "dce/dce_aux.h"
+ #include "dce/dce_abm.h"
+ #include "dce/dce_i2c.h"
+-/* TODO remove this include */
+ 
+ #ifndef mmMC_HUB_RDREQ_DMIF_LIMIT
+ #include "gmc/gmc_7_1_d.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn201/dcn201_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn201/dcn201_resource.c
+index 914b234d7f6b..0d2974c9c823 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn201/dcn201_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn201/dcn201_resource.c
+@@ -182,6 +182,7 @@ static struct _vcs_dpi_soc_bounding_box_st dcn201_soc = {
+ 				.socclk_mhz = 1254.0,
+ 				.dram_speed_mts = 14000.0,
+ 			},
++			/* state4 is not an actual state, just defines unsupported for dml*/
+ 			{
+ 				.state = 4,
+ 				.dscclk_mhz = 400.0,
 -- 
 2.44.0
 
