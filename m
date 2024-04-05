@@ -2,63 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3B789B8E7
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Apr 2024 09:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DD289B8EF
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Apr 2024 09:46:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E03F1121E6;
-	Mon,  8 Apr 2024 07:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E34E112208;
+	Mon,  8 Apr 2024 07:46:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="kPvxaac6";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="oHZcElYA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 083EE113AB9
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 10:10:15 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-516cbf3fd3dso2135387e87.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 03:10:15 -0700 (PDT)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 223B810E40E
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 10:10:30 +0000 (UTC)
+Received: by mail-ej1-f51.google.com with SMTP id
+ a640c23a62f3a-a51a7dc45easo45561966b.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 03:10:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1712311814; x=1712916614; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1712311828; x=1712916628; darn=lists.freedesktop.org;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=pMVxpj5jrCWY4wGNABtVWwiGTGunJDyEHWKpz3twrCI=;
- b=kPvxaac6um2RsgR20vDH7jlByWlpp8L65SUHvFRvGSkB5m+iptwlvVcSr3oLDeJuUY
- 8cg3N+K1w2X5N/yqblryNBOcNg5XQp1GF/XplvgmSL7HN6ZnkqjaCkCvqCKFmxHEPadI
- v71047ndROVWNxaiHdGrTnKDPAXIMX8gBSc2+GdX1OuLDFd5pKa/VPlBLh2Rv0YD/nyP
- OPUG+SiEvKCSf1DfuFy5ZBIq6qpx4PsolEd6IgVA4EjTvksQHq+g8ZZaAWFtxe78oePJ
- j0OIn0R4hseKMu33tEBA3r4sETt+oveKbTR0NZyQQMXwlNzGUgafESCYZbxkO36N+ChO
- jZ3Q==
+ bh=QU9LnCPWYh2xuGVLRR4ne74RkYhzfXjHlDjtOg5ZemI=;
+ b=oHZcElYAlKTqIGq1KzcYZKqV8TeJ2ZNtYZ7ruEPwLNZ/08nRIVv9tNfvTa1Hi4amjP
+ OVzyaScYcXlRr8F02rZA0acmfa4g0phYYC1E+1w7tQwq71J7yPiO38EHlnHEOHrXpklm
+ 33fgbTJHeWAecIrl1NAd+sghdmBPc1UCNfiibE6yokXwl1pr7ImGY75J3Fe3p9eqUs4f
+ F/XIytVhf1op5Gij3Kek6EZL6qRl42zLLuUdJY6KpfB7xIUjtN2+ps9i1jToveYEZBoN
+ Da3foBT87T0aJ1JZbW81y3m5w+b6LVVNcwYGJ1gkMFbt7jbPVFtj6mGj/NQjeZvjxvr+
+ y+nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712311814; x=1712916614;
+ d=1e100.net; s=20230601; t=1712311828; x=1712916628;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pMVxpj5jrCWY4wGNABtVWwiGTGunJDyEHWKpz3twrCI=;
- b=BYzqCvdcv8+sHo3oXb7qFz1s5nnwxn2nLnbWG4YffTC1rBW6MDFxY1cDYGhtDjpf8g
- Wge/B3RQdL3Hd+GfgcNsmN1+DUkbW+uBTkfjmehH2cVTqsT3hn30HhgxbjyqQXx6cBHo
- dec8eXgiHBV34ff5lvw8EqVzIAcTd6cq3eD6nDOtBgqXprsTu/kFuuK6N8Y31ABgZYY0
- XDsAInLhoOg8p3BNLOMv9SUkG5EJEVO0/4Qi09EHySgYFwBdMZe2LFfzI7ij0Ca+u3/k
- G9FoSeg/oUdxxKmEMU3JGIGiEE2MaYfuYsKJ5gR+CA7cKmHgFzBw5aUKVcn9hgsPOGLs
- J3Tg==
-X-Gm-Message-State: AOJu0YxGTbB/r50UKorDID8L7DdEBWcNT4bAn+l4sE9js+JO6YnVsTrd
- lDA7CSejy3mm2+4dxslltjh90+HapiqnGn0x9RBn+3GeISU+XhsAvGDmraMh5XZs9pE3f+yS8w/
- O
-X-Google-Smtp-Source: AGHT+IF8onUpvsNtjzwoZWQTlEbe6Ezvt1hwQZRyGt0118r/S2n4JBcqJBoX7auLjlWuvR9oMhCLoQ==
-X-Received: by 2002:a19:2d5b:0:b0:515:920e:eedb with SMTP id
- t27-20020a192d5b000000b00515920eeedbmr501937lft.39.1712311813673; 
- Fri, 05 Apr 2024 03:10:13 -0700 (PDT)
+ bh=QU9LnCPWYh2xuGVLRR4ne74RkYhzfXjHlDjtOg5ZemI=;
+ b=GvRqhL3CznJaBozITuHQ7+BmKH+ehD1gMUHoDLi6xN5bTzDH243slkRP9pJIqRC8Db
+ JfW97OKyaLGS7vjKq7klEYDfGVZEH5Oa0EoQh7tk7cSx5nyS2J6PydC+9s6McHcEUjN8
+ 4sUJ/Grxl9RqcDPw43A71FPpwdREzmcFNzjLsWKQxOtZHR4J9YzPXUZvS0dTRI93UFs7
+ jHbz26YuKvuUXJWlFE29exowhu9yOXOX2Q3LTvA1r/UFO4vh4cKB44HuWR7aSnXMdiSP
+ 5C70jbYuOIlNZsi3pmSE08zpQtnjtEc74890RQXuCAHcfvUFcx1ukIv4rEU5nw4nuFZf
+ au0A==
+X-Gm-Message-State: AOJu0YzLBBR9Rm8mS77xaghsMIK1RWhjsFUOUuKs/2mgQs9pQK/4Mf0U
+ UzMeqFVM1PrPCNnB5MYMWBF+jedboMqq/sNH1OS8RqtiNTEQK780YLxKsEoy/ZM=
+X-Google-Smtp-Source: AGHT+IH8wFxmGGesWwz1GeRY4BnEJ/OBCQapXdo9t/G/kf38IMXqsefsXhvMwi+KVQpZ3nEWYVCu5A==
+X-Received: by 2002:a17:906:2789:b0:a51:9868:5ed5 with SMTP id
+ j9-20020a170906278900b00a5198685ed5mr765221ejc.21.1712311828204; 
+ Fri, 05 Apr 2024 03:10:28 -0700 (PDT)
 Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- kn6-20020a170906aa4600b00a4e238e46edsm655856ejb.223.2024.04.05.03.10.12
+ bj1-20020a170906b04100b00a449026672esm661276ejb.81.2024.04.05.03.10.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Apr 2024 03:10:13 -0700 (PDT)
-Date: Fri, 5 Apr 2024 13:10:03 +0300
+ Fri, 05 Apr 2024 03:10:27 -0700 (PDT)
+Date: Fri, 5 Apr 2024 13:10:24 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: bhawanpreet.lakha@amd.com
+To: alvin.lee2@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [bug report] drm/amd/display: Allow Z8 when stutter threshold is not
- met
-Message-ID: <b4d8af9b-1014-4682-a573-15847b81ef49@moroto.mountain>
+Subject: [bug report] drm/amd/display: Remove plane and stream pointers from
+ dc scratch
+Message-ID: <0689f985-71a3-4497-a9cc-9b2ce2f074d4@moroto.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -77,29 +76,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Bhawanpreet Lakha,
+Hello Alvin Lee,
 
-This is a semi-automatic email about new static checker warnings.
+Commit 285a7054bf81 ("drm/amd/display: Remove plane and stream
+pointers from dc scratch") from Mar 15, 2024 (linux-next), leads to
+the following Smatch static checker warning:
 
-Commit e9a09a198bfe ("drm/amd/display: Allow Z8 when stutter
-threshold is not met") from Mar 13, 2024, leads to the following
-Smatch complaint:
+drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn20/dcn20_hwseq.c:1112 dcn20_set_input_transfer_func() warn: address of 'plane_state->in_transfer_func' is non-NULL
+drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn10/dcn10_hwseq.c:1839 dcn10_set_input_transfer_func() warn: address of 'plane_state->in_transfer_func' is non-NULL
+drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dce110/dce110_hwseq.c:301 dce110_set_input_transfer_func() warn: address of 'plane_state->in_transfer_func' is non-NULL
 
-    drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/dcn20_fpu.c:1088 decide_zstate_support()
-    warn: variable dereferenced before check 'link' (see line 1087)
+drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn20/dcn20_hwseq.c
+    1094 bool dcn20_set_input_transfer_func(struct dc *dc,
+    1095                                 struct pipe_ctx *pipe_ctx,
+    1096                                 const struct dc_plane_state *plane_state)
+    1097 {
+    1098         struct dce_hwseq *hws = dc->hwseq;
+    1099         struct dpp *dpp_base = pipe_ctx->plane_res.dpp;
+    1100         const struct dc_transfer_func *tf = NULL;
+                                                ^^^^^^^^^
+This assignment is not necessary now.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/dcn20_fpu.c
-  1086			bool allow_z8 = context->bw_ctx.dml.vba.StutterPeriod > (double)minmum_z8_residency;
-  1087			bool is_pwrseq0 = link->link_index == 0;
-                                          ^^^^^^^^^^^^^^^^
-The existing code assumes link isn't NULL
+    1101         bool result = true;
+    1102         bool use_degamma_ram = false;
+    1103 
+    1104         if (dpp_base == NULL || plane_state == NULL)
+    1105                 return false;
+    1106 
+    1107         hws->funcs.set_shaper_3dlut(pipe_ctx, plane_state);
+    1108         hws->funcs.set_blend_lut(pipe_ctx, plane_state);
+    1109 
+    1110         tf = &plane_state->in_transfer_func;
+                 ^^^^^
+Before there was an if statement but now tf is assigned unconditionally
 
-  1088			bool is_psr = (link && (link->psr_settings.psr_version == DC_PSR_VERSION_1 ||
-                                       ^^^^
-  1089							link->psr_settings.psr_version == DC_PSR_VERSION_SU_1) && !link->panel_config.psr.disable_psr);
-  1090			bool is_replay = link && link->replay_settings.replay_feature_enabled;
-                                         ^^^^
-but the patch assumes link can be NULL.  Somebody is wrong.
+    1111 
+--> 1112         if (tf == NULL) {
+                 ^^^^^^^^^^^^^^^^^
+so these conditions are impossible.
+
+    1113                 dpp_base->funcs->dpp_set_degamma(dpp_base,
+    1114                                 IPP_DEGAMMA_MODE_BYPASS);
+    1115                 return true;
+    1116         }
+    1117 
+    1118         if (tf->type == TF_TYPE_HWPWL || tf->type == TF_TYPE_DISTRIBUTED_POINTS)
+    1119                 use_degamma_ram = true;
+    1120 
+    1121         if (use_degamma_ram == true) {
+    1122                 if (tf->type == TF_TYPE_HWPWL)
+    1123                         dpp_base->funcs->dpp_program_degamma_pwl(dpp_base,
 
 regards,
 dan carpenter
