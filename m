@@ -2,57 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A7D89B8E8
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Apr 2024 09:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B087989ABB6
+	for <lists+amd-gfx@lfdr.de>; Sat,  6 Apr 2024 17:43:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBDDC1121E7;
-	Mon,  8 Apr 2024 07:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE3710F218;
+	Sat,  6 Apr 2024 15:43:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="C0d1SRjy";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ONOYr+zK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5815810EB62;
- Fri,  5 Apr 2024 17:09:07 +0000 (UTC)
-Received: from [100.64.217.16] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id C079220E98C5;
- Fri,  5 Apr 2024 10:09:06 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C079220E98C5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712336947;
- bh=8/pqkmLMlPcre5fV5qkvKEs/2rR9bcZxNm4kNFHWSjQ=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=C0d1SRjyurGtxNvhWTTmtbPSCA+yIp/OoN3XC/p90jKg2/Te57kQIcZHNpxQ3N2VQ
- sXQcWE6qovKVAf63szhiTG9qVBhLM1mFp1anVH+P8e81uOq0H+Hm08czNqSAQAwLsT
- RqFrEA3QupgZYOJZGbxAxqLnmILZ6wWm5h9HB87o=
-Message-ID: <3bd8d2f6-dfe1-479f-bff1-f2921b1940ed@linux.microsoft.com>
-Date: Fri, 5 Apr 2024 10:09:05 -0700
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0479110E9C3
+ for <amd-gfx@lists.freedesktop.org>; Sat,  6 Apr 2024 15:43:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 29907CE19FD;
+ Sat,  6 Apr 2024 15:43:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD9BC433C7;
+ Sat,  6 Apr 2024 15:43:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1712418189;
+ bh=KlnonV88efemHIAcJauLyXmI35h5Ofb30ye+h1O5iv8=;
+ h=From:Date:Subject:To:Cc:From;
+ b=ONOYr+zKX7FB4VAtyh2UVVDuuwqYFLnMyYfj9VKM/+6G9A7gFE8mjLRPg3eNaBgKA
+ qVRge+5eW0R4BKKivukxrgMifZ5+zZQohVSAqsRSe2+NJqreQsctTWTHQTBSEFsqVt
+ Ahl345RG4CKnYGMjjFbTqGrhltdGDBh/wckSOFdCLRrm/VDM150fLT73hxC0kqbfRt
+ A3uJ4BZhYiNBiIghQuRLj782yXY5j0uUrvVe0wuZwR4qhEuj4Ph6eXPyohLnKF/qnW
+ cdj5jIEWvs6+fmtperyHZIm7x6wCY3qZvPw/NNDfljU24laEEImUVpBmOiNH/k6S7i
+ 1LX7y84zE6Z6A==
+From: Simon Horman <horms@kernel.org>
+Date: Sat, 06 Apr 2024 16:43:02 +0100
+Subject: [PATCH] Documentation/gpu: correct path of reference
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 00/14] Make I2C terminology more inclusive for I2C
- Algobit and consumers
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 08 Apr 2024 07:46:23 +0000
+Message-Id: <20240406-doc-gpu-v1-1-fe0ad057ac7e@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAIVtEWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDEwMz3ZT8ZN30glJdYyPLNMPkFANTo2RDJaDqgqLUtMwKsEnRsbW1AKQ
+ g3oVZAAAA
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Maxime Ripard <mripard@kernel.org>, 
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org
+X-Mailer: b4 0.12.3
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,60 +64,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Wolfram,
+The path to GPU documentation is Documentation/gpu
+rather than Documentation/GPU
 
-On 4/5/2024 3:18 AM, Wolfram Sang wrote:
-> Hello Easwar,
-> 
-> On Fri, Mar 29, 2024 at 05:00:24PM +0000, Easwar Hariharan wrote:
->> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of the
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
-> 
-> I really appreciate that you want to assist in this task to improve the
-> I2C core. I do. I am afraid, however, that you took the second step
-> before the first one, though. As I mentioned in my original cover
-> letter, this is not only about renaming but also improving the I2C API
-> (splitting up header files...). So, drivers are not a priority right
-> now. They can be better fixed once the core is ready.
->
+This appears to have been introduced by commit ba162ae749a5
+("Documentation/gpu: Introduce a simple contribution list for display code")
 
-Sorry, got excited. :) There were drivers I'd been part of that I specifically
-wanted to fixup, but then the scope grew to other users of algobit.
+Flagged by make htmldocs.
 
-> It is true that I changed quite some controller drivers within the i2c
-> realm. I did this to gain experience. As you also noticed quite some
-> questions came up. We need to agree on answers first. And once we are
-> happy with the answers we found, then IMO we can go outside of the i2c
-> realm and send patches to other subsystems referencing agreed
-> precedence. I intentionally did not go outside i2c yet. Since your
-> patches are already there, you probably want to foster them until they
-> are ready for inclusion.
+Signed-off-by: Simon Horman <horms@kernel.org>
+---
+ Documentation/gpu/amdgpu/display/display-contributing.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sorry, I don't quite follow what you mean by foster in this context. Are
-you asking me to hold off on merging the series, or to follow through on
-getting it merged?
-
- Yet, regarding further patches, my suggestion
-> is to wait until the core is ready. That might take a while, though.
-> However, there is enough to discuss until the core is ready. So, your
-> collaboration there is highly appreciated!
-> 
->> The last patch updating the .master_xfer method to .xfer depends on
->> patch 1 of Wolfram's series below, but the series is otherwise
->> independent. It may make sense for the last patch to go in with
-> 
-> Please drop the last patch from this series. It will nicely remove the
-> dependency. Also, like above, I first want to gain experience with i2c
-> before going to other subsystems. That was intended.
->
-
-Will do, thanks!
-
-> All the best and happy hacking,
-> 
->    Wolfram
-> 
+diff --git a/Documentation/gpu/amdgpu/display/display-contributing.rst b/Documentation/gpu/amdgpu/display/display-contributing.rst
+index fdb2bea01d53..36f3077eee00 100644
+--- a/Documentation/gpu/amdgpu/display/display-contributing.rst
++++ b/Documentation/gpu/amdgpu/display/display-contributing.rst
+@@ -135,7 +135,7 @@ Enable underlay
+ ---------------
+ 
+ AMD display has this feature called underlay (which you can read more about at
+-'Documentation/GPU/amdgpu/display/mpo-overview.rst') which is intended to
++'Documentation/gpu/amdgpu/display/mpo-overview.rst') which is intended to
+ save power when playing a video. The basic idea is to put a video in the
+ underlay plane at the bottom and the desktop in the plane above it with a hole
+ in the video area. This feature is enabled in ChromeOS, and from our data
 
