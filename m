@@ -2,52 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC4AC89D2E7
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Apr 2024 09:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E3789C057
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Apr 2024 15:07:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D133112834;
-	Tue,  9 Apr 2024 07:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4FB112589;
+	Mon,  8 Apr 2024 13:07:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="N1fl7M9E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LXmLBitr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84015112624
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 14:02:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 6D408CE12B3;
- Mon,  8 Apr 2024 14:02:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAB6EC433C7;
- Mon,  8 Apr 2024 14:02:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1712584973;
- bh=/TYVNtY1C1XGsRQZaaMq1IsN3METX0rWkMa2HOSKdX0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=N1fl7M9EgXO2373a4h86f0lYcFZo3OpzLyMoQy8Tg00eTifgqYOuk5/gKmytydNvJ
- xmjNLMPdMQWFVOayh8ZySScohCxTho09UHWml9G8Ne6+3geEMw+OYjOqd/bZKgNEkU
- DZwfnWAZiswfuVfP4zXefsoBvbMcfjF8rOT4bYuE=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.15 579/690] drm/amdgpu: Use drm_mode_copy()
-Date: Mon,  8 Apr 2024 14:57:25 +0200
-Message-ID: <20240408125420.579306553@linuxfoundation.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240408125359.506372836@linuxfoundation.org>
-References: <20240408125359.506372836@linuxfoundation.org>
-User-Agent: quilt/0.67
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F446112589
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 13:07:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=is5dMJWeNy0omrpSdhuwwJpHkZua2AFCd/82RBsXxzQojSyMV8TaoGx9hp1cFa4nX85S6dRO4t3TXWeBjOInHDj4dLBuQgr1bUCZlrIDh1As6O4P3ToF6wFcJQbHkV3pCp8qIhwUl4cqKM+s9wnqgPcddI1QTvO8ciYNpglVl+HEiq5AggXaoU6q4GjL/Z5I4QDYTOVhwR04eak+uMIKd+ZIRUC7lGFLdsXfQjNdCrxCrQxQSqNHvqrWQbTHfvwPeOZ9mPM+7W5+/aZvdvlNKdPO60rWBYhywtSKf5wNprz1JvYGrdyKTkzOeeqQwCIkl5LKxjmETc1BkfIO8pBGrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WARKdObYb3Wi/z+hJghFLnvEgOL9zlpg7LL+4Zaa4Jo=;
+ b=WMBSnVjUlL0vHlbPHOqR0OFxNULaHhACNgGv/z24tAvtWhyHjd4mrqROev1mKLocTct+ZX2bb2/pi+VWvsIUpI4c8ggzcHOM8tkfDAjxnjGwP0pcTrkCM02VzjJGxv5XsA+OuhPz1U5s7KFQWJDd0mONMrLiKsUzCXEEfFCiSTR83NgwlHvUn2nfNK6Otrkm3Is16jmVWdf5A64N1jLyaAQJUlnSCk6BPB3oqoXSC9CqrW+eJ7IIZ9UsZMXbKMDadNntQm6/7NokaN4cVImwj8839N474eIVO5mszQZmoGgtIXv7ZFSAfGAjnJdMQwrDFAIqkCVXBPDOxYq3Scjxtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WARKdObYb3Wi/z+hJghFLnvEgOL9zlpg7LL+4Zaa4Jo=;
+ b=LXmLBitr31Mo1TjVhg4sZvflFqgbVuJ0H0cElQ4ryXxHnOpWsHI4/6k9MImH2diZc05gULCp3MxsJj21lPM1pFrSMcV9fmaa/pfvqZ7YRv0GVqYBsZa47F7CiH4NWCrpCNon0Ta2mkyuAwcF85ThPwQf6/urYoIuSm1ou9N5HeU=
+Received: from BYAPR11CA0100.namprd11.prod.outlook.com (2603:10b6:a03:f4::41)
+ by IA1PR12MB6601.namprd12.prod.outlook.com (2603:10b6:208:3a3::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Mon, 8 Apr
+ 2024 13:07:22 +0000
+Received: from MWH0EPF000A6731.namprd04.prod.outlook.com
+ (2603:10b6:a03:f4:cafe::7d) by BYAPR11CA0100.outlook.office365.com
+ (2603:10b6:a03:f4::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.34 via Frontend
+ Transport; Mon, 8 Apr 2024 13:07:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000A6731.mail.protection.outlook.com (10.167.249.23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7452.22 via Frontend Transport; Mon, 8 Apr 2024 13:07:21 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 8 Apr
+ 2024 08:07:20 -0500
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
+ <shashank.sharma@amd.com>, Philip Yang <Philip.Yang@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix tlb_cb memory leaking
+Date: Mon, 8 Apr 2024 09:06:56 -0400
+Message-ID: <20240408130656.14897-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 09 Apr 2024 07:20:21 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6731:EE_|IA1PR12MB6601:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15117380-8c92-49bc-9826-08dc57ccd3ea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xzPZH2v5MMw8iCHkX4mG8q6e+99QcYBmiQEZ/b8bNAgSKdR/RqYJqMFkWt+AQ7vgO3HR9ZeJVorbMdYSfjw2M5FKnKO+ZJUAtKHUOLWDs97nOl6tIYcrEEA8OC3dnblR2zlhzx3SV39NhPVcvnXgoVjgo6k8PwfRvXw/wt8n4YXu3ZmiZ/tLfB9LPPd4eOuiQ2ZY45wMxq9nOFnTnAyVYTMsOq90fKZt4I7ypVnjhr9yUA3bWx3+bAT8UUsiiZliDeo1YuWvMqZacMVy88/2kPXvkOOlm7lUsUHkvfJY/3rqyEPXg6ZPKez/1nQjpuxF2PjrY5ZKRtFvemKmg7NHB7LSpfYkz2U6VkJL+yIdU+kfB3Eo8H2khXu+2r5YWC+0ridJSOEEC4+reAD4FOV+y7NCrkTGZxN7xM+rdkHY0JxoEoPYMDrX4bnuAsL1KjhNVpi0lYuUPoQxTNYQ1kf8c5ibp9pZxXCDZsJtUQKeuNnZdmi78YSFbrpm0+4l9GGq2FhnDY2YNATQaEUyKmLtUJluqSJUaFlaApamAwD5DyheUdyII1pe62oQWlNU12Y272xsEkyRWsKx8PduFgyavsaE4mnJyRmXkroCI5T8BJyjDDESAf062GS8UmF0LoteaEWXEjrPVSibSFvHS41cz/t/uykdrABONr9IdUou2mDjQKamT1PExYPrerF40uPLAxdnj7qWS3E9pAibJmVSI8o8PUKZKx79NuQ12udwviw0AIuQGqhd6P6ZGO+uIhmw
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(376005)(82310400014)(36860700004)(1800799015); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2024 13:07:21.8673 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15117380-8c92-49bc-9826-08dc57ccd3ea
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6731.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6601
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,133 +105,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-5.15-stable review patch.  If anyone has any objections, please let me know.
+After updating GPU page table via CPU on large bar system, no fence
+callback, call amdgpu_vm_tlb_seq_cb directly after command committed
+to free tlb_cb.
 
-------------------
+memory leaking backtrace from kmemleakd:
+  unreferenced object 0xffffa036816b00c0 (size 32):
+  backtrace:
+     __kmem_cache_alloc_node+0x3fe/0x4d0
+     kmalloc_trace+0x2a/0xb0
+     amdgpu_vm_update_range+0x9b/0x8d0 [amdgpu]
+     amdgpu_vm_clear_freed+0xc1/0x210 [amdgpu]
+     unmap_bo_from_gpuvm.isra.36+0x37/0x50 [amdgpu]
+     amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu+0x118/0x1b0 [amdgpu]
+     kfd_process_device_free_bos+0x7c/0xe0 [amdgpu]
+     kfd_process_wq_release+0x273/0x3c0 [amdgpu]
+     process_scheduled_works+0x2a7/0x500
+     worker_thread+0x186/0x340
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-[ Upstream commit 426c89aa203bcec9d9cf6eea36735eafa1b1f099 ]
-
-struct drm_display_mode embeds a list head, so overwriting
-the full struct with another one will corrupt the list
-(if the destination mode is on a list). Use drm_mode_copy()
-instead which explicitly preserves the list head of
-the destination mode.
-
-Even if we know the destination mode is not on any list
-using drm_mode_copy() seems decent as it sets a good
-example. Bad examples of not using it might eventually
-get copied into code where preserving the list head
-actually matters.
-
-Obviously one case not covered here is when the mode
-itself is embedded in a larger structure and the whole
-structure is copied. But if we are careful when copying
-into modes embedded in structures I think we can be a
-little more reassured that bogus list heads haven't been
-propagated in.
-
-@is_mode_copy@
-@@
-drm_mode_copy(...)
-{
-...
-}
-
-@depends on !is_mode_copy@
-struct drm_display_mode *mode;
-expression E, S;
-@@
-(
-- *mode = E
-+ drm_mode_copy(mode, &E)
-|
-- memcpy(mode, E, S)
-+ drm_mode_copy(mode, E)
-)
-
-@depends on !is_mode_copy@
-struct drm_display_mode mode;
-expression E;
-@@
-(
-- mode = E
-+ drm_mode_copy(&mode, &E)
-|
-- memcpy(&mode, E, S)
-+ drm_mode_copy(&mode, E)
-)
-
-@@
-struct drm_display_mode *mode;
-@@
-- &*mode
-+ mode
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Stable-dep-of: 79f3e38f60e5 ("drm/amd/display: Preserve original aspect ratio in create stream")
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Fixes: 220ecde84bc8 ("drm/amdgpu: implement TLB flush fence")
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 4 ++--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index c777aff164b76..654f99f4107ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -625,7 +625,7 @@ amdgpu_connector_fixup_lcd_native_mode(struct drm_encoder *encoder,
- 		if (mode->type & DRM_MODE_TYPE_PREFERRED) {
- 			if (mode->hdisplay != native_mode->hdisplay ||
- 			    mode->vdisplay != native_mode->vdisplay)
--				memcpy(native_mode, mode, sizeof(*mode));
-+				drm_mode_copy(native_mode, mode);
- 		}
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 8af3f0fd3073..d0ef727cd7e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -901,12 +901,9 @@ amdgpu_vm_tlb_flush(struct amdgpu_vm_update_params *params,
+ {
+ 	struct amdgpu_vm *vm = params->vm;
  
-@@ -634,7 +634,7 @@ amdgpu_connector_fixup_lcd_native_mode(struct drm_encoder *encoder,
- 		list_for_each_entry_safe(mode, t, &connector->probed_modes, head) {
- 			if (mode->hdisplay == native_mode->hdisplay &&
- 			    mode->vdisplay == native_mode->vdisplay) {
--				*native_mode = *mode;
-+				drm_mode_copy(native_mode, mode);
- 				drm_mode_set_crtcinfo(native_mode, CRTC_INTERLACE_HALVE_V);
- 				DRM_DEBUG_KMS("Determined LVDS native mode details from EDID\n");
- 				break;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 7385efe699f88..9356decd14513 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6219,7 +6219,7 @@ get_highest_refresh_rate_mode(struct amdgpu_dm_connector *aconnector,
- 		}
- 	}
- 
--	aconnector->freesync_vid_base = *m_pref;
-+	drm_mode_copy(&aconnector->freesync_vid_base, m_pref);
- 	return m_pref;
- }
- 
-@@ -6333,8 +6333,8 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 				 is_freesync_video_mode(&mode, aconnector);
- 		if (recalculate_timing) {
- 			freesync_mode = get_highest_refresh_rate_mode(aconnector, false);
--			saved_mode = mode;
--			mode = *freesync_mode;
-+			drm_mode_copy(&saved_mode, &mode);
-+			drm_mode_copy(&mode, freesync_mode);
- 		} else {
- 			decide_crtc_timing_for_drm_display_mode(
- 				&mode, preferred_mode, scale);
+-	if (!fence || !*fence)
+-		return;
+-
+ 	tlb_cb->vm = vm;
+-	if (!dma_fence_add_callback(*fence, &tlb_cb->cb,
+-				    amdgpu_vm_tlb_seq_cb)) {
++	if (fence && *fence &&
++	    !dma_fence_add_callback(*fence, &tlb_cb->cb, amdgpu_vm_tlb_seq_cb)) {
+ 		dma_fence_put(vm->last_tlb_flush);
+ 		vm->last_tlb_flush = dma_fence_get(*fence);
+ 	} else {
 -- 
-2.43.0
-
-
+2.43.2
 
