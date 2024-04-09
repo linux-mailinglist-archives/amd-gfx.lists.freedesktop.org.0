@@ -2,118 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529C189D590
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Apr 2024 11:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8E689EB86
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Apr 2024 09:13:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3415010EAFD;
-	Tue,  9 Apr 2024 09:28:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC21211320B;
+	Wed, 10 Apr 2024 07:12:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="peLKJ765";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="KtkJA6bh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2138.outbound.protection.outlook.com [40.107.95.138])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB8B410EF02
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 09:28:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MYv0PBvUm/LBKF6q5BWLV+wjmLKajbN5kxlmwEpvpT4TI4DZ20xgVB5sJht3nYlu4hIECIc9ircPQSEKYBSKmFIcXYP0Iqiyu5Nr4YWkFj4ZFXEcdd0OwfAMv8MRjCCrLW8vjYbrV7W7EDE7cMG7APtSdLszIEVU7izeF5EeHf9JP5COlmy7/VWkgAka7CaLkv2j9mp9e7dd8hXvTlXo1chatwYT4lOyOeCZOv8ovRFwblbuSLQwCaN3lTXXYDquRn/lTodI/eT1EE1g3UKPsyfnltmEfKxG8WoVdtUcg1sXN3GwO4LfI/QUBYuDU0ynEJW60WY3S+LWEFYGhYPhBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NZ2hEGiTaf4mPJ/SU2HBUeszcL/a6omiYkjLYpuCA4k=;
- b=e8xC4LD7bqZVZbJ0JTevRoikPwkYkEXDaQxlEjzJDsphfGcYwGcgoqJPvgcg+TBb1bUZ2KF/4K7oYSuZhR/DPXd6gUmnXSSTBX24/OIXu31oDgKk0GlJIHIVlcXdvNo8Bgbi6kdHYx96KL11lOpFX16e8BFe/pqDM3y+Q6ejqufgZJVOc0Pm95vaMX0B/HSu0Qg9xwzW3Qze+h+WSHTIaLtk009hyuY1fODl8vnql9X2wNsIJCZ1x0swpHWHqzozjbq6mSkGDGEoCBl9i5yWumdrmasYga5umFiPvOUK9XWGZnvgft35sXrpkicA4H3jIL8BBL1jtR4bejFur1d6jg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NZ2hEGiTaf4mPJ/SU2HBUeszcL/a6omiYkjLYpuCA4k=;
- b=peLKJ765xttpyW+eDROxb8Y6MosiwN2dssiE+x9ueZMuML9r8Stvjxcg2imQzo+4bk6mbVxxciaid8ehgQ6CJO3RWpgLnPi0QUX4y3M6bfWtsVMo9Uxw7iDvjE73IxqOJwJ64DKSaiB3C4oIujLzm2AmLDhFJiio+9uqI1QMdoY=
-Received: from CH2PR12MB4215.namprd12.prod.outlook.com (2603:10b6:610:ab::24)
- by CH3PR12MB9343.namprd12.prod.outlook.com (2603:10b6:610:1c0::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Tue, 9 Apr
- 2024 09:28:01 +0000
-Received: from CH2PR12MB4215.namprd12.prod.outlook.com
- ([fe80::9bf1:7cdc:4c83:4da2]) by CH2PR12MB4215.namprd12.prod.outlook.com
- ([fe80::9bf1:7cdc:4c83:4da2%3]) with mapi id 15.20.7409.053; Tue, 9 Apr 2024
- 09:28:01 +0000
-From: "Chai, Thomas" <YiPeng.Chai@amd.com>
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Li, Candice"
- <Candice.Li@amd.com>, "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>, "Yang,
- Stanley" <Stanley.Yang@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Fix incorrect return value
-Thread-Topic: [PATCH] drm/amdgpu: Fix incorrect return value
-Thread-Index: AQHahZWTzI8oX95f2kWPs2o7WORGDLFfRo8AgABumqA=
-Date: Tue, 9 Apr 2024 09:28:00 +0000
-Message-ID: <CH2PR12MB4215C10961061988C90358C3FC072@CH2PR12MB4215.namprd12.prod.outlook.com>
-References: <20240403070649.685497-1-YiPeng.Chai@amd.com>
- <PH7PR12MB8796CC8493C2784DDE1A53F1B0072@PH7PR12MB8796.namprd12.prod.outlook.com>
-In-Reply-To: <PH7PR12MB8796CC8493C2784DDE1A53F1B0072@PH7PR12MB8796.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=3f6acaf8-9c91-4363-a78b-97425260c117;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2024-04-09T02:45:05Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH2PR12MB4215:EE_|CH3PR12MB9343:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: d9jMmdM0zKjNkUoGtWPX2KDuTOl2CdO/ryrBqjoLw2qaRqf0FaEgblNkXW2pu0XkPCWACiIpwZTZrgYcZ4Rix0DEAjrlp4HYl3fGYdEOezzGTcfnpsB1I+fWNJD+NnCXtLigmtVefzUcomUSaQfkyqSEuUqtJQPM61IzXT96Npy4MIeb6U4JqLYdCH/p77Y/uBOPMTDw2htNTs6FkQxT6ViLzIhlsZS0WVXY96Gv8zX3gomkoG2Z/GBbkgm6M/9dwDONOWNFDU1hkHzxbvWw8gX0IMI2/0VvXjK8vlPmZzyfb3LlekUGQpVFIQdgWSmu7Y0s6X4reiL3TxB/oHAVft0LHuiaTEBqebKbI2i2wsw28+qX7/Pd/hsOjL2j8ferGfGPrG9iZF54b1DdSpHmx8nZXGXNvwxG/oBbBMAKtpIfYkwdml9TOIzPDzXWgA/kigYqIJMaYZrvNVZMyPBDQPmFW1Z9mT+Gk0foP+5I85s/5BDezRLFIy2dpFlEmz/XsZ39mYewEgUHzo2Ox7nd41GTSq45kcV10Gb1kKrWlxbqjmaOOddUNqjpqOGKhh9jeM/yUH6X1cf//DZEdGS2H24o7ROg4xQXsaiQHEkxBL05GG1+aXl2ERRnx02IlxghPIx9tsuk9xZyKQHIt6tPHJCN7ib8R992QnFJCYJQgLY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB4215.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iGJLJE/dJWLb0cUa5tm/y7F0GAGrMpgBJVGwFRvUnnMHTBw/T+WkDNhkUoBz?=
- =?us-ascii?Q?ZUy+jSHgF8AiEPN4NrZtqZ03qOhfbLq28FNMtWYYqz1ftB1gggixQayyCMNH?=
- =?us-ascii?Q?UO5eKR9MsJ29SKb4llWg4GAUT298WEqMzbfrcBXRs9r22RU4EuGKottNIe73?=
- =?us-ascii?Q?EqW7X+INMom+EXfsJJn/Fc/qdmbUGXeRW0tymkNo9Da1x7km1FurHS8i91Ln?=
- =?us-ascii?Q?LXmt+HYNjhN6JFSEhim34yulTw9lXKbNw2DY/U7/tEcZ8ySBZf786cYwyJZQ?=
- =?us-ascii?Q?GtiAyic9/wLCgfHF4PcFcSRJx4HNN/b8wZ3vKOTFvfIFQpH+3szha9a4Kuj9?=
- =?us-ascii?Q?MA4VdFvzlMdl8XlPJoptYUAy7jvf7OD6M6ky0NWZjQ8H9kopX4OrvXDQxi1S?=
- =?us-ascii?Q?oh0hqav0Tdc3sGizQlqj4dFh+3fiqSBGVKS5u4IRFoaF/Ll8vEFFTQnbrFuE?=
- =?us-ascii?Q?mn5xnRCqmb8odKsFLHhU7TQavh6oeJzYLvmWlQW3r1JR5+b3i1txSGTYWhTy?=
- =?us-ascii?Q?8aWUXZGrSWT9uHcmq1XvGw8I1F7kg/bGGaTkXBxG0ZruO+6sf3Y4AcQsvNGH?=
- =?us-ascii?Q?ZXBqrDABMVKnUNn9Pilf4VYpbkf2J9bmlXXomqESUmCSPmKQL7ughaYY2xmb?=
- =?us-ascii?Q?VkICGcoH2QNJmkixVXDkr9bMR6zkze2IuYXQBQmqRiCHT9Hw1lZ6zzZ4RR+b?=
- =?us-ascii?Q?G1DUzryHXJxtK7ZI+moKLK1aEGpe62/cizNq7dzGt38/TxQPeVAYeE2ZnKQ/?=
- =?us-ascii?Q?70xFo6CKlJ8dbairJgIHQnxSeQ1OP3zJzCpEFuEm1Wf1LvOJuwNmMpmHPbkK?=
- =?us-ascii?Q?AkWzj9aO/baKQGk503mf7B+3GuzBgBMlbasU1721TwAOyGsyp2Syz5XBaMvr?=
- =?us-ascii?Q?tvv/C6BTsg4ElzVIiwg2IBs8rWk65Ta0qcftBh/mISwFJa5XzfecCWDq2p82?=
- =?us-ascii?Q?5+XkE17JUs7uYdzLh9LDQzvuMGFlTwnNBRwpskRDzT/cahkC9Wf2K+653ePL?=
- =?us-ascii?Q?H6W5VNl9fp8fTWOAogfzoj2n0nOdn+t0ZYYey64NtvPJ2cxrmXrlcIFZi1CC?=
- =?us-ascii?Q?tdOl3BHAyMz901Oy9l7t+i5xuXlOSzlzBkqz9xXSHWRxG3pIj2EfxzblPXBi?=
- =?us-ascii?Q?RvFbnXDybYwrQilSKFa0K/phAE5SunBdZSzR9rNaRbIzYmQ4Af6byUVQmZ4G?=
- =?us-ascii?Q?tJ24Lc6KJz5Ejr5uL8/ZPsrywM+sV9xO7wb0ggw5SRVfwjqtERwBIdwncM2I?=
- =?us-ascii?Q?rbLYB6GcBOLqqYQmQ5lKvaAaVET95rncnDisoqk1OogyjEpuBCdTU0bYm5Qy?=
- =?us-ascii?Q?rt+lRvaqqlTbRXt3YqUMrnQLzNix/Enw5m7Yba57nOoNPAmUe/Iv3Sf944Ji?=
- =?us-ascii?Q?o6O+j/R5mkeYgloZar/kLwk2HKSk2W0OFUBGF+qW+rTMHdvv4oBBkVzeDh4J?=
- =?us-ascii?Q?mnjzGaHRx6klkDqaE9bXvJqszbkloy8yGcKvEXx2VjWtMXuNRdvQRuqtHFc8?=
- =?us-ascii?Q?njOLZOsmWsCQOdX15gLsBFE2Moza6RFOrmLClcoZSvCAI9X3JjfcPc0VbtEj?=
- =?us-ascii?Q?wOk1fW0HasGHVzFlZ7o=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEED710E17F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 15:39:25 +0000 (UTC)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id
+ 439CppUs017838; Tue, 9 Apr 2024 15:39:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=BVya2MLIf3T+ay0p5m5Dy3OvncV3HoHy2h8QweebvPk=; b=Kt
+ kJA6bhYIkRC4MZLI1LGmOfLeWO1DAgDad2jo7KMtyNYLPZZoBT16faQIgcrECgso
+ uho+kGsHmTj+j03mF4sk+Tj67rvzDvEv5P65XlEpKhzoYQ723lz+eFXq/ieHk29c
+ dIPNHSbCr/YssNqPMd/fxt/sv23fosG2q+AQ4axlxDChD3/z9C2D6Xpp+H9hnm/y
+ 58TZKFu9K4Oj62ub7r3YRdyjw/YexEmOqzGOgM7sk3hJbpFyQ5Idupg0jpYqlaOr
+ rVHIYVaWEKXnHO4ooXxxAsLGXtvdSHuOJMGGhbV3b6aGsXyt0iMvfc6CTQcsKeeQ
+ 9VxAKmFibhcVPVY8phCA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xcv3khhnr-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 09 Apr 2024 15:39:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 439FdIfx026011
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 9 Apr 2024 15:39:18 GMT
+Received: from [10.110.80.194] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 9 Apr 2024
+ 08:39:17 -0700
+Message-ID: <4a29d0b8-d9b6-4229-b5de-b4f378328cf4@quicinc.com>
+Date: Tue, 9 Apr 2024 08:39:16 -0700
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4215.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 723c2d24-911e-4d80-7df8-08dc587759c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2024 09:28:00.9932 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3ov0Ro24a8Y1Tt7wMM+mtJSiik2vofN3KLxdrexbjDGRhyu0ZwbE6LNRD4QXLvQ/YFnYfeVIuLuooXWYK+sZUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9343
+User-Agent: Mozilla Thunderbird
+Subject: Re: 6.5.5: UBSAN: radeon_atombios.c: index 1 is out of range for type
+ 'UCHAR [1]'
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>, Kees Cook <kees@kernel.org>
+CC: Justin Piszcz <jpiszcz@lucidpixels.com>, Bagas Sanjaya
+ <bagasdotme@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>, Linux Kernel
+ Mailing List <linux-kernel@vger.kernel.org>, Linux AMDGPU
+ <amd-gfx@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Dave Airlie <airlied@redhat.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Kees Cook <keescook@chromium.org>
+References: <CAO9zADy4b1XkD_ZaEF+XkDCXePJLD4Lev3g7HAEGYsCHgeM+KQ@mail.gmail.com>
+ <ZRoIGhMesKtmNkAM@debian.me>
+ <CAO9zADyfaLRWB-0rdojnbFD6SUsqX+zb9JZSZUkgTC7VJN=c1A@mail.gmail.com>
+ <a619df03-e0cb-48f7-840a-970b7a6f6037@quicinc.com>
+ <CA212FEF-E0BB-483C-86CC-6986D4FBE168@kernel.org>
+ <CADnq5_PKoX9G8jD=m1WnX3nxd_+GL_xi03_Dgq8HK6Diw3=JsQ@mail.gmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <CADnq5_PKoX9G8jD=m1WnX3nxd_+GL_xi03_Dgq8HK6Diw3=JsQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: c1qwXR0YvDTneK_1PZhMy5ER1dO-JAhs
+X-Proofpoint-GUID: c1qwXR0YvDTneK_1PZhMy5ER1dO-JAhs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-04-09_11,2024-04-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0
+ clxscore=1011 priorityscore=1501 impostorscore=0 mlxscore=0
+ mlxlogscore=999 adultscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2404090102
+X-Mailman-Approved-At: Wed, 10 Apr 2024 07:12:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,118 +99,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+On 4/8/2024 9:23 PM, Alex Deucher wrote:
+> On Mon, Apr 8, 2024 at 9:45 PM Kees Cook <kees@kernel.org> wrote:
+>>
+>>
+>>
+>> On April 8, 2024 5:45:29 PM PDT, Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
+>>> On 10/1/23 17:12, Justin Piszcz wrote:
+>>>>>> ================================================================================
+>>>>>> [Sun Oct  1 15:59:04 2023] UBSAN: array-index-out-of-bounds in
+>>>>>> drivers/gpu/drm/radeon/radeon_atombios.c:2620:43
+>>>>>> [Sun Oct  1 15:59:04 2023] index 1 is out of range for type 'UCHAR [1]'
+>>>>>> [Sun Oct  1 15:59:04 2023] CPU: 5 PID: 1 Comm: swapper/0 Tainted: G
+>>>>>>              T  6.5.5 #13 55df8de52754ef95effc50a55e9206abdea304ac
+>>>>>> [Sun Oct  1 15:59:04 2023] Hardware name: Supermicro X9SRL-F/X9SRL-F,
+>>>>>> BIOS 3.3 11/13/2018
+>>>>>> [Sun Oct  1 15:59:04 2023] Call Trace:
+>>>>>> [Sun Oct  1 15:59:04 2023]  <TASK>
+>>>>>> [Sun Oct  1 15:59:04 2023]  dump_stack_lvl+0x36/0x50
+>>>>>> [Sun Oct  1 15:59:04 2023]  __ubsan_handle_out_of_bounds+0xc7/0x110
+>>>>>> [Sun Oct  1 15:59:04 2023]  radeon_atombios_get_power_modes+0x87a/0x8f0
+>>>>>> [Sun Oct  1 15:59:04 2023]  radeon_pm_init+0x13a/0x7e0
+>>>>>> [Sun Oct  1 15:59:04 2023]  evergreen_init+0x13d/0x3d0
+>>>>>> [Sun Oct  1 15:59:04 2023]  radeon_device_init+0x60a/0xbf0
+>>>>>> [Sun Oct  1 15:59:04 2023]  radeon_driver_load_kms+0xb1/0x250
+>>>>>> [Sun Oct  1 15:59:04 2023]  drm_dev_register+0xfc/0x250
+>>>>>> [Sun Oct  1 15:59:04 2023]  radeon_pci_probe+0xd0/0x150
+>>>>>> [Sun Oct  1 15:59:04 2023]  pci_device_probe+0x97/0x130
+>>>>>> [Sun Oct  1 15:59:04 2023]  really_probe+0xbe/0x2f0
+>>>>>> [Sun Oct  1 15:59:04 2023]  ? __pfx___driver_attach+0x10/0x10
+>>>>>> [Sun Oct  1 15:59:04 2023]  __driver_probe_device+0x6e/0x120
+>>>>>> [Sun Oct  1 15:59:04 2023]  driver_probe_device+0x1a/0x90
+>>>>>> [Sun Oct  1 15:59:04 2023]  __driver_attach+0xd4/0x170
+>>>>>> [Sun Oct  1 15:59:04 2023]  bus_for_each_dev+0x87/0xe0
+>>>>>> [Sun Oct  1 15:59:04 2023]  bus_add_driver+0xf3/0x1f0
+>>>>>> [Sun Oct  1 15:59:04 2023]  driver_register+0x58/0x120
+>>>>>> [Sun Oct  1 15:59:04 2023]  ? __pfx_radeon_module_init+0x10/0x10
+>>>>>> [Sun Oct  1 15:59:04 2023]  do_one_initcall+0x93/0x4a0
+>>>>>> [Sun Oct  1 15:59:04 2023]  kernel_init_freeable+0x301/0x580
+>>>>>> [Sun Oct  1 15:59:04 2023]  ? __pfx_kernel_init+0x10/0x10
+>>>>>> [Sun Oct  1 15:59:04 2023]  kernel_init+0x15/0x1b0
+>>>>>> [Sun Oct  1 15:59:04 2023]  ret_from_fork+0x2f/0x50
+>>>>>> [Sun Oct  1 15:59:04 2023]  ? __pfx_kernel_init+0x10/0x10
+>>>>>> [Sun Oct  1 15:59:04 2023]  ret_from_fork_asm+0x1b/0x30
+>>>>>> [Sun Oct  1 15:59:04 2023]  </TASK>
+>>>>>> [Sun Oct  1 15:59:04 2023]
+>>>>>> ================================================================================
+>>>>>> [Sun Oct  1 15:59:04 2023] [drm] radeon: dpm initialized
+>>>>>> [Sun Oct  1 15:59:04 2023] [drm] GART: num cpu pages 262144, num gpu
+>>>>>> pages 262144
+>>>>>> [Sun Oct  1 15:59:04 2023] [drm] enabling PCIE gen 2 link speeds,
+>>>>>> disable with radeon.pcie_gen2=0
+>>>>>> [Sun Oct  1 15:59:04 2023] [drm] PCIE GART of 1024M enabled (table at
+>>>>>> 0x000000000014C000).
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: WB enabled
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: fence driver on ring 0
+>>>>>> use gpu addr 0x0000000040000c00
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: fence driver on ring 3
+>>>>>> use gpu addr 0x0000000040000c0c
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: fence driver on ring 5
+>>>>>> use gpu addr 0x000000000005c418
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: radeon: MSI limited to 32-bit
+>>>>>> [Sun Oct  1 15:59:04 2023] radeon 0000:03:00.0: radeon: using MSI.
+>>>>>> [Sun Oct  1 15:59:04 2023] [drm] radeon: irq initialized.
+>>>>>>
+>>>>>
+>>>>> Please also open an issue on freedesktop tracker [1].
+>>>>>
+>>>>> Thanks.
+>>>>>
+>>>>> [1]: https://gitlab.freedesktop.org/drm/amd/-/issues
+>>>>
+>>>> Issue opened: https://gitlab.freedesktop.org/drm/amd/-/issues/2894
+>>>>
+>>>> Regards,
+>>>> Justin
+>>>
+>>> +Kees since I've worked with him on several of these flexible array issues.
+>>>
+>>> I just happened to look at kernel logs today for my ath1*k driver maintenance and see the subject issue is present on my device, running 6.9.0-rc1. The freedesktop issue tracker says the issue is closed, but any fix has not landed in the upstream kernel. Is there a -next patch somewhere?
+>>>
+>>> [   12.105270] UBSAN: array-index-out-of-bounds in drivers/gpu/drm/radeon/radeon_atombios.c:2718:34
+>>> [   12.105272] index 48 is out of range for type 'UCHAR [1]'
+>>> [
+>>>
+>>> If there isn't really an upstream fix, I can probably supply one.
+>>
+>> I would expect this to have fixed it:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/gpu/drm/radeon/pptable.h?id=c63079c61177ba1b17fa05c6875699a36924fe39
+>>
+>> If not, there must be something else happening?
+> 
+> This patch should silence it I think:
+> https://patchwork.freedesktop.org/patch/588305/
 
-OK
-
-
------------------
-Best Regards,
-Thomas
-
------Original Message-----
-From: Zhou1, Tao <Tao.Zhou1@amd.com>
-Sent: Tuesday, April 9, 2024 10:52 AM
-To: Chai, Thomas <YiPeng.Chai@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Li, Candice <Candice.Li@amd.com=
->; Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; Yang, Stanley <Stanley.Yang@=
-amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Fix incorrect return value
-
-[AMD Official Use Only - General]
-
-> -----Original Message-----
-> From: Chai, Thomas <YiPeng.Chai@amd.com>
-> Sent: Wednesday, April 3, 2024 3:07 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Chai, Thomas <YiPeng.Chai@amd.com>; Zhang, Hawking
-> <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Li, Candice
-> <Candice.Li@amd.com>; Wang, Yang(Kevin) <KevinYang.Wang@amd.com>;
-> Yang, Stanley <Stanley.Yang@amd.com>; Chai, Thomas
-> <YiPeng.Chai@amd.com>
-> Subject: [PATCH] drm/amdgpu: Fix incorrect return value
->
-> [Why]
->   After calling amdgpu_vram_mgr_reserve_range multiple times with the
-> same address, calling amdgpu_vram_mgr_query_page_status will always
-> return - EBUSY.
->   From the second call to amdgpu_vram_mgr_reserve_range, the same
-> address will be added to the reservations_pending list again and is
-> never moved to the reserved_pages list because the address had been reser=
-ved.
->
-> [How]
->   First add the address status check before calling
-> amdgpu_vram_mgr_do_reserve, if the address is already reserved, do
-> nothing; If the address is already in the reservations_pending list,
-> directly reserve memory; only add new nodes for the addresses that are
-> not in the reserved_pages list and reservations_pending list.
->
-> Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 28
-> +++++++++++++-------
->  1 file changed, 19 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 1e36c428d254..0bf3f4092900 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -317,7 +317,6 @@ static void amdgpu_vram_mgr_do_reserve(struct
-> ttm_resource_manager *man)
->
->               dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n"=
-,
->                       rsv->start, rsv->size);
-> -
->               vis_usage =3D amdgpu_vram_mgr_vis_size(adev, block);
->               atomic64_add(vis_usage, &mgr->vis_usage);
->               spin_lock(&man->bdev->lru_lock); @@ -340,19 +339,30 @@
-> int amdgpu_vram_mgr_reserve_range(struct
-> amdgpu_vram_mgr *mgr,
->                                 uint64_t start, uint64_t size)  {
->       struct amdgpu_vram_reservation *rsv;
-> +     int ret =3D 0;
->
-> -     rsv =3D kzalloc(sizeof(*rsv), GFP_KERNEL);
-> -     if (!rsv)
-> -             return -ENOMEM;
-> +     ret =3D amdgpu_vram_mgr_query_page_status(mgr, start);
-> +     if (!ret)
-> +             return 0;
-> +
-> +     if (ret =3D=3D -ENOENT) {
-> +             rsv =3D kzalloc(sizeof(*rsv), GFP_KERNEL);
-> +             if (!rsv)
-> +                     return -ENOMEM;
->
-> -     INIT_LIST_HEAD(&rsv->allocated);
-> -     INIT_LIST_HEAD(&rsv->blocks);
-> +             INIT_LIST_HEAD(&rsv->allocated);
-> +             INIT_LIST_HEAD(&rsv->blocks);
->
-> -     rsv->start =3D start;
-> -     rsv->size =3D size;
-> +             rsv->start =3D start;
-> +             rsv->size =3D size;
-> +
-> +             mutex_lock(&mgr->lock);
-> +             list_add_tail(&rsv->blocks, &mgr->reservations_pending);
-> +             mutex_unlock(&mgr->lock);
-
-[Tao] we can drop the mutex_unlock and add if (ret !=3D -ENOENT) for the se=
-cond mutex_lock to avoid unlocking/locking repeatedly.
-
-> +
-> +     }
->
->       mutex_lock(&mgr->lock);
-> -     list_add_tail(&rsv->blocks, &mgr->reservations_pending);
->       amdgpu_vram_mgr_do_reserve(&mgr->manager);
->       mutex_unlock(&mgr->lock);
->
-> --
-> 2.34.1
+I can confirm that my issues are resolved with that patch
+Tested-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 
 
