@@ -2,34 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1427189F331
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Apr 2024 14:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 044D98A0A34
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 09:41:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FB98113337;
-	Wed, 10 Apr 2024 12:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA8210F269;
+	Thu, 11 Apr 2024 07:41:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evxYk03k";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C568A113328
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 12:58:28 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 43ACwOI8083179; Wed, 10 Apr 2024 18:28:24 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43ACwOTv083178;
- Wed, 10 Apr 2024 18:28:24 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Add support of gfx10 register dump
-Date: Wed, 10 Apr 2024 18:28:05 +0530
-Message-Id: <20240410125805.83029-3-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240410125805.83029-1-sunil.khatri@amd.com>
-References: <20240410125805.83029-1-sunil.khatri@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73C561133B8;
+ Wed, 10 Apr 2024 14:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712758494; x=1744294494;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PuC/jGIS+CY3zc7hImaEM42ALmC2vmq1uEJW9Mb8+qw=;
+ b=evxYk03kOuY7UxuUBgHXTlEBPq+gVBv83TpF8SL5S9I3WEy55ccBzI/N
+ Eba1lixYTE8LH8hP7WdE/xZgLMrJhO+/HAkE/psb3RR+FxEUC7+V43K/g
+ UsDOh+jw6v35+eGNjgAhMcpVKFG8d8nhNbMCHETpXs+jNk4932mQde7G4
+ STNSyG+sIJRh+geXMisK1/xFOcmMayp8B1HqwfC1jM4h4RqwPDgRRvVc8
+ EpxHwUlGpe4+BLT40S3PxxEdwZ39163EyhRAZcn8db/2td8b1zODsU40h
+ l/VNT4YKnUtBX7ojei/W/jn7nWg9ZR6gkIsyrKZOfGTBSpZcPg7YLZe4l g==;
+X-CSE-ConnectionGUID: M3iqFH64QsKsaRFtB2cN3A==
+X-CSE-MsgGUID: KArQD4N5S/updcqQRr3NjA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8247763"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8247763"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 07:14:47 -0700
+X-CSE-ConnectionGUID: igmPb98LTqGTrrTTkkdaHQ==
+X-CSE-MsgGUID: HrL9u9CBToOJ4sdiaQyNZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25345138"
+Received: from oakasatk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.54])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 07:14:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Huang Rui <ray.huang@amd.com>,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/print: drop include debugfs.h and include where needed
+Date: Wed, 10 Apr 2024 17:14:33 +0300
+Message-Id: <20240410141434.157908-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 11 Apr 2024 07:41:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,277 +84,332 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Adding initial set of registers for ipdump during
-devcoredump starting with gfx10 gc registers.
+Surprisingly many places depend on debugfs.h to be included via
+drm_print.h. Fix them.
 
-ip dump is triggered when gpu reset happens via
-devcoredump and the memory is allocated by each
-ip and is freed once the dump is complete by
-devcoredump.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  16 ++
- .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  22 +++
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        | 143 +++++++++++++++++-
- 3 files changed, 180 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 65c17c59c152..e173ad86a241 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -139,6 +139,18 @@ enum amdgpu_ss {
- 	AMDGPU_SS_DRV_UNLOAD
- };
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+---
+ drivers/gpu/drm/bridge/panel.c           | 2 ++
+ drivers/gpu/drm/drm_print.c              | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 1 +
+ drivers/gpu/drm/nouveau/dispnv50/crc.c   | 2 ++
+ drivers/gpu/drm/radeon/r100.c            | 1 +
+ drivers/gpu/drm/radeon/r300.c            | 1 +
+ drivers/gpu/drm/radeon/r420.c            | 1 +
+ drivers/gpu/drm/radeon/r600.c            | 3 ++-
+ drivers/gpu/drm/radeon/radeon_fence.c    | 1 +
+ drivers/gpu/drm/radeon/radeon_gem.c      | 1 +
+ drivers/gpu/drm/radeon/radeon_ib.c       | 2 ++
+ drivers/gpu/drm/radeon/radeon_pm.c       | 1 +
+ drivers/gpu/drm/radeon/radeon_ring.c     | 2 ++
+ drivers/gpu/drm/radeon/radeon_ttm.c      | 1 +
+ drivers/gpu/drm/radeon/rs400.c           | 1 +
+ drivers/gpu/drm/radeon/rv515.c           | 1 +
+ drivers/gpu/drm/ttm/ttm_device.c         | 1 +
+ drivers/gpu/drm/ttm/ttm_resource.c       | 3 ++-
+ drivers/gpu/drm/ttm/ttm_tt.c             | 5 +++--
+ include/drm/drm_print.h                  | 2 +-
+ 20 files changed, 30 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+index 7f41525f7a6e..32506524d9a2 100644
+--- a/drivers/gpu/drm/bridge/panel.c
++++ b/drivers/gpu/drm/bridge/panel.c
+@@ -4,6 +4,8 @@
+  * Copyright (C) 2017 Broadcom
+  */
  
-+struct hwip_reg_entry {
-+	u32	hwip;
-+	u32	inst;
-+	u32	seg;
-+	u32	reg_offset;
-+};
++#include <linux/debugfs.h>
 +
-+struct reg_pair {
-+	u32	offset;
-+	u32	value;
-+};
-+
- struct amdgpu_watchdog_timer {
- 	bool timeout_fatal_disable;
- 	uint32_t period; /* maxCycles = (1 << period), the number of cycles before a timeout */
-@@ -1152,6 +1164,10 @@ struct amdgpu_device {
- 	bool                            debug_largebar;
- 	bool                            debug_disable_soft_recovery;
- 	bool                            debug_use_vram_fw_buf;
-+
-+	/* IP register dump */
-+	struct reg_pair			*ip_dump;
-+	uint32_t			num_regs;
- };
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_bridge.h>
+ #include <drm/drm_connector.h>
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 699b7dbffd7b..cf2efb44722c 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -23,13 +23,13 @@
+  * Rob Clark <robdclark@gmail.com>
+  */
  
- static inline uint32_t amdgpu_ip_version(const struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-index 1129e5e5fb42..2079f67c9fac 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-@@ -261,6 +261,18 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
- 	drm_printf(&p, "Faulty page starting at address: 0x%016llx\n", fault_info->addr);
- 	drm_printf(&p, "Protection fault status register: 0x%x\n\n", fault_info->status);
+-#include <linux/stdarg.h>
+-
++#include <linux/debugfs.h>
++#include <linux/dynamic_debug.h>
+ #include <linux/io.h>
+ #include <linux/moduleparam.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+-#include <linux/dynamic_debug.h>
++#include <linux/stdarg.h>
  
-+	/* Add IP dump for each ip */
-+	if (coredump->adev->ip_dump != NULL) {
-+		struct reg_pair *pair;
+ #include <drm/drm.h>
+ #include <drm/drm_drv.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index e61e9c1b8947..84748add186a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -22,6 +22,7 @@
+  *
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ 
+ #include "i915_drv.h"
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+index 9c942fbd836d..5936b6b3b15d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+@@ -1,5 +1,7 @@
+ // SPDX-License-Identifier: MIT
++#include <linux/debugfs.h>
+ #include <linux/string.h>
 +
-+		pair = (struct reg_pair *)coredump->adev->ip_dump;
-+		drm_printf(&p, "IP register dump\n");
-+		drm_printf(&p, "Offset \t Value\n");
-+		for (int i = 0; i < coredump->adev->num_regs; i++)
-+			drm_printf(&p, "0x%04x \t 0x%08x\n", pair[i].offset, pair[i].value);
-+		drm_printf(&p, "\n");
-+	}
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+index 86b8b770af19..0b1e19345f43 100644
+--- a/drivers/gpu/drm/radeon/r100.c
++++ b/drivers/gpu/drm/radeon/r100.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
+index 25201b9a5aae..1620f534f55f 100644
+--- a/drivers/gpu/drm/radeon/r300.c
++++ b/drivers/gpu/drm/radeon/r300.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/pci.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+index eae8a6389f5e..a979662eaa73 100644
+--- a/drivers/gpu/drm/radeon/r420.c
++++ b/drivers/gpu/drm/radeon/r420.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/pci.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
+index b5e97d95a19f..087d41e370fd 100644
+--- a/drivers/gpu/drm/radeon/r600.c
++++ b/drivers/gpu/drm/radeon/r600.c
+@@ -26,11 +26,12 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+-#include <linux/slab.h>
+ #include <linux/seq_file.h>
++#include <linux/slab.h>
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+index 9ebe4a0b9a6c..4fb780d96f32 100644
+--- a/drivers/gpu/drm/radeon/radeon_fence.c
++++ b/drivers/gpu/drm/radeon/radeon_fence.c
+@@ -30,6 +30,7 @@
+  */
+ 
+ #include <linux/atomic.h>
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/kref.h>
+ #include <linux/sched/signal.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index 3fec3acdaf28..2ef201a072f1 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/iosys-map.h>
+ #include <linux/pci.h>
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
+index fb9ecf5dbe2b..63d914f3414d 100644
+--- a/drivers/gpu/drm/radeon/radeon_ib.c
++++ b/drivers/gpu/drm/radeon/radeon_ib.c
+@@ -27,6 +27,8 @@
+  *          Christian König
+  */
+ 
++#include <linux/debugfs.h>
 +
- 	/* Add ring buffer information */
- 	drm_printf(&p, "Ring buffer information\n");
- 	for (int i = 0; i < coredump->adev->num_rings; i++) {
-@@ -299,6 +311,11 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+ #include <drm/drm_file.h>
  
- static void amdgpu_devcoredump_free(void *data)
- {
-+	struct amdgpu_coredump_info *temp = data;
+ #include "radeon.h"
+diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+index 4482c8c5f5ce..2d9d9f46f243 100644
+--- a/drivers/gpu/drm/radeon/radeon_pm.c
++++ b/drivers/gpu/drm/radeon/radeon_pm.c
+@@ -21,6 +21,7 @@
+  *          Alex Deucher <alexdeucher@gmail.com>
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/hwmon.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
+index 38048593bb4a..8d1d458286a8 100644
+--- a/drivers/gpu/drm/radeon/radeon_ring.c
++++ b/drivers/gpu/drm/radeon/radeon_ring.c
+@@ -27,6 +27,8 @@
+  *          Christian König
+  */
+ 
++#include <linux/debugfs.h>
 +
-+	kfree(temp->adev->ip_dump);
-+	temp->adev->ip_dump = NULL;
-+	temp->adev->num_regs = 0;
- 	kfree(data);
- }
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
  
-@@ -337,6 +354,11 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool vram_lost,
+diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+index 2078b0000e22..5c65b6dfb99a 100644
+--- a/drivers/gpu/drm/radeon/radeon_ttm.c
++++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+@@ -30,6 +30,7 @@
+  *    Dave Airlie
+  */
  
- 	coredump->adev = adev;
++#include <linux/debugfs.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/pagemap.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs400.c
+index d7f552d441ab..d4d1501e6576 100644
+--- a/drivers/gpu/drm/radeon/rs400.c
++++ b/drivers/gpu/drm/radeon/rs400.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
  
-+	/* Trigger ip dump here to capture the value of registers */
-+	for (int i = 0; i < adev->num_ip_blocks; i++)
-+		if (adev->ip_blocks[i].version->funcs->dump_ip_state)
-+			adev->ip_blocks[i].version->funcs->dump_ip_state((void *)adev);
-+
- 	ktime_get_ts64(&coredump->reset_time);
++#include <linux/debugfs.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
  
- 	dev_coredumpm(dev->dev, THIS_MODULE, coredump, 0, GFP_NOWAIT,
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index a0bc4196ff8b..05c4b1d62132 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -47,6 +47,22 @@
- #include "gfx_v10_0.h"
- #include "nbio_v2_3.h"
+diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv515.c
+index 79709d26d983..bbc6ccabf788 100644
+--- a/drivers/gpu/drm/radeon/rv515.c
++++ b/drivers/gpu/drm/radeon/rv515.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
  
-+/*
-+ * Manually adding some of the missing gfx10 registers from spec
-+ */
-+#define mmCP_DEBUG_BASE_IDX				0
-+#define mmCP_DEBUG					0x1e1f
-+#define mmCP_MES_DEBUG_INTERRUPT_INSTR_PNTR_BASE_IDX	1
-+#define mmCP_MES_DEBUG_INTERRUPT_INSTR_PNTR		0x2840
-+#define mmRLC_GPM_DEBUG_INST_A_BASE_IDX			1
-+#define mmRLC_GPM_DEBUG_INST_A				0x4c22
-+#define mmRLC_GPM_DEBUG_INST_B_BASE_IDX			1
-+#define mmRLC_GPM_DEBUG_INST_B				0x4c23
-+#define mmRLC_GPM_DEBUG_INST_ADDR_BASE_IDX		1
-+#define mmRLC_GPM_DEBUG_INST_ADDR			0x4c1d
-+#define mmRLC_LX6_CORE_PDEBUG_INST_BASE_IDX		1
-+#define mmRLC_LX6_CORE_PDEBUG_INST			0x4deb
-+
- /*
-  * Navi10 has two graphic rings to share each graphic pipe.
-  * 1. Primary ring
-@@ -276,6 +292,99 @@ MODULE_FIRMWARE("amdgpu/gc_10_3_7_mec.bin");
- MODULE_FIRMWARE("amdgpu/gc_10_3_7_mec2.bin");
- MODULE_FIRMWARE("amdgpu/gc_10_3_7_rlc.bin");
++#include <linux/debugfs.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
  
-+static const struct hwip_reg_entry gc_reg_list_10_1[] = {
-+	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGRBM_STATUS3) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_STALLED_STAT1) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_STALLED_STAT2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_STALLED_STAT1) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPF_STALLED_STAT1) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_BUSY_STAT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_BUSY_STAT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPF_BUSY_STAT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_BUSY_STAT2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPF_BUSY_STAT2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPF_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_GFX_ERROR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_GFX_HPD_STATUS0) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB_BASE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB_RPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB_WPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB0_BASE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB0_RPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB0_WPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB1_BASE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB1_RPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB1_WPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB2_BASE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB2_WPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_RB2_WPTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB1_CMD_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB2_CMD_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB1_CMD_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB2_CMD_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB1_BASE_LO) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB1_BASE_HI) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB1_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB2_BASE_LO) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB2_BASE_HI) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_IB2_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB1_BASE_LO) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB1_BASE_HI) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB1_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB2_BASE_LO) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB2_BASE_HI) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_IB2_BUFSZ) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCPF_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCPC_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCPG_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGDS_PROTECTION_FAULT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGDS_VM_PROTECTION_FAULT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmIA_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmIA_UTCL1_STATUS_2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmPA_CL_CNTL_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRMI_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmSQC_DCACHE_UTCL0_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmSQC_ICACHE_UTCL0_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmSQG_UTCL0_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmTCP_UTCL0_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmWD_UTCL1_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmGCVM_L2_PROTECTION_FAULT_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_DEBUG) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MEC_CNTL) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MES_CNTL) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CE_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MEC1_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MEC2_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MES_DEBUG_INTERRUPT_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_MES_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_ME_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_PFP_INSTR_PNTR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_STAT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_COMMAND) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_MESSAGE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_ARGUMENT_1) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_ARGUMENT_2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_ARGUMENT_3) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_ARGUMENT_4) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmSMU_RLC_RESPONSE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SAFE_MODE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SMU_SAFE_MODE) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_RLCS_GPM_STAT_2) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_SPP_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_RLCS_BOOTLOAD_STATUS) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_INT_STAT) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_GPM_GENERAL_6) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_GPM_DEBUG_INST_A) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_GPM_DEBUG_INST_B) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_GPM_DEBUG_INST_ADDR) },
-+	{ SOC15_REG_ENTRY(GC, 0, mmRLC_LX6_CORE_PDEBUG_INST) }
-+};
-+
- static const struct soc15_reg_golden golden_settings_gc_10_1[] = {
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmCB_HW_CONTROL_4, 0xffffffff, 0x00400014),
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmCGTT_CPF_CLK_CTRL, 0xfcff8fff, 0xf8000100),
-@@ -9154,6 +9263,38 @@ static void gfx_v10_0_emit_mem_sync(struct amdgpu_ring *ring)
- 	amdgpu_ring_write(ring, gcr_cntl); /* GCR_CNTL */
- }
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index 76027960054f..434cf0258000 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -27,6 +27,7 @@
  
-+static void gfx_v10_ip_dump(void *handle)
-+{
-+	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_10_1);
-+	struct reg_pair *ptr, *gfx10_pair;
-+	uint32_t new_count;
-+
-+	/*
-+	 * Allocate memory based on the no of registers for each block.
-+	 * Since adev->ip_dump is common pointer and we add more
-+	 * memory to it as we move through different IP's of the ASIC.
-+	 *
-+	 * This memory needs to be freed after gpu reset once the ip
-+	 * dump is done in the devcoredump.
-+	 */
-+	new_count = adev->num_regs + reg_count;
-+	ptr = krealloc_array(adev->ip_dump, new_count, sizeof(struct reg_pair), GFP_KERNEL);
-+	if (ptr) {
-+		adev->ip_dump = ptr;
-+		gfx10_pair = &ptr[adev->num_regs];
-+		adev->num_regs = new_count;
-+	} else {
-+		DRM_ERROR("Failed to allocate memory for IP Dump\n");
-+		return;
-+	}
-+
-+	for (uint32_t i = 0; i < reg_count; i++) {
-+		gfx10_pair[i].offset = gc_reg_list_10_1[i].reg_offset;
-+		gfx10_pair[i].value = RREG32(SOC15_REG_ENTRY_OFFSET(gc_reg_list_10_1[i]));
-+	}
-+}
-+
- static const struct amd_ip_funcs gfx_v10_0_ip_funcs = {
- 	.name = "gfx_v10_0",
- 	.early_init = gfx_v10_0_early_init,
-@@ -9170,7 +9311,7 @@ static const struct amd_ip_funcs gfx_v10_0_ip_funcs = {
- 	.set_clockgating_state = gfx_v10_0_set_clockgating_state,
- 	.set_powergating_state = gfx_v10_0_set_powergating_state,
- 	.get_clockgating_state = gfx_v10_0_get_clockgating_state,
--	.dump_ip_state = NULL,
-+	.dump_ip_state = gfx_v10_ip_dump,
- };
+ #define pr_fmt(fmt) "[TTM DEVICE] " fmt
  
- static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_gfx = {
++#include <linux/debugfs.h>
+ #include <linux/mm.h>
+ 
+ #include <drm/ttm/ttm_bo.h>
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index be8d286513f9..4a66b851b67d 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -22,8 +22,9 @@
+  * Authors: Christian König
+  */
+ 
+-#include <linux/iosys-map.h>
++#include <linux/debugfs.h>
+ #include <linux/io-mapping.h>
++#include <linux/iosys-map.h>
+ #include <linux/scatterlist.h>
+ 
+ #include <drm/ttm/ttm_bo.h>
+diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+index 578a7c37f00b..474fe7aad2a0 100644
+--- a/drivers/gpu/drm/ttm/ttm_tt.c
++++ b/drivers/gpu/drm/ttm/ttm_tt.c
+@@ -32,10 +32,11 @@
+ #define pr_fmt(fmt) "[TTM] " fmt
+ 
+ #include <linux/cc_platform.h>
+-#include <linux/sched.h>
+-#include <linux/shmem_fs.h>
++#include <linux/debugfs.h>
+ #include <linux/file.h>
+ #include <linux/module.h>
++#include <linux/sched.h>
++#include <linux/shmem_fs.h>
+ #include <drm/drm_cache.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_util.h>
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index 9cc473e5d353..561c3b96b6fd 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -30,11 +30,11 @@
+ #include <linux/printk.h>
+ #include <linux/seq_file.h>
+ #include <linux/device.h>
+-#include <linux/debugfs.h>
+ #include <linux/dynamic_debug.h>
+ 
+ #include <drm/drm.h>
+ 
++struct debugfs_regset32;
+ struct drm_device;
+ 
+ /* Do *not* use outside of drm_print.[ch]! */
 -- 
-2.34.1
+2.39.2
 
