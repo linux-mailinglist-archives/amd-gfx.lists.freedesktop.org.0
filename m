@@ -2,56 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79FD38A0358
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 00:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C25B68A0A36
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 09:41:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F2D10E947;
-	Wed, 10 Apr 2024 22:28:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0043F10F272;
+	Thu, 11 Apr 2024 07:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=froggi.es header.i=joshua@froggi.es header.b="XgKe7PCN";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="TkHwlgg1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 902 seconds by postgrey-1.36 at gabe;
- Wed, 10 Apr 2024 22:28:50 UTC
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
- [136.143.188.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE36610F31C
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 22:28:46 +0000 (UTC)
-Delivered-To: joshua@froggi.es
-ARC-Seal: i=1; a=rsa-sha256; t=1712787222; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=NIme88Y99u/o7KXtbjhENTFxzC9hG4Ph8OscvnsySAJhhIWBi6DMrJqECiei8oAwKIqLVDHg8KeUPyHSAIkUGoG/oIjdLFwF3Jvmn6LdpWdx361NVG0Z0JYE28AcPUwui3Olm4rQqGoMa1GdGC39H35/AsVvKxGD5lyq9EQ4pZY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1712787222;
- h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=NYQHue/l0O5zHnjuKrtBVQRTxpu30Oo0fhaRaFOjCk4=; 
- b=NA/qAdzagyNe9Mv73TZEPZXb2zISUXb5gT+bKIWD6jJmFG0qYoi32ELrIBRKCN5HbJnq6Zh//oIS3j41TQw+saOSArFzUNgURxtUfNTD2WbkXnkGoOuuQz0riGkOSEOjXt52lGoTnjh0lXXbb+rb/zzX4pOO6Ni96TF2u6ov1/Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=froggi.es;
- spf=pass  smtp.mailfrom=joshua@froggi.es;
- dmarc=pass header.from=<joshua@froggi.es>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1712787222; 
- s=mail; d=froggi.es; i=joshua@froggi.es;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=NYQHue/l0O5zHnjuKrtBVQRTxpu30Oo0fhaRaFOjCk4=;
- b=XgKe7PCN0ixSQuJmApZ4zJ83QDJf/YCn0W88JnTTiYyB4nYdCXCCvcs3TkvnEUcV
- Qc9uuf5wwTuUVeC5SXJqRiGbi+SsrjcxNu7XJ9F7hbxW0rjl6chDU4AR1XjbMRZrZBv
- J2YgBx50xc+SMOyrnaLh88sc7HLJq4Uga4zxEdks=
-Received: by mx.zohomail.com with SMTPS id 1712787220750896.7568469994259;
- Wed, 10 Apr 2024 15:13:40 -0700 (PDT)
-From: Joshua Ashton <joshua@froggi.es>
-To: amd-gfx@lists.freedesktop.org
-Cc: Joshua Ashton <joshua@froggi.es>, Harry Wentland <harry.wentland@amd.com>,
- Xaver Hugl <xaver.hugl@gmail.com>, Melissa Wen <mwen@igalia.com>,
- Ethan Lee <flibitijibibo@gmail.com>
-Subject: [PATCH] drm/amd/display: Enable ogam_ram for dcn32+dcn35+dcn351
-Date: Wed, 10 Apr 2024 23:13:22 +0100
-Message-ID: <20240410221336.34627-1-joshua@froggi.es>
-X-Mailer: git-send-email 2.44.0
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57919112773
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 22:21:42 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-1e4149e7695so29262835ad.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 15:21:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1712787702; x=1713392502; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UQ9C1Cr3AvASEU86K/hlf2OO0iCRrNUVuyjVHdlWHE4=;
+ b=TkHwlgg1Xm2iq3gfnylt1e3JG/+Y5cLmIreCelKvXvZsv7JrBRDfIBnfk6BMq4zvjT
+ IAvSYIN4azM4+90dgDXTNjISggQj3+9p/koF/Yuz8CnOFjGQe+K/CX7FeHabpMKT+6IG
+ qgoKQ/XuOWYNjOUkAI+esWbbeL52+V3QsqzlA0Tk6yMqYQgbC/qMDIX9IYUKjp9lmD2j
+ ZrMGNGeNvwQHa2HMZvBKrectKSrlsuloFAANAedrY7nuqxyPEVtO8j82QHgvrsqEO+Fo
+ skyJqnGuFqG7VdKz4441zyvtZUxIba8ueU5hOVxFnDzGABsJMoIfThld2yDwBbq2nK+u
+ oz1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712787702; x=1713392502;
+ h=content-transfer-encoding:mime-version:message-id:date:user-agent
+ :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=UQ9C1Cr3AvASEU86K/hlf2OO0iCRrNUVuyjVHdlWHE4=;
+ b=fi2QayRZaFeF2onkpKLQrkE6SV/A/ki7Pox/qTCmzGwxB0+0nBeosTUP2pMxygV9qL
+ a3RArEXx7yOQ8qR+duDEGFMqgTI11dCRgqxFouD8YqiQihqIH31+JbUOjS4KFs5lPjRz
+ 2A8GJ+J29ygbyGonAUKXvlY8KlYw9b5nRh3bRnEVDhNuD14uK6kdgDLmAT2xuy0QWMWP
+ 2DtVKDRpxRijvL9PXyBcbBQkyzdZWSKA0CBQj5E2yewicsy/+SvoLY/3Qaev3REl3GTi
+ T0d1kjcwIDwS5X7I9Tan82AYL2sWIJh+zJXKJwZXZ/Bv+VLx7EK5E/aAEZf2Zd8GQDMh
+ duAg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW5kR3VNWBOeeWW6PWMkalbGJ3lzhaU6M+I0ImUNyXQlpJfyO2RgslAcEaNCEEUO6nTYK+la7vtyii7L0jntzJ2HVGcAxw4VAQnZhkFNg==
+X-Gm-Message-State: AOJu0Yyx4wEiiUE77pinOEeoWii0dpF+hFCd5ub0ONCdKGb63zpNhXUy
+ 2i7/y/q3pp8kpPf9H3U02xUXhUo/0mwkuETBK4aDxX3a/C1jLe85WJQaoYnzbTOq9QHiqB4HmjY
+ d80E=
+X-Google-Smtp-Source: AGHT+IEyXjz5iWD+JzMbxman4f15iRJH7qvrzDvYbxC6J1pXkyjcclFUtxHEFXG2Dt+UzEnUxH7BCA==
+X-Received: by 2002:a17:902:e810:b0:1e3:e081:e7f5 with SMTP id
+ u16-20020a170902e81000b001e3e081e7f5mr5334384plg.66.1712787701595; 
+ Wed, 10 Apr 2024 15:21:41 -0700 (PDT)
+Received: from localhost ([2804:214:8686:5e16:705e:67c9:b3ef:a558])
+ by smtp.gmail.com with ESMTPSA id
+ q8-20020a170902b10800b001e107222eb5sm39198plr.191.2024.04.10.15.21.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Apr 2024 15:21:41 -0700 (PDT)
+From: Thiago Jung Bauermann <thiago.bauermann@linaro.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ linux-arm-kernel@lists.infradead.org,  x86@kernel.org,
+ linux-kernel@vger.kernel.org,  linux-arch@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org,  linux-riscv@lists.infradead.org,
+ Christoph Hellwig <hch@lst.de>,  loongarch@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org,  Alex Deucher <alexander.deucher@amd.com>
+Subject: Re: [PATCH v4 13/15] drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
+In-Reply-To: <20240329072441.591471-14-samuel.holland@sifive.com> (Samuel
+ Holland's message of "Fri, 29 Mar 2024 00:18:28 -0700")
+References: <20240329072441.591471-1-samuel.holland@sifive.com>
+ <20240329072441.591471-14-samuel.holland@sifive.com>
+User-Agent: mu4e 1.12.2; emacs 29.3
+Date: Wed, 10 Apr 2024 19:21:37 -0300
+Message-ID: <87wmp4oo3y.fsf@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 11 Apr 2024 07:41:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +91,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The comment here states "no OGAM in DPP since DCN1", yet that is not
-true.
 
-Testing on an RX 7900XTX (dcn32), it actually does exist in hardware and
-works fine.
-My best guess is the comment is confused with OGAM ROM for DPP, rather
-than OGAM RAM.
+Hello,
 
-I did not test dcn35/351 as I do not have that hardware, but I assume
-the same follows there given the seemingly erroneous comment.
-Someone at AMD should check that before merging this commit.
+Samuel Holland <samuel.holland@sifive.com> writes:
 
-Signed-off-by: Joshua Ashton <joshua@froggi.es>
+> Now that all previously-supported architectures select
+> ARCH_HAS_KERNEL_FPU_SUPPORT, this code can depend on that symbol instead
+> of the existing list of architectures. It can also take advantage of the
+> common kernel-mode FPU API and method of adjusting CFLAGS.
+>
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Xaver Hugl <xaver.hugl@gmail.com>
-Cc: Melissa Wen <mwen@igalia.com>
-Cc: Ethan Lee <flibitijibibo@gmail.com>
----
- drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c  | 2 +-
- drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c  | 2 +-
- .../gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c    | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Unfortunately this patch causes build failures on arm with allyesconfig
+and allmodconfig. Tested with next-20240410.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-index 9aa39bd25be9..94f5d2b5aadf 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-@@ -2182,7 +2182,7 @@ static bool dcn32_resource_construct(
- 	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
- 
- 	dc->caps.color.dpp.hw_3d_lut = 1;
--	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-+	dc->caps.color.dpp.ogam_ram = 1;
- 	// no OGAM ROM on DCN2 and later ASICs
- 	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
- 	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-index 25ac450944e7..708d63cc3f7f 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-@@ -1861,7 +1861,7 @@ static bool dcn35_resource_construct(
- 	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
- 
- 	dc->caps.color.dpp.hw_3d_lut = 1;
--	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-+	dc->caps.color.dpp.ogam_ram = 1;
- 	// no OGAM ROM on DCN301
- 	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
- 	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-index 8a57adb27264..053e8ec6d1ef 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-@@ -1841,7 +1841,7 @@ static bool dcn351_resource_construct(
- 	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
- 
- 	dc->caps.color.dpp.hw_3d_lut = 1;
--	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-+	dc->caps.color.dpp.ogam_ram = 1;
- 	// no OGAM ROM on DCN301
- 	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
- 	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
--- 
-2.44.0
+Error with allyesconfig:
 
+$ make -j 8 \
+    O=3D$HOME/.cache/builds/linux-cross-arm \
+    ARCH=3Darm \
+    CROSS_COMPILE=3Darm-linux-gnueabihf-
+make[1]: Entering directory '/home/bauermann/.cache/builds/linux-cross-arm'
+    =E2=8B=AE
+arm-linux-gnueabihf-ld: drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.=
+o: in function `dcn20_populate_dml_pipes_from_context':
+dcn20_fpu.c:(.text+0x20f4): undefined reference to `__aeabi_l2d'
+arm-linux-gnueabihf-ld: dcn20_fpu.c:(.text+0x210c): undefined reference to =
+`__aeabi_l2d'
+arm-linux-gnueabihf-ld: dcn20_fpu.c:(.text+0x2124): undefined reference to =
+`__aeabi_l2d'
+arm-linux-gnueabihf-ld: dcn20_fpu.c:(.text+0x213c): undefined reference to =
+`__aeabi_l2d'
+arm-linux-gnueabihf-ld: drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.=
+o: in function `pipe_ctx_to_e2e_pipe_params':
+dcn_calcs.c:(.text+0x390): undefined reference to `__aeabi_l2d'
+arm-linux-gnueabihf-ld: drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.=
+o:dcn_calcs.c:(.text+0x3a4): more undefined references to `__aeabi_l2d' fol=
+low
+arm-linux-gnueabihf-ld: drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.o:=
+ in function `optimize_configuration':
+dml2_wrapper.c:(.text+0xcbc): undefined reference to `__aeabi_d2ulz'
+arm-linux-gnueabihf-ld: drivers/gpu/drm/amd/display/dc/dml2/dml2_translatio=
+n_helper.o: in function `populate_dml_plane_cfg_from_plane_state':
+dml2_translation_helper.c:(.text+0x9e4): undefined reference to `__aeabi_l2=
+d'
+arm-linux-gnueabihf-ld: dml2_translation_helper.c:(.text+0xa20): undefined =
+reference to `__aeabi_l2d'
+arm-linux-gnueabihf-ld: dml2_translation_helper.c:(.text+0xa58): undefined =
+reference to `__aeabi_l2d'
+arm-linux-gnueabihf-ld: dml2_translation_helper.c:(.text+0xa90): undefined =
+reference to `__aeabi_l2d'
+make[3]: *** [/home/bauermann/src/linux/scripts/Makefile.vmlinux:37: vmlinu=
+x] Error 1
+make[2]: *** [/home/bauermann/src/linux/Makefile:1165: vmlinux] Error 2
+make[1]: *** [/home/bauermann/src/linux/Makefile:240: __sub-make] Error 2
+make[1]: Leaving directory '/home/bauermann/.cache/builds/linux-cross-arm'
+make: *** [Makefile:240: __sub-make] Error 2
+
+The error with allmodconfig is slightly different:
+
+$ make -j 8 \
+    O=3D$HOME/.cache/builds/linux-cross-arm \
+    ARCH=3Darm \
+    CROSS_COMPILE=3Darm-linux-gnueabihf-
+make[1]: Entering directory '/home/bauermann/.cache/builds/linux-cross-arm'
+    =E2=8B=AE
+ERROR: modpost: "__aeabi_d2ulz" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] unde=
+fined!
+ERROR: modpost: "__aeabi_l2d" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefi=
+ned!
+make[3]: *** [/home/bauermann/src/linux/scripts/Makefile.modpost:145: Modul=
+e.symvers] Error 1
+make[2]: *** [/home/bauermann/src/linux/Makefile:1876: modpost] Error 2
+make[1]: *** [/home/bauermann/src/linux/Makefile:240: __sub-make] Error 2
+make[1]: Leaving directory '/home/bauermann/.cache/builds/linux-cross-arm'
+make: *** [Makefile:240: __sub-make] Error 2
+
+--
+Thiago
