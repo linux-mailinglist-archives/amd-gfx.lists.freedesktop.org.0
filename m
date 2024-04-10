@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26DC8A0207
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Apr 2024 23:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 698618A020A
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Apr 2024 23:28:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F186010FEB2;
-	Wed, 10 Apr 2024 21:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD53B1123F3;
+	Wed, 10 Apr 2024 21:28:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gWIvBju0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WbKLO1aU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0743F10F948
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 21:28:22 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2053.outbound.protection.outlook.com [40.107.96.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE9010FA91
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 21:28:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MDj2wd6js629QNeiF17YIFEXCnSMe3FgEuPqmT6NeYaXejwvw62+hpz0bVDOkRLSQ4mQuGGcAF+b9VfT9WCTkw1WVnXhutAalNC94bFDyw5wTVNg9hI/RQLm5D155NTY/tijz92oRsmoSr+b383HQ4JnKQVS48LK/azSBw8xJzcxizyQRqknuJt8o3ez8rhQRueqiA0dbnqRgRyvugfr4Qy1r6akWKgGq+t1tmUeNgv5GXq/1lKKMuBaLjErkbiK+my/eGjXpJn4Itobs6jpsnetlbjYUwQjeGo+BWQhDAs3vuAHauJkoJmC1+oA+UTazJVbRxiu0QToIdspGqa8fA==
+ b=gIytIe8giTwyfBFI0ciqYzsVcQUdxQUEXAnZukkREaIJJBrA4hV6ZlbGEK2bO9iS+e7HY/EoAaycbug/nQOYWxX3wbZfyNmE2dkLScsL2lpO/vZwZ2jYLoG+QMpzbSso1kEZMieA0CceETp8OS46whlTUxnBSLK/cONrr4qpE+TLT/DfeqNT76eVY6G+iv5wdHsMQnSJlGOHzMlh7sZD2Pa4grxoE9J/daMlsE/jjsfawghvYJYDU0mlKNw3kNS4Ed3lO4fCnXOCk3B/H3PY4IULYxRyECxU3GJjev0sZWhFF3j09PohFVlA08VTzA8hwKcg2tUyJZz4AuiP03XsgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZJHggFHtsMERvRj2q7cV9hBM6PL8PfS2SBFiCuLSoUA=;
- b=R1gBqJkjpYlk/gQBhr6Ap995KHHMVVX+nHsM6IEeAgUirmlTTPJdlLzce6YmZJsCarDJLiTa4V+/bImBNT8c6OWO3WmhqojfbIVs0SidEX5YqMzKptu9A6Kcs0Tyd9HSGek/eqRcZ77WAWeRQT+qCAJ1pdeE5U8TLvXatITBg9vmtC7g2zn5qPAN6PXi+6fvNxKtJwnxtvsGZ3MSUOZg4mrH6Jp2DHUXsph6Z1ktIeoxUynAEmlJ+6XyvwwEgBlmz9PwO9qRZ0PZvVJhc9SBJTBeZB+E+AkmapehO/X6yLt49LRZDdKESBE6xV9GW3OoWn1MPn86PdGlMlLrMaAk/Q==
+ bh=RqOTDLwjUgMsueccXF6tTGrPm0PO4ftYUDbg4/KKL+Q=;
+ b=hHv0QKLe6D304aJArGmWG/K8CavnOi0igQ7DvikBknZL8YtQ1zkWw/eKAfMEd1gT48itfAkIjq+5XYJoXO5m9s7ngqLPSEY2l76DkYC4KYU4ZyhB+I5gaEu9NZjWI/J5wk4dIISkwkq/PfYImebJEb/wk+AMB02LzPKgncn568txaqxeBsNaRcfZWTeqZKTnkPmJBKp24nNTGo9XPXPBYyGwFk4+b2NRjmtsoZW8V6VmYKYS34gewlDyHJi2eJ/diFVHDthCfDN/RTUz2A09LSSbbDp1bzAmMBqDPBLNi3KeJkxSCRkYWTo5UqW6v2zzjfNjv4OZUIjHS1kxstQ4+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZJHggFHtsMERvRj2q7cV9hBM6PL8PfS2SBFiCuLSoUA=;
- b=gWIvBju0NZr16WWX0syZN6VfYrnBqfr7TlbINpo8Yuj9l8jr/rbIQ94JvdHL9p/Ehm95fu9l3df+HtsV1FUkoGot+VLy+AVpz4lWaTRSJvxfLlPiV925bJAltqjb9+omRhn+HL3I3Zo2pyFEUPA5Y5qgmLlvVGwMp+wLyZmD/Lc=
-Received: from BN9PR03CA0047.namprd03.prod.outlook.com (2603:10b6:408:fb::22)
- by DM4PR12MB6448.namprd12.prod.outlook.com (2603:10b6:8:8a::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.46; Wed, 10 Apr 2024 21:28:19 +0000
+ bh=RqOTDLwjUgMsueccXF6tTGrPm0PO4ftYUDbg4/KKL+Q=;
+ b=WbKLO1aUnR0cveBElFac/nZKxyj/LMPwmtX/nLGpLCqpT04K/bS8E5U9X7PnNahLc9m2bQxJmykdkY3dybR/4EVmJd2cLiEqKPxVUH8prMcN7NkNfa9bSTIEsSaASsLj9NVcm4HPi0yg/sfpnBKVuVph3fNYeKuhU6kBiM08cjs=
+Received: from BN9PR03CA0045.namprd03.prod.outlook.com (2603:10b6:408:fb::20)
+ by PH8PR12MB6721.namprd12.prod.outlook.com (2603:10b6:510:1cc::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Wed, 10 Apr
+ 2024 21:28:21 +0000
 Received: from BN2PEPF000044AC.namprd04.prod.outlook.com
- (2603:10b6:408:fb:cafe::f8) by BN9PR03CA0047.outlook.office365.com
- (2603:10b6:408:fb::22) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:fb:cafe::20) by BN9PR03CA0045.outlook.office365.com
+ (2603:10b6:408:fb::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.19 via Frontend
- Transport; Wed, 10 Apr 2024 21:28:19 +0000
+ Transport; Wed, 10 Apr 2024 21:28:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,20 +50,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN2PEPF000044AC.mail.protection.outlook.com (10.167.243.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Wed, 10 Apr 2024 21:28:19 +0000
+ 15.20.7452.22 via Frontend Transport; Wed, 10 Apr 2024 21:28:21 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 10 Apr
- 2024 16:28:18 -0500
+ 2024 16:28:19 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>
-Subject: [PATCH 18/25] drm/amd/display: Remove unnecessary code
-Date: Wed, 10 Apr 2024 15:26:07 -0600
-Message-ID: <20240410212726.1312989-19-Rodrigo.Siqueira@amd.com>
+ <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Eric Bernstein
+ <eric.bernstein@amd.com>
+Subject: [PATCH 19/25] drm/amd/display: Update FMT settings for 4:2:0
+Date: Wed, 10 Apr 2024 15:26:08 -0600
+Message-ID: <20240410212726.1312989-20-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240410212726.1312989-1-Rodrigo.Siqueira@amd.com>
 References: <20240410212726.1312989-1-Rodrigo.Siqueira@amd.com>
@@ -75,26 +76,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000044AC:EE_|DM4PR12MB6448:EE_
-X-MS-Office365-Filtering-Correlation-Id: d54ebfdd-58d7-4b76-e1ac-08dc59a52471
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AC:EE_|PH8PR12MB6721:EE_
+X-MS-Office365-Filtering-Correlation-Id: 930ab881-8883-4fd9-8623-08dc59a52599
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gqEnThdG41fcTwZ17KBwl+z+EXCYoisiWL80K12WFccExEkg0tD70kfZALGBqDtFqL58wcIOzgeZoiHCwDDEwGzTdyGScLhOvebjQbt99APOGYj8rSekT/hvvoU92pl3KCKlYD2HVo6W7MJCKsfgaePWd9aUOx7tg/8Mlcf85ymEdM1Zwm7GzvPQRswMljHSS1rvMndhFsNBP931JXC1AcjW1qUL+RfWswd+cvvdenu8XJ1QEdlgyp+01hQ0v5c8PeUtk2JoJ9c2TkmKJyIga7xh9PPdZxIb6H/Qqss1ajLUnqYmV/b9AQJ0+IZdSGNqpXNr7n5yab3XUrVsWejFkSLPpn64gvnZ0u3u72Hakt8JZutL8aKJGVRW+gvQjA2Qd/07zbeDxx0lXESu/3BcV6lIIgS4OSGl1Ud/ue0TIHrmOiNbaBv97aeiIYqNbcYFUUUjmj5JVkJ0KLiDklZkRTETDTuQmHNox28lP6MJ9YpRVZ2STUucHrE/C7bo3PAKH7PfReMokz953MNASxP5ebSvRl021Ob9TDwOOlrX8Hc5jVf79i5A0Fcm/fZyo/COhRqbjXvPreorAEn0iA1dJ5PMEMfQYJCGcUirci8uprarXIPhwi+8LcmpihxrYrPKxeffFEsIHCOmhuslHxX7QaXI8pn4Mj4hk78R4lQksczS7byqIOlo7q+oDab+yAg8r0K9QNVP0szZAdQIHwhGZjR7MyC7BHj7S/Vv5Ma5TyCfcrqbeMz6d37ldsW1W25J
+X-Microsoft-Antispam-Message-Info: DT1Twgm/haWbdpk+3DB3LFtRXYO9VVoJ3yuaG+FLt2cBOHLVrTDRfbhQHrYgYwn3BlM5aZTplpBUh9+f4MQIx/F3IlvmtBEGfrR3+cly/MfKzkfmaITPeuoQa3qV83tGheq4C/ZlbsPPDaSNbscPtUftMQOfOVe1iao3H81yUVuhmm5S/4lGpsw3N4vzp5QyoVIg4O3X+NBgWd3s37nnIqNWZ9s+WEca7r6KLrXk1u9zoH89TCGUGW92UEVV3JjX1I228K9rSex31kgxpWMG5c4AP1JOmTiuTeoV+Zs1PiLqeC+JrbHrwnN9T624PNAQW66qH1ADCObIu19dtgSvFDY8+kxro5NJasRb3+wYWIt2popsCe5Chhpopdgg6MZiA9n+p+TvBGG6fxWD5TlIgDu/9TNQgYoEFm9TEYTha5vpmrC+z27y2ERcDefc6YL0r2Fh83C/UH2RxUt0Hv2z2j96Uj+yTXdGOFLCSPPrX/KWJWnSL1T0eAm7dFL/usZKieHpbNsQ3EbZ2U7iXG/wC2w1ai+gNXmkbwQ/LfN1T9xHihpXEuejKa0iIuu5c3FyO8t1d3kK3qXV55hoJZ7u1wGoTEgZaCGYsnCpf5cWwzgbyw+e3nxMD005OS0NQSJtXTOpWSTAVCcexk0XqZS28THhcr6Jd97XD4cmJHNXyf8LvGnWO6xr+kNPvdHNKh8wA3H5GCNmjdHND9x5vuxdAnUnscEA119XEKfR85bMAlGlJuxr6YjnIy0yhkJT6fF2
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(1800799015)(82310400014); DIR:OUT;
+ SFS:(13230031)(82310400014)(376005)(1800799015)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 21:28:19.4749 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d54ebfdd-58d7-4b76-e1ac-08dc59a52471
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 21:28:21.3968 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 930ab881-8883-4fd9-8623-08dc59a52599
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044AC.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6448
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6721
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,132 +110,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This commit groups many parts of the code that are redundant or not used
-and drops all of them.
+From: Eric Bernstein <eric.bernstein@amd.com>
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+[Why] Update FMT_CONTROL settings based on HW spec
+[How] Update FMT settings for 4:2:0
+
+Signed-off-by: Eric Bernstein <eric.bernstein@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h            |  1 -
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c    |  3 ---
- .../amd/display/dc/dcn10/dcn10_link_encoder.h  |  6 ------
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h  | 18 ------------------
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c   |  2 --
- 5 files changed, 30 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.c | 9 ++++++++-
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.h | 2 ++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 4e36a4f9a4a8..6a88423b7188 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1006,7 +1006,6 @@ struct dc_debug_options {
- 	unsigned int force_cositing;
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.c
+index 5838a11efd00..71e9288d60ed 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.c
+@@ -168,6 +168,10 @@ static void opp1_set_pixel_encoding(
  
--struct gpu_info_soc_bounding_box_v1_0;
- 
- /* Generic structure that can be used to query properties of DC. More fields
-  * can be added as required.
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-index 744c335718a7..ee601a6897a1 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-@@ -312,9 +312,6 @@ static bool setup_engine(
- 	/* we have checked I2c not used by DMCU, set SW use I2C REQ to 1 to indicate SW using it*/
- 	REG_UPDATE(DC_I2C_ARBITRATION, DC_I2C_SW_USE_I2C_REG_REQ, 1);
- 
--	/* we have checked I2c not used by DMCU, set SW use I2C REQ to 1 to indicate SW using it*/
--	REG_UPDATE(DC_I2C_ARBITRATION, DC_I2C_SW_USE_I2C_REG_REQ, 1);
--
- 	/*set SW requested I2c speed to default, if API calls in it will be override later*/
- 	set_speed(dce_i2c_hw, dce_i2c_hw->ctx->dc->caps.i2c_speed_in_khz);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-index d980e6bd6c66..b7a89c39f445 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-@@ -167,7 +167,6 @@ struct dcn10_link_enc_registers {
- 	uint32_t DIO_LINKD_CNTL;
- 	uint32_t DIO_LINKE_CNTL;
- 	uint32_t DIO_LINKF_CNTL;
--	uint32_t DIG_FIFO_CTRL0;
- 	uint32_t DIO_CLK_CNTL;
- 	uint32_t DIG_BE_CLK_CNTL;
- };
-@@ -475,9 +474,6 @@ struct dcn10_link_enc_registers {
- 	type HPO_DP_ENC_SEL;\
- 	type HPO_HDMI_ENC_SEL
- 
--#define DCN32_LINK_ENCODER_REG_FIELD_LIST(type) \
--	type DIG_FIFO_OUTPUT_PIXEL_MODE
--
- #define DCN35_LINK_ENCODER_REG_FIELD_LIST(type) \
- 	type DIG_BE_ENABLE;\
- 	type DIG_RB_SWITCH_EN;\
-@@ -512,7 +508,6 @@ struct dcn10_link_enc_shift {
- 	DCN20_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- 	DCN30_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- 	DCN31_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
--	DCN32_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- 	DCN35_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- };
- 
-@@ -521,7 +516,6 @@ struct dcn10_link_enc_mask {
- 	DCN20_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- 	DCN30_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- 	DCN31_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
--	DCN32_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- 	DCN35_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- };
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
-index 35a613bb08bf..08a57ea4591c 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
-@@ -29,13 +29,6 @@
- #include "dcn20/dcn20_dccg.h"
- 
- 
--#define DCCG_REG_LIST_DCN3AG() \
--	DCCG_COMMON_REG_LIST_DCN_BASE(),\
--	SR(PHYASYMCLK_CLOCK_CNTL),\
--	SR(PHYBSYMCLK_CLOCK_CNTL),\
--	SR(PHYCSYMCLK_CLOCK_CNTL)
--
--
- #define DCCG_REG_LIST_DCN30() \
- 	DCCG_REG_LIST_DCN2(),\
- 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 2),\
-@@ -46,17 +39,6 @@
- 	SR(PHYBSYMCLK_CLOCK_CNTL),\
- 	SR(PHYCSYMCLK_CLOCK_CNTL)
- 
--#define DCCG_MASK_SH_LIST_DCN3AG(mask_sh) \
--	DCCG_MASK_SH_LIST_DCN2_1(mask_sh),\
--	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_EN, mask_sh),\
--	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_SRC_SEL, mask_sh),\
--	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_EN, mask_sh),\
--	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_SRC_SEL, mask_sh),\
--	DCCG_SF(PHYBSYMCLK_CLOCK_CNTL, PHYBSYMCLK_FORCE_EN, mask_sh),\
--	DCCG_SF(PHYBSYMCLK_CLOCK_CNTL, PHYBSYMCLK_FORCE_SRC_SEL, mask_sh),\
--	DCCG_SF(PHYCSYMCLK_CLOCK_CNTL, PHYCSYMCLK_FORCE_EN, mask_sh),\
--	DCCG_SF(PHYCSYMCLK_CLOCK_CNTL, PHYCSYMCLK_FORCE_SRC_SEL, mask_sh)
--
- #define DCCG_MASK_SH_LIST_DCN3(mask_sh) \
- 	DCCG_MASK_SH_LIST_DCN2(mask_sh),\
- 	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_EN, mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c
-index 1b9d9495f76d..fae98cf52020 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c
-@@ -251,9 +251,7 @@ static const struct dwbc_funcs dcn30_dwbc_funcs = {
- 	.set_fc_enable		= dwb3_set_fc_enable,
- 	.set_stereo		= dwb3_set_stereo,
- 	.set_new_content	= dwb3_set_new_content,
--	.dwb_program_output_csc	= NULL,
- 	.dwb_ogam_set_input_transfer_func	= dwb3_ogam_set_input_transfer_func, //TODO: rename
--	.dwb_set_scaler		= NULL,
- };
- 
- void dcn30_dwbc_construct(struct dcn30_dwbc *dwbc30,
+ 	case PIXEL_ENCODING_RGB:
+ 	case PIXEL_ENCODING_YCBCR444:
++		REG_UPDATE_3(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 0,
++				FMT_SUBSAMPLING_MODE, 0,
++				FMT_CBCR_BIT_REDUCTION_BYPASS, 0);
+ 		REG_UPDATE(FMT_CONTROL, FMT_PIXEL_ENCODING, 0);
+ 		break;
+ 	case PIXEL_ENCODING_YCBCR422:
+@@ -177,7 +181,10 @@ static void opp1_set_pixel_encoding(
+ 				FMT_CBCR_BIT_REDUCTION_BYPASS, 0);
+ 		break;
+ 	case PIXEL_ENCODING_YCBCR420:
+-		REG_UPDATE(FMT_CONTROL, FMT_PIXEL_ENCODING, 2);
++		REG_UPDATE_3(FMT_CONTROL,
++				FMT_PIXEL_ENCODING, 2,
++				FMT_SUBSAMPLING_MODE, 2,
++				FMT_CBCR_BIT_REDUCTION_BYPASS, 1);
+ 		break;
+ 	default:
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.h
+index 2c0ecfa5a643..c87de68a509e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_opp.h
+@@ -79,6 +79,8 @@
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_SPATIAL_DITHER_FRAME_COUNTER_MAX, mask_sh), \
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_SPATIAL_DITHER_FRAME_COUNTER_BIT_SWAP, mask_sh), \
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_PIXEL_ENCODING, mask_sh), \
++	OPP_SF(FMT0_FMT_CONTROL, FMT_SUBSAMPLING_MODE, mask_sh), \
++	OPP_SF(FMT0_FMT_CONTROL, FMT_CBCR_BIT_REDUCTION_BYPASS, mask_sh), \
+ 	OPP_SF(FMT0_FMT_CONTROL, FMT_STEREOSYNC_OVERRIDE, mask_sh), \
+ 	OPP_SF(FMT0_FMT_DITHER_RAND_R_SEED, FMT_RAND_R_SEED, mask_sh), \
+ 	OPP_SF(FMT0_FMT_DITHER_RAND_G_SEED, FMT_RAND_G_SEED, mask_sh), \
 -- 
 2.43.0
 
