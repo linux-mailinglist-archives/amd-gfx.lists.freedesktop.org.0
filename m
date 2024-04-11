@@ -2,50 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8618A1814
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 17:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB358A286B
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Apr 2024 09:44:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6C710F148;
-	Thu, 11 Apr 2024 15:05:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 039B610EF58;
+	Fri, 12 Apr 2024 07:44:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="BmvqBvVE";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="rxGiqVjw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2320 seconds by postgrey-1.36 at gabe;
- Thu, 11 Apr 2024 15:05:46 UTC
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA08110F145
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 15:05:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=dwUQ1zoQf/ipPwR+kdnLAnyaMibb3uyip6qsFZjM6As=; b=BmvqBvVEmFfg5j9MHL2e5XIEBU
- zE53iyZpjY3qc5ZcZTquno9UtoQWWNZjy12S//TTasKBIHGqRVubwqj4SkO9VuUAqnPR7HEl+DJMW
- /hEBRwFuQLN867P18Ltl+vBypMSWgW5olvxXlrDi5f8lf4KLDnyL8woU99AdlixI6TGwUeYOfweZi
- 5daq35v8txu69hjWJQ7ZqWXOs/Cd1In77P4f6iD4fTMSAtcSZOpO6YNvlE2r6h5Gzzb51P7mvraQ5
- 080VRBXOF2pKQTOeTy3C1d8mNfdelhvEkId755KuLTah8WYHVR/jwQ0szgr5KxIawxqWJaMHwmcxs
- JjSOwEBw==;
-Received: from [189.6.17.125] (helo=mail.igalia.com)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1ruvOH-003ahB-M6; Thu, 11 Apr 2024 16:27:02 +0200
-Date: Thu, 11 Apr 2024 11:26:23 -0300
-From: Melissa Wen <mwen@igalia.com>
-To: Joshua Ashton <joshua@froggi.es>
-Cc: amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, 
- Xaver Hugl <xaver.hugl@gmail.com>, Ethan Lee <flibitijibibo@gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Enable ogam_ram for dcn32+dcn35+dcn351
-Message-ID: <nhr535ncnm6n5btn7o6kkmblppnywvvnni6i4y3v6fmiazbopz@v5wo7kqarrlv>
-References: <20240410221336.34627-1-joshua@froggi.es>
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3530E10F133
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 14:31:37 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-1e5792ac18dso25275ad.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 07:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1712845896; x=1713450696;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=wFLtQzA7ODFlmIEc8GT1ddmG/9DPyIikCfzW++q04BU=;
+ b=rxGiqVjwfyMGpFcnGyF+o/UlZTbUGpYFnaL4CA5hoC9N4c6VyyBPBG7wsI87w23JO9
+ V+5rWCRDiO0kJyxRolBJoo0nk5UjObmKKOrjRyf/rHL/743cPD9QLh7+aoeeTJxEp6L1
+ 1lWHJ6SmrOBwHX1tWguUuVcTuV9WgJWknftgpg21kMwdcAM8ILV6u0g87eFqxTn3+w2S
+ DYPSrilQrpjEkboLw8is2qx1RS5PeE8COfZJuPjc7OLzcLtXesd9AP7lMzINfj2ACwgO
+ FIRilgdmokOSUJx6s+TfYpJoL8a3oGPJY/5CAoTN6fQcSzfnsWn5Ocf0WdyKIz51B2SU
+ LMLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712845896; x=1713450696;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=wFLtQzA7ODFlmIEc8GT1ddmG/9DPyIikCfzW++q04BU=;
+ b=tGUT7gTxoelSlg1onV0PXBKVCf3Lw3fSgEjE+m8FdF3gZtnbbJpRlRI5eqoqLDHDJt
+ zKuINjsi3lUMCQxbxKkfCDRHF6aEke6lHgn9snwk2W1SGWv8JY4SoP3L6I6cBWzTVcz0
+ B3t6OAw5ZltRkRymDymZJc2ofNAp/CGhweWkaNzz2QnR/m6vudmDI+tHIbrxMZblfQXz
+ qE1z7MJ1t2h5LTgXnyHxt01Izs9mh3OclPxZYFsY01EQVqWHQZpfdzMYzGjIlQ07rPU4
+ DN4zv3gFuv1bnUX5LJf9ymUjxGrVOGPgZw61Sm/viMiDs8svY39mm2NlAfaRecax/23A
+ 6Pxw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVi4JagVGGPEETNqOq2pGuM95qBlIgCB2Den/5y02dfbz8LQzvJpGOw7bkLUwpFLhhL0lTMVWNrJZtGPyqvP2BkBanKAVl7RLaAQWIXUA==
+X-Gm-Message-State: AOJu0YzPntB5mOq8vu7S7QY0d3WNnxVrc7JZypSyYMecejAdubvjNwqL
+ y+rlQ/RvxjF41M2KWQMk1kfreI64ve0+Wqi3aA1No/pS19pNTBz7qt72VTT3wFM3+33aihyflcS
+ RGfjAzxQRIQDb+VJV2QPpjzg4IC4LyUmjYJIa/15omgrYUARsMw==
+X-Google-Smtp-Source: AGHT+IF8jHrPGqTKc/EHc/CkhCORRROxvPH6LLbwAqoXKk1zRI695pJkZWumRlV5+VQrWvFfK8dlvFS4deVkbaQgSvw=
+X-Received: by 2002:a17:903:2307:b0:1e5:5cce:7eca with SMTP id
+ d7-20020a170903230700b001e55cce7ecamr94942plh.8.1712845895905; Thu, 11 Apr
+ 2024 07:31:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240410221336.34627-1-joshua@froggi.es>
+References: <20240411032844.41839-1-xinhui.pan@amd.com>
+ <81623e99-58d0-4ab8-9e8e-6b75351a6729@amd.com>
+In-Reply-To: <81623e99-58d0-4ab8-9e8e-6b75351a6729@amd.com>
+From: Vlad Stolyarov <hexed@google.com>
+Date: Thu, 11 Apr 2024 16:31:21 +0200
+Message-ID: <CAK50MR62ix+XRsBU0Rp=BqUPqZFs0-F6aJXTWyp32FpWEpA2kg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: validate the parameters of
+ amdgpu_vm_bo_clear_mappings
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jann Horn <jannh@google.com>
+Cc: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org, 
+ alexander.deucher@amd.com
+Content-Type: multipart/alternative; boundary="0000000000002edd960615d3033a"
+X-Mailman-Approved-At: Fri, 12 Apr 2024 07:44:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,79 +81,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 04/10, Joshua Ashton wrote:
-> The comment here states "no OGAM in DPP since DCN1", yet that is not
-> true.
-> 
-> Testing on an RX 7900XTX (dcn32), it actually does exist in hardware and
-> works fine.
-> My best guess is the comment is confused with OGAM ROM for DPP, rather
-> than OGAM RAM.
-> 
-> I did not test dcn35/351 as I do not have that hardware, but I assume
-> the same follows there given the seemingly erroneous comment.
-> Someone at AMD should check that before merging this commit.
+--0000000000002edd960615d3033a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-hmm... I don't have any of these hw versions, but AFAIU if there is
-ogam/blend lut block in dcn32, the helper implementation for programming
-it properly (i.e. dpp_program_blnd_lut) is also missing here:
-- https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drivers/gpu/drm/amd/display/dc/dpp/dcn32/dcn32_dpp.c#L125
-right? So, it's good if AMD people can check it too.
++Jann Horn <jannh@google.com> for his thoughts
 
-Melissa
+On Thu, Apr 11, 2024 at 12:25=E2=80=AFPM Christian K=C3=B6nig <christian.ko=
+enig@amd.com>
+wrote:
 
-> 
-> Signed-off-by: Joshua Ashton <joshua@froggi.es>
-> 
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Xaver Hugl <xaver.hugl@gmail.com>
-> Cc: Melissa Wen <mwen@igalia.com>
-> Cc: Ethan Lee <flibitijibibo@gmail.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c  | 2 +-
->  drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c  | 2 +-
->  .../gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c    | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> index 9aa39bd25be9..94f5d2b5aadf 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> @@ -2182,7 +2182,7 @@ static bool dcn32_resource_construct(
->  	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
->  
->  	dc->caps.color.dpp.hw_3d_lut = 1;
-> -	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-> +	dc->caps.color.dpp.ogam_ram = 1;
->  	// no OGAM ROM on DCN2 and later ASICs
->  	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
->  	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> index 25ac450944e7..708d63cc3f7f 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> @@ -1861,7 +1861,7 @@ static bool dcn35_resource_construct(
->  	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
->  
->  	dc->caps.color.dpp.hw_3d_lut = 1;
-> -	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-> +	dc->caps.color.dpp.ogam_ram = 1;
->  	// no OGAM ROM on DCN301
->  	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
->  	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> index 8a57adb27264..053e8ec6d1ef 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> @@ -1841,7 +1841,7 @@ static bool dcn351_resource_construct(
->  	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
->  
->  	dc->caps.color.dpp.hw_3d_lut = 1;
-> -	dc->caps.color.dpp.ogam_ram = 0;  // no OGAM in DPP since DCN1
-> +	dc->caps.color.dpp.ogam_ram = 1;
->  	// no OGAM ROM on DCN301
->  	dc->caps.color.dpp.ogam_rom_caps.srgb = 0;
->  	dc->caps.color.dpp.ogam_rom_caps.bt2020 = 0;
-> -- 
-> 2.44.0
-> 
+> Am 11.04.24 um 05:28 schrieb xinhui pan:
+> > Ensure there is no address overlapping.
+> >
+> > Reported-by: Vlad Stolyarov <hexed@google.com>
+> > Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 6 ++++++
+> >   1 file changed, 6 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> > index 8af3f0fd3073..f1315a854192 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> > @@ -1852,6 +1852,12 @@ int amdgpu_vm_bo_clear_mappings(struct
+> amdgpu_device *adev,
+> >       LIST_HEAD(removed);
+> >       uint64_t eaddr;
+> >
+> > +     /* validate the parameters */
+> > +     if (saddr & ~PAGE_MASK || size & ~PAGE_MASK)
+> > +             return -EINVAL;
+>
+> Well as general rule: *never* use PAGE_MASK and other PAGE_* macros
+> here. This is GPUVM and not related to the CPUVM space.
+>
+> > +     if (saddr + size <=3D saddr)
+> > +             return -EINVAL;
+> > +
+>
+> Mhm, so basically size is not checked for a wraparound?
+>
+> >       eaddr =3D saddr + size - 1;
+> >       saddr /=3D AMDGPU_GPU_PAGE_SIZE;
+> >       eaddr /=3D AMDGPU_GPU_PAGE_SIZE;
+>
+> If that's the case then I would rather check for saddr < eaddr here.
+>
+> But that actually shouldn't matter since this code here:
+>
+>          /* Now gather all removed mappings */
+>          tmp =3D amdgpu_vm_it_iter_first(&vm->va, saddr, eaddr);
+>          while (tmp) {
+>
+> Then shouldn't return anything, so the operation is basically a NO-OP the=
+n.
+>
+> Regards,
+> Christian.
+>
+
+--0000000000002edd960615d3033a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><a class=3D"gmail_plusreply" id=3D"plusReplyChip-0" href=
+=3D"mailto:jannh@google.com" tabindex=3D"-1">+Jann Horn</a>=C2=A0for his th=
+oughts<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Thu, Apr 11, 2024 at 12:25=E2=80=AFPM Christian K=C3=B6nig &lt=
+;<a href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Am 11.=
+04.24 um 05:28 schrieb xinhui pan:<br>
+&gt; Ensure there is no address overlapping.<br>
+&gt;<br>
+&gt; Reported-by: Vlad Stolyarov &lt;<a href=3D"mailto:hexed@google.com" ta=
+rget=3D"_blank">hexed@google.com</a>&gt;<br>
+&gt; Signed-off-by: xinhui pan &lt;<a href=3D"mailto:xinhui.pan@amd.com" ta=
+rget=3D"_blank">xinhui.pan@amd.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 6 ++++++<br>
+&gt;=C2=A0 =C2=A01 file changed, 6 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_vm.c<br>
+&gt; index 8af3f0fd3073..f1315a854192 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c<br>
+&gt; @@ -1852,6 +1852,12 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_d=
+evice *adev,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0LIST_HEAD(removed);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t eaddr;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* validate the parameters */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (saddr &amp; ~PAGE_MASK || size &amp; ~PAGE_MA=
+SK)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -EINVAL;<br>
+<br>
+Well as general rule: *never* use PAGE_MASK and other PAGE_* macros <br>
+here. This is GPUVM and not related to the CPUVM space.<br>
+<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (saddr + size &lt;=3D saddr)<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -EINVAL;<br>
+&gt; +<br>
+<br>
+Mhm, so basically size is not checked for a wraparound?<br>
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0eaddr =3D saddr + size - 1;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0saddr /=3D AMDGPU_GPU_PAGE_SIZE;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0eaddr /=3D AMDGPU_GPU_PAGE_SIZE;<br>
+<br>
+If that&#39;s the case then I would rather check for saddr &lt; eaddr here.=
+<br>
+<br>
+But that actually shouldn&#39;t matter since this code here:<br>
+<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Now gather all removed =
+mappings */<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp =3D amdgpu_vm_it_iter_=
+first(&amp;vm-&gt;va, saddr, eaddr);<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 while (tmp) {<br>
+<br>
+Then shouldn&#39;t return anything, so the operation is basically a NO-OP t=
+hen.<br>
+<br>
+Regards,<br>
+Christian.<br>
+</blockquote></div>
+
+--0000000000002edd960615d3033a--
