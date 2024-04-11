@@ -2,67 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FB38A0A30
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 09:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B70F78A05C3
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 04:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7123F10F208;
-	Thu, 11 Apr 2024 07:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A2010EC6C;
+	Thu, 11 Apr 2024 02:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D5rK2RAO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2liTBb9s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com
- [209.85.128.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FD210EC4F
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 01:46:56 +0000 (UTC)
-Received: by mail-yw1-f179.google.com with SMTP id
- 00721157ae682-617cd7bd929so68327597b3.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 18:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1712800015; x=1713404815; darn=lists.freedesktop.org;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=PFi8Oz0YV2woPJ+NOuQqliHLzn8T7fbeMzO2MlMmb4k=;
- b=D5rK2RAO0gBCGgI87MSLwOPalSPBQ0Rzn2UyMlB5UIv7e9Ghm763V1dqQBxuK36u4d
- qWz1l6d5vc0Jz6G16pFoJ0NNSDqZEOfv3KE8kw3enVQFnXVxxmXWyR6RxlFVw+eNcr9c
- Nm+7x6qbt8vSbXtiwGHPGd1K4EkcwzDa7lRmYJAVPTfA0mFORBODBHoYfRWABwc9gHQ0
- RkrFIv7zQ+nubWBlm+EoCdvcFiVkNsJj3FHQ8ZkYNnB1EUE6/eGbRZgHbKEMTAT6XDQp
- pYqVol9RreGv4Snh4+SWPX1k2bOx/P8xXAWtylRCp5n9idEmoCPFvQnLaR5/BoqmNtzf
- FwzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712800015; x=1713404815;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=PFi8Oz0YV2woPJ+NOuQqliHLzn8T7fbeMzO2MlMmb4k=;
- b=PSsXVkTa0bpiwL3cUu+w2PHCKYNfdkOp2NH5ePGj/J8UY/4Cg80mS50bUxCeM+UX4R
- c4Z1UQTzAmEXPeCyheS0qyXqlMrZdY6kx3ZKiBhSk0FCM0fpbD0LNg6bGPE/bisPAim/
- 3Ia0vamAXVO0xC/KbkBsWQk5tbT1NVoREXhtAE6OZDlk4W/yAmChyJ/g0gwesd3ydPgq
- MUa9HE1ayhHSkor46rQSH4Ug2h5MccvL4PXFFei0fpgNc5Q2wZmKJJ/LIWQz7donIQVJ
- 1wjMXVbSy5Q7xWtAP9pbcKsJHz0kng6bVX07kJruWvQHzGRkbj6dhvyy/Nrdx/gOCluJ
- yYSw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUrD3jAXNOG6zpAufgY43Fb3zB8NzvMHz6FlD6yEz+uez/Yjrw1HThp9f2QCqIBTkkb5EODxFct4gGGkhaHpsQCvEYLZACzy00I1hHadg==
-X-Gm-Message-State: AOJu0Yw/BpWrDwmfqzF0F8rtyJz5iDzCCO/zIUVp1x+X7Pb1NeUrGiP0
- +kd7hhFC6OXsdR/ajOhChNhlICo96BDVWczFdHmT3PTF4fyaXbdJqxilEY1GwMMvuPxxeV0E6rm
- p4XB+yK83lHCr6+PKK6I+Z7+I/X8LEQ==
-X-Google-Smtp-Source: AGHT+IFKvk63eyCkqrSk3c+YyxDoW1TJqHPcSFxuEq8130cnSxRADMGuY7h7sKUBR39b3X8Gpu2A7b+EZDh1tmUKvaI=
-X-Received: by 2002:a25:848d:0:b0:dca:a3e8:a25a with SMTP id
- v13-20020a25848d000000b00dcaa3e8a25amr4428485ybk.62.1712800015000; Wed, 10
- Apr 2024 18:46:55 -0700 (PDT)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2051.outbound.protection.outlook.com [40.107.94.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9CAA10EC6C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 02:17:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zn9bQxRL5zSzopOjOTephAPlxX4L7m8PXgVJMuotkB3deyqLz8Kz6tIvbUsc8nGeZDu0lI5oZiEmErXragqlxrShbTbo44a/nF8nf3GgLbHAL73rYilz7nfhxKsxTlw3Y3P5GXfSO8CH93I8VqKpavtgjt9t3BcJzzTtixXbk1po6R89+T6N1jwN+c/0s3NG/PJLvxiwHlrby6qEuwsXHCVbHxvRwed1wjY6bN9IuY2Fekq1+tdD+6eCHzq146TL66Ry+7xBo/+IcSr4+hllaC0/yoieTWkIx2caaKGjECUvdlEqaiO/q2IhWItn7DO6BnZPRyE66SwHIskwfwPOjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qcI1416TID/k322S2o/qQdPZbagAh3ukkIGSDsbjPxs=;
+ b=Giea98aPYXdkzrnumjhPq3w1BLjVptmlihrezjHBXPfel16MLFjhp3ddHnMSaXv7jNmfqrjqK0IDhQFWBq6htR3t7H6FC7vzW+ZmCaohJivs6HvzIHuPDD5FzYedx+smUJ+eUOBabz1NzGl8GX+IBee5EYqGKtyIBzU7Qo1Kzryn0M8IOoE/q2QY2EatTDm+9CdB6+oy578e+MQefNXKBSOaHuBbyDUomlQqohRDofXw9nNRXNhNfMax+Ksud7CLoj8BdVFq9s83HxuVNNlGAoyKQgtcSrVCmyXp3hRYgU6CKtqlibCXBi7oPOO4oNW3eEaVsnJFROFtfbdeWcT/Zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qcI1416TID/k322S2o/qQdPZbagAh3ukkIGSDsbjPxs=;
+ b=2liTBb9sgrp6hZdjC9O1YHw3Po2EcgV1wYqk7WUKgZW6n5HD7Smv+E0jJRWnl1WE8uA24KfYybqewCCIlGFTcN/uUc1dkj2X5AA74N9Sv8wDYfKqCImX49H9E/ymcpVI7SkCheJiAiK0tJk1zFMTvVKvly/AVPUzDaM2MSzt680=
+Received: from CYZPR02CA0016.namprd02.prod.outlook.com (2603:10b6:930:a1::28)
+ by SJ2PR12MB8847.namprd12.prod.outlook.com (2603:10b6:a03:546::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.55; Thu, 11 Apr
+ 2024 02:16:59 +0000
+Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
+ (2603:10b6:930:a1:cafe::13) by CYZPR02CA0016.outlook.office365.com
+ (2603:10b6:930:a1::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.22 via Frontend
+ Transport; Thu, 11 Apr 2024 02:16:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7452.22 via Frontend Transport; Thu, 11 Apr 2024 02:16:59 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 10 Apr
+ 2024 21:16:58 -0500
+Received: from Xiaogang-ROCM-Dev.attlocal.net (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35
+ via Frontend Transport; Wed, 10 Apr 2024 21:16:53 -0500
+From: Xiaogang.Chen <xiaogang.chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <felix.kuehling@amd.com>, Xiaogang Chen <xiaogang.chen@amd.com>, "Xiaogang
+ Chen" <Xiaogang.Chen@amd.com>
+Subject: [PATCH] amd/kfd: cancle work iterms at ih_wq in kfd_interrupt_exit
+Date: Wed, 10 Apr 2024 21:18:22 -0500
+Message-ID: <20240411021822.2347485-1-xiaogang.chen@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20240410221336.34627-1-joshua@froggi.es>
-In-Reply-To: <20240410221336.34627-1-joshua@froggi.es>
-From: Ethan Lee <flibitijibibo@gmail.com>
-Date: Wed, 10 Apr 2024 21:46:43 -0400
-Message-ID: <CAGLTkm7vvmnAs3xs7KASPBcCYtPw2EaSyR27S-NBQzmgP7+czw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Enable ogam_ram for dcn32+dcn35+dcn351
-To: Joshua Ashton <joshua@froggi.es>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 11 Apr 2024 07:41:32 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: xiaogang.chen@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|SJ2PR12MB8847:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a007c55-6e30-4073-1b43-08dc59cd77b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wBWMNBPI3+NDPjL8eWpG+SOVTuAhRxHhu3l16rYY3Rj0LTJNWEs7bGEyglKgPtzmSSB3zeGQCkPK1rk8MsL8V7+BZqHLzrk09fzb7DIVptErwEBZR7Q/9DB/e5MjiVgJ5erzWOf7u2+8/kSR5HPZzHDd04Wozwpb0cpEMFzYMXDKO+o7HsYCHfoN5EZuXcxevGUu8XGgYdUpVIKKN+uuuc6S+lPrPcKFkFnYeKln9gk+03Ht2H5JnnyAWA7HlG/kBSXstXnQB/lrmQZ8vkypfKAzEgjyxJ3SEjiOIxGYKx/MTPaz75SacMcKmIaYt7tnv6WTZRgZAudK+0FMx+6ppUsN5L370WlJdxCiVjAOGY3AD9s50FWXbpLRu3CGDd/PQdBvrX2XTpKXk3CXBFdBK+qDavyBN4WyVRbjU9gb0/Cjj2154AjkLwpNDUsJ4C3g2qcP4shSk6d4UJ65vmpn9eiU/taqCN4ORrRlXnE77etD/g6EWUPbagZXsK2hjGRIEpPEkPLrC1iagr/qIMi3DHgcwhJ5W8NEsAdoEiUqbcqIC+zePjpXffqh2jVyuPZS5jBjYVnjrRY7YjePR8j/pT0nBGB3kohPrhB0loQMpkM0DxwyXDBmOT9ubLiQ7Iwl2K4ipYl45PkFUo/nVHcewtlb86fc8XjDAGeK24THkadM8P/gtsM2edQFf/WdjiIAZnNTA1+Rrt+wC3hPFbkNm9hXM6I6fL1Ooc1q+OgkkK3aoCJkPioEWRWGvpHLRGha
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(82310400014)(36860700004); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 02:16:59.0421 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a007c55-6e30-4073-1b43-08dc59cd77b6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8847
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,82 +107,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 10, 2024 at 6:13=E2=80=AFPM Joshua Ashton <joshua@froggi.es> wr=
-ote:
->
-> The comment here states "no OGAM in DPP since DCN1", yet that is not
-> true.
->
-> Testing on an RX 7900XTX (dcn32), it actually does exist in hardware and
-> works fine.
-> My best guess is the comment is confused with OGAM ROM for DPP, rather
-> than OGAM RAM.
->
-> I did not test dcn35/351 as I do not have that hardware, but I assume
-> the same follows there given the seemingly erroneous comment.
-> Someone at AMD should check that before merging this commit.
->
-> Signed-off-by: Joshua Ashton <joshua@froggi.es>
->
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Xaver Hugl <xaver.hugl@gmail.com>
-> Cc: Melissa Wen <mwen@igalia.com>
-> Cc: Ethan Lee <flibitijibibo@gmail.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c  | 2 +-
->  drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c  | 2 +-
->  .../gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c    | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource=
-.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> index 9aa39bd25be9..94f5d2b5aadf 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-> @@ -2182,7 +2182,7 @@ static bool dcn32_resource_construct(
->         dc->caps.color.dpp.dgam_rom_for_yuv =3D 0;
->
->         dc->caps.color.dpp.hw_3d_lut =3D 1;
-> -       dc->caps.color.dpp.ogam_ram =3D 0;  // no OGAM in DPP since DCN1
-> +       dc->caps.color.dpp.ogam_ram =3D 1;
->         // no OGAM ROM on DCN2 and later ASICs
->         dc->caps.color.dpp.ogam_rom_caps.srgb =3D 0;
->         dc->caps.color.dpp.ogam_rom_caps.bt2020 =3D 0;
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource=
-.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> index 25ac450944e7..708d63cc3f7f 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-> @@ -1861,7 +1861,7 @@ static bool dcn35_resource_construct(
->         dc->caps.color.dpp.dgam_rom_for_yuv =3D 0;
->
->         dc->caps.color.dpp.hw_3d_lut =3D 1;
-> -       dc->caps.color.dpp.ogam_ram =3D 0;  // no OGAM in DPP since DCN1
-> +       dc->caps.color.dpp.ogam_ram =3D 1;
->         // no OGAM ROM on DCN301
->         dc->caps.color.dpp.ogam_rom_caps.srgb =3D 0;
->         dc->caps.color.dpp.ogam_rom_caps.bt2020 =3D 0;
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resour=
-ce.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> index 8a57adb27264..053e8ec6d1ef 100644
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-> @@ -1841,7 +1841,7 @@ static bool dcn351_resource_construct(
->         dc->caps.color.dpp.dgam_rom_for_yuv =3D 0;
->
->         dc->caps.color.dpp.hw_3d_lut =3D 1;
-> -       dc->caps.color.dpp.ogam_ram =3D 0;  // no OGAM in DPP since DCN1
-> +       dc->caps.color.dpp.ogam_ram =3D 1;
->         // no OGAM ROM on DCN301
->         dc->caps.color.dpp.ogam_rom_caps.srgb =3D 0;
->         dc->caps.color.dpp.ogam_rom_caps.bt2020 =3D 0;
-> --
-> 2.44.0
->
+From: Xiaogang Chen <xiaogang.chen@amd.com>
 
-Tested dcn32 on a 7900XTX, applied against kernel 6.8.5, confirmed
-working with gamescope compositor.
+When kfd/amdgpu driver is tearing down cannot handle callback from
+ih_wq. If there is still work items left cancle them instead of flush
+that would wait until they got served.
 
-Tested-by: Ethan Lee <flibitijibibo@gmail.com>
+Signed-off-by: Xiaogang Chen<Xiaogang.Chen@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
--Ethan
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
+index 9b6b6e882593..1847b9290a84 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
+@@ -98,11 +98,12 @@ void kfd_interrupt_exit(struct kfd_node *node)
+ 	spin_unlock_irqrestore(&node->interrupt_lock, flags);
+ 
+ 	/*
+-	 * flush_work ensures that there are no outstanding
+-	 * work-queue items that will access interrupt_ring. New work items
++	 * cancel work items still at ih_wq ensures that there are no outstanding
++	 * work-queue items that will access interrupt_ring. At this stage kfd/amd
++	 * driver is tearing down, cannot handle call back from wq. New work itemst
+ 	 * can't be created because we stopped interrupt handling above.
+ 	 */
+-	flush_workqueue(node->ih_wq);
++	cancel_work(&node->interrupt_work);
+ 
+ 	destroy_workqueue(node->ih_wq);
+ 
+-- 
+2.25.1
+
