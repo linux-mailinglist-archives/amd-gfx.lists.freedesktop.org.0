@@ -2,93 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025818A155C
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 15:14:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AECE08A0ADF
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Apr 2024 10:11:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2EA10F091;
-	Thu, 11 Apr 2024 13:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6E910EF53;
+	Thu, 11 Apr 2024 08:11:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="fAFRq2a4";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="DzSFGGOr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KU1YU81o";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 564 seconds by postgrey-1.36 at gabe;
- Thu, 11 Apr 2024 07:41:15 UTC
-Received: from wfhigh5-smtp.messagingengine.com
- (wfhigh5-smtp.messagingengine.com [64.147.123.156])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81FD10F107
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 07:41:15 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailfhigh.west.internal (Postfix) with ESMTP id 81E2218000CB;
- Thu, 11 Apr 2024 03:31:48 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
- by compute5.internal (MEProxy); Thu, 11 Apr 2024 03:31:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-type:content-type:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm2; t=1712820708; x=1712907108; bh=ss9obh18Sk
- iQHEXzh7qcLFdvdlxpa80B0Z7MJyyJWOs=; b=fAFRq2a4RR5m0uoGjxvbSDZhhg
- XBLt22beIqBHO1PhCVLZIYorAfbGnpIs6i0KjnrNMag6CtHF8mAtIX4+g4JkM/y4
- oNakw3qvrAtMITJTRe3dP5XCRbSlUNRMtgb+FJogTSdTceTcdRzappHrax+eWmGC
- C48KZTiW2+745Tpmz56zPJgFu5sXmnDOXQgOHhBxECqtppJaW42Os3TNEDRkpPfI
- 7xKy28dP14Q+rdv1IglqoN1MM2Wo71oJ88dpxu76wssTF5yL3dssA5ZNSuq2aEsa
- sQ7EBo/MLbjI9e+DTEeltLlDImftLLOUzlWPomQgt5r5GI+C7bz29lbepBoQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm2; t=1712820708; x=1712907108; bh=ss9obh18SkiQHEXzh7qcLFdvdlxp
- a80B0Z7MJyyJWOs=; b=DzSFGGOr+zqR4sfSmeOxAZvA6tvMP0LGFanC2+BgYdJy
- +4hbOwbt0daWkKElaJ7hw1qTgNt7659JrHfKx7+c2NRv2nXqcVlsOuvhc37YXOZ6
- /5MKG6iTFCQ6aufnWu+0iv1mQHtdHJ4K9QX9ZNac5sLfv829dYcU7OrtBhvzAPeJ
- qvI5fpyEZjo1rJqt0In+B4EMVZTz3BIN6xIPeqBy76lVWIdHpPj7mI1hWq7dyIWT
- CnWqJQpCHMCE2NVdUfy2AgXYjJNlhFvPsLF/BoiRix4BR68kBN/e6viA7DoExAkP
- 1lsK1ob4cyEjdsraiMT0hwoBXzOe78DNkW/8wTm9dg==
-X-ME-Sender: <xms:45EXZr7T_OnGStrr7SKzpEUpju9NZAoJ-lpF9Idxf_AAZawFa25PqQ>
- <xme:45EXZg74AAZ239bjRLX7EeRcHaT8wGi_jFHosNYQYKIaCYvcpDRxLFrBw8T1Wh8fR
- jo4RGsgbbTYIfp5aDQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehjedguddujecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
- rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
- htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
- keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:45EXZieKjjVog6Wf67CQD8NJtTers1M6KFeWe75e-UlBkt2QP7uJXg>
- <xmx:45EXZsJIp1DUMatuZM3plg1HZpaO63G81PNWgtOVl7mQ4q3U6QDMgA>
- <xmx:45EXZvIKtC1NGjybHKKb-88n2S8h7w1gUs0XzOcd8JC5HH3wCWVBpA>
- <xmx:45EXZlyxfKvoW4q6bfCKoSeKRYfJBEypsh0ZQzt4uZT200LeFEQ3Rw>
- <xmx:45EXZuaOX9x1nVPc-UnZtz-zaIuHLseO3kmjE2oKiQEaEOt4QcV-JewM>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 5E761B60092; Thu, 11 Apr 2024 03:31:47 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-379-gabd37849b7-fm-20240408.001-gabd37849
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5837810EF53
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 08:11:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZOp457euNayFFlX4bWd96oXKh1U1H5fzqoBINqP+uQUIHYTwgSvXp4D6f1xFCtHDWY+0Y820zWgBlTUuEtX+8Nkxj+t+mxqO96EotVQbGc5uNdX6gfapIPrAKmV2gXHvQn6Vba2PgQ5ygCnogMn7EXQjwMLui4hwNBtB4AQQy0K18ZvW0HZrBQqz9f7H45juinxuJAjIhwOqLnEVzCJ3wotg5Q1KOrnwwtJMZaOWxjFC+1dxGFVeWzdXaDhOhWOjyrvcsUrJVz4wLnpNzqb9g0+XOzt2ajMPT78haJQRNJ09Pyy3DyTV6X5cKlmVi3ftzgMREtzr19cseCP7QFDq8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7IKbod0cjNUSKLd5h6FMVnhtfH0ttokWt7YCFDhG0pE=;
+ b=FAti/nsPonqzBZqdRrNAXwWnE0sNFybsEOwIgoUW4gptwMuQQwa6ZKX1WI/CzKykr8hR43vz5HykT2jo7o8sDtKt0VgfA5HqWWdoaZEFkIkYb53f28RIwfpZ0A92SAk5fab0urbQoiRyl/k8mOt0AAgtFW1ILqsToj4N4iDg/ObLXGCrB3vwhsYvWFFS90g0c747Q596wI4eCEUZ401kCV7jb9mk8ddz6R/Q3ckEvomk4MaVkiYNkhfwmIvWYlyub8hSgLUpx7vbQhToSEYHlIN7dMs27bvZWCZ5eoXBbXVXfktqt8H4DWt2RBrvAFeJwWf8pgSnbTDQLkpW2Bz6eQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7IKbod0cjNUSKLd5h6FMVnhtfH0ttokWt7YCFDhG0pE=;
+ b=KU1YU81oEseFMJdy5EGzooZVYWx3c4QW7rgOGctdfitG1udJ+WngJIijecDuaKt//KiUrp+x6Q7MU+9zs/gKq0N7yMBrL0qy3VyiclIpZcD/n54GUMNCWWEcyZ0eSzVgpba2KwNuupUKHqtSPxZMnZr9wGsuTT2xzBvJGahKWi0=
+Received: from BN0PR07CA0016.namprd07.prod.outlook.com (2603:10b6:408:141::21)
+ by SJ2PR12MB8953.namprd12.prod.outlook.com (2603:10b6:a03:544::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.46; Thu, 11 Apr
+ 2024 08:11:16 +0000
+Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
+ (2603:10b6:408:141:cafe::4c) by BN0PR07CA0016.outlook.office365.com
+ (2603:10b6:408:141::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.22 via Frontend
+ Transport; Thu, 11 Apr 2024 08:11:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7452.22 via Frontend Transport; Thu, 11 Apr 2024 08:11:15 +0000
+Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 11 Apr
+ 2024 03:11:14 -0500
+From: Lang Yu <Lang.Yu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Christian Koenig <christian.koenig@amd.com>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Lang Yu <Lang.Yu@amd.com>
+Subject: [PATCH v2] drm/amdkfd: make sure VM is ready for updating operations
+Date: Thu, 11 Apr 2024 16:11:01 +0800
+Message-ID: <20240411081101.3883715-1-Lang.Yu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Message-Id: <c0e170f7-5498-40ed-ba35-2ac392c2dd2a@app.fastmail.com>
-In-Reply-To: <CAMj1kXGW5XQxXrYaPhT6sCjH7s0EwqzNjWies3b8UWnUBW5Ngw@mail.gmail.com>
-References: <20240329072441.591471-1-samuel.holland@sifive.com>
- <20240329072441.591471-14-samuel.holland@sifive.com>
- <87wmp4oo3y.fsf@linaro.org> <75a37a4b-f516-40a3-b6b5-4aa1636f9b60@sifive.com>
- <87wmp4ogoe.fsf@linaro.org> <4c8e63d6-ba33-47fe-8150-59eba8babf2d@sifive.com>
- <CAMj1kXGW5XQxXrYaPhT6sCjH7s0EwqzNjWies3b8UWnUBW5Ngw@mail.gmail.com>
-Date: Thu, 11 Apr 2024 09:31:27 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ard Biesheuvel" <ardb@kernel.org>,
- "Samuel Holland" <samuel.holland@sifive.com>
-Cc: "Thiago Jung Bauermann" <thiago.bauermann@linaro.org>,
- "Andrew Morton" <akpm@linux-foundation.org>,
- linux-arm-kernel@lists.infradead.org, x86@kernel.org,
- linux-kernel@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- "Christoph Hellwig" <hch@lst.de>, loongarch@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, "Alex Deucher" <alexander.deucher@amd.com>
-Subject: Re: [PATCH v4 13/15] drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Mailman-Approved-At: Thu, 11 Apr 2024 13:14:24 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|SJ2PR12MB8953:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a9166f7-f701-4ea4-555a-08dc59fef5aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NSzNw2w8mftLYN7eXn32Ab2wPPQ5oCA87oc0agggzVJollA+9ozHa7g/KJVE2n6EUIyaleE7P3PvNML0DpQg+WzrzreMskUIEzHaBnniEcMLWYcA34d5Ke1WrrwknmZBKP6m82xbhifL8ilP+bbzXv2zFmXhmF6aj7vbDpcjFz2lg047Q2bSITwoAvgfbhBzDMyEqFOhpp2txSHR69kUC4nP05rPivbn2l17kd9EjLgYSIOxJQvgOGNjzT4bxX6rykBNOOzjVuIgDuQjAMvr1G25MBWSGetL2Fgg+/gBg9tlNmxI/jCHgMRvUfAp7cUCSKY77jCHT+2cdZ7gMDM6/jKXJHABC70cif0XK+gLz9ByxC0ruvp5xzarWPxwl2SN2964it9p/ZVeprAlF6I0ODDf94Uz/CdjjK6akBJvqMYh6rav88A9arfJ1AUN15Kdj6N+zFCdzS3Fclj4QamsQTMaji+sh5CQJAIldqHEctddI1gFL9wt9M9FeYVSfRz3pgW3Xqg43ggfCfABCq2FAEK1MLk3kKXwu3klbG3nh5Itm/BbmPDcdMca3eXcwYcbIy6hWNRW5xKoNMAh78O33VrBxeM4BIHpP8Mm/YG9JJcGD3OOtk2HCbmcFqsNA11BtiscGodb/mRlZW7vJo5QaD8faXQmocV3XgfToXEHjG0fO71kHJ/l/feqWqUUWbMfANOCMjYL8wFnCQ4xreVzSscCecH1jHLV0+SDy104Ntekx5gP9/z/bk8wwCq2dS7Y
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(36860700004)(82310400014)(376005)(1800799015); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2024 08:11:15.7445 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a9166f7-f701-4ea4-555a-08dc59fef5aa
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B078.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8953
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,44 +105,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 11, 2024, at 09:15, Ard Biesheuvel wrote:
-> On Thu, 11 Apr 2024 at 03:11, Samuel Holland <samuel.holland@sifive.com> wrote:
->> On 2024-04-10 8:02 PM, Thiago Jung Bauermann wrote:
->> > Samuel Holland <samuel.holland@sifive.com> writes:
->>
->> >> The short-term fix would be to drop the `select ARCH_HAS_KERNEL_FPU_SUPPORT` for
->> >> 32-bit arm until we can provide these runtime library functions.
->> >
->> > Does this mean that patch 2 in this series:
->> >
->> > [PATCH v4 02/15] ARM: Implement ARCH_HAS_KERNEL_FPU_SUPPORT
->> >
->> > will be dropped?
->>
->> No, because later patches in the series (3, 6) depend on the definition of
->> CC_FLAGS_FPU from that patch. I will need to send a fixup patch unless I can
->> find a GPL-2 compatible implementation of the runtime library functions.
->>
->
-> Is there really a point to doing that? Do 32-bit ARM systems even have
-> enough address space to the map the BARs of the AMD GPUs that need
-> this support?
->
-> Given that this was not enabled before, I don't think the upshot of
-> this series should be that we enable support for something on 32-bit
-> ARM that may cause headaches down the road without any benefit.
->
-> So I'd prefer a fixup patch that opts ARM out of this over adding
-> support code for 64-bit conversions.
+When page table BOs were evicted but not validated before
+updating page tables, VM is still in evicting state,
+amdgpu_vm_update_range returns -EBUSY and
+restore_process_worker runs into a dead loop.
 
-I have not found any dts file for a 32-bit platform with support
-for a 64-bit prefetchable BAR, and there are very few that even
-have a pcie slot (as opposed on on-board devices) you could
-plug a card into.
+v2: Split the BO validation and page table update into
+two separate loops in amdgpu_amdkfd_restore_process_bos. (Felix)
+  1.Validate BOs
+  2.Validate VM (and DMABuf attachments)
+  3.Update page tables for the BOs validated above
 
-That said, I also don't think we should encourage the use of
-floating-point code in random device drivers. There is really
-no excuse for the amdgpu driver to use floating point math
-here, and we should get AMD to fix their driver instead.
+Fixes: 2fdba514ad5a ("drm/amdgpu: Auto-validate DMABuf imports in compute VMs")
 
-     Arnd
+Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 34 +++++++++++--------
+ 1 file changed, 20 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 0ae9fd844623..e2c9e6ddb1d1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -2900,13 +2900,12 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
+ 
+ 	amdgpu_sync_create(&sync_obj);
+ 
+-	/* Validate BOs and map them to GPUVM (update VM page tables). */
++	/* Validate BOs managed by KFD */
+ 	list_for_each_entry(mem, &process_info->kfd_bo_list,
+ 			    validate_list) {
+ 
+ 		struct amdgpu_bo *bo = mem->bo;
+ 		uint32_t domain = mem->domain;
+-		struct kfd_mem_attachment *attachment;
+ 		struct dma_resv_iter cursor;
+ 		struct dma_fence *fence;
+ 
+@@ -2931,6 +2930,25 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
+ 				goto validate_map_fail;
+ 			}
+ 		}
++	}
++
++	if (failed_size)
++		pr_debug("0x%lx/0x%lx in system\n", failed_size, total_size);
++
++	/* Validate PDs, PTs and evicted DMABuf imports last. Otherwise BO
++	 * validations above would invalidate DMABuf imports again.
++	 */
++	ret = process_validate_vms(process_info, &exec.ticket);
++	if (ret) {
++		pr_debug("Validating VMs failed, ret: %d\n", ret);
++		goto validate_map_fail;
++	}
++
++	/* Update mappings managed by KFD. */
++	list_for_each_entry(mem, &process_info->kfd_bo_list,
++			    validate_list) {
++		struct kfd_mem_attachment *attachment;
++
+ 		list_for_each_entry(attachment, &mem->attachments, list) {
+ 			if (!attachment->is_mapped)
+ 				continue;
+@@ -2947,18 +2965,6 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
+ 		}
+ 	}
+ 
+-	if (failed_size)
+-		pr_debug("0x%lx/0x%lx in system\n", failed_size, total_size);
+-
+-	/* Validate PDs, PTs and evicted DMABuf imports last. Otherwise BO
+-	 * validations above would invalidate DMABuf imports again.
+-	 */
+-	ret = process_validate_vms(process_info, &exec.ticket);
+-	if (ret) {
+-		pr_debug("Validating VMs failed, ret: %d\n", ret);
+-		goto validate_map_fail;
+-	}
+-
+ 	/* Update mappings not managed by KFD */
+ 	list_for_each_entry(peer_vm, &process_info->vm_list_head,
+ 			vm_list_node) {
+-- 
+2.25.1
+
