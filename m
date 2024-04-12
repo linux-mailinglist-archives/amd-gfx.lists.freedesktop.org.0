@@ -2,30 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83F48A2F25
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Apr 2024 15:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6273C8A2F27
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Apr 2024 15:17:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C225E10F634;
-	Fri, 12 Apr 2024 13:17:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD06610F63F;
+	Fri, 12 Apr 2024 13:17:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB21410F634
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 13:17:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A457910F63B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 13:17:12 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 43CDGwJS036090; Fri, 12 Apr 2024 18:46:58 +0530
+ 43CDH7nw036162; Fri, 12 Apr 2024 18:47:07 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43CDGw3X036089;
- Fri, 12 Apr 2024 18:46:58 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43CDH71E036161;
+ Fri, 12 Apr 2024 18:47:07 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 1/5] drm:amdgpu: Enable IH RING1 for IH v6.0
-Date: Fri, 12 Apr 2024 18:46:41 +0530
-Message-Id: <20240412131645.35990-1-sunil.khatri@amd.com>
+Subject: [PATCH v2 2/5] drm:amdgpu: Enable IH RING1 for IH v6.1
+Date: Fri, 12 Apr 2024 18:46:42 +0530
+Message-Id: <20240412131645.35990-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240412131645.35990-1-sunil.khatri@amd.com>
+References: <20240412131645.35990-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,14 +50,14 @@ ring for specific usecases.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/ih_v6_0.c | 8 ++++++--
+ drivers/gpu/drm/amd/amdgpu/ih_v6_1.c | 8 ++++++--
  1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
-index ad4ad39f128f..3796d965e123 100644
---- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
-@@ -549,8 +549,12 @@ static int ih_v6_0_sw_init(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
+index b8da0fc29378..d3ce1b809550 100644
+--- a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
+@@ -550,8 +550,12 @@ static int ih_v6_1_sw_init(void *handle)
  	adev->irq.ih.use_doorbell = true;
  	adev->irq.ih.doorbell_index = adev->doorbell_index.ih << 1;
  
@@ -69,7 +71,7 @@ index ad4ad39f128f..3796d965e123 100644
 +	adev->irq.ih1.doorbell_index = (adev->doorbell_index.ih + 1) << 1;
  
  	/* initialize ih control register offset */
- 	ih_v6_0_init_register_offset(adev);
+ 	ih_v6_1_init_register_offset(adev);
 -- 
 2.34.1
 
