@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DAA68A3F9B
-	for <lists+amd-gfx@lfdr.de>; Sun, 14 Apr 2024 01:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8398A3FA0
+	for <lists+amd-gfx@lfdr.de>; Sun, 14 Apr 2024 01:40:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C05C510F4FD;
-	Sat, 13 Apr 2024 23:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DFE10F5A6;
+	Sat, 13 Apr 2024 23:40:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4KTpGElk";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ffzooqXd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2042.outbound.protection.outlook.com [40.107.95.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13A610F4FD
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Apr 2024 23:40:25 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 338FD10F50B
+ for <amd-gfx@lists.freedesktop.org>; Sat, 13 Apr 2024 23:40:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HGQyPo+O6qnKdV6GV9I3pyRqDsL7nYh7Pi1l5D/+j9plCeE1VFAKOH9qNpWn9PG1KE6QyzSb1qccMPxafje4ShAl5QGLw8tOzQtGgRlbLM4NRYtKjPnkEWeusvJ0+2YiVUAIwHLzGaFSixWoDosQnrTux+h4L0VX/6JxpmvVp+iiD2aOjeciebpiqO934/gjEJjTPSZ3cNvxaNwkmthXwmdD8IPN853tyCPBpjiPUpb6uiv8fcrDXUkeAWPFzu+4HvB+kIBuPpziQxc/jRi/C4JoZnCQfDiLvgrqaxpk+87DjIsJzAtat9JA79S8PKrYiJe5Oyzj2rqQLSbZ36C+FA==
+ b=FL4hMdoWcyML0zMvLUnzqyb/XSAtVL49Q32s0p8fdSpZi0mMmmBFVaMChxj4PKbBUIlG3CZNzXk0amRiIGwO+/eavNmWkVpczQDbeh63t8RCpJqDelsDYobxkzkfAEGv2KRDyDsch5uERgzuBavW/F0KcliuQWce6VkRv8UUw3FEomjs5j8nuHuIOdmYLDkukE4MGwlBei+s3DOkiwpzth4tMETDbMwFWdThAYm7U5UXksV1Wic1EkK8JpdhHJOPTpriz5N92Dr4lhRrHuU836+S85uLt+iz/1CQLqa6Kgseajw1hQLK/qL9zWMNWEAdOunGQNjT8GYQVvsssJQTVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m43SJn8iHCUYQv8ciHwq7yaJwjyW2TuMul9dO0bxez8=;
- b=TWVVRL2x4bD8xXcqKfRE/en7AK2Ujai6Q2VJQ5Z/PPUO2+Itcgyoc148TkClYJ8ss7DshaJS4mi/6lqHUeM/Z9aRCWWv7wa6F+DtNhPtPFdZXTv/BnNz16gZbKGWXx4RqBXgREqaTWA3qzC+8M2ru7uw3bsnaA/8u4WjLTDdrt6oSUbTxm0N5ow3j/oUcIaC44NaUwmoT7kgpSxkUwerTdta0CRotJwByJWVewhKSj6xptGfOEIx2lDm5BaptNTSWJw1Eg9cCPALsI/nIba58cX+T3EhdI7RArN/wtrT1+7Y4kbMboeHAXhqLHYAM9XZucvBsV6uDn65lB/EyaDSbQ==
+ bh=+k9ySoe45kgQcc8iQTm2E0MNXTeNBLNldbBDkd+xqSg=;
+ b=FFsj4xDUkc4feegQsrwEV3zh49O/I+dgCmOOpJgkBykJx9EXs2QJtgKOorssxH4R+X71O0yDxTqVNWQx9Nx5yhRXQQ3Fx0RTVYFy+5RgMbzZNv7JA9VUz6v0zjZNfBXspnYmS9E6hrx0zOkU66EqoKZ+BE2BkX8AAHo+H7yF10D/+dYcHtBB44+7q5u3VGROSk5Nt/AnJYh+d2KMRa1xPjHJMpRyXZ+D4eEWZ4oJBgUzKxYeXlTVCd1fF4JnkYPH+kqvEyx9ZWkdHDLEUyfvphroudy0q/K1qLaudFx6/5Jz07zLoTda+eSWuScDDxZCwdzaeYrkPQxNEcHtmzcvVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m43SJn8iHCUYQv8ciHwq7yaJwjyW2TuMul9dO0bxez8=;
- b=4KTpGElkW6SkCcUlyk7/VNQtX/hEvIbCf/92ibR//82nwYKbMO/5FtS6Orxk5rjQUnuRayT3yBDWRl7kSfY+kwygmtEFa5SMoQw4soOLIU0Q1Oy2Jx4eIyXc3s5vcXvZPALGJt/AlsGGR3q/J98J8b2kR173H1fqeoS/tvWF7t4=
-Received: from BY5PR04CA0021.namprd04.prod.outlook.com (2603:10b6:a03:1d0::31)
- by PH7PR12MB5783.namprd12.prod.outlook.com (2603:10b6:510:1d2::9)
+ bh=+k9ySoe45kgQcc8iQTm2E0MNXTeNBLNldbBDkd+xqSg=;
+ b=ffzooqXdUr0xdXv79hCP+ssUFZKBvEoArmh2oR8+QfPHzquQ74NUEW/WDwMDB5AwiHqZs+JYzkXVcYhgEPgN41qVZPm47UDcV61gd7F47mseyOUulJaD0IcZ3SbXCRTw3a+zTe8mOhjGUs+GhRrXZOnYpvhdt3gIOgwkZ2hH2+I=
+Received: from BY5PR04CA0003.namprd04.prod.outlook.com (2603:10b6:a03:1d0::13)
+ by CH3PR12MB7547.namprd12.prod.outlook.com (2603:10b6:610:147::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.56; Sat, 13 Apr
- 2024 23:40:22 +0000
+ 2024 23:40:23 +0000
 Received: from SJ5PEPF000001D5.namprd05.prod.outlook.com
- (2603:10b6:a03:1d0:cafe::68) by BY5PR04CA0021.outlook.office365.com
- (2603:10b6:a03:1d0::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.31 via Frontend
+ (2603:10b6:a03:1d0:cafe::2d) by BY5PR04CA0003.outlook.office365.com
+ (2603:10b6:a03:1d0::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.32 via Frontend
  Transport; Sat, 13 Apr 2024 23:40:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -57,11 +57,11 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2024 18:40:20 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Kenneth Feng <kenneth.feng@amd.com>, Likun Gao <Likun.Gao@amd.com>, "Alex
+CC: Likun Gao <Likun.Gao@amd.com>, Kenneth Feng <kenneth.feng@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH 3/7] drm/amd/swsmu: add smu v14_0_2 ppsmc file
-Date: Sat, 13 Apr 2024 19:39:41 -0400
-Message-ID: <20240413233945.4002886-3-alexander.deucher@amd.com>
+Subject: [PATCH 4/7] drm/amd/swsmu: add pptable header for smu v14_0_2
+Date: Sat, 13 Apr 2024 19:39:42 -0400
+Message-ID: <20240413233945.4002886-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240413233945.4002886-1-alexander.deucher@amd.com>
 References: <20240413233945.4002886-1-alexander.deucher@amd.com>
@@ -73,26 +73,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D5:EE_|PH7PR12MB5783:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6510ae9c-88f7-4407-5ac6-08dc5c1315e3
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D5:EE_|CH3PR12MB7547:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad34c30a-d43d-4911-083d-08dc5c131632
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 40D+3r6TxHc0lwfg4JA6F4NBzb1AMzPCcwzAi+B3bX6xvNmntamtvOUjdE1k4KPm59GNOR3UWIU7sTf3/1YChtYtNUH3IX/qP3yasuEj6kKShksaJwqIuCjw0F1suk5gYJfIl94Eg5GAcu027JvhMWLyeVVk9A8pj0EADQBKmkgBrUB6tkdDc8xWsAizZoDIP+LQdoKxfn+MtGr4VMDxuyVpgT+kzQVIyO1t8QQbTEX1aYa11bvyU1jJf7q7Fo8e9d9ugrVIpZWxVhlGdnIokj1+fakKucIdN3uo8DPQgou7FdPN1PKMy1Ul/aeGlEmEH7KS404ZZe/SujjoVsRA7FvrHMmOCDsnbBvRybVfCeX37q4P0gRgsfLrd33PTHyax3OAG4LtwhqXuoOEk/QCoN3zHo25FguUFnLasFdQ2nTHl4OCNB1Ol/BOYXRiFO96lbKPUFKUVCGzpQousL5Xs2uRm+S1nxQ3ZmVBzMhtQKCPhcqlxgjk0LNVfVZvscfyjFjsEp2FCt6sHeE2QVtukEpBoDu1cjtycgt5VSH1uFcBB4nIfDvKlw1gtEn0GNxkXNsJVCnIz2eG9x8S7nXWSSUzyCYHyBTcFb3dAJFXV5GTOLn46JsAt6MwP3GPNoNzkiTNdcJBciosLb0AbLaSXexZnD/LPEfCi6wRJ/618QEc5R0xRzR2e/9v+sa5ST75Rq99ubJS5NWleJRUdZXcWxewXYspADMu8EhOVPmwmYMG28GK6ryC1x48jwxLMDfn
+X-Microsoft-Antispam-Message-Info: jO6j4CRsTlze3JsOYzJU8RF+ajdzKQKb82MO4JdWkUSfiPmPFaOCu7b/F9y0EYgWjOdilmWyQ3GVqHVyrwB+f9IYuZEF7fvg1QYUskIgJvPRR+uP40E1g/JY3LUEYZMt1O20rIHaGjGWe1avJjHBGVclRXOtzsPtsbiF8lMbASTw5YTAXvLceTBskOmN2NPnMuy6iGZbAyrP3wRqolcGzuciv74xkpeu0MKa/E2WXL4cOMIzZ4ufuGa8cngROz1woFtDbWsohJPQW/xjZgDRaJHRBZ/NIaG80PwS5BnAbFcjdFgAhiMWBwuXJcWmRwLpE+9gF51MSQ7VHTtjewqm92yFUcWIf14V3rIKuDlgnNHd0JMjm7B+Gv5EqpiQ+gGVLfFsaSy1S01TePpqnccByyWyv+Ep2RNgOe6dXeumNCJPGf4bNyYxjjeD+0Mytw8icb0xzBJSmHFZnplynGUxuj5Pp7AZWfTCzv/LUfMr1KctyjNu4rlOIYJKIjpstZ2xEPeTa2Zl88graiOyNmE5pG6fyBO38yLb8i15eHdmXb5om8cr0i1+3gQuD8fixsIl2DvBHUCEO2ZtSzGYxNLNQSEldZkDUHCHDRMu4JSE+HatF4x5H70P6SWQNkcPV+VNjOXgO2qm+6Z27v95xnk8dCNcmLvwra9Gqb4QiRnobMeZ0sRsoiqj29lmOlgkdSCVzeCtea5ExQ+xpKYwlM5NGGaYFJF50Byn96j12K7nqgNUCZ1ME3tUgZtD0fDvo45q
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(82310400014)(376005)(1800799015); DIR:OUT;
+ SFS:(13230031)(376005)(36860700004)(82310400014)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2024 23:40:22.0029 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6510ae9c-88f7-4407-5ac6-08dc5c1315e3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2024 23:40:22.5185 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad34c30a-d43d-4911-083d-08dc5c131632
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D5.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5783
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7547
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,27 +107,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Kenneth Feng <kenneth.feng@amd.com>
+From: Likun Gao <Likun.Gao@amd.com>
 
-Add initial smu v14_0_2 ppsmc file
+Add pptable header for smu v14_0_2.
 
-v2: Squash in updates (Alex)
-v3: Squash in updates (Alex)
-
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-Reviewed-by: Likun Gao <Likun.Gao@amd.com>
+Signed-off-by: Likun Gao <Likun.Gao@amd.com>
+Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../pm/swsmu/inc/pmfw_if/smu_v14_0_2_ppsmc.h  | 140 ++++++++++++++++++
- 1 file changed, 140 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v14_0_2_ppsmc.h
+ .../amd/pm/swsmu/inc/smu_v14_0_2_pptable.h    | 164 ++++++++++++++++++
+ 1 file changed, 164 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0_2_pptable.h
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v14_0_2_ppsmc.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v14_0_2_ppsmc.h
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0_2_pptable.h b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0_2_pptable.h
 new file mode 100644
-index 0000000000000..de2e442281ffe
+index 0000000000000..4a3fde89aed73
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v14_0_2_ppsmc.h
-@@ -0,0 +1,140 @@
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v14_0_2_pptable.h
+@@ -0,0 +1,164 @@
 +/*
 + * Copyright 2023 Advanced Micro Devices, Inc.
 + *
@@ -151,122 +148,146 @@ index 0000000000000..de2e442281ffe
 + *
 + */
 +
-+#ifndef SMU_V14_0_2_PPSMC_H
-+#define SMU_V14_0_2_PPSMC_H
++#ifndef SMU_14_0_2_PPTABLE_H
++#define SMU_14_0_2_PPTABLE_H
 +
-+#define PPSMC_VERSION 0x1
 +
-+// SMU Response Codes:
-+#define PPSMC_Result_OK                    0x1
-+#define PPSMC_Result_Failed                0xFF
-+#define PPSMC_Result_UnknownCmd            0xFE
-+#define PPSMC_Result_CmdRejectedPrereq     0xFD
-+#define PPSMC_Result_CmdRejectedBusy       0xFC
++#pragma pack(push, 1)
 +
-+// Message Definitions:
-+// BASIC
-+#define PPSMC_MSG_TestMessage                    0x1
-+#define PPSMC_MSG_GetSmuVersion                  0x2
-+#define PPSMC_MSG_GetDriverIfVersion             0x3
-+#define PPSMC_MSG_SetAllowedFeaturesMaskLow      0x4
-+#define PPSMC_MSG_SetAllowedFeaturesMaskHigh     0x5
-+#define PPSMC_MSG_EnableAllSmuFeatures           0x6
-+#define PPSMC_MSG_DisableAllSmuFeatures          0x7
-+#define PPSMC_MSG_EnableSmuFeaturesLow           0x8
-+#define PPSMC_MSG_EnableSmuFeaturesHigh          0x9
-+#define PPSMC_MSG_DisableSmuFeaturesLow          0xA
-+#define PPSMC_MSG_DisableSmuFeaturesHigh         0xB
-+#define PPSMC_MSG_GetRunningSmuFeaturesLow       0xC
-+#define PPSMC_MSG_GetRunningSmuFeaturesHigh      0xD
-+#define PPSMC_MSG_SetDriverDramAddrHigh          0xE
-+#define PPSMC_MSG_SetDriverDramAddrLow           0xF
-+#define PPSMC_MSG_SetToolsDramAddrHigh           0x10
-+#define PPSMC_MSG_SetToolsDramAddrLow            0x11
-+#define PPSMC_MSG_TransferTableSmu2Dram          0x12
-+#define PPSMC_MSG_TransferTableDram2Smu          0x13
-+#define PPSMC_MSG_UseDefaultPPTable              0x14
++#define SMU_14_0_2_TABLE_FORMAT_REVISION 3
 +
-+//BACO/BAMACO/BOMACO
-+#define PPSMC_MSG_EnterBaco                      0x15
-+#define PPSMC_MSG_ExitBaco                       0x16
-+#define PPSMC_MSG_ArmD3                          0x17
-+#define PPSMC_MSG_BacoAudioD3PME                 0x18
++// POWERPLAYTABLE::ulPlatformCaps
++#define SMU_14_0_2_PP_PLATFORM_CAP_POWERPLAY        0x1     // This cap indicates whether CCC need to show Powerplay page.
++#define SMU_14_0_2_PP_PLATFORM_CAP_SBIOSPOWERSOURCE 0x2     // This cap indicates whether power source notificaiton is done by SBIOS instead of OS.
++#define SMU_14_0_2_PP_PLATFORM_CAP_HARDWAREDC       0x4     // This cap indicates whether DC mode notificaiton is done by GPIO pin directly.
++#define SMU_14_0_2_PP_PLATFORM_CAP_BACO             0x8     // This cap indicates whether board supports the BACO circuitry.
++#define SMU_14_0_2_PP_PLATFORM_CAP_MACO             0x10    // This cap indicates whether board supports the MACO circuitry.
++#define SMU_14_0_2_PP_PLATFORM_CAP_SHADOWPSTATE     0x20    // This cap indicates whether board supports the Shadow Pstate.
++#define SMU_14_0_2_PP_PLATFORM_CAP_LEDSUPPORTED     0x40    // This cap indicates whether board supports the LED.
++#define SMU_14_0_2_PP_PLATFORM_CAP_MOBILEOVERDRIVE  0x80    // This cap indicates whether board supports the Mobile Overdrive.
 +
-+//DPM
-+#define PPSMC_MSG_SetSoftMinByFreq               0x19
-+#define PPSMC_MSG_SetSoftMaxByFreq               0x1A
-+#define PPSMC_MSG_SetHardMinByFreq               0x1B
-+#define PPSMC_MSG_SetHardMaxByFreq               0x1C
-+#define PPSMC_MSG_GetMinDpmFreq                  0x1D
-+#define PPSMC_MSG_GetMaxDpmFreq                  0x1E
-+#define PPSMC_MSG_GetDpmFreqByIndex              0x1F
-+#define PPSMC_MSG_OverridePcieParameters         0x20
++// SMU_14_0_2_PP_THERMALCONTROLLER - Thermal Controller Type
++#define SMU_14_0_2_PP_THERMALCONTROLLER_NONE        0
 +
-+//DramLog Set DramAddr
-+#define PPSMC_MSG_DramLogSetDramAddrHigh         0x21
-+#define PPSMC_MSG_DramLogSetDramAddrLow          0x22
-+#define PPSMC_MSG_DramLogSetDramSize             0x23
-+#define PPSMC_MSG_SetWorkloadMask                0x24
++#define SMU_14_0_2_PP_OVERDRIVE_VERSION             0x1     // TODO: FIX OverDrive Version TBD
++#define SMU_14_0_2_PP_POWERSAVINGCLOCK_VERSION      0x01    // Power Saving Clock Table Version 1.00
 +
-+#define PPSMC_MSG_GetVoltageByDpm                0x25 // Can be removed
-+#define PPSMC_MSG_SetVideoFps                    0x26 // Can be removed
-+#define PPSMC_MSG_GetDcModeMaxDpmFreq            0x27
++enum SMU_14_0_2_OD_SW_FEATURE_CAP
++{
++    SMU_14_0_2_ODCAP_AUTO_FAN_ACOUSTIC_LIMIT        = 0,
++    SMU_14_0_2_ODCAP_POWER_MODE                     = 1,
++    SMU_14_0_2_ODCAP_AUTO_UV_ENGINE                 = 2,
++    SMU_14_0_2_ODCAP_AUTO_OC_ENGINE                 = 3,
++    SMU_14_0_2_ODCAP_AUTO_OC_MEMORY                 = 4,
++    SMU_14_0_2_ODCAP_MEMORY_TIMING_TUNE             = 5,
++    SMU_14_0_2_ODCAP_MANUAL_AC_TIMING               = 6,
++    SMU_14_0_2_ODCAP_AUTO_VF_CURVE_OPTIMIZER        = 7,
++    SMU_14_0_2_ODCAP_AUTO_SOC_UV                    = 8,
++    SMU_14_0_2_ODCAP_COUNT                          = 9,
++};
 +
-+//Power Gating
-+#define PPSMC_MSG_AllowGfxOff                    0x28
-+#define PPSMC_MSG_DisallowGfxOff                 0x29
-+#define PPSMC_MSG_PowerUpVcn                     0x2A
-+#define PPSMC_MSG_PowerDownVcn                   0x2B
-+#define PPSMC_MSG_PowerUpJpeg                    0x2C
-+#define PPSMC_MSG_PowerDownJpeg                  0x2D
++enum SMU_14_0_2_OD_SW_FEATURE_ID
++{
++    SMU_14_0_2_ODFEATURE_AUTO_FAN_ACOUSTIC_LIMIT      = 1 << SMU_14_0_2_ODCAP_AUTO_FAN_ACOUSTIC_LIMIT,      // Auto Fan Acoustic RPM
++    SMU_14_0_2_ODFEATURE_POWER_MODE                   = 1 << SMU_14_0_2_ODCAP_POWER_MODE,                   // Optimized GPU Power Mode
++    SMU_14_0_2_ODFEATURE_AUTO_UV_ENGINE               = 1 << SMU_14_0_2_ODCAP_AUTO_UV_ENGINE,               // Auto Under Volt GFXCLK
++    SMU_14_0_2_ODFEATURE_AUTO_OC_ENGINE               = 1 << SMU_14_0_2_ODCAP_AUTO_OC_ENGINE,               // Auto Over Clock GFXCLK
++    SMU_14_0_2_ODFEATURE_AUTO_OC_MEMORY               = 1 << SMU_14_0_2_ODCAP_AUTO_OC_MEMORY,               // Auto Over Clock MCLK
++    SMU_14_0_2_ODFEATURE_MEMORY_TIMING_TUNE           = 1 << SMU_14_0_2_ODCAP_MEMORY_TIMING_TUNE,           // Auto AC Timing Tuning
++    SMU_14_0_2_ODFEATURE_MANUAL_AC_TIMING             = 1 << SMU_14_0_2_ODCAP_MANUAL_AC_TIMING,             // Manual fine grain AC Timing tuning
++    SMU_14_0_2_ODFEATURE_AUTO_VF_CURVE_OPTIMIZER      = 1 << SMU_14_0_2_ODCAP_AUTO_VF_CURVE_OPTIMIZER,      // Fine grain auto VF curve tuning
++    SMU_14_0_2_ODFEATURE_AUTO_SOC_UV                  = 1 << SMU_14_0_2_ODCAP_AUTO_SOC_UV,                  // Auto Unver Volt VDDSOC
++};
 +
-+//Resets
-+#define PPSMC_MSG_PrepareMp1ForUnload            0x2E
-+#define PPSMC_MSG_Mode1Reset                     0x2F
++#define SMU_14_0_2_MAX_ODFEATURE 32 // Maximum Number of OD Features
 +
-+//Set SystemVirtual DramAddrHigh
-+#define PPSMC_MSG_SetSystemVirtualDramAddrHigh   0x30
-+#define PPSMC_MSG_SetSystemVirtualDramAddrLow    0x31
-+//ACDC Power Source
-+#define PPSMC_MSG_SetPptLimit                    0x32
-+#define PPSMC_MSG_GetPptLimit                    0x33
-+#define PPSMC_MSG_ReenableAcDcInterrupt          0x34
-+#define PPSMC_MSG_NotifyPowerSource              0x35
++enum SMU_14_0_2_OD_SW_FEATURE_SETTING_ID
++{
++    SMU_14_0_2_ODSETTING_AUTO_FAN_ACOUSTIC_LIMIT    = 0,
++    SMU_14_0_2_ODSETTING_POWER_MODE                 = 1,
++    SMU_14_0_2_ODSETTING_AUTOUVENGINE               = 2,
++    SMU_14_0_2_ODSETTING_AUTOOCENGINE               = 3,
++    SMU_14_0_2_ODSETTING_AUTOOCMEMORY               = 4,
++    SMU_14_0_2_ODSETTING_ACTIMING                   = 5,
++    SMU_14_0_2_ODSETTING_MANUAL_AC_TIMING           = 6,
++    SMU_14_0_2_ODSETTING_AUTO_VF_CURVE_OPTIMIZER    = 7,
++    SMU_14_0_2_ODSETTING_AUTO_SOC_UV                = 8,
++    SMU_14_0_2_ODSETTING_COUNT                      = 9,
++};
++#define SMU_14_0_2_MAX_ODSETTING 64 // Maximum Number of ODSettings
 +
-+//BTC
-+#define PPSMC_MSG_RunDcBtc                       0x36
++enum SMU_14_0_2_PWRMODE_SETTING
++{
++    SMU_14_0_2_PMSETTING_POWER_LIMIT_QUIET = 0,
++    SMU_14_0_2_PMSETTING_POWER_LIMIT_BALANCE,
++    SMU_14_0_2_PMSETTING_POWER_LIMIT_TURBO,
++    SMU_14_0_2_PMSETTING_POWER_LIMIT_RAGE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TEMP_QUIET,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TEMP_BALANCE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TEMP_TURBO,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TEMP_RAGE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TARGET_RPM_QUIET,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TARGET_RPM_BALANCE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TARGET_RPM_TURBO,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_TARGET_RPM_RAGE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_LIMIT_RPM_QUIET,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_LIMIT_RPM_BALANCE,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_LIMIT_RPM_TURBO,
++    SMU_14_0_2_PMSETTING_ACOUSTIC_LIMIT_RPM_RAGE,
++};
++#define SMU_14_0_2_MAX_PMSETTING 32 // Maximum Number of PowerMode Settings
 +
-+//                                               0x37
++enum SMU_14_0_2_overdrive_table_id
++{
++    SMU_14_0_2_OVERDRIVE_TABLE_BASIC    = 0,
++    SMU_14_0_2_OVERDRIVE_TABLE_ADVANCED = 1,
++    SMU_14_0_2_OVERDRIVE_TABLE_COUNT    = 2,
++};
 +
-+//Others
-+#define PPSMC_MSG_SetTemperatureInputSelect      0x38 // Can be removed
-+#define PPSMC_MSG_SetFwDstatesMask               0x39
-+#define PPSMC_MSG_SetThrottlerMask               0x3A
++struct smu_14_0_2_overdrive_table
++{
++    uint8_t revision;                                                           // Revision = SMU_14_0_2_PP_OVERDRIVE_VERSION
++    uint8_t reserve[3];                                                         // Zero filled field reserved for future use
++    uint8_t cap[SMU_14_0_2_OVERDRIVE_TABLE_COUNT][SMU_14_0_2_MAX_ODFEATURE];    // OD feature support flags
++    int32_t max[SMU_14_0_2_OVERDRIVE_TABLE_COUNT][SMU_14_0_2_MAX_ODSETTING];    // maximum settings
++    int32_t min[SMU_14_0_2_OVERDRIVE_TABLE_COUNT][SMU_14_0_2_MAX_ODSETTING];    // minimum settings
++    int16_t pm_setting[SMU_14_0_2_MAX_PMSETTING];                               // Optimized power mode feature settings
++};
 +
-+#define PPSMC_MSG_SetExternalClientDfCstateAllow 0x3B
++struct smu_14_0_2_powerplay_table
++{
++    struct atom_common_table_header header;                 // header.format_revision = 3 (HAS TO MATCH SMU_14_0_2_TABLE_FORMAT_REVISION), header.content_revision = ? structuresize is calculated by PPGen.
++    uint8_t table_revision;                                 // PPGen use only: table_revision = 3
++    uint8_t padding;                                        // Padding 1 byte to align table_size offset to 6 bytes (pmfw_start_offset, for PMFW to know the starting offset of PPTable_t).
++    uint16_t pmfw_pptable_start_offset;                     // The start offset of the pmfw portion. i.e. start of PPTable_t (start of SkuTable_t)
++    uint16_t pmfw_pptable_size;                             // The total size of pmfw_pptable, i.e PPTable_t.
++    uint16_t pmfw_pfe_table_start_offset;                   // The start offset of the PFE_Settings_t within pmfw_pptable.
++    uint16_t pmfw_pfe_table_size;                           // The size of PFE_Settings_t.
++    uint16_t pmfw_board_table_start_offset;                 // The start offset of the BoardTable_t within pmfw_pptable.
++    uint16_t pmfw_board_table_size;                         // The size of BoardTable_t.
++    uint16_t pmfw_custom_sku_table_start_offset;            // The start offset of the CustomSkuTable_t within pmfw_pptable.
++    uint16_t pmfw_custom_sku_table_size;                    // The size of the CustomSkuTable_t.
++    uint32_t golden_pp_id;                                  // PPGen use only: PP Table ID on the Golden Data Base
++    uint32_t golden_revision;                               // PPGen use only: PP Table Revision on the Golden Data Base
++    uint16_t format_id;                                     // PPGen use only: PPTable for different ASICs.
++    uint32_t platform_caps;                                 // POWERPLAYTABLE::ulPlatformCaps
 +
-+#define PPSMC_MSG_SetMGpuFanBoostLimitRpm        0x3C
++    uint8_t thermal_controller_type;                        // one of smu_14_0_2_PP_THERMALCONTROLLER
 +
-+//STB to dram log
-+#define PPSMC_MSG_DumpSTBtoDram                  0x3D
-+#define PPSMC_MSG_STBtoDramLogSetDramAddrHigh    0x3E
-+#define PPSMC_MSG_STBtoDramLogSetDramAddrLow     0x3F
-+#define PPSMC_MSG_STBtoDramLogSetDramSize        0x40
-+#define PPSMC_MSG_SetOBMTraceBufferLogging       0x41
++    uint16_t small_power_limit1;
++    uint16_t small_power_limit2;
++    uint16_t boost_power_limit;                             // For Gemini Board, when the slave adapter is in BACO mode, the master adapter will use this boost power limit instead of the default power limit to boost the power limit.
++    uint16_t software_shutdown_temp;
 +
-+#define PPSMC_MSG_AllowGfxDcs                    0x43
-+#define PPSMC_MSG_DisallowGfxDcs                 0x44
-+#define PPSMC_MSG_EnableAudioStutterWA           0x45
-+#define PPSMC_MSG_PowerUpUmsch                   0x46
-+#define PPSMC_MSG_PowerDownUmsch                 0x47
-+#define PPSMC_MSG_SetDcsArch                     0x48
-+#define PPSMC_MSG_TriggerVFFLR                   0x49
-+#define PPSMC_MSG_SetNumBadMemoryPagesRetired    0x4A
-+#define PPSMC_MSG_SetBadMemoryPagesRetiredFlagsPerChannel 0x4B
-+#define PPSMC_MSG_SetPriorityDeltaGain           0x4C
-+#define PPSMC_MSG_AllowIHHostInterrupt           0x4D
-+#define PPSMC_MSG_Mode3Reset                     0x4F
-+#define PPSMC_Message_Count                      0x50
++    uint8_t reserve[143];                                   // Zero filled field reserved for future use
++
++    struct smu_14_0_2_overdrive_table overdrive_table;
++
++    PPTable_t smc_pptable;                          // PPTable_t in driver_if.h -- as requested by PMFW, this offset should start at a 32-byte boundary, and the table_size above should remain at offset=6 bytes
++};
++
++#pragma pack(pop)
++
 +#endif
 -- 
 2.44.0
