@@ -2,124 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59FEB8A5028
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Apr 2024 15:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 208968A51CF
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Apr 2024 15:41:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBCE710E550;
-	Mon, 15 Apr 2024 13:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8415C1125A8;
+	Mon, 15 Apr 2024 13:41:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xx44L4Yy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ekdyRaR/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2064.outbound.protection.outlook.com [40.107.94.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 099EA11255D
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Apr 2024 13:02:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C2buRemnfE3zKtR+Iu10ohzHf4sfCV7h+z8Aze1QE/Lr5nzju10yloyslb+CcofhzqMDBZTWL6ovWRwH8lggDOC9v5mvk16t2bE3TFZleoNN3ka2MVtI4AERlBfpT2unfUrnwVI4TbFLDosx7+BpKRLeWGRXoXnFrRVIGi3mMPMPpwC5mkjiJbE+3AVwDHhS4g2dm6Wdpuq2jblWkVE7HeUYYrR1zQYRMMWXDEgVnaP2bObjNw694corlbf6JwmCumi8gIPB7JoBt1OON5l8uMDu5wZoVxJQ4Jh5QutpxQyARXktK2RvykMUeZbkkaimWf5QeC/+kvjxUlQUxoyGuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ACQfZa5YGrFZsS/lLSClJKeucWhz/3oZIpt2fclo4ng=;
- b=EaDiSJ8BOFMAFOzGMgSQ5L6icVq67Umel+i2DW1HcT5gUTQd7yADhRGLCTOjFy6cGTGmkPEEeRo8ZReN43Ica+y94o1at2intrZip+N+ofniiR6ZyP54ouXtRX5vTMx06wo+J80EjYAX/udSgC71IBlkn8NlMJ5FyP/YOTtoPIOU+Pq6krKw2xroFEd259IygXkufE4YcLxn9fraO6IeU/IB7kq+u86sXVU5ML8oVHCFuxdbAW+VS4dqpHmdQkSKcln79egaHTaxjtae50ayahNCTPHuzJiGPsn5dcCDEiiTREC8LCkIYmr7oifAcFn8oXFwIZDENjNy7Ra0+p586w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ACQfZa5YGrFZsS/lLSClJKeucWhz/3oZIpt2fclo4ng=;
- b=Xx44L4YyOr1wNEuNxlc4fbqUtsyUuZM3gvx4aIfdQkRGirXUUig6SJCdkhqAy/LWaflvZqg5BZlcDauaUfAYVJCcTjoW3q7TnPWPa2gaVAhAt9SXyfbBsj9v3pSGuo+nrtQaFrBVdcv54hE/ZF2bIYVY6E3L1fR4Pnd8Fj3CVnk=
-Received: from CY5PR12MB6527.namprd12.prod.outlook.com (2603:10b6:930:30::13)
- by PH7PR12MB9224.namprd12.prod.outlook.com (2603:10b6:510:2e7::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 15 Apr
- 2024 13:02:30 +0000
-Received: from CY5PR12MB6527.namprd12.prod.outlook.com
- ([fe80::57b4:7663:f7f6:6b39]) by CY5PR12MB6527.namprd12.prod.outlook.com
- ([fe80::57b4:7663:f7f6:6b39%6]) with mapi id 15.20.7452.049; Mon, 15 Apr 2024
- 13:02:30 +0000
-From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
-To: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>, "Gutierrez,
- Agustin" <Agustin.Gutierrez@amd.com>, "Chung, ChiaHsuan (Tom)"
- <ChiaHsuan.Chung@amd.com>, "Wu, Hersen" <hersenxs.wu@amd.com>, "Zuo, Jerry"
- <Jerry.Zuo@amd.com>
-Subject: RE: [PATCH 00/25] DC Patches April 10, 2024
-Thread-Topic: [PATCH 00/25] DC Patches April 10, 2024
-Thread-Index: AQHai43z8A5CWEvAAU6w3maF/muwA7FpUsiA
-Date: Mon, 15 Apr 2024 13:02:30 +0000
-Message-ID: <CY5PR12MB65272602D73C71ED544012E79C092@CY5PR12MB6527.namprd12.prod.outlook.com>
-References: <20240410212726.1312989-1-Rodrigo.Siqueira@amd.com>
-In-Reply-To: <20240410212726.1312989-1-Rodrigo.Siqueira@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=cb375771-9ae6-4031-ac07-cfa6b19e8c1d;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
- 2.0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2024-04-15T13:01:05Z;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR12MB6527:EE_|PH7PR12MB9224:EE_
-x-ms-office365-filtering-correlation-id: f08c7475-af0d-4e0d-a613-08dc5d4c4ef5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WwEG56M4HmzTD23UC1hAQfULlbZMCsABFFhxrxT3A/gZGXZ+PlwokD1BbxbSudjp+0SeQb4QNKcEZskMGLBivJELZ47vizxhDLXSU8CFO8RzuGmnGWjw6GIjVGE/fyrTsEkk6/rVb9AryzcXVvHjnZQhmpdGxMUL3b38P2SlbkhS1ZA2ipTL97i7yd9SuYOTxIfxGW8+cF3vYq6eqnzpM4/OHbb+bKWn7sDRew91JljxG7ZSOL+4KLfO0hKuvf3mt2oNozvHdkkJCq4xj+qcIfjtAxmU8tANmRSQMlMZHH79xEuLnNrYZ+oiCc4wVNWSUhIPuqPNWo8dmKEOkOmikoJo7FrbvlzHWBhZy8hASzNF9zm5EBCG3mHFvf8Rk8vk4fp5Rb46c8n2CqqIVbtWMq539mKsKQ5T/OX6M0rAaXZA3UkfzjKx8Jupoh3iNQOcdOruSbdVIsJJ0F9X6WVdLKj9WwQyAjqce2jTTG10sXVzYKU1PTrDb3AJOdOzLmqaaAAt/+FSkjHKa7Uee+8s8b9YVstypDDdwP4Os/FZyqBzxvTjbvTPg+0pq5fL9fQaiIGIjDXtryM5S3lQLsANEXx0LxazF9I+nDtK22qSSzz2GIt0kTGn9gwZaVuAFReLsPB8aBJFovLLQoFF7EdqAVmyTLcD7mFWTbhCeiwXF/oBM8sIWm3l58aYqfJohAAIAYyz8lBB58wqNV+8j1YNbA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6527.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dmLuH+qgH15ijUguaodzW3m32FyjHrREBMIhXNx7IyohOH06gRpBN6b2SL+u?=
- =?us-ascii?Q?mLRGkoSMilwkpUZc4IiPpTk2VmKTmdrxIABsrj6qPYUVf/gCKsCdorHv2mxr?=
- =?us-ascii?Q?aRcqOYWA2zr74FskuYheE6zqfdz8xvwfzXHlg0IB2gBG2nosMKCJUADweoWs?=
- =?us-ascii?Q?aA/ZWE1FmfJqi0zsWUoWS//MP26l++iJ2NaqTulkYXsxnOi/475K8qmASh7Y?=
- =?us-ascii?Q?m8F4RA2uCleks20LWxcAzJyyft2ibpq+NesVUI+LgCzEzjcqhJQ1x637tDLu?=
- =?us-ascii?Q?fbijWUHRdvx1/RaO1C6Q7T5JIjxiHqtblh8pvnENWL6RRHrVzvM5FWSi6LOx?=
- =?us-ascii?Q?yDREeny65oHN1SJG/r2AZjwyaJtJ2z9fe2zyJeA7Bb+ShRjrwij6Yp6LKxup?=
- =?us-ascii?Q?Ow71h/61ZC04HWqwRpF6mu1srseqTvaoRpB5R1ucBFOnJmxcP+eZZXdNiXgq?=
- =?us-ascii?Q?gcjDOtH0r0c0G9VOj7bpnR/angLXcEOp0vGFIkyLrtDkZa3GV9nYeFK4fqQm?=
- =?us-ascii?Q?uHFh579/ugzEVPCkjCSlPwSmIanviVfcI+yFDRmH+XIlvRYYD1qkb38WMdRZ?=
- =?us-ascii?Q?NEzhcEXR6Synw6txji+cRg9ACXz21iXU9hZd9vRTJ+S8hiOrc5K68nED1ZjA?=
- =?us-ascii?Q?e/KHONsNo26LO1EHXA/rQy7rsfnHvFQTA4D1D2LlFazQ3FlptgpN67QbxoRG?=
- =?us-ascii?Q?HIcgxfL69PFkfLmpLUcROJlBhNCivLzIgtoYAE0sqahEVraTExoPcir/kR19?=
- =?us-ascii?Q?ZZBlChycBbcSN0B+O/r3eGBOEfJaIj5u0KydJzxQAN2xwksR1dy4yZgGGjV6?=
- =?us-ascii?Q?s2+7UG+mlczxg06rsB2MedQVt60GzPnzCddmxm6YI6nMsuoz+XiOWqDjEZoO?=
- =?us-ascii?Q?VUqbbMIHuOULLRDXJ78hGRyGVJQA8y4m1ZYVuptvbQXrknanX/xm8Ikb6g+A?=
- =?us-ascii?Q?uzkcXI1qZWtqREMmvXDXGvd+o7On5Na6U/4x3CiC7V/TfdjUUc4gNUUWolbI?=
- =?us-ascii?Q?f6MgkmW0wYom6oIJyqMu8RiT59mQt8ig74/SF9Vy9Yfx3IR/5vhnhOm8n7zL?=
- =?us-ascii?Q?796/hPpHCr6mYTeZLl3K5yIfH1HCCDaQcSdfKQnQeY+nDDaBX5058etaKYwl?=
- =?us-ascii?Q?a+J8ONPnqu8qDXYajQNJN4nfuMGsjJ3XQ7lttM2u3kY6UPsYvv3hg3JvtWIS?=
- =?us-ascii?Q?bV1odq8b4tgjxammnkzpMLcBqsIW52npg5yPNuoylgYAq0nzYY0B5a+7w+pU?=
- =?us-ascii?Q?+9LLERkKUYgccar44GdDWQWlPpj3xZzbmfw0oRGunKEZxpW7Rkzeo4eLw8qz?=
- =?us-ascii?Q?aVDLewxdzPJnUZxFSHuvytJlFTy+Nj33h5w41yRL4+n302tgiJ3Twwy4DhKN?=
- =?us-ascii?Q?Xyk4xb9dgVNepNAvLGWQXNyWcgQ13plH9lIyttuGGftOe4imKsiSkLtpyQ8x?=
- =?us-ascii?Q?O31WdEvFa2i/enJGhAEXXoBEhVJL8x+9gvcblrLVwuU93rGpZ0nFQgQjpL7j?=
- =?us-ascii?Q?WDt47/8WnLpRsB9hR0k9pwayRzyw0ToiIUhgVlGsqIAAL4qyRL2TP+FJKo9f?=
- =?us-ascii?Q?iS9AtB4CCLQUAr/bbeU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D2E810E99E;
+ Mon, 15 Apr 2024 13:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713186579; x=1744722579;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=HdIYJlrqP9FL0KZ4Yk9+Yha0XgILYlNmhBjwmpmrZvY=;
+ b=ekdyRaR/G171BbpPxg0r3E0povuYG+Ptb4aJUo/ZZGy7dqpXXsSfmtI6
+ D0UVc++iXczgZHEgUD03bzbsDWqerEGMEhY+EoT6MmXGGd26YfFvhfec9
+ DqazT4boR2i+HXHIyoyFCvv5PFRtn6AC8dvB2MTueCo/n/nQt2kdZYXj2
+ 2B0Ad91s1KPM0U+it236GcTibwgC4YcT2TsPdzsp6y8cGWTBJ5xB8wID/
+ PPV3719oiYiAppK89rDily5iAUV+Ofnx9IcTvrq0X9OgPqU3uMlJW4X+U
+ GSTdfzlQfFcn2DvYm/gvbHhH7hg15gECZhnbUNtZO02d2v4biaes5BrfW g==;
+X-CSE-ConnectionGUID: FZGMQzGjQbCBjD9bfsB9Ww==
+X-CSE-MsgGUID: lyFHlXQWRr+BKOwBY3zHUQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="8429771"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; 
+   d="scan'208";a="8429771"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 06:09:39 -0700
+X-CSE-ConnectionGUID: eiEvk3Z4SYaNyEsykoW4jw==
+X-CSE-MsgGUID: nzlOVtg9RTOk3hgvgORV0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22015692"
+Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.121])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 06:09:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Andrzej
+ Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Karol Herbst
+ <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>,
+ Huang Rui <ray.huang@amd.com>, nouveau@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/print: drop include debugfs.h and include where
+ needed
+In-Reply-To: <20240410141434.157908-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240410141434.157908-1-jani.nikula@intel.com>
+Date: Mon, 15 Apr 2024 16:09:22 +0300
+Message-ID: <878r1e3h8d.fsf@intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6527.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f08c7475-af0d-4e0d-a613-08dc5d4c4ef5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2024 13:02:30.2865 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: T/x+XKPSO33vFv5FoPXZjg/Yl8tQUi7Zv/XUuQiYSBnfBNAN8h8mBV53Vofhr1iq12TcSQT1rGYlkg4Ft7BwQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9224
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 15 Apr 2024 13:41:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,175 +84,353 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+On Wed, 10 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Surprisingly many places depend on debugfs.h to be included via
+> drm_print.h. Fix them.
 
-Hi all,
+While all of this is trivial, merely adding some includes, please
+consider acking the changes to your corner of the kernel.
 
-This week this patchset was tested on the following systems:
-        * Lenovo ThinkBook T13s Gen4 with AMD Ryzen 5 6600U
-        * MSI Gaming X Trio RX 6800
-        * Gigabyte Gaming OC RX 7900 XTX
+Thanks,
+Jani.
 
-These systems were tested on the following display/connection types:
-        * eDP, (1080p 60hz [5650U]) (1920x1200 60hz [6600U]) (2560x1600 120=
-hz[6600U])
-        * VGA and DVI (1680x1050 60hz [DP to VGA/DVI, USB-C to VGA/DVI])
-        * DP/HDMI/USB-C (1440p 170hz, 4k 60hz, 4k 144hz, 4k 240hz [Includes=
- USB-C to DP/HDMI adapters])
-        * Thunderbolt (LG Ultrafine 5k)
-        * MST (Startech MST14DP123DP [DP to 3x DP] and 2x 4k 60Hz displays)
-        * DSC (with Cable Matters 101075 [DP to 3x DP] with 3x 4k60 display=
-s, and HP Hook G2 with 1 4k60 display)
-        * USB 4 (Kensington SD5700T and 1x 4k 60Hz display)
-        * PCON (Club3D CAC-1085 and 1x 4k 144Hz display [at 4k 120HZ, as th=
-at is the max the adapter supports])
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> ---
+>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@redhat.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org
+> ---
+>  drivers/gpu/drm/bridge/panel.c           | 2 ++
+>  drivers/gpu/drm/drm_print.c              | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 1 +
+>  drivers/gpu/drm/nouveau/dispnv50/crc.c   | 2 ++
+>  drivers/gpu/drm/radeon/r100.c            | 1 +
+>  drivers/gpu/drm/radeon/r300.c            | 1 +
+>  drivers/gpu/drm/radeon/r420.c            | 1 +
+>  drivers/gpu/drm/radeon/r600.c            | 3 ++-
+>  drivers/gpu/drm/radeon/radeon_fence.c    | 1 +
+>  drivers/gpu/drm/radeon/radeon_gem.c      | 1 +
+>  drivers/gpu/drm/radeon/radeon_ib.c       | 2 ++
+>  drivers/gpu/drm/radeon/radeon_pm.c       | 1 +
+>  drivers/gpu/drm/radeon/radeon_ring.c     | 2 ++
+>  drivers/gpu/drm/radeon/radeon_ttm.c      | 1 +
+>  drivers/gpu/drm/radeon/rs400.c           | 1 +
+>  drivers/gpu/drm/radeon/rv515.c           | 1 +
+>  drivers/gpu/drm/ttm/ttm_device.c         | 1 +
+>  drivers/gpu/drm/ttm/ttm_resource.c       | 3 ++-
+>  drivers/gpu/drm/ttm/ttm_tt.c             | 5 +++--
+>  include/drm/drm_print.h                  | 2 +-
+>  20 files changed, 30 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/pane=
+l.c
+> index 7f41525f7a6e..32506524d9a2 100644
+> --- a/drivers/gpu/drm/bridge/panel.c
+> +++ b/drivers/gpu/drm/bridge/panel.c
+> @@ -4,6 +4,8 @@
+>   * Copyright (C) 2017 Broadcom
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+> +
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+>  #include <drm/drm_connector.h>
+> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+> index 699b7dbffd7b..cf2efb44722c 100644
+> --- a/drivers/gpu/drm/drm_print.c
+> +++ b/drivers/gpu/drm/drm_print.c
+> @@ -23,13 +23,13 @@
+>   * Rob Clark <robdclark@gmail.com>
+>   */
+>=20=20
+> -#include <linux/stdarg.h>
+> -
+> +#include <linux/debugfs.h>
+> +#include <linux/dynamic_debug.h>
+>  #include <linux/io.h>
+>  #include <linux/moduleparam.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+> -#include <linux/dynamic_debug.h>
+> +#include <linux/stdarg.h>
+>=20=20
+>  #include <drm/drm.h>
+>  #include <drm/drm_drv.h>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
+915/display/intel_dmc.c
+> index e61e9c1b8947..84748add186a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -22,6 +22,7 @@
+>   *
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/firmware.h>
+>=20=20
+>  #include "i915_drv.h"
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nou=
+veau/dispnv50/crc.c
+> index 9c942fbd836d..5936b6b3b15d 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> @@ -1,5 +1,7 @@
+>  // SPDX-License-Identifier: MIT
+> +#include <linux/debugfs.h>
+>  #include <linux/string.h>
+> +
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_vblank.h>
+> diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+> index 86b8b770af19..0b1e19345f43 100644
+> --- a/drivers/gpu/drm/radeon/r100.c
+> +++ b/drivers/gpu/drm/radeon/r100.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/firmware.h>
+>  #include <linux/module.h>
+>  #include <linux/pci.h>
+> diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
+> index 25201b9a5aae..1620f534f55f 100644
+> --- a/drivers/gpu/drm/radeon/r300.c
+> +++ b/drivers/gpu/drm/radeon/r300.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/pci.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+> diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+> index eae8a6389f5e..a979662eaa73 100644
+> --- a/drivers/gpu/drm/radeon/r420.c
+> +++ b/drivers/gpu/drm/radeon/r420.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/pci.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+> diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
+> index b5e97d95a19f..087d41e370fd 100644
+> --- a/drivers/gpu/drm/radeon/r600.c
+> +++ b/drivers/gpu/drm/radeon/r600.c
+> @@ -26,11 +26,12 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/firmware.h>
+>  #include <linux/module.h>
+>  #include <linux/pci.h>
+> -#include <linux/slab.h>
+>  #include <linux/seq_file.h>
+> +#include <linux/slab.h>
+>=20=20
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_vblank.h>
+> diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/rade=
+on/radeon_fence.c
+> index 9ebe4a0b9a6c..4fb780d96f32 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fence.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fence.c
+> @@ -30,6 +30,7 @@
+>   */
+>=20=20
+>  #include <linux/atomic.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/firmware.h>
+>  #include <linux/kref.h>
+>  #include <linux/sched/signal.h>
+> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon=
+/radeon_gem.c
+> index 3fec3acdaf28..2ef201a072f1 100644
+> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/iosys-map.h>
+>  #include <linux/pci.h>
+>=20=20
+> diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/=
+radeon_ib.c
+> index fb9ecf5dbe2b..63d914f3414d 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ib.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ib.c
+> @@ -27,6 +27,8 @@
+>   *          Christian K=C3=B6nig
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+> +
+>  #include <drm/drm_file.h>
+>=20=20
+>  #include "radeon.h"
+> diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/=
+radeon_pm.c
+> index 4482c8c5f5ce..2d9d9f46f243 100644
+> --- a/drivers/gpu/drm/radeon/radeon_pm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_pm.c
+> @@ -21,6 +21,7 @@
+>   *          Alex Deucher <alexdeucher@gmail.com>
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/hwmon.h>
+>  #include <linux/pci.h>
+> diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeo=
+n/radeon_ring.c
+> index 38048593bb4a..8d1d458286a8 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ring.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ring.c
+> @@ -27,6 +27,8 @@
+>   *          Christian K=C3=B6nig
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+> +
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_file.h>
+>=20=20
+> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon=
+/radeon_ttm.c
+> index 2078b0000e22..5c65b6dfb99a 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> @@ -30,6 +30,7 @@
+>   *    Dave Airlie
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/pagemap.h>
+>  #include <linux/pci.h>
+> diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs40=
+0.c
+> index d7f552d441ab..d4d1501e6576 100644
+> --- a/drivers/gpu/drm/radeon/rs400.c
+> +++ b/drivers/gpu/drm/radeon/rs400.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+>=20=20
+> diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv51=
+5.c
+> index 79709d26d983..bbc6ccabf788 100644
+> --- a/drivers/gpu/drm/radeon/rv515.c
+> +++ b/drivers/gpu/drm/radeon/rv515.c
+> @@ -26,6 +26,7 @@
+>   *          Jerome Glisse
+>   */
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+>=20=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_d=
+evice.c
+> index 76027960054f..434cf0258000 100644
+> --- a/drivers/gpu/drm/ttm/ttm_device.c
+> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> @@ -27,6 +27,7 @@
+>=20=20
+>  #define pr_fmt(fmt) "[TTM DEVICE] " fmt
+>=20=20
+> +#include <linux/debugfs.h>
+>  #include <linux/mm.h>
+>=20=20
+>  #include <drm/ttm/ttm_bo.h>
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm=
+_resource.c
+> index be8d286513f9..4a66b851b67d 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -22,8 +22,9 @@
+>   * Authors: Christian K=C3=B6nig
+>   */
+>=20=20
+> -#include <linux/iosys-map.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/io-mapping.h>
+> +#include <linux/iosys-map.h>
+>  #include <linux/scatterlist.h>
+>=20=20
+>  #include <drm/ttm/ttm_bo.h>
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index 578a7c37f00b..474fe7aad2a0 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
+> @@ -32,10 +32,11 @@
+>  #define pr_fmt(fmt) "[TTM] " fmt
+>=20=20
+>  #include <linux/cc_platform.h>
+> -#include <linux/sched.h>
+> -#include <linux/shmem_fs.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/file.h>
+>  #include <linux/module.h>
+> +#include <linux/sched.h>
+> +#include <linux/shmem_fs.h>
+>  #include <drm/drm_cache.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_util.h>
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 9cc473e5d353..561c3b96b6fd 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -30,11 +30,11 @@
+>  #include <linux/printk.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/device.h>
+> -#include <linux/debugfs.h>
+>  #include <linux/dynamic_debug.h>
+>=20=20
+>  #include <drm/drm.h>
+>=20=20
+> +struct debugfs_regset32;
+>  struct drm_device;
+>=20=20
+>  /* Do *not* use outside of drm_print.[ch]! */
 
-The testing is a mix of automated and manual tests. Manual testing includes=
- (but is not limited to):
-        * Changing display configurations and settings
-        * Benchmark testing
-        * Feature testing (Freesync, etc.)
-
-Automated testing includes (but is not limited to):
-        * Script testing (scripts to automate some of the manual checks)
-        * IGT testing
-
-The patchset consists of the amd-staging-drm-next branch (Head commit - 9ef=
-923c9f876 drm/amd/display: 3.2.280) with new patches added on top of it.
-
-Tested on Ubuntu 22.04.3, on Wayland and X11, using KDE Plasma and Gnome.
-
-
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-
-
-Thank you,
-
-Dan Wheeler
-Sr. Technologist | AMD
-SW Display
----------------------------------------------------------------------------=
----------------------------------------
-1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-amd.com
-
------Original Message-----
-From: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>
-Sent: Wednesday, April 10, 2024 5:26 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
-i@amd.com>; Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>; Pillai, Aurabindo=
- <Aurabindo.Pillai@amd.com>; Li, Roman <Roman.Li@amd.com>; Lin, Wayne <Wayn=
-e.Lin@amd.com>; Gutierrez, Agustin <Agustin.Gutierrez@amd.com>; Chung, Chia=
-Hsuan (Tom) <ChiaHsuan.Chung@amd.com>; Wu, Hersen <hersenxs.wu@amd.com>; Zu=
-o, Jerry <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel.Wheeler@amd.com>
-Subject: [PATCH 00/25] DC Patches April 10, 2024
-
-This DC patchset brings improvements in multiple areas. In summary, we
-have:
-
-* Expand dmub_cmd operations.
-* Update DVI configuration.
-* Modify power sequence.
-* Enable Z10 flag for IPS.
-* Multiple code cleanups.
-
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
-
-Thanks
-Siqueira
-
-Anthony Koo (1):
-  drm/amd/display: Expand dmub_cmd operations
-
-Aric Cyr (1):
-  drm/amd/display: 3.2.281
-
-Bitnun, Ethan (1):
-  drm/amd/display: Improve the log precision
-
-Chaitanya Dhere (1):
-  drm/amd/display: Fix incorrect pointer assignment
-
-Charlene Liu (1):
-  drm/amd/display: limit the code change to ips enabled asic
-
-Chris Park (1):
-  drm/amd/display: Add a function for checking tmds mode
-
-Eric Bernstein (1):
-  drm/amd/display: Update FMT settings for 4:2:0
-
-Mikita Lipski (1):
-  drm/amd/display: Fix PSR command version passed
-
-Nicholas Kazlauskas (1):
-  drm/amd/display: Pass sequential ONO bit to DMCUB boot options
-
-Rodrigo Siqueira (11):
-  drm/amd/display: Use dce_version instead of chip_id
-  drm/amd/display: Adjust headers
-  drm/amd/display: Group scl_data together in
-    resource_build_scaling_params
-  drm/amd/display: Replace int with unsigned int
-  drm/amd/display: Update some comments to improve the code readability
-  drm/amd/display: Remove unnecessary code
-  drm/amd/display: Rework dcn10_stream_encoder header
-  drm/amd/display: Move REG sequence from program ogam to idle before
-    connect
-  drm/amd/display: Update DCN201 link encoder registers
-  drm/amd/display: Add missing callback for init_watermarks in DCN 301
-  drm/amd/display: Add missing replay field
-
-Samson Tam (1):
-  drm/amd/display: add support for chroma offset
-
-Sung Joon Kim (4):
-  drm/amd/display: Modify power sequence
-  drm/amd/display: Modify resource allocation logic
-  drm/amd/display: Enable Z10 flag for IPS FSM
-  drm/amd/display: Rework power sequence and resource allocation logic
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   9 +
- .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |   2 +-
- .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |   3 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |   8 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   5 +-
- .../gpu/drm/amd/display/dc/core/dc_state.c    |  10 +-
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |   2 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |  16 +-
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |   7 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   2 +
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   |   6 -
- .../amd/display/dc/dcn10/dcn10_link_encoder.h |   6 -
- .../gpu/drm/amd/display/dc/dcn10/dcn10_opp.c  |   9 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_opp.h  |   2 +
- .../display/dc/dcn10/dcn10_stream_encoder.h   |  10 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h |   2 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c  |  10 +-
- .../drm/amd/display/dc/dcn201/dcn201_hubp.c   |   5 +
- .../display/dc/dcn201/dcn201_link_encoder.h   |  14 +-
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h |  18 --
- .../dc/dcn30/dcn30_dio_stream_encoder.c       |   1 -
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dwb.c  |   2 -
- .../drm/amd/display/dc/dcn301/dcn301_hubbub.c |   1 +
- drivers/gpu/drm/amd/display/dc/hwss/Makefile  |   2 +-
- .../drm/amd/display/dc/hwss/dcn351/Makefile   |  25 ++-
- .../amd/display/dc/hwss/dcn351/dcn351_hwseq.c | 182 ++++++++++++++++++  ..=
-./amd/display/dc/hwss/dcn351/dcn351_hwseq.h |  41 ++++
- .../amd/display/dc/hwss/dcn351/dcn351_init.c  |   1 +
- .../dc/resource/dcn32/dcn32_resource.c        |   4 +-
- .../dc/resource/dcn32/dcn32_resource.h        |   6 +
- .../dc/resource/dcn351/dcn351_resource.c      |   5 +-
- drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   1 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  53 ++++-
- .../gpu/drm/amd/display/dmub/src/dmub_dcn35.c |   1 +
- .../drm/amd/display/include/signal_types.h    |  13 ++
- 35 files changed, 402 insertions(+), 82 deletions(-)  create mode 100644 d=
-rivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_hwseq.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_hwseq=
-.h
-
---
-2.43.0
-
+--=20
+Jani Nikula, Intel
