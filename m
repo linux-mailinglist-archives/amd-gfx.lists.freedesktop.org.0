@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE10D8A6C89
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Apr 2024 15:34:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D34D18A6C87
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Apr 2024 15:34:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F57D10F0B0;
-	Tue, 16 Apr 2024 13:34:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5417910F091;
+	Tue, 16 Apr 2024 13:34:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89CE110F0A5
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 13:34:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A212D10F0A1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 13:34:34 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 43GDYQjG003391; Tue, 16 Apr 2024 19:04:26 +0530
+ 43GDYR2s003402; Tue, 16 Apr 2024 19:04:27 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43GDYQZE003390;
- Tue, 16 Apr 2024 19:04:26 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43GDYRnh003401;
+ Tue, 16 Apr 2024 19:04:27 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 2/5] drm:amdgpu: Enable IH ring1 for IH v6.1
-Date: Tue, 16 Apr 2024 19:04:20 +0530
-Message-Id: <20240416133423.3346-2-sunil.khatri@amd.com>
+Subject: [PATCH v3 3/5] drm/amdgpu: Add IH_RING1_CFG headers for IH v6.0
+Date: Tue, 16 Apr 2024 19:04:21 +0530
+Message-Id: <20240416133423.3346-3-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240416133423.3346-1-sunil.khatri@amd.com>
 References: <20240416133423.3346-1-sunil.khatri@amd.com>
@@ -44,37 +44,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We need IH ring1 for handling the pagefault
-interrupts which over flow in default
-ring for specific usecases.
+Add offsets, mask and shift macros for IH v6.0
+which are needed to configure ring1 client irq
+redirection.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/ih_v6_1.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ .../drm/amd/include/asic_reg/oss/osssys_6_0_0_offset.h |  4 ++++
+ .../amd/include/asic_reg/oss/osssys_6_0_0_sh_mask.h    | 10 ++++++++++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-index b8da0fc29378..73dba180fabd 100644
---- a/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_1.c
-@@ -550,8 +550,15 @@ static int ih_v6_1_sw_init(void *handle)
- 	adev->irq.ih.use_doorbell = true;
- 	adev->irq.ih.doorbell_index = adev->doorbell_index.ih << 1;
- 
--	adev->irq.ih1.ring_size = 0;
--	adev->irq.ih2.ring_size = 0;
-+	if (!(adev->flags & AMD_IS_APU)) {
-+		r = amdgpu_ih_ring_init(adev, &adev->irq.ih1, IH_RING_SIZE,
-+					use_bus_addr);
-+		if (r)
-+			return r;
-+
-+		adev->irq.ih1.use_doorbell = true;
-+		adev->irq.ih1.doorbell_index = (adev->doorbell_index.ih + 1) << 1;
-+	}
- 
- 	/* initialize ih control register offset */
- 	ih_v6_1_init_register_offset(adev);
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_offset.h
+index 8b931bbabe70..969e006b859b 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_offset.h
+@@ -237,6 +237,10 @@
+ #define regSEM_REGISTER_LAST_PART2_BASE_IDX                                                             0
+ #define regIH_CLIENT_CFG                                                                                0x0184
+ #define regIH_CLIENT_CFG_BASE_IDX                                                                       0
++#define regIH_RING1_CLIENT_CFG_INDEX                                                                    0x0185
++#define regIH_RING1_CLIENT_CFG_INDEX_BASE_IDX                                                           0
++#define regIH_RING1_CLIENT_CFG_DATA                                                                     0x0186
++#define regIH_RING1_CLIENT_CFG_DATA_BASE_IDX                                                            0
+ #define regIH_CLIENT_CFG_INDEX                                                                          0x0188
+ #define regIH_CLIENT_CFG_INDEX_BASE_IDX                                                                 0
+ #define regIH_CLIENT_CFG_DATA                                                                           0x0189
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_sh_mask.h
+index f262f44fa68c..a672a91e58f0 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/oss/osssys_6_0_0_sh_mask.h
+@@ -888,6 +888,16 @@
+ //IH_CLIENT_CFG
+ #define IH_CLIENT_CFG__TOTAL_CLIENT_NUM__SHIFT                                                                0x0
+ #define IH_CLIENT_CFG__TOTAL_CLIENT_NUM_MASK                                                                  0x0000003FL
++//IH_RING1_CLIENT_CFG_INDEX
++#define IH_RING1_CLIENT_CFG_INDEX__INDEX__SHIFT                                                               0x0
++#define IH_RING1_CLIENT_CFG_INDEX__INDEX_MASK                                                                 0x00000007L
++//IH_RING1_CLIENT_CFG_DATA
++#define IH_RING1_CLIENT_CFG_DATA__CLIENT_ID__SHIFT                                                            0x0
++#define IH_RING1_CLIENT_CFG_DATA__SOURCE_ID__SHIFT                                                            0x8
++#define IH_RING1_CLIENT_CFG_DATA__SOURCE_ID_MATCH_ENABLE__SHIFT                                               0x10
++#define IH_RING1_CLIENT_CFG_DATA__CLIENT_ID_MASK                                                              0x000000FFL
++#define IH_RING1_CLIENT_CFG_DATA__SOURCE_ID_MASK                                                              0x0000FF00L
++#define IH_RING1_CLIENT_CFG_DATA__SOURCE_ID_MATCH_ENABLE_MASK                                                 0x00010000L
+ //IH_CLIENT_CFG_INDEX
+ #define IH_CLIENT_CFG_INDEX__INDEX__SHIFT                                                                     0x0
+ #define IH_CLIENT_CFG_INDEX__INDEX_MASK                                                                       0x0000001FL
 -- 
 2.34.1
 
