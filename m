@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6322B8A7FE7
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Apr 2024 11:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F528A7FE8
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Apr 2024 11:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61BCA10F563;
-	Wed, 17 Apr 2024 09:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0D8910F56A;
+	Wed, 17 Apr 2024 09:38:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE5210EE68
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Apr 2024 09:38:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5A010F550
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Apr 2024 09:38:20 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 43H9cE0M168082; Wed, 17 Apr 2024 15:08:14 +0530
+ 43H9cFxc168087; Wed, 17 Apr 2024 15:08:15 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43H9cEhU168081;
- Wed, 17 Apr 2024 15:08:14 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 43H9cFRA168086;
+ Wed, 17 Apr 2024 15:08:15 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v5 5/6] drm/amdgpu: dump ip state before reset for each ip
-Date: Wed, 17 Apr 2024 15:08:08 +0530
-Message-Id: <20240417093809.168002-5-sunil.khatri@amd.com>
+Subject: [PATCH v5 6/6] drm/amdgpu: add ip dump for each ip in devcoredump
+Date: Wed, 17 Apr 2024 15:08:09 +0530
+Message-Id: <20240417093809.168002-6-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240417093809.168002-1-sunil.khatri@amd.com>
 References: <20240417093809.168002-1-sunil.khatri@amd.com>
@@ -44,40 +44,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Invoke the dump_ip_state function for each ip before
-the asic resets and save the register values for
-debugging via devcoredump.
+Add ip dump for each ip of the asic in the
+devcoredump for all the ips where a callback
+is registered for register dump.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index f3b7cb18fd46..f8a34db5d9e3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5353,6 +5353,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 	struct amdgpu_device *tmp_adev = NULL;
- 	bool need_full_reset, skip_hw_reset, vram_lost = false;
- 	int r = 0;
-+	uint32_t i;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+index 64fe564b8036..c1cb62683695 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+@@ -262,6 +262,20 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
+ 	drm_printf(&p, "Faulty page starting at address: 0x%016llx\n", fault_info->addr);
+ 	drm_printf(&p, "Protection fault status register: 0x%x\n\n", fault_info->status);
  
- 	/* Try reset handler method first */
- 	tmp_adev = list_first_entry(device_list_handle, struct amdgpu_device,
-@@ -5361,6 +5362,12 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 	if (!test_bit(AMDGPU_SKIP_COREDUMP, &reset_context->flags))
- 		amdgpu_reset_reg_dumps(tmp_adev);
- 
-+	/* Trigger ip dump before we reset the asic */
-+	for (i = 0; i < tmp_adev->num_ip_blocks; i++)
-+		if (tmp_adev->ip_blocks[i].version->funcs->dump_ip_state)
-+			tmp_adev->ip_blocks[i].version->funcs->dump_ip_state(
-+				(void *)tmp_adev);
++	/* dump the ip state for each ip */
++	drm_printf(&p, "IP Dump\n");
++	for (int i = 0; i < coredump->adev->num_ip_blocks; i++) {
++		if (coredump->adev->ip_blocks[i].version->funcs->print_ip_state) {
++			drm_printf(&p, "IP: %s\n",
++				   coredump->adev->ip_blocks[i]
++					   .version->funcs->name);
++			coredump->adev->ip_blocks[i]
++				.version->funcs->print_ip_state(
++					(void *)coredump->adev, &p);
++			drm_printf(&p, "\n");
++		}
++	}
 +
- 	reset_context->reset_device_list = device_list_handle;
- 	r = amdgpu_reset_perform_reset(tmp_adev, reset_context);
- 	/* If reset handler not implemented, continue; otherwise return */
+ 	/* Add ring buffer information */
+ 	drm_printf(&p, "Ring buffer information\n");
+ 	for (int i = 0; i < coredump->adev->num_rings; i++) {
 -- 
 2.34.1
 
