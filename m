@@ -2,98 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D558A9BEA
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Apr 2024 15:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3598A9C69
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Apr 2024 16:16:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A376113CA8;
-	Thu, 18 Apr 2024 13:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A834113CCB;
+	Thu, 18 Apr 2024 14:16:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3tZSCBfK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="f/4aFP1J";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F75C10FC8D
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Apr 2024 13:58:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fDlNXOiG91/O7+kCC64qv49YKFtl6T2wZK6CTjmBg9JE7vL4WXaazDONF2cR0EjVSgLNlOr0ONCNlRstwrnjXNIq2R+UoI5gRBO/yjTkTgY7gqEu46DBVGbmKb82XPh72e5zjLS9uO5nxYHnVTaPcmi7Lp4NW/Gn2/3sAdfwqWF6TPcbdmGkX3mRn82U43Xv/Dy0jzWvxPqCrYmg+nT9jPcD/rRtwpn9G0Njx4SW1IZrYdclbaw1Ev6xKOWxzWVa4qjLTuGsd0hjUqL/49/91d++SEBuGon6jyrMDtq7Gk88Os4uOS4Z1z11VjxBrL3cqyzI7C/HtYja3eF7qXJEOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wHeH5v/BfvbWUywyd1Irv2fzuXiKXtF/VG3+Ikd6htw=;
- b=VkEV8nnQEaRpy+9ko2ubXMhgAD+dFzjLJ/kJd+MmNhmJigY4ovGQMf8oWZqEPqJgvybO27ETbo8aLl3Y3iEo2vGjU8XdD4oNYalkLXGNlCGmERag5j4zqtyH0lXZfiX4p/XDkWJD9JWb9NldslFhmY2PloAfJSEM1N97coQAOBGGBQGsIXfHS+IvN4pr+i/zWiSkjFigb53p4s6UAJRPm2lBXmj7uxJ3xjaPaORt7Rl2MKI59Cqb08wKk0RnroqvY8Fs9SOj9vq1XrbplYjWjnT+mO5B0Z1cj09ZRky0/jNZp/Qv/nCbXiFkgbH77HoAzCG0u4cclzlBfTj+p/l5uA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wHeH5v/BfvbWUywyd1Irv2fzuXiKXtF/VG3+Ikd6htw=;
- b=3tZSCBfKaG4cwfh8Ep5Xz+H2V9yPdLm3gtGBBcaXOvs/28O/opNG64PV1MbKoZYGepZ8tL2GNc9IeZ79hFTE+FBzRXu9oSFPpxs1TSTrRunJ5tW9Bn9t1v5jaW+A0mvMiKgB5O0kz+lYdhlDcPCK9kJqt2TOyhUe8wjkh5IvmaQ=
-Received: from MN2PR03CA0001.namprd03.prod.outlook.com (2603:10b6:208:23a::6)
- by PH8PR12MB6818.namprd12.prod.outlook.com (2603:10b6:510:1c9::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.54; Thu, 18 Apr
- 2024 13:58:42 +0000
-Received: from BL6PEPF00020E64.namprd04.prod.outlook.com
- (2603:10b6:208:23a:cafe::fa) by MN2PR03CA0001.outlook.office365.com
- (2603:10b6:208:23a::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.26 via Frontend
- Transport; Thu, 18 Apr 2024 13:58:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00020E64.mail.protection.outlook.com (10.167.249.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Thu, 18 Apr 2024 13:58:41 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 18 Apr
- 2024 08:58:37 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
- <Arunpravin.PaneerSelvam@amd.com>, Philip Yang <Philip.Yang@amd.com>
-Subject: [PATCH v2 6/6] drm/amdkfd: Bump kfd version for contiguous VRAM
- allocation
-Date: Thu, 18 Apr 2024 09:58:03 -0400
-Message-ID: <20240418135803.17365-7-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240418135803.17365-1-Philip.Yang@amd.com>
-References: <20240418135803.17365-1-Philip.Yang@amd.com>
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+ [209.85.215.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03D9F113CCA;
+ Thu, 18 Apr 2024 14:16:06 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id
+ 41be03b00d2f7-5c66b093b86so1465551a12.0; 
+ Thu, 18 Apr 2024 07:16:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1713449766; x=1714054566; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=moo2/Q0I4e+0pVWR8KV3lFeGCDDdXA9IltM3T9wFqic=;
+ b=f/4aFP1Jskl0ao65PmP6cRqzT68zpr9wHYPjYPIwCDbmHrjE1X4/C8ge5AnxebEJQk
+ sK8R3oTOu2mOq2l3WRyVkdEFJdCFus72tXhr27QwDmYYKxi3TegOfhXD0bCGXBIOIk0V
+ aWZ8JB2eDs0pTJZSYc9OFW9+lvIiyqxsUV3A7a+FOBUTQi+FUDLLLH1M8h8dpwwmc9ZT
+ Tm4AyFubRQUvHZ7+L8zLfSgR/cemM80BrTz3t1BZYDDKW2UK9PaoPxxmdhLXAMZ6maMJ
+ AzquTnj1wHpq8GCEia/ULhUQ11+1z0O5vss/tKTNIRfO2smvuMqRHYUMzEfnPepsQKxu
+ ayeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1713449766; x=1714054566;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=moo2/Q0I4e+0pVWR8KV3lFeGCDDdXA9IltM3T9wFqic=;
+ b=XvLEECZ7l5NO1xXQ3+C/ko7EdOlwAWZXlGP9Cjb396mndnRpScU0T0la04ypJTmc28
+ 6xFGhi2a7uzeiuXe+/55lT40FrQfNTFP5oF2osgwDz0/gcpQxUp0is+38GfqpAPfPMB7
+ xW11JKAtgZEIY2UR0yT/JyAk+GRTX8+VsYZzN1a9zdIXlXuTvGs92Ro7T2pfsskO+lb0
+ o099NbWrkG2oGVJ3BbN1osqbQIZ0QvtF8dcpN5ukp5USFbBoM+pMUYHsM3/YewZ2t2Ma
+ L+g3GlRDL5aijTN8WDQk3EBHXJC3cUu8L9Bji4G7CGpJsdGxBme0Dq4b6LWoHL5dxhTj
+ wrPQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW374CaljkpaToIQ/2NXWqoDG41bt/Nsx7X4qcgBlJOqDzxpWUKTmK8suVBdpk5oTl18sN4alWShQBZWN1Cv1xHZUY8CFXIaN90xRtXO/603CTlMJqW8+9BAht9C/12mooDLgEuV2aAYic0mkkZkA==
+X-Gm-Message-State: AOJu0Yz1lS7jUq2n4nhgVM13ymHRG3bLJTphufmE8tUBB08RB/XkL9mf
+ Z83s87905MeDOv+ElbeAVWN0aUiQutpBIcl7QDe06RDXcOI/PnDqIVaHS8vfakPfKB6ApAsN0TG
+ cRwn6PARZQChm/hxp5ctWLxU3YvU=
+X-Google-Smtp-Source: AGHT+IEdyd0JATd51DcGbv6THoQN/0K3QOYQ7h6+Uta4jclpsLKEG8cNeixgOGO2GEKCzQBJTjF5GXxvDkfsBPD0c2s=
+X-Received: by 2002:a17:90b:1090:b0:2aa:c389:c9f0 with SMTP id
+ gj16-20020a17090b109000b002aac389c9f0mr3770698pjb.12.1713449766156; Thu, 18
+ Apr 2024 07:16:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E64:EE_|PH8PR12MB6818:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f20b0bc-22c7-4da2-8bd0-08dc5fafa7b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sEiQ41L4SOl2GoseqYD8qgLiFiwq3zvhl9l3S403eyP/16yNbtvWpGWVXSBMvvysNwaNmIxZRSpjZ1OwUChRqOQf+M/GyWNqxxCJXeB3oOG3gsIMNw+E6zrOzVIlnB3oXpPpZhVtg1Muvmej0BNfA5blX4KXYcc2/1KJ7i/6t+o+L+WzVw3tCXEQUpgcvOYtKbrjVQ+077qKUvPSPZ7qCiAxVp1FJrpNLq319pXJelAKcoeRZB9GekESrP6yyJmcGkJMZiiHrVvjCjvYsFof1+azCT5W25/kkuTgkaCDH+66K14SqB5Saks1kYI2hMkV+z0T8245Z9OHKmfLTxeGVl4wSrf1bZ+hhifvwz/wCie/iON4IHmAt48g2c1hTr6nP26BWJHWdy8Hqq6XdMh/QL9BvcsxDscAJ/jDkvfASEogRL2gg1BgQQ3ce2Z7X5HhS8seNIeKCKHaDEAwjKlLhPw9cHLp/eEMFA/5WKj4f1vaFa5Ta5H4HgJu0yzEc8zJDeYjpdM5P9U399Gg5GcF8Xls95wVebhwSx2mofxeZE1mojMRKIxqmH4YW6LqrNXeDhTvU0vaLgH4EZsoO+tbml8gfzyeHFOKAsRNyOYDGtVIoh/Mfx8xysU2KWKCudoh8JpCmHVxzvpksE2Oaz21YGhpt/1a+kcDmAYqMvr2DNlNy3SL3tU6D//pQ/ha1fEOVv41fS/UCeUd/uYcAOAEmL6He3Gh/bbUIyUL+39HAGv0kFGOZbTaPbiCR2QW4Ioo
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(36860700004)(376005)(82310400014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 13:58:41.5526 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f20b0bc-22c7-4da2-8bd0-08dc5fafa7b3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E64.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6818
+References: <20240416035240.2450127-1-wangzhu9@huawei.com>
+ <2024041658-imagines-unlatch-a9b6@gregkh>
+ <036c3371d3a64ef8881260197ce37dbc@huawei.com>
+ <CADnq5_NML_BiqQx2UmwH86d3qv57D3tFRL--dro1qA99r0Qr5w@mail.gmail.com>
+ <b9ab29ad37f94dfa81da3aa88c6456c2@huawei.com>
+In-Reply-To: <b9ab29ad37f94dfa81da3aa88c6456c2@huawei.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 18 Apr 2024 10:15:53 -0400
+Message-ID: <CADnq5_PF=hynw-Fdt6JGxULXjBSCh1bM8dOgSbpeR4nAjh1pUw@mail.gmail.com>
+Subject: Re: [PATCH v6.6] drm/amd/display: Wake DMCUB before executing GPINT
+ commands
+To: wangzhu <wangzhu9@huawei.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>, 
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "sunpeng.li@amd.com" <sunpeng.li@amd.com>, 
+ "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>, 
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>, 
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@linux.ie" <airlied@linux.ie>, 
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "qingqing.zhuo@amd.com" <qingqing.zhuo@amd.com>, 
+ "stylon.wang@amd.com" <stylon.wang@amd.com>,
+ "Josip.Pavic@amd.com" <Josip.Pavic@amd.com>, 
+ "trix@redhat.com" <trix@redhat.com>,
+ "cruise.hung@amd.com" <cruise.hung@amd.com>, 
+ "Eric.Yang2@amd.com" <Eric.Yang2@amd.com>, 
+ "mario.limonciello@amd.com" <mario.limonciello@amd.com>,
+ "alvin.lee2@amd.com" <alvin.lee2@amd.com>, 
+ "jun.lei@amd.com" <jun.lei@amd.com>,
+ "austin.zheng@amd.com" <austin.zheng@amd.com>, 
+ "sunglee@amd.com" <sunglee@amd.com>, "paul.hsieh@amd.com" <paul.hsieh@amd.com>,
+ "hanghong.ma@amd.com" <hanghong.ma@amd.com>,
+ "JinZe.Xu@amd.com" <JinZe.Xu@amd.com>, 
+ "lewis.huang@amd.com" <lewis.huang@amd.com>,
+ "alex.hung@amd.com" <alex.hung@amd.com>, 
+ "syed.hassan@amd.com" <syed.hassan@amd.com>,
+ "wayne.lin@amd.com" <wayne.lin@amd.com>, 
+ "nicholas.kazlauskas@amd.com" <nicholas.kazlauskas@amd.com>, 
+ "chiahsuan.chung@amd.com" <chiahsuan.chung@amd.com>, 
+ "aurabindo.pillai@amd.com" <aurabindo.pillai@amd.com>,
+ "aric.cyr@amd.com" <aric.cyr@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,30 +113,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Bump the kfd ioctl minor version to delcare the contiguous VRAM
-allocation flag support.
+On Wed, Apr 17, 2024 at 11:14=E2=80=AFPM wangzhu <wangzhu9@huawei.com> wrot=
+e:
+>
+> The CVE-2023-52624 is fixed in linux-6.7 stable, while it is not fixed in=
+ 6.6, this commit is presented to fix it in linux-6.6 stable.
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
----
- include/uapi/linux/kfd_ioctl.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Why is there a CVE in the first place?  Is this actually an issue you
+have seen?  It seems like you just picked a random patch and opened a
+CVE.
 
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index c1394c162d4e..a0af2ef696ea 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -41,9 +41,10 @@
-  * - 1.13 - Add debugger API
-  * - 1.14 - Update kfd_event_data
-  * - 1.15 - Enable managing mappings in compute VMs with GEM_VA ioctl
-+ * - 1.16 - Add contiguous VRAM allocation flag for RDMA
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 15
-+#define KFD_IOCTL_MINOR_VERSION 16
- 
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
--- 
-2.43.2
+Alex
 
+
+>
+> -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> =E5=8F=91=E4=BB=B6=E4=BA=BA: Alex Deucher [mailto:alexdeucher@gmail.com]
+> =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2024=E5=B9=B44=E6=9C=8818=E6=97=A5 =
+9:58
+> =E6=94=B6=E4=BB=B6=E4=BA=BA: wangzhu <wangzhu9@huawei.com>
+> =E6=8A=84=E9=80=81: Greg KH <gregkh@linuxfoundation.org>; harry.wentland@=
+amd.com; sunpeng.li@amd.com; Rodrigo.Siqueira@amd.com; alexander.deucher@am=
+d.com; christian.koenig@amd.com; airlied@linux.ie; daniel@ffwll.ch; qingqin=
+g.zhuo@amd.com; stylon.wang@amd.com; Josip.Pavic@amd.com; trix@redhat.com; =
+cruise.hung@amd.com; Eric.Yang2@amd.com; mario.limonciello@amd.com; alvin.l=
+ee2@amd.com; jun.lei@amd.com; austin.zheng@amd.com; sunglee@amd.com; paul.h=
+sieh@amd.com; hanghong.ma@amd.com; JinZe.Xu@amd.com; lewis.huang@amd.com; Z=
+hengzengkai <zhengzengkai@huawei.com>; alex.hung@amd.com; syed.hassan@amd.c=
+om; wayne.lin@amd.com; nicholas.kazlauskas@amd.com; chiahsuan.chung@amd.com=
+; aurabindo.pillai@amd.com; aric.cyr@amd.com; amd-gfx@lists.freedesktop.org=
+; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org
+> =E4=B8=BB=E9=A2=98: Re: [PATCH v6.6] drm/amd/display: Wake DMCUB before e=
+xecuting GPINT commands
+>
+> On Wed, Apr 17, 2024 at 9:51=E2=80=AFPM wangzhu <wangzhu9@huawei.com> wro=
+te:
+> >
+> > Hi Greg, thanks for your reply. Since there is no patch to fix CVE-2023=
+-52624 in linux-5.10, there is a patch in the linux-6.7 branch, its commit =
+is 2ef98c6d753a744e333b7e34b9cf687040fba57d ("drm/amd/display: Wake DMCUB b=
+efore executing GPINT commands"). When we apply this patch to linux-5.10, t=
+here are lots of conflicts, and we found there are lots of dependent patche=
+s, and lots of patches are not proposed to fix the cve, they are presented =
+to add new functions of the kernel.
+> >
+>
+> Why is there a CVE?  Have you uncovered some specific issue?
+>
+> Alex
+>
+> > My commit comes from nearly 20 patches. For each patch, not all of its =
+content is meant to fix the cve, so I just get the part which is helpful to=
+ fix. It is why I don't present the patches one by one instead of merging t=
+hem into one big patch.
+> >
+> >
+> > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: Greg KH [mailto:gregkh@linuxfoundation.org=
+]
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2024=E5=B9=B44=E6=9C=8816=E6=97=
+=A5 12:54
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: wangzhu <wangzhu9@huawei.com>
+> > =E6=8A=84=E9=80=81: harry.wentland@amd.com; sunpeng.li@amd.com;
+> > Rodrigo.Siqueira@amd.com; alexander.deucher@amd.com;
+> > christian.koenig@amd.com; airlied@linux.ie; daniel@ffwll.ch;
+> > qingqing.zhuo@amd.com; stylon.wang@amd.com; Josip.Pavic@amd.com;
+> > trix@redhat.com; cruise.hung@amd.com; Eric.Yang2@amd.com;
+> > mario.limonciello@amd.com; alvin.lee2@amd.com; jun.lei@amd.com;
+> > austin.zheng@amd.com; sunglee@amd.com; paul.hsieh@amd.com;
+> > hanghong.ma@amd.com; JinZe.Xu@amd.com; lewis.huang@amd.com;
+> > Zhengzengkai <zhengzengkai@huawei.com>; alex.hung@amd.com;
+> > syed.hassan@amd.com; wayne.lin@amd.com; nicholas.kazlauskas@amd.com;
+> > chiahsuan.chung@amd.com; aurabindo.pillai@amd.com; aric.cyr@amd.com;
+> > amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+> > linux-kernel@vger.kernel.org
+> > =E4=B8=BB=E9=A2=98: Re: [PATCH v6.6] drm/amd/display: Wake DMCUB before=
+ executing
+> > GPINT commands
+> >
+> > On Tue, Apr 16, 2024 at 03:52:40AM +0000, Zhu Wang wrote:
+> > > From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> > >
+> > > stable inclusion
+> > > from stable-v6.7.3
+> > > commit 2ef98c6d753a744e333b7e34b9cf687040fba57d
+> > > category: bugfix
+> > > bugzilla: https://gitee.com/src-openeuler/kernel/issues/I9BV4C
+> > > CVE: CVE-2023-52624
+> > >
+> > > Reference:
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/c
+> > > om mit/?id=3D2ef98c6d753a744e333b7e34b9cf687040fba57d
+> > >
+> > > --------------------------------
+> > >
+> > > [ Upstream commit e5ffd1263dd5b44929c676171802e7b6af483f21 ]
+> > >
+> > > [Why]
+> > > DMCUB can be in idle when we attempt to interface with the HW
+> > > through the GPINT mailbox resulting in a system hang.
+> > >
+> > > [How]
+> > > Add dc_wake_and_execute_gpint() to wrap the wake, execute, sleep
+> > > sequence.
+> > >
+> > > If the GPINT executes successfully then DMCUB will be put back into
+> > > sleep after the optional response is returned.
+> > >
+> > > It functions similar to the inbox command interface.
+> > >
+> > > Cc: Mario Limonciello <mario.limonciello@amd.com>
+> > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > Cc: stable@vger.kernel.org
+> > > Reviewed-by: Hansen Dsouza <hansen.dsouza@amd.com>
+> > > Acked-by: Wayne Lin <wayne.lin@amd.com>
+> > > Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> > > Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+> > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > >
+> > > This commit comes from following commits:
+> > >
+> > >  8774029f76b9 ("drm/amd/display: Add DCN35 CLK_MGR")  65138eb72e1f
+> > > ("drm/amd/display: Add DCN35 DMUB")  dc01c4b79bfe ("drm/amd/display:
+> > > Update driver and IPS interop")
+> > >  820c3870c491 ("drm/amd/display: Refactor DMCUB enter/exit idle
+> > > interface")  2ef98c6d753a ("drm/amd/display: Wake DMCUB before
+> > > executing GPINT commands")
+> >
+> > Why are you putting multiple commits together and not just submitting t=
+he individual ones?  And what is this for?
+> >
+> > confused,
+> >
+> > greg k-h
