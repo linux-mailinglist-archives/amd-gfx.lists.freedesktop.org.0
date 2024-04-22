@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4498AD09B
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Apr 2024 17:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89788AD09F
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Apr 2024 17:28:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7BAD112BE6;
-	Mon, 22 Apr 2024 15:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74257112BE9;
+	Mon, 22 Apr 2024 15:28:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EeQVE17s";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2kvmz1EL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB4A112BE6
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 15:28:47 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2066.outbound.protection.outlook.com [40.107.93.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70329112BE8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 15:28:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i6Lb7nCgb1VSXBeOykYYtgdpCuKakNSNJdCCmDxfKyeUc+tQJ7JHxlMTWb+qkHODbsxqqvzvFXuwHs5hIjV7sfIDKOCYTZ9b6vHUQ4QjiAeETQgFKlmczE6ZXugQrSq7gr0QIPTwg5cVYYx7Uht0lA2wsSzQg0Clpx4EBpHDBF3GQ50Z9CAVOUnMnG8/AUgLhrQk+qnIGefJP7Kf13mt52jPdb5OPpdTGNT8vp1nmuqOw4B+PaKrsPWuRn+lONT6BjZsNCQeGJeIdYrq25LRF7KmJJ47K2kp3/c2EiODJQDW6lm3Y9XaEhaGyUEBcikJmiZE+w4J4w598+YzUsv5+Q==
+ b=B0a6FRtwNKj9KMHEurdFrCP0FnG0qZG0waNYMvnJdT4LzEJR4itCJZZ+Mvb43BaemfEahL8GsguYSwABwJEn5KQEcsm6/pMah6YV5AQqfCpYhzQDYUt1dyT7zzj4QJPwSS8Ux2iMcxe5eFKJMHE8nFJkamKWmnbumF72avZFIBgoR2ul7BG0MPuTDC5EYbZNhBvnijBygN1IUrZN+g+UgNm8AtGlSrgjBKlBCCpq9b4WNhGfpx4EAjykR8rfxWQCym1hJMBVQvR0AbKqbi5HtJXwgm1fxDzJlZIWc47qOEg8o7umnnT3aH/7C7g7auzRcm/KW+i9kKvYveMjiV1Ocw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lkKVdaLpkzoSVgnI6USjwBv0ZGuFVPOLhH8jfODbyXI=;
- b=Cc/2LJCp0lYadfg8Y8J7AZkY4pFP/cD9Z/d24yXSl86TZHUSQcqnCt8sgWlCwYq4Iof+1XGzAc412GNM5WWFthwfLHWGXUGzMZZsgHVHyfRyv4/bzMs8cWTBvA22D98vOMNifbddyLiIS52agqP7E6Abr7ChEZF4fzSK8nkUDf9mstW23+oPJD1s0WS4vcmgrlhjdci62mn5oy2kUqUakcaPVUCY0ngxR18qmSGelwWZST3h54oPdaTRfsy4hNY8Y6u/QFhhLlP/0yN0T32LHTmzOJVIG/bSGYkJp6MPOCCAxktIJn3r5be8/YUCH6yYQUUPjTzK1QjpRghAobKO5g==
+ bh=KWawQwfTpPSy6l+m5RW2qaHyGSZruxY9dHJPKcvIIIk=;
+ b=I8/pvdZW9mehMbPQN8Oc3nruTcac8lgHiOdiTLrh84VwX5+MQ4s5fCJhNI+Ztb93OL3bbohxfhrG4uhuNrdoHU1jmNTdeSwrij79eQyneNVPt487bnZOyFOP9XckdpF8QNpZpYYuUY6zRMoYSH5cfiTCoWlSVKUe3FN1KpzwA2mBWTIxO/DbLOKks+HbGQtqW2WzuM962kPeLtN+aMGJbtd/S60gdqQy6RT5OnmkyTr04NGs+YgP2HY0RyIlRKSiuXT0hCb1FawKM0hZ7CxyIeoz/S+P1dwNDkHSOXZzDwEFMswDUZrXcx+D0oo09+UNrepNglHNwND705EPI0cU1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lkKVdaLpkzoSVgnI6USjwBv0ZGuFVPOLhH8jfODbyXI=;
- b=EeQVE17sy23vFH7rrYnCAAwxH2xGc9pfkFnlpLNFtS6csPoXaqdubNeSOjpubWWOM0T92dXtZfsLGPJkld/0dA+tm3QpdiGOj8vbpLTrBE+DcEc3TZBvWtHrocohiDDCN8PQM9lQgE1D6Q3y2cvk1+hAlFnZ/ln8t1AkVlSDUJg=
-Received: from DM6PR06CA0090.namprd06.prod.outlook.com (2603:10b6:5:336::23)
- by SN7PR12MB7449.namprd12.prod.outlook.com (2603:10b6:806:299::17) with
+ bh=KWawQwfTpPSy6l+m5RW2qaHyGSZruxY9dHJPKcvIIIk=;
+ b=2kvmz1ELn2JveLOuflBK1nGazkzYDuA8RbdbOlSqekhX4AUKixx35eBistu44osB117hmVji7xQHjyMYJe5aYz0j5CJkeerGmzPkz70TkqX1YVaW9x1nuHzwkEbWDtiKcBGZlGEW00/GDHGDz3WZEt7H7nvX1n07/Qff/2c3g/M=
+Received: from PR0P264CA0234.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1e::30)
+ by PH7PR12MB6953.namprd12.prod.outlook.com (2603:10b6:510:1ac::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 22 Apr
- 2024 15:28:41 +0000
-Received: from DS3PEPF000099D5.namprd04.prod.outlook.com
- (2603:10b6:5:336:cafe::5d) by DM6PR06CA0090.outlook.office365.com
- (2603:10b6:5:336::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.34 via Frontend
- Transport; Mon, 22 Apr 2024 15:28:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Mon, 22 Apr
+ 2024 15:28:50 +0000
+Received: from SN1PEPF00036F3C.namprd05.prod.outlook.com
+ (2603:10a6:100:1e:cafe::29) by PR0P264CA0234.outlook.office365.com
+ (2603:10a6:100:1e::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.33 via Frontend
+ Transport; Mon, 22 Apr 2024 15:28:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS3PEPF000099D5.mail.protection.outlook.com (10.167.17.6) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7519.19 via Frontend Transport; Mon, 22 Apr 2024 15:28:41 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF00036F3C.mail.protection.outlook.com (10.167.248.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7519.19 via Frontend Transport; Mon, 22 Apr 2024 15:28:47 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 22 Apr
- 2024 10:28:40 -0500
+ 2024 10:28:46 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 22 Apr
- 2024 10:28:40 -0500
+ 2024 10:28:46 -0500
 Received: from aaurabin-suse.king-squeaker.ts.net (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35
- via Frontend Transport; Mon, 22 Apr 2024 10:28:34 -0500
+ via Frontend Transport; Mon, 22 Apr 2024 10:28:40 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -69,9 +69,10 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
  <hersenxs.wu@amd.com>, <jerry.zuo@amd.com>, Aurabindo Pillai
  <aurabindo.pillai@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>
-Subject: [PATCH 03/37] drm/amd/display: Add TMDS DC balancer control
-Date: Mon, 22 Apr 2024 11:27:12 -0400
-Message-ID: <20240422152817.2765349-4-aurabindo.pillai@amd.com>
+Subject: [PATCH 04/37] drm/amd/display: Add some missing HDMI registers for
+ DCN3x
+Date: Mon, 22 Apr 2024 11:27:13 -0400
+Message-ID: <20240422152817.2765349-5-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240422152817.2765349-1-aurabindo.pillai@amd.com>
 References: <20240422152817.2765349-1-aurabindo.pillai@amd.com>
@@ -80,49 +81,49 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099D5:EE_|SN7PR12MB7449:EE_
-X-MS-Office365-Filtering-Correlation-Id: abd26665-ab28-4762-22a1-08dc62e0e3cc
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3C:EE_|PH7PR12MB6953:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecc65395-fb91-4377-b76a-08dc62e0e7c4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?f73TW+iCSbcKX5HBKprmJMJ+2y0XS/bl2O20/WVFGsN/z7tVZjGTPy87Jajq?=
- =?us-ascii?Q?tIohfigQ8mMgsNe5lpm51w14+v5OT36OOAgW6VVRPAvppqtByW1Su6fWW22n?=
- =?us-ascii?Q?57fkLE0SenYbGsXaft1Pogd4peLQZnVD2dYopdCvZ6vIdFkIyQhUiBJL6Htl?=
- =?us-ascii?Q?fhN9nRvmCjTAPuS9x0BH6YRaW2CXAtpeWr3X3UXcjEEmRpm262la0n8zUA5O?=
- =?us-ascii?Q?xxU3Ab+SER8CStmdo78+YiBJ+wpsvb6BUkTaQbT8TUbRB81Fh+iO1wTf8nmp?=
- =?us-ascii?Q?SYko4HIBGF9GFn0S7gXGk5Rq7k3LfFB3x2ae217wR2cs+rBT3O/DyuYu5pbJ?=
- =?us-ascii?Q?uUoVdPYakHiIHB9gKhUe1Dk+zjKKuhkMOjnGULcZJ8fv156sfuKLGLN//e56?=
- =?us-ascii?Q?qJmn7vH2S+1f3ehZXIVSk4yTKWMxErA3tibUWN6tNAw9WKy8n3nY18288YJW?=
- =?us-ascii?Q?o4oZ8PDP6uvvA2IDA530Fr5F7gBPKegY0H/wUse41STBOUCyowGZlHjP4Cm2?=
- =?us-ascii?Q?yr3uOwMlvN/Q0thLU08wlcLnKF0hP/1gluRwC8xZ49zH5r/XCy1LCSLSaLU+?=
- =?us-ascii?Q?nsFkwHtuCpFbZoYrhsLL+K/ub0pQyGlQ88FlGGmEIVeMs1cM/VHUiJNNEPue?=
- =?us-ascii?Q?vEc4QhKV4eaoGx/OiT0aNCmDmfCP43tSClmFoYFieRtac8gS7ESu8fWUobGb?=
- =?us-ascii?Q?RzntXtcLzcXu3awn1/GDoKARhFDrPBuVJ2KQ3hrWtR/7FH03alukEJDG/zzT?=
- =?us-ascii?Q?cB0H5QieZm+15njV58Yy+jG9aX1tZKcrJowhl/GeHwisXl8RYqaTLkIWvYJ0?=
- =?us-ascii?Q?a/s2tS0emU1ouWmD+6UotxPz8uwo4pGXQc0LAUEFYsU9GiXjmueKOAehjqMJ?=
- =?us-ascii?Q?u3kzt7wxe9/6plxpe0P2WJBQmfPAnmq08pABrXz6m+rDdcVxCu2Hn6LXHyKj?=
- =?us-ascii?Q?EyVh0qKjZOVizSOvnvaKU792ib0okIAfsXOg0eo+UhV3V0jI0nOOKqAFbvoy?=
- =?us-ascii?Q?jvMXyrnuSCKSk2heIFZdarmwWTwy1Z3gSbJrnJihKbAqmPyth/wE4Va4EaDK?=
- =?us-ascii?Q?6juiWh2Avys71IMndZqoPOacLYlRZ8pY2y68/I1fhVhURYY9fJlpQw8EtzT5?=
- =?us-ascii?Q?ul2ep7hVqzx2TNkjFQO54ocUgb21Fouu/1FBdLgI4JolTQnZt7dMp6jUl1dl?=
- =?us-ascii?Q?pVhpOrv5fc5Lfs74oaSrcYkwHeFu44agew384szgkD/X0EXhyI4JLVRuY2+i?=
- =?us-ascii?Q?yYM6g84YtUuI3CSDsPNqdGcBxhlQDukJ9QeUwZE4z4shcL7xSNPQ2EQne5R6?=
- =?us-ascii?Q?rb4fr35JD+BGgUbRf1GaRgFD3k3iTcLkXL0iQ3tVS0XvOK4JNnBd1NsN2/AI?=
- =?us-ascii?Q?E+g0KS084KdbuV2amPpPUhBZiiVZ?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SPdVrkzZCAM5Zdg+viM/pikXKuoclj0XuMo89N0HDmIA5+y+wCKQQyvbRn0X?=
+ =?us-ascii?Q?VWsyzeQNGpRO1WqgbNzb1VJoUAjiKJjLUlmeLaJOuQoiH4lhLbI4/9p/Y3T4?=
+ =?us-ascii?Q?4mrRItnQTRacEGxP5yFgzFNrGYijx8btV3xnp5ddRFqqT+B9gAOFIBwVNT8C?=
+ =?us-ascii?Q?W0Z4Njs2ccT/oMafNJBeXNzkHgR9gYUruFZb1tjB0TPQq8BLR2h/XIv1doJx?=
+ =?us-ascii?Q?pFZ1y+BPcLya1mLdJ+iz7sCTs+z6oxd/CASzsw2xuqpvsFKGBRHgO0g//4fv?=
+ =?us-ascii?Q?2ZMJ0faBRwTiqyUooMZyq3lV0P++EgrZd2iPopfZrzVQZH+eIHbiPqOxVVD2?=
+ =?us-ascii?Q?7GIJwlYrwZl2T6BO9fLsmcxw62gkhlqMPI/ODL6ZIBB7xVoPgrCg0FbMCmlS?=
+ =?us-ascii?Q?SClRvT3l5WnosapxEF5QQ8EXs729y/HwjEz14qiHs+58ySuiLwD2oQTFJFGo?=
+ =?us-ascii?Q?d9vUeQZHdZOyzx4k1Jub0OrsouobW+LMFEuWixyjjhtQ7/2s9OnEbPhas4+1?=
+ =?us-ascii?Q?TbsBxA4yUefwWWkgNoQGbXjA7HnnHEX0BhqigraKOkjkSBLZ+zfc14ho2V2K?=
+ =?us-ascii?Q?h4/dWycFzDQ8gANfzc7QgjkVi0Gi/lE8kyfIaQw1rWPkrescki6rCzgIpz2T?=
+ =?us-ascii?Q?7FAGhmphhUfjBTi0EeAuo8ACSZRF17MMBZAV1MZAlDM6b1DRoB+qbANaQc0l?=
+ =?us-ascii?Q?X8nv/1xaKRl0fke02fjBly2yhf5jo595r6onANqI7Xu0+nFzqt3nMMAifFSn?=
+ =?us-ascii?Q?Jb7CxkaRHihrJH/HlRbuIZ7nbADBj+rgC02jSA+YokK9gIujXJ64U6Q2Ebnv?=
+ =?us-ascii?Q?yIof6fZXdwPizA0yTEr3+5j7vTAJMB75N2S6Bt1eLL9u9SHQxFXB0ButHyu9?=
+ =?us-ascii?Q?gMaRhji01nwRUZjqT5ql2JLE/HzT3ItHtGzfPe2+o7up6x17RdevC0yZTAAx?=
+ =?us-ascii?Q?MS3azGC52O7TgeLgptTjwOyeZPHInVClpEJ/i3OSUgdFiwi1O5BSH54gGphR?=
+ =?us-ascii?Q?mkMevlGB/IadbnYdFuT3sZyRoeyX76ndOLWpRnzhklk/h3BxWbZ4Q+aaNqhI?=
+ =?us-ascii?Q?IEYfy9pQhyjqNiHzYtn3SxkqcK44Dhe3LLNXRcUkdaoBaozUwqXj/VZ0QxxZ?=
+ =?us-ascii?Q?vzQ6h3rdwgIl0h28RE63KI3lS6Z/Qwz2l3ov05713EGyzLTTntfmAxrpMhjq?=
+ =?us-ascii?Q?VFJm1JPYq4n4GkjRYSWljSupB04TeBemVX+Ko8vXtJ/2fteEPs88jLjH+70T?=
+ =?us-ascii?Q?CpnIeBWn0QfCMI4iHw81n2XmU0e0Bb8b2axtcpvS0YnSlhXTQjvRwxe7Tiov?=
+ =?us-ascii?Q?jPzDRj20VnV+4vGZu5kahf7U3qkYkfO3CpBBIldDvbsLwhHydiUrdhW4HU+d?=
+ =?us-ascii?Q?zffsJGjJ8FDThp18C8RgkK5+ehIv?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(1800799015)(82310400014); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(82310400014)(1800799015)(376005)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 15:28:41.2364 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: abd26665-ab28-4762-22a1-08dc62e0e3cc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 15:28:47.9611 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecc65395-fb91-4377-b76a-08dc62e0e7c4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099D5.namprd04.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F3C.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7449
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6953
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,30 +140,159 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Add TMDS balancer control to the list of available encoder registers for
-DCN 30.
+This commit add some missing HDMI control registers to DCN3x.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h      |  3 +++
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h      |  6 ++++++
+ .../drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h    |  4 ++++
+ .../drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h   |  5 +++++
+ .../drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h    |  4 ++++
+ .../drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h   | 10 ++++++++++
+ 6 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-index f2d90f2b8bf1..5b6177c2ae98 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dio_link_encoder.h
-@@ -55,7 +55,8 @@
- 	SRI(DP_DPHY_HBR2_PATTERN_CONTROL, DP, id)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
+index 08a57ea4591c..3f1da7f3a91c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dccg.h
+@@ -31,6 +31,7 @@
  
- #define LINK_ENCODER_MASK_SH_LIST_DCN30(mask_sh) \
--	LINK_ENCODER_MASK_SH_LIST_DCN20(mask_sh)
-+	LINK_ENCODER_MASK_SH_LIST_DCN20(mask_sh),\
-+	LE_SF(DIG0_TMDS_DCBALANCER_CONTROL, TMDS_SYNC_DCBAL_EN, mask_sh)
+ #define DCCG_REG_LIST_DCN30() \
+ 	DCCG_REG_LIST_DCN2(),\
++	DCCG_SRII(CLOCK_CNTL, HDMICHARCLK, 0),\
+ 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 2),\
+ 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 3),\
+ 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 4),\
+@@ -41,6 +42,8 @@
  
- #define DPCS_DCN3_MASK_SH_LIST(mask_sh)\
- 	DPCS_DCN2_MASK_SH_LIST(mask_sh),\
+ #define DCCG_MASK_SH_LIST_DCN3(mask_sh) \
+ 	DCCG_MASK_SH_LIST_DCN2(mask_sh),\
++	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_EN, mask_sh),\
++	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_SRC_SEL, mask_sh),\
+ 	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_EN, mask_sh),\
+ 	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_SRC_SEL, mask_sh),\
+ 	DCCG_SF(PHYBSYMCLK_CLOCK_CNTL, PHYBSYMCLK_FORCE_EN, mask_sh),\
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
+index e3caaacf7493..e3be0bab4007 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
+@@ -34,12 +34,14 @@
+ 	DCCG_SRII(DTO_PARAM, DPPCLK, 1),\
+ 	DCCG_SRII(DTO_PARAM, DPPCLK, 2),\
+ 	DCCG_SRII(DTO_PARAM, DPPCLK, 3),\
++	DCCG_SRII(CLOCK_CNTL, HDMICHARCLK, 0),\
+ 	SR(PHYASYMCLK_CLOCK_CNTL),\
+ 	SR(PHYBSYMCLK_CLOCK_CNTL),\
+ 	SR(PHYCSYMCLK_CLOCK_CNTL),\
+ 	SR(PHYDSYMCLK_CLOCK_CNTL),\
+ 	SR(PHYESYMCLK_CLOCK_CNTL),\
+ 	SR(DPSTREAMCLK_CNTL),\
++	SR(HDMISTREAMCLK_CNTL),\
+ 	SR(SYMCLK32_SE_CNTL),\
+ 	SR(SYMCLK32_LE_CNTL),\
+ 	DCCG_SRII(PIXEL_RATE_CNTL, OTG, 0),\
+@@ -78,6 +80,8 @@
+ 	DCCG_SFI(DPPCLK_DTO_CTRL, DTO_DB_EN, DPPCLK, 3, mask_sh),\
+ 	DCCG_SF(DPPCLK0_DTO_PARAM, DPPCLK0_DTO_PHASE, mask_sh),\
+ 	DCCG_SF(DPPCLK0_DTO_PARAM, DPPCLK0_DTO_MODULO, mask_sh),\
++	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_EN, mask_sh),\
++	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_SRC_SEL, mask_sh),\
+ 	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_EN, mask_sh),\
+ 	DCCG_SF(PHYASYMCLK_CLOCK_CNTL, PHYASYMCLK_FORCE_SRC_SEL, mask_sh),\
+ 	DCCG_SF(PHYBSYMCLK_CLOCK_CNTL, PHYBSYMCLK_FORCE_EN, mask_sh),\
+@@ -92,6 +96,8 @@
+ 	DCCG_SF(DPSTREAMCLK_CNTL, DPSTREAMCLK_PIPE1_EN, mask_sh),\
+ 	DCCG_SF(DPSTREAMCLK_CNTL, DPSTREAMCLK_PIPE2_EN, mask_sh),\
+ 	DCCG_SF(DPSTREAMCLK_CNTL, DPSTREAMCLK_PIPE3_EN, mask_sh),\
++	DCCG_SF(HDMISTREAMCLK_CNTL, HDMISTREAMCLK0_SRC_SEL, mask_sh),\
++	DCCG_SF(HDMISTREAMCLK_CNTL, HDMISTREAMCLK0_DTO_FORCE_DIS, mask_sh),\
+ 	DCCG_SF(SYMCLK32_SE_CNTL, SYMCLK32_SE0_SRC_SEL, mask_sh),\
+ 	DCCG_SF(SYMCLK32_SE_CNTL, SYMCLK32_SE1_SRC_SEL, mask_sh),\
+ 	DCCG_SF(SYMCLK32_SE_CNTL, SYMCLK32_SE2_SRC_SEL, mask_sh),\
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
+index e2d1da50f29d..f32649047374 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
+@@ -311,6 +311,10 @@
+ #define mmPHYESYMCLK_CLOCK_CNTL_BASE_IDX                                                               2
+ #define mmPHYFSYMCLK_CLOCK_CNTL                                                                        0x0057
+ #define mmPHYFSYMCLK_CLOCK_CNTL_BASE_IDX                                                               2
++#define regHDMICHARCLK0_CLOCK_CNTL                                                                      0x004a
++#define regHDMICHARCLK0_CLOCK_CNTL_BASE_IDX                                                             2
++#define mmHDMICHARCLK0_CLOCK_CNTL                                                                      0x004a
++#define mmHDMICHARCLK0_CLOCK_CNTL_BASE_IDX                                                             2
+ 
+ 
+ // addressBlock: dce_dc_dccg_dccg_dfs_dispdec
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
+index 112bbac13e14..4005c73c2c9f 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
+@@ -1189,6 +1189,11 @@
+ #define PHYFSYMCLK_CLOCK_CNTL__PHYFSYMCLK_FORCE_SRC_SEL__SHIFT                                                0x4
+ #define PHYFSYMCLK_CLOCK_CNTL__PHYFSYMCLK_FORCE_EN_MASK                                                       0x00000001L
+ #define PHYFSYMCLK_CLOCK_CNTL__PHYFSYMCLK_FORCE_SRC_SEL_MASK                                                  0x00000010L
++//HDMICHARCLK0_CLOCK_CNTL
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_EN__SHIFT                                                       0x0
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_SRC_SEL__SHIFT                                                  0x4
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_EN_MASK                                                         0x00000001L
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_SRC_SEL_MASK                                                    0x00000070L
+ 
+ 
+ // addressBlock: dce_dc_dccg_dccg_dfs_dispdec
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
+index 50c34d88c17c..16a69d17bb1e 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
+@@ -213,6 +213,8 @@
+ #define regDTBCLK_DTO2_MODULO_BASE_IDX                                                                  2
+ #define regDTBCLK_DTO3_MODULO                                                                           0x0022
+ #define regDTBCLK_DTO3_MODULO_BASE_IDX                                                                  2
++#define regHDMICHARCLK0_CLOCK_CNTL                                                                      0x004a
++#define regHDMICHARCLK0_CLOCK_CNTL_BASE_IDX                                                             2
+ #define regPHYASYMCLK_CLOCK_CNTL                                                                        0x0052
+ #define regPHYASYMCLK_CLOCK_CNTL_BASE_IDX                                                               2
+ #define regPHYBSYMCLK_CLOCK_CNTL                                                                        0x0053
+@@ -233,6 +235,8 @@
+ #define regDCCG_AUDIO_DTBCLK_DTO_MODULO_BASE_IDX                                                        2
+ #define regDTBCLK_DTO_DBUF_EN                                                                           0x0063
+ #define regDTBCLK_DTO_DBUF_EN_BASE_IDX                                                                  2
++#define regHDMISTREAMCLK_CNTL                                                                           0x0059
++#define regHDMISTREAMCLK_CNTL_BASE_IDX                                                                  2
+ 
+ 
+ // addressBlock: dce_dc_dccg_dccg_dcperfmon0_dc_perfmon_dispdec
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
+index 295e0dac9ffa..6473362e39a8 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
+@@ -886,6 +886,11 @@
+ //DTBCLK_DTO3_MODULO
+ #define DTBCLK_DTO3_MODULO__DTBCLK_DTO3_MODULO__SHIFT                                                         0x0
+ #define DTBCLK_DTO3_MODULO__DTBCLK_DTO3_MODULO_MASK                                                           0xFFFFFFFFL
++//HDMICHARCLK0_CLOCK_CNTL
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_EN__SHIFT                                                       0x0
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_SRC_SEL__SHIFT                                                  0x4
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_EN_MASK                                                         0x00000001L
++#define HDMICHARCLK0_CLOCK_CNTL__HDMICHARCLK0_SRC_SEL_MASK                                                    0x00000070L
+ //PHYASYMCLK_CLOCK_CNTL
+ #define PHYASYMCLK_CLOCK_CNTL__PHYASYMCLK_FORCE_EN__SHIFT                                                     0x0
+ #define PHYASYMCLK_CLOCK_CNTL__PHYASYMCLK_FORCE_SRC_SEL__SHIFT                                                0x4
+@@ -911,6 +916,11 @@
+ #define PHYESYMCLK_CLOCK_CNTL__PHYESYMCLK_FORCE_SRC_SEL__SHIFT                                                0x4
+ #define PHYESYMCLK_CLOCK_CNTL__PHYESYMCLK_FORCE_EN_MASK                                                       0x00000001L
+ #define PHYESYMCLK_CLOCK_CNTL__PHYESYMCLK_FORCE_SRC_SEL_MASK                                                  0x00000030L
++//HDMISTREAMCLK_CNTL
++#define HDMISTREAMCLK_CNTL__HDMISTREAMCLK0_SRC_SEL__SHIFT                                                     0x0
++#define HDMISTREAMCLK_CNTL__HDMISTREAMCLK0_DTO_FORCE_DIS__SHIFT                                               0x10
++#define HDMISTREAMCLK_CNTL__HDMISTREAMCLK0_SRC_SEL_MASK                                                       0x00000003L
++#define HDMISTREAMCLK_CNTL__HDMISTREAMCLK0_DTO_FORCE_DIS_MASK                                                 0x00010000L
+ //DCCG_GATE_DISABLE_CNTL3
+ #define DCCG_GATE_DISABLE_CNTL3__HDMISTREAMCLK0_GATE_DISABLE__SHIFT                                           0x0
+ #define DCCG_GATE_DISABLE_CNTL3__HDMISTREAMCLK1_GATE_DISABLE__SHIFT                                           0x1
 -- 
 2.44.0
 
