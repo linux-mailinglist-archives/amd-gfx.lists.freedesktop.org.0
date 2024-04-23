@@ -2,122 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6878AE75B
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Apr 2024 15:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FE98AE7CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Apr 2024 15:18:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635E31133A2;
-	Tue, 23 Apr 2024 13:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EE3710E23C;
+	Tue, 23 Apr 2024 13:18:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VFD+z68L";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XWm2xzQo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2077.outbound.protection.outlook.com [40.107.220.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4BC11339F
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 13:05:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TBUFReJwewsHd/wlEgEM1hLPO14tqZoZrvBr32Br6uW4cBNsaO62JnHs87iYZpOkHiW72SfBlLOUMUGCtc5kJ1EMNyg71x8Vrc+WQBICIc1GJZ84XQkqmzrpffPFCzgPYmJ+xds/HNP8s3MIH7BmZ4kTTiJsOr5ArZFQYcH61czbp/KryfxQ3qhpoyVsAlaqgZOhYzDYnZKVaOLtgMTd8llmKYObQ6DzAMOukJ0qNdePnKOnrubqph/HNWhqjjF96Fj0YNZeOUPvMDJ6ExkblkJtWodYNQtcgfbWRSoCphr9jSMMxPlECP+DuJwDQjTD8ecy8U96Q3XyClzL7HmTiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0iIreQ1+HJmiev1z2bEWU39E0dFuGu825c8ykSAWQvI=;
- b=YjFx5PKL9VJOr3f9vXy11ThxnNAJPpQoyJmER0C2Fz4KJo9VIYApUXMnlb0Su2lKxfcMArPJHdaR+nFyjAM524+eHpAQBX4ts57iGsbpljDOiEEAF9Jqe9ILxghYi0VgQPQhbOXnKqkPC2fsQWSsi709vVVm7URXki8dLd+EMh595sADBOrCkUIHapJAiTUKQ+vA8dx34Qp3QwRotJDF1bjgEf+QL2wSwzRxCdQGUYqvZ9A/qNkNWS0J6UagqHzA5Zd01Pf4I+24Hq86FYMZa4mK1ngL18up2SKUd+/XC5bRlu/dw1yzlLGYQwDVLuyR5v6BT8XreOahMjOKXVMLxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0iIreQ1+HJmiev1z2bEWU39E0dFuGu825c8ykSAWQvI=;
- b=VFD+z68Lo5G2TyKVv4sPu+uyC7MTqIwXnQ9vDcVn4IY8RMz8FYwtn3l0LpKx7KRTDjfSUFq0nD3IWl74NwsvKRPeqHDAWjOgIchgaIg04B24vnainEjN+XVz13sLfNsfcWl0mO2YcfoGp80xeRIPi3DAs4ROXfRoMQZX3sZqQU4=
-Received: from CH2PR05CA0028.namprd05.prod.outlook.com (2603:10b6:610::41) by
- MW3PR12MB4410.namprd12.prod.outlook.com (2603:10b6:303:5b::24) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7519.22; Tue, 23 Apr 2024 13:05:50 +0000
-Received: from CH1PEPF0000AD76.namprd04.prod.outlook.com
- (2603:10b6:610:0:cafe::d5) by CH2PR05CA0028.outlook.office365.com
- (2603:10b6:610::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.21 via Frontend
- Transport; Tue, 23 Apr 2024 13:05:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH1PEPF0000AD76.mail.protection.outlook.com (10.167.244.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Tue, 23 Apr 2024 13:05:50 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 23 Apr
- 2024 08:05:42 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
- <Arunpravin.PaneerSelvam@amd.com>, Philip Yang <Philip.Yang@amd.com>
-Subject: [PATCH v4 7/7] drm/amdkfd: Bump kfd version for contiguous VRAM
- allocation
-Date: Tue, 23 Apr 2024 09:04:50 -0400
-Message-ID: <20240423130450.25200-8-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240423130450.25200-1-Philip.Yang@amd.com>
-References: <20240423130450.25200-1-Philip.Yang@amd.com>
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+ [209.85.215.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A105810E23C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 13:18:31 +0000 (UTC)
+Received: by mail-pg1-f178.google.com with SMTP id
+ 41be03b00d2f7-5ce2aada130so3867545a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 06:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1713878311; x=1714483111; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EOHGqgtpP1HZJl/Fsj3Lm7NWDDZpqW8Btn+9BlQBV94=;
+ b=XWm2xzQoGL5kMpzYIjb91A1iPLcDCPyaphmIoH/xsWGgrGbWbfQri0o7YUT3u+mJU2
+ L0oJ+x+7y5xOKHVgX1ns6mAvSgpuq9YOungJYRy3RALRF7DlLsxiO8WVw0o4nX1MEHW7
+ VJAvwVt5FpUu2FP6btfZjeqb7zcWZSYR7+8UDKHVuu+fP9MGovbycnxQFZgMdTMr96oA
+ EM9/az70bpEL6GhijdeG84e7S56xMpnrQOxzV19/HXjNzTyWcKuNf758Gu/vRxnzsC1n
+ GhAHEwT25hp4fztWP/j3LVzNwfAcLlRTnUuzw+/6I1iyWO3BBmw21Zs+IdOuCyyNDOTM
+ JYSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1713878311; x=1714483111;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EOHGqgtpP1HZJl/Fsj3Lm7NWDDZpqW8Btn+9BlQBV94=;
+ b=MghKwQAHNKbWwmNWKCNglxAW6M5/GD9n6IOmahq4ATthBi2wD22VIwyehNRnT1kQUV
+ g6+nQSoXI1EG8qdVhYf+kSGWE1wIafZsrFm5A5QQilY4mCIm0K+6sWczTJccR2EKMYIn
+ Jk+bWveiO+X5W80lVlcjGr05qKSaiicB9IfudbQ9A25QpddSCbnbtHFD/NV6gT6A3qMz
+ 0f10ZtHOZDsWCrMrPqi8AIjEl/uhDrx9qtvtvufC59fkck+U4mDr1RYCib30H/da8rhK
+ EIyvWL0ggw4Los/SwoeA3sEaNk7WBgWKnz1bN2Z+lVrzbcjedgq3W4d71yV2YjY/gBDZ
+ pMBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXoaccWRwAaKZ43TVf0FBpBf0Z+pYb0Ovd7rCP6TNMDC4jIz0u7WtUZG6MuTatGof/RkS1KTT8upP+C7d20O6pH+xK27JFOQ2muGT6HRQ==
+X-Gm-Message-State: AOJu0Yy7AA3Mx36uJcZfZtTKo00dx55//rXeWQtXRU7uSNn7QFeIVcqP
+ aenj9ToDyH+On3aOk6l+smhdc8SSAmvFkXWYVcDkrtOPihHcoWij0IowZDUWvNyWwBdmgSJf8aU
+ 4uZKQpQ089QmfA0RnBKvYuSxLQ+k=
+X-Google-Smtp-Source: AGHT+IHtxHY1+kSiRUCLXHyHwbw6NX78jS+uH/XGjfFjjPxcYiSWnGUwhgq1W/svtjUg22eg3ZgHEbHu142IIsehikY=
+X-Received: by 2002:a17:90a:b108:b0:2a5:733c:3105 with SMTP id
+ z8-20020a17090ab10800b002a5733c3105mr12091193pjq.26.1713878310807; Tue, 23
+ Apr 2024 06:18:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD76:EE_|MW3PR12MB4410:EE_
-X-MS-Office365-Filtering-Correlation-Id: a09354f5-67f1-421f-2a3b-08dc63961981
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230031|376005|36860700004|1800799015|82310400014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6fh26dHI6NgXPKd+SLN558Y76V6GhlaKU/5NMgBEmVK7KcZVQufwLBzsGBxK?=
- =?us-ascii?Q?GRAAlq3adGDjnptu91pRzaV7JuneMjDWhsgqC1sv9HdWltj9AyaEgMR+xPn+?=
- =?us-ascii?Q?R94PxvVKLqmUDIAEbLE2pf1vKbPFMmldzmreqV3xpMM6AkS7tdnpbGPNzmSm?=
- =?us-ascii?Q?0jlhMaug96JRX3LCBA3LGd7SBdCAa8xPkjOvqBRyCLw5oDv5H8/v5Sir6/Cr?=
- =?us-ascii?Q?pu2KnZ1fUWXNYBmGRXt5edBV8SEjA7IqeYsUIlK2s78DPb97Wd2PD0pb5OGI?=
- =?us-ascii?Q?Y/sSn2TfY+bpfHCXeewOAtl1WvKbyeypmMMsRJnH+y+OiYg8yHIhsjapkNYu?=
- =?us-ascii?Q?IFCEP1MQL8n3gyk0BjJF46cicXCj4BPkoQDs/GPmm3n3AoA2x+nHgQSKEgNd?=
- =?us-ascii?Q?Sdf9nIhHJPI8S407Y9kJTOjUH/el079luQRCM777jJr/lkz9RdhEn0ipz/2r?=
- =?us-ascii?Q?KjQKbPo+EdUmP3MYnq6Av1CRQKPLIY+Yj6jjf3K7lsU80bR3CmYxiHPYW61J?=
- =?us-ascii?Q?ILyMMnF7V/Yub+N/v7lo+b8RUJA3YOF+7rkYqu6hY0vLAOezA+h96uU9EuOL?=
- =?us-ascii?Q?oAzNKddp4lc1+3Rzs1heX6JmTl4yDx01CVpX0iuaG1WXD070vEjLSjFfUg17?=
- =?us-ascii?Q?Gg7bdfmh1/VF3fvYB9KYg97k/mHIuUkbpiPo4Q5PgInS/RjC2bYYQZSn9ze9?=
- =?us-ascii?Q?aiZzgRlxzq0ECZ8o7kGb6r3M8QJQ54fJo3i/as+Ga7pCo7Tv4DnVBZ3f6PVr?=
- =?us-ascii?Q?dmIyqJyOAKBlF1ot2IFpf8RmOJ6HdFreYvqj7HtQY+1eVSD6ND3s7KCKhghE?=
- =?us-ascii?Q?lPJLTvL2x4hX/AnHChUlW04XiKEkB4c1dhBKK06fOTb3yT6dNnOoSx4q31k7?=
- =?us-ascii?Q?e54dNyHANMxDyyohxksoBeKavDjEtdlCDeAK0ZlFMFLzGQJKvoK/sWYRXtLd?=
- =?us-ascii?Q?vJ+JaAjPUVZ5hPs6zInJqgsDtc58+b3+xjDyDEEi8PrRlkgZrmedJp+X1ME0?=
- =?us-ascii?Q?u3/C7xFMrqY2wToyKA840owBSF6chhazbklmwGbUjYbiD7ucfYkns5YJL7IS?=
- =?us-ascii?Q?HvruTnPK106zhAXk4WIUbyK205Eak7Aa6qioNKgXBNPefMJF1Y2eRxdkG/VO?=
- =?us-ascii?Q?FKAiAJGlfw3k+e65XJsrp1PB2fR7UqihdpyrEdyAxT8vnGtD/mwQtAg0BrPc?=
- =?us-ascii?Q?wIxLNVpdEqlbUitaGwqVYylgMPEmEH1M4UGuvixQ6JqAb5wcidLwJ/aDq+Q4?=
- =?us-ascii?Q?zQ3b8qMu+bIZ8o/yj/eNbOqQoPlLNBUFdB9OFHn88ITJk2hCf9i4TXkPVQ6x?=
- =?us-ascii?Q?55/S6kRz9vo3cY7CcL7bsBO7dK5oFyvObr/lL9WK+4SV7+/75gB3y/xvJKsn?=
- =?us-ascii?Q?WupYxTVNeenW0xnnfIGv3snr+fJV?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(36860700004)(1800799015)(82310400014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 13:05:50.3282 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a09354f5-67f1-421f-2a3b-08dc63961981
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD76.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4410
+References: <20240422143738.322710-1-alexander.deucher@amd.com>
+ <959d6fe8-b5e4-4ffe-918c-cbd29a2342e1@gmail.com>
+In-Reply-To: <959d6fe8-b5e4-4ffe-918c-cbd29a2342e1@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 23 Apr 2024 09:18:18 -0400
+Message-ID: <CADnq5_PzNC8qWq=XP5KCuvR15-UEJ0QDMtaK821wFVu-p_=Jsw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: add a spinlock to wb allocation
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,30 +78,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Bump the kfd ioctl minor version to delcare the contiguous VRAM
-allocation flag support.
+On Tue, Apr 23, 2024 at 2:57=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 22.04.24 um 16:37 schrieb Alex Deucher:
+> > As we use wb slots more dynamically, we need to lock
+> > access to avoid racing on allocation or free.
+>
+> Wait a second. Why are we using the wb slots dynamically?
+>
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
----
- include/uapi/linux/kfd_ioctl.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+See patch 2.  I needed a way to allocate small GPU accessible memory
+locations on the fly.  Using WB seems like a good solution.
 
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index c1394c162d4e..a5ebbe98ff7f 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -41,9 +41,10 @@
-  * - 1.13 - Add debugger API
-  * - 1.14 - Update kfd_event_data
-  * - 1.15 - Enable managing mappings in compute VMs with GEM_VA ioctl
-+ * - 1.16 - Add contiguous VRAM allocation flag
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 15
-+#define KFD_IOCTL_MINOR_VERSION 16
- 
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
--- 
-2.43.2
+Alex
 
+> The number of slots made available is statically calculated, when this
+> is suddenly used dynamically we have quite a bug here.
+>
+> Regards,
+> Christian.
+>
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 11 ++++++++++-
+> >   2 files changed, 11 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu.h
+> > index cac0ca64367b..f87d53e183c3 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -502,6 +502,7 @@ struct amdgpu_wb {
+> >       uint64_t                gpu_addr;
+> >       u32                     num_wb; /* Number of wb slots actually re=
+served for amdgpu. */
+> >       unsigned long           used[DIV_ROUND_UP(AMDGPU_MAX_WB, BITS_PER=
+_LONG)];
+> > +     spinlock_t              lock;
+> >   };
+> >
+> >   int amdgpu_device_wb_get(struct amdgpu_device *adev, u32 *wb);
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index f8a34db5d9e3..869256394136 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -1482,13 +1482,17 @@ static int amdgpu_device_wb_init(struct amdgpu_=
+device *adev)
+> >    */
+> >   int amdgpu_device_wb_get(struct amdgpu_device *adev, u32 *wb)
+> >   {
+> > -     unsigned long offset =3D find_first_zero_bit(adev->wb.used, adev-=
+>wb.num_wb);
+> > +     unsigned long flags, offset;
+> >
+> > +     spin_lock_irqsave(&adev->wb.lock, flags);
+> > +     offset =3D find_first_zero_bit(adev->wb.used, adev->wb.num_wb);
+> >       if (offset < adev->wb.num_wb) {
+> >               __set_bit(offset, adev->wb.used);
+> > +             spin_unlock_irqrestore(&adev->wb.lock, flags);
+> >               *wb =3D offset << 3; /* convert to dw offset */
+> >               return 0;
+> >       } else {
+> > +             spin_unlock_irqrestore(&adev->wb.lock, flags);
+> >               return -EINVAL;
+> >       }
+> >   }
+> > @@ -1503,9 +1507,13 @@ int amdgpu_device_wb_get(struct amdgpu_device *a=
+dev, u32 *wb)
+> >    */
+> >   void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb)
+> >   {
+> > +     unsigned long flags;
+> > +
+> >       wb >>=3D 3;
+> > +     spin_lock_irqsave(&adev->wb.lock, flags);
+> >       if (wb < adev->wb.num_wb)
+> >               __clear_bit(wb, adev->wb.used);
+> > +     spin_unlock_irqrestore(&adev->wb.lock, flags);
+> >   }
+> >
+> >   /**
+> > @@ -4061,6 +4069,7 @@ int amdgpu_device_init(struct amdgpu_device *adev=
+,
+> >       spin_lock_init(&adev->se_cac_idx_lock);
+> >       spin_lock_init(&adev->audio_endpt_idx_lock);
+> >       spin_lock_init(&adev->mm_stats.lock);
+> > +     spin_lock_init(&adev->wb.lock);
+> >
+> >       INIT_LIST_HEAD(&adev->shadow_list);
+> >       mutex_init(&adev->shadow_list_lock);
+>
