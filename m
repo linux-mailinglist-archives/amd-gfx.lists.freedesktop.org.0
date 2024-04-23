@@ -2,56 +2,149 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A6E8AE452
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Apr 2024 13:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 227708AE3C2
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Apr 2024 13:22:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8784711331E;
-	Tue, 23 Apr 2024 11:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3FE10FBEC;
+	Tue, 23 Apr 2024 11:22:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Kckn1+TF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="J5iXQWz9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E45A0113319;
- Tue, 23 Apr 2024 11:40:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 32F59CE1009;
- Tue, 23 Apr 2024 11:40:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCEA9C2BD11;
- Tue, 23 Apr 2024 11:40:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1713872453;
- bh=F5YyWvdNkv8DKw0T3YI20djvYl+RtxbGRqQQS14nsNI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Kckn1+TFznkwbzHSn9b8SEuqXxSUHLdCFJ9DIckD1Nm1ln/ymm9jEuKPhZVPqXG+8
- XeDgiFxUnCqZiFAPle8jA05j9u5CMTcCj4V6u87+T6kMSCqoTA5nNgP0u0EDjXi/VG
- dJWmRaLM5Rai0oUjrWD3ZGLQlPcUAdkv/+g/rA6rvokQsRCexIaW8kxBYZVMvf1Bt4
- 50zuvGxXgGixmhHfqcN6yq3TAN5kRk1cD+uVmoPDMwv4dKsuXz43sunD8YQ/mnvQg6
- c7He5CodDZ7cQFQl9YInAJII1+DlPKNsVx974nK/PjfooQvc0vMTemPtvEFcsgmG9t
- te02n4pBHNomw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Kees Cook <keescook@chromium.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sasha Levin <sashal@kernel.org>, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-hardening@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 14/16] drm/radeon: silence UBSAN warning (v3)
-Date: Tue, 23 Apr 2024 07:01:47 -0400
-Message-ID: <20240423110151.1658546-14-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240423110151.1658546-1-sashal@kernel.org>
-References: <20240423110151.1658546-1-sashal@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.28
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2072.outbound.protection.outlook.com [40.107.93.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6801710FBEB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 11:22:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lbmq+y9W1BUM3rbdFXUVVv1Yg87iKoHUEQf36sNIEmatnWll4geYH4D2rb3y51wGpzso7LRUpjuqITI8gOlc83j9gNWK5gz8aYvPbSvU4L5DmDU3pB6xMUW3vUGJyjeKHNkFrOiIOXfRkqR83NvooOq/hTuVy3RvAUzuJP/ualBjLUarQfvjh7rHqjkduvilJgKjA7wcSLJ+440DJCZBHTsFstAmaaJvMbSy+fE97LdwbXsXWTtnfJtoUIXHYFY6U/iYKClj/YosjmA/ey2tVSWgeTNVomDVaL5SWWXHR+VpArD8asq36bAlka9VIt2iCS5Dvijfz2BxP6n/47gLsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IjqJzNlRg8LeszPAqfnemQU/GpUQZeoSAlOpekhEJPY=;
+ b=GdJSMsNgHwzWbOwCz5iAba0dOYTDLUEJAmsamUQScMk0+ezB3B8O3N3dr/wvAv7Cs8nrriQHWl71DRONIBCCEnrd1S3KM1F/S9fjEzy6WpE+4qB6x1RwYbTe8Cfezf2mUTkbr90lSd5c/2yBkMrvdPUNPlstx89QkK6e98uo2yQlIPGUUbgm8N/goPjXGkDyD1DtcyHW1Bqn6eZv5uYxMFhacl77pT8GKiTs40g79QGYU6Ix+bywJWeqGikXhRTZzwZhOTcLtOQe1FiuZUUZEyyV/Mm4QrY72wpya+lALg8Zqi/stxZRinUsNT2oml7wKR3xuWTPEHYqKCsCGxA8kw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IjqJzNlRg8LeszPAqfnemQU/GpUQZeoSAlOpekhEJPY=;
+ b=J5iXQWz9OtlKQUHc1avDd5+k7L6WzH0h+Rqq9JBg5zag3K9jUrPmsaUlrOlQZLsQRZ7MtoSDc0wwgDzZGG3dTC1uB6OXVYBOzeOsnGYxPRzwQxB+XISg6BZkes7cjBiS/sC8IkASumg2gmQ/HFtKhw9lsrWcsJEs70Wa/5ihFiE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com (2603:10b6:a03:42b::13)
+ by CY8PR12MB7337.namprd12.prod.outlook.com (2603:10b6:930:53::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Tue, 23 Apr
+ 2024 11:22:49 +0000
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::f7eb:b717:d637:dcf7]) by SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::f7eb:b717:d637:dcf7%6]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
+ 11:22:49 +0000
+Message-ID: <8219c256-b286-4e6b-8960-6977f4cad790@amd.com>
+Date: Tue, 23 Apr 2024 13:22:38 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: fix uninitialized scalar variable warning
+To: "Huang, Tim" <Tim.Huang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20240423062853.1022925-1-Tim.Huang@amd.com>
+ <5456f6b4-7fc4-4ac1-b85e-cf3b00b5c4c6@amd.com>
+ <CH3PR12MB80747050F8AAA33C6F32851DF6112@CH3PR12MB8074.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CH3PR12MB80747050F8AAA33C6F32851DF6112@CH3PR12MB8074.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR5P281CA0034.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f3::13) To MW5PR12MB5684.namprd12.prod.outlook.com
+ (2603:10b6:303:1a1::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5673:EE_|CY8PR12MB7337:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4769dd7-1e11-428b-4b10-08dc6387b4fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ditnR2FMdkNBSUdFcXVCQndBaHJQN1poMVVVYVZEWCtRZTJ0RlFFczhXSjlq?=
+ =?utf-8?B?Y3dNRm4zN2JSejEwYm1qRGZvWjk1M1BZTU9XZzhqcHkvT3dGUXRaRklNU2da?=
+ =?utf-8?B?S0dqaTRveHI1dXFUdE9IQTNyYlhXNUpuL2JpTGZpY01lcERYZmZLMGE2OFVo?=
+ =?utf-8?B?Nm9lREQ1RVVyRnpKRDd4bm1NbTB6VDFzMnlHMnlNTkYzYmV6dFpOUUtiR2RR?=
+ =?utf-8?B?WWxubUhYTWZHWEd4QVMyTk80UUJUcGdTVmo1UjhCRXNxOWQyMTNDaWxYcG91?=
+ =?utf-8?B?SzZLUGNDbXNxZVlQU3dPZUNCekdodnM3dXFSQzB1QWZGWVFBTWgyMFFqQ1Z6?=
+ =?utf-8?B?THpZTTBOMXRFVk5KakpoeDRoSjllU01rL0p0SWNUOGJQN0U3YkkvbFZuSURJ?=
+ =?utf-8?B?dGFMZ0x6Y3VISHFWamszKzVXa0R5NitFcTd5Y25teDF6Um1oQ1lsYjRRVVhM?=
+ =?utf-8?B?Y013VzhsenA0Y1JjWW9WMTF3NUZZMUJJT2F3N0JEYnFEMWxla2pzL0orTmJG?=
+ =?utf-8?B?elFtNXhaUXNONFlCaThaSEF5Ry9oSWJ5bURPcWtrYmd1a3dBV3FTNGkvVmZo?=
+ =?utf-8?B?MjR6bTlScUJ5QkhGOXUxcXN2QVVyanpHOHNNTmpxWVFUMklvcENBSHhxTUlG?=
+ =?utf-8?B?SkoxaVB3c2lzMktzQXo1NndtY0pUTEtWeXpiL2pKK1IwRWw2VXl3M2NwYXAr?=
+ =?utf-8?B?S3VSRDFWVkl5V0Z0SXlWSG9rZmZ1VXVRMU5yZkZkVzlIQ1BoVFhZakdRQVJ3?=
+ =?utf-8?B?R0lUeS83ZXdqNmhVWUhQU3NTVkh4WldYdVJSenJUNEV0azNEL3dsbVE2ZE5p?=
+ =?utf-8?B?UHRLdHVIaDJiRE13N0xlNnY5WDFPNENmbURKS05kVkhoZnlGdlMxYm9xU3Zt?=
+ =?utf-8?B?TkhEK2QyZVhRYXBMaU05dyszU1FnaThpZ3J3c2J5cU5EMlBWVWQzRFBpcXpn?=
+ =?utf-8?B?MUY2cENFbG1XT2c1SGd3Z0ZtYmhEK0ZzM1hhVWg0eXhmelBWdS9IaGxYZ1Bj?=
+ =?utf-8?B?azJNVEw2akFqY0FpVEdzMW9kZkFWS1FGOE9jaUlCVlp3aEJiUDliSGROdW9z?=
+ =?utf-8?B?WDRSSGhOMUthOUJ2eE82RzJic09rTzJobWhuL2hSUTFONlZIa3NCUGdVNExk?=
+ =?utf-8?B?WUhXSmZNeHNSaWRXWHQ5M0I2ZHpIMk5tbjBONGhRQ0R2OE9pYW5BNFFHb3hm?=
+ =?utf-8?B?alVEQWpDS1hONmVCZFFnVE9Xc0FjRU5ucTNxYTZxcUhXb2xwUkdKaEMwMG1M?=
+ =?utf-8?B?alpIOGxtNEE5dkNWQjFQMlkzZXA5L0w2RWNkTGRkSkJlWDNIRENpd0pWZ3NW?=
+ =?utf-8?B?endnWEVxUWMrOEpsaEI3ZzVMbnZ5c2IvOG05UjkyUm1xaEZOdnZRdVVNMjJr?=
+ =?utf-8?B?MVpMakxZeFQ2Q3U4eVd5WXk0ZE9XS3RVZjN5ZzkwOUJQYXlhTWFLc2t4MWNw?=
+ =?utf-8?B?UW11K1hRMno5b0ZMQWhDeWJHbExOSjJtK2tmMFg4bDV5ZXYwNjBNK0ZtWkpI?=
+ =?utf-8?B?eTg0TDlBSGJuTzBRUTV3RERDNUVibExlZG1rVzN6bFkwbE4ySUhXTXBFSTFk?=
+ =?utf-8?B?NDlnWWI4M3NVU3lvaVIvSGlpeWdCS0tuK2NLOTF4dE1ybVcrbEgrTnZPb2RY?=
+ =?utf-8?B?OW5EL1pCdFhIclZtZXZVZGlsZy96Y3kvWHJWUGV0MUJ3dEpKR2gwZjRIL2ZS?=
+ =?utf-8?B?VjVyVmRITzRuODM1TVpGSzBTbzF1ZGVlZ015ekowNnJYVFJVMUo3bWV3PT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB5673.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0Q3WmxmQVZaZ1c4c0pNZkVsNno5K29tTUdyL2ZGUU0yTzB1Y3lOUks2Qm5R?=
+ =?utf-8?B?T2ZKYnBOTDVCRk9ZNTBsQjJnNkVMeDFtaDZaWE82eC9tNUxQTVYxUHdZSUFU?=
+ =?utf-8?B?bU9UVSt1alJBMFlmejNwdUdxRmtXQTNyNjJhU21jdHlHZFViczV1T2VQK3R4?=
+ =?utf-8?B?Q1dpU2NnRjBMWlU4bW51QUlwT1dVWjFCYkFUUnVPYW1JQkw5OC9KTGU3SXJl?=
+ =?utf-8?B?NmVhUis4TTVMbjduRmNuN1hIMTNWTytNcEFLbExNcit5WmFTZGpGY2RwMzFl?=
+ =?utf-8?B?K3lkMEFYSEcrcEdVTzh4NmNzSG9qZUR5U2Q3Lzc3VmlJNUNzcFBzL0J4L1pn?=
+ =?utf-8?B?NjBYL050aWZ1Q0dVS0dqdVI4bGZuRG9RdVhad2pGWUhkbEVpdmRZbWtWRFhs?=
+ =?utf-8?B?S3ovRkluT2ZWZm1NOVdoMjJ5MTN0Z0M0TEdVczNPUURFVHllc0E2YU1Bc3lu?=
+ =?utf-8?B?ODRXVU01cGZtaGNHc0xWb0F5Nm56ZlMzcGhSakFhYWRvQXhHUWVGLysvNXA0?=
+ =?utf-8?B?Z1Zjempkb001SzFXcTVTNUpGYy9vV3BIZk56eDVhclFYRkZVMWhSRm94NC9s?=
+ =?utf-8?B?a2xqSTVMZ2lFdDJvMkNYbzNEbTB4amZZSUZ6a0grNVZzOFV3czdsRkdPcnF6?=
+ =?utf-8?B?bVlFSEw4N0xUYlppYk50aWRpb3RnNG1SaEpSRFRBM3FabXVwemJRaHlveFEv?=
+ =?utf-8?B?MVFEZHcwU2R5cUpXL0FML0dDY2IxZXJEcjNLazMraU5YOFhrM04xRXFXMUNt?=
+ =?utf-8?B?SmdIVDR2bzRNZit3ZnBNSitRaUJWdnExZ3NmUktqNVIwbDFNZlZsOXBteEU1?=
+ =?utf-8?B?RjdkdlNrMDVJenU0SFlwaFdscEJhcStlZTA5ZlJaTDV4OWtIY2s1end0YUEv?=
+ =?utf-8?B?RzBLSzZ0MGlXbUYzTitrNXFhbDRKb2FPazNOSzN1cDJvMEFBL2RzaHp5cFZl?=
+ =?utf-8?B?Uk1CWWkydHJRVndqdkNWcXBKcEZGdUFqUXBLL3JFK28zK2dSSDFXZU5ZalVu?=
+ =?utf-8?B?MG1ENnpZcnpNVnloZDkrNUxEY2hNbFVkTFlwOXBobFNkVjRzZlp6bzN1UEYy?=
+ =?utf-8?B?SVh4bE55WTROWEI2STNGT3lhMFAwdUdxTDZmaGRSNnppSGhtYng5VDZ3VHdk?=
+ =?utf-8?B?R0JIWmFjRzF4QmtTZ0IwbUduRFpNVUp0bEJoQjdpRWJwSVdFeGhwb0h1UFlN?=
+ =?utf-8?B?Z3AzWjZCalFVWDJSSmRwQ1VrM08vNWtvaXp5dFF3cytVOUt2NXF0NzhGU2FZ?=
+ =?utf-8?B?SlYyVmFrdFlIZ0d0VWo2Q285YmRvUDg2bUVwZW9TTmRRei9rOGk3ZFJZSW5v?=
+ =?utf-8?B?aDd4WWhDcDBiVUlVcmRmSnNodXREYVEzb09yeThueUdocmFpb005NmtkMno2?=
+ =?utf-8?B?dWZwQ2tmbDlVd2lPQnorUG1pVzZBcTM3OU81WS8ya1VxNEsxc2Vvb2UwdGN4?=
+ =?utf-8?B?NHFvd0ZsOUhVZU9tM2YwbXFBbFdHMm9wQzdYeVVUY3ZXSHE1WkdmOVhrdHY3?=
+ =?utf-8?B?Sy9zSFhIMzhVdDEzZGZBTmFMbkF1S3lNVDRHLzQ0RHU4TGJXV0h4NHZpV01s?=
+ =?utf-8?B?K3ZRK0l6ek1aT0RVSW1EVGhzV3JHTTdYQlFtcUJxbitWdEU3a3BsbGNjbXVs?=
+ =?utf-8?B?bEtjTXhkSWpRMGNIekJMZDkvemFjKzYrQkFtV3o4Vzl4amlIQXdPcW1GT0hq?=
+ =?utf-8?B?MFZValFUTWtOZ0ZUM1pDMlN4bGhHSFprc1UzZkZKNWJpcWVvSWZCTGJlS0J3?=
+ =?utf-8?B?RDNGODB2bW9pZmd3UDEvQW1Rd1pkSFF4TUMyYWtPVnBQQmVMTkV1SkRXZU9M?=
+ =?utf-8?B?Q2dWVENscDgzZ1FDUVJlL2s0UU1pQUpVUitRTUNnbHRZR2tJa3d5Nm1IMzMx?=
+ =?utf-8?B?VEF5c1lIRnVyZUpqbFhtLzVhWlN4UjByRkErbEJ4d3dOWFRJWjZiNVN3TGE0?=
+ =?utf-8?B?cFJjZ2ZTMWlHbjB0SUl4N0F6dVZSbUFMUG1sS1dsWU91VVRIVWhJV1p4MnZR?=
+ =?utf-8?B?UXVsSitCbFdxM1lnUEdkRjY0aE11eEVoSHJBU0kzcHFYc1pRenRIbCt3bUxv?=
+ =?utf-8?B?U1d4QjNpNmhxNG8vRUg0bnhWQW1uR3dnWTdxcGN2RlBsa3F6VU52aGM1aFhP?=
+ =?utf-8?Q?eeu+OjZ9dEqMU0DdExwGXhokj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4769dd7-1e11-428b-4b10-08dc6387b4fe
+X-MS-Exchange-CrossTenant-AuthSource: MW5PR12MB5684.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 11:22:49.5705 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dt0yi2kJK+U46CH6YStAgtLkoI+tbvfVSRvazGHckfbW67Hz/my8F60cyVKyx4wg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7337
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +159,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+The problem is that it's a hit all case and that's usually seen as bad 
+coding style.
 
-[ Upstream commit 781d41fed19caf900c8405064676813dc9921d32 ]
+In other words when one branch by accident forgets to set the fw_size we 
+wouldn't get a warning any more and just use zero.
 
-Convert a variable sized array from [1] to [].
+Please rather add setting the fw_size to zero to the default branch and 
+maybe even add a warning when that happens.
 
-v2: fix up a few more.
-v3: integrate comments from Kees.
+Regards,
+Christian.
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
-Tested-by: Jeff Johnson <quic_jjohnson@quicinc.com> (v2)
-Acked-by: Christian König <christian.koenig@amd.com> (v1)
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: keescook@chromium.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/radeon/pptable.h | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/pptable.h b/drivers/gpu/drm/radeon/pptable.h
-index 4c2eec49dadc9..844f0490bf31f 100644
---- a/drivers/gpu/drm/radeon/pptable.h
-+++ b/drivers/gpu/drm/radeon/pptable.h
-@@ -424,7 +424,7 @@ typedef struct _ATOM_PPLIB_SUMO_CLOCK_INFO{
- typedef struct _ATOM_PPLIB_STATE_V2
- {
-       //number of valid dpm levels in this state; Driver uses it to calculate the whole 
--      //size of the state: sizeof(ATOM_PPLIB_STATE_V2) + (ucNumDPMLevels - 1) * sizeof(UCHAR)
-+      //size of the state: struct_size(ATOM_PPLIB_STATE_V2, clockInfoIndex, ucNumDPMLevels)
-       UCHAR ucNumDPMLevels;
-       
-       //a index to the array of nonClockInfos
-@@ -432,14 +432,14 @@ typedef struct _ATOM_PPLIB_STATE_V2
-       /**
-       * Driver will read the first ucNumDPMLevels in this array
-       */
--      UCHAR clockInfoIndex[1];
-+      UCHAR clockInfoIndex[] __counted_by(ucNumDPMLevels);
- } ATOM_PPLIB_STATE_V2;
- 
- typedef struct _StateArray{
-     //how many states we have 
-     UCHAR ucNumEntries;
-     
--    ATOM_PPLIB_STATE_V2 states[1];
-+    ATOM_PPLIB_STATE_V2 states[] __counted_by(ucNumEntries);
- }StateArray;
- 
- 
-@@ -450,7 +450,7 @@ typedef struct _ClockInfoArray{
-     //sizeof(ATOM_PPLIB_CLOCK_INFO)
-     UCHAR ucEntrySize;
-     
--    UCHAR clockInfo[1];
-+    UCHAR clockInfo[] __counted_by(ucNumEntries);
- }ClockInfoArray;
- 
- typedef struct _NonClockInfoArray{
-@@ -460,7 +460,7 @@ typedef struct _NonClockInfoArray{
-     //sizeof(ATOM_PPLIB_NONCLOCK_INFO)
-     UCHAR ucEntrySize;
-     
--    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[1];
-+    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[] __counted_by(ucNumEntries);
- }NonClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
--- 
-2.43.0
+Am 23.04.24 um 10:01 schrieb Huang, Tim:
+> [AMD Official Use Only - General]
+>
+> Hi Christian,
+>
+> -----Original Message-----
+> From: Koenig, Christian <Christian.Koenig@amd.com>
+> Sent: Tuesday, April 23, 2024 3:43 PM
+> To: Huang, Tim <Tim.Huang@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
+> Subject: Re: [PATCH] drm/amdgpu: fix uninitialized scalar variable warning
+>
+> Am 23.04.24 um 08:28 schrieb Tim Huang:
+>> Clear warning that uses uninitialized value fw_size.
+>> In which case is the fw_size uninitialized and why setting it to zero helps in that case?
+> It's a warning that reported by the Coverity scan.  When the switch case " switch (ucode_id) " got to default and Condition "adev->firmware.load_type == AMDGPU_FW_LOAD_PSP", taking true branch,
+>   it reports " uses uninitialized value fw_size " by this line.
+> "adev->firmware.fw_size += ALIGN(fw_size, PAGE_SIZE);“
+>
+> It may not happen if we call this function correctly, but it just clears the warning and looks harmless.
+>
+> Regards,
+> Christian.
+>
+>> Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+>> ---
+>>    drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 2 +-
+>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> index d95555dc5485..6b8a58f501d3 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>> @@ -1084,7 +1084,7 @@ void amdgpu_gfx_cp_init_microcode(struct amdgpu_device *adev,
+>>        const struct gfx_firmware_header_v2_0 *cp_hdr_v2_0;
+>>        struct amdgpu_firmware_info *info = NULL;
+>>        const struct firmware *ucode_fw;
+>> -     unsigned int fw_size;
+>> +     unsigned int fw_size = 0;
+>>
+>>        switch (ucode_id) {
+>>        case AMDGPU_UCODE_ID_CP_PFP:
 
