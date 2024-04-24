@@ -2,73 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BF08B0C6B
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 16:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7F38B0E30
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 17:29:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1902610EC9C;
-	Wed, 24 Apr 2024 14:23:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48E20113C12;
+	Wed, 24 Apr 2024 15:29:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IScRdoAW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pOh+y71Y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 470FD10EC9C
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 14:23:39 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-41b1ed3ffd4so2917855e9.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 07:23:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1713968617; x=1714573417; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=e5Nv5bC8/XE5hdCjDsttHVbHjitMMdQYFm6PVDPRK7Q=;
- b=IScRdoAW9Nxc2d4RwWYHV4gGz5pys0+imFAMLsUfoK/MbqOuxgjz6YGjZNQn059TKW
- 2ZlamfM5xtCgc9Vk6Zk3xzqu8oVezeTyv48r2LnqYhS5GZt6+HE5Lad659FEpviNzTqn
- JqMUU8UtxnCn/d2NYw+n2+5eWfw1erxMJHmqVR6KVRdOHaFq3d5GFKgyyfOpSq9FiPZR
- cEHlHMK4ZCKbweJ2cvNfBy3ISGil0g2tmTO3XmcXPVBBEKgkkgUwbz1lFuaaWBMRjANW
- MClmOdDRVxQ2EcL4S9SziFd3J4J6SMvaP9YXlbcbEsq21J0qkUqwA15Bv52yZQhUGG+W
- 3ZDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1713968617; x=1714573417;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=e5Nv5bC8/XE5hdCjDsttHVbHjitMMdQYFm6PVDPRK7Q=;
- b=SQps6ok420q4a6WlMSYZ9UrtayLlN6gwviJ8pGvf+JNQPUfUhlFAKbVsR3fBbpIcLV
- 4YbwyUHs7tmwbttElm5tHObihcWRUxwlLa6p82Wb0BIC8piC6/MurXmMzacTOqI4qlns
- O2lTcnQoDCmPsKCqFCxoHnk5yR2MXBYT/gr3A0kZopJLC/XtEP8d7JWJcHSXB2jtSpqw
- KHlmjJu2l/icSXa+U35+RBiLm+7ERnwZ4stowfa+xkGMkjwT1uC8KPiCFgTv8bG45FFF
- jjzeTF6un1E2swtet/elzhRhglHy/J2EwEZCiUtq4BeYOCFpgABrmvKP+qgDIGE5MxxL
- jJ7A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUQuCQkC+ZSFPXyKvj1rpkMF7F4wDTg8NIeYHkN/zuUwbL0tCDo33aFo//FW+67axGnwoDn14m6g0WQM7ATIOKuYjVJ6OLGKLLigM2Shg==
-X-Gm-Message-State: AOJu0YxDqzofUgH/gucgqx6UWqDS2lPXEWIGvOYQxj13oe+T5dEbaa/J
- rsT71dwuzIgeFb/NXKMIwz7yErsmrf+5RvSitT4TAc05ukgEXZMH
-X-Google-Smtp-Source: AGHT+IFaxSxlnjMqZYji36PANBxBe+8Ie11BMht+rcSwU1RlK8bDNGxuLv+LzeaV5BkB09C4YQKQ7Q==
-X-Received: by 2002:a05:600c:1da7:b0:41b:24c0:aec5 with SMTP id
- p39-20020a05600c1da700b0041b24c0aec5mr406687wms.13.1713968617241; 
- Wed, 24 Apr 2024 07:23:37 -0700 (PDT)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- j10-20020a05600c190a00b00418a9961c47sm24031541wmq.47.2024.04.24.07.23.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 24 Apr 2024 07:23:36 -0700 (PDT)
-Message-ID: <aba22e69-5640-4821-a469-da59ad8ffbf1@gmail.com>
-Date: Wed, 24 Apr 2024 16:23:33 +0200
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 165B1113C10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 15:29:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VytT6Yp78gOdRPFfA5I3dvrW7oSaN0yaCEc6ZXo6Nbwtn9FrNTgQ+asqs+XB3N8D5SIoJvCKK99keLkxPtvMXBWCtnQAixa3DSY4pDbrR7fqSh/+7wOeXse8i4OVjZzUjCz8yMOrvDYvi3kQNkz828f3ZH+MnV8yYK1AR+9IrOW+3pq2h6m04lmS8G1y5ox2T5KIksDgXdAJ8XXbTCAE3kLvuG98r5QklQLyph6682XoE0TYH/rRbP8JHCIVXPekdBHzOVCT2qhDvvRdyzzHEsU2rhSb9fC1+uopMdeY0Pczc7F11/N9MFW7kpM4HC+mW26Sb9xtemiCOKY+mf2yyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7I5GirasgzJwVKpo3p6aHZU7MP53WBFTvufJwPZBofQ=;
+ b=GCyu1qMOqVo3w3d3UgivzgXjXAeoMPq8Dv0k30Gx90JLP5qyaDBDJn2gudzXrTqNGEJ92xwQblez8SNVFRkvpjBoLLd8NxS/vy/sZLP/UBz3S40kGldR2qdk3IGnirbTulMtQo0QUI/SggMQ/z1e7JJT0e/smpxy/bM+M2sSJmIbp9okB/B8A8sKLoLQe2bh4fpaxOv/owu1fxdB3/qQx6+GxWaZgZlqhwp1POnsHd71l2NINbW/tpGN9hZOcy9L9S+a2TyDmY+ZGJqn0Df00wZiqx9yAPNU9BAe4ABX+qrD25VEn13/1tVYvULbyMah4nJIr05NE0GCY+OqbkIlIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7I5GirasgzJwVKpo3p6aHZU7MP53WBFTvufJwPZBofQ=;
+ b=pOh+y71Yuwc6E/aGfcYm3HtZLBG5qkcLxeHWgyW/Lv3wIIyUqcbwmbx1SdlyH0GCcLuS52RnJ6xKKVvMsHCS6uAkSQhTvJpahegHwZXSlfmYHFbr0NyOrdWXvp8dw1qbcFLhlG07Dvn/kGXA8O2mAPdL5fIAjasFO7+H/Z7tha4=
+Received: from BY5PR13CA0026.namprd13.prod.outlook.com (2603:10b6:a03:180::39)
+ by SA3PR12MB8047.namprd12.prod.outlook.com (2603:10b6:806:31b::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
+ 2024 15:29:29 +0000
+Received: from SJ5PEPF000001CB.namprd05.prod.outlook.com
+ (2603:10b6:a03:180:cafe::1d) by BY5PR13CA0026.outlook.office365.com
+ (2603:10b6:a03:180::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22 via Frontend
+ Transport; Wed, 24 Apr 2024 15:29:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF000001CB.mail.protection.outlook.com (10.167.242.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7519.19 via Frontend Transport; Wed, 24 Apr 2024 15:29:28 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 24 Apr
+ 2024 10:29:27 -0500
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
+ <Arunpravin.PaneerSelvam@amd.com>, Philip Yang <Philip.Yang@amd.com>
+Subject: [PATCH v6 0/5] Best effort contiguous VRAM allocation
+Date: Wed, 24 Apr 2024 11:27:44 -0400
+Message-ID: <20240424152814.9608-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdgpu: fix uninitialized scalar variable warning
-To: Tim Huang <tim.huang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com
-References: <20240423143109.1288890-1-tim.huang@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20240423143109.1288890-1-tim.huang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|SA3PR12MB8047:EE_
+X-MS-Office365-Filtering-Correlation-Id: b61f5eb1-5c81-4585-e473-08dc647354ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fFWJiURDcGDPKpq4CjcpDGq8Nh9H68921DjLOJtOFNsSMU9a+xPOqkA8Ijxd?=
+ =?us-ascii?Q?AN2gxkS+m3vscl82ppmvqYY55jh/wRczrzKPsrZ4Ny6AuAm/c1dw4WPIbDOh?=
+ =?us-ascii?Q?3AV8uI9caHQmTsJW6AqilPJrCzyv8Dk5YoQArGbSHNgRzshB2SxbjuD160Kp?=
+ =?us-ascii?Q?l8QZn6zv5E+0zbNLVI3CpGEWelHEpJ18smXEBnxDd45fUwZ6prxPr7TfOZIw?=
+ =?us-ascii?Q?HIFBbS8jDy6Es25F/aHwN96EkpR+BG/wm0bA5KxRGpr+0TQ03YIr49USHCif?=
+ =?us-ascii?Q?IGAVZvYa1XGcDBRIP3vXKWhWQwezOeohx3v38SStOSUDSRx3ZmFmKE1TXtrN?=
+ =?us-ascii?Q?dOfunfXz+oAV232AeOX0k99jAWItwasIp1ydVURPY7yfsHChLM9Gk1l6sdO7?=
+ =?us-ascii?Q?Fsg1XnLzWPCCIddWWCYoZ0sJEKNg/3sX+uqIdHpYf4/d9vaSW/+mrjWQRG08?=
+ =?us-ascii?Q?rDLEsFyemePbYKCSKbDoOzg0HeTwGUz7wobQp9mMXJNDMJl84xrCXeX2ylqd?=
+ =?us-ascii?Q?KCof52+BcdmLS8c4g+OV3ixBcto+//+Qqb01q6KhT5dnQ3YNmxk/NpRa38nG?=
+ =?us-ascii?Q?6W/caZYjclI++0dlFlvMbtjOFV+bp+UeegGIlIjyg7rYMKTArp5QKSmLC7wE?=
+ =?us-ascii?Q?Kqo80Po5kxp4KlFPuhjt5CmNzxt6kumq+Uh4gRsgC6Seypw90+b0LoTowiJh?=
+ =?us-ascii?Q?+BTRnXxOHkceSHyagfvgNdu/9OVVe+MV07kcpF89ppwXEZZ7J6syNh1u0Shw?=
+ =?us-ascii?Q?4NTXmpb9CFvuRTCueF2PZ7mKXNsnETNlQswe1dOZv7ZELTe7JwiPQ5tTyLQS?=
+ =?us-ascii?Q?DlgdY00zdeQYxWYSbMj8AVi8qSSjsU0Gv2KbTw3BrePUjWX63EiAS4Cn6L30?=
+ =?us-ascii?Q?Mx9MU4aeea+iIlQb1KFuPkKCLIhAZa16CFdPYdkVy2o229DvHsq7Roe28xaB?=
+ =?us-ascii?Q?c0XcUwGd2abJDTM6lut8kOd+wovrdc0PVtg9yIP2NF3E/mKmeNxdkSQgFpPD?=
+ =?us-ascii?Q?p/buEq3U7D0DLmb2249fUFa/yCcpq6UXw4lVWFXB8tyD/+M7WM3zM79Vgt2r?=
+ =?us-ascii?Q?3RQtvq2GdjGx2wu8AxOun26x5S02IsEXlUYWma3LbP9Rdjc8Nsq2iwTvNdNg?=
+ =?us-ascii?Q?KKRU8rboLqhX9c52c3od4DbjJ/wAg/9O+tr9jGPY2eCCSHBaWIN5/5FSCRgQ?=
+ =?us-ascii?Q?+/ZSVEhh6FU1Y93rELpP4Ki6On8AOlPLB94x/zJxs5rTYOzUneR+jax0Vniy?=
+ =?us-ascii?Q?XwvVTq88KEgQPLRqbVlcjbIHSRIV7VfL5Ot7gip7Tph5b5AVM5t15pG6PKqm?=
+ =?us-ascii?Q?vBXe8eqvpIFt4e0YtOx/ErywofhhpjqkAmmHIPaYNY4SDJCXhz74Tfs1J0N5?=
+ =?us-ascii?Q?ZusnV9neG9jfjrcsyNg+vM40A9D2?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(376005)(82310400014)(1800799015)(36860700004); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 15:29:28.7345 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b61f5eb1-5c81-4585-e473-08dc647354ec
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8047
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,31 +128,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 23.04.24 um 16:31 schrieb Tim Huang:
-> From: Tim Huang <Tim.Huang@amd.com>
->
-> Clear warning that uses uninitialized value fw_size.
->
-> Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+This patch series implement new KFD memory alloc flag for best effort contiguous
+VRAM allocation, to support peer direct access RDMA device with limited scatter-gather
+dma capability.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+v2: rebase on patch ("drm/amdgpu: Modify the contiguous flags behaviour")
+    to avoid adding the new GEM flag
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index d95555dc5485..fb5de23fa8d8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -1205,7 +1205,8 @@ void amdgpu_gfx_cp_init_microcode(struct amdgpu_device *adev,
->   		fw_size = le32_to_cpu(cp_hdr_v2_0->data_size_bytes);
->   		break;
->   	default:
-> -		break;
-> +		dev_err(adev->dev, "Invalid ucode id %u\n", ucode_id);
-> +		return;
->   	}
->   
->   	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
+v3: add patch 2 to handle sg segment size limit (Christian)
+
+v4: remove the buddy block size limit from vram mgr because sg table creation already
+    remove the limit, and resource uses u64 to handle block start, size (Christian)
+
+v5: remove patch 7 which is not for upstream, add AMDGPU prefix to the macro name.
+
+v6: use shorter flag name, use interruptible wait ctx, drop patch 5/6 (Felix)
+
+Philip Yang (5):
+  drm/amdgpu: Support contiguous VRAM allocation
+  drm/amdgpu: Handle sg size limit for contiguous allocation
+  drm/amdgpu: Evict BOs from same process for contiguous allocation
+  drm/amdkfd: Evict BO itself for contiguous allocation
+  drm/amdkfd: Bump kfd version for contiguous VRAM allocation
+
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 23 ++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  3 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 12 +++++-----
+ include/uapi/linux/kfd_ioctl.h                |  4 +++-
+ 4 files changed, 33 insertions(+), 9 deletions(-)
+
+-- 
+2.43.2
 
