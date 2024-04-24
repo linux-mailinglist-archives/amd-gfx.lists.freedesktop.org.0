@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2CF8B0E33
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 17:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7548B0E2E
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 17:29:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BC60113C14;
-	Wed, 24 Apr 2024 15:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E86A113C11;
+	Wed, 24 Apr 2024 15:29:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YRnWN+UA";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vab7Mpv0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2066.outbound.protection.outlook.com [40.107.244.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9E15113C12
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 15:29:35 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2085.outbound.protection.outlook.com [40.107.243.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE28113C13
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 15:29:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BODp8fWxu074QZU1BwZs5yeGAYwjIvwf8pUftSvWjVO+Mken74ArwCzqamRGcososqMHXs9dJ1z7vNBiclDNUPSnT4tdDagmlWeaQVe0OGAjMHn6PXjIdRnvDNFojTMzVCpk6tkrlVyTCANFDj5oiM2KINzS3QqhkTPICK5sJHYjYGPp7D+jHYtuUyB5Ro0rwP5kuNVJ4K8BiuSM6v08hjv473z/Auc5687hbTUnKVana07DHrXO5QKDD/Ed0xG8dL0t3OAJWNEGV4ChtkBUlK0bfh9azkJzqM46lJCcuAlDH2AHTJQYx+YO2ikwI1QR7JWAiTxjz0gCys/HzjLGNA==
+ b=UmZbPktDf5nDJCUr8fC70ROfrGCkqKMwPQV+SYy1FzlpSZwj3FTK0kIlW0Aftqi9AL0x1HAYP9hin465SMw9J2ALbxVmUDtPdkGQTjmcRa9OLR9H3DgtAskQ54jn0LZnq3PFvEjvjdQOzr1/9NIt+FaKnqlBd0ivMJtfwX6uuasIYLmtQfScbu5VqysrVr5wach5tga5l+t0258GihRnEK0rDSllQ2lFtTDPpgbGPe0gECqXXqGtUvdWNkQsdXP/zjJGGE514pMnvEhgwc8gEGyEw7pVlmPZ/KQQxluiRupG5wGA5NbAGhUuCacSjkzywRlxz9okXlaHMHMh1H+AMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GvJHdkC/fgJb8Uf9JqQeHUz8zysgb5G7w0KLsLww3xc=;
- b=RGpekq0fVW1W/wdnGYfuxPzxuoVDKQMp38vLHZFzq1okbHQR6v35/v/G61mGnXWsrG6eds3b/9tBoMafjbfBcuPxby0UzC4va5djiC2lQNkfvRDw/SUvKvrxEC4cPJDpvVJhYNo9lyNcr3lgZd/JqBnnshYldvHyP56QZCO6NqvsDMos1xIwBqWhsU/HtnK2SIa434CmeyKJk3gOLAtyzz5bPUD8sfbr7iZaO/U02Eya0HcKeAc+8l9EPTrB3aMA7cspaMp5V3NSnq7MFlFPgbJ3T+0W+BEehHrYTWK1rT4be3mc21BPbd6akfZoqgMo/ekpAB9mYdqE5qrT7RgTOA==
+ bh=ifc1k03xgK7eBL6WknLZ1NYMq9FcfDzrx3KqE1dh9l8=;
+ b=akE5WUt6w8M1K8Sh1nbc5Gla6POmGdtbmmUft3ZSxJRAAcD4rbrg7//henHxFAOpLpVkdbRDENdaGRMV1vbYHqWd+P2TMqDtZHg6r0RQrHVoEcupy37a6NqTXTtI+4tk20I9cA46ZWm+YpUbXT15SEyDP8/sKD4gE7rpyGlE7ujGqxBkZlK9zbcLQ7IcqJJ9FTpI6Nt9iu/LAN7+z7kRQswA/5V8jnyHF2ov3xQTvNkPX2Jjo0MrTJKeh15gO+dLIQFDiaapKnTzqlxUYbgrn/8NGTaF/J8bvi+TrCzuDM1b6BHovj3oIbs+U32eNAF2KbDKjrSfaP5NH09cxr3c4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GvJHdkC/fgJb8Uf9JqQeHUz8zysgb5G7w0KLsLww3xc=;
- b=YRnWN+UAcgLjkghfTnARxX/CViYwNksH8vDSxyJwqhDd+b50nChWFQMqMxga/t2Kl7KbSeEPZqeFGaY4YGhaN5adQOrj1HC59ShoA9Xf1rGQyHJrD0wpJawYJwT34ODVBuBHWhfI/T79oF2I09mQ/TrRBx3uys/greDDJvU7KN0=
-Received: from BY5PR13CA0014.namprd13.prod.outlook.com (2603:10b6:a03:180::27)
- by PH7PR12MB5759.namprd12.prod.outlook.com (2603:10b6:510:1d2::20)
+ bh=ifc1k03xgK7eBL6WknLZ1NYMq9FcfDzrx3KqE1dh9l8=;
+ b=vab7Mpv04JbyhtroSkGCevK3JNAZHXmMJAYcupvHOFaet8iT9v1kTgV2Y17hwc7aXNQ6cHYhV1VkG958U1SREj7peYVTSB0mX9ZZ/Y32dH2chDWSKiC/aEuEE2cpU9lm/Dc4uaUALD26KexvGxLPkTd1gxSm/ODx7sjbAvObtvo=
+Received: from BY5PR13CA0025.namprd13.prod.outlook.com (2603:10b6:a03:180::38)
+ by CH2PR12MB4229.namprd12.prod.outlook.com (2603:10b6:610:a5::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
- 2024 15:29:30 +0000
+ 2024 15:29:31 +0000
 Received: from SJ5PEPF000001CB.namprd05.prod.outlook.com
- (2603:10b6:a03:180:cafe::61) by BY5PR13CA0014.outlook.office365.com
- (2603:10b6:a03:180::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.10 via Frontend
+ (2603:10b6:a03:180:cafe::7f) by BY5PR13CA0025.outlook.office365.com
+ (2603:10b6:a03:180::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.24 via Frontend
  Transport; Wed, 24 Apr 2024 15:29:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -50,7 +50,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SJ5PEPF000001CB.mail.protection.outlook.com (10.167.242.40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7519.19 via Frontend Transport; Wed, 24 Apr 2024 15:29:29 +0000
+ 15.20.7519.19 via Frontend Transport; Wed, 24 Apr 2024 15:29:30 +0000
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 24 Apr
@@ -59,63 +59,72 @@ From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Felix.Kuehling@amd.com>, <christian.koenig@amd.com>,
  <Arunpravin.PaneerSelvam@amd.com>, Philip Yang <Philip.Yang@amd.com>
-Subject: [PATCH v6 1/5] drm/amdgpu: Support contiguous VRAM allocation
-Date: Wed, 24 Apr 2024 11:27:45 -0400
-Message-ID: <20240424152814.9608-2-Philip.Yang@amd.com>
+Subject: [PATCH v6 2/5] drm/amdgpu: Handle sg size limit for contiguous
+ allocation
+Date: Wed, 24 Apr 2024 11:27:46 -0400
+Message-ID: <20240424152814.9608-3-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240424152814.9608-1-Philip.Yang@amd.com>
 References: <20240424152814.9608-1-Philip.Yang@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|PH7PR12MB5759:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc8817cf-eff4-42d4-7949-08dc647355a4
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|CH2PR12MB4229:EE_
+X-MS-Office365-Filtering-Correlation-Id: 176a5f14-f3e8-4a95-ea4c-08dc64735616
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YQfOdBX3ZERaL2WJTeer2J9JEAjD6LDWdZY5Ov79jnOn16Mk600Qdr3fDTn7?=
- =?us-ascii?Q?DsL54yaf7OsygvP8kpi2KQT1qIJZFQawh0YgBsCGKh67CRapE+tbcmRiHetn?=
- =?us-ascii?Q?VKw+4clD/m/qPM2E37tY3he1SNk6u4OTB37W1JPODG49xdxbekZLNVhkhvVy?=
- =?us-ascii?Q?5SF+V4roumSOAj+hC6tNoI9+pE61BPjfvhSuU7scWTZeb/TLj3TLqkc/aMpc?=
- =?us-ascii?Q?Mt0ohAaQaqa3CmKRCpa6nYc+rNybNr4fo7FjcCMtSYxvaErkYDhebGV0HEJX?=
- =?us-ascii?Q?PG9mP3NdideKz1Nzsd+fqIjuO2+CUJcv8Oj92Tsx+87HEIVurVgun6blMvd7?=
- =?us-ascii?Q?pujPweQoxddwpes8NrLrl4D7D2AEbm0+0rXJfT8XbHBUxvnJHVWOxqSNkjnb?=
- =?us-ascii?Q?TjW0BQA78N0YuOCLcFu/vD7fKHXRFkyZfusDFOVG20ZSIReQs3CeUSTIpFfS?=
- =?us-ascii?Q?3CwYXinJHWFs/VEEWymRotCm3fGl9psSd7+yEWMS5iVPAbUwwGZ2UDbkEZ6O?=
- =?us-ascii?Q?jEjz+Yqi6VNYoS01WG6l4qw4CBBzNyVUBaT02RfrAB9mE+praEr3kzW9XPWD?=
- =?us-ascii?Q?KX/CDxlMQgFVjB5pZV6Mk4PHq7Hg2eyLMuFesdvbPlk5f/HtmApwtQKs6UXc?=
- =?us-ascii?Q?N5KnRiydBlLvri1FA7725rw62t4NQ5ww6yAePsSGshr7siPZeEcceiUSClAv?=
- =?us-ascii?Q?Ov4MAajLFopwjSazPh1ElGGi37uoEvRKg+KvXcU3qzNYi8lXj316G9WCj/0F?=
- =?us-ascii?Q?ulobzLzw+v4JPeSt7BrwTAeCAtSgmGSabiO1Snh9U3tgI3q4+x3JMJhV1+fP?=
- =?us-ascii?Q?4AlEK6rz6u5xOQearRbEKyFX7aX7YLstbD7d0QJMqWULfrav0qIHwzFJ9tOi?=
- =?us-ascii?Q?8i7d53uNEnzJ18UFOvE0LnFmX7pHm1+R4Cr4ul2MIJILsrZWm/S+POxrbHas?=
- =?us-ascii?Q?mRkMgb5Gg1xWtJsUC39vaotb15GLTpudwdEPTikjncM3LxOKkPaMYhHUUijC?=
- =?us-ascii?Q?jGb1kwNylgrie0TeX2zq4x6tqrE8RJL5//72uqdn5XIA01v+dvHruDd0dFgv?=
- =?us-ascii?Q?NMpksU8wY6XQt39lRFB10w3FQCarM5ogLJB1a3s47XUeXYjvADxXIKSP19Nj?=
- =?us-ascii?Q?v0NpTmw4Fn662GfjJ0snk3Pj3Tg05PpLQgBAn4oVI2BDR666lPesG5AlH9Za?=
- =?us-ascii?Q?dILM+Sx+Ye5MLy7q5jNIwcbdCHSdhcRnxRP26Y5nJv7OU3BbmLGbaEa3dXLf?=
- =?us-ascii?Q?S2jbYC5KwlDuobDTbSL83E0KZxUI+nMZ1jUpMGu29Ax85TlD9j4wMg1ZtmqG?=
- =?us-ascii?Q?ojZNgGdJWKdC3sUTYbhuOFYQFUyR8nasFYYHmRpHWwFNjtwY2b2k+m08FXR4?=
- =?us-ascii?Q?jzqxBrC/I2SjMd2I13LtUbDFOx/b?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MkdKUW1WWVFDVm1xTG9JVjllSUhwQTVERWZoT0wydmE5NUQwNy91OGxpNGx4?=
+ =?utf-8?B?eXdJVzVWNU5ZTmFINHAzaFVlY2lKTFJiaVo1YWJGN0pOeUFFcklObnVoUTIx?=
+ =?utf-8?B?WWROc3lHRkpPRFBick1nN2FJYVJZZUVWTVZWTWxud2VpVEJScTNIU3JwRVJ0?=
+ =?utf-8?B?amZiYVVtdW16ZkVIWE5wVTB5S3pnSitFcWlFdCt2WDZwNWZlVGNuS24zM1Ja?=
+ =?utf-8?B?dGdyTHA1ckY1cUE0SHZHSTAwQll4WGZvd2w0ZnBIa2FwekFDZ0VkcjRzZ2x6?=
+ =?utf-8?B?eDh3Wkx4UUk2WW9aV3dGZWN3WlBTMDBVTGlGa3J1Z0x4STh1L3dPT1ZNZ2xk?=
+ =?utf-8?B?V2J3NVdqTC9RZytXTEc3Smc2UWJGdmlxcDFmSk5TRDU2S0dkdHRCS1M1MUta?=
+ =?utf-8?B?U0FKaWNGMTlic0xlM214Mmc1UTZBM3NMT1gxN3lLR2NmWEwvY2ZNcnJXazJ4?=
+ =?utf-8?B?N1pqN284cVNFTk1udWg3SEcrajY4ZTBGS0F5ZXM2M1ZtWHcrZUthQnJMdmZy?=
+ =?utf-8?B?WGNqVStZMXB5bS8rNEc3Z1RyZzBHYyt2NVNWT3poRlY5Z21yOVpPNlM1ZHlO?=
+ =?utf-8?B?RU9ZR2docEhaMmI0b0F6a01DYjNzNjg1RkJ4dGMySTQ0NzNSaEpiVWExWldQ?=
+ =?utf-8?B?VVk5WFhwUThDR0pLVmVJWFZtRzZod0ZQTFRXUEdIUWo5UW93RGNzY2JOWjhi?=
+ =?utf-8?B?bHpERytZc1Nldk9tOFY4NGt4bnlaZWhmck5pMzgraTJWSkx5eGpQcHFtK2J3?=
+ =?utf-8?B?NVlPK0t6clFzejZaNlpHM3BtQldIVWprd0pjcTN3TE12SFVjQlF5U0hXOXls?=
+ =?utf-8?B?aHBRK1dhVFlmM3FZNHN1aUo3a1dWa1U1NEFhY3MzblpKbE43aWpNWEc1YVNn?=
+ =?utf-8?B?d2JHUjU5R3UvWGZJTkdKTXo3aUx6NU1ZUk9xbWxoekVyUXV4MFZnbytEaG4r?=
+ =?utf-8?B?L3M2TDgvdXllcEFXZ3Btb3BlZVMyNGpBaFhiNDJaNm9kbEU2dDYvOVBpOC90?=
+ =?utf-8?B?TnNxbWJIZUdaZGw3Ym1ybFNoMyttdGZFRjJlQnZjOU1YMFJmckJVdEJRaUxQ?=
+ =?utf-8?B?ZS9oNWFvaXVoUlcrTFhQR2pacWo1VWtmZmhLRlBDR1VPaDdhQXJ6dXVmcGY3?=
+ =?utf-8?B?YW5LQXFtd2hUbm1SbWNzY1VuUlFnVzZaTzVndXBCOThsRzBEelEvMTdiMUJj?=
+ =?utf-8?B?RkROaFlpbUNTMzNUcWJEVkZIaXFYTTM2SURZeXBWdzFTdFNXeXFhcG1YVGk4?=
+ =?utf-8?B?aXdDVXNFamlKQmU5OXdjK3ZvMnV6UDl0THJHM1RncmhXNGUvTGhPeTlERTlr?=
+ =?utf-8?B?TW1pSWFOZU11KzZBTTlOYjNaUTlWY2kxbVZWalNtWG1wbEFkc2s4dUs0aEF3?=
+ =?utf-8?B?cXg5NmJ6QWhPMlNHR1JXSzNBdHV2bWNEWWtlSHI4aGNteUhkc3NYWm1CVW9r?=
+ =?utf-8?B?YzVUcnZOUkU5YTVLWUVzU1hXdS92aWVwUmtCcEtLZ1VFUDM2ZlNVeFpiNVU1?=
+ =?utf-8?B?RmhSZklORmpFNGlEUFZZNU53T1Y5bzRWaEk4N2YzQ2dKUENleDVHc2I2TDR0?=
+ =?utf-8?B?RXcxUHV1NmV2L1d4WTBiTnBOR2pIbitXWGszdDA1NXBTSmhXaHozM0x3ZVZZ?=
+ =?utf-8?B?Y1ovZVZ0UkhacXdoeUZoUnQxdDZ5WWZRck03Zkxlc0MvTGl5TzVPRkxDUzZC?=
+ =?utf-8?B?TUtUaGFVRkp3dFVLaUdtZ3dIRmhuRTdKdmdUTUF2aEtEOUl5YUxMeVdkVjIy?=
+ =?utf-8?B?cTQyOG4zUzZWekJCSEZqbTg2SmNUTVJLOWhXZW03c0FZaWZwbzB6VW1rN0Ji?=
+ =?utf-8?B?Zm9ndmdaZ0lFMlovSXFHSHlyd3NJVkE3YUJuZEZtdm1PQnZtTXBuQXdxVGhR?=
+ =?utf-8?Q?bMPGi9kukDKrY?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(82310400014)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 15:29:29.9376 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc8817cf-eff4-42d4-7949-08dc647355a4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 15:29:30.6876 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 176a5f14-f3e8-4a95-ea4c-08dc64735616
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5759
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4229
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,47 +139,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RDMA device with limited scatter-gather ability requires contiguous VRAM
-buffer allocation for RDMA peer direct support.
+Define macro AMDGPU_MAX_SG_SEGMENT_SIZE 2GB, because struct scatterlist
+length is unsigned int, and some users of it cast to a signed int, so
+every segment of sg table is limited to size 2GB maximum.
 
-Add a new KFD alloc memory flag and store as bo alloc flag
-AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS. When pin this bo to export for RDMA
-peerdirect access, this will set TTM_PL_FLAG_CONTIFUOUS flag, and ask
-VRAM buddy allocator to get contiguous VRAM.
+For contiguous VRAM allocation, don't limit the max buddy block size in
+order to get contiguous VRAM memory. To workaround the sg table segment
+size limit, allocate multiple segments if contiguous size is bigger than
+AMDGPU_MAX_SG_SEGMENT_SIZE.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 ++++
- include/uapi/linux/kfd_ioctl.h                   | 1 +
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index f672205243e0..02d66faaade5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1712,6 +1712,10 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- 			alloc_flags = AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE;
- 			alloc_flags |= (flags & KFD_IOC_ALLOC_MEM_FLAGS_PUBLIC) ?
- 			AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED : 0;
-+
-+			/* For contiguous VRAM allocation */
-+			if (flags & KFD_IOC_ALLOC_MEM_FLAGS_CONTIGUOUS)
-+				alloc_flags |= AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS;
- 		}
- 		xcp_id = fpriv->xcp_id == AMDGPU_XCP_NO_PARTITION ?
- 					0 : fpriv->xcp_id;
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 2040a470ddb4..d09c4a18e571 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -407,6 +407,7 @@ struct kfd_ioctl_acquire_vm_args {
- #define KFD_IOC_ALLOC_MEM_FLAGS_COHERENT	(1 << 26)
- #define KFD_IOC_ALLOC_MEM_FLAGS_UNCACHED	(1 << 25)
- #define KFD_IOC_ALLOC_MEM_FLAGS_EXT_COHERENT	(1 << 24)
-+#define KFD_IOC_ALLOC_MEM_FLAGS_CONTIGUOUS	(1 << 23)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index 4be8b091099a..ebffb58ea53a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -31,6 +31,8 @@
+ #include "amdgpu_atomfirmware.h"
+ #include "atom.h"
  
- /* Allocate memory for later SVM (shared virtual memory) mapping.
-  *
++#define AMDGPU_MAX_SG_SEGMENT_SIZE	(2UL << 30)
++
+ struct amdgpu_vram_reservation {
+ 	u64 start;
+ 	u64 size;
+@@ -532,9 +534,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+ 
+ 		BUG_ON(min_block_size < mm->chunk_size);
+ 
+-		/* Limit maximum size to 2GiB due to SG table limitations */
+-		size = min(remaining_size, 2ULL << 30);
+-
++		size = remaining_size;
+ 		if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
+ 				!(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
+ 			min_block_size = (u64)pages_per_block << PAGE_SHIFT;
+@@ -675,7 +675,7 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
+ 	amdgpu_res_first(res, offset, length, &cursor);
+ 	while (cursor.remaining) {
+ 		num_entries++;
+-		amdgpu_res_next(&cursor, cursor.size);
++		amdgpu_res_next(&cursor, min(cursor.size, AMDGPU_MAX_SG_SEGMENT_SIZE));
+ 	}
+ 
+ 	r = sg_alloc_table(*sgt, num_entries, GFP_KERNEL);
+@@ -695,7 +695,7 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
+ 	amdgpu_res_first(res, offset, length, &cursor);
+ 	for_each_sgtable_sg((*sgt), sg, i) {
+ 		phys_addr_t phys = cursor.start + adev->gmc.aper_base;
+-		size_t size = cursor.size;
++		unsigned long size = min(cursor.size, AMDGPU_MAX_SG_SEGMENT_SIZE);
+ 		dma_addr_t addr;
+ 
+ 		addr = dma_map_resource(dev, phys, size, dir,
+@@ -708,7 +708,7 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
+ 		sg_dma_address(sg) = addr;
+ 		sg_dma_len(sg) = size;
+ 
+-		amdgpu_res_next(&cursor, cursor.size);
++		amdgpu_res_next(&cursor, size);
+ 	}
+ 
+ 	return 0;
 -- 
 2.43.2
 
