@@ -2,146 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9F08B0F84
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 18:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BFD58B1073
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 19:01:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3125113C5C;
-	Wed, 24 Apr 2024 16:16:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2A7113C7E;
+	Wed, 24 Apr 2024 17:00:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="k3qQGWOQ";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="a+DxrA39";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327D7113C5C
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 16:16:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W8liEs5TFiPAjikwQ2SIqUjviQZ45s9QPAH8htRQHYeTgHpLFAGH5nSp/31scYe5dfS6Y1Hb+hYYsLQQllocQUYKJfqoNiDCOHhlz70wawQIs1xZqvbx44zJeFV5MTi/Lq5s+eoKYvibYoa+B3wm7ZCLrHXmSAy6SESHGgV0p4bYiEskI1+KHIOig6d80IBNkK4s1JFpt8S3P5wv8YbEHyYpaNsUw/SOJuhhPqJMwMsNN1TjngNEW88TU4zIXmjSph3brDaHfFRE9AiJrFICkXJtd2CCVj6TZK/RPjhNCbqsklXAv6pMZT8pd0TZhf3VG2CJx/WENHanW13q6ah/rA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=biZr6Ct2z31XyHFPFg7CTjUMzfxtUxjRBp05rhSQ5TA=;
- b=eJDTqMF7pp6D4C4ztVhojx2ZcsYFN6IiwsLGgUpMC9iCWHNTE1VBSYG9ZktEWUCUcF7CqvtOWwt6OIJ+QaiwWg46jrKfOPgCilKJESUceI7OncuiSnGo7dOV8wK5HwiOFwh8A2nf2UyuijZLNCPVJ88hpuikw05bF3IrQfK8nA2Bw0OpOiR2o1GZR6AaVoyDUoKdlFWiXdvERZbumy3nlFzs9PCPkuRRoyABPjTyH2kZEpJgYm6cy9aFphLMo+ZVfy6fsOEEdKZE+cMUX5oMM0Hhc8rYRjvEoAdwKWshNoXYK8WvFWTThtt/mB65/SMrWsxAlPJD6vAdw/Jks5/01A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=biZr6Ct2z31XyHFPFg7CTjUMzfxtUxjRBp05rhSQ5TA=;
- b=k3qQGWOQYearzwhZlhJ2q8rymosT5Sj7EdvYZNbJUTjGz4Me82q9/fTfJQfsdf3k0zuIXzBo4mehtU/txQAUSpQ7v2NmWvubAB1HchTxR9Fu18WSOchc+po+v5iwALKddLhhBO+Z5mFoPUfkIfE1HlgwI49+YocScMdm/iiUreA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by LV2PR12MB6015.namprd12.prod.outlook.com (2603:10b6:408:14f::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
- 2024 16:15:54 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::d895:b707:1189:dfd7]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::d895:b707:1189:dfd7%3]) with mapi id 15.20.7519.023; Wed, 24 Apr 2024
- 16:15:54 +0000
-Message-ID: <85fa35a9-8fa2-4c1b-8214-5451bcfa60e9@amd.com>
-Date: Wed, 24 Apr 2024 12:15:51 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/5] Best effort contiguous VRAM allocation
-To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, Arunpravin.PaneerSelvam@amd.com
-References: <20240424152814.9608-1-Philip.Yang@amd.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20240424152814.9608-1-Philip.Yang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0230.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:66::34) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6782E10FD57;
+ Wed, 24 Apr 2024 17:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1713978035; x=1714582835; i=friedrich.vock@gmx.de;
+ bh=MbvTuuavhMIBSvaKJNeb41Uwjo9gDgySKSe17CKNkoM=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+ MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=a+DxrA392jn0lbrpElqiMwPUOPlqQ6GqResnavr8z+ALVaopxgfE7Eu1jwNlYgpr
+ wq8m5KC5TnIPGFSsvd/akTRIQPm/BkFUhwJEO5WQJD11yc81MNfqdIgZlDAjcq3q6
+ yvd3PINA8xjH6IxUp3SyDuNtcGXf1hIR4w5t96/z0QqfaTtCYBGha9kOMyJsM8RKt
+ xT/SrKVfA1DSVXbUfk77Wq1lrz93D9gu5ZpWMZYZ+Nz3DYd3PgJfsntJxtmLSNLOj
+ jllK3x4s8jFiJMjbcRCFmKotxrhG192x8fXpTJ8mQNPTJjUlHZ/ojLdoZ7NhT4qzx
+ 80mdFucvqzXi+W0dGw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from arch.fritz.box ([213.152.117.111]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MOzOw-1sKce72DPg-00PBeP; Wed, 24
+ Apr 2024 19:00:35 +0200
+From: Friedrich Vock <friedrich.vock@gmx.de>
+To: dri-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Cc: Pierre-Loup Griffais <pgriffais@valvesoftware.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: [RFC PATCH 00/18] TTM interface for managing VRAM oversubscription
+Date: Wed, 24 Apr 2024 18:56:50 +0200
+Message-ID: <20240424165937.54759-1-friedrich.vock@gmx.de>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|LV2PR12MB6015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b8c88b3-98a2-4f97-32aa-08dc6479d130
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SXpQMEJ3b3RhcHVZUHl3RHlXb1Eza2x4YnYwWHJXRm1mK1NmK0lTdlhvS2lh?=
- =?utf-8?B?N2w2aDRXSDRDT01jeStNcXFVSEdBQlRuRFhHS3lYTXRUaDFocXVjQjlOcm05?=
- =?utf-8?B?a2c4WmtWb0h3TGFJN1dGRmN5VXlRVkdEdWlvNGdNbGFabUJ0OWsvUlk2ME80?=
- =?utf-8?B?c1BEUHNFUXdraU5nVE5OM3kyRDRNOFFWendXRVcvWGJUbUlSTFM4emZEQmxW?=
- =?utf-8?B?cVBEcCtjUVJvcXlCMW05S1VObSszdENiYlFNcGxJb2ZvbkRsbzdNSW9YQ2Q3?=
- =?utf-8?B?Z2I4REZKR1BzRGE3K2dkVllJSDUxdnBlVWUwdFNHdFNPL0sxRHJpRWh6WWFJ?=
- =?utf-8?B?a0hSazh4WkZGSVFtQ2RyQThJZG5zTFE5K0lHR0cxUGFMRC84MnBNZVNCdUFj?=
- =?utf-8?B?bW9oTit4RFlTYVc0QzNOeUwxNFliT2wxdFN5VXM3WlBiY25PVjFFRFVINE8w?=
- =?utf-8?B?WUFYRVphRU9VU0ZTMWdPWE1ScndlVGgzTEZtVGJteVdhcnN0K2V4ZEJadWcr?=
- =?utf-8?B?ei8vSTltZkhVQkNycm51eWIyZUFQWTc0QjVXTm1XV2huUzhkVnVER1c5czRC?=
- =?utf-8?B?QnRPZko3d0VhQXk1STBUTXpRQkEzWjZTUS83Z3ArUEFXb3JVd2sxVTRHS09X?=
- =?utf-8?B?T08rQktNZEJxbkdQcGxlWFJTa3RsOW11aUZrNFRhNFA4ekYzK3NPa0IyV0FU?=
- =?utf-8?B?VERabXRobDIyTlo5YUlodm9FekVXbTNlSzJXZythV3VVR3JjbWVKVkd5Wm93?=
- =?utf-8?B?emoya3kvbGxLWEd2eThzRkVxaWpEU0lpa3ExT0g4eHlrVTNDVHhpcmVRM2kw?=
- =?utf-8?B?R2p3aU9vUFJkODQ5M0V4eTduN25MYTA3aW9YZDFwT0lBN1N1WnYwZERZS3hq?=
- =?utf-8?B?eGlIR0lLUElCZWZlaXl5YzRBWUxWU1c5ZHpBWklBMkhFSG9Ld3M0bG9qWUs1?=
- =?utf-8?B?NmpERjVkUWUzZ0FCVTZxb3crR3VxZ1dpeGtVUDJPVUM5QVdVaGhxYmd6UE52?=
- =?utf-8?B?eDBxWjhwcU9ya0NURnRSbitVUkJEOVIrK3ZmTTNYd1EvaHk0M2xzN0l4ZTh4?=
- =?utf-8?B?QXpkZzlPT3o5NVJUbHJ4bDBsdHlOZXNSNFpvQTlKNmhMb1hEZUFUTmlCM1A3?=
- =?utf-8?B?ZTFUbGdBOHFxUGRmM2dEMVVFeEF4QjdVazNLdG9uMXkxN2NaN3ZUUlJZc1BL?=
- =?utf-8?B?ekdya2RyTlZPbGhMMGhBNVp6M2JzVEh6K0xOZFNzZlpsWkxWNkNWOVpZMWRE?=
- =?utf-8?B?Mm1YOW9VbEJ2aHdKcHVkZ0M2UU9BZDUzcFN1QUw5UXRsNUNMV0RjZFVnaXZS?=
- =?utf-8?B?TWdIODdKbEdIRjk5UkZZUHF3WFplSHZqYjNodzViWHo5eG9LRmJtMjJHa3lu?=
- =?utf-8?B?aTE4SEJ4NzJlU2ZKNWg2cVlCS3VRVS9WQTNwRks3cnNvbTRBNk5ST2xSS1Ay?=
- =?utf-8?B?anYrRmpqOEFHSzl5WFZTeVAxTWhXL0xJMExmaDMzOS9nRlFZVzdnczg1TXNN?=
- =?utf-8?B?ZTd0aEt2L0hET0tzc2RWUE9HN1JHaktUTnRERXl2NjBCUFN6ZDVXQlFnT3Aw?=
- =?utf-8?B?ZWxBeUJMQWtTTzlNeDBGenAyQm9pMjBiSmhYVVFVTWVmSkhxeVJ4V2pIbkdl?=
- =?utf-8?B?NWl4OVVSd3ErMjRrZytxZHBhQjAxOUMrZ0FsUG1maXFNbDBocE0xTGhha1cx?=
- =?utf-8?B?aHExUlloZlc4cWZneUgxZHltVUJFcU5QWUlNdUNPOXNydEl6WGx2dVJ3PT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWlIdlNybk4vY0FjVkxNV25xTElWRWJCKzFxMEVWbnN5RnZXcWR5bjdydTBt?=
- =?utf-8?B?Vzh6MUJXelpESk44SXVEck84V1g0M2tBQWpZeHJIUU5VMEtmRC9DZi9YNmNq?=
- =?utf-8?B?WGFxNUdVSlV0WmphYzJPKzlsR0N0VFpmcTFteUptdmtQNDBqMXVZWDJHNVdZ?=
- =?utf-8?B?YzdGU29xQzhYNjlSak5XTTVONlJEK0xsTzJPTWJ4OVJhY1JCMFJoSXhBSGNF?=
- =?utf-8?B?NVYzV0I2dmJ1aDlaMVJlNmlqUzhYUTV6UjJodUM0d20vcDhzdEQvcUp6OGd6?=
- =?utf-8?B?cXVHZ045Z0wrWVpIcXJ0ckR4aGo4Nk5WYlhzaWVSM3FrRm54ZTNneDV5Q2d0?=
- =?utf-8?B?bE9Ed0hxZ2ZkYmxpdHY1K1NyTlZBY3lVQ0FLbysrcmE2OTE0N0V4U2JodlJE?=
- =?utf-8?B?S3VHSFdmM2JRRnB3eFhGOTRUSkJFWTVCeWYzUVprU2FWQ2ZLbWJFUit4TkMz?=
- =?utf-8?B?dDJsSWNmd052N3pkNEowYUxpZGlIMjBRdzhCbllEQ1ZmVGZxTFVwOXQ4djJ0?=
- =?utf-8?B?N2VtRGRmR1hudDFXMDVRTlFmK29oNDd3YWZqamdnNkhXQVNSLzFubkRZNThG?=
- =?utf-8?B?cGEyWlRwV3YzbFRnd1g0dEpWWG5vcWYwazNNUjltNVZ0TktYMmkwWitZL1V2?=
- =?utf-8?B?eFZXN3dSWFkrQ2RLYVBQUFB1azNpbk9pbThvM0w0WG1CS09Ob3lWMGswc1dK?=
- =?utf-8?B?ckxtTWg5QmtKNFdBTkszWm1HcUJBZHQ5ZDZrT1ZKeThVYTRIT1ZkWHhDTXJN?=
- =?utf-8?B?aGM0SzUvdjNjU2RjR1A0OUlHcnp6L0FCRUhCT1NlRUN6a1FqajdiOHo4U28r?=
- =?utf-8?B?TDA3dFBvTmtoemcrOWNHYVEyRzB1ZUEvTlJqV3h5TllER3dhTk90bXZMZzFp?=
- =?utf-8?B?QjZLV3NvUDlUZk9YMXloSHZOaWt0MWFTcGZ1OXh5U3N5bUFMNkFBakJ0T0Jv?=
- =?utf-8?B?V1loOG9GSzQ5S1YwVmlhTXRnclBHd2tmbDZIQUt3SUlmb24wWWNKbEs2bXA2?=
- =?utf-8?B?NWpFVjg0eDZBVW9FR0c3T3N1TXY0QnN2THloRmw2MnR0MXF5NWFHK2RmQkVJ?=
- =?utf-8?B?c0NaNHRzbWs2dVZUSExzaVlRYXA0VUJIODI1ZXJVaGtISjArMzZCN2xScVow?=
- =?utf-8?B?Q2FGaWJEZEJ4Ri9hU0JXVEFQemFaUkRIS1NBaVJYaktKKzdJMWt1Nit5Vmdn?=
- =?utf-8?B?dWQxQVZ1cHM0dHN3OVcwM0xsSHhDVHZ1QllQT2g0Tk95eHZTNXZIZm1BaUsz?=
- =?utf-8?B?eWJhanV4ZThxT2JUbFRNRWE5eU5LT0RTUFE3ckt4V1RkME9IQmhvbGt2UXNN?=
- =?utf-8?B?WE5ySkJ6S0NScGlGMVNXeWtTMUttckNIaGNUNFl0ZGJieC9IaFVycUpGU3ZP?=
- =?utf-8?B?N0d2ZnB5czBZODhiUmRZbUpmUWk4cEJOYnN1UjZQWjJVNjFDd1pzUVhuRldD?=
- =?utf-8?B?NnZwTy9uMXRhUVJ1YW9oVFV3ZGxHdGsrUjY2d3A1RkU1N2FUMjNBN0N0NVdS?=
- =?utf-8?B?eDhpY1JuU1JIem9KN3RkcU9qUDNSdWw1bkpRcDNsUWh4dFpiK2NvK0FSUjdC?=
- =?utf-8?B?N1o3WU9uRjBYY2lyRmJaNjV4VDQzVkl6V1lDQUVCL2JZcXdNMGlPOCt5NU9j?=
- =?utf-8?B?N1oyLzFKUGxuSDVOSXR2cTVBRzdRZEgxaFo1NzhRMUtGZFl3RVRVTzd2VTNL?=
- =?utf-8?B?NkwvaHp2QkkwUWxVcEdqZW5pamhtcVppb09hdnpneDBHYWZSUmVqSUYrSWU5?=
- =?utf-8?B?L3N1NS8xMy82Q09nN3lrcTJzOStjUEIyOC9QM2xFUWVTNXpXUm9Ma3pObEY1?=
- =?utf-8?B?aFcvR3IxL21EYUc4dTVkdTBETGRXTDhnUkgwQnIvbTlxZDZSNEJpSkZ3T0hk?=
- =?utf-8?B?WFpUWmxkcGdCRVRuYXozMUFUNzdDajdlZkErYkpCTnU0Z0RGcld3dkkrajhN?=
- =?utf-8?B?cGdiOWd2NWNGelkrTHRXVUpycWlNbURBWG52WTlJMzY4OHBvZ2haK0hjcm52?=
- =?utf-8?B?LzUzb2lQaG1idzlJRFNZU3RQZmlZb093WTZxQWdzdW85eitJR3p2cG5td0U1?=
- =?utf-8?B?K2ZTcGErb0xGeDArbGN0MTh1SmNkbkhhNndydEpOQno0TzhYcmQzTnJvVFdO?=
- =?utf-8?Q?lBHA0fheqSbKWLF3qjT2CdL6d?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b8c88b3-98a2-4f97-32aa-08dc6479d130
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 16:15:54.4421 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hbsunous9gRvis8i4ytP9/uImmQOUeIoffjog5pBeeWG21QAGZF2AMmXc+PJEqtzYhhSxgi7CXsUGgdyvZqHGg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB6015
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:30kTPdv++K5EX4INp1vyNl0EJ8DFgJuY/JhxEH/wDtGrOKjUH/u
+ Kpz4/NJOxkxYUmMA4Waqs7AnA8gwkE1Hyuh02aNtoVOdUYYCd2UW8v+N3js/3yR3gmczsC/
+ m2W12B3eno6yOllKGjQM2DLOXdJ+q2pXt4P4L9yp8ZybZ7nHLcCQWHfxf7lBuVX98lzO61P
+ FrePvuQ8j9qZ90AP35dyQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:O3y2JqGNOmE=;XNuet24Yr1cpAKTmPcu5JjgGdV7
+ EIx4TcxNeyE0Ma7QSUMOjkxV0YMXl+/sJVgVKRlwKv9GLYAH3+q+44D1faezpj6HctHp/lgD4
+ IW3kctHH7d0QbBmNSec5ctQPm7mW5CqHymTNkODok9dRmMtixiNqz1ofJynlsaq9rK4tt0rwO
+ /ojXLIdZeugBlSSVQ9pOEUUc1zDYygBa+FWJYSAKlu1MG6EDXk+Xn4L0TKXY1Nfj587lfIgDf
+ BYcCxkOmzhZsNcOavHXVqKKaInL4RlPHLmHaFA3MrUB6X2HeDyWGDAJiwkehemuIMpdIr2kt8
+ rUPRR5jtClnd5xuRttPoMY5KiNpxf3P/cigmTekO8fOUhbzRS5MkVv7WKPYJdRAyQk/ZSS+J4
+ FpozlaoGikNrfHneFm1OIFR4FJLGClk2nWn6Lmsyclyw+CMZQ1Vf/pnkaFXY5boXT/+akpJXj
+ 0AxzPJPqJTttlbH/z44dA84QV9uFOS0ZmSOgmuEUoe0miJJH01vIBGg0tbbviwr+1OX2GNynl
+ lAOfwHEU74PRCKT01zPH5FltmDb3oYl1QjFC85+Z+YypyU8hK71GCrZR1lQWLkNLEoBio57cw
+ jKtdnZGLpRvT2IOh0MarAOqMM1q5jTqakKSBZFIXpKcdQrUsQOynrhoHTjn4i0tw/Nek3L+rO
+ sM9gbiNkiVn83lAlPixgUKUv0XhBGxupyvXkPHHPBsXcG1rENJiqyR4G3jOxOjugsV/QDIq5G
+ IgKub5AiaE48zkTYd59fKE90LSfERhJHypUPLFMBYbILFSqZoHVXoF1p/Ry56JMrgFUr0VPrI
+ oY2B/hCDOP2xfh6+xaGjbq827MpMe+bDn3KMKlPQ9Udak=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,37 +79,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The series is
+Hi everyone,
 
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+recently I've been looking into remedies for apps (in particular, newer
+games) that experience significant performance loss when they start to
+hit VRAM limits, especially on older or lower-end cards that struggle
+to fit both desktop apps and all the game data into VRAM at once.
 
-On 2024-04-24 11:27, Philip Yang wrote:
-> This patch series implement new KFD memory alloc flag for best effort contiguous
-> VRAM allocation, to support peer direct access RDMA device with limited scatter-gather
-> dma capability.
->
-> v2: rebase on patch ("drm/amdgpu: Modify the contiguous flags behaviour")
->      to avoid adding the new GEM flag
->
-> v3: add patch 2 to handle sg segment size limit (Christian)
->
-> v4: remove the buddy block size limit from vram mgr because sg table creation already
->      remove the limit, and resource uses u64 to handle block start, size (Christian)
->
-> v5: remove patch 7 which is not for upstream, add AMDGPU prefix to the macro name.
->
-> v6: use shorter flag name, use interruptible wait ctx, drop patch 5/6 (Felix)
->
-> Philip Yang (5):
->    drm/amdgpu: Support contiguous VRAM allocation
->    drm/amdgpu: Handle sg size limit for contiguous allocation
->    drm/amdgpu: Evict BOs from same process for contiguous allocation
->    drm/amdkfd: Evict BO itself for contiguous allocation
->    drm/amdkfd: Bump kfd version for contiguous VRAM allocation
->
->   .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 23 ++++++++++++++++++-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  3 ++-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 12 +++++-----
->   include/uapi/linux/kfd_ioctl.h                |  4 +++-
->   4 files changed, 33 insertions(+), 9 deletions(-)
->
+The root of the problem lies in the fact that from userspace's POV,
+buffer eviction is very opaque: Userspace applications/drivers cannot
+tell how oversubscribed VRAM is, nor do they have fine-grained control
+over which buffers get evicted.  At the same time, with GPU APIs becoming
+increasingly lower-level and GPU-driven, only the application itself
+can know which buffers are used within a particular submission, and
+how important each buffer is. For this, GPU APIs include interfaces
+to query oversubscription and specify memory priorities: In Vulkan,
+oversubscription can be queried through the VK_EXT_memory_budget
+extension. Different buffers can also be assigned priorities via the
+VK_EXT_pageable_device_local_memory extension. Modern games, especially
+D3D12 games via vkd3d-proton, rely on oversubscription being reported and
+priorities being respected in order to perform their memory management.
+
+However, relaying this information to the kernel via the current KMD uAPIs
+is not possible. On AMDGPU for example, all work submissions include a
+"bo list" that contains any buffer object that is accessed during the
+course of the submission. If VRAM is oversubscribed and a buffer in the
+list was evicted to system memory, that buffer is moved back to VRAM
+(potentially evicting other unused buffers).
+
+Since the usermode driver doesn't know what buffers are used by the
+application, its only choice is to submit a bo list that contains every
+buffer the application has allocated. In case of VRAM oversubscription,
+it is highly likely that some of the application's buffers were evicted,
+which almost guarantees that some buffers will get moved around. Since
+the bo list is only known at submit time, this also means the buffers
+will get moved right before submitting application work, which is the
+worst possible time to move buffers from a latency perspective. Another
+consequence of the large bo list is that nearly all memory from other
+applications will be evicted, too. When different applications (e.g. game
+and compositor) submit work one after the other, this causes a ping-pong
+effect where each app's submission evicts the other app's memory,
+resulting in a large amount of unnecessary moves.
+
+This overly aggressive eviction behavior led to RADV adopting a change
+that effectively allows all VRAM applications to reside in system memory
+[1].  This worked around the ping-ponging/excessive buffer moving problem,
+but also meant that any memory evicted to system memory would forever
+stay there, regardless of how VRAM is used.
+
+My proposal aims at providing a middle ground between these extremes.
+The goals I want to meet are:
+- Userspace is accurately informed about VRAM oversubscription/how much
+  VRAM has been evicted
+- Buffer eviction respects priorities set by userspace - Wasteful
+  ping-ponging is avoided to the extent possible
+
+I have been testing out some prototypes, and came up with this rough
+sketch of an API:
+
+- For each ttm_resource_manager, the amount of evicted memory is tracked
+  (similarly to how "usage" tracks the memory usage). When memory is
+  evicted via ttm_bo_evict, the size of the evicted memory is added, when
+  memory is un-evicted (see below), its size is subtracted. The amount of
+  evicted memory for e.g. VRAM can be queried by userspace via an ioctl.
+
+- Each ttm_resource_manager maintains a list of evicted buffer objects.
+
+- ttm_mem_unevict walks the list of evicted bos for a given
+  ttm_resource_manager and tries moving evicted resources back. When a
+  buffer is freed, this function is called to immediately restore some
+  evicted memory.
+
+- Each ttm_buffer_object independently tracks the mem_type it wants
+  to reside in.
+
+- ttm_bo_try_unevict is added as a helper function which attempts to
+  move the buffer to its preferred mem_type. If no space is available
+  there, it fails with -ENOSPC/-ENOMEM.
+
+- Similar to how ttm_bo_evict works, each driver can implement
+  uneviction_valuable/unevict_flags callbacks to control buffer
+  un-eviction.
+
+This is what patches 1-10 accomplish (together with an amdgpu
+implementation utilizing the new API).
+
+Userspace priorities could then be implemented as follows:
+
+- TTM already manages priorities for each buffer object. These priorities
+  can be updated by userspace via a GEM_OP ioctl to inform the kernel
+  which buffers should be evicted before others. If an ioctl increases
+  the priority of a buffer, ttm_bo_try_unevict is called on that buffer to
+  try and move it back (potentially evicting buffers with a lower
+  priority)
+
+- Buffers should never be evicted by other buffers with equal/lower
+  priority, but if there is a buffer with lower priority occupying VRAM,
+  it should be evicted in favor of the higher-priority one. This prevents
+  ping-ponging between buffers that try evicting each other and is
+  trivially implementable with an early-exit in ttm_mem_evict_first.
+
+This is covered in patches 11-15, with the new features exposed to
+userspace in patches 16-18.
+
+I also have a RADV branch utilizing this API at [2], which I use for
+testing.
+
+This implementation is stil very much WIP, although the D3D12 games I
+tested already seemed to benefit from it. Nevertheless, are still quite
+a few TODOs and unresolved questions/problems.
+
+Some kernel drivers (e.g i915) already use TTM priorities for
+kernel-internal purposes. Of course, some of the highest priorities
+should stay reserved for these purposes (with userspace being able to
+use the lower priorities).
+
+Another problem with priorities is the possibility of apps starving other
+apps by occupying all of VRAM with high-priority allocations. A possible
+solution could be include restricting the highest priority/priorities
+to important apps like compositors.
+
+Tying into this problem, only apps that are actively cooperating
+to reduce memory pressure can benefit from the current memory priority
+implementation. Eventually the priority system could also be utilized
+to benefit all applications, for example with the desktop environment
+boosting the priority of the currently-focused app/its cgroup (to
+provide the best QoS to the apps the user is actively using). A full
+implementation of this is probably out-of-scope for this initial proposal,
+but it's probably a good idea to consider this as a possible future use
+of the priority API.
+
+I'm primarily looking to integrate this into amdgpu to solve the
+issues I've seen there, but I'm also interested in feedback from
+other drivers. Is this something you'd be interested in? Do you
+have any objections/comments/questions about my proposed design?
+
+Thanks,
+Friedrich
+
+[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/6833
+[2] https://gitlab.freedesktop.org/pixelcluster/mesa/-/tree/spilling
+
+Friedrich Vock (18):
+  drm/ttm: Add tracking for evicted memory
+  drm/ttm: Add per-BO eviction tracking
+  drm/ttm: Implement BO eviction tracking
+  drm/ttm: Add driver funcs for uneviction control
+  drm/ttm: Add option to evict no BOs in operation
+  drm/ttm: Add public buffer eviction/uneviction functions
+  drm/amdgpu: Add TTM uneviction control functions
+  drm/amdgpu: Don't try moving BOs to preferred domain before submit
+  drm/amdgpu: Don't mark VRAM as a busy placement for VRAM|GTT resources
+  drm/amdgpu: Don't add GTT to initial domains after failing to allocate
+    VRAM
+  drm/ttm: Bump BO priority count
+  drm/ttm: Do not evict BOs with higher priority
+  drm/ttm: Implement ttm_bo_update_priority
+  drm/ttm: Consider BOs placed in non-favorite locations evicted
+  drm/amdgpu: Set a default priority for user/kernel BOs
+  drm/amdgpu: Implement SET_PRIORITY GEM op
+  drm/amdgpu: Implement EVICTED_VRAM query
+  drm/amdgpu: Bump minor version
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |   2 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c     | 191 +---------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h     |   4 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    |  25 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  26 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |   4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  50 ++++
+ drivers/gpu/drm/ttm/ttm_bo.c               | 253 ++++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c          |   3 +
+ drivers/gpu/drm/ttm/ttm_device.c           |   1 +
+ drivers/gpu/drm/ttm/ttm_resource.c         |  19 +-
+ include/drm/ttm/ttm_bo.h                   |  22 ++
+ include/drm/ttm/ttm_device.h               |  28 +++
+ include/drm/ttm/ttm_resource.h             |  11 +-
+ include/uapi/drm/amdgpu_drm.h              |   3 +
+ 17 files changed, 430 insertions(+), 218 deletions(-)
+
+=2D-
+2.44.0
+
