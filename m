@@ -2,119 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9EAD8B0158
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 07:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC428B02E5
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 09:11:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D4910FD6F;
-	Wed, 24 Apr 2024 05:52:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="r2PK+oIL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1051138A2;
+	Wed, 24 Apr 2024 07:11:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF81010FD6B
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 05:52:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fl6P1mwcL2qONXhspsSBj5Exmp+2buTiY9ymhYOE5YMCgork2/TTzpn5XxqiVp4Dwvbh9X6ffP6lUl8tCc5bb2Ox1Xe0ZqZ9KxIThwpJAGSdOdHRtWMQIDJ5g/Ju6TA2FZ6ckg8jWxCzMYQ3zrbs6tZgji7HEMRRNxcG9nQwQzslWUvvO48wg+Cn9sZ3oZXqz8+ztJuNMv/xinE2pZbbmZDKnxYrWVnqV3PG/Wz22uLWT7TZVCG1l/yFyZkZyjiqbsFJlQcDg9aOUfOJvhmYKh43rgdyBGR9Tr7HAHSS8xBb5gdz5AAXlsBNf37TeB3sO9BuoLswk9bsDb3ee+MgyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PM3NIEegkyeUeIcQTIGaYkcyLtz9WE965L1VE/n1CRQ=;
- b=VUrWxuHqWEHiiMoLlZRQve0F43a8+YFKdk0VLMH1yoFEOm68oomORjMbx85axBf0ZBpdEifkvXiAJDSqhkN3H1rxXfOmPRr+LPrYLGxMrpvRLxIUHgS5kBEF3r5dHZ/qmf3H0HB3axuS5Ot6IZ2/vF2e96qn1dDMs0NFXti7FOsywk2ZfgVxh1Gy3eXOgkjocBiK7EuUh9kiiRUyBvT5ehvDM+PklY0b8LI8OgwU3F//gyAeX4JjfSWzgNxcM9bP5j7DvEY4FrP6TLi3cb+IeOgWmArX0Ha31/PK7bZ8IDcrDl1odoJz8k5m1v5a9yGgQhOe+p19pWHHxQiHXuuluQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PM3NIEegkyeUeIcQTIGaYkcyLtz9WE965L1VE/n1CRQ=;
- b=r2PK+oIL7xj5VQl8iUA1aRWqepCp9Bgp9lNrmAU5A6G9HjQPEbBbQW/mHg5rTCq6OYkf2bNWDn7M2TsYlhhMbA+iivQWt9orApTCUxxuAYE5QynASFo2rvrJ+ve2KWjPRJKJkOsAijvdDUXEHNrkgg+29tSQRTdaEy1M1Q+NGe0=
-Received: from CYZPR10CA0024.namprd10.prod.outlook.com (2603:10b6:930:8a::8)
- by SN7PR12MB8435.namprd12.prod.outlook.com (2603:10b6:806:2e2::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Wed, 24 Apr
- 2024 05:52:47 +0000
-Received: from CY4PEPF0000EE3C.namprd03.prod.outlook.com
- (2603:10b6:930:8a:cafe::18) by CYZPR10CA0024.outlook.office365.com
- (2603:10b6:930:8a::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22 via Frontend
- Transport; Wed, 24 Apr 2024 05:52:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EE3C.mail.protection.outlook.com (10.167.242.16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7519.19 via Frontend Transport; Wed, 24 Apr 2024 05:52:46 +0000
-Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 24 Apr
- 2024 00:52:44 -0500
-From: YiPeng Chai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <yipechai@amd.com>, <Hawking.Zhang@amd.com>, <Tao.Zhou1@amd.com>,
- <Candice.Li@amd.com>, <KevinYang.Wang@amd.com>, <Stanley.Yang@amd.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>
-Subject: [PATCH V2] drm/amdgpu: Fix ras mode2 reset failure in ras aca mode
-Date: Wed, 24 Apr 2024 13:52:28 +0800
-Message-ID: <20240424055228.904041-1-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 136624 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Apr 2024 02:30:48 UTC
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64BB310FEF8;
+ Wed, 24 Apr 2024 02:30:47 +0000 (UTC)
+X-QQ-mid: bizesmtp80t1713925829thu2spv5
+X-QQ-Originating-IP: qbpHB5AsY5fWBXvwdZ7obXSglqCo8likImgKQqcak7g=
+Received: from john-PC ( [123.114.60.34]) by bizesmtp.qq.com (ESMTP) with 
+ id ; Wed, 24 Apr 2024 10:30:26 +0800 (CST)
+X-QQ-SSF: 01400000000000E0L000000A0000000
+X-QQ-FEAT: ElntjVByhgXxfG5iUPWhPYsitjgcVhEkJcWMGGOIIPYvD2sFGRut4HVaLxIvv
+ abHXZL3H+uoWdYuuEUdip6/iLbjNe3K1fDUpE95FqngzpxxJE/SIqSrcznkUoVGI2Wl+imZ
+ +zG4Kn3/fS4QDJmk/Hydb1UDAnaD4gCjkdNEHrtrIy1dqrx7cXlweZfwobsSGaqHLPOpufM
+ ZdhYEDLMEslg8PmOeCd3oRd9MaxCR+p6N+KJKDE/Cg6Oo8E1N6279c24GpkVXs0AsKgjYYs
+ l0MYP45pI8x0FuXFyUqwPSfwZPgifwwTuohYb+C93KCwpx1yLODvtYIt/q4+i5LyWUMrr9k
+ OO+4tui0OkqAirlOlYRnGjjE2XMoDYaqJ4x5YxNMM+scEK9vSK1Slx9xzVPASDiswy0jtm+
+ YX2OU0wqFXw=
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 12069142072743202888
+Date: Wed, 24 Apr 2024 10:30:25 +0800
+From: Qiang Ma <maqianga@uniontech.com>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>, alexander.deucher@amd.com,
+ Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch,
+ srinivasan.shanmugam@amd.com, Arunpravin.PaneerSelvam@amd.com,
+ le.ma@amd.com, Felix.Kuehling@amd.com, mukul.joshi@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/amdgpu: Fixup bad vram size on gmc v6 and v7
+Message-ID: <94BEDC76B25ADCE8+20240424103025.74a98199@john-PC>
+In-Reply-To: <f2e1b969-ce9c-450c-9882-99813b7334a0@amd.com>
+References: <20240422052608.5297-1-maqianga@uniontech.com>
+ <68f02c5c-5591-4d6f-9926-b0fc6f9f6287@amd.com>
+ <D94775003178862D+20240422203329.49844e71@john-PC>
+ <bde48eef-4d8a-4cfa-b824-6de88c0f87fd@amd.com>
+ <CADnq5_PQ67J9ytb89-DqOgDw5V-s98TOyVjT5BGfkWMYv5sMQg@mail.gmail.com>
+ <f2e1b969-ce9c-450c-9882-99813b7334a0@amd.com>
+Organization: UOS
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3C:EE_|SN7PR12MB8435:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97d229b3-ec64-452f-d3c1-08dc6422c489
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZLNId+xwSDWeDrbnrEv4YuB5VvIUUkAK71reMx9OsjaE9Yd5nDcT+oX8QnIS?=
- =?us-ascii?Q?Y85VttUzfgNmjtLeB3+dD1NbzPfKRqWlcFulwoebz1tgLN5VDN0etrciC6lS?=
- =?us-ascii?Q?Thf4Pww7NaJHaNh+yCiIdwb0/G4eY7zWn5dw2DXB2HfH8qZE5Tgb/s54uyNv?=
- =?us-ascii?Q?1lzflZxb9pph3kxePEeYHapOrKFUUybrNIwuqvo1EBbiHWY2Z5oVNchfmpaa?=
- =?us-ascii?Q?3kcnJz919h8i1PTJBBw/gN9nV1vfIRu6phHDm0t3xqViptSCnEoYiyED8Dk5?=
- =?us-ascii?Q?fIwCWzuWMc7FashQpIfYsUs/VcFFKS3zxj2+R4K67NcmQVWICXiCTq3HV/w0?=
- =?us-ascii?Q?noKXC0Y3KgDlgouffNdZvrvEhddGiEWZ9lKtOKQ6w2CZeyC0NmtJInu1qKoO?=
- =?us-ascii?Q?CumyJIC3jGp4ti2MNnQCYnO67uUi+yxztRY/SgFvmgTvgUwdD2GQli1vGHPa?=
- =?us-ascii?Q?ulrh7A/LylkqQ2TXHy76iaYl9vKdlROsGAEsNLvtK21jsivuKim9pOuLAieH?=
- =?us-ascii?Q?1sIj8kf3mEjJZYFFy7rVbMgetIstXgkFLQ2phwwtLdu4338CkgQHtJlsW1+c?=
- =?us-ascii?Q?y4K8NS7ExJV5oREvbtRPnB5hx8La189wObbltPVNhwrcJNqpExEtOZU6xCad?=
- =?us-ascii?Q?ZIv4TSQNwWABfd3ukwncnOoa88g4jfevZBa3B5Z9zqRaCcZe/99yv+/LJ/R3?=
- =?us-ascii?Q?mhO6w4ESgPRqUfUGQXezErSfJ4gMk634YbYRJ1hExqv1p41rh1Ngx2jII4y1?=
- =?us-ascii?Q?GFFPglcVGuo30mfchjOWVf8edTU2gPew6GLuynvKdStilNVRaQr/Do43EIPh?=
- =?us-ascii?Q?2J3/ZDKGs8RFDsrP2kbHMl+BOifq7VtAsbd+7Ap6nbqJIMGRkWexP1ConD6m?=
- =?us-ascii?Q?WXo7q3C+iOXXnU5S9F7qdyi05fPv+GxjWpWGrMF6TopVigvr1I9QBi4W9a8L?=
- =?us-ascii?Q?2OfTNdmTUrFBmWcX0S3eNgr8wGB+Z6vKLu/mIcAJTs/c4dvwoQ7wEoqBhGxw?=
- =?us-ascii?Q?UvCQoYudq2omtv8aVmffxLP/hfRDac3z08hFahoiENaoPwzWbZs9Wfktrn34?=
- =?us-ascii?Q?V9hAY81so6EptD4aTFPEEMZuscRGfdRyRfEE7+l7Glk3x0fSojutCPfRD84R?=
- =?us-ascii?Q?CFTeuBOVBL2/KM9w8zHTXWLLhmTDEbs4opktADSGGtfZKkDWq2omdJExZ4Aj?=
- =?us-ascii?Q?02RWLAw7mnMvc6gv5c8hRph0U6N4AnZn8slHEFDQGlImoxIFQPsI5nAvOVnf?=
- =?us-ascii?Q?0jBn0JxaB82jne83NFphfqyuweB7l0RY8RcotS33gdT7/TfwoFtm83Q4bcpZ?=
- =?us-ascii?Q?6KsuM/DczCThfw13cCt0z8Mg+rOicDjboVI1PzF+0bomyZCtOMdr8x/D3riB?=
- =?us-ascii?Q?POrIcY40Ki3DqjkmLgrMBYqkbMc8?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(82310400014)(1800799015); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 05:52:46.7862 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97d229b3-ec64-452f-d3c1-08dc6422c489
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3C.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8435
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-Mailman-Approved-At: Wed, 24 Apr 2024 07:11:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,28 +68,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix ras mode2 reset failure in ras aca mode.
+On Mon, 22 Apr 2024 16:47:36 +0200
+Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
 
-Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> Am 22.04.24 um 16:40 schrieb Alex Deucher:
+> > On Mon, Apr 22, 2024 at 9:00=E2=80=AFAM Christian K=C3=B6nig
+> > <christian.koenig@amd.com> wrote: =20
+> >> Am 22.04.24 um 14:33 schrieb Qiang Ma: =20
+> >>> On Mon, 22 Apr 2024 11:40:26 +0200
+> >>> Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
+> >>> =20
+> >>>> Am 22.04.24 um 07:26 schrieb Qiang Ma: =20
+> >>>>> Some boards(like Oland PRO: 0x1002:0x6613) seem to have
+> >>>>> garbage in the upper 16 bits of the vram size register,
+> >>>>> kern log as follows:
+> >>>>>
+> >>>>> [    6.000000] [drm] Detected VRAM RAM=3D2256537600M, BAR=3D256M
+> >>>>> [    6.007812] [drm] RAM width 64bits GDDR5
+> >>>>> [    6.031250] [drm] amdgpu: 2256537600M of VRAM memory ready
+> >>>>>
+> >>>>> This is obviously not true, check for this and clamp the size
+> >>>>> properly. Fixes boards reporting bogus amounts of vram,
+> >>>>> kern log as follows:
+> >>>>>
+> >>>>> [    2.789062] [drm] Probable bad vram size: 0x86800800
+> >>>>> [    2.789062] [drm] Detected VRAM RAM=3D2048M, BAR=3D256M
+> >>>>> [    2.789062] [drm] RAM width 64bits GDDR5
+> >>>>> [    2.789062] [drm] amdgpu: 2048M of VRAM memory ready =20
+> >>>> Well we had patches like this one here before and so far we
+> >>>> always rejected them.
+> >>>>
+> >>>> When the mmCONFIG_MEMSIZE register isn't properly initialized
+> >>>> then there is something wrong with your hardware.
+> >>>>
+> >>>> Working around that in the software driver is not going to fly.
+> >>>>
+> >>>> Regards,
+> >>>> Christian.
+> >>>> =20
+> >>> Hi Christian:
+> >>> I see that two patches for this issue have been merged, and the
+> >>> patches are as follows:
+> >>>
+> >>> 11544d77e397 drm/amdgpu: fixup bad vram size on gmc v8
+> >>> 0ca223b029a2 drm/radeon: fixup bad vram size on SI =20
+> >> Mhm, I remember that we discussed reverting those but it looks
+> >> like that never happened. I need to ask around internally.
+> >>
+> >> Question is do you see any other problems with the board? E.g.
+> >> incorrect connector or harvesting configuration? =20
+> > I'll need to dig up the past discussion again, but IIRC, the issue
+> > was only seen on some non-x86 platforms.  Maybe something specific
+> > to MMIO on those? =20
+>=20
+> I honestly doesn't remember it either, but in general it's the job of=20
+> the VBIOS to init this register.
+>=20
+> So if we see the upper bits mangled the VBIOS hasn't done that
+> correctly and it's quite likely that this is only the tip of the
+> iceberg of problems.
+>=20
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index edb3cd0cef96..11a70991152c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1254,6 +1254,10 @@ int amdgpu_ras_bind_aca(struct amdgpu_device *adev, enum amdgpu_ras_block blk,
- {
- 	struct ras_manager *obj;
- 
-+	/* in resume phase, no need to create aca fs node */
-+	if (adev->in_suspend || amdgpu_in_reset(adev))
-+		return 0;
-+
- 	obj = get_ras_manager(adev, blk);
- 	if (!obj)
- 		return -EINVAL;
--- 
-2.34.1
+Yes, this problem was found on the mips notebook. Check log vbios
+signature incorrect, I don't know if it has any influence.
+After add patch, drm logs are as follows:
+
+[    2.554687] [drm] amdgpu kernel modesetting enabled.
+[    2.558593] [drm] initializing kernel modesetting (OLAND
+0x1002:0x6613 0x1028:0x1002 0x00). [    2.558593] [drm] register mmio
+base: 0x45400000 [    2.558593] [drm] register mmio size: 262144
+[    2.558593] [drm] add ip block number 0 <si_common>
+[    2.558593] [drm] add ip block number 1 <gmc_v6_0>
+[    2.558593] [drm] add ip block number 2 <si_ih>
+[    2.558593] [drm] add ip block number 3 <si_dpm>
+[    2.558593] [drm] add ip block number 4 <dce_v6_0>
+[    2.558593] [drm] add ip block number 5 <gfx_v6_0>
+[    2.558593] [drm] add ip block number 6 <si_dma>
+[    2.578125] [drm] BIOS signature incorrect 0 0
+[    2.746093] [drm] vm size is 64 GB, 2 levels, block size is 10-bit,
+fragment size is 9-bit [    2.746093] [drm] Probable bad vram size:
+0x86800800 [    2.746093] [drm] Detected VRAM RAM=3D2048M, BAR=3D256M
+[    2.746093] [drm] RAM width 64bits GDDR5
+[    2.750000] [drm] amdgpu: 2048M of VRAM memory ready
+[    2.750000] [drm] amdgpu: 3072M of GTT memory ready.
+[    2.750000] [drm] GART: num cpu pages 65536, num gpu pages 262144
+[    2.750000] [drm] Supports vblank timestamp caching Rev 2
+(21.10.2013). [    2.750000] [drm] Driver supports precise vblank
+timestamp query. [    2.750000] [drm] Internal thermal controller with
+fan control [    2.750000] [drm] amdgpu: dpm initialized
+[    2.750000] [drm] amdgpu atom DIG backlight initialized
+[    2.750000] [drm] AMDGPU Display Connectors
+[    2.750000] [drm] Connector 0:
+[    2.750000] [drm]   DP-1
+[    2.750000] [drm]   HPD2
+[    2.750000] [drm]   DDC: 0x1950 0x1950 0x1951 0x1951 0x1952 0x1952
+0x1953 0x1953 [    2.750000] [drm]   Encoders:
+[    2.750000] [drm]     LCD1: INTERNAL_UNIPHY
+[    2.750000] [drm] Connector 1:
+[    2.750000] [drm]   HDMI-A-1
+[    2.750000] [drm]   HPD1
+[    2.750000] [drm]   DDC: 0x194c 0x194c 0x194d 0x194d 0x194e 0x194e
+0x194f 0x194f [    2.750000] [drm]   Encoders:
+[    2.750000] [drm]     DFP1: INTERNAL_UNIPHY
+[    2.753906] [drm] PCIE gen 2 link speeds already enabled
+[    3.507812] [drm] fb mappable at 0x503E4000
+[    3.507812] [drm] vram apper at 0x50000000
+[    3.507812] [drm] size 8306688
+[    3.507812] [drm] fb depth is 24
+[    3.507812] [drm]    pitch is 7680
+[    4.632812] amdgpu 0000:05:00.0: fb0: amdgpudrmfb frame buffer device
+[    5.023437] [drm] Initialized amdgpu 3.27.0 20150101 for
+0000:05:00.0 on minor 0
+
+
+Qiang Ma
+
+> Christian.
+>=20
+> >
+> > Alex
+> >
+> > =20
+> >> Regards,
+> >> Christian.
+> >> =20
+> >>> Qiang Ma
+> >>> =20
+> >>>>> Signed-off-by: Qiang Ma <maqianga@uniontech.com>
+> >>>>> ---
+> >>>>>     drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c | 11 +++++++++--
+> >>>>>     drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c | 13 ++++++++++---
+> >>>>>     2 files changed, 19 insertions(+), 5 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+> >>>>> b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c index
+> >>>>> 23b478639921..3703695f7789 100644 ---
+> >>>>> a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c +++
+> >>>>> b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c @@ -309,8 +309,15 @@
+> >>>>> static int gmc_v6_0_mc_init(struct amdgpu_device *adev) }
+> >>>>>      adev->gmc.vram_width =3D numchan * chansize;
+> >>>>>      /* size in MB on si */
+> >>>>> -   adev->gmc.mc_vram_size =3D RREG32(mmCONFIG_MEMSIZE) *
+> >>>>> 1024ULL * 1024ULL;
+> >>>>> -   adev->gmc.real_vram_size =3D RREG32(mmCONFIG_MEMSIZE) *
+> >>>>> 1024ULL * 1024ULL;
+> >>>>> +   tmp =3D RREG32(mmCONFIG_MEMSIZE);
+> >>>>> +   /* some boards may have garbage in the upper 16 bits */
+> >>>>> +   if (tmp & 0xffff0000) {
+> >>>>> +           DRM_INFO("Probable bad vram size: 0x%08x\n", tmp);
+> >>>>> +           if (tmp & 0xffff)
+> >>>>> +                   tmp &=3D 0xffff;
+> >>>>> +   }
+> >>>>> +   adev->gmc.mc_vram_size =3D tmp * 1024ULL * 1024ULL;
+> >>>>> +   adev->gmc.real_vram_size =3D adev->gmc.mc_vram_size;
+> >>>>>
+> >>>>>      if (!(adev->flags & AMD_IS_APU)) {
+> >>>>>              r =3D amdgpu_device_resize_fb_bar(adev);
+> >>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+> >>>>> b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c index
+> >>>>> 3da7b6a2b00d..1df1fc578ff6 100644 ---
+> >>>>> a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c +++
+> >>>>> b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c @@ -316,10 +316,10 @@
+> >>>>> static void gmc_v7_0_mc_program(struct amdgpu_device *adev)
+> >>>>> static int gmc_v7_0_mc_init(struct amdgpu_device *adev) {
+> >>>>>      int r;
+> >>>>> +   u32 tmp;
+> >>>>>
+> >>>>>      adev->gmc.vram_width =3D
+> >>>>> amdgpu_atombios_get_vram_width(adev); if
+> >>>>> (!adev->gmc.vram_width) {
+> >>>>> -           u32 tmp;
+> >>>>>              int chansize, numchan;
+> >>>>>
+> >>>>>              /* Get VRAM informations */
+> >>>>> @@ -363,8 +363,15 @@ static int gmc_v7_0_mc_init(struct
+> >>>>> amdgpu_device *adev) adev->gmc.vram_width =3D numchan * chansize;
+> >>>>>      }
+> >>>>>      /* size in MB on si */
+> >>>>> -   adev->gmc.mc_vram_size =3D RREG32(mmCONFIG_MEMSIZE) *
+> >>>>> 1024ULL * 1024ULL;
+> >>>>> -   adev->gmc.real_vram_size =3D RREG32(mmCONFIG_MEMSIZE) *
+> >>>>> 1024ULL * 1024ULL;
+> >>>>> +   tmp =3D RREG32(mmCONFIG_MEMSIZE);
+> >>>>> +   /* some boards may have garbage in the upper 16 bits */
+> >>>>> +   if (tmp & 0xffff0000) {
+> >>>>> +           DRM_INFO("Probable bad vram size: 0x%08x\n", tmp);
+> >>>>> +           if (tmp & 0xffff)
+> >>>>> +                   tmp &=3D 0xffff;
+> >>>>> +   }
+> >>>>> +   adev->gmc.mc_vram_size =3D tmp * 1024ULL * 1024ULL;
+> >>>>> +   adev->gmc.real_vram_size =3D adev->gmc.mc_vram_size;
+> >>>>>
+> >>>>>      if (!(adev->flags & AMD_IS_APU)) {
+> >>>>>              r =3D amdgpu_device_resize_fb_bar(adev); =20
+>=20
+>=20
 
