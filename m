@@ -2,71 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5B28B1C97
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Apr 2024 10:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FE38B1C92
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Apr 2024 10:11:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFCA411A27E;
-	Thu, 25 Apr 2024 08:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B2F11A279;
+	Thu, 25 Apr 2024 08:11:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WnRxaVXR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CQ5HO/43";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 672DC10F15D;
- Wed, 24 Apr 2024 16:12:00 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-346359c8785so5866440f8f.0; 
- Wed, 24 Apr 2024 09:12:00 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6AD910E2CB;
+ Wed, 24 Apr 2024 16:28:13 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-41b09fb205dso360575e9.0; 
+ Wed, 24 Apr 2024 09:28:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1713975119; x=1714579919; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1713976092; x=1714580892; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=l7fwhYCByqsyxtduNgA8zx5Qp4wn8aktE/VYg2R/KyU=;
- b=WnRxaVXRwzTL2vzx2trbBtOaSY8zPIGsBCgGYtevakZKntlaMTN9AnqWFiWE5kD19g
- mQMZRRkjWdjJbJZL6mlfrcpnIZrKXzc1h/0z47J1AA0W03X+N+tTKa6N+hn0TAfCLF7k
- LTgTyhfmAG4RxYT+vzVE4jSqsmq1CoZQ3QBZcVo+JbcGe+zLSzNKvlqtT++CuXH1LteP
- nsNgs+ouE8WeXP19f2gdCAtP1RILf8iiTxqYvAWadfDxc5rpjPgEfyKDp0D2MFtVR8Wu
- xZmDb4q0lA08iJM4826m8RBuxNsn7wJo9dUCkL8pft/zQu/QM8zOIde4PnEbNe0Gav91
- SvDg==
+ bh=JGTvGTdmOEkfpJBObdVGs6RBZIv2agsPt8BWCLj0PV0=;
+ b=CQ5HO/43ii1W5uvdspx6L8aH7fzWAuGLc6m8jT3bh4dGqhUOMCTZrx8Dgt1bMAY3PB
+ 26YbSuTjPLXo2PO2enBue4Ti325JAdjz5l9VoQjxrDf8QDswapmpGX7lijpNQuPIEqM4
+ Avf06HArAjHW3DQIve5wMXEoGjof7FDDq95EHPb9jHyE2vqKSiiFMzgpxW0UCphcZ1nV
+ rE6f60WIzzVs4ybK3qk+uvoImlNiyWmIUyPd9s3o4pzXBEcgBoQKt2PKNCRj0e2GTWPH
+ lscTdeIw61CFinMSX+RVUSLqGzUUIgbqxVp1NxWdop+KZZ1pbTj6i+/vZjIJJtWHtg2I
+ kyWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1713975119; x=1714579919;
+ d=1e100.net; s=20230601; t=1713976092; x=1714580892;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=l7fwhYCByqsyxtduNgA8zx5Qp4wn8aktE/VYg2R/KyU=;
- b=sI4QlHOQFI4uTdD43Fcz/gpRwWQAUvt7eqyxc8d9zTfoKuyg2zkBtsG612ZNCqdrDV
- Dvd1Z/lEZlTi/KckSy0jovXEmjoeSp3JSz8ZZuDGQ+GrVbDdNnnMKbd6yKGz/KGALejd
- K8NatnWBgOa2Xn0BCoXLCRkVKs5Qh64SolAh0nR21d9qGzH22oL4TNTaNjh+jMACLZfw
- AAfrG40wQznoDcH4D8FhH9JnCnDnMl7CZUdAHDo7p1SJ4sz9QJ7hYrmFI4pf3g+c/aZn
- fWDr6ar0sS9QTFUKrpzFidZLT71/MvdDfjcsnSH2fJ7FXiSf+x70nxqhWKmT6seDZtb+
- 226Q==
+ bh=JGTvGTdmOEkfpJBObdVGs6RBZIv2agsPt8BWCLj0PV0=;
+ b=CwY3gc5/9pGzELi+h9Ei5de7XJHhgNqag8z+TixGudnBbx1xie9Az12XJqjvZIUYMr
+ CbxfI/5UXujrXn6Mu1cpvTT3YJcfoIKOMdL8RWKwPmnouwdZ8euRUBwJ+H1vb9Ji1Ckq
+ ljB4ckF6uW9fhhF4AAYi+6/1acIAL3Qz5CVDdshTS0/F1HYUAq/Yk2KvfUgvbitBrFT2
+ MnvoYmtFrJn7fzx+R59fEjwiiDUc8BH78D/LFSUdju6al8h3maaaZWUIMSCUgyAuoPb/
+ 4nHrrcBaHbr7tLSW9AysO2aUFgjUWIVm8GzCqBJzYmgy2JUvQieajVwMW1On6efnPb0F
+ Ehqg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVt3h91/4tSiqjp0q6PleX2qG3XcYu+T131QPErFdnOlEGFBH6WPnJ4b8EK1du6YGeIhY26vHsAEPzBzs5IC4b8hKOQVxxRUXr+HtxzpKgW82DE65EDzof6z9b/oNKqd4EyF8iIItwYf7sGQ85v/g==
-X-Gm-Message-State: AOJu0Yxk4mpB2PIs0RU4wtxP5wZ9bcHeNro6BDGstOFdjeQXEY4I+ZaX
- Y4eOzC9CDKHihMhyzUFDBsq/br3IUUI3E7GusicTfQbRXFLA+TAI
-X-Google-Smtp-Source: AGHT+IH3jYf42AlOaYiK+FEIyw3LbLPxAlyd2I+vNCGrces4wHDtdBSa9HS2eMuzoJpicBrPQ5yBVw==
-X-Received: by 2002:a05:6000:4e6:b0:34b:3f27:89cd with SMTP id
- cr6-20020a05600004e600b0034b3f2789cdmr1584655wrb.71.1713975118431; 
- Wed, 24 Apr 2024 09:11:58 -0700 (PDT)
+ AJvYcCXSbA+eKX2P8axFIrNryGa2c4eF0X+tpUmrWp0Lys7yA5ZZd3mh3Rb9IFTUfhPzzqQX5C+JN/BoEToaMiFTHsNjStiiUeuTZEMPovYtRAhabTmqudqTAvHkRbIcqFNRlPgLFOWcQwgQqeufVDv16g==
+X-Gm-Message-State: AOJu0YwCU84yjoEAUXZWwNf8B6F1T4pxGSPmo5gooDqUDL71R71+FQ01
+ LW1XFrQNcRPKBdky6+Z9BrRFmCuDBW/CM5lUJjDiHrcxYq3g6t5dkgGvMHVX
+X-Google-Smtp-Source: AGHT+IFdyfgobu/a315DB2FtmY2cDEDxZGBYPtzRDMgTf+H7kT/QhdAaIfpMUsGqdQEDXdl5Xf1h1Q==
+X-Received: by 2002:a05:600c:4f93:b0:419:cc9b:420a with SMTP id
+ n19-20020a05600c4f9300b00419cc9b420amr2380021wmq.1.1713976091917; 
+ Wed, 24 Apr 2024 09:28:11 -0700 (PDT)
 Received: from localhost
  (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
  by smtp.gmail.com with ESMTPSA id
- l1-20020a5d4bc1000000b0034ae73a8b25sm9639884wrt.37.2024.04.24.09.11.56
+ t13-20020a05600c450d00b00417f700eaeasm24543125wmo.22.2024.04.24.09.28.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Apr 2024 09:11:56 -0700 (PDT)
+ Wed, 24 Apr 2024 09:28:11 -0700 (PDT)
 From: Colin Ian King <colin.i.king@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: kernel-janitors@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/amdgpu: Fix spelling mistake "PRORITY" -> "PRIORITY"
-Date: Wed, 24 Apr 2024 17:11:55 +0100
-Message-Id: <20240424161155.3946451-1-colin.i.king@gmail.com>
+Subject: [PATCH][next] drm/amd/display: Fix spelling various spelling mistakes
+Date: Wed, 24 Apr 2024 17:28:09 +0100
+Message-Id: <20240424162809.3948457-1-colin.i.king@gmail.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -86,55 +87,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are spelling mistakes in a literal string and enums, fix these.
-Currently there are no uses of the enums that got renamed in this fix.
+There are various spelling mistakes in dml2_printf messages, fix them.
 
 Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c        | 2 +-
- drivers/gpu/drm/amd/include/mes_api_def.h     | 2 +-
- drivers/gpu/drm/amd/include/mes_v11_api_def.h | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c      | 6 +++---
+ .../display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c  | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index fbe31afad1d4..44f1af6da21e 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -111,7 +111,7 @@ static const char *mes_v11_0_opcodes[] = {
- 	"RESUME",
- 	"RESET",
- 	"SET_LOG_BUFFER",
--	"CHANGE_GANG_PRORITY",
-+	"CHANGE_GANG_PRIORITY",
- 	"QUERY_SCHEDULER_STATUS",
- 	"PROGRAM_GDS",
- 	"SET_DEBUG_VMID",
-diff --git a/drivers/gpu/drm/amd/include/mes_api_def.h b/drivers/gpu/drm/amd/include/mes_api_def.h
-index bf3d6ad263f9..ed479575df18 100644
---- a/drivers/gpu/drm/amd/include/mes_api_def.h
-+++ b/drivers/gpu/drm/amd/include/mes_api_def.h
-@@ -54,7 +54,7 @@ enum MES_SCH_API_OPCODE {
- 	MES_SCH_API_RESUME			= 7,
- 	MES_SCH_API_RESET			= 8,
- 	MES_SCH_API_SET_LOG_BUFFER		= 9,
--	MES_SCH_API_CHANGE_GANG_PRORITY		= 10,
-+	MES_SCH_API_CHANGE_GANG_PRIORITY	= 10,
- 	MES_SCH_API_QUERY_SCHEDULER_STATUS	= 11,
- 	MES_SCH_API_PROGRAM_GDS			= 12,
- 	MES_SCH_API_SET_DEBUG_VMID		= 13,
-diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-index 410c8d664336..5b8fd9465cf3 100644
---- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-+++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-@@ -54,7 +54,7 @@ enum MES_SCH_API_OPCODE {
- 	MES_SCH_API_RESUME			= 7,
- 	MES_SCH_API_RESET			= 8,
- 	MES_SCH_API_SET_LOG_BUFFER		= 9,
--	MES_SCH_API_CHANGE_GANG_PRORITY		= 10,
-+	MES_SCH_API_CHANGE_GANG_PRIORITY	= 10,
- 	MES_SCH_API_QUERY_SCHEDULER_STATUS	= 11,
- 	MES_SCH_API_PROGRAM_GDS			= 12,
- 	MES_SCH_API_SET_DEBUG_VMID		= 13,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index 846b0ae48596..2dea5965d02f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -5566,7 +5566,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 		dml2_printf("DML: Tvm: %fus - time to fetch vm\n", s->TimeForFetchingVM);
+ 		dml2_printf("DML: Tr0: %fus - time to fetch first row of data pagetables\n", s->TimeForFetchingRowInVBlank);
+ 		dml2_printf("DML: Tsw: %fus = time to fetch enough pixel data and cursor data to feed the scalers init position and detile\n", (double)s->LinesToRequestPrefetchPixelData * s->LineTime);
+-		dml2_printf("DML: To: %fus - time for propogation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
++		dml2_printf("DML: To: %fus - time for propagation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
+ 		dml2_printf("DML: Tvstartup - TSetup - Tcalc - TWait - Tpre - To > 0\n");
+ 		dml2_printf("DML: Tslack(pre): %fus - time left over in schedule\n", p->VStartup * s->LineTime - s->TimeForFetchingVM - 2 * s->TimeForFetchingRowInVBlank - (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime - p->TWait - p->TCalc - *p->TSetup);
+ 		dml2_printf("DML: row_bytes = dpte_row_bytes (per_pipe) = PixelPTEBytesPerRow = : %u\n", p->PixelPTEBytesPerRow);
+@@ -7825,7 +7825,7 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
+ 	dml2_printf("DML::%s: mode_lib->ms.FabricClock = %f\n", __func__, mode_lib->ms.FabricClock);
+ 	dml2_printf("DML::%s: mode_lib->ms.uclk_freq_mhz = %f\n", __func__, mode_lib->ms.uclk_freq_mhz);
+ 	dml2_printf("DML::%s: max_urgent_latency_us = %f\n", __func__, mode_lib->ms.support.max_urgent_latency_us);
+-	dml2_printf("DML::%s: urgent latency tolarance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
++	dml2_printf("DML::%s: urgent latency tolerance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
+ 	dml2_printf("DML::%s: ROBSupport = %u\n", __func__, mode_lib->ms.support.ROBSupport);
+ #endif
+ 
+@@ -10603,7 +10603,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
+ 				if (display_cfg->plane_descriptors[k].immediate_flip && mode_lib->mp.ImmediateFlipSupportedForPipe[k] == false) {
+ 					mode_lib->mp.ImmediateFlipSupported = false;
+ #ifdef __DML_VBA_DEBUG__
+-					dml2_printf("DML::%s: Pipe %0d not supporing iflip!\n", __func__, k);
++					dml2_printf("DML::%s: Pipe %0d not supporting iflip!\n", __func__, k);
+ #endif
+ 				}
+ 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+index 0ef77a89d984..d1d4fe062d4e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+@@ -2023,7 +2023,7 @@ bool dml2_core_shared_mode_support(struct dml2_core_calcs_mode_support_ex *in_ou
+ 	dml2_printf("DML::%s: mode_lib->ms.FabricClock = %f\n", __func__, mode_lib->ms.FabricClock);
+ 	dml2_printf("DML::%s: mode_lib->ms.uclk_freq_mhz = %f\n", __func__, mode_lib->ms.uclk_freq_mhz);
+ 	dml2_printf("DML::%s: max_urgent_latency_us = %f\n", __func__, mode_lib->ms.support.max_urgent_latency_us);
+-	dml2_printf("DML::%s: urgent latency tolarance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
++	dml2_printf("DML::%s: urgent latency tolerance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
+ 	dml2_printf("DML::%s: ROBSupport = %u\n", __func__, mode_lib->ms.support.ROBSupport);
+ #endif
+ 
+@@ -8174,7 +8174,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 		dml2_printf("DML: Tvm: %fus - time to fetch vm\n", s->TimeForFetchingVM);
+ 		dml2_printf("DML: Tr0: %fus - time to fetch first row of data pagetables\n", s->TimeForFetchingRowInVBlank);
+ 		dml2_printf("DML: Tsw: %fus = time to fetch enough pixel data and cursor data to feed the scalers init position and detile\n", (double)s->LinesToRequestPrefetchPixelData * s->LineTime);
+-		dml2_printf("DML: To: %fus - time for propogation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
++		dml2_printf("DML: To: %fus - time for propagation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
+ 		dml2_printf("DML: Tvstartup - TSetup - Tcalc - TWait - Tpre - To > 0\n");
+ 		dml2_printf("DML: Tslack(pre): %fus - time left over in schedule\n", p->VStartup * s->LineTime - s->TimeForFetchingVM - 2 * s->TimeForFetchingRowInVBlank - (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime - p->TWait - p->TCalc - *p->TSetup);
+ 		dml2_printf("DML: row_bytes = dpte_row_bytes (per_pipe) = PixelPTEBytesPerRow = : %u\n", p->PixelPTEBytesPerRow);
+@@ -10994,7 +10994,7 @@ bool dml2_core_shared_mode_programming(struct dml2_core_calcs_mode_programming_e
+ 				if (display_cfg->plane_descriptors[k].immediate_flip && mode_lib->mp.ImmediateFlipSupportedForPipe[k] == false) {
+ 					mode_lib->mp.ImmediateFlipSupported = false;
+ #ifdef __DML_VBA_DEBUG__
+-					dml2_printf("DML::%s: Pipe %0d not supporing iflip!\n", __func__, k);
++					dml2_printf("DML::%s: Pipe %0d not supporting iflip!\n", __func__, k);
+ #endif
+ 				}
+ 			}
 -- 
 2.39.2
 
