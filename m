@@ -2,146 +2,146 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FA678B045B
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 10:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 968D78B0479
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Apr 2024 10:38:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBE79113901;
-	Wed, 24 Apr 2024 08:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 088C3113913;
+	Wed, 24 Apr 2024 08:38:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0gD6A7UN";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PQR/hOMk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2051.outbound.protection.outlook.com [40.107.100.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C875E113901
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 08:32:10 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F0DA113913
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 08:38:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HqpPxnaHStToYsJd9uzgFaQzxlxHOElAEdI5FlA+NN0BH6xmkVf9yNuVnz3GFvH83Tw0XRbXAL35y6WhZSsQREuhRb6iasUl1GwDaxmx+u1/vaqs2cbBJoc2NsqFCb6T1y5QWPmK/iCZPaV8uE1caqs0GUdrw2xGpOLwILUgX4vL/vtaaftHFpgDrIZXhaGeZapXhrLwt27VDn0I7xTr196quFnOgkH47dceCvRz3KnLMu5sHvBvOduCny9nhDT5i3eVsKt/C3F/WthXBH/HPHGNFZOV1YzGBS0P+yvbFQ4zbL8saLsl6v5q0IEeJJIb4mTNR1olkVVtU1p7XE5xiw==
+ b=IbWv1AWPHBFmlyE9KJZW3kLJpaxNAK18Uh3osQ100O7Pi/jZ3cVx4Hx8KTVx7o/mdPvnWMOYyxEBZzKSa7Jzb4GwBLyb67UOIAJ8ywptMTJJCxt5tyZaqysESpaOCa6CoI4w7tkOF3kDBajPV1bobxIRfwPGIpK1Gw1Tll5ijr5eJlL0XuOzJtXIv1t32g2J+Smwy25XXSnVUGJAPW5CQzYgmFZqXrif+ImynLsKFQRmwfoA8xvI8cbTAZTGjkkxHB21LEyX5VmlDqoln4uF2tgFPQbBeJR85O3CTV3bfXTirSuu39MisXC3JK7qXflrJWG6otZiBSsUWYe3e29ZwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kHhNR6RSCJbO8bnRrzc34bqlK7vGaK0cu/SF6Y0wyX8=;
- b=T6XMWjjFku8+5xguB1G/2TiZvmET9W3L3siAPTyrb25hBm86j7FbNyVI1CfhvarYGrbbWk/K5ErwmFcfOj8ik0Wsw0VwCUqUCc3X1Q2rzTUUPhWFyT7X3UCGKXG7U+Q/phRCnSq/gwbBVYp/CH9NGDJ2RQr4LfXZ07LSmR8Q9BlYXnJxkYP+mqhoww/KD+J+SPaNR7IKyhLrZaG+qtlgVY/0ucTqrVcuGK2oPxv9z0dVMGsxf+O6dVyXYEJ9epsHbW56HlNgZcanM2ZLLJks8l8+E6tORyA2yJ3OWFI/ZRT/3b1RaV99ZoQ/YmVEiDhyku5CDnycw6MQa6WpKDB/ig==
+ bh=LOV/4vq3c8xeIIBcX8BKCe8EQ5xOnlAKnVdfNmrn0F0=;
+ b=fk4OzVsJP3tIwVHtNWzGLkrPOWU6FUwTx4sWwyRwPD2UZQxwrFU6LAopW9egahRyw67M7Z5mEoH4odq8Xt28tWiNDvRk7cIxJZTeLVbBxbdMckP+eEwBrv5iGF+V/xdrYWLqKMiZKqq3J3UgF+Uk6UEFGdUPJm691wz7n6gLRIa9Xxk239XoBW9SkZwzvS4DZHeuhOxdvZTPcHphLsCq6uhb+aiiD44POoEGEh3LmZ1V/iKOeZYx8VjWO0LabpP+sZTxFIL6U/my9M8FTHT9ryAo0OO9IazqM5c7oB0CA2ew9/EnE/WmSfydFOhuig22WnsEb4pPVatFA7aQOdUooQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kHhNR6RSCJbO8bnRrzc34bqlK7vGaK0cu/SF6Y0wyX8=;
- b=0gD6A7UNKyvcTfCLV2+Yc518ZmumBRnYEZ2CiSRR6fdNH8AR/rMcvMOjABv6Db8wQw+bflPYbIvGFeF0WVGGCsCArHqr0NFfauJjayvflrjXzQTbPxnH0YiKUQVU3kGUkl1Sfm46AZvHllACLo2J0DEgcaK1/1ADbNe3P/2UKeg=
+ bh=LOV/4vq3c8xeIIBcX8BKCe8EQ5xOnlAKnVdfNmrn0F0=;
+ b=PQR/hOMkl30igX+1pEJMO90LZ+8EL4Z07+iDVEQQglDQ/JKAYL3HlZElahYcRRBjmyleI+5GS5FXob67lzjhZza4x3UEp4Oj6M46NpMVl3YJR+Gsn0uQazZYxLhLBgkowh3MnLMGscAwbP+Rv1jen+u1EYIT81midXm61B30Dk8=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
  by MN2PR12MB4078.namprd12.prod.outlook.com (2603:10b6:208:1de::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22; Wed, 24 Apr
- 2024 08:32:06 +0000
+ 2024 08:38:15 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7519.021; Wed, 24 Apr 2024
- 08:32:06 +0000
-Message-ID: <ec22be89-32f1-45b4-89d7-7aeaa81558c5@amd.com>
-Date: Wed, 24 Apr 2024 10:32:01 +0200
+ 08:38:14 +0000
+Message-ID: <5c3e3649-0d8f-4cee-a06b-90658d50ff3b@amd.com>
+Date: Wed, 24 Apr 2024 10:38:09 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/amdgpu: Modify the contiguous flags behaviour
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, felix.kuehling@amd.com, philip.yang@amd.com
-References: <20240424071337.3206-1-Arunpravin.PaneerSelvam@amd.com>
+Subject: Re: [PATCH v2] drm/amdgpu: add return result for
+ amdgpu_i2c_{get/put}_byte
+To: Bob Zhou <bob.zhou@amd.com>, amd-gfx@lists.freedesktop.org,
+ alexander.deucher@amd.com
+References: <20240424075241.49101-1-bob.zhou@amd.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240424071337.3206-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20240424075241.49101-1-bob.zhou@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0340.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ea::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+X-ClientProxiedBy: FR2P281CA0156.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:98::13) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4078:EE_
-X-MS-Office365-Filtering-Correlation-Id: c280943e-2740-4c73-379d-08dc64390654
+X-MS-Office365-Filtering-Correlation-Id: efd27bf9-20f6-460f-22ae-08dc6439e1ef
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cG5MVlovZHdrWVJwb2toN1NSbW1OOVUvUFJQVHdFZ1dmL3pZT1pUd2xCOTBG?=
- =?utf-8?B?U2luM3Z6SFVTdzd0YlN3ZGVYQkIxQkR1c0Z6SWd3anFoNDNOckZnYnV6aEJK?=
- =?utf-8?B?U3FROWx2U3RURGZOZEEzaGQraHBsdDkzTDhPZXoyK3JMeCs4YjhWcUZOclB6?=
- =?utf-8?B?RGJSMjQwMzY4NEJHb1ZPV3U4a2lLRVBXWkxTVTU0ckZUM1F6SWlRY1pBT1NH?=
- =?utf-8?B?VlVEUkdXSDA1VnUxUTZvcW5aTVh3NGF0Szh2alVaT3ZWenpBQStTd2dacDhH?=
- =?utf-8?B?Q0FSNENwSWhDMks0R0FJcFR0WEpkV0JLWjRKcDQ4aUhHeEJqRkJINmRobExn?=
- =?utf-8?B?Y0NNbkRadTRvaDk3NmkrajNYZ0FubDlNZE1ibXJDYUNQaWNacDlxMmMzUDRt?=
- =?utf-8?B?N2JqbEhhT3VPdHVBamUzU01NN21HUlZyWVQ0R0l2d0ZwNE1uNndPREdFZmtL?=
- =?utf-8?B?c1BhdVhVZG13NDNScFVSZElXVVV0K2NhZ1QrdGdzY0hBaXo2NDg3Q3NNbmc2?=
- =?utf-8?B?TytodDlTU1VXeHdwUHc0R09zOHNtaFdpMGtsZHltVUUybU9pUm9YWUZ6cVEz?=
- =?utf-8?B?QTRMSlM0Tm5jaUZudHBmWlZHcEVueExPZURIMGFpL1Z6L1BlL3Z3SEpwZnlX?=
- =?utf-8?B?ZzhENTBycVBoUkppQU1qak1qVEY0cEFiRUZvWkd3YlVxb1BoSnBzY2RTZ2JG?=
- =?utf-8?B?R1BGSzVzR3gwZE1tV3ozSXRJdE9xSDYrbW5hNVliZ2o4YzlTRFNiQUNUTzkx?=
- =?utf-8?B?RUhFWUROMThPbmFDTlNDSDYyOERKaXlVZkdYeHpkRlNoU0FVSmx0V0c0SEtM?=
- =?utf-8?B?MmxRMTBqTXZTbldlekoweVRoVTZuTDEyRGpFR1hZODBZMnl2NTV0WUx5RkVs?=
- =?utf-8?B?K1VLREpCWUN6OVU1QmNKVVJlT3hUTHNrQmJ4QnBFVTg5YWhHdWxUVVlZblRO?=
- =?utf-8?B?UGRtY2h2eHpmWnR1bm1YbzhMTTdIbE0xenNYUjJlRm9aQkpwbFBZb0l6d0Fr?=
- =?utf-8?B?S05kcWVlVmNGUDErZDlBZ2pZYXNlWHBENDBvVldONmtvVVNVU0FScnNna1RS?=
- =?utf-8?B?YmpUMkVqcGRQdlBtQndYZkh0QmMwQ2R0WVE5RStPRlRWSlIxT1Y2ZFM3WHk2?=
- =?utf-8?B?eCtYNFUwYW4xMldka2FtVE1VdlVIOWM0YTJ1cEFZREhxU3pKYkJJZXRtRGNI?=
- =?utf-8?B?cjBLY2JiZW1TcW51RG1GWm1FMkJ0ai92Zjd2Z0dOdllVdjJNcFZvNGtOS250?=
- =?utf-8?B?bDN3NkF6OENqVkpmb3JFbnB1RkJPMnBDdXV4bTZSWlAvZmpiRjlUUk9pT3Jh?=
- =?utf-8?B?ekpqVmFjaEJyQjZwVHZuMis4QXJQN3NBcXJDY1FrdmZWM1U4amtkVU93OGNu?=
- =?utf-8?B?eFJ5ZkVWTXBCWVV6dW1IOC91ZVY4dXFhM2N5VVhNVWp5R1hCdmlRSlBKc3NH?=
- =?utf-8?B?Y2xNWWN2YzBhbkFiMlN1d05UeU1NTDA4OUFjaGFmNFArTGc1b1pMMzJ3NjNh?=
- =?utf-8?B?VHJrTWFkenh2YjVTdVFaTWpYNlZKYVkwYURtNy96clYxckFFKzNua2tPWUY3?=
- =?utf-8?B?dG5MWVZoRHZOZWVKRW1NL2QvMkE2NDI0OHFSWFRlR1FQRVhqdkI5ZWlNWkRw?=
- =?utf-8?B?OU13YmVRWGdkenAwVFNSS1lyWURYL1d5UlhwQnE4cE8zRFU4OW5LVFNSZTRE?=
- =?utf-8?B?dXVrZ0Mvd3F0SkdFQmY1ZjlVbmJuWXAyOVo1QXhmYnJ2UWhTbjBuRVVnPT0=?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?YkFoMlhybUhmc251L2M2cUNVZVpEUFNqRmNWTU41OGJaTjE5U1JpMHE3WVJH?=
+ =?utf-8?B?OGFBYks5TjUxZjhEZTNadGZEb3lmWDlHaU1meVVNaXdDaFdaSENsQmdxdGpq?=
+ =?utf-8?B?MmVzL1g2TWRJOVkzSnJ0WmFMS0piUmx2U092ZHI3eHlCNXU2VU11bUJja2hS?=
+ =?utf-8?B?S28vOHJUdUxkaHcra3V3ODJibHJhN3Z2WHVTQ3U5Y2djbUxqQUQwQ3lOblU1?=
+ =?utf-8?B?aG9BRkdQUWRQQUtmNEtoREJBbzQxTFBZWHF3eitkYnFhdDQrRXZqU3EyVjRJ?=
+ =?utf-8?B?Mk5MMUh2Q3N1UCtvcHk3eUpKNk9UM1dxU3d0bjd5ZEFsalAyUDlHQ0V5cWdI?=
+ =?utf-8?B?Y1RQR3NtSFVRVTQ3K3A0cDBibFA4bGlpNzk2NmlCOUNtQUNHM0tHcXFDUkcw?=
+ =?utf-8?B?SElScWhScWFUSzBGL203WHhEOHZiSUdXL3JHNE5XenRBc01SRGxxTDFLQ3RF?=
+ =?utf-8?B?TlBLRG00akxWMUJZdS9kWUc3ZzY2UVE3ZGhWd29BS3FUQjVOM3c5YVlER2xl?=
+ =?utf-8?B?Mkh0eThkUEcxNmpxUUFVcm5aOGFIWTJ4OGxkY1lDQnFCMDg2alIyeW56Q2FW?=
+ =?utf-8?B?MmtrL2xkVGpJSHVnR3dhNVdyUEt0b3BoTWlIY2oxZDNBMEY4YjhIYTFpTHho?=
+ =?utf-8?B?T3VwaXI4bVdYVFdqVlNBdDgwRmxkNmhTZGEzT0hQMTVrRlpLWnUvMjBNM1g0?=
+ =?utf-8?B?Y0pHTmxndTlvTEUrOXd0elU4UTFjUnFxVFQybzZ3Z21ORXE3Q3A0QnovalRk?=
+ =?utf-8?B?YlFlY3RuSGluQjJ0cXV0MzBETm8zMU1BSTJ1Q0RhVk5XQTNkZ2JiTWJCbURC?=
+ =?utf-8?B?U2xGNDE0Nk5pMk5pSW02ekU3R1JDVGFXak5XS1RqZ3Jpdk9Sc2VzR3lZcnhT?=
+ =?utf-8?B?RmVWM2txZm9uSzBxdG5UdUQxM2VSMThsVXpETDR6T0dBeTVHb1NETWJHdC96?=
+ =?utf-8?B?L3JBVkd5VjVaV3Y3ajRuVEw4V09KSldjclZYNW5OQU9qaVRuYUd0UHFwNEFo?=
+ =?utf-8?B?cDRONzJ5OEtkT25wR0N0bkVNUkhzVnpXUkpzc1Q1bnFISTJXbVhrbkZSYjR0?=
+ =?utf-8?B?Tmh6WTVyR2E0TkgwV3M2Tkg5c3JDYkVKWUExWk9rdVZjMnlMMWpVN0FxVjBq?=
+ =?utf-8?B?bUFNUHBiYm9ERDUxaG4vSUZJNDZaN00xYVVhMkVBMlJ0MklUV0FGY3N5RUsr?=
+ =?utf-8?B?YkN6V3ROZmJLMlkzUlV6U2piZzhqRHdjZXZNOHU5RFFCTk5rVlQydWJRN3dH?=
+ =?utf-8?B?UjZwY0xicUVEdVhwa1cvS1REbExlRFU1VDZSeWErSWJhR29GNG5Idm5MdHJI?=
+ =?utf-8?B?L2xlT3ZRZ2x1d2dMVUhXYkxmQ1RRaFg2V1QwdEE3MFQxL3NFVUgwdU5Jb3Bw?=
+ =?utf-8?B?RDFrK04vVkNRTjlub0pXZmd0bDN4UnNkZEhoaVUyV2kxUGZyNmVwQ1IyVG01?=
+ =?utf-8?B?NnJLK1BOWXlKcW5pR3loc2UzV3o1Z1hTNXNGQi9LZUM0VWhKWlZhY3pwU2Zk?=
+ =?utf-8?B?aUZUS1ZVL2t4bTJtb2hyWjNYSzUrU25hNkUxeC95RFhjNFpGQ0VOSFNUdnFI?=
+ =?utf-8?B?S1p3M2g3T0p4elp2dXlIbWphR2sxd0puaG9rNnRFdnVYVmFKcDhBVEg5Vmd3?=
+ =?utf-8?B?UEl4dFNtdzV6QS9XTExIcE5lR2lXVUVrd3BaMFdVTjJ0a2VWV3ZZazNrbFps?=
+ =?utf-8?B?S3J2Wnc1V0MwcHBYdGs3Q0tpend1STllMFhjS3hEYW9YZDRKQ3Q4MXdnPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmNVeFQ3M2djNWtjZDhUUXZOQ1Z6NGZWSVhHbC81MWpHNGM0SGRVT1U3T2ZM?=
- =?utf-8?B?ZnUyRExTc0NKcHhMbmlaN1JsRVB2Uk1Ya3R2SHJzQzVyTVZWZlloQk9Fc0c5?=
- =?utf-8?B?emF2R216MHZiNEY3SGZianJoa2dPUE5Kd2VKYTRuVWpkcGYyWWRzSk5HK2tW?=
- =?utf-8?B?dWZnSVc1ajNNdm1wK2NuYVNua3BvdFZsMi9QazUxVjkrdEpTVDIwM0VlRmRW?=
- =?utf-8?B?MHE4VDhYTkNwSXpzNTNSVVJNSVl3bG43c2kzUDFqTWVxZTl5RkZaa1Z4aUlJ?=
- =?utf-8?B?QkxqRnhFVGIwdnI5UnhsVHF1YlFMckVXMWszVnZoem9EWGJka3lMTDQwVmJm?=
- =?utf-8?B?ZXFqTllWcEFHSk1HZ2RqK0lkbC9vVWYzSzVMeWxyN1ZrN2JaUXl2ZDR3YjBz?=
- =?utf-8?B?N2VtaXgxZktuVVh2U1FQaUI0VTd3bmpTR3c2bXlRZ3hCUUxzaHFhcFZlTUhE?=
- =?utf-8?B?UGRuT2lIdmNYU2YrMG93bnRPZ3BqY2dZbVlGOEhhZmJFZXBEK1N3NVI3WEZw?=
- =?utf-8?B?ZWN1Zi9ROHB3Nk5vT3pSSUlucTYvM09IaWtsTmNDTTU4SXpNMmpRR2R0cUNW?=
- =?utf-8?B?b0xQV3RKUlpGbHRXaTBKZUpnWmJJSXJ4eldobUVycjZXbktTVk5qUnZWYzVB?=
- =?utf-8?B?b3RQdmptVU5WNFlzc0lxaVBhemFRWmpMTHMvMVFTRW9ZM0VPUDhmRGhGdDZz?=
- =?utf-8?B?MDVIS0xCQnQ4N2ptbHRndy92L0FrRnk3WFNCNjdPZlB4SUkyZFRCaGxNUzFU?=
- =?utf-8?B?UUIybTBhZE4vclF4dS9xT1M3Wk1JL3ZIbFRLampXR1FrVkVnTGNCZUdxeERO?=
- =?utf-8?B?bVdNejgyZFFudkhvQ09LVStUTXNTWnp5OHo1NjBCMGZoc04vYmRROHp1MGtC?=
- =?utf-8?B?YkJZYWYxOHdJSUxDb013REJiNllhYVFQVTJITjNkSkw0WnVKTmF0R2hiOFd2?=
- =?utf-8?B?MDQ1clJmMUd2ZXg4VlNFZU9xZ2Nsc1JqNzFVZXlSTHlqNTY5dXA4MDZuSGl5?=
- =?utf-8?B?M1FWZXdOZmpnYWhHdExhZThGS1hKazRwN1FnQzlMandQOERxaTEyY1o2c2lr?=
- =?utf-8?B?bHJQZm5mb0YwcFIzbTgvdDEvVTRFTFRzTWpqTHVMZGMvQTZvUTVmQXp2Sk1V?=
- =?utf-8?B?bDB6WXErb0NDSCtaMkVEVk91a2wwOXV1Ynd0R1JoSEt4dkJBZEZ0aFZWckNE?=
- =?utf-8?B?VXFrR2JSTnltQmZXK21uZHpSOEU2azlheEZCcTNkWlhjSDVNWjJuN0xwRUtV?=
- =?utf-8?B?VVFiL3R6N3NlUERoMm93UW90Y0phaWtRQ2NGSktwQnNiaTZuUlU1M2lOL1VX?=
- =?utf-8?B?cFhCaVY4cUVvNHhCbUtxZkpKd0pTNnc4cm9GZ2pPOGNXT1FQYlQ5MmdnUkZY?=
- =?utf-8?B?LzBxTEFERmtONHRoblRmTHBkSzViWEdhZHcvb0tuWlltVk80TmhUQURtRXdO?=
- =?utf-8?B?YWN2ZCtwSHY0UktpeVNQVnNPeU1ObnhCZHZPOVd3N0VtU1ozdFV6NjdtbHVO?=
- =?utf-8?B?MFQ2QWlTUUNJOG0yN2E3QXprSkdVSFBRWkUyQ2VxMVdIRnB1VkdWaW5sbElB?=
- =?utf-8?B?QzlYd3dDbjBUYXlsaFdmc0xXYW14Y2hKdE1ORWJ4aTBSbEwrLzkyVmFZT2pP?=
- =?utf-8?B?ajJhakJ0eFZ4S1M2L0YzcXI1WG8xWDZzMzIwMTBuRnhyZVJuOVVhd2Z1YWta?=
- =?utf-8?B?cnhaRWcwUjFoeEZKZExuM3JGaHNWdEE4Y0dBMm9xV25pMjd4c3c1Q01TeENh?=
- =?utf-8?B?TE93N1d0UXhmNStOcFp6Y2d2ejdvbnM3cjNTcXVFUGg3TFRidVJFZlVDa28z?=
- =?utf-8?B?dUd0MStuVkZWaTdxZ1o4Zlk4Mk9DaTdDSFltQzdDbk5rSjgzMTBHU1lLOE94?=
- =?utf-8?B?N3B4MjRRTERjbk5xaGZzQ3FIMkpnV3BvY0xMYU1QSXM4NEtjaUF3aWRjRWw4?=
- =?utf-8?B?bnNSLzBFNWlPQ2xpOVAxZVF5YUxUZk8rcXVHdHNUNnVpL0Y1WmREYUw4WkFl?=
- =?utf-8?B?VUJkZTBsVDFxZWV6VFUzQXYxN0hyRU1tbStaZSsxencyL0pwUkROTjA4TVFH?=
- =?utf-8?B?WStzdXFvTWdmVWFHMTZwUzZtbTI5aExuRDVxbDlNekZtV28vQ1FQOHlvdDRr?=
- =?utf-8?Q?I1g0Gi84bWTV413glico53ZeC?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2wyOHVRT1daQU5IQS9VdzRsS0NhWXEwZW5lU2xZOTZJQXpFaWhuREQ4cFlj?=
+ =?utf-8?B?NndGT0xhZGU2U1YrVE8vdkhrWThNQy9tbkJpSTBrWUs2RWpBYWh5aWQ3SDdL?=
+ =?utf-8?B?bU0zM01BSGxUSURoVGVBb3lpWFZ5VVlWR2o2SzV3R01oQ3k2Y20rSmMyZ0dV?=
+ =?utf-8?B?eEZGcVVqcWpKWjZ1ek56ZHlJdTBjUDdUZ1VCdTJPTC83R253RW9FV3FZa2h3?=
+ =?utf-8?B?RGhaT0QzYzUyQ1FvUTAyZUN6SHc4VmNYUzBEMmd6K29idDlFUjI2WkFKeVp3?=
+ =?utf-8?B?d2MrR0hiUSt5SWU5VWo4T0p1UlNDRkRZZGc1NXlvTFFsb2NIbXRGSUt0eFlX?=
+ =?utf-8?B?aUdIM3RBbmNvbzE1VUZNVnZ0U3FXd09rSysyYmRhYTJrbWdnaXd6dGV6aTJF?=
+ =?utf-8?B?TnVjTFJWaUx1RzdnY0UrMHJDSW5kcURUeGVHWFpkVkFMa0hsbys4YkkxM2hQ?=
+ =?utf-8?B?aVVzVjRRVXRqSGs1ci9KbWlZYW9zS0VCYWJQR1N3ZVc2QU8zL285NUVMd21S?=
+ =?utf-8?B?Yy8xZFNEeHcyK0dJdTRUSU00NmtrVy9IcWdzK3lzWWpOK3V2QUZuRmNYR1BT?=
+ =?utf-8?B?NFdwNUYvN2JidUVIbUs4L0huZ3FGOEw0Y1lXVnAxMEtqTXMxSi9PNHorcGgr?=
+ =?utf-8?B?eGJrTWdGL1NMU0VKMmN1cWdKY25rTzh4bm9RTzM5WXF0VjdaUk9iY1EyTkZT?=
+ =?utf-8?B?b1kwNUhFTlg3T1RFKzQvMTJ2UVRKRXZyZ0lRUkJRT1BTam5UdjNNQVhwZk9W?=
+ =?utf-8?B?WjJoamtYVU04WXRpR2ZQZkh3QmYrUXAycTZNUnVTS2hWUE16ZlNQNW1vdHRh?=
+ =?utf-8?B?VEZMZldZR3E1dFpvZFB4d0tad1VEVkZySnVGWUVPMXZuYWlFUzVqREVKUjVG?=
+ =?utf-8?B?aDBDNDFZeGR1bVhLU29aK0dwMWlmL0hrNWJQT3A0MlFDRmF0VVJFVUcvNzFs?=
+ =?utf-8?B?TC9mUzhNdnVRNldiZThJdGY1ZjN1dVJGYzRCdy9SNzZCWWg1YlA5SDF2MDlC?=
+ =?utf-8?B?Njh1bCtpYStNTWhvZkc5S0JKN1AwYW5PRlZzc1BBSHlkR3F0c1A1OGo2b3ZU?=
+ =?utf-8?B?SHlvbVZlRHhTVFNnZUpGVkU4OUVxVEdoOWhkdWlpWlQwWmo5SDREQjM1NnZ2?=
+ =?utf-8?B?WHp1U3RLS3RGelVieXBLZ3RLNnFWY0M5K1VkZWdReGdMUUpsL2o4QTRMNHJy?=
+ =?utf-8?B?UjBLNHhZTjJBWXJqYkplWWVwVVdMMi83VHhzWVZ6RmxZd2ZrWEdock5Uc1Js?=
+ =?utf-8?B?YUdIS2hzUjRXWTJna3laSEFkZlhOeGQxYTl5alc1YlJLY05vZ3FmVlh6ejl5?=
+ =?utf-8?B?My9ZdzBCR082ZlNiaTg5dDhzNTYzQ3pvR1Z1WDdrVHJJL2xxWURETmFPOS92?=
+ =?utf-8?B?UkZOZjVQL2VsWW1wYk1BRCtIdXNoUGRGd29XYlpUb25lNFNxMEZMSWtyUCtY?=
+ =?utf-8?B?VzllbExGaGxyNGpBcXVFUGd5YVlycEVkYkhONzlxMFJYRmR0WlpZY2tKUFZL?=
+ =?utf-8?B?a21RSEZqY0dZU1RZN0FEakRxcUU2MkZlNGd5bHU4NDVuVGhsOFR4U0prcEoy?=
+ =?utf-8?B?WmFTVER0cTZpZnVYaVBKOEt3UU1ncTVnNk5UcXdZVkd5b0JscmNSaWFwZ2NP?=
+ =?utf-8?B?WEVxaWdGdWoyaFA3N0t0QzhHMCtQa1RmSEIwUkVlYzQyVmwxeUc0MGtCRW5p?=
+ =?utf-8?B?VXFxU3oxRTRBVlhjL0VlZDRHcFU2Smk1WStTVFkzRVkyRVNMdHVDdEdwcU5i?=
+ =?utf-8?B?Rk1jTW5pdXNMZlBGU0Z3eC9WVzFnZnlnbTBWb3UyQVpFaEdRMjI2a2lxOGZS?=
+ =?utf-8?B?WTN6KzFvcEhpUFJQck8zVE5aSEVlQTlTYWxFem85MENraUdtNjYwRHV4TEVD?=
+ =?utf-8?B?Y1lseldsV0FxWmNnQmZCSFQ2TkpvdElXUzR0RTRML2lncXp0VzdLd0xhQ29T?=
+ =?utf-8?B?VkZTSGVicEZCK1MweGxxYStzN0ZpQUhJUXdLb3pvL0h6YzBlQ0c3UDJhQW43?=
+ =?utf-8?B?MjFCaFZGUldaL2crbXNZSmxCQzMvVWxVbFVNcU9TTzJuL003Z1daYjFiUnQx?=
+ =?utf-8?B?TlVMUlFvTzdCVTRUeVNUaDN0M09DSFpvclBnbVczakRrTUlVRmR0NUtMNFpt?=
+ =?utf-8?Q?V011+8yvPWgZHFhf5rNhIyHhh?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c280943e-2740-4c73-379d-08dc64390654
+X-MS-Exchange-CrossTenant-Network-Message-Id: efd27bf9-20f6-460f-22ae-08dc6439e1ef
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 08:32:06.3046 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2024 08:38:14.7561 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2vYsMRR8zRScaYpjYWv3DFFzP9sqOzz68MzM8CIBVoQcSmO0Sevg3WxWzia84uH1
+X-MS-Exchange-CrossTenant-UserPrincipalName: rRADZUE0HbTi45Br+HhL0tSWXC7IfEg/EVVXqbfqeklDSqZi/x12Q+DKdUXtbqQk
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4078
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,244 +157,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 24.04.24 um 09:13 schrieb Arunpravin Paneer Selvam:
-> Now we have two flags for contiguous VRAM buffer allocation.
-> If the application request for AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS,
-> it would set the ttm place TTM_PL_FLAG_CONTIGUOUS flag in the
-> buffer's placement function.
+Am 24.04.24 um 09:52 schrieb Bob Zhou:
+> After amdgpu_i2c_get_byte fail, amdgpu_i2c_put_byte shouldn't be
+> conducted to put wrong value.
+> So return and check the i2c transfer result.
 >
-> This patch will change the default behaviour of the two flags.
->
-> When we set AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS
-> - This means contiguous is not mandatory.
-> - we will try to allocate the contiguous buffer. Say if the
->    allocation fails, we fallback to allocate the individual pages.
->
-> When we setTTM_PL_FLAG_CONTIGUOUS
-> - This means contiguous allocation is mandatory.
-> - we are setting this in amdgpu_bo_pin_restricted() before bo validation
->    and check this flag in the vram manager file.
-> - if this is set, we should allocate the buffer pages contiguously.
->    the allocation fails, we return -ENOSPC.
->
-> v2:
->    - keep the mem_flags and bo->flags check as is(Christian)
->    - place the TTM_PL_FLAG_CONTIGUOUS flag setting into the
->      amdgpu_bo_pin_restricted function placement range iteration
->      loop(Christian)
->    - rename find_pages with amdgpu_vram_mgr_calculate_pages_per_block
->      (Christian)
->    - Keep the kernel BO allocation as is(Christain)
->    - If BO pin vram allocation failed, we need to return -ENOSPC as
->      RDMA cannot work with scattered VRAM pages(Philip)
->
-> v3(Christian):
->    - keep contiguous flag handling outside of pages_per_block
->      calculation
->    - remove the hacky implementation in contiguous flag error
->      handling code
->
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Bob Zhou <bob.zhou@amd.com>
+
+Looks good in general, just some coding style comments below.
+
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c   |  8 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 83 ++++++++++++++------
->   2 files changed, 65 insertions(+), 26 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c | 42 +++++++++++++++----------
+>   1 file changed, 26 insertions(+), 16 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> index 492aebc44e51..c594d2a5978e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-> @@ -154,8 +154,10 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
->   		else
->   			places[c].flags |= TTM_PL_FLAG_TOPDOWN;
->   
-> -		if (flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS)
-> +		if (abo->tbo.type == ttm_bo_type_kernel &&
-> +		    flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS)
->   			places[c].flags |= TTM_PL_FLAG_CONTIGUOUS;
-> +
->   		c++;
->   	}
->   
-> @@ -965,6 +967,10 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo *bo, u32 domain,
->   		if (!bo->placements[i].lpfn ||
->   		    (lpfn && lpfn < bo->placements[i].lpfn))
->   			bo->placements[i].lpfn = lpfn;
-> +
-> +		if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-> +		    bo->placements[i].mem_type == TTM_PL_VRAM)
-> +			bo->placements[i].flags |= TTM_PL_FLAG_CONTIGUOUS;
->   	}
->   
->   	r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index e494f5bf136a..17c5d9ce9927 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -88,6 +88,23 @@ static inline u64 amdgpu_vram_mgr_blocks_size(struct list_head *head)
->   	return size;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+> index 82608df43396..c588704d56a7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
+> @@ -280,11 +280,12 @@ amdgpu_i2c_lookup(struct amdgpu_device *adev,
+>   	return NULL;
 >   }
 >   
-> +static inline void amdgpu_vram_mgr_limit_min_block_size(unsigned long pages_per_block,
-> +							u64 size,
-> +							u64 *min_block_size,
-> +							bool contiguous_enabled)
-> +{
-> +	if (contiguous_enabled)
-> +		return;
-> +
-> +	/*
-> +	 * if size >= 2MiB, limit the min_block_size to 2MiB
-> +	 * for better TLB usage.
-> +	 */
-> +	if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
-> +	    !(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
-> +		*min_block_size = (u64)pages_per_block << PAGE_SHIFT;
-> +}
-> +
->   /**
->    * DOC: mem_info_vram_total
->    *
-> @@ -452,11 +469,12 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	struct amdgpu_device *adev = to_amdgpu_device(mgr);
->   	struct amdgpu_bo *bo = ttm_to_amdgpu_bo(tbo);
->   	u64 vis_usage = 0, max_bytes, min_block_size;
-> +	struct amdgpu_bo *bo = ttm_to_amdgpu_bo(tbo);
->   	struct amdgpu_vram_mgr_resource *vres;
->   	u64 size, remaining_size, lpfn, fpfn;
->   	struct drm_buddy *mm = &mgr->mm;
-> -	struct drm_buddy_block *block;
->   	unsigned long pages_per_block;
-> +	struct drm_buddy_block *block;
->   	int r;
->   
->   	lpfn = (u64)place->lpfn << PAGE_SHIFT;
-> @@ -469,18 +487,14 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	if (tbo->type != ttm_bo_type_kernel)
->   		max_bytes -= AMDGPU_VM_RESERVED_VRAM;
->   
-> -	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
-> -		pages_per_block = ~0ul;
-> -	} else {
-> -#ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> +	if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE))
->   		pages_per_block = HPAGE_PMD_NR;
+> -static void amdgpu_i2c_get_byte(struct amdgpu_i2c_chan *i2c_bus,
+> +static int amdgpu_i2c_get_byte(struct amdgpu_i2c_chan *i2c_bus,
+>   				 u8 slave_addr,
+>   				 u8 addr,
+>   				 u8 *val)
+>   {
+> +	int r = 0;
 
-That won't work like this.
+BTW: Short variables like i and r should be declared last. I don't care 
+much about that personally, but some upstream maintainers insist on that.
 
-HPAGE_PMD_NR is only guaranteed to be defined when 
-CONFIG_TRANSPARENT_HUGEPAGE is enabled.
+And never initialize a variable if you don't need it. This will be 
+complained about by automated checkers as well.
 
-So you will run into some compile errors on platforms where that isn't 
-available.
+>   	u8 out_buf[2];
+>   	u8 in_buf[2];
+>   	struct i2c_msg msgs[] = {
+> @@ -309,16 +310,18 @@ static void amdgpu_i2c_get_byte(struct amdgpu_i2c_chan *i2c_bus,
+>   		*val = in_buf[0];
+>   		DRM_DEBUG("val = 0x%02x\n", *val);
+>   	} else {
+> -		DRM_DEBUG("i2c 0x%02x 0x%02x read failed\n",
+> -			  addr, *val);
+> +		r = -EIO;
+> +		DRM_DEBUG("i2c 0x%02x 0x%02x read failed\n", addr, *val);
+>   	}
+> +	return r;
 
-> -#else
-> -		/* default to 2MB */
-> +	else
-> +		/* default to 2MiB */
->   		pages_per_block = 2UL << (20UL - PAGE_SHIFT);
-> -#endif
-> -		pages_per_block = max_t(uint32_t, pages_per_block,
-> -					tbo->page_alignment);
-> -	}
-> +
-> +	pages_per_block = max_t(uint32_t, pages_per_block,
-> +				tbo->page_alignment);
->   
->   	vres = kzalloc(sizeof(*vres), GFP_KERNEL);
->   	if (!vres)
-> @@ -499,7 +513,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
->   		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
->   
-> -	if (place->flags & TTM_PL_FLAG_CONTIGUOUS)
-> +	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS)
->   		vres->flags |= DRM_BUDDY_CONTIGUOUS_ALLOCATION;
->   
->   	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CLEARED)
-> @@ -509,23 +523,23 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   		/* Allocate blocks in desired range */
->   		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
->   
-> +	if (tbo->page_alignment)
-> +		min_block_size = (u64)tbo->page_alignment << PAGE_SHIFT;
-> +	else
-> +		min_block_size = mgr->default_page_size;
-> +
->   	remaining_size = (u64)vres->base.size;
->   
->   	mutex_lock(&mgr->lock);
->   	while (remaining_size) {
-> -		if (tbo->page_alignment)
-> -			min_block_size = (u64)tbo->page_alignment << PAGE_SHIFT;
-> -		else
-> -			min_block_size = mgr->default_page_size;
-> -
-> -		BUG_ON(min_block_size < mm->chunk_size);
-> -
->   		/* Limit maximum size to 2GiB due to SG table limitations */
->   		size = min(remaining_size, 2ULL << 30);
-> -
-> -		if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
-> -				!(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
-> -			min_block_size = (u64)pages_per_block << PAGE_SHIFT;
-> +		amdgpu_vram_mgr_limit_min_block_size(pages_per_block,
-> +						     size,
-> +						     &min_block_size,
-> +						     bo->flags &
-> +						     AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS);
-> +		BUG_ON(min_block_size < mm->chunk_size);
->   
->   		r = drm_buddy_alloc_blocks(mm, fpfn,
->   					   lpfn,
-> @@ -533,8 +547,27 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   					   min_block_size,
->   					   &vres->blocks,
->   					   vres->flags);
-> -		if (unlikely(r))
-> -			goto error_free_blocks;
-> +		if (unlikely(r)) {
-> +			if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-> +			    !(place->flags & TTM_PL_FLAG_CONTIGUOUS)) {
+Better to write it like this:
 
-Better check for the variable you modify, in this case min_block_size 
-and then restart the loop.
-
-And check for the explicit return value.
-
-In other words something like this
-
-if (unlikely(r == -ENOSPC) && min_block_size >= ... &&
-     !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-         min_block_size = ...;
-         continue;
+if (error_condition) {
+     DRM_DEBUG("i2c 0x%02x read failed\n", addr);
+     return -EIO)
 }
-if (unlikely(r))
-     goto error_free_blocks;
+
+*val = in_buf[0];
+DRM_DEBUG("val = 0x%02x\n", *val);
+
+Printing *val in the error condition will result in use of uninitialized 
+value as well.
+
+>   }
+>   
+> -static void amdgpu_i2c_put_byte(struct amdgpu_i2c_chan *i2c_bus,
+> +static int amdgpu_i2c_put_byte(struct amdgpu_i2c_chan *i2c_bus,
+>   				 u8 slave_addr,
+>   				 u8 addr,
+>   				 u8 val)
+>   {
+> +	int r = 0;
+>   	uint8_t out_buf[2];
+>   	struct i2c_msg msg = {
+>   		.addr = slave_addr,
+> @@ -330,9 +333,12 @@ static void amdgpu_i2c_put_byte(struct amdgpu_i2c_chan *i2c_bus,
+>   	out_buf[0] = addr;
+>   	out_buf[1] = val;
+>   
+> -	if (i2c_transfer(&i2c_bus->adapter, &msg, 1) != 1)
+> -		DRM_DEBUG("i2c 0x%02x 0x%02x write failed\n",
+> -			  addr, val);
+> +	if (i2c_transfer(&i2c_bus->adapter, &msg, 1) != 1) {
+> +		r = -EIO;
+> +		DRM_DEBUG("i2c 0x%02x 0x%02x write failed\n", addr, val);
+> +	}
+> +
+> +	return r;
+
+Same here. As long as you don't have anything to cleanup just use 
+"return -EIO" and "return 0;" directly.
 
 Regards,
 Christian.
 
-> +				/* Fallback to non-contiguous allocation */
-> +				amdgpu_vram_mgr_limit_min_block_size(pages_per_block,
-> +								     size,
-> +								     &min_block_size,
-> +								     !(bo->flags &
-> +								     AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS));
-> +				r = drm_buddy_alloc_blocks(mm, fpfn,
-> +							   lpfn,
-> +							   size,
-> +							   min_block_size,
-> +							   &vres->blocks,
-> +							   vres->flags);
-> +				if (unlikely(r))
-> +					goto error_free_blocks;
-> +			} else {
-> +				goto error_free_blocks;
-> +			}
-> +		}
+>   }
 >   
->   		if (size > remaining_size)
->   			remaining_size = 0;
+>   /* ddc router switching */
+> @@ -347,16 +353,18 @@ amdgpu_i2c_router_select_ddc_port(const struct amdgpu_connector *amdgpu_connecto
+>   	if (!amdgpu_connector->router_bus)
+>   		return;
+>   
+> -	amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+> +	if (amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+> -			    0x3, &val);
+> +			    0x3, &val))
+> +		return;
+>   	val &= ~amdgpu_connector->router.ddc_mux_control_pin;
+>   	amdgpu_i2c_put_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+>   			    0x3, val);
+> -	amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+> +	if (amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+> -			    0x1, &val);
+> +			    0x1, &val))
+> +		return;
+>   	val &= ~amdgpu_connector->router.ddc_mux_control_pin;
+>   	val |= amdgpu_connector->router.ddc_mux_state;
+>   	amdgpu_i2c_put_byte(amdgpu_connector->router_bus,
+> @@ -368,7 +376,7 @@ amdgpu_i2c_router_select_ddc_port(const struct amdgpu_connector *amdgpu_connecto
+>   void
+>   amdgpu_i2c_router_select_cd_port(const struct amdgpu_connector *amdgpu_connector)
+>   {
+> -	u8 val;
+> +	u8 val = 0;
+>   
+>   	if (!amdgpu_connector->router.cd_valid)
+>   		return;
+> @@ -376,16 +384,18 @@ amdgpu_i2c_router_select_cd_port(const struct amdgpu_connector *amdgpu_connector
+>   	if (!amdgpu_connector->router_bus)
+>   		return;
+>   
+> -	amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+> +	if (amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+> -			    0x3, &val);
+> +			    0x3, &val))
+> +		return;
+>   	val &= ~amdgpu_connector->router.cd_mux_control_pin;
+>   	amdgpu_i2c_put_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+>   			    0x3, val);
+> -	amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+> +	if (amdgpu_i2c_get_byte(amdgpu_connector->router_bus,
+>   			    amdgpu_connector->router.i2c_addr,
+> -			    0x1, &val);
+> +			    0x1, &val))
+> +		return;
+>   	val &= ~amdgpu_connector->router.cd_mux_control_pin;
+>   	val |= amdgpu_connector->router.cd_mux_state;
+>   	amdgpu_i2c_put_byte(amdgpu_connector->router_bus,
 
