@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414AA8B1C98
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Apr 2024 10:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31EA78B1C94
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Apr 2024 10:11:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44BB511A280;
-	Thu, 25 Apr 2024 08:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02E7511A27B;
+	Thu, 25 Apr 2024 08:11:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="j7hBrLCU";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="TNkDE1Xu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from out30-101.freemail.mail.aliyun.com
  (out30-101.freemail.mail.aliyun.com [115.124.30.101])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC717113F76;
- Thu, 25 Apr 2024 01:36:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3416F11A01D;
+ Thu, 25 Apr 2024 03:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux.alibaba.com; s=default;
- t=1714008963; h=From:To:Subject:Date:Message-Id:MIME-Version;
- bh=TsKxTcHAEpnqxtYbRg35c7pmhQDqwU3NSLGP9bX/w7I=;
- b=j7hBrLCUg/etcnOIflS7KlaXVen+yCsE65RmmQi5JqHfsiIfMzmgOa6cnQn0eUNX/8WnJAIPNyKuops84R0zPpulQZczys0q6Hi6HvfW7inXgnUMWLgcZ/r2/hxNS8MEl5Af0LK4S8+QzTXRC1KQ4+cTx9FQ/OoXM1MsNtSseXc=
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R131e4; CH=green; DM=||false|;
+ t=1714015422; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=D2MFVeFk0iquizyFFpjJSV1Dr/FtfPZuCe4hBIu1n/0=;
+ b=TNkDE1XuEFjFZz9W4goma7DpnYgumFlFd4aUIAgN/GgKMISlUXmeLZ8cw4RgfI8n7b/p1hy5A1NA66/0XBt0r3IuPqEogS/IrrDdFUaH1XgMyHr6J+oQrgZozPGPGVydY56eIQ+TsJmrzkGZT+iHOxL3LFDQOfvcm2NSORad56E=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R271e4; CH=green; DM=||false|;
  DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033022160150;
  MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
- TI=SMTPD_---0W5DffHY_1714008955; 
+ TI=SMTPD_---0W5DsRK2_1714015411; 
 Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0W5DffHY_1714008955) by smtp.aliyun-inc.com;
- Thu, 25 Apr 2024 09:36:01 +0800
+ fp:SMTPD_---0W5DsRK2_1714015411) by smtp.aliyun-inc.com;
+ Thu, 25 Apr 2024 11:23:40 +0800
 From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 To: harry.wentland@amd.com
 Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
@@ -36,9 +36,10 @@ Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
  Abaci Robot <abaci@linux.alibaba.com>
-Subject: [PATCH] drm/amd/display: Remove duplicate spl/dc_spl_types.h header
-Date: Thu, 25 Apr 2024 09:35:53 +0800
-Message-Id: <20240425013553.35843-1-jiapeng.chong@linux.alibaba.com>
+Subject: [PATCH] drm/amd/display: Remove duplicate dcn401/dcn401_clk_mgr.h
+ header
+Date: Thu, 25 Apr 2024 11:23:30 +0800
+Message-Id: <20240425032330.36812-1-jiapeng.chong@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,28 +58,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-./drivers/gpu/drm/amd/display/dc/inc/hw/transform.h: spl/dc_spl_types.h is included more than once.
+./drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c: dcn401/dcn401_clk_mgr.h is included more than once.
 
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=8884
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=8885
 Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/display/dc/inc/hw/transform.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/transform.h b/drivers/gpu/drm/amd/display/dc/inc/hw/transform.h
-index 5aa2f1a1fb83..28da1dddf0a0 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/transform.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/transform.h
-@@ -31,8 +31,6 @@
- #include "fixed31_32.h"
- #include "spl/dc_spl_types.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c
+index d146c35f6d60..005092b0a0cb 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn401/dcn401_clk_mgr.c
+@@ -21,7 +21,6 @@
+ #include "dcn/dcn_4_1_0_offset.h"
+ #include "dcn/dcn_4_1_0_sh_mask.h"
  
--#include "spl/dc_spl_types.h"
--
- #define CSC_TEMPERATURE_MATRIX_SIZE 12
+-#include "dcn401/dcn401_clk_mgr.h"
+ #include "dml/dcn401/dcn401_fpu.h"
  
- struct bit_depth_reduction_params;
+ #define mmCLK01_CLK0_CLK_PLL_REQ                        0x16E37
 -- 
-2.19.1.6.gb485710b
+2.20.1.7.g153144c
 
