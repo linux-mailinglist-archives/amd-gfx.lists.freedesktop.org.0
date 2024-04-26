@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60DC38B38DD
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Apr 2024 15:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 311338B38E4
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Apr 2024 15:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D185112413;
-	Fri, 26 Apr 2024 13:48:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A715B112415;
+	Fri, 26 Apr 2024 13:49:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zYyVRVxU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WGs5d+PE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88C8311240F
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 13:48:57 +0000 (UTC)
+ (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04005112415
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 13:48:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QYwhyUdv+GI/4/mapqfPsuuaolIgL3xTlLH/yZGabct2I10KxYFiHuNa7l9pAcvxMEZpU2gF1DC4X215QbvF614ekQon6UFvZA5ih24rTFqragcalN5QMkpmSzKsSm2XOAvErPa4X31jiUQeLdln+1SJUEixY+xB6Ll1H789dDahDjnU6jrbU9VhGg44Ylk4mp4nBQb5YoP9qg1IMqv6IJUTtM7IFsbhG8JsrAIALZcU4IAC1GR1n84I8pRohuwf1U7/REbJobQsWTlq9a3GXvuhSNErGqo+0XVVZNWQ++TSFG/Zbe5UhdNXCiq8e83mojNU+rcl6Bzj/Kp03a6ELQ==
+ b=kAxNVJ4PGoMUg7DOJFMW+r2oHV/aaedSU+j4fUzgqQA8jDAFRezxLvbx67HocLKPoCiGCOz9n+pnAaCQBoE0zotpj2EmxXmVU6yaGF/lmlSo0bgaf8kMkSIFrS3QXHYkn1/hUckqgoD+LuNmJfjvefS+c2YjYoqBSvxNJ4lJ5dd5pE3rtkEF19bflzAekgmplLENnkIA1dHkaOqX/7IWlEqeASCxg1I5iZWUPAcgY7mcpW7qSVrFa6UcaCEPWVsneyGrCWyDAo815Fk2bZ0BRFtsbu26WpjnjPaYbf4QWnRDcafIb+kpAGNSCbHxdhLhbNHe+lETtXXqb/M72jdNWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aDYJZvjb81gZr6199cgoWH5dIEkUm4ESdnE6sWajxJA=;
- b=eYTLqMXUKQjiKS/J+FhhPk09Eoy+syF6ucg+QtMTXWuRa4fiAnuN1mbPoKIg63cb3zlKf/Huf1GOecizjajg2TtQJeoCK4dyZcvYAZNeSRwiaTdQGiOJiSjFAGzTW5tMCZS7NCHyGPusVHOE1i0kIVi2B7IMjGxPrCsTxYydNX0v2xS7DOpI4SFLgpI9rk2An3ttx/YTU3CfGZznlNjm5a+zWoeSYxO49AT6dusn/JmgW4vCehMcuM23OHXAARTrHVH02OaBlbcP7TDXDZ657+PWLdgLyvWUCnCez9Ac2agUQC/VlYji/t7HvJ/LxQMylFFwtF252N/DuN9MlHydrg==
+ bh=0VwIcfmhi+MHl1bpIwBtBnDjpjCVMMC5fYzL2U0GqVQ=;
+ b=KefPp42CmfWlhxhE2alRsOOARDex3F0+V0YUsbeRqg055Znwy8osWTzVrFMnmBnAyT32bvJ+jnJtqurP6QUeo3bKvKxJQ+X32t6hZTrfeMLb3wVC149nDhVwsVi+SHJHr6qE4Qdw6jxcyKltqWL4Dv6NbEGpgCfffgS2mn0FlHAhMFRfM7HPrSH0A1L9FU6CfO4J9gWauDnji1ofaNs5vhzRBoyW7AhWLrF9e9EJRf3ZnYJm5yBPNF27X4DL24ovIB2PwLOo0H1+k2yv7lDJESGR7gEF4kTELc3pVv4o0L/RmSdphx12Q3RqiLhl7Mb0XLkvJJv56LwyCqhM2lXGYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aDYJZvjb81gZr6199cgoWH5dIEkUm4ESdnE6sWajxJA=;
- b=zYyVRVxUzVDQXsjnips2hXhUeZcocJQPl0TAJJUmCBQ53h2IG64rAJ974J6Bgm1cgaleiEXO5ARRxmqjFuyFm7kpH5qtkQda42WL6vA4LJrjRiUYAtFdTAKXMSIo9SnCPXA9OhevX3gj5rxUBPW4Y6bKRVjSeqZCmHU8PDG5/0M=
-Received: from CH2PR20CA0007.namprd20.prod.outlook.com (2603:10b6:610:58::17)
- by BY5PR12MB4179.namprd12.prod.outlook.com (2603:10b6:a03:211::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22; Fri, 26 Apr
- 2024 13:48:55 +0000
-Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
- (2603:10b6:610:58:cafe::8e) by CH2PR20CA0007.outlook.office365.com
- (2603:10b6:610:58::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.26 via Frontend
- Transport; Fri, 26 Apr 2024 13:48:54 +0000
+ bh=0VwIcfmhi+MHl1bpIwBtBnDjpjCVMMC5fYzL2U0GqVQ=;
+ b=WGs5d+PEzRcFyHuGb6FS4PVLQaztN2Jvu5u8aIehlkCp3iyn1WdxJwEgJumysX3mMmsWCbFOkkStKdZq5rEkn9Hdh1g5LRZ18k5kgWewB9GIePFIbGQIFahdYgPexlTC8aX0iHuHIneq1JoRzFHfsKEtc0KuV0TgpjUJK21sBOo=
+Received: from CH0PR07CA0010.namprd07.prod.outlook.com (2603:10b6:610:32::15)
+ by DS0PR12MB7899.namprd12.prod.outlook.com (2603:10b6:8:149::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Fri, 26 Apr
+ 2024 13:48:57 +0000
+Received: from CH1PEPF0000AD79.namprd04.prod.outlook.com
+ (2603:10b6:610:32:cafe::72) by CH0PR07CA0010.outlook.office365.com
+ (2603:10b6:610:32::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.31 via Frontend
+ Transport; Fri, 26 Apr 2024 13:48:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,21 +48,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
+ CH1PEPF0000AD79.mail.protection.outlook.com (10.167.244.57) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7452.22 via Frontend Transport; Fri, 26 Apr 2024 13:48:54 +0000
+ 15.20.7452.22 via Frontend Transport; Fri, 26 Apr 2024 13:48:56 +0000
 Received: from MUN-L-SHSHARMA.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 26 Apr
- 2024 08:48:53 -0500
+ 2024 08:48:54 -0500
 From: Shashank Sharma <shashank.sharma@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Arvind Yadav <arvind.yadav@amd.com>, Shashank Sharma
  <shashank.sharma@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
- <Christian.Koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v9 11/14] drm/amdgpu: fix MES GFX mask
-Date: Fri, 26 Apr 2024 15:48:07 +0200
-Message-ID: <20240426134810.1250-12-shashank.sharma@amd.com>
+ <Christian.Koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Subject: [PATCH v9 12/14] drm/amdgpu: enable SDMA usermode queues
+Date: Fri, 26 Apr 2024 15:48:08 +0200
+Message-ID: <20240426134810.1250-13-shashank.sharma@amd.com>
 X-Mailer: git-send-email 2.38.0.windows.1
 In-Reply-To: <20240426134810.1250-1-shashank.sharma@amd.com>
 References: <20240426134810.1250-1-shashank.sharma@amd.com>
@@ -74,58 +75,57 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|BY5PR12MB4179:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f4b6b07-5bca-414f-9902-08dc65f79d42
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD79:EE_|DS0PR12MB7899:EE_
+X-MS-Office365-Filtering-Correlation-Id: a2fae70b-766e-4dd4-6967-08dc65f79e97
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|376005|1800799015|82310400014|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L0RLRDVaR1ZONUl5dTJXamJVMzRIdWxZdU1xOW5JQ3l6MkJ2UVVoc08wYTBZ?=
- =?utf-8?B?NTBsaVFGVU9KUHBBQ2xtKzN2SHhuT0NnK1pnd0V2b2I4WEZRdTNzT21lUmkz?=
- =?utf-8?B?N1pQL09HT1V5N1k3c0NFckJIMVVRK1NaTk9PUHdrWm5ZRGh6b29oNEE2Tnp3?=
- =?utf-8?B?dmhGLytoTkt0M0pBcEdYMTZ5RU0vSFVGUkpRQmJVM2Fwbk40aUdPM1hmeXdQ?=
- =?utf-8?B?eHQ0bDBCVWwrN05qZmxya0syblNyR1ZTNVMyUVA1WGxaNGF4Wm5jOFNkZG12?=
- =?utf-8?B?Q1Zha3UzbXF0WlR6eE9iV1NrNVIvSDVwRUloSk5FUVFkT3RzTjQxbWNzMTEz?=
- =?utf-8?B?MjA4am42blZXTUpkSUR5UGtabmd1ODdaWVBOUlFiNWZuMitmMVpMUTNRNGlP?=
- =?utf-8?B?ZzJOOFZGenNGd09CbnZZcHRjS0NIVkt1bzlhMkpyYXVuQ0hQYXRxSHBtZS8y?=
- =?utf-8?B?cFBrbk15UVZHYzNBM29hYk42emlkUlM3ZzR2aER6N1IyRUt0S0krWEJaejNs?=
- =?utf-8?B?dU5ZRDlmdVlSQmFmQ3RXanEramVKVVFqL2hHU3JJdU4zejR3WG9zemhXUXdn?=
- =?utf-8?B?Z1FNbVFJVVFOY2dSeTN2VkUwU08zcCtGNUxPem9jbGVKQ1N5aEhpQStnSitZ?=
- =?utf-8?B?dSsxcXUrMTVsRUhCZ3ZCQklxazFIUy9HNm9FTW00Ykptd1k3eDk2UERGNm9W?=
- =?utf-8?B?MEVxL3B2TmRrTTl3Znh6bVg3ZVFkUWNvVGljSVlkdmM4NVFSR2xHNExienpD?=
- =?utf-8?B?QzhOTU5oU05IY1pxL2VmbFVPVm9acm81Q2trMEg1RVdVQVBIMCs3VUhYSGMw?=
- =?utf-8?B?UDZjb2l1MzFJZURqNFhxdU04Q0ozUkxTMzlrUm5nbFoxWUZZSlJ0Y2UzV0ZG?=
- =?utf-8?B?Um93MlBFT0FVdXNDemk0bXdLanVLSGtMVXVJWDNvR0JRb2hWOHJuM01HN2Z1?=
- =?utf-8?B?U0o3WnpIL1UyWlVza0NremZZUVg0U2krcThvVE9kZ0krQmFxR3daNjB2aExW?=
- =?utf-8?B?ZGU2RDgwSk1SQytRVHBmcitpeS92YTBDcEh2eGlPMEdDOUNJMlN4S3hFeEJr?=
- =?utf-8?B?ME9oV1BRM29rbUJHUjFxSlFLMlVNUmpicTRXT0ozMU9BOEZRVElNWEcrOTNy?=
- =?utf-8?B?cjV0aWpkL3VYcFB3SnlmL0hKdGs1RXhtYUVReSthZWU1VjFsSlAyZmk4TmNI?=
- =?utf-8?B?MFJDcTNUd0hUOTdjZFlSQ3RhOXAreFNPRyszaTJoTE5wNlB1SXF1cnUwY21a?=
- =?utf-8?B?MlZBZDVhenk3eWh6Rm1ZeVAvMTg4Um5tZU5SazVzYXg1Z0NBYW45dVJ6SVhI?=
- =?utf-8?B?WFZZSHd4OE4xYWZUN2VNZXc2ZTZlMDVKc3dXaEoxVXNEYTl4OGhuSjI2RHVr?=
- =?utf-8?B?SVprcXpocXhRek1yS09yR1FzMDU4WDdzTVZMQTFVc1JWYTk2YlVaYkJlT2xi?=
- =?utf-8?B?YXA5YmhhUnQxRDEzMDNjN0RMZ1BhN0E2bkdDNHNmby93VXpVNHdCdkVFa1lS?=
- =?utf-8?B?YUpiajBUQ2x6RlZaZkxYUlpNUlZTbVQrSzY4V0FSYk5vb2RPMkhEZnJ5Mzl1?=
- =?utf-8?B?cVlVaXNLaENYQzdCOE5RSjJrZHNQSGUwWDdiZThiajArQWswVm9tcW8zRW1G?=
- =?utf-8?B?WmtLZkZ5aWlJWkdRRkJRbm8rNUYzUWEzZFIwOGFKTmIxa0dVdEhuTVY2V1Y2?=
- =?utf-8?B?UmNzNlJUSFpzZEFGMGlXYzVmdUR5NXVueGhLV0RSaGFiaGp4NzNVR2w0N2hF?=
- =?utf-8?B?dGkwbkduL1pwZldDcnM3VnN2K1VrVDdKN29QaWZta0JncysyK0tBcG5yVDdM?=
- =?utf-8?B?Lzk1dDZ2TkgrMDNPQ1dXZHhWUUJlUDFyL0ZiOHRKV2RiNmJ6S0NWbTlTLzFN?=
- =?utf-8?Q?81WER9xJ88rFB?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aVdYZDloeFUxd2hPRk9iN0p6WWV1dHh2UFNKMytsOEFKcys0a0Y3NFNJZERZ?=
+ =?utf-8?B?NHBSMWswbkZLWWpZd1VqZHpWZWVpMzFqQjdpU2NqcCtBdmpQOXVYTFRiZ2g5?=
+ =?utf-8?B?WFVGQWFiVndtNG0vMzJGUVF2N2pqclUwKzRlVUVIalpHeS90aElNdUlYVDRP?=
+ =?utf-8?B?YnZ3OXBKRzNMVjhJVjMxaTJTMlJGM1JlL0luNWVTbzB5NEo5QUlJakdtQkJB?=
+ =?utf-8?B?TTJLeEV0LzFXMjRwc0FrR2xscjNBOGcrSzZsb2tTYlVnT3JodURmWGtVZ2tH?=
+ =?utf-8?B?WVNJT1FkdGFiMytZWW83bFNyR1EzbFQrYUVOSXlUeGFKQW9sYmJWZjRCQ2dZ?=
+ =?utf-8?B?bkFaakxTcldlMUFwMDhYdjVYZFNyYmdWODVEWmJsdlZZbHQ2dUZvRzh6MnUy?=
+ =?utf-8?B?bEJ3K0ZWbkZZSDFweFA5dE9tYU9ZSkNZTmdKdVZERXNKSDRzM2crZGxlWVBM?=
+ =?utf-8?B?VHBrdThxWlltR01ZaDZKTHVTT2RPWTk4RWVxcGlCbzRFL0svTkttTzNVbmtT?=
+ =?utf-8?B?akNFUHRCeG1DdW1ia1RNalFQUDdzeTJZZ0VoemZJdGk4eW5PemlQQmxYY2JW?=
+ =?utf-8?B?MHgrOWw1UlBIZ0wydzNNYjk2OE5vQkxYYkJiVlNQSmdpRFYyNStXZjR6SitS?=
+ =?utf-8?B?SVdKbGl5VEhMeGVLMlIvNEY0bjIvSktQYmprZi93SnJoaEp6dXpWUi9xZDVk?=
+ =?utf-8?B?blZJUWVCYS9LVXFBM1NTQmQrdTRMUWQyb0dUMVFBNUkwNFkxdURFdmxvVVlk?=
+ =?utf-8?B?NGNSaURTY1BESGh2YnF4QzBUaEZuelNtaE83RFRCbyszS282RXJhd1Z5YllP?=
+ =?utf-8?B?NjBXaHVhbVhCc0l6b3N4bW1sK282SkZweDU2RTVQNGoyNmUrR3FPSnd6SElN?=
+ =?utf-8?B?TXpPd1E5c3ZGYjZzK0dYOTdSQnlGWVJqam5mbGFyUjdUSnV4NEZWRTRyMGlM?=
+ =?utf-8?B?ZXZleTVJS2k0V0ExblRXUmJlTnptZzNuQSt1bTdmRmpCOU1KVURTb2ZRQkly?=
+ =?utf-8?B?SVNtL1ZuaWlZR2NjWXFlWEJhZklpWmZ2UHQ0QnpBUHljRmVKcmNjZ05OL3Zw?=
+ =?utf-8?B?dzc0Ulo0TW5DQzRFSnN4K0Z5UkIwZE1JWFluZ0NXUVFhWDNGZ1RscE01Uitp?=
+ =?utf-8?B?aU1nVm5FcGMxUzRZRjA2bW9ML25HZWtpUVFTeWJqT29GdEV5Rlc3MWRFY2wv?=
+ =?utf-8?B?cmJUSDBtdUJqY0hLL0g2YXlSRUErY0txREd5QzlBWFhHUkhzU01VVWRCS3BE?=
+ =?utf-8?B?Qk12NVhlemZMLzF3M3lmYU9DUEtqY0toUkJSZGFjRTNDV1UyZjBiVytvNmY2?=
+ =?utf-8?B?QUxEalNJVEVBUHhxZGdGdFJUVGJLaURlcGFEZkhjamRBOE5RRThQSk9acjBm?=
+ =?utf-8?B?S2FsejhtczFGZGRZVjl2RGxDQWgxekZHaEUzUHU4d3NoYmZ6bVV1YnRhQktL?=
+ =?utf-8?B?VVBYU3pkcmRvZm10UVh2TGltY2hlUzR5VFBhcGJFSVlvYmEwaWE2S3AyWHVL?=
+ =?utf-8?B?WGJNU3hEVnVLc1NuYmJBYm1pKy9qUjF5ZldTR0o2NzEzdEllbTdHWE1DNTZQ?=
+ =?utf-8?B?OHZHQ041eDROYzVHMm5CRThqYlRiNlJQMVBQNlBSRTlLUjVRNnJkRlVqNmEv?=
+ =?utf-8?B?bXFmL0pEaDZMQWk3Y29MTTBIMTlnVWRVN29nVW5vRzd6OHl5VG1ndkdNYU5S?=
+ =?utf-8?B?V3MreXpQVkVHOHFmZHBtSm4vcE1wcnpwd2tVOWFQMWNaeFVueUo3UGNaN3dH?=
+ =?utf-8?B?elVUdDE0YTZZbGhvTDdQOElQeEplMWRYSjBsdlhSdW5CNzRmZmpYdmNvUVBh?=
+ =?utf-8?B?RmJTdkw4ZWNpdDZUd2xRZTRRQmlhbEM4eWdXVkY2RHR5MU8ydXBvbmJKU1h0?=
+ =?utf-8?Q?rwSl15ysV9mrO?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(82310400014)(36860700004); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2024 13:48:54.8388 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f4b6b07-5bca-414f-9902-08dc65f79d42
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2024 13:48:56.5099 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2fae70b-766e-4dd4-6967-08dc65f79e97
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD75.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD79.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4179
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7899
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,91 +140,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Current MES GFX mask prevents FW to enable oversubscription. This patch
-does the following:
-- Fixes the mask values and adds a description for the same.
-- Removes the central mask setup and makes it IP specific, as it would
-  be different when the number of pipes and queues are different.
+This patch does necessary modifications to enable the SDMA
+usermode queues using the existing userqueue infrastructure.
 
-V9: introduce this patch in the series
+V9: introduced this patch in the series
 
 Cc: Christian König <Christian.Koenig@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 3 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h | 1 -
- drivers/gpu/drm/amd/amdgpu/mes_v10_1.c  | 9 +++++++--
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c  | 9 +++++++--
- 4 files changed, 14 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c    | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c           | 3 +++
+ 3 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index a00cf4756ad0..b405fafc0b71 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -151,9 +151,6 @@ int amdgpu_mes_init(struct amdgpu_device *adev)
- 		adev->mes.compute_hqd_mask[i] = 0xc;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
+index 781283753804..e516487e8db9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
+@@ -189,7 +189,7 @@ amdgpu_userqueue_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	int qid, r = 0;
+ 
+ 	/* Usermode queues are only supported for GFX/SDMA engines as of now */
+-	if (args->in.ip_type != AMDGPU_HW_IP_GFX) {
++	if (args->in.ip_type != AMDGPU_HW_IP_GFX && args->in.ip_type != AMDGPU_HW_IP_DMA) {
+ 		DRM_ERROR("Usermode queue doesn't support IP type %u\n", args->in.ip_type);
+ 		return -EINVAL;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c
+index a6c3037d2d1f..a5e270eda37b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c
+@@ -182,6 +182,10 @@ static int mes_v11_0_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+ 		return r;
  	}
  
--	for (i = 0; i < AMDGPU_MES_MAX_GFX_PIPES; i++)
--		adev->mes.gfx_hqd_mask[i] = i ? 0 : 0xfffffffe;
--
- 	for (i = 0; i < AMDGPU_MES_MAX_SDMA_PIPES; i++) {
- 		if (amdgpu_ip_version(adev, SDMA0_HWIP, 0) <
- 		    IP_VERSION(6, 0, 0))
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index 4c8fc3117ef8..598556619337 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -110,7 +110,6 @@ struct amdgpu_mes {
- 	uint32_t                        vmid_mask_gfxhub;
- 	uint32_t                        vmid_mask_mmhub;
- 	uint32_t                        compute_hqd_mask[AMDGPU_MES_MAX_COMPUTE_PIPES];
--	uint32_t                        gfx_hqd_mask[AMDGPU_MES_MAX_GFX_PIPES];
- 	uint32_t                        sdma_hqd_mask[AMDGPU_MES_MAX_SDMA_PIPES];
- 	uint32_t                        aggregated_doorbells[AMDGPU_MES_PRIORITY_NUM_LEVELS];
- 	uint32_t                        sch_ctx_offs;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-index 1e5ad1e08d2a..4d1121d1a1e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-@@ -290,8 +290,13 @@ static int mes_v10_1_set_hw_resources(struct amdgpu_mes *mes)
- 		mes_set_hw_res_pkt.compute_hqd_mask[i] =
- 			mes->compute_hqd_mask[i];
++	/* We don't need to set other FW objects for SDMA queues */
++	if (queue->queue_type == AMDGPU_HW_IP_DMA)
++		return 0;
++
+ 	/* Shadow and GDS objects come directly from userspace */
+ 	mqd->shadow_base_lo = mqd_user->shadow_va & 0xFFFFFFFC;
+ 	mqd->shadow_base_hi = upper_32_bits(mqd_user->shadow_va);
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+index 361835a61f2e..90354a70c807 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+@@ -1225,6 +1225,8 @@ static int sdma_v6_0_early_init(void *handle)
+ 	return 0;
+ }
  
--	for (i = 0; i < MAX_GFX_PIPES; i++)
--		mes_set_hw_res_pkt.gfx_hqd_mask[i] = mes->gfx_hqd_mask[i];
-+	/*
-+	 * GFX pipe 0 queue 0 is being used by kernel
-+	 * Set GFX pipe 0 queue 1 for MES scheduling
-+	 * GFX pipe 1 can't be used for MES due to HW limitation.
-+	 */
-+	mes_set_hw_res_pkt.gfx_hqd_mask[0] = 0x2;
-+	mes_set_hw_res_pkt.gfx_hqd_mask[1] = 0;
++extern const struct amdgpu_userq_funcs userq_mes_v11_0_funcs;
++
+ static int sdma_v6_0_sw_init(void *handle)
+ {
+ 	struct amdgpu_ring *ring;
+@@ -1265,6 +1267,7 @@ static int sdma_v6_0_sw_init(void *handle)
+ 		return -EINVAL;
+ 	}
  
- 	for (i = 0; i < MAX_SDMA_PIPES; i++)
- 		mes_set_hw_res_pkt.sdma_hqd_mask[i] = mes->sdma_hqd_mask[i];
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index 63f281a9984d..feb7fa2c304c 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -387,8 +387,13 @@ static int mes_v11_0_set_hw_resources(struct amdgpu_mes *mes)
- 		mes_set_hw_res_pkt.compute_hqd_mask[i] =
- 			mes->compute_hqd_mask[i];
++	adev->userq_funcs[AMDGPU_HW_IP_DMA] = &userq_mes_v11_0_funcs;
+ 	return r;
+ }
  
--	for (i = 0; i < MAX_GFX_PIPES; i++)
--		mes_set_hw_res_pkt.gfx_hqd_mask[i] = mes->gfx_hqd_mask[i];
-+	/*
-+	 * GFX pipe 0 queue 0 is being used by kernel
-+	 * Set GFX pipe 0 queue 1 for MES scheduling
-+	 * GFX pipe 1 can't be used for MES due to HW limitation.
-+	 */
-+	mes_set_hw_res_pkt.gfx_hqd_mask[0] = 0x2;
-+	mes_set_hw_res_pkt.gfx_hqd_mask[1] = 0;
- 
- 	for (i = 0; i < MAX_SDMA_PIPES; i++)
- 		mes_set_hw_res_pkt.sdma_hqd_mask[i] = mes->sdma_hqd_mask[i];
 -- 
 2.43.2
 
