@@ -2,100 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A0F8B4C16
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Apr 2024 16:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A172F8B4C14
+	for <lists+amd-gfx@lfdr.de>; Sun, 28 Apr 2024 16:06:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE131120F0;
-	Sun, 28 Apr 2024 14:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E683310FC66;
+	Sun, 28 Apr 2024 14:06:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=math.uni-bielefeld.de header.i=@math.uni-bielefeld.de header.b="FxDgcFWs";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="kURQd0nT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp1.math.uni-bielefeld.de (smtp1.math.uni-bielefeld.de
- [129.70.45.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF53E10F5C8;
- Sat, 27 Apr 2024 13:49:29 +0000 (UTC)
-Received: from [192.168.0.100]
- (dslb-084-060-164-146.084.060.pools.vodafone-ip.de [84.60.164.146])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by smtp1.math.uni-bielefeld.de (Postfix) with ESMTPSA id 35D7D602E5;
- Sat, 27 Apr 2024 15:49:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=math.uni-bielefeld.de; s=default; t=1714225766;
- bh=2Z2cZ2r3ZL3Y/MT8LeagIDIKA+w/N+Zqp6OvwQwmLwI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=FxDgcFWs5MEv8aGvyMPcUPmUrnkcrUDEGzTyDiPJYz93lPZNAXMVqNYbIKmwcrhn8
- h+4qr73/+OnwT480/zXEVHN7zlZaepupTjqYktHFgTCVYwMCFwRjAk04IOxu+oM12u
- iBhTWFyEa4378j3dd1IwO09tjZJUdCbeBkP3ehHNOzC/wcD4Em7BaVlBN9Lv4ZK8YE
- kBWoxHClYXM+Ted8C6jP/4z8zMjRXVCG40DgkhmiQ9u6uY42hDMA4VxR6cOiN1DlxZ
- YPKh65HkUCBXaTBm2Rt5zLRdbJGgtUvXp+Ndloq7d1/gWXTi2/BojMxc0Rll7gGjAG
- ttMF39oONZcYg==
-Message-ID: <0782e84f-5fab-4025-ad8e-aa7b56f3fbc6@math.uni-bielefeld.de>
-Date: Sat, 27 Apr 2024 15:49:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: Add MSF panel to DPCD 0x317 patch list
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5AD10FC21
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 12:42:51 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id
+ a640c23a62f3a-a55911bff66so444429966b.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 05:42:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1714308169; x=1714912969; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ruxM04DcwSqc1+5CUH/yirqxxYT+4VUtJYzmah4p6Dc=;
+ b=kURQd0nTLVYg5oQENTxEy8GnPLC8jiyRZmiN200RDI1yVDbssailfhHevxw/9MgiRt
+ NrBVz+2efkMOuflrXS1S+yhngsGixqelt1Zggg83h+SX2P9DKjnJSUYNtWCFxZmumupD
+ h2WzfLBkuDANX9x1vgJm8kMb2Z/XLfz1xz3KDMnsvLvEKyum+SlhI3IaIHeE50c+2KQ2
+ IXENigMz3L6GlSxA2n2XQlE6mod1p+mWYNnLfy7E9B89x854X7R0j5TBMWwX1L+iFeUd
+ SVtRIS/HnALmy0ZLwv3j+YcKKMxdEm/y/od/EyENfGKuxkmkwEHaq6siT9vr/DxbBDIh
+ mUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714308169; x=1714912969;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ruxM04DcwSqc1+5CUH/yirqxxYT+4VUtJYzmah4p6Dc=;
+ b=o6a4JrRFYf0i55SrgSyJgxW4J61SNUGj4wzhCEFVnaNlxbFrEwi4WYMedj5OXpp92y
+ rpGHvUyU1Xi4R+8zUle49iao1JrQf3zkQjZuZkYX/gCELP6hmnc5HBC4ir343bG+twPJ
+ lbpPYjEBMbOnixDu5wgTMN1ihIHOpJ1FsTtCqCzJsb5Pe7JqUj+GvnmO6AUQfG2fQPA9
+ /l6dARnV0e9n5wSi/j162tX/wYtcXbrY0pTu3Qtq58FUqKt4lALASGFBdWLfOSfgdis1
+ Qkc9fc9ltFGMZc0YT39KVzriqRMrk1i4/VccROIjdEHF5sD1I6vH/FDCg/9DcadCqfSe
+ yq7g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWJrunX4oWdGo08oOuMSfbmsxiUrlPOqvUvZq2XIkn9RZEdetKd8gKXifBCCN/9DP6FAbfQnClM+I0eAfzbYHMDPS7rshW+lZ70h6qGIg==
+X-Gm-Message-State: AOJu0YzeWuvAD4XuSMZRYuIaWCsBoj5zHqT5qH2y9Zlst+eoMlsua/pP
+ IovE3/7ypT8nhgUT9as4u5kpMA8qTzOV9eEdIeOY0KMGPS6TT/zsOR2gUV1n+fg=
+X-Google-Smtp-Source: AGHT+IFEmenVCstN3qRQ3VZod695J/pFmJ7LOK2zFQWoDBSbhtYZRvHLRnkehwSsSY/MkO5h5SEVWQ==
+X-Received: by 2002:a17:906:a2d3:b0:a55:856b:5892 with SMTP id
+ by19-20020a170906a2d300b00a55856b5892mr2957543ejb.30.1714308169136; 
+ Sun, 28 Apr 2024 05:42:49 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ b25-20020a17090630d900b00a5875b34b6asm6935689ejb.14.2024.04.28.05.42.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 28 Apr 2024 05:42:48 -0700 (PDT)
+Date: Sun, 28 Apr 2024 15:42:44 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20240309014732.722139-1-tjakobi@math.uni-bielefeld.de>
-Content-Language: en-US
-From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Autocrypt: addr=tjakobi@math.uni-bielefeld.de; keydata=
- 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
- JRHWPGCL3BhOxQ==
-In-Reply-To: <20240309014732.722139-1-tjakobi@math.uni-bielefeld.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Subject: [PATCH] drm/amd/display: re-indent dpp401_dscl_program_isharp()
+Message-ID: <2b0a61a0-baca-415f-aad4-7dc4cde73ef7@moroto.mountain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Sun, 28 Apr 2024 14:06:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,45 +85,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 3/9/24 02:47, tjakobi@math.uni-bielefeld.de wrote:
+Smatch complains because some lines are indented more than they should
+be.  I went a bit crazy re-indenting this.  ;)
 
-> From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
->
-> This 8.4 inch panel is integrated in the Ayaneo Kun handheld
-> device. The panel resolution is 2560×1600, i.e. it has
-> portrait dimensions.
->
-> Decoding the EDID shows:
-> Manufacturer: MSF
-> Model: 4099
-> Display Product Name: 'TV080WUM-NL0 '
->
-> Judging from the product name this might be a clone of a
-> BOE panel, but with larger dimensions.
->
-> Panel frequently shows non-functional backlight control. Adding
-> some debug prints to update_connector_ext_caps() shows that
-> something the OLED bit of ext_caps is set, and then the driver
-> assumes that backlight is controlled via AUX.
->
-> Forcing backlight control to PWM via amdgpu.backlight=0 restores
-> backlight operation.
->
-> Signed-off-by: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-> ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> index 7a09a72e182f..5a017ba94e3c 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> @@ -68,6 +68,7 @@ static void apply_edid_quirks(struct edid *edid, struct dc_edid_caps *edid_caps)
->   	case drm_edid_encode_panel_id('A', 'U', 'O', 0xE69B):
->   	case drm_edid_encode_panel_id('B', 'O', 'E', 0x092A):
->   	case drm_edid_encode_panel_id('L', 'G', 'D', 0x06D1):
-> +	case drm_edid_encode_panel_id('M', 'S', 'F', 0x1003):
->   		DRM_DEBUG_DRIVER("Clearing DPCD 0x317 on monitor with panel id %X\n", panel_id);
->   		edid_caps->panel_patch.remove_sink_ext_caps = true;
->   		break;
-Another gentle ping!
+The comments were not useful except as a marker of things which are left
+to implement so I deleted most of them except for the TODO.
+
+I introduced a "data" pointer so that I could replace
+"scl_data->dscl_prog_data." with just "data->" and shorten the lines a
+bit.  It's more readable without the line breaks.
+
+I also tried to align it so you can see what is changing on each line.
+
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ .../display/dc/dpp/dcn401/dcn401_dpp_dscl.c   | 93 ++++++-------------
+ 1 file changed, 30 insertions(+), 63 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
+index c20376083441..696ccf96b847 100644
+--- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
++++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
+@@ -779,75 +779,42 @@ static void dpp401_dscl_program_isharp(struct dpp *dpp_base,
+ 		const struct scaler_data *scl_data)
+ {
+ 	struct dcn401_dpp *dpp = TO_DCN401_DPP(dpp_base);
++	const struct dscl_prog_data *data;
+ 
+ 	if (memcmp(&dpp->scl_data, scl_data, sizeof(*scl_data)) == 0)
+ 		return;
+ 
+ 	PERF_TRACE();
+ 	dpp->scl_data = *scl_data;
+-	// ISHARP_EN
+-	REG_SET(ISHARP_MODE, 0,
+-		ISHARP_EN, scl_data->dscl_prog_data.isharp_en);
+-		// ISHARP_NOISEDET_EN
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_NOISEDET_EN, scl_data->dscl_prog_data.isharp_noise_det.enable);
+-		// ISHARP_NOISEDET_MODE
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_NOISEDET_MODE, scl_data->dscl_prog_data.isharp_noise_det.mode);
+-		// ISHARP_NOISEDET_UTHRE
+-		REG_SET(ISHARP_NOISEDET_THRESHOLD, 0,
+-				ISHARP_NOISEDET_UTHRE, scl_data->dscl_prog_data.isharp_noise_det.uthreshold);
+-		// ISHARP_NOISEDET_DTHRE
+-		REG_SET(ISHARP_NOISEDET_THRESHOLD, 0,
+-				ISHARP_NOISEDET_DTHRE, scl_data->dscl_prog_data.isharp_noise_det.dthreshold);
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_NOISEDET_MODE, scl_data->dscl_prog_data.isharp_noise_det.mode);
+-		// ISHARP_NOISEDET_UTHRE
+-		REG_SET(ISHARP_NOISEDET_THRESHOLD, 0,
+-				ISHARP_NOISEDET_UTHRE, scl_data->dscl_prog_data.isharp_noise_det.uthreshold);
+-		// ISHARP_NOISEDET_DTHRE
+-		REG_SET(ISHARP_NOISEDET_THRESHOLD, 0,
+-				ISHARP_NOISEDET_DTHRE, scl_data->dscl_prog_data.isharp_noise_det.dthreshold);
+-		// ISHARP_NOISEDET_PWL_START_IN
+-		REG_SET(ISHARP_NOISE_GAIN_PWL, 0,
+-				ISHARP_NOISEDET_PWL_START_IN, scl_data->dscl_prog_data.isharp_noise_det.pwl_start_in);
+-		// ISHARP_NOISEDET_PWL_END_IN
+-		REG_SET(ISHARP_NOISE_GAIN_PWL, 0,
+-				ISHARP_NOISEDET_PWL_END_IN, scl_data->dscl_prog_data.isharp_noise_det.pwl_end_in);
+-		// ISHARP_NOISEDET_PWL_SLOPE
+-		REG_SET(ISHARP_NOISE_GAIN_PWL, 0,
+-				ISHARP_NOISEDET_PWL_SLOPE, scl_data->dscl_prog_data.isharp_noise_det.pwl_slope);
+-		// ISHARP_LBA_MODE
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_LBA_MODE, scl_data->dscl_prog_data.isharp_lba.mode);
+-		// TODO: ISHARP_LBA: IN_SEG, BASE_SEG, SLOPE_SEG
+-		// ISHARP_FMT_MODE
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_FMT_MODE, scl_data->dscl_prog_data.isharp_fmt.mode);
+-		// ISHARP_FMT_NORM
+-		REG_SET(ISHARP_MODE, 0,
+-				ISHARP_FMT_NORM, scl_data->dscl_prog_data.isharp_fmt.norm);
+-		// ISHARP_DELTA_LUT
+-		dpp401_dscl_set_isharp_filter(dpp, scl_data->dscl_prog_data.isharp_delta);
+-		// ISHARP_NLDELTA_SCLIP_EN_P
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_EN_P, scl_data->dscl_prog_data.isharp_nldelta_sclip.enable_p);
+-		// ISHARP_NLDELTA_SCLIP_PIVOT_P
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_PIVOT_P, scl_data->dscl_prog_data.isharp_nldelta_sclip.pivot_p);
+-		// ISHARP_NLDELTA_SCLIP_SLOPE_P
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_SLOPE_P, scl_data->dscl_prog_data.isharp_nldelta_sclip.slope_p);
+-		// ISHARP_NLDELTA_SCLIP_EN_N
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_EN_N, scl_data->dscl_prog_data.isharp_nldelta_sclip.enable_n);
+-		// ISHARP_NLDELTA_SCLIP_PIVOT_N
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_PIVOT_N, scl_data->dscl_prog_data.isharp_nldelta_sclip.pivot_n);
+-		// ISHARP_NLDELTA_SCLIP_SLOPE_N
+-		REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0,
+-				ISHARP_NLDELTA_SCLIP_SLOPE_N, scl_data->dscl_prog_data.isharp_nldelta_sclip.slope_n);
+-		PERF_TRACE();
++	data = &scl_data->dscl_prog_data;
++
++	REG_SET(ISHARP_MODE, 0,	ISHARP_EN, data->isharp_en);
++
++	REG_SET(ISHARP_MODE, 0,	              ISHARP_NOISEDET_EN,    data->isharp_noise_det.enable);
++	REG_SET(ISHARP_MODE, 0,               ISHARP_NOISEDET_MODE,  data->isharp_noise_det.mode);
++	REG_SET(ISHARP_NOISEDET_THRESHOLD, 0, ISHARP_NOISEDET_UTHRE, data->isharp_noise_det.uthreshold);
++	REG_SET(ISHARP_NOISEDET_THRESHOLD, 0, ISHARP_NOISEDET_DTHRE, data->isharp_noise_det.dthreshold);
++	REG_SET(ISHARP_MODE, 0,               ISHARP_NOISEDET_MODE,  data->isharp_noise_det.mode);
++	REG_SET(ISHARP_NOISEDET_THRESHOLD, 0, ISHARP_NOISEDET_UTHRE, data->isharp_noise_det.uthreshold);
++	REG_SET(ISHARP_NOISEDET_THRESHOLD, 0, ISHARP_NOISEDET_DTHRE, data->isharp_noise_det.dthreshold);
++	REG_SET(ISHARP_NOISE_GAIN_PWL, 0, ISHARP_NOISEDET_PWL_START_IN, data->isharp_noise_det.pwl_start_in);
++	REG_SET(ISHARP_NOISE_GAIN_PWL, 0, ISHARP_NOISEDET_PWL_END_IN, data->isharp_noise_det.pwl_end_in);
++	REG_SET(ISHARP_NOISE_GAIN_PWL, 0, ISHARP_NOISEDET_PWL_SLOPE, data->isharp_noise_det.pwl_slope);
++
++	REG_SET(ISHARP_MODE, 0, ISHARP_LBA_MODE, data->isharp_lba.mode);
++	// TODO: ISHARP_LBA: IN_SEG, BASE_SEG, SLOPE_SEG
++	REG_SET(ISHARP_MODE, 0, ISHARP_FMT_MODE, data->isharp_fmt.mode);
++	REG_SET(ISHARP_MODE, 0, ISHARP_FMT_NORM, data->isharp_fmt.norm);
++
++	dpp401_dscl_set_isharp_filter(dpp, data->isharp_delta);
++
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_EN_P,    data->isharp_nldelta_sclip.enable_p);
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_PIVOT_P, data->isharp_nldelta_sclip.pivot_p);
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_SLOPE_P, data->isharp_nldelta_sclip.slope_p);
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_EN_N,    data->isharp_nldelta_sclip.enable_n);
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_PIVOT_N, data->isharp_nldelta_sclip.pivot_n);
++	REG_SET(ISHARP_NLDELTA_SOFT_CLIP, 0, ISHARP_NLDELTA_SCLIP_SLOPE_N, data->isharp_nldelta_sclip.slope_n);
++	PERF_TRACE();
+ } // dpp401_dscl_program_isharp
+ /**
+  * dpp401_dscl_set_scaler_manual_scale - Manually program scaler and line buffer
+-- 
+2.43.0
+
