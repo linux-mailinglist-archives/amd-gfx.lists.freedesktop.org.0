@@ -2,77 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C508B4C15
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Apr 2024 16:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4398B4C1B
+	for <lists+amd-gfx@lfdr.de>; Sun, 28 Apr 2024 16:18:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8738B112372;
-	Sun, 28 Apr 2024 14:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D4C310EBBB;
+	Sun, 28 Apr 2024 14:18:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="glC072xR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cjAWaIfx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6BD10FF8A
- for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 12:57:06 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-a58eb9a42d9so111604966b.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 05:57:06 -0700 (PDT)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4D0110E956
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 14:18:16 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-6ed04c91c46so3571494b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 07:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1714309024; x=1714913824; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Ng058NZ9Nj+W4KweKWLHemyFc1EwGYUwsROdFC21IRA=;
- b=glC072xRjmlpRUWDySWNoKYYQgsr8ZFMpSW9IKQAgEaDHUDq8FC6kxcvv1ZehYmcPM
- LgLynI5y9xsUfKle31AqW3kGUrDv27iJyPHVTrGaEcUbcGu9Pub2QpUxl3esInGP7WkO
- QhRsesnpnrUrJewoIHNRSUicv+9szzdb4Xg0zEIVdS0mch8BFIdmy6E6y/YFyUY0en9t
- bCYGSOUTVD++pj8twhJVhY819lKOM6cSS7XLMVvTwDYG+50eLpYxo3bmD6tLFgrhTRLx
- kIpzAA5k4Ug21IkTMZ6D3G2Tl5LS79cNzHm/NiEgMSrD0cTFTQDkgwKNnxmVZ24MO9Ko
- nbvw==
+ d=gmail.com; s=20230601; t=1714313896; x=1714918696; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=89gotI9GFIGOKKX5tkk2l5wTI//pf0JLtFMzR2TbOU8=;
+ b=cjAWaIfxg124OwCSnPeUwvi1rV6CyWWzt3quydE1YCV0wkp5AJRu6+RxMb4SYBWn0z
+ HvyV4uIBsyH7HSCzUNcwfLyPSIZUOpF3Ir0rNmuqLL8p5uQkLWX5xATAVTXeldY0QN0U
+ JYnmbRsRcVvoLJxL/+3pDkotZJN9DUHao5XR1TjNxrxDPCxVJOfiidOcbR8mFGqfSaBf
+ i7m7HiFIScpnYb6PT0V+f83dQD+JyGDARfvqVtSWceX7tHz5qIO4HRjH88doqEYuT4Sj
+ 3Q5YaUIAZsVMXQ3SDTUeBGVPpkTJOdn99DLWvzoWqzc0vel956RJ/WKH4CBiNHzTmZ9r
+ EL/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714309024; x=1714913824;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Ng058NZ9Nj+W4KweKWLHemyFc1EwGYUwsROdFC21IRA=;
- b=cEzAZVe01vqBDnjSgwfnp/vIg2rBBjJ8mzfY05PIydBegP7cMWwKoDKUprZ+0RWAgc
- DmdpqKLR8FAbJ+oovqjWEx3poaFL2lwhDzrrcJeSczvlCL2+/mCEKKA39yDASWGMUZCJ
- WXTpA/gV96Wa0xt9gF+4OidWBNZA/yfTbPfzUTctH8qxF5tQDWDqU4QXU23BrVrDf4U3
- Eg/7gb1HEXUFE/5F6jnhZzocgYmacfkwO8CVHQan9dUS43eoI79mprXeeznTMcmnW+cb
- jDAHzwUOHvwrK3hiG3Cf6kOJuwfGHToDdxhV7oFnxLKYgLBbMywqgOenPrsFQcPfOpEg
- jtFw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVtmfzTWNABk1C4VyXpsQXACGjE6AW5UcPxh57Iwpuq1qDvf91GtrjGtHVcZuA0m7z5XkCCDzvK+ScOq8TyIa+Sn6e59+1XIfkG8lBBtA==
-X-Gm-Message-State: AOJu0Yy6cdk7qWBCYMNSpM3ycJ9J4bRiCdM2mVqzzsGQJtfVu5boC9Ub
- UwNlnRb30nvisax8JotBCM2BW+nEjVHtktmQlvDtg5ayX9MezOopWVsDvaxEoGw=
-X-Google-Smtp-Source: AGHT+IF2bconLYEiVsCFSWzXhwOMR/6nTlbaxbFyyM1sjiNBblck1WsWiEU8lcUPzjFP3RiywB5d8Q==
-X-Received: by 2002:a17:906:13c9:b0:a58:8fa6:df18 with SMTP id
- g9-20020a17090613c900b00a588fa6df18mr4813693ejc.41.1714309024203; 
- Sun, 28 Apr 2024 05:57:04 -0700 (PDT)
-Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- e20-20020a170906315400b00a5591a644c8sm10726019eje.17.2024.04.28.05.57.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 28 Apr 2024 05:57:03 -0700 (PDT)
-Date: Sun, 28 Apr 2024 15:57:00 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Bob Zhou <bob.zhou@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Guchun Chen <guchun.chen@amd.com>, Le Ma <le.ma@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Shashank Sharma <shashank.sharma@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: Fix signedness bug in sdma_v4_0_process_trap_irq()
-Message-ID: <afb229a9-3f18-44cb-b305-5fbb2e1b4ee3@moroto.mountain>
+ d=1e100.net; s=20230601; t=1714313896; x=1714918696;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=89gotI9GFIGOKKX5tkk2l5wTI//pf0JLtFMzR2TbOU8=;
+ b=eQsPQ5q1qmdh7QgzbeBPBZroB2UFy5ezhN7xMQ97Z6NxDrco+3S1P3IGojLUewdFj5
+ 8AAL+4BeuJP3x7wx20Ea1ShSaQnqDjp9IF5PqGX1AALdXjcX08wodurpvzyQeITSICNT
+ o5x/8TvxIFBhcuI+Y/L1+qom57Uekwav1fUe7hxhpGz04hLfiizXUISIboHWUAzkv07O
+ 1zzNmsTqCXr+5Z9pb402BEIZPmKsR3E4aoClsd/vf5REgmICtqGFCW8V6vYjszYLg059
+ hs5VL6oX4+CfRJDFgImACrxpO1xXCRkpqfqEmpa0DQdPTo6YT5ltaoT89ODRD0vE6lg5
+ St9Q==
+X-Gm-Message-State: AOJu0YypSbIOWeqA9BOWw0ERzLxxyAXgffO00mqnsJp7h5rg3AtMePQa
+ 0d+8iGlhGuMb8Nj5VgkvG94poVX0vijRqPnjFLJ3o0+Kf48LXosIP5LRl00IpknmNSoZWDGfEKZ
+ IYAdu3tUyFGjTrtaiQvEaDK/ajB1hhjXL
+X-Google-Smtp-Source: AGHT+IG229ArnrxGHvEuUTUYaVjVfB1QiFxJpypXQc6spkrrj02huL93029DV+eEFCxWUjQdeuZUO9SD8krA8YK1aos=
+X-Received: by 2002:a17:902:a50a:b0:1e0:983c:d686 with SMTP id
+ s10-20020a170902a50a00b001e0983cd686mr8843454plq.20.1714313896050; Sun, 28
+ Apr 2024 07:18:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Sun, 28 Apr 2024 14:06:41 +0000
+References: <20240428095435.126980-1-Jun.Ma2@amd.com>
+ <20240428095435.126980-2-Jun.Ma2@amd.com>
+In-Reply-To: <20240428095435.126980-2-Jun.Ma2@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 28 Apr 2024 10:18:04 -0400
+Message-ID: <CADnq5_OxXXU_2ezR3ruUWK8otWL2MU9gLP=SF8c9z4NsNSMe=A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu/pm: Fix uninitialized variable warning
+To: Ma Jun <Jun.Ma2@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Kenneth.Feng@amd.com, 
+ Alexander.Deucher@amd.com, kevinyang.wang@amd.com, christian.koenig@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,27 +77,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The "instance" variable needs to be signed for the error handling to work.
+On Sun, Apr 28, 2024 at 7:12=E2=80=AFAM Ma Jun <Jun.Ma2@amd.com> wrote:
+>
+> Check return value of smum_send_msg_to_smc to fix
+> uninitialized variable varning
+>
+> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> ---
+>  .../drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c  | 21 ++++++++++++++-----
+>  .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c |  8 +++++--
+>  .../drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c |  6 ++++--
+>  .../drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c |  6 ++++--
+>  4 files changed, 30 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drive=
+rs/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> index 0b181bc8931c..f62381b189ad 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> @@ -1554,7 +1554,10 @@ static int smu10_set_fine_grain_clk_vol(struct pp_=
+hwmgr *hwmgr,
+>                 }
+>
+>                 if (input[0] =3D=3D 0) {
+> -                       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMinGfxcl=
+kFrequency, &min_freq);
+> +                       ret =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_Get=
+MinGfxclkFrequency, &min_freq);
+> +                       if (ret)
+> +                               return ret;
+> +
+>                         if (input[1] < min_freq) {
+>                                 pr_err("Fine grain setting minimum sclk (=
+%ld) MHz is less than the minimum allowed (%d) MHz\n",
+>                                         input[1], min_freq);
+> @@ -1562,7 +1565,10 @@ static int smu10_set_fine_grain_clk_vol(struct pp_=
+hwmgr *hwmgr,
+>                         }
+>                         smu10_data->gfx_actual_soft_min_freq =3D input[1]=
+;
+>                 } else if (input[0] =3D=3D 1) {
+> -                       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMaxGfxcl=
+kFrequency, &max_freq);
+> +                       ret =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_Get=
+MaxGfxclkFrequency, &max_freq);
+> +                       if (ret)
+> +                               return ret;
+> +
+>                         if (input[1] > max_freq) {
+>                                 pr_err("Fine grain setting maximum sclk (=
+%ld) MHz is greater than the maximum allowed (%d) MHz\n",
+>                                         input[1], max_freq);
+> @@ -1577,10 +1583,15 @@ static int smu10_set_fine_grain_clk_vol(struct pp=
+_hwmgr *hwmgr,
+>                         pr_err("Input parameter number not correct\n");
+>                         return -EINVAL;
+>                 }
+> -               smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMinGfxclkFrequen=
+cy, &min_freq);
+> -               smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMaxGfxclkFrequen=
+cy, &max_freq);
+> -
+> +               ret =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMinGfxcl=
+kFrequency, &min_freq);
+> +               if (ret)
+> +                       return ret;
+>                 smu10_data->gfx_actual_soft_min_freq =3D min_freq;
+> +
+> +               ret =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetMaxGfxcl=
+kFrequency, &max_freq);
+> +               if (ret)
+> +                       return ret;
+> +
+>                 smu10_data->gfx_actual_soft_max_freq =3D max_freq;
+>         } else if (type =3D=3D PP_OD_COMMIT_DPM_TABLE) {
+>                 if (size !=3D 0) {
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/driv=
+ers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> index 74a33b9ace6c..c60666f64601 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> @@ -2486,9 +2486,13 @@ static int vega10_populate_and_upload_avfs_fuse_ov=
+erride(struct pp_hwmgr *hwmgr)
+>         struct vega10_hwmgr *data =3D hwmgr->backend;
+>         AvfsFuseOverride_t *avfs_fuse_table =3D &(data->smc_state_table.a=
+vfs_fuse_override_table);
+>
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop32, &top32)=
+;
+> +       result =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop=
+32, &top32);
+> +       if (result)
+> +               return result;
+>
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBottom32, &bot=
+tom32);
+> +       result =3D smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBot=
+tom32, &bottom32);
+> +       if (result)
+> +               return result;
+>
+>         serial_number =3D ((uint64_t)bottom32 << 32) | top32;
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c b/driv=
+ers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> index c223e3a6bfca..9dd407134770 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> @@ -364,8 +364,10 @@ static void vega12_init_dpm_defaults(struct pp_hwmgr=
+ *hwmgr)
+>         }
+>
+>         /* Get the SN to turn into a Unique ID */
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop32, &top32)=
+;
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBottom32, &bot=
+tom32);
+> +       if (smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop32, &to=
+p32))
+> +               return;
+> +       if (smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBottom32, =
+&bottom32))
+> +               return;
+>
+>         adev->unique_id =3D ((uint64_t)bottom32 << 32) | top32;
+>  }
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c b/driv=
+ers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> index f9efb0bad807..3a95f7c4c6e3 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> @@ -404,8 +404,10 @@ static void vega20_init_dpm_defaults(struct pp_hwmgr=
+ *hwmgr)
+>         }
+>
+>         /* Get the SN to turn into a Unique ID */
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop32, &top32)=
+;
+> -       smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBottom32, &bot=
+tom32);
+> +       if (smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumTop32, &to=
+p32))
+> +               return;
+> +       if (smum_send_msg_to_smc(hwmgr, PPSMC_MSG_ReadSerialNumBottom32, =
+&bottom32))
+> +               return;
+>
+>         adev->unique_id =3D ((uint64_t)bottom32 << 32) | top32;
+>  }
 
-Fixes: b34ddc71267a ("drm/amdgpu: add error handle to avoid out-of-bounds")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Please align with Tim on the powerplay changes.  E.g., See this patch:
+drm/amd/pm: fix uninitialized variable warnings for vega10_hwmgr
+I'd like to have consistent function signatures for these functions.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index 101038395c3b..772604feb6ac 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -2017,7 +2017,7 @@ static int sdma_v4_0_process_trap_irq(struct amdgpu_device *adev,
- 				      struct amdgpu_irq_src *source,
- 				      struct amdgpu_iv_entry *entry)
- {
--	uint32_t instance;
-+	int instance;
- 
- 	DRM_DEBUG("IH: SDMA trap\n");
- 	instance = sdma_v4_0_irq_id_to_seq(entry->client_id);
--- 
-2.43.0
+Alex
 
+> --
+> 2.34.1
+>
