@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88338B6B85
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Apr 2024 09:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0B68B6B7D
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Apr 2024 09:27:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2080610F6EC;
-	Tue, 30 Apr 2024 07:27:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3361B10F658;
+	Tue, 30 Apr 2024 07:27:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ie07NXI8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rNdUwakl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A52A10ED1E
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 13:34:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA4F10F2DF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 13:38:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,31 +22,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KZlFXNvUIw7y2GKBUdQN01Nr7VLGXn66p6jz+mr7mas=; b=ie07NXI8n3vYp2Omz4DEPfDv0/
- YPXMRtkeHvg2NUwwvRpPhxqUoezRCwOyTZoFJtzh8YdAhncSYUL1hXrVpnK9jfzSG+JSh+wxYJhZt
- aDgLwkzZ+qkzDKeL9hFCLp7TPEUQONFjmI8GKk7iYKFOmd5Bt1aAZWmGi5O0ujH3mVTVIcCHh8pmr
- 3px8/k1HxrMKQUYUs4x4z6ODD24WYU57WXYLXthUyKVcZh7N8JNr/EuTVGNnSDo2VwNNlJejtkJCj
- loQlLuHaskfJQqOwTIb1elyiGwexPJHGBQXHitT894/gmzFGWugsiftICZocaGXhzO/6b+YghOvN9
- xp207muA==;
+ bh=Soj23M56RiptshTQOQ+wXRqsqH8wSlqc5tn4FwCN1P8=; b=rNdUwaklTfvD4tOnR4JNhmNcGo
+ eFrZROoFEEHcC6OEJ3SSywP8H9fuMI9pw3doy72g9EJ5rUsv+quszJwNahKwfQexn8mBaYP4Z2hX5
+ HiWLVUICocYvvaDqlLCxfMdcvgxcphEaDb8EBMJSTz/yBQe5OS+ngdL2XRF/HKbGC9FDHtBz14XkA
+ 9X5IV09T+RvNbsUGIezSZ18/KKsm1O3AUpbpweImECV4pfj+tG7mtCft3g003QPrTL4IuIwq7w00q
+ B8Ek8iQax1/Gitq3m/o4Si56vm0V5+eS+eiMrsNrepOBQN5MZtFtS2J4wFmmfFNkSZzgW973bpC9B
+ sdh1FIFg==;
 Received: from [84.65.0.132] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s1R9W-001K3D-AX; Mon, 29 Apr 2024 15:34:42 +0200
-Message-ID: <f450f423-2a37-4677-a961-5dfcec464e87@igalia.com>
-Date: Mon, 29 Apr 2024 14:34:41 +0100
+ id 1s1RDD-001K6m-CV; Mon, 29 Apr 2024 15:38:31 +0200
+Message-ID: <7f3f0437-85f0-40ee-a9aa-57586ac55bcf@igalia.com>
+Date: Mon, 29 Apr 2024 14:38:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/amdgpu: Add amdgpu_bo_is_vm_bo helper
+Subject: Re: [PATCH 2/3] drm/amdgpu: Reduce mem_type to domain double
+ indirection
 Content-Language: en-GB
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
  Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  kernel-dev@igalia.com
 References: <20240426164355.1563-1-tursulin@igalia.com>
- <20240426164355.1563-2-tursulin@igalia.com>
- <e7ee1c2d-9c1c-456f-bee6-8971b9e4fb2f@gmail.com>
+ <20240426164355.1563-3-tursulin@igalia.com>
+ <5a8ba071-21b7-44de-8473-b82193cfa35d@gmail.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <e7ee1c2d-9c1c-456f-bee6-8971b9e4fb2f@gmail.com>
+In-Reply-To: <5a8ba071-21b7-44de-8473-b82193cfa35d@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 30 Apr 2024 07:26:58 +0000
@@ -65,194 +66,143 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 29/04/2024 12:02, Christian König wrote:
+Hi Christian,
+
+On 29/04/2024 12:03, Christian König wrote:
 > Am 26.04.24 um 18:43 schrieb Tvrtko Ursulin:
 >> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 >>
->> Help code readability by replacing a bunch of:
+>> All apart from AMDGPU_GEM_DOMAIN_GTT memory domains map 1:1 to TTM
+>> placements. And the former be either AMDGPU_PL_PREEMPT or TTM_PL_TT,
+>> depending on AMDGPU_GEM_CREATE_PREEMPTIBLE.
 >>
->> bo->tbo.base.resv == vm->root.bo->tbo.base.resv
+>> Simplify a few places in the code which convert the TTM placement into
+>> a domain by checking against the current placement directly.
 >>
->> With:
->>
->> amdgpu_bo_is_vm_bo(bo, vm)
->>
->> No functional changes.
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 > 
-> Ah,yes that was on my TODO list as well.
-> 
-> But I would have rather added this to the VM instead. In other words 
-> move it to amdgpu_vm.h and call it amdgpu_vm_is_bo_always_valid() or 
-> something like that.
+> Reviewed-by: Christian König <christian.koenig@amd.com>
 
-I am happy to move it around as long as you are sure amdgpu_vm.h is the 
-location.
+Thanks! I am however a bit unsure now, read below..
 
-For instance main API there it seems to be amdgpu_vm_bo's. At least all 
-the amdgpu_bo usages do not needing anything more that the struct 
-forward declared.
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  4 +--
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 30 ++++++++++-----------
+>>   2 files changed, 16 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> index 055ba2ea4c12..ff83f8d8628c 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> @@ -165,8 +165,8 @@ static struct sg_table *amdgpu_dma_buf_map(struct 
+>> dma_buf_attachment *attach,
+>>           if (r)
+>>               return ERR_PTR(r);
+>> -    } else if (!(amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type) &
+>> -             AMDGPU_GEM_DOMAIN_GTT)) {
+>> +    } else if (bo->tbo.resource->mem_type != TTM_PL_TT &&
+>> +           bo->tbo.resource->mem_type != AMDGPU_PL_PREEMPT) {
+>>           return ERR_PTR(-EBUSY);
 
-So if I move the helper there I either need to make it include another 
-header, or move the helper out of line to amdgpu_vm.c.
+... this for instance (one hunk below too).
 
-Thoughts?
+Because what we are discussing in 3/3, 
+amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type) does not return a 
+valid domain for AMDGPU_PL_PREEMPT. Which could make mentioning it here 
+misleading. So I am not really sure what the design is supposed to be.
+
+Is this a weakness in the current code? Maybe best to leave the 
+discussion for 3/3.
 
 Regards,
 
 Tvrtko
 
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    |  2 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h | 14 ++++++++++
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     | 31 +++++++++-------------
->>   3 files changed, 28 insertions(+), 19 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
->> index 67c234bcf89f..32e4a9c6e805 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
->> @@ -174,7 +174,7 @@ static int amdgpu_gem_object_open(struct 
->> drm_gem_object *obj,
->>           return -EPERM;
->>       if (abo->flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID &&
->> -        abo->tbo.base.resv != vm->root.bo->tbo.base.resv)
->> +        !amdgpu_bo_is_vm_bo(abo, vm))
->>           return -EPERM;
->>       r = amdgpu_bo_reserve(abo, false);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
->> index be679c42b0b8..f2bb6965cc77 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
->> @@ -307,6 +307,20 @@ static inline struct amdgpu_bo 
->> *amdgpu_bo_shadowed(struct amdgpu_bo *bo)
->>       return NULL;
->>   }
->> +/**
->> + * amdgpu_bo_is_vm_bo - check if the BO is VM always valid
->> + *
->> + * @abo: BO to be tested.
->> + * @vm: VM to test against.
->> + *
->> + * Returns true if the BO is VM always valid.
->> + */
->> +static inline bool amdgpu_bo_is_vm_bo(struct amdgpu_bo *bo,
->> +                      struct amdgpu_vm *vm)
->> +{
->> +    return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
->> +}
->> +
->>   bool amdgpu_bo_is_amdgpu_bo(struct ttm_buffer_object *bo);
->>   void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 
->> domain);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> index 8af3f0fd3073..6d6f0e325172 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> @@ -333,7 +333,7 @@ void amdgpu_vm_bo_base_init(struct 
->> amdgpu_vm_bo_base *base,
->>       base->next = bo->vm_bo;
->>       bo->vm_bo = base;
->> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
->> +    if (!amdgpu_bo_is_vm_bo(bo, vm))
->>           return;
->>       dma_resv_assert_held(vm->root.bo->tbo.base.resv);
->> @@ -1101,13 +1101,12 @@ static void amdgpu_vm_bo_get_memory(struct 
->> amdgpu_bo_va *bo_va,
->>        * For now ignore BOs which are currently locked and potentially
->>        * changing their location.
->>        */
->> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv &&
->> -        !dma_resv_trylock(bo->tbo.base.resv))
->> +    if (!amdgpu_bo_is_vm_bo(bo, vm) && 
->> !dma_resv_trylock(bo->tbo.base.resv))
->>           return;
->>       amdgpu_bo_get_memory(bo, stats);
->> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
->> -        dma_resv_unlock(bo->tbo.base.resv);
->> +    if (amdgpu_bo_is_vm_bo(bo, vm))
->> +        dma_resv_unlock(bo->tbo.base.resv);
->>   }
->>   void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
->> @@ -1203,8 +1202,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device 
->> *adev, struct amdgpu_bo_va *bo_va,
->>           uncached = false;
 >>       }
->> -    if (clear || (bo && bo->tbo.base.resv ==
->> -              vm->root.bo->tbo.base.resv))
->> +    if (clear || amdgpu_bo_is_vm_bo(bo, vm))
->>           last_update = &vm->last_update;
->>       else
->>           last_update = &bo_va->last_pt_update;
->> @@ -1246,7 +1244,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device 
->> *adev, struct amdgpu_bo_va *bo_va,
->>        * the evicted list so that it gets validated again on the
->>        * next command submission.
->>        */
->> -    if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv) {
->> +    if (amdgpu_bo_is_vm_bo(bo, vm)) {
->>           uint32_t mem_type = bo->tbo.resource->mem_type;
->>           if (!(bo->preferred_domains &
->> @@ -1640,10 +1638,9 @@ static void amdgpu_vm_bo_insert_map(struct 
->> amdgpu_device *adev,
->>       if (mapping->flags & AMDGPU_PTE_PRT)
->>           amdgpu_vm_prt_get(adev);
->> -    if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
->> -        !bo_va->base.moved) {
->> +    if (amdgpu_bo_is_vm_bo(bo, vm) && !bo_va->base.moved)
->>           amdgpu_vm_bo_moved(&bo_va->base);
->> -    }
->> +
->>       trace_amdgpu_vm_bo_map(bo_va, mapping);
->>   }
->> @@ -1922,8 +1919,7 @@ int amdgpu_vm_bo_clear_mappings(struct 
->> amdgpu_device *adev,
->>           if (before->flags & AMDGPU_PTE_PRT)
->>               amdgpu_vm_prt_get(adev);
->> -        if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
->> -            !before->bo_va->base.moved)
->> +        if (amdgpu_bo_is_vm_bo(bo, vm) && !before->bo_va->base.moved)
->>               amdgpu_vm_bo_moved(&before->bo_va->base);
->>       } else {
->>           kfree(before);
->> @@ -1937,8 +1933,7 @@ int amdgpu_vm_bo_clear_mappings(struct 
->> amdgpu_device *adev,
->>           if (after->flags & AMDGPU_PTE_PRT)
->>               amdgpu_vm_prt_get(adev);
->> -        if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
->> -            !after->bo_va->base.moved)
->> +        if (amdgpu_bo_is_vm_bo(bo, vm) && !after->bo_va->base.moved)
->>               amdgpu_vm_bo_moved(&after->bo_va->base);
->>       } else {
->>           kfree(after);
->> @@ -2017,7 +2012,7 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
->>       if (bo) {
->>           dma_resv_assert_held(bo->tbo.base.resv);
->> -        if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
->> +        if (amdgpu_bo_is_vm_bo(bo, vm))
->>               ttm_bo_set_bulk_move(&bo->tbo, NULL);
->>           for (base = &bo_va->base.bo->vm_bo; *base;
->> @@ -2111,7 +2106,7 @@ void amdgpu_vm_bo_invalidate(struct 
->> amdgpu_device *adev,
->>       for (bo_base = bo->vm_bo; bo_base; bo_base = bo_base->next) {
->>           struct amdgpu_vm *vm = bo_base->vm;
->> -        if (evicted && bo->tbo.base.resv == 
->> vm->root.bo->tbo.base.resv) {
->> +        if (evicted && amdgpu_bo_is_vm_bo(bo, vm)) {
->>               amdgpu_vm_bo_evicted(bo_base);
->>               continue;
->>           }
->> @@ -2122,7 +2117,7 @@ void amdgpu_vm_bo_invalidate(struct 
->> amdgpu_device *adev,
->>           if (bo->tbo.type == ttm_bo_type_kernel)
->>               amdgpu_vm_bo_relocated(bo_base);
->> -        else if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
->> +        else if (amdgpu_bo_is_vm_bo(bo, vm))
->>               amdgpu_vm_bo_moved(bo_base);
->>           else
->>               amdgpu_vm_bo_invalidated(bo_base);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> index 8bc79924d171..fb984669fc3a 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> @@ -976,12 +976,12 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo 
+>> *bo, u32 domain,
+>>       ttm_bo_pin(&bo->tbo);
+>> -    domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -    if (domain == AMDGPU_GEM_DOMAIN_VRAM) {
+>> +    if (bo->tbo.resource->mem_type == TTM_PL_VRAM) {
+>>           atomic64_add(amdgpu_bo_size(bo), &adev->vram_pin_size);
+>>           atomic64_add(amdgpu_vram_mgr_bo_visible_size(bo),
+>>                    &adev->visible_pin_size);
+>> -    } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
+>> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT ||
+>> +           bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
+>>           atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+>>       }
+>> @@ -1280,7 +1280,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>   {
+>>       uint64_t size = amdgpu_bo_size(bo);
+>>       struct drm_gem_object *obj;
+>> -    unsigned int domain;
+>>       bool shared;
+>>       /* Abort if the BO doesn't currently have a backing store */
+>> @@ -1290,21 +1289,21 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>       obj = &bo->tbo.base;
+>>       shared = drm_gem_object_is_shared_for_memory_stats(obj);
+>> -    domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -    switch (domain) {
+>> -    case AMDGPU_GEM_DOMAIN_VRAM:
+>> +    switch (bo->tbo.resource->mem_type) {
+>> +    case TTM_PL_VRAM:
+>>           stats->vram += size;
+>>           if (amdgpu_bo_in_cpu_visible_vram(bo))
+>>               stats->visible_vram += size;
+>>           if (shared)
+>>               stats->vram_shared += size;
+>>           break;
+>> -    case AMDGPU_GEM_DOMAIN_GTT:
+>> +    case TTM_PL_TT:
+>> +    case AMDGPU_PL_PREEMPT:
+>>           stats->gtt += size;
+>>           if (shared)
+>>               stats->gtt_shared += size;
+>>           break;
+>> -    case AMDGPU_GEM_DOMAIN_CPU:
+>> +    case TTM_PL_SYSTEM:
+>>       default:
+>>           stats->cpu += size;
+>>           if (shared)
+>> @@ -1317,7 +1316,7 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>           if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
+>>               stats->requested_visible_vram += size;
+>> -        if (domain != AMDGPU_GEM_DOMAIN_VRAM) {
+>> +        if (bo->tbo.resource->mem_type != TTM_PL_VRAM) {
+>>               stats->evicted_vram += size;
+>>               if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
+>>                   stats->evicted_visible_vram += size;
+>> @@ -1592,19 +1591,18 @@ u64 amdgpu_bo_print_info(int id, struct 
+>> amdgpu_bo *bo, struct seq_file *m)
+>>       u64 size;
+>>       if (dma_resv_trylock(bo->tbo.base.resv)) {
+>> -        unsigned int domain;
+>> -        domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -        switch (domain) {
+>> -        case AMDGPU_GEM_DOMAIN_VRAM:
+>> +        switch (bo->tbo.resource->mem_type) {
+>> +        case TTM_PL_VRAM:
+>>               if (amdgpu_bo_in_cpu_visible_vram(bo))
+>>                   placement = "VRAM VISIBLE";
+>>               else
+>>                   placement = "VRAM";
+>>               break;
+>> -        case AMDGPU_GEM_DOMAIN_GTT:
+>> +        case TTM_PL_TT:
+>> +        case AMDGPU_PL_PREEMPT:
+>>               placement = "GTT";
+>>               break;
+>> -        case AMDGPU_GEM_DOMAIN_CPU:
+>> +        case TTM_PL_SYSTEM:
+>>           default:
+>>               placement = "CPU";
+>>               break;
 > 
