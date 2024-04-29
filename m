@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA57E8B6B7E
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Apr 2024 09:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28038B6B7C
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Apr 2024 09:27:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C2A10F451;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E54C910F40F;
 	Tue, 30 Apr 2024 07:26:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ivL+cnxh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RLbZYyeE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84EC510FED2
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 13:46:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39EC210F566
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 16:51:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,34 +22,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0JIbpCfhyVHygt3q4Q7PI97PQ1RU6yOmP7p5l5xCRTo=; b=ivL+cnxhvrjPnQ14tDrAEjY0Du
- 7L3de5ZfsG+TDiN1PNIq6Xgax9pKv9YHxKV/HJdHtP7RMnqKofui0lzBkoIZjIYDNaBq2e6UAJlRX
- YvEcbH1CISa6ChhSOM7j6y3pEuI483ca2TDNqY7iVKwOgaflHu8gfVA4lVW/I7/tUxdqNCOnjsnM+
- 9vsrw2PS1eCkiJhjTrcqRJCI1Yf5j3Xn7lWTsbht6Ag4pdFTLZahDy5qTYLefoblCH5dZtiJh7qme
- NG9aXcVkK0Nn9hh2hAytZhzBlN6YeX7qauNhlvDNSyn2/NWioeO5YYeVuxC9iqafcTy1mnPgPwwZQ
- 5bJcJJyg==;
+ bh=vL96ezukWRT/Dl7UOn7mdUCeARKIoqSIwl0N78e8gtc=; b=RLbZYyeEteKYc8wU02zNu0uyPz
+ qzZMbIe/g3UBej79xD3CN3wcBhU3jJwKk+9TxHd4+SF8FP5dSiksbbktGjrG40q2HT1kRkHhmX6RK
+ ABfGfMbiFCpg92K44opeSEz1ETBjsd3RTFt2eSdSG+X7tPYasiJjo3OU80oUqvYDzLCT3ZkV/s6IT
+ M2FKoYeYk3tmstwAfu/lphG8IdTs0vir1FdRyTULkrBYWEp/4ZYqnzaAz+yqz+z2aprXWuO8PSJQI
+ dcdyMaomFXf+2mPNX/r5HBHiVGUs5FXsd8Pj7770H4Q878KOo8bNS8qBr2s7WU3FQp4NijRi/DFRg
+ Lef8AEYw==;
 Received: from [84.65.0.132] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s1RKP-001KFQ-8D; Mon, 29 Apr 2024 15:45:56 +0200
-Message-ID: <1fc124cc-e8bb-4a0e-80c9-55244451df19@igalia.com>
-Date: Mon, 29 Apr 2024 14:45:56 +0100
+ id 1s1UE5-001O0i-3A; Mon, 29 Apr 2024 18:51:36 +0200
+Message-ID: <f8a39b74-1b94-435b-b38e-00bb8dda3d10@igalia.com>
+Date: Mon, 29 Apr 2024 17:51:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 3/3] drm/amdgpu: Fix pinned GART area accounting and
  fdinfo reporting
 Content-Language: en-GB
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>, Tvrtko Ursulin
- <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com
+To: Felix Kuehling <felix.kuehling@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ kernel-dev@igalia.com
 References: <20240426164355.1563-1-tursulin@igalia.com>
  <20240426164355.1563-4-tursulin@igalia.com>
  <a60dede1-8e81-4c79-8058-257391930621@amd.com>
  <fe80a8db-3ece-4818-8b23-2ccf5293a6c2@igalia.com>
- <494956d9-7055-4384-a569-1381bf0380b3@amd.com>
+ <fa1f5d0f-700c-42cc-81bb-69702abb5b91@amd.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <494956d9-7055-4384-a569-1381bf0380b3@amd.com>
+In-Reply-To: <fa1f5d0f-700c-42cc-81bb-69702abb5b91@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 30 Apr 2024 07:26:58 +0000
@@ -68,8 +68,8 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 29/04/2024 12:11, Christian König wrote:
-> Am 29.04.24 um 11:43 schrieb Tvrtko Ursulin:
+On 29/04/2024 15:43, Felix Kuehling wrote:
+> On 2024-04-29 5:43, Tvrtko Ursulin wrote:
 >>
 >> On 26/04/2024 23:24, Felix Kuehling wrote:
 >>>
@@ -91,13 +91,39 @@ On 29/04/2024 12:11, Christian König wrote:
 >>
 >> You mean amdgpu_bo_pin(_restricted) and amdgpu_bo_unpin do not run for 
 >> such objects, or something else?
+> 
+> Right. amdgpu_bo_pin_restricted will return an error for userptr BOs:
+> 
+>          if (amdgpu_ttm_tt_get_usermm(bo->tbo.ttm))
+>                  return -EPERM;
+
+Ah I missed that, thank you!
+
 >>
 >> If they run, then at the end of pin there is:
 >>
->>     domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>>      domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
 >> ...
->>     } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
->>         atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+>>      } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
+>>          atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+> 
+> You changed that in your patch 2:
+> 
+> -    } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
+> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT ||
+> +           bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
+>           atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+>       }
+> 
+> I was suggesting you just change this in patch 2 like this, so it 
+> matches what's done on unpin:
+> 
+> -    } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
+> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
+>           atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+>       }
+> 
+> 
 >>
 >> And unpin has no handling for AMDGPU_PL_PREEMPT.
 >>
@@ -108,46 +134,6 @@ On 29/04/2024 12:11, Christian König wrote:
 >> Although I am still confused by the statement userptr BOs are not 
 >> pinned. It is not needed to map them via GART on AMD hardware for GPU 
 >> to be able to access them?
-> 
-> No, a GART mapping is only needed if you want to scanout from them or 
-> otherwise use them from the kernel on the GPU.
-> 
-> Background is that the kernel doesn't has VM with page tables..
-
-Got it, thanks!
-
-Presumably somewhere else in the code then it is prevented to call 
-pin/unpin on those?
-
-What to do, if anything, with the attempt to address the asymmetry in 
-the accounting criteria between the pin and unpin?
-
-I mean domain based on pin:
-
-	domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-	if (domain == AMDGPU_GEM_DOMAIN_VRAM) {
-		atomic64_add(amdgpu_bo_size(bo), &adev->vram_pin_size);
-		atomic64_add(amdgpu_vram_mgr_bo_visible_size(bo),
-			     &adev->visible_pin_size);
-	} else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
-		atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
-	}
-
-Versus placement based on unpin:
-
-	if (bo->tbo.resource->mem_type == TTM_PL_VRAM) {
-		atomic64_sub(amdgpu_bo_size(bo), &adev->vram_pin_size);
-		atomic64_sub(amdgpu_vram_mgr_bo_visible_size(bo),
-			     &adev->visible_pin_size);
-	} else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
-		atomic64_sub(amdgpu_bo_size(bo), &adev->gart_pin_size);
-	}
-
-The fact amdgpu_mem_type_to_domain never translates back to 
-AMDGPU_PL_PREEMPT means there is indeed currently no bug.
-
-Is 2/3 still desirable to convert the check in pin to me mem_type based?
-
 >>>> Fix by extending the accounting criteria in amdgpu_bo_unpin.
 >>>>
 >>>> What also aappears needs fixing is not reporting their size from the
@@ -163,20 +149,35 @@ Is 2/3 still desirable to convert the check in pin to me mem_type based?
 >>
 >> As in you think those two hunks of the patch are correct?
 > 
-> I think so as well, yes. But we still need a name for preemptible BOs 
-> while printing them in debugfs.
+> Yes. It seems, Christian agrees but wants to show preemptible memory 
+> separately in debugfs instead of not showing it at all.
 
-Currently it looks the name is 'CPU':
+Okay, I've posted a respin with a name 'PREEMPTIBLE' to start the naming 
+discussion. :)
 
-amdgpu_bo_print_info()
+If I did not get confused again, it is only the last patch in the series 
+moves the reporting for those objects from 'CPU' to this new label.
+
+This is because both the current code:
+
+                domain = 
+amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+                switch (domain) {
 ...
-		case AMDGPU_GEM_DOMAIN_CPU:
-		default:
-			placement = "CPU";
-			break;
+                default:
+                         placement = "CPU";
+                         break;
 
+And with my 2/3:
 
-Also, where to account them in struct amdgpu_mem_stats?
+                switch (bo->tbo.resource->mem_type) {
+...
+                case TTM_PL_SYSTEM:
+                default:
+                         placement = "CPU";
+                         break;
+
+They end up in the CPU bucket. Things only change with 3/3:
 
 Regards,
 
@@ -184,7 +185,8 @@ Tvrtko
 
 > 
 > Regards,
-> Christian.
+>    Felix
+> 
 > 
 >>
 >> Regards,
@@ -242,4 +244,3 @@ Tvrtko
 >>>>               placement = "GTT";
 >>>>               break;
 >>>>           case TTM_PL_SYSTEM:
-> 
