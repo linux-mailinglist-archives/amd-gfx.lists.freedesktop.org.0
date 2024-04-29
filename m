@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115618B5C20
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0118B5C25
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:58:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B51C810FF22;
-	Mon, 29 Apr 2024 14:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0BA10FF27;
+	Mon, 29 Apr 2024 14:58:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LRDixknB";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qbvh5TZR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2068.outbound.protection.outlook.com [40.107.101.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D69710F908
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:57:56 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2083.outbound.protection.outlook.com [40.107.96.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8558C10FF23
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:58:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f8kONHIh2ZmfbPkhKQlkFOSG3Lu7Pj9aRPFX/EYwCu4/wOvpS3BNg0C1Fg/veQpezOKYYylVLXv1ymQUuXCyukCCzYtIsLsDGqE6nxPi2LQzCL1a8il3uqv8erSosrzWIKzKQTaNkC/gAflHgbmzdBZXPq10QgnqG4DiHNG4ExtEdrlT0SpFssXuK692npcNgsaTqHNUcExX3xvW7wDo798oHDoIIwnqItqqyMEyH6JFc9tUab590nyGoEggj64SIxtupWzAE4T0z/0rZGh1P3g8BtOc9286kKaM7oTkQy2ZxvJB5GaMAZLSAN9cJGIPlHgQu9NRaeo/epLZe5SXNw==
+ b=Cv0XOyRED2++L0VuBmOgP8XH4UB2mfz5HEkyHZz9xhCjCve3xW2D0++EsImylxpmfoP8tDRn76UcztLg4e2E/9LpxEsdNmCiEDjVbdNUb7v2mlyLzodwsJZKQR23I5uYS1HPqfkX0jLJsu7KUsyLExUH33gARwwwI2WTnKq6+A4Ct4uacwEf1iGbguuZEqD1STnzJ3SUqxd64/BaZEIY0ZAUQF34jTbuYsGUtkNBzVJz1dr1VmL/ua3C0AnruYbPOqu0k0Wbzcq31Kf+Y5QbPD25Jry4rK9OzhThqQ9hZisy3H6u3SaGfeSSeJHn+K6VazYh91K/eM6Us8R1jwEFhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uhrqZLXjY6leHUrua6WYpPNd1ay/gO79GFHIhAvV6ss=;
- b=aoDBE89j4X1rleAyohIpgfgaqKBE6vI9RixBPhZkH+ddQZpYPTSxXXcfgkBNrWgwbtCqvS+MvDXlGYaNOWo4PQ+/ydTWBOQ0PIbHRtaW3oEGyiYb9xi3hQU7AezmT6IioaFPSWD5UzIzgpmlBMbrlLKUJwv7wSYCqmRJaEVV08T7VYErJbeAjYhGKtYM0K/zHB6IVu8fKx4ngeYmSZkKdRVEr82x58n8Z4sfP//CRWL5xLdWFBYKZ01x/pW5J/GJQAsNicXDqabuwFO9Ak3afGJNCXW5fZM7FWfcQGXENw3TZHClEaRr3LWdVWzFTPlPhyX2yt1qnTYlHMXgKi95Ag==
+ bh=RRvM6y8whh6X/XRNoe4PrbZMU8gzU2aPfq2d+68r/JA=;
+ b=dGFt3Lf9ZqzceEelhAyWQPz4SdP3asAG3LkrTvyqLYUBJE9LIK1886NnELstWsKVsQ9IcSpx8H8cFfsG8x2XqvR3uR0amE61drPf/0k8ZWg14Z2ucmGmY+OxtgpLM+6Dc8meHeBq3ffCxBqD3k6i493izccAiyyKvic/ybLLYsiZ2ICnHgG7VrojjGCXNGdNHpDLbxgfSHDrMKGxcrCsc5NU5KRN9Nvm85AYGI4VY7vKtX6bUSUMiP9meQZkCTNUyszxWcURiGV5M6fg2AU4VtoEpqasz6dnzFX0vlzFh1BaMy5PQM60ZNubfGdWGlqtV5oIol6z7h0P8BULOcJz3A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uhrqZLXjY6leHUrua6WYpPNd1ay/gO79GFHIhAvV6ss=;
- b=LRDixknBa+W97AaxAsuKr4bpsT98gaZeliI9hB3+05L/BX4MR8zK6vfD/XkH9H5b/VdwVGsfuIhg7HEWwmuReyvasJ65TLxXTCPOZvY/fyW39DaebpaAK80CS8TtrfVjm51B1mjXv6NRi1yQKeeF97e/LPrKmzRhDSAxT42tURU=
-Received: from BY5PR13CA0019.namprd13.prod.outlook.com (2603:10b6:a03:180::32)
- by BY5PR12MB4049.namprd12.prod.outlook.com (2603:10b6:a03:201::23)
+ bh=RRvM6y8whh6X/XRNoe4PrbZMU8gzU2aPfq2d+68r/JA=;
+ b=qbvh5TZRhOo1p/qhFT5t42/z4OGSV+pKDLrvM2lECSzyl/5qqe8mRWhqcXuYfPPMa9CPpPq4knCx6Dhsnxd9yUNG+NVm30kCRlUpLo9iK/5G4FY6Q0hP3hLP6+Bw/zZv7XaZmkxFL9FnndWfjbvFutZlahTMHwqbVSAMvlX+lzs=
+Received: from BY5PR13CA0006.namprd13.prod.outlook.com (2603:10b6:a03:180::19)
+ by PH0PR12MB8125.namprd12.prod.outlook.com (2603:10b6:510:293::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35; Mon, 29 Apr
- 2024 14:57:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
+ 2024 14:57:57 +0000
 Received: from SJ1PEPF00001CEB.namprd03.prod.outlook.com
- (2603:10b6:a03:180:cafe::df) by BY5PR13CA0019.outlook.office365.com
- (2603:10b6:a03:180::32) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:a03:180:cafe::b9) by BY5PR13CA0006.outlook.office365.com
+ (2603:10b6:a03:180::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.21 via Frontend
- Transport; Mon, 29 Apr 2024 14:57:54 +0000
+ Transport; Mon, 29 Apr 2024 14:57:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,12 +57,12 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2024 09:57:49 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Jonathan Kim <Jonathan.Kim@amd.com>, Jonathan Kim <jonathan.kim@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 09/14] drm/amdkfd: fix support for trap on wave start and end
- for gfx12
-Date: Mon, 29 Apr 2024 10:57:21 -0400
-Message-ID: <20240429145726.3459450-9-alexander.deucher@amd.com>
+CC: Jonathan Kim <jonathan.kim@amd.com>, Lancelot Six <lancelot.six@amd.com>, 
+ Eric Huang <jinhuieric.huang@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>
+Subject: [PATCH 10/14] drm/amdkfd: enable single alu ops for gfx12
+Date: Mon, 29 Apr 2024 10:57:22 -0400
+Message-ID: <20240429145726.3459450-10-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240429145726.3459450-1-alexander.deucher@amd.com>
 References: <20240429145726.3459450-1-alexander.deucher@amd.com>
@@ -74,50 +74,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|BY5PR12MB4049:EE_
-X-MS-Office365-Filtering-Correlation-Id: e70bf09b-5439-4cb3-a062-08dc685cbfdc
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|PH0PR12MB8125:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae1b437c-3091-4dc8-d74b-08dc685cc034
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|376005|82310400014|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OzKk8PZPZDCqsPGdTmIW+BTJQZqBRrutWy+JDe3suQ8UYUObuIBgyU71QHIo?=
- =?us-ascii?Q?C8Llb3h2rOgyVfKuwSOX4dALGtGf1rSW92WUrlyld4YJg+EYfrMPrgVrxBd2?=
- =?us-ascii?Q?bdBp9iXYbU3rm6hRj7n3N+n5Hpyozt9VYMqj1M6vTqkNDqdK0q+a6d4Ca5+8?=
- =?us-ascii?Q?b71/Z703Aw758goGbvt9fUunnBTRm/iklTVdIy++xcURQtHm4WBMIiFSAyY7?=
- =?us-ascii?Q?WTBJa1EtHUxKThNDvWMdT5LCd3nioaqA7S7vg21cdzYWwCiFcBk7TEJ7pf8v?=
- =?us-ascii?Q?IJ8LkHZB0ZKCV6okBewwioBUMD6SM2cBrrueptHtgJuGItXUDQeLznB8RB0D?=
- =?us-ascii?Q?t0FcoCOdDXUB2tL7F7ymOZE3/GPnjaRQFIP+XVaxbH7VqkoFC/aVOTYs3qqY?=
- =?us-ascii?Q?LNguPsmz+4uQRfmuRTAiDwvife9Jmrydna+5/tP2XkokMnTtF0bpnF2+zVSK?=
- =?us-ascii?Q?hoL5mUqYCTsS9BAn6rqN56wPW92dsjRxpt7O8wA5yuwN28lMq4UslA1s31uR?=
- =?us-ascii?Q?Vam5sRAtDtfRXqoOn0uHwElh431cgYhVJVeyMpdgrO43DXGAxYS0XRRRc1au?=
- =?us-ascii?Q?ziNHYVO3R8WN9U+dgN20w/3DQRZIMOb0/5Ryit+S+senrp/uvbtClDsMhAci?=
- =?us-ascii?Q?W+NbORs1yG+XFWICyfWnwKbMqyaX2Gff3DKD+a4nB8GraD3JJtaLAJtjUl4R?=
- =?us-ascii?Q?WSXb4vr5fIwFpFyifvtA3pmek6DNatyLmOj7ErqXxB9fEoP8Fa4r8sjbdEoj?=
- =?us-ascii?Q?S+yT2PMhMAXbbaGE34yFzHG64LvvRhC5ZLv3mPOYQEWZinhSZZS0uFyokgXC?=
- =?us-ascii?Q?svWEceCp5Mq2EU9PI+7jn5xFmJxzuNQYR3Z5TIeGsCQ5en5RLD3bw4+7RxY/?=
- =?us-ascii?Q?XPyx3Y5j4KTO0F8Yd7nVNTwtYiSA1SYZWXYks8+e/DSfhu2iB1ve0uiRuakP?=
- =?us-ascii?Q?VnG2KvSTROTG+vx2OGCycnJaZcjjDTijhQXk9DL/oLwzGrpIAgha0utFcsbO?=
- =?us-ascii?Q?EjU3Ob9aeKOSzzvy6SfuIVTMDXsRgzt9Gg/DT5alXACAsEVw4rRgzEbSwtAu?=
- =?us-ascii?Q?Lnr8sk9+L9GO+KhVVuUeuE1YqUqmfWR0DDS3NxVEyaaT9RNfbUm/+r2j7CE7?=
- =?us-ascii?Q?gXsHSiSsS+xui1xGQ2k+7jI7ggpSb4we4fBzi06JPPtuT9FN8LThf2HVHcBk?=
- =?us-ascii?Q?zLOPmF4qnGZCc1+JvzB5MGqZsB4rYS1vER21Cj/vU8EF2sm74DcQbHtrQOK5?=
- =?us-ascii?Q?/dZkXT1tBfbKt0uwJn6yw9ON1/2iEgUkIQ8iSECeyn62dE+juaJp4ioa1+v9?=
- =?us-ascii?Q?1l6KnNxajUls6sotXjIlAslewD7a40AZGFAh83sSfxH2lkhG7u/rrAJByqTx?=
- =?us-ascii?Q?aF/xB+kCRFKj1f3jJH3h2lmdaS9S?=
+ ARA:13230031|1800799015|376005|36860700004|82310400014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?33aHQaylqHWd3eSx3dv3NRu9t0bvsSdnGFeVbtsu5GMUpSShF0QaxR1mfAzg?=
+ =?us-ascii?Q?1OBHmJTw9Xzv5e54sZUA24GDBkggcxlwMAlZh8cNg3Kc56zTCG1PbOw63lhp?=
+ =?us-ascii?Q?v5q4mfZ43QUSkDrpWIk9EE9jgLEaHZZHIDGgeYINqwKoPGcIvo/jybfXFg/T?=
+ =?us-ascii?Q?9lo9GzvFTpojiNKx9rmDc0p8C5pLxdzV0hLz7xkCxez14krOcYRGXiSkBVD6?=
+ =?us-ascii?Q?SfOffq2beFaMtQvhkzpuKsWwUhFC9hDcM6HJ90EZcOhFhzFTRZJkjNgD4IDo?=
+ =?us-ascii?Q?794pEPRi+LJdbNUXoagTnjY6QQFSBo2nJ6zteNAQ8oTdili/M2HLArqnsPTx?=
+ =?us-ascii?Q?9RC6qdUj04Norqs1tZtaWZ6/8CHvVe5G6BQ2dhHHYffUnxx86Ef4DhZmTWK7?=
+ =?us-ascii?Q?09YTAFOto2ICZQIzKnTa1qalx1hSj5EusWV9whyQq7vtZnZtOM7L5jX9VQit?=
+ =?us-ascii?Q?VNOP1nvAN4yz/f5F3g7+8X7Pi/tR8771afr5ZJiZiyY6Mk0FqTKScKjTv4k9?=
+ =?us-ascii?Q?TZEh0xxNSaLT+wUTOM3mtB8d6ankfqLKmcFIksTrFJ2BhdL8p5qczSYI5v+n?=
+ =?us-ascii?Q?VmcVVEg4io8EFABYy41h7Rzv+tcTCqQ+4Q48mD/pHf8umm9Ec25g4D00ttYN?=
+ =?us-ascii?Q?o4mOfyBVZQWnoFfzRtHeKtEs2WHevIC0jXksRf/pzrGvttmlM9eBpRMKS4f7?=
+ =?us-ascii?Q?XVrGz9rP7Ze7ob5TlkwDgHCY/h6c8RCx+soH/Cr8ERA2Q/i43Ut9pYNjkdXi?=
+ =?us-ascii?Q?CcGBnDi5AKDP8Wbf8nKVqPmQJKM+DGyxaTV+y1VzWMMTC1J7LDlAI2Tk15P7?=
+ =?us-ascii?Q?psgIzSRNmzdIUybFqkzNKLKn8Oc40lxiVKML+wevVLu7FeeQ1oioCTj8yJrS?=
+ =?us-ascii?Q?cqRo7Djz7nZQ/7aGAqSwnGG4e/+HNWEVXNWk9k8u5vcbOsMOrtpwupEofJ1p?=
+ =?us-ascii?Q?59P/vKArBd2KH5RtaNCK7PFh4QuxYPLiQ+4MOgFte9HuH7W0wiEB+8JCHfjG?=
+ =?us-ascii?Q?89yd7n/extHPRf4gfcAYpAOEBrqmysgUYjpseRAw1vSkcfzcLYvpJgcOail4?=
+ =?us-ascii?Q?ANUv+/BgCyXxUvup7/SLUZfByJC31z6H27LUiFXgnUb8n/mJdNlCFZoh8o03?=
+ =?us-ascii?Q?rDaBLE+Fy9Pc0WUWa+6KucHfjOi6IafSbVv5DjuGeeIKFcGoVPYDKV1Yi9ML?=
+ =?us-ascii?Q?qyRhzM76a9Y/J6N7JEIs53LnWMJEmzjQ1K0Qtw/dduYPp1iR1cI69EubSNer?=
+ =?us-ascii?Q?kyuqAj115HMXu7lGm0O++JDsdzFWUW3czZ+aueEhcVNKuS8q5X+VWl1ke/DI?=
+ =?us-ascii?Q?L5LCKN2JYTo/XgRjY9BRIJ8V8OW3Np/EGQhmR+RpEKfZMPWtB+NqxmtYAHP6?=
+ =?us-ascii?Q?GnGvKMsn/9NH4mZ8YwW9SWvN4MSa?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(82310400014)(36860700004); DIR:OUT;
+ SFS:(13230031)(1800799015)(376005)(36860700004)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:57:54.2454 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e70bf09b-5439-4cb3-a062-08dc685cbfdc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:57:54.8392 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae1b437c-3091-4dc8-d74b-08dc685cc034
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CEB.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4049
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8125
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,91 +132,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Kim <Jonathan.Kim@amd.com>
+From: Jonathan Kim <jonathan.kim@amd.com>
 
-Similar to GFX11, GFX12 supports trapping on wave start and end.
+GFX12 debugging requires setting up precise ALU operation for catching
+ALU exceptions.
 
 Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+Tested-by: Lancelot Six <lancelot.six@amd.com>
+Reviewed-by: Eric Huang <jinhuieric.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c    | 48 +++++++++++++++++--
- 1 file changed, 43 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c    | 15 +++++++++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c |  4 ++++
+ include/uapi/linux/kfd_ioctl.h            |  1 +
+ include/uapi/linux/kfd_sysfs.h            | 19 ++++++++++---------
+ 4 files changed, 28 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c
-index efb4bed2d900a..0dfe7093bd8a0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v12.c
-@@ -224,7 +224,10 @@ static int kgd_gfx_v12_validate_trap_override_request(struct amdgpu_device *adev
- 				KFD_DBG_TRAP_MASK_FP_INEXACT |
- 				KFD_DBG_TRAP_MASK_INT_DIVIDE_BY_ZERO |
- 				KFD_DBG_TRAP_MASK_DBG_ADDRESS_WATCH |
--				KFD_DBG_TRAP_MASK_DBG_MEMORY_VIOLATION;
-+				KFD_DBG_TRAP_MASK_DBG_MEMORY_VIOLATION |
-+				KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_START |
-+				KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_END;
-+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+index d889e3545120a..45b1975b149a9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+@@ -25,6 +25,7 @@
+ #include "kfd_topology.h"
+ #include <linux/file.h>
+ #include <uapi/linux/kfd_ioctl.h>
++#include <uapi/linux/kfd_sysfs.h>
  
- 	if (trap_override != KFD_DBG_TRAP_OVERRIDE_OR &&
- 			trap_override != KFD_DBG_TRAP_OVERRIDE_REPLACE)
-@@ -233,6 +236,41 @@ static int kgd_gfx_v12_validate_trap_override_request(struct amdgpu_device *adev
- 	return 0;
- }
+ #define MAX_WATCH_ADDRESSES	4
  
-+static uint32_t trap_mask_map_sw_to_hw(uint32_t mask)
-+{
-+	uint32_t trap_on_start = (mask & KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_START) ? 1 : 0;
-+	uint32_t trap_on_end = (mask & KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_END) ? 1 : 0;
-+	uint32_t excp_en = mask & (KFD_DBG_TRAP_MASK_FP_INVALID |
-+			KFD_DBG_TRAP_MASK_FP_INPUT_DENORMAL |
-+			KFD_DBG_TRAP_MASK_FP_DIVIDE_BY_ZERO |
-+			KFD_DBG_TRAP_MASK_FP_OVERFLOW |
-+			KFD_DBG_TRAP_MASK_FP_UNDERFLOW |
-+			KFD_DBG_TRAP_MASK_FP_INEXACT |
-+			KFD_DBG_TRAP_MASK_INT_DIVIDE_BY_ZERO |
-+			KFD_DBG_TRAP_MASK_DBG_ADDRESS_WATCH |
-+			KFD_DBG_TRAP_MASK_DBG_MEMORY_VIOLATION);
-+	uint32_t ret;
-+
-+	ret = REG_SET_FIELD(0, SPI_GDBG_PER_VMID_CNTL, EXCP_EN, excp_en);
-+	ret = REG_SET_FIELD(ret, SPI_GDBG_PER_VMID_CNTL, TRAP_ON_START, trap_on_start);
-+	ret = REG_SET_FIELD(ret, SPI_GDBG_PER_VMID_CNTL, TRAP_ON_END, trap_on_end);
-+
-+	return ret;
-+}
-+
-+static uint32_t trap_mask_map_hw_to_sw(uint32_t mask)
-+{
-+	uint32_t ret = REG_GET_FIELD(mask, SPI_GDBG_PER_VMID_CNTL, EXCP_EN);
-+
-+	if (REG_GET_FIELD(mask, SPI_GDBG_PER_VMID_CNTL, TRAP_ON_START))
-+		ret |= KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_START;
-+
-+	if (REG_GET_FIELD(mask, SPI_GDBG_PER_VMID_CNTL, TRAP_ON_END))
-+		ret |= KFD_DBG_TRAP_MASK_TRAP_ON_WAVE_END;
-+
-+	return ret;
-+}
-+
- /* returns TRAP_EN, EXCP_EN and EXCP_REPLACE. */
- static uint32_t kgd_gfx_v12_set_wave_launch_trap_override(struct amdgpu_device *adev,
- 					uint32_t vmid,
-@@ -245,12 +283,12 @@ static uint32_t kgd_gfx_v12_set_wave_launch_trap_override(struct amdgpu_device *
- {
- 	uint32_t data = 0;
+@@ -497,14 +498,24 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
+ 	int i, r = 0, rewind_count = 0;
  
--	*trap_mask_prev = REG_GET_FIELD(kfd_dbg_trap_cntl_prev, SPI_GDBG_PER_VMID_CNTL, EXCP_EN);
--	trap_mask_bits = (trap_mask_bits & trap_mask_request) |
--		(*trap_mask_prev & ~trap_mask_request);
-+	*trap_mask_prev = trap_mask_map_hw_to_sw(kfd_dbg_trap_cntl_prev);
+ 	for (i = 0; i < target->n_pdds; i++) {
+-		if (!kfd_dbg_is_per_vmid_supported(target->pdds[i]->dev) &&
++		struct kfd_topology_device *topo_dev =
++				kfd_topology_device_by_id(target->pdds[i]->dev->id);
++		uint32_t caps = topo_dev->node_props.capability;
 +
-+	data = (trap_mask_bits & trap_mask_request) | (*trap_mask_prev & ~trap_mask_request);
-+	data = trap_mask_map_sw_to_hw(data);
++		if (!(caps | HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED) &&
+ 			(*flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP)) {
+ 			*flags = prev_flags;
+ 			return -EACCES;
+ 		}
++
++		if (!(caps | HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED) &&
++		    (*flags & KFD_DBG_TRAP_FLAG_SINGLE_ALU_OP)) {
++			*flags = prev_flags;
++			return -EACCES;
++		}
+ 	}
  
- 	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, TRAP_EN, 1);
--	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, EXCP_EN, trap_mask_bits);
- 	data = REG_SET_FIELD(data, SPI_GDBG_PER_VMID_CNTL, EXCP_REPLACE, trap_override);
+-	target->dbg_flags = *flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP;
++	target->dbg_flags = *flags;
+ 	*flags = prev_flags;
+ 	for (i = 0; i < target->n_pdds; i++) {
+ 		struct kfd_process_device *pdd = target->pdds[i];
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index c51f131eaa2fb..11857869afb9e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -1927,6 +1927,10 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
+ 		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(11, 0, 0))
+ 			dev->node_props.capability |=
+ 				HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED;
++
++		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(12, 0, 0))
++			dev->node_props.capability |=
++				HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED;
+ 	}
  
- 	return data;
+ 	kfd_topology_set_dbg_firmware_support(dev);
+diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
+index d09c4a18e5713..43fb0f4c42262 100644
+--- a/include/uapi/linux/kfd_ioctl.h
++++ b/include/uapi/linux/kfd_ioctl.h
+@@ -853,6 +853,7 @@ enum kfd_dbg_trap_address_watch_mode {
+ /* Additional wave settings */
+ enum kfd_dbg_trap_flags {
+ 	KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP = 1,
++	KFD_DBG_TRAP_FLAG_SINGLE_ALU_OP = 2,
+ };
+ 
+ /* Trap exceptions */
+diff --git a/include/uapi/linux/kfd_sysfs.h b/include/uapi/linux/kfd_sysfs.h
+index a51b7331e0b4b..5e8d28617efad 100644
+--- a/include/uapi/linux/kfd_sysfs.h
++++ b/include/uapi/linux/kfd_sysfs.h
+@@ -51,15 +51,16 @@
+ /* Old buggy user mode depends on this being 0 */
+ #define HSA_CAP_RESERVED_WAS_SRAM_EDCSUPPORTED	0x00080000
+ 
+-#define HSA_CAP_MEM_EDCSUPPORTED		0x00100000
+-#define HSA_CAP_RASEVENTNOTIFY			0x00200000
+-#define HSA_CAP_ASIC_REVISION_MASK		0x03c00000
+-#define HSA_CAP_ASIC_REVISION_SHIFT		22
+-#define HSA_CAP_SRAM_EDCSUPPORTED		0x04000000
+-#define HSA_CAP_SVMAPI_SUPPORTED		0x08000000
+-#define HSA_CAP_FLAGS_COHERENTHOSTACCESS	0x10000000
+-#define HSA_CAP_TRAP_DEBUG_FIRMWARE_SUPPORTED   0x20000000
+-#define HSA_CAP_RESERVED			0xe00f8000
++#define HSA_CAP_MEM_EDCSUPPORTED				0x00100000
++#define HSA_CAP_RASEVENTNOTIFY					0x00200000
++#define HSA_CAP_ASIC_REVISION_MASK				0x03c00000
++#define HSA_CAP_ASIC_REVISION_SHIFT				22
++#define HSA_CAP_SRAM_EDCSUPPORTED				0x04000000
++#define HSA_CAP_SVMAPI_SUPPORTED				0x08000000
++#define HSA_CAP_FLAGS_COHERENTHOSTACCESS			0x10000000
++#define HSA_CAP_TRAP_DEBUG_FIRMWARE_SUPPORTED			0x20000000
++#define HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED	0x40000000
++#define HSA_CAP_RESERVED					0x800f8000
+ 
+ /* debug_prop bits in node properties */
+ #define HSA_DBG_WATCH_ADDR_MASK_LO_BIT_MASK     0x0000000f
 -- 
 2.44.0
 
