@@ -2,152 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897A28B5BA7
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9558B5C1B
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:58:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0673610E363;
-	Mon, 29 Apr 2024 14:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C1D10E3D5;
+	Mon, 29 Apr 2024 14:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E4rN8wxF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sgloZiOR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2068.outbound.protection.outlook.com [40.107.95.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5632C10E363
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:43:11 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2040.outbound.protection.outlook.com [40.107.92.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4F8810F908
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:57:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oFaoY6e+WGvT+MxXs4SshsGKrt/HJk39r0Kz71YEdUgNgj382XE5T8ESFGiyZIuraB2G/QfU3pvE7w43mZCUW7u1FYEiOf6wCJS6mAwIg+WX7WDERwIkchlcrdjsZfNQAVy/IN+pC5uWkYH3I0pauWx1N53nu3oW17kXb4GG29Fa9Q4NQ2TasPqfIwvDZ03c6mRzGZO8RAWZ9hP8G8nHuT97mv+m28pLT7UmxUvZX31L0hC1l2c8JghvaZ6+oOx+f1V3IOOJlBu0X9KIpWs3M2+pO/qZOTt0MdHn3msVRDJmct3s5sTo7NpL8+yQYn+bTFM6EqLjJdmK0+pDlcICnQ==
+ b=ixlFJUncLq4m6KyA8LUPxm/UgPOGm1QhOG7e3zzkJ4pxodYt6GwKxOMpy3T48/slLsTagqMEu8PkQstk2HshOBq20MX14mp4uFzFX7PGqmmpMaVgSJ/Z4KJajJ7FbycGDD/6AdACulN+7ZemnTZEpmzEI4waY8AU8yXmqr6PzmENvw2KRfag8699cpZp8pIkS+/nzaqiUIc4zECCQkBURL41u9IqErixhGsQQpoufIz73sqBSP1SqqxGWS+eoBl6n+uPyNSd+ZM+MfWqupDdiHl4P/YVb8jOsPUaV9m8wKWukoNF0DxkJZZchb/30WeNZHH4uLslQQR/of//EwJjcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=41Biv/LlKdfhLGqVRO9scd59lfXjR4NV7QTOSr3En/U=;
- b=PS14SDrHtNAORz0Wzfx7eAJOvZiB9pjIrDnrdelcX7okNgFYVEGe58BicE3wJAlZqvGJne293CzS0kyB9SC9QwRQ4TjGpxf3hKqfyinFaox7fE5h38X4Qu05oaKVj9w91bhJjzripr7dqMVVJE2mvaGYwp4y+9XmDE5R/eDPXm8K/UUeP1yl3HJUhZLKpL7jTh4Jqj4m91t+5uorsOAGZmHwvmYQzhtnBRWICQ2eqYlMtJcyD904FvMw7TXX9WonwLQKNhdaKN31+OJy5XgeVk2g4suhKHC/ltvxOkIm0BKLZ0Dz7M8HhDfEuFth89xf5Zk+YSZs88HfhPNOwL0hCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=N3y7CvUfmnNwd074PR8sx3ZxvPWHgnrI3c4CIgs9M7I=;
+ b=A+IqXseY5dpDYOvasnbtzZU5x6tOAVD389cM8/ZGH2z3Rk1nlA0qRg62o408coFfDvsND4WDYBd+ZGF8P36rYApkBQgDFUYi9ln9YVgm8gmYNxnG+uKtlt9OO3/sN+6pXCnNm8TaWiTCu4JZucqW+8s5LcoK81OQKiwduP61ecNz5MnyCO1UoP/2ZQQHh5uK7aueqQD1G7hutBBgI8M8imELl/fw5P2EUPJj3BaqNF0VckcJsJLn5mxr2GK4EZ2+gtxYJoaUvEmW9NTJugDUDxJ4nWkyhSxLZRUsaDJAdJueHiPOhZ52PLDU203TWqFnobKs4/osHH/IxHYpoXKuSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=41Biv/LlKdfhLGqVRO9scd59lfXjR4NV7QTOSr3En/U=;
- b=E4rN8wxFNPsJhTRMeU47ogdrbBrI6HFlgB7WSJstGAzku9oaZJC6Awmiss656OWBBrTOLzynlVzea2MQymG7ZPl8y+4Gj7uD7drH10MFzVIWrZQ5lLfM/CUpouLgobQAA4kMzPLGGFOUiI1yBf7P1KQjudLtydkQw5nnWtHqXmc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by DM4PR12MB7647.namprd12.prod.outlook.com (2603:10b6:8:105::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.32; Mon, 29 Apr
- 2024 14:43:07 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::d895:b707:1189:dfd7]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::d895:b707:1189:dfd7%3]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
- 14:43:07 +0000
-Message-ID: <fa1f5d0f-700c-42cc-81bb-69702abb5b91@amd.com>
-Date: Mon, 29 Apr 2024 10:43:05 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/amdgpu: Fix pinned GART area accounting and
- fdinfo reporting
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- kernel-dev@igalia.com
-References: <20240426164355.1563-1-tursulin@igalia.com>
- <20240426164355.1563-4-tursulin@igalia.com>
- <a60dede1-8e81-4c79-8058-257391930621@amd.com>
- <fe80a8db-3ece-4818-8b23-2ccf5293a6c2@igalia.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <fe80a8db-3ece-4818-8b23-2ccf5293a6c2@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT1P288CA0033.CANP288.PROD.OUTLOOK.COM (2603:10b6:b01::46)
- To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ bh=N3y7CvUfmnNwd074PR8sx3ZxvPWHgnrI3c4CIgs9M7I=;
+ b=sgloZiOR66jnKIW5vgx0gUn+n8gGHhtJqd0H6HI0mI+yPFB3xSMc395cJt+XwFB5hFDvr28P/KeskIctCh5QENjmCs9tYt6kC1mIj5h7d8rgbjQpL1KDaxXQXJONgu9olETlS5o+t1HlXDyWUD6dQCN6dGZppbigLQE/KKTICiA=
+Received: from BY5PR13CA0018.namprd13.prod.outlook.com (2603:10b6:a03:180::31)
+ by MW4PR12MB6999.namprd12.prod.outlook.com (2603:10b6:303:20a::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35; Mon, 29 Apr
+ 2024 14:57:46 +0000
+Received: from SJ1PEPF00001CEB.namprd03.prod.outlook.com
+ (2603:10b6:a03:180:cafe::99) by BY5PR13CA0018.outlook.office365.com
+ (2603:10b6:a03:180::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.22 via Frontend
+ Transport; Mon, 29 Apr 2024 14:57:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00001CEB.mail.protection.outlook.com (10.167.242.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7544.18 via Frontend Transport; Mon, 29 Apr 2024 14:57:45 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 29 Apr
+ 2024 09:57:44 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: David Belanger <david.belanger@amd.com>, Harish Kasiviswanathan
+ <Harish.Kasiviswanathan@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 01/14] drm/amdkfd: Added device queue manager files for GFX12.
+Date: Mon, 29 Apr 2024 10:57:13 -0400
+Message-ID: <20240429145726.3459450-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|DM4PR12MB7647:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f36a1f6-3ea6-47e4-3f2c-08dc685aaf08
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|MW4PR12MB6999:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed1c40cb-914e-48da-f199-08dc685cbad9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1NuVWVZT2drQ0dVdTFVVndyeVZvVGVZZ21kMncyVmpxVW5Xb1hmcmc0TURD?=
- =?utf-8?B?bWhvcTBkSFpwdjlpR3B0c1o2MTFic1RCamRXeFNYcnNPSE82UCsrbHhKOTVk?=
- =?utf-8?B?TTZrTkJMSjN4eE45SXJSYWxuRGhBR2xlL1Z3dk1UZ3h5K0VldWh5Yjdpbi9v?=
- =?utf-8?B?UnA4ZmtOcVRMeko4bWx6RzArUjd5VG5PY2ovZkdzZ1lCZHFWMXYyTy9kb1pl?=
- =?utf-8?B?YTVMUklMNDV4aXVwSnczbnR6K0l6WS8rdUNyamh6OUIxQ1ZVZGhNZk5QQk5r?=
- =?utf-8?B?bWZLY2I3WmlwelAyaFNKa0NTZllSTnMvelh3VUZwT3FsdTZjWis1bjRDOXhD?=
- =?utf-8?B?c1pqSlNzMHBqazdDd0M1b09EOGoyT3BlUTVZS3krek9aWThlVTAzM3dIQjBC?=
- =?utf-8?B?aTlhMTZCQW9rdjBiakx6WnFjRDBxRHpGQlFqck5XT09jQ3BWQmdHR293ampQ?=
- =?utf-8?B?cmQyRkxFaGg2eUVHUm5tcWI3UHUzRUpOVi9PL0Y4c0picERxM1VFZmt2SVNR?=
- =?utf-8?B?SzFYRlIvNVpZeUE1dEJkN3MyRDkrTXJDM2RuTjVwYVNKQWY5eHNWWXBwRnNK?=
- =?utf-8?B?N3ZNREx6bllHWlFFTEd5VHRMQ0RBQXRORlpMMGdsMWRYM0FpbUJZOUQvVkdO?=
- =?utf-8?B?WlZjN21QdDRlcWsvTVFIc0hJdUpZQ1pGY0dORlo4OXh4RnA3d1FZRytDeVVn?=
- =?utf-8?B?U292eWJiWjBmNW45UzZseFc2R3pwYkc1VDFEYlB5cWZmaUJDeG9VNER2eXlw?=
- =?utf-8?B?c3o2Y3h0Vk13NVlKNEZMQWVRQVdjNTZUQ3FseHpSRVhGQkJ5anFobVJQMC9H?=
- =?utf-8?B?anE2aTBlM05pSW9jL09pWHJUNVFMZm5hczM4WEROSTNZc2lzbTFMVVRaSGxU?=
- =?utf-8?B?aW43R1pPZWJiOEFnSFg1WGxtNXNjR1N5ZllsMEsvWEllQUVrdVhQMEZJdzZB?=
- =?utf-8?B?UWRZUzFFUEpVcUkwcmRMMzc3ZWdUd3ZsdlpGaHFxalRXUzhWbFdqZVhYVGh4?=
- =?utf-8?B?Q1J6SlVRYUkxNFA1YmlvakxNeTU3alZMWDRxZU5GTERVUE96Z2E3VG0vaTZG?=
- =?utf-8?B?S1MrdTE1SjNGYUs0SkxMUTgzNjVWbU9tcGovRGRadG9TSk5jaHNjQ2NaWjFs?=
- =?utf-8?B?U3kvN3IxcjByYTVRREwveXpXZFBYVFhyL09JUXFCeTVWQWM5cDYzN3Z0cTdF?=
- =?utf-8?B?c3R2aFlJZ1A2eStDQVRBa0plSVZJOHNpVHo1MVdBQ1cydnVnUTB6R2RKK2tt?=
- =?utf-8?B?NEY5am1OZlNZckRaaHhVNnF1RG9HYmFtSUhjWXdKL1FzOWtxK1lqZDY1RUFh?=
- =?utf-8?B?ZzN0YmRjWFlVcEh2bWQwbFpLZDRBVk9Ia0xpZk9hRUluQ29zZTcwN0ovZHpu?=
- =?utf-8?B?cVBiTDdZVzRoWngwZmRqckpKUmtZRkNmdjBWWTFyMXVqLzZXRDZLNmZwbDNP?=
- =?utf-8?B?SmxvUmNQa3d2azlTV1lqTTZ5SnIvZVlWcHhpTUJkQ08xdEFSZGdneW40bXha?=
- =?utf-8?B?L3E2eEUvRzkyajNkQjh4NWlkRE5XWEZ5cVp4TkloZzlFMjR0VncwbHdKT1li?=
- =?utf-8?B?RXYzWVRxUUpNQ1JlcGNkQ3NwdXI4eTZxS25YUWZrZFFXZExUYTlrRXNQUS84?=
- =?utf-8?B?NUJValNBeEJadHlzUXVDZG45c1VhUHE1NTRFanVUU09kM3h2N0NRbGc1eFYw?=
- =?utf-8?B?TzF6TFpQczM1QUs2M2RvSTV4RWNIMmZCRGJjVVNJdUNGWHg5dGRIV0hBPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVhxTGZoMUFMMVJsZVBWTjE0eTFFZ2QrQXgzUUFwUm5IaytMRzNrbjZrV1Bw?=
- =?utf-8?B?ckZlekdRcmRSSlJhbFllSU1sakkwL3o3ZHROaytOR2RrMHJMU1dhaW0zVm5t?=
- =?utf-8?B?UGs5dTV0a3dSeDZ3U1J3MTF2SllsNGwxM3REaFR0TEdYd3B0WE5sSDU2bE1W?=
- =?utf-8?B?NHVLVE1ZUkVDQjk1eFp6WWRLVGxNdGlpRWYvQ0JndThsd2hsY1ZHZ0UzT3c1?=
- =?utf-8?B?MWRlQ1BUdXBWNEQwT2p3anJJOGhHVzFSSldHdVZXNHBPZUp5L0gvQzRyQXNR?=
- =?utf-8?B?eVRBZ21FMUszLzZaNHRMLzd4VWJYekllcW14UG5NejdrV21hT3ZwUWV2Nis1?=
- =?utf-8?B?L1h6ZEdPM2JiNC9vejFyZm1WUVU1S1JVck1CY01EcGkzeWlTOWNQeXJtNDU4?=
- =?utf-8?B?cmx4Zm1SL3ZKT3JreUlNZVczVUFTUmt4UDRtWE5QRkFFV0lQbHpOY2FSVHJv?=
- =?utf-8?B?S20wNjVDNGNtK1VSY3JvdHRkVExhU3ErRXFJYlZqTTA0czYxY25HYjk2WThk?=
- =?utf-8?B?Uytjd0dPZEd4QldpZGJSb1ZsN2RhSk0yWDNMRzhSSmVzTTJxdkQzZWVqc0lS?=
- =?utf-8?B?K3ZwbllNdmM0RUl1clVkVHhyWDZ5UFMzM0FOTUw1MTduSTNHcGdVVnV5dUY1?=
- =?utf-8?B?U240b2lUelQwZ1hha2ZpRDRZWVdEOFBibzk4M0dsVXlMSmRjK2NEKzV0WU9U?=
- =?utf-8?B?WTk5c0VMdzZEbFU1UWd5TFhQV0dPbzdBQ0UwaXNkampYLzRRQnZJNTg1QzRx?=
- =?utf-8?B?REVkVkFnY2lGdmdpb0dtRVNCVG5IbkVOWjUwVTZaQnQzRElTbUU4L0xnVkY4?=
- =?utf-8?B?WWFVZzNmRExFMHBjYXBOMktKM3NTZ2VmYzRzeG84OG83Q3QyWGpMK1JnWTNC?=
- =?utf-8?B?RXpJYXQyRWFFM3VjMzE2Q2k1MmVZdG5XajlVMTZEWkd6Q0VhUXhOTXZBZHJL?=
- =?utf-8?B?SkFZbEZ1b1NVT1RHcHFJclB0M2tDdVRRYksxVW5PSzVIQStwRWRFQjl3NEQr?=
- =?utf-8?B?b0M3TlVXMnhqWmcyVnZvUy9IVzNCNmU0RU9lZHJkc1h0aUNBYVhJNkphUUF4?=
- =?utf-8?B?bmI5ejUxTkQxcTJGZS9HN2liNFUwYXhoZHo2VjYvVFVEQTlOT2lDdWMzb2Qx?=
- =?utf-8?B?cDhaVlpNT2lYZUpkQUtBbFRWK0hjTHBINzYyZURaUEFENTRRQVVPbTdVYnRY?=
- =?utf-8?B?WTRZeXYwUGpoMEdnWmVFc0l1T05JOXVxZU80WjUwSnRBV1hGZWhPRjFnR1lQ?=
- =?utf-8?B?Umt3Q0swT0JJZ2didmlCYzVQb0ltRC83MGNiYXl5YkZSSytBM1oyTmpwUS9o?=
- =?utf-8?B?eWY4TENDaFJ4V2ZpN1QrekU4dzdFenhUY1RYSzlPMVR0ZzVjakN5Z0lCMVZR?=
- =?utf-8?B?Q2xDNjB5RG9ETjJ0eXpoK2FEVzUzcll5YkVYdGtxM1grd1VIOEVFRTMzN2ps?=
- =?utf-8?B?eStHVFN3OXhkdjZkZTNGK1hRZVh0cGJ6TVBQNUtkUWxYMGtHazFGeWNvK0hs?=
- =?utf-8?B?TWdIam03Unc0N2YwRmp0RjBDMTNUL21HcXJKb0V6cmR6L3I0NUQ0eS9rdk5Z?=
- =?utf-8?B?MU5ocEtLWVFQd0xmWmRZUzdoelBYV1NYRjZ1UXRKOWdSeHl3Rjd0dWdlS1E0?=
- =?utf-8?B?TTMwYU1ldTJ0eUlNT1dTZEVsbVUrRzBZUVZrc0d3R1FxSFNWMVJlZDJzT1VO?=
- =?utf-8?B?UjFWOGN0bkFBNTVlaHN4Ti9YdkZpekxlVElvYjdrV1dEL0lnWngxS1Nzamp2?=
- =?utf-8?B?NDlrUW5ZSmhmbjduRjcvVWovaXlzWXQwUmloei9GMVAvaGZsVTViTmdNYjZE?=
- =?utf-8?B?N25ZcXhvaU9IZEVuNDkrRTBKMHgwN1pPdll5SjVqSi9NbW5NNU9zWExPN3lH?=
- =?utf-8?B?amdCWmRSVkJRZ0E0MncybHNtd2xDTDU2MnpOWld0N24wdStMT0JLc3ExcDVQ?=
- =?utf-8?B?VVhSU0dEUlcwRTAzejd1S2k4TmlmeTNmK3ZZNHRScWdXb1hXYVhvWGhTQTU2?=
- =?utf-8?B?dGxPWExKUnRoZFAwTnVYZFBzeVRmSDJMNHZhSlNKd3YwOHZ6N0NBWDFYT2tN?=
- =?utf-8?B?T0xPdmRTN0tLU29PTUFvazh4SUpUTmZDYnFUYnhwL3ZTVkhZNURORDFOaUhp?=
- =?utf-8?Q?cLaN7kpCISVCQf6IVceqiiTdW?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230031|1800799015|376005|82310400014|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?IYTjoa3PR83C+UyY5WR/WmnnAZgkzpAAgth4mREcBX0TQXQwtqnDVqXGoK+c?=
+ =?us-ascii?Q?znmz7lsY7GVAu/dgX6B0V48z+BrSOQk14EC5UVsAlWW1ocn919v1mRf1kBGa?=
+ =?us-ascii?Q?ZhNA+B0mvhJn1t7vO2k3tzzbTV0VeqhQnylHZgQA7vSmAlSdZrDXraDsyogq?=
+ =?us-ascii?Q?F+c6tMm0W6EEldS59kOOsjbiFyXb453tgYnZ/Xlvb7G/y1bD0k27e4izY82v?=
+ =?us-ascii?Q?dMNYkUHXmqVki1KBRQ+zEoH/SYTJoGd34Pjk7yG1OFtg5eFL4j0/vqGsxdqz?=
+ =?us-ascii?Q?G7MwDuhVJWKzFR++owT2/B1tsqAsMF6poZ9uxt5mC6UuOwseXj7JvF7dtKzw?=
+ =?us-ascii?Q?O48gXnOZ9oZ3flIqMwGiqSVJRXt7OYrmNh5FXOAvhoww95V2//e/HUFtpxpB?=
+ =?us-ascii?Q?o4B3iQHxegnPxfa0UP2UztU6M5KZsY1gtTg7jjhoq3ft9u+pNz1WXtOm7z+O?=
+ =?us-ascii?Q?ctLoIqXZrAEtuo2M9I3hVlSbTV/Lk6T+CIvJrkZujV2KlohXA25WFVx0clkg?=
+ =?us-ascii?Q?STSo2WOVd08UvVnKtQ8pSFeOxMgsFGDy4pXqHNdej7r59R3Mb4LYqAe/aPvC?=
+ =?us-ascii?Q?PMrqaPV1Z/8E89NHzSwF+AAVaJAnmNyMMh/L/SUDzfxbLVctq2mCwivCxmvC?=
+ =?us-ascii?Q?jo4LwtL5wGN7LWfE8x5VhDI/BalUrYfrZoJSNh1DXpky8p1P/4s9Jocw2RHm?=
+ =?us-ascii?Q?+aHfspXjFccXxz7GcW7RBTOafiHLShaGbH9Iat/ObHSMHhi64dgYdkn2ZV5I?=
+ =?us-ascii?Q?X40khmlaLJ7S3EapLVoEEBls3gvCcQbUCwahb21ZVLCGgxhd26islNJbqSxg?=
+ =?us-ascii?Q?8/8y0yLt0IEOwn0CXIBaJhruX0/uN3eRD0gxKEVNTEinFcTdSxBT2SVAUB7U?=
+ =?us-ascii?Q?8ZjjF7X3dXJp0D5GEqTU5wER+VyLPHCJnc3f6Efr51WqwQHlevAZfNU9wjfs?=
+ =?us-ascii?Q?WbtgaiJY9cGzO70FIVq1iWt3cnp5M5s0Wsib+BU7gXVrQGdlMbXlR5YTNqb3?=
+ =?us-ascii?Q?ZTRUTjheQ7qymd88XJ8xo1nsP5r3L47YWZBVdy69TRxDeRGLPGNRkfgar5NF?=
+ =?us-ascii?Q?G2sTsNNHub2wMex0C+WSulz4D6mrOvZln6OUxNoMI5vLT+ezRoeKr8BDKv6Q?=
+ =?us-ascii?Q?2e0IYtpZOZXj32gE5wU5dquDyH5O/DQ7eruuX3/A7Bhu7KhWtmlXXVYndC3J?=
+ =?us-ascii?Q?FpBnrDKuEX9A9pNYtSgA9UytkP61NkQkOy9h2E4qbRiWPid1GysR22GhCe78?=
+ =?us-ascii?Q?DwTS5Aeyt91AUwzePV8FUHC/5abcoKLxaI62lJ67LIg7gUMyVXcHel0TaxdA?=
+ =?us-ascii?Q?5lrXeZVJctSc2pzxAZi8Kn0Ig9D7UcnFmrSL634gGD3HtkQ0NKLP8GUuX2Ul?=
+ =?us-ascii?Q?AQlVMuQ/oeX7LVKGxg6SqZP/nQ9S?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(82310400014)(36860700004); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f36a1f6-3ea6-47e4-3f2c-08dc685aaf08
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:43:07.4086 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:57:45.9018 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed1c40cb-914e-48da-f199-08dc685cbad9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eD4UEKPmzytuQVgDNqP2wjkdzoPPcLKmcoinntmF4O5ywIck7gOOJZBybSiI5QGVXVHZUW7D2Uqqu/3rnhzqOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7647
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CEB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6999
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,144 +129,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-04-29 5:43, Tvrtko Ursulin wrote:
-> 
-> On 26/04/2024 23:24, Felix Kuehling wrote:
->>
->> On 2024-04-26 12:43, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>
->>> When commit b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible
->>> SG BOs") added a new TTM region it missed to notice the conceptual
->>> imbalance in GART pin size accounting as done in amdgpu_bo_pin/unpin.
->>>
->>> That imbalance leads to such objects getting accounted against the
->>> resource, but are not un-accounted when unpinned.
->>
->> AMDGPU_PL_PREEMPT is mostly used for userptr BOs, which cannot be 
->> pinned. In any case you should make sure that the accounting is 
->> consistent between amdgpu_bo_pin_restricted and amdgpu_bo_unpin. This 
->> patch breaks that consistency.
-> 
-> You mean amdgpu_bo_pin(_restricted) and amdgpu_bo_unpin do not run for 
-> such objects, or something else?
+From: David Belanger <david.belanger@amd.com>
 
-Right. amdgpu_bo_pin_restricted will return an error for userptr BOs:
+Initial implementation, based on GFX11.
 
-         if (amdgpu_ttm_tt_get_usermm(bo->tbo.ttm))
-                 return -EPERM;
+v2: squash in include fix from David (Alex)
 
+Signed-off-by: David Belanger <david.belanger@amd.com>
+Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/Makefile           |  1 +
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  4 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.h |  2 +
+ .../amd/amdkfd/kfd_device_queue_manager_v12.c | 81 +++++++++++++++++++
+ 4 files changed, 87 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager_v12.c
 
-> 
-> If they run, then at the end of pin there is:
-> 
->      domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-> ...
->      } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
->          atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+diff --git a/drivers/gpu/drm/amd/amdkfd/Makefile b/drivers/gpu/drm/amd/amdkfd/Makefile
+index f0d9eebf242b6..0d3d8972240da 100644
+--- a/drivers/gpu/drm/amd/amdkfd/Makefile
++++ b/drivers/gpu/drm/amd/amdkfd/Makefile
+@@ -50,6 +50,7 @@ AMDKFD_FILES	:= $(AMDKFD_PATH)/kfd_module.o \
+ 		$(AMDKFD_PATH)/kfd_device_queue_manager_v9.o \
+ 		$(AMDKFD_PATH)/kfd_device_queue_manager_v10.o \
+ 		$(AMDKFD_PATH)/kfd_device_queue_manager_v11.o \
++		$(AMDKFD_PATH)/kfd_device_queue_manager_v12.o \
+ 		$(AMDKFD_PATH)/kfd_interrupt.o \
+ 		$(AMDKFD_PATH)/kfd_events.o \
+ 		$(AMDKFD_PATH)/cik_event_interrupt.o \
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index c08b6ee252898..4721b2fccd068 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -2597,7 +2597,9 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_node *dev)
+ 		break;
+ 
+ 	default:
+-		if (KFD_GC_VERSION(dev) >= IP_VERSION(11, 0, 0))
++		if (KFD_GC_VERSION(dev) >= IP_VERSION(12, 0, 0))
++			device_queue_manager_init_v12(&dqm->asic_ops);
++		else if (KFD_GC_VERSION(dev) >= IP_VERSION(11, 0, 0))
+ 			device_queue_manager_init_v11(&dqm->asic_ops);
+ 		else if (KFD_GC_VERSION(dev) >= IP_VERSION(10, 1, 1))
+ 			device_queue_manager_init_v10(&dqm->asic_ops);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
+index cf7e182588f80..fcc0ee67f5441 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
+@@ -277,6 +277,8 @@ void device_queue_manager_init_v10(
+ 		struct device_queue_manager_asic_ops *asic_ops);
+ void device_queue_manager_init_v11(
+ 		struct device_queue_manager_asic_ops *asic_ops);
++void device_queue_manager_init_v12(
++		struct device_queue_manager_asic_ops *asic_ops);
+ void program_sh_mem_settings(struct device_queue_manager *dqm,
+ 					struct qcm_process_device *qpd);
+ unsigned int get_cp_queues_num(struct device_queue_manager *dqm);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager_v12.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager_v12.c
+new file mode 100644
+index 0000000000000..4f3295b29dfb1
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager_v12.c
+@@ -0,0 +1,81 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Copyright 2023 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#include "kfd_device_queue_manager.h"
++#include "gc/gc_12_0_0_sh_mask.h"
++#include "soc24_enum.h"
++
++static int update_qpd_v12(struct device_queue_manager *dqm,
++			 struct qcm_process_device *qpd);
++static void init_sdma_vm_v12(struct device_queue_manager *dqm, struct queue *q,
++			    struct qcm_process_device *qpd);
++
++void device_queue_manager_init_v12(
++	struct device_queue_manager_asic_ops *asic_ops)
++{
++	asic_ops->update_qpd = update_qpd_v12;
++	asic_ops->init_sdma_vm = init_sdma_vm_v12;
++	asic_ops->mqd_manager_init = mqd_manager_init_v12;
++}
++
++static uint32_t compute_sh_mem_bases_64bit(struct kfd_process_device *pdd)
++{
++	uint32_t shared_base = pdd->lds_base >> 48;
++	uint32_t private_base = pdd->scratch_base >> 48;
++
++	return (shared_base << SH_MEM_BASES__SHARED_BASE__SHIFT) |
++		private_base;
++}
++
++static int update_qpd_v12(struct device_queue_manager *dqm,
++			 struct qcm_process_device *qpd)
++{
++	struct kfd_process_device *pdd;
++
++	pdd = qpd_to_pdd(qpd);
++
++	/* check if sh_mem_config register already configured */
++	if (qpd->sh_mem_config == 0) {
++		qpd->sh_mem_config =
++			(SH_MEM_ALIGNMENT_MODE_UNALIGNED <<
++				SH_MEM_CONFIG__ALIGNMENT_MODE__SHIFT) |
++			(3 << SH_MEM_CONFIG__INITIAL_INST_PREFETCH__SHIFT);
++
++		qpd->sh_mem_ape1_limit = 0;
++		qpd->sh_mem_ape1_base = 0;
++	}
++
++	qpd->sh_mem_bases = compute_sh_mem_bases_64bit(pdd);
++
++	pr_debug("sh_mem_bases 0x%X\n", qpd->sh_mem_bases);
++
++	return 0;
++}
++
++static void init_sdma_vm_v12(struct device_queue_manager *dqm, struct queue *q,
++			    struct qcm_process_device *qpd)
++{
++	/* Not needed on SDMAv4 onwards any more */
++	q->properties.sdma_vm_addr = 0;
++}
+-- 
+2.44.0
 
-You changed that in your patch 2:
-
--	} else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
-+	} else if (bo->tbo.resource->mem_type == TTM_PL_TT ||
-+		   bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
-  		atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
-  	}
-
-I was suggesting you just change this in patch 2 like this, so it 
-matches what's done on unpin:
-
--	} else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
-+	} else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
-  		atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
-  	}
-
-
-> 
-> And unpin has no handling for AMDGPU_PL_PREEMPT.
-> 
-> Ah I see.. does it rely on amdgpu_mem_type_to_domain returning 0 for 
-> AMDGPU_PL_PREEMPT? My confusion was I misread the pinning check as 
-> checking the domain as stored in the bo at creation time.
-> 
-> Although I am still confused by the statement userptr BOs are not 
-> pinned. It is not needed to map them via GART on AMD hardware for GPU to 
-> be able to access them?
->>> Fix by extending the accounting criteria in amdgpu_bo_unpin.
->>>
->>> What also aappears needs fixing is not reporting their size from the
->>> amdgpu_bo_get_memory, which is used to implement fdinfo stats, so 
->>> they are
->>> not mixed with the regular userspace created and driver owned objects.
->>
->> I think that's true. It's a very fine distinction. AMDGPU_PL_PREEMPT 
->> does use system memory and it is GPU accessible, just like GTT. The 
->> only difference is, that it's not subject to the GTT limits because 
->> their eviction is handled by callbacks other than TTM evictions and 
->> doesn't need to wait for fences.
-> 
-> As in you think those two hunks of the patch are correct?
-
-Yes. It seems, Christian agrees but wants to show preemptible memory 
-separately in debugfs instead of not showing it at all.
-
-Regards,
-   Felix
-
-
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> 
->> Regards,
->>    Felix
->>
->>
->>>
->>> And also amdgpu_bo_print_info for debugfs reporting.
->>>
->>> Note that the patch depends on the previous one which broke down the
->>> relevant checks from the domain based to placement based.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Fixes: b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible 
->>> SG BOs")
->>> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 5 ++---
->>>   1 file changed, 2 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c 
->>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> index fb984669fc3a..5a2bbc793953 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->>> @@ -1032,7 +1032,8 @@ void amdgpu_bo_unpin(struct amdgpu_bo *bo)
->>>           atomic64_sub(amdgpu_bo_size(bo), &adev->vram_pin_size);
->>>           atomic64_sub(amdgpu_vram_mgr_bo_visible_size(bo),
->>>                    &adev->visible_pin_size);
->>> -    } else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
->>> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT ||
->>> +           bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
->>>           atomic64_sub(amdgpu_bo_size(bo), &adev->gart_pin_size);
->>>       }
->>> @@ -1298,7 +1299,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
->>>               stats->vram_shared += size;
->>>           break;
->>>       case TTM_PL_TT:
->>> -    case AMDGPU_PL_PREEMPT:
->>>           stats->gtt += size;
->>>           if (shared)
->>>               stats->gtt_shared += size;
->>> @@ -1599,7 +1599,6 @@ u64 amdgpu_bo_print_info(int id, struct 
->>> amdgpu_bo *bo, struct seq_file *m)
->>>                   placement = "VRAM";
->>>               break;
->>>           case TTM_PL_TT:
->>> -        case AMDGPU_PL_PREEMPT:
->>>               placement = "GTT";
->>>               break;
->>>           case TTM_PL_SYSTEM:
