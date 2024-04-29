@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0118B5C25
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0BF8B5C24
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:58:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0BA10FF27;
-	Mon, 29 Apr 2024 14:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDA2B10FF23;
+	Mon, 29 Apr 2024 14:58:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qbvh5TZR";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zdfnIU1H";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2083.outbound.protection.outlook.com [40.107.96.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8558C10FF23
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:58:06 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2071.outbound.protection.outlook.com [40.107.243.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4241A10FF1F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:58:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cv0XOyRED2++L0VuBmOgP8XH4UB2mfz5HEkyHZz9xhCjCve3xW2D0++EsImylxpmfoP8tDRn76UcztLg4e2E/9LpxEsdNmCiEDjVbdNUb7v2mlyLzodwsJZKQR23I5uYS1HPqfkX0jLJsu7KUsyLExUH33gARwwwI2WTnKq6+A4Ct4uacwEf1iGbguuZEqD1STnzJ3SUqxd64/BaZEIY0ZAUQF34jTbuYsGUtkNBzVJz1dr1VmL/ua3C0AnruYbPOqu0k0Wbzcq31Kf+Y5QbPD25Jry4rK9OzhThqQ9hZisy3H6u3SaGfeSSeJHn+K6VazYh91K/eM6Us8R1jwEFhg==
+ b=MjNtPNn99wTiWvn5REZOtwt3uTKwkGrTZIBPR6M4eUZO4Qg1p1t0IKpBb3VTuwbbBUMcyRxyyfovFg5rZ6rNGg7jDp4Us04XyU5+vLR87OCGO17ufOuH8LVASiTYV/IVupsrefMGEAWhrLnfg71JmLmekO0JAKiq0NWLr67bUh7sqlvKHuqPWb3u9iX/OH56sk+NhcvgGFu6uRNrCNx/XXsu6a4xynuoJVwG98vc3unsX/ceCNfwHItkfBT0Vv4r5+neh3qbi+CExyw1Vb/IWzJ3SvjtLhN0rQbSWtBtHh7NMmRVj7od2NuAfUCUJDRDmZFEK6CIymc9AVVfFcGVog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RRvM6y8whh6X/XRNoe4PrbZMU8gzU2aPfq2d+68r/JA=;
- b=dGFt3Lf9ZqzceEelhAyWQPz4SdP3asAG3LkrTvyqLYUBJE9LIK1886NnELstWsKVsQ9IcSpx8H8cFfsG8x2XqvR3uR0amE61drPf/0k8ZWg14Z2ucmGmY+OxtgpLM+6Dc8meHeBq3ffCxBqD3k6i493izccAiyyKvic/ybLLYsiZ2ICnHgG7VrojjGCXNGdNHpDLbxgfSHDrMKGxcrCsc5NU5KRN9Nvm85AYGI4VY7vKtX6bUSUMiP9meQZkCTNUyszxWcURiGV5M6fg2AU4VtoEpqasz6dnzFX0vlzFh1BaMy5PQM60ZNubfGdWGlqtV5oIol6z7h0P8BULOcJz3A==
+ bh=KI0ACzoTKJAmrizaXTWO+tEizCUj1Np4Fo/ytF+t3nI=;
+ b=YhKnByuMUA4Vg5wyaktyUouMjqMMalooOzezv1sbZHCAg7IuijPH1b5NOlCI7014yTZnAb5+YLNowi/7MTbAtSf/IMyzz5aC7PG8/d5A3BTkYRDuOk8EQuTREAAccFyPKFAmNv8N0RK9cDvC7rya4cWHp5IaiSdCohRqaBcag01clq/xa2Jxl0zTMgmXm26HDUBb5wnSUSWoNIzJhsgpKlprPa0RQRROGTN9MZQD9/zTao0O6CNFBiR903DR1kdd+soqoLY5ijB6X6AacPgy3+7R8JfQRaqjdSxqsZhJZHfc7n4+F4JVn4zElyM3RGcRkbIUTjpuFWCmmNADuexpqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RRvM6y8whh6X/XRNoe4PrbZMU8gzU2aPfq2d+68r/JA=;
- b=qbvh5TZRhOo1p/qhFT5t42/z4OGSV+pKDLrvM2lECSzyl/5qqe8mRWhqcXuYfPPMa9CPpPq4knCx6Dhsnxd9yUNG+NVm30kCRlUpLo9iK/5G4FY6Q0hP3hLP6+Bw/zZv7XaZmkxFL9FnndWfjbvFutZlahTMHwqbVSAMvlX+lzs=
-Received: from BY5PR13CA0006.namprd13.prod.outlook.com (2603:10b6:a03:180::19)
- by PH0PR12MB8125.namprd12.prod.outlook.com (2603:10b6:510:293::6)
+ bh=KI0ACzoTKJAmrizaXTWO+tEizCUj1Np4Fo/ytF+t3nI=;
+ b=zdfnIU1HukZdERiEPVsYpGqKPqzwTkPDumwUvgMefKcMoNRnIQvCZzu1S5r9+zc5I1XURvw2vUEAT86pxgpnWxSY/Yl3Fo0vIO06M78CHm85QCedZkvJqK+/LzY6tb0yFKeZa9iovTW3wEgyZWE+ugcrEcfH2bLZkdY3jj1r7Vg=
+Received: from SJ0PR05CA0128.namprd05.prod.outlook.com (2603:10b6:a03:33d::13)
+ by PH7PR12MB8427.namprd12.prod.outlook.com (2603:10b6:510:242::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
- 2024 14:57:57 +0000
-Received: from SJ1PEPF00001CEB.namprd03.prod.outlook.com
- (2603:10b6:a03:180:cafe::b9) by BY5PR13CA0006.outlook.office365.com
- (2603:10b6:a03:180::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.21 via Frontend
- Transport; Mon, 29 Apr 2024 14:57:55 +0000
+ 2024 14:57:56 +0000
+Received: from SJ1PEPF00001CE9.namprd03.prod.outlook.com
+ (2603:10b6:a03:33d:cafe::7f) by SJ0PR05CA0128.outlook.office365.com
+ (2603:10b6:a03:33d::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.22 via Frontend
+ Transport; Mon, 29 Apr 2024 14:57:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,21 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CEB.mail.protection.outlook.com (10.167.242.27) with Microsoft
+ SJ1PEPF00001CE9.mail.protection.outlook.com (10.167.242.25) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7544.18 via Frontend Transport; Mon, 29 Apr 2024 14:57:54 +0000
+ 15.20.7544.18 via Frontend Transport; Mon, 29 Apr 2024 14:57:56 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 29 Apr
- 2024 09:57:49 -0500
+ 2024 09:57:50 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Jonathan Kim <jonathan.kim@amd.com>, Lancelot Six <lancelot.six@amd.com>, 
- Eric Huang <jinhuieric.huang@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Subject: [PATCH 10/14] drm/amdkfd: enable single alu ops for gfx12
-Date: Mon, 29 Apr 2024 10:57:22 -0400
-Message-ID: <20240429145726.3459450-10-alexander.deucher@amd.com>
+CC: Eric Huang <jinhuieric.huang@amd.com>, Harish Kasiviswanathan
+ <Harish.Kasiviswanathan@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 11/14] drm/amdkfd: fix NULL ptr for debugfs mqds on GFX v12
+Date: Mon, 29 Apr 2024 10:57:23 -0400
+Message-ID: <20240429145726.3459450-11-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240429145726.3459450-1-alexander.deucher@amd.com>
 References: <20240429145726.3459450-1-alexander.deucher@amd.com>
@@ -74,50 +73,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|PH0PR12MB8125:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae1b437c-3091-4dc8-d74b-08dc685cc034
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE9:EE_|PH7PR12MB8427:EE_
+X-MS-Office365-Filtering-Correlation-Id: f403f7d6-9186-4e9f-42b0-08dc685cc0ea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|376005|36860700004|82310400014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?33aHQaylqHWd3eSx3dv3NRu9t0bvsSdnGFeVbtsu5GMUpSShF0QaxR1mfAzg?=
- =?us-ascii?Q?1OBHmJTw9Xzv5e54sZUA24GDBkggcxlwMAlZh8cNg3Kc56zTCG1PbOw63lhp?=
- =?us-ascii?Q?v5q4mfZ43QUSkDrpWIk9EE9jgLEaHZZHIDGgeYINqwKoPGcIvo/jybfXFg/T?=
- =?us-ascii?Q?9lo9GzvFTpojiNKx9rmDc0p8C5pLxdzV0hLz7xkCxez14krOcYRGXiSkBVD6?=
- =?us-ascii?Q?SfOffq2beFaMtQvhkzpuKsWwUhFC9hDcM6HJ90EZcOhFhzFTRZJkjNgD4IDo?=
- =?us-ascii?Q?794pEPRi+LJdbNUXoagTnjY6QQFSBo2nJ6zteNAQ8oTdili/M2HLArqnsPTx?=
- =?us-ascii?Q?9RC6qdUj04Norqs1tZtaWZ6/8CHvVe5G6BQ2dhHHYffUnxx86Ef4DhZmTWK7?=
- =?us-ascii?Q?09YTAFOto2ICZQIzKnTa1qalx1hSj5EusWV9whyQq7vtZnZtOM7L5jX9VQit?=
- =?us-ascii?Q?VNOP1nvAN4yz/f5F3g7+8X7Pi/tR8771afr5ZJiZiyY6Mk0FqTKScKjTv4k9?=
- =?us-ascii?Q?TZEh0xxNSaLT+wUTOM3mtB8d6ankfqLKmcFIksTrFJ2BhdL8p5qczSYI5v+n?=
- =?us-ascii?Q?VmcVVEg4io8EFABYy41h7Rzv+tcTCqQ+4Q48mD/pHf8umm9Ec25g4D00ttYN?=
- =?us-ascii?Q?o4mOfyBVZQWnoFfzRtHeKtEs2WHevIC0jXksRf/pzrGvttmlM9eBpRMKS4f7?=
- =?us-ascii?Q?XVrGz9rP7Ze7ob5TlkwDgHCY/h6c8RCx+soH/Cr8ERA2Q/i43Ut9pYNjkdXi?=
- =?us-ascii?Q?CcGBnDi5AKDP8Wbf8nKVqPmQJKM+DGyxaTV+y1VzWMMTC1J7LDlAI2Tk15P7?=
- =?us-ascii?Q?psgIzSRNmzdIUybFqkzNKLKn8Oc40lxiVKML+wevVLu7FeeQ1oioCTj8yJrS?=
- =?us-ascii?Q?cqRo7Djz7nZQ/7aGAqSwnGG4e/+HNWEVXNWk9k8u5vcbOsMOrtpwupEofJ1p?=
- =?us-ascii?Q?59P/vKArBd2KH5RtaNCK7PFh4QuxYPLiQ+4MOgFte9HuH7W0wiEB+8JCHfjG?=
- =?us-ascii?Q?89yd7n/extHPRf4gfcAYpAOEBrqmysgUYjpseRAw1vSkcfzcLYvpJgcOail4?=
- =?us-ascii?Q?ANUv+/BgCyXxUvup7/SLUZfByJC31z6H27LUiFXgnUb8n/mJdNlCFZoh8o03?=
- =?us-ascii?Q?rDaBLE+Fy9Pc0WUWa+6KucHfjOi6IafSbVv5DjuGeeIKFcGoVPYDKV1Yi9ML?=
- =?us-ascii?Q?qyRhzM76a9Y/J6N7JEIs53LnWMJEmzjQ1K0Qtw/dduYPp1iR1cI69EubSNer?=
- =?us-ascii?Q?kyuqAj115HMXu7lGm0O++JDsdzFWUW3czZ+aueEhcVNKuS8q5X+VWl1ke/DI?=
- =?us-ascii?Q?L5LCKN2JYTo/XgRjY9BRIJ8V8OW3Np/EGQhmR+RpEKfZMPWtB+NqxmtYAHP6?=
- =?us-ascii?Q?GnGvKMsn/9NH4mZ8YwW9SWvN4MSa?=
+ ARA:13230031|1800799015|376005|82310400014|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vrbpkxSwRxbfWgjzFoCJmMyGWxAo1IebVCWJilgp7Deo+8rG/tKDha0LVc6o?=
+ =?us-ascii?Q?DlnUgJ9ickcs853hyb1E0SMN+FmrSz47GC/kBCkQ3GHUykPHEwSUj6+A5EZb?=
+ =?us-ascii?Q?rgrObCKwJ9cPnHoXQwXEwJ9tSOnPqyujFPqivPu9u3QNPsgmUw8ja1iLl1TR?=
+ =?us-ascii?Q?pRsrAXzfJbA7U8qeVQr70YmIF3TiOsDiDQTkgCP/Ailk2ihJ5ieV0Ijrs5t0?=
+ =?us-ascii?Q?ma2ae5TBE2EK37OmleJVqrHX2X2z1utGG0E/dE6cfgdprCLifZ6/LM24kzbZ?=
+ =?us-ascii?Q?hHd5WKXs/acbGwdWOU9S5RwmW2+kWUuKWJ22owi97dkLJHibPDJVNPQnzMm7?=
+ =?us-ascii?Q?DUOrRH3Wknimd3Re2cOvY20AJ3lZbMlTfInWHyswgf1Q1pb20E2/sjv80hnL?=
+ =?us-ascii?Q?XrqfleJ/bwS/wHdC8QcACuwgiBhCBG3Hqd0KLMip3+qXZTsNg9ANSCX6t1uk?=
+ =?us-ascii?Q?72JWmNE/SGLjfu0Tu1LQs0RXNBC6r11L0HaVQfuOZXseUsFrQKGt8vI3UykH?=
+ =?us-ascii?Q?QFzXjyDZOBQQxD5cy1e3dihz8ojXBzKYAyGt7HcC8Ycqm4GmmPIpn6G6sXQa?=
+ =?us-ascii?Q?u/Mg6sfo4We1WYO8gC/64jPJSiUAPt1NoBIFP0LlC6V1bOl4yJGbYka1k+uu?=
+ =?us-ascii?Q?lmf5Pl7clfJKLQusiFzTEVske7lixvbxMZdGjuA/Aicj9RhDeJCmfpyCqMFE?=
+ =?us-ascii?Q?FUk9+sado/DmVjF6yc5niDPAQwnoSoKOBy2lLx6CL1sHZUBeVwkLNQLblfmt?=
+ =?us-ascii?Q?e7qKt++VO+97v8gYgsYtH2mjLtbTpyRpzK+r/JLY1bT7Psw/Z2sodyd/dbaK?=
+ =?us-ascii?Q?+QxC2Bqw7ooqq204HULfWr1F0iyDDOHnd0+i7suLvugwYGsQycp8Q7rCEiHL?=
+ =?us-ascii?Q?GbOBEE2/WbdXmMIcQ43Vr9rR2qqPkElLVNQ7GbPuOVZErbrCJlxesVs3sjYA?=
+ =?us-ascii?Q?f8+8plqp/zLwXp+2FM3CPD3nITlrMoCIp0Scd8EIgxgzeNwWgbFK1UCY1Xvg?=
+ =?us-ascii?Q?pUVhOarkK8fDLsF9DZ5DqkIQr3yV/ADQDf8vWjJFdeuCGlTfl2calhGEw22c?=
+ =?us-ascii?Q?lrK4wCnL30PiGrqYtomV95ETCpwAmPlzVqRNts8dbA4laXzDy9OfMG/TIaVh?=
+ =?us-ascii?Q?miM4HIPeiM5e+BMO9UoJzbEKtcUJ4cFvHcNmhjaXouc2YnRpN8QxSuDrBwqk?=
+ =?us-ascii?Q?ew2SQpHX1mFnvsdn+q351TVcElqZrXUW27z9L1XiSWEA2nn9lu14Kk3yEynO?=
+ =?us-ascii?Q?to5sTs9JFzPS6jeFwgTVR5gqRhWqmtQcZQC1/168lRmwwXXor2+Xsxekm2PQ?=
+ =?us-ascii?Q?JREqj4AXh9tRXV/7Msiq9ar9hbUzgoedvcGVQZJih7J3VIpv6V1cy2NfGUg3?=
+ =?us-ascii?Q?lhEi6FNHZCZD0S4uABfpZrnV4sOx?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(36860700004)(82310400014); DIR:OUT;
+ SFS:(13230031)(1800799015)(376005)(82310400014)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:57:54.8392 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae1b437c-3091-4dc8-d74b-08dc685cc034
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:57:56.1063 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f403f7d6-9186-4e9f-42b0-08dc685cc0ea
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CEB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CE9.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8125
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8427
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,118 +131,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Kim <jonathan.kim@amd.com>
+From: Eric Huang <jinhuieric.huang@amd.com>
 
-GFX12 debugging requires setting up precise ALU operation for catching
-ALU exceptions.
+mqd_stride function in gfx v12 is not implemented, that
+causes NULL ptr error. Add the generic func to fix it.
 
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-Tested-by: Lancelot Six <lancelot.six@amd.com>
-Reviewed-by: Eric Huang <jinhuieric.huang@amd.com>
+Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_debug.c    | 15 +++++++++++++--
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c |  4 ++++
- include/uapi/linux/kfd_ioctl.h            |  1 +
- include/uapi/linux/kfd_sysfs.h            | 19 ++++++++++---------
- 4 files changed, 28 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-index d889e3545120a..45b1975b149a9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
-@@ -25,6 +25,7 @@
- #include "kfd_topology.h"
- #include <linux/file.h>
- #include <uapi/linux/kfd_ioctl.h>
-+#include <uapi/linux/kfd_sysfs.h>
- 
- #define MAX_WATCH_ADDRESSES	4
- 
-@@ -497,14 +498,24 @@ int kfd_dbg_trap_set_flags(struct kfd_process *target, uint32_t *flags)
- 	int i, r = 0, rewind_count = 0;
- 
- 	for (i = 0; i < target->n_pdds; i++) {
--		if (!kfd_dbg_is_per_vmid_supported(target->pdds[i]->dev) &&
-+		struct kfd_topology_device *topo_dev =
-+				kfd_topology_device_by_id(target->pdds[i]->dev->id);
-+		uint32_t caps = topo_dev->node_props.capability;
-+
-+		if (!(caps | HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED) &&
- 			(*flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP)) {
- 			*flags = prev_flags;
- 			return -EACCES;
- 		}
-+
-+		if (!(caps | HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED) &&
-+		    (*flags & KFD_DBG_TRAP_FLAG_SINGLE_ALU_OP)) {
-+			*flags = prev_flags;
-+			return -EACCES;
-+		}
- 	}
- 
--	target->dbg_flags = *flags & KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP;
-+	target->dbg_flags = *flags;
- 	*flags = prev_flags;
- 	for (i = 0; i < target->n_pdds; i++) {
- 		struct kfd_process_device *pdd = target->pdds[i];
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index c51f131eaa2fb..11857869afb9e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -1927,6 +1927,10 @@ static void kfd_topology_set_capabilities(struct kfd_topology_device *dev)
- 		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(11, 0, 0))
- 			dev->node_props.capability |=
- 				HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPPORTED;
-+
-+		if (KFD_GC_VERSION(dev->gpu) >= IP_VERSION(12, 0, 0))
-+			dev->node_props.capability |=
-+				HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED;
- 	}
- 
- 	kfd_topology_set_dbg_firmware_support(dev);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index d09c4a18e5713..43fb0f4c42262 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -853,6 +853,7 @@ enum kfd_dbg_trap_address_watch_mode {
- /* Additional wave settings */
- enum kfd_dbg_trap_flags {
- 	KFD_DBG_TRAP_FLAG_SINGLE_MEM_OP = 1,
-+	KFD_DBG_TRAP_FLAG_SINGLE_ALU_OP = 2,
- };
- 
- /* Trap exceptions */
-diff --git a/include/uapi/linux/kfd_sysfs.h b/include/uapi/linux/kfd_sysfs.h
-index a51b7331e0b4b..5e8d28617efad 100644
---- a/include/uapi/linux/kfd_sysfs.h
-+++ b/include/uapi/linux/kfd_sysfs.h
-@@ -51,15 +51,16 @@
- /* Old buggy user mode depends on this being 0 */
- #define HSA_CAP_RESERVED_WAS_SRAM_EDCSUPPORTED	0x00080000
- 
--#define HSA_CAP_MEM_EDCSUPPORTED		0x00100000
--#define HSA_CAP_RASEVENTNOTIFY			0x00200000
--#define HSA_CAP_ASIC_REVISION_MASK		0x03c00000
--#define HSA_CAP_ASIC_REVISION_SHIFT		22
--#define HSA_CAP_SRAM_EDCSUPPORTED		0x04000000
--#define HSA_CAP_SVMAPI_SUPPORTED		0x08000000
--#define HSA_CAP_FLAGS_COHERENTHOSTACCESS	0x10000000
--#define HSA_CAP_TRAP_DEBUG_FIRMWARE_SUPPORTED   0x20000000
--#define HSA_CAP_RESERVED			0xe00f8000
-+#define HSA_CAP_MEM_EDCSUPPORTED				0x00100000
-+#define HSA_CAP_RASEVENTNOTIFY					0x00200000
-+#define HSA_CAP_ASIC_REVISION_MASK				0x03c00000
-+#define HSA_CAP_ASIC_REVISION_SHIFT				22
-+#define HSA_CAP_SRAM_EDCSUPPORTED				0x04000000
-+#define HSA_CAP_SVMAPI_SUPPORTED				0x08000000
-+#define HSA_CAP_FLAGS_COHERENTHOSTACCESS			0x10000000
-+#define HSA_CAP_TRAP_DEBUG_FIRMWARE_SUPPORTED			0x20000000
-+#define HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTED	0x40000000
-+#define HSA_CAP_RESERVED					0x800f8000
- 
- /* debug_prop bits in node properties */
- #define HSA_DBG_WATCH_ADDR_MASK_LO_BIT_MASK     0x0000000f
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+index 4d786b5ffd130..aa900b651eb0e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+@@ -389,6 +389,7 @@ struct mqd_manager *mqd_manager_init_v12(enum KFD_MQD_TYPE type,
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct v12_compute_mqd);
+ 		mqd->get_wave_state = get_wave_state;
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -404,6 +405,7 @@ struct mqd_manager *mqd_manager_init_v12(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct v12_compute_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -433,6 +435,7 @@ struct mqd_manager *mqd_manager_init_v12(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_sdma;
+ 		mqd->is_occupied = kfd_is_occupied_sdma;
+ 		mqd->mqd_size = sizeof(struct v12_sdma_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+ #endif
 -- 
 2.44.0
 
