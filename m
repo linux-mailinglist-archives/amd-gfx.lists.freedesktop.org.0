@@ -2,55 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6698E8B5950
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 15:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECBF8B590D
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 14:51:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC902112C5D;
-	Mon, 29 Apr 2024 13:05:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE81112C42;
+	Mon, 29 Apr 2024 12:51:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qtxuK+VS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LI2tDyB6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A835A10E0EF
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 09:43:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=n/AfjLYLFVccFgxPIXAXIsU+eKdPS/Petd1jFGnQrjQ=; b=qtxuK+VSeBtc2ZwSpFRnjMDvm2
- h4tSUzcDVlIV2OGaxU2XCndg1CwzG1t1dEn8i08gRMe07uM588E6X6PJzST4qfho7GzypWqqfOCei
- yqoHLbh3p9gcj057QX2Ry5M0z5rwHA1EAAjDHk9NNQsjO4BKa+ExJ+kLS9IxULH/v449/+kkyNh/g
- Tl/ipJ8asdsmYHatO5biyeKN8QgOfhcaIsImAy4EcPeesCYIZUAtBh6oFD+irCZZnViOSQdA3tRGm
- FOcKAc6hUkAMvXnGBRfqsmQSzNBZTYoDDCYYIrrozR0KpKblfb/+4Kwj4oDo/g/9PGmR3Yv0lkL4c
- O+gJoVNg==;
-Received: from [84.65.0.132] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s1NXV-001FdP-1f; Mon, 29 Apr 2024 11:43:12 +0200
-Message-ID: <fe80a8db-3ece-4818-8b23-2ccf5293a6c2@igalia.com>
-Date: Mon, 29 Apr 2024 10:43:11 +0100
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2062.outbound.protection.outlook.com [40.107.237.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4674112C42
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 12:51:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dC8YeobaaBfIjpJrPFfHgK6mmsIRwAfDyyAmO59B0JLh3Ut/FU81qaV/FWVaS38fb60Ci+9KF4wzqgVLaZmlgfXbHSDGM7kZN3BdjYJPmMmPk12RiKjfrklS3ZxQhJlUd4gVnQw7lEzdKx0UnMUoTEiyjeN80mrNV7IURzBbKvWN5KDOzMq/OMflAijfcBYuVJ1LSkWICllCmPGNgJ7JmXMkiV7VMnyngV0HZ77lTm9APMb0uns+8VDrJfVAY9Zuiiv4zDWby5OnTsOVVXJFRL3vcVDeil0/4BJkD0+nE1Q+bscJMsQOfFQJeySPWciIvFNrv9GKjfJjp5rMubbXkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vlB1b+BVc/CaJuNbwUjnFIY1DDJ6dfeMwNfDaLfFiFY=;
+ b=EiahYHHEI7EQp0zUmnQbhm74K2dY5xobPXTylG9lOOrd6BGZ5I0d2aLihrJbn+eM3xmr9ro1CBrJAUWli+nLcEXB9Pw5/2TVmJBgMyvch++sBpVP7EYTR3lHlvyLGjU1O1st1JKJzGNSJ9OJGOQcOiyOXMe4zeOAuiadg8pPf2Ka73rYYY1hf1/U8fHRa3JbWvAoAa3sRVcIn4eltHesG+GOq3MNAqO0DPDsxTyF5erNkODqL79O1uN3dhcZZlU9KY68d+REq7eLsCuO9ZvQuXnB9HVPMtaXcOEn2eyx9eCCC4IXXx2BZYiZCOSq9ce+A97w00Fp+qV+xw4CyvFbdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vlB1b+BVc/CaJuNbwUjnFIY1DDJ6dfeMwNfDaLfFiFY=;
+ b=LI2tDyB6Gt3qzegaHbw8Js6j3mUhXplZUoG5BQcCykO5gBM++0rgDeBD9IMQRgSEga0e2WM/eHqtJ4A3t4paraDFDGPU1MkbXbQ16p+eFSVfgenn55AxnxClyiSN+JelDN9MWMrntpfvPBIpP3cP/axcqgr93gMlPp5OsLZbYAs=
+Received: from MN2PR08CA0012.namprd08.prod.outlook.com (2603:10b6:208:239::17)
+ by DM4PR12MB6494.namprd12.prod.outlook.com (2603:10b6:8:ba::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35; Mon, 29 Apr
+ 2024 12:51:05 +0000
+Received: from BN3PEPF0000B370.namprd21.prod.outlook.com
+ (2603:10b6:208:239:cafe::cc) by MN2PR08CA0012.outlook.office365.com
+ (2603:10b6:208:239::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34 via Frontend
+ Transport; Mon, 29 Apr 2024 12:51:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B370.mail.protection.outlook.com (10.167.243.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7519.0 via Frontend Transport; Mon, 29 Apr 2024 12:51:04 +0000
+Received: from MUN-L-SHSHARMA.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 29 Apr
+ 2024 07:51:03 -0500
+From: Shashank Sharma <shashank.sharma@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Shashank Sharma <shashank.sharma@amd.com>, Christian Koenig
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, "Arvind
+ Yadav" <arvind.yadav@amd.com>
+Subject: [PATCH] drm/amdgpu: fix doorbell regression
+Date: Mon, 29 Apr 2024 14:50:38 +0200
+Message-ID: <20240429125038.1308-1-shashank.sharma@amd.com>
+X-Mailer: git-send-email 2.38.0.windows.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/amdgpu: Fix pinned GART area accounting and
- fdinfo reporting
-Content-Language: en-GB
-To: Felix Kuehling <felix.kuehling@amd.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- kernel-dev@igalia.com
-References: <20240426164355.1563-1-tursulin@igalia.com>
- <20240426164355.1563-4-tursulin@igalia.com>
- <a60dede1-8e81-4c79-8058-257391930621@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <a60dede1-8e81-4c79-8058-257391930621@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 29 Apr 2024 13:05:43 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B370:EE_|DM4PR12MB6494:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ef35993-8536-484d-0bc6-08dc684b081c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230031|82310400014|376005|1800799015|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?jYr4UddybBOV5UFjdwEpQOn/PszwNKAx8N5RfsKIs4jK8ddxLG5IkNmrkW3X?=
+ =?us-ascii?Q?ZEMMfr/SyfToUQWIvcvmj77hlAp37pQiQ/v+QLnVA4+onvsFa8NCtUgxP6OD?=
+ =?us-ascii?Q?HK4/z2TaS/kENuG5MeyctekP9+xq85J2K6J9yKRAgp/0p78kmIpdlI2YFREg?=
+ =?us-ascii?Q?kMuWKbY/OLKm1M3GXc7OuqvmarypCY5PmZmhQt7TpiI9FyzFkXGEXqRM0HcR?=
+ =?us-ascii?Q?ShFUZBm9U3i+Vy10G3nXQjgN9dt/1c6dTuktyZ/7t4g1tFLVCEZiO7slEcb+?=
+ =?us-ascii?Q?Ns83J05JoUAD2vghSjYIP+Dv9UlGa7P9/pieeq0CLipwAYY7DKunh1Mmzj/h?=
+ =?us-ascii?Q?BWqqt5c5YmED2eSAK9k7ND1DC2EkuDP0UEbWgLPgNGH4cT3mM/Ykajm8QCjr?=
+ =?us-ascii?Q?hcgOXntG7FUvfFf2T9z9Yfx0it4pZxA6KUpbMhuSpHPUxjDkwCYFflbRVORC?=
+ =?us-ascii?Q?qvNu5QmkAZhiFjaUxEMd1MkBEqdzF/M4a9tZEFwKEfhMfNmZSrwtZVCYWJR+?=
+ =?us-ascii?Q?0BagcoB/QLbY5SOreigimcwf5yXDyJ6tJKLVE9eJLRFxV49EquckVMsV3UK4?=
+ =?us-ascii?Q?K2L4m4YPYd23n8mld8e8vRLgZlTAWznsV97T+cNrV5UHqUNlBS+xXICB0lpK?=
+ =?us-ascii?Q?Lyf9tyP8eQ6+CbYWJ7NwJRKyzPcYaCTdDIG7o+CGs7d+c7qzB+MOD+TgWxxm?=
+ =?us-ascii?Q?LGAnL4+VytvQSVjvoGyXsAS2P9lJKx5Hx16dP92wBw8eb/ku2PxY2fCjToSa?=
+ =?us-ascii?Q?aSqTM2ZJuYqdX4hFllQ1g7alH8c2z7I6SmiLh0AKaBwoj8vusxFsOXCegK93?=
+ =?us-ascii?Q?Mk7waIJI3AW8UIKDY9Lx+8FYfZp8AU+ere5MkDZkp2KSwmm4PZ9KAF68a83N?=
+ =?us-ascii?Q?zlFb1EZtSxD/+tIdV9c8KcA2th0c4K6rTNHfm+nHOtOqdw9cmIyu6R8lOr40?=
+ =?us-ascii?Q?O2qUY0tKn0xSBMfqBSG5zQfaYOkLuax7NQQNOnSJC5UmQRUchxotxvS2W+gu?=
+ =?us-ascii?Q?auybF6Xcqxdv39Jz7wKufotN0dqye3gEJ6EA9D6YTIDiWVLmHoVGs85WhKjo?=
+ =?us-ascii?Q?kC9UpF2TDWO9VaPyl4ERZPeA4ir9Q5DRhDrff5DBCDpw7ijPi1qLK7JkiKfg?=
+ =?us-ascii?Q?i/TFlii8nNS/pOEzqVWqHBfBTuieJDuBWw3uPVmwkV55hj8b9Y0B5J0QPj+L?=
+ =?us-ascii?Q?q8nnVPdN52KD85QuFWKupueI5A9t19zaCFlP59LPVVJJUyIAAwQlV2YhyLnj?=
+ =?us-ascii?Q?n5B5VmoEmJJVNMGhBHvh4TbjX1iFx+pIrUCiHrdE1wCdMKwZ3ZMIVDGGO5nn?=
+ =?us-ascii?Q?V5+YR8PgAYAckF6NIrrGi5kK9PvK9MRwAxH/2oaFTwER7SzSSHQohtgm18Bp?=
+ =?us-ascii?Q?vERI2MsCrLnkprOa6YDSxLHxDxGq?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(82310400014)(376005)(1800799015)(36860700004); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 12:51:04.7190 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ef35993-8536-484d-0bc6-08dc684b081c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B370.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6494
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,110 +130,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This patch adds a missed handling of PL domain doorbell while
+handling VRAM faults.
 
-On 26/04/2024 23:24, Felix Kuehling wrote:
-> 
-> On 2024-04-26 12:43, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> When commit b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible
->> SG BOs") added a new TTM region it missed to notice the conceptual
->> imbalance in GART pin size accounting as done in amdgpu_bo_pin/unpin.
->>
->> That imbalance leads to such objects getting accounted against the
->> resource, but are not un-accounted when unpinned.
-> 
-> AMDGPU_PL_PREEMPT is mostly used for userptr BOs, which cannot be 
-> pinned. In any case you should make sure that the accounting is 
-> consistent between amdgpu_bo_pin_restricted and amdgpu_bo_unpin. This 
-> patch breaks that consistency.
+Fixes: a6ff969fe9cb ("drm/amdgpu: fix visible VRAM handling during faults")
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-You mean amdgpu_bo_pin(_restricted) and amdgpu_bo_unpin do not run for 
-such objects, or something else?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 1d71729e3f6b..c71eeb6a04e6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -419,7 +419,7 @@ bool amdgpu_res_cpu_visible(struct amdgpu_device *adev,
+ 		return false;
+ 
+ 	if (res->mem_type == TTM_PL_SYSTEM || res->mem_type == TTM_PL_TT ||
+-	    res->mem_type == AMDGPU_PL_PREEMPT)
++	    res->mem_type == AMDGPU_PL_PREEMPT || res->mem_type == AMDGPU_PL_DOORBELL)
+ 		return true;
+ 
+ 	if (res->mem_type != TTM_PL_VRAM)
+-- 
+2.43.2
 
-If they run, then at the end of pin there is:
-
-	domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-...
-	} else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
-		atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
-
-And unpin has no handling for AMDGPU_PL_PREEMPT.
-
-Ah I see.. does it rely on amdgpu_mem_type_to_domain returning 0 for 
-AMDGPU_PL_PREEMPT? My confusion was I misread the pinning check as 
-checking the domain as stored in the bo at creation time.
-
-Although I am still confused by the statement userptr BOs are not 
-pinned. It is not needed to map them via GART on AMD hardware for GPU to 
-be able to access them?
->> Fix by extending the accounting criteria in amdgpu_bo_unpin.
->>
->> What also aappears needs fixing is not reporting their size from the
->> amdgpu_bo_get_memory, which is used to implement fdinfo stats, so they 
->> are
->> not mixed with the regular userspace created and driver owned objects.
-> 
-> I think that's true. It's a very fine distinction. AMDGPU_PL_PREEMPT 
-> does use system memory and it is GPU accessible, just like GTT. The only 
-> difference is, that it's not subject to the GTT limits because their 
-> eviction is handled by callbacks other than TTM evictions and doesn't 
-> need to wait for fences.
-
-As in you think those two hunks of the patch are correct?
-
-Regards,
-
-Tvrtko
-
-
-> Regards,
->    Felix
-> 
-> 
->>
->> And also amdgpu_bo_print_info for debugfs reporting.
->>
->> Note that the patch depends on the previous one which broke down the
->> relevant checks from the domain based to placement based.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Fixes: b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible SG 
->> BOs")
->> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 5 ++---
->>   1 file changed, 2 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> index fb984669fc3a..5a2bbc793953 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> @@ -1032,7 +1032,8 @@ void amdgpu_bo_unpin(struct amdgpu_bo *bo)
->>           atomic64_sub(amdgpu_bo_size(bo), &adev->vram_pin_size);
->>           atomic64_sub(amdgpu_vram_mgr_bo_visible_size(bo),
->>                    &adev->visible_pin_size);
->> -    } else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
->> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT ||
->> +           bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
->>           atomic64_sub(amdgpu_bo_size(bo), &adev->gart_pin_size);
->>       }
->> @@ -1298,7 +1299,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
->>               stats->vram_shared += size;
->>           break;
->>       case TTM_PL_TT:
->> -    case AMDGPU_PL_PREEMPT:
->>           stats->gtt += size;
->>           if (shared)
->>               stats->gtt_shared += size;
->> @@ -1599,7 +1599,6 @@ u64 amdgpu_bo_print_info(int id, struct 
->> amdgpu_bo *bo, struct seq_file *m)
->>                   placement = "VRAM";
->>               break;
->>           case TTM_PL_TT:
->> -        case AMDGPU_PL_PREEMPT:
->>               placement = "GTT";
->>               break;
->>           case TTM_PL_SYSTEM:
