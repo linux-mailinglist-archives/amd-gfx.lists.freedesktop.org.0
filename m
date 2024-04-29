@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D70FD8B5B5E
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F428B5B61
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Apr 2024 16:34:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD14A112CA9;
-	Mon, 29 Apr 2024 14:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16274112CAC;
+	Mon, 29 Apr 2024 14:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kzinaUSH";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TyFoJugJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAD0112C9E
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:34:27 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC42112C9E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:34:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lsKP1o1mrgPpqaaH6MLvHDt9yics9OVPXvwKbYHSOAyEMcVq5dTY5gDXUVusXvWJKWifI5TKFSJD299n8lYcBlIkeYw3bpXu8HaquxEkbX4dEY2FuVrVj4tLQuw0iAcHp6/FIR+DId4rbCWC+LGglqgU8CE5++L8HTfRz692MufclcKt4Yx60Lb6YbESTNX0g8fPZl8bck5FtfWRPRSPq9/MhF54WbtdeMFjkg9pDiYGJWcV1Xt/sC8zBrWhkRnaBida0i50GGIuQPhEYsGZb50XMgr2TMajPIgSzAKa60Kg65bFKuxfST9wtqB6SgC4dx7mTvD9Cdyk8qI4RfsGOw==
+ b=St6rETCV/oIDD52/tpiKKZr6XBPBZzcUvWhCtB/FGcMqBUTh7Dg5rNLKBHghorQYauoLYFDv6CZwTkVthMm+n84o8/HckTWW9+92WBZ78tMUs6VgWb8hhibUU/giW3ktjybBCybIs4cgQvdB+FTCHu2aMX1BM9UU53DfknfmCk7NTijMkv6Zg1ddbcyswjC/Wx4YmKsLrE73h7wcqSzwgWJiKK+hx2p59BC9P1vWra9W83Xr4BfE62XY/A95ZBoGq275fudKzHvmAUHADSJnC4kHBEunTJuaiWIz0RUDkXxWaCbNr97MruS8qhrbt3f2YA5xQpFn0S8x/yacLmB2qA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kN6Lt47mVGrebEi4Xtn71+4vhJjN5wWC7WG2yhLjyLY=;
- b=e3RNZIOG2SmgxMEn55gKprJ3ni/LZwol5aTCdKoEtRDCaAZqeAh5O1xO+QZDsimbCbRKoAS0/YiScsKt9Bb16Boc/ogPFO6whmvnVJ3O5SAVQnrYTrigzWNgSnCZRFn9TFp/na0t4EWcA+JhZycQLIsApcqBmHyohrIdETNKi6XQoRiFGrVLRZDWXXacIPN1GARAtFWHTB0JAwz/bcjRpGu0PnkpJ9BkES3rA52LxIX/RZfw2uYg2OXmV2OGWq/kYX2y6kXoskYMYnZvnpzZKs3ZFOBvRjMiucQAKCohWlganxH81S+xYJTdKhNzaO5xM9q8Am5WZ/etUXtK3iu2pQ==
+ bh=G7LOdPVhTDB4/E1vkwOAU/cIos/zgtedOqXVeMdywoY=;
+ b=bgmkAg8TCO7KkhqDJQzySWPyWtImSvSPV7nF2gZUmdlT54CYIVhZeA5kkmmtu4DbpbbazQoXsDYz0H3KuIPgSWsy4Wqw/teMOS5XRfbc/Q10naS5xlA+9+SpyJQ3E3fon3k4XCNCeVLdaBuGtJympI1q9/gpNhy96Sx0Ls/Z2EMelPgiMIgCl5OyynVJsrh8AtjtHO+0khnlJ29BKVgbmPPilhIEZuG3Y58VahTFr8tqcnpYFeWtnjnQ0YgXPLand1cvyfCgZ+OMX6YBS4/q9cARsQIvChjNG5ZMfoezTEU5Xemvyj3XYYha+cPPv10zj9mZlJonwdM/oiOG5TRBVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kN6Lt47mVGrebEi4Xtn71+4vhJjN5wWC7WG2yhLjyLY=;
- b=kzinaUSHXCa4wHDU2kHv3zHKnu7gs9cRiztNICSOfmewxFcxJ+3sqzsXauafFKCathrBUjugX2H5shCwwrravxv1AsLlUmkiY5hiY2SZUk1eGvvLoXeYfZcMZg0nkWf58kd8SxYbU/azMguyzhYoOX63N07vVRRkJ/0XWc+8oBg=
-Received: from BYAPR06CA0003.namprd06.prod.outlook.com (2603:10b6:a03:d4::16)
- by PH8PR12MB8608.namprd12.prod.outlook.com (2603:10b6:510:1bc::9)
+ bh=G7LOdPVhTDB4/E1vkwOAU/cIos/zgtedOqXVeMdywoY=;
+ b=TyFoJugJ9Ng5pv3v5Y7paL+xZH7an6/ZilH4AA7Q8U9a0JKmYwLtBIlx5T4PJktL/Ro6hUy7DkDBHi3Rw43zd8DuRgQCDHElbrgy4WahEs6ZMrcFXwRYEugjob0trT80gAWNllnlT9KaseZlOQ3EBwQ31rohgTq9iWnoRY4fQMI=
+Received: from BYAPR06CA0033.namprd06.prod.outlook.com (2603:10b6:a03:d4::46)
+ by CYYPR12MB8937.namprd12.prod.outlook.com (2603:10b6:930:cb::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
- 2024 14:34:22 +0000
+ 2024 14:34:24 +0000
 Received: from SJ1PEPF00001CDD.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::b2) by BYAPR06CA0003.outlook.office365.com
- (2603:10b6:a03:d4::16) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:a03:d4:cafe::f8) by BYAPR06CA0033.outlook.office365.com
+ (2603:10b6:a03:d4::46) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35 via Frontend
- Transport; Mon, 29 Apr 2024 14:34:22 +0000
+ Transport; Mon, 29 Apr 2024 14:34:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SJ1PEPF00001CDD.mail.protection.outlook.com (10.167.242.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7544.18 via Frontend Transport; Mon, 29 Apr 2024 14:34:22 +0000
+ 15.20.7544.18 via Frontend Transport; Mon, 29 Apr 2024 14:34:23 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 29 Apr
  2024 09:34:16 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Kenneth Feng <kenneth.feng@amd.com>, Likun Gao <Likun.Gao@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH 24/31] drm/amd/amdgpu: add cgcg&cgls interface for gfx 12.0
-Date: Mon, 29 Apr 2024 10:33:32 -0400
-Message-ID: <20240429143339.3450256-24-alexander.deucher@amd.com>
+CC: Likun Gao <Likun.Gao@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>
+Subject: [PATCH 25/31] drm/amdgpu: use new method to program rlc ram
+Date: Mon, 29 Apr 2024 10:33:33 -0400
+Message-ID: <20240429143339.3450256-25-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240429143339.3450256-1-alexander.deucher@amd.com>
 References: <20240429143339.3450256-1-alexander.deucher@amd.com>
@@ -73,50 +73,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|PH8PR12MB8608:EE_
-X-MS-Office365-Filtering-Correlation-Id: f920c03b-5be3-4914-2ac3-08dc6859761b
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDD:EE_|CYYPR12MB8937:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75c96f77-177d-4db6-812e-08dc68597715
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400014|376005|36860700004|1800799015; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/9WIQg9UGIAlXB496WLp/fSCqi86q3BSq5G5VppFC27l89l0fgi7ZMb3LTkN?=
- =?us-ascii?Q?N064L5nuRWzq5wCXvWcKx5cVLyz10U9qfjy4Z6hTZbjsmnkuaCcoNxOCO1rA?=
- =?us-ascii?Q?eQeiZnq+s/DHmMQWzf9rqy9V8z6dmUh8+x+I/jY3lm9ns4Q7L9kLa5Seqr1d?=
- =?us-ascii?Q?uZJNziuXlvikqQO5/m9X7WWemPR82/qpH1itqHp008ywZMK+R4P3zAAaM7EI?=
- =?us-ascii?Q?NuL07KhS3zzHzoe7Y7Fgb7wlIT77CkHITe8XYBj8vsWMMT+Nj4KgnAPF3RU0?=
- =?us-ascii?Q?IOMT//O6sEGOAGLm5rt/VfBgcaw738fk+/62Cw7bFZYXZUp0rdPcKyn3ugcQ?=
- =?us-ascii?Q?JCXJRGSyg9P/8g5rg1jIRf/fRpTupcWUVTYmVfTcpJ4OVGyVXt5EzLRBkmi1?=
- =?us-ascii?Q?fr2Yv61XmuR/KBAwPATqPUQVW7ozh6zOsEBof+uHWsUuhTBv2f9YjIZXpcFD?=
- =?us-ascii?Q?lExF3x20Z60eb7SQwAgefKzwSpxllqjnB59pFiGWr+SKqhifB2GxPVFgOeSG?=
- =?us-ascii?Q?ZxS08lkIxkYym0fFbdXdkArVq9CVqRt0BJp9gQ99etZq7kMdM9yxKk8OO7oY?=
- =?us-ascii?Q?2Axww+jYRhEkYnIrmVgU2h8gwz/z0q773ZPx7DPepgRHWxAuFAv3EvQzjDkO?=
- =?us-ascii?Q?wQwnwhaW+OCIErc6XnzGtsLWF5kuIK2+srfCRSCXnuC2qLjCruPqW0bMgBuk?=
- =?us-ascii?Q?htGLjd876nWSjGfMQLE9ZcHMUs1Y5ovkb+MwrxE+0XK8p3gKJHEyItcwMj8b?=
- =?us-ascii?Q?sXLU7+3aL7l4kwLVyH16/O/4AGVz5oghKFdEkgZRJAdeyvEW86cGI2mH54/G?=
- =?us-ascii?Q?rij04GU+OrSWr3U680d06GNecndk9YwxnOkd1FUNfeVDcjEzhkZK2uEWO0r8?=
- =?us-ascii?Q?J63/KrirpKC50gDB3eCUxwnd/9Jq0uZsGE1F/E04nmXyHr1uVCo4r0Pn4YwP?=
- =?us-ascii?Q?VY/2mouostRsE63b/DSQJeYYhpXwUmA9h5ingbFw/YH2ZfGrMUCuc50zGskw?=
- =?us-ascii?Q?z+FzA6JwJ9AvmO0QX37CNC4RbsS7N+dkJzB4NuC9DHNjkswN5WDWCYDc6vhh?=
- =?us-ascii?Q?E7TG/No9++bv2hBP2OYMdobE8OJPWHpikKeWnptLQEL5SG6xuTJRNTH3xNoR?=
- =?us-ascii?Q?KVuau8nr3p87vWLEl7TCpE50Qyyu4DBT6H+/+8Bd5PJamzzGDZNRXsq878Lm?=
- =?us-ascii?Q?MEm+8Yiuq/LMdtkWb1z/t7xC1XGktRKyPwi1YPRlFBtMFJWtMnItwXiQTMCm?=
- =?us-ascii?Q?B78wVAey18jamWjQogamdzJmf5LpAou8Mve3TJInhrV7VAkxRQL8CgLjZTu+?=
- =?us-ascii?Q?iUHdB+M6r4IQgu+v5gLhN+pabcVnTOmVw6Jrxf23ZXwsUfD3q1iwerlWeobD?=
- =?us-ascii?Q?CWwXx10=3D?=
+ ARA:13230031|36860700004|1800799015|376005|82310400014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oUtN9mD7pQSMt+8a19Wb/U+F8aGvfyMpk8mnLRTvAqnJ2mR1zSKvqridpbrt?=
+ =?us-ascii?Q?6yarIZo+8DhvDMYDCwPOhgFY1PZhuNfJpqaXvS1O4ygUt9yhje/32NGRx7jq?=
+ =?us-ascii?Q?WQJLONVgU9FTLVs0vIMLEHDtjI9++cI5TA+RgbIWIhUWCZRfhd8lRe05y09N?=
+ =?us-ascii?Q?hmpD5rcHJLHZF5LrlxmdeqSXfVw/k/BmJ4u0+fVj6coRm5QplLyC15IlV6Np?=
+ =?us-ascii?Q?3+Jw8In50WaZwVX+6b/hNJnjGv1VTeuLgtsaZWGZmDNnLfH6gTh7PISbfEKI?=
+ =?us-ascii?Q?kbJJ0X0pYnpBkunNDyYcfr70P8VOcCGVgT6Y+lT7Fk04MV+Shy/nrds5YWzr?=
+ =?us-ascii?Q?CfbdZ3CKd0Qtwqa0LrWdvhfAhtHhT4mpFslpi2Ro1Kxx4/qSrHeYfy/v280E?=
+ =?us-ascii?Q?5k6pAemq4+q3x8Z16HCRghlvRPmRvEgiNC+9gSkhr7RL15DiEGwjJQ2e9uNK?=
+ =?us-ascii?Q?KxOZB2+HlnJ7srpLkWQsZ81DLwv3IrhTwo+4sx1Wo3EFG99kCpYmRRaidB7D?=
+ =?us-ascii?Q?jz2OYP2Fjow39ErifRXPteKJXY3JuEpGBG4iQjKYcbWHJajL2qMq640hrjgl?=
+ =?us-ascii?Q?OYU/5h6ucQ0f0Ul49oOYxly3EfOxsJnRSex1A5fOevmphmzkAQtiPDBMeTZF?=
+ =?us-ascii?Q?+uMEfYM5NAlwfEB2l5tmKUk6bqeg0b0yBCuOh5thDZ0Nfp1zwrmuZY7PkfGs?=
+ =?us-ascii?Q?ZRU0WhCnovJtNm7k8xbL7RYV2pVslnTgZ+rUwGsU9B3dq3f6gBIIBr1HHLuK?=
+ =?us-ascii?Q?qoXvcemlGY8LVtPlGKQ9cso5XmGjBwrxyq1bQAKD2c73s9uZJwrE+FM7bQPs?=
+ =?us-ascii?Q?hjTmC5UAjWA+cU37xDae7eG1OsDQbfbbwLbKFO9vwshxI4PgZGVIK6Kw2r/u?=
+ =?us-ascii?Q?YaftpC/22NhVABtW5pcyXE3sbd+c/Y8CxYQWTy7zibpfDxQ15Wfd6inISGj6?=
+ =?us-ascii?Q?fvAqItZiMMfxChvU6Dv7+GNp8pI6C8307uS+vn43mNRsHS3h5IUCAeAZHquJ?=
+ =?us-ascii?Q?0Tr1h/z6/4671F4+tDY5BCe18bLBv2xWVKlq1ScmOWXCkOCKtuZaiL28JkvH?=
+ =?us-ascii?Q?OjmxzCUMc18IHxGLbXJRqlClzZz6u4/uECMpDXeOZQazwbrGJtYMKWLZD+F6?=
+ =?us-ascii?Q?cmwCeJJ9xlEbu63b80GLP18PXTGqbpO+k60RdKQ2E8L/ZdgYy7da+zq7wYnD?=
+ =?us-ascii?Q?PWT/yfwpTqknIJ8UlWtvZl4bcaf4BkEefy5hYmZkFzvSm/HVmUL/T7P7G6gK?=
+ =?us-ascii?Q?d9av0K6OfqD0iemOEM1JG/RV6xnXthRf5AhK3w+iqxxMHTKeSnooKe2gzeTD?=
+ =?us-ascii?Q?ns0ctIbZtjsAkxm3Rs4V4AXECl+7Ejq3mu97JZJwrA3GW3YoOcKLgcijxQ+r?=
+ =?us-ascii?Q?jihNHZnVFdiLJ1D0EOpcgtDA+/oV?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015); DIR:OUT;
+ SFS:(13230031)(36860700004)(1800799015)(376005)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:34:22.0762 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f920c03b-5be3-4914-2ac3-08dc6859761b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 14:34:23.7793 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75c96f77-177d-4db6-812e-08dc68597715
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDD.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB8608
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8937
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,243 +131,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Kenneth Feng <kenneth.feng@amd.com>
+From: Likun Gao <Likun.Gao@amd.com>
 
-add cgcg&cgls interface for gfx 12.0
+Program rlc ram with golden setting data instead.
+The old method (program_imu_rlc_ram_old) should be
+retired in the future.
 
-Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
-Reviewed-by: Likun Gao <Likun.Gao@amd.com>
+Signed-off-by: Likun Gao <Likun.Gao@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 190 ++++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/soc24.c     |   3 +
- 2 files changed, 191 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/imu_v12_0.c | 70 ++++++++++++++++++++++----
+ 1 file changed, 61 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 730d57a10077f..882e00234e33a 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -1472,7 +1472,7 @@ static void gfx_v12_0_constants_init(struct amdgpu_device *adev)
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/imu_v12_0.c b/drivers/gpu/drm/amd/amdgpu/imu_v12_0.c
+index 7112e4b2d6489..5baef51660637 100644
+--- a/drivers/gpu/drm/amd/amdgpu/imu_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/imu_v12_0.c
+@@ -33,6 +33,8 @@
  
- static void gfx_v12_0_enable_gui_idle_interrupt(struct amdgpu_device *adev,
--					       bool enable)
-+						bool enable)
- {
- 	u32 tmp;
+ MODULE_FIRMWARE("amdgpu/gc_12_0_1_imu.bin");
  
-@@ -3594,10 +3594,196 @@ static int gfx_v12_0_set_powergating_state(void *handle,
- 	return 0;
- }
- 
-+static void gfx_v12_0_update_coarse_grain_clock_gating(struct amdgpu_device *adev,
-+						       bool enable)
-+{
-+	uint32_t def, data;
++#define TRANSFER_RAM_MASK	0x001c0000
 +
-+	if (!(adev->cg_flags &
-+	      (AMD_CG_SUPPORT_GFX_CGCG |
-+	      AMD_CG_SUPPORT_GFX_CGLS |
-+	      AMD_CG_SUPPORT_GFX_3D_CGCG |
-+	      AMD_CG_SUPPORT_GFX_3D_CGLS)))
+ static int imu_v12_0_init_microcode(struct amdgpu_device *adev)
+ {
+ 	char fw_name[40];
+@@ -245,9 +247,9 @@ static const struct imu_rlc_ram_golden imu_rlc_ram_golden_12_0_1[] = {
+ 	IMU_RLC_RAM_GOLDEN_VALUE(GC, 0, regGCMC_VM_SYSTEM_APERTURE_DEFAULT_ADDR_MSB, 0, 0x1c0000)
+ };
+ 
+-static void program_imu_rlc_ram(struct amdgpu_device *adev,
+-				const struct imu_rlc_ram_golden *regs,
+-				const u32 array_size)
++static void program_imu_rlc_ram_old(struct amdgpu_device *adev,
++				    const struct imu_rlc_ram_golden *regs,
++				    const u32 array_size)
+ {
+ 	const struct imu_rlc_ram_golden *entry;
+ 	u32 reg, data;
+@@ -271,21 +273,66 @@ static void program_imu_rlc_ram(struct amdgpu_device *adev,
+ 		WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_LOW, reg);
+ 		WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_DATA, data);
+ 	}
+-	//Indicate the latest entry
+-	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_HIGH, 0);
+-	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_LOW, 0);
+-	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_DATA, 0);
++}
++
++static u32 imu_v12_0_grbm_gfx_index_remap(struct amdgpu_device *adev,
++					  u32 data, bool high)
++{
++	u32 val, inst_index;
++
++	inst_index = REG_GET_FIELD(data, GRBM_GFX_INDEX, INSTANCE_INDEX);
++
++	if (high)
++		val = inst_index >> 5;
++	else
++		val = REG_GET_FIELD(data, GRBM_GFX_INDEX, SE_BROADCAST_WRITES) << 18 |
++		      REG_GET_FIELD(data, GRBM_GFX_INDEX, SA_BROADCAST_WRITES) << 19 |
++		      REG_GET_FIELD(data, GRBM_GFX_INDEX, INSTANCE_BROADCAST_WRITES) << 20 |
++		      REG_GET_FIELD(data, GRBM_GFX_INDEX, SE_INDEX) << 21 |
++		      REG_GET_FIELD(data, GRBM_GFX_INDEX, SA_INDEX) << 25 |
++		      (inst_index & 0x1f);
++
++	return val;
++}
++
++static void program_imu_rlc_ram(struct amdgpu_device *adev,
++				const u32 *regs,
++				const u32 array_size)
++{
++	u32 reg, data, val_h = 0, val_l = TRANSFER_RAM_MASK;
++	int i;
++
++	if (array_size % 3)
 +		return;
 +
-+	if (enable) {
-+		def = data = RREG32_SOC15(GC, 0, regRLC_CGTT_MGCG_OVERRIDE);
-+
-+		/* unset CGCG override */
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)
-+			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGCG_OVERRIDE_MASK;
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS)
-+			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGLS_OVERRIDE_MASK;
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG ||
-+		    adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGLS)
-+			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_GFX3D_CG_OVERRIDE_MASK;
-+
-+		/* update CGCG override bits */
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regRLC_CGTT_MGCG_OVERRIDE, data);
-+
-+		/* enable cgcg FSM(0x0000363F) */
-+		def = data = RREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL);
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG) {
-+			data &= ~RLC_CGCG_CGLS_CTRL__CGCG_GFX_IDLE_THRESHOLD_MASK;
-+			data |= (0x36 << RLC_CGCG_CGLS_CTRL__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
-+				 RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK;
-+		}
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS) {
-+			data &= ~RLC_CGCG_CGLS_CTRL__CGLS_REP_COMPANSAT_DELAY_MASK;
-+			data |= (0x000F << RLC_CGCG_CGLS_CTRL__CGLS_REP_COMPANSAT_DELAY__SHIFT) |
-+				 RLC_CGCG_CGLS_CTRL__CGLS_EN_MASK;
-+		}
-+
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL, data);
-+
-+		/* Program RLC_CGCG_CGLS_CTRL_3D */
-+		def = data = RREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL_3D);
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG) {
-+			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGCG_GFX_IDLE_THRESHOLD_MASK;
-+			data |= (0x36 << RLC_CGCG_CGLS_CTRL_3D__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
-+				 RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK;
-+		}
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGLS) {
-+			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGLS_REP_COMPANSAT_DELAY_MASK;
-+			data |= (0xf << RLC_CGCG_CGLS_CTRL_3D__CGLS_REP_COMPANSAT_DELAY__SHIFT) |
-+				 RLC_CGCG_CGLS_CTRL_3D__CGLS_EN_MASK;
-+		}
-+
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL_3D, data);
-+
-+		/* set IDLE_POLL_COUNT(0x00900100) */
-+		def = data = RREG32_SOC15(GC, 0, regCP_RB_WPTR_POLL_CNTL);
-+
-+		data &= ~(CP_RB_WPTR_POLL_CNTL__POLL_FREQUENCY_MASK | CP_RB_WPTR_POLL_CNTL__IDLE_POLL_COUNT_MASK);
-+		data |= (0x0100 << CP_RB_WPTR_POLL_CNTL__POLL_FREQUENCY__SHIFT) |
-+			(0x0090 << CP_RB_WPTR_POLL_CNTL__IDLE_POLL_COUNT__SHIFT);
-+
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regCP_RB_WPTR_POLL_CNTL, data);
-+
-+		data = RREG32_SOC15(GC, 0, regCP_INT_CNTL);
-+		data = REG_SET_FIELD(data, CP_INT_CNTL, CNTX_BUSY_INT_ENABLE, 1);
-+		data = REG_SET_FIELD(data, CP_INT_CNTL, CNTX_EMPTY_INT_ENABLE, 1);
-+		data = REG_SET_FIELD(data, CP_INT_CNTL, CMP_BUSY_INT_ENABLE, 1);
-+		data = REG_SET_FIELD(data, CP_INT_CNTL, GFX_IDLE_INT_ENABLE, 1);
-+		WREG32_SOC15(GC, 0, regCP_INT_CNTL, data);
-+
-+		data = RREG32_SOC15(GC, 0, regSDMA0_RLC_CGCG_CTRL);
-+		data = REG_SET_FIELD(data, SDMA0_RLC_CGCG_CTRL, CGCG_INT_ENABLE, 1);
-+		WREG32_SOC15(GC, 0, regSDMA0_RLC_CGCG_CTRL, data);
-+
-+		/* Some ASICs only have one SDMA instance, not need to configure SDMA1 */
-+		if (adev->sdma.num_instances > 1) {
-+			data = RREG32_SOC15(GC, 0, regSDMA1_RLC_CGCG_CTRL);
-+			data = REG_SET_FIELD(data, SDMA1_RLC_CGCG_CTRL, CGCG_INT_ENABLE, 1);
-+			WREG32_SOC15(GC, 0, regSDMA1_RLC_CGCG_CTRL, data);
-+		}
-+	} else {
-+		/* Program RLC_CGCG_CGLS_CTRL */
-+		def = data = RREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL);
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)
-+			data &= ~RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK;
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS)
-+			data &= ~RLC_CGCG_CGLS_CTRL__CGLS_EN_MASK;
-+
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL, data);
-+
-+		/* Program RLC_CGCG_CGLS_CTRL_3D */
-+		def = data = RREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL_3D);
-+
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)
-+			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK;
-+		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGLS)
-+			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGLS_EN_MASK;
-+
-+		if (def != data)
-+			WREG32_SOC15(GC, 0, regRLC_CGCG_CGLS_CTRL_3D, data);
-+
-+		data = RREG32_SOC15(GC, 0, regSDMA0_RLC_CGCG_CTRL);
-+		data &= ~SDMA0_RLC_CGCG_CTRL__CGCG_INT_ENABLE_MASK;
-+		WREG32_SOC15(GC, 0, regSDMA0_RLC_CGCG_CTRL, data);
-+
-+		/* Some ASICs only have one SDMA instance, not need to configure SDMA1 */
-+		if (adev->sdma.num_instances > 1) {
-+			data = RREG32_SOC15(GC, 0, regSDMA1_RLC_CGCG_CTRL);
-+			data &= ~SDMA1_RLC_CGCG_CTRL__CGCG_INT_ENABLE_MASK;
-+			WREG32_SOC15(GC, 0, regSDMA1_RLC_CGCG_CTRL, data);
++	for (i = 0; i < array_size; i += 3) {
++		reg = regs[i + 0];
++		data = regs[i + 2];
++		if (reg == SOC15_REG_OFFSET(GC, 0, regGRBM_GFX_INDEX)) {
++			val_l = imu_v12_0_grbm_gfx_index_remap(adev, data, false);
++			val_h = imu_v12_0_grbm_gfx_index_remap(adev, data, true);
++		} else {
++			WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_HIGH, val_h);
++			WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_LOW, reg | val_l);
++			WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_DATA, data);
 +		}
 +	}
-+}
-+
-+static void gfx_v12_0_update_medium_grain_clock_gating(struct amdgpu_device *adev,
-+						       bool enable)
-+{
-+	/* TODO */
-+}
-+
-+static void gfx_v12_0_update_repeater_fgcg(struct amdgpu_device *adev,
-+					   bool enable)
-+{
-+	/* TODO */
-+}
-+
-+static void gfx_v12_0_update_sram_fgcg(struct amdgpu_device *adev,
-+				       bool enable)
-+{
-+	/* TODO */
-+}
-+
-+static int gfx_v12_0_update_gfx_clock_gating(struct amdgpu_device *adev,
-+					    bool enable)
-+{
-+	amdgpu_gfx_rlc_enter_safe_mode(adev, 0);
-+
-+	gfx_v12_0_update_coarse_grain_clock_gating(adev, enable);
-+
-+	gfx_v12_0_update_medium_grain_clock_gating(adev, enable);
-+
-+	gfx_v12_0_update_repeater_fgcg(adev, enable);
-+
-+	gfx_v12_0_update_sram_fgcg(adev, enable);
-+
-+	gfx_v12_0_update_perf_clk(adev, enable);
-+
-+	if (adev->cg_flags &
-+	    (AMD_CG_SUPPORT_GFX_MGCG |
-+	     AMD_CG_SUPPORT_GFX_CGLS |
-+	     AMD_CG_SUPPORT_GFX_CGCG |
-+	     AMD_CG_SUPPORT_GFX_3D_CGCG |
-+	     AMD_CG_SUPPORT_GFX_3D_CGLS))
-+		gfx_v12_0_enable_gui_idle_interrupt(adev, enable);
-+
-+	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
-+
-+	return 0;
-+}
-+
- static int gfx_v12_0_set_clockgating_state(void *handle,
- 					   enum amd_clockgating_state state)
- {
--	/* TODO */
-+	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+
-+	if (amdgpu_sriov_vf(adev))
-+		return 0;
-+
-+	switch (adev->ip_versions[GC_HWIP][0]) {
-+	case IP_VERSION(12, 0, 1):
-+		gfx_v12_0_update_gfx_clock_gating(adev,
-+						  state == AMD_CG_STATE_GATE);
-+		break;
-+	default:
-+		break;
-+	}
- 
- 	return 0;
  }
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amdgpu/soc24.c
-index 34b83a6ad26f8..6b438f0cc86e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc24.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
-@@ -361,6 +361,9 @@ static int soc24_common_early_init(void *handle)
- 		adev->cg_flags = 0;
- 		adev->pg_flags = 0;
- 		adev->external_rev_id = adev->rev_id + 0x50;
-+		adev->cg_flags = AMD_CG_SUPPORT_GFX_CGCG |
-+				AMD_CG_SUPPORT_GFX_CGLS;
-+
+ 
+ static void imu_v12_0_program_rlc_ram(struct amdgpu_device *adev)
+ {
+-	u32 reg_data;
++	u32 reg_data, size;
++	const u32 *data;
++	int r = -EINVAL;
+ 
+ 	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_INDEX, 0x2);
+ 
+ 	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
+ 	case IP_VERSION(12, 0, 1):
+-		program_imu_rlc_ram(adev, imu_rlc_ram_golden_12_0_1,
++		if (!r)
++			program_imu_rlc_ram(adev, data, (const u32)size);
++		else
++			program_imu_rlc_ram_old(adev, imu_rlc_ram_golden_12_0_1,
+ 				(const u32)ARRAY_SIZE(imu_rlc_ram_golden_12_0_1));
  		break;
  	default:
- 		/* FIXME: not supported yet */
+@@ -293,6 +340,11 @@ static void imu_v12_0_program_rlc_ram(struct amdgpu_device *adev)
+ 		break;
+ 	}
+ 
++	//Indicate the latest entry
++	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_HIGH, 0);
++	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_ADDR_LOW, 0);
++	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_DATA, 0);
++
+ 	reg_data = RREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_INDEX);
+ 	reg_data |= GFX_IMU_RLC_RAM_INDEX__RAM_VALID_MASK;
+ 	WREG32_SOC15(GC, 0, regGFX_IMU_RLC_RAM_INDEX, reg_data);
 -- 
 2.44.0
 
