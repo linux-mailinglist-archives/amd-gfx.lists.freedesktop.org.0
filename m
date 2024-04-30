@@ -2,119 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBD38B8302
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 May 2024 01:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE24B8B86B5
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 May 2024 10:03:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 761DD10ED06;
-	Tue, 30 Apr 2024 23:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBA1112261;
+	Wed,  1 May 2024 08:03:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TfBKnLh3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LuqVJ+Fr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7315610ED06
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 23:29:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LIiip6qVa8rUtGtbctGuYE5Xjd2lLkBzCULcbt3wcj9srsEoDy5TqN15RP28eZltMwJ9mUjy4N+8a35rGrXAFVLowUprSMiuJ9zIylro5LX2tC7S/2omPjE6XhB1DiXwzBYHLziYHGevBpOOdlM51XbIEzRvPxpIcHJYsuXBandMaBJiyrNlRutbOjx7YzCdZPTtQgkv4pB9fVBBR4uOT8+/QAhz4fgjFk6pW3hEihXKmfTsf7wjxQoRLqRvVHNRnxv9EE8KciCWu+MevmQapp8UPXqVZJbNDmQEqoHh6NDuGsfPLDCovvqWKlwHaryCr6OQM0oMmjyEazUh9HL+mg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qDxVvO1+/o9Z6kv6JjyNEoOMbw4yw0ZlCXP0Dv+fPl0=;
- b=XPYA1yhzHh7H1vJD2/0kipqNcfA7yKMVIq28wAKa7ZA9/ygxQ9IrF7bOJtasqYuyGsvzZbKGBIsrXjPY65xfLfBqMT7SVjRp161+uLHl4S/bqP+Q3vE0NeGbl0AmTCCk7FcpGdMu+RZky7x/O4ws0WV8DZZgLs1QnJoFsnC7E6tKYDUecw7NPELDjfldEYsIMMfIRny5tFdT7sr2p+KFGhOmiZSw2YXfIMGJhK9AliibqpXkvkD8CotbGQBd+NKRpBmohMPGnwpxFr+pU7l5XPA7jAPXZzGexBWnXFCEEI6MgraknzvNosr+o/QjyYF8/S4XIRoWFidhLBtIhtf7HA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qDxVvO1+/o9Z6kv6JjyNEoOMbw4yw0ZlCXP0Dv+fPl0=;
- b=TfBKnLh3KjjvCQasZtA318tUujFgTvQ7NzxukuZ1qW+QIYH7jfHDBz3VI2gWHlLdSWGLDOuUdEZjkQNt4Idz4cqRw/UxlSeKTWY/vLX2y2y1yXNqCB4GCVbUMck2karh7QsEHrRiIeapeaCvfj0z+PkH73EbO4mtOydnjS2eH1I=
-Received: from DS7PR03CA0342.namprd03.prod.outlook.com (2603:10b6:8:55::14) by
- PH7PR12MB7940.namprd12.prod.outlook.com (2603:10b6:510:275::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Tue, 30 Apr
- 2024 23:29:13 +0000
-Received: from DS2PEPF00003448.namprd04.prod.outlook.com
- (2603:10b6:8:55:cafe::f8) by DS7PR03CA0342.outlook.office365.com
- (2603:10b6:8:55::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.35 via Frontend
- Transport; Tue, 30 Apr 2024 23:29:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003448.mail.protection.outlook.com (10.167.17.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7544.18 via Frontend Transport; Tue, 30 Apr 2024 23:29:12 +0000
-Received: from KfdLnx23.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 30 Apr
- 2024 18:29:12 -0500
-From: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
-Subject: [PATCH] drm/amd/amdkfd: Fix a resource leak in
- svm_range_validate_and_map()
-Date: Tue, 30 Apr 2024 18:29:01 -0500
-Message-ID: <20240430232901.2878169-1-Ramesh.Errabolu@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17C0110EE44
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 08:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=wxXcFg0w3jW1PpRpjzrrpHM3g/+uOlybUW8rg1cWx+w=; b=LuqVJ+FrUaBLrYJJf5DNFlYwod
+ tktpyM4jW8h/N1I4iwSTO9TMpozzsoPQZ4YVTFJsqZnuxdX7VuJlewEf4zLakX0yNeaimEI4uBPtP
+ oioADrgtSQj1twBaIfhsk5LjEaeX9WEobxXqQL09qVA0YP+BenrvH5QsLDUiBE0b4qvEawTDiDoKY
+ QGXKVl9+IWdYPZs1lRe5MPH45iGQcorJvw7xDm0BKGE5BOZMj/9nWm038Eo2voHkHLg8xJJ1i+T+f
+ enQVTPwXVDqTDiO8/rqpH/7SfmbKlAnbuR0+M5npS/aYSd8hvPa1Rs34Ds/pfb3O5OHN2dXuIYrTP
+ jXyUpdww==;
+Received: from [84.65.0.132] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1s1iq0-001hbt-Vk; Tue, 30 Apr 2024 10:27:44 +0200
+Message-ID: <de9eb1d4-f5b4-4c87-874c-0e9889eb26e9@igalia.com>
+Date: Tue, 30 Apr 2024 09:27:43 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/amdgpu: Reduce mem_type to domain double
+ indirection
+Content-Language: en-GB
+To: Felix Kuehling <felix.kuehling@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ kernel-dev@igalia.com
+References: <20240429164707.49196-1-tursulin@igalia.com>
+ <20240429164707.49196-2-tursulin@igalia.com>
+ <08145e84-ab41-428f-bf0b-406c61aab33c@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <08145e84-ab41-428f-bf0b-406c61aab33c@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003448:EE_|PH7PR12MB7940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 043dd6b6-2bf9-4c70-46e8-08dc696d57fd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230031|36860700004|376005|1800799015|82310400014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?d+RMQFBHiI5Zh2JriQJYt+ziA00ZBwah/ISAOoyDT0tLWW8Opqw1n3+YERug?=
- =?us-ascii?Q?rIBtikcUDQXgD2fpPptwPPuwqk7W1NphyYu48GP3U5fEfy6sPtN+buHQuM0G?=
- =?us-ascii?Q?qf17GJFbsvDMszZPRQGY89VJDtYjDEuSZlzXek4CQkCult42cMi8wpqVsT6T?=
- =?us-ascii?Q?EoiYSEO2F3uxZXWgWI7lmmEV1gI+i23rMMwLUXOgxld4XMvQqnKUwzsPpXh4?=
- =?us-ascii?Q?FrfDZ4lNAdH7FSZy0/Vds/VU/2F3RcY087hvkH9Ufgh9IOsOAwlnhHMkKgJQ?=
- =?us-ascii?Q?sBKvu+L2vGoKXuwmzoAflwZ+/B62TJMS+DPGffaM1DOzdt8LoqhwTm664AzM?=
- =?us-ascii?Q?+R2msWlhNZ25lP9UZHNxgfC9DtJR/0XwQ/nVac0XgSpsZkV4bUKjolW5JQ31?=
- =?us-ascii?Q?CfH/SOFHBSR/E7nu3q5RZZSS2m3eb3/Llgo5sAyp4H3R6FVcgdEzGjiktL6d?=
- =?us-ascii?Q?9JHr7OYsxw/JI/ESc+sXjfCW3Hv5p90YtuPCmVEmu2TiaRh9kTsgBAShy2Yv?=
- =?us-ascii?Q?q+eYyJz1jZm5UnikzRAn9mC0DlOupEdMsP3Z7oPXOb0xtKh8rohHROhV6sLR?=
- =?us-ascii?Q?q1UtfQjrk4JrAwQ+3N4Hx/ScAG1vEfozYCi+dUd0D2LPqTI4qzhHHlhksA3P?=
- =?us-ascii?Q?icxVuKh2eRVMJ3oMAuKoyreyyETHKS9BOS4s9CUgI38/2mLWwYs03gEqbX5x?=
- =?us-ascii?Q?ERLua96A4umlXb70aYCJzXN3UQfDAWD/2Ne5Gwm8bJoJyk6jlmZtNzcYL+aZ?=
- =?us-ascii?Q?ox/kqWAYPjUTj0AD4APo/MXF7pHRhOszX43e+MF9/XWyZ3OeZsllUmBvH8Do?=
- =?us-ascii?Q?Rgj5t6Y+ucfBovDrZMJ5vQOuBb3XMntWOmf/4JkgKBW7PQiVvlDXWeSN3WH1?=
- =?us-ascii?Q?pX56cs1gN/W2MS/LplV5F4axPvk6QXfOM1ZzxzBpnjWYP1VG/LtEUFs0uBd7?=
- =?us-ascii?Q?NF5uhSfPjH+VsVVi4UXmflb5K3SSKWFteFRRLfuTn/PcH8RuR8WeMrl0WPTk?=
- =?us-ascii?Q?u9AYUP+zD9h95L9RqVS1SXYV8JUd8ekBjm/+VFuHVqGtRGeBhl8e8UZ8oHRI?=
- =?us-ascii?Q?Ou2m8PVeYI0KPTsMHtShMlMADQXORRnyxrGrILiD2CsenxQ69IeSaIErloOW?=
- =?us-ascii?Q?d5mWSfBVeXCcv+9ZDg/zf8tgAhx+YzS3Yzab6KZuU08LZicC6IAjXQSOMau7?=
- =?us-ascii?Q?EjP/VwftB/lNQ+zB+BO+vWYh94UNsLV6bFvHoJaGwoOAZjy98gFO1tZ/kB7H?=
- =?us-ascii?Q?df+ZuV4Z5Wd89MpwcusiEryllpLtzVsi3e1la+IlsqzXqYHNvF6rCzyPOlVe?=
- =?us-ascii?Q?LufbX1a8Go/4a4n3enEiaEvTTaI28N9e323b0WZf1h+4ksxH1GC3Q2Y3XeTd?=
- =?us-ascii?Q?GBw+Xt98yce5Q9QrK/v1Czd9WVHe?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(1800799015)(82310400014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2024 23:29:12.7554 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 043dd6b6-2bf9-4c70-46e8-08dc696d57fd
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003448.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7940
+X-Mailman-Approved-At: Wed, 01 May 2024 08:03:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,39 +65,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Analysis of code by Coverity, a static code analyser, has identified
-a resource leak in the symbol hmm_range. This leak occurs when one of
-the prior steps before it is released encounters an error.
 
-Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+On 30/04/2024 01:31, Felix Kuehling wrote:
+> 
+> On 2024-04-29 12:47, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>> All apart from AMDGPU_GEM_DOMAIN_GTT memory domains map 1:1 to TTM
+>> placements. And the former be either AMDGPU_PL_PREEMPT or TTM_PL_TT,
+>> depending on AMDGPU_GEM_CREATE_PREEMPTIBLE.
+>>
+>> Simplify a few places in the code which convert the TTM placement into
+>> a domain by checking against the current placement directly.
+>>
+>> In the conversion AMDGPU_PL_PREEMPT either does not have to be handled
+>> because amdgpu_mem_type_to_domain() cannot return that value anyway.
+>>
+>> v2:
+>>   * Remove AMDGPU_PL_PREEMPT handling.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Reviewed-by: Christian König <christian.koenig@amd.com> # v1
+> Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+> 
+> I also ran kfdtest on a multi-GPU system just to make sure this didn't 
+> break our multi-GPU support. BTW, I had to fix up some things when I 
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 386875e6eb96..dcb1d5d3f860 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1658,7 +1658,7 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
- 	start = map_start << PAGE_SHIFT;
- 	end = (map_last + 1) << PAGE_SHIFT;
- 	for (addr = start; !r && addr < end; ) {
--		struct hmm_range *hmm_range;
-+		struct hmm_range *hmm_range = NULL;
- 		unsigned long map_start_vma;
- 		unsigned long map_last_vma;
- 		struct vm_area_struct *vma;
-@@ -1696,7 +1696,9 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
- 		}
- 
- 		svm_range_lock(prange);
--		if (!r && amdgpu_hmm_range_get_pages_done(hmm_range)) {
-+
-+		// Free backing memory of hmm_range if it was initialized
-+		if (hmm_range && amdgpu_hmm_range_get_pages_done(hmm_range)) {
- 			pr_debug("hmm update the range, need validate again\n");
- 			r = -EAGAIN;
- 		}
--- 
-2.34.1
+Excellent thank you!
 
+Btw important thing to stress is that I hope the r-b means not only 
+patch is functionaly correct but that you guys actually agree it is an 
+improvement. Because I am quite new in your code base so please apply 
+strict criteria on my proposals.
+
+> tried to apply your patch to the current amd-staging-drm-next branch. 
+> That branch was just rebased on Linux 6.8, so maybe that's part of the 
+> reason.
+
+I am conditioned to work against drm-tip so maybe that is one reason, or 
+also possibly because now I see I used drm-tip from more than a week ago 
+as a base. :( I can rebase and re-send. So amd-staging-drm-next is the 
+correct branch?
+
+Regards,
+
+Tvrtko
+
+> 
+> 
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  3 +--
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 27 +++++++++------------
+>>   2 files changed, 12 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> index 055ba2ea4c12..0b3b10d21952 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>> @@ -165,8 +165,7 @@ static struct sg_table *amdgpu_dma_buf_map(struct 
+>> dma_buf_attachment *attach,
+>>           if (r)
+>>               return ERR_PTR(r);
+>> -    } else if (!(amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type) &
+>> -             AMDGPU_GEM_DOMAIN_GTT)) {
+>> +    } else if (bo->tbo.resource->mem_type != TTM_PL_TT) {
+>>           return ERR_PTR(-EBUSY);
+>>       }
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> index 8bc79924d171..eb5bd6962560 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+>> @@ -976,12 +976,11 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo 
+>> *bo, u32 domain,
+>>       ttm_bo_pin(&bo->tbo);
+>> -    domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -    if (domain == AMDGPU_GEM_DOMAIN_VRAM) {
+>> +    if (bo->tbo.resource->mem_type == TTM_PL_VRAM) {
+>>           atomic64_add(amdgpu_bo_size(bo), &adev->vram_pin_size);
+>>           atomic64_add(amdgpu_vram_mgr_bo_visible_size(bo),
+>>                    &adev->visible_pin_size);
+>> -    } else if (domain == AMDGPU_GEM_DOMAIN_GTT) {
+>> +    } else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
+>>           atomic64_add(amdgpu_bo_size(bo), &adev->gart_pin_size);
+>>       }
+>> @@ -1280,7 +1279,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>   {
+>>       uint64_t size = amdgpu_bo_size(bo);
+>>       struct drm_gem_object *obj;
+>> -    unsigned int domain;
+>>       bool shared;
+>>       /* Abort if the BO doesn't currently have a backing store */
+>> @@ -1290,21 +1288,20 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>       obj = &bo->tbo.base;
+>>       shared = drm_gem_object_is_shared_for_memory_stats(obj);
+>> -    domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -    switch (domain) {
+>> -    case AMDGPU_GEM_DOMAIN_VRAM:
+>> +    switch (bo->tbo.resource->mem_type) {
+>> +    case TTM_PL_VRAM:
+>>           stats->vram += size;
+>>           if (amdgpu_bo_in_cpu_visible_vram(bo))
+>>               stats->visible_vram += size;
+>>           if (shared)
+>>               stats->vram_shared += size;
+>>           break;
+>> -    case AMDGPU_GEM_DOMAIN_GTT:
+>> +    case TTM_PL_TT:
+>>           stats->gtt += size;
+>>           if (shared)
+>>               stats->gtt_shared += size;
+>>           break;
+>> -    case AMDGPU_GEM_DOMAIN_CPU:
+>> +    case TTM_PL_SYSTEM:
+>>       default:
+>>           stats->cpu += size;
+>>           if (shared)
+>> @@ -1317,7 +1314,7 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+>>           if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
+>>               stats->requested_visible_vram += size;
+>> -        if (domain != AMDGPU_GEM_DOMAIN_VRAM) {
+>> +        if (bo->tbo.resource->mem_type != TTM_PL_VRAM) {
+>>               stats->evicted_vram += size;
+>>               if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
+>>                   stats->evicted_visible_vram += size;
+>> @@ -1592,19 +1589,17 @@ u64 amdgpu_bo_print_info(int id, struct 
+>> amdgpu_bo *bo, struct seq_file *m)
+>>       u64 size;
+>>       if (dma_resv_trylock(bo->tbo.base.resv)) {
+>> -        unsigned int domain;
+>> -        domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
+>> -        switch (domain) {
+>> -        case AMDGPU_GEM_DOMAIN_VRAM:
+>> +        switch (bo->tbo.resource->mem_type) {
+>> +        case TTM_PL_VRAM:
+>>               if (amdgpu_bo_in_cpu_visible_vram(bo))
+>>                   placement = "VRAM VISIBLE";
+>>               else
+>>                   placement = "VRAM";
+>>               break;
+>> -        case AMDGPU_GEM_DOMAIN_GTT:
+>> +        case TTM_PL_TT:
+>>               placement = "GTT";
+>>               break;
+>> -        case AMDGPU_GEM_DOMAIN_CPU:
+>> +        case TTM_PL_SYSTEM:
+>>           default:
+>>               placement = "CPU";
+>>               break;
