@@ -2,70 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5BC38B86B3
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 May 2024 10:03:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24AC8B86AB
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 May 2024 10:03:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23E90112268;
-	Wed,  1 May 2024 08:03:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49FA511225B;
+	Wed,  1 May 2024 08:03:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c9oNAuFF";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="dsoh69Pe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com
- [209.85.222.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB555112E4E;
- Tue, 30 Apr 2024 18:49:53 +0000 (UTC)
-Received: by mail-ua1-f48.google.com with SMTP id
- a1e0cc1a2514c-7ed38f80242so1939524241.2; 
- Tue, 30 Apr 2024 11:49:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1714502992; x=1715107792; darn=lists.freedesktop.org;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
- b=c9oNAuFFGWgtB8PviX8vjvs7i64xGDXWWi8RmMYzHfWllZ/xNIvBHQcYz7gIkg2LwB
- C7Kfl3JWRBFGq0sSjO311qcwB+mxdu0U4B6bmByUgXkEKpBd69/VGmGpN3TLkULN2ig/
- XJ7T4TjFlMptivSyrOW9psWJDuQMANF33ysCjkHxxihshmqG9J2/Fcr/blPmgQeAld7t
- lkN3MSNaUUvxT4vHEBr6t5OQ0Zhi68x4VtkHaIrE3qZ9SzVGjmtq7FAtK5E7c4wf7dpV
- Z7OHH1l1PEfv7L4HGeVdfR4MXoRulwZ9awLd+vd46OmedytH6rV3qrHjhq3soZe0wRN/
- KreA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714502992; x=1715107792;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
- b=b7SF9eyj2LCpMyaqVO5hTZvJmZYBtwUfeDzVfrazwFGzSqc8nSKQ5A5yHmN+wVWek7
- QCsP6n0SUK7kgUG7wJpDFIpdPKdt7NrS3a1IfiMsxEJPv6XAO564nIRpgiWmq6gLIuU4
- xQGyPa+Iw1QAE7sPp2viLuhKsqTUkJbZ/mybCPeBskLOuIu4GcJW9isZQ/8aVA8ok6vA
- 4p7Yo21QKsW+nttGeTodBfKxHyLXpJMKoLIrxbS2C2pEQsyxkHz6VhIoc6yXj91gFJh2
- 0iGGqc3ah1ppwEQwSnhC3bCOo145+a6xi5RfhlHyrHtizYPHrK2XiZjXlflIvgWV//P5
- ZBig==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWPlKLAVg1tvDquJg5AnfLg2+cbuZFGXwS8yYqSWpZXuSL76KaPluY0c9O/BjNoscF6OptjPhU77UaBNuaqHC2iKR2D0d2IuP8FYOYD4feOc2/SdwUqk+kvA67DBIlndxnlr0Yi8oNdEzzxJKEVoZ3quDpDDU8JnQ+AVEEkCRPTwVcWCJO9J3nwgtQdlh4UePGqu5PKvTEy+PX0bLxQCQ9z4m/Zn++VBaLWp1MPieMYzYFBeEs=
-X-Gm-Message-State: AOJu0Yy+4DtfsQCP6ha9eD6qtFYFHIm/8OTVge+bLLEUgDHyiFaP2Qut
- UE0mPjDa7D72MtY05QJ7Eq7KnzbAfJNhew6hSAG7HSrdDGQfOPj2vO8ztUwiyZJiXGQrYTunKT6
- 2Sihnolj1JOjgsShxp13eWoVmAeg=
-X-Google-Smtp-Source: AGHT+IEYrpal3QoBPRQ++rwUqDaIC9CmdEKHvVPwvAQ+vncPDFl0h7pwu+HmwYOWtzcwQ1PiHyzGG1EvQK6S81Uls4s=
-X-Received: by 2002:a67:eed7:0:b0:47d:8561:99aa with SMTP id
- o23-20020a67eed7000000b0047d856199aamr661606vsp.4.1714502992443; Tue, 30 Apr
- 2024 11:49:52 -0700 (PDT)
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8184310E662;
+ Tue, 30 Apr 2024 21:40:22 +0000 (UTC)
+Received: from [100.65.32.120] (unknown [20.236.11.185])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 2953021112E1;
+ Tue, 30 Apr 2024 14:40:21 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2953021112E1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1714513221;
+ bh=N5FvQ/TypNHdjNMqYFIqXh66AahkR8SgB9HzMwk5dOg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=dsoh69PeBK5TTLU3vn54yAjgk6HEgw6uX5/96K1j6MEq+uhUAt3mt7u2D+71GOFNI
+ WvGANH7w+I/8RenBbMN5ykkWz3Uk5CrLxIasJ2xUAitAkekfx5YEX9aKxDjas/zyYs
+ t0b5kEvCuz8TxGtWmnMzMga/jwInlSVIoFyEUWbA=
+Message-ID: <92189a8c-00dc-4b79-8fd0-3670b80d0db2@linux.microsoft.com>
+Date: Tue, 30 Apr 2024 14:40:18 -0700
 MIME-Version: 1.0
-References: <20240429193921.66648-1-jim.cromie@gmail.com>
- <20240429193921.66648-10-jim.cromie@gmail.com>
-In-Reply-To: <20240429193921.66648-10-jim.cromie@gmail.com>
-From: jim.cromie@gmail.com
-Date: Tue, 30 Apr 2024 12:49:26 -0600
-Message-ID: <CAJfuBxxdfaATOCvZ2giY1Y-KTP+65UarRqwcKsg9tKjyrNtBXw@mail.gmail.com>
-Subject: Re: [PATCH v8 29/35] dyndbg: add __counted_by annotations
-To: jbaron@akamai.com, gregkh@linuxfoundation.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 03/12] drm/i915: Make I2C terminology more inclusive
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+ <20240430173812.1423757-4-eahariha@linux.microsoft.com>
+ <ZjFUwjMFMcvJr5KI@intel.com>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <ZjFUwjMFMcvJr5KI@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Wed, 01 May 2024 08:03:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,17 +75,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 29, 2024 at 1:39=E2=80=AFPM Jim Cromie <jim.cromie@gmail.com> w=
-rote:
->
-> Tell the compiler about our vectors (array,length), in 2 places:
->
+On 4/30/2024 1:29 PM, Rodrigo Vivi wrote:
+> On Tue, Apr 30, 2024 at 05:38:02PM +0000, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by and following on to Wolfram's
+>> series to fix drivers/i2c/[1], fix the terminology for users of
+>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>> in the specification.
+>>
+>> Compile tested, no functionality changes intended
+>>
+>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>
+>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> 
+> I'm glad to see this change!
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+>> ---
+>>  drivers/gpu/drm/i915/display/dvo_ch7017.c     | 14 ++++-----
+>>  drivers/gpu/drm/i915/display/dvo_ch7xxx.c     | 18 +++++------
+>>  drivers/gpu/drm/i915/display/dvo_ivch.c       | 16 +++++-----
+>>  drivers/gpu/drm/i915/display/dvo_ns2501.c     | 18 +++++------
+>>  drivers/gpu/drm/i915/display/dvo_sil164.c     | 18 +++++------
+>>  drivers/gpu/drm/i915/display/dvo_tfp410.c     | 18 +++++------
+>>  drivers/gpu/drm/i915/display/intel_bios.c     | 22 +++++++-------
+>>  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+>>  .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_dsi.h      |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 20 ++++++-------
+>>  drivers/gpu/drm/i915/display/intel_dvo.c      | 14 ++++-----
+>>  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +--
+>>  drivers/gpu/drm/i915/display/intel_sdvo.c     | 30 +++++++++----------
+>>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 +--
+>>  drivers/gpu/drm/i915/gvt/edid.c               | 28 ++++++++---------
+>>  drivers/gpu/drm/i915/gvt/edid.h               |  4 +--
+>>  drivers/gpu/drm/i915/gvt/opregion.c           |  2 +-
+>>  19 files changed, 119 insertions(+), 119 deletions(-)
+> 
+> The chances of conflicts are high with this many changes,
+> but should be easy enough to deal with later, so feel free
+> to move with this i915 patch on any other tree and we catch-up
+> later.
+> 
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
 
-these are not flex-arrays,  using counted-by is wrong here.
+Thanks for the review and ack! I actually thought that this might end up going in as individual
+patches via the various respective trees since it's now completely independent of Wolfram's enabling
+series with the drop of the final patch that was treewide.
 
-Ive dropped this commit, series rebases clean wo it.
+What do you think?
 
+Thanks,
+Easwar
 
-> h: struct _ddebug_info, which keeps refs to the __dyndbg_* ELF/DATA
-> sections, these are all vectors with a length.
->
