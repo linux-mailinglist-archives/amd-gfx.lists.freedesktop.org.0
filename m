@@ -2,55 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760588BCB7B
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4179E8BCB6A
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9C2112F42;
-	Mon,  6 May 2024 10:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDA1110EC67;
+	Mon,  6 May 2024 10:00:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="UFNOXYEc";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Wwh/3Qjp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1003C11228A
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 14:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/nkjz9o1IcG6t1SYrlt9U7XwHkF7rAtM8hZd9QyhUH0=; b=UFNOXYEcsGl+REqp8rNvO4T5w2
- C0b4+zyN5V0kb4a8txJlCuR+QHMsja5by5hCHY97yTUOelsL5O9ax3pXkW2ynoRta5AxPEguNGHn8
- vSqdNkgg+A2qlido1OtV9tgz9f/hjO0NxDOjTb0sS86hd4EIMAz30OaHKjVT33e3CqowzfiSelXNP
- bM30/+oeJppr3qD3/em+rrs0R53dtJ2a/+hhM5+wWcpQQzHFCNea6aawPhQFGgiEOQImppVVMHciO
- eVZLUzFcrn3snIeyyyesWCMIu8uINb890yQysv2Fgev+JMSsWFSDHtFIfbrA+ILB9Z7OvcxLPd6Up
- Tx81J29Q==;
-Received: from [84.65.0.132] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s2tTK-00094K-7c; Fri, 03 May 2024 16:01:10 +0200
-Message-ID: <57d26797-76cf-4376-9563-24913c0c39fc@igalia.com>
-Date: Fri, 3 May 2024 15:01:09 +0100
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+ [209.85.208.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E148611255C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 15:10:34 +0000 (UTC)
+Received: by mail-lj1-f174.google.com with SMTP id
+ 38308e7fff4ca-2db6f5977e1so107152321fa.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 03 May 2024 08:10:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1714749033; x=1715353833; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=6cA818j+GlhEcx44ZEaQerMzdrfyNCJNPL2WjQJyvUs=;
+ b=Wwh/3QjpWnqEl9ZW8tE3+1eJhVN+PBOdeFtnnPLmh6ycht7AY62x/1cNxpmRAaBOzI
+ nYQA9TrH0opzsi87yMBVvG8nk4Wb0diw16B0x/7op7+YwwDArAmhdjzXYy3qHFEfKdkw
+ ozzX8v1zGlhz86rkKEe2JNSQPxFCUBoDA+yZdQH7bVVxAR17w0kYondsaQXYIgRxVWuz
+ EgPWcvxnzz7I/EoYaOy5rHwDZRYumSiz4wDpCpJvWLk4cFukxX2xm8J3e+hvUsJU+CE9
+ Yvq67G9gGVCMToTSulb0D9Tv7srV3Q4+4mQ0l2zqRdHxluQ/iBzIKtNBpqH95Fdiosiz
+ iGBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714749033; x=1715353833;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6cA818j+GlhEcx44ZEaQerMzdrfyNCJNPL2WjQJyvUs=;
+ b=dJP+tk9+a5Q4JmT4avvCkF4x/2d9oz53fNLTe0NZlPfeN3XhhiIH/ieWbXbIgUwLUn
+ hkMDguet5pPnpYaqD7t5PHEkGWgTCa1rZE99BSQX+5cq8TnBhzigNpbzt8TC8IVNpwp4
+ nPL1bP4RWeRFONZsKhhXUAmGgv/GKlc9tF1PSPJLwfAQvTSSZg6AxPqvuwQZXatOgpJS
+ Hjctd1zuuDpOMPvYHHcM8r5xmWz9PIBv233mRucyk5MTYseLNMTwq+uu1msykgq44vB8
+ m0HkvHv1GtZmkvF+U0J41mwBr6b6/p4gHU4QLH+gz7InYG5sxeMmPiFTAFwftGim2DFz
+ gWyg==
+X-Gm-Message-State: AOJu0YzkFzU2Cr2eKcmj1gQJmMiVxYDDWrYrv2DNpHKnk6FJCuYB4NlM
+ /rxpoBmXGamO3zBjgtcImnisfGETmjqc2qW53C9F9yiQd2k50sLmmt7g14tmkM4=
+X-Google-Smtp-Source: AGHT+IHaANcjPF/kV6xF/DVbR1bjO7nGLz706i72D0cuk0S/N50bV2lbcIq/iqeR4Rh5czshXwaDUw==
+X-Received: by 2002:a05:651c:61e:b0:2e0:a574:4a13 with SMTP id
+ k30-20020a05651c061e00b002e0a5744a13mr1756889lje.32.1714749032419; 
+ Fri, 03 May 2024 08:10:32 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ k7-20020a7bc407000000b0041674bf7d4csm9540479wmi.48.2024.05.03.08.10.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 May 2024 08:10:31 -0700 (PDT)
+Date: Fri, 3 May 2024 18:10:26 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Likun.Gao@amd.com
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [bug report] drm/amdgpu: Add sdma v7_0 ip block support (v7)
+Message-ID: <1b173ebd-fd57-4593-aa0a-505ee6d84979@moroto.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 5/5] drm/amdgpu: Only show VRAM in fdinfo if it exists
-Content-Language: en-GB
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20240430172748.61576-1-tursulin@igalia.com>
- <20240430172748.61576-6-tursulin@igalia.com>
- <00d43d65-333e-4b2d-861e-11d01e7931b0@gmail.com>
- <d76f9bb6-b5e1-449e-957f-e7fb965e5f9f@igalia.com>
- <CADnq5_NqUNp=bEgnAQKA7VWa0S4eWzGenc-pC4m8any=uBPqrw@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CADnq5_NqUNp=bEgnAQKA7VWa0S4eWzGenc-pC4m8any=uBPqrw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Mon, 06 May 2024 09:59:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,119 +75,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hello Likun Gao,
 
-On 03/05/2024 14:47, Alex Deucher wrote:
-> On Fri, May 3, 2024 at 3:50 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
->>
->>
->> On 02/05/2024 14:16, Christian König wrote:
->>> Am 30.04.24 um 19:27 schrieb Tvrtko Ursulin:
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>
->>>> Do not emit the key-value pairs if the VRAM does not exist ie. VRAM
->>>> placement is not valid and accessible.
->>>
->>> Yeah, that's unfortunately rather misleading.
->>>
->>> Even APUs have VRAM or rather stolen system memory which is managed by
->>> the graphics driver.
->>>
->>> We only have a single compute model which really doesn't have VRAM at all.
->>
->> Hm what is misleading and how more precisely? :) Maybe in other words,
->> if is_app_apu is not the right criteria to know when TTM_PL_VRAM is
->> impossible, what is? Is the compute model you mentio the only thing
->> which sets is_app_apu and uses the dummy vram manager?
-> 
-> Probably better to check if adev->gmc.real_vram_size is non-0.
+Commit b412351e91bd ("drm/amdgpu: Add sdma v7_0 ip block support
+(v7)") from Jul 4, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
-Hmm "real VRAM" - will that handle APUs correctly?
+	drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c:171 sdma_v7_0_ring_set_wptr()
+	warn: duplicate check '*is_queue_unmap' (previous on line 161)
 
-I am looking at this:
+drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
+    140 static void sdma_v7_0_ring_set_wptr(struct amdgpu_ring *ring)
+    141 {
+    142         struct amdgpu_device *adev = ring->adev;
+    143         uint32_t *wptr_saved;
+    144         uint32_t *is_queue_unmap;
+    145         uint64_t aggregated_db_index;
+    146         uint32_t mqd_size = adev->mqds[AMDGPU_HW_IP_DMA].mqd_size;
+    147 
+    148         DRM_DEBUG("Setting write pointer\n");
+    149 
+    150         if (ring->is_mes_queue) {
+    151                 wptr_saved = (uint32_t *)(ring->mqd_ptr + mqd_size);
+    152                 is_queue_unmap = (uint32_t *)(ring->mqd_ptr + mqd_size +
+                        ^^^^^^^^^^^^^^^^
+Set here
 
-	if (!adev->gmc.is_app_apu) {
-		man->func = &amdgpu_vram_mgr_func;
+    153                                               sizeof(uint32_t));
+    154                 aggregated_db_index =
+    155                         amdgpu_mes_get_aggregated_doorbell_index(adev,
+    156                                                          ring->hw_prio);
+    157 
+    158                 atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
+    159                              ring->wptr << 2);
+    160                 *wptr_saved = ring->wptr << 2;
+    161                 if (*is_queue_unmap) {
+                            ^^^^^^^^^^^^^^^
+Checked here
 
-		err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
-		if (err)
-			return err;
-	} else {
-		man->func = &amdgpu_dummy_vram_mgr_func;
-		DRM_INFO("Setup dummy vram mgr\n");
-	}
+    162                         WDOORBELL64(aggregated_db_index, ring->wptr << 2);
+    163                         DRM_DEBUG("calling WDOORBELL64(0x%08x, 0x%016llx)\n",
+    164                                         ring->doorbell_index, ring->wptr << 2);
+    165                         WDOORBELL64(ring->doorbell_index, ring->wptr << 2);
+    166                 } else {
+    167                         DRM_DEBUG("calling WDOORBELL64(0x%08x, 0x%016llx)\n",
+    168                                         ring->doorbell_index, ring->wptr << 2);
+    169                         WDOORBELL64(ring->doorbell_index, ring->wptr << 2);
+    170 
+--> 171                         if (*is_queue_unmap)
+                                    ^^^^^^^^^^^^^^^
+This is dead code.  We know it's false.
 
-And assuming that unless the dummy manager is used, TTM_PL_VRAM will be 
-valid. Wrong assumption?
+    172                                 WDOORBELL64(aggregated_db_index,
+    173                                             ring->wptr << 2);
+    174                 }
+    175         } else {
+    176                 if (ring->use_doorbell) {
+    177                         DRM_DEBUG("Using doorbell -- "
+    178                                   "wptr_offs == 0x%08x "
 
-Regards,
-
-Tvrtko
-
-
-> Alex
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> ---
->>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 29 +++++++++++++---------
->>>>    1 file changed, 17 insertions(+), 12 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
->>>> index a09944104c41..603a5c010f5d 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
->>>> @@ -83,25 +83,30 @@ void amdgpu_show_fdinfo(struct drm_printer *p,
->>>> struct drm_file *file)
->>>>         */
->>>>        drm_printf(p, "pasid:\t%u\n", fpriv->vm.pasid);
->>>> -    drm_printf(p, "drm-memory-vram:\t%llu KiB\n", stats.vram/1024UL);
->>>>        drm_printf(p, "drm-memory-gtt: \t%llu KiB\n", stats.gtt/1024UL);
->>>>        drm_printf(p, "drm-memory-cpu: \t%llu KiB\n", stats.cpu/1024UL);
->>>> -    drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
->>>> -           stats.visible_vram/1024UL);
->>>> -    drm_printf(p, "amd-evicted-vram:\t%llu KiB\n",
->>>> -           stats.evicted_vram/1024UL);
->>>> -    drm_printf(p, "amd-evicted-visible-vram:\t%llu KiB\n",
->>>> -           stats.evicted_visible_vram/1024UL);
->>>> -    drm_printf(p, "amd-requested-vram:\t%llu KiB\n",
->>>> -           stats.requested_vram/1024UL);
->>>> -    drm_printf(p, "amd-requested-visible-vram:\t%llu KiB\n",
->>>> -           stats.requested_visible_vram/1024UL);
->>>>        drm_printf(p, "amd-requested-gtt:\t%llu KiB\n",
->>>>               stats.requested_gtt/1024UL);
->>>> -    drm_printf(p, "drm-shared-vram:\t%llu KiB\n",
->>>> stats.vram_shared/1024UL);
->>>>        drm_printf(p, "drm-shared-gtt:\t%llu KiB\n",
->>>> stats.gtt_shared/1024UL);
->>>>        drm_printf(p, "drm-shared-cpu:\t%llu KiB\n",
->>>> stats.cpu_shared/1024UL);
->>>> +    if (!adev->gmc.is_app_apu) {
->>>> +        drm_printf(p, "drm-memory-vram:\t%llu KiB\n",
->>>> +               stats.vram/1024UL);
->>>> +        drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
->>>> +               stats.visible_vram/1024UL);
->>>> +        drm_printf(p, "amd-evicted-vram:\t%llu KiB\n",
->>>> +               stats.evicted_vram/1024UL);
->>>> +        drm_printf(p, "amd-evicted-visible-vram:\t%llu KiB\n",
->>>> +               stats.evicted_visible_vram/1024UL);
->>>> +        drm_printf(p, "amd-requested-vram:\t%llu KiB\n",
->>>> +               stats.requested_vram/1024UL);
->>>> +        drm_printf(p, "amd-requested-visible-vram:\t%llu KiB\n",
->>>> +               stats.requested_visible_vram/1024UL);
->>>> +        drm_printf(p, "drm-shared-vram:\t%llu KiB\n",
->>>> +               stats.vram_shared/1024UL);
->>>> +    }
->>>> +
->>>>        for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
->>>>            if (!usage[hw_ip])
->>>>                continue;
->>>
+regards,
+dan carpenter
