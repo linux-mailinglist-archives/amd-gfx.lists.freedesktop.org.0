@@ -2,64 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C676B8BCB6C
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15EB28BCB6E
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1084C10EDB2;
-	Mon,  6 May 2024 10:00:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5832A11228D;
+	Mon,  6 May 2024 10:00:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="UFnZ/kdy";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="rkGr+1kX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
- [209.85.128.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E0C113035
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 15:11:46 +0000 (UTC)
-Received: by mail-wm1-f49.google.com with SMTP id
- 5b1f17b1804b1-41bca450fa3so49369485e9.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 03 May 2024 08:11:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1714749105; x=1715353905; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=24KooxCxQo5B4mkD0Xv8UXKV+DdaJkaLJTYBeX9a25Q=;
- b=UFnZ/kdyv2dc99NkZ4FTak1S/jgy+tjEzL8UgJQJ7BEw17UZ5mgBYUdIzQliDJWRxL
- re2vF6f33mH5DnpId0+qqc8evLS2Un5fkk4OkOnzaBsvzDpMCqF7Zf5I4WDWkq56YLPC
- VW0cXbtt0NEuley5byDRe+JylcXcHg3LPGFzBbDzmiyPl2so8fYcQwJGx87O73xldfM1
- oCgV8yVlkIdQZ6aHPB7iMKTl28p5U8FH7SH2zMG0T70p3/HG3myOkg8BTJsv4iwEgkPN
- XujJu5y2+x4RmUix4xHIbaidVLTJ/M8iyQhbarddmE+c6gIUZvpGVFYTyvk5W1iF6BHD
- BKIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714749105; x=1715353905;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=24KooxCxQo5B4mkD0Xv8UXKV+DdaJkaLJTYBeX9a25Q=;
- b=NICJvVuma55apKUkwGgoGC/Gg85rLQXDxi1v4Q66kDFWoBcFgo8pm5ADiYQp5nJe7e
- G0Sz9EJDqMODbKb9TX81Pky2j3zmyYFbXV1DnT/7yjuDBuMiQi6pITcKCmdgWAf0iG3P
- gGqC6fP90gIMAE1+BmMzsYC1m/D0tlCkvfLpyt3/CkkrJKd/qx3V606ik0tj2MhbL3sx
- c/G3FUsQO6YLGld+/wd8km283Vp42UpOva3roi2d8zUTKG3vAd29t3a92Q3d+llsCeMG
- 5CJQH5bbS2bwMtd4lHnO5/PsAk6iT7vbuywcF1nwHv51LqyBGzlz2YIpbk5iUge2aiUA
- U6AA==
-X-Gm-Message-State: AOJu0YyeZmjZGxXBNWtdAZuRwJCuph4F4wiaSqVuEy4OMRPVJgcsHfq6
- tp9H21+5OrQsYWmtCzVez4vNNc37PDGNx1AIIZVSyuP5/YfBmnNMZVYZflWO2Uo=
-X-Google-Smtp-Source: AGHT+IHlZuNVf1eRDniauHeSFsXqMZoOIAQNjHRHaTcHpQ7olDBueGR+XwYcb4QJOCOBy0zWBOCcWg==
-X-Received: by 2002:a05:600c:4446:b0:41b:4de0:7bff with SMTP id
- v6-20020a05600c444600b0041b4de07bffmr2406465wmn.35.1714749104808; 
- Fri, 03 May 2024 08:11:44 -0700 (PDT)
-Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- b12-20020a5d4d8c000000b0034e65b8b43fsm1958936wru.8.2024.05.03.08.11.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 May 2024 08:11:44 -0700 (PDT)
-Date: Fri, 3 May 2024 18:11:32 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: harry.wentland@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: [bug report] drm/amd/display: Do cursor programming with rest of pipe
-Message-ID: <951e4058-ac52-4690-bb77-70929a7e3ce4@moroto.mountain>
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3790111315A;
+ Fri,  3 May 2024 16:48:55 +0000 (UTC)
+Received: from [100.65.224.148] (unknown [20.236.10.206])
+ by linux.microsoft.com (Postfix) with ESMTPSA id ED65B20B2C82;
+ Fri,  3 May 2024 09:48:53 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com ED65B20B2C82
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1714754934;
+ bh=GAu8Rak4A+pCgzw/uvyDGmtVcqwJgPNajSTWUoSmEQw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=rkGr+1kX0SctOUPwkhdrQ4qFQeA027/UkwhMstN1oK11s07V0R7Wi7aRofjAnlC1w
+ NT0xX9K1RqDBBTorM82GqIiYoTbasEg2t4t6Fe9M8VXV9I+qcP4kpK+ALqrx64mma1
+ /QTPAvj8aVxAk84+SPJbJzAv82Hdw3+D0Hq7DSGc=
+Message-ID: <6256cc5a-9ff0-4a1f-8eba-f70b7c571631@linux.microsoft.com>
+Date: Fri, 3 May 2024 09:48:53 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
+ Helge Deller <deller@gmx.de>,
+ "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
+ <linux-fbdev@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>
+References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+ <20240430173812.1423757-13-eahariha@linux.microsoft.com>
+ <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
+ <076e0a0d-ad26-490e-9784-300ed52637ca@linux.microsoft.com>
+ <f1eccd9d-885f-4508-9325-3454ecc35eae@suse.de>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <f1eccd9d-885f-4508-9325-3454ecc35eae@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 06 May 2024 09:59:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,94 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Harry Wentland,
+On 5/3/2024 12:39 AM, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 03.05.24 um 00:26 schrieb Easwar Hariharan:
+>> On 5/2/2024 3:46 AM, Thomas Zimmermann wrote:
+>>>
+>>> Am 30.04.24 um 19:38 schrieb Easwar Hariharan:
+>>>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>>>> with more appropriate terms. Inspired by and following on to Wolfram's
+>>>> series to fix drivers/i2c/[1], fix the terminology for users of
+>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>>>> in the specification.
+>>>>
+>>>> Compile tested, no functionality changes intended
+>>>>
+>>>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>>>
+>>>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>>
+>> Thanks for the ack! I had been addressing feedback as I got it on the v0 series, and it seems
+>> I missed out on updating viafb and smscufx to spec-compliant controller/target terminology like
+>> the v0->v1 changelog calls out before posting v1.
+>>
+>> For smscufx, I feel phrasing the following line (as an example)
+>>
+>>> -/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host,
+>>> +/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, *controller*,
+>> would actually impact readability negatively, so I propose to leave smscufx as is.
+> 
+> Why? I don't see much of a difference.
+> 
+>>
+>> For viafb, I propose making it compliant with the spec using the controller/target terminology and
+>> posting a v2 respin (which I can send out as soon as you say) and ask you to review again.
+>>
+>> What do you think?
+> 
+> I think we should adopt the spec's language everywhere. That makes it possible to grep the spec for terms used in the source code. Using 'host' in smscufx appears to introduce yet another term. If you are worried about using 'I2C controller' and 'controller' in the same sentence, you can replace 'I2C controller' with 'DDC channel'. That's even more precise about the purpose of this code.
 
-Commit 66eba12a5482 ("drm/amd/display: Do cursor programming with
-rest of pipe") from Mar 15, 2024 (linux-next), leads to the following
-Smatch static checker warning:
+Great, thanks! That was exactly my concern, I will fix up smscufx and send a v2.
 
-	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8433 amdgpu_dm_update_cursor()
-	error: we previously assumed 'afb' could be null (see line 8388)
+Thanks,
+Easwar
 
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
-    8379 static void amdgpu_dm_update_cursor(struct drm_plane *plane,
-    8380                                     struct drm_plane_state *old_plane_state,
-    8381                                     struct dc_stream_update *update)
-    8382 {
-    8383         struct amdgpu_device *adev = drm_to_adev(plane->dev);
-    8384         struct amdgpu_framebuffer *afb = to_amdgpu_framebuffer(plane->state->fb);
-    8385         struct drm_crtc *crtc = afb ? plane->state->crtc : old_plane_state->crtc;
-                                         ^^^^^
-
-    8386         struct dm_crtc_state *crtc_state = crtc ? to_dm_crtc_state(crtc->state) : NULL;
-    8387         struct amdgpu_crtc *amdgpu_crtc = to_amdgpu_crtc(crtc);
-    8388         uint64_t address = afb ? afb->address : 0;
-                                    ^^^^^
-Checks for NULL
-
-    8389         struct dc_cursor_position position = {0};
-    8390         struct dc_cursor_attributes attributes;
-    8391         int ret;
-    8392 
-    8393         if (!plane->state->fb && !old_plane_state->fb)
-    8394                 return;
-    8395 
-    8396         drm_dbg_atomic(plane->dev, "crtc_id=%d with size %d to %d\n",
-    8397                        amdgpu_crtc->crtc_id, plane->state->crtc_w,
-    8398                        plane->state->crtc_h);
-    8399 
-    8400         ret = amdgpu_dm_plane_get_cursor_position(plane, crtc, &position);
-    8401         if (ret)
-    8402                 return;
-    8403 
-    8404         if (!position.enable) {
-    8405                 /* turn off cursor */
-    8406                 if (crtc_state && crtc_state->stream) {
-    8407                         dc_stream_set_cursor_position(crtc_state->stream,
-    8408                                                       &position);
-    8409                         update->cursor_position = &crtc_state->stream->cursor_position;
-    8410                 }
-    8411                 return;
-    8412         }
-    8413 
-    8414         amdgpu_crtc->cursor_width = plane->state->crtc_w;
-    8415         amdgpu_crtc->cursor_height = plane->state->crtc_h;
-    8416 
-    8417         memset(&attributes, 0, sizeof(attributes));
-    8418         attributes.address.high_part = upper_32_bits(address);
-    8419         attributes.address.low_part  = lower_32_bits(address);
-    8420         attributes.width             = plane->state->crtc_w;
-    8421         attributes.height            = plane->state->crtc_h;
-    8422         attributes.color_format      = CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA;
-    8423         attributes.rotation_angle    = 0;
-    8424         attributes.attribute_flags.value = 0;
-    8425 
-    8426         /* Enable cursor degamma ROM on DCN3+ for implicit sRGB degamma in DRM
-    8427          * legacy gamma setup.
-    8428          */
-    8429         if (crtc_state->cm_is_degamma_srgb &&
-    8430             adev->dm.dc->caps.color.dpp.gamma_corr)
-    8431                 attributes.attribute_flags.bits.ENABLE_CURSOR_DEGAMMA = 1;
-    8432 
---> 8433         attributes.pitch = afb->base.pitches[0] / afb->base.format->cpp[0];
-                                    ^^^^^                  ^^^^^
-Unchecked dereferences
-
-    8434 
-    8435         if (crtc_state->stream) {
-    8436                 if (!dc_stream_set_cursor_attributes(crtc_state->stream,
-    8437                                                      &attributes))
-    8438                         DRM_ERROR("DC failed to set cursor attributes\n");
-    8439 
-    8440                 update->cursor_attributes = &crtc_state->stream->cursor_attributes;
-    8441 
-    8442                 if (!dc_stream_set_cursor_position(crtc_state->stream,
-    8443                                                    &position))
-    8444                         DRM_ERROR("DC failed to set cursor position\n");
-    8445 
-    8446                 update->cursor_position = &crtc_state->stream->cursor_position;
-    8447         }
-    8448 }
-
-regards,
-dan carpenter
