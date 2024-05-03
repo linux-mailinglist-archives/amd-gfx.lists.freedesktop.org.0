@@ -2,50 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7189C8BA996
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 11:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7274E8BAD36
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 15:10:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E952110E551;
-	Fri,  3 May 2024 09:15:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 650DF112A7D;
+	Fri,  3 May 2024 13:10:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="m5g0O6fJ";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="PhtnMo/9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 427DF10E644
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 09:15:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=F5Jjsf6L5e6gu/GOqTMxP/sUj7SINu6NJHzC6p2eyqE=; b=m5g0O6fJ7Q4HmaWcfK/0uZaSaS
- MPWMVVAB2xz1BSJ4NQ1Bw4p0trXfof3Orv7Xk50bW494l+PCg8fmGCDann0EPdoIrnoanuD+jycpx
- fBoxM+ucR++wZN6KdJc0K/VNErU8Ze0yUykq7KD8sHCcOZTOn1QpRhMmSSyVVScvhlv3cdL0DPS6k
- rMTl2zLrxLZ590zMG7IG7zDksg43N+nyxKSwpMfiCwvwRtu+knw0MDARiNCvm56gaNfTbhYW/BqR2
- lc5q1Zb6MxeQzvy23kfcHsXqVGvodlIWok0Aaf6Cv+UrjvrYyZwms5KG01jP5Mmg6v1bavjJ420ug
- qo2ffgUw==;
-Received: from [84.65.0.132] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1s2p0U-0003eS-VC; Fri, 03 May 2024 11:15:07 +0200
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu: Describe all object placements in debugfs
-Date: Fri,  3 May 2024 10:15:00 +0100
-Message-ID: <20240503091500.7768-3-tursulin@igalia.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240503091500.7768-1-tursulin@igalia.com>
-References: <20240503091500.7768-1-tursulin@igalia.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 374E710ECCA;
+ Fri,  3 May 2024 07:54:00 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4436srbR030347;
+ Fri, 3 May 2024 07:53:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=3mzdCXxXwnn8uCG5UnxaKBkw7nHf6ws+H3ixiga1rf4=; b=Ph
+ tnMo/9H5defEBpAiWaXHCbfUbzlzPihxbRvIm/T1sckITy/l1zp8nVhHfFwjUHgQ
+ s5Ug37+Kxp/aa2QvM69pIrTfcgt1LpxtwPKFoqhois04amUWjupw9meo8Ak1aio4
+ 7mLNa2NpGTBtdJNJYexesOmg41tnxkXCqelUU+XoiLwLDG1rF9T5KLjq6qKWtc9A
+ cl0zL08qZd5bbsS7WHpW56EZZyJd4oqgwEVL7jykzyNXL2Sms8cA2A5Lf9zH8xTK
+ frQMAdINzapOmJ9BvugUip3a1p1h79ZtWP4VOgbFlIWvca95yy14y/YODvEDLSP6
+ h2DsazBpJweCZsLjmBAQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xvu2n833h-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 03 May 2024 07:53:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4437rpdi000345
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 3 May 2024 07:53:51 GMT
+Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 May 2024
+ 00:53:46 -0700
+Message-ID: <a0daf2d5-4c72-4d96-a8d4-b15adb7252d5@quicinc.com>
+Date: Fri, 3 May 2024 13:23:43 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
+To: Greg KH <gregkh@linuxfoundation.org>
+CC: kernel test robot <lkp@intel.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Linux Memory Management List
+ <linux-mm@kvack.org>,
+ <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>
+References: <202405030439.AH8NR0Mg-lkp@intel.com>
+ <2024050342-slashing-froth-bcf9@gregkh>
+ <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
+ <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-ORIG-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-03_04,2024-05-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxlogscore=707
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405030055
+X-Mailman-Approved-At: Fri, 03 May 2024 13:10:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +99,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Accurately show all placements when describing objects in debugfs, instead
-of bunching them up under the 'CPU' placement.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On 5/3/2024 11:58 AM, Greg KH wrote:
+> On Fri, May 03, 2024 at 11:30:50AM +0530, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 5/3/2024 10:42 AM, Greg KH wrote:
+>>> Ok, I'm getting tired of seeing these for the USB portion of the tree,
+>>> so I went to look for:
+>>>
+>>> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
+>>>> |-- arc-randconfig-002-20240503
+>>>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
+>>>
+>>> This warning (same for all arches), but can't seem to find it anywhere.
+>>>
+>>> Any hints as to where it would be?
+>>>
+>>
+>> Hi Greg,
+>>
+>>   I think the hw_mode was not removed in hs_phy_setup and left unused.
+>>
+>>   Thinh reported the same when there was a merge conflict into linux next
+>> (that the hw_mode variable was removed in ss_phy_setup and should be removed
+>> in hs_phy_setup as well):
+>>
+>> https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+>>
+>>   Perhaps that was missed ?
+> 
+> Must have been.  I need it in a format that it can be applied in (a
+> 2-way diff can't apply...)
+> 
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 4f9073dd19eb..fa5227a4aac2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1612,6 +1612,21 @@ u64 amdgpu_bo_print_info(int id, struct amdgpu_bo *bo, struct seq_file *m)
- 		case TTM_PL_TT:
- 			placement = "GTT";
- 			break;
-+		case AMDGPU_PL_GDS:
-+			placement = "GDS";
-+			break;
-+		case AMDGPU_PL_GWS:
-+			placement = "GWS";
-+			break;
-+		case AMDGPU_PL_OA:
-+			placement = "OA";
-+			break;
-+		case AMDGPU_PL_PREEMPT:
-+			placement = "PREEMPTIBLE";
-+			break;
-+		case AMDGPU_PL_DOORBELL:
-+			placement = "DOORBELL";
-+			break;
- 		case TTM_PL_SYSTEM:
- 		default:
- 			placement = "CPU";
--- 
-2.44.0
+I just checked it with W=1 and it is causing the issue:
 
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c: 
+In function 'dwc3_hs_phy_setup':
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c:679:15: 
+warning: variable 'hw_mode' set but not used [-Wunused-but-set-variable]
+   unsigned int hw_mode;
+                ^
+
+I can send a patch to fix it up. Also, just wanted to confirm if  I skip 
+the fixes and CC tags as the main patch wasn't yet merged into any 
+stable trees ?
+
+Regards,
+Krishna,
