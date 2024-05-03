@@ -2,88 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7274E8BAD36
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 15:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00228BAD33
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 15:10:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650DF112A7D;
-	Fri,  3 May 2024 13:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CE911280F;
+	Fri,  3 May 2024 13:10:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="PhtnMo/9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jkbZBPsQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 374E710ECCA;
- Fri,  3 May 2024 07:54:00 +0000 (UTC)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4436srbR030347;
- Fri, 3 May 2024 07:53:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:subject:to:cc:references:from
- :in-reply-to:content-type:content-transfer-encoding; s=
- qcppdkim1; bh=3mzdCXxXwnn8uCG5UnxaKBkw7nHf6ws+H3ixiga1rf4=; b=Ph
- tnMo/9H5defEBpAiWaXHCbfUbzlzPihxbRvIm/T1sckITy/l1zp8nVhHfFwjUHgQ
- s5Ug37+Kxp/aa2QvM69pIrTfcgt1LpxtwPKFoqhois04amUWjupw9meo8Ak1aio4
- 7mLNa2NpGTBtdJNJYexesOmg41tnxkXCqelUU+XoiLwLDG1rF9T5KLjq6qKWtc9A
- cl0zL08qZd5bbsS7WHpW56EZZyJd4oqgwEVL7jykzyNXL2Sms8cA2A5Lf9zH8xTK
- frQMAdINzapOmJ9BvugUip3a1p1h79ZtWP4VOgbFlIWvca95yy14y/YODvEDLSP6
- h2DsazBpJweCZsLjmBAQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xvu2n833h-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 03 May 2024 07:53:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4437rpdi000345
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 3 May 2024 07:53:51 GMT
-Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 May 2024
- 00:53:46 -0700
-Message-ID: <a0daf2d5-4c72-4d96-a8d4-b15adb7252d5@quicinc.com>
-Date: Fri, 3 May 2024 13:23:43 +0530
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB5E10F432
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 08:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=RHIl1MgaQDxGXZLmUo9JVxPeIZjioBnZPJTkzWps0Ao=; b=jkbZBPsQwB01EG3JEZ9L/fdsQI
+ 1IF//E0i1RrI/Y3FlfI3HE2lF93wcrGO10BWiATJIfpm3cccLvj/hohmkOBBi1bLlDK1Sg/C5q7JU
+ twfY/uVodNnuCQnB90hXbF/vEGilVGZ0uZ/60Ad5HaSnxHzgKiDdQjhj6Xq+vTv7mvC2OrDr4rqm/
+ elV7NKVFXQOQN+6vEIa4MXtYeSSHggfz2ZL0HWIC0PR7119nLSQwVWFq1PkXX0qAetj6KIAiZXrF+
+ RGl74NCvXMQbSwlqGIzi2hgTYrvExtI8ByWfwJIDAaClByDJjgGqJmsq+htw48TBk+u+Whd9XAjUZ
+ pD3XmgJA==;
+Received: from [84.65.0.132] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1s2oCI-0002cx-5u; Fri, 03 May 2024 10:23:14 +0200
+Message-ID: <9ee3e832-8310-4626-96e2-5653b7fe8ea9@igalia.com>
+Date: Fri, 3 May 2024 09:23:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
-To: Greg KH <gregkh@linuxfoundation.org>
-CC: kernel test robot <lkp@intel.com>, Andrew Morton
- <akpm@linux-foundation.org>, Linux Memory Management List
- <linux-mm@kvack.org>,
- <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
- <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>
-References: <202405030439.AH8NR0Mg-lkp@intel.com>
- <2024050342-slashing-froth-bcf9@gregkh>
- <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
- <2024050314-knelt-sandpaper-3884@gregkh>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <2024050314-knelt-sandpaper-3884@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
-X-Proofpoint-ORIG-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-03_04,2024-05-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxlogscore=707
- priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405030055
+Subject: Re: [PATCH 1/3] drm/amdgpu: Add amdgpu_bo_is_vm_bo helper
+Content-Language: en-GB
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ kernel-dev@igalia.com
+References: <20240429164707.49196-1-tursulin@igalia.com>
+ <bcbd2c3f-30c2-4e98-93d6-b752ae3a0a0f@gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <bcbd2c3f-30c2-4e98-93d6-b752ae3a0a0f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 03 May 2024 13:10:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,52 +64,205 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-
-On 5/3/2024 11:58 AM, Greg KH wrote:
-> On Fri, May 03, 2024 at 11:30:50AM +0530, Krishna Kurapati PSSNV wrote:
+On 03/05/2024 07:26, Christian König wrote:
+> Am 29.04.24 um 18:47 schrieb Tvrtko Ursulin:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 >>
+>> Help code readability by replacing a bunch of:
 >>
->> On 5/3/2024 10:42 AM, Greg KH wrote:
->>> Ok, I'm getting tired of seeing these for the USB portion of the tree,
->>> so I went to look for:
->>>
->>> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
->>>> |-- arc-randconfig-002-20240503
->>>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
->>>
->>> This warning (same for all arches), but can't seem to find it anywhere.
->>>
->>> Any hints as to where it would be?
->>>
+>> bo->tbo.base.resv == vm->root.bo->tbo.base.resv
 >>
->> Hi Greg,
+>> With:
 >>
->>   I think the hw_mode was not removed in hs_phy_setup and left unused.
+>> amdgpu_vm_is_bo_always_valid(vm, bo)
 >>
->>   Thinh reported the same when there was a merge conflict into linux next
->> (that the hw_mode variable was removed in ss_phy_setup and should be removed
->> in hs_phy_setup as well):
+>> No functional changes.
 >>
->> https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+>> v2:
+>>   * Rename helper and move to amdgpu_vm. (Christian)
 >>
->>   Perhaps that was missed ?
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c |  2 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 40 +++++++++++++++----------
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  2 ++
+>>   3 files changed, 28 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>> index 67c234bcf89f..e698d65e9508 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>> @@ -174,7 +174,7 @@ static int amdgpu_gem_object_open(struct 
+>> drm_gem_object *obj,
+>>           return -EPERM;
+>>       if (abo->flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID &&
+>> -        abo->tbo.base.resv != vm->root.bo->tbo.base.resv)
+>> +        !amdgpu_vm_is_bo_always_valid(vm, abo))
+>>           return -EPERM;
+>>       r = amdgpu_bo_reserve(abo, false);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>> index 8af3f0fd3073..01ca4b35b369 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>> @@ -333,7 +333,7 @@ void amdgpu_vm_bo_base_init(struct 
+>> amdgpu_vm_bo_base *base,
+>>       base->next = bo->vm_bo;
+>>       bo->vm_bo = base;
+>> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
+>> +    if (!amdgpu_vm_is_bo_always_valid(vm, bo))
+>>           return;
+>>       dma_resv_assert_held(vm->root.bo->tbo.base.resv);
+>> @@ -1101,13 +1101,13 @@ static void amdgpu_vm_bo_get_memory(struct 
+>> amdgpu_bo_va *bo_va,
+>>        * For now ignore BOs which are currently locked and potentially
+>>        * changing their location.
+>>        */
+>> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv &&
+>> +    if (!amdgpu_vm_is_bo_always_valid(vm, bo) &&
+>>           !dma_resv_trylock(bo->tbo.base.resv))
+>>           return;
+>>       amdgpu_bo_get_memory(bo, stats);
+>> -    if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
+>> -        dma_resv_unlock(bo->tbo.base.resv);
+>> +    if (amdgpu_vm_is_bo_always_valid(vm, bo))
+>> +        dma_resv_unlock(bo->tbo.base.resv);
+>>   }
+>>   void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
+>> @@ -1203,8 +1203,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device 
+>> *adev, struct amdgpu_bo_va *bo_va,
+>>           uncached = false;
+>>       }
+>> -    if (clear || (bo && bo->tbo.base.resv ==
+>> -              vm->root.bo->tbo.base.resv))
+>> +    if (clear || amdgpu_vm_is_bo_always_valid(vm, bo))
+>>           last_update = &vm->last_update;
+>>       else
+>>           last_update = &bo_va->last_pt_update;
+>> @@ -1246,7 +1245,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device 
+>> *adev, struct amdgpu_bo_va *bo_va,
+>>        * the evicted list so that it gets validated again on the
+>>        * next command submission.
+>>        */
+>> -    if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv) {
+>> +    if (amdgpu_vm_is_bo_always_valid(vm, bo)) {
+>>           uint32_t mem_type = bo->tbo.resource->mem_type;
+>>           if (!(bo->preferred_domains &
+>> @@ -1640,10 +1639,9 @@ static void amdgpu_vm_bo_insert_map(struct 
+>> amdgpu_device *adev,
+>>       if (mapping->flags & AMDGPU_PTE_PRT)
+>>           amdgpu_vm_prt_get(adev);
+>> -    if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
+>> -        !bo_va->base.moved) {
+>> +    if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
+>>           amdgpu_vm_bo_moved(&bo_va->base);
+>> -    }
+>> +
+>>       trace_amdgpu_vm_bo_map(bo_va, mapping);
+>>   }
+>> @@ -1922,7 +1920,7 @@ int amdgpu_vm_bo_clear_mappings(struct 
+>> amdgpu_device *adev,
+>>           if (before->flags & AMDGPU_PTE_PRT)
+>>               amdgpu_vm_prt_get(adev);
+>> -        if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
+>> +        if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
+>>               !before->bo_va->base.moved)
+>>               amdgpu_vm_bo_moved(&before->bo_va->base);
+>>       } else {
+>> @@ -1937,7 +1935,7 @@ int amdgpu_vm_bo_clear_mappings(struct 
+>> amdgpu_device *adev,
+>>           if (after->flags & AMDGPU_PTE_PRT)
+>>               amdgpu_vm_prt_get(adev);
+>> -        if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
+>> +        if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
+>>               !after->bo_va->base.moved)
+>>               amdgpu_vm_bo_moved(&after->bo_va->base);
+>>       } else {
+>> @@ -2017,7 +2015,7 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
+>>       if (bo) {
+>>           dma_resv_assert_held(bo->tbo.base.resv);
+>> -        if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
+>> +        if (amdgpu_vm_is_bo_always_valid(vm, bo))
+>>               ttm_bo_set_bulk_move(&bo->tbo, NULL);
+>>           for (base = &bo_va->base.bo->vm_bo; *base;
+>> @@ -2111,7 +2109,7 @@ void amdgpu_vm_bo_invalidate(struct 
+>> amdgpu_device *adev,
+>>       for (bo_base = bo->vm_bo; bo_base; bo_base = bo_base->next) {
+>>           struct amdgpu_vm *vm = bo_base->vm;
+>> -        if (evicted && bo->tbo.base.resv == 
+>> vm->root.bo->tbo.base.resv) {
+>> +        if (evicted && amdgpu_vm_is_bo_always_valid(vm, bo)) {
+>>               amdgpu_vm_bo_evicted(bo_base);
+>>               continue;
+>>           }
+>> @@ -2122,7 +2120,7 @@ void amdgpu_vm_bo_invalidate(struct 
+>> amdgpu_device *adev,
+>>           if (bo->tbo.type == ttm_bo_type_kernel)
+>>               amdgpu_vm_bo_relocated(bo_base);
+>> -        else if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
+>> +        else if (amdgpu_vm_is_bo_always_valid(vm, bo))
+>>               amdgpu_vm_bo_moved(bo_base);
+>>           else
+>>               amdgpu_vm_bo_invalidated(bo_base);
+>> @@ -2986,3 +2984,15 @@ void amdgpu_vm_update_fault_cache(struct 
+>> amdgpu_device *adev,
+>>       xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
+>>   }
+>> +/**
+>> + * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
+>> + *
+>> + * @vm: VM to test against.
+>> + * @abo: BO to be tested.
+>> + *
+>> + * Returns true if the BO is VM always valid.
 > 
-> Must have been.  I need it in a format that it can be applied in (a
-> 2-way diff can't apply...)
+> Maybe improve that a bit, e.g. something like this:
 > 
+> "Returns true if the BO shares the dma_resv object with the root PD and 
+> is always guaranteed to be valid inside the VM."
 
-I just checked it with W=1 and it is causing the issue:
+I am only unsure if the dma_resv and root PD are too much of an 
+implementation details? Or really something the API user must know? 
+Considering from the uapi we have this:
 
-/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c: 
-In function 'dwc3_hs_phy_setup':
-/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c:679:15: 
-warning: variable 'hw_mode' set but not used [-Wunused-but-set-variable]
-   unsigned int hw_mode;
-                ^
+/* Flag that BO is always valid in this VM */
+#define AMDGPU_GEM_CREATE_VM_ALWAYS_VALID	(1 << 6)
 
-I can send a patch to fix it up. Also, just wanted to confirm if  I skip 
-the fixes and CC tags as the main patch wasn't yet merged into any 
-stable trees ?
+Which is the reason I thought to keep the comment high level.
+
+Give me a final verdict and I can change it accordingly.
 
 Regards,
-Krishna,
+
+Tvrtko
+
+> With that done the patch is Reviewed-by: Christian König 
+> <christian.koenig@amd.com>
+> 
+> Thanks,
+> Christian.
+> 
+>> + */
+>> +bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct 
+>> amdgpu_bo *bo)
+>> +{
+>> +    return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
+>> +}
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> index 54d7da396de0..ec688a47dec1 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> @@ -561,6 +561,8 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm 
+>> *vm, struct seq_file *m);
+>>   int amdgpu_vm_pt_map_tables(struct amdgpu_device *adev, struct 
+>> amdgpu_vm *vm);
+>> +bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct 
+>> amdgpu_bo *bo);
+>> +
+>>   /**
+>>    * amdgpu_vm_tlb_seq - return tlb flush sequence number
+>>    * @vm: the amdgpu_vm structure to query
+> 
