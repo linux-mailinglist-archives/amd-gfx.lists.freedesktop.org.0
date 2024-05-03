@@ -2,56 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88AB8BAD31
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 15:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9D58BAD2E
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 15:10:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA09112A18;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B52E1127BF;
 	Fri,  3 May 2024 13:10:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="afFPAeHk";
+	dkim=pass (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="Jw3XUDgX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D26B10FB5C
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 11:50:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BgSebzIp5z5dFSKU4ESbdPnAazQZ1+CqANvokfHfKRk=; b=afFPAeHkTruBXrjem0Fopi5VBK
- T3TXKLrH2pglhOqZfWHvGZbEMi6tABJ8b/r1ajzugbEBotBtrkIvMoTvtvPugDuuG0cBo/HCgbliy
- 4YpLTnxY1hO8huHkkzcNIOE02tgmRxx+E8uIdh3+JK+iGENbpLHJTb88I0Ou/SYqMTQzrOK13k61V
- adr+iOtXGbuahWxqHzDBsMxM7RqPb9zWa4T9FQ145l8LNrg1y4DSi5YgdI6kn/3Jxbm95cYxe/nns
- kjOrkNTj2wRaViajl1CCU06+h/U1xyY5R5aW3uOXuJOz+PWqikzxTqkrC39OmvJQokjEnw6GrXEal
- uB+vJhGg==;
-Received: from [84.65.0.132] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s2rQw-0006VQ-LO; Fri, 03 May 2024 13:50:35 +0200
-Message-ID: <3030b87c-120b-4ef1-b0f9-9a1a7ef62e70@igalia.com>
-Date: Fri, 3 May 2024 12:50:34 +0100
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8153110FB88
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:06:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1714737960; x=1714997160;
+ bh=+5BgPx8/X+xKpVku8ib8P/X2LrKEZpn/SSX+zss59n4=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=Jw3XUDgXDZ9Dwwz1RFnrx8lLobof04nzYd/oXFIJbZv4HkIAkhOSkQFTB96bK+quP
+ wAwb9PdVtsa5yrQej5hTjPBQBgC0B914JSQ/RxRCrBsmKVYrS5YF0EmeeV1P1lgslu
+ pfcSqO9v+jQgVVkZ+gp7O45RLzmh68FoTMqV/IZnGQqWzEtwkBYxsAqrF8zaEXiuU7
+ yveUUrarF2EHnbR6YFqd8VYI4WbLUK5jvL66NurHm3ggzc1wj7kFlHEiNGLZlV4VgO
+ HEEgnNx2ddaeSz/FHswd53iFgkBUgC6VMJKi9k9cnhPS2gcN3jLPmAG/ZOXfo0ZXOG
+ vQo85TigMqrdg==
+Date: Fri, 03 May 2024 12:05:54 +0000
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+From: fililip <fililip6483@protonmail.com>
+Subject: Allow setting a power cap that's lower than recommended
+Message-ID: <1VLcj5GzcoG1-O6-r7zBAGyAXVUTTIHMyJRR8Svf-ckgPom-otJt8N3sT5oPHvLOiYjvdXx6zfZ3zatRHJFGsitQKAA8mHNV57KoFBMjNJk=@protonmail.com>
+Feedback-ID: 108819700:user:proton
+X-Pm-Message-ID: f9197727cdb0e35ac376fc91cc5e450d70bb55ed
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 0/5] Add capacity key to fdinfo
-Content-Language: en-GB
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20240430172748.61576-1-tursulin@igalia.com>
- <CADnq5_Mzn8gesfqfNncJMWGgawFR3upgcy9MG=UwHw4i5GoZTg@mail.gmail.com>
- <cd9f1e27-2448-4803-ab73-9b71c5482027@igalia.com>
- <eae2f6bb-6c6f-4a85-a0dd-ad1898d638b5@gmail.com>
- <51a28e5c-392f-4093-9782-a81849474034@igalia.com>
- <CADnq5_PYN-QBx1VB7tTgpFsBqgrLKBNsOwGaG7u8TSXw539sjA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CADnq5_PYN-QBx1VB7tTgpFsBqgrLKBNsOwGaG7u8TSXw539sjA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed;
+ boundary="b1_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0"
 X-Mailman-Approved-At: Fri, 03 May 2024 13:10:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,206 +51,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
 
-On 02/05/2024 16:00, Alex Deucher wrote:
-> On Thu, May 2, 2024 at 10:43 AM Tvrtko Ursulin
-> <tvrtko.ursulin@igalia.com> wrote:
->>
->>
->> On 02/05/2024 14:07, Christian König wrote:
->>> Am 01.05.24 um 15:27 schrieb Tvrtko Ursulin:
->>>>
->>>> Hi Alex,
->>>>
->>>> On 30/04/2024 19:32, Alex Deucher wrote:
->>>>> On Tue, Apr 30, 2024 at 1:27 PM Tvrtko Ursulin <tursulin@igalia.com>
->>>>> wrote:
->>>>>>
->>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>>>
->>>>>> I have noticed AMD GPUs can have more than one "engine" (ring?) of
->>>>>> the same type
->>>>>> but amdgpu is not reporting that in fdinfo using the capacity engine
->>>>>> tag.
->>>>>>
->>>>>> This series is therefore an attempt to improve that, but only an RFC
->>>>>> since it is
->>>>>> quite likely I got stuff wrong on the first attempt. Or if not wrong
->>>>>> it may not
->>>>>> be very beneficial in AMDs case.
->>>>>>
->>>>>> So I tried to figure out how to count and store the number of
->>>>>> instances of an
->>>>>> "engine" type and spotted that could perhaps be used in more than
->>>>>> one place in
->>>>>> the driver. I was more than a little bit confused by the ip_instance
->>>>>> and uapi
->>>>>> rings, then how rings are selected to context entities internally.
->>>>>> Anyway..
->>>>>> hopefully it is a simple enough series to easily spot any such large
->>>>>> misses.
->>>>>>
->>>>>> End result should be that, assuming two "engine" instances, one
->>>>>> fully loaded and
->>>>>> one idle will only report client using 50% of that engine type.
->>>>>
->>>>> That would only be true if there are multiple instantiations of the IP
->>>>> on the chip which in most cases is not true.  In most cases there is
->>>>> one instance of the IP that can be fed from multiple rings. E.g. for
->>>>> graphics and compute, all of the rings ultimately feed into the same
->>>>> compute units on the chip.  So if you have a gfx ring and a compute
->>>>> rings, you can schedule work to them asynchronously, but ultimately
->>>>> whether they execute serially or in parallel depends on the actual
->>>>> shader code in the command buffers and the extent to which it can
->>>>> utilize the available compute units in the shader cores.
->>>>
->>>> This is the same as with Intel/i915. Fdinfo is not intended to provide
->>>> utilisation of EUs and such, just how busy are the "entities" kernel
->>>> submits to. So doing something like in this series would make the
->>>> reporting more similar between the two drivers.
->>>>
->>>> I think both the 0-800% or 0-100% range (taking 8 ring compute as an
->>>> example) can be misleading for different workloads. Neither <800% in
->>>> the former means one can send more work and same for <100% in the latter.
->>>
->>> Yeah, I think that's what Alex tries to describe. By using 8 compute
->>> rings your 800% load is actually incorrect and quite misleading.
->>>
->>> Background is that those 8 compute rings won't be active all at the same
->>> time, but rather waiting on each other for resources.
->>>
->>> But this "waiting" is unfortunately considered execution time since the
->>> used approach is actually not really capable of separating waiting and
->>> execution time.
->>
->> Right, so 800% is what gputop could be suggesting today, by the virtue 8
->> context/clients can each use 100% if they only use a subset of compute
->> units. I was proposing to expose the capacity in fdinfo so it can be
->> scaled down and then dicussing how both situation have pros and cons.
->>
->>>> There is also a parallel with the CPU world here and hyper threading,
->>>> if not wider, where "What does 100% actually mean?" is also wishy-washy.
->>>>
->>>> Also note that the reporting of actual time based values in fdinfo
->>>> would not changing with this series.
->>>>
->>>> Of if you can guide me towards how to distinguish real vs fake
->>>> parallelism in HW IP blocks I could modify the series to only add
->>>> capacity tags where there are truly independent blocks. That would be
->>>> different from i915 though were I did not bother with that
->>>> distinction. (For reasons that assignment of for instance EUs to
->>>> compute "rings" (command streamers in i915) was supposed to be
->>>> possible to re-configure on the fly. So it did not make sense to try
->>>> and be super smart in fdinfo.)
->>>
->>> Well exactly that's the point we don't really have truly independent
->>> blocks on AMD hardware.
->>>
->>> There are things like independent SDMA instances, but those a meant to
->>> be used like the first instance for uploads and the second for downloads
->>> etc.. When you use both instances for the same job they will pretty much
->>> limit each other because of a single resource.
->>
->> So _never_ multiple instances of the same IP block? No video decode,
->> encode, anything?
-> 
-> Some chips have multiple encode/decode IP blocks that are actually
-> separate instances, however, we load balance between them so userspace
-> sees just one engine.  Also in some cases they are asymmetric (e.g.,
-> different sets of supported CODECs on each instance).  The driver
-> handles this by inspecting the command buffer and scheduling on the
-> appropriate instance based on the requested CODEC.  SDMA also supports
-> multiple IP blocks that are independent.
+--b1_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0
+Content-Type: multipart/alternative;
+ boundary="b2_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0"
 
-Similar to i915 just that we don't inspect buffers but expose the 
-instance capabilities and userspace is responsible to set up the load 
-balancing engine with the correct physical mask.
+--b2_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Anyway, back to the main point - are you interested at all for me to add 
-the capacity flags to at least the IP blocks which are probed to exist 
-more than a singleton? And if yes, could you please suggest how to do it.
+VGhpcyBwYXRjaCBhbGxvd3Mgc2V0dGluZyBhIGxvdyBwb3dlciBjYXAgaWYgaWdub3JlX21pbl9w
+Y2Fw4oCLIGlzIHNldCB0byAxLgoKU2lnbmVkLW9mZi1ieTogZmlsaWxpcCA8ZmlsaWxpcDY0ODNA
+cHJvdG9ubWFpbC5jb20+
 
-For instance should I use adev->sdma.num_instances, 
-adev->uvd.num_uvd_inst, adev->vcn.num_vcn_inst, 
-adev->jpeg.num_jpeg_inst? Or maybe adev->num_ip_blocks and count by 
-hw_ip type?
+--b2_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Patch 3/5 interesting or not to skip all the empty array walking (in 
-amdgpu_ctx_entity_time mostly)?
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij5UaGlzIHBhdGNoIGFsbG93cyBzZXR0aW5nIGEgbG93IHBvd2VyIGNhcCBpZiA8Y29kZT5p
+Z25vcmVfbWluX3BjYXA8L2NvZGU+4oCLIGlzIHNldCB0byAxLjxicj48L2Rpdj48ZGl2IHN0eWxl
+PSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48
+L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6
+ZTogMTRweDsiPlNpZ25lZC1vZmYtYnk6IGZpbGlsaXAgJmx0O2ZpbGlsaXA2NDgzQHByb3Rvbm1h
+aWwuY29tJmd0Ozxicj48L2Rpdj4=
 
-Regards,
 
-Tvrtko
+--b2_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0--
 
-> 
-> Alex
-> 
->>
->>>>> As for the UAPI portion of this, we generally expose a limited number
->>>>> of rings to user space and then we use the GPU scheduler to load
->>>>> balance between all of the available rings of a type to try and
->>>>> extract as much parallelism as we can.
->>>>
->>>> The part I do not understand is the purpose of the ring argument in
->>>> for instance drm_amdgpu_cs_chunk_ib. It appears userspace can create
->>>> up to N scheduling entities using different ring id's, but internally
->>>> they can map to 1:N same scheduler instances (depending on IP type,
->>>> can be that each userspace ring maps to same N hw rings, or for rings
->>>> with no drm sched load balancing userspace ring also does not appear
->>>> to have a relation to the picked drm sched instance.).
->>>>
->>>> So I neither understand how this ring is useful, or how it does not
->>>> create a problem for IP types which use drm_sched_pick_best. It
->>>> appears even if userspace created two scheduling entities with
->>>> different ring ids they could randomly map to same drm sched aka same
->>>> hw ring, no?
->>>
->>> Yeah, that is correct. The multimedia instances have to use a "fixed"
->>> load balancing because of lack of firmware support. That should have
->>> been fixed by now but we never found time to actually validate it.
->>
->> Gotcha.
->>
->>> Regarding the "ring" parameter in CS, that is basically just for
->>> backward compatibility with older userspace. E.g. that we don't map all
->>> SDMA jobs to the same instance when only once context is used.
->>
->> I see. In that sense "limits" for compute in amdgpu_ctx_num_entities are
->> arbitrary, or related to some old userspace expectation?
->>
->> Regards,
->>
->> Tvrtko
->>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>> Alex
->>>>>
->>>>>
->>>>>>
->>>>>> Tvrtko Ursulin (5):
->>>>>>     drm/amdgpu: Cache number of rings per hw ip type
->>>>>>     drm/amdgpu: Use cached number of rings from the
->>>>>> AMDGPU_INFO_HW_IP_INFO
->>>>>>       ioctl
->>>>>>     drm/amdgpu: Skip not present rings in amdgpu_ctx_mgr_usage
->>>>>>     drm/amdgpu: Show engine capacity in fdinfo
->>>>>>     drm/amdgpu: Only show VRAM in fdinfo if it exists
->>>>>>
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c    |  3 ++
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 14 +++++
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 39 +++++++++-----
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 62
->>>>>> +++-------------------
->>>>>>    5 files changed, 49 insertions(+), 70 deletions(-)
->>>>>>
->>>>>> --
->>>>>> 2.44.0
->>>
+--b1_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0
+Content-Type: text/x-patch; name=amdgpu-ignore-min-pcap.patch
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=amdgpu-ignore-min-pcap.patch
+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmgKaW5kZXggNTBmNTdkNGRmZDhmLi5iODM2OTdi
+NzUyMjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdS5oCkBAIC0xNTEsNiArMTUxLDcg
+QEAgc3RydWN0IGFtZGdwdV93YXRjaGRvZ190aW1lcgogICovCiBleHRlcm4gaW50IGFtZGdwdV9t
+b2Rlc2V0OwogZXh0ZXJuIHVuc2lnbmVkIGludCBhbWRncHVfdnJhbV9saW1pdDsKK2V4dGVybiBp
+bnQgYW1kZ3B1X2lnbm9yZV9taW5fcGNhcDsKIGV4dGVybiBpbnQgYW1kZ3B1X3Zpc192cmFtX2xp
+bWl0OwogZXh0ZXJuIGludCBhbWRncHVfZ2FydF9zaXplOwogZXh0ZXJuIGludCBhbWRncHVfZ3R0
+X3NpemU7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMKaW5kZXggYTdhZDc3
+ZWQwOWNhLi4yYjdlZDJlNDhlMzMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+ZHJ2LmMKQEAgLTEzMSw2ICsxMzEsNyBAQCBlbnVtIEFNREdQVV9ERUJVR19NQVNLIHsKIH07CiAK
+IHVuc2lnbmVkIGludCBhbWRncHVfdnJhbV9saW1pdCA9IFVJTlRfTUFYOworaW50IGFtZGdwdV9p
+Z25vcmVfbWluX3BjYXAgPSAwOyAvKiBkbyBub3QgaWdub3JlIGJ5IGRlZmF1bHQgKi8KIGludCBh
+bWRncHVfdmlzX3ZyYW1fbGltaXQ7CiBpbnQgYW1kZ3B1X2dhcnRfc2l6ZSA9IC0xOyAvKiBhdXRv
+ICovCiBpbnQgYW1kZ3B1X2d0dF9zaXplID0gLTE7IC8qIGF1dG8gKi8KQEAgLTIzOCw2ICsyMzks
+MTUgQEAgc3RydWN0IGFtZGdwdV93YXRjaGRvZ190aW1lciBhbWRncHVfd2F0Y2hkb2dfdGltZXIg
+PSB7CiAJLnBlcmlvZCA9IDB4MCwgLyogZGVmYXVsdCB0byAweDAgKHRpbWVvdXQgZGlzYWJsZSkg
+Ki8KIH07CiAKKy8qKgorICogRE9DOiBpZ25vcmVfbWluX3BjYXAgKGludCkKKyAqIElnbm9yZSB0
+aGUgbWluaW11bSBwb3dlciBjYXAuCisgKiBVc2VmdWwgb24gZ3JhcGhpY3MgY2FyZHMgd2hlcmUg
+dGhlIG1pbmltdW0gcG93ZXIgY2FwIGlzIHZlcnkgaGlnaC4KKyAqIFRoZSBkZWZhdWx0IGlzIDAg
+KERvIG5vdCBpZ25vcmUpLgorICovCitNT0RVTEVfUEFSTV9ERVNDKGlnbm9yZV9taW5fcGNhcCwg
+Iklnbm9yZSB0aGUgbWluaW11bSBwb3dlciBjYXAiKTsKK21vZHVsZV9wYXJhbV9uYW1lZChpZ25v
+cmVfbWluX3BjYXAsIGFtZGdwdV9pZ25vcmVfbWluX3BjYXAsIGludCwgMDYwMCk7CisKIC8qKgog
+ICogRE9DOiB2cmFtbGltaXQgKGludCkKICAqIFJlc3RyaWN0IHRoZSB0b3RhbCBhbW91bnQgb2Yg
+VlJBTSBpbiBNaUIgZm9yIHRlc3RpbmcuICBUaGUgZGVmYXVsdCBpcyAwIChVc2UgZnVsbCBWUkFN
+KS4KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vYW1kZ3B1X3BtLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL3BtL2FtZGdwdV9wbS5jCmluZGV4IDIwYzUzZWVmZDY4MC4uNmQwMGNh
+ZTljYWVjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3BtL2FtZGdwdV9wbS5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vYW1kZ3B1X3BtLmMKQEAgLTI5ODQsNiArMjk4NCw5
+IEBAIHN0YXRpYyBzc2l6ZV90IGFtZGdwdV9od21vbl9zaG93X3Bvd2VyX2NhcF9taW4oc3RydWN0
+IGRldmljZSAqZGV2LAogCQkJCQkgc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIsCiAJCQkJ
+CSBjaGFyICpidWYpCiB7CisJaWYgKGFtZGdwdV9pZ25vcmVfbWluX3BjYXApCisJCXJldHVybiBz
+eXNmc19lbWl0KGJ1ZiwgIiVpXG4iLCAwKTsKKwogCXJldHVybiBhbWRncHVfaHdtb25fc2hvd19w
+b3dlcl9jYXBfZ2VuZXJpYyhkZXYsIGF0dHIsIGJ1ZiwgUFBfUFdSX0xJTUlUX01JTik7CiB9CiAK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vc3dzbXUvYW1kZ3B1X3NtdS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9zd3NtdS9hbWRncHVfc211LmMKaW5kZXggNjBkY2UxNDhi
+MmQ3Li43Mjg5MTgxMWIyZDUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vc3dz
+bXUvYW1kZ3B1X3NtdS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vc3dzbXUvYW1kZ3B1
+X3NtdS5jCkBAIC0yNDg3LDcgKzI0ODcsMTAgQEAgaW50IHNtdV9nZXRfcG93ZXJfbGltaXQodm9p
+ZCAqaGFuZGxlLAogCQkJKmxpbWl0ID0gc211LT5tYXhfcG93ZXJfbGltaXQ7CiAJCQlicmVhazsK
+IAkJY2FzZSBTTVVfUFBUX0xJTUlUX01JTjoKLQkJCSpsaW1pdCA9IHNtdS0+bWluX3Bvd2VyX2xp
+bWl0OworCQkJaWYgKGFtZGdwdV9pZ25vcmVfbWluX3BjYXApCisJCQkJKmxpbWl0ID0gMDsKKwkJ
+CWVsc2UKKwkJCQkqbGltaXQgPSBzbXUtPm1pbl9wb3dlcl9saW1pdDsKIAkJCWJyZWFrOwogCQlk
+ZWZhdWx0OgogCQkJcmV0dXJuIC1FSU5WQUw7CkBAIC0yNTExLDcgKzI1MTQsMTQgQEAgc3RhdGlj
+IGludCBzbXVfc2V0X3Bvd2VyX2xpbWl0KHZvaWQgKmhhbmRsZSwgdWludDMyX3QgbGltaXQpCiAJ
+CWlmIChzbXUtPnBwdF9mdW5jcy0+c2V0X3Bvd2VyX2xpbWl0KQogCQkJcmV0dXJuIHNtdS0+cHB0
+X2Z1bmNzLT5zZXRfcG93ZXJfbGltaXQoc211LCBsaW1pdF90eXBlLCBsaW1pdCk7CiAKLQlpZiAo
+KGxpbWl0ID4gc211LT5tYXhfcG93ZXJfbGltaXQpIHx8IChsaW1pdCA8IHNtdS0+bWluX3Bvd2Vy
+X2xpbWl0KSkgeworCWlmIChhbWRncHVfaWdub3JlX21pbl9wY2FwKSB7CisJCWlmICgobGltaXQg
+PiBzbXUtPm1heF9wb3dlcl9saW1pdCkpIHsKKwkJCWRldl9lcnIoc211LT5hZGV2LT5kZXYsCisJ
+CQkJIk5ldyBwb3dlciBsaW1pdCAoJWQpIGlzIG92ZXIgdGhlIG1heCBhbGxvd2VkICVkXG4iLAor
+CQkJCWxpbWl0LCBzbXUtPm1heF9wb3dlcl9saW1pdCk7CisJCQlyZXR1cm4gLUVJTlZBTDsKKwkJ
+fQorCX0gZWxzZSBpZiAoKGxpbWl0ID4gc211LT5tYXhfcG93ZXJfbGltaXQpIHx8IChsaW1pdCA8
+IHNtdS0+bWluX3Bvd2VyX2xpbWl0KSkgewogCQlkZXZfZXJyKHNtdS0+YWRldi0+ZGV2LAogCQkJ
+Ik5ldyBwb3dlciBsaW1pdCAoJWQpIGlzIG91dCBvZiByYW5nZSBbJWQsJWRdXG4iLAogCQkJbGlt
+aXQsIHNtdS0+bWluX3Bvd2VyX2xpbWl0LCBzbXUtPm1heF9wb3dlcl9saW1pdCk7Cg==
+
+--b1_5XBYu9ZygzFr1zW5QM6H1s4QbXM5qp9WEjfFB0vxI0--
+
