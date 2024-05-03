@@ -2,49 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF138BA812
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 09:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1728BA80D
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 May 2024 09:50:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4E8112891;
-	Fri,  3 May 2024 07:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A54911288C;
+	Fri,  3 May 2024 07:50:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="lTewYTs2";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="U0Fo00mN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 230F510E6C2;
- Fri,  3 May 2024 05:12:37 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 798D3CE1818;
- Fri,  3 May 2024 05:12:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 243D6C116B1;
- Fri,  3 May 2024 05:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1714713154;
- bh=CqoZyhOSCmBy0sZ5Gg/UYcDTxCfEHRO6AHxKHOGnjPE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=lTewYTs2ryNk/sSYDnCRe/Ql77/NkLpuSu+2Ur4TLDXLvqGlanDBMa+SPV1o8dO8r
- GFd/liBdixcYIlR4cQ8tnVhD8pHMBsepIf9u0tvIIJxkFV3QonP06Wdv7D7AokNqNx
- of+GOzMAO3UyZ2WFxjGeKVHVbbJm4dcSFZi2xUlM=
-Date: Fri, 3 May 2024 07:12:32 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Linux Memory Management List <linux-mm@kvack.org>,
- amd-gfx@lists.freedesktop.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arch@vger.kernel.org,
- linux-usb@vger.kernel.org, netdev@vger.kernel.org,
- nouveau@lists.freedesktop.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA9010F6A1;
+ Fri,  3 May 2024 06:01:07 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4433a53G004818;
+ Fri, 3 May 2024 06:01:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=noN7kBLxq9TVGdHUBmY+gSoaFbzmaEzOs2TwYGDA4NA=; b=U0
+ Fo00mN+XXjGU8b/VaAv8ENQXxmXztOCDwkY1Qe1bQiafxAnopThnVdYwUX/Jf4Aa
+ xATL/sB5o1OokTs7y0NcRSRY1KEkcpwI84k40q31WC41CUkzv5Hg6utRT/K29FQv
+ pyuyOIwGZSfxj8AdrnRprofbH4RRj37b6KJDFo9P6EIGzu8K9KI3O7QDjOG2j4sJ
+ QjLUjeBQnrW6xQ49pG1m6ZYYd0u2BV8/dmUVxuEzs1gSxRTZ+wq4qbOMkncesqUt
+ 5PiFQWkY3M1pYZi5qYpZqyQd5uOIC8tp9Bs3zlkoJHEd50J/HNOPb4wC+J73gPP7
+ eO02QrtSpjm4vE6TKdDQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xv6q0td3h-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 03 May 2024 06:00:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44360wPC008346
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 3 May 2024 06:00:58 GMT
+Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 2 May 2024
+ 23:00:54 -0700
+Message-ID: <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
+Date: Fri, 3 May 2024 11:30:50 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [linux-next:master] BUILD REGRESSION
  9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
-Message-ID: <2024050342-slashing-froth-bcf9@gregkh>
+To: Greg KH <gregkh@linuxfoundation.org>, kernel test robot <lkp@intel.com>
+CC: Andrew Morton <akpm@linux-foundation.org>, Linux Memory Management List
+ <linux-mm@kvack.org>,
+ <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>
 References: <202405030439.AH8NR0Mg-lkp@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202405030439.AH8NR0Mg-lkp@intel.com>
+ <2024050342-slashing-froth-bcf9@gregkh>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2024050342-slashing-froth-bcf9@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: O6_fT_RHzM9at2lNZPzBwfaLMctBtVtb
+X-Proofpoint-GUID: O6_fT_RHzM9at2lNZPzBwfaLMctBtVtb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-03_03,2024-05-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 spamscore=0
+ mlxlogscore=726 malwarescore=0 phishscore=0 adultscore=0 clxscore=1011
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405030041
 X-Mailman-Approved-At: Fri, 03 May 2024 07:50:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,17 +96,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Ok, I'm getting tired of seeing these for the USB portion of the tree,
-so I went to look for:
 
-On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
-> |-- arc-randconfig-002-20240503
-> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
 
-This warning (same for all arches), but can't seem to find it anywhere.
+On 5/3/2024 10:42 AM, Greg KH wrote:
+> Ok, I'm getting tired of seeing these for the USB portion of the tree,
+> so I went to look for:
+> 
+> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
+>> |-- arc-randconfig-002-20240503
+>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
+> 
+> This warning (same for all arches), but can't seem to find it anywhere.
+> 
+> Any hints as to where it would be?
+> 
 
-Any hints as to where it would be?
+Hi Greg,
 
-thanks,
+  I think the hw_mode was not removed in hs_phy_setup and left unused.
 
-greg k-h
+  Thinh reported the same when there was a merge conflict into linux 
+next (that the hw_mode variable was removed in ss_phy_setup and should 
+be removed in hs_phy_setup as well):
+
+https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+
+  Perhaps that was missed ?
+
+Regards,
+Krishna,
