@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3CAB8BCB7A
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 760588BCB7B
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6277C112B25;
-	Mon,  6 May 2024 10:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9C2112F42;
+	Mon,  6 May 2024 10:00:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="gVR3UYBU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="UFNOXYEc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E6910FF8A;
- Fri,  3 May 2024 13:55:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1003C11228A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 May 2024 14:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,35 +22,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wAUAethpvBAW9bUj28ub4clrqxTLCy+9ZOCpM/HiZ8c=; b=gVR3UYBUGJsLR6H6U+VF74HBAL
- /qYsj2m/303tj4gwEOLmWRqcjnfS1ATSQwF/X+RPrv9iqLFA7ANhp6COf3GaYGlCW8YWj3fJ5Xc+m
- nDiNZQRWkmfbFWNBZoSiPHdFDNiUI8Jl/5gzTAOTQ9Ta046COh7G0o8uTvUwbiWx8RROMJ+FeppQa
- o8wCzTXkfmRNh0VD7+5/wWOFx7cwhdqjkytG/7k7pJpv22uh1ilRO2v4xmt2dm52XQF2l94PM9Siy
- wjdarYEi00Q7tonSjDvNJ/X/13vADDL+RykGWvZteZ4vYPTzyEkMhDE57sjjvIMWSYQjwHRwAvY4L
- XmVidCMw==;
+ bh=/nkjz9o1IcG6t1SYrlt9U7XwHkF7rAtM8hZd9QyhUH0=; b=UFNOXYEcsGl+REqp8rNvO4T5w2
+ C0b4+zyN5V0kb4a8txJlCuR+QHMsja5by5hCHY97yTUOelsL5O9ax3pXkW2ynoRta5AxPEguNGHn8
+ vSqdNkgg+A2qlido1OtV9tgz9f/hjO0NxDOjTb0sS86hd4EIMAz30OaHKjVT33e3CqowzfiSelXNP
+ bM30/+oeJppr3qD3/em+rrs0R53dtJ2a/+hhM5+wWcpQQzHFCNea6aawPhQFGgiEOQImppVVMHciO
+ eVZLUzFcrn3snIeyyyesWCMIu8uINb890yQysv2Fgev+JMSsWFSDHtFIfbrA+ILB9Z7OvcxLPd6Up
+ Tx81J29Q==;
 Received: from [84.65.0.132] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s2tNb-0008yk-Sc; Fri, 03 May 2024 15:55:16 +0200
-Message-ID: <42b6c88b-c0aa-4a33-8e5f-bb9bfd181308@igalia.com>
-Date: Fri, 3 May 2024 14:55:15 +0100
+ id 1s2tTK-00094K-7c; Fri, 03 May 2024 16:01:10 +0200
+Message-ID: <57d26797-76cf-4376-9563-24913c0c39fc@igalia.com>
+Date: Fri, 3 May 2024 15:01:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Documentation/gpu: Document the situation with
- unqualified drm-memory-
+Subject: Re: [RFC 5/5] drm/amdgpu: Only show VRAM in fdinfo if it exists
 Content-Language: en-GB
 To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
- Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
-References: <20240503123657.9441-1-tursulin@igalia.com>
- <736ba0a2-035b-4727-bbcc-437029420377@igalia.com>
- <2cdee989-f48d-4923-b12a-f09a1cc2b34d@igalia.com>
- <CADnq5_NAO_Ao0EJTO=MJxvR-KJkF1WCwKGV-9ami7qQdzf029w@mail.gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com
+References: <20240430172748.61576-1-tursulin@igalia.com>
+ <20240430172748.61576-6-tursulin@igalia.com>
+ <00d43d65-333e-4b2d-861e-11d01e7931b0@gmail.com>
+ <d76f9bb6-b5e1-449e-957f-e7fb965e5f9f@igalia.com>
+ <CADnq5_NqUNp=bEgnAQKA7VWa0S4eWzGenc-pC4m8any=uBPqrw@mail.gmail.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CADnq5_NAO_Ao0EJTO=MJxvR-KJkF1WCwKGV-9ami7qQdzf029w@mail.gmail.com>
+In-Reply-To: <CADnq5_NqUNp=bEgnAQKA7VWa0S4eWzGenc-pC4m8any=uBPqrw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 06 May 2024 09:59:59 +0000
@@ -69,102 +67,118 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/05/2024 14:39, Alex Deucher wrote:
-> On Fri, May 3, 2024 at 8:58 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
+On 03/05/2024 14:47, Alex Deucher wrote:
+> On Fri, May 3, 2024 at 3:50 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
 >>
 >>
->> [And I forgot dri-devel.. doing well!]
->>
->> On 03/05/2024 13:40, Tvrtko Ursulin wrote:
->>>
->>> [Correcting Christian's email]
->>>
->>> On 03/05/2024 13:36, Tvrtko Ursulin wrote:
+>> On 02/05/2024 14:16, Christian König wrote:
+>>> Am 30.04.24 um 19:27 schrieb Tvrtko Ursulin:
 >>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 >>>>
->>>> Currently it is not well defined what is drm-memory- compared to other
->>>> categories.
->>>>
->>>> In practice the only driver which emits these keys is amdgpu and in them
->>>> exposes the total memory use (including shared).
->>>>
->>>> Document that drm-memory- and drm-total-memory- are aliases to prevent
->>>> any
->>>> confusion in the future.
->>>>
->>>> While at it also clarify that the reserved sub-string 'memory' refers to
->>>> the memory region component.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Alex Deucher <alexander.deucher@amd.com>
->>>> Cc: Christian König <christian.keonig@amd.com>
+>>>> Do not emit the key-value pairs if the VRAM does not exist ie. VRAM
+>>>> placement is not valid and accessible.
 >>>
->>> Mea culpa, I copied the mistake from
->>> 77d17c4cd0bf52eacfad88e63e8932eb45d643c5. :)
+>>> Yeah, that's unfortunately rather misleading.
 >>>
+>>> Even APUs have VRAM or rather stolen system memory which is managed by
+>>> the graphics driver.
+>>>
+>>> We only have a single compute model which really doesn't have VRAM at all.
+>>
+>> Hm what is misleading and how more precisely? :) Maybe in other words,
+>> if is_app_apu is not the right criteria to know when TTM_PL_VRAM is
+>> impossible, what is? Is the compute model you mentio the only thing
+>> which sets is_app_apu and uses the dummy vram manager?
 > 
-> I'm not following.  What is the mistake from that commit?
+> Probably better to check if adev->gmc.real_vram_size is non-0.
 
-Just the spelling of Christian's last name in the email address, nothing 
-in the code itself. I failed to spot both that when copying the email 
-for git commit, and also failed to cc dri-devel so I am having a bad day.
+Hmm "real VRAM" - will that handle APUs correctly?
+
+I am looking at this:
+
+	if (!adev->gmc.is_app_apu) {
+		man->func = &amdgpu_vram_mgr_func;
+
+		err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
+		if (err)
+			return err;
+	} else {
+		man->func = &amdgpu_dummy_vram_mgr_func;
+		DRM_INFO("Setup dummy vram mgr\n");
+	}
+
+And assuming that unless the dummy manager is used, TTM_PL_VRAM will be 
+valid. Wrong assumption?
 
 Regards,
 
 Tvrtko
 
-> 
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>> Cc: Rob Clark <robdclark@chromium.org>
->>>> ---
->>>>    Documentation/gpu/drm-usage-stats.rst | 10 +++++++++-
->>>>    1 file changed, 9 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/gpu/drm-usage-stats.rst
->>>> b/Documentation/gpu/drm-usage-stats.rst
->>>> index 6dc299343b48..ef5c0a0aa477 100644
->>>> --- a/Documentation/gpu/drm-usage-stats.rst
->>>> +++ b/Documentation/gpu/drm-usage-stats.rst
->>>> @@ -128,7 +128,9 @@ Memory
->>>>    Each possible memory type which can be used to store buffer objects
->>>> by the
->>>>    GPU in question shall be given a stable and unique name to be
->>>> returned as the
->>>> -string here.  The name "memory" is reserved to refer to normal system
->>>> memory.
->>>> +string here.
->>>> +
->>>> +The region name "memory" is reserved to refer to normal system memory.
-> 
-> Is this supposed to mean drm-memory-memory?  That was my impression,
-> but that seems sort of weird.  Maybe we should just drop that
-> sentence.
-> 
+
 > Alex
 > 
->>>>    Value shall reflect the amount of storage currently consumed by the
->>>> buffer
->>>>    objects belong to this client, in the respective memory region.
->>>> @@ -136,6 +138,9 @@ objects belong to this client, in the respective
->>>> memory region.
->>>>    Default unit shall be bytes with optional unit specifiers of 'KiB'
->>>> or 'MiB'
->>>>    indicating kibi- or mebi-bytes.
->>>> +This is an alias for drm-total-<region> and only one of the two
->>>> should be
->>>> +present.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>> ---
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 29 +++++++++++++---------
+>>>>    1 file changed, 17 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+>>>> index a09944104c41..603a5c010f5d 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+>>>> @@ -83,25 +83,30 @@ void amdgpu_show_fdinfo(struct drm_printer *p,
+>>>> struct drm_file *file)
+>>>>         */
+>>>>        drm_printf(p, "pasid:\t%u\n", fpriv->vm.pasid);
+>>>> -    drm_printf(p, "drm-memory-vram:\t%llu KiB\n", stats.vram/1024UL);
+>>>>        drm_printf(p, "drm-memory-gtt: \t%llu KiB\n", stats.gtt/1024UL);
+>>>>        drm_printf(p, "drm-memory-cpu: \t%llu KiB\n", stats.cpu/1024UL);
+>>>> -    drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
+>>>> -           stats.visible_vram/1024UL);
+>>>> -    drm_printf(p, "amd-evicted-vram:\t%llu KiB\n",
+>>>> -           stats.evicted_vram/1024UL);
+>>>> -    drm_printf(p, "amd-evicted-visible-vram:\t%llu KiB\n",
+>>>> -           stats.evicted_visible_vram/1024UL);
+>>>> -    drm_printf(p, "amd-requested-vram:\t%llu KiB\n",
+>>>> -           stats.requested_vram/1024UL);
+>>>> -    drm_printf(p, "amd-requested-visible-vram:\t%llu KiB\n",
+>>>> -           stats.requested_visible_vram/1024UL);
+>>>>        drm_printf(p, "amd-requested-gtt:\t%llu KiB\n",
+>>>>               stats.requested_gtt/1024UL);
+>>>> -    drm_printf(p, "drm-shared-vram:\t%llu KiB\n",
+>>>> stats.vram_shared/1024UL);
+>>>>        drm_printf(p, "drm-shared-gtt:\t%llu KiB\n",
+>>>> stats.gtt_shared/1024UL);
+>>>>        drm_printf(p, "drm-shared-cpu:\t%llu KiB\n",
+>>>> stats.cpu_shared/1024UL);
+>>>> +    if (!adev->gmc.is_app_apu) {
+>>>> +        drm_printf(p, "drm-memory-vram:\t%llu KiB\n",
+>>>> +               stats.vram/1024UL);
+>>>> +        drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
+>>>> +               stats.visible_vram/1024UL);
+>>>> +        drm_printf(p, "amd-evicted-vram:\t%llu KiB\n",
+>>>> +               stats.evicted_vram/1024UL);
+>>>> +        drm_printf(p, "amd-evicted-visible-vram:\t%llu KiB\n",
+>>>> +               stats.evicted_visible_vram/1024UL);
+>>>> +        drm_printf(p, "amd-requested-vram:\t%llu KiB\n",
+>>>> +               stats.requested_vram/1024UL);
+>>>> +        drm_printf(p, "amd-requested-visible-vram:\t%llu KiB\n",
+>>>> +               stats.requested_visible_vram/1024UL);
+>>>> +        drm_printf(p, "drm-shared-vram:\t%llu KiB\n",
+>>>> +               stats.vram_shared/1024UL);
+>>>> +    }
 >>>> +
->>>>    - drm-shared-<region>: <uint> [KiB|MiB]
->>>>    The total size of buffers that are shared with another file (e.g.,
->>>> have more
->>>> @@ -145,6 +150,9 @@ than a single handle).
->>>>    The total size of buffers that including shared and private memory.
->>>> +This is an alias for drm-memory-<region> and only one of the two
->>>> should be
->>>> +present.
->>>> +
->>>>    - drm-resident-<region>: <uint> [KiB|MiB]
->>>>    The total size of buffers that are resident in the specified region.
+>>>>        for (hw_ip = 0; hw_ip < AMDGPU_HW_IP_NUM; ++hw_ip) {
+>>>>            if (!usage[hw_ip])
+>>>>                continue;
+>>>
