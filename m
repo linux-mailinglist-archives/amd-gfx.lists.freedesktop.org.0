@@ -2,76 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6AB8BCB79
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 979A98BCB6F
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE56C112F3D;
-	Mon,  6 May 2024 10:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7298B112BB2;
+	Mon,  6 May 2024 10:00:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="MFa/E2S7";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="rTKSWbdi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
- Sat, 04 May 2024 17:19:37 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E65310F392;
- Sat,  4 May 2024 17:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1714843175; x=1715447975; i=markus.elfring@web.de;
- bh=8EY+oLHPDjY0oukUia2BXNUBXF5grFb2F8ZohoyJXik=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
- Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=MFa/E2S7UgmuCsybUSlQyznEv/0V6VeSqrVn1la+VpMa2bNh3f+qZQgfHq3o/mIS
- UVIZ4X4sASupPFXp+dGx4/J+qPgaVlpBg3mufXktTBAMGHZEloW+tsyrJWxBGfEcD
- 0OLjrguwCeTim0dB9hQLGVaaKapy/kLxGTh8S0VqEf5QddjtUxWZMWrfjvbvz1AJK
- RrDUSMr8kv9UJ2bB0Wfew/a+AE4/WFoqocyDT6o/6bO48zrmYqQXjSRFF10s/VMPy
- Q8rvGNaM4OVrXmFLUG5M2+dmW4KX6mvYEORU2AYbAco4ikJYl9OgXROViDJHUNbUr
- DoZ+NgTj1IiXzYKSgg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MALeD-1rwOH53y1L-00BtK8; Sat, 04
- May 2024 19:13:45 +0200
-Message-ID: <d56a6e3f-1371-4bb7-8947-1c2468e4d677@web.de>
-Date: Sat, 4 May 2024 19:13:32 +0200
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+ [209.85.208.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD5810FCCF
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 May 2024 19:35:20 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id
+ 38308e7fff4ca-2e2a4c20870so9344421fa.3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 04 May 2024 12:35:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1714851318; x=1715456118; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=cdVSQr/7CPcSlh4WK6ZvPRfcGlbe0X3nwpemri+xm6k=;
+ b=rTKSWbdid0IxcfW199Atetj/UvqsFMvkwmjX+1YgMpbllvS3jk527ubppsKGM1NUjv
+ 1DfEopvflCtS1HSyBHNISamRp/XpAvrRq5c6oNp15pDePgdGP4Q0djh02lyVkGU3UQuq
+ 7B8oKIwq5ITeDzaGRVmKWsflwyKhFZNtSCVXWOOlHCSOSmssNCb+d+BZqjIDLQraduO4
+ CL+cNCFXqd9pwxqErFE7GxKAFKOOBJXFSf918FNG12nL/WTZur/6Ga2sJh0a1SXbWn6F
+ ku+XLHNJqaHuxhJzXb5qPloN8Zud2O4350UqQxMElBFoLyo72ZwWEKYGR2c0D3n5mu84
+ 5x6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714851318; x=1715456118;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=cdVSQr/7CPcSlh4WK6ZvPRfcGlbe0X3nwpemri+xm6k=;
+ b=taYlqsDUAZ3o42E7VH3iuLEpuOjMQ0FJg0lFKWYa3sd5YVrE4tCQRQEA5e+QuTDjT1
+ mzPn8zpp+t/8E8oFSx/8skHUNO2V4ocEkgsHkJOxEajCQ6GFOWnuEOPa3oXBN91c8ndu
+ sfvW/vA/vTBwHt+34+KeFkTOZDjznDVA6Hx1V9Coj9gOdDbGfunE9bxTIun6Qn9ZMnWl
+ VfWpuLJOXVw0Nd2VQmp1FoowcPQcegOabVKoB0R18oC7RivyoQkTw9/Cl3fmw9D9TOYh
+ icRW2FyUmMByjdjjVNHcSBcHxpe+zhyE1WkvoCtaSGz/4lA9Z85770p4ivNWBKrkt8Js
+ C0Kg==
+X-Gm-Message-State: AOJu0Yx3L2MlYmwkVsDMrSvfdoyoWOtz/q4+jZFRaoaGPuhMZvImO6hF
+ F2RuIe6MlEFaERmqM7E8oSFFkdijb6XFpIPBgPSkH+KFmysBP20TWAvtpKuisJc=
+X-Google-Smtp-Source: AGHT+IFLDscnsfbimEunCA6BjoBMvxcyRsk4PiPHBiYqu/BCr6t3Zyor6hntyTEhiVgqSwcquXuWGQ==
+X-Received: by 2002:a2e:990c:0:b0:2df:b8f5:2e66 with SMTP id
+ v12-20020a2e990c000000b002dfb8f52e66mr3593924lji.15.1714851317635; 
+ Sat, 04 May 2024 12:35:17 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ fc16-20020a05600c525000b00418d68df226sm13961554wmb.0.2024.05.04.12.35.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 04 May 2024 12:35:17 -0700 (PDT)
+Date: Sat, 4 May 2024 22:35:13 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: sreekant.somasekharan@amd.com
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [bug report] drm/amdkfd: mark GFX12 system and peer GPU memory
+ mappings as MTYPE_NC
+Message-ID: <52b003ec-a570-49f5-9150-79f8feb46339@moroto.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Dan Carpenter <dan.carpenter@linaro.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Evan Quan <evan.quan@amd.com>, Jesse Zhang <jesse.zhang@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- Tim Huang <Tim.Huang@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Ruan Jinjie <ruanjinjie@huawei.com>
-References: <502fda28-fde7-4851-b17f-4d48848955bc@moroto.mountain>
-Subject: Re: [PATCH] drm/amd/pm: Fix error code in vega10_hwmgr_backend_init()
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <502fda28-fde7-4851-b17f-4d48848955bc@moroto.mountain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:R4Feujz3Sedv4K1I8WBs3oUsw+U9QOY1XAljRflhO2ZnewvfQOp
- pJcpDcxO7H96nyn7GHcdNBx8WOHb4Q1DHBNge0eq7YoqkC9nl8d2R4hxh8pkEYOA5LVkLXR
- 6W9tDhP9UzdwArPm1T5GCkAsmFu7PaZrtFWFvjjQHU5DG5F8mkbpT+jKKOhtWp/snom2AQR
- UOLrtdC2WYCqoexOk3lmA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:dEUQexGZZOA=;cpXSBKmVB1VR41P5ZhQ2s9uA6YK
- pdfTPL/AF1AtquVXPkPy5RlgOKchR/lXpGZJzUcdoloGpU3Li5TwXcFKgRxvI4RbgEZiHx/du
- mq6xsLCp8gLYtZi//hQNp9sRVHBngtOZMQnAx6g0FZ49bmDh7fOel8E9M49gzE54dx/5g6bXl
- gzOIN/LmRuTZfQxkyObBS0LRoF8IGMvm5xAX+8EWW8clFW1HyWjom9VneNUrFAIN3XbLQgK8h
- a6TH0Ohbf9upcU5Rgkgr4rd/vL136oVWbDOAuILQjt3nK1PLfBWzRICt4RwEDSjHaPT5xorb6
- 7LB36EjT6TAYhtm2NZUBPfCQ65XvKsLrNDEg8dcQ5mc7DhWJyzUM3BADBGhJ/TNc0IHDFk4iJ
- Gi5+QQ9GQj+lP9PJILNEN8aCNG95ueen3p4wVbMed/Dxz87LUOAUtDn4mvHOMatQPDk7p4x7F
- PhlXN6LtslC+GhMQpqdE29Zu8MyLb4zEPF3k/CJ9XzUEbWcJxk8DBpMKK+hYAZecsCX+wTAbX
- lSzAqFRryxCPW8T46FUBmLmbn53nJjSZg4KBVdG6XDbw7JQ5VLy5/V8YtMku7GxpB27xspIRu
- kzK5R0SB8NcmdoSLyeRIp7mAguxG71aJf42bNJUbgbVFPu3KJ6sRkza6zz1gCWSN47G7kqjq5
- Pers/9miI0dPuZ23/GU0A8d3embJFb2ckzfJsYv10iXXesL5ysbmncDQvu61V4lyhOYLYU8pY
- 6RADH8eN4pAv8k4LRrfjLLMh5fKIB0hWG08GJNGFFQTd5haj+eG8FqvJHqeYBUAYZmhs0rQDA
- XqkZgmo7M8owPtXNFTXcm9Rs19SFcTagEt5q4V/Fcba4mVDCF9K56K43J7lbK+4n0w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Mon, 06 May 2024 09:59:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,12 +76,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> Return -EINVAL on error instead of success.  Also on the success path,
-> return a literal zero instead of "return result;"
+Hello Sreekant Somasekharan,
 
-How do you think about to omit the initialisation for the variable =E2=80=
-=9Cresult=E2=80=9D
-in another update step?
+This is a semi-automatic email about new static checker warnings.
 
-Regards,
-Markus
+Commit 628e1ace2379 ("drm/amdkfd: mark GFX12 system and peer GPU
+memory mappings as MTYPE_NC") from Mar 26, 2024, leads to the
+following Smatch complaint:
+
+    drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c:518 gmc_v12_0_get_vm_pte()
+    warn: variable dereferenced before check 'bo' (see line 500)
+
+drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+   499		struct amdgpu_bo *bo = mapping->bo_va->base.bo;
+   500		struct amdgpu_device *bo_adev = amdgpu_ttm_adev(bo->tbo.bdev);
+                                                                ^^^^
+   501		bool coherent = bo->flags & AMDGPU_GEM_CREATE_COHERENT;
+                                ^^^^^^^^^
+   502		bool is_system = bo->tbo.resource->mem_type == TTM_PL_SYSTEM;
+                                 ^^^^^^^
+The patch adds unchecked dereferences.
+
+   503	
+   504	
+   505		*flags &= ~AMDGPU_PTE_EXECUTABLE;
+   506		*flags |= mapping->flags & AMDGPU_PTE_EXECUTABLE;
+   507	
+   508		*flags &= ~AMDGPU_PTE_MTYPE_GFX12_MASK;
+   509		*flags |= (mapping->flags & AMDGPU_PTE_MTYPE_GFX12_MASK);
+   510	
+   511		if (mapping->flags & AMDGPU_PTE_PRT_GFX12) {
+   512			*flags |= AMDGPU_PTE_PRT_GFX12;
+   513			*flags |= AMDGPU_PTE_SNOOPED;
+   514			*flags |= AMDGPU_PTE_SYSTEM;
+   515			*flags &= ~AMDGPU_PTE_VALID;
+   516		}
+   517	
+   518		if (bo && bo->flags & (AMDGPU_GEM_CREATE_COHERENT |
+                    ^^
+But previously we assumed bo could be NULL.
+
+   519				       AMDGPU_GEM_CREATE_UNCACHED))
+   520			*flags = (*flags & ~AMDGPU_PTE_MTYPE_GFX12_MASK) |
+
+regards,
+dan carpenter
