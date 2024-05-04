@@ -2,75 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388818BCB74
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6AB8BCB79
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:00:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2DC112F30;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE56C112F3D;
 	Mon,  6 May 2024 10:00:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="fwFVglgz";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="MFa/E2S7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
- [209.85.167.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5307610F1CA
- for <amd-gfx@lists.freedesktop.org>; Sat,  4 May 2024 11:39:08 +0000 (UTC)
-Received: by mail-lf1-f47.google.com with SMTP id
- 2adb3069b0e04-51f74fa2a82so531890e87.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 04 May 2024 04:39:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1714822746; x=1715427546; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=qJQr+N2iqh0CtzNmBbGY4L46Wh//FbWkaD2H/7huYvs=;
- b=fwFVglgzYqq7H2zqYDZ/UmffysYbLnE2pbiWll/GBkNLsC89/1yuRKgS8HWzVpRZPz
- TJ75FrKVcVp2Iy7V8q0H9taSb3gD3KCeM+TzZTuW4+YUUGMsI4hUbbpg6rHmmLAU2aTV
- vRM9WH8qSyiaCxp5X8f05OiAI5/z1UYLqHdzvfWfJx++rcVlbEqfHMra9mqoTWmCjdrJ
- UpG75ifWdTpGGN8pF/cASALS2juJIvpfpQvoaaEjBXzU6CE8srUh9TlegyoUyalo+Cbn
- 4i9K+8N7+NiHzYC/M5YOXS5d5Esa5B1nNAe2IeJGcAxZpmsyQkLsEfceAVN/Ex/r7D8M
- jPBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714822746; x=1715427546;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qJQr+N2iqh0CtzNmBbGY4L46Wh//FbWkaD2H/7huYvs=;
- b=QjAWqIheqh03sdtTDP+Y1NiwFYoCqwiIYAMM6Z2xTHkbo7fDWoyJLdZwPhEvwx9qpy
- iVSCnz3YisAtw5525qg3cQSODZDRai/C68vIydy5CqgRcUv+XumHJjB2tE9nMSTGCPIc
- WTW0gywmcHEHtXXIe52oRbBzdii/xg+nV5kS7XqIL4o5fGDBuwxnaA0P5HykL11watUr
- ipZXS5ghEefNbaE1CR5iuUZOB+DGJAS5LjbOaNX0hBcB/ViitwWsbV1FEhNMyq+4b7kX
- DR3bVUoV+9yLuaAHOSbQah2VVJOiyUA+H9hVo9UeRylK2M/6b45ebSRcSsl2528FPWYa
- 137Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXRDLLvHJtAFeCo/1enpbB07wBkargD1W+09d8ZUWfANv8s6ZKtvB+dhZ1G8KHQ4mpyeTJyPCArA1/6Wq5oAd1mQclKhM+KbVKftoFiOQ==
-X-Gm-Message-State: AOJu0YyZevE9QSxbo3yxrNtuYWnHYtmcYr/b+rlQVF6nRNc5Pfywpwp4
- JwziYXOcE64dqqp2X/whsf8TgQWSr/HzMHPrjSooWJDaPu0QUPrnE6SMr2LhNpI=
-X-Google-Smtp-Source: AGHT+IF7aOCE2HjYaAJh5yWG3SZAbTJBfjHo58pHIPQhrrqnKxi6kzUXvdANtDldvdgnmxcG20+dZA==
-X-Received: by 2002:a19:4311:0:b0:51c:d8f6:4e6f with SMTP id
- q17-20020a194311000000b0051cd8f64e6fmr3921509lfa.40.1714822746039; 
- Sat, 04 May 2024 04:39:06 -0700 (PDT)
-Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- ay2-20020a05600c1e0200b00418948a5eb0sm12776941wmb.32.2024.05.04.04.39.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 04 May 2024 04:39:05 -0700 (PDT)
-Date: Sat, 4 May 2024 14:39:02 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
- Yang Wang <kevinyang.wang@amd.com>, "Stanley.Yang" <Stanley.Yang@amd.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>, Candice Li <candice.li@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: delete unnecessary check
-Message-ID: <3f9ce1f6-c7fe-401d-b958-395948f4c6ae@moroto.mountain>
+X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
+ Sat, 04 May 2024 17:19:37 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E65310F392;
+ Sat,  4 May 2024 17:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1714843175; x=1715447975; i=markus.elfring@web.de;
+ bh=8EY+oLHPDjY0oukUia2BXNUBXF5grFb2F8ZohoyJXik=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+ Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=MFa/E2S7UgmuCsybUSlQyznEv/0V6VeSqrVn1la+VpMa2bNh3f+qZQgfHq3o/mIS
+ UVIZ4X4sASupPFXp+dGx4/J+qPgaVlpBg3mufXktTBAMGHZEloW+tsyrJWxBGfEcD
+ 0OLjrguwCeTim0dB9hQLGVaaKapy/kLxGTh8S0VqEf5QddjtUxWZMWrfjvbvz1AJK
+ RrDUSMr8kv9UJ2bB0Wfew/a+AE4/WFoqocyDT6o/6bO48zrmYqQXjSRFF10s/VMPy
+ Q8rvGNaM4OVrXmFLUG5M2+dmW4KX6mvYEORU2AYbAco4ikJYl9OgXROViDJHUNbUr
+ DoZ+NgTj1IiXzYKSgg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MALeD-1rwOH53y1L-00BtK8; Sat, 04
+ May 2024 19:13:45 +0200
+Message-ID: <d56a6e3f-1371-4bb7-8947-1c2468e4d677@web.de>
+Date: Sat, 4 May 2024 19:13:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+User-Agent: Mozilla Thunderbird
+To: Dan Carpenter <dan.carpenter@linaro.org>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Evan Quan <evan.quan@amd.com>, Jesse Zhang <jesse.zhang@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Tim Huang <Tim.Huang@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Ruan Jinjie <ruanjinjie@huawei.com>
+References: <502fda28-fde7-4851-b17f-4d48848955bc@moroto.mountain>
+Subject: Re: [PATCH] drm/amd/pm: Fix error code in vega10_hwmgr_backend_init()
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <502fda28-fde7-4851-b17f-4d48848955bc@moroto.mountain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:R4Feujz3Sedv4K1I8WBs3oUsw+U9QOY1XAljRflhO2ZnewvfQOp
+ pJcpDcxO7H96nyn7GHcdNBx8WOHb4Q1DHBNge0eq7YoqkC9nl8d2R4hxh8pkEYOA5LVkLXR
+ 6W9tDhP9UzdwArPm1T5GCkAsmFu7PaZrtFWFvjjQHU5DG5F8mkbpT+jKKOhtWp/snom2AQR
+ UOLrtdC2WYCqoexOk3lmA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:dEUQexGZZOA=;cpXSBKmVB1VR41P5ZhQ2s9uA6YK
+ pdfTPL/AF1AtquVXPkPy5RlgOKchR/lXpGZJzUcdoloGpU3Li5TwXcFKgRxvI4RbgEZiHx/du
+ mq6xsLCp8gLYtZi//hQNp9sRVHBngtOZMQnAx6g0FZ49bmDh7fOel8E9M49gzE54dx/5g6bXl
+ gzOIN/LmRuTZfQxkyObBS0LRoF8IGMvm5xAX+8EWW8clFW1HyWjom9VneNUrFAIN3XbLQgK8h
+ a6TH0Ohbf9upcU5Rgkgr4rd/vL136oVWbDOAuILQjt3nK1PLfBWzRICt4RwEDSjHaPT5xorb6
+ 7LB36EjT6TAYhtm2NZUBPfCQ65XvKsLrNDEg8dcQ5mc7DhWJyzUM3BADBGhJ/TNc0IHDFk4iJ
+ Gi5+QQ9GQj+lP9PJILNEN8aCNG95ueen3p4wVbMed/Dxz87LUOAUtDn4mvHOMatQPDk7p4x7F
+ PhlXN6LtslC+GhMQpqdE29Zu8MyLb4zEPF3k/CJ9XzUEbWcJxk8DBpMKK+hYAZecsCX+wTAbX
+ lSzAqFRryxCPW8T46FUBmLmbn53nJjSZg4KBVdG6XDbw7JQ5VLy5/V8YtMku7GxpB27xspIRu
+ kzK5R0SB8NcmdoSLyeRIp7mAguxG71aJf42bNJUbgbVFPu3KJ6sRkza6zz1gCWSN47G7kqjq5
+ Pers/9miI0dPuZ23/GU0A8d3embJFb2ckzfJsYv10iXXesL5ysbmncDQvu61V4lyhOYLYU8pY
+ 6RADH8eN4pAv8k4LRrfjLLMh5fKIB0hWG08GJNGFFQTd5haj+eG8FqvJHqeYBUAYZmhs0rQDA
+ XqkZgmo7M8owPtXNFTXcm9Rs19SFcTagEt5q4V/Fcba4mVDCF9K56K43J7lbK+4n0w
 X-Mailman-Approved-At: Mon, 06 May 2024 09:59:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,36 +87,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The "ret" variable is zero.  No need to check.
+> Return -EINVAL on error instead of success.  Also on the success path,
+> return a literal zero instead of "return result;"
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+How do you think about to omit the initialisation for the variable =E2=80=
+=9Cresult=E2=80=9D
+in another update step?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index a037e8fba29f..4d50fb039509 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2807,7 +2807,7 @@ static void amdgpu_ras_do_page_retirement(struct work_struct *work)
- static void amdgpu_ras_poison_creation_handler(struct amdgpu_device *adev,
- 				uint32_t timeout_ms)
- {
--	int ret = 0;
-+	int ret;
- 	struct ras_ecc_log_info *ecc_log;
- 	struct ras_query_if info;
- 	uint32_t timeout = timeout_ms;
-@@ -2836,8 +2836,7 @@ static void amdgpu_ras_poison_creation_handler(struct amdgpu_device *adev,
- 		return;
- 	}
- 
--	if (!ret)
--		schedule_delayed_work(&ras->page_retirement_dwork, 0);
-+	schedule_delayed_work(&ras->page_retirement_dwork, 0);
- }
- 
- static int amdgpu_ras_poison_consumption_handler(struct amdgpu_device *adev,
--- 
-2.43.0
-
+Regards,
+Markus
