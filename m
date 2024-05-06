@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77A378BD37B
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 19:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084DB8BD379
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 19:00:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11D8C1122C0;
-	Mon,  6 May 2024 17:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 925841122B2;
+	Mon,  6 May 2024 17:00:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Hvooj57h";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jBadRP9f";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8927310FF35
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2024 17:00:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CBB51122B2
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2024 17:00:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,24 +22,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=F5Jjsf6L5e6gu/GOqTMxP/sUj7SINu6NJHzC6p2eyqE=; b=Hvooj57h2XIlMce4lfnT5T85NO
- 9v1fRpKsoEp8q+w5UrxYyDfvFd3VD2LVF1ltwEouhC2YZSLQw1qZS7C30x/fG1EMl8a61N7I4U+km
- jINuG1v/99rP+SFhzyBtKSzA3MIsWve1yBBYAaPSPBQSPBZlG5RxcaTxXARRtzbZWYJgLQWW6r1t4
- 3pDhvErcwNO0zVbjGwjfDsFyz7qf1lN6H7gn/sGUwlQqQQq/gHpoHaLgoyIl3E0xG3Z4MKcg8R/B9
- MuYmFlTrBArkiwsz5SGmQyHBzMsmSyMgxLHZVzWXpOX5bf2szdJgEXmzavsso9ZmNHUWk7Klrophz
- p8gpvoVA==;
+ bh=fb6BsfncjTlVi5sfzTbt+nl+2Ah8/gn2rYXlBLIlNTo=; b=jBadRP9fTpkkQMA0fZGaMWqHu6
+ sRUqKKCdQiZgsfJCudTeObd/pDCFc5Y5LwsQhTpverjMrSiQRTbuVqZyZT8UrZS4UdBOKQ/ayZsn8
+ 8wuRGJngdab3ihfnOA4oQc0Eym/ZrrJ37tfoEzKg0bf0Yjv23NwBEQ6nNovWAQ68ZBwMZZOf7Qgbs
+ a1NXSCV+c75wQcZCaG6F9RhIIUNB/VdI7nIpMA2IJU0enNjMCpNBIzsYOg+iililSEZ8nM0zjo8d4
+ BtIfuylxWHa4UruVlxReuO7m+X6bcfGJ02uKadshcQjGN8AgHruvlp8WuBU6V7pWN9my0JIIDvajb
+ kEYM1nIw==;
 Received: from [84.69.19.168] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1s41h6-001QfJ-3Z; Mon, 06 May 2024 19:00:04 +0200
+ id 1s41h6-001QfL-Qz; Mon, 06 May 2024 19:00:05 +0200
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>
-Subject: [PATCH 3/5] drm/amdgpu: Describe all object placements in debugfs
-Date: Mon,  6 May 2024 17:59:57 +0100
-Message-ID: <20240506165959.50648-4-tursulin@igalia.com>
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.keonig@amd.com>,
+ Rob Clark <robdclark@chromium.org>
+Subject: [PATCH 4/5] Documentation/gpu: Document the situation with
+ unqualified drm-memory-
+Date: Mon,  6 May 2024 17:59:58 +0100
+Message-ID: <20240506165959.50648-5-tursulin@igalia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240506165959.50648-1-tursulin@igalia.com>
 References: <20240506165959.50648-1-tursulin@igalia.com>
@@ -62,43 +64,93 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Accurately show all placements when describing objects in debugfs, instead
-of bunching them up under the 'CPU' placement.
+Currently it is not well defined what is drm-memory- compared to other
+categories.
+
+In practice the only driver which emits these keys is amdgpu and in them
+exposes the total memory use (including shared).
+
+To prevent any confusion, document that drm-memory- is deprecated and an
+alias to drm-total-memory-.
+
+While at it also clarify that the reserved sub-string 'memory' refers to
+the memory region component, and also clarify the intended semantics of
+other memory categories.
+
+v2:
+ * Also mark drm-memory- as deprecated.
+ * Add some more text describing memory categories. (Alex)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.keonig@amd.com>
+Cc: Rob Clark <robdclark@chromium.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ Documentation/gpu/drm-usage-stats.rst | 25 ++++++++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 4f9073dd19eb..fa5227a4aac2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1612,6 +1612,21 @@ u64 amdgpu_bo_print_info(int id, struct amdgpu_bo *bo, struct seq_file *m)
- 		case TTM_PL_TT:
- 			placement = "GTT";
- 			break;
-+		case AMDGPU_PL_GDS:
-+			placement = "GDS";
-+			break;
-+		case AMDGPU_PL_GWS:
-+			placement = "GWS";
-+			break;
-+		case AMDGPU_PL_OA:
-+			placement = "OA";
-+			break;
-+		case AMDGPU_PL_PREEMPT:
-+			placement = "PREEMPTIBLE";
-+			break;
-+		case AMDGPU_PL_DOORBELL:
-+			placement = "DOORBELL";
-+			break;
- 		case TTM_PL_SYSTEM:
- 		default:
- 			placement = "CPU";
+diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
+index 6dc299343b48..7fee316c9582 100644
+--- a/Documentation/gpu/drm-usage-stats.rst
++++ b/Documentation/gpu/drm-usage-stats.rst
+@@ -128,7 +128,9 @@ Memory
+ 
+ Each possible memory type which can be used to store buffer objects by the
+ GPU in question shall be given a stable and unique name to be returned as the
+-string here.  The name "memory" is reserved to refer to normal system memory.
++string here.
++
++The region name "memory" is reserved to refer to normal system memory.
+ 
+ Value shall reflect the amount of storage currently consumed by the buffer
+ objects belong to this client, in the respective memory region.
+@@ -136,6 +138,9 @@ objects belong to this client, in the respective memory region.
+ Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
+ indicating kibi- or mebi-bytes.
+ 
++This key is deprecated and is an alias for drm-total-<region>. Only one of the
++two should be present.
++
+ - drm-shared-<region>: <uint> [KiB|MiB]
+ 
+ The total size of buffers that are shared with another file (e.g., have more
+@@ -143,20 +148,34 @@ than a single handle).
+ 
+ - drm-total-<region>: <uint> [KiB|MiB]
+ 
+-The total size of buffers that including shared and private memory.
++The total size of all created buffers including shared and private memory. The
++backing store for the buffers does not have to be currently instantiated to be
++counted under this category.
++
++This is an alias for drm-memory-<region> and only one of the two should be
++present.
+ 
+ - drm-resident-<region>: <uint> [KiB|MiB]
+ 
+-The total size of buffers that are resident in the specified region.
++The total size of buffers that are resident (have their backing store present or
++instantiated) in the specified region.
+ 
+ - drm-purgeable-<region>: <uint> [KiB|MiB]
+ 
+ The total size of buffers that are purgeable.
+ 
++For example drivers which implement a form of 'madvise' like functionality can
++here count buffers which have instantiated backing store, but have been marked
++with an equivalent of MADV_DONTNEED.
++
+ - drm-active-<region>: <uint> [KiB|MiB]
+ 
+ The total size of buffers that are active on one or more engines.
+ 
++One practical example of this can be presence of unsignaled fences in an GEM
++buffer reservation object. Therefore the active category is a subset of
++resident.
++
+ Implementation Details
+ ======================
+ 
 -- 
 2.44.0
 
