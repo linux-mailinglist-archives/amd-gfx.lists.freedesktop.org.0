@@ -2,123 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518CE8BCB58
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 11:57:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C65C58BCB83
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 May 2024 12:01:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 289EF10EB15;
-	Mon,  6 May 2024 09:57:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 409D8112F47;
+	Mon,  6 May 2024 10:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JH5dZvs3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WQrWM5Bf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C90310EBCD
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:57:09 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2047.outbound.protection.outlook.com [40.107.236.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C804F112F47
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2024 10:01:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SAJlL9NxGHkNktp54JPN7+FdPAbkifKVgNZ1+Ecv2KHfECwb5wkyBWj0jtvtA0eVGDA0ak2zElJuBdr7lZgy0wAhboKKefKZsph/pBko25voXPFUscsZtjg7rjSbgxwyns9SHgx0C9stdm7DRo9T4zhfjOkTM9yjiRMMu4Fb+108U2b8QrQUXc3nOad743t+p+tEFsdwJKA4HlOhkEUYuRNheBgDJsj3k5isqcD2uKau8YHIGsFo8GT2kUDTtXQoYF6dkfXRb8Uw+wwyVTNKv2FH9vpVXZ8Ng/aXOkXeA9zAxnANa4/Q2K7Ef92O3y1IOt1Tey+huPkn5aCXeIZdIQ==
+ b=X69zMFwvRproMmPh6hZe5FBPmGaEHg6XPZHjQx2Lz0ctqnB9jHNEFznjLuOYSejkxeDM3EY32/17TgUtnDJ+w7YR2kyKzSh+ViRx4filw3BWb/21e0nEabju68vubsxEFFQKQ8UlpZzfhOsRH2JnGXpyH0S8oCRFRb9/phThYJT3JhzMIT7Gt51zG+Li6wCzNTzVOBX5M38J7HxaUPzuuP8VXmZiJ4MFL8mIt3+L4IJeqrkpxQnixe/9w7l0y9ifoKP/Wcc91CNBu0wn/Vgm7+Tf4DuSJVVQDegD/AHktYK+010SFq9+EBlrETUpuOpRz2B+zJkR4Fp/zHBnfoqB4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HbFTtp0eqJFBcSppqyLPAcA39AW3uSO1yxlxC2Qf+Pc=;
- b=m3xVqA3dGYUx7yAe1znlbbJKmL4G/PygM3U08SYwEPigDbMZ5lLDe8FznCtimpKbC7nj88o+eCAumrJdDfoyzRaxwtUr0l432GgJptTP4yz24Fc93FNAbu8i08cIL+MIwFbcHQgl916o7/i0COIBRbAIgtOsJhenM1/jX+NuApcEUNQBTSbY6glMP1gy73L0ZatjL2/AI+oAtZpPJ5ktr2eIszcmhlEnkqt8gephtGTXKYAYPUIDt7FQuESk3OPng0ycENGLLdhT2Vt0Dp8DsH5i44tNAj1NcIARl0GX+jlUXbZj5bZN7F1lccCf/5hIWlOXg6fvkc2tCJisOXT4mA==
+ bh=sWpnoD0qWGs0V+5HCmNh0lbfSAIK8sS4QLsQ+GZDsF8=;
+ b=oW+i+0aqICEl/yw23HNKfLIXpaC78bqSM/oZkj4eE1o6bGbMzHRIEjdICwI6aayl4sS44ija5P5BVsKyidRWbIFmGJ+Fytk6Rk/S2jN+ynh4OyuFG2EuCMvox/6vHbzxD0EKs28+IxGZVMKc0K/iOVC4ozC5vMVW2h51wZd/Kd8HsSM1dJSzd6rGnRFNICPk/XUvJ87g4jin1QspPY2Re4rxp+xxkOcl3XIeue/ikYLjl7kT7kaXZ5GNQgMFN7xR2i6U31EoO+Yyo0xLwIcev33jKSFVrs3cRaJ53+cKz8Fx4FmiK3CoZcq0uerDxpq14SHlZa15oq2BdTNqio3FyA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HbFTtp0eqJFBcSppqyLPAcA39AW3uSO1yxlxC2Qf+Pc=;
- b=JH5dZvs3WMdpFNJ8NnnSbtC1iijJF7S+w8FmfZLJ+tPB0fgaARzcFq+UX4tKgRVWYoGk6heiXAYmzGSAH+x65qMPsYSAGhDF8O4z+huDM2qNWeBIl7lGpdhKjrOckD/CFMMmOpQBHuogj5ltBYb32NvR/Vs53IGAos40HsgTeL4=
-Received: from SA1P222CA0132.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c2::15)
- by PH0PR12MB8822.namprd12.prod.outlook.com (2603:10b6:510:28d::17)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=sWpnoD0qWGs0V+5HCmNh0lbfSAIK8sS4QLsQ+GZDsF8=;
+ b=WQrWM5Bfwgag86Fy10G7Aq1IU689Z7TLA7zsg7iB/630phSx+RqcklJmxPqAvLHHAWSYVqCv+/+OrfdSrB2hx/5zswTaITlLtXg6RECmzRL1mG+HVvb8aK2Wqri+A9HOcod5Qcg/Vinu7WpWdeW5hkcuFubb1HaU8r9C3DIGOfo=
+Received: from PH0PR07CA0106.namprd07.prod.outlook.com (2603:10b6:510:4::21)
+ by MN0PR12MB6053.namprd12.prod.outlook.com (2603:10b6:208:3cf::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Mon, 6 May
- 2024 09:57:06 +0000
-Received: from SA2PEPF00003AE5.namprd02.prod.outlook.com
- (2603:10b6:806:3c2:cafe::f3) by SA1P222CA0132.outlook.office365.com
- (2603:10b6:806:3c2::15) with Microsoft SMTP Server (version=TLS1_2,
+ 2024 10:01:26 +0000
+Received: from SN1PEPF00036F43.namprd05.prod.outlook.com
+ (2603:10b6:510:4:cafe::5f) by PH0PR07CA0106.outlook.office365.com
+ (2603:10b6:510:4::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41 via Frontend
- Transport; Mon, 6 May 2024 09:57:06 +0000
+ Transport; Mon, 6 May 2024 10:01:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF00003AE5.mail.protection.outlook.com (10.167.248.5) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF00036F43.mail.protection.outlook.com (10.167.248.27) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7544.18 via Frontend Transport; Mon, 6 May 2024 09:57:06 +0000
-Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7544.18 via Frontend Transport; Mon, 6 May 2024 10:01:25 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 6 May
- 2024 04:57:03 -0500
-From: Ma Jun <Jun.Ma2@amd.com>
+ 2024 05:01:24 -0500
+Received: from primary-host.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 6 May 2024 05:01:23 -0500
+From: Lin.Cao <lincao12@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <Kenneth.Feng@amd.com>, <Alexander.Deucher@amd.com>,
- <kevinyang.wang@amd.com>, <christian.koenig@amd.com>, Ma Jun
- <Jun.Ma2@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu/pm: Fix the param type of
- set_power_profile_mode
-Date: Mon, 6 May 2024 17:56:30 +0800
-Message-ID: <20240506095630.258594-2-Jun.Ma2@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240506095630.258594-1-Jun.Ma2@amd.com>
-References: <20240506095630.258594-1-Jun.Ma2@amd.com>
+CC: <jingwen.chen2@amd.com>, <jonathan.kim@amd.com>, Lin.Cao <lincao12@amd.com>
+Subject: [PATCH] drm/amdkfd: Check debug trap enable before write dbg_ev_file
+Date: Mon, 6 May 2024 18:01:19 +0800
+Message-ID: <20240506100119.769844-1-lincao12@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
+Received-SPF: None (SATLEXMB03.amd.com: lincao12@amd.com does not designate
+ permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE5:EE_|PH0PR12MB8822:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ebd14a5-f4ae-423e-747b-08dc6db2e375
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F43:EE_|MN0PR12MB6053:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4361861c-aa82-4c1d-de0b-08dc6db37ddf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230031|82310400017|376005|36860700004|1800799015; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lAygJ/uHlJhXW6Eme+jXltfLLVGbawPvDfppowETpi+9G2C7VsaMCGrOcHM3?=
- =?us-ascii?Q?fKT0WiRqy0E411MgdMKqx7oesIGosKhm9RvSEwE3BJ6Zxjdzp+XZcs6S4UjC?=
- =?us-ascii?Q?AkrGtKMrXzF08A6ER1KTzhrigrQ32WGy+Or+hQj51silfR7micfVOGUB6hYP?=
- =?us-ascii?Q?vqeFAEHdco9C1h8Zg0nNr6MO3pz6V3ArLBy3CBI5WZGrbjWlUp7t2faA1Udg?=
- =?us-ascii?Q?eNWNzkeU8R6SEscQjvS8nZSo7c9zivlT/4V70iIeDC8yjttDVRbNpmkebki4?=
- =?us-ascii?Q?5/oU/j0Cxb/hPoE/TqUM/uEqtlioCMwq15BiZGdYWd7Lp9ApLX7IgI/3CLo+?=
- =?us-ascii?Q?n77ybBWyt6bpgSp0qUZUQZvQAhle2r6Xj1WX96u665cF5pb0IslMFw/JaTKf?=
- =?us-ascii?Q?DxwxwlfXhHBSR0sKCyeV/SaECEW82NhNgqaGBXOpw/I6yLnbT1kFrQsRiPUY?=
- =?us-ascii?Q?HgbmDSIFEuXsVct7JSInvW7nx1UbLSI6YQFFfODBJudIfy5O/i5qEW5fp4Bb?=
- =?us-ascii?Q?P7NbaRE5ax93n0Yz8s+mCxtYq3uaytjlicIGVDovKHUhypOVYXvv7VETs0Ap?=
- =?us-ascii?Q?lBCJ++Jg3IeofAaZgofbCN8MrUnhTaXH0x+yngbEjJ3+qLDFCMklD6mzJwz5?=
- =?us-ascii?Q?wH6Ox1fHak4NvNO6R7Dq0lfWEYNhCrGJFu3b4Zt6bUqHsUAPXdpH7rkM7c5v?=
- =?us-ascii?Q?sie2GWt28VVxNoP4CUFRUQWx1dqzb4tzU+T3nFKaDi4VOYk/TYRERgd60SSo?=
- =?us-ascii?Q?vIgtFQZT+xyWScKMTFD689AlpEh+p5prqUmil8g6AOxbYkCjXvUluEik0DQk?=
- =?us-ascii?Q?UvfmNgaTaJoQKHWP+UTAuB6k4MVdgi7CB/EdTBHyE+SlgigsFqd2fMn4vGo+?=
- =?us-ascii?Q?yPxMqFU0syEe0ZC1ybSR5n2PVHriRr2TSTPF8WqHBeUq92AoAsoxwxEb9QtT?=
- =?us-ascii?Q?Dn9DPbwssgOzqwlfeKbeaO2TY3ixwAJ4u8rht8eL7xIW8LS7SwWmuDZ4Jl0M?=
- =?us-ascii?Q?P8CVb+x0Nt/H/EWQBUdygiPq077ctRX7rnHrFzvVRnO4j0O6pgO/FLxsI/7+?=
- =?us-ascii?Q?1HN4CMXZVVkuv82QwLYeGOqFbksMukWnExZMs6PYDLGkPNpZMr8oJFSGiW12?=
- =?us-ascii?Q?sTk0lp7Iwf5IxWa3T50F1/quFJSR8dD6Cb2w335yA7/JtnxkuTDYhc9KaWOX?=
- =?us-ascii?Q?7fKeFxdZOEf0sVMbpjz7g7WGUqF7n8UaqeVq4EXkzDekmi/8m5rhTP4flh/E?=
- =?us-ascii?Q?IwruyWtvm0mriH9Ax1hzjrW3WHGfll5N3iy4ZT1p/B70iLwGNZyYhajn70OF?=
- =?us-ascii?Q?docvRR9f++RSoMb2PrXqU8CF3TOMbye1JfVerTpPLhov7TRypHJIhGY+UK4k?=
- =?us-ascii?Q?xohHGAA=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uiayWhO040LVDCCXvKAesjsuQRdaFsk+G7mWXeOvfqi7mhnZ0kmLt9UY18Hc?=
+ =?us-ascii?Q?tM1LHr2m2dw/LoS/WlY6SBY0H/Xnr698SFWduIoS/MmwXZb7r+lfTp3dGLGB?=
+ =?us-ascii?Q?7dRgbSYTNKlPePLY2ItbsEa+tfKoIWPNxgCs/y4ELOCUvIYR3KWAcKQDRR0J?=
+ =?us-ascii?Q?QDdJ8NszCJTElS4VjMK6vQP4jEdi0lm9LEY/fpaSG67oB970B11kqVvMj+uz?=
+ =?us-ascii?Q?w0KrVfsHo7HzttLiRzcSav9QC8RG2ZrMMQz5vva5/kgTe48egdNVNUUGZMeT?=
+ =?us-ascii?Q?7FxipQ9a9R5/p4zTwBhR9scIu0S3t7wtdiA0HaR+morxbz3ReYFMMQEAzpbZ?=
+ =?us-ascii?Q?M2HXpoxSkJKTrex3f1M4Ox+ajo6wkjsUarikIsXVTPyIE8v/731l34IkJGxv?=
+ =?us-ascii?Q?Rt/wIH0k61WI9JGldkgfV02bSNuYCIKQqQ90Dh3kuxhng1bcc5L+opOW9EZ3?=
+ =?us-ascii?Q?cJHk04o/KinSV8ohmre4sSxe8K1RZ2l74ONkts7uZJ73QAR2XXAuD3LEiFI1?=
+ =?us-ascii?Q?PxFBp4DF3srayHChzx0AGcVxnCgaKglZXCx6LVXQ+rBFGA/p75tbH84prd7B?=
+ =?us-ascii?Q?1FeSz/vK9jC62/qf/qiuglYoU2lF5EKErIbjNreevlQ2c0sAAt3LBoWXJnMq?=
+ =?us-ascii?Q?PGouWRuTabt/vKjgVrTen0FG4pxv5I2HKWVLglugjvrLd81gsbO98t7shttd?=
+ =?us-ascii?Q?iansnXaKx/RiOrhQqxZavrX1EcVuj4jQlnQbxFGkIhh7561cVUSDVttOccn1?=
+ =?us-ascii?Q?msb6j16QmvaJXvU5WqUzS9P5ziiMb/6g/lw5m+oJaxatTTg6HP4qa2WkSubm?=
+ =?us-ascii?Q?ZjeSwO64B3oJ1wRvdg0coRqeMR9s0GvLjrR8muuDlYNv4fkb5vI6ZeKBnbWJ?=
+ =?us-ascii?Q?iPE1FY+DAKDTjnPwUvvKW0Xt1vAQPULj4b+G7FH+A/ETjtacwBuF3zTtl2Mq?=
+ =?us-ascii?Q?JwVbf/sXZPesY8xcaY+87eQ6XjqS+5FsBpJZlTd+4VqPuJBH10bUQJD1Vxjw?=
+ =?us-ascii?Q?rFNHVqJQQ9y9GsizOVUYwrHG5aFsZUDtrmhn9JnhCfN2wNyImGW9dee6by7l?=
+ =?us-ascii?Q?Kxc1wczO3xY2ioNqOf1QDXETI+mrGXfV7jwYMOEug3RQdwsMAIJ3ySu8C664?=
+ =?us-ascii?Q?4FZK6h8z5fSgzhmJv9OsZlVAxDzwy2pv2c+KnXDe+SjjRJCTsbT65Pmqnso8?=
+ =?us-ascii?Q?/TUFwx2QqT8z7fFhOvQejyIsYhCoY6SxzpxAABxDTS2Lb+8aZ1JnSMnjS3sb?=
+ =?us-ascii?Q?RJYLA6P2sOvZIXp+0+kPOb4UkPB+lHZ+bCyiAOTE1qvH+X/pGxPHgy3tnCuY?=
+ =?us-ascii?Q?8v6lxc09vdlCyLPOrBcel4J4Z8vkyQkorJxrw/VUvbXgmiMnhG2uDpOXngAN?=
+ =?us-ascii?Q?CMWDlx2Eu16c9T30sKr6tXjDCq6b?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230031)(82310400017)(376005)(36860700004)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2024 09:57:06.6718 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ebd14a5-f4ae-423e-747b-08dc6db2e375
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2024 10:01:25.7539 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4361861c-aa82-4c1d-de0b-08dc6db37ddf
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003AE5.namprd02.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F43.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8822
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6053
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,142 +130,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Function .set_power_profile_mode need an array as input
-parameter. So define variable workload as an array to fix
-the below coverity warning.
+In interrupt context, write dbg_ev_file will be run by work queue. It
+will cause write dbg_ev_file execution after debug_trap_disable, which
+will cause NULL pointer access.
+v2: cancel work "debug_event_workarea" before set dbg_ev_file as NULL.
 
-"Passing &workload to function hwmgr->hwmgr_func->set_power_profile_mode
-which uses it as an array. This might corrupt or misinterpret adjacent
-memory locations"
-
-Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+Signed-off-by: Lin.Cao <lincao12@amd.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c |  8 ++++----
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c  |  8 ++++----
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 16 ++++++++--------
- 3 files changed, 16 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_debug.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index 1c40a362d5ab..a71c6117d7e5 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -929,7 +929,7 @@ static int pp_dpm_switch_power_profile(void *handle,
- 		enum PP_SMC_POWER_PROFILE type, bool en)
- {
- 	struct pp_hwmgr *hwmgr = handle;
--	long workload;
-+	long workload[1];
- 	uint32_t index;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+index d889e3545120..6c2f6a26c479 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.c
+@@ -103,7 +103,8 @@ void debug_event_write_work_handler(struct work_struct *work)
+ 			struct kfd_process,
+ 			debug_event_workarea);
  
- 	if (!hwmgr || !hwmgr->pm_en)
-@@ -947,12 +947,12 @@ static int pp_dpm_switch_power_profile(void *handle,
- 		hwmgr->workload_mask &= ~(1 << hwmgr->workload_prority[type]);
- 		index = fls(hwmgr->workload_mask);
- 		index = index > 0 && index <= Workload_Policy_Max ? index - 1 : 0;
--		workload = hwmgr->workload_setting[index];
-+		workload[0] = hwmgr->workload_setting[index];
- 	} else {
- 		hwmgr->workload_mask |= (1 << hwmgr->workload_prority[type]);
- 		index = fls(hwmgr->workload_mask);
- 		index = index <= Workload_Policy_Max ? index - 1 : 0;
--		workload = hwmgr->workload_setting[index];
-+		workload[0] = hwmgr->workload_setting[index];
- 	}
- 
- 	if (type == PP_SMC_POWER_PROFILE_COMPUTE &&
-@@ -962,7 +962,7 @@ static int pp_dpm_switch_power_profile(void *handle,
- 	}
- 
- 	if (hwmgr->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL)
--		hwmgr->hwmgr_func->set_power_profile_mode(hwmgr, &workload, 0);
-+		hwmgr->hwmgr_func->set_power_profile_mode(hwmgr, workload, 0);
- 
- 	return 0;
+-	kernel_write(process->dbg_ev_file, &write_data, 1, &pos);
++	if (process->debug_trap_enabled && process->dbg_ev_file)
++		kernel_write(process->dbg_ev_file, &write_data, 1, &pos);
  }
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-index 1d829402cd2e..f4bd8e9357e2 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-@@ -269,7 +269,7 @@ int psm_adjust_power_state_dynamic(struct pp_hwmgr *hwmgr, bool skip_display_set
- 						struct pp_power_state *new_ps)
- {
- 	uint32_t index;
--	long workload;
-+	long workload[1];
  
- 	if (hwmgr->not_vf) {
- 		if (!skip_display_settings)
-@@ -294,10 +294,10 @@ int psm_adjust_power_state_dynamic(struct pp_hwmgr *hwmgr, bool skip_display_set
- 	if (hwmgr->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL) {
- 		index = fls(hwmgr->workload_mask);
- 		index = index > 0 && index <= Workload_Policy_Max ? index - 1 : 0;
--		workload = hwmgr->workload_setting[index];
-+		workload[0] = hwmgr->workload_setting[index];
+ /* update process/device/queue exception status, write to descriptor
+@@ -645,6 +646,7 @@ int kfd_dbg_trap_disable(struct kfd_process *target)
+ 	else if (target->runtime_info.runtime_state != DEBUG_RUNTIME_STATE_DISABLED)
+ 		target->runtime_info.runtime_state = DEBUG_RUNTIME_STATE_ENABLED;
  
--		if (hwmgr->power_profile_mode != workload && hwmgr->hwmgr_func->set_power_profile_mode)
--			hwmgr->hwmgr_func->set_power_profile_mode(hwmgr, &workload, 0);
-+		if (hwmgr->power_profile_mode != workload[0] && hwmgr->hwmgr_func->set_power_profile_mode)
-+			hwmgr->hwmgr_func->set_power_profile_mode(hwmgr, workload, 0);
- 	}
++	cancel_work_sync(&target->debug_event_workarea);
+ 	fput(target->dbg_ev_file);
+ 	target->dbg_ev_file = NULL;
  
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index dc0d3a9f1d6d..e61aa4418d44 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -2210,7 +2210,7 @@ static int smu_adjust_power_state_dynamic(struct smu_context *smu,
- {
- 	int ret = 0;
- 	int index = 0;
--	long workload;
-+	long workload[1];
- 	struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
- 
- 	if (!skip_display_settings) {
-@@ -2250,10 +2250,10 @@ static int smu_adjust_power_state_dynamic(struct smu_context *smu,
- 		smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
- 		index = fls(smu->workload_mask);
- 		index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
--		workload = smu->workload_setting[index];
-+		workload[0] = smu->workload_setting[index];
- 
--		if (smu->power_profile_mode != workload)
--			smu_bump_power_profile_mode(smu, &workload, 0);
-+		if (smu->power_profile_mode != workload[0])
-+			smu_bump_power_profile_mode(smu, workload, 0);
- 	}
- 
- 	return ret;
-@@ -2303,7 +2303,7 @@ static int smu_switch_power_profile(void *handle,
- {
- 	struct smu_context *smu = handle;
- 	struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
--	long workload;
-+	long workload[1];
- 	uint32_t index;
- 
- 	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
-@@ -2316,17 +2316,17 @@ static int smu_switch_power_profile(void *handle,
- 		smu->workload_mask &= ~(1 << smu->workload_prority[type]);
- 		index = fls(smu->workload_mask);
- 		index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
--		workload = smu->workload_setting[index];
-+		workload[0] = smu->workload_setting[index];
- 	} else {
- 		smu->workload_mask |= (1 << smu->workload_prority[type]);
- 		index = fls(smu->workload_mask);
- 		index = index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
--		workload = smu->workload_setting[index];
-+		workload[0] = smu->workload_setting[index];
- 	}
- 
- 	if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL &&
- 		smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
--		smu_bump_power_profile_mode(smu, &workload, 0);
-+		smu_bump_power_profile_mode(smu, workload, 0);
- 
- 	return 0;
- }
 -- 
-2.34.1
+2.25.1
 
