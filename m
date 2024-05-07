@@ -2,144 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 716BC8BF5DB
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 May 2024 08:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6088BF7CD
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 May 2024 09:56:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45FA51133BE;
-	Wed,  8 May 2024 06:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF7811347B;
+	Wed,  8 May 2024 07:56:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="oJBUSnqZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LALyyqtM";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="oJBUSnqZ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LALyyqtM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="UGGmc2yc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E55E1127FA;
- Wed,  8 May 2024 06:00:29 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 1710921A3C;
- Wed,  8 May 2024 06:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715148027; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
- b=oJBUSnqZI7EMjfLSBFZJVb44HlHinhbFGw6fI8Dnc2xpkzBYD1XKpxGf4uifFmvRoG61rt
- QVRqUSBQqc6vOTInrJu0yU9OsgNIHL2uesL+75THSxQBwLxd66hkPtvOfRTKTqRCOUmcjB
- nGNVx0QMAAlgqx1J23NlvRc1IK42+CI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715148027;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
- b=LALyyqtMas/4qlYZtcYxHdHGH9G64b4tNDkdXEw/W00Ws0sioAsIy89uQ0NBT0eoGUf4tT
- NYE1i0b7yLQda9AQ==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715148027; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
- b=oJBUSnqZI7EMjfLSBFZJVb44HlHinhbFGw6fI8Dnc2xpkzBYD1XKpxGf4uifFmvRoG61rt
- QVRqUSBQqc6vOTInrJu0yU9OsgNIHL2uesL+75THSxQBwLxd66hkPtvOfRTKTqRCOUmcjB
- nGNVx0QMAAlgqx1J23NlvRc1IK42+CI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715148027;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
- b=LALyyqtMas/4qlYZtcYxHdHGH9G64b4tNDkdXEw/W00Ws0sioAsIy89uQ0NBT0eoGUf4tT
- NYE1i0b7yLQda9AQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C879F1386E;
- Wed,  8 May 2024 06:00:25 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
- by imap1.dmz-prg2.suse.org with ESMTPSA id abWuL/kUO2bdVQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 08 May 2024 06:00:25 +0000
-Message-ID: <2b464f50-15e0-4df3-a846-21417a103ed6@suse.de>
-Date: Wed, 8 May 2024 08:00:24 +0200
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3202510F371
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 May 2024 08:57:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=WLQZVmr84pZPbufAcFGzWVzsX+2jdFNkxL4hhDYHRPI=; b=UGGmc2ycY8ea95fZJWpdTofNAX
+ iqx9j8UPU335L9YOzi1sJ+ahYA/3Yw4NO70aUoxZAvTPSqTQcPNDiG9ncDY6l4C4boAJ/PrmuXstC
+ XhDNboxHXljki6VDuhHoagjU8CeYGz9+ym0Nycveqz9kP6o3KV9+SxXcHqFW9aRUALvaGEF1qS9Pi
+ uNg+/2BcgDTA4zxoN5/NF3zyvhl0VgaGKNErfkg4n8C09RZf/XcdUfnLY966RctaqXNUzb+uqKEMJ
+ 7VSZPxqt42c8TIskGlqNIYbOW4H2fcPRezEKv3qXcEyXKFlInH96YenI2QHEGPbMruSeIwOL990PS
+ Rb6c5BVg==;
+Received: from [84.69.19.168] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1s4GdG-001jTv-ED; Tue, 07 May 2024 10:57:06 +0200
+Message-ID: <7869ae2d-b136-4b9d-9971-f7a5e4a80059@igalia.com>
+Date: Tue, 7 May 2024 09:57:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/11] drm/tegra: Use fbdev client helpers
-To: Felix Kuehling <felix.kuehling@amd.com>, javierm@redhat.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- inki.dae@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
- linux@armlinux.org.uk, krzk@kernel.org, alim.akhtar@samsung.com,
- patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, robdclark@gmail.com, quic_abhinavk@quicinc.com,
- dmitry.baryshkov@linaro.org, sean@poorly.run, marijn.suijten@somainline.org,
- tomi.valkeinen@ideasonboard.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, thierry.reding@gmail.com,
- mperttunen@nvidia.com, jonathanh@nvidia.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20240507120422.25492-1-tzimmermann@suse.de>
- <20240507120422.25492-12-tzimmermann@suse.de>
- <b463d432-669c-43a4-933a-cafef000f7da@amd.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <b463d432-669c-43a4-933a-cafef000f7da@amd.com>
+Subject: Re: [RFC 0/5] Add capacity key to fdinfo
+Content-Language: en-GB
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com
+References: <20240430172748.61576-1-tursulin@igalia.com>
+ <CADnq5_Mzn8gesfqfNncJMWGgawFR3upgcy9MG=UwHw4i5GoZTg@mail.gmail.com>
+ <cd9f1e27-2448-4803-ab73-9b71c5482027@igalia.com>
+ <eae2f6bb-6c6f-4a85-a0dd-ad1898d638b5@gmail.com>
+ <51a28e5c-392f-4093-9782-a81849474034@igalia.com>
+ <CADnq5_PYN-QBx1VB7tTgpFsBqgrLKBNsOwGaG7u8TSXw539sjA@mail.gmail.com>
+ <3030b87c-120b-4ef1-b0f9-9a1a7ef62e70@igalia.com>
+ <CADnq5_Nw3wNQzXQ0Oq0k4++JAESkUJD3vSEeWcGTu+88xMxwuA@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <CADnq5_Nw3wNQzXQ0Oq0k4++JAESkUJD3vSEeWcGTu+88xMxwuA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -2.79
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.79 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- XM_UA_NO_VERSION(0.01)[]; TAGGED_RCPT(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[amd.com,redhat.com,ffwll.ch,linux.intel.com,kernel.org,samsung.com,armlinux.org.uk,gmail.com,intel.com,ursulin.net,quicinc.com,linaro.org,poorly.run,somainline.org,ideasonboard.com,nvidia.com];
- RCPT_COUNT_TWELVE(0.00)[31]; MID_RHS_MATCH_FROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.de:email]
+X-Mailman-Approved-At: Wed, 08 May 2024 07:56:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,211 +69,257 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi
 
-Am 07.05.24 um 23:03 schrieb Felix Kuehling:
->
-> On 2024-05-07 07:58, Thomas Zimmermann wrote:
->> Implement struct drm_client_funcs with the respective helpers and
->> remove the custom code from the emulation. The generic helpers are
->> equivalent in functionality.
+On 03/05/2024 15:28, Alex Deucher wrote:
+> On Fri, May 3, 2024 at 7:50 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
+>> On 02/05/2024 16:00, Alex Deucher wrote:
+>>> On Thu, May 2, 2024 at 10:43 AM Tvrtko Ursulin
+>>> <tvrtko.ursulin@igalia.com> wrote:
+>>>>
+>>>>
+>>>> On 02/05/2024 14:07, Christian König wrote:
+>>>>> Am 01.05.24 um 15:27 schrieb Tvrtko Ursulin:
+>>>>>>
+>>>>>> Hi Alex,
+>>>>>>
+>>>>>> On 30/04/2024 19:32, Alex Deucher wrote:
+>>>>>>> On Tue, Apr 30, 2024 at 1:27 PM Tvrtko Ursulin <tursulin@igalia.com>
+>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>>>>
+>>>>>>>> I have noticed AMD GPUs can have more than one "engine" (ring?) of
+>>>>>>>> the same type
+>>>>>>>> but amdgpu is not reporting that in fdinfo using the capacity engine
+>>>>>>>> tag.
+>>>>>>>>
+>>>>>>>> This series is therefore an attempt to improve that, but only an RFC
+>>>>>>>> since it is
+>>>>>>>> quite likely I got stuff wrong on the first attempt. Or if not wrong
+>>>>>>>> it may not
+>>>>>>>> be very beneficial in AMDs case.
+>>>>>>>>
+>>>>>>>> So I tried to figure out how to count and store the number of
+>>>>>>>> instances of an
+>>>>>>>> "engine" type and spotted that could perhaps be used in more than
+>>>>>>>> one place in
+>>>>>>>> the driver. I was more than a little bit confused by the ip_instance
+>>>>>>>> and uapi
+>>>>>>>> rings, then how rings are selected to context entities internally.
+>>>>>>>> Anyway..
+>>>>>>>> hopefully it is a simple enough series to easily spot any such large
+>>>>>>>> misses.
+>>>>>>>>
+>>>>>>>> End result should be that, assuming two "engine" instances, one
+>>>>>>>> fully loaded and
+>>>>>>>> one idle will only report client using 50% of that engine type.
+>>>>>>>
+>>>>>>> That would only be true if there are multiple instantiations of the IP
+>>>>>>> on the chip which in most cases is not true.  In most cases there is
+>>>>>>> one instance of the IP that can be fed from multiple rings. E.g. for
+>>>>>>> graphics and compute, all of the rings ultimately feed into the same
+>>>>>>> compute units on the chip.  So if you have a gfx ring and a compute
+>>>>>>> rings, you can schedule work to them asynchronously, but ultimately
+>>>>>>> whether they execute serially or in parallel depends on the actual
+>>>>>>> shader code in the command buffers and the extent to which it can
+>>>>>>> utilize the available compute units in the shader cores.
+>>>>>>
+>>>>>> This is the same as with Intel/i915. Fdinfo is not intended to provide
+>>>>>> utilisation of EUs and such, just how busy are the "entities" kernel
+>>>>>> submits to. So doing something like in this series would make the
+>>>>>> reporting more similar between the two drivers.
+>>>>>>
+>>>>>> I think both the 0-800% or 0-100% range (taking 8 ring compute as an
+>>>>>> example) can be misleading for different workloads. Neither <800% in
+>>>>>> the former means one can send more work and same for <100% in the latter.
+>>>>>
+>>>>> Yeah, I think that's what Alex tries to describe. By using 8 compute
+>>>>> rings your 800% load is actually incorrect and quite misleading.
+>>>>>
+>>>>> Background is that those 8 compute rings won't be active all at the same
+>>>>> time, but rather waiting on each other for resources.
+>>>>>
+>>>>> But this "waiting" is unfortunately considered execution time since the
+>>>>> used approach is actually not really capable of separating waiting and
+>>>>> execution time.
+>>>>
+>>>> Right, so 800% is what gputop could be suggesting today, by the virtue 8
+>>>> context/clients can each use 100% if they only use a subset of compute
+>>>> units. I was proposing to expose the capacity in fdinfo so it can be
+>>>> scaled down and then dicussing how both situation have pros and cons.
+>>>>
+>>>>>> There is also a parallel with the CPU world here and hyper threading,
+>>>>>> if not wider, where "What does 100% actually mean?" is also wishy-washy.
+>>>>>>
+>>>>>> Also note that the reporting of actual time based values in fdinfo
+>>>>>> would not changing with this series.
+>>>>>>
+>>>>>> Of if you can guide me towards how to distinguish real vs fake
+>>>>>> parallelism in HW IP blocks I could modify the series to only add
+>>>>>> capacity tags where there are truly independent blocks. That would be
+>>>>>> different from i915 though were I did not bother with that
+>>>>>> distinction. (For reasons that assignment of for instance EUs to
+>>>>>> compute "rings" (command streamers in i915) was supposed to be
+>>>>>> possible to re-configure on the fly. So it did not make sense to try
+>>>>>> and be super smart in fdinfo.)
+>>>>>
+>>>>> Well exactly that's the point we don't really have truly independent
+>>>>> blocks on AMD hardware.
+>>>>>
+>>>>> There are things like independent SDMA instances, but those a meant to
+>>>>> be used like the first instance for uploads and the second for downloads
+>>>>> etc.. When you use both instances for the same job they will pretty much
+>>>>> limit each other because of a single resource.
+>>>>
+>>>> So _never_ multiple instances of the same IP block? No video decode,
+>>>> encode, anything?
+>>>
+>>> Some chips have multiple encode/decode IP blocks that are actually
+>>> separate instances, however, we load balance between them so userspace
+>>> sees just one engine.  Also in some cases they are asymmetric (e.g.,
+>>> different sets of supported CODECs on each instance).  The driver
+>>> handles this by inspecting the command buffer and scheduling on the
+>>> appropriate instance based on the requested CODEC.  SDMA also supports
+>>> multiple IP blocks that are independent.
 >>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> ---
->>   drivers/gpu/drm/radeon/radeon_fbdev.c | 66 ++-------------------------
->
-> Was radeon meant to be a separate patch?
+>> Similar to i915 just that we don't inspect buffers but expose the
+>> instance capabilities and userspace is responsible to set up the load
+>> balancing engine with the correct physical mask.
+> 
+> How do you handle load balancing across applications?
 
-Indeed. It also _was_ a separate patch. This looks like a mistake during 
-rebasing. Thanks for noticing. I'll fix that in v2.
+ From the uapi side of things: enumerate the hardware engines and their 
+capabilities (which includes information of number of instances per 
+class/type) and then create a submission queue composed of the instances 
+compatible for the intended use.
 
-Best regards
-Thomas
+ From the i915 side it forks into two - before firmware scheduling and 
+with. In both cases scheduling is done a bit later than in amdgpu, not 
+in the frontend but more in the backend, after the dma_resv/etc 
+dependencies have been cleared.
 
->
-> Regards,
->   Felix
->
->
->>   drivers/gpu/drm/tegra/fbdev.c         | 58 ++---------------------
->>   2 files changed, 6 insertions(+), 118 deletions(-)
+For the former case we only got to have the primitive load-balancing 
+which could be described as "first idle physical instance picks the next 
+job from the global queue".
+
+For the latter it is up to the firmware to do its magic but essentially 
+it also boils down to pick something runnable from the global queue.
+
+>> Anyway, back to the main point - are you interested at all for me to add
+>> the capacity flags to at least the IP blocks which are probed to exist
+>> more than a singleton? And if yes, could you please suggest how to do it.
+> 
+> I don't have a particularly strong opinion.  I should note that this
+> does not take into account time spent on user mode queues.  Since
+> those are in userspace, we don't currently have a way to track the
+> time on the engines.  We've been working with the HW/FW teams to try
+> and come up with a scheme to handle them.
+> 
 >>
->> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c 
->> b/drivers/gpu/drm/radeon/radeon_fbdev.c
->> index 02bf25759059a..cf790922174ea 100644
->> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
->> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
->> @@ -29,7 +29,6 @@
->>   #include <linux/pm_runtime.h>
->>   #include <linux/vga_switcheroo.h>
->>   -#include <drm/drm_crtc_helper.h>
->>   #include <drm/drm_drv.h>
->>   #include <drm/drm_fb_helper.h>
->>   #include <drm/drm_fourcc.h>
->> @@ -293,71 +292,12 @@ static const struct drm_fb_helper_funcs 
->> radeon_fbdev_fb_helper_funcs = {
->>   };
->>     /*
->> - * Fbdev client and struct drm_client_funcs
->> + * struct drm_client_funcs
->>    */
->>   -static void radeon_fbdev_client_unregister(struct drm_client_dev 
->> *client)
->> -{
->> -    struct drm_fb_helper *fb_helper = 
->> drm_fb_helper_from_client(client);
->> -    struct drm_device *dev = fb_helper->dev;
->> -    struct radeon_device *rdev = dev->dev_private;
->> -
->> -    if (fb_helper->info) {
->> -        vga_switcheroo_client_fb_set(rdev->pdev, NULL);
->> -        drm_helper_force_disable_all(dev);
->> -        drm_fb_helper_unregister_info(fb_helper);
->> -    } else {
->> -        drm_client_release(&fb_helper->client);
->> -        drm_fb_helper_unprepare(fb_helper);
->> -        kfree(fb_helper);
->> -    }
->> -}
->> -
->> -static int radeon_fbdev_client_restore(struct drm_client_dev *client)
->> -{
->> -    drm_fb_helper_lastclose(client->dev);
->> -    vga_switcheroo_process_delayed_switch();
->> -
->> -    return 0;
->> -}
->> -
->> -static int radeon_fbdev_client_hotplug(struct drm_client_dev *client)
->> -{
->> -    struct drm_fb_helper *fb_helper = 
->> drm_fb_helper_from_client(client);
->> -    struct drm_device *dev = client->dev;
->> -    struct radeon_device *rdev = dev->dev_private;
->> -    int ret;
->> -
->> -    if (dev->fb_helper)
->> -        return drm_fb_helper_hotplug_event(dev->fb_helper);
->> -
->> -    ret = drm_fb_helper_init(dev, fb_helper);
->> -    if (ret)
->> -        goto err_drm_err;
->> -
->> -    if (!drm_drv_uses_atomic_modeset(dev))
->> -        drm_helper_disable_unused_functions(dev);
->> -
->> -    ret = drm_fb_helper_initial_config(fb_helper);
->> -    if (ret)
->> -        goto err_drm_fb_helper_fini;
->> -
->> -    vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
->> -
->> -    return 0;
->> -
->> -err_drm_fb_helper_fini:
->> -    drm_fb_helper_fini(fb_helper);
->> -err_drm_err:
->> -    drm_err(dev, "Failed to setup radeon fbdev emulation 
->> (ret=%d)\n", ret);
->> -    return ret;
->> -}
->> -
->>   static const struct drm_client_funcs radeon_fbdev_client_funcs = {
->> -    .owner        = THIS_MODULE,
->> -    .unregister    = radeon_fbdev_client_unregister,
->> -    .restore    = radeon_fbdev_client_restore,
->> -    .hotplug    = radeon_fbdev_client_hotplug,
->> +    .owner = THIS_MODULE,
->> +    DRM_FBDEV_HELPER_CLIENT_FUNCS,
->>   };
->>     void radeon_fbdev_setup(struct radeon_device *rdev)
->> diff --git a/drivers/gpu/drm/tegra/fbdev.c 
->> b/drivers/gpu/drm/tegra/fbdev.c
->> index db6eaac3d30e6..f9cc365cfed94 100644
->> --- a/drivers/gpu/drm/tegra/fbdev.c
->> +++ b/drivers/gpu/drm/tegra/fbdev.c
->> @@ -12,7 +12,6 @@
->>   #include <linux/vmalloc.h>
->>     #include <drm/drm_drv.h>
->> -#include <drm/drm_crtc_helper.h>
->>   #include <drm/drm_fb_helper.h>
->>   #include <drm/drm_fourcc.h>
->>   #include <drm/drm_framebuffer.h>
->> @@ -150,63 +149,12 @@ static const struct drm_fb_helper_funcs 
->> tegra_fb_helper_funcs = {
->>   };
->>     /*
->> - * struct drm_client
->> + * struct drm_client_funcs
->>    */
->>   -static void tegra_fbdev_client_unregister(struct drm_client_dev 
->> *client)
->> -{
->> -    struct drm_fb_helper *fb_helper = 
->> drm_fb_helper_from_client(client);
->> -
->> -    if (fb_helper->info) {
->> -        drm_fb_helper_unregister_info(fb_helper);
->> -    } else {
->> -        drm_client_release(&fb_helper->client);
->> -        drm_fb_helper_unprepare(fb_helper);
->> -        kfree(fb_helper);
->> -    }
->> -}
->> -
->> -static int tegra_fbdev_client_restore(struct drm_client_dev *client)
->> -{
->> -    drm_fb_helper_lastclose(client->dev);
->> -
->> -    return 0;
->> -}
->> -
->> -static int tegra_fbdev_client_hotplug(struct drm_client_dev *client)
->> -{
->> -    struct drm_fb_helper *fb_helper = 
->> drm_fb_helper_from_client(client);
->> -    struct drm_device *dev = client->dev;
->> -    int ret;
->> -
->> -    if (dev->fb_helper)
->> -        return drm_fb_helper_hotplug_event(dev->fb_helper);
->> -
->> -    ret = drm_fb_helper_init(dev, fb_helper);
->> -    if (ret)
->> -        goto err_drm_err;
->> -
->> -    if (!drm_drv_uses_atomic_modeset(dev))
->> -        drm_helper_disable_unused_functions(dev);
->> -
->> -    ret = drm_fb_helper_initial_config(fb_helper);
->> -    if (ret)
->> -        goto err_drm_fb_helper_fini;
->> -
->> -    return 0;
->> -
->> -err_drm_fb_helper_fini:
->> -    drm_fb_helper_fini(fb_helper);
->> -err_drm_err:
->> -    drm_err(dev, "Failed to setup fbdev emulation (ret=%d)\n", ret);
->> -    return ret;
->> -}
->> -
->>   static const struct drm_client_funcs tegra_fbdev_client_funcs = {
->> -    .owner        = THIS_MODULE,
->> -    .unregister    = tegra_fbdev_client_unregister,
->> -    .restore    = tegra_fbdev_client_restore,
->> -    .hotplug    = tegra_fbdev_client_hotplug,
->> +    .owner = THIS_MODULE,
->> +    DRM_FBDEV_HELPER_CLIENT_FUNCS,
->>   };
->>     void tegra_fbdev_setup(struct drm_device *dev)
+>> For instance should I use adev->sdma.num_instances,
+>> adev->uvd.num_uvd_inst, adev->vcn.num_vcn_inst,
+>> adev->jpeg.num_jpeg_inst? Or maybe adev->num_ip_blocks and count by
+>> hw_ip type?
+> 
+> The former.  The latter was how we had intended to handle these
+> situations, but it didn't work out as well as we had hoped in practice
+> due to quirks of the hardware implementations.
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Got it, thanks!
 
+>> Patch 3/5 interesting or not to skip all the empty array walking (in
+>> amdgpu_ctx_entity_time mostly)?
+> 
+> The first 3 patches seem like a nice clean up to me.
+
+Hah thanks! But note that 2/5 has a potential functional change due 
+sched.ready check/games. I've noticed amdgpu can set it to false at 
+runtime, if it decides to disable the ring, in which case the existing 
+query ioctl would reflect it but the version from the patch would not. I 
+don't know if that is relevant or not in practice.
+
+Regards,
+
+Tvrtko
+
+> Thanks!
+> 
+> Alex
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>
+>>> Alex
+>>>
+>>>>
+>>>>>>> As for the UAPI portion of this, we generally expose a limited number
+>>>>>>> of rings to user space and then we use the GPU scheduler to load
+>>>>>>> balance between all of the available rings of a type to try and
+>>>>>>> extract as much parallelism as we can.
+>>>>>>
+>>>>>> The part I do not understand is the purpose of the ring argument in
+>>>>>> for instance drm_amdgpu_cs_chunk_ib. It appears userspace can create
+>>>>>> up to N scheduling entities using different ring id's, but internally
+>>>>>> they can map to 1:N same scheduler instances (depending on IP type,
+>>>>>> can be that each userspace ring maps to same N hw rings, or for rings
+>>>>>> with no drm sched load balancing userspace ring also does not appear
+>>>>>> to have a relation to the picked drm sched instance.).
+>>>>>>
+>>>>>> So I neither understand how this ring is useful, or how it does not
+>>>>>> create a problem for IP types which use drm_sched_pick_best. It
+>>>>>> appears even if userspace created two scheduling entities with
+>>>>>> different ring ids they could randomly map to same drm sched aka same
+>>>>>> hw ring, no?
+>>>>>
+>>>>> Yeah, that is correct. The multimedia instances have to use a "fixed"
+>>>>> load balancing because of lack of firmware support. That should have
+>>>>> been fixed by now but we never found time to actually validate it.
+>>>>
+>>>> Gotcha.
+>>>>
+>>>>> Regarding the "ring" parameter in CS, that is basically just for
+>>>>> backward compatibility with older userspace. E.g. that we don't map all
+>>>>> SDMA jobs to the same instance when only once context is used.
+>>>>
+>>>> I see. In that sense "limits" for compute in amdgpu_ctx_num_entities are
+>>>> arbitrary, or related to some old userspace expectation?
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Regards,
+>>>>> Christian.
+>>>>>
+>>>>>>
+>>>>>> Regards,
+>>>>>>
+>>>>>> Tvrtko
+>>>>>>
+>>>>>>> Alex
+>>>>>>>
+>>>>>>>
+>>>>>>>>
+>>>>>>>> Tvrtko Ursulin (5):
+>>>>>>>>      drm/amdgpu: Cache number of rings per hw ip type
+>>>>>>>>      drm/amdgpu: Use cached number of rings from the
+>>>>>>>> AMDGPU_INFO_HW_IP_INFO
+>>>>>>>>        ioctl
+>>>>>>>>      drm/amdgpu: Skip not present rings in amdgpu_ctx_mgr_usage
+>>>>>>>>      drm/amdgpu: Show engine capacity in fdinfo
+>>>>>>>>      drm/amdgpu: Only show VRAM in fdinfo if it exists
+>>>>>>>>
+>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c    |  3 ++
+>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 14 +++++
+>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 39 +++++++++-----
+>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 62
+>>>>>>>> +++-------------------
+>>>>>>>>     5 files changed, 49 insertions(+), 70 deletions(-)
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>> 2.44.0
+>>>>>
