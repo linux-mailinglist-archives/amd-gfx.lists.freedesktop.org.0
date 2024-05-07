@@ -2,51 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BEAA8BDC7C
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 May 2024 09:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78DA58BDB1C
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 May 2024 08:07:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7990B112470;
-	Tue,  7 May 2024 07:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C454E11241B;
+	Tue,  7 May 2024 06:07:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lKFa5j7x";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="ipqF4hl/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3B131121C5
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 May 2024 16:26:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Z56hb26e5zeFXXgcvXfTSwVUWqPE6jX0NeZfGSbBAKQ=; b=lKFa5j7xWf3F39MHMKaw6bYuYf
- /vnZFkrm7D7zA9XM/OQgtkhE/tDJSmKSxI8doTROofLy8jExYR3ihFCaHDAKzK/rHNdeg+ALpsPL+
- OktVR8RhNPtWJ/PJzJSUrMbYTSPQfP+jcJeazEDLUFsUvP0twAL7ABW3gvkcrkZlmyYwyF36bqZrT
- JAAisgPv6y0HESGalhVrNYajzzPFohnu3XrOBfWbX5aW9AJrnAAxo0vnc0XNG/8aOBT8oFREucW3G
- wrihfeQtwWxX4Lcq4b08rozpiVRSgECgioKa2DjVbVI1IQaYqO3fWlXnk8uFrBpKU0sMh2RzC0o4W
- POk63NKQ==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s41As-001Q2R-JA; Mon, 06 May 2024 18:26:46 +0200
-Message-ID: <48fd5f77-9a5f-43a3-8009-e1655cb447bc@igalia.com>
-Date: Mon, 6 May 2024 17:26:46 +0100
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3957710EB69;
+ Tue,  7 May 2024 06:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1715062070;
+ bh=PlQSgc+9IxLV0sJ6C1/5bvFwcWpttEUfHiGgnmdu6Dw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ipqF4hl/Rcm2Qj/XN/NVqODYOMJ6wZnkt9fpAiy98aO/tLdRWOib8pnJYQu2KXfWq
+ nFr9SSNAWgzhhZuIWGSvUbIYAO3FvKoBHBqvJcyZBCP/fAIb4S6dQZaDrSko8AHZqe
+ ghJQ7o3IXG0a9eGDBLCZwXNawWI6oRa3DmJwCkCXzBbR/7dWsX3lp1irUIqgJGy56w
+ TexPPvhiblZgrBX8xS3O/wsGBqPYX/pE8IZridNeFfqFuDPqcoxiSga7I59V3jjvEV
+ wKTl9+sm3eXksZXwIrDdEevFXuH8R4SHwP+g9TCVBVD8PFDssxfR112SS9CSE0ZrQ2
+ EErlUtRQ5weZw==
+Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 19B6D3782112;
+ Tue,  7 May 2024 06:07:46 +0000 (UTC)
+Message-ID: <b143f1e8-e595-4f09-b6ab-d7e5743d586e@collabora.com>
+Date: Tue, 7 May 2024 11:37:45 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/amdgpu: Add amdgpu_bo_is_vm_bo helper
-Content-Language: en-GB
-To: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>
-References: <20240503091500.7768-1-tursulin@igalia.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20240503091500.7768-1-tursulin@igalia.com>
+Subject: Re: [PATCH v1 5/5] drm/ci: update xfails for the new testlist
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org
+References: <20240430091121.508099-1-vignesh.raman@collabora.com>
+ <20240430091121.508099-6-vignesh.raman@collabora.com>
+ <hon4klkoaouuxhtvm3qb3qstsrdcibihksyrmvxkt3taijl6wb@ubitr6namryw>
+From: Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <hon4klkoaouuxhtvm3qb3qstsrdcibihksyrmvxkt3taijl6wb@ubitr6namryw>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 07 May 2024 07:31:45 +0000
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,190 +69,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi Dmitry,
 
-On 03/05/2024 10:14, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+On 30/04/24 15:45, Dmitry Baryshkov wrote:
+> On Tue, Apr 30, 2024 at 02:41:21PM +0530, Vignesh Raman wrote:
+>> Now the testlist is used from IGT build, so update
+>> xfails with the new testlist.
+>>
+>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+>> ---
+>>   .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt | 47 +++++++----
+>>   .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  8 +-
+>>   .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt | 15 ++++
+>>   drivers/gpu/drm/ci/xfails/i915-amly-fails.txt | 22 ++++-
+>>   .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  8 ++
+>>   drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |  8 ++
+>>   drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  | 45 +++++-----
+>>   drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |  5 ++
+>>   drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  | 12 +++
+>>   drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  | 26 +++++-
+>>   drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |  6 ++
+>>   drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |  8 ++
+>>   drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  | 28 +++++--
+>>   drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  | 12 +++
+>>   drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  | 39 ++++-----
+>>   drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt | 10 ++-
+>>   drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  | 21 +++++
+>>   drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  | 75 +++++++++--------
+>>   drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  | 13 +++
+>>   drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  | 46 +++++------
+>>   drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |  8 ++
+>>   .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 47 +++--------
+>>   .../drm/ci/xfails/mediatek-mt8183-fails.txt   | 17 +---
+>>   .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |  5 ++
+>>   .../gpu/drm/ci/xfails/meson-g12b-fails.txt    | 20 +----
+>>   .../gpu/drm/ci/xfails/meson-g12b-flakes.txt   |  5 ++
+>>   .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   | 26 ++----
+>>   .../gpu/drm/ci/xfails/msm-apq8016-flakes.txt  |  5 ++
+>>   .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  5 +-
+>>   .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |  5 ++
+>>   .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   | 67 +++++++++++++++
+>>   .../msm-sc7180-trogdor-kingoftown-fails.txt   | 34 ++++----
+>>   .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  5 ++
+>>   ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 34 ++++----
+>>   ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |  5 ++
+>>   .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    | 75 ++++-------------
+>>   .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   | 26 ++----
+>>   .../drm/ci/xfails/rockchip-rk3288-fails.txt   | 54 ------------
+>>   .../drm/ci/xfails/rockchip-rk3399-fails.txt   | 80 ++----------------
+>>   .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  7 --
+>>   .../drm/ci/xfails/virtio_gpu-none-fails.txt   | 82 +++++++++++++------
+>>   .../drm/ci/xfails/virtio_gpu-none-skips.txt   |  3 +
+>>   42 files changed, 574 insertions(+), 495 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+>>   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+>>   delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+>>   delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+>>
 > 
-> Help code readability by replacing a bunch of:
+> [skipped]
 > 
-> bo->tbo.base.resv == vm->root.bo->tbo.base.resv
+>> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+>> index 44a5c62dedad..96e9faf0e607 100644
+>> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+>> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+>> @@ -1,19 +1,9 @@
+>> +core_setmaster_vs_auth,Fail
+>> +device_reset,Fail
+>> +dumb_buffer,Fail
 > 
-> With:
+> This doesn't look correct, core tests should be passing.
 > 
-> amdgpu_vm_is_bo_always_valid(vm, bo)
+>>   kms_3d,Fail
+>> -kms_addfb_basic@addfb25-bad-modifier,Fail
+>> -kms_cursor_legacy@all-pipes-forked-bo,Fail
+>> -kms_cursor_legacy@all-pipes-forked-move,Fail
+>> -kms_cursor_legacy@all-pipes-single-bo,Fail
+>> -kms_cursor_legacy@all-pipes-single-move,Fail
+>> -kms_cursor_legacy@all-pipes-torture-bo,Fail
+>> -kms_cursor_legacy@all-pipes-torture-move,Fail
+>> -kms_cursor_legacy@pipe-A-forked-bo,Fail
+>> -kms_cursor_legacy@pipe-A-forked-move,Fail
+>> -kms_cursor_legacy@pipe-A-single-bo,Fail
+>> -kms_cursor_legacy@pipe-A-single-move,Fail
+>> -kms_cursor_legacy@pipe-A-torture-bo,Fail
+>> -kms_cursor_legacy@pipe-A-torture-move,Fail
+>> -kms_force_connector_basic@force-edid,Fail
+>> -kms_hdmi_inject@inject-4k,Fail
+>> -kms_selftest@drm_format,Timeout
+>> -kms_selftest@drm_format_helper,Timeout
 > 
-> No functional changes.
+> Fine, kms_cursor_legacy tests were migrated to -flakes. But what
+> happened with the rest of the failures? >
+>> -msm_mapping@ring,Fail
+>> +kms_force_connector_basic,Fail
+>> +kms_lease,Fail
+>> +msm_mapping,Fail
+>> +msm_submit,Fail
+>> +tools_test,Fail
+>> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+>> new file mode 100644
+>> index 000000000000..3cc361b3d3b3
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+>> @@ -0,0 +1,5 @@
+>> +# Board Name: apq8016-sbc-usb-host
+>> +# Bug Report: TBD
+>> +# IGT Version: 1.28-gd2af13d9f
+>> +# Linux Version: 6.9.0-rc4
+>> +kms_cursor_legacy
 > 
-> v2:
->   * Rename helper and move to amdgpu_vm. (Christian)
-> 
-> v3:
->   * Use Christian's kerneldoc.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Reviewed-by: Christian König <christian.koenig@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c |  2 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 41 ++++++++++++++++---------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  2 ++
->   3 files changed, 29 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> index 67c234bcf89f..e698d65e9508 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> @@ -174,7 +174,7 @@ static int amdgpu_gem_object_open(struct drm_gem_object *obj,
->   		return -EPERM;
->   
->   	if (abo->flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID &&
-> -	    abo->tbo.base.resv != vm->root.bo->tbo.base.resv)
-> +	    !amdgpu_vm_is_bo_always_valid(vm, abo))
->   		return -EPERM;
->   
->   	r = amdgpu_bo_reserve(abo, false);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index 4e2391c83d7c..d451ff9d5af4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -333,7 +333,7 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *base,
->   	base->next = bo->vm_bo;
->   	bo->vm_bo = base;
->   
-> -	if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
-> +	if (!amdgpu_vm_is_bo_always_valid(vm, bo))
->   		return;
->   
->   	dma_resv_assert_held(vm->root.bo->tbo.base.resv);
-> @@ -1101,13 +1101,13 @@ static void amdgpu_vm_bo_get_memory(struct amdgpu_bo_va *bo_va,
->   	 * For now ignore BOs which are currently locked and potentially
->   	 * changing their location.
->   	 */
-> -	if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv &&
-> +	if (!amdgpu_vm_is_bo_always_valid(vm, bo) &&
->   	    !dma_resv_trylock(bo->tbo.base.resv))
->   		return;
->   
->   	amdgpu_bo_get_memory(bo, stats);
-> -	if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
-> -	    dma_resv_unlock(bo->tbo.base.resv);
-> +	if (amdgpu_vm_is_bo_always_valid(vm, bo))
-
-Beware the logic inversion here - luckily no one merged it yet! I will 
-send a respin..
+> It looks like one of the scripts has lost subtest granularity. It should
+> be fixed before the patchset can be merged
+I will recheck these files with the script fix. Thanks.
 
 Regards,
-
-Tvrtko
-
-> +		dma_resv_unlock(bo->tbo.base.resv);
->   }
->   
->   void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
-> @@ -1203,8 +1203,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
->   		uncached = false;
->   	}
->   
-> -	if (clear || (bo && bo->tbo.base.resv ==
-> -		      vm->root.bo->tbo.base.resv))
-> +	if (clear || amdgpu_vm_is_bo_always_valid(vm, bo))
->   		last_update = &vm->last_update;
->   	else
->   		last_update = &bo_va->last_pt_update;
-> @@ -1246,7 +1245,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
->   	 * the evicted list so that it gets validated again on the
->   	 * next command submission.
->   	 */
-> -	if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv) {
-> +	if (amdgpu_vm_is_bo_always_valid(vm, bo)) {
->   		uint32_t mem_type = bo->tbo.resource->mem_type;
->   
->   		if (!(bo->preferred_domains &
-> @@ -1640,10 +1639,9 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_device *adev,
->   	if (mapping->flags & AMDGPU_PTE_PRT)
->   		amdgpu_vm_prt_get(adev);
->   
-> -	if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
-> -	    !bo_va->base.moved) {
-> +	if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
->   		amdgpu_vm_bo_moved(&bo_va->base);
-> -	}
-> +
->   	trace_amdgpu_vm_bo_map(bo_va, mapping);
->   }
->   
-> @@ -1942,7 +1940,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device *adev,
->   		if (before->flags & AMDGPU_PTE_PRT)
->   			amdgpu_vm_prt_get(adev);
->   
-> -		if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
-> +		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
->   		    !before->bo_va->base.moved)
->   			amdgpu_vm_bo_moved(&before->bo_va->base);
->   	} else {
-> @@ -1957,7 +1955,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device *adev,
->   		if (after->flags & AMDGPU_PTE_PRT)
->   			amdgpu_vm_prt_get(adev);
->   
-> -		if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
-> +		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
->   		    !after->bo_va->base.moved)
->   			amdgpu_vm_bo_moved(&after->bo_va->base);
->   	} else {
-> @@ -2037,7 +2035,7 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
->   
->   	if (bo) {
->   		dma_resv_assert_held(bo->tbo.base.resv);
-> -		if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
-> +		if (amdgpu_vm_is_bo_always_valid(vm, bo))
->   			ttm_bo_set_bulk_move(&bo->tbo, NULL);
->   
->   		for (base = &bo_va->base.bo->vm_bo; *base;
-> @@ -2131,7 +2129,7 @@ void amdgpu_vm_bo_invalidate(struct amdgpu_device *adev,
->   	for (bo_base = bo->vm_bo; bo_base; bo_base = bo_base->next) {
->   		struct amdgpu_vm *vm = bo_base->vm;
->   
-> -		if (evicted && bo->tbo.base.resv == vm->root.bo->tbo.base.resv) {
-> +		if (evicted && amdgpu_vm_is_bo_always_valid(vm, bo)) {
->   			amdgpu_vm_bo_evicted(bo_base);
->   			continue;
->   		}
-> @@ -2142,7 +2140,7 @@ void amdgpu_vm_bo_invalidate(struct amdgpu_device *adev,
->   
->   		if (bo->tbo.type == ttm_bo_type_kernel)
->   			amdgpu_vm_bo_relocated(bo_base);
-> -		else if (bo->tbo.base.resv == vm->root.bo->tbo.base.resv)
-> +		else if (amdgpu_vm_is_bo_always_valid(vm, bo))
->   			amdgpu_vm_bo_moved(bo_base);
->   		else
->   			amdgpu_vm_bo_invalidated(bo_base);
-> @@ -3006,3 +3004,16 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
->   	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
->   }
->   
-> +/**
-> + * amdgpu_vm_is_bo_always_valid - check if the BO is VM always valid
-> + *
-> + * @vm: VM to test against.
-> + * @abo: BO to be tested.
-> + *
-> + * Returns true if the BO shares the dma_resv object with the root PD and is
-> + * always guaranteed to be valid inside the VM.
-> + */
-> +bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo)
-> +{
-> +	return bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv;
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> index 54d7da396de0..ec688a47dec1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> @@ -561,6 +561,8 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm, struct seq_file *m);
->   
->   int amdgpu_vm_pt_map_tables(struct amdgpu_device *adev, struct amdgpu_vm *vm);
->   
-> +bool amdgpu_vm_is_bo_always_valid(struct amdgpu_vm *vm, struct amdgpu_bo *bo);
-> +
->   /**
->    * amdgpu_vm_tlb_seq - return tlb flush sequence number
->    * @vm: the amdgpu_vm structure to query
+Vignesh
