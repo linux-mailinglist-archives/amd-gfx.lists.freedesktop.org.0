@@ -2,147 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34B78C030C
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 May 2024 19:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 733718C042C
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 May 2024 20:10:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC8E11313B;
-	Wed,  8 May 2024 17:25:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76E3E113177;
+	Wed,  8 May 2024 18:10:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lRSjfAef";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NEbAvdIU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11955113139
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 May 2024 17:25:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A+gEGLj5QPBdbE4YCUoY8aBCtTQ4jM+jMuei9sTiQGhkLreBrC1JMyxIDeRzvaJVDwAE+2Z6TFFyKb2NRmFEq1em+CfSznOjeUxg2OSqA8PVTDQmYST0G7CarXlwkzO1akJH/0YAJUdig296p0nLJgHIdjiiT3ptM8Xf9nZwBhhiw8G1ctZB0bHof4cYdlJP3mr23/IlJ6ZGeiRF61bkpQPBmG5+xM3FRddH4I7RLBmRcSDhd8TY/aph8v7lBbfJl8dJihb8GMTPzvTmJxI3qSchzqgdD+gduLW5wm/Ws08VPjKtOG0MZZNTjlHfgiWFaGC6R5v5otLR0PTOfpKpzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sdBHBt3/zHyTXMlloVGmnQ7LG/iLGMbcO5D/CZLfxr8=;
- b=oKSria3ri7bD4B+2kSGSLHKEIuaYr4yo7+aGlutRQD4t/xRzgwQJfHkTNTElcyu09rE1Pp+Bz4buYyAoPImxTymOD/qOijHwcuwb0FdWys0D+3ifNZbUfZtZ7Y3eQ/2rMV5iWpue2LiAQKzynrOs+jzuqU6w4nOxTF0tcg5uNp3iqwEvO4DpQR57ZCs9HnFVoLKzQqfKSbGyDEYuTtX32aYIHiaPvoGj1I/pQXqolyi1f7xxr63LCkNrkRltW5b4CkaDlPkpa2BeHx6VDgR8XefW0Twev1j75NzHtYGv5VYdHsC2VdsgM4QaIiO5/yIql5u2jtjMo2firAawRcxLBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sdBHBt3/zHyTXMlloVGmnQ7LG/iLGMbcO5D/CZLfxr8=;
- b=lRSjfAef1vVbMmYLjpu0nzSV1GKaqXLWP3J9FwYisSDEa63U1SE0Aq5PiXEdqUyVE3m8MELy4bMb29/LPKpZrlO4iuH6Auj20AiExi7dM/klyalASm007QNeq4gpxgg2zTGhBIVIozd7zr1OwYEuYuBGlIWVu4KVZQ1v59VOmJE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH8PR12MB7109.namprd12.prod.outlook.com (2603:10b6:510:22f::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.45; Wed, 8 May
- 2024 17:25:41 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 17:25:40 +0000
-Message-ID: <d35c5f43-0c88-4437-b0fa-1e303ba41c96@amd.com>
-Date: Wed, 8 May 2024 19:25:35 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Fix comparison in amdgpu_res_cpu_visible
-To: Alex Deucher <alexdeucher@gmail.com>, =?UTF-8?Q?Michel_D=C3=A4nzer?=
- <michel@daenzer.net>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20240508131916.981456-1-michel@daenzer.net>
- <CADnq5_OUpzEi=gjbkaMg2ZueEbcvPB77v2W1dHiU=TE2o_C17Q@mail.gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CADnq5_OUpzEi=gjbkaMg2ZueEbcvPB77v2W1dHiU=TE2o_C17Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR08CA0234.eurprd08.prod.outlook.com
- (2603:10a6:802:15::43) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 052B111316F;
+ Wed,  8 May 2024 18:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=oo5hLL9fENgZv7D4DWM1MUQ95tH/SYYP523mfBORQWQ=; b=NEbAvdIUsrB03zhl9nn1nZNdQw
+ Xc/Pl3xwXx92no8Yypom0SYkcRI9lCeu7inEYZfDQVOe7HjlxmE5m8K+4GcODAMrQ5M1atcz4PRuV
+ Euf68TEPj/5p+DYHPlWa8DqWB9pRHo+M9l7tsrFcS6v7+J73vUG/smTJwTB8BWsxwAVFkIImcMfDx
+ tVhtt0dbW3lN8xDnylAQytaGNbJhkuAx+RLWD/CmLvcq9azkbYXKmAymdKixmbIcKr7mmBI02s4KF
+ bGgCeYNof7haiP4smNq3vKZJAKpXvck5XS+Ml77eQevvY8yPdKnV5iRGFMTOyJ3wEl77ja/UVsDvO
+ 5O56Vaqw==;
+Received: from [84.69.19.168] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1s4ljn-002zR6-Jb; Wed, 08 May 2024 20:09:55 +0200
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>
+Subject: [RFC 0/5] Discussion around eviction improvements
+Date: Wed,  8 May 2024 19:09:40 +0100
+Message-ID: <20240508180946.96863-1-tursulin@igalia.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH8PR12MB7109:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17e84af8-5d0a-4622-f7fe-08dc6f83e214
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RTl0VjFUbVBueTQ3amNDRWU1R3VtVUpmd1RXOGN0bk85V1JjejVZQU84WjBN?=
- =?utf-8?B?WHkrUGdOVm1IVlB2VmdmZlgwZlRZTFg5ZTYwRHJNRlJDbnJoV05KUHF5Y1I0?=
- =?utf-8?B?V0ZYMFEySjRoUEZEeFBwYUhRcDNEVGdtTVFzV0NtZWFqdmY5Z3RzdEY2YXlj?=
- =?utf-8?B?N3V2eGxsWUNveS80NG1ZQm84eVErSnlrMlk3NEdkb2Ztb00rVTBpbU10Zysz?=
- =?utf-8?B?Qis2SUlhZ0tiOVMrQXgvLzNHVE40a2tlb1ZaYVEwNWxtd3F3eUNvMkVESEhy?=
- =?utf-8?B?RmhobFQ1Q3NKY0dFNXFnMlc5Y01UUWVEM0RvcDN3N0xaK0NPYTRScUs5cTVW?=
- =?utf-8?B?SUllNVhnamhwZmUzR2U5UHMzMlJ1Vi9ZbkVuQS8rVm5zcmhZbUhJRlAyQXNU?=
- =?utf-8?B?Q2xhRkIrUjUzODNONHZ6S3VaWU5VR21mZlpGZ2E1N3ZhSmFsSUJnME9oMmFF?=
- =?utf-8?B?WUthL0VYQUNEOXk3SjlsNDA1cC96QVZnQTA0M0p4QlBBTDZ6dThtS2FySjZU?=
- =?utf-8?B?Q2l2L2NOR1dGemxkeGJTeWVOeWFyTnJSVXJEN0xCQUFGWFNvMkdQU2JvWmVa?=
- =?utf-8?B?dTcyaVUzVWRRZFJVNTFzcmgyQ0J6bXcrMnNybzF2eDVGaDZJYk1vMFhtQ0Y2?=
- =?utf-8?B?RnI0UnJwb05wVHRmayt5WUUyekVGc1JQR2tPUnFCSzkzZWFHSE9vQzA3cVJG?=
- =?utf-8?B?R0Qxc0ViYkFHTEVscTltcVovajVudUoybldvc250OU5lUGl2S0RmV01ldkRo?=
- =?utf-8?B?aTlYREJSMXBYQmxhSGg3TmhLYkkwM3ltam1qL2R1NnpVWThPdHdSVnU5QjJR?=
- =?utf-8?B?OTZTcnEyMlVmYkR2SVhrQnVaL1hFSkJxdjQ4Ym9HNk0zeXJ3a1UrMWsvaENq?=
- =?utf-8?B?RG1tT3FkOStWT3l0eVpza3hTOTFJcDFkMks1dzh1YTZuV1hsd1JYVmRFWDQy?=
- =?utf-8?B?M1VRMHpoRTE1dHBhbDdVRVF3Wmxuci9NR002ZUNXVFZqUitHVVh0Vi9nVVhq?=
- =?utf-8?B?bGJNdDVqaTMrQXJ2MHFwL1VSdjBtN1YxOE05U3lkODFrbVJjV1BoZ3JlUGlS?=
- =?utf-8?B?WFBKR2pFcjlZUnYra3UvSHJWK3BMR3pYQWNxMDhLTFFzZEVyM2ExQlFlUE90?=
- =?utf-8?B?enZDWjN1c21GMjVOT0I1RFNISFY4UkJPUWF5Y05YMG8yYnR3Q20vRk5iWFEw?=
- =?utf-8?B?LzZFMm9ET0tsTGNtZHRYRmY0ZFQ3dUtUZElGaTVWZ3RqMXl3UXIxbXJCOVBK?=
- =?utf-8?B?WmtrMEhVNXlOcmw4YkhreUc5eXBQQXhVNFQwcEx1Vm9QSzFqVHVSQkphRE9y?=
- =?utf-8?B?Q0c4czlZc21GZ2ZHNXd2NWswZ0l5cXJDNURRaitFOFFBMGFEUWdNcGZWT2o4?=
- =?utf-8?B?Y01ZWjJVb3FOamJINDBEbGFYNjNQTm14a2lJQms4Z0lTNEd2R1VhU3VyUU90?=
- =?utf-8?B?S1NaZWVCeDhkZmgwRG1nakpOV1lCWmN0bjZ1eXBTMmtOTm1pSXJVVDRRTkw5?=
- =?utf-8?B?YzJVRTFJd2p4cmZIMEtzb2NKNUM3MkdZV1dWSTlWTytySTE1a2JrWTN1bzJZ?=
- =?utf-8?B?SG1yMW1mNnpvZnRaTzVtd2lCeWtncDhuZU5lUUxBVVQrdEtEaUQzaWxVTEdo?=
- =?utf-8?Q?65r01146/L+DOUYZg5j2rpe6DOK6axdWoajMpxeKRKLk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dHJYRHR1TzgyMWtGV0J1eEtrdGpCU0lsTTlLRm5EdDFCc25Ld3N6bkI2MnVv?=
- =?utf-8?B?MElZRFRjZTM2VU5qOUd3WXZReTFYZjB0K2VBK2VNQnZVckRpWnY1S0VtejYv?=
- =?utf-8?B?VkoyMi9Yd1ljQ2RZOGJscENoT2p1Q2s3V09XMUhVaDk1Y0t6L0ZENDhtQUda?=
- =?utf-8?B?RTJrZS9wN3RUR1hmVFBRN2EwaGMrUi9xcDRNVmM3SE9vWUF0MkRoV1FCc1A3?=
- =?utf-8?B?a2pkOUFUbW9lT3p0bEZwQWVnRHgzSFk3WGFuNlY5R294T04yaU03L01RbUpm?=
- =?utf-8?B?R3lZYWNXOEFub08vNWcwZVB2VUVaeGRTR3N5RkxoajlWd2RRL2JBTjB3Q0Nj?=
- =?utf-8?B?NHBzd1pYdmcyalFFc0x2SFV5S3RTdm5Pdi84OVBQZFJxK0Y4SDNMT1I5cVNO?=
- =?utf-8?B?ZmZISG9ja2RlMElJOU5ZWEcrWTFlU3lpckNobHZSN3puMXlvZWZJV3pjVW9P?=
- =?utf-8?B?V3E4U0FrUmdIUkp2cHRGRE14cllpeVB5ekZ5cUk5bHFydnQrYkdxS2tUeU1r?=
- =?utf-8?B?c3RvNTRSajhmNmFaRE1iZXpBNWtMNlFSTGJZcHRnZXVqWFNDT0V4eHN5OWZj?=
- =?utf-8?B?d1lSbnhEdGl0VlpITUZnVC9hVnVBdkJMaHViU3BiNFdJTXRvaGdWU21WNGlS?=
- =?utf-8?B?ajdJdzh2cm1VNFk5UzdpVUhpOUFzY1g4bTdzbjFROEt4WHkyMG9lNFlEMFM2?=
- =?utf-8?B?ZkFUMXRIOG5Oc2lHd0NzeVAzQzVYNXo3aEgvQlByaG85di9rTjArS2V6RThu?=
- =?utf-8?B?MnJaUzFJaEZsK1AraEFhUE82YkxYdFUrYkJmUEcyTHFScENRZnA0WXpxRUZQ?=
- =?utf-8?B?ejlxVjl0NkI0d2tOY2tsVEcySnZoOGpGTDkvV254OWRNTnk2SnY5NENaVnZT?=
- =?utf-8?B?aDB0N292ZmpLblBFWjBsQkRqMm9qN29adi9PQ3VkYmV0NUZ0MWtCU3MrQ1k3?=
- =?utf-8?B?NVZCU2R2b0RMcW1UUUhwSWh6S3FGcGJleFVmMUtoTWJJOWZrM2U4TTVXcDlM?=
- =?utf-8?B?Y0pjdG00cnBLZmlJYjNBTy8yNm9jamsrZklta0VCZ1ptT0MyMkN4UEMrUVpP?=
- =?utf-8?B?MzVMK3NJNnhmdzJxUlA2WkRtQ3J3a0JEK3ZrY20yTmh0Skc2dFM5eCtHejIy?=
- =?utf-8?B?c2RZZmtQWjhFdnI5WUh6dmdzZnU1UEZyUzZrSnlFRWRSUE1kV3piZkF0NjI4?=
- =?utf-8?B?U2I4T0t1OW91UWVNdDYrSEs1Q1V3QjVGb1pOUEd5WGYyMjRWUHhyU1U0Y3Br?=
- =?utf-8?B?Q1JUUFlaT1NiUU11cVIzaHJ1WWlJYjhmNkVRMm03U2ZLaWNWcUNqUFJ4Sy9y?=
- =?utf-8?B?WXZZazM1R2UwL0ZuR3BMaWZJN2Zvb2FZbXJKMURjLzJEZFpWL3BrNFg5MDFG?=
- =?utf-8?B?TXlNTHlYYW9GOWpaQ2xzQmhmWElxaWd3YTQwcVpLZDlBRElaVitZM0g2dzZm?=
- =?utf-8?B?NFZTOExLb29rSUoyTDMySmQxcHhVcXNhUjJyTVRwaEhxVjRqbXVxT094UmRF?=
- =?utf-8?B?Zjl6Y0dWV1FHUE4wOFN6dlRSQSt3MUt5QmJXVnluUzFVOEZvSmVCSXkwMDFB?=
- =?utf-8?B?K2xOOU8xNThZek1wT21JSm4vTjhGL3ZrVjk2dTQyeFNTZVovelJVdjQvTS9B?=
- =?utf-8?B?Z3IwM1J0SjZsSitNZVVXcXZBTlNBR3FpUHFya2JGTXVhQnZkeFppSjFiRU1q?=
- =?utf-8?B?a2tSQVZGMnhzZnRsdEdJcUNtaVk1MGtvOTVYQngwVHdUZjdKSWJ1eHNwMG1C?=
- =?utf-8?B?MnRhU3d5MDQyS3F2bk80aXpzYmpVM21HRGJVOTVQaHBTekFwNDRJVWUrWDdK?=
- =?utf-8?B?bE5ySXJySzdDL3NQU1VONHVUazV5V1NXMFlQNFZha0xaL0xSYloxZTZ4M2xR?=
- =?utf-8?B?Rzczeld2QStwWFNhWFVCUXh1ekQ1VGd3REFRRzhGOGZOamUzVzlkRkN6SjNT?=
- =?utf-8?B?b3Faa1ZSRTJsNGtRRHVkaDlGRHpOYnFXSmlhd0d4QWpHc0pPdWdQODFkdkpI?=
- =?utf-8?B?WXFqNGtWbnZhZFBVUkNGemE4ZGUvNFpxbjJ0alJZQ044Z1poYVFDaTFOVmtq?=
- =?utf-8?B?QXU0ckJCUkxSWkIvQWxkeG0zNjk2RHB3OTEranlnUmJNR2taNTBlN3c3NFZj?=
- =?utf-8?Q?zomaRhSaOZCMNQmaFOZyZxm8s?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17e84af8-5d0a-4622-f7fe-08dc6f83e214
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 17:25:40.7409 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fCKVyMyi5Jv42NTVqERMw0AHjfK+7hOUUChm9TEx49x5JA+hy68fskWgsp3bu+Bc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7109
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,46 +59,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 08.05.24 um 15:45 schrieb Alex Deucher:
-> On Wed, May 8, 2024 at 9:25 AM Michel Dänzer <michel@daenzer.net> wrote:
->> From: Michel Dänzer <mdaenzer@redhat.com>
->>
->> It incorrectly claimed a resource isn't CPU visible if it's located at
->> the very end of CPU visible VRAM.
->>
->> Fixes: a6ff969fe9 ("drm/amdgpu: fix visible VRAM handling during faults")
->> Reported-and-Tested-by: Jeremy Day <jsday@noreason.ca>
->> Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3343
-CC: stable@vger.kernel.org
+Last few days I was looking at the situation with VRAM over subscription, what
+happens versus what perhaps should happen. Browsing through the driver and
+running some simple experiments.
 
-Christian.
+I ended up with this patch series which, as a disclaimer, may be completely
+wrong but as I found some suspicious things, to me at least, I thought it was a
+good point to stop and request some comments.
 
-> and applied.  Thanks!
->
-> Alex
->
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 109fe557a02b..29c197c00018 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -427,7 +427,7 @@ bool amdgpu_res_cpu_visible(struct amdgpu_device *adev,
->>
->>          amdgpu_res_first(res, 0, res->size, &cursor);
->>          while (cursor.remaining) {
->> -               if ((cursor.start + cursor.size) >= adev->gmc.visible_vram_size)
->> +               if ((cursor.start + cursor.size) > adev->gmc.visible_vram_size)
->>                          return false;
->>                  amdgpu_res_next(&cursor, cursor.size);
->>          }
->> --
->> 2.43.0
->>
+To perhaps summarise what are the main issues I think I found:
+
+ * Migration rate limiting does not bother knowing if actual migration happened
+   and so can over-account and unfairly penalise.
+
+ * Migration rate limiting does not even work, at least not for the common case
+   where userspace configures VRAM+GTT. It thinks it can stop migration attempts
+   by playing with bo->allowed_domains vs bo->preferred domains but, both from
+   the code, and from empirical experiments, I see that not working at all. Both
+   masks are identical so fiddling with them achieves nothing.
+
+ * Idea of the fallback placement only works when VRAM has free space. As soon
+   as it does not, ttm_resource_compatible is happy to leave the buffers in the
+   secondary placement forever.
+
+ * Driver thinks it will be re-validating evicted buffers on the next submission
+   but it does not for the very common case of VRAM+GTT because it only checks
+   if current placement is *none* of the preferred placements.
+
+All those problems are addressed in individual patches.
+
+End result of this series appears to be driver which will try harder to move
+buffers back into VRAM, but will be (more) correctly throttled in doing so by
+the existing rate limiting logic.
+
+I have run a quick benchmark of Cyberpunk 2077 and cannot say that I saw a
+change but that could be a good thing too. At least I did not break anything,
+perhaps.. On one occassion I did see the rate limiting logic get confused while
+for a period of few minutes it went to a mode where it was constantly giving a
+high migration budget. But that recovered itself when I switched clients and did
+not come back so I don't know. If there is something wrong there I don't think
+it would be caused by any patches in this series.
+
+Series is probably rough but should be good enough for dicsussion. I am curious
+to hear if I identified at least something correctly as a real problem.
+
+It would also be good to hear what are the suggested games to check and see
+whether there is any improvement.
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Friedrich Vock <friedrich.vock@gmx.de>
+
+Tvrtko Ursulin (5):
+  drm/amdgpu: Fix migration rate limiting accounting
+  drm/amdgpu: Actually respect buffer migration budget
+  drm/ttm: Add preferred placement flag
+  drm/amdgpu: Use preferred placement for VRAM+GTT
+  drm/amdgpu: Re-validate evicted buffers
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c     | 38 +++++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  8 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     | 21 ++++++++++--
+ drivers/gpu/drm/ttm/ttm_resource.c         | 13 +++++---
+ include/drm/ttm/ttm_placement.h            |  3 ++
+ 5 files changed, 65 insertions(+), 18 deletions(-)
+
+-- 
+2.44.0
 
