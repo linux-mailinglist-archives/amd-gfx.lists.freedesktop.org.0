@@ -2,77 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B948C0FBB
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 May 2024 14:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1DC8C104F
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 May 2024 15:25:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E37210E1F4;
-	Thu,  9 May 2024 12:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8133E10E788;
+	Thu,  9 May 2024 13:25:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="08RXUR8S";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="BAfLIvyJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
- [209.85.167.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC0C10E0D5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 May 2024 12:40:21 +0000 (UTC)
-Received: by mail-lf1-f49.google.com with SMTP id
- 2adb3069b0e04-518931f8d23so870557e87.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 May 2024 05:40:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1715258419; x=1715863219;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=n3NirfJeXWYYIR5R2uPMTQMrKgE4eFI2a/JfUV4vtog=;
- b=08RXUR8S0AAQrs65fLj8iOe0drfYqnIfXYIdb+T00eTyLbZIinOo9DP2ssHySYrhsY
- NSyGpCoAU2dAi7TaCDGRFiH5+2AkBAyYRwjrcVzo5GcKgBwzioorV0Wx0GvSxJqjet4Z
- sptRJ84fnLjl1p/XSf8dqt7Sd0KUuYPtT7TYykJZ2p36VnP7Uw1wuMUYbp2eacyx3ZMh
- EMFLJ8bX1x9H4ZUBl8QTda8vMl2p0xoLpjXlf2xQUXRbYNnhkadbVHGbmpW1CTKltnkZ
- HkkJv7T46xeaYyyRhhCDimT6a3jn2xs7U1SY1Ro2oFFecVt6paook4cSKgnANRoS6IMc
- sfrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715258419; x=1715863219;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=n3NirfJeXWYYIR5R2uPMTQMrKgE4eFI2a/JfUV4vtog=;
- b=p6qj8I7SrL06k1GdiXIXMzPign3H2NNnALf3zVYYsFogDtL8UWRFfC31bxkrGKxz2U
- hDuCJ1A5ByTL5JgY2mbwV4W5LoNfcmkhTr59HK5qir9TvK0r6yh5sXXbN35BKGnsKR2G
- z08ZRnqM1BfsnCHiskN9nKPNtF6TDgxIgcPZO/MmEVdkscpBxnT84ZIP/rglSsoUvZXp
- qPuyOAlvFKF1UF1aD7Rrdrjow7sv+NmtWcjKzl6MahOtSf5zg0k1jQD7mXcZK0KcwzrW
- IjAjSkfBqfnSr/9qXjnX3HJq7JNmtg1Nn5P0px62TqDE0JYuMNCkkIqhRSgdmaKbnEF2
- hFTg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXlnYDDgo+13Zl1HQODc6cBhP4Mj1ZOdUyDVEnte/ePmvCNKl4yWLAPa53TRfF6hEFWaSvUP+Uult+bjlJDlUsjSyv+Q5+0tIJ0fHMupA==
-X-Gm-Message-State: AOJu0YzFSsZrwe5x5nrG0RfE/aXPpRHpdtXAy2P4waskTlOBR1GAKLdQ
- 9FgjmWk/uOgksW0OODCrAk+FDRBISaYpLqJVglWeTXOh7ZSrYoTwZXzKBVVOiPc=
-X-Google-Smtp-Source: AGHT+IHL0A6wEwx4JimOBgRRojYWD3H9Z5e/uxRyzaiU217ufBs0ILdpp0w4zg84WxySIS97nfeQIg==
-X-Received: by 2002:a05:6512:344c:b0:519:2828:c284 with SMTP id
- 2adb3069b0e04-5217ce42f3cmr3353348e87.65.1715258418996; 
- Thu, 09 May 2024 05:40:18 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-41fccfe1527sm24010745e9.44.2024.05.09.05.40.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 May 2024 05:40:18 -0700 (PDT)
-Message-ID: <e39bcdd1-90e7-42f3-94a9-ea1af6b0d278@ursulin.net>
-Date: Thu, 9 May 2024 13:40:17 +0100
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99F0010E297;
+ Thu,  9 May 2024 12:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ In-Reply-To:References; bh=gpCe6LjXBhGLTjURAG6pCgVHAv6LRa6xLP8t9gn2lQM=;
+ t=1715258603; x=1715690603; b=BAfLIvyJZIelKILeo1AlFfcn0/2MFvxfOFyN923yblHfnFl
+ 2Nq9mIBfhUGsa7NkmPhRpR6gNmMZIk2Guv5X7/39h9hJKrJu4V+B5o+hF7ZtKzoP8J93z7Q4lxrW3
+ xli3T6d4unsKDvxF6E1FI34oepdgdvHm4OxqIk1kDMrmEmpWdTo2q9jJ7gwNEWoQoq8+SyZqwex5l
+ uGgJph4o4Uu6GLRO6MGJkVuMtbSVDA2Rsf0FNNvcfXvU8uKmV+Dp6r7YwX2BjHvzHPqhjMq4AAhA0
+ A0TlS4gDDSyJucb6M1XNWcD0GzzRuKeOl18VDC4qqXfEWVhBMKJNjRRNsTLz2lFg==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1s537E-0007dX-TB; Thu, 09 May 2024 14:43:16 +0200
+Message-ID: <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
+Date: Thu, 9 May 2024 14:43:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 0/5] Discussion around eviction improvements
-Content-Language: en-GB
-To: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Friedrich Vock <friedrich.vock@gmx.de>
-References: <20240508180946.96863-1-tursulin@igalia.com>
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20240508180946.96863-1-tursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+ drm_dp_add_payload_part2
+To: Harry Wentland <harry.wentland@amd.com>, Wayne Lin <Wayne.Lin@amd.com>
+Cc: lyude@redhat.com, imre.deak@intel.com,
+ =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>,
+ stable@vger.kernel.org, regressions@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
+ <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1715258603;
+ 8108d75c; 
+X-HE-SMSGID: 1s537E-0007dX-TB
+X-Mailman-Approved-At: Thu, 09 May 2024 13:25:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,93 +66,132 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 18.04.24 21:43, Harry Wentland wrote:
+> On 2024-03-07 01:29, Wayne Lin wrote:
+>> [Why]
+>> Commit:
+>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload allocation/removement")
+>> accidently overwrite the commit
+>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in drm_dp_add_payload_part2")
+>> which cause regression.
+>>
+>> [How]
+>> Recover the original NULL fix and remove the unnecessary input parameter 'state' for
+>> drm_dp_add_payload_part2().
+>>
+>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload allocation/removement")
+>> Reported-by: Leon Weiß <leon.weiss@ruhr-uni-bochum.de>
+>> Link: https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc8.camel@ruhr-uni-bochum.de/
+>> Cc: lyude@redhat.com
+>> Cc: imre.deak@intel.com
+>> Cc: stable@vger.kernel.org
+>> Cc: regressions@lists.linux.dev
+>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+> 
+> I haven't been deep in MST code in a while but this all looks
+> pretty straightforward and good.
+> 
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-On 08/05/2024 19:09, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> 
-> Last few days I was looking at the situation with VRAM over subscription, what
-> happens versus what perhaps should happen. Browsing through the driver and
-> running some simple experiments.
-> 
-> I ended up with this patch series which, as a disclaimer, may be completely
-> wrong but as I found some suspicious things, to me at least, I thought it was a
-> good point to stop and request some comments.
-> 
-> To perhaps summarise what are the main issues I think I found:
-> 
->   * Migration rate limiting does not bother knowing if actual migration happened
->     and so can over-account and unfairly penalise.
-> 
->   * Migration rate limiting does not even work, at least not for the common case
->     where userspace configures VRAM+GTT. It thinks it can stop migration attempts
->     by playing with bo->allowed_domains vs bo->preferred domains but, both from
->     the code, and from empirical experiments, I see that not working at all. Both
->     masks are identical so fiddling with them achieves nothing.
-> 
->   * Idea of the fallback placement only works when VRAM has free space. As soon
->     as it does not, ttm_resource_compatible is happy to leave the buffers in the
->     secondary placement forever.
-> 
->   * Driver thinks it will be re-validating evicted buffers on the next submission
->     but it does not for the very common case of VRAM+GTT because it only checks
->     if current placement is *none* of the preferred placements.
-> 
-> All those problems are addressed in individual patches.
-> 
-> End result of this series appears to be driver which will try harder to move
-> buffers back into VRAM, but will be (more) correctly throttled in doing so by
-> the existing rate limiting logic.
-> 
-> I have run a quick benchmark of Cyberpunk 2077 and cannot say that I saw a
-> change but that could be a good thing too. At least I did not break anything,
-> perhaps.. On one occassion I did see the rate limiting logic get confused while
-> for a period of few minutes it went to a mode where it was constantly giving a
-> high migration budget. But that recovered itself when I switched clients and did
-> not come back so I don't know. If there is something wrong there I don't think
-> it would be caused by any patches in this series.
+Hmmm, that was three weeks ago, but it seems since then nothing happened
+to fix the linked regression through this or some other patch. Is there
+a reason? The build failure report from the CI maybe?
 
-Since yesterday I also briefly tested with Far Cry New Dawn. One run 
-each so possibly doesn't mean anything apart that there isn't a 
-regression aka migration throttling is keeping things at bay even with 
-increased requests to migrate things back to VRAM:
-			
-		     before		 after
-min/avg/max fps	    36/44/54		37/45/55
+Wayne Lin, do you know what's up?
 
-Cyberpunk 2077 from yesterday was similarly close:
+Ciao, Thorsten
 
-		26.96/29.59/30.40	29.70/30.00/30.32
-
-I guess the real story is proper DGPU where misplaced buffers have a 
-real cost.
-
-Regards,
-
-Tvrtko
-
-> Series is probably rough but should be good enough for dicsussion. I am curious
-> to hear if I identified at least something correctly as a real problem.
+>> ---
+>>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 +-
+>>  drivers/gpu/drm/display/drm_dp_mst_topology.c             | 4 +---
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c               | 2 +-
+>>  drivers/gpu/drm/nouveau/dispnv50/disp.c                   | 2 +-
+>>  include/drm/display/drm_dp_mst_helper.h                   | 1 -
+>>  5 files changed, 4 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+>> index c27063305a13..2c36f3d00ca2 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+>> @@ -363,7 +363,7 @@ void dm_helpers_dp_mst_send_payload_allocation(
+>>  	mst_state = to_drm_dp_mst_topology_state(mst_mgr->base.state);
+>>  	new_payload = drm_atomic_get_mst_payload_state(mst_state, aconnector->mst_output_port);
+>>  
+>> -	ret = drm_dp_add_payload_part2(mst_mgr, mst_state->base.state, new_payload);
+>> +	ret = drm_dp_add_payload_part2(mst_mgr, new_payload);
+>>  
+>>  	if (ret) {
+>>  		amdgpu_dm_set_mst_status(&aconnector->mst_status,
+>> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> index 03d528209426..95fd18f24e94 100644
+>> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> @@ -3421,7 +3421,6 @@ EXPORT_SYMBOL(drm_dp_remove_payload_part2);
+>>  /**
+>>   * drm_dp_add_payload_part2() - Execute payload update part 2
+>>   * @mgr: Manager to use.
+>> - * @state: The global atomic state
+>>   * @payload: The payload to update
+>>   *
+>>   * If @payload was successfully assigned a starting time slot by drm_dp_add_payload_part1(), this
+>> @@ -3430,14 +3429,13 @@ EXPORT_SYMBOL(drm_dp_remove_payload_part2);
+>>   * Returns: 0 on success, negative error code on failure.
+>>   */
+>>  int drm_dp_add_payload_part2(struct drm_dp_mst_topology_mgr *mgr,
+>> -			     struct drm_atomic_state *state,
+>>  			     struct drm_dp_mst_atomic_payload *payload)
+>>  {
+>>  	int ret = 0;
+>>  
+>>  	/* Skip failed payloads */
+>>  	if (payload->payload_allocation_status != DRM_DP_MST_PAYLOAD_ALLOCATION_DFP) {
+>> -		drm_dbg_kms(state->dev, "Part 1 of payload creation for %s failed, skipping part 2\n",
+>> +		drm_dbg_kms(mgr->dev, "Part 1 of payload creation for %s failed, skipping part 2\n",
+>>  			    payload->port->connector->name);
+>>  		return -EIO;
+>>  	}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> index 53aec023ce92..2fba66aec038 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> @@ -1160,7 +1160,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>>  	if (first_mst_stream)
+>>  		intel_ddi_wait_for_fec_status(encoder, pipe_config, true);
+>>  
+>> -	drm_dp_add_payload_part2(&intel_dp->mst_mgr, &state->base,
+>> +	drm_dp_add_payload_part2(&intel_dp->mst_mgr,
+>>  				 drm_atomic_get_mst_payload_state(mst_state, connector->port));
+>>  
+>>  	if (DISPLAY_VER(dev_priv) >= 12)
+>> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+>> index 0c3d88ad0b0e..88728a0b2c25 100644
+>> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+>> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+>> @@ -915,7 +915,7 @@ nv50_msto_cleanup(struct drm_atomic_state *state,
+>>  		msto->disabled = false;
+>>  		drm_dp_remove_payload_part2(mgr, new_mst_state, old_payload, new_payload);
+>>  	} else if (msto->enabled) {
+>> -		drm_dp_add_payload_part2(mgr, state, new_payload);
+>> +		drm_dp_add_payload_part2(mgr, new_payload);
+>>  		msto->enabled = false;
+>>  	}
+>>  }
+>> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+>> index 9b19d8bd520a..6c9145abc7e2 100644
+>> --- a/include/drm/display/drm_dp_mst_helper.h
+>> +++ b/include/drm/display/drm_dp_mst_helper.h
+>> @@ -851,7 +851,6 @@ int drm_dp_add_payload_part1(struct drm_dp_mst_topology_mgr *mgr,
+>>  			     struct drm_dp_mst_topology_state *mst_state,
+>>  			     struct drm_dp_mst_atomic_payload *payload);
+>>  int drm_dp_add_payload_part2(struct drm_dp_mst_topology_mgr *mgr,
+>> -			     struct drm_atomic_state *state,
+>>  			     struct drm_dp_mst_atomic_payload *payload);
+>>  void drm_dp_remove_payload_part1(struct drm_dp_mst_topology_mgr *mgr,
+>>  				 struct drm_dp_mst_topology_state *mst_state,
 > 
-> It would also be good to hear what are the suggested games to check and see
-> whether there is any improvement.
 > 
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Friedrich Vock <friedrich.vock@gmx.de>
-> 
-> Tvrtko Ursulin (5):
->    drm/amdgpu: Fix migration rate limiting accounting
->    drm/amdgpu: Actually respect buffer migration budget
->    drm/ttm: Add preferred placement flag
->    drm/amdgpu: Use preferred placement for VRAM+GTT
->    drm/amdgpu: Re-validate evicted buffers
-> 
->   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c     | 38 +++++++++++++++++-----
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  8 +++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     | 21 ++++++++++--
->   drivers/gpu/drm/ttm/ttm_resource.c         | 13 +++++---
->   include/drm/ttm/ttm_placement.h            |  3 ++
->   5 files changed, 65 insertions(+), 18 deletions(-)
 > 
