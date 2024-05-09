@@ -2,123 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299AF8C104E
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 May 2024 15:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B948C0FBB
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 May 2024 14:40:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A54910E6CF;
-	Thu,  9 May 2024 13:25:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E37210E1F4;
+	Thu,  9 May 2024 12:40:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h3q/PvLQ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="08RXUR8S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 475CE89F41;
- Thu,  9 May 2024 11:37:29 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-a59cdd185b9so336356266b.1; 
- Thu, 09 May 2024 04:37:29 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC0C10E0D5
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 May 2024 12:40:21 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-518931f8d23so870557e87.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 May 2024 05:40:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715254647; x=1715859447; darn=lists.freedesktop.org;
- h=content-transfer-encoding:autocrypt:subject:from:cc:to
- :content-language:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6sJO0ha/IpUMXR3M9I8iD91SRJQAVOnLtMhPNZZSqbE=;
- b=h3q/PvLQ/lfjJg4ZYr5tbugfZkPW/ebLUYafQGrR1YgUKalILcr/hSCm4ng2l9nR33
- 2xtlp4F/Olc5IX2I6aPBCSAfYL1/P8rDfgQmcrQ1SfnWnScj3oPAWdR9EfHb1G+3kd7q
- 4lgCGqpZ6AcUlNlDIz1OtuTL5tmd5EnAcN3mmpQUX4SVH/rokpQM3SCiW+eb0UeC1LDp
- nIDwYNBOAzMUzNUcZiTSEfYIwuZW6646XGvQ0/AcoJaNM5WvCPvNlLH8SmwfbNqUrHDV
- V86Zu6c/B24Ug2XdafxDO4LcYYMTjtJm0pgbGeJQMe85Bpj6cbKCQ44aLc1v8joxxp4N
- pYcg==
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1715258419; x=1715863219;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=n3NirfJeXWYYIR5R2uPMTQMrKgE4eFI2a/JfUV4vtog=;
+ b=08RXUR8S0AAQrs65fLj8iOe0drfYqnIfXYIdb+T00eTyLbZIinOo9DP2ssHySYrhsY
+ NSyGpCoAU2dAi7TaCDGRFiH5+2AkBAyYRwjrcVzo5GcKgBwzioorV0Wx0GvSxJqjet4Z
+ sptRJ84fnLjl1p/XSf8dqt7Sd0KUuYPtT7TYykJZ2p36VnP7Uw1wuMUYbp2eacyx3ZMh
+ EMFLJ8bX1x9H4ZUBl8QTda8vMl2p0xoLpjXlf2xQUXRbYNnhkadbVHGbmpW1CTKltnkZ
+ HkkJv7T46xeaYyyRhhCDimT6a3jn2xs7U1SY1Ro2oFFecVt6paook4cSKgnANRoS6IMc
+ sfrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715254647; x=1715859447;
- h=content-transfer-encoding:autocrypt:subject:from:cc:to
- :content-language:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20230601; t=1715258419; x=1715863219;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6sJO0ha/IpUMXR3M9I8iD91SRJQAVOnLtMhPNZZSqbE=;
- b=slRw5V52gutVf06p4BpUrOS+Kv8Gx67pdTKzb6IOGHMmxg2B4ui3lmaunsv+8fPyJP
- +O1oZJPeyXzQyPKWrvC1W+KapWW5wpL5HywazVMvMcGIVtuzzwuaOWbwJxkqqXhLwrVk
- Dw+vjbRXpkgys1Q0tNUmwO3dTTLaGCAw/g6iC7jWERdURGzu2YhpVV4RH/Bhra11IVqL
- 3NZBzJl6LgHNrX65gxK6joX7c6tNrv0NEcZ6YMey3bArAU9HY1DImQujs3gzR3xzV38p
- 6RFYwE+NtWxjiniq9WBr2HEXyqlKlhNwqo6Zr4FJMlnYqX8o0z95kpIhDC3vohX7tbwQ
- D65g==
+ bh=n3NirfJeXWYYIR5R2uPMTQMrKgE4eFI2a/JfUV4vtog=;
+ b=p6qj8I7SrL06k1GdiXIXMzPign3H2NNnALf3zVYYsFogDtL8UWRFfC31bxkrGKxz2U
+ hDuCJ1A5ByTL5JgY2mbwV4W5LoNfcmkhTr59HK5qir9TvK0r6yh5sXXbN35BKGnsKR2G
+ z08ZRnqM1BfsnCHiskN9nKPNtF6TDgxIgcPZO/MmEVdkscpBxnT84ZIP/rglSsoUvZXp
+ qPuyOAlvFKF1UF1aD7Rrdrjow7sv+NmtWcjKzl6MahOtSf5zg0k1jQD7mXcZK0KcwzrW
+ IjAjSkfBqfnSr/9qXjnX3HJq7JNmtg1Nn5P0px62TqDE0JYuMNCkkIqhRSgdmaKbnEF2
+ hFTg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVtA9yr0ksMH2CYFfkq0Hi4hxKl53jvrXt/SsubK0amB5fl11nvxvgX0RtKIMDu4QR/rSLLcWzNi/mJNVO32uk4ae68IqX7f349ca0vfQV73uQPUczbl8dB8gBQMr4diS2xGdqAA5hF4yorbN+DxA==
-X-Gm-Message-State: AOJu0Yy0+TZoziaRyNqXSCriGGcW7pI7Q8AELpRCeV+24thOAxKo99RR
- MoDdEBZMnu32Lvin8NrwSPlh9foux+6eDKxEIOqikxh16SFuvIYc
-X-Google-Smtp-Source: AGHT+IEJMVbfWbIECiB1m4q9jDyJBW03yKh+urci0R6eeDqcrkjOxFH0YIxtRZ9Sbl/uDWKGUH8wxQ==
-X-Received: by 2002:a17:906:365a:b0:a59:a431:a8d6 with SMTP id
- a640c23a62f3a-a5a1181b82fmr166525266b.38.1715254647067; 
- Thu, 09 May 2024 04:37:27 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c00b:2000:7de7:eaf2:2b3:3589?
- (dynamic-2a01-0c23-c00b-2000-7de7-eaf2-02b3-3589.c23.pool.telefonica.de.
- [2a01:c23:c00b:2000:7de7:eaf2:2b3:3589])
- by smtp.googlemail.com with ESMTPSA id
- a640c23a62f3a-a5a179c7f3dsm63984666b.123.2024.05.09.04.37.26
+ AJvYcCXlnYDDgo+13Zl1HQODc6cBhP4Mj1ZOdUyDVEnte/ePmvCNKl4yWLAPa53TRfF6hEFWaSvUP+Uult+bjlJDlUsjSyv+Q5+0tIJ0fHMupA==
+X-Gm-Message-State: AOJu0YzFSsZrwe5x5nrG0RfE/aXPpRHpdtXAy2P4waskTlOBR1GAKLdQ
+ 9FgjmWk/uOgksW0OODCrAk+FDRBISaYpLqJVglWeTXOh7ZSrYoTwZXzKBVVOiPc=
+X-Google-Smtp-Source: AGHT+IHL0A6wEwx4JimOBgRRojYWD3H9Z5e/uxRyzaiU217ufBs0ILdpp0w4zg84WxySIS97nfeQIg==
+X-Received: by 2002:a05:6512:344c:b0:519:2828:c284 with SMTP id
+ 2adb3069b0e04-5217ce42f3cmr3353348e87.65.1715258418996; 
+ Thu, 09 May 2024 05:40:18 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-41fccfe1527sm24010745e9.44.2024.05.09.05.40.18
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 May 2024 04:37:26 -0700 (PDT)
-Message-ID: <ed236ed6-0e6d-4243-8316-28485c9797c0@gmail.com>
-Date: Thu, 9 May 2024 13:37:27 +0200
+ Thu, 09 May 2024 05:40:18 -0700 (PDT)
+Message-ID: <e39bcdd1-90e7-42f3-94a9-ea1af6b0d278@ursulin.net>
+Date: Thu, 9 May 2024 13:40:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Evan Quan <evan.quan@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+Subject: Re: [RFC 0/5] Discussion around eviction improvements
+Content-Language: en-GB
+To: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:AMD KFD" <dri-devel@lists.freedesktop.org>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH] drm/amd/pm: remove deprecated I2C_CLASS_SPD support from
- newly added SMU_14_0_2
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- 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
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 09 May 2024 13:25:37 +0000
+ Friedrich Vock <friedrich.vock@gmx.de>
+References: <20240508180946.96863-1-tursulin@igalia.com>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20240508180946.96863-1-tursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,28 +87,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Support for I2C_CLASS_SPD  is currently being removed from the kernel.
-Only remaining step is to remove the definition of I2C_CLASS_SPD.
-Setting I2C_CLASS_SPD  in a driver is a no-op meanwhile, so remove it
-here.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 1 -
- 1 file changed, 1 deletion(-)
+On 08/05/2024 19:09, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> Last few days I was looking at the situation with VRAM over subscription, what
+> happens versus what perhaps should happen. Browsing through the driver and
+> running some simple experiments.
+> 
+> I ended up with this patch series which, as a disclaimer, may be completely
+> wrong but as I found some suspicious things, to me at least, I thought it was a
+> good point to stop and request some comments.
+> 
+> To perhaps summarise what are the main issues I think I found:
+> 
+>   * Migration rate limiting does not bother knowing if actual migration happened
+>     and so can over-account and unfairly penalise.
+> 
+>   * Migration rate limiting does not even work, at least not for the common case
+>     where userspace configures VRAM+GTT. It thinks it can stop migration attempts
+>     by playing with bo->allowed_domains vs bo->preferred domains but, both from
+>     the code, and from empirical experiments, I see that not working at all. Both
+>     masks are identical so fiddling with them achieves nothing.
+> 
+>   * Idea of the fallback placement only works when VRAM has free space. As soon
+>     as it does not, ttm_resource_compatible is happy to leave the buffers in the
+>     secondary placement forever.
+> 
+>   * Driver thinks it will be re-validating evicted buffers on the next submission
+>     but it does not for the very common case of VRAM+GTT because it only checks
+>     if current placement is *none* of the preferred placements.
+> 
+> All those problems are addressed in individual patches.
+> 
+> End result of this series appears to be driver which will try harder to move
+> buffers back into VRAM, but will be (more) correctly throttled in doing so by
+> the existing rate limiting logic.
+> 
+> I have run a quick benchmark of Cyberpunk 2077 and cannot say that I saw a
+> change but that could be a good thing too. At least I did not break anything,
+> perhaps.. On one occassion I did see the rate limiting logic get confused while
+> for a period of few minutes it went to a mode where it was constantly giving a
+> high migration budget. But that recovered itself when I switched clients and did
+> not come back so I don't know. If there is something wrong there I don't think
+> it would be caused by any patches in this series.
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-index 0d5ad531c..fb6f3bbe2 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-@@ -1616,7 +1616,6 @@ static int smu_v14_0_2_i2c_control_init(struct smu_context *smu)
- 		smu_i2c->port = i;
- 		mutex_init(&smu_i2c->mutex);
- 		control->owner = THIS_MODULE;
--		control->class = I2C_CLASS_SPD;
- 		control->dev.parent = &adev->pdev->dev;
- 		control->algo = &smu_v14_0_2_i2c_algo;
- 		snprintf(control->name, sizeof(control->name), "AMDGPU SMU %d", i);
--- 
-2.45.0
+Since yesterday I also briefly tested with Far Cry New Dawn. One run 
+each so possibly doesn't mean anything apart that there isn't a 
+regression aka migration throttling is keeping things at bay even with 
+increased requests to migrate things back to VRAM:
+			
+		     before		 after
+min/avg/max fps	    36/44/54		37/45/55
 
+Cyberpunk 2077 from yesterday was similarly close:
+
+		26.96/29.59/30.40	29.70/30.00/30.32
+
+I guess the real story is proper DGPU where misplaced buffers have a 
+real cost.
+
+Regards,
+
+Tvrtko
+
+> Series is probably rough but should be good enough for dicsussion. I am curious
+> to hear if I identified at least something correctly as a real problem.
+> 
+> It would also be good to hear what are the suggested games to check and see
+> whether there is any improvement.
+> 
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Friedrich Vock <friedrich.vock@gmx.de>
+> 
+> Tvrtko Ursulin (5):
+>    drm/amdgpu: Fix migration rate limiting accounting
+>    drm/amdgpu: Actually respect buffer migration budget
+>    drm/ttm: Add preferred placement flag
+>    drm/amdgpu: Use preferred placement for VRAM+GTT
+>    drm/amdgpu: Re-validate evicted buffers
+> 
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c     | 38 +++++++++++++++++-----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  8 +++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     | 21 ++++++++++--
+>   drivers/gpu/drm/ttm/ttm_resource.c         | 13 +++++---
+>   include/drm/ttm/ttm_placement.h            |  3 ++
+>   5 files changed, 65 insertions(+), 18 deletions(-)
+> 
