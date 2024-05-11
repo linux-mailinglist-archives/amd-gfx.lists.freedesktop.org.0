@@ -2,58 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C74A8C3C3B
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 May 2024 09:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DC88C3C3E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 May 2024 09:45:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9502A10E46E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F42410E469;
 	Mon, 13 May 2024 07:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmYdxwfH";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="inEFmg9F";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB7410ED60;
- Fri, 10 May 2024 15:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715353739; x=1746889739;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=okdSamReSXfiRgy3B5DAMHJ9bmN9NST/nJOWkPfP060=;
- b=NmYdxwfH0SJyW+WHpsLSs3uUpAcZe7OnWeBbdNAIG00tzb2BssLwDJIG
- lZ5/YjDSCziru3wNCQok315MDygcTKhq9k6aUtQVQA10G2IcccqbbvY4Y
- tynIah82OuYK8sewvC4XTS/KTevLm0K8xYnm9TmyX2/jZzdrNTMMOT9o9
- /wf3qm1hAKL3x3xa57AHDR7LUIksAGw/rsh6UYip/EoQ8oThcYE2wzhKY
- eXnbQenbEm3ay/1hWy0kSgrn7iAzK0afbeBjTnrSz1bGwUlnExiu7Fr4a
- wnyAB2Si8UAaGJbPvC2oebAZ/7+odihzFFWEvIdUqC4ID1na84QGhkV+K Q==;
-X-CSE-ConnectionGUID: eIZiRkbYSbWRCL5LuGm8pQ==
-X-CSE-MsgGUID: xgMMb9CPSROUZYBOzNVrJg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11469183"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11469183"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 08:08:58 -0700
-X-CSE-ConnectionGUID: lfOe0sIqQli66kmc/zKdVw==
-X-CSE-MsgGUID: oFPGclBFQyWjV2Tq3OV9pw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="34081535"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.180])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 08:08:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
-Subject: [RESEND 6/6] drm/connector: update edid_blob_ptr documentation
-Date: Fri, 10 May 2024 18:08:13 +0300
-Message-Id: <b6aa1ea30ae85ef9e9814315d3437e82f0ba6754.1715353572.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1715353572.git.jani.nikula@intel.com>
-References: <cover.1715353572.git.jani.nikula@intel.com>
+Received: from out30-133.freemail.mail.aliyun.com
+ (out30-133.freemail.mail.aliyun.com [115.124.30.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C4DB10E089;
+ Sat, 11 May 2024 02:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1715395400; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=xMWB7tcK9lh6tvkjem4+oVbLaB6u7ih0rPhd/ngxidw=;
+ b=inEFmg9FitvymYcDonH+TUX3oHAQa3p4885bEAThVSINGDXNR7ZnA+3pbVAlYR9MABP/iW+iFJgIC7NxBOHEgj0UMrvC6KPqtJIIIBJfYPW01fnsKbojl9dnYce4DQ/Chh4zuaau+8eRF0iYcuVMNIlvg+NQI3SR0hHDT4i5t/o=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R801e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033037067112;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0W6BjtCT_1715395382; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0W6BjtCT_1715395382) by smtp.aliyun-inc.com;
+ Sat, 11 May 2024 10:43:19 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Cc: christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH] drm/amd/display: clean up some inconsistent indenting
+Date: Sat, 11 May 2024 10:43:01 +0800
+Message-Id: <20240511024301.81075-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 13 May 2024 07:45:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,33 +56,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Accessing the EDID via edid_blob_ptr causes chicken-and-egg
-problems. Keep edid_blob_ptr as the userspace interface that should be
-accessed via dedicated functions.
+No functional modification involved.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn401/dcn401_resource.c:792 dcn401_i2c_hw_create() warn: inconsistent indenting.
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn401/dcn401_resource.c:894 dcn401_hubp_create() warn: inconsistent indenting.
+drivers/gpu/drm/amd/amdgpu/../display/dc/resource/dcn401/dcn401_resource.c:1738 dcn401_resource_construct() warn: inconsistent indenting.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=9002
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- include/drm/drm_connector.h | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../dc/resource/dcn401/dcn401_resource.c      | 29 +++++++++----------
+ 1 file changed, 14 insertions(+), 15 deletions(-)
 
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index fe88d7fc6b8f..58ee9adf9091 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -1636,8 +1636,12 @@ struct drm_connector {
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+index 75e2c62ae792..3e1bfddc6e43 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+@@ -784,14 +784,13 @@ static struct dce_i2c_hw *dcn401_i2c_hw_create(
  
- 	/**
- 	 * @edid_blob_ptr: DRM property containing EDID if present. Protected by
--	 * &drm_mode_config.mutex. This should be updated only by calling
-+	 * &drm_mode_config.mutex.
-+	 *
-+	 * This must be updated only by calling drm_edid_connector_update() or
- 	 * drm_connector_update_edid_property().
-+	 *
-+	 * This must not be used by drivers directly.
- 	 */
- 	struct drm_property_blob *edid_blob_ptr;
+ #undef REG_STRUCT
+ #define REG_STRUCT i2c_hw_regs
+-		i2c_inst_regs_init(1),
+-		i2c_inst_regs_init(2),
+-		i2c_inst_regs_init(3),
+-		i2c_inst_regs_init(4);
++	i2c_inst_regs_init(1),
++	i2c_inst_regs_init(2),
++	i2c_inst_regs_init(3),
++	i2c_inst_regs_init(4);
  
+ 	dcn2_i2c_hw_construct(dce_i2c_hw, ctx, inst,
+-				    &i2c_hw_regs[inst], &i2c_shifts, &i2c_masks);
+-
++			      &i2c_hw_regs[inst], &i2c_shifts, &i2c_masks);
+ 	return dce_i2c_hw;
+ }
+ 
+@@ -886,13 +885,13 @@ static struct hubp *dcn401_hubp_create(
+ 
+ #undef REG_STRUCT
+ #define REG_STRUCT hubp_regs
+-		hubp_regs_init(0),
+-		hubp_regs_init(1),
+-		hubp_regs_init(2),
+-		hubp_regs_init(3);
++	hubp_regs_init(0),
++	hubp_regs_init(1),
++	hubp_regs_init(2),
++	hubp_regs_init(3);
+ 
+ 	if (hubp401_construct(hubp2, ctx, inst,
+-			&hubp_regs[inst], &hubp_shift, &hubp_mask))
++			      &hubp_regs[inst], &hubp_shift, &hubp_mask))
+ 		return &hubp2->base;
+ 
+ 	BREAK_TO_DEBUGGER();
+@@ -1735,10 +1734,10 @@ static bool dcn401_resource_construct(
+ 
+ #undef REG_STRUCT
+ #define REG_STRUCT abm_regs
+-		abm_regs_init(0),
+-		abm_regs_init(1),
+-		abm_regs_init(2),
+-		abm_regs_init(3);
++	abm_regs_init(0),
++	abm_regs_init(1),
++	abm_regs_init(2),
++	abm_regs_init(3);
+ 
+ #undef REG_STRUCT
+ #define REG_STRUCT dccg_regs
 -- 
-2.39.2
+2.20.1.7.g153144c
 
