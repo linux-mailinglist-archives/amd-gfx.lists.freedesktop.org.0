@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BEA8C3E01
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 May 2024 11:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A44E18C3E03
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 May 2024 11:21:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3746610E582;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1DF410E585;
 	Mon, 13 May 2024 09:21:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Hu14p3+7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rf0s6NTy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2072.outbound.protection.outlook.com [40.107.101.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C87F510E582
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 May 2024 09:21:47 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2060.outbound.protection.outlook.com [40.107.223.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E4910E582
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 May 2024 09:21:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xunm5piCCD+vZ7TelzxP7qyntR/hsu42rhvrr2YfrSudgNbQLKYvhnSvtuRVB5Z5VHaAOwY665snP6y72bwqQ2iUL4G00uUV8UpBMQOUVXaYe737SoEg3ODiM6n9jfuKrDsNOWd5WlsPjUruN/eKMOaCMYfrerOOlEYU9cEDkCP8r5fhsnSkJZjU7lBLqiT+bFfIa40CfQKy7Y9BMd1yi4ovC5oiggrt0r/4pfYU0PYyyj2WGc+bORs6dn0Lq+MBCDESs4qyyzZex3+zwUW7eIkY9mBcqNfbDTHjHxTLxLe8tGealjQLH8yPDl6JmPph2D55ECfNSb8J7IZ9aCfVAA==
+ b=T41rtIeTgicAFWuC1B/UjEr+yQA+9UR77xZGQLSuV/rTyrYgBCBtLywGty1dMtwgqZbHm4ChRV/eRQ83sMDsijDZu4IL8Fb6Vxg0b9fm6awjoh4Wi24cwpBdHDJVkMBAeSrImoypPsRlIpMEN76GAuwb5TSUXQoca8594PdNmN9e39DlPD/0yLtQvn6rRjHFgTWfSEQ4PbSsiqR8+C/6ArRMG1QWG4/NjPdpXuLNfEQTfmf+f8Q6xMjf9qqr4IJU5sujDHPkNG8/NbzeJx4gHq0AIUfxvX/RQ55RGL++3frsoQySx2hthNtqejmE2sQoJYfVSL6cVe59XfcXjCX4Lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=olf4UQ4loZneVtDFXjGALZsSSEeofOsSvPUZ785igF4=;
- b=d3+XqQqLSgkryp9PX5/e0ptasLLa6L48L4IqM2Z1fj9F4yRt9CDMikOSwPq7Woy/7fFW/dbgsgk7KluK8fZjc8X0Vrsnl8cfUQ5ShHhbST+Rbg5k3MKVhS07Qs5hELL0ruiVNiNjmArYoY8LyZrxqkmYRHUeVDrMngR+fUwmP9/60rLbUiYS2XOMNF6r8STCqY+RtrfQw+kTV3b5adZ8SEACpUjpxKa9PWwUF50OPQBFBNlv9iRCl4GaVBoBS5J4aq28fNOnmhlG6BzBh8VR39dmyyS+/DxHCTyO14IBBj+G/kEhLW8IoLOtjO3Slwl32CS6Qofcoo1Hc78ZrBjzHw==
+ bh=stoeZIq36qpkexTOhGaF/I7mq/zYF80QlPHZFIhs4ZQ=;
+ b=F8mJIMA/CvIo+njCBEIleNr8Dwi+o6MIWlaRnPnmxONG8M0Bb04fu9tuAM03iLmwC8zfuTZwteheeL1OMkX/dBYOkvQ3o0NfJHlCDIdUxezqR2lgxJWUBbatwBqJyH8aKP7k8+R4zGrmz8X/7M59AeOtarUICrn21ghoA3JMvbeBxHR//uHVzIM4zVxoIpFIGP9I0VJ5EGkQzUjtMaL5niC/4kH6nvGIZteyb6r8LlUq8X4kp1GMVFa2rf8wDtGwvG9maELwBe2Ug8O+iV33/C7zJsxsSv5XGoNIHr9CunDlMWRbKYhJ+JOfyqj3bTFZ4wSF1BxF67QwjygMdlufjg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=olf4UQ4loZneVtDFXjGALZsSSEeofOsSvPUZ785igF4=;
- b=Hu14p3+7PQUNpJfOrn8A4wmJPeOO8QTD4WsogBa9NYrgIFF3GIZdLr7rJx1WwXtNWI0Q6p22JF1yxhI+7CN9bltx/q8xaz5/pkksR8YzprOCQunFmYo1400G8BHXBhPn4TnqeGqJ4FLo/FZpLgZJCOMMtJhWvK3S5V37e6jgmZU=
-Received: from DS7PR05CA0083.namprd05.prod.outlook.com (2603:10b6:8:57::29) by
- IA1PR12MB6650.namprd12.prod.outlook.com (2603:10b6:208:3a1::18) with
+ bh=stoeZIq36qpkexTOhGaF/I7mq/zYF80QlPHZFIhs4ZQ=;
+ b=rf0s6NTyRPq/+3BeesEbSgliatN2COXzxXJFhJG6086wPR+kWJlDVN+dY2xGFzQGwQ7apWjpln9L+MyJ94aQ7NvQvay0wPZc0dVuJdK++vVvq6NglrhGu9SqlOiiEde80mLH8G5MOqm+R8ZX4VlWT/MRllQUHvENL4ICzY/RkiY=
+Received: from DM6PR03CA0053.namprd03.prod.outlook.com (2603:10b6:5:100::30)
+ by DS7PR12MB5744.namprd12.prod.outlook.com (2603:10b6:8:73::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Mon, 13 May
- 2024 09:21:44 +0000
-Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:8:57:cafe::4) by DS7PR05CA0083.outlook.office365.com
- (2603:10b6:8:57::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.22 via Frontend
- Transport; Mon, 13 May 2024 09:21:44 +0000
+ 2024 09:21:46 +0000
+Received: from DS2PEPF00003445.namprd04.prod.outlook.com
+ (2603:10b6:5:100:cafe::ab) by DM6PR03CA0053.outlook.office365.com
+ (2603:10b6:5:100::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55 via Frontend
+ Transport; Mon, 13 May 2024 09:21:46 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,20 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ DS2PEPF00003445.mail.protection.outlook.com (10.167.17.72) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7587.21 via Frontend Transport; Mon, 13 May 2024 09:21:44 +0000
+ 15.20.7587.21 via Frontend Transport; Mon, 13 May 2024 09:21:46 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 13 May
- 2024 04:21:41 -0500
+ 2024 04:21:43 -0500
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
  <Asad.Kamal@amd.com>, <Le.Ma@amd.com>
-Subject: [PATCH v3 08/10] drm/amd/pm: Remove legacy interface for xgmi plpd
-Date: Mon, 13 May 2024 14:51:09 +0530
-Message-ID: <20240513092111.341168-9-lijo.lazar@amd.com>
+Subject: [PATCH v3 09/10] drm/amd/pm: Remove unused interface to set plpd
+Date: Mon, 13 May 2024 14:51:10 +0530
+Message-ID: <20240513092111.341168-10-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240513092111.341168-1-lijo.lazar@amd.com>
 References: <20240513092111.341168-1-lijo.lazar@amd.com>
@@ -73,50 +73,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|IA1PR12MB6650:EE_
-X-MS-Office365-Filtering-Correlation-Id: ffc2d121-5167-4ea0-f5c8-08dc732e1b29
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003445:EE_|DS7PR12MB5744:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50bdd510-883b-4b7a-4efa-08dc732e1c58
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|376005|82310400017|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SrfdT3hBOq8ETx9Awusa1NHktpWZb+Dmuy11sXWhSG4Jc1P37CwXllUFAM8Y?=
- =?us-ascii?Q?7C1231EeDNrB47DmnYqJigqv41R7JbP/6vfViEYre67GcEkfcKlwq3rrEsiy?=
- =?us-ascii?Q?PW9gOI6Y6C1alhmZU6fgmqy22sldDYlCiTpPg4QBQJ+AGxjkPWTC1Gj71YmN?=
- =?us-ascii?Q?yrL/R7kfA1IYhSUhoSIb5pMP2qlWu5j1HwRWm9kT/UnabY3n/W+wePQKHROA?=
- =?us-ascii?Q?kkxjTq1PtNNGy8p69MgeQstFA5ZPMyLMC2lNxJwUHs7hSQxjLzEq9l/uV+FL?=
- =?us-ascii?Q?6grivQkw8+WIwbb1WwQiZnkgs0k277mx/xU6oegAxTPCGCCMBTLY+vnTEfQq?=
- =?us-ascii?Q?cS2LNwZ37e5LuLCFB5b4NYjAHeRLaPF5dENyluZx7AQl/zwrjz+z2mvuCOQM?=
- =?us-ascii?Q?bdMPb/RX2TnEw0w+9u+T79xlYm/D+t+OVQa/quZ3IxxzBJtmJdIyFnCv/P8/?=
- =?us-ascii?Q?UJFOQHjkiwXKhFE8RPw/Spk178SOjpUN/FhVw+VGBZwjE0mQmCkGqXsmZ35t?=
- =?us-ascii?Q?q+NPoqDaEiT2svCwblpQpM+ps4q5Gxgpb1ZCFipYz5hnB4StXOSDiEaskEPF?=
- =?us-ascii?Q?fZ+pVYPCmQABdduWtVj1B/xyYTLRdoSvDs9N3EiLnm9XEpEFbBcuMLZy1DzU?=
- =?us-ascii?Q?bU65FuvCXxqCfEukcEthqJSPFp1gZLOUpEd0ovSwALHHbI7Ewi7O+YOfbgww?=
- =?us-ascii?Q?yvzuBomUexT6mhbfv3pD8E0KCBedoG+X8Ymx7uxmNa+sNKf4Mg3WF0dilKfH?=
- =?us-ascii?Q?Srg3b48llesQoYdD/mEClb5c9KjGJbI3e6aLZqjOfrn6TFqq0Y2DCJOnChMV?=
- =?us-ascii?Q?2PKpEEx7KY+anmGf9bN1bgZZxqRQ4sDre3WwGTKx/8vh5kd7/JkxNZDbbbfI?=
- =?us-ascii?Q?4OzIxd+gdeMJfflImE6E/v+dRd7mUVjLhLpBd5bdwa1jC3cYbWNg35fJJreQ?=
- =?us-ascii?Q?H3rM0jmBap+cQEY+Jpgli74zJbgi2PyhhNZW3yWJzSpdN8X4mJMBMOtZM1Fc?=
- =?us-ascii?Q?zEnGnprmqbL5TRYH6EypyA7IWiDe+hZBQhdYIx/xE81O08w/CsnOJcdiE/Nu?=
- =?us-ascii?Q?bXnFlu7VCqU7Fm5J5mF/dKtnTGpNOyB6vJblJM7VJkagW8l5iaXolMu9D4wx?=
- =?us-ascii?Q?AOdWGUUkbn2UX8IpR0gWRq+Ep17qodMsPz6j1Fc74wzuRml38AfQVwgA/CD6?=
- =?us-ascii?Q?YMaOKV0ONMRjnCJU3GNo85ahdmZkbu1zEuL8FwTWw+l3pOoOgsZmcQhdifNs?=
- =?us-ascii?Q?p6qbZWDkC34XiFqwJLJ7r9r4B+4b+1lm4pRnBR189u1avZ5N6jfAN5+oqDHp?=
- =?us-ascii?Q?9dQSrpZ2wbzpd1m4kA4/JZ6N2N6wg4tOxMypPneTAMsCRM7qNRKtIfrIMCLn?=
- =?us-ascii?Q?1EjGOTggA6IS6+dQ3RnWO9Mv9vvt?=
+ ARA:13230031|376005|1800799015|36860700004|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/qLgckVo9XDCXcVx1bUsCHV+uI2ib2rVJx6MWuxfzTU3J3CjQ7EhvXPZcRpB?=
+ =?us-ascii?Q?C3aG9BTp1ttrfreXQddmE9lG5Axo1595lQs3JqbkUcig+bygwg5/+qkjwCfT?=
+ =?us-ascii?Q?W5FaZc7czuUwG2gVOfnT2PklRiCvMHUHiLAOEe6s5eRLdApfuhceQE5zWXmJ?=
+ =?us-ascii?Q?KzNd6kw2qg43Cydf5z/WpTXcq4WgsPOGcqW/Ayvq2vrQchTCKvlJ4KrUxTEn?=
+ =?us-ascii?Q?2PrmRwlNnkhpWDBTKorPDVtUYv8PTF33XNw4KqUqoglkc+1pJLedJDRmBHhK?=
+ =?us-ascii?Q?WFVpDmv6untmqScb41AYpB9sRkEhqWQ73qa1RK7paKHCRgSEYaUc6yWnsPKh?=
+ =?us-ascii?Q?se9piDp2RRVXpGgKg+NQiTP583M10kvOcV1XhMOs2gi9dRutCK++sM5NyI76?=
+ =?us-ascii?Q?3pBA6D9fnc1tgolDV51hOIbGWPeMPV9KLfxTWcw+7MMF5rtUZ6YEwBDbppTR?=
+ =?us-ascii?Q?6+n24CMB7YXp4D+UKk8i4rgIKmhYubjuoP9EqzEwWU2gyfb//NnxsIVWJ5BP?=
+ =?us-ascii?Q?9UbVcvMDlEcoeTOd21/IE3ZkdPqCp0jHhcx/gLc00tnlzRhawPMsYc0HoeeP?=
+ =?us-ascii?Q?w6+Qir8qzfqAJWW1QjukbfVKfnfYvtJDAn+Ynl4PhmuzBOQjj4NdosTbh3hE?=
+ =?us-ascii?Q?7wo+lnjgOpVC3pE/IRUkMDvh6jmyZjoCClF6XnQ6RjlekmkttIDRV2Uojl+m?=
+ =?us-ascii?Q?GtPaauXz9N1ND5XYiCdW0pxhSw9S8+Tdxk2cfWrHm9bGuw9WXB2efIWpFDuY?=
+ =?us-ascii?Q?M5Sgv3ZM3laYG5TF2uWGQ/ak8bUKxHvu2pbRBTX73iTk+xOc+eDm54H2+Io9?=
+ =?us-ascii?Q?KotAktitULTb4RJk+ycct9lX++K1twKfCSWrlmCP01U/+/dGRqAN1wwK2E22?=
+ =?us-ascii?Q?B7czN1wKqEqaelpMVbF6cU/EZV43FyZACAIyGka58Rtb/Q29IDICOrXULGNK?=
+ =?us-ascii?Q?LUfKuyXt9vDczHAjmRCxCQwpjk4uYN9RbNFroIp/nykur/0F0wKNLmsZU82p?=
+ =?us-ascii?Q?b9bFIKUne9M5z/n6u5rFjNr9aPaQGMJQfceBKejQg2r9PF8Dn3kgW6IScm5+?=
+ =?us-ascii?Q?xEjxKgp8wJPqwm0vHmVpFAvye9qZUKxcf6zK/u0ko2lky0ALWaQMi0sH/4Zf?=
+ =?us-ascii?Q?xf4Vt4whAD9/VediRkJAwyqouMzb2ni76w5ggYDOKHZDNM/aofJK/yO298+O?=
+ =?us-ascii?Q?7aoD384/6O+IHy0Zn0TWFj2qKggzER9/klN+w5PpLpSfxym2Vqt3YeGAq7Gx?=
+ =?us-ascii?Q?prDOV23cAu8aJCid58f724Y6JCqbVqoxZypnKHnfN0Ih/Eh1uLqD8GvLmO5B?=
+ =?us-ascii?Q?VVd+LkyziXeSW8kQN2thh99uxNPj7TulDZUYicFfe8vDdwboH19wmnE/0tUW?=
+ =?us-ascii?Q?W8DhN3Eh4JAwqziUvMh8WPZTzuWy?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(82310400017)(36860700004); DIR:OUT;
+ SFS:(13230031)(376005)(1800799015)(36860700004)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2024 09:21:44.0411 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ffc2d121-5167-4ea0-f5c8-08dc732e1b29
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2024 09:21:46.0225 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50bdd510-883b-4b7a-4efa-08dc732e1c58
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003445.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6650
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5744
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,290 +131,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace the legacy interface with amdgpu_dpm_set_pm_policy to set XGMI
-PLPD mode. Also, xgmi_plpd sysfs node is not used by any client. Remove
-that as well.
+Remove unused callback to set PLPD policy and its implementation from
+arcturus, aldebaran and SMUv13.0.6 SOCs.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 ---
-v2: No change
-v3: Rebase to remove device_attr_id__xgmi_plpd_policy
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  6 ---
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 22 -----------
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 24 ------------
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  | 39 -------------------
+ 4 files changed, 91 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c      |  4 +-
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c           | 43 ------------
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 68 -------------------
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  5 --
- drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h        |  1 -
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 27 --------
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  2 -
- 7 files changed, 2 insertions(+), 148 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-index 4a14f9c1bfe8..821ba2309dec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-@@ -1446,7 +1446,7 @@ static int amdgpu_ras_error_inject_xgmi(struct amdgpu_device *adev,
- 	if (amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_DISALLOW))
- 		dev_warn(adev->dev, "Failed to disallow df cstate");
- 
--	ret1 = amdgpu_dpm_set_xgmi_plpd_mode(adev, XGMI_PLPD_DISALLOW);
-+	ret1 = amdgpu_dpm_set_pm_policy(adev, PP_PM_POLICY_XGMI_PLPD, XGMI_PLPD_DISALLOW);
- 	if (ret1 && ret1 != -EOPNOTSUPP)
- 		dev_warn(adev->dev, "Failed to disallow XGMI power down");
- 
-@@ -1455,7 +1455,7 @@ static int amdgpu_ras_error_inject_xgmi(struct amdgpu_device *adev,
- 	if (amdgpu_ras_intr_triggered())
- 		return ret2;
- 
--	ret1 = amdgpu_dpm_set_xgmi_plpd_mode(adev, XGMI_PLPD_DEFAULT);
-+	ret1 = amdgpu_dpm_set_pm_policy(adev, PP_PM_POLICY_XGMI_PLPD, XGMI_PLPD_DEFAULT);
- 	if (ret1 && ret1 != -EOPNOTSUPP)
- 		dev_warn(adev->dev, "Failed to allow XGMI power down");
- 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-index b443906484e7..cd169af35399 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -368,49 +368,6 @@ int amdgpu_dpm_set_df_cstate(struct amdgpu_device *adev,
- 	return ret;
- }
- 
--int amdgpu_dpm_get_xgmi_plpd_mode(struct amdgpu_device *adev, char **mode_desc)
--{
--	struct smu_context *smu = adev->powerplay.pp_handle;
--	int mode = XGMI_PLPD_NONE;
--
--	if (is_support_sw_smu(adev)) {
--		mode = smu->plpd_mode;
--		if (mode_desc == NULL)
--			return mode;
--		switch (smu->plpd_mode) {
--		case XGMI_PLPD_DISALLOW:
--			*mode_desc = "disallow";
--			break;
--		case XGMI_PLPD_DEFAULT:
--			*mode_desc = "default";
--			break;
--		case XGMI_PLPD_OPTIMIZED:
--			*mode_desc = "optimized";
--			break;
--		case XGMI_PLPD_NONE:
--		default:
--			*mode_desc = "none";
--			break;
--		}
--	}
--
--	return mode;
--}
--
--int amdgpu_dpm_set_xgmi_plpd_mode(struct amdgpu_device *adev, int mode)
--{
--	struct smu_context *smu = adev->powerplay.pp_handle;
--	int ret = -EOPNOTSUPP;
--
--	if (is_support_sw_smu(adev)) {
--		mutex_lock(&adev->pm.mutex);
--		ret = smu_set_xgmi_plpd_mode(smu, mode);
--		mutex_unlock(&adev->pm.mutex);
--	}
--
--	return ret;
--}
--
- ssize_t amdgpu_dpm_get_pm_policy_info(struct amdgpu_device *adev, char *buf)
- {
- 	struct smu_context *smu = adev->powerplay.pp_handle;
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 48da662da005..9cca4716ec43 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -2214,70 +2214,6 @@ static int pp_dpm_clk_default_attr_update(struct amdgpu_device *adev, struct amd
- 	return 0;
- }
- 
--/* Following items will be read out to indicate current plpd policy:
-- *  - -1: none
-- *  - 0: disallow
-- *  - 1: default
-- *  - 2: optimized
-- */
--static ssize_t amdgpu_get_xgmi_plpd_policy(struct device *dev,
--					   struct device_attribute *attr,
--					   char *buf)
--{
--	struct drm_device *ddev = dev_get_drvdata(dev);
--	struct amdgpu_device *adev = drm_to_adev(ddev);
--	char *mode_desc = "none";
--	int mode;
--
--	if (amdgpu_in_reset(adev))
--		return -EPERM;
--	if (adev->in_suspend && !adev->in_runpm)
--		return -EPERM;
--
--	mode = amdgpu_dpm_get_xgmi_plpd_mode(adev, &mode_desc);
--
--	return sysfs_emit(buf, "%d: %s\n", mode, mode_desc);
--}
--
--/* Following argument value is expected from user to change plpd policy
-- *  - arg 0: disallow plpd
-- *  - arg 1: default policy
-- *  - arg 2: optimized policy
-- */
--static ssize_t amdgpu_set_xgmi_plpd_policy(struct device *dev,
--					   struct device_attribute *attr,
--					   const char *buf, size_t count)
--{
--	struct drm_device *ddev = dev_get_drvdata(dev);
--	struct amdgpu_device *adev = drm_to_adev(ddev);
--	int mode, ret;
--
--	if (amdgpu_in_reset(adev))
--		return -EPERM;
--	if (adev->in_suspend && !adev->in_runpm)
--		return -EPERM;
--
--	ret = kstrtos32(buf, 0, &mode);
--	if (ret)
--		return -EINVAL;
--
--	ret = pm_runtime_get_sync(ddev->dev);
--	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
--		return ret;
--	}
--
--	ret = amdgpu_dpm_set_xgmi_plpd_mode(adev, mode);
--
--	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
--
--	if (ret)
--		return ret;
--
--	return count;
--}
--
- static ssize_t amdgpu_get_pm_policy(struct device *dev,
- 				    struct device_attribute *attr, char *buf)
- {
-@@ -2418,7 +2354,6 @@ static struct amdgpu_device_attr amdgpu_device_attrs[] = {
- 			      .attr_update = ss_power_attr_update),
- 	AMDGPU_DEVICE_ATTR_RW(smartshift_bias,				ATTR_FLAG_BASIC,
- 			      .attr_update = ss_bias_attr_update),
--	AMDGPU_DEVICE_ATTR_RW(xgmi_plpd_policy,				ATTR_FLAG_BASIC),
- 	AMDGPU_DEVICE_ATTR_RW(pm_policy,				ATTR_FLAG_BASIC,
- 			      .attr_update = amdgpu_pm_policy_attr_update),
- 	AMDGPU_DEVICE_ATTR_RO(pm_metrics,				ATTR_FLAG_BASIC,
-@@ -2488,9 +2423,6 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- 		else if ((gc_ver == IP_VERSION(10, 3, 0) ||
- 			  gc_ver == IP_VERSION(11, 0, 3)) && amdgpu_sriov_vf(adev))
- 			*states = ATTR_STATE_UNSUPPORTED;
--	} else if (DEVICE_ATTR_IS(xgmi_plpd_policy)) {
--		if (amdgpu_dpm_get_xgmi_plpd_mode(adev, NULL) == XGMI_PLPD_NONE)
--			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_mclk_od)) {
- 		if (amdgpu_dpm_get_mclk_od(adev) == -EOPNOTSUPP)
- 			*states = ATTR_STATE_UNSUPPORTED;
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index 1455db9c3789..484e7af1c2b4 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -430,11 +430,6 @@ int amdgpu_dpm_baco_enter(struct amdgpu_device *adev);
- int amdgpu_dpm_set_df_cstate(struct amdgpu_device *adev,
- 			     uint32_t cstate);
- 
--int amdgpu_dpm_get_xgmi_plpd_mode(struct amdgpu_device *adev,
--				  char **mode);
--
--int amdgpu_dpm_set_xgmi_plpd_mode(struct amdgpu_device *adev, int mode);
--
- int amdgpu_dpm_enable_mgpu_fan_boost(struct amdgpu_device *adev);
- 
- int amdgpu_dpm_set_clockgating_by_smu(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-index 6ec9fca045e0..d2075ff9a877 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-@@ -77,7 +77,6 @@ enum amdgpu_device_attr_id {
- 	device_attr_id__smartshift_apu_power,
- 	device_attr_id__smartshift_dgpu_power,
- 	device_attr_id__smartshift_bias,
--	device_attr_id__xgmi_plpd_policy,
- 	device_attr_id__pm_metrics,
- 	device_attr_id__pm_policy,
- 	device_attr_id__count,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index a395967905d2..9dcd9c7f04ac 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1203,7 +1203,6 @@ static void smu_init_xgmi_plpd_mode(struct smu_context *smu)
- 
- 	policy = smu_get_pm_policy(smu, PP_PM_POLICY_XGMI_PLPD);
- 	if (amdgpu_ip_version(smu->adev, MP1_HWIP, 0) == IP_VERSION(11, 0, 2)) {
--		smu->plpd_mode = XGMI_PLPD_DEFAULT;
- 		if (policy)
- 			policy->current_level = XGMI_PLPD_DEFAULT;
- 		return;
-@@ -1212,11 +1211,9 @@ static void smu_init_xgmi_plpd_mode(struct smu_context *smu)
- 	/* PMFW put PLPD into default policy after enabling the feature */
- 	if (smu_feature_is_enabled(smu,
- 				   SMU_FEATURE_XGMI_PER_LINK_PWR_DWN_BIT)) {
--		smu->plpd_mode = XGMI_PLPD_DEFAULT;
- 		if (policy)
- 			policy->current_level = XGMI_PLPD_DEFAULT;
- 	} else {
--		smu->plpd_mode = XGMI_PLPD_NONE;
- 		policy_ctxt = dpm_ctxt->dpm_policies;
- 		if (policy_ctxt)
- 			policy_ctxt->policy_mask &=
-@@ -3610,30 +3607,6 @@ int smu_set_pm_policy(struct smu_context *smu, enum pp_pm_policy p_type,
- 	return ret;
- }
- 
--int smu_set_xgmi_plpd_mode(struct smu_context *smu,
--			   enum pp_xgmi_plpd_mode mode)
--{
--	int ret = -EOPNOTSUPP;
--
--	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled)
--		return ret;
--
--	/* PLPD policy is not supported if it's NONE */
--	if (smu->plpd_mode == XGMI_PLPD_NONE)
--		return ret;
--
--	if (smu->plpd_mode == mode)
--		return 0;
--
--	if (smu->ppt_funcs && smu->ppt_funcs->select_xgmi_plpd_policy)
--		ret = smu->ppt_funcs->select_xgmi_plpd_policy(smu, mode);
--
--	if (!ret)
--		smu->plpd_mode = mode;
--
--	return ret;
--}
--
- static const struct amd_pm_funcs swsmu_pm_funcs = {
- 	/* export for sysfs */
- 	.set_fan_control_mode    = smu_set_fan_control_mode,
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index 035ed8844401..e460fa9aaf23 100644
+index e460fa9aaf23..dd9356c7428e 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
 +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -602,8 +602,6 @@ struct smu_context {
+@@ -876,12 +876,6 @@ struct pptable_funcs {
+ 	 */
+ 	int (*set_df_cstate)(struct smu_context *smu, enum pp_df_cstate state);
  
- 	struct delayed_work		swctf_delayed_work;
- 
--	enum pp_xgmi_plpd_mode plpd_mode;
+-	/**
+-	 * @select_xgmi_plpd_policy: Select xgmi per-link power down policy.
+-	 */
+-	int (*select_xgmi_plpd_policy)(struct smu_context *smu,
+-				       enum pp_xgmi_plpd_mode mode);
 -
- 	/* data structures for wbrf feature support */
- 	bool				wbrf_supported;
- 	struct notifier_block		wbrf_notifier;
+ 	/**
+ 	 * @update_pcie_parameters: Update and upload the system's PCIe
+ 	 *                          capabilites to the SMU.
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index 84f7d4139bda..c0f6b59369b7 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -2222,27 +2222,6 @@ static int arcturus_set_df_cstate(struct smu_context *smu,
+ 	return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_DFCstateControl, state, NULL);
+ }
+ 
+-static int arcturus_select_xgmi_plpd_policy(struct smu_context *smu,
+-					    enum pp_xgmi_plpd_mode mode)
+-{
+-	/* PPSMC_MSG_GmiPwrDnControl is supported by 54.23.0 and onwards */
+-	if (smu->smc_fw_version < 0x00361700) {
+-		dev_err(smu->adev->dev, "XGMI power down control is only supported by PMFW 54.23.0 and onwards\n");
+-		return -EINVAL;
+-	}
+-
+-	if (mode == XGMI_PLPD_DEFAULT)
+-		return smu_cmn_send_smc_msg_with_param(smu,
+-						   SMU_MSG_GmiPwrDnControl,
+-						   1, NULL);
+-	else if (mode == XGMI_PLPD_DISALLOW)
+-		return smu_cmn_send_smc_msg_with_param(smu,
+-						   SMU_MSG_GmiPwrDnControl,
+-						   0, NULL);
+-	else
+-		return -EINVAL;
+-}
+-
+ static const struct throttling_logging_label {
+ 	uint32_t feature_mask;
+ 	const char *label;
+@@ -2440,7 +2419,6 @@ static const struct pptable_funcs arcturus_ppt_funcs = {
+ 	.get_dpm_ultimate_freq = smu_v11_0_get_dpm_ultimate_freq,
+ 	.set_soft_freq_limited_range = smu_v11_0_set_soft_freq_limited_range,
+ 	.set_df_cstate = arcturus_set_df_cstate,
+-	.select_xgmi_plpd_policy = arcturus_select_xgmi_plpd_policy,
+ 	.log_thermal_throttling_event = arcturus_log_thermal_throttling_event,
+ 	.get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
+ 	.set_pp_feature_mask = smu_cmn_set_pp_feature_mask,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index 66d386ef1da9..e584e53e3760 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -1642,29 +1642,6 @@ static int aldebaran_set_df_cstate(struct smu_context *smu,
+ 	return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_DFCstateControl, state, NULL);
+ }
+ 
+-static int aldebaran_select_xgmi_plpd_policy(struct smu_context *smu,
+-					     enum pp_xgmi_plpd_mode mode)
+-{
+-	struct amdgpu_device *adev = smu->adev;
+-
+-	/* The message only works on master die and NACK will be sent
+-	   back for other dies, only send it on master die */
+-	if (adev->smuio.funcs->get_socket_id(adev) ||
+-	    adev->smuio.funcs->get_die_id(adev))
+-		return 0;
+-
+-	if (mode == XGMI_PLPD_DEFAULT)
+-		return smu_cmn_send_smc_msg_with_param(smu,
+-						       SMU_MSG_GmiPwrDnControl,
+-						       0, NULL);
+-	else if (mode == XGMI_PLPD_DISALLOW)
+-		return smu_cmn_send_smc_msg_with_param(smu,
+-						       SMU_MSG_GmiPwrDnControl,
+-						       1, NULL);
+-	else
+-		return -EINVAL;
+-}
+-
+ static const struct throttling_logging_label {
+ 	uint32_t feature_mask;
+ 	const char *label;
+@@ -2104,7 +2081,6 @@ static const struct pptable_funcs aldebaran_ppt_funcs = {
+ 	.set_soft_freq_limited_range = aldebaran_set_soft_freq_limited_range,
+ 	.od_edit_dpm_table = aldebaran_usr_edit_dpm_table,
+ 	.set_df_cstate = aldebaran_set_df_cstate,
+-	.select_xgmi_plpd_policy = aldebaran_select_xgmi_plpd_policy,
+ 	.log_thermal_throttling_event = aldebaran_log_thermal_throttling_event,
+ 	.get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
+ 	.set_pp_feature_mask = smu_cmn_set_pp_feature_mask,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+index 173c5599279b..386b2f961349 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
+@@ -3240,44 +3240,6 @@ static const struct aca_smu_funcs smu_v13_0_6_aca_smu_funcs = {
+ 	.parse_error_code = aca_smu_parse_error_code,
+ };
+ 
+-static int smu_v13_0_6_select_xgmi_plpd_policy(struct smu_context *smu,
+-					       enum pp_xgmi_plpd_mode mode)
+-{
+-	struct amdgpu_device *adev = smu->adev;
+-	int ret, param;
+-
+-	switch (mode) {
+-	case XGMI_PLPD_DEFAULT:
+-		param = PPSMC_PLPD_MODE_DEFAULT;
+-		break;
+-	case XGMI_PLPD_OPTIMIZED:
+-		param = PPSMC_PLPD_MODE_OPTIMIZED;
+-		break;
+-	case XGMI_PLPD_DISALLOW:
+-		param = 0;
+-		break;
+-	default:
+-		return -EINVAL;
+-	}
+-
+-	if (mode == XGMI_PLPD_DISALLOW)
+-		ret = smu_cmn_send_smc_msg_with_param(smu,
+-						      SMU_MSG_GmiPwrDnControl,
+-						      param, NULL);
+-	else
+-		/* change xgmi per-link power down policy */
+-		ret = smu_cmn_send_smc_msg_with_param(smu,
+-						      SMU_MSG_SelectPLPDMode,
+-						      param, NULL);
+-
+-	if (ret)
+-		dev_err(adev->dev,
+-			"select xgmi per-link power down policy %d failed\n",
+-			mode);
+-
+-	return ret;
+-}
+-
+ static const struct pptable_funcs smu_v13_0_6_ppt_funcs = {
+ 	/* init dpm */
+ 	.get_allowed_feature_mask = smu_v13_0_6_get_allowed_feature_mask,
+@@ -3318,7 +3280,6 @@ static const struct pptable_funcs smu_v13_0_6_ppt_funcs = {
+ 	.get_dpm_ultimate_freq = smu_v13_0_6_get_dpm_ultimate_freq,
+ 	.set_soft_freq_limited_range = smu_v13_0_6_set_soft_freq_limited_range,
+ 	.od_edit_dpm_table = smu_v13_0_6_usr_edit_dpm_table,
+-	.select_xgmi_plpd_policy = smu_v13_0_6_select_xgmi_plpd_policy,
+ 	.log_thermal_throttling_event = smu_v13_0_6_log_thermal_throttling_event,
+ 	.get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
+ 	.get_gpu_metrics = smu_v13_0_6_get_gpu_metrics,
 -- 
 2.25.1
 
