@@ -2,54 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046B08C6836
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 May 2024 16:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 849C88C664B
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 May 2024 14:21:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7412310E8D5;
-	Wed, 15 May 2024 14:03:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bp8dnL2W";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1432310E05A;
+	Wed, 15 May 2024 12:21:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82CD010E3CB;
- Wed, 15 May 2024 10:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZmNwQKhv4AnCurvJXe+GQlN6R4PSbuzS8YLjTbLSgEA=; b=bp8dnL2WdRmCkx8y09cQCvW/nc
- OYbUrtfLvkCzgUfNW4AKmWCDSHjhSaVjsooq2kOG1AWt7VQQEbhZ33vItF0I+BdO1s9WbZdBHiZE3
- 2ZtpiTUH1oTBMW7WzJA9I73VVAChXlcL2lz3ITjTJKd0QP5gfYM4enJh0PVkSAS0Vf+YJGlDQOqCU
- Ilh3CuwcbIS3rojcp95UWuHH2lpkP9SuPPk9c+EQCj5vl9dI7uYY9rTPovcFTMi+Hij+kbee1oLTC
- a9rGpwci89Zv+RI1hVt2spHajwYQylvtpdYfoFsnlFJAvRwKk3YeiYM71Ej8B/+M5ISrw7CL4YeyA
- T2LP765Q==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1s7CMM-008MNv-PL; Wed, 15 May 2024 12:59:46 +0200
-Message-ID: <1a20c64f-cb1c-4f68-917b-9a8a34741bff@igalia.com>
-Date: Wed, 15 May 2024 11:59:45 +0100
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F7210E05A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 May 2024 12:21:20 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 44FCLEUe1810411; Wed, 15 May 2024 17:51:14 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 44FCLE021810404;
+ Wed, 15 May 2024 17:51:14 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v3 1/4] drm/amdgpu: update the ip_dump to ipdump_core
+Date: Wed, 15 May 2024 17:47:51 +0530
+Message-Id: <20240515121754.1810181-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 2/5] drm/amdgpu: Actually respect buffer migration budget
-Content-Language: en-GB
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Friedrich Vock <friedrich.vock@gmx.de>
-References: <20240508180946.96863-1-tursulin@igalia.com>
- <20240508180946.96863-3-tursulin@igalia.com>
- <8a689a5a-b408-41da-b7bd-8c7a3b2f2ac7@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <8a689a5a-b408-41da-b7bd-8c7a3b2f2ac7@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 15 May 2024 14:03:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,117 +42,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Update the memory pointer from ip_dump to ipdump_core
+to make it specific to core registers and rest other
+registers to be dumped in their respective memories.
 
-On 15/05/2024 08:20, Christian König wrote:
-> Am 08.05.24 um 20:09 schrieb Tvrtko Ursulin:
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Current code appears to live in a misconception that playing with buffer
->> allowed and preferred placements can control the decision on whether
->> backing store migration will be attempted or not.
->>
->> Both from code inspection and from empirical experiments I see that not
->> being true, and that both allowed and preferred placement are typically
->> set to the same bitmask.
-> 
-> That's not correct for the use case handled here, but see below.
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 14 +++++++-------
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-Which part is not correct, that bo->preferred_domains and 
-bo->allower_domains are the same bitmask?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 109f471ff315..30d7f9c29478 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -435,7 +435,7 @@ struct amdgpu_gfx {
+ 	bool				mcbp; /* mid command buffer preemption */
+ 
+ 	/* IP reg dump */
+-	uint32_t			*ip_dump;
++	uint32_t			*ipdump_core;
+ };
+ 
+ struct amdgpu_gfx_ras_reg_entry {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 953df202953a..f6d6a4b9802d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4603,9 +4603,9 @@ static void gfx_v10_0_alloc_dump_mem(struct amdgpu_device *adev)
+ 	ptr = kcalloc(reg_count, sizeof(uint32_t), GFP_KERNEL);
+ 	if (ptr == NULL) {
+ 		DRM_ERROR("Failed to allocate memory for IP Dump\n");
+-		adev->gfx.ip_dump = NULL;
++		adev->gfx.ipdump_core = NULL;
+ 	} else {
+-		adev->gfx.ip_dump = ptr;
++		adev->gfx.ipdump_core = ptr;
+ 	}
+ }
+ 
+@@ -4815,7 +4815,7 @@ static int gfx_v10_0_sw_fini(void *handle)
+ 
+ 	gfx_v10_0_free_microcode(adev);
+ 
+-	kfree(adev->gfx.ip_dump);
++	kfree(adev->gfx.ipdump_core);
+ 
+ 	return 0;
+ }
+@@ -9283,13 +9283,13 @@ static void gfx_v10_ip_print(void *handle, struct drm_printer *p)
+ 	uint32_t i;
+ 	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_10_1);
+ 
+-	if (!adev->gfx.ip_dump)
++	if (!adev->gfx.ipdump_core)
+ 		return;
+ 
+ 	for (i = 0; i < reg_count; i++)
+ 		drm_printf(p, "%-50s \t 0x%08x\n",
+ 			   gc_reg_list_10_1[i].reg_name,
+-			   adev->gfx.ip_dump[i]);
++			   adev->gfx.ipdump_core[i]);
+ }
+ 
+ static void gfx_v10_ip_dump(void *handle)
+@@ -9298,12 +9298,12 @@ static void gfx_v10_ip_dump(void *handle)
+ 	uint32_t i;
+ 	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_10_1);
+ 
+-	if (!adev->gfx.ip_dump)
++	if (!adev->gfx.ipdump_core)
+ 		return;
+ 
+ 	amdgpu_gfx_off_ctrl(adev, false);
+ 	for (i = 0; i < reg_count; i++)
+-		adev->gfx.ip_dump[i] = RREG32(SOC15_REG_ENTRY_OFFSET(gc_reg_list_10_1[i]));
++		adev->gfx.ipdump_core[i] = RREG32(SOC15_REG_ENTRY_OFFSET(gc_reg_list_10_1[i]));
+ 	amdgpu_gfx_off_ctrl(adev, true);
+ }
+ 
+-- 
+2.34.1
 
->>
->> As such, when the code decides to throttle the migration for a client, it
->> is in fact not achieving anything. Buffers can still be either 
->> migrated or
->> not migrated based on the external (to this function and facility) logic.
->>
->> Fix it by not changing the buffer object placements if the migration
->> budget has been spent.
->>
->> FIXME:
->> Is it still required to call validate is the question..
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Friedrich Vock <friedrich.vock@gmx.de>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 12 +++++++++---
->>   1 file changed, 9 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
->> index 22708954ae68..d07a1dd7c880 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
->> @@ -784,6 +784,7 @@ static int amdgpu_cs_bo_validate(void *param, 
->> struct amdgpu_bo *bo)
->>           .no_wait_gpu = false,
->>           .resv = bo->tbo.base.resv
->>       };
->> +    bool migration_allowed = true;
->>       struct ttm_resource *old_res;
->>       uint32_t domain;
->>       int r;
->> @@ -805,19 +806,24 @@ static int amdgpu_cs_bo_validate(void *param, 
->> struct amdgpu_bo *bo)
->>                * visible VRAM if we've depleted our allowance to do
->>                * that.
->>                */
->> -            if (p->bytes_moved_vis < p->bytes_moved_vis_threshold)
->> +            if (p->bytes_moved_vis < p->bytes_moved_vis_threshold) {
->>                   domain = bo->preferred_domains;
->> -            else
->> +            } else {
->>                   domain = bo->allowed_domains;
->> +                migration_allowed = false;
->> +            }
->>           } else {
->>               domain = bo->preferred_domains;
->>           }
->>       } else {
->>           domain = bo->allowed_domains;
->> +        migration_allowed = false;
->>       }
->>   retry:
->> -    amdgpu_bo_placement_from_domain(bo, domain);
->> +    if (migration_allowed)
->> +        amdgpu_bo_placement_from_domain(bo, domain);
-> 
-> That's completely invalid. Calling amdgpu_bo_placement_from_domain() is 
-> a mandatory prerequisite for calling ttm_bo_validate();
-> 
-> E.g. the usually code fow is:
-> 
-> /* This initializes bo->placement */
-> amdgpu_bo_placement_from_domain()
-> 
-> /* Eventually modify bo->placement to fit special requirements */
-> ....
-> 
-> /* Apply the placement to the BO */
-> ttm_bo_validate(&bo->tbo, &bo->placement, &ctx)
-> 
-> To sum it up bo->placement should be a variable on the stack instead, 
-> but we never bothered to clean that up.
-
-I am not clear if you agree or not that the current method of trying to 
-avoid migration doesn't really do anything?
-
-On stack placements sounds plausible to force migration avoidance by 
-putting a single current object placement in that list, if that is what 
-you have in mind? Or a specialized flag/version of 
-amdgpu_bo_placement_from_domain with an bool input like 
-"allow_placement_change"?
-
-Regards,
-
-Tvrtko
-
-> 
-> Regards,
-> Christian.
-> 
->> +
->>       r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
->>       if (unlikely(r == -ENOMEM) && domain != bo->allowed_domains) {
-> 
