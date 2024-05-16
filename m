@@ -2,63 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121D58C7D34
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2024 21:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0968C8C7D31
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2024 21:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50F5310EDBB;
-	Thu, 16 May 2024 19:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B03710EDB9;
+	Thu, 16 May 2024 19:27:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FFQ0EmAt";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hTFlWYSv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2041.outbound.protection.outlook.com [40.107.95.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0DE10EDBF
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2024 19:27:13 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE05610EDA2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2024 19:27:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A/QKXnlITcs6drSpBhk4S/hrF28BDL/7pv89jkEnG7+kodVKnUO61xbx039Fkgw7hJeAX3/oCc5W+yQbx23BEZgP+v8WILuW5GWmMVP+dPZLoYw4SZ7sBDjcS+w9C3m73kRpZuSSj1IITDGPGzQ85K4AmXmvVr0Ysc2rLmdnFLm+ax+VjRnq/tEUi/OqgScgwUoqC/kxrrG00/tI2lwXewPmo2hxWP9PRfJIdHi52fi5NgF+cU2QOpFe3BmbMrojxm+OMwxd1PXPx/78pg2dYhC+43o2sAJAHd9WjfQWiR6XkOkKi5mOAbYAkpf8STHWKkb9f4JgFGA5DT6YfFSoWw==
+ b=I7yGN61ZbT6ndkeK/vKnra0NiphfWCCLGeJsVdOJs4QSqbHaF5oIrYGkQBX4omDO+S59ULn5dcnGoGwogCwCys2htuHRCpvOzcSQKi6hrrBAplgoiLeWLBkJeRM9GMSUMXH1ewBT5CXFm7sOFFxTPzAOyF3f+onR1s+1wR2tWYsG8F32mvHvsnCjmNCrupvHe6PVX1WBqnwkPLHhDGFARDLXBv56f0R1ZJHkV9fPRIFLnuSOYXNyBwAy3+MYJBxUaFKtC6R5IyXM2qfNFlXHQh+oog1yRlOc/JsZibWI4kE4qFRrVe4T3epvuaKELYksTGrF5JfB95/4EKJRgRJKZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=psZmBwAoPN5rWZFt7Kn3E/I9rcLCdd+qCDL2W/UMRjk=;
- b=NnnxV9iAT5viCe5g1oRDpwRJQCIPXH1yjssUmCdeotXg8V8GH/v17zC8JdW/U7xGSD01mgjbVWzECUjywt551QovHk7ToAkFM10FUc4GdzQ1F31/Eefm8I9IcOfOsk/XpEWWll73IYWY16nl0pF2OcPVWjopUEb9ptnLWw7H3uVq0T4SWpFGTZY2Fnae15sexXrIj3lH63pOgNRrcOkh/TiTwcIdXx7nyaMvFwx6dBGFYo0+B9TEAhevQJSvERRsMfbSnb/E0Ot95ocZHO5jk92Xi9O7GDElvuABiA6X+OPg/36B6KAE9tHs+OtZ6fw3E/YUlBgWLqFUOyC39ZIkIw==
+ bh=oUQZwFT3fCzLHQrdIQ4LpHdqZ/LdKiAAcu2B+WGlG0M=;
+ b=axvB0TGvqEToKTIloC03e/16iGWXObVETTP2Av9BIMpU44257PGQvYkRogVL3QCmmQR3aYpkNkWtwG4gqZQZJVcprFuEjWoCWyMztTL4GcATyUT3xbh6JBdBdzQkmHHe6OQvF+CSkw00hS19p5+U6cMn2ju2PTm6V2qZj+B0v6qcLusIsF3YJ+6GPqLiuz8nORBZN5NIDSp7h5XvuEVRVgrOf3gVaoYiMV1IVVbT0G/95re2od6SruIwdD8Df5+gRc+GXybxQ5hqdFoYUXG1e/zYtiR6btpSQP9a+oBRbjX31jl2i0Kw6RR7nCQtu47chu+QXnEGkFQYXm6/HQ6D8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=psZmBwAoPN5rWZFt7Kn3E/I9rcLCdd+qCDL2W/UMRjk=;
- b=FFQ0EmAtyOZGa7uapCzaa/cJEqcC6bVqugEN8ZEXsr87R+BRJ0mb+yJaXJxHpf7nuHlY9PPOWB5pvYIByUrFMsXYg2Hi9sCTJW5nP+Vjkd4V/Spuiw2S+s3woLsF++CyTjqTLTEp/Y4Xs8CiZqswBzsuenetkcnR3b9M/S/cnDY=
-Received: from BN9PR03CA0088.namprd03.prod.outlook.com (2603:10b6:408:fc::33)
- by SJ0PR12MB7084.namprd12.prod.outlook.com (2603:10b6:a03:4ae::20)
+ bh=oUQZwFT3fCzLHQrdIQ4LpHdqZ/LdKiAAcu2B+WGlG0M=;
+ b=hTFlWYSv6O5TF5T0KavPwOAwf+eK5NhvMj2oyvgl+LvVqNv/ooZ+lVeA/MBep66RnoeKGvm+gH06NKb66iIoICUh9pw+tNU7DBe0qnuJqi8ykckW1wL542A19hyTlddd8hHGovnV6a5nLiAxislfLan5Xqj8pErbLHfpMAVdCgo=
+Received: from BN9PR03CA0247.namprd03.prod.outlook.com (2603:10b6:408:ff::12)
+ by IA0PR12MB8088.namprd12.prod.outlook.com (2603:10b6:208:409::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.28; Thu, 16 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.26; Thu, 16 May
  2024 19:27:07 +0000
-Received: from BN2PEPF0000449D.namprd02.prod.outlook.com
- (2603:10b6:408:fc:cafe::7f) by BN9PR03CA0088.outlook.office365.com
- (2603:10b6:408:fc::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55 via Frontend
+Received: from BN2PEPF000044A7.namprd04.prod.outlook.com
+ (2603:10b6:408:ff:cafe::4d) by BN9PR03CA0247.outlook.office365.com
+ (2603:10b6:408:ff::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.28 via Frontend
  Transport; Thu, 16 May 2024 19:27:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN2PEPF0000449D.mail.protection.outlook.com (10.167.243.148) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN2PEPF000044A7.mail.protection.outlook.com (10.167.243.101) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.7587.21 via Frontend Transport; Thu, 16 May 2024 19:27:07 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 16 May
- 2024 14:27:04 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 16 May
- 2024 14:27:04 -0500
+ 2024 14:27:05 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
  Transport; Thu, 16 May 2024 14:27:04 -0500
@@ -67,64 +63,66 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>
-Subject: [PATCH 15/24] drm/amd/display: Add ips status info to debugfs
-Date: Thu, 16 May 2024 15:26:38 -0400
-Message-ID: <20240516192647.1522729-16-Roman.Li@amd.com>
+ <jerry.zuo@amd.com>, Nicholas Susanto <nicholas.susanto@amd.com>, "Nicholas
+ Kazlauskas" <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 16/24] drm/amd/display: Fix pipe addition logic in
+ calc_blocks_to_ungate DCN35
+Date: Thu, 16 May 2024 15:26:39 -0400
+Message-ID: <20240516192647.1522729-17-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240516192647.1522729-1-Roman.Li@amd.com>
 References: <20240516192647.1522729-1-Roman.Li@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: Roman.Li@amd.com does not designate
+Received-SPF: None (SATLEXMB04.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449D:EE_|SJ0PR12MB7084:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57bd7d5b-9a0d-4d5a-3329-08dc75de2cd9
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A7:EE_|IA0PR12MB8088:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7b741b7-1156-4213-42d7-08dc75de2ce8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230031|82310400017|1800799015|376005|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gSFW2iyrag3krpo2RAgwifAcKuMPcAg6ldM5hxaAXqG/Fa/krr8g+j7//AOv?=
- =?us-ascii?Q?Dj/mmD7BkrvZEtjZN/DxqWPB51B9lk2VYBN7LiL7cYFwtd3RYcvwZVUi0N5O?=
- =?us-ascii?Q?zaqyDDPGY23x72IuWR4Lfr4+O0R0fNLkeU73/Ouhv4UHH6xG1D48YsqV90Z0?=
- =?us-ascii?Q?rk2gCurhjkdSVevUG8pFcQhlk/7Fw3ZrfuRiXGAgIrWGOYwq53SK9kVjK4w2?=
- =?us-ascii?Q?37jwsobvmKGUkoWaKe3lCvJ4zpsr4EtmpJWMGzTmVO+Ba8Yt1XgEedMqxE6Q?=
- =?us-ascii?Q?lUBeFoUifj2f2O6ckYirwUsRONFU8jaKmw1Xt9pfPK11oANCfaRIeMuKQHr1?=
- =?us-ascii?Q?4bFjd4F6C9FJ4I75xSiqUH22lIiioxltO4nFW80vCcp+INjm+ek3IQcs/Yez?=
- =?us-ascii?Q?aTJWpDSH3b84h0YC7DmmDeTmphvDzYtMl7bqDvpHGb3qdntNnB/EG+KmZbSv?=
- =?us-ascii?Q?s2mzq2kgCg7ocYr8yYM9Uknfux+QZ0GrJiCTwhgYYhm2LvVUmSDHI1qMzgB9?=
- =?us-ascii?Q?obQfeuJP77vmZJ6iSx30L8As50Hn2wtuMm6AeGe/DEfP/kxgfU56V1JrOnVJ?=
- =?us-ascii?Q?kd7YgxdPSIjbOMltUCmAGzbu356yTCgTfrbqaLaSEjEYEGUx/6zGwzwW/ytG?=
- =?us-ascii?Q?NmxlESZWzjWnKaxYItjk2jaa2yoBccLW6AF0uLzW/LYshc0qX1NjqLiqMuzq?=
- =?us-ascii?Q?g12E0vajupSvyph1KrPRLDttWKWrpvABvpUwWGsUo2kB9EDwfrzPQdA+XYdX?=
- =?us-ascii?Q?8nA8dEyqPKxyaHHCW0edvIbZVAcT/UjsseitE6SV6oabIF+LnRDcXsO0iR/m?=
- =?us-ascii?Q?MKfao3W4joMiG8WVE++rExzKVK8zHLQ8Jb3RN1WLM0r8wsWRqa/iLoQjqwpu?=
- =?us-ascii?Q?1Bdf6C4oLbB37PquAU7V0Ove4ToNf5TIVKSSYcrvBQIkV9bG77L/1JvDKEW/?=
- =?us-ascii?Q?WkjgeJpBuma0ixEUQMXKA2IVFHcNdlXCYVh0POZKOn7lZTwJ476DIRjurnau?=
- =?us-ascii?Q?5lwBYrBl0ELsytwaSXkMvJxWBJOIppQkfixGLhE1n/BmZ83uaQfUttifx4YT?=
- =?us-ascii?Q?oEemz2DGfeD4tUUya633q84zB0k6g3NbKpAgIaqggH+FdLPCM/a4m44+EBRQ?=
- =?us-ascii?Q?wnTBFWJMeo2SqYec3EiovzxQU7e+ztjlraILsG2Nm6qFcw1xbRRsjwinwQlu?=
- =?us-ascii?Q?7IHJyBa2dgiph2E1UwynDVA3RE0nexpiacYNAcGg1RpVrO0cd2llpv2gI2HE?=
- =?us-ascii?Q?OtaiOw8mqvz5KhJ0eUa1Q54LR4HVLDNXTIAQQCWisRCbipB1y1h48pGD8md4?=
- =?us-ascii?Q?fCVp5R8L3WQjmok+8B3LTlwTArag3AxRlkx5ccO5mRlyHXERnY217QC4j94a?=
- =?us-ascii?Q?52uwcn+Nowa8yaQHCJh5yWTndB3N?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qW1CiwoJefD4P2Lnjbt37oUZdozs+SNDt4gHQ9RS0LBeuvoOUKon5GK2zPYk?=
+ =?us-ascii?Q?aIX9WOSkLj7N+UmT2COGouR2ClwocqGlaXGa5i42EgFvzRB/I9+DBouuOEAw?=
+ =?us-ascii?Q?RZu7cEtnpMhZKJMQVlE+TkiqE0nu8zh0/P5paB5jHvk8bmOyaazuS6IsHNV1?=
+ =?us-ascii?Q?X1KSQx6n5Sj8MhdBvDgCtkj+qJvWfHT2RNgZXd0oUbO7I38mLVIymytOFJBo?=
+ =?us-ascii?Q?FKrrKb9Ne4Tx92qPcr5Ruwo3xxsaglhPw340V5YCuUsp6izAw22L10y0mPGC?=
+ =?us-ascii?Q?5O+GC9zaZ6BxGxUPpDLbJhCBInh0rdqdINglWkgLQ72GK1azfhyiTNgN5ZJH?=
+ =?us-ascii?Q?1oOVqdIruM7UhoyVEbFmKKXIHc7Ho4x6htTc7Ovt18N8Sd5fNkQazvfo2efO?=
+ =?us-ascii?Q?webPlaSGZyJPThQIeE628wE5YReBjlOM+8otiWIS2abojKTAuTCP8Jg5vFa/?=
+ =?us-ascii?Q?Do3B6PfJhOweo41RnBy029F3E72I0CPRKz5iRlNrzpicik2v5h7t3gl74EKd?=
+ =?us-ascii?Q?3j5eMr5Vy5vMmPde2UsJj+UP7cD+ZDww9W84YGl1ZUIvC1/z8tMafgcSMGXp?=
+ =?us-ascii?Q?66MhWLWAikiAsApEI+1nzYQl03CQbN2sugv+4spZE/r/Di/2MqwYvthJmRqt?=
+ =?us-ascii?Q?iWYCGRLrubBxWnVRzL3sd95nZxvKBLhygn91kIYX79lXcZROZx7euOol9BYd?=
+ =?us-ascii?Q?aUWDzaRVs1mSFn+qZOzM/loClyj1q57KVX5yWYvdlXEj6WEFSBCjLs3Dkhrw?=
+ =?us-ascii?Q?TXmVVsm1yBSEsSKDBk/Xan1oaLVAqxi44D1LpMOrlhgr8O2mrFHO7zrtupvn?=
+ =?us-ascii?Q?T0MPENG3fNsXfm300mBPQURTKhLmk2/HPLHMekV9iNhsSESyBoq39TNXcbGo?=
+ =?us-ascii?Q?6tFkAvPRlAEGvoaorw+8DYi1AY2UsHAQACBD4U3vOgr9T7trosoZ4vCZlkx/?=
+ =?us-ascii?Q?D59J+qukf0G/6h6+KgH2hW2DjuTllERWKE4MtGc9Tz9ZpPzk5sduDaoK1oe4?=
+ =?us-ascii?Q?PdWdF9rluOu0UYSauksHKeIqzQmYCg4I0NMy+J4SM4j7BUx8jW4KryO2RajO?=
+ =?us-ascii?Q?5pVF/u690EjAKIFRAu8/nL7BrY0pzPpxeQ0X0xndXBfhTpS5+Ap9DBr7udIZ?=
+ =?us-ascii?Q?/sHyi5Zq+LHRTu/KG3R1rPu06vxsZz5Fn9PbOvClFF092CZEVHkw693eXSWU?=
+ =?us-ascii?Q?Crr88FtjHL5ZmTKwfgJHvRpQnQ+OE3Xfb+/6zwbywfA1QeZ0PD6OecLn3sDl?=
+ =?us-ascii?Q?El4IXHnWW7zCY7weZXi+Pnx2SZ7zdOk8VxZjIrkq+FyHOgPFgS/WGUmwnQOK?=
+ =?us-ascii?Q?0w8EMDBg0ZkpqgEiIBhVwJotOmGoCk+iMEKEUXWounxhVVTMekT+bORsSiwK?=
+ =?us-ascii?Q?bmHL4P+W4c7dUYGtVQYJRlDy1apR?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230031)(82310400017)(1800799015)(376005)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2024 19:27:07.4920 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57bd7d5b-9a0d-4d5a-3329-08dc75de2cd9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2024 19:27:07.2782 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7b741b7-1156-4213-42d7-08dc75de2ce8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF0000449D.namprd02.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A7.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7084
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8088
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,92 +137,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <roman.li@amd.com>
+From: Nicholas Susanto <nicholas.susanto@amd.com>
 
 [Why]
-For debugging and testing purposes.
+
+Missing check for when there is new pipe configuration but both cur_pipe
+and new_pipe are both populated causing update_state of DSC for that
+instance not being updated correctly.
+
+This causes some display mode changes to cause underflow since DSCCLK
+is still gated when the display requires DSC.
 
 [How]
-If IPS is supported create ips_status debugfs entry.
-Usage: cat /sys/kernel/debug/dri/0/amdgpu_dm_ips_status
 
-Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
+Added another condition in the new pipe addition branch that checks if
+there is a new pipe configuration and if it is not the same as cur_pipe.
+cur_pipe does not necessarily have to be NULL to go in this branch.
+
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Roman Li <roman.li@amd.com>
-Signed-off-by: Roman Li <roman.li@amd.com>
+Signed-off-by: Nicholas Susanto <nicholas.susanto@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 7d97fdd9da92..27d5c6077630 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -2670,6 +2670,49 @@ static ssize_t dp_max_bpc_write(struct file *f, const char __user *buf,
- 	return size;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+index 6d40e93b5497..2b3ba5971c69 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+@@ -1097,7 +1097,8 @@ void dcn35_calc_blocks_to_ungate(struct dc *dc, struct dc_state *context,
+ 			continue;
  
-+/*
-+ * IPS status.  Read only.
-+ *
-+ * Example usage: cat /sys/kernel/debug/dri/0/amdgpu_dm_ips_status
-+ */
-+static int ips_status_show(struct seq_file *m, void *unused)
-+{
-+	struct amdgpu_device *adev = m->private;
-+	struct dc *dc = adev->dm.dc;
-+	struct dc_dmub_srv *dc_dmub_srv;
-+
-+	seq_printf(m, "IPS config: %d\n", dc->config.disable_ips);
-+	seq_printf(m, "Idle optimization: %d\n", dc->idle_optimizations_allowed);
-+
-+	if (adev->dm.idle_workqueue) {
-+		seq_printf(m, "Idle workqueue - enabled: %d\n", adev->dm.idle_workqueue->enable);
-+		seq_printf(m, "Idle workqueue - running: %d\n", adev->dm.idle_workqueue->running);
-+	}
-+
-+	dc_dmub_srv = dc->ctx->dmub_srv;
-+	if (dc_dmub_srv && dc_dmub_srv->dmub) {
-+		uint32_t rcg_count, ips1_count, ips2_count;
-+		volatile const struct dmub_shared_state_ips_fw *ips_fw =
-+			&dc_dmub_srv->dmub->shared_state[DMUB_SHARED_SHARE_FEATURE__IPS_FW].data.ips_fw;
-+		rcg_count = ips_fw->rcg_entry_count;
-+		ips1_count = ips_fw->ips1_entry_count;
-+		ips2_count = ips_fw->ips2_entry_count;
-+		seq_printf(m, "entry counts: rcg=%u ips1=%u ips2=%u\n",
-+			   rcg_count,
-+			   ips1_count,
-+			   ips2_count);
-+		rcg_count = ips_fw->rcg_exit_count;
-+		ips1_count = ips_fw->ips1_exit_count;
-+		ips2_count = ips_fw->ips2_exit_count;
-+		seq_printf(m, "exit counts: rcg=%u ips1=%u ips2=%u",
-+			   rcg_count,
-+			   ips1_count,
-+			   ips2_count);
-+		seq_puts(m, "\n");
-+	}
-+	return 0;
-+}
-+
- /*
-  * Backlight at this moment.  Read only.
-  * As written to display, taking ABM and backlight lut into account.
-@@ -3240,6 +3283,7 @@ DEFINE_DEBUGFS_ATTRIBUTE(disallow_edp_enter_psr_fops,
- 
- DEFINE_SHOW_ATTRIBUTE(current_backlight);
- DEFINE_SHOW_ATTRIBUTE(target_backlight);
-+DEFINE_SHOW_ATTRIBUTE(ips_status);
- 
- static const struct {
- 	char *name;
-@@ -4129,4 +4173,7 @@ void dtn_debugfs_init(struct amdgpu_device *adev)
- 	debugfs_create_file_unsafe("amdgpu_dm_disable_hpd", 0644, root, adev,
- 				   &disable_hpd_ops);
- 
-+	if (adev->dm.dc->caps.ips_support)
-+		debugfs_create_file_unsafe("amdgpu_dm_ips_status", 0644, root, adev,
-+					   &ips_status_fops);
- }
+ 		if ((!cur_pipe->plane_state && new_pipe->plane_state) ||
+-			(!cur_pipe->stream && new_pipe->stream)) {
++			(!cur_pipe->stream && new_pipe->stream) ||
++			(cur_pipe->stream != new_pipe->stream && new_pipe->stream)) {
+ 			// New pipe addition
+ 			for (j = 0; j < PG_HW_PIPE_RESOURCES_NUM_ELEMENT; j++) {
+ 				if (j == PG_HUBP && new_pipe->plane_res.hubp)
 -- 
 2.34.1
 
