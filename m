@@ -2,65 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C4B8C7A13
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2024 18:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A80FD8C7D6F
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 May 2024 21:47:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2214F10E204;
-	Thu, 16 May 2024 16:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED2E10EDB3;
+	Thu, 16 May 2024 19:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LEp5lQxp";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="rKEBNzkG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E896210E204
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2024 16:07:15 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id
- 41be03b00d2f7-65b4d0a7391so388057a12.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 May 2024 09:07:15 -0700 (PDT)
+Received: from out30-111.freemail.mail.aliyun.com
+ (out30-111.freemail.mail.aliyun.com [115.124.30.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0FC10E417;
+ Thu, 16 May 2024 08:22:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715875635; x=1716480435; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=R2hJn77cMlkGBGi9Lv/D889LZ7yDKke96CbtN1ur9bQ=;
- b=LEp5lQxpwIDpkcauBc8sbPyY0Ev2JeSUHCnI2x3OBeFIkqxRNTlLgb5fXy9hqT3jjR
- J38D9ib8cHwqJGdZXi5DQiitN8v3Kq3iUbEp2h7xn9LnWN132rHUcjBnUYX+Z/V4PAyy
- pVhbwZUWxfbOwm/hn+X5ezZ4v6LTQiKlym5VYnTkHelrwbZCn0w8qlDocuJt2tmrasfl
- oNGMGCrmQzY+ZgRxF/elLzJKhJP6S+29FFd2QrUyKFeNAHV9efN+Z2Td7ppRGH9jg7D/
- qPnVR7jePvFMPcFX5TOdY20wAfEeHI0xaDpyT7Vs3QlG+Oamn3daar4Jn1IjAXnHEj1h
- Vc3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715875635; x=1716480435;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=R2hJn77cMlkGBGi9Lv/D889LZ7yDKke96CbtN1ur9bQ=;
- b=H9Kc+fNWEjpV/dui9SQV+s9xja2mcIZyNu81cjdoFBBIiVGXFUB4+6koaztLxjZNvZ
- O4RmILQdzNWM4WwNRrXJ3na1zR+kPTyz2gjUSx2yvFRsi5tyQKsQouWx2aonXDgNLCe/
- sXj7/SoRADHKOpqFVZqqTq+8Mm7PkHdOxkvsK8/BYVIPQcXl6SFig4ZZqS4NlQh0ezPA
- 2HAlK2SGYWs7z+2gBpxo8KEaQoIBJ3EpNyw2tZlXmnqtjezEOzFqr0oSSaQqg8hm4Efh
- NsTktOSz38yJ10rV4rYJE9bWSkKSFOHAXTWLtREyrig/7RDcs4g7iUEmCITn31uM+Tct
- f/+A==
-X-Gm-Message-State: AOJu0YyhOgTqVy43JWpm+AKKfd6X2ajcwW8A1DGv6ePy/wGn1doxk0ll
- DgbVce1qyHOy7XpCgk/yLBoNqCmf3CKgnHN/2Ox40GgxGjD3s4aTDWnsN/QSQoJAZHkpQmvoaQi
- nUjw4WE6MT1r6WYbAJQUzZ2cwfAc=
-X-Google-Smtp-Source: AGHT+IFw5HPWXhphVLekh1dwWivCgUzZbTyoTblWMSixZCtiNCtWk3d72Tj9p1x3AGHSIGUJrB2K9hCjbETrz9XBKY0=
-X-Received: by 2002:a17:90a:6542:b0:2b3:be55:bf6f with SMTP id
- 98e67ed59e1d1-2b6cc76bdf6mr17746206a91.22.1715875634967; Thu, 16 May 2024
- 09:07:14 -0700 (PDT)
+ d=linux.alibaba.com; s=default;
+ t=1715847742; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=Rn8X2ZcroC9rYW7bPabg6ynfGxjz9SeFEr4CBKg7Ggs=;
+ b=rKEBNzkGAoMsfncSJH6DvE5UVC3ICgARC8BBE+TLSnBlkFKAgYqRvtp29v3k7oriEeLQtEf0DvZTvBvaoPCX5OB1HDZzPt15sF807gQSOrEZZO1Uv5yvnC+ZfrOH206xinZLrYBZmv6ejzr/mSHmClC6Wo7ryLvGm8Tpjt8IWv0=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R131e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033037067113;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0W6aiyKM_1715847721; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0W6aiyKM_1715847721) by smtp.aliyun-inc.com;
+ Thu, 16 May 2024 16:22:21 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Cc: christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH] drm/amdgpu: Remove duplicate amdgpu_umsch_mm.h header
+Date: Thu, 16 May 2024 16:22:00 +0800
+Message-Id: <20240516082200.73480-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-References: <20240515191954.2605211-1-ruijing.dong@amd.com>
-In-Reply-To: <20240515191954.2605211-1-ruijing.dong@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 16 May 2024 12:07:03 -0400
-Message-ID: <CADnq5_MycO8K0m=Z8OUSF7W8g3cMuitK0DcPFAbdDK2NR9=WOQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/vcn: update vcn5 enc/dec capabilities
-To: Ruijing Dong <ruijing.dong@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, leo.liu@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 16 May 2024 19:46:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,65 +56,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 15, 2024 at 3:57=E2=80=AFPM Ruijing Dong <ruijing.dong@amd.com>=
- wrote:
->
-> Update the capabilities for supporting 8k encoding/decoding.
->
-> Signed-off-by: Ruijing Dong <ruijing.dong@amd.com>
+./drivers/gpu/drm/amd/amdgpu/amdgpu.h: amdgpu_umsch_mm.h is included more than once.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=9063
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/soc24.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amd=
-gpu/soc24.c
-> index b2b9e0f83bdf..d065649c7c78 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc24.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
-> @@ -48,9 +48,9 @@
->  static const struct amd_ip_funcs soc24_common_ip_funcs;
->
->  static const struct amdgpu_video_codec_info vcn_5_0_0_video_codecs_encod=
-e_array_vcn0[] =3D {
-> -       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC, 384=
-0, 2160, 0)},
-> -       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC, 7680, 43=
-20, 0)},
-> -       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1, 7680, 432=
-0, 0)},
-> +       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC, 409=
-6, 2304, 0)},
-> +       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC, 8192, 43=
-52, 0)},
-> +       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1, 8192, 435=
-2, 0)},
->  };
->
->  static const struct amdgpu_video_codecs vcn_5_0_0_video_codecs_encode_vc=
-n0 =3D {
-> @@ -59,8 +59,8 @@ static const struct amdgpu_video_codecs vcn_5_0_0_video=
-_codecs_encode_vcn0 =3D {
->  };
->
->  static const struct amdgpu_video_codec_info vcn_5_0_0_video_codecs_decod=
-e_array_vcn0[] =3D {
-> -       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC, 409=
-6, 2160, 52)},
-> -       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC, 8192, 43=
-20, 183)},
-> +       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC, 409=
-6, 4096, 52)},
-> +       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC, 8192, 43=
-52, 186)},
->         {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG, 16384, 1=
-6384, 0)},
->         {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9, 8192, 435=
-2, 0)},
->         {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1, 8192, 435=
-2, 0)},
-> --
-> 2.44.0.326.g07fa98e8e8
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 1a14e0101dac..bfae3c17e9bd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -112,7 +112,6 @@
+ #include "amdgpu_xcp.h"
+ #include "amdgpu_seq64.h"
+ #include "amdgpu_reg_state.h"
+-#include "amdgpu_umsch_mm.h"
+ 
+ #define MAX_GPU_INSTANCE		64
+ 
+-- 
+2.20.1.7.g153144c
+
