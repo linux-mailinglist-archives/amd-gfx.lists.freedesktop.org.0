@@ -2,66 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9563F8C85AF
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 May 2024 13:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8C18C8755
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 May 2024 15:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09B8610EE81;
-	Fri, 17 May 2024 11:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F5010EEC1;
+	Fri, 17 May 2024 13:37:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fBbY6hSl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mH1Y0wB0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA61410EE81
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 11:28:26 +0000 (UTC)
-Received: by mail-pf1-f169.google.com with SMTP id
- d2e1a72fcca58-6f4603237e0so42982b3a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 04:28:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715945306; x=1716550106; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=QK6DydqePA+uagCcAUFF8RH+e36PxKyMLmA8X08UdxM=;
- b=fBbY6hSlet68hkYLM/L/R1wqXtAuMQjSm1OymgXkAedpX/+BC9g7thxFQFJFoHFgvk
- eAUisVk16qEzPsSe5qLqEPAPOU+xCl/dv9uFEoS+MBSfCKwMMvYWuYYlGvHbms5x1hZv
- RG1LO6i41/1uoyROg99VVyaQ6jMO+4zKbW0dPqnPg1JR7c9VPOZczWy2qs2aRITnveUU
- ejU6fLERULYEI7vlyYv4ppTGI7qLHKgDJDS9ESCt9yY9oEs5a0bkbfExLBa06gkQ+azz
- OuCVqETybxzNRydPUyclvxi5a35NkdT5dpBsxw/HeqmPauBglWste0iq7Huxv3Krx70G
- VqDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715945306; x=1716550106;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=QK6DydqePA+uagCcAUFF8RH+e36PxKyMLmA8X08UdxM=;
- b=OtAGJclOR6N+98M3+PuO901kc6Yy0iDDLtXjGSatmM5TVctCpJeRL6yRM8E5y7Nd89
- eCT9240KaT1lTyWr5tT712qrwaovwZvFeA4zV1r2wy092TKbRaWsdQ0nuReldMB+It5V
- ZKiVqetdsR2DVi5eRQEVyGBGwEaYmFGLRd1wLlEjN1vWey0rK2R7K7XOHGh/BDKhNAJY
- sxc1n7B8UT432K3HSglb6Rzk6N1gM5K4jTn3EnfcT/4koZkCWtTOq4Rq093rbaiPZs7H
- Mc/MWKBLpt4gwEWtpqz1J0WFiL/bGd3ntveWyxalc1RBWqf+F7IPsXJjF5bcLzSbTjUJ
- OPug==
-X-Gm-Message-State: AOJu0YxRaKGk/amUnE6GVqnp61buyw7E4qvvQ/Fr3sZ4Axamh229zMnO
- bEufr7476rrJdlw7kWFgpDTOxdbAWEtWJLQo0gGt6IkVE+SKHQ9RRAp5FDziP1r2fQKqOUMkXuw
- yXbgB4aSjtNSxdnQO4U+mZ//c429zaL4D
-X-Google-Smtp-Source: AGHT+IHs9C/vFAkH6Hs5B0AgV8V2+9KQf6v9hOt9wq/Bxt5e/fsl65wlJk/p2kAdIIhCOnKyCqqfCiNgvn/CDAmJffM=
-X-Received: by 2002:a05:6a20:9697:b0:1a7:48de:b2a4 with SMTP id
- adf61e73a8af0-1afde07d88amr25712930637.6.1715945305782; Fri, 17 May 2024
- 04:28:25 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3065D10EE13;
+ Fri, 17 May 2024 07:41:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=FK3NFrTqmL6xVJnwLX6zLDv0aAR69KaCPCpyjlw0hJo=; b=mH1Y0wB0Qe5FJP4DjKJ8ZF1sJe
+ 4PcmAoz3bdpCgCVHWpRG7h4/J0eYiY4Q0oKGAF3/70HyrGIFMOGhIlGs7VguC/evRCH1zPbT+xr+G
+ wU9ACvHsi1ufv4WtQLmkOaj8kMy2DlafdCrCzsv8tYLZ2qzp6U+MrUO0SRk2VwDrav9iRyOPe0jSd
+ pMQ+5gc/YZrt2GdOu3O8qV8KZvtbz9RMHIy6mBqYNA7IyU4I9ZgULbtjznlLkWoZFb6ifcK+2oVfJ
+ 8rTamp7ed8L1iGfQoRxqhVUL87lhAzEOjw8A9R0VzL5uYI7IhyZjZ8xRqnW+PjTYtjAuge8tvyMkv
+ 1+LNlt3g==;
+Received: from [84.69.19.168] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1s7sDN-009AvW-Ds; Fri, 17 May 2024 09:41:17 +0200
+Message-ID: <4cfb94e4-8f15-4b7f-8911-60298da3edb7@igalia.com>
+Date: Fri, 17 May 2024 08:41:16 +0100
 MIME-Version: 1.0
-References: <CAEQFVGbaEx8mOWKy9bcq8FLFfq8Q+xE_hwk4dq5weKjNROcOGg@mail.gmail.com>
-In-Reply-To: <CAEQFVGbaEx8mOWKy9bcq8FLFfq8Q+xE_hwk4dq5weKjNROcOGg@mail.gmail.com>
-From: Mauro Rossi <issor.oruam@gmail.com>
-Date: Fri, 17 May 2024 13:28:13 +0200
-Message-ID: <CAEQFVGb3Xwx+TLf8QM2VBZ9EXy4rvpUs4wX=zNUQeyuy-=33yA@mail.gmail.com>
-Subject: Re: Request for Information on the current drm radeon Atomic Mode
- Settings
-To: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Cc: Alexander <alexander.deucher@amd.com>, lee@kernel.org, 
- Michael Goffioul <michael.goffioul@gmail.com>,
- Jon West <electrikjesus@gmail.com>, youling 257 <youling257@gmail.com>
-Content-Type: multipart/alternative; boundary="00000000000067c3130618a4a67c"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v2 0/2] Discussion around eviction improvements
+Content-Language: en-GB
+To: Alex Deucher <alexdeucher@gmail.com>, Tvrtko Ursulin <tursulin@igalia.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Friedrich Vock <friedrich.vock@gmx.de>
+References: <20240516121822.19036-1-tursulin@igalia.com>
+ <CADnq5_PhZ5bqEJKQ+bPQAeXihMfZrFVqLN-+nd69+zZooBT6BA@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <CADnq5_PhZ5bqEJKQ+bPQAeXihMfZrFVqLN-+nd69+zZooBT6BA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 17 May 2024 13:36:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,104 +63,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000067c3130618a4a67c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Cc: correct email address of Lee Jones, just For Your Information
+On 16/05/2024 20:21, Alex Deucher wrote:
+> On Thu, May 16, 2024 at 8:18 AM Tvrtko Ursulin <tursulin@igalia.com> wrote:
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>> Reduced re-spin of my previous series after Christian corrected a few
+>> misconceptions that I had. So lets see if what remains makes sense or is still
+>> misguided.
+>>
+>> To summarise, the series address the following two issues:
+>>
+>>   * Migration rate limiting does not work, at least not for the common case
+>>     where userspace configures VRAM+GTT. It thinks it can stop migration attempts
+>>     by playing with bo->allowed_domains vs bo->preferred domains but, both from
+>>     the code, and from empirical experiments, I see that not working at all. When
+>>     both masks are identical fiddling with them achieves nothing. Even when they
+>>     are not identical allowed has a fallback GTT placement which means that when
+>>     over the migration budget ttm_bo_validate with bo->allowed_domains can cause
+>>     migration from GTT to VRAM.
+>>
+>>   * Driver thinks it will be re-validating evicted buffers on the next submission
+>>     but it does not for the very common case of VRAM+GTT because it only checks
+>>     if current placement is *none* of the preferred placements.
+> 
+> For APUs at least, we should never migrate because GTT and VRAM are
+> both system memory so are effectively equal performance-wise.  Maybe
 
-Updated [2] link URL because HWC3 in Celadon was moved to project Celadon
-drm-hwcomposer local branch on yesterday
+I was curious about this but thought there could be a reason why VRAM 
+carve-out is a fix small-ish size. It cannot be made 1:1 with RAM or 
+some other solution?
 
-The request for information on drm radeon atomic modesettings is confirmed
+> this regressed when Christian reworked ttm to better handle migrating
+> buffers back to VRAM after suspend on dGPUs?
 
-Mauro
+I will leave this to Christian to answer but for what this series is 
+concerned I'd say it is orthogonal to that.
 
-On Fri, May 17, 2024 at 8:31=E2=80=AFAM Mauro Rossi <issor.oruam@gmail.com>=
- wrote:
+Here we have two fixes not limited to APU use cases, just so it happens 
+fixing the migration throttling improves things there too. And that even 
+despite the first patch which triggering *more* migration attempts. 
+Because the second patch then correctly curbs them.
 
-> Hi all,
->
-> with Android 14 QPR2 there were substantial changes in graphic stack's
-> Android HAL (Hardware Abstraction Layer),
-> essentially it became mandatory that hwcomposer HAL module supports AIDL
-> Android Interface Definition Language,
->
-> at the moment drm_hwcomposer does not support AIDL [1]
->
-> Project Celadon has an HWC3 AIDL implemented [2], as a patch on top of
-> hardware/interface AOSP project, there is an opportunity to use it also f=
-or
-> non Intel GPUs.
->
-> drm amdpu in kernel already supports ADF Atomic Display Framework, I woul=
-d
-> like to ask the current status of Atomic Display Framework in drm radeon,
-> because Atomic Mode Settings seems partially implemented since 2010-2012,
-> but ADF capabilities are not exposed to user space.
->
-> Please, I also need some basic (high level) information about the
-> outstanding changes that would be required to support it, in order to be
-> able to use HWC3 -> drm_hwcomposer with r600, r300 chipsets.
->
-> Thanks for your informations
->
-> Mauro
-> android-x86 team/Bliss-OS community
->
-> [1]
-> https://gitlab.freedesktop.org/drm-hwcomposer/drm-hwcomposer/-/issues/80
-> [2]
-> https://github.com/projectceladon/vendor-intel-utils/blob/master/aosp_dif=
-f/preliminary/hardware/interfaces/11_0001-Enable-graphics.composer3-AIDL-HA=
-L-service.patch
->
+First patch should help with transient overcommit on discrete, allowing 
+things get back into VRAM as soon as there is space.
 
-[2]
-https://github.com/projectceladon/drm-hwcomposer/commit/1160cdfb53daebf59f3=
-704ec9586c66385e63747
+Second patch tries to makes migration throttling work as intended.
 
---00000000000067c3130618a4a67c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Volunteers for testing on discrete? :)
 
-<div dir=3D"ltr"><div>Cc: correct email address of Lee Jones, just For Your=
- Information</div><div><br></div><div>Updated [2] link URL because=C2=A0HWC=
-3 in Celadon was moved to project Celadon drm-hwcomposer local branch on ye=
-sterday</div><div><br></div><div>The request for information on drm radeon =
-atomic modesettings=C2=A0is confirmed</div><div><br></div><div>Mauro</div><=
-br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
- May 17, 2024 at 8:31=E2=80=AFAM Mauro Rossi &lt;<a href=3D"mailto:issor.or=
-uam@gmail.com">issor.oruam@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi all,<div><br></div>=
-<div>with Android 14 QPR2 there were substantial changes in graphic stack&#=
-39;s Android HAL (Hardware Abstraction Layer),</div><div>essentially it bec=
-ame mandatory that hwcomposer HAL module supports AIDL Android Interface De=
-finition Language,</div><div><br></div><div>at the moment drm_hwcomposer do=
-es not support AIDL [1]</div><div><br></div><div>Project Celadon has an HWC=
-3 AIDL implemented [2], <strike>as a patch on top of hardware/interface AOS=
-P project, there is an opportunity to use it also for non Intel GPUs.</stri=
-ke><br></div><div><br></div><div>drm amdpu=C2=A0in kernel already supports =
-ADF Atomic Display Framework, I would like to ask the current status of Ato=
-mic Display Framework in drm radeon, because Atomic Mode Settings seems par=
-tially implemented since 2010-2012, but ADF capabilities are not exposed to=
- user=C2=A0space.=C2=A0</div><div><br></div><div>Please, I also need some b=
-asic (high level) information about the outstanding changes that would be r=
-equired to support it, in order to be able to use HWC3 -&gt; drm_hwcomposer=
- with r600, r300 chipsets.</div><div><br></div><div>Thanks for your informa=
-tions</div><div><br></div><div>Mauro</div><div>android-x86 team/Bliss-OS co=
-mmunity</div><div><br></div><div>[1] <a href=3D"https://gitlab.freedesktop.=
-org/drm-hwcomposer/drm-hwcomposer/-/issues/80" target=3D"_blank">https://gi=
-tlab.freedesktop.org/drm-hwcomposer/drm-hwcomposer/-/issues/80</a></div><di=
-v><strike>[2]=C2=A0<a href=3D"https://github.com/projectceladon/vendor-inte=
-l-utils/blob/master/aosp_diff/preliminary/hardware/interfaces/11_0001-Enabl=
-e-graphics.composer3-AIDL-HAL-service.patch" target=3D"_blank">https://gith=
-ub.com/projectceladon/vendor-intel-utils/blob/master/aosp_diff/preliminary/=
-hardware/interfaces/11_0001-Enable-graphics.composer3-AIDL-HAL-service.patc=
-h</a></strike></div></div></blockquote><div><br></div><div>[2]=C2=A0<a href=
-=3D"https://github.com/projectceladon/drm-hwcomposer/commit/1160cdfb53daebf=
-59f3704ec9586c66385e63747">https://github.com/projectceladon/drm-hwcomposer=
-/commit/1160cdfb53daebf59f3704ec9586c66385e63747</a></div></div></div>
+>>
+>> These two patches appear to have a positive result for a memory intensive game
+>> like Assassin's Creed Valhalla. On an APU like Steam Deck the game has a working
+>> set around 5 GiB, while the VRAM is configured to 1 GiB. Correctly respecting
+>> the migration budget appears to keep buffer blits at bay and improves the
+>> minimum frame rate, ie. makes things smoother.
+>>
+>>  From the game's built-in benchmark, average of three runs each:
+>>
+>>                                                  FPS
+>>                  migrated KiB    min     avg     max     min-1%  min-0.1%
+>>    because          20784781     10.00  37.00   89.67    22.00    12.33
+>>    patched           4227688     13.67  37.00   81.33    23.33    15.00
 
---00000000000067c3130618a4a67c--
+Hmm! s/because/before/ here obviously!
+
+Regards,
+
+Tvrtko
+
+>> Disclaimers that I have is that more runs would be needed to be more confident
+>> about the results. And more games. And APU versus discrete.
+>>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Friedrich Vock <friedrich.vock@gmx.de>
+>>
+>> Tvrtko Ursulin (2):
+>>    drm/amdgpu: Re-validate evicted buffers
+>>    drm/amdgpu: Actually respect buffer migration budget
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 112 +++++++++++++++++++------
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |  21 ++++-
+>>   2 files changed, 103 insertions(+), 30 deletions(-)
+>>
+>> --
+>> 2.44.0
+>>
