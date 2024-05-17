@@ -2,64 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A688C944E
-	for <lists+amd-gfx@lfdr.de>; Sun, 19 May 2024 12:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC918C9451
+	for <lists+amd-gfx@lfdr.de>; Sun, 19 May 2024 12:46:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 444DB10E0CE;
-	Sun, 19 May 2024 10:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3123D10E15E;
+	Sun, 19 May 2024 10:46:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="GHEoCR+q";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="Vi5TTRYP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F26E910EF06
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 15:31:36 +0000 (UTC)
-Received: by mail-qt1-f169.google.com with SMTP id
- d75a77b69052e-43df751b5b8so6106871cf.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 08:31:36 -0700 (PDT)
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com
+ [209.85.221.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED75110EF31
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 17:27:03 +0000 (UTC)
+Received: by mail-vk1-f181.google.com with SMTP id
+ 71dfb90a1353d-4df97a50d1aso380729e0c.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 May 2024 10:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1715959896; x=1716564696;
+ d=chromium.org; s=google; t=1715966822; x=1716571622;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=k7megH/H2PCv2+j9G389xKdUzN7SbYmctbozhmOjrak=;
- b=GHEoCR+q0xBXL4qm/k22EsxjJ1Yh+7n0UHuXBBDrPfn6z2IL9snl7LRK4A06DUAU+P
- Nm+y9kTbpu5EbwaC5L/VxbNbFQIYoha8um0Pm0MGZuKIw5YBHWc9C0Wz7e8BnZoAcViR
- bjwotxltOZAhWnpJNvXhLT4UtB3ii7EWU0P4s=
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZcxVTcFh7NO1RmeggMzvCad9BHQKhjKuD/Oz3pjme8o=;
+ b=Vi5TTRYPdDcDbEpTz3HufKCCjcL9f9ywv1PvuQy5xnXDEemvLozmW8Ls/zI8X6B6nt
+ bSnGExaA7LDG9FnokD3k6q0ItVhAlSqD+Y1FCrczj4ZV6bBrYJocYPXc/eWLbDgxcRY9
+ 0IDtTY6qcKDo5X3FS+rFHKhoTbBE77bV2fSFk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715959896; x=1716564696;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=k7megH/H2PCv2+j9G389xKdUzN7SbYmctbozhmOjrak=;
- b=BHkopW2m83w5G5A25KLd62KYEWc02dQmupnYeniNxz9PlFOIOIjC8xTgWz0xhKYKt+
- ldWdtK16pJ8DmOY+YH76xkZ3lV/0fGsit4m5jaze2rFJM6iHbJe6olUisiI5n+PJS1IH
- 8LlNMEX373XHC1jXjEpjRzuT04cw1dqURRdjC4IPFhi39X6uIUx4WleW4wE1lA3E1zOm
- FuVVkEM1LjS+YK46ITpCD3/o0EVi8zt1UWaBe/gwd4bWd4DJDQtxZQZGqi99Kl97Imcm
- 3+XE2O6cRM4kr2nvqUe5BMB/F+dHpwxCmK9P9S55G+eFlNiyuH1UeYpxf9O1tX2jpzVV
- ldMQ==
+ d=1e100.net; s=20230601; t=1715966822; x=1716571622;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ZcxVTcFh7NO1RmeggMzvCad9BHQKhjKuD/Oz3pjme8o=;
+ b=D0uBY44iQiO/MrNbK9MHBKfmVmnZFxwvHVOGd1mBOOhlL2HelDbS2NZ5v88k4/qbys
+ MLynwx3EKgT9J//7VudWvFXO3Z/Z/T6jZI+yK1g8ABRtcdp6FgzCpw+flzdTGUeezXml
+ CCiSZqo0U64Xb35/texNQieloJBcY4ioeo+lnUaBLBR0d+sr3cjR6hzTr/DyZ113GfNg
+ hZRVnXbXE2RKA3wIVLZdn6kQf2YlQEDQX3qD9Oz83GTRlBFpoecOAg8TO+GqTINGBC9m
+ 16irRbeHrj2SdBdj5JSUljHHlH4TKtiwz8TIpsKUiWiKOd3TgAFfjOpw+LRW9OeoB9Tw
+ 9Xng==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV0H+0i8hEikNFdiphLGBE+8lu1DPTxC6wRD745FpU5hV1PlnB/GXH52/FIJJJ7CkdGfR4tBWIVXHqzKtLePN9nhBMLtGOdWFDm5qP0sQ==
-X-Gm-Message-State: AOJu0YzglAIiCgFXAUS0jzUeFUy2ge/aB+VGnJPitX/ObNmUuWVxbBTz
- CBQpMiwKRujGkyO8LQkLj/HBYx4utkD4hbu5MyWF+geJgl6aXooO0DgQDsUlhdCsMOO9wWN/4zq
- O7a2vj7g11zfGvNns2GVbcAnjFKxzcrz1jI4t
-X-Google-Smtp-Source: AGHT+IGhcIgFiNUmswLwDNFrEyhlQEYmVuB0KuktpQFJvPdoeuKAcVFmkHhvUvnReCh+DA3a2Vh8QYXmcY74cB7LSJU=
-X-Received: by 2002:a05:622a:1109:b0:43a:699e:114c with SMTP id
- d75a77b69052e-43dec39cd25mr388192291cf.31.1715959895750; Fri, 17 May 2024
- 08:31:35 -0700 (PDT)
+ AJvYcCXQCim+nCXF+jmHc3sRdO6IapCZ8EHI3lx8S3rFrceA6/nQBLsOzIBqgxVlsGxRQxivwXitvna8azHxZ50M7nFa6y9k9WPpdClgCj/6fQ==
+X-Gm-Message-State: AOJu0YxNuScX37JtXsGBrIvTmi3tmGj8QFUE8+/aBmdeaqtisTXMnwns
+ qluBBzIMX9phH1OBSk63pusyqRkJ/oxlcLCl6T/tCCo8WmJjFcAkjnaif1ce9rUdHY/JEgV192b
+ flHeLMhJd8xJaddhknaT4AGbt4Oqxbcli2dGD
+X-Google-Smtp-Source: AGHT+IElyxDzLSoeVKTnHsADhpEMO/j0Y0exiEY0s5o2jQhNssuaMk0JL5QwXxOtxjka7wlQqKZ7P260uLD752jOyqw=
+X-Received: by 2002:a05:6102:14aa:b0:47f:2c10:24e2 with SMTP id
+ ada2fe7eead31-48077e5bfaemr26084771137.28.1715966822410; Fri, 17 May 2024
+ 10:27:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20240516115721.1.I8d413e641239c059d018d46cc569048b813a5d9b@changeid>
  <9dd1cfd1-fe13-4434-a7cc-e14113dcaf53@amd.com>
-In-Reply-To: <9dd1cfd1-fe13-4434-a7cc-e14113dcaf53@amd.com>
+ <CADnq5_NGLrrFmFHFX2bC7naByJGofEiYQyWvRP6CO4BDFo52TQ@mail.gmail.com>
+In-Reply-To: <CADnq5_NGLrrFmFHFX2bC7naByJGofEiYQyWvRP6CO4BDFo52TQ@mail.gmail.com>
 From: Tim Van Patten <timvp@chromium.org>
-Date: Fri, 17 May 2024 09:31:25 -0600
-Message-ID: <CAMaBtwFTBp-oAMLD4BKgrxQrfvWpJ6NbWBpyoLXeaqg8ebLGaQ@mail.gmail.com>
+Date: Fri, 17 May 2024 11:26:51 -0600
+Message-ID: <CAMaBtwFQxeARGyhVxo+WsYCHgmJNJ7ThjtPcFv=LZqRNJtVxsw@mail.gmail.com>
 Subject: Re: [PATCH] drm/amdgpu: Remove GC HW IP 9.3.0 from noretry=1
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, alexander.deucher@amd.com, 
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ LKML <linux-kernel@vger.kernel.org>, alexander.deucher@amd.com, 
  prathyushi.nangia@amd.com, Tim Van Patten <timvp@google.com>, 
  Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
  Felix Kuehling <Felix.Kuehling@amd.com>,
@@ -68,10 +69,8 @@ Cc: LKML <linux-kernel@vger.kernel.org>, alexander.deucher@amd.com,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Shaoyun.liu" <Shaoyun.liu@amd.com>, 
  Shiwu Zhang <shiwu.zhang@amd.com>,
  Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- chris.kuruts@amd.com
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sun, 19 May 2024 10:46:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,43 +86,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 17, 2024 at 12:35=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> Am 16.05.24 um 19:57 schrieb Tim Van Patten:
-> > From: Tim Van Patten <timvp@google.com>
-> >
-> > The following commit updated gmc->noretry from 0 to 1 for GC HW IP
-> > 9.3.0:
-> >
-> >      commit 5f3854f1f4e2 ("drm/amdgpu: add more cases to noretry=3D1")
-> >
-> > This causes the device to hang when a page fault occurs, until the
-> > device is rebooted. Instead, revert back to gmc->noretry=3D0 so the dev=
-ice
-> > is still responsive.
->
-> Wait a second. Why does the device hang on a page fault? That shouldn't
-> happen independent of noretry.
+> Fair enough, but this is also the only gfx9 APU which defaults to
+> noretry=1, all of the rest are dGPUs.  I'd argue it should align with
+> the other GFX9 APUs or they should all enable noretry=1.
 
-No idea, but hopefully someone within AMD can help answer that.
-
-I'm not an expert in this area, I was just able to bisect to the CL
-causing the change in behavior. There are other reports of people
-bisecting to the same CL, so this issue appears to extend beyond
-ChromeOS:
-https://gitlab.freedesktop.org/mesa/mesa/-/issues/9728#note_2063879
-
-> So that strongly sounds like this is just hiding a bug elsewhere.
-
-That's entirely possible, bringing the number of real issues up to (at
-least) two:
-1. Why the page faults are occurring to begin with.
-  - Any video of size 66x2158 seems to trigger the issue.
-2. Why the page faults result in the device hanging with gmc->noretry=3D1.
-
-I've asked prathyushi.nangia@amd (chris.kuruts@amd may be helping as
-well) to look into the page faults further, since they can't hang the
-device if they don't exist. She should be able to provide any further
-details if you're interested, but please feel free to reach out to me
-as well if you have any other questions.
+Do you mean we should remove all IP_VERSION(9, X, X) entries from
+amdgpu_gmc_noretry_set(), leaving just >= IP_VERSION(10, 3, 0)?
