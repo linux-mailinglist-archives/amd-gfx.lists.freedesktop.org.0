@@ -2,86 +2,143 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0578CA893
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 May 2024 09:12:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B90DC8CA7D0
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 May 2024 08:11:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 787CC10E1D6;
-	Tue, 21 May 2024 07:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0EA10E01F;
+	Tue, 21 May 2024 06:11:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m7/SkQPl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="C8uoL46/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF2BD10EAF1;
- Tue, 21 May 2024 05:12:27 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id
- 38308e7fff4ca-2e1e8c880ffso8693401fa.2; 
- Mon, 20 May 2024 22:12:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716268346; x=1716873146; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GUapn7dPFkmrdlk6ElpkaCznwDwGsC/allixWXQKesY=;
- b=m7/SkQPlGeT8Q0Xrq6E/EmDpzy+66YeU3OEY5TDv5rUeHX4odJoUD6Vdjvp4MiCnos
- LPjfVw2IPbn+ByIyp6eT+xPVB5Y1Tm69J11SfMvmmIR0MITlQGitarjxm63LQaVH6alD
- HX0AzeGRclaHLvvpapAQyjbKwJoWwLsuIaXq9lIdrJDH21tuPyPP0vFiFtFZdf/LdCwG
- 1ul6sZZb6b3RtZWI1kHN3ox37yppQwINH5n9EyqyDg5G98LBaIsHpb5/6iy8Vkqz2uqI
- 8NRPR6FjUtGKUYOwCn9TZtoa8xXSvqAZZ689Kx2LHM+PB+TNH8WdlKutJL79OuAh3I3v
- JdpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716268346; x=1716873146;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GUapn7dPFkmrdlk6ElpkaCznwDwGsC/allixWXQKesY=;
- b=s5Tty5ymkZ3PLvqGgNKX1hpTPMX3YmIqMsqu9GiDW0KtVawKaiKn3kggsaJVT+TuJn
- PVPN8SOw6kaTDCHKrAHTN2KkXdlXnWvprtARlmb0lR+u92w9/Ow213wYxCAVsZWoBqvn
- aTzGR7akll8sUQWPfkYNi8qZ5WC44Cb/ToOOncdhQmPTnYpX0XUTOtMOQUkPCUR+omA7
- LaG+uy9hlxNYQrxnxOG5Y+5DghYpGOF7DQekjW+YS22L9OQXCxvaKwDBZDfmhvZCcwyJ
- RAStiJqf3dLz8bf76YCwdWLYWJavY+A1H4FCsMgDCDeGGuyAMzgWwlVDK0O2LnvdfUkA
- uARA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWziIJ0DdzXlj0FJTp5Y/QPG1XospAqTeWtwBjOrGM9JEE4fsc8H+4QgxfZ35z96a3gFOLt3gA+VtUpMXWX2bUX/ZgggKv/EgCCEjE/3MYi8d0qMR5uDkAQ6B/xXCc+9EZeEvNs43NOfV7kwB0iyA==
-X-Gm-Message-State: AOJu0YyI5plJi9dRJB1NGpBIa3LvzvfgHPGhC32SOrl8yHYoYhvdXDZa
- zJp7R9jCJdDZio1K9NVY7w/BlHpTcQCHMmyrVG4WKnTrntOs7vUB
-X-Google-Smtp-Source: AGHT+IE2K6Julfu2AI4B9GNwgJRleFux2hV74ux3F8eePubIgAX73mqeQXyDMoHW0hxgc0awiuq59g==
-X-Received: by 2002:a2e:a1ca:0:b0:2e5:67a7:dda7 with SMTP id
- 38308e7fff4ca-2e567a7df67mr201821891fa.3.1716268345399; 
- Mon, 20 May 2024 22:12:25 -0700 (PDT)
-Received: from workstation.localdomain ([2001:4647:930d:0:6cc8:8362:4e13:c7e4])
- by smtp.googlemail.com with ESMTPSA id
- 38308e7fff4ca-2e4d0ef09ffsm35540931fa.59.2024.05.20.22.12.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 May 2024 22:12:24 -0700 (PDT)
-From: Rino Andre Johnsen <rinoandrejohnsen@gmail.com>
-To: alexander.deucher@amd.com
-Cc: Rino Andre Johnsen <rinoandrejohnsen@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Hersen Wu <hersenxs.wu@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Wayne Lin <wayne.lin@amd.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Fangzhi Zuo <jerry.zuo@amd.com>, Tom Chung <chiahsuan.chung@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/amd/display: Add pixel encoding info to debugfs
-Date: Tue, 21 May 2024 07:11:23 +0200
-Message-ID: <20240521051140.30509-1-rinoandrejohnsen@gmail.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <fa885eca-d7e6-415a-8a08-9103b002c6bb@amd.com>
-References: <fa885eca-d7e6-415a-8a08-9103b002c6bb@amd.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2045.outbound.protection.outlook.com [40.107.236.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B637710E01F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 May 2024 06:11:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=THWbyEcsfhkFIgBl/frBtAG0Q6+bs2Xpwm4vgySsF+RSkNwRxdZpBq60R4QDA1E39sqpSXD/o1OakUqutmfAii6tBG4reBbv9gjqdG4pZFllsqo3EeO6OB2CBT2EdL++KJqhgksbDr15n20pKS8yfPyXBe7eqia+GEhwY041KQtdAcoq845/CupGiGHSEUaFpX0wwCEaOJlsl36OkGVTPOvAiPB+nDt2ANNKfyaYpDtjW3LogAoOp7J8g1tE6sK0w4SN+hcsyRh+Emxy5fbLxx7nbCEp1k6mPj2WfyNMmAOYVGYhxY9zORfD+w51lyFuv4UT+PEnlD8pQlJl8gfgHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kD/R1gSXn3q5HSTP+AGsKpBEIS5LRywJ6iKZ6cKZ4wY=;
+ b=eAY69iFhfLZACx9AcvFJ6m/sP8bLAcymM+wF2ZjGajl1JxFspB6jSG6gX3/Pi0RKFu08ssRrYTAthO/zGQVW1Kh2Ftik3gX+sgmhkAacYh3cqem8OwulP4nvrfr3JoxSYkHlwEG2oRzgNpiCT3og8mT+PBVOLk3y5z5QSPLjQRQLEItoY7CHDuXVw8vB7Xg1OFI3dDgZVfMQBb/W6eXxiQ5MAEAtwbw4qr5bHqHq4mPqGElOerCTOS6M1ThwMec1oQ0DB+9FDqUYJYnE0HgqgUzkTj3NjZsit7mlXb8pu3cKvRrqnitSym9rFRg0lD11aMAz7C12e23iD4LNN7a59A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kD/R1gSXn3q5HSTP+AGsKpBEIS5LRywJ6iKZ6cKZ4wY=;
+ b=C8uoL46/kuJxkiuh6io8P00lX+O7jHqP01PVwp3dSOlMFjnWJq92k4WQd/+zq6TXJQ9i/VeIolfAe5B3tY48KZcpNHnrI9D0zMPoC0Z1eVYmW5a00pblTmJ0Gu6oORIlWzrC9KZHobJ/j6TIqzUtndE58RMsH7lN8GCK5dPtCKk=
+Received: from CH3PR12MB8074.namprd12.prod.outlook.com (2603:10b6:610:12b::9)
+ by BL1PR12MB5923.namprd12.prod.outlook.com (2603:10b6:208:39a::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Tue, 21 May
+ 2024 06:11:34 +0000
+Received: from CH3PR12MB8074.namprd12.prod.outlook.com
+ ([fe80::7f58:8648:262d:89e9]) by CH3PR12MB8074.namprd12.prod.outlook.com
+ ([fe80::7f58:8648:262d:89e9%4]) with mapi id 15.20.7587.035; Tue, 21 May 2024
+ 06:11:34 +0000
+From: "Huang, Tim" <Tim.Huang@amd.com>
+To: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>,
+ "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
+Subject: RE: [PATCH 4/4] drm/admgpu: fix dereferencing null pointer context
+Thread-Topic: [PATCH 4/4] drm/admgpu: fix dereferencing null pointer context
+Thread-Index: AQHaqy6kf+XIBVmy4UCRO3dTsOZlTLGhMu2w
+Date: Tue, 21 May 2024 06:11:34 +0000
+Message-ID: <CH3PR12MB80741397D72C5073520DD833F6EA2@CH3PR12MB8074.namprd12.prod.outlook.com>
+References: <20240521032550.288684-1-jesse.zhang@amd.com>
+In-Reply-To: <20240521032550.288684-1-jesse.zhang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=c502bf7f-46d9-4916-8939-f642410fe205;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-05-21T06:03:48Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR12MB8074:EE_|BL1PR12MB5923:EE_
+x-ms-office365-filtering-correlation-id: 85a777b4-33e9-4369-f30e-08dc795cddec
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|366007|376005|1800799015|38070700009;
+x-microsoft-antispam-message-info: =?us-ascii?Q?Q1OvtyEObsVuXyowlfpmhrKt6brLfjOAYZoBRAe14PABHlL4n7DJqPm7TkJZ?=
+ =?us-ascii?Q?mbyWB4FThBRQfgJb0IrOnQ6FlGCDaP/h57OWLQAgjlNSWAOrlH6DO2t8TzyK?=
+ =?us-ascii?Q?qnJGDVjsjYBuROKG3vhQOArINn7YKkJnBF0GvAHpb/m2llU7IY44R0CE6c3M?=
+ =?us-ascii?Q?iwnTyn5BMW9OCRIGjWHekONNRQydMpTxUtNG8GIqCsLFpo04S+2ssjcyrYJZ?=
+ =?us-ascii?Q?WQQJp75hkZKLTxN8dhYOIfBF558vtePalFd2bdn1FTTPBPQkOcwAR2Jo+eit?=
+ =?us-ascii?Q?UycqfZ6dsUlLKhLY4JGRZKfU8NnM/1kOEQK9K/nePCGEJFUZSlwdhlrbmblb?=
+ =?us-ascii?Q?aGZHbbVkSE9e3r4b2EDBm2VO/qUZLbQFrubwPCWvyKvE6ZtZUVbVlJtVUkPP?=
+ =?us-ascii?Q?U/MQbWtJFwxaqGtK0ZHuHkvrCFIpsQSV9Zn4SUF7z3ZMSK+PDF23ULKeuRas?=
+ =?us-ascii?Q?QJgcaDkkrvhiXj2jPpj1fIgL1Ni7zvdivqovhCVfyV3efcAn25gN6QQBg2ik?=
+ =?us-ascii?Q?0csF7mNCxGUCSG/J0cSYbeMuXekaKpfEpNZ9f5MmHpgFhsm663q+59Rgk6l0?=
+ =?us-ascii?Q?3U8HjpnucBdkfHU/8yTlbniRWUlBwrJdBcrrAis31RHaUlBiZn238h8aGITU?=
+ =?us-ascii?Q?GWrhPj51VQyBi85FedFdGJt+DHb+7kkJ6gWi38gBideqBkQpUnwGwnskU8LV?=
+ =?us-ascii?Q?2CWDizd/PI2DmYfwfJvE0MOW6BXdFYUHbbdvuOz9F3YQaNdLhZ0VdFglSTwt?=
+ =?us-ascii?Q?2X6juT5RPt2Yny6qE/Ms/rhQaRoywCU6OeHusSZDfY5lrzy/C9xrPt6sY6Be?=
+ =?us-ascii?Q?1442c/eOWCsBdhVQD3bcQBtlDTuqH+lsKRR7AqQamBsO/onOtZEyH5c1rvou?=
+ =?us-ascii?Q?oieV86G0RuQPEYfwmFrkcrDxWa3N1V04TsTdxS8WuPE2js7q0sYHx/rArfeb?=
+ =?us-ascii?Q?CR7Zm1RCJk48uO4jePGgVA0k7vOWXBqizMrDmqf6ZiD2QJUpMkNkvGInvnch?=
+ =?us-ascii?Q?2J5GDMuvOn4s/lNvWgwSU/IaeLhbI+TeeLZlNSWuJ2DW6AuF3rhPE7fJANTu?=
+ =?us-ascii?Q?SZ/bgEcJFNrO1m1RrZavEmf7dSDB3pJoXyYaRyT42999/lre7Zj7USSaMTeG?=
+ =?us-ascii?Q?mCTG137VAoO2r+BTBlEfXxLOBpkGx35Vx9iQ5IBN5YTmRl00bCcktANPDBmd?=
+ =?us-ascii?Q?9kWeHUGsgmVzuGqEUzwAo8EjcdlSgjv1Gcyatu7X0QhVUaHFFjUaiPj2dedz?=
+ =?us-ascii?Q?G1l0d9sfiSohiZ3N+ZbybpikKsGaoZ9uPjh6WDuMjsFa0+/WJjR+5r9h5VEy?=
+ =?us-ascii?Q?j9txSB/SPBOjYRNUFDGQs5sh?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR12MB8074.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Phf+7dOSZpuQ8VFpHB7leMTvt/yHfs1hRQCOFimdZY8gDdc63VN0y5hJT/wV?=
+ =?us-ascii?Q?7htG9QIes2bci0B113ODU2JmaFhE5gqA4F6Ehr5ptavutbE8PtXFhKbxNgdA?=
+ =?us-ascii?Q?XO1dRafyUV62QG1xkEBsRp6tJ2qaz1ZZ/a9Lprsl7Xx+78Dw741Cl9jY4lqA?=
+ =?us-ascii?Q?j6C51Ci0sqEbx4GPAOq2BBcRMuEdC6wblFpW2Zpaed7nxqxA8kjA18qsgF+L?=
+ =?us-ascii?Q?s3OutsjECBMAythBj7nX91su+/hNrLmn+HtddTfyxGQeGidCGlPYYYPEkydn?=
+ =?us-ascii?Q?70QoggCSdJ5zrHTgdobHqFAR0BaJxtR9YQes71/4sfXZ+orRdn7bzowS12dU?=
+ =?us-ascii?Q?vc9tSl9zwL3noeEsh8+/XdA7BaNgDBqjkBjp0lUf8Q9KEKPXLphlKCUBxBwl?=
+ =?us-ascii?Q?Utpt+e72Ojl1wcjcHlb3+eZhr1TW03DSs+b/vaQHRv1H+QPTNTqz1jU/5RDd?=
+ =?us-ascii?Q?dnbHEP5+q+WTay4VDQH2guJzHKzV6vyXXB3y3h1TBoi4vW8IvEkByw3AnYg4?=
+ =?us-ascii?Q?ixLzPzgPcIEUgCT+f8WRWOUH+2WZ0OZQJqWB8/tR5wAMwdwfEVFd22u1Wkww?=
+ =?us-ascii?Q?1HUMBT8cc5jjJOHmThqCVoIzqx+B1xglSLldFGxo42fqdjk8XsUJMp+3uu9h?=
+ =?us-ascii?Q?v+buV/UcSKNU6s7Nj6PtE2Fq3+oHy+EYbXVUx08WWO5+qXMWBvuxiN6ud8Yb?=
+ =?us-ascii?Q?atjtI5BVTXJOVK6NTI445vFS/Mc/bcSdc1i5FD0hVNdlO0guxxHi4z5F5i5R?=
+ =?us-ascii?Q?41Tm0rbZCf15QvH2w4Nn+XmuxrIVXlQxXxFX7dYJBPFOkzYoVkwjydAF7BPY?=
+ =?us-ascii?Q?1BWMPTl33elQ9+u+y5N2lypNyKFa7yUljQoXKQV/ekLYDvQmpLFZRIfWPmgM?=
+ =?us-ascii?Q?CBP4sPqgJ4kjJAUwvwCEwopVyrjsVA7HAWRo/QwkyVgmIVXoU1ahqbNrk8JN?=
+ =?us-ascii?Q?CoLipVl2oE9qIn93eGyZcxK3MJK1+ew6/W1ZlLLBPjp5zibxDrphUpJvTKnr?=
+ =?us-ascii?Q?RwJ4UfDn3JGVpjeVgMP8vVIqOtF3OBsGm2ENSfQmCJo71TlCLqv6eNJDXLpP?=
+ =?us-ascii?Q?Mcn/g0XcErBYgUIzEH+Qx+YoaFxxxJ43AGoi0lyM+UtlWcIBYo9Og86+Rrof?=
+ =?us-ascii?Q?AKiknjfgPRurgb897HroQWdq/oN5ukvTkgYTDaS2tYEoypfMArE5K/S8gsbT?=
+ =?us-ascii?Q?keK6vrFD6PcQKhkBGQcNCQEcb1urQ7PKEzkOWwsDmxCoej40HoToLmU7bJpS?=
+ =?us-ascii?Q?Ch/LwcIIih+xmW/Hd8wFbtgro4n5DVTHOfI0r42yHBvBAYRn1JWgzfY4lnbS?=
+ =?us-ascii?Q?coIEsdbRxIJbnZSXQkci6ppQj8dkzJseFh7jbn/Xdz7SopJ3mBUhDmD6ZNdz?=
+ =?us-ascii?Q?rxntO/qRxClR4OXRihr+bYxFAsDIK8Ef2pfapNHeSxPJEwtcJgZy3FcZE/mV?=
+ =?us-ascii?Q?YRVbu4Wk1sp7AHOmkxWvdekjYGc1gjkeIpHTBTkkSz/H58S4gyeBOLUGgniA?=
+ =?us-ascii?Q?NOg8WgXOY54vw9VMFmdXgJh3MispnhepOEEaT7OI6fVrota2mamWU23zNSOf?=
+ =?us-ascii?Q?GNhOlbeyEdnusqAcxiI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 May 2024 07:12:26 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8074.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85a777b4-33e9-4369-f30e-08dc795cddec
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2024 06:11:34.6434 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y9bB6T+TAg57ZLFSR+MbjZ2/tgPrdrt7id+I14/C0DK0clYxcJp/y9r24St7HFx46kAn6Dz4KjeMGsBj8cUNdg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5923
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,87 +153,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-For debugging and testing purposes.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-[How]
-Create amdgpu_current_pixelencoding debugfs entry.
-Usage: cat /sys/kernel/debug/dri/1/crtc-0/amdgpu_current_pixelencoding
+Hi Jesse,
 
-Signed-off-by: Rino Andre Johnsen <rinoandrejohnsen@gmail.com>
----
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Jesse
+> Zhang
+> Sent: Tuesday, May 21, 2024 11:26 AM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
+> <Christian.Koenig@amd.com>; Huang, Tim <Tim.Huang@amd.com>; Zhang,
+> Jesse(Jie) <Jesse.Zhang@amd.com>; Zhang, Jesse(Jie)
+> <Jesse.Zhang@amd.com>
+> Subject: [PATCH 4/4] drm/admgpu: fix dereferencing null pointer context
+>
+> When user space sets an invalid ta type, the pointer context will be empt=
+y.
+> So it need to check the pointer context before using it
+>
+> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> index ca5c86e5f7cd..ac1f423dd28f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
+> @@ -334,7 +334,7 @@ static ssize_t ta_if_invoke_debugfs_write(struct file
+> *fp, const char *buf, size
+>
+>       set_ta_context_funcs(psp, ta_type, &context);
+>
+> -     if (!context->initialized) {
+> +     if (context && !context->initialized) {
+This can help to avoid using the empty pointer context but still needs to h=
+andle the context =3D=3D NULL case and return an error.
 
-Changes in v2:
-1. Do not initialize dm_crtc_state to NULL.
----
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 27d5c6077630..4254d4a4b56b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -1160,6 +1160,51 @@ static int amdgpu_current_colorspace_show(struct seq_file *m, void *data)
- }
- DEFINE_SHOW_ATTRIBUTE(amdgpu_current_colorspace);
- 
-+/*
-+ * Returns the current pixelencoding for the crtc.
-+ * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/amdgpu_current_pixelencoding
-+ */
-+static int amdgpu_current_pixelencoding_show(struct seq_file *m, void *data)
-+{
-+	struct drm_crtc *crtc = m->private;
-+	struct drm_device *dev = crtc->dev;
-+	struct dm_crtc_state *dm_crtc_state;
-+	int res = -ENODEV;
-+
-+	mutex_lock(&dev->mode_config.mutex);
-+	drm_modeset_lock(&crtc->mutex, NULL);
-+	if (crtc->state == NULL)
-+		goto unlock;
-+
-+	dm_crtc_state = to_dm_crtc_state(crtc->state);
-+	if (dm_crtc_state->stream == NULL)
-+		goto unlock;
-+
-+	switch (dm_crtc_state->stream->timing.pixel_encoding) {
-+	case PIXEL_ENCODING_RGB:
-+		seq_puts(m, "RGB");
-+		break;
-+	case PIXEL_ENCODING_YCBCR422:
-+		seq_puts(m, "YCBCR422");
-+		break;
-+	case PIXEL_ENCODING_YCBCR444:
-+		seq_puts(m, "YCBCR444");
-+		break;
-+	case PIXEL_ENCODING_YCBCR420:
-+		seq_puts(m, "YCBCR420");
-+		break;
-+	default:
-+		goto unlock;
-+	}
-+	res = 0;
-+
-+unlock:
-+	drm_modeset_unlock(&crtc->mutex);
-+	mutex_unlock(&dev->mode_config.mutex);
-+
-+	return res;
-+}
-+DEFINE_SHOW_ATTRIBUTE(amdgpu_current_pixelencoding);
- 
- /*
-  * Example usage:
-@@ -3688,6 +3733,8 @@ void crtc_debugfs_init(struct drm_crtc *crtc)
- 			    crtc, &amdgpu_current_bpc_fops);
- 	debugfs_create_file("amdgpu_current_colorspace", 0644, crtc->debugfs_entry,
- 			    crtc, &amdgpu_current_colorspace_fops);
-+	debugfs_create_file("amdgpu_current_pixelencoding", 0644, crtc->debugfs_entry,
-+			    crtc, &amdgpu_current_pixelencoding_fops);
- }
- 
- /*
--- 
-2.45.1
+Tim
+>               dev_err(adev->dev, "TA is not initialized\n");
+>               ret =3D -EINVAL;
+>               goto err_free_shared_buf;
+> --
+> 2.25.1
 
