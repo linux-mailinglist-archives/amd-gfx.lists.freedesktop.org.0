@@ -2,76 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430478CBC3C
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 09:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D888CBC3A
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 09:43:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D920D10EE08;
-	Wed, 22 May 2024 07:43:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1B910EE0D;
+	Wed, 22 May 2024 07:43:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="Mh6pHEyl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OSbnpOWe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B374310E166;
- Tue, 21 May 2024 16:58:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1716310696; x=1716915496; i=w_armin@gmx.de;
- bh=Ms/zIrzl5yOvhmDxuDCcGJGG49R0KscBWVcfdO7wNvk=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
- References:From:In-Reply-To:Content-Type:
- Content-Transfer-Encoding:cc:content-transfer-encoding:
- content-type:date:from:message-id:mime-version:reply-to:subject:
- to;
- b=Mh6pHEylfmRxvT/Cg/u1135aMbkKAOz6/SXuo5pbAEVkyrX+rdxopi/JkYTx4e1h
- Obr6agwVQDeGV2YwCyfS9xFQIUuWFmXZb2/q6Ii9iG97BSXDp1H019ckPShlOF4Fk
- D667NijcqkmPI5mGUNmG7qixChLyw9aM48HNSEIcBzzwT8kBeyj+2Z7xv9QYP0kJO
- cB4EXrvaI+sHkfN7BHxDvb8/3rXpzxO9+i7/S7hWOhKAJIJAnnwcnXy3pjax3TTtV
- 8iX5iYzNsti9mvZ1qPVthbT2ky3rBoYAaqkMsHgVYo2phD/VZaiTZvLSsbdpUBFfw
- bPIJZoyl0Fzpik2ABg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M2f9h-1s706h1dhH-000ujx; Tue, 21
- May 2024 18:58:16 +0200
-Message-ID: <d04105ea-0f8a-4f0b-b4f2-bc8407d37c73@gmx.de>
-Date: Tue, 21 May 2024 18:58:15 +0200
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+ [209.85.208.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7ED510F016;
+ Tue, 21 May 2024 17:40:45 +0000 (UTC)
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-2e1fa1f1d9bso73814641fa.0; 
+ Tue, 21 May 2024 10:40:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1716313244; x=1716918044; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=BGtR1ws+JRg9IaP0YvowCKNdfiSrHkAApZjY1DSgmn0=;
+ b=OSbnpOWe+7kr7S9djRO3o+Kta9ojXxwM9idukYgpjej+GJ7nKi2UJGKy0XzGHUf3p5
+ rl0ZhNXbQmnpWo5xmgq0LiQO73Ar4cg0+bYyzDNN1QIQmSBBDeI/jlCmfGStKqdR/7Cj
+ ZM1k5bzBL/hoV/07B8U+EVjd6sdDJWaJhMjT/qijsTtLtjKvhJhLUD25TxnWXu2IPKNu
+ mKciq6+PC113J1zdHNm3hgrzOwtrqXWxlWaEECLpy4kn2D2ZHJOQnc+ruzWxs2IGnnaG
+ gJczlYCaayOK+yjwyPPXSBZQ6N4nA+kbpNBwZ7rhw5k81r5q0RJHxIWAjmPsnubrQaY2
+ jOlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716313244; x=1716918044;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=BGtR1ws+JRg9IaP0YvowCKNdfiSrHkAApZjY1DSgmn0=;
+ b=uh7EfF1oIGEoObaLlx7T7IP0STFHH0inJ5fxF35JVSqBC7XTokaA9kYQ2MP1FQe8iX
+ k4q3vtggAHCESEHYhoSQc0X9YyUkSxrEt74+O4aFMcmB2Jsfg8lTIbT8j+hHganwp4Er
+ V4rJB2qMxUOEShpjqUJn/SrM5JjftzgBo7bHU35W85J1YWB+d2qqCP0oDkmJh6dWrPGZ
+ 49rFsqW+psL8yHPTpiDO8D6e4TW+y7pME1vruFRkF63BQ2aHZCPoK+kD6u8gr5toOxMg
+ CqDm7qhaYqaw+hJWBL47Qqf30+zBtNkF9z913cYcG80ZgYcvZG20vE21M6tRF3zxv73l
+ TtbA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWr501z5bMW6IMHM2+lMPu3/Ta7UOrZSrERLT4prBEXuhJDkTuYqWiFqA7B/3c1Jc12jSw7IW5jnxRZqFXYcamCDh7wjTCHJYJbhY5p+DjEJo/5w0joJsALNRmEaCctIayvnRXkHzqulwBzFffZCA==
+X-Gm-Message-State: AOJu0YyfWD0M0C1AM7B3dlkMIr2NDa6TqOD/zfMziZObLj16HC3cLi7y
+ +QUKOY7ZdXubMkhmZtlW50ypTxjDe06dMXNk6pzXVL4ah7Q5WG0/eSP9dDfv/B9JAYkiAbiSd7X
+ ApjT5Rc9SFgIKimNveQRacafvbTA=
+X-Google-Smtp-Source: AGHT+IHYEuO5MgwTyT5sB8of44MmsDP4esL79AuzjW60jj/rU/cDu1ZEmGk9v0lit8+7zoyMMlf33gCrlcw+m0dJHxo=
+X-Received: by 2002:a2e:461a:0:b0:2e5:2414:a205 with SMTP id
+ 38308e7fff4ca-2e52414a255mr244516321fa.27.1716313243532; Tue, 21 May 2024
+ 10:40:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Kernel 5.15.150 black screen with AMD Raven/Picasso GPU
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Barry Kauler <bkauler@gmail.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- Prike Liang <Prike.Liang@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org
-References: <CABWT5yiejGABNXicsS7u-daKnBBjK6YTDVgaQOqwGYn8P20D8Q@mail.gmail.com>
- <6580c2d4-b084-470f-80a0-aa09f1ab880d@gmx.de>
- <CABWT5yiD110qmJcRsoGVMevULAVmYpyiW4w9MtmNjp7E0rDQ8A@mail.gmail.com>
- <CABWT5yg5jG7eMiDp7QN2yhFj6983qF9zN7eHOprH4eEjwQJLBQ@mail.gmail.com>
- <c3205455-7ad2-487e-8954-52102754e154@gmx.de>
- <CADnq5_PM_FuBE4913Z4bxiMTDYtRS+VJgLW6gfDU1qnQQ=FDzA@mail.gmail.com>
-Content-Language: en-US
-From: Armin Wolf <W_Armin@gmx.de>
-In-Reply-To: <CADnq5_PM_FuBE4913Z4bxiMTDYtRS+VJgLW6gfDU1qnQQ=FDzA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:riRQ/6nrB6lhMVdgxf1lnHLHTuUmXaNQAX3pjgP/QZ+UB+aV0H5
- mgGIG+fKsRHLPTRUSaBugCSonrzkmUlznFv8DuKBWPMQFKn/8e68as48f4Sd0gdUZSeUa6u
- R4blnANdgX/MMf7sPJ9M1PGJVVwG2uoTXgGrOcmkncBWy3bjGevL7Ql3dIpp4nAk+tCPcw1
- h1PuH52exPOzkDLbo6wHg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:4woLhGxGYg8=;r+egAWGT7cVzDmKL0ggim2QRhXt
- 98XeZBQUD5ipQUENX3oSNqRGeIppynHxs8/AkbgfXCLEK5aHZuYUpsTA02s+2XZaaQylVyrDN
- U6KXeQHOKGHjOOyE1Je9AYx9LMO/727fONehxC3ziqUTacgnJFoCURxK3+ofeaT2LkUiUIFmC
- fA1nGXXPmag2y3wY+yor+T6NHrjcdHeQ+HI+jZt/UymjJviGZR73UKqx6fxjLG58Jb7kN4ZbR
- 1WyRn0UKIxeKCr/R6h8vnZvHWpdIE1PdDDnRdHXfXghdAN8I3oT46q0BBka4jd5cx0i9oidKn
- HwYUXo5Lc/0o0xSx10hjcxDpZ3EgFgd+ceId6tAvQ5nMxykvNmRlUJL3HK3X2AaOzskAhQNvd
- Z55esP5F89n9GbWxz+1TzC6+00aBV3dHNg9tGht9fhnNHO9I+adrhILuq3OzHJNnKWTrRDYUw
- vubDg5NVLIYZHvO0dczpoCrnQD6nPGhWgasvUF7f7se/XdcVi6gK9OxS9LLFUUbzem6buWhXp
- 5BMTlCY8Gf8DUSH0rphJvQ/yNmUhJl+FhW46TbseUBJGwHbI0jv0U7lvGRWI64nB7s+Ll5pY3
- m7Nd1lTfJc5JaMkzYhN/9Rzp0IQ2/zdux8TS02+rC8tn77utQeSM1KtwHJlcp1ZFtbioJx2dl
- 2bf4d6ZCbarBkClwqsv+dXbPCHl6Fa2BrY4dd4mr+Px2BgK+P5Cw18ufZthUga2ujhwoupblZ
- zkRIYLBXSarYS/b4jGhEsviJPsyEGhMuuNgOhRRTItIYYe4Q4XNRlIWLJqqhn64uzQuWDJTow
- a7+hpSWFHAjilSN9G/c7mJJ9flPawWEaVKTUR27IlScBc=
+References: <20240519130610.7773-1-mario.limonciello@amd.com>
+ <-KAO9zJq5vTiesgtw-PMO0lDkSH1tuV271WNqlVuh3ZSkMzKWB9JQJce68-X-GwhD57QilHIBnLxN9k03I3-CMeYQm30NJMLizfyUUxTqHA=@emersion.fr>
+ <e3a4331a-307e-4377-a349-8699024f8459@amd.com>
+ <CAFZQkGyupsydjSEfv6OgMqPmHm9kMy4HQs7aNvzn77omSN+ZhQ@mail.gmail.com>
+ <a35f2f5b-024f-42ed-9d59-48efcf4516a8@amd.com>
+ <55205499-293e-45cd-870c-1ccccd05145d@amd.com>
+In-Reply-To: <55205499-293e-45cd-870c-1ccccd05145d@amd.com>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Tue, 21 May 2024 19:40:31 +0200
+Message-ID: <CAFZQkGzNJiG=gAW-zaMyT+Dct50tLTanpiqko6MxL9c=aLuh7Q@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Add support for Panel Power Savings property
+To: Leo Li <sunpeng.li@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ Simon Ser <contact@emersion.fr>, 
+ amd-gfx@lists.freedesktop.org, Harry.Wentland@amd.com, 
+ dri-devel@lists.freedesktop.org, "seanpaul@google.com" <seanpaul@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 22 May 2024 07:42:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,167 +84,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 20.05.24 um 18:22 schrieb Alex Deucher:
-
-> On Sat, May 18, 2024 at 8:17=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wrot=
-e:
->> Am 17.05.24 um 03:30 schrieb Barry Kauler:
->>
->>> Armin, Yifan, Prike,
->>> I will top-post, so you don't have to scroll down.
->>> After identifying the commit that causes black screen with my gpu, I
->>> posted the result to you guys, on May 9.
->>> It is now May 17 and no reply.
->>> OK, I have now created a patch that reverts Yifan's commit, compiled
->>> 5.15.158, and my gpu now works.
->>> Note, the radeon module is not loaded, so it is not a factor.
->>> I'm not a kernel developer. I have identified the culprit and it is up
->>> to you guys to fix it, Yifan especially, as you are the person who has
->>> created the regression.
->>> I will attach my patch.
->>> Regards,
->>> Barry Kauler
->> Hi,
->>
->> sorry for not responding to your findings. I normally do not work with =
-GPU drivers,
->> so i hoped one of the amdgpu developers would handle this.
->>
->> I CCeddri-devel@lists.freedesktop.org  and amd-gfx@lists.freedesktop.or=
-g so that other
->> amdgpu developers hear from this issue.
->>
->> Thanks you for you persistence in finding the offending commit.
-> Likely this patch should not have been ported to 5.15 in the first
-> place.  The IOMMU requirements have been dropped from the driver for
-> the last few kernel versions so it is no longer relevant on newer
-> kernels.
+Am Di., 21. Mai 2024 um 19:28 Uhr schrieb Leo Li <sunpeng.li@amd.com>:
 >
-> Alex
+>
+>
+> On 2024-05-21 12:21, Mario Limonciello wrote:
+> > On 5/21/2024 11:14, Xaver Hugl wrote:
+> >> Am Di., 21. Mai 2024 um 16:00 Uhr schrieb Mario Limonciello
+> >> <mario.limonciello@amd.com>:
+> >>>
+> >>> On 5/21/2024 08:43, Simon Ser wrote:
+> >>>> This makes sense to me in general. I like the fact that it's simple and
+> >>>> vendor-neutral.
+> >>>>
+> >>>> Do we want to hardcode "panel" in the name? Are we sure that this will
+> >>>> ever only apply to panels?
+> >>>>
+> >>>> Do we want to use a name which reflects the intent, rather than the
+> >>>> mechanism? In other words, something like "color fidelity" = "preferred"
+> >>>> maybe? (I don't know, just throwing ideas around.)
+> >>>
+> >>> In that vein, how about:
+> >>>
+> >>> "power saving policy"
+> >>> --> "power saving"
+> >>> --> "color fidelity"
+> >>
+> >> It's not just about colors though, is it? The compositor might want to
+> >> disable it to increase the backlight brightness in bright
+> >> environments, so "color fidelity" doesn't really sound right
+> >
+> > Either of these better?
+> >
+> > "power saving policy"
+> > --> "power saving"
+> > --> "accuracy"
+> >
+> > "power saving policy"
+> > --> "allowed"
+> > --> "forbidden"
+> >
+> > Or any other idea?
+>
+> Another consideration in addition to accuracy is latency.
+>
+> I suppose a compositor may want to disable features such as PSR for use-cases
+> requiring low latency. Touch and stylus input are some examples.
+>
+> I wonder if flags would work better than enums? A compositor can set something
+> like `REQUIRE_ACCURACY & REQUIRE_LOW_LATENCY`, for example.
 
-Barry, can you verify that the latest upstream kernel works on you device?
-If yes, then the commit itself is ok and just the backporting itself was w=
-rong.
+I think that's a good idea. With a flag for color accuracy and one for
+brightness, the compositor's intent would be communicated well.
 
-Thanks,
-Armin Wolf
-
->> Armin Wolf
->>
->>> On Thu, May 9, 2024 at 4:08=E2=80=AFPM Barry Kauler <bkauler@gmail.com=
-> wrote:
->>>> On Fri, May 3, 2024 at 9:03=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wr=
-ote:
->>>>>> ...
->>>>>> # lspci | grep VGA
->>>>>> 05:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
->>>>>> [AMD/ATI] Picasso/Raven 2 [Radeon Vega Series / Radeon Vega Mobile
->>>>>> Series] (rev c2)
->>>>>> 05:00.7 Non-VGA unclassified device: Advanced Micro Devices, Inc.
->>>>>> [AMD] Raven/Raven2/Renoir Non-Sensor Fusion Hub KMDF driver
->>>>>>
->>>>>> # lspci -n -k
->>>>>> ...
->>>>>> 05:00.0 0300: 1002:15d8 (rev c2)
->>>>>> Subsystem: 1025:1456
->>>>>> Kernel driver in use: amdgpu
->>>>>> Kernel modules: amdgpu
->>>>>> ...
->>>>> thanks for informing us of this regression. Since there are four com=
-mits affecting
->>>>> amdgpu in 5.15.150, i suggest that you use "git bisect" to find the =
-faulty commits,
->>>>> see https://docs.kernel.org/admin-guide/bug-bisect.html for details.
->>>>>
->>>>> I think you can speed up the bisecting process by limiting yourself =
-to the AMD DRM
->>>>> driver directory with "git bisect start -- drivers/gpu/drm/amd", tak=
-e a look at the
->>>>> man page of "git bisect" for details.
->>>>>
->>>>> Thanks,
->>>>> Armin Wolf
->>>> Armin,
->>>> Thanks for the advice. I am unfamiliar with git on the commandline.
->>>> Previously only used SmartGit gui.
->>>> EasyOS requires aufs patch, and for a few days tried to figure out ho=
-w
->>>> to use that with git bisect, then gave up. Changed to testing with my
->>>> "QV" distro, which is more conventional, doesn't need any kernel
->>>> patches. Managed to get it down to one commit. Here are the steps I
->>>> followed:
->>>>
->>>> # git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linu=
-x-stable.git
->>>> # cd linux-stable
->>>> # git tag -l | grep '5\.15\.150'
->>>> v5.15.150
->>>> # git checkout -b my5.15.150 v5.15.150
->>>> Updating files: 100% (65776/65776), done.
->>>> Switched to a new branch 'my5.15.150'
->>>>
->>>> Copied in my .config then...
->>>>
->>>> # make menuconfig
->>>> # git bisect start -- drivers/gpu/drm/amd
->>>> # git bisect bad
->>>> # git bisect good v5.15.149
->>>> Bisecting: 1 revision left to test after this (roughly 1 step)
->>>> [b9a61ee2bb2704e42516e3da962f99dfa98f3b20] drm/amdgpu: reset gpu for
->>>> s3 suspend abort case
->>>> # make
->>>> # rm -rf /boot2
->>>> # mkdir -p /boot2/lib/modules
->>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_instal=
-l
->>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
->>>> # sync
->>>> ...QV on Acer laptop, with amdgpu, works!
->>>> # git bisect good
->>>> Bisecting: 0 revisions left to test after this (roughly 0 steps)
->>>> [56b522f4668167096a50c39446d6263c96219f5f] drm/amdgpu: init iommu
->>>> after amdkfd device init
->>>> # make
->>>> # mkdir -p /boot2/lib/modules
->>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_instal=
-l
->>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
->>>> # sync
->>>> ...QV on Acer laptop, black screen!
->>>>
->>>> # git bisect bad
->>>> 56b522f4668167096a50c39446d6263c96219f5f is the first bad commit
->>>> commit 56b522f4668167096a50c39446d6263c96219f5f
->>>> Author: Yifan Zhang <yifan1.zhang@amd.com>
->>>> Date:   Tue Sep 28 15:42:35 2021 +0800
->>>>
->>>>       drm/amdgpu: init iommu after amdkfd device init
->>>>
->>>>       [ Upstream commit 286826d7d976e7646b09149d9bc2899d74ff962b ]
->>>>
->>>>       This patch is to fix clinfo failure in Raven/Picasso:
->>>>
->>>>       Number of platforms: 1
->>>>         Platform Profile: FULL_PROFILE
->>>>         Platform Version: OpenCL 2.2 AMD-APP (3364.0)
->>>>         Platform Name: AMD Accelerated Parallel Processing
->>>>         Platform Vendor: Advanced Micro Devices, Inc.
->>>>         Platform Extensions: cl_khr_icd cl_amd_event_callback
->>>>
->>>>         Platform Name: AMD Accelerated Parallel Processing Number of =
-devices: 0
->>>>
->>>>       Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
->>>>       Reviewed-by: James Zhu <James.Zhu@amd.com>
->>>>       Tested-by: James Zhu <James.Zhu@amd.com>
->>>>       Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>       Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->>>>       Signed-off-by: Sasha Levin <sashal@kernel.org>
->>>>
->>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++----
->>>>    1 file changed, 4 insertions(+), 4 deletions(-)
->>>>
->>>> Anything else I should do, to identify what in this commit is the
->>>> likely culprit?
->>>> Regards,
->>>> Barry Kauler
+> - Leo
+>
+> >
+> >>
+> >>>>
+> >>>> Would be nice to add documentation for the property in the "standard
+> >>>> connector properties" section.
+> >>>
+> >>> Ack.
+> >>>
+> >
