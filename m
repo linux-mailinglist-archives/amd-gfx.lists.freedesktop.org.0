@@ -2,143 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CF58CBAC4
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 07:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C348CBC37
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 09:43:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6559210E3F0;
-	Wed, 22 May 2024 05:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40CBE10EDF6;
+	Wed, 22 May 2024 07:43:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JtQ7rOnx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="ZKgBEFJ9";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2064.outbound.protection.outlook.com [40.107.100.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E75DD10E3F0
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2024 05:43:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GFpVc2zdbxGg8hS3EuKpulG8Kw5CWTGzQUZpz1ShCG0FqyEhZ40gYnQegnpO7xPBf1kUmY5vLWiGisx84bwefeTVWnFS9b8sScutm9xZ0nA/5zIZnWFFP927riYxLsARgmoGjPRILxHhbwC7pTZ361djUzbFNK23A52ZAnbrxia9xZn53CnhNCwp2TeyNbmh2BJAio/lGv0ICxtnCmrTILwrCrIGD1iXUVZWPTO7+yrMgbhIuaOLhSYjuOjuPApgZUQ3QE4zf1eDTRYN6lFG85W27TmOGAIRx8UuHaZ4amYtssQOR0SXe+PhGapEo8No3D8YV41uSUHXCbLn5QY39g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oytnjj1CKPFXbzAVl7gQTrnSLicK5RF4V+9wGS2uD5Y=;
- b=SoxOynt18U54gjy2fx755fugbYFh2zisBGtOojpOlL8ubUgOn0iF66edTNFpxIOgJH8j0kOKUIzvOWwMDSPLkbssDuCK9ubE9E+eFN2cpoJHsp0+akIqDhGOvkpKzzflhrDczn4i75gkTxiHM2b9+ipmzZaFN8EQ/npnRunL1WneV7G7uO8dyaESBOus+pS0uqabq80YB6Gfuwfju7Juqthp++7D1weDdYCFCLLB0ucMi5deaWgxhxtixYOmPMZt1tRf63a/6NyHrY5tVco+Eq4bamwioSppV9/R1fzlKcNltORUz5Tt4ANzvFK1VhJtUA+gabTp5SW7ofwZ/NhfMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oytnjj1CKPFXbzAVl7gQTrnSLicK5RF4V+9wGS2uD5Y=;
- b=JtQ7rOnxJUh0jjHXfKdfK1OD3sAcOWsi+tQw7JSsAYph1s3oTyscBRj42hsVgR7txvX0Wi5fyslFVldwo0nK0/llZwdSZjYFGMLYNwcODZ3CKprYKxNLkzlO26gX7SU8KPrt4Zcm/yHUoYndMHY0XRXsO1opgL1ure3AD3mqESY=
-Received: from DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) by
- BL3PR12MB6595.namprd12.prod.outlook.com (2603:10b6:208:38e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Wed, 22 May
- 2024 05:43:29 +0000
-Received: from DM6PR12MB4340.namprd12.prod.outlook.com
- ([fe80::bcdd:c459:3f9:5bb4]) by DM6PR12MB4340.namprd12.prod.outlook.com
- ([fe80::bcdd:c459:3f9:5bb4%4]) with mapi id 15.20.7587.035; Wed, 22 May 2024
- 05:43:29 +0000
-From: "Zhao, Victor" <Victor.Zhao@amd.com>
-To: "Zhao, Victor" <Victor.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Lazar, Lijo" <Lijo.Lazar@amd.com>
-Subject: RE: [PATCH] drm/amd/amdgpu: fix the inst passed to
- amdgpu_virt_rlcg_reg_rw
-Thread-Topic: [PATCH] drm/amd/amdgpu: fix the inst passed to
- amdgpu_virt_rlcg_reg_rw
-Thread-Index: AQHaqs/t00H+XKN/50S/NdMMtJYKOrGiwBvA
-Date: Wed, 22 May 2024 05:43:28 +0000
-Message-ID: <DM6PR12MB43409CC6639FE333B7E424D0FAEB2@DM6PR12MB4340.namprd12.prod.outlook.com>
-References: <20240520160757.2557051-1-Victor.Zhao@amd.com>
-In-Reply-To: <20240520160757.2557051-1-Victor.Zhao@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-Mentions: Lijo.Lazar@amd.com
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=a08673dc-bbc2-44c5-9a91-fa39bc6284db;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-05-22T05:42:42Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR12MB4340:EE_|BL3PR12MB6595:EE_
-x-ms-office365-filtering-correlation-id: 85eb66e0-65c0-46a2-848e-08dc7a221ba5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|376005|1800799015|366007|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?cZzWMuhG9ZZAEe562A2PtpSnqKEePUkzL071xMcXQoVhTg+vdeeUsHQ6Yj0c?=
- =?us-ascii?Q?DN60tlKXTLrGwGygHhcvsZ5CQE1H6pZFL0bpgfDeU7NvdX1AlpMfOzz5hmPA?=
- =?us-ascii?Q?I2xaC5/CpCWOw66CnSHUNKv4D054MUSt5YIVgJTPhtC0hljrkqGU+1f6pNMj?=
- =?us-ascii?Q?qnFTPsST5DRNNA8SZxNxw/ideEXVm332U5ypDVMLk4GzpH4v0EbqGLUu37Zk?=
- =?us-ascii?Q?kOTSPUABtHbw/0zh13C9IA+xvJ3lu1VA/Q5edVz3ZEavl90GbRT1ejsR+D6B?=
- =?us-ascii?Q?xFJxTuaWjHzgiz/es5lJvdn3r64xUtYy74q5Yb8yt8j8oQysYGmf8qT9qjo7?=
- =?us-ascii?Q?mjQbcOBUCSGxYhl1ftxsR7nyxoyldjBt9YvfQJAkMtkKbM2/KzPoHGrShClF?=
- =?us-ascii?Q?wn3dCmYFsJFd0R10lgHjA+5pRY6a5xRVBVZm4NitfKOoLlZJEIJjMeKrWI6A?=
- =?us-ascii?Q?A/BGv41ckwga2gVWTzD315cHpF6Gs6V3vkx6WmW8zM6XY1u1vKC6jgmMt7zj?=
- =?us-ascii?Q?B3vMcMN1CxTbETXUylW8Qaa8r1t8eE+JWF1H1Kf5aZUJ/UuOuLppkYZAfDrq?=
- =?us-ascii?Q?B2hw2h7uyKD4cUInSdwNU0SQ49/joGQAdqvOG6vfDD3/A8q6oRRT+WbxY1rw?=
- =?us-ascii?Q?O9ZJBFJPWKJEHFetb0siLI8sX4zCLyafOrYxgg4G7uoap+/O1MqMXkIglr2a?=
- =?us-ascii?Q?Qr9p79rUH0C9qSDNvWOYZn3KTuCAAS0v8H+5k1NI4pdT/fCzXZW2gtdZwe+c?=
- =?us-ascii?Q?RntFdKGo986Ni+Z3ArdgLfg/kNCygIvQhvGYf8H/hIobtdllnLUjHeIdeteP?=
- =?us-ascii?Q?Y9gfnnpry3WjZ65KQgV2ykb/Ky0FCUJYoYjo/XSakzPSzlb5dKvoDGdgMWRu?=
- =?us-ascii?Q?x9LgQGuPnq0xzLkCY9M69r9ljBb3UzTHCxJuX1Q5xbp+OLnBC+5MKOOrGzzy?=
- =?us-ascii?Q?dgmVNYdyp/ybPkc2P2c2fXmJe3tlJ5tK1njKtYeV4u9LLXhrWuFe19heNcTT?=
- =?us-ascii?Q?EAmvO0Xc6Bj6ENWg90p7P4gxm+L4VkKe52YScDAX96yJa/0FUmB44AfZNsYZ?=
- =?us-ascii?Q?6PGCyKeCaJ9pxjC0VaSafZpbWXTlFrE1brkiBs9Xr/DL377rk+fZ54hsZyhY?=
- =?us-ascii?Q?ARbS/bgWcDl+MwNLAdRgGp8IWBnecgFB0PDhppIUOZyqwIkj1LRTdZxALWMf?=
- =?us-ascii?Q?1sJakPHckWPOSpwfG7OaRiCxEMsYDecB4P6HzwPhcj7DqV0yFmWfQK9jitaa?=
- =?us-ascii?Q?6CFkhrm+lk7+yq0pGxgplVlo2s1IH5xNe8JD20OdJiKfxJFRBYtfEPiNy+31?=
- =?us-ascii?Q?+mAvwvOjqylaIhK9dFQEbRMrhdm3zM1sBrbeROCbPkKZxw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4340.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iU7r4A3ivaH/woautqa7JC6xQtmZIl7MFhjc59DOOeQk3L5NWtd/bHEblFxD?=
- =?us-ascii?Q?MjGqYpws9DzUQW64WQK7OvOVvP2EV+8gQd9yu4a9mDMZi7TF3oH45e4EX5xG?=
- =?us-ascii?Q?UFblqtp/dmR1rrwqFwQ7BCVU4YT42YD4FN/SwY1SCuFwAI6Oep9cZgeCV16K?=
- =?us-ascii?Q?+YPXqX50KDb8HGhH1odGWihR2HwzUghSTFNsHYOZ57SRjHxPwmWfWu5dAgcL?=
- =?us-ascii?Q?1GcOBEDYE8Zah+CkPlQjRj0VunY+G/cTKe2FJ7hHLn37XF6BV6Pd+J3F3tO9?=
- =?us-ascii?Q?6GC4rLLMqGCv02bOl/4OF4gwXrTxa4EawvKwZDFac1/zyRipdCsNnhh7/pMB?=
- =?us-ascii?Q?Uu7q+xxKwNgRWTY2GicG2kf17flBCojJC+RqU4XM8MXLk4kHZp++vWZmyZ3T?=
- =?us-ascii?Q?NLtbHKCyiCA39XivQsc8puBzGXoytoQQeFJ7/duFmbrlfY66H3E5ty4PKbYn?=
- =?us-ascii?Q?5DmO/Mwu0oML4+TR7qvJC7qwz7Jj7CH+lG25y63Qq8SnaCiYvYuUYCUc1/+O?=
- =?us-ascii?Q?EJJ+voRVsnGp5sE8VqcWVRz7fcnIOCkJMPdF/7pFjEIR08Yjoq/cyz9FS+Mh?=
- =?us-ascii?Q?L2p7hv1DYRaZwrCz6sCk8iBTvd9CPNnjgyobemv7kkUIx2ofxdEshd17xZY3?=
- =?us-ascii?Q?QXhQ7CBQlnNCrPuA4JQyZE6tXrbFTYiQ8/w0c8A5J7TbHA13i8IG1EhHleCz?=
- =?us-ascii?Q?ELlklJxUOxZ5xBtzXIX0dxBd8wJRt8o1p3EMEa27z8Dp1L3uza+ftp8blPb6?=
- =?us-ascii?Q?K2XScqTa7lB1yBFZXRCq2WpQWMvU5B1ioRHoep0bAn7byEd2vk+3dBP7oekm?=
- =?us-ascii?Q?3Kc1sVcnZ4Gtq5WFJ5WyX00pSsobzDWwhQBbXvYOaxZGSNXzZVSVVpM871w+?=
- =?us-ascii?Q?E4LfZ/HqfP69Oi90kU+G3qDSHJTegWC/Tgv+LWo1RmNwSJlY0hWIOYwoeFD3?=
- =?us-ascii?Q?EPsh2BdOcBXRiEB+qzhDzKRX0HSpEFrb3bf+s3u7eklLuou3601AUm+T7CyU?=
- =?us-ascii?Q?x0fpUlFNHeALt7NlsqjkTs9cyQK4EkzMSuwOemigPSi5WBHduNTM7bb2fSGz?=
- =?us-ascii?Q?XJjJZPPgdwTUW+YKwuvo/cyHTazjXty678bPTm8yHivfPb76sG6qvZY4ePDG?=
- =?us-ascii?Q?3k/g1KXqnUSkT57bOu3F3Bjgq31iuFiEiqjKRY8g7knBe4lwMBM1m9gS1kcf?=
- =?us-ascii?Q?bSvw1rvFIKaLL8xOJvfTWseVUdRYRJXB8ZR5mmL9xPTLc25JzjqDZJNn765s?=
- =?us-ascii?Q?/61S2vW0tA/3xRNy8HtYPpoAZ/eR6NdCc0Ri1pLg7/mn+RR7jHiLnsUzCO8k?=
- =?us-ascii?Q?88bUdW0iEdNKtzKZ5h4F2V3Ngnpeb1Nx40rmWsGCJiXlgBpVAD590CKRjvVp?=
- =?us-ascii?Q?i97qinb38/giG0CHNWzGbW0n6e02tyBZtBWgJ+vVM3tb534WAfbfIXgAh1Jk?=
- =?us-ascii?Q?uy8sb7tgjbkbU4Zbijh7nOLpuLjqLzAzDccCAZe7u0DCMwh6oSxPUfdhzKZA?=
- =?us-ascii?Q?20xSZEsMhEooD8lwJPRu4i1Nblb8dUE9RcNEtezWzvVzNimgZ3yS9+PVm9N6?=
- =?us-ascii?Q?9tF1dQGxC6iQT6btzAQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1E810E0BF;
+ Tue, 21 May 2024 11:20:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ In-Reply-To:References; bh=bryoWbNN8cFi6dYEo/k2lPyQOXpLR2x/eApoa9hqlW8=;
+ t=1716290432; x=1716722432; b=ZKgBEFJ9w9i55I8dBKvNlBdda3XHecq9c5maVEUJ/wTroGs
+ iLTaYmXXveIXKct6DBLJ7Kt8wZyxWVhWn8tc4HifJBoNiH2SH9JKIDB23KigLHdk6nCH5M33zBQ1w
+ EEV5vJJO5uOXkqvLK6tgPnyRMh6w6nREg9fgxBJrvTo18myS8dUcsPBE6chPrqAib7to3f9rHT3K3
+ U3Gh8p1AupSSf1NGAjaIgfMFSQKuUSEQKdCGrQdob+paaE39+DWWrLOov3wQoiZCCQydks0SAAKu0
+ JQrsY+Vz/H3ry7xDH2ovpFNUCxnoTfOGQOky18K8HbQL9AjEaW9koVa2uPAjWSyQ==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1s9NXZ-000357-WB; Tue, 21 May 2024 13:20:22 +0200
+Message-ID: <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
+Date: Tue, 21 May 2024 13:20:21 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4340.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85eb66e0-65c0-46a2-848e-08dc7a221ba5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2024 05:43:29.0560 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8XVjC4KQd1ffCyq0Z59Jy4MO/1etZkC1Qx68lispkLmCC5oOrC9RJlIl6C2y2+Ul
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6595
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+ drm_dp_add_payload_part2
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, "Lin, Wayne" <Wayne.Lin@amd.com>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ "Wentland, Harry" <Harry.Wentland@amd.com>
+Cc: "lyude@redhat.com" <lyude@redhat.com>,
+ "imre.deak@intel.com" <imre.deak@intel.com>,
+ =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
+ <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
+ <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
+ <177cfae4-b2b5-4e2c-9f1e-9ebe262ce48c@amd.com>
+ <CO6PR12MB5489FA9307280A4442BAD51DFCE72@CO6PR12MB5489.namprd12.prod.outlook.com>
+ <87wmo2hver.fsf@intel.com> <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1716290432;
+ 6a53ef40; 
+X-HE-SMSGID: 1s9NXZ-000357-WB
+X-Mailman-Approved-At: Wed, 22 May 2024 07:42:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,143 +76,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
+for once, to make this easily accessible to everyone.
 
-Hi @Lazar, Lijo,
+Hmm, from here it looks like the patch now that it was reviewed more
+that a week ago is still not even in -next. Is there a reason?
 
-Can you help review this?
+I know, we are in the merge window. But at the same time this is a fix
+(that already lingered on the lists for way too long before it was
+reviewed) for a regression in a somewhat recent kernel, so it in Linus
+own words should be "expedited"[1].
 
-Thanks,
-Victor
+Or are we again just missing a right person for the job in the CC?
+Adding Dave and Sima just in case.
 
------Original Message-----
-From: Victor Zhao <Victor.Zhao@amd.com>
-Sent: Tuesday, May 21, 2024 12:08 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Lazar, Lijo <Lijo.Lazar@amd.com>; Zhao, Victor <Victor.Zhao@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: fix the inst passed to amdgpu_virt_rlcg_re=
-g_rw
+Ciao, Thorsten
 
-the inst passed to amdgpu_virt_rlcg_reg_rw should be physical instance.
-Fix the miss matched code.
+[1]
+https://lore.kernel.org/all/CAHk-=wis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wmB6SRUwQUBQ@mail.gmail.com/
 
-Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ++--
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c      | 18 +++++++++---------
- 2 files changed, 11 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_device.c
-index e72e774d17e6..e74789691070 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -679,7 +679,7 @@ uint32_t amdgpu_device_xcc_rreg(struct amdgpu_device *a=
-dev,
-                    amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags,
-                                                         GC_HWIP, false,
-                                                         &rlcg_flag)) {
--                       ret =3D amdgpu_virt_rlcg_reg_rw(adev, reg, 0, rlcg_=
-flag, xcc_id);
-+                       ret =3D amdgpu_virt_rlcg_reg_rw(adev, reg, 0, rlcg_=
-flag, GET_INST(GC,
-+xcc_id));
-                } else if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
-                    amdgpu_sriov_runtime(adev) &&
-                    down_read_trylock(&adev->reset_domain->sem)) { @@ -810,=
-7 +810,7 @@ void amdgpu_device_xcc_wreg(struct amdgpu_device *adev,
-                    amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags,
-                                                         GC_HWIP, true,
-                                                         &rlcg_flag)) {
--                       amdgpu_virt_rlcg_reg_rw(adev, reg, v, rlcg_flag, xc=
-c_id);
-+                       amdgpu_virt_rlcg_reg_rw(adev, reg, v, rlcg_flag, GE=
-T_INST(GC,
-+xcc_id));
-                } else if (!(acc_flags & AMDGPU_REGS_NO_KIQ) &&
-                    amdgpu_sriov_runtime(adev) &&
-                    down_read_trylock(&adev->reset_domain->sem)) { diff --g=
-it a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc=
-_v9_0.c
-index 094c08cb98e7..350f6b6676f1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -844,7 +844,7 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device=
- *adev, uint32_t vmid,
-        ack =3D hub->vm_inv_eng0_ack + hub->eng_distance * eng;
-
-        if (vmhub >=3D AMDGPU_MMHUB0(0))
--               inst =3D GET_INST(GC, 0);
-+               inst =3D 0;
-        else
-                inst =3D vmhub;
-
-@@ -876,9 +876,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device=
- *adev, uint32_t vmid,
-                for (j =3D 0; j < adev->usec_timeout; j++) {
-                        /* a read return value of 1 means semaphore acquire=
- */
-                        if (vmhub >=3D AMDGPU_MMHUB0(0))
--                               tmp =3D RREG32_SOC15_IP_NO_KIQ(MMHUB, sem, =
-inst);
-+                               tmp =3D RREG32_SOC15_IP_NO_KIQ(MMHUB, sem, =
-GET_INST(GC, inst));
-                        else
--                               tmp =3D RREG32_SOC15_IP_NO_KIQ(GC, sem, ins=
-t);
-+                               tmp =3D RREG32_SOC15_IP_NO_KIQ(GC, sem, GET=
-_INST(GC, inst));
-                        if (tmp & 0x1)
-                                break;
-                        udelay(1);
-@@ -889,9 +889,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device=
- *adev, uint32_t vmid,
-        }
-
-        if (vmhub >=3D AMDGPU_MMHUB0(0))
--               WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req, inst);
-+               WREG32_SOC15_IP_NO_KIQ(MMHUB, req, inv_req, GET_INST(GC, in=
-st));
-        else
--               WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req, inst);
-+               WREG32_SOC15_IP_NO_KIQ(GC, req, inv_req, GET_INST(GC, inst)=
-);
-
-        /*
-         * Issue a dummy read to wait for the ACK register to @@ -904,9 +90=
-4,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device *adev, uint3=
-2_t vmid,
-
-        for (j =3D 0; j < adev->usec_timeout; j++) {
-                if (vmhub >=3D AMDGPU_MMHUB0(0))
--                       tmp =3D RREG32_SOC15_IP_NO_KIQ(MMHUB, ack, inst);
-+                       tmp =3D RREG32_SOC15_IP_NO_KIQ(MMHUB, ack, GET_INST=
-(GC, inst));
-                else
--                       tmp =3D RREG32_SOC15_IP_NO_KIQ(GC, ack, inst);
-+                       tmp =3D RREG32_SOC15_IP_NO_KIQ(GC, ack, GET_INST(GC=
-, inst));
-                if (tmp & (1 << vmid))
-                        break;
-                udelay(1);
-@@ -919,9 +919,9 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_device=
- *adev, uint32_t vmid,
-                 * write with 0 means semaphore release
-                 */
-                if (vmhub >=3D AMDGPU_MMHUB0(0))
--                       WREG32_SOC15_IP_NO_KIQ(MMHUB, sem, 0, inst);
-+                       WREG32_SOC15_IP_NO_KIQ(MMHUB, sem, 0, GET_INST(GC, =
-inst));
-                else
--                       WREG32_SOC15_IP_NO_KIQ(GC, sem, 0, inst);
-+                       WREG32_SOC15_IP_NO_KIQ(GC, sem, 0, GET_INST(GC, ins=
-t));
-        }
-
-        spin_unlock(&adev->gmc.invalidate_lock);
---
-2.34.1
-
+On 12.05.24 18:11, Limonciello, Mario wrote:
+> On 5/10/2024 4:24 AM, Jani Nikula wrote:
+>> On Fri, 10 May 2024, "Lin, Wayne" <Wayne.Lin@amd.com> wrote:
+>>>> -----Original Message-----
+>>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
+>>>> Sent: Friday, May 10, 2024 3:18 AM
+>>>> To: Linux regressions mailing list <regressions@lists.linux.dev>;
+>>>> Wentland, Harry
+>>>> <Harry.Wentland@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
+>>>> Cc: lyude@redhat.com; imre.deak@intel.com; Leon Weiß
+>>>> <leon.weiss@ruhr-uni-
+>>>> bochum.de>; stable@vger.kernel.org; dri-devel@lists.freedesktop.org;
+>>>> amd-
+>>>> gfx@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+>>>> Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+>>>> drm_dp_add_payload_part2
+>>>>
+>>>> On 5/9/2024 07:43, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>>>> On 18.04.24 21:43, Harry Wentland wrote:
+>>>>>> On 2024-03-07 01:29, Wayne Lin wrote:
+>>>>>>> [Why]
+>>>>>>> Commit:
+>>>>>>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
+>>>>>>> allocation/removement") accidently overwrite the commit
+>>>>>>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in
+>>>>>>> drm_dp_add_payload_part2") which cause regression.
+>>>>>>>
+>>>>>>> [How]
+>>>>>>> Recover the original NULL fix and remove the unnecessary input
+>>>>>>> parameter 'state' for drm_dp_add_payload_part2().
+>>>>>>>
+>>>>>>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
+>>>>>>> allocation/removement")
+>>>>>>> Reported-by: Leon Weiß <leon.weiss@ruhr-uni-bochum.de>
+>>>>>>> Link:
+>>>>>>> https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc8.c
+>>>>>>> amel@ruhr-uni-bochum.de/
+>>>>>>> Cc: lyude@redhat.com
+>>>>>>> Cc: imre.deak@intel.com
+>>>>>>> Cc: stable@vger.kernel.org
+>>>>>>> Cc: regressions@lists.linux.dev
+>>>>>>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+>>>>>>
+>>>>>> I haven't been deep in MST code in a while but this all looks pretty
+>>>>>> straightforward and good.
+>>>>>>
+>>>>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+>>>>>
+>>>>> Hmmm, that was three weeks ago, but it seems since then nothing
+>>>>> happened to fix the linked regression through this or some other
+>>>>> patch. Is there a reason? The build failure report from the CI maybe?
+>>>>
+>>>> It touches files outside of amd but only has an ack from AMD.  I
+>>>> think we
+>>>> /probably/ want an ack from i915 and nouveau to take it through.
+>>>
+>>> Thanks, Mario!
+>>>
+>>> Hi Thorsten,
+>>> Yeah, like what Mario said. Would also like to have ack from i915 and
+>>> nouveau.
+>>
+>> It usually works better if you Cc the folks you want an ack from! ;)
+>>
+>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>
+> 
+> Thanks! Can someone with commit permissions take this to drm-misc?
+> 
+> 
+> 
