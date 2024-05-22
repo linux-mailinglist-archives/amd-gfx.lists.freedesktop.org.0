@@ -2,29 +2,29 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287A58CBC10
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 09:30:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D52E38CBC0A
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 May 2024 09:30:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48B4010F413;
-	Wed, 22 May 2024 07:30:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A607E10EE15;
+	Wed, 22 May 2024 07:30:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE5BD10F3B9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE64A10F3C5
  for <amd-gfx@lists.freedesktop.org>; Wed, 22 May 2024 07:30:25 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 44M7UJFc009414; Wed, 22 May 2024 13:00:19 +0530
+ 44M7UJv4009419; Wed, 22 May 2024 13:00:19 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 44M7UJGM009413;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 44M7UJqf009418;
  Wed, 22 May 2024 13:00:19 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 05/10] drm/amdgpu: add more device info to the devcoredump
-Date: Wed, 22 May 2024 12:59:45 +0530
-Message-Id: <20240522072950.9162-6-sunil.khatri@amd.com>
+Subject: [PATCH v1 06/10] drm/amdgpu: Add missing offsets in gc_11_0_0_offset.h
+Date: Wed, 22 May 2024 12:59:46 +0530
+Message-Id: <20240522072950.9162-7-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240522072950.9162-1-sunil.khatri@amd.com>
 References: <20240522072950.9162-1-sunil.khatri@amd.com>
@@ -44,55 +44,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Adding more device information:
-a. PCI info
-b. VRAM and GTT info
-c. GDC config
+IB1 registers:
+regCP_IB1_CMD_BUFSZ
+regCP_IB1_BASE_LO
+regCP_IB1_BASE_HI
+regCP_IB1_BUFSZ
+regCP_MES_DEBUG_INTERRUPT_INSTR_PNTR
 
-Also correct the print layout and section information for
-in devcoredump.
+Above registers are part of the asic but not of
+the offset file for gc_11_0_0_offset.h and hence
+adding them.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  | 21 +++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/include/asic_reg/gc/gc_11_0_0_offset.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-index c1cb62683695..f0a44d0dec27 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-@@ -224,12 +224,29 @@ amdgpu_devcoredump_read(char *buffer, loff_t offset, size_t count,
- 			   coredump->reset_task_info.process_name,
- 			   coredump->reset_task_info.pid);
- 
--	/* GPU IP's information of the SOC */
--	drm_printf(&p, "\nIP Information\n");
-+	/* SOC Information */
-+	drm_printf(&p, "\nSOC Information\n");
-+	drm_printf(&p, "SOC Device id: %d\n", coredump->adev->pdev->device);
-+	drm_printf(&p, "SOC PCI Revision id: %d\n", coredump->adev->pdev->revision);
- 	drm_printf(&p, "SOC Family: %d\n", coredump->adev->family);
- 	drm_printf(&p, "SOC Revision id: %d\n", coredump->adev->rev_id);
- 	drm_printf(&p, "SOC External Revision id: %d\n", coredump->adev->external_rev_id);
- 
-+	/* Memory Information */
-+	drm_printf(&p, "\nSOC Memory Information\n");
-+	drm_printf(&p, "real vram size: %llu\n", coredump->adev->gmc.real_vram_size);
-+	drm_printf(&p, "visible vram size: %llu\n", coredump->adev->gmc.visible_vram_size);
-+	drm_printf(&p, "visible vram size: %llu\n", coredump->adev->mman.gtt_mgr.manager.size);
-+
-+	/* GDS Config */
-+	drm_printf(&p, "\nGDS Config\n");
-+	drm_printf(&p, "gds: total size: %d\n", coredump->adev->gds.gds_size);
-+	drm_printf(&p, "gds: compute partition size: %d\n", coredump->adev->gds.gds_size);
-+	drm_printf(&p, "gds: gws per compute partition: %d\n", coredump->adev->gds.gws_size);
-+	drm_printf(&p, "gds: os per compute partition: %d\n", coredump->adev->gds.oa_size);
-+
-+	/* HWIP Version Information */
-+	drm_printf(&p, "\nHW IP Version Information\n");
- 	for (int i = 1; i < MAX_HWIP; i++) {
- 		for (int j = 0; j < HWIP_MAX_INSTANCE; j++) {
- 			ver = coredump->adev->ip_versions[i][j];
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_11_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_11_0_0_offset.h
+index 4bff1ef8a9a6..a3bcdf632066 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_11_0_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_11_0_0_offset.h
+@@ -7085,10 +7085,18 @@
+ #define regCP_GE_MSINVOC_COUNT_LO_BASE_IDX                                                              1
+ #define regCP_GE_MSINVOC_COUNT_HI                                                                       0x20a7
+ #define regCP_GE_MSINVOC_COUNT_HI_BASE_IDX                                                              1
++#define regCP_IB1_CMD_BUFSZ                                                                             0x20c0
++#define regCP_IB1_CMD_BUFSZ_BASE_IDX                                                                    1
+ #define regCP_IB2_CMD_BUFSZ                                                                             0x20c1
+ #define regCP_IB2_CMD_BUFSZ_BASE_IDX                                                                    1
+ #define regCP_ST_CMD_BUFSZ                                                                              0x20c2
+ #define regCP_ST_CMD_BUFSZ_BASE_IDX                                                                     1
++#define regCP_IB1_BASE_LO                                                                               0x20cc
++#define regCP_IB1_BASE_LO_BASE_IDX                                                                      1
++#define regCP_IB1_BASE_HI                                                                               0x20cd
++#define regCP_IB1_BASE_HI_BASE_IDX                                                                      1
++#define regCP_IB1_BUFSZ                                                                                 0x20ce
++#define regCP_IB1_BUFSZ_BASE_IDX                                                                        1
+ #define regCP_IB2_BASE_LO                                                                               0x20cf
+ #define regCP_IB2_BASE_LO_BASE_IDX                                                                      1
+ #define regCP_IB2_BASE_HI                                                                               0x20d0
+@@ -7541,6 +7549,8 @@
+ #define regCP_MES_DOORBELL_CONTROL5_BASE_IDX                                                            1
+ #define regCP_MES_DOORBELL_CONTROL6                                                                     0x2841
+ #define regCP_MES_DOORBELL_CONTROL6_BASE_IDX                                                            1
++#define regCP_MES_DEBUG_INTERRUPT_INSTR_PNTR                                                            0x2842
++#define regCP_MES_DEBUG_INTERRUPT_INSTR_PNTR_BASE_IDX                                                   1
+ #define regCP_MES_GP0_LO                                                                                0x2843
+ #define regCP_MES_GP0_LO_BASE_IDX                                                                       1
+ #define regCP_MES_GP0_HI                                                                                0x2844
 -- 
 2.34.1
 
