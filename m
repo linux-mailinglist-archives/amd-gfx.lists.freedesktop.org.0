@@ -2,77 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7728CD81E
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 18:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B4B68CD826
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 18:10:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A38210EE5C;
-	Thu, 23 May 2024 16:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A198E10EE8B;
+	Thu, 23 May 2024 16:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KTNCRGt1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WEEHZqTM";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
- [209.85.210.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0162310E152;
- Thu, 23 May 2024 13:13:40 +0000 (UTC)
-Received: by mail-ot1-f45.google.com with SMTP id
- 46e09a7af769-6f7c72c911cso343966a34.1; 
- Thu, 23 May 2024 06:13:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716470020; x=1717074820; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DuFsS8GdnnXIhSHY7dY+EPeNLswZqMiHIhWn3gMt67g=;
- b=KTNCRGt1STOgbTdmfjZdZsXhFlp7kXF+m6JypP9fXu1RSv+jVGoMCZxOLQhsXe0M/q
- MlYYTaNUHt79LhEcKsZn7t1PGIjRd2VzeJCzb4lsgR0WTYfIlrWUdrUcIppHR5Vdr1AB
- P1wI8xnDDEuTVmDiDsgZd9C3BH9JUrvaeqxRvQq+A1dEbXErhXX1FbM/H01nupkkvDNL
- mqmBny5TH9oezcv5uQu1UycoFM3Gv5oMa7SgohgvAHpmm9A0htL4rtp9XlUX9ICY7yqY
- H6y4Cef6ig9LUOi1zbotI7B0H6xQuYeZm63p1Ey35HKd8EeQ1CVJFJQ5dht0aeKG6Xew
- xjag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716470020; x=1717074820;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=DuFsS8GdnnXIhSHY7dY+EPeNLswZqMiHIhWn3gMt67g=;
- b=gedhYJaCb1BuPgr7yn1TnJO8EpdHHC3FUd0SPt2BGG+3CmtIIeRD9OUSbOT+g5+y39
- IP9TT1NgiAKvhGbibzccA4/wt5Xyf9pFmRlhmgQQuHjALAIixxi1HKBDzbYeHpzh4zDV
- Itw65hNeacGMHH4GnVp8pief4iWhutzpI4qvMuzhBLgPspPJOV8quPUPKGB4Ns62FOw1
- 7a7pYhBDXYd5+zCWHO34cSiTqcVP74W62hmO6PZlG9oIziqycKVkfcscvF/8N1geaeeh
- NubwjpVN7F3QrCjnSMehDOqKPC99ovw5W7+qQ2sJHQ69KfYsDusnrtkNTdBstNtwgNfb
- IzGQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWRmbXLiwhVpo8DKPZU7hpyEebwvHnUMPOb+6uvqE7kIrAOQbSIjXQG45KJdy/K+5ur92yp513Rf99I09mUAvTEycXyzwLK2cA24zhIR2DdXZ+vrRcPnZTuxfEMiDGjG8r8Cj+2JD0m41Ur1LShkg==
-X-Gm-Message-State: AOJu0Ywpn6hW/DIpARiQIPbYy9oKaYMRQyEm5qAAQrxNe4g3blo7ayWY
- 8+2nKIqz6WDYdEVdpd0WI8PXMIiQFZa68jpynxc3jRUFksevvZQpIk1KXL4RgFE5G2whjJ3z0+2
- 69/QLt7KIE4S6w3FSeeGPrZZdLwU=
-X-Google-Smtp-Source: AGHT+IGRhta+SA/s0PCzE5m8Z0yR+DdcmEeNX+ioAIHw6X3jIv1r+LveP8GfyyN5Og7gteF+P980ED8OOqEoIZkVTfA=
-X-Received: by 2002:a9d:5c09:0:b0:6f1:2103:cd52 with SMTP id
- 46e09a7af769-6f7d5fb7e43mr876326a34.15.1716470019586; Thu, 23 May 2024
- 06:13:39 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6F710E335;
+ Thu, 23 May 2024 13:37:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716471440; x=1748007440;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nwUlt7tgledmNyzRkC58TMJbyUeme2oy4ipdEbM0yC8=;
+ b=WEEHZqTMv6kG+BYv1e0AL559AHHEwM/v6RKDatgKgOE6VIrA4fhoo1oB
+ 2by7NJuLH7Y75fgPhi6HiBqRuUCIBKPZxPBJue8L01vOxMmQZbBsx/6h/
+ 2bLeX4WZXnNO1Ab2B2HXRGNygSKqIHPmq/Zpx7E+OsX37LaXBBM1/NJow
+ FNuCJJli+dHb9mvHUTUdEdQraJzd1hgDl1xT47IsAgeyDZFEoCkU/kbPV
+ MluvseKTJ2tyGno5ozGan0Ev3RNXzy3oOu5VjG1827Kt+AuPapLvYnrTA
+ BLgGgexgRsiItQCO8YMEi7msU+1D+Giy7HIx6tcBG3gWC6/m4vZYKvKMV A==;
+X-CSE-ConnectionGUID: By1YHvEgTFueeWJHSdS5jg==
+X-CSE-MsgGUID: ofZw2Q67TUyU/zAgywgQrA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12971689"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12971689"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:37:18 -0700
+X-CSE-ConnectionGUID: BuJdhoPQROOrhR+HAGlkUA==
+X-CSE-MsgGUID: cYAiUGr7Q7W+B8MsXVN91g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="34141543"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:37:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, jani.nikula@intel.com
+Subject: [PATCH 0/3] amd, i915,
+ xe: drop redundant warnings from driver makefiles
+Date: Thu, 23 May 2024 16:37:04 +0300
+Message-Id: <cover.1716471145.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <CABWT5yiejGABNXicsS7u-daKnBBjK6YTDVgaQOqwGYn8P20D8Q@mail.gmail.com>
- <6580c2d4-b084-470f-80a0-aa09f1ab880d@gmx.de>
- <CABWT5yiD110qmJcRsoGVMevULAVmYpyiW4w9MtmNjp7E0rDQ8A@mail.gmail.com>
- <CABWT5yg5jG7eMiDp7QN2yhFj6983qF9zN7eHOprH4eEjwQJLBQ@mail.gmail.com>
- <c3205455-7ad2-487e-8954-52102754e154@gmx.de>
- <CADnq5_PM_FuBE4913Z4bxiMTDYtRS+VJgLW6gfDU1qnQQ=FDzA@mail.gmail.com>
- <d04105ea-0f8a-4f0b-b4f2-bc8407d37c73@gmx.de>
-In-Reply-To: <d04105ea-0f8a-4f0b-b4f2-bc8407d37c73@gmx.de>
-From: Barry Kauler <bkauler@gmail.com>
-Date: Thu, 23 May 2024 21:13:00 +0800
-Message-ID: <CABWT5yibc52CTUWeCWxYQb4ooi4dsbvBWxJAJCDrG+8405RPTg@mail.gmail.com>
-Subject: Re: Kernel 5.15.150 black screen with AMD Raven/Picasso GPU
-To: Armin Wolf <W_Armin@gmx.de>
-Cc: Alex Deucher <alexdeucher@gmail.com>, Yifan Zhang <yifan1.zhang@amd.com>, 
- Prike Liang <Prike.Liang@amd.com>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 23 May 2024 16:10:44 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 23 May 2024 16:10:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,183 +75,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 22, 2024 at 12:58=E2=80=AFAM Armin Wolf <W_Armin@gmx.de> wrote:
->
-> Am 20.05.24 um 18:22 schrieb Alex Deucher:
->
-> > On Sat, May 18, 2024 at 8:17=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wro=
-te:
-> >> Am 17.05.24 um 03:30 schrieb Barry Kauler:
-> >>
-> >>> Armin, Yifan, Prike,
-> >>> I will top-post, so you don't have to scroll down.
-> >>> After identifying the commit that causes black screen with my gpu, I
-> >>> posted the result to you guys, on May 9.
-> >>> It is now May 17 and no reply.
-> >>> OK, I have now created a patch that reverts Yifan's commit, compiled
-> >>> 5.15.158, and my gpu now works.
-> >>> Note, the radeon module is not loaded, so it is not a factor.
-> >>> I'm not a kernel developer. I have identified the culprit and it is u=
-p
-> >>> to you guys to fix it, Yifan especially, as you are the person who ha=
-s
-> >>> created the regression.
-> >>> I will attach my patch.
-> >>> Regards,
-> >>> Barry Kauler
-> >> Hi,
-> >>
-> >> sorry for not responding to your findings. I normally do not work with=
- GPU drivers,
-> >> so i hoped one of the amdgpu developers would handle this.
-> >>
-> >> I CCeddri-devel@lists.freedesktop.org  and amd-gfx@lists.freedesktop.o=
-rg so that other
-> >> amdgpu developers hear from this issue.
-> >>
-> >> Thanks you for you persistence in finding the offending commit.
-> > Likely this patch should not have been ported to 5.15 in the first
-> > place.  The IOMMU requirements have been dropped from the driver for
-> > the last few kernel versions so it is no longer relevant on newer
-> > kernels.
-> >
-> > Alex
->
-> Barry, can you verify that the latest upstream kernel works on you device=
-?
-> If yes, then the commit itself is ok and just the backporting itself was =
-wrong.
->
-> Thanks,
-> Armin Wolf
+I'm sending these together, as they're related, and almost identical,
+but I expect them to be merged individually to each driver.
 
-Armin,
-The unmodified 6.8.1 kernel works ok.
-I presume that patch was applied long before 6.8.1 got released and
-only got backported to 5.15.x recently.
+BR,
+Jani.
 
-Regards,
-Barry
+Jani Nikula (3):
+  drm/i915: drop redundant W=1 warnings from Makefile
+  drm/xe: drop redundant W=1 warnings from Makefile
+  drm/amdgpu: drop redundant W=1 warnings from Makefile
 
+ drivers/gpu/drm/amd/amdgpu/Makefile | 18 +-----------------
+ drivers/gpu/drm/i915/Makefile       | 25 +------------------------
+ drivers/gpu/drm/xe/Makefile         | 25 +------------------------
+ 3 files changed, 3 insertions(+), 65 deletions(-)
 
-> >> Armin Wolf
-> >>
-> >>> On Thu, May 9, 2024 at 4:08=E2=80=AFPM Barry Kauler <bkauler@gmail.co=
-m> wrote:
-> >>>> On Fri, May 3, 2024 at 9:03=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> w=
-rote:
-> >>>>>> ...
-> >>>>>> # lspci | grep VGA
-> >>>>>> 05:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
-> >>>>>> [AMD/ATI] Picasso/Raven 2 [Radeon Vega Series / Radeon Vega Mobile
-> >>>>>> Series] (rev c2)
-> >>>>>> 05:00.7 Non-VGA unclassified device: Advanced Micro Devices, Inc.
-> >>>>>> [AMD] Raven/Raven2/Renoir Non-Sensor Fusion Hub KMDF driver
-> >>>>>>
-> >>>>>> # lspci -n -k
-> >>>>>> ...
-> >>>>>> 05:00.0 0300: 1002:15d8 (rev c2)
-> >>>>>> Subsystem: 1025:1456
-> >>>>>> Kernel driver in use: amdgpu
-> >>>>>> Kernel modules: amdgpu
-> >>>>>> ...
-> >>>>> thanks for informing us of this regression. Since there are four co=
-mmits affecting
-> >>>>> amdgpu in 5.15.150, i suggest that you use "git bisect" to find the=
- faulty commits,
-> >>>>> see https://docs.kernel.org/admin-guide/bug-bisect.html for details=
-.
-> >>>>>
-> >>>>> I think you can speed up the bisecting process by limiting yourself=
- to the AMD DRM
-> >>>>> driver directory with "git bisect start -- drivers/gpu/drm/amd", ta=
-ke a look at the
-> >>>>> man page of "git bisect" for details.
-> >>>>>
-> >>>>> Thanks,
-> >>>>> Armin Wolf
-> >>>> Armin,
-> >>>> Thanks for the advice. I am unfamiliar with git on the commandline.
-> >>>> Previously only used SmartGit gui.
-> >>>> EasyOS requires aufs patch, and for a few days tried to figure out h=
-ow
-> >>>> to use that with git bisect, then gave up. Changed to testing with m=
-y
-> >>>> "QV" distro, which is more conventional, doesn't need any kernel
-> >>>> patches. Managed to get it down to one commit. Here are the steps I
-> >>>> followed:
-> >>>>
-> >>>> # git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/lin=
-ux-stable.git
-> >>>> # cd linux-stable
-> >>>> # git tag -l | grep '5\.15\.150'
-> >>>> v5.15.150
-> >>>> # git checkout -b my5.15.150 v5.15.150
-> >>>> Updating files: 100% (65776/65776), done.
-> >>>> Switched to a new branch 'my5.15.150'
-> >>>>
-> >>>> Copied in my .config then...
-> >>>>
-> >>>> # make menuconfig
-> >>>> # git bisect start -- drivers/gpu/drm/amd
-> >>>> # git bisect bad
-> >>>> # git bisect good v5.15.149
-> >>>> Bisecting: 1 revision left to test after this (roughly 1 step)
-> >>>> [b9a61ee2bb2704e42516e3da962f99dfa98f3b20] drm/amdgpu: reset gpu for
-> >>>> s3 suspend abort case
-> >>>> # make
-> >>>> # rm -rf /boot2
-> >>>> # mkdir -p /boot2/lib/modules
-> >>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_insta=
-ll
-> >>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
-> >>>> # sync
-> >>>> ...QV on Acer laptop, with amdgpu, works!
-> >>>> # git bisect good
-> >>>> Bisecting: 0 revisions left to test after this (roughly 0 steps)
-> >>>> [56b522f4668167096a50c39446d6263c96219f5f] drm/amdgpu: init iommu
-> >>>> after amdkfd device init
-> >>>> # make
-> >>>> # mkdir -p /boot2/lib/modules
-> >>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_insta=
-ll
-> >>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
-> >>>> # sync
-> >>>> ...QV on Acer laptop, black screen!
-> >>>>
-> >>>> # git bisect bad
-> >>>> 56b522f4668167096a50c39446d6263c96219f5f is the first bad commit
-> >>>> commit 56b522f4668167096a50c39446d6263c96219f5f
-> >>>> Author: Yifan Zhang <yifan1.zhang@amd.com>
-> >>>> Date:   Tue Sep 28 15:42:35 2021 +0800
-> >>>>
-> >>>>       drm/amdgpu: init iommu after amdkfd device init
-> >>>>
-> >>>>       [ Upstream commit 286826d7d976e7646b09149d9bc2899d74ff962b ]
-> >>>>
-> >>>>       This patch is to fix clinfo failure in Raven/Picasso:
-> >>>>
-> >>>>       Number of platforms: 1
-> >>>>         Platform Profile: FULL_PROFILE
-> >>>>         Platform Version: OpenCL 2.2 AMD-APP (3364.0)
-> >>>>         Platform Name: AMD Accelerated Parallel Processing
-> >>>>         Platform Vendor: Advanced Micro Devices, Inc.
-> >>>>         Platform Extensions: cl_khr_icd cl_amd_event_callback
-> >>>>
-> >>>>         Platform Name: AMD Accelerated Parallel Processing Number of=
- devices: 0
-> >>>>
-> >>>>       Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
-> >>>>       Reviewed-by: James Zhu <James.Zhu@amd.com>
-> >>>>       Tested-by: James Zhu <James.Zhu@amd.com>
-> >>>>       Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> >>>>       Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> >>>>       Signed-off-by: Sasha Levin <sashal@kernel.org>
-> >>>>
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++----
-> >>>>    1 file changed, 4 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> Anything else I should do, to identify what in this commit is the
-> >>>> likely culprit?
-> >>>> Regards,
-> >>>> Barry Kauler
+-- 
+2.39.2
+
