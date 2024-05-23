@@ -2,45 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E188CD32A
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 15:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB698CD32E
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 15:05:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9316510E65A;
-	Thu, 23 May 2024 13:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC79C10E6CB;
+	Thu, 23 May 2024 13:04:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=devnull.tasossah.com header.i=@devnull.tasossah.com header.b="DI4NMuWu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TbCgUTo/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 948 seconds by postgrey-1.36 at gabe;
- Thu, 23 May 2024 07:32:37 UTC
-Received: from devnull.tasossah.com (devnull.tasossah.com [91.121.165.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A598B891AA
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 May 2024 07:32:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=devnull.tasossah.com; s=vps; h=Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XoRV45eTb6FtMOVbjrbEY9D0nnIfjS+sNa+jJ4ZT7Sc=; b=DI4NMuWumvwMqEbxZTvwsfleTE
- xFJrjwIwaHtRrLmgtm6+LpDVYROqM97kaxPdGZ7i8qR8/TmNHfMuEzhl3qIG1cfFZcMoGAyTxRIxV
- MTLgIUZgnbf3MEJVW/PRriivOdqdYh3N+VGCCKUqzl1bimdJ3JJFQTgGpfMu4Z3KjTqY=;
-Received: from [2a02:587:6a04:fe00::298] (helo=localhost.localdomain)
- by devnull.tasossah.com with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
- (envelope-from <tasos@tasossah.com>)
- id 1sA2gw-002S82-6X; Thu, 23 May 2024 10:16:46 +0300
-From: Tasos Sahanidis <tasos@tasossah.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: Tasos Sahanidis <tasos@tasossah.com>
-Subject: [PATCH] drm/amdgpu/pptable: Fix UBSAN array-index-out-of-bounds
-Date: Thu, 23 May 2024 10:16:37 +0300
-Message-Id: <20240523071637.1114898-1-tasos@tasossah.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888BF10E5A9;
+ Thu, 23 May 2024 13:01:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716469296; x=1748005296;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YU1eMOQnQRxm5I/RuAMauYfwdnrzT9WMuumUW9BoYIo=;
+ b=TbCgUTo/hFqX2Pso70Xqj0BmIf/yrsUdAlTbVv1OIzNU4or3sqi6be8e
+ 7sFfsX7m0xhKRS8Jr6GmIjGlBfh2d7n0sgtzPy9cSjBRikkjGTAI2fy0O
+ 1miUtXoOo0A4WF56j6UtWGL7Wej/gZpTMxylHJfRz7tUa+tOs0exheDIH
+ jU+SIfudTsDasKxSO1Jnp1JyT40XvGnVsuJUIEwnRVMgY53lfAo/2yy5d
+ HFutRVQPLXRalHQOvLyFuntS0PTSyD0LpaOAavkddXKB5L0ZWqzzwpNcQ
+ 6J3sWLoHTJiHk4kUAi/6jvkRyNVH3EUdgLjk6Jew83Tm0dBhckxLvaulv Q==;
+X-CSE-ConnectionGUID: 0p7vi8DWROeHcwju04C0Zg==
+X-CSE-MsgGUID: JKzUnCzLRb2/1sx6FaEehA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="23393870"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="23393870"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:01:26 -0700
+X-CSE-ConnectionGUID: NyWIvjEIREWR++c9XhDcYg==
+X-CSE-MsgGUID: CNGwPIEJQJynh5+mfp0LMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="56890382"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:01:02 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [RESEND 0/6] drm, nouveau/radeon/amdpgu: edid_blob_ptr cleanups
+In-Reply-To: <CADnq5_N75R4G-w=TXz0-kPNseomSK+s4OB8OMyng_tAeGkU+=g@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1715353572.git.jani.nikula@intel.com>
+ <CADnq5_OMOuz_T-OUZ4jVELEAL1FfFdqoFukKdvZA0eSoPQExLg@mail.gmail.com>
+ <87seylewf5.fsf@intel.com>
+ <CADnq5_N75R4G-w=TXz0-kPNseomSK+s4OB8OMyng_tAeGkU+=g@mail.gmail.com>
+Date: Thu, 23 May 2024 16:00:59 +0300
+Message-ID: <878r00ptro.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 23 May 2024 13:04:44 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 23 May 2024 13:04:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,127 +72,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dyanmically sized arrays used [1] instead of []. Replacing the former
-with the latter resolves multiple warnings observed on boot with a
-BONAIRE card.
+On Mon, 13 May 2024, Alex Deucher <alexdeucher@gmail.com> wrote:
+> On Mon, May 13, 2024 at 8:20=E2=80=AFAM Jani Nikula <jani.nikula@intel.co=
+m> wrote:
+>>
+>> On Fri, 10 May 2024, Alex Deucher <alexdeucher@gmail.com> wrote:
+>> > On Fri, May 10, 2024 at 11:17=E2=80=AFAM Jani Nikula <jani.nikula@inte=
+l.com> wrote:
+>> > Series is:
+>> > Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>>
+>> Thanks, do you want to pick these up via your tree? And do you expect a
+>> proper R-b before merging?
+>
+> Feel free to take them via drm-misc if you'd prefer to land the whole
+> set together, otherwise, I can pick up the radeon/amdgpu patches.
 
-Signed-off-by: Tasos Sahanidis <tasos@tasossah.com>
----
- drivers/gpu/drm/amd/include/pptable.h | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+Thanks, merged everything to drm-misc-next.
 
-diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
-index 2e8e6c9875f6..d1dec880d2d6 100644
---- a/drivers/gpu/drm/amd/include/pptable.h
-+++ b/drivers/gpu/drm/amd/include/pptable.h
-@@ -480,7 +480,7 @@ typedef struct _StateArray{
-     //how many states we have 
-     UCHAR ucNumEntries;
-     
--    ATOM_PPLIB_STATE_V2 states[1];
-+    ATOM_PPLIB_STATE_V2 states[];
- }StateArray;
- 
- 
-@@ -514,7 +514,7 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
- typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Table
- {
-     UCHAR ucNumEntries;                                                // Number of entries.
--    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[1];             // Dynamically allocate entries.
-+    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[];              // Dynamically allocate entries.
- }ATOM_PPLIB_Clock_Voltage_Dependency_Table;
- 
- typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
-@@ -530,7 +530,7 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Table
- {
-     UCHAR ucNumEntries;                                                // Number of entries.
--    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[1];                  // Dynamically allocate entries.
-+    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[];                   // Dynamically allocate entries.
- }ATOM_PPLIB_Clock_Voltage_Limit_Table;
- 
- union _ATOM_PPLIB_CAC_Leakage_Record
-@@ -554,7 +554,7 @@ typedef union _ATOM_PPLIB_CAC_Leakage_Record ATOM_PPLIB_CAC_Leakage_Record;
- typedef struct _ATOM_PPLIB_CAC_Leakage_Table
- {
-     UCHAR ucNumEntries;                                                 // Number of entries.
--    ATOM_PPLIB_CAC_Leakage_Record entries[1];                           // Dynamically allocate entries.
-+    ATOM_PPLIB_CAC_Leakage_Record entries[];                            // Dynamically allocate entries.
- }ATOM_PPLIB_CAC_Leakage_Table;
- 
- typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
-@@ -569,7 +569,7 @@ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
- typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Table
- {
-     UCHAR ucNumEntries;                                                 // Number of entries.
--    ATOM_PPLIB_PhaseSheddingLimits_Record entries[1];                   // Dynamically allocate entries.
-+    ATOM_PPLIB_PhaseSheddingLimits_Record entries[];                    // Dynamically allocate entries.
- }ATOM_PPLIB_PhaseSheddingLimits_Table;
- 
- typedef struct _VCEClockInfo{
-@@ -581,7 +581,7 @@ typedef struct _VCEClockInfo{
- 
- typedef struct _VCEClockInfoArray{
-     UCHAR ucNumEntries;
--    VCEClockInfo entries[1];
-+    VCEClockInfo entries[];
- }VCEClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
-@@ -593,7 +593,7 @@ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[1];
-+    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[];
- }ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_VCE_State_Record
-@@ -605,7 +605,7 @@ typedef struct _ATOM_PPLIB_VCE_State_Record
- typedef struct _ATOM_PPLIB_VCE_State_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_VCE_State_Record entries[1];
-+    ATOM_PPLIB_VCE_State_Record entries[];
- }ATOM_PPLIB_VCE_State_Table;
- 
- 
-@@ -627,7 +627,7 @@ typedef struct _UVDClockInfo{
- 
- typedef struct _UVDClockInfoArray{
-     UCHAR ucNumEntries;
--    UVDClockInfo entries[1];
-+    UVDClockInfo entries[];
- }UVDClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
-@@ -639,7 +639,7 @@ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[1];
-+    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[];
- }ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_UVD_Table
-@@ -676,7 +676,7 @@ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Record
- 
- typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Table{
-     UCHAR numEntries;
--    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[1];
-+    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[];
- }ATOM_PPLIB_ACPClk_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_ACP_Table
-@@ -745,7 +745,7 @@ typedef struct ATOM_PPLIB_VQ_Budgeting_Record{
- typedef struct ATOM_PPLIB_VQ_Budgeting_Table {
-     UCHAR revid;
-     UCHAR numEntries;
--    ATOM_PPLIB_VQ_Budgeting_Record         entries[1];
-+    ATOM_PPLIB_VQ_Budgeting_Record         entries[];
- } ATOM_PPLIB_VQ_Budgeting_Table;
- 
- #pragma pack()
--- 
-2.25.1
+BR,
+Jani.
 
+--=20
+Jani Nikula, Intel
