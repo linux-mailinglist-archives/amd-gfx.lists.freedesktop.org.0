@@ -2,86 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7CB8CD327
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 15:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E188CD32A
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 15:04:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2D6810E0FE;
-	Thu, 23 May 2024 13:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9316510E65A;
+	Thu, 23 May 2024 13:04:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c1exlQJQ";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=devnull.tasossah.com header.i=@devnull.tasossah.com header.b="DI4NMuWu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com
- [209.85.219.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 461F010F631;
- Thu, 23 May 2024 02:51:26 +0000 (UTC)
-Received: by mail-yb1-f170.google.com with SMTP id
- 3f1490d57ef6-df1ceefd864so114737276.0; 
- Wed, 22 May 2024 19:51:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716432685; x=1717037485; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v5LuDwEZakdwbwY0ym0Hwpmt3ZIkNDD5vuPYxuRQOvQ=;
- b=c1exlQJQ+LjTclNIhriPZ7fBvC+TIM1RfjW6qaGbN8dcuST3LUB9X1kkibxkaKopfo
- IE8xyZWgUEBFxotbtE7WyrfjqmCXfLuG2wbDH8XFWJmLfWUrkv1EgaF/hslk3RkwZs2I
- JBJuFnJFt2yt3PSp/3kUp6drG5l3wmgqDkjN2Nzn1IdxgC9rcJ/FtPVsvxz6OKiwCqml
- U77MNP8tp4NEDJM2rF+PEiA7wKZ2NuYCi3p6gtyF+cAr8HWpu7KowOpurkvzmcqzalRH
- AiGV25kdzwy092LP4fJUITgEo3H3ThjXhSGvp5MLckb8MxSWbm0ehbzbctwU/NUuZRBl
- x/dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716432685; x=1717037485;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=v5LuDwEZakdwbwY0ym0Hwpmt3ZIkNDD5vuPYxuRQOvQ=;
- b=rOypYOAaqE7lAWZbb4DmTaM0ci2Z0vq/NTJgV2SHlkW6cScIHOdpnm96AFV3JTEJrq
- 8ff7QjZ4logCSNimPGKAKRmjH5fT3NhMfARzjZnq4/QugQfDDV+qDvqZd8haB56UJ9EH
- UXxVzJfdGftQXO2K9SOC+pUpcOH/ngcNK9+UAFbk0afx2sj4k8SXc0KwAm9p99Y0y6XI
- XlFSXom3F/MHLvMIkbElcUgDhKdbPrIicv/N8Fgp32Le3s9QLwdpENPhTDoMmpGUnhUo
- xvY39YhuKvM+k0rlq5nzmoEhmie3ArdJbc0jDpvmea+pOZok8ZRA/Pjqe/Uz7HmNkFde
- Tdqw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXnrw/gkYEgJcQP4v0ghzqDkYuxqkjbb2cou8KDlPQutfm/rEg4zNvLVKgOkUL6vin31cyPGDFCNfD9FaIbZ2FLI/VEFvRpmTcbZVUvrJdldW4ychJ0GH7NqQjckgDOb3DovxkR51y3fKs4RX4IcA==
-X-Gm-Message-State: AOJu0YwHe8xx4mlG/ShGz8WBK+/porxEaAd0IqSI63TyapXKpJE4RJEV
- jepCnd8kfOpL813yMIV0r05PlBZd79QfoquUkjiryAxn5x1x3i6pef7CPPbOikdKIsnroKYonT1
- 01SxuqHLfaHeN1yCo/p3lG6JrSrM=
-X-Google-Smtp-Source: AGHT+IGoGrlyVl36Z3U/uNce2TSp6L62rcU3gkTHLc+sbhgiwRZ9seU1gNOO89339GRoQiUoYwsYHFD13z2NjWmF818=
-X-Received: by 2002:a05:6902:2003:b0:df4:d863:93f1 with SMTP id
- 3f1490d57ef6-df4e092c8acmr3589932276.0.1716432684934; Wed, 22 May 2024
- 19:51:24 -0700 (PDT)
+X-Greylist: delayed 948 seconds by postgrey-1.36 at gabe;
+ Thu, 23 May 2024 07:32:37 UTC
+Received: from devnull.tasossah.com (devnull.tasossah.com [91.121.165.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A598B891AA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 May 2024 07:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=devnull.tasossah.com; s=vps; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=XoRV45eTb6FtMOVbjrbEY9D0nnIfjS+sNa+jJ4ZT7Sc=; b=DI4NMuWumvwMqEbxZTvwsfleTE
+ xFJrjwIwaHtRrLmgtm6+LpDVYROqM97kaxPdGZ7i8qR8/TmNHfMuEzhl3qIG1cfFZcMoGAyTxRIxV
+ MTLgIUZgnbf3MEJVW/PRriivOdqdYh3N+VGCCKUqzl1bimdJ3JJFQTgGpfMu4Z3KjTqY=;
+Received: from [2a02:587:6a04:fe00::298] (helo=localhost.localdomain)
+ by devnull.tasossah.com with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <tasos@tasossah.com>)
+ id 1sA2gw-002S82-6X; Thu, 23 May 2024 10:16:46 +0300
+From: Tasos Sahanidis <tasos@tasossah.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: Tasos Sahanidis <tasos@tasossah.com>
+Subject: [PATCH] drm/amdgpu/pptable: Fix UBSAN array-index-out-of-bounds
+Date: Thu, 23 May 2024 10:16:37 +0300
+Message-Id: <20240523071637.1114898-1-tasos@tasossah.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <fa885eca-d7e6-415a-8a08-9103b002c6bb@amd.com>
- <20240521051140.30509-1-rinoandrejohnsen@gmail.com>
- <17782a6e-db84-4c20-874a-342b9655ffc5@amd.com>
- <CAACkh=-B-jH6g7KY7Nn_7Y_+gHPQ7G5Z5AZ0=a=_ifjcmsorcw@mail.gmail.com>
- <86410711-9b88-448c-9148-109f81b1ca55@amd.com>
- <CAACkh=9hY7eg_uuH7Psm=XJfSzwQTvzs8bvOXQ=wwkMPrC44SA@mail.gmail.com>
- <666e36b7-5379-46ef-a16b-00ec499fb42c@amd.com>
- <1XiLpoWd2E_COrHNl9BYkmCXkUKK6Bv1wibdFxiw3Vi6AQOPAIhrIMPNEZmmKAp9yxC8Er4DEMqOqjshMgRqtpV3UkS7MN2OjCsDjllvdRE=@emersion.fr>
-In-Reply-To: <1XiLpoWd2E_COrHNl9BYkmCXkUKK6Bv1wibdFxiw3Vi6AQOPAIhrIMPNEZmmKAp9yxC8Er4DEMqOqjshMgRqtpV3UkS7MN2OjCsDjllvdRE=@emersion.fr>
-From: =?UTF-8?Q?Rino_Andr=C3=A9_Johnsen?= <rinoandrejohnsen@gmail.com>
-Date: Thu, 23 May 2024 04:51:13 +0200
-Message-ID: <CAACkh=9RBVwX1-ENki9XiscH3XYzw8buab8ZFTyicTn8Yc84oQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amd/display: Add pixel encoding info to debugfs
-To: Simon Ser <contact@emersion.fr>
-Cc: Mario Limonciello <mario.limonciello@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- alexander.deucher@amd.com, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Hersen Wu <hersenxs.wu@amd.com>, 
- Hamza Mahfooz <hamza.mahfooz@amd.com>, Wayne Lin <wayne.lin@amd.com>, 
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Fangzhi Zuo <jerry.zuo@amd.com>, Tom Chung <chiahsuan.chung@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 23 May 2024 13:04:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,37 +55,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Looked through the patch series from Andri Yngvason and that does
-exactly what I wanted in the first place. I think that the patch
-series should be encouraged to be merged in as fast as possible.
+Dyanmically sized arrays used [1] instead of []. Replacing the former
+with the latter resolves multiple warnings observed on boot with a
+BONAIRE card.
 
-For the patch I have submitted, it stands on its own, since the patch
-series from Andri Yngvason does not include anything in the debugfs.
-This means whenever or not the patch series gets merged, at least
-those with an AMD gpu can figure out which pixel encoding that is
-used.
+Signed-off-by: Tasos Sahanidis <tasos@tasossah.com>
+---
+ drivers/gpu/drm/amd/include/pptable.h | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-Rino
+diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
+index 2e8e6c9875f6..d1dec880d2d6 100644
+--- a/drivers/gpu/drm/amd/include/pptable.h
++++ b/drivers/gpu/drm/amd/include/pptable.h
+@@ -480,7 +480,7 @@ typedef struct _StateArray{
+     //how many states we have 
+     UCHAR ucNumEntries;
+     
+-    ATOM_PPLIB_STATE_V2 states[1];
++    ATOM_PPLIB_STATE_V2 states[];
+ }StateArray;
+ 
+ 
+@@ -514,7 +514,7 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Table
+ {
+     UCHAR ucNumEntries;                                                // Number of entries.
+-    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[1];             // Dynamically allocate entries.
++    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[];              // Dynamically allocate entries.
+ }ATOM_PPLIB_Clock_Voltage_Dependency_Table;
+ 
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
+@@ -530,7 +530,7 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Table
+ {
+     UCHAR ucNumEntries;                                                // Number of entries.
+-    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[1];                  // Dynamically allocate entries.
++    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[];                   // Dynamically allocate entries.
+ }ATOM_PPLIB_Clock_Voltage_Limit_Table;
+ 
+ union _ATOM_PPLIB_CAC_Leakage_Record
+@@ -554,7 +554,7 @@ typedef union _ATOM_PPLIB_CAC_Leakage_Record ATOM_PPLIB_CAC_Leakage_Record;
+ typedef struct _ATOM_PPLIB_CAC_Leakage_Table
+ {
+     UCHAR ucNumEntries;                                                 // Number of entries.
+-    ATOM_PPLIB_CAC_Leakage_Record entries[1];                           // Dynamically allocate entries.
++    ATOM_PPLIB_CAC_Leakage_Record entries[];                            // Dynamically allocate entries.
+ }ATOM_PPLIB_CAC_Leakage_Table;
+ 
+ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
+@@ -569,7 +569,7 @@ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
+ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Table
+ {
+     UCHAR ucNumEntries;                                                 // Number of entries.
+-    ATOM_PPLIB_PhaseSheddingLimits_Record entries[1];                   // Dynamically allocate entries.
++    ATOM_PPLIB_PhaseSheddingLimits_Record entries[];                    // Dynamically allocate entries.
+ }ATOM_PPLIB_PhaseSheddingLimits_Table;
+ 
+ typedef struct _VCEClockInfo{
+@@ -581,7 +581,7 @@ typedef struct _VCEClockInfo{
+ 
+ typedef struct _VCEClockInfoArray{
+     UCHAR ucNumEntries;
+-    VCEClockInfo entries[1];
++    VCEClockInfo entries[];
+ }VCEClockInfoArray;
+ 
+ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
+@@ -593,7 +593,7 @@ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
+ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table
+ {
+     UCHAR numEntries;
+-    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[1];
++    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[];
+ }ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_VCE_State_Record
+@@ -605,7 +605,7 @@ typedef struct _ATOM_PPLIB_VCE_State_Record
+ typedef struct _ATOM_PPLIB_VCE_State_Table
+ {
+     UCHAR numEntries;
+-    ATOM_PPLIB_VCE_State_Record entries[1];
++    ATOM_PPLIB_VCE_State_Record entries[];
+ }ATOM_PPLIB_VCE_State_Table;
+ 
+ 
+@@ -627,7 +627,7 @@ typedef struct _UVDClockInfo{
+ 
+ typedef struct _UVDClockInfoArray{
+     UCHAR ucNumEntries;
+-    UVDClockInfo entries[1];
++    UVDClockInfo entries[];
+ }UVDClockInfoArray;
+ 
+ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
+@@ -639,7 +639,7 @@ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
+ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table
+ {
+     UCHAR numEntries;
+-    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[1];
++    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[];
+ }ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_UVD_Table
+@@ -676,7 +676,7 @@ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Record
+ 
+ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Table{
+     UCHAR numEntries;
+-    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[1];
++    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[];
+ }ATOM_PPLIB_ACPClk_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_ACP_Table
+@@ -745,7 +745,7 @@ typedef struct ATOM_PPLIB_VQ_Budgeting_Record{
+ typedef struct ATOM_PPLIB_VQ_Budgeting_Table {
+     UCHAR revid;
+     UCHAR numEntries;
+-    ATOM_PPLIB_VQ_Budgeting_Record         entries[1];
++    ATOM_PPLIB_VQ_Budgeting_Record         entries[];
+ } ATOM_PPLIB_VQ_Budgeting_Table;
+ 
+ #pragma pack()
+-- 
+2.25.1
 
-On Wed, May 22, 2024 at 3:40=E2=80=AFPM Simon Ser <contact@emersion.fr> wro=
-te:
->
-> On Wednesday, May 22nd, 2024 at 15:36, Mario Limonciello <mario.limonciel=
-lo@amd.com> wrote:
->
-> > > To be perfectly honest with you, I haven't given that much though. I
-> > > used the 'bpc' and 'colorspace' property in debugfs, since I could no=
-t
-> > > find that information anywhere else. And since I also needed to verif=
-y
-> > > the pixel encoding being used, I added it where those other values
-> > > were. That made for a simple and easy addition for this property.
-> > >
-> > > If you want me to do this differently, let me know. And please point
-> > > me to the standardized DRM property where I should expose the values.
->
-> FWIW, there is a patch from Andri to add a similar (?) property:
-> https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.=
-is/
->
-> The patch also allows user-space to set the "pixel encoding".
