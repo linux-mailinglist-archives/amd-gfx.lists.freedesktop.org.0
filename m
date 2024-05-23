@@ -2,124 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DCDB8CC8C9
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 00:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F7F8CCBE1
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 07:46:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDD710EC59;
-	Wed, 22 May 2024 22:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75A2710E0E0;
+	Thu, 23 May 2024 05:45:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xJuArExu";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="V6XZISe2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCEAB10EB5D;
- Wed, 22 May 2024 22:09:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CctIkchQS0zOt/+RMGDjTVtab5MtABwH+ZkXiPe8qwfm0zyE7bKZap2wTSmLnYkZGGLUIobxK5O/9BCyPV2Gh0O203WWW220fPDNp2cNhEOTD0kSbuVzGAwjQpXQx3HBh8fNo0H0CbGS3JJHvw+ldIMu2HYR6VQ+pGLrR66/GN44bv6xM8UWUC6PjLDzh2gCEUOEi8vZIarh42pR9FVWGLkaxdJ104L8syLmyuZfINHfR2HfgdJeeqgnEc4WkYvhAndqFbUB9duBnvrUo0ATzuVFOyJoWEjDtlxfPsZ+cBV2HT7XogPFDq2xrybMN3WNNlwAvDHE1JUPfD/PmO0DFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W5t5nnJXOIJS97m8Vz+8mkhhPiUJyV4OYIgNCKCDOlI=;
- b=FhUrUquz2BfMhLL8JDSzy5FolHYdR9fw6jrOYtJNztrKGuk4GIZJdRsvYoIE6Q6e7t44eCABzgvm2oWc4o5+2/hrybbhKsPnpOmHiV90Nf2iGr4LhgRpbkcrmMfRpwzWW7Z4ZmI9awxRLFAmi5mDdw3CrGDhc/qZ8CrcEwMGBmMlLdoSEIafsRYKVgGnT5SChoZmYlgcPoTRLw0NAyAj1Ip0brDWQBJj6ccKo0kSp4Z5h08tENpVCwS6pqIfaFgxUPrZnO+BIf5LkdgITN07EZUpynITkKqaiiWGtN1HFxeISCKLM/YAkjqUguZRwZrPmq9KBJucg9Eda6p09qAPsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W5t5nnJXOIJS97m8Vz+8mkhhPiUJyV4OYIgNCKCDOlI=;
- b=xJuArExuK9pV7HZ943qYwxc7Ma1uOkzEWKti4gpRdyLevEFzvvWl4ZTu56SEPVZYwP2TL7JTz6m7PZ7cBpLDslm58EtVkTRySlbbLaOKhzBmBQBxwU/gJxb48q1Bq0O4KsG/JhSNbjIeuQOhgbNRgelGDGqHNDNuMzD6c7JPJDg=
-Received: from LV3P220CA0014.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:234::14)
- by SN7PR12MB8818.namprd12.prod.outlook.com (2603:10b6:806:34b::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Wed, 22 May
- 2024 22:09:16 +0000
-Received: from BL6PEPF0001AB4B.namprd04.prod.outlook.com
- (2603:10b6:408:234:cafe::e) by LV3P220CA0014.outlook.office365.com
- (2603:10b6:408:234::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.20 via Frontend
- Transport; Wed, 22 May 2024 22:09:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB4B.mail.protection.outlook.com (10.167.242.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7611.14 via Frontend Transport; Wed, 22 May 2024 22:09:16 +0000
-Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 22 May
- 2024 17:09:10 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, Simon Ser <contact@emersion.fr>
-CC: Harry Wentland <Harry.Wentland@amd.com>, Xaver Hugl
- <xaver.hugl@gmail.com>, <dri-devel@lists.freedesktop.org>, Leo Li
- <sunpeng.li@amd.com>, Sean Paul <seanpaul@google.com>, Mario Limonciello
- <mario.limonciello@amd.com>
-Subject: [PATCH v2 4/4] tests/amdgpu/amd_psr: Add support for `power saving
- policy` property
-Date: Wed, 22 May 2024 17:08:49 -0500
-Message-ID: <20240522220849.33343-5-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240522220849.33343-1-mario.limonciello@amd.com>
-References: <20240522220849.33343-1-mario.limonciello@amd.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784B810E034;
+ Thu, 23 May 2024 05:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1716443149;
+ bh=ixt8OajYR20IPA+H5M4ytRrCuvQEPCIDj6wZr5U9vZU=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=V6XZISe2rHRPDxCU3RcaRltfEjMsf3Um1F7s2Knx3jBoPnoWXYLTzBB1x2GEXFNlA
+ zCUCvq/awcplJhGU9EHEmA06ZVtHfJe0QRL0SxHOCBDpNUeLpks5b6o7YrYR8Z+0JD
+ jJVHUHbOum7lO29ITpT33LzBWBmhEmtjVsm1AeUnTM81zmzbDR00y3AVw7dE0/xQ7q
+ wgIzSxGobBDfFQRLyrrVAK78jMvSAybnilANfAm2CwRhrPydRXI5h2h1YYYNI9aIDM
+ pVoGtRcF0sS4YgQRyYQUvx/UVf6KA9mvN2TP05pxOmAzrMSCZx594KP6GwZlPhptpQ
+ PQxZ6jnI5aOrg==
+Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8AA8637820E5;
+ Thu, 23 May 2024 05:45:45 +0000 (UTC)
+Message-ID: <bb94b70d-cb6d-4ca6-8c80-abb6a12c2ef3@collabora.com>
+Date: Thu, 23 May 2024 11:15:42 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/6] drm/ci: build virtual GPU driver as module
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org
+References: <20240517092502.647420-1-vignesh.raman@collabora.com>
+ <20240517092502.647420-4-vignesh.raman@collabora.com>
+ <elftuzsd7lhz6y5ow6rb5uu5fb5b5jcprxtvxtxtojo774rnyr@swpeg4vkgtnc>
+ <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
+Content-Language: en-US
+In-Reply-To: <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4B:EE_|SN7PR12MB8818:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57c53f9b-5b5e-4a8a-df32-08dc7aabd1fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|1800799015|36860700004|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?HVDdK0XTbiEdqPpZgJJIfg+26eB7S7phxK6iITE6flu/Bx1T4hsGIcoXh78f?=
- =?us-ascii?Q?rWrnLqqCZP2KktiHMiZYjowpGtpXhdtNA2E5k7A8XVy5qfEzc/AJFSOLWAby?=
- =?us-ascii?Q?50pdxxIZaakorJoiOsBKnUvOSy5Yaynv5pPz5atd+MuofmGo+3ert9g+C+pV?=
- =?us-ascii?Q?73vZbI+k1KA//f9gO+wQuHM53smQiBF8kAql1QuZY0rsB4S5NBhKEivqc+gK?=
- =?us-ascii?Q?uGll7ywG8c4qwtPR3BCsPUcpejF1h3M3P6bwT5NgJbeEHLnwKLLfEWzEl8Rw?=
- =?us-ascii?Q?3u569mnDa7S1jFzywKAnByORKztfpsotHqUiWHW5d3QVn3c6Qdufq3WB+Qb2?=
- =?us-ascii?Q?MW7smq6TzcNghGCHciH87Iqv+dOqJQwr6YC2bX77oSAQTsgWI2lldXJvOcJ2?=
- =?us-ascii?Q?dlvcDF0T3dz43pHqAcMeWAIcbuRD4J0sN9Ap9n6CV4Ib3lZn9IJRSfOge5QO?=
- =?us-ascii?Q?CydvRjL1Po/CFm8OXwKOsmdPTeTbJaYXhteuDXln2Ja3Wl0L61NO7p/z47LK?=
- =?us-ascii?Q?YYiVPnIr/IFwoNiR+tRetwKMXFADvyRby0YVSD6qMVIhvrv8/4RgdlRGCciR?=
- =?us-ascii?Q?pL+YNgqARYoLz8EjtkPCLqL34SZNe1GWNY/zjWz7cw4xtrVU01+XRRZ3/CFj?=
- =?us-ascii?Q?cC+N9jo8PI2WA1n6Dey9Cn2PRvmB4l1l0T/XtLEgHxHZQfadAMShuWENTL+8?=
- =?us-ascii?Q?tPcFpql9SDO0LUcKcAEvsYEZgs1sFWSoIkst7wi+LeXVz1SJQHCLVJL4Nme0?=
- =?us-ascii?Q?/98Uk8k97b9M3VvO79XElc5fZM6400MH0rr2sQpXgbyuBiuNho6WVastEMm8?=
- =?us-ascii?Q?M2zP4+hH1C9l4MYfedq11Tu6c+WBrywuELig7ciU384Qi2DLn5tbh64lB4IM?=
- =?us-ascii?Q?OYRJd6yegvcs6geRPOFGOEAAP1GC8Wjf/KIzqM4h6blyFykdFYSoWBry4xbr?=
- =?us-ascii?Q?q9M+h5L9o/O5BkFw9N1L8FF/9WyDdlAfhU+eOD8dfNeo4h/FbjKmrOH7rbrz?=
- =?us-ascii?Q?2kg0NyYops3p5UT6PZepkMNjfe18exzaFj1LuHsF6wpofNBkgShh5q17NUF7?=
- =?us-ascii?Q?I80RpH5VJOYyrIzbsHdNK+Dk2odfmSjMBmcdRXFunO9n0BIn5kSXMgfcYjxG?=
- =?us-ascii?Q?v+vjGtK8ajXe4sVKW7wUvIE3Mx+Us4iKYGtqudDNZh8hvJhY7lmjCHYTAH2Q?=
- =?us-ascii?Q?ZDO2OI3GlD4XZSITB00doh7b4wzAnL0/u6jfrV6i+PbvjUoVPAB0WcaQd3uV?=
- =?us-ascii?Q?clUHEeaJvzfRFAoN+eoECgirqOWxN3PtPOB4l8hvPI9Wz0aoptgQXsf1/XHi?=
- =?us-ascii?Q?qONEsfnDe2OtYU+GngItHRuVi6zZVvU92ZaWPeJv2I0I2uJZN6Uo4twxP3yc?=
- =?us-ascii?Q?brEdPs1HrHfOQ8OtSjKK0vh7AfZU?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(1800799015)(36860700004)(376005); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2024 22:09:16.0330 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57c53f9b-5b5e-4a8a-df32-08dc7aabd1fa
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB4B.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8818
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,103 +70,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Verify that the property has disabled PSR
----
- tests/amdgpu/amd_psr.c | 74 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+Hi Dmitry,
 
-diff --git a/tests/amdgpu/amd_psr.c b/tests/amdgpu/amd_psr.c
-index 9da161a09..a9f4a6aa5 100644
---- a/tests/amdgpu/amd_psr.c
-+++ b/tests/amdgpu/amd_psr.c
-@@ -338,6 +338,78 @@ static void run_check_psr(data_t *data, bool test_null_crtc) {
- 	test_fini(data);
- }
- 
-+static void psr_forbidden(data_t *data)
-+{
-+	int edp_idx, ret, i, psr_state;
-+	igt_fb_t ref_fb, ref_fb2;
-+	igt_fb_t *flip_fb;
-+	igt_output_t *output;
-+
-+	test_init(data);
-+
-+	edp_idx = check_conn_type(data, DRM_MODE_CONNECTOR_eDP);
-+	igt_skip_on_f(edp_idx == -1, "no eDP connector found\n");
-+
-+	/* check if eDP support PSR1, PSR-SU.
-+	 */
-+	igt_skip_on(!psr_mode_supported(data, PSR_MODE_1) && !psr_mode_supported(data, PSR_MODE_2));
-+	for_each_connected_output(&data->display, output) {
-+
-+		if (output->config.connector->connector_type != DRM_MODE_CONNECTOR_eDP)
-+			continue;
-+		ret = clear_power_saving_policy(data->fd, output);
-+		if (ret == -ENODEV) {
-+			igt_skip("No power saving policy prop\n");
-+			return;
-+		}
-+		igt_require(ret == 0);
-+
-+		/* try to engage PSR */
-+		ret = set_panel_power_saving_policy(data->fd, output, DRM_MODE_REQUIRE_LOW_LATENCY);
-+		igt_assert_eq(ret, 0);
-+
-+		igt_create_color_fb(data->fd, data->mode->hdisplay,
-+				    data->mode->vdisplay, DRM_FORMAT_XRGB8888, 0, 1.0,
-+				    0.0, 0.0, &ref_fb);
-+		igt_create_color_fb(data->fd, data->mode->hdisplay,
-+				    data->mode->vdisplay, DRM_FORMAT_XRGB8888, 0, 0.0,
-+				    1.0, 0.0, &ref_fb2);
-+
-+		igt_plane_set_fb(data->primary, &ref_fb);
-+
-+		igt_display_commit_atomic(&data->display, DRM_MODE_ATOMIC_ALLOW_MODESET, 0);
-+
-+		for (i = 0; i < N_FLIPS; i++) {
-+			if (i % 2 == 0)
-+				flip_fb = &ref_fb2;
-+			else
-+				flip_fb = &ref_fb;
-+
-+			ret = drmModePageFlip(data->fd, output->config.crtc->crtc_id,
-+					      flip_fb->fb_id, DRM_MODE_PAGE_FLIP_EVENT, NULL);
-+			igt_require(ret == 0);
-+			kmstest_wait_for_pageflip(data->fd);
-+		}
-+
-+		/* PSR state takes some time to settle its value on static screen */
-+		sleep(PSR_SETTLE_DELAY);
-+
-+		psr_state =  igt_amd_read_psr_state(data->fd, output->name);
-+		igt_require(psr_state == PSR_STATE3);
-+
-+		igt_remove_fb(data->fd, &ref_fb);
-+		igt_remove_fb(data->fd, &ref_fb2);
-+
-+		ret = clear_power_saving_policy(data->fd, output);
-+		if (ret == -ENODEV) {
-+			igt_skip("No power saving policy prop\n");
-+			return;
-+		}
-+		igt_require(ret == 0);
-+
-+	}
-+}
-+
- static void run_check_psr_su_mpo(data_t *data, bool scaling, float scaling_ratio)
- {
- 	int edp_idx = check_conn_type(data, DRM_MODE_CONNECTOR_eDP);
-@@ -756,6 +828,8 @@ igt_main_args("", long_options, help_str, opt_handler, NULL)
- 	igt_describe("Test to validate PSR SU enablement with Visual Confirm "
- 		     "and to validate PSR SU disable/re-enable w/ primary scaling ratio 0.75");
- 	igt_subtest("psr_su_mpo_scaling_0_75") run_check_psr_su_mpo(&data, true, .75);
-+	igt_describe("Test whether PSR can be forbidden");
-+	igt_subtest("psr_forbidden") psr_forbidden(&data);
- 
- 	igt_fixture
- 	{
--- 
-2.43.0
+On 21/05/24 12:39, Vignesh Raman wrote:
+> Hi Dmitry,
+> 
+> On 20/05/24 16:32, Dmitry Baryshkov wrote:
+>> On Fri, May 17, 2024 at 02:54:59PM +0530, Vignesh Raman wrote:
+>>> With latest IGT, the tests tries to load the module and it
+>>> fails. So build the virtual GPU driver for virtio as module.
+>>
+>> Why? If the test fails on module loading (if the driver is built-in)
+>> then it's the test that needs to be fixed, not the kerenel config.
+>>
+>> It's fine as a temporal workaround, but please include a link to the
+>> patch posted to fix the issue.
+> 
+> I will recheck this issue and post a link to the fix.
 
+
+This was the issue seen with IGT commit 
+https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/7d1841317c13c19c26b6352f923b205d43742c55 
+
+
+[    4.450571] [drm:virtio_gpu_init] *ERROR* failed to find virt queues
+[    4.450962] virtio_gpu virtio0: probe with driver virtio_gpu failed 
+with error -2
+[    5.471417] [drm:virtio_gpu_init] *ERROR* failed to find virt queues
+[    5.471916] virtio_gpu virtio0: probe with driver virtio_gpu failed 
+with error -2
+
+https://gitlab.freedesktop.org/vigneshraman/linux/-/jobs/59037122
+
+With the recent uprev of IGT to 
+https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0df7b9b97f9da0e364f5ee30fe331004b8c86b56,
+this issue is not seen. So will drop this commit.
+
+Regards,
+Vignesh
+
+> 
+> Regards,
+> Vignesh
+> 
+>>
+>>>
+>>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+>>> ---
+>>>
+>>> v2:
+>>>    - No changes.
+>>>
+>>> ---
+>>>   drivers/gpu/drm/ci/build.sh       | 1 -
+>>>   drivers/gpu/drm/ci/igt_runner.sh  | 6 +++---
+>>>   drivers/gpu/drm/ci/image-tags.yml | 4 ++--
+>>>   drivers/gpu/drm/ci/test.yml       | 1 +
+>>>   drivers/gpu/drm/ci/x86_64.config  | 2 +-
+>>>   5 files changed, 7 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+>>> index a67871fdcd3f..e938074ac8e7 100644
+>>> --- a/drivers/gpu/drm/ci/build.sh
+>>> +++ b/drivers/gpu/drm/ci/build.sh
+>>> @@ -157,7 +157,6 @@ fi
+>>>   mkdir -p artifacts/install/lib
+>>>   mv install/* artifacts/install/.
+>>> -rm -rf artifacts/install/modules
+>>>   ln -s common artifacts/install/ci-common
+>>>   cp .config artifacts/${CI_JOB_NAME}_config
+>>> diff --git a/drivers/gpu/drm/ci/igt_runner.sh 
+>>> b/drivers/gpu/drm/ci/igt_runner.sh
+>>> index 20026612a9bd..55532f79fbdc 100755
+>>> --- a/drivers/gpu/drm/ci/igt_runner.sh
+>>> +++ b/drivers/gpu/drm/ci/igt_runner.sh
+>>> @@ -30,10 +30,10 @@ case "$DRIVER_NAME" in
+>>>               export IGT_FORCE_DRIVER="panfrost"
+>>>           fi
+>>>           ;;
+>>> -    amdgpu)
+>>> +    amdgpu|virtio_gpu)
+>>>           # Cannot use HWCI_KERNEL_MODULES as at that point we don't 
+>>> have the module in /lib
+>>> -        mv /install/modules/lib/modules/* /lib/modules/.
+>>> -        modprobe amdgpu
+>>> +        mv /install/modules/lib/modules/* /lib/modules/. || true
+>>> +        modprobe --first-time $DRIVER_NAME
+>>>           ;;
+>>>   esac
+>>> diff --git a/drivers/gpu/drm/ci/image-tags.yml 
+>>> b/drivers/gpu/drm/ci/image-tags.yml
+>>> index 60323ebc7304..328f5c560742 100644
+>>> --- a/drivers/gpu/drm/ci/image-tags.yml
+>>> +++ b/drivers/gpu/drm/ci/image-tags.yml
+>>> @@ -4,9 +4,9 @@ variables:
+>>>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+>>>      DEBIAN_X86_64_BUILD_IMAGE_PATH: "debian/x86_64_build"
+>>> -   DEBIAN_BUILD_TAG: "2023-10-08-config"
+>>> +   DEBIAN_BUILD_TAG: "2024-05-09-virtio"
+>>> -   KERNEL_ROOTFS_TAG: "2023-10-06-amd"
+>>> +   KERNEL_ROOTFS_TAG: "2024-05-09-virtio"
+>>>      DEBIAN_X86_64_TEST_BASE_IMAGE: "debian/x86_64_test-base"
+>>>      DEBIAN_X86_64_TEST_IMAGE_GL_PATH: "debian/x86_64_test-gl"
+>>> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+>>> index 612c9ede3507..864ac3809d84 100644
+>>> --- a/drivers/gpu/drm/ci/test.yml
+>>> +++ b/drivers/gpu/drm/ci/test.yml
+>>> @@ -350,6 +350,7 @@ virtio_gpu:none:
+>>>     script:
+>>>       - ln -sf $CI_PROJECT_DIR/install /install
+>>>       - mv install/bzImage /lava-files/bzImage
+>>> +    - mkdir -p /lib/modules
+>>
+>> Is it necessary to create it manually here?
+>>
+>>>       - mkdir -p $CI_PROJECT_DIR/results
+>>>       - ln -sf $CI_PROJECT_DIR/results /results
+>>>       - install/crosvm-runner.sh install/igt_runner.sh
+>>> diff --git a/drivers/gpu/drm/ci/x86_64.config 
+>>> b/drivers/gpu/drm/ci/x86_64.config
+>>> index 1cbd49a5b23a..78479f063e8e 100644
+>>> --- a/drivers/gpu/drm/ci/x86_64.config
+>>> +++ b/drivers/gpu/drm/ci/x86_64.config
+>>> @@ -91,7 +91,7 @@ CONFIG_KVM=y
+>>>   CONFIG_KVM_GUEST=y
+>>>   CONFIG_VIRT_DRIVERS=y
+>>>   CONFIG_VIRTIO_FS=y
+>>> -CONFIG_DRM_VIRTIO_GPU=y
+>>> +CONFIG_DRM_VIRTIO_GPU=m
+>>>   CONFIG_SERIAL_8250_CONSOLE=y
+>>>   CONFIG_VIRTIO_NET=y
+>>>   CONFIG_VIRTIO_CONSOLE=y
+>>> -- 
+>>> 2.40.1
+>>>
+>>
