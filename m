@@ -2,95 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A638CE315
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 11:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B768CE317
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 11:16:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E417410E179;
-	Fri, 24 May 2024 09:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F35D10E2F0;
+	Fri, 24 May 2024 09:16:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kroah.com header.i=@kroah.com header.b="yPwGgC1t";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="kk5B4uKn";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="OZEMrSjp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 384 seconds by postgrey-1.36 at gabe;
- Thu, 23 May 2024 16:36:27 UTC
-Received: from fhigh7-smtp.messagingengine.com
- (fhigh7-smtp.messagingengine.com [103.168.172.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEF7710ED15;
- Thu, 23 May 2024 16:36:27 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailfhigh.nyi.internal (Postfix) with ESMTP id 9C7AE1140165;
- Thu, 23 May 2024 12:30:02 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 23 May 2024 12:30:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1716481802;
- x=1716568202; bh=0rtgH1k/GZ8ZzTPeUqIg0pYzXgjqHH6dowOaWTTT9qM=; b=
- yPwGgC1tEShZcPvVD73ZEDburC7gwDZUI6P5w0RippXcGdZmfuPC0+19xSDajN/J
- hUSpE/v9/Yav44A1rqf7Lm9/V9EdMzt3ZKcKfEqCRnpW3H9QNa0T9eDmcQX//ZOF
- O1g+rBAtiKjYVjG6YbxPir6qb19gM3CS4yo7IRs6pBM89Mx9j5QqUPqmRiWE8pok
- 52oapbn6OTdLGXahKKh5m42Ud2BBO9e0H89OR2Qj5mV8X2ZDpaU6Z9lkVv8l+z54
- afEQ4oKn1VXGHZ1DZd/x5GOnmnEovpB5myAHBYZWzpxP1aOu2Y3YI6w34rm80Ro6
- IGCq6YCfmZw67A+Bz71Rxw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1716481802; x=
- 1716568202; bh=0rtgH1k/GZ8ZzTPeUqIg0pYzXgjqHH6dowOaWTTT9qM=; b=k
- k5B4uKnSVwD+M1Um13gWHRQrgwxuRbO4Whsw/CahTsgOBbL3Elt3iTHK0K2FIGvY
- 2waTFftvr5sPQ+N6XLfuGsf+7r3DDut34SKbMb4t4/bhhed08QjxS1lZhGoDhjZg
- NreQQaty7NhWW/kOkz3Fl8Zj8ivx9+crIDMg7hSEQZwuo3ynFxzMPd9YpiEOCagS
- zEUJXxY30Ka6UN0et+sh15mgZApilfPMT3YY0LiriFckMaxeunKGhuW3jeMrJ+9L
- A7sMF7yo0M7Lgvy7G64X6szNbkG/AQGWtgMJM+Gim6pdGK8vh6jrzFTBdb0BnQFx
- UjY1UrOAR30TJ7Oj8zbig==
-X-ME-Sender: <xms:Cm9PZmAnyHyu7EEuv-6VZiGgTa_5Av_wx4vPFVql-GXZIc5lXNHP6w>
- <xme:Cm9PZgggD8n_F471LAmfOwJRM7ZVFayz2iBD-2q4zpsS_y0PfjHcpExDSqvhCGwl1
- X3MQS7FMUDz5w>
-X-ME-Received: <xmr:Cm9PZpkr-KDHcHdld1oH4CHL_OmILTWoWFIATcpafaCPOHTI7sqVjTU1OpRhux3IehShXQidh-Xi9IvftnVBCWVSqiIKjZHxn1s6Sg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdeiiedguddttdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomhepifhr
- vghgucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepgf
- ekffeifeeiveekleetjedvtedvtdeludfgvdfhteejjeeiudeltdefffefvdeinecuvehl
- uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrh
- horghhrdgtohhm
-X-ME-Proxy: <xmx:Cm9PZkxyxaROPbkaVf_3wygNhFkPVnkTuQ0_DfbHeTUpkzgx_iU9-g>
- <xmx:Cm9PZrS2FQ9O9zCfsDeoSSCm_tmG0zefFUk3VXqVkrrPegs25NmsGw>
- <xmx:Cm9PZvYeO_W4J8fG7QDXiijUfok6U8oGrQ5WTXvrro8cGvF5WW5oFA>
- <xmx:Cm9PZkTEYtlaDabZcuRBdFp_Nlp8e-s6g-C9bpqevXRV9iYsn2AwRQ>
- <xmx:Cm9PZsBhPh2ixU81MJvT2Oe0gPHZ33zEbVyaomcE0qd_lA2x9K3oCelv>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 23 May 2024 12:30:01 -0400 (EDT)
-Date: Thu, 23 May 2024 18:29:58 +0200
-From: Greg KH <greg@kroah.com>
-To: Armin Wolf <W_Armin@gmx.de>
-Cc: Barry Kauler <bkauler@gmail.com>, Alex Deucher <alexdeucher@gmail.com>,
- Yifan Zhang <yifan1.zhang@amd.com>, Prike Liang <Prike.Liang@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Subject: Re: Kernel 5.15.150 black screen with AMD Raven/Picasso GPU
-Message-ID: <2024052321-revolver-timid-3056@gregkh>
-References: <CABWT5yiejGABNXicsS7u-daKnBBjK6YTDVgaQOqwGYn8P20D8Q@mail.gmail.com>
- <6580c2d4-b084-470f-80a0-aa09f1ab880d@gmx.de>
- <CABWT5yiD110qmJcRsoGVMevULAVmYpyiW4w9MtmNjp7E0rDQ8A@mail.gmail.com>
- <CABWT5yg5jG7eMiDp7QN2yhFj6983qF9zN7eHOprH4eEjwQJLBQ@mail.gmail.com>
- <c3205455-7ad2-487e-8954-52102754e154@gmx.de>
- <CADnq5_PM_FuBE4913Z4bxiMTDYtRS+VJgLW6gfDU1qnQQ=FDzA@mail.gmail.com>
- <d04105ea-0f8a-4f0b-b4f2-bc8407d37c73@gmx.de>
- <CABWT5yibc52CTUWeCWxYQb4ooi4dsbvBWxJAJCDrG+8405RPTg@mail.gmail.com>
- <7ec6faf8-d9c1-436b-98c8-473e7ff395b3@gmx.de>
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042AF10EF95;
+ Thu, 23 May 2024 17:30:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1716485453; x=1717090253; i=w_armin@gmx.de;
+ bh=ml1OIk1ADGSN0Bv7BhxFFCfB6DaSzESeZqgOlINQEik=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+ MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=OZEMrSjpRCpZNHtDzlmr0mM8Z76qBOA47wRnpJmk2+GZMBHSY6dP+E6IS3bEoTr2
+ cs+oUuQy6G/5SvY5rTw8Y4m4iXXGV6BByaWCGWeZc1RDfIyYW60ml8hUXkBJuuWbR
+ 2eN02l2UPaMHeIxBNBZdsLPCIBXuqaDAa44rc9aHt1ZvsYQQ+BwwG3DCLd9GCm5Pm
+ /uxmdfHru1oAYwc2U0wyv1Ncu0C9Ob3cogxQe9ivAHrnSuP1JrV4+STZBeD5jkpdm
+ Z9fIYxGnB6mkMUrCADchMsYPBnFJG/ZcZeXjzw5ZT1cphv1sTax4iraSdQLg3pNO+
+ /nzBoUi8mnC8osS14w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from mx-amd-b650.users.agdsn.de ([141.30.226.129]) by mail.gmx.net
+ (mrgmx105 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 1MMXQF-1rqbKE2jRP-00Jbrc; Thu, 23 May 2024 19:30:53 +0200
+From: Armin Wolf <W_Armin@gmx.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ gregkh@linuxfoundation.org, sashal@kernel.org
+Cc: stable@vger.kernel.org, bkauler@gmail.com, yifan1.zhang@amd.com,
+ Prike.Liang@amd.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH] Revert "drm/amdgpu: init iommu after amdkfd device init"
+Date: Thu, 23 May 2024 19:30:31 +0200
+Message-Id: <20240523173031.4212-1-W_Armin@gmx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7ec6faf8-d9c1-436b-98c8-473e7ff395b3@gmx.de>
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:0V9lwu73H77PqAdjA+YQOQLM2+3KzTTl9zrsb6I30uhUOPxiA1p
+ JLJxYqkyMKgStNVIay7ID6KI216ZNz3ubM8XYpSGnu66EzUxT8sXLASfudxjjdwKULpb7VC
+ +Y+O7sbY7kIa+IPrB1Bw1Am+litWkoWWTdhMITaXxEbvfBMPo2yyoGSwkhR1eikF9FRkxYj
+ COK97gWxEtIP+rgPugzrw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:MEiYmEz3rHs=;s9mwmp1yHhBowpawx+LtT7SZ6Xc
+ Ns4RuJiZEs1nwVj7+WoUd9e+kWZr+Q0o40l2gyQyVx+Pl2AhW7RyQm/C0NZkNySFBi16uJnV/
+ BemqPt4r78N5j8CraYadRR6IObRjM6HL2dE8/YKrMW+CklnchL769R8NeiXfL2iXv+rCx2r+Y
+ XTVhHXx8okDrATK3JQ3OC3H/roKRKle+RiTf1okUL6bVDnpHel803nNn1ICSfmdIWhT321T0B
+ XA2ml4Ju8vSBABVVh1Gwglv9bKYenJQO8bJmG5ysh25OG7bHVeAEdrrYSVEjESKfjZhs7Nq1n
+ sPlYgVJva9HRzdjlHxWUWpOjdoqBIYq8KiWPznMcS3Ter+lVQZxW6kUBL9lTbcilBF1R/f/J4
+ HCv6Ju9Kxt2jADK6R6SiBLGaN2H2oKuSWJLDdG0nSrWRuNt6eiJKETz9CANksjBxd9FFeXNA/
+ PodgJ2iVj4FG6GPNapewroNC/tnPTe/aMOVQ9w+eol7juR8TRHXQpkUl9bQ8hgdoIJdUGa58v
+ 9mOxJkLta5cIil4bx4+1UcJn7ECpCDU8yes3PgS77R+aCbyOdD2cJjBMEdf7tJuDstRUkcmz5
+ Uodv4dP8MOVzqailVNOE/Ho92XCj8tq6f3szvD0/vl29vB55RvqEiONdDAE1DOMpCZNKgoUq8
+ zjqbjpkAoU8KZSpZgVJrT4a09iftR3uezi6AZwgO3s5I7lpelCfl8MQ4mjS+h30cN0kT7P+8P
+ dNTWt0CfmaiIJX0Kf7BbjwEGtAD5/cYSl1pE2k7K+m0VJe5ofQkupObwyW33SuVq3VqdJVIhe
+ eX3Ipoz8hnS2ekmUIwv8izc9Jv9clbiX5TyCloDiFll7g=
 X-Mailman-Approved-At: Fri, 24 May 2024 09:16:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -106,66 +77,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 23, 2024 at 05:59:39PM +0200, Armin Wolf wrote:
-> Am 23.05.24 um 15:13 schrieb Barry Kauler:
-> 
-> > On Wed, May 22, 2024 at 12:58 AM Armin Wolf <W_Armin@gmx.de> wrote:
-> > > Am 20.05.24 um 18:22 schrieb Alex Deucher:
-> > > 
-> > > > On Sat, May 18, 2024 at 8:17 PM Armin Wolf <W_Armin@gmx.de> wrote:
-> > > > > Am 17.05.24 um 03:30 schrieb Barry Kauler:
-> > > > > 
-> > > > > > Armin, Yifan, Prike,
-> > > > > > I will top-post, so you don't have to scroll down.
-> > > > > > After identifying the commit that causes black screen with my gpu, I
-> > > > > > posted the result to you guys, on May 9.
-> > > > > > It is now May 17 and no reply.
-> > > > > > OK, I have now created a patch that reverts Yifan's commit, compiled
-> > > > > > 5.15.158, and my gpu now works.
-> > > > > > Note, the radeon module is not loaded, so it is not a factor.
-> > > > > > I'm not a kernel developer. I have identified the culprit and it is up
-> > > > > > to you guys to fix it, Yifan especially, as you are the person who has
-> > > > > > created the regression.
-> > > > > > I will attach my patch.
-> > > > > > Regards,
-> > > > > > Barry Kauler
-> > > > > Hi,
-> > > > > 
-> > > > > sorry for not responding to your findings. I normally do not work with GPU drivers,
-> > > > > so i hoped one of the amdgpu developers would handle this.
-> > > > > 
-> > > > > I CCeddri-devel@lists.freedesktop.org  and amd-gfx@lists.freedesktop.org so that other
-> > > > > amdgpu developers hear from this issue.
-> > > > > 
-> > > > > Thanks you for you persistence in finding the offending commit.
-> > > > Likely this patch should not have been ported to 5.15 in the first
-> > > > place.  The IOMMU requirements have been dropped from the driver for
-> > > > the last few kernel versions so it is no longer relevant on newer
-> > > > kernels.
-> > > > 
-> > > > Alex
-> > > Barry, can you verify that the latest upstream kernel works on you device?
-> > > If yes, then the commit itself is ok and just the backporting itself was wrong.
-> > > 
-> > > Thanks,
-> > > Armin Wolf
-> > Armin,
-> > The unmodified 6.8.1 kernel works ok.
-> > I presume that patch was applied long before 6.8.1 got released and
-> > only got backported to 5.15.x recently.
-> > 
-> > Regards,
-> > Barry
-> > 
-> Great to hear, that means we only have to revert commit 56b522f46681 ("drm/amdgpu: init iommu after amdkfd device init")
-> from the 5.15.y series.
-> 
-> I CCed the stable mailing list so that they can revert the offending commit.
+This reverts commit 56b522f4668167096a50c39446d6263c96219f5f.
 
-Please submit the patch/revert that you wish to have applied to the tree
-so we can have the correct information in it.  I have no idea what to do
-here with this deep response thread as-is, sorry.
+A user reported that this commit breaks the integrated gpu of his
+notebook, causing a black screen. He was able to bisect the problematic
+commit and verified that by reverting it the notebook works again.
+He also confirmed that kernel 6.8.1 also works on his device, so the
+upstream commit itself seems to be ok.
 
-thanks,
+An amdgpu developer (Alex Deucher) confirmed that this patch should
+have never been ported to 5.15 in the first place, so revert this
+commit from the 5.15 stable series.
 
-greg k-h
+Reported-by: Barry Kauler <bkauler@gmail.com>
+Signed-off-by: Armin Wolf <W_Armin@gmx.de>
+=2D--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_device.c
+index 222a1d9ecf16..5f6c32ec674d 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2487,6 +2487,10 @@ static int amdgpu_device_ip_init(struct amdgpu_devi=
+ce *adev)
+ 	if (r)
+ 		goto init_failed;
+
++	r =3D amdgpu_amdkfd_resume_iommu(adev);
++	if (r)
++		goto init_failed;
++
+ 	r =3D amdgpu_device_ip_hw_init_phase1(adev);
+ 	if (r)
+ 		goto init_failed;
+@@ -2525,10 +2529,6 @@ static int amdgpu_device_ip_init(struct amdgpu_devi=
+ce *adev)
+ 	if (!adev->gmc.xgmi.pending_reset)
+ 		amdgpu_amdkfd_device_init(adev);
+
+-	r =3D amdgpu_amdkfd_resume_iommu(adev);
+-	if (r)
+-		goto init_failed;
+-
+ 	amdgpu_fru_get_product_info(adev);
+
+ init_failed:
+=2D-
+2.39.2
+
