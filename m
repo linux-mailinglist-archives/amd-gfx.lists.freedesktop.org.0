@@ -2,79 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A33F8CD81F
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 18:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F538CD8B9
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 May 2024 18:54:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D74910EE5F;
-	Thu, 23 May 2024 16:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 482C310E380;
+	Thu, 23 May 2024 16:54:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="M5lX2l1z";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hJvn8G4a";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9217610E446;
- Thu, 23 May 2024 15:59:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1716479980; x=1717084780; i=w_armin@gmx.de;
- bh=5HlhaVisKVamffaEv++/huqUeNpWkHnMVrAo9Vu5FM4=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
- References:From:In-Reply-To:Content-Type:
- Content-Transfer-Encoding:cc:content-transfer-encoding:
- content-type:date:from:message-id:mime-version:reply-to:subject:
- to;
- b=M5lX2l1zdQ0DVY4ZX3AYBb7/XGrnLWCkWD++L+5Mh364U+dAwszes5rBWAHhb0LU
- hh8iqZuoX4RQwFOBLADau9g4MtofAlxBYwTI5wVmHD2WEPfUvYSmqLRoryxhBRfvp
- ZJvkPFEyOFUh9/RSobysd7vZNP53MFvmVXmxMOVHhrt8CmEGKMsjEjZw5YsQKFFiw
- +dmYdHqmCCSGDGqFhnjq5u/q+nmhe6/jghzIoTtMocr+hl9JIqt+mX+CccpohqHbA
- qkPq5GVtxmIT3xLMQVgCvbzDfThXmbWbdc0aoaQTR6s2bQsz2l7ljvwmbnowKIJNM
- Qa3Y9nVPA+QTP2SB4A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M26r3-1s7hsQ434b-002WSG; Thu, 23
- May 2024 17:59:40 +0200
-Message-ID: <7ec6faf8-d9c1-436b-98c8-473e7ff395b3@gmx.de>
-Date: Thu, 23 May 2024 17:59:39 +0200
-MIME-Version: 1.0
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2051.outbound.protection.outlook.com [40.107.243.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F027D10E380
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 May 2024 16:54:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lKJo5gLbZY6H5NnhD/hLHFquv2b4oZ1NunPht6Etyu/kwXC/JwTeeVcXJULpeEMo0AIMXv0T2D1/56vUkvwNbPha2WxeqaZdjtDNK7YI3Er+Ft+db86aErJ4Zw6uAlgq+HFcAVp1OILpNMehWrVNdwqHMPtq/yIBPkmtjIdMS3crHu3lRMdos/HmTCzARwkx9PMgKlV4xAqkzZxNnHbpvGywJJ/6p8d9trCnkF9stI9tbKyvuIIWq3+x/lKoKKEq+MuVigUDF6+KvtIdpJfLkwNEBElZcXJqeIIeojCph0tlTgT0LvUXaS6+wZm+dm55DsPrB8KYVQ43eZOvFXpabA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vtZD0TyRMimD9GRVIw7Y8DF40k5w43ZrZhKBwtcmwV4=;
+ b=iXbW6oldNtDpylZkCgme9UbY7CcYxft73TQE4kKqKBvdVNTyUftP9flnvGlQ9y+EabDk0zTOUIhv/cOD5HqhCNgy8IYsuD5Gt+QlLgIZ8bUAZs+1XN255S/S8D1HRJ9ycWfcPU6Aw/q6NfW8KKVYFP2FCky7qoa3CQm8zeWwU69yU1HsWTS+dKiAapu0z7OA9iRuIG7GoBmHWYeu/xradjxhKgpPcALKC+bYGBokufBOC6D7bQIFNbov38dEmJD4XgQiUvp3J7VP0y2DmzDZANsY8G6BcJOG/CSNK6jtXk0O712bpB8IK/Jcw0S1uJ/ADrngai44JvsqibNmYrH2xQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vtZD0TyRMimD9GRVIw7Y8DF40k5w43ZrZhKBwtcmwV4=;
+ b=hJvn8G4aSIa79rndlfvI2KPI6WobLQwWi+oX/wHzZiKc7zZ7/xvRTO+R4CMPfG3oM9maffSKJOLaFMDq3N4MmulOjXx5phY/EhGrLMQFziESCmZ3Jg+H6B3ormKm3mHQZw0Erq4SbroGFzF/qv6mQ91s/pkYzEUz5myq+t/U4Hk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB7210.namprd12.prod.outlook.com (2603:10b6:510:205::17)
+ by DS0PR12MB7827.namprd12.prod.outlook.com (2603:10b6:8:146::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Thu, 23 May
+ 2024 16:54:47 +0000
+Received: from PH7PR12MB7210.namprd12.prod.outlook.com
+ ([fe80::54c:74b2:5935:6041]) by PH7PR12MB7210.namprd12.prod.outlook.com
+ ([fe80::54c:74b2:5935:6041%4]) with mapi id 15.20.7611.016; Thu, 23 May 2024
+ 16:54:46 +0000
+Message-ID: <47f0ac94-d6cb-4632-9960-0f94832857be@amd.com>
+Date: Thu, 23 May 2024 12:54:43 -0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: Kernel 5.15.150 black screen with AMD Raven/Picasso GPU
-To: Barry Kauler <bkauler@gmail.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, Yifan Zhang <yifan1.zhang@amd.com>, 
- Prike Liang <Prike.Liang@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-References: <CABWT5yiejGABNXicsS7u-daKnBBjK6YTDVgaQOqwGYn8P20D8Q@mail.gmail.com>
- <6580c2d4-b084-470f-80a0-aa09f1ab880d@gmx.de>
- <CABWT5yiD110qmJcRsoGVMevULAVmYpyiW4w9MtmNjp7E0rDQ8A@mail.gmail.com>
- <CABWT5yg5jG7eMiDp7QN2yhFj6983qF9zN7eHOprH4eEjwQJLBQ@mail.gmail.com>
- <c3205455-7ad2-487e-8954-52102754e154@gmx.de>
- <CADnq5_PM_FuBE4913Z4bxiMTDYtRS+VJgLW6gfDU1qnQQ=FDzA@mail.gmail.com>
- <d04105ea-0f8a-4f0b-b4f2-bc8407d37c73@gmx.de>
- <CABWT5yibc52CTUWeCWxYQb4ooi4dsbvBWxJAJCDrG+8405RPTg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: drop some kernel messages in VCN code
+To: "Dong, Ruijing" <Ruijing.Dong@amd.com>, "Wu, David" <David.Wu3@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Liu, Leo" <Leo.Liu@amd.com>, "Jiang, Sonny" <Sonny.Jiang@amd.com>
+References: <20240523150439.3274992-1-David.Wu3@amd.com>
+ <SJ1PR12MB6194DBE65CF492DA12ED5BE795F42@SJ1PR12MB6194.namprd12.prod.outlook.com>
 Content-Language: en-US
-From: Armin Wolf <W_Armin@gmx.de>
-In-Reply-To: <CABWT5yibc52CTUWeCWxYQb4ooi4dsbvBWxJAJCDrG+8405RPTg@mail.gmail.com>
+From: David Wu <davidwu2@amd.com>
+In-Reply-To: <SJ1PR12MB6194DBE65CF492DA12ED5BE795F42@SJ1PR12MB6194.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:CVQLpDXT0By1e1CKa7ZKRSdTDbToVGPsmA1swDIrsMgbDvIgOnm
- A8IorigLyklbt88BuOCoEUW44dXLQsEj8Q7WdnQEs2oT+Joq7xFk+z7169OAlqkSnkZj1v5
- hu8Uy3uIgleKNiwF+mX7vVLn9EvAQLLakcvs3fp9gZtgJkXkj3N4Yv/+S/xmxDTDfm3Wvp5
- McLAPWg3QLQoKaYeRmCrQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:LyOt50Zb6uE=;Y0lrtnAFTLe7AUTa5lDL3W/j1q3
- mfdL9yhqEDHyrUhmnsCYERnAKW51ZY/wR3qX3a9rP7ab5MoQGuY3stPuHs/7mTalTwUmKhmXm
- hRR93mb1Z/ckWsUHzc1vxDrVs8ySbgBGSDDOZal1+8Uo9uaZHztkh07YF9NKiwr5lKBxd1rI8
- te3735+nKLugtUFxpveTLVoM9Wh2IzKU+g9TI0iyi1I63s2ngw2EOLFQ9K3JMt/k5TA3waSmc
- 8n6vzOVxs0u7mZ7kuvbVmusj9W9AoOVMBpZkyo7ayEa33Vt/aIUSdDPwIO/tjiaL2mvp5DL8r
- G7+g/gY/Dj+3wkxhMMY3/XOk0JUjBL+WajYYc0VbVvfF0VzLSecZKpRbyzRqdxBGAYhsfDd4+
- HxIby+76l7QjyAW7aca9MBvnOvAt/rnOyeawdV3FxHfqva3v730F0cg3p0Hd+sTH/53fU9PsQ
- YJVUDHgamFB1NJMcS3UXN23r4x0vsWUv3pFX0HfNLO6mgRAdu+8vksRQ54kAPwGfKUbz+fRiE
- hLaL/nHbMMAmthPKzx7oVPkxbmuXiXA15EEsmyyc0C/u438Di/0zW9c0PAcrpfQnFsm5foKw0
- hbJProOvIpIXpyeGkMiUedtnLkVib6px8D5I7QY5zNDpAgfJ1hNW+l0bU4pZu0CKkAh9VqhEE
- TKS9QQIUpTYo0MlCsiITqt6NwORlWB7fwKmGn9Lr6drqZcNnHNEHsX1S8yKgTqvOLTwVw604x
- JLrvmtmr0S79J9yIO29K8AKfhVD5D/yJhMlFXRA6Yj2E+pTLmhQi7gxk8Rawk/TJqn2tjfCj5
- J+qII7Q5fQ4DoBnKK/hIYxoO5tGF2P0ur+3cGq01bq9d8=
-X-Mailman-Approved-At: Thu, 23 May 2024 16:10:45 +0000
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT3PR01CA0048.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:82::32) To PH7PR12MB7210.namprd12.prod.outlook.com
+ (2603:10b6:510:205::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB7210:EE_|DS0PR12MB7827:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32c6af47-7c9d-4d23-d1a9-08dc7b490d1e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bFFJNFAxKzUyb3NTRzhYcFozZys1dWIzYUN4ZnplQVBKSDdWd0VBVm11bXFP?=
+ =?utf-8?B?Yi9maXBBMUQ2eTJhR2FROUJVcnFKSnBCbWlvVlNJa05BNzJnTkxsNC9GRFBr?=
+ =?utf-8?B?enE0NlJtZzFRd2V4WnFkR0gxZjJYMFZhTzVyNjRUY2lUOEhZME02VE56YnVK?=
+ =?utf-8?B?TWQ3Q00wUzdWNGplVVZOaGprSWFJa2NjQkN3ZGdmek0rOWgxcTRWOHdVUzhO?=
+ =?utf-8?B?Qllac2pWdnRQbFJnWjlIT1hKVlZKWmU3Y3g4V2QrenNXcXIwcktQWEozK0hr?=
+ =?utf-8?B?bmhrVkJRT0oycEQzTHArRW9Cc05LTFFoNERTZW03eHpMdmNRclh1WEhaTmdn?=
+ =?utf-8?B?U255bjBLdUZ3YmtoSUlOeGhXa3c0OXJuQUhFYnJXM0hRaUpoUmgyM0pRYXkx?=
+ =?utf-8?B?eEpEc3VZdEg3NHpkck5QZm9ibUgzd3pmZ09Wb1lBRE1yc0dpbFAyY2IwRlB2?=
+ =?utf-8?B?NG9yQko5RlpwWmtLU2M0K3ZRSVgrMk1HcjZUSTBWdmZxci9aWTNkM3Q3VTBZ?=
+ =?utf-8?B?amgrKzNLNGtnNWF1RExHMHZlYUp6eG85K1VqTWt0bHdsd3VTOVhCWXM3TXJU?=
+ =?utf-8?B?b1ZQTSt1THRzbjA4ZDJaTE9VSUJQQ1JCMDlHYUVHQjZkOHVaMjVKNnVjdXFM?=
+ =?utf-8?B?RGNZQXFTZDdiWVVzSVhRcUp2YjB6Mmt3cVQ0SWltUGtMSXg0NkNyRHJFQWhv?=
+ =?utf-8?B?SEpDWDBjRDBsWG9pOE12VEUxQ05odk51QVdtOHZqYWZVM01GS25BL21UWENP?=
+ =?utf-8?B?c3BUSVdNc2lWczB0bUhBZGtXdFpkbG5hTnFPajNVRnVNKzVSaUErdGNmTnU0?=
+ =?utf-8?B?ZjYxMWJxNWhEcEp6aWRvWTJLd25wNVNoZlZTQTkyU0hmcGxNWm0zblZpZ3RE?=
+ =?utf-8?B?d2xFVjBlcGhRRDRPNHZFNTZ5ZUdsS0wrVW5xb2JsWk1vOGQra1IzUkpENlJt?=
+ =?utf-8?B?eWoyaFlhYW5jTEY3NmJWcVlUYUR6STkzam1nbEpXM3BPZWZuTFZrOENibFNq?=
+ =?utf-8?B?STZnZC9CeWF3YVJ2SjE0NHVHTFluNThYQWhmNE10M1pQZWdra1hOelhXT2xP?=
+ =?utf-8?B?MjlZKzU0RFUrSklGVVd3TGlBRzRSQXBrN09JaE5VV0tOb0ZMK3ZDQ2k2bitC?=
+ =?utf-8?B?ZzJPcXlVTTh3T1lkejN1dkw2aHBISy9EaVVZUjlwbm1EQXZxRHhpYUpvS3Fs?=
+ =?utf-8?B?dWtCMkk0SmViSWlQbGxMWWFHdUFxTHdhN0NuQTJUaUdoZnJEemYxZjNnME0w?=
+ =?utf-8?B?c1psNS9zRkg2TUNxb1ArQkNWT2k3amtHWFJtS0NpL0s2eSt3NytBcGZJcXlN?=
+ =?utf-8?B?a2E2aGtyUmVRUGU1aXJMOTd4Q0RjckY4NlROSExtREpCY2lJRVJXdjFwejFp?=
+ =?utf-8?B?NEthb3k2MXdDalNxUTBEVlA1Zi9IOW9kdi8vck41Qi9wQm0wWTdXMlpqbkY4?=
+ =?utf-8?B?R2pnR0drVGhkNjY4WTQwMVFCdlVMN29JeHJKUVJwYS82Sm9Iblk2aDNPSnV2?=
+ =?utf-8?B?Ykp2N0FySVdoUzBEdEZkZm5vSXdxaW80MW4vRU9XRHUzZ2pGL3ExU1poUVFr?=
+ =?utf-8?B?akZ3TXVENCtBUWZmai9NTCs2UFNaeWFEQ2VqZHljMGdMNm5XTmltRjNsQzJD?=
+ =?utf-8?B?NkFhTUk4STdNMXBHMElVajAzS28wYjJlQkVzVFFoWUFuQ3NNSnZFZ0V6OWM5?=
+ =?utf-8?B?SFJSY1h0dVUwa2NMbVA0NFRobGhGVzBlUy9uaXlLNDh0SHZSVGxUMGlnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB7210.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WHdwRHg3OVI2R2grOSs3N0llRGRTOEZJZWxUV0loL29Xa1NxWUpxUzlzNFFH?=
+ =?utf-8?B?cTRjdm5rQ1ZGTGlTMm13SXVrMTloVnRWQkxMWlNNSTJ6UGNkUlYvclN6bHc2?=
+ =?utf-8?B?Mk1YZDF2S2JEYVEyUm41SlV6ZDNlbFNRRzhZeWx5MWFHNDZhQnRmaVdWVysz?=
+ =?utf-8?B?c3RRTlcwNWw1c1NqUjdNU2RMbkg0c3owa1JvcWV4c2tYWjhxck1ETkh0UE9T?=
+ =?utf-8?B?S3k2akRyb0NKK1Z5SkNUcGZEaG80MFZaN2ZIVno1b3JYUWpHTnZ6cTR1Tk96?=
+ =?utf-8?B?bjFVLzZNOWE0MWFoelYwN0VyaE5zZE5TKzNpNFU2eEV1VE9ENUtYYzNld1ho?=
+ =?utf-8?B?dmE4aytTbW02L3JVZHBzc0dmaWwzK05PT2RjNllKRnViT0NMSWNCcHoydWNR?=
+ =?utf-8?B?c3MzWTQwK2d2dXVMdm9zc0x5dUJjMnFhUXNMazB6NjBPbnVTSy81WFNidXFz?=
+ =?utf-8?B?UjUza0lmUXVtZFJTN2NMdVNCSzhWZVZoRFFjWlNEWkljSWcrVlFVNzkwcXRH?=
+ =?utf-8?B?OGdhRnEwZXh0REZyeDZSaXZtTFVxSWY0Y1QyYnMwekFjTnBzc28xVk9jcEFu?=
+ =?utf-8?B?SGx3dUd5ZE5jcVlySlhESGRmZDNLL21hTm4vbGZBNTR0b055OERnNGE2c2xC?=
+ =?utf-8?B?amMwcDdDdW00bGRkbExQUXdadlNpYVMxNjBSdjBpaFBrMGl0MUlNVVZRdDg4?=
+ =?utf-8?B?aERlUmk2cEUxQWEzMjU0L3VOYjRIdHovaHZCOXppYkk1NE5XMGJwWlllS1oy?=
+ =?utf-8?B?SS9VYmhmVytyOVZrYldlMWs0M0ZGd1JtYnE0d3FMR0h3VUE2ODVyZW8vK3hV?=
+ =?utf-8?B?VFZhcDZSWkI3Q05wak42TExPUTByYmR0dFora2hlWlc4TVA0TDRiSGYzSTRm?=
+ =?utf-8?B?MjVjR1JFUWZOTEZkYm9ObkZoRlFZRXFxUGxEVHpBdkhVcWI4c1M2U0pOTEd2?=
+ =?utf-8?B?UnVhaXlveGZWZ3NQU1llUUZpaDlGZGRuL2JZdXI0UVZyLy9yTTVnK1pLdjFZ?=
+ =?utf-8?B?SFZIOGFkNUk3cTRvWE93TzBpaU5kZlI1RlJvTE5vbk9lQlFFK3QycExJOFdx?=
+ =?utf-8?B?SGJQYTE4ZENNUWxiZWRhUTgrQjNJcFNHK1VzMHpING1YZE5qc1lCKy9FZTFX?=
+ =?utf-8?B?dmFva0VPTU9wTDMycGk2aktMdEE3cmN1NnBpLy80citXVWhGTFBpT1Y1bmhT?=
+ =?utf-8?B?a0x2cTN3RC9UUFpDUGV4TW50Z1IwY2FydlIyZUNFaU1vU0RLVWt5U2JNNEtE?=
+ =?utf-8?B?ZXBuTTZUQWw0VXh4SHo0NnFZU0tzc0VhRXhXN1NPVVJSdTFQMFAwelRGcFM2?=
+ =?utf-8?B?cEFoQW53NGd4c25zNUVzSE5MRW1nYkpiaFRjMGp6clBFMUI1U0kzZjFmWlBo?=
+ =?utf-8?B?UzczdXArNmNTWHJ4VXRKYkVxTlM3M09kVCsrVVppdE45eE83RGVIMjVqY0JB?=
+ =?utf-8?B?dWJIRTRRbk1KY3hldHB6ZHFHYS9NQW5ZWVBRTDhob2FZUVAwdXVqKzJEU0VM?=
+ =?utf-8?B?OEwrMDFnSVp3VWNnOGp4QXA1dXhqQkRkNHhZQWpweW8vTE1RU29jTG1CeWZj?=
+ =?utf-8?B?UnorQnZhYVF1WXNWWkJRdTA1dEsyR2l6aTR2bEFSY2xtSU5Sb2NFZDBXSkE5?=
+ =?utf-8?B?M01kZzAzWWkxTWIvNmtROStweU16QURsRWZCWU5SWHpYQlVWVW8vaFJhUHNL?=
+ =?utf-8?B?QWVIWWZyalJmWllERGZWMEdDVU1BeEoydlJ6YTN5dUUrb2lwVWMrOEZLcnFv?=
+ =?utf-8?B?RjFiSHp0ZXByd2NzcUtQUHRWYXJRMmFuVUF2dkQ0YlNuQnBSa3ZvTW9rTTFr?=
+ =?utf-8?B?UkRXRGlPUWZTeWRpajJPRE9sWlpzSGZqemtkeEVSMnJicTNWMy8xMXUwRmp1?=
+ =?utf-8?B?NCttcHh0VktnMUpKUmR5ZUV0ZWhPSDhRUVVvTWg1MXdRRTA4K09xcjF5QW95?=
+ =?utf-8?B?bXVaN0VJUnp5bXFSYXFFNGdHdEpsRWJWOExpTm92WkFyTURxa3ZRRjVGT1lO?=
+ =?utf-8?B?dXp5c2ZLT2xnczYzcXpiUzloRFJOZlJ3Q2pWY1VCM05uQWhjMXNsdkVISlFv?=
+ =?utf-8?B?V25qWjlVVk1GN0VDNnpianN4NER6a2pPc29wVDBZWHlTVWxxOVVjL2pNcEov?=
+ =?utf-8?Q?WnFhV4pIarhCC0SXKCoYQ/sfP?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32c6af47-7c9d-4d23-d1a9-08dc7b490d1e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7210.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2024 16:54:46.4017 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 29XPIhILzoc59Zk7/6h6L2eJvHcBpCUHIgfQwmgO738Ysuk9hj7HJQk4OpaMiKmVA+yih36LrEYN2vA0lV/LyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7827
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,194 +160,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 23.05.24 um 15:13 schrieb Barry Kauler:
+please see in line.
 
-> On Wed, May 22, 2024 at 12:58=E2=80=AFAM Armin Wolf <W_Armin@gmx.de> wro=
-te:
->> Am 20.05.24 um 18:22 schrieb Alex Deucher:
->>
->>> On Sat, May 18, 2024 at 8:17=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wr=
-ote:
->>>> Am 17.05.24 um 03:30 schrieb Barry Kauler:
->>>>
->>>>> Armin, Yifan, Prike,
->>>>> I will top-post, so you don't have to scroll down.
->>>>> After identifying the commit that causes black screen with my gpu, I
->>>>> posted the result to you guys, on May 9.
->>>>> It is now May 17 and no reply.
->>>>> OK, I have now created a patch that reverts Yifan's commit, compiled
->>>>> 5.15.158, and my gpu now works.
->>>>> Note, the radeon module is not loaded, so it is not a factor.
->>>>> I'm not a kernel developer. I have identified the culprit and it is =
-up
->>>>> to you guys to fix it, Yifan especially, as you are the person who h=
-as
->>>>> created the regression.
->>>>> I will attach my patch.
->>>>> Regards,
->>>>> Barry Kauler
->>>> Hi,
->>>>
->>>> sorry for not responding to your findings. I normally do not work wit=
-h GPU drivers,
->>>> so i hoped one of the amdgpu developers would handle this.
->>>>
->>>> I CCeddri-devel@lists.freedesktop.org  and amd-gfx@lists.freedesktop.=
-org so that other
->>>> amdgpu developers hear from this issue.
->>>>
->>>> Thanks you for you persistence in finding the offending commit.
->>> Likely this patch should not have been ported to 5.15 in the first
->>> place.  The IOMMU requirements have been dropped from the driver for
->>> the last few kernel versions so it is no longer relevant on newer
->>> kernels.
->>>
->>> Alex
->> Barry, can you verify that the latest upstream kernel works on you devi=
-ce?
->> If yes, then the commit itself is ok and just the backporting itself wa=
-s wrong.
->>
->> Thanks,
->> Armin Wolf
-> Armin,
-> The unmodified 6.8.1 kernel works ok.
-> I presume that patch was applied long before 6.8.1 got released and
-> only got backported to 5.15.x recently.
+On 2024-05-23 12:02, Dong, Ruijing wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 >
-> Regards,
-> Barry
+> Please see my question inline below.
 >
-Great to hear, that means we only have to revert commit 56b522f46681 ("drm=
-/amdgpu: init iommu after amdkfd device init")
-from the 5.15.y series.
+> Thanks,
+> Ruijing
+>
+> -----Original Message-----
+> From: Wu, David <David.Wu3@amd.com>
+> Sent: Thursday, May 23, 2024 11:05 AM
+> To: amd-gfx@lists.freedesktop.org; Koenig, Christian <Christian.Koenig@amd.com>
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Liu, Leo <Leo.Liu@amd.com>; Jiang, Sonny <Sonny.Jiang@amd.com>; Dong, Ruijing <Ruijing.Dong@amd.com>
+> Subject: [PATCH] drm/amdgpu: drop some kernel messages in VCN code
+>
+> We have messages when the VCN fails to initialize and there is no need to report on success.
+> Also PSP loading FWs is the default for production.
+>
+> Signed-off-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c  |  1 -  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c |  3 ---  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c  | 10 +---------
+>   3 files changed, 1 insertion(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> index b89605b400c0..5e2b7c340724 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> @@ -1078,7 +1078,6 @@ void amdgpu_vcn_setup_ucode(struct amdgpu_device *adev)
+>                              IP_VERSION(4, 0, 3))
+>                                  break;
+>                  }
+> -               dev_info(adev->dev, "Will use PSP to load VCN firmware\n");
+>          }
+>   }
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
+> index 64c856bfe0cb..68ef29bc70e2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c
+> @@ -145,8 +145,6 @@ static int jpeg_v5_0_0_hw_init(void *handle)
+>          if (r)
+>                  return r;
+>
+> -       DRM_DEV_INFO(adev->dev, "JPEG decode initialized successfully.\n");
+> -
+>          return 0;
+>   }
+>
+> @@ -549,7 +547,6 @@ static const struct amdgpu_ring_funcs jpeg_v5_0_0_dec_ring_vm_funcs = {  static void jpeg_v5_0_0_set_dec_ring_funcs(struct amdgpu_device *adev)  {
+>          adev->jpeg.inst->ring_dec->funcs = &jpeg_v5_0_0_dec_ring_vm_funcs;
+> -       DRM_DEV_INFO(adev->dev, "JPEG decode is enabled in VM mode\n");
+>   }
+>
+>   static const struct amdgpu_irq_src_funcs jpeg_v5_0_0_irq_funcs = { diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
+> index 36d4ca645c56..070b56610c7d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
+> @@ -200,16 +200,10 @@ static int vcn_v5_0_0_hw_init(void *handle)
+>
+>                  r = amdgpu_ring_test_helper(ring);
+>                  if (r)
+> -                       goto done;
+> +                       return r;
+>          }
+>   [Ruijing] Are we assuming the hw init process always be successful?
 
-I CCed the stable mailing list so that they can revert the offending commi=
-t.
+No - it could fail with errors and in this case the top level will 
+report error. Otherwise it will succeed(and no need to report successful 
+message).
 
-Thanks,
-Armin Wolf
+David
 
->>>> Armin Wolf
->>>>
->>>>> On Thu, May 9, 2024 at 4:08=E2=80=AFPM Barry Kauler <bkauler@gmail.c=
-om> wrote:
->>>>>> On Fri, May 3, 2024 at 9:03=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> =
-wrote:
->>>>>>>> ...
->>>>>>>> # lspci | grep VGA
->>>>>>>> 05:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
->>>>>>>> [AMD/ATI] Picasso/Raven 2 [Radeon Vega Series / Radeon Vega Mobil=
-e
->>>>>>>> Series] (rev c2)
->>>>>>>> 05:00.7 Non-VGA unclassified device: Advanced Micro Devices, Inc.
->>>>>>>> [AMD] Raven/Raven2/Renoir Non-Sensor Fusion Hub KMDF driver
->>>>>>>>
->>>>>>>> # lspci -n -k
->>>>>>>> ...
->>>>>>>> 05:00.0 0300: 1002:15d8 (rev c2)
->>>>>>>> Subsystem: 1025:1456
->>>>>>>> Kernel driver in use: amdgpu
->>>>>>>> Kernel modules: amdgpu
->>>>>>>> ...
->>>>>>> thanks for informing us of this regression. Since there are four c=
-ommits affecting
->>>>>>> amdgpu in 5.15.150, i suggest that you use "git bisect" to find th=
-e faulty commits,
->>>>>>> see https://docs.kernel.org/admin-guide/bug-bisect.html for detail=
-s.
->>>>>>>
->>>>>>> I think you can speed up the bisecting process by limiting yoursel=
-f to the AMD DRM
->>>>>>> driver directory with "git bisect start -- drivers/gpu/drm/amd", t=
-ake a look at the
->>>>>>> man page of "git bisect" for details.
->>>>>>>
->>>>>>> Thanks,
->>>>>>> Armin Wolf
->>>>>> Armin,
->>>>>> Thanks for the advice. I am unfamiliar with git on the commandline.
->>>>>> Previously only used SmartGit gui.
->>>>>> EasyOS requires aufs patch, and for a few days tried to figure out =
-how
->>>>>> to use that with git bisect, then gave up. Changed to testing with =
-my
->>>>>> "QV" distro, which is more conventional, doesn't need any kernel
->>>>>> patches. Managed to get it down to one commit. Here are the steps I
->>>>>> followed:
->>>>>>
->>>>>> # git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/li=
-nux-stable.git
->>>>>> # cd linux-stable
->>>>>> # git tag -l | grep '5\.15\.150'
->>>>>> v5.15.150
->>>>>> # git checkout -b my5.15.150 v5.15.150
->>>>>> Updating files: 100% (65776/65776), done.
->>>>>> Switched to a new branch 'my5.15.150'
->>>>>>
->>>>>> Copied in my .config then...
->>>>>>
->>>>>> # make menuconfig
->>>>>> # git bisect start -- drivers/gpu/drm/amd
->>>>>> # git bisect bad
->>>>>> # git bisect good v5.15.149
->>>>>> Bisecting: 1 revision left to test after this (roughly 1 step)
->>>>>> [b9a61ee2bb2704e42516e3da962f99dfa98f3b20] drm/amdgpu: reset gpu fo=
-r
->>>>>> s3 suspend abort case
->>>>>> # make
->>>>>> # rm -rf /boot2
->>>>>> # mkdir -p /boot2/lib/modules
->>>>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_inst=
-all
->>>>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
->>>>>> # sync
->>>>>> ...QV on Acer laptop, with amdgpu, works!
->>>>>> # git bisect good
->>>>>> Bisecting: 0 revisions left to test after this (roughly 0 steps)
->>>>>> [56b522f4668167096a50c39446d6263c96219f5f] drm/amdgpu: init iommu
->>>>>> after amdkfd device init
->>>>>> # make
->>>>>> # mkdir -p /boot2/lib/modules
->>>>>> # make INSTALL_MOD_STRIP=3D1 INSTALL_MOD_PATH=3D/boot2 modules_inst=
-all
->>>>>> # cp arch/x86/boot/bzImage /boot2/vmlinuz
->>>>>> # sync
->>>>>> ...QV on Acer laptop, black screen!
->>>>>>
->>>>>> # git bisect bad
->>>>>> 56b522f4668167096a50c39446d6263c96219f5f is the first bad commit
->>>>>> commit 56b522f4668167096a50c39446d6263c96219f5f
->>>>>> Author: Yifan Zhang <yifan1.zhang@amd.com>
->>>>>> Date:   Tue Sep 28 15:42:35 2021 +0800
->>>>>>
->>>>>>        drm/amdgpu: init iommu after amdkfd device init
->>>>>>
->>>>>>        [ Upstream commit 286826d7d976e7646b09149d9bc2899d74ff962b ]
->>>>>>
->>>>>>        This patch is to fix clinfo failure in Raven/Picasso:
->>>>>>
->>>>>>        Number of platforms: 1
->>>>>>          Platform Profile: FULL_PROFILE
->>>>>>          Platform Version: OpenCL 2.2 AMD-APP (3364.0)
->>>>>>          Platform Name: AMD Accelerated Parallel Processing
->>>>>>          Platform Vendor: Advanced Micro Devices, Inc.
->>>>>>          Platform Extensions: cl_khr_icd cl_amd_event_callback
->>>>>>
->>>>>>          Platform Name: AMD Accelerated Parallel Processing Number =
-of devices: 0
->>>>>>
->>>>>>        Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
->>>>>>        Reviewed-by: James Zhu <James.Zhu@amd.com>
->>>>>>        Tested-by: James Zhu <James.Zhu@amd.com>
->>>>>>        Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>>>        Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->>>>>>        Signed-off-by: Sasha Levin <sashal@kernel.org>
->>>>>>
->>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++----
->>>>>>     1 file changed, 4 insertions(+), 4 deletions(-)
->>>>>>
->>>>>> Anything else I should do, to identify what in this commit is the
->>>>>> likely culprit?
->>>>>> Regards,
->>>>>> Barry Kauler
+>          return 0;
+> -done:
+> -       if (!r)
+> -               DRM_INFO("VCN decode and encode initialized successfully(under %s).\n",
+> -                       (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)?"DPG Mode":"SPG Mode");
+> -
+> -       return r;
+>   }
+>
+>   /**
+> @@ -1122,8 +1116,6 @@ static void vcn_v5_0_0_set_unified_ring_funcs(struct amdgpu_device *adev)
+>
+>                  adev->vcn.inst[i].ring_enc[0].funcs = &vcn_v5_0_0_unified_ring_vm_funcs;
+>                  adev->vcn.inst[i].ring_enc[0].me = i;
+> -
+> -               DRM_INFO("VCN(%d) encode/decode are enabled in VM mode\n", i);
+>          }
+>   }
+>
+> --
+> 2.34.1
+>
