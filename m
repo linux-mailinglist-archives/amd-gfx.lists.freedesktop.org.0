@@ -2,61 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB3F08CE31A
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 11:16:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707828CE5CA
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 15:13:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9682610E478;
-	Fri, 24 May 2024 09:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE86510EBF4;
+	Fri, 24 May 2024 13:13:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDYlct/e";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="JL5H25Gc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E62D410E12F;
- Fri, 24 May 2024 09:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716541739; x=1748077739;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xe/mCiADKWKoHmV7LHdspv3GXZyRbUw0F1g2MLd8RMc=;
- b=jDYlct/eBi4ri8B6r/Q1T3KLF+8tXOgx9RhqpY/WPOSGvuedWg60sUW+
- hgb5v/OuXzl3h0HVqCzjJw+I5ThGgVDF8SE2J9UR9rU7ZrGj4uR14sPfN
- ZJNUhma5KfuTLWR7mq+fJarV2chUx0qQZup1JPcIZWIx3KDJoh4r8Qxdu
- 1Z/WT3CrYfMZieeKsxJJLhCL63D4pYMl5y7TkjENsEp/OnU5NBkeTUXLz
- BldoJWopaSep2pb38+m7v8bE6KDaXarAEitec5hezKKvDjLV0fu3hft6d
- 7h9XMuqxKkxggIiu1L5B8RtsWvuOHTzKOtzL1EPZU3OBEF2urh7lWBEI0 A==;
-X-CSE-ConnectionGUID: i2qW+KZ5RMmPW0P8VUyc8w==
-X-CSE-MsgGUID: iVM9ZqA/SLyCgGn1TErqYA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="16737376"
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="16737376"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 02:08:59 -0700
-X-CSE-ConnectionGUID: pZZKcbw2Scq9QlM7prupww==
-X-CSE-MsgGUID: qLyhjg0QRQW4/K9BALCm5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="34066966"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.108])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 02:08:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/4] drm: enable -Wformat-truncation across the subsystem
-In-Reply-To: <20240523184128.GA523806@ravnborg.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716479340.git.jani.nikula@intel.com>
- <719debc351075abc36b2573266bfd4d963361e40.1716479340.git.jani.nikula@intel.com>
- <20240523184128.GA523806@ravnborg.org>
-Date: Fri, 24 May 2024 12:08:50 +0300
-Message-ID: <87ed9ro9ul.fsf@intel.com>
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A593C10ED0F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 May 2024 10:32:13 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-354e22bc14bso2480666f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 May 2024 03:32:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1716546732; x=1717151532; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+gXkJa6ZfPXuDdrgAZhVkK+DgSojn6WdcIZk/yMnJVc=;
+ b=JL5H25GcZfQEuLV3sqLG893MK4Vs1v/utw8EBY3eZk97X+TO4F0A9yoZ0FgfqKrYdN
+ em5ZmpEWdAgqba92N5A3aavAHTPqmiSoFAny81cr3AAtjufUitBq44MSGkfUpWebH2oI
+ FmmFmN9lcBz/lhOgbl1xXoUFvNqkIGJ3F5FWc8d6f8ROfn8YyvOKr03DJbzhNgMpP1pS
+ b1CUnZyTouRPK+7N5DznE90MBVUz5AG2ZQ9HCa5phcSW1Y7yg4i3dLD4pz28vqhEVqeR
+ 1sKq2HgWpsLeq6hB5idHPqtoHVESzKMF/9u8Ta+VC6rfGLW1888ZDkFEaUKlVgKCl6T0
+ YDCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716546732; x=1717151532;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+gXkJa6ZfPXuDdrgAZhVkK+DgSojn6WdcIZk/yMnJVc=;
+ b=wF10S6TlvlBQ2pIcSDXLYEQwu4zdjM6OZiIk5fZmokuQ3f+4TYax4yLQl4DmpbXAXC
+ 46OmxyR3qNgsLSj3BW2Ibf8TROULeKPK+bojz5OVuZE1AI+iArOa9ss+5GQXVzbiPb2j
+ Z+zU2tSz4lZIxs9nOFOgLWbowPSu20Dm+XTBz5gMsIPCd2d2/yKxmaOWARk0Ub+bMvyL
+ KTQZ5ZkOa3/BxYDFogA14AYVk9IyUud5ftgB1Tp0hxZ30x8FWgbUDqK3idCgMFjUcStW
+ RG6+Ue/ixf16Q0xVHS2+7NRFAfN9HhIjJa+b/7i2DXWMNfquOcbkvRCtKTM594E5IiUY
+ 07MA==
+X-Gm-Message-State: AOJu0YzK3rIj9KnHwPZvBi2apV3TKRrYn6dgHnIg8qzpH+euTdVETYMt
+ iI+mD7mwm1XHofBdlZwvUh/Zt7lcKuV63bbgK+EGYC1HdToBdx4tWwrkXuQvWjI=
+X-Google-Smtp-Source: AGHT+IEYY3knuYV5MgEjybATI6RxcBhn3gxJFzEChTpbDdsclEM5/+KCHQl7Jt2rmF8Fo4xOvHOGdQ==
+X-Received: by 2002:a05:6000:104d:b0:354:f1bd:3c1f with SMTP id
+ ffacd0b85a97d-3552fe192d9mr1186403f8f.55.1716546731650; 
+ Fri, 24 May 2024 03:32:11 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-35579d7da64sm1302677f8f.4.2024.05.24.03.32.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 24 May 2024 03:32:11 -0700 (PDT)
+Date: Fri, 24 May 2024 13:32:07 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: etbitnun@amd.com
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Find max flickerless instant vtotal
+ delta
+Message-ID: <907686e4-a14e-4496-b213-890803e6d46f@moroto.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Fri, 24 May 2024 09:16:14 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 24 May 2024 13:13:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,61 +77,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 May 2024, Sam Ravnborg <sam@ravnborg.org> wrote:
-> Hi Jani,
->
-> On Thu, May 23, 2024 at 06:51:09PM +0300, Jani Nikula wrote:
->> With the -Wformat-truncation warnings fixed, finish the job started in
->> commit a61ddb4393ad ("drm: enable (most) W=1 warnings by default across
->> the subsystem"), and enable that warning too.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> When it is enabled for all of drm then the explicit assignments here
-> could be dropped I think:
->
-> drivers/gpu/drm/i915/Makefile:subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
-> drivers/gpu/drm/xe/Makefile:subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
->
-> Just a drive-by comment, I know this patch was mostly for the bots.
+Hello Ethan Bitnun,
 
-Additionally, I didn't want to create any conflicts with [1]. There's no
-harm in having the duplication.
+Commit bd051aa2fcfb ("drm/amd/display: Find max flickerless instant
+vtotal delta") from Apr 1, 2024 (linux-next), leads to the following
+Smatch static checker warning:
 
-BR,
-Jani.
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:1006 dc_stream_get_max_flickerless_instant_vtotal_delta()
+warn: always true condition '((stream->timing.v_total - safe_refresh_v_total) >= 0) => (0-u32max >= 0)'
 
-[1] https://lore.kernel.org/r/cover.1716471145.git.jani.nikula@intel.com
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:1008 dc_stream_get_max_flickerless_instant_vtotal_delta()
+warn: always true condition '((safe_refresh_v_total - stream->timing.v_total) >= 0) => (0-u32max >= 0)'
 
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c
+    990 static unsigned int dc_stream_get_max_flickerless_instant_vtotal_delta(struct dc_stream_state *stream, bool is_gaming, bool increase)
+    991 {
+    992         if (stream->timing.v_total * stream->timing.h_total == 0)
+    993                 return 0;
+    994 
+    995         int current_refresh_hz = (int)div64_s64((long long)stream->timing.pix_clk_100hz*100, stream->timing.v_total*stream->timing.h_total);
+    996 
+    997         int safe_refresh_hz = dc_stream_calculate_flickerless_refresh_rate(stream,
+    998                                                          dc_stream_get_brightness_millinits_from_refresh(stream, current_refresh_hz),
+    999                                                          current_refresh_hz,
+    1000                                                          is_gaming,
+    1001                                                          increase);
+    1002 
+    1003         int safe_refresh_v_total = (int)div64_s64((long long)stream->timing.pix_clk_100hz*100, safe_refresh_hz*stream->timing.h_total);
+    1004 
+    1005         if (increase)
+--> 1006                 return ((stream->timing.v_total - safe_refresh_v_total) >= 0) ? (stream->timing.v_total - safe_refresh_v_total) : 0;
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+stream->timing.v_total is u32 so it makes the subtract u32 thus it's
+always >= 0.
 
->
-> 	Sam
->
->> 
->> ---
->> 
->> Gut feeling says there are more issues, and my configs just don't catch
->> them all, but let's see what the build bots have to say. ;)
->> ---
->>  drivers/gpu/drm/Makefile | 3 +--
->>  1 file changed, 1 insertion(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->> index 68cc9258ffc4..644613dbedda 100644
->> --- a/drivers/gpu/drm/Makefile
->> +++ b/drivers/gpu/drm/Makefile
->> @@ -16,8 +16,7 @@ subdir-ccflags-y += $(call cc-option, -Wunused-but-set-variable)
->>  subdir-ccflags-y += $(call cc-option, -Wunused-const-variable)
->>  subdir-ccflags-y += $(call cc-option, -Wpacked-not-aligned)
->>  subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
->> -# FIXME: fix -Wformat-truncation warnings and uncomment
->> -#subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
->> +subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
->>  subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
->>  # The following turn off the warnings enabled by -Wextra
->>  ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
->> -- 
->> 2.39.2
+    1007 
+    1008         return ((safe_refresh_v_total - stream->timing.v_total) >= 0) ? (safe_refresh_v_total - stream->timing.v_total) : 0;
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Same.
 
--- 
-Jani Nikula, Intel
+    1009 }
+
+regards,
+dan carpenter
