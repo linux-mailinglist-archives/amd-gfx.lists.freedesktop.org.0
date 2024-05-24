@@ -2,77 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A058CE318
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 11:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEAE98CE1FA
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 May 2024 10:04:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9657610E443;
-	Fri, 24 May 2024 09:16:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF8E10E38B;
+	Fri, 24 May 2024 08:04:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QrpF3xvy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b+xbnPLF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D84310E03E
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 May 2024 04:50:44 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-1f44b594deeso3110865ad.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 May 2024 21:50:44 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C22B10E38B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 May 2024 08:04:49 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-354cd8da8b9so2988186f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 May 2024 01:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716526243; x=1717131043; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=OIptIV19IdFhks5FxO4qOze6Xd4kuAo9MJ+XTfG/tCk=;
- b=QrpF3xvy3gNcxr6zYFNDPx4onQnWv3QeY4J7JJexf2cTUloPUOEeJc32c5TD9OoIVq
- IAa3IYQNY6i7ygqsUa7y3ZIHGoxJNqks3z/DyTE2p4J9xCQ8vIYDTaWPB/ZF6ULqDUsn
- VcchkuaI/67aDXmlckSaCY0PcSlDYJEJriqtWj9L0CzJO4ZPBty7blfk/L67OdkyLQzT
- cvwPQGO/1H9mHK8AeUKlAWA8m32SJEa8ZGkBMpnugQovv/tC/Wy5vhCrl6/mSa7dzw4D
- aUQJjbn2Hm+5c7S4Jb1yJhkRCsp4qwzfQisaPJfo+zqg59sBDkcbX2Do2oPVy0QJzGAG
- LpgQ==
+ d=gmail.com; s=20230601; t=1716537887; x=1717142687; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=dsAhLXkWFmFQN7tXWSl1mVL2BRYms7p4QKscqPKpZeA=;
+ b=b+xbnPLFIwxBFtE2beeXdLvH3Wsv44Qr1M8g2InNyh4oWdSmsXG4MOmAwqgmD6eW7g
+ /wqt6DpcVguQDvGVhc8/qUKOYDnMbYl3SSky43krb+uAan7AG5XKpoyEkYMnmiZpraTj
+ 6DiXtq4FNdc9fJhD/NDpqSB0ErYSRu9/svurHQb79votdYhs1xTi95VCyTiLvcf3rb5P
+ d8eXlzL+52SNxhJFNz1bB3WQR+FfT9lGgfd9UNd1u0Z1W+eQieWeqyhsUZJkxAfDSsl9
+ 6xcFt7Sx0ZCHCsN9i5hVvLvLVS8VoO0rmYyP4UuRgWhuEKukC1pNMzCP6VHT8O12Krli
+ zepQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716526243; x=1717131043;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=OIptIV19IdFhks5FxO4qOze6Xd4kuAo9MJ+XTfG/tCk=;
- b=lGG5dzqpSAJB8nka4MLie9gCK5uPpns5aaWfEwYYGLFNeMVNPsmFxtg5WGRtZYBhqy
- nf1GzKIvY/OSNSUd5a+jDCg9XQ+UeYennZKWa1UIqKxAARzJvISZpEsFXplOoTAFLJLJ
- 9FpcQjXXBOSF/aKvDXL2bEblhaC97j14UGlBFQmUSUL60op+rAuiinbswh5zIUmE9flo
- zDkEA9hhA+8b7JYABZfvb4M5BtbEmZlYaIi9k2fj8mkjY0jraaGVJ/E0BYytBnnD5np8
- vk7QV+XTVgl37z1oOplRsY/E9vz2MctlC99kinSCF6JuNamTa1wzb5GP5Txzx+AeVcek
- wVUQ==
+ d=1e100.net; s=20230601; t=1716537887; x=1717142687;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=dsAhLXkWFmFQN7tXWSl1mVL2BRYms7p4QKscqPKpZeA=;
+ b=tSpv/j0adxrGS0dyxmxgbhU36JwZVuvE3s++ONQX5cwyKS4+k9pI21azefSltkxee1
+ JTj5hsJG3Q2Gn1T84Uf4yB5a9N5n29RP01yekMn+HZ4es2EhfYIqDc/H7QzD7yYUdhd2
+ gU0o2rzjcMyueIlNHkaIN1iTB6R3UxxwP2UDZi7YyWBUr7fDQntn9OXCf4ptnNKCF8VH
+ 354F/30DuS8tudThRJsQMoCEWbRWXynxbUH6mpL+1sLtXMgF7p1sj2NzuHSy5JO64z3I
+ 6VpU+awvCkaM9xvkgj6lC63dwsUBpKX1m0yHwrgefwcRSQy3BG+lRDmnFPssDb+vkl8W
+ jmvQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXabLXI86nowSyssKB3pOD+oKCQ8DjfhAoFi6yRiHs0KzVZm+GcywFDO1NlVkGfPqhPRULm1jURZMtECT3bS7s4ks2PdFDoStGy/JgBuA==
-X-Gm-Message-State: AOJu0Yw0O/0f61aAazy74cLqw6JK1yrcUSd1ZfDcRQhsD6Dl3K+mcGYo
- 6l/s88k1L2RrxgLI9w7O6v6dWQ6Td6qc94AyzjRUkOmDbnpQM31+
-X-Google-Smtp-Source: AGHT+IGph2ngJGkIc2ZoYCJl38SlsP/yXGoytXnEgHL9Q+wVYFcQgbKU4AH+MCEZUe8DoMBNd28k3w==
-X-Received: by 2002:a17:902:64d7:b0:1f3:3f33:2873 with SMTP id
- d9443c01a7336-1f4486ed8afmr11797375ad.25.1716526243411; 
- Thu, 23 May 2024 21:50:43 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ AJvYcCVAvvlBez5rZSSeRFS7y+Y02ikPEL8ORQquv7IYo1nS8h5QDhDsSrZXRVMf7HalFHaGfBBxgEL84eL+W+OF0//HAG92DGxSv/xZOr17xw==
+X-Gm-Message-State: AOJu0Yz46vOWLzvUJ6saLDFBI8p+rZlaIOscB0MPAM3ap5EtqjHFKEUs
+ y0jDGPpRoRXn24LEWAzW5L1VjT26fAQkM3YhwFHBgR64iqeW+Wm4VTC3mwzT
+X-Google-Smtp-Source: AGHT+IH40kdf6VxWrEIhRO++L9eBdIFRh0Ta2LEiyA2YSypxT5VnwvUwIT6ELUydRKL/k4c/b7P8RA==
+X-Received: by 2002:adf:f38f:0:b0:352:9e0c:f9d3 with SMTP id
+ ffacd0b85a97d-3552219d081mr872379f8f.31.1716537887447; 
+ Fri, 24 May 2024 01:04:47 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1f44c7ab7fasm4449235ad.81.2024.05.23.21.50.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 May 2024 21:50:42 -0700 (PDT)
-Date: Thu, 23 May 2024 21:50:40 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- linux-arm-kernel@lists.infradead.org, x86@kernel.org,
- linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- Christoph Hellwig <hch@lst.de>, loongarch@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: [PATCH v4 13/15] drm/amd/display: Use ARCH_HAS_KERNEL_FPU_SUPPORT
-Message-ID: <eeffaec3-df63-4e55-ab7a-064a65c00efa@roeck-us.net>
-References: <20240329072441.591471-1-samuel.holland@sifive.com>
- <20240329072441.591471-14-samuel.holland@sifive.com>
+ ffacd0b85a97d-3557a0908e4sm985595f8f.63.2024.05.24.01.04.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 24 May 2024 01:04:46 -0700 (PDT)
+Message-ID: <53db4de8-4fb9-4061-a191-0f5a0451f84e@gmail.com>
+Date: Fri, 24 May 2024 10:04:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240329072441.591471-14-samuel.holland@sifive.com>
-X-Mailman-Approved-At: Fri, 24 May 2024 09:16:14 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Adjust logic in
+ amdgpu_device_partner_bandwidth()
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20240516150512.2260787-1-alexander.deucher@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240516150512.2260787-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,26 +83,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Am 16.05.24 um 17:05 schrieb Alex Deucher:
+> Use current speed/width on devices which don't support
+> dynamic PCIe switching.
+>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3289
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-On Fri, Mar 29, 2024 at 12:18:28AM -0700, Samuel Holland wrote:
-> Now that all previously-supported architectures select
-> ARCH_HAS_KERNEL_FPU_SUPPORT, this code can depend on that symbol instead
-> of the existing list of architectures. It can also take advantage of the
-> common kernel-mode FPU API and method of adjusting CFLAGS.
-> 
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+Acked-by: Christian König <christian.koenig@amd.com>
 
-With this patch in the mainline kernel, I get the following build error
-when trying to build powerpc:ppc32_allmodconfig.
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 ++++++++++++-------
+>   1 file changed, 12 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index e72e774d17e6a..f0011dac589d2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -5946,13 +5946,18 @@ static void amdgpu_device_partner_bandwidth(struct amdgpu_device *adev,
+>   	*speed = PCI_SPEED_UNKNOWN;
+>   	*width = PCIE_LNK_WIDTH_UNKNOWN;
+>   
+> -	while ((parent = pci_upstream_bridge(parent))) {
+> -		/* skip upstream/downstream switches internal to dGPU*/
+> -		if (parent->vendor == PCI_VENDOR_ID_ATI)
+> -			continue;
+> -		*speed = pcie_get_speed_cap(parent);
+> -		*width = pcie_get_width_cap(parent);
+> -		break;
+> +	if (amdgpu_device_pcie_dynamic_switching_supported(adev)) {
+> +		while ((parent = pci_upstream_bridge(parent))) {
+> +			/* skip upstream/downstream switches internal to dGPU*/
+> +			if (parent->vendor == PCI_VENDOR_ID_ATI)
+> +				continue;
+> +			*speed = pcie_get_speed_cap(parent);
+> +			*width = pcie_get_width_cap(parent);
+> +			break;
+> +		}
+> +	} else {
+> +		/* use the current speeds rather than max if switching is not supported */
+> +		pcie_bandwidth_available(adev->pdev, NULL, speed, width);
+>   	}
+>   }
+>   
 
-powerpc64-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
-powerpc64-linux-ld: failed to merge target specific data of file drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
-
-[ repeated many times ]
-
-The problem is no longer seen after reverting this patch.
-
-Guenter
