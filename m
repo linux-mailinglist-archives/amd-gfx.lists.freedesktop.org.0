@@ -2,90 +2,123 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424D98D0434
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 May 2024 16:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 844768D035A
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 May 2024 16:23:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94AFB10FB39;
-	Mon, 27 May 2024 14:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFEA710EE48;
+	Mon, 27 May 2024 14:23:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=devnull.tasossah.com header.i=@devnull.tasossah.com header.b="biuotxQC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2qNMAeQj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from devnull.tasossah.com (devnull.tasossah.com [91.121.165.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0752510F9D5
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 May 2024 09:42:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=devnull.tasossah.com; s=vps; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ES8eOa15WPyzIXTD7Km0uxp8XZfucVCV/uYJ9KoA8CM=; b=biuotxQCRvBk/s2Y/GDeiQGLrY
- Wcl1pY5n8+LsNkLegYbRluBazuzfyHbqJ0oJH7wTeSvBzpSAK1lcyHbaxL2EdwvVmqgjrphKXRupn
- ld7SkDDB++KQZGwJwt5diauiNBwsLV4EnaFJfrgyLaEOMOqu/avnQpQCBA/bV5cg9BLs=;
-Received: from [2a02:587:6a04:fe00::298]
- by devnull.tasossah.com with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <tasos@tasossah.com>)
- id 1sBWsH-0037Yd-Mi; Mon, 27 May 2024 12:42:37 +0300
-Message-ID: <d064e35f-4990-485b-9426-a4f5ab9f3375@tasossah.com>
-Date: Mon, 27 May 2024 12:42:36 +0300
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA9810ED0D;
+ Mon, 27 May 2024 14:23:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B7uorN/ISrpSUwgDQwvvnuVAEWU2p+tP8ay3HDkCxqET/NNA6bQrcb+2qqTnVWwHd3CY+RrXgA+6RRXLyIkd0FvTaFtYaLPlueSO1PJa+Kh+Hna9gBazyVkVb902QbL0IWq7Ug3Ojw1BH29nECww2UUEWglHFMC7HcG8LHuDVG49XKn19jeXqQd3FRksAs885I1NarpWwQgd5uCIN64PdW7XPA3w8rRQcmls4c185lDQJdRZsrAezokzPQeUN34kz37sDX6D1BPAGki9jEYqgzffRXcMgENNTGbW7sbaVhHQyjiLfDIX/GjJgGUCKSJhZCiWE5Iu82NRXm0pWYl5YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=phMXJe+DHK3g7n6LlPjha+ZNbJvzU2d8pm1P7DmcJaU=;
+ b=GrgaLY2sneYDSeyzjrN+g4aEQaqPYefwftmeK76NFw58tWIgoe3dckXJ+6SFT2cNcEZPvWsv+Xp9jBEotjEM4SFgYaPncsVnMVWfR1UaqRE8SaxxrBElm5wJfnbK9OpJpqhmaUl0cDgs7Z+yLgtVo8tRyJxs990v3mK94WhMEKVRqRItEIftAzgnE84g5DYDfLrJVx0UqWilIpN6DxfxVkp0oa0tkWTdUQf5+/gwohTe4BWES7LVPGHkTxaJiDoUeJ+h560tzOBwUArcBUenaRVuVz5KMm+RaQaNSvkC1jcQQy9lvr9lmvIPto8ijFujPDKgxO7utoUUSEEzpu180g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17)
+ smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=phMXJe+DHK3g7n6LlPjha+ZNbJvzU2d8pm1P7DmcJaU=;
+ b=2qNMAeQjpuiHBT6YRYKUKoQsGCUZUwENAwHNeHpsF8gTLHopSvFYFI1IpwuE+w/pVoCTS0zaoiPovmUaeRPD36Dlj2ALgk9bQSbfWRBZ5oeoWhMP5o7w87MxZo1xZsRcbdrNKvmm6jlmUA8TMaMx4RxuBOoUp9ETU+hwzaE2FjM=
+Received: from BY5PR13CA0024.namprd13.prod.outlook.com (2603:10b6:a03:180::37)
+ by BY5PR12MB4228.namprd12.prod.outlook.com (2603:10b6:a03:20b::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Mon, 27 May
+ 2024 14:23:30 +0000
+Received: from SJ1PEPF00002316.namprd03.prod.outlook.com
+ (2603:10b6:a03:180:cafe::5b) by BY5PR13CA0024.outlook.office365.com
+ (2603:10b6:a03:180::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.16 via Frontend
+ Transport; Mon, 27 May 2024 14:23:30 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00002316.mail.protection.outlook.com (10.167.242.170) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7633.15 via Frontend Transport; Mon, 27 May 2024 14:23:29 +0000
+Received: from AUS-P9-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 27 May
+ 2024 09:23:27 -0500
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <linux-kernel@vger.kernel.org>, Mario Limonciello
+ <mario.limonciello@amd.com>, Alex Deucher <alexander.deucher@amd.com>, "Chris
+ Bainbridge" <chris.bainbridge@gmail.com>
+Subject: [PATCH] drm/client: Detect when ACPI lid is closed during
+ initialization
+Date: Mon, 27 May 2024 09:23:11 -0500
+Message-ID: <20240527142311.3053-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/pptable: Fix UBSAN array-index-out-of-bounds
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20240523071637.1114898-1-tasos@tasossah.com>
- <CADnq5_MAPCEO4mNouRHnPMy5-OPXyN1cjy4Ub_xVip4m8x4OZQ@mail.gmail.com>
-From: Tasos Sahanidis <tasos@tasossah.com>
-Content-Language: el-GR, en-GB
-Autocrypt: addr=tasos@tasossah.com; keydata=
- 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
-In-Reply-To: <CADnq5_MAPCEO4mNouRHnPMy5-OPXyN1cjy4Ub_xVip4m8x4OZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 27 May 2024 14:40:35 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002316:EE_|BY5PR12MB4228:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61704e10-a7bd-4a3d-5dce-08dc7e5894e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230031|36860700004|376005|82310400017|1800799015; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?tztx4y1ickvl4tjpOt27ld5+/szlep+iKC13uDGobgcjqLm4Ojy19/9ROWuY?=
+ =?us-ascii?Q?0U0ZiXFKoEuWyExehVvbtt9kNq1MHArsvg8evkinflqwVfRBqr9f8ahRObEK?=
+ =?us-ascii?Q?nJ/cmEZGA2Z58O6kUr7ddNIl9jFElvVCs+L6xLVoiHR9aX8CNc2GQVJCPRnO?=
+ =?us-ascii?Q?8a5nVnk/6752WcTrfsc+0svksEVOQviFy2ggjN+WCprqKubJHBzzTPVBZ35R?=
+ =?us-ascii?Q?uSzGf6QZLQmCekGtB+FXCcsrz2PKuUqkOE9Se777FeJaKMUWnxyVZABICisR?=
+ =?us-ascii?Q?TXCiRe59VoG86YRhPhAihspULXdYtVXA+WvWxP8AtCT1YBiZmb+iS5WEWytw?=
+ =?us-ascii?Q?iuKCJUMXtlhQ6m0xj0k0hZJkPIftJrmolPm+J7f6zQmNK/Hm+nLwtWChj49I?=
+ =?us-ascii?Q?nmDPpIEmwRla4Pyq0ifVd3999J7QMkO1IY8FmOCOM6sCjNnAM2oKEC/UtxIp?=
+ =?us-ascii?Q?XjtLuDqTLjeOVcjQeBTwZwHosLdMGvjmWg3rPdfxovps10x9isiqdqnIqfCQ?=
+ =?us-ascii?Q?O1xtKeuEfy2Z90brcX/31GR/V+grJQdE1x1XjIgDdzl03V+uxsaqKjbTvWYx?=
+ =?us-ascii?Q?MJPtR4DM1l7wwsEVNHbUuNW2ObAgDjh5zBp6QXlvOOwgTBBcklMcxoouC/GY?=
+ =?us-ascii?Q?F8nu8FKalI7aYJms/HSxVLl+d8MRU+Q8qACMHEggl7DvtBJs6fX+m6DULnfr?=
+ =?us-ascii?Q?ogu9gtci6BDD4KPSUEiNAtdbPB1bOudUmPPODTfUTaEjCIrhgSMnRkxtVaJI?=
+ =?us-ascii?Q?Q9ClpVd/GdbtaheBLbPPQmOR1swanp0esmZlVhxR+USNKdJqg//shqmKzM60?=
+ =?us-ascii?Q?wwvKA7FmfJz0lq8nSYUEIl9DrmupRhb1nyq62G1L1iPIUipvvErKLL9Jj1rp?=
+ =?us-ascii?Q?guTN3dG43mgvAzW/OgNrcLmOxwExRtVHd0gDXiTOF7SLI0rPe46QBRHCAeeo?=
+ =?us-ascii?Q?NuP4P9aEkezbsjz7MfcWeCTcwkFT6qdzoJy+cAGnmRvKXU1opITlWaBbrbYd?=
+ =?us-ascii?Q?H5JblxC9dfk8Vvin4SZUEonzNo7/v0p9h+bFka3C5ubbUPPfgVIN1tIdt0Wb?=
+ =?us-ascii?Q?m6RizSkvH5UmURKzVONRBpDdGQjOaVroMQ/N5eokGTRpjfdDJVn089+wVtVR?=
+ =?us-ascii?Q?KSPSMOj9bk9RP3CxHd7Z31j4zyhZBOi4edcqNH7RIiXVayjM7zKLdySdA6Nj?=
+ =?us-ascii?Q?rep9K0FsNvN70CT3fWqNeM++TAkgkqdcS+YzTHlht+3Zd0Ti8dInq2UL0010?=
+ =?us-ascii?Q?poVv0Aatk/r8fyr7M6i9iBtvbgr0lTtggvjTorWqKTNrSbsqpsPmzB2XoRX6?=
+ =?us-ascii?Q?9l6m+mVGHpjYwtcj1yI1EKsD?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(36860700004)(376005)(82310400017)(1800799015); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2024 14:23:29.8668 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61704e10-a7bd-4a3d-5dce-08dc7e5894e3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002316.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4228
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,80 +133,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-05-23 17:52, Alex Deucher wrote:
-> On Thu, May 23, 2024 at 9:05 AM Tasos Sahanidis <tasos@tasossah.com> wrote:
->>
->> Dyanmically sized arrays used [1] instead of []. Replacing the former
->> with the latter resolves multiple warnings observed on boot with a
->> BONAIRE card.
->>
->> Signed-off-by: Tasos Sahanidis <tasos@tasossah.com>
->> ---
->>  drivers/gpu/drm/amd/include/pptable.h | 24 ++++++++++++------------
->>  1 file changed, 12 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
->> index 2e8e6c9875f6..d1dec880d2d6 100644
->> --- a/drivers/gpu/drm/amd/include/pptable.h
->> +++ b/drivers/gpu/drm/amd/include/pptable.h
->> @@ -480,7 +480,7 @@ typedef struct _StateArray{
->>      //how many states we have
->>      UCHAR ucNumEntries;
->>
->> -    ATOM_PPLIB_STATE_V2 states[1];
->> +    ATOM_PPLIB_STATE_V2 states[];
-> 
-> Can you add __counted_by(ucNumEntries) to the end of the line? E.g.,
-> 
-> ATOM_PPLIB_STATE_V2 states[] __counted_by(ucNumEntries);
-> 
-> Same comment for the other changes below.
-> 
-> Alex
+If the lid on a laptop is closed when eDP connectors are populated
+then it remains enabled when the initial framebuffer configuration
+is built.
 
-Sure thing! I have the v2 ready and will submit after testing it on
-hardware. I do have a question though. The following already uses [].
-Would it be acceptable to also modify it in the same patch?
+When creating the initial framebuffer configuration detect the ACPI
+lid status and if it's closed disable any eDP connectors.
 
-@@ -658,7 +658,7 @@ typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Record
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+Reported-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3349
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/gpu/drm/drm_client_modeset.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+index 31af5cf37a09..b76438c31761 100644
+--- a/drivers/gpu/drm/drm_client_modeset.c
++++ b/drivers/gpu/drm/drm_client_modeset.c
+@@ -8,6 +8,7 @@
+  */
  
- typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Table{
-     UCHAR numEntries;
--    ATOM_PPLIB_SAMClk_Voltage_Limit_Record entries[];
-+    ATOM_PPLIB_SAMClk_Voltage_Limit_Record entries[] __counted_by(numEntries);
- }ATOM_PPLIB_SAMClk_Voltage_Limit_Table;
+ #include "drm/drm_modeset_lock.h"
++#include <acpi/button.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/slab.h>
+@@ -257,6 +258,27 @@ static void drm_client_connectors_enabled(struct drm_connector **connectors,
+ 		enabled[i] = drm_connector_enabled(connectors[i], false);
+ }
  
- typedef struct _ATOM_PPLIB_SAMU_Table
-
-There's also this, which I think __counted_by can be used here as well:
-
-diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
-index febc853d2a07..341d4a4e8d98 100644
---- a/drivers/gpu/drm/amd/include/pptable.h
-+++ b/drivers/gpu/drm/amd/include/pptable.h
-@@ -497,15 +497,15 @@ typedef struct _ClockInfoArray{
- typedef struct _NonClockInfoArray{
++static void drm_client_match_edp_lid(struct drm_device *dev,
++				     struct drm_connector **connectors,
++				     unsigned int connector_count,
++				     bool *enabled)
++{
++	int i;
++
++	for (i = 0; i < connector_count; i++) {
++		struct drm_connector *connector = connectors[i];
++
++		if (connector->connector_type != DRM_MODE_CONNECTOR_eDP || !enabled[i])
++			continue;
++
++		if (!acpi_lid_open()) {
++			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] lid is closed, disabling\n",
++				    connector->base.id, connector->name);
++			enabled[i] = false;
++		}
++	}
++}
++
+ static bool drm_client_target_cloned(struct drm_device *dev,
+ 				     struct drm_connector **connectors,
+ 				     unsigned int connector_count,
+@@ -844,6 +866,7 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+ 		memset(crtcs, 0, connector_count * sizeof(*crtcs));
+ 		memset(offsets, 0, connector_count * sizeof(*offsets));
  
-     //how many non-clock levels we have. normally should be same as number of states
-     UCHAR ucNumEntries;
-     //sizeof(ATOM_PPLIB_NONCLOCK_INFO)
-     UCHAR ucEntrySize;
-     
--    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[];
-+    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[] __counted_by(ucNumEntries);
- }NonClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
- {
-     USHORT usClockLow;
-     UCHAR  ucClockHigh;
-     USHORT usVoltage;
++		drm_client_match_edp_lid(dev, connectors, connector_count, enabled);
+ 		if (!drm_client_target_cloned(dev, connectors, connector_count, modes,
+ 					      offsets, enabled, width, height) &&
+ 		    !drm_client_target_preferred(dev, connectors, connector_count, modes,
+-- 
+2.43.0
 
-All the other ones are UCHAR, so __counted_by can not be used on them.
-
-Please let me know what you think.
-
-Thanks!
-
---
-Tasos
