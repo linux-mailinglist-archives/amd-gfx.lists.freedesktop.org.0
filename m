@@ -2,75 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18BF8D3786
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 May 2024 15:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5958D8D378A
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 May 2024 15:24:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73AB10E8FF;
-	Wed, 29 May 2024 13:24:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3312210F1D1;
+	Wed, 29 May 2024 13:24:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="RVwg7ihT";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="eKKTTVsO";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="/F8BJdjs";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="eKKTTVsO";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="/F8BJdjs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E610110E570
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 May 2024 13:11:38 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-6f8e9870e72so602958b3a.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 May 2024 06:11:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1716901898; x=1717506698; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QoaTOCmlXkenptztn+mDC2rLsS4IERfQPTeSACgx6t4=;
- b=RVwg7ihTEw9z4dvaRXMgla7IIp3H4X6rq/TENhjsL0Dc05Y1FZGmWCPQFAAGTMRFFB
- XY6XnSYpySkgvaQjP17UeCtLwBdkRI6XkoaQK11qNvc9gXJ5x45SMl8IplfT+dfTyxyC
- Ktl0QdZTWuARcVPc+BZox9jP402bvygqed/BvwB9HOX8SQmoTUXlqDh6eg0vFEKSalTY
- 5uTBYWhw+HP0BbbR9O9eTKgKIGsMZIT4vETQqWGDbWOChOQ5SHs7TjWcnh8m+rQTDIBe
- 3s5jy5xSBBko34yu5rKf2/1qsHpw53WvosIlwk+HeAMz+D1Z9VGUuPgM8Qi8PPpTOs+R
- SUwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716901898; x=1717506698;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=QoaTOCmlXkenptztn+mDC2rLsS4IERfQPTeSACgx6t4=;
- b=h9lX6czcKxxFyrCXvE94pXVBEcL6EXS/MJ2tx209P8JLgXvca+ny2CJZN5mDBhTnb8
- KDtx51QxIo6V42fi+t7wJ0Sw3ASS22gxymPpG5d0tkyMk7FbPDLv5t/AanJbqd0/2gDx
- OS5XMFZZ2NJzdwFaQ2knOummwjqtPkI1MIIfL+A+BSvwO3ymc3khPTsCAQUf1EMHyEwg
- 4jpwcQs36GtXVdupK8RiUfulKOhckEC2K9j4RJ4f9VL3K8Pvb7d1LxYb6L5koBKIM0Vo
- /C/n5uqEAZOr4M4O3s6m40mdSiHGmJo2rOE8lUErKjlJ0YRJdkP2cCNz29W6dPjNKFUl
- SOBg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWof/pI1lvv3rJNnUdo8mF3UKwOdej3BedaYn5YXLkHZVo4NlAOymlmjrD5b/fVlMsCQeGJDO0nWPHf7+YIYcbhQjNt598zVxaJkDTZiQ==
-X-Gm-Message-State: AOJu0YwU7Q+dr98ZmofjBuvlpKJEkkOPVp2ylT/mn0n/Pio5AcQ0aJ5a
- yO2yKn3uQa27cYbUooKgfbsYl3qD2wpDTof3bpB3GtKYANvRNweGcFqTH1Yd1zc=
-X-Google-Smtp-Source: AGHT+IHPZoHe+5AtTnRZyrDiZBI1RraIlifONBLBScJQgU8Dwsc/BwuyckzD6ggcJxPHoRaMZ0SMIw==
-X-Received: by 2002:a05:6a20:5b03:b0:1af:881c:e924 with SMTP id
- adf61e73a8af0-1b212e91384mr11340139637.62.1716901898281; 
- Tue, 28 May 2024 06:11:38 -0700 (PDT)
-Received: from ccsl-Inspiron-7472.semfio.usp.br ([143.107.45.1])
- by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-682226fc4dcsm7507164a12.42.2024.05.28.06.11.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 May 2024 06:11:37 -0700 (PDT)
-From: Bruno Rocha Levi <brunolevilevi@usp.br>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: Bruno Rocha Levi <brunolevilevi@usp.br>,
- Lucas Antonio <lucasantonio.santos@usp.br>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/2] drivers/gpu: Fix misalignment in comment block
-Date: Tue, 28 May 2024 10:08:04 -0300
-Message-ID: <20240528131026.214773-3-brunolevilevi@usp.br>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240528131026.214773-1-brunolevilevi@usp.br>
-References: <20240528131026.214773-1-brunolevilevi@usp.br>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11FF10E452;
+ Tue, 28 May 2024 21:33:00 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D3A0D2045D;
+ Tue, 28 May 2024 21:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1716931978;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Y271KPi+tCyRmzKrDCwqISkFoY5mXolXM/ZhCYK6JPs=;
+ b=eKKTTVsOye+aPNKRzZ122169aw7bdpQ6y9COLPAXegCVrG5iSFsKe8NmabTrtfzVmJzDv5
+ Ne2IuD4WBUJ9KFI2/n+OeUSe50fsuI871CPGI9BXPcJJwGF3yCfpaEpNu/AstvRM8I1NMM
+ jJQ5ZoiYnmImiq61l3/GUCVuppLSong=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1716931978;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Y271KPi+tCyRmzKrDCwqISkFoY5mXolXM/ZhCYK6JPs=;
+ b=/F8BJdjswiKMjas+DwonGKmjEG3HjzGZ3ZDNGxX+svqxoF5eTGLjTUR3XiAExDuzESXHh8
+ mDMDQki+foK9VsAA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1716931978;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Y271KPi+tCyRmzKrDCwqISkFoY5mXolXM/ZhCYK6JPs=;
+ b=eKKTTVsOye+aPNKRzZ122169aw7bdpQ6y9COLPAXegCVrG5iSFsKe8NmabTrtfzVmJzDv5
+ Ne2IuD4WBUJ9KFI2/n+OeUSe50fsuI871CPGI9BXPcJJwGF3yCfpaEpNu/AstvRM8I1NMM
+ jJQ5ZoiYnmImiq61l3/GUCVuppLSong=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1716931978;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Y271KPi+tCyRmzKrDCwqISkFoY5mXolXM/ZhCYK6JPs=;
+ b=/F8BJdjswiKMjas+DwonGKmjEG3HjzGZ3ZDNGxX+svqxoF5eTGLjTUR3XiAExDuzESXHh8
+ mDMDQki+foK9VsAA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AB93113A5D;
+ Tue, 28 May 2024 21:32:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id jMu/KYpNVmbCTwAAD6G6ig
+ (envelope-from <dsterba@suse.cz>); Tue, 28 May 2024 21:32:58 +0000
+Date: Tue, 28 May 2024 23:32:49 +0200
+From: David Sterba <dsterba@suse.cz>
+To: kernel test robot <lkp@intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-btrfs@vger.kernel.org,
+ linux-hardening@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-pm@vger.kernel.org, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 6dc544b66971c7f9909ff038b62149105272d26a
+Message-ID: <20240528213249.GH8631@twin.jikos.cz>
+References: <202405290242.YsJ4ENkU-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 May 2024 13:24:11 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202405290242.YsJ4ENkU-lkp@intel.com>
+User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
+X-Spam-Level: 
+X-Spamd-Result: default: False [-3.58 / 50.00]; BAYES_HAM(-2.58)[98.11%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ HAS_REPLYTO(0.30)[dsterba@suse.cz];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[14]; RCVD_TLS_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ REPLYTO_ADDR_EQ_FROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.cz:replyto]
+X-Spam-Score: -3.58
+X-Spam-Flag: NO
+X-Mailman-Approved-At: Wed, 29 May 2024 13:24:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,32 +117,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: dsterba@suse.cz
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch fixes a warning from checkpatch by ensuring the trailing */ is
-aligned with the rest of the *, improving readability.
+On Wed, May 29, 2024 at 02:19:47AM +0800, kernel test robot wrote:
+> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> branch HEAD: 6dc544b66971c7f9909ff038b62149105272d26a  Add linux-next specific files for 20240528
+> 
+> Error/Warning reports:
+> 
+> https://lore.kernel.org/oe-kbuild-all/202405282036.maEDO54Q-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202405282148.jaF0FLhu-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202405282308.UEzt6hqC-lkp@intel.com
+> 
+> Error/Warning: (recently discovered and may have been fixed)
+> 
+> drivers/dma-buf/udmabuf.c:45:(.text+0x140): undefined reference to `vmf_insert_pfn'
+> fs/btrfs/fiemap.c:822:26: warning: 'last_extent_end' may be used uninitialized [-Wmaybe-uninitialized]
 
-Co-developed-by: Lucas Antonio <lucasantonio.santos@usp.br>
-Signed-off-by: Lucas Antonio <lucasantonio.santos@usp.br>
-Signed-off-by: Bruno Rocha Levi <brunolevilevi@usp.br>
----
- drivers/gpu/drm/amd/acp/include/acp_gfx_if.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The report says it's gcc 13.2, that one I use (and expect others as well
+as it's a recent one) and we also have -Wmaybe-uninitialized enabled in
+fs/btrfs/ to catch such warnings. Yet this is reported on mips64, is
+there something special about that compiler+architecture?
 
-diff --git a/drivers/gpu/drm/amd/acp/include/acp_gfx_if.h b/drivers/gpu/drm/amd/acp/include/acp_gfx_if.h
-index feab8eb7f..b26710cae 100644
---- a/drivers/gpu/drm/amd/acp/include/acp_gfx_if.h
-+++ b/drivers/gpu/drm/amd/acp/include/acp_gfx_if.h
-@@ -19,7 +19,7 @@
-  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-  * OTHER DEALINGS IN THE SOFTWARE.
-  *
--*/
-+ */
- 
- #ifndef _ACP_GFX_IF_H
- #define _ACP_GFX_IF_H
--- 
-2.45.1
-
+The warning is IMO a false positive, the maybe-uninitialized variable is
+passed as pointer but initialized on success and never used on failure.
+We can safely silence the warning by initializing the variable to 0 but
+this may be pointing to a problem with mips64+gcc namely because other
+compiler+host combinations do not warn abou that.
