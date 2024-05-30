@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204058D54C4
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 23:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE378D54C9
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 23:48:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D788C10F53C;
-	Thu, 30 May 2024 21:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98EC4112E30;
+	Thu, 30 May 2024 21:48:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oWUbSP2p";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wANeNnfn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2086.outbound.protection.outlook.com [40.107.223.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4712910F53C
+ (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F12E2112DFB
  for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 21:48:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GpLzdchrKNNbk+2UYV12DE3cYUEA2jzKMOpp6+SuA3Aywcvyw1676ZUxrrzjBWoT9yfLPtIBm5YbIuZhhSk9Pt8b2m+jJuv3xwLKr1v7fuLvFIqtbW853WCJVaxN4sqJYYyndg1UJqk1HurugxFJiJ0XPxoA84KJerbW5xYyhm3rywCSf435F1bEkSV9VCXpfNeiFisBZ552RdYwFiuzcwRLK/2PSaHSeKkcydTUcyr76UNsEyn5JVook2yTznvZqTTX2CvahnQ2OAi8tenP2AOSkUexctKkNzC5UMrl0L6jP6r1RT/Qs1ijdqyN8D+TPYtvmuIxOenqMheKCtmo7Q==
+ b=U/RvK11xk3MIG+nrSAeAsgYNDN1xaG797bJiG1EFJSNkxRu2p0GXilz6Tnv9Fi2LOaq0zggurWaFCZE+Sb9pnTyjwrr6CI3bxdupPoJRZQMS9YsgAJavEcZcVO1hWY2f6/kv9COG8f4SlUJ2AhRtTmrtP1xm//RP55uWiqPferHQUChhtnnl5N9LnMFLB+AbW7+iVJ7g7KLnQj/jN3XJCvn19wyIbcQICA5PY4H+qW+5tUu9IDf4tj28UhX22dwUGIgu5zuDGQIDIkPpnvnHzIxh+jjWUxsO1kBWW2vCZZSNoKPUBC3bXEpx45av1sQlYjsZPsmoOqTI7NPeD3oMgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SBX6y4uOCTNMDGcOt3zNfVm9b+X8/qiJbMg2p/4n38c=;
- b=jX964iTCWpzlutOqq/YILq/W/MnAQyjmuHQDdyeGMnZ8ILOkYAsEg8WJFTVdkmzO9tPLqk2JXiab0eMtIsa6dc0CzmHFOLID2NKFAqB22EgwMUaVGkgNqCU8Q6ysCuLRQO0BZzFnNgs7O1tU4WfP/NbNZoKx413fJjAEoqtJ48vrZZkV6iPi6qTZkuK9nUeFI0xBOtah+KpfBuj8K9d7l2DPfuJeNruN+Z60424/MWoRkvFgPgQa1cif9QNvqOzms+AGq8W3wf7TGTXov1TgyaRboOx/Hn4muiNv7vQUOgY1I3y1Tksd2BVgD2gfkjCXBvzFoo3G49W4oVaDAZFULA==
+ bh=tlgqjIdJ0+IjyKWEH01MTHoYWJgZTd9CVlHOC0BD1ng=;
+ b=etOfDczc8Ar1Lyn4yapXU/obMgE/+P2IQLU9FLGZluCrAS4SxBMl2wFrfAY4HF1fFEyv5fWs6ES4uWOTZ5cMpSdC4dgc2kfrLFvq0vhiOQibZDHcs4DiBPdL5p7I03EK2us65icsAftP9RMpOMgWioR1kKEce1//3suM9XWR3+IsI+1i1vUMcV9WcMdjjJJoSyf4rvIDnQuNU2//6BV1H1WYyYNCLhCFHvNjz3KcKC0z7HCi7W6O29dFQ4G7b/+ovQdFxKpnYsHr3FZw+eJSGM5e6rvTqlHP3AhIuy9g+JX9eheYR3TNxNRxlcFvNeakq6hCj/7JjkvHM9adECOrSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBX6y4uOCTNMDGcOt3zNfVm9b+X8/qiJbMg2p/4n38c=;
- b=oWUbSP2pSkxPSkyrV8g91Uw5BmUUqzowLmdit0UuAOs8lIA+ZiDB+9qxtAuTAzML+3ZR9qMp/CAiak9iz6lwuiKdjgdgQ7zLoZApnFoAGdOhM8T6/43vVvOZroGUttSMvvkjkP+hpjav2A2Nw1qcxoSYryW8RdrfF2C3xsL6c2k=
-Received: from SA0PR13CA0024.namprd13.prod.outlook.com (2603:10b6:806:130::29)
- by MN2PR12MB4455.namprd12.prod.outlook.com (2603:10b6:208:265::23)
+ bh=tlgqjIdJ0+IjyKWEH01MTHoYWJgZTd9CVlHOC0BD1ng=;
+ b=wANeNnfnhBShLeqGVqHw3qfziJDGpGEoabTXaHFogVxsBDwx/e/6xekP2aURn2/WmhD6SLzewETnmpncuqqcJIJOxSdtRKDyA5eCgSPfwn855sqVyfbkIi8+1pZJjQRpUTvhgc/FqI15K8SrJVf8X2WJRxbd88ZqGxYSCgB+0yg=
+Received: from SA0PR11CA0146.namprd11.prod.outlook.com (2603:10b6:806:131::31)
+ by CH3PR12MB8709.namprd12.prod.outlook.com (2603:10b6:610:17c::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22; Thu, 30 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Thu, 30 May
  2024 21:48:31 +0000
-Received: from SN1PEPF000397B5.namprd05.prod.outlook.com
- (2603:10b6:806:130:cafe::1d) by SA0PR13CA0024.outlook.office365.com
- (2603:10b6:806:130::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.18 via Frontend
- Transport; Thu, 30 May 2024 21:48:30 +0000
+Received: from SN1PEPF000397B1.namprd05.prod.outlook.com
+ (2603:10b6:806:131:cafe::fc) by SA0PR11CA0146.outlook.office365.com
+ (2603:10b6:806:131::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.19 via Frontend
+ Transport; Thu, 30 May 2024 21:48:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,21 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000397B5.mail.protection.outlook.com (10.167.248.59) with Microsoft
+ SN1PEPF000397B1.mail.protection.outlook.com (10.167.248.55) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 30 May 2024 21:48:30 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 30 May 2024 21:48:31 +0000
 Received: from MKM-L10-YUNXIA9.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 30 May
  2024 16:48:27 -0500
 From: Yunxiang Li <Yunxiang.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>, Likun Gao
- <Likun.Gao@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>
-Subject: [PATCH v3 4/8] drm/amd/amdgpu: remove unnecessary flush when enable
- gart
-Date: Thu, 30 May 2024 17:48:01 -0400
-Message-ID: <20240530214805.40970-5-Yunxiang.Li@amd.com>
+CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>, Yunxiang Li
+ <Yunxiang.Li@amd.com>
+Subject: [PATCH v3 5/8] drm/amdgpu: remove tlb flush in amdgpu_gtt_mgr_recover
+Date: Thu, 30 May 2024 17:48:02 -0400
+Message-ID: <20240530214805.40970-6-Yunxiang.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240530214805.40970-1-Yunxiang.Li@amd.com>
 References: <20240528172340.34517-1-Yunxiang.Li@amd.com>
@@ -75,58 +74,58 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B5:EE_|MN2PR12MB4455:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11dd3c33-8b61-413f-6fe6-08dc80f23ef7
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|CH3PR12MB8709:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ef9ba78-5064-4449-961e-08dc80f23f42
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|36860700004|1800799015|376005; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TTdxWUxkeVN6NnhMa3FLZHUvT3p6QjBab3ByWm1WRStMK2Vlb2xHNmRSM0Fu?=
- =?utf-8?B?cGtiU2ZucmsvSnNXLy9jSzF6cWZveHZaL2czb3lVcUFLNEUxdVVrNnU4OXhh?=
- =?utf-8?B?dDRIaXhLKzJQZVJIQmlvbUJzWTY1R1ZIdWNmV0J5U3JDQjBIcnd3YW5FWUNH?=
- =?utf-8?B?SWRwMEVwOU5ET1lRNngyRHgyMDJjbzh4dFB0dmJ1WTQxVUhwOEJDR3ZKekNI?=
- =?utf-8?B?dEIvZG9pcW1mQURrTUlLSjZVSHBNNW4wcDlURVRvVXZwcTA5WDJqQkZEakpX?=
- =?utf-8?B?N1NKS0V2bllHOUM3Q2cvVFg3Mkxyc3FCakxCTm94aU5zNFozcERBamRZM09y?=
- =?utf-8?B?d2xiVC92ejBzSlR4M3QrY1huYk1WRk14YnVmd3djWmduVkNMMzcyWENIV1Ry?=
- =?utf-8?B?MFhPbU5NdHdGRGl0WGRYcHpEMTF1dEkzMS9QSElkMWJ3UUNmeGdsTGdvY0I2?=
- =?utf-8?B?c2huRk5SUDdIaWhla2xIdDhlYTVhVTlGZkhDdG1uMlZzK282eStHb1JFR0E1?=
- =?utf-8?B?Q2M1Tk9IWGhlbmw0bzh0bjNCZzI0NGF3L3J1ZUR3Wktrd2xDNjN1Z3B2bG4x?=
- =?utf-8?B?SjBRVnNuVTRTbFgydzRWdFFBWTJxTGRoUTdDdHRjZWprK0J0T2ptQ1V4bFB4?=
- =?utf-8?B?aDN3OUJ6OGdjK00wbG8zTjZ5aXVNU1ZLMXdpeDFZdXNoelFkWnRNZGNkSHNk?=
- =?utf-8?B?Rk0vUUNMRkpwQU5XckhtTTF5WkFyeXVvbjRUazVsaWFxa2ZGeUg3Ni9FeHVr?=
- =?utf-8?B?VHE3bXZWNDFJRFpheXorbWJKaTVzYnpKWllidjRBZUxwYk03N2RjNG5DMUoz?=
- =?utf-8?B?bk9IeDg0c3JZNFhlWVBlTURNeG5FVkRhMXVsUzFXdUszaWRsTzJpeDQrc1FQ?=
- =?utf-8?B?amoyelBZSklWRHBYc05RTHdqQnR3c3NyWERKaVM5SEhlV3ltVzhzbjJvY2RK?=
- =?utf-8?B?QS9lUmVaL0hpa2dDUmZ5THRrLzA2cW4rbDd5UERVVEI5UGxBKyt0ZGttVEdI?=
- =?utf-8?B?UXFvdWhpT3haOFI4b3BOVWcxOCtnTmZmaTI4YTJaYnVSYmZHUmlId0pKbGdJ?=
- =?utf-8?B?TXVtd1JKY0FnWk9ncmk1Tmp1bDFaQ29hbjJ1OUo0dlBJZ0xQRTZ2Wm5PZ1lj?=
- =?utf-8?B?UkFVYXAvaUlVakdKOHVLKzFTWGdzNVJHL25FNlVBTkZaSVRnSnpuVjlhb2RN?=
- =?utf-8?B?ald3eTl6U1VQemp5SFNVYjZCUlJmbHdzODJhK3VqMGczekt5YjI3R3ZuYUo2?=
- =?utf-8?B?Mjh6N0RST29JMGFOa3NyNVZZOHNCVGVZV0xZVzQ1TWNXQkZoS1lKbnBwUTMx?=
- =?utf-8?B?RFlrRTlaRHg3ZU1jdVBFdHJGdTFVbithZWRTQ0FxMjhPS0JSRytseC9sWlVk?=
- =?utf-8?B?bS9iSmVsVUlpdkxwNXFBbjFiTGRRdjRrOTJlRFd6akVxSmZ5dGlicnNMU3Vj?=
- =?utf-8?B?Q3djYWdjcWFtR1kvdTlPMHNaN0J1WVNxMkEzdXJhTTl1a3hlV2dWWXluLzh2?=
- =?utf-8?B?WS96Rk9JQjZNdHJMS2ptK0pObjJMY2ZZNWZQdmhBM1B6ZU5EUmhMZkJCYS9X?=
- =?utf-8?B?TVBBbE9mNjh3aE1JQUluSFRRcGhFL1daSlZkWC9zV1lNSGpGVjg3aVRvTXdZ?=
- =?utf-8?B?Z0ZoazdTWkVhS1k1d3JGUWIvakg1MCtjY3lFbnlDK0FrVlROSkNMSk42Vjh3?=
- =?utf-8?B?czk0Z3NMVjJkdkVja01pc1h3dEVlbmxmSFhvVDdCVzhZSXcrcnYwK1l2UmFC?=
- =?utf-8?B?R2lSOW00KzJDUFB5L01CeTVzMEd1Q3pGazkreXFkdVIxaXRwN0V1YWNLNHRL?=
- =?utf-8?B?bUhaOVZEM29lV1NrUGxZdERuTXJXcFh3R1BFOVVtQ01reS9vYWZDRDFBcFFh?=
- =?utf-8?Q?JXg7vyqhIGEUT?=
+ ARA:13230031|1800799015|82310400017|36860700004|376005; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bXRQTmQzMzFRRk8vVElNM045STVpQlA4M2pLZWt4T2czMnZsSHMvMEdRcHEw?=
+ =?utf-8?B?eEptU2tQSTRFWlFoTUJVMTBQU3hKeUozL2hzUnhVekxaQStzakZPYnFLQ2JW?=
+ =?utf-8?B?R2hSeXVTdWZxZmNFUWpuN21QbXdDclV2QTZlR29la3NUSjluOGlSYTY1NFpa?=
+ =?utf-8?B?ZEkyNytSb3ZUaStzVmJKVGU3ejN5WXY0QVJ2S2owb3U2d3ZmelgvTGExUzZ1?=
+ =?utf-8?B?Q0pWdDEzUnl5SEdpYWx3TGZjNHhOUzdvdDhjdlhmS2JEay9adDZ4M284ekc3?=
+ =?utf-8?B?blFZZXBoNFcxcDE5NnhWSm1LRVZRdWcrN0pVTk1HOGZ0L0I0RW1xbTlvSlE1?=
+ =?utf-8?B?T2tvMnR1WHJBNHV6RkVvUlRxMGRIMC9RWVZXZVlQMFpEOEpHNVRyblVVSjVy?=
+ =?utf-8?B?b1p5YTU3bmJCVzVleFV6ZWV5dmlsYkZQK2Q1UHk0Q1RLYmZqVE9vOXhwUW9j?=
+ =?utf-8?B?b2M4dGhJQlZ6Um5hVHhjMmZnUW9PN0d5SjRXVmUyczhQbUtOU3dvanRDOGpD?=
+ =?utf-8?B?U21WeWRYeSs5YVNrOEVqRVpGeGQxaDJKaXI4alBCWFp2Wmg3NlgyZDBCdEcv?=
+ =?utf-8?B?REgzRmUyRThTYkRHZnlHLzlNN21FMkV4Nlp1TTQ1R2pPdXR5Nnl5RU1OWmhl?=
+ =?utf-8?B?R3RUZTYzOURNRllSRVhjMk96RlZUQWNTc3liN3pYZWxzVjBnZkRuYVZwcEhY?=
+ =?utf-8?B?dENKcGFvTnM0cnc3U1lFL2lieTBDZWRMWTNKcityWHRrOHJXN09QUWx3Zk1m?=
+ =?utf-8?B?Q1ZVbHhNSjl4N0MyU2xieGRRWFBoZWc4UTduajRIT3hWRUZpMlowQnpremFE?=
+ =?utf-8?B?R1VJYlpseUhGSXN3V0hERnlvQ2xQQWh1N3AyUnNzenZseGFNS3JXS1BET09U?=
+ =?utf-8?B?eDlpUlR3TjFjc0FJQmhQMEZyWCsxWFlQSk9PVEZrdkNuYmdveFpjS1BWMVBD?=
+ =?utf-8?B?WGhnSG9lREVmVWd5SVNHb05aTWlYQ0lYY3hnQ2lsMGhabFZGUlBkUDJEd0lB?=
+ =?utf-8?B?L3hIeVNkOXEwVXp0b2M3UkRINTd5akxBNXl0NG9ETjVhUzBrMnRWTnBLSWJo?=
+ =?utf-8?B?Vjc3L3ZqRDRsbGZSZW9zWDNqUTlvTEhxR0F3bXN6ckNBNHh3cm80ZzVVbXRj?=
+ =?utf-8?B?MkNlUTVqMFRqdEJvNGhLc0lsMndVanRkdkVGK0JWUmg0TjkvY09KNm1qdnVa?=
+ =?utf-8?B?SzU2WjFaSHdnekc0UThJa3hkN1FhNGtLckFUNlU4LytMSkpUVEw2OXArMVlw?=
+ =?utf-8?B?TTE4cEltV25WWGxqSGI1R3VaQmJCOXhGTm5YMXkwYURua1VnUkRKeGhCOHdv?=
+ =?utf-8?B?S1dkZ28yN0V4UUN5VVJRNUExUDduVlV6R2FrYXVLb2VyYmtHUmpodjRaNlJz?=
+ =?utf-8?B?eHArN2dHM2lOc1ZMSjdva0poTW9UM2w4Um9xcVRYdTdDSFpEaVJ0UnJpQ3Q2?=
+ =?utf-8?B?NGNlbG9JaXVjamZITUJMMXBWQW1UTWdlY25vWlc5WkRuS3paQWF5TVZHazFl?=
+ =?utf-8?B?bllvWmJkOEVqdlZ3eXlabEN0czdBWjk2VWZhRm5EODZ2a1ArcE90N3BTRmJQ?=
+ =?utf-8?B?TmtBTXZVWHlGa0FQNUNCUkgvcVRxakhRa214Qkl4ZDFHSzQvanNWdllWNmdW?=
+ =?utf-8?B?TCtsaC9WUWZ1eGNJZUplYUx5U1NhOENIUFI0V2lhVGtYZ3ZXU0E5QXY2bDBW?=
+ =?utf-8?B?VFlWTEE5bGZlakpEdVdvRml5am4zVFRTMmxCR0EzMGxocXlSdFNteGlQOVBE?=
+ =?utf-8?B?L2tHTTdJNXpNYmhmNFJFUVZGQUt4REFFVlBWKzlobDZjVEpnSFlKVWs2WUNQ?=
+ =?utf-8?B?cW00Zld5RHZJUm1GaDBBWUxwY2gwQUxFRkZtQlVNVFBPZTA3NUYzYVJiSHl1?=
+ =?utf-8?Q?Z5t+lSfa4lX8w?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(82310400017)(36860700004)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 21:48:30.5830 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11dd3c33-8b61-413f-6fe6-08dc80f23ef7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 21:48:31.0912 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ef9ba78-5064-4449-961e-08dc80f23f42
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B5.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4455
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8709
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,106 +140,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+At this point the gart is not set up, there's no point to invalidate tlb
+here and it could even be harmful.
 
-Remove hdp flush for gc v11/12 when enable gart.
-Remove flush tlb for gc v10/11/12 when enable gart.
-The flush is done for each GART mapping when it is created.
-
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
 Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
 Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 3 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 3 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 3 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c | 3 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 4 ----
- 5 files changed, 16 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index aba0a51be960..5740f94e3e44 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -4395,13 +4395,10 @@ static int gfx_v11_0_gfxhub_enable(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
- 
--	adev->hdp.funcs->flush_hdp(adev, NULL);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index 44367f03316f..0760e70402ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -200,8 +200,6 @@ void amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr)
+ 		amdgpu_ttm_recover_gart(node->base.bo);
+ 	}
+ 	spin_unlock(&mgr->lock);
 -
- 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
- 		false : true;
- 
- 	adev->gfxhub.funcs->set_fault_enable_default(adev, value);
--	amdgpu_gmc_flush_gpu_tlb(adev, 0, AMDGPU_GFXHUB(0), 0);
- 
- 	return 0;
+-	amdgpu_gart_invalidate_tlb(adev);
  }
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 1ef9de41d193..5048b6eef9da 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -3207,13 +3207,10 @@ static int gfx_v12_0_gfxhub_enable(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
  
--	adev->hdp.funcs->flush_hdp(adev, NULL);
--
- 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
- 		false : true;
- 
- 	adev->gfxhub.funcs->set_fault_enable_default(adev, value);
--	amdgpu_gmc_flush_gpu_tlb(adev, 0, AMDGPU_GFXHUB(0), 0);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index d933e19e0cf5..3e0ebe25a80f 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -974,9 +974,6 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
- 	if (!adev->in_s0ix)
- 		adev->gfxhub.funcs->set_fault_enable_default(adev, value);
- 	adev->mmhub.funcs->set_fault_enable_default(adev, value);
--	gmc_v10_0_flush_gpu_tlb(adev, 0, AMDGPU_MMHUB0(0), 0);
--	if (!adev->in_s0ix)
--		gmc_v10_0_flush_gpu_tlb(adev, 0, AMDGPU_GFXHUB(0), 0);
- 
- 	DRM_INFO("PCIE GART of %uM enabled (table at 0x%016llX).\n",
- 		 (unsigned int)(adev->gmc.gart_size >> 20),
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-index 527dc917e049..cadbe55f0c8f 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -891,9 +891,6 @@ static int gmc_v11_0_gart_enable(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
- 
--	/* Flush HDP after it is initialized */
--	adev->hdp.funcs->flush_hdp(adev, NULL);
--
- 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
- 		false : true;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-index e2c6ec3cc4f3..a677aca69a06 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-@@ -861,14 +861,10 @@ static int gmc_v12_0_gart_enable(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
- 
--	/* Flush HDP after it is initialized */
--	adev->hdp.funcs->flush_hdp(adev, NULL);
--
- 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
- 		false : true;
- 
- 	adev->mmhub.funcs->set_fault_enable_default(adev, value);
--	gmc_v12_0_flush_gpu_tlb(adev, 0, AMDGPU_MMHUB0(0), 0);
- 
- 	dev_info(adev->dev, "PCIE GART of %uM enabled (table at 0x%016llX).\n",
- 		 (unsigned)(adev->gmc.gart_size >> 20),
+ /**
 -- 
 2.34.1
 
