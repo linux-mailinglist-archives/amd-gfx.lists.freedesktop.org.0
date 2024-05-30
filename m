@@ -2,34 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94DD8D45DA
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 09:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 546858D46B5
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 10:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDDF11B66A;
-	Thu, 30 May 2024 07:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBBC10F5C5;
+	Thu, 30 May 2024 08:08:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="uHuyEpux";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB8F411B66A
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 07:15:30 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 44U7FOVV1793088; Thu, 30 May 2024 12:45:24 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 44U7FO5O1793087;
- Thu, 30 May 2024 12:45:24 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 3/3] drm/amdgpu: add cp queue registers for gfx9 ipdump
-Date: Thu, 30 May 2024 12:45:23 +0530
-Message-Id: <20240530071523.1793050-3-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240530071523.1793050-1-sunil.khatri@amd.com>
-References: <20240530071523.1793050-1-sunil.khatri@amd.com>
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com
+ [209.85.219.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7476C10F5FA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 08:08:06 +0000 (UTC)
+Received: by mail-yb1-f174.google.com with SMTP id
+ 3f1490d57ef6-dfa4ad7f6dfso517023276.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 01:08:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1717056485; x=1717661285; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ea398ookltKnMcZe9XrXhw80TYHn5RUehEf25oaXTj0=;
+ b=uHuyEpux2eD7fRwKQlW5BZ6lfcm3edePuirZPnUiy1Md6FWAAnLDIGfTagSaNhitDJ
+ gZetgXAG5g4/xQuo7hZcFf/YQ9RvLLcoU1YPSeSgjfyNYiqudRyFm90mHx2+hbNcb098
+ eJeo19OKDv73rqHwTtmwWF7X6qYZ8crRwR50srpClnk80vESjiBbqQDEGdZyTcXHljou
+ 86hdhgZhwtCY80sP6wtHvTiOeqq7WN6HDbu0tXjVYcL9KspCSDTkpY26FDumFLS9T2Pq
+ scXmkTgYo4cWyEelpgS9txoYrAQaVd/6sVxwe5/H7AY42s1r9182pv51jQX7fz24hkV8
+ QOjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717056485; x=1717661285;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Ea398ookltKnMcZe9XrXhw80TYHn5RUehEf25oaXTj0=;
+ b=AYVLLOyPHu9s3f0QZhKwF6SSUZgPgZAPtueomD+zGqoz/GvKyxTMX9gHncDxPyaDA4
+ fm31slvUShXdvxth0P5y3UD5uu57bBoRsinQQESMDhPbJIkU+Nwambfghc8ouuwdPb0Z
+ Sndri/XKXlB6ZXUltcousZTy3Y5XwgiKTsYajufnhK3KBEmvAf9exJDcrqYG5gyaagHm
+ nzwDRS0f819ExKmecqGCjHvEHqIUOo6HdhqCDb2aClptPL1uXlYDaQcf+jwLmBCFXUR4
+ Ec6sowWOXB38YC7Kt9JcBHlspCQGPVxrBn/BKs6KKqBawp/EPaktbdeBEw5dEl/7Bi31
+ LJ5w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWJ5Ip8Xsb7QHsdR/pkE/Nkip5MDTZ46P3o4yYWqbcKdm+yIrjo0UWTkax7HETIiljbpzKOr5ANu2Gq1E+Ya4wAnyWArcI6b0yHiHQ1OA==
+X-Gm-Message-State: AOJu0YwtMHRLRJtd5KXAK8uaVCZC7O+I6fh8eLO3E0zjrtjmfBd9hURp
+ XKrOwfofhHpuQLkAsrxTQ+GHWZalTtPjVufayxa86JX5A3/hJFlRsrkFHN0lZbyP3hrJlp/EpnS
+ RKvxYF3Z+qR+LiIsaDKSYw0jf6FCoiLY/e9gnEQ==
+X-Google-Smtp-Source: AGHT+IGz+ZsfJJB5VdBGOljgIkzRdHhgei+gaKgI65RBquJxbv4kncJ2bpBR1QliVBmCJF1PLzPJlIZVnBu5WHt6piI=
+X-Received: by 2002:a25:ac92:0:b0:dca:c369:fac2 with SMTP id
+ 3f1490d57ef6-dfa5a5baeb4mr1629327276.3.1717056485217; Thu, 30 May 2024
+ 01:08:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240528210319.1242-1-mario.limonciello@amd.com>
+ <Zlc4V1goFvU2antl@intel.com> <197d195f-9206-41dd-8ff1-f4bb4988fb9b@amd.com>
+ <ZldMKZ1MzSDXOheJ@intel.com>
+ <g34f3sdk22grheq2vaaonkl543dtk7nb5sffqgmkl5ywtj5skk@p5ht5ug33q4z>
+ <873b7a7b-139d-498e-89da-098cb3d7599d@amd.com>
+In-Reply-To: <873b7a7b-139d-498e-89da-098cb3d7599d@amd.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 30 May 2024 11:07:53 +0300
+Message-ID: <CAA8EJpqODpGX-RthQ8qu3oU80qXp8a-N1Chz-dcQXjKYoDfEgw@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/client: Detect when ACPI lid is closed during
+ initialization
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ linux-kernel@vger.kernel.org, Chris Bainbridge <chris.bainbridge@gmail.com>, 
+ hughsient@gmail.com, linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,182 +88,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add gfx9 support of CP queue registers for all queues
-to be used by devcoredump.
+On Thu, 30 May 2024 at 07:41, Limonciello, Mario
+<mario.limonciello@amd.com> wrote:
+>
+>
+> >> Also a direct acpi_lid_open() call seems a bit iffy. But I guess if
+> >> someone needs this to work on non-ACPI system they get to figure out
+> >> how to abstract it better. acpi_lid_open() does seem to return != 0
+> >> when ACPI is not supported, so at least it would err on the side
+> >> of enabling everything.
+> >
+> > Thanks. I was going to comment, but you got it first. I think a proper
+> > implementation should check for SW_LID input device instead of simply
+> > using acpi_lid_open(). This will handle the issue for other,
+> > non-ACPI-based laptops.
+> >
+>
+> Can you suggest how this would actually work?  AFAICT the only way to
+> discover if input devices support SW_LID would be to iterate all the
+> input devices in the kernel and look for whether ->swbit has SW_LID set.
+>
+> This then turns into a dependency problem of whether any myriad of
+> drivers have started to report SW_LID.  It's also a state machine
+> problem because other drivers can be unloaded at will.
+>
+> And then what do you if more than one sets SW_LID?
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 110 +++++++++++++++++++++++++-
- 1 file changed, 108 insertions(+), 2 deletions(-)
+It might be easier to handle this in the input subsystem. For example
+by using a refcount-like variable which handles all the LIDs and
+counts if all of them are closed. Or if any of the LIDs is closed.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 3df2bca80fd9..59d8f6c4ba25 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -237,6 +237,47 @@ static const struct amdgpu_hwip_reg_entry gc_reg_list_9[] = {
- 	SOC15_REG_ENTRY_STR(GC, 0, mmGRBM_STATUS_SE3)
- };
- 
-+static const struct amdgpu_hwip_reg_entry gc_cp_reg_list_9[] = {
-+	/* compute queue registers */
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_VMID),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_ACTIVE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PERSISTENT_STATE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PIPE_PRIORITY),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_QUEUE_PRIORITY),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_QUANTUM),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_BASE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_BASE_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_RPTR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_POLL_ADDR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_POLL_ADDR_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_DOORBELL_CONTROL),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_CONTROL),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_IB_BASE_ADDR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_IB_BASE_ADDR_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_IB_RPTR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_IB_CONTROL),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_DEQUEUE_REQUEST),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_BASE_ADDR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_BASE_ADDR_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_CONTROL),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_RPTR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_WPTR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_EVENTS),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CTX_SAVE_BASE_ADDR_LO),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CTX_SAVE_BASE_ADDR_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CTX_SAVE_CONTROL),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CNTL_STACK_OFFSET),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CNTL_STACK_SIZE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_WG_STATE_OFFSET),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_CTX_SAVE_SIZE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_GDS_RESOURCE_STATE),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_ERROR),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_EOP_WPTR_MEM),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_LO),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_PQ_WPTR_HI),
-+	SOC15_REG_ENTRY_STR(GC, 0, mmCP_HQD_GFX_STATUS),
-+};
-+
- enum ta_ras_gfx_subblock {
- 	/*CPC*/
- 	TA_RAS_BLOCK__GFX_CPC_INDEX_START = 0,
-@@ -2086,6 +2127,7 @@ static void gfx_v9_0_alloc_ip_dump(struct amdgpu_device *adev)
- {
- 	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_9);
- 	uint32_t *ptr;
-+	uint32_t inst;
- 
- 	ptr = kcalloc(reg_count, sizeof(uint32_t), GFP_KERNEL);
- 	if (ptr == NULL) {
-@@ -2094,6 +2136,19 @@ static void gfx_v9_0_alloc_ip_dump(struct amdgpu_device *adev)
- 	} else {
- 		adev->gfx.ip_dump_core = ptr;
- 	}
-+
-+	/* Allocate memory for compute queue registers for all the instances */
-+	reg_count = ARRAY_SIZE(gc_cp_reg_list_9);
-+	inst = adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
-+		adev->gfx.mec.num_queue_per_pipe;
-+
-+	ptr = kcalloc(reg_count * inst, sizeof(uint32_t), GFP_KERNEL);
-+	if (ptr == NULL) {
-+		DRM_ERROR("Failed to allocate memory for GFX CP IP Dump\n");
-+		adev->gfx.ip_dump_cp_queues = NULL;
-+	} else {
-+		adev->gfx.ip_dump_cp_queues = ptr;
-+	}
- }
- 
- static int gfx_v9_0_sw_init(void *handle)
-@@ -2311,6 +2366,7 @@ static int gfx_v9_0_sw_fini(void *handle)
- 	gfx_v9_0_free_microcode(adev);
- 
- 	kfree(adev->gfx.ip_dump_core);
-+	kfree(adev->gfx.ip_dump_cp_queues);
- 
- 	return 0;
- }
-@@ -6949,7 +7005,7 @@ static void gfx_v9_0_emit_wave_limit(struct amdgpu_ring *ring, bool enable)
- static void gfx_v9_ip_print(void *handle, struct drm_printer *p)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
--	uint32_t i;
-+	uint32_t i, j, k, reg, index = 0;
- 	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_9);
- 
- 	if (!adev->gfx.ip_dump_core)
-@@ -6960,12 +7016,36 @@ static void gfx_v9_ip_print(void *handle, struct drm_printer *p)
- 			   gc_reg_list_9[i].reg_name,
- 			   adev->gfx.ip_dump_core[i]);
- 
-+	/* print compute queue registers for all instances */
-+	if (!adev->gfx.ip_dump_cp_queues)
-+		return;
-+
-+	reg_count = ARRAY_SIZE(gc_cp_reg_list_9);
-+	drm_printf(p, "\nnum_mec: %d num_pipe: %d num_queue: %d\n",
-+		   adev->gfx.mec.num_mec,
-+		   adev->gfx.mec.num_pipe_per_mec,
-+		   adev->gfx.mec.num_queue_per_pipe);
-+
-+	for (i = 0; i < adev->gfx.mec.num_mec; i++) {
-+		for (j = 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
-+			for (k = 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
-+				drm_printf(p, "\nmec %d, pipe %d, queue %d\n", i, j, k);
-+				for (reg = 0; reg < reg_count; reg++) {
-+					drm_printf(p, "%-50s \t 0x%08x\n",
-+						   gc_cp_reg_list_9[reg].reg_name,
-+						   adev->gfx.ip_dump_cp_queues[index + reg]);
-+				}
-+				index += reg_count;
-+			}
-+		}
-+	}
-+
- }
- 
- static void gfx_v9_ip_dump(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
--	uint32_t i;
-+	uint32_t i, j, k, reg, index = 0;
- 	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_9);
- 
- 	if (!adev->gfx.ip_dump_core || !adev->gfx.num_gfx_rings)
-@@ -6976,6 +7056,32 @@ static void gfx_v9_ip_dump(void *handle)
- 		adev->gfx.ip_dump_core[i] = RREG32(SOC15_REG_ENTRY_OFFSET(gc_reg_list_9[i]));
- 	amdgpu_gfx_off_ctrl(adev, true);
- 
-+	/* dump compute queue registers for all instances */
-+	if (!adev->gfx.ip_dump_cp_queues)
-+		return;
-+
-+	reg_count = ARRAY_SIZE(gc_cp_reg_list_9);
-+	amdgpu_gfx_off_ctrl(adev, false);
-+	mutex_lock(&adev->srbm_mutex);
-+	for (i = 0; i < adev->gfx.mec.num_mec; i++) {
-+		for (j = 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
-+			for (k = 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
-+				/* ME0 is for GFX so start from 1 for CP */
-+				soc15_grbm_select(adev, 1 + i, j, k, 0, 0);
-+
-+				for (reg = 0; reg < reg_count; reg++) {
-+					adev->gfx.ip_dump_cp_queues[index + reg] =
-+						RREG32(SOC15_REG_ENTRY_OFFSET(
-+							gc_cp_reg_list_9[reg]));
-+				}
-+				index += reg_count;
-+			}
-+		}
-+	}
-+	soc15_grbm_select(adev, 0, 0, 0, 0, 0);
-+	mutex_unlock(&adev->srbm_mutex);
-+	amdgpu_gfx_off_ctrl(adev, true);
-+
- }
- 
- static const struct amd_ip_funcs gfx_v9_0_ip_funcs = {
+>
+> IOW - a lot of complexity for a non-ACPI system.  Does such a problem
+> exist in non-ACPI systems?
+
+There are non-ACPI laptops. For example Chromebooks. Or Lenovo X13s,
+Lenovo Yoga C630, Lenovo Flex5G, etc. We are expecting more to come in
+the next few months. And I don't see why they won't have the same
+problem.
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
