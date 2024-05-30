@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34C68D54C8
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 23:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EFA28D54CA
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 May 2024 23:48:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5410D10F804;
-	Thu, 30 May 2024 21:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25595112007;
+	Thu, 30 May 2024 21:48:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pJB78o5f";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0NkhqLJC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6639B10F804
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 21:48:36 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36F2F10F804
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 May 2024 21:48:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KrNV9wMJe/wvK8XCVRsetEl3vUOS6eXu6+c80D9j/TemX4ogs6B0HhvOosV6hfF0vdkLb5nbYvDbMeTJoYkx1WC7oUwle5yYB2JJFyFhNZqT1kFfcEqaMO6jj+TfbyBwZZPjHNBnqcv2JSvzTEDlJ96K3tTaAU2kxCN42bWgR5xT0fi2xtL7FZbjhMXvrfhnNJjDfhNghY8/OxUnKUIqIWVl7OIF659rHzCgMJl5jcZed2iKwJUF53Jt7z70KCys00sScR7uXZgqR56fu/yyr46CG6dQtc2A+09Wlwz988hC0JqJ5XR1lvITzRuCuZLMtHwyK24Xq/YMjk6Ncbfp/w==
+ b=OzcFHbympzxxjqlmhWwhOXjyewc/zf7+J/Y7G9nYHAtj8557HcuwIw9cPm5wjjmM7EMR/ta8Ipebr5lLexjByjtg3ai0xd0T/3x+t7oPjOl6UypgJIHS4cy+gNKBGzBNzlvVL77YrGo9mFYilBqK5NK4SCvT+y6vXVKXtSKJh7w6PWMjV1ypE6WXDKPhVrQbA+8Qf8IASM6qWVpbPiDKxRdWsmNRPI9DdxJbm/ql7skakAWEhvGrhQ0GDQPuihxX0zY1LonAwkZFoTi4fNZq6YAd2FakCci86MvfBS1FqpXAg7NQaKi0K5qe7MB25J6eU+z1EE4aRqPtRjcf5COfvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AFn/WHEXtO6ZxA9aug+HPAfkopcn790CdRl1UL+aUyo=;
- b=PjnQj/3jZi2nxvTkyRFahKaQznxIIuIOIZVL7J1uz9J/PofS2qjdqLCvakNHkPU95RENMltMLrB48WsN0q/UfLX+prRh+8cnfXNj6M7tkNij8Gv+n14dGJJGxGk8TT7eVo+3Q0+TBs+eBf4DWZUIZGh8gUaWKK6DMS0oHIs3YUjV7opsS/XLK1pXU0Qq9czC3RmWHViVh0d10vFBPtmP2YM7jI456N3TcjcoZNu7AxBS/fpQp9jbdJmqaiQNsQ5i981nNFlMkln0OxCIv8E5EwzTdtIs/obrY0pWD6FucL36przJDtjEFoznQCBepZ1gdb5V2/p3COGayUPfQ8JgGw==
+ bh=1Zdd7IexLGXVvOrwl1XmmhX/teSAUJPyvs+gYKjw0Gs=;
+ b=hn29do/2sShMCuFZz120wuK6YmTFP52rjGTZA/xb0JMXP/P6zBkYSwvPag/hUBU23QOtaGEj5XJZwLfDe1xasDC+DJdOougJQRxgewfSIRMZI0zII7yHxZfhU6pXoyQALGDAHiIntqEukvWA4ATAI1lHLOcB1hz9EICcI7Y4JfxICAj0IkmJRjJw2xdJzCcm/9v8T97ppNdr7cXyWti2DNtuqCn8ocZ4mhumAWD+9NJoYe491BJuCz8ZuflHTJcfgyT8vdoEF9avtXPU9GHy32DWKyuujf70daP2X4oWODVhSki6v4at7XiW4zasJnd7q1odbV6JcASwQzHhb/6RwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AFn/WHEXtO6ZxA9aug+HPAfkopcn790CdRl1UL+aUyo=;
- b=pJB78o5fTdGHw3ukHqJda8vC8h34LwHtnUG95XgsZ69HqovXonMORZkAeixw8tyRe6wl/qNK27bcXkcw1cp0TNjHRJf3zGP6Q5ty+Ex7BdQwaB8pBVIXZ7P2AM/PYZKUsLdsnoT6AWUJsudtTFUz+ElXSZegBjJMAyLr2iY+b5I=
-Received: from SA0PR11CA0125.namprd11.prod.outlook.com (2603:10b6:806:131::10)
- by PH8PR12MB7447.namprd12.prod.outlook.com (2603:10b6:510:215::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 21:48:31 +0000
-Received: from SN1PEPF000397B1.namprd05.prod.outlook.com
- (2603:10b6:806:131:cafe::b) by SA0PR11CA0125.outlook.office365.com
- (2603:10b6:806:131::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22 via Frontend
+ bh=1Zdd7IexLGXVvOrwl1XmmhX/teSAUJPyvs+gYKjw0Gs=;
+ b=0NkhqLJCk6sHow+0AK3rJaysSh6Ry8T1n878PvlSknD0H+KerSg33+XQjlfC7wZ7y+T1WdJeLLpFsgucKNzucnrafZAMvmL5IAgdaAxxXP5fWkPUy4EhBkzrvlrfSSAmucnTo1+6IudZMrkJQc8/gWWex5Yc78LqOgHn4BdWdyE=
+Received: from SA0PR13CA0021.namprd13.prod.outlook.com (2603:10b6:806:130::26)
+ by DS0PR12MB6533.namprd12.prod.outlook.com (2603:10b6:8:c2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Thu, 30 May
+ 2024 21:48:32 +0000
+Received: from SN1PEPF000397B5.namprd05.prod.outlook.com
+ (2603:10b6:806:130:cafe::76) by SA0PR13CA0021.outlook.office365.com
+ (2603:10b6:806:130::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.8 via Frontend
  Transport; Thu, 30 May 2024 21:48:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -48,83 +48,76 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000397B1.mail.protection.outlook.com (10.167.248.55) with Microsoft
+ SN1PEPF000397B5.mail.protection.outlook.com (10.167.248.59) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.7633.15 via Frontend Transport; Thu, 30 May 2024 21:48:31 +0000
 Received: from MKM-L10-YUNXIA9.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 30 May
- 2024 16:48:28 -0500
+ 2024 16:48:29 -0500
 From: Yunxiang Li <Yunxiang.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>, Yunxiang Li
- <Yunxiang.Li@amd.com>, <stable@vger.kernel.org>
-Subject: [PATCH v3 7/8] drm/amdgpu: fix locking scope when flushing tlb
-Date: Thu, 30 May 2024 17:48:04 -0400
-Message-ID: <20240530214805.40970-8-Yunxiang.Li@amd.com>
+ <Yunxiang.Li@amd.com>, <felix.kuehling@amd.com>
+Subject: [PATCH v3 8/8] drm/amdgpu: fix missing reset domain locks
+Date: Thu, 30 May 2024 17:48:05 -0400
+Message-ID: <20240530214805.40970-9-Yunxiang.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240530214805.40970-1-Yunxiang.Li@amd.com>
 References: <20240528172340.34517-1-Yunxiang.Li@amd.com>
  <20240530214805.40970-1-Yunxiang.Li@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|PH8PR12MB7447:EE_
-X-MS-Office365-Filtering-Correlation-Id: 246a630d-19b5-4e6e-f58b-08dc80f23f82
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397B5:EE_|DS0PR12MB6533:EE_
+X-MS-Office365-Filtering-Correlation-Id: dfd4e00d-b190-4b8b-ddbe-08dc80f23fa7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|376005|36860700004|82310400017|1800799015; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UGFBU0FYQ2g1WmxJVmNBWnB3SHFEQUhnWTZwVWFVUEFYZnNjUGowMjZmSG5t?=
- =?utf-8?B?U09mTGVmejRwZjlXNmxSTXlSdGU2MHlWbWpWVVBYM3V6MDBFdFVaTmc3aEto?=
- =?utf-8?B?WHg5ZnpZczgzZ292V0xjakpEZVpwRUFmUG9MQk1YN29LenJ4QUtZa3pMM1Uz?=
- =?utf-8?B?bHgrWCtLZk9QNnY0ekxCeWZpZDVnaVArQXJzdFdmSDFEbmFYR3NBQUpLSm1a?=
- =?utf-8?B?eE1DKzJRQXhpQWV4c0swVnU0eHZKb3ppWlpNc3MvV2ZFeUlyMVp2SGlDalFZ?=
- =?utf-8?B?S3p0d2ttUEEvQzFyS2hnWnZPMm9QTTVNRUQ4allwZUk2SVBnWFZQNXJRbWMy?=
- =?utf-8?B?OG16N3hTMDg1Uzl0eU5sQXRud3BhNDFvS0FzSVhCR2JqN3NyMEVIUU94VFFv?=
- =?utf-8?B?OHM4TWVqWVphN0V2SGd3eXo1YkU5bkRwT2pGVzZrNTNsNHVZY2FOTEx1ZStE?=
- =?utf-8?B?QXQweUd2TUhiWEI5aHMwM2hvZ0FGb2dMOWVVYldidVNKbHVaWVJ6YWIrdFky?=
- =?utf-8?B?MGpZM205eG9teW45ajg3QUtoQm9WTkN2S1pkOEJmVDVpWFZHc2hYSmo5OXVY?=
- =?utf-8?B?QlgyOFhBRmpXSHdESnhnNzNMRDRlU1Y5TXh5UnZUNEV0TzlCQ200V2xzOFRz?=
- =?utf-8?B?Wjl0dTBhVEFTRW1LNnBKMTh3d3c5ZVJNYnlQR3BTeS9uVW1MRHkxck5SL0hi?=
- =?utf-8?B?U1AxYU9FcUJqcWZFcEpyMlIrSUZTcVVYZ2pDVUxmS1BFdTNhdHNmcjVRSjd5?=
- =?utf-8?B?dGRHdmxvVkh2c2NiZitJaXZaTEJnamJIS3JabEFXNlVSdzEzQUdZNjFlZTB0?=
- =?utf-8?B?cXRraGtOakNGTEZhRGRNemVaK2d4ZkxwaWFZOVhzZVI2SHdoT0pKcUlmQUMr?=
- =?utf-8?B?SEI4a1FrSGQwdFV3RDZoTFNWZnRpL1pGQ1ovaVZEVm5wRGRndCtLR2szV28w?=
- =?utf-8?B?OE9lcUgxYkhjOEhwYnErMEJuK3g2K3BZWkdndm03anFKZ0lsd2JHeFZncHh4?=
- =?utf-8?B?QmxXam52bFRtQTV6dGFBSU9BZERXUjZGVy9vQ2pwMG5rNUZZVXZDNmd5MUFa?=
- =?utf-8?B?VHI0dkpGemlCaERVaUtTbGcrTDZsR2ZnVERQVnBEcnZZb0NDTVpabHVBYzhp?=
- =?utf-8?B?WktqZCtITGNCRVVKeGVKNWlKazdNUmYxUldIdjhIR2tNRW1Fdld6N0VDN1hu?=
- =?utf-8?B?ZEVTMmpVemZpRXNRRzZ6VTlhWW9MNENmUFUrVTdRa1B4OGVudWkzVkp6UWpm?=
- =?utf-8?B?bXR6bERTV011Uk1kUHVEZzI1WGNjTldsd3hTUXlXU0RYZFQ2YkJsazlJbmNE?=
- =?utf-8?B?QVd3bFlqQ1Y3Sk1yRVRZOURFVEk1ZStjdzExOTNLa1ZQYWZaT0FET3A4MDNs?=
- =?utf-8?B?dEsvb1VOQzZhU0VEazVLbnI5aFdsZEVLKzdMM3NOVGxBSFIzSlMyMXZQVm4x?=
- =?utf-8?B?MENqcUxYSVVXWVMyaEt4N2RXMENWYnBzb3lkTjM2TW1XZmZmWlZockUzL3k2?=
- =?utf-8?B?aGF4MjBUU21udS9DREZMc3c3YjZDM1NFVnJPVEtuM3ErOEpLaVV5cjZqTitv?=
- =?utf-8?B?eERpdnZmUFlnVjhuQlZoMVV0YmlYc3dYWjZQcHE4YzNXckhuUGR2eDkxY3Nm?=
- =?utf-8?B?SDAveTRHK3NuYnd1djFRZGpjRk9ENDZWRGZWWmpUSVhBNzd6TzhzRW50WlpQ?=
- =?utf-8?B?VG9UcGV3SzB5SlFFZldtcmRaaXRMNmVEbVlZM0haTHQ3SzZQMWR2Sm5BSUdF?=
- =?utf-8?B?MldUMm1TS1pEcGc1TCtWd0FoQkY4ZVliUUE1K1FtZ1VCZ1VqcFhpUHNPT3hY?=
- =?utf-8?Q?4cah3w+1adSYSxHMMqsYgOmhNCyBhG5An1Ov4=3D?=
+ ARA:13230031|1800799015|36860700004|82310400017|376005; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?puBOcpY7lxcIP7okK2feyIsZpI6r4rMz+mpxmIourrWY9NkNevMIvzBkxIZS?=
+ =?us-ascii?Q?NXjA/yRKgZwyBWcWJUY3KK63SBDGKD1g+AVqW6pQYeWEoJkU9OHnG3jhCcaL?=
+ =?us-ascii?Q?EteJRcFFTySYFJPrc/8mTM58LlyVaK9xBYiYG0eH2rqlLZGa4m1sbR0wz3EY?=
+ =?us-ascii?Q?cmXQ0akUbKhF1fqKVvhOWfrCOqQ4N8A1vAVJX6rbTdr+dOTfl/z2V9hpbzot?=
+ =?us-ascii?Q?n4kfGbLplUKzBp5rWWNkjiwkqkTC49wBiXNeIBIYemPFrt1GPMZB56D4ZH4B?=
+ =?us-ascii?Q?UIuvKRHSplpVOzGDwtvoMxztDJdUUe5uw28otKAVAr3aNZXUT2j3UOYreEGQ?=
+ =?us-ascii?Q?SfjAPoQ9MQF5IqScP57VAHU7gURO02iRqboScazRtFn2z0MMhlsQ1b8WBqrL?=
+ =?us-ascii?Q?S8JCPfBlhO5vL5/teNj6VppVd5II0fvzK7jPU1Ff4pd4f/yyz5KK2u0gDgRX?=
+ =?us-ascii?Q?Vw+4xD5s8WjnrhBxwvwcNhOAot0ZAXLTftXWQO+eYS1rtVGoDi69Emm7tdJG?=
+ =?us-ascii?Q?jcNpO74JfrsiB4hBVzf7kU6+M+cGQs5iCJl2dN1AeeIfK0qCoMVmpUz/2CRs?=
+ =?us-ascii?Q?uEn7iBIECjG0UNslZU7M7sPiixmY/wK8YCk6UZNQO57JXRCMto2FVI72T2t4?=
+ =?us-ascii?Q?mU6LLDEnHlVuOiEvJ5kbSsABawoEB9jV2nV7TzqroBuhda6Q1xZA5ylZo4GV?=
+ =?us-ascii?Q?GnMZzDo+dsIjW1hoM888leziNSQ7GDvrdEWSRGPczlajv07wYvRqw7A0cwa0?=
+ =?us-ascii?Q?0YMM02nnZ9fuNPWdQY9T8sH6l1wUX71IUJggUKGFihjuXVM2qPx7eCRQUD/p?=
+ =?us-ascii?Q?FrEesNq6LlvZam4BoVbmF7Chp3OvHsUV11nwllAZBp8VsOu43WtDHv22JKHZ?=
+ =?us-ascii?Q?OZ1ToDSqq4M13RdogrD/9Cra+qmrq+crvJKuGtkziSS+glH1pZvGtiNosbaP?=
+ =?us-ascii?Q?iNe+WntRy7oLnRP06hc+RNk1eIc7KGQS/XMS6UNZ/acG/IN5dSOQdSs+Kc7e?=
+ =?us-ascii?Q?U7Hl4q6B/5Y5+KAvcUlUj9tGtEKpcFNcggoCIbfRPC9PAC7dajbOy4a1+F9U?=
+ =?us-ascii?Q?igexTE3GLJhiNvWiART3phaT/+mdnECTmzqslsI/oeXckg8S6JyM6kpq2h05?=
+ =?us-ascii?Q?p9gSc567v3wfQNjjhAj+BA9SBWX1rPawqREk3HFTMQFR4NyRkh7Aup1xSLYY?=
+ =?us-ascii?Q?yckqycbFY02qsz2r4oRE8b6TL2ZRiC5ITZ3e7y2PaCYyB18bD2rT68d+PTC0?=
+ =?us-ascii?Q?3Yf4EZr1KJHi3kAX6rhdJnj6OIKcG9FJ2KVZsEK0rUbtsO24zAkpl2qRtBU5?=
+ =?us-ascii?Q?W3Xez6gaYC5IzNTaH8D4GOaiy8pl6VYXTp6YxxMcnzrGNjNhkxW2iDfn3wuZ?=
+ =?us-ascii?Q?rMj5LYo=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(376005)(36860700004)(82310400017)(1800799015); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(82310400017)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 21:48:31.5130 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 246a630d-19b5-4e6e-f58b-08dc80f23f82
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 21:48:31.7393 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfd4e00d-b190-4b8b-ddbe-08dc80f23fa7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B5.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7447
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6533
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,112 +132,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Which method is used to flush tlb does not depend on whether a reset is
-in progress or not. We should skip flush altogether if the GPU will get
-reset. So put both path under reset_domain read lock.
+These functions are missing the lock for reset domain.
 
 Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
-CC: stable@vger.kernel.org
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 66 +++++++++++++------------
- 1 file changed, 34 insertions(+), 32 deletions(-)
+v3: only bracket amdgpu_device_flush_hdp with the read lock,
+    amdgpu_gmc_flush_gpu_tlb already takes the lock 
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 603c0738fd03..4edd10b10a92 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -684,12 +684,17 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
- 	struct amdgpu_ring *ring = &adev->gfx.kiq[inst].ring;
- 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[inst];
- 	unsigned int ndw;
--	signed long r;
-+	int r;
- 	uint32_t seq;
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c               | 6 +++++-
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 9 +++++++--
+ 2 files changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+index eb172388d99e..256b95232de5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+@@ -34,6 +34,7 @@
+ #include <asm/set_memory.h>
+ #endif
+ #include "amdgpu.h"
++#include "amdgpu_reset.h"
+ #include <drm/drm_drv.h>
+ #include <drm/ttm/ttm_tt.h>
  
--	if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready ||
--	    !down_read_trylock(&adev->reset_domain->sem)) {
-+	/*
-+	 * A GPU reset should flush all TLBs anyway, so no need to do
-+	 * this while one is ongoing.
-+	 */
-+	if (!down_read_trylock(&adev->reset_domain->sem))
-+		return 0;
+@@ -405,7 +406,10 @@ void amdgpu_gart_invalidate_tlb(struct amdgpu_device *adev)
+ 		return;
  
-+	if (!adev->gmc.flush_pasid_uses_kiq || !ring->sched.ready) {
- 		if (adev->gmc.flush_tlb_needs_extra_type_2)
- 			adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
- 								 2, all_hub,
-@@ -703,43 +708,40 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_device *adev, uint16_t pasid,
- 		adev->gmc.gmc_funcs->flush_gpu_tlb_pasid(adev, pasid,
- 							 flush_type, all_hub,
- 							 inst);
--		return 0;
--	}
-+		r = 0;
-+	} else {
-+		/* 2 dwords flush + 8 dwords fence */
-+		ndw = kiq->pmf->invalidate_tlbs_size + 8;
+ 	mb();
+-	amdgpu_device_flush_hdp(adev, NULL);
++	if (down_read_trylock(&adev->reset_domain->sem)) {
++		amdgpu_device_flush_hdp(adev, NULL);
++		up_read(&adev->reset_domain->sem);
++	}
+ 	for_each_set_bit(i, adev->vmhubs_mask, AMDGPU_MAX_VMHUBS)
+ 		amdgpu_gmc_flush_gpu_tlb(adev, 0, i, 0);
+ }
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index 86ea610b16f3..21f5a1fb3bf8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -28,6 +28,7 @@
+ #include "kfd_priv.h"
+ #include "kfd_kernel_queue.h"
+ #include "amdgpu_amdkfd.h"
++#include "amdgpu_reset.h"
  
--	/* 2 dwords flush + 8 dwords fence */
--	ndw = kiq->pmf->invalidate_tlbs_size + 8;
-+		if (adev->gmc.flush_tlb_needs_extra_type_2)
-+			ndw += kiq->pmf->invalidate_tlbs_size;
+ static inline struct process_queue_node *get_queue_by_qid(
+ 			struct process_queue_manager *pqm, unsigned int qid)
+@@ -87,8 +88,12 @@ void kfd_process_dequeue_from_device(struct kfd_process_device *pdd)
+ 		return;
  
--	if (adev->gmc.flush_tlb_needs_extra_type_2)
--		ndw += kiq->pmf->invalidate_tlbs_size;
-+		if (adev->gmc.flush_tlb_needs_extra_type_0)
-+			ndw += kiq->pmf->invalidate_tlbs_size;
+ 	dev->dqm->ops.process_termination(dev->dqm, &pdd->qpd);
+-	if (dev->kfd->shared_resources.enable_mes)
+-		amdgpu_mes_flush_shader_debugger(dev->adev, pdd->proc_ctx_gpu_addr);
++	if (dev->kfd->shared_resources.enable_mes &&
++	    down_read_trylock(&dev->adev->reset_domain->sem)) {
++		amdgpu_mes_flush_shader_debugger(dev->adev,
++						 pdd->proc_ctx_gpu_addr);
++		up_read(&dev->adev->reset_domain->sem);
++	}
+ 	pdd->already_dequeued = true;
+ }
  
--	if (adev->gmc.flush_tlb_needs_extra_type_0)
--		ndw += kiq->pmf->invalidate_tlbs_size;
-+		spin_lock(&adev->gfx.kiq[inst].ring_lock);
-+		amdgpu_ring_alloc(ring, ndw);
-+		if (adev->gmc.flush_tlb_needs_extra_type_2)
-+			kiq->pmf->kiq_invalidate_tlbs(ring, pasid, 2, all_hub);
- 
--	spin_lock(&adev->gfx.kiq[inst].ring_lock);
--	amdgpu_ring_alloc(ring, ndw);
--	if (adev->gmc.flush_tlb_needs_extra_type_2)
--		kiq->pmf->kiq_invalidate_tlbs(ring, pasid, 2, all_hub);
-+		if (flush_type == 2 && adev->gmc.flush_tlb_needs_extra_type_0)
-+			kiq->pmf->kiq_invalidate_tlbs(ring, pasid, 0, all_hub);
- 
--	if (flush_type == 2 && adev->gmc.flush_tlb_needs_extra_type_0)
--		kiq->pmf->kiq_invalidate_tlbs(ring, pasid, 0, all_hub);
-+		kiq->pmf->kiq_invalidate_tlbs(ring, pasid, flush_type, all_hub);
-+		r = amdgpu_fence_emit_polling(ring, &seq, MAX_KIQ_REG_WAIT);
-+		if (r) {
-+			amdgpu_ring_undo(ring);
-+			spin_unlock(&adev->gfx.kiq[inst].ring_lock);
-+			goto error_unlock_reset;
-+		}
- 
--	kiq->pmf->kiq_invalidate_tlbs(ring, pasid, flush_type, all_hub);
--	r = amdgpu_fence_emit_polling(ring, &seq, MAX_KIQ_REG_WAIT);
--	if (r) {
--		amdgpu_ring_undo(ring);
-+		amdgpu_ring_commit(ring);
- 		spin_unlock(&adev->gfx.kiq[inst].ring_lock);
--		goto error_unlock_reset;
--	}
--
--	amdgpu_ring_commit(ring);
--	spin_unlock(&adev->gfx.kiq[inst].ring_lock);
--	r = amdgpu_fence_wait_polling(ring, seq, usec_timeout);
--	if (r < 1) {
--		dev_err(adev->dev, "wait for kiq fence error: %ld.\n", r);
--		r = -ETIME;
--		goto error_unlock_reset;
-+		if (amdgpu_fence_wait_polling(ring, seq, usec_timeout) < 1) {
-+			dev_err(adev->dev, "timeout waiting for kiq fence\n");
-+			r = -ETIME;
-+		}
- 	}
--	r = 0;
- 
- error_unlock_reset:
- 	up_read(&adev->reset_domain->sem);
 -- 
 2.34.1
 
