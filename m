@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB41C8D6752
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963CB8D6756
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:52:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B9E89D4D;
-	Fri, 31 May 2024 16:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C18B10E4AA;
+	Fri, 31 May 2024 16:52:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JWmbXjE3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="OOH73SIT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2040.outbound.protection.outlook.com [40.107.223.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2CB110E288
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:37 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73D8B10E536
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PQnRoHWCr4HXw3716/rWm48MHlaryhnU518eQFJDVda7U+AmdBrZDJ3SBNbJ2dt4fBnEvskSg7a3+pZaWQsiLCOv6ICGjRta3k2qTNdqWrhJERVqGic7k0HXuno+o+osTEzIaPQxHKl9rxbDJaLHnQSYpq1O8EkycM+CFuIYN6U+bWTzaGAffedztHX8rSGheuylP9NgFnWyBwfz8ofqsk3JA8qFK36AzthKkGTalBZRu7rSBHFSnOib7Dg0TYilVVGZR+BkMwSN9rjMvDmnzTxmgix//t2zFDb2N+M0dBTirOx6AJgRtu8KupF0Dvw8WYlN5A+B23b4BlUeHk+ssA==
+ b=ge8+kGgFTeclc1UPs9TbUkCQ8jm1HM8HzuGq0sq4ocDUUM0H2SbPTq6R+E8HpXc9/KzvMzi1yEg88gsrqYO2Z29BC5PnoyqH7xy4afMLGQ3d1lGF8N+2u/v70oV64nrq2pNnDynnI3eWnneeOc0Qb0u1FShoWjj4NqRPeGj9wQlItwKIMQ6gbZlkQMaW4g8b3BFJN8iFndmDiXQHtZ+pv4EJC1k3mvSywIYInnYaptMv1tdD/tYRP+UHfTKaqcQXyL0wkPWfyXdT1JW+hXwhdtFJWfRBHEnHdI5RE1WqEVvDmKRNjpEKdVUcRFBBMfo+t1ofeshGMer0zcbsFqL20Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h74/sWs8ivemkfSS14EaU9RZQI245ADvzcVxrXqNqPA=;
- b=fOsURrOdO0JnVLT9LnLRsgCoZDEdMBZ1eL5SSTy7lP3KYK9yJI6Qiy3+WFapC6J2KaWkOHpY0E5eJV91yykUnMlEVeNJf99bFOl3fnUw7T/18RxqOXhWjiBAYSuRSV5ksz2WseCvaKXV41tTlrLkb7wf8v2qfWQbVJftnmISQ1+sG+uQSyMjLXRMlaFz+emlNETQBiHsPT1lJf4uuJx9OyEAaIMwlTfSAVfTJCH1+J8RI8yyHqLlRnKQJmVGboAZzsIzTFmH44RLKlj9E6EjiMhyVBgzao6pZjnepcpvCUAwvYefZGhu5pBp95rUNCuybpsG2hBnhEaNox4uUL/M7Q==
+ bh=jW2xtIu9OjKRQRD1WUUwspqA6ZEq7GqfVtS/7br5HpM=;
+ b=oeZkukTfZwhk1911Yzpn1Ype9j6EBcKevHPKXqp1fMSddE7ljiDTCVKx+63p2fezWuuUoQdPcq32HNa3TvnONBgTNtrZropr9vYHWHG5scQlyEALsVr0MfgiEuUXucXGTKUd5ifPU3FYjyO5ioPeO+qZYSWUJgv5XD7nXOAv5rTjgqtwuhlbI9mluSV8LsqfpqNZwrpcqKHRjlUri6TJulRfQVvoJ7F9O52E+eckoZx6wU5Zv0qrnRDc/PX2mqLjEiLnVzi/wPGhwRmIK4F2wlOEx4jwrVb3KA7WdWZmN7W7JjeUgZ/K8LzB4nGXloQAsDQqAoqO2S6Z5Yht+dkNLw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h74/sWs8ivemkfSS14EaU9RZQI245ADvzcVxrXqNqPA=;
- b=JWmbXjE3XvoJtAqoGzEDh/7MhuT0xY12CuLaWf5GecNDgmif4yjZX9Ud8UO8cW3JFo38b9P4kKjflBEUg+GUz/dFC/r45zHPyiWBgvhIyYKvAeUiJkWtXC5fonJR9dbVygTPElqyrQa8PplhFVWNsI1tbqMxfH2wpBmceIzl6Cs=
-Received: from PH7PR10CA0020.namprd10.prod.outlook.com (2603:10b6:510:23d::18)
- by DM6PR12MB4467.namprd12.prod.outlook.com (2603:10b6:5:2a8::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Fri, 31 May
+ bh=jW2xtIu9OjKRQRD1WUUwspqA6ZEq7GqfVtS/7br5HpM=;
+ b=OOH73SITLSV1G6iBJetBoRpXRRLXU2Fnefx/atn+KzO8MBe7kKn4psptE7ZCP04lFta4daPElSankevjti/8n8vea4WKtuzPv3dO2qV1G1bo1yvv4ImvZ3kM9xs5uL4HUcey6GBk0xeu1/4m/cplyxYAe9rog7sPAlrYmWE5ePE=
+Received: from PH7PR10CA0023.namprd10.prod.outlook.com (2603:10b6:510:23d::21)
+ by IA0PR12MB8693.namprd12.prod.outlook.com (2603:10b6:208:48e::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Fri, 31 May
  2024 16:52:35 +0000
 Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:510:23d::4) by PH7PR10CA0020.outlook.office365.com
- (2603:10b6:510:23d::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21 via Frontend
- Transport; Fri, 31 May 2024 16:52:34 +0000
+ (2603:10b6:510:23d:cafe::1) by PH7PR10CA0023.outlook.office365.com
+ (2603:10b6:510:23d::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22 via Frontend
+ Transport; Fri, 31 May 2024 16:52:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,21 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:34 +0000
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:35 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
- 2024 11:52:30 -0500
+ 2024 11:52:31 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Joan Lee <joan.lee@amd.com>, Zaeem Mohamed
- <zaeem.mohamed@amd.com>
-Subject: [PATCH 09/32] drm/amd/display: Add retires when read DPCD
-Date: Fri, 31 May 2024 12:51:22 -0400
-Message-ID: <20240531165145.1874966-10-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Samson Tam
+ <samson.tam@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 10/32] drm/amd/display: Only program P-State force if pipe
+ config changed
+Date: Fri, 31 May 2024 12:51:23 -0400
+Message-ID: <20240531165145.1874966-11-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
 References: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
@@ -76,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|DM6PR12MB4467:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4fda792e-695a-4b10-687d-08dc81921200
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|IA0PR12MB8693:EE_
+X-MS-Office365-Filtering-Correlation-Id: d27936e0-cf68-4616-76e5-08dc81921270
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|36860700004|376005|1800799015; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2wV85u7Z7nuSQPfVzpu0HlUvlI2WeSfhPl9Qy26If2uyTuxw/rS8Jg6swIGx?=
- =?us-ascii?Q?WzF2PdHFDCf5SUV8kQ4BOkZJBNKCshHOe37WaN77tiAPzlPgl4jMiuqkuH36?=
- =?us-ascii?Q?4UCKnPbvwcv5aZvVyMarGgFQX9vPH8S+vte8pL2UusSYya7i34yzx88+w9ub?=
- =?us-ascii?Q?ScySoM2mtxbv/LeCzk5LDRIm3CYTV71usKgzySQ/IMzH3RGBXRvbc+dQg9dY?=
- =?us-ascii?Q?NDZx5RQw04SNYAaByLtXTF0G6373N1QyT46mjQRaSzqMXd5jNkpziS1UJPau?=
- =?us-ascii?Q?0tgXL0cvxVbM7p8JWAWnjRDROseqaRdrw/XUgq3qSUSgCcfNOv4crfNdPhoW?=
- =?us-ascii?Q?XsEKb7G3l9AV9s0HlCsdbf9zSgyvcBHBmX3VUMp6BI6efu2ufoSe/msVTvTA?=
- =?us-ascii?Q?1anCdoZGMFin6Y/AnJBnOh50FSSDAc9exLeQxx++Pi8jPKvzTFNuhbOvABti?=
- =?us-ascii?Q?4FLUdKu0ksz/PpzKyxKiVZdTg8a5c+bInutfpYGkUAxzjY8gtY8ss2ehaJUn?=
- =?us-ascii?Q?4BsRUq76ErvPBWhYOREGRjQBPqFpz8lW2cl/eIkBoM6Ch0lsSi1HFePFc8D+?=
- =?us-ascii?Q?r08pxV3z7mpaNYaeZR2+e6CZbf9sBO7A6pX6w2gbZdMc1cLNkiAgicSjsg0Z?=
- =?us-ascii?Q?WYgASivZZIrUlVcbPOG2nreJ3iSWPtyfe0qwYZ/D+nlZug3Su6Kh2MqjPOub?=
- =?us-ascii?Q?Dn7qVWVTgbpkpUEAuuFikTMDAbJCL+RpII0J3DPCyoO0Uf2h5lsr+rA5hNIj?=
- =?us-ascii?Q?1lp/I0NB6+bmuab6eOZYL1Dq8KecjBh7ValdUmcwT5xxgHfJ3PWIvetH0gGo?=
- =?us-ascii?Q?+C4WatAMwq/NWaH/Eeg/cei+FB6d77SMnUiVDq0Qe/0k1DpA3gkpU1lFdYfi?=
- =?us-ascii?Q?64k4E9MlJXP1HLGOiXio4JqIMC64PdpEZmn0yw1kXIP/0PU9rNl9+99Jf6/Y?=
- =?us-ascii?Q?z91m2TNseOqda7Tel4LFm66E78VFMpZcwaMTIJSyKJnIZRsZUIOpLtapoJ4N?=
- =?us-ascii?Q?/3t0KJoe5JwIuWHdckcIUocHDsqAFTsR8GtHEjfYVtUak/lRGbh1upFvEfa8?=
- =?us-ascii?Q?lS8TTxNet5oRBLLHmLqI2uhcvWEumH+cNVAtFf1APXwlv9rVvzz9Nd/mSwu/?=
- =?us-ascii?Q?EkrX7n/OnHw0d+HvfaZ5FokZIW8jI2QiGogpxMGIdFZyugIXSoLk4cHW9NcD?=
- =?us-ascii?Q?gOQp/n5qJvZB5G5n2tuLPVTXeopxgodKmtI7Fw0RSmwCD1ePDED8b2RqxHSd?=
- =?us-ascii?Q?P0zGkzIf092Iq77JJQ/NwdZHhRrHr104BpeQiD9b44V8x/glTeRcdmv+HHzx?=
- =?us-ascii?Q?plty5jF5BcTbf6lBzgC/8B9dRWJsGAE8mVG7/QrH8oX/nhw0CrsGaeSAjevA?=
- =?us-ascii?Q?0t22hnX55fOZ/eEWKVWPKwbFWi2d?=
+ ARA:13230031|36860700004|1800799015|376005|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+3KjEEIBEgd9J8HKU7/eIBJXAtpzwtMNIapXb1eG31atSGJB2VyCJfNWK94A?=
+ =?us-ascii?Q?fqIA6CMzzBnwgm/b8pBilYMoDlXp0OW/JuOPbJppGmGxPfkOKkkrN4jURi2D?=
+ =?us-ascii?Q?ruLqf5FXmoIK+LnMJskeR4EHQs7RfJbyU+yuzIcvFIzkcqkTHkPZszFwhLDs?=
+ =?us-ascii?Q?lYvpssN6Ak0rmSz3xPbE2oOLCXYG1dJF6u4fOGMU1VWWstrfInwOegAZsU9g?=
+ =?us-ascii?Q?CGmx9jehhd+4uwekjK92efiDPwNwkxN7PLHCnmGSF1cpBhQupmFbq4ybPxjV?=
+ =?us-ascii?Q?HLoydE1AAvtXPAYtPlPhpPzilTQlUAUE/ksqUl9rLnI+lwwKAQcxyBVLRoPK?=
+ =?us-ascii?Q?Ah6P+3grqTBzaZt6wQ5t15xDI2v7MbVZ8zi7jYFuKudm3GvRVja4lMCXfr/f?=
+ =?us-ascii?Q?1NaxePebMU5Bwz4ruey6rBgIJC7FNihAYryXot62eIlPi9BZBw77TQp7jsEJ?=
+ =?us-ascii?Q?/LbQ8AGaOrcnZ5IrEo2WOs7q69YXilwDbA1r0+B2nKH13o2AABAbpSWn/pU5?=
+ =?us-ascii?Q?Wx/0a3swVWvCfTye3yv/lY/n8d5gA5xWdeh9ArD5r/abYjiO0EW0UzTxk2db?=
+ =?us-ascii?Q?WIZJI5OL285x/KRt81GtCulDpJ/3W0FqWaDhFUveYNJIbTnPRcwKtaDiEIFO?=
+ =?us-ascii?Q?3tOYyNl4eo+0mH3DjGUIozPMGdMrncg3b2AoWKJbXxJLtQ20LDc9hqJaKiBu?=
+ =?us-ascii?Q?26sclVLJLgnrcOOwWZOVW20kIS6rqZI2voNHh1dHvjbcr3f6ykAM4roQzySu?=
+ =?us-ascii?Q?cPzYrSoin3CJEMh7bACzbHBwHvjn8LSH/jI8WdirbjFA492SRuB49weD3cTr?=
+ =?us-ascii?Q?mf0GNANihss2Hy+tXaaf/UEapvskQkeb0klWFLIaJc17MPSEtMJCMCU6oYrz?=
+ =?us-ascii?Q?fWQ9eon9iABW7iksg4RVloAwBWU+Og75Z38Bo5HIaNzHNU5apDvToQl2u5Sj?=
+ =?us-ascii?Q?wkJfZHbWm/sL+AKf8GMfV0YkqJYaJAzYbCP909/tDNLzE81HPzD5dJ/uv2bP?=
+ =?us-ascii?Q?BhP0b9oTl2P2zwrJhssVH6zWeJ84pBvWS8GYTsH2JK1yQNfDCLZsyPvsEjHd?=
+ =?us-ascii?Q?KBBph28t7GLuAl+3ViEmMWd3w6Z6wRMtvcBE5isgg4Zn1mY9usrEEt52hS1v?=
+ =?us-ascii?Q?wmTHncVUEwgUnhRdOFLCuva3Aq6MFUApGiQe1g/tXfdex/macGxRc0xXRW2F?=
+ =?us-ascii?Q?LIOZe7O1kjTPl2qwvwUn7MVDLRfLp2hE0sr7DOIepZtcMd1GKWF0QHXwfGVa?=
+ =?us-ascii?Q?xEpTZjFIR1CQaUbJI5TJj4Q49NruJie2uWU7cH97TiEd4rG/oHhHMW7L7lgB?=
+ =?us-ascii?Q?jzpnLhN83MOsP71k6PeyTp0ZkfE0XDsMvOnLqWQQx5buRc8iS8OM+VMJH0Ix?=
+ =?us-ascii?Q?iq0f0s8=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(36860700004)(376005)(1800799015); DIR:OUT;
+ SFS:(13230031)(36860700004)(1800799015)(376005)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:34.5899 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4fda792e-695a-4b10-687d-08dc81921200
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:35.3242 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d27936e0-cf68-4616-76e5-08dc81921270
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4467
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8693
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,60 +135,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Joan Lee <joan.lee@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
-[why & how]
-Sometimes read DPCD return fail while result not retrieved yet. Add
-retries mechanism in Replay handle hpd irq to get real result.
+[Description]
+Today for MED update type we do not call update clocks. However, for FPO
+the assumption is that update clocks should be called to disable P-State
+switch before any HW programming since FPO in FW and driver are not
+synchronized. This causes an issue where on a MED update, an FPO P-State
+switch could be taking place, then driver forces P-State disallow in the below
+code and prevents FPO from completing the sequence. In this case we add a check
+to avoid re-programming (and thus re-setting) the P-State force register by
+only reprogramming if the pipe was not previously Subvp or FPO. The assumption
+is that the P-State force register should be programmed correctly the first
+time SubVP / FPO was enabled, so there's no need to update / reset it if the
+pipe config has never exited SubVP / FPO.
 
-Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
+Reviewed-by: Samson Tam <samson.tam@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Joan Lee <joan.lee@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
 ---
- .../dc/link/protocols/link_dp_irq_handler.c   | 26 ++++++++++++++-----
- 1 file changed, 20 insertions(+), 6 deletions(-)
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c    | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-index 659b8064d361..5f087e930cb6 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-@@ -189,16 +189,30 @@ static void handle_hpd_irq_replay_sink(struct dc_link *link)
- 	union dpcd_replay_configuration replay_configuration = {0};
- 	/*AMD Replay version reuse DP_PSR_ERROR_STATUS for REPLAY_ERROR status.*/
- 	union psr_error_status replay_error_status = {0};
-+	bool ret = false;
-+	int retries = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+index 7330f9d79600..2626ef8f3292 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+@@ -615,10 +615,26 @@ void dcn32_update_force_pstate(struct dc *dc, struct dc_state *context)
+ 	 */
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
++		struct pipe_ctx *old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ 		struct hubp *hubp = pipe->plane_res.hubp;
  
- 	if (!link->replay_settings.replay_feature_enabled)
- 		return;
- 
--	dm_helpers_dp_read_dpcd(
--		link->ctx,
--		link,
--		DP_SINK_PR_REPLAY_STATUS,
--		&replay_configuration.raw,
--		sizeof(replay_configuration.raw));
-+	while (retries < 10) {
-+		ret = dm_helpers_dp_read_dpcd(
-+			link->ctx,
-+			link,
-+			DP_SINK_PR_REPLAY_STATUS,
-+			&replay_configuration.raw,
-+			sizeof(replay_configuration.raw));
-+
-+		if (ret)
-+			break;
-+
-+		retries++;
-+	}
-+
-+	if (!ret)
-+		DC_LOG_WARNING("[%s][%d] DPCD read addr.0x%x failed with %d retries\n",
-+					__func__, __LINE__,
-+					DP_SINK_PR_REPLAY_STATUS, retries);
- 
- 	dm_helpers_dp_read_dpcd(
- 		link->ctx,
++		/* Today for MED update type we do not call update clocks. However, for FPO
++		 * the assumption is that update clocks should be called to disable P-State
++		 * switch before any HW programming since FPO in FW and driver are not
++		 * synchronized. This causes an issue where on a MED update, an FPO P-State
++		 * switch could be taking place, then driver forces P-State disallow in the below
++		 * code and prevents FPO from completing the sequence. In this case we add a check
++		 * to avoid re-programming (and thus re-setting) the P-State force register by
++		 * only reprogramming if the pipe was not previously Subvp or FPO. The assumption
++		 * is that the P-State force register should be programmed correctly the first
++		 * time SubVP / FPO was enabled, so there's no need to update / reset it if the
++		 * pipe config has never exited SubVP / FPO.
++		 */
+ 		if (pipe->stream && (dc_state_get_pipe_subvp_type(context, pipe) == SUBVP_MAIN ||
+-				pipe->stream->fpo_in_use)) {
++				pipe->stream->fpo_in_use) &&
++				(!old_pipe->stream ||
++				(dc_state_get_pipe_subvp_type(context, old_pipe) != SUBVP_MAIN &&
++				!old_pipe->stream->fpo_in_use))) {
+ 			if (hubp && hubp->funcs->hubp_update_force_pstate_disallow)
+ 				hubp->funcs->hubp_update_force_pstate_disallow(hubp, true);
+ 			if (hubp && hubp->funcs->hubp_update_force_cursor_pstate_disallow)
 -- 
 2.34.1
 
