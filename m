@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD818D6754
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DFE8D6759
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FE710E3B9;
-	Fri, 31 May 2024 16:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7A4310E3F9;
+	Fri, 31 May 2024 16:53:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gfMYfcYw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JiFX5YMK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847ED10E583
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:41 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2089.outbound.protection.outlook.com [40.107.96.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B67F10E602
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M7Fxi30LBaKTpsv1I5InOUlRZU/yZLLLF9PHePuWHAxAWmRaGkh38Fc8GroiohVzx+oiP72En3XsPIxRCUL/L8wzHNGM51y7P04Ov+V4jxEG39Nft26tpajhkMRfISeVDzd/MliWtclqy5xlLFKDRWKd/aewmz+P9NDb872t+tD4MvXhsdqJhjzc8xetQlwJwk7EBN/B9biTewMR9vwwrBXaw3lFOZ2MYjLETGQUmDewMVk4UQ7keFEsuAvqy7mSCP6szyFEsLV0RTLswAeeOTBmlA52xzdokVKXzyFLx7LJ/zps0mlluYYtiyBslmsRmmkp8Ptgy9n3CRRoCD57nw==
+ b=oUpxGr2jxGKIPp309F0IK+IMa/86o10Abq9vbRUAorHy8gn1WUzLWZebP2dDbkEwDH8fjWQxxugjX4Z11pwkKIxlsAFvO9lJM4ibNEf98LzfqX2VTADoODtj//tflmM0hkGnD/X84WTA6SAmEIq/xE5i8GYeZafJw1anYp+cGkTt2Nir8ZvrfUtwXfB67qW30qEqFstHjBMusCTNp58ekpnAtquO9fO7b9n1gzFl1G+cGCJCmN3fXYpXrVVUomCT9uJHAOfyH6Sz/rSyqAhKFRILTgCgeUkz26272oiB+GHQw0gXxPnNEx9k4Z+q18+4MS9kf2J/rBygSuAAg7BMcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IHrVKzZVmBFJiB11dwKts5VPasGkbadvrbYFown2mL0=;
- b=NRl9teJnQmqVAgHZ66eO6hLmE6xiqgkdTZWqQr+9a0yEcDdz71xuZUe6GwnUWEvY32yxFTXJudA7mBAsMw3vModBY6LeTWRF3NzS+tBo3SEwY/GCtF0pLym9e5esoqSSSn7VfWjvR/qryNyBmqQu4Gz1hL1RR2BmoNs7FU2HjtDXfoeIJovzeZNTgubDLCmd5aioldwA29iWeSzpJArQk+3Y03zL9mWwMvGDAyaMfFBvnfJExlWspRPE9k4Q5ZP82psUGoM5A7pqPD07eHrd/jjAs5q7hYfGhBj5vIOE2PI/8yFg9G+CLD2ZTMo5bX4JAgxNrLbmGFEE4POHk2MkSg==
+ bh=fazMt4db9e+4UOeOyIr7NfVpj71sRpCiBd/ylixFZtw=;
+ b=ZndMzarG1NAkMWrd6954VABe6ZnWDB2VnEz56n1OHKpIFf5j/ke5eB88UVo1eKrnj/ZJon0E9KMyttR+QK9d5cxxID7LeR0GD+VGHG29IaZyC2t1js9+/RCxS/fl56vfLxg6xysHFfxNC0Ti75Ov3Hpo7boorwDX7vivEd/LML8zqJMTbu8OYshHj7G23srMstbYG+nZ0BK11VF2mKcNLMOfhGZAGC5koqqY5qwgVVZeckaGRqGqn5qwSUppO3w6kZbJhIlKpnA+NcGOs/gqt4m3UrtexYaBjZQQo1hkl8aO0yzFwCcAusbdcuNnM/CMl1scF47FnJZsYaHPEZH5CA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IHrVKzZVmBFJiB11dwKts5VPasGkbadvrbYFown2mL0=;
- b=gfMYfcYwuRxJ71p4HBdrBIPWZdBkCbAkYyJoDW13GfKQmcV04JiVGwRC93VWmtCjCFlsqJVKUqN/ADMPq5UX9WrY9gQCFPiqpNGsm6D0frBEq281Kpp2q/09vwUx9FWlaZs1Yrkbx+EmV03C7gj+uIwAiA4pwd2i/L08dI4LYmI=
-Received: from PH7PR10CA0002.namprd10.prod.outlook.com (2603:10b6:510:23d::28)
- by CH3PR12MB8260.namprd12.prod.outlook.com (2603:10b6:610:12a::7)
+ bh=fazMt4db9e+4UOeOyIr7NfVpj71sRpCiBd/ylixFZtw=;
+ b=JiFX5YMK1n3Zely0aH0MzcFEOQC+bLt+TDIX5cxtXHhApjAcfrezZfgOV1GUD1p7evWjefDYIecvvzago8YvssZ7Hxb/OVpRz2NdMGUOP+6UwM0Ysp1DCI2lNRPoI/iF5n2hHnHKtRHsffP68GCJZxDqVTj5rCODigE4AcgysfQ=
+Received: from PH7PR10CA0023.namprd10.prod.outlook.com (2603:10b6:510:23d::21)
+ by SJ0PR12MB5661.namprd12.prod.outlook.com (2603:10b6:a03:422::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22; Fri, 31 May
- 2024 16:52:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Fri, 31 May
+ 2024 16:52:40 +0000
 Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:510:23d:cafe::4) by PH7PR10CA0002.outlook.office365.com
- (2603:10b6:510:23d::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25 via Frontend
- Transport; Fri, 31 May 2024 16:52:39 +0000
+ (2603:10b6:510:23d:cafe::22) by PH7PR10CA0023.outlook.office365.com
+ (2603:10b6:510:23d::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22 via Frontend
+ Transport; Fri, 31 May 2024 16:52:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,22 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:38 +0000
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:40 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
- 2024 11:52:34 -0500
+ 2024 11:52:35 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Relja Vojvodic <relja.vojvodic@amd.com>, Dillon Varone
- <dillon.varone@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 14/32] drm/amd/display: Updated optc401_set_drr to use dcn401
- functions
-Date: Fri, 31 May 2024 12:51:27 -0400
-Message-ID: <20240531165145.1874966-15-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Samson Tam <samson.tam@amd.com>, Alvin Lee
+ <alvin.lee2@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 15/32] drm/amd/display: fix YUV video color corruption in
+ DCN401
+Date: Fri, 31 May 2024 12:51:28 -0400
+Message-ID: <20240531165145.1874966-16-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
 References: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
@@ -77,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|CH3PR12MB8260:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8994b755-bb21-4acc-3565-08dc81921497
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|SJ0PR12MB5661:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf1fab07-6380-4293-40d8-08dc81921545
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|36860700004|1800799015|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4GrWEIt/w7TIbacReAPCGV0s8LkK5f+cdWWZNii23NYyxNpL2znDF+N1cn6D?=
- =?us-ascii?Q?0Bk5KhzcjGdXsuayvDDSNyokFYIJx+2HM/07A2Jf87Rut5jQH6Gfpvq52NqQ?=
- =?us-ascii?Q?48BGb8SbhgvetKp57p8LC5s+rKhoO5D3+KWz5BqpgFnRKPP7xeO2e5SKqHya?=
- =?us-ascii?Q?qdq4WmPEh6c5ICK2TAY92ugvMp7w1yftXIrrtgFpetMGN1sQUJWZ1VzzTHNE?=
- =?us-ascii?Q?m5w8jPJ/JPbI2fDgWUWuifvwEm+nA67CyA1vSDzafG/2oe2Mrh2JnufqpVhB?=
- =?us-ascii?Q?NYss4bk8VCxoAIJAw5VdAMSuT8UhNwB5iAyocx1X9ZFneXMsSvZw/GaHQAal?=
- =?us-ascii?Q?vFtaaTunkeyybXYAceFriGSlb+T30BY1s0MrtCbSMcGTYaFhxqqr2rknksTL?=
- =?us-ascii?Q?zGsMrZQapxxKmhTB6MGRdu5SkOFQtO20yklv23kVv2CeYec4Fdx/wQSm7g3+?=
- =?us-ascii?Q?NS0nE26w2lOwWi6kPILE0ftrFV+9D0iDPnaczuKQFjHe8s9XDmDEEyImmBAE?=
- =?us-ascii?Q?ugHsMkpsUhnRP2WDCY9oGKgdqZ/HAfXMkNdqBIlza6CWHkO3GnC/HAg1E0Q/?=
- =?us-ascii?Q?4jxclSNeMFDMkDqEXlRV91SvrWr1ZRQko7bKKNY+ZlhNtXVQKNyEknIGuXdf?=
- =?us-ascii?Q?dmmqAUiP9DJP6m0RagzQATksSylNQ8nvX1AgRJ75ehZwwGpPOo/SqaE5FoTc?=
- =?us-ascii?Q?IU/Oq4buMNB328Y5QUPUmpSdQLugQftZDfcvWdl1So6CA+BSjMyGtDI0WFPK?=
- =?us-ascii?Q?pOLxAC7bd4ucAP027lNLV9Red+XwUadOtL0s+3Rj0mPgBaX7dm0XfS8qNLYl?=
- =?us-ascii?Q?k12zBE9QLYKqKp+oW3VCTaCvVy3/m4f9d5ysujVu8GdEzGUGwfsUMeGFZkQX?=
- =?us-ascii?Q?arDWX96GNV2MebWEu5Lg6NoTwplTCUDsYni7F/rh3HG+asl/Y4gxa9BYw/Gs?=
- =?us-ascii?Q?2wj2VUtvFOlzQgWYgRq4syMiC+7yuc8TPbwZtn446j4/oRy282M+W4bXNtuv?=
- =?us-ascii?Q?C19zAi3kxQo3qcWguL4l/BhvMBGWBJze07TpklGFV4rnsAyphG0kAnb8xyY4?=
- =?us-ascii?Q?6TKmxnWyyIIx3jK4c3BBj7JDCtVTFdZX3O9P0Vu0dlrL9iae0yFV54zXZZx3?=
- =?us-ascii?Q?WImoKzP3faWZvT5tHXakNJ7IzwFZuEsE0kMxdL2IWNQocrS2P/Bew5qizqIT?=
- =?us-ascii?Q?/3t1BETVXaNEVoobYemOmSZHcwdunMIgvqI8/q82ZVNUHyE6aCq8sZ8VXjUE?=
- =?us-ascii?Q?/dKvo8FOng9LvqUal/Eidl+ib2eKc7cJj9wOBj17wBDimcuGber7zumXmkMm?=
- =?us-ascii?Q?QXuFmxi5O1T3Nge7V2jJz5jDRmrzCBtJVjnykZH5rkVfdrEpQi1UvgRlPw77?=
- =?us-ascii?Q?Sv1MRvllTUcs2jHZs0l0UUDfAwTz?=
+ ARA:13230031|376005|36860700004|1800799015|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MZXVMP/U7MOFH+Ba5OBr0sHXbCDZ/dXOiDhk9ndFZ72YOpWz52vY4LifB5g/?=
+ =?us-ascii?Q?ojcJdT1AycbZjgodzbffAJpWG8z/2TRTC2m0//o5kkSlEmrt09ghfifSZMAK?=
+ =?us-ascii?Q?YkB6Gz+6frXgotPH9YislzMut/QqLfqwqEJvnGzK+Q6sugtgp8k1xdDwLKc0?=
+ =?us-ascii?Q?jXAxI0m46jGmjGT0cjZSK0DwoKgCWPv75goUwMmPUJKrb4g9hMq5KAV5dJFS?=
+ =?us-ascii?Q?ASepF492uJlWSQTGldmtMqm4rBpiZzGGz2RRhtHjY8xxFZ20gcgf54D9bUB6?=
+ =?us-ascii?Q?0is2C/1FlqX5YVuM+NcryU0qM2XWBhsOIsuxeGywkWeY473Jf4adNP10m3Wb?=
+ =?us-ascii?Q?A66gqbj7fbYCIbVONbz0hRL4aF+lVOFXUh6JQ1U7/8vrYUEMxVSGZofjKyP/?=
+ =?us-ascii?Q?82AoWsgoqtckI3CXj5hkjlUetc1jv/zetoka+ge9os9t63AuxLVmaMxWH4dr?=
+ =?us-ascii?Q?XcQMDKVo1VJgyRkrYaXDLHzJ1uciB2/MMM1P/Lp9Er8qNZuGUojYgfoHLJNt?=
+ =?us-ascii?Q?/7pLE5l7I0qlrhtTZ/6HjmXTNrIPcjiHAv8D1BiaoxLJM6LAnUHzV9wJZrmu?=
+ =?us-ascii?Q?p+Sxlqo+IR2UHJQRnMk0NLGfAdQQTVkk6TTVReZm11JOEhpYPdGiPR2OV3gp?=
+ =?us-ascii?Q?fA455odIul7H5x/LFTmJ6q/CJGl7gojr/9zi+JjbKntfHEkeuJcN2DPra2Mf?=
+ =?us-ascii?Q?HwivBDMIFeP6NNqtGtz4rN+vigIFOLpValKCCbOtfhPSgFh/2hsTJQUUhXZz?=
+ =?us-ascii?Q?lel6S/a53WIbIjJ7K4vrQ7UaKAz+R99YOJwWpYCBroaxmdMeOCCrKTzpHxJI?=
+ =?us-ascii?Q?wXQuw80BXUYAWDXRV5tEewbmwUJdbqMo/BILdVinjzLi1nP3R44nR9xY4T/D?=
+ =?us-ascii?Q?soKegga8jScXWWo6Tp6knBRjHUA7EXHOoi5fUdrEbATQmbesRDcNAGLqh6K/?=
+ =?us-ascii?Q?dGKHgWKBtD+iTWqJO1Q00C9la6VsY92K8bxpkIR5vwcag7aREZzE7j1I84Jl?=
+ =?us-ascii?Q?ukdqU4oSlS80PZne8NSLrPLPPwmSbrXxFRoFnPR+3pufNzyCVuHsIfoMuwJQ?=
+ =?us-ascii?Q?SmYuQMFyD7PBIbbUdu1blPKR5H3kl9b1f5z6zR8MMLR/bJ4/wS50voJQ/bSC?=
+ =?us-ascii?Q?b4V5nKharK0bdsVqqkgkOZdVI1/WEElGyTZwqOpkUqfuyTg/GKFQHgjtoSml?=
+ =?us-ascii?Q?CPGTMOqbqSuLqZ80I3ed0xytvlNUMdY7Jw32KNxsGOxU4USgXqZ00eyXmWZZ?=
+ =?us-ascii?Q?szaKhPd7sO0fFG+iwfTjFykfaYPSJp1bWrwG2NLYIasT4+bF5S2qZXQwNjh4?=
+ =?us-ascii?Q?zeojk7lmS9/kGL93OJXcBNk2oqVfKmMPMNjbYTJByPh38Ql47D6EMLAey9ur?=
+ =?us-ascii?Q?eaDwetnm5P+VaBeeq0xxPk/lPpU8?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(376005)(36860700004)(1800799015)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:38.9492 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8994b755-bb21-4acc-3565-08dc81921497
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:40.0898 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf1fab07-6380-4293-40d8-08dc81921545
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8260
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5661
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,36 +135,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Relja Vojvodic <relja.vojvodic@amd.com>
+From: Samson Tam <samson.tam@amd.com>
 
-why:
-optc_401_set_drr was using an old optc3 function to update vtotal min and max,
-causing crashes when disabling FAMS2
+[Why]
+Missing check causes sequence error which results in chroma
+ filter coefficients not being updated in certain modes
+ when we display YUV video in fullscreen.  This results in
+ color corruption in video
 
-how:
-Updated dcn401 to point to opt401 function for vtotal updates. This version of
-the function has FAMS2 logic that allows for FAMS2 to be disabled.
+[How]
+Add back chroma_coef_mode check in dscl_set_scl_filter
+ so that filter coefficients are calculated and updated when
+ we have YUV surface
 
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Relja Vojvodic <relja.vojvodic@amd.com>
+Signed-off-by: Samson Tam <samson.tam@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c  | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-index 8ab788b6e6c1..fd1c8b45c40e 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-@@ -430,7 +430,7 @@ static struct timing_generator_funcs dcn401_tg_funcs = {
- 		.enable_optc_clock = optc1_enable_optc_clock,
- 		.set_drr = optc401_set_drr,
- 		.get_last_used_drr_vtotal = optc2_get_last_used_drr_vtotal,
--		.set_vtotal_min_max = optc3_set_vtotal_min_max,
-+		.set_vtotal_min_max = optc401_set_vtotal_min_max,
- 		.set_static_screen_control = optc1_set_static_screen_control,
- 		.program_stereo = optc1_program_stereo,
- 		.is_stereo_left_eye = optc1_is_stereo_left_eye,
+diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
+index 6cb3fa4b585c..505929800426 100644
+--- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
++++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_dscl.c
+@@ -297,17 +297,21 @@ static void dpp401_dscl_set_scl_filter(
+ 	if ((dpp->base.ctx->dc->config.use_spl) && (!dpp->base.ctx->dc->debug.disable_spl)) {
+ 		filter_h = scl_data->dscl_prog_data.filter_h;
+ 		filter_v = scl_data->dscl_prog_data.filter_v;
+-		filter_h_c = scl_data->dscl_prog_data.filter_h_c;
+-		filter_v_c = scl_data->dscl_prog_data.filter_v_c;
++		if (chroma_coef_mode) {
++			filter_h_c = scl_data->dscl_prog_data.filter_h_c;
++			filter_v_c = scl_data->dscl_prog_data.filter_v_c;
++		}
+ 	} else {
+ 		filter_h = dpp401_dscl_get_filter_coeffs_64p(
+ 			scl_data->taps.h_taps, scl_data->ratios.horz);
+ 		filter_v = dpp401_dscl_get_filter_coeffs_64p(
+ 			scl_data->taps.v_taps, scl_data->ratios.vert);
+-		filter_h_c = dpp401_dscl_get_filter_coeffs_64p(
+-			scl_data->taps.h_taps_c, scl_data->ratios.horz_c);
+-		filter_v_c = dpp401_dscl_get_filter_coeffs_64p(
+-			scl_data->taps.v_taps_c, scl_data->ratios.vert_c);
++		if (chroma_coef_mode) {
++			filter_h_c = dpp401_dscl_get_filter_coeffs_64p(
++				scl_data->taps.h_taps_c, scl_data->ratios.horz_c);
++			filter_v_c = dpp401_dscl_get_filter_coeffs_64p(
++				scl_data->taps.v_taps_c, scl_data->ratios.vert_c);
++		}
+ 	}
+ 
+ 	h_2tap_hardcode_coef_en = scl_data->taps.h_taps < 3
 -- 
 2.34.1
 
