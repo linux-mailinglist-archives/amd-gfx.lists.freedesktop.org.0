@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BF58D675E
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE708D6760
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B3310E2ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E6010E2D5;
 	Fri, 31 May 2024 16:53:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NTerCmAx";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TWL9utOB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80DCF10E4F3
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:50 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2062.outbound.protection.outlook.com [40.107.93.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B233C10E583
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dyb/Q6sUDDi16xYBht3q8FGVTKzcVmod9TTEBbBLwDozp/bSIDHwLJTjV6Nm4XVqgpmiu9BrJKBpjR49OhBlaszt8qDzvTVcP6Wa3zHCtg78d+ZdyioPDurIrpv2PwSqaaHLts10LbGIXkYoq+JF8pWRUsBpk6i2ADdaykYMa4tSYTKGZdD2KRt3tvDxDpk4DhjvOs8kr4WIUpIq99/O0xDxb/Y3d6WDEpBx6WLkct2a6cMJ10H05I+5kDMLiREcIh9a53Z4P6+Kb7TINsfIEZl59sKaRu6uZBx9CXCpRcKM2dRgPddwZisg/UFSIEG3y4kiO/K6wYheccx9WG1uiQ==
+ b=G3HXUi7NQ/UJyrxJmJlt+zqJDGhe0nksbfuyuMCeXEPqM1jTTvDgbkJZW4gZMO5xx4jYB+nFZuWn6JJVRKftDEbYobYlCjE4LL0yMRJyZGnBjA10MC7EAlIs9ufwoAr2KYLI3PItpmUvLix+pFW1Sy+PQWKDxbN0gjSSqlKFQqE9rXbRdQmXEc3G+AE7mskIWzIwkzB681Zzx15NKc3fpvQmEpIjnTIZckj72ms1DDAHkDC9grWNY7b3liV7P9sBOgpB/99RyrSU4rB2kjPW/NzfNfCGCtiQM0USfnQ+tSPFtNS8inM5blepD+BZKNI366Y9UTowpZGUthuVc3P36Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dhy+1SEv7Yi7b713TJCiN0fxA4TwUVWr6AdS4iIKKLY=;
- b=XRmzLxO9NBRLYDMOb6uAtLL5lDQ63ALSGaGTu2osYCcItbFK2pUCbxTFxfc8UJoMLbIbWFnePXER18ESaBpMQTbinwSd/irMnSX63KL7IUCAIOY5rq1SRUpU9/XPSW6V6zuN+aBhTyVgv4wneGDKFjjjF/O/DCmHggZs9XSyjPV+qRSVUi8o8c5SZaPtbv/MiDbnEWv6dvhwFt5TsuMKYSOJa2+nzTKlYB4edbF4wD4oOVu0Trjt5R1zGFaSHEo+XJFUPEGr2Z7o/YjJh8w3LBvwzYn+XgZHWV6o6tET8uCHVDr7QGswWZMUhyTm9HVg/1UCG8csisFHNYlHJgTNRQ==
+ bh=jWLC9Eeptdz+chgZNNF/A2/Tt2RHg9lgdqbkGoY4PZU=;
+ b=jomaWJtC807CQppZgITu185Satxvt9VmKAqyh7dzD4zm99o2KQpiTupFPUtPEZF/ANc0lljWOCd6zLU5ijRKY/uqp2bK5V5FdBUVETVtX2tqEVFKpB1hzcwgD34JJ3Q+TBs36Mik/QTDJI/zA8RTd+CLTci2G3QrOrXKrgq8jy+mXBegIebOUzPhNxy3HWCrYzJBj92IpxR5YIx+zNplmoaNRWCg6+o8+aGZNkBICbvDUJcr8xeMXoGhRA3yNivlxNUZuh5EqriDQHZKfH8mY2hI+R13ma2keUPcLUAd8wHA0TycO11+kKectDN7AQCXFcDVEiPcZ2cf8BqNTYSYxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhy+1SEv7Yi7b713TJCiN0fxA4TwUVWr6AdS4iIKKLY=;
- b=NTerCmAxZ7OPC9EQs0tvNr7DUp/VQJmAhIGvK/FEadSc9w/8jLhotWaqNmBR/IYkt/GkFA6i7lfJ7A1w2jWS9oZDoD30dVfGqAIizNUIeLyEPn+3AcY14ty1FGmfELHvlWpXEP27pbkYaWlhEzloCps3yVGhlMUosy53Odj7dfY=
-Received: from PH7PR10CA0019.namprd10.prod.outlook.com (2603:10b6:510:23d::27)
- by MW4PR12MB7238.namprd12.prod.outlook.com (2603:10b6:303:229::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.17; Fri, 31 May
- 2024 16:52:46 +0000
+ bh=jWLC9Eeptdz+chgZNNF/A2/Tt2RHg9lgdqbkGoY4PZU=;
+ b=TWL9utOBhEoZDXZp/PFqake5z1H+TxiAeKWqgIn8yG60KYeqD/chevukeDjD64wPyGgVMi+zv3rZzqa5al+bg8j4rVAt+Uk5bhib1Yhou+M70n2ipYk/moE+xtFikBy1B74ZOCMi8sfEbg6n+fTNSLdnvVZIE2u2N3PKPifAJ28=
+Received: from PH7PR10CA0013.namprd10.prod.outlook.com (2603:10b6:510:23d::9)
+ by DS0PR12MB7606.namprd12.prod.outlook.com (2603:10b6:8:13c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.19; Fri, 31 May
+ 2024 16:52:48 +0000
 Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:510:23d:cafe::20) by PH7PR10CA0019.outlook.office365.com
- (2603:10b6:510:23d::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.20 via Frontend
- Transport; Fri, 31 May 2024 16:52:46 +0000
+ (2603:10b6:510:23d:cafe::d5) by PH7PR10CA0013.outlook.office365.com
+ (2603:10b6:510:23d::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21 via Frontend
+ Transport; Fri, 31 May 2024 16:52:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,22 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:46 +0000
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:48 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
- 2024 11:52:44 -0500
+ 2024 11:52:45 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Lewis Huang <lewis.huang@amd.com>, Duncan Ma
- <duncan.ma@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 25/32] drm/amd/display: Add monitor patch skip disable crtc
- during psr and ips1
-Date: Fri, 31 May 2024 12:51:38 -0400
-Message-ID: <20240531165145.1874966-26-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, ChunTao Tso <chuntao.tso@amd.com>, Robin Chen
+ <robin.chen@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 26/32] drm/amd/display: Introduce deferred Replay coasting
+ vtotal update
+Date: Fri, 31 May 2024 12:51:39 -0400
+Message-ID: <20240531165145.1874966-27-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
 References: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
@@ -77,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|MW4PR12MB7238:EE_
-X-MS-Office365-Filtering-Correlation-Id: e7ef0b82-5e8f-4610-0061-08dc819218f3
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|DS0PR12MB7606:EE_
+X-MS-Office365-Filtering-Correlation-Id: e71209f2-9790-48c3-528f-08dc81921a4a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|82310400017|376005|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?CqwYJxT5xIs9qtFDSMbL4p9z2/BsS1JY6baBhK9vpNDAZM/+Vz3aOQWln1gv?=
- =?us-ascii?Q?KEd7b48ZAWbEhFqFbp3YOaCG+hnj87C+5oUeVTuyGU7rSD3G80gsvDgmOFX2?=
- =?us-ascii?Q?tsm8Clq0E3ma2i06FbxvIz4uVzwClwWdftsq85aJF2el5lbqtwkk4bgTF0FF?=
- =?us-ascii?Q?RXoRoDNC4j7NJU17USCJzgNhRD0C0PKbX+Z+Lu6E3oRIvDBXpINxJl5+Bxkq?=
- =?us-ascii?Q?dIpRCWKpvpKOrjLlAhqoK18s+3MyHw+pp+s+JNQsdtPQNGbTNtTldljGUa/+?=
- =?us-ascii?Q?Ora28AfcPXk6ZDG4fHzX6RyKGmwwdvyS9FLTpYvb9rLZnYXGap0wzrHsIWT8?=
- =?us-ascii?Q?DOJapkdmXjNDAPFJ7+8636cuBA9Mkk8qQcGYFo7m3m+PJDcZ1Czk7od1zEsr?=
- =?us-ascii?Q?6+UK6Kxuf6GesiPo4cd/5nq3Eh5PsgTTg5orwCRVLoqNMj3AzmuY5cbc/C8l?=
- =?us-ascii?Q?wY8WsgS0lajnmRgGt3ZqrG+68UiFesNRawxsisElwUvxj0sc8EGsZ2YjTTCc?=
- =?us-ascii?Q?n8DjhXkgQmcUIcv5qdD08D4TDZd39up0KtuA580e8q0t0FxDJLPx7iiEsQLh?=
- =?us-ascii?Q?j/7NZ2OGVZiuVfAxcPQOyUb3X08VmlMAjKPMAsYbOWHKW03/rZ0dt1ViawMV?=
- =?us-ascii?Q?MbFjz1lh+IvmQTDaZ/t5iH660LU1nWLxTHI7otZ7WgVmNvpjpEpcUV5JMTZh?=
- =?us-ascii?Q?xH6Px69iDnYVmKgPvoDqMhVa21ikETuYnwiZfR2G9MP8nFTxN0JXvu3uXkDK?=
- =?us-ascii?Q?nl7u0Z/srKi6SNh1J5/Js8ui9yeFIH3QaDiHmVydpnqCV3m7kUjhCq/o3Ckr?=
- =?us-ascii?Q?TcqR3jal2c4GEd8s+gaZ45cyYB3ixBckGkWzX+2QtUqfXptXnQT0tQOIOYUE?=
- =?us-ascii?Q?apxtNeaiX91gCYWDk1+Yi2CY3cl1LxO7CcwDnrY06UVTI2AU9IDAg7dh7Y3A?=
- =?us-ascii?Q?jePZPvSSHg0k2z2vYrWG+pJfr/O8wEwFCWPDjn/hIHRJNQRzLrl6+XjQTlnM?=
- =?us-ascii?Q?o9eK7CU0RiLSCfErMrPqEal0g+xa5yuBxvvadIzKh+dKfBex2n5lB0buijLb?=
- =?us-ascii?Q?9dIuWcPoE2AktWcBveZVQj65ClssJOLff6tBxNHTT9eFpIrL3RHbvf/C1I4m?=
- =?us-ascii?Q?sTiD1G2JjQoYsp7z41x6yBfCcZV8iu8VzMLzxRMYs9rhLw8ZaLcYDJS0IBw1?=
- =?us-ascii?Q?pUUoIqh22wuaVpvYiDbUAlrOBuihu7IwCkw1vTN6mEDKNC4S8jZoKEYnlAoY?=
- =?us-ascii?Q?nIOHYGwK+9Ju3zNGIHjfSuo5izVN3WOjuAeJXGJO0dq3P1HmFqc7s4kBfyRM?=
- =?us-ascii?Q?jwL7C4PdfMKN3gQSYE/Dxl3jI39/sbPKycLYTjeolV5AZ2jYyxXzScykYAzY?=
- =?us-ascii?Q?dSX+mhPxrEjOfsr3bPYYIJ8p2sAl?=
+ ARA:13230031|376005|1800799015|82310400017|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dgCcI59rfaWoPPxdzQJjFsnJSFeXCi7/XepdT4Msl/BHIvv/UTpvxDjrGEP4?=
+ =?us-ascii?Q?gb9DAc9Llafkh/rJtZ1es0eCIEZrJ6DOIexLHwxAQClBJAl4LGDCKh+E1KlA?=
+ =?us-ascii?Q?CyjPWXCUtv9GtGVBjvMeTKY+IH0ENtYSD1DzYu2AmQluc5j85Fmg1YtjGc6l?=
+ =?us-ascii?Q?CPiNiP8uLuab90gY1HKy1tW4bKIOlKPCpbV40MxQUk2T5MV8EdlDLXd4L0oX?=
+ =?us-ascii?Q?BXhd3EEuEr1pumvgf4wcsEj0mla5tWW1Q/YqoWQs9eEYMu1s9lKPuKNTiHrh?=
+ =?us-ascii?Q?8nHjEq/K7Gh9glELfaH73/yu7Ibp+PJ1zDbqCOyzBY4xs5Mb7MvNFLjzBLnt?=
+ =?us-ascii?Q?gSzG1zCADy8fnCw5wqUeJN8j7qmswZEoXVWmPeakXITxsxVSov6vrIGFObV8?=
+ =?us-ascii?Q?Eby1/IGQTDGdGvWi0yHpL4s+v/HbR2Gl650FXlWY55dAKjZPArqjobKwxiRY?=
+ =?us-ascii?Q?o2PVKybgMhsASx5nG9AGldWmftlPO0wnnz/rf6HXOWbX0ZKStgidfsLKKGv3?=
+ =?us-ascii?Q?gcI0MO3GVxD/5talTssYrf023N2ND0HGTcOw3ptWejyv4VzNjAiIzpNGQHaU?=
+ =?us-ascii?Q?vjQVBjAF0sjJklbcSsjGKQl1AP4u4iQftI29MuKfaCttNwWdhb/gvbdBu/uL?=
+ =?us-ascii?Q?rWPyPcakiIGTArKGOn9qw679H7GzTvFX1e9Hqt3rkFWBVz0cLixwhido4Oda?=
+ =?us-ascii?Q?hKOQza/vd78pAO/BY++lAyAYWnemD0qUJ+T8pwM2j/PEMphxKaEp4vBCaRqZ?=
+ =?us-ascii?Q?PQKKyjwyfmUNH5RESx3JN2Q/8mxQqyQHBOBIHI8i6fYTI16npx2bC2ysLq6a?=
+ =?us-ascii?Q?ZBWmsN6CdiVTDEr/gWENI2FfRRu5mxzdwXYHEKS2YbZR847h6auV8Iycr1Wt?=
+ =?us-ascii?Q?qRPpXVFwoagFDRblKoPYzFa0f7/9MwiiSm+jSyLjOrOLA8xkYh+FfD2ZSBjj?=
+ =?us-ascii?Q?JCcyoExUxtQFYuDoLiUUi9OudY9oqCdeMOD4qmi9zx6QZs6inXvy9IE08olh?=
+ =?us-ascii?Q?1uUFvlsbOP7rcbfJ3LTQKLvyWs6MlBp+9NiGCiKT7U7Q4b+tjq4mUcnK2tDU?=
+ =?us-ascii?Q?8tJuQ8mBCm41ml0N8WQGJeTEPfeJhWbJUI7uzzHheB0wP6HG3WIHfEAGXsj/?=
+ =?us-ascii?Q?neHkaaPHAxB6dW1DyT5l0MpIGPXm4eYzDMiWkfjZCYEcshckv/0sSKxsJfcq?=
+ =?us-ascii?Q?vMVK+EPvX44xxDLHk8gZAMvP4nE8PYX9ALFBxrLLxgAXHRBGOurs1LoavRAl?=
+ =?us-ascii?Q?fcKB23IIylSBzI86eED3F5vVe4k71oeUQib1O+DJo4BPn7UwQeHSGBkdt4Cb?=
+ =?us-ascii?Q?L64fUadrQc9vLDM7WaM7N6OuosnPhaa8oCQ3uQDIlJGXODqkFiLpRRrdO0fp?=
+ =?us-ascii?Q?5em9fOA=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400017)(376005)(36860700004); DIR:OUT;
+ SFS:(13230031)(376005)(1800799015)(82310400017)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:46.2460 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7ef0b82-5e8f-4610-0061-08dc819218f3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:48.4960 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e71209f2-9790-48c3-528f-08dc81921a4a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7238
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7606
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,65 +135,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lewis Huang <lewis.huang@amd.com>
+From: ChunTao Tso <chuntao.tso@amd.com>
 
-[Why]
-For some panel, it cannot handle pseudo vblank set by otg resync
-when leave psr
+Add functions to defer updating of coasting vtotal after source refresh rate update.
 
-[How]
-The monitor patch will keep otg_on during enter IPS1.
-And then we don't need to do otg resync when wake up.
-
-Reviewed-by: Duncan Ma <duncan.ma@amd.com>
+Reviewed-by: Robin Chen <robin.chen@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Lewis Huang <lewis.huang@amd.com>
+Signed-off-by: ChunTao Tso <chuntao.tso@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h             | 1 +
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c    | 3 +++
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 3 ++-
- 3 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc_types.h          |  2 ++
+ .../drm/amd/display/modules/power/power_helpers.c  | 14 ++++++++++++++
+ .../drm/amd/display/modules/power/power_helpers.h  |  5 +++++
+ 3 files changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 4e5c63ddb312..56d4bec1be1c 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -304,6 +304,7 @@ struct dc_bug_wa {
- 		uint8_t dcfclk : 1;
- 		uint8_t dcfclk_ds: 1;
- 	} clock_update_disable_mask;
-+	bool skip_psr_ips_crtc_disable;
- 	//Customer Specific WAs
- 	uint32_t force_backlight_start_level;
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 4e6f7bf8a5b4..873993a6513c 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -1256,6 +1256,9 @@ static void dc_dmub_srv_notify_idle(const struct dc *dc, bool allow_idle)
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index cee012587e6e..21f4af9ab096 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -1091,6 +1091,8 @@ struct replay_settings {
+ 	uint32_t coasting_vtotal;
+ 	/* Coasting vtotal table */
+ 	uint32_t coasting_vtotal_table[PR_COASTING_TYPE_NUM];
++	/* Defer Update Coasting vtotal table */
++	uint32_t defer_update_coasting_vtotal_table[PR_COASTING_TYPE_NUM];
+ 	/* Maximum link off frame count */
+ 	uint32_t link_off_frame_count;
+ 	/* Replay pseudo vtotal for abm + ips on full screen video which can improve ips residency */
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+index 530379508a69..3cd52e7a9c77 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+@@ -973,6 +973,20 @@ bool psr_su_set_dsc_slice_height(struct dc *dc, struct dc_link *link,
+ 	return true;
+ }
  
- 	cmd.idle_opt_notify_idle.cntl_data.driver_idle = allow_idle;
- 
-+	if (dc->work_arounds.skip_psr_ips_crtc_disable)
-+		cmd.idle_opt_notify_idle.cntl_data.skip_otg_disable = true;
++void set_replay_defer_update_coasting_vtotal(struct dc_link *link,
++	enum replay_coasting_vtotal_type type,
++	uint32_t vtotal)
++{
++	link->replay_settings.defer_update_coasting_vtotal_table[type] = vtotal;
++}
 +
- 	if (allow_idle) {
- 		volatile struct dmub_shared_state_ips_driver *ips_driver =
- 			&dc_dmub_srv->dmub->shared_state[DMUB_SHARED_SHARE_FEATURE__IPS_DRIVER].data.ips_driver;
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 53ea4a57bd44..36c15ae43616 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -1882,7 +1882,8 @@ struct dmub_rb_cmd_idle_opt_dcn_restore {
-  */
- struct dmub_dcn_notify_idle_cntl_data {
- 	uint8_t driver_idle;
--	uint8_t reserved[59];
-+	uint8_t skip_otg_disable;
-+	uint8_t reserved[58];
- };
- 
- /**
++void update_replay_coasting_vtotal_from_defer(struct dc_link *link,
++	enum replay_coasting_vtotal_type type)
++{
++	link->replay_settings.coasting_vtotal_table[type] =
++		link->replay_settings.defer_update_coasting_vtotal_table[type];
++}
++
+ void set_replay_coasting_vtotal(struct dc_link *link,
+ 	enum replay_coasting_vtotal_type type,
+ 	uint32_t vtotal)
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
+index ff7e6f3cd6be..cac302e8fa10 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
+@@ -57,6 +57,11 @@ void init_replay_config(struct dc_link *link, struct replay_config *pr_config);
+ void set_replay_coasting_vtotal(struct dc_link *link,
+ 	enum replay_coasting_vtotal_type type,
+ 	uint32_t vtotal);
++void set_replay_defer_update_coasting_vtotal(struct dc_link *link,
++	enum replay_coasting_vtotal_type type,
++	uint32_t vtotal);
++void update_replay_coasting_vtotal_from_defer(struct dc_link *link,
++	enum replay_coasting_vtotal_type type);
+ void set_replay_ips_full_screen_video_src_vtotal(struct dc_link *link, uint16_t vtotal);
+ void calculate_replay_link_off_frame_count(struct dc_link *link,
+ 	uint16_t vtotal, uint16_t htotal);
 -- 
 2.34.1
 
