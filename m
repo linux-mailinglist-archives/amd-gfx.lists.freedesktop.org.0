@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A2DB8D6761
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0649F8D676F
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A41610E536;
-	Fri, 31 May 2024 16:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED1C10E696;
+	Fri, 31 May 2024 16:53:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="B8FTmeSA";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UAJSn9v/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2079.outbound.protection.outlook.com [40.107.96.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 732F110E50D
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:47 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2040.outbound.protection.outlook.com [40.107.100.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5762A10E50A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HlQAsZ29NOPKRVANu/75uUG9JlW6ZwwCjrTfHyMNvgojq9eUxFQ/PXBw6phwJiVGaFbdZDDbxIzmMLk0XwrB0aEiXabB+PEcTNDcU1WqnEdAZOiKMnRAg00MxMYH8s4lYYbe+Nl4ymNCr1BSqZyN+69sd8PlBMXoj4Zd+OxgSnsbpjHyRXDG13PJ1LeerYbHscianHcL4N9N27fJzEL1H18yjfIwAEwiSp2IZeygx/VC1oU6pT398VW6PnnAL9fuoosC87s4I5Fc8U+JR4v46lMTt7ZKsfa60MuEIe+4tJdT5yB+6dH2X4ANRf0+UFPdRkvNYFGn7o33qI8FBF5BwQ==
+ b=Rbn2GqVNLaXmmkL3LyVsJEGaTmZy9t4DNuquUwk6sDrWRIUtfPEazNV1f44/O2vo8ZUeRyTFsJ/5UWFRyqGCHYhKURAS4isYmkIoF9a0BCSnbM6cSKH9yzT67zV9MqEgwdktb8zyEJh2tsjMEPLQd/VDdiVAReFiOnXRMAcUlhyHMhoDs0zzOLj8j6ctVsNOpIt2FmLsiB3f2A3Ixb0lcKytZtgMCp5h+9UOMl9MQyVsLKIetUopxgtoELDgJOPBk9vDQ+poW9qYgOty7LX/byldWZ/tYBTa9DWryj3RSIEOWeZRN/ej90SPRS0B1sImz8rwbS0k5Dm5rXTzEtYfXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C8nE+rXXHf5Os1noKAJPhl+TSKbkS0n5sxSCvelX+BU=;
- b=NmMLogLZWB000pbT837yC3SVUj0KcuPluWLS26l22WhZAOrH4/g6R7Lj0Te3olW2nr/AvIqUcvtwRhP7qM3gGoC7CSpKmUzFDF86hLO2o+t1/OvPs9S/LxGNrJ9QgfhUT4u8/H6BHEvou29irdAXnBm7UBR5f4PGD3rOx2lIyzmnUaNj58lDHvvVjZ3KoZuPLxlZUf8OeKVKsgoUXaLsa8PpLtvQPMWfAc4GVWX67pSohYnt0MVw2IV/ye8h6Or9f61RhU3xeVZbeR5bClSdRCx//RxxDlha9B367aPt/1TzhpHZLs9k2uyOoWuP8gdR47xlNbomx05XG58FMbGtdg==
+ bh=7u8IFB9sI0oLKe5NrUMLJYAnzjyWpkumogTqMALEadM=;
+ b=KAEiBx+NKgt74fph5i0IC0RizWHKUDAs3jkMBg5eMTtRgSDfm1ODDxYbp/lQICJMEq2wK6MdlwN2khYWAEFGADX6nt6UfQocnosh7VszZCHvUn94Z35t9dbQnMzXoBtPHVkc7N62k0sAy9pmqdlqRPDYmbnRIHkloFz6Zwnb6D9cxJ4JmaTiBxBPXXH+fqQcqgIpOUoYBkLWxAPYFO8Ir3fHt9CruBP6/YxXpEl+LXFfunG/Yw6RZVFwfwvI3BR2dA9vP5jhy3J7B8HnRXNtTQeINXVfWVy0fv/VmQbTA1zWCpIT2j4J6Mrh9VLo/erAhjHQB3thdgkC70EoALP4vA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C8nE+rXXHf5Os1noKAJPhl+TSKbkS0n5sxSCvelX+BU=;
- b=B8FTmeSAFSKlyH/1T2/rf4rkCURU5jPe8myCENxrHD8pUpt+UCKIG3fQsQvoY6TvV7uAzOuCZWyzYJyYm7m/v6NAIfNYItUpQ0tBVkQ72Rg2gRzVcYyNS9dVtiWt1Gin38FJVFYrmbTFeWcFH0Nbcglq71kIjS7xX12kYHwqOfY=
-Received: from PH7PR10CA0005.namprd10.prod.outlook.com (2603:10b6:510:23d::11)
- by SN7PR12MB7322.namprd12.prod.outlook.com (2603:10b6:806:299::6)
+ bh=7u8IFB9sI0oLKe5NrUMLJYAnzjyWpkumogTqMALEadM=;
+ b=UAJSn9v/fn4t5wVqfdcKnRD+zBU+6jwMzG8M30Mx0hzeMuINb4G0BRt5ZLZiaIrDZJue64X0Rk8EJ1Vsk5gZbpzlj9eAldu+Ck+qY8p9R6lvQ/ptnSda7mqwLwhxw0zEO7MIi8TToLiGfGmzkVu05pRxPF5G5J04+uPNKsfrjZU=
+Received: from PH7PR10CA0012.namprd10.prod.outlook.com (2603:10b6:510:23d::26)
+ by CY8PR12MB7561.namprd12.prod.outlook.com (2603:10b6:930:94::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.24; Fri, 31 May
- 2024 16:52:44 +0000
+ 2024 16:52:45 +0000
 Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:510:23d:cafe::ad) by PH7PR10CA0005.outlook.office365.com
- (2603:10b6:510:23d::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21 via Frontend
- Transport; Fri, 31 May 2024 16:52:44 +0000
+ (2603:10b6:510:23d:cafe::f3) by PH7PR10CA0012.outlook.office365.com
+ (2603:10b6:510:23d::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.24 via Frontend
+ Transport; Fri, 31 May 2024 16:52:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,21 +50,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:44 +0000
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:45 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
- 2024 11:52:43 -0500
+ 2024 11:52:44 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Dillon Varone <dillon.varone@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 23/32] drm/amd/display: Add recovery timeout to FAMS2
-Date: Fri, 31 May 2024 12:51:36 -0400
-Message-ID: <20240531165145.1874966-24-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Chiawen Huang <chiawen.huang@amd.com>, Duncan Ma
+ <duncan.ma@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 24/32] drm/amd/display: add set ips disable
+Date: Fri, 31 May 2024 12:51:37 -0400
+Message-ID: <20240531165145.1874966-25-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
 References: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
@@ -76,50 +76,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|SN7PR12MB7322:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76ac774c-bf80-4242-f977-08dc819217e7
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|CY8PR12MB7561:EE_
+X-MS-Office365-Filtering-Correlation-Id: c746228e-829b-491d-07c5-08dc81921858
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|82310400017|36860700004|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gFuI9N/GprmnFxfQFY4lFea4MQji9pGKcgZsVmOGEaIZnd+kWMQr+HUBY2Nx?=
- =?us-ascii?Q?s1C1GIQ/LfLcUMYP3dRq7JJbUd5XWsGiWzwzNSljt2qhlZ7OvQtED9Hs7CUe?=
- =?us-ascii?Q?Wub4H4FPgWH3j28X2DAAYRUH41XXPOb4Xm6xBw4NPIYt6/w3jIcbtp8PlzCC?=
- =?us-ascii?Q?LeBVhczBBIosPJ0NCKj7RjTptUucDeYceI3A/npQIuvAFZ/IEvr7doPl6z9I?=
- =?us-ascii?Q?DmyQF8l6Jh1k0rKrzJkd408cfG6t8WJD518Ggy61vQSXOhbddzGJb1YPjMsT?=
- =?us-ascii?Q?p13PUktEVVDb0p6IRYoaMHGzlvOcM7TzAUQFF6nmEgKzcQOy6ZLXOmTyrdcn?=
- =?us-ascii?Q?Fjwi0d0+Qf0spZxP7tbycnpRZGu3bgJ5roZ2LIHDwPjVXVCxcEvE0M9VZI7x?=
- =?us-ascii?Q?8gbvf53n0KgtffVvbWzqOwjYO3FJbBJ8NolkAdht3h3iuDIEVqiTmJ3cmS3f?=
- =?us-ascii?Q?4lhLmRmXAf+SAFw5XAXa7IDTKxVkcD4RzoMNi6D4wCI8rFJy/t4cddEbkt87?=
- =?us-ascii?Q?mw7y80MapSkZCD0EzqzXkN3goWJxNK9uxMJKZzi+JrmTRskP68DfX9/uoT6P?=
- =?us-ascii?Q?JbLo9RPlZdTzGxGUKry5l8ZwRxtUIR5qaR0EyYMoD3gvpY6LqXUw2uenW4ir?=
- =?us-ascii?Q?PwSbd9FBsqMI0dX49eILQ4atRBYelvGKjy4oVzWFscWFetnKPcwjfQUKqKg1?=
- =?us-ascii?Q?IdHAzJpPsvOYl8tK0PtJe+f5l2zRI2MEMoGbkVeeexVa88Er4TwoFroBBvoN?=
- =?us-ascii?Q?fUSoLC/ks8vtBIxIveSB8vmorp2yluM2wjco/XM87KjQD3sH3X42ZDIE4f3M?=
- =?us-ascii?Q?lHcLQpeir4IUx9xzjiMgAPxuTR0KYMuLmP28GW+lxlLpv3ASFiiCOPCs7C7L?=
- =?us-ascii?Q?wjmEe3krzYp77LBbkc+JPA8+patBphSjKhhrKU9/esU56yzffYUzo1C26n4u?=
- =?us-ascii?Q?tMMYlX5IaYllU95rNI5bHfMpXkT/ituGKIXXNnwMliUqsJ5hII7Sq+0WtSdy?=
- =?us-ascii?Q?DYFlGOJF1UK+IWymaruzQbTIY4F7iZukTaKjoNDjg0bXyhS/0lnd3EoMC8NE?=
- =?us-ascii?Q?gEfrJhcily5VlmPb9rtGLPw9oEwQWi3YOEY27oxGNCMgcg5E/QxJS3SZN+Y7?=
- =?us-ascii?Q?IUvYP73xnD046WZVe2kL1PD1n5shcY+DZ3II0OC7YtlwCLJFV+TqNsJASSIH?=
- =?us-ascii?Q?/vPO/csJdB48UxfE0qc63oiwsgYWJiTAUgXjGJTKLSJrY/dxzV273lsCHfv0?=
- =?us-ascii?Q?Dfd+Af3zLI/dP7+p2216OnwZgf8BtPdYbSJKLo71bDSkWh8lqkfUlMEn9uDA?=
- =?us-ascii?Q?5EvHEnHxEKPrFei/cYRDxYUjMJ2y/oc3MGroqRo/2tqhKQn3BNk+48p5WBPW?=
- =?us-ascii?Q?ApmdHg8=3D?=
+ ARA:13230031|1800799015|376005|36860700004|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZlY3hSqyhwDwJLXbi4DB+aLGUtgJJAByKzGiDs8Yz/7vqhtboVXMy9RPbh2A?=
+ =?us-ascii?Q?e8zs0J1kaACXEha8fIS5tkJok/e6pTDz1G2yzqKm7JyMJdP36L9aBzzvvqQk?=
+ =?us-ascii?Q?+5vizwaxW7l6ITCdT2oZX7hqT/Zn607j7tQJtBSSnRiW8xOxmfudzOw0QmzX?=
+ =?us-ascii?Q?VyDkVabMzSKfU2X7UVJt3X1bjci25Qfegj8VMimJYdRANC7Lua43pF12h2sk?=
+ =?us-ascii?Q?XAhCrsmA45C8hP+FrtJYYaALk9RyKavI0B3Z8Mnec3vlrwIggmX3TdMiw7gA?=
+ =?us-ascii?Q?DbzPjYdnNSHsuYJayO5P6lH11i4DqFbpIfSkgZphgt6DL/tfqDz57EZ0T/O5?=
+ =?us-ascii?Q?xb0n1ncEXj9lig4JzET7/120rokhWkXMnNJRQUaE1Z6wYrwmhJCyqw8RnqjX?=
+ =?us-ascii?Q?uNUI4xXg8Gji6o+Jn9RLqdlUJHUSZwplifbCJOCbjBIVBUPF9EXtMsTBqZvc?=
+ =?us-ascii?Q?rPYrYnHrbWQKEUz79wIbY6F1S8cCtc9O4R58YZ+T7OcXJ1Js3oSuMWn6hhKA?=
+ =?us-ascii?Q?rXjr0obOjFDPjhkAJ92NRBr8p6zSFBy7PDWu2c/nobP+DoojF6qh53orkMpI?=
+ =?us-ascii?Q?66SH5wULc3AeL0H9s1XuyiXGK21Wl5T60d+5N8kyMf1xKR3oXLOyGOgyZ/FJ?=
+ =?us-ascii?Q?kWw8J6L4upgx4EzvDptqahCRn2CBQhuCvwbI+D4ITGlRmdl4UxbTYhuZ+fv8?=
+ =?us-ascii?Q?jhO1lp7ZhwQ0aIr/ekTTVOKUk1Ftp2Dk80n8Ri0gFbkwsXPuf9eym0QUK2XP?=
+ =?us-ascii?Q?1ybtOSOJ1NgWHaczi2aY7Lxiiboo48CZxZVvW6ixgfE2TYdCNQj2NhDzrO34?=
+ =?us-ascii?Q?Binf1mf/BOV08JBhVy5Tg2UsANZwpQjMDZO0GlBA6MBfFk80UL4JCLZhcT9M?=
+ =?us-ascii?Q?L1fX1X2XT4gMw4TEiVtgI25rJEDlcXECFgNN5KJvG0JBnu9EkVJHHddd9wU8?=
+ =?us-ascii?Q?7chK0/ef9/XSCkrHlx/9vjYMAMv48C8lvT3rMM2AZwQU6/j6kyxisqDjtqmL?=
+ =?us-ascii?Q?uPMxB/NFSItTp02UBfRIL61WlInMttjYh33ElUbpZVhXWacwQdFrv2tv1OZx?=
+ =?us-ascii?Q?Xn4Jxw2PEgm3hrwNFUMc5iaoqLx6X/h6R/OSLkn14HQDpGon/GhiAcxIob9b?=
+ =?us-ascii?Q?ceSXIe84+f2M408BR5JVOSLZZ9QpPc1/+tF9UknkTJf1R5svHdQ7XaERlSyn?=
+ =?us-ascii?Q?JOTIqgnC5x/Ixg0LVN75DHANG3dCypEJGvWgHgiKpSf4DwCMYCSeXOAiwOpV?=
+ =?us-ascii?Q?VdewRWc/w/P0tIvLOpUoKP6nlfEaGQyKHmjYgonDHW+Ite0G1NamhmSzynbk?=
+ =?us-ascii?Q?ZcWPmS4BlNhC24WxJ7u4xAzlYv4mhy/VCnIWnDntqa0+B31mSHWJf3FtsNKL?=
+ =?us-ascii?Q?VdO52oM=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400017)(36860700004)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(376005)(36860700004)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:44.4961 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76ac774c-bf80-4242-f977-08dc819217e7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:45.2304 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c746228e-829b-491d-07c5-08dc81921858
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7322
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7561
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,42 +134,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dillon Varone <dillon.varone@amd.com>
+From: Chiawen Huang <chiawen.huang@amd.com>
 
-[WHY&HOW]
-Add 5ms timeout to trigger recovery and force allow P-State in DMUB.
+[How&Why]
+Once IPS active, all the DCN resources are
+not be allowed to access.
+It needs to a function for 3rd party to
+on/off IPS.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Duncan Ma <duncan.ma@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Chiawen Huang <chiawen.huang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c    | 1 +
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 10 ++++++++++
+ drivers/gpu/drm/amd/display/dc/dc.h      |  2 ++
+ 2 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 0e70b95573ae..4e6f7bf8a5b4 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -1653,6 +1653,7 @@ void dc_dmub_srv_fams2_update_config(struct dc *dc,
- 	/* send global configuration parameters */
- 	global_cmd->config.global.max_allow_delay_us = 100 * 1000; //100ms
- 	global_cmd->config.global.lock_wait_time_us = 5000; //5ms
-+	global_cmd->config.global.recovery_timeout_us = 5000; //5ms
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 0d97611c4817..25a498f65c1c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -5332,6 +5332,16 @@ bool dc_set_replay_allow_active(struct dc *dc, bool active)
+ 	return true;
+ }
  
- 	/* copy static feature configuration */
- 	global_cmd->config.global.features.all = dc->debug.fams2_config.all;
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index d4d046ac82a4..53ea4a57bd44 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -1833,6 +1833,7 @@ struct dmub_cmd_fams2_global_config {
- 	uint32_t lock_wait_time_us; // time to forecast acquisition of lock
- 	uint32_t num_streams;
- 	union dmub_fams2_global_feature_config features;
-+	uint32_t recovery_timeout_us;
- 	uint8_t pad[3];
- };
++/* set IPS disable state */
++bool dc_set_ips_disable(struct dc *dc, unsigned int disable_ips)
++{
++	dc_exit_ips_for_hw_access(dc);
++
++	dc->config.disable_ips = disable_ips;
++
++	return true;
++}
++
+ void dc_allow_idle_optimizations_internal(struct dc *dc, bool allow, char const *caller_name)
+ {
+ 	if (dc->debug.disable_idle_power_optimizations)
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index a06015165a61..4e5c63ddb312 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -2467,6 +2467,8 @@ bool dc_set_psr_allow_active(struct dc *dc, bool enable);
+ 
+ bool dc_set_replay_allow_active(struct dc *dc, bool active);
+ 
++bool dc_set_ips_disable(struct dc *dc, unsigned int disable_ips);
++
+ void dc_z10_restore(const struct dc *dc);
+ void dc_z10_save_init(struct dc *dc);
  
 -- 
 2.34.1
