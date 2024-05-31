@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751668D676E
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D4B8D6755
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 18:52:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A157B10E61F;
-	Fri, 31 May 2024 16:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5AB810E50A;
+	Fri, 31 May 2024 16:52:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BCY539QD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IQZTv4oo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C737610E6C2
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:46 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2088.outbound.protection.outlook.com [40.107.95.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E565C10E3AE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:52:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wlfw5O7F642itR1Dzvnroej7xQfeIHqpfnT5nO9P56VydcN+JHeEAv8OGWCvZvznQE7lXYepOWXfm2EhVSTU23Y9JoXLYnPY6zvuv2EQFVBFN5EblPHgK7QQCbdkyrXBnIMZC7wQt33yTVHBiVS5pO70zC0iulfbIxRqnO8A+WRVOm3n+LDd66OBxDmHqT+2+3uvaBa9EcQVu2EqwICh6F1WUPCPr3Qio66hQvu4MGRgbG5Usao2rSjv+au0WbZY2ak6Yuce6nYkyRZCQjEQMEA4HGtQLWhTBD/Je1KzcgRvVMVgfFfdz0vWbAOm9xHesODNmCJAaoUL4Y5jfAzbLA==
+ b=TC/HSp63ckXpr/SkB60i0/Sa+LWCOvYsA8hGW5V6YAnBLC9eeaegOl9437rjKy6oUEnT0vpbf3UsTvKgBC+ojml+0lQDm2FLbkgTN96Zx8SRlIhhSNETO0+53Zwtzd+Vm4edt43bbwUgHl7zxW1CbDxYzm0Gix59ijLVWG73xoOllK/TNEMbOP5fzNwPTlRdQSxl/R3POTCpzb7mB3DYydujiI2xwRKSZ0SGzhzDP7WIJY3Fx1qPeb3u0HyRFRJDoPQ/tHr9AQxJTKsu4Ick09+lCnsh3s38oxkKVzkTKrlKbbTarHuSwUZaqM/H98yCIYPTa8vafj4mEZgDxX56vg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ntnV055bx2Qchi5DawqeYH28wOPa74iGKD0QAd+tmb4=;
- b=jrrRLuVT3Z63KFgI3U8bqf6fsjzHzuohwSLC+yYVZBvk0RS0OabXQT9WXG7mehlPctg6Idnxnye6JZDubt4gIwJWvM4A/KYtB4sbhm8tkOMsjZSn7hkTHIZ+aCLjAp4XEwB+MPHKnkH677rtNkHh6kKwhbDrPPzxpe9vHR9lBP8kCVeoLNHXk8+Pabrxkk7wjbCodvlRG+eTgPsvWWIK+cObIZqy+FvZ84yh8BtLWIpWkESZDJOAtZ5w5lSNmIyWcp08PhD/OZXuGL9FrPwpWiv4XBbrVSaknGXKXqFc0HhiNT3O9WiP6rCiYWljyI6t5Mf0toGKEQpWMO9zIkONXw==
+ bh=OKTdQa4Grcm4fkcR18rSZS4BWV/dXlGsEpwqqWvzCSY=;
+ b=OIkigPx0IyeSmmu3Wy9ewgdnBu4iYHOHZMmnWcZ1t0L+2hA7YCuqbRpOcPxNQNoWj48UsTXQ8cXeVcScKXLdzTINglWod/rnOUyyzjnAhdVAddtKR3JlQI2yL31fp+G3URtP2DRzgi3jtLzVNi1adu65kkCoQpO/+RNhMRyc2jxLNzZ6qQTyWHeumdcM/KiSS2l6XEzlk6rCSQIyEZVq11lURVmj6f7BFdemkuJuhw1Lyercwv6S2jQDvueutxtmTp5Eug01SXEWWZa5OldPB5JXbD0LPGUfenZO188HyoY+iq2quKAdgAoC532/pfxcVvauQy3gKjODVRlK0pEVXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ntnV055bx2Qchi5DawqeYH28wOPa74iGKD0QAd+tmb4=;
- b=BCY539QD/WUg1OPHAP0GWk7KW6PZiD8Jd8TRsM2s9Hhq6Ly8NW+Q/tTu/U0rIYa2bHJfeWxgP/Lnwk/byqIzKPIDGUkdGqkopgx+hLGhqkzTvurRLbH81bkNeX47F/3vPZLYyYOb3QXlWgfzE2LuKQYplQkCnCFm2QMobwnAtN0=
-Received: from PH7PR10CA0001.namprd10.prod.outlook.com (2603:10b6:510:23d::23)
- by PH0PR12MB5630.namprd12.prod.outlook.com (2603:10b6:510:146::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Fri, 31 May
+ bh=OKTdQa4Grcm4fkcR18rSZS4BWV/dXlGsEpwqqWvzCSY=;
+ b=IQZTv4ooHtqmV86bQMFQrU9A+4v23IYtV457eAvBbqamDZp/8mF45jfYPMTfwHOSpSgUKM7EWro2rn/u6I0RnkiahtwLVymD06wgKTIgfVIhiAQaTS63bD6mFj6gBGELAyrnUpjbAQnfkcWOO8GeX5avmctQs27JYuP9TQynYoA=
+Received: from PH7PR10CA0020.namprd10.prod.outlook.com (2603:10b6:510:23d::18)
+ by DM6PR12MB4337.namprd12.prod.outlook.com (2603:10b6:5:2a9::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25; Fri, 31 May
  2024 16:52:42 +0000
 Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
- (2603:10b6:510:23d:cafe::ec) by PH7PR10CA0001.outlook.office365.com
- (2603:10b6:510:23d::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25 via Frontend
+ (2603:10b6:510:23d:cafe::4b) by PH7PR10CA0020.outlook.office365.com
+ (2603:10b6:510:23d::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21 via Frontend
  Transport; Fri, 31 May 2024 16:52:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -50,21 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:41 +0000
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 16:52:42 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
- 2024 11:52:37 -0500
+ 2024 11:52:38 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 17/32] drm/amd/display: Prevent IPX From Link Detect and Set
- Mode
-Date: Fri, 31 May 2024 12:51:30 -0400
-Message-ID: <20240531165145.1874966-18-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Duncan Ma <duncan.ma@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 18/32] drm/amd/display: Add outbox notification support for
+ HPD redetect
+Date: Fri, 31 May 2024 12:51:31 -0400
+Message-ID: <20240531165145.1874966-19-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
 References: <20240531165145.1874966-1-zaeem.mohamed@amd.com>
@@ -76,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|PH0PR12MB5630:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb1c9c72-3836-480e-1f4e-08dc81921668
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|DM6PR12MB4337:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5217f500-9f6a-471e-a8bf-08dc81921671
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|82310400017|376005|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aEaWOIR63pJ7p9ECwif++4IkUyIMVE2X9dSchmB2XHhvOlyiZj079FQvgkfK?=
- =?us-ascii?Q?sgvJ2vqBWrsVhZT1bXzAfirUo/dBE7/FhKbFCiZWfNdTdWZ1uINF5NWW3HZ+?=
- =?us-ascii?Q?UAqS91D6ZieNflrqoF4EzEqr1t4Txev2aDL+PKI4TtMoodd/VOvPw5XDX0eC?=
- =?us-ascii?Q?LWJ8KSTUbYgFAuTMbvNFM6ymw0ufy+yZeObZlI9qYyw/W0FpFR5m1GJo3bom?=
- =?us-ascii?Q?5TsGPUgYt4/aBoTXkFVvBIvL2M2U/sLOqMHRhI8vCHKPTZAqWmBrz3zyB31k?=
- =?us-ascii?Q?JTN0B3tkSGKGsfN8SmDnh3Rybn5MW1CgoZ9RzKnvCobC9HTNQM7cxq8eri5f?=
- =?us-ascii?Q?o5KJNe/gR8u4hvMmHSkL1ZwoczT+NeWnieFDRMtyVQA3HqXT6v9aSEq2Czj5?=
- =?us-ascii?Q?gNEKldU35U6JFKjzB5w/lVqCsr3Zp7Yp1nBdZobhcvrFLoxDi9tX/MYiHL9y?=
- =?us-ascii?Q?ONsAIfFD64Mtgfh5qjF6vQMXnd4g5r7F0ptGSmBCEJ5N7RNp6WPzmYpbcHNv?=
- =?us-ascii?Q?wTOR9vhomqwmduhRbCPoFpNyE0mv68iBmnmkfpjTN07qRw+K4t3pAaKBrCld?=
- =?us-ascii?Q?/X7iBLwhnWNFUyBdAQW/uZQ8y9aUc4g1UOyHxiwk6Cqvm7TH6zSsqgNrRWbS?=
- =?us-ascii?Q?wu9hE2UTXt295fv4ZZxvf0uwIAXy5lwcdoF5Jq0rz1Vg7PIKlFId8yiLFYjy?=
- =?us-ascii?Q?Z9WAv+DA6PzD48ctJVfKRtTK1Q38rgqQFPdKBAeCmP3wWEO3ZLl/LfsWEoNw?=
- =?us-ascii?Q?Ux8qaIzHKqjrAfcbbCM2qUU1XKT/ZZju7YORwpMPFgPelLOgiByHLuqbtxQo?=
- =?us-ascii?Q?EFVC3+POVWQ1TrBTGX5W4BAwGN+HIi+7+JYVUPU5Geh9kKJkqZ/++FrAcdn9?=
- =?us-ascii?Q?ApPrePJtMgGWuDGhzw0brtAyEIdIFGB9glQ7NLeAfdLBCIIWLhEoCiJb4Gs8?=
- =?us-ascii?Q?QLP3EhBQcSOeRu6sK4A+PUGkU7Q5RjOQU98854Jyrme1tE7BuZwldwZlQNbm?=
- =?us-ascii?Q?ZPH5zLGzpEZrQ379QSXOCtK60V2gSG5Ra1fHctf2yoONGGZ3PoOxsLBBCLIP?=
- =?us-ascii?Q?EJtGPbZUwrY1NVt4H3V0kRLeghTPmdOuieVYCVHWc1ZSHBIiA6QNzoB+1J1Y?=
- =?us-ascii?Q?PVCPPiaBkwdVLY5NV0e7htnkwY8xsquslT9p3ZsaV1llmtWfYO6w7nfIpbce?=
- =?us-ascii?Q?EQetJZUW3VIX0yF7q8DiqBh9lqdCioCmywc89FTcFbpEpqKBUW9skdvCuKcB?=
- =?us-ascii?Q?Kazepb74BJggcB5j0qPvlo+7rdkYUHTBeEZ7ClDZNv7GbZ86aFs2Hedo7xk/?=
- =?us-ascii?Q?LnX5fs73HFBExwmtFJ2wQYA3+XAySpVtd20zcuNnVIkg+T+CLnrXSCM3haZv?=
- =?us-ascii?Q?9Dm8QTfAYYtjwlxhl3Gtbqr5kMyW?=
+ ARA:13230031|36860700004|1800799015|376005|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?06sAna+iLjsr8iPXsJi8jl3+18gczWomlQscDl9/FVqJLEOSDNtx1UVaNCA4?=
+ =?us-ascii?Q?/YpLuaQUn4ur9eTrUAASNfTovCcFJ+kCD8eWiECKi6/JQZI+hyXwhrJ3sOEp?=
+ =?us-ascii?Q?aj3eVmTos00a/2mrTPJvtQJmtEUNGtEVVp8Ng3bJ1laaLuHG6UViL+Cn2kl2?=
+ =?us-ascii?Q?6K7HkiGlGzkK87xCN2X6WUXKNHHLqXTb6x0DzFeY6aKsdFn8it3X9OMK5mhc?=
+ =?us-ascii?Q?zFZu4ApRny61++cgiTLEXzQKrwfNxKA1gDmr8P1B4qBcRQ7Gt5OOV8Y455bY?=
+ =?us-ascii?Q?S8CzKuO9zwGcEuW2jC4bXu33igwTWyBYbrNwNxGI5aT51skGzz5vRQWI76Mo?=
+ =?us-ascii?Q?jNlHN+ZbW2zzeC87N7PXiiMkyDR4skZB3F1gCH+GjQRK3ds1ZeI1tkqPhavy?=
+ =?us-ascii?Q?huyVt9WwoZm6M1kDq5gcxJ9WyhLMfBLRIJXSTA5T+eQttHVOHuM+mKHhDf6a?=
+ =?us-ascii?Q?rIuCgVK7XCjNdeOcVKgDyg7UZ+fZM+Dg1r9USA9dEqrZNtet/vmLT59xqUbm?=
+ =?us-ascii?Q?+IISK3KAKz1nGl+zSgzqJsobCAcGBFE5U021VbpVUHliRDb4hn8sJIBPpSDG?=
+ =?us-ascii?Q?dStr/X9X7GzzTe+Jr/478Wpp2VDPE4XgXILU76sK3jBVX/9dhHzzfbDb2BVq?=
+ =?us-ascii?Q?tZH46hmRHONYK/igTNqsWgr+a1UXztwBVWTMPfkrGhnFbrtDZXZDHefNR2Td?=
+ =?us-ascii?Q?bVepzS1d+ObkAotAhS0CSMlkxHh5JxhtbfoypXp4HMK3/SDeyWWYOywGpYU3?=
+ =?us-ascii?Q?alVIM43b6CnznGoEZOXbfbWJ6DkB5YbcZpS+dn6tv0zRgEpgUqnjV6ZPfDmW?=
+ =?us-ascii?Q?M7blMKCgzeUHLUjQr8svZFTVxahsWQPr49Sy9g+w/m4H2XE3Ymjlgbxdg2yR?=
+ =?us-ascii?Q?PDXnyUE4qZKljxIGOLvE2aKFFYCSt0HsPjnxQIl5N1XhqNvhFfQEVjICI+iz?=
+ =?us-ascii?Q?Q9zVErkrvVUxEDM3cM9KtjKRUf9+CSafIKPuYNvxDtml5EkSPYZoXsEhd5rw?=
+ =?us-ascii?Q?By69mc7Rif6Hvsti8Fwd9CIywzYBh229wVpGWN5EB1h4dC3FpiaLXtPY2N58?=
+ =?us-ascii?Q?CU6KxS8UjebgI5e6ZXObxbJVSxmVOMo51gs9761b0tCNvtdZJsruyLxWv7K4?=
+ =?us-ascii?Q?eTzyN9aAgi/8ZvjBxef3xNio66uRD881w8ESsIq0CMtKoc41kYpPLHQHhGBe?=
+ =?us-ascii?Q?vYG05XlxV4j/xX7NakO5jC0/eN3gLQT7DfGSrStdUh4XIUILKMRoJsX5hygu?=
+ =?us-ascii?Q?q/wGcSJw+AyOgPYDgvmrmXAuohTKEJqvKA2ey0Luc8ydWbicr62E+4G9fcu9?=
+ =?us-ascii?Q?wrbpo4vzhHhQHHi8VWfrHPrRFM4pFbQ00U+xBf3PH4UQK07r/6GJmxzsS32S?=
+ =?us-ascii?Q?kDfcQfGZ1Bgud8HdQtieMDWCFRw/?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400017)(376005)(36860700004); DIR:OUT;
+ SFS:(13230031)(36860700004)(1800799015)(376005)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:41.9961 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb1c9c72-3836-480e-1f4e-08dc81921668
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:52:42.0429 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5217f500-9f6a-471e-a8bf-08dc81921671
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5630
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4337
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,103 +135,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Fangzhi Zuo <jerry.zuo@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-IPX involvment proven to affect LT, causing link loss. Need to prevent
-IPX enabled in LT process in which link detect and set mode are main
-procedures that have LT taken place.
+[Why]
+HPD sense changes can occur during low power states and need to be
+notified from firmware to driver. Upon notification the hotplug
+redetection routines should execute.
 
-Reviewed-by: Roman Li <roman.li@amd.com>
+[How]
+Add Support in DMUB srv and DMUB srv stat for receiving these
+notifications. DM can hook them up and process the HPD redetection
+once received.
+
+Reviewed-by: Duncan Ma <duncan.ma@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Fangzhi Zuo <jerry.zuo@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |  2 ++
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 24 +++++++++++++++++++
+ .../drm/amd/display/dmub/src/dmub_srv_stat.c  |  6 +++++
+ 3 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 011981bee58c..ffc1e0172c46 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3097,6 +3097,7 @@ static int dm_resume(void *handle)
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index cd51c91a822b..85dcf6b4fe92 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -137,6 +137,7 @@ enum dmub_notification_type {
+ 	DMUB_NOTIFICATION_HPD_IRQ,
+ 	DMUB_NOTIFICATION_SET_CONFIG_REPLY,
+ 	DMUB_NOTIFICATION_DPIA_NOTIFICATION,
++	DMUB_NOTIFICATION_HPD_SENSE_NOTIFY,
+ 	DMUB_NOTIFICATION_MAX
+ };
  
- 		commit_params.streams = dc_state->streams;
- 		commit_params.stream_count = dc_state->stream_count;
-+		dc_exit_ips_for_hw_access(dm->dc);
- 		WARN_ON(!dc_commit_streams(dm->dc, &commit_params));
+@@ -560,6 +561,7 @@ struct dmub_notification {
+ 		 * DPIA notification command.
+ 		 */
+ 		struct dmub_rb_cmd_dpia_notification dpia_notification;
++		struct dmub_rb_cmd_hpd_sense_notify_data hpd_sense_notify;
+ 	};
+ };
  
- 		dm_gpureset_commit_state(dm->cached_dc_state, dm);
-@@ -3169,6 +3170,7 @@ static int dm_resume(void *handle)
- 			emulated_link_detect(aconnector->dc_link);
- 		} else {
- 			mutex_lock(&dm->dc_lock);
-+			dc_exit_ips_for_hw_access(dm->dc);
- 			dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);
- 			mutex_unlock(&dm->dc_lock);
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 4db4c5ad5169..7f08e95140ef 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -1285,6 +1285,10 @@ enum dmub_out_cmd_type {
+ 	 * Command type used for USB4 DPIA notification
+ 	 */
+ 	DMUB_OUT_CMD__DPIA_NOTIFICATION = 5,
++	/**
++	 * Command type used for HPD redetect notification
++	 */
++	DMUB_OUT_CMD__HPD_SENSE_NOTIFY = 6,
+ };
+ 
+ /* DMUB_CMD__DPIA command sub-types. */
+@@ -2468,6 +2472,22 @@ struct dmub_rb_cmd_query_hpd_state {
+ 	struct dmub_cmd_hpd_state_query_data data;
+ };
+ 
++/**
++ * struct dmub_rb_cmd_hpd_sense_notify - HPD sense notification data.
++ */
++struct dmub_rb_cmd_hpd_sense_notify_data {
++	uint32_t old_hpd_sense_mask; /**< Old HPD sense mask */
++	uint32_t new_hpd_sense_mask; /**< New HPD sense mask */
++};
++
++/**
++ * struct dmub_rb_cmd_hpd_sense_notify - DMUB_OUT_CMD__HPD_SENSE_NOTIFY command.
++ */
++struct dmub_rb_cmd_hpd_sense_notify {
++	struct dmub_cmd_header header; /**< header */
++	struct dmub_rb_cmd_hpd_sense_notify_data data; /**< payload */
++};
++
+ /*
+  * Command IDs should be treated as stable ABI.
+  * Do not reuse or modify IDs.
+@@ -5204,6 +5224,10 @@ union dmub_rb_out_cmd {
+ 	 * DPIA notification command.
+ 	 */
+ 	struct dmub_rb_cmd_dpia_notification dpia_notification;
++	/**
++	 * HPD sense notification command.
++	 */
++	struct dmub_rb_cmd_hpd_sense_notify hpd_sense_notify;
+ };
+ #pragma pack(pop)
+ 
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv_stat.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv_stat.c
+index 74189102eaec..cce887cefc01 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv_stat.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv_stat.c
+@@ -113,6 +113,12 @@ enum dmub_status dmub_srv_stat_get_notification(struct dmub_srv *dmub,
+ 				notify->result = DPIA_BW_ALLOC_CAPS_CHANGED;
  		}
-@@ -3505,6 +3507,7 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 	enum dc_connection_type new_connection_type = dc_connection_none;
- 	struct amdgpu_device *adev = drm_to_adev(dev);
- 	struct dm_connector_state *dm_con_state = to_dm_connector_state(connector->state);
-+	struct dc *dc = aconnector->dc_link->ctx->dc;
- 	bool ret = false;
- 
- 	if (adev->dm.disable_hpd_irq)
-@@ -3539,6 +3542,7 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 			drm_kms_helper_connector_hotplug_event(connector);
- 	} else {
- 		mutex_lock(&adev->dm.dc_lock);
-+		dc_exit_ips_for_hw_access(dc);
- 		ret = dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD);
- 		mutex_unlock(&adev->dm.dc_lock);
- 		if (ret) {
-@@ -3598,6 +3602,7 @@ static void handle_hpd_rx_irq(void *param)
- 	bool has_left_work = false;
- 	int idx = dc_link->link_index;
- 	struct hpd_rx_irq_offload_work_queue *offload_wq = &adev->dm.hpd_rx_offload_wq[idx];
-+	struct dc *dc = aconnector->dc_link->ctx->dc;
- 
- 	memset(&hpd_irq_data, 0, sizeof(hpd_irq_data));
- 
-@@ -3687,6 +3692,7 @@ static void handle_hpd_rx_irq(void *param)
- 			bool ret = false;
- 
- 			mutex_lock(&adev->dm.dc_lock);
-+			dc_exit_ips_for_hw_access(dc);
- 			ret = dc_link_detect(dc_link, DETECT_REASON_HPDRX);
- 			mutex_unlock(&adev->dm.dc_lock);
- 
-@@ -4888,6 +4894,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 			bool ret = false;
- 
- 			mutex_lock(&dm->dc_lock);
-+			dc_exit_ips_for_hw_access(dm->dc);
- 			ret = dc_link_detect(link, DETECT_REASON_BOOT);
- 			mutex_unlock(&dm->dc_lock);
- 
-@@ -9298,6 +9305,7 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 
- 			memset(&position, 0, sizeof(position));
- 			mutex_lock(&dm->dc_lock);
-+			dc_exit_ips_for_hw_access(dm->dc);
- 			dc_stream_program_cursor_position(dm_old_crtc_state->stream, &position);
- 			mutex_unlock(&dm->dc_lock);
- 		}
-@@ -9367,6 +9375,7 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 
- 	dm_enable_per_frame_crtc_master_sync(dc_state);
- 	mutex_lock(&dm->dc_lock);
-+	dc_exit_ips_for_hw_access(dm->dc);
- 	WARN_ON(!dc_commit_streams(dm->dc, &params));
- 
- 	/* Allow idle optimization when vblank count is 0 for display off */
-@@ -9732,6 +9741,7 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 
- 
- 		mutex_lock(&dm->dc_lock);
-+		dc_exit_ips_for_hw_access(dm->dc);
- 		dc_update_planes_and_stream(dm->dc,
- 					    dummy_updates,
- 					    status->plane_count,
+ 		break;
++	case DMUB_OUT_CMD__HPD_SENSE_NOTIFY:
++		notify->type = DMUB_NOTIFICATION_HPD_SENSE_NOTIFY;
++		dmub_memcpy(&notify->hpd_sense_notify,
++			    &cmd.hpd_sense_notify.data,
++			    sizeof(cmd.hpd_sense_notify.data));
++		break;
+ 	default:
+ 		notify->type = DMUB_NOTIFICATION_NO_DATA;
+ 		break;
 -- 
 2.34.1
 
