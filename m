@@ -2,53 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB388D82E1
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 14:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC9C8D82E5
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 14:53:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 328A110E37D;
-	Mon,  3 Jun 2024 12:53:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20BBE10E383;
+	Mon,  3 Jun 2024 12:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="mB1YfGVF";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=devnull.tasossah.com header.i=@devnull.tasossah.com header.b="ZykOTIcc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEE110E10C;
- Fri, 31 May 2024 15:37:48 +0000 (UTC)
+Received: from devnull.tasossah.com (devnull.tasossah.com [91.121.165.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F68610E0E4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 16:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=BK0lac02MNaStyn+3Zy8cAwlufhllQe54r3zrUsXI1M=; b=mB1YfGVFyFVWCtPAGvOyLQLQUA
- ZQXOmYELgdul8Go9nJYOtWA4sAYG5BCcfKcultVk7arYl4pkXCwXblTWNEFoRhJjNUH61cbdKT8qm
- yk5XfX/j6Prz0MtAFaWDmSbeuJIDXp7ZnREJvAMaFBsBwo6oGFaSoUVcTLQmr0sL0UsIIgAh3gJ0o
- kufgW6LN1Vk1F3AbP3/XD5L/RwHidE6lONY0rGfp7H+hgoG9nebL2Pt/jk0DOB8cqPKA8lsinrZPa
- KZE0CNKo8njhBwTe5yqghny425aB9ft+O4NKAaQ4wSxDHqssWwiU3ZGg5LeaR+29tEGkdJokDpHZs
- Y4jKFG7Q==;
-Received: from [50.53.4.147] (helo=[192.168.254.15])
- by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
- id 1sD4KA-0000000AiH7-3OIG; Fri, 31 May 2024 15:37:47 +0000
-Message-ID: <833fac2c-91f9-4e9a-9b9e-da2db955a488@infradead.org>
-Date: Fri, 31 May 2024 08:37:45 -0700
+ d=devnull.tasossah.com; s=vps; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=0BMueCwMy2jcCBzCTn8/bP0uOhO/66+zSY+qOJmnLBg=; b=ZykOTIcc+sWYJWmbjL8raJM9CR
+ aWpcgaxdW0uOXYkvzokrUXQm+O7srhQ7OXX6mS5HoBI9yw/T5pS/mmjgIzmLY/v3/JI0izg78TLtJ
+ MobOsUqUMYq3NdlfZq+XtJO4yGTonPm7/SeGrhUuvNeiQHgDba1uFdaIHGedJSr6LDT4=;
+Received: from [2a02:587:6a04:fe00::298] (helo=localhost.localdomain)
+ by devnull.tasossah.com with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <tasos@tasossah.com>)
+ id 1sD59j-004HAo-Pu; Fri, 31 May 2024 19:31:03 +0300
+From: Tasos Sahanidis <tasos@tasossah.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: alexdeucher@gmail.com,
+	Tasos Sahanidis <tasos@tasossah.com>
+Subject: [PATCH v2] drm/amdgpu/pptable: Fix UBSAN array-index-out-of-bounds
+Date: Fri, 31 May 2024 19:23:30 +0300
+Message-Id: <20240531162329.1343167-1-tasos@tasossah.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][next] drm/amd/display: Fix a handful of spelling mistakes
-To: Colin Ian King <colin.i.king@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Hung <alex.hung@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240531093211.498880-1-colin.i.king@gmail.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20240531093211.498880-1-colin.i.king@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 03 Jun 2024 12:52:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,87 +54,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Flexible arrays used [1] instead of []. Replace the former with the latter
+to resolve multiple UBSAN warnings observed on boot with a BONAIRE card.
 
+In addition, use the __counted_by attribute where possible to hint the
+length of the arrays to the compiler and any sanitizers.
 
-On 5/31/24 2:32 AM, Colin Ian King wrote:
-> There are a few spelling mistakes in dml2_printf messages. Fix them.
-> 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+Signed-off-by: Tasos Sahanidis <tasos@tasossah.com>
+---
+V1 -> V2: Added the __counted_by attribute where possible and reworded
+          the commit message.
 
+ drivers/gpu/drm/amd/include/pptable.h | 91 ++++++++++++++-------------
+ 1 file changed, 49 insertions(+), 42 deletions(-)
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
-> ---
->  .../dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c      | 6 +++---
->  .../display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c  | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-> index 8062144a5a6d..e7e6751f4477 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-> @@ -5731,7 +5731,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
->  		dml2_printf("DML: Tvm: %fus - time to fetch vm\n", s->TimeForFetchingVM);
->  		dml2_printf("DML: Tr0: %fus - time to fetch first row of data pagetables\n", s->TimeForFetchingRowInVBlank);
->  		dml2_printf("DML: Tsw: %fus = time to fetch enough pixel data and cursor data to feed the scalers init position and detile\n", (double)s->LinesToRequestPrefetchPixelData * s->LineTime);
-> -		dml2_printf("DML: To: %fus - time for propogation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
-> +		dml2_printf("DML: To: %fus - time for propagation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
->  		dml2_printf("DML: Tvstartup - TSetup - Tcalc - TWait - Tpre - To > 0\n");
->  		dml2_printf("DML: Tslack(pre): %fus - time left over in schedule\n", p->VStartup * s->LineTime - s->TimeForFetchingVM - 2 * s->TimeForFetchingRowInVBlank - (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime - p->TWait - p->TCalc - *p->TSetup);
->  		dml2_printf("DML: row_bytes = dpte_row_bytes (per_pipe) = PixelPTEBytesPerRow = : %u\n", p->PixelPTEBytesPerRow);
-> @@ -8268,7 +8268,7 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
->  	dml2_printf("DML::%s: mode_lib->ms.DCFCLK = %f\n", __func__, mode_lib->ms.DCFCLK);
->  	dml2_printf("DML::%s: mode_lib->ms.FabricClock = %f\n", __func__, mode_lib->ms.FabricClock);
->  	dml2_printf("DML::%s: mode_lib->ms.uclk_freq_mhz = %f\n", __func__, mode_lib->ms.uclk_freq_mhz);
-> -	dml2_printf("DML::%s: urgent latency tolarance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
-> +	dml2_printf("DML::%s: urgent latency tolerance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
->  #endif
->  
->  	mode_lib->ms.support.OutstandingRequestsSupport = true;
-> @@ -11089,7 +11089,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
->  				if (display_cfg->plane_descriptors[k].immediate_flip && mode_lib->mp.ImmediateFlipSupportedForPipe[k] == false) {
->  					mode_lib->mp.ImmediateFlipSupported = false;
->  #ifdef __DML_VBA_DEBUG__
-> -					dml2_printf("DML::%s: Pipe %0d not supporing iflip!\n", __func__, k);
-> +					dml2_printf("DML::%s: Pipe %0d not supporting iflip!\n", __func__, k);
->  #endif
->  				}
->  			}
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
-> index f2e2250d28d3..6eb3fec87ec1 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
-> @@ -1988,7 +1988,7 @@ bool dml2_core_shared_mode_support(struct dml2_core_calcs_mode_support_ex *in_ou
->  	dml2_printf("DML::%s: mode_lib->ms.FabricClock = %f\n", __func__, mode_lib->ms.FabricClock);
->  	dml2_printf("DML::%s: mode_lib->ms.uclk_freq_mhz = %f\n", __func__, mode_lib->ms.uclk_freq_mhz);
->  	dml2_printf("DML::%s: max_urgent_latency_us = %f\n", __func__, mode_lib->ms.support.max_urgent_latency_us);
-> -	dml2_printf("DML::%s: urgent latency tolarance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
-> +	dml2_printf("DML::%s: urgent latency tolerance = %f\n", __func__, ((mode_lib->ip.rob_buffer_size_kbytes - mode_lib->ip.pixel_chunk_size_kbytes) * 1024 / (mode_lib->ms.DCFCLK * mode_lib->soc.return_bus_width_bytes)));
->  #endif
->  
->  	mode_lib->ms.support.OutstandingRequestsSupport = true;
-> @@ -8131,7 +8131,7 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
->  		dml2_printf("DML: Tvm: %fus - time to fetch vm\n", s->TimeForFetchingVM);
->  		dml2_printf("DML: Tr0: %fus - time to fetch first row of data pagetables\n", s->TimeForFetchingRowInVBlank);
->  		dml2_printf("DML: Tsw: %fus = time to fetch enough pixel data and cursor data to feed the scalers init position and detile\n", (double)s->LinesToRequestPrefetchPixelData * s->LineTime);
-> -		dml2_printf("DML: To: %fus - time for propogation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
-> +		dml2_printf("DML: To: %fus - time for propagation from scaler to optc\n", (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime);
->  		dml2_printf("DML: Tvstartup - TSetup - Tcalc - TWait - Tpre - To > 0\n");
->  		dml2_printf("DML: Tslack(pre): %fus - time left over in schedule\n", p->VStartup * s->LineTime - s->TimeForFetchingVM - 2 * s->TimeForFetchingRowInVBlank - (*p->DSTYAfterScaler + ((double)(*p->DSTXAfterScaler) / (double)p->myPipe->HTotal)) * s->LineTime - p->TWait - p->TCalc - *p->TSetup);
->  		dml2_printf("DML: row_bytes = dpte_row_bytes (per_pipe) = PixelPTEBytesPerRow = : %u\n", p->PixelPTEBytesPerRow);
-> @@ -10959,7 +10959,7 @@ bool dml2_core_shared_mode_programming(struct dml2_core_calcs_mode_programming_e
->  				if (display_cfg->plane_descriptors[k].immediate_flip && mode_lib->mp.ImmediateFlipSupportedForPipe[k] == false) {
->  					mode_lib->mp.ImmediateFlipSupported = false;
->  #ifdef __DML_VBA_DEBUG__
-> -					dml2_printf("DML::%s: Pipe %0d not supporing iflip!\n", __func__, k);
-> +					dml2_printf("DML::%s: Pipe %0d not supporting iflip!\n", __func__, k);
->  #endif
->  				}
->  			}
-
+diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
+index 2e8e6c9875f6..f83ace2d7ec3 100644
+--- a/drivers/gpu/drm/amd/include/pptable.h
++++ b/drivers/gpu/drm/amd/include/pptable.h
+@@ -477,31 +477,30 @@ typedef struct _ATOM_PPLIB_STATE_V2
+ } ATOM_PPLIB_STATE_V2;
+ 
+ typedef struct _StateArray{
+-    //how many states we have 
+-    UCHAR ucNumEntries;
+-    
+-    ATOM_PPLIB_STATE_V2 states[1];
++	//how many states we have
++	UCHAR ucNumEntries;
++
++	ATOM_PPLIB_STATE_V2 states[] /* __counted_by(ucNumEntries) */;
+ }StateArray;
+ 
+ 
+ typedef struct _ClockInfoArray{
+-    //how many clock levels we have
+-    UCHAR ucNumEntries;
+-    
+-    //sizeof(ATOM_PPLIB_CLOCK_INFO)
+-    UCHAR ucEntrySize;
+-    
+-    UCHAR clockInfo[];
++	//how many clock levels we have
++	UCHAR ucNumEntries;
++
++	//sizeof(ATOM_PPLIB_CLOCK_INFO)
++	UCHAR ucEntrySize;
++
++	UCHAR clockInfo[];
+ }ClockInfoArray;
+ 
+ typedef struct _NonClockInfoArray{
++	//how many non-clock levels we have. normally should be same as number of states
++	UCHAR ucNumEntries;
++	//sizeof(ATOM_PPLIB_NONCLOCK_INFO)
++	UCHAR ucEntrySize;
+ 
+-    //how many non-clock levels we have. normally should be same as number of states
+-    UCHAR ucNumEntries;
+-    //sizeof(ATOM_PPLIB_NONCLOCK_INFO)
+-    UCHAR ucEntrySize;
+-    
+-    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[];
++	ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[] __counted_by(ucNumEntries);
+ }NonClockInfoArray;
+ 
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
+@@ -513,8 +512,10 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
+ 
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Table
+ {
+-    UCHAR ucNumEntries;                                                // Number of entries.
+-    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[1];             // Dynamically allocate entries.
++	// Number of entries.
++	UCHAR ucNumEntries;
++	// Dynamically allocate entries.
++	ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[] __counted_by(ucNumEntries);
+ }ATOM_PPLIB_Clock_Voltage_Dependency_Table;
+ 
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
+@@ -529,8 +530,10 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
+ 
+ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Table
+ {
+-    UCHAR ucNumEntries;                                                // Number of entries.
+-    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[1];                  // Dynamically allocate entries.
++	// Number of entries.
++	UCHAR ucNumEntries;
++	// Dynamically allocate entries.
++	ATOM_PPLIB_Clock_Voltage_Limit_Record entries[] __counted_by(ucNumEntries);
+ }ATOM_PPLIB_Clock_Voltage_Limit_Table;
+ 
+ union _ATOM_PPLIB_CAC_Leakage_Record
+@@ -553,8 +556,10 @@ typedef union _ATOM_PPLIB_CAC_Leakage_Record ATOM_PPLIB_CAC_Leakage_Record;
+ 
+ typedef struct _ATOM_PPLIB_CAC_Leakage_Table
+ {
+-    UCHAR ucNumEntries;                                                 // Number of entries.
+-    ATOM_PPLIB_CAC_Leakage_Record entries[1];                           // Dynamically allocate entries.
++	// Number of entries.
++	UCHAR ucNumEntries;
++	// Dynamically allocate entries.
++	ATOM_PPLIB_CAC_Leakage_Record entries[] __counted_by(ucNumEntries);
+ }ATOM_PPLIB_CAC_Leakage_Table;
+ 
+ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
+@@ -568,8 +573,10 @@ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
+ 
+ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Table
+ {
+-    UCHAR ucNumEntries;                                                 // Number of entries.
+-    ATOM_PPLIB_PhaseSheddingLimits_Record entries[1];                   // Dynamically allocate entries.
++	// Number of entries.
++	UCHAR ucNumEntries;
++	// Dynamically allocate entries.
++	ATOM_PPLIB_PhaseSheddingLimits_Record entries[] __counted_by(ucNumEntries);
+ }ATOM_PPLIB_PhaseSheddingLimits_Table;
+ 
+ typedef struct _VCEClockInfo{
+@@ -580,8 +587,8 @@ typedef struct _VCEClockInfo{
+ }VCEClockInfo;
+ 
+ typedef struct _VCEClockInfoArray{
+-    UCHAR ucNumEntries;
+-    VCEClockInfo entries[1];
++	UCHAR ucNumEntries;
++	VCEClockInfo entries[] __counted_by(ucNumEntries);
+ }VCEClockInfoArray;
+ 
+ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
+@@ -592,8 +599,8 @@ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
+ 
+ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table
+ {
+-    UCHAR numEntries;
+-    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[1];
++	UCHAR numEntries;
++	ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[] __counted_by(numEntries);
+ }ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_VCE_State_Record
+@@ -604,8 +611,8 @@ typedef struct _ATOM_PPLIB_VCE_State_Record
+ 
+ typedef struct _ATOM_PPLIB_VCE_State_Table
+ {
+-    UCHAR numEntries;
+-    ATOM_PPLIB_VCE_State_Record entries[1];
++	UCHAR numEntries;
++	ATOM_PPLIB_VCE_State_Record entries[] __counted_by(numEntries);
+ }ATOM_PPLIB_VCE_State_Table;
+ 
+ 
+@@ -626,8 +633,8 @@ typedef struct _UVDClockInfo{
+ }UVDClockInfo;
+ 
+ typedef struct _UVDClockInfoArray{
+-    UCHAR ucNumEntries;
+-    UVDClockInfo entries[1];
++	UCHAR ucNumEntries;
++	UVDClockInfo entries[] __counted_by(ucNumEntries);
+ }UVDClockInfoArray;
+ 
+ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
+@@ -638,8 +645,8 @@ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
+ 
+ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table
+ {
+-    UCHAR numEntries;
+-    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[1];
++	UCHAR numEntries;
++	ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[] __counted_by(numEntries);
+ }ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_UVD_Table
+@@ -657,8 +664,8 @@ typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Record
+ }ATOM_PPLIB_SAMClk_Voltage_Limit_Record;
+ 
+ typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Table{
+-    UCHAR numEntries;
+-    ATOM_PPLIB_SAMClk_Voltage_Limit_Record entries[];
++	UCHAR numEntries;
++	ATOM_PPLIB_SAMClk_Voltage_Limit_Record entries[] __counted_by(numEntries);
+ }ATOM_PPLIB_SAMClk_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_SAMU_Table
+@@ -675,8 +682,8 @@ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Record
+ }ATOM_PPLIB_ACPClk_Voltage_Limit_Record;
+ 
+ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Table{
+-    UCHAR numEntries;
+-    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[1];
++	UCHAR numEntries;
++	ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[] __counted_by(numEntries);
+ }ATOM_PPLIB_ACPClk_Voltage_Limit_Table;
+ 
+ typedef struct _ATOM_PPLIB_ACP_Table
+@@ -743,9 +750,9 @@ typedef struct ATOM_PPLIB_VQ_Budgeting_Record{
+ } ATOM_PPLIB_VQ_Budgeting_Record;
+ 
+ typedef struct ATOM_PPLIB_VQ_Budgeting_Table {
+-    UCHAR revid;
+-    UCHAR numEntries;
+-    ATOM_PPLIB_VQ_Budgeting_Record         entries[1];
++	UCHAR revid;
++	UCHAR numEntries;
++	ATOM_PPLIB_VQ_Budgeting_Record entries[] __counted_by(numEntries);
+ } ATOM_PPLIB_VQ_Budgeting_Table;
+ 
+ #pragma pack()
 -- 
-#Randy
-https://people.kernel.org/tglx/notes-about-netiquette
-https://subspace.kernel.org/etiquette.html
+2.25.1
+
