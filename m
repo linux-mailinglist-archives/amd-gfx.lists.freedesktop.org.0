@@ -2,49 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FE58D819A
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 13:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 588098D82E4
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 14:53:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD8F10E246;
-	Mon,  3 Jun 2024 11:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B11710E389;
+	Mon,  3 Jun 2024 12:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="jwUenI5A";
-	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="sn9mt4DD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLd0q2fk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bunu.damsy.net (bunu.damsy.net [51.159.160.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5311310E246
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Jun 2024 11:52:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202404r; d=damsy.net; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1717415541;
- bh=H1FYKEMBJZr0qxGrjqFHHD6
- SEmLDyHd9DEe5+MjnZTM=; b=jwUenI5AgBzmMyD8Xx5I2SK6+GYmfXuDynRIsghpbtCfcD6jtJ
- VMZ3mkxIvrkZRR1eY9DZ8fMJ7NK1NzLXw9E2ISjs9Wd1rmNI57HH5pFzBKFeXGHfQVlhQubvxBQ
- 2UYyXay6OPeSjg4ns7LDjhtmy1QJ74Fb+CCOql84DGDfH8p+qEsPX/MJ56/no1gY2tWgz8GhwCm
- iUZdASfkesKsmjHCOzT/v248QlIPF7fXS9aVkml7GrCL52zSEV4cxFgVSrfXhLSV/eOfgdAMxUD
- VHpQ7k596UQUg3ewBq9A1RbzxMB55SoIja72UipGa69NoAYW/WGeLe2TXRB+voVG8ig==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202404e; d=damsy.net;
- c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1717415541; bh=H1FYKEMBJZr0qxGrjqFHHD6
- SEmLDyHd9DEe5+MjnZTM=; b=sn9mt4DDcd7knYkIUhLpXhIL6toAQdLDQ2803oA2+bsB4PI8wA
- DhdqnYiDuD5Z4V2eTaeQtJYHfeJhozGOKQDQ==;
-Message-ID: <011928f3-ae86-4506-a9a5-1ced96032f34@damsy.net>
-Date: Mon, 3 Jun 2024 13:52:21 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 313A510E0D7;
+ Fri, 31 May 2024 15:32:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717169566; x=1748705566;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3etIn3wD4YKQlTjuROd7Oo6lOSJcR3qD7Jk9Yz8CHEA=;
+ b=hLd0q2fkTNe+YEA154yZgLu6KG7W/NLUI2ffyimCl4mE9O2fp3wTMe4O
+ qEYTTlVVYBG8pe0lAKTXWKTzQV8pC3ZqPDm5okeue0GOtUndZ0DG0Ui8J
+ mPuy1sKTfInsBozzSMy2EI0YkOEvQCT/c7uN/V4gmMHv+4x1+Ym2eO8Tz
+ 1nYWM8WvxcpAqkNQqY/YuULxoSAsedoJu2dziNnTRrlaXB4C9n/QmMLF6
+ Enc9EI6yDCJ29XhiuGvhPGBtA/qOQpYbPdasUQt2Qtsf7+5pmsWxLspKd
+ Spo2t8lgcrNXJN4LCz+lcaNhJztOv86RRb+hh9TFblJuoQPzXMSURHo1T g==;
+X-CSE-ConnectionGUID: JgwvOy0pRPiSWzZ90FrsXA==
+X-CSE-MsgGUID: xny4bOUGSYe5hnQAEJT76w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="24381267"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="24381267"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 08:32:45 -0700
+X-CSE-ConnectionGUID: rKba3UEcT8ulk9qB8K/H8g==
+X-CSE-MsgGUID: UksFEEPsQ/Or02YNbMKKCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="41272597"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 08:32:44 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1sD4FE-0000000CVTM-0kXL; Fri, 31 May 2024 18:32:40 +0300
+Date: Fri, 31 May 2024 18:32:39 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chia-I Wu <olvaffe@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ christian.koenig@amd.com, alexander.deucher@amd.com,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alison Schofield <alison.schofield@intel.com>,
+ Dave Jiang <dave.jiang@intel.com>, Baoquan He <bhe@redhat.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] kernel/resource: optimize find_next_iomem_res
+Message-ID: <Zlntl4m8ztZDNGwJ@smile.fi.intel.com>
+References: <20240531053704.2009827-1-olvaffe@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] amdgpu: add the amdgpu_vm ptr in the vm_bo_map/unmap
- events
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org
-References: <20240603084729.15135-1-pierre-eric.pelloux-prayer@amd.com>
- <beb3e657-3834-4c80-b854-cdb5ba4ca534@amd.com>
-Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <beb3e657-3834-4c80-b854-cdb5ba4ca534@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240531053704.2009827-1-olvaffe@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Mailman-Approved-At: Mon, 03 Jun 2024 12:52:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,144 +76,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christia,
+On Thu, May 30, 2024 at 10:36:57PM -0700, Chia-I Wu wrote:
+> We can skip children resources when the parent resource does not cover
+> the range.
 
-Le 03/06/2024 à 11:58, Christian König a écrit :
-> Am 03.06.24 um 10:46 schrieb Pierre-Eric Pelloux-Prayer:
->> These 2 traces events are tied to a specific VM so in order for them
->> to be useful for a tool we need to trace the amdgpu_vm as well.
-> 
-> The bo_va already contains the VM pointer the map/unmap operation 
-> belongs to.
-> 
+> This should help vmf_insert_* users on x86, such as several DRM drivers.
 
-Indeed, I've missed that. I'll fix that in v2.
+vmf_insert_*()
 
->>
->> Signed-off-by: Pierre-Eric Pelloux-Prayer 
->> <pierre-eric.pelloux-prayer@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 20 ++++++++++++--------
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  8 ++++----
->>   2 files changed, 16 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->> index f539b1d00234..c84050d318d6 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->> @@ -243,10 +243,11 @@ TRACE_EVENT(amdgpu_vm_grab_id,
->>   );
->>   TRACE_EVENT(amdgpu_vm_bo_map,
->> -        TP_PROTO(struct amdgpu_bo_va *bo_va,
->> +        TP_PROTO(struct amdgpu_vm *vm, struct amdgpu_bo_va *bo_va,
->>                struct amdgpu_bo_va_mapping *mapping),
->> -        TP_ARGS(bo_va, mapping),
->> +        TP_ARGS(vm, bo_va, mapping),
->>           TP_STRUCT__entry(
->> +                 __field(struct amdgpu_vm *, vm)
->>                    __field(struct amdgpu_bo *, bo)
->>                    __field(long, start)
->>                    __field(long, last)
->> @@ -255,22 +256,24 @@ TRACE_EVENT(amdgpu_vm_bo_map,
->>                    ),
->>           TP_fast_assign(
->> +               __entry->vm = vm;
->>                  __entry->bo = bo_va ? bo_va->base.bo : NULL;
->>                  __entry->start = mapping->start;
->>                  __entry->last = mapping->last;
->>                  __entry->offset = mapping->offset;
->>                  __entry->flags = mapping->flags;
->>                  ),
->> -        TP_printk("bo=%p, start=%lx, last=%lx, offset=%010llx, 
->> flags=%llx",
->> -              __entry->bo, __entry->start, __entry->last,
->> +        TP_printk("vm=%p bo=%p, start=%lx, last=%lx, offset=%010llx, 
->> flags=%llx",
->> +              __entry->vm, __entry->bo, __entry->start, __entry->last,
->>                 __entry->offset, __entry->flags)
->>   );
->>   TRACE_EVENT(amdgpu_vm_bo_unmap,
->> -        TP_PROTO(struct amdgpu_bo_va *bo_va,
->> +        TP_PROTO(struct amdgpu_vm *vm, struct amdgpu_bo_va *bo_va,
->>                struct amdgpu_bo_va_mapping *mapping),
->> -        TP_ARGS(bo_va, mapping),
->> +        TP_ARGS(vm, bo_va, mapping),
->>           TP_STRUCT__entry(
->> +                 __field(struct amdgpu_vm *, vm)
->>                    __field(struct amdgpu_bo *, bo)
->>                    __field(long, start)
->>                    __field(long, last)
->> @@ -279,14 +282,15 @@ TRACE_EVENT(amdgpu_vm_bo_unmap,
->>                    ),
->>           TP_fast_assign(
->> +               __entry->vm = vm;
->>                  __entry->bo = bo_va ? bo_va->base.bo : NULL;
->>                  __entry->start = mapping->start;
->>                  __entry->last = mapping->last;
->>                  __entry->offset = mapping->offset;
->>                  __entry->flags = mapping->flags;
->>                  ),
->> -        TP_printk("bo=%p, start=%lx, last=%lx, offset=%010llx, 
->> flags=%llx",
->> -              __entry->bo, __entry->start, __entry->last,
->> +        TP_printk("vm=%p bo=%p, start=%lx, last=%lx, offset=%010llx, 
->> flags=%llx",
->> +              __entry->vm, __entry->bo, __entry->start, __entry->last,
->>                 __entry->offset, __entry->flags)
->>   );
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> index 3abfa66d72a2..e04928d2e26a 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->> @@ -1642,7 +1642,7 @@ static void amdgpu_vm_bo_insert_map(struct 
->> amdgpu_device *adev,
->>       if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
->>           amdgpu_vm_bo_moved(&bo_va->base);
->> -    trace_amdgpu_vm_bo_map(bo_va, mapping);
->> +    trace_amdgpu_vm_bo_map(vm, bo_va, mapping);
->>   }
->>   /* Validate operation parameters to prevent potential abuse */
->> @@ -1834,7 +1834,7 @@ int amdgpu_vm_bo_unmap(struct amdgpu_device *adev,
->>       list_del(&mapping->list);
->>       amdgpu_vm_it_remove(mapping, &vm->va);
->>       mapping->bo_va = NULL;
->> -    trace_amdgpu_vm_bo_unmap(bo_va, mapping);
->> +    trace_amdgpu_vm_bo_unmap(vm, bo_va, mapping);
->>       if (valid)
->>           list_add(&mapping->list, &vm->freed);
->> @@ -1929,7 +1929,7 @@ int amdgpu_vm_bo_clear_mappings(struct 
->> amdgpu_device *adev,
->>           tmp->bo_va = NULL;
->>           list_add(&tmp->list, &vm->freed);
->> -        trace_amdgpu_vm_bo_unmap(NULL, tmp);
->> +        trace_amdgpu_vm_bo_unmap(vm, NULL, tmp);
-> 
-> That bo_va is NULL here is probably a bug and should be fixed.
+> On my AMD Ryzen 5 7520C, when streaming data from cpu memory into amdgpu
+> bo, the throughput goes from 5.1GB/s to 6.6GB/s.  perf report says
 
-Would something like this work?
+Also in the $Subj (and pay attention to the prefix)
 
-     trace_amdgpu_vm_bo_unmap(tmp->bo_va, tmp);
-     tmp->bo_va = NULL;
-     list_add(&tmp->list, &vm->freed);
-
-Thanks,
-Pierre-Eric
+"resource: ... find_next_iomem_res()"
 
 
-> 
-> Regards,
-> Christian.
-> 
->>       }
->>       /* Insert partial mapping before the range */
->> @@ -2056,7 +2056,7 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
->>           list_del(&mapping->list);
->>           amdgpu_vm_it_remove(mapping, &vm->va);
->>           mapping->bo_va = NULL;
->> -        trace_amdgpu_vm_bo_unmap(bo_va, mapping);
->> +        trace_amdgpu_vm_bo_unmap(vm, bo_va, mapping);
->>           list_add(&mapping->list, &vm->freed);
->>       }
->>       list_for_each_entry_safe(mapping, next, &bo_va->invalids, list) {
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
