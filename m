@@ -2,63 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839D68D6317
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 15:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDD78D61D2
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 May 2024 14:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FDB10E355;
-	Fri, 31 May 2024 13:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F0310E0BC;
+	Fri, 31 May 2024 12:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JUb8fw6w";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="inbZHm0A";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA9B10E5FB;
- Fri, 31 May 2024 12:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717156859; x=1748692859;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lDcs9Jm2G2+qFaU8M6G4gKlFJEEMAh2YAbmNmj2oa6E=;
- b=JUb8fw6wlNcvEbyRPcaxngmwjbvnQH5JKAgtRclbidbdMtO4p2pqsPQs
- tZGWC6PBfs5/AxiJnZfUfLUTBSgbQ+w7l7aAV4lvbjLg7wFLsDkzCjiKR
- x85Ts0nCX1wJiyehYoU07aqW9PxC2IyqSGifI7vTEMxF+QV4WPME6TsJO
- PcL8kPsJHP5CXoeC6XRzD0zwFWh6uGmA9oiSHAYWQHgiZY6SbwORMtUgo
- gqJTfm1HGvi1TjeIBy4YnJpyysEME48RpbAEJ6HvMwnXPN6ur7z3zuZ17
- eahumR1tXL0QdyBvOuXzsi6Pl/dyzOoKF14RM6IROOw4I7SOasATnR0bc g==;
-X-CSE-ConnectionGUID: 5Ax9KE1bT06o9ckLpRJp4g==
-X-CSE-MsgGUID: b2XJJ1eSRGqrKn2wnvqLRg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="31223876"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="31223876"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:00:59 -0700
-X-CSE-ConnectionGUID: 7TFy1CyUT6KcBQYl5mWsmw==
-X-CSE-MsgGUID: ZU7afWMFS+idfHnOP81gfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36076213"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.190])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:00:55 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/amd/display: switch to guid_gen() to generate valid
- GUIDs
-Date: Fri, 31 May 2024 15:00:33 +0300
-Message-Id: <4ef8a2a1985599389b89ee5828df029e5e9725d8.1717156602.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1717156601.git.jani.nikula@intel.com>
-References: <cover.1717156601.git.jani.nikula@intel.com>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2086.outbound.protection.outlook.com [40.107.94.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE5810E0BC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 12:34:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Sc0Z0c8r5xmMuNa3/w9IEcPAdyjyWdaHqOgGk6c+DXWAsp1n203UL4q8MIo6C1p0qPzozlE7S1liFPGoEk069TJP4oCq34UxtrUg/5ISLpO28UUhqmQKJ8UatUSEkoOCcUcngrEWIl59P543Uc8voKI+njU5J5ni33mQbfiNZtHeNveJydZklzYGs8YgDcduCrNHe7s6J3MWaJWbTTmSd/QEl12UgIb3YLBAPvX/2emujWME65a+7uZiCRolQjXFFQbnRSTJmKNEWM8xIzKEtIA3ee7GHNlqd5ar/YuJehRep3I3k7fb0Q5M6uiy5DP3zkLGuFREl4japCbeN1z0mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u+HYTlt0igLet9NhCbSGFU/K1b8j8G7ieJ16Da2d0NQ=;
+ b=ZCz/IfT3eynsv1JNu3XDHzLBBx9Ys5xVwjAwWWE6qiAUKpwhfTxLx9QsVGySGLp91SsyQzi52thI2uWRmk9E5+02PbSUViRDo5OfaHVPZX/im6g+veAEhRiNsSWyQ5q0W/hosLYQL098dwnZ0P1fne0MxEvEQIvch5lJebr3hBccrFOTNXjUkQ+tFfcUSSqKXhC4SDG9o5Yu3UbjKG35zHFV4LanRUhExfGNBkpf8NbxBE28kgdXNR5ujWyjipxe0rzH3qbxvgBTBkmEJmgw1h5xQxzQUDYePU9WFXn6WXLwtKO/L+ot1x3uEMNyx+OZUe40DcUnVNzOEqysxHBk2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u+HYTlt0igLet9NhCbSGFU/K1b8j8G7ieJ16Da2d0NQ=;
+ b=inbZHm0Ag0Iv3tR/+9ptBObdcxDTV+4O9JwVclOo/8hEbEFm4q3sdFyfhmLPOYUn0YUWBBS8XHyQmk+McJYDePsPEadw5oueBupS27z/FKytqqNq4zepfL3Dvo1u1P5MFy2a3OOimsGeSwWyuivCvTxRZFUoCQjIEWI2Bc9M8hA=
+Received: from CH2PR18CA0034.namprd18.prod.outlook.com (2603:10b6:610:55::14)
+ by DS0PR12MB8415.namprd12.prod.outlook.com (2603:10b6:8:fc::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.17; Fri, 31 May
+ 2024 12:34:26 +0000
+Received: from CH1PEPF0000AD78.namprd04.prod.outlook.com
+ (2603:10b6:610:55:cafe::52) by CH2PR18CA0034.outlook.office365.com
+ (2603:10b6:610:55::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.24 via Frontend
+ Transport; Fri, 31 May 2024 12:34:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000AD78.mail.protection.outlook.com (10.167.244.56) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7633.15 via Frontend Transport; Fri, 31 May 2024 12:34:26 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 31 May
+ 2024 07:34:23 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Christian.Koenig@amd.com>, <sukhatri@amd.com>
+Subject: [PATCH] drm/amdgpu: Skip coredump during resets for debug
+Date: Fri, 31 May 2024 18:04:03 +0530
+Message-ID: <20240531123403.978597-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 31 May 2024 13:36:13 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD78:EE_|DS0PR12MB8415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 699ff376-5da7-4f67-df92-08dc816e022b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230031|1800799015|82310400017|376005|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SU50diCx0tsIfl3guFVJ5h27Ln/pabrnRRXIJsE3V1NM8e7Puw4zMk7m5Wtz?=
+ =?us-ascii?Q?2SgOMLfakB5/osiTMJOJuyw1aDNzx1S7DJVXMicTanvRkmxH5ZKX3bULcrNN?=
+ =?us-ascii?Q?SXbszku/3UX6H1bAvtx48GbpPzu4duZS9bPHoOUaLalBYwczX1+CUy+rSH6h?=
+ =?us-ascii?Q?/y2o6ann2fD6slJhRU+2zqYvqqmn2MPR/ZcXD93oJb5LRCdJ8BiPRbMbCUhr?=
+ =?us-ascii?Q?iN4cShN0pY8+OfegEEshdmHzsEDpMJAsxWGKlfFA/hfdUPKYh3jcRfoQsntP?=
+ =?us-ascii?Q?sj1rp8XMTMgP6u2q/T/ICBmIJxZ0TpBhwVWlZM3lFitcQ0COr1fucDydQvYS?=
+ =?us-ascii?Q?s8++6zHoy/8nggG8X5XejDKzmyhH4+huB/giQO6HF1JQGXr0cmhtKxRsTbNg?=
+ =?us-ascii?Q?fTPn8c9y6V9RoWDsud/8J8kVkCsfpi6qz/RXJqNNi44UgGZzfgH6Kx5G5m+M?=
+ =?us-ascii?Q?n2Y0Y/MOOOQsIqROM37qTleN+s5bp6QGZbTKZGDEH8Ibo0cMDRhvhp5AV00X?=
+ =?us-ascii?Q?KPVWLl8YPxLmZ4illULNvVn/ZVz3jo0yxXiODAXYhe590MuNtB/3fr/IHxxu?=
+ =?us-ascii?Q?gUcfRDESp+j/QvCL5KfyPyI/gg42P3Sn+C+b585+Xc5+WWHoz4OMdv0VyAWN?=
+ =?us-ascii?Q?sYrigXn5wKSC4lrMHE+R7cfslgLrelPUisdlNaTz4HVfmwzmiHpMUQUoY/yy?=
+ =?us-ascii?Q?UiqtcJU0TXNEHu8r3x/UVfyCc40tl9Ry8Y21xH+tR+R2Yazd8f7l+9ymZJxd?=
+ =?us-ascii?Q?tFJlcgV/mvjfGcwqZIiSBg5XmZaZ+wnXKX8Ju1Tb/O1mxLDuCaLZbzfrgNQF?=
+ =?us-ascii?Q?I4mQ6JDpRsBIscwhW5lpodHswuL++Cjt3hyq28He80YDXjfPA+25tKEJqgot?=
+ =?us-ascii?Q?DU64ugaxzoO5nxyglOooOfOvIbX1ZdWzdYofNk4NYJlujJqxVjOKJhA/Cogv?=
+ =?us-ascii?Q?da5E8UWqiJsEc87hZsilOadmXCVhQvkwollnCNKP3NhhxtvCnFm6+1THkCJV?=
+ =?us-ascii?Q?jVBr1xIbY3xAuQv+XnriekMWgpDyxRJSLp2Mw8+dld3bI+MrahkKqA/BLlgU?=
+ =?us-ascii?Q?m18YxIabafxy7/EiYrBNKrCTlp//5ltiidB3GzhUPF05MSqmqMJdD/9ysbmY?=
+ =?us-ascii?Q?tTQENMZt10VDQW5eaO3psamVajgJhYNPeXUH3wYqkDDqd9IEkOBlBZ4h5YeU?=
+ =?us-ascii?Q?sRsK9pe3Oc+PAeZytmOUHBZTwgDBlE7uZuq9FBLO3lZjFxJiwpSYAOTjPr3d?=
+ =?us-ascii?Q?5XUtoHVEyAsuEeJEDnvVFQwHGoKYQf+UBbwj3GZaQLvNkqOJgsVWV90B4j4M?=
+ =?us-ascii?Q?YnczleIrqBmLRuEDVVkHk7ojhZIQKB1r9ZRdBpZT5i4xqTRubh62cXcGnn7I?=
+ =?us-ascii?Q?yGY9u3y6APzOxk0455fTDhe6wXyj?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(1800799015)(82310400017)(376005)(36860700004); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 12:34:26.1958 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 699ff376-5da7-4f67-df92-08dc816e022b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD78.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,72 +129,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of just smashing jiffies into a GUID, use guid_gen() to generate
-RFC 4122 compliant GUIDs.
+Skip scheduling coredump when gpu reset is intentionally triggered
+through debugfs.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Side note, it baffles me why amdgpu has a copy of this instead of
-plumbing it into drm mst code.
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
- 1 file changed, 12 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 65ebc01dc90f..a1bd847857b8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2403,9 +2403,9 @@ static int dm_late_init(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 10832b470448..1a9fda1d20fb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -981,6 +981,7 @@ static void amdgpu_debugfs_reset_work(struct work_struct *work)
+ 	reset_context.method = AMD_RESET_METHOD_NONE;
+ 	reset_context.reset_req_dev = adev;
+ 	set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
++	set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);
  
- static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
- {
-+	u8 buf[UUID_SIZE];
-+	guid_t guid;
- 	int ret;
--	u8 guid[16];
--	u64 tmp64;
- 
- 	mutex_lock(&mgr->lock);
- 	if (!mgr->mst_primary)
-@@ -2426,26 +2426,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
- 	}
- 
- 	/* Some hubs forget their guids after they resume */
--	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
--	if (ret != 16) {
-+	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
-+	if (ret != sizeof(buf)) {
- 		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
- 		goto out_fail;
- 	}
- 
--	if (memchr_inv(guid, 0, 16) == NULL) {
--		tmp64 = get_jiffies_64();
--		memcpy(&guid[0], &tmp64, sizeof(u64));
--		memcpy(&guid[8], &tmp64, sizeof(u64));
-+	import_guid(&guid, buf);
- 
--		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
-+	if (guid_is_null(&guid)) {
-+		guid_gen(&guid);
-+		export_guid(buf, &guid);
- 
--		if (ret != 16) {
-+		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
-+
-+		if (ret != sizeof(buf)) {
- 			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
- 			goto out_fail;
- 		}
- 	}
- 
--	import_guid(&mgr->mst_primary->guid, guid);
-+	guid_copy(&mgr->mst_primary->guid, &guid);
- 
- out_fail:
- 	mutex_unlock(&mgr->lock);
+ 	amdgpu_device_gpu_recover(adev, NULL, &reset_context);
+ }
 -- 
-2.39.2
+2.25.1
 
