@@ -2,52 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D99C8D82E7
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 14:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D28548D82E2
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jun 2024 14:53:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1C710E38D;
-	Mon,  3 Jun 2024 12:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE5D910E382;
+	Mon,  3 Jun 2024 12:53:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PTfNWfYy";
+	dkim=pass (4096-bit key; secure) header.d=glanzmann.de header.i=@glanzmann.de header.b="bE1ym42U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7006A10E16D
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 May 2024 17:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zTh2KnqZhSXOKeLYDBSjxyZ41LpariZ0KtPLE6alTPg=; b=PTfNWfYynMnZUYohfhJowfW352
- Av0nqYOEj2zW3h2SyI7KvNr14IzpG6NI6vYFmdDndEbLMnEFISymU16yZYxjPFnS32EATVKr6suGJ
- 2ogCz5p36dbdCjy/rhVct5pbzTvqHjcGmM25zm3GGo4MFWytf2voV2fEkbI8zPC9Af6MCGtFqz3LY
- FPOO1aHWaFYXNIjlivIyDDoUvsTzK8cLT3gP7xLZwA1eMHlM11aL3WYaHCQz+fiDhcZESeKqhik6F
- Tflq9SYnv+N0GdEB8fVSWAQ0pE+x4Esdijsu2+hhwJzVtK9bMwGSuzX3kHQN99Bx5oGrYWh4QHFiZ
- jJzEmXkw==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1sD5mM-00F2bz-60; Fri, 31 May 2024 19:10:58 +0200
-Message-ID: <b43bd153-890c-4575-874e-c183287ff446@igalia.com>
-Date: Fri, 31 May 2024 18:10:57 +0100
+X-Greylist: delayed 505 seconds by postgrey-1.36 at gabe;
+ Sun, 02 Jun 2024 06:39:21 UTC
+Received: from infra.glanzmann.de (infra.glanzmann.de [88.198.237.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC11E10E034
+ for <amd-gfx@lists.freedesktop.org>; Sun,  2 Jun 2024 06:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=glanzmann.de;
+ s=infra26101010; t=1717309852;
+ bh=uBLGC5duCr1hk7fGatA5LsiE6Hp7izxnvxjLxg9lAwk=;
+ h=Date:From:To:Subject:From;
+ b=bE1ym42UaEFVXqaVtImyYXY1WKLtXqkvnyJqu2qSVJfoWRk29LsKmoqOtMUy+RCH3
+ cCjiXROrtmKwA/Da6uK94fGRzEqNJzYJXo8gThUJ6gpAjnHFACq8YiJPUiXdHTSu4p
+ mZxWuBgLMqz3h65V8pTKD2fUKe6ehqNx7ybNW80CASJPGEoptOMbLiPGDSPmaAOce0
+ eMH95yZh5ub8SxLToJhuSLNq0I5y0NI4zXZQ4Lq4qzskQ3dEeE+8FMV0cQtuNqRWIp
+ RsCXT7qpMr8lJnrOBqOWGgFkSpGdOHMqXCGmSh3jJkfO+SPvQxE/WfWTmPSfWYXA4I
+ 4I8oRCKcP2qm/cmEaxZdXBYGFlC9En527oIkyHGFDaliGdyufWqGYq7cbwPczp3gn0
+ EFPKBOMsVFbFh98Y2+goQ2N9kMApBbRbUJchYfXLDcpHqGO1R9SROmhkMBb5c/LAVs
+ YbfKJmkdwW6iXu4VuHDzs82HwVUs5vfd0aMAZbJ73uge473trUmOZEqJQzC9UXVZaZ
+ 6Ja7icB0+JT+2Rp8QKAnAPhiG+kwUoQXR0lP371IiK/BGxg/QBPokhyKJ7+rXs/C2y
+ fliZxfoaf5qUEPCH9Y5jnPXAnVg7+71VNMCycKPsE6wXmb+JtL84VDpuaQ9RL9/K32
+ cmOM21zhuvM7ge1EpWryhSuQ=
+Received: by infra.glanzmann.de (Postfix, from userid 1000)
+ id 002F37A80095; Sun,  2 Jun 2024 08:30:52 +0200 (CEST)
+Date: Sun, 2 Jun 2024 08:30:52 +0200
+From: Thomas Glanzmann <thomas@glanzmann.de>
+To: amd-gfx@lists.freedesktop.org
+Subject: WARNING: CPU: 29 PID: 673 at
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1382
+ amdgpu_bo_release_notify+0x1f5/0x210 [amdgpu]
+Message-ID: <ZlwRnGJL0B1HGMnQ@glanzmann.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: Convert some legacy DRM debug macros
- into appropriate categories
-Content-Language: en-GB
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com
-References: <20240528125711.86488-1-tursulin@igalia.com>
- <05859b28-e4ef-43f9-a540-7635dcd329f0@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <05859b28-e4ef-43f9-a540-7635dcd329f0@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 03 Jun 2024 12:52:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,337 +60,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hello,
+with 6.10.0-rc1, I noticed the following in dmesg:
 
-On 30/05/2024 20:57, Hamza Mahfooz wrote:
-> On 5/28/24 08:57, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Currently when one enables driver debugging dmesg gets spammed, at I
->> suspect vblank rate, with messages like:
->>
->>   [drm:amdgpu_dm_atomic_check [amdgpu]] MPO enablement requested on 
->> crtc:[00000000f073c3bb]
->>
->> Fix if by converting some logging from deprecated and incorrect
->> DRM_DEBUG_DRIVER to drm_dbg_atomic. Plus some localized drive-by changes
->> to drm_dbg_kms.
->>
->> By no means an exhaustive conversion but at least it allows turning on
->> driver debug selectively.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> 
-> Applied, thanks!
+[   10.967791] amdgpu 0000:0b:00.0: amdgpu: RAS: optional ras ta ucode is n=
+ot available
+[   10.973672] amdgpu 0000:0b:00.0: amdgpu: RAP: optional rap ta ucode is n=
+ot available
+[   10.973674] amdgpu 0000:0b:00.0: amdgpu: SECUREDISPLAY: securedisplay ta=
+ ucode is not available
+[   10.974841] amdgpu 0000:0b:00.0: amdgpu: SMU is initialized successfully!
+[   10.974843] [drm] Seamless boot condition check passed
+[   10.975510] [drm:amdgpu_fill_buffer [amdgpu]] *ERROR* Trying to clear me=
+mory with ring turned off.
+[   10.975602] ------------[ cut here ]------------
+[   10.975603] WARNING: CPU: 29 PID: 673 at drivers/gpu/drm/amd/amdgpu/amdg=
+pu_object.c:1382 amdgpu_bo_release_notify+0x1f5/0x210 [amdgpu]
+[   10.975678] Modules linked in: fmpm(-) amd_atl intel_rapl_msr intel_rapl=
+_common edac_mce_amd kvm_amd amdgpu(+) kvm ghash_clmulni_intel sha512_ssse3=
+ snd_hda_codec_realtek sha256_ssse3 snd_hda_codec_generic sha1_ssse3 snd_hd=
+a_scodec_component snd_hda_codec_hdmi snd_hda_intel snd_intel_dspcfg snd_in=
+tel_sdw_acpi drm_exec snd_hda_codec amdxcp eeepc_wmi drm_buddy asus_wmi gpu=
+_sched aesni_intel battery snd_hda_core drm_suballoc_helper sparse_keymap c=
+rypto_simd snd_hwdep drm_display_helper joydev platform_profile cryptd drm_=
+ttm_helper snd_pcm rfkill rapl ttm snd_timer sp5100_tco wmi_bmof drm_kms_he=
+lper ccp snd k10temp watchdog pcspkr soundcore i2c_algo_bit rng_core button=
+ evdev nfsd auth_rpcgss nfs_acl parport_pc lockd ppdev grace lp parport drm=
+ loop fuse dm_mod efi_pstore configfs sunrpc ip_tables x_tables autofs4 ext=
+4 crc16 mbcache jbd2 btrfs blake2b_generic efivarfs raid10 raid456 async_ra=
+id6_recov async_memcpy async_pq async_xor async_tx raid1 raid0 md_mod hid_l=
+enovo hid_generic usbhid hid nvme ahci nvme_core xhci_pci
+[   10.975702]  libahci mpt3sas t10_pi xhci_hcd libata r8169 raid_class scs=
+i_transport_sas realtek crc64_rocksoft crc32_pclmul mdio_devres crc_t10dif =
+usbcore scsi_mod crc32c_intel crct10dif_generic video libphy i2c_piix4 crct=
+10dif_pclmul usb_common scsi_common crct10dif_common wmi gpio_amdpt gpio_ge=
+neric
+[   10.975717] CPU: 29 PID: 673 Comm: (udev-worker) Not tainted 6.10.0-rc1 =
+#6
+[   10.975719] Hardware name: ASUS System Product Name/TUF GAMING B650M-PLU=
+S, BIOS 2412 01/26/2024
+[   10.975720] RIP: 0010:amdgpu_bo_release_notify+0x1f5/0x210 [amdgpu]
+[   10.975785] Code: 0b e9 b3 fe ff ff 48 ba ff ff ff ff ff ff ff 7f 31 f6 =
+4c 89 e7 e8 bb 50 92 c4 eb 98 e8 44 4a 92 c4 eb b2 0f 0b e9 60 fe ff ff <0f=
+> 0b eb a7 be 03 00 00 00 e8 dd 4f 6a c4 eb 9b e8 46 40 c1 c4 66
+[   10.975787] RSP: 0018:ffffa5f2c26d3560 EFLAGS: 00010282
+[   10.975788] RAX: 00000000ffffffea RBX: ffff8be251cb6c48 RCX: 00000000000=
+00000
+[   10.975790] RDX: 0000000000000000 RSI: ffffffff86828d16 RDI: 00000000fff=
+fffff
+[   10.975791] RBP: ffff8be24ff8ef58 R08: 0000000000000000 R09: 00000000000=
+00003
+[   10.975791] R10: ffffa5f2c26d32e0 R11: ffff8bf19de35fe8 R12: ffff8be251c=
+b6c00
+[   10.975793] R13: ffff8be251cb6d48 R14: ffff8be24ff8ef58 R15: 00000000000=
+00258
+[   10.975793] FS:  00007f0b752898c0(0000) GS:ffff8bf15e480000(0000) knlGS:=
+0000000000000000
+[   10.975795] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   10.975796] CR2: 00007f0b74cf7a2d CR3: 0000000108b0f000 CR4: 00000000007=
+50ef0
+[   10.975797] PKRU: 55555554
+[   10.975797] Call Trace:
+[   10.975799]  <TASK>
+[   10.975800]  ? __warn+0x7c/0x120
+[   10.975804]  ? amdgpu_bo_release_notify+0x1f5/0x210 [amdgpu]
+[   10.975867]  ? report_bug+0x189/0x1c0
+[   10.975869]  ? handle_bug+0x41/0x70
+[   10.975872]  ? exc_invalid_op+0x13/0x60
+[   10.975873]  ? asm_exc_invalid_op+0x16/0x20
+[   10.975876]  ? amdgpu_bo_release_notify+0x1f5/0x210 [amdgpu]
+[   10.975938]  ttm_bo_release+0xfb/0x2e0 [ttm]
+[   10.975941]  ? amdgpu_ttm_debugfs_init+0xf0/0xf0 [amdgpu]
+[   10.976005]  ? ttm_resource_move_to_lru_tail+0x138/0x1d0 [ttm]
+[   10.976008]  amdgpu_bo_free_kernel+0xc7/0x120 [amdgpu]
+[   10.976071]  dm_helpers_free_gpu_mem+0x3d/0x80 [amdgpu]
+[   10.976171]  dcn315_clk_mgr_construct+0x190/0x7e0 [amdgpu]
+[   10.976265]  dc_clk_mgr_create+0x31c/0x500 [amdgpu]
+[   10.976351]  dc_create+0x286/0x630 [amdgpu]
+[   10.976454]  amdgpu_dm_init.isra.0+0x2e9/0x1f10 [amdgpu]
+[   10.976537]  ? console_unlock+0x74/0x110
+[   10.976540]  ? irq_work_queue+0xa/0x50
+[   10.976543]  ? vprintk_emit+0x17f/0x2b0
+[   10.976544]  ? dev_printk_emit+0xa1/0xd0
+[   10.976548]  dm_hw_init+0xe/0x20 [amdgpu]
+[   10.976614]  amdgpu_device_init+0x1ede/0x26c0 [amdgpu]
+[   10.976686]  ? _raw_spin_unlock_irqrestore+0x23/0x40
+[   10.976688]  amdgpu_driver_load_kms+0x15/0xa0 [amdgpu]
+[   10.976754]  amdgpu_pci_probe+0x183/0x4f0 [amdgpu]
+[   10.976820]  local_pci_probe+0x3c/0x80
+[   10.976823]  pci_device_probe+0xc3/0x240
+[   10.976824]  really_probe+0xcd/0x370
+[   10.976826]  ? __device_attach_driver+0xf0/0xf0
+[   10.976827]  __driver_probe_device+0x78/0x150
+[   10.976828]  driver_probe_device+0x1f/0x90
+[   10.976829]  __driver_attach+0xbf/0x1b0
+[   10.976830]  bus_for_each_dev+0x81/0xd0
+[   10.976832]  bus_add_driver+0x10a/0x230
+[   10.976833]  driver_register+0x55/0xf0
+[   10.976835]  ? 0xffffffffc0af3000
+[   10.976836]  do_one_initcall+0x54/0x310
+[   10.976839]  do_init_module+0x60/0x230
+[   10.976841]  init_module_from_file+0x86/0xc0
+[   10.976843]  idempotent_init_module+0x120/0x2a0
+[   10.976845]  __x64_sys_finit_module+0x5a/0xb0
+[   10.976847]  do_syscall_64+0x80/0x190
+[   10.976849]  ? __do_sys_newfstatat+0x4e/0x80
+[   10.976852]  ? fpregs_assert_state_consistent+0x1d/0x40
+[   10.976855]  ? syscall_exit_to_user_mode+0x76/0x1f0
+[   10.976856]  ? do_syscall_64+0x8c/0x190
+[   10.976857]  ? fpregs_restore_userregs+0x51/0xc0
+[   10.976859]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+[   10.976860] RIP: 0033:0x7f0b7547a719
+[   10.976862] Code: 08 89 e8 5b 5d c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 =
+89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48=
+> 3d 01 f0 ff ff 73 01 c3 48 8b 0d b7 06 0d 00 f7 d8 64 89 01 48
+[   10.976864] RSP: 002b:00007ffd88b042c8 EFLAGS: 00000246 ORIG_RAX: 000000=
+0000000139
+[   10.976865] RAX: ffffffffffffffda RBX: 0000558b764654a0 RCX: 00007f0b754=
+7a719
+[   10.976866] RDX: 0000000000000000 RSI: 00007f0b7560defd RDI: 00000000000=
+00019
+[   10.976867] RBP: 00007f0b7560defd R08: 0000000000000000 R09: 0000558b763=
+5b730
+[   10.976868] R10: 0000000000000019 R11: 0000000000000246 R12: 00000000000=
+20000
+[   10.976869] R13: 0000000000000000 R14: 0000558b76467a60 R15: 0000558b62c=
+1cec1
+[   10.976870]  </TASK>
+[   10.976871] ---[ end trace 0000000000000000 ]---
 
-Oh so fast for this one, thank you!
+Full dmesg here: https://tg.st/u/9896842a47c420e9f233231b31990b6a0fecc70b8e=
+60ec8295e79162982ab443.txt
 
-Regards,
-
-Tvrtko
-
-> 
->> ---
->>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 73 ++++++++++---------
->>   1 file changed, 39 insertions(+), 34 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c 
->> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 975feb1c69b8..bf9db488eee6 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -2363,13 +2363,13 @@ static int 
->> detect_mst_link_for_all_connectors(struct drm_device *dev)
->>           aconnector = to_amdgpu_dm_connector(connector);
->>           if (aconnector->dc_link->type == dc_connection_mst_branch &&
->>               aconnector->mst_mgr.aux) {
->> -            DRM_DEBUG_DRIVER("DM_MST: starting TM on aconnector: %p 
->> [id: %d]\n",
->> +            drm_dbg_kms(dev, "DM_MST: starting TM on aconnector: %p 
->> [id: %d]\n",
->>                        aconnector,
->>                        aconnector->base.base.id);
->>               ret = 
->> drm_dp_mst_topology_mgr_set_mst(&aconnector->mst_mgr, true);
->>               if (ret < 0) {
->> -                DRM_ERROR("DM_MST: Failed to start MST\n");
->> +                drm_err(dev, "DM_MST: Failed to start MST\n");
->>                   aconnector->dc_link->type =
->>                       dc_connection_single;
->>                   ret = 
->> dm_helpers_dp_mst_stop_top_mgr(aconnector->dc_link->ctx,
->> @@ -3298,15 +3298,15 @@ void amdgpu_dm_update_connector_after_detect(
->>            * We got a DP short pulse (Link Loss, DP CTS, etc...).
->>            * Do nothing!!
->>            */
->> -        DRM_DEBUG_DRIVER("DCHPD: connector_id=%d: dc_sink didn't 
->> change.\n",
->> -                aconnector->connector_id);
->> +        drm_dbg_kms(dev, "DCHPD: connector_id=%d: dc_sink didn't 
->> change.\n",
->> +                 aconnector->connector_id);
->>           if (sink)
->>               dc_sink_release(sink);
->>           return;
->>       }
->> -    DRM_DEBUG_DRIVER("DCHPD: connector_id=%d: Old sink=%p New 
->> sink=%p\n",
->> -        aconnector->connector_id, aconnector->dc_sink, sink);
->> +    drm_dbg_kms(dev, "DCHPD: connector_id=%d: Old sink=%p New 
->> sink=%p\n",
->> +            aconnector->connector_id, aconnector->dc_sink, sink);
->>       mutex_lock(&dev->mode_config.mutex);
->> @@ -9191,7 +9191,9 @@ static void amdgpu_dm_commit_streams(struct 
->> drm_atomic_state *state,
->>           if (amdgpu_dm_crtc_modeset_required(new_crtc_state, 
->> dm_new_crtc_state->stream, dm_old_crtc_state->stream)) {
->> -            DRM_DEBUG_ATOMIC("Atomic commit: SET crtc id %d: [%p]\n", 
->> acrtc->crtc_id, acrtc);
->> +            drm_dbg_atomic(dev,
->> +                       "Atomic commit: SET crtc id %d: [%p]\n",
->> +                       acrtc->crtc_id, acrtc);
->>               if (!dm_new_crtc_state->stream) {
->>                   /*
->> @@ -9209,8 +9211,9 @@ static void amdgpu_dm_commit_streams(struct 
->> drm_atomic_state *state,
->>                    * have a sink to keep the pipe running so that
->>                    * hw state is consistent with the sw state
->>                    */
->> -                DRM_DEBUG_DRIVER("%s: Failed to create new stream for 
->> crtc %d\n",
->> -                        __func__, acrtc->base.base.id);
->> +                drm_dbg_atomic(dev,
->> +                           "Failed to create new stream for crtc %d\n",
->> +                        acrtc->base.base.id);
->>                   continue;
->>               }
->> @@ -9224,7 +9227,9 @@ static void amdgpu_dm_commit_streams(struct 
->> drm_atomic_state *state,
->>               crtc->hwmode = new_crtc_state->mode;
->>               mode_set_reset_required = true;
->>           } else if (modereset_required(new_crtc_state)) {
->> -            DRM_DEBUG_ATOMIC("Atomic commit: RESET. crtc id 
->> %d:[%p]\n", acrtc->crtc_id, acrtc);
->> +            drm_dbg_atomic(dev,
->> +                       "Atomic commit: RESET. crtc id %d:[%p]\n",
->> +                       acrtc->crtc_id, acrtc);
->>               /* i.e. reset mode */
->>               if (dm_old_crtc_state->stream)
->>                   remove_stream(adev, acrtc, dm_old_crtc_state->stream);
->> @@ -9679,7 +9684,7 @@ static void amdgpu_dm_atomic_commit_tail(struct 
->> drm_atomic_state *state)
->>   #endif
->>                   if (amdgpu_dm_crtc_configure_crc_source(
->>                       crtc, dm_new_crtc_state, cur_crc_src))
->> -                    DRM_DEBUG_DRIVER("Failed to configure crc source");
->> +                    drm_dbg_atomic(dev, "Failed to configure crc 
->> source");
->>               }
->>           }
->>   #endif
->> @@ -10851,7 +10856,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>       ret = drm_atomic_helper_check_modeset(dev, state);
->>       if (ret) {
->> -        DRM_DEBUG_DRIVER("drm_atomic_helper_check_modeset() failed\n");
->> +        drm_dbg_atomic(dev, "drm_atomic_helper_check_modeset() 
->> failed\n");
->>           goto fail;
->>       }
->> @@ -10866,7 +10871,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>           new_crtc_state = drm_atomic_get_crtc_state(state, 
->> new_con_state->crtc);
->>           if (IS_ERR(new_crtc_state)) {
->> -            DRM_DEBUG_DRIVER("drm_atomic_get_crtc_state() failed\n");
->> +            drm_dbg_atomic(dev, "drm_atomic_get_crtc_state() failed\n");
->>               ret = PTR_ERR(new_crtc_state);
->>               goto fail;
->>           }
->> @@ -10881,7 +10886,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>               if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
->>                   ret = add_affected_mst_dsc_crtcs(state, crtc);
->>                   if (ret) {
->> -                    DRM_DEBUG_DRIVER("add_affected_mst_dsc_crtcs() 
->> failed\n");
->> +                    drm_dbg_atomic(dev, "add_affected_mst_dsc_crtcs() 
->> failed\n");
->>                       goto fail;
->>                   }
->>               }
->> @@ -10898,7 +10903,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>           ret = amdgpu_dm_verify_lut_sizes(new_crtc_state);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("amdgpu_dm_verify_lut_sizes() failed\n");
->> +            drm_dbg_atomic(dev, "amdgpu_dm_verify_lut_sizes() 
->> failed\n");
->>               goto fail;
->>           }
->> @@ -10907,13 +10912,13 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>           ret = drm_atomic_add_affected_connectors(state, crtc);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("drm_atomic_add_affected_connectors() 
->> failed\n");
->> +            drm_dbg_atomic(dev, "drm_atomic_add_affected_connectors() 
->> failed\n");
->>               goto fail;
->>           }
->>           ret = drm_atomic_add_affected_planes(state, crtc);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("drm_atomic_add_affected_planes() 
->> failed\n");
->> +            drm_dbg_atomic(dev, "drm_atomic_add_affected_planes() 
->> failed\n");
->>               goto fail;
->>           }
->> @@ -10952,7 +10957,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>               if (IS_ERR(new_plane_state)) {
->>                   ret = PTR_ERR(new_plane_state);
->> -                DRM_DEBUG_DRIVER("new_plane_state is BAD\n");
->> +                drm_dbg_atomic(dev, "new_plane_state is BAD\n");
->>                   goto fail;
->>               }
->>           }
->> @@ -10984,7 +10989,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>                           &lock_and_validation_needed,
->>                           &is_top_most_overlay);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("dm_update_plane_state() failed\n");
->> +            drm_dbg_atomic(dev, "dm_update_plane_state() failed\n");
->>               goto fail;
->>           }
->>       }
->> @@ -10997,7 +11002,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>                          false,
->>                          &lock_and_validation_needed);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("DISABLE: dm_update_crtc_state() 
->> failed\n");
->> +            drm_dbg_atomic(dev, "DISABLE: dm_update_crtc_state() 
->> failed\n");
->>               goto fail;
->>           }
->>       }
->> @@ -11010,7 +11015,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>                          true,
->>                          &lock_and_validation_needed);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("ENABLE: dm_update_crtc_state() failed\n");
->> +            drm_dbg_atomic(dev, "ENABLE: dm_update_crtc_state() 
->> failed\n");
->>               goto fail;
->>           }
->>       }
->> @@ -11024,7 +11029,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>                           &lock_and_validation_needed,
->>                           &is_top_most_overlay);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("dm_update_plane_state() failed\n");
->> +            drm_dbg_atomic(dev, "dm_update_plane_state() failed\n");
->>               goto fail;
->>           }
->>       }
->> @@ -11040,21 +11045,21 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>       /* Run this here since we want to validate the streams we 
->> created */
->>       ret = drm_atomic_helper_check_planes(dev, state);
->>       if (ret) {
->> -        DRM_DEBUG_DRIVER("drm_atomic_helper_check_planes() failed\n");
->> +        drm_dbg_atomic(dev, "drm_atomic_helper_check_planes() 
->> failed\n");
->>           goto fail;
->>       }
->>       for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
->>           dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
->>           if (dm_new_crtc_state->mpo_requested)
->> -            DRM_DEBUG_DRIVER("MPO enablement requested on 
->> crtc:[%p]\n", crtc);
->> +            drm_dbg_atomic(dev, "MPO enablement requested on 
->> crtc:[%p]\n", crtc);
->>       }
->>       /* Check cursor planes scaling */
->>       for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
->>           ret = dm_check_crtc_cursor(state, crtc, new_crtc_state);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("dm_check_crtc_cursor() failed\n");
->> +            drm_dbg_atomic(dev, "dm_check_crtc_cursor() failed\n");
->>               goto fail;
->>           }
->>       }
->> @@ -11137,13 +11142,13 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>       if (lock_and_validation_needed) {
->>           ret = dm_atomic_get_state(state, &dm_state);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("dm_atomic_get_state() failed\n");
->> +            drm_dbg_atomic(dev, "dm_atomic_get_state() failed\n");
->>               goto fail;
->>           }
->>           ret = do_aquire_global_lock(dev, state);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("do_aquire_global_lock() failed\n");
->> +            drm_dbg_atomic(dev, "do_aquire_global_lock() failed\n");
->>               goto fail;
->>           }
->> @@ -11151,7 +11156,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>           if (dc_resource_is_dsc_encoding_supported(dc)) {
->>               ret = compute_mst_dsc_configs_for_state(state, 
->> dm_state->context, vars);
->>               if (ret) {
->> -                DRM_DEBUG_DRIVER("compute_mst_dsc_configs_for_state() 
->> failed\n");
->> +                drm_dbg_atomic(dev, 
->> "compute_mst_dsc_configs_for_state() failed\n");
->>                   ret = -EINVAL;
->>                   goto fail;
->>               }
->> @@ -11160,7 +11165,7 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>           ret = dm_update_mst_vcpi_slots_for_dsc(state, 
->> dm_state->context, vars);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("dm_update_mst_vcpi_slots_for_dsc() 
->> failed\n");
->> +            drm_dbg_atomic(dev, "dm_update_mst_vcpi_slots_for_dsc() 
->> failed\n");
->>               goto fail;
->>           }
->> @@ -11172,12 +11177,12 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>            */
->>           ret = drm_dp_mst_atomic_check(state);
->>           if (ret) {
->> -            DRM_DEBUG_DRIVER("drm_dp_mst_atomic_check() failed\n");
->> +            drm_dbg_atomic(dev, "drm_dp_mst_atomic_check() failed\n");
->>               goto fail;
->>           }
->>           status = dc_validate_global_state(dc, dm_state->context, true);
->>           if (status != DC_OK) {
->> -            DRM_DEBUG_DRIVER("DC global validation failure: %s (%d)",
->> +            drm_dbg_atomic(dev, "DC global validation failure: %s (%d)",
->>                          dc_status_to_str(status), status);
->>               ret = -EINVAL;
->>               goto fail;
->> @@ -11255,11 +11260,11 @@ static int amdgpu_dm_atomic_check(struct 
->> drm_device *dev,
->>   fail:
->>       if (ret == -EDEADLK)
->> -        DRM_DEBUG_DRIVER("Atomic check stopped to avoid deadlock.\n");
->> +        drm_dbg_atomic(dev, "Atomic check stopped to avoid 
->> deadlock.\n");
->>       else if (ret == -EINTR || ret == -EAGAIN || ret == -ERESTARTSYS)
->> -        DRM_DEBUG_DRIVER("Atomic check stopped due to signal.\n");
->> +        drm_dbg_atomic(dev, "Atomic check stopped due to signal.\n");
->>       else
->> -        DRM_DEBUG_DRIVER("Atomic check failed with err: %d\n", ret);
->> +        drm_dbg_atomic(dev, "Atomic check failed with err: %d\n", ret);
->>       trace_amdgpu_dm_atomic_check_finish(state, ret);
+Cheers,
+        Thomas
