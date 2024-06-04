@@ -2,42 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB73C8FB2A6
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jun 2024 14:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8B58FB2A4
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jun 2024 14:48:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD2910E47A;
-	Tue,  4 Jun 2024 12:48:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79FC910E479;
+	Tue,  4 Jun 2024 12:48:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=linux.org.uk header.i=@linux.org.uk header.b="HnB1dqAs";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="CRvrhF7A";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63ADC10E0E6
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 02:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=CuvIJAs/rMor6MVjY7M7zEwy7LNwWt2bysowxjqLdnk=; b=HnB1dqAspFeokFHDpJ6iowJwqC
- f8l6XWeb3L0PyyhxQ4p8sNtVe+0Mkh2gAa1iHDkaQqUQQ9EuXc1HfJJ0Gz5K1GUQXneWD+AfaR3Uf
- 0J83vLxSZR7y0ElouhccJzbSH18YS1YPYcdwS8+ICG3WZn/qKw8Yld0sRAYXBp2epfgpX/tUNc1kg
- DN1E+LakHzn07ydwLXk3jAShOxSQeCCtkw1mO4TmJL0tV5C25AaT0ypswb0grtf2GIRipjbLIqxIE
- BooGTFlv08JsqmkNYZlpmReKJ4patXBlmxEMzcGgwAuaiVJZbRoA+a9Nm/C2rRtFnLLWTXKiFxcqx
- 6XNQRfrA==;
-Received: from viro by zeniv.linux.org.uk with local (Exim 4.96 #2 (Red Hat
- Linux)) id 1sEJhQ-00CoVl-0D; Tue, 04 Jun 2024 02:14:56 +0000
-Date: Tue, 4 Jun 2024 03:14:56 +0100
-From: Al Viro <viro@zeniv.linux.org.uk>
-To: amd-gfx@lists.freedesktop.org
-Cc: linux-fsdevel@vger.kernel.org
-Subject: [PATCH 2/2][RFC] amdkfd CRIU fixes
-Message-ID: <20240604021456.GB3053943@ZenIV>
-References: <20240604021255.GO1629371@ZenIV>
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E964E10E42C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 07:56:06 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-5751bcb3139so6304326a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 04 Jun 2024 00:56:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1717487765; x=1718092565; darn=lists.freedesktop.org; 
+ h=mime-version:user-agent:references:message-id:in-reply-to:subject
+ :cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=2nmZn6mS3jr8gnhosKI24iS14d0rSG1CXX7KP6yM85Y=;
+ b=CRvrhF7AUYTal7W5O1c/vUdsst8iGvoVNBS1QGkcaV46mYw5an7wP3GWdAaWbLuNMA
+ 4j0sKu/qlNxCSdz/Fp6OcEdxDlYv1BoYdV7QB5qTtkjO2FGB1uoioIWww/ES25v1BTCJ
+ 4R8h48q26RGH4iXD+m27irhdWrRrrZxF6b1H4SPs/QdAESKH9+fXLG6fRYF1ne0aAxz3
+ RZe8TVDSnJygVgObuhhdBMHz8aUnjt7YwYmK6LH7/TnTaEr5BEbSR572T3IcdLdpLkuy
+ AqEJvKTB3v0jrbNC9V01l1ewyH4Dk3zUTh36i7pE9MBD6gnUOr0Y8GsQQqevkMxBiy2U
+ FXCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717487765; x=1718092565;
+ h=mime-version:user-agent:references:message-id:in-reply-to:subject
+ :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2nmZn6mS3jr8gnhosKI24iS14d0rSG1CXX7KP6yM85Y=;
+ b=KA5wC3zYmK4JSw4HgsNBThT5Wc+uRfrBPCCjAeF3NLokHmZNU+XSCmiDHmuNJXCq7F
+ O544DweOjSlfKey7dx93h8eCOp2NzmezJjjn1sh0C5Nh+iD7ek72HrmYzoLdbvvpvLkb
+ UvGqI/BkRdeqNp/erUJlr8wc3GgOyHw7ov/B5o/ujwgpty5yEfpd5brf2wvhwWAPC/NL
+ bsGM1bAhl214is7MOR95zqNdAblUYhyX2Zbp2ijyNhzHZ0jWK1wmdn8s9u5G1IdruHYh
+ ArpjAsanmiP57wTksnYjaX74nhLLKEa1Q9hISui7OnYoaG8OSr2BvpeQLbwknZ5CSwa4
+ 3DmA==
+X-Gm-Message-State: AOJu0YxEB0mCwPWSZ28MG6CvZNh9kAkVrV1Cp8aa8kqInDrVxcMsUa41
+ /FhoLXA+VWJ7JI8I00a0HHeFW/yKkcFObKR7559fCl/nGL+kw4JRPc2Zj8CMSZk=
+X-Google-Smtp-Source: AGHT+IEAsmTj0bPkIU7NwgtrndKHWmtNg7dXx6TCj/IOKNVSzs8WbF9Gb5E/dzHooV1khdM67yfapw==
+X-Received: by 2002:a17:906:2713:b0:a68:2d37:fb59 with SMTP id
+ a640c23a62f3a-a682d37fdb3mr789958566b.14.1717487764873; 
+ Tue, 04 Jun 2024 00:56:04 -0700 (PDT)
+Received: from localhost (nat2.prg.suse.com. [195.250.132.146])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a67e73f9a81sm585525966b.71.2024.06.04.00.56.04
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 04 Jun 2024 00:56:04 -0700 (PDT)
+Date: Tue, 4 Jun 2024 09:56:03 +0200 (CEST)
+From: Jiri Kosina <jkosina@suse.com>
+To: Li Ma <li.ma@amd.com>
+cc: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
+ yifan1.zhang@amd.com, Basavaraj Natikar <Basavaraj.Natikar@amd.com>, 
+ Akshata MukundShetty <akshata.mukundshetty@amd.com>
+Subject: Re: [PATCH 1/6] HID: amd_sfh: Increase sensor command timeout
+In-Reply-To: <20240522062916.705147-1-li.ma@amd.com>
+Message-ID: <nycvar.YFH.7.76.2406040955400.16865@cbobk.fhfr.pm>
+References: <20240522062916.705147-1-li.ma@amd.com>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240604021255.GO1629371@ZenIV>
+Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Tue, 04 Jun 2024 12:47:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,185 +81,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of trying to use close_fd() on failure exits, just have
-criu_get_prime_handle() store the file reference without inserting
-it into descriptor table.
+On Wed, 22 May 2024, Li Ma wrote:
 
-Then, once the callers are past the last failure exit, they can go
-and either insert all those file references into the corresponding
-slots of descriptor table, or drop all those file references and
-free the unused descriptors.
+> From: Basavaraj Natikar <Basavaraj.Natikar@amd.com>
+> 
+> During the initialization sensors may take some time to respond. Hence,
+> increase the sensor command timeouts in order to obtain status responses
+> within a maximum timeout.
+> (Li: backport for s0ix issue, these patches have landed on 6.9)
+> Co-developed-by: Akshata MukundShetty <akshata.mukundshetty@amd.com>
+> Signed-off-by: Akshata MukundShetty <akshata.mukundshetty@amd.com>
+> Signed-off-by: Basavaraj Natikar <Basavaraj.Natikar@amd.com>
+> Signed-off-by: Jiri Kosina <jkosina@suse.com>
+> (cherry picked from commit 333861f4cca6d2c959ca2876587c42767853dccc)
 
-Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
----
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index fdf171ad4a3c..3f129e1c0daa 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -36,7 +36,6 @@
- #include <linux/mman.h>
- #include <linux/ptrace.h>
- #include <linux/dma-buf.h>
--#include <linux/fdtable.h>
- #include <linux/processor.h>
- #include "kfd_priv.h"
- #include "kfd_device_queue_manager.h"
-@@ -1857,7 +1856,8 @@ static uint32_t get_process_num_bos(struct kfd_process *p)
- }
- 
- static int criu_get_prime_handle(struct kgd_mem *mem,
--				 int flags, u32 *shared_fd)
-+				 int flags, u32 *shared_fd,
-+				 struct file **file)
- {
- 	struct dma_buf *dmabuf;
- 	int ret;
-@@ -1868,13 +1868,14 @@ static int criu_get_prime_handle(struct kgd_mem *mem,
- 		return ret;
- 	}
- 
--	ret = dma_buf_fd(dmabuf, flags);
-+	ret = get_unused_fd_flags(flags);
- 	if (ret < 0) {
- 		pr_err("dmabuf create fd failed, ret:%d\n", ret);
- 		goto out_free_dmabuf;
- 	}
- 
- 	*shared_fd = ret;
-+	*file = dmabuf->file;
- 	return 0;
- 
- out_free_dmabuf:
-@@ -1882,6 +1883,24 @@ static int criu_get_prime_handle(struct kgd_mem *mem,
- 	return ret;
- }
- 
-+static void commit_files(struct file **files,
-+			 struct kfd_criu_bo_bucket *bo_buckets,
-+			 unsigned int count,
-+			 int err)
-+{
-+	while (count--) {
-+		struct file *file = files[count];
-+		if (!file)
-+			continue;
-+		if (err) {
-+			fput(file);
-+			put_unused_fd(bo_buckets[count].dmabuf_fd);
-+		} else {
-+			fd_install(bo_buckets[count].dmabuf_fd, file);
-+		}
-+	}
-+}
-+
- static int criu_checkpoint_bos(struct kfd_process *p,
- 			       uint32_t num_bos,
- 			       uint8_t __user *user_bos,
-@@ -1890,6 +1909,7 @@ static int criu_checkpoint_bos(struct kfd_process *p,
- {
- 	struct kfd_criu_bo_bucket *bo_buckets;
- 	struct kfd_criu_bo_priv_data *bo_privs;
-+	struct file **files = NULL;
- 	int ret = 0, pdd_index, bo_index = 0, id;
- 	void *mem;
- 
-@@ -1903,6 +1923,12 @@ static int criu_checkpoint_bos(struct kfd_process *p,
- 		goto exit;
- 	}
- 
-+	files = kvzalloc(num_bos * sizeof(struct file *), GFP_KERNEL);
-+	if (!files) {
-+		ret = -ENOMEM;
-+		goto exit;
-+	}
-+
- 	for (pdd_index = 0; pdd_index < p->n_pdds; pdd_index++) {
- 		struct kfd_process_device *pdd = p->pdds[pdd_index];
- 		struct amdgpu_bo *dumper_bo;
-@@ -1950,7 +1976,7 @@ static int criu_checkpoint_bos(struct kfd_process *p,
- 				ret = criu_get_prime_handle(kgd_mem,
- 						bo_bucket->alloc_flags &
- 						KFD_IOC_ALLOC_MEM_FLAGS_WRITABLE ? DRM_RDWR : 0,
--						&bo_bucket->dmabuf_fd);
-+						&bo_bucket->dmabuf_fd, &files[bo_index]);
- 				if (ret)
- 					goto exit;
- 			} else {
-@@ -2001,12 +2027,8 @@ static int criu_checkpoint_bos(struct kfd_process *p,
- 	*priv_offset += num_bos * sizeof(*bo_privs);
- 
- exit:
--	while (ret && bo_index--) {
--		if (bo_buckets[bo_index].alloc_flags
--		    & (KFD_IOC_ALLOC_MEM_FLAGS_VRAM | KFD_IOC_ALLOC_MEM_FLAGS_GTT))
--			close_fd(bo_buckets[bo_index].dmabuf_fd);
--	}
--
-+	commit_files(files, bo_buckets, bo_index, ret);
-+	kvfree(files);
- 	kvfree(bo_buckets);
- 	kvfree(bo_privs);
- 	return ret;
-@@ -2358,7 +2380,8 @@ static int criu_restore_memory_of_gpu(struct kfd_process_device *pdd,
- 
- static int criu_restore_bo(struct kfd_process *p,
- 			   struct kfd_criu_bo_bucket *bo_bucket,
--			   struct kfd_criu_bo_priv_data *bo_priv)
-+			   struct kfd_criu_bo_priv_data *bo_priv,
-+			   struct file **file)
- {
- 	struct kfd_process_device *pdd;
- 	struct kgd_mem *kgd_mem;
-@@ -2410,7 +2433,7 @@ static int criu_restore_bo(struct kfd_process *p,
- 	if (bo_bucket->alloc_flags
- 	    & (KFD_IOC_ALLOC_MEM_FLAGS_VRAM | KFD_IOC_ALLOC_MEM_FLAGS_GTT)) {
- 		ret = criu_get_prime_handle(kgd_mem, DRM_RDWR,
--					    &bo_bucket->dmabuf_fd);
-+					    &bo_bucket->dmabuf_fd, file);
- 		if (ret)
- 			return ret;
- 	} else {
-@@ -2427,6 +2450,7 @@ static int criu_restore_bos(struct kfd_process *p,
- {
- 	struct kfd_criu_bo_bucket *bo_buckets = NULL;
- 	struct kfd_criu_bo_priv_data *bo_privs = NULL;
-+	struct file **files = NULL;
- 	int ret = 0;
- 	uint32_t i = 0;
- 
-@@ -2440,6 +2464,12 @@ static int criu_restore_bos(struct kfd_process *p,
- 	if (!bo_buckets)
- 		return -ENOMEM;
- 
-+	files = kvzalloc(args->num_bos * sizeof(struct file *), GFP_KERNEL);
-+	if (!files) {
-+		ret = -ENOMEM;
-+		goto exit;
-+	}
-+
- 	ret = copy_from_user(bo_buckets, (void __user *)args->bos,
- 			     args->num_bos * sizeof(*bo_buckets));
- 	if (ret) {
-@@ -2465,7 +2495,7 @@ static int criu_restore_bos(struct kfd_process *p,
- 
- 	/* Create and map new BOs */
- 	for (; i < args->num_bos; i++) {
--		ret = criu_restore_bo(p, &bo_buckets[i], &bo_privs[i]);
-+		ret = criu_restore_bo(p, &bo_buckets[i], &bo_privs[i], &files[i]);
- 		if (ret) {
- 			pr_debug("Failed to restore BO[%d] ret%d\n", i, ret);
- 			goto exit;
-@@ -2480,11 +2510,8 @@ static int criu_restore_bos(struct kfd_process *p,
- 		ret = -EFAULT;
- 
- exit:
--	while (ret && i--) {
--		if (bo_buckets[i].alloc_flags
--		   & (KFD_IOC_ALLOC_MEM_FLAGS_VRAM | KFD_IOC_ALLOC_MEM_FLAGS_GTT))
--			close_fd(bo_buckets[i].dmabuf_fd);
--	}
-+	commit_files(files, bo_buckets, i, ret);
-+	kvfree(files);
- 	kvfree(bo_buckets);
- 	kvfree(bo_privs);
- 	return ret;
+All these patches seem to already have been merged, why am I receiving 
+them again with some strange metadata?
+
+-- 
+Jiri Kosina
+Director, SUSE Labs Core
