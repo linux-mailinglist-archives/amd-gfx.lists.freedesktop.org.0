@@ -2,80 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B6B8FD3E8
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jun 2024 19:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9058FD2FF
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jun 2024 18:37:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E05A510E008;
-	Wed,  5 Jun 2024 17:22:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD3F88130;
+	Wed,  5 Jun 2024 16:37:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QPOFr4t0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TNukjLol";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A09710E1E9;
- Wed,  5 Jun 2024 15:08:40 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4214f803606so17436835e9.0; 
- Wed, 05 Jun 2024 08:08:40 -0700 (PDT)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF46F892F6
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 16:37:30 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-1f67fa9cd73so8374505ad.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 05 Jun 2024 09:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1717600118; x=1718204918; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=6erns6P7m66pg24yXk3vygFkTJngHmTZFzrZV+/TSUs=;
- b=QPOFr4t0SPqHUfju3JbX+Jk7GyOT8IdDAsPKzSTwl/QO77d+Oyk//FpY9A4NIpSnz6
- whnSbhpsvaYQ0osUf8sqFpqpYIeBGMmo5VEzgXl4rtMsYUBPrKP+TGTBqlI5VfHL2GeY
- 8J38hutLDYn261SjZQ0ZLZiiFsSHYVBW5LnJAyrtQ304wsMV7QuMrzKm+Siv9MhstSYT
- XuxUnFGSZeK0XUSU+2RWkjfaW+kfprP77pV8JEBDCe8Hox5YSZDIR15UH5cahKx9Qfzb
- H7AVuqcLduwi6FxVsndhOdtzqrCmzevr58+Eihc+/gXKbe/j4x9PbbdMqZA8wnF70XvV
- vvYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1717600118; x=1718204918;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1717605450; x=1718210250; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6erns6P7m66pg24yXk3vygFkTJngHmTZFzrZV+/TSUs=;
- b=ZerXyHkWoWERz5xyMJkf6vOz2gVEx+kAk5v5bXGFxOEM80wzZPRoTyylsvevpiM+dd
- SzMUhQZPdzJdGhsVx8kQnoco9UcuzX3Srb17NI7apFF7a8gOmBKvk5/8lWk2yGleR1/H
- ppiL20LvmBd71VxreUVSpq7kyq8Jf+7VqQ4BgiLXioIeC8kR5KJKJTwydGh4ERX+EBwJ
- CudJOuFH637A1W0gLNJmVjdvpqqgnnqadg0iLsLArYlM4VHdljm27MevSeTPK8MRd2r2
- oDYXYXsV583mciukMPCk69XHRbMxsFhSDI3dWcH7AQkNjoNmR/2WIM2hD9TAMbXBTDpz
- ex9g==
+ bh=jdP3T/x26lGECMJx5Cs/VKtwdOnxD5C6t+9qO4X8xXo=;
+ b=TNukjLolgayNunqDzrO42zjfI3TD493kxOr+b7Cle9ryJzak1daG5qfxxCDf3PerWk
+ cy6sBhbGlA9EOJAzKL6wkFEDkeqKhWOIGnT2cTp6Fhj9PGLaXdsvr/YFsokxrA3BwX4K
+ ryrT0ppnGWK5+QXa7UlaXYqQlo4e69VXjFaeh4L3uX9eZk94n14dg+T1wcBvygrI4bDg
+ olVUq9oI123LQYTXlY5ifiHIsRaSSLnLoWW3WWrUlLspJeOqVyZU/Ujqp77NGQ9CmLUH
+ ff8+2niUArhY5Ryeqy4yxQPnTeciMm4TTUatavZrzS7/9CFw62CyE8jQ6ow7zu7SyOJL
+ GH5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717605450; x=1718210250;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jdP3T/x26lGECMJx5Cs/VKtwdOnxD5C6t+9qO4X8xXo=;
+ b=Y3mLRM+QURcWDil4TgGAVAr4ZeVHAHFrsD4FE1ctNN0UVi7sgs9butoy9XKaP1/L2y
+ jzhEXOYeKHpzAmTDTdAcpQCebfEwU0z0+0igW4dzY3IOxWbkMmpD+XwlsyqXhSmx+EFE
+ bJgBU8U5paYHPcmtPuKJtdIMq9QT03QgXACrpsuT0OMAzN+xUAT8ckxlb+EMOLIyKoSW
+ lD8X2LO/TvhGVgDaYAYULOUqIfqAuHU1Tz9pOrtXZkdoqpwo8d4K2A9/1OdXWR7PUGmY
+ krhtq4YE2mH1MZh1UEoFIhmhwGbupj1yM350CveCPtaF1H0T5HO1Xr0PWhqEfJ7S+YBc
+ v5ig==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVQQ2R2LxftI6sB9MYIMqLqXI9vUcdAA08APmC2zSXrpJc4s88UKJewXEh/McH43+XXaX0uUQnFBXkfDM526hbjqKR0ECzm4iReQht4gL8QlizDjNZx0aWeWKxU+SYWRoTdLWTyhaq4ph/PA4dZZg==
-X-Gm-Message-State: AOJu0YwK3c1jo0W3ugJLsi7SkTYCdtbaIfwioc5oOxvDnrYI0IxwoOB3
- alDu4o3EteiwhjHnUUC7kdVC2Cz3dIs/pP3iNm4+MTrs+vhB0QTL
-X-Google-Smtp-Source: AGHT+IEFu8ys0OL+E2LRlq1NQiHBA4qS5m34VFEk2S56/hrWXMWplj2HkecNf8oldUnJapE8tT/jLg==
-X-Received: by 2002:a05:600c:1554:b0:41a:2044:1b3e with SMTP id
- 5b1f17b1804b1-4215633812fmr22794165e9.32.1717600118154; 
- Wed, 05 Jun 2024 08:08:38 -0700 (PDT)
-Received: from debian.local (host-92-13-19-4.as13285.net. [92.13.19.4])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42158148f91sm26280455e9.30.2024.06.05.08.08.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Jun 2024 08:08:37 -0700 (PDT)
-Date: Wed, 5 Jun 2024 16:08:34 +0100
-From: Chris Bainbridge <chris.bainbridge@gmail.com>
-To: kernel test robot <lkp@intel.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
- hughsient@gmail.com
-Subject: Re: [PATCH v2] drm/client: Detect when ACPI lid is closed during
- initialization
-Message-ID: <ZmB_cs-7GU-m3GXX@debian.local>
-References: <20240528210319.1242-1-mario.limonciello@amd.com>
- <202406040928.Eu1gRIWv-lkp@intel.com>
+ AJvYcCVGKjSrgV0nrml4sqUxEiZLOA2FvfQxcnWe5SvzjhBZikPTVboce5grL6aoVTQBzxVc3vv5m+R4YQMRUEMGFYr4O/pFY+kTfpMXf5y+yw==
+X-Gm-Message-State: AOJu0YyDn8RVsCy6RYejJngLVRlJaIBPJXJMsZgd56sA2gdDJaoI45bl
+ zPevS/jG1KHULpX1DRiVxuywn/xb/Vq8henAzURmdd/FLfaeRBpapG1I407TItnXh1JtUO6z8tB
+ 4fT7ePESXmgvmQdmsot5jbuKtkxw=
+X-Google-Smtp-Source: AGHT+IHb5uuSiu84PpN6TKnnmwrWyvvnN+W5CqUroyONhd/nt+Td0ncMwbYRj0faDtCxxjElQ5rcfiwGE2nVcrU7GBA=
+X-Received: by 2002:a17:903:18e:b0:1f6:83d1:a232 with SMTP id
+ d9443c01a7336-1f6b8ea1732mr2444655ad.10.1717605450057; Wed, 05 Jun 2024
+ 09:37:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202406040928.Eu1gRIWv-lkp@intel.com>
-X-Mailman-Approved-At: Wed, 05 Jun 2024 17:22:55 +0000
+References: <20240604155027.542271-1-alexander.deucher@amd.com>
+ <570fd5ec-1fe1-4d75-b4aa-1ec579a0bcd0@amd.com>
+In-Reply-To: <570fd5ec-1fe1-4d75-b4aa-1ec579a0bcd0@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 5 Jun 2024 12:37:17 -0400
+Message-ID: <CADnq5_M62BwoPEfitxk-+SRjZbEP-uvUesxuHjw1WX7CSZVHhg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: use pre-allocated temp structure for
+ bounding box
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, George Zhang <george.zhang@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,89 +81,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 04, 2024 at 10:02:29AM +0800, kernel test robot wrote:
-> Hi Mario,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on drm-misc/drm-misc-next]
-> [also build test ERROR on drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.10-rc2 next-20240603]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/drm-client-Detect-when-ACPI-lid-is-closed-during-initialization/20240529-050440
-> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-> patch link:    https://lore.kernel.org/r/20240528210319.1242-1-mario.limonciello%40amd.com
-> patch subject: [PATCH v2] drm/client: Detect when ACPI lid is closed during initialization
-> config: i386-randconfig-053-20240604 (https://download.01.org/0day-ci/archive/20240604/202406040928.Eu1gRIWv-lkp@intel.com/config)
-> compiler: gcc-9 (Ubuntu 9.5.0-4ubuntu2) 9.5.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240604/202406040928.Eu1gRIWv-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202406040928.Eu1gRIWv-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->    ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_match_edp_lid':
-> >> drivers/gpu/drm/drm_client_modeset.c:281:(.text+0x221b): undefined reference to `acpi_lid_open'
-> 
-> 
-> vim +281 drivers/gpu/drm/drm_client_modeset.c
-> 
->    260	
->    261	static void drm_client_match_edp_lid(struct drm_device *dev,
->    262					     struct drm_connector **connectors,
->    263					     unsigned int connector_count,
->    264					     bool *enabled)
->    265	{
->    266		int i;
->    267	
->    268		for (i = 0; i < connector_count; i++) {
->    269			struct drm_connector *connector = connectors[i];
->    270	
->    271			switch (connector->connector_type) {
->    272			case DRM_MODE_CONNECTOR_LVDS:
->    273			case DRM_MODE_CONNECTOR_eDP:
->    274				if (!enabled[i])
->    275					continue;
->    276				break;
->    277			default:
->    278				continue;
->    279			}
->    280	
->  > 281			if (!acpi_lid_open()) {
->    282				drm_dbg_kms(dev, "[CONNECTOR:%d:%s] lid is closed, disabling\n",
->    283					    connector->base.id, connector->name);
->    284				enabled[i] = false;
->    285			}
->    286		}
->    287	}
->    288	
-> 
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+On Wed, Jun 5, 2024 at 12:07=E2=80=AFPM Harry Wentland <harry.wentland@amd.=
+com> wrote:
+>
+>
+>
+> On 2024-06-04 11:50, Alex Deucher wrote:
+> > This mirrors what the driver does for older DCN generations.
+> >
+> > Should fix:
+> >
+> > BUG: sleeping function called from invalid context at include/linux/sch=
+ed/mm.h:306
+> > in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 449, name: kwork=
+er/u64:8
+> > preempt_count: 2, expected: 0
+> > RCU nest depth: 0, expected: 0
+> > Preemption disabled at:
+> > ffffffffc0ce1580>] dc_fpu_begin+0x30/0xd0 [amdgpu]
+> > CPU: 5 PID: 449 Comm: kworker/u64:8 Tainted: G        W          6.8.0+=
+ #35
+> > Hardware name: System manufacturer System Product Name/ROG STRIX X570-E=
+ GAMING WIFI II, BIOS 4204 02/24/2022
+> > Workqueue: events_unbound async_run_entry_fn
+> >
+> > Fixes: 88c61827cedc ("drm/amd/display: dynamically allocate dml2_config=
+uration_options structures")
+> > Suggested-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: George Zhang <george.zhang@amd.com>
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: harry.wentland@amd.com
+> > Cc: sunpeng.li@amd.com
+> > Cc: Rodrigo.Siqueira@amd.com
+>
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+>
 
-The failed config has CONFIG_ACPI_BUTTON=m. The build failure can be
-fixed with:
+Please review v2 of the patches.  There was an extra memcpy in the original=
+s.
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index b76438c31761..0271e66f44f8 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -271,11 +271,13 @@ static void drm_client_match_edp_lid(struct drm_device *dev,
-                if (connector->connector_type != DRM_MODE_CONNECTOR_eDP || !enabled[i])
-                        continue;
+Alex
 
-+#if defined(CONFIG_ACPI_BUTTON)
-                if (!acpi_lid_open()) {
-                        drm_dbg_kms(dev, "[CONNECTOR:%d:%s] lid is closed, disabling\n",
-                                    connector->base.id, connector->name);
-                        enabled[i] = false;
-                }
-+#endif
-        }
- }
+> Harry
+>
+> > ---
+> >  drivers/gpu/drm/amd/display/dc/dc.h                       | 1 +
+> >  .../drm/amd/display/dc/resource/dcn32/dcn32_resource.c    | 8 +++-----
+> >  .../drm/amd/display/dc/resource/dcn321/dcn321_resource.c  | 8 +++-----
+> >  3 files changed, 7 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/=
+display/dc/dc.h
+> > index d0ed01ac460d..d843933ad731 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/dc.h
+> > +++ b/drivers/gpu/drm/amd/display/dc/dc.h
+> > @@ -1444,6 +1444,7 @@ struct dc {
+> >       } scratch;
+> >
+> >       struct dml2_configuration_options dml2_options;
+> > +     struct dml2_configuration_options dml2_tmp;
+> >       enum dc_acpi_cm_power_state power_state;
+> >
+> >  };
+> > diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resour=
+ce.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+> > index 0f11d7c8791c..7a8aa9396dea 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
+> > @@ -2007,11 +2007,9 @@ void dcn32_calculate_wm_and_dlg(struct dc *dc, s=
+truct dc_state *context,
+> >
+> >  static void dcn32_update_bw_bounding_box(struct dc *dc, struct clk_bw_=
+params *bw_params)
+> >  {
+> > -     struct dml2_configuration_options *dml2_opt;
+> > +     struct dml2_configuration_options *dml2_opt =3D &dc->dml2_tmp;
+> >
+> > -     dml2_opt =3D kmemdup(&dc->dml2_options, sizeof(dc->dml2_options),=
+ GFP_KERNEL);
+> > -     if (!dml2_opt)
+> > -             return;
+> > +     memcpy(dml2_opt, &dc->dml2_options, sizeof(dc->dml2_options));
+> >
+> >       DC_FP_START();
+> >
+> > @@ -2027,7 +2025,7 @@ static void dcn32_update_bw_bounding_box(struct d=
+c *dc, struct clk_bw_params *bw
+> >
+> >       DC_FP_END();
+> >
+> > -     kfree(dml2_opt);
+> > +     memcpy(&dc->dml2_options, dml2_opt, sizeof(dc->dml2_options));
+> >  }
+> >
+> >  static struct resource_funcs dcn32_res_pool_funcs =3D {
+> > diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_reso=
+urce.c b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
+> > index 07ca6f58447d..ef30e8632607 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
+> > @@ -1581,11 +1581,9 @@ static struct dc_cap_funcs cap_funcs =3D {
+> >
+> >  static void dcn321_update_bw_bounding_box(struct dc *dc, struct clk_bw=
+_params *bw_params)
+> >  {
+> > -     struct dml2_configuration_options *dml2_opt;
+> > +     struct dml2_configuration_options *dml2_opt =3D &dc->dml2_tmp;
+> >
+> > -     dml2_opt =3D kmemdup(&dc->dml2_options, sizeof(dc->dml2_options),=
+ GFP_KERNEL);
+> > -     if (!dml2_opt)
+> > -             return;
+> > +     memcpy(dml2_opt, &dc->dml2_options, sizeof(dc->dml2_options));
+> >
+> >       DC_FP_START();
+> >
+> > @@ -1601,7 +1599,7 @@ static void dcn321_update_bw_bounding_box(struct =
+dc *dc, struct clk_bw_params *b
+> >
+> >       DC_FP_END();
+> >
+> > -     kfree(dml2_opt);
+> > +     memcpy(&dc->dml2_options, dml2_opt, sizeof(dc->dml2_options));
+> >  }
+> >
+> >  static struct resource_funcs dcn321_res_pool_funcs =3D {
+>
