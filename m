@@ -2,46 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAD78FE701
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 15:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A67E28FE60F
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 14:06:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B151A10E940;
-	Thu,  6 Jun 2024 13:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1937D10E91D;
+	Thu,  6 Jun 2024 12:06:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="kBQQDRum";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RQEXCFML";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-100.freemail.mail.aliyun.com
- (out30-100.freemail.mail.aliyun.com [115.124.30.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32BD510E8B2;
- Thu,  6 Jun 2024 09:44:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1717667066; h=From:To:Subject:Date:Message-Id:MIME-Version;
- bh=SSDpadhDayKYDhxfcnPmHvLUUqjwwCKH0DV0DmvwUWk=;
- b=kBQQDRumQfxUkfZDMuiHxyPpqeoN9BOoC7qRCW8wWrFT2ixAisVTg5pzclH8vPFvUTdwR8V0KRAo8rJ64yTkFoLydQX72bdA4yhu7slh7Ij5tn1fpL+1RZSHgrkl4F3AwoBuKyUTUHPIJW19LIkQ8ZUZArOhl+kbWRTgqF4eEDQ=
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R141e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033037067110;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0W7xs-ya_1717667055; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0W7xs-ya_1717667055) by smtp.aliyun-inc.com;
- Thu, 06 Jun 2024 17:44:24 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: alexander.deucher@amd.com
-Cc: christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Abaci Robot <abaci@linux.alibaba.com>
-Subject: [PATCH] drm/amd/display: clean up some inconsistent indenting
-Date: Thu,  6 Jun 2024 17:44:14 +0800
-Message-Id: <20240606094414.703-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2074.outbound.protection.outlook.com [40.107.237.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB5ED10E91D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 12:05:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bcVgEJHZUXY5zE0Pe6FPTjVM3+bmviem6rZwYHIq+PnliR/q2B9+iElPrhHb600ZdrqAu+0iiT/e+f0wvnA3zxWabOsBhNrwUaGa4yHUBl0XzuJWB6CRkIxxnho6BCLstvUpEOeubCG6TRRR/oe9H5GPdeASXAquW0g53bGi5/JjU7ED3YfCOZoJLqybDZKu2O43wIE0kB5juDhpXq4Ey9jgccEL5RIQlXgNtpeflechK0UeZPmcdc7sRU3IKyBSMTGfZ0fea1jCs18Kuz0pUmkkZg8d7nfYlnyNEPbY3LVxjyz9sOdd02EGLbsbc2R38tFMXoLNNOJ5aPCFVAZc+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q2ZmKcH5MP7/6ZRIh7meSlfJziQgD7rzefgu5rYd5U4=;
+ b=mQ/Zx/XZJGt41xw509cCz6XudUKtkdXYRD2UuXuIOiLvZnixGAGc2B2Se4+JV+7Gaa4Bk0XJdWvyKX8l8vBMCqMKlUkFN62Vlq5TTwZexDvWmw3tzDnOeHahUxVOqjL+QxD4LwqD9qgtVqavPvoZnHumQDTUiLEHx8Aqo/9Rs3x02NihXqY/3rBytFmxJxbI/cznW1OamyP7cNhV+rgfruqGyNATWOV+HxnFGve+NWaBNUIp2+CAW/xsVZ2HEDT7ogmoum6BcZxZ7UIVGsvWg4P5ym0OZUSHBxayxdUQUiTsBogmLoX52yCeeF23ys+uBC+YxS66sgTCXJ5iGOzafQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q2ZmKcH5MP7/6ZRIh7meSlfJziQgD7rzefgu5rYd5U4=;
+ b=RQEXCFMLqz4hy7GYhIGLEWsDDZXB2SEgUYDU8+KJJAzJ+Ip7IcNqf66eosZU6HVT7rrkD90qNpL2zZYauBHcoTxAMwsl7XiFvtUo91YxPgViza3Om1ZF51DM2ZYNW/mJfgWwNkqhwXMpwl9pzU6N6OcFxgKUAWqIokBKM3afxCQ=
+Received: from BYAPR04CA0035.namprd04.prod.outlook.com (2603:10b6:a03:40::48)
+ by MW4PR12MB6897.namprd12.prod.outlook.com (2603:10b6:303:20a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.22; Thu, 6 Jun
+ 2024 12:05:56 +0000
+Received: from SJ5PEPF000001CA.namprd05.prod.outlook.com
+ (2603:10b6:a03:40:cafe::d1) by BYAPR04CA0035.outlook.office365.com
+ (2603:10b6:a03:40::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.16 via Frontend
+ Transport; Thu, 6 Jun 2024 12:05:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF000001CA.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 12:05:56 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 6 Jun 2024 07:05:53 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>
+Subject: [PATCH] drm/amdgpu: Move SR-IOV check into
+ amdgpu_gfx_sysfs_compute_init
+Date: Thu, 6 Jun 2024 17:35:32 +0530
+Message-ID: <20240606120532.2499698-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 06 Jun 2024 13:01:46 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CA:EE_|MW4PR12MB6897:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4cd2ed1-1d2b-4598-1c99-08dc86210560
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230031|376005|36860700004|1800799015|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WHo5VnpaMHhSNSswUVUySHdFKzkzVDZPeHNaMXpkczhFbzQrYjlLRGxad2Ra?=
+ =?utf-8?B?RTcxRWpxc0F5SFJhNGRQY3dhelpsL0lrYlgxcm5uRkxBamtUMi9sQ0wxb2FH?=
+ =?utf-8?B?WXZSd1h2YjRQdjRNQ09UYWt0cHRueFRhMTRKNkp1SlorUUZJL2pyYm1VcDRh?=
+ =?utf-8?B?aHNVNGFRd0tRWHFScUZZMkJZbzZlOXpFVzZLbUJrL21UaWF1TVlQZzdmanRr?=
+ =?utf-8?B?eTJxeWlWQ0x5dXhLakljYkNqQjRYd3lXSEpkZzlrVUp4V0wyK0RTdDRJSVpM?=
+ =?utf-8?B?SnFPSDloOXMydmhLaGZVeDFXb3htTkdkNFNpaUEvV1hqMTBiS1hRSWIrWU16?=
+ =?utf-8?B?b0tjNFdxUGllaWpvdEFzZFNTNW02dW9MeThNYzZVNnhBRU9LeGEwb2lueHRC?=
+ =?utf-8?B?Wmx2VHJYaStCY2d0MkY2eGd4TWIrV2Q2Y3pRZjdOakFZRFZORE10K3F5cVY4?=
+ =?utf-8?B?QXRDSWFpZ21Tcm5YNFBPdldhVEorYzVjdTA3R2hUd1BFWDE5cUJ3RGlZdDFI?=
+ =?utf-8?B?YUczb0pzUjB5L29hZXNpNXZIOGVUUkUrcVNPZmdZVU1PZFlrVkdPY1dURmJu?=
+ =?utf-8?B?UkxpbnptRm1OUElwVDNncjMwc0wycGNTUUllSDBCd1AzekJscWU2Q2E0UlF6?=
+ =?utf-8?B?SzJ3Y0V0dHl2SHUzcktRWnI1aG1CbjdoeUpZRU5iQ0JWS2NaWTc4VUFyYlZZ?=
+ =?utf-8?B?VUNtczYwZlRnbHBLdGNFSFlTbEc3dERyYmpISFRtQjJTbHRlQXpiV2JKdmZS?=
+ =?utf-8?B?ZGh1MnZaL1piQXBUNUxneTlua09ZRXFTMnBGNU1QeDVwVGtzckhyaFAzMWpB?=
+ =?utf-8?B?N3BQY2xWanc5RUxhYU5JOFRUVUM3R09JL1g1TjdZWHluY0FUQ0RNaDRMZUI4?=
+ =?utf-8?B?TC9McWRxcjh5OVZtcGpjWHpTb2VtMEthQ3BHMmIxSmU2ckQ1YUNib2NDRHRU?=
+ =?utf-8?B?WHIzQUZyV1ZBcVFNakJwZElQT2tHTm5ydmFDTjhzTVZEV3B5ZUtXS3M3L2VI?=
+ =?utf-8?B?dVNTVHRMSEV5UXlqNHlBSFNKU1RzcjdpRmo1bWxqbGZLZ095Wk9CTVlrRnlv?=
+ =?utf-8?B?UEVZNUpkeEZuNnIzUGlEbTdYeXp3a05TR2ZqVmtPTTUxcWViR0lML09iemNF?=
+ =?utf-8?B?eEFDRXpsQWxwdUZtZ2Q5OVYvbFNwRmh0YzEwaUZmWjR3VHZMbWc5WEUrR05C?=
+ =?utf-8?B?YXhFNUZndSt2Y3Q3Skw0MEJ6OHN4WDAzVnRBVXNlRVpyWjFJWkxabTE5TEFT?=
+ =?utf-8?B?YzhBZmJGNEFRd1FaT1VlNUMwenBkYTBPTzRxdGE0L08rSnVJOS9pRDJCMWRi?=
+ =?utf-8?B?YlQ2UWl1ckgwMUg1dlJjUEo5WjBJU3VDV1NYQ2ttcXhJQWlHU3A3aFdDZytD?=
+ =?utf-8?B?emFKS3NZWW1oYklYRUlOenhMQXNTN0h3ZFBXMWNxYlp6SExUT2JJdnJtdGFt?=
+ =?utf-8?B?dnNPWmtPUFFXUURFdDRxWmFxcko0VFFUYTE5SGdiUEZzZFVMVW9LYUFiV3dG?=
+ =?utf-8?B?Y0JQdThiV3FJVk5pRmNnbkRiZmo3MllzZHgwejJ1SjZiZ01uQXYySlNpNWFC?=
+ =?utf-8?B?YXVhQXA5cjNpUzUxcVJGeXJsRkJEeTVZNVVPSGFYYmMvQ3MrQkt6a3ZSVDFw?=
+ =?utf-8?B?SjAySUo5Nk81VjBHU0I4RUlaZ0M0VTlZY0hPUjNQVm12TWNybEtrcTBEdHRG?=
+ =?utf-8?B?TEE0dU9IRDFVaFd1TG1OMk9rTEppWGVpc3hycmphY2IxKzRTZnc1bVlQQ1Jy?=
+ =?utf-8?B?cG11czRjMnJlMWF6Y0c4eDFIRWNpSnJnRDMxZVRQWWgyU3ZWN1NaampCZlpY?=
+ =?utf-8?B?UVpQb3FzZVF3YjN5Q1QyNmIraDlybGR2SVMzaG9JbzNuOFhJLy92dUpnajBz?=
+ =?utf-8?B?MjJoZXpZcEp6cTRGQy90OG9rNUtnV2ZaRFZCSm9JWTA0NkE9PQ==?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230031)(376005)(36860700004)(1800799015)(82310400017); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 12:05:56.0432 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4cd2ed1-1d2b-4598-1c99-08dc86210560
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CA.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6897
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +139,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No functional modification involved.
+Previously, this check was performed in the gfx_v9_4_3_sw_init function,
+and the amdgpu_gfx_sysfs_compute_init function was only called if the
+GPU was not a VF in SR-IOV mode. This is because the sysfs entries
+created by amdgpu_gfx_sysfs_compute_init are specific to compute
+partitions, which are only applicable on GFX9 and not on a VF in SR-IOV
+mode.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c:529 dcn32_auto_dpm_test_log() warn: inconsistent indenting.
+By moving the check into amdgpu_gfx_sysfs_compute_init, we make this
+function responsible for deciding whether or not to create the compute
+partition sysfs entries.
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=9294
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+This change improves the code organization and maintainability. If in
+the future the  conditions for creating the compute partition sysfs
+entries change, we  would only need to update the
+amdgpu_gfx_sysfs_compute_init function.
+
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  | 36 +++++++++----------
- 1 file changed, 17 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 24 +++++++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 11 +++++------
+ 3 files changed, 22 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-index ff5fdc7b1198..7300e793d506 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-@@ -525,25 +525,23 @@ static void dcn32_auto_dpm_test_log(
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 19b1817b55d7..72477a5aedca 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -1376,21 +1376,27 @@ static DEVICE_ATTR(current_compute_partition, 0644,
+ static DEVICE_ATTR(available_compute_partition, 0444,
+ 		   amdgpu_gfx_get_available_compute_partition, NULL);
  
- 	mall_ss_size_bytes = context->bw_ctx.bw.dcn.mall_ss_size_bytes;
+-int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
++int amdgpu_gfx_sysfs_compute_init(struct amdgpu_device *adev)
+ {
+ 	int r;
  
--    dispclk_khz_reg    = REG_READ(CLK1_CLK0_CURRENT_CNT); // DISPCLK
--    dppclk_khz_reg     = REG_READ(CLK1_CLK1_CURRENT_CNT); // DPPCLK
--    dprefclk_khz_reg   = REG_READ(CLK1_CLK2_CURRENT_CNT); // DPREFCLK
--    dcfclk_khz_reg     = REG_READ(CLK1_CLK3_CURRENT_CNT); // DCFCLK
--    dtbclk_khz_reg     = REG_READ(CLK1_CLK4_CURRENT_CNT); // DTBCLK
--    fclk_khz_reg       = REG_READ(CLK4_CLK0_CURRENT_CNT); // FCLK
--
--    // Overrides for these clocks in case there is no p_state change support
--    dramclk_khz_override = new_clocks->dramclk_khz;
--    fclk_khz_override = new_clocks->fclk_khz;
--
--    num_fclk_levels = clk_mgr->base.bw_params->clk_table.num_entries_per_clk.num_fclk_levels - 1;
--
--    if (!new_clocks->p_state_change_support) {
--	    dramclk_khz_override = clk_mgr->base.bw_params->max_memclk_mhz * 1000;
--    }
--    if (!new_clocks->fclk_p_state_change_support) {
--	    fclk_khz_override = clk_mgr->base.bw_params->clk_table.entries[num_fclk_levels].fclk_mhz * 1000;
--    }
-+	dispclk_khz_reg    = REG_READ(CLK1_CLK0_CURRENT_CNT); // DISPCLK
-+	dppclk_khz_reg     = REG_READ(CLK1_CLK1_CURRENT_CNT); // DPPCLK
-+	dprefclk_khz_reg   = REG_READ(CLK1_CLK2_CURRENT_CNT); // DPREFCLK
-+	dcfclk_khz_reg     = REG_READ(CLK1_CLK3_CURRENT_CNT); // DCFCLK
-+	dtbclk_khz_reg     = REG_READ(CLK1_CLK4_CURRENT_CNT); // DTBCLK
-+	fclk_khz_reg       = REG_READ(CLK4_CLK0_CURRENT_CNT); // FCLK
-+
-+	// Overrides for these clocks in case there is no p_state change support
-+	dramclk_khz_override = new_clocks->dramclk_khz;
-+	fclk_khz_override = new_clocks->fclk_khz;
-+
-+	num_fclk_levels = clk_mgr->base.bw_params->clk_table.num_entries_per_clk.num_fclk_levels - 1;
-+
-+	if (!new_clocks->p_state_change_support)
-+		dramclk_khz_override = clk_mgr->base.bw_params->max_memclk_mhz * 1000;
-+	if (!new_clocks->fclk_p_state_change_support)
-+		fclk_khz_override = clk_mgr->base.bw_params->clk_table.entries[num_fclk_levels].fclk_mhz * 1000;
+-	r = device_create_file(adev->dev, &dev_attr_current_compute_partition);
+-	if (r)
+-		return r;
++	if (!amdgpu_sriov_vf(adev)) {
++		r = device_create_file(adev->dev, &dev_attr_current_compute_partition);
++		if (r)
++			return r;
  
- 	////////////////////////////////////////////////////////////////////////////
- 	//	IMPORTANT: 	When adding more clocks to these logs, do NOT put a newline
+-	r = device_create_file(adev->dev, &dev_attr_available_compute_partition);
++		r = device_create_file(adev->dev, &dev_attr_available_compute_partition);
++		if (r)
++			return r;
++	}
+ 
+-	return r;
++	return 0;
+ }
+ 
+-void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
++void amdgpu_gfx_sysfs_compute_fini(struct amdgpu_device *adev)
+ {
+-	device_remove_file(adev->dev, &dev_attr_current_compute_partition);
+-	device_remove_file(adev->dev, &dev_attr_available_compute_partition);
++	if (!amdgpu_sriov_vf(adev)) {
++		device_remove_file(adev->dev, &dev_attr_current_compute_partition);
++		device_remove_file(adev->dev, &dev_attr_available_compute_partition);
++	}
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 6b0416777c5b..b65c459b3aa9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -533,8 +533,8 @@ int amdgpu_gfx_poison_consumption_handler(struct amdgpu_device *adev,
+ 						struct amdgpu_iv_entry *entry);
+ 
+ bool amdgpu_gfx_is_master_xcc(struct amdgpu_device *adev, int xcc_id);
+-int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev);
+-void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev);
++int amdgpu_gfx_sysfs_compute_init(struct amdgpu_device *adev);
++void amdgpu_gfx_sysfs_compute_fini(struct amdgpu_device *adev);
+ void amdgpu_gfx_ras_error_func(struct amdgpu_device *adev,
+ 		void *ras_error_status,
+ 		void (*func)(struct amdgpu_device *adev, void *ras_error_status,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index aecc2bcea145..07ce614ef282 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -939,11 +939,11 @@ static int gfx_v9_4_3_sw_init(void *handle)
+ 	if (r)
+ 		return r;
+ 
++	r = amdgpu_gfx_sysfs_compute_init(adev);
++	if (r)
++		return r;
+ 
+-	if (!amdgpu_sriov_vf(adev))
+-		r = amdgpu_gfx_sysfs_init(adev);
+-
+-	return r;
++	return 0;
+ }
+ 
+ static int gfx_v9_4_3_sw_fini(void *handle)
+@@ -964,8 +964,7 @@ static int gfx_v9_4_3_sw_fini(void *handle)
+ 	gfx_v9_4_3_mec_fini(adev);
+ 	amdgpu_bo_unref(&adev->gfx.rlc.clear_state_obj);
+ 	gfx_v9_4_3_free_microcode(adev);
+-	if (!amdgpu_sriov_vf(adev))
+-		amdgpu_gfx_sysfs_fini(adev);
++	amdgpu_gfx_sysfs_compute_fini(adev);
+ 
+ 	return 0;
+ }
 -- 
-2.20.1.7.g153144c
+2.34.1
 
