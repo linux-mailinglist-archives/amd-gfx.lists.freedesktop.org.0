@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25CF8FF71E
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F5A8FF71C
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A2810EAC8;
-	Thu,  6 Jun 2024 21:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF4510EABC;
+	Thu,  6 Jun 2024 21:57:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Xx/bwRuM";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QgsmUHSV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2042.outbound.protection.outlook.com [40.107.237.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7DF310EAC1
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2062.outbound.protection.outlook.com [40.107.92.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 627E110EABC
  for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:56:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CyMbiXvfu4P/aqx2rCCULsvDX1UpKWII56QBhrkxxucLkWrzNdl5uCmrQzI2Y6+Okrd8R0Y+OiIgd6HD/A+MGhgbuExNAAum4fKPb9GgntR6txe4pgvelQpDAT0V7p9iRaqEflsEbiJCxISW1+1diLKx7WN5JmkVswHHHmah41B6J2lYtlPIW+3WA2iAGjy1uUPBCY4fCupfAbcfBIxboPNclS8OpMDvpEnhDOz8rHRS4WZiqqGpCcf1VjDg/x0FisXBts5rJPH/LaVFEsHPrgs9HFi0vi1N9Ntz7piglwwSfyD7GPed43x9SIDGSLpoenBMxUPjjG+3DDdJqPPTQg==
+ b=fxFHvoD3eDvy6IQTi5u9ugGD9OzYb+1z+fQ+B+JcuK94GL72USoWQKGzKneWBbJqCS+FOgF/yIEg/4elKkNfvUWXcp4C6kPSmYjNORlkgIfT4eNmgb+Vc7PL0roXSsng5BI8eakk4JyORh0MomWOrvtmO3/FSc1+fHeYDaXuEpVZS0f9/xhwD0BpieG95Xv0AieLfoI+dQ5kWKB3AQrZpHi7gjdLiN2b7ZacO0EzjXOP0Yxb+CDbsFuhtL67abJxQUpAOk7go3a2a/Vb2yoq5C83eDExUDWUSRJN5A3SkN+H6kXEn3TjeeHZdBPNe6fjinTHpGyOuLnKlRLdW9XFcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0pW7hhQRq5tDxpsA3R+cmolHjBMvp+zU8OHzvgTZbLw=;
- b=OeI6GFBLKKZzsM1kz/oFrJ9Kcyjf8h8NLp7Fs7rzYFnbAHjYLFA9xoed/VblQRvdPX99J7kYwU4lsGVPjWZtAK2sezzoihfHy/MIpwPpTQFkpJQ4NABUVwJi719MDULFTuG2lT1na5ZqrMIuMJro/Bu4PPPcYDXxdjyBB5hCQbL6bDyjWhNLkI2nrbWblFqGA4B1NBvLKMrH5objb4dGZ6mNlLLCAdIjXsjfvCK/nn7Sv0ICQIQi9OlOWeL1T1/mfLpnBhARhXtnAnTVXJdEdzrwNzFHnSsoc3xg+qqHVGeb4Ll4lPmxBaWI28pnokIAAEW+uIca7h4p6unwsI7GOQ==
+ bh=BVcr0MVV2RRLpAi+PS6r9UBy4axNBoGv8L4w+XnziEo=;
+ b=VRsf+wJt8KPxEuS5pfXWLKod1oXSMHRo55LpuJzd+FtoxQuq7vneOgFAHoBN+Y3UqzntDOB2KCQP3JVjgSY73x5Ftyi9iPBknK8JQnYxB0G7FnQ1DluO8CP6IJI4LnlWN4BhelhvpRHmfHHzbbR0vNU1ABpouoiE5++1Zh3MCZEuvgTrcLmwWRjOhFNxo4qhXCaaFBgfpZfvKvFlYQ/aAWwm4DCbBZ4zWB7V+O1UIZ18JQT6VOeOhyV/96QHLP0/vEWCrz3SeIkgice/CaEOJaiQE6+LRpVfWY48U4N1ZyTpSecgT0br+URqUb0fpv2tGT6vjE2oeaSzqHDRWMxeYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0pW7hhQRq5tDxpsA3R+cmolHjBMvp+zU8OHzvgTZbLw=;
- b=Xx/bwRuMgLSZ+P1ZVykiUbibk46mot51g4rOwHghMetsCu4kp9CiuTakNEA+gS74Lhzow4r0ZuDhkjS49YT600j24WKMYmxJqK/aKAK+POv7P7HFjab/Up6M6bTkWtk/dGRVM+7d9FjyBGzwv1PzzFsK+OPPW3VgyBP6jo6jxxg=
-Received: from MN2PR20CA0042.namprd20.prod.outlook.com (2603:10b6:208:235::11)
- by PH7PR12MB8428.namprd12.prod.outlook.com (2603:10b6:510:243::17)
+ bh=BVcr0MVV2RRLpAi+PS6r9UBy4axNBoGv8L4w+XnziEo=;
+ b=QgsmUHSVNA1n40RLzdTI/wBmz4M1u3Otkh296EtdDck4ZJiYRb1CFnwlH+3AnT2QD6Sy/S6RthX6F8NzVmFUxF7yCZuJa9FLXpidY6xur/WYv7FjvXimu8brLR71YAfmVkpkaRgypve785iyejXJ1fssR5Uv48kDiAOVDapPtA4=
+Received: from MN2PR20CA0065.namprd20.prod.outlook.com (2603:10b6:208:235::34)
+ by SJ2PR12MB7865.namprd12.prod.outlook.com (2603:10b6:a03:4cc::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.24; Thu, 6 Jun
- 2024 21:56:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Thu, 6 Jun
+ 2024 21:56:56 +0000
 Received: from BL6PEPF0001AB56.namprd02.prod.outlook.com
- (2603:10b6:208:235:cafe::79) by MN2PR20CA0042.outlook.office365.com
- (2603:10b6:208:235::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.16 via Frontend
- Transport; Thu, 6 Jun 2024 21:56:55 +0000
+ (2603:10b6:208:235:cafe::76) by MN2PR20CA0065.outlook.office365.com
+ (2603:10b6:208:235::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.18 via Frontend
+ Transport; Thu, 6 Jun 2024 21:56:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,16 +54,17 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:56:53 -0500
+ 2024 16:56:54 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, ChunTao Tso <ChunTao.Tso@amd.com>
-Subject: [PATCH 02/67] drm/amd/display: Replay low hz
-Date: Thu, 6 Jun 2024 17:55:27 -0400
-Message-ID: <20240606215632.4061204-3-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Leon Huang <Leon.Huang1@amd.com>, Rodrigo Siqueira
+ <RodrigoSiqueira@amd.com>
+Subject: [PATCH 03/67] drm/amd/display: Expand supported Replay residency mode
+Date: Thu, 6 Jun 2024 17:55:28 -0400
+Message-ID: <20240606215632.4061204-4-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
 References: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
@@ -75,50 +76,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|PH7PR12MB8428:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c55a529-1b75-4dbe-95a1-08dc86739481
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|SJ2PR12MB7865:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6a2c5d7-3fcf-48fb-050a-08dc86739513
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|36860700004|1800799015|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?G+sEWK9q7/WICjRCR6EKVJTMDmSkOTOU16GxDDyRUAufxT4gRpooKgOJU42J?=
- =?us-ascii?Q?OFLVHoFqZUW1DJ8oqGSsw8xaqelWirF0ZVP6xnkLfhX7tpIgXx9fnfuUOO03?=
- =?us-ascii?Q?ubo4de/ZIAiWNQbbBgQtTrpB9SaqfYrb5HKVfmACJvJh8ZBvyI7PYV3VZxee?=
- =?us-ascii?Q?YmmYfgCd+E+ZTmfZFN9Z48pKNOy3Mwq/sndrAUE71FtgNW6s6yZpJ/MjJYJ6?=
- =?us-ascii?Q?Xpd/bFbIzmjLmhFKjqP+IqpmycsXojlJzfgMlokbkWltUFCSHO/WJPwZDK29?=
- =?us-ascii?Q?upKbbbxoaHVq4YfMGO8swoFFkGKdzSJgUFZ1/ejlBbB1d1PaFbVigsM5py3y?=
- =?us-ascii?Q?ZzLP3r1TFsyUdC+ItR6N1d7HjBzGgPvSawzYCWq9o71niXI8l1SSOO1juluY?=
- =?us-ascii?Q?HEeH7HO6xEpa/KSAI0aUHlM4TqQViBR1CYECmLtMSHjmLRwxgPuqNFPHlyjP?=
- =?us-ascii?Q?uyAw+NNNwNpOfDriXy1gHVqkY7lxcvzRwGzrsTwpcQwyr5WOny8A0CNRBCIT?=
- =?us-ascii?Q?9LLqwOmfmmUxtFEzCryM/LKXaODsU8H/hWan8cr+6oc5eJdlrNHbNbNSCg/C?=
- =?us-ascii?Q?N9TFg4Ldbk7SisrewQVskMBJsMVVwjsqBi+tPyHpk4SialsMvzlMPQ2oIJlr?=
- =?us-ascii?Q?+P3t0BrQfRG7DvVdCgikd/o0PiBWb/vX0JV2w9ZxA94H+EOGX2W6SCu8iYi5?=
- =?us-ascii?Q?qZg1ddKHZzKuNzJwVu2LBjFNl91xKR9fJkysvSuAz+8amFIN4qtmJU7dUnCy?=
- =?us-ascii?Q?eHDUBtPKceRxO/Gn05SaDusJ8VWJUBx3qqM6s8h/tMwwCrPBiXKdPHhj4cua?=
- =?us-ascii?Q?pyvuqyVSaHPdCgV6CwlPf+dIzckooiO3AyITMZMkjThK6Mbh376IScX8ex8n?=
- =?us-ascii?Q?2MfgNsa+u58M+vPEz7wGXn4ljmXe963oeB7G/8cHXCFT+mQyPpI0j8OddsmF?=
- =?us-ascii?Q?2+liPO01j9OLDNjW+MhAyVfrYuCxrFcQ/VL0nbOwi+kCCTy0MbsnBxNEicvP?=
- =?us-ascii?Q?PgQ7mVxI/A4LYqBwn841iMB0x625wRLtTJ2tWN4t9Tzmy21UwiwL2nuM8ChR?=
- =?us-ascii?Q?fW7Ii1mzIZXOPPDsF7aARUmERaTphSQ2LkW0RkchenqsI27sC46JldmdtLgD?=
- =?us-ascii?Q?A1yEFblRFwvkBhW5GpRM3CnWXAhRHymNrhJQYtGp3+oeg0H/6JVEV1a2+z3m?=
- =?us-ascii?Q?mw/A9lrUqSUUtLg293EhLD/qOR4W/UBjZtBCPkZkjQARq7I6jzcjYrpTUh1D?=
- =?us-ascii?Q?MH3inkeEOwtsSPrS+vTt4Dz5TwqijqTE/cSZ7ch4w2KmM5X/ua+/5D93++RC?=
- =?us-ascii?Q?Tw0lLXWLoo2WR7MHV2j/zkygjsch+4HlURFTq1tCorvM5QPcJu8Q7G8ttTCR?=
- =?us-ascii?Q?mlC4DbeA101qiAqOQMCMhf8GOUpWQ7Z3mpAEypJCyVhuJ6Iy/Q=3D=3D?=
+ ARA:13230031|1800799015|376005|36860700004|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OIPHOxPppXQXwx6QX8v3PdL7m7wcwDvR5IsG0IskcIn8c90YQRFKIowH3LJp?=
+ =?us-ascii?Q?UGpkr+iki9nvUnRkqds/bG/6MyHz9vkJUK0lu8qeiVadFBMAIHguNfuKOZ+j?=
+ =?us-ascii?Q?j7kXIpuV6a0Js7zA88qlf4RyyrEvrxzYMd57KP7MXC2hLmnES308sPtXSTnn?=
+ =?us-ascii?Q?ghN4KKEJpE7ENEXKLKOIQb//WyYbmD6jcH2Dz2+4S033Bcy9UhGtn/AySeSs?=
+ =?us-ascii?Q?fedm0K9rUF/HSXNZdW1UWpLbUK9pT88sl5Pyfr8buQQfpMigy3kVyBPI8xT3?=
+ =?us-ascii?Q?GnCokjqdPoFszoG7d4GVT2B816Pu6hN5qcJX2ZnimbcVo0vHXxx6CWI1sCUJ?=
+ =?us-ascii?Q?h2jA90nbxwwoAZEz0/slAYM8+Ew5MfHot9p+undpHq4XzAJKPITvlhrr87nx?=
+ =?us-ascii?Q?3WSPYOVZFIHe6mS6GRlLlkW/KXqQu5kgd55Fo1a+y4i5Zwi/vw9DyDv3xHic?=
+ =?us-ascii?Q?K/uhR6dApJPV2EZQp12mrKUZI2js30/WkDl1bCHhSEWUWsP8jVahRQFbfBRh?=
+ =?us-ascii?Q?3sVTghyuPpe8GpZ2hbQBJdTCMkNyRErStAuYncbQgNv5ngSsQ2GSRYt5H1K8?=
+ =?us-ascii?Q?TUarUCXteZTfx0ucxG0DCGdsilyGxJp+htFKx3WAdWJwt08pEy8cHQlGeZlH?=
+ =?us-ascii?Q?Cy1ttKRYW1W0GxQ1DeDj+FvQA0LRoFTGGT2CSih1w6oj4XoOqgycjq4aRBYP?=
+ =?us-ascii?Q?4bAFBB5+EeYeY+s9QvdE0tQNjg8oqHOM3rg5BI7BnFngxQ1IlzObusdidtQi?=
+ =?us-ascii?Q?M/F5isl7ypdIq5aJ/ADSXto/8r9rPOhF4BLBq3m8ByiQDQgPqYfrYVVhNrLj?=
+ =?us-ascii?Q?o3FkskVQheb0QlVx8+KCdHonkRnh9aUPUATrfxyKpHCHkJ0Sn05uw75U8avr?=
+ =?us-ascii?Q?CdFBpevq6DPS7RKglPyHzu6dwdtbu9DUCjnkR3ZkOyGW6CxVBsQGzrbxYMcu?=
+ =?us-ascii?Q?yffiuKWUre4aFuju6U+cOm6sXNHM+xmbv4L6GGbB/yoqWqOP0+vQL8G8duRV?=
+ =?us-ascii?Q?H00x0EJSBMf/6hDnqk+lvCADUTDSbQIurnck1GJxvlDm3uE8HI4SDj8RsPhP?=
+ =?us-ascii?Q?/qAyRyH2BfdVwHr6M70tYNPLvnV5Ok+9vW6AFOhQl8xDfkRlSTjkd9gtl1Ns?=
+ =?us-ascii?Q?OMEmh8DLbtmXPVfHRtvmSXttE665XUL7JK5hgIGM5HRrqVFDx86b1RJy85si?=
+ =?us-ascii?Q?OpIysvxtNpj/Y0NQxLVHntwOIoLRvtpKKe2kgAuVZG713A/gIkin0DNG05eH?=
+ =?us-ascii?Q?bfXpKMfnGQ67sY/gJOxBUIbpNtcfEwvNCk1Md9Tv5fZ5BbkCCVXjkxPmT7Ua?=
+ =?us-ascii?Q?+CSkK3bV8wLBd4QDGAFPyM8tqFBZeV3KeH9ssPF6ZHUwDw1H5fwP7OKybZae?=
+ =?us-ascii?Q?hTNtMyAH0S7HOI7IJVCasZj7g2jCkVISwihpyRNtHj51wn1ZUg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(376005)(36860700004)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:56:55.0024 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c55a529-1b75-4dbe-95a1-08dc86739481
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:56:55.9399 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6a2c5d7-3fcf-48fb-050a-08dc86739513
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB56.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8428
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7865
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,124 +134,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: ChunTao Tso <ChunTao.Tso@amd.com>
+From: Leon Huang <Leon.Huang1@amd.com>
 
 [Why]
-The original coasting vtotal is 2 bytes, and it need to be amended to 4
-bytes because low hz case.
+Dmub provides several Replay residency calculation methods, but current
+interface only supports either ALPM or PHY mode
 
 [How]
-Amend coasting vtotal from 2 bytes to 4 bytes.
+Modify the interface for supporting different types of Replay residency
+calculation.
 
-Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: ChunTao Tso <ChunTao.Tso@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo Siqueira@amd.com>
+Signed-off-by: Leon Huang <Leon.Huang1@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dce/dmub_replay.c  | 34 +++++++++++--------
- .../gpu/drm/amd/display/dc/dce/dmub_replay.h  |  4 +--
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  8 +++++
- 3 files changed, 30 insertions(+), 16 deletions(-)
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.c  | 32 ++++++++++++++-----
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.h  |  2 +-
+ 2 files changed, 25 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-index b9769181269d..fd91445d4d8e 100644
+index fd91445d4d8e..be27ab7ef2da 100644
 --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
 +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-@@ -216,17 +216,21 @@ static bool dmub_replay_copy_settings(struct dmub_replay *dmub,
-  * Set coasting vtotal.
+@@ -239,23 +239,39 @@ static void dmub_replay_set_coasting_vtotal(struct dmub_replay *dmub,
+  * Get Replay residency from firmware.
   */
- static void dmub_replay_set_coasting_vtotal(struct dmub_replay *dmub,
--		uint16_t coasting_vtotal,
-+		uint32_t coasting_vtotal,
- 		uint8_t panel_inst)
+ static void dmub_replay_residency(struct dmub_replay *dmub, uint8_t panel_inst,
+-	uint32_t *residency, const bool is_start, const bool is_alpm)
++	uint32_t *residency, const bool is_start, enum pr_residency_mode mode)
  {
- 	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = dmub->ctx;
-+	struct dmub_rb_cmd_replay_set_coasting_vtotal *pCmd = NULL;
-+
-+	pCmd = &(cmd.replay_set_coasting_vtotal);
+-	struct dmub_srv *srv = dmub->ctx->dmub_srv->dmub;
+ 	uint16_t param = (uint16_t)(panel_inst << 8);
  
- 	memset(&cmd, 0, sizeof(cmd));
--	cmd.replay_set_coasting_vtotal.header.type = DMUB_CMD__REPLAY;
--	cmd.replay_set_coasting_vtotal.header.sub_type = DMUB_CMD__REPLAY_SET_COASTING_VTOTAL;
--	cmd.replay_set_coasting_vtotal.header.payload_bytes = sizeof(struct dmub_cmd_replay_set_coasting_vtotal_data);
--	cmd.replay_set_coasting_vtotal.replay_set_coasting_vtotal_data.coasting_vtotal = coasting_vtotal;
-+	pCmd->header.type = DMUB_CMD__REPLAY;
-+	pCmd->header.sub_type = DMUB_CMD__REPLAY_SET_COASTING_VTOTAL;
-+	pCmd->header.payload_bytes = sizeof(struct dmub_cmd_replay_set_coasting_vtotal_data);
-+	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal = (coasting_vtotal & 0xFFFF);
-+	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal_high = (coasting_vtotal & 0xFFFF0000) >> 16;
+-	if (is_alpm)
++	switch (mode) {
++	case PR_RESIDENCY_MODE_PHY:
++		param |= REPLAY_RESIDENCY_FIELD_MODE_PHY;
++		break;
++	case PR_RESIDENCY_MODE_ALPM:
+ 		param |= REPLAY_RESIDENCY_FIELD_MODE_ALPM;
++		break;
++	case PR_RESIDENCY_MODE_IPS2:
++		param |= REPLAY_RESIDENCY_REVISION_1;
++		param |= REPLAY_RESIDENCY_FIELD_MODE2_IPS;
++		break;
++	case PR_RESIDENCY_MODE_FRAME_CNT:
++		param |= REPLAY_RESIDENCY_REVISION_1;
++		param |= REPLAY_RESIDENCY_FIELD_MODE2_FRAME_CNT;
++		break;
++	case PR_RESIDENCY_MODE_ENABLEMENT_PERIOD:
++		param |= REPLAY_RESIDENCY_REVISION_1;
++		param |= REPLAY_RESIDENCY_FIELD_MODE2_EN_PERIOD;
++		break;
++	default:
++		break;
++	}
  
- 	dc_wake_and_execute_dmub_cmd(dc, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
+ 	if (is_start)
+ 		param |= REPLAY_RESIDENCY_ENABLE;
+ 
+ 	// Send gpint command and wait for ack
+-	dmub_srv_send_gpint_command(srv, DMUB_GPINT__REPLAY_RESIDENCY, param, 30);
+-
+-	if (!is_start)
+-		dmub_srv_get_gpint_response(srv, residency);
+-	else
++	if (!dc_wake_and_execute_gpint(dmub->ctx, DMUB_GPINT__REPLAY_RESIDENCY, param,
++				       residency, DM_DMUB_WAIT_TYPE_WAIT_WITH_REPLY))
+ 		*residency = 0;
  }
-@@ -259,20 +263,22 @@ static void dmub_replay_residency(struct dmub_replay *dmub, uint8_t panel_inst,
-  * Set REPLAY power optimization flags and coasting vtotal.
-  */
- static void dmub_replay_set_power_opt_and_coasting_vtotal(struct dmub_replay *dmub,
--		unsigned int power_opt, uint8_t panel_inst, uint16_t coasting_vtotal)
-+		unsigned int power_opt, uint8_t panel_inst, uint32_t coasting_vtotal)
- {
- 	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = dmub->ctx;
-+	struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal *pCmd = NULL;
-+
-+	pCmd = &(cmd.replay_set_power_opt_and_coasting_vtotal);
  
- 	memset(&cmd, 0, sizeof(cmd));
--	cmd.replay_set_power_opt_and_coasting_vtotal.header.type = DMUB_CMD__REPLAY;
--	cmd.replay_set_power_opt_and_coasting_vtotal.header.sub_type =
--		DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL;
--	cmd.replay_set_power_opt_and_coasting_vtotal.header.payload_bytes =
--		sizeof(struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal);
--	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_power_opt_data.power_opt = power_opt;
--	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_power_opt_data.panel_inst = panel_inst;
--	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_coasting_vtotal_data.coasting_vtotal = coasting_vtotal;
-+	pCmd->header.type = DMUB_CMD__REPLAY;
-+	pCmd->header.sub_type = DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL;
-+	pCmd->header.payload_bytes = sizeof(struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal);
-+	pCmd->replay_set_power_opt_data.power_opt = power_opt;
-+	pCmd->replay_set_power_opt_data.panel_inst = panel_inst;
-+	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal = (coasting_vtotal & 0xFFFF);
-+	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal_high = (coasting_vtotal & 0xFFFF0000) >> 16;
- 
- 	dc_wake_and_execute_dmub_cmd(dc, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
- }
 diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
-index 3613aff994d7..d090ec900c08 100644
+index d090ec900c08..63bbb1bb0ad5 100644
 --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
 +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
-@@ -47,12 +47,12 @@ struct dmub_replay_funcs {
- 		uint8_t panel_inst);
- 	void (*replay_send_cmd)(struct dmub_replay *dmub,
- 		enum replay_FW_Message_type msg, union dmub_replay_cmd_set *cmd_element);
--	void (*replay_set_coasting_vtotal)(struct dmub_replay *dmub, uint16_t coasting_vtotal,
-+	void (*replay_set_coasting_vtotal)(struct dmub_replay *dmub, uint32_t coasting_vtotal,
+@@ -50,7 +50,7 @@ struct dmub_replay_funcs {
+ 	void (*replay_set_coasting_vtotal)(struct dmub_replay *dmub, uint32_t coasting_vtotal,
  		uint8_t panel_inst);
  	void (*replay_residency)(struct dmub_replay *dmub,
- 		uint8_t panel_inst, uint32_t *residency, const bool is_start, const bool is_alpm);
+-		uint8_t panel_inst, uint32_t *residency, const bool is_start, const bool is_alpm);
++		uint8_t panel_inst, uint32_t *residency, const bool is_start, const enum pr_residency_mode mode);
  	void (*replay_set_power_opt_and_coasting_vtotal)(struct dmub_replay *dmub,
--		unsigned int power_opt, uint8_t panel_inst, uint16_t coasting_vtotal);
-+		unsigned int power_opt, uint8_t panel_inst, uint32_t coasting_vtotal);
+ 		unsigned int power_opt, uint8_t panel_inst, uint32_t coasting_vtotal);
  };
- 
- struct dmub_replay *dmub_replay_create(struct dc_context *ctx);
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 36c15ae43616..fe529b67369e 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -3004,6 +3004,14 @@ struct dmub_cmd_update_dirty_rect_data {
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-+	/**
-+	 * 16-bit value dicated by driver that indicates the coasting vtotal high byte part.
-+	 */
-+	uint16_t coasting_vtotal_high;
-+	/**
-+	 * Explicit padding to 4 byte boundary.
-+	 */
-+	uint8_t pad[2];
- };
- 
- /**
 -- 
 2.34.1
 
