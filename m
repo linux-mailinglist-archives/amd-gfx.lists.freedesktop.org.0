@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A368FF747
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D26428FF74B
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5F310EAEF;
-	Thu,  6 Jun 2024 21:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 050C910EAF5;
+	Thu,  6 Jun 2024 21:58:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zVvFNAmy";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="m7IxceSF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2076.outbound.protection.outlook.com [40.107.244.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9B3B10EB03
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:58:01 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D95A10EAF1
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:58:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kouQ8NPVUPzRYicbaGWy3Qdlv+YkA7beJCMEO2stXGiVsJzRTBZWnCFgg/pTmxZJaE0Gu/LASazTQIraFulqdfdNZcRhJpYTxJtmixhNY9VAv0TgyY7womciuLrk01pYzwPIsGMLidZIkc5q3JOmdiL9YsZ8QFMt/OIM1+FFrqvuCdB7AXiEoQQiphdEfQqwf7yJZ1WNOyETnf5WJxmaGkkN+8gKyGyFaDEjgpVnxP7FsU0TN/esgTPKnfc2BtVA7bDeN9nhfKrZuGaDwUZ/IWv4Bpy0MndcjH395cuQgiOr3izYp9MXPPzoy2YCxs/IVhyr0jW+JoZ5btQ5ruRChQ==
+ b=WzZ8FUe0fl+F9Q4nSsrH9aZrrMNXGYR5wPiNqzfeenKzZgxPLrMqsVBeoMYHnFJlrmG5aLQGyOPw/fvnkyok7QmuxMou02W56kJMhPVTIuhWcr4OyRgGRS5XYLDgTTQ18qPm0icYBr47J8Y4/RMTDNBE9TbFeaTc1EsFYskKQFAgKPoVASRd8CshWUAQefEGjJ4DNY1rEKkXM+9cMh4oHhhk23hbI4ZMW1U+yzDC1S8q30XimqbtmMRo/meNwKTzezRZgCuIhTwk4EJdQPT1O/FIFetmBA+u7eiUQhalDQ3d26svMKkWk/CmIuFDk23M0MteF5DKB0Y/vFXof+EC2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RLGlGGaMzMVcMN6t7IJSU0+xKb34YngdKrzbTSEkshk=;
- b=D3+H73qBWmLbfhfJdSbxydo0CXDbIPYWa/LNRRPi6YIoL92J61eO/RQQQk7wG47qCZUvDz6P4bkXyjr87TDtUsdQmUeC1HdY6wPBmxa20LM+oVo44weX1F0F0XQ3HA/VC+fz1NjzctfhMtz+wvYmaGgHDDK8VwjY8yqFHOj5kcZzuPuWca7JGSXJeEb0jQWGRgxLBY+257OjMpzn/x6GbgB0X5722izB+r1XgcdIMIBwvWKAcgSziOXvs0i8Id2/CXswibeG/7Ao20Obu1KdFvX7SFTbG3b066hDop5a8N2OJtOSJyY06wi0sgda6L18zVpINz8235RpRMLdFnoK7A==
+ bh=8irxpssh6eK9CZw9Zf72f+DXswQCNldCvQNX67npwvc=;
+ b=G1v9NG7crkrqs8EfklUUVFzDuAriKpcod/k3SdsFmTGx+/22S5RnAYCcb0bX2e1yFdSf8bVcLT5z+Rrvsn2/dit8M79A98wsV51+G/a7HQ55QS13HWZ6XVspzAr6/PWx3XC7VYTpeBeHEob1jHQde4K15u4KTHYkQgPfLKOvIw23vQgzpU9JU2ErcFZ8dB0mT8wLPbH6ZFvm+70LYgtM1eYrT+g/PcrsnXW/PWAFM1WRlYoONtNC2sVoHfwDVT4+GUKSl3GAhstZ03KvPr5lZ3xp4OeLsNcLRv/N7Sx0KjIGfNmKu2VF0M6D9tGI7RDSqWhLRmee5dNpCoR8tv++1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RLGlGGaMzMVcMN6t7IJSU0+xKb34YngdKrzbTSEkshk=;
- b=zVvFNAmyV8blwMuqVow56HEBZWPdabN7tXhU6PZCt+Ed4CfbvzsP9zjMgTO5rV+R4NKucjw3ivvqGu8KYJDJiMkHS8FFo2TStJTgK0TfZ2el2jWR8FnPDaKRUbsQKazh3SeBDIeypQzmpTjEpQeke9swH8VGvai/qrf9RBpaLIU=
-Received: from MN2PR15CA0052.namprd15.prod.outlook.com (2603:10b6:208:237::21)
- by PH7PR12MB8180.namprd12.prod.outlook.com (2603:10b6:510:2b6::7)
+ bh=8irxpssh6eK9CZw9Zf72f+DXswQCNldCvQNX67npwvc=;
+ b=m7IxceSFUpKFD4TY9ZIdv7nKNx1aP3tw5xsaD1hgBEjHDVHjePqLmXN+Ri/LVVuw1t+PW05RRjOcykWfI2cuqrjkHBe0ARgo7BhYQh/HDtbzduIroF6Ylu9uypfOybwKzpgF76abAgN2K3R8UeXSQ8EiCCefGVnPBW2PAhrnVhU=
+Received: from MN2PR15CA0048.namprd15.prod.outlook.com (2603:10b6:208:237::17)
+ by MW4PR12MB8609.namprd12.prod.outlook.com (2603:10b6:303:1e2::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.24; Thu, 6 Jun
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
  2024 21:57:59 +0000
 Received: from BL6PEPF0001AB55.namprd02.prod.outlook.com
- (2603:10b6:208:237:cafe::1f) by MN2PR15CA0052.outlook.office365.com
- (2603:10b6:208:237::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.21 via Frontend
- Transport; Thu, 6 Jun 2024 21:57:58 +0000
+ (2603:10b6:208:237:cafe::80) by MN2PR15CA0048.outlook.office365.com
+ (2603:10b6:208:237::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.20 via Frontend
+ Transport; Thu, 6 Jun 2024 21:57:59 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL6PEPF0001AB55.mail.protection.outlook.com (10.167.241.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:58 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:59 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:57:57 -0500
+ 2024 16:57:58 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -62,10 +62,10 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
  <jerry.zuo@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Dillon Varone
  <dillon.varone@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 43/67] drm/amd/display: remove dpp pipes on failure to update
- pipe params
-Date: Thu, 6 Jun 2024 17:56:08 -0400
-Message-ID: <20240606215632.4061204-44-zaeem.mohamed@amd.com>
+Subject: [PATCH 44/67] drm/amd/display: remove ODM combine before bandwidth
+ validation
+Date: Thu, 6 Jun 2024 17:56:09 -0400
+Message-ID: <20240606215632.4061204-45-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
 References: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
@@ -77,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB55:EE_|PH7PR12MB8180:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c681992-a99a-410a-d610-08dc8673ba69
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB55:EE_|MW4PR12MB8609:EE_
+X-MS-Office365-Filtering-Correlation-Id: 868c88ea-ac46-44ce-bc31-08dc8673baf1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|36860700004|1800799015|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yxcNLfWtorPBkKfQ312oPK6VuKiOipQRn4e6gmZ1d42Ep5GiY6xDkb6FB8wH?=
- =?us-ascii?Q?2gF9VST8GmMLJx0HVaiHaLWnvjSsOpA2EpwFQpbwrkBwpBidhsLx1R5vw8Es?=
- =?us-ascii?Q?sAggs5e/rlbpRMj/QzvjiNd0yUHAFAbNlgmcSpUeMhGXzcKcWrXjXuqRVhUK?=
- =?us-ascii?Q?ZxhXYaT82oxD4OskMIQl83prfyTHv1IW8OAt3S1vm2Gmz2Sqso0tHRGJzsn/?=
- =?us-ascii?Q?xdqzAfDZ//vfkaa+8hD2ZdUEtHqHpi1qDAZilo3lqHA2YStpPZ4JIhiaGF1N?=
- =?us-ascii?Q?sS1rUXwmbTOfXmuXDFpsikiwn7ds9Knds999YKfxE8bv7yuuqrkof7u+5yvC?=
- =?us-ascii?Q?KCRTIbwpJ00nMjVOQ/UY1mKipcEKLq+xVGnnNwufbGF09CH11hwPf4Ixedh9?=
- =?us-ascii?Q?fndTGz1q1jkch94uSAz94L7FF0pQct28Hf5LP31QtBxRawqSq2F4m3gO7oD5?=
- =?us-ascii?Q?LBOb2ZwxE4US9xBKKbJmxD4a0Ks8pIVAzX8OAnHbznr6MwQ0KQ7g2YfYQO4P?=
- =?us-ascii?Q?qniN0l7+Be//LyHqm9AGYIWPkOzrbbQMQfYVeBZqVD/7SKL1PsN7gV/Cfp+Q?=
- =?us-ascii?Q?yMYuMMRgXydOCy95q+bpmc0syBP2SmTvVJEmSFB3Yeqyf6WuveGQ0QJtvTIh?=
- =?us-ascii?Q?Tuk20juXpFFWnNpWaO9jSh6MXRc7hB8x30IzbE40bsjsGT/8aQ0EIEtZrPaf?=
- =?us-ascii?Q?WhZ9a+tu0SQNtZmNvGPTBjuK83oLWAbzMyaZ1TPmzp2JDVNl6bS5PW0YYg/F?=
- =?us-ascii?Q?OSRrVJlS5Bqdea44Z8idAmY4TMPZsn+ZpFEd4oxb9kF50ioB2GksDQexrFJt?=
- =?us-ascii?Q?s/r1fVT3xPn+Smu3hd88jEtczg6Qn7giyhXu+9YckV8ahzHV/ii5KpIFGaH3?=
- =?us-ascii?Q?5Z5ku8UmxDH9HD8OEUblEJgrilCb7O+sbXv7Jrh2/5WWgqo0/iJ+Q5jOWQ6Q?=
- =?us-ascii?Q?CEz6frf4m0fF3nU+3d3TNpIxunJ0GiH/H5IG18axZrB2Wk4Dszmkc6WiuG/l?=
- =?us-ascii?Q?fxWz5BtgOg15g7LvBG0Va2pE6977JtObwgIF4NgESQpTGUqtHcOcE+WwOcdi?=
- =?us-ascii?Q?QGxjUpra9Wuqo0cxFl0+Lfc1gFjH7mz9FrQEyDBjYvH8BBZje8WVcdihcUSS?=
- =?us-ascii?Q?1j+oGRvwqhBeg1VaQO6KfFm6ljAN+rZkQW+ylHX9fIrLmnXPx1YZxyl9+XHx?=
- =?us-ascii?Q?OisftdbPpEpLU9atMFShy7Ol8rh43Deb1wXT/rl5mQKdcbl0VLcOb/0oUM90?=
- =?us-ascii?Q?E4lNGdYg0jtfGmQWS5JXOS/GQtiOFtHIQLDK0Tl67g7XXoJ7mxIZtWasNvtf?=
- =?us-ascii?Q?rPyDvc6rwNlSsKl3BZd/CNZ5zaWGuOpiqyZQE1tNGwPCiyVKB6FVbjH/SnLt?=
- =?us-ascii?Q?hXigfrLVeEJWdT7/RRxWIiCBEoyscm9H6XlO8ZGkrrwuifg1dQ=3D=3D?=
+ ARA:13230031|1800799015|36860700004|376005|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?apVa3wo8BW3OHLOjQIh+xkzEI1ycyakPurAJ4aY4aCFVWB9Q/gTDAS4Gdo1C?=
+ =?us-ascii?Q?JdrmQEqQp7BEqbQC0EWENfsFXRZpi9fHSoi9yj2F4uaE88GF1l4y4ysFJ4KG?=
+ =?us-ascii?Q?ukj0a1T3QMBkG1xzepcAxVDniTG6FCm/7FcSUYzR+Mqd5idfIh1E5MaFZTKw?=
+ =?us-ascii?Q?aiqM2oc0+uHMwBTg/viaJDIW4+mya38LCTzZC+OjWFDGh0MlclyPlvMoeGJd?=
+ =?us-ascii?Q?xQo7+L1+ygbmCRpl+sVWdnVXG0Sr/XRZznDelJJ026tHLX0JkUDFh4IP2RZl?=
+ =?us-ascii?Q?OOMTQpz3S+S53kNaKpfchRNb+JZ87pCvyI5F//IX3Vupp2FUdwvkaKpJktat?=
+ =?us-ascii?Q?VaAcqn8Epj22Xkp2Lwf0U/DsiU8O6XoUP98YLcAUu6fLkV4z9kwaT4Nqrr4s?=
+ =?us-ascii?Q?0EvmaW+2/99qLlOmXprhKq1nxddFmhxhdmGkjGoGcnr74ClS3KLgJHI9A9ul?=
+ =?us-ascii?Q?v/IOuO4HaHgNkWlGEFC0A7/hVLVCSBny1E/p8NAb7eZeDqPLuIggfhy3lvJr?=
+ =?us-ascii?Q?NYwmBdyM1PeshuMvNVGYTFXSBOIUPaH1VHAJMcbrd/+nd2046PI7dtQ/JB//?=
+ =?us-ascii?Q?LqRM6pYZ78tA3GyanlH9tdZrw8H4IgA7ZzU92MVYZqgQy8NSyFqi960PZWLv?=
+ =?us-ascii?Q?7iGjivjBhhllGqXW1p2MKaP/SmYlLN4SrpKiTPqQGI4oNcqeFMyqqFzo5d2S?=
+ =?us-ascii?Q?zR70D7uNEqWSzrTY6nyIWvA6YAlvZvxecGu3mXn8QJQYi1zY7jGvQsrzZABf?=
+ =?us-ascii?Q?kLZf3uJ4plO6z+u4zcrsqE0mjmaUjUdflQ17XymjcPVKxhoww40G7/6zRWs+?=
+ =?us-ascii?Q?2diKy+kB7MRGRNNGEPb9tb8PcTxPvEPWZMGA86ZGo8RpLjjuz8z174wttc03?=
+ =?us-ascii?Q?zRp6wcuW8JO39Bm6imgHwoXNdUetRVq/+k9+/qTUbGs1g8bt1/ex+diRUsiq?=
+ =?us-ascii?Q?O2/xUYl/PQSY9njAV56ZvFkZN4NkIuwTJGKHNorV4iFnpz58WpKGghT0IYLc?=
+ =?us-ascii?Q?ZNVuYGLgJWufhSee7JO2U7jdg8vYHuyF06aTxI33ggPXICwLuDqPbCYlU+YP?=
+ =?us-ascii?Q?yCsliHxW3hMuQ6vh2lNyfswV2sIykkn4fExJGjl6RXQgEsDgky0MjeztquA6?=
+ =?us-ascii?Q?XcEl65U95mlp1rU3F7XXsos0BZDNpRnOZdes2TJ2ZizEuEXvJp89rDuvryWc?=
+ =?us-ascii?Q?/xaDm3c253goJdliE7PdV7lT0HXef5MAw8Keml/5NgYdn+6WpXvPlvwJg9F+?=
+ =?us-ascii?Q?UAfhhdyq1D/Lj1QDxurv/rVk7vPd3w6Gm7DCOrnyiywWubS0e7lWo8zMuMM6?=
+ =?us-ascii?Q?rgmJz6IVIiRQd5mbipEFsrZyJpr9cVZbRDnYXW5cIflBeSdzR4rddJ4FRI7j?=
+ =?us-ascii?Q?x6RUAZ6dtgSViEV2g9vxea8V20ZcIB8z8aq5OxZkWNKZ7Fkujg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(376005)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:58.5845 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c681992-a99a-410a-d610-08dc8673ba69
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:59.4908 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 868c88ea-ac46-44ce-bc31-08dc8673baf1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB55.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8180
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB8609
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,56 +138,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [why]
-There are cases where update pipe params could fail but dpp pipes are already
-added to the state. In this case, we should remove dpp pipes so dc state is
-restored back. If it is not restored, dc state is corrupted after calling this
-function, so if we call the same interface with the corrupted state again, we
-may end up programming pipe topology based on a corrupted dc state.
+DML1 validation code doesn't have the ability to remove ODM combine.
+It will directly translate currently used ODM combine config into ODM
+override. If ODM combine is used in the initial state it will only
+validate the timing if ODM is used. This is not correct for dynamic ODM u
+se case, as ODM is used as an optimization not a hard requirement.
+
+[how]
+Remove ODM combine in the initial state before bandwidth validation so
+DML will not translate it into ODM override in the initial bandwidth
+validation.
 
 Reviewed-by: Dillon Varone <dillon.varone@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 6d4d4c95243f..7894d3e52a27 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -2789,6 +2789,7 @@ bool resource_append_dpp_pipes_for_plane_composition(
- 		struct dc_plane_state *plane_state)
- {
- 	bool success;
-+
- 	if (otg_master_pipe->plane_state == NULL)
- 		success = add_plane_to_opp_head_pipes(otg_master_pipe,
- 				plane_state, new_ctx);
-@@ -2796,10 +2797,15 @@ bool resource_append_dpp_pipes_for_plane_composition(
- 		success = acquire_secondary_dpp_pipes_and_add_plane(
- 				otg_master_pipe, plane_state, new_ctx,
- 				cur_ctx, pool);
--	if (success)
-+	if (success) {
- 		/* when appending a plane mpc slice count changes from 0 to 1 */
- 		success = update_pipe_params_after_mpc_slice_count_change(
- 				plane_state, new_ctx, pool);
-+		if (!success)
-+			resource_remove_dpp_pipes_for_plane_composition(new_ctx,
-+					pool, plane_state);
-+	}
-+
- 	return success;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 194422dd979d..5ef10e2b9443 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -2154,6 +2154,8 @@ bool dcn32_internal_validate_bw(struct dc *dc,
  
-@@ -2809,6 +2815,7 @@ void resource_remove_dpp_pipes_for_plane_composition(
- 		const struct dc_plane_state *plane_state)
- {
- 	int i;
-+
- 	for (i = pool->pipe_count - 1; i >= 0; i--) {
- 		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
+ 	dc->res_pool->funcs->update_soc_for_wm_a(dc, context);
  
++	for (i = 0; i < context->stream_count; i++)
++		resource_update_pipes_for_stream_with_slice_count(context, dc->current_state, dc->res_pool, context->streams[i], 1);
+ 	pipe_cnt = dc->res_pool->funcs->populate_dml_pipes(dc, context, pipes, fast_validate);
+ 
+ 	if (!pipe_cnt) {
 -- 
 2.34.1
 
