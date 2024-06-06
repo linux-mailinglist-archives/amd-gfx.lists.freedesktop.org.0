@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F9C18FF64C
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F7E8FF64D
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:02:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF72D10EAAB;
-	Thu,  6 Jun 2024 21:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1399C10EAA9;
+	Thu,  6 Jun 2024 21:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="TZg70fEC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ALWMIH27";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2616510EAA9
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:02:27 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2079.outbound.protection.outlook.com [40.107.93.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A41DE10EAA9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:02:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IHAbxbwQefUJMt+JgqwtXx/vD5Q0MCbu0QqILMllGSpcu0J6mGah7yJIFMn2adDgkhlZhJec1GbY75kxFxQlCxXGIjSN+dJnbBR7260J8FrFAHPzd0poU7PU2/M7uTwMLNeW1u1xa4ymRTdZS5KkhCiaBYU7DSiIV/23uttZCdUj5578MDVlavuaVqdyGHcw7WZz6SpNVl852+KPQTBU49kQ3OTYyaEvJgVGvWxSCGYavaH/6e/3xicVwb4bTjYkY4gca1XXHelRQiGACUCrkSvUhSD//x6raxPt8RbDFYw24qD5rAolTIB7iZ01aXzokMkKYO5vjbb6XGUcGZ5lgQ==
+ b=WR6r43hxca78nSfUg2ZjcBnXe8yh0vA59maLS6fQMSlQwNb1RT/0wxQcYfoHD6ahPPXooN9JXbfCU5F2bb+wBVPJrpM+hSqN/DoZev3vm3MvXfELYNrXJZTrSJV/MqCKac/mqlgGH5QoULD5hmB/VaB4rnWNSXRAoz6e2S1QkdcWFuxpyFHv80SQo3bH/jko07boQ+EW12B/5XREZUNR+ZphnIe3fUyK30ohykyyEaGqGwfhApHE7yxF78jtmZr/AmqBrlEwrh4JXSsjHzGqxiCJrAUDR5PbIAsgeHSG8YbfsaVnc6mcszQuWD+wmRhbFGJtq8wOVP22xtxhvGslfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ajAesSoQFC/OSnoimllLVsX+mMKiYMq0ZCF1nzSPBEo=;
- b=mMa6oHgLDNnBGoSbpQVWrw/1LudjjTrSUXZAozUUsua4au2gmInBtD6vJhYcDpFA2ASeOm6hQffUTaIDbyRS24O5/Yk+Tnmqo0+8UOifCiV44+ijh3Qq2jP6KKffkUPrAx2ABiydiVu2JXGqyGa0+ptqajdIGab1owWByuDA1L835c1vaYzq/zQAXKSgNhTr1wHlBuy8vQN/PIflkqEH9kPnNcU3HPVlvZmvcB5yiQO4+6dCinjKwo1BaClJVawDefyqEqMAbELeBvRFUr97b13ric6G96UgAf9myeL+IddwYVas1KcRnevaaZloOw0fF61i2bqcuraOtEKFj0nasA==
+ bh=vpXPlP5uxQvBmhMKKaxnlFAZ49LaKCyGJIcSzIDtAX4=;
+ b=ckVPdoo4ZnOcd4g9SVzT8E0z2V+hwidtFtODe9d0ttVkpxKq72KXzcjpeNf0nEZg9EcFxXXHcFPUJjIwMCjF7jyBBdQ4Z+8Bq0gW65jQgWlFN9eOD0FeZRpXNgnpFw0SnyFbQKG5MYbDmBWXuzCBz8/qiIHR3rDlOfbP3nBV74xKvL907laeqb6V0zj+ifG2FweBQhYqWcFV+/FuzZ0TyTGuuPAVTPdqfYdZn0tE+ghT2V4/sjiIDC9jDfNKGpPfzNkNXWNCbNmRiuCBvhbmXJvCtJYWb1oKa7UV+Sr6KhDNmw9U9twqA73ENqohBWuRLlflVsRnQ1qa3nvYxQKX2A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ajAesSoQFC/OSnoimllLVsX+mMKiYMq0ZCF1nzSPBEo=;
- b=TZg70fECyjCQMnvUvZ8wo+aYFRc+jS8nmHzYAXctIyM3Vd4X9ImVWURVdxHgCUTNjlLuJ6jQ2Xp4MFyARPt5y4/0J3TLwQ69kctaJbZdswo5/q4iKCpV3+OpIjoIxdaFFrE/KNDoVSeGkdOzm5/8yTG1za+XjHQf+AAhFHV0mCE=
-Received: from SA9PR13CA0022.namprd13.prod.outlook.com (2603:10b6:806:21::27)
- by SJ2PR12MB8160.namprd12.prod.outlook.com (2603:10b6:a03:4af::8)
+ bh=vpXPlP5uxQvBmhMKKaxnlFAZ49LaKCyGJIcSzIDtAX4=;
+ b=ALWMIH27RKbHeaZX4/yFxWNJQyAC+M/mZFskPbuvh8X6jdZ2Zt/niJ/oJ8YGNqHo39OT53tVHovOfKwtwSv5+BBhevjhwFfOKT3VblbTK9Q7nkWalOEGHtAAh5E8YgA/wN7YwM9vgvxRj2raYMPyJPZhkpddlSSzqdQqujBzp0Q=
+Received: from SA9PR13CA0023.namprd13.prod.outlook.com (2603:10b6:806:21::28)
+ by SJ0PR12MB7034.namprd12.prod.outlook.com (2603:10b6:a03:449::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
- 2024 21:02:22 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Thu, 6 Jun
+ 2024 21:02:23 +0000
 Received: from SA2PEPF00001504.namprd04.prod.outlook.com
- (2603:10b6:806:21:cafe::fe) by SA9PR13CA0022.outlook.office365.com
- (2603:10b6:806:21::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.7 via Frontend
- Transport; Thu, 6 Jun 2024 21:02:21 +0000
+ (2603:10b6:806:21:cafe::e3) by SA9PR13CA0023.outlook.office365.com
+ (2603:10b6:806:21::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.12 via Frontend
+ Transport; Thu, 6 Jun 2024 21:02:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,22 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SA2PEPF00001504.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:02:21 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:02:23 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:02:14 -0500
+ 2024 16:02:15 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Michael Strauss <michael.strauss@amd.com>, Wenjing Liu
- <wenjing.liu@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 17/67] drm/amd/display: Update FIXED_VS retimer training
- pattern delay
-Date: Thu, 6 Jun 2024 16:58:38 -0400
-Message-ID: <20240606205928.4050859-18-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Michael Strauss <michael.strauss@amd.com>, George Shen
+ <george.shen@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Zaeem Mohamed
+ <zaeem.mohamed@amd.com>
+Subject: [PATCH 18/67] drm/amd/display: Add fallback defaults for invalid
+ LTTPR DPCD caps
+Date: Thu, 6 Jun 2024 16:58:39 -0400
+Message-ID: <20240606205928.4050859-19-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606205928.4050859-1-zaeem.mohamed@amd.com>
 References: <20240606205928.4050859-1-zaeem.mohamed@amd.com>
@@ -77,50 +78,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|SJ2PR12MB8160:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee2dfe65-e04b-441f-ef40-08dc866bf575
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|SJ0PR12MB7034:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67f39776-47d6-4215-bb9a-08dc866bf685
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|36860700004|376005|82310400017|1800799015; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vmBtDH/qpc8QXHthHWXt7Ej8U6jkrKBhtfp2OR3fgUsius4173tKY+UdENlw?=
- =?us-ascii?Q?oFYgGseUNpWsWWg0VDH5iIV1NioAazbYOeNgrFLXrKkbk4P86KhKr2QW3pBN?=
- =?us-ascii?Q?+cATveAdH1ZYF0J59nvM1kF0E6zwkV88wIygQUqdyGVaBLuPjR0PFGPwKhbK?=
- =?us-ascii?Q?LAwXL/NgQrEyqEiczgkbnBI/40YVmFgQjyj8LV+vGkJYDxeB/NiZjGYa7zgb?=
- =?us-ascii?Q?mPA3p7Fs5IOEU9rCsYQwDtrPfzGaOUs3654j0YEhTjYxMf1TZGpGq5nD7tGR?=
- =?us-ascii?Q?O4z8l1ktjw71kSBlL9fxxWyo2TwILGzlINIXAWCt4ZjkoFekk0DvRHWl0Tji?=
- =?us-ascii?Q?nKbuN40zvAkscW6eP46YHhgJ5v6hi3j52vgt6RMJjrKJ7nJxqRtem81wwQvp?=
- =?us-ascii?Q?hf8oP3Yu4WQqoyzD0CIxZonCT+DhKbrn+1eEXl4aGXWkwErvLIhbDBzS4Mu6?=
- =?us-ascii?Q?CNJueti8oqwxwUmgeFI8hUH+OcP7LvewB4ggsi18B6oZsVx+wKXmK5U95IdU?=
- =?us-ascii?Q?26I1oT9OruMZMe9TMCMOuebywqaUOGTkLJNgVKjm+FNimdYAsI0oHCcGnbyA?=
- =?us-ascii?Q?fcPdTdGH1CbVNpe8p+RPYvrkAPtvXcZFZBxOY99T6Htf64TXXIGDtxvK9l2M?=
- =?us-ascii?Q?0+bMq+sR/LoTly0ZhVNBggpK4JjFH9DhLZN7lUjkb3PBORzJWiklFl3WBQ6y?=
- =?us-ascii?Q?tgToDwDUX9u4rSvw9ZAZtOeRAhLtpk1h8DXqIzol3KU3yeHqjtdT+MQxlBpl?=
- =?us-ascii?Q?+SiBidHITsX0eLlgV924usgJ77gxGbUxN6zf2mjLpn6DLa/kDDAgEVPqdRDr?=
- =?us-ascii?Q?RE4xyZt5eo84iQZWwVGFeuq9KBx2bAIMWqkGqDPpwsxZPGXWoXygLeVWXzB7?=
- =?us-ascii?Q?IhNe6aXv7y0Sa3P/XSuYskgBqnRR47qkLh+GOKnVKUq6N0tBng6Nzd6PAltS?=
- =?us-ascii?Q?6GQ7MQDMPyP5H4AhKEbW2PbET5jmIQ5XCBfdHoXH/m1h/xgQ5pB1v5gnrBu8?=
- =?us-ascii?Q?P3DAxcCkM35sVEwsTBxvvqpZQSFtr/RROp927XVSvjikAPLaMuGLj8n3MtYd?=
- =?us-ascii?Q?Os7kqrxwfDQiIUqU07nZvMnznxvNzy217c5JTzU330rtew9Hol3SSoTVKrSc?=
- =?us-ascii?Q?0bJbJMNnQMTnLnDQW2LhSfIXGroF2Wd8AWfzn3reHNrWdjgLWoMa3KTv4Vmq?=
- =?us-ascii?Q?nRDy3tac8pMgodl7DNeWn1aVIYQls+EtpZ0SWjWp6gR9xeN7G9ZHjw3gxJ0F?=
- =?us-ascii?Q?MLSbDnRCmJL00abeesLpC+NSix7bIcuIaFY2FbommYO8AB6Lq/EKlY141c+b?=
- =?us-ascii?Q?32uc4hOcIEesTyl3y97E2Av4rfVW0owIUlIK5a+zGe6rZIcCsy7Y5+h4ZKIj?=
- =?us-ascii?Q?DDinDfNSUYEyaa7KgPfR/apjPNa44rw8UBmF9EROfiAQ96YGPA=3D=3D?=
+ ARA:13230031|376005|36860700004|1800799015|82310400017; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+r/WmCxhrcmLGTH5ie72uYrIyP9nKfmH6TSfjmjV5g5SBEXJglDiJrE6/Xhb?=
+ =?us-ascii?Q?98dr4Z8k3tajkf1teDpVEOpfVsX/dshvz1KlTkU/ZVU7BIYptJJ1VTUA70BZ?=
+ =?us-ascii?Q?N/bLMYqeIuSObcxnwF4D3Bc4jUIazuEPPSeWKFf6YcVjj6oXOSou5A6yae4u?=
+ =?us-ascii?Q?B+HhQ5+N1ZaeYrhnfJA/IC533h7eDNOr94vnbS8ybDJiz3rRDdu2l4D3cBJy?=
+ =?us-ascii?Q?l2WMbu0YbnNZ+/luBbJ/R8nDEkSucjIh+Wahp+f6H/h8YHa//0DuYkTomguA?=
+ =?us-ascii?Q?0dhPhTIjhhMCiMDbJ1Fv6oj6iiOaZE03jKNt/zwpBOSPmYwMBFqWQ9IhNLFN?=
+ =?us-ascii?Q?SRFz/Dp0RzTvfy2w+TGJ0lbtlAAt6FCvsljo2OyRYqgDp5US0sZK68URJ9U+?=
+ =?us-ascii?Q?5/xBZDKplqhZZhgCZJ64bH+GGaStUNRfBkbHY4J61h6SXGBefEOX71mlTGzv?=
+ =?us-ascii?Q?E8rjmPfYDTidkcJ8lDCncpPvl0oDaDezlJfn0OPd54xeLLxINyMEAUSN1EFp?=
+ =?us-ascii?Q?R8q/HnAGDcETR2YqdYRbVCfMwcuwQNX49fV58tbkp1TPAYGNyGmS7JLc+NhM?=
+ =?us-ascii?Q?nPb3UBitRjV/d3Hm+OltLoUXfLXc81/Gb+/SwhQ2t+gSbA0T8i5iZthZ3T7A?=
+ =?us-ascii?Q?OCYUXgQSwiI7ii18boBmZnobKCOU1p3sRgQ6YqMuTTcMJy4VB0APtDgMZLfC?=
+ =?us-ascii?Q?sy+dbkl/Dk8dowexAoAKMb5bFMPrkmaLFIDZc3jzbZ++Kv1TfyHhlRbJ3DkT?=
+ =?us-ascii?Q?qK2ttZq4EmbtrcJDH5Cd3RUICRtZ3/fcvT6UsjHC6ISFJ4jdMuKAjGDL10Ph?=
+ =?us-ascii?Q?oTbzOT/2Mah7/SgH/cDQxQ0cpg4ZNj1s02/sxacuDaXIU5AJM7bQqj9+YjFh?=
+ =?us-ascii?Q?JQDcpodjOapaOIPiJqcUmU3HLmarCO3dEGSOPTwuybXZcDMuuWN+kswY3qqs?=
+ =?us-ascii?Q?mEvs3FG2go2c4tF/ldOHTynmKw1oRdpXvLWUlgQhABHSWPjN/NppfBLpf0bE?=
+ =?us-ascii?Q?FohJZS6zpTA9oNB0Uu/bNyTztpvvyvsAb+wf+yQFe2e49vxZz+b4pMwP6qGx?=
+ =?us-ascii?Q?PsHnYhiRYpA6EnIQwLKu7MagJ9kmctUNNoG3jBbw3sUNIeYfOPilNoZT6Ewy?=
+ =?us-ascii?Q?TJqlEnzoLdqrvd2z2JjQ+QY9gh7P2q4mCpPOY7tSM6QWBf+fjTHmYvtVV79W?=
+ =?us-ascii?Q?eya/qxkKTFwk9I8YkI3I88tT/0/F+7/DF5t2+Rx4radK7MTkhueiK1II3pFA?=
+ =?us-ascii?Q?sl/ZNp0S7pLFlZYTwzLOdwXWGFb4ZZ5RKCeX94KYTgl8XadeYCVZkbaCUh93?=
+ =?us-ascii?Q?M2HqeoWgQJRb82RmOAzwj381/YeQczGEEdvesN1K0AlkdwcPIf3rjzBkr0Ej?=
+ =?us-ascii?Q?NTa3UfU0E472+Q5x0VXSf0WHHVzYC9s6BZG/tph9bfo2XmnCNw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(82310400017)(1800799015); DIR:OUT;
+ SFS:(13230031)(376005)(36860700004)(1800799015)(82310400017); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:02:21.6756 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee2dfe65-e04b-441f-ef40-08dc866bf575
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:02:23.4568 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67f39776-47d6-4215-bb9a-08dc866bf685
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001504.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8160
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7034
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,34 +139,60 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Michael Strauss <michael.strauss@amd.com>
 
 [WHY]
-Needed for PHY patterns as well to perform electrical compliance.
-Also need to increase wait time from 30ms to 50ms to resolve very
-intermittent UHBR20 link training failures.
+Some sinks are observed to return invalid LTTPR revision and/or invalid
+LTTPR link rate capabilities.
 
+[HOW]
+Assume any LTTPR which reports invalid max link rate supports HBR3.
+Don't validate LTTPR DPCD revision in dp_is_lttpr_present check.
+
+Reviewed-by: George Shen <george.shen@amd.com>
 Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 Signed-off-by: Michael Strauss <michael.strauss@amd.com>
 ---
- .../dc/link/hwss/link_hwss_hpo_fixed_vs_pe_retimer_dp.c     | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../dc/link/protocols/link_dp_capability.c    | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_hpo_fixed_vs_pe_retimer_dp.c b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_hpo_fixed_vs_pe_retimer_dp.c
-index 5302d2c9c760..116ff37126e7 100644
---- a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_hpo_fixed_vs_pe_retimer_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_hpo_fixed_vs_pe_retimer_dp.c
-@@ -168,9 +168,9 @@ static void set_hpo_fixed_vs_pe_retimer_dp_link_test_pattern(struct dc_link *lin
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+index 964abccebdc6..1ff9876e3ca3 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+@@ -363,10 +363,10 @@ bool dp_is_128b_132b_signal(struct pipe_ctx *pipe_ctx)
  
- 	link->dc->link_srv->dp_trace_source_sequence(link, DPCD_SOURCE_SEQ_AFTER_SET_SOURCE_PATTERN);
- 
--	// Give retimer extra time to lock before updating DP_TRAINING_PATTERN_SET to TPS1
--	if (tp_params->dp_phy_pattern == DP_TEST_PATTERN_128b_132b_TPS1_TRAINING_MODE)
--		msleep(30);
-+	// Give retimer extra time to lock before updating DP_TRAINING_PATTERN_SET to TPS1 or phy pattern
-+	if (tp_params->dp_phy_pattern != DP_TEST_PATTERN_128b_132b_TPS2_TRAINING_MODE)
-+		msleep(50);
+ bool dp_is_lttpr_present(struct dc_link *link)
+ {
++	/* Some sink devices report invalid LTTPR revision, so don't validate against that cap */
+ 	return (dp_parse_lttpr_repeater_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt) != 0 &&
+ 			link->dpcd_caps.lttpr_caps.max_lane_count > 0 &&
+-			link->dpcd_caps.lttpr_caps.max_lane_count <= 4 &&
+-			link->dpcd_caps.lttpr_caps.revision.raw >= 0x14);
++			link->dpcd_caps.lttpr_caps.max_lane_count <= 4);
  }
  
- static void set_hpo_fixed_vs_pe_retimer_dp_lane_settings(struct dc_link *link,
+ /* in DP compliance test, DPR-120 may have
+@@ -399,7 +399,20 @@ static enum dc_link_rate get_link_rate_from_max_link_bw(
+ 
+ static enum dc_link_rate get_lttpr_max_link_rate(struct dc_link *link)
+ {
+-	enum dc_link_rate lttpr_max_link_rate = link->dpcd_caps.lttpr_caps.max_link_rate;
++
++	enum dc_link_rate lttpr_max_link_rate = LINK_RATE_UNKNOWN;
++
++	switch (link->dpcd_caps.lttpr_caps.max_link_rate) {
++	case LINK_RATE_LOW:
++	case LINK_RATE_HIGH:
++	case LINK_RATE_HIGH2:
++	case LINK_RATE_HIGH3:
++		lttpr_max_link_rate = link->dpcd_caps.lttpr_caps.max_link_rate;
++		break;
++	default:
++		// Assume all LTTPRs support up to HBR3 to improve misbehaving sink interop
++		lttpr_max_link_rate = LINK_RATE_HIGH3;
++	}
+ 
+ 	if (link->dpcd_caps.lttpr_caps.supported_128b_132b_rates.bits.UHBR20)
+ 		lttpr_max_link_rate = LINK_RATE_UHBR20;
 -- 
 2.34.1
 
