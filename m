@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B552F8FF732
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53E28FF730
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108E410EADE;
-	Thu,  6 Jun 2024 21:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CADD10EADB;
+	Thu,  6 Jun 2024 21:57:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NN1ZWJJ4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="u/SJhSp7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C43F10EADD
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:57:27 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CFAE10EADB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:57:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QLFLkwkN6ehZc61FWK/IIiYVvTSeW/PnPsXBPHAvspYJZDHCMd/0ixPVE4mInr+GVZVK1vOLbCkWCwcI59Lsi4L2BlHdKs2HawHRzK+RbOUBoEhcR05erkEKfH35pNDb9FtWAKYp94uFLNA14hLnMLgEUUxeJPl7KTceKqb8yWFWqwATBClh8VFbzyjUVScB0zPzVaM8icYcwtZuk5UdK+EFOxziGuWntrf25UJ+TzL/Q4Z8O4VAxF7CnZullHiLjFtdIVdpJBVIIqtYwbUyt8Sl9zNiBROxdqqUy4DCnWRCtUNm4fjIebOxPDEnh5gr1mlFnOIy4+wKFaVdMG8w5A==
+ b=IlEOl779Lf8FCgyodB/ISEGP/FTEeIbTI9RCxJp0r4jOvN1R/273FiapX/Eg86c1nYcN9jhedgjWuA15WNV3T+8NarxYqEob+jqYp8NDOYMI8u//5lOKxzeVTSsTqacOIbY/gxiF3ysTyF9PsGEKbDcjm+8+ScIKcpJy7/uKtXRIUsfodkM2iL6URm2Ty6hRS0GvwcgthN/YrPFXKsbKSnjzqgRYZU8fcSi6YBW8nVJoJ6dpID0C0c2JYHxQT3Y+0YK1p1TznjJUpuieKuSm4KZ9kCybBrRFmBcKIhSnoJQ7DHp/WaVLDkihYD4q7l0g6WccDAv6wYGZHTgvDZFuVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DRdIDBRb2SZfo2m0/ZfQJTIWZpNayzBy1HeQ273R85c=;
- b=V/qVvyTzWnnWncVEstPKPKsGyds2Q4bGLcmNMY6/QSCJ/fyN/KKTLEEfn++f2IkXlw+iu2aoZ8niMMcSp3275drIkbHsORYQ4Dn2Iw9KkglHoY5w0opyoRKTX1+7RSj/pCpInZmpKJgzRXWmGl+3W40oPuQu9Binf59wGFaWeFiTCLumJp6qFOKVOQTlNw3U2gF8ajDkuP2fXgW1jdetldbEKqPSIcfskgP3MoUi5Zle0oQLVIIPbT47/35ZIwxMrfcaKzem1q5PLU/q9onMn5FXo3itQu908IEI5om+nRT6VONfrJSOoL+N9sOcROgDJ8xvTnj3QVzDT14EV07MzQ==
+ bh=Sow5IFMZMNby5XTLVRjKFwTLK6JaQ7vsVvU39CGbjfs=;
+ b=CoL1e1bslAvEDwTRX2phHm33aQech5CuB1ysMwWsjDNZfqPwSgRb/d0GHIwbhq3UFU89V4QH1sLInnuvtcBHTb6TS7oFfBMGX66JHDxpPlOS8wXDvc6NU1K2fYJoa7ws8QebcDJwzJP9TeGmWJXXf7GT9rR04RRYlj/FP60cPP5Rj3eDZySGa0srS2ACmE5hH/pNOqD4x3ZAoSs7DpNzsVMf4cT4k6wlwGgJYKCGwWGnOqks9WRyB8S0PaoeM3PB/4DMOcQUVoxSCVDsqg8GRtn6Y0hQaL7mXD8Y7J3bNO2rsPV/OX9WpQBtL8pLU3S8JRj+pkFSQooGE2e1yvBO9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DRdIDBRb2SZfo2m0/ZfQJTIWZpNayzBy1HeQ273R85c=;
- b=NN1ZWJJ45JQTvDslp4hsKpPHhUZHfoneA59pg0EtHD5HRGWZu5jVcsTdbjCdy+4h0qXpY2QMQqsCEomKgyvMle+bWM7E3ZXx5HEfaRo1V+ZJm0RryBJul1tg8WQqJKpdBM82JGod+JbgdNsvVPrB3fy/DoD6Xh/dhF7pNMTrpX4=
-Received: from MN2PR15CA0063.namprd15.prod.outlook.com (2603:10b6:208:237::32)
- by PH8PR12MB7304.namprd12.prod.outlook.com (2603:10b6:510:217::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Thu, 6 Jun
- 2024 21:57:18 +0000
-Received: from BL6PEPF0001AB55.namprd02.prod.outlook.com
- (2603:10b6:208:237:cafe::ca) by MN2PR15CA0063.outlook.office365.com
- (2603:10b6:208:237::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.20 via Frontend
- Transport; Thu, 6 Jun 2024 21:57:18 +0000
+ bh=Sow5IFMZMNby5XTLVRjKFwTLK6JaQ7vsVvU39CGbjfs=;
+ b=u/SJhSp7NQblAN+/gX2wD0Pf+QW4arzWrQUviOIaE7YqKoL+b5NFs6PR+HYWuG04jG3aO8ZYYTfFJKLKM0FO2NBclGo9280Ci4q5KaXpizOhD31aYMQBlpr4K1Hv1/jIHVYp3DWfTGapFB4TdJhJ1v5wUW2WpBx6rx2IHra4464=
+Received: from BLAPR03CA0008.namprd03.prod.outlook.com (2603:10b6:208:32b::13)
+ by DM6PR12MB4154.namprd12.prod.outlook.com (2603:10b6:5:21d::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
+ 2024 21:57:19 +0000
+Received: from BL6PEPF0001AB58.namprd02.prod.outlook.com
+ (2603:10b6:208:32b:cafe::b9) by BLAPR03CA0008.outlook.office365.com
+ (2603:10b6:208:32b::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31 via Frontend
+ Transport; Thu, 6 Jun 2024 21:57:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,23 +48,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB55.mail.protection.outlook.com (10.167.241.7) with Microsoft
+ BL6PEPF0001AB58.mail.protection.outlook.com (10.167.241.10) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:18 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:19 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:57:16 -0500
+ 2024 16:57:17 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Dillon Varone
- <dillon.varone@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 19/67] drm/amd/display: Ignore phantom DTBCLK requirement
-Date: Thu, 6 Jun 2024 17:55:44 -0400
-Message-ID: <20240606215632.4061204-20-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, "Sung
+ joon Kim" <sungjoon.kim@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
+Subject: [PATCH 20/67] drm/amd/display: Add sequential ONO sequencing for DCN35
+Date: Thu, 6 Jun 2024 17:55:45 -0400
+Message-ID: <20240606215632.4061204-21-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
 References: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
@@ -76,50 +76,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB55:EE_|PH8PR12MB7304:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4615b51-a416-49f0-ef30-08dc8673a251
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB58:EE_|DM6PR12MB4154:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f5b64f7-c9c5-4e4a-d9d2-08dc8673a332
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|376005|1800799015|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hS95TxtPx99L2Q8CCB7bkm+pPbVioT3KIaL0GzS7ueBUQh/VTsBQ0F1K3CYu?=
- =?us-ascii?Q?anT9jbZhvCg4BAP0Pb/ghtQsPqde17M87VxZZEqelyXpDySeYRCZS6WZ5f1o?=
- =?us-ascii?Q?KTJxD8lE9ZTt39CK0GSD5cn+RD6Omxew5Cr5BxKfsjw5A95h4zZCmcBraJgF?=
- =?us-ascii?Q?cIz18e3nJMBnYf7E+BCK5m0mIr8i9vTaxeKbO58StU/czYhHl+fxVh5ZNnfi?=
- =?us-ascii?Q?cn5CE34Stuj+KWqECrFQUDYmZf1ZUWAnW9Gjx4W1vDyLTXAa6bY6pSml7T/i?=
- =?us-ascii?Q?ZBqERNEtsXaSMN5lu7e0/x/1WYorQSLrl71vn83cHSqPGxq8dn9uHESfsmXx?=
- =?us-ascii?Q?22yQNamvGaI0fUlPULCsPj4fd1y+32X3U7dg1Jk0ud9iIAi7cendQrMTUJrI?=
- =?us-ascii?Q?ci8ujodDF9Z9sY0BsWZkHnJZuz8uFWF+mBBtz/6GFdUGZZtnnt6idvEypZYA?=
- =?us-ascii?Q?9T0bpR+e21eyZyBDyyBszoIbiK+J9E4wK8gGMAJFreQV4o14DS9V8sk413F8?=
- =?us-ascii?Q?49vOnUx29GnBINiEdLx6zblSXr+1m8u7GJB8caNrT4lGNyWK8FX3MaqbfpWl?=
- =?us-ascii?Q?6DeN6Uwcw+RwfIdIWagRFckizRo6i4Cfq5gt9Q0J0md78KjWR1kVjo4Chtmd?=
- =?us-ascii?Q?rU7n6OWFxXKWsUNvKVFeQACmPpRvRzlyzP/6WFqx2sTql1FxdWMcteRqa/lh?=
- =?us-ascii?Q?i9EEiyTYiDrrvtjtRnjYEZaFRScA7oq92rJatu0SK3A5lm/eqQvnv9moT3O7?=
- =?us-ascii?Q?T4+cB7GufPopMHjZfsP9mc8zQGRf+Ozle9sQqo01haJmJhljuw8VCzNY5jlm?=
- =?us-ascii?Q?yP7is7DDai+ysuqsX9T2q4v4PTf/KtRyUCdMz8dLkidJ5Mll4GIUyygmZ0vq?=
- =?us-ascii?Q?CJ8/Lu6Tbtu4Nx0UpAvMikjq32rmJPVb30xGE3zmQPx3WAXmWPO+DpJQHSGq?=
- =?us-ascii?Q?TYeys6mdm4jawagSakbooTCy6F6kLYGEyjKyS5ihMjHGIKv9L8wpdofR4jG2?=
- =?us-ascii?Q?EXFj5Pwdi5aR46yzGLWKpXNvti6M0RYNaTTjAn87n3qeAwwF5dbjvFvaTs6I?=
- =?us-ascii?Q?aqv8DhL4eFiQ/rMY0O3Bc66zSys0J5D0j6CkytO2zLnyUpR4MCA/t/D/Dlgs?=
- =?us-ascii?Q?Tl1Ad/G5mIok6gl65NATCVAjXQBc+7m512zno2gO2d10+ap1FBKuUSEWJYrf?=
- =?us-ascii?Q?/5vS5S8lH3gR9p1wf+sofrxTvL972xOqQZuIPM7TGmzBZ8prlKf/S/DFX0PE?=
- =?us-ascii?Q?RA4Ss4pKJgRg9CHjQqhYpQjVoa4scQGuR639qx89/F9c1BgXfWKMUvgrIMMb?=
- =?us-ascii?Q?C3jYaPQOGQ3pc/AGGD4+G/BhOopXF73e0R3KSkaxiSj/y2JQCyHLU8fSlzX3?=
- =?us-ascii?Q?wc9FeAyxna5TXgoriCm2lWYVL2VOF6H0TP0Ted4ltyiMWPwdQQ=3D=3D?=
+ ARA:13230031|82310400017|1800799015|376005|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WNhAPwH8rDCoDPYTdwaAuDHncKUvltiE7tGV3+0b7YrxZaF+M7ZJ5AwLQwgl?=
+ =?us-ascii?Q?TXPOBYFG+LZ9WPFM0Czmw3OIYaF4a2fgG6fOcRTCLaaPYLSkExNA2ThmLvRL?=
+ =?us-ascii?Q?of4a7YAblygR1gzijNLHnByhvGSGWPkTYtQy8nOmDbKFri3yogmyEAskHFy/?=
+ =?us-ascii?Q?YPZekuDGk8o4wkmb8vNu4Y/8o4sdz+FX9ZLHW/2h0k/cbNKI60Nmg2Cargij?=
+ =?us-ascii?Q?ngJNVtNf7HtmoIMcuAvRYe1JPz2JjgaQAVjHOv2Uo241YyJaKsa7NFmKM6u1?=
+ =?us-ascii?Q?PIdAK7ikpN5abRS4jPkNanlnXDK8jj93UpNwcIxo0MUd5jmSkHCCxAGZu6Ja?=
+ =?us-ascii?Q?B4QtGr3U7gQmSMMuD6vOKRLOrmeV7hunSqSDIW0NUZ9s/7LRotzZ9BJf419T?=
+ =?us-ascii?Q?e3+AhN0Ba7dBTMQ9IVCzpi95v/6uM/GZl/hOpOeyEjU8nXGSmrxEwJpgXKxE?=
+ =?us-ascii?Q?S7cQi9OBXe3XRVNu7lksadqLTI592dBg9BIKCbwscveupS0MJqDv0slQQQze?=
+ =?us-ascii?Q?jh/SMW/d85GuA8sMirrCyG2IzaUi5St3sGkdMWVy06f4ig1W3NTuym5v+U8T?=
+ =?us-ascii?Q?ojbmJCLx4p9ibI2DJNdzWD8XMIMcKqswGmC4cJ74TbV64WAS6qrXoBmPJN/w?=
+ =?us-ascii?Q?RN55jb5P+YwA5vOYwgD8hoPI1inxePCk88MhCB96Ke1l0Z8NhwKKEYyOHl5A?=
+ =?us-ascii?Q?7Yq5urOyc/+QSRyq3XhMGPxZ6rYUn6aVcpAvLXZmdK9p6X7n2T3NGgWNEvd8?=
+ =?us-ascii?Q?JOTropKE+TDwktoEAagIwIZl583S9HlpoNOp8JR+4IsIwY0VPBLMpsWo/qjY?=
+ =?us-ascii?Q?amHGCb4Ny+1L0zBTH78G5CI7sFWSlrvHiFchC7NXX5llS+k3lBLrYHi9aja4?=
+ =?us-ascii?Q?Lp0Uf+tpnMh+myEEEIgEcXy77y8t+jZ0ywB0W4TRCiI/nMfAuP4Rftoq5mqd?=
+ =?us-ascii?Q?q+s2RzV24/stFKuFhyK6LYI8DMB6bnnNBrqZfKqecfxzrr/u9W0ObGS39AOl?=
+ =?us-ascii?Q?9fM7sGHB/jIUXTS7oUsy7A4LMZo3gTdNAHT6BeOD/2KtX+0aEw4ndqFORXoM?=
+ =?us-ascii?Q?/6sN+T+4GIwU5Ywcpu3020t7ABVQBDzms8X6uClurNXIodmfNOCVHCuYuIbn?=
+ =?us-ascii?Q?JwzlZ3Kcf+ZwEfCdWSlUk3FvRPsGxwxFLu2wiqsTxl3tqkeWu09SngzUWfGL?=
+ =?us-ascii?Q?c2bsiJrwpNoZaUAOtMuMOVQmePbQkWkU1y2a/fR7xllqiPB6R+N0NMSpE2ph?=
+ =?us-ascii?Q?ybviwHIaClps42GvXfUB7VyQpyH08Skuh0U2dvdZIIt1z9JVkY7r4u6PrGfQ?=
+ =?us-ascii?Q?2+g/vmnQlq5w84bjeuIB1KEsiD77j5NZMA083KQVq6qB9F77REB0vsQzRX+v?=
+ =?us-ascii?Q?3OMJ6RAdFcxqTyjbBqJ+Xu+9+z5wlT/3dL89K4ZLE8SvjXe6Hw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(376005)(1800799015)(36860700004); DIR:OUT;
+ SFS:(13230031)(82310400017)(1800799015)(376005)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:18.1782 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4615b51-a416-49f0-ef30-08dc8673a251
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:19.6366 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f5b64f7-c9c5-4e4a-d9d2-08dc8673a332
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB55.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB58.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7304
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4154
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,47 +134,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-[Description]
-Phantom DTBCLK can be calculated different from main because phantom
-has no DSC and thus will have a different output BPP. Ignore phantom
-DTBCLK requirement and only consider non-phantom DTBCLK requirements.
+[Why]
+Adds support for performing the sequential ONO changes from DCN351
+into DCN35 ASIC based on revision.
 
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+[How]
+Check the revision and run the DCN351 sequences on applicable revisions.
+
+Reviewed-by: Sung joon Kim <sungjoon.kim@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- .../dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   | 85 +++++++++++++++----
+ .../dc/resource/dcn35/dcn35_resource.c        |  4 +
+ 3 files changed, 75 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-index 85eee5ab5443..2b240a30d2ec 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-@@ -7713,7 +7713,8 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index c78296b06b79..1008cab97c76 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -291,6 +291,7 @@ struct dc_caps {
+ 	uint8_t subvp_drr_vblank_start_margin_us;
+ 	bool cursor_not_scaled;
+ 	bool dcmode_power_limits_present;
++	bool sequential_ono;
+ };
  
- 	mode_lib->ms.support.DTBCLKRequiredMoreThanSupported = false;
- 	for (k = 0; k < mode_lib->ms.num_active_planes; ++k) {
--		if (display_cfg->stream_descriptors[display_cfg->plane_descriptors[k].stream_index].output.output_encoder == dml2_hdmifrl) {
-+		if (display_cfg->stream_descriptors[display_cfg->plane_descriptors[k].stream_index].output.output_encoder == dml2_hdmifrl &&
-+				!dml_is_phantom_pipe(&display_cfg->plane_descriptors[k])) {
- 			mode_lib->ms.RequiredDTBCLK[k] = RequiredDTBCLK(
- 				mode_lib->ms.RequiresDSC[k],
- 				s->PixelClockBackEnd[k],
-@@ -7728,6 +7729,13 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
- 			if (mode_lib->ms.RequiredDTBCLK[k] > ((double)min_clk_table->max_clocks_khz.dtbclk / 1000)) {
- 				mode_lib->ms.support.DTBCLKRequiredMoreThanSupported = true;
- 			}
-+		} else {
-+			/* Phantom DTBCLK can be calculated different from main because phantom has no DSC and thus
-+			 * will have a different output BPP. Ignore phantom DTBCLK requirement and only consider
-+			 * non-phantom DTBCLK requirements. In map_mode_to_soc_dpm we choose the highest DTBCLK
-+			 * required - by setting phantom dtbclk to 0 we ignore it.
-+			 */
-+			mode_lib->ms.RequiredDTBCLK[k] = 0;
- 		}
+ struct dc_bug_wa {
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+index 2b3ba5971c69..4f87316e1318 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
+@@ -1078,6 +1078,19 @@ void dcn35_calc_blocks_to_gate(struct dc *dc, struct dc_state *context,
+ 		update_state->pg_pipe_res_update[PG_OPTC][0] = false;
  	}
+ 
++	if (dc->caps.sequential_ono) {
++		for (i = dc->res_pool->pipe_count - 1; i >= 0; i--) {
++			if (!update_state->pg_pipe_res_update[PG_HUBP][i] &&
++			    !update_state->pg_pipe_res_update[PG_DPP][i]) {
++				for (j = i - 1; j >= 0; j--) {
++					update_state->pg_pipe_res_update[PG_HUBP][j] = false;
++					update_state->pg_pipe_res_update[PG_DPP][j] = false;
++				}
++
++				break;
++			}
++		}
++	}
+ }
+ 
+ void dcn35_calc_blocks_to_ungate(struct dc *dc, struct dc_state *context,
+@@ -1177,6 +1190,19 @@ void dcn35_calc_blocks_to_ungate(struct dc *dc, struct dc_state *context,
+ 	if (hpo_frl_stream_enc_acquired)
+ 		update_state->pg_pipe_res_update[PG_HDMISTREAM][0] = true;
+ 
++	if (dc->caps.sequential_ono) {
++		for (i = dc->res_pool->pipe_count - 1; i >= 0; i--) {
++			if (update_state->pg_pipe_res_update[PG_HUBP][i] &&
++			    update_state->pg_pipe_res_update[PG_DPP][i]) {
++				for (j = i - 1; j >= 0; j--) {
++					update_state->pg_pipe_res_update[PG_HUBP][j] = true;
++					update_state->pg_pipe_res_update[PG_DPP][j] = true;
++				}
++
++				break;
++			}
++		}
++	}
+ }
+ 
+ /**
+@@ -1197,6 +1223,8 @@ void dcn35_calc_blocks_to_ungate(struct dc *dc, struct dc_state *context,
+  *	ONO Region 2, DCPG 24: mpc opp optc dwb
+  *	ONO Region 0, DCPG 22: dccg dio dcio - SKIPPED. will be pwr dwn after lono timer is armed
+  *
++ * If sequential ONO is specified the order is modified from ONO Region 11 -> ONO Region 0 descending.
++ *
+  * @dc: Current DC state
+  * @update_state: update PG sequence states for HW block
+  */
+@@ -1216,19 +1244,35 @@ void dcn35_hw_block_power_down(struct dc *dc,
+ 			pg_cntl->funcs->hpo_pg_control(pg_cntl, false);
+ 	}
+ 
+-	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+-		if (update_state->pg_pipe_res_update[PG_HUBP][i] &&
+-			update_state->pg_pipe_res_update[PG_DPP][i]) {
+-			if (pg_cntl->funcs->hubp_dpp_pg_control)
+-				pg_cntl->funcs->hubp_dpp_pg_control(pg_cntl, i, false);
++	if (!dc->caps.sequential_ono) {
++		for (i = 0; i < dc->res_pool->pipe_count; i++) {
++			if (update_state->pg_pipe_res_update[PG_HUBP][i] &&
++			    update_state->pg_pipe_res_update[PG_DPP][i]) {
++				if (pg_cntl->funcs->hubp_dpp_pg_control)
++					pg_cntl->funcs->hubp_dpp_pg_control(pg_cntl, i, false);
++			}
+ 		}
+-	}
+-	for (i = 0; i < dc->res_pool->res_cap->num_dsc; i++)
+-		if (update_state->pg_pipe_res_update[PG_DSC][i]) {
+-			if (pg_cntl->funcs->dsc_pg_control)
+-				pg_cntl->funcs->dsc_pg_control(pg_cntl, i, false);
++
++		for (i = 0; i < dc->res_pool->res_cap->num_dsc; i++) {
++			if (update_state->pg_pipe_res_update[PG_DSC][i]) {
++				if (pg_cntl->funcs->dsc_pg_control)
++					pg_cntl->funcs->dsc_pg_control(pg_cntl, i, false);
++			}
+ 		}
++	} else {
++		for (i = dc->res_pool->pipe_count - 1; i >= 0; i--) {
++			if (update_state->pg_pipe_res_update[PG_DSC][i]) {
++				if (pg_cntl->funcs->dsc_pg_control)
++					pg_cntl->funcs->dsc_pg_control(pg_cntl, i, false);
++			}
+ 
++			if (update_state->pg_pipe_res_update[PG_HUBP][i] &&
++			    update_state->pg_pipe_res_update[PG_DPP][i]) {
++				if (pg_cntl->funcs->hubp_dpp_pg_control)
++					pg_cntl->funcs->hubp_dpp_pg_control(pg_cntl, i, false);
++			}
++		}
++	}
+ 
+ 	/*this will need all the clients to unregister optc interruts let dmubfw handle this*/
+ 	if (pg_cntl->funcs->plane_otg_pg_control)
+@@ -1256,6 +1300,8 @@ void dcn35_hw_block_power_down(struct dc *dc,
+  *	ONO Region 10, DCPG 3: dchubp3, dpp3
+  *	ONO Region 3, DCPG 25: hpo - SKIPPED
+  *
++ * If sequential ONO is specified the order is modified from ONO Region 0 -> ONO Region 11 ascending.
++ *
+  * @dc: Current DC state
+  * @update_state: update PG sequence states for HW block
+  */
+@@ -1274,11 +1320,13 @@ void dcn35_hw_block_power_up(struct dc *dc,
+ 	if (pg_cntl->funcs->plane_otg_pg_control)
+ 		pg_cntl->funcs->plane_otg_pg_control(pg_cntl, true);
+ 
+-	for (i = 0; i < dc->res_pool->res_cap->num_dsc; i++)
+-		if (update_state->pg_pipe_res_update[PG_DSC][i]) {
+-			if (pg_cntl->funcs->dsc_pg_control)
+-				pg_cntl->funcs->dsc_pg_control(pg_cntl, i, true);
+-		}
++	if (!dc->caps.sequential_ono) {
++		for (i = 0; i < dc->res_pool->res_cap->num_dsc; i++)
++			if (update_state->pg_pipe_res_update[PG_DSC][i]) {
++				if (pg_cntl->funcs->dsc_pg_control)
++					pg_cntl->funcs->dsc_pg_control(pg_cntl, i, true);
++			}
++	}
+ 
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		if (update_state->pg_pipe_res_update[PG_HUBP][i] &&
+@@ -1286,6 +1334,13 @@ void dcn35_hw_block_power_up(struct dc *dc,
+ 			if (pg_cntl->funcs->hubp_dpp_pg_control)
+ 				pg_cntl->funcs->hubp_dpp_pg_control(pg_cntl, i, true);
+ 		}
++
++		if (dc->caps.sequential_ono) {
++			if (update_state->pg_pipe_res_update[PG_DSC][i]) {
++				if (pg_cntl->funcs->dsc_pg_control)
++					pg_cntl->funcs->dsc_pg_control(pg_cntl, i, true);
++			}
++		}
+ 	}
+ 	if (update_state->pg_res_update[PG_HPO]) {
+ 		if (pg_cntl->funcs->hpo_pg_control)
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+index 28c459907698..391f9f69a923 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+@@ -1891,6 +1891,10 @@ static bool dcn35_resource_construct(
+ 	 */
+ 	dc->caps.max_disp_clock_khz_at_vmin = 650000;
+ 
++	/* Sequential ONO is based on ASIC. */
++	if (dc->ctx->asic_id.hw_internal_rev > 0x10)
++		dc->caps.sequential_ono = true;
++
+ 	/* Use pipe context based otg sync logic */
+ 	dc->config.use_pipe_ctx_sync_logic = true;
  
 -- 
 2.34.1
