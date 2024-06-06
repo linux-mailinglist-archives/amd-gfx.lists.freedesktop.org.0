@@ -2,149 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6775E8FE6C7
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 14:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 273268FE717
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 15:05:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024A010E92F;
-	Thu,  6 Jun 2024 12:47:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA39C10E944;
+	Thu,  6 Jun 2024 13:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jiDy/cBf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FYsu0oOk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2067.outbound.protection.outlook.com [40.107.237.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E164110E92F
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 12:47:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BRjiVIX/5dSMy7jZ15xiC1c3lRS78REOnKbb0IVODbxO14JD+AT/MPU/z1IPlJeE5K06gk2m3bIbPnkUa3NbEXB+U1KznH2cxXct2xQrcZVtsvfVT5miJpRxA94dj9YztwQCkN4Jh6OMeboIx4queSpuYbu+8WBcE60zVjrHIAhIiQc9vVWU0hHeMynM4xILB+ey9YxzagUjkP0BqovwH0HDFuBFoJAgWzxk5iwioo+5ssAQyoXQy9EG0jCnlHlaYukjTPn8LqqQ8b+6LilfJFD8Ote/PccP/kMURml08Ibk4g6/QEBkoWZ7VJEhekRcUx00r3krQEXo54tnG/LzIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ONKuyS81Vdq7K5r6rOs3Zp4VwJfe+83U7s01j7kKf6E=;
- b=dDC3wloVkQQNER0Fl6mzy7/TDW+EKx433545szl5j6RT5ePoQ8zMWkT4uK9UtfATaBKwiJBtdu4KjT2cwHBEvNNQihboaIRERV3ZdR4ToKjplKWxZLLmamH0w0AcqDF1zAY7KnsEFmI2zBJvff0He7tRfHM3zLkM2tD1QGJvNPmJhpP0GpEfcepYK0ngmdQ/KNY6MUNzA2ozJzhw3D2up/oVwzBmvFA95dccriiHOg8hzexwJTo55BBDcAL8uP/3oI6j8sEsLKQNIdQeyEOXpZU91KZwTydggzK3dMIr4/UkE1zwztHj+g4ZpAG7A/5xCDNnedpG4fLvYr1WUiqPEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ONKuyS81Vdq7K5r6rOs3Zp4VwJfe+83U7s01j7kKf6E=;
- b=jiDy/cBfNqwxSjm+weLpUzN3oCez3o7Z2VXTwLaEpJdfFccRtwVepxIeblBdkTflz1PqPnCZ6jhqE7kzQ+L6vCT0xQTxCJzG/MVZH06YQ8prJ2Zizu1MsAehVL1sfHnmNFAxBYehM7bEiwuiQVpMCVboEzDIEG1Wnd1yNjGgC3g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA0PR12MB7774.namprd12.prod.outlook.com (2603:10b6:208:430::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
- 2024 12:47:19 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7633.021; Thu, 6 Jun 2024
- 12:47:19 +0000
-Message-ID: <b17e7cf1-5184-4937-bf5c-44e674d4f307@amd.com>
-Date: Thu, 6 Jun 2024 14:47:15 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Move SR-IOV check into
- amdgpu_gfx_sysfs_compute_init
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20240606120532.2499698-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240606120532.2499698-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0332.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ea::18) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57FA10E944
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 13:05:48 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-1f6342c5fa8so9138265ad.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Jun 2024 06:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1717679148; x=1718283948; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NX2yPr7KXyWQDruLPR/zLtfyzq2a+JAq4CwQzmJP/3g=;
+ b=FYsu0oOkGTdh8JO/iOSVICUJZLkUx5xjrD9NLl9Lyz9QJE6qDfzYOYsFl1M0iMXdw1
+ qRNGs6C26CdN32KyUWCZDwLF6PRx+4eM1iAfp8ZqTz9t3qQCcGri2SinCkGtUx7UZzpj
+ NFTMZ9LdEeJ49cXECsRGXsh4f/rGaYa2WYJBFFVY75w1RqLWLlkH8FWAq0r8TiRDYq+h
+ 3A6+Lsi5MvouyeBNYaoqOAapPEYrsrimOHff8bw6p0RLlgNvaWNgBHKPm2z9Iz9GVlLb
+ HPYNELUsYsZWMbcFbM+C0K/KYvF2GVhx2hjT2xMa+9sb/ocl+FyMWs8KVLQ9RkHqQJNm
+ smeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717679148; x=1718283948;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=NX2yPr7KXyWQDruLPR/zLtfyzq2a+JAq4CwQzmJP/3g=;
+ b=tH4487U8tBVSAmLyhevJPwco/0Ah52ScX4jcwo4o6qaz1SBVPAd49KkTcJbNvIo9xL
+ PRNy9wbK2K0lwax5FnstKqvHpQ3qjriJ3ZI/Q+6IH6/pXIFQmWf89NVk4dwXCBC+x4sH
+ +vUk0HVerDN0jjNMGWQk2tAUQVGXrH3JJieEA2rPwEF3JAB10vR4FZ4slHYrTGoF0mQC
+ 8U6h0hl1elCl09k0EUlmoWi2f4UiHYnDwITiGKiGydTYt23Nn7Ff6GbsU1KS9cAppHQu
+ eK3685JdRbyXeeMaDF958Wfc3ZQIs/xLGgmZk9cmH8JaUdN5QB62TMg2E7w4TfQW1o5Q
+ ZAWA==
+X-Gm-Message-State: AOJu0YzG7EUinfDurELVKx7i5s5Cz01elRjgrJrHn6du4uJ3J+1UBPbz
+ MncCBYPqWUBu/cp9wePCOLihy/LBzS2ehrhC5BgUH4vVpETzqGTKYThggHZgUslpW6AQHm2ROov
+ 4iFI64tIipNwlED8iIBMSCoEq7ZsT2w==
+X-Google-Smtp-Source: AGHT+IFhM6jETbvlFUmGi1tOJt/6xzNCxjRHfbM8n4zvecDdlZ2Spe+c8gsIWsNcN7lLUc1G0TwYdK96NKs4De0IWdo=
+X-Received: by 2002:a17:90a:fe04:b0:2c1:ea2e:20b2 with SMTP id
+ 98e67ed59e1d1-2c27db57d16mr5387517a91.30.1717679147765; Thu, 06 Jun 2024
+ 06:05:47 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB7774:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb72b2d1-b3f0-41ae-5f5b-08dc8626cd89
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YkFvdjcrV2tQRFVERDVYVkxYTzBlWTZUdzN3MHdTN3Q0aEpWQ0xLY3hvVmlF?=
- =?utf-8?B?SmFTcUlIbDdQYXZWUkhpWG5pSVFtczJpaUY0WUI1ZklCZHI5ZUQxK1RVUmlQ?=
- =?utf-8?B?MGRGWTE1Szc5WVRHRXM0RmZ3SjF4MUNrQU11SnJndWdEZ3pqa3lEVUsxOC9E?=
- =?utf-8?B?Wk1jVGhReXlkeVBOZnZoSzlMMWZGSkJFTEo3ZTVpRktBUXZqM1UrRGZDYkd0?=
- =?utf-8?B?UDlzdzVXV2ZLNUhZVGk3aVhVZkhnUklyQ0ZjWjQ0NXVFQkhTeXpCUTZyaXcv?=
- =?utf-8?B?bXNHWDZzZFN4cUVMT05JSjU2bVFwUWNidHA5eEN4U3VCTGF5RVE2elJLejJU?=
- =?utf-8?B?RzVsNVNVUzVvUGpYZkhTejZlNTRwQ0g1UitnK3lSc08wNzNDSzVYU0dCQ1JZ?=
- =?utf-8?B?MGpkTTdtVkg5K0d0TXQ5Z0xpL1c5Vmcva2RaU0VRUk1OOWpHUUl1WEFpbG1Z?=
- =?utf-8?B?Y3lvTXVLYnhpQ1dxSlVVWW1mczRUVk5PeFFTYitIV2dhZmNUQXhyZDdpemJy?=
- =?utf-8?B?QTY3b0xJbmQ1eVBJTG95ZUFkUDhvZks4Q05ycmFXS056ZkVhTXlWT1c0bzJW?=
- =?utf-8?B?aDF4Ymc4d1NNV0taTTZUN1VUTW5BYWhLRTg4L1MxS1NNSG9BQ0NUSWJvN2RG?=
- =?utf-8?B?QVVPOXJ2NER3aW00eHNlU3FnbllHcDhyQUo0SE91bFZiNXd1UWlFZjN5Yms0?=
- =?utf-8?B?dTBVVnlSaU1TL2s5U1kwTVR0cFNjVDdHeE43eW56TFJUMTBITllLbWxPTTR3?=
- =?utf-8?B?ekJOc3M0MTNhTHdxbXhPazVHUEF3VFZtQUFCdURBc3dKWStqNGtCZlJvQ3Av?=
- =?utf-8?B?aW9zMEJ2cXdQYm9DL3dRVW1DU3FGeE0xNlRENjZtb2E4MFFVWDBNMk9CRHpG?=
- =?utf-8?B?UTVDM3BSM2xTRVA1cEtNQXFSV2VpbWNwMERhZXBlQmJDMjVSNXd4RERZVVBF?=
- =?utf-8?B?VU5JR1lSbGVabDlZb0I1S2hDKzI1RDBLdWg2NlVqNmEwOE1nUVdvUzRSMTBG?=
- =?utf-8?B?d3VTUlJUK2JyNHh5dHNRN2oyYmpiVmdJWERxTk1Ga0JGcDM5MUlQQTdXMTZi?=
- =?utf-8?B?QlNkMHRvUXZ2QyswNXBpRkF6ek9yTlB5THZ1VGFZK09nUTJybnBZV0RMMEFR?=
- =?utf-8?B?VUxveUJadzhHL2szNENzd3UyenV0a3luL05UYTVaZUl2WGkzczFHdHkvSXQ5?=
- =?utf-8?B?THJ0NjhpVHd1YlVOYitoTDM4NldpMk1KZWp2VnZESW1NNi9QQWZqTUVMbjRH?=
- =?utf-8?B?KzRYampjQ1ZXNGZDYUJyVnpjbXVJS1djQXFUYmRvSUwzbU51SkRldzhWUlE5?=
- =?utf-8?B?MFRZTFFJbnBtSE82VkVGQStNM0FxV1FIc2ZqNGhLMHBTVkg4ckd6WmdpTERi?=
- =?utf-8?B?a1k4RmlvVmI1bG5SYVFudlRIUXZCeXludDRXalkrbWExZ252YXVuY1EzS0Iw?=
- =?utf-8?B?UDRGY2VucGluZ1NETy9aNzZCczVYSWVuLzc4OHEyb1BvWUVjY2hGQ2hwNkww?=
- =?utf-8?B?ZVMvYU5kbUkyMnhVMTFEbE8xN2ZDelhxdFprZitKZVRzNjVMdWEvMHd2WElr?=
- =?utf-8?B?OVhMcW5QTkpCMHdlWjYvUU9SMTlpZTloNUdJK2M0OFdGa0lrcWowUlVid3Vl?=
- =?utf-8?B?VU5qbXhvdzVDZmZIQU5ZL2dNWFJkS3pjbDRORm9kaGhnY3ZHUEhEUGhGcGs2?=
- =?utf-8?B?N2JwK2xGK0NtWnJ5TTE1RGlDVkRpcDE4MkZLVW1kUTV4MmMweW5nSnJmQTQ1?=
- =?utf-8?Q?IUNklEsvPKfr5Asgq+q3ns7bx8vC5mA1DySUVnA?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmJ6TURpSFlpZTFaQ0pBUG1oalllVUFSYlJkR0VUZFBaMDZKbGhqdmowWjRG?=
- =?utf-8?B?aE45SWtsOWw3RzI3L09jb3RlTS9rOUUyVGFhRFRoZkNpa0FEU3BnVjBROFpk?=
- =?utf-8?B?Z2g2dWhrRVJwb2VFcnZwcUQwOFZlMUhVd3Q1ZHFDN2tpdEVncmtoaWoxUG1O?=
- =?utf-8?B?SkZVZWxzLy9UN0srbWZrUkwrSkJuMlZnS0VMdUxMN2VlVFJqRVl3RjU3VHpw?=
- =?utf-8?B?UW9lL3lZRFV6cDZJYnpGZGdtczBReGZBSllRZ1E3YXo4SjN1eC9CTUp4VU80?=
- =?utf-8?B?dDFZZVBvSU5SWjNFT0xRMnhremM4M2lUa2VqaVQxNW41bVR4YjQ3Qkh2NjVV?=
- =?utf-8?B?Vjk5SFo1WTlZZWpZS1V6Vm1pVm9WbXRNZjVaSW5rK3FMeHk1UGFLYStpZm1L?=
- =?utf-8?B?U3N0ODYyd3pOMEMreXF0U3FmNlR6L2NueVJudmQyazkwU1l0NTNZRFl6Y3lN?=
- =?utf-8?B?QTZTNlVnN2RxMitBRXV4aHVucU5oSWp5YjRXMjM5VlRHNEZnNTVVbWg2QUVK?=
- =?utf-8?B?emZtelp6NkpNSWJzOGt1Z2M5SjZOQkhGMGsyQXozR3BaY3B1UE9IZHRmSENN?=
- =?utf-8?B?ZW5tejhNeS81NGxJVmZvQ0hXdkZuYzlrajJoTjU4VWdLVVUvVml4bjhTYVZ3?=
- =?utf-8?B?TzROUTNFb3NyeHh0UFVwSHJHNU5YS3d5bVFXQTJzTU9xcTd0ck9BWlZwSC9O?=
- =?utf-8?B?c3RJdXpFZ285anBxdEZPSjZ0V05pTEJyYWFSSkd2MGdIb04yM21LdmlDVU5I?=
- =?utf-8?B?U3BkRTNtK3dJdXV4enZwdkE3SmNxRlhUNkR2ODFrdHZhK1FKN3NOVDA0Y3RM?=
- =?utf-8?B?OHkrQ1hrVXNmQURQdGl3UUVkNjZvUFJnRHJ2RHZkQ3p5WWtqNVV0bW10emV6?=
- =?utf-8?B?YUVnRTZHOTNuRVRYR3orZzlENGtnMWFpLzhmbnZFTWZtcXlZQUdoTUdjNU9U?=
- =?utf-8?B?UHpCRStXMUJybUxZZVJtemg0MUpXQ0VzN2Rmb1RJZHlMa2o4VlFhekJQeEZL?=
- =?utf-8?B?NS9sQzBCUVRHVmtGUWo2ZGhXS3dqTU5CR2YzdzNHVXdOd3V6QzJ2STdJblV4?=
- =?utf-8?B?cE5VSzM3N0dmbmNRZmZWeWFzYWpNSlVpRi95OEY4VmlFczhWM0FNM01DajND?=
- =?utf-8?B?STNpcTVvZHMyTFhyS01VT1ZBdkhxbGdoL2h6WHgwSGcvbVppWVNaejBjeU5O?=
- =?utf-8?B?aGxTelVQQk1IbnNhNXY4TkRFMDdZazQxUHJsTnJWM0tpSWUvUUZwdnkyMVlB?=
- =?utf-8?B?aHh1aFN2WHliMVFnbzlOK2EzTDN4UFhMOXM2bVVRem1LNmsvZTgyVTdCRWNB?=
- =?utf-8?B?K2cvSGVQZXRuOElTY3lhRjFPdlpSNDFwbmIrWmtrTkIxRitEU1JjampwSlo0?=
- =?utf-8?B?b1AzUGJpTyttZDk1cHNEbGtCeTYwbnl4a2t0REhXaVlKZHBoRTRmVFllN3Iy?=
- =?utf-8?B?dklaamlwZFpDM3NSbVNFZzZIMW9wR1VPSms2U3NyTU4rb28yM1UvMHBzVE5B?=
- =?utf-8?B?ZHN6Z1NzK1NKWlpkWno3c0tybXhyc0ZuR1ZCQXhJZ3ZWR1paVnR2Mjl0dFpz?=
- =?utf-8?B?MjhFK0VJZHRqbEhleHJRUmV0UVovcFp1N3hzclFReWVONUVXbjUrT0NiQWll?=
- =?utf-8?B?K1c1UTVaVVZXc1lTbWNGOWJJOWVocnBUamo5MnlEMGhheEpTWEcyUENxdjMw?=
- =?utf-8?B?QjUySG1NZk8rVWd1S0gzaFBqRnFrZHFlNDkyc1FqZHJwSERnTGpCdklMeUIz?=
- =?utf-8?B?d0QrbHBEOUROa2cxeVdySVVBNEV1UU5ObnNXUzY5cmJ5M21TN0ZRTmxwYjV1?=
- =?utf-8?B?NDMwOWNBby9NWEJER2VOZXBvRmZhUzB0WEtqWlFGWW13dXpKOXdnT1VUanJ2?=
- =?utf-8?B?U3hrM0VNcGVhUldjSVlxaFdpeG0vVjZ3Qm5zOXRHdU0rb1gzeEFqL2FEWGd1?=
- =?utf-8?B?NUQ1SkdPTjV2aHJoOGIycENKdWRxTGptUHBmaWIyZEM1b1ZMWkUwYm54eVB1?=
- =?utf-8?B?K05nWnNKOHhBL1I3OVlCelg1b1pwMDkvcTRBVnpGNGc5SkNPMjRTa3pTOEFt?=
- =?utf-8?B?VjB3K1ZSRm5ZY3ZxNnpRTnhOQnBWNXJuUGNnZTBPYXgyRzV0bllIeEVWNEdw?=
- =?utf-8?Q?4azVBQwU04n6rDfPW62Bf+4qc?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb72b2d1-b3f0-41ae-5f5b-08dc8626cd89
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 12:47:19.7789 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vgdXJqNZExs031FMc+jctT5Yx9VB2OzzfEKvRkMXgPv1ayl49gi55x19YLPzNWWR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7774
+References: <20240605231654.6374-1-jay.cornwall@amd.com>
+In-Reply-To: <20240605231654.6374-1-jay.cornwall@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 6 Jun 2024 09:05:35 -0400
+Message-ID: <CADnq5_Ows0SumX7hAdtNyDm55xebFBQXngOT61rbrCt-QG4BKg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdkfd: Extend gfx12 trap handler fix to gfx10/11
+To: Jay Cornwall <jay.cornwall@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Lancelot Six <lancelot.six@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,120 +75,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 06.06.24 um 14:05 schrieb Srinivasan Shanmugam:
-> Previously, this check was performed in the gfx_v9_4_3_sw_init function,
-> and the amdgpu_gfx_sysfs_compute_init function was only called if the
-> GPU was not a VF in SR-IOV mode. This is because the sysfs entries
-> created by amdgpu_gfx_sysfs_compute_init are specific to compute
-> partitions, which are only applicable on GFX9 and not on a VF in SR-IOV
-> mode.
+On Wed, Jun 5, 2024 at 7:27=E2=80=AFPM Jay Cornwall <jay.cornwall@amd.com> =
+wrote:
 >
-> By moving the check into amdgpu_gfx_sysfs_compute_init, we make this
-> function responsible for deciding whether or not to create the compute
-> partition sysfs entries.
+> In commit 6d1878882d2d
+> ("drm/amdkfd: gfx12 context save/restore trap handler fixes") the
+> following fix was introduced but incorrectly restricted to gfx12.
+> The same issue and a corresponding fix apply to gfx10 and gfx11.
 >
-> This change improves the code organization and maintainability. If in
-> the future the  conditions for creating the compute partition sysfs
-> entries change, we  would only need to update the
-> amdgpu_gfx_sysfs_compute_init function.
+> Do not overwrite TRAPSTS.{SAVECTX,HOST_TRAP} when restoring this
+> register. Both of these fields can assert while the wavefront is
+> running the trap handler.
 >
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> Signed-off-by: Jay Cornwall <jay.cornwall@amd.com>
+> Cc: Lancelot Six <lancelot.six@amd.com>
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 24 +++++++++++++++---------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  4 ++--
->   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 11 +++++------
->   3 files changed, 22 insertions(+), 17 deletions(-)
+>  .../gpu/drm/amd/amdkfd/cwsr_trap_handler.h    | 16 +++++---
+>  .../amd/amdkfd/cwsr_trap_handler_gfx10.asm    | 38 ++++++++++++++-----
+>  2 files changed, 38 insertions(+), 16 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 19b1817b55d7..72477a5aedca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -1376,21 +1376,27 @@ static DEVICE_ATTR(current_compute_partition, 0644,
->   static DEVICE_ATTR(available_compute_partition, 0444,
->   		   amdgpu_gfx_get_available_compute_partition, NULL);
->   
-> -int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
-> +int amdgpu_gfx_sysfs_compute_init(struct amdgpu_device *adev)
->   {
->   	int r;
->   
-> -	r = device_create_file(adev->dev, &dev_attr_current_compute_partition);
-> -	if (r)
-> -		return r;
-> +	if (!amdgpu_sriov_vf(adev)) {
-> +		r = device_create_file(adev->dev, &dev_attr_current_compute_partition);
-> +		if (r)
-> +			return r;
->   
-> -	r = device_create_file(adev->dev, &dev_attr_available_compute_partition);
-> +		r = device_create_file(adev->dev, &dev_attr_available_compute_partition);
-> +		if (r)
-> +			return r;
-> +	}
->   
-> -	return r;
-> +	return 0;
->   }
->   
-> -void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
-> +void amdgpu_gfx_sysfs_compute_fini(struct amdgpu_device *adev)
->   {
-> -	device_remove_file(adev->dev, &dev_attr_current_compute_partition);
-> -	device_remove_file(adev->dev, &dev_attr_available_compute_partition);
-> +	if (!amdgpu_sriov_vf(adev)) {
-> +		device_remove_file(adev->dev, &dev_attr_current_compute_partition);
-> +		device_remove_file(adev->dev, &dev_attr_available_compute_partition);
-> +	}
->   }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> index 6b0416777c5b..b65c459b3aa9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> @@ -533,8 +533,8 @@ int amdgpu_gfx_poison_consumption_handler(struct amdgpu_device *adev,
->   						struct amdgpu_iv_entry *entry);
->   
->   bool amdgpu_gfx_is_master_xcc(struct amdgpu_device *adev, int xcc_id);
-> -int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev);
-> -void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev);
-> +int amdgpu_gfx_sysfs_compute_init(struct amdgpu_device *adev);
-> +void amdgpu_gfx_sysfs_compute_fini(struct amdgpu_device *adev);
->   void amdgpu_gfx_ras_error_func(struct amdgpu_device *adev,
->   		void *ras_error_status,
->   		void (*func)(struct amdgpu_device *adev, void *ras_error_status,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> index aecc2bcea145..07ce614ef282 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> @@ -939,11 +939,11 @@ static int gfx_v9_4_3_sw_init(void *handle)
->   	if (r)
->   		return r;
->   
-> +	r = amdgpu_gfx_sysfs_compute_init(adev);
-> +	if (r)
-> +		return r;
->   
-> -	if (!amdgpu_sriov_vf(adev))
-> -		r = amdgpu_gfx_sysfs_init(adev);
-> -
-> -	return r;
-> +	return 0;
->   }
->   
->   static int gfx_v9_4_3_sw_fini(void *handle)
-> @@ -964,8 +964,7 @@ static int gfx_v9_4_3_sw_fini(void *handle)
->   	gfx_v9_4_3_mec_fini(adev);
->   	amdgpu_bo_unref(&adev->gfx.rlc.clear_state_obj);
->   	gfx_v9_4_3_free_microcode(adev);
-> -	if (!amdgpu_sriov_vf(adev))
-> -		amdgpu_gfx_sysfs_fini(adev);
-> +	amdgpu_gfx_sysfs_compute_fini(adev);
->   
->   	return 0;
->   }
-
+> diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h b/drivers/gpu=
+/drm/amd/amdkfd/cwsr_trap_handler.h
+> index 665122d1bbbd..02f7ba8c93cd 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
+> +++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler.h
+> @@ -1136,7 +1136,7 @@ static const uint32_t cwsr_trap_nv1x_hex[] =3D {
+>         0x705d0000, 0x807c817c,
+>         0x8070ff70, 0x00000080,
+>         0xbf0a7b7c, 0xbf85fff8,
+> -       0xbf82013d, 0xbef4037e,
+> +       0xbf82013f, 0xbef4037e,
+>         0x8775ff7f, 0x0000ffff,
+>         0x8875ff75, 0x00040000,
+>         0xbef60380, 0xbef703ff,
+> @@ -1275,7 +1275,8 @@ static const uint32_t cwsr_trap_nv1x_hex[] =3D {
+>         0x80788478, 0xbf8c0000,
+>         0xb9eef815, 0xbefc036f,
+>         0xbefe0370, 0xbeff0371,
+> -       0xb9f9f816, 0xb9fbf803,
+> +       0xb9f9f816, 0xb9fb4803,
+> +       0x907b8b7b, 0xb9fba2c3,
+>         0xb9f3f801, 0xb96e3a05,
+>         0x806e816e, 0xbf0d9972,
+>         0xbf850002, 0x8f6e896e,
+> @@ -2544,7 +2545,7 @@ static const uint32_t cwsr_trap_gfx10_hex[] =3D {
+>         0xe0704000, 0x705d0000,
+>         0x807c817c, 0x8070ff70,
+>         0x00000080, 0xbf0a7b7c,
+> -       0xbf85fff8, 0xbf820134,
+> +       0xbf85fff8, 0xbf820136,
+>         0xbef4037e, 0x8775ff7f,
+>         0x0000ffff, 0x8875ff75,
+>         0x00040000, 0xbef60380,
+> @@ -2683,7 +2684,8 @@ static const uint32_t cwsr_trap_gfx10_hex[] =3D {
+>         0xf0000000, 0x80788478,
+>         0xbf8c0000, 0xb9eef815,
+>         0xbefc036f, 0xbefe0370,
+> -       0xbeff0371, 0xb9fbf803,
+> +       0xbeff0371, 0xb9fb4803,
+> +       0x907b8b7b, 0xb9fba2c3,
+>         0xb9f3f801, 0xb96e3a05,
+>         0x806e816e, 0xbf0d9972,
+>         0xbf850002, 0x8f6e896e,
+> @@ -2981,7 +2983,7 @@ static const uint32_t cwsr_trap_gfx11_hex[] =3D {
+>         0x701d0000, 0x807d817d,
+>         0x8070ff70, 0x00000080,
+>         0xbf0a7b7d, 0xbfa2fff8,
+> -       0xbfa0013f, 0xbef4007e,
+> +       0xbfa00143, 0xbef4007e,
+>         0x8b75ff7f, 0x0000ffff,
+>         0x8c75ff75, 0x00040000,
+>         0xbef60080, 0xbef700ff,
+> @@ -3123,7 +3125,9 @@ static const uint32_t cwsr_trap_gfx11_hex[] =3D {
+>         0x80788478, 0xbf890000,
+>         0xb96ef815, 0xbefd006f,
+>         0xbefe0070, 0xbeff0071,
+> -       0xb97bf803, 0xb973f801,
+> +       0xb97b4803, 0x857b8b7b,
+> +       0xb97b22c3, 0x857b867b,
+> +       0xb97b7443, 0xb973f801,
+>         0xb8ee3b05, 0x806e816e,
+>         0xbf0d9972, 0xbfa20002,
+>         0x846e896e, 0xbfa00001,
+> diff --git a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm b/dri=
+vers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
+> index ac3702b8e3c4..44772eec9ef4 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
+> +++ b/drivers/gpu/drm/amd/amdkfd/cwsr_trap_handler_gfx10.asm
+> @@ -119,9 +119,12 @@ var SQ_WAVE_TRAPSTS_ADDR_WATCH_SHIFT               =
+=3D 7
+>  var SQ_WAVE_TRAPSTS_MEM_VIOL_MASK              =3D 0x100
+>  var SQ_WAVE_TRAPSTS_MEM_VIOL_SHIFT             =3D 8
+>  var SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK          =3D 0x800
+> +var SQ_WAVE_TRAPSTS_ILLEGAL_INST_SHIFT         =3D 11
+>  var SQ_WAVE_TRAPSTS_EXCP_HI_MASK               =3D 0x7000
+>  #if ASIC_FAMILY >=3D CHIP_PLUM_BONITO
+> +var SQ_WAVE_TRAPSTS_HOST_TRAP_SHIFT            =3D 16
+>  var SQ_WAVE_TRAPSTS_WAVE_START_MASK            =3D 0x20000
+> +var SQ_WAVE_TRAPSTS_WAVE_START_SHIFT           =3D 17
+>  var SQ_WAVE_TRAPSTS_WAVE_END_MASK              =3D 0x40000
+>  var SQ_WAVE_TRAPSTS_TRAP_AFTER_INST_MASK       =3D 0x100000
+>  #endif
+> @@ -137,14 +140,23 @@ var SQ_WAVE_IB_STS_RCNT_FIRST_REPLAY_MASK =3D 0x003=
+F8000
+>
+>  var SQ_WAVE_MODE_DEBUG_EN_MASK                 =3D 0x800
+>
+> +var S_TRAPSTS_RESTORE_PART_1_SIZE              =3D SQ_WAVE_TRAPSTS_SAVEC=
+TX_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_2_SHIFT             =3D SQ_WAVE_TRAPSTS_ILLEG=
+AL_INST_SHIFT
+> +
+>  #if ASIC_FAMILY < CHIP_PLUM_BONITO
+>  var S_TRAPSTS_NON_MASKABLE_EXCP_MASK           =3D SQ_WAVE_TRAPSTS_MEM_V=
+IOL_MASK|SQ_WAVE_TRAPSTS_ILLEGAL_INST_MASK
+> +var S_TRAPSTS_RESTORE_PART_2_SIZE              =3D 32 - S_TRAPSTS_RESTOR=
+E_PART_2_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_3_SHIFT             =3D 0
+> +var S_TRAPSTS_RESTORE_PART_3_SIZE              =3D 0
+>  #else
+>  var S_TRAPSTS_NON_MASKABLE_EXCP_MASK           =3D SQ_WAVE_TRAPSTS_MEM_V=
+IOL_MASK         |\
+>                                                   SQ_WAVE_TRAPSTS_ILLEGAL=
+_INST_MASK     |\
+>                                                   SQ_WAVE_TRAPSTS_WAVE_ST=
+ART_MASK       |\
+>                                                   SQ_WAVE_TRAPSTS_WAVE_EN=
+D_MASK         |\
+>                                                   SQ_WAVE_TRAPSTS_TRAP_AF=
+TER_INST_MASK
+> +var S_TRAPSTS_RESTORE_PART_2_SIZE              =3D SQ_WAVE_TRAPSTS_HOST_=
+TRAP_SHIFT - SQ_WAVE_TRAPSTS_ILLEGAL_INST_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_3_SHIFT             =3D SQ_WAVE_TRAPSTS_WAVE_=
+START_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_3_SIZE              =3D 32 - S_TRAPSTS_RESTOR=
+E_PART_3_SHIFT
+>  #endif
+>  var S_TRAPSTS_HWREG                            =3D HW_REG_TRAPSTS
+>  var S_TRAPSTS_SAVE_CONTEXT_MASK                        =3D SQ_WAVE_TRAPS=
+TS_SAVECTX_MASK
+> @@ -157,6 +169,7 @@ var SQ_WAVE_EXCP_FLAG_PRIV_SAVE_CONTEXT_MASK        =
+=3D 0x20
+>  var SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_MASK   =3D 0x40
+>  var SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_SHIFT  =3D 6
+>  var SQ_WAVE_EXCP_FLAG_PRIV_HOST_TRAP_MASK      =3D 0x80
+> +var SQ_WAVE_EXCP_FLAG_PRIV_HOST_TRAP_SHIFT     =3D 7
+>  var SQ_WAVE_EXCP_FLAG_PRIV_WAVE_START_MASK     =3D 0x100
+>  var SQ_WAVE_EXCP_FLAG_PRIV_WAVE_START_SHIFT    =3D 8
+>  var SQ_WAVE_EXCP_FLAG_PRIV_WAVE_END_MASK       =3D 0x200
+> @@ -173,6 +186,11 @@ var S_TRAPSTS_NON_MASKABLE_EXCP_MASK               =
+=3D SQ_WAVE_EXCP_FLAG_PRIV_MEM_VIOL_MASK          |\
+>                                                   SQ_WAVE_EXCP_FLAG_PRIV_=
+WAVE_START_MASK        |\
+>                                                   SQ_WAVE_EXCP_FLAG_PRIV_=
+WAVE_END_MASK          |\
+>                                                   SQ_WAVE_EXCP_FLAG_PRIV_=
+TRAP_AFTER_INST_MASK
+> +var S_TRAPSTS_RESTORE_PART_1_SIZE              =3D SQ_WAVE_EXCP_FLAG_PRI=
+V_SAVE_CONTEXT_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_2_SHIFT             =3D SQ_WAVE_EXCP_FLAG_PRI=
+V_ILLEGAL_INST_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_2_SIZE              =3D SQ_WAVE_EXCP_FLAG_PRI=
+V_HOST_TRAP_SHIFT - SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_3_SHIFT             =3D SQ_WAVE_EXCP_FLAG_PRI=
+V_WAVE_START_SHIFT
+> +var S_TRAPSTS_RESTORE_PART_3_SIZE              =3D 32 - S_TRAPSTS_RESTOR=
+E_PART_3_SHIFT
+>  var BARRIER_STATE_SIGNAL_OFFSET                        =3D 16
+>  var BARRIER_STATE_VALID_OFFSET                 =3D 0
+>  #endif
+> @@ -1386,17 +1404,17 @@ L_SKIP_BARRIER_RESTORE:
+>         s_setreg_b32    hwreg(HW_REG_SHADER_XNACK_MASK), s_restore_xnack_=
+mask
+>  #endif
+>
+> -#if ASIC_FAMILY < CHIP_GFX12
+> -       s_setreg_b32    hwreg(S_TRAPSTS_HWREG), s_restore_trapsts
+> -#else
+> -       // EXCP_FLAG_PRIV.SAVE_CONTEXT and HOST_TRAP may have changed.
+> +       // {TRAPSTS/EXCP_FLAG_PRIV}.SAVE_CONTEXT and HOST_TRAP may have c=
+hanged.
+>         // Only restore the other fields to avoid clobbering them.
+> -       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, 0, SQ_WAVE_EXCP_FLAG_PRIV_=
+SAVE_CONTEXT_SHIFT), s_restore_trapsts
+> -       s_lshr_b32      s_restore_trapsts, s_restore_trapsts, SQ_WAVE_EXC=
+P_FLAG_PRIV_ILLEGAL_INST_SHIFT
+> -       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, SQ_WAVE_EXCP_FLAG_PRIV_ILL=
+EGAL_INST_SHIFT, 1), s_restore_trapsts
+> -       s_lshr_b32      s_restore_trapsts, s_restore_trapsts, SQ_WAVE_EXC=
+P_FLAG_PRIV_WAVE_START_SHIFT - SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_SHIFT
+> -       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, SQ_WAVE_EXCP_FLAG_PRIV_WAV=
+E_START_SHIFT, 32 - SQ_WAVE_EXCP_FLAG_PRIV_WAVE_START_SHIFT), s_restore_tra=
+psts
+> -#endif
+> +       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, 0, S_TRAPSTS_RESTORE_PART_=
+1_SIZE), s_restore_trapsts
+> +       s_lshr_b32      s_restore_trapsts, s_restore_trapsts, S_TRAPSTS_R=
+ESTORE_PART_2_SHIFT
+> +       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, S_TRAPSTS_RESTORE_PART_2_S=
+HIFT, S_TRAPSTS_RESTORE_PART_2_SIZE), s_restore_trapsts
+> +
+> +if S_TRAPSTS_RESTORE_PART_3_SIZE > 0
+> +       s_lshr_b32      s_restore_trapsts, s_restore_trapsts, S_TRAPSTS_R=
+ESTORE_PART_3_SHIFT - S_TRAPSTS_RESTORE_PART_2_SHIFT
+> +       s_setreg_b32    hwreg(S_TRAPSTS_HWREG, S_TRAPSTS_RESTORE_PART_3_S=
+HIFT, S_TRAPSTS_RESTORE_PART_3_SIZE), s_restore_trapsts
+> +end
+> +
+>         s_setreg_b32    hwreg(HW_REG_MODE), s_restore_mode
+>
+>         // Restore trap temporaries 4-11, 13 initialized by SPI debug dis=
+patch logic
+> --
+> 2.34.1
+>
