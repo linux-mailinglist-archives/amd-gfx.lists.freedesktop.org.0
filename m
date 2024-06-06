@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082AC8FF754
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A828FF75A
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:59:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A75610EB07;
-	Thu,  6 Jun 2024 21:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0383210EB0A;
+	Thu,  6 Jun 2024 21:59:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gXjeUTx3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CQpoVnVd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49EFA10EB03
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:59:05 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2044.outbound.protection.outlook.com [40.107.93.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90DC710EB08
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:59:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MLOBMNgoDFEdtGATkfH0s0/TVn1+OMcXzTTuQOkNNSvIxTtKht5KQ1T/cgj2zxqp7roHw9EIWFD6e+Z44RqA7SbVLbfsN/11zsFbDxOfxuhWO1kQCeYh0najSeuWcDCXxEycQXmvmJyVbPy+Qy3/74l6k/ilMyFHYpIof+//UjM4ssVkR0N24wGVE4MtfyS0e9WBJ+a7LD5lw8nY/NQHXSQGiv/DdJ/tRsK9Fud+1Oh6UgecEcwC0HAbAHJNrhAmR+GULXRTOoDr4slVnrUIg90FG8FaNP8W/rc7Hra/BrAO4bV8dGydEHhnYcU2frkvVemMfs5HFiNQsKjF3bgA1Q==
+ b=BOXfSyZ2w5rw6BwOWR8Oz3PS6L1Df9BImwsV0MWxN+4EokuvgL/XUhx2+5J9VehXXGrfau0X0rWKyTACIiVn61cyjJuGud8pLVQGzpW2Z8kphGZHNtHli9Oym//cAk1Jf5lY9GmY6d8NAdJojy2TRRAgTFiS+KX79h9dxOLDPFvDRzwAfSUi/v1t5rYKr/z2B7rjHW0D/KS/bJljoWXsxya6S6IuvIQDjyJia1tvpeCaAeg8k7b8OpyknDzie46Hu5eWSPUm9TJoAy/M7c01gm9Au9H3v0fRZ+lD6Z/ZeTxs/eoKtvpN3l0xmifvkM4jwJDwSv/9O7i78TUUp0VOPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kvVeQOxjm186uoF5YZlfy+LgFwBHG87+BuYa7PSf36I=;
- b=bazdsBcwcES5rgbStX83UvXsNM4/KNe+ml5dvB3s6QsBHRK2oOS/bMMDRdYQ8NPIAR1/ifZQJBCVS6OJbhlogbTtubfEZVfBO8/ey1z/pIWDNd/F5FLsWmaqapKvKUvu19QVXUgpbAskKdTFTJY12fXK49yaC1tCzscVmZMyPGMeAogCZLrzKVaNT9Q0bkCPKxJVg56djwRkokbBmA9GdXSETjQ2JZgO8puQVOd96MPytEq2iZ/4K0ISv80AX8tTakD5TZC+FUMwmWd4pp9IiazVGJZVqi6CUflIIWhnFKB7zGdWRPJ8iHCjbf6PixH3OH4VfDVTdt9V3m+xYw2Jqg==
+ bh=0cHcVWsDAK20athZSraluD/oCu33vMn7qA3L4ifWN3w=;
+ b=XgLLcTZAE6KD+NH1i3/Whaj5R8wC2e3uM5Hq+Xia4JxX1lRIAv/jsfjeSZR0mQdwYhTj2azZukDsSv0c7vvEvRWGA3OUdK50NO1NZUKXxC3dAsGF6WmgYicq3avGblf+HUob+BDrjTr1xsITYs/ghygOysVpdKeqY759vaYusj1RemHm0SncF9T1daQjNk1139A3BPMKx7yQCK9GG9GETinwHTP+Ui8expexSNosJI+9+AToxgFm8o4H01hoMeGbDAvS32Yg84jt6J6BO5ySxJarOHvCsOIeDUvmB129xKIF2d4dXPhjfYhNDta8PuXiZWfyMo/DauRT+QZBlCdG0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvVeQOxjm186uoF5YZlfy+LgFwBHG87+BuYa7PSf36I=;
- b=gXjeUTx31WxvwdpZKU/HXoPHl5fR114MIiqGtA/oS4zl99oEs6lYup+ZbNBNvfnGjxgEnwVCdOBVyqO4ASugywiKiQfpPBmvJ1QHDmla7aqW9sPIPx/aSbPgSlBmzk9Ihylti06xXaxUStiUze4VRRMtBd8IesuQiVIqQr1J/H4=
-Received: from BL1PR13CA0256.namprd13.prod.outlook.com (2603:10b6:208:2ba::21)
- by SA0PR12MB7092.namprd12.prod.outlook.com (2603:10b6:806:2d5::20)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=0cHcVWsDAK20athZSraluD/oCu33vMn7qA3L4ifWN3w=;
+ b=CQpoVnVdJyRzHqJaX9I4o42Bo0W7+Cw/rti1L42xFqA9O2tswxkg9huSvfKFtcZKxIDdYGRRfmpvOMcD05prQ3BsC9xwJ6vDAM/bv8XDMwg6Rg5nGOyghynf36K/uKysLodn8YUE41a8IQDeKoeTOPKuRgQNdWS8B1zTq/0Q1fs=
+Received: from BL1PR13CA0260.namprd13.prod.outlook.com (2603:10b6:208:2ba::25)
+ by DM6PR12MB4452.namprd12.prod.outlook.com (2603:10b6:5:2a4::17) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
  2024 21:59:03 +0000
 Received: from BL6PEPF0001AB53.namprd02.prod.outlook.com
- (2603:10b6:208:2ba:cafe::fb) by BL1PR13CA0256.outlook.office365.com
- (2603:10b6:208:2ba::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.17 via Frontend
- Transport; Thu, 6 Jun 2024 21:59:02 +0000
+ (2603:10b6:208:2ba:cafe::96) by BL1PR13CA0260.outlook.office365.com
+ (2603:10b6:208:2ba::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.12 via Frontend
+ Transport; Thu, 6 Jun 2024 21:59:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,7 +50,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL6PEPF0001AB53.mail.protection.outlook.com (10.167.241.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:59:02 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:59:03 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
@@ -60,12 +60,12 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Dillon Varone
+ <jerry.zuo@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Dillon Varone
  <dillon.varone@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 54/67] drm/amd/display: make ODM segment width of YCbCr422 two
- pixel aligned
-Date: Thu, 6 Jun 2024 17:56:19 -0400
-Message-ID: <20240606215632.4061204-55-zaeem.mohamed@amd.com>
+Subject: [PATCH 55/67] drm/amd/display: populate hardware_release hook for
+ dcn401
+Date: Thu, 6 Jun 2024 17:56:20 -0400
+Message-ID: <20240606215632.4061204-56-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
 References: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
@@ -77,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|SA0PR12MB7092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b18091d-604b-484c-bb1e-08dc8673e0be
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|DM6PR12MB4452:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7fe872c9-2301-4e28-41c1-08dc8673e106
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|36860700004|1800799015|82310400017|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Z8Y+eoENofzDh7PZxro3Qvxuj7OtVts+DUv/Z6C++x+C4tF1npnICW+wII5q?=
- =?us-ascii?Q?/f78bchPDW+vwesfm1UIfmMBueX1NQd7DF1FYMlss1PBws9U3mFh/TFxdQnU?=
- =?us-ascii?Q?MejDcKod7rE0dcblnNqfClgRrMLDiSlG7tXiXlDRPYLXOaHxLEPtRnEVMgt9?=
- =?us-ascii?Q?xxoSs7/dnYEIBji5vLueT+t8By7YoBc1BqRvP8fUEXafDrcAVG78Jnw8nDvB?=
- =?us-ascii?Q?leI1eK7unHSpEbBXULusjqMNeXgG0ebn5HnYbFrYL7u47nqqgQfegjrFSHQX?=
- =?us-ascii?Q?HlcoiCRbjeFIT+PDkTgys31mcvi6SQNo0g10lhVtCozUxcK7DTDyWOuANL7N?=
- =?us-ascii?Q?kPDixIq68J1L8fNbRw7e2yeuivXeTKynhDdaZ5pUl1a5jOZKyMH25mh1Lh9v?=
- =?us-ascii?Q?y/Hw4lI8VaRphwmZhL26MZzgPsgSJto2UfkK8SSyyyjja8CDVnMqfrKUvYSo?=
- =?us-ascii?Q?4+jkrb+7+NjHN6VWEJZ+9/1md5dAkAxIsK5zx4O4P2DR4sN9zRrZlZSerH+f?=
- =?us-ascii?Q?O9p5upd25TI9OaHAJSsJoiS9EbZKARfrZF5iqx7DstBAjSePa2zytOviVy9F?=
- =?us-ascii?Q?8MIf67fclsxpxOPRxzW3L9IEHHAo0l8RDx3ZpIa3hBmPOZg4ybNn3nBGUB2o?=
- =?us-ascii?Q?mXPG2xxPy80H4uXpVPED8qWxEvtujQKVEOPm7Mrq5m1xYy3sdIfPTVbug3IR?=
- =?us-ascii?Q?V3vKdWhGbOJLPJ8k1NV/lyPLogW8Yr7qgoVYZY/grXnc/tjrA782jEGDDvk4?=
- =?us-ascii?Q?m9cA7Ea0ikenbYJbAIzV5zRYWxVLpUSa8soaR2wzIj1uCh+3wRwWabEz8vQF?=
- =?us-ascii?Q?4a0DKQ6CfxN9w/OkunoVg7i6wGpy+UFW/cDWO3ctKhbCS8JVVIt14ZRU/NW9?=
- =?us-ascii?Q?38YEzMnw4v5JHAzBLMo1K+4QuqstBWPsbV4gZL0wN8TErwxf2b/6wUeIj4jm?=
- =?us-ascii?Q?PCf0tOv17wbWkZ8t16qwjni7SuooaaZZsCSEFekVVdIVyIur31vxsv9Ee6jx?=
- =?us-ascii?Q?uL3KSO6EjmP/bhzftq1GYXDXFXuz85Lsm/lNNxFJGVVGNi/x3nJvHotl+bHt?=
- =?us-ascii?Q?9qQf8VUDduP4T2Ec0/y6uOSXxUY2OIJuTzjl0F6w/TA1cEJU9vryORdTLT7J?=
- =?us-ascii?Q?UJ4mNj09ntr3mAAYS9Q5MJoaR5CTkER7eq8b87GDEUqC2R5jdVnALoY69Rlq?=
- =?us-ascii?Q?t76/DMOkZOf2dxtx/9VtmcZXNVEdOYGIAaUc1SxOa2i1JwDNAkGJCtCtlHrU?=
- =?us-ascii?Q?6El/6shOa4waXCok8Zov+yAKburP6UOJvoHhuho+t6twrtSHPOES7qN9g2H5?=
- =?us-ascii?Q?kyqomLYcmUPGgkWk0da5NAHvzYNG51Ca9Vi87OxJHhwBSba4P0mRd3Bwkgnz?=
- =?us-ascii?Q?jHdvzXhH1f4Lqm6KNhkAc1aCjiXIrMlWQduZ/3OE74dHINnlBw=3D=3D?=
+ ARA:13230031|82310400017|1800799015|376005|36860700004; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qWH/8nw0DEi/WGg1xY1xs7GjXTz/3Vqy0HOd+oTvU+EKECv6kOqa+eQEwosH?=
+ =?us-ascii?Q?EpPyAcQ6YD1TwILyYFG2qzN1jftktWVtOw0NclffXkwntEmxSSYjn1m0pR2H?=
+ =?us-ascii?Q?6bbeRmUptfL1FkkSeFdJ/rM3EUAZp42yKgctpt92QYtPC/uhrXzTjf1mntVa?=
+ =?us-ascii?Q?9vM0ZHz5ZzbRKe2ALkUiqZRdehwnmXd4ncO7kh+P+aErfMt9AknftjhNudpw?=
+ =?us-ascii?Q?5/m053Eft99/BeZLnEdz0aQDVe6qd2mBfRXnsEOXAQmaQu5sf4qoPBtnGz3b?=
+ =?us-ascii?Q?t4xRPEbh3fzDonUdAtkgQILjQtXW6j9/OhSM3zy9w9dH6INqgHdxiGnwJjWA?=
+ =?us-ascii?Q?u1cIUu5iFqhGWk9sXkYfy+CePFrRF1eU/v3BPbyovvkKgNPUm6ICTHu60wtb?=
+ =?us-ascii?Q?xQ6szcSUZAAxh/NZYx16eM6ACLjfI4HHIbPaY4lVnXXRf4qoTuSI8gz84uMq?=
+ =?us-ascii?Q?r6fK8zVRRdMPhPRMzHFcU237LAGohhr1u8AJr9W+xUpge/YF7tvRaE0edC9a?=
+ =?us-ascii?Q?nV4nTtzZOOXMOk4BiOPxI8xr720ys2VELPNyr6INuBgg01mKRhjRh3q+GuN/?=
+ =?us-ascii?Q?dJ4r0m7qrzox45yqtx3+r1VYPh/4I3hGsA9NJyFJjrdIls9o6kAbaH1uxNDm?=
+ =?us-ascii?Q?nbyOO3x0DA5rLZNIWhcOum/lnxlAx2zh5yIRPVcqNLEIRuqbWF98T0QG1jLl?=
+ =?us-ascii?Q?vF70Clos1omywV3CHrNFJ+cped8kxtdjQIedp2idFG9zzcifMNagvUM9nF5W?=
+ =?us-ascii?Q?J8MJZvUZNEsI/5xASfbWwv8g0G3fRQDcYSrwXbtFdbe2d7FaYqQk6ShHTgc/?=
+ =?us-ascii?Q?J3bAVlDoEZUtQ+QCexGXizwIZnExvYOizTc+sAzKAejLo0SstwJn+giBLkbt?=
+ =?us-ascii?Q?8iQVtgBW8aI1t3t7h0Gw1iY4e/NdYZzg0Q1xQ1qC2EXSNxPrKD6s4bnX0t/+?=
+ =?us-ascii?Q?ENRSRf9O/4qcA4cBx49mbX5FA2svthuBher6OXjgz0QtG6Iq9qx+X3gOL+hr?=
+ =?us-ascii?Q?RHQZ44GKBUJfbNZvxbSpBtMACuy/NhlhsVxKQDo0dUP+LupoG01s9Wx+T8BZ?=
+ =?us-ascii?Q?M351ioQVyoeXo96135y6tiFfzpUm31ZzF3ijC/opp1EhFkAL/tKr+raznSHi?=
+ =?us-ascii?Q?/W9vvez9imYrpGC4h1gxpdujGWX6deE4xDqPk2JmjCZuPE6/Q/4xMuo8N95o?=
+ =?us-ascii?Q?z1WOJ4AqgwAkxU75hGQQ8fhFBEqzYGHFi0+L9Hc3HNyGp97JwvBOM1iTfRCY?=
+ =?us-ascii?Q?y8SH1KgDwlO1qR2145yFLBbUpRTzDUyYoLZFOPYMDdVGZmDf85WP0pYa/h87?=
+ =?us-ascii?Q?sWYVCzY5nLTEatpax5KVvdE4VNaD/1AlPJlQ/1oKIhdl3QmRw1gNKa1FZG5P?=
+ =?us-ascii?Q?kEm3fqf72cVhFfE46awSrngFXkuJidL5XHn4nqD7sydELubZDg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(1800799015)(82310400017)(376005); DIR:OUT;
+ SFS:(13230031)(82310400017)(1800799015)(376005)(36860700004); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:59:02.9099 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b18091d-604b-484c-bb1e-08dc8673e0be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:59:03.3631 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fe872c9-2301-4e28-41c1-08dc8673e106
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB53.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7092
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4452
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,50 +135,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Alvin Lee <alvin.lee2@amd.com>
 
-[why]
-In YCbCr422 format hardware shares 1 set of chromas CbCr with 2 sets of
-lumas Y. Therefore each ODM segment needs to be two pixel aligned. The
-commit adds this missing hardwware requirement into ODM segment width
-decision logic.
+[Description]
+hardare_release() is called when driver is removed. Add the missing hook for DCN401
 
 Reviewed-by: Dillon Varone <dillon.varone@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 20 +++++++++++++++++++
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |  2 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_init.c  |  2 +-
+ 3 files changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index e047ea4ff3aa..76b849bdd914 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -2089,13 +2089,20 @@ int resource_get_odm_slice_dst_width(struct pipe_ctx *otg_master,
- 	timing = &otg_master->stream->timing;
- 	count = resource_get_odm_slice_count(otg_master);
- 	h_active = timing->h_addressable +
--		   timing->h_border_left +
--		   timing->h_border_right;
-+			timing->h_border_left +
-+			timing->h_border_right;
- 	width = h_active / count;
- 
- 	if (otg_master->stream_res.tg && otg_master->stream)
--		two_pixel_alignment_required = otg_master->stream_res.tg->funcs->is_two_pixels_per_container(timing);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+index 116411aa0a2b..4d0c01e866be 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+@@ -1674,3 +1674,23 @@ void dcn401_unblank_stream(struct pipe_ctx *pipe_ctx,
+ 	if (link->local_sink && link->local_sink->sink_signal == SIGNAL_TYPE_EDP)
+ 		hws->funcs.edp_backlight_control(link, true);
+ }
++
++void dcn401_hardware_release(struct dc *dc)
++{
++	dc_dmub_srv_fams2_update_config(dc, dc->current_state, false);
++
++	/* If pstate unsupported, or still supported
++	 * by firmware, force it supported by dcn
++	 */
++	if (dc->current_state) {
++		if ((!dc->clk_mgr->clks.p_state_change_support ||
++				dc->current_state->bw_ctx.bw.dcn.fams2_stream_count > 0) &&
++				dc->res_pool->hubbub->funcs->force_pstate_change_control)
++			dc->res_pool->hubbub->funcs->force_pstate_change_control(
++					dc->res_pool->hubbub, true, true);
++
++		dc->current_state->bw_ctx.bw.dcn.clk.p_state_change_support = true;
++		dc->clk_mgr->funcs->update_clocks(dc->clk_mgr, dc->current_state, true);
++	}
++}
++
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
+index f91159a6e6d4..bada43d4b2eb 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
+@@ -75,7 +75,7 @@ void dcn401_fams2_global_control_lock(struct dc *dc,
+ void dcn401_fams2_update_config(struct dc *dc, struct dc_state *context, bool enable);
+ void dcn401_fams2_global_control_lock_fast(union block_sequence_params *params);
+ void dcn401_unblank_stream(struct pipe_ctx *pipe_ctx, struct dc_link_settings *link_settings);
 -
-+		two_pixel_alignment_required =
-+				otg_master->stream_res.tg->funcs->is_two_pixels_per_container(timing) ||
-+				/*
-+				 * 422 is sub-sampled horizontally. 1 set of chromas
-+				 * (Cb/Cr) is shared for 2 lumas (i.e 2 Y values).
-+				 * Therefore even if 422 is still 1 pixel per container,
-+				 * ODM segment width still needs to be 2 pixel aligned.
-+				 */
-+				timing->pixel_encoding == PIXEL_ENCODING_YCBCR422;
- 	if ((width % 2) && two_pixel_alignment_required)
- 		width++;
- 
++void dcn401_hardware_release(struct dc *dc);
+ void dcn401_update_odm(struct dc *dc, struct dc_state *context,
+ 		struct pipe_ctx *otg_master);
+ #endif /* __DC_HWSS_DCN401_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
+index 8358ba74405f..dabad7feff03 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
+@@ -79,7 +79,7 @@ static const struct hw_sequencer_funcs dcn401_funcs = {
+ 	.does_plane_fit_in_mall = NULL,
+ 	.set_backlight_level = dcn21_set_backlight_level,
+ 	.set_abm_immediate_disable = dcn21_set_abm_immediate_disable,
+-	.hardware_release = dcn30_hardware_release,
++	.hardware_release = dcn401_hardware_release,
+ 	.set_pipe = dcn21_set_pipe,
+ 	.enable_lvds_link_output = dce110_enable_lvds_link_output,
+ 	.enable_tmds_link_output = dce110_enable_tmds_link_output,
 -- 
 2.34.1
 
