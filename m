@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B30C8FF733
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 164028FF738
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:57:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE2510EADA;
-	Thu,  6 Jun 2024 21:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 401F910EAE2;
+	Thu,  6 Jun 2024 21:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NS8xRg/N";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="U/DG0u3P";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C8E310EAD5
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:57:41 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E428310EAE0
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:57:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CGO4pEylg3FvUvKRHsfPR19Jfz8Ysp2Hv3AoPbzJ7GB8FeWdaWlBXdyLV2wsWOoUKcrLzgEosgVNUeqHcRvH/gYN0/1xE6JWfMTAkro8LYiHzz59639Ne/mn/11dskDkl6+YE25hTtrTGl30w233W+hZ1oOtcC7Yy1AAHaEzgFvnLOc0Q/Axg3lXuRP55cvzSUUO3t8vcgnsuCq49xfZp9JFAqmwv1+f8HH0Z9FDI+jGNOoQWhDlXbTzPTU3Kmz37FFpqmme6O85thbOn62v3sSr8ysIubxX9kMXFcvHVSsx+cb77+65tddMkzLlRNjTeRP7HrXOeJeE5egCFXuaUw==
+ b=KOAiqsx6lP03VvJMkxa9OmmOQt3vyC5FS7+4BHZlHeFtbIroUyl1fgxbEYmxRrgBeSQ8qrBK62OljOBpRYImBSZAa6MyX6eqaWpYkEJl5tPtSSHp0Lzlms3r12momufsizD/e45KP/L0Orx6bHHzrRJSOiyqG7/BM7v/8UjdtXFDu4KpPgHn6icEO7B6nBGerJL6i7f87xd7uEE1eh2TjmjNBT7zemYJcZbiGFhB2UVqFumWVyKVodb8SAPF4OA55pOFIWeoj8jhlfhlIO8Y/5yZu5J8mxcbj2IqYckRIyiXKPGJPmbo5LDbAwAaOfFwB/haY+JOMxFiCzIyVelxMg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TvDnCR5V2lXcbUqPBwk6H8HIm+oR79N9TD1IurkU0co=;
- b=TxLOu1RVabipIaojzhfc9PrSEzQBC4QkroLCK1nMVmuP0xU6PCr+g/bAd6YGOsSFb5TZHRA/RYHQlA1gdQW9Pdvk9J9TFNWu0JLti1VmkiwkW+E6iXagPg+u8R7Fl1HNVofXXInezBoVjJC3e7k2woFDQn8vtRFD0KXV7WfVXgsSSbpDNOTr1DrHH3FVSzW6C+aYaCUvqvbvUOZKg4lZXElYL5xACy1FZ5YCxgrkswCyjwFRvPI1dlc/Fhn+hm3Aqosl9jvrr1ecoMOqRxNPn0t96SYK8Kg2jfmNnuDr4sG8fG4n8DVMvYNJLL3YANZIrxhm1OoHN8jAgZVvC5ME1g==
+ bh=B4/Ks+TuQZu1T+5NzoH5GuPj45/dwz6BtR0Z7o7NcLQ=;
+ b=PRRTrWmh5R8BaCMzXxeCtUxkcLHL9tWyllSHFOlPIJBoN8ooXlDWFdBJijrYmsPqqob1CG+YNeUQnNcYwQvEC0ffiNld1/dqigTrvN5iaOpFq9X3udH/MwoxHC32YycQvKpfXoEYKqC9NCVybYT+IMTMm6GP20DzW0Fa34ebB9kPE/uX9s0yPpAa4P/dYORurYnP9RxnLhjIs/swVSQ9+9xbizQMG6f/r4Rcwvx4M644CeSvUkgINdKGGnA+QcAgegcWaF00JVB5QAo4DAKNDhPeCJ7kVYb7b4NSk3ENw9l3Tqf94fB7sAfmN7miwxTAwHHs++Q0ZfPrBW9LA2En4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TvDnCR5V2lXcbUqPBwk6H8HIm+oR79N9TD1IurkU0co=;
- b=NS8xRg/NuIB4LadJ1AmQDR2v1VvFKId+rIQKGEE+Z0368EMyeOMwvW6uiE44rHzeiLLhCQikFExkGDt5YTCE2dJANrLaJbs9sI6xd4d5DQi5JGoboTXNOc3ZbwaUgzakeQsMFSwrDVXXvbGgvxJpVCUa41WCSl8c8Ib1MRqsWR0=
-Received: from BLAPR03CA0134.namprd03.prod.outlook.com (2603:10b6:208:32e::19)
- by CYYPR12MB9015.namprd12.prod.outlook.com (2603:10b6:930:c8::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Thu, 6 Jun
- 2024 21:57:38 +0000
-Received: from BL6PEPF0001AB57.namprd02.prod.outlook.com
- (2603:10b6:208:32e:cafe::e9) by BLAPR03CA0134.outlook.office365.com
- (2603:10b6:208:32e::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.21 via Frontend
- Transport; Thu, 6 Jun 2024 21:57:38 +0000
+ bh=B4/Ks+TuQZu1T+5NzoH5GuPj45/dwz6BtR0Z7o7NcLQ=;
+ b=U/DG0u3PzduYg/EaC7CCv1nn0BwKJ2Lqm1mxYW53OxffyiEJ0nOEVM+Q/b32wGu142zNOYRnRaTVWniLk/4s4XAop/z4K6ig5wV0g37sXK4uK7SUiZWxEIp/Yk0DXhgVH6+Tm6tFJ1RRDRXXRlWcwdk5LXv4tR8uVzszUrE2ktY=
+Received: from MN2PR20CA0036.namprd20.prod.outlook.com (2603:10b6:208:e8::49)
+ by MN2PR12MB4320.namprd12.prod.outlook.com (2603:10b6:208:15f::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Thu, 6 Jun
+ 2024 21:57:40 +0000
+Received: from BL6PEPF0001AB54.namprd02.prod.outlook.com
+ (2603:10b6:208:e8:cafe::30) by MN2PR20CA0036.outlook.office365.com
+ (2603:10b6:208:e8::49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31 via Frontend
+ Transport; Thu, 6 Jun 2024 21:57:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,24 +48,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB57.mail.protection.outlook.com (10.167.241.9) with Microsoft
+ BL6PEPF0001AB54.mail.protection.outlook.com (10.167.241.6) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:38 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:57:40 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:57:36 -0500
+ 2024 16:57:38 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Rodrigo Siqueira <rodrigo.siqueira@amd.com>, "Aurabindo
- Pillai" <aurabindo.pillai@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>
-Subject: [PATCH 26/67] drm/amd/display: Use the SPDX license identifier for
- dmub_replay files
-Date: Thu, 6 Jun 2024 17:55:51 -0400
-Message-ID: <20240606215632.4061204-27-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, Sridevi Arvindekar <sarvinde@amd.com>, Ariel Bernstein
+ <eric.bernstein@amd.com>, Nevenko Stupar <nevenko.stupar@amd.com>, "Zaeem
+ Mohamed" <zaeem.mohamed@amd.com>
+Subject: [PATCH 27/67] drm/amd/display: DCN401 cusor code update
+Date: Thu, 6 Jun 2024 17:55:52 -0400
+Message-ID: <20240606215632.4061204-28-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
 References: <20240606215632.4061204-1-zaeem.mohamed@amd.com>
@@ -77,50 +77,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB57:EE_|CYYPR12MB9015:EE_
-X-MS-Office365-Filtering-Correlation-Id: f51021a0-71b1-456d-8450-08dc8673ae59
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB54:EE_|MN2PR12MB4320:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7acbdc0-ed60-4437-15c0-08dc8673af64
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|82310400017|36860700004|376005; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?k+5CNet1aVIRcufmiDlAURA6hLw7i3jwpVjNHg1h13arFtb3Wxmr2CjZHSdF?=
- =?us-ascii?Q?08K6ynzDg+7xDTJuuPTtTmi2BZaXp2mEU6PW/z/z/T8IYAvGo1ZTiqo6tHRm?=
- =?us-ascii?Q?dK0tlSr76N+f+6phVaxKCZSV6xzlqfYqb59Ummnwk9PkaraTPUeasd03ZbsP?=
- =?us-ascii?Q?isswqiGwFR+Ew1BwlNroY/iaPzJQ1JRmbwNw82l7IVzkFvB+1sy6p5+26vZo?=
- =?us-ascii?Q?wtq4v2z+ai8yyUiwqGg9G308bUzDyLdX/zjmPf0bEi93pTTgU9DXYiUz9Idw?=
- =?us-ascii?Q?bj5SbXwgnBjVGN/zGkznHjrIIboTLlXu7pO8GRhGFQtbBkAWLVyxLOgWP8qK?=
- =?us-ascii?Q?QQSiv/Dep5cGfMg8WZtNbe5AJvZolqxKC3yVyspIV5nCNwfIykozi0A1Xi57?=
- =?us-ascii?Q?QDh5sfNyMVUw1UbE2MYpT91QVP5nG44PGsf7sie9IX8BgFA7ZqaehKanSNwX?=
- =?us-ascii?Q?wESTJQz1swq+NZLCwGgUHbe3nVxWlaBn6M60FLCBFqREYCh/p56ZTsmxvEBl?=
- =?us-ascii?Q?x/pIbNHp1WW+3YGyBst9AwMaOdmIvKmgOfcZa3SMK62qamce3/jr4nkgL+Hk?=
- =?us-ascii?Q?+AeBa3nWfoDY6EwnExWdlFLLo9JKX7pMrTiF+GTRZRN22Yh5pyu5nGwgZiqB?=
- =?us-ascii?Q?UzXfZFrBPFTttqwQ4uxy29sm61Y3fTC278kG+Q8JOdMEgGz41NzyklOwjand?=
- =?us-ascii?Q?X/RxaBQrDn0Dc3Oo4LdrfXLC2SHgNwZc7E3NU0cD7nkRWxTaEZHTBgez6nl6?=
- =?us-ascii?Q?CFYoX297IaDYYyXIiQ9uAgNh7wMllsVMvnd1iOK/sGqpW5EQajKGoOv09w1H?=
- =?us-ascii?Q?kqbdyW2b9KSDQf4w8ITRmvBAE1YojtSLNAacZfB2G/3raEIM3wxlI3nzdF7G?=
- =?us-ascii?Q?ZnwiD/hB54Pzysm7tNRRU+UIDkBq9zBWLoC4goY77x4KVmxv+nd0qPsXjJIR?=
- =?us-ascii?Q?cyEUuP+NdtwC+JAyR9bO39NAehlIIq8tZ2oekH4KcNm+7wxP8J0hZYG6bVW+?=
- =?us-ascii?Q?7+IiC4V99jHqRL17wujAhsQmUrvFFOhJvSIC/sooIkJEI83gqFQmZN8QtaJ9?=
- =?us-ascii?Q?Z/HLBFlEmUMDEx/GVFrvbvXkB+HDYdwDOCqQBU+LHOAZKCqNsH/msOFGtcNB?=
- =?us-ascii?Q?b67iMIyQKVg6PVDl9b9RtVYWLpPGbMJSkWvWsrXdRm5j7/KGHGC4FqgxFXic?=
- =?us-ascii?Q?i3CXjk/zn2x59APoET6+RbSBn5EfwLrV5avhcOEtwwEd01aCE5WJ5z9xrNj2?=
- =?us-ascii?Q?zMbkEw0KwaVABUx3H5tUaDoqXISp+bLZZVYd/TBUwZryB9WGTW/sPbD+RLYi?=
- =?us-ascii?Q?2feoRYV63cVtLi/8dO9lUAxSGDFi7ZdmPjYNOPSvALHXLt8kd1UOXyQZNV8X?=
- =?us-ascii?Q?ALmze8C2iKS3+k/FbsPObl6JIXrjjEMavaP3ZldVm2Ypys1EaA=3D=3D?=
+ ARA:13230031|1800799015|36860700004|82310400017|376005; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?A6rIn0tFyzxRQtyhlvYJv7atC+ckCsc6epdgy44wxOQThYVyYNWw3A9AncDm?=
+ =?us-ascii?Q?zxpkin3RJiO7cqLrA5yzRRO/W/cTeWlN+MdQrRUEIPdhHfDMFz+MbhzKOmfT?=
+ =?us-ascii?Q?UaQajh+Iq/JMc8KEVxkBY378KmZ54TaSoGmsr+NNzBb+sTzsMutkvKNbD132?=
+ =?us-ascii?Q?IwzUJxndPYLa0WQ6XvmhnqFGkqtXfPZun+pScdRFMve1/ZdbvIdC++KokVmF?=
+ =?us-ascii?Q?wfy2v9+IJ0JAwTfLDBZv965HXk17nJtBIaJDf1lYlS4onKxOiV68jLt98ILw?=
+ =?us-ascii?Q?wRAb9//DQYpkTFakbAE1t1yv0ksRUjCbYaSyD/ANbOXuYCenW5epjVc/9GTx?=
+ =?us-ascii?Q?XmzVmgE1AwJjribjJ4wFay3u7fSinIL3VMoonuOqCaAKPrJIL18UhlK0aT5Z?=
+ =?us-ascii?Q?TSYNGPyAknD0O52EQWoz6Mbp3eDA7C1zV0XmzjMlMuYoX7iWU5UqbJ3empIx?=
+ =?us-ascii?Q?S/BCWKQ4HOETZq9shUo+bexru97pavHwxXbNFGa24R7ro42Rb6aCdcIiVakm?=
+ =?us-ascii?Q?o8HOduC5t9m1g6YPnx4fT31FAdACjC/34zgDc0suRimg+kAMFJu9F7avCULq?=
+ =?us-ascii?Q?N6XmxnLVVJWPu1zgrDBFspmj9N179W78vWZ045NQPnI0/YrIpWiqHZheee5N?=
+ =?us-ascii?Q?tJR+MtN6tKTdMpkxGOGXIjHPel7e47lgDlo+Xtetk1K5fO0ddz0tflpagW1p?=
+ =?us-ascii?Q?9QrG1AcSWTOD0z2b+8vmIJTPTWjXMF7jw746UP8PpRhGpD5eEuJgt5QCEGBi?=
+ =?us-ascii?Q?8Nx5aH9jzYUtyahrwFfyMNa1w4q4IW2Q60lxIfpq0jCRsg02sgpZHMo4LR1R?=
+ =?us-ascii?Q?cgB/sJe8BMs9PsmYqhT/f5igrgJckT75okw4XctWz2ZYhCbKVBqOLQwe17XG?=
+ =?us-ascii?Q?t+MAjFVKLOKbNtdseGGplxxIlZmZw8O/x+3mK2dXSP0QFvB6N+B6ExCzo2hg?=
+ =?us-ascii?Q?pk8XlbLpqLtCmpyD7VVBjRT7VqzNJ8BUw08HTQ7zxY/K1CkLVJoxbmL/jOGb?=
+ =?us-ascii?Q?NBPLVNJJ707RDr/vjATI66T8hh/bEyv1ifwyi6Gn6HuNRRC2n+yrDnlKksEc?=
+ =?us-ascii?Q?8pZ67FDxsiBSzvEaj9QKU2OvDClX5i1MfQCkT+XFCZbH37goaH01oPqLcjsK?=
+ =?us-ascii?Q?4yxDQ+CLLSDIGvsXSzKrFv0jtDusjFmi2wQGFjImH+sKUJVkcghLB5vcr+Gk?=
+ =?us-ascii?Q?4Epk8w4z1NvHsq20PWgrF3y1Undslyh6rq8eOqdgpGsTZoU8EyaysqZqRXDq?=
+ =?us-ascii?Q?8MV/HzIwKlWBlfwzocUP1Sr1KwlmbrBuhriH959w3bSbkX5hJvi+rVUZ9XBu?=
+ =?us-ascii?Q?3cBxAPVDUoySfRxYsa2SkYYat4vxfkaeTsMIQ6k3hluY0Y37YBpbFtxsLC3R?=
+ =?us-ascii?Q?IIhpHnNwMzjPB4dxTePRhDVOgpWzyN1d2nJYxKP2yAhDK2t73g=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(1800799015)(82310400017)(36860700004)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(82310400017)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:38.3449 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f51021a0-71b1-456d-8450-08dc8673ae59
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:57:40.1075 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7acbdc0-ed60-4437-15c0-08dc8673af64
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB57.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB54.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB9015
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4320
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,90 +135,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+From: Sridevi Arvindekar <sarvinde@amd.com>
 
-Use the SPDX format for dmub_replay.c|.h files.
+Scaling androtation changes for cursor.
 
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Reviewed-by: Ariel Bernstein <eric.bernstein@amd.com>
+Reviewed-by: Nevenko Stupar <nevenko.stupar@amd.com>
 Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Signed-off-by: Sridevi Arvindekar <sarvinde@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dce/dmub_replay.c  | 27 ++---------------
- .../gpu/drm/amd/display/dc/dce/dmub_replay.h  | 29 +++----------------
- 2 files changed, 7 insertions(+), 49 deletions(-)
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 22 +++++--------------
+ 1 file changed, 5 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-index 62e03fdf813b..5437ebd8bc21 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-@@ -1,27 +1,6 @@
--/*
-- * Copyright 2023 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-- *
-- * Authors: AMD
-- *
-- */
-+// SPDX-License-Identifier: MIT
-+//
-+// Copyright 2024 Advanced Micro Devices, Inc.
- 
- #include "dc.h"
- #include "dc_dmub_srv.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
-index 63bbb1bb0ad5..9b20df9258bd 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
-@@ -1,28 +1,7 @@
--/*
-- * Copyright 2023 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-- *
-- * Authors: AMD
-- *
-- */
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+index b9541d5ab601..0b00fdf1297a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
+@@ -1124,14 +1124,10 @@ void dcn401_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ 	 * pipe to make sure each pipe enabling cursor on its part of the
+ 	 * screen.
+ 	 */
 -
-+// SPDX-License-Identifier: MIT
-+//
-+// Copyright 2024 Advanced Micro Devices, Inc.
-+ 
- #ifndef _DMUB_REPLAY_H_
- #define _DMUB_REPLAY_H_
+-	if (param.rotation == ROTATION_ANGLE_90 || param.rotation == ROTATION_ANGLE_270) {
+-	} else {
+-		x_pos = pipe_ctx->stream->dst.x + x_pos * pipe_ctx->stream->dst.width /
+-			pipe_ctx->stream->src.width;
+-		y_pos = pipe_ctx->stream->dst.y + y_pos * pipe_ctx->stream->dst.height /
+-			pipe_ctx->stream->src.height;
+-	}
++	x_pos = pipe_ctx->stream->dst.x + x_pos * pipe_ctx->stream->dst.width /
++		pipe_ctx->stream->src.width;
++	y_pos = pipe_ctx->stream->dst.y + y_pos * pipe_ctx->stream->dst.height /
++		pipe_ctx->stream->src.height;
  
+ 	/**
+ 	 * If the cursor's source viewport is clipped then we need to
+@@ -1297,18 +1293,10 @@ void dcn401_set_cursor_position(struct pipe_ctx *pipe_ctx)
+ 						pos_cpy.x = temp_x + recout_width;
+ 					}
+ 				}
+-			} else {
+ 			}
++
+ 		}
+ 
+-		/**
+-		 * Display groups that are 1xnY, have pos_cpy.y > recout.height
+-		 * Calculation:
+-		 *   delta_from_bottom = recout.y + recout.height - pos_cpy.y
+-		 *   pos_cpy.y_new = recout.y + delta_from_bottom
+-		 * Simplify it as:
+-		 *   pos_cpy.y = recout.y * 2 + recout.height - pos_cpy.y
+-		 */
+ 	}
+ 
+ 	hubp->funcs->set_cursor_position(hubp, &pos_cpy, &param);
 -- 
 2.34.1
 
