@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD81E8FF63B
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBA08FF63F
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jun 2024 23:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6519610EA99;
-	Thu,  6 Jun 2024 21:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3209E10EAA8;
+	Thu,  6 Jun 2024 21:02:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="osfGGjL6";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IgKO3I6R";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2066.outbound.protection.outlook.com [40.107.101.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 312D810EA99
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:01:58 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2075.outbound.protection.outlook.com [40.107.244.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1845110EAA6
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:02:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ce4/XkrZ/48DFVYypBnLVZYdgrFj7Q/TwZ/8/m8RRRdqS2kN3O8drGRn8IM9SYy/vlpvgaBtrfoFqewHSSXWgd8REN0R7unX5CWk+s+mVnlD2QFniLIcw4dHaScWAY4/h8gX3tn3GkVq4uCs7z49NeP+h676GF0RxS7A4Ry9zESx9bUsfy7sDCP7yMkuaUihv9QEwx95GPjOaqh7rbwB541poDXyVWYA8LVh3D/Wly8t/b9MdLElvIERCkBWpRjHgFK+YB4fhnYQOnbqEkSu5xW2NUmZFcXRgOHhdxD+oY6jtUQdIrkXl1I+mhc9hudaTap6u1feMcXYw5Zs4zrgDQ==
+ b=gMV/Q/S5+Uk5Ljmd6GfIgucbN2s+P71qKEy9IeJYim/5qSBJQzkxhFngdRfv21TPT9w53sJhbWVr8aGX9+6yJX1zBGDuCE/ROUhftqUNV7glLVj8cTDF5HFTZk5PvnJMxLrbx1NdkMw9JdPp4nVgl9OjCosA6HdNA4KJQ81gKHGqKfQfXGktzy3RnKW6sDzGXtvcwts+fs3w4i+zTmrv6VE63WUmba8vSndR73jjWwRkt2Co4Ex61i4HIP6vsZYkcUwCMfbmPpGOLdTgHklGM80RPS8FcgoC+hoogCIzfcJLAImD5rP7Ea0rDu3fvFEZBfPxWXfFlMWxML8u0D892Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cJNNubwPauCoahu4MeyDQ50aLdt7Vt+gXYUMwGqzYgc=;
- b=A7AA/BzYQ18AnrAqC1RA3dalEiYvOnb4CTnGtYKrDtY0rCQ/XxY9RHwuYueQSTrmysJWZ1w6vy5Z7pV+ZfyvurFv4gyQ7+hmJtRwxQmJ8D+ivXryRXJwKp6aKL4s1AA2O3O83W7qYthA4AcUCClbtnHVWPNEYyvKaqMzugVhXHnJxUyQYCryFTEoREWSwlP3zc3hFSCjS4QmWVadQkFrDMTpIlsf6c5mgw8b51l51ndRMWSr2s0z6Me6n7ND4NT3KvIXRoErXMcenm+os/+H2ZQ8i1sZ4kndDAJLJIlIW6FkKZrzgP8tOCmebhIhNoslSv/o6vefaVyVzjebrfCUdw==
+ bh=0pW7hhQRq5tDxpsA3R+cmolHjBMvp+zU8OHzvgTZbLw=;
+ b=XVnwdxEDp+CiCrMSWESqWiB8cqwNk2zJgb02SPx2+VBHopCgcNh7/T6hF8jAGPqvoejMBG90T/kgMKyIa4Wjjuc/0oZdE05P6mSebpOJ0RXkRyR3F6KXWVvVLPBfdHjtzWVJfmh2SV+Oqgm/k2Fa442av0Vf934CFMkLmCrHLxIjdCMOd004zLRGl7FpUWOXQ4vy0m0HY+hO1vMps4O5vga2qkCnSAr5KyFnAk6hmSGyY93MH4gT3fgjA2YOUrLLio40FYkBzPuy1cH4xpDQ8p6gn1XrKgbMwXUTfQ+t+4KeJxQrQTIEK/9r1YNkJZFDMto9GU11S4lRoOXLiiqUDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cJNNubwPauCoahu4MeyDQ50aLdt7Vt+gXYUMwGqzYgc=;
- b=osfGGjL61gNbIxBS6/N/ySeh9jipgnpZpA9mW0kkDYP+n70Q/YvHV+V2d/0q+W3eYUrqlSXxPkZrHEuCuA3gLp6UG9FkXeAY8k4zBUp2k8DiWs+v8KGDSJiQmicVC5HjX+CXgwGQtUCcjocDrda1k3x/+cpvCL40vmFuG2jrnw0=
-Received: from SA9PR13CA0019.namprd13.prod.outlook.com (2603:10b6:806:21::24)
- by PH7PR12MB7820.namprd12.prod.outlook.com (2603:10b6:510:268::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Thu, 6 Jun
- 2024 21:01:54 +0000
+ bh=0pW7hhQRq5tDxpsA3R+cmolHjBMvp+zU8OHzvgTZbLw=;
+ b=IgKO3I6Rdy0YJVcpp9/OoljknQivWg9WCXRuenYVYx4+y2+1rBbKEn5E/70ErHOBRWpxq1OFw9EzfnUVHnH7wQdHKt6YuUA7oJctkcxSwxxn3ge+vkT2Jswhw6EeP/PE4uUcNMwpbhRrU4XVHWOeyV5MhRwDFuBpCEjK/ZMWIsA=
+Received: from SA9PR13CA0011.namprd13.prod.outlook.com (2603:10b6:806:21::16)
+ by DM4PR12MB5988.namprd12.prod.outlook.com (2603:10b6:8:6b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27; Thu, 6 Jun
+ 2024 21:01:55 +0000
 Received: from SA2PEPF00001504.namprd04.prod.outlook.com
- (2603:10b6:806:21:cafe::8c) by SA9PR13CA0019.outlook.office365.com
- (2603:10b6:806:21::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.12 via Frontend
- Transport; Thu, 6 Jun 2024 21:01:54 +0000
+ (2603:10b6:806:21:cafe::fe) by SA9PR13CA0011.outlook.office365.com
+ (2603:10b6:806:21::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.16 via Frontend
+ Transport; Thu, 6 Jun 2024 21:01:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,20 +50,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SA2PEPF00001504.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:01:54 +0000
+ 15.20.7633.15 via Frontend Transport; Thu, 6 Jun 2024 21:01:55 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 6 Jun
- 2024 16:01:52 -0500
+ 2024 16:01:53 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, pochchan <pochchan@amd.com>
-Subject: [PATCH 01/67] drm/amd/display: Use TPS3 for ALPM on Specific Panel
-Date: Thu, 6 Jun 2024 16:58:22 -0400
-Message-ID: <20240606205928.4050859-2-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, ChunTao Tso <ChunTao.Tso@amd.com>
+Subject: [PATCH 02/67] drm/amd/display: Replay low hz
+Date: Thu, 6 Jun 2024 16:58:23 -0400
+Message-ID: <20240606205928.4050859-3-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606205928.4050859-1-zaeem.mohamed@amd.com>
 References: <20240606205928.4050859-1-zaeem.mohamed@amd.com>
@@ -75,50 +75,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|PH7PR12MB7820:EE_
-X-MS-Office365-Filtering-Correlation-Id: df7ebd0f-6f8e-48af-d045-08dc866be562
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|DM4PR12MB5988:EE_
+X-MS-Office365-Filtering-Correlation-Id: e200207e-f5d4-400d-a4f2-08dc866be5b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|82310400017|1800799015|376005|36860700004; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Wtn1GvU4r4kbFEp17n45f7UG9k6FFj2efeF5+W6MkZ2OOCMPmFgvvUf9dfcQ?=
- =?us-ascii?Q?G5Wavh+uI7dxu5NKh34RMzADEjJHtXUZKrW19xEIgjEhy0NTvsKy7CuKp0iZ?=
- =?us-ascii?Q?ydAFRkWnHXvbR0AVB4MegjEVYX1eWypc9+Eb7C9wdVRcISNG6bWJBt/iQAJQ?=
- =?us-ascii?Q?r7zjNjxskS8qQbp6sgAPBYStgD2VePRjQd78dyI0AceSZRW7t1NPLiQQkxQU?=
- =?us-ascii?Q?LqvNt9fvW5OPnhko7GWhkz2RxHnjd8wEDurhKh/iSIE0ugZtUQ0+MUpq5Bji?=
- =?us-ascii?Q?OlaUkmbCUUTI5sBWW4TH2mbIDE40XkhbkC7lLh+R4KfEHf5YgXoE4m0nqde2?=
- =?us-ascii?Q?dey2MP79L+z0/yKE5DvQTf02vrwW8XU1oinFVAhSiVDY8Tya9O77T2y4P0df?=
- =?us-ascii?Q?cSdy7INZNqNFbZX77rDzHHFJ5UaecBc1929Rl7o4718C4IGiOvY+WFOAbcgG?=
- =?us-ascii?Q?PS+2Zc2v0YUwMmBYI9OGjvTIAd1Y/151upivHnx0WrypPjd3R7eq/LtxE3+4?=
- =?us-ascii?Q?f5nBIKB5dsLGtoTJL8eYTMrb1o3j2aXYdn4K74CTXIMYhO6BkB0AI2P5ej2n?=
- =?us-ascii?Q?1FKsqDeHI9jY2O7o9wxHheC7UWZa1imhozzxmKoIKsUPEZnzMIrKXQU4nAXi?=
- =?us-ascii?Q?7Qx1/pofPx28uz2Zk+HgrukPdGNy0kTGa83EWG2aTLfZ7QCgQ1B4VxJRWaIK?=
- =?us-ascii?Q?m7k7hyLdo6S1oXiH/Ckp2Q9QIG1xT/FHqSSmfXK+G9vIGPakLOby/oYvzSTT?=
- =?us-ascii?Q?iZitWJPa1U8ON6fCnf72p6kk/oNZUawTh3Ar/L3b+6Po0DFMSJaGdyWaPQ8c?=
- =?us-ascii?Q?y8A0e33W5y3JJc5EA37+xWXGY41tc72GEoEQdFBL3pcaf2ecAw/VenT3hMo8?=
- =?us-ascii?Q?HIPTDOAphkTu6dS5jsLATFd09a8fTB9LGWy4agEKIHfW6cipuP0eCbJ6jbdI?=
- =?us-ascii?Q?0M8f9ssIfeftQusGUlZTQlu9PU5J6jHLTYrgENhiForG7QOL1EyEIfcbrzrY?=
- =?us-ascii?Q?XTxLWbvRxkk4bsTA/3xpE4awvSucyLUXR/yHNZDM9iyDTtnGG9actJaDwqJm?=
- =?us-ascii?Q?xUrdzxEKeDYFf0u1J/dMNfZXKpwkAvOLsLLZAgZx4cQuh12fpDUO3PZgG6lX?=
- =?us-ascii?Q?eC8GIbKbZsJQj7Eb0X1jpWf1qyfCBx3bngXSbeX4YC/ldtprzRtEqPKzw+Ii?=
- =?us-ascii?Q?AWvWA4WUP3fceXyWN9yXMNdS057I/i+NnfRtisapa+TExoO+qLSHblPg9uj0?=
- =?us-ascii?Q?hqRo84BN1dztxyO62XiywcixggAoMraw1iydGRF6IJJNyUNw9sFstl4xChws?=
- =?us-ascii?Q?UpvXfyxpegsVNTuAhN1u8iclAjM/EZBe7C5EM1mf8DAq1PiOxwQHpfVr9c7D?=
- =?us-ascii?Q?rQFYzJbYOMa5QuRS9I80BImNzRLzVk8X9BkA+ou4qSR0z5XQnQ=3D=3D?=
+ ARA:13230031|82310400017|376005|36860700004|1800799015; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pP1g9gytDB8+iliv6P3DmGg5H/S8LxJfeC0JJ31dVH6nBgFIzXp5Ax3svHJI?=
+ =?us-ascii?Q?d64nAHCdjYdn1NDe8CjZGY8Zfsk1u3eI5VghaIyGGPPh6gDkrodPNXW6G5Vk?=
+ =?us-ascii?Q?7iKwguXcXjb0jW6jTitEDITgmmigexzoMCB+2G0LHVmkME4qKIrJuIqkLrGh?=
+ =?us-ascii?Q?pNiH1zVoEivEOrbemIMzus3GOUqOUdaHAZfwhdmK5PiQnQk0fXIMpyY9NO9S?=
+ =?us-ascii?Q?B3rexuHgxvu57yPsCc58h6bvcLc3LlRKR2oJ7cnPPlja+z0WIlL8UqO8boJH?=
+ =?us-ascii?Q?ulY1vyYJaT/Qzg8WMTNCrnABfzGTpkwcmUO6brFBdDo+Ml3ixj7VJmAt1Cej?=
+ =?us-ascii?Q?39LapXwNezAJ/6VQepFMhKiPaB5oAlcKJESDiNPOFQ8AZSGb12xlxtJVmL1z?=
+ =?us-ascii?Q?WSOZ4NuyS0RomAyy+THibEPTdThmSVbbkQwallCp0WWeuLVI21/hx9lYcpr8?=
+ =?us-ascii?Q?+EQKLfM/0qdL/pH9f7lErMdwgB+ET5rtwf8avSslZY78DRFrf61uu1lCZwZ2?=
+ =?us-ascii?Q?GJh1W/uJM5DW4Bij2XzmvHXLgnWRtBhgP0Bqhyx8all1FTkhHg52iLpC/dPz?=
+ =?us-ascii?Q?ASuN8+w8+K1oRcT/FuMV7uSLNtt3brd4/qX4u8UUOc+wQ4Ql4511Zj1o+f8f?=
+ =?us-ascii?Q?chFdAh0z+5bXDCZJlmvPmqlTDZaCVQvBQgf09V3nATpHIyKJiYgqPhAjJ993?=
+ =?us-ascii?Q?KlT4N8ueR3n4Z4s9pMFtxA7J+llxnstziGF7BZLIhGpin7qHmOssPtWmGRZG?=
+ =?us-ascii?Q?EEXewFnrFapcTyW2shY5xNQnhgBoDPltQbCMXWlSmDXRL7w8Y+4M9jUGnHuF?=
+ =?us-ascii?Q?LPnWEBRMDavz4+BvN1sGLGq1YmQeeDJz+plvCobmsKJ45Ri4sDXkmB3vdxPc?=
+ =?us-ascii?Q?l7qTu6IUddq74eN6CA2GC1BtWZpQoAIGpHIOBU6xZWmN12H5YKDYvYDhTI/I?=
+ =?us-ascii?Q?hov0fHpnELgKgUfJ6Sin9COBd/XWc2PpDUn5gS0MMdgE1KjTPBNT18am7hr9?=
+ =?us-ascii?Q?lbexx9mN3/6e5lSMHfkSmHObhZZWSJWmZ/+csRIDPDzEujKtdNZVvhasRG1+?=
+ =?us-ascii?Q?N+eRVeuwvyeBqngIUAWgctf9R50v1C2qHeq7hdAs9S27m0qIRkrgiIC8UAtt?=
+ =?us-ascii?Q?K90Lcx0ROvKqgpNZG3eKSgPJLCjITrxNYoalzDeIaJDWhOjsd/qmAaEa+/oN?=
+ =?us-ascii?Q?ms4xa+zlneWxvY3hZmc6A/RmsX0m+gZFmyAWOmmfWKxbz+rKS+5xeVYvnX3G?=
+ =?us-ascii?Q?dzDLKKaaDXoxXnm+3AWvhi3U6QZpkuDGXG5ZOC7ghMVcmGrOQRbVbW7vwEFW?=
+ =?us-ascii?Q?RYK0MK4khhkbZH4mL+XkCZROyRJNNQS0MpMU6Ti7+HJAyEmY32l/cGrd0vfB?=
+ =?us-ascii?Q?xcf/N6nAyMAD+7hCpO2623vLT1kbD6yV5Nk4a+uFD+91mliacQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(82310400017)(1800799015)(376005)(36860700004); DIR:OUT;
+ SFS:(13230031)(82310400017)(376005)(36860700004)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:01:54.7067 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: df7ebd0f-6f8e-48af-d045-08dc866be562
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 21:01:55.2692 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e200207e-f5d4-400d-a4f2-08dc866be5b8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001504.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7820
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5988
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,45 +133,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: pochchan <pochchan@amd.com>
+From: ChunTao Tso <ChunTao.Tso@amd.com>
 
-For some specific panel, it need to use TPS3 rather than use TP2 in ALPM
-when DSC is enabled.
+[Why]
+The original coasting vtotal is 2 bytes, and it need to be amended to 4
+bytes because low hz case.
+
+[How]
+Amend coasting vtotal from 2 bytes to 4 bytes.
 
 Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: pochchan <pochchan@amd.com>
+Signed-off-by: ChunTao Tso <ChunTao.Tso@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.c  | 34 +++++++++++--------
+ .../gpu/drm/amd/display/dc/dce/dmub_replay.h  |  4 +--
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  8 +++++
+ 3 files changed, 30 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-index 318d0dc113e6..b9769181269d 100644
+index b9769181269d..fd91445d4d8e 100644
 --- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
 +++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.c
-@@ -33,6 +33,9 @@
- 
- #define MAX_PIPES 6
- 
-+static const uint8_t DP_SINK_DEVICE_STR_ID_1[] = {7, 1, 8, 7, 3};
-+static const uint8_t DP_SINK_DEVICE_STR_ID_2[] = {7, 1, 8, 7, 5};
-+
- /*
-  * Get Replay state from firmware.
+@@ -216,17 +216,21 @@ static bool dmub_replay_copy_settings(struct dmub_replay *dmub,
+  * Set coasting vtotal.
   */
-@@ -194,11 +197,11 @@ static bool dmub_replay_copy_settings(struct dmub_replay *dmub,
- 		(link->dpcd_caps.dsc_caps.dsc_basic_caps.fields.dsc_support.DSC_SUPPORT &&
- 		!link->panel_config.dsc.disable_dsc_edp &&
- 		link->dc->caps.edp_dsc_support)) &&
--		link->dpcd_caps.sink_dev_id == DP_DEVICE_ID_38EC11 /*&&
-+		link->dpcd_caps.sink_dev_id == DP_DEVICE_ID_38EC11 &&
- 		(!memcmp(link->dpcd_caps.sink_dev_id_str, DP_SINK_DEVICE_STR_ID_1,
- 			sizeof(DP_SINK_DEVICE_STR_ID_1)) ||
- 		!memcmp(link->dpcd_caps.sink_dev_id_str, DP_SINK_DEVICE_STR_ID_2,
--			sizeof(DP_SINK_DEVICE_STR_ID_2)))*/)
-+			sizeof(DP_SINK_DEVICE_STR_ID_2))))
- 		copy_settings_data->flags.bitfields.force_wakeup_by_tps3 = 1;
- 	else
- 		copy_settings_data->flags.bitfields.force_wakeup_by_tps3 = 0;
+ static void dmub_replay_set_coasting_vtotal(struct dmub_replay *dmub,
+-		uint16_t coasting_vtotal,
++		uint32_t coasting_vtotal,
+ 		uint8_t panel_inst)
+ {
+ 	union dmub_rb_cmd cmd;
+ 	struct dc_context *dc = dmub->ctx;
++	struct dmub_rb_cmd_replay_set_coasting_vtotal *pCmd = NULL;
++
++	pCmd = &(cmd.replay_set_coasting_vtotal);
+ 
+ 	memset(&cmd, 0, sizeof(cmd));
+-	cmd.replay_set_coasting_vtotal.header.type = DMUB_CMD__REPLAY;
+-	cmd.replay_set_coasting_vtotal.header.sub_type = DMUB_CMD__REPLAY_SET_COASTING_VTOTAL;
+-	cmd.replay_set_coasting_vtotal.header.payload_bytes = sizeof(struct dmub_cmd_replay_set_coasting_vtotal_data);
+-	cmd.replay_set_coasting_vtotal.replay_set_coasting_vtotal_data.coasting_vtotal = coasting_vtotal;
++	pCmd->header.type = DMUB_CMD__REPLAY;
++	pCmd->header.sub_type = DMUB_CMD__REPLAY_SET_COASTING_VTOTAL;
++	pCmd->header.payload_bytes = sizeof(struct dmub_cmd_replay_set_coasting_vtotal_data);
++	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal = (coasting_vtotal & 0xFFFF);
++	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal_high = (coasting_vtotal & 0xFFFF0000) >> 16;
+ 
+ 	dc_wake_and_execute_dmub_cmd(dc, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
+ }
+@@ -259,20 +263,22 @@ static void dmub_replay_residency(struct dmub_replay *dmub, uint8_t panel_inst,
+  * Set REPLAY power optimization flags and coasting vtotal.
+  */
+ static void dmub_replay_set_power_opt_and_coasting_vtotal(struct dmub_replay *dmub,
+-		unsigned int power_opt, uint8_t panel_inst, uint16_t coasting_vtotal)
++		unsigned int power_opt, uint8_t panel_inst, uint32_t coasting_vtotal)
+ {
+ 	union dmub_rb_cmd cmd;
+ 	struct dc_context *dc = dmub->ctx;
++	struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal *pCmd = NULL;
++
++	pCmd = &(cmd.replay_set_power_opt_and_coasting_vtotal);
+ 
+ 	memset(&cmd, 0, sizeof(cmd));
+-	cmd.replay_set_power_opt_and_coasting_vtotal.header.type = DMUB_CMD__REPLAY;
+-	cmd.replay_set_power_opt_and_coasting_vtotal.header.sub_type =
+-		DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL;
+-	cmd.replay_set_power_opt_and_coasting_vtotal.header.payload_bytes =
+-		sizeof(struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal);
+-	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_power_opt_data.power_opt = power_opt;
+-	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_power_opt_data.panel_inst = panel_inst;
+-	cmd.replay_set_power_opt_and_coasting_vtotal.replay_set_coasting_vtotal_data.coasting_vtotal = coasting_vtotal;
++	pCmd->header.type = DMUB_CMD__REPLAY;
++	pCmd->header.sub_type = DMUB_CMD__REPLAY_SET_POWER_OPT_AND_COASTING_VTOTAL;
++	pCmd->header.payload_bytes = sizeof(struct dmub_rb_cmd_replay_set_power_opt_and_coasting_vtotal);
++	pCmd->replay_set_power_opt_data.power_opt = power_opt;
++	pCmd->replay_set_power_opt_data.panel_inst = panel_inst;
++	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal = (coasting_vtotal & 0xFFFF);
++	pCmd->replay_set_coasting_vtotal_data.coasting_vtotal_high = (coasting_vtotal & 0xFFFF0000) >> 16;
+ 
+ 	dc_wake_and_execute_dmub_cmd(dc, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
+index 3613aff994d7..d090ec900c08 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_replay.h
+@@ -47,12 +47,12 @@ struct dmub_replay_funcs {
+ 		uint8_t panel_inst);
+ 	void (*replay_send_cmd)(struct dmub_replay *dmub,
+ 		enum replay_FW_Message_type msg, union dmub_replay_cmd_set *cmd_element);
+-	void (*replay_set_coasting_vtotal)(struct dmub_replay *dmub, uint16_t coasting_vtotal,
++	void (*replay_set_coasting_vtotal)(struct dmub_replay *dmub, uint32_t coasting_vtotal,
+ 		uint8_t panel_inst);
+ 	void (*replay_residency)(struct dmub_replay *dmub,
+ 		uint8_t panel_inst, uint32_t *residency, const bool is_start, const bool is_alpm);
+ 	void (*replay_set_power_opt_and_coasting_vtotal)(struct dmub_replay *dmub,
+-		unsigned int power_opt, uint8_t panel_inst, uint16_t coasting_vtotal);
++		unsigned int power_opt, uint8_t panel_inst, uint32_t coasting_vtotal);
+ };
+ 
+ struct dmub_replay *dmub_replay_create(struct dc_context *ctx);
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index 36c15ae43616..fe529b67369e 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -3004,6 +3004,14 @@ struct dmub_cmd_update_dirty_rect_data {
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
++	/**
++	 * 16-bit value dicated by driver that indicates the coasting vtotal high byte part.
++	 */
++	uint16_t coasting_vtotal_high;
++	/**
++	 * Explicit padding to 4 byte boundary.
++	 */
++	uint8_t pad[2];
+ };
+ 
+ /**
 -- 
 2.34.1
 
