@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE88901E20
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2024 11:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17CC2901E27
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2024 11:26:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F036410E3CD;
-	Mon, 10 Jun 2024 09:26:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A013910E3DA;
+	Mon, 10 Jun 2024 09:26:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PZB/ptsu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EvO+TOwz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26EC410E3CD
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBC0710E3BD
  for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 09:26:18 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-35f1cb7a40fso1161592f8f.0
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-421820fc26dso8132205e9.2
  for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 02:26:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1718011576; x=1718616376; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1718011577; x=1718616377; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=wNTeqhx2x/FvfKoMHWMh9DZPQXl82k9xIEpDwTC84bI=;
- b=PZB/ptsu+zAmYayf8Sb5820ml4Ct9M0yFryzTAjsfyPduKbNlWCNQXkb83DC5se0A5
- CTeIZfud7T+xfI8ATHplCPwi8qWi6acEDaboTi7xcvctpnz54pe5OKKlOf7dFSK3lm8Q
- 4RSeM80MLcbecI2fdckQJ2S0VeLHhPXiSlbgEN5FjpyMgWyHb31V57taDF7W2R0riNrA
- rK705/V7HGzf/cSIjqjQgPZdCNv5Ohc18n+ZiQv8PJ5txLPPn+weaD4Eid/0EDsor5ns
- 9oXOfVqJGnKFDC6NU2TfH1O4RO+5oqMtCIW48QivOiWWbIGUtz6uypc4R20cQcMDPiPk
- u/eA==
+ bh=cD5ZAUT0NiLGUg3L1j9j6DNn20gg+ongDJ63sMXI+NY=;
+ b=EvO+TOwzLTbTzgnY1GSJn1eNd2eLIT2pN4mNQgmRsweUVWlyBKMCrKRpULR2pXkG3s
+ Szkt/sLb0i34Aw+CVN7pwPiMZYRD6XQq+nzzKH+4TB1gZslA0YgsFss/h/EPx3WZRW7R
+ oPTm86QdwKPrebqdWwnYKx6JQZkzdObwiyWO6BOcVeR5e6TnBi9Tz2GbVnj/kW151US5
+ Hf4+/nlnqE7zDA7E5BXJLM4H49hO1VAhFBAryo4BYVsy9RgMIB4J2Ba/JCZi/N1SQvjD
+ 4iiua/OASHECVoiZAME0TjRuC17y342CMbw5ERK8+tmWyu/+RJqsVw6KhTf/pUnkbKBe
+ 3Xtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718011576; x=1718616376;
+ d=1e100.net; s=20230601; t=1718011577; x=1718616377;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=wNTeqhx2x/FvfKoMHWMh9DZPQXl82k9xIEpDwTC84bI=;
- b=V/Bmeu1CxMCkWhaKBLbueNFfygNihkgk6shrWTWOlekfBOJzpISleJkPYuucXwp+ax
- 8zt09EFxZlL1ucHqQLMTT3cyXrokfddyme67B76rVd3SzWo4NN2X/YallRdxf0U98u8X
- up83PLqi0HdSrAYwKWjXu5Ee+o2CS30pLY7WkR5PM2iJcXeYW3eOAkofYdQdC1ZymU9j
- cB2Xfsr4ejjHMgvYeJVQordQ/zKdPgv3K3klGbQgtmkWtgl/r79bRnxDSwiBOuIOpWhf
- I1/Ypi+DvcN9O11Wcuzvki4lFvxTAcy74R5EpwDo+ujGie5/OUss7mkTn9aH+1iF2+7e
- fAmA==
-X-Gm-Message-State: AOJu0YzbG1mNuc45j1/DffIa1HymHaUn5U68KgIqJPt3IWJyT7ZIHEIJ
- cGezTm/0ZzJS3tjDVHdS1IOdTmwlLmA80CjWB8tjxNHJY+M9M67TCeKfBzK0OFw=
-X-Google-Smtp-Source: AGHT+IH1WgldoKoSyPUo/tABNrlnTdyvwUnpbXQ8U4GwrF7F9maSQIQHHf8fxL+2YONZ0msQhwl5Tw==
-X-Received: by 2002:a5d:64cc:0:b0:35f:2160:8e30 with SMTP id
- ffacd0b85a97d-35f21608f2dmr2248944f8f.68.1718011576352; 
- Mon, 10 Jun 2024 02:26:16 -0700 (PDT)
+ bh=cD5ZAUT0NiLGUg3L1j9j6DNn20gg+ongDJ63sMXI+NY=;
+ b=NbLYnzq5DZeen8qtLHkUel/IBkbJh0d/ppBwETtiTJrnUU58aXpI8JIhpirNZTtCyA
+ VtCsY7KN8puRzcaFCZI0ZDU/iTGYyGBHVmi+y9MJ7WhQx14fk8vMCI0+0G+JweZBu+Er
+ Wt1gCANabZBR4H0OIyhJ+eVOH/GhaxJWGvoIiVJ+Pt5FqzTJceBSlIib5b7QDL+ZUhhV
+ 5jHY8qov4cfNSKz/YuRMhp/m+o5JFu8UVRhExh/RzI3eOyyfFq2+v3oIFvg/cSB7nS2T
+ h23UsYtxIT/qRlpe3UV73CbDLXf2X0mXbLLZeK6iegrr7AX9sPuEl1EwNfPe+fgUXhTq
+ zp5g==
+X-Gm-Message-State: AOJu0YzChHR3CPMmv13qhfnTp0UvLFLXN7hfgXbgxo3JIOtcQa9waDmG
+ pvnxvHDhENkQ2PyN2eXmyzoU2PkICxKb4d+zYMDIrbUDINXzmJ6l
+X-Google-Smtp-Source: AGHT+IFXxxGEzuWJtY/vhwGhhmvD7dT7OTWgyIvyMuODvVYUuniikosWXHQRTOLs5x+EtmbpasAhPA==
+X-Received: by 2002:a05:6000:1e4e:b0:35f:444:8711 with SMTP id
+ ffacd0b85a97d-35f04448802mr5209411f8f.42.1718011577012; 
+ Mon, 10 Jun 2024 02:26:17 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15f9:7000:4916:a8ec:dd12:5894])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-35f2169fc45sm3075827f8f.10.2024.06.10.02.26.15
+ ffacd0b85a97d-35f2169fc45sm3075827f8f.10.2024.06.10.02.26.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 10 Jun 2024 02:26:16 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
@@ -59,9 +59,9 @@ X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: pierre-eric.pelloux-prayer@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/9] drm/amdgpu: stop updating the SEQ64 VA during open
-Date: Mon, 10 Jun 2024 11:26:08 +0200
-Message-Id: <20240610092611.2894-6-christian.koenig@amd.com>
+Subject: [PATCH 7/9] drm/amdgpu: cleanup seq64 VA map/unmap once more
+Date: Mon, 10 Jun 2024 11:26:09 +0200
+Message-Id: <20240610092611.2894-7-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240610092611.2894-1-christian.koenig@amd.com>
 References: <20240610092611.2894-1-christian.koenig@amd.com>
@@ -82,52 +82,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Stop updating the SEQ64 VA when the KMS device is opened. Instead update
-it on first use in the CS.
+Provide a hint how many BOs we are going to use and prevent unmap from
+waiting interruptible.
+
+Also avoid using fpriv in unmap and work give VM and VA as parameter
+instead.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c    | 8 ++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c | 7 -------
- 2 files changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c | 31 ++++++++++-------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.h |  6 +++--
+ 3 files changed, 19 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index ec888fc6ead8..37b0ce86c256 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1117,6 +1117,14 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 			return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 260cd0ad286d..28a8f13ab8a7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1431,7 +1431,7 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
+ 		fpriv->csa_va = NULL;
  	}
  
-+	r = amdgpu_vm_bo_update(adev, fpriv->seq64_va, false);
-+	if (r)
-+		return r;
-+
-+	r = amdgpu_sync_fence(&p->sync, fpriv->seq64_va->last_pt_update);
-+	if (r)
-+		return r;
-+
- 	/* FIXME: In theory this loop shouldn't be needed any more when
- 	 * amdgpu_vm_handle_moved handles all moved BOs that are reserved
- 	 * with p->ticket. But removing it caused test regressions, so I'm
+-	amdgpu_seq64_unmap(adev, fpriv);
++	amdgpu_seq64_unmap(adev, &fpriv->vm, fpriv->seq64_va);
+ 
+ 	pasid = fpriv->vm.pasid;
+ 	pd = amdgpu_bo_ref(fpriv->vm.root.bo);
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-index e22cb2b5cd92..8d0a3cce979e 100644
+index 8d0a3cce979e..8f8ed152d0d9 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-@@ -97,13 +97,6 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		goto error;
+@@ -70,9 +70,9 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 
+ 	bo = adev->seq64.sbo;
+ 	if (!bo)
+-		return -EINVAL;
++		return 0;
+ 
+-	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 2);
+ 	drm_exec_until_all_locked(&exec) {
+ 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
+ 		if (likely(!r))
+@@ -89,7 +89,8 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
  	}
  
--	r = amdgpu_vm_bo_update(adev, *bo_va, false);
--	if (r) {
--		DRM_ERROR("failed to do vm_bo_update on userq sem\n");
--		amdgpu_vm_bo_del(adev, *bo_va);
--		goto error;
--	}
+ 	seq64_addr = amdgpu_seq64_get_va_base(adev);
+-	r = amdgpu_vm_bo_map(adev, *bo_va, seq64_addr, 0, AMDGPU_VA_RESERVED_SEQ64_SIZE,
++	r = amdgpu_vm_bo_map(adev, *bo_va, seq64_addr, 0,
++			     AMDGPU_VA_RESERVED_SEQ64_SIZE,
+ 			     AMDGPU_PTE_READABLE);
+ 	if (r) {
+ 		DRM_ERROR("failed to do bo_map on userq sem, err=%d\n", r);
+@@ -106,39 +107,35 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+  * amdgpu_seq64_unmap - Unmap the seq64 memory
+  *
+  * @adev: amdgpu_device pointer
+- * @fpriv: DRM file private
++ * @vm: vm pointer
++ * @bo_va: bo_va pointer
+  *
+  * Unmap the seq64 memory from the given VM.
+  */
+-void amdgpu_seq64_unmap(struct amdgpu_device *adev, struct amdgpu_fpriv *fpriv)
++void amdgpu_seq64_unmap(struct amdgpu_device *adev, struct amdgpu_vm *vm,
++		     struct amdgpu_bo_va *bo_va)
+ {
+-	struct amdgpu_vm *vm;
+ 	struct amdgpu_bo *bo;
+ 	struct drm_exec exec;
+ 	int r;
+ 
+-	if (!fpriv->seq64_va)
+-		return;
 -
+ 	bo = adev->seq64.sbo;
+-	if (!bo)
++	if (!bo || !bo_va)
+ 		return;
+ 
+-	vm = &fpriv->vm;
+-
+-	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
++	drm_exec_init(&exec, 0, 2);
+ 	drm_exec_until_all_locked(&exec) {
+ 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
+ 		if (likely(!r))
+ 			r = drm_exec_lock_obj(&exec, &bo->tbo.base);
+ 		drm_exec_retry_on_contention(&exec);
+-		if (unlikely(r))
++		if (unlikely(r)) {
++			DRM_ERROR("Leaking SEQ64 VA (%d)\n", r);
+ 			goto error;
++		}
+ 	}
+ 
+-	amdgpu_vm_bo_del(adev, fpriv->seq64_va);
+-
+-	fpriv->seq64_va = NULL;
++	amdgpu_vm_bo_del(adev, bo_va);
+ 
  error:
  	drm_exec_fini(&exec);
- 	return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.h
+index 4203b2ab318d..3f31f59d5625 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.h
+@@ -38,11 +38,13 @@ struct amdgpu_seq64 {
+ 
+ void amdgpu_seq64_fini(struct amdgpu_device *adev);
+ int amdgpu_seq64_init(struct amdgpu_device *adev);
+-int amdgpu_seq64_alloc(struct amdgpu_device *adev, u64 *gpu_addr, u64 **cpu_addr);
++int amdgpu_seq64_alloc(struct amdgpu_device *adev, u64 *gpu_addr,
++		       u64 **cpu_addr);
+ void amdgpu_seq64_free(struct amdgpu_device *adev, u64 gpu_addr);
+ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 		     struct amdgpu_bo_va **bo_va);
+-void amdgpu_seq64_unmap(struct amdgpu_device *adev, struct amdgpu_fpriv *fpriv);
++void amdgpu_seq64_unmap(struct amdgpu_device *adev, struct amdgpu_vm *vm,
++			struct amdgpu_bo_va *bo_va);
+ 
+ #endif
+ 
 -- 
 2.34.1
 
