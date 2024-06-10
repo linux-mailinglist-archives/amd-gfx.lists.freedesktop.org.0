@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905B3901E28
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2024 11:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE88901E20
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jun 2024 11:26:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B3C10E3E1;
-	Mon, 10 Jun 2024 09:26:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F036410E3CD;
+	Mon, 10 Jun 2024 09:26:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B6kopnja";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PZB/ptsu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A80010E3CB
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 09:26:17 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-354b722fe81so3601900f8f.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 02:26:17 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26EC410E3CD
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 09:26:18 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-35f1cb7a40fso1161592f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 02:26:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1718011575; x=1718616375; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1718011576; x=1718616376; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=aiSvxPjDJ8vNmON8NAHTtEJghQmURYOrY++H0ZY/JeM=;
- b=B6kopnjaVlrYhIdRH6ZGJ8ej8xJXXYrFQND21TQxg7fnWzFhqSdQ+QYqR9BMiIu0E2
- WQWdz7wufU5weMNmGo850B5ojNtHuJduVQJwJjPJnPSU52ht8CG9ZZQuAI4ZWuvOLYNv
- 5M2RJhNRdTMWqdj+ai1aYxA/wRZiGhhsvW2G4X/55hrBxapds/CRxrQouyJ1l6jnUP03
- VUSLzoKAYQjppinQAFI7hDc9Ur5q6fHh2GZregspg43OPn73pHN9UwHmNwfN2Fp+JQ06
- SqBXypGjSAdGqTp7/jXzKwf/VzB1wrqm8zcpzpgJfoSdq2okU4hC0TfobNf9FsNdfCpE
- nxBA==
+ bh=wNTeqhx2x/FvfKoMHWMh9DZPQXl82k9xIEpDwTC84bI=;
+ b=PZB/ptsu+zAmYayf8Sb5820ml4Ct9M0yFryzTAjsfyPduKbNlWCNQXkb83DC5se0A5
+ CTeIZfud7T+xfI8ATHplCPwi8qWi6acEDaboTi7xcvctpnz54pe5OKKlOf7dFSK3lm8Q
+ 4RSeM80MLcbecI2fdckQJ2S0VeLHhPXiSlbgEN5FjpyMgWyHb31V57taDF7W2R0riNrA
+ rK705/V7HGzf/cSIjqjQgPZdCNv5Ohc18n+ZiQv8PJ5txLPPn+weaD4Eid/0EDsor5ns
+ 9oXOfVqJGnKFDC6NU2TfH1O4RO+5oqMtCIW48QivOiWWbIGUtz6uypc4R20cQcMDPiPk
+ u/eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718011575; x=1718616375;
+ d=1e100.net; s=20230601; t=1718011576; x=1718616376;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=aiSvxPjDJ8vNmON8NAHTtEJghQmURYOrY++H0ZY/JeM=;
- b=J27hURZtSXBl+gc+Ljb9YzKort6MKZxCWdJySonhBiY0D9baOW1KdDuYFUk4pIjO6D
- RiyEsXUxgCwCqTJLyZaYnFzCe+RSV6e6YXt0xS7yvEzYxNCVGzXjQ60DiTC002m3jd1F
- LdzTIe2DJbwMmJaE3cmNwNuxkfXVmMENgSo7faXdSTsgtG86LOAdwYQxO68ChcHAiGz+
- D9UjRTFiYunF1bdN7Wn/XpohKWs1T/K3PqT4Dxspde8FVKUgHkOU2WojH6mFzo4Sz+DS
- AiR7odve8ATVMPxpj2mtLD7n2GMdHinyjnij2EGiDRz8zNRfrRywuI1SjvhBQPd70p+r
- 2TKA==
-X-Gm-Message-State: AOJu0Yw1K9dg3L0IVWgOid/hlk0dwG3Lcfmxzggs/xlSe/aBE3Bu6/ZU
- O9gMThPFQXRPRA8yxY4Luqb7azQLyYQskMIwglSzzJ3ahlr+7Kb7G6p8Fr+Ny8Y=
-X-Google-Smtp-Source: AGHT+IFUVZ7oU3iwlshi2bXKulmrLm0vbMRjbDMBajdBEOS+4UWBr+YO6O95FXqV3Pv7FSJqkz/PGw==
-X-Received: by 2002:a05:6000:1f81:b0:35f:2239:c543 with SMTP id
- ffacd0b85a97d-35f2239c64emr2064146f8f.66.1718011575563; 
- Mon, 10 Jun 2024 02:26:15 -0700 (PDT)
+ bh=wNTeqhx2x/FvfKoMHWMh9DZPQXl82k9xIEpDwTC84bI=;
+ b=V/Bmeu1CxMCkWhaKBLbueNFfygNihkgk6shrWTWOlekfBOJzpISleJkPYuucXwp+ax
+ 8zt09EFxZlL1ucHqQLMTT3cyXrokfddyme67B76rVd3SzWo4NN2X/YallRdxf0U98u8X
+ up83PLqi0HdSrAYwKWjXu5Ee+o2CS30pLY7WkR5PM2iJcXeYW3eOAkofYdQdC1ZymU9j
+ cB2Xfsr4ejjHMgvYeJVQordQ/zKdPgv3K3klGbQgtmkWtgl/r79bRnxDSwiBOuIOpWhf
+ I1/Ypi+DvcN9O11Wcuzvki4lFvxTAcy74R5EpwDo+ujGie5/OUss7mkTn9aH+1iF2+7e
+ fAmA==
+X-Gm-Message-State: AOJu0YzbG1mNuc45j1/DffIa1HymHaUn5U68KgIqJPt3IWJyT7ZIHEIJ
+ cGezTm/0ZzJS3tjDVHdS1IOdTmwlLmA80CjWB8tjxNHJY+M9M67TCeKfBzK0OFw=
+X-Google-Smtp-Source: AGHT+IH1WgldoKoSyPUo/tABNrlnTdyvwUnpbXQ8U4GwrF7F9maSQIQHHf8fxL+2YONZ0msQhwl5Tw==
+X-Received: by 2002:a5d:64cc:0:b0:35f:2160:8e30 with SMTP id
+ ffacd0b85a97d-35f21608f2dmr2248944f8f.68.1718011576352; 
+ Mon, 10 Jun 2024 02:26:16 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15f9:7000:4916:a8ec:dd12:5894])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-35f2169fc45sm3075827f8f.10.2024.06.10.02.26.14
+ ffacd0b85a97d-35f2169fc45sm3075827f8f.10.2024.06.10.02.26.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Jun 2024 02:26:15 -0700 (PDT)
+ Mon, 10 Jun 2024 02:26:16 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: pierre-eric.pelloux-prayer@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/9] drm/amdgpu: delay VM root PD allocation to first use
-Date: Mon, 10 Jun 2024 11:26:07 +0200
-Message-Id: <20240610092611.2894-5-christian.koenig@amd.com>
+Subject: [PATCH 6/9] drm/amdgpu: stop updating the SEQ64 VA during open
+Date: Mon, 10 Jun 2024 11:26:08 +0200
+Message-Id: <20240610092611.2894-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240610092611.2894-1-christian.koenig@amd.com>
 References: <20240610092611.2894-1-christian.koenig@amd.com>
@@ -82,173 +82,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Try to not allocate the backing store for the root PD before it is used for
-the first time. This avoids talking to the GPU while initializing the VM.
+Stop updating the SEQ64 VA when the KMS device is opened. Instead update
+it on first use in the CS.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    | 29 +++++++++---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 37 ++++++++++++++---------
- 2 files changed, 37 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c    | 8 ++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c | 7 -------
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index b497b345e44a..65d42a405476 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -344,7 +344,7 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *base,
- 	else
- 		amdgpu_vm_bo_idle(base);
- 
--	if (bo->preferred_domains &
-+	if (bo->tbo.resource && bo->preferred_domains &
- 	    amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type))
- 		return;
- 
-@@ -478,19 +478,32 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 
- 	spin_lock(&vm->status_lock);
- 	while (!list_empty(&vm->evicted)) {
-+		bool clear;
-+
- 		bo_base = list_first_entry(&vm->evicted,
- 					   struct amdgpu_vm_bo_base,
- 					   vm_status);
- 		spin_unlock(&vm->status_lock);
- 
- 		bo = bo_base->bo;
--
-+		clear = !bo->tbo.resource;
- 		r = validate(param, bo);
- 		if (r)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index ec888fc6ead8..37b0ce86c256 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1117,6 +1117,14 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
  			return r;
- 
- 		if (bo->tbo.type != ttm_bo_type_kernel) {
- 			amdgpu_vm_bo_moved(bo_base);
-+
-+		} else if (clear) {
-+			/* Delayed clear for the root PD */
-+			struct amdgpu_bo_vm *bo_vm;
-+
-+			bo_vm = container_of(bo, struct amdgpu_bo_vm, bo);
-+			r = amdgpu_vm_pt_clear(adev, vm, bo_vm, false);
-+			if (r)
-+				return r;
-+			amdgpu_vm_bo_relocated(bo_base);
-+
- 		} else {
- 			vm->update_funcs->map_table(to_amdgpu_bo_vm(bo));
- 			amdgpu_vm_bo_relocated(bo_base);
-@@ -2447,13 +2460,6 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
  	}
  
- 	amdgpu_vm_bo_base_init(&vm->root, vm, root_bo);
--	r = dma_resv_reserve_fences(root_bo->tbo.base.resv, 1);
--	if (r)
--		goto error_free_root;
--
--	r = amdgpu_vm_pt_clear(adev, vm, root, false);
--	if (r)
--		goto error_free_root;
- 
- 	r = amdgpu_vm_create_task_info(vm);
- 	if (r)
-@@ -2464,11 +2470,6 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 
- 	return 0;
- 
--error_free_root:
--	amdgpu_vm_pt_free_root(adev, vm);
--	amdgpu_bo_unreserve(vm->root.bo);
--	amdgpu_bo_unref(&root_bo);
--
- error_free_delayed:
- 	dma_fence_put(vm->last_tlb_flush);
- 	dma_fence_put(vm->last_unlocked);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index c8e0b8cfd336..984be7080b52 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -360,7 +360,6 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		       struct amdgpu_bo_vm *vmbo, bool immediate)
- {
- 	unsigned int level = adev->vm_manager.root_level;
--	struct ttm_operation_ctx ctx = { true, false };
- 	struct amdgpu_vm_update_params params;
- 	struct amdgpu_bo *ancestor = &vmbo->bo;
- 	unsigned int entries;
-@@ -379,10 +378,6 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 
- 	entries = amdgpu_bo_size(bo) / 8;
- 
--	r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
--	if (r)
--		return r;
--
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx))
- 		return -ENODEV;
- 
-@@ -441,6 +436,8 @@ int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- {
- 	struct amdgpu_bo_param bp;
- 	unsigned int num_entries;
-+	unsigned int domains;
-+	int r;
- 
- 	memset(&bp, 0, sizeof(bp));
- 
-@@ -448,32 +445,42 @@ int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	bp.byte_align = AMDGPU_GPU_PAGE_SIZE;
- 
- 	if (!adev->gmc.is_app_apu)
--		bp.domain = AMDGPU_GEM_DOMAIN_VRAM;
-+		domains = AMDGPU_GEM_DOMAIN_VRAM;
- 	else
--		bp.domain = AMDGPU_GEM_DOMAIN_GTT;
-+		domains = AMDGPU_GEM_DOMAIN_GTT;
-+
-+	domains = amdgpu_bo_get_preferred_domain(adev, domains);
-+
-+	if (vm->root.bo) {
-+		bp.resv = vm->root.bo->tbo.base.resv;
-+		bp.domain = domains;
-+	} else {
-+		bp.domain = 0;
-+	}
- 
--	bp.domain = amdgpu_bo_get_preferred_domain(adev, bp.domain);
- 	bp.flags = AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS |
- 		AMDGPU_GEM_CREATE_CPU_GTT_USWC;
- 
-+	if (vm->use_cpu_for_update)
-+		bp.flags |= AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
-+
- 	if (level < AMDGPU_VM_PTB)
- 		num_entries = amdgpu_vm_pt_num_entries(adev, level);
- 	else
- 		num_entries = 0;
- 
- 	bp.bo_ptr_size = struct_size((*vmbo), entries, num_entries);
--
--	if (vm->use_cpu_for_update)
--		bp.flags |= AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
--
- 	bp.type = ttm_bo_type_kernel;
- 	bp.no_wait_gpu = immediate;
- 	bp.xcp_id_plus1 = xcp_id + 1;
- 
--	if (vm->root.bo)
--		bp.resv = vm->root.bo->tbo.base.resv;
-+	r = amdgpu_bo_create_vm(adev, &bp, vmbo);
++	r = amdgpu_vm_bo_update(adev, fpriv->seq64_va, false);
 +	if (r)
 +		return r;
++
++	r = amdgpu_sync_fence(&p->sync, fpriv->seq64_va->last_pt_update);
++	if (r)
++		return r;
++
+ 	/* FIXME: In theory this loop shouldn't be needed any more when
+ 	 * amdgpu_vm_handle_moved handles all moved BOs that are reserved
+ 	 * with p->ticket. But removing it caused test regressions, so I'm
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
+index e22cb2b5cd92..8d0a3cce979e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
+@@ -97,13 +97,6 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 		goto error;
+ 	}
  
--	return amdgpu_bo_create_vm(adev, &bp, vmbo);
-+	(*vmbo)->bo.allowed_domains = domains;
-+	(*vmbo)->bo.preferred_domains = domains;
-+	return 0;
- }
- 
- /**
+-	r = amdgpu_vm_bo_update(adev, *bo_va, false);
+-	if (r) {
+-		DRM_ERROR("failed to do vm_bo_update on userq sem\n");
+-		amdgpu_vm_bo_del(adev, *bo_va);
+-		goto error;
+-	}
+-
+ error:
+ 	drm_exec_fini(&exec);
+ 	return r;
 -- 
 2.34.1
 
