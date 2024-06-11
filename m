@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876389041A7
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD1D9041AF
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:52:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F8D10E6C9;
-	Tue, 11 Jun 2024 16:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFFBD10E6D2;
+	Tue, 11 Jun 2024 16:52:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="s1uCbBof";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EUZ6GUKI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2054.outbound.protection.outlook.com [40.107.102.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55E0210E1BB
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:32 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4252610E6CB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E6yLKtmskYmGC7nvZaAQoQLax4hkkeLs1Ms8K16uG4QmxhMS+/WY/kWeUl44DjxTxS/ev1yk8+IdT1OqkB7jyf82Fp3MkcKgjfKQTqiF4Z+uvJrdZPUYiREZIt5VVlPRR27s5XFkkdoEyJ/8qB/kV4nvubwOHmqiqHMu85f2JFbnQmgQRcCe0PoOBriD+ew2KER00jYo51/Bkxvac7hoAS1AlFW2bRr6/n1/3wx33C/jGXKT3lUR/XYW9nmsO6QnFpHAQX/XlJ7JV7ZmWUS7R/Tap32GN10izOaPUmIV7vcm1wPPaK2aOTWiMxgMjRttVDM7Ln1ljX60GYN1N7actQ==
+ b=P1v3mAdq/8qYDer7x/SJGuEAdUv51ppMHAlJslNgjGNdMcoj6J/87D7Bs4YZUIH0R37OcCS6Puhg7xlEjHMoRH+1m5hX88fgXUxmlbWrUCi0oPrFMMYX5NvvJb9dBD1Vmd5zbuonNwjepPboPvhWvKocKQFSkNh23TnH6G1T+pT40GcIIM08gVFlxd0fGjhU/+cvdOhHvBR3f60hH/eygnHtIiiXkIKZcaaZBx/eAlEYWxXKYQXYDBnhOQd/54P+g7UEBbC+FAo7Q24BOhkBKgyADjIERLIr7kGUb8fOD754HocVxF16xKIW+Exkrra2iO88YkAShlDpP1lCKSejNA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Be2J6UL1vFzvag+8W26Uwk82FtXKlR2ow205SPBii7c=;
- b=iWPZCZZxkPjf6QX6IXSWR9PI7h++rz+WkEjzLL/HP8NeBGU9kLY4zN/K3bDGqlWKIGzyBj2/RiaK7PeL6ZpecyqNsBMs3pSHUylQB5IG8qUmlqyfzI9zTLuEY8A4KTIQcDncPtp+waPvulVgQCCc7vRQdTi1/7G+Zuxl+ujWR9vfuVR2YAuvc69tQSbAuKDp1KEHN0AjlT+z+gipMwpuSYS058xG82NLcAsmMChyG6wocQDT9VNZ2oR+clC5jzFLmCMpb6LletNskq0I4vlmnjjhySd5GfjXzEggP+tBRZMWp1iWzoQ2pxNRJ3jLLEHlCVh5mnwe3aQwfJiRjC/BIQ==
+ bh=WdqA3RF4X8ZaYBNAxDiJBlGG4BmxiZsC0jlkLyKxlOU=;
+ b=maVk4XswkkMAuFJ6oATVHT0Emzp8TJ7ci2nJswzH6nQq+n5f4BjRm3prO+K8l32uzViWUg/PB47SaOzDr9e/zzKVjXQArtE5tSIcnVB5EapuLGcdjPcCINdNQHTSEFt4M8b+xfBQJYuUfugJXalZN8exzIWFKYhMjZ4m92ObqG3PzpCTcE6LSPKm08LPDW5dTXWzuKJT98AHDKSpd9NMXqxYoBxvm03vRbtpUOFVB62bVv++/euSaMJlS+GePUk6wDf5YgpytUsSk5SZdqfCM3NIi1IQHJmr8od0+9arkPNSFBdRTxBKlh2XvPuvTu0vNkMiP8DdNkEDXEGL4BnABQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Be2J6UL1vFzvag+8W26Uwk82FtXKlR2ow205SPBii7c=;
- b=s1uCbBofGrdopuCYnflbEm2x2rZLGUmmWUWfHZvrVbvRlmhWcLOzEM5CnxkcuZHMHODHYrGvjhj3iGrlmj9HN0+tlstxc0z/+2H+GMGjpx6uSqBqiSMIbo1nxZipmdcnHqwzeayIlqqxOW7tpXVtThHN6faxX7fzQel0qUZmtJA=
-Received: from BN8PR07CA0016.namprd07.prod.outlook.com (2603:10b6:408:ac::29)
- by PH7PR12MB9253.namprd12.prod.outlook.com (2603:10b6:510:30d::18)
+ bh=WdqA3RF4X8ZaYBNAxDiJBlGG4BmxiZsC0jlkLyKxlOU=;
+ b=EUZ6GUKIZdHrCfdr3G2iMXADGKrcIc58Dma7xpTKsqqnCXOTCNgT1WCDZO6k0LhQK5M6oyYt5kdJHUVcG0L8xaQr1ZXh0FDD//wijQTyfXLYfW4tsUN9ndQVy55PQPYv4d5AffH0vG3bsBCUdQjvNERmn/a39CPylFrQUh2f0mM=
+Received: from BN8PR07CA0027.namprd07.prod.outlook.com (2603:10b6:408:ac::40)
+ by SN7PR12MB6815.namprd12.prod.outlook.com (2603:10b6:806:265::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Tue, 11 Jun
- 2024 16:52:24 +0000
+ 2024 16:52:25 +0000
 Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
- (2603:10b6:408:ac:cafe::36) by BN8PR07CA0016.outlook.office365.com
- (2603:10b6:408:ac::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.17 via Frontend
- Transport; Tue, 11 Jun 2024 16:52:24 +0000
+ (2603:10b6:408:ac:cafe::5a) by BN8PR07CA0027.outlook.office365.com
+ (2603:10b6:408:ac::40) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.19 via Frontend
+ Transport; Tue, 11 Jun 2024 16:52:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:24 +0000
+ 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:25 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Jun
- 2024 11:52:22 -0500
+ 2024 11:52:23 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
@@ -62,12 +62,12 @@ CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>,
  <qingqing.zhuo@amd.com>, <roman.li@amd.com>, <wayne.lin@amd.com>,
  <solomon.chiu@amd.com>, <agustin.gutierrez@amd.com>, <jerry.zuo@amd.com>,
- <hamza.mahfooz@amd.com>, Ivan Lipski <ivlipski@amd.com>, Aurabindo Pillai
- <aurabindo.pillai@amd.com>, Alex Hung <alex.hung@amd.com>
-Subject: [PATCH 06/36] drm/amd/display: Remove redundant condition in VBA 314
- func
-Date: Tue, 11 Jun 2024 12:51:09 -0400
-Message-ID: <20240611165204.195093-7-hamza.mahfooz@amd.com>
+ <hamza.mahfooz@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Dillon Varone
+ <dillon.varone@amd.com>
+Subject: [PATCH 07/36] drm/amd/display: fix minor coding errors where dml21
+ phase 5 uses wrong variables
+Date: Tue, 11 Jun 2024 12:51:10 -0400
+Message-ID: <20240611165204.195093-8-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240611165204.195093-1-hamza.mahfooz@amd.com>
 References: <20240611165204.195093-1-hamza.mahfooz@amd.com>
@@ -79,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|PH7PR12MB9253:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e261e1f-718e-4f53-812c-08dc8a36de6f
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|SN7PR12MB6815:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49bc60a1-be48-4445-6736-08dc8a36def7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230032|82310400018|36860700005|376006|1800799016; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DSv4NuqAL9wkdiEvxxoGDG3Dx07PTE+Rvnj0HjLB5MYSnWuHaMWlApVQWp2B?=
- =?us-ascii?Q?kJ4CyUoULAy/HcxJ8J8QjsdIRpqbnrhll3P1Z/A1zEyinkHKrCpR2lsTUKkK?=
- =?us-ascii?Q?g4/65qjSNoSBbVtoJ16V2bY66hV9d5Vvl5cUyDCkM+mfhJ5jd9xFBB56W+QD?=
- =?us-ascii?Q?M1l7pT6iCepuuTWFv3NJU2g7MoWXKob9Qk6ck/9lj/rFS+X2J5m+tRA4WeY5?=
- =?us-ascii?Q?/dGhXs2G3t3go5ywJJGhhlDSNrobfpjAqRy8h1LAPVo7edfO1pX53gE+4Khg?=
- =?us-ascii?Q?Wl/hRmOAQaelb0dudxpiy7rDI4N5MDFHbzYf/Xu3sN+I0dQ5kkdQUOWYkt63?=
- =?us-ascii?Q?TqbNg4RGLI4u3/maORxkISY0KRYJW20hDKgWCZZalcMUfqOnPSsZGJ0hZa/g?=
- =?us-ascii?Q?oTytcJqUZgDmxWo6e9nAFkumyvPL0aBOybWi/GD4gyBZy3s48pXLihTd6chI?=
- =?us-ascii?Q?AmpFshWD/Vrim1O6+K/qVOJ9Z/T2yaXnxuJ112Vkr35RO4plPf4RIn6TJaJq?=
- =?us-ascii?Q?rReYxZrgOURJbtVOcFXjOngGsdndEbghST8Sn6r7J3dHXXLc8qS1ddHgK5YK?=
- =?us-ascii?Q?NUvFgDaONLgkYW/JjQMbgbjb4Y9aXHT9AZSH/GwrMM55YEri2vil67/3eP4p?=
- =?us-ascii?Q?1Q/9iJy9R4j9/t3Sn+ByYw5kVjA0H1d0y3eARwzXsKJFfdwrkerqe1RiH/r0?=
- =?us-ascii?Q?qjnxIjbGeP3A/qmPmC0RTObgkebsat5Ui7360gYQTmj6U8JpHPsf8eHgk0/j?=
- =?us-ascii?Q?ax3wTVOnMhPUCPclNFtJ+numvOgQ1hNY1feDLOCyBu/p1HmtvLWTFWCH7I6w?=
- =?us-ascii?Q?r/sXhaw5cF84j3Y72mIamicIaLcqbMNo0B/+zih9Ke9wARqA/7s9u2r+I95k?=
- =?us-ascii?Q?jlw1Lpmex9WbDuvVAX4fkg9NB30K5/tWz/QkQoa2rn8WC1Zl+938t/9IeTzY?=
- =?us-ascii?Q?Y5tgKX7sAxmPhTXtsiaBUBDIjiTm5VDmqXl9jzuH7DnfVqDs7GYQhsPlDXRy?=
- =?us-ascii?Q?1ngPgEN9q54TetDzISwnwT4oZOLkrU2Qq4DwRCtLlYQ8snZPuBL0pLInYXBv?=
- =?us-ascii?Q?YSWLxSX5eRfoDvojt8RDHsYNwppOrsXrInn2JxXaH8Qn2hZ8cCYj4nmnKk+0?=
- =?us-ascii?Q?NcHutFul0G3qUpfrg2usG8WJGQSITNKfE97FryAM/WBzwSNp2ns8x9cZVMGO?=
- =?us-ascii?Q?0xKrXK3rKqluTzYo4IjVwcDyqHHldUThYAEJHT/QyiQeUseea84wRm3eDCRl?=
- =?us-ascii?Q?k8YdorwyqTh18Tc4ojj1AHjLRuqNvJ7gSNDK3+Yi7ByMJXx2+GIsaS0E/4SD?=
- =?us-ascii?Q?k9iir9GSdWd0/eliXkfhK/K2eJxzwFo0zbr0PO9L768+/yCEa4haYRWCh5he?=
- =?us-ascii?Q?ymqFZrHzqQFSB0qOG3htoEtYubQSWK7G/NLjdWKmrCSi51UHdg=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZJJmEO/hGiuYC31hP3VL/i0bSAge/qPbaTQB9g8EktiWoQdNKfl+Da3aMdsq?=
+ =?us-ascii?Q?9Mgg9tkTFgwz0v+m5xOuvjHSbKSG6sGK5MZ1OIOVIQ84jM7GzOFZKvcnLF17?=
+ =?us-ascii?Q?6vpF0W/EWdM8or1oHzSWuNOtJo2um20EEZLbjaYeFwcTxZwDhKFml5/9hpVy?=
+ =?us-ascii?Q?ccG0Eh1/SYmqohVFNxGlcG/NfQJka/qRns5b4htVl/OjlnUJ/cxu2od0Shu1?=
+ =?us-ascii?Q?i++GGuKUoCl7KCMFPNzf+BeBPd4mmBSHcbgR7CvIOYsm6LeLf/60yUlftMXF?=
+ =?us-ascii?Q?7zHCafY/2q58wbZXvr7OF8StjS9ZR3nNsqB5w6GJyiDwoz8munnHnyglAcjq?=
+ =?us-ascii?Q?Ikmtd5VBKRA2s490DJ6JxUFFzUzFcWLr+z488ybtop0ZOZrRYCawLFhfeDMW?=
+ =?us-ascii?Q?0i3PW6r7AxCGZNK3MAdvLRVMPstYj36dWmwC4VxoRv6P2hmwd/ONfjsU+C0Y?=
+ =?us-ascii?Q?ujf8ZcIESUHK3AJBPn3hfEGnJBqve1y5HaO1qVtkiUGu4ZcUWfSr3O/ZLWcg?=
+ =?us-ascii?Q?O0LxIo1BMvFM/HKl2hDMmh4LT6hIkQ9ntisAdU7kEOgOsD4Ia/ur+8qxFrKo?=
+ =?us-ascii?Q?/pYscJil3RbOIrEVEsxIhdgdNFvryZhv54XrkRaHY3hCEemLT79559GbD8Kw?=
+ =?us-ascii?Q?BQtXBZjbK5dExiAZrIgtv6+kewevhPZmRnO+DSuPjDJZNO1DLNrESn45gsag?=
+ =?us-ascii?Q?vlYQMFB2xnbAh3BgOxLrC0XVkLkrX008GLfSSmEi8v19tidUgb2eduyt9Qk0?=
+ =?us-ascii?Q?ZHFzuQCJKxDclul0apyqCseGHGzqecRhCZH+6qfzKWoiDr2ryifl5AxAcZuP?=
+ =?us-ascii?Q?B18VkmVv/FELyRR6Y3YEujSX5tm6xP7KzZdoC9a3QfRlbLoTKhqX3ywVSesN?=
+ =?us-ascii?Q?ZWbkShndOV2T8tXxftT1VMPQWM9AKEsJJbhvz8syguSDs+2PDddZvtUh3DDG?=
+ =?us-ascii?Q?hCXYoCll6V8E3oNgF2d+rAOp/4J8IquMHZy6RTn+I5qUIeYpLJuJsCXVGv1S?=
+ =?us-ascii?Q?HtdNzKqEH/UhINfXdNtHDHR++IG2LzeQQ6JwLHC3qKUUAAPwQWVikwsdrRBU?=
+ =?us-ascii?Q?CKbjVIpuOzVBVURCoj1Yns/qaroCePJ0jw8eab59VCLdBSEABbdzp1Juks9R?=
+ =?us-ascii?Q?V1enHbNMGJVOnmFuLuz+S0gauI8T3+nMeIC4QQ9PdNNhsRm3eVJGw/uQGdF5?=
+ =?us-ascii?Q?C/52VuMOzI2/G3cbWDZo4SNf68jqWq31JIucDzRPlej263nVBebiDlk2kt2a?=
+ =?us-ascii?Q?h1NEXBajGOH+nAP5lISe5Jth16A/+YWIW2/mVu/kXfDOQwbo9r2QIVOvSyKc?=
+ =?us-ascii?Q?qcHi9iIrFgVB4oSii5HXBTMNynuo1Ndpm82m/dO1FjN1KhsBQlvoZdFimRyv?=
+ =?us-ascii?Q?l1zh87Yf728sHp9H1Q8KHXjkQLYRHcod8giFO9R1lP7p0lv3zg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230032)(82310400018)(36860700005)(376006)(1800799016); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:24.2453 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e261e1f-718e-4f53-812c-08dc8a36de6f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:25.1203 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49bc60a1-be48-4445-6736-08dc8a36def7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD4.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9253
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6815
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,45 +137,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ivan Lipski <ivlipski@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[WHY]
-Coverity analysis this conditional code as DEADCODE.
-The conditional statement is never true since
-'MacroTileSizeBytes' is either 256 or 65536. Thus, the
-code inside is the conditional statement is never reached.
+There is a coding error which causes incorrect variables to be assigned
+in DML21 phase 5.
 
-[HOW]
-Removed the conditional statement.
-
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Reviewed-by: Alex Hung <alex.hung@amd.com>
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Ivan Lipski <ivlipski@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c | 9 ---------
- 1 file changed, 9 deletions(-)
+ .../gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top.c  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index f52b9e3d2bee..cb50c475746b 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -1941,15 +1941,6 @@ static unsigned int CalculateVMAndRowBytes(
- 		*PixelPTEReqWidth = 32768.0 / BytePerPixel;
- 		*PTERequestSize = 64;
- 		FractionOfPTEReturnDrop = 0;
--	} else if (MacroTileSizeBytes == 4096) {
--		PixelPTEReqHeightPTEs = 1;
--		*PixelPTEReqHeight = MacroTileHeight;
--		*PixelPTEReqWidth = 8 * *MacroTileWidth;
--		*PTERequestSize = 64;
--		if (ScanDirection != dm_vert)
--			FractionOfPTEReturnDrop = 0;
--		else
--			FractionOfPTEReturnDrop = 7 / 8;
- 	} else if (GPUVMMinPageSize == 4 && MacroTileSizeBytes > 4096) {
- 		PixelPTEReqHeightPTEs = 16;
- 		*PixelPTEReqHeight = 16 * BlockHeight256Bytes;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top.c
+index 1142fdade334..6f334fdc6eb8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top.c
+@@ -259,7 +259,7 @@ bool dml2_build_mode_programming(struct dml2_build_mode_programming_in_out *in_o
+ 	/*
+ 	* Phase 5: Optimize for Stutter
+ 	*/
+-	memset(&l->vmin_phase, 0, sizeof(struct optimization_phase_params));
++	memset(&l->stutter_phase, 0, sizeof(struct optimization_phase_params));
+ 	l->stutter_phase.dml = dml;
+ 	l->stutter_phase.display_config = &l->base_display_config_with_meta;
+ 	l->stutter_phase.init_function = dml2_top_optimization_init_function_stutter;
+@@ -272,7 +272,7 @@ bool dml2_build_mode_programming(struct dml2_build_mode_programming_in_out *in_o
+ 
+ 	if (stutter_success) {
+ 		memcpy(&l->base_display_config_with_meta, &l->optimized_display_config_with_meta, sizeof(struct display_configuation_with_meta));
+-		l->base_display_config_with_meta.stage4.success = true;
++		l->base_display_config_with_meta.stage5.success = true;
+ 	}
+ 
+ 	/*
 -- 
 2.45.1
 
