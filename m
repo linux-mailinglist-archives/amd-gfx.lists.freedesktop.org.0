@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484CF9041D4
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB0D9041CA
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:53:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40AAC10E6E4;
-	Tue, 11 Jun 2024 16:53:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D381910E6D0;
+	Tue, 11 Jun 2024 16:53:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QSR6oMJQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DbTSnjqe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3606810E6D0
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:53 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FABF10E6DB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X4Lf6ssgmKPJspmU9V+X4TsQ3vHpnT4Jqu+EZ8pldauAQ6h5zoplI8Zx4uhkuoqcSmPZv21O6wTF9Ysmodcpq9VOPP+au8zYWOvwVj44g3Mlx30Nultq5fA62LAMTKwYqM6kg7M/cKmc2eiPl1SbSejlvwMDkMD/rEgYLvUGDUftjAhBTlfJRUbjP/j9imJH0ZTlnjQZCkzcxniFmsyWPARR1yA3zynW5Ex3WVF9NU7keVEWv5NskzyiAxa5/XcmM6A2jgCUhNf4IJFLs5+9MyUcnxse0dTogvnIS28kSAdOkWXoIYYmcVD4udDmU6IyxQtLGsQxpe3TmF5mr4HXfw==
+ b=bLDO2/OAq8sxkWucgRHpq+t8nsZwbkNimFbHUy5AVWIywrGLAYyusFXvEo03IvuxqGN/dyEagmoz0LSixtSd+YMcAxw+iJ7Az/v5jAX89PXk67egIktZH+hICZokhuDzabL+HbJ+GH84akCe07D8lTMBgK9YC2CP1R0mPobbD9GvO2l5ucrI+bW4lVBpW4ZqDRVoBefhEETZgSnb3IRkxLCm/Eg/9751BflWNwDjfGDYsSjf7Z6nuf8uvDl82GlfaAi3MsIFJNqVXPpGNkdUNEQIoq4+lX6YVQR9kk1kdF83G0pYTVqh+q6RVYtPhTlLG5VzmezCj1HXaTcYslw/WQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SQekyC1a+bQW0wqXd5y8NCo4WLlIxpTUmR67BxnbceI=;
- b=R/kZMo5dyM+ijN16kfcsRjbmS2m3C5s7bKxgz5ccw/P1iTKMwwToO7TixlrnOZqbUEOSuKsCIDCK4OqVCm8F4lLQSnhulRVqJulRsdRqWSiphdMR/HNxuKooedWaSF6WWWqy6IFJM6BF9kfe1j77Su45+fSTTfBmEqlVWN+XDvYkMCAnT43iMGcvlNt+vaX8dooSTKXjPhbacYyLnxufqtqbKIou0ywzBTS7lcSbR/0SBwCUXbBnE6EN4tOvfBL0GkqZI3nBCV5mPhIhXnyap2UbfOX4VrSVRVKx6/TcukPd4bOiUIvAokN2kL2Utk7cufHPHwIIoQafc5Mkl/XC8w==
+ bh=pl6Ndoo6wiRXn6jYWxNlttfrMm48WV6BcACzsyTJ+Pw=;
+ b=IHyhaiOqeOtTbCqEbL2syN9+qTAue21wwQs88IyqnRGc0sXaLFAN4CdUIs47enkWzO+HSyp0orLX1wLFIb191l7/QAKZBp/DjJb0npcOW0pjHr8TvQK1yF1gqPJlBPzf56QTwf32GCgWRAd39BmVhW23KKjbmUy5aO9k7eJVG1WYzufAppexd48Og7P1u+RWzRcfgmi2gGKZ81mZDIzz8OXVmMV2erl+eVN5ywjT+klmE5YTV1IN6mWwJpJYD2hsi2mcyVciQnB2pMtDe5DLjWwiH259ugqgNFnOO1JKbfShcRO4Xr2Q/881MFR8Z9PdfxX9/zVZP3iDTwu7u/kKoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SQekyC1a+bQW0wqXd5y8NCo4WLlIxpTUmR67BxnbceI=;
- b=QSR6oMJQ4nqU0REIurTV7sDd6SPhw373GHrfjV/SxUCIa8B+xoL/VJZmxPW/iXjA/utPO3OzBVSernlV56/0UuYMEA4+0vQoEyObfuRYtn+Zm5AAPPo0mCOj4wIx6sDGz00pBNC1J+kwb46Ibi1+3OWtiL+9o1GRnKzXw7c3mng=
-Received: from BN8PR07CA0020.namprd07.prod.outlook.com (2603:10b6:408:ac::33)
- by SN7PR12MB8130.namprd12.prod.outlook.com (2603:10b6:806:32e::12)
+ bh=pl6Ndoo6wiRXn6jYWxNlttfrMm48WV6BcACzsyTJ+Pw=;
+ b=DbTSnjqeiT4XbQVN6qLggPA9Y4dPjGPcL5Jrr+qUPx3Wlyq2h1woWjUIbiq+oG/73onVlk1QRO1adWLPpnnjuqnQ92yn3SxOJXslOCcyaznhfm0+zKVIaNfPfTlEf6JUyomb3s+mjWEaoGsEFTKfNyx62hwdyB6+AR8/iDFrY98=
+Received: from BL1PR13CA0170.namprd13.prod.outlook.com (2603:10b6:208:2bd::25)
+ by SA0PR12MB7461.namprd12.prod.outlook.com (2603:10b6:806:24b::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Tue, 11 Jun
- 2024 16:52:48 +0000
-Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
- (2603:10b6:408:ac:cafe::c7) by BN8PR07CA0020.outlook.office365.com
- (2603:10b6:408:ac::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.19 via Frontend
- Transport; Tue, 11 Jun 2024 16:52:48 +0000
+ 2024 16:52:50 +0000
+Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
+ (2603:10b6:208:2bd:cafe::da) by BL1PR13CA0170.outlook.office365.com
+ (2603:10b6:208:2bd::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.17 via Frontend
+ Transport; Tue, 11 Jun 2024 16:52:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,13 +48,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
+ MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:48 +0000
+ 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:49 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Jun
- 2024 11:52:46 -0500
+ 2024 11:52:47 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
@@ -62,12 +62,11 @@ CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>,
  <qingqing.zhuo@amd.com>, <roman.li@amd.com>, <wayne.lin@amd.com>,
  <solomon.chiu@amd.com>, <agustin.gutierrez@amd.com>, <jerry.zuo@amd.com>,
- <hamza.mahfooz@amd.com>, Ivan Lipski <ivlipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-Subject: [PATCH 29/36] drm/amd/display: Remove unused value set from
- 'min_hratio_fact' in dml
-Date: Tue, 11 Jun 2024 12:51:32 -0400
-Message-ID: <20240611165204.195093-30-hamza.mahfooz@amd.com>
+ <hamza.mahfooz@amd.com>, Alex Hung <alex.hung@amd.com>, Harry Wentland
+ <harry.wentland@amd.com>
+Subject: [PATCH 30/36] drm/amd/display: Remove redundant null checks
+Date: Tue, 11 Jun 2024 12:51:33 -0400
+Message-ID: <20240611165204.195093-31-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240611165204.195093-1-hamza.mahfooz@amd.com>
 References: <20240611165204.195093-1-hamza.mahfooz@amd.com>
@@ -79,50 +78,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|SN7PR12MB8130:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9953662-9ae7-4736-4af0-08dc8a36ecaf
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|SA0PR12MB7461:EE_
+X-MS-Office365-Filtering-Correlation-Id: a067536b-78f2-4e8d-4efd-08dc8a36edb8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230032|82310400018|36860700005|376006|1800799016; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?39vHZqrm4bXcL2Gu4/PPiQUS2KtX9Msa1u6MdSyZCCVRGEWpPDSxnQqazepj?=
- =?us-ascii?Q?roP545P1kLDvpUhhJ30BYoux6gt8F+XE6K47/9X7e+nbcg3BgTFQVdsFnEN1?=
- =?us-ascii?Q?yk5XWq1QTl8TWvXJ9+HzrXpHOvyY4dyCBSSl98p+aHVn+APV2PEBAKRRnZRt?=
- =?us-ascii?Q?/eH/JzdxAOPEniuyAvcNa6Y3zAfC9zIqURuKFOaJzSnQWAKabz26iElhXZ/h?=
- =?us-ascii?Q?6Qnv/M9sO/e+yPdAvK3AliLr060fynsvKvBjjJ4qoJ4xPjEMoPrmslAoQUUb?=
- =?us-ascii?Q?2Rq8V9WC3BEmRZrPmuwCFgdJlW2NYocBh3l6izge2kKRUxWAkB/XU3ePWfSK?=
- =?us-ascii?Q?R91QDUkaTBOdQD5125v2jX9tivqv+rdajgLO0+UpO4lqMDw89BlPVSgua30k?=
- =?us-ascii?Q?kxc9aeHwzhUMv1ww5BEiBETgF34gNX11Srk5EngngSYRttqADTTqNDoEJflw?=
- =?us-ascii?Q?mwPHQ2Ku58wA9Z3g8ZwEurx4w2Cji8sYoEu/+h6MYxWi/hxvWBGiZtzdVbaE?=
- =?us-ascii?Q?ZvlTGA3ops6ouN11cjMgnL8BmBqNy/UT0nJc/UtGNqEkJYyDKsSO4KOZwxRw?=
- =?us-ascii?Q?lgA1DlAZVyBZrevRWkGuUaS/kkLm2mT5P3W82PNYo6GnUD42/qq/CetzaNhh?=
- =?us-ascii?Q?snAvCTG8RIo6mU9Mp4u2EYjAVL/J86utqDDF120gHVWL3fZp51+QIWilnO78?=
- =?us-ascii?Q?S3oocsOuLMe9dZaomtxYEek6aVQ9Om4ctT5vRQHuVK6zCVRMwGRO+iciq4es?=
- =?us-ascii?Q?kVyJCW56Mx64RlheK0s5KmI4Sfsuct3uD+kAXC2A6pGx2dcIMdUNXGAq6qzw?=
- =?us-ascii?Q?4dvukwzcdEsY+IBp3oNxGegi3cVONJjwOksaoYeMct04rLRM/iE16eMC5M10?=
- =?us-ascii?Q?QMHbfnTLGl9AZD1wRv0Smb3QEkNGjA8vlU8A6PDsSdy8FQAmXPnz3EP4kV7w?=
- =?us-ascii?Q?4NVFA6OnO8QrvHv2nS5c/WElesM1p+T04CglAz+ccBFr2WFfwlividE+bDXn?=
- =?us-ascii?Q?pc1kdxKnBegInXgTgI7gI2Vi3fl+4Gfnp/QW0EvdjXXEv7cJx3VwjkVIRf9V?=
- =?us-ascii?Q?Gb/GsTJ5altHg8RGeA6KSWGbq903DVSgGe/Ko0HwaPBbtFBw6X1JpSP5jiw7?=
- =?us-ascii?Q?60tdoA9JxBjWy3e3E+4gc/f8/XfRdYHXrau0/cDcijA9pm2B0zAb4MB/1FKC?=
- =?us-ascii?Q?nvEFLP+bZYkdYSf65mtq9Tt5KetKmFwEbfca+QnqTm3yX8xcNaD2ToVLXL2I?=
- =?us-ascii?Q?Ue1zAFRDptTP4qTNOBdawFv/xujWaaoG1PLU6ouHGSnMo8t3PiGa//SmXeSD?=
- =?us-ascii?Q?W7FxTh9ZRYg9aGd9HCyveqi8/zFmvIzbm8vOpNwv36gm0XVvBzgk+ir4WJ+N?=
- =?us-ascii?Q?gmQUp2dcdYQAhChFqUi0CkyljYgD0DS6Im5nXHdBh8sdVI72hQ=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JLASvfB6XjyfXIzcxUZjqmfxSO0lkYZ8nqo8szaZX7ysrjvrWdmNvQ+qOs+6?=
+ =?us-ascii?Q?+N3dsJjOm0vp76pSR2MQLj7KZ6P/UbpEn/cyFcdnY3p34tbGV2TxRIOS2XKP?=
+ =?us-ascii?Q?ZkATeo7c3lL15NlG7mrM7sye6Czunm0g5NQsfbGclF+GJsE8MfMB6Rx+OhR8?=
+ =?us-ascii?Q?zD3QfXE8qRGjEaojcsQf/oH+TcRfLecPPtk9me3TuOmFnbF1dJzCYa3q7qLG?=
+ =?us-ascii?Q?Z+PpGhRdFEfy62RBeZBpsBTXbg8Yg/cpQA2KLr0mkZEC9ch0VtOCp9JtmNLt?=
+ =?us-ascii?Q?Oj7qOBm5jABc2gOTy/ikwbNzlP8vcukvqX04sZ13vI7GU9utGSQFED3MNyLO?=
+ =?us-ascii?Q?PQ2vjf6LUjLZhXjbEuOAlv3/zLheHhP8092PJvgNwMQhaJOjltOGZ/P9HeJm?=
+ =?us-ascii?Q?UI2lQWEH+PTfSSQ8HETolTwDNOnoychbaYMU49pdrpuXiYrV1a6o8BVDc9zc?=
+ =?us-ascii?Q?wR1u2kiQVDu2tOWQZbR+DFhNbBKiD1xQ014tVtCh3cPq15Dv80aGcfQbKFW5?=
+ =?us-ascii?Q?fn9c7pzemof9VOIh0wn5WC9pUNlarF7UQVTalSZwmHUS52LRCLewB0cIkpIN?=
+ =?us-ascii?Q?JmQA/KyqNykOjk2wTtiStlqoHRMSrftNLy3m+Bx+jqrS3kyC1uucKyszEKqW?=
+ =?us-ascii?Q?lUYY15dTn8d1LHY5DP4BQzM47g4N0qtlzYMeiF9DEWAXLUBiUB9Tfv3oNFdr?=
+ =?us-ascii?Q?Ipd3zsJRHgdEWCobqqUaPtyEygegED2aagfUlmaBRqqtXLx9XVTFNxt/b5jj?=
+ =?us-ascii?Q?VlGFnRWUYsUom+W94gFDxa/rISMNx4Gm+e10NOvWPXDWfAGfMscxN9eEtRcF?=
+ =?us-ascii?Q?jzvKH6z8ukpwouPeWAG3TJX1E510ixAgkozxKpMj+TL7sWZfwbIk9qlihR+q?=
+ =?us-ascii?Q?qtz/eWlxwr52uCDCQek9h26DKLJ0Vmv0FNPBugzPm5dedEWGaIkst1Q24FUJ?=
+ =?us-ascii?Q?ImNRuwRlcagifvRKQ26n9fHIMaYkhSL4P7XzYCM3H0mURrODmQd9HF+8dAnp?=
+ =?us-ascii?Q?G1K5G9SI09vPjaDVfTPurUzsUhrEoKssXz03M503Q7GsGAGiuXFhusgZ+WZZ?=
+ =?us-ascii?Q?Jr8GGcQ4o3nuWJSrRuVLMzPgGMAWa7URgmBsIv8qYz1XnSrD3l5Rtso8jQqA?=
+ =?us-ascii?Q?dWSZyNU1IIyp0K6o3NLnQjkyl+Q95qfcZg0TJW0X1jOPxcRviEH8WpxKpOJx?=
+ =?us-ascii?Q?6Ev5WThuLEoDSQ7us9oRyofpYhY6my3LusThkBvzPbVgXG87Ncc21SKFlAqn?=
+ =?us-ascii?Q?HVzLiipah9biyanO086YyhQl1EpMP+/6ExOJws3YWwUHTPlrnUdgKiAvtTmM?=
+ =?us-ascii?Q?C+x1mJxdxTGAjUObcIytSuZfByv3Vc+r+WvSh8zvuu8DfOM/VOUiyQ6fpgBc?=
+ =?us-ascii?Q?YNikP+FikGo3IZwPOl2ib9KnRU5Tyk/Z8iyxNOhxekExj9QLpA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230032)(82310400018)(36860700005)(376006)(1800799016); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:48.1202 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9953662-9ae7-4736-4af0-08dc8a36ecaf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:49.8413 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a067536b-78f2-4e8d-4efd-08dc8a36edb8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD4.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8130
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7461
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,138 +136,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ivan Lipski <ivlipski@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-These portions of code are flagged as 'UNUSED_VALUE' by the
-Coverity analysis since the assigned values of these vars
-are never used in the code.
+The null checks are redundant as they were already dereferenced
+previously, as reported by Coverity; therefore the null checks
+are removed.
 
-Reviewed-by: Alex Hung <alex.hung@amd.com>
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+This fixes 7 REVERSE_INULL issues reported by Coverity.
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Ivan Lipski <ivlipski@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- .../drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c    | 5 -----
- .../drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c  | 5 -----
- .../drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c    | 5 -----
- .../drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c    | 5 -----
- .../drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c    | 5 -----
- .../drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c  | 5 -----
- .../gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c    | 5 -----
- 7 files changed, 35 deletions(-)
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  4 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  2 +-
+ .../dc/dml2/dml21/dml21_translation_helper.c  |  4 +-
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  8 +-
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 81 +++++++++----------
+ 6 files changed, 47 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-index 548cdef8a8ad..07146569e335 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-@@ -1156,11 +1156,6 @@ static void dml20_rq_dlg_get_dlg_params(struct display_mode_lib *mode_lib,
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
+index ee4b02c8c807..06f0c41ad6f1 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
+@@ -553,7 +553,7 @@ static void dcn32_auto_dpm_test_log(
+ 	//
+ 	//				AutoDPMTest: clk1:%d - clk2:%d - clk3:%d - clk4:%d\n"
+ 	////////////////////////////////////////////////////////////////////////////
+-	if (new_clocks && active_pipe_count > 0 &&
++	if (active_pipe_count > 0 &&
+ 		new_clocks->dramclk_khz > 0 &&
+ 		new_clocks->fclk_khz > 0 &&
+ 		new_clocks->dcfclk_khz > 0 &&
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index fce1c3e03094..a4ba6f99cd34 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2640,7 +2640,7 @@ static enum surface_update_type det_surface_update(const struct dc *dc,
+ 
+ 		if (u->plane_info)
+ 			format = u->plane_info->format;
+-		else if (u->surface)
++		else
+ 			format = u->surface->format;
+ 
+ 		if (dce_use_lut(format))
+@@ -2741,7 +2741,7 @@ static enum surface_update_type check_update_surfaces_for_stream(
+ 		if (stream_update->mst_bw_update)
+ 			su_flags->bits.mst_bw = 1;
+ 
+-		if (stream_update->stream && stream_update->stream->freesync_on_desktop &&
++		if (stream_update->stream->freesync_on_desktop &&
+ 			(stream_update->vrr_infopacket || stream_update->allow_freesync ||
+ 				stream_update->vrr_active_variable || stream_update->vrr_active_fixed))
+ 			su_flags->bits.fams_changed = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 1cba8f58f1e6..eb053e1791c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -2099,7 +2099,7 @@ int resource_get_odm_slice_dst_width(struct pipe_ctx *otg_master,
+ 			timing->h_border_right;
+ 	width = h_active / count;
+ 
+-	if (otg_master->stream_res.tg && otg_master->stream)
++	if (otg_master->stream_res.tg)
+ 		two_pixel_alignment_required =
+ 				otg_master->stream_res.tg->funcs->is_two_pixels_per_container(timing) ||
+ 				/*
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+index a7d02da16bb5..d5ead0205053 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+@@ -102,9 +102,7 @@ void dml21_apply_soc_bb_overrides(struct dml2_initialize_instance_in_out *dml_in
+ 	struct dml2_soc_state_table *dml_clk_table = &dml_soc_bb->clk_table;
+ 
+ 	/* override clocks if smu is present */
+-	if (in_dc->clk_mgr &&
+-			in_dc->clk_mgr->funcs->is_smu_present &&
+-			in_dc->clk_mgr->funcs->is_smu_present(in_dc->clk_mgr)) {
++	if (in_dc->clk_mgr->funcs->is_smu_present && in_dc->clk_mgr->funcs->is_smu_present(in_dc->clk_mgr)) {
+ 		/* dcfclk */
+ 		if (dc_clk_table->num_entries_per_clk.num_dcfclk_levels) {
+ 			dml_clk_table->dcfclk.num_clk_values = dc_clk_table->num_entries_per_clk.num_dcfclk_levels;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index 871f1e1ca2e0..307af11b4bb6 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -742,12 +742,10 @@ void dce110_edp_wait_for_hpd_ready(
+ 		return;
  	}
  
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (htaps_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-index 0fc9f3e3ffae..f4bba1f2aeb6 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-@@ -1157,11 +1157,6 @@ static void dml20v2_rq_dlg_get_dlg_params(struct display_mode_lib *mode_lib,
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
+-	if (link != NULL) {
+-		if (link->panel_config.pps.extra_t3_ms > 0) {
+-			int extra_t3_in_ms = link->panel_config.pps.extra_t3_ms;
++	if (link->panel_config.pps.extra_t3_ms > 0) {
++		int extra_t3_in_ms = link->panel_config.pps.extra_t3_ms;
+ 
+-			msleep(extra_t3_in_ms);
+-		}
++		msleep(extra_t3_in_ms);
  	}
  
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (htaps_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-index 708e1632170d..c229a9edf82a 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-@@ -1205,11 +1205,6 @@ static void dml_rq_dlg_get_dlg_params(
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
+ 	dal_gpio_open(hpd, GPIO_MODE_INTERRUPT);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+index a597b2342472..64a158625fc2 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+@@ -271,58 +271,55 @@ bool dcn32_apply_idle_power_optimizations(struct dc *dc, bool enable)
  	}
  
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
+ 	if (enable) {
+-		if (dc->current_state) {
++		/* 1. Check no memory request case for CAB.
++		 * If no memory request case, send CAB_ACTION NO_DF_REQ DMUB message
++		 */
++		if (dcn32_check_no_memory_request_for_cab(dc)) {
++			/* Enable no-memory-requests case */
++			memset(&cmd, 0, sizeof(cmd));
++			cmd.cab.header.type = DMUB_CMD__CAB_FOR_SS;
++			cmd.cab.header.sub_type = DMUB_CMD__CAB_NO_DCN_REQ;
++			cmd.cab.header.payload_bytes = sizeof(cmd.cab) - sizeof(cmd.cab.header);
+ 
+-			/* 1. Check no memory request case for CAB.
+-			 * If no memory request case, send CAB_ACTION NO_DF_REQ DMUB message
+-			 */
+-			if (dcn32_check_no_memory_request_for_cab(dc)) {
+-				/* Enable no-memory-requests case */
+-				memset(&cmd, 0, sizeof(cmd));
+-				cmd.cab.header.type = DMUB_CMD__CAB_FOR_SS;
+-				cmd.cab.header.sub_type = DMUB_CMD__CAB_NO_DCN_REQ;
+-				cmd.cab.header.payload_bytes = sizeof(cmd.cab) - sizeof(cmd.cab.header);
++			dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_NO_WAIT);
+ 
+-				dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_NO_WAIT);
++			return true;
++		}
+ 
+-				return true;
+-			}
++		/* 2. Check if all surfaces can fit in CAB.
++		 * If surfaces can fit into CAB, send CAB_ACTION_ALLOW DMUB message
++		 * and configure HUBP's to fetch from MALL
++		 */
++		ways = dcn32_calculate_cab_allocation(dc, dc->current_state);
+ 
+-			/* 2. Check if all surfaces can fit in CAB.
+-			 * If surfaces can fit into CAB, send CAB_ACTION_ALLOW DMUB message
+-			 * and configure HUBP's to fetch from MALL
+-			 */
+-			ways = dcn32_calculate_cab_allocation(dc, dc->current_state);
++		/* MALL not supported with Stereo3D or TMZ surface. If any plane is using stereo,
++		 * or TMZ surface, don't try to enter MALL.
++		 */
++		for (i = 0; i < dc->current_state->stream_count; i++) {
++			for (j = 0; j < dc->current_state->stream_status[i].plane_count; j++) {
++				plane = dc->current_state->stream_status[i].plane_states[j];
+ 
+-			/* MALL not supported with Stereo3D or TMZ surface. If any plane is using stereo,
+-			 * or TMZ surface, don't try to enter MALL.
+-			 */
+-			for (i = 0; i < dc->current_state->stream_count; i++) {
+-				for (j = 0; j < dc->current_state->stream_status[i].plane_count; j++) {
+-					plane = dc->current_state->stream_status[i].plane_states[j];
 -
- 	if (hratio_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-index 0497a5d74a62..f3ee7baac786 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-@@ -1309,11 +1309,6 @@ static void dml_rq_dlg_get_dlg_params(struct display_mode_lib *mode_lib,
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
+-					if (plane->address.type == PLN_ADDR_TYPE_GRPH_STEREO ||
+-							plane->address.tmz_surface) {
+-						mall_ss_unsupported = true;
+-						break;
+-					}
+-				}
+-				if (mall_ss_unsupported)
++				if (plane->address.type == PLN_ADDR_TYPE_GRPH_STEREO ||
++						plane->address.tmz_surface) {
++					mall_ss_unsupported = true;
+ 					break;
++				}
+ 			}
+-			if (ways <= dc->caps.cache_num_ways && !mall_ss_unsupported) {
+-				memset(&cmd, 0, sizeof(cmd));
+-				cmd.cab.header.type = DMUB_CMD__CAB_FOR_SS;
+-				cmd.cab.header.sub_type = DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB;
+-				cmd.cab.header.payload_bytes = sizeof(cmd.cab) - sizeof(cmd.cab.header);
+-				cmd.cab.cab_alloc_ways = (uint8_t)ways;
+-
+-				dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_NO_WAIT);
++			if (mall_ss_unsupported)
++				break;
++		}
++		if (ways <= dc->caps.cache_num_ways && !mall_ss_unsupported) {
++			memset(&cmd, 0, sizeof(cmd));
++			cmd.cab.header.type = DMUB_CMD__CAB_FOR_SS;
++			cmd.cab.header.sub_type = DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB;
++			cmd.cab.header.payload_bytes = sizeof(cmd.cab) - sizeof(cmd.cab.header);
++			cmd.cab.cab_alloc_ways = (uint8_t)ways;
+ 
+-				return true;
+-			}
++			dc_wake_and_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_NO_WAIT);
+ 
++			return true;
+ 		}
++
+ 		return false;
  	}
  
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (hratio_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-index 4113ce79c4af..b6d954d9aa00 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-@@ -1150,11 +1150,6 @@ static void dml_rq_dlg_get_dlg_params(
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
- 	}
- 
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (hratio_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-index b3e8dc08030c..94975b0fa398 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-@@ -1238,11 +1238,6 @@ static void dml_rq_dlg_get_dlg_params(
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
- 	}
- 
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (hratio_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c b/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-index 3df559c591f8..dae13f202220 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-@@ -1596,11 +1596,6 @@ void dml1_rq_dlg_get_dlg_params(
- 		swath_width_pixels_ub_c = swath_width_ub_c * 1;
- 	}
- 
--	hscale_pixel_rate_l = 0.;
--	hscale_pixel_rate_c = 0.;
--	min_hratio_fact_l = 1.0;
--	min_hratio_fact_c = 1.0;
--
- 	if (htaps_l <= 1)
- 		min_hratio_fact_l = 2.0;
- 	else if (htaps_l <= 6) {
 -- 
 2.45.1
 
