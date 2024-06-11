@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 992689041A4
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FAC49041A2
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jun 2024 18:52:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 045D610E6C5;
-	Tue, 11 Jun 2024 16:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926EB10E6C3;
+	Tue, 11 Jun 2024 16:52:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jwhwF2OC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ds4d/tsE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2077.outbound.protection.outlook.com [40.107.94.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B43BC10E13F
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:25 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2060.outbound.protection.outlook.com [40.107.95.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A9610E13F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 16:52:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f7PoHnTqglwt+Mx/gAHybAGtDEsA54MM1QHHlCCnMz5VAPSoTMi+9Lda5GVD4uo5Z7p9yi44F2Ezbw9akEYr3GoccsO0jv9ZudWfVIVAPY+ZWxEkb/giRv1BD171ZGTfCxSJTsCtcES8QuEfI5YHHIkyU02ZF7VL5bPcXN4Krp8CqJao8OLaqBTCkmjMsM12Rs3wPh99hEVIZtLGfebfyUtVFIxP1zlW2HSDpds0hVPdPxEPvzwsrRyhDUntNlpWudEPlRyMWQyaPu6uoC6dSM38cstlje1bqW1jzuX5W58c/01jpgVFfIRe8tcbvIS7EnA+K2eehgNpH0PwCMnByQ==
+ b=hRycFy6hadTMRfsI752lqIQi05cIoDg+Ec0W+PZd88aEmpz9UGEyo4Kdu8DdfT5RPVpWG8f8oMmfM/7/Kk0iub9vUoV+WZIcLtmqEnOvpsdKIu/bn+2CL1nB+kcA6oTyHM6iCjRs6nKV+kRvTj7u+iO8cAjyr35CMY3Eslbmf4P2BvuTtDSmedGPCysvYVsNuqEEpGRQRHOIW44Y4s8cS/FAgUFqSbcqesCLQ/jQTqdJS2sUlEhD90Y63uIpYJUWnFEZhr9wrYUm55ZKbJmwhRAeZboJ+7DCHR5zjMnpOyUk19/NL4Hw2uInB+fmynpyKtXw0bbafPf6nl5d/GiKPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4/WAZYLJZFQb7s1TscYt5h2jT2cqeOJTSfYZmAWYaw8=;
- b=cqacLOu8sCxVsTP6qB8rapgyALHaVuA1s4iU5IQQZoxChlCAkLhvGvycJdParO69+Cmv1K9txzqHbc4qn2ugCGguyRt0pgRyBR17ql2VuNLBVIDwy9ZhD1b3LLR+1POTwg2KKBOZ0waivASrpVGthTseivA8itTcIbWENIkuZFqsWQDypo+8Qpp8C5KMeqwPWVu3bOPQGFTUeTmcD0/rvbD2tnV4i0GggfYXzdsSMR/PO+DJ3p7AfVB2NvgBTO+M/s7/Ndaikl+CXUBupOSr0Qp2OYP0lD/a+5YELMJmUE7g26Ex/YwihynYSGpF1VcSAtW38umwMzdyrbX6Xw+gqQ==
+ bh=LibY0RpxKwcT1eSgdG+F6MuO1c89YEdzt+XZrvCjyv4=;
+ b=EbW2t67rrw7Br78EQzTRC39iaU5LuMs9IeuxptQZvahLCWIK40VEzXzLty4kv6vqgUh1T5pJrCa//PMmrPMPKpMfFmtXMHlSBd9Coq7PToK/XJKZEzez8kckUcvBHENIq6V0ifek0FT7UNwq2rjKOeve39Hl2xxMpH1S4dkqJaTgBRQnYlj0NT/qE25JIR66X0wodPcFc7z0fHvq/a5tUkAqwEU8N6aL2gTbdUu010rnKliSzP4ZXz5lNYPnYxnBriZ99hrtaeoMA69J6BUAYuTIqcGkI4hkMz1isIaXJ0jxVKpb7EkBw0h5ejE5NZsGQv8TQXZ8sdbuIrMZitvSHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4/WAZYLJZFQb7s1TscYt5h2jT2cqeOJTSfYZmAWYaw8=;
- b=jwhwF2OCExGpnHKZAhWuQFrY3aVXtcZMVj3/IMYB2RRX6ZaTNv2UKUt7zDSdYJu7VFWhgj3qJ+7+QaiQtgcJ5PhSybwpLN9VQR6PxJm2BbFEOhN//LjscD6wlONNYX4jI10bDkFTWy9fjW7IqmOmjcglxUQs6fjmhimQ53oKkLg=
-Received: from BLAPR03CA0025.namprd03.prod.outlook.com (2603:10b6:208:32b::30)
- by PH7PR12MB5949.namprd12.prod.outlook.com (2603:10b6:510:1d8::21)
+ bh=LibY0RpxKwcT1eSgdG+F6MuO1c89YEdzt+XZrvCjyv4=;
+ b=ds4d/tsEiDrGH9KoyJ1x2e+lGXDASfL6vI/8PpJJ2QyUFavAfPD6fBXSt2k/QvYLDmDmuvrs6miXoHds3scs0B6KqQmLhpx4cnnNPFawnWDEwOPWatyZ/f1+Ccq+ODQcSGc7l+I2lQT6mjpsYgmR323/4AyvDZYaSTXOgGbggnE=
+Received: from BN8PR07CA0006.namprd07.prod.outlook.com (2603:10b6:408:ac::19)
+ by MW4PR12MB7032.namprd12.prod.outlook.com (2603:10b6:303:1e9::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Tue, 11 Jun
- 2024 16:52:18 +0000
-Received: from MN1PEPF0000ECD7.namprd02.prod.outlook.com
- (2603:10b6:208:32b:cafe::61) by BLAPR03CA0025.outlook.office365.com
- (2603:10b6:208:32b::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.25 via Frontend
- Transport; Tue, 11 Jun 2024 16:52:18 +0000
+ 2024 16:52:20 +0000
+Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
+ (2603:10b6:408:ac:cafe::6e) by BN8PR07CA0006.outlook.office365.com
+ (2603:10b6:408:ac::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.17 via Frontend
+ Transport; Tue, 11 Jun 2024 16:52:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,13 +48,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000ECD7.mail.protection.outlook.com (10.167.242.136) with Microsoft
+ MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:18 +0000
+ 15.20.7677.15 via Frontend Transport; Tue, 11 Jun 2024 16:52:19 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 11 Jun
- 2024 11:52:17 -0500
+ 2024 11:52:18 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
@@ -62,12 +62,12 @@ CC: Daniel Wheeler <daniel.wheeler@amd.com>, <Harry.Wentland@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>,
  <qingqing.zhuo@amd.com>, <roman.li@amd.com>, <wayne.lin@amd.com>,
  <solomon.chiu@amd.com>, <agustin.gutierrez@amd.com>, <jerry.zuo@amd.com>,
- <hamza.mahfooz@amd.com>, Joshua Aberback <joshua.aberback@amd.com>, "Wenjing
- Liu" <wenjing.liu@amd.com>
-Subject: [PATCH 01/36] drm/amd/display: DCN401 full power down in HW init if
- any link enabled
-Date: Tue, 11 Jun 2024 12:51:04 -0400
-Message-ID: <20240611165204.195093-2-hamza.mahfooz@amd.com>
+ <hamza.mahfooz@amd.com>, Dillon Varone <dillon.varone@amd.com>, Alvin Lee
+ <alvin.lee2@amd.com>
+Subject: [PATCH 02/36] drm/amd/display: Enable DCN401 idle optimizations by
+ default
+Date: Tue, 11 Jun 2024 12:51:05 -0400
+Message-ID: <20240611165204.195093-3-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240611165204.195093-1-hamza.mahfooz@amd.com>
 References: <20240611165204.195093-1-hamza.mahfooz@amd.com>
@@ -79,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|PH7PR12MB5949:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9e33780-0611-4737-ce21-08dc8a36daff
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|MW4PR12MB7032:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4d615e1-d331-4075-7a62-08dc8a36dbbe
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230032|82310400018|36860700005|376006|1800799016; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OZX54FE8yqr/MnmDgRHSWGeV7QAZ5R/SHbOuhhImKfnsCBtS2g5v1LqP6Pnb?=
- =?us-ascii?Q?nUCWtO2XYd3gkYNA+ZANaNlUK08+FRbXhWDYZ0/6Wk/6lKrCaNMWlSoUeelf?=
- =?us-ascii?Q?SLeptxDVKB30n+98xsKGQjLKzYO6JDgfH1uf91IKWFmNVfmxp4ZvzWPZKGjC?=
- =?us-ascii?Q?kzxwR2Wd0k41kUkjtsWFlFBriEJP44NNlRvRgZGNn16v0Ck4C6ZadlrwvaDL?=
- =?us-ascii?Q?6IMe+OHXEaXwklaihRvlgXDHKBPyBqUFdHTqgGRmk9xJwgRCVqNiznSJeVZT?=
- =?us-ascii?Q?zK7DxNJRq4UBKei2zOLCEpuxDOnUZ+ruV/Xnl72N4zDkD0DkyjeHxjGm2zw6?=
- =?us-ascii?Q?0ITQQepG8wGXYkxvWw6iTYGP36dsvgjRoWjAAjwIS9b078LcGjWEXlIibIb6?=
- =?us-ascii?Q?SMPEV2vb72UidxILy4jAmLhhncPUv8R+4plo96RURvDBsAiANCxT+c9vOBfk?=
- =?us-ascii?Q?0Om3NaIdfITwLfvQO9WkwuHROVfmPXalYmXU6laymG3UUmpqP/KCrSPqYVDj?=
- =?us-ascii?Q?B0RI0TnKWa0XNeuBai7lRvYP14fzgH9MtvS8U8XsMnKMYPJ/0Ni6qf1wfXi4?=
- =?us-ascii?Q?zJL6VaiWW/bvM9Jdh8Guy4k02q7gyPmWh3a5zKIcRo3B9ePJgQXefWY8hVDY?=
- =?us-ascii?Q?gVlmhda63rWpIEX5tS/Frf5wfenDvZFJTXFEH/7xuPKy7wXUCK1gB5/fGCC3?=
- =?us-ascii?Q?+gVXiOXf0275h/vSP0Egc0onxAhr/YTuKAVKiPwfIsHH4p/zMiCdIi0WbpnU?=
- =?us-ascii?Q?Rbcr8nkqg5799fB01lMQ6DW7kNm9V1I8c3XFffy3ftdByV7gDGhNwCPgV5pv?=
- =?us-ascii?Q?MWU2SP8K9zUJbFId24CkTRoSQZ6k6dkTrPg43UNrmq6hxr8RsmIG//QZ64aj?=
- =?us-ascii?Q?gMzu/HT+3G9O7g9xM1tMXwor+BrCi6LMIzlzFQ0XuPsDNUF4m/q2RG0CQpNP?=
- =?us-ascii?Q?2tfzJnmaZSc4CxYOndxxH/N4OPAeCPnrK+bqNCPgCItSCkvnLl8O37jJ9IKV?=
- =?us-ascii?Q?FwyKrbAzWQoP11q37O2es0FnWq48KGfeSLSrOYTbE2dqbVcjhDtqedXBhbQ6?=
- =?us-ascii?Q?/xHud0hR4+EuCkJteRdO0HbR7a5Q38DKxB+2Nn/FENSQoEvtDVJrk/C1khNk?=
- =?us-ascii?Q?2BYD4nfWlvZD1191SzV73Fm5bAdIzO8e+kiFR0+3haMCKB0+t3THtoZrKpOZ?=
- =?us-ascii?Q?lOvKqYIwYh2wx9cmdRXb2jYIjcg/yzYKld8tkKQUrs7vn8D4NjkEXlN+hAjx?=
- =?us-ascii?Q?YbpZuhjgMjB0MqYbKalJnLr2haVXu4exyTpAmlWpXqBNEqrhXA/eI7J8nxOm?=
- =?us-ascii?Q?nImluw46x5WE2Au2hZzHdqm7Lju5UHovF2+9QX3cH9OnOy+c5QzSQJrVSFLw?=
- =?us-ascii?Q?tcMHWH9z58n0Sv0zg1KC//yNJ7CWmDHbvpw0Unx9Du3wIFSSwQ=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?U/K32oaTsVlWlJ1ujwZv9WQrTZkD2b2J8wTRHuIKoxjw0LWMV/FBp5AbJWRc?=
+ =?us-ascii?Q?mnaJ9M7Qe6vMCm/6bK0yGPDbY0CQWHjo095LI0Kj4AnzPbazzWMe5s1hxFBO?=
+ =?us-ascii?Q?m5MykU7eM6pJGuIC+UwpHiyVGhftZuxFzegmbSZyqMUVvu5xdgHYhqF/zD5a?=
+ =?us-ascii?Q?nHISYlyqMXF3LweFiOdnIogAaikfIcGrfElHmiUCeo7X5yfVpgcW9geAYHTv?=
+ =?us-ascii?Q?lPHXmr9kv2/THubl9RLMjpO141IkkQIYq+BToX1xCvBsYlHP9wDtxJSqcWpW?=
+ =?us-ascii?Q?mYXjhcGXFtZKAh0K8CCKdLsovqxspHupE7oQHnT3e5XnolhphQgvbTpy835q?=
+ =?us-ascii?Q?toACu+O5RM3TezExZdvnjYRBaPVf8iYipFqewbAiEUpt1i+2L/IUAvp5RMJZ?=
+ =?us-ascii?Q?8kgenJl9q/PBjjwxc6GTNYKsoL0cXlU7JmJ9y+61nmNWO3PVqWHVl4v1qnHS?=
+ =?us-ascii?Q?rrfnDigzsuXoQLDcrLCd5YwZH4VEAG3sRcX+Vk6zRHXzIBPWZ4UsRUFcK44h?=
+ =?us-ascii?Q?hl45ARm0/9HqJVgAv6Rw5O7BnCFbPThSyZYf+oYWpdqm05YnWNCZNcJpLuSD?=
+ =?us-ascii?Q?CpfGj1iCEkhmBsb3ip6aUXRTFcVpaz2F88iB+9B6FdmGnGRJrZmOBwKTfk6A?=
+ =?us-ascii?Q?s4fvwjW2sYHqXBMJPejh4keXlwR6/z/F+Sj74cNnqtRJaJFBhkb3wmSJtll3?=
+ =?us-ascii?Q?7eK5wX8oOUPTjm6F1rYOr/J1hkyNK/AQwpbLKRrt8SSI0a1IwRKa0QeGf9Zk?=
+ =?us-ascii?Q?B9P9J6v1nsl5xnLJQcWZDXNPa8IUbyoYVKz3loIgic20fAkXsQ8trdKddjv7?=
+ =?us-ascii?Q?LPKSLNCErGFNVsB36UmAAdSDo5vBf4/Q1oYTuTTy3v1rgF5od9Pn3aaBQ1Uo?=
+ =?us-ascii?Q?iPiVOYrULDHm6PWWqwRO6whRe2nAaX3uSJDYnuRdDdKrmcZnzxnwFn9fylpY?=
+ =?us-ascii?Q?E7BI5dDAEUAQ4w89k9me9DHLiRcwzr+IQAw83XYd0mb0Yys39dD+1pVC7i4B?=
+ =?us-ascii?Q?l/lkrxYIN9oTQikFdzYNdfNa1wKAWmnM5aNMiIWvjdDmcPI/eGxP4ff/yPVu?=
+ =?us-ascii?Q?yYMXlxan5IKmN+pXrTENo3gwnYNI7KHeKE9iuh8eHl41B1aVKm4XystFmmiK?=
+ =?us-ascii?Q?kXc10q0Nf0cPNrq6G+aFXmNV0KojAfAFlmvU7+55Om/vs+4HnYLjop1pS3Bs?=
+ =?us-ascii?Q?FKG0VbtjtJXfzXAwOsOFf0vAmA/chROPQYa6t+LChrm15RInHZAoIUXJ9Hux?=
+ =?us-ascii?Q?rlOdhQgXcqcpd8mMh6Le0flqKPwOxTC9WoQ6YUHoW3jigf1aX3fNH8Uul957?=
+ =?us-ascii?Q?QCTli+rzX6O+VcwB68+JTRXirzBleh1G5uldV5VI7igPwCl4gIytOA1WjOIw?=
+ =?us-ascii?Q?yIJDYgVmhl1p/1Uu+yehZUnGrtHvQ+vyxRggvrwr6HjAIGmu5g=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230032)(82310400018)(36860700005)(376006)(1800799016); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:18.6051 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9e33780-0611-4737-ce21-08dc8a36daff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2024 16:52:19.8547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4d615e1-d331-4075-7a62-08dc8a36dbbe
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD7.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD4.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5949
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7032
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,54 +137,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Joshua Aberback <joshua.aberback@amd.com>
+From: Dillon Varone <dillon.varone@amd.com>
 
-[Why]
-During HW init, certain operations the driver performs are invalid on
-enabled hardware in an unknown state (for example, setting all clock
-values to minimum when the GPU is actively driving a display). There is
-already code present to call HWSS->power_down during init when any link
-is enabled in HW, but that function pointer is unpopulated for most asics.
-We want to enable this codepath for DCN401, as it resolves the issue with
-being unable to drive certain display configs on adapter re-enable, and we
-can restore boot optimizations.
+[WHY&HOW]
+Re-enable idle optimizations by default.
 
-[How]
- - add power_down HWSS function for DCN401
- - remove debug bit to disable boot optimizations for DCN401
-
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
+Signed-off-by: Dillon Varone <dillon.varone@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c         | 1 +
  drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c | 1 -
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-index dabad7feff03..1cf0608e1980 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-@@ -98,6 +98,7 @@ static const struct hw_sequencer_funcs dcn401_funcs = {
- 	.fams2_global_control_lock = dcn401_fams2_global_control_lock,
- 	.fams2_update_config = dcn401_fams2_update_config,
- 	.fams2_global_control_lock_fast = dcn401_fams2_global_control_lock_fast,
-+	.power_down = dce110_power_down,
- };
- 
- static const struct hwseq_private_funcs dcn401_private_funcs = {
 diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
-index ea803df8645e..7781a0342d67 100644
+index 7781a0342d67..d78dc63f82fd 100644
 --- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
-@@ -733,7 +733,6 @@ static const struct dc_debug_options debug_defaults_drv = {
+@@ -731,7 +731,6 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 		}
+ 	},
  	.force_cositing = CHROMA_COSITING_TOPLEFT + 1,
- 	.disable_idle_power_optimizations = true,
+-	.disable_idle_power_optimizations = true,
  	.edp_oled_no_backlight_enable = true,
--	.disable_boot_optimizations = true,
  };
  
- static struct dce_aux *dcn401_aux_engine_create(
 -- 
 2.45.1
 
