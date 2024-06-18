@@ -2,127 +2,145 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5197B90BD63
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jun 2024 00:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 966FC90C1E2
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jun 2024 04:37:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD21C10E143;
-	Mon, 17 Jun 2024 22:14:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3090A10E08F;
+	Tue, 18 Jun 2024 02:37:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NZRiPX4J";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lalWu/3c";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2078.outbound.protection.outlook.com [40.107.223.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4C410E143
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jun 2024 22:14:37 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2061.outbound.protection.outlook.com [40.107.220.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 178A110E08F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Jun 2024 02:37:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U7srmj4q83VK0WnS66njR1DRIXADwu+JuOpY4nMlj7mo6T/mWIIE1Wk3VHBF5Bwmtg3tQ2PI+q7C3VzyQzr4jQV4pDA2u2oDgYjMzu9k+TSB65JP1jfv6c9ct2Fc5FQgfJXASo64a1aV/OOYLOXtxDU/u09Zu+SG9JuB8Cg0cG78uGTdgOqAIdZJuY64Hwlk3DklacAGPrvF2M1QnVPhthZ+i+ckzVdVMm0v4k4TjmJm9B5m3nfw2w6FaTzZyev0f7MceihjYdxJWiHCjXt8PNTF+DYyceXB1pjka+oD55DRIXWtoo6XEiRqQnOiLTC65mSA3wvS0c8xSsXnQFvqqQ==
+ b=kFolXPOPNfBuSBbelaQ74ALUem0S/QWbyF/PTt93RSCJ440VouKeq5hwah/KbR1DYrwOgxKHCiIXvWoaGGJJx+BErnLBNZ4h2qE2nP/04dJ2WILO3NCswueUAL3/tzuw8IEBjPED+1uFHhXcOSikpPey6irpEs2gq14Jqpf1ThAlwuo7TXvWcWYXCbtEMdpilw4WL/B6xKVQR8hwRj8cXcFrN8i4U5ZMrUPqi4cG0bjWgLix/DTjcYc0tyDmb7ZAydMqSqsDmtbsvXk2+RMUKsbNtvKKGUAfFu4kXVYHkkrHC/ag54zXSYRsj38BkIQdaU+4vxGG1VfRBxAnMixn0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n9mEreiRJ/2Dtp59pQsfiuP1prhlSVJaaWS1gVHd2mM=;
- b=eAGGXcOoSNesQerk/na758DFdopHE8hXqHRVV2liqTX7kahzY+TbZNVevLR8ClOjPKy9GOoqIuvmlCgSQ+mFAe9CS4CaWMKdxoB3mjnULEuGYKyN2jbWRJHP55tS11Gn2jPTCSzmq8Wuh3WDiGDlKLYJGSz7OSfc2sg269IGnfh2eljmVIjjVXWlgwtocURuMTW1xolposSvImT1nZb/pC2FoT5LlMKuAtOHvBQ5F1ZsfUkaFrsl9ZhftxTbDUZM/VVCgevmgLozQbKlckwvWNstjhl6V82iMgK5+wWn3DwzAPnMx/nJ/w3UT7EGq8k+0UvrsbwUGNDKF/QbX4emGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=gjFiqQxFqnieJ5742aa2qJu/D7MTYP5nvwS1jSOWvG8=;
+ b=SjRFI4vbnHDRMBkdKe6lfnKUuY95PvKyDf9PX2NIy1RZ85lZn3YfnR6FSwgArvISMLZG4uk31yxS3nlhnvnFlrdpnEFbWUMYy2hYyTNsUwYh5g0uUbw4jn5+qhmjzu2lXjyET9SDEpd7XosmROu9Wo+JT2qzp0YJPvATbTn5tfnnjts5wO4uEkf4Ra4s7Ntpub+DcrekZRzFXoggncKpME8PxQkQhz2V2JE8ywufdoWurYJDZElQQbV8fGYNzFzYUPghT3qwxZVYm4r3vACVYrmykIkBXOSMM11rSTJ1/b8WqaVCMDXSuaidVNiwOaw+OOoEf3rsbf3GSJcOFlxIDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n9mEreiRJ/2Dtp59pQsfiuP1prhlSVJaaWS1gVHd2mM=;
- b=NZRiPX4JW+tSYFLqyGwNCqXQJsLcHXKP3xKxu7co+l0PNj72oTITG+e3roWYZX6qWDcLX9IfOJlS8Q3nAAfMlMuXc/6+3UoUU1qm2TGprFfwCh1YlaCjmuJAy1LEVaRmFQnf/Ds7OCu0fyhzKAGw6e27/9nGcAC2n9J94u0CctI=
-Received: from PH7P222CA0004.NAMP222.PROD.OUTLOOK.COM (2603:10b6:510:33a::15)
- by SA1PR12MB6896.namprd12.prod.outlook.com (2603:10b6:806:24f::5)
+ bh=gjFiqQxFqnieJ5742aa2qJu/D7MTYP5nvwS1jSOWvG8=;
+ b=lalWu/3c6V2v0TXY+CSuVw5RboM0uKXi51N4UNlzrsOKr9GaqDIlaIflbJTG6vbn7g9dIHHHDXCaNneYy3d6G5qmM1Pr3r9BVdIK3n92akDC67tJPSxY31YcSQolh7pBpPHYobyzfI6h/cOK9+9KAlnnr85Ek+VJqU1Eh1Lh03c=
+Received: from PH0PR12MB5481.namprd12.prod.outlook.com (2603:10b6:510:d4::15)
+ by SJ0PR12MB5633.namprd12.prod.outlook.com (2603:10b6:a03:428::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Mon, 17 Jun
- 2024 22:14:29 +0000
-Received: from CY4PEPF0000E9D1.namprd03.prod.outlook.com
- (2603:10b6:510:33a:cafe::8b) by PH7P222CA0004.outlook.office365.com
- (2603:10b6:510:33a::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30 via Frontend
- Transport; Mon, 17 Jun 2024 22:14:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9D1.mail.protection.outlook.com (10.167.241.136) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Mon, 17 Jun 2024 22:14:28 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 17 Jun
- 2024 17:14:27 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 17 Jun
- 2024 17:14:26 -0500
-Received: from aaurabin-suse.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 17 Jun 2024 17:14:26 -0500
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <rodrigo.siqueira@amd.com>, <harry.wentland@amd.com>,
- <aurabindo.pillai@amd.com>
-Subject: [PATCH 2/2] drm/amd/display: Enable DCC on DCN401
-Date: Mon, 17 Jun 2024 18:14:26 -0400
-Message-ID: <20240617221426.3136257-2-aurabindo.pillai@amd.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240617221426.3136257-1-aurabindo.pillai@amd.com>
-References: <20240617221426.3136257-1-aurabindo.pillai@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Tue, 18 Jun
+ 2024 02:37:04 +0000
+Received: from PH0PR12MB5481.namprd12.prod.outlook.com
+ ([fe80::361d:c9dd:4cf:7ffd]) by PH0PR12MB5481.namprd12.prod.outlook.com
+ ([fe80::361d:c9dd:4cf:7ffd%3]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
+ 02:37:03 +0000
+From: "Jian, Jane" <Jane.Jian@amd.com>
+To: "Jian, Jane" <Jane.Jian@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>,
+ "Chang, HaiJun" <HaiJun.Chang@amd.com>, "Zhao, Victor" <Victor.Zhao@amd.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Ma, Qing
+ (Mark)" <Qing.Ma@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: normalize registers as local xcc to
+ read/write under sriov
+Thread-Topic: [PATCH] drm/amdgpu: normalize registers as local xcc to
+ read/write under sriov
+Thread-Index: AQHawJ6yG9MRHjnr0Eah5LuMwQ1JL7HMzoyA
+Date: Tue, 18 Jun 2024 02:37:03 +0000
+Message-ID: <PH0PR12MB5481DE5A3D1130C9504953C7FFCE2@PH0PR12MB5481.namprd12.prod.outlook.com>
+References: <20240617101114.243566-1-Jane.Jian@amd.com>
+In-Reply-To: <20240617101114.243566-1-Jane.Jian@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=e5190107-8d6a-4366-9ee1-4225422fefcf;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-06-18T02:33:24Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR12MB5481:EE_|SJ0PR12MB5633:EE_
+x-ms-office365-filtering-correlation-id: ae1f7d3a-f79f-4aad-8b43-08dc8f3f89e7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230037|376011|1800799021|366013|38070700015;
+x-microsoft-antispam-message-info: =?us-ascii?Q?T5b0wf2lYvdVC+MBEnzSXLB6FhrqzMT6+vEOwJ14zkJ4RxI+8w42VTN6lBNf?=
+ =?us-ascii?Q?3/Rv/STShloXZxHY+/EET//LMRKINOdqulHQpl3qejdhPjgAmr0Y8QsechPi?=
+ =?us-ascii?Q?eJXh3Tn+WKnujJYhH/gwvtG9yrPhODYdTPAhOTtgHzBTDyc3jYoNqudBequX?=
+ =?us-ascii?Q?sY1haYzqUfWe/AYLoW9me5L7qK8uJKrhNivT5gfPykHj43BmetccdFtHyjhk?=
+ =?us-ascii?Q?X7xiU+UvsFmNUoMUb9B5BcULVUIGfOvigVrR224xxy4apaw3jP3BZNu5v1Om?=
+ =?us-ascii?Q?oqT7xLRVVVgh5YV/77evS0MnpwX+EzHm5jTnrLsEJiQkgmxtSKrRD7A3MN6B?=
+ =?us-ascii?Q?GlLqRIIGNkuIE4xpaJhEmG9QG9UUdjW4oFtKD2OE1sv5E5wb6+3S8FankkWy?=
+ =?us-ascii?Q?JuHMDKxm6VsX/14Mp+sK3mplilJDvjG5n7QYTAdfta657wngyX7fnlPO/WaH?=
+ =?us-ascii?Q?VKqsS3irNiQzp88pkDO9zugsCLS82rnsj+QEETRckqB5oL/Aj76BvQBRgK8N?=
+ =?us-ascii?Q?176NgAouEMN0DpnzK1KZ3j+oYct/jUgZs1g5HlD/+TTYjyhmK1fJjb9+y2tg?=
+ =?us-ascii?Q?HBgrCWx40hUBxMMMOGSQkZGeZNDuS82eHYDDuR6PRmD/2hvqX1i3WDrTypzy?=
+ =?us-ascii?Q?5lmYk1o7Dlkqg46F37WfZhyjIb8GtPcrve3ohR9HJz/bqkAW+an/VT9hT9kg?=
+ =?us-ascii?Q?I8XS5BrMfbRbhSHZQIXGgzM2VGLAGFtkk/UbuBgRweXO5qZ2w+koMvX1jVaD?=
+ =?us-ascii?Q?VtCZ0h2aJ+J/PatrOi3NuuFzWU2CVwRyhrox+L31GqPLU6t+A4NssWdo116V?=
+ =?us-ascii?Q?b6oPbOaPCGHi80ePRmvpvDz1QuqaGVm0X3QYQwZF2ujO5cdaDFGizA+/glhX?=
+ =?us-ascii?Q?YLmlB95IBbb/ar7pq+E4nxGcFanUP+b8jhqR4HY7WHWFmQUuhRTLVwdu6x/a?=
+ =?us-ascii?Q?+QDLNhqy1rKJ7VZk094gllogynjULxNkwqOy9GK5BnZfgclm1Nx4GH3mF8UX?=
+ =?us-ascii?Q?bzVc8GTK2mp6Q/TOW3qUKFIA80j7VMpRpqo0auTOCXuxT6LL4niKV3Wo+/in?=
+ =?us-ascii?Q?2gqL3PpKLaiXU69jLJHHbOEFPWhJ9vxGV3QPi9MBznM7Us4X0tmz5w3zJkgZ?=
+ =?us-ascii?Q?oDzc9xZJPBkPYv66gKBTA31tQbPd+G82SoWUWVTziIF4F0oi6OQb6HMJVFvM?=
+ =?us-ascii?Q?wmeHQE2cEk6wLHQYfJYWW9+t67ejXdPHhARlPO3EnfcQKbFRuXL2Xow4/Wpu?=
+ =?us-ascii?Q?4CkYd/FHNPjLRT0lMrSboKTnayEYXUCIBOy8mM5WKzEGKqRf1XN5D3pLqRyN?=
+ =?us-ascii?Q?gA/hrbr1Oskzt3R5ETDHk9cbp1iP+0Hc+fZAhBChC53D5hJUK0qN5OLsjQ+g?=
+ =?us-ascii?Q?F6oBhVQ=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR12MB5481.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(376011)(1800799021)(366013)(38070700015); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jxmWIUKd0MAECz4yidJgWrlWG38FOPib2lr4ukP7iD3M+1j4mmFTLtHno4+F?=
+ =?us-ascii?Q?PKCz5aEhqmzCxpE6fkEmgF23P02w4PXFbmLfp8LY3lw0haEPiRnSifJ13Ms3?=
+ =?us-ascii?Q?QdLjF98+IU8LfiJljeOZv+3FaQ7SfhG3LmHWUZGNnWO+vyg1joNRw/iNYsLa?=
+ =?us-ascii?Q?tHXDZ0mpUwnRjcwOzw6a8eii32cqaiw2jPQW9/A/p7PtUsp+O2apjIeqnsbo?=
+ =?us-ascii?Q?lH7zHIArB5IHXqk2PgWfsKoWvhpur+Np/EnVbA4wMJONBLDoYcGEeBGIFwWl?=
+ =?us-ascii?Q?oHjrChWX1q67HWYjA1Oi9DVLHEiqoLi0IZ9TuYrMJNfbhxomVVDQh9M5/pfI?=
+ =?us-ascii?Q?HaWU1TYpGKolCNT2M9aqAbIC7SVL43iXFPlYfnNkqQ6bV1qNzphnc8cTbCsO?=
+ =?us-ascii?Q?9nMFcG13yhbWCQeq8HAMgGF8fRr+hWJhitUw/Jm9Idk5PdI9GvLZKHTyzR9L?=
+ =?us-ascii?Q?Xho5bUFbql0qZA5DSc6XMeeTHb76y85/FCvIuV588qUbPriTC6iB2N5IqM+l?=
+ =?us-ascii?Q?a+E6Fd5+9EcXXZIsQ/bTK6g2fjPu0eHifmtp/vMAehBDQ22eRBkzvgsX0ks1?=
+ =?us-ascii?Q?Lr1w88GW/lmalvUsZDuut0f8EMc7LQ6G8+MPCGAApfj4GMr0oKMs1qpNPfgW?=
+ =?us-ascii?Q?CAlEkpL0dqCf47C7nsH2QunCkZYi4l0bx2raZB8PK4+jf21WLjIIeu5yuLkS?=
+ =?us-ascii?Q?dwvhop8d/RcY/8N4PGE+vXsfIhBHjQooDmrq3cLNmaIr4lQGEWD+hMyheUBg?=
+ =?us-ascii?Q?EvZh1/xI0Pjnxy4yKZdHPv31dtItd7dIzgvYNVz29qzg7UgKAxsMBhNZlE26?=
+ =?us-ascii?Q?pMZCLNlj9cs1A083rntWagVWQnHOO/nOxUnvE/cGFY6XFesILpVQ5b3RLyE0?=
+ =?us-ascii?Q?HFjFuu/hcutl08Gqxsjh/6MwMn4gjoyT72MFxUF10e0rEonW/KpvnUcZVt6a?=
+ =?us-ascii?Q?xRHAt2OonIkCwHmfDXcovfQnk2OQpdKbARb00/yEhmf/57YNfddfdBKvbIHB?=
+ =?us-ascii?Q?Ew/nCSXL0K8UI4f3I5hTnXIrbxzEGmqvZS1FnRgNdjpqAVJg0TkP68z0CoEU?=
+ =?us-ascii?Q?+trKyY2xYOiZdpQHpGFQHGL4qmxfnkTQIXfCp6x/s4C6ydH2nSXWYYf/ULLS?=
+ =?us-ascii?Q?M24zeEK9cVUI2Tnx1E5RAo+r6idmJcTMxvUfc782fIue9R0AGP6e5y180JnC?=
+ =?us-ascii?Q?MAUIJ8UxE08mFvmtoKkVdLCsoTN+SX2ZmwFv9qDP4dNN2HFGaHnTPIvl+vCw?=
+ =?us-ascii?Q?SuhpJXJ4YsUCtCPROC/cTfduH0mD/MW2i6VEvec7qhha+l+9iUjPXsvOCDlg?=
+ =?us-ascii?Q?QGF4/22yLuzaQaD9o1VKVQnjbjnHtNfXPoa/eAlrGi65XjtP9qe+yFW2qnJO?=
+ =?us-ascii?Q?RnhSryF5vYmSZrRIQjlyMt9ra88D07iIitMNjEONrfi5yYJxdEMw2iGe88uX?=
+ =?us-ascii?Q?4S93vnfJXwHBnTo+NdQg6c32M3p5a8qGz6jQOVgOYCCRGHwbq1pD44ga19hg?=
+ =?us-ascii?Q?Igo3v0HpfbGLKUChILV9iRKS/6xPx2JE7qq4jxhzK22xzEAYIKqcdgIHUJO6?=
+ =?us-ascii?Q?pxb1nL/A8fdKnP02QHA=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: aurabindo.pillai@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D1:EE_|SA1PR12MB6896:EE_
-X-MS-Office365-Filtering-Correlation-Id: e74c8f4b-b744-4fc6-0b44-08dc8f1adb0e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230037|376011|36860700010|82310400023|1800799021; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KUmVmjAztEbvAZh7RznwYupUwrVSl7WGDmgoRDHi9J7sx+ynNL4tlqEqnvRf?=
- =?us-ascii?Q?zoM+0eN/pZ5A9ceBy5DdQ8W/oZ6urXCZ8pJES2GSEKDA3ZjNjtye0pbnp7ak?=
- =?us-ascii?Q?3eZn4jSsQ2e1zk/BR/kUJMXSPWZzhF5KuIAyQupqIVwlY3C5ii2g4RHsGeSI?=
- =?us-ascii?Q?AptQ472ORuKX0JEnST6h+WLJKqYZsmxCkoPXDhtKp7hXHvOeyJ6K4/hfmOLP?=
- =?us-ascii?Q?xE9hh76xr0aXXZTNZKL3pm9Cz2AJjGaYWslF2Z9ltjdVDUJy54m72HyaQN1j?=
- =?us-ascii?Q?YA3zZcYQmmFnPSTFDPig7z5blNEvgANwjJ7h2JdE1MQUHqns5gTFcN3XWeuf?=
- =?us-ascii?Q?Er698gog2SWjmUtfp3O4xVZJjoH2EI7ulvrxKe+/7vNOLDA5IxF1830KMu0V?=
- =?us-ascii?Q?Tr+pNVCOLoSVz9rnAUwlylNs/9BLKlNBboZRfvNW8v4WGCDA0PRy89ZMB59I?=
- =?us-ascii?Q?e5EsyNcJIhu0hgiThYgY+FyiLW0oERV6WC+vzZvHY9+nolvqTwizjBPevn2E?=
- =?us-ascii?Q?X4ocRUA+oF+CeCkpS38aRTtJ1E86GMQpSTx5O85qUmRGIld/xmdme7SYPLih?=
- =?us-ascii?Q?PtujGUkIzsKBgvvlPqBDsp/r4oQALz1JuTbFhurLvUyMSMDx7huoUMq2OYaP?=
- =?us-ascii?Q?6fHYEeOKNW3ZGy8aaVOLVD/Cvtwk2R1jrv+1HYD/jNbdl/YOEzp+Xu3HFdOz?=
- =?us-ascii?Q?WKP21N+yQnPz1pZBFBVRjHG+/ZJE33wlutrIh9kZ6k6obnM+kvj8vHr3guSj?=
- =?us-ascii?Q?MRZc+GrpBJ4Mx7afu4Qez3HyYIWQLINhiLry5ayUkL7rCa6vng5Sk00E6v9H?=
- =?us-ascii?Q?bcIRrLcUpAt6eJV+IID1dPcwseGtg2y6knJWs6J96dGbaIaplWHqPnd8Mv2b?=
- =?us-ascii?Q?MYsP/hu0fo+QZ8Ir7st2Jb8cOVEQTI+T+EJRtunuz4Js02aSPlOt9vLG9WwH?=
- =?us-ascii?Q?suqkghmLxfhSXaf9fZDLnGcIGYSw3ZA557/dWN48PaiVVnvhlhWH/KUfSBu8?=
- =?us-ascii?Q?oUlSQcgPyRE001Pex57HgWIbKjozuZd+kvcG0NVqO3VkdqcyCSVsvR1RVKKK?=
- =?us-ascii?Q?vAb9fAA11FZ7GaQ16KugUMm7x+4Ejyd69xWb14g5Mw6cdc0yKgggBK/zr/1N?=
- =?us-ascii?Q?LOpE7QTipvDnSkayTQVvc/8MxU/4O9ex5HdWuUUeOY+89Ms2SNq6pZZnR5Bc?=
- =?us-ascii?Q?8GXP6hHOsoQnrYw8iqZE21M1/MwkCiFAMMPgwmqQqtIQxx/PE8MXC9S4xz3c?=
- =?us-ascii?Q?4j28ukRc2RMzlrDTiQ9tvc7qQ4gkqwnAlmzA3CGNPMYUUw/7Q2A2+Hg0OSzE?=
- =?us-ascii?Q?Iqx/OEb36bz7CjtpsDOEp2cwTZ0iQI+4CSBEQKy6sQd0FPikwZ8pc/rJhy/7?=
- =?us-ascii?Q?ueUKNq+SRCQjTCBIt2qPp7sOZtyuAqBvLxP7DgO6/DwplIStlw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230037)(376011)(36860700010)(82310400023)(1800799021); DIR:OUT;
- SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 22:14:28.5257 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e74c8f4b-b744-4fc6-0b44-08dc8f1adb0e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D1.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6896
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB5481.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae1f7d3a-f79f-4aad-8b43-08dc8f3f89e7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2024 02:37:03.8514 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: go7qSCxbn+1mXqYVlmS3t+D373nytmsSk+lwxOtmBuYng3FY/L8tlsTBiStcTcEypwzrX3kST7+AwwQPitg53A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5633
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,825 +155,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add registers and entry points to enable DCC on DCN4x
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Ping on this...
+Thanks,
+Jane
+
+-----Original Message-----
+From: Jane Jian <Jane.Jian@amd.com>
+Sent: Monday, June 17, 2024 6:11 PM
+To: Lazar, Lijo <Lijo.Lazar@amd.com>; Chang, HaiJun <HaiJun.Chang@amd.com>;=
+ Zhao, Victor <Victor.Zhao@amd.com>
+Cc: amd-gfx@lists.freedesktop.org; Jian, Jane <Jane.Jian@amd.com>
+Subject: [PATCH] drm/amdgpu: normalize registers as local xcc to read/write=
+ under sriov
+
+[WHY]
+sriov has the higher bit violation when flushing tlb
+
+[HOW]
+normalize the registers to keep lower 16-bit(dword aligned) to aviod higher=
+ bit violation RLCG will mask xcd out and always assume it's accessing its =
+own xcd
+
+also fix the typo in sriov_w/rreg:
+for KIQ case, use xcc with xcc_id to read and write
+
+v2
+amend some typos
+
+Signed-off-by: Jane Jian <Jane.Jian@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  10 +
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  11 +
- drivers/gpu/drm/amd/display/dc/dc.h           |   4 +
- .../drm/amd/display/dc/dml2/dml2_wrapper.c    |   6 +
- .../drm/amd/display/dc/dml2/dml2_wrapper.h    |   2 +-
- .../display/dc/hubbub/dcn30/dcn30_hubbub.c    |   3 +
- .../display/dc/hubbub/dcn31/dcn31_hubbub.c    |   3 +
- .../display/dc/hubbub/dcn401/dcn401_hubbub.c  | 280 ++++++++++++++++++
- .../display/dc/hubbub/dcn401/dcn401_hubbub.h  |   5 +
- .../amd/display/dc/hubp/dcn20/dcn20_hubp.h    |  14 +
- .../amd/display/dc/hubp/dcn401/dcn401_hubp.c  |  21 ++
- .../amd/display/dc/hubp/dcn401/dcn401_hubp.h  |  14 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |   4 +
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |  25 ++
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |   2 +
- .../amd/display/dc/hwss/dcn401/dcn401_init.c  |   1 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |   9 +
- .../gpu/drm/amd/display/dc/inc/core_types.h   |   3 +
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |   4 +
- drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   1 +
- .../dc/resource/dcn401/dcn401_resource.c      |   9 +
- .../dc/resource/dcn401/dcn401_resource.h      |   2 +
- 22 files changed, 431 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c  | 12 ++++++++++--
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c     |  8 ++++++--
+ drivers/gpu/drm/amd/amdgpu/soc15_common.h |  2 ++
+ 3 files changed, 18 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index a4ba6f99cd34..8c691bee49a3 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1264,6 +1264,9 @@ static void disable_dangling_plane(struct dc *dc, struct dc_state *context)
- 				apply_ctx_interdependent_lock(dc, dc->current_state, old_stream, false);
- 				dc->hwss.post_unlock_program_front_end(dc, dangling_context);
- 			}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu_virt.c
+index 63f2286858c4..d43652a38484 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -1075,6 +1075,10 @@ void amdgpu_sriov_wreg(struct amdgpu_device *adev,
+        if (amdgpu_device_skip_hw_access(adev))
+                return;
+
++       /* Select lower 16 bits to write in local xcc */
++       if ((hwip =3D=3D GC_HWIP) && !(acc_flags & AMDGPU_REGS_NO_KIQ))
++               offset =3D NORMALIZE_XCC_REG_OFFSET(offset);
 +
-+			if (dc->res_pool->funcs->prepare_mcache_programming)
-+				dc->res_pool->funcs->prepare_mcache_programming(dc, dangling_context);
- 			if (dc->hwss.program_front_end_for_ctx) {
- 				dc->hwss.interdependent_update_lock(dc, dc->current_state, true);
- 				dc->hwss.program_front_end_for_ctx(dc, dangling_context);
-@@ -2037,6 +2040,8 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
- 	}
- 
- 	/* Program all planes within new context*/
-+	if (dc->res_pool->funcs->prepare_mcache_programming)
-+		dc->res_pool->funcs->prepare_mcache_programming(dc, context);
- 	if (dc->hwss.program_front_end_for_ctx) {
- 		dc->hwss.interdependent_update_lock(dc, context, true);
- 		dc->hwss.program_front_end_for_ctx(dc, context);
-@@ -3884,6 +3889,7 @@ static void commit_planes_for_stream(struct dc *dc,
- 				odm_pipe->ttu_regs.min_ttu_vblank = MAX_TTU;
- 	}
- 
-+
- 	if ((update_type != UPDATE_TYPE_FAST) && stream->update_flags.bits.dsc_changed)
- 		if (top_pipe_to_program &&
- 			top_pipe_to_program->stream_res.tg->funcs->lock_doublebuffer_enable) {
-@@ -3903,6 +3909,10 @@ static void commit_planes_for_stream(struct dc *dc,
- 						top_pipe_to_program->stream_res.tg);
- 		}
- 
-+	if (dc->hwss.wait_for_dcc_meta_propagation) {
-+		dc->hwss.wait_for_dcc_meta_propagation(dc, top_pipe_to_program);
-+	}
-+
- 	if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
- 		if (dc->hwss.subvp_pipe_control_lock)
- 			dc->hwss.subvp_pipe_control_lock(dc, context, true, should_lock_all_pipes, NULL, subvp_prev_use);
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 5037474bf95c..87e36d51c56d 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -595,6 +595,12 @@ void hwss_build_fast_sequence(struct dc *dc,
- 	if (!plane || !stream)
- 		return;
- 
-+	if (dc->hwss.wait_for_dcc_meta_propagation) {
-+		block_sequence[*num_steps].params.wait_for_dcc_meta_propagation_params.dc = dc;
-+		block_sequence[*num_steps].params.wait_for_dcc_meta_propagation_params.top_pipe_to_program = pipe_ctx;
-+		block_sequence[*num_steps].func = HUBP_WAIT_FOR_DCC_META_PROP;
-+		(*num_steps)++;
-+	}
- 	if (dc->hwss.subvp_pipe_control_lock_fast) {
- 		block_sequence[*num_steps].params.subvp_pipe_control_lock_fast_params.dc = dc;
- 		block_sequence[*num_steps].params.subvp_pipe_control_lock_fast_params.lock = true;
-@@ -835,6 +841,11 @@ void hwss_execute_sequence(struct dc *dc,
- 		case DMUB_SUBVP_SAVE_SURF_ADDR:
- 			hwss_subvp_save_surf_addr(params);
- 			break;
-+		case HUBP_WAIT_FOR_DCC_META_PROP:
-+			dc->hwss.wait_for_dcc_meta_propagation(
-+					params->wait_for_dcc_meta_propagation_params.dc,
-+					params->wait_for_dcc_meta_propagation_params.top_pipe_to_program);
-+			break;
- 		case DMUB_FAMS2_GLOBAL_CONTROL_LOCK_FAST:
- 			dc->hwss.fams2_global_control_lock_fast(params);
- 			break;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index d0d1af451b64..9a59f6ef8106 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -333,6 +333,9 @@ struct dc_dcc_setting {
- 		uint32_t dcc_128_128_uncontrained : 1;  //available in ASICs before DCN 3.0
- 		uint32_t dcc_256_128_128 : 1;		//available starting with DCN 3.0
- 		uint32_t dcc_256_256_unconstrained : 1;  //available in ASICs before DCN 3.0 (the best compression case)
-+		uint32_t dcc_256_256 : 1;  //available in ASICs starting with DCN 4.0x (the best compression case)
-+		uint32_t dcc_256_128 : 1;  //available in ASICs starting with DCN 4.0x
-+		uint32_t dcc_256_64 : 1;   //available in ASICs starting with DCN 4.0x (the worst compression case)
- 	} dcc_controls;
- };
- 
-@@ -1036,6 +1039,7 @@ struct dc_debug_options {
- 	unsigned int static_screen_wait_frames;
- 	uint32_t pwm_freq;
- 	bool force_chroma_subsampling_1tap;
-+	unsigned int dcc_meta_propagation_delay_us;
- 	bool disable_422_left_edge_pixel;
- 	bool dml21_force_pstate_method;
- 	uint32_t dml21_force_pstate_method_value;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-index f6310408dbba..c09013794dea 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-@@ -806,6 +806,12 @@ void dml2_extract_dram_and_fclk_change_support(struct dml2_context *dml2,
- 	*dram_clk_change_support = (unsigned int) dml2->v20.dml_core_ctx.ms.support.DRAMClockChangeSupport[0];
+        if (!amdgpu_sriov_runtime(adev) &&
+                amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags, hwip,=
+ true, &rlcg_flag)) {
+                amdgpu_virt_rlcg_reg_rw(adev, offset, value, rlcg_flag, xcc=
+_id); @@ -1084,7 +1088,7 @@ void amdgpu_sriov_wreg(struct amdgpu_device *ad=
+ev,
+        if (acc_flags & AMDGPU_REGS_NO_KIQ)
+                WREG32_NO_KIQ(offset, value);
+        else
+-               WREG32(offset, value);
++               WREG32_XCC(offset, value, xcc_id);
  }
- 
-+void dml2_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context, struct dml2_context *dml2)
-+{
-+	if (dml2->architecture == dml2_architecture_21)
-+		dml21_prepare_mcache_programming(in_dc, context, dml2);
-+}
+
+ u32 amdgpu_sriov_rreg(struct amdgpu_device *adev, @@ -1095,6 +1099,10 @@ u=
+32 amdgpu_sriov_rreg(struct amdgpu_device *adev,
+        if (amdgpu_device_skip_hw_access(adev))
+                return 0;
+
++       /* Select lower 16 bits to read in local xcc */
++       if ((hwip =3D=3D GC_HWIP) && !(acc_flags & AMDGPU_REGS_NO_KIQ))
++               offset =3D NORMALIZE_XCC_REG_OFFSET(offset);
 +
- void dml2_copy(struct dml2_context *dst_dml2,
- 	struct dml2_context *src_dml2)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
-index 20b3970c0857..2ad20378d2ef 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
-@@ -301,5 +301,5 @@ bool dml2_validate(const struct dc *in_dc,
-  */
- void dml2_extract_dram_and_fclk_change_support(struct dml2_context *dml2,
- 	unsigned int *fclk_change_support, unsigned int *dram_clk_change_support);
--
-+void dml2_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context, struct dml2_context *dml2);
- #endif //_DML2_WRAPPER_H_
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn30/dcn30_hubbub.c b/drivers/gpu/drm/amd/display/dc/hubbub/dcn30/dcn30_hubbub.c
-index 6a5af3da4b45..fe741100c0f8 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn30/dcn30_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn30/dcn30_hubbub.c
-@@ -339,6 +339,7 @@ bool hubbub3_get_dcc_compression_cap(struct hubbub *hubbub,
- 		return false;
- 
- 	switch (dcc_control) {
-+	case dcc_control__256_256:
- 	case dcc_control__256_256_xxx:
- 		output->grph.rgb.max_uncompressed_blk_size = 256;
- 		output->grph.rgb.max_compressed_blk_size = 256;
-@@ -346,6 +347,7 @@ bool hubbub3_get_dcc_compression_cap(struct hubbub *hubbub,
- 		output->grph.rgb.dcc_controls.dcc_256_256_unconstrained = 1;
- 		output->grph.rgb.dcc_controls.dcc_256_128_128 = 1;
- 		break;
-+	case dcc_control__256_128:
- 	case dcc_control__128_128_xxx:
- 		output->grph.rgb.max_uncompressed_blk_size = 128;
- 		output->grph.rgb.max_compressed_blk_size = 128;
-@@ -353,6 +355,7 @@ bool hubbub3_get_dcc_compression_cap(struct hubbub *hubbub,
- 		output->grph.rgb.dcc_controls.dcc_128_128_uncontrained = 1;
- 		output->grph.rgb.dcc_controls.dcc_256_128_128 = 1;
- 		break;
-+	case dcc_control__256_64:
- 	case dcc_control__256_64_64:
- 		output->grph.rgb.max_uncompressed_blk_size = 256;
- 		output->grph.rgb.max_compressed_blk_size = 64;
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn31/dcn31_hubbub.c b/drivers/gpu/drm/amd/display/dc/hubbub/dcn31/dcn31_hubbub.c
-index b906db6e7355..7fb5523f9722 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn31/dcn31_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn31/dcn31_hubbub.c
-@@ -866,6 +866,7 @@ static bool hubbub31_get_dcc_compression_cap(struct hubbub *hubbub,
- 		return false;
- 
- 	switch (dcc_control) {
-+	case dcc_control__256_256:
- 	case dcc_control__256_256_xxx:
- 		output->grph.rgb.max_uncompressed_blk_size = 256;
- 		output->grph.rgb.max_compressed_blk_size = 256;
-@@ -881,12 +882,14 @@ static bool hubbub31_get_dcc_compression_cap(struct hubbub *hubbub,
- 		output->grph.rgb.dcc_controls.dcc_256_128_128 = 1;
- 		break;
- 	case dcc_control__256_64_64:
-+	case dcc_control__256_64:
- 		output->grph.rgb.max_uncompressed_blk_size = 256;
- 		output->grph.rgb.max_compressed_blk_size = 64;
- 		output->grph.rgb.independent_64b_blks = true;
- 		output->grph.rgb.dcc_controls.dcc_256_64_64 = 1;
- 		break;
- 	case dcc_control__256_128_128:
-+	case dcc_control__256_128:
- 		output->grph.rgb.max_uncompressed_blk_size = 256;
- 		output->grph.rgb.max_compressed_blk_size = 128;
- 		output->grph.rgb.independent_64b_blks = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.c b/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.c
-index 054607c944a3..b9201b60bd41 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.c
-@@ -824,6 +824,285 @@ void hubbub401_det_request_size(
- 		}
- 	}
+        if (!amdgpu_sriov_runtime(adev) &&
+                amdgpu_virt_get_rlcg_reg_access_flag(adev, acc_flags, hwip,=
+ false, &rlcg_flag))
+                return amdgpu_virt_rlcg_reg_rw(adev, offset, 0, rlcg_flag, =
+xcc_id); @@ -1102,7 +1110,7 @@ u32 amdgpu_sriov_rreg(struct amdgpu_device *=
+adev,
+        if (acc_flags & AMDGPU_REGS_NO_KIQ)
+                return RREG32_NO_KIQ(offset);
+        else
+-               return RREG32(offset);
++               return RREG32_XCC(offset, xcc_id);
  }
-+bool hubbub401_get_dcc_compression_cap(struct hubbub *hubbub,
-+		const struct dc_dcc_surface_param *input,
-+		struct dc_surface_dcc_cap *output)
-+{
-+	struct dc *dc = hubbub->ctx->dc;
-+	/* DCN4_Programming_Guide_DCHUB.docx, Section 5.11.2.2 */
-+	enum dcc_control dcc_control;
-+	unsigned int plane0_bpe, plane1_bpe;
-+	enum segment_order segment_order_horz, segment_order_vert;
-+	enum segment_order p1_segment_order_horz, p1_segment_order_vert;
-+	bool req128_horz_wc, req128_vert_wc;
-+	unsigned int plane0_width = 0, plane0_height = 0, plane1_width = 0, plane1_height = 0;
-+	bool p1_req128_horz_wc, p1_req128_vert_wc, is_dual_plane;
+
+ bool amdgpu_sriov_xnack_support(struct amdgpu_device *adev) diff --git a/d=
+rivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.=
+c
+index 88b4644f8e96..5bb275b96e6a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -853,8 +853,12 @@ static void gmc_v9_0_flush_gpu_tlb(struct amdgpu_devic=
+e *adev, uint32_t vmid,
+         */
+        if (adev->gfx.kiq[inst].ring.sched.ready &&
+            (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
+-               uint32_t req =3D hub->vm_inv_eng0_req + hub->eng_distance *=
+ eng;
+-               uint32_t ack =3D hub->vm_inv_eng0_ack + hub->eng_distance *=
+ eng;
 +
-+	memset(output, 0, sizeof(*output));
++               /* Select lower 16 bits to write in local xcc */
++               if (AMDGPU_IS_GFXHUB(vmhub)) {
++                       req =3D NORMALIZE_XCC_REG_OFFSET(req);
++                       ack =3D NORMALIZE_XCC_REG_OFFSET(ack);
++               }
+
+                amdgpu_gmc_fw_reg_write_reg_wait(adev, req, ack, inv_req,
+                                                 1 << vmid, inst);
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/am=
+d/amdgpu/soc15_common.h
+index 242b24f73c17..9ddf68e7d06e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
+@@ -210,4 +210,6 @@
+ #define WREG64_MCA(ext, mca_base, idx, val) \
+        WREG64_PCIE_EXT(adev->asic_funcs->encode_ext_smn_addressing(ext) + =
+mca_base + (idx * 8), val)
+
++#define NORMALIZE_XCC_REG_OFFSET(offset) (offset & 0xffff)
 +
-+	if (dc->debug.disable_dcc == DCC_DISABLE)
-+		return false;
-+
-+	switch (input->format) {
-+	default:
-+		is_dual_plane = false;
-+
-+		plane1_width = 0;
-+		plane1_height = 0;
-+
-+		if (input->surface_size.width > 6144 + 16)
-+			plane0_width = 6160;
-+		else
-+			plane0_width = input->surface_size.width;
-+
-+		if (input->surface_size.height > 6144 + 16)
-+			plane0_height = 6160;
-+		else
-+			plane0_height = input->surface_size.height;
-+
-+		break;
-+	case SURFACE_PIXEL_FORMAT_VIDEO_420_YCbCr:
-+	case SURFACE_PIXEL_FORMAT_VIDEO_420_YCrCb:
-+	case SURFACE_PIXEL_FORMAT_VIDEO_420_10bpc_YCbCr:
-+	case SURFACE_PIXEL_FORMAT_VIDEO_420_10bpc_YCrCb:
-+		is_dual_plane = true;
-+
-+		if (input->surface_size.width > 7680 + 16)
-+			plane0_width = 7696;
-+		else
-+			plane0_width = input->surface_size.width;
-+
-+		if (input->surface_size.height > 4320 + 16)
-+			plane0_height = 4336;
-+		else
-+			plane0_height = input->surface_size.height;
-+
-+		if (input->plane1_size.width > 7680 + 16)
-+			plane1_width = 7696 / 2;
-+		else
-+			plane1_width = input->plane1_size.width;
-+
-+		if (input->plane1_size.height > 4320 + 16)
-+			plane1_height = 4336 / 2;
-+		else
-+			plane1_height = input->plane1_size.height;
-+
-+		break;
-+
-+	case SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA:
-+		is_dual_plane = true;
-+
-+		if (input->surface_size.width > 5120 + 16)
-+			plane0_width = 5136;
-+		else
-+			plane0_width = input->surface_size.width;
-+
-+		if (input->surface_size.height > 5120 + 16)
-+			plane0_height = 5136;
-+		else
-+			plane0_height = input->surface_size.height;
-+
-+		if (input->plane1_size.width > 5120 + 16)
-+			plane1_width = 5136;
-+		else
-+			plane1_width = input->plane1_size.width;
-+
-+		if (input->plane1_size.height > 5120 + 16)
-+			plane1_height = 5136;
-+		else
-+			plane1_height = input->plane1_size.height;
-+
-+		break;
-+	}
-+
-+	if (!hubbub->funcs->dcc_support_pixel_format_plane0_plane1(input->format,
-+			&plane0_bpe, &plane1_bpe))
-+		return false;
-+
-+	/* Find plane0 DCC Controls */
-+	if (!is_dual_plane) {
-+
-+		if (!hubbub->funcs->dcc_support_swizzle_addr3(input->swizzle_mode_addr3,
-+				input->plane0_pitch, plane0_bpe,
-+				&segment_order_horz, &segment_order_vert))
-+			return false;
-+
-+		hubbub401_det_request_size(TO_DCN20_HUBBUB(hubbub)->detile_buf_size, input->format,
-+				plane0_height, plane0_width, plane0_bpe,
-+				plane1_height, plane1_width, plane1_bpe,
-+				&req128_horz_wc, &req128_vert_wc, &p1_req128_horz_wc, &p1_req128_vert_wc);
-+
-+		if (!req128_horz_wc && !req128_vert_wc) {
-+			dcc_control = dcc_control__256_256;
-+		} else if (input->scan == SCAN_DIRECTION_HORIZONTAL) {
-+			if (!req128_horz_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (segment_order_horz == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else if (input->scan == SCAN_DIRECTION_VERTICAL) {
-+			if (!req128_vert_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (segment_order_vert == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else {
-+			if ((req128_horz_wc &&
-+				segment_order_horz == segment_order__non_contiguous) ||
-+				(req128_vert_wc &&
-+				segment_order_vert == segment_order__non_contiguous))
-+				/* access_dir not known, must use most constraining */
-+				dcc_control = dcc_control__256_64;
-+			else
-+				/* req128 is true for either horz and vert
-+				 * but segment_order is contiguous
-+				 */
-+				dcc_control = dcc_control__256_128;
-+		}
-+
-+		if (dc->debug.disable_dcc == DCC_HALF_REQ_DISALBE &&
-+			dcc_control != dcc_control__256_256)
-+			return false;
-+
-+		switch (dcc_control) {
-+		case dcc_control__256_256:
-+			output->grph.rgb.dcc_controls.dcc_256_256 = 1;
-+			output->grph.rgb.dcc_controls.dcc_256_128 = 1;
-+			output->grph.rgb.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_128:
-+			output->grph.rgb.dcc_controls.dcc_256_128 = 1;
-+			output->grph.rgb.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_64:
-+			output->grph.rgb.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		default:
-+			/* Shouldnt get here */
-+			ASSERT(0);
-+			break;
-+		}
-+	} else {
-+		/* For dual plane cases, need to examine both planes together */
-+		if (!hubbub->funcs->dcc_support_swizzle_addr3(input->swizzle_mode_addr3,
-+				input->plane0_pitch, plane0_bpe,
-+				&segment_order_horz, &segment_order_vert))
-+			return false;
-+
-+		if (!hubbub->funcs->dcc_support_swizzle_addr3(input->swizzle_mode_addr3,
-+			input->plane1_pitch, plane1_bpe,
-+			&p1_segment_order_horz, &p1_segment_order_vert))
-+			return false;
-+
-+		hubbub401_det_request_size(TO_DCN20_HUBBUB(hubbub)->detile_buf_size, input->format,
-+				plane0_height, plane0_width, plane0_bpe,
-+				plane1_height, plane1_width, plane1_bpe,
-+				&req128_horz_wc, &req128_vert_wc, &p1_req128_horz_wc, &p1_req128_vert_wc);
-+
-+		/* Determine Plane 0 DCC Controls */
-+		if (!req128_horz_wc && !req128_vert_wc) {
-+			dcc_control = dcc_control__256_256;
-+		} else if (input->scan == SCAN_DIRECTION_HORIZONTAL) {
-+			if (!req128_horz_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (segment_order_horz == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else if (input->scan == SCAN_DIRECTION_VERTICAL) {
-+			if (!req128_vert_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (segment_order_vert == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else {
-+			if ((req128_horz_wc &&
-+				segment_order_horz == segment_order__non_contiguous) ||
-+				(req128_vert_wc &&
-+				segment_order_vert == segment_order__non_contiguous))
-+				/* access_dir not known, must use most constraining */
-+				dcc_control = dcc_control__256_64;
-+			else
-+				/* req128 is true for either horz and vert
-+				 * but segment_order is contiguous
-+				 */
-+				dcc_control = dcc_control__256_128;
-+		}
-+
-+		switch (dcc_control) {
-+		case dcc_control__256_256:
-+			output->video.luma.dcc_controls.dcc_256_256 = 1;
-+			output->video.luma.dcc_controls.dcc_256_128 = 1;
-+			output->video.luma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_128:
-+			output->video.luma.dcc_controls.dcc_256_128 = 1;
-+			output->video.luma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_64:
-+			output->video.luma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		default:
-+			ASSERT(0);
-+			break;
-+		}
-+
-+		/* Determine Plane 1 DCC Controls */
-+		if (!p1_req128_horz_wc && !p1_req128_vert_wc) {
-+			dcc_control = dcc_control__256_256;
-+		} else if (input->scan == SCAN_DIRECTION_HORIZONTAL) {
-+			if (!p1_req128_horz_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (p1_segment_order_horz == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else if (input->scan == SCAN_DIRECTION_VERTICAL) {
-+			if (!p1_req128_vert_wc)
-+				dcc_control = dcc_control__256_256;
-+			else if (p1_segment_order_vert == segment_order__contiguous)
-+				dcc_control = dcc_control__256_128;
-+			else
-+				dcc_control = dcc_control__256_64;
-+		} else {
-+			if ((p1_req128_horz_wc &&
-+				p1_segment_order_horz == segment_order__non_contiguous) ||
-+				(p1_req128_vert_wc &&
-+				p1_segment_order_vert == segment_order__non_contiguous))
-+				/* access_dir not known, must use most constraining */
-+				dcc_control = dcc_control__256_64;
-+			else
-+				/* req128 is true for either horz and vert
-+				 * but segment_order is contiguous
-+				 */
-+				dcc_control = dcc_control__256_128;
-+		}
-+
-+		switch (dcc_control) {
-+		case dcc_control__256_256:
-+			output->video.chroma.dcc_controls.dcc_256_256 = 1;
-+			output->video.chroma.dcc_controls.dcc_256_128 = 1;
-+			output->video.chroma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_128:
-+			output->video.chroma.dcc_controls.dcc_256_128 = 1;
-+			output->video.chroma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		case dcc_control__256_64:
-+			output->video.chroma.dcc_controls.dcc_256_64 = 1;
-+			break;
-+		default:
-+			ASSERT(0);
-+			break;
-+		}
-+	}
-+
-+	output->capable = true;
-+	return true;
-+}
- 
- static void dcn401_program_det_segments(struct hubbub *hubbub, int hubp_inst, unsigned det_buffer_size_seg)
- {
-@@ -891,6 +1170,7 @@ static const struct hubbub_funcs hubbub4_01_funcs = {
- 	.init_vm_ctx = hubbub2_init_vm_ctx,
- 	.dcc_support_swizzle_addr3 = hubbub401_dcc_support_swizzle,
- 	.dcc_support_pixel_format_plane0_plane1 = hubbub401_dcc_support_pixel_format,
-+	.get_dcc_compression_cap = hubbub401_get_dcc_compression_cap,
- 	.wm_read_state = hubbub401_wm_read_state,
- 	.get_dchub_ref_freq = hubbub2_get_dchub_ref_freq,
- 	.program_watermarks = hubbub401_program_watermarks,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.h b/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.h
-index d8a57f64a70c..f35f19ba3e18 100644
---- a/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.h
-+++ b/drivers/gpu/drm/amd/display/dc/hubbub/dcn401/dcn401_hubbub.h
-@@ -180,6 +180,11 @@ void hubbub401_det_request_size(
- 		bool *p0_req128_vert_wc,
- 		bool *p1_req128_horz_wc,
- 		bool *p1_req128_vert_wc);
-+bool hubbub401_get_dcc_compression_cap(
-+		struct hubbub *hubbub,
-+		const struct dc_dcc_surface_param *input,
-+		struct dc_surface_dcc_cap *output);
-+
- void hubbub401_construct(struct dcn20_hubbub *hubbub2,
- 	struct dc_context *ctx,
- 	const struct dcn_hubbub_registers *hubbub_regs,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.h b/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.h
-index ecc0a2f37938..18e194507e36 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn20/dcn20_hubp.h
-@@ -175,6 +175,8 @@
- 	uint32_t HUBP_3DLUT_ADDRESS_LOW;\
- 	uint32_t HUBP_3DLUT_CONTROL;\
- 	uint32_t HUBP_3DLUT_DLG_PARAM;\
-+	uint32_t DCSURF_VIEWPORT_MCACHE_SPLIT_COORDINATE;\
-+	uint32_t DCHUBP_MCACHEID_CONFIG
- 
- #define DCN2_HUBP_REG_FIELD_VARIABLE_LIST(type) \
- 	DCN_HUBP_REG_FIELD_BASE_LIST(type); \
-@@ -269,6 +271,18 @@
- 	type HUBP_3DLUT_ADDRESS_HIGH;\
- 	type HUBP_3DLUT_ADDRESS_LOW;\
- 	type REFCYC_PER_3DLUT_GROUP;\
-+	type VIEWPORT_MCACHE_SPLIT_COORDINATE;\
-+	type VIEWPORT_MCACHE_SPLIT_COORDINATE_C;\
-+	type MCACHEID_REG_READ_1H_P0;\
-+	type MCACHEID_REG_READ_2H_P0;\
-+	type MCACHEID_REG_READ_1H_P1;\
-+	type MCACHEID_REG_READ_2H_P1;\
-+	type MCACHEID_MALL_PREF_1H_P0;\
-+	type MCACHEID_MALL_PREF_2H_P0;\
-+	type MCACHEID_MALL_PREF_1H_P1;\
-+	type MCACHEID_MALL_PREF_2H_P1
-+
-+
- 
- struct dcn_hubp2_registers {
- 	DCN401_HUBP_REG_COMMON_VARIABLE_LIST;
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-index 6692d57d5cce..40465fd0bcc0 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.c
-@@ -626,6 +626,26 @@ void hubp401_set_viewport(
- 		  SEC_VIEWPORT_Y_START_C, viewport_c->y);
- }
- 
-+void hubp401_program_mcache_id_and_split_coordinate(
-+	struct hubp *hubp,
-+	struct dml2_hubp_pipe_mcache_regs *mcache_regs)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	REG_SET_8(DCHUBP_MCACHEID_CONFIG, 0,
-+		MCACHEID_REG_READ_1H_P0, mcache_regs->main.p0.mcache_id_first,
-+		MCACHEID_REG_READ_2H_P0, mcache_regs->main.p0.mcache_id_second,
-+		MCACHEID_REG_READ_1H_P1, mcache_regs->main.p1.mcache_id_first,
-+		MCACHEID_REG_READ_2H_P1, mcache_regs->main.p1.mcache_id_second,
-+		MCACHEID_MALL_PREF_1H_P0, mcache_regs->mall.p0.mcache_id_first,
-+		MCACHEID_MALL_PREF_2H_P0, mcache_regs->mall.p0.mcache_id_second,
-+		MCACHEID_MALL_PREF_1H_P1, mcache_regs->mall.p1.mcache_id_first,
-+		MCACHEID_MALL_PREF_2H_P1, mcache_regs->mall.p1.mcache_id_second);
-+
-+	REG_SET_2(DCSURF_VIEWPORT_MCACHE_SPLIT_COORDINATE, 0,
-+		VIEWPORT_MCACHE_SPLIT_COORDINATE, mcache_regs->main.p0.split_location,
-+		VIEWPORT_MCACHE_SPLIT_COORDINATE_C, mcache_regs->main.p1.split_location);
-+}
- void hubp401_set_flip_int(struct hubp *hubp)
- {
- 	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-@@ -993,6 +1013,7 @@ static struct hubp_funcs dcn401_hubp_funcs = {
- 	.phantom_hubp_post_enable = hubp32_phantom_hubp_post_enable,
- 	.hubp_update_mall_sel = hubp401_update_mall_sel,
- 	.hubp_prepare_subvp_buffering = hubp32_prepare_subvp_buffering,
-+	.hubp_program_mcache_id_and_split_coordinate = hubp401_program_mcache_id_and_split_coordinate,
- 	.hubp_update_3dlut_fl_bias_scale = hubp401_update_3dlut_fl_bias_scale,
- 	.hubp_program_3dlut_fl_mode = hubp401_program_3dlut_fl_mode,
- 	.hubp_program_3dlut_fl_format = hubp401_program_3dlut_fl_format,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.h b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.h
-index e0cec898a2c0..e52fdb5b0cd0 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn401/dcn401_hubp.h
-@@ -243,6 +243,16 @@
- 	HUBP_SF(CURSOR0_0_HUBP_3DLUT_ADDRESS_HIGH, HUBP_3DLUT_ADDRESS_HIGH, mask_sh),\
- 	HUBP_SF(CURSOR0_0_HUBP_3DLUT_ADDRESS_LOW, HUBP_3DLUT_ADDRESS_LOW, mask_sh),\
- 	HUBP_SF(CURSOR0_0_HUBP_3DLUT_DLG_PARAM, REFCYC_PER_3DLUT_GROUP, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_VIEWPORT_MCACHE_SPLIT_COORDINATE, VIEWPORT_MCACHE_SPLIT_COORDINATE, mask_sh),\
-+	HUBP_SF(HUBP0_DCSURF_VIEWPORT_MCACHE_SPLIT_COORDINATE, VIEWPORT_MCACHE_SPLIT_COORDINATE_C, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_REG_READ_1H_P0, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_REG_READ_2H_P0, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_REG_READ_1H_P1, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_REG_READ_2H_P1, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_MALL_PREF_1H_P0, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_MALL_PREF_2H_P0, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_MALL_PREF_1H_P1, mask_sh),\
-+	HUBP_SF(HUBP0_DCHUBP_MCACHEID_CONFIG, MCACHEID_MALL_PREF_2H_P1, mask_sh)
- 
- void hubp401_update_mall_sel(struct hubp *hubp, uint32_t mall_sel, bool c_cursor);
- 
-@@ -302,7 +312,9 @@ void hubp401_program_surface_config(
- void hubp401_set_viewport(struct hubp *hubp,
- 		const struct rect *viewport,
- 		const struct rect *viewport_c);
--
-+void hubp401_program_mcache_id_and_split_coordinate(
-+	struct hubp *hubp,
-+	struct dml2_hubp_pipe_mcache_regs *mcache_regs);
- void hubp401_set_flip_int(struct hubp *hubp);
- 
- bool hubp401_in_blank(struct hubp *hubp);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 82d1ded09561..0aaa5887ea64 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -1753,6 +1753,10 @@ static void dcn20_update_dchubp_dpp(
- 			&pipe_ctx->plane_res.scl_data.viewport_c);
- 		viewport_changed = true;
- 	}
-+		if (hubp->funcs->hubp_program_mcache_id_and_split_coordinate)
-+			hubp->funcs->hubp_program_mcache_id_and_split_coordinate(
-+				hubp,
-+				&pipe_ctx->mcache_regs);
- 
- 	/* Any updates are handled in dc interface, just need to apply existing for plane enable */
- 	if ((pipe_ctx->update_flags.bits.enable || pipe_ctx->update_flags.bits.opp_changed ||
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index 7a456618f313..43e73b436f29 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -1408,6 +1408,31 @@ bool dcn401_apply_idle_power_optimizations(struct dc *dc, bool enable)
- 	return true;
- }
- 
-+void dcn401_wait_for_dcc_meta_propagation(const struct dc *dc,
-+		const struct pipe_ctx *top_pipe)
-+{
-+	bool is_wait_needed = false;
-+	const struct pipe_ctx *pipe_ctx = top_pipe;
-+
-+	/* check if any surfaces are updating address while using flip immediate and dcc */
-+	while (pipe_ctx != NULL) {
-+		if (pipe_ctx->plane_state &&
-+				pipe_ctx->plane_state->dcc.enable &&
-+				pipe_ctx->plane_state->flip_immediate &&
-+				pipe_ctx->plane_state->update_flags.bits.addr_update) {
-+			is_wait_needed = true;
-+			break;
-+		}
-+
-+		/* check next pipe */
-+		pipe_ctx = pipe_ctx->bottom_pipe;
-+	}
-+
-+	if (is_wait_needed && dc->debug.dcc_meta_propagation_delay_us > 0) {
-+		udelay(dc->debug.dcc_meta_propagation_delay_us);
-+	}
-+}
-+
- void dcn401_prepare_bandwidth(struct dc *dc,
- 	struct dc_state *context)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
-index bada43d4b2eb..c1d4287d5a0d 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
-@@ -61,6 +61,8 @@ bool dcn401_apply_idle_power_optimizations(struct dc *dc, bool enable);
- 
- struct ips_ono_region_state dcn401_read_ono_state(struct dc *dc,
- 						  uint8_t region);
-+void dcn401_wait_for_dcc_meta_propagation(const struct dc *dc,
-+		const struct pipe_ctx *top_pipe_to_program);
- 
- void dcn401_prepare_bandwidth(struct dc *dc,
- 		struct dc_state *context);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-index 1cf0608e1980..90cf284fdd98 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-@@ -94,6 +94,7 @@ static const struct hw_sequencer_funcs dcn401_funcs = {
- 	.update_dsc_pg = dcn32_update_dsc_pg,
- 	.apply_update_flags_for_phantom = dcn32_apply_update_flags_for_phantom,
- 	.blank_phantom = dcn32_blank_phantom,
-+	.wait_for_dcc_meta_propagation = dcn401_wait_for_dcc_meta_propagation,
- 	.is_pipe_topology_transition_seamless = dcn32_is_pipe_topology_transition_seamless,
- 	.fams2_global_control_lock = dcn401_fams2_global_control_lock,
- 	.fams2_update_config = dcn401_fams2_update_config,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index e9b85884edce..d05be65a2256 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -141,6 +141,11 @@ struct subvp_save_surf_addr {
- 	uint8_t subvp_index;
- };
- 
-+struct wait_for_dcc_meta_propagation_params {
-+	const struct dc *dc;
-+	const struct pipe_ctx *top_pipe_to_program;
-+};
-+
- struct fams2_global_control_lock_fast_params {
- 	struct dc *dc;
- 	bool is_required;
-@@ -165,6 +170,7 @@ union block_sequence_params {
- 	struct set_output_csc_params set_output_csc_params;
- 	struct set_ocsc_default_params set_ocsc_default_params;
- 	struct subvp_save_surf_addr subvp_save_surf_addr;
-+	struct wait_for_dcc_meta_propagation_params wait_for_dcc_meta_propagation_params;
- 	struct fams2_global_control_lock_fast_params fams2_global_control_lock_fast_params;
- };
- 
-@@ -186,6 +192,7 @@ enum block_sequence_func {
- 	MPC_SET_OUTPUT_CSC,
- 	MPC_SET_OCSC_DEFAULT,
- 	DMUB_SUBVP_SAVE_SURF_ADDR,
-+	HUBP_WAIT_FOR_DCC_META_PROP,
- 	DMUB_FAMS2_GLOBAL_CONTROL_LOCK_FAST,
- 
- };
-@@ -443,6 +450,8 @@ struct hw_sequencer_funcs {
- 	bool (*is_pipe_topology_transition_seamless)(struct dc *dc,
- 			const struct dc_state *cur_ctx,
- 			const struct dc_state *new_ctx);
-+	void (*wait_for_dcc_meta_propagation)(const struct dc *dc,
-+		const struct pipe_ctx *top_pipe_to_program);
- 	void (*fams2_global_control_lock)(struct dc *dc,
- 			struct dc_state *context,
- 			bool lock);
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index f58c27ad8b3e..4c8e6436c7e1 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -97,6 +97,9 @@ struct resource_funcs {
- 	unsigned int (*calculate_mall_ways_from_bytes)(
- 				const struct dc *dc,
- 				unsigned int total_size_in_mall_bytes);
-+	void (*prepare_mcache_programming)(
-+					struct dc *dc,
-+					struct dc_state *context);
- 	/**
- 	 * @populate_dml_pipes - Populate pipe data struct
- 	 *
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-index a73cb8f731b3..dd2b2864876c 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-@@ -40,6 +40,10 @@ enum dcc_control {
- 	dcc_control__128_128_xxx,
- 	dcc_control__256_64_64,
- 	dcc_control__256_128_128,
-+	dcc_control__256_256,
-+	dcc_control__256_128,
-+	dcc_control__256_64,
-+
- };
- 
- enum segment_order {
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-index bcd7b22a1627..16580d624278 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h
-@@ -257,6 +257,7 @@ struct hubp_funcs {
- 			unsigned int min_dst_y_next_start_optimized);
- 
- 	void (*hubp_wait_pipe_read_start)(struct hubp *hubp);
-+	void (*hubp_program_mcache_id_and_split_coordinate)(struct hubp *hubp, struct dml2_hubp_pipe_mcache_regs *mcache_regs);
- 	void (*hubp_update_3dlut_fl_bias_scale)(struct hubp *hubp, uint16_t bias, uint16_t scale);
- 	void (*hubp_program_3dlut_fl_mode)(struct hubp *hubp,
- 			enum hubp_3dlut_fl_mode mode);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
-index 74fb21b88f12..4e27d2cee9fb 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
-@@ -1617,6 +1617,14 @@ bool dcn401_validate_bandwidth(struct dc *dc,
- 	return out;
- }
- 
-+void dcn401_prepare_mcache_programming(struct dc *dc,
-+		struct dc_state *context)
-+{
-+	if (dc->debug.using_dml21)
-+		dml2_prepare_mcache_programming(dc, context,
-+				context->power_source == DC_POWER_SOURCE_DC ? context->bw_ctx.dml2_dc_power_source : context->bw_ctx.dml2);
-+}
-+
- static void dcn401_build_pipe_pix_clk_params(struct pipe_ctx *pipe_ctx)
- {
- 	const struct dc_stream_state *stream = pipe_ctx->stream;
-@@ -1699,6 +1707,7 @@ static struct resource_funcs dcn401_res_pool_funcs = {
- 	.patch_unknown_plane_state = dcn401_patch_unknown_plane_state,
- 	.update_soc_for_wm_a = dcn30_update_soc_for_wm_a,
- 	.add_phantom_pipes = dcn32_add_phantom_pipes,
-+	.prepare_mcache_programming = dcn401_prepare_mcache_programming,
- 	.build_pipe_pix_clk_params = dcn401_build_pipe_pix_clk_params,
- 	.calculate_mall_ways_from_bytes = dcn32_calculate_mall_ways_from_bytes,
- };
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-index c04c8b8f2114..26efeada4f41 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-@@ -26,6 +26,8 @@ bool dcn401_validate_bandwidth(struct dc *dc,
- 		struct dc_state *context,
- 		bool fast_validate);
- 
-+void dcn401_prepare_mcache_programming(struct dc *dc, struct dc_state *context);
-+
- /* Following are definitions for run time init of reg offsets */
- 
- /* HUBP */
--- 
-2.45.2
+ #endif
+--
+2.34.1
 
