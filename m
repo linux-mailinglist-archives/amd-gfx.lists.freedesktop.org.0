@@ -2,79 +2,161 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F1190C45C
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jun 2024 09:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB1090C374
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jun 2024 08:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 131CE10E5B9;
-	Tue, 18 Jun 2024 07:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 317A710E224;
+	Tue, 18 Jun 2024 06:20:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cSETtxAW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="C26lvEew";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com
- [209.85.160.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44DF810E504
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jun 2024 22:19:30 +0000 (UTC)
-Received: by mail-oa1-f49.google.com with SMTP id
- 586e51a60fabf-250ca14422aso2676507fac.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jun 2024 15:19:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1718662769; x=1719267569; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=aBzUobYPaYXoDtpgUkUe8xVvA7zphpv+Q3YDBDgD3M4=;
- b=cSETtxAWWhV2hvKydTEQlJ3VrfBha/F0+lGlv1wXK2HkZKoGO+X2CJJCuqn+V4cElc
- ZQlvOctTesjTUQAhWVEck15w+uY1I00c4cQu5I747NMSj8hdxQlfFuTLIxaUMzftGBYL
- QZUTjvwGn1sPj1AWEmexsnuUGJSGy9LZQr3lcFdbuTxhFyOAr3SJFEbETr2lRbHJwBSx
- JC9CLTcyr5M4JXGQR7kYOWsPCMukMVpvhQoYafzEo2aVZBddk4+HIs6faL5FmzsJVeZ5
- ytvZZ2nM321EE6wo+YzXiHYjB+IV9q+OFHt9rv9BGo3Tci8QgChqj1aomd37h73Yf7yB
- oWoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718662769; x=1719267569;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=aBzUobYPaYXoDtpgUkUe8xVvA7zphpv+Q3YDBDgD3M4=;
- b=b+T/DAYf7YRikRnmuzcSuEx0j8udsNy5S3gW2A4fT9deD3iRlygex8/w5TXSpdl/7O
- 0NvfPyWYgM1XaoqxKpreANpXylJzWy1QwmIRswVZfOR2zxF0XWASChdzFADVhdv9LgRJ
- M+DL2JwXsquGJHOAnW+ZtrkQh08hz9FZwtp7KuOr7vpSnZv3TnTx1kKB1cTYFFmhzIqL
- BYeLlzjhoTN5ksEhwaS2WnNuNcC2zYkytiUvWZK5FRR20qZoKHOVPfFfOtaHiFiuXbEV
- eA5j0NOhXDPN8sFvqtSdPz3SAxTVfQzr05GjiR7+C1kkODMPSwVsJSDTPyTKegCAuzXf
- PsMA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVWsKjbGKfoeNiroTbAB5tstl6FzrAQNNjw1FlPPy2EUHj0aZm88nXhKqzGXf1NbUa//95Rk46rB1tDfH83Ekpst+5tzqzY6sOak419iQ==
-X-Gm-Message-State: AOJu0Yw0nuhpLvboVR+ENAAlc6I4Xp4lZhdTxrJIZ/iP7nKWu/l5jH+X
- 0FzYNPbRKRgsqxh2BZJ42omBolAedi36APGgPZkC7FsQxHbQmkwmvBqkyossh6As8roNnhI/p+Z
- /8o5VwrF90d0WUMbGB8Z/nO7JG4E=
-X-Google-Smtp-Source: AGHT+IG+82cWBOkchNnIARY4Whwz9Pjn2FhOySjsjl70SKRwO+d8nhl9dJm1IfShql70IVjc+b0nIajdzqsC2RviBaA=
-X-Received: by 2002:a05:6870:7189:b0:254:963e:cc3f with SMTP id
- 586e51a60fabf-258428535d0mr12940794fac.1.1718662768833; Mon, 17 Jun 2024
- 15:19:28 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6DA10E1FC;
+ Tue, 18 Jun 2024 06:20:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=giwO/e4jaCA+5HC8wKpUpJ8dvxeeTHTzDXaYIDqNI/i1u31ChY4BCWIfoBmFUOBRkVOgQvnXvcnXToKvtUS2QXJpy91+vp5YtTxoPHqnIpxO9/aCK3QRj9LdZmSSkvHM4SIs4uJ1KxPlquterCpre4GjQJ0g2uUCFscNddCt1aXhFOaz8H2PE8Lj0utlHAkWnesm8xSvXOpIRSoKgvN8TnBgNlRtMsHVknVYLc63NTfgpaFIio3yjICxf4UDa+rsN70NRxBcqCEhkjbKsh+zR9Q/FfYqIj2+cpu+xEAPrDKg1gDTWGCshf5MSdHkYueGyrZxB1UivuBdrPEKL91TdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lri4UcfKmblGQnpubDrqybCrRWBN9fHjln92BS70qIg=;
+ b=Tr/X50I2Rx7t0guhyD+OUVWn5bfmkJ1DrTryEdGGkB1+HDITSX80FmUc0djUk05cTRaCbOA6fRV8VqvM5cGyvPhePo+Sxy2Rzc5YR8Zs6nrjDj8khcNFzvCOGzzzLwnTa8EHL7UCy16q7TKFvnUvErNT2x+k3jq7Y/dKctVEoehcClkEquXfmOgfLKeShNsDPd36Ct9eVifN0f0sEl+6VYTyXvFoDQERywXierW9mprrA2PkbBsUB5ZvFams5PC0TQMKe6mfpeEKAXKjCGjrswZs1JL0jQY7lJARmAqV6BcPgovToueMelPXrbMk3Esq9JX3Sln71xZa48c4roINiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Lri4UcfKmblGQnpubDrqybCrRWBN9fHjln92BS70qIg=;
+ b=C26lvEew3yKnCeLHHOsd5F/28QspUvZeU6WUwikRGhnRH/8Th6Q7dbbbDghjK4BoPhjNfFY3Aq9JT1p2Nk88IxDccWiGQ65A9v1IRY0b7dr57t5QQxlKtJife3moLxW0a96jJ0yTumZlTLR+YYwy1d+GAWMiI8xpsVn8ZesAkpU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com (2603:10b6:a03:42b::13)
+ by SN7PR12MB6692.namprd12.prod.outlook.com (2603:10b6:806:270::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Tue, 18 Jun
+ 2024 06:20:34 +0000
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::ec7a:dd71:9d6c:3062]) by SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::ec7a:dd71:9d6c:3062%2]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
+ 06:20:33 +0000
+Content-Type: multipart/alternative;
+ boundary="------------ylqG0tZQq5fnxMadofUGSRhi"
+Message-ID: <a57fd6cd-d9e4-4ac0-8d53-06d6149e196a@amd.com>
+Date: Tue, 18 Jun 2024 08:20:25 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/amdgpu: make duplicated EOP packet for GFX7/8
+ have real content
+To: Icenowy Zheng <uwu@icenowy.me>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240617105846.1516006-1-uwu@icenowy.me>
+ <20240617105846.1516006-2-uwu@icenowy.me>
+ <88337509-3ad7-47aa-b70f-5294f7f1e486@amd.com>
+ <b4ebdbce2f44c06806a650e72b1b6eb9a16dffe6.camel@icenowy.me>
+ <09fbcd1f-c7b1-47e3-9146-17f8189978a8@amd.com>
+ <e88d4722fa3bbd7104b140debdd85cb212628944.camel@icenowy.me>
+ <d44651a7-0c07-4b84-8828-f1d405359aeb@amd.com>
+ <73597116d4f004c5f75cf4f13da1af405ea8da8b.camel@icenowy.me>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <73597116d4f004c5f75cf4f13da1af405ea8da8b.camel@icenowy.me>
+X-ClientProxiedBy: FR4P281CA0305.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f6::14) To SJ0PR12MB5673.namprd12.prod.outlook.com
+ (2603:10b6:a03:42b::13)
 MIME-Version: 1.0
-References: <CAMOvFfkQscju1spNKHmEC_Rut+2=qfhKGZSvGhCk_nd5VhuDkg@mail.gmail.com>
- <4ce90767-7d85-47b0-9187-4eb8d257e7e0@leemhuis.info>
- <44dc1df5f5a1b740b76d1efbf607c49f9d50dda0.camel@sjtu.edu.cn>
- <06cbfba8-13a3-42a3-9262-98310b8ed0ad@leemhuis.info>
- <7159aa82cbff8eea90cce45fcfc7ecd30a632094.camel@sjtu.edu.cn>
- <CAMOvFfmSU=dFmY+NZQpAV9urLrJM612FvG4OusRVn1omQ_8c_w@mail.gmail.com>
- <457d6431e128a3ee7e053538ddf51578fbdb31f5.camel@sjtu.edu.cn>
-In-Reply-To: <457d6431e128a3ee7e053538ddf51578fbdb31f5.camel@sjtu.edu.cn>
-From: Winston Ma <winstonhyypia@gmail.com>
-Date: Tue, 18 Jun 2024 06:19:17 +0800
-Message-ID: <CAMOvFfnhfNdw-oF44x9S2ohkYG19Qnx=TJrzZoYmzVTku=u0gw@mail.gmail.com>
-Subject: Re: [bug report] drm/amdgpu: amdgpu crash on playing videos,
- linux 6.10-rc
-To: Wang Yunchen <mac-wang@sjtu.edu.cn>
-Cc: Thorsten Leemhuis <regressions@leemhuis.info>, 
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Felix.Kuehling@amd.com, Xinhui.Pan@amd.com, 
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org, 
- christian.koenig@amd.com, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 18 Jun 2024 07:32:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5673:EE_|SN7PR12MB6692:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99a58062-a7ab-4e13-6413-08dc8f5ec288
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230037|366013|376011|1800799021;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TUxIeXRPMVAzeC9HcDh2QjlaVDRvcUJYVFZXeTdjckFEUEo4dGVZKzYrUXE5?=
+ =?utf-8?B?Q08zTnVrREhaVjhPUTVHQ2tMQU1GUzlCRVhUWFZEUDVBSWRMSkQzc29XbWMx?=
+ =?utf-8?B?T0VGakZycktvVllVMHpra1ZyOHhMMTJGUDdLRFN5RVNiYlprcVFxSGhSZ0dl?=
+ =?utf-8?B?RDdiSy84ZkF4dEJ6NVpQbi9UUWxKcG9FTzhvdExmUDFTdFFuSk5ITkJGaXpJ?=
+ =?utf-8?B?VWpLelpiTEdmSlgrTjhZM1hnWXVzQXo4cnE4NTd0VU0vc0tRVEJmUWdLUmRL?=
+ =?utf-8?B?eWNGMHB4bWRyS0lVVUg4RG41R3JFR3VCWENBZE94Q2ZWdVhPbEpIdFFEWGdj?=
+ =?utf-8?B?MmQ2ZUFvMXRQMFBDNjZVOE1TYnRRSVFZYjhiNlRmakl3cjQxK0dqeHgvQzgz?=
+ =?utf-8?B?THkwV2haNU51TFFRTUZZUm9LR0tncHF0Nm9aWEtTUHA3TEFML21mZVdyRTZq?=
+ =?utf-8?B?UHFMUEZEaGVaVFRSN3oveHpWcWc1bjhBa1JwL2lLblVSbEUyNFREc1FzU0E2?=
+ =?utf-8?B?OWlibUdaUHJFRHRYekVDSjM0c2FNSGR0WXMwcDJ1WWgzNVVGdUw5OHgvRU9T?=
+ =?utf-8?B?WmFSMHVBdUlIZk1KNEVEeDM4dlRIMFNEaGx5b0ZFNlpjWjNtMnZpalkzWldO?=
+ =?utf-8?B?dXVZVjFxNVV4eUZXVzVHdzFnOXByeWxIZlh4YjdQQ2kxaGlLQnNIZSt2WlZo?=
+ =?utf-8?B?Y3JheldNM0FPcmw3SXByVTFHWWFVbGowZVBteEw0cHVhWExBMlZEV3Y4TnFH?=
+ =?utf-8?B?d2ZNaGMwcFZVcVE5Q0NzdDNBdUNlUE93VTdxczVxYm9LamdQNkZjS3BlSTV1?=
+ =?utf-8?B?QWZSVVpWbnVEVk5WdnB0aHhHdzRpTjZqMitzTkVFaWFhL2xHVHNmWEJlKzRk?=
+ =?utf-8?B?MUV2akY1NlVlSmRUY0VLL1BRVm02QzVtNWxId2p1RytSMkd3YU0zOTRNWmts?=
+ =?utf-8?B?UTBsbnRrZGs3Z0Rob2hHblFmZVNOZktiK0ErVEh0VnVUVTV2QXdRdjV1NTFs?=
+ =?utf-8?B?VUE0elhjeWdleXpnM1FyY0FsYnBzS2lMT0ZuWENuOW5OZDBWRXVlU1JaaGZ4?=
+ =?utf-8?B?NjVuQkVRbFBMTkRuUkNmQkJLc3JQZExFZ0w1YjVEK1NLb0hiZ2Z6UlFhQUc5?=
+ =?utf-8?B?SEF3dFBqYkZYUmhZQVMrNUkzc25oSnJrN0N0QUN4K2M3ek1nTlZCSGJMUVZL?=
+ =?utf-8?B?V2phYmE1aXJnVDRick1ZTUk0aW9kSm5zNklpbFNWRFovcnp4azlyYmltVFZW?=
+ =?utf-8?B?bWo0OVVNek5jTitJbngyRG52TTlISVRBLzBsMXR3ZmtCSkhhVUVmS2xCd3Rj?=
+ =?utf-8?B?d2FIVkhtcEEyR1kvRXc4SGR2emd2ZHZ4eWtHYTViTXRzL0x5UDNDVDdVOVVp?=
+ =?utf-8?B?S3BxTnhXK3VKdXRtTTRpL1B6Q2M0a0svaFlqYVpjaldMNFFMRjBxdHQ5T3hS?=
+ =?utf-8?B?aTRpNFdSbXpDWlowd3kvTFNmMXpuUlNHQVFlQklmRHZZaDVzbDBQQUoyekpn?=
+ =?utf-8?B?YTMrQ04vbjB1QkhYczl0dHk0NWNsOXpVaExKa3RHeUgvZzdDTG4vVXVzaTIw?=
+ =?utf-8?B?NkZkYW12RmJiMHZsQU50aVZ3M0xaOUdwNXdQZ2syZnZGbkRNL3Q3Z21zdlNW?=
+ =?utf-8?B?eHYySDQvTFZBUlZYT21nZFFLeE16N2dIRW44cnBTbFhRSzJIOXRINkZIem9V?=
+ =?utf-8?B?MFZCd0w5aE8xY1gzazhUWUFhdXE2Vy8yZ21kaVF6R1ozbWJNeGU4M0ZVaGMv?=
+ =?utf-8?Q?9L00Di7AgQe3IAPODv0BrQEXNFo/xWVIu3My76/?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB5673.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(366013)(376011)(1800799021); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MVR0ZVozL09UVnhtQVRialBxNGpsVjc3QWl5SVdVd3pRY01ZV0Y2MktlVTNo?=
+ =?utf-8?B?a2kwaXh0M1pBdGpWU0hPU1U4dVp2eUVrWCtGR2x1UGZZRFlyUnoybkJYUTMw?=
+ =?utf-8?B?UiswQ21rdjFMQTYzWG13cVcvUDJyRmtCYVRWVmNrOFhXZElCNm56cDgzYm16?=
+ =?utf-8?B?aDdjRjd1Nk4rb2xteVU4Y0xxeVBlMG9LbVVPakliNGxoRld2VWJUMVR5VE45?=
+ =?utf-8?B?d3VrQW93K0JlUGU2TzUxTXJrNk82TnpHc094RzVReVF2UkR2TlNUT2wzckw5?=
+ =?utf-8?B?SnIzQ0pwVjJOei9KdWhHS1ZIOTF5UEVSSmNIeG0xcmZVWUdlZUxEcHFqNXM3?=
+ =?utf-8?B?bmJqaUI0R2VVS2cwZG9nZVBaYUFWUWlkMnBNYk4vZ2k5NmZPMWZseE1YRmhX?=
+ =?utf-8?B?QWR0amloci8vUW02TUpxcFRRd3VCZ0I0eTdCQmR4VnhpUUh2NDB1TDg1aUM4?=
+ =?utf-8?B?L0hRYnBvdkt4aHFLRE5SVHpGdS9JVExWNGovZm56UWZlR1liMmlFVDg2MDlO?=
+ =?utf-8?B?QmNTd3NyYXlZWGZlZHVLT1g3RXNRTU9sTk1jTm9xblNvQkZvcVhjNFYvMlRB?=
+ =?utf-8?B?cVNvNkpvY0hISTg0cHZ1WWZ2eTdLbE5ValpEZmJpVmp5S0pJMVhYbDVLVmY0?=
+ =?utf-8?B?eDNrSW5YbENKLzBYSmo3R0tRbFdYU2d6VWVYRDBLemJWMXdYMm5hZHhpSENQ?=
+ =?utf-8?B?Snc1YUxpZEU1cVRaTDVmWm1Vc1RrS2N2OGRmUGUyZ2djME9PU3VWL25yN2xV?=
+ =?utf-8?B?dXlzRU1RQVVDK0RibzRqcWY0YjdYSmVrSDlmbUpUTCtDMGgrRHNLV3lFZzcx?=
+ =?utf-8?B?L20ycTJvbGhrYjF5ZVBUS0NiTXhOQ0pxdDJXTkxnalVMdU1nUjgvVFBlMXhm?=
+ =?utf-8?B?WDJrdTNoUURxbm9YWHpheGNHNDAyQ0MvbW5JUnFNdHpZSFpkRU5qb3ZBQVNa?=
+ =?utf-8?B?Q0tOWmIxRXcweGxKUXBHSTNrdURRbENHM3ZYN2k2Vmt3QkptY1hOTWQ1RVNi?=
+ =?utf-8?B?ejd0YU1yUjgzRlJBQy90S3NUS1o4clo0UTdoSjFRVEl1b2VsL0tOUWdPTi9V?=
+ =?utf-8?B?bkllcDlNNUxsU0pSM1hGdVI0Y3ZpMkdaelJwR01jKzIxYXZsVVdXZEJteWow?=
+ =?utf-8?B?bEUrRkpndmRBdFhNNThaVzVkdEV4VGovN0lLbkkrK1JGNmt1L1N1bVY4T0ln?=
+ =?utf-8?B?S2xkNzRpRVh4RDR2VjFudjZ2dGs3aGNMaGFpalJFMmgrL1FRS3YwTmk1cW5p?=
+ =?utf-8?B?T2FMQWh4bFZVbFljenFTbmRaZ3hnUlBJb1A2VnYvQWVVOHBRbUlPQld4OGZm?=
+ =?utf-8?B?aVBnTytSMU1BMlVBWjhHeC92d3RwMjljUzZob291TFZIQkdGRzdKSFlMdUlR?=
+ =?utf-8?B?c296a3J1Y2hjT0NCZkNwRkgwR3JUcUFDKy9WbGViUDF0WTluVk1vQUt1a3M0?=
+ =?utf-8?B?d3FXVExVYUhkTlFZbS95YUU3OFZrN1kydGd4SmxXS0pCWGZsdVN5STVOWUFq?=
+ =?utf-8?B?dlBaSnlETE0wUE0vRUd3dTYycTFBeVU0VXVsbFZzY0RtNlRaelNOVG5qU3ZM?=
+ =?utf-8?B?S0Ztd1k4M2RJUi9iTWVpMkRpUGQxRFhKZmpWbGdpVDBmcDZrcU1ramRXY1hS?=
+ =?utf-8?B?ZXJSS0NmNzZ6ckhNRi83UmUxOUFzQXRza3NPQUpKVmhzdzRYa2JxRzdmeHZT?=
+ =?utf-8?B?QVpkTW5CTFYvL1JVbmVMVW5CTWthZXBsaFVKNEQycTdSdFh3ZFFsZSsydmZ6?=
+ =?utf-8?B?SVN2QzNBenNadFFUVWRrRlhpNXRCeVhpd1FaOW13dmVLSlRvbGwzbU94MkpU?=
+ =?utf-8?B?ajR1YW5USHB1SC9LN0g0bVI4c3lhZmhhUzRodEpNbWNQdGRiQXZKcG5HWXh4?=
+ =?utf-8?B?b0lhR2VqRFR0OFNkUVNlRVRQQ25sekJNWUpSV2NabFZaM1NhYndiRitRQ0Ry?=
+ =?utf-8?B?VlRPeVp6T1JwcHV5UDl3eElPYlRlU2JNS3dJZFlkM2UvVVIxVFRSTHpxWmVT?=
+ =?utf-8?B?NkdidUxhODhsK0trOEcvTzRYU0FlMmdoUnlBSlZqTm9BS1drRTNWdENZRUZs?=
+ =?utf-8?B?VUNWaDZvdjIwVHZ3S3U4ZU9KOVNIK3pnaFJPYTE0NHEyN052REkyOEZuTElq?=
+ =?utf-8?Q?ku/+wKhqkmWJlxJMcAFzsBR8n?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99a58062-a7ab-4e13-6413-08dc8f5ec288
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5673.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 06:20:33.8222 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X5DbPzeARTPV2krhn1To3pyU7bo99LmAo8bDYehptWwgTWxuZZoThdlolE4uaddg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6692
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,574 +171,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As reported in my previous email. In my device I don't see a more
-critical system freeze, which causes system reboot, during video play.
-But I still experience green screen problem during full screen
-toggling while watching video (Screenshot: https://ibb.co/8Dpdxc3). It
-didn't cause my system to reboot but I guess there are bug to be
-fixed.
+--------------ylqG0tZQq5fnxMadofUGSRhi
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Should this issue be monitored by another new ticket?
+Am 17.06.24 um 18:09 schrieb Icenowy Zheng:
+> BTW is there any operation that could be taken to examine this specific
+> workaround?
+>
+> Is there any case possible to reproduce?
 
-Thanks and Regards,
-Winston
+No idea, I mean that's for GFX7/8 which was released between 2013 and 2017.
 
-On Mon, Jun 17, 2024 at 5:40=E2=80=AFPM Wang Yunchen <mac-wang@sjtu.edu.cn>=
- wrote:
->
-> On Mon, 2024-06-17 at 06:55 +0800, Winston Ma wrote:
-> > I only build the kernel once. I could try but I think you couldn't
-> > expect much from my side.
-> >
-> > BTW I installed 6.10-rc4 this morning from Ubuntu mainline
-> > (https://kernel.ubuntu.com/mainline/v6.10-rc4/amd64/) and I couldn't
-> > replicate the video crash problem. Yunchen could you try 6.10-rc4 and
-> > see if you still have the video crash problem?
-> >
-> > But I still get the green blocky object when I keep toggling full
-> > screen during youtube watch (Screenshot: https://ibb.co/8Dpdxc3). I
-> > didn't see the green block in 6.9 so it could be another issue.
-> >
-> > Thanks and Regards,
-> > Winston
-> >
-> >
-> > On Sun, Jun 16, 2024 at 12:10=E2=80=AFAM Wang Yunchen <mac-wang@sjtu.ed=
-u.cn> wrote:
-> > >
-> > > On Sat, 2024-06-15 at 17:50 +0200, Thorsten Leemhuis wrote:
-> > > > [reply made easier by moving something in the quote]
-> > > >
-> > > > On 12.06.24 18:55, Wang Yunchen wrote:
-> > > > > On Wed, 2024-06-12 at 15:14 +0200, Linux regression tracking (Tho=
-rsten
-> > > > > Leemhuis) wrote:
-> > > > > > On 06.06.24 05:06, Winston Ma wrote:
-> > > > > > > Hi I got the same problem on Linux Kernel 6.10-rc2. I got the
-> > > > > > > problem
-> > > > > > > by
-> > > > > > > following the procedure below:
-> > > > > > >
-> > > > > > >  1. Boot Linux Kernel 6.10-rc2
-> > > > > > >  2. Open Firefox (Any browser should work)
-> > > > > > >  3. Open a Youtube Video
-> > > > > > >  4. On the playing video, toggle fullscreen quickly Then afte=
-r 10-
-> > > > > > > 20
-> > > > > > >     times of fullscreen toggling, the screen would enter free=
-ze
-> > > > > > > mode.
-> > > > > > >     This is the log that I captured using the above method.
-> > > > > >
-> > > > > > Hmm, seems nothing happened here for a while. Could you maybe t=
-ry to
-> > > > > > bisect this
-> > > > > > (
-> > > > > > https://docs.kernel.org/admin-guide/verify-bugs-and-bisect-regr=
-essions.ht
-> > > > > > ml
-> > > > > > )?
-> > > > >
-> > > > > It seems that the issue persists on 6.10 rc3.
-> > > >
-> > > > That's good to know, but...
-> > > >
-> > > > > > @amd-gfx devs: Or is this unneeded, as the cause found or maybe=
- even
-> > > > > > fixed meanwhile?
-> > > >
-> > > > ...as there was no reply to that inquiry it seems we really need ei=
-ther
-> > > > you or Winston Ma (or somebody else that is affected we don't yet k=
-now
-> > > > about) to perform a git bisection (see the link quoted above) to fi=
-nd
-> > > > the exact change that broke things. Without this it might not be ge=
-tting
-> > > > fixed.
-> > > >
-> > > > Ciao, Thorsten
-> > > >
-> > > > > > > This is the kernel log
-> > > > > > >
-> > > > > > > 2024-06-06T10:26:40.747576+08:00 kernel:
-> > > > > > > gmc_v10_0_process_interrupt:
-> > > > > > > 6 callbacks suppressed
-> > > > > > > 2024-06-06T10:26:40.747618+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > [mmhub] page fault (src_id:0 ring:8 vmid:2
-> > > > > > > pasid:32789)
-> > > > > > > 2024-06-06T10:26:40.747623+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > in process RDD Process pid 39524 thread
-> > > > > > > firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:26:40.747625+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:   in page starting at address
-> > > > > > > 0x0000800106ffe000 from client 0x12 (VMC)
-> > > > > > > 2024-06-06T10:26:40.747628+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MMVM_L2_PROTECTION_FAULT_STATUS:0x00203811
-> > > > > > > 2024-06-06T10:26:40.747629+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          Faulty UTCL2 client ID: VCN (0x1c)
-> > > > > > > 2024-06-06T10:26:40.747631+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MORE_FAULTS: 0x1
-> > > > > > > 2024-06-06T10:26:40.747651+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          WALKER_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747653+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          PERMISSION_FAULTS: 0x1
-> > > > > > > 2024-06-06T10:26:40.747655+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MAPPING_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747656+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          RW: 0x0
-> > > > > > > 2024-06-06T10:26:40.747658+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > [mmhub] page fault (src_id:0 ring:8 vmid:2
-> > > > > > > pasid:32789)
-> > > > > > > 2024-06-06T10:26:40.747660+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > in process RDD Process pid 39524 thread
-> > > > > > > firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:26:40.747662+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:   in page starting at address
-> > > > > > > 0x0000800106e00000 from client 0x12 (VMC)
-> > > > > > > 2024-06-06T10:26:40.747663+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > > > > > > 2024-06-06T10:26:40.747664+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          Faulty UTCL2 client ID: MP0 (0x0)
-> > > > > > > 2024-06-06T10:26:40.747666+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MORE_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747667+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          WALKER_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747668+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          PERMISSION_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747670+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MAPPING_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747671+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          RW: 0x0
-> > > > > > > 2024-06-06T10:26:40.747674+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > [mmhub] page fault (src_id:0 ring:8 vmid:2
-> > > > > > > pasid:32789)
-> > > > > > > 2024-06-06T10:26:40.747677+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > in process RDD Process pid 39524 thread
-> > > > > > > firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:26:40.747680+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:   in page starting at address
-> > > > > > > 0x0000800106e07000 from client 0x12 (VMC)
-> > > > > > > 2024-06-06T10:26:40.747683+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > > > > > > 2024-06-06T10:26:40.747686+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          Faulty UTCL2 client ID: MP0 (0x0)
-> > > > > > > 2024-06-06T10:26:40.747688+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MORE_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747691+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          WALKER_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747693+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          PERMISSION_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747696+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MAPPING_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747698+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          RW: 0x0
-> > > > > > > 2024-06-06T10:26:40.747700+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > [mmhub] page fault (src_id:0 ring:8 vmid:2
-> > > > > > > pasid:32789)
-> > > > > > > 2024-06-06T10:26:40.747703+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > in process RDD Process pid 39524 thread
-> > > > > > > firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:26:40.747705+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:   in page starting at address
-> > > > > > > 0x0000800107001000 from client 0x12 (VMC)
-> > > > > > > 2024-06-06T10:26:40.747707+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> > > > > > > 2024-06-06T10:26:40.747710+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          Faulty UTCL2 client ID: MP0 (0x0)
-> > > > > > > 2024-06-06T10:26:40.747713+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MORE_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747716+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          WALKER_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747718+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          PERMISSION_FAULTS: 0x0
-> > > > > > > 2024-06-06T10:26:40.747721+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          MAPPING_ERROR: 0x0
-> > > > > > > 2024-06-06T10:26:40.747723+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:          RW: 0x0
-> > > > > > > 2024-06-06T10:26:51.094991+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* ring vcn_dec_0 timeout,
-> > > > > > > signaled seq=3D24897, emitted seq=3D24898
-> > > > > > > 2024-06-06T10:26:51.095023+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* Process information: process
-> > > > > > > RDD Process pid 39524 thread firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:26:51.095025+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset begin!
-> > > > > > > 2024-06-06T10:26:52.305509+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_POWER_STATUS] failed to reach value 0x00000001
-> > > > > > > !=3D 0x00000002n
-> > > > > > > 2024-06-06T10:26:52.586019+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_RBC_RB_RPTR] failed to reach value 0x000003c0 !=3D
-> > > > > > > 0x00000360n
-> > > > > > > 2024-06-06T10:26:52.639506+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_POWER_STATUS] failed to reach value 0x00000001
-> > > > > > > !=3D 0x00000002n
-> > > > > > > 2024-06-06T10:26:52.639521+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MODE2 reset
-> > > > > > > 2024-06-06T10:26:52.650614+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset succeeded, trying to resume
-> > > > > > > 2024-06-06T10:26:52.650633+08:00 kernel: [drm] PCIE GART of 1=
-024M
-> > > > > > > enabled (table at 0x000000F41FC00000).
-> > > > > > > 2024-06-06T10:26:52.650637+08:00 kernel: [drm] VRAM is lost d=
-ue to
-> > > > > > > GPU
-> > > > > > > reset!
-> > > > > > > 2024-06-06T10:26:52.650641+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > PSP is resuming...
-> > > > > > > 2024-06-06T10:26:52.673474+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > reserve 0xa00000 from 0xf41e000000 for PSP
-> > > > > > > TMR
-> > > > > > > 2024-06-06T10:26:53.001513+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > RAS: optional ras ta ucode is not available
-> > > > > > > 2024-06-06T10:26:53.013802+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > RAP: optional rap ta ucode is not available
-> > > > > > > 2024-06-06T10:26:53.013816+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SECUREDISPLAY: securedisplay ta ucode is not
-> > > > > > > available
-> > > > > > > 2024-06-06T10:26:53.013819+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SMU is resuming...
-> > > > > > > 2024-06-06T10:26:53.016519+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SMU is resumed successfully!
-> > > > > > > 2024-06-06T10:26:53.017502+08:00 kernel: [drm] DMUB hardware
-> > > > > > > initialized: version=3D0x04000044
-> > > > > > > 2024-06-06T10:26:53.677511+08:00 kernel: [drm] kiq ring mec 2=
- pipe
-> > > > > > > 1 q
-> > > > > > > 0
-> > > > > > > 2024-06-06T10:26:53.958512+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring
-> > > > > > > vcn_dec_0 test failed (-110)
-> > > > > > > 2024-06-06T10:26:53.958536+08:00 kernel:
-> > > > > > > [drm:amdgpu_device_ip_resume_phase2 [amdgpu]] *ERROR* resume =
-of IP
-> > > > > > > block
-> > > > > > > <vcn_v3_0> failed -110
-> > > > > > > 2024-06-06T10:26:53.958539+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset(1) failed
-> > > > > > > 2024-06-06T10:26:53.958541+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset end with ret =3D -110
-> > > > > > > 2024-06-06T10:26:53.959180+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* GPU Recovery Failed: -110
-> > > > > > > 2024-06-06T10:26:55.261509+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_POWER_STATUS] failed to reach value 0x00000001
-> > > > > > > !=3D 0x00000002n
-> > > > > > > 2024-06-06T10:26:55.540507+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_RBC_RB_RPTR] failed to reach value 0x00000010 !=3D
-> > > > > > > 0x00000000n
-> > > > > > > 2024-06-06T10:27:04.407149+08:00 kernel: [drm] Register(0)
-> > > > > > > [mmUVD_POWER_STATUS] failed to reach value 0x00000001
-> > > > > > > !=3D 0x00000002n
-> > > > > > > 2024-06-06T10:27:04.407252+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* ring vcn_dec_0 timeout,
-> > > > > > > signaled seq=3D24898, emitted seq=3D24898
-> > > > > > > 2024-06-06T10:27:04.407257+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* Process information: process
-> > > > > > > RDD Process pid 39524 thread firefox-bi:cs0 pid 40342
-> > > > > > > 2024-06-06T10:27:04.407259+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset begin!
-> > > > > > > 2024-06-06T10:27:05.033745+08:00 kernel: ------------[ cut he=
-re ]-
-> > > > > > > ----
-> > > > > > > -------
-> > > > > > > 2024-06-06T10:27:05.033773+08:00 kernel: WARNING: CPU: 8 PID:
-> > > > > > > 47039 at
-> > > > > > > drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:630
-> > > > > > > amdgpu_irq_put+0x9c/0xb0 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.033777+08:00 kernel: Modules linked in:
-> > > > > > > nft_reject_inet nf_reject_ipv4 nf_reject_ipv6
-> > > > > > > nft_reject xt_conntrack nft_chain_nat xt_MASQUERADE nf_nat
-> > > > > > > nf_conntrack_netlink nf_conntrack nf_defrag_ipv6
-> > > > > > > nf_defrag_ipv4 xt_addrtype nft_compat nf_tables libcrc32c
-> > > > > > > br_netfilter
-> > > > > > > bridge stp llc hid_logitech_hidpp usbhid
-> > > > > > > xfrm_interface xfrm6_tunnel tunnel4 tunnel6 xfrm_user xfrm_al=
-go
-> > > > > > > uhid
-> > > > > > > rfcomm snd_seq_dummy snd_hrtimer cmac
-> > > > > > > algif_hash algif_skcipher af_alg overlay qrtr bnep binfmt_mis=
-c
-> > > > > > > uvcvideo videobuf2_vmalloc uvc videobuf2_memops
-> > > > > > > videobuf2_v4l2 btusb btrtl videodev btintel btbcm
-> > > > > > > snd_acp6x_pdm_dma
-> > > > > > > snd_soc_dmic snd_soc_acp6x_mach amd_atl
-> > > > > > > intel_rapl_msr btmtk videobuf2_common bluetooth mc
-> > > > > > > intel_rapl_common
-> > > > > > > snd_sof_amd_acp63 snd_sof_amd_vangogh
-> > > > > > > snd_sof_amd_rembrandt iwlmvm snd_sof_amd_renoir snd_sof_amd_a=
-cp
-> > > > > > > snd_sof_pci snd_sof_xtensa_dsp amdgpu snd_sof
-> > > > > > > edac_mce_amd mac80211 snd_sof_utils snd_pci_ps
-> > > > > > > snd_hda_codec_realtek
-> > > > > > > snd_amd_sdw_acpi kvm_amd soundwire_amd
-> > > > > > > snd_hda_codec_generic soundwire_generic_allocation soundwire_=
-bus
-> > > > > > > 2024-06-06T10:27:05.033782+08:00 kernel:
-> > > > > > > snd_hda_scodec_cs35l41_spi
-> > > > > > > nls_iso8859_1 snd_hda_codec_hdmi
-> > > > > > > snd_hda_scodec_component libarc4 kvm snd_soc_core snd_hda_int=
-el
-> > > > > > > snd_ctl_led snd_intel_dspcfg snd_compress
-> > > > > > > snd_intel_sdw_acpi amdxcp snd_seq_midi ac97_bus crct10dif_pcl=
-mul
-> > > > > > > drm_exec snd_hda_codec polyval_clmulni
-> > > > > > > snd_pcm_dmaengine snd_seq_midi_event gpu_sched polyval_generi=
-c
-> > > > > > > iwlwifi
-> > > > > > > ghash_clmulni_intel snd_rpl_pci_acp6x
-> > > > > > > drm_buddy sha256_ssse3 snd_hda_core snd_rawmidi snd_acp_pci
-> > > > > > > drm_suballoc_helper snd_hda_scodec_cs35l41_i2c
-> > > > > > > sha1_ssse3 drm_ttm_helper snd_acp_legacy_common snd_hwdep
-> > > > > > > snd_hda_scodec_cs35l41 aesni_intel snd_pci_acp6x amd_pmf
-> > > > > > > snd_hda_cs_dsp_ctls ttm crypto_simd snd_pci_acp5x
-> > > > > > > snd_soc_cs_amp_lib
-> > > > > > > asus_nb_wmi cs_dsp cryptd amdtee snd_seq
-> > > > > > > snd_rn_pci_acp3x drm_display_helper snd_pcm asus_wmi
-> > > > > > > snd_acp_config
-> > > > > > > rapl wmi_bmof sparse_keymap snd_seq_device
-> > > > > > > cfg80211 snd_soc_cs35l41_lib cec snd_soc_acpi ccp rc_core
-> > > > > > > snd_timer
-> > > > > > > i2c_algo_bit i2c_piix4 snd_pci_acp3x k10temp
-> > > > > > > amd_sfh tee snd platform_profile soundcore
-> > > > > > > serial_multi_instantiate
-> > > > > > > amd_pmc acpi_tad
-> > > > > > > 2024-06-06T10:27:05.033784+08:00 kernel:  joydev input_leds
-> > > > > > > mac_hid
-> > > > > > > serio_raw parport_pc ppdev lp parport
-> > > > > > > efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4
-> > > > > > > hid_multitouch nvme video ucsi_acpi hid_generic
-> > > > > > > crc32_pclmul nvme_core typec_ucsi xhci_pci i2c_hid_acpi
-> > > > > > > xhci_pci_renesas nvme_auth typec i2c_hid wmi hid 8250_dw
-> > > > > > > 2024-06-06T10:27:05.033785+08:00 kernel: CPU: 8 PID: 47039 Co=
-mm:
-> > > > > > > kworker/u64:0 Tainted: G        W
-> > > > > > > 6.10.0-061000rc2-generic #202406022333
-> > > > > > > 2024-06-06T10:27:05.033787+08:00 kernel: Hardware name: ASUST=
-eK
-> > > > > > > COMPUTER INC. Zenbook UM5302TA_UM5302TA/UM5302TA,
-> > > > > > > BIOS UM5302TA.311 01/17/2023
-> > > > > > > 2024-06-06T10:27:05.033788+08:00 kernel: Workqueue: amdgpu-re=
-set-
-> > > > > > > dev
-> > > > > > > drm_sched_job_timedout [gpu_sched]
-> > > > > > > 2024-06-06T10:27:05.033789+08:00 kernel: RIP:
-> > > > > > > 0010:amdgpu_irq_put+0x9c/0xb0 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.033790+08:00 kernel: Code: 31 f6 31 ff e9=
- c0
-> > > > > > > 05 2f
-> > > > > > > e6 44 89 e2 48 89 de 4c 89 f7 e8 97 fc ff
-> > > > > > > ff 5b 41 5c 41 5d 41 5e 5d 31 d2 31 f6 31 ff e9 9f 05 2f e6 <=
-0f>
-> > > > > > > 0b b8
-> > > > > > > ea ff ff ff eb c3 b8 fe ff ff ff eb bc 0f
-> > > > > > > 1f 40 00 90 90
-> > > > > > > 2024-06-06T10:27:05.033791+08:00 kernel: RSP:
-> > > > > > > 0018:ffffb65847227c18
-> > > > > > > EFLAGS: 00010246
-> > > > > > > 2024-06-06T10:27:05.033793+08:00 kernel: RAX: 000000000000000=
-0
-> > > > > > > RBX:
-> > > > > > > ffff9ac0a0280c60 RCX: 0000000000000000
-> > > > > > > 2024-06-06T10:27:05.033794+08:00 kernel: RDX: 000000000000000=
-0
-> > > > > > > RSI:
-> > > > > > > 0000000000000000 RDI: 0000000000000000
-> > > > > > > 2024-06-06T10:27:05.033796+08:00 kernel: RBP: ffffb65847227c3=
-8
-> > > > > > > R08:
-> > > > > > > 0000000000000000 R09: 0000000000000000
-> > > > > > > 2024-06-06T10:27:05.033797+08:00 kernel: R10: 000000000000000=
-0
-> > > > > > > R11:
-> > > > > > > 0000000000000000 R12: 0000000000000000
-> > > > > > > 2024-06-06T10:27:05.033798+08:00 kernel: R13: 000000000000000=
-1
-> > > > > > > R14:
-> > > > > > > ffff9ac0a0280000 R15: ffff9ac0a0280000
-> > > > > > > 2024-06-06T10:27:05.033799+08:00 kernel: FS:
-> > > > > > > 0000000000000000(0000)
-> > > > > > > GS:ffff9ac38e600000(0000)
-> > > > > > > knlGS:0000000000000000
-> > > > > > > 2024-06-06T10:27:05.033800+08:00 kernel: CS:  0010 DS: 0000 E=
-S:
-> > > > > > > 0000
-> > > > > > > CR0: 0000000080050033
-> > > > > > > 2024-06-06T10:27:05.033802+08:00 kernel: CR2: 00007d1a5edfe00=
-0
-> > > > > > > CR3:
-> > > > > > > 000000001863c000 CR4: 0000000000f50ef0
-> > > > > > > 2024-06-06T10:27:05.033803+08:00 kernel: PKRU: 55555554
-> > > > > > > 2024-06-06T10:27:05.033805+08:00 kernel: Call Trace:
-> > > > > > > 2024-06-06T10:27:05.033806+08:00 kernel:  <TASK>
-> > > > > > > 2024-06-06T10:27:05.033807+08:00 kernel:  ? show_regs+0x6c/0x=
-80
-> > > > > > > 2024-06-06T10:27:05.033845+08:00 kernel:  ? __warn+0x88/0x140
-> > > > > > > 2024-06-06T10:27:05.034598+08:00 kernel:  ?
-> > > > > > > amdgpu_irq_put+0x9c/0xb0
-> > > > > > > [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.034615+08:00 kernel:  ? report_bug+0x182/=
-0x1b0
-> > > > > > > 2024-06-06T10:27:05.034618+08:00 kernel:  ? handle_bug+0x51/0=
-xa0
-> > > > > > > 2024-06-06T10:27:05.034619+08:00 kernel:  ?
-> > > > > > > exc_invalid_op+0x18/0x80
-> > > > > > > 2024-06-06T10:27:05.034620+08:00 kernel:  ?
-> > > > > > > asm_exc_invalid_op+0x1b/0x20
-> > > > > > > 2024-06-06T10:27:05.034621+08:00 kernel:  ?
-> > > > > > > amdgpu_irq_put+0x9c/0xb0
-> > > > > > > [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.034623+08:00 kernel:  ?
-> > > > > > > amdgpu_irq_put+0x55/0xb0
-> > > > > > > [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.035573+08:00 kernel:
-> > > > > > > gmc_v10_0_hw_fini+0x67/0xe0
-> > > > > > > [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.035580+08:00 kernel:
-> > > > > > > gmc_v10_0_suspend+0xe/0x20
-> > > > > > > [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.035581+08:00 kernel:
-> > > > > > > amdgpu_device_ip_suspend_phase2+0x251/0x480 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.035582+08:00 kernel:
-> > > > > > > amdgpu_device_ip_suspend+0x49/0x80 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.036529+08:00 kernel:
-> > > > > > > amdgpu_device_pre_asic_reset+0xd1/0x490 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.036546+08:00 kernel:
-> > > > > > > amdgpu_device_gpu_recover+0x406/0xa30 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.036548+08:00 kernel:
-> > > > > > > amdgpu_job_timedout+0x141/0x200 [amdgpu]
-> > > > > > > 2024-06-06T10:27:05.036550+08:00 kernel:
-> > > > > > > drm_sched_job_timedout+0x70/0x110 [gpu_sched]
-> > > > > > > 2024-06-06T10:27:05.036551+08:00 kernel:
-> > > > > > > process_one_work+0x186/0x3e0
-> > > > > > > 2024-06-06T10:27:05.036552+08:00 kernel:
-> > > > > > > worker_thread+0x304/0x440
-> > > > > > > 2024-06-06T10:27:05.036554+08:00 kernel:  ?
-> > > > > > > srso_alias_return_thunk+0x5/0xfbef5
-> > > > > > > 2024-06-06T10:27:05.036555+08:00 kernel:  ?
-> > > > > > > _raw_spin_lock_irqsave+0xe/0x20
-> > > > > > > 2024-06-06T10:27:05.036556+08:00 kernel:  ?
-> > > > > > > __pfx_worker_thread+0x10/0x10
-> > > > > > > 2024-06-06T10:27:05.036557+08:00 kernel:  kthread+0xe4/0x110
-> > > > > > > 2024-06-06T10:27:05.036558+08:00 kernel:  ?
-> > > > > > > __pfx_kthread+0x10/0x10
-> > > > > > > 2024-06-06T10:27:05.036559+08:00 kernel:  ret_from_fork+0x47/=
-0x70
-> > > > > > > 2024-06-06T10:27:05.036561+08:00 kernel:  ?
-> > > > > > > __pfx_kthread+0x10/0x10
-> > > > > > > 2024-06-06T10:27:05.036562+08:00 kernel:
-> > > > > > > ret_from_fork_asm+0x1a/0x30
-> > > > > > > 2024-06-06T10:27:05.036563+08:00 kernel:  </TASK>
-> > > > > > > 2024-06-06T10:27:05.036564+08:00 kernel: ---[ end trace
-> > > > > > > 0000000000000000 ]---
-> > > > > > > 2024-06-06T10:27:05.036565+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > MODE2 reset
-> > > > > > > 2024-06-06T10:27:05.046502+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset succeeded, trying to resume
-> > > > > > > 2024-06-06T10:27:05.047516+08:00 kernel: [drm] PCIE GART of 1=
-024M
-> > > > > > > enabled (table at 0x000000F41FC00000).
-> > > > > > > 2024-06-06T10:27:05.047533+08:00 kernel: [drm] VRAM is lost d=
-ue to
-> > > > > > > GPU
-> > > > > > > reset!
-> > > > > > > 2024-06-06T10:27:05.047538+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > PSP is resuming...
-> > > > > > > 2024-06-06T10:27:05.070481+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > reserve 0xa00000 from 0xf41e000000 for PSP
-> > > > > > > TMR
-> > > > > > > 2024-06-06T10:27:05.397519+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > RAS: optional ras ta ucode is not available
-> > > > > > > 2024-06-06T10:27:05.409509+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > RAP: optional rap ta ucode is not available
-> > > > > > > 2024-06-06T10:27:05.409517+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SECUREDISPLAY: securedisplay ta ucode is not
-> > > > > > > available
-> > > > > > > 2024-06-06T10:27:05.409518+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SMU is resuming...
-> > > > > > > 2024-06-06T10:27:05.411482+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > SMU is resumed successfully!
-> > > > > > > 2024-06-06T10:27:05.413504+08:00 kernel: [drm] DMUB hardware
-> > > > > > > initialized: version=3D0x04000044
-> > > > > > > 2024-06-06T10:27:06.055474+08:00 kernel: [drm] kiq ring mec 2=
- pipe
-> > > > > > > 1 q
-> > > > > > > 0
-> > > > > > > 2024-06-06T10:27:06.335476+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring
-> > > > > > > vcn_dec_0 test failed (-110)
-> > > > > > > 2024-06-06T10:27:06.335495+08:00 kernel:
-> > > > > > > [drm:amdgpu_device_ip_resume_phase2 [amdgpu]] *ERROR* resume =
-of IP
-> > > > > > > block
-> > > > > > > <vcn_v3_0> failed -110
-> > > > > > > 2024-06-06T10:27:06.335498+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset(2) failed
-> > > > > > > 2024-06-06T10:27:06.335499+08:00 kernel: amdgpu 0000:03:00.0:
-> > > > > > > amdgpu:
-> > > > > > > GPU reset end with ret =3D -110
-> > > > > > > 2024-06-06T10:27:06.335631+08:00 kernel: [drm:amdgpu_job_time=
-dout
-> > > > > > > [amdgpu]] *ERROR* GPU Recovery Failed: -110
-> > >
-> > > I'm limited by time and computing power, can Winston do a bisect?
-> > >
-> > > If Winston can't I can do a bisect, but don't expect results before
-> > > days...
-> > > I've only got this laptop and it's heavily used, so it really takes t=
-ime.
-> > >
-> > > Best,
-> > > Yunchen
->
-> I'm switched to some rather obscure setup, so sorry I couldn't test the
-> kernel. If it seemed okay on your side, then maybe this problem is now fi=
-xed,
-> considering some APU-specific fixes pulled from drm-next during the weeks=
-.
->
-> If there aren't any more case reports for the next few days then maybe we=
- can
-> regard this as resolved?
->
-> Best,
-> Yunchen
+My educated guess is that you could create a test where you write 
+something to VRAM or GTT with a shader and than in the interrupt handler 
+try to observer if you can see those values with the CPU.
+
+If those values aren't visible with the CPU then you have either a cache 
+flushing issue or your CPU and/or PCIe root complex is incorrectly 
+reordering writes and interrupts.
+
+Regards,
+Christian.
+--------------ylqG0tZQq5fnxMadofUGSRhi
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    Am 17.06.24 um 18:09 schrieb Icenowy Zheng:<br>
+    <blockquote type="cite" cite="mid:73597116d4f004c5f75cf4f13da1af405ea8da8b.camel@icenowy.me"><span style="white-space: pre-wrap">
+</span>
+      <pre class="moz-quote-pre" wrap="">BTW is there any operation that could be taken to examine this specific
+workaround?
+
+Is there any case possible to reproduce?
+</pre>
+    </blockquote>
+    <br>
+    No idea, I mean that's for GFX7/8 which was released between 2013
+    and 2017.<br>
+    <br>
+    My educated guess is that you could create a test where you write
+    something to VRAM or GTT with a shader and than in the interrupt
+    handler try to observer if you can see those values with the CPU.<br>
+    <br>
+    If those values aren't visible with the CPU then you have either a
+    cache flushing issue or your CPU and/or PCIe root complex is
+    incorrectly reordering writes and interrupts.<br>
+    <br>
+    Regards,<br>
+    Christian.<br>
+  </body>
+</html>
+
+--------------ylqG0tZQq5fnxMadofUGSRhi--
