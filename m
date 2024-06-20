@@ -2,104 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899AD9108FF
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jun 2024 16:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D05791092D
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jun 2024 16:59:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F399B10EA5B;
-	Thu, 20 Jun 2024 14:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82BC310E0C5;
+	Thu, 20 Jun 2024 14:59:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="QtxF2Zb4";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wuSi7y7F";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="QtxF2Zb4";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wuSi7y7F";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m4Ypr3X1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93D9B10EA5D;
- Thu, 20 Jun 2024 14:52:45 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 1811021AE8;
- Thu, 20 Jun 2024 14:52:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718895164; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AOLTsgS3rodnP1JJ6EhracYKW9pB+FzDfOT1O5t/xGU=;
- b=QtxF2Zb4ZbYQXQnJvXLQQ3HPnH/OILoA7+rocntc6sFsLyHtycJKeqwsw1xMPYSSBcxnh8
- MMfUlVCUrxAAIedQY91N1Y6iwUIdif9HF9kgzpvCtBhcTTB6qmHjhUY5iw5aGfcqbOhPhB
- DOF2/pFEoiS6v0FVt6SKl532eLscMTY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718895164;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AOLTsgS3rodnP1JJ6EhracYKW9pB+FzDfOT1O5t/xGU=;
- b=wuSi7y7FNVPWLyKPpZI2q5c19HgcHjXGNfvNfK6LMkYqWXZX2GSsOm8m/W2XVBU7ewEEzs
- JqBnmAOQj9qg97BQ==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718895164; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AOLTsgS3rodnP1JJ6EhracYKW9pB+FzDfOT1O5t/xGU=;
- b=QtxF2Zb4ZbYQXQnJvXLQQ3HPnH/OILoA7+rocntc6sFsLyHtycJKeqwsw1xMPYSSBcxnh8
- MMfUlVCUrxAAIedQY91N1Y6iwUIdif9HF9kgzpvCtBhcTTB6qmHjhUY5iw5aGfcqbOhPhB
- DOF2/pFEoiS6v0FVt6SKl532eLscMTY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718895164;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AOLTsgS3rodnP1JJ6EhracYKW9pB+FzDfOT1O5t/xGU=;
- b=wuSi7y7FNVPWLyKPpZI2q5c19HgcHjXGNfvNfK6LMkYqWXZX2GSsOm8m/W2XVBU7ewEEzs
- JqBnmAOQj9qg97BQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CB6121369F;
- Thu, 20 Jun 2024 14:52:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id sEdpMDtCdGZ+aQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 20 Jun 2024 14:52:43 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, felix.kuehling@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 2/2] drm/amdgpu: Convert to ttm_bo_vmap() et al
-Date: Thu, 20 Jun 2024 16:44:41 +0200
-Message-ID: <20240620145238.25295-3-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240620145238.25295-1-tzimmermann@suse.de>
-References: <20240620145238.25295-1-tzimmermann@suse.de>
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
+ [209.85.216.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 051DA10EA67
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jun 2024 14:59:26 +0000 (UTC)
+Received: by mail-pj1-f46.google.com with SMTP id
+ 98e67ed59e1d1-2c7fe2dcdf6so408837a91.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jun 2024 07:59:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1718895566; x=1719500366; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qPXcVfUr1j+fLb6lIJUVnoCOekS7kyqi+VwHKDiK3x0=;
+ b=m4Ypr3X1N5Gfj4SoHm/xby4Wpf5y6Qhl34PusFkWK9Yzm5GLPD/XzcZMml6k4QyjrY
+ HmDQDld7oN9PkkN88cqv0+t1nZBmXKqsYdBZUJ07MuD6vdERn6jZfeI3jX/TZ2mUOqGo
+ 93Sh8PebmU1QEYF9o9H01BDuyIOSWuz5Hl1geLsgs5gmxfrFpenRtF1oe1B76qBpFN4e
+ FsjNRjl6xDrOCt0JOEmn/iPpTf6Y3NSJmDWDntEa+S9R1Cw7YOqqrC8Xgdh3yW+Bd6Xm
+ 1f2TG60P4v+PGBJ9tjYjsM8qpw6mxk9K+d5IHCrl99tkuHSpwuAkSf/rVVaWXTZdsG0m
+ 3nNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718895566; x=1719500366;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=qPXcVfUr1j+fLb6lIJUVnoCOekS7kyqi+VwHKDiK3x0=;
+ b=ew7vKhb5LlVP8GPxyl+sdmn+9BDfdZlmbKJkPQQQNRxrFRR/+DoDYUpslkLA9P/FA8
+ /pe+ZNHV06Y4tLowzjRv40DykoYJqLU2NrDi2HShz6XWVxNUUjYmTfa75AwEkGlT0459
+ Y/8X6emzzl1Q2pTRsREMm5nVp79tpYq4Ll+NJoJEwQqKNmhymD3Kw0hGG8cPyne/Qsvs
+ kRKd0GQKxrBZ9HAhbgNQyOEJYngHGOYWJLqDAT/QBVTef1iwRWGJV3kXfhut8fADZBjz
+ 6k8yXw6mBL+06P4gq2ddiAnzyLZ5/vAUM3NZ+lu3bPBe6q3QrImIIsozpjgL72f5cGyz
+ mRjQ==
+X-Gm-Message-State: AOJu0Yw2BaFuYkpRJCLqQw8uqndjiG50PKWkPx8GUDpyS8blXpFJvP4y
+ XXxTBt5R/dXvX3c8tsxObFWrv9ZGlHYj8BZnGauamO/7SmB0bwT6zi6jkG+DmC+M+e+UMWijjdj
+ Xbv9+8miDMFTyZbiSUTIQu1qSmt0=
+X-Google-Smtp-Source: AGHT+IGH69BRCAuM9TDln05OzQ0yrx8tJJFn8WYrLBCFTQdkcH5qgS1nEVyUGCTtAFapYf776EDqv4CZB4ASjPymrxE=
+X-Received: by 2002:a17:90b:fc1:b0:2c4:f357:b7b8 with SMTP id
+ 98e67ed59e1d1-2c7b5dca901mr5374311a91.43.1718895566329; Thu, 20 Jun 2024
+ 07:59:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -2.80
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+]; FROM_HAS_DN(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email];
- FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[9]; FUZZY_BLOCKED(0.00)[rspamd.com];
- TO_DN_SOME(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+References: <20240620074006.11922-1-bob.zhou@amd.com>
+In-Reply-To: <20240620074006.11922-1-bob.zhou@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 20 Jun 2024 10:59:13 -0400
+Message-ID: <CADnq5_Oz3cBte-8R3aEYcay5bTrbm6X9qV391e-aFUSdmiViRw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: add missing error handling in function
+ amdgpu_gmc_flush_gpu_tlb_pasid
+To: Bob Zhou <bob.zhou@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Tim.Huang@amd.com, jesse.zhang@amd.com, 
+ alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,93 +77,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace each call to ttm_bo_kmap() with a call to ttm_bo_vmap().
-Same for ttm_bo_kunmap() and ttm_bo_vunmap(). There's now one less
-driver depending on the deprecated ttm_bo_kmap().
+On Thu, Jun 20, 2024 at 3:47=E2=80=AFAM Bob Zhou <bob.zhou@amd.com> wrote:
+>
+> Fix the unchecked return value warning by warning reported by
+> Coverity, so add error handling.
+>
+> Signed-off-by: Bob Zhou <bob.zhou@amd.com>
 
-Also allows for dropping struct ttm_bo_kmap_obj in favor of struct
-iosys_map, which is the preferred representation of BO memory mappings.
-Manual type conversion in amdgpu_bo_kptr() is required to make the
-returned pointer usable within amdgpu. In a follow-up patch, amdgpu
-should be convert to use struct iosys_map directly.
+Looks like there are a few other places in the driver where
+amdgpu_ring_alloc() is not checked.  Can you fix those up too?
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 16 ++++++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  4 +++-
- 2 files changed, 13 insertions(+), 7 deletions(-)
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index d58b11ea0ead5..baa60e25c13e1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -62,7 +62,7 @@ static void amdgpu_bo_destroy(struct ttm_buffer_object *tbo)
- 	 * BO memory pages should be unmapped at this point. Call
- 	 * amdgpu_bo_kunmap() before releasing the BO.
- 	 */
--	if (drm_WARN_ON_ONCE(bo->tbo.base.dev, bo->kmap.bo))
-+	if (drm_WARN_ON_ONCE(bo->tbo.base.dev, !iosys_map_is_null(&bo->map)))
- 		amdgpu_bo_kunmap(bo);
- 
- 	if (bo->tbo.base.import_attach)
-@@ -802,7 +802,7 @@ int amdgpu_bo_kmap(struct amdgpu_bo *bo, void **ptr)
- 		return 0;
- 	}
- 
--	r = ttm_bo_kmap(&bo->tbo, 0, PFN_UP(bo->tbo.base.size), &bo->kmap);
-+	r = ttm_bo_vmap(&bo->tbo, &bo->map);
- 	if (r)
- 		return r;
- 
-@@ -823,9 +823,12 @@ int amdgpu_bo_kmap(struct amdgpu_bo *bo, void **ptr)
-  */
- void *amdgpu_bo_kptr(struct amdgpu_bo *bo)
- {
--	bool is_iomem;
-+	if (iosys_map_is_null(&bo->map))
-+		return NULL;
-+	if (bo->map.is_iomem)
-+		return (void __force *)bo->map.vaddr_iomem;
- 
--	return ttm_kmap_obj_virtual(&bo->kmap, &is_iomem);
-+	return bo->map.vaddr;
- }
- 
- /**
-@@ -836,8 +839,9 @@ void *amdgpu_bo_kptr(struct amdgpu_bo *bo)
-  */
- void amdgpu_bo_kunmap(struct amdgpu_bo *bo)
- {
--	if (bo->kmap.bo)
--		ttm_bo_kunmap(&bo->kmap);
-+	if (iosys_map_is_null(&bo->map))
-+		return;
-+	ttm_bo_vunmap(&bo->tbo, &bo->map);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index bc42ccbde659a..553a92303339f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -28,6 +28,8 @@
- #ifndef __AMDGPU_OBJECT_H__
- #define __AMDGPU_OBJECT_H__
- 
-+#include <linux/iosys-map.h>
-+
- #include <drm/amdgpu_drm.h>
- #include "amdgpu.h"
- #include "amdgpu_res_cursor.h"
-@@ -99,7 +101,7 @@ struct amdgpu_bo {
- 	struct ttm_place		placements[AMDGPU_BO_MAX_PLACEMENTS];
- 	struct ttm_placement		placement;
- 	struct ttm_buffer_object	tbo;
--	struct ttm_bo_kmap_obj		kmap;
-+	struct iosys_map		map;
- 	u64				flags;
- 	/* per VM structure for page tables and with virtual addresses */
- 	struct amdgpu_vm_bo_base	*vm_bo;
--- 
-2.45.2
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gmc.c
+> index 322b8ff67cde..3a7622611916 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> @@ -718,7 +718,11 @@ int amdgpu_gmc_flush_gpu_tlb_pasid(struct amdgpu_dev=
+ice *adev, uint16_t pasid,
+>                         ndw +=3D kiq->pmf->invalidate_tlbs_size;
+>
+>                 spin_lock(&adev->gfx.kiq[inst].ring_lock);
+> -               amdgpu_ring_alloc(ring, ndw);
+> +               r =3D amdgpu_ring_alloc(ring, ndw);
+> +               if (r) {
+> +                       spin_unlock(&adev->gfx.kiq[inst].ring_lock);
+> +                       goto error_unlock_reset;
+> +               }
+>                 if (adev->gmc.flush_tlb_needs_extra_type_2)
+>                         kiq->pmf->kiq_invalidate_tlbs(ring, pasid, 2, all=
+_hub);
+>
+> --
+> 2.34.1
+>
