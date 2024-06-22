@@ -2,75 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7173B913494
-	for <lists+amd-gfx@lfdr.de>; Sat, 22 Jun 2024 17:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB265913498
+	for <lists+amd-gfx@lfdr.de>; Sat, 22 Jun 2024 17:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC62310E138;
-	Sat, 22 Jun 2024 15:01:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S9gyAZOp";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BEDC10E175;
+	Sat, 22 Jun 2024 15:01:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
- [209.85.222.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82BD010F1B4;
- Fri, 21 Jun 2024 14:21:16 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id
- af79cd13be357-79550284502so115052285a.2; 
- Fri, 21 Jun 2024 07:21:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1718979675; x=1719584475; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=MjXMle0rO8XpaOjdtO6Igck9jzTHjsyq0tjq0iKq+6k=;
- b=S9gyAZOpUL837aIGJNo/uUQphlrPuWpM+YMbFMniFA2zjB5m5Ny5hCPX8YkzdF2JaM
- WR2fPeJ2D9m+dQAMNR4px+J8ibvKsjn7tc2j7cO56TlhW8e/P/eqs3LBuDcIWDZ94nCB
- UFXlQu/K+Hq4XYZbsDhA+LKW9ilFIPwjlrsrk+cchkKVgFQ86fz7w7SnshL4NzJLtjKH
- zUvw6rZ79cWaT/pYvscPHnIM3mn/HS7YYHLnqkdjMaJq+9oTptwnbDPs3l8vSP9/T5J3
- wo+Ct66O1gDQfKrt35oPwj7uHU0TZDaVkrnZSUW4bJIKo0eCe3FAaxutX+SZo/fTX+4X
- Hc8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718979675; x=1719584475;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=MjXMle0rO8XpaOjdtO6Igck9jzTHjsyq0tjq0iKq+6k=;
- b=u+sBsZvufe2Sxrdh/tmxhKu1ChTUqmq1EBnved7GIwHyYZT+nq+ssXKWVX13VnVVML
- Fh92wkYjz+9c8XvmZUKMF3DIxwLTz6nETGjxL3gDpfW0vtyngpCmSp5Ko5flZWJX6L5R
- Y3NhUkokU0GieXNmwoMcseHr09WnlxNPfP/5Q+53gPtOhEJEbtj1ROYD/a6oYTtHi/9O
- GUEeXNR8jmBjjyY6nlCrKCmO43qiFigOtrMJFBw8Vllgxm5EfoT2O2ZKNbhAuR8MbxB4
- JHEk1PTGrHvVFS5jfMwu6MJK1tq2n+RBZC2c0knuJNk4Ot96+MJXoYKWxKyI36RbFMlM
- zwIw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXJEfestT1+DN2Q1bEjMI0pbHZ2z4Hry15korMPX7U46DYSs1eAlNOURspLtpIDHYPkSalH0gg84GWEFzSwfFRdddgC84rzqp2YcNSQ0FbGm2tUvNERp+xyuoy04qTvcEr1rEOW2vmITq9JnV/I8w==
-X-Gm-Message-State: AOJu0YwyKkaM4PTOLLpAqgz1+vIGVUiCAxIRvPqoswnRrTE/ylxkEQdu
- 6Midwa90JxH6dHXXfFBEgJ88zPsTpjIRjFEyy0nFncwcMNtEq+TI
-X-Google-Smtp-Source: AGHT+IHTsm5qtIMJT3X14t/FfwytBP6BI2xShJWE3XRYqnh+pQytGVZUlvy0RxH7ZCq8cqLXQDvjJw==
-X-Received: by 2002:ad4:5cc2:0:b0:6b2:a333:2abf with SMTP id
- 6a1803df08f44-6b50d8e18d8mr83165976d6.51.1718979675153; 
- Fri, 21 Jun 2024 07:21:15 -0700 (PDT)
-Received: from localhost.localdomain ([142.198.217.108])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-6b51ef312b3sm9164736d6.88.2024.06.21.07.21.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Jun 2024 07:21:14 -0700 (PDT)
-From: Wu Hoi Pok <wuhoipok@gmail.com>
-To: 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Wu Hoi Pok <wuhoipok@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 7/7] drm/radeon: rdev->ddev to rdev_to_drm(rdev) 6
-Date: Fri, 21 Jun 2024 10:20:49 -0400
-Message-ID: <20240621142052.20152-1-wuhoipok@gmail.com>
-X-Mailer: git-send-email 2.45.2
+X-Greylist: delayed 411 seconds by postgrey-1.36 at gabe;
+ Sat, 22 Jun 2024 08:29:33 UTC
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A814910E197
+ for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jun 2024 08:29:33 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-01 (Coremail) with SMTP id qwCowAA3PhK9iXZmIKwQDA--.10106S2;
+ Sat, 22 Jun 2024 16:22:33 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, srinivasan.shanmugam@amd.com,
+ aurabindo.pillai@amd.com, make24@iscas.ac.cn, guchun.chen@amd.com,
+ chenjiahao16@huawei.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: fix a possible null pointer dereference
+Date: Sat, 22 Jun 2024 16:22:19 +0800
+Message-Id: <20240622082219.1876200-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowAA3PhK9iXZmIKwQDA--.10106S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtw4UAFy5KF45CFykXw4fKrg_yoWfurg_CF
+ WUZFZrXw43AFyFyr17Zw4Sv3sIv345Ar4ktr1Sqa9av34xXw17XryUJr1FvF1fuFWfCFnF
+ q34Yg3W5A3Z7CjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUba8FF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6r106r1rM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr
+ 0_Cr1UM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+ Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+ W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI2
+ 0VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
+ Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+ x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+ 1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
+ JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
+ sGvfC2KfnxnUUI43ZEXa7VUbHa0DUUUUU==
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
 X-Mailman-Approved-At: Sat, 22 Jun 2024 15:01:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,186 +64,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Please see Patch v2 1/7 for details.
+In amdgpu_connector_add_common_modes(), the return value of drm_cvt_mode()
+is assigned to mode, which will lead to a NULL pointer dereference on
+failure of drm_cvt_mode(). Add a check to avoid npd.
 
-Signed-off-by: Wu Hoi Pok <wuhoipok@gmail.com>
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
 ---
- drivers/gpu/drm/radeon/rs400.c |  6 +++---
- drivers/gpu/drm/radeon/rs600.c | 14 +++++++-------
- drivers/gpu/drm/radeon/rs690.c |  2 +-
- drivers/gpu/drm/radeon/rv515.c |  4 ++--
- drivers/gpu/drm/radeon/rv770.c |  2 +-
- drivers/gpu/drm/radeon/si.c    |  4 ++--
- 6 files changed, 16 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs400.c
-index d4d1501e6576..d6c18fd740ec 100644
---- a/drivers/gpu/drm/radeon/rs400.c
-+++ b/drivers/gpu/drm/radeon/rs400.c
-@@ -379,7 +379,7 @@ DEFINE_SHOW_ATTRIBUTE(rs400_debugfs_gart_info);
- static void rs400_debugfs_pcie_gart_info_init(struct radeon_device *rdev)
- {
- #if defined(CONFIG_DEBUG_FS)
--	struct dentry *root = rdev->ddev->primary->debugfs_root;
-+	struct dentry *root = rdev_to_drm(rdev)->primary->debugfs_root;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index 9caba10315a8..6cf946adb6fe 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -458,6 +458,8 @@ static void amdgpu_connector_add_common_modes(struct drm_encoder *encoder,
+ 			continue;
  
- 	debugfs_create_file("rs400_gart_info", 0444, root, rdev,
- 			    &rs400_debugfs_gart_info_fops);
-@@ -474,7 +474,7 @@ int rs400_resume(struct radeon_device *rdev)
- 			RREG32(R_0007C0_CP_STAT));
+ 		mode = drm_cvt_mode(dev, common_modes[i].w, common_modes[i].h, 60, false, false, false);
++		if (!mode)
++			continue;
+ 		drm_mode_probed_add(connector, mode);
  	}
- 	/* post */
--	radeon_combios_asic_init(rdev->ddev);
-+	radeon_combios_asic_init(rdev_to_drm(rdev));
- 	/* Resume clock after posting */
- 	r300_clock_startup(rdev);
- 	/* Initialize surface registers */
-@@ -552,7 +552,7 @@ int rs400_init(struct radeon_device *rdev)
- 		return -EINVAL;
- 
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 	/* initialize memory controller */
- 	rs400_mc_init(rdev);
- 	/* Fence driver */
-diff --git a/drivers/gpu/drm/radeon/rs600.c b/drivers/gpu/drm/radeon/rs600.c
-index 5c162778899b..88c8e91ea651 100644
---- a/drivers/gpu/drm/radeon/rs600.c
-+++ b/drivers/gpu/drm/radeon/rs600.c
-@@ -321,7 +321,7 @@ void rs600_pm_misc(struct radeon_device *rdev)
- 
- void rs600_pm_prepare(struct radeon_device *rdev)
- {
--	struct drm_device *ddev = rdev->ddev;
-+	struct drm_device *ddev = rdev_to_drm(rdev);
- 	struct drm_crtc *crtc;
- 	struct radeon_crtc *radeon_crtc;
- 	u32 tmp;
-@@ -339,7 +339,7 @@ void rs600_pm_prepare(struct radeon_device *rdev)
- 
- void rs600_pm_finish(struct radeon_device *rdev)
- {
--	struct drm_device *ddev = rdev->ddev;
-+	struct drm_device *ddev = rdev_to_drm(rdev);
- 	struct drm_crtc *crtc;
- 	struct radeon_crtc *radeon_crtc;
- 	u32 tmp;
-@@ -408,7 +408,7 @@ void rs600_hpd_set_polarity(struct radeon_device *rdev,
- 
- void rs600_hpd_init(struct radeon_device *rdev)
- {
--	struct drm_device *dev = rdev->ddev;
-+	struct drm_device *dev = rdev_to_drm(rdev);
- 	struct drm_connector *connector;
- 	unsigned enable = 0;
- 
-@@ -435,7 +435,7 @@ void rs600_hpd_init(struct radeon_device *rdev)
- 
- void rs600_hpd_fini(struct radeon_device *rdev)
- {
--	struct drm_device *dev = rdev->ddev;
-+	struct drm_device *dev = rdev_to_drm(rdev);
- 	struct drm_connector *connector;
- 	unsigned disable = 0;
- 
-@@ -797,7 +797,7 @@ int rs600_irq_process(struct radeon_device *rdev)
- 		/* Vertical blank interrupts */
- 		if (G_007EDC_LB_D1_VBLANK_INTERRUPT(rdev->irq.stat_regs.r500.disp_int)) {
- 			if (rdev->irq.crtc_vblank_int[0]) {
--				drm_handle_vblank(rdev->ddev, 0);
-+				drm_handle_vblank(rdev_to_drm(rdev), 0);
- 				rdev->pm.vblank_sync = true;
- 				wake_up(&rdev->irq.vblank_queue);
- 			}
-@@ -806,7 +806,7 @@ int rs600_irq_process(struct radeon_device *rdev)
- 		}
- 		if (G_007EDC_LB_D2_VBLANK_INTERRUPT(rdev->irq.stat_regs.r500.disp_int)) {
- 			if (rdev->irq.crtc_vblank_int[1]) {
--				drm_handle_vblank(rdev->ddev, 1);
-+				drm_handle_vblank(rdev_to_drm(rdev), 1);
- 				rdev->pm.vblank_sync = true;
- 				wake_up(&rdev->irq.vblank_queue);
- 			}
-@@ -1133,7 +1133,7 @@ int rs600_init(struct radeon_device *rdev)
- 		return -EINVAL;
- 
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 	/* initialize memory controller */
- 	rs600_mc_init(rdev);
- 	r100_debugfs_rbbm_init(rdev);
-diff --git a/drivers/gpu/drm/radeon/rs690.c b/drivers/gpu/drm/radeon/rs690.c
-index 14fb0819b8c1..016eb4992803 100644
---- a/drivers/gpu/drm/radeon/rs690.c
-+++ b/drivers/gpu/drm/radeon/rs690.c
-@@ -845,7 +845,7 @@ int rs690_init(struct radeon_device *rdev)
- 		return -EINVAL;
- 
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 	/* initialize memory controller */
- 	rs690_mc_init(rdev);
- 	rv515_debugfs(rdev);
-diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv515.c
-index bbc6ccabf788..1b4dfb645585 100644
---- a/drivers/gpu/drm/radeon/rv515.c
-+++ b/drivers/gpu/drm/radeon/rv515.c
-@@ -255,7 +255,7 @@ DEFINE_SHOW_ATTRIBUTE(rv515_debugfs_ga_info);
- void rv515_debugfs(struct radeon_device *rdev)
- {
- #if defined(CONFIG_DEBUG_FS)
--	struct dentry *root = rdev->ddev->primary->debugfs_root;
-+	struct dentry *root = rdev_to_drm(rdev)->primary->debugfs_root;
- 
- 	debugfs_create_file("rv515_pipes_info", 0444, root, rdev,
- 			    &rv515_debugfs_pipes_info_fops);
-@@ -636,7 +636,7 @@ int rv515_init(struct radeon_device *rdev)
- 	if (radeon_boot_test_post_card(rdev) == false)
- 		return -EINVAL;
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 	/* initialize AGP */
- 	if (rdev->flags & RADEON_IS_AGP) {
- 		r = radeon_agp_init(rdev);
-diff --git a/drivers/gpu/drm/radeon/rv770.c b/drivers/gpu/drm/radeon/rv770.c
-index 9ce12fa3c356..7d4b0bf59109 100644
---- a/drivers/gpu/drm/radeon/rv770.c
-+++ b/drivers/gpu/drm/radeon/rv770.c
-@@ -1935,7 +1935,7 @@ int rv770_init(struct radeon_device *rdev)
- 	/* Initialize surface registers */
- 	radeon_surface_init(rdev);
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 	/* Fence driver */
- 	radeon_fence_driver_init(rdev);
- 	/* initialize AGP */
-diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 15759c8ca5b7..6c95575ce109 100644
---- a/drivers/gpu/drm/radeon/si.c
-+++ b/drivers/gpu/drm/radeon/si.c
-@@ -6277,7 +6277,7 @@ int si_irq_process(struct radeon_device *rdev)
- 				event_name = "vblank";
- 
- 				if (rdev->irq.crtc_vblank_int[crtc_idx]) {
--					drm_handle_vblank(rdev->ddev, crtc_idx);
-+					drm_handle_vblank(rdev_to_drm(rdev), crtc_idx);
- 					rdev->pm.vblank_sync = true;
- 					wake_up(&rdev->irq.vblank_queue);
- 				}
-@@ -6839,7 +6839,7 @@ int si_init(struct radeon_device *rdev)
- 	/* Initialize surface registers */
- 	radeon_surface_init(rdev);
- 	/* Initialize clocks */
--	radeon_get_clock_info(rdev->ddev);
-+	radeon_get_clock_info(rdev_to_drm(rdev));
- 
- 	/* Fence driver */
- 	radeon_fence_driver_init(rdev);
+ }
 -- 
-2.45.2
+2.25.1
 
