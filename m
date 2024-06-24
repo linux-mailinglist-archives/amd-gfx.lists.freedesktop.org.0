@@ -2,90 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 323EC915F62
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jun 2024 09:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BC0915F5E
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jun 2024 09:06:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F5910E2EE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2DFD10E2E6;
 	Tue, 25 Jun 2024 07:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RTkF3svT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B4aY8z7s";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D089910E3C4
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 09:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1719220310;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ErgW8/xgdLyfmI5cJrGORyHP2zU+pAlRQp1PB0ZkxTk=;
- b=RTkF3svTPleYT2yFIw4dATg1TeMbeQvZt9CZCYnVsp1dLgO4yQBs5EC2/4sCgY+8s5j8ZK
- qz/5erhvFuKpz0W71Be5wRydlIyYZ8GAFEohZyJj97YP3E9PyowpmIUwWKiovzetuU60qb
- JEaHe+ScV8zQ122EAyjif+rM5Bxlzxg=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-396-7H72vILVNvS_Ezi0kikaSw-1; Mon, 24 Jun 2024 05:11:43 -0400
-X-MC-Unique: 7H72vILVNvS_Ezi0kikaSw-1
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-a725c45ab1dso26869466b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 02:11:43 -0700 (PDT)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEA010E486;
+ Mon, 24 Jun 2024 15:12:35 +0000 (UTC)
+Received: by mail-qk1-f169.google.com with SMTP id
+ af79cd13be357-79baa4e8531so440062385a.2; 
+ Mon, 24 Jun 2024 08:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1719241953; x=1719846753; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=GKUVei0D2VbiVNvKS5RQUkYlhAuK8XSzTDtmkdar2R4=;
+ b=B4aY8z7sh2BnOicwxYkeir8g9WBo1oEM6lB8M07Gl1VbjjtIvl/TVMaFoRKaNFuFwd
+ srYPJtNefIT3yWFl6Yw9BEFRv+z6gOoL9HgiBrcTq2vEFGO9kEnSNrO4y4ZMnWbDvIrs
+ LtqTk2Ssggsn6GnkWqqDu+7w/Yy9cHn3s8+5kspMnykGLMGE3z0Try7bQn/B8zJvyBsq
+ 3/MhBVJ2xtAiPhJ6MG91Oe9Fhs4mLLE4cWrvzJa9D5NAp5Oatn7w9p0Qamlqflk6Ti+O
+ MOANuLbRu0/d0H987rlxf1unjx/G97ZKeBFLRTigvRL3ukLZXpV6TH6Cw1mUMgNqOeUU
+ MaHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719220302; x=1719825102;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ErgW8/xgdLyfmI5cJrGORyHP2zU+pAlRQp1PB0ZkxTk=;
- b=GoZw3eFAWhP2MvpS20f3BaeTqLQY3zNrsYvIyTQK4zO5Z36VUFepjrN457BamwJk5W
- 4ybxH2ojsYNaGLyCC9U9rmpbQPgr6v7o62whRb/ExfX1N/K3dD6LkFoetR3yJk+w3LyZ
- o/uuNM3zmyGYBgfGsWimQ9S74y1ELOTpXMlFJqy4BH8+rKcZUBYakGmj+GxiBslgMO4V
- NXgh067M3n0pV/qPkCRZ6cbTOhY5pyYhImfJhUevLrPyiZh8VZiA5lPnFf8kHBupL/12
- FYqWeGdBaCkgV/8rR26frc9XfJNG9iIvz+rkYsKnlyXQzeSf8Ed6jlDcztNO/tgnzsGN
- TTCQ==
-X-Gm-Message-State: AOJu0Yz0yDMWD4uhXx6zitVtqW29nT35OeLcnQnFwFHpCyBbWHy81Owf
- fII/8wUjMOnr2aXdzbnMKW60fofmiAlb2li+3QpHCYRf/IOBUEliyfOdydheAUrUvF+iOQrAu/c
- jK0j3pSHDOSMPP8CJrCjEpWpJmnkaZ9w6QcW4a/KSFypA+0hQXKtn5rDbxa8he4o=
-X-Received: by 2002:a17:907:a4c7:b0:a6f:e529:adb5 with SMTP id
- a640c23a62f3a-a7242cda444mr308028866b.59.1719220302090; 
- Mon, 24 Jun 2024 02:11:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFpXhX65y/eEgnqmxmhrILCZeKBPWwjJ3mqC0cJrNbEb9IYgalqCzN12PcHySrt/9UUtCFQLQ==
-X-Received: by 2002:a17:907:a4c7:b0:a6f:e529:adb5 with SMTP id
- a640c23a62f3a-a7242cda444mr308025766b.59.1719220301659; 
- Mon, 24 Jun 2024 02:11:41 -0700 (PDT)
-Received: from [10.40.98.157] ([78.108.130.194])
+ d=1e100.net; s=20230601; t=1719241953; x=1719846753;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=GKUVei0D2VbiVNvKS5RQUkYlhAuK8XSzTDtmkdar2R4=;
+ b=kzpDYIeKeGIpAgOwja9Bd2Ugn6pxs8mohNsZDnm8bRBmboSMzaZY90nWFVNb7sU/Di
+ hdZ0BdKGOfehhMb/jilAFyLXM7JSp0QxmI0vHIwWQoL9UJJp8KAifHAh5BM3gnOr/PBc
+ G9wsP3+Ju0/R9T7aLGlq/Y64F7Jmxf8Rkk6YvV3t5xHmdaTG7Ppc9MBqQVGzf/NRisbe
+ KDVoEiPzUnvgFewjEKYYA8Xyxq8T6T4UEw1Z0u2EDr6MTfKK47PJWFlQSyPHUTNhQAqp
+ 41V4Pl3nEX6pL3GtRwZSqjp+rd5zqYzvFmAYuIJrhirK0AODh5JpX7Z+ZLbsqFLZQZyn
+ CgHw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWpQTc19t5fJ8X3FSQW1OQrCMeHBcem2mJrYkW5/8LN2XCdt9Q2MSqEvhLwLkBYRG8MLonuNknm7fdvd65S3CYeNd1YcKQK7TDCY4pwIF6u47LEa73JYSIxzJJS1/m4PSxoVaM6tAw9f2wwxfI1MA==
+X-Gm-Message-State: AOJu0Yx4IMhCQIf5h8DLzPUIiKaFHSVtve3jaoCwJzuklBH0O7CBgCSd
+ NZprbRZUS0kuHg8fRNmCYoJT5ZNbIuRAKSK+Xk13w4XDfq7C/8w6
+X-Google-Smtp-Source: AGHT+IGQkLZoZU22jL6ZeSbVX7Xh7HWjFnFtXQdEPeoe2xF6REBHYTUlxsEawbuUOvN4TCk0URPZbw==
+X-Received: by 2002:a05:6214:19e8:b0:6b4:ffc9:1e9e with SMTP id
+ 6a1803df08f44-6b53bbbe20dmr60711066d6.3.1719241953657; 
+ Mon, 24 Jun 2024 08:12:33 -0700 (PDT)
+Received: from localhost.localdomain ([142.198.217.108])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a7261f7ffa1sm3818666b.67.2024.06.24.02.11.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 24 Jun 2024 02:11:41 -0700 (PDT)
-Message-ID: <e61010e4-cb49-44d6-8f0d-044a193d29b2@redhat.com>
-Date: Mon, 24 Jun 2024 11:11:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] drm: backlight quirk infrastructure and lower
- minimum for Framework AMD 13
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ 6a1803df08f44-6b529eb3decsm27243976d6.12.2024.06.24.08.12.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 24 Jun 2024 08:12:33 -0700 (PDT)
+From: Wu Hoi Pok <wuhoipok@gmail.com>
+To: 
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, Wu Hoi Pok <wuhoipok@gmail.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Matt Hartley <matt.hartley@gmail.com>, Kieran Levin <ktl@framework.net>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Dustin Howett <dustin@howett.net>
-References: <20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] drm/radeon: remove load callback
+Date: Mon, 24 Jun 2024 11:10:44 -0400
+Message-ID: <20240624151122.23724-1-wuhoipok@gmail.com>
+X-Mailer: git-send-email 2.45.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Jun 2024 07:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -102,111 +84,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+Changes between v1 and v3:
 
-On 6/23/24 10:51 AM, Thomas Weißschuh wrote:
-> The value of "min_input_signal" returned from ATIF on a Framework AMD 13
-> is "12". This leads to a fairly bright minimum display backlight.
-> 
-> Add a generic quirk infrastructure for backlight configuration to
-> override the settings provided by the firmware.
-> Also add amdgpu as a user of that infrastructure and a quirk for the
-> Framework 13 matte panel.
-> Most likely this will also work for the glossy panel, but I can't test
-> that.
-> 
-> One solution would be a fixed firmware version, but given that the
-> problem exists since the release of the hardware, it has been known for
-> a month that the hardware can go lower and there was no acknowledgment
-> from Framework in any way, I'd like to explore this alternative
-> way forward.
+1. add "ddev->dev_private = rdev;"
+2. include a cover letter
 
-There are many panels where the brightness can go lower then the advertised
-minimum brightness by the firmware (e.g. VBT for i915). For most users
-the minimum brightness is fine, especially since going lower often may lead
-to an unreadable screen when indoors (not in the full sun) during daylight
-hours. And some users get confused by the unreadable screen and find it
-hard to recover things from this state.
+Wu Hoi Pok (7):
+  drm/radeon: remove load callback
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 1
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 2
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 3
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 4
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 5
+  drm/radeon: rdev->ddev to rdev_to_drm(rdev) 6
 
-So IMHO we should not be overriding the minimum brightness from the firmware
-using quirks because:
+ drivers/gpu/drm/radeon/atombios_encoders.c |  2 +-
+ drivers/gpu/drm/radeon/cik.c               | 14 ++--
+ drivers/gpu/drm/radeon/dce6_afmt.c         |  2 +-
+ drivers/gpu/drm/radeon/evergreen.c         | 12 ++--
+ drivers/gpu/drm/radeon/ni.c                |  2 +-
+ drivers/gpu/drm/radeon/r100.c              | 24 +++----
+ drivers/gpu/drm/radeon/r300.c              |  6 +-
+ drivers/gpu/drm/radeon/r420.c              |  6 +-
+ drivers/gpu/drm/radeon/r520.c              |  2 +-
+ drivers/gpu/drm/radeon/r600.c              | 12 ++--
+ drivers/gpu/drm/radeon/r600_cs.c           |  2 +-
+ drivers/gpu/drm/radeon/r600_dpm.c          |  4 +-
+ drivers/gpu/drm/radeon/r600_hdmi.c         |  2 +-
+ drivers/gpu/drm/radeon/radeon.h            | 11 +++-
+ drivers/gpu/drm/radeon/radeon_acpi.c       | 10 +--
+ drivers/gpu/drm/radeon/radeon_agp.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_atombios.c   |  2 +-
+ drivers/gpu/drm/radeon/radeon_audio.c      |  4 +-
+ drivers/gpu/drm/radeon/radeon_combios.c    | 12 ++--
+ drivers/gpu/drm/radeon/radeon_device.c     | 19 ++----
+ drivers/gpu/drm/radeon/radeon_display.c    | 74 +++++++++++-----------
+ drivers/gpu/drm/radeon/radeon_drv.c        | 27 +++++---
+ drivers/gpu/drm/radeon/radeon_drv.h        |  1 -
+ drivers/gpu/drm/radeon/radeon_fbdev.c      | 26 ++++----
+ drivers/gpu/drm/radeon/radeon_fence.c      |  8 +--
+ drivers/gpu/drm/radeon/radeon_gem.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_i2c.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_ib.c         |  2 +-
+ drivers/gpu/drm/radeon/radeon_irq_kms.c    | 12 ++--
+ drivers/gpu/drm/radeon/radeon_kms.c        | 18 ++----
+ drivers/gpu/drm/radeon/radeon_object.c     |  2 +-
+ drivers/gpu/drm/radeon/radeon_pm.c         | 20 +++---
+ drivers/gpu/drm/radeon/radeon_ring.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_ttm.c        |  6 +-
+ drivers/gpu/drm/radeon/rs400.c             |  6 +-
+ drivers/gpu/drm/radeon/rs600.c             | 14 ++--
+ drivers/gpu/drm/radeon/rs690.c             |  2 +-
+ drivers/gpu/drm/radeon/rv515.c             |  4 +-
+ drivers/gpu/drm/radeon/rv770.c             |  2 +-
+ drivers/gpu/drm/radeon/si.c                |  4 +-
+ 40 files changed, 193 insertions(+), 191 deletions(-)
 
-a) This is going to be an endless game of whack-a-mole
-b) The new value may be too low for certain users / use-cases
-
-With that said I realize that there are also many users who want to have
-a lower minimum brightness value for use in the evening, since they find
-the available minimum value still too bright. I know some people want this
-for e.g. various ThinkPad models too.
-
-So rather then quirking this, with the above mentioned disadvantages I believe
-that it would be better to extend the existing video=eDP-1:.... kernel
-commandline parsing to allow overriding the minimum brightness in a driver
-agnostic way.
-
-The minimum brightness override set this way will still need hooking up
-in each driver separately but by using the video=eDP-1:... mechanism
-we can document how to do this in driver independent manner. since
-I know there have been multiple requests for something like this in
-the past I believe that having a single uniform way for users to do this
-will be good.
-
-Alternatively we could have each driver have a driver specific module-
-parameter for this. Either way I think we need some way for users to
-override this as a config/setting tweak rather then use quirks for this.
-
-Regards,
-
-Hans
-
-
-
-
-
-
-> 
-> Notes:
-> 
-> * Should the quirk infrastructure be part of drm_edid.c?
-> * The current allocation of struct drm_edid in amdgpu is bad.
->   But it is done the same way in other parts of amdgpu.
->   I do have patches migrating amdgpu to proper usage of struct drm_edid [0]
-> 
-> Mario:
-> 
-> I intentionally left out the consideration of the firmware version.
-> The quirk will stay correct even if the firmware starts reporting
-> correct values.
-> If there are strong opinions it would be easy to add, though.
-> 
-> Based on amdgpu/drm-next.
-> 
-> [0] https://lore.kernel.org/lkml/20240616-amdgpu-edid-bios-v1-1-2874f212b365@weissschuh.net/
-> 
-> ---
-> Changes in v2:
-> - Introduce proper drm backlight quirk infrastructure
-> - Quirk by EDID and DMI instead of only DMI
-> - Limit quirk to only single Framework 13 matte panel
-> - Link to v1: https://lore.kernel.org/r/20240610-amdgpu-min-backlight-quirk-v1-1-8459895a5b2a@weissschuh.net
-> 
-> ---
-> Thomas Weißschuh (3):
->       drm: Add panel backlight quirks
->       drm: panel-backlight-quirks: Add Framework 13 matte panel
->       drm/amd/display: Add support backlight quirks
-> 
->  Documentation/gpu/drm-kms-helpers.rst             |  3 +
->  drivers/gpu/drm/Kconfig                           |  4 ++
->  drivers/gpu/drm/Makefile                          |  1 +
->  drivers/gpu/drm/amd/amdgpu/Kconfig                |  1 +
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 28 +++++++++
->  drivers/gpu/drm/drm_panel_backlight_quirks.c      | 76 +++++++++++++++++++++++
->  include/drm/drm_utils.h                           | 11 ++++
->  7 files changed, 124 insertions(+)
-> ---
-> base-commit: 1ecef5589320fd56af599b624d59c355d162ac7b
-> change-id: 20240610-amdgpu-min-backlight-quirk-8402fd8e736a
-> 
-> Best regards,
+-- 
+2.45.2
 
