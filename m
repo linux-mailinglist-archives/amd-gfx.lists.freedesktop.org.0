@@ -2,125 +2,173 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4A591786F
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jun 2024 08:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07313917999
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jun 2024 09:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 484B710E2A1;
-	Wed, 26 Jun 2024 06:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0D110E0D3;
+	Wed, 26 Jun 2024 07:24:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ofyOX9SW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJbKNOAY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89CAA10E2A1
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jun 2024 06:02:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4298810E28E;
+ Tue, 25 Jun 2024 12:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719320131; x=1750856131;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=g44pi5Xs4hPKpIahgvtBZhj79WVgTvddJZITtLLqTmQ=;
+ b=eJbKNOAYYHAoFN3tWPrXUy/l9FaZE37GH6nv/wUK/KaF+BOxLOiQOL8r
+ 9zKZRYgSMBVXqjC1AObioqgkDdJFf7jZOrC4RFfn9cDjPIqoragKdTHsC
+ 3RfBaPJKyyDP6J+ZlGZehL1XMRX6y+eYC4YbNoFnw7e97WLEt58B7xfHT
+ UDXGZErAo7MPWLRzZy+zwnBRY6i+Kz94/KUCUD1rl1duOCzp4tws7ceKY
+ J8Oqvk58RllcKvWgBNwHKHCYMNEocCk2IIlKT1/AnmhZIS7xiq5gimRdx
+ TKQ39h395IxyHlIfuKy/+n9+d1M6XoLATW6khiOMKYxipOm1pyb/taAFu Q==;
+X-CSE-ConnectionGUID: G862+jhTTLqoy190CwJgHQ==
+X-CSE-MsgGUID: wcw9nB6CRJikBDQNw9KNnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="20214274"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="20214274"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 05:55:29 -0700
+X-CSE-ConnectionGUID: DAfdpKBjT8yJ0UJHz+vjhA==
+X-CSE-MsgGUID: qE7JRxOvTISFHj+f1j9www==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="74840818"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Jun 2024 05:55:29 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 25 Jun 2024 05:55:28 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 25 Jun 2024 05:55:28 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 25 Jun 2024 05:55:28 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 25 Jun 2024 05:55:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hCsdEeDjCL6bW4G+uTKlpMGqML44pNN6Kjl2gZKcX2gNN9cw/2FhmxMz7D98S1hhAnuS0dcV9KUwf/ihI/aDWOzA7yjhxhRQFXv1Wqdn7NacyMDWvDAMEBz/tGXMkKPALNqpIEBsxS1jTcPOnl2tJuY4U5wCVHwKXsE13X0v74ypAcJb5NL7bn5yarfekfdVBxu+ItWZV9xvFMGrjNTNRdh05Fdra6Ymh+SJU+bbOT6i6r1gTgEKFEpH6/hNfGk9C+fFP0IjihosQJWO7C5Z0khIwDWFW7mKeyZ/sgE8P8kmGzKxqMPyyifh8StunSsGZ/w5XzgYYJfoLFglesX0vA==
+ b=P877rga0ffxa36oerW/54lgJySlksVhmHUs/ljksxYw/ove5mGoGDAz+v9ofg7MvFUlVM0t9TGG/91if0Ah4ey2x4NIJhgSJwo8OfLoCzJ0/89Vu+7KsQv6Y8YrBLWMD7jgHJHt6oJz729Z2MGJfM6blOzrs5GLBmselbYYy3O3Bbb6C2qi3hpRnsrEbx4bdH3dvaZK1KmqWnIGf/uBKThqowCNr6ZTSGieuBdOXlbXOeJu63YkVFZxSyaI54lFUzmuIDvj76ZtEO0Sa/Tvc8SanzgGf0KkrgOKIBFil0+TGHgN4DTiXyLRAZyUqun5MHAueArihaxhUhnqkdupLVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=68Zr0gISw58aro7WeEI6pZJkA8qRpRGu3StXLmZCT0Q=;
- b=WiZlFLaAE+Vev9jO5L0CsWDn9UkA+9lWLiZVtV8JGpa4n1nlw1eQWzLf75cSXnKd0j9gVHsaZ4KhLguiAYQta8RKnQo7/MI9QA/5jaycURItTSot7rah9/Tr+HyQAW9OnreCOB6w1TGAt+sCmoyL/NMamJat8wIzeURgtC9G0Pzzezg8i8d1RKxxjR4QFQBWzU2Y2ONdBCykBJzIhRcubCz0+rVSoDtlzyn1aSKrWyGyfpgCLQnQcAu4jqc35S987SIu2Cy0rtM3Ej9RrxzuqJ6xYe3Ir8EMza0mM9a36x2qungDcvBz3oDQSNjJhFt2N0Zm8nLes5ekGy5Le0Eetg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=68Zr0gISw58aro7WeEI6pZJkA8qRpRGu3StXLmZCT0Q=;
- b=ofyOX9SWCOY2FK5yJlMn2AP7yptEwDjmMWcwC5WszLdOrjnPVQcMqtvtJI/b88kj/AMCJzAEEqtr1DHX7p3FpwFaO1RGmCpFudNL39LBavynGtKE5IxAyai2r8NvQZghtuA3hRNf6YW5nP6Hs3qMMdIMhwhNsElwu06gW7N1wQA=
-Received: from CY5PR15CA0249.namprd15.prod.outlook.com (2603:10b6:930:66::16)
- by MN6PR12MB8565.namprd12.prod.outlook.com (2603:10b6:208:47d::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Wed, 26 Jun
- 2024 06:01:58 +0000
-Received: from CY4PEPF0000E9D8.namprd05.prod.outlook.com
- (2603:10b6:930:66:cafe::58) by CY5PR15CA0249.outlook.office365.com
- (2603:10b6:930:66::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.23 via Frontend
- Transport; Wed, 26 Jun 2024 06:01:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9D8.mail.protection.outlook.com (10.167.241.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Wed, 26 Jun 2024 06:01:55 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Jun
- 2024 01:01:54 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Jun
- 2024 01:01:54 -0500
-Received: from jane-sm-stand.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 26 Jun 2024 01:01:52 -0500
-From: Jane Jian <Jane.Jian@amd.com>
-To: <Lijo.Lazar@amd.com>, <christian.koenig@amd.com>, <Haijun.Chang@amd.com>, 
- <Victor.Zhao@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Jane Jian <Jane.Jian@amd.com>
-Subject: [PATCH] drm/amdgpu: normalize registers as local xcc to read/write in
- gfx_v9_4_3
-Date: Wed, 26 Jun 2024 14:01:51 +0800
-Message-ID: <20240626060151.2554500-1-Jane.Jian@amd.com>
-X-Mailer: git-send-email 2.34.1
+ bh=CWov00CtmkGmnXw1yr4tlqb4big4vy+jr49WOSXgTwU=;
+ b=FXvN27RxSnJUQTMjwIugTalx9jOY/r6cxCH8Wsy9iVSVMYn3nZEq3uI/hsRhmq0CmxCZR+m7pZFp0LMBig14tYOIBJbgGqCa9l0k3Sv9i5Q9mgdSyl0vVtpVKczXt7aeIR2ACePgMD1dm/0/q6RuCC4ZsIMTH5lRACz9Lwfph0API0Z1Edxd/0e6Y8dt0ay/vvktjtNf9jxGGG50vp8ccphFJtfDdszLuEA8sC1ekesWnUK7O2eTaUahdC4ai4+F4mH5ibQdroYjGzHsVcMSQcSmCyNLaWr7BTOjgPwN6X7K7dQgFtpU85hnXMGTl0T6fUET25JUvlYLGZsky6tC9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB6039.namprd11.prod.outlook.com (2603:10b6:8:76::6) by
+ DM4PR11MB5277.namprd11.prod.outlook.com (2603:10b6:5:388::23) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7698.30; Tue, 25 Jun 2024 12:55:26 +0000
+Received: from DS7PR11MB6039.namprd11.prod.outlook.com
+ ([fe80::3f0c:a44c:f6a2:d3a9]) by DS7PR11MB6039.namprd11.prod.outlook.com
+ ([fe80::3f0c:a44c:f6a2:d3a9%3]) with mapi id 15.20.7698.025; Tue, 25 Jun 2024
+ 12:55:26 +0000
+Date: Tue, 25 Jun 2024 20:55:13 +0800
+From: Philip Li <philip.li@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+CC: kernel test robot <lkp@intel.com>, Linux Memory Management List
+ <linux-mm@kvack.org>, <amd-gfx@lists.freedesktop.org>, <imx@lists.linux.dev>, 
+ <intel-xe@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-mediatek@lists.infradead.org>, <linux-mtd@lists.infradead.org>,
+ <linux-trace-kernel@vger.kernel.org>, <netdev@vger.kernel.org>, Mark Brown
+ <broonie@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ f76698bd9a8ca01d3581236082d786e9a6b72bb7
+Message-ID: <Znq+MVbzKvDAXkaX@rli9-mobl>
+References: <202406230716.DQbMBKh0-lkp@intel.com>
+ <20240624123154.4c3125c3093636de35b407dd@linux-foundation.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240624123154.4c3125c3093636de35b407dd@linux-foundation.org>
+X-ClientProxiedBy: SG2PR04CA0168.apcprd04.prod.outlook.com (2603:1096:4::30)
+ To DS7PR11MB6039.namprd11.prod.outlook.com (2603:10b6:8:76::6)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D8:EE_|MN6PR12MB8565:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd921ba6-b82a-4e89-f474-08dc95a57bc5
+X-MS-TrafficTypeDiagnostic: DS7PR11MB6039:EE_|DM4PR11MB5277:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ed01ead-e6b9-43ef-2104-08dc95161537
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230038|1800799022|82310400024|36860700011|376012; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UMg8QAC5ApCIN8LImFOdXthUDqADYcpovByBqvvtaBW2gns6jNZAH0KJuQYZ?=
- =?us-ascii?Q?UNd+ohywtJjUuG00Mefqoe+lSoHIyuB+YnwI3+mZEqetiDwaWTOI3WTp+UOM?=
- =?us-ascii?Q?Vcob0Z3nUtuulbr0N71qwAXDKY0SKbiYs4LPdF0rHsd+Pv7vuLs3m5hiJ1Lu?=
- =?us-ascii?Q?1/oJhj8aMBDVdsuNkldXEJu7yFweBTwE8f5gumlvbgh6qhyb4c43P4otvZFa?=
- =?us-ascii?Q?lGCt/rcc1z831LTd3v69aHn7RJH5Xuq0XkLdTDogZdihGjt+TgH7ZB44KCdG?=
- =?us-ascii?Q?LjCCGvDskx40zFskRXKZBU9pt9d/738ZLBo0ndDhu3uNLpPSoegUm2DYgnQz?=
- =?us-ascii?Q?WOYZC5LSa0Hqkpv7NWQk/OEeAyfEcXHQy+jLQbQIRwzPb0c7tZ/rqRwWjuQK?=
- =?us-ascii?Q?i19TvmKHENrgbB58edU1QBjaIxy2rJ0e9s6IBqtikSO5oO2yNvWW++UcWGjR?=
- =?us-ascii?Q?sFXEo7zvpGa1Z/ooBaPAV81WbXlZ1/+i/EF4WfjF4xOj/8jSyzslP0E1xdQP?=
- =?us-ascii?Q?iYVA5J6dIX9pVkGRVItN0nBKpqX3ah1+UmXXR0g/FfcZK6O/mAmTtEYkTW3m?=
- =?us-ascii?Q?F7Bt6d3q2noGKGE4EOTBk+vPxTAasYViXfX+Fcu+aT0cO0AN8oPn/Ajp3S/T?=
- =?us-ascii?Q?4659QgiffZ8VH/oRfZ+sz+qlehRsBU+Xk3HNpMF34y41ZroUT8V56vtrWC6J?=
- =?us-ascii?Q?BXzRWsHeKu0mZ3HaawHKFgDTG9OOBqvrlQCYQfRvf2LcvQGmuk1YfzelljV6?=
- =?us-ascii?Q?PVEZiAjb6FJJ2U/ir7onDLxLgVJRo/dmfSV0KznrRjggEJtNT8ok4Lpek05a?=
- =?us-ascii?Q?fJ9ursRMQV7orOwU1bXq3gM6OaTFnW+t1v25rULO31DrWhndzjuPaVEGwazs?=
- =?us-ascii?Q?XG6lEghnN67M65qhIHJBwI6H0BsBR08px/8a8o8g8UNxLRrQLERQFDp9x5fD?=
- =?us-ascii?Q?zTD/KdkVcay0crIB15BmjaRIxESlijEBMfmYQGReJJppwMPJ9j0ZzZxVv+se?=
- =?us-ascii?Q?VzRRcRgWIX/EVLUiDCXad2mSwbh73DGLwHVEV4Z1437L+XpHRay6DP8lAVXI?=
- =?us-ascii?Q?lkNRIE+YEj8HrUCigvwVSnD2RYtrbYtrkp8evDfk6h+DYGoo2JjPDKAoCV5C?=
- =?us-ascii?Q?iyichCNKPsUWeR0L05vWQ+dnMfuI7PZ/Y8S3vEKVFdj6auAxuX61o70dB7zq?=
- =?us-ascii?Q?GtsoJ0BG0tONX0624yO7QyOxY7zS+m5QnzKcxoh1yjPWChjE0/ATDtHudzxn?=
- =?us-ascii?Q?BpXDxl/mxd8ciSapYAerqIiz+LqalKVfOIPrK2iA9EFIuv4Si0dvJrSosFAC?=
- =?us-ascii?Q?I5qKKEDCFpml2fnwD6CB04Lzy1tpQer/5dvX4IbvFzlJnu3cjDIsgOe1tUyO?=
- =?us-ascii?Q?eS9YOpSOirK2C79lmwbiwQCccGyT00N3KBAnq72xGFVBfHDerERXQYqQ2dhY?=
- =?us-ascii?Q?c3h499FpcXc=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230038)(1800799022)(82310400024)(36860700011)(376012); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 06:01:55.7231 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd921ba6-b82a-4e89-f474-08dc95a57bc5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8565
+X-Microsoft-Antispam: BCL:0;ARA:13230037|7416011|376011|1800799021|366013;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ZhSH/lbW6BitPLq78KS+g/XWUmze0Slwf/YlYwkex05hCx546pEv+Pp3fJWU?=
+ =?us-ascii?Q?cMxNC6avhZcmDuQJNXf0cxGk5Z80vEBsqP1rkA9rRtUb3ifloSmX7kltzQWO?=
+ =?us-ascii?Q?T7eNpMBw+oabQ0hdRMnqu/MT2cEUJ8HOBEn/pCyLFUwirzmX5Q7SKTCu/otb?=
+ =?us-ascii?Q?sOscJalebYSszmBonJxK+TWqSdKLO3H6Ubo6Q2H0BR0tQ/+VL6NdHvhHxmhh?=
+ =?us-ascii?Q?KaSFV03QrA6SHDqmibCO12VMoYwMQA4wdlZmcXhCeZG0RhqmjZD2DBSiNIlU?=
+ =?us-ascii?Q?EhEn1brmoMQhxyDFKfo6ToBWE02ZKARLywmC0GQfQBm2fyepNcRAd3PDEzg6?=
+ =?us-ascii?Q?yFNhE4FCDrDg4zpplocH+vVN/Xruahgk28tbEhbbqy2mQvbZBrk+6XEwCICi?=
+ =?us-ascii?Q?m7JgUB0jWxnISCOK2RB2putNxZ++mxmK1IBF/ZGZlZaTe5IvAkUWGSZhvU0L?=
+ =?us-ascii?Q?2uuzhTfMQRTZ7wjUOLn8gKmNV+cec6DenhRHjaIjK0RjWkmdSVLFX6uMgpiY?=
+ =?us-ascii?Q?+DxNBM72IG8Y2z8maGbPzHBf0dGMyIppIwKH9QAH4ifDUJg01QhX8VTzesJQ?=
+ =?us-ascii?Q?Cl5no1KzpLgB61fQVZ+Ev3IaNUVxhkhCyJWAGAcbf+ApBAp08HHtXyYjA4yJ?=
+ =?us-ascii?Q?MjdCTeDyfB/VIyTLhk0vR0RZYTt2dRtLBNnDm2b00DS5UFVLcHVRNZaRlfkt?=
+ =?us-ascii?Q?2V+MvK8CfUWowRz2bCwtF9yQc3UKDlNK5M0sKtSlEF6fr/fleOiv0mCVbnw5?=
+ =?us-ascii?Q?BqxdOowwefHV4dQ/VJohwb6q+VWkO1y/xpaaQcx10s1bOo/0+4enqHxM3JYx?=
+ =?us-ascii?Q?n1DL6MEmliWDV3kmb6/cVj7L1kEw5pNeoONADGNPg76LBE1LoIBLTUzFSk+m?=
+ =?us-ascii?Q?iSnhOoF1ZzTjnI5CiA9buHP34wJMmSq/wmTlnZc15FsxqDU0IA6cwK4bg0gq?=
+ =?us-ascii?Q?cqnnwXrM862yLA/sxRQXgoGcdxVwetrNzq3i9foijaHw9qGMGJjrSfhT6o6h?=
+ =?us-ascii?Q?xNG9A/kco/qTcgLq6auxOKOlySQomz0NdxizgNXRxCrBZo4TX2NDjwV9SOCL?=
+ =?us-ascii?Q?CYj3mTWR0dBkLN9AzQr2guDe7PIKgTX+yIBMRingnguU8Ha8YjbpiwAN/Tqw?=
+ =?us-ascii?Q?9m/WvlUpW7rDR3v4dKOM2UoEyIksXaV4jSed+L+WQCLzUUpmq92fbA2FrO/S?=
+ =?us-ascii?Q?6PeHxPghz9Fb+8qZ6tIRdd8wYH7bCSR2tTGH875Ky08ZWqznZqjSIpT/agv6?=
+ =?us-ascii?Q?aSecfBaCLYU3mmtrQYygJrnodOi5321QuwgZHLJQ3w=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB6039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(7416011)(376011)(1800799021)(366013); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FyIu3o/UWaqo0W+2ziYcAR2/11UTCK0oJYOJ+Hp3uriZ7xEiy3zUkLxAlalM?=
+ =?us-ascii?Q?x5edpZuy1NTrWFtVCUCYCkfakYjwIrNvOoIOSaFJJXUGpTjy8dZycEfFIv17?=
+ =?us-ascii?Q?XTDYERWA0DNY+h/8poirYc4VjJOqlEYoBntNdmaBxws2sPfshpcwDrdxQGzj?=
+ =?us-ascii?Q?KebZp1Ky0yhYgu2OpgqRP2ba4czSQf9Pl/UFCtV98XvMF+re3VpCixljePY5?=
+ =?us-ascii?Q?Jgs5orlSrYfh1KgCBOJJJ2VCSs+0ISnKN3vjfKZFaXkxEQjwpZOOp/XM2alD?=
+ =?us-ascii?Q?tGnYrWTb+O80wAKcKDFQjrtaGfMszDaG0TuiaTUahCJzovx5p63XLBiVXSBx?=
+ =?us-ascii?Q?wMRGSVM0I9u+ZsIJHesRHRM+TqcwPYnOflldvFMDbKLM23iKahUpiYv7YXy1?=
+ =?us-ascii?Q?fDPo7NZU+YKgxqVARhsr1Z92VrFkzJvsnTJC+HpHQQ87zHf9rGJCVQmIKbJy?=
+ =?us-ascii?Q?Jn0f80lvCxMD8YFIPddgzrU6NvPpuCXJVeuBkCB1BFvPFBf4koaYe+n14Vlu?=
+ =?us-ascii?Q?O67/wk19J+N8178WQz5uiHUNzB+l/SRvbqcbmxesfzJiYh/wpbhQqMqN2c5v?=
+ =?us-ascii?Q?KKbyLN37DBWtorSoCUhe2nhyQP2OT2fYxtgzzF5B6Qoc4VKcEB7xIq4TPpfL?=
+ =?us-ascii?Q?GbuIzWxpiVQCBIoWAJIgPrewSEnDJAQ9IyVO3AOV5G8DTeZU9Dl0N7gwu//O?=
+ =?us-ascii?Q?f68dC8GIxfJWYQ2oDZDjQv0EOxtOWw9Lm4LHZvrCexuudlcNr45jCG6sL6uu?=
+ =?us-ascii?Q?Z0EVbIOz4qnwA4LD7O7dblOx6EpWWpYaqakqFLqtGaAJCXzQUb9jvo2V/eaS?=
+ =?us-ascii?Q?1s/Y1DkADA3H4PJdeHR3wrrBqMltwbF9Bge/zYsxa0SWtiGThEFdeY0bQa76?=
+ =?us-ascii?Q?/wcL3K6eipfOsavXZEadyjhpLTvZ5gBatbOs+YSE3O6ZCabv30WOqILhROYg?=
+ =?us-ascii?Q?8fkU6dTuF3TXkLEmI+6u8FuGiaOmLL+xHy63Ws/L0IdxdY3udzuMOOJmpXN9?=
+ =?us-ascii?Q?0rJsDeQX7BkhCoAOOumLJMXRA8gGvGn145R+lC4zoiKwSMSRiaHfMYZUK4XE?=
+ =?us-ascii?Q?ckRhvVKsdtYhluMFG60oxvW1lDhxvsH8GKcKDU+GQBFNSiL90WvP4bgG/+M9?=
+ =?us-ascii?Q?W3YqkTAjBk2I9drYc6j2daZOqG/CXcLl12jzHnjBu6wMjhdri3r2S8wWjUq6?=
+ =?us-ascii?Q?J13jSMS5YQqpqOPThQR855oExymcWY9xrJuLFp0Km1Z2TLV4IEHIi8cOfOkZ?=
+ =?us-ascii?Q?BkB2fxNuniAiw3l2egsz9kpxHdqwfMmboqpxFOXOc0DNoSjPU/uJumtVhJB5?=
+ =?us-ascii?Q?jWLzHTMScGrgoRwnuJc52/oSGU31jVXWb2fCB3DAxtGLc+AR5lnw0r1QmIve?=
+ =?us-ascii?Q?6GmIEDHDjjukjDTdzlf4Bn+8qap81Uw6UFRSoxlHC8k4FRu8kAWigvWFhrbr?=
+ =?us-ascii?Q?wSTodaj823UTcitysuB/3pdLdiFQmEL5KwTt6SvSjxSvMzN3sPmgl+9/H83l?=
+ =?us-ascii?Q?ATtFqCxWpgB77/5m1aw0jkeRb2KqL9xBpUHZS70iuczCe8ffOCw0anWGEZpE?=
+ =?us-ascii?Q?YVNftbCVCe7vJJnlUgZv9EwVWzDyhu29kszZAswA?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ed01ead-e6b9-43ef-2104-08dc95161537
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB6039.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2024 12:55:26.0864 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /3v4ISKi8dIs5u6YAztN4x1hkwhMEgNJ+hBkoDH2xpqAO65AE5e9HLB8aafw8/iW8bUchXQXB+5d4aoWZ/XnaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5277
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Wed, 26 Jun 2024 07:24:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,96 +183,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[WHY]
-sriov has the higher bit violation when flushing tlb
+On Mon, Jun 24, 2024 at 12:31:54PM -0700, Andrew Morton wrote:
+> On Sun, 23 Jun 2024 07:11:24 +0800 kernel test robot <lkp@intel.com> wrote:
+> 
+> > tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> > branch HEAD: f76698bd9a8ca01d3581236082d786e9a6b72bb7  Add linux-next specific files for 20240621
+> > 
+> > Error/Warning reports:
+> > 
+> > https://lore.kernel.org/oe-kbuild-all/202406220536.JnAncjqz-lkp@intel.com
+> > https://lore.kernel.org/oe-kbuild-all/202406220754.evK8Hrjw-lkp@intel.com
+> > 
+> > Error/Warning: (recently discovered and may have been fixed)
+> > 
+> > drivers/soc/qcom/smsm.c:(.text.qcom_smsm_remove+0x70): undefined reference to `mbox_free_channel'
+> > 
+> > Unverified Error/Warning (likely false positive, please contact us if interested):
+> > 
+> > include/linux/container_of.h:20:54: error: invalid use of undefined type 'struct thpsize'
+> > include/linux/list.h:645:25: error: invalid use of undefined type 'struct thpsize'
+> > include/linux/stddef.h:16:33: error: invalid use of undefined type 'struct thpsize'
+> > mm/huge_memory.c:455:21: error: implicit declaration of function 'to_thpsize'; did you mean 'thp_size'? [-Werror=implicit-function-declaration]
+> > mm/huge_memory.c:455:37: error: invalid type argument of '->' (have 'int')
+> > mm/huge_memory.c:558:35: error: 'MTHP_STAT_FILE_ALLOC' undeclared (first use in this function); did you mean 'THP_FILE_ALLOC'?
+> > mm/huge_memory.c:559:38: error: 'MTHP_STAT_FILE_FALLBACK' undeclared (first use in this function); did you mean 'THP_FILE_FALLBACK'?
+> > mm/huge_memory.c:560:45: error: 'MTHP_STAT_FILE_FALLBACK_CHARGE' undeclared (first use in this function); did you mean 'THP_FILE_FALLBACK_CHARGE'?
+> > mm/huge_memory.c:579:17: warning: assignment to 'struct thpsize *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+> > mm/huge_memory.c:579:33: error: invalid application of 'sizeof' to incomplete type 'struct thpsize'
+> > mm/huge_memory.c:583:44: error: invalid use of undefined type 'struct thpsize'
+> > mm/huge_memory.c:608:15: warning: passing argument 1 of 'kfree' makes pointer from integer without a cast [-Wint-conversion]
+> > 
+> >
+> > ...
+> >
+> >
+> > |-- x86_64-randconfig-014-20240202
+> > |   |-- include-linux-container_of.h:error:invalid-use-of-undefined-type-struct-thpsize
+> > |   |-- include-linux-list.h:error:invalid-use-of-undefined-type-struct-thpsize
+> > |   |-- include-linux-stddef.h:error:invalid-use-of-undefined-type-struct-thpsize
+> > |   |-- mm-huge_memory.c:error:MTHP_STAT_FILE_ALLOC-undeclared-(first-use-in-this-function)
+> > |   |-- mm-huge_memory.c:error:MTHP_STAT_FILE_FALLBACK-undeclared-(first-use-in-this-function)
+> > |   |-- mm-huge_memory.c:error:MTHP_STAT_FILE_FALLBACK_CHARGE-undeclared-(first-use-in-this-function)
+> > |   |-- mm-huge_memory.c:error:implicit-declaration-of-function-to_thpsize
+> > |   |-- mm-huge_memory.c:error:invalid-application-of-sizeof-to-incomplete-type-struct-thpsize
+> > |   |-- mm-huge_memory.c:error:invalid-type-argument-of-(have-int-)
+> > |   |-- mm-huge_memory.c:error:invalid-use-of-undefined-type-struct-thpsize
+> > |   |-- mm-huge_memory.c:warning:assignment-to-struct-thpsize-from-int-makes-pointer-from-integer-without-a-cast
+> > |   `-- mm-huge_memory.c:warning:passing-argument-of-kfree-makes-pointer-from-integer-without-a-cast
+> 
+> Is there a way for us to obtain that config file?
 
-[HOW]
-normalize the registers to keep lower 16-bit(dword aligned) to aviod higher bit violation
-RLCG will mask xcd out and always assume it's accessing its own xcd
+Sorry, kindly ignore the issues associated with x86_64-randconfig-014-20240202 kconfig.
+The bisected reports for it are mostly wrong such as [1], [2] due to bot issue, thus these
+wrong info was included in this summary report as well.
 
-v2
-add check in wait mem that only do the normalization on regspace
+[1] https://lore.kernel.org/oe-kbuild-all/202406220112.qjyQbasK-lkp@intel.com/
+[2] https://lore.kernel.org/oe-kbuild-all/202406211750.Ks4k82Gi-lkp@intel.com/
 
-Signed-off-by: Jane Jian <Jane.Jian@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 33 +++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index 8d8763ebe027..1149595a02d8 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -55,6 +55,14 @@ MODULE_FIRMWARE("amdgpu/gc_9_4_4_rlc.bin");
- #define mmSMNAID_XCD1_MCA_SMU 0x38430400	/* SMN AID XCD1 */
- #define mmSMNXCD_XCD0_MCA_SMU 0x40430400	/* SMN XCD XCD0 */
- 
-+#define XCC_REG_RANGE_0_LOW  0x2000     /* XCC gfxdec0 lower Bound */
-+#define XCC_REG_RANGE_0_HIGH 0x3400     /* XCC gfxdec0 upper Bound */
-+#define XCC_REG_RANGE_1_LOW  0xA000     /* XCC gfxdec1 lower Bound */
-+#define XCC_REG_RANGE_1_HIGH 0x10000    /* XCC gfxdec1 upper Bound */
-+
-+#define NORMALIZE_XCC_REG_OFFSET(offset) \
-+	(offset & 0xFFFF)
-+
- struct amdgpu_gfx_ras gfx_v9_4_3_ras;
- 
- static void gfx_v9_4_3_set_ring_funcs(struct amdgpu_device *adev);
-@@ -217,9 +225,24 @@ static void gfx_v9_4_3_init_golden_registers(struct amdgpu_device *adev)
- 	}
- }
- 
-+static uint32_t gfx_v9_4_3_normalize_xcc_reg_offset(uint32_t reg)
-+{
-+	uint32_t normalized_reg = NORMALIZE_XCC_REG_OFFSET(reg);
-+
-+	/* If it is an XCC reg, normalize the reg to keep
-+	   lower 16 bits in local xcc */
-+
-+	if (((normalized_reg >= XCC_REG_RANGE_0_LOW) && (normalized_reg < XCC_REG_RANGE_0_HIGH)) ||
-+		((normalized_reg >= XCC_REG_RANGE_1_LOW) && (normalized_reg < XCC_REG_RANGE_1_HIGH)))
-+		return normalized_reg;
-+	else
-+		return reg;
-+}
-+
- static void gfx_v9_4_3_write_data_to_reg(struct amdgpu_ring *ring, int eng_sel,
- 				       bool wc, uint32_t reg, uint32_t val)
- {
-+	reg = gfx_v9_4_3_normalize_xcc_reg_offset(reg);
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, 3));
- 	amdgpu_ring_write(ring, WRITE_DATA_ENGINE_SEL(eng_sel) |
- 				WRITE_DATA_DST_SEL(0) |
-@@ -234,6 +257,12 @@ static void gfx_v9_4_3_wait_reg_mem(struct amdgpu_ring *ring, int eng_sel,
- 				  uint32_t addr1, uint32_t ref, uint32_t mask,
- 				  uint32_t inv)
- {
-+	/* Only do the normalization on regspace */
-+	if (mem_space == 0) {
-+		addr0 = gfx_v9_4_3_normalize_xcc_reg_offset(addr0);
-+		addr1 = gfx_v9_4_3_normalize_xcc_reg_offset(addr1);
-+	}
-+
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WAIT_REG_MEM, 5));
- 	amdgpu_ring_write(ring,
- 				 /* memory (1) or register (0) */
-@@ -2725,6 +2754,8 @@ static void gfx_v9_4_3_ring_emit_rreg(struct amdgpu_ring *ring, uint32_t reg,
- {
- 	struct amdgpu_device *adev = ring->adev;
- 
-+	reg = gfx_v9_4_3_normalize_xcc_reg_offset(reg);
-+
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_COPY_DATA, 4));
- 	amdgpu_ring_write(ring, 0 |	/* src: register*/
- 				(5 << 8) |	/* dst: memory */
-@@ -2742,6 +2773,8 @@ static void gfx_v9_4_3_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg,
- {
- 	uint32_t cmd = 0;
- 
-+	reg = gfx_v9_4_3_normalize_xcc_reg_offset(reg);
-+
- 	switch (ring->funcs->type) {
- 	case AMDGPU_RING_TYPE_GFX:
- 		cmd = WRITE_DATA_ENGINE_SEL(1) | WR_CONFIRM;
--- 
-2.34.1
-
+> 
+> "mm: shmem: add multi-size THP sysfs interface for anonymous shmem"
+> moved things into mm_tytpes.h but didn't include it so perhaps this
+> will fix:
+> 
+> --- a/mm/huge_memory.c~mm-shmem-add-multi-size-thp-sysfs-interface-for-anonymous-shmem-fix-4
+> +++ a/mm/huge_memory.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/swapops.h>
+>  #include <linux/backing-dev.h>
+>  #include <linux/dax.h>
+> +#include <linux/mm_types.h>
+>  #include <linux/khugepaged.h>
+>  #include <linux/freezer.h>
+>  #include <linux/pfn_t.h>
+> _
+> 
