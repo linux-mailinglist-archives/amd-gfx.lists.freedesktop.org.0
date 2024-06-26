@@ -2,53 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F449182A1
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jun 2024 15:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE883918389
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jun 2024 16:00:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0B5510E8C9;
-	Wed, 26 Jun 2024 13:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97DE410E6D7;
+	Wed, 26 Jun 2024 14:00:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mapRFX90";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C1410E8A8;
- Wed, 26 Jun 2024 13:07:07 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-01 (Coremail) with SMTP id qwCowABXN0xsEnxmiXAGAA--.1461S2;
- Wed, 26 Jun 2024 21:07:02 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, jun.lei@amd.com, wayne.lin@amd.com,
- dillon.varone@amd.com, nicholas.kazlauskas@amd.com, Qingqing.Zhuo@amd.com,
- stylon.wang@amd.com, make24@iscas.ac.cn
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Add null check before access structs
-Date: Wed, 26 Jun 2024 21:06:50 +0800
-Message-Id: <20240626130650.2866706-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFC310E6D7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jun 2024 14:00:03 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-2c70c08d98fso5316932a91.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jun 2024 07:00:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1719410403; x=1720015203; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nCldR24CpPQsghSr5m/Lvfwnm5ubPmeRHEy6d4yNV4s=;
+ b=mapRFX90Vz2+ErlW2ZNr1dSfU5WNa9AuCihXF3TKtVPicX7gQ68qNnRn1myapjFmyC
+ LmdhZ+CdKl8jKYqJx5JqTGzbE7lH1cmR/MQ5hUJab3jZ269dVxfRn2f2tmj26PyddTYJ
+ R2XRIly6vOsHTpJBYlviVWi2glxHGDuVEBvJPdmSy151jp8a510G/Ix4bC4ugu3efR7X
+ r/o/aLeo2eQpD158hPz9HHysGcsscwXfKNMcBNpX9Yp7fk3puMgpK+pQs9uRVqWF4uWO
+ 50l0lr+Zf1TuesZDbG1P4/SsgkHE8jzM7K3HEC0OYZLL7bDsACAvVi2MHoIJ7IH2fqE8
+ yq3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719410403; x=1720015203;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nCldR24CpPQsghSr5m/Lvfwnm5ubPmeRHEy6d4yNV4s=;
+ b=n3fGYdO+clXL7PCy39TdmUEmhfzL6i3VT12jHcjL+FZZ1iJ7RVXI/kJkCc6aImMkFU
+ XHB5kvo8c7VGJGyaNLkVfLcGSMZH+9FuDMJg+WfGYhRBAftJQYZ624DAZm2ZLhRnq2ei
+ 8iv5CoQphTxIj4HQSmYnslfetgNuXSlPhAglSCB9aLob389w0dlODFq552azdCK8+Vky
+ ID2DsJNamxYG/HseB4b4N5wFanMqUFmisRpQs4bE40VeRw+D7pZnIqsPGNbF4cFQ2X/q
+ i63lGKCMtLxu1DJ4BXKtPvB5sJum7anUjIXXd2vSv5Io/cm6m5cbHCwyTT+MKFPrgK+F
+ isLA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVWxITaAsFW/qEHxeKj+dBDtN32GpCOmOlIoMDg2IoJg6Dnh8/UHKzeb/Eb8NUdKodE58izkNLUhOLglwMB3uWjFA44TfoChLZ5XVsYoA==
+X-Gm-Message-State: AOJu0YzPn3tliDohTOD965dnMimrxxpJmfM4jIi1buYP5kaU+smRBk/l
+ 4uRE6ZSuMvKhMNuKwxDcXkYwyJRESeHPz1jmH3zn8TwhgPkN9gkaaEaPodKMJ9k078HP0vKttJ8
+ IxFl6wcQSxC7NTmWXQ6Ojhg8qs0Q=
+X-Google-Smtp-Source: AGHT+IECwEV4lXbGVbY8jvF/tUQcyK0flqZz0koUeEluRoRWI3+OGkYza5W5DBXrtEdEdBAcsTC8VdnzYKwVwRi7bX4=
+X-Received: by 2002:a17:90b:1bcc:b0:2c8:aa0:d83 with SMTP id
+ 98e67ed59e1d1-2c858199a7bmr10913511a91.9.1719410402497; Wed, 26 Jun 2024
+ 07:00:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowABXN0xsEnxmiXAGAA--.1461S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrtr1UtFW5Kry3XF4xCryrtFb_yoWDXrc_K3
- WUZrWftryUC3Z09F1YyrnxuFyF93yrZF4vqwn7KF9ayryxZFyxZ3yxXrW8Wr18ZrZrtFyD
- Aa9F93Z5JwnrKjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb3kFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
- Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
- YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
- AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
- 17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
- IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
- IxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUShFxUUUUU=
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
-X-Mailman-Approved-At: Wed, 26 Jun 2024 13:37:01 +0000
+References: <20240625142418.156810-1-pierre-eric.pelloux-prayer@amd.com>
+ <CADnq5_N+ofUFOWhDvKkWSy2zXYMHaHHD0m63hAPLs4EG6mTVzw@mail.gmail.com>
+ <e18a1ebd-1c19-4dd0-aa59-1e6dee593db1@amd.com>
+In-Reply-To: <e18a1ebd-1c19-4dd0-aa59-1e6dee593db1@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 26 Jun 2024 09:59:50 -0400
+Message-ID: <CADnq5_M8+qPhK57bywCv5=PTd0TC2YYL05oCGfLd6h3AwgE6eA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/radeon: check bo_va->bo is non-NULL before using it
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,28 +80,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In enable_phantom_plane, we should better check null pointer before
-accessing various structs.
+On Wed, Jun 26, 2024 at 6:54=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> Am 25.06.24 um 19:44 schrieb Alex Deucher:
+> > On Tue, Jun 25, 2024 at 10:32=E2=80=AFAM Pierre-Eric Pelloux-Prayer
+> > <pierre-eric.pelloux-prayer@amd.com> wrote:
+> >> The call to radeon_vm_clear_freed might clear bo_va->bo, so
+> >> we have to check it before dereferencing it.
+> >>
+> >> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@=
+amd.com>
+> > Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>
+> Should I push this to drm-misc-fixes or should Pierre push it to
+> amd-staging-drm-next?
+>
+> Might take some minor work from you when you start to handle radeon
+> change as well.
 
-Fixes: 09a4ec5da92c ("drm/amd/display: Refactor dc_state interface")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
- drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c | 2 ++
- 1 file changed, 2 insertions(+)
+Does this depend on anything in drm-misc?  Otherwise, I can just take
+it via the standard channels.  I already handle radeon patches via the
+amd tree.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-index 282d70e2b18a..3d29169dd6bb 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
-@@ -750,6 +750,8 @@ static void enable_phantom_plane(struct dml2_context *ctx,
- 					ctx->config.svp_pstate.callbacks.dc,
- 					state,
- 					curr_pipe->plane_state);
-+			if (!phantom_plane)
-+				return;
- 		}
- 
- 		memcpy(&phantom_plane->address, &curr_pipe->plane_state->address, sizeof(phantom_plane->address));
--- 
-2.25.1
+Alex
 
+>
+> Regards,
+> Christian.
+>
+> >
+> >> ---
+> >>   drivers/gpu/drm/radeon/radeon_gem.c | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/rad=
+eon/radeon_gem.c
+> >> index 3fec3acdaf28..27225d1fe8d2 100644
+> >> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+> >> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+> >> @@ -641,7 +641,7 @@ static void radeon_gem_va_update_vm(struct radeon_=
+device *rdev,
+> >>          if (r)
+> >>                  goto error_unlock;
+> >>
+> >> -       if (bo_va->it.start)
+> >> +       if (bo_va->it.start && bo_va->bo)
+> >>                  r =3D radeon_vm_bo_update(rdev, bo_va, bo_va->bo->tbo=
+.resource);
+> >>
+> >>   error_unlock:
+> >> --
+> >> 2.45.2
+> >>
+>
