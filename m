@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FFDF91B13D
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Jun 2024 23:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B45C491B13F
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Jun 2024 23:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2E110EB46;
-	Thu, 27 Jun 2024 21:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 570CF10EB54;
+	Thu, 27 Jun 2024 21:14:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VqUZ7SFT";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jC7yltXr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5788D10EB53
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Jun 2024 21:14:01 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2071.outbound.protection.outlook.com [40.107.92.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 240B210EB53
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Jun 2024 21:14:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FeEEbtKZYwOrX0d5NxXFm//NNdnksixsSIPE8WBd+t5yeWUVnpTuxcdK2ClCCpbShmuRzg8+rZ+LolYjYpO6sPV8NjupNKphIA3EbUbIAhF89Y1TpOXskA1no4086T1sJPDAK7jZnEsOVRxFm9IbinarJ/nvwv4RuigYjeUDoUP/VLV5Hi/3f6mSu6S8lQ2GCwR146O02EnZULzWp6cSXIXUzBZRdRLRK1sTrt+uH4AMwS5LSWTrmuG2MJPTx6X0SDAJTFi1XjCtpPFPs/XvhKuTkRypcCTbnjNNRwN7RoPNWBsELm8GQp3TshYt2pPeb9nrlU2/AllUu55S1oZuTA==
+ b=hP1+2Qw1Oq/dUQLo3GsRXep2OIivQQT/r8xkDubSzJve+qaOwbGqWqfDVKPOgeD/2FXX5L7xhCUIgOx1qotedmbYkCUlNT3kf0AFO4csh9zB1KoSN9+eJZprMHT7neJfKGAUXbErbV/M+Ajjgn2uDgSA6FJfCt/nQqVaCeyqHn50GntMuZ52o1fATO8qrKkIWD9vlyXnTdlQbrZnh22xycDb8O9nMWYt9Zz/ESXlW7nqt8volxj4cHc+/96qQynCkeYss2lljhHYlYmS+ovZbNsegBIyYy6rPJd5HWZESzNjaSwxXlcR3lAmcfcrwcQkyO/uHnjS3hw3i8cQrsUWgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pTHBex+9M/BUEu2QKDH43jskXQbc0lL4T4b9Cztge+Y=;
- b=ZQp6QPxf821PdrHepXmz9mbIxPRk/44OIvNPb091ZuPFnItPtdjNKegyr9cGol/SvRMCUBrRHZ6kNv0vJb5DnQT1h/uG+UKdOC15iTkmgzaSbnWhWOovp7dX8AIgkfoq7jnS8HDv8Jn+IC3LIG/b6irkeKG83VTEvLkVW4N0lzYA7uaJ8c9Btn8NCKDstNZGnCrNDV1qKmIlZYKgeFaOwG+bRkYe8mtpXzgMzX0fzKGjf8riiZBtgcbSuwWojE2vKi5dAWTATh+g5I1UXF8lffuhKfLyflHE5O9WuwSeFVst982Epl6PFPvGE6EvkInAE0BvPPC1PuTr0MAesJfO0A==
+ bh=fON2NGXWQFJgqXPNGthuPq1przMNdTD+am0ghe4pXgc=;
+ b=c6mrt28fswY/cW68oWkO/hFZfeRtJlSPH2Xv6PAhWj3Ytqp6jpbFGk88BfFVFKEep5HomYgmRrTmYNPS/kTZMp59bBCgvPkhmfALU5BDDYeCqsQmKNOHF9YN5Fh2QyRw4QMaBKEE8twdFo2WiHe83wjSVqeX14Yrc5Sa1pcEIzciUVbRqlMZCLFs7xvM5GkmbaPvDzoqRS606eH5fVZ2o/Tgdt1GqAHgPjbRzf86FkisXA3RpvcZ4qO+MSbbHrPXa+MImJAXNs9yRmXb5Z3RbFtYux0kgWf3UeOTd3FdGgfQv9eLg+L9trkesMTAU1GaPiIeLq/D70IHkRqpVE+Wcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pTHBex+9M/BUEu2QKDH43jskXQbc0lL4T4b9Cztge+Y=;
- b=VqUZ7SFTfwWHUWwXlHWkVnYZ3erMOUj2oyzwABT2UuBkJhpHPo1QfyS375/HeXNm3VpKfJcssG4fIqVc8ViQpjlGcTyIrC/cRIcMuR4NM3VBm0ViXUK/v9CNe2Mw0G8a4l4M4iroMpS8tKfiRteTz9KwqAsNsN6EmuC0QHzivIU=
-Received: from PH3PEPF00004098.namprd05.prod.outlook.com (2603:10b6:518:1::44)
- by SA1PR12MB7224.namprd12.prod.outlook.com (2603:10b6:806:2bb::20)
+ bh=fON2NGXWQFJgqXPNGthuPq1przMNdTD+am0ghe4pXgc=;
+ b=jC7yltXr9nK3cd3QP2v8vxWUx5CwtzVW/8K9VZsuieeJ6GDT8VUVceqDQ7cGFLAgdZAz5M49XkD7k20/Q+2u0NYs899pv1oTisDcIDyutSvQQImjFzSRBQLliaTklqcunjdDjA3/xBVB/yhiJhSNlmS/PuoRIhQpPVnT0JQNNwk=
+Received: from BN9PR03CA0587.namprd03.prod.outlook.com (2603:10b6:408:10d::22)
+ by PH7PR12MB8156.namprd12.prod.outlook.com (2603:10b6:510:2b5::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Thu, 27 Jun
- 2024 21:13:58 +0000
-Received: from CY4PEPF0000E9CF.namprd03.prod.outlook.com
- (2a01:111:f403:c802::) by PH3PEPF00004098.outlook.office365.com
- (2603:1036:903:49::3) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.15 via Frontend
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Thu, 27 Jun
+ 2024 21:13:59 +0000
+Received: from BN1PEPF00004681.namprd03.prod.outlook.com
+ (2603:10b6:408:10d:cafe::99) by BN9PR03CA0587.outlook.office365.com
+ (2603:10b6:408:10d::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.26 via Frontend
  Transport; Thu, 27 Jun 2024 21:13:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9CF.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN1PEPF00004681.mail.protection.outlook.com (10.167.243.87) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7677.15 via Frontend Transport; Thu, 27 Jun 2024 21:13:57 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7677.15 via Frontend Transport; Thu, 27 Jun 2024 21:13:58 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Jun
- 2024 16:13:56 -0500
+ 2024 16:13:57 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Jun
- 2024 16:13:55 -0500
+ 2024 16:13:57 -0500
 Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 27 Jun 2024 16:13:55 -0500
+ Transport; Thu, 27 Jun 2024 16:13:56 -0500
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Sung Joon Kim <sungjoon.kim@amd.com>, "Nicholas
- Kazlauskas" <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 05/26] drm/amd/display: Choose HUBP unbounded request based on
- DML output
-Date: Thu, 27 Jun 2024 17:13:08 -0400
-Message-ID: <20240627211329.26386-6-Jerry.Zuo@amd.com>
+ <jerry.zuo@amd.com>, Teeger <gateeger@amd.com>, Nicholas Kazlauskas
+ <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 06/26] drm/amd/display: Revert Add workaround to restrict max
+ frac urgent for DPM0
+Date: Thu, 27 Jun 2024 17:13:09 -0400
+Message-ID: <20240627211329.26386-7-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240627211329.26386-1-Jerry.Zuo@amd.com>
 References: <20240627211329.26386-1-Jerry.Zuo@amd.com>
@@ -83,51 +83,51 @@ Received-SPF: None (SATLEXMB05.amd.com: Jerry.Zuo@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CF:EE_|SA1PR12MB7224:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9aaee7d5-405f-4848-eb4d-08dc96ee0f20
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004681:EE_|PH7PR12MB8156:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b3efba3-8ab5-470c-03de-08dc96ee0fa9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TUZcdsUzTF04eCg5FpPXhrBqP+TzxFxurHZYl9AVdHezW4yPnjRib4wYencP?=
- =?us-ascii?Q?IBF517H8xmb7R6pdXTNaZWxeC5/y6KqZLupX63TncUXJevQTtqlFQnHnQ1iG?=
- =?us-ascii?Q?0IpQOSKWfqt5W3cUqTqrjW0rIOj9W8P10BhOWhjwWugj2c6/T/k2c++YIUkD?=
- =?us-ascii?Q?o6qIhcTO0V3n8VQtDttjhL+mb3yRl/9IQhNOoaUe1CNK2AOuWfOQIjApKk/V?=
- =?us-ascii?Q?yvRGsscx6PEsGUBTaGhxcEUMsr0gHM87VB/RS0HJhuf7cz9054O45yvbF54O?=
- =?us-ascii?Q?snkfRFc2RahDyJQuXOC+EdcCsbTJH2jgA5XAxya29PFE6p865TRQPY1mm+QO?=
- =?us-ascii?Q?dEdsbt3kWgA7l6C1wMdg5gxpvM8F4G6DDGdtl9ll4xDHorzakpJoGx0frpYu?=
- =?us-ascii?Q?LgXyHHez3x9yJbj7ap2BTHtfzEPWUb4h7n2+FL0p1UeZzhAAuqZ0xz6zhRBr?=
- =?us-ascii?Q?tjogNEteRF8HHtlk3+u1hFHH8UQOlK46A1Q5kSUpVY9TRJ2vKJvrLaVGChpc?=
- =?us-ascii?Q?tl+UWK5OBd45dT1hAQr8f9Wo+68gpQ1nvESMDwkwoAQPRv1PdP8ewidt8Sjz?=
- =?us-ascii?Q?s4KvBiC4QoLEmRd4jMqLO2HMle/VoJPKf8dKb+kBHgTMFQv4EvFH1zyBT2Eu?=
- =?us-ascii?Q?VmM2hFjJ5cB5RXbsGRZd9y0q6MkZDp7/xWPUA25FjeLtEa0EYSU7MIwatK+K?=
- =?us-ascii?Q?4IWDDr6/00uG0Y2qAYhOCy5Jzoje6V2+ZJxJWdGbUw3/4+e2glvwsYGY7X2Q?=
- =?us-ascii?Q?uBquVsRrosUV3ixdNIESm3PTcoSiz+5rw67JTmX1FHV5hg9fI1GGm3CSz1cg?=
- =?us-ascii?Q?waQCDjSSedgFS3zAtiBNhwTeW25jFRd4V528h/Ih21iRzMgBq8TMteYzVPmH?=
- =?us-ascii?Q?GfOOZCYo58L0E3Kpm8dZDawg70MImdbDtIgw+BBpxTarcAV3Kw02dBZktRpB?=
- =?us-ascii?Q?2wWYYQjzHsiEnoOjcFSsHkDJqRBx+DAUzVqJMrhe1xXHGwXF/zRMeu8bDqkO?=
- =?us-ascii?Q?gIIRPaPdHRgjybDoDPfemsbVXkmwW7hQxxhDIw0hE9QBVicleOakHZsWZPZU?=
- =?us-ascii?Q?18N9UHP8cR/JKO1Q14mAIlOP6XJ5Tvl+gfIuBoqzByDBRKh1WZUt7CSXCfBG?=
- =?us-ascii?Q?e/wEzjLXpeCA4sXFfQ8rT41VjElpGPHfNyOZ2VRnKeodgd8SlGCTNzI4Vn+I?=
- =?us-ascii?Q?K0YUEtTYORWhOsnb47Dx12tDH8jNlP9jUB70zzYHIEMKOYLtqNPL2gwtxBda?=
- =?us-ascii?Q?nPIVdBX5q8meTZPEAoghSWh2B22dUAV/1RMT+Fx55pSF6YT7a01XNDq1pPGv?=
- =?us-ascii?Q?17DjefyLGhCsXK7KCWCWbm8rt/1m8WQihzwg1vijCd24swXVZ38yR6gSc/zs?=
- =?us-ascii?Q?4AA+ynj4dNDorsEvFit5443+uxq0OZb6Uq3MzDxlk/OANMQVk+6MbLMpL+Yu?=
- =?us-ascii?Q?dArf1LPU20HZu3Il++gT2ozwKqUOZVA7?=
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Dz7vPb4W1tbDMCNhU6tIIyf2+1Yz9aruZtVIElxGPKA5LEJ6e19bZtkXN/9w?=
+ =?us-ascii?Q?oEYzwy4xVDByWg8NCIoV731oBh073I0hNsOxsnnknGRVoATSP8Jj9ieVHp9v?=
+ =?us-ascii?Q?9BGKZ6ZNbhzGt+YHrzo86AC9U8SRJMIcm+LcxrAlqv8ycJAWmeT3T/MJmwhW?=
+ =?us-ascii?Q?iRK8GrRR/QFpUy5tsF2C22/lcE99ExzsTIiXvqFRarrU+r2XK1x3yV1tx/Ge?=
+ =?us-ascii?Q?LS/e7bTW0UvIH4CbGNrGYC87AqzuMkw6XMI/Oglf3nxwXi0zHtf4RzXHDt5X?=
+ =?us-ascii?Q?07xukPBpR2VHnq8AN16DutOR2Ue8TcGsrazNYgj8WENUi6RmecmDqc7JwQKZ?=
+ =?us-ascii?Q?n4tBiUj5tjdiMirvfE9KkYOg5CsQSLWHeiDjRcVDhsdxv4WqQXKCBKBdrk4y?=
+ =?us-ascii?Q?TxX/u5mXz5YcH3QfRgmksmDvRTQgUnCWHZAYRndSYtf5bTLBhu8LkzzIvdGB?=
+ =?us-ascii?Q?+JQ0ok2xyBqOlzVT22NPT78Zr1rE8Yqs7+EwmAPaQ48IIdPLBsW8o5Kcu1Ey?=
+ =?us-ascii?Q?wC7OFl4D35jr3wVzRZ2rceepzfFWZbwlW81WFcs48+YpATbmQ4wZJks4GJa7?=
+ =?us-ascii?Q?YEWl+uL/LMxtApvgYIbFEgyituxs2cC9OqHFO5SsmetbnrvmTIbVmOtKtJfi?=
+ =?us-ascii?Q?i/P6fMNh8068WeFAuw0UtlJttt7qme33RfEbTG4Tu0+Lu0XRmMz+7q7Op3uF?=
+ =?us-ascii?Q?XBI4B/YRsIjuY3GdHaY1UQomLN+/R3pNfWe1vxyt7XDvaXFp6B8rNwW1adWY?=
+ =?us-ascii?Q?VYBy3simKx0Sf/wRfu0whbJ85vwDDOOjTC89zAPYB7yMmpTb1RWdcMvFYyM3?=
+ =?us-ascii?Q?vvJoa1s9exjnReWbl95Flg7VWzFvIuQEDOAhqI/ntVBzNqXDYEp7BEPdMI+z?=
+ =?us-ascii?Q?cjhEuPQWucbZTlHB5TwLKQe8t7kzQNr/O+i0u/BAD7TBSt/KpYFzE5HkHlXg?=
+ =?us-ascii?Q?2p4WGcGapkv1AjWe8O5Sw0GSKqojNP0I2C4nsHkpyzV7CkMtEubsiCPTvGgg?=
+ =?us-ascii?Q?OLwcgqqCj5IYRyMwRdTywRX5flE/Z1GQn6qZyG+qNmAsBxrULURAD7n05l9M?=
+ =?us-ascii?Q?FwMK9xT3OSRSdVfBz5DrpRaMvqmKZ0PrE+vXZ4lFrizV8BR3bS3uJE1lk9f1?=
+ =?us-ascii?Q?nkghJxroG0pr8MOl/HOmXchHbXwcfhMWegyBITtsRauIryD5BGNOo0/tB2Y4?=
+ =?us-ascii?Q?pIp5qbNsry5uBolESSvwO3i5jie2T0+c0gWp07VjnKnZMn3Hrn8MZjANyslo?=
+ =?us-ascii?Q?c9X819eGF47PQr8lWI4FNTqlz2NxOTJKnh7o0gs0kPzmfQOiGA6Qo93RtVcb?=
+ =?us-ascii?Q?LHyt28UCivce3ZO1Vk2shJcHJgjwkwtVyECWqRx1+d0yaN4JoWbPzjqVq7/E?=
+ =?us-ascii?Q?911j2CtvWs+bQGiuLjZ+/iI9vCyZiaNQzdLHgO9GozWbxFRvwVAXQAx98Xh1?=
+ =?us-ascii?Q?Nzjbcv9rlhLiYOBQKanrMjmXopKrq5Su?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 21:13:57.7153 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9aaee7d5-405f-4848-eb4d-08dc96ee0f20
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 21:13:58.6541 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b3efba3-8ab5-470c-03de-08dc96ee0fa9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9CF.namprd03.prod.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004681.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7224
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8156
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,64 +142,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Joon Kim <sungjoon.kim@amd.com>
+From: Teeger <gateeger@amd.com>
 
-[why]
-Previously, we decide on the unbounded request
-purely based on pipe_cnt which is a wrong variable
-to use to determine how many pipes are in "use".
-DML already accounts for number of pipes in use
-along with other various factors and is a more reliable
-method of determination.
-
-[how]
-Use UnboundedRequestEnabledThisState to decide
-on unbounbded_req_enabled.
+This reverts commit a698d910ea7714e512261fa due to multiple issues found.
 
 Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
-Signed-off-by: Sung Joon Kim <sungjoon.kim@amd.com>
+Signed-off-by: Teeger <gateeger@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c | 12 ++----------
- 1 file changed, 2 insertions(+), 10 deletions(-)
+ .../gpu/drm/amd/display/dc/dml2/dml2_wrapper.c    | 15 ---------------
+ .../gpu/drm/amd/display/dc/dml2/dml2_wrapper.h    |  2 --
+ .../display/dc/resource/dcn35/dcn35_resource.c    |  2 --
+ 3 files changed, 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
-index 0f8b3336e26d..d91948d6ff97 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
-@@ -288,7 +288,6 @@ void dml2_calculate_rq_and_dlg_params(const struct dc *dc, struct dc_state *cont
- {
- 	unsigned int dc_pipe_ctx_index, dml_pipe_idx, plane_id;
- 	enum mall_stream_type pipe_mall_type;
--	bool unbounded_req_enabled = false;
- 	struct dml2_calculate_rq_and_dlg_params_scratch *s = &in_ctx->v20.scratch.calculate_rq_and_dlg_params_scratch;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+index c58235121474..d5dcc8b77281 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
+@@ -626,21 +626,6 @@ static bool dml2_validate_and_build_resource(const struct dc *in_dc, struct dc_s
  
- 	context->bw_ctx.bw.dcn.clk.dcfclk_deep_sleep_khz = (unsigned int)in_ctx->v20.dml_core_ctx.mp.DCFCLKDeepSleep * 1000;
-@@ -302,14 +301,6 @@ void dml2_calculate_rq_and_dlg_params(const struct dc *dc, struct dc_state *cont
- 	if (context->bw_ctx.bw.dcn.clk.dispclk_khz < dc->debug.min_disp_clk_khz)
- 		context->bw_ctx.bw.dcn.clk.dispclk_khz = dc->debug.min_disp_clk_khz;
- 
--	unbounded_req_enabled = in_ctx->v20.dml_core_ctx.ms.UnboundedRequestEnabledThisState;
+ 	if (result) {
+ 		unsigned int lowest_state_idx = s->mode_support_params.out_lowest_state_idx;
+-		double min_fclk_mhz_for_urgent_workaround = (double)dml2->config.min_fclk_for_urgent_workaround_khz / 1000.0;
+-		double max_frac_urgent = (double)dml2->config.max_frac_urgent_for_min_fclk_x1000 / 1000.0;
 -
--	if (unbounded_req_enabled && pipe_cnt > 1) {
--		// Unbounded requesting should not ever be used when more than 1 pipe is enabled.
--		//ASSERT(false);
--		unbounded_req_enabled = false;
--	}
+-		if (min_fclk_mhz_for_urgent_workaround > 0.0 && max_frac_urgent > 0.0 &&
+-		    (dml2->v20.dml_core_ctx.mp.FractionOfUrgentBandwidth > max_frac_urgent ||
+-		     dml2->v20.dml_core_ctx.mp.FractionOfUrgentBandwidthImmediateFlip > max_frac_urgent)) {
+-			unsigned int forced_lowest_state_idx = lowest_state_idx;
 -
- 	context->bw_ctx.bw.dcn.compbuf_size_kb = in_ctx->v20.dml_core_ctx.ip.config_return_buffer_size_in_kbytes;
+-			while (forced_lowest_state_idx < dml2->v20.dml_core_ctx.states.num_states &&
+-			       dml2->v20.dml_core_ctx.states.state_array[forced_lowest_state_idx].fabricclk_mhz <= min_fclk_mhz_for_urgent_workaround) {
+-				forced_lowest_state_idx += 1;
+-			}
+-			lowest_state_idx = forced_lowest_state_idx;
+-		}
+-
+ 		out_clks.dispclk_khz = (unsigned int)dml2->v20.dml_core_ctx.mp.Dispclk_calculated * 1000;
+ 		out_clks.p_state_supported = s->mode_support_info.DRAMClockChangeSupport[0] != dml_dram_clock_change_unsupported;
+ 		if (in_dc->config.use_default_clock_table &&
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+index 6e3d52eb45c7..023325e8f6e2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.h
+@@ -237,8 +237,6 @@ struct dml2_configuration_options {
+ 	bool use_clock_dc_limits;
+ 	bool gpuvm_enable;
+ 	struct dml2_soc_bb *bb_from_dmub;
+-	int max_frac_urgent_for_min_fclk_x1000;
+-	int min_fclk_for_urgent_workaround_khz;
+ };
  
- 	for (dc_pipe_ctx_index = 0; dc_pipe_ctx_index < pipe_cnt; dc_pipe_ctx_index++) {
-@@ -344,7 +335,8 @@ void dml2_calculate_rq_and_dlg_params(const struct dc *dc, struct dc_state *cont
- 			context->res_ctx.pipe_ctx[dc_pipe_ctx_index].unbounded_req = false;
- 		} else {
- 			context->res_ctx.pipe_ctx[dc_pipe_ctx_index].det_buffer_size_kb = dml_get_det_buffer_size_kbytes(&context->bw_ctx.dml2->v20.dml_core_ctx, dml_pipe_idx);
--			context->res_ctx.pipe_ctx[dc_pipe_ctx_index].unbounded_req = unbounded_req_enabled;
-+			// Unbounded requesting should not ever be used when more than 1 pipe is enabled.
-+			context->res_ctx.pipe_ctx[dc_pipe_ctx_index].unbounded_req = in_ctx->v20.dml_core_ctx.ms.UnboundedRequestEnabledThisState;
- 		}
+ /*
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+index 1ce0f9ecff9c..ddf251901fb3 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
+@@ -2153,8 +2153,6 @@ static bool dcn35_resource_construct(
  
- 		context->bw_ctx.bw.dcn.compbuf_size_kb -= context->res_ctx.pipe_ctx[dc_pipe_ctx_index].det_buffer_size_kb;
+ 	dc->dml2_options.max_segments_per_hubp = 24;
+ 	dc->dml2_options.det_segment_size = DCN3_2_DET_SEG_SIZE;/*todo*/
+-	dc->dml2_options.max_frac_urgent_for_min_fclk_x1000 = 900;
+-	dc->dml2_options.min_fclk_for_urgent_workaround_khz = 400 * 1000;
+ 
+ 	if (dc->config.sdpif_request_limit_words_per_umc == 0)
+ 		dc->config.sdpif_request_limit_words_per_umc = 16;/*todo*/
 -- 
 2.34.1
 
