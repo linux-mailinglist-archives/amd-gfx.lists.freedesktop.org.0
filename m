@@ -2,89 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E63CD91D873
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 09:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9197F91D867
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 08:59:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2462610E326;
-	Mon,  1 Jul 2024 07:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D42410E2F6;
+	Mon,  1 Jul 2024 06:59:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="k+xhhoeu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m0nnRPyx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC22910E07F;
- Sat, 29 Jun 2024 04:52:54 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45T4ab6C028498;
- Sat, 29 Jun 2024 04:52:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- VYjkpS9rvu4zTA/sXPiOwttTNNhhPJDzKngsyZMHEBg=; b=k+xhhoeuv7Gxs94h
- qEP2t9obimHowg2mkmux8WFy6PwmIk4a0RNnVhdxsKJ/53uT9fpJIkUzYmbF/TDA
- pk1Y01ugVvpJMsavTzCHkMzgRtKiGTnBaGnHKZQSvloUgCIgsvNsSDyf3O7PoUeT
- E8LxLpM/v2V+Ml7D58286JW5gcICv32a+yQDGyBG08Ra75E6t437IDjFhkmjypVy
- KbVaMhXBcNa28B4FxT/MWynqxGq87IA7Pf1LV1MubQH0fzs29WZn+CcBW+RSmJzC
- 8NMT4NZmX5VbS8T5onOHs7WUMiLzZIhfjanMWNCZ9O2r2/xRQCK3cvLt91kn4fSU
- L0rMTQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 402an706nm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 29 Jun 2024 04:52:42 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 45T4qeHB026787
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 29 Jun 2024 04:52:40 GMT
-Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Jun
- 2024 21:52:40 -0700
-Message-ID: <0aa9e0aa-3d8f-4277-8348-99b9dd176954@quicinc.com>
-Date: Fri, 28 Jun 2024 21:52:39 -0700
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B268D10E155
+ for <amd-gfx@lists.freedesktop.org>; Sun, 30 Jun 2024 07:04:17 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-57cbc66a0a6so1965679a12.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 30 Jun 2024 00:04:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1719731056; x=1720335856; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=r+2JhwhhcYmUlONdoqhbMCHdhahLYSDSMnL+ZYEH4CY=;
+ b=m0nnRPyxknkeAvh6JnM3YXvQtaD248Ux3fN7lDB89cQmJ0/msaKoCbN7MRyp52F5N/
+ j6MNhQCpbEgXkh2f1xMkUjlzTWw9+PfMvZN8FbfSnw4VX3TMvHZaX+MJ73IZi2sG1xu0
+ fQnBpFYq0NOnVvLIr83ARBDtIRgR6JmzrdTBX65Ujb9Ysl5UNmJvu6D6lREFH0SpHUkY
+ jxlzIhFXCdaPEcp2q4OLkIY1s7Dosbb6rJ2YEqqYFnAvcvyGRSckWw7sLlk7d9nipQ2x
+ CE7WZtuUFcASr/UmAcG1uxJRsfExK6fjtSG9RVmchxXdTcsfVkrq2tuJUOppnaERGScG
+ AkMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719731056; x=1720335856;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=r+2JhwhhcYmUlONdoqhbMCHdhahLYSDSMnL+ZYEH4CY=;
+ b=iYOE08ZJaqzHWKeZFlw+mR8nYzZN40qS3rnqfCEGf1FKi7UK7+1gO513dymJ6VKTqQ
+ wy5uxBhQSTePi4RufZkQrOQBxrgyfaRRW9P1ioqe8n6m1svm8EB2Du3Ux0UAVmbvWgRB
+ r5jpTrzgrhn/ZN0VvF7LXFm/kYs+wMQyUio/ez2PUt+ZO5aZ9pf0HRVM6g/TEBPjgVRO
+ 4WqxkfZmIt5wfwd9IFNfUfPwOW80ZaTDSVan+iWy9lSVPUM3zPckVpGS+J6zrdztOh4M
+ Q/6BRtmBd4apT9D1jijARPn1LBxfLoBC/xoB9YL6YcLJC+Ck+omHPs2A2aSOD3iUz+2w
+ CchA==
+X-Gm-Message-State: AOJu0YzXIOXRSJU57Kvy11cgaLgj6bE855ZqPFtlFeR2oT3XsE2QsO0b
+ KR/alz5q+CgryOXymrZdh7f5nhdNGh1z95CHPp0TWThPZU3OjZcN4VtCy+qmbqbUUkQbnRun3PF
+ Hr7RJ5glzMgMn5mx9nVqFsSeDCfiK91n5
+X-Google-Smtp-Source: AGHT+IGyvg5ixZr+d3W7Gk5mmoXK3rF3gZ+CgS70uGZizJd1Kw+79hJMVRpfhzulrkaoTFTyAIK3V8eQtFxZLxV/qU0=
+X-Received: by 2002:a05:6402:22e3:b0:57c:ff0d:b781 with SMTP id
+ 4fb4d7f45d1cf-5865d4737cfmr4164202a12.16.1719731055648; Sun, 30 Jun 2024
+ 00:04:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm: Add panel backlight quirks
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, Alex Deucher
- <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Mario Limonciello
- <mario.limonciello@amd.com>, Matt Hartley <matt.hartley@gmail.com>, Kieran
- Levin <ktl@framework.net>, Hans de Goede <hdegoede@redhat.com>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, Dustin Howett <dustin@howett.net>
-References: <20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net>
- <20240623-amdgpu-min-backlight-quirk-v2-1-cecf7f49da9b@weissschuh.net>
-Content-Language: en-US
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240623-amdgpu-min-backlight-quirk-v2-1-cecf7f49da9b@weissschuh.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: yP_U84sdQLgyQ95bNMSMJL6UQFEAH4E5
-X-Proofpoint-ORIG-GUID: yP_U84sdQLgyQ95bNMSMJL6UQFEAH4E5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-29_01,2024-06-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxscore=0
- clxscore=1011 adultscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0
- phishscore=0 bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2406290034
+From: Jaroslav Pulchart <jaroslav.pulchart@gmail.com>
+Date: Sun, 30 Jun 2024 09:03:59 +0200
+Message-ID: <CADVcqdwr1mVW2rtKX7tMLw8o=eRVKS2-1JMy3PQ=maBCU2uH=g@mail.gmail.com>
+Subject: High Power Consumption of AMD RX6800xt in Idle with Secondary Monitor
+ Connected
+To: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 01 Jul 2024 06:59:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,25 +71,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/23/24 01:51, Thomas Weißschuh wrote:
-> Panels using a PWM-controlled backlight source without an do not have a
-> standard way to communicate their valid PWM ranges.
-> On x86 the ranges are read from ACPI through driver-specific tables.
-> The built-in ranges are not necessarily correct, or may grow stale if an
-> older device can be retrofitted with newer panels.
-> 
-> Add a quirk infrastructure with which the valid backlight ranges can be
-> maintained as part of the kernel.
-> 
-> Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
-> ---
-...
+Dear AMD GPU Kernel Maintainers,
 
-> +EXPORT_SYMBOL(drm_get_panel_backlight_quirk);
-> +
-> +MODULE_LICENSE("GPL");
+I am writing to report an issue with high power consumption of my AMD
+RX6800xt graphics card when a secondary monitor is connected.
 
-Missing a MODULE_DESCRIPTION()
+Upon investigation, I observed that my desktop computer generates more
+heat while idling. I determined that the high power consumption issue
+arises when I connect a secondary monitor to my AMD RX6800xt card,
+causing it to consume approximately 40W of power in idle state .
 
-This will result in a make W=1 warning
+I checked the "GFX Clocks and Power:" in
+/sys/kernel/debug/dri/1/amdgpu_pm_info of my RX6800xt during idle, and
+here are the findings:
 
+With the secondary monitor connected memory frequency is up and
+constantly at 1000MHz:
+        1000 MHz (MCLK)
+        3 MHz (SCLK)
+        1825 MHz (PSTATE_SCLK)
+        1000 MHz (PSTATE_MCLK)
+        856 mV (VDDGFX)
+        45.00 W (average SoC)
+
+Single monitor connected:
+        96 MHz (MCLK)
+        0 MHz (SCLK)
+        1825 MHz (PSTATE_SCLK)
+        1000 MHz (PSTATE_MCLK)
+        6 mV (VDDGFX)
+        8.00 W (average SoC)
+
+The significant difference in power consumption between the two states
+indicates a potential issue in power management that needs to be
+addressed. Your assistance in resolving this matter would be greatly
+appreciated.
+
+Thank you for your attention to this issue.
+
+Best regards,
+Jaroslav Pulchart
