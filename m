@@ -2,140 +2,146 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9D091E70C
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 20:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A596291E720
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 20:09:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0A2D10E4CD;
-	Mon,  1 Jul 2024 18:04:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A34F10E4CE;
+	Mon,  1 Jul 2024 18:09:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rTc7ycKc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SDAT9sm7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2075.outbound.protection.outlook.com [40.107.101.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0390010E4CD
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jul 2024 18:04:05 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2041.outbound.protection.outlook.com [40.107.244.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5943510E4CE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jul 2024 18:09:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VwNXWyckbbZzuQpP4Jdh0kFAwQrbC/F1qYHz8gtsfs3JbVbm0bJ7RwjDDhxFxbhTBHNSJeneVqgH5R/jdimKaaVoszmG+d1fcqtsMS3+DRzrpULI2CC8nZuedGB0xRGqMnLMt+vhtXNS5PvyJe4XSVgUzbnTmiBgJarGU2ny/3lSOA9SUB5P9YhqywhVFuR2y0lGMJp82wAWg4QvRSrjMfXUDllcN8C7TIuC8z5gTLub1R2jjpFA9cf7Y+bN7vvoHU87cpAgVZAzIANp82S1h2NYAaIqtUL3Jjz94xSykGmRuEZz7FB32G6aPlxFwnz/bvFcBA0Wx9Oky9S/I4Q5YA==
+ b=cjzB+pQ8XYGw5LYdM43rjSu5yKnCIm4DRgRuytIIqA26r10E3M4gzNVQlhwH8YY9FTGW0GL7ZClXRf2+WsNGBVz+TPtw8KjIWUe41UDiUav+OeyUxaoOXZjYVLwqrT1/YO23aUPnQK9WK8OGLLRo+NXr865xrA4pM7iXqJFfOAzhblDknN1+9OiBPsu5CMhJjHQjt08HjOQCM1Q4CuQ2eH8eTsZoDr/s+mEzHV3J8x9mjACXFaiAzBceV0x6WtziiHthrLC0Apw56qfNizjl/00GZBNF32AFnIvsruRyMpz60ohFguqM8RGBA/H6T8MkkWb7zNdaTv5FdZ2AZr/N6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L2/jVysl0HqyRUxXPihRbBQ0F7u/Q00QyBPX0DMy5Bo=;
- b=Bs9PYFAeBTKuxC/y85qCmD9HRvKRU2XydENbkgUewLmnEwCxLy2JdYZLBR2sSPB7vhQF7qnvmDo+s+5j8L8bqFTfSQndDYBFtNrqplf3QqZ0oy2iFc0d19e8yZVne6+a+Nigpg35mas8fJvkb+FiaGuun68sXDJcXxeuPF2SpjG+Jm8IwmP0HGDFzhbFuPSsDk2jkvXNGoojyMVzdqu1J3HyTEzw3RpJQ4YyqpvkAUetUx6tlWGPXRZY7FTfReQsNb9fD1s0FoK8FssRl6rb6s0vD+eqr/eCcbZ3RbjiOwNHtonTubk5ljs7xYP+wMrbRi5VGKE3JDsvYBYZryRBQw==
+ bh=qZ4IbemPyluOyZnNXsvo751SU2isK2ZofiVvfu8cmb8=;
+ b=lehgEpNjmkhz9Aqw+X3ikkZBG/CYjMPBrd986qrg/qp8ysyUFTSdibIHW0eY2pf0lZX9vVUF4TcEpXZEjjY7xQXaVfNGs5XYcBkUWiP6q5pKk+5JR/AMuih0XC7j+UvJhJ9WM+Tv45MNcxe/OcYkKI2UPv2K59dEUeCo/MDIs3kzae6ggEbbQw7Y/3Sfh5BZMmnmk5Phs6+nBJaWJOaObR4QF2kpsmLWxrxgvcUZWaE3qQV6AD2TOgLd1rQIbfblYFRxmZ1B2AUEIBeRxaERmI7atD+dN+gDlsxx+4GT6fOJYBYVMvdvofuSzf9bsHuZBVi4g6bO47ruC04ksJ8M+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L2/jVysl0HqyRUxXPihRbBQ0F7u/Q00QyBPX0DMy5Bo=;
- b=rTc7ycKcaNwjybn7cuaAlSXvsNTu7yopQAapKMcLLhrXA6kMuqLgMNqnSmgH0EkUk8RwDZ9gatQG68lQLWtXAwP7sYyWVZR5K7+Zy230AojQvWJI2yyhePrUDmjpRI9C790zBk+KCjsZD5M9pNwSnCw+b58bUeiBxDAI9ZqadM4=
+ bh=qZ4IbemPyluOyZnNXsvo751SU2isK2ZofiVvfu8cmb8=;
+ b=SDAT9sm7X93ldrURId4LJsnV1o6x+T/sNkwPYnjRUftVnhYx6Ks7Zg2phzKl4I8Ac1/LHGdVCLmlqJ1cX4nwqy70KeYyU4FyJJCkdHfVLI6IzDsNZcgDedvOboFA6bOJUSOu7Qia2BqfY8oE+PCxoH/00essP1ArYHu8yWXac0U=
 Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by PH7PR12MB8779.namprd12.prod.outlook.com (2603:10b6:510:26b::8)
+ by SA0PR12MB4447.namprd12.prod.outlook.com (2603:10b6:806:9b::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.29; Mon, 1 Jul
- 2024 18:04:00 +0000
+ 2024 18:09:19 +0000
 Received: from BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::491a:cce3:e531:3c42]) by BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::491a:cce3:e531:3c42%4]) with mapi id 15.20.7719.029; Mon, 1 Jul 2024
- 18:04:00 +0000
+ 18:09:19 +0000
 From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Huang, Tim" <Tim.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhang, Yifan" <Yifan1.Zhang@amd.com>
-Subject: Re: [PATCH] drm/amd/pm: avoid to load smu firmware for APUs
-Thread-Topic: [PATCH] drm/amd/pm: avoid to load smu firmware for APUs
-Thread-Index: AQHaywSmtLzeLhQB8kOwmcFAypVZJLHiLAT6
-Date: Mon, 1 Jul 2024 18:04:00 +0000
-Message-ID: <BL1PR12MB514484ABCB305F64A7E1553CF7D32@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20240630154506.2292189-1-Tim.Huang@amd.com>
-In-Reply-To: <20240630154506.2292189-1-Tim.Huang@amd.com>
+To: "Min, Frank" <Frank.Min@amd.com>, "Olsak, Marek" <Marek.Olsak@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>, "Zhang, Hawking"
+ <Hawking.Zhang@amd.com>, "Gao, Likun" <Likun.Gao@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: restore dcc bo tilling configs while moving
+Thread-Topic: [PATCH] drm/amdgpu: restore dcc bo tilling configs while moving
+Thread-Index: AQHax3CwWWld91q+sEK3tx5mvhifELHZUvjwgAfoNlCAAPllXA==
+Date: Mon, 1 Jul 2024 18:09:19 +0000
+Message-ID: <BL1PR12MB51442838F3F7F1D8B5616903F7D32@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20240626022742.1956-1-Frank.Min@amd.com>
+ <SA3PR12MB7902BE546DCDACE2F5DAAF33E9D62@SA3PR12MB7902.namprd12.prod.outlook.com>
+ <SA3PR12MB79028EFDCBFD7191E72E2CFAE9D32@SA3PR12MB7902.namprd12.prod.outlook.com>
+In-Reply-To: <SA3PR12MB79028EFDCBFD7191E72E2CFAE9D32@SA3PR12MB7902.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
  MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2024-07-01T18:03:59.984Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2024-07-01T18:09:18.949Z;
  MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
  Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
  MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged; 
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|PH7PR12MB8779:EE_
-x-ms-office365-filtering-correlation-id: 5857e75c-5ba5-4895-e4db-08dc99f82f41
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|SA0PR12MB4447:EE_
+x-ms-office365-filtering-correlation-id: 55b9eb0a-f7be-47c8-b48c-08dc99f8ed68
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?/pP1V4CT5ECwN4QQj9UtMtlapOSz1Gd4clpvzCKbMaBdZKLrCJxrkzE02JEf?=
- =?us-ascii?Q?GozrofhstHTzG0Wy5rIXUzzuKZBvO7MHKsh7dxRMsuqczCgwKnkOLPKWW5ym?=
- =?us-ascii?Q?xVUZIC2i6+gmJ664+s37c39XL9ebwGBD2dwpVKGWW37JBYeS97gIpvPEv+hz?=
- =?us-ascii?Q?E+yvBrYd5664v6gR/8879mOcSn+rRed7MaBPJUeAz7w3690OMYWKKdyggfS+?=
- =?us-ascii?Q?LfnV+vZOqO3VhkQn5KS2VxYDgON92qgYCYZChnaxN9ELRxErxzOv/9PFxkX7?=
- =?us-ascii?Q?OYm60a3seGSXDOufU91NyClpCXQdsirwuWaqrcumE3HsWYUjivfSuJsJTN0g?=
- =?us-ascii?Q?5RBQK0nvh+X7ZCG0BG5RQRI7U60ciEbo/kGAMEoaxtLQdYVQdRqWW3VVqxmp?=
- =?us-ascii?Q?zoehHfKu2h5AtShxg8z1sdqMOUK7fZvqXFsgh+Z8WD8ZehtROKsQXpnUFZAo?=
- =?us-ascii?Q?vv38Ew9/qKxB7UXb4OuFnwVdJ9VTL4gaoOOhr9RksD236Lsh5S3IGAtLxvDC?=
- =?us-ascii?Q?M9CRZOp240z7jHpCRooGg89AaUjiDC+rZFMPiz0BBGu5Y6L1E08CDB2y0k9X?=
- =?us-ascii?Q?Rk5Je3k8/zE9T0h0NB4FMzJJdKnYaYaksjATwa9tvG3ZhCBanub4jSB4tzDE?=
- =?us-ascii?Q?d37xrRQ8q9NGtbSB6NtWrlpX2D6F+Z5if8X9roxWLxJicpDF3BCnZAUwRoFn?=
- =?us-ascii?Q?2ij7jWT/Be3QKqeNvt3zE1sjQtbnUmXbZ5TOFZTC6Zbo9QRMitSSt2gHZICJ?=
- =?us-ascii?Q?qm6BjoRlT/V2/j4sYDk3+wojB6LhY+vYiUavU7kxEBuj52DelANAeb75fALz?=
- =?us-ascii?Q?oPB6QPYTBSWoCmyyEG1/Qhf26a3fSVKIQ23h65Hhyj8cUEfYUlR6HMSa/JJs?=
- =?us-ascii?Q?4kWMCl58uf7PH/6qwSPzPUCDFYGI3tBLsroPo8/m47Zt/qkXynGHjdPUbvA+?=
- =?us-ascii?Q?00DcfrxS4cMiOhvIDuq2U95bWMzU1DggqYMt3ZpYLL+tsLojTBjT6R1JPLne?=
- =?us-ascii?Q?wG00KM4RT5GN7Qq+YCd/XC8gAxpNZ1OVDA2XrtVIomoCgrr/tR4YSRmz1z3F?=
- =?us-ascii?Q?DRYh0igaHioN3sV8HuNkfrIiQ5E8czBzD3Ld/Vz19lWSYZcBEDN62pQ3BWTo?=
- =?us-ascii?Q?VIqiNUAzghv3wZdfz95MgikfLMC2/ckXvLxt4E6YAKGsM6sbIDFeDMm74d11?=
- =?us-ascii?Q?fPhjPqoMP9jGV+nFCgQXGnAkQOuKoVnJxN/hs5eCOGppWaBpY9OB1YBuEkJb?=
- =?us-ascii?Q?dVVQWwNV/NiYIiaD8A6O+dNLdZB9gj/LdpGjAZWIb5qyK9eTjiZTrQGXJqtQ?=
- =?us-ascii?Q?V/zTrpVyW7tABYNxNbxB42NyQqx37/caB14GAcGkk3oLtCg6m+oNDMyaPPzU?=
- =?us-ascii?Q?yvDfFKNhTaiRQIJcQuNNJc9qCbl2nQe3mfXrSTBfK5jZnwNzcA=3D=3D?=
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|921020|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?lbCTP3R2Dc15yZyVWmFBmg3FUYvXy9dTjAguZpafqkH5XTay6xPItAnLgDN4?=
+ =?us-ascii?Q?cgFBkmE+5/bhhaD+IKqrPkNWIC8H5T4RT+G6AsS7pFdLV6zOwk0EvA1j0VSb?=
+ =?us-ascii?Q?cSepvUZW4ofZDhCi5DYLxvzIl2WYlxapHWiorGiQ3y9PWbeSqvWhV+H6Mv0F?=
+ =?us-ascii?Q?3eByrOX5ohuBneXCrC/2xCwv76ulS330WWeOYWm2pz3cKHJVxsgA3wdpL6Mg?=
+ =?us-ascii?Q?aOJyqwpH7en7BGhvfa4cQZ5w3v9bsPP9lQEfCpJxuT5fHYN+YCp6KzFQ6RUi?=
+ =?us-ascii?Q?nxRp32Ja5GBv1/v9iBvrr0GH8ZsVHwY1oKVmf7Fd9xK9n+7aPw0UccLb6hFW?=
+ =?us-ascii?Q?yF37lqWwFSUL07iaz+aJMKG6GwxBGqCzouU/2Cd+VGgVRpoKJMeiar1mdimz?=
+ =?us-ascii?Q?IP18WUUTFRWD5oexHrtBmr1Xd1qYDpmH5KGFM6xQRQGdR43GTHo3ET+lIn1h?=
+ =?us-ascii?Q?YEwwhm3jn5NF+3IYuie2pBSVfGQB8k1Vz0ZN/meAjasMW376rBJv5hYFEcLd?=
+ =?us-ascii?Q?AoMrTDsJbG/N8aCmLCJdZ2jPic1PBl/ycck8N5D/NY94QyDNunw2jVSv3SZb?=
+ =?us-ascii?Q?2RuOjsK85YOtxPIvUhM7itqRMvASKdPYpqgocyxAcpJJI4iDwse2f8fd0aAl?=
+ =?us-ascii?Q?o+ubINTvX1JxCUtmzUQoh4N1XGI6aDQKZ3q56/OKr8jH5DjHi41a9O6O2dT2?=
+ =?us-ascii?Q?humhsA7RxRm27Q1ocmuTMg+oq/zAIHj9VZ2Dp0terufnrjhgbDX5iPY1c7oU?=
+ =?us-ascii?Q?OnIa629dy6CgFkliG9xkBJfYQ2CxHul9bdCFRSMA0RouotpQjC1nVqmrz5bb?=
+ =?us-ascii?Q?QVnXuDWacZHYeewKen+Gp4lgbwlweOYHdkCPzY1b3Tx8/ENXwMnBX5MpMAV2?=
+ =?us-ascii?Q?UfoxwlzBh3Sq3t4a/h/zavmPsiQD2PI5c1zLHWb3R1UrJMlZikC2nARkKA2N?=
+ =?us-ascii?Q?1MmS3qO1HXuXx4nQjyfbKqGy4skKl7p1B5rgsnKnZ0GoE4pIF1MIU9eIOm5F?=
+ =?us-ascii?Q?g9f0Q1sqgLX26DrglRTb2BklgcZVVovou8/5vo9Z0x1XNppTn5uCTOyFapv/?=
+ =?us-ascii?Q?q4uGBpEWdv+b4AQ4/EyiPJNGfeP9OcSm065XAiX7JlkUCoIdWu2wA1D4ZJFU?=
+ =?us-ascii?Q?2m8uHGbdUjlLsem6DfPc9StYAkwDV62ZMCSjQT8gBfH2uy70EnsaJI5aP+qA?=
+ =?us-ascii?Q?kwSqi1gR9vvo1QzSO/dPi1bDqjwUMeqG77nzf8E015o8zYeJkztNffEjV+/t?=
+ =?us-ascii?Q?amyxgl8M2tvu5/sRFWiRZUV0IjDMMG5JDk+9kldc4lqD2jqIZiRg6gCMxnQU?=
+ =?us-ascii?Q?F82qjLwGiJVxJIDK4gr+lwVA4tLGaSzmZr9VPtBo0uLjfvBg4WKp9o3Z6l/Z?=
+ =?us-ascii?Q?ZOnhmPupxW4xkZgzmutQkobDeBmmpFR55M94mFTX+kTroZZi+rGNK/faC2R6?=
+ =?us-ascii?Q?IqZbq83aRyI=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016)(921020)(38070700018); DIR:OUT;
+ SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?L2kpZg+WPUWeff6rRlt869ouM0a5RDxez7wA5WhPDT1R4SHcQiX2q3FNKdFD?=
- =?us-ascii?Q?xpwlBCRqVPeJZr/RrLgy33ZLVCrhDZ5K9kAD4DirA+YigZ7TAUjai3HOOx36?=
- =?us-ascii?Q?bF3Ip7PpVvsM8C6yoNTTN1WS2Xw+o2W0hrpD+fg6Msg85LFcP4sYdCemklIT?=
- =?us-ascii?Q?6TWMRgNZy7yUJhVOAB23mF8YuWTlGQq6k8qKs3ih/3RkLj0OLk8G+xOP9Acd?=
- =?us-ascii?Q?qlVJOTiw6tr2yJtJiaumJEoQ6rmtkw5HJ7XY6krlBYk0J/psBB2NiNFemytl?=
- =?us-ascii?Q?tP9GPIJEGf6LKgo5xI4ZkE1V8elmIN1JGMwBCM2I8nk2yHfIQw/KKG6c1WQy?=
- =?us-ascii?Q?Z1R0eFeM0kg7QSzUF2AmLGOD38WqhRCHw0wXz05NoNwp4FSyFR5MHbVE8MuQ?=
- =?us-ascii?Q?/69Mv5uF8kj5QKosoKXXEg8Kb/jgjSBcU3Xu5QP01ytZ5PPWixKyy6DrfRE6?=
- =?us-ascii?Q?RGmLbFvTOVIK3YVD7u2E7zQ5Hp09z43pbYVWxU0HxS8X1LsCpyCtguYNm5+E?=
- =?us-ascii?Q?vk4z+vxrlrWa6hAbmLin2rf1Y6vgG7zJZV6WWjpktoMw67F7lg1HoLIy+YJ5?=
- =?us-ascii?Q?dgpr4JROWD5gpvlQ6uef9YvfBqqbhYDQoF7VwiiVggFyB8c1F/wZfmNZEYX7?=
- =?us-ascii?Q?eqTGUOxFCMYgXXcncuRM4q8VjuyH/8J35nkfFnM9BVFp2Wb49WImrbCGjQId?=
- =?us-ascii?Q?PaqifNdVVyTNyvs4FEbxCCGYv5H2gTGmaqKNa3JAP4g/TEphfzcACxF9zBHu?=
- =?us-ascii?Q?lbj4M8scWonoUihHxkxuxhxPwlCNh2NnbPPLH3it4pmHO92wTIuivzDxGBLm?=
- =?us-ascii?Q?ZEEIlnwMaDbRcXApIpqLwK67hUM3P59muEJ0rGS8bmQGU/FSagzOWHxO4Iuz?=
- =?us-ascii?Q?11CxwJP3V8u4GsaOyW17A2IilW9eW7oWr74XtyFjFh7Yl/RxF1jr2Jp47X2i?=
- =?us-ascii?Q?gTAwHqXRvNOEi+FVcT3FfwZAYMRGIB0ImDK4qQcwHlnIrM/JVbX8YwomsN8w?=
- =?us-ascii?Q?fIY3TGnN2qgjZ2kW/qrTQsw9ECh253cQT/wCTAbdQnwCOoNAsy9CSisxW4t6?=
- =?us-ascii?Q?/SnD+KN6M/UCEOT2FYyVngiBRG4oSAQ19Z3j6g56tMePzqmaBDoYtfofki8X?=
- =?us-ascii?Q?1R6JWTALNI2PvFB2mMYYDwlm8UmJJChJ1c3S9nRCsL99o0x6f0+OFWVq7vLV?=
- =?us-ascii?Q?JMBL+VR0MjuCPE4WQJtjwuf+a3MvpVDcuQkDvXfY7QJAnLKIG/f3WV7kmKMV?=
- =?us-ascii?Q?Ni+IgCyZPhrdtvjBkhlYYYp/vzZhtgSaYNaNdqaV+0CK78ulIseWCJaQY76J?=
- =?us-ascii?Q?UgOSs7YiP8GyXqPHHYTMPWohFu2xW+FcVAjM7yrDmXKdoJxitGoexud8uLEp?=
- =?us-ascii?Q?2ijW34S7MsmgmYyVK7YoMLexgDR1MM22rFKSe2DOZ2TTCTXgfcnPQ2E09sB4?=
- =?us-ascii?Q?4U6nq6by6LZXFm4pCMNtuF0v1Sso3diltDXbxTzHfrf1UJGkoKBPCH2QsB/i?=
- =?us-ascii?Q?Q0QyTbjbKVBi4lt2ddRM2Cw+nqtvI2xJO01TjkB6yirMs6IePJR8jEE5hbct?=
- =?us-ascii?Q?ZTct7/wD1G59zDRLN6k=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?uEkNyoeeSvQU30+bugCZFL9DeD3RzDejBpLJQOe1ZJfU79IRhelo8GCQHSnL?=
+ =?us-ascii?Q?YHlV5pMVbUo4Ev3dYf7sp8rz4God4uKXVABJFXY/RipKw12cBCIc1nLYRky1?=
+ =?us-ascii?Q?iHslOguq5eqOwSUXHAy/kMnEAjRD0FbhaQ1tYMRkPhMzFE+5xUojm9UyZK83?=
+ =?us-ascii?Q?4yaJzJOD76f47TMupAeCHwHjts3DvkuAKXBac2PVlJOv9o2pTXPUojbLnAQN?=
+ =?us-ascii?Q?PikkiBK+Ep1jeIzmeLha9hIhsvewpfE9E7oTmNfaG/R25MjcSPhHQux+7Dw2?=
+ =?us-ascii?Q?zZXOAJkbxNJpLDoP2YzLNPXlmVfTZmhEjyuc/zihI2yXKuwUkcnsZ/2Oe4R5?=
+ =?us-ascii?Q?wty6MBRU7/xZzBcgj98igbQhqF1d5jdYPq9NStsj2S5EBsZpTXVdWYNbbHZY?=
+ =?us-ascii?Q?qltuuyfLsUVOrAQD1+UutwpE0oOU/B886+0/RRKDhhGPMzDtTZCzy07Ga1e5?=
+ =?us-ascii?Q?zkL05y3d/fBq0uabBFWGq2mLLOg+h0BN+5mGkc8PGtHN6+mJBxCCs1HGAi9R?=
+ =?us-ascii?Q?JBHCWlwHafVkzI0uPUWylH8p52UxZgoQFw7WGntknJJpkThUbhVQvar+Q3w4?=
+ =?us-ascii?Q?9s3JXgpy74WSMO+UOsK0fhW10TLOofdAXtoiMzU7dLkP7ZB3YVT5kkti26Mi?=
+ =?us-ascii?Q?hqS8+pXnzsPce91r+5HC43jL6qGc9bzEIPf+lU68NEtQANskjjFzxytj0oHp?=
+ =?us-ascii?Q?P93Ia9UTpvCtK0vwFKCbBJS9rBxo5AtDp4FhVpRl8RpCltf4R9x0Xh8lGv6f?=
+ =?us-ascii?Q?n9MNtp8De/MmQdZNgC9WohiPLbDbNGtWBN1qt0zjIKJAX3wc7zLeqK7O8EOT?=
+ =?us-ascii?Q?BsoaXLwCeNlu/4A8N60XOhjrzlmOtKQhlC8xxUD2GIhbCDfQivignJJ7raL4?=
+ =?us-ascii?Q?WrLeXvTNHYJrx7ftzdRwZdapqWEskIj1eiU6e6eEvgnwvXH9JJ7+4Zi9h91K?=
+ =?us-ascii?Q?InEohYql4Pdl99tfrRt1krHNrQolsCduOD8A2wXXBmaQmpoRL4EYiOXu7EV6?=
+ =?us-ascii?Q?9MkLx7LzL2xiDm7vNtpyYaCKczGh1PiqUTc7l/eQ+S7Lr874jExYwP0uoL13?=
+ =?us-ascii?Q?DdIIEqMwMpsBqsjuduk+bqAdI7cO3SjsW5zU6Y8bJ3iPbT3fpBZsFB8s41/S?=
+ =?us-ascii?Q?fUAcvPYv0C6ut0ttD02vMmNHsmhdykLzAz8VraJOAD53IBaWYsAYMM7w0H0F?=
+ =?us-ascii?Q?Sj+pekP662lFLnISNPoDSUAJEhDNRcLkflB/xNkkepvfr39q7bj6W1LUCQ1O?=
+ =?us-ascii?Q?TTRlfka6jvEIE4pVEdWYNsb2cb/4qR5FqnDTmCu0L5aa7zTmt+E37fzzSYT8?=
+ =?us-ascii?Q?UE28X3DhIrlilxHWhnKZZKzofugH8AQG8mwq9E9Xc1g8XoSU1MaqOj/n+lIE?=
+ =?us-ascii?Q?2MTOsBryyhvly7oz9l3hxWOE/HD77iCApJocta+WE2nA8lQ5e+vUc9NiMABc?=
+ =?us-ascii?Q?oy7vBBUwIqBn5fs4gde9rGBjG5TUxb/tiU/K/uIhKYXJorfrYzkvLxTX7iKd?=
+ =?us-ascii?Q?Ln2JxePHRzJWt3Nw75rjzyL/mu5CVJC9ieEFMzOVCc8zW2+4VDGSLosRhWRk?=
+ =?us-ascii?Q?/N+vAqJQUq/dbZOOWtE=3D?=
 Content-Type: multipart/alternative;
- boundary="_000_BL1PR12MB514484ABCB305F64A7E1553CF7D32BL1PR12MB5144namp_"
+ boundary="_000_BL1PR12MB51442838F3F7F1D8B5616903F7D32BL1PR12MB5144namp_"
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5857e75c-5ba5-4895-e4db-08dc99f82f41
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2024 18:04:00.3361 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55b9eb0a-f7be-47c8-b48c-08dc99f8ed68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2024 18:09:19.3234 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: X/2WkftbvhxFMUGkbF3LfQ8LOei3bF6iEqe2sCEwMVXuoTuAmJEcGQ5QWPsyRBNS4cIagWq3AcsHPXNUcVmIZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8779
+X-MS-Exchange-CrossTenant-userprincipalname: yarLKIiDSb7WIYDOMfZCoay57xQYIa/IQgxeJJ5DIiVpmBiHE5v8C0HiTpI745vL1VsE2NNddfyuEkh6yXaz+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4447
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,7 +156,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BL1PR12MB514484ABCB305F64A7E1553CF7D32BL1PR12MB5144namp_
+--_000_BL1PR12MB51442838F3F7F1D8B5616903F7D32BL1PR12MB5144namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -158,108 +164,149 @@ Content-Transfer-Encoding: quoted-printable
 
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ________________________________
-From: Huang, Tim <Tim.Huang@amd.com>
-Sent: Sunday, June 30, 2024 11:45 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zh=
-ang@amd.com>; Huang, Tim <Tim.Huang@amd.com>
-Subject: [PATCH] drm/amd/pm: avoid to load smu firmware for APUs
+From: Min, Frank <Frank.Min@amd.com>
+Sent: Sunday, June 30, 2024 11:17 PM
+To: Deucher, Alexander <Alexander.Deucher@amd.com>; Olsak, Marek <Marek.Ols=
+ak@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Zhang, Hawking <=
+Hawking.Zhang@amd.com>; Gao, Likun <Likun.Gao@amd.com>; amd-gfx@lists.freed=
+esktop.org <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: restore dcc bo tilling configs while moving
 
-Certain call paths still load the SMU firmware for APUs,
-which needs to be skipped.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+From: Frank Min <Frank.Min@amd.com>
+
+While moving buffer which as dcc tiling config, it is needed to restore its=
+ original dcc tiling.
+
+1. extend copy flag to cover tiling bits
+
+2. add logic to restore original dcc tiling config
+
+Signed-off-by: Frank Min <Frank.Min@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 8 +++-----
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 8 +++-----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 8 +++-----
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c    | 2 +-
- 4 files changed, 10 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 17 ++++++++++++++---  drivers/gp=
+u/drm/amd/amdgpu/amdgpu_ttm.h | 11 +++++++++++  drivers/gpu/drm/amd/amdgpu/=
+sdma_v7_0.c  | 10 ++++++++--
+ 3 files changed, 33 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c
-index 18488c02d1cf..c55518fe542c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -7324,11 +7324,9 @@ static int gfx_v10_0_hw_init(void *handle)
-                  * loaded firstly, so in direct type, it has to load smc u=
-code
-                  * here before rlc.
-                  */
--               if (!(adev->flags & AMD_IS_APU)) {
--                       r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
--                       if (r)
--                               return r;
--               }
-+               r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
-+               if (r)
-+                       return r;
-                 gfx_v10_0_disable_gpa_mode(adev);
-         }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ttm.c
+index 9a92dd3c9fb8..dd4aed47af1e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -308,7 +308,8 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *ad=
+ev,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v11_0.c
-index 38150398a31b..0ad35e96d2b8 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -4558,11 +4558,9 @@ static int gfx_v11_0_hw_init(void *handle)
-                  * loaded firstly, so in direct type, it has to load smc u=
-code
-                  * here before rlc.
-                  */
--               if (!(adev->flags & AMD_IS_APU)) {
--                       r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
--                       if (r)
--                               return r;
--               }
-+               r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
-+               if (r)
-+                       return r;
-         }
+        mutex_lock(&adev->mman.gtt_window_lock);
+        while (src_mm.remaining) {
+-               uint64_t from, to, cur_size;
++               uint64_t from, to, cur_size, tiling_flags;
++               uint32_t num_type, data_format, max_com;
+                struct dma_fence *next;
 
-         gfx_v11_0_constants_init(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v12_0.c
-index ccb26f78252a..40edda2c3003 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -3306,11 +3306,9 @@ static int gfx_v12_0_hw_init(void *handle)
-                  * loaded firstly, so in direct type, it has to load smc u=
-code
-                  * here before rlc.
-                  */
--               if (!(adev->flags & AMD_IS_APU)) {
--                       r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
--                       if (r)
--                               return r;
--               }
-+               r =3D amdgpu_pm_load_smu_firmware(adev, NULL);
-+               if (r)
-+                       return r;
-         }
+                /* Never copy more than 256MiB at once to avoid a timeout *=
+/ @@ -329,10 +330,20 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device=
+ *adev,
+                abo_dst =3D ttm_to_amdgpu_bo(dst->bo);
+                if (tmz)
+                        copy_flags |=3D AMDGPU_COPY_FLAGS_TMZ;
+-               if (abo_src->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
++               if ((abo_src->flags & AMDGPU_GEM_CREATE_GFX12_DCC) &&
++                   (abo_src->tbo.resource->mem_type =3D=3D TTM_PL_VRAM))
+                        copy_flags |=3D AMDGPU_COPY_FLAGS_READ_DECOMPRESSED=
+;
+-               if (abo_dst->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
++               if ((abo_dst->flags & AMDGPU_GEM_CREATE_GFX12_DCC) &&
++                   (dst->mem->mem_type =3D=3D TTM_PL_VRAM)) {
+                        copy_flags |=3D AMDGPU_COPY_FLAGS_WRITE_COMPRESSED;
++                       amdgpu_bo_get_tiling_flags(abo_dst, &tiling_flags);
++                       max_com =3D AMDGPU_TILING_GET(tiling_flags, GFX12_D=
+CC_MAX_COMPRESSED_BLOCK);
++                       num_type =3D AMDGPU_TILING_GET(tiling_flags, GFX12_=
+DCC_NUMBER_TYPE);
++                       data_format =3D AMDGPU_TILING_GET(tiling_flags, GFX=
+12_DCC_DATA_FORMAT);
++                       copy_flags |=3D (AMDGPU_COPY_FLAGS_SET(MAX_COMPRESS=
+ED, max_com) |
++                                      AMDGPU_COPY_FLAGS_SET(NUMBER_TYPE, n=
+um_type) |
++                                      AMDGPU_COPY_FLAGS_SET(DATA_FORMAT, d=
+ata_format));
++               }
 
-         gfx_v12_0_constants_init(adev);
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/a=
-mdgpu_dpm.c
-index b3b5e7b74c85..a1b8a82d77cf 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -618,7 +618,7 @@ int amdgpu_pm_load_smu_firmware(struct amdgpu_device *a=
-dev, uint32_t *smu_versio
-         const struct amd_pm_funcs *pp_funcs =3D adev->powerplay.pp_funcs;
-         int r =3D 0;
+                r =3D amdgpu_copy_buffer(ring, from, to, cur_size, resv,
+                                       &next, false, true, copy_flags); dif=
+f --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amd=
+gpu/amdgpu_ttm.h
+index 7c903a6c9ddb..8d34e8588dc2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -114,6 +114,17 @@ struct amdgpu_copy_mem {
+ #define AMDGPU_COPY_FLAGS_TMZ          (1 << 0)
+ #define AMDGPU_COPY_FLAGS_READ_DECOMPRESSED    (1 << 1)
+ #define AMDGPU_COPY_FLAGS_WRITE_COMPRESSED     (1 << 2)
++#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_SHIFT         3
++#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_MASK          0x03
++#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_SHIFT            5
++#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_MASK             0x07
++#define AMDGPU_COPY_FLAGS_DATA_FORMAT_SHIFT            8
++#define AMDGPU_COPY_FLAGS_DATA_FORMAT_MASK             0x3f
++
++#define AMDGPU_COPY_FLAGS_SET(field, value) \
++       (((__u32)(value) & AMDGPU_COPY_FLAGS_##field##_MASK) <<
++AMDGPU_COPY_FLAGS_##field##_SHIFT)
++#define AMDGPU_COPY_FLAGS_GET(value, field) \
++       (((__u32)(value) >> AMDGPU_COPY_FLAGS_##field##_SHIFT) &
++AMDGPU_COPY_FLAGS_##field##_MASK)
 
--       if (!pp_funcs || !pp_funcs->load_firmware)
-+       if (!pp_funcs || !pp_funcs->load_firmware || adev->flags & AMD_IS_A=
-PU)
-                 return 0;
+ int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_size);  v=
+oid amdgpu_gtt_mgr_fini(struct amdgpu_device *adev); diff --git a/drivers/g=
+pu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
+index 96514fd77e35..41b5e45697dc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
+@@ -1566,6 +1566,12 @@ static void sdma_v7_0_emit_copy_buffer(struct amdgpu=
+_ib *ib,
+                                       uint32_t byte_count,
+                                       uint32_t copy_flags)
+ {
++       uint32_t num_type, data_format, max_com;
++
++       max_com =3D AMDGPU_COPY_FLAGS_GET(copy_flags, MAX_COMPRESSED);
++       data_format =3D AMDGPU_COPY_FLAGS_GET(copy_flags, DATA_FORMAT);
++       num_type =3D AMDGPU_COPY_FLAGS_GET(copy_flags, NUMBER_TYPE);
++
+        ib->ptr[ib->length_dw++] =3D SDMA_PKT_COPY_LINEAR_HEADER_OP(SDMA_OP=
+_COPY) |
+                SDMA_PKT_COPY_LINEAR_HEADER_SUB_OP(SDMA_SUBOP_COPY_LINEAR) =
+|
+                SDMA_PKT_COPY_LINEAR_HEADER_TMZ((copy_flags & AMDGPU_COPY_F=
+LAGS_TMZ) ? 1 : 0) | @@ -1580,10 +1586,10 @@ static void sdma_v7_0_emit_cop=
+y_buffer(struct amdgpu_ib *ib,
+        ib->ptr[ib->length_dw++] =3D upper_32_bits(dst_offset);
 
-         mutex_lock(&adev->pm.mutex);
+        if ((copy_flags & (AMDGPU_COPY_FLAGS_READ_DECOMPRESSED | AMDGPU_COP=
+Y_FLAGS_WRITE_COMPRESSED)))
+-               ib->ptr[ib->length_dw++] =3D SDMA_DCC_DATA_FORMAT(4) | SDMA=
+_DCC_NUM_TYPE(4) |
++               ib->ptr[ib->length_dw++] =3D SDMA_DCC_DATA_FORMAT(data_form=
+at) |
++SDMA_DCC_NUM_TYPE(num_type) |
+                        ((copy_flags & AMDGPU_COPY_FLAGS_READ_DECOMPRESSED)=
+ ? SDMA_DCC_READ_CM(2) : 0) |
+                        ((copy_flags & AMDGPU_COPY_FLAGS_WRITE_COMPRESSED) =
+? SDMA_DCC_WRITE_CM(1) : 0) |
+-                       SDMA_DCC_MAX_COM(1) | SDMA_DCC_MAX_UCOM(1);
++                       SDMA_DCC_MAX_COM(max_com) | SDMA_DCC_MAX_UCOM(1);
+ }
+
+ /**
 --
-2.43.0
+2.34.1
 
 
---_000_BL1PR12MB514484ABCB305F64A7E1553CF7D32BL1PR12MB5144namp_
+--_000_BL1PR12MB51442838F3F7F1D8B5616903F7D32BL1PR12MB5144namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -277,170 +324,238 @@ t-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
 </p>
 <br>
 <div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, C=
-alibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
 Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;</div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Huang, Tim &lt;Tim.Hu=
-ang@amd.com&gt;<br>
-<b>Sent:</b> Sunday, June 30, 2024 11:45 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Zhang, Yif=
-an &lt;Yifan1.Zhang@amd.com&gt;; Huang, Tim &lt;Tim.Huang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amd/pm: avoid to load smu firmware for APUs</fo=
-nt>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Min, Frank &lt;Frank.=
+Min@amd.com&gt;<br>
+<b>Sent:</b> Sunday, June 30, 2024 11:17 PM<br>
+<b>To:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Olsak, Mar=
+ek &lt;Marek.Olsak@amd.com&gt;; Koenig, Christian &lt;Christian.Koenig@amd.=
+com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;; Gao, Likun &lt;Likun=
+.Gao@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedeskt=
+op.org&gt;<br>
+<b>Subject:</b> [PATCH] drm/amdgpu: restore dcc bo tilling configs while mo=
+ving</font>
 <div>&nbsp;</div>
 </div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Certain call paths still load the SMU firmware for=
- APUs,<br>
-which needs to be skipped.<br>
+<div class=3D"BodyFragment"><font face=3D"Times New Roman" size=3D"3"><span=
+ style=3D"font-size:12pt;"><a name=3D"BM_BEGIN"></a>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">[AMD Official Use Onl=
+y - AMD Internal Distribution Only]<br>
 <br>
-Signed-off-by: Tim Huang &lt;Tim.Huang@amd.com&gt;<br>
+From: Frank Min &lt;Frank.Min@amd.com&gt;<br>
+<br>
+While moving buffer which as dcc tiling config, it is needed to restore its=
+ original dcc tiling.<br>
+<br>
+1. extend copy flag to cover tiling bits<br>
+<br>
+2. add logic to restore original dcc tiling config<br>
+<br>
+Signed-off-by: Frank Min &lt;Frank.Min@amd.com&gt;<br>
 ---<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 8 +++-----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 8 +++-----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 8 +++-----<br>
-&nbsp;drivers/gpu/drm/amd/pm/amdgpu_dpm.c&nbsp;&nbsp;&nbsp; | 2 +-<br>
-&nbsp;4 files changed, 10 insertions(+), 16 deletions(-)<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 17 ++++++++++++++---&nbsp; =
+drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 11 +++++++++++&nbsp; drivers/gpu/=
+drm/amd/amdgpu/sdma_v7_0.c&nbsp; | 10 ++++++++--<br>
+&nbsp;3 files changed, 33 insertions(+), 5 deletions(-)<br>
 <br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v10_0.c<br>
-index 18488c02d1cf..c55518fe542c 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-@@ -7324,11 +7324,9 @@ static int gfx_v10_0_hw_init(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * loaded firstly, so in direct type, it has to =
-load smc ucode<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * here before rlc.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS_APU)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_pm_=
-load_smu_firmware(adev, NULL);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; r =3D amdgpu_pm_load_smu_firmware(adev, NULL);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (r)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; gfx_v10_0_disable_gpa_mode(adev);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v11_0.c<br>
-index 38150398a31b..0ad35e96d2b8 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
-@@ -4558,11 +4558,9 @@ static int gfx_v11_0_hw_init(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * loaded firstly, so in direct type, it has to =
-load smc ucode<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * here before rlc.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS_APU)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_pm_=
-load_smu_firmware(adev, NULL);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; r =3D amdgpu_pm_load_smu_firmware(adev, NULL);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (r)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v11_0_constants_init(a=
-dev);<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v12_0.c<br>
-index ccb26f78252a..40edda2c3003 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c<br>
-@@ -3306,11 +3306,9 @@ static int gfx_v12_0_hw_init(void *handle)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * loaded firstly, so in direct type, it has to =
-load smc ucode<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * here before rlc.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!(adev-&gt;flags &amp; AMD_IS_APU)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_pm_=
-load_smu_firmware(adev, NULL);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; r =3D amdgpu_pm_load_smu_firmware(adev, NULL);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (r)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v12_0_constants_init(a=
-dev);<br>
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/a=
-mdgpu_dpm.c<br>
-index b3b5e7b74c85..a1b8a82d77cf 100644<br>
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c<br>
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c<br>
-@@ -618,7 +618,7 @@ int amdgpu_pm_load_smu_firmware(struct amdgpu_device *a=
-dev, uint32_t *smu_versio<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct amd_pm_funcs =
-*pp_funcs =3D adev-&gt;powerplay.pp_funcs;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r =3D 0;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!pp_funcs || !pp_funcs-&gt;load_f=
-irmware)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!pp_funcs || !pp_funcs-&gt;load_f=
-irmware || adev-&gt;flags &amp; AMD_IS_APU)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;p=
-m.mutex);<br>
--- <br>
-2.43.0<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ttm.c<br>
+index 9a92dd3c9fb8..dd4aed47af1e 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c<br>
+@@ -308,7 +308,8 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *ad=
+ev,<br>
 <br>
-</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;mman.gt=
+t_window_lock);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (src_mm.remaining) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; uint64_t from, to, cur_size;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; uint64_t from, to, cur_size, tiling_flags;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; uint32_t num_type, data_format, max_com;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; struct dma_fence *next;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /* Never copy more than 256MiB at once to avoid a timeout *=
+/ @@ -329,10 +330,20 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device=
+ *adev,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; abo_dst =3D ttm_to_amdgpu_bo(dst-&gt;bo);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; if (tmz)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copy_flags =
+|=3D AMDGPU_COPY_FLAGS_TMZ;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (abo_src-&gt;flags &amp; AMDGPU_GEM_CREATE_GFX12_DCC)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if ((abo_src-&gt;flags &amp; AMDGPU_GEM_CREATE_GFX12_DCC) &amp;&=
+amp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (abo_src-&gt;tbo.resource-&gt;mem_type =
+=3D=3D TTM_PL_VRAM))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copy_flags =
+|=3D AMDGPU_COPY_FLAGS_READ_DECOMPRESSED;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (abo_dst-&gt;flags &amp; AMDGPU_GEM_CREATE_GFX12_DCC)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if ((abo_dst-&gt;flags &amp; AMDGPU_GEM_CREATE_GFX12_DCC) &amp;&=
+amp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (dst-&gt;mem-&gt;mem_type =3D=3D TTM_PL_=
+VRAM)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copy_flags =
+|=3D AMDGPU_COPY_FLAGS_WRITE_COMPRESSED;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_get_ti=
+ling_flags(abo_dst, &amp;tiling_flags);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_com =3D AMDG=
+PU_TILING_GET(tiling_flags, GFX12_DCC_MAX_COMPRESSED_BLOCK);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_type =3D AMD=
+GPU_TILING_GET(tiling_flags, GFX12_DCC_NUMBER_TYPE);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data_format =3D =
+AMDGPU_TILING_GET(tiling_flags, GFX12_DCC_DATA_FORMAT);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; copy_flags |=3D =
+(AMDGPU_COPY_FLAGS_SET(MAX_COMPRESSED, max_com) |<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_COPY_FLAGS_SET(NUMBER_TYPE, num_type) |<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
+MDGPU_COPY_FLAGS_SET(DATA_FORMAT, data_format));<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; r =3D amdgpu_copy_buffer(ring, from, to, cur_size, resv,<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; &amp;next, false, true, copy_flags); diff --git a/drivers/gpu/drm/amd/a=
+mdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+index 7c903a6c9ddb..8d34e8588dc2 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h<br>
+@@ -114,6 +114,17 @@ struct amdgpu_copy_mem {<br>
+&nbsp;#define AMDGPU_COPY_FLAGS_TMZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; (1 &lt;&lt; 0)<br>
+&nbsp;#define AMDGPU_COPY_FLAGS_READ_DECOMPRESSED&nbsp;&nbsp;&nbsp; (1 &lt;=
+&lt; 1)<br>
+&nbsp;#define AMDGPU_COPY_FLAGS_WRITE_COMPRESSED&nbsp;&nbsp;&nbsp;&nbsp; (1=
+ &lt;&lt; 2)<br>
++#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_SHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; 3<br>
++#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_MASK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; 0x03<br>
++#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_SHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
++#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_MASK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x07<br>
++#define AMDGPU_COPY_FLAGS_DATA_FORMAT_SHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
++#define AMDGPU_COPY_FLAGS_DATA_FORMAT_MASK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x3f<br>
++<br>
++#define AMDGPU_COPY_FLAGS_SET(field, value) \<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (((__u32)(value) &amp; AMDGPU_COPY_FL=
+AGS_##field##_MASK) &lt;&lt;<br>
++AMDGPU_COPY_FLAGS_##field##_SHIFT)<br>
++#define AMDGPU_COPY_FLAGS_GET(value, field) \<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (((__u32)(value) &gt;&gt; AMDGPU_COPY=
+_FLAGS_##field##_SHIFT) &amp;<br>
++AMDGPU_COPY_FLAGS_##field##_MASK)<br>
+<br>
+&nbsp;int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_size=
+);&nbsp; void amdgpu_gtt_mgr_fini(struct amdgpu_device *adev); diff --git a=
+/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v=
+7_0.c<br>
+index 96514fd77e35..41b5e45697dc 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c<br>
+@@ -1566,6 +1566,12 @@ static void sdma_v7_0_emit_copy_buffer(struct amdgpu=
+_ib *ib,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; uint32_t byte_count,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; uint32_t copy_flags)<br>
+&nbsp;{<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t num_type, data_format, max_c=
+om;<br>
++<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_com =3D AMDGPU_COPY_FLAGS_GET(cop=
+y_flags, MAX_COMPRESSED);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data_format =3D AMDGPU_COPY_FLAGS_GET=
+(copy_flags, DATA_FORMAT);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_type =3D AMDGPU_COPY_FLAGS_GET(co=
+py_flags, NUMBER_TYPE);<br>
++<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ib-&gt;ptr[ib-&gt;length_dw++] =
+=3D SDMA_PKT_COPY_LINEAR_HEADER_OP(SDMA_OP_COPY) |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; SDMA_PKT_COPY_LINEAR_HEADER_SUB_OP(SDMA_SUBOP_COPY_LINEAR) =
+|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; SDMA_PKT_COPY_LINEAR_HEADER_TMZ((copy_flags &amp; AMDGPU_CO=
+PY_FLAGS_TMZ) ? 1 : 0) | @@ -1580,10 +1586,10 @@ static void sdma_v7_0_emit=
+_copy_buffer(struct amdgpu_ib *ib,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ib-&gt;ptr[ib-&gt;length_dw++] =
+=3D upper_32_bits(dst_offset);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((copy_flags &amp; (AMDGPU_CO=
+PY_FLAGS_READ_DECOMPRESSED | AMDGPU_COPY_FLAGS_WRITE_COMPRESSED)))<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ib-&gt;ptr[ib-&gt;length_dw++] =3D SDMA_DCC_DATA_FORMAT(4) | SDM=
+A_DCC_NUM_TYPE(4) |<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ib-&gt;ptr[ib-&gt;length_dw++] =3D SDMA_DCC_DATA_FORMAT(data_for=
+mat) |<br>
++SDMA_DCC_NUM_TYPE(num_type) |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((copy_flag=
+s &amp; AMDGPU_COPY_FLAGS_READ_DECOMPRESSED) ? SDMA_DCC_READ_CM(2) : 0) |<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((copy_flag=
+s &amp; AMDGPU_COPY_FLAGS_WRITE_COMPRESSED) ? SDMA_DCC_WRITE_CM(1) : 0) |<b=
+r>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SDMA_DCC_MAX_COM=
+(1) | SDMA_DCC_MAX_UCOM(1);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SDMA_DCC_MAX_COM=
+(max_com) | SDMA_DCC_MAX_UCOM(1);<br>
+&nbsp;}<br>
+<br>
+&nbsp;/**<br>
+--<br>
+2.34.1<br>
+<br>
+</span></font></div>
 </span></font></div>
 </div>
 </body>
 </html>
 
---_000_BL1PR12MB514484ABCB305F64A7E1553CF7D32BL1PR12MB5144namp_--
+--_000_BL1PR12MB51442838F3F7F1D8B5616903F7D32BL1PR12MB5144namp_--
