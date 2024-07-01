@@ -2,49 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F8691E82E
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 21:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC9991E870
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 21:19:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA16310E4DA;
-	Mon,  1 Jul 2024 19:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF8510E4E5;
+	Mon,  1 Jul 2024 19:19:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PC3SrlBb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JdFGNnYK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB6B410E4D7
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jul 2024 19:05:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id F39A761757;
- Mon,  1 Jul 2024 19:05:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D80BC116B1;
- Mon,  1 Jul 2024 19:05:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1719860707;
- bh=22ZZriJeaqwJBqSkp68649HkFUxETLQ1Kv7XmNzQmms=;
- h=Subject:From:To:Date:In-Reply-To:References:From;
- b=PC3SrlBbi44DZpiM9qG1Aa4wR2E5RCJgLE9RIlGNGTdbRoxrOVaT8p/de+s6Oc1q4
- AT4ajFvjNxTubWJo30yixWHoRf19rThvojGygp/hEUmPTwR7vVY4KBgV17VYorRVnq
- QJf6xKKLKmR81I2jcGJYPxGP46C3dktHeE8HKZdh7S9qM7bMxJSggFjsxe07Pwenr4
- 69hSMDo6+CO/0IrrVKLpfq1blo38JPVglCdNbxN/ytviW1ZdnZ6t+180F0RDIrEj5P
- OYor+4AEyM6nH0nr6NYrEyIXCovCi0oaoBOIrQ4Epg67TmLR8j1kwJIjMsKmfHOP3n
- AbPyi/som/FMw==
-Message-ID: <1eb059ecf3fb9d2d9e32ac00a791e1795124edf6.camel@kernel.org>
-Subject: Re: [PATCH] drm/amdgpu/atomfirmware: silence UBSAN warning
-From: Jeff Layton <jlayton@kernel.org>
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Date: Mon, 01 Jul 2024 15:05:06 -0400
-In-Reply-To: <20240701165521.1825864-1-alexander.deucher@amd.com>
-References: <20240701165521.1825864-1-alexander.deucher@amd.com>
-Autocrypt: addr=jlayton@kernel.org; prefer-encrypt=mutual;
- keydata=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
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E262E10E4DB;
+ Mon,  1 Jul 2024 19:19:41 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-2c80637d8adso1943557a91.0; 
+ Mon, 01 Jul 2024 12:19:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1719861581; x=1720466381; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=n7dX91rR++X8l6FgAb2IdZ2jTpqGOU3hxaiyihnGxWg=;
+ b=JdFGNnYKXwnsdXWNYmqWyAU2PKLNhe+rgEWRP/iS4WpgK/pkyHRYzwU83BmzTNylzQ
+ zRsZtdhPWqzxpTG8NiiQbmRkumw1C8kNuUp5aIOaNbyldzcw4a9zuTDCHWy5100+TZId
+ Ja6luAjaKbtvHa+TEfMGXCcaLR8RqRxFCa/Hi56wPcZfYdR1UAXLW47/duQ0ZRncpi4W
+ dT4/AvcfYPj1geocVtusvJPY2Te//6+onpyRZDRMMwQvOc5+Jq4DEYRbsaOjvIu0vcxE
+ GED8FFmzj4SaXUfopkVv0F6tnmNMf73DVD61w4q1GvZa1/7Fy5KDyXZmzjF0mZj+XlL8
+ U0pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719861581; x=1720466381;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=n7dX91rR++X8l6FgAb2IdZ2jTpqGOU3hxaiyihnGxWg=;
+ b=YFX/99FzW4ScRJk84kXPnwg0XpzqWugeVULCjFpSXjXbIBT6jKgqbJUOnxCeDIe7Af
+ Ro9seZ7r3yGi6k50VnGT0njuWRMRAsPsRSRLYeEJxKHgSWGN4MfGNxb4NI/2PXrfQEGw
+ 1rC9ZHrrqQL1Iu21TO4OrSE4Us9znGfstbGA33MbE7po3TuXrhGDtoBb4GMOvmYXZ2tx
+ aQbgMt/t/ObS+uGSJnunopIFWhy/FWRSyA/WK5ZAZyrh7knHmKCnGUCPnTYDGBG/zgY5
+ fuJPYsy27Zli9vefjSEMBDtVX5jYub8l/baLG2z+PWaiqI/Z/QOvNndO+kgPIIHPFzcK
+ 2yFw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUKN9w39rhrVm8ZoFBGNKaadfrEPlvHuBbqOpyaK4M5+uAk6aq+vextDUb2Zp63u8i/VmNgF6FcVERLT8rvizTH+FPoxufJXrbUSonSeON7ae26AedYc7MaIKSwpG39IRPL9WWRboRIzk3FYt8Kdg==
+X-Gm-Message-State: AOJu0Yx87jkETcqd5bzfO68hjW633niUN2ULYO1pbT/E8l463Qf/qBx9
+ N0jW8Gs1zoI9Lk9wI5hH4voD9Z7TRcE3QdgdE7lmtgBULzqAbjjIVGXwdHfiqJThe0z7q8bCQ5O
+ QiaZTzw4h10SUqKt6Bhd/Cyaz2UU=
+X-Google-Smtp-Source: AGHT+IG5+yZI4SRXCP1ZRSO57iNkvyORgQdxHHwZ6QNuY1DRKJ4lk+z/+oxiPHPCnZXrnlpXT/gQVlhMBabT1lU/5O4=
+X-Received: by 2002:a17:90b:e0f:b0:2c8:a8f:45fa with SMTP id
+ 98e67ed59e1d1-2c93d6c650cmr3631105a91.2.1719861581296; Mon, 01 Jul 2024
+ 12:19:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <20240701025028.36072-1-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <20240701025028.36072-1-jiapeng.chong@linux.alibaba.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 1 Jul 2024 15:19:29 -0400
+Message-ID: <CADnq5_N3wS=dbg5cfjKdqnU+JmCw80Evat_3-H_RJ3Aus7CfyA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Fix unsigned comparison with less than
+ zero
+To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Cc: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, 
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com, 
+ airlied@gmail.com, daniel@ffwll.ch, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ Abaci Robot <abaci@linux.alibaba.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
-MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,34 +82,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2024-07-01 at 12:55 -0400, Alex Deucher wrote:
-> This is a variably sized array.
->=20
-> Link:
-> https://lists.freedesktop.org/archives/amd-gfx/2024-June/110420.html
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Applied.  Thanks!
+
+On Sun, Jun 30, 2024 at 11:10=E2=80=AFPM Jiapeng Chong
+<jiapeng.chong@linux.alibaba.com> wrote:
+>
+> The return value from the call to dml21_find_dc_pipes_for_plane() is int.
+> However, the return value is being assigned to an unsigned int variable
+> 'num_pipes', the condition if(num_pipes <=3D 0) is not rigorous enough,
+> so making 'num_pipes' an int.
+>
+> ./drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:318:6-15: WAR=
+NING: Unsigned expression compared with zero: num_pipes <=3D 0.
+> ./drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:360:6-15: WAR=
+NING: Unsigned expression compared with zero: num_pipes <=3D 0.
+>
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=3D9454
+> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 > ---
-> =C2=A0drivers/gpu/drm/amd/include/atomfirmware.h | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h
-> b/drivers/gpu/drm/amd/include/atomfirmware.h
-> index 571691837200..09cbc3afd6d8 100644
-> --- a/drivers/gpu/drm/amd/include/atomfirmware.h
-> +++ b/drivers/gpu/drm/amd/include/atomfirmware.h
-> @@ -734,7 +734,7 @@ struct atom_gpio_pin_lut_v2_1
-> =C2=A0{
-> =C2=A0=C2=A0 struct=C2=A0 atom_common_table_header=C2=A0 table_header;
-> =C2=A0=C2=A0 /*the real number of this included in the structure is calcu=
-alted
-> by using the (whole structure size - the header size)/size of
-> atom_gpio_pin_lut=C2=A0 */
-> -=C2=A0 struct=C2=A0 atom_gpio_pin_assignment=C2=A0 gpio_pin[8];
-> +=C2=A0 struct=C2=A0 atom_gpio_pin_assignment=C2=A0 gpio_pin[];
-> =C2=A0};
-> =C2=A0
-> =C2=A0
-
-Works for me:
-
-Tested-by: Jeff Layton <jlayton@kernel.org>
+>  .../drm/amd/display/dc/dml2/dml21/dml21_wrapper.c | 15 ++++++---------
+>  1 file changed, 6 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c b/=
+drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
+> index c310354cd5fc..9d96a31419fa 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
+> @@ -280,7 +280,8 @@ bool dml21_validate(const struct dc *in_dc, struct dc=
+_state *context, struct dml
+>
+>  void dml21_prepare_mcache_programming(struct dc *in_dc, struct dc_state =
+*context, struct dml2_context *dml_ctx)
+>  {
+> -       unsigned int num_pipes, dml_prog_idx, dml_phantom_prog_idx, dc_pi=
+pe_index;
+> +       unsigned int dml_prog_idx, dml_phantom_prog_idx, dc_pipe_index;
+> +       int num_pipes;
+>         struct pipe_ctx *dc_main_pipes[__DML2_WRAPPER_MAX_STREAMS_PLANES_=
+_];
+>         struct pipe_ctx *dc_phantom_pipes[__DML2_WRAPPER_MAX_STREAMS_PLAN=
+ES__] =3D {0};
+>
+> @@ -314,10 +315,8 @@ void dml21_prepare_mcache_programming(struct dc *in_=
+dc, struct dc_state *context
+>                 }
+>
+>                 num_pipes =3D dml21_find_dc_pipes_for_plane(in_dc, contex=
+t, dml_ctx, dc_main_pipes, dc_phantom_pipes, dml_prog_idx);
+> -
+> -               if (num_pipes <=3D 0 ||
+> -                               dc_main_pipes[0]->stream =3D=3D NULL ||
+> -                               dc_main_pipes[0]->plane_state =3D=3D NULL=
+)
+> +               if (num_pipes <=3D 0 || dc_main_pipes[0]->stream =3D=3D N=
+ULL ||
+> +                   dc_main_pipes[0]->plane_state =3D=3D NULL)
+>                         continue;
+>
+>                 /* get config for each pipe */
+> @@ -356,10 +355,8 @@ void dml21_prepare_mcache_programming(struct dc *in_=
+dc, struct dc_state *context
+>                 pln_prog =3D &dml_ctx->v21.mode_programming.programming->=
+plane_programming[dml_prog_idx];
+>
+>                 num_pipes =3D dml21_find_dc_pipes_for_plane(in_dc, contex=
+t, dml_ctx, dc_main_pipes, dc_phantom_pipes, dml_prog_idx);
+> -
+> -               if (num_pipes <=3D 0 ||
+> -                               dc_main_pipes[0]->stream =3D=3D NULL ||
+> -                               dc_main_pipes[0]->plane_state =3D=3D NULL=
+)
+> +               if (num_pipes <=3D 0 || dc_main_pipes[0]->stream =3D=3D N=
+ULL ||
+> +                   dc_main_pipes[0]->plane_state =3D=3D NULL)
+>                         continue;
+>
+>                 /* get config for each pipe */
+> --
+> 2.20.1.7.g153144c
+>
