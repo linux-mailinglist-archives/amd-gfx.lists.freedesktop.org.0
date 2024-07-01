@@ -2,73 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF1491D871
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 09:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E75F91D86D
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Jul 2024 09:00:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE6710E323;
-	Mon,  1 Jul 2024 06:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 443DE10E306;
+	Mon,  1 Jul 2024 06:59:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yc0RWKyz";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="QCrrmIGT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
- [209.85.208.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A818010E2A5;
- Sun, 30 Jun 2024 17:05:16 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-2ec6635aa43so22402131fa.1; 
- Sun, 30 Jun 2024 10:05:16 -0700 (PDT)
+Received: from out30-98.freemail.mail.aliyun.com
+ (out30-98.freemail.mail.aliyun.com [115.124.30.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C64710E2DD;
+ Mon,  1 Jul 2024 02:50:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719767114; x=1720371914; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TSBwaS4j56NlcOuTEVGitgpl2zqsxNnDtYPNdmykvCQ=;
- b=Yc0RWKyzC3sZsfNM1kH2RQ4P9QoL+YX0BYahe5QtghXLAWeyR0DTcnkXBBlD0yQYfi
- 7aE/sI1QGWXMORQb/AIpa+zehXtYfyigdmMIWy+cNMyX5wviD+BFvrAaumPtLp36OeU6
- 85SeShlxOcOztiLCHwmgCLoKocQ0RNF/4AcD7hG9wI6xEtjTgVVbnlxXHRdILK/AJzMJ
- LxoJwTnEjS5xG6A9SRI3Sdl+5sJQTgF7a7pqbkvRCZeBvYxuHLGKGfAcZsRRcEw066dH
- w7i02Spm306QUD8hK9pEVQcW6H3mwoXLaZ31jKjJe++q0uC04EuONV/KxNgCA/hInh2W
- XnJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719767114; x=1720371914;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TSBwaS4j56NlcOuTEVGitgpl2zqsxNnDtYPNdmykvCQ=;
- b=Y8TNwXXg6g4M2vKbIfTwtHbOXQ/dw3nSUjDE92a7dXn4d5LiZt6lAJwMbz7PR0MDWX
- /3KMh3CQvErmq23zYEV/lY+5C9JtUqGigLonDuYkgGIqUVn+ftF4Z7t2FCXgV28yJ+0d
- o5KwbrbVCQXdB0Xv0Qxu1ErE+NELl1oCzXHOcFeuCz9ivsKJVfwUB87nWM+Tyf+t5ziL
- sTnK4Sw+zuja8C1HMkTuPCv8/0P2By9wMkcQowJLpQvGm/DQ/FtCRjoQf6xDLGv0vd9O
- P9VZaGXKJmYeyRuGqroGNKvBsHP0c3P0M2stnQpBxc8nzjSayWQ3o3t3G+8ONi6bF9zJ
- rDww==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWb2isPbt9PzUoDcklvqP1nBufXYmwToaz7T41loqlV7b2qH1PqFNcQggSPUHkXz6qgmd7tolI2xXwZG4Knbezc8BS9Kyvke7siQGRYQ68JJS+LKBiHjXgg+Jg+vqV+LkKWpuIQiRh/nUeAMhtSYw==
-X-Gm-Message-State: AOJu0YylFiLjHpxnkql1cmoHsBGZgRjKr0NEcpHXZdifw6ZheB+WM5My
- bHrvej9t9VSjBtjdTsRrYzfdU24XRfOCwoMkbYY21OObysMLv4Ga6mWXcqfgrR2vBLUiMrSitje
- 29s4ZGybcYkfZkwlPkOGGQ+nOM+Y=
-X-Google-Smtp-Source: AGHT+IG7YHJPWnQ2Einzgx/hq1VY62FwoAmFbqi2vP0rjaW6mj6HE6Hk848vv1ff23xCzGk+ngx5RSdfIDimeiOwyGI=
-X-Received: by 2002:a2e:bcc1:0:b0:2ee:6a72:f006 with SMTP id
- 38308e7fff4ca-2ee6a72f0e6mr5705301fa.21.1719767114078; Sun, 30 Jun 2024
- 10:05:14 -0700 (PDT)
+ d=linux.alibaba.com; s=default;
+ t=1719802249; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=dKbWEdikIBy/xGxcnPx9urGn8RKhAvsJQ96ZeCNi8Xw=;
+ b=QCrrmIGTeNCPtSVCiIZlSkiCxmEHjF7rsHTmwaWRxB1rWAN2o7c30g5tVNJxIwH1YZ2euX+XPiuBP2BZ1km5LFYHU3wVRqnO1IDFtkZdZ/bjswwosFjBx3qarfxWU9BdPRU0n8/oozPh3phDRaHYYUIZ6WCkWm5NaISU16wFmls=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R191e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033045075189;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0W9XECIo_1719802230; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0W9XECIo_1719802230) by smtp.aliyun-inc.com;
+ Mon, 01 Jul 2024 10:50:46 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH] drm/amd/display: Fix unsigned comparison with less than zero
+Date: Mon,  1 Jul 2024 10:50:28 +0800
+Message-Id: <20240701025028.36072-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-References: <20240624151122.23724-1-wuhoipok@gmail.com>
- <3c627f1d-ab9e-480f-8f42-91a108477c24@suse.de>
-In-Reply-To: <3c627f1d-ab9e-480f-8f42-91a108477c24@suse.de>
-From: Hoi Pok Wu <wuhoipok@gmail.com>
-Date: Sun, 30 Jun 2024 13:05:03 -0400
-Message-ID: <CANyH0kAPuxnTR0UA3EBfzd8aAFH4kw9qVN1GLi-g60VE5NUYwg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] drm/radeon: remove load callback
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 01 Jul 2024 06:59:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,98 +57,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Thmoas,
+The return value from the call to dml21_find_dc_pipes_for_plane() is int.
+However, the return value is being assigned to an unsigned int variable
+'num_pipes', the condition if(num_pipes <= 0) is not rigorous enough,
+so making 'num_pipes' an int.
 
-Thanks a lot for the feedback.
-I admit that my patch was a mess, sorry about that.
+./drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:318:6-15: WARNING: Unsigned expression compared with zero: num_pipes <= 0.
+./drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:360:6-15: WARNING: Unsigned expression compared with zero: num_pipes <= 0.
 
-I have submitted a v3 to change a lot of stuff, these patches should
-be able to be built now.
-I also improve readability, where each patch does their own stuff.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=9454
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ .../drm/amd/display/dc/dml2/dml21/dml21_wrapper.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-Best regards,
-Wu
-
-On Wed, Jun 26, 2024 at 10:47=E2=80=AFAM Thomas Zimmermann <tzimmermann@sus=
-e.de> wrote:
->
-> Hi
->
-> Am 24.06.24 um 17:10 schrieb Wu Hoi Pok:
-> > Changes between v1 and v3:
-> >
-> > 1. add "ddev->dev_private =3D rdev;"
-> > 2. include a cover letter
->
-> A cover letter should briefly say what the patchset is about.
->
-> BTW it's not clear to me why you need to modify radeon_dev.dev for
-> removing the load callback. It seems it's a separate issue.
->
-> Best regards
-> Thomas
->
->
-> >
-> > Wu Hoi Pok (7):
-> >    drm/radeon: remove load callback
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 1
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 2
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 3
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 4
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 5
-> >    drm/radeon: rdev->ddev to rdev_to_drm(rdev) 6
-> >
-> >   drivers/gpu/drm/radeon/atombios_encoders.c |  2 +-
-> >   drivers/gpu/drm/radeon/cik.c               | 14 ++--
-> >   drivers/gpu/drm/radeon/dce6_afmt.c         |  2 +-
-> >   drivers/gpu/drm/radeon/evergreen.c         | 12 ++--
-> >   drivers/gpu/drm/radeon/ni.c                |  2 +-
-> >   drivers/gpu/drm/radeon/r100.c              | 24 +++----
-> >   drivers/gpu/drm/radeon/r300.c              |  6 +-
-> >   drivers/gpu/drm/radeon/r420.c              |  6 +-
-> >   drivers/gpu/drm/radeon/r520.c              |  2 +-
-> >   drivers/gpu/drm/radeon/r600.c              | 12 ++--
-> >   drivers/gpu/drm/radeon/r600_cs.c           |  2 +-
-> >   drivers/gpu/drm/radeon/r600_dpm.c          |  4 +-
-> >   drivers/gpu/drm/radeon/r600_hdmi.c         |  2 +-
-> >   drivers/gpu/drm/radeon/radeon.h            | 11 +++-
-> >   drivers/gpu/drm/radeon/radeon_acpi.c       | 10 +--
-> >   drivers/gpu/drm/radeon/radeon_agp.c        |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_atombios.c   |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_audio.c      |  4 +-
-> >   drivers/gpu/drm/radeon/radeon_combios.c    | 12 ++--
-> >   drivers/gpu/drm/radeon/radeon_device.c     | 19 ++----
-> >   drivers/gpu/drm/radeon/radeon_display.c    | 74 +++++++++++----------=
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
+index c310354cd5fc..9d96a31419fa 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
+@@ -280,7 +280,8 @@ bool dml21_validate(const struct dc *in_dc, struct dc_state *context, struct dml
+ 
+ void dml21_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context, struct dml2_context *dml_ctx)
+ {
+-	unsigned int num_pipes, dml_prog_idx, dml_phantom_prog_idx, dc_pipe_index;
++	unsigned int dml_prog_idx, dml_phantom_prog_idx, dc_pipe_index;
++	int num_pipes;
+ 	struct pipe_ctx *dc_main_pipes[__DML2_WRAPPER_MAX_STREAMS_PLANES__];
+ 	struct pipe_ctx *dc_phantom_pipes[__DML2_WRAPPER_MAX_STREAMS_PLANES__] = {0};
+ 
+@@ -314,10 +315,8 @@ void dml21_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context
+ 		}
+ 
+ 		num_pipes = dml21_find_dc_pipes_for_plane(in_dc, context, dml_ctx, dc_main_pipes, dc_phantom_pipes, dml_prog_idx);
 -
-> >   drivers/gpu/drm/radeon/radeon_drv.c        | 27 +++++---
-> >   drivers/gpu/drm/radeon/radeon_drv.h        |  1 -
-> >   drivers/gpu/drm/radeon/radeon_fbdev.c      | 26 ++++----
-> >   drivers/gpu/drm/radeon/radeon_fence.c      |  8 +--
-> >   drivers/gpu/drm/radeon/radeon_gem.c        |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_i2c.c        |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_ib.c         |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_irq_kms.c    | 12 ++--
-> >   drivers/gpu/drm/radeon/radeon_kms.c        | 18 ++----
-> >   drivers/gpu/drm/radeon/radeon_object.c     |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_pm.c         | 20 +++---
-> >   drivers/gpu/drm/radeon/radeon_ring.c       |  2 +-
-> >   drivers/gpu/drm/radeon/radeon_ttm.c        |  6 +-
-> >   drivers/gpu/drm/radeon/rs400.c             |  6 +-
-> >   drivers/gpu/drm/radeon/rs600.c             | 14 ++--
-> >   drivers/gpu/drm/radeon/rs690.c             |  2 +-
-> >   drivers/gpu/drm/radeon/rv515.c             |  4 +-
-> >   drivers/gpu/drm/radeon/rv770.c             |  2 +-
-> >   drivers/gpu/drm/radeon/si.c                |  4 +-
-> >   40 files changed, 193 insertions(+), 191 deletions(-)
-> >
->
-> --
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
->
+-		if (num_pipes <= 0 ||
+-				dc_main_pipes[0]->stream == NULL ||
+-				dc_main_pipes[0]->plane_state == NULL)
++		if (num_pipes <= 0 || dc_main_pipes[0]->stream == NULL ||
++		    dc_main_pipes[0]->plane_state == NULL)
+ 			continue;
+ 
+ 		/* get config for each pipe */
+@@ -356,10 +355,8 @@ void dml21_prepare_mcache_programming(struct dc *in_dc, struct dc_state *context
+ 		pln_prog = &dml_ctx->v21.mode_programming.programming->plane_programming[dml_prog_idx];
+ 
+ 		num_pipes = dml21_find_dc_pipes_for_plane(in_dc, context, dml_ctx, dc_main_pipes, dc_phantom_pipes, dml_prog_idx);
+-
+-		if (num_pipes <= 0 ||
+-				dc_main_pipes[0]->stream == NULL ||
+-				dc_main_pipes[0]->plane_state == NULL)
++		if (num_pipes <= 0 || dc_main_pipes[0]->stream == NULL ||
++		    dc_main_pipes[0]->plane_state == NULL)
+ 			continue;
+ 
+ 		/* get config for each pipe */
+-- 
+2.20.1.7.g153144c
+
