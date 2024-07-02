@@ -2,75 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045B7924338
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jul 2024 18:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C86924619
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Jul 2024 19:31:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA65610E654;
-	Tue,  2 Jul 2024 16:08:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7125110E663;
+	Tue,  2 Jul 2024 17:31:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hwo0vt1U";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VUDXve/l";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD6110E64A
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jul 2024 16:08:41 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id
- a640c23a62f3a-a725041ad74so174870666b.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Jul 2024 09:08:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719936520; x=1720541320; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Dkz8CzS57LYaaRjbSeyi0tAg2AI7XjrNV+uyVN82LT8=;
- b=hwo0vt1UAJ+TDf00e8bnEpILB5zK/Y1Mnehgkcvwus6qRrrGAtIrB+vY/JCzuGb7dk
- H5akrF5K6viifxLAAWHPqhJjaM9n8BrISAYFdErFdijBTYwOcGc6R6Gq44SeT7jxc+el
- W0ym1HYdaBYQ7gnjuiCDyMKJ4FNdCP9BZdDsvprIuj2hXPX8Iw584YEcmi5kDEdT7H36
- TuSXOgMbA3CO/ePrgHpxoDsw182VwiyNs+/q3GGlOKF8oDWiZJNRSB+k/0Bs6+Ru/1ce
- HbkiCBTUqeRBH3RBgQXfzyOLgmKucgytbA5yGsh2TeszQ8SR0FyeXctYM1lofRm7ZHzl
- XOtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719936520; x=1720541320;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Dkz8CzS57LYaaRjbSeyi0tAg2AI7XjrNV+uyVN82LT8=;
- b=rwY5zqt4OuUtlwN787OxacePcUYcdV3iDx9Ti/8eTunzSRg07kwFUEsG+W/5pEwYsO
- qwv1L6vs6ZdIKkARmZexXk6BMxGezhqKJhqT606CK8T5mIBIc+t7hG70Xegb5S240Rg/
- kKA2nC1op0o6vCEekDjXLkWM2NDLr8h52HCGXznn9szC8+ErnUNcWLCpI3W1Zbn0uvJw
- ArJOHogPYHpD3WWeAVoLwpq9OYDoOzuxF8kzH3IZ9bwFHKP1hEkzyp4onA8fbbxjEdJD
- 9AuLFyCWKjrxBwR+J1oZFHzcJIuLVaCu5vgvuJCsYhWRzV89DaM/dLg2x6iC3PfjVoA/
- A45w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGKxsK4cRSsLEl7axbJ9VAKg7BOIsLg+NJyLtZNjyThSVThqDYNtyiSXRsCaNVaJ5cEL2LjDoetXEFLmT07fMdxaCmefF00gtm+7ds2w==
-X-Gm-Message-State: AOJu0YwZeZEa03BiBDlRyDNQ+B5iDF86aiy7RMASsO2jL4yPEt2A5FFy
- QvCYStqw5DRzuIQKrQWlOpJP3u9R4bK7+8dMAzd6Mu2yrHlPkibKUnqvG0lfnYum3VpZZPLzBYL
- XKh/anGJyI7m3ec0glzLA8WimarU=
-X-Google-Smtp-Source: AGHT+IHWfLYKzDh7BxJLJ9BJ2Cmd5Cn/wpR+W1gYuNKPta8cTzkW6UorUgxoUn0XOAwdpsEBzkBFK0bBPvRCfInrGHs=
-X-Received: by 2002:a05:6402:1d53:b0:57c:dd3a:f399 with SMTP id
- 4fb4d7f45d1cf-5879f3ac31cmr9094066a12.12.1719936519625; Tue, 02 Jul 2024
- 09:08:39 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9242110E14E
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jul 2024 17:31:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bnfFLjn6d2zIYFE0V0oIRV8Bv3RrO2x9IbmsZbcjSra9ODYEcxCeCTPXNH8l8wBqVcn9RIs2hHK1Uya/TLLkhQ0vKHXmUzDG/PkW06pRkdyGJJD2Vaf5gZfvc6Nj/znGUBduruzBNc1tA8sTxR7UNWhNVXad0H+LmEAGCkRBYatQ2qBpqJcoImYmPWIk3OUwv9valpRHrtQoddWb48S4XmeVXwg+1AhwppvDSZ84tDQEz4ZQrEu9i4YcSxsQ3fGjGrHXh+Isv5acoFtW63Odi5PzNasz3kiQMhruNKuXhfIwjZ0e9bUUr2wrG5YAWaC3WCHcKJ3EmV3M7vfFg4UBvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0y7E508lZSjSvX1Pwxu5o+16hwco82uNjI8ijN7tgas=;
+ b=jXWpDbjSwZgFw1wfKKqzxgxzR/59bfv7a4ejw22VxLfH3QCHj1A2vCrnbSDCzTBJYA0j/ZYAEK4wbNxC5b4x4UpSnyMFdaoGboMwovdGDP5/I7czj0iwoCaVnqzhpmi2BS7muHHI2yp8V6l5YVsGQ8HY7CmGUvDr7TYthcsWVFa/tgAz9X9j21ZIM7eOsJ704Ztl6EfMOiIdAaGZuUTb8FGWcVdL7r8B+/PDh60gqcF68lrocNfWw3P5i8GvrDD7GrNNi3jAwqdywHXX+/0etbwjIqkp3yarHhgmPtQ93H9cQxwnhRfUFf0lWZRiHejMWAAFBKmF5km5JiD4LLjvkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0y7E508lZSjSvX1Pwxu5o+16hwco82uNjI8ijN7tgas=;
+ b=VUDXve/lvWBzYI0/m3CKnhL1GXZDeEsfmpmrz4pu/wOVzpYfsCn6sQHyqXi2yy60jbqVjdcuIPOnktIYQpXyrPHUSnopOVt7C2oAMtoP2AATXqqjiFBokLm+OB20VrVb378KqnGfCYfqzmzJsLh3dLpglEM+ml41sm/0gsEv3ns=
+Received: from CH0PR03CA0438.namprd03.prod.outlook.com (2603:10b6:610:10e::14)
+ by MN2PR12MB4126.namprd12.prod.outlook.com (2603:10b6:208:199::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.33; Tue, 2 Jul
+ 2024 17:31:02 +0000
+Received: from CH1PEPF0000A347.namprd04.prod.outlook.com
+ (2603:10b6:610:10e:cafe::33) by CH0PR03CA0438.outlook.office365.com
+ (2603:10b6:610:10e::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.33 via Frontend
+ Transport; Tue, 2 Jul 2024 17:31:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CH1PEPF0000A347.mail.protection.outlook.com (10.167.244.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7741.18 via Frontend Transport; Tue, 2 Jul 2024 17:31:02 +0000
+Received: from rajneesh-desk.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 2 Jul
+ 2024 12:31:01 -0500
+From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <felix.kuehling@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+Subject: [PATCH 1/2] drm/ttm: Allow direct reclaim to allocate local memory
+Date: Tue, 2 Jul 2024 13:30:47 -0400
+Message-ID: <20240702173048.2286044-1-rajneesh.bhardwaj@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20240626022742.1956-1-Frank.Min@amd.com>
- <SA3PR12MB7902BE546DCDACE2F5DAAF33E9D62@SA3PR12MB7902.namprd12.prod.outlook.com>
- <SA3PR12MB79028EFDCBFD7191E72E2CFAE9D32@SA3PR12MB7902.namprd12.prod.outlook.com>
- <CAAxE2A6Z31AV7mPxQdNZ-2ygm+wES3-NhPQqhZTxG8wns7R48w@mail.gmail.com>
- <CAAxE2A4ah-FsCA+HzAre+D7fRzC80+gXSMshmYP-K5zbZmz7nA@mail.gmail.com>
-In-Reply-To: <CAAxE2A4ah-FsCA+HzAre+D7fRzC80+gXSMshmYP-K5zbZmz7nA@mail.gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Tue, 2 Jul 2024 12:08:03 -0400
-Message-ID: <CAAxE2A5zgsDPRvFqo_LhHfCehUBVcLMMaDt79NDZXcpnb9NWLQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: restore dcc bo tilling configs while moving
-To: "Min, Frank" <Frank.Min@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Olsak,
- Marek" <Marek.Olsak@amd.com>, 
- "Koenig, Christian" <Christian.Koenig@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>, "Gao, Likun" <Likun.Gao@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A347:EE_|MN2PR12MB4126:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7362b080-7d15-4b20-06fe-08dc9abcbede
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Y6ESMka1xAq4ERcsg64xdMpaOMcWgdpte11KCqil4oKTLYZltq1nY/mpzAK1?=
+ =?us-ascii?Q?wIAAWD+TJBDAztS0pvvrjGGHZ8omTGvsvJETb7KDvdXwfibgMqy+YQZKZXkD?=
+ =?us-ascii?Q?MtjZhnkC5FPHITDiesMHoLPEUK71yBDYj0SBR1GR5t4GQcJGQ6K4zaSzbF/6?=
+ =?us-ascii?Q?5viare1DMWKVYeM3rlbR0e42FwAZQcTpsPzGTW/j7Dr1hx7ZtRqnHh8Vt8zN?=
+ =?us-ascii?Q?p1X6fq9SNIkzEkGtmZNGB8qgmhaxTFuO89DKEPKGT7Fk/YdqUaPekz/mSJh2?=
+ =?us-ascii?Q?6xrt3q9bo6ylohmgCem+nb+RQ2PMP9PkC8TIXsBooa5yXr50VC0K0ZdZqL+X?=
+ =?us-ascii?Q?aRo/KYtkyDmpvAmdMiIDPKBo9HkLAbbVZnW3mmQQkqNVKPOZ/AmtahJuc2jX?=
+ =?us-ascii?Q?sAk4Uxb1tI8tevZ1+4qIWxF8TOv6RbrsWvzqw7uzHEeDV09Ng8dEj7wFGO4K?=
+ =?us-ascii?Q?KzLRb6cLHtFOFGg3GGkGvqmjMYmm67WG2w6zmjeRgieszjwhuULs8Ac6JmVy?=
+ =?us-ascii?Q?6ti3e7vX89QBEDXbMPE1Svk5/X36GN2NHj2OEFw6fSCnG5aaMtcDl4iZ7MZ1?=
+ =?us-ascii?Q?wsj4xulMGAXmF0u03vgM6YUxk6Tw7r+jDaqyldTGWKeujEHhm/81tkbXLEQn?=
+ =?us-ascii?Q?qqfXNxnkA3vhSFuvfpdeVQdq9Upo39MYIUxICybn3zN8dqx+i797edz/apFL?=
+ =?us-ascii?Q?IO9tCxnJWAkAhqa049WdLbUYdANN+6fK3Ux4oykMKuICSrDXJn3MqKNghEJ2?=
+ =?us-ascii?Q?H/naoFycTh5kV659XY+POmUSVm+bT+6wM22g7yMuIao8ueOaBczuEDPjXhac?=
+ =?us-ascii?Q?+557JnrGm8c3ssVj+TO6Qwj8ncvD79utB12uq0IYKySlExDeP9BIOscxvCyz?=
+ =?us-ascii?Q?DsuAWKVFF2AVqpAOw9j3Ee6DdOEgwqxDy84qs80x0LiUdxoQBU+bqNmAhaJd?=
+ =?us-ascii?Q?C6H1QDonl2OrRdGYDpzL0fVQurXoB3uEbdbSclXYOppBLfCk502DdhyAozGK?=
+ =?us-ascii?Q?XlvIOvRosFwqanlkDqXKOPXp3jLK1OPakLjK8pBaU2l2tlt5iI/D72teRaTP?=
+ =?us-ascii?Q?aJZDw8U1CUkqETx+KROpPwt6DYybvASE/UmXcqFioQlLyf5KLUK9QW8EqQdk?=
+ =?us-ascii?Q?LilPgMouyE5vBU3mUZtWW/ndnUjGsRXKblQ1CuANZEO1tVsYZDZB6KmOWVpu?=
+ =?us-ascii?Q?evJ4eXO7yOC1YcR6IbRGA4OR2i5E3TYvgGnPfAdvZQ821IUQAjw1+NUqnFJY?=
+ =?us-ascii?Q?6Uuuahk5peSVOvf6sVN19ESLbNiD+ClM50q5ZKT9vgBfNijHBAOT6Zu+4Rhw?=
+ =?us-ascii?Q?M6FqRCLeVGCAC5PqNpgHDDzhY47bKxMqloXAAdgbETMAuQaD1Aertlz3Bf2N?=
+ =?us-ascii?Q?LiTTzDLPX5rO79vGu3xvzaAiECrLtHlUp0LpYK06IfUa3rkRQN7UTw+9Z25Z?=
+ =?us-ascii?Q?L2YMNmxMIUYKx0Jx3B8GU9ACvuPyCe1P?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2024 17:31:02.5581 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7362b080-7d15-4b20-06fe-08dc9abcbede
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A347.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4126
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,167 +130,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-data_format =3D=3D 13, 15, and 23 are also invalid.
+Limiting the allocation of higher order pages to the closest NUMA node
+and enabling direct memory reclaim provides not only failsafe against
+situations when memory becomes too much fragmented and the allocator is
+not able to satisfy the request from the local node but falls back to
+remote pages (HUGEPAGE) but also offers performance improvement.
+Accessing remote pages suffers due to bandwidth limitations and could be
+avoided if memory becomes defragmented and in most cases without using
+manual compation.
 
-Marek
+Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+---
+ drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Tue, Jul 2, 2024 at 12:05=E2=80=AFPM Marek Ol=C5=A1=C3=A1k <maraeo@gmail=
-.com> wrote:
->
-> I think the change should fix invalid values passed from userspace.
->
-> max_com =3D=3D 3 should be clamped to 2.
-> data_format =3D=3D 0 || data_format > 24 should do 2 things: set
-> data_format to 10, set num_format to 0.
->
-> Marek
->
-> On Tue, Jul 2, 2024 at 9:43=E2=80=AFAM Marek Ol=C5=A1=C3=A1k <maraeo@gmai=
-l.com> wrote:
-> >
-> > Reviewed-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
-> >
-> > On Sun, Jun 30, 2024 at 11:35=E2=80=AFPM Min, Frank <Frank.Min@amd.com>=
- wrote:
-> > >
-> > > [AMD Official Use Only - AMD Internal Distribution Only]
-> > >
-> > > From: Frank Min <Frank.Min@amd.com>
-> > >
-> > > While moving buffer which as dcc tiling config, it is needed to resto=
-re its original dcc tiling.
-> > >
-> > > 1. extend copy flag to cover tiling bits
-> > >
-> > > 2. add logic to restore original dcc tiling config
-> > >
-> > > Signed-off-by: Frank Min <Frank.Min@amd.com>
-> > > ---
-> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 17 ++++++++++++++---  driv=
-ers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 11 +++++++++++  drivers/gpu/drm/amd/a=
-mdgpu/sdma_v7_0.c  | 10 ++++++++--
-> > >  3 files changed, 33 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_ttm.c
-> > > index 9a92dd3c9fb8..dd4aed47af1e 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> > > @@ -308,7 +308,8 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_devi=
-ce *adev,
-> > >
-> > >         mutex_lock(&adev->mman.gtt_window_lock);
-> > >         while (src_mm.remaining) {
-> > > -               uint64_t from, to, cur_size;
-> > > +               uint64_t from, to, cur_size, tiling_flags;
-> > > +               uint32_t num_type, data_format, max_com;
-> > >                 struct dma_fence *next;
-> > >
-> > >                 /* Never copy more than 256MiB at once to avoid a tim=
-eout */ @@ -329,10 +330,20 @@ int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_=
-device *adev,
-> > >                 abo_dst =3D ttm_to_amdgpu_bo(dst->bo);
-> > >                 if (tmz)
-> > >                         copy_flags |=3D AMDGPU_COPY_FLAGS_TMZ;
-> > > -               if (abo_src->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
-> > > +               if ((abo_src->flags & AMDGPU_GEM_CREATE_GFX12_DCC) &&
-> > > +                   (abo_src->tbo.resource->mem_type =3D=3D TTM_PL_VR=
-AM))
-> > >                         copy_flags |=3D AMDGPU_COPY_FLAGS_READ_DECOMP=
-RESSED;
-> > > -               if (abo_dst->flags & AMDGPU_GEM_CREATE_GFX12_DCC)
-> > > +               if ((abo_dst->flags & AMDGPU_GEM_CREATE_GFX12_DCC) &&
-> > > +                   (dst->mem->mem_type =3D=3D TTM_PL_VRAM)) {
-> > >                         copy_flags |=3D AMDGPU_COPY_FLAGS_WRITE_COMPR=
-ESSED;
-> > > +                       amdgpu_bo_get_tiling_flags(abo_dst, &tiling_f=
-lags);
-> > > +                       max_com =3D AMDGPU_TILING_GET(tiling_flags, G=
-FX12_DCC_MAX_COMPRESSED_BLOCK);
-> > > +                       num_type =3D AMDGPU_TILING_GET(tiling_flags, =
-GFX12_DCC_NUMBER_TYPE);
-> > > +                       data_format =3D AMDGPU_TILING_GET(tiling_flag=
-s, GFX12_DCC_DATA_FORMAT);
-> > > +                       copy_flags |=3D (AMDGPU_COPY_FLAGS_SET(MAX_CO=
-MPRESSED, max_com) |
-> > > +                                      AMDGPU_COPY_FLAGS_SET(NUMBER_T=
-YPE, num_type) |
-> > > +                                      AMDGPU_COPY_FLAGS_SET(DATA_FOR=
-MAT, data_format));
-> > > +               }
-> > >
-> > >                 r =3D amdgpu_copy_buffer(ring, from, to, cur_size, re=
-sv,
-> > >                                        &next, false, true, copy_flags=
-); diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_ttm.h
-> > > index 7c903a6c9ddb..8d34e8588dc2 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> > > @@ -114,6 +114,17 @@ struct amdgpu_copy_mem {
-> > >  #define AMDGPU_COPY_FLAGS_TMZ          (1 << 0)
-> > >  #define AMDGPU_COPY_FLAGS_READ_DECOMPRESSED    (1 << 1)
-> > >  #define AMDGPU_COPY_FLAGS_WRITE_COMPRESSED     (1 << 2)
-> > > +#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_SHIFT         3
-> > > +#define AMDGPU_COPY_FLAGS_MAX_COMPRESSED_MASK          0x03
-> > > +#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_SHIFT            5
-> > > +#define AMDGPU_COPY_FLAGS_NUMBER_TYPE_MASK             0x07
-> > > +#define AMDGPU_COPY_FLAGS_DATA_FORMAT_SHIFT            8
-> > > +#define AMDGPU_COPY_FLAGS_DATA_FORMAT_MASK             0x3f
-> > > +
-> > > +#define AMDGPU_COPY_FLAGS_SET(field, value) \
-> > > +       (((__u32)(value) & AMDGPU_COPY_FLAGS_##field##_MASK) <<
-> > > +AMDGPU_COPY_FLAGS_##field##_SHIFT)
-> > > +#define AMDGPU_COPY_FLAGS_GET(value, field) \
-> > > +       (((__u32)(value) >> AMDGPU_COPY_FLAGS_##field##_SHIFT) &
-> > > +AMDGPU_COPY_FLAGS_##field##_MASK)
-> > >
-> > >  int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_siz=
-e);  void amdgpu_gtt_mgr_fini(struct amdgpu_device *adev); diff --git a/dri=
-vers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.=
-c
-> > > index 96514fd77e35..41b5e45697dc 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-> > > @@ -1566,6 +1566,12 @@ static void sdma_v7_0_emit_copy_buffer(struct =
-amdgpu_ib *ib,
-> > >                                        uint32_t byte_count,
-> > >                                        uint32_t copy_flags)
-> > >  {
-> > > +       uint32_t num_type, data_format, max_com;
-> > > +
-> > > +       max_com =3D AMDGPU_COPY_FLAGS_GET(copy_flags, MAX_COMPRESSED)=
-;
-> > > +       data_format =3D AMDGPU_COPY_FLAGS_GET(copy_flags, DATA_FORMAT=
-);
-> > > +       num_type =3D AMDGPU_COPY_FLAGS_GET(copy_flags, NUMBER_TYPE);
-> > > +
-> > >         ib->ptr[ib->length_dw++] =3D SDMA_PKT_COPY_LINEAR_HEADER_OP(S=
-DMA_OP_COPY) |
-> > >                 SDMA_PKT_COPY_LINEAR_HEADER_SUB_OP(SDMA_SUBOP_COPY_LI=
-NEAR) |
-> > >                 SDMA_PKT_COPY_LINEAR_HEADER_TMZ((copy_flags & AMDGPU_=
-COPY_FLAGS_TMZ) ? 1 : 0) | @@ -1580,10 +1586,10 @@ static void sdma_v7_0_em=
-it_copy_buffer(struct amdgpu_ib *ib,
-> > >         ib->ptr[ib->length_dw++] =3D upper_32_bits(dst_offset);
-> > >
-> > >         if ((copy_flags & (AMDGPU_COPY_FLAGS_READ_DECOMPRESSED | AMDG=
-PU_COPY_FLAGS_WRITE_COMPRESSED)))
-> > > -               ib->ptr[ib->length_dw++] =3D SDMA_DCC_DATA_FORMAT(4) =
-| SDMA_DCC_NUM_TYPE(4) |
-> > > +               ib->ptr[ib->length_dw++] =3D SDMA_DCC_DATA_FORMAT(dat=
-a_format) |
-> > > +SDMA_DCC_NUM_TYPE(num_type) |
-> > >                         ((copy_flags & AMDGPU_COPY_FLAGS_READ_DECOMPR=
-ESSED) ? SDMA_DCC_READ_CM(2) : 0) |
-> > >                         ((copy_flags & AMDGPU_COPY_FLAGS_WRITE_COMPRE=
-SSED) ? SDMA_DCC_WRITE_CM(1) : 0) |
-> > > -                       SDMA_DCC_MAX_COM(1) | SDMA_DCC_MAX_UCOM(1);
-> > > +                       SDMA_DCC_MAX_COM(max_com) | SDMA_DCC_MAX_UCOM=
-(1);
-> > >  }
-> > >
-> > >  /**
-> > > --
-> > > 2.34.1
-> > >
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 6e1fd6985ffc..cc27d5c7afe8 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -91,7 +91,7 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+ 	 */
+ 	if (order)
+ 		gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
+-			__GFP_KSWAPD_RECLAIM;
++			__GFP_RECLAIM | __GFP_THISNODE;
+ 
+ 	if (!pool->use_dma_alloc) {
+ 		p = alloc_pages_node(pool->nid, gfp_flags, order);
+-- 
+2.34.1
+
