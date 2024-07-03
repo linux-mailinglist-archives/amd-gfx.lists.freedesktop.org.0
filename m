@@ -2,119 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99CA7926F1F
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jul 2024 07:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8806C927071
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Jul 2024 09:24:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B67410E1FB;
-	Thu,  4 Jul 2024 05:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDFFD10E9F3;
+	Thu,  4 Jul 2024 07:24:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IqTXH3Yo";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L69Jsas5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2085.outbound.protection.outlook.com [40.107.212.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6A9610E07F
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jul 2024 05:53:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VJRinumdbsFf3wXTVPSqa21UtBPT0e97MBYLwjav7+VkbHBMK+aEgnhUp3xGN9nJAphIGYkG7e8xAQa6EgQhB9N/hcBh63j8p2XF5QQ+p3QwyvAbBYNXuB2OD2100VKFf91Y4Nm1NgrTvaC/led1HNXXZ3iN+N5fORw+Smu0dswh4LUOvE999CPJLvzhbLCfnGcxd5PoeSi+P/byjMs9JbUMWmFnKMtnKSLfOdI8iIDJYi/frEEvprdYd4BMvrjwe/xBqLH+0LKll56aSYllDEqth7QRpdz7M0SYpbKq7A54dEkgpsNaNX3WmVBKP7x5ACFOBPNunNrE3vk6abAvqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6T19ABQMNrwF5o7GevjuIgjJBLBs/4Q4cY3e5bXXoKQ=;
- b=QGWcc9JQjjpyxt05kLp1AC8xmLdIORUOVAtPfDXheTyWRFT8U1tykr4kf+YjKA68vzRfUBlPIPCi2JM6jDahi5j/UuMtwLfse1Ynl3ESYTPZcqsERDNmY6gmxF+GYUix2nnMXFcv5y69he7Mq7tZQTTU1D1NqF2P4M/Mra08qsFB3ACWu1yUa8A7jqJi0CQddHnZ2hsjjcEL9Dn3G/rPgZc7b0Wysz723TXSCCC5Se/3PV83H6yI0IOP4I7wRfbszbdk4sT2ok3kBy0OD15yTfgU5k+KFs1Zjj0KzflxCQoNiFvJi2PwlxZt2qAgb0pjwYNF6nQ9uK+OCK0GnyziIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6T19ABQMNrwF5o7GevjuIgjJBLBs/4Q4cY3e5bXXoKQ=;
- b=IqTXH3YoXGdnY7Scjntpod99yLld4tkhfZ648+N42ggJ77cUlf6qu+3tk/h5vdz19PkSFwBGi0CzoxV94TSW6T1ld5CyAs93Cw9q1H5Y4XTvTZZHpqUqwwQKfd8zEUBp3FF6y8RcPh6o0Ykb8oeMvti3DDbJ4TU5IVkc0QdP47o=
-Received: from MW4PR03CA0276.namprd03.prod.outlook.com (2603:10b6:303:b5::11)
- by BY5PR12MB4259.namprd12.prod.outlook.com (2603:10b6:a03:202::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.25; Thu, 4 Jul
- 2024 05:53:00 +0000
-Received: from CO1PEPF000044FB.namprd21.prod.outlook.com
- (2603:10b6:303:b5:cafe::b) by MW4PR03CA0276.outlook.office365.com
- (2603:10b6:303:b5::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.27 via Frontend
- Transport; Thu, 4 Jul 2024 05:53:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000044FB.mail.protection.outlook.com (10.167.241.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.1 via Frontend Transport; Thu, 4 Jul 2024 05:52:59 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 4 Jul
- 2024 00:52:57 -0500
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <hawking.zhang@amd.com>, <tao.zhou1@amd.com>
-Subject: [PATCH] drm/amdgpu: remove redundant semicolons in RAS_EVENT_LOG
-Date: Thu, 4 Jul 2024 13:52:40 +0800
-Message-ID: <20240704055240.1722656-1-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
+ [209.85.167.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0017710E0AD;
+ Wed,  3 Jul 2024 16:11:58 +0000 (UTC)
+Received: by mail-oi1-f171.google.com with SMTP id
+ 5614622812f47-3d6301e7279so3417996b6e.3; 
+ Wed, 03 Jul 2024 09:11:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1720023118; x=1720627918; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3/dH8jV/d+x/FI16gAcv4uydOAqFjUfOw8j20FTynlU=;
+ b=L69Jsas5/D3/3ApkGSi3VgF0gbzU/gvLHIkKWHRNhIeSj6SRYF/bIgZzqh9t0UQOdC
+ bdclcz/L/L4Ie0uE5xUTWkXkHmfLf36Pmp2OgMhLnPUV8C7xZWaRLJ/XyQbBGNBMNNfN
+ lJZpj3InNNmdZiZCY0xwa0Uv+lDp8x9MMsdSyUo2jS55vNNbfwtpTR3UA6d4uskZL/sP
+ U31QHKKzvBA2eGvc+5ex+qmF/YpxRcGGBaMbl2ZaP9eQbn9k5haU2M/p9Szif3SDbXf4
+ boYkoy9Io/l6bsQPIWfJj/nZHVOKcnYoDucVTzxOQYnsI7n8Gr0IECRdTyTT4zxifI5U
+ Selw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720023118; x=1720627918;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=3/dH8jV/d+x/FI16gAcv4uydOAqFjUfOw8j20FTynlU=;
+ b=Ap3RvnpyfACigH64Jss15Pyo6CcBISap9ApM/m3QGL9gMvh2DPkU0l7iZPxThKMHWC
+ 5ZdcBHjDB6ueBd3yPCasqmn5MSfj8kyjhlIL4DV24PLcYpBWcpgehEooNEhEBYLjoeMC
+ xYwR3ToVBkqyi1RfCFcAJZh4PtgkgZwMbMf5YJ618zLmxGwz9oe0Nok84oTuTFnL39cg
+ lFME4OzuG3FtAPRDRS8NzZA5h/8aWPt30wzROfEgEeyeGF29Idz4/RUc6BExcD7ZEy2y
+ SKWWIz7Ob0ZGSWA2r5zftSZ00rProX88qDn9snG4/yE3+DIgr0pau0Ahy6WknfsEzkms
+ TflA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBKy9VqPgK1ij2A4dgB0IFwMtsMF0i6c5+tWyysUDz1iSHqZwUL9GagAwLpVoVAf0gmr2wjjPBiqsvyPYDz+xLD4m2OTYhcOYzMW4iyWgdepLHFshjQlHyAczuVP8w6KJEmjNiCnyks+bKrJExgLvwOTnBIM3V3R5M3JkhzZxY4YMXC2ryeFz+y38KSuLGVKBG9axUJdEbKljRHqhFgEY1CUV3BOw4LVDZa8/wYPNYZpRW9zE=
+X-Gm-Message-State: AOJu0YwMQQu5A4meTmMnNSWFv8kZmGVVP9M/ptn549dVjbRUYFtjdvrw
+ WumJhdfrfb4swROrB7PzUmJ7PafY55TL4iZpca0q821nm7YHT/YRXysg1Q6tTw55W35f9GLfDpt
+ C1TyGBDCRnKF5RRpP75vSN9+0yYY=
+X-Google-Smtp-Source: AGHT+IHHyVJ7tvgjX6YNT5yXxjT4ZfaP2CSlRVqBQQ9Svv1tUxG/jN+Xkt79kJWNOKN+ENdTMdSGcTnRp+qX6KDNUkc=
+X-Received: by 2002:a05:6808:1909:b0:3d5:5e58:528b with SMTP id
+ 5614622812f47-3d6b2b24045mr15706235b6e.1.1720023118007; Wed, 03 Jul 2024
+ 09:11:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044FB:EE_|BY5PR12MB4259:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5d9a3bb-c7a6-4a08-f15e-08dc9bed8f8a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m3vvL1fepefIqeHOYSYpNByTvpcR4srnKabRizU20tERkOrTOW9Zu+RaAdkr?=
- =?us-ascii?Q?kHQwtei5QT6vQXxzOnR+irSR/d6BVF9jn/HV/gBqRWzF55vKNM08AqT0IojR?=
- =?us-ascii?Q?m2RJ3tGhqOxRbFTMC7NjtksJSCAncGkLJ2wyHjee5cN19SfLv3cvIOtUoNSu?=
- =?us-ascii?Q?AN8eoG77wi/kvj0PhyXJrHziD8N0K/MRWkcjevE+KYWt2EQ0uIFNjbH2zgSw?=
- =?us-ascii?Q?lyYGDp7HT+MnaXKStbPVG57TON31tPJ/j7LjIbNDf1vhEHnP+6Fu89TE1adY?=
- =?us-ascii?Q?lHxEcgzSExX0K7wmnzsIpBevYh3/PzrIDwTloOfoTwPNdE5B4eRie0Uvtwo1?=
- =?us-ascii?Q?/UVjWhJJncMaGW5hGqUeHamRGK5XSrmmwv+ifSH7K9q1GTUEr6j62BM2G+8Y?=
- =?us-ascii?Q?BLI7/aK1U2oGvwpocRcmosXWFYytQs1H3b4D0skW9r9XKB497KCXUGUm2pkq?=
- =?us-ascii?Q?8tedWcSTXYuYr/vwgWxAYTK8+If0p+bNYy1QdHfL2ZiMH66SMPDUu53aG+nB?=
- =?us-ascii?Q?qRdHrp1xaYI0fIvazPvhCtSxqa2ajwKbXSLuHHlCKL5lDbtlw6hZM45uLzhm?=
- =?us-ascii?Q?HQp0/W+axdM3TBzU8whBfSlWM4lZE35nBsfYCShP8LThJnPwMuMUrzr6YmNx?=
- =?us-ascii?Q?f6zlBATYM2gPypDmlUsn8baBuB3BkOSxDyeo6HosAV5INl6eWrniG8uIybb5?=
- =?us-ascii?Q?uN0tLBe33H2bnCONH7YLEJnNIbyHk7FGGS+FF2fpU+frWfgyE9SHnUTw98ie?=
- =?us-ascii?Q?WGm/ODF/DCVuNgO4so5+QCXrJSnGRy+64S9mDS4L20CpZBkMwXb3vR1gyBUH?=
- =?us-ascii?Q?jjO++S5g1EP1Gjzn+fQ41pjzAxx7UjJWRIlFFglMB1kFaZfVYfL0aRM7BgO0?=
- =?us-ascii?Q?NNxg/78bXHBod1eezySem/IsQiVXYQ0fU17z4FRGUHgzGSyhf+uUpqeh/Cps?=
- =?us-ascii?Q?Aa71EubLCyw6rrMJ13G2gyU+XJsP54utNVU2YlpOYbFOb/8FziFuuIiFr2Cr?=
- =?us-ascii?Q?AP1SwfEVr2AVzpWyTdvU8C3PtFSjzeBfSH4/+ObFsTXasWxQvRWGJzO1sB6w?=
- =?us-ascii?Q?6iuqh+A8xstyCj84PbTGbB1dDir7H03h9r5bgwtgCGacO72IPFpUjFkL1Sub?=
- =?us-ascii?Q?EWt3WFyfr66y1m6EdwkLp7vNTnoS7LKo2xpuysc9gq+Kr3p6r5fs86ffgqzB?=
- =?us-ascii?Q?FMdDfDQghwYs9KbK7RK0NiolxgUmOP9Hxa1baGP4GwXkaOBTAS3gg21V0V5b?=
- =?us-ascii?Q?cWBkIWeyusr3std+SKGksIlkGk0w06cB/4Gg3nVDGVVHpVg0mrA5xGSgGAKm?=
- =?us-ascii?Q?bwteLUkgGu9+YskmY3Vc+SAWSPOL70ngKGM62ELjTWH1memM4cMpTiqBXCvk?=
- =?us-ascii?Q?DyRhS1EyKEQzOPZfm94yqVqYCzLybmAquIig+xtJyHApb11Vm33yWDt3wciY?=
- =?us-ascii?Q?zhS+Oh5GgYBSV1JGRAitb7BFchNr0LJq?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2024 05:52:59.5538 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5d9a3bb-c7a6-4a08-f15e-08dc9bed8f8a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044FB.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4259
+References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ <20240702215804.2201271-31-jim.cromie@gmail.com> <ZoSOMClB0MeWeokU@intel.com>
+ <CAJfuBxzsZUpO-Q_uAfMhzXs0WHYMTnj1F8ju7af-kQZKQjLvNQ@mail.gmail.com>
+ <ZoU7kR2aYwVDvd_G@intel.com>
+In-Reply-To: <ZoU7kR2aYwVDvd_G@intel.com>
+From: jim.cromie@gmail.com
+Date: Wed, 3 Jul 2024 10:11:31 -0600
+Message-ID: <CAJfuBxwVWbJ9TdgH0ARmxUy+_DfNVKrTewjkqWKmCQtfOKQEAg@mail.gmail.com>
+Subject: Re: [PATCH v9 30/52] drm-dyndbg: adapt drm core to use dyndbg
+ classmaps-v2
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, 
+ jani.nikula@intel.com, jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ ukaszb@chromium.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux@rasmusvillemoes.dk, joe@perches.com, mcgrof@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 04 Jul 2024 07:24:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,29 +87,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-remove redundant semicolons in RAS_EVENT_LOG to avoid
-code format check warning.
+Got it.
+I had some mental block about passing designated intializers as macro args.
+it just worked, I needed to eyeball the .i file just to be sure.
+thanks.
+I have a fixup patch.
+whats the best thing to do with it, squash it in for later ? send in
+reply here ?
 
-Fixes: 951c09c88fca ("drm/amdgpu: fix compiler 'side-effect' check issue for RAS_EVENT_LOG()")
-
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 9224fc6418e4..518b10f190ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -72,7 +72,7 @@ struct amdgpu_iv_entry;
- #define RAS_EVENT_ID_IS_VALID(x)	(!((x) & BIT_ULL(63)))
- 
- #define RAS_EVENT_LOG(adev, id, fmt, ...)	\
--	amdgpu_ras_event_log_print((adev), (id), (fmt), ##__VA_ARGS__);
-+	amdgpu_ras_event_log_print((adev), (id), (fmt), ##__VA_ARGS__)
- 
- #define amdgpu_ras_mark_ras_event(adev, type)	\
- 	(amdgpu_ras_mark_ras_event_caller((adev), (type), __builtin_return_address(0)))
--- 
-2.34.1
-
+On Wed, Jul 3, 2024 at 5:52=E2=80=AFAM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Tue, Jul 02, 2024 at 08:34:39PM -0600, jim.cromie@gmail.com wrote:
+> > On Tue, Jul 2, 2024 at 5:33=E2=80=AFPM Ville Syrj=C3=A4l=C3=A4
+> > <ville.syrjala@linux.intel.com> wrote:
+> > >
+> > > On Tue, Jul 02, 2024 at 03:57:20PM -0600, Jim Cromie wrote:
+> > > > dyndbg's CLASSMAP-v1 api was broken; DECLARE_DYNDBG_CLASSMAP tried =
+to
+> > > > do too much.  Its replaced by DRM_CLASSMAP_DEFINE, which creates &
+> > > > EXPORTs the classmap when CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy, for dir=
+ect
+> > > > reference by drivers.
+> > > >
+> > > > The drivers still use DECLARE_DYNDBG_CLASSMAP for now, so they stil=
+l
+> > > > redundantly re-declare the classmap, but we can convert the drivers
+> > > > later to DYNDBG_CLASSMAP_USE
+> > > >
+> > > > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_print.c | 25 +++++++++++++------------
+> > > >  include/drm/drm_print.h     |  8 ++++++++
+> > > >  2 files changed, 21 insertions(+), 12 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_prin=
+t.c
+> > > > index 699b7dbffd7b..4a5f2317229b 100644
+> > > > --- a/drivers/gpu/drm/drm_print.c
+> > > > +++ b/drivers/gpu/drm/drm_print.c
+> > > > @@ -55,18 +55,19 @@ MODULE_PARM_DESC(debug, "Enable debug output, w=
+here each bit enables a debug cat
+> > > >  #if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
+> > > >  module_param_named(debug, __drm_debug, ulong, 0600);
+> > > >  #else
+> > > > -/* classnames must match vals of enum drm_debug_category */
+> > > > -DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_=
+BITS, 0,
+> > > > -                     "DRM_UT_CORE",
+> > > > -                     "DRM_UT_DRIVER",
+> > > > -                     "DRM_UT_KMS",
+> > > > -                     "DRM_UT_PRIME",
+> > > > -                     "DRM_UT_ATOMIC",
+> > > > -                     "DRM_UT_VBL",
+> > > > -                     "DRM_UT_STATE",
+> > > > -                     "DRM_UT_LEASE",
+> > > > -                     "DRM_UT_DP",
+> > > > -                     "DRM_UT_DRMRES");
+> > > > +/* classnames must match value-symbols of enum drm_debug_category =
+*/
+> > > > +DRM_CLASSMAP_DEFINE(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS=
+,
+> > > > +                 DRM_UT_CORE,
+> > > > +                 "DRM_UT_CORE",
+> > > > +                 "DRM_UT_DRIVER",
+> > > > +                 "DRM_UT_KMS",
+> > > > +                 "DRM_UT_PRIME",
+> > > > +                 "DRM_UT_ATOMIC",
+> > > > +                 "DRM_UT_VBL",
+> > > > +                 "DRM_UT_STATE",
+> > > > +                 "DRM_UT_LEASE",
+> > > > +                 "DRM_UT_DP",
+> > > > +                 "DRM_UT_DRMRES");
+> > >
+> > > Looks like this stuff just ends up in an array, so presumably
+> > > it should be possible to use designated initializers to make this
+> > > less fragile?
+> >
+> > Im not sure I got your whole point, but:
+>
+> I mean using
+>  [DRM_UT_CORE] =3D "DRM_UT_CORE"
+> instead of
+>  "DRM_UT_CORE"
+> so there is no chance of screwing up the order.
+> Or maybe the order doesn't even matter here?
+>
+> Could also stringify to avoid accidental of typos.
+>
+> >
+> > the fragility is the repetitive re-statement of the map,
+> > in those un-modified DECLARE_s,
+> > once replaced, the USEs just ref the struct built by the _DEFINE
+> > (once, and exported)
+> >
+> > I dont really like the _DEFINEs restatement of the enum-values: DRM_UT_=
+*
+> > especially as "strings".
+> > I can automate the stringification with an APPLY_FN_(__stringify, ...)
+> > but the enum-list DRM_UT_* (w.o quotes) is still needed as args.
+> >
+> > unless there is something C can do thats like Enum.values() ?
+> >
+> >
+> >
+> > >
+> > > --
+> > > Ville Syrj=C3=A4l=C3=A4
+> > > Intel
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
