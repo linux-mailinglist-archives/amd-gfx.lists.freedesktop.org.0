@@ -2,53 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20058929092
-	for <lists+amd-gfx@lfdr.de>; Sat,  6 Jul 2024 05:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4779294C2
+	for <lists+amd-gfx@lfdr.de>; Sat,  6 Jul 2024 18:39:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C31E310EA22;
-	Sat,  6 Jul 2024 03:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F032210E27E;
+	Sat,  6 Jul 2024 16:39:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="B09MFEOG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M1LDTjzU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71EE10EA14;
- Sat,  6 Jul 2024 03:41:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=ekbQDooGGkHs+OEBp01r7ebDHbjjVf+o0Kyh/Fj/m7Y=; b=B09MFEOGQ4fn/DonXCu7z9fcZ+
- 4f6C3tKoFyReoxV3lmCTkVhZBI8MgY/YbqhZiYeTs8EU3Y7u1uB0i8S+Qrs53DhgS+RLTsy+FmKcF
- nddZ8eUsELiPEG2QD6C7+odIjYF37WaH75IKLpsbXQfxvMpoyT9wIpBEsKQ2OoDzGLWvrtysVUqtW
- aUcej2ryvDhdOkCZlzIPp1AGztLt34EpRbuxgPoIlk+sV5w6+Nt8lZTsCg3KgmzHGG1Ke429elpPf
- LkhZ6LbuJeoQXm2pzkq1cGa17xtYzSNFhND0Ed77H9UPwAy7Xd7esWUxHc8KhoEoVJVHCgy+BMiYd
- a5kY207w==;
-Received: from [189.6.17.125] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sPwIQ-00Bj27-Q1; Sat, 06 Jul 2024 05:41:11 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: Alex Hung <alex.hung@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: [PATCH v4 11/11] drm/amd/display: remove dc_edid handler from
- dm_helpers_parse_edid_caps
-Date: Sat,  6 Jul 2024 00:35:12 -0300
-Message-ID: <20240706034004.801329-12-mwen@igalia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240706034004.801329-1-mwen@igalia.com>
-References: <20240706034004.801329-1-mwen@igalia.com>
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A650A10E94C;
+ Fri,  5 Jul 2024 09:44:59 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-1faad2f1967so18112315ad.0; 
+ Fri, 05 Jul 2024 02:44:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1720172699; x=1720777499; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=TbMZKC8DIqM8ieSD0r5HNg9/jzslem7r4bfvqOdWMpA=;
+ b=M1LDTjzU6N7P5qusJm47FHLuradZR+DcjwRbXueDF4sDPmqicD3aqF10D484yNGbcT
+ B77I/QEr48riukEx+djbWs0r5AClpe3E2I/mtNORpKERL6Ec90ZFEuHyuTUSK14dw6m6
+ rhjsWOEn1f3djUkccVDNTt2VV0nc9/DXBHKcE7hQpk5jAfZOuSynJrTyTPc9N907rO9y
+ adeKxVrE8NyufLg7BCxzWPRs1JpKut2tUgEZCxC989mYJ6mfSTntg4NCpLYHnGuxrZ3F
+ gipERgtdsQbplFtkpwYo2HhdCfM4d5piJqYucQWxyVE1QH0bPq3SodlxnNxbh/oVgADw
+ YxGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720172699; x=1720777499;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=TbMZKC8DIqM8ieSD0r5HNg9/jzslem7r4bfvqOdWMpA=;
+ b=I+6cAtC93Dvd5f0Yy92xbsaBTBdbJyvgR2bFzSHrI4ukk9zyGGm0ctyd1kHHb2DNHw
+ 4X5Ft2XZA8YOku27YGxe1Ppn9K63EDp5p86ymFaQdtWa7qG+Iovlvsql+FwRTo0u5DHj
+ C5z8fieqRjPegJ9yYk6fbUbs7KaXWivT5U0vfsyDe2J3bZxFq9XSAPAbGK3jkinz9Q08
+ 6hqeaYQ7yqZ9QW2+EIHkH31SzFf+Nyodn/T1JV5TSYsHl3Jh9yogQ9TojiuLRLSuB/FM
+ pafqrtvoQS46VsUhVw84N46XbTfQYnNpG52lwJaBlNtd8+TE34W6n5wZQnPMa6aTSfhX
+ HZLQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXiGwhy7z6rKa1XQI0j7cRrCWSyTP0guwa91LkBEe/E3mKLZPavD9IdeGUoPHsIVGU9aH9ls0B4oFmyCmexZcT+r16FaDFCPFrfPrlHHvB6ml9/T8n6juq7/a1MEwBHYZl87NIlDhqMINO4sEQuWQ==
+X-Gm-Message-State: AOJu0YyBfmOZe69UMwnKV6l70ODX1MOH/U3OYji8HYx+kakE917SSYnu
+ 15z6IC9PO0VYgEkL5zA1Q6mXMGjGzG+j5mpHFbmZX25xYqgkcl0L
+X-Google-Smtp-Source: AGHT+IFIOsO9JRujFXsVZsOxpIb8GSdE6GdOogexRlOCDz74s6RB/DEiJp4bpjlHZiMAjnGmY8T55Q==
+X-Received: by 2002:a17:902:ce8a:b0:1fb:3263:2e60 with SMTP id
+ d9443c01a7336-1fb37046126mr53036475ad.13.1720172698820; 
+ Fri, 05 Jul 2024 02:44:58 -0700 (PDT)
+Received: from pop-os.. ([2401:4900:1cd7:818f:d731:f6bd:8194:7763])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7080256df35sm13570682b3a.64.2024.07.05.02.44.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Jul 2024 02:44:58 -0700 (PDT)
+From: Akshay Behl <akshaybehl231@gmail.com>
+To: 
+Cc: Akshay Behl <akshaybehl231@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/amd/display: Docs improvement in /dc/inc/hw/mpc.h
+Date: Fri,  5 Jul 2024 15:13:44 +0530
+Message-Id: <20240705094342.351894-1-akshaybehl231@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <e17781fa-438d-4806-ae45-eb1239759f43@amd.com>
+References: <e17781fa-438d-4806-ae45-eb1239759f43@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 06 Jul 2024 16:39:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,129 +83,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We can parse edid caps from drm_edid and drm_eld and any calls of
-dm_helpers_parse_edid_caps is made in a state that we have drm_edid set
-to amdgpu connector.
+- After making the required changes
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
+This patch fixes some of the warnings while building kernel Docs:
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'read_mpcc_state' not described in 'mpc_funcs'
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'mpc_init_single_inst' not described in 'mpc_funcs'
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'get_mpcc_for_dpp_from_secondary' not described in 'mpc_funcs'
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'get_mpcc_for_dpp' not described in 'mpc_funcs'
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'wait_for_idle' not described in 'mpc_funcs'
+./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning: Function parameter or struct member 'assert_mpcc_idle_before_connect' not described in 'mpc_funcs'
+
+by adding descriptions to these struct members
+
+Signed-off-by: Akshay Behl <akshaybehl231@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 ++--
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 29 +++++++++----------
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   |  1 -
- .../drm/amd/display/dc/link/link_detection.c  |  6 ++--
- 4 files changed, 17 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h | 84 ++++++++++++++++++++-
+ 1 file changed, 83 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 34e380b4408e..fd3580bf1fb2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7024,10 +7024,8 @@ static void amdgpu_dm_connector_funcs_force(struct drm_connector *connector)
- 
- 		memset(&dc_em_sink->edid_caps, 0, sizeof(struct dc_edid_caps));
- 		memmove(dc_em_sink->dc_edid.raw_edid, (uint8_t *)edid, (edid->extensions + 1) * EDID_LENGTH);
--		dm_helpers_parse_edid_caps(
--			dc_link,
--			&dc_em_sink->dc_edid,
--			&dc_em_sink->edid_caps);
-+		dm_helpers_parse_edid_caps(dc_link,
-+					   &dc_em_sink->edid_caps);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 3fb07f437793..59c12cb1db5a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -87,27 +87,20 @@ static void apply_edid_quirks(struct drm_edid_product_id *product_id, struct dc_
-  *
-  * Return: void
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+index 34a398f23fc6..d2bea0a9699d 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+@@ -282,6 +282,21 @@ struct mpcc_state {
+  * struct mpc_funcs - funcs
   */
--enum dc_edid_status dm_helpers_parse_edid_caps(
--		struct dc_link *link,
--		const struct dc_edid *edid,
--		struct dc_edid_caps *edid_caps)
-+enum dc_edid_status dm_helpers_parse_edid_caps(struct dc_link *link,
-+					       struct dc_edid_caps *edid_caps)
- {
- 	struct amdgpu_dm_connector *aconnector = link->priv;
- 	struct drm_connector *connector = &aconnector->base;
- 	const struct drm_edid *drm_edid = aconnector->drm_edid;
- 	struct drm_edid_product_id product_id;
--	struct edid *edid_buf = edid ? (struct edid *) edid->raw_edid : NULL;
- 	int sad_count;
- 	int i = 0;
+ struct mpc_funcs {
++	/**
++	 * @read_mpcc_state:
++	 *
++	 * Read current state of a specified MPCC instance
++	 *
++	 * Parameters:
++	 *
++	 * - [in/out] mpc  - MPC context.
++	 * - [in] mpcc_inst - integer representing specific MPC instance
++	 * - [in/out] mpcc_state - MPCC state struct where read information will be stored
++	 *
++	 * Return:
++	 *
++	 * void
++	 */
+ 	void (*read_mpcc_state)(
+ 			struct mpc *mpc,
+ 			int mpcc_inst,
+@@ -352,6 +367,21 @@ struct mpc_funcs {
+ 	 * void
+ 	 */
+ 	void (*mpc_init)(struct mpc *mpc);
++
++	/**
++	 * @mpc_init_single_inst:
++	 *
++	 * Reset the MPCC HW status of a single MPCC physical instance.
++	 *
++	 * Parameters:
++	 *
++	 * - [in/out] mpc - MPC context.
++	 * - [in] mpcc_id - The MPCC physical instance to use for blending.
++	 *
++	 * Return:
++	 *
++	 * void
++	 */
+ 	void (*mpc_init_single_inst)(
+ 			struct mpc *mpc,
+ 			unsigned int mpcc_id);
+@@ -448,17 +478,69 @@ struct mpc_funcs {
+ 			struct mpc *mpc,
+ 			struct mpc_tree *tree,
+ 			struct mpcc *mpcc);
 -
- 	enum dc_edid_status result = EDID_OK;
++	/**
++	 * @get_mpcc_for_dpp_from_secondary:
++	 *
++	 * Retrieve a specified MPCC struct from the 'secondary' MPC tree using the provided DPP id.
++	 *
++	 * Parameters:
++	 * - [in/out] tree - MPC tree structure that will be searched.
++	 * - [in]     dpp_id - DPP input for the MPCC.
++	 *
++	 * Return:
++	 *
++	 * struct mpcc* - MPCC that matched the input params
++	 */
+ 	struct mpcc* (*get_mpcc_for_dpp_from_secondary)(
+ 			struct mpc_tree *tree,
+ 			int dpp_id);
  
--	if (!edid_caps || !edid)
-+	if (!edid_caps || !drm_edid)
- 		return EDID_BAD_INPUT;
++	/**
++	 * @get_mpcc_for_dpp:
++	 *
++	 * Retrieve a specified MPCC struct from the MPC tree using the provided DPP id.
++	 *
++	 * Parameters:
++	 * - [in/out] tree - MPC tree structure that will be searched.
++	 * - [in]     dpp_id - DPP input for the MPCC.
++	 *
++	 * Return:
++	 *
++	 * struct mpcc* - MPCC that matched the input params
++	 */
++
+ 	struct mpcc* (*get_mpcc_for_dpp)(
+ 			struct mpc_tree *tree,
+ 			int dpp_id);
  
--	if (!drm_edid_is_valid(edid_buf))
--		result = EDID_BAD_CHECKSUM;
--
- 	drm_edid_get_product_id(drm_edid, &product_id);
++	/**
++	 * @wait_for_idle:
++	 *
++	 * Wait for a specific MPCC instance to become idle
++	 *
++	 * Parameters:
++	 * - [in/out] mpc  - MPC context.
++	 * - [in]     id - ID of the MPCC instance to wait for
++	 *
++	 * Return:
++	 *
++	 * void
++	 */
+ 	void (*wait_for_idle)(struct mpc *mpc, int id);
  
- 	edid_caps->manufacturer_id = le16_to_cpu(product_id.manufacturer_name);
-@@ -919,19 +912,23 @@ enum dc_edid_status dm_helpers_read_local_edid(
- 		if (!drm_edid)
- 			return EDID_NO_RESPONSE;
++	/**
++	 * @assert_mpcc_idle_before_connect:
++	 *
++	 * Assert that the specific MPCC instance is ideal before attempting to connect.
++	 *
++	 * Parameters:
++	 * - [in/out] mpc  - MPC context.
++	 * - [in]     mpcc_id - ID of the MPCC instance to check for
++	 *
++	 * Return:
++	 *
++	 * void
++	 */
+ 	void (*assert_mpcc_idle_before_connect)(struct mpc *mpc, int mpcc_id);
  
--		edid = drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
-+		/* FIXME: Get rid of drm_edid_raw()
-+		 * Raw edid is still needed for dm_helpers_dp_write_dpcd()
-+		 */
-+		edid = drm_edid_raw(drm_edid);
- 		sink->dc_edid.length = EDID_LENGTH * (edid->extensions + 1);
- 		memmove(sink->dc_edid.raw_edid, (uint8_t *)edid, sink->dc_edid.length);
- 
- 		edid_status = dm_helpers_parse_edid_caps(
- 						link,
--						&sink->dc_edid,
- 						&sink->edid_caps);
- 
--		/* We don't need the original edid anymore */
--		drm_edid_free(drm_edid);
--
--	} while (edid_status == EDID_BAD_CHECKSUM && --retry > 0);
-+		if (edid_status != EDID_OK) {
-+			/* We can discard the drm_edid and retry */
-+			drm_edid_free(drm_edid);
-+			drm_edid_connector_update(connector, drm_edid);
-+		}
-+	} while (edid_status != EDID_OK && --retry > 0);
- 
- 	if (edid_status != EDID_OK)
- 		DRM_ERROR("EDID err: %d, on connector: %s",
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_helpers.h b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-index 34adae7ab6e8..bcdfc46c844e 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-@@ -61,7 +61,6 @@ void dm_helpers_free_gpu_mem(
- 
- enum dc_edid_status dm_helpers_parse_edid_caps(
- 	struct dc_link *link,
--	const struct dc_edid *edid,
- 	struct dc_edid_caps *edid_caps);
- 
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-index bba644024780..c7bb146636b2 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-@@ -1417,10 +1417,8 @@ struct dc_sink *link_add_remote_sink(
- 			dc_sink))
- 		goto fail_add_sink;
- 
--	edid_status = dm_helpers_parse_edid_caps(
--			link,
--			&dc_sink->dc_edid,
--			&dc_sink->edid_caps);
-+	edid_status = dm_helpers_parse_edid_caps(link,
-+						 &dc_sink->edid_caps);
- 
- 	/*
- 	 * Treat device as no EDID device if EDID
+ 	void (*init_mpcc_list_from_hw)(
 -- 
-2.43.0
+2.34.1
 
