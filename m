@@ -2,142 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A684A929AF7
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2024 04:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4C1929B11
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Jul 2024 05:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB66410E212;
-	Mon,  8 Jul 2024 02:54:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F2910E1EE;
+	Mon,  8 Jul 2024 03:25:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0LRcyCuI";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xtQLWM7+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE0B410E20D
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jul 2024 02:54:17 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2067.outbound.protection.outlook.com [40.107.92.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41EDF10E1FD
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jul 2024 03:24:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=izOxJYViljfA5dLDW4QrHEZ2373N5Rf/CK331gxgYSPiqP80HEtZnMG/lFipWAKFBTUP0TLSJT/qw8pd41/PvsF+rUGez/VEnQLQlu4HeipsK5DOFhijuL7xhZG4C1slSF5OzQj1XiaH1filNWjDOoRJLqvwNddTs7KvIGzRZMVj3uTTRNuvu0OdZEGuRgbPq8jvWBt1a1yF7wCe44W9q4VJ3OMGRoEAO1ZA0Hfd+XHyGVXl0MEqJzlDUiDSwjRoZVGh5DSswrltiYtQzlNPHeJgDjT7YOfVrM/3p2afbDOfr6MPuaof6/YbvglYlsaxNPbSCAn1jpdzJvUDE5PbjA==
+ b=UDm2oboK5goLwWGlwYmWMX+AaGLpWNj2ZVS6APhSB6J/rexnTC1zGMM/nvyDAh+zGRQn/yr96G5qupVNhJzCZuBrxJLJaldc4ridMGBt+KKOKdKB6Pu2WdITKFtJrwGMZsDbZLKF1113l2OFjX1xdPKrfrgSLIN719NDz9qUOgNrTVmpJRsCAazwRUinDlnSS6Taq7pdL+vMMjk5WRmR7SR39EmLT/mh3EpPsDYRfNn/bbYbglFZz95Od8xQnQ68bwJjoX9x/31QQn3X6uUyUe4O5W1tGKOlPXz7kEivbzjgD7JBZ7jjOHkC+qhEtN7gBN3R6iHIgg9xAyKZHzjb9Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0S3BU4GexNimlMdjM1BpaJ6+kNvdEEfzIAFk/iPsAV8=;
- b=IuypYqCgK70n/dc5SGaLvH+jvlp8TW5CEyRQ7h+gqPPUKTT7fpcKreaLWtni3yLnRIp0MVC0uZN/b5YUg+YmpLFt8nxJLj0eB0xVgC54BDOuoXocD14ItEZccjfzYz0W8/GNl43p1f5qV5xINND019u2yBXQbeRnXO4roidhbIeZvGlNXjc+h8iJrBARCvH8WLUvQn5vlv0XoXZ7UdoUSdcv41x3sAxUUMRcGsMx8EmLY7jqGzJBREgClSbCiLfXtbYUolwKA4OgwufrkRl7WKiRf+9NK63yYB6U3Z1IGEBzaGgs4pmGuTDDkUVaI5WzvZd2IBm/rYuwjU2T0SSpMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=dqdq29ADL1RhCwyhhfmYWsRj8dGNRzfCox/UvdiK6vQ=;
+ b=LYIzqOJu3XKpPNr99HfWwszcTcmKYqz3zLK7okXuqt3DHzUTMiBwvZhmgaqaekT/N5gTX6N+LSe065c00ClZnLT9XOIGuFSfXDeKQZE+G2zwio94PwWJ/vQscRB0S/MVe+Kd0z+fnGz0j/uLkCpQZaNk8NwfLNnG9njruIV4JFYuU+2UNB+1KlnXZR7DVoQhP+NKC2+gu3dDE82yMX0Dfnlm/mY5Ud24qhGDskolscZ5coo0HWj/7DD+K3tRX8PqyG00JVT2c6qPTlhWOjDbk3IPOgC0N+IQFRTaCKiCEYuuux68Rxpk3yFbjObyaSW4FOTs2DBOz51zCaLZnJERQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0S3BU4GexNimlMdjM1BpaJ6+kNvdEEfzIAFk/iPsAV8=;
- b=0LRcyCuIcvKZnq3mxnInfRdF5MOMvAL5MMZcvyPwhny6PLFnfrnYnaESv6bMwaF4GLSGcGSjB2aF88yWgE6DouuLFY51CRyqBXo4m8UCW22l9fgnl2+yAub8Qe4lxtJ40xm23OxGlKWFauwm2Me/KXlvD0kk46bS7pSUJ/njp/o=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by CH3PR12MB8281.namprd12.prod.outlook.com (2603:10b6:610:128::19)
+ bh=dqdq29ADL1RhCwyhhfmYWsRj8dGNRzfCox/UvdiK6vQ=;
+ b=xtQLWM7+KqE8jRhL0U53mXw9PXCuuYBh+OK7YpoA/GhK466yGmyiAfVz0rHhOYgnJvgofcZErJKdMcVjkZL7eiRGsGPliev7T8XJ23iXKXe4ad1m2fRjibCSwi8HFNE7hB1Zs2IljAVi1S7699IO0Erg0cEfn3Wa2/ZddcLYAeM=
+Received: from PH7P220CA0130.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:327::14)
+ by IA1PR12MB6580.namprd12.prod.outlook.com (2603:10b6:208:3a0::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.34; Mon, 8 Jul
- 2024 02:54:11 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009%6]) with mapi id 15.20.7741.033; Mon, 8 Jul 2024
- 02:54:11 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH 1/4] drm/amdgpu: refine amdgpu ras event id core code
-Thread-Topic: [PATCH 1/4] drm/amdgpu: refine amdgpu ras event id core code
-Thread-Index: AQHazQ0nDJGc5wMZF0KyT4eFBvBhBbHsKVXw
-Date: Mon, 8 Jul 2024 02:54:11 +0000
-Message-ID: <BN9PR12MB5257B8DD9285E8CBB0063EE2FCDA2@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20240703055200.1610956-1-kevinyang.wang@amd.com>
-In-Reply-To: <20240703055200.1610956-1-kevinyang.wang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=bf7ae898-6896-43c9-a7be-9131c7abe361;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-07-08T02:51:23Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|CH3PR12MB8281:EE_
-x-ms-office365-filtering-correlation-id: 6e5dfd70-a6f9-47ae-657d-08dc9ef93e71
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?J8qXq+Kq1YPQzjhgqECOFdPNRUg0atkQoTKuU3NER4Rm5F+ccq6WSROZnVUc?=
- =?us-ascii?Q?q/VWs5kLYCe3rXTzAukIYz20HuSsFyGrGdcVup5ZDnvQXhCKBV49jySqOXD0?=
- =?us-ascii?Q?swmZGF7u9xFswBB4fy53dIlNGM4VjEccBgI2q7O7cedlE2jlDyDobZ5Dpzrt?=
- =?us-ascii?Q?t3TYrmu+by65zDVpCePwoYreHh9H+bYEZfmSbg+1Xmv2y1p214vrLuG6KLsQ?=
- =?us-ascii?Q?hwgtZM6QYRlR2LBrq+8QDezoNwygUT6fn1FUKqisDTfbfIYaOtsrAyLXgs2O?=
- =?us-ascii?Q?WCDhDq93VkzWJW7aGftLIYEL+duI+nvdjVF3JgyQ3yFlngPrh9mWE0fkrEtW?=
- =?us-ascii?Q?Bj2wasXK8JnoeABM+MAbxdO6I2pbOg3a1scBkTpwBj6mW02pAny4830HDCHZ?=
- =?us-ascii?Q?7ywSik4pJ/24BWOypkxiiEbcTuuvAMr+Tf+iRV5vIvSzN2fRo+32mv7HixyR?=
- =?us-ascii?Q?eFRzZBjXCzh3Lnr9bkUbNti2GhI5axtmvzQdXMqFEzo0/WxxwKB9hiqwcW6h?=
- =?us-ascii?Q?K46X4tc0I2RdGdKhY5mLxZwgonvb6v4p516ZIs+OYQsuu2jIMDue0zGD4PsD?=
- =?us-ascii?Q?8/HCfkhqxHcHbIXPz8HlETczONDdPIS2Xol2ok4/o13WSywANaygIvtA2ZCr?=
- =?us-ascii?Q?U+HT9+yrbIYS/NM6C2WEQrbey2sepSu49fZJI47AxOrn8V5aU1tkfa+comt4?=
- =?us-ascii?Q?vXaKZCiK2fOsXH0LTtZlYV5l047vW44XZcfa4xnCE9h9KV+x7gCY7JqluhiH?=
- =?us-ascii?Q?1WNsxCT5MUpeCKPvPmraRy9zQ5vb8gPw9ecHTYNaJabHfOXOwuY2PN/+eDmQ?=
- =?us-ascii?Q?E09RaFBd4dV6pJEku34RjBZLD/XtQgl0bqO3pi+FNNu5MeZiBxX7ILgiR3dg?=
- =?us-ascii?Q?8AstGtVH1q8wg1nsx+Y7t1yOxczw/GWl9dkWpiJvQc3I2XbbBnxL3VnMCK4+?=
- =?us-ascii?Q?fY0e3AOYynmLKwW7udcu9Y4vGtB1MWP4Jj5Swix8nxhxNIcprmdz4UW2mr8Y?=
- =?us-ascii?Q?h/2RN6fUl97+WyxRy/4TlAsg/a1esLc/W8xn9M/9Conql7VA4lp6+OyEOCwj?=
- =?us-ascii?Q?fEtb8cAg/ByTshXvctoKmihNeRMWlpdEmDxXtDkcfE1ik72BcghmLtZKaEuX?=
- =?us-ascii?Q?RmvRMxhORu422PwUCI2tU6qDP6ycI1lgeUfeq0C0r4f0zzmfQnR7A6sOY5zX?=
- =?us-ascii?Q?e1k0alfp6y7ZJjBzaqS3AvU1Mc66hsLqOoN8wCSLShj/XfwufRXdUu/xc+yv?=
- =?us-ascii?Q?9cC9k6fBFsfsBHuSJMaogPbAQhzFC7v6ACyKlSZ+NpZSv/8hredlqlaZ93st?=
- =?us-ascii?Q?iPawRojCIGqKVDzDLX7F3eDrSUGiCNgvqfU82ccjchWYQ/D74jkqnQXiVq8w?=
- =?us-ascii?Q?Hz4F/Bduczf1b6wMOwk38BX8u6ff66cdCK8XbkPaeyD7GyqmMA=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?w+7DRfrqvKkV/Hwf6CK0DrFwJ1ihLceMHTsNW8qQ/+cmoiQrTdOb33QRQTd5?=
- =?us-ascii?Q?pJVXaNoO6m9IF/brmizKiFC2GC+4+c+qden2s10Q1YxFZ1xJtvQ+h2ag228j?=
- =?us-ascii?Q?JuBJ19JpkBO2XvmNFKlQuDQN9CV7Va4mTbJm+VPb8JjgnpBjzu1r6HnFC7Rx?=
- =?us-ascii?Q?S6uuVe8PyCliY24mEdJUkq5H3uDqvb+I35Y3k5hKv7pA44xa3W8uMN25mGb7?=
- =?us-ascii?Q?nAYZe8Io92xWlDcFiJLVhob1+4Y8Go+hT1DxHGgmDv38dPfyvwA1lZ5Zwdls?=
- =?us-ascii?Q?e7gE5ouwnPFw9thnAt1z7BsB/qVr1jAmbT27fo98g6YLP/DSXKkhfbJ8s4Mh?=
- =?us-ascii?Q?U1oXVv4Z1aCgAnsFjv0NKU5y7Q8lpoxzOkGYhk4Q/FBrc4KElOiilNaPzfT/?=
- =?us-ascii?Q?g6MNNCXqqE1A4HXpPNC9vIao5zpeK2AyYB6N3oirkA7IcA4Hi1NIBgaDJ5y5?=
- =?us-ascii?Q?qSY9CpK8H4uvlna0uRLSNhPe/jKR7Z22LH36jBQ3SCOc5h0Kiwzq5ldceFns?=
- =?us-ascii?Q?7pxdyuPW9S1QoahTgY0ZHP2pvXeSp4r0hek9fm0pzny9lf7ATdunj4ftNwO8?=
- =?us-ascii?Q?GL4+F/kdUgGxEWAmrpZPgGN5HFE5+lSRpZdDVMIzErkWnoSqWK8do4P4cNFf?=
- =?us-ascii?Q?c4bO21Uvqf82kaM7pBeFF+LwdrRIULyuQvOfKiOz3md7Lb86T2fTnTA5WV7p?=
- =?us-ascii?Q?GB6/1CKAn532o3x1qf/Rtn34BUWS6IUd+GsEeEGB8RP51DTBXU8SfpZZMAIF?=
- =?us-ascii?Q?U4CBx+JbyhNkYQ5+qQ5LDq29E5beC39jDSj1fgJq0zNXZupPGYUXMaGTaKHq?=
- =?us-ascii?Q?YdErm8sitQAnfggpsm1OcO3zIGVX6ldfyKve8340aAoVkjQ2A3esuDSBLM9b?=
- =?us-ascii?Q?89G52bk065GVphCCNyAbNnitkxQkbKTYDCBaxiGYcV2SZ8hjvNXYZHg7f5ni?=
- =?us-ascii?Q?7BCGzzSFkGjXuuVcf7fqAqHo5vPsJ9UxbwCUFj3RVW2la7/XYkCa8B74JZyX?=
- =?us-ascii?Q?NrmlDO9expiPDTIlWhk+5nAEdZqx22TDkch803KNt8LI3tVJvUFtLdNOtyjL?=
- =?us-ascii?Q?UfJNU9BTqK19rzAcc+zlrJ9M56vBJBTUAZRxlcXVZ3t4rqpL/RHxnFY6hYPk?=
- =?us-ascii?Q?FdnovA3iud8gjDsQFUtKBk/yECdnkCBXmkhkNYui/07k5P2+clN630tnz5Or?=
- =?us-ascii?Q?gjoAhj6IcyDckr8nDgVlgjkQQIqBaeIfnh7dHnc9PjbOSHVDjUT59j0Ng4b+?=
- =?us-ascii?Q?yL9RqxlW3KtkG88100+NOocja8uNlF18CEmjX++hrntSxHiA94rM/qVmA96b?=
- =?us-ascii?Q?980x8GtlE420y7sFrDa1xHuv15zI9JY5Cr+oznmvZdpybCTiqYAxrnJ+ELk5?=
- =?us-ascii?Q?RYfSu84Seq6wZYlaj7vhnmiNBAAZ2Gu7yh0Ac1a2JTzwo/HE6GBIFCzR4bZu?=
- =?us-ascii?Q?lkUlYpYLNwmE4LuQ6g3Eg2Thk5+AP3NfVGFNYFkjQVawNiGWh9kOJMd93/VH?=
- =?us-ascii?Q?Ja7+mXSrwsJuHWOty2GWyi6e2Rmn7wkvEOY6XejpDQekX/jyvpMNft8suBE8?=
- =?us-ascii?Q?bsTQpmssAPteOdfiz10=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Mon, 8 Jul
+ 2024 03:24:52 +0000
+Received: from CY4PEPF0000EDD2.namprd03.prod.outlook.com
+ (2603:10b6:510:327:cafe::d3) by PH7P220CA0130.outlook.office365.com
+ (2603:10b6:510:327::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36 via Frontend
+ Transport; Mon, 8 Jul 2024 03:24:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD2.mail.protection.outlook.com (10.167.241.198) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7762.17 via Frontend Transport; Mon, 8 Jul 2024 03:24:51 +0000
+Received: from kevin-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 7 Jul
+ 2024 22:24:49 -0500
+From: Yang Wang <kevinyang.wang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <hawking.zhang@amd.com>, <tao.zhou1@amd.com>
+Subject: [PATCH v4 1/4] drm/amdgpu: refine amdgpu ras event id core code
+Date: Mon, 8 Jul 2024 11:24:36 +0800
+Message-ID: <20240708032439.2944714-1-kevinyang.wang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD2:EE_|IA1PR12MB6580:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3baebd29-96c6-45c4-69c6-08dc9efd87b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|376014|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?i17jj9zvhvVopylD9ySMcWL/af1dcAluCbY5DIE8vK091KQLDni3g+yCnfVX?=
+ =?us-ascii?Q?cL9iOy1h/FALfm+0+dvDBhGlqfMmZDjQGCBwRtYkd+CiILzrCw4tzdYISYzl?=
+ =?us-ascii?Q?qlRiCDFCppWmL+zaFQeSHyw0T+nUevh1IkIl8pOJ9a1wfp8mDJNtKamovin6?=
+ =?us-ascii?Q?NzP2CLsq8BmEcUv2gQSgtvbXY85rNl8weqavdtPtKyPfdwSyyBh2GtVRUm+u?=
+ =?us-ascii?Q?dLqbm98Hba+GaGkbWzheS0bNFVYyjoqH6M20PMsA3vj/qXlR6WFm2Oq/96lU?=
+ =?us-ascii?Q?6XvzApYkf0aNKp+YdyJZ8jlTxdvUTKODZp+TMD97FyFS+kObKykLYyPE0OC/?=
+ =?us-ascii?Q?QIQOgCCMifshLtvbcbAV0wYMINLbApB4PA00NCbEJ3IDy4AXmDctRVLsrReW?=
+ =?us-ascii?Q?qf+tRpfpyhq4TRqCWzdG+Hek4bblXhXmMKmAhBF61jgayANYZA3PmJWLl2Fj?=
+ =?us-ascii?Q?ctwrljTooL+0VFAU7d57jUvVKc9ocm95q1PIXF1DPvsRzOChQzJUL16BFwKW?=
+ =?us-ascii?Q?B9CbZ/eJslVmQrypnmXgL9vyWhFo/aoPypjXV4P/3afQ106F1qj254GJrOTx?=
+ =?us-ascii?Q?gr6yJA6Hh4rkuIoSj5GLueE1O6EW9aQ/C3owSPuuVu/ZgL2BVan1VFpPVsLU?=
+ =?us-ascii?Q?svaSqDfq8lFlRJj/Diq581zR8LGfgRuZ8qS7c96KaHYoWxTDBenVEtMsLduW?=
+ =?us-ascii?Q?9Qt5msnGrNoK70mwhbd/f9xbdriTRd3fYUYUkg+kQyL1NoW8B7dce+tj0maw?=
+ =?us-ascii?Q?G/7DbD2spezZZi7/2ynUrHSyHXeoMR4osBGShkdtMWZSr6bJttkRWztJyFSe?=
+ =?us-ascii?Q?Ao7aG7fwE5iD5+no+ceZNMY0EZ7qMI9ZrL9ATpcq3wleY9WlNisTKLrb2jLB?=
+ =?us-ascii?Q?WunndrokWB6Ogo9DqijGLewshzpnzs50F4Um6Q9Mag7RXX/aJV0nWIUXCGlC?=
+ =?us-ascii?Q?J6ucJdlA50lnr27SgWDf/ZJFJUT3FyGtotSaF/W7RwJrhQ5/6xYnzTVIWKFa?=
+ =?us-ascii?Q?B8koQZZkqL3OYzZc6MdwdCZPG0Tp6M2Xe8jkXEQWXhnaHNdgYYMuJ+Z3LKFY?=
+ =?us-ascii?Q?CCj7Lrrom8K85PLtsviAg/8YgusxL+75sECE/qOUL5G5o8H8lRWTIfDXQgw0?=
+ =?us-ascii?Q?vQwagbaHn0rdsHmB57ZlcWu6t7Dpc76fkotNBhv7SnQ68W8p2Od5DzGyvQhg?=
+ =?us-ascii?Q?pO0qBwXW1jg2XekbbXQv/uhkpE+HpFtMPDK+njrg27zZTRo4AG/q4xXbVxZz?=
+ =?us-ascii?Q?BBPQEGY4to1LKs6teQnBOxJRn6uW8+oo8KHMxFnQiLFJQ9Iq3+/ntZP3Y3h8?=
+ =?us-ascii?Q?9N+4GQjKDAOhbGVSGFVJbAsAOCgNve9A6p4WO8zIRoyAZ8SpjETkWBc777u8?=
+ =?us-ascii?Q?fytWRhmkBSHiJKTOMeniKlz4V/5dvAk8tXhBBaHcuz0DBjY6UsSQPkwbXFOO?=
+ =?us-ascii?Q?trhuBDx5XazNEnrJcwBk4Ru8yoJE7C9S?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e5dfd70-a6f9-47ae-657d-08dc9ef93e71
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2024 02:54:11.0974 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7ZDAB5jWVX/YxO792pEV03MbB9OqoyV3YR4BTM/g3dWm8lHwoUw76sJKasOEy/REx/Dk2itajUfsFzkOqXui2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8281
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2024 03:24:51.9311 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3baebd29-96c6-45c4-69c6-08dc9efd87b6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD2.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6580
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,368 +129,348 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-We will need to change RAS_EVENT_TYPE_ISR to RAS_EVENT_TYPE_FATAL to differ=
-entiate the upcoming correctable error ISR event.
-
-And please also align the terminology in code to change recovery_event to f=
-atal_error_event, i.e., amdgpu_ras_get_recovery_event -> amdgpu_ras_get_fat=
-al_error_event.
-
-Regards,
-Hawking
-
------Original Message-----
-From: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
-Sent: Wednesday, July 3, 2024 13:52
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: [PATCH 1/4] drm/amdgpu: refine amdgpu ras event id core code
-
+v1:
 - use unified event id to manage ras events
 - add a new function amdgpu_ras_query_error_status_with_event() to accept
   event type as parameter.
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c |  2 +-  drivers/gpu/drm/amd/amdgp=
-u/amdgpu_mca.c |  4 +-  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 89 ++++++=
-++++++++++++++-----  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h | 18 +++--
- drivers/gpu/drm/amd/amdgpu_ras.c        |  0
- 5 files changed, 88 insertions(+), 25 deletions(-)  create mode 100644 dri=
-vers/gpu/drm/amd/amdgpu_ras.c
+v2:
+add a warn log to show the location of function failure
+when calling amdgpu_ras_mark_event(). (Tao Zhou)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_aca.c
+v3:
+change RAS_EVENT_TYPE_ISR to RAS_EVENT_TYPE_FATAL.
+
+v4:
+rename amdgpu_ras_get_recovery_event() to
+amdgpu_ras_get_fatal_error_event().
+
+Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 101 +++++++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h |  21 +++--
+ drivers/gpu/drm/amd/amdgpu_ras.c        |   0
+ 5 files changed, 102 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu_ras.c
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
 index 7945173321a2..19158cc30f31 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_aca.c
-@@ -119,7 +119,7 @@ static struct aca_regs_dump {  static void aca_smu_bank=
-_dump(struct amdgpu_device *adev, int idx, int total, struct aca_bank *bank=
-,
-                              struct ras_query_context *qctx)  {
--       u64 event_id =3D qctx ? qctx->event_id : 0ULL;
-+       u64 event_id =3D qctx ? qctx->evid.event_id : RAS_EVENT_INVALID_ID;
-        int i;
-
-        RAS_EVENT_LOG(adev, event_id, HW_ERR "Accelerator Check Architectur=
-e events logged\n"); diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b=
-/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
+@@ -119,7 +119,7 @@ static struct aca_regs_dump {
+ static void aca_smu_bank_dump(struct amdgpu_device *adev, int idx, int total, struct aca_bank *bank,
+ 			      struct ras_query_context *qctx)
+ {
+-	u64 event_id = qctx ? qctx->event_id : 0ULL;
++	u64 event_id = qctx ? qctx->evid.event_id : RAS_EVENT_INVALID_ID;
+ 	int i;
+ 
+ 	RAS_EVENT_LOG(adev, event_id, HW_ERR "Accelerator Check Architecture events logged\n");
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
 index 9d3a3c778504..2542bd7aa7c7 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
-@@ -274,7 +274,7 @@ int amdgpu_mca_smu_set_debug_mode(struct amdgpu_device =
-*adev, bool enable)  static void amdgpu_mca_smu_mca_bank_dump(struct amdgpu=
-_device *adev, int idx, struct mca_bank_entry *entry,
-                                         struct ras_query_context *qctx)
+@@ -274,7 +274,7 @@ int amdgpu_mca_smu_set_debug_mode(struct amdgpu_device *adev, bool enable)
+ static void amdgpu_mca_smu_mca_bank_dump(struct amdgpu_device *adev, int idx, struct mca_bank_entry *entry,
+ 					 struct ras_query_context *qctx)
  {
--       u64 event_id =3D qctx->event_id;
-+       u64 event_id =3D qctx ? qctx->evid.event_id : RAS_EVENT_INVALID_ID;
-
-        RAS_EVENT_LOG(adev, event_id, HW_ERR "Accelerator Check Architectur=
-e events logged\n");
-        RAS_EVENT_LOG(adev, event_id, HW_ERR "aca entry[%02d].STATUS=3D0x%0=
-16llx\n", @@ -543,7 +543,7 @@ static int mca_dump_show(struct seq_file *m, =
-enum amdgpu_mca_error_type type)
-
-        amdgpu_mca_bank_set_init(&mca_set);
-
--       qctx.event_id =3D 0ULL;
-+       qctx.evid.event_id =3D RAS_EVENT_INVALID_ID;
-        ret =3D amdgpu_mca_smu_get_mca_set(adev, type, &mca_set, &qctx);
-        if (ret)
-                goto err_free_mca_set;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_ras.c
-index 53b5ac2d7bed..45ac82a34d49 100644
+-	u64 event_id = qctx->event_id;
++	u64 event_id = qctx ? qctx->evid.event_id : RAS_EVENT_INVALID_ID;
+ 
+ 	RAS_EVENT_LOG(adev, event_id, HW_ERR "Accelerator Check Architecture events logged\n");
+ 	RAS_EVENT_LOG(adev, event_id, HW_ERR "aca entry[%02d].STATUS=0x%016llx\n",
+@@ -543,7 +543,7 @@ static int mca_dump_show(struct seq_file *m, enum amdgpu_mca_error_type type)
+ 
+ 	amdgpu_mca_bank_set_init(&mca_set);
+ 
+-	qctx.event_id = 0ULL;
++	qctx.evid.event_id = RAS_EVENT_INVALID_ID;
+ 	ret = amdgpu_mca_smu_get_mca_set(adev, type, &mca_set, &qctx);
+ 	if (ret)
+ 		goto err_free_mca_set;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 53b5ac2d7bed..a40886d0f507 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1055,7 +1055,7 @@ static void amdgpu_ras_error_print_error_data(struct =
-amdgpu_device *adev,
-        struct amdgpu_smuio_mcm_config_info *mcm_info;
-        struct ras_err_node *err_node;
-        struct ras_err_info *err_info;
--       u64 event_id =3D qctx->event_id;
-+       u64 event_id =3D qctx->evid.event_id;
-
-        if (is_ue) {
-                for_each_ras_error(err_node, err_data) { @@ -1140,7 +1140,7=
- @@ static void amdgpu_ras_error_generate_report(struct amdgpu_device *adev=
-,  {
-        struct ras_manager *ras_mgr =3D amdgpu_ras_find_obj(adev, &query_if=
-->head);
-        const char *blk_name =3D get_ras_block_str(&query_if->head);
--       u64 event_id =3D qctx->event_id;
-+       u64 event_id =3D qctx->evid.event_id;
-
-        if (err_data->ce_count) {
-                if (err_data_has_source_info(err_data)) { @@ -1366,7 +1366,=
-9 @@ static int amdgpu_ras_query_error_status_helper(struct amdgpu_device *=
-adev,  }
-
- /* query/inject/cure begin */
--int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct ras_q=
-uery_if *info)
-+static int amdgpu_ras_query_error_status_with_event(struct amdgpu_device *=
-adev,
-+                                                   struct ras_query_if *in=
-fo,
-+                                                   enum ras_event_type typ=
-e)
+@@ -1055,7 +1055,7 @@ static void amdgpu_ras_error_print_error_data(struct amdgpu_device *adev,
+ 	struct amdgpu_smuio_mcm_config_info *mcm_info;
+ 	struct ras_err_node *err_node;
+ 	struct ras_err_info *err_info;
+-	u64 event_id = qctx->event_id;
++	u64 event_id = qctx->evid.event_id;
+ 
+ 	if (is_ue) {
+ 		for_each_ras_error(err_node, err_data) {
+@@ -1140,7 +1140,7 @@ static void amdgpu_ras_error_generate_report(struct amdgpu_device *adev,
  {
-        struct ras_manager *obj =3D amdgpu_ras_find_obj(adev, &info->head);
-        struct ras_err_data err_data;
-@@ -1385,8 +1387,8 @@ int amdgpu_ras_query_error_status(struct amdgpu_devic=
-e *adev, struct ras_query_i
-                return -EINVAL;
-
-        memset(&qctx, 0, sizeof(qctx));
--       qctx.event_id =3D amdgpu_ras_acquire_event_id(adev, amdgpu_ras_intr=
-_triggered() ?
--                                                  RAS_EVENT_TYPE_ISR : RAS=
-_EVENT_TYPE_INVALID);
-+       qctx.evid.type =3D type;
-+       qctx.evid.event_id =3D amdgpu_ras_acquire_event_id(adev, type);
-
-        if (!down_read_trylock(&adev->reset_domain->sem)) {
-                ret =3D -EIO;
-@@ -1415,6 +1417,11 @@ int amdgpu_ras_query_error_status(struct amdgpu_devi=
-ce *adev, struct ras_query_i
-        return ret;
+ 	struct ras_manager *ras_mgr = amdgpu_ras_find_obj(adev, &query_if->head);
+ 	const char *blk_name = get_ras_block_str(&query_if->head);
+-	u64 event_id = qctx->event_id;
++	u64 event_id = qctx->evid.event_id;
+ 
+ 	if (err_data->ce_count) {
+ 		if (err_data_has_source_info(err_data)) {
+@@ -1366,7 +1366,9 @@ static int amdgpu_ras_query_error_status_helper(struct amdgpu_device *adev,
  }
-
-+int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct
-+ras_query_if *info) {
-+       return amdgpu_ras_query_error_status_with_event(adev, info,
-+RAS_EVENT_TYPE_INVALID); }
+ 
+ /* query/inject/cure begin */
+-int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct ras_query_if *info)
++static int amdgpu_ras_query_error_status_with_event(struct amdgpu_device *adev,
++						    struct ras_query_if *info,
++						    enum ras_event_type type)
+ {
+ 	struct ras_manager *obj = amdgpu_ras_find_obj(adev, &info->head);
+ 	struct ras_err_data err_data;
+@@ -1385,8 +1387,8 @@ int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct ras_query_i
+ 		return -EINVAL;
+ 
+ 	memset(&qctx, 0, sizeof(qctx));
+-	qctx.event_id = amdgpu_ras_acquire_event_id(adev, amdgpu_ras_intr_triggered() ?
+-						   RAS_EVENT_TYPE_ISR : RAS_EVENT_TYPE_INVALID);
++	qctx.evid.type = type;
++	qctx.evid.event_id = amdgpu_ras_acquire_event_id(adev, type);
+ 
+ 	if (!down_read_trylock(&adev->reset_domain->sem)) {
+ 		ret = -EIO;
+@@ -1415,6 +1417,11 @@ int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct ras_query_i
+ 	return ret;
+ }
+ 
++int amdgpu_ras_query_error_status(struct amdgpu_device *adev, struct ras_query_if *info)
++{
++	return amdgpu_ras_query_error_status_with_event(adev, info, RAS_EVENT_TYPE_INVALID);
++}
 +
  int amdgpu_ras_reset_error_count(struct amdgpu_device *adev,
-                enum amdgpu_ras_block block)
+ 		enum amdgpu_ras_block block)
  {
-@@ -2305,7 +2312,7 @@ static int amdgpu_ras_interrupt_remove_all(struct amd=
-gpu_device *adev)
+@@ -2305,7 +2312,7 @@ static int amdgpu_ras_interrupt_remove_all(struct amdgpu_device *adev)
  /* ih end */
-
- /* traversal all IPs except NBIO to query error counter */ -static void am=
-dgpu_ras_log_on_err_counter(struct amdgpu_device *adev)
-+static void amdgpu_ras_log_on_err_counter(struct amdgpu_device *adev,
-+enum ras_event_type type)
+ 
+ /* traversal all IPs except NBIO to query error counter */
+-static void amdgpu_ras_log_on_err_counter(struct amdgpu_device *adev)
++static void amdgpu_ras_log_on_err_counter(struct amdgpu_device *adev, enum ras_event_type type)
  {
-        struct amdgpu_ras *con =3D amdgpu_ras_get_context(adev);
-        struct ras_manager *obj;
-@@ -2338,7 +2345,7 @@ static void amdgpu_ras_log_on_err_counter(struct amdg=
-pu_device *adev)
-                     IP_VERSION(13, 0, 2)))
-                        continue;
-
--               amdgpu_ras_query_error_status(adev, &info);
-+               amdgpu_ras_query_error_status_with_event(adev, &info, type)=
-;
-
-                if (amdgpu_ip_version(adev, MP0_HWIP, 0) !=3D
-                            IP_VERSION(11, 0, 2) &&
-@@ -2477,6 +2484,14 @@ bool amdgpu_ras_in_recovery(struct amdgpu_device *ad=
-ev)
-        return false;
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	struct ras_manager *obj;
+@@ -2338,7 +2345,7 @@ static void amdgpu_ras_log_on_err_counter(struct amdgpu_device *adev)
+ 		     IP_VERSION(13, 0, 2)))
+ 			continue;
+ 
+-		amdgpu_ras_query_error_status(adev, &info);
++		amdgpu_ras_query_error_status_with_event(adev, &info, type);
+ 
+ 		if (amdgpu_ip_version(adev, MP0_HWIP, 0) !=
+ 			    IP_VERSION(11, 0, 2) &&
+@@ -2477,6 +2484,14 @@ bool amdgpu_ras_in_recovery(struct amdgpu_device *adev)
+ 	return false;
  }
-
-+static enum ras_event_type amdgpu_ras_get_recovery_event(struct
-+amdgpu_device *adev) {
-+       if (amdgpu_ras_intr_triggered())
-+               return RAS_EVENT_TYPE_ISR;
-+       else
-+               return RAS_EVENT_TYPE_INVALID;
+ 
++static enum ras_event_type amdgpu_ras_get_fatal_error_event(struct amdgpu_device *adev)
++{
++	if (amdgpu_ras_intr_triggered())
++		return RAS_EVENT_TYPE_FATAL;
++	else
++		return RAS_EVENT_TYPE_INVALID;
 +}
 +
- static void amdgpu_ras_do_recovery(struct work_struct *work)  {
-        struct amdgpu_ras *ras =3D
-@@ -2485,6 +2500,7 @@ static void amdgpu_ras_do_recovery(struct work_struct=
- *work)
-        struct amdgpu_device *adev =3D ras->adev;
-        struct list_head device_list, *device_list_handle =3D  NULL;
-        struct amdgpu_hive_info *hive =3D amdgpu_get_xgmi_hive(adev);
-+       enum ras_event_type type;
-
-        if (hive) {
-                atomic_set(&hive->ras_recovery, 1);
-@@ -2512,10 +2528,11 @@ static void amdgpu_ras_do_recovery(struct work_stru=
-ct *work)
-                        device_list_handle =3D &device_list;
-                }
-
-+               type =3D amdgpu_ras_get_recovery_event(adev);
-                list_for_each_entry(remote_adev,
-                                device_list_handle, gmc.xgmi.head) {
-                        amdgpu_ras_query_err_status(remote_adev);
--                       amdgpu_ras_log_on_err_counter(remote_adev);
-+                       amdgpu_ras_log_on_err_counter(remote_adev, type);
-                }
-
-        }
-@@ -3406,8 +3423,11 @@ static void ras_event_mgr_init(struct ras_event_mana=
-ger *mgr)  {
-        int i;
-
--       for (i =3D 0; i < ARRAY_SIZE(mgr->seqnos); i++)
--               atomic64_set(&mgr->seqnos[i], 0);
-+       memset(mgr, 0, sizeof(*mgr));
-+       atomic64_set(&mgr->seqno, 0);
+ static void amdgpu_ras_do_recovery(struct work_struct *work)
+ {
+ 	struct amdgpu_ras *ras =
+@@ -2485,6 +2500,7 @@ static void amdgpu_ras_do_recovery(struct work_struct *work)
+ 	struct amdgpu_device *adev = ras->adev;
+ 	struct list_head device_list, *device_list_handle =  NULL;
+ 	struct amdgpu_hive_info *hive = amdgpu_get_xgmi_hive(adev);
++	enum ras_event_type type;
+ 
+ 	if (hive) {
+ 		atomic_set(&hive->ras_recovery, 1);
+@@ -2512,10 +2528,11 @@ static void amdgpu_ras_do_recovery(struct work_struct *work)
+ 			device_list_handle = &device_list;
+ 		}
+ 
++		type = amdgpu_ras_get_fatal_error_event(adev);
+ 		list_for_each_entry(remote_adev,
+ 				device_list_handle, gmc.xgmi.head) {
+ 			amdgpu_ras_query_err_status(remote_adev);
+-			amdgpu_ras_log_on_err_counter(remote_adev);
++			amdgpu_ras_log_on_err_counter(remote_adev, type);
+ 		}
+ 
+ 	}
+@@ -3406,8 +3423,11 @@ static void ras_event_mgr_init(struct ras_event_manager *mgr)
+ {
+ 	int i;
+ 
+-	for (i = 0; i < ARRAY_SIZE(mgr->seqnos); i++)
+-		atomic64_set(&mgr->seqnos[i], 0);
++	memset(mgr, 0, sizeof(*mgr));
++	atomic64_set(&mgr->seqno, 0);
 +
-+       for (i =3D 0; i < ARRAY_SIZE(mgr->last_seqno); i++)
-+               mgr->last_seqno[i] =3D RAS_EVENT_INVALID_ID;
++	for (i = 0; i < ARRAY_SIZE(mgr->last_seqno); i++)
++		mgr->last_seqno[i] = RAS_EVENT_INVALID_ID;
  }
-
- static void amdgpu_ras_event_mgr_init(struct amdgpu_device *adev) @@ -3907=
-,23 +3927,52 @@ void amdgpu_ras_set_fed(struct amdgpu_device *adev, bool st=
-atus)
-                atomic_set(&ras->fed, !!status);
+ 
+ static void amdgpu_ras_event_mgr_init(struct amdgpu_device *adev)
+@@ -3907,23 +3927,62 @@ void amdgpu_ras_set_fed(struct amdgpu_device *adev, bool status)
+ 		atomic_set(&ras->fed, !!status);
  }
-
+ 
 -bool amdgpu_ras_event_id_is_valid(struct amdgpu_device *adev, u64 id)
-+static struct ras_event_manager* __get_ras_event_mgr(struct
-+amdgpu_device *adev) {
-+       struct amdgpu_ras *ras;
++static struct ras_event_manager* __get_ras_event_mgr(struct amdgpu_device *adev)
+ {
+-	return !(id & BIT_ULL(63));
++	struct amdgpu_ras *ras;
 +
-+       ras =3D amdgpu_ras_get_context(adev);
-+       if (!ras)
-+               return NULL;
++	ras = amdgpu_ras_get_context(adev);
++	if (!ras)
++		return NULL;
 +
-+       return ras->event_mgr;
++	return ras->event_mgr;
 +}
 +
-+int amdgpu_ras_mark_ras_event(struct amdgpu_device *adev, enum
-+ras_event_type type)
- {
--       return !(id & BIT_ULL(63));
-+       struct ras_event_manager *event_mgr;
++int amdgpu_ras_mark_ras_event_caller(struct amdgpu_device *adev, enum ras_event_type type, const void *caller)
++{
++	struct ras_event_manager *event_mgr;
++	int ret = 0;
 +
-+       if (type >=3D RAS_EVENT_TYPE_COUNT)
-+               return -EINVAL;
++	if (type >= RAS_EVENT_TYPE_COUNT) {
++		ret = -EINVAL;
++		goto out;
++	}
 +
-+       event_mgr =3D __get_ras_event_mgr(adev);
-+       if (!event_mgr)
-+               return -EINVAL;
++	event_mgr = __get_ras_event_mgr(adev);
++	if (!event_mgr) {
++		ret = -EINVAL;
++		goto out;
++	}
 +
-+       event_mgr->last_seqno[type] =3D atomic64_inc_return(&event_mgr->seq=
-no);
++	event_mgr->last_seqno[type] = atomic64_inc_return(&event_mgr->seqno);
 +
-+       return 0;
++out:
++	if (ret && caller)
++		dev_warn(adev->dev, "failed mark ras event (%d) in %ps, ret:%d\n",
++			 (int)type, caller, ret);
++
++	return ret;
  }
-
- u64 amdgpu_ras_acquire_event_id(struct amdgpu_device *adev, enum ras_event=
-_type type)  {
--       struct amdgpu_ras *ras =3D amdgpu_ras_get_context(adev);
-+       struct ras_event_manager *event_mgr;
-        u64 id;
-
-+       if (type >=3D RAS_EVENT_TYPE_COUNT)
-+               return RAS_EVENT_INVALID_ID;
+ 
+ u64 amdgpu_ras_acquire_event_id(struct amdgpu_device *adev, enum ras_event_type type)
+ {
+-	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
++	struct ras_event_manager *event_mgr;
+ 	u64 id;
+ 
++	if (type >= RAS_EVENT_TYPE_COUNT)
++		return RAS_EVENT_INVALID_ID;
 +
-        switch (type) {
-        case RAS_EVENT_TYPE_ISR:
--               id =3D (u64)atomic64_read(&ras->event_mgr->seqnos[type]);
-+               event_mgr =3D __get_ras_event_mgr(adev);
-+               if (!event_mgr)
-+                       return RAS_EVENT_INVALID_ID;
+ 	switch (type) {
+-	case RAS_EVENT_TYPE_ISR:
+-		id = (u64)atomic64_read(&ras->event_mgr->seqnos[type]);
++	case RAS_EVENT_TYPE_FATAL:
++		event_mgr = __get_ras_event_mgr(adev);
++		if (!event_mgr)
++			return RAS_EVENT_INVALID_ID;
 +
-+               id =3D event_mgr->last_seqno[type];
-                break;
-        case RAS_EVENT_TYPE_INVALID:
-        default:
--               id =3D BIT_ULL(63) | 0ULL;
-+               id =3D RAS_EVENT_INVALID_ID;
-                break;
-        }
-
-@@ -3934,7 +3983,13 @@ void amdgpu_ras_global_ras_isr(struct amdgpu_device =
-*adev)  {
-        if (atomic_cmpxchg(&amdgpu_ras_in_intr, 0, 1) =3D=3D 0) {
-                struct amdgpu_ras *ras =3D amdgpu_ras_get_context(adev);
--               u64 event_id =3D (u64)atomic64_inc_return(&ras->event_mgr->=
-seqnos[RAS_EVENT_TYPE_ISR]);
-+               enum ras_event_type type =3D RAS_EVENT_TYPE_ISR;
-+               u64 event_id;
++		id = event_mgr->last_seqno[type];
+ 		break;
+ 	case RAS_EVENT_TYPE_INVALID:
+ 	default:
+-		id = BIT_ULL(63) | 0ULL;
++		id = RAS_EVENT_INVALID_ID;
+ 		break;
+ 	}
+ 
+@@ -3934,7 +3993,13 @@ void amdgpu_ras_global_ras_isr(struct amdgpu_device *adev)
+ {
+ 	if (atomic_cmpxchg(&amdgpu_ras_in_intr, 0, 1) == 0) {
+ 		struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
+-		u64 event_id = (u64)atomic64_inc_return(&ras->event_mgr->seqnos[RAS_EVENT_TYPE_ISR]);
++		enum ras_event_type type = RAS_EVENT_TYPE_FATAL;
++		u64 event_id;
 +
-+               if (amdgpu_ras_mark_ras_event(adev, type))
-+                       return;
++		if (amdgpu_ras_mark_ras_event(adev, type))
++			return;
 +
-+               event_id =3D amdgpu_ras_acquire_event_id(adev, type);
-
-                RAS_EVENT_LOG(adev, event_id, "uncorrectable hardware error=
-"
-                              "(ERREVENT_ATHUB_INTERRUPT) detected!\n"); @@=
- -4668,7 +4723,7 @@ void amdgpu_ras_event_log_print(struct amdgpu_device *a=
-dev, u64 event_id,
-        vaf.fmt =3D fmt;
-        vaf.va =3D &args;
-
--       if (amdgpu_ras_event_id_is_valid(adev, event_id))
-+       if (RAS_EVENT_ID_IS_VALID(event_id))
-                dev_printk(KERN_INFO, adev->dev, "{%llu}%pV", event_id, &va=
-f);
-        else
-                dev_printk(KERN_INFO, adev->dev, "%pV", &vaf); diff --git a=
-/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_ras.h
-index 0fa1148e6642..88df4be5d122 100644
++		event_id = amdgpu_ras_acquire_event_id(adev, type);
+ 
+ 		RAS_EVENT_LOG(adev, event_id, "uncorrectable hardware error"
+ 			      "(ERREVENT_ATHUB_INTERRUPT) detected!\n");
+@@ -4668,7 +4733,7 @@ void amdgpu_ras_event_log_print(struct amdgpu_device *adev, u64 event_id,
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+ 
+-	if (amdgpu_ras_event_id_is_valid(adev, event_id))
++	if (RAS_EVENT_ID_IS_VALID(event_id))
+ 		dev_printk(KERN_INFO, adev->dev, "{%llu}%pV", event_id, &vaf);
+ 	else
+ 		dev_printk(KERN_INFO, adev->dev, "%pV", &vaf);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
+index 18d994c98a25..fd6a4c55bdc9 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -68,6 +68,9 @@ struct amdgpu_iv_entry;
- /* The high three bits indicates socketid */  #define AMDGPU_RAS_GET_FEATU=
-RES(val)  ((val) & ~AMDGPU_RAS_FEATURES_SOCKETID_MASK)
-
-+#define RAS_EVENT_INVALID_ID           (BIT_ULL(63))
-+#define RAS_EVENT_ID_IS_VALID(x)       (!((x) & BIT_ULL(63)))
+@@ -68,9 +68,15 @@ struct amdgpu_iv_entry;
+ /* The high three bits indicates socketid */
+ #define AMDGPU_RAS_GET_FEATURES(val)  ((val) & ~AMDGPU_RAS_FEATURES_SOCKETID_MASK)
+ 
++#define RAS_EVENT_INVALID_ID		(BIT_ULL(63))
++#define RAS_EVENT_ID_IS_VALID(x)	(!((x) & BIT_ULL(63)))
 +
- #define RAS_EVENT_LOG(adev, id, fmt, ...)      \
-        amdgpu_ras_event_log_print((adev), (id), (fmt), ##__VA_ARGS__);
-
-@@ -427,20 +430,25 @@ struct umc_ecc_info {  };
-
+ #define RAS_EVENT_LOG(adev, id, fmt, ...)	\
+ 	amdgpu_ras_event_log_print((adev), (id), (fmt), ##__VA_ARGS__)
+ 
++#define amdgpu_ras_mark_ras_event(adev, type)	\
++	(amdgpu_ras_mark_ras_event_caller((adev), (type), __builtin_return_address(0)))
++
+ enum amdgpu_ras_block {
+ 	AMDGPU_RAS_BLOCK__UMC = 0,
+ 	AMDGPU_RAS_BLOCK__SDMA,
+@@ -427,20 +433,25 @@ struct umc_ecc_info {
+ };
+ 
  enum ras_event_type {
--       RAS_EVENT_TYPE_INVALID =3D -1,
--       RAS_EVENT_TYPE_ISR =3D 0,
-+       RAS_EVENT_TYPE_INVALID =3D 0,
-+       RAS_EVENT_TYPE_ISR,
-        RAS_EVENT_TYPE_COUNT,
+-	RAS_EVENT_TYPE_INVALID = -1,
+-	RAS_EVENT_TYPE_ISR = 0,
++	RAS_EVENT_TYPE_INVALID = 0,
++	RAS_EVENT_TYPE_FATAL,
+ 	RAS_EVENT_TYPE_COUNT,
  };
-
+ 
  struct ras_event_manager {
--       atomic64_t seqnos[RAS_EVENT_TYPE_COUNT];
-+       atomic64_t seqno;
-+       u64 last_seqno[RAS_EVENT_TYPE_COUNT];
+-	atomic64_t seqnos[RAS_EVENT_TYPE_COUNT];
++	atomic64_t seqno;
++	u64 last_seqno[RAS_EVENT_TYPE_COUNT];
  };
-
+ 
 -struct ras_query_context {
 +struct ras_event_id {
-        enum ras_event_type type;
-        u64 event_id;
+ 	enum ras_event_type type;
+ 	u64 event_id;
  };
-
+ 
 +struct ras_query_context {
-+       struct ras_event_id evid;
++	struct ras_event_id evid;
 +};
 +
  typedef int (*pasid_notify)(struct amdgpu_device *adev,
-                uint16_t pasid, void *data);
-
-@@ -947,8 +955,8 @@ void amdgpu_ras_del_mca_err_addr(struct ras_err_info *e=
-rr_info,  void amdgpu_ras_set_fed(struct amdgpu_device *adev, bool status);=
-  bool amdgpu_ras_get_fed_status(struct amdgpu_device *adev);
-
+ 		uint16_t pasid, void *data);
+ 
+@@ -947,8 +958,8 @@ void amdgpu_ras_del_mca_err_addr(struct ras_err_info *err_info,
+ void amdgpu_ras_set_fed(struct amdgpu_device *adev, bool status);
+ bool amdgpu_ras_get_fed_status(struct amdgpu_device *adev);
+ 
 -bool amdgpu_ras_event_id_is_valid(struct amdgpu_device *adev, u64 id);
- u64 amdgpu_ras_acquire_event_id(struct amdgpu_device *adev, enum ras_event=
-_type type);
-+int amdgpu_ras_mark_ras_event(struct amdgpu_device *adev, enum
-+ras_event_type type);
-
+ u64 amdgpu_ras_acquire_event_id(struct amdgpu_device *adev, enum ras_event_type type);
++int amdgpu_ras_mark_ras_event_caller(struct amdgpu_device *adev, enum ras_event_type type, const void *caller);
+ 
  int amdgpu_ras_reserve_page(struct amdgpu_device *adev, uint64_t pfn);
-
-diff --git a/drivers/gpu/drm/amd/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu_=
-ras.c
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu_ras.c
 new file mode 100644
 index 000000000000..e69de29bb2d1
---
+-- 
 2.34.1
 
