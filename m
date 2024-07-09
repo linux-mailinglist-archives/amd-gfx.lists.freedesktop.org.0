@@ -2,144 +2,144 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 100B192B108
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jul 2024 09:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D59792B222
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Jul 2024 10:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3905892C8;
-	Tue,  9 Jul 2024 07:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB76110E1D7;
+	Tue,  9 Jul 2024 08:29:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="H46qmZ4g";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SCWDcDkk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84819892C8
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jul 2024 07:27:55 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 690E910E1D7
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jul 2024 08:29:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k43apt4oIf4ptPU4dLSEhp8dhVD03G8RnnF38oBZUKV+ElXISyW9UYBhULyBA6OEykFovAmhpJd+fNjhTNBQb5Emd7DBOsa4TNgMGx1/NzGbuV+fUYpcweutDxOxWNFkBqR39sZVC5r5Ggw1sycc6Uab1KKXzpHTms1cmDUJ6UxPcr/GpBS/r88NfYPMMjP+DDdYHikLZDeRdfo5ALo88/CrH3odkxdenJ6vUq/79WPUjGmCi/HvqbjYJRnoEvTsvjErmtnfGn+J9AE/q+/XLS2m6nx9vVBG2wxKw2xcxzXC3WZBfi2eVlQ62/RRBKP2TjzadhlqrQCHHCms1aATYQ==
+ b=VaWr5m15mP4efhXGYVC5Hfh3sTYEVihJ1Wd61gHfEI5fMkZ8+uIazjefqbTQGWEDsiOkVvhSit5eLf71qv2wbVujrdks3ECtdKLDViIBMeCsYcFBrG3dTlQoVHmdAQ/biARE0M25eImUd/wuIlUTmkqCH5K4ksBxRmZI0Uq8YnTZKfso/bZXV3bCxpOTVkNA5FEljDz2bvMt25eulJ1th47zbLzaX6+CptKLIrIK2YwhPNAMxzNwyxwHr9SZIHVUHaE15maa2Viipm4zTJJVciu40dLqF47IPxaVITOGtjdaPR2XuT6sg7mHgxCxS6TltKzfhmyT32e6QGsYyY5rRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n6aDOWq8sJCJ+GR443p0Ki9nkHBQrylV+YSOAuebEyo=;
- b=P+H2cmViUIKO9EsmdNmuWWBRize/tXJ3R7gBnjEm946rGfzI/jt4pvQ7opTElDfESf5m9EtnbCDkcx7dWdyChtow0gtnUfGdmufAX1GjoBirTY/+k56PXeKc/yUyTszErCrVkjhCJGkDgT748kzW2t9hFGpasZf9NgqpIBan8kkHt95Bx54K4h2ZOAvvl/k5aexgGA9W6OMwhkIZBTzXAcCFEckqq9J2Is9RDnT9/+aDKHlvDKTecSP0nsfLNqvsTLz7Rf+pGNAYRgL7lW39jevHC7zWdv1xCzp8xB2vC1Ib+m81glbmV5vVDC88LmGpEYSbROlBtYLOJxWq9wSWWw==
+ bh=+PFpf9+gCiM1CoghHO0H9VdGys8QtyEl1ZsR+bpuSLc=;
+ b=BU6sS/hank7C4rTf/vdZ9jsxbV5lNpWw5ZqsVwjRK8RIM777mK4yIJgT4Q2PwzlL/1oWRE1tMcAV/8gTi1bMB+Zpo7e8ylqVreXm6YorfvWFvpP3kady3K1IcfYeUD9xLEHb5+eGquj/xjQKvFpA5qsCjIwA6mkApzJif3o6SXihTfGYk883Dm7XT72T0CeXC9HN66fkBRWquUVV5VdRXkmbaQ9L5vsD9y5lgNltd3aFimVt6+IrpTciXxeAcHtn378Rvypv1INfJzX9UBPJ1Xjh5lWTYYTq/lVfPrvuHfZy9ptTjKg7oKhQ0WmPw7wV9XjREt9dDKm8oB/8Co7dng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n6aDOWq8sJCJ+GR443p0Ki9nkHBQrylV+YSOAuebEyo=;
- b=H46qmZ4gZ1SazCZgtEc5nJ5PrNeBM4L/ImRlR+goneHF4nu8z8W4wSy2vMhw2Z+8H5GXxiSSCitAEetsK9HJmLA8TXXZpZSZpXJMrB8mayM4vNB2JrNXz/PXSumCUxB+YdB3SrBRa2zDA1hxCWXLatcv23ahpz3tWlhm1Bzaewg=
-Received: from SA1PR12MB7442.namprd12.prod.outlook.com (2603:10b6:806:2b5::15)
- by CH3PR12MB8403.namprd12.prod.outlook.com (2603:10b6:610:133::14)
+ bh=+PFpf9+gCiM1CoghHO0H9VdGys8QtyEl1ZsR+bpuSLc=;
+ b=SCWDcDkky8UsyuGd1OrqSvRSHL4wdvecK3Bd0N3clx+LY4B1iQ6XMcvf3uBo8Pjj4tvMrurRQ/bjSqy+k5wZ0XJSLnxWWcQy+3Kbw2LfswuBIsZDMh/VB3o59niPLuZjGz44t6JMvC+kWYuNnJ1BmLGSxxyfHHNnk8pHd9HlhRc=
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
+ by CYXPR12MB9277.namprd12.prod.outlook.com (2603:10b6:930:d8::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Tue, 9 Jul
- 2024 07:27:50 +0000
-Received: from SA1PR12MB7442.namprd12.prod.outlook.com
- ([fe80::cf37:527e:ce1c:5a78]) by SA1PR12MB7442.namprd12.prod.outlook.com
- ([fe80::cf37:527e:ce1c:5a78%3]) with mapi id 15.20.7741.033; Tue, 9 Jul 2024
- 07:27:50 +0000
-From: "Huang, Trigger" <Trigger.Huang@amd.com>
-To: "Zhu, Jiadong" <Jiadong.Zhu@amd.com>, "amd-gfx@lists.freedesktop.org"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Tue, 9 Jul
+ 2024 08:29:06 +0000
+Received: from BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
+ ([fe80::c593:f43d:c798:e009%6]) with mapi id 15.20.7741.033; Tue, 9 Jul 2024
+ 08:29:06 +0000
+From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-CC: "Zhu, Jiadong" <Jiadong.Zhu@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: set start timestamp of fence in the right
- place
-Thread-Topic: [PATCH] drm/amdgpu: set start timestamp of fence in the right
- place
-Thread-Index: AQHa0c0fIQiHNIBpDUGfMq9lcABumrHt/mtg
-Date: Tue, 9 Jul 2024 07:27:50 +0000
-Message-ID: <SA1PR12MB74429297CDE337A8B1F33EFEFEDB2@SA1PR12MB7442.namprd12.prod.outlook.com>
-References: <20240709065547.1639176-1-jiadong.zhu@amd.com>
-In-Reply-To: <20240709065547.1639176-1-jiadong.zhu@amd.com>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Thadvai, Satya"
+ <Satya.Thadvai@amd.com>, "Chang, HaiJun" <HaiJun.Chang@amd.com>, "Shi,
+ Lianjie" <Lianjie.Shi@amd.com>
+Subject: RE: [PATCH] drm/amdgpu: Initialize VF partition mode
+Thread-Topic: [PATCH] drm/amdgpu: Initialize VF partition mode
+Thread-Index: AQHa0b9XfADh4BxkxU+G6qU/DIUEfbHuEItQ
+Date: Tue, 9 Jul 2024 08:29:06 +0000
+Message-ID: <BN9PR12MB52570B1177BAE6A1D672A491FCDB2@BN9PR12MB5257.namprd12.prod.outlook.com>
+References: <20240709051729.1364475-1-lijo.lazar@amd.com>
+In-Reply-To: <20240709051729.1364475-1-lijo.lazar@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=d4c519d5-a31a-45f0-962f-19010d55f621;
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=0dd9cee2-4adf-4a0d-93f6-ce8174ecdc8a;
  MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
  MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
  MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
  MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
  Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-07-09T07:24:18Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-07-09T08:28:47Z;
  MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR12MB7442:EE_|CH3PR12MB8403:EE_
-x-ms-office365-filtering-correlation-id: 72fd3095-18d4-4c29-0f7d-08dc9fe8a357
+x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|CYXPR12MB9277:EE_
+x-ms-office365-filtering-correlation-id: 32a1415a-5121-4458-4399-08dc9ff1326f
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?GvH0YK4fbUp2USC+4Jpe90ctNyHSYgA5IRcAKFA4zUIYw42C+oolGzyoTCn1?=
- =?us-ascii?Q?v7JkgJqwWWaafjV7G5G+ycqM1j/KOBOiEk3PZ6j1mfsGTc6Jh4dzilfipMNm?=
- =?us-ascii?Q?fpPYAJsUYEMWQaoCK1vvytskws6672loIgiyWvXetUmtrG/C36cNj5XgcNhd?=
- =?us-ascii?Q?C3+4v3nF3M8zswpDwZT949S5HCi4G28BCwnVHKAroYyWXIpQ2cr9SgB5bPg3?=
- =?us-ascii?Q?VCHRkuDJgOV3xZMyrUtwU9tPcsnlW2CWDffFZPtmWcDs7zhfjS2Czk4uOjsK?=
- =?us-ascii?Q?c8+eh39wc0OseI2KakMmtGCq0bWmxDBkSQcmdhaJIaPZEvrzhwBmU5PXJB9G?=
- =?us-ascii?Q?RKGt1E26LBOv1gxPVWMUUA0373fkE32oRlhXEkYOoHb0FUiAs57DZLiKCUxp?=
- =?us-ascii?Q?2f9F9w81XbTvmaZZu66HvLF9E8xsiqvvtEBSXA+Z893XysL18FCl8RjICwSH?=
- =?us-ascii?Q?qd/BHlkXlGBJeoEUbSMIGML5NrS1G98JFOwtPmT5kzRJFkfU0SDKs4PnVuqC?=
- =?us-ascii?Q?BzZMsjlILYICxOPwQ4YRZFG7tZrDGcTaGZ4u+G7rejcrmuNMWCpShhzLXacc?=
- =?us-ascii?Q?+2quvX6fhAfsRkOO3Rkz4+s8yK6EDaPJhZDW0Yn0yh7yn6lW+ak/vFXZ4cWA?=
- =?us-ascii?Q?HWfIdlA7/A2Lt7eSHQZ2P6XaaGEj5T7pMJ8OV41Ot3C4dsUA/t7b8uExRhoL?=
- =?us-ascii?Q?7fKbr8Y/z1sLAZn8+PvGr4zhXxz7EfLdbVxbFSs5rLOrcbqGGRE2DTgBcAVh?=
- =?us-ascii?Q?vRIDf2QM6Sr6EwzDlkpE+/kNJuOZfDokEvpOyuTEOLKZj6VwWLMJXhnZO25U?=
- =?us-ascii?Q?3lfCvkoUWTyx60ULn0BWUxlE0MS16kGpYojW+bUevoTRSnterfK1GSDWzWkm?=
- =?us-ascii?Q?0w/aGEqfBxV7qFRPuj0MpWKSWovK8gpG6jp2U82M2GrnY3+drdle1a7PsOSm?=
- =?us-ascii?Q?wT4pauwNUCV9BvnNCdY6S+NmY8/DHIVRzkT0XK4YwVpqilneKWzSgoavHPUL?=
- =?us-ascii?Q?q2Tyo1XASyfyBqjRQCsjOVvghN72vjWWcfmN+M1f13T7UaVbxGiDobZpZWvt?=
- =?us-ascii?Q?Csn7UTvot4n1V2ieSUsOP8B94gYNwae50+n2Dz9Y3uc7CyACq5xvjm7fO/SJ?=
- =?us-ascii?Q?HJTJeyi/XdfZ2VwAU56VXY1thaILpm1lZrQ1gEGcTbBjKztvClBPS0JyQQwa?=
- =?us-ascii?Q?oX2zrbRqwaFyN6M2crx6mr/5k3shfScz1xLnqXVtbKbTMCzx6vEcCWa8JXAh?=
- =?us-ascii?Q?ltdgP3JRnfoBJzvNMFDuti4hzXSy+ZxAhkpvukais0N05ANUaUZYaoW5u8uq?=
- =?us-ascii?Q?lEN7lbyCuyevKIpM2QINsMJscKuDLb/R44iuEejs/VjI0a7o6ltNkMqSBfvu?=
- =?us-ascii?Q?qd1pB8faXDd7FKXTjBVrqC6GiX9z7gOjN02EEJqW946scQnDiw=3D=3D?=
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?sfKlHFdMa3dl0jyCDErNbd42AG9JUHKnDGKmwIpu1fP/avcCx6B2BBYD20xc?=
+ =?us-ascii?Q?Wcev5Mf7oWrDz4puogUpx4RzKFqj0E7eqx1SzdVVp92P0BaqJxqSFXmD4p8B?=
+ =?us-ascii?Q?F36IGXNZMLvgYoN43Yg8ShRlOMed+P7I/imV2258IARh9Zlm8zaKLXNnBkAC?=
+ =?us-ascii?Q?bZX4OYBx09G1RBXO8tG/RWKKXTFSeJLegRfLWo/cqzY6WTvbktdK6bYVbDCn?=
+ =?us-ascii?Q?8moNPV4zXZEV+POIg3f5A5hsR+BvyUeReAcASPABkfjTfN8DRktbm3X68/9e?=
+ =?us-ascii?Q?lMhVVPv9P1eob5gm7OXbMj62eHLmdyqmugJe/xA0/5gSvnne2awgFpMvS1Hb?=
+ =?us-ascii?Q?JrXwjmYMplai29EPB+UyKSPDQI6FKQAnexToxcE3OLkPbkgC9HOOvSACKrPO?=
+ =?us-ascii?Q?GLXJ+tVzc8EO3mhMU1pF0LLrFPsaG57uUWpzMC/vnOoUyNjYjicHfGdofQKK?=
+ =?us-ascii?Q?mrAPukbhld7fDtO6n3kN+5DeaSRcCyqesL9H7Y/No9t8VfqTsWbqgBB72nYj?=
+ =?us-ascii?Q?+N1uwqKQjN1izRWmKSzPBGr8cpmGn4i5t+aapNq92lBOZ9wTNRCuwsKTUs0s?=
+ =?us-ascii?Q?5So/8AZ86SGmbbQUdh89GyaQ4eWqd4bWMyXPk1SVGsVxCbnDFdFbG/oxpfv6?=
+ =?us-ascii?Q?D9P4RwF4gD9rh1aOWRYi0ov2w3u5jdMuVsOOvpRFcXjJ5ucxjE+NsVyhgt7c?=
+ =?us-ascii?Q?UqwVDYiqBnyeP86n1G5qe5S85n6rSpEYbMDlnHo23VaauTFnSlCc1cw96yXU?=
+ =?us-ascii?Q?jCSTjXnRgDVrRu5VMBw0PLTfKXZo2FQY4SvQPlCokJ2Z7823o0+Of5tW4qkW?=
+ =?us-ascii?Q?W2Gh3fRgUY8Sirk7zdJeP1hhd5E+vijmSYMYG2ZhwXmZSICjWq68ETsKmLnA?=
+ =?us-ascii?Q?MEU2DyA81Rr6ytywFx7ffd4+JyRbz2IxNGFIm5+WjkunZFphuD5UFNkKDuz1?=
+ =?us-ascii?Q?rUAuX7BnGuPrtXVo1ZZhyt47Po6H3uM0YJhT/HXR9GXbQw9aJxZ1XVCVIoFR?=
+ =?us-ascii?Q?dF0ULULwljcFiXuPNIFyt0aTksELzlAfdA4G6j/ICIxwhieplj67WYqYpRUj?=
+ =?us-ascii?Q?g+/Ho1kjXt9+kXN/AMyXW7ii0hw9xQRFQZaF8EQ0Xy9mVw8BW/YSRILzi8DO?=
+ =?us-ascii?Q?UwI131Cs6rn/bniWTUbzE5gkHnVB2hZDskhIqSwPadqGtIU0nc1rKr9h/Zoi?=
+ =?us-ascii?Q?nu9l4atPS1bSeepEAIx6fwdqvaKBMHXDja2HcuCDOTsobpsIubxWYSN/PW0N?=
+ =?us-ascii?Q?/A4oR1P6uNB6gopVCF5giAieDU1q4EcJblTO1Zn8mHSXDEo/qRY9j5L3sIAA?=
+ =?us-ascii?Q?r4XtBjVZtS/svpuP2Naf2LEW6HMhURuSNLDmOE/qHTeT/Eu+FrHigYYWpsdN?=
+ =?us-ascii?Q?AZadqVxvzUvwtoziGhU2/xW/l0UGBDi1WpXNH9loKfaMev8oNA=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR12MB7442.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HW+PbSeV5YVTsT2y6UqzZJtY3M7YWpiNX4RLdXawpJ6+YxHm7wLgCW/+ONTm?=
- =?us-ascii?Q?PjE1Le/vpSfUGaCF+iBctvBDNz7vOtee2IUZTIbgE0/IWOYs7IBmy7pXJuu3?=
- =?us-ascii?Q?leQjkTXQbm7e/h2lGu6EeMsaluuPp5j1WdlK5uF+maaUQMpkx0c8lSGe5fek?=
- =?us-ascii?Q?G8ArCKy+bJ7WlOjFuca4/s4fqTnkmdXJADG1x1LNg02PW7nuxgcrgR9q5FKH?=
- =?us-ascii?Q?gTG2y9q2NxjCYD/3TR7xT4F5TlKtYZDN4HXCW+Qo40xJXX2OgbljTpMDyWJo?=
- =?us-ascii?Q?mDr79cNfepz1pMY0bBu3uAETkyrmSZnV5YLz2iPuQFgFPjtHRTV7NlMK8Zfr?=
- =?us-ascii?Q?ak2bWFU3KuAC5GvpZxGZAL8NbHoCDksrM56RhiCY/gWcbYt8i5ni4o3uZOmO?=
- =?us-ascii?Q?LRyv1zQxs7GSfcdDw3Bb3JYVPupIj8Aqx9BVAkQksGPoJH+/ooWFZobSGD21?=
- =?us-ascii?Q?2/z6kd815zWj3coJYhLDmCOW34XjTI0ttk9wmomDdDKgwyEDlMHGHY1fSAxb?=
- =?us-ascii?Q?8P/V4k7r84z7LZSBBaL0F4oZNML+HYKyNywd5Y7lq7IMwrt2JbV+QKCURwz1?=
- =?us-ascii?Q?qC6rObvSOO2vC5S44HmrPpEWl87ihMBbhndceVTOVt97Q0oO3loXkNyRR9Ob?=
- =?us-ascii?Q?Z4YB3ZL/TV51FgxlKrlNJBlyvkDinwIVAAyHX86Qu4L55FyURLKspOkS4StE?=
- =?us-ascii?Q?6/KCUOJj95nXIstTHG2vEZh0VeH5zoPoWIDk31j+ZINemjU0RUzabbBLJ3M4?=
- =?us-ascii?Q?01M+zGviOpwnq7tuy2mza1A6lLl68Mqv0i4KjfgnmRnzMWa5PqTLOC70eEPR?=
- =?us-ascii?Q?vPXbkWAnt1BFjddkwUp4c7X6WtWKPpl8f0adMCCzuORyJ0XkpExxA6ars0yM?=
- =?us-ascii?Q?H2WLhxL+XlwKSBrL2Qo2irYi4hnsk4IMKN35YAQeMXuuHMKJRtvWDBIXXenA?=
- =?us-ascii?Q?Vh8jI8TJwE2hl9bzZZlCWcvhzHDVyFlM7cGTKrfXUs5u4QctyfpLWOcD6PlQ?=
- =?us-ascii?Q?2g0xgNW/H1L4libDZdytu5NLTHlCy+idcayVZMLS+b47su4slvfaMkIvKdJS?=
- =?us-ascii?Q?7jF8UalsA/88hK/XAjsBT+vNjZuQfDqbXTKcGlMGVLdwWE9S1oiEQ1uqKxun?=
- =?us-ascii?Q?TRlUWIgX2EyqRdGv3sfKKA3hb/uK+nYqIXDC/GwC5O05Qw9vPUKvxOb3Dngp?=
- =?us-ascii?Q?JK4y5s4gYjGrwyzhWjoV7xQfXPBH7Q17YLMTLD3MEXzR4Q2oWKDNutJ7mHI4?=
- =?us-ascii?Q?XR0if4c3iAvv8uXDenjrZrWPDu3LjJUAMfrIc4t4uBhOQlKvdxOIzfkuk6Hp?=
- =?us-ascii?Q?R8m6cbFaYmsvlJjMiIda+/cxlnzBUxpAAIbsL9usmLjr48lYJhmheyMp/E1f?=
- =?us-ascii?Q?u5v93RXs31AOIOlrKR1cd9vrsy3+6W8YnS5D9gck5JPDWeumyyBNgKii6Wvg?=
- =?us-ascii?Q?Xx6ZQdjxILA6nG2Tprvuf0fuJUJQ2FZf3Xrfy7Ydd+24hkeFkz87X8CxskMQ?=
- =?us-ascii?Q?XZ+bP6N0jIT09aXOaHXyxJANEyoV6iE7xTqv7+njLoHrkzGXyBfjys7IIhQC?=
- =?us-ascii?Q?vicjC4WT1EkItI4QOCI=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3HwZ4ipvAonQkSOwL1Hg0k+h1i77+22BxmTGtVlqdc2+OaNR0GbqMCYsIj6b?=
+ =?us-ascii?Q?+AE9RCRERi0P+frXhbIw7BP4/3MVnt4o8uyGfO+7kZtSOstfgdAF9QY98qu8?=
+ =?us-ascii?Q?BDq6zJy8yfvwQo3l4ko8TKzPP2Q4MAAYYOCmBdnEWqZ2m1yWtg+liUVe3IY5?=
+ =?us-ascii?Q?0zmcg8+U7ZUUso4KsnikOlBIWzpU9nI7YLHUzGqnyB2PQMrGGSClcP8LepIe?=
+ =?us-ascii?Q?LhrRbCDLBVOsqtomnVeImWnuxhi2mTXclgJv1xgXVqOckXLLlBABWYrasws3?=
+ =?us-ascii?Q?BhB2qjHslucXY8tlrI/cwhOezHOvm8wUMEaGl5V0UUKy2W83RHnub7Ol7E/j?=
+ =?us-ascii?Q?f5v0QUGglRIzQCgphqOmg8WtCHoPkaMwzPa0RI3Svf+K+dF8qwod352YrSpM?=
+ =?us-ascii?Q?+bIPoWwsjS7dtC0JAqkB1kAZcZUa5ONpUxjcMWdOdHm98dBedr7xCSNSp7JW?=
+ =?us-ascii?Q?oHEvZ1+p4gdSUx6Mnmb/pYRSkmqZRi8xHeTHmwrJYm99XFhI902f40RPFiG1?=
+ =?us-ascii?Q?vZf1oZyQ7zidcwrJqxg8KTJxOnYpnCBc5VnMs0/Sl73MTNudIM18ehAkHRkM?=
+ =?us-ascii?Q?4SwsdHs2ao+0UJDyjYCrLbBc3WHx8L+Y33tVIvWgfPP4sc9ECaUQ1CqnKfi8?=
+ =?us-ascii?Q?Jr//EPgfr9h2oIGgGHhEdNPcFYB6v28flZ4QKKalt14fTv3WuRdaaBynZ6ZC?=
+ =?us-ascii?Q?ydoeahC6XR5dJPQIDV1awBtLpV7k+GtDbFgi6k7z25m54hkgUleUjE1FdrIx?=
+ =?us-ascii?Q?Qsy33XI1nzfhIbrY8mpPHGUSESlqtWFKjNK4lxEBiiYl2J7QCRs4yra/wbyj?=
+ =?us-ascii?Q?uWnpUZO9SpbU/0OZx0xYCJIlW6Xaljp4RYwIxJmbmBUgS9dsNXRXHcfvuiuG?=
+ =?us-ascii?Q?IxllVym1pbzFAxfiGoin2reigWzESjTP0O89iu//9CZitEHdAF+j2Fxyu8sJ?=
+ =?us-ascii?Q?GnLwiJfg2IRce/geaye7RkdU33/B7sJIIMP9ZQmSRU3kSD7Dd4fSSracSS/n?=
+ =?us-ascii?Q?s5OeG+1ZFgJkMS7ATnI8nzRRoALINrejIW/Xady6Kj62FkRr/pg8YfaK5TNP?=
+ =?us-ascii?Q?Z32Mf3DuLu7JPCNsXHo4RsOZbOZIHIbgMjONFewse1kSAMOKWzJm2KivDv4z?=
+ =?us-ascii?Q?rdvCEt92gZ1q7eTsfKZyyWfeRT7tBVldT40Be53fNJpFFv3F7HTz64n2sn6l?=
+ =?us-ascii?Q?i9j864UBr21OZbQ5v/hZtCc/3eHUrIp5J/NZSp+l7pQPXb85MqC8NNGoSh7G?=
+ =?us-ascii?Q?oUiVHYDkxhYdSqz0DU2x72uvFiXSve1vNPc7AQhl2n1hbkTwRoFBtoLgMQed?=
+ =?us-ascii?Q?g427Eq4MAPNObyh8dSit6lD636f9+3GKr+33fuxL+OLETgOhNa+Nfahsg2yd?=
+ =?us-ascii?Q?34EOrPYZetvtYAInaXHSBxEYwWe78wLyRC4dpWy1ot45wOfD6CoAOKJ08Ouo?=
+ =?us-ascii?Q?hSxrCL4W4+fRGLxcwXSncw/eBtk1gnMYRjaSSyIF40mAZisU90DvTt6/ve85?=
+ =?us-ascii?Q?shmsSR/qoT1SdbmOR68MC7Eit7nF9HTLL78tIUeW9lpOBo0tq7b9TZHlLbz7?=
+ =?us-ascii?Q?HLNCxxHOUZ22mYJIfCGpo2oghqcv6ij7a4ZgN9Xw?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB7442.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72fd3095-18d4-4c29-0f7d-08dc9fe8a357
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2024 07:27:50.1112 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32a1415a-5121-4458-4399-08dc9ff1326f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2024 08:29:06.1725 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zoszLEwokYlJhWznFLaYVrUUUSnYgzCsu+CXThM3cug0MZgT0oQN1RrW8S5EmR/zvISXHAh2q8iVBwe0s10Nlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8403
+X-MS-Exchange-CrossTenant-userprincipalname: QKt5Po3RgOp141OUKQ2C7rSb1W9MbqB7Qb0xDeLkrTXn+z5MWOtBdBDZJCFu/fZvXY89mdmfKpbw5UvG9rVrvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9277
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,135 +156,235 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [AMD Official Use Only - AMD Internal Distribution Only]
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> jiadong.zhu@amd.com
-> Sent: Tuesday, July 9, 2024 2:56 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Zhu, Jiadong <Jiadong.Zhu@amd.com>
-> Subject: [PATCH] drm/amdgpu: set start timestamp of fence in the right pl=
-ace
->
-> Caution: This message originated from an External Source. Use proper caut=
-ion
-> when opening attachments, clicking links, or responding.
->
->
-> From: Jiadong Zhu <Jiadong.Zhu@amd.com>
->
-> The job's embedded fence is dma_fence which shall not be conversed to
-> amdgpu_fence. The start timestamp shall be saved on job for hw_fence.
->
-> Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 33
-> ++++++++++++++++++++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.h   |  4 +++
->  2 files changed, 34 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> index 2f24a6aa13bf..60c14d2e1c39 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> @@ -88,6 +88,33 @@ static inline struct amdgpu_fence
-> *to_amdgpu_fence(struct dma_fence *f)
->         return NULL;
->  }
->
-> +static inline void set_fence_start_time(struct dma_fence *f, ktime_t
-> +start_timestamp) {
-> +       if (f->ops =3D=3D &amdgpu_fence_ops) {
-> +               struct amdgpu_fence *__f =3D container_of(f, struct
-> +amdgpu_fence, base);
-> +
-> +               __f->start_timestamp =3D start_timestamp;
-> +       } else if (f->ops =3D=3D &amdgpu_job_fence_ops) {
-> +               struct amdgpu_job *job =3D container_of(f, struct
-> + amdgpu_job, hw_fence);
-> +
-> +               job->start_timestamp =3D start_timestamp;
-> +       }
-> +}
-> +
-> +static inline ktime_t get_fence_start_time(struct dma_fence *f) {
-> +       if (f->ops =3D=3D &amdgpu_fence_ops) {
-> +               struct amdgpu_fence *__f =3D container_of(f, struct
-> +amdgpu_fence, base);
-> +
-> +               return __f->start_timestamp;
-> +       } else if (f->ops =3D=3D &amdgpu_job_fence_ops) {
-> +               struct amdgpu_job *job =3D container_of(f, struct
-> + amdgpu_job, hw_fence);
-> +
-> +               return job->start_timestamp;
-> +       }
-> +       return ktime_get();
-
-Here the invocation of ktime_get() should be unnecessary as start_timestamp=
- in both amdgpu_fence_ops and amdgpu_job_fence_ops styles are already set b=
-y set_fence_start_time();
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 
 Regards,
-Trigger
+Hawking
+-----Original Message-----
+From: Lazar, Lijo <Lijo.Lazar@amd.com>
+Sent: Tuesday, July 9, 2024 13:17
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.D=
+eucher@amd.com>; Thadvai, Satya <Satya.Thadvai@amd.com>; Chang, HaiJun <Hai=
+Jun.Chang@amd.com>; Shi, Lianjie <Lianjie.Shi@amd.com>
+Subject: [PATCH] drm/amdgpu: Initialize VF partition mode
 
-> +}
-> +
->  /**
->   * amdgpu_fence_write - write a fence value
->   *
-> @@ -197,7 +224,7 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring,
-> struct dma_fence **f, struct amd
->                 }
->         }
->
-> -       to_amdgpu_fence(fence)->start_timestamp =3D ktime_get();
-> +       set_fence_start_time(fence, ktime_get());
->
->         /* This function can't be called concurrently anyway, otherwise
->          * emitting the fence would mess up the hardware ring buffer.
-> @@ -428,7 +455,7 @@ u64 amdgpu_fence_last_unsignaled_time_us(struct
-> amdgpu_ring *ring)
->                 return 0;
->
->         return ktime_us_delta(ktime_get(),
-> -               to_amdgpu_fence(fence)->start_timestamp);
-> +               get_fence_start_time(fence));
->  }
->
->  /**
-> @@ -451,7 +478,7 @@ void amdgpu_fence_update_start_timestamp(struct
-> amdgpu_ring *ring, uint32_t seq,
->         if (!fence)
->                 return;
->
-> -       to_amdgpu_fence(fence)->start_timestamp =3D timestamp;
-> +       set_fence_start_time(fence, timestamp);
->  }
->
->  /**
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> index a963a25ddd62..68a80e31ba0c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> @@ -73,11 +73,15 @@ struct amdgpu_job {
->         uint64_t                gds_va;
->         bool                    init_shadow;
->
-> +       /* start timestamp for hw_fence*/
-> +       ktime_t                 start_timestamp;
-> +
->         /* job_run_counter >=3D 1 means a resubmit job */
->         uint32_t                job_run_counter;
->
->         uint32_t                num_ibs;
->         struct amdgpu_ib        ibs[];
-> +
->  };
->
->  static inline struct amdgpu_ring *amdgpu_job_ring(struct amdgpu_job *job=
-)
-> --
-> 2.25.1
+For SOCs with GFX v9.4.3, a VF may have multiple compute partitions.
+Fetch the partition information during init and initialize partition nodes.=
+ There is no support to switch partition mode in VF mode, hence disable the=
+ same.
+
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c    | 12 ++++--
+ drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c | 50 +++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 37 +++++++++++++---
+ 4 files changed, 88 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_gfx.h
+index 6b0416777c5b..ddda94e49db4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -297,6 +297,7 @@ struct amdgpu_gfx_funcs {
+        int (*switch_partition_mode)(struct amdgpu_device *adev,
+                                     int num_xccs_per_xcp);
+        int (*ih_node_to_logical_xcc)(struct amdgpu_device *adev, int ih_no=
+de);
++       int (*get_xccs_per_xcp)(struct amdgpu_device *adev);
+ };
+
+ struct sq_work {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_xcp.c
+index 2b99eed5ba19..a6d456ec6aeb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -219,7 +219,8 @@ int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_m=
+gr *xcp_mgr, u32 flags)  {
+        int mode;
+
+-       if (xcp_mgr->mode =3D=3D AMDGPU_XCP_MODE_NONE)
++       if (!amdgpu_sriov_vf(xcp_mgr->adev) &&
++           xcp_mgr->mode =3D=3D AMDGPU_XCP_MODE_NONE)
+                return xcp_mgr->mode;
+
+        if (!xcp_mgr->funcs || !xcp_mgr->funcs->query_partition_mode)
+@@ -228,6 +229,12 @@ int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_=
+mgr *xcp_mgr, u32 flags)
+        if (!(flags & AMDGPU_XCP_FL_LOCKED))
+                mutex_lock(&xcp_mgr->xcp_lock);
+        mode =3D xcp_mgr->funcs->query_partition_mode(xcp_mgr);
++
++       /* First time query for VF, set the mode here */
++       if (amdgpu_sriov_vf(xcp_mgr->adev) &&
++           xcp_mgr->mode =3D=3D AMDGPU_XCP_MODE_NONE)
++               xcp_mgr->mode =3D mode;
++
+        if (xcp_mgr->mode !=3D AMDGPU_XCP_MODE_TRANS && mode !=3D xcp_mgr->=
+mode)
+                dev_WARN(
+                        xcp_mgr->adev->dev,
+@@ -282,8 +289,7 @@ int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int=
+ init_mode,  {
+        struct amdgpu_xcp_mgr *xcp_mgr;
+
+-       if (!xcp_funcs || !xcp_funcs->switch_partition_mode ||
+-           !xcp_funcs->get_ip_details)
++       if (!xcp_funcs || !xcp_funcs->get_ip_details)
+                return -EINVAL;
+
+        xcp_mgr =3D kzalloc(sizeof(*xcp_mgr), GFP_KERNEL); diff --git a/dri=
+vers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_v=
+anjaram.c
+index 2c9a0aa41e2d..228fd4dd32f1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
++++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
+@@ -304,13 +304,56 @@ u64 aqua_vanjaram_encode_ext_smn_addressing(int ext_i=
+d)
+        return ext_offset;
+ }
+
++static enum amdgpu_gfx_partition
++__aqua_vanjaram_calc_xcp_mode(struct amdgpu_xcp_mgr *xcp_mgr) {
++       struct amdgpu_device *adev =3D xcp_mgr->adev;
++       int num_xcc, num_xcc_per_xcp =3D 0, mode =3D 0;
++
++       num_xcc =3D NUM_XCC(xcp_mgr->adev->gfx.xcc_mask);
++       if (adev->gfx.funcs->get_xccs_per_xcp)
++               num_xcc_per_xcp =3D adev->gfx.funcs->get_xccs_per_xcp(adev)=
+;
++       if ((num_xcc_per_xcp) && (num_xcc % num_xcc_per_xcp =3D=3D 0))
++               mode =3D num_xcc / num_xcc_per_xcp;
++
++       if (num_xcc_per_xcp =3D=3D 1)
++               return AMDGPU_CPX_PARTITION_MODE;
++
++       switch (mode) {
++       case 1:
++               return AMDGPU_SPX_PARTITION_MODE;
++       case 2:
++               return AMDGPU_DPX_PARTITION_MODE;
++       case 3:
++               return AMDGPU_TPX_PARTITION_MODE;
++       case 4:
++               return AMDGPU_QPX_PARTITION_MODE;
++       default:
++               return AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE;
++       }
++
++       return AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE;
++}
++
+ static int aqua_vanjaram_query_partition_mode(struct amdgpu_xcp_mgr *xcp_m=
+gr)  {
+-       enum amdgpu_gfx_partition mode =3D AMDGPU_UNKNOWN_COMPUTE_PARTITION=
+_MODE;
++       enum amdgpu_gfx_partition derv_mode,
++               mode =3D AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE;
+        struct amdgpu_device *adev =3D xcp_mgr->adev;
+
+-       if (adev->nbio.funcs->get_compute_partition_mode)
++       derv_mode =3D __aqua_vanjaram_calc_xcp_mode(xcp_mgr);
++
++       if (amdgpu_sriov_vf(adev))
++               return derv_mode;
++
++       if (adev->nbio.funcs->get_compute_partition_mode) {
+                mode =3D adev->nbio.funcs->get_compute_partition_mode(adev)=
+;
++               if (mode !=3D derv_mode)
++                       dev_warn(
++                               adev->dev,
++                               "Mismatch in compute partition mode - repor=
+ted : %d derived : %d",
++                               mode, derv_mode);
++       }
+
+        return mode;
+ }
+@@ -624,6 +667,9 @@ static int aqua_vanjaram_xcp_mgr_init(struct amdgpu_dev=
+ice *adev)  {
+        int ret;
+
++       if (amdgpu_sriov_vf(adev))
++               aqua_vanjaram_xcp_funcs.switch_partition_mode =3D NULL;
++
+        ret =3D amdgpu_xcp_mgr_init(adev, AMDGPU_UNKNOWN_COMPUTE_PARTITION_=
+MODE, 1,
+                                  &aqua_vanjaram_xcp_funcs);
+        if (ret)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/=
+amdgpu/gfx_v9_4_3.c
+index c908e585b9ec..20ea6cb01edf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -652,6 +652,15 @@ static void gfx_v9_4_3_select_me_pipe_q(struct amdgpu_=
+device *adev,
+        soc15_grbm_select(adev, me, pipe, q, vm, GET_INST(GC, xcc_id));  }
+
++static int gfx_v9_4_3_get_xccs_per_xcp(struct amdgpu_device *adev) {
++       u32 xcp_ctl;
++
++       /* Value is expected to be the same on all, fetch from first instan=
+ce */
++       xcp_ctl =3D RREG32_SOC15(GC, GET_INST(GC, 0), regCP_HYP_XCP_CTL);
++
++       return REG_GET_FIELD(xcp_ctl, CP_HYP_XCP_CTL, NUM_XCC_IN_XCP); }
+
+ static int gfx_v9_4_3_switch_compute_partition(struct amdgpu_device *adev,
+                                                int num_xccs_per_xcp)
+@@ -706,6 +715,7 @@ static const struct amdgpu_gfx_funcs gfx_v9_4_3_gfx_fun=
+cs =3D {
+        .select_me_pipe_q =3D &gfx_v9_4_3_select_me_pipe_q,
+        .switch_partition_mode =3D &gfx_v9_4_3_switch_compute_partition,
+        .ih_node_to_logical_xcc =3D &gfx_v9_4_3_ih_to_xcc_inst,
++       .get_xccs_per_xcp =3D &gfx_v9_4_3_get_xccs_per_xcp,
+ };
+
+ static int gfx_v9_4_3_aca_bank_parser(struct aca_handle *handle, @@ -2050,=
+18 +2060,31 @@ static int gfx_v9_4_3_xcc_cp_resume(struct amdgpu_device *ad=
+ev, int xcc_id)
+
+ static int gfx_v9_4_3_cp_resume(struct amdgpu_device *adev)  {
+-       int r =3D 0, i, num_xcc;
++       int r =3D 0, i, num_xcc, num_xcp, num_xcc_per_xcp;
++
++       num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
++       if (amdgpu_sriov_vf(adev)) {
++               enum amdgpu_gfx_partition mode;
+
+-       if (amdgpu_xcp_query_partition_mode(adev->xcp_mgr,
+-                                           AMDGPU_XCP_FL_NONE) =3D=3D
+-           AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE)
+-               r =3D amdgpu_xcp_switch_partition_mode(adev->xcp_mgr,
+-                                                    amdgpu_user_partt_mode=
+);
++               mode =3D amdgpu_xcp_query_partition_mode(adev->xcp_mgr,
++                                                      AMDGPU_XCP_FL_NONE);
++               if (mode =3D=3D AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE)
++                       return -EINVAL;
++               num_xcc_per_xcp =3D gfx_v9_4_3_get_xccs_per_xcp(adev);
++               adev->gfx.num_xcc_per_xcp =3D num_xcc_per_xcp;
++               num_xcp =3D num_xcc / num_xcc_per_xcp;
++               r =3D amdgpu_xcp_init(adev->xcp_mgr, num_xcp, mode);
+
++       } else {
++               if (amdgpu_xcp_query_partition_mode(adev->xcp_mgr,
++                                                   AMDGPU_XCP_FL_NONE) =3D=
+=3D
++                   AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE)
++                       r =3D amdgpu_xcp_switch_partition_mode(
++                               adev->xcp_mgr, amdgpu_user_partt_mode);
++       }
+        if (r)
+                return r;
+
+-       num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
+        for (i =3D 0; i < num_xcc; i++) {
+                r =3D gfx_v9_4_3_xcc_cp_resume(adev, i);
+                if (r)
+--
+2.25.1
 
