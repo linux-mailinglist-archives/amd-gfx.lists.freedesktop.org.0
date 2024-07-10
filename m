@@ -2,83 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F129F92CB91
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 09:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DBE892CBC9
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 09:17:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F5510E1EA;
-	Wed, 10 Jul 2024 07:03:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15BA410E697;
+	Wed, 10 Jul 2024 07:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JktpBqIh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bQVGIq84";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
- [209.85.160.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27D5B10E1EA;
- Wed, 10 Jul 2024 07:03:42 +0000 (UTC)
-Received: by mail-qt1-f173.google.com with SMTP id
- d75a77b69052e-447f0b046d4so1362431cf.1; 
- Wed, 10 Jul 2024 00:03:42 -0700 (PDT)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C24A10E697
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 07:17:13 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-426636ef8c9so22201595e9.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 00:17:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1720595021; x=1721199821; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=p3BXcqkjeuhZC3iXU7hUkrYXvkUrW95a4kWlrA8Wcs0=;
- b=JktpBqIhdbPwGeNz897t5mxoEfAzJ5XqpheBtRJhKz2Ojc1G9Y9VknLbPLxCEQZ+gK
- /KMfdAWqe9gDOgtis4kKbufDqkO1L3SzAtwzvfv9VH0Zhx3wJuKshOTaLVnBRbrPns3j
- C16q5ILN0I8kmid9x/kkM9wItEt0mbaVd3Ny+oV/oAxHs3cycz3D+qyYANs3Y+YERhCI
- 5AWo3rC67p3IlktF3UQ+PxRwnVSe9N212C3I2y3H8DkT8Bqy0bigZAnrSv8kEtrGTPxC
- /MdtJjC4V14GG9abjY5OVc7tnUFHoF3jHSC1fO+zRudiU8DmQY3UZ1RCQe7z/ZeNCQSn
- FEcQ==
+ d=gmail.com; s=20230601; t=1720595832; x=1721200632; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=wg04qNSytuGZZpB4CDhOQ1svJ8+Yn21SyDAiRLXQxCw=;
+ b=bQVGIq84HTJGiTRM8XmfHV6IesQEl4GXyTaySiyJJACyzPSgyjglzuN166y/mt2WdL
+ X3SVYYL0vDsBw10RXvG3b52/3bZskyOBUuc6CMYCQ1FmOJ1jArYv3HTfAqjVPmmnexv5
+ 8jVlYyiYmKrDiRSmsWni0+dAAdpqvuuO/wDkC43P3DPJ1IRNYXtDvjC3zasYq3ywxHcm
+ ZrbsSadLV0EaugxAQs/LgIekBV0F8JGFc9Wxkh1FP7wrLAvxpGNaG/t+xIuTrvXa1zjX
+ xEfJizIzFs4MeGK76/7OiQ58MbGkvNPapk1SRBdvnowzknYUcMzf+lECuZx12mpU5gUs
+ xcMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720595021; x=1721199821;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=p3BXcqkjeuhZC3iXU7hUkrYXvkUrW95a4kWlrA8Wcs0=;
- b=WIALk5ull74UO9k+g2AuYzUK7RtsJG2hIdWn+MTGwlsArI0NGLIP8opeQ8anIDFQST
- CboZ9ksNTD5T5gceXG0ugVlAyKf6Cu5jU6Ny+7JPH0+jJOCtVDv6057XAQEJknvBcKyS
- alH/p3s5gHNP9FMaKGmAP5UWDVaO9bUn3phFSPtOWzGWkaJBxayGuCvULFjkv5RXIZr0
- iRB87qFHyapsMaXKdKXiGKarLiKpt/jf4QR/+uqBrRcoMzz+YeEz6ge5MySF/3gNOMeo
- RUm28aUuLFbFxrJ3ikpqIroNUQd/bZhn51V9vzGLQ3rUBfpMOkgu/mLV2itU8/kxhCDT
- XVEg==
+ d=1e100.net; s=20230601; t=1720595832; x=1721200632;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=wg04qNSytuGZZpB4CDhOQ1svJ8+Yn21SyDAiRLXQxCw=;
+ b=apcy5Q8Zwo00nItt/q9uwxpGG0sq8q75GSvoXKJfi58lYEtPvdcs72BwFPtZ1izw9j
+ ujA407JJQoC39m4g7X6n10V70t2AVcmGBCUERvz9dtALlQ92dxsnzyRkJSPXJbPLa8Vc
+ FiowawwI8VqPrXsqPgA7sG6qs0nvwaGM/EypgSl5ZyTMZn2k9sdapjorJBQiG2dV5/bu
+ C/5kZB1spXXXQWoj7FgmGQ5Odk1tjfcuCUj9jS20G9wwLm8ca/fvo0OcJpOWLKKhkMNl
+ OfjoGRHywprm54d0MYzK6M8JK/bkDED1PthDhrZ09/69t3LMBWf3VYAZVuIT6D9A+Wlx
+ ofxg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXZKIkBi+VW1ia5mjt5rvs1vPRuY7LAeFUPICDORQuiDWUtkzzjzfrm1hYxodau56Gu0CDYjJjufrEx7+jy3PqfNKcsC9SMJq3kB7mxsOEpg4c5jMid8Xq0dZa2D8HUEfBx+nJU1nGxdNeoID1OVg==
-X-Gm-Message-State: AOJu0Yz2OWAlECrsgI/9F73uHs/fMsrik0O8f+Ot6Iz5Inj3MPcnkyyP
- JyL/AaCbayL80yxVxIjIAhw5prmlwTGa7XKtiK15i1PZPiX9NKWLjbQno52rQYOZc5QI2PkEiB9
- lq2xaMAaU2X6ijoVpwrlnLbELNNo=
-X-Google-Smtp-Source: AGHT+IGoTFtKJW2jS7acG2Oi3QXPtRAexd48mCUJWxKk2iudODVVH1vr9AaGCM32ITeGQ3dDowuFjyKpv2ALtupjw7I=
-X-Received: by 2002:a05:6214:514d:b0:6b2:b13d:5b75 with SMTP id
- 6a1803df08f44-6b61bc801a7mr50698376d6.1.1720595021031; Wed, 10 Jul 2024
- 00:03:41 -0700 (PDT)
+ AJvYcCWCYqDuj+hGAr+AQIvnMQtUYxFr4ZlICmbqrCaSiGQz5QukrO1gXRODPWAF8AoDJfuWAzDMnradw6/iIldZAvJClyF1o+Ih+xHghc2sFA==
+X-Gm-Message-State: AOJu0Yy5866O3Px2NVPehE+IJ/gfgGa55JcmKPS1h4+ksIeyrDLVnaEP
+ 83xoPp6X0+u4TCF4P00eQoQF7XVlJPSu/MEmndrZaybmLLAUkpl8
+X-Google-Smtp-Source: AGHT+IEzCm9jMxwJFsbF9A3Era88R/0wMtRNC766QxScP8pdlYCaiuma08jnT9vMg3368V4nQ4K7OQ==
+X-Received: by 2002:a05:6000:12c9:b0:367:8c22:5b7a with SMTP id
+ ffacd0b85a97d-367cea7331dmr3171936f8f.22.1720595831087; 
+ Wed, 10 Jul 2024 00:17:11 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-367cde891cesm4498529f8f.62.2024.07.10.00.17.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 10 Jul 2024 00:17:10 -0700 (PDT)
+Message-ID: <0e79392e-1e82-4602-8ebb-2dc9d31e001c@gmail.com>
+Date: Wed, 10 Jul 2024 09:17:09 +0200
 MIME-Version: 1.0
-References: <CABXGCsNptxsQO=5=qi-JYiFX=rX8Ok5inK80Gn0qrUFWbtBGng@mail.gmail.com>
- <CADnq5_PDxJ8O1JUQ9RBYRFB9G1WZJos05ZAM4jUKuPBwPxjNkA@mail.gmail.com>
- <CABXGCsNN9LwHc2x2AAEH=5UNwpvkWkBqRYz3OP8MZ6Woy+HDXA@mail.gmail.com>
- <b6c440ca-e63e-429b-af41-5f27d4b8b2a2@leemhuis.info>
- <CABXGCsNoFfMn7LaqqFgEPg-ECyUPN=f=SXVrFi=GZk6c69-Gqw@mail.gmail.com>
- <CADnq5_PDSkr4hOHJmb1J30UC0a7sXsm5-TPkEmjzffMK_A+7ug@mail.gmail.com>
- <ea465a40-f673-42b1-8b1c-a2efb20cd562@amd.com>
- <CABXGCsPyrUEqDq2gbr4VLw5ncd9cKoCZ9nOr2SRfg8Lh=9H5Kg@mail.gmail.com>
- <2915a8c4-ebac-4dae-8f09-32a5b4d9aeda@amd.com>
- <CABXGCsPuRViSd_WeOciLKcQ4hjYxJ7e3i7LomwsUMzd0a+zvBw@mail.gmail.com>
-In-Reply-To: <CABXGCsPuRViSd_WeOciLKcQ4hjYxJ7e3i7LomwsUMzd0a+zvBw@mail.gmail.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Wed, 10 Jul 2024 12:03:30 +0500
-Message-ID: <CABXGCsOsfP2SToiDhRAS51nPJ+Qr2v7B3Kjr+yVeP4G7zFZpMA@mail.gmail.com>
-Subject: Re: 6.10/bisected/regression - commits bc87d666c05 and 6d4279cb99ac
- cause appearing green flashing bar on top of screen on Radeon 6900XT and 120Hz
-To: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, "Mahfooz,
- Hamza" <Hamza.Mahfooz@amd.com>, 
- Linux regressions mailing list <regressions@lists.linux.dev>, 
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>, 
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/amdgpu: set start timestamp of fence in the right
+ place
+To: jiadong.zhu@amd.com, amd-gfx@lists.freedesktop.org
+References: <20240710003101.1645322-1-jiadong.zhu@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240710003101.1645322-1-jiadong.zhu@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,114 +83,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 10, 2024 at 12:01=E2=80=AFPM Mikhail Gavrilov
-<mikhail.v.gavrilov@gmail.com> wrote:
+Am 10.07.24 um 02:31 schrieb jiadong.zhu@amd.com:
+> From: Jiadong Zhu <Jiadong.Zhu@amd.com>
 >
-> On Tue, Jul 9, 2024 at 7:48=E2=80=AFPM Rodrigo Siqueira Jordao
-> <Rodrigo.Siqueira@amd.com> wrote:
-> > Hi,
-> >
-> > I also tried it with 6900XT. I got the same results on my side.
->
-> This is weird.
->
-> > Anyway, I could not reproduce the issue with the below components. I ma=
-y
-> > be missing something that will trigger this bug; in this sense, could
-> > you describe the following:
-> > - The display resolution and refresh rate.
->
-> 3840x2160 and 120Hz
-> At 60Hz issue not reproduced.
->
-> > - Are you able to reproduce this issue with DP and HDMI?
->
-> My TV, an OLED LG C3, has only an HDMI 2.1 port.
->
-> > - Could you provide the firmware information: sudo cat
-> > /sys/kernel/debug/dri/0/amdgpu_firmware_info
->
-> > sudo cat /sys/kernel/debug/dri/0/amdgpu_firmware_info
-> [sudo] password for mikhail:
-> VCE feature version: 0, firmware version: 0x00000000
-> UVD feature version: 0, firmware version: 0x00000000
-> MC feature version: 0, firmware version: 0x00000000
-> ME feature version: 38, firmware version: 0x0000000e
-> PFP feature version: 38, firmware version: 0x0000000e
-> CE feature version: 38, firmware version: 0x00000003
-> RLC feature version: 1, firmware version: 0x0000001f
-> RLC SRLC feature version: 1, firmware version: 0x00000001
-> RLC SRLG feature version: 1, firmware version: 0x00000001
-> RLC SRLS feature version: 1, firmware version: 0x00000001
-> RLCP feature version: 0, firmware version: 0x00000000
-> RLCV feature version: 0, firmware version: 0x00000000
-> MEC feature version: 38, firmware version: 0x00000015
-> MEC2 feature version: 38, firmware version: 0x00000015
-> IMU feature version: 0, firmware version: 0x00000000
-> SOS feature version: 0, firmware version: 0x00000000
-> ASD feature version: 553648344, firmware version: 0x210000d8
-> TA XGMI feature version: 0x00000000, firmware version: 0x00000000
-> TA RAS feature version: 0x00000000, firmware version: 0x00000000
-> TA HDCP feature version: 0x00000000, firmware version: 0x1700003f
-> TA DTM feature version: 0x00000000, firmware version: 0x12000016
-> TA RAP feature version: 0x00000000, firmware version: 0x00000000
-> TA SECUREDISPLAY feature version: 0x00000000, firmware version: 0x0000000=
-0
-> SMC feature version: 0, program: 0, firmware version: 0x00544fdf (84.79.2=
-23)
-> SDMA0 feature version: 52, firmware version: 0x00000009
-> VCN feature version: 0, firmware version: 0x0311f002
-> DMCU feature version: 0, firmware version: 0x00000000
-> DMCUB feature version: 0, firmware version: 0x05000f00
-> TOC feature version: 0, firmware version: 0x00000007
-> MES_KIQ feature version: 0, firmware version: 0x00000000
-> MES feature version: 0, firmware version: 0x00000000
-> VPE feature version: 0, firmware version: 0x00000000
-> VBIOS version: 102-RAPHAEL-008
->
+> The job's embedded fence is dma_fence which shall not be conversed
+> to amdgpu_fence.
 
-I forgot to add output for discrete GPU:
+Good catch.
 
-> sudo cat /sys/kernel/debug/dri/1/amdgpu_firmware_info
-[sudo] password for mikhail:
-VCE feature version: 0, firmware version: 0x00000000
-UVD feature version: 0, firmware version: 0x00000000
-MC feature version: 0, firmware version: 0x00000000
-ME feature version: 44, firmware version: 0x00000040
-PFP feature version: 44, firmware version: 0x00000062
-CE feature version: 44, firmware version: 0x00000025
-RLC feature version: 1, firmware version: 0x00000060
-RLC SRLC feature version: 0, firmware version: 0x00000000
-RLC SRLG feature version: 0, firmware version: 0x00000000
-RLC SRLS feature version: 0, firmware version: 0x00000000
-RLCP feature version: 0, firmware version: 0x00000000
-RLCV feature version: 0, firmware version: 0x00000000
-MEC feature version: 44, firmware version: 0x00000076
-MEC2 feature version: 44, firmware version: 0x00000076
-IMU feature version: 0, firmware version: 0x00000000
-SOS feature version: 0, firmware version: 0x00210e64
-ASD feature version: 553648345, firmware version: 0x210000d9
-TA XGMI feature version: 0x00000000, firmware version: 0x2000000f
-TA RAS feature version: 0x00000000, firmware version: 0x1b00013e
-TA HDCP feature version: 0x00000000, firmware version: 0x1700003f
-TA DTM feature version: 0x00000000, firmware version: 0x12000016
-TA RAP feature version: 0x00000000, firmware version: 0x07000016
-TA SECUREDISPLAY feature version: 0x00000000, firmware version: 0x00000000
-SMC feature version: 0, program: 0, firmware version: 0x003a5a00 (58.90.0)
-SDMA0 feature version: 52, firmware version: 0x00000053
-SDMA1 feature version: 52, firmware version: 0x00000053
-SDMA2 feature version: 52, firmware version: 0x00000053
-SDMA3 feature version: 52, firmware version: 0x00000053
-VCN feature version: 0, firmware version: 0x0311f002
-DMCU feature version: 0, firmware version: 0x00000000
-DMCUB feature version: 0, firmware version: 0x02020020
-TOC feature version: 0, firmware version: 0x00000000
-MES_KIQ feature version: 0, firmware version: 0x00000000
-MES feature version: 0, firmware version: 0x00000000
-VPE feature version: 0, firmware version: 0x00000000
-VBIOS version: 113-D4120100-100
+> The start timestamp shall be saved on job for
+> hw_fence.
 
+But NAK to that approach. Why do we need the start time here in the 
+first place?
 
---=20
-Best Regards,
-Mike Gavrilov.
+Regards,
+Christian.
+
+>
+> v2: optimize get_fence_start_time.
+
+>
+> Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 31 ++++++++++++++++++++---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h   |  3 +++
+>   2 files changed, 31 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> index 2f24a6aa13bf..72bb007e48c8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> @@ -88,6 +88,31 @@ static inline struct amdgpu_fence *to_amdgpu_fence(struct dma_fence *f)
+>   	return NULL;
+>   }
+>   
+> +static inline void set_fence_start_time(struct dma_fence *f, ktime_t start_timestamp)
+> +{
+> +	if (f->ops == &amdgpu_fence_ops) {
+> +		struct amdgpu_fence *__f = container_of(f, struct amdgpu_fence, base);
+> +
+> +		__f->start_timestamp = start_timestamp;
+> +	} else if (f->ops == &amdgpu_job_fence_ops) {
+> +		struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence);
+> +
+> +		job->start_timestamp = start_timestamp;
+> +	}
+> +}
+> +
+> +static inline ktime_t get_fence_start_time(struct dma_fence *f)
+> +{
+> +	if (unlikely(f->ops == &amdgpu_fence_ops)) {
+> +		struct amdgpu_fence *__f = container_of(f, struct amdgpu_fence, base);
+> +
+> +		return __f->start_timestamp;
+> +	}
+> +	struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence);
+> +
+> +	return job->start_timestamp;
+> +}
+> +
+>   /**
+>    * amdgpu_fence_write - write a fence value
+>    *
+> @@ -197,7 +222,7 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amd
+>   		}
+>   	}
+>   
+> -	to_amdgpu_fence(fence)->start_timestamp = ktime_get();
+> +	set_fence_start_time(fence, ktime_get());
+>   
+>   	/* This function can't be called concurrently anyway, otherwise
+>   	 * emitting the fence would mess up the hardware ring buffer.
+> @@ -428,7 +453,7 @@ u64 amdgpu_fence_last_unsignaled_time_us(struct amdgpu_ring *ring)
+>   		return 0;
+>   
+>   	return ktime_us_delta(ktime_get(),
+> -		to_amdgpu_fence(fence)->start_timestamp);
+> +		get_fence_start_time(fence));
+>   }
+>   
+>   /**
+> @@ -451,7 +476,7 @@ void amdgpu_fence_update_start_timestamp(struct amdgpu_ring *ring, uint32_t seq,
+>   	if (!fence)
+>   		return;
+>   
+> -	to_amdgpu_fence(fence)->start_timestamp = timestamp;
+> +	set_fence_start_time(fence, timestamp);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> index a963a25ddd62..3a73fe11a1ce 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> @@ -73,6 +73,9 @@ struct amdgpu_job {
+>   	uint64_t		gds_va;
+>   	bool			init_shadow;
+>   
+> +	/* start timestamp for hw_fence*/
+> +	ktime_t			start_timestamp;
+> +
+>   	/* job_run_counter >= 1 means a resubmit job */
+>   	uint32_t		job_run_counter;
+>   
+
