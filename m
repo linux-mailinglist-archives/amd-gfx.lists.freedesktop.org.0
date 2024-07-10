@@ -2,76 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02DF392D972
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C88F92D974
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:41:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B024110E8CC;
-	Wed, 10 Jul 2024 19:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2C9A10E8CF;
+	Wed, 10 Jul 2024 19:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mafD9B29";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JR5zXsN2";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2082.outbound.protection.outlook.com [40.107.102.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C0910E8CC
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:40:50 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B4B810E8CE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:41:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FXqew65CvxNRWNmxC8CHv6LFpyep4vOpdqkpT9VVFz8o08uLawBxaXRCn+WWcMTtnDrtAhZ2yyw8bNhq9ztg3K17HdbK1+NqdYMki0YMURxeCu+PllPaaJvGtcsvI7/Y19XFDM8w47ENPdDYmWDzXeAW+QE3yOulXsaVCB49dz70l2G928NgJCfyJPZAkyy+XGIi3JSX/OLfejSpjK4tdxaHKHwQ0pTpLVzIMQYUPhuz0wjppOmuqAzv2c1MSzahzO6UN94BXxSIrP6ge08RNp+uWtoDfE68MCbVjV97WGFh4wMvyinFDRoVuCJbwKlmzHXKzJWycmINoLMAk6a8Uw==
+ b=n8X8W/IxRJdEEiBfE7mwEbtAAB99AFMEQJIty4gpbolsuLsyNQer+6BlrJhIxCPlcFMU14dNe09TDeTALhT4vB4Kd5+kVDvUNOli6yFYqHUGOiDM/IicCk9kmiqEm7L9Zh7zGqd8lJo4pEroKPzpzVI63nJbuT1CwMvn4HN153EVCtDqmUO7673AIyCFGQ36rNq6QMmGiC+0JQ7G7nU04JlgKHb85Pdb6usJtYe8GaRnDHz+4Fgzr4+HL5rF+CtYzoPKOYRDd+67ivtVZp2wh0Q3Ic0kRyQ60WqQtc9KuH0NM1nDdSuAw669xaPzXlyp8UM54MG7FrUMzP9Dm/PLmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yHGtJjZlS1W3WluepE6kgXIpbu1eCoKczGb2dS5sYKY=;
- b=dDcLBT2sv966mXQ60VrV6etAg2F//ut1iZdBjvhpvHkzSH2z9vHfrlYI9R8qqW3zYRu4NNC56KqI5ImzTQzad262miWB7a/tHRqictAqvzQwMSkmNPxIwZHkTfNZkd5xw+dl6R/G0jAf5HEZ6ZG5OeODPjBec0ZiT6HlQrixsyYG1S67w+xLUYNyRPRboio/Dr8UBsRw9N/p2yfBOPnKXZFWbYOdwHdrJYu3lAuupyO6/ovkUo5b/eEy8eQDapwkUorzZUsnCk1tQYC3z8pCvLd9R9RAsxIzog4RK5c43/Pju3NUEV745oM4YJuaM85ec84+lNZdQWOM/AY8lDwR7w==
+ bh=dYK3WiQmZKJ0ygA2uWvXIpw8nyKTfCINKu55g9CrRmc=;
+ b=KzIRtz1qufcAd3BR5xxfNuj6JUC2a+oNLMMJz6UCJrk88u2YR18/vEfAkSVuAM5S82rm5W38WhZtxtQHbScxsRWWP2t7QNzhY/pSpZ0/ezyV1uYhkhliQGxeIjU3m9x8n/rcEGmbIai05UMqgy+P5IjI7X7of3XO7n6lku7zqHqxnl32mJw8fwwTEsKbEjph/ZC286G3LI0TSU+hEI2pl2GGB8uHD+h4Vm/xVhGXy/Acz9hSd3TKMreryGhluMUPu6zkJgcYsZ+kcwghtEdUOHCuyfR6AErwu44AUBGDQ4eOcHyLbtW9et5W1RVmGz86dGCn0gLmzP7L6PifuHbZDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yHGtJjZlS1W3WluepE6kgXIpbu1eCoKczGb2dS5sYKY=;
- b=mafD9B29n8s2Zj+U9oU8ERufNq1rrVRkm8mWFGNr0WxxM8sIhJ3VErw5Sv+re0/CFDfRik6LOpujhBwV8CEl5Q3nOOjUeAjL8URSjgFmsvGsslK6ESCPQX5fNcI90w1LVoKCWP0zhg/k9uTxabeuZIF6ajxkSwkz/tQ6Boefz7A=
-Received: from BYAPR01CA0071.prod.exchangelabs.com (2603:10b6:a03:94::48) by
- LV8PR12MB9208.namprd12.prod.outlook.com (2603:10b6:408:182::12) with
+ bh=dYK3WiQmZKJ0ygA2uWvXIpw8nyKTfCINKu55g9CrRmc=;
+ b=JR5zXsN2GvmEMJ4o2prtw31eIRQh/ZFSgRwNq1l4Wyrp8UnmobIfzWMAMWjE08Nny/bKVugkup7ZE29jNCpUNqKctUHmwF2ybymUe10LreXps02XrgA3At9gJJl144fYJg9TY58G4xLPMCInWArQMylxJyM+rqHgt8yw/KpQVek=
+Received: from PH7P220CA0107.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::13)
+ by DM4PR12MB6301.namprd12.prod.outlook.com (2603:10b6:8:a5::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Wed, 10 Jul
- 2024 19:40:47 +0000
-Received: from CO1PEPF000042AE.namprd03.prod.outlook.com
- (2603:10b6:a03:94:cafe::60) by BYAPR01CA0071.outlook.office365.com
- (2603:10b6:a03:94::48) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35 via Frontend
- Transport; Wed, 10 Jul 2024 19:40:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.34; Wed, 10 Jul
+ 2024 19:40:54 +0000
+Received: from CY4PEPF0000E9D0.namprd03.prod.outlook.com
+ (2603:10b6:510:32d:cafe::85) by PH7P220CA0107.outlook.office365.com
+ (2603:10b6:510:32d::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20 via Frontend
+ Transport; Wed, 10 Jul 2024 19:40:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042AE.mail.protection.outlook.com (10.167.243.43) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D0.mail.protection.outlook.com (10.167.241.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:40:46 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:40:54 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:40:45 -0500
+ 2024 14:40:53 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:40:45 -0500
+ 2024 14:40:52 -0500
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 10 Jul 2024 14:40:35 -0500
+ Transport; Wed, 10 Jul 2024 14:40:47 -0500
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>, "Rodrigo
- Siqueira" <rodrigo.siqueira@amd.com>
-Subject: [PATCH 47/50] drm/amd/display: Allow display DCC for DCN401
-Date: Wed, 10 Jul 2024 15:37:04 -0400
-Message-ID: <20240710193707.43754-48-Jerry.Zuo@amd.com>
+ <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
+Subject: [PATCH 48/50] drm/amd/display: improve logic for addition of modifers
+Date: Wed, 10 Jul 2024 15:37:05 -0400
+Message-ID: <20240710193707.43754-49-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 References: <20240710193707.43754-1-Jerry.Zuo@amd.com>
@@ -80,51 +79,51 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042AE:EE_|LV8PR12MB9208:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a44ce86-3f40-4d03-4018-08dca1183224
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D0:EE_|DM4PR12MB6301:EE_
+X-MS-Office365-Filtering-Correlation-Id: ddec20f2-7f20-4132-3baa-08dca118366e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VwdfpDb93eOodkcA/3pTCtBCjo32tiEM2zwcS9KwNjn6dmmZfFyLAojUWvEI?=
- =?us-ascii?Q?Ax+tmzIJBJpUUxOwylEsu+08t7NBHFMNtV+ty2WnvS4Sh3obEnQZ4v4T23Zq?=
- =?us-ascii?Q?I88cB4y0mgKdCqdbnXs9kjgOBnJ+mRt1EOtYDz7e28eFYyC8CKnJ6SKI9lW9?=
- =?us-ascii?Q?o1YEBcHEQbxaWeDZZ0dgNgGbWV2jVcSoZ9Y/QtVHSSXV2mDGSjZbCT7suM/s?=
- =?us-ascii?Q?L6Opa6CsH73n64REVZOn11e9GJ412ZMVqY1eR2TR4P4NUG+mtznVKxIrT/o3?=
- =?us-ascii?Q?Mn9MszYRIQVP6prbk1kEHIYwB2AZ71RH9AV0oXIdYuo4dO4LqeeEtkCFg8Ww?=
- =?us-ascii?Q?+du2Xha1X++5YSIg+L8DBaKS4kmoSCqxaiUe5xL5rm1jYR5gNJZewX0Y3gl+?=
- =?us-ascii?Q?929G/t6SQa318Zmh/NpKh5cyZIcUP5IrXLxApmrTzUj/Ai3SNuacLw18g9tb?=
- =?us-ascii?Q?uBK5SvISL7B9SjJRFChwQnbtjVi7INZAjiJYyG60c4qG7lAoz1GSiOhQbYj4?=
- =?us-ascii?Q?WqOIYciTjmgLEf7aJIAXobnvUNozEbyrShXIRv8AnmBcc6GXCFeXMqYOvzU8?=
- =?us-ascii?Q?EEvVYWE5ESDDfL+0mI8azbldkVbvmqFwgDPxS1+MqJyeKk6oyHz0M8d+akPQ?=
- =?us-ascii?Q?K/YJJbcHOljSqFnDFSatlhhAfwfaMnL3zC3QM2EVre5ZewsojwG6Kdr2Mate?=
- =?us-ascii?Q?Px71ffmgSCqMIM9BemIKyNcufpbIMosDxkRpVACgRCTxc2imGBDr8NgQArWp?=
- =?us-ascii?Q?zm75fF0Pq58FHBvWRRNQPMsA8XuTW1cSt82F+ow1hgMmg3GeQgln0JOQqeyx?=
- =?us-ascii?Q?RKCYblIBL8/a3OuP2ARn4rPCfCkUiesTcyVD7tTZKD7d/SxY6XCuI68VEq4a?=
- =?us-ascii?Q?QrNnenqzSb0l3fOCOjCCXz/wBU7t+o47fLg7zTczGqH3bfTja3lIojO20yaO?=
- =?us-ascii?Q?yHygxpoUNaFwY7akVCA5jORSh8ZGiUXOeBZXgHonzPGGymXKzKv9Z87eZbT7?=
- =?us-ascii?Q?5GkwlrvSoKLZZPjGNB12mVVArhpj5M8g4BH3J7Cq+0h1Y8X2a4S4rYzrZtiE?=
- =?us-ascii?Q?OTUanHSpP++9TIri/7+eos7HI8zddyhQv3vuipF0cuvRjBh3lmKAzKogW+00?=
- =?us-ascii?Q?3imAOHk+TR5UOVrEMESE44wBEu0ShLoXIFgQlIdUHn52jmxK+PsZqs0Ga227?=
- =?us-ascii?Q?d7WoAbJx0lTRonZ4cf+qLW8rjBZ4IC98WnVzhqBsLyCrlbjhnQuAEHlKbRSq?=
- =?us-ascii?Q?7JddHaVUX61uFdH3yOgKnnw93w4nfYyekLvzXcIOjWATHv5Yt9sRMi9Lsxuk?=
- =?us-ascii?Q?P+94TGdQZxwt9dCOtu3rsSvRM2o+4z9wQOPsO4W/2Uso6NKdPxy2Jume8rmg?=
- =?us-ascii?Q?4iHO1F6ULEpjyptm339TaRN2fAx4QA1fjO+s5Xk3ucquUHrCCKlmLdbKPUwO?=
- =?us-ascii?Q?fXasA3fCohAzuRedBxPIwBbEz4U6445C?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3EgS+zU3jz1Du40jluuTyPSTkYrBS/eRNCTscPEDFFzJ5OlMe0Z+SD9n6OsQ?=
+ =?us-ascii?Q?/JwF/mBqBDzNYUOk2v20VB8Rpjq/Osjpc2MPCgN68+vDe8AFAewGAofpmsN2?=
+ =?us-ascii?Q?Z+Ko5A4neoQ3pCLS4mbndM9ihtsXkaoFjAfszxtr4jxlQfNlE51ekeuy7fFy?=
+ =?us-ascii?Q?XAth1B+MtUmmpzq54FRgw3BN/aTvKIiR4mS8H2uuio2eCzTs6F8G52Q9eLyU?=
+ =?us-ascii?Q?KCw01f2Wpsm1IvEA/MzdkZGD/F6RTrQyZrLBGERGv8bf4v2sF4g1Z6TG09+v?=
+ =?us-ascii?Q?WRAVx9ewiH6TBEwGAS8hry/0609+r+tXWOeg8+TBcSOEI9y0oSBSE15jpbUg?=
+ =?us-ascii?Q?JHdd2KA+/hZ1rrH6oql+bCS52MauSo57qyK4sh/fEhTmLCHPRpWukAepDmp+?=
+ =?us-ascii?Q?JoKSEvwZBK0VEEtngyZ35VRL4lUegvs06F1JvRJhFxPW1y+V1rzvTEnYqZ4X?=
+ =?us-ascii?Q?PLJlP4sdh6U5LukV7Gi48e95KrDaQdtS08aiZLX1iU2tdeOoQ3r4uLNWkXFW?=
+ =?us-ascii?Q?l9CG023brJ8hC2dpIkWjpRdBuojwqD5ZcjuBUtiavK+Y9/XPK857j1cKbQ9t?=
+ =?us-ascii?Q?0mAUZIyOx6SpTGAQLsLk2Pf2Rl25vVtzCA8sPC+iwomAM/rncjrIxUCYVG7s?=
+ =?us-ascii?Q?MR2/fA2O2f/xykl+5QLWzgVrTKqiaavYdZ9C+zeQRHtWkoqzNw/Tn5EDVOu5?=
+ =?us-ascii?Q?EgzMfj+hG0SRb+SqDJKVtdQquT0SlviNJRMPcttDHMocWvWWixG05X+fCHoy?=
+ =?us-ascii?Q?jXLKpg3TXo8tkpnDluPRIzCLbOHyNyN3ESfgnThJ/LIZpF/vMu2XdEoVZcDg?=
+ =?us-ascii?Q?bnhZWhIYCn9H/KdeKdNqjNtjO68xkoXn5/mv/gGQUMt5OsejdQfRXQInQ/Wb?=
+ =?us-ascii?Q?mgoZng39I0PO/wiU65KBf75RTSgL4v0hmcoZnDgmwFXT1qhET62lseIegB8s?=
+ =?us-ascii?Q?ZZHEZIarhNIsu3HZMKqgkSzK0JmX8O0SNkIsmBW0ChMOauDr3rwhB0Aogxsh?=
+ =?us-ascii?Q?H+rA7+SNrJbyd2XNIYwOaehn9xKsH7+1LAEeA42co5NC3Esh3W/sgu2RiCSW?=
+ =?us-ascii?Q?9MjjDXcvN+yqr8gbK2vGkH15m3eXYr1JoE2QdXQbHXidyUeKx3IiuyOnAw3L?=
+ =?us-ascii?Q?2u6eGkU8g7o9H07FXMm8tyPki4x9dtYrcv/lvqdkPyLzBhT1pLrtvj+YbNRj?=
+ =?us-ascii?Q?ksEtbCce6iHOmW8lzq94iTe2cl8Qx/TUHClstp9/tnF3RZbOIqnV6neBBLJ+?=
+ =?us-ascii?Q?o67xRn1ZTXP8EoNtlCA9pXjzsFyghLEZkT3QFtoL9X7xfPwV2Y6co9pggkbc?=
+ =?us-ascii?Q?r5sMHN6eEAPnFLTCx1zrlwpaUmO8cT4RBoaPSDR7SPJqiCo76jdDyl4PdA5X?=
+ =?us-ascii?Q?KTEyMw7zMefOL5NGXSsaF9D+gSJWJwClnf4bAThR2F9T+XOYi7uorRzu03vg?=
+ =?us-ascii?Q?kkuiiIedKurvljUqBtha2D4OH6gCTI2D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:40:46.9791 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a44ce86-3f40-4d03-4018-08dca1183224
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:40:54.1748 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddec20f2-7f20-4132-3baa-08dca118366e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042AE.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D0.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9208
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6301
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,58 +140,65 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-To enable mesa to use display dcc, DM should expose them in the
-supported modifiers. Add the best (most efficient) modifiers first.
+Use an extra for loop to reduce duplicate code for adding modifiers
 
-Reviewed-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 29 ++++++++++++++++---
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 36 +++++++++----------
+ 1 file changed, 17 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 0320200dae94..dde4f1dda2e2 100644
+index dde4f1dda2e2..dc16d82aced4 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -689,12 +689,33 @@ static void amdgpu_dm_plane_add_gfx12_modifiers(struct amdgpu_device *adev,
- 		      uint64_t **mods, uint64_t *size, uint64_t *capacity)
- {
- 	uint64_t ver = AMD_FMT_MOD | AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12);
-+	uint64_t mod_256k = ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_256K_2D);
-+	uint64_t mod_64k = ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D);
-+	uint64_t mod_4k = ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_4K_2D);
-+	uint64_t mod_256b = ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_256B_2D);
-+	uint64_t dcc = ver | AMD_FMT_MOD_SET(DCC, 1);
-+	uint8_t max_comp_block[] = {1, 0};
-+	uint64_t max_comp_block_mod[2] = {0};
-+	uint8_t i = 0;
+@@ -695,28 +695,26 @@ static void amdgpu_dm_plane_add_gfx12_modifiers(struct amdgpu_device *adev,
+ 	uint64_t mod_256b = ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_256B_2D);
+ 	uint64_t dcc = ver | AMD_FMT_MOD_SET(DCC, 1);
+ 	uint8_t max_comp_block[] = {1, 0};
+-	uint64_t max_comp_block_mod[2] = {0};
+-	uint8_t i = 0;
++	uint64_t max_comp_block_mod[ARRAY_SIZE(max_comp_block)] = {0};
++	uint8_t i = 0, j = 0;
++	uint64_t gfx12_modifiers[] = {mod_256k, mod_64k, mod_4k, mod_256b, DRM_FORMAT_MOD_LINEAR};
+ 
+-	/* With DCC: Best choice should be kept first. Hence, add all 256k modifiers of different
+-	 * max compressed blocks first and then move on to the next smaller sized layouts */
+ 	for (i = 0; i < 2; i++)
+ 		max_comp_block_mod[i] = AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, max_comp_block[i]);
+-	for (i = 0; i < 2; i++)
+-		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_256k);
+-	for (i = 0; i < 2; i++)
+-		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_64k);
+-	for (i = 0; i < 2; i++)
+-		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_4k);
+-	for (i = 0; i < 2; i++)
+-		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_256b);
+-
+-	/* Without DCC: */
+-	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_256k);
+-	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_64k);
+-	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_4k);
+-	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_256b);
+-	amdgpu_dm_plane_add_modifier(mods, size, capacity, DRM_FORMAT_MOD_LINEAR);
 +
 +	/* With DCC: Best choice should be kept first. Hence, add all 256k modifiers of different
-+	 * max compressed blocks first and then move on to the next smaller sized layouts */
-+	for (i = 0; i < 2; i++)
-+		max_comp_block_mod[i] = AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, max_comp_block[i]);
-+	for (i = 0; i < 2; i++)
-+		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_256k);
-+	for (i = 0; i < 2; i++)
-+		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_64k);
-+	for (i = 0; i < 2; i++)
-+		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_4k);
-+	for (i = 0; i < 2; i++)
-+		amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | dcc | max_comp_block_mod[i] | mod_256b);
- 
- 	/* Without DCC: */
--	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_256K_2D));
--	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D));
--	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_4K_2D));
--	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_256B_2D));
-+	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_256k);
-+	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_64k);
-+	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_4k);
-+	amdgpu_dm_plane_add_modifier(mods, size, capacity, ver | mod_256b);
- 	amdgpu_dm_plane_add_modifier(mods, size, capacity, DRM_FORMAT_MOD_LINEAR);
++	 * max compressed blocks first and then move on to the next smaller sized layouts.
++	 * Do not add the linear modifier here, and hence the condition of size-1 for the loop
++	 */
++	for (j = 0; j < ARRAY_SIZE(gfx12_modifiers) - 1; j++)
++		for (i = 0; i < ARRAY_SIZE(max_comp_block); i++)
++			amdgpu_dm_plane_add_modifier(mods, size, capacity,
++						     ver | dcc | max_comp_block_mod[i] | gfx12_modifiers[j]);
++
++	/* Without DCC. Add all modifiers including linear at the end */
++	for (i = 0; i < ARRAY_SIZE(gfx12_modifiers); i++)
++		amdgpu_dm_plane_add_modifier(mods, size, capacity, gfx12_modifiers[i]);
++
  }
  
+ static int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev, unsigned int plane_type, uint64_t **mods)
 -- 
 2.34.1
 
