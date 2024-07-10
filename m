@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB1B892D959
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A0592D95A
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:39:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B8ED10E8B5;
-	Wed, 10 Jul 2024 19:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E6B10E8B6;
+	Wed, 10 Jul 2024 19:39:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zXsHWmtV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jMd/5zeJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAD0A10E8B4
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:39:10 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6946110E8B1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:39:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dkDn5t6wjFkYMN+Qm1FbJkC1S32qW7Ri0Qk4esXwLcGso58lw5joiYv59VexTj8QPuuuTL8TKF1W91UwhtGi6/GUMevvRf2Ut6YzOYWqqLyz/NZGftGFSYUYHP+H+8X0pNF25u3q6mNvqHFb7QBRZIOGSbXEZR5G5i46SoLBaNtu6U+ycQYgVcIM9acGkwI0GF+NoFBPVSLIseT1mQ+ywkwD2d5oYgztJqUQsUPfxL7ju/wydAoWEYwJjfWNoWqaxczUnY9XN117e1BpjO37pInv/P4MtOR+mayUC/C6ngu1jPtmCXYb4oeRODyRU6oiIVC8VkQXYEhG4gZZKs+n8A==
+ b=PfhY+5dqNW+mTQr29KjiXmwyHBSVpWzdct40sgIyzR/yDg4/N4zgQdVFEKgX/VDb2D5M4wRcC0IXIax1PSIfID55MQoPrXFzTzp001X85qDcamHRfG/+0yxzLyJffLe64UW8Bg2WlSU2RLkyuQeikPK308m3enyRNyfusm0vb7LzSQaTqSt/2mxbWzpgHoWh0KtcYUnCuV82ghmrtV8192mPSRZkJVbKrHm/THNZlR9hDlaJfc/qMU8M1z5hAS1qowrd9jdDEEx6YsjdY8uxXKKyZvWFklrQKuABnEQvEmEmWOR3vZJzqi0l5HHc+BMgGm0aORrPZuCiDFaWFzy0Uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TKRbvGaUt2YbHQSr74zDcbF95WzovqqNZVAFLAGnHpc=;
- b=MbIx7faiooiNmjD8fd3ayrUAAMb1IeIgczLvqK951y6bMQaW3XALqSmCTgNFsGw+vttQsvk4OqI45RGnulFZULGjsfGuwRDza7G20hGvzhM+brrIYRxMbgd11dMfem055Vdrdt0Cpi+9Ffd/Is+8U8Hv3yoUKYSBPdHCmQ44jDM20vEK9pAcW2v1aEmxWDKZVWTZMkpkA0F3dm+6uLcVwwstyeWV0uONDoI67TG/m0gGKrJ6kcydkYiv1S1uv08khkyLluke92WwtCIqeNADHFk0t5Jjrc2OrLLC7ghWOQQqD7RoyLs/VuFnKbMIxZGhvckscZgpYFLXy5cwRgJNUw==
+ bh=h8l4upmcpjbsqKxaXYjzgieiSk5Tb05LxM4oDP8QyPU=;
+ b=k6ME8FlJJCDJVVSm+u+a2Ig/rnUNHw9up7GG38vXXSVJjosW1rfjeH/xbujb4gyTqHX7dmUTurr+y8PH6sDLxUWTzvsaR6v/Mp8mBJvP+W05jjdx+SHNJLqv//2QZZVYrUv7+FqC7ub5+TlJsARzCh+sz3BN6zoR7E25D0sOUrkcfWiVG00iz0ZMTnDFmlIz4mSlSR4yhL5nDVyCf6XkW9QEa+sDVjUiWFYt0FxxVshJ8QTZBWw524jlw/ox7BOSufd1nsQVcV0EmNQ7ckID/ZkJoJTMxwalenORcKA8K/o6vDAXZ481GdytatVmoJxkNCRCIM72qim219kgLsLFnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TKRbvGaUt2YbHQSr74zDcbF95WzovqqNZVAFLAGnHpc=;
- b=zXsHWmtV48AXSheMPAPKgI9xX4nxRx2u2B3cFg2tvPfdmbugic3nsn/EkvwZ7srAQ4LpqSVF0gFoaZqM8KEJN0z0pYCm18x/MjlSEz7w0BLTMnH8mr0EGWOU+Pp/po6syNVttxVNLa/XZKqslTkaMocQEohiTIZAhY1VfJqaPkc=
-Received: from BL1PR13CA0126.namprd13.prod.outlook.com (2603:10b6:208:2bb::11)
- by MN0PR12MB5979.namprd12.prod.outlook.com (2603:10b6:208:37e::15)
+ bh=h8l4upmcpjbsqKxaXYjzgieiSk5Tb05LxM4oDP8QyPU=;
+ b=jMd/5zeJxy/WR8XoPl2qO2LISeU+D7G8n9jkjFxCVBPTKa/lhRdUNV/9Jd2NK5grHgKZZnyq4P8KxHg+73u24FvegUbu/GYzZSn/itj8DEV4lGFM+af6OQjwgICCtCM8iQw8PDHrNrzRttJy4VjoOlbpr89D1n7hTcBO3g1R1Es=
+Received: from MN2PR08CA0001.namprd08.prod.outlook.com (2603:10b6:208:239::6)
+ by LV2PR12MB5847.namprd12.prod.outlook.com (2603:10b6:408:174::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Wed, 10 Jul
- 2024 19:39:07 +0000
-Received: from MN1PEPF0000ECDA.namprd02.prod.outlook.com
- (2603:10b6:208:2bb:cafe::9f) by BL1PR13CA0126.outlook.office365.com
- (2603:10b6:208:2bb::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20 via Frontend
- Transport; Wed, 10 Jul 2024 19:39:07 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Wed, 10 Jul
+ 2024 19:39:09 +0000
+Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
+ (2603:10b6:208:239:cafe::c2) by MN2PR08CA0001.outlook.office365.com
+ (2603:10b6:208:239::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36 via Frontend
+ Transport; Wed, 10 Jul 2024 19:39:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,82 +48,89 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MN1PEPF0000ECDA.mail.protection.outlook.com (10.167.242.134) with Microsoft
+ MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:39:07 +0000
+ 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:39:09 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:39:06 -0500
+ 2024 14:39:08 -0500
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 10 Jul 2024 14:39:05 -0500
+ Transport; Wed, 10 Jul 2024 14:39:07 -0500
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Chris Park <chris.park@amd.com>, Joshua Aberback
- <joshua.aberback@amd.com>
-Subject: [PATCH 23/50] drm/amd/display: Deallocate DML memory if allocation
- fails
-Date: Wed, 10 Jul 2024 15:36:40 -0400
-Message-ID: <20240710193707.43754-24-Jerry.Zuo@amd.com>
+ <jerry.zuo@amd.com>, Revalla Hari Krishna <harikrishna.revalla@amd.com>,
+ Martin Leung <martin.leung@amd.com>
+Subject: [PATCH 24/50] drm/amd/display: Refactoring MMHUBBUB
+Date: Wed, 10 Jul 2024 15:36:41 -0400
+Message-ID: <20240710193707.43754-25-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 References: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Received-SPF: None (SATLEXMB04.amd.com: Jerry.Zuo@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDA:EE_|MN0PR12MB5979:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f11aa28-e55e-46c2-d7bd-08dca117f6dd
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|LV2PR12MB5847:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f61ed19-6381-492e-8b3a-08dca117f7c5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bPT8Ufwc1NrUGzPETgoAhWt18YCqxgnl1XH7itbs4+DPvsSuXQBbgCw+nLxl?=
- =?us-ascii?Q?SIHxJUnn76aiAeMyFeVfKexnTMVvFSXidDu/IQVGQS7fu/rjqsALEmVmqp15?=
- =?us-ascii?Q?8F+OX4yPlruuz8DAstpbVTccSbBL5sp8ntf3YiQOfst1UXnz6ddXvB0QwX1X?=
- =?us-ascii?Q?1VNb178QF9zYE5Q1A75PL2LLoPRvxIxyuxV/W18wuCV40XeAXJZn9LNU2dMg?=
- =?us-ascii?Q?0XzNcPk3oPy/2QRFFAmEs9oZTnWBSzWmtSG+vSsDjbLtuaFpJI0PmZPkqsia?=
- =?us-ascii?Q?vXTPMHE45qUHEVxhMQxEH0YycAUaeZ9tA1k1eyKbqnP1udomlScUTY9jm5YM?=
- =?us-ascii?Q?CO6SPQ7IEMfZjKQ+jA1ICgw/yv7Og3e+KRFqeIy5hmLR37uiBSH4nB8i9h3u?=
- =?us-ascii?Q?iWf92hb3QiMw0a9TYooSZk5b9h43J7VrgB+IKtOZ5LAQcdF30jLb8n0+BILi?=
- =?us-ascii?Q?G981TN/TxWMxQfQTIzQA5ciGCDZlumpH1aCYOvReqMZpyc700Kpkq3ldpAyo?=
- =?us-ascii?Q?CXNFbO6TLFcOaYqSl4cOBnU59WLkCjVUfLKz/YAV5aaLlYL0J5j9QeRvozxU?=
- =?us-ascii?Q?WUDMkmwxEeRHZ0l3xypPOzR6Y3d9uuASAmvvluG8s+V6qK0+u6Uu6QlckgEd?=
- =?us-ascii?Q?M5PuF9A/6r2i4n81+lzrF8urbm4mQ0ySL5ImyU4ISLOduDHNfGWMuDohpzgE?=
- =?us-ascii?Q?l0S2OVwSWJUviVDfn5W0HMTcw4GFjz3txsV5JnOW0MSGpt/SzyPPfASxaoFK?=
- =?us-ascii?Q?WU8fPSxwN+Z8jLN2GPD+7l2BoQ8qAwShMPrcab7BqsAK4ar+P+rOUugEEDdI?=
- =?us-ascii?Q?DB+HtheNALYrcnfNUDXQ+skFzZL7dioCJ/p/qzeCDrvLxxsDv4U1Ha2GSxAo?=
- =?us-ascii?Q?892NZWSnO8FAPjOGcjCapNWZsQOYnxZe5NCL/cvI1Qs3GogwRQ+1p76B4moe?=
- =?us-ascii?Q?xHJp4OM1A96H0D2MW9ifaVB/8Q3aY7oMut+I2sjuuVlL3XFlTXzN8BD0I6rj?=
- =?us-ascii?Q?vMV9mstJQpi5SOZKLP7lWI8hlkIvj3KCg/eL48arBAPbUHxqzNN59wG5Ug2E?=
- =?us-ascii?Q?I7KH/lx6+X/rptsQ1mBXPiyX41xN16JTAacnWH+2O7DNWKIY69LboB5q7425?=
- =?us-ascii?Q?ml5NOZe0Guq5CHrfRFk3ZAgFfWLPBRLp18nYwVmCvQ7/O8lDAuZotoz7JOGV?=
- =?us-ascii?Q?cCD20aw+x/Ci/Sw116vVK5OJZVRmveO1yeH3V/gF9NEYzf/2OAQPznPT0lim?=
- =?us-ascii?Q?BzQ2eFvuRWftoXl+FQ2uUnDot7lhOtiJx2MlgmB5dPL4c9HJ2tk6d1qSM7f9?=
- =?us-ascii?Q?asBNfkY3B3rGAnJBmAUtA4b8XaWajdnAt6nQh4vdc0PexZkCxV4Tx2qxcql4?=
- =?us-ascii?Q?AC+8vvoQ90l3UVP1fYQAsg9TtM6x2pBCZTkyILQyyF+7CKlhM8tLyJmm04ne?=
- =?us-ascii?Q?FfPPY3njptsB6qxKXOf+myb8AJ74Y+nC?=
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Q0dXeTQ3cWw2ckF6TndMbzZkdmpCZlNjZWZKRmRGL2xLazBLMG5GOFlMUVNU?=
+ =?utf-8?B?eEl1Rm51S3ZGRDljTkdnd0g1T1lyd1VUVERjRXdJZDlNcHowenFtb2VGSStT?=
+ =?utf-8?B?eFQvT0pWUzY2aTlkWWVTQmV5ZStXNkVBTmhkRmxubms5eFhxK0lqNml3RktX?=
+ =?utf-8?B?UXhYNEFKc1BYTis1MUppR053aE5CanJzU2c5UTVqdjZ3ZGU0YjAvd3NoSVo3?=
+ =?utf-8?B?aENPOFN5NDZNeHRkcjJPeUxheUxwNk9TZFZ0WHBKZk1uQ09SMFdUOUI4dFpR?=
+ =?utf-8?B?NzR0UVhIOVBHVzM0V3g2U3NuZnkyWm9NMzRvUUlTZExVSit2NWpra09mMXJ0?=
+ =?utf-8?B?aGxmZG52T2t4ZGpFdFNnUGJoajdySWJBNVg4MlhLYlF5d0hQTDVUdWNQeitN?=
+ =?utf-8?B?djE3SForbzVWZmd0QVIyR05aUGd4UnFVOWl0OCtCRHNoZ2IxbW95enVqYnF0?=
+ =?utf-8?B?alRKaEI2SE1yYk45SzErcUJQUXhJWWg4M01zN3E4clNpUlJDeElncDd1ejFt?=
+ =?utf-8?B?MktqM1MrVTdWWFozS0tQNTlpampOYnZUS2ErKzFYcHdRL2NmTGhEakcxRGEw?=
+ =?utf-8?B?TnY0ckMxUDRNbitUWDFDYmVtemJUamhxcU5HUWxPaGtYS0dtanRobWU5ODNp?=
+ =?utf-8?B?MHJIV1V5aHA5b2dVcE5DYW1YMDdmYlFWTmU1WVcrU3ppT2ZIcWcyOVZ1RW9J?=
+ =?utf-8?B?S3I5czI5T2Rjd0FYSGRPZ08yeVpaVGhRa3NRRml3aUVMV2Zsa2l0bVMrdWpU?=
+ =?utf-8?B?VVRPUjZNa1p2dFl1WEFBUXFNd1FXSm5CdHp6RkVlcWtJZnYzTlZ5Y0tZNjJy?=
+ =?utf-8?B?ODRBd0dUNkVZYzM3R2tQb3EzajN0LzZnNjlMc0h3QW1wZVhiNVpWU2pBd25v?=
+ =?utf-8?B?c2VINnA0OGpWcktLbFQ5NHBmS2NzTkZWb1MrMVMzb1NnaVZibHBBRXhtK240?=
+ =?utf-8?B?YXFZU3QvWWprbSsvSHB0Y2xsN3BuS253MFFQeWpGdHA3eTdQbDIrVXpzQnpV?=
+ =?utf-8?B?cXoyOW5OSkpZQnlXdFBwMlBOVWRyTTNacEhYYzZBNnBCamhjRFJlcXlxcjhi?=
+ =?utf-8?B?dTNLWjlDdUhhWERjUGdVaXUzaXBlQXZCQzRJcDhkd0JSU3JLZzRFMVFxcXVL?=
+ =?utf-8?B?V0RxbjgyNWdGWi9vUXp6RmZyZlE1T2swSHFlajJmK0x4bUU1ZExrVnRkWWc4?=
+ =?utf-8?B?OVoyL0xxTlI1RG9taU5WZk5aTm5GN1c5Mld2MTYrU0hocTdXUS9rYkdaeXI5?=
+ =?utf-8?B?eGhtNFVweUJNcFQyNnhyaGE0OGZkakVteS9SOXJFY1pwVDFOSUxYeU1uSkZY?=
+ =?utf-8?B?aEgrdUhSZjF0dGh6djE5Zmh2RS9ZNFpveGp6ZGNyRWIvRWhPeXBxQzkyNUhp?=
+ =?utf-8?B?ZHpnZ09hbXQ0UXFqOFh1QmNBeDBsOXJFUzF4RE13Wnc2WDJTd3JYS2dTS2RU?=
+ =?utf-8?B?cjVuMldaNzNGWkdpSFUxZkJZT0Q5Tm1oeWU4ejFQVlR6QzZyUm1pYlZOYXB4?=
+ =?utf-8?B?UkpxdFMrYm5zd2JxK0hyVm5MbStrMnl6VS95OHdSRXRTRmxsdlFWWjM0WnAx?=
+ =?utf-8?B?SmhFdlNWWGpmQnBpemhwTysxMzRCTXFIV041aU5aUStvU3NaQ0RyYWduL1p4?=
+ =?utf-8?B?ZDFpdmpocXF4Nkt2dU1OYk5TVHBPcVNtUlRRZTBSZXByRUNQRWVIYU9wOU5a?=
+ =?utf-8?B?YVBqcGZoMVRTV082Q1VKZ1RsZkxUeUJBUldhVU1Ba3ArTGJzNHFaU2ZxSHly?=
+ =?utf-8?B?ZnEyd0pxdjFoMG5rZ3ozb0R0NHVKdUZLYng4ZUd5Ry9ySVR6Ri8vNjZUL1k2?=
+ =?utf-8?B?OGZkMFVhN0VMa0ZrT1ZBdi9PMGo3QnR6bHRsS0RjN09STjRHUjNBOFd6L3BW?=
+ =?utf-8?B?TEU1cXpUK3IzN1BreUFmMUNFYWRoMFdLSWhjc05pMGVsRnRBSEN1VUJJMDRC?=
+ =?utf-8?Q?c3gfRuuGiUeddsuxPADDh0J3P8NBQ4ko?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:39:07.5477 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f11aa28-e55e-46c2-d7bd-08dca117f6dd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:39:09.0662 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f61ed19-6381-492e-8b3a-08dca117f7c5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECDA.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5979
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5847
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,46 +145,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Park <chris.park@amd.com>
+From: Revalla Hari Krishna <harikrishna.revalla@amd.com>
 
 [Why]
-When DC state create DML memory allocation fails, memory is not
-deallocated subsequently, resulting in uninitialized structure
-that is not NULL.
+To refactor MMHUBBUB files
 
 [How]
-Deallocate memory if DML memory allocation fails.
+Moved mmhubbub files from dcn20 to /mmhubbub/ folder and
+update makefile to fix compilation.
 
-Reviewed-by: Joshua Aberback <joshua.aberback@amd.com>
+Reviewed-by: Martin Leung <martin.leung@amd.com>
 Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
-Signed-off-by: Chris Park <chris.park@amd.com>
+Signed-off-by: Revalla Hari Krishna <harikrishna.revalla@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_state.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/Makefile            | 2 +-
+ drivers/gpu/drm/amd/display/dc/mmhubbub/Makefile         | 9 +++++++++
+ .../amd/display/dc/{ => mmhubbub}/dcn20/dcn20_mmhubbub.c | 0
+ .../amd/display/dc/{ => mmhubbub}/dcn20/dcn20_mmhubbub.h | 0
+ 4 files changed, 10 insertions(+), 1 deletion(-)
+ rename drivers/gpu/drm/amd/display/dc/{ => mmhubbub}/dcn20/dcn20_mmhubbub.c (100%)
+ rename drivers/gpu/drm/amd/display/dc/{ => mmhubbub}/dcn20/dcn20_mmhubbub.h (100%)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_state.c b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-index e990346e51f6..665157f8d4cb 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-@@ -211,10 +211,16 @@ struct dc_state *dc_state_create(struct dc *dc, struct dc_state_create_params *p
- #ifdef CONFIG_DRM_AMD_DC_FP
- 	if (dc->debug.using_dml2) {
- 		dml2_opt->use_clock_dc_limits = false;
--		dml2_create(dc, dml2_opt, &state->bw_ctx.dml2);
-+		if (!dml2_create(dc, dml2_opt, &state->bw_ctx.dml2)) {
-+			dc_state_release(state);
-+			return NULL;
-+		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
+index 744a6c4ac816..d92d2b4ee015 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: MIT
+ # Copyright © 2019-2024 Advanced Micro Devices, Inc. All rights reserved.
  
- 		dml2_opt->use_clock_dc_limits = true;
--		dml2_create(dc, dml2_opt, &state->bw_ctx.dml2_dc_power_source);
-+		if (!dml2_create(dc, dml2_opt, &state->bw_ctx.dml2_dc_power_source)) {
-+			dc_state_release(state);
-+			return NULL;
-+		}
- 	}
- #endif
+-DCN20 = dcn20_mpc.o dcn20_mmhubbub.o \
++DCN20 = dcn20_mpc.o \
+ 		dcn20_vmid.o dcn20_dwb.o dcn20_dwb_scl.o
  
+ AMD_DAL_DCN20 = $(addprefix $(AMDDALPATH)/dc/dcn20/,$(DCN20))
+diff --git a/drivers/gpu/drm/amd/display/dc/mmhubbub/Makefile b/drivers/gpu/drm/amd/display/dc/mmhubbub/Makefile
+index 505bc0517e08..eab196c57c6c 100644
+--- a/drivers/gpu/drm/amd/display/dc/mmhubbub/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/mmhubbub/Makefile
+@@ -24,6 +24,15 @@
+ #
+ 
+ ifdef CONFIG_DRM_AMD_DC_FP
++###############################################################################
++# DCN20
++###############################################################################
++MMHUBBUB_DCN20 = dcn20_mmhubbub.o
++
++AMD_DAL_MMHUBBUB_DCN20 = $(addprefix $(AMDDALPATH)/dc/mmhubbub/dcn20/,$(MMHUBBUB_DCN20))
++
++AMD_DISPLAY_FILES += $(AMD_DAL_MMHUBBUB_DCN20)
++
+ ###############################################################################
+ # DCN32
+ ###############################################################################
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c
+rename to drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.h b/drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.h
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.h
+rename to drivers/gpu/drm/amd/display/dc/mmhubbub/dcn20/dcn20_mmhubbub.h
 -- 
 2.34.1
 
