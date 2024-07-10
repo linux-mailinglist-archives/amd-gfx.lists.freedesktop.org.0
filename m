@@ -2,68 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1E592CBB5
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 09:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE0692CBB8
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 09:13:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F92F10E67F;
-	Wed, 10 Jul 2024 07:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3225710E693;
+	Wed, 10 Jul 2024 07:13:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="sJzvxjyX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XqJzBwKI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED0610E539;
- Tue,  9 Jul 2024 12:41:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=ziBWPyZuXFGkV8kVZKK0Xj6BNHEbLXnVYFACz7/URSM=;
- t=1720528917; x=1720960917; b=sJzvxjyXeNPWd/2fkdOEVFOHfCUVkv6GXeVmKNGTIf2ojdP
- ocSEHmIeeMUOuMPAjrwzwp2NxLBZxbmBjRTLUkFjlWDpzDonLUgjfox3lVdTIgjqROJTqkDVOIDso
- dYb8Nc2Ea6aKDNAyEwgDutkuMW82Ru03ZSCzyhuTLJFFS91mr+jbm2139Gl6xDNvINyO8ZFNdKI3i
- +LK24AuDwzH8iaSzMblz++sM4jDQ4iw6Q2il/0uRgVhXwgSgvZZADqcyXps/t1oy1dZfdFN310B0L
- rn3OOtuB0CaR5IZhtcgw6D8eWBz3M5DiVs79HPOdYgPAe2sU2D5U6/I4qIZ7RIOA==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1sRAAN-0006uA-4B; Tue, 09 Jul 2024 14:41:55 +0200
-Message-ID: <af91ef9c-5050-4f16-898a-f0c02a293d3f@leemhuis.info>
-Date: Tue, 9 Jul 2024 14:41:54 +0200
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com
+ [209.85.222.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2909C10E0CA;
+ Wed, 10 Jul 2024 00:25:47 +0000 (UTC)
+Received: by mail-ua1-f43.google.com with SMTP id
+ a1e0cc1a2514c-8100ff1cec5so1721533241.3; 
+ Tue, 09 Jul 2024 17:25:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1720571146; x=1721175946; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GLMMCTOEE4C+kE7P1kVc+ZnjaPA7yhchwaYpxbxPQqg=;
+ b=XqJzBwKIAdJoQ27fre5x8zjosKrYF91f7V/6+3QYSxeGYPUrh8PKK8RakKZzmuviql
+ rlyytoCLs069a3nOnbw9z6IJ2159Z6+d36LAUNXjREiVSFXXGqgjZjNCCIx+DxvzKzTx
+ YdWOHy+6rxSMUtPNqNZp9hFo4Kn3jF4xXofICitl117Ejp74j5s5WpEupRchxCLNzT8M
+ QAsbY3UDafm1RJ2iIk7dY6HIwwbv3qLgnK/pVTpalXPNX8H30+FNTabGrPXjw0+MKKL7
+ JiN/32zxTrsmJA21EBN5Mvg4FoFeVzReycSV7QT1rOIyA6w7dpX+rVpSgs1Mv2v23fL1
+ Pvlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720571146; x=1721175946;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GLMMCTOEE4C+kE7P1kVc+ZnjaPA7yhchwaYpxbxPQqg=;
+ b=g6q736Qa6gq7BIKs26we5XYYO7Ur+x9j7vtQwloUMxnobD1vDm5pIw8+/4p5pZ78mp
+ Wei/qnebt5YzPyKHDBZfQMYXfxn1gntXpHd1lpCzvQUOR5RNTQI+L1q7HBAwQbK/ALAQ
+ PcL3LENFy4sIGOfF1lUOypZqJ/zLnvOsnwyDYWJD2We41fu22WMFdVPedMRzMx/Gdjd+
+ lkyHR027azJago4wxEeBL6RzQT9CTtfmWulWbjCYfuLZIaU/fbDQDCHsRJwozmogrooy
+ ur0saol4hLjISQhSQeNxY++HHqEyHsDn5Rbr81wxcwhhU5hLEBVHARVJmd1Qb4He3Fh/
+ 0WPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVKqBpAbjokn8sjXjhMH9m41oKnhRSwJ0/9ibSPS2bTmRh9bYE3SR73p7vuzA7hFS6SIA8A6YXOhpyYhiRpkJ8ueOMUJCCoNT1VyEgHuAiGXD2eXs0FGS1G+2gq+x8o5Au12Aw7aATmSq97M+s4jZatDzb2Gx48eE0a4vIJZ/OSKZS0U4z+dDsEAgTMmhHaGWqMnGDJeX64oNj6UbE28FmcdwWLl0ingUOr7/rcHsu49As9ga0=
+X-Gm-Message-State: AOJu0Yx4OKGe095w6mRg3KoVHJONljLQLnsEVnvBHBAF8D6Whm/9N37Q
+ bAPelCSvgeOzeJOmRIkaAWxmTKFtQMKjWJaBbBQu7WkGSm/+oCbQgZ7Az1nhKxewBibnV8B1Lrp
+ KXuSIP4vHrN6s9acav/txqiuk2eo=
+X-Google-Smtp-Source: AGHT+IGECqipxoMr9LXTGLmRKFz4B8Xc35pmBX/LCXPTFZurDCgbtol3fdXdT6TkXYh5nKfDM1iSxmkL5helPLunxBc=
+X-Received: by 2002:a05:6102:5123:b0:48f:5b4c:bb0a with SMTP id
+ ada2fe7eead31-49031dc8f16mr4627169137.0.1720571145737; Tue, 09 Jul 2024
+ 17:25:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: 6.10/bisected/regression - commits bc87d666c05 and 6d4279cb99ac
- cause appearing green flashing bar on top of screen on Radeon 6900XT and
- 120Hz
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Cc: "Mahfooz, Hamza" <Hamza.Mahfooz@amd.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
-References: <CABXGCsNptxsQO=5=qi-JYiFX=rX8Ok5inK80Gn0qrUFWbtBGng@mail.gmail.com>
- <CADnq5_PDxJ8O1JUQ9RBYRFB9G1WZJos05ZAM4jUKuPBwPxjNkA@mail.gmail.com>
- <CABXGCsNN9LwHc2x2AAEH=5UNwpvkWkBqRYz3OP8MZ6Woy+HDXA@mail.gmail.com>
- <b6c440ca-e63e-429b-af41-5f27d4b8b2a2@leemhuis.info>
- <CABXGCsNoFfMn7LaqqFgEPg-ECyUPN=f=SXVrFi=GZk6c69-Gqw@mail.gmail.com>
- <CADnq5_PDSkr4hOHJmb1J30UC0a7sXsm5-TPkEmjzffMK_A+7ug@mail.gmail.com>
- <ea465a40-f673-42b1-8b1c-a2efb20cd562@amd.com>
- <CABXGCsPyrUEqDq2gbr4VLw5ncd9cKoCZ9nOr2SRfg8Lh=9H5Kg@mail.gmail.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <CABXGCsPyrUEqDq2gbr4VLw5ncd9cKoCZ9nOr2SRfg8Lh=9H5Kg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1720528917;
- 5dd8eef7; 
-X-HE-SMSGID: 1sRAAN-0006uA-4B
+References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ <20240702215804.2201271-31-jim.cromie@gmail.com> <ZoSOMClB0MeWeokU@intel.com>
+ <CAJfuBxzsZUpO-Q_uAfMhzXs0WHYMTnj1F8ju7af-kQZKQjLvNQ@mail.gmail.com>
+ <ZoU7kR2aYwVDvd_G@intel.com>
+ <CAJfuBxwVWbJ9TdgH0ARmxUy+_DfNVKrTewjkqWKmCQtfOKQEAg@mail.gmail.com>
+In-Reply-To: <CAJfuBxwVWbJ9TdgH0ARmxUy+_DfNVKrTewjkqWKmCQtfOKQEAg@mail.gmail.com>
+From: jim.cromie@gmail.com
+Date: Tue, 9 Jul 2024 18:25:19 -0600
+Message-ID: <CAJfuBxx1wz=bMOyfiRRhrGyZTqnqZsUmi9Vubs23Yi1px9sZ-g@mail.gmail.com>
+Subject: Re: [PATCH v9 30/52] drm-dyndbg: adapt drm core to use dyndbg
+ classmaps-v2
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, 
+ jani.nikula@intel.com, jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ ukaszb@chromium.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux@rasmusvillemoes.dk, joe@perches.com, mcgrof@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 10 Jul 2024 07:13:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,36 +85,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 30.06.24 01:18, Mikhail Gavrilov wrote:
-> On Sat, Jun 29, 2024 at 9:46 PM Rodrigo Siqueira Jordao
-> <Rodrigo.Siqueira@amd.com> wrote:
->>
->> I'm trying to reproduce this issue, but until now, I've been unable to
->> reproduce it. I tried some different scenarios with the following
->> components:
->>
->> 1. Displays: I tried with one and two displays
->>   - 4k@120 - DP && 4k@60 - HDMI
->>   - 4k@244 Oled - DP
->> 2. GPU: 7900XTX
-> 
-> The issue only reproduced with RDNA2 (6900XT)
-> RDNA3 (7900XTX) is not affected.
+On Wed, Jul 3, 2024 at 10:11=E2=80=AFAM <jim.cromie@gmail.com> wrote:
+>
+> Got it.
+> I had some mental block about passing designated intializers as macro arg=
+s.
+> it just worked, I needed to eyeball the .i file just to be sure.
+> thanks.
+> I have a fixup patch.
+> whats the best thing to do with it, squash it in for later ? send in
+> reply here ?
+>
 
-Hmmm, again this looks stalled -- and the regression report is 6 weeks
-old by now. :-/ Or was a solution found in between?
+I have to retract on designated-initializers into DYNDBG_CLASSMAP_DEFINE
 
-So I assume no solution will be ready in time for the 6.10 final? I also
-assume a "simple" temporary revert is not a option or bears big risks?
+While it works for DRM, and looks good, and self-documenting,
+it only works cuz DRM_UT_CORE =3D 0,
+and breaks when I used it 2x in test-dynamic-debug.ko.
+the 2nd _DEFINE needs a _base > DRM_UT_LAST.
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-If I did something stupid, please tell me, as explained on that page.
 
-#regzbot poke
+With designated-init exprs passed in thru the macro, I get:
+
+    1st classmap below is bad - the length should be 8, but is 28 cuz
+init started at 20.
+
+    (gdb) p *di->classes@di->num_classes
+    $2 =3D {{mod =3D 0xffffffffc0203740, mod_name =3D 0xffffffffc0206220
+"test_dynamic_debug",
+        class_names =3D 0xffffffffc0203080, length =3D 28, base =3D 20,
+map_type =3D DD_CLASS_TYPE_LEVEL_NUM}, {
+        mod =3D 0xffffffffc0203740, mod_name =3D 0xffffffffc0206220
+"test_dynamic_debug",
+        class_names =3D 0xffffffffc0203160, length =3D 10, base =3D 0,
+map_type =3D DD_CLASS_TYPE_DISJOINT_BITS}}
+    (gdb)
+
+    so 1st 20 classnames are empty, and classnames -> index -> classid
+translation fails later.
+
+    (gdb) p *di->classes[0]->class_names@di->classes[0]->length
+    $4 =3D {0x0 <fixed_percpu_data> <repeats 20 times>,
+0xffffffffc0206356 "V0", 0xffffffffc0206359 "V1",
+      0xffffffffc020635c "V2", 0xffffffffc020635f "V3",
+0xffffffffc0206362 "V4", 0xffffffffc0206365 "V5",
+      0xffffffffc0206368 "V6", 0xffffffffc020636b "V7"}
+    (gdb)
+
+Basically, when designated-inits are passed in, the _base param is redundan=
+t,
+and the once guaranteed contiguous 0-based classnames list is now
+guaranteed sparse.
+
+the macro could be altered to expect designated-inits,
+but I couldnt distinguish between the 2 different uses,
+so theres a mis-use potential either way.
+
+Id prefer to keep the _DEFINE the way it is,
+and better kdoc & howto this to explain away the potential.
+
+BTW: Im aware I failed to delete some v9*patch files before git send-email,
+Im considering my penance, will resend soon.
