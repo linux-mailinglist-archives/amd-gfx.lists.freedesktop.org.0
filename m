@@ -2,129 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE1292D948
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF9B92D94F
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:38:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45F8710E8A6;
-	Wed, 10 Jul 2024 19:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15D6A10E8AA;
+	Wed, 10 Jul 2024 19:38:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LYpP9MyJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Y1guDg8U";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5EE10E8A6
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:37:56 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9B510E8AA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:38:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jrcHczhvDgMA1ritEgzMKEsmbexjb4fQVsxfE6y/b0Vkq95jZJZ7+Lq2Oti1LV5t/SW4BRJQ5GcUfDS0LvrhhXxo+6a/KPk3XDeVtu/3aAKPe99iQDrjboeWnK2e8LaKvVog7dYNiiCnbspmRWtTgwFOtmQHgq5hjFCJt2MYU9jzMM4m4+yO6QHthqMm8GJ/zHF1rAl29+hfzy1QVAhk/gaIcOIP8/LZcsI2WLpFFZNX3J3ch92NQEJwhHfxZ/mbzpP/7p9kj2CSWrRTv38KCiAfLY21JbV1FIjEwQ1RirZ/q8aLv9XADU50tm22440RxwFURYahdWuldAoOCcJOIg==
+ b=PTiZEkuoFkm5jKl7dsdA9vTIgvpfXEoqWhYimg9NHbGqeYej5AoH/4TTmOeIXHc4wtBNFKJa6t6y8i7iiINfXXR/2+o4SUC1uNqbErRAr6M0Zbekm5B5xotPQ2uh/dw0AKLLnlOawi4gePP0psWLJNHhTyWu9StawAU2UE2HF/CNkgrIPmqnIOMFmUUQpW6pzAEvMx1221YSEtrWcMBYw36LA4ftTwb5PU3GyIaPOMSRl9Ne0PnTSQFPaMdHZVjeLn54MMd1lR5yl97wGN+MYsb8Z/kwUOTTtTHf8ucox1D8w1flc+8/XLeFKpBM14wukElvmfUqXRYCn6gCfC58JA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IUJOw6135fxc1FbHIxjZZRbYSrfM0ZF9dtDBuLbvWok=;
- b=XWO6Sf++41IgQLP0U87VlfwA11vU6AgdE16rHoDXhACZpxfex4W8w0eFIXwsDEH9roq7nY4exE8BJsLVSRmF9SPCjB25d/tm47hYKsMlnJRYvaUsusPl2QnetioMOIlGb+h/3EfyvYQ8suUpDkttWkkpBeYpK/yyfUwDhvZ2hzLWZx39HKC5lu4nDefoVitCixTWsaK4Rb5dmEI+qvMtPNTEzZUge0kEkXxFWD3HdMnUDcPcpFeCREnHX7W1Y2pT0ppJtDlRxKk9l4ihrP6QOtpMBPI+dVRCGms8E91Pwsi8Q7+J42dxtz4PpJTPNAlrYNdpXdKBSmmymJrhHMyNYQ==
+ bh=OxWn8EPYbDkhrVi69ssgS8lO1c8vzmReUj8q7m9VKwc=;
+ b=S0RcqSHJMfg3qF29pwdiws78zHDqlZ3SKXqzGiEybh5MLfPJffn2qkNYrxmt2rNaANPKHTC6rmFPgLPJj1uQ1hsZltKjmXPsu9NPlrdfnblNeUJbuJrnIIismDyrRWhNpyWFRGYP48jeC/Fa/19xotvW7YedKVQBKFXpIa5ZctYEF7PjHj7YbyvoVuvXs7X/QVJI3w2INYAhT3XVKrh7BRRW9zT/udkYLxwcM700bWqvGL/VqMFZv765KLNR+EjmLJcx7vE1lVOnz5+omcqv+ub0Be2g0Z1Zn+1wwFzM2zysf9+QDXCyVxTeYH9mIkAfp1BLERddHzVQ+V6hsr29nQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IUJOw6135fxc1FbHIxjZZRbYSrfM0ZF9dtDBuLbvWok=;
- b=LYpP9MyJoYeQy15QwMPur96D7fYsw6RMc4YJV1/TRR78VW2fsWWa7gPcR2RNmDPBcttX6DjBxUW6SZJQ4NDDzcS4Sbm3eji0cmoPpYLDKRyNd3OW5cdeeRgmyP/IZhVfRfoHGChFEjFxpOinMi65fx5JdMfbHPKN/DR3mG2VvOs=
-Received: from BY5PR16CA0007.namprd16.prod.outlook.com (2603:10b6:a03:1a0::20)
- by IA1PR12MB6233.namprd12.prod.outlook.com (2603:10b6:208:3e7::11)
+ bh=OxWn8EPYbDkhrVi69ssgS8lO1c8vzmReUj8q7m9VKwc=;
+ b=Y1guDg8UGDYgcMCcM9Im9N6ZzzOwbw9BUFn097/SmSIgSIrPeF01yY4sPedBHr4rKoyFTeF1Dr8TwRxjelAHgIb44/T65/mFMC56r9Kvizjp3ReNgrkMOPPehxckE0RQmEYwJEjehQdS0vz2Co3frQ11wvTUOyPhKTSQBXBUudo=
+Received: from BLAPR03CA0016.namprd03.prod.outlook.com (2603:10b6:208:32b::21)
+ by MN2PR12MB4423.namprd12.prod.outlook.com (2603:10b6:208:24f::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.19; Wed, 10 Jul
- 2024 19:37:50 +0000
-Received: from CO1PEPF000042A9.namprd03.prod.outlook.com
- (2603:10b6:a03:1a0:cafe::2a) by BY5PR16CA0007.outlook.office365.com
- (2603:10b6:a03:1a0::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36 via Frontend
- Transport; Wed, 10 Jul 2024 19:37:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Wed, 10 Jul
+ 2024 19:38:12 +0000
+Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
+ (2603:10b6:208:32b:cafe::df) by BLAPR03CA0016.outlook.office365.com
+ (2603:10b6:208:32b::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.19 via Frontend
+ Transport; Wed, 10 Jul 2024 19:38:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042A9.mail.protection.outlook.com (10.167.243.38) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:37:49 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:38:11 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:37:48 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:37:48 -0500
+ 2024 14:38:07 -0500
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 10 Jul 2024 14:37:47 -0500
+ Transport; Wed, 10 Jul 2024 14:38:01 -0500
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Relja Vojvodic <relja.vojvodic@amd.com>, Krunoslav Kovac
- <krunoslav.kovac@amd.com>
-Subject: [PATCH 10/50] drm/amd/display: Implement bias and scale pre scl
-Date: Wed, 10 Jul 2024 15:36:27 -0400
-Message-ID: <20240710193707.43754-11-Jerry.Zuo@amd.com>
+ <jerry.zuo@amd.com>, Jingwen Zhu <jingwen.zhu@amd.com>, Rodrigo Siqueira
+ <rodrigo.siqueira@amd.com>
+Subject: [PATCH 11/50] drm/amd/display: avoid disable otg when dig was disabled
+Date: Wed, 10 Jul 2024 15:36:28 -0400
+Message-ID: <20240710193707.43754-12-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 References: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: Jerry.Zuo@amd.com does not designate
+ permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A9:EE_|IA1PR12MB6233:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0883bed6-5c38-4bf1-e64d-08dca117c889
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|MN2PR12MB4423:EE_
+X-MS-Office365-Filtering-Correlation-Id: 190d5af8-968c-4b2d-7710-08dca117d59f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4xFyEmw1ftY+QnsITol+Vu+XwjaPa6y+NkVlufkzGmqEfvfl90qeIez216Om?=
- =?us-ascii?Q?OiuYHElDWuxI2bl6PpLZdN7849Zo83Wxg3dl1VV0yy6GEcU1KXDfJQev18hg?=
- =?us-ascii?Q?EGKWSo5o+RUB3aNs69Xa9Azc20CI86dPi7kOdcEgzaFeTn/I3piPIi2aUfaw?=
- =?us-ascii?Q?W3MQP9YnAdZbMZQKGlvCT6fjwGULMRB0xArHu0GhHKmd+TUNMcEbxzUFH8Ij?=
- =?us-ascii?Q?XOmNWUvcRf5RN+PK70BYxbSpYf65PKEy2AZL8li4uoqEK6hRFl1ifhUASwjq?=
- =?us-ascii?Q?zD5NcWOdr+Zkpp5O9pKTdkkBSV1sL6R12bnAfdKTNDhBI947VWBkEn6yf+7V?=
- =?us-ascii?Q?iT9NTJUJ5KpeiEyQFJgIx0HyDz72bewlWMDBnfpohbRwTdY8llAWBVtlawVL?=
- =?us-ascii?Q?0ZeRxAqnWmDpqcx+tO6jDZstua1dHR34HZGGJUh2Jvgbnt3T50cdbYYchIPa?=
- =?us-ascii?Q?bNrwumHKj6d4nkZV40fKbOYnPbChiR9nAcepU7zQDAA4fuMLpfCbETgr82mu?=
- =?us-ascii?Q?3imZoBl2WGe2DPqzmbVOkSfKZKlTPHJzEoHuj5jkEEQSvtrIFlmdF3aHUuOD?=
- =?us-ascii?Q?P/qHxA/ZNuGDugQjTOf3ShQ7gcpP7lNdIuITjs05RFio8R9BdtAyU7Pq5HZe?=
- =?us-ascii?Q?m2Fg5zWB0ohGbrEx3La8fZuHqZ6e0dP7Thrk6ScNXhSiWknS7rMtS+un8oVZ?=
- =?us-ascii?Q?RIu+GKPRP8e4cd6Z2a6GMqpQlki23v7oJqUOnS0gZxorfcO/bo8ZQbXOnBo1?=
- =?us-ascii?Q?q9Aj4HhnaLVRHTBNeNBMOZ/arefAyIK6QcnUlIv97Xz/jPFmBtODa2HzH1wh?=
- =?us-ascii?Q?bTr3FKYxhM59r/VCfE2/1YXtEQg3sXkxmzychv/k+DRQ7eC3haTgY/j6GJqx?=
- =?us-ascii?Q?did25vS7FEI8p0UgpYSRrHHz67sAsW3iIj1trjllIi9F4CcUfBwXEt07RdL4?=
- =?us-ascii?Q?lnZypd2b/aU9Icu+wuUzXpb4Cp198od5TxeMMKRicxaeNmef2/a8nF24s8Yj?=
- =?us-ascii?Q?jGm/ny0BKjWtsXQsk+iVT4n5R9ubbdiShfgR6MF7RxE4YTWjk94BSx2QGo9p?=
- =?us-ascii?Q?oGCUbWKDFazU+UB8fqP5GfDHavijWeQin7JQ512KSuHt/7F68yyKEiHAkOZ2?=
- =?us-ascii?Q?0W8W9talO8a5+O2b3XncfrvPniio31rw8/byAW1TQ6ULHRmfwg8NtNGsqTy/?=
- =?us-ascii?Q?RDYytO8sytkfJRUz+E6DI/nNZssKQ3xIUEV7QcbP/QrPFEq8gbR6VPbnHK+3?=
- =?us-ascii?Q?7/zCP/Tg9iJ5UZ5/BTu/8jakZWcXMWcJ9br/6QmyrIkJ4IgwZw4ApGNFVAQW?=
- =?us-ascii?Q?SJjARDwUuONVnYcIahJyY2wtHQAD8TEI+335rIu/fMUcL3nGFgZzVwRyOpTB?=
- =?us-ascii?Q?TdksqHrCoxYcbte1Xrite+oC7mG3j+WWbxQfno4DySJ68bfTvjRq/FQU7OBB?=
- =?us-ascii?Q?FafMEYYyFeWTuNThsuya1Ksz4eIkkmDy?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5Bd47e8DkjJAwkUvXBh8FDpp8DqKm1Leg76TDrkmWvLek9NR/MPBZFZTzlWm?=
+ =?us-ascii?Q?/GwSsU8WVrmYnuAlJdbDaeNbXSAIjojoF2pKhbkCxPGc4SHw3RCBoHwGh9Ym?=
+ =?us-ascii?Q?biBq5WYnRylsPZ2vpMf5HnbMHhF5slBzVkbYAO4GAzLybv7qHcqV4L2xNEej?=
+ =?us-ascii?Q?XcwwHarGhMb6f+A1UAw1pe4PXyErJFrJDDK9OQODaZc/4tnNf7EPUzV2gZjC?=
+ =?us-ascii?Q?tzcpr5VevkcQtaWZRE447HWruDe+Y9/B5I6lTBXZLClnM7Nd/l8EL1DdzajM?=
+ =?us-ascii?Q?RzsgPQWS8sdAK8fvz3xf22SF18Yrk3yF46q4izZrb40lRFWse0wzyv3CCC35?=
+ =?us-ascii?Q?csVUVYPBeYZTte/MUqUgKcATnRXuTMNKg7/D9JQGFxjsrRBTNxf80rqMcrJk?=
+ =?us-ascii?Q?Bcg4pAA1eQW/75kxzamQgDxygX05IXCw1MuYmXWIf5nn6mFCph6wpbL2ProH?=
+ =?us-ascii?Q?Q+NMW4DlmeU9g2Q/s6R+oV2mF08eQGa3wF+0Xd35Nt6UAbmt+jGsZ5UEtjyq?=
+ =?us-ascii?Q?uZYQUez4841IxHjTpAckvsGL6dz4+QoCbXA4X16ZBpX8XdQmphiceowiLLPB?=
+ =?us-ascii?Q?7pVuePgHm9oV/obgzgqmjyTfahRrz2tNPIAtoQXwrldhWN49DaYL8p0n6zOA?=
+ =?us-ascii?Q?T/Ptl5jdGOOElbaK5Xc3U8Axi8dfVW0JUqs6WkO2Zo/IfJklLNpnIkCi1lkn?=
+ =?us-ascii?Q?w7meFIcvGAOFHh9MYCVfBVXDCVeZ0yF12/vTOW+ru08NpqSq7g5GSyKoCTa7?=
+ =?us-ascii?Q?gzvdgsL9rrE4T9/0KlRSJab6ZGHsxDnZ+BLwedOyuV/SQZOm+isfeWF79l6T?=
+ =?us-ascii?Q?CWsZCcoXUuezEWc85lN/FaNlrSvjNIV5fqrYFznkU8+QW6vhwyWR5ItN88Bg?=
+ =?us-ascii?Q?ckj47C3xIEhK//twXyTf/9AZMklAcJ1hgEfr9RWfpZ3CcqDIM8tsWbE1NhyF?=
+ =?us-ascii?Q?z4j5cuAH+xGaEu0xdkB7GY4EyVajg46QgEMn5670B+rUKNxaO3zSFK/1M4Cf?=
+ =?us-ascii?Q?/Yfor9aFO7yV1F9r/Xo3A2rt1mpCYlLRb50Z337qqxrVnzjCxUOW1xQtsTif?=
+ =?us-ascii?Q?31vWhWUaMoW92VbkfZaMVZASHet+yevham709YkJqAcH7qLYZeMbT7L5koaR?=
+ =?us-ascii?Q?F5i/XNdD/BE0V8q9JZaDq7BAlqMDIlPG9t6T/zwyu3feD+AhBs9PVauYGSCP?=
+ =?us-ascii?Q?5t/E23GxVSnIM4GZlmG5xRfsX2mVTY8A/NzLNS94JLff66PnnUCyEBF1RCQS?=
+ =?us-ascii?Q?4WwtZcYbYaGRE5ArLtJvRGv0G1CUMsex3zdCat65vSVla+Xo2BlMpjp/FhYk?=
+ =?us-ascii?Q?LrI5vWVh5hGeitC2uhy6p+N8HRE6KZhhY61vK1AjpU8Ndx5CP6YvpYPN60lT?=
+ =?us-ascii?Q?mjVUDDS49/Z1LMmqlIXzUWccG7U6yRUXUsnj34E8bqPCSrqVzGayhPIUehCe?=
+ =?us-ascii?Q?xcQIeF1rvJ8t4DyR4FvRQcs4+diSMaVl?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:37:49.7443 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0883bed6-5c38-4bf1-e64d-08dca117c889
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:38:11.8053 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 190d5af8-968c-4b2d-7710-08dca117d59f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A9.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD4.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6233
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4423
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,186 +137,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Relja Vojvodic <relja.vojvodic@amd.com>
+From: Jingwen Zhu <jingwen.zhu@amd.com>
 
-why:
-New scaler needs the input to be full range color space. This will also fix
-issues that come up due to not having a predefined limited color space matrix
-for certain color spaces
+[Why]
+This is a workaround for an dcn3.1 hang that happens if otg dispclk
+is ramped while otg is on and stream enc is off.
+But this w/a should not trigger when we have a dig active.
 
-how:
-Use bias and scale HW to expand the range of limited color spaces to full
-before the scaler
+[How]
+Avoid disable otg when dig FE/BE FIFO was not switched.
 
-Reviewed-by: Krunoslav Kovac <krunoslav.kovac@amd.com>
+Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
-Signed-off-by: Relja Vojvodic <relja.vojvodic@amd.com>
+Signed-off-by: Jingwen Zhu <jingwen.zhu@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  6 ++---
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
- .../drm/amd/display/dc/dpp/dcn35/dcn35_dpp.c  | 27 ++++++++++++++++++-
- .../drm/amd/display/dc/dpp/dcn35/dcn35_dpp.h  |  3 +++
- .../amd/display/dc/dpp/dcn401/dcn401_dpp.c    |  3 ++-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  3 +--
- .../gpu/drm/amd/display/dc/inc/hw/hw_shared.h | 13 ++++-----
- 7 files changed, 43 insertions(+), 14 deletions(-)
+ .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c   | 18 +++++++++++++++---
+ .../dc/dio/dcn35/dcn35_dio_stream_encoder.c    |  9 +++++++++
+ .../drm/amd/display/dc/inc/hw/stream_encoder.h |  1 +
+ 3 files changed, 25 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 87e36d51c56d..9e42a0128baa 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -901,12 +901,12 @@ void hwss_program_bias_and_scale(union block_sequence_params *params)
- 	struct pipe_ctx *pipe_ctx = params->program_bias_and_scale_params.pipe_ctx;
- 	struct dpp *dpp = pipe_ctx->plane_res.dpp;
- 	struct dc_plane_state *plane_state = pipe_ctx->plane_state;
--	struct dc_bias_and_scale bns_params = {0};
-+	struct dc_bias_and_scale bns_params = plane_state->bias_and_scale;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+index 70ee0089a20d..248d22b23a6d 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+@@ -120,7 +120,6 @@ static int dcn35_get_active_display_cnt_wa(
  
- 	//TODO :for CNVC set scale and bias registers if necessary
--	build_prescale_params(&bns_params, plane_state);
--	if (dpp->funcs->dpp_program_bias_and_scale)
-+	if (dpp->funcs->dpp_program_bias_and_scale) {
- 		dpp->funcs->dpp_program_bias_and_scale(dpp, &bns_params);
-+	}
+ 	return display_count;
+ }
+-
+ static void dcn35_disable_otg_wa(struct clk_mgr *clk_mgr_base, struct dc_state *context,
+ 		bool safe_to_lower, bool disable)
+ {
+@@ -128,14 +127,27 @@ static void dcn35_disable_otg_wa(struct clk_mgr *clk_mgr_base, struct dc_state *
+ 	int i;
+ 
+ 	for (i = 0; i < dc->res_pool->pipe_count; ++i) {
++		struct pipe_ctx *old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
++		struct pipe_ctx *new_pipe = &context->res_ctx.pipe_ctx[i];
+ 		struct pipe_ctx *pipe = safe_to_lower
+ 			? &context->res_ctx.pipe_ctx[i]
+ 			: &dc->current_state->res_ctx.pipe_ctx[i];
+-
++		bool stream_changed_otg_dig_on = false;
+ 		if (pipe->top_pipe || pipe->prev_odm_pipe)
+ 			continue;
++		stream_changed_otg_dig_on = old_pipe->stream && new_pipe->stream &&
++		old_pipe->stream != new_pipe->stream &&
++		old_pipe->stream_res.tg == new_pipe->stream_res.tg &&
++		new_pipe->stream->link_enc && !new_pipe->stream->dpms_off &&
++		new_pipe->stream->link->link_enc->funcs->is_dig_enabled &&
++		new_pipe->stream->link->link_enc->funcs->is_dig_enabled(
++		new_pipe->stream->link->link_enc) &&
++		new_pipe->stream_res.stream_enc &&
++		new_pipe->stream_res.stream_enc->funcs->is_fifo_enabled &&
++		new_pipe->stream_res.stream_enc->funcs->is_fifo_enabled(new_pipe->stream_res.stream_enc);
+ 		if (pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal) ||
+-				     !pipe->stream->link_enc)) {
++			!pipe->stream->link_enc) && !stream_changed_otg_dig_on) {
++			/* This w/a should not trigger when we have a dig active */
+ 			if (disable) {
+ 				if (pipe->stream_res.tg && pipe->stream_res.tg->funcs->disable_crtc)
+ 					pipe->stream_res.tg->funcs->disable_crtc(pipe->stream_res.tg);
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+index 6a179e5ab417..fcc88ef83e6a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+@@ -392,6 +392,14 @@ static void enc35_reset_fifo(struct stream_encoder *enc, bool reset)
+ 		udelay(10);
  }
  
- void hwss_power_on_mpc_mem_pwr(union block_sequence_params *params)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 4c9bb913125d..83fe13f5a367 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1292,7 +1292,7 @@ struct dc_plane_state {
- 
- 	struct dc_gamma gamma_correction;
- 	struct dc_transfer_func in_transfer_func;
--	struct dc_bias_and_scale *bias_and_scale;
-+	struct dc_bias_and_scale bias_and_scale;
- 	struct dc_csc_transform input_csc_color_matrix;
- 	struct fixed31_32 coeff_reduction_factor;
- 	struct fixed31_32 hdr_mult;
-diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.c
-index e16274fee31d..8473c694bfdc 100644
---- a/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.c
-@@ -59,6 +59,31 @@ void dpp35_dppclk_control(
- 				DISPCLK_R_GATE_DISABLE, 0);
- }
- 
-+void dpp35_program_bias_and_scale_fcnv(
-+	struct dpp *dpp_base,
-+	struct dc_bias_and_scale *params)
++static bool enc35_is_fifo_enabled(struct stream_encoder *enc)
 +{
-+	struct dcn20_dpp *dpp = TO_DCN20_DPP(dpp_base);
++	struct dcn10_stream_encoder *enc1 = DCN10STRENC_FROM_STRENC(enc);
++	uint32_t reset_val;
 +
-+	if (!params->bias_and_scale_valid) {
-+		REG_SET(FCNV_FP_BIAS_R, 0, FCNV_FP_BIAS_R, 0);
-+		REG_SET(FCNV_FP_BIAS_G, 0, FCNV_FP_BIAS_G, 0);
-+		REG_SET(FCNV_FP_BIAS_B, 0, FCNV_FP_BIAS_B, 0);
-+
-+		REG_SET(FCNV_FP_SCALE_R, 0, FCNV_FP_SCALE_R, 0x1F000);
-+		REG_SET(FCNV_FP_SCALE_G, 0, FCNV_FP_SCALE_G, 0x1F000);
-+		REG_SET(FCNV_FP_SCALE_B, 0, FCNV_FP_SCALE_B, 0x1F000);
-+	} else {
-+		REG_SET(FCNV_FP_BIAS_R, 0, FCNV_FP_BIAS_R, params->bias_red);
-+		REG_SET(FCNV_FP_BIAS_G, 0, FCNV_FP_BIAS_G, params->bias_green);
-+		REG_SET(FCNV_FP_BIAS_B, 0, FCNV_FP_BIAS_B, params->bias_blue);
-+
-+		REG_SET(FCNV_FP_SCALE_R, 0, FCNV_FP_SCALE_R, params->scale_red);
-+		REG_SET(FCNV_FP_SCALE_G, 0, FCNV_FP_SCALE_G, params->scale_green);
-+		REG_SET(FCNV_FP_SCALE_B, 0, FCNV_FP_SCALE_B, params->scale_blue);
-+	}
++	REG_GET(DIG_FIFO_CTRL0, DIG_FIFO_ENABLE, &reset_val);
++	return (reset_val == 0) ? false : true;
 +}
-+
- static struct dpp_funcs dcn35_dpp_funcs = {
- 	.dpp_program_gamcor_lut		= dpp3_program_gamcor_lut,
- 	.dpp_read_state				= dpp30_read_state,
-@@ -81,7 +106,7 @@ static struct dpp_funcs dcn35_dpp_funcs = {
- 	.dpp_program_shaper_lut		= NULL, // CM SHAPER block is removed in DCN3.2 DPP, (it is in MPCC, programmable before or after BLND)
- 	.dpp_program_3dlut			= NULL, // CM 3DLUT block is removed in DCN3.2 DPP, (it is in MPCC, programmable before or after BLND)
- 
--	.dpp_program_bias_and_scale	= NULL,
-+	.dpp_program_bias_and_scale	= dpp35_program_bias_and_scale_fcnv,
- 	.dpp_cnv_set_alpha_keyer	= dpp2_cnv_set_alpha_keyer,
- 	.set_cursor_attributes		= dpp3_set_cursor_attributes,
- 	.set_cursor_position		= dpp1_set_cursor_position,
-diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.h b/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.h
-index 135872d88219..3ca339a16e5b 100644
---- a/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn35/dcn35_dpp.h
-@@ -61,4 +61,7 @@ bool dpp35_construct(struct dcn3_dpp *dpp3, struct dc_context *ctx,
- 
- void dpp35_set_fgcg(struct dcn3_dpp *dpp, bool enable);
- 
-+void dpp35_program_bias_and_scale_fcnv(struct dpp *dpp_base,
-+		struct dc_bias_and_scale *bias_and_scale);
-+
- #endif // __DCN35_DPP_H
-diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp.c
-index 7cae18fd7be9..97bf26fa3573 100644
---- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp.c
-@@ -30,6 +30,7 @@
- #include "basics/conversion.h"
- #include "dcn30/dcn30_cm_common.h"
- #include "dcn32/dcn32_dpp.h"
-+#include "dcn35/dcn35_dpp.h"
- 
- #define REG(reg)\
- 	dpp->tf_regs->reg
-@@ -240,7 +241,7 @@ static struct dpp_funcs dcn401_dpp_funcs = {
- 	.dpp_program_shaper_lut		= NULL, // CM SHAPER block is removed in DCN3.2 DPP, (it is in MPCC, programmable before or after BLND)
- 	.dpp_program_3dlut			= NULL, // CM 3DLUT block is removed in DCN3.2 DPP, (it is in MPCC, programmable before or after BLND)
- 
--	.dpp_program_bias_and_scale	= NULL,
-+	.dpp_program_bias_and_scale	= dpp35_program_bias_and_scale_fcnv,
- 	.dpp_cnv_set_alpha_keyer	= dpp2_cnv_set_alpha_keyer,
- 	.set_cursor_attributes		= dpp401_set_cursor_attributes,
- 	.set_cursor_position		= dpp401_set_cursor_position,
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index ea9bedf65d84..9a00479f0417 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -1698,7 +1698,7 @@ static void dcn20_update_dchubp_dpp(
- 			plane_state->update_flags.bits.input_csc_change ||
- 			plane_state->update_flags.bits.color_space_change ||
- 			plane_state->update_flags.bits.coeff_reduction_change) {
--		struct dc_bias_and_scale bns_params = {0};
-+		struct dc_bias_and_scale bns_params = plane_state->bias_and_scale;
- 
- 		// program the input csc
- 		dpp->funcs->dpp_setup(dpp,
-@@ -1715,7 +1715,6 @@ static void dcn20_update_dchubp_dpp(
- 		}
- 		if (dpp->funcs->dpp_program_bias_and_scale) {
- 			//TODO :for CNVC set scale and bias registers if necessary
--			build_prescale_params(&bns_params, plane_state);
- 			dpp->funcs->dpp_program_bias_and_scale(dpp, &bns_params);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
-index 27bba47186e9..41c76ba9ba56 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/hw_shared.h
-@@ -217,12 +217,13 @@ enum optc_dsc_mode {
+ void enc35_disable_fifo(struct stream_encoder *enc)
+ {
+ 	struct dcn10_stream_encoder *enc1 = DCN10STRENC_FROM_STRENC(enc);
+@@ -465,6 +473,7 @@ static const struct stream_encoder_funcs dcn35_str_enc_funcs = {
+ 	.set_input_mode = enc314_set_dig_input_mode,
+ 	.enable_fifo = enc35_enable_fifo,
+ 	.disable_fifo = enc35_disable_fifo,
++	.is_fifo_enabled = enc35_is_fifo_enabled,
+ 	.map_stream_to_link = enc35_stream_encoder_map_to_link,
  };
  
- struct dc_bias_and_scale {
--	uint16_t scale_red;
--	uint16_t bias_red;
--	uint16_t scale_green;
--	uint16_t bias_green;
--	uint16_t scale_blue;
--	uint16_t bias_blue;
-+	uint32_t scale_red;
-+	uint32_t bias_red;
-+	uint32_t scale_green;
-+	uint32_t bias_green;
-+	uint32_t scale_blue;
-+	uint32_t bias_blue;
-+	bool bias_and_scale_valid;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+index e5e11c84e9e2..6fe42120738d 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+@@ -271,6 +271,7 @@ struct stream_encoder_funcs {
+ 		struct stream_encoder *enc, unsigned int pix_per_container);
+ 	void (*enable_fifo)(struct stream_encoder *enc);
+ 	void (*disable_fifo)(struct stream_encoder *enc);
++	bool (*is_fifo_enabled)(struct stream_encoder *enc);
+ 	void (*map_stream_to_link)(struct stream_encoder *enc, uint32_t stream_enc_inst, uint32_t link_enc_inst);
  };
  
- enum test_pattern_dyn_range {
 -- 
 2.34.1
 
