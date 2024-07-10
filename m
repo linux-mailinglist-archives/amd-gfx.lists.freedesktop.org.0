@@ -2,137 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D61D92D95C
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DD692D95F
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jul 2024 21:39:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE7310E8B8;
-	Wed, 10 Jul 2024 19:39:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE01B10E8B1;
+	Wed, 10 Jul 2024 19:39:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zwn/Urlk";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HJ1JLAvf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8990510E8B8
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:39:24 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B448B10E8B1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 19:39:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UWyi6Vr8G+aTB5Mt4qYZ5aBDOaNwZ9mDaWOhecemGEW9JYNuZruIZV6Zno2e69AZZxuHh5d1NyiQ+CSRBM3PJWIXGjrqyudYCQxjgy1bKf0Z463MOo7oPGYu0b7F59Fu8lfj43MI/bv2igfLexcQOBQKFy53IuxuMv1uu5tuiSHG5fgH63MPU1rImxunmyfwAOODMFEsgy/wxBt6tRDu+V/j1tDoMc3e7DlozghpZjOfp1DgfxJqC8wUkeokoC6vzKPgxSk3GT+kR+3dGti905PUKwMvNRZYsNfVxiYpllxqwdAtdiC9opWA2WtWkNU5Vnj5tnfdI2JJQbWNuMJv1A==
+ b=W+MsPFFT4I0j53JDUwnxmcGqPCEOuo575V1F0xbD8Dk89PjfrDGVDCsd4cLAHvdJ7jJRvxhtWgxD5kfZgMIipHo8M6jlFesy19WFhkaBbYyD4NPjFJhb66rIJawaRScGltmyHpa5s0D1lZWmy2n/aTxkYtopDAWIMTV6nDw0UTylftOxYR+EFvSCgoyGin6INWUEU4ToMxpcYeAXLx5q0z0qRcRouaZvti5LfpwMuMDDEp9M2WolSqhfY3cil4Vu8mc0TnUiZktLekLH2P//L7uiVoGdxoR76KjgfmgYbtH+0CbViM0QpxAA5gnUtp9wxMsAPcqj/6nLLmBhR+Bqpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CBsYCZquOgb4JU8vf+wpeur4j839MjGfkG6djz0O+g0=;
- b=X5HJt0ZgFe+NTlFYrYAzyo65lzAk9YWB/Xqp4xQ6pNQje67lP0th/qKe5KbcV/hTUnDBBYbkLmaJ5XPzt0tmtLOlFDXpwygL1Qqvu/tv6h9aVP7PHN7EVi6jSa/MH4fCU8GDlV0FBoSsdwYU6hl9/7wQq1BHNRmFa7uLPT7o6sgzh/vBeE+cRQ54n1kU+STzKzusgooiCKjIsrBeZ0Gu75CTP1Hn2S9o1swlhWnqIEfc2Z+aI4tZEdn961UuT4p7qZQRdnnb7QRfNJNszrnXWY30yalVoU6OTY/6N/wfRMIBR+qcSKGFSU5GhXdFHG5SLPZKKshV06vrT8z5zc6xQA==
+ bh=rkb0/RsqlrSsur8bg4JBO+5Tm/9AUf9VUC8b4CXBFh8=;
+ b=KbVZWPYS+dO+6Ea6d9j/eRzJfc5mriCBKNwqSBtAyp0uIPRGy6pi21sGU3IvmFdIIP8kGrCOUN8+k3QpWfb4580Q1y41eFcVbtaYHBLF/16pIogXgw0FGy0Hu33wFjDS1eilnjiNezgGbmLBYpiT11GfGe+Z8XhG4KZ47Kmuh0OTY4nYduKZw2E4EE5t2BwnQz71OMh5MPyYXihuZkhb5PsaRFg5r5Lpt6NC2ua0s4qnVRS0C8mFlv6UtMaFvx0uqOhNWC4qLxUxgcqzzQcFQWSLpKnx+rcr/zr98XwVbWLv8JvtSOy3OPRo1kbwsZAcSUtLx4HhQOE0yUbDaAb+AA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CBsYCZquOgb4JU8vf+wpeur4j839MjGfkG6djz0O+g0=;
- b=zwn/UrlkYIEO4AqPR4BOxub8P7Qfi5mg1WM6KcgC8njldfts+VX/I8fOJcNZ53EzZFfaQPf07QFrscID+WgJUZc7ea24d6WIBETBqMm6adMDnatQiRsLZ2IzQSCc/gDDb9nV7AXmU79cPXeYd4jMR+t7rP4nVZeueB5PxbbksS8=
-Received: from SJ0PR05CA0030.namprd05.prod.outlook.com (2603:10b6:a03:33b::35)
- by SJ2PR12MB8062.namprd12.prod.outlook.com (2603:10b6:a03:4c8::22)
+ bh=rkb0/RsqlrSsur8bg4JBO+5Tm/9AUf9VUC8b4CXBFh8=;
+ b=HJ1JLAvf2IQyFqyZqFLc3CTAsMw4B5/bdOrYQ6os/yq6QSXmgqbPdjk6pw+GXIpknsPzV2kZf3K2NLLKjPQ0PSR4xDN686cfUOjzyA6gQPgW73adSPDJxNGHoz7Og9BWmDuL6/Jw6FrAvreuHh0rk7PTGlgltL6lbF0Fx3sDEM8=
+Received: from MN2PR22CA0025.namprd22.prod.outlook.com (2603:10b6:208:238::30)
+ by SJ2PR12MB8926.namprd12.prod.outlook.com (2603:10b6:a03:53b::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Wed, 10 Jul
- 2024 19:39:21 +0000
-Received: from CO1PEPF000042A8.namprd03.prod.outlook.com
- (2603:10b6:a03:33b:cafe::15) by SJ0PR05CA0030.outlook.office365.com
- (2603:10b6:a03:33b::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.19 via Frontend
- Transport; Wed, 10 Jul 2024 19:39:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.19; Wed, 10 Jul
+ 2024 19:39:27 +0000
+Received: from MN1PEPF0000ECD7.namprd02.prod.outlook.com
+ (2603:10b6:208:238:cafe::38) by MN2PR22CA0025.outlook.office365.com
+ (2603:10b6:208:238::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.21 via Frontend
+ Transport; Wed, 10 Jul 2024 19:39:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000042A8.mail.protection.outlook.com (10.167.243.37) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD7.mail.protection.outlook.com (10.167.242.136) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:39:20 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7762.17 via Frontend Transport; Wed, 10 Jul 2024 19:39:26 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:39:19 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jul
- 2024 14:39:18 -0500
+ 2024 14:39:25 -0500
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 10 Jul 2024 14:39:18 -0500
+ Transport; Wed, 10 Jul 2024 14:39:19 -0500
 From: Fangzhi Zuo <Jerry.Zuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, Mounika Adhuri <moadhuri@amd.com>, Martin Leung
- <martin.leung@amd.com>
-Subject: [PATCH 27/50] drm/amd/display: Refactoring MPC
-Date: Wed, 10 Jul 2024 15:36:44 -0400
-Message-ID: <20240710193707.43754-28-Jerry.Zuo@amd.com>
+ <jerry.zuo@amd.com>, Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Subject: [PATCH 28/50] drm/amd/display: Fix VRR cannot enable
+Date: Wed, 10 Jul 2024 15:36:45 -0400
+Message-ID: <20240710193707.43754-29-Jerry.Zuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 References: <20240710193707.43754-1-Jerry.Zuo@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: Jerry.Zuo@amd.com does not designate
+ permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A8:EE_|SJ2PR12MB8062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e9a9033-633b-4ab1-c4eb-08dca117feaf
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|SJ2PR12MB8926:EE_
+X-MS-Office365-Filtering-Correlation-Id: 781d68b2-1029-4dc4-a98e-08dca1180224
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bTFHbGVVcXluNlFpeTJVWmo4Qi9zUGRTYzZVais5RU51ckNRS3I1ZXgzM09k?=
- =?utf-8?B?QkJEd1ViMzJKWFBDT2IzVjdOU2RHTXNJdE1GMGVVQVh3RHhUNHQweG52SkVD?=
- =?utf-8?B?ZjFTTTZod05rVjZTUHFPMUtLYWRibUZSeDlscU1IcHA3UHVqRHhpNEcxUXFS?=
- =?utf-8?B?TDM2T0M4NTV4SXJDSTdDTXROQm1Hby9DdzRmcW1YTFRhTFBQbmxvdFpPb3BY?=
- =?utf-8?B?UFZ5SHJLY3JiUUdqZ01uUmpvSjNYNnRRdW5kdGJFZzlaS0swODd3dEpTY05M?=
- =?utf-8?B?UVFtSXNkT25CWTFGWE9YTWdLc05malIyU1pCaFk1OVNaTy9qaytZNG5CVzda?=
- =?utf-8?B?NWJhejBYRWE1VzEzODFDVTNLQ2I4ZkhNaVllRDJmaytRczlBSFhnOUY0dGhz?=
- =?utf-8?B?eUdtZjI5czNoQkZ0M1RNTDNVbDFBYmxFUHJTUjNHZGtsUjBNWUJrb3JCVDJs?=
- =?utf-8?B?UHhJOU16MVd3NGNjRlNyTGZWSkhpL2tJWUt5TURZMGVEYloybFBRQ2ZiTWZU?=
- =?utf-8?B?T2IyTVkwMUFDeUZ5UWJIcENLc3hWVVpxSnBzb1Q2SDhGQVl4Yzk2Q3RkS3Uw?=
- =?utf-8?B?RHFhemxoNDZFTW45dzV0WC9iSDNwaHd0UkhyOGZHU0lmd2cydmF6NmhZN1BW?=
- =?utf-8?B?RVlKNjVvRlV4YzBub0V3ZXJrc3crUktTb0hBNVdIZWhUclo5dHlPb0Q3endQ?=
- =?utf-8?B?ZGlYWXF0dnJwZUxnUWVvelVuMlAwcUc0Skh4dWdUTGJPLzB4Mnlka1VQVzBX?=
- =?utf-8?B?VVJFYkRUU3RYLzU4WEV0VTRUOWY2NzhTbkgrbmtIdSt1enplSmdnNWpzRWZK?=
- =?utf-8?B?MTkrN0h4dHFadXpUMy9ndnVNRlBJV2Y1RVlHcXdJR050YTQzUEhDc3VzQ0pK?=
- =?utf-8?B?QzFacHV6TzU5dEtKOXZVdDUxbHRCWm1JZG51QStvTlVnSTJHN1JlSDg5WTJG?=
- =?utf-8?B?Q0pqMjBVSWRHUERvZFJrYjFLMTdMOVhJcXpYbTFuTWw3QlFudWc4cWdtZUFM?=
- =?utf-8?B?SDc3ajBJRkI2R1BEaHNMSDZITjJadmg5alBHVWQ3ZHhwWDhOWFlXUUNEZzlZ?=
- =?utf-8?B?djlkRG05akM3T0VIaVpyRHdkbVI1U1lEZjh4dG5vL2o1SXJMRURhYjhLR3My?=
- =?utf-8?B?ZlhQV1A3RG5HR0ZrektCK2VuNzBPektDV0ZZd0xFSGtMZXc3c0pYeHB6OWZB?=
- =?utf-8?B?bFVIREt3bi90QUxVeUhHaG5EajM1amFVMk53UXpIeDV6YUhWeWdPUnMzeWhU?=
- =?utf-8?B?OGFlKzlzRm1sd1RiRVVOL3VyQVI5UExNS1VZWUZSZzQ1MUtiUDB6TzY3am5E?=
- =?utf-8?B?OXZpbk1ZRmw4akYzZEJvOHV1bVZBZmZxUWZ3cmRjMWl0T1NxaC9tMHNuL3hs?=
- =?utf-8?B?dytNTVBDQzV3RUtJbUtuclppNldsLzM0ZmtGTm1GOXh5ampQbDRHcjFOS0ZT?=
- =?utf-8?B?S2NUTUkyb3djbEpXZmJ5bFBETGVEa2lXaWZNai8yc3VGTzJVWjNPYkFJZ3hp?=
- =?utf-8?B?ejluemptYjdWbkN2WFY1U3h6OVRteWUzZDJROThiekdzWXNoQ0FMTTNPOUtC?=
- =?utf-8?B?S1Vua1pLeVppcVZtMDVIY1N2ODM0NGJ6UmhHeHkzNEpSdGVDcUVCKzI0eTIx?=
- =?utf-8?B?dFM5THZXVjFObTU0bUFNWG1BRnVlWS8yYy9JT0NBMC8xdEMzVG5HWU04cDVJ?=
- =?utf-8?B?NERXaDdGOEVvR3FTT1lqcks0blNzY2JNWWVkZmF1WXo5Y3Z6K3dZSC9nSnBI?=
- =?utf-8?B?WTF1SUpJU1JvZlpFZUd3TVZHZXBsbUNIOFlWd3NYWEptdy90V3ZwQXBQZytw?=
- =?utf-8?B?Yy9wU0xnRlFNRlBhYzlyTHhJdjBoT09VZ0FrOENWQUNKQlhGU3YzTWFPa1FC?=
- =?utf-8?B?TzZ0R2VBWklGRXJaVk5JYld5NFU3VVdFbUxaTGc5aUlFbGxCeVVMY2xObVQ4?=
- =?utf-8?Q?PQSbVrBpFKN1RBd3si2vogLEtVi+f9Eh?=
+ ARA:13230040|1800799024|36860700013|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dMl6VyfrRRb919fSgYQAepLb5sP8smtZuKQtgkDubqYN5fO+SouLjmGH4KvV?=
+ =?us-ascii?Q?tN5wr02qxw3lF6mE1aHdm1KGXWxmInDzy77CYyhY4Q4BBge1ap1TOvMR7yPF?=
+ =?us-ascii?Q?bAvkw+eMQUO+R4732oeW4UZcytejHSKhe0KrUZUISgGpv0h0OpOYR8WS4ID1?=
+ =?us-ascii?Q?cuGNKEg4JpYzsI0sG/SIjE6Gh1cyeOZlZltrKSYnrCDYbnTbqUhTlesH+qsi?=
+ =?us-ascii?Q?QG2xhX1SWec95aj5sOUxwuelwADGzP+XrptH8SAs4H17e0kQFCJrKUSDFaL/?=
+ =?us-ascii?Q?wGJJfTCRDz19xY47y2DrM1adDrHHtaZUCe/pZJRQ0r6fFxacPPjmqwKjjVrZ?=
+ =?us-ascii?Q?XsU+xW4BSdAprXdk1+WFGRR7TY21oBFOj3E1Q5zb9xH26vDVuNsxVXR/iK5h?=
+ =?us-ascii?Q?YYNE4f/MI6u7OqIDsiq4W/d6OY2WF0E5PELiCvzKdSYq/r428etZVa0VT5Ho?=
+ =?us-ascii?Q?nFtYjj5vi0SoyAAQ1nWvrkaS5X7ogA71atGiQ8lNyUHHEv5m3865KxrpWw+j?=
+ =?us-ascii?Q?iTRYrMUwCrd47HbVb7ncVYP+JznP1q0gWhnYZdXOod+xVXuXD0xGdcwPpddg?=
+ =?us-ascii?Q?+CiUuWEEjfZrlmaT3IVOd1hVeSCF6+weu90xTPeXmnwElj0lU0pWjF+rtBfp?=
+ =?us-ascii?Q?H780DwtN0oPUBrwhm1gnoErbNqcyqzm9hQMRMvb0j2kDW4pPllyKU003yIZN?=
+ =?us-ascii?Q?JD8bbexTaEAvSVxpzadnMuaK2FhhIYoEgEzJWf0i8uCl3lXARBh2MMVOF9kj?=
+ =?us-ascii?Q?6/md+0F71ppOXYqRXR9gJ8N6b02HGCm0jsOXRcWDwDO0OliCWMhjSv3CdXhh?=
+ =?us-ascii?Q?1gjmyVl0+d3YlVKaeyWywqdlr1efH1zZP235sDLkUDnqoIMqWhlzIJ91h5I0?=
+ =?us-ascii?Q?gZiVO2luCtXk0ism/nCH42gRGcmhUtLx1ovGHx8i6TUv2VkgwSH6PBk0ZOh4?=
+ =?us-ascii?Q?TI5IJ+0LqjsAApCptSdg8MiHTrYWzU5/A7NgoDNMTEE/4p158JLb/qbuvUMm?=
+ =?us-ascii?Q?FBZBi120+UdFXP/nlbx9T9T0MRcmkBvUKLxR1RTYwCjE7oyxtFfH6HXewzK8?=
+ =?us-ascii?Q?Swwxg4LQi/n6dOF9bbeOjrdbBXWef/UlDG8dfvNqNUYZGHpaoSTfNw8BA6kC?=
+ =?us-ascii?Q?YgoThJahTtMXSaKsOvpu91ce8rJe5Y0emgwI9ys7GBC9YALgP7Iy8lVu6W8V?=
+ =?us-ascii?Q?6yqdSmBI11wLFFmrJiWBGojzLcTUO0Gpf55aRCKT+CKQ63gbhvbffVTZn6zK?=
+ =?us-ascii?Q?++tTGtZjOAlgOrkXWmdiIuyhSX0HNr3UwCNliT4mDtNzy7X2gb2V9+v5W4mN?=
+ =?us-ascii?Q?/UbHW+oC5QP7S1ms7wrnq9aZZ+56ewUA3gQ5WCeebOPxCEsWr6H54ZEYBKbw?=
+ =?us-ascii?Q?HwkSiPvTX2m5PCBZzxErlHzB64+lzIhExYgVrFp+4yQtRScWLX+WROPGW//x?=
+ =?us-ascii?Q?PgfQCRY7THezYHguhMD0bzma6ii4QPD4?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:39:20.5894 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e9a9033-633b-4ab1-c4eb-08dca117feaf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2024 19:39:26.4668 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 781d68b2-1029-4dc4-a98e-08dca1180224
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000042A8.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD7.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8062
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8926
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,150 +136,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Mounika Adhuri <moadhuri@amd.com>
+From: Tom Chung <chiahsuan.chung@amd.com>
 
 [Why]
-To refactor MPC files
+Sometimes the VRR cannot enable after login to the desktop.
+
+User space may call the DRM_IOCTL_MODE_GETCONNECTOR right after
+the DRM_IOCTL_MODE_RMFB.
+
+After calling DRM_IOCTL_MODE_RMFB to remove all the frame buffer
+and it will cause the driver to disable the crtc and disable the
+link while calling the link_set_dpms_off().
+
+It will cause the dpcd read failed in amdgpu_dm_update_freesync_caps()
+while try to get the DP_MSA_TIMING_PAR_IGNORED capability and think
+the sink side does not support VRR.
 
 [How]
-Moved MPC files to respective folders and
-updated makefiles appropriately.
+Use the dpcd_caps.allow_invalid_MSA_timing_param flag instead of
+reading from dpcd directly.
 
-Reviewed-by: Martin Leung <martin.leung@amd.com>
+dpcd_caps.allow_invalid_MSA_timing_param flag is updated during HPD.
+It is safe to replace the original method.
+
+Reviewed-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 Signed-off-by: Jerry Zuo <jerry.zuo@amd.com>
-Signed-off-by: Mounika Adhuri <moadhuri@amd.com>
+Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/Makefile |  1 -
- drivers/gpu/drm/amd/display/dc/dcn20/Makefile |  3 +--
- drivers/gpu/drm/amd/display/dc/dcn30/Makefile |  2 +-
- drivers/gpu/drm/amd/display/dc/mpc/Makefile   | 27 +++++++++++++++++++
- .../display/dc/{ => mpc}/dcn10/dcn10_mpc.c    |  0
- .../display/dc/{ => mpc}/dcn10/dcn10_mpc.h    |  0
- .../display/dc/{ => mpc}/dcn20/dcn20_mpc.c    |  0
- .../display/dc/{ => mpc}/dcn20/dcn20_mpc.h    |  0
- .../display/dc/{ => mpc}/dcn30/dcn30_mpc.c    |  2 +-
- .../display/dc/{ => mpc}/dcn30/dcn30_mpc.h    |  0
- 10 files changed, 30 insertions(+), 5 deletions(-)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn10/dcn10_mpc.c (100%)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn10/dcn10_mpc.h (100%)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn20/dcn20_mpc.c (100%)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn20/dcn20_mpc.h (100%)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn30/dcn30_mpc.c (99%)
- rename drivers/gpu/drm/amd/display/dc/{ => mpc}/dcn30/dcn30_mpc.h (100%)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++-----------------
+ 1 file changed, 2 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/Makefile b/drivers/gpu/drm/amd/display/dc/dcn10/Makefile
-index 75e088b479ea..e1f6623d4936 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/Makefile
-@@ -24,7 +24,6 @@
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 18d6bb485cb1..fe5a96e5c70a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -11722,25 +11722,6 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+ 	return ret;
+ }
  
- DCN10 = dcn10_ipp.o \
- 		dcn10_hw_sequencer_debug.o \
--		dcn10_mpc.o \
- 		dcn10_cm_common.o \
+-static bool is_dp_capable_without_timing_msa(struct dc *dc,
+-					     struct amdgpu_dm_connector *amdgpu_dm_connector)
+-{
+-	u8 dpcd_data;
+-	bool capable = false;
+-
+-	if (amdgpu_dm_connector->dc_link &&
+-		dm_helpers_dp_read_dpcd(
+-				NULL,
+-				amdgpu_dm_connector->dc_link,
+-				DP_DOWN_STREAM_PORT_COUNT,
+-				&dpcd_data,
+-				sizeof(dpcd_data))) {
+-		capable = (dpcd_data & DP_MSA_TIMING_PAR_IGNORED) ? true:false;
+-	}
+-
+-	return capable;
+-}
+-
+ static bool dm_edid_parser_send_cea(struct amdgpu_display_manager *dm,
+ 		unsigned int offset,
+ 		unsigned int total_length,
+@@ -12043,8 +12024,8 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 		     sink->sink_signal == SIGNAL_TYPE_EDP)) {
+ 		bool edid_check_required = false;
  
- AMD_DAL_DCN10 = $(addprefix $(AMDDALPATH)/dc/dcn10/,$(DCN10))
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-index d92d2b4ee015..25ba0d310d46 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/Makefile
-@@ -1,8 +1,7 @@
- # SPDX-License-Identifier: MIT
- # Copyright © 2019-2024 Advanced Micro Devices, Inc. All rights reserved.
- 
--DCN20 = dcn20_mpc.o \
--		dcn20_vmid.o dcn20_dwb.o dcn20_dwb_scl.o
-+DCN20 = dcn20_vmid.o dcn20_dwb.o dcn20_dwb_scl.o
- 
- AMD_DAL_DCN20 = $(addprefix $(AMDDALPATH)/dc/dcn20/,$(DCN20))
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-index 4c43af867d86..804851247acc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-@@ -23,7 +23,7 @@
- #
- #
- 
--DCN30 := dcn30_mpc.o dcn30_vpg.o \
-+DCN30 := dcn30_vpg.o \
- 	dcn30_afmt.o \
- 	dcn30_dwb.o \
- 	dcn30_dwb_cm.o \
-diff --git a/drivers/gpu/drm/amd/display/dc/mpc/Makefile b/drivers/gpu/drm/amd/display/dc/mpc/Makefile
-index 7f7458c07e2a..5402c3529f5e 100644
---- a/drivers/gpu/drm/amd/display/dc/mpc/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/mpc/Makefile
-@@ -24,6 +24,33 @@
- #
- 
- ifdef CONFIG_DRM_AMD_DC_FP
-+###############################################################################
-+# DCN10
-+###############################################################################
-+MPC_DCN10 = dcn10_mpc.o
-+
-+AMD_DAL_MPC_DCN10 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn10/,$(MPC_DCN10))
-+
-+AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN10)
-+
-+###############################################################################
-+# DCN20
-+###############################################################################
-+MPC_DCN20 = dcn20_mpc.o
-+
-+AMD_DAL_MPC_DCN20 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn20/,$(MPC_DCN20))
-+
-+AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN20)
-+
-+###############################################################################
-+# DCN30
-+###############################################################################
-+MPC_DCN30 = dcn30_mpc.o
-+
-+AMD_DAL_MPC_DCN30 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn30/,$(MPC_DCN30))
-+
-+AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN30)
-+
- ###############################################################################
- # DCN32
- ###############################################################################
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_mpc.c b/drivers/gpu/drm/amd/display/dc/mpc/dcn10/dcn10_mpc.c
-similarity index 100%
-rename from drivers/gpu/drm/amd/display/dc/dcn10/dcn10_mpc.c
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn10/dcn10_mpc.c
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_mpc.h b/drivers/gpu/drm/amd/display/dc/mpc/dcn10/dcn10_mpc.h
-similarity index 100%
-rename from drivers/gpu/drm/amd/display/dc/dcn10/dcn10_mpc.h
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn10/dcn10_mpc.h
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c b/drivers/gpu/drm/amd/display/dc/mpc/dcn20/dcn20_mpc.c
-similarity index 100%
-rename from drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn20/dcn20_mpc.c
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.h b/drivers/gpu/drm/amd/display/dc/mpc/dcn20/dcn20_mpc.h
-similarity index 100%
-rename from drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.h
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn20/dcn20_mpc.h
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c b/drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.c
-similarity index 99%
-rename from drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.c
-index 3aeb85ec40b0..fe26fde12eeb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
-+++ b/drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.c
-@@ -25,7 +25,7 @@
- 
- #include "reg_helper.h"
- #include "dcn30_mpc.h"
--#include "dcn30_cm_common.h"
-+#include "dcn30/dcn30_cm_common.h"
- #include "basics/conversion.h"
- #include "dcn10/dcn10_cm_common.h"
- #include "dc.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.h b/drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.h
-similarity index 100%
-rename from drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.h
-rename to drivers/gpu/drm/amd/display/dc/mpc/dcn30/dcn30_mpc.h
+-		if (is_dp_capable_without_timing_msa(adev->dm.dc,
+-						     amdgpu_dm_connector)) {
++		if (amdgpu_dm_connector->dc_link &&
++		    amdgpu_dm_connector->dc_link->dpcd_caps.allow_invalid_MSA_timing_param) {
+ 			if (edid->features & DRM_EDID_FEATURE_CONTINUOUS_FREQ) {
+ 				amdgpu_dm_connector->min_vfreq = connector->display_info.monitor_range.min_vfreq;
+ 				amdgpu_dm_connector->max_vfreq = connector->display_info.monitor_range.max_vfreq;
 -- 
 2.34.1
 
