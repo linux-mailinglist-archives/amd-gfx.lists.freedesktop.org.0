@@ -2,50 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1659F92E0B6
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jul 2024 09:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8614592E0AD
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jul 2024 09:18:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6BEE10E979;
-	Thu, 11 Jul 2024 07:18:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; secure) header.d=glanzmann.de header.i=@glanzmann.de header.b="jOPNXuuk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFB0810E96F;
+	Thu, 11 Jul 2024 07:18:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from infra.glanzmann.de (infra.glanzmann.de [88.198.237.220])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 933AA10E865
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 18:03:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=glanzmann.de;
- s=infra26101010; t=1720634614;
- bh=9o1nZukWgMgh1glhxVCcsAECujJFXkWG/FS0pOTW54c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jOPNXuukb60apfsmuUcqzf3pWdaSyzFPvb4VfmuLNRlr/HQI7Jc5Z7A/HFStBpwTQ
- uphzek0ymjBul3gLxfO05FKreKuxasfUW58nX0w6NidnHwRALxX8DFyHmON0xtz7EE
- Q13LO+gmr76GbnhwAmB+9pG0nO7VQurvrIZ64bQrz/v/uVE29A5XkzeX2vrkKQ6kf3
- ZIedbNF1qah5xD/+kiNYCEjXgcT8hvii2NnddfJ9T60HMYhXT5rfjFZsC9+Za1NvEn
- 5XDV6VRxy8OSvhz4llp5dnbkbYcqyWgNqCnKSTukyaWhqw3/GKAI5xdMhhUtI0Sdye
- 15fTUXJLhngCf6U1Qp1C3vTtMW3ra8XEzFVbgD723sxNJSvF4hC9IbioPpg7hJnLxF
- AMpHJ+0l+a8MVrssWybwnx/SgIvvvjKel2J3l4FYUbh4Ki9Vhw2rhPfHuZNzjZEDKW
- vKS1FL5+8pSHjRzw4hXYM2zi1qGo7OeeqXUoZaXwgd1KZvlC9Nik3nssf1wdUU8X6T
- a9PFCO0upIDBV3i7tM+K2yVCmT5A9RFv7jLersVZkShRHS5PvKR2McmrIfQPaejHHg
- vfeuhNqSGLswFy/SnFmFeM5eY/uqVwFjL02mQKDHPErpxESoOznTWMaaOrkOshalVF
- Xfd9hAhI8Oj+wUhmVfSv3Bfk=
-Received: by infra.glanzmann.de (Postfix, from userid 1000)
- id 97EB17A8009C; Wed, 10 Jul 2024 20:03:34 +0200 (CEST)
-Date: Wed, 10 Jul 2024 20:03:34 +0200
-From: Thomas Glanzmann <thomas@glanzmann.de>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-Subject: Re: amdgpu [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB
- error - collecting diagnostic data
-Message-ID: <Zo7M9us1xwUdYaP6@glanzmann.de>
-References: <Zo4Z2yCK4RrYtJKo@glanzmann.de>
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 020DC10E238;
+ Thu, 11 Jul 2024 02:45:58 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-01 (Coremail) with SMTP id qwCowAD32E1MR49mzRe_Ag--.49651S2;
+ Thu, 11 Jul 2024 10:45:50 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, srinivasan.shanmugam@amd.com,
+ make24@iscas.ac.cn, guchun.chen@amd.com, chenjiahao16@huawei.com,
+ Jammy.Zhou@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/amdgpu: fix a possible null pointer dereference
+Date: Thu, 11 Jul 2024 10:45:31 +0800
+Message-Id: <20240711024531.1604757-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zo4Z2yCK4RrYtJKo@glanzmann.de>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowAD32E1MR49mzRe_Ag--.49651S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtw4UAFy5KF45AF4UGFyUZFb_yoWDKrc_CF
+ WDZa9xJw43A3ZYvr47Zw4Sv3sIva4UAr4ktr1Sqa9av34xXw17XryUJryFqF1fWFZ3CFnr
+ t34Ygw15A3ZrCjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUba8FF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr
+ 0_Cr1UM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+ Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+ W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI2
+ 0VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
+ Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+ x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+ 1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
+ JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
+ sGvfC2KfnxnUUI43ZEXa7VUbHa0DUUUUU==
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
 X-Mailman-Approved-At: Thu, 11 Jul 2024 07:18:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,17 +62,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+In amdgpu_connector_add_common_modes(), the return value of drm_cvt_mode()
+is assigned to mode, which will lead to a NULL pointer dereference on
+failure of drm_cvt_mode(). Add a check to avoid npd.
 
-* Thomas Glanzmann <thomas@glanzmann.de> [2024-07-10 07:19]:
-> [   11.902016] amdgpu 0000:0b:00.0: [drm] *ERROR* dc_dmub_srv_log_diagnostic_data: DMCUB error - collecting diagnostic data
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+---
+Changes in v2:
+- modified the patch according to suggestions;
+- added Fixes line.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I resolved the issue by updating my firmware:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index 9caba10315a8..21530f70a8bc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -458,6 +458,8 @@ static void amdgpu_connector_add_common_modes(struct drm_encoder *encoder,
+ 			continue;
+ 
+ 		mode = drm_cvt_mode(dev, common_modes[i].w, common_modes[i].h, 60, false, false, false);
++		if (!mode)
++			return;
+ 		drm_mode_probed_add(connector, mode);
+ 	}
+ }
+-- 
+2.25.1
 
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-cd linux-firmware.git
-sudo make install
-sudo reboot
-
-Cheers,
-        Thomas
