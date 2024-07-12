@@ -2,53 +2,145 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B477B930490
-	for <lists+amd-gfx@lfdr.de>; Sat, 13 Jul 2024 10:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2138D930494
+	for <lists+amd-gfx@lfdr.de>; Sat, 13 Jul 2024 10:51:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D1710E043;
-	Sat, 13 Jul 2024 08:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65EA810E17E;
+	Sat, 13 Jul 2024 08:51:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="k3xhWeSC";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="NTA0ZSf5";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="V6WQ1egj";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="NTA0ZSf5";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="V6WQ1egj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 796A010EC1E
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 13:13:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OgNSY01sI+W2m518AENcED8caTBgp6eaJSravSNhAcQ=; b=k3xhWeSCbylWCjgIQjqBbwl3KQ
- ebcofpAxXi/OG+xSTf0K+G4GWhT29BXOTeR+oxPWcyJIE70pRu/U+MAcZfTQeagPnkCY7WU6+g5AA
- RNCtqloT5gTIsq70UMvhZseEQGMh8uswMiAdh4t+k4BaJoZQKKsOoablLjoDBdFBe/PnGdMFLjMof
- hEeqB6lzndmTJGRY8w84yN9YEkesHkdzR0uzHsFAxHWWB73OEqzI+GIwvnJlOPJuTFMbyti+2ybmt
- prV+vs6FIT251xJWhay7+LlYWnDjOnsVXwdysS7sQh8Q37jQfWQ47NsUp+Qgr2/Zz4mnCXyOO4l6R
- fcR6DX8Q==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1sSG5P-00EHrD-1U; Fri, 12 Jul 2024 15:13:19 +0200
-Message-ID: <ff38c4d2-361d-4133-a21c-2133423ffc21@igalia.com>
-Date: Fri, 12 Jul 2024 14:13:18 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D5C10ED11;
+ Fri, 12 Jul 2024 13:40:48 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id C4CA421ABB;
+ Fri, 12 Jul 2024 13:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1720791646; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qLJ3Poh4mEvXFfpRgR/gCd7h/Vx4ZGy+nQGjpuNUvHw=;
+ b=NTA0ZSf5ydsKGoJqdnsFixR10Wm7stgYf7Zg6fVCFPhjR46XWS2tYYBvh5fR4eP95NV0fw
+ 3DOt7pXDriUC45ey2fwJzwzc+6Vte+pkV3q6CckbYzD9ulpO0/fb+EQlyh3++QYOkmM+79
+ 8OfTVhDxfNF7LkmI/ETy35Y/lvDNj/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1720791646;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qLJ3Poh4mEvXFfpRgR/gCd7h/Vx4ZGy+nQGjpuNUvHw=;
+ b=V6WQ1egjoLgHDt2yW3dHr1HorKAG7W3fNdzFLzGfP6U3u73P9tSLWgwuwEGLQmMcO0d7gP
+ gJ+C5bM5PAgNmIAQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1720791646; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qLJ3Poh4mEvXFfpRgR/gCd7h/Vx4ZGy+nQGjpuNUvHw=;
+ b=NTA0ZSf5ydsKGoJqdnsFixR10Wm7stgYf7Zg6fVCFPhjR46XWS2tYYBvh5fR4eP95NV0fw
+ 3DOt7pXDriUC45ey2fwJzwzc+6Vte+pkV3q6CckbYzD9ulpO0/fb+EQlyh3++QYOkmM+79
+ 8OfTVhDxfNF7LkmI/ETy35Y/lvDNj/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1720791646;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qLJ3Poh4mEvXFfpRgR/gCd7h/Vx4ZGy+nQGjpuNUvHw=;
+ b=V6WQ1egjoLgHDt2yW3dHr1HorKAG7W3fNdzFLzGfP6U3u73P9tSLWgwuwEGLQmMcO0d7gP
+ gJ+C5bM5PAgNmIAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B07E713686;
+ Fri, 12 Jul 2024 13:40:46 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id DBSvKl4ykWZmagAAD6G6ig
+ (envelope-from <vbabka@suse.cz>); Fri, 12 Jul 2024 13:40:46 +0000
+Message-ID: <d32ac1c3-2e87-48c8-b481-0fddf5e052ac@suse.cz>
+Date: Fri, 12 Jul 2024 15:40:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] drm/amdgpu: More efficient ring padding
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com
-References: <20240711181746.86311-1-tursulin@igalia.com>
- <219f3419-148e-4516-8c57-ee708dc65ef2@gmail.com>
- <f423e497-3617-42bc-af7c-b31760dd2372@igalia.com>
- <8abf0355-6b85-4519-9196-91c817533ce2@gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <8abf0355-6b85-4519-9196-91c817533ce2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [Patch v2] drm/ttm: Allow direct reclaim to allocate local memory
+Content-Language: en-US
+To: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: felix.kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20240708160636.1147308-1-rajneesh.bhardwaj@amd.com>
+From: Vlastimil Babka <vbabka@suse.cz>
+Autocrypt: addr=vbabka@suse.cz; keydata=
+ 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
+ EP+ylKVEKb0Q2A==
+In-Reply-To: <20240708160636.1147308-1-rajneesh.bhardwaj@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ XM_UA_NO_VERSION(0.01)[]; RCPT_COUNT_SEVEN(0.00)[8];
+ REDIRECTOR_URL(0.00)[tinyurl.com]; RCVD_TLS_ALL(0.00)[];
+ ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MID_RHS_MATCH_FROM(0.00)[];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:email]
+X-Spam-Flag: NO
+X-Spam-Score: -4.29
+X-Spam-Level: 
 X-Mailman-Approved-At: Sat, 13 Jul 2024 08:51:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,227 +156,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 12/07/2024 14:04, Christian König wrote:
-> Am 12.07.24 um 11:14 schrieb Tvrtko Ursulin:
->> On 12/07/2024 08:33, Christian König wrote:
->>> Am 11.07.24 um 20:17 schrieb Tvrtko Ursulin:
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>
->>>>  From the department of questionable optimisations today we have a 
->>>> minor
->>>> improvement to how padding / filling the rings with nops is done.
->>>>
->>>> Having noticed that typically 200+ nops per submission are filled 
->>>> into the
->>>> ring, using a rather verbose 
->>>> one-nop-at-a-time-plus-ring-buffer-arithmetic
->>>> as done in amdgpu_ring_write(), while right next to it there is
->>>> amdgpu_ring_write_multiple(), I thought why not pre-cache a block of 
->>>> nops
->>>> and write them out more efficiently.
->>>>
->>>> The patch is rather quick and dirty, does not deal with all insert_nops
->>>> vfuncs, and the cache should probably go one level up so it is not
->>>> replicated per amdgpu_ring instance.
->>>
->>> Why should that be more effective? We essentially use more cache 
->>> lines than before.
->>
->> Because:
->>
->>         for (i = 0; i < count; i++)
->>             amdgpu_ring_write(ring, ring->funcs->nop);
->>
->> Expands to quite a lot compared to one memcpy from 
->> amdgpu_ring_write_multiple, and only one set of ring pointer arithmetic?
+On 7/8/24 6:06 PM, Rajneesh Bhardwaj wrote:
+> Limiting the allocation of higher order pages to the closest NUMA node
+> and enabling direct memory reclaim provides not only failsafe against
+> situations when memory becomes too much fragmented and the allocator is
+> not able to satisfy the request from the local node but falls back to
+> remote pages (HUGEPAGE) but also offers performance improvement.
+> Accessing remote pages suffers due to bandwidth limitations and could be
+> avoided if memory becomes defragmented and in most cases without using
+> manual compaction. (/proc/sys/vm/compact_memory)
 > 
-> Well maybe make another function, e.g. something like amdgpu_ring_fill() 
-> which just fills in the same dw multiple times.
-
-Yep, I already started working on amdgpu_ring_fill this morning.
-
-> Or if we only use it here just inline that.
+> Note: On certain distros such as RHEL, the proactive compaction is
+> disabled. (https://tinyurl.com/4f32f7rs)
 > 
->>
->>>> And performance gains are not that amazing for normal workloads. For
->>>> instance a game which results in two submissions per frame, each pads
->>>> with 222 nops, submission worker thread profile changes from:
->>>
->>> Mhm, why the heck are we using so many nops in the first place?
->>
->> If that was a question for me I cannot offer but a superficially 
->> obvious answer - because ring->funcs->align_mask is 0xff on many 
->> platforms? I mean on the face of it it is doing what it wants to do - 
->> pad to 256 dword boundary before passing the updated ring to the GPU.
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Vlastimil Babka <vbabka@suse.cz>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Reviewed-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+> ---
+>  drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> ???? That would be a 1k byte alignment. I haven't looked into that in 
-> the last decade, but that used to be no more than 0xf.
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index 6e1fd6985ffc..cc27d5c7afe8 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -91,7 +91,7 @@ static struct page *ttm_pool_alloc_page(struct ttm_pool *pool, gfp_t gfp_flags,
+>  	 */
+>  	if (order)
+>  		gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY | __GFP_NOWARN |
+> -			__GFP_KSWAPD_RECLAIM;
+> +			__GFP_RECLAIM | __GFP_THISNODE;
 
-Don't ask me! :) There is, 0, 1, 0xf, 0x3f and 0xff as align_mask for 
-various skus and engines.
+__GFP_RECLAIM includes ___GFP_DIRECT_RECLAIM, what if the caller is a
+context that can't sleep? Then it would be a bugy to add that.
+OTOH the only caller I see is ttm_pool_alloc() which seems to start with
+GFP_USER and that already includes __GFP_RECLAIM, so either way I see no
+reason to be adding it here, other than it might be a potential
+bug in case other callers are added later and have more restricted context.
 
->> Btw another thing could also be more efficient by avoiding the div 
->> instruction:
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->> index 22ec9de62b06..c30206f4cd22 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->> @@ -151,7 +151,7 @@ void amdgpu_ring_commit(struct amdgpu_ring *ring)
->>         /* We pad to match fetch size */
->>         count = ring->funcs->align_mask + 1 -
->>                 (ring->wptr & ring->funcs->align_mask);
->> -       count %= ring->funcs->align_mask + 1;
->> +       count &= ring->funcs->align_mask;
-> 
-> Mhm, that's what it originally used it to be (at least in the ring_write 
-> function).
+As for __GFP_THISNODE addition that should be fine as this seems to be an
+opportunistic allocation with a fallback that's decreasing the attempted order.
 
-Ack, I will include that as a patch when I have everything ready to send 
-out.
+Also I note that the caller might be adding __GFP_RETRY_MAYFAIL
 
-Regards,
+        if (ctx->gfp_retry_mayfail)
+                gfp_flags |= __GFP_RETRY_MAYFAIL;
 
-Tvrtko
+But here adding __GFP_NORETRY makes __GFP_RETRY_MAYFAIL non-effective as
+__alloc_pages_slowpath() evaluates __GFP_NORETRY earlier to decide to give
+up, than evaluating __GFP_RETRY_MAYFAIL to decide to try a bit harder.
 
-> 
-> Regards,
-> Christian.
-> 
->> ring->funcs->insert_nop(ring, count);
->>
->>         mb();
->>
->> Regards,
->>
->> Tvrtko
->>
->>>> +   90.78%     0.67%  kworker/u32:3-e [kernel.kallsyms]  [k] 
->>>> process_one_work
->>>> +   48.92%     0.12%  kworker/u32:3-e  [kernel.kallsyms]  [k] 
->>>> commit_tail
->>>> +   41.18%     1.73%  kworker/u32:3-e  [kernel.kallsyms]  [k] 
->>>> amdgpu_dm_atomic_commit_tail
->>>> -   30.31%     0.67%  kworker/u32:3-e  [kernel.kallsyms]  [k] 
->>>> drm_sched_run_job_work
->>>>     - 29.63% drm_sched_run_job_work
->>>>        + 8.55% dma_fence_add_callback
->>>>        - 7.50% amdgpu_job_run
->>>>           - 7.43% amdgpu_ib_schedule
->>>>              - 2.46% amdgpu_ring_commit
->>>>                   1.44% amdgpu_ring_insert_nop
->>>>
->>>> To:
->>>>
->>>> +   89.83%     0.51%  kworker/u32:6-g  [kernel.kallsyms]  [k] 
->>>> process_one_work
->>>> +   47.65%     0.30%  kworker/u32:6-g  [kernel.kallsyms]  [k] 
->>>> commit_tail
->>>> +   39.42%     1.97%  kworker/u32:6-g  [kernel.kallsyms]  [k] 
->>>> amdgpu_dm_atomic_commit_tail
->>>> -   29.57%     1.10%  kworker/u32:6-g  [kernel.kallsyms]  [k] 
->>>> drm_sched_run_job_work
->>>>     - 28.47% drm_sched_run_job_work
->>>>        + 8.52% dma_fence_add_callback
->>>>        - 6.33% amdgpu_job_run
->>>>           - 6.19% amdgpu_ib_schedule
->>>>              - 1.85% amdgpu_ring_commit
->>>>                   0.53% amdgpu_ring_insert_nop
->>>>
->>>> Or if we run a more "spammy" workload, which does several orders of
->>>> magnitude more submissions second we go from:
->>>>
->>>> +   79.38%     1.66%  kworker/u32:1+e  [kernel.kallsyms]  [k] 
->>>> process_one_work
->>>> -   63.13%     6.66%  kworker/u32:1+e  [kernel.kallsyms]  [k] 
->>>> drm_sched_run_job_work
->>>>     - 56.47% drm_sched_run_job_work
->>>>        - 25.67% amdgpu_job_run
->>>>           - 24.40% amdgpu_ib_schedule
->>>>              - 15.29% amdgpu_ring_commit
->>>>                   12.06% amdgpu_ring_insert_nop
->>>>
->>>> To:
->>>>
->>>> +   77.76%     1.97%  kworker/u32:6-f  [kernel.kallsyms]  [k] 
->>>> process_one_work
->>>> -   60.15%     7.04%  kworker/u32:6-f  [kernel.kallsyms]  [k] 
->>>> drm_sched_run_job_work
->>>>     - 53.11% drm_sched_run_job_work
->>>>        - 19.35% amdgpu_job_run
->>>>           - 17.85% amdgpu_ib_schedule
->>>>              - 7.75% amdgpu_ring_commit
->>>>                   3.27% amdgpu_ring_insert_nop
->>>>
->>>> Not bad and "every little helps", or flame-throwers at ready?
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> ---
->>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 20 +++++++++++++++-----
->>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  1 +
->>>>   2 files changed, 16 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c 
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->>>> index ad49cecb20b8..22ec9de62b06 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
->>>> @@ -108,10 +108,14 @@ int amdgpu_ring_alloc(struct amdgpu_ring 
->>>> *ring, unsigned int ndw)
->>>>    */
->>>>   void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
->>>>   {
->>>> -    int i;
->>>> +    if (count > 1 && count <= ARRAY_SIZE(ring->nop_cache)) {
->>>> +        amdgpu_ring_write_multiple(ring, ring->nop_cache, count);
->>>> +    } else {
->>>> +        int i;
->>>> -    for (i = 0; i < count; i++)
->>>> -        amdgpu_ring_write(ring, ring->funcs->nop);
->>>> +        for (i = 0; i < count; i++)
->>>> +            amdgpu_ring_write(ring, ring->funcs->nop);
->>>> +    }
->>>>   }
->>>>   /**
->>>> @@ -124,8 +128,11 @@ void amdgpu_ring_insert_nop(struct amdgpu_ring 
->>>> *ring, uint32_t count)
->>>>    */
->>>>   void amdgpu_ring_generic_pad_ib(struct amdgpu_ring *ring, struct 
->>>> amdgpu_ib *ib)
->>>>   {
->>>> -    while (ib->length_dw & ring->funcs->align_mask)
->>>> -        ib->ptr[ib->length_dw++] = ring->funcs->nop;
->>>> +    u32 count = ib->length_dw & ring->funcs->align_mask;
->>>> +
->>>> +    memcpy(&ib->ptr[ib->length_dw], ring->nop_cache, count * 
->>>> sizeof(u32));
->>>> +
->>>> +    ib->length_dw += count;
->>>>   }
->>>>   /**
->>>> @@ -359,6 +366,9 @@ int amdgpu_ring_init(struct amdgpu_device *adev, 
->>>> struct amdgpu_ring *ring,
->>>>               &ring->sched;
->>>>       }
->>>> +    for (r = 0; r < ARRAY_SIZE(ring->nop_cache); r++)
->>>> +        ring->nop_cache[r] = ring->funcs->nop;
->>>> +
->>>>       return 0;
->>>>   }
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h 
->>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->>>> index 582053f1cd56..74ce95b4666a 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
->>>> @@ -246,6 +246,7 @@ struct amdgpu_ring {
->>>>       struct amdgpu_bo    *ring_obj;
->>>>       volatile uint32_t    *ring;
->>>>       unsigned        rptr_offs;
->>>> +    u32            nop_cache[256];
->>>>       u64            rptr_gpu_addr;
->>>>       volatile u32        *rptr_cpu_addr;
->>>>       u64            wptr;
->>>
-> 
+That's not introduced by this patch but maybe something to look into, if
+__GFP_RETRY_MAYFAIL is expected to be useful here for trying harder. If it's
+instead intended only for the final fallback order-0 case where the
+gfp_flags adjustment above doesn't apply, then __GFP_RETRY_MAYFAIL will
+cause the allocation to fail instead of applying the infamous implicit "too
+small to fail" for order-0 allocation and invoking OOM. If that's the reason
+for it to be used here, all is fine and great.
+
+Vlastimil
+
+>  
+>  	if (!pool->use_dma_alloc) {
+>  		p = alloc_pages_node(pool->nid, gfp_flags, order);
+
