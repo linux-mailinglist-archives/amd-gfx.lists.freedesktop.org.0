@@ -2,44 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551B492FD94
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jul 2024 17:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7711192FD91
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jul 2024 17:29:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDFD710ED36;
-	Fri, 12 Jul 2024 15:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF6C510ED2A;
+	Fri, 12 Jul 2024 15:29:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rgdT30Hi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dr9+qahs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB17210ED2A
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 15:28:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068EB10ED2B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 15:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lnZnQ1KR4UXOJep6ifldXszgAzt2wkcGqTH9/dJomp8=; b=rgdT30HielYCCe3W1yAsYTSPfk
- KPSObjSnQGbC+cbCKd/qHE64yTzZr5Ln0oB2n63l+/Wpi9aU92N7f+u2WRBTwQc+/MowW5X2K3Mw8
- FbcnDDQDNhJ3L+tPs6kO8zmA6Wdn/cVixb31LaUpLOnyoh+OvHICpDwUV83nMkSEjASXGQhhuG+T7
- EAEpASIE9nXbTcwduixK6UIvnx/oaLK9a1XbSdkYktUMcnvDjZQf0VehiRFKpuvNwJbXpo71641y3
- cbi3PCTLRobI2NRDmMwGEHfiZf0dcWkTjk2+GnIcOkjUOvyx8SRyQavoLw2JKLrJbZtDzUaHe9FKB
- 1XMge67Q==;
+ bh=BwMmDtFzcM2KhLLH1pEmoYNIgUq2n4ZObwFzcn32rtQ=; b=dr9+qahsrUZq7fI+VFXsHUlc+r
+ whNEzpldLtF7UoTNDgucUtVN0ZsTqbHfGRB6Zi5DAgJJdqqgqvDqfBACUlogt9NUkSU3g47PyxRut
+ JuEl340t84nWYV0ru6BFlP/UvOCIg+nHIXgOtQfpqgoJQiDJH686Rs0uLViEHoAqQUET9PVJOtFQU
+ dyhWcg1nbzTrS1NoZd7RjnktK3gyG5yMbSm6NAkjaS3DPAau+tjzzWnJfseLggeO7pODDuFiqzk+e
+ UnPaAfx3lEVPDVeI8/yKdr6m1mErsjCzwIJ/RIRU8ymvK2G1CJ2Qa9E6e6nZFywHzRZC08x1Xlx+b
+ rNVZQB0A==;
 Received: from [84.69.19.168] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sSICf-00ENIq-Js; Fri, 12 Jul 2024 17:28:57 +0200
+ id 1sSICg-00ENIs-8x; Fri, 12 Jul 2024 17:28:58 +0200
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Subject: [PATCH 0/3] Ring commit and padding micro-optimisations
-Date: Fri, 12 Jul 2024 16:28:52 +0100
-Message-ID: <20240712152855.45284-1-tursulin@igalia.com>
+Subject: [PATCH 1/3] drm/amdpgu: Micro-optimise amdgpu_ring_commit
+Date: Fri, 12 Jul 2024 16:28:53 +0100
+Message-ID: <20240712152855.45284-2-tursulin@igalia.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240712152855.45284-1-tursulin@igalia.com>
+References: <20240712152855.45284-1-tursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -59,44 +61,55 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-A three patches to streamline the ring nop padding process which happens on
-every submission.
+For some value of optimisation we can replace the division with an
+bitwise and. And it even shrinks the code. Before:
 
-I smoke tested graphics and video decode on the Steam Deck but cannot do much
-more testing than that. Therefore no guarantees I did not break something.
+     6c9:       53                      push   %rbx
+     6ca:       4c 8b 47 08             mov    0x8(%rdi),%r8
+     6ce:       31 d2                   xor    %edx,%edx
+     6d0:       48 89 fb                mov    %rdi,%rbx
+     6d3:       8b 87 c8 05 00 00       mov    0x5c8(%rdi),%eax
+     6d9:       41 8b 48 04             mov    0x4(%r8),%ecx
+     6dd:       f7 d0                   not    %eax
+     6df:       21 c8                   and    %ecx,%eax
+     6e1:       83 c1 01                add    $0x1,%ecx
+     6e4:       83 c0 01                add    $0x1,%eax
+     6e7:       f7 f1                   div    %ecx
+     6e9:       89 d6                   mov    %edx,%esi
+     6eb:       41 ff 90 88 00 00 00    call   *0x88(%r8)
 
+After:
 
+     6c9:       53                      push   %rbx
+     6ca:       48 8b 57 08             mov    0x8(%rdi),%rdx
+     6ce:       48 89 fb                mov    %rdi,%rbx
+     6d1:       8b 87 c8 05 00 00       mov    0x5c8(%rdi),%eax
+     6d7:       8b 72 04                mov    0x4(%rdx),%esi
+     6da:       f7 d0                   not    %eax
+     6dc:       21 f0                   and    %esi,%eax
+     6de:       83 c0 01                add    $0x1,%eax
+     6e1:       21 c6                   and    %eax,%esi
+     6e3:       ff 92 88 00 00 00       call   *0x88(%rdx)
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Christian König <ckoenig.leichtzumerken@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Tvrtko Ursulin (3):
-  drm/amdpgu: Micro-optimise amdgpu_ring_commit
-  drm/amdgpu: More efficient ring padding
-  drm/amdpug: More more efficient ring padding
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 24 +++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 58 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c  | 13 +++---
- drivers/gpu/drm/amd/amdgpu/cik_sdma.c    | 15 +++---
- drivers/gpu/drm/amd/amdgpu/jpeg_v1_0.c   |  7 +--
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   |  7 +--
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c |  7 +--
- drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 16 ++++---
- drivers/gpu/drm/amd/amdgpu/uvd_v3_1.c    |  7 +--
- drivers/gpu/drm/amd/amdgpu/uvd_v4_2.c    |  7 +--
- drivers/gpu/drm/amd/amdgpu/uvd_v5_0.c    |  7 +--
- drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    |  7 +--
- drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c    |  8 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c    |  8 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c    |  6 +--
- 22 files changed, 176 insertions(+), 133 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index ad49cecb20b8..1a1963318424 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -144,7 +144,7 @@ void amdgpu_ring_commit(struct amdgpu_ring *ring)
+ 	/* We pad to match fetch size */
+ 	count = ring->funcs->align_mask + 1 -
+ 		(ring->wptr & ring->funcs->align_mask);
+-	count %= ring->funcs->align_mask + 1;
++	count &= ring->funcs->align_mask;
+ 	ring->funcs->insert_nop(ring, count);
+ 
+ 	mb();
 -- 
 2.44.0
 
