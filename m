@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 811FB931EE1
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jul 2024 04:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AB8931EE3
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jul 2024 04:31:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED6A10E45E;
-	Tue, 16 Jul 2024 02:31:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF3A10E506;
+	Tue, 16 Jul 2024 02:31:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tYYMogv7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ym2Xy1lf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3629B10E345
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jul 2024 02:31:53 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E94F810E506
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jul 2024 02:31:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=buUwqdls7TipMKR28bKUiOCT4EAc7BHCb861f9JvE2qRbw84Tn5yJUKBf4EJT5gLRlZdYylMiRSQQsiOIFQvFbNbW5/sq6tGEasGtNGDtrvxE+QCuQAjDICDSXcntWsLDBtKyzOiLBRkE22Zn8T70/K3APszrJ4P+C5TIz2/p+ZRDkdQrWQB8HzPWV+cjBynTMkhU22JqMYrkFWweBGWIsCCFFFJV3z9LLlLPQOG+qigblA15/Ay6351SXF41NCYOzfHOwaNX57Fimear23VDsG7J8G9TWGDDqv3YzNlBxDOH9q7H/D5nTkdIhWvlYX32WAaAz2NQaCZMaq2/bNVfw==
+ b=YrHB2N6xwHbKtu/m2MsPnerk/nNrubAYt/uXWVtrjWEGx9/qZmM2nq6g64g9m5EzXsiAhj+Kp18CYS2mTi5Zl2srS0AIbGlqo0dKZOcjRWM5drob2SlLZPLiEQtN1Pt5cRWqjonLS2M0LGwrP2xZ+ampduBVCHZAuJ2Loo78hfIz8zk31wKisygwrc7kUgn7dMhUQH1cD7seHftZoauSuwqXUiRmMSED4beYUCM6UcgO/Ll5YS0AXEsw0gzt+Z215DwYNtoKqFVJY7YHJ7RRP1VOzPrqhwPVjOthyBa7xn1gqvTMAi0We2YnNXRQmMKnXifCDdy9yStwaSduUHp+UA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5nzxRvmJQ5PHKAZIKylLqy9YfjoZAB8bDPmr9T/LIrY=;
- b=SziGcX3LciWA5fLDbIq+fU0g8c3xC52qgBY2c8lLYlRrE7tBlPLpq4zieqmnDwTS/4S6PEHRIYhpjcJePWK1x1XKeoEvOijFN3Z4C9XTa4N+lbERhwkIRtd3pQlXxpbM1trU3jOl+T32OKIoJ+o2gBb7uoq+uo3cElmbm9jK/tmbxyCSKa/8YEQJHXCanotsRqicuHnUmK7rycdNY9ImcoMXuUdKkLtWgfnB72ekLmA5fm9thXaTJWzVEMOuzWRaRJGmbY5LJYOYiE6fD8q170onzSYto+t6IhqT9/tFRPc4+HiGj0KDlAeGzutgI4PzK+ulIdKDqmfzfY8ZkT9CYA==
+ bh=dsAtbUDOZH1WWXGypsb/OHbvak8UuVGHHoWlY/HRWlg=;
+ b=SnlvoRJZ98KaGt5c3lgTf+T9nYQFlLy8oRDejCuXar3juTuXDWPA/qlShIc+xIePuS479q8tG7/NhchfuZg7iHrpJTpljs/KYF4Ko5iYg4ZsVKR0w3QhthZzmar1RRcXNUtkWGpXGx5OK8QkPoJzT7po9hu+dZvqdMSi0C93sWReL8vGf8eIOybQ8cwVQk9rR7Bbr60+tTQ9YTNg/Noqz9h+9YsBdTALFPicPtYpwzEVvd2Jpk2m6GMOu9TJajXyhIS3H2TIq6Tn1rmIZYHCKn65ciEJo9yM9iL4e91t9vuJVadc/nVqVkOov+Wz6bRtVXg/EkMiNJ1nrnHApmJzug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5nzxRvmJQ5PHKAZIKylLqy9YfjoZAB8bDPmr9T/LIrY=;
- b=tYYMogv7s5Meyhp+FfrKQi8uXDCal+vOnIm59adhkDyfeaPqsN+i3A+cMlNc9GvsYy/VZKNHU32ka9YD3eubJETrOZLXcIjmPzn4RF7qErsmmZO43G8dZUdfst3unGvYTc23+h+nvGKIg78j7G1EZVr4QI0cF81d1ehKi9hlrs4=
-Received: from BN9P223CA0009.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::14)
- by PH0PR12MB7470.namprd12.prod.outlook.com (2603:10b6:510:1e9::20)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=dsAtbUDOZH1WWXGypsb/OHbvak8UuVGHHoWlY/HRWlg=;
+ b=ym2Xy1lf+NdlisE5pRSryL0v+hMn0E+2WA/HM4YMBiwjLxM4cKXpmZbhMS1fX/lGJpGxDpS6gCwcw0HIyTWcURi/EmAsdeAUKnY2R8vz4T7X8Pa4whjS9g1POjkzHvaiGsYjqT3UyxRYXBQkCd0fnBgcBF9Ar8qY/THHofWel1U=
+Received: from BN9P223CA0028.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::33)
+ by CY8PR12MB7705.namprd12.prod.outlook.com (2603:10b6:930:84::9) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Tue, 16 Jul
- 2024 02:31:49 +0000
+ 2024 02:31:50 +0000
 Received: from BN2PEPF000055DD.namprd21.prod.outlook.com
- (2603:10b6:408:10b:cafe::8e) by BN9P223CA0009.outlook.office365.com
- (2603:10b6:408:10b::14) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:10b:cafe::63) by BN9P223CA0028.outlook.office365.com
+ (2603:10b6:408:10b::33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29 via Frontend
- Transport; Tue, 16 Jul 2024 02:31:49 +0000
+ Transport; Tue, 16 Jul 2024 02:31:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,20 +50,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN2PEPF000055DD.mail.protection.outlook.com (10.167.245.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.5 via Frontend Transport; Tue, 16 Jul 2024 02:31:49 +0000
+ 15.20.7784.5 via Frontend Transport; Tue, 16 Jul 2024 02:31:50 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 15 Jul
- 2024 21:31:47 -0500
+ 2024 21:31:48 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <Roman.Li@amd.com>, 
  <Alex.Hung@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>, Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: [PATCH 0/6] drm/amd/display: Address kernel doc warnings
-Date: Mon, 15 Jul 2024 20:27:22 -0600
-Message-ID: <20240716023022.100811-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 1/6] drm/amd/display: Move DIO documentation to the right place
+Date: Mon, 15 Jul 2024 20:27:23 -0600
+Message-ID: <20240716023022.100811-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240716023022.100811-3-Rodrigo.Siqueira@amd.com>
+References: <20240716023022.100811-3-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -72,51 +74,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DD:EE_|PH0PR12MB7470:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7a3e3dc-4ff5-43cc-7f49-08dca53f71e1
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DD:EE_|CY8PR12MB7705:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7717abce-2249-437a-c6f1-08dca53f728a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cmOv0cFSxTHkca1KNXFTc2oXR8IvuiBYixwC9hfx6Hhh1GdJkq3zNjSKLWAs?=
- =?us-ascii?Q?pWYOBNf6NMgvejo5QNI9vz8bVCPh5IInvxK6BnuvmyXeaTckAGo8x66eFlUI?=
- =?us-ascii?Q?+1TZGCZ9vnVwWCRgZQQtOyf/2bsUSifwZkYzdSb2TxUJnPWodtTmkfAcrqLW?=
- =?us-ascii?Q?FlMRjc9aDoFyuMTV2j0teCaULw12eXR6El4aA74c9b7T5eCpEqcDaEiWdEZc?=
- =?us-ascii?Q?Kaj8MEUaJ4SUu/WP5qt21NlXXFl1dXP7lvYI53wh2NDRvjPJhaeD+OMe11Am?=
- =?us-ascii?Q?aJet+eySuCgxzNdBYlcSz9P5xFhxaRKPDoa4vW2Sk5b1YFjs/LrcYIMBJ0gE?=
- =?us-ascii?Q?u2LK0E3gPgr0O1OSazD6ZDT7upuaoWfVImRz+vztcefXEY1EIkpyFrXzMJzk?=
- =?us-ascii?Q?w/rv8HxPy81n3IUgDaxwpQI7ALVpqoRh74bT8nhryCgsDYyupPh7hpm1lA78?=
- =?us-ascii?Q?Q8E2yFjjhwfIZg29DAPvC48W7/LbW+DS9texCfDFrzF4XcFmTpqjLy99YM+w?=
- =?us-ascii?Q?lxjK/1gHhTp5YtIEGTDjW3FXJM97ADRokVfam9hNLx8weh6SqGDWchw3hxhD?=
- =?us-ascii?Q?7FuP+64Yfk+VI3lbvek1skVrE+yyaOsbhdzI+SAriVD1LTRHdMDlP6N/3UHB?=
- =?us-ascii?Q?qdI2NFrT3d5bqSwVRNbV7EyuuhGiY5CLOWvETWOqDLriNsUgs/LrMPCKBomh?=
- =?us-ascii?Q?gJnL4wsA2iiIVgaI3pIIgGxw1trmFjVQPhzIPKxjmH4T2EAmDuEAnqhofpBy?=
- =?us-ascii?Q?5uBk9KglXlxgDc3AtFYYmV/dYQZd56bYRF2kv1ajvYAwheOTKI56GyvVds7i?=
- =?us-ascii?Q?FBfGMiXi9ohM+UABQWYzP7m0vYjFzTUriHQhAawibkezb3Ek76MGN6tSXkjM?=
- =?us-ascii?Q?qrWUVRiBlOgxQqSyFzDIZr5EjTxZRvCxXzd+qOcJxfcBwAvO1XYUNMbkTthQ?=
- =?us-ascii?Q?CW/hh4+1FmvCY0zfwOuOe9soK+9dNbga5nQcbj9YQEFYdNZaXABy7LPTx+fm?=
- =?us-ascii?Q?pSObTtsoBnn7eaPdUUMjgx7JafuZarj8u3f3YD2ZpfDQbZo1hzhj6NWRgSc7?=
- =?us-ascii?Q?6BxotVjsd0bAmbeTqHUjSyV/Q1Js+mejdfvWzkyOhtWfZSS9Vl20IypTykTC?=
- =?us-ascii?Q?uwr7f+9azce1JalT1+S+cIdqA3wXi++YpSFdt4Mb91RMTvX6d8fFd0di25WO?=
- =?us-ascii?Q?+i4nDDAIwBwQred5cDV2uxIwzBWWbY7Tt+WYKSkZGCZcuyVKLoV2GdmTzvNh?=
- =?us-ascii?Q?eEmTcLuryqmr2ThK+PTClhMHspn4VZFRlvEHA2QiPvQ0MysQWiFSWrHF1Mi4?=
- =?us-ascii?Q?S2AuVJ65gTsLyDAIMPit4oefCAkkN8Dr76fizVEwLunovgU3OfF3NGV94mTF?=
- =?us-ascii?Q?WoOx64mdBfbEMrJ2Raqh8eWRle17KGzgGlaZ64TrFyttcr5pCv6BN3gpbaTG?=
- =?us-ascii?Q?yYeImncuWW77ZzcMqHvOTh0JNyP5Ssrm?=
+ ARA:13230040|36860700013|1800799024|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?91wGXpYKHQzROPVxTnhGJvD2Zh3TTggWI9zUP49l+4K/PPllz3OTQXIivSaL?=
+ =?us-ascii?Q?rY2BbDZ2Y1WEIFjjP6sI685dWSXiI/WEJ5P32h91BTjb/qDQzwetevoI0lqR?=
+ =?us-ascii?Q?dyWNjhO3s939RS/TrNGG15yVgT7fSUVwOL4WczKLmhQ3TSVZCaxiRuV0KQSN?=
+ =?us-ascii?Q?UwDJM/NO8Z1Z5eBrM6bl5dZAjYcD3XbmD9436KKnrfbQpqcPr59lpNbVa014?=
+ =?us-ascii?Q?ShZM57RpWfMfN8OceL/TZ8KwUVCr5nyAn5zTP0I4686ICqAzudGSGSOsZLbQ?=
+ =?us-ascii?Q?GhzOCoVbeipq9jK0efYkdSFpGGFG+IP73HLeVX2KD16+l/fbNXm1l5GNmhFy?=
+ =?us-ascii?Q?R/lTKWDYliblsWLl+Zc+EBJryfTocQNQD/Hq35YFkIM+5/UyfF1mqXXk64mO?=
+ =?us-ascii?Q?kxMFu/3lR/Sok4EBgowP+rRLMLkK+ayiruRhpL6IEWZ7/oDk2t69jtyNJXFq?=
+ =?us-ascii?Q?f84jve2FKBS9aqPN7oI8tYvWYD/XqUpJb49bJXU40Rg4xCPMFaMCorfTZzbl?=
+ =?us-ascii?Q?hsByPIw3kQgSI+Z2ONHaDN9ZN3JVkOguhjEv2XRz2uyVNRKxdNK144w3znLJ?=
+ =?us-ascii?Q?/eUo0Hhex/TgvNWHHrPS4TStgEirZT44MblnmzW/7VfYjVBA7CsAnjjC/bUf?=
+ =?us-ascii?Q?iU4MoNopXwqoMRDuOPIe7rfHLfQXHO1LM/fLUKLt+/JRYU0N6OaRbhQGF5a/?=
+ =?us-ascii?Q?Q1lQKD0F9yzRvEnNl2/eD6MW1aVLoWt6WMkwq7PMI88F0lHaZPDyMUow00TS?=
+ =?us-ascii?Q?Sq/lnBQTemZosfhg1vFK8FzEWZH4ykwyl55bHPjkz/EQDbgZ04ZGDUVRyYjd?=
+ =?us-ascii?Q?3THgrSFU29/4SKm8NeXJB1pGIjbDySTI6jVbNprXKAxW7uUd44nwVQLcab6g?=
+ =?us-ascii?Q?bXEMQSuovUoBHgAWTTN/V5y1hoDOCf7NQ4FzoSzNoicaKzqlNSiXJ1vBzk8b?=
+ =?us-ascii?Q?DROdUQjvWD7cajHZyG1D+aNS09Uvh/OJLeqwxqPNP+aHnnzpsaVMPP5Y4JTk?=
+ =?us-ascii?Q?yP5ne4ub2I51KizPSseSK0OWbYFHlpiKBE5mvHtB/ik5PHpjSeBZKIzE9x6x?=
+ =?us-ascii?Q?1d4uVaLXpRuq1AspDW3M/jD8gN0kKwXpWyYKB1FHHdebbt/szv7a7L88D4Cb?=
+ =?us-ascii?Q?AbdCHRXWQMd5CEGByabPATE+5aJLru5ww3Hvxy1PUt5R7APmIBPMy6JED2v/?=
+ =?us-ascii?Q?HH+aPtDZULhrE+wBUNELmnLxL+rJWshmg3JRH1gyKjp8ujT17KemhSSSCynK?=
+ =?us-ascii?Q?gnK8cKDc4aHUe2a3EWFO8zeduJwyytpdr/bQlVy/X3x45Zv3Jz9G1Y99EX27?=
+ =?us-ascii?Q?QeYxoVFZ7tGUbJF5ThuNZMdBtvfhwXVZZ7f4y3e0slaJhrm0KCslO+5ZDO15?=
+ =?us-ascii?Q?zIe5awPopNRWCmOvXSke1nrQ9hovM68EM66CdZY2JTOnNhRDfQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2024 02:31:49.1112 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7a3e3dc-4ff5-43cc-7f49-08dca53f71e1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2024 02:31:50.2362 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7717abce-2249-437a-c6f1-08dca53f728a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055DD.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7470
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7705
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,55 +132,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset fixes many of the kernel-doc warnings caused by the
-display documentation. This series addresses the following warnings:
+When building the kernel-doc, it complains with the below warning:
 
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/opp.h:1: warning: no structured comments found
-./drivers/gpu/drm/amd/display/dc/inc/hw/opp.h:1: warning: no structured comments found
 ./drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h:1: warning: no structured comments found
 ./drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h:1: warning: no structured comments found
 
-/home/siqueira/Documents/Repositories/kernels/amd-next_dal-dev/Documentation/gpu/amdgpu/display/display-manager:134: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:3: WARNING: Duplicate C declaration, also defined at gpu/amdgpu/display/dcn-blocks:101.
-Declaration is '.. c:struct:: mpcc_blnd_cfg'.
-/home/siqueira/Documents/Repositories/kernels/amd-next_dal-dev/Documentation/gpu/amdgpu/display/display-manager:146: ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:3: WARNING: Duplicate C declaration, also defined at gpu/amdgpu/display/dcn-blocks:3.
-Declaration is '.. c:enum:: mpcc_alpha_blend_mode'.
-/home/siqueira/Documents/Repositories/kernels/amd-next_dal-dev/Documentation/gpu/amdgpu/display/display-manager.rst:3: WARNING: Duplicate C declaration, also defined at gpu/amdgpu/display/dcn-blocks:101.
-Declaration is '.. c:struct:: mpcc_blnd_cfg'.
-/home/siqueira/Documents/Repositories/kernels/amd-next_dal-dev/Documentation/gpu/amdgpu/display/display-manager.rst:3: WARNING: Duplicate C declaration, also defined at gpu/amdgpu/display/dcn-blocks:3.
-Declaration is '.. c:enum:: mpcc_alpha_blend_mode'.
-
-I tested it on amd-staging-drm-next.
+This warning was caused by the wrong use of the ':export:' and the lack
+of function documentation in the file pointed under the ':internal:'.
+This commit addresses those issues by relocating the overview
+documentation to the correct C file, removing the ':export:' options,
+and adding two simple kernel-doc to ensure that ':internal:' does not
+have any warning.
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Link: https://lore.kernel.org/dri-devel/20240715085918.68f5ecc9@canb.auug.org.au/
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+---
+ .../gpu/amdgpu/display/dcn-blocks.rst         |  7 ++---
+ .../amd/display/dc/link/hwss/link_hwss_dio.c  | 29 +++++++++++++++++++
+ .../amd/display/dc/link/hwss/link_hwss_dio.h  |  9 ------
+ 3 files changed, 31 insertions(+), 14 deletions(-)
 
-Thanks
-Siqueira
-
-
-Rodrigo Siqueira (6):
-  drm/amd/display: Move DIO documentation to the right place
-  Documentation/gpu: Remove ':export:' option from DCN documentation
-  Documentation/gpu: Adjust DCN documentation paths
-  drm/amd/display: Add simple struct doc to remove doc build warning
-  Documentation/gpu: Remove undocumented files from dcn-blockshubbub.h
-  Documentation/amdgpu: Fix duplicate declaration
-
- .../gpu/amdgpu/display/dcn-blocks.rst         | 35 ++++---------------
- .../gpu/amdgpu/display/display-manager.rst    |  4 +--
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   | 22 +++++++++---
- drivers/gpu/drm/amd/display/dc/inc/hw/opp.h   | 15 ++++++++
- .../amd/display/dc/link/hwss/link_hwss_dio.c  | 29 +++++++++++++++
- .../amd/display/dc/link/hwss/link_hwss_dio.h  |  9 -----
- 6 files changed, 69 insertions(+), 45 deletions(-)
-
+diff --git a/Documentation/gpu/amdgpu/display/dcn-blocks.rst b/Documentation/gpu/amdgpu/display/dcn-blocks.rst
+index a3fbd3ea028b..118aeb9fd2b4 100644
+--- a/Documentation/gpu/amdgpu/display/dcn-blocks.rst
++++ b/Documentation/gpu/amdgpu/display/dcn-blocks.rst
+@@ -68,11 +68,8 @@ OPP
+ DIO
+ ---
+ 
+-.. kernel-doc:: drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
++.. kernel-doc:: drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+    :doc: overview
+ 
+-.. kernel-doc:: drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
+-   :export:
+-
+-.. kernel-doc:: drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
++.. kernel-doc:: drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+    :internal:
+diff --git a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+index 81e335280e0f..3e47a6735912 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
++++ b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.c
+@@ -26,6 +26,16 @@
+ #include "core_types.h"
+ #include "link_enc_cfg.h"
+ 
++/**
++ * DOC: overview
++ *
++ * Display Input Output (DIO), is the display input and output unit in DCN. It
++ * includes output encoders to support different display output, like
++ * DisplayPort, HDMI, DVI interface, and others. It also includes the control
++ * and status channels for these interfaces.
++ */
++
++
+ void set_dio_throttled_vcp_size(struct pipe_ctx *pipe_ctx,
+ 		struct fixed31_32 throttled_vcp_size)
+ {
+@@ -257,12 +267,31 @@ static const struct link_hwss dio_link_hwss = {
+ 	},
+ };
+ 
++/**
++ * can_use_dio_link_hwss - Check if the link_hwss is accessible
++ *
++ * @link: Reference a link struct containing one or more sinks and the
++ *	  connective status.
++ * @link_res: Mappable hardware resource used to enable a link.
++ *
++ * Returns:
++ * Return true if the link encoder is accessible from link.
++ */
+ bool can_use_dio_link_hwss(const struct dc_link *link,
+ 		const struct link_resource *link_res)
+ {
+ 	return link->link_enc != NULL;
+ }
+ 
++/**
++ * get_dio_link_hwss - Return link_hwss reference
++ *
++ * This function behaves like a get function to return the link_hwss populated
++ * in the link_hwss_dio.c file.
++ *
++ * Returns:
++ * Return the reference to the filled struct of link_hwss.
++ */
+ const struct link_hwss *get_dio_link_hwss(void)
+ {
+ 	return &dio_link_hwss;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
+index a1f72fe378ee..45f0e091fcb0 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
++++ b/drivers/gpu/drm/amd/display/dc/link/hwss/link_hwss_dio.h
+@@ -23,15 +23,6 @@
+  *
+  */
+ 
+-/**
+- * DOC: overview
+- *
+- * Display Input Output (DIO), is the display input and output unit in DCN. It
+- * includes output encoders to support different display output, like
+- * DisplayPort, HDMI, DVI interface, and others. It also includes the control
+- * and status channels for these interfaces.
+- */
+-
+ #ifndef __LINK_HWSS_DIO_H__
+ #define __LINK_HWSS_DIO_H__
+ 
 -- 
 2.43.0
 
