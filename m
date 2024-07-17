@@ -2,57 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C23934DBD
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 15:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B920A934DBA
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 15:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C093A10E826;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D5B10E81C;
 	Thu, 18 Jul 2024 13:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="hG0yqd29";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N+VygF+w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BFB110E114
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 11:21:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Reply-To:Cc:From:References:To:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=2nYI4bBxYXi13quVm2uGOxgPUFicjhWQUweSg4nZk4Y=;
- t=1721215275; x=1721647275; b=hG0yqd29Kdy2kAyK1AYlyfhxD8uU7muDlaIU+2F2PpfA4QJ
- IXKLadyz5aycyWEXB5yMoxLeGGeNjvYuKrP9oaU9c2FSF5y36MASb+ncejvU9cSWOXJXTtALXDgl3
- UWIJH47eOpvoHyfLwhbjL22gRu+iI10+MbfHNsEmDU6F5z0ji06aJSxhdWGn50K/Lx9kW6TRHFJw8
- oJ2qmxB7GH65NLx2hIfKCjVECOZYRXySb0O8znPMC5PTUi5jlPEQEy2N1WsnqwchARQNiWbgXEoPU
- xJ1vrgZHPlYMhGPtmFcJARRW+MI8stbb+QZBqL2RwQL0SaffSQ4aVpdGy0QiPlVQ==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1sU2ic-0006oY-De; Wed, 17 Jul 2024 13:21:10 +0200
-Message-ID: <ade43b5b-9b93-40a8-acbf-99df944b45f9@leemhuis.info>
-Date: Wed, 17 Jul 2024 13:21:09 +0200
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614E010E2D5;
+ Wed, 17 Jul 2024 16:31:00 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-1fc587361b6so3348055ad.2; 
+ Wed, 17 Jul 2024 09:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1721233860; x=1721838660; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=fZhsh+wnWjt6cLcXDiRXnrrVDVKDoWotCT7UNQJ5Bng=;
+ b=N+VygF+wX6cKxXfaXJOAhQo6q+Id9WuzL9oOCvWYD30tL2eevjZEEerLXBBvM7mY1E
+ v1KOLPJpFB7sebhhTvQLnlmCchOmKb3kM2fx+Q0T5mL6mXOfMnI4IR8ZKwNdz8bxFGO1
+ Y28HmaHKx1q1rL7WRcjiOyzTyNjq+AL0qd8qAj7wdTacOG3DZzVtsMcpKI2BI+iDYsbI
+ AgMsJmOMgeYhCQicfvUPLEryNEq2aT1FAmZ9DzntGiUAm11aNIsQLNUwRvQ/cDPzXQQQ
+ HO75fawt7W4AhkbuoejS7B5PU5f415rsvVmfK5atLryk7mz1AMA1xYFVH4VALRS01fIa
+ XppA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721233860; x=1721838660;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fZhsh+wnWjt6cLcXDiRXnrrVDVKDoWotCT7UNQJ5Bng=;
+ b=CykaLsfRaTe4UbWlcFaMSyK+90UV1ZjjEd0wUyfvMvd15pgnzHbXUZSRAN83FHP1/0
+ hionAVwxLUrLCR0VZy2Kq2fAO6g04i/FYgTJLqf7+mfYRKAiLmpsR14LnigwuhYSF1Jv
+ OPwgM1bQjNAFgUjzZxH1ZxKk2nLxCIGz+nM5vgV1bH6u5KFZ/9BLLA4eBxPLoUVxtl1y
+ XF0YoUdO/pBqi9xsATq5l3hfOZFAro4XO5inR1BMRtPEsrK7ne1QxaNDKqXrRV4ICYE6
+ P9szdOg1bU8AjapBra5NrvHz0uWAzF3Pw3WzpWKMy3beDVuGBB22beNX5PwbhmSgohnQ
+ gY0Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVnqF+2sVU6HJi7zOXezrwEEL6u9OSa5pWbyzlMEMwh5FdKHHKo1PStGiLWKp4byYNdNYUj8z3dEz74t8Y/Hy6Oo/6Kcif2vsNMNxpnBOiwtfid8bmFMUJwudFNAy9RYOKYh0IDVob/8NIfgwaPCA==
+X-Gm-Message-State: AOJu0YxvhWqCDbL/G3BZdCdTw7vKAD13QVix4a8+/zWiLqehSaIx3dLz
+ XPleQft6tyP3Fq39NwF6jZyNfTcyQdyUt5PcbC99DsBwSqFnioadBJiuHiNm
+X-Google-Smtp-Source: AGHT+IGxeqX0fUugMvXSq1rVpJvLlkHouZdSRo4dovsKIrcHqbTZYwptDD/VOC3M9svMeLtuDbRMoQ==
+X-Received: by 2002:a17:902:6841:b0:1f9:c508:acd5 with SMTP id
+ d9443c01a7336-1fc4e105dcdmr13989135ad.5.1721233859603; 
+ Wed, 17 Jul 2024 09:30:59 -0700 (PDT)
+Received: from embed-PC.myguest.virtualbox.org ([117.98.155.77])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1fc0bc2733asm77343535ad.162.2024.07.17.09.30.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jul 2024 09:30:59 -0700 (PDT)
+Date: Wed, 17 Jul 2024 22:00:49 +0530
+From: Abhishek Tamboli <abhishektamboli9@gmail.com>
+To: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: airlied@gmail.com, daniel@ffwll.ch, harry.wentland@amd.com,
+ sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ skhan@linuxfoundation.org, rbmarliere@gmail.com,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH] drm: Fix documentation warning for read_mpcc_state in
+ mpc.h
+Message-ID: <ZpfxuUXAjmPJvLgR@embed-PC.myguest.virtualbox.org>
+References: <20240712174510.70467-1-abhishektamboli9@gmail.com>
+ <fb2b106e-aa51-4108-9d61-ba71935fba00@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [BUG] HID: amd_sfh (drivers/hid/amd-sfh-hid/): memory/page
- corruption
-To: Jiri Kosina <jkosina@suse.com>, Benjamin Tissoires <bentiss@kernel.org>
-References: <3b129b1f-8636-456a-80b4-0f6cce0eef63@hixontech.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
- LKML <linux-kernel@vger.kernel.org>, Li Ma <li.ma@amd.com>,
- amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
- yifan1.zhang@amd.com, linux-kernel-bugs@hixontech.com,
- linux-input@vger.kernel.org, Basavaraj Natikar <basavaraj.natikar@amd.com>
-In-Reply-To: <3b129b1f-8636-456a-80b4-0f6cce0eef63@hixontech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1721215275;
- 46fc7ead; 
-X-HE-SMSGID: 1sU2ic-0006oY-De
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fb2b106e-aa51-4108-9d61-ba71935fba00@amd.com>
 X-Mailman-Approved-At: Thu, 18 Jul 2024 13:04:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,198 +86,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 15.07.24 06:39, Chris Hixon wrote:
-> System: HP ENVY x360 Convertible 15-ds1xxx; AMD Ryzen 7 4700U with
-> Radeon Graphics
+On Mon, Jul 15, 2024 at 05:46:38PM -0400, Aurabindo Pillai wrote:
 > 
-> Problem commits (introduced in v6.9-rc1):
-> 6296562f30b1 HID: amd_sfh: Extend MP2 register access to SFH
-> 2105e8e00da4 HID: amd_sfh: Improve boot time when SFH is available
->> It appears amd_sfh commits 6296562f30b1 and 2105e8e00da4 correlate with
-> some form of memory/page corruption. 
+> 
+> On 7/12/24 1:45 PM, Abhishek Tamboli wrote:
+> > Add detail description for the read_mpcc_state function in the
+> > mpc_funcs struct to resolve the documentation warning.
+> > 
+> > A kernel-doc warning was addressed:
+> > ./drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h:547: warning:
+> > Function parameter or struct member 'read_mpcc_state' not
+> > described in 'mpc_funcs'.
+> > 
+> > Signed-off-by: Abhishek Tamboli <abhishektamboli9@gmail.com>
+> > ---
+> >   drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h | 16 ++++++++++++++++
+> >   1 file changed, 16 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+> > index 34a398f23fc6..9e65ecf1d3b0 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+> > +++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+> > @@ -282,6 +282,22 @@ struct mpcc_state {
+> >    * struct mpc_funcs - funcs
+> >    */
+> >   struct mpc_funcs {
+> > +	/**
+> > +	 * @read_mpcc_state:
+> > +	 *
+> > +	 * Reads the state of a given MPCC instance.
+> > +	 *
+> > +	 * Parameters:
+> > +	 *
+> > +	 * - [in/out] mpc - MPC context.
+> > +	 * - [in] mpcc_inst - MPCC Instance whose state is to be read.
+> > +	 * - [out] mpcc_state - MPCC state structure where the state
+> > +	 *                    of the MPCC instance will be stored.
+> > +	 *
+> > +	 * Return:
+> > +	 *
+> > +	 * void
+> > +	 */
+> >   	void (*read_mpcc_state)(
+> >   			struct mpc *mpc,
+> >   			int mpcc_inst,
+> 
+> Looks like fix for this has been already merged via a195f08636f9d7
+> drm/amd/display: fix documentation warnings for mpc.h
+> 
+Thanks Aurabindo for pointing this out.
 
-Hi! From a quick search on lore it looks like Basavaraj Natikar who
-authored those two commits is inactive since a few days. This is totally
-fine, but given the nature of the problem slightly unfortunate. That's
-why I'm trying to raise awareness to this report by adding the
-subsystems maintainers, a few lists, and a few people to the list of
-recipients that were involved in the submission of those two patches.
-With a bit of luck somebody might be able to help out. Ciao, Thorsten
-
-> On my system, this typically
-> presents itself as a page dump followed by BTRFS errors, usually
-> involving "corrupt leaf" (see dmesg output below); often the BTRFS
-> filesystem becomes read-only afterwards. Note that the underlying NVME
-> disk seems fine, and the BTRFS filesystem does not actually appear to be
-> corrupt when booted/checked from kernels without this bug (no BTRFS
-> errors or I/O errors reported on non-problem kernels).
+Regards,
+Abhishek 	
+> --
 > 
-> I have no problems when I blacklist the amd_sfh module (any kernel
-> version), or revert both commits 6296562f30b1 and 2105e8e00da4 (on
-> stable, linux-6.9.y). I have no problems on any recent linux-mainline
-> (v6.10{,-rc*}) when reverting these two commits (in addition to
-> reverting 7902ec988a9a and 6856f079cd45 to successfully build the
-> kernel). I have had no problems with any 6.6.y, v6.7.y, or v6.8.y version.
-> 
-> It is curious BTRFS always seems involved, but problems go away with
-> these amd_sfh commits reverted (or amd_afh disabled).
-> 
-> Further notes:
-> 
-> I have not specifically used the amd_sfh module for anything. As far
-> I've been able to determine, my system has the "Sensor Fusion Hub" mp2
-> chip, but has no supported sensors/sub-devices (or I need to do
-> something to enable them), (or there is an error while detecting
-> sensors?). All logs I've checked contain something like:
-> 
-> Jul 09 04:14:37 arch kernel: pcie_mp2_amd 0000:04:00.7: enabling device
-> (0000 -> 0002)
-> Jul 09 04:15:07 arch kernel: pcie_mp2_amd 0000:04:00.7: Failed to
-> discover, sensors not enabled is 0
-> Jul 09 04:15:07 arch kernel: pcie_mp2_amd 0000:04:00.7:
-> amd_sfh_hid_client_init failed err -95
-> 
-> Excerpt from lshw:
->            *-generic:1 UNCLAIMED
->                 description: Signal processing controller
->                 product: Sensor Fusion Hub
->                 vendor: Advanced Micro Devices, Inc. [AMD]
->                 physical id: 0.7
->                 bus info: pci@0000:04:00.7
->                 version: 00
->                 width: 32 bits
->                 clock: 33MHz
->                 capabilities: pm pciexpress msi msix cap_list
->                 configuration: latency=0
->                 resources: memory:fe000000-fe0fffff
-> memory:fe4cc000-fe4cdfff
-> 
-> How I tracked down the problem commits:
-> 
-> I was not able to successfully "git bisect" this bug - I seemed to run
-> into a mess of unrelated problems/errors that sent me down a rabbit hole
-> chasing who knows what. I had already manually narrowed down the bug to
-> amd_sfh by blacklisting modules, so I reverted each
-> drivers/hid/amd-sfh-hid commit on the stable linux-6.9.y branch (v6.9.8
-> known "bad"), back to v6.6 (known "good"), and then manually bisected
-> the revert commits, landing on "HID: amd_sfh: Improve boot time when SFH
-> is available" (2105e8e00da4) as the first "bad" commit.
-> 
-> I wanted to be able to test with only the "bad" commit(s) removed; it
-> turns out 6296562f30b1 ("HID: amd_sfh: Extend MP2 register access to
-> SFH") needs to be reverted to do that. Everything seems fine with these
-> two commits reverted (again, this in on the stable linux-6.9.y branch).
-> 
-> When testing, "bad" commits usually quickly display some variation of
-> the page dump/BTRFS errors, similar to the dmesg output below. I
-> consider commits "good" if the system survives "stress-ng --all 2
-> --vm-bytes 50% --minimize --syslog --status 10 -t 5m" (run as a non-root
-> user), which was usually followed by building the next test kernel. The
-> "bad" commits often show errors before I even get to the stress test.
-> 
-> Examples of error messages from dmesg:
-> 
-> [  653.364343] page: refcount:4 mapcount:0 mapping:00000000b159289f
-> index:0x585a7cec pfn:0x10b5c1
-> [  653.364353] memcg:ffff8f2600918000
-> [  653.364354] aops:btree_aops ino:1
-> [  653.364358] flags:
-> 0x17ffffd000802a(uptodate|lru|private|writeback|node=0|zone=2|lastcpupid=0x1fffff)
-> [  653.364361] page_type: 0xffffffff()
-> [  653.364363] raw: 0017ffffd000802a fffff1da87ee3288 fffff1da842d70c8
-> ffff8f260c719458
-> [  653.364365] raw: 00000000585a7cec ffff8f26cd09e0f0 00000004ffffffff
-> ffff8f2600918000
-> [  653.364366] page dumped because: eb page dump
-> [  653.364367] BTRFS critical (device dm-0): corrupt leaf: root=7
-> block=6071604133888 slot=159, unexpected item end, have 2768254010
-> expect 13379
-> [  653.364371] BTRFS info (device dm-0): leaf 6071604133888 gen 679995
-> total ptrs 353 free space 322 owner 7
-> [  653.364373]     item 0 key (18446744073709551606 128 1062871883776)
-> itemoff 16271 itemsize 12
-> [  653.364375]     item 1 key (18446744073709551606 128 1062871896064)
-> itemoff 16263 itemsize 8
-> [  653.364376]     item 2 key (18446744073709551606 128 1062871904256)
-> itemoff 16255 itemsize 8
-> ...
-> [  653.364762]     item 350 key (18446744073709551606 128 1062879260672)
-> itemoff 9227 itemsize 12
-> [  653.364763]     item 351 key (18446744073709551606 128 1062879272960)
-> itemoff 9223 itemsize 4
-> [  653.364764]     item 352 key (18446744073709551606 128 1062879277056)
-> itemoff 9147 itemsize 76
-> [  653.364766] BTRFS error (device dm-0): block=6071604133888 write time
-> tree block corruption detected
-> [  653.375440] BTRFS: error (device dm-0) in
-> btrfs_commit_transaction:2511: errno=-5 IO failure (Error while writing
-> out transaction)
-> [  653.375453] BTRFS info (device dm-0 state E): forced readonly
-> [  653.375458] BTRFS warning (device dm-0 state E): Skipping commit of
-> aborted transaction.
-> [  653.375461] BTRFS error (device dm-0 state EA): Transaction aborted
-> (error -5)
-> [  653.375465] BTRFS: error (device dm-0 state EA) in
-> cleanup_transaction:2005: errno=-5 IO failure
-> [  653.375582] BTRFS warning (device dm-0 state EA): Skipping commit of
-> aborted transaction.
-> [  653.375586] BTRFS: error (device dm-0 state EA) in
-> cleanup_transaction:2005: errno=-5 IO failure
-> 
-> Another example:
-> 
-> [ 5478.134046] page: refcount:4 mapcount:0 mapping:0000000010080c01
-> index:0x5459ff30 pfn:0x168c7f
-> [ 5478.134054] memcg:ffff89c240988000
-> [ 5478.134056] aops:btree_aops ino:1
-> [ 5478.134061] flags:
-> 0x17ffffd800802a(uptodate|lru|private|writeback|node=0|zone=2|lastcpupid=0x1fffff)
-> [ 5478.134064] page_type: 0xffffffff()
-> [ 5478.134066] raw: 0017ffffd800802a ffffcc5d043e2bc8 ffffcc5d05a08c88
-> ffff89c249968338
-> [ 5478.134068] raw: 000000005459ff30 ffff89c246fa22d0 00000004ffffffff
-> ffff89c240988000
-> [ 5478.134069] page dumped because: eb page dump
-> [ 5478.134071] BTRFS critical (device dm-0): corrupt leaf: root=2161
-> block=5796594384896 slot=84 ino=2434728, invalid inode generation: has
-> 72057594122450740 expect (0, 664473]
-> [ 5478.134075] BTRFS info (device dm-0): leaf 5796594384896 gen 664472
-> total ptrs 120 free space 1223 owner 2161
-> [ 5478.134077]  item 0 key (2434713 24 3817753667) itemoff 16210
-> itemsize 73
-> [ 5478.134078]  item 1 key (2434713 108 0) itemoff 15359 itemsize 851
-> [ 5478.134080]          inline extent data size 830
-> [ 5478.134081]  item 2 key (2434714 1 0) itemoff 15199 itemsize 160
-> [ 5478.134082]          inode generation 636724 size 758 mode 100644
-> [ 5478.134083]  item 3 key (2434714 12 2348495) itemoff 15181 itemsize 18
->   ...
-> [ 5478.134242]  item 117 key (2434733 108 0) itemoff 4398 itemsize 329
-> [ 5478.134243]          inline extent data size 308
-> [ 5478.134244]  item 118 key (2434734 1 0) itemoff 4238 itemsize 160
-> [ 5478.134245]          inode generation 636724 size 30 mode 40755
-> [ 5478.134245]  item 119 key (2434734 12 2434375) itemoff 4223 itemsize 15
-> [ 5478.134247] BTRFS error (device dm-0): block=5796594384896 write time
-> tree block corruption detected
-> [ 5478.263726] BTRFS: error (device dm-0) in
-> btrfs_commit_transaction:2511: errno=-5 IO failure (Error while writing
-> out transaction)
-> [ 5478.263733] BTRFS info (device dm-0 state E): forced readonly
-> [ 5478.263736] BTRFS warning (device dm-0 state E): Skipping commit of
-> aborted transaction.
-> [ 5478.263737] BTRFS error (device dm-0 state EA): Transaction aborted
-> (error -5)
-> [ 5478.263739] BTRFS: error (device dm-0 state EA) in
-> cleanup_transaction:2005: errno=-5 IO failure
-> [ 5478.264582] BTRFS warning (device dm-0 state EA): Skipping commit of
-> aborted transaction.
-> [ 5478.264595] BTRFS: error (device dm-0 state EA) in
-> cleanup_transaction:2005: errno=-5 IO failure
-
-#regzbot ^introduced: 6296562f30b1
-#regzbot summary: hid: amd_sfh: memory/page corruption correlated with
-6296562f30b1 or 2105e8e00da4
-#regzbot ignore-activity
+> Thanks & Regards,
+> Aurabindo Pillai
