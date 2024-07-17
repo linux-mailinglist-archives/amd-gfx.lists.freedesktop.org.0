@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD999342B4
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2024 21:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 411489342B7
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2024 21:40:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D27AE10E3AA;
-	Wed, 17 Jul 2024 19:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFC7D10E3AC;
+	Wed, 17 Jul 2024 19:40:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="i3bTgT32";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="W4UBjtiW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD3E610E3AA
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 19:39:55 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2061.outbound.protection.outlook.com [40.107.237.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2EB410E3AC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 19:40:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ffff+nhn6xIvMiUYDJzpkyQ2OWZ5dklFKId/JJB5tr6kDPn/scRc32OROL2qrmr5Mz4mTKwSJCNdA6vloUDNDO7iPWjIp2gXFWxva6c4NtTHxTV2C8PpS8I39rSZ+AipxC6PWHeuLbGOivME0RG2gFBsuqIeAKbZcdSVRXILfDV3F/pCCMS+bQCzH8/mCV5l/auz22jWsxHa/O4ly6zNtn7sB1b96dGpZ3LYQnKzWLP0StLcqFZWKb8OuGFTqheybmqny7Eta+tZ+kqugXcJXPNpQMgBHVM/lA7Vhpjg2qHE+UfDKfIPZVTf1SiAdPJxnM8f68wEyegIxtvEncav4Q==
+ b=AwLK0x0b+MSpjFrXnoUMFXfpr/6SgZ/LHo4+Gh35wH3Nw2knSZOwRDjNhCaK0MYO0yCkBsmA3IwvFwARErMaDYwjv6SVTNbjILVnMo2nkMFMEY5G95JG4wVX333XSB7SlfnH+1U2kB3ayvOsPTA+KgNYDLqHsyEcTTLlNlL2JRuQ/74gB57+uI2z8WPDzkFNd8w1JS3QpNlMLdTShEZgF2jtAYOXgnCwnwG3aTMQQtdBwBxLR3kL4j687z9B1bznrJIgRr/6Mj7aEjQf5Vs+pKZIuHo7hAWVQLlMghhFrxMMK55qFfEVZvdOQ3LqWqS7Msz+pzha/KD+N7fGFWqesQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=osb6XWF/2/gYGJ58Qshzc2logB6IghM+09FGbD3FnRI=;
- b=QiOETLH6br+ntFWPLkmW0WDrQUDLQvkLJXV60mO6cxth57ttntGqVlXW9MVBT/sq8dpnLRDSro8YTUS7VCr+PnUdbZMmUPXrkkDT6hs6NdkI7Nd4yzRWGxWBhRLDmcSPtgLVUnwQJ35eWJLUgHbGb+tWacfVvdUKwbDmgRJJrFqoggAY2bTD/Z+xag68NnUFrljC0+MIE+BxCQGSK0bLbe1BvkKvoN1YH9IrLy0GS69zHUJsQAX2xZsz41RYDQzB6/EXpjBkB3aDmAHWV+jdZVIcV/VDrHg1za6/W3+xQHgeb/S6X2cYZ6hDV746rIa/cxSGDz4g/VLrs2nJi3/xvA==
+ bh=EqPb8k1daSYvAYI4X+SeQiN8sMBoh1oBhMzoE+sGMpU=;
+ b=j6uvGDT4/bcSDdA+cgPAIZaLoucl/5JC1SZ2GIsKNuZ48AC4HMX5k0aI1TI6RErM0X75Q2hy9lKR15nHAH4q5K6UPZi/YXtOo9NcNIVZnDaq9QM5Lr57QvVp7TgAl5+I4nvCnlriKYlLfqbn49ySJEjHk/gt/GGbdUH3mNhyPQJiMXvFt+ZFqt6nbAYPNS1IbQykY/2tZevlGItSXutFCVWZwm2HQ/kCfujswafYl/yrF/1j3Hdni3xl73aKfjdltic7z1otfTBDz51hu7lqPKj7riB5uBHDA4m41tPcgsV2VItdOYorl2vP/RYWLQkX3yIBPIND+DVggOMKo/eY8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=osb6XWF/2/gYGJ58Qshzc2logB6IghM+09FGbD3FnRI=;
- b=i3bTgT32sKQtZJ74iZq0A7M7hQiuJXq3tWXFHqFzumhxRDEBLft6DSErYS3Lv+p6Mxrajp9i/NYtSaYXWrgqc0kcIJLjQpGmZMlFoadejIBr7emdqoAb1kTdrZYxBDY7rK+a+I/MnwOsfppxXo6IiNCLMLfFfvgWvk+cKDtpRb8=
-Received: from MW4P223CA0017.NAMP223.PROD.OUTLOOK.COM (2603:10b6:303:80::22)
- by SA3PR12MB7952.namprd12.prod.outlook.com (2603:10b6:806:316::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.23; Wed, 17 Jul
- 2024 19:39:49 +0000
-Received: from MWH0EPF000989E7.namprd02.prod.outlook.com (2603:10b6:303:80::4)
- by MW4P223CA0017.outlook.office365.com (2603:10b6:303:80::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7762.29 via Frontend Transport; Wed, 17 Jul 2024 19:39:48 +0000
+ bh=EqPb8k1daSYvAYI4X+SeQiN8sMBoh1oBhMzoE+sGMpU=;
+ b=W4UBjtiW9CSoY7AF1sKu3ir4CO/QD5f1IV8bfeTnTnthB/YZaNB+iRGMJ5MzOhRX/arUpPzxrnLr/LHAlryug/VPyggl99YCmuiZgmWmp3TJdlmHIbXQ/0Ft3LC0BMDy5C0Cbh8aWvCgncusPuNRJElZR9P5YL1DOAF4New+Fu8=
+Received: from BYAPR03CA0033.namprd03.prod.outlook.com (2603:10b6:a02:a8::46)
+ by SA0PR12MB4463.namprd12.prod.outlook.com (2603:10b6:806:92::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.17; Wed, 17 Jul
+ 2024 19:39:56 +0000
+Received: from MWH0EPF000989E6.namprd02.prod.outlook.com
+ (2603:10b6:a02:a8:cafe::69) by BYAPR03CA0033.outlook.office365.com
+ (2603:10b6:a02:a8::46) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.17 via Frontend
+ Transport; Wed, 17 Jul 2024 19:39:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,31 +48,31 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000989E7.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ MWH0EPF000989E6.mail.protection.outlook.com (10.167.241.133) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Wed, 17 Jul 2024 19:39:48 +0000
+ 15.20.7784.11 via Frontend Transport; Wed, 17 Jul 2024 19:39:55 +0000
 Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 17 Jul
- 2024 14:39:47 -0500
+ 2024 14:39:53 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 17 Jul
- 2024 14:39:47 -0500
+ 2024 14:39:53 -0500
 Received: from debian.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 17 Jul 2024 14:39:41 -0500
+ Transport; Wed, 17 Jul 2024 14:39:47 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Hansen Dsouza
- <hansen.dsouza@amd.com>, Daniel Miess <daniel.miess@amd.com>, Muhammad Ahmed
- <ahmed.ahmed@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
-Subject: [PATCH 06/22] drm/amd/display: Add RCG helper functions
-Date: Wed, 17 Jul 2024 19:38:45 +0000
-Message-ID: <20240717193901.8821-7-aurabindo.pillai@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Ryan Seto <ryanseto@amd.com>,
+ Chaitanya Dhere <chaitanya.dhere@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>
+Subject: [PATCH 07/22] drm/amd/display: Fix visual confirm bug for SubVP
+Date: Wed, 17 Jul 2024 19:38:46 +0000
+Message-ID: <20240717193901.8821-8-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240717193901.8821-1-aurabindo.pillai@amd.com>
 References: <20240717193901.8821-1-aurabindo.pillai@amd.com>
@@ -83,51 +83,51 @@ Received-SPF: None (SATLEXMB05.amd.com: aurabindo.pillai@amd.com does not
  designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000989E7:EE_|SA3PR12MB7952:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcc616ac-a892-41d3-6b84-08dca698381f
+X-MS-TrafficTypeDiagnostic: MWH0EPF000989E6:EE_|SA0PR12MB4463:EE_
+X-MS-Office365-Filtering-Correlation-Id: a63e7bba-5391-4aa8-45af-08dca6983c85
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?63gn77luMf80+lqRPx6xhSosZWp58qx5ep8CiT3k1N4smfZQJJNGgIx7tOhv?=
- =?us-ascii?Q?XgNy1DI2jiQClqY3fcrY/QshqWhpV4itQMu0pZecT8iei1n/mIKOMVDR4ISe?=
- =?us-ascii?Q?gzwPwkGunNi6nm1s/kwYW3Ndipqna2gzmcrVb5FveYgzOcNeb6Elgf/tcUHK?=
- =?us-ascii?Q?5/bfMT6mBHFxd2Zgb4rpkytdE0xFE1+dWm4FCJS+19V/wYl7n3DRRfwYgYAn?=
- =?us-ascii?Q?+5HpQMgcOEFKCxmWLPTKl+cg11ZluF9r4rLXH21xE2WO4DI97dRM1qunf9zg?=
- =?us-ascii?Q?3LdBfs7BlTq7EvLOulofwQ1gELzsGn7BVMxTWGnFo/qhaeu3IB1nDjHlTaRt?=
- =?us-ascii?Q?Hh+tcexkrQhk57lz9P25/M+Cx6dmIsE+ZiPePVYCtMNfDCEzXgoku2D8j5v4?=
- =?us-ascii?Q?nRBjWicN3h9L9sBps+GZZkMrYZNWNaEq067nfcYXoYxyzE5kA/08I0FjbwIo?=
- =?us-ascii?Q?j/KmtDGfUVzI6wBgejRjWfEgiGMzN2Qda6s03sQ0j32r4OTEDNNqeWiYcYa/?=
- =?us-ascii?Q?Cha6oAme5LujXiPxOioN/CvKXPBpYTw54KdDyFDXER/9yJz8By7tj3MvUjGr?=
- =?us-ascii?Q?o6GKE7k2xm9BYIQnpSHw1dioCXFMMwXnIU2MkDzaXIrjkr17wyKLTUsUwFAG?=
- =?us-ascii?Q?9nqmnnpaSVLJlUyJxShOMtvD2bS7TupWEjLewJE5CE8nMMaOnfYAIPxukN5x?=
- =?us-ascii?Q?sZUlaWeAZB3bz6i8sAAQux0cuY3t3Ro5pFtOy0woZa2hOdPj0JPNq3RDW546?=
- =?us-ascii?Q?fhzB+hNA3AEzgQ1YxTceKsB22BqJLv8GKOAI6xz/+vRV4pDMZ2I57f68gXsw?=
- =?us-ascii?Q?HpWK5fvw6IRTIw610b1dzSBsOquHAVvr8RGrd5ksTZTE7y/zOQO3RUZajMeA?=
- =?us-ascii?Q?iKM545TcukLdfhZfk12AUaG5WKp5rtl/1j14hevYZzmBVEqOxEKAikQDoh3F?=
- =?us-ascii?Q?rcttljyobA42xAjgw2V4+nV3/nVlDQ8OSTGs2eN+/yUVxo7aOGXWTzaq5TVc?=
- =?us-ascii?Q?FySw+jo7uK1nTUNzXjwkv+QwfKEv5hXAcL2tIRFXU+7kYC1AAqRSCqwQXeqe?=
- =?us-ascii?Q?RdVCmHFeM9lbShJMz0eXdN4h37DgcpEZyrxRwHyMAw+gNJpMD+PlUvZVLiGY?=
- =?us-ascii?Q?XfPdig0scg1xIj8evhGMU9GgAruGMXz8Y/D9MAWrRp2+/v9NuwKEpVCEMHos?=
- =?us-ascii?Q?hVDzOOuijD5Fc7+Bm1SR/6OLVuiHV7zjyAFL3aEeiGg5VIioeceAUPu08X4R?=
- =?us-ascii?Q?+rTQ24WGCyTd5+zvqq3M/KfkAHRqOlyzwXhkWGjZHoUfH0+R2lpBT8zhsYZC?=
- =?us-ascii?Q?yzIX4p3HUyFqVVAsKBXRD7Q/wxqrVnEVhg/eey72Ub75lPM++hmmcTurQMV0?=
- =?us-ascii?Q?cdUYvMUMyiRcKaC8XjF6cwwm7Br3D++OZCcu2MjbEcxtlGFGcNTPKZYpmiCn?=
- =?us-ascii?Q?K7a56/avrA2KuwMUElQesTo/vAVqmCvH?=
+ ARA:13230040|376014|1800799024|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8SazaHvYX+gY99IR1gPMoz2vblKHqRVbUfjdeXyXLc5HjEj9bjDXreRwMsJO?=
+ =?us-ascii?Q?nzVeTrq+QlP3isMnrzgCebN/dJ5xJFrHG9O+16Tr1xMxR+x7nTQuTTk4WXVX?=
+ =?us-ascii?Q?YPqR38N2uX1JDFgm4xO+fdugF/617e925bkCb+zjqRIEjZJnDZG8/dQ8Mu/0?=
+ =?us-ascii?Q?wWib4OtcHodiw21xlB1EylDzEP738iq0dHC2kVTX4y+18PUST7ePAStURrui?=
+ =?us-ascii?Q?eDgn985VV4sZrvqSp5DQ3JbvonvQRzdd+GLUUx3WFAfdDScFrNQnOEqlMgtd?=
+ =?us-ascii?Q?cjMW5tb/ksN6cWnpIz08i8u3yfQsuvzDuigA9c2pXt564WaP05QUNW6rjUSr?=
+ =?us-ascii?Q?l/XrQIGJ78RIpxlnxuZF1JSSEx6sgnKGN/mKWcQFPVwdIK7QpM2OYwOLWZtw?=
+ =?us-ascii?Q?yz8awOdBDnbnb0MTOBsEYFD00ODmKJc32qis+p0S9JxBMWtvz3nUc220DE6o?=
+ =?us-ascii?Q?DK/0J3PXsC+93f2rpL/N51r8ib88qsVCQBQdWqqn97MuDCRcUui0sTJx8mGW?=
+ =?us-ascii?Q?v07dYLsi1C9eW5T7oX/pjsr7HXlCa4TFtUEPo110qF8lbTItAkn1mAaot/bb?=
+ =?us-ascii?Q?2EsURJ+IH2Yjz1Az2pDhm3gPQu+Nq7qg5LWxJJhhXuJxv7iG53DailfMthH6?=
+ =?us-ascii?Q?otulH+RrkOnu5vLAd76hdaljeAheBN0P8/ggah0XSnJYVlljcjGJ4cDoL0xK?=
+ =?us-ascii?Q?yL9/m0lSXMPNZTSSvascStKqR+ixB63R/wm4YelACcI2qJ9GJ0lWocfDZUNo?=
+ =?us-ascii?Q?TmdHWEZ7M9x0BV/fRWBxFrawAMezBFwwuE9Vis4K1TcC8nh+zZgjupXzCiZR?=
+ =?us-ascii?Q?ARua6SPC2HbbD12Vfdvj8QqSbANa795JjrMJQibu6sxqXcV83+8Mzrdh1geD?=
+ =?us-ascii?Q?q0I4BuJzBJjXRdd9q2CTonvvJX6BboViu2I3SccME68yTu/fu3yFGGNJG+Hv?=
+ =?us-ascii?Q?aVtKeZtef9+4xQZX+nue0ILTwnuFaNCd8Pby6ptTnUGTsnd9jfnxmn2U2HRd?=
+ =?us-ascii?Q?CJKbo8XkEZrbCqYLJiR+cEl/Sj0331JHCxg0EFpcl819yxodgEfhhhCFfEsC?=
+ =?us-ascii?Q?WKAkDgBP63Zf23Qho81mucZZcvwTugVEnETPE9+U0FoAlHptSaVhA6en94tn?=
+ =?us-ascii?Q?6TmQlHIqnOG6H7R0u+Lqglu4UXsBQUflySk4B0PL7KKdVOnAkjLGNW7+NAz3?=
+ =?us-ascii?Q?nOfKfT0OCu6YAMzfWzGMq2mGO0igQq0uAqJOlOSUwWmM5L/hzc/Y8GJZlH4N?=
+ =?us-ascii?Q?/OyKbgO59aeKXsIw3hCNmS1dIQ5ZTJ++gmUYJNJKiMX74VHZO2rA3hTRi4Je?=
+ =?us-ascii?Q?QlCIe6PnPzSIDFc4N5VqXhdCEq5ShcXN1BtVu10R4PKsEVG84HXfz7USVd95?=
+ =?us-ascii?Q?28J7shNCI9kXqUk6UXtbqAGj1DROTHXbYcTiAu0aI0O6yKxjW25q2eFLXKnJ?=
+ =?us-ascii?Q?sfc9BoujyvkMeZParcjBLV0IyUU59pGA?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 19:39:48.5028 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcc616ac-a892-41d3-6b84-08dca698381f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 19:39:55.8030 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a63e7bba-5391-4aa8-45af-08dca6983c85
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989E7.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000989E6.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7952
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4463
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,344 +142,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hansen Dsouza <hansen.dsouza@amd.com>
+From: Ryan Seto <ryanseto@amd.com>
 
-[why & how]
-Add standard RCG helpers based on DCCG spec
+[Why]
+Visual confirm was incorrect on dual monitor SubVP setup
 
-Reviewed-by: Daniel Miess <daniel.miess@amd.com>
-Reviewed-by: Muhammad Ahmed <ahmed.ahmed@amd.com>
+[How]
+Adjusted p_state assignment for dual monitor SubVP setup
+
+Signed-off-by: Ryan Seto <ryanseto@amd.com>
+Reviewed-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Hansen Dsouza <hansen.dsouza@amd.com>
 ---
- .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    | 307 ++++++++++++++++++
- 1 file changed, 307 insertions(+)
+ .../dc/dml2/dml21/dml21_translation_helper.c  | 13 ++++++++---
+ .../dc/dml2/dml21/dml21_translation_helper.h  |  2 +-
+ .../amd/display/dc/dml2/dml21/dml21_utils.c   | 22 +++++++++++++++++--
+ 3 files changed, 31 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-index 64b25e5d9d7a..76f069f703ef 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-@@ -122,6 +122,302 @@ enum dsc_clk_source {
- 	DSC_DTO_TUNED_CK_GPU_DISCLK_3,	// DTO divided clock selected as functional clock
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+index 1fce61323201..9fdb209bcab2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+@@ -1183,7 +1183,8 @@ void dml21_get_pipe_mcache_config(
  
-+
-+static void dccg35_set_dsc_clk_rcg(struct dccg *dccg, int inst, bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.dsc)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DSCCLK0_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DSCCLK1_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DSCCLK2_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DSCCLK3_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_symclk32_se_rcg(
-+	struct dccg *dccg,
-+	int inst,
-+	bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
-+		return;
-+
-+	/* SYMCLK32_ROOT_SE#_GATE_DISABLE will clock gate in DCCG */
-+	/* SYMCLK32_SE#_GATE_DISABLE will clock gate in HPO only */
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_SE0_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_SE0_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_SE1_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_SE1_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_SE2_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_SE2_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_SE3_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_SE3_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_symclk32_le_rcg(
-+	struct dccg *dccg,
-+	int inst,
-+	bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_le)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_LE0_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_LE0_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+				   SYMCLK32_LE1_GATE_DISABLE, enable ? 0 : 1,
-+				   SYMCLK32_ROOT_LE1_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_physymclk_rcg(
-+	struct dccg *dccg,
-+	int inst,
-+	bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.physymclk)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL2,
-+				PHYASYMCLK_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL2,
-+				PHYBSYMCLK_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL2,
-+				PHYCSYMCLK_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL2,
-+				PHYDSYMCLK_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 4:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL2,
-+				PHYESYMCLK_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_physymclk_fe_rcg(
-+		struct dccg *dccg,
-+		int inst,
-+		bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.physymclk)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5,
-+				SYMCLKA_FE_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5,
-+				SYMCLKB_FE_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5,
-+				SYMCLKC_FE_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5,
-+				SYMCLKD_FE_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 4:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5,
-+				SYMCLKE_FE_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_dtbclk_p_rcg(struct dccg *dccg, int inst, bool enable)
-+{
-+
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.dpp)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5, DTBCLK_P0_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5, DTBCLK_P1_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5, DTBCLK_P2_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL5, DTBCLK_P3_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		break;
-+	}
-+}
-+
-+static void dccg35_set_dppclk_rcg(struct dccg *dccg,
-+												int inst, bool enable)
-+{
-+
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.dpp)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DPPCLK0_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DPPCLK1_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DPPCLK2_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE(DCCG_GATE_DISABLE_CNTL6, DPPCLK3_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+	BREAK_TO_DEBUGGER();
-+		break;
-+	}
-+}
-+
-+static void dccg35_set_dpstreamclk_rcg(
-+	struct dccg *dccg,
-+	int inst,
-+	bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.dpstream)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL5,
-+					 DPSTREAMCLK0_GATE_DISABLE, enable ? 0 : 1,
-+					 DPSTREAMCLK0_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL5,
-+					 DPSTREAMCLK1_GATE_DISABLE, enable ? 0 : 1,
-+					 DPSTREAMCLK1_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL5,
-+				   DPSTREAMCLK2_GATE_DISABLE, enable ? 0 : 1,
-+				   DPSTREAMCLK2_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL5,
-+				   DPSTREAMCLK3_GATE_DISABLE, enable ? 0 : 1,
-+				   DPSTREAMCLK3_ROOT_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
-+static void dccg35_set_smclk32_se_rcg(
-+		struct dccg *dccg,
-+		int inst,
-+		bool enable)
-+{
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
-+	if (!dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
-+		return;
-+
-+	switch (inst) {
-+	case 0:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+					 SYMCLK32_SE0_GATE_DISABLE, enable ? 0 : 1,
-+					 SYMCLK32_ROOT_SE0_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 1:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+					 SYMCLK32_SE1_GATE_DISABLE, enable ? 0 : 1,
-+					 SYMCLK32_ROOT_SE1_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 2:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+					 SYMCLK32_SE2_GATE_DISABLE, enable ? 0 : 1,
-+					 SYMCLK32_ROOT_SE2_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	case 3:
-+		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
-+					 SYMCLK32_SE3_GATE_DISABLE, enable ? 0 : 1,
-+					 SYMCLK32_ROOT_SE3_GATE_DISABLE, enable ? 0 : 1);
-+		break;
-+	default:
-+		BREAK_TO_DEBUGGER();
-+		return;
-+	}
-+}
-+
- static void dccg35_trigger_dio_fifo_resync(struct dccg *dccg)
+ void dml21_set_dc_p_state_type(
+ 		struct pipe_ctx *pipe_ctx,
+-		struct dml2_per_stream_programming *stream_programming)
++		struct dml2_per_stream_programming *stream_programming,
++		bool sub_vp_enabled)
  {
- 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-@@ -1123,6 +1419,17 @@ struct dccg *dccg35_create(
- 		return NULL;
- 	}
+ 	switch (stream_programming->uclk_pstate_method) {
+ 	case dml2_uclk_pstate_support_method_vactive:
+@@ -1192,14 +1193,20 @@ void dml21_set_dc_p_state_type(
+ 		break;
+ 	case dml2_uclk_pstate_support_method_vblank:
+ 	case dml2_uclk_pstate_support_method_fw_vblank_drr:
+-		pipe_ctx->p_state_type = P_STATE_V_BLANK;
++		if (sub_vp_enabled)
++			pipe_ctx->p_state_type = P_STATE_V_BLANK_SUB_VP;
++		else
++			pipe_ctx->p_state_type = P_STATE_V_BLANK;
+ 		break;
+ 	case dml2_uclk_pstate_support_method_fw_subvp_phantom:
+ 	case dml2_uclk_pstate_support_method_fw_subvp_phantom_drr:
+ 		pipe_ctx->p_state_type = P_STATE_SUB_VP;
+ 		break;
+ 	case dml2_uclk_pstate_support_method_fw_drr:
+-		pipe_ctx->p_state_type = P_STATE_FPO;
++		if (sub_vp_enabled)
++			pipe_ctx->p_state_type = P_STATE_DRR_SUB_VP;
++		else
++			pipe_ctx->p_state_type = P_STATE_FPO;
+ 		break;
+ 	default:
+ 		pipe_ctx->p_state_type = P_STATE_UNKNOWN;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.h b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.h
+index 97a8f51b7780..476a7f6e4875 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.h
+@@ -26,5 +26,5 @@ void dml21_extract_legacy_watermark_set(const struct dc *in_dc, struct dcn_water
+ void dml21_extract_watermark_sets(const struct dc *in_dc, union dcn_watermark_set *watermarks, struct dml2_context *in_ctx);
+ void dml21_map_hw_resources(struct dml2_context *dml_ctx);
+ void dml21_get_pipe_mcache_config(struct dc_state *context, struct pipe_ctx *pipe_ctx, struct dml2_per_plane_programming *pln_prog, struct dml2_pipe_configuration_descriptor *mcache_pipe_config);
+-void dml21_set_dc_p_state_type(struct pipe_ctx *pipe_ctx, struct dml2_per_stream_programming *stream_programming);
++void dml21_set_dc_p_state_type(struct pipe_ctx *pipe_ctx, struct dml2_per_stream_programming *stream_programming, bool sub_vp_enabled);
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_utils.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_utils.c
+index e11246e525ac..ec4195336444 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_utils.c
+@@ -11,7 +11,6 @@
  
-+	/* Temporary declaration to handle unused static functions */
-+	(void)&dccg35_set_dsc_clk_rcg;
-+	(void)&dccg35_set_symclk32_se_rcg;
-+	(void)&dccg35_set_symclk32_le_rcg;
-+	(void)&dccg35_set_physymclk_rcg;
-+	(void)&dccg35_set_physymclk_fe_rcg;
-+	(void)&dccg35_set_dtbclk_p_rcg;
-+	(void)&dccg35_set_dppclk_rcg;
-+	(void)&dccg35_set_dpstreamclk_rcg;
-+	(void)&dccg35_set_smclk32_se_rcg;
+ #include "dml2_core_dcn4_calcs.h"
+ 
+-
+ int dml21_helper_find_dml_pipe_idx_by_stream_id(struct dml2_context *ctx, unsigned int stream_id)
+ {
+ 	int i;
+@@ -280,6 +279,23 @@ bool check_dp2p0_output_encoder(const struct pipe_ctx *pipe_ctx)
+ 		dc_is_dp_signal(pipe_ctx->stream->signal));
+ }
+ 
 +
- 	base = &dccg_dcn->base;
- 	base->ctx = ctx;
- 	base->funcs = &dccg35_funcs;
++static bool is_sub_vp_enabled(struct dc *dc, struct dc_state *context)
++{
++	int i;
++
++	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++		struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
++
++		if (pipe_ctx->stream && dc_state_get_paired_subvp_stream(context, pipe_ctx->stream) &&
++							dc_state_get_pipe_subvp_type(context, pipe_ctx) == SUBVP_MAIN) {
++			return true;
++		}
++	}
++	return false;
++}
++
++
+ void dml21_program_dc_pipe(struct dml2_context *dml_ctx, struct dc_state *context, struct pipe_ctx *pipe_ctx, struct dml2_per_plane_programming *pln_prog,
+ 		struct dml2_per_stream_programming *stream_prog)
+ {
+@@ -317,7 +333,9 @@ void dml21_program_dc_pipe(struct dml2_context *dml_ctx, struct dc_state *contex
+ 	dml21_populate_mall_allocation_size(context, dml_ctx, pln_prog, pipe_ctx);
+ 	memcpy(&context->bw_ctx.bw.dcn.mcache_allocations[pipe_ctx->pipe_idx], &pln_prog->mcache_allocation, sizeof(struct dml2_mcache_surface_allocation));
+ 
+-	dml21_set_dc_p_state_type(pipe_ctx, stream_prog);
++	bool sub_vp_enabled = is_sub_vp_enabled(pipe_ctx->stream->ctx->dc, context);
++
++	dml21_set_dc_p_state_type(pipe_ctx, stream_prog, sub_vp_enabled);
+ }
+ 
+ static struct dc_stream_state *dml21_add_phantom_stream(struct dml2_context *dml_ctx,
 -- 
 2.39.2
 
