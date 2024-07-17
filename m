@@ -2,82 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA799337E8
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2024 09:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7082B933733
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jul 2024 08:35:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACCB110E9C0;
-	Wed, 17 Jul 2024 07:24:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9625C10E950;
+	Wed, 17 Jul 2024 06:28:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HTHPzqPq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e/8HZgot";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
- [209.85.166.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAAAF10E841;
- Tue, 16 Jul 2024 18:59:34 +0000 (UTC)
-Received: by mail-io1-f46.google.com with SMTP id
- ca18e2360f4ac-7f70a708f54so6584139f.3; 
- Tue, 16 Jul 2024 11:59:34 -0700 (PDT)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com
+ [209.85.221.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7899210E94E;
+ Wed, 17 Jul 2024 06:28:55 +0000 (UTC)
+Received: by mail-vk1-f176.google.com with SMTP id
+ 71dfb90a1353d-4f3023d0b58so76152e0c.0; 
+ Tue, 16 Jul 2024 23:28:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1721156374; x=1721761174; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1721197734; x=1721802534; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=02GQEyQ8Fgm4yEF+9D4Fm23zLJa07LslS1GKZkXapgQ=;
- b=HTHPzqPq+4ko6CRDqc5KGGx9IfaOE+I7SKV/lti/ZKc/jaUS4xHepzZHymfE+qNdo8
- oDCDrRo31Xm7LTaQtN6H6DX/6EcJPRl475h9368yW8jtPcy7k2nYDogrKJTZb4JoHokd
- NE6gm906Ch9g6rl4K+b5a00iDheLqEjz7uQarnfWgGLSwJEAitmssz6m+ftPTT3gjs0R
- ukdtnNasdshybU8NZQxZTXSf/EmXrfoGEi+ZiuZK++Z542uYGr/qgWA0JHEbXdEtniE9
- jCwXnZQ7h6ouhzRllJofWb5VNXiPCYQBwwIicajAhWECFm0dZi9S1+J6+HY1dKi6Dm4n
- 8ARA==
+ bh=RSkPTIXm0vgM5ibd/3x5KTHf6taTWqqsaoDXuJQEbag=;
+ b=e/8HZgotVuyCdV55dyyA7vy2iXuVhbovkbJAEjuvmuy4ya/eZPi2SSvNSUL86tOUP+
+ HyWsjHY1dXyeDDyu+oucs2KHLPs6ezWCyLz93R+j6ZTrI7QzX+0AT+IEl1QdtkcJ+KBS
+ 1vbvNeVIqEKPkYNeHE9Ilt5V+l1KwkN3swuTtGhCeOcvC5Ab0Er2NpcRW3R19jPc13fE
+ HTCoByxv1DtHGuepqSPfKWI6pGiqqkH/7eYlWqWBKUIJ5EBO74bCipolWyZkG2vy3dNe
+ DpWzFdb16yrjlhVm5VXdD3TxopLXGJO5Wfv57r0HHAIYAMo1977J7+IP1blYXJ0dL3tY
+ 5t3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721156374; x=1721761174;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1721197734; x=1721802534;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=02GQEyQ8Fgm4yEF+9D4Fm23zLJa07LslS1GKZkXapgQ=;
- b=LU6KBLRc5BbfjEdqW8rAUkcXN82mJ/lHPZJxBmGEVxmi/C5yST0/Mc4ACjRxN2QFHF
- 77Y2dMbZbT0BESSJMDznx4ZF9b7hry3jIPIxZHy/gcRJBQph4ftWUoUvjjqgIpEWAN0b
- l7rertgA4nRSs1aqG8hy7tVSKBzGiCxnwByogkl/CGmEv8Z0Z9dOx90xbTbOQ5CxPnCf
- t9aAytUqVhdlenLCjy9HULRmYcfqqTC1jkWT32pY8mbYXMYMChgKo0QCdiAWp7nifGy/
- 5mfqIdYjkwlF1zgb3qHTHNty6yWd7DcmiQZLjTQjFxmnL3aOAAf4eUGoYtUpnc90uzv+
- la/Q==
+ bh=RSkPTIXm0vgM5ibd/3x5KTHf6taTWqqsaoDXuJQEbag=;
+ b=KyUNq85vFXvFIlCMbJXpedzVUVF4E9joiU93hY+ktE0P5wyaoKYRCygd84uX3CHHYS
+ U5bipU/qGYW80q8TT+ihvfgX+lnNj/LTnq2XabLczb6Qd4poAVHklkmNaWVbMQQT50Ub
+ IPdf+sVGkgYa3PVsWuRlUQkeRVajeefwvsVZ85t8umvKGguWeMbCNMl9OVdoeQAB9CfU
+ caDqZbUgWb+nFv7hLfxnLCtEgdWITUbzydJGwbZUPgU7a1hRAEz0l/KnpV1BMbP1d6VN
+ G4nbYu16pwQaPca1iesHQR6fmPYcv034Z2iUyRCw8XkqOuUZG34PErbpyhT1TGO7QnOb
+ cy6A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWF8zQRaIldkH/2bzeSldeq2Pu4KrcmClP2wYWHcKRXBU0oR6UxbsN68DCQRte1WqZYe9Tjf/30C1ihH8RsbVNNzgQTIfDoE6UsZB/UcwfWfHNiniTQkhJVBBvptYdvlDYuELYhqQHCzACdXJyfJwfpFzsRj4ha7WDVvNHjG9zXqc5nRydIDhUwdbz389VROW5cWohGGQzT8Fz75wfyPh0AiI42NFDmQSehjS4MM3us2vC/s+0=
-X-Gm-Message-State: AOJu0YxoGjWSYBt4/DSPYm4q37wRFwkFx/jpv5Rzmx7Pu/hwijjIID6W
- tlOZ33XbLoqlUhqiuIhJ1AU/nxVjfKKgmW7ZqaB+G9bK4Jd+qAuE
-X-Google-Smtp-Source: AGHT+IH2P7UQSoQkuUq22B0bjuKA/ngzw01JbZNtKHx44WAJD4WRstjL+48jrY+j0JQqgWF+0C1c2g==
-X-Received: by 2002:a05:6602:1548:b0:804:f2be:ee21 with SMTP id
- ca18e2360f4ac-816c2c0d633mr43164039f.3.1721156373964; 
- Tue, 16 Jul 2024 11:59:33 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-4c210f23f1csm75301173.102.2024.07.16.11.59.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 16 Jul 2024 11:59:33 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, jbaron@akamai.com,
- gregkh@linuxfoundation.org, daniel.vetter@ffwll.ch,
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com
-Cc: ukaszb@chromium.org, linux@rasmusvillemoes.dk, joe@perches.com,
- mcgrof@kernel.org, seanpaul@chromium.org, robdclark@gmail.com,
- groeck@google.com, yanivt@google.com, bleung@google.com,
- linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, kernelnewbies@kernelnewbies.org,
- Jim Cromie <jim.cromie@gmail.com>
-Subject: [PATCH v9-resend 54/54] docs-dyndbg: improve howto classmaps api
- section
-Date: Tue, 16 Jul 2024 12:58:06 -0600
-Message-ID: <20240716185806.1572048-55-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240716185806.1572048-1-jim.cromie@gmail.com>
-References: <20240716185806.1572048-1-jim.cromie@gmail.com>
+ AJvYcCVJKhUxbVFGXBYQUo5EfYUFmHjdqPkQD6Mt8ExKUWouGwQa8xW6dFXIA/Bx1y6HJOcv4WMq2gcERIoJIPXF8GSnqyLsa0Vhp9H7nPSYCGh1jXbYwuHexWeCDiNGI7sCGiaDwUsqWX7cigqi6E3yZA==
+X-Gm-Message-State: AOJu0YwnU/QgUh8YNgIRKXrF/y/2lSr0KgyYshedi9JJ69qQsYFzfLNw
+ NfFhV+5Todh4SG20XkNXe+ioAgcOoRAZ0xlxhawT7xU9t/rlALfw52XMKuGDmtFj6OduBgTAurB
+ BYzQJ4AYOo+Y4aquCziwggIrTX7g=
+X-Google-Smtp-Source: AGHT+IH6emIdV2LByUbcOkl0hcCesewSNdqY3NUKroEri1dufWVwjzjuOcqKzkDUbKwvEDD+8AKPj3GMeNqMto1COhk=
+X-Received: by 2002:a05:6102:c05:b0:48f:8cd0:831c with SMTP id
+ ada2fe7eead31-4915970e4eemr532812137.1.1721197734211; Tue, 16 Jul 2024
+ 23:28:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 17 Jul 2024 07:23:13 +0000
+References: <CABXGCsNptxsQO=5=qi-JYiFX=rX8Ok5inK80Gn0qrUFWbtBGng@mail.gmail.com>
+ <CADnq5_PDxJ8O1JUQ9RBYRFB9G1WZJos05ZAM4jUKuPBwPxjNkA@mail.gmail.com>
+ <CABXGCsNN9LwHc2x2AAEH=5UNwpvkWkBqRYz3OP8MZ6Woy+HDXA@mail.gmail.com>
+ <b6c440ca-e63e-429b-af41-5f27d4b8b2a2@leemhuis.info>
+ <CABXGCsNoFfMn7LaqqFgEPg-ECyUPN=f=SXVrFi=GZk6c69-Gqw@mail.gmail.com>
+ <CADnq5_PDSkr4hOHJmb1J30UC0a7sXsm5-TPkEmjzffMK_A+7ug@mail.gmail.com>
+ <ea465a40-f673-42b1-8b1c-a2efb20cd562@amd.com>
+ <CABXGCsPyrUEqDq2gbr4VLw5ncd9cKoCZ9nOr2SRfg8Lh=9H5Kg@mail.gmail.com>
+ <2915a8c4-ebac-4dae-8f09-32a5b4d9aeda@amd.com>
+ <CABXGCsPuRViSd_WeOciLKcQ4hjYxJ7e3i7LomwsUMzd0a+zvBw@mail.gmail.com>
+ <CABXGCsOsfP2SToiDhRAS51nPJ+Qr2v7B3Kjr+yVeP4G7zFZpMA@mail.gmail.com>
+ <CADnq5_Mjxna+aqhWT49YLmXGH+piittc4FUSyCDEJ8s7G-Rb3Q@mail.gmail.com>
+In-Reply-To: <CADnq5_Mjxna+aqhWT49YLmXGH+piittc4FUSyCDEJ8s7G-Rb3Q@mail.gmail.com>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Wed, 17 Jul 2024 11:28:43 +0500
+Message-ID: <CABXGCsNS0a2tybuONAJuGoC1+01=RFhwSzfU6HW_ZLau+jAhHA@mail.gmail.com>
+Subject: Re: 6.10/bisected/regression - commits bc87d666c05 and 6d4279cb99ac
+ cause appearing green flashing bar on top of screen on Radeon 6900XT and 120Hz
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>, "Mahfooz,
+ Hamza" <Hamza.Mahfooz@amd.com>, 
+ Linux regressions mailing list <regressions@lists.linux.dev>, 
+ "Deucher, Alexander" <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>, 
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,113 +95,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-reword the classmaps-api section to better explain how it supports
-DRM, and (a little bit) to steer clear of designated-inits in the
-_DEFINE description.
+On Tue, Jul 16, 2024 at 10:10=E2=80=AFPM Alex Deucher <alexdeucher@gmail.co=
+m> wrote:
+>
+> Does the attached partial revert fix it?
+>
+> Alex
+>
 
-probably just squash this back in
+Yes, thanks.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- .../admin-guide/dynamic-debug-howto.rst       | 64 +++++++++++--------
- 1 file changed, 39 insertions(+), 25 deletions(-)
+Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
 
-diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-index ccf3704f2143..1ffab6be07fc 100644
---- a/Documentation/admin-guide/dynamic-debug-howto.rst
-+++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-@@ -390,42 +390,56 @@ in case ``prefix_str`` is built dynamically.
- Dynamic Debug classmaps
- =======================
- 
--Dyndbg allows selection/grouping of *prdbg* callsites using structural
--info: module, file, function, line.  Classmaps allow authors to add
--their own domain-oriented groupings using class-names.  Classmaps are
--exported, so they referencable from other modules.
-+Classmaps adds the "class" keyword, which selects prdbgs based on
-+author supplied, domain-oriented names; this complements the code
-+organizational keywords: module, file, function, line.
-+
-+The main difference from the others: class'd prdbgs must be named to
-+be changed.  This protects them from generic overwrite:
-+
-+  # IOW this cannot undo any DRM.debug settings
-+  :#> ddcmd -p
-+
-+So each class must be enabled individually (no wildcards):
- 
--  # enable classes individually
-   :#> ddcmd class DRM_UT_CORE +p
-   :#> ddcmd class DRM_UT_KMS +p
-   # or more selectively
-   :#> ddcmd class DRM_UT_CORE module drm +p
- 
--The "class FOO" syntax protects class'd prdbgs from generic overwrite::
--
--  # IOW this doesn't wipe any DRM.debug settings
--  :#> ddcmd -p
-+Or the legacy/normal (convenient) way:
- 
--To support the DRM.debug parameter, DYNDBG_CLASSMAP_PARAM* updates all
--classes in a classmap, mapping param-bits 0..N onto the classes:
--DRM_UT_<*> for the DRM use-case.
-+  :#> echo 0x1ff > /sys/module/drm/parameters/debug
- 
- Dynamic Debug Classmap API
- ==========================
- 
--DYNDBG_CLASSMAP_DEFINE - modules use this to create classmaps, naming
--each of the classes (stringified enum-symbols: "DRM_UT_<*>"), and
--type, and mapping the class-names to consecutive _class_ids.
-+The classmap API is closely modeled on DRM, which has:
-+
-+enum drm_debug_category: DRM_UT_* // 10 independent categories. 
-+dyndbg's .classid encodes that directly, allowing 0..62 classes
-+
-+DRM has ~5k calls like: drm_dbg(DRM_UT_KMS, "kms msg");
-+these are unchanged, even in argtype, since classid === category.
-+
-+DRM controls the classes together via sysfs; bits 0..9 control the
-+classes independently.
-+
-+Its expected that other classmap users will also provide debug-macros
-+using an enum-defined categorization scheme like DRM's, and dyndbg can
-+be adapted under them similarly.
-+
-+DYNDBG_CLASSMAP_DEFINE(var,type,_base,classnames) - this maps
-+classnames onto class-ids starting at _base, it also maps the
-+names onto CLASSMAP_PARAM bits 0..N.
- 
--By doing so, modules tell dyndbg that they have prdbgs with those
--class_ids, and they authorize dyndbg to accept "class FOO" for the
--module defining the classmap, and its contained classnames.
-+DYNDBG_CLASSMAP_USE(var) - modules call this to refer to the var
-+_DEFINEd elsewhere (and exported).
- 
--DYNDBG_CLASSMAP_USE - drm drivers invoke this to ref the CLASSMAP that
--drm DEFINEs.  This shares the classmap definition, and authorizes
--dyndbg to apply changes to the user module's class'd pr_debugs.  It
--also tells dyndbg how to initialize the user's prdbgs at modprobe,
--based upon the current setting of the parent's controlling param.
-+Classmaps are opt-in: modules invoke _DEFINE or _USE to authorize
-+dyndbg to update those classes.  "class FOO" queries are validated
-+against the classes, this finds the classid to alter; classes are not
-+directly selectable by their classid.
- 
- There are 2 types of classmaps:
- 
-@@ -436,9 +450,9 @@ DYNDBG_CLASSMAP_PARAM - modelled after module_param_cb, it refers to a
- DEFINEd classmap, and associates it to the param's data-store.  This
- state is then applied to DEFINEr and USEr modules when they're modprobed.
- 
--This interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
-+The PARAM interface also enforces the DD_CLASS_TYPE_LEVEL_NUM relation
- amongst the contained classnames; all classes are independent in the
--control parser itself.
-+control parser itself; there is no implied meaning in names like "V4".
- 
- Modules or module-groups (drm & drivers) can define multiple
- classmaps, as long as they share the limited 0..62 per-module-group
--- 
-2.45.2
-
+--=20
+Best Regards,
+Mike Gavrilov.
