@@ -2,152 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CCC934BE2
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 12:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CA4934DBC
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 15:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD7F10E677;
-	Thu, 18 Jul 2024 10:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6543310E822;
+	Thu, 18 Jul 2024 13:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kgnbuTrj";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="oJO2W+zf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B99DD10E677;
- Thu, 18 Jul 2024 10:47:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YVsIc2b9UHdWl4/V5otc8L8JfCFjITauQbcroGDIzo4MDsQQz7eYXvjL5Cw2tzOa52dIPv5yZ2PutFlxYjS4OKKGKALDGKxdRCevFuL6FICCIVATqvKoQ0VsbOSLaE9+HdrR7grS9J4qLx3SQLBiGKyKQFlYG65qMHBJ/TapBxN69TP9VcutpE865AWol0qedhspL9NQO1gk1HXFRapL/DYfMcna6UeHvm+Xew10TS1TDsTvfjejf9vkhN+Ce8SgFdmtC9KPMaemeVlf28+Tvo6MzoqqINCW47+rE6OBKYTUGMZjgcS0YD+O5kBm7XRjWI/hGPiABOp5po3JAnRF/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Oq3S1S55PVlm71Kn3z9+4RWNl0Ly3tkNHz5AhKcSEtA=;
- b=nZzHkHvlHc/WKdUtSm5WnI+j1Vwmi4ISkO4unbvLTB4nxBM/Oz2iw58hAx9Khp6rJTGKYed3rGIrmB6LJDRhsHFYQnwRaiu2gwJ6iSpIkwtLWozVPqcwZ92j75aVRuH/Jv5b6hctRjYgnA1aCGixzr4UWULHHaItugf17s7L8Ro9b7IXmahRb6Cx8/dr51uFOFj97d6kPidvdc/0d8YGHOS8KkzfHKSgAhZBrEGnDFWCCR+WJsas75WroEVOsbvkjNqIdIKZzBUYDHzdTJUzUv3eyTHomT0bGNC9+fSexYZtwGWsAntoDLzpwEbToXV2q9jTXoSj4jNwQO6emT1tNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oq3S1S55PVlm71Kn3z9+4RWNl0Ly3tkNHz5AhKcSEtA=;
- b=kgnbuTrjSSxYy3Fz+pirNT+DhMUd6UbHwVp+sweXQLDQ7Q0znaDvGX3Sv4tyrlYcNK8ThQxtLtRSFvalMaGzPgK/FP12N7CL99mtXve4ON80uEwhXVZ4h8HaNjwV8SmZf3OrG3AowoZh1ERFOW2lXCBw11Mx5WDGQQl90UNpgvo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ0PR12MB5673.namprd12.prod.outlook.com (2603:10b6:a03:42b::13)
- by DM4PR12MB9070.namprd12.prod.outlook.com (2603:10b6:8:bc::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Thu, 18 Jul
- 2024 10:47:13 +0000
-Received: from SJ0PR12MB5673.namprd12.prod.outlook.com
- ([fe80::ec7a:dd71:9d6c:3062]) by SJ0PR12MB5673.namprd12.prod.outlook.com
- ([fe80::ec7a:dd71:9d6c:3062%3]) with mapi id 15.20.7784.016; Thu, 18 Jul 2024
- 10:47:13 +0000
-Message-ID: <f4a9f8ba-2f34-4376-953a-254145ccd22d@amd.com>
-Date: Thu, 18 Jul 2024 12:47:05 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] drm/amdgpu: Add address alignment support to DCC
- buffers
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, matthew.auld@intel.com
-Cc: alexander.deucher@amd.com, frank.min@amd.com, marek.olsak@amd.com
-References: <20240718103243.1241392-1-Arunpravin.PaneerSelvam@amd.com>
- <20240718103243.1241392-2-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240718103243.1241392-2-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0173.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b7::16) To SJ0PR12MB5673.namprd12.prod.outlook.com
- (2603:10b6:a03:42b::13)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B4E10E47E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 10:39:06 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2eede876fbfso52530161fa.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 03:39:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1721212745; x=1721817545;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IUGlQHl8PKwPc+cI7G+9C1/A30MK7pw94dtaMexOJNU=;
+ b=oJO2W+zf3UDVZ7S/QuU2RokeGPq/jCuT3K175B1AzbsHTD25jOPw6XHaVwG+7dYwWB
+ SqHZjoDrc1xG2HqOvFwv6IEgBU4sI80MoECXbawfzW3Psz0FcQQ+6hFiaOfIc0MmbT6E
+ rQQvGU4LKIfbHX0Rvg5Lc/8R0NnkiHDWDk59o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721212745; x=1721817545;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=IUGlQHl8PKwPc+cI7G+9C1/A30MK7pw94dtaMexOJNU=;
+ b=v7GjYn8X49BbHg9I5qr1ydMwOBnBjmFRDU+E5mLe5BCwXFcBo6+Akk4IB2AeQktU+t
+ 77Z6UktaM8VM4zx+uiKLA/ghl7Ypxo4bZdhbewwTIfxauISQswKTcWDi3gczRg+C9kae
+ gKm33nghWuYDIWjudZdSNafSqzQaaX1fkY9KDDCYDyxfU0odrXCFtevki6GwbxgO61Ko
+ QdL4Q72qSlmEwPqsbY48GgQCNPyRCaDKAf4IP11Oib02z9oBZkrgybNycRWamfXxHwjL
+ 0GiNqEvxs4uL6PQMOmeoVbT1AfTXlsXLSNhXbs4+UGpmp6nG7mI0u4nqJgQ2XotnE95U
+ 9YkQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVunEzcqt+QqD3MyKcSoEIg5hTgIJINBoHzKsHF2ypyu4xNnH/ZlwV4d0pX7EWc5CONxZEz6hMHwCidw5VJknWxXBimGlaw4cfplFqnsg==
+X-Gm-Message-State: AOJu0Yy0ImPwpInfcIVD77DyULo9l5/ve3va81kuAGzb4anahicjgvfL
+ 72MM0bTVpJA16eFqNWh1EDatf/YyTIm2NhkQEWypjIdc4rfwunU3jH5MkiaZSLABLZ2iFuBddkd
+ Kv4l9ANoiOZYOwnybI8cico+wwkmNGorgdYk=
+X-Google-Smtp-Source: AGHT+IHxg8zNsdD8Eo1Vffp0MSXIaIS5xW3Su0QbPUe5IWbUhBN/2S1B3D0WgRGGz2VkYyi0XXC5WDVvjaMANhw5Xos=
+X-Received: by 2002:a05:6512:2387:b0:52d:259d:bd91 with SMTP id
+ 2adb3069b0e04-52ee53b04c7mr1051655e87.18.1721212744729; Wed, 17 Jul 2024
+ 03:39:04 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB5673:EE_|DM4PR12MB9070:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1d8b4af9-0b9e-45d0-ed60-08dca716fbbc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?M2swYVRkZytleFZta3ZUYVM5Nk93MytaWXE2TDlZRXF0UnhRblpIWm1Qdy9L?=
- =?utf-8?B?T3NZVFNqMEJtTEVhc0JCcDV4WDJRYnM4VmlCMGtRU2Zad2NoaERHQUhsNjU0?=
- =?utf-8?B?ZEY4bmE5cEswWEozL3lza0l6YkNKNXBwMzlxTm9JeDdqTlJMUkNiMStYeWFz?=
- =?utf-8?B?QVVlZCtVMnlNUm0wTEZEa1NPb21FZE90alZzVmczQy9TMitCWU5SM25vNW1x?=
- =?utf-8?B?SnJ0VGFpT1B0U2VCM0FadlNRVzhyTVBrdEY5TUw4YWNpTWYrbnN4aWlQRHZh?=
- =?utf-8?B?Ni9vMnhlMkg1VUFIcHRWeitaQ3p3RVZ3a0ljY2FldGpuK3VUSkJ5RHhLZ1hQ?=
- =?utf-8?B?Q1pvbUFFV3VvUk5IQitXbUZyNmRUT3pzNkRrRzlybW00NlhEd09SQks5ZlZL?=
- =?utf-8?B?akkyYm9JMGJtRFpjUzVaY0J6OWJyblVDUzJEUmpveXIrQW5MWGdiVHFoek5p?=
- =?utf-8?B?ZTlxaER5K0FzRzVsMUZyc0dzYlFoaFJzWk9VckNjU1dMSDVWeHl1cXE5Z2Ft?=
- =?utf-8?B?MTNyYWJvejM0UUx5dGkyc25MTkdRYWgvNlNaQ2dKUWo2ZHNoSHNOUGtvSHIy?=
- =?utf-8?B?U2NFVjk0Wnkrd2NRKytNUEU0UWcxK1FOMERUaTJQNGZNOEUvdlYrcWloL3hL?=
- =?utf-8?B?MDhsTmFMdVJaWUEyUXc1SE1CcXRQNkdhUWQ2OTVsZzE5Q2t2bGhuNkY4aXhS?=
- =?utf-8?B?V09venFmSjRtNG0vWVg3NkkxVVRYOUthUVhNKzJOVzFZQkVhM213VVJVTXRq?=
- =?utf-8?B?Um5UaXZ1eHFwY3JiTVNPZDhoSElHVkNsOCtVUG9sZDlDWXo4eE9oUEVsRnkr?=
- =?utf-8?B?MkUzRVBBSjEyZmhkMC8vdDNFQVhlYWZkeWR5MHRqNUhRcU5sZDdqaG55anhY?=
- =?utf-8?B?a2xxY2JRL3NHZUFwRkxHM0orT1pCZ1Njb3NTWU8yejhSeGxXOVJiNkVIK1hQ?=
- =?utf-8?B?dTdSN1VtN0lpVXJDaDYyZDdTNkNBSHRzanU3b21vb2RFS0J4QmlvU3hLekVl?=
- =?utf-8?B?WDBpbHJNMy9qNFZUdnpSSVN0OVRkcnRMRDlCdlZPRFI2OGRnSW9KMGxwb21J?=
- =?utf-8?B?eFBPNDBTMGhuTDhLRk45RTFnWXNXMXdyMVA4RmpQMWRDVnZjK0VyZXkwaERi?=
- =?utf-8?B?ZlFQRG5HRnNhV0hLVnI3UE40clhWTHp3b3FXa2FuVTNPZnVwbG9TdzBlcVFX?=
- =?utf-8?B?M0VQalllakgvM0RPbkdPd0tzVTJDN3FFRWVqcnB4bmd4UkRhYWVQQzhJOXli?=
- =?utf-8?B?NUppN3BRNFlnaVYwTENBY3RIaklCOUowRzM4TVRlK0Jyc2NyQ2RVS3hidFpm?=
- =?utf-8?B?U3RKUTloL24zUjM3UkcxejVoSXpTU3I5MmVVTituSWRWY0R6QktlRU5oLzZU?=
- =?utf-8?B?cG5WY3lUeEFqZWdKNnFXdmExbDB2UmlBMXBsV05iOWxvdkRxVU55ZTQ2MUZa?=
- =?utf-8?B?bWJnTTZzWUFHK1I1aDcvS0hiSG8rS1N3VXpTcGxySE50aExyUEFMeHd6WWNm?=
- =?utf-8?B?OC9pWmNhQ0Z6b0RvSVRIOVU2V0lQZFhJVW5CMGRLb21YTVY4djY0Vmx3SnlE?=
- =?utf-8?B?YkdIZ3diNEtkN1hZaDFzUDcrRVo0NkZ3SmFHZ2VHb0d2cEJXeVQ5L21tN0Ux?=
- =?utf-8?B?NE9UMGNWK2FNRGdvSmFzTjNJYmRCVldGREkwbjl2WVJxNnVXV2E4STNLQ2V4?=
- =?utf-8?B?a3A4Z3MrRjJ3c3NmK1pqM0t2VXVhaHZWSVVoK3k0WmJQTWswK29SNVQvOVow?=
- =?utf-8?B?ZDN6bTdTMGxnRjZVL0U1d1F4QXV3YXFGY0doMXV5eFIyN2FpVHVlR1ZRd2M0?=
- =?utf-8?B?ZStJTk5xOUtkSnZNTmVmZz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB5673.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjRXY2swNEdwSUNZblBBSkRoUG1HRm51bHBGdW5tWllGd2xHclJHZlRuc1Y2?=
- =?utf-8?B?Y1BrazRyWHJ1YWphOE9ETEY2RXNCSVI4TU9Rb1B2Y1NNRTVrRVRVejVRUDNG?=
- =?utf-8?B?OGVqdDY1SGE2UmdLRms3eUJJT2NSMEphZ0ZmVy9JVHNkR0tHWmFEam5tdU43?=
- =?utf-8?B?RjdCTlVxT1ZBay8vWUQ4RHNEV0FXbjBOWnFCSDNUbExxSlBpMTgvcFdKbEJC?=
- =?utf-8?B?NUJSRkd2N3FOaWk3TEVuQ2krK3BmNCs4YTNWWUtyS3NTK3RYaDA1dk4xQnFK?=
- =?utf-8?B?R01HZjdMZWhic3ArejkyNG5HVjRDY0RRS1RvMTRRNGJNbkFBZEw5N2lyRGlU?=
- =?utf-8?B?aXE3YVdOT3J0OG4waEFJa1dRRUpyYzBpdE1PSTJJN3RGL0pFVXpaYTc5QTNZ?=
- =?utf-8?B?dFVTZHMvaENma2lzb2lUc0pqb05TbGx5c0RpenpEU2F1V0lubGNzQkNSbGdl?=
- =?utf-8?B?NDRITloyZit6YVI0QWxseCtjN041MWo4MzJzVGMxcFF1eWhlVWFCU2tQSUhG?=
- =?utf-8?B?OFhFZnVxdlJ3cFQxcDJOVUo4MmRVMVd6SEVEUzhLaHNZem0rVFluejBRaXVC?=
- =?utf-8?B?Z24zeGd1Ry9FRGpNaUlmY3ZoVmdvK3MxYUU3MlpHYml6U2FpVHdHR0VxMVA2?=
- =?utf-8?B?b0FxeEl6Qm5jeGJUUGV0OWJHRjJldFV0R2pVYnlTeGNkdENwS0dpUUsyRTRQ?=
- =?utf-8?B?L0NtVGlleW05STVCcEpsZEQxdzltYi8wdm5RSitYQkE5WGJtUmY2Z2tuTXdP?=
- =?utf-8?B?OW8xL2FxODZRY3VWUXlpNGNSSWwwdS9rZVpnRWlTQjFpRHM3a1RFVXIvL3BE?=
- =?utf-8?B?dWcrdWNaQlY1MnpqMXljbGZKeGhScDNKYjlMclVkYlJDaEhBY1ZjS3ExcjlK?=
- =?utf-8?B?T05yeDE1SzBOVGw3U0JwUGYrZ1d5enRxTk1zWnNyb1UwWmx0eVFXNEhLYU53?=
- =?utf-8?B?V1NYM3piK0Jiak9PVHE1RjJ6eTY0RlhWeDhzTnNnYXV3UXdNbWVTQmNVbW83?=
- =?utf-8?B?UFI2OTEzcytERHp5LzI1U1lqTjlDczUzZ3c3ejRqNlJQZHJFcWU3ZWxnZERq?=
- =?utf-8?B?VjNWOTN6TXQwSTFIaHFma2VWV0dQQVlDRkdiL0ZYMmJ6Njg4cjZMdzE0cTdv?=
- =?utf-8?B?emMybi82OTFvcElQZUp1RElseGNOUkhIRUw3OHFWQ2V3MVFYV0RKdjVQUUEz?=
- =?utf-8?B?WmV3SHUxYWRTSVhnWUZZWjZZdzYxYWs1eGVVVGw2TTRCOUNEMUM2SkhVQ1hF?=
- =?utf-8?B?bGs2V0VaQTBHdXZKMXRIQlg1d0lRelNyOFlTVmJMTUo3ajAzS256aUkxY1Nn?=
- =?utf-8?B?Q1hyemZuZk9qLzFGTmJVTWt2QUtrVnBKUUxLVHZUN0FOd0ZRbkxnSXFobjhy?=
- =?utf-8?B?cVRBcHJLMk03OUZSdk9TOGpFSkdXOVhKY3JibkZKKzBNbU1ybzlleU82QnBi?=
- =?utf-8?B?VUlOUGxwL2FLejhQZkMvSjlGblArMG4ydjdSMzlHMDl6eW5kQlBlMGFCZ2t3?=
- =?utf-8?B?UXRaMXR3Y1BXcmNzZzNHMjliRjJHQVQzUU9YRXg5aVNWcXhlUTQ1RUl5Rmt1?=
- =?utf-8?B?bkFvSFUxNnR1TXYyM2JTaTEyK01LM1hBeDlld3NSSUtBZzQ2Q05HL3JETURC?=
- =?utf-8?B?M1ZjdUlaZFZPZjZTTnM1YmYyK0pMZzQ1emFWeEs3aWY0SHBLQTBnbTJwRGQw?=
- =?utf-8?B?NUgwWTl6RmV4aVE0MmxpdzBRM3lDRTFUM0ZBd3B2cktqYmI5MmlydW05cmVz?=
- =?utf-8?B?RU5sOEgxbkJ5R1IrdVEzY0VwWHVtNjRXMFEwUHpMeitkNTV5OHMxck1NQkNW?=
- =?utf-8?B?OWdYaTZzWmhsNkREY0hFdU1FaXo2RkVFYWErWUxSUlcwYmZjdSt3dXhqYWRZ?=
- =?utf-8?B?TUt1eElLYjFYb0JEVHNBcU9BVVZad3QvM0dQcnRKck9lUXV6SlFjdFVxZEJZ?=
- =?utf-8?B?cHNaVTZxcnVLVk5BZ3MySEZhbm9ZZEJVN21kb0VhVGVPZ0xzMXdLbnRMYmRB?=
- =?utf-8?B?Z1lnNFlhVXhQbGVUREo3WTNXanZCVGZjdGUrNHN3eFloaTMvdnlxM0s4d3lS?=
- =?utf-8?B?amdJZkVpQVV0ZXhKQ05YNEVmb281RkY0MGRVT2JpY3k0V3VYamFFV3FZdEd4?=
- =?utf-8?Q?1R4Y=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d8b4af9-0b9e-45d0-ed60-08dca716fbbc
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5673.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 10:47:13.5666 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mweFG1xLfo6ZLBbHImkVVSsChL/ERZO0tsXSOgaSd0mRqYzKSB5nj4syTPYQeOed
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB9070
+References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ <ZoR40nWmpEV2Ly_6@bombadil.infradead.org>
+ <CAJfuBxyxamRhOyz8WuL+7=eJkEKSw8jnAWjyAuqU2i7gvg-rsQ@mail.gmail.com>
+ <CALwA+NbUCfEj_DzT5eMQ7_pSNpyp-zBe6PEL2XnMZrb303J4_Q@mail.gmail.com>
+ <CAJfuBxzeYWWV1ikYagFpyFHdAQU4ReYPirksQFHbEzDxhXCfHA@mail.gmail.com>
+ <CALwA+Naec_YHxHoKu8Ba_Bnuq2L3VXw1cT3=Tx3qC3mE5_BG1g@mail.gmail.com>
+ <CAJfuBxxnTyqeGtS1mPBFqX2MYs7kgK49ZUQeR1oTe4UMC4ct5A@mail.gmail.com>
+In-Reply-To: <CAJfuBxxnTyqeGtS1mPBFqX2MYs7kgK49ZUQeR1oTe4UMC4ct5A@mail.gmail.com>
+From: =?UTF-8?Q?=C5=81ukasz_Bartosik?= <ukaszb@chromium.org>
+Date: Wed, 17 Jul 2024 12:38:53 +0200
+Message-ID: <CALwA+NYQsKAtrME-dgZcBH=+KKU0duHAjxu-X3PhckJmbwz60A@mail.gmail.com>
+Subject: Re: [PATCH v9 00/53] fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+To: jim.cromie@gmail.com
+Cc: Luis Chamberlain <mcgrof@kernel.org>, daniel.vetter@ffwll.ch, 
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk, joe@perches.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 18 Jul 2024 13:04:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,182 +87,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 18.07.24 um 12:32 schrieb Arunpravin Paneer Selvam:
-> Add address alignment support to the DCC VRAM buffers.
+On Mon, Jul 15, 2024 at 8:00=E2=80=AFPM <jim.cromie@gmail.com> wrote:
 >
-> v2:
->    - adjust size based on the max_texture_channel_caches values
->      only for GFX12 DCC buffers.
->    - used AMDGPU_GEM_CREATE_GFX12_DCC flag to apply change only
->      for DCC buffers.
->    - roundup non power of two DCC buffer adjusted size to nearest
->      power of two number as the buddy allocator does not support non
->      power of two alignments. This applies only to the contiguous
->      DCC buffers.
+> On Mon, Jul 15, 2024 at 4:05=E2=80=AFAM =C5=81ukasz Bartosik <ukaszb@chro=
+mium.org> wrote:
+> >
+> > On Sat, Jul 13, 2024 at 11:45=E2=80=AFPM <jim.cromie@gmail.com> wrote:
+> > >
+> > > On Fri, Jul 12, 2024 at 9:44=E2=80=AFAM =C5=81ukasz Bartosik <ukaszb@=
+chromium.org> wrote:
+> > > >
+> > > > On Wed, Jul 3, 2024 at 12:14=E2=80=AFAM <jim.cromie@gmail.com> wrot=
+e:
+> > > > >
+> > > > > On Tue, Jul 2, 2024 at 4:01=E2=80=AFPM Luis Chamberlain <mcgrof@k=
+ernel.org> wrote:
+> > > > > >
+> > > > > > On Tue, Jul 02, 2024 at 03:56:50PM -0600, Jim Cromie wrote:
+> > > > > > > This fixes dynamic-debug support for DRM.debug, added via cla=
+ssmaps.
+> > > > > > > commit bb2ff6c27bc9 (drm: Disable dynamic debug as broken)
+> > > > > > >
+> > > > > > > CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy was marked broken because dr=
+m.debug=3Dval
+> > > > > > > was applied when drm.ko was modprobed; too early for the yet-=
+to-load
+> > > > > > > drivers, which thus missed the enablement.  My testing with
+> > > > > > > /etc/modprobe.d/ entries and modprobes with dyndbg=3D$querycm=
+d options
+> > > > > > > obscured this omission.
+> > > > > > >
+> > > > > > > The fix is to replace invocations of DECLARE_DYNDBG_CLASSMAP =
+with
+> > > > > > > DYNDBG_CLASSMAP_DEFINE for core, and DYNDBG_CLASSMAP_USE for =
+drivers.
+> > > > > > > The distinction allows dyndbg to also handle the users proper=
+ly.
+> > > > > > >
+> > > > > > > DRM is the only current classmaps user, and is not really usi=
+ng it,
+> > > > > > > so if you think DRM could benefit from zero-off-cost debugs b=
+ased on
+> > > > > > > static-keys, please test.
+> > > > > > >
+> > > > > > > HISTORY
+> > > > > > >
+> > > > > > > 9/4/22  - ee879be38bc8..ace7c4bbb240 commited - classmaps-v1 =
+dyndbg parts
+> > > > > > > 9/11/22 - 0406faf25fb1..16deeb8e18ca commited - classmaps-v1 =
+drm parts
+> > > > > > >
+> > > > > > > https://lore.kernel.org/lkml/Y3XUrOGAV4I7bB3M@kroah.com/
+> > > > > > > greg k-h says:
+> > > > > > > This should go through the drm tree now.  The rest probably s=
+hould also
+> > > > > > > go that way and not through my tree as well.
+> > > > > >
+> > > > > > Can't this just be defined as a coccinelle smpl patch? Must eas=
+ier
+> > > > > > to read than 53 patches?
+> > > > > >
+> > > > >
+> > > > > perhaps it could - Im not sure that would be easier to review
+> > > > > than a file-scoped struct declaration or reference per driver
+> > > > >
+> > > > > Also, I did it hoping to solicit more Tested-by:s with drm.debug=
+=3D0x1ff
+> > > > >
+> > > > > Jim
+> > > > >
+> > > >
+> > > > Jim,
+> > > >
+> > > > When testing different combinations of Y/M for TEST_DYNAMIC_DEBUG a=
+nd
+> > > > TEST_DYNAMIC_DEBUG_SUBMOD in virtme-ng I spotted test failures:
+> > > >
+> > > > When the TEST_DYNAMIC_DEBUG=3DM and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > > > BASIC_TESTS, COMMA_TERMINATOR_TESTS, TEST_PERCENT_SPLITTING,
+> > > > TEST_MOD_SUBMOD selftests passed
+> > > > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > > > BASIC_TESTS, COMMA_TERMINATOR_TESTS selftests passed, however
+> > > > TEST_PERCENT_SPLITTING selftest fails with ": ./dyndbg_selftest.sh:=
+270
+> > > > check failed expected 1 on =3Dpf, got 0"
+> > > > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DY -
+> > > > BASIC_TESTS, COMMA_TERMINATOR_TESTS selftests passed, however
+> > > > TEST_PERCENT_SPLITTING selftest fails also with ":
+> > > > ./dyndbg_selftest.sh:270 check failed expected 1 on =3Dpf, got 0"
+> > > >
+> > > > Have I missed something ?
+> > > >
+> > >
+> > > I am not seeing those 2 failures on those 2 configs.
+> > >
+> > > most of my recent testing has been on x86-defconfig + minimals,
+> > > built and run using/inside virtme-ng
+> > >
+> > > the last kernel I installed on this hw was june 16, I will repeat tha=
+t,
+> > > and report soon if I see the failure outside the vm
+> > >
+> > > I'll also send you my script, to maybe speed isolation of the differe=
+nces.
+> > >
+> >
+> > Jim,
+> >
+> > I know why I saw these failures.
+> > I ran dyndbg_selftest.sh directly in thw directory
+> > tools/testing/selftests/dynamic_debug/.
 >
-> v3:(Alex)
->    - rewrite the max texture channel caches comparison code in an
->      algorithmic way to determine the alignment size.
+> thats odd.
+> I mostly run it from src-root,
+> also whereever make selftest target is/works (I forgot)
 >
-> v4:(Alex)
->    - Move the logic from amdgpu_vram_mgr_dcc_alignment() to gmc_v12_0.c
->      and add a new gmc func callback for dcc alignment. If the callback
->      is non-NULL, call it to get the alignment, otherwise, use the default.
+> I went into that subdir and ran it there
+> I got no test differences / failures.
 >
-> v5:(Alex)
->    - Set the Alignment to a default value if the callback doesn't exist.
->    - Add the callback to amdgpu_gmc_funcs.
+
+Jim,
+
+The dyndbg_selftest.sh checks the location of kernel .config if it is
+configured and
+if not it sets it to the current dir.
+
+[ -f "$KCONFIG_CONFIG" ] || KCONFIG_CONFIG=3D".config"
+if [ -f "$KCONFIG_CONFIG" ]; then
+
+If it does not find the .config it will set the variables to:
+
+    LACK_DD_BUILTIN=3D0
+    LACK_TMOD=3D0
+    LACK_TMOD_SUBMOD=3D0
+
+and run all selftests no matter what the values (Y/M) of
+TEST_DYNAMIC_DEBUG and TEST_DYNAMIC_DEBUG_SUBMOD are.
+
+> IIRC, the failure was on line 270, just after a modprobe.
+> can you further isolate it ?
 >
-> v6:
->    - Fix checkpatch warning reported by Intel CI.
+> > All works as expected when I run it from the top kernel directory.
+> > Here are the results:
+> >
+> > When the TEST_DYNAMIC_DEBUG=3DM and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > BASIC_TESTS, COMMA_TERMINATOR_TESTS, TEST_PERCENT_SPLITTING,
+> > TEST_MOD_SUBMOD selftests passed
+> >
+> > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+> > TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were
+> > skipped
+> >
+> > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DY -
+> > BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+> > TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were
+> > skipped
 >
-> v7:(Christian)
->    - remove the AMDGPU_GEM_CREATE_GFX12_DCC flag and keep a flag that
->      checks the BO pinning and for a specific hw generation.
 >
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> Acked-by: Christian König <christian.koenig@amd.com>
-> Reviewed-by: Frank Min <Frank.Min@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h      |  6 +++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 39 +++++++++++++++++++-
->   drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c       | 15 ++++++++
->   3 files changed, 58 insertions(+), 2 deletions(-)
+> thank you for running these config-combo tests.
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> index febca3130497..654d0548a3f8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> @@ -156,6 +156,8 @@ struct amdgpu_gmc_funcs {
->   				      uint64_t addr, uint64_t *flags);
->   	/* get the amount of memory used by the vbios for pre-OS console */
->   	unsigned int (*get_vbios_fb_size)(struct amdgpu_device *adev);
-> +	/* get the DCC buffer alignment */
-> +	u64 (*get_dcc_alignment)(struct amdgpu_device *adev);
->   
->   	enum amdgpu_memory_partition (*query_mem_partition_mode)(
->   		struct amdgpu_device *adev);
-> @@ -363,6 +365,10 @@ struct amdgpu_gmc {
->   	(adev)->gmc.gmc_funcs->override_vm_pte_flags			\
->   		((adev), (vm), (addr), (pte_flags))
->   #define amdgpu_gmc_get_vbios_fb_size(adev) (adev)->gmc.gmc_funcs->get_vbios_fb_size((adev))
-> +#define amdgpu_gmc_get_dcc_alignment(_adev) ({			\
-> +	typeof(_adev) (adev) = (_adev);				\
-> +	((adev)->gmc.gmc_funcs->get_dcc_alignment((adev)));	\
-> +})
->   
->   /**
->    * amdgpu_gmc_vram_full_visible - Check if full VRAM is visible through the BAR
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index f91cc149d06c..ace9d61fc512 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -512,6 +512,17 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
->   
->   	remaining_size = (u64)vres->base.size;
+> are you doing these in a VM ?
+> and since Im asking, Ive done these combos on virtme-ng builds,
+> also installed & running on 2 x86 boxen.
+>
 
+Sorry I forgot to mention that I tested it using virtme-ng.
 
-> +	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-> +	    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-> +	     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1))) {
+> could you add DRM=3Dm and a driver too,
+> and boot with drm.debug=3D0x1ff, dynamic_debug.verbose=3D3
+> the debug output should show all the class-work on modprobe,
+> for your easy inspection/grading ;-)
+>
 
-I think you should move this check into gmc_v12_0_get_dcc_alignment.
+I will retest with your patchset v9.
 
-E.g. here you just check if adev->gmc.gmc_funcs->get_dcc_alignment is 
-not NULL.
+Thanks,
+Lukasz
 
-Then call the function and if it returns a non zero value apply it.
-
-Regards,
-Christian.
-
-
-> +		u64 adjust_size;
-> +
-> +		if (adev->gmc.gmc_funcs->get_dcc_alignment) {
-> +			adjust_size = amdgpu_gmc_get_dcc_alignment(adev);
-> +			remaining_size = roundup_pow_of_two(remaining_size + adjust_size);
-> +			vres->flags |= DRM_BUDDY_TRIM_DISABLE;
-> +		}
-> +	}
->   
->   	mutex_lock(&mgr->lock);
->   	while (remaining_size) {
-> @@ -521,8 +532,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   			min_block_size = mgr->default_page_size;
->   
->   		size = remaining_size;
-> -		if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
-> -		    !(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
-> +
-> +		if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-> +		    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-> +		     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1)))
-> +			min_block_size = size;
-> +		else if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
-> +			 !(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
->   			min_block_size = (u64)pages_per_block << PAGE_SHIFT;
->   
->   		BUG_ON(min_block_size < mm->chunk_size);
-> @@ -553,6 +569,25 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->   	}
->   	mutex_unlock(&mgr->lock);
->   
-> +	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-> +	    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-> +	     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1))) {
-> +		struct drm_buddy_block *dcc_block;
-> +		u64 dcc_start, alignment;
-> +
-> +		dcc_block = amdgpu_vram_mgr_first_block(&vres->blocks);
-> +		dcc_start = amdgpu_vram_mgr_block_start(dcc_block);
-> +
-> +		if (adev->gmc.gmc_funcs->get_dcc_alignment) {
-> +			alignment = amdgpu_gmc_get_dcc_alignment(adev);
-> +			/* Adjust the start address for DCC buffers only */
-> +			dcc_start = roundup(dcc_start, alignment);
-> +			drm_buddy_block_trim(mm, &dcc_start,
-> +					     (u64)vres->base.size,
-> +					     &vres->blocks);
-> +		}
-> +	}
-> +
->   	vres->base.start = 0;
->   	size = max_t(u64, amdgpu_vram_mgr_blocks_size(&vres->blocks),
->   		     vres->base.size);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> index fd3ac483760e..4259edcdec8a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> @@ -542,6 +542,20 @@ static unsigned gmc_v12_0_get_vbios_fb_size(struct amdgpu_device *adev)
->   	return 0;
->   }
->   
-> +static u64 gmc_v12_0_get_dcc_alignment(struct amdgpu_device *adev)
-> +{
-> +	u64 max_tex_channel_caches, alignment;
-> +
-> +	max_tex_channel_caches = adev->gfx.config.max_texture_channel_caches;
-> +	if (is_power_of_2(max_tex_channel_caches))
-> +		alignment = (max_tex_channel_caches / SZ_4) * max_tex_channel_caches;
-> +	else
-> +		alignment = roundup_pow_of_two(max_tex_channel_caches) *
-> +				max_tex_channel_caches;
-> +
-> +	return (u64)alignment * SZ_1K;
-> +}
-> +
->   static const struct amdgpu_gmc_funcs gmc_v12_0_gmc_funcs = {
->   	.flush_gpu_tlb = gmc_v12_0_flush_gpu_tlb,
->   	.flush_gpu_tlb_pasid = gmc_v12_0_flush_gpu_tlb_pasid,
-> @@ -551,6 +565,7 @@ static const struct amdgpu_gmc_funcs gmc_v12_0_gmc_funcs = {
->   	.get_vm_pde = gmc_v12_0_get_vm_pde,
->   	.get_vm_pte = gmc_v12_0_get_vm_pte,
->   	.get_vbios_fb_size = gmc_v12_0_get_vbios_fb_size,
-> +	.get_dcc_alignment = gmc_v12_0_get_dcc_alignment,
->   };
->   
->   static void gmc_v12_0_set_gmc_funcs(struct amdgpu_device *adev)
-
+> >
+> > Based on that maybe it would be worth it for the script to fail when
+> > it doesn't find a .config with an error message something like this:
+>
+> if no config - they get to see more errors now.
+> if the solution isnt obvious to them, we can find out more ?
+>
+> > "Kernel .config not found. Are you running the script from the
+> > kernel's top directory?"
+> >
+> > What do you think ?
+>
+> the -rc0 window is open, Id rather not fiddle with this now.
+>
+> Im gonna rebase onto 6.10, resend,
+> copy and rebase onto drm-mumble-next
+> then try to get into the DRM-CI river, see where that takes me.
+>
+> thanks Lukas,
+> Jim
+>
+> >
+> > Thanks,
+> > Lukasz
+> >
+> > > > Thanks,
+> > > > Lukasz
+> > > >
+> > > > > >   Luis
+> > > > > >
