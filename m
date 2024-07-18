@@ -2,120 +2,152 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20B7935165
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 19:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF4593522B
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jul 2024 21:32:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB1310EA8F;
-	Thu, 18 Jul 2024 17:57:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2BB10E948;
+	Thu, 18 Jul 2024 19:32:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="30dH+syw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="f2LmOpY0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2046.outbound.protection.outlook.com [40.107.243.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B69C410EA88
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2024 17:57:09 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B1E10E84A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jul 2024 19:32:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BlBTXwxhEZXWwMfnPPGpE5Pann1Dur0B4VMqNRu25rwCAxZq7FHxZ6+HTcMzNviXrmOoZ0Fv6ErWpNXmH+jZfMWE9zytkeNUhj3tqzsGttuv/W/d4QHUhNz2skHg/h+mrTS/Fsg+lJtxeUVtEo0yoCqEvG0LWy38GweLsI5r1MgGVGo7EzNq1PHaB5ZRAFPYL5iqwm2sBpTqCTY1AE72ZPpTmPYjWTesvg1JnYw2STvruyrDPrFwdAVlzqVNGI5hgzHKnPg3p9d71Vh9NZ6XkfDvlqZagDdSbOOEsDCAbI4pE1PjV2u43CpoBIcO3gMqOfnH5ipoNzlJ0rV2LtxqNQ==
+ b=eaoVVHNI0LtH3+nf0NGyJ0EhzY4ENcqC3etjVmmqUPisWjTtSyN76PM9uXxNo/mQn+VBOQTy8aeAUhUYow+g0hLoAM4IxDZtTU2ftvC+0ven66ii6Vx6MhacL1BGZD+27oAvs0no42WhqEgQaZ+JgQ/CbmIb0OQ3YikrzF+a91Gx5J8hEudxl81QdNSp7i0ESVL4srAI3C2ffrandV0d4X4IqyWvwBugueaZhO2YLv9CVIyV6QSNywn71KH4jCLDc8E/dpgxSq9aEY97d8CBft/+nSrKcFgKV7Uavrya3y7Mp83IdafQzU2qyRqtIEFQySRew5nrB0LmDr5qZ/xI+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vDzrUrfLdVETuLTajnjEPh5HKAj95ts8dF4z1ZGPCqk=;
- b=EwUeIjb9UIE0GHeMbsMhOoDsbVVHWns2xeyCs2HPSyAVPXF/0S89MaZi6Ws8V+dRjpPBFhrZnhoSNmvkYZZnDNzjsE9f0k3sPqd/DGscnNkxGfE9puHW8mmdA3ge3IrOxlC2h2ODv0XwqPKgWt+FX4IP2BllYuiejPdBsD4Sz/l7n7hOYXkwvWFe95y6mu0ZFl7eAiTKNa8H+uO4jxWtLZexVqSr9B8Nqb9Tkfr7lzBJ/mTLv24JvNuJ+cPp4/3Vxa/5VZ3ZiIOqVlWG5Zm75PtZUOS/zgKCHkQofMjFLifye1uAx6jRgQ0eW2fCkqrWY/gKdgpsgCzkaHGDVEqcpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=Ngu7SQHpRa+fy1hVBe1GTJls+LomDfvc8vCH1pEt+Go=;
+ b=Z4+UASrePXKA3Cmee6RF2QhbRpKevRC6Vobe6z9SeN4SLhUeZFYsRF6BWyrwXl4rEC2SDfGer1DcpSZUo0fIuovaS/7K3N87f9IXYBb9trTLS66GLvJd0F4mS/WUwecG5CZxJ2Z/eFBo40b7A96t2t7UzAp3IE3Ow0I6Wi7Rw9wxEUc/xYZ2wJBOFwEfgs+RgfsZ+vkuYUW1jZF89YTHtVertS+F+ZrmMSG+aLo6nUBSickIX5dlqFz53ysjKeLg8m5FgORxoOBftR3SjqVuSr8dhDfQ6+q0iT2/cyrtWui8UIC8mQ4X0MBYlQDdjqeaix4LiQ74qyUpUcRkDs2VOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vDzrUrfLdVETuLTajnjEPh5HKAj95ts8dF4z1ZGPCqk=;
- b=30dH+sywEOmZ6AssOiLbP8CjmeEXkfo3JQ6jIVw8LL2ZR5KwxMOySXY/veTPl9V7Gt6s+qdgW6ndl98hp2+MhxQ5T/Vd5Oj1869NEuzenGEWg3YK06CLs1+uJcblTBxx+ZmmKzgLAQoUh2b8RBKtZuf/ERpUZOaAZvUqOX58AIY=
-Received: from SA9P223CA0013.NAMP223.PROD.OUTLOOK.COM (2603:10b6:806:26::18)
- by DM4PR12MB5724.namprd12.prod.outlook.com (2603:10b6:8:5f::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7784.17; Thu, 18 Jul 2024 17:57:06 +0000
-Received: from SN1PEPF000397B1.namprd05.prod.outlook.com
- (2603:10b6:806:26:cafe::2d) by SA9P223CA0013.outlook.office365.com
- (2603:10b6:806:26::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29 via Frontend
- Transport; Thu, 18 Jul 2024 17:57:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF000397B1.mail.protection.outlook.com (10.167.248.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 18 Jul 2024 17:57:05 +0000
-Received: from jonathan-KFD.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 18 Jul
- 2024 12:57:04 -0500
-From: Jonathan Kim <Jonathan.Kim@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Jonathan Kim <Jonathan.Kim@amd.com>, Jonathan Kim <jonathan.kim@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: support the debugger during per-queue reset
-Date: Thu, 18 Jul 2024 13:56:45 -0400
-Message-ID: <20240718175645.1002418-2-Jonathan.Kim@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240718175645.1002418-1-Jonathan.Kim@amd.com>
-References: <20240718175645.1002418-1-Jonathan.Kim@amd.com>
-MIME-Version: 1.0
+ bh=Ngu7SQHpRa+fy1hVBe1GTJls+LomDfvc8vCH1pEt+Go=;
+ b=f2LmOpY0F+HlQe+6fFvcEqtQl3pHS1/lp/kzQiixS0IdEmFPlECJJHfU2JkaDwsbJDsQjyd1hv9k35pus/xBcDGU//pDJmp8kbyuGlUJA03b/jgz1Rd/PqvMBzlSQdcsU4niu5STOtOT/jKFrMaVjhb7f7G2dubAkIG/zlPJZN4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
+ by BY5PR12MB4148.namprd12.prod.outlook.com (2603:10b6:a03:208::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.17; Thu, 18 Jul
+ 2024 19:32:51 +0000
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da]) by DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::36fa:deca:aaeb:75da%4]) with mapi id 15.20.7784.016; Thu, 18 Jul 2024
+ 19:32:51 +0000
+Message-ID: <c5c60b8a-cfde-8f79-9522-ed5bc18f5e75@amd.com>
+Date: Thu, 18 Jul 2024 15:32:49 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 3/9] drm/amdkfd: Refactor queue wptr_bo GART mapping
+Content-Language: en-US
+To: Felix Kuehling <felix.kuehling@amd.com>, Philip Yang
+ <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com
+References: <20240715123502.7013-1-Philip.Yang@amd.com>
+ <20240715123502.7013-4-Philip.Yang@amd.com>
+ <2239cfa0-6f41-4d8a-9915-0ec1829e248d@amd.com>
+From: Philip Yang <yangp@amd.com>
+In-Reply-To: <2239cfa0-6f41-4d8a-9915-0ec1829e248d@amd.com>
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: YT1PR01CA0122.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::31) To DM4PR12MB5149.namprd12.prod.outlook.com
+ (2603:10b6:5:390::14)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|DM4PR12MB5724:EE_
-X-MS-Office365-Filtering-Correlation-Id: 58d312b3-157b-48ff-8a54-08dca753093b
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|BY5PR12MB4148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b0b05e6-f95c-4f4d-e7d7-08dca76069b2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?PKz+VJx2VgLWYMtt/eYSPENW3WIjlr9mpVfp4l7GowSvtGVdjMbZ/VZulukc?=
- =?us-ascii?Q?5Pwgraz+Ssi6Pm2vqVNv49c5QnEsQfstbrW1zDFJhi+uEvTAblWLop9g5OSF?=
- =?us-ascii?Q?XmjcCP0uH3HOl4Xiis7zAHLsw2SaFw4c3+pWQ8vaYwopETosd5NY3+eHvg29?=
- =?us-ascii?Q?Sbi0T4LTZ4LwUnL0U6Ao5JPAumM6AkkW8qRwXYdTncnVrBnzevLE2qW++R8D?=
- =?us-ascii?Q?W+skc1hM2SVDP6EItjXAvTb4XnYOKZ23t8xanhwPxQgwIrVTBJ+M+ZUz09BJ?=
- =?us-ascii?Q?N6qqdkSKp2rcJJatDhBUZwjwXnbC2Awb080t1UL7UxSseqGmEPoULhv23BET?=
- =?us-ascii?Q?zTN8Fg0ClxplDaKwmooXy2U9FrbUaX7sqmrzlAsDn36iLTa0XJm0mLK27T6G?=
- =?us-ascii?Q?XnuT2TDLg+7s1LfFPGSTlUVtavaesVXH12FxG/w1iM2RYgkTsefSigp/oMKu?=
- =?us-ascii?Q?/EKTGrD26d1UQi/uznUmx2q9MBlGL6nw9rlHPKkr3sscHWtCpQZi1NI4+DRX?=
- =?us-ascii?Q?BVOdyR8pUKQpQz25u40G2zJROoiCZyvGvojPCQD6rOpwJYofkdTNYnEfYgfq?=
- =?us-ascii?Q?6M2cDc9369qItURtkDCXJKHJo7rU5JBrANrk4+OgY955F8fNdsOG3+Or3FRn?=
- =?us-ascii?Q?mHqp6l6J+FBExLS1+buivxvhRfSL8lQGJvsqbAPfvKViIpa6Jv/9rf1XPny6?=
- =?us-ascii?Q?JlCfcLgvhtTgIdr3ropOocWEs23v0+5r3MnjOgDvjr/IIKxqjgzNoqFwNL8f?=
- =?us-ascii?Q?30pI4BQ0g+BMYa+npB8tHtyRvtt/UsZhL572PTP1SHQAkpST1jp+GpE1FwP+?=
- =?us-ascii?Q?y+torNi6pAuCa7W+g9sdxDMSM5hQOKLi1/KorVxvlo+3/q4Io1S54HnacF7R?=
- =?us-ascii?Q?v+8Q06oJwU07qWebGdcASwHwG8nIZ+ZvsJttfn0VY5KWSmPFVQ6Z4la54+MJ?=
- =?us-ascii?Q?eaQpheH90U0aHy4Ib+wl7n7l2o8N6rDyvcEKUvCBsKae3QxDuqon+KvKy8NZ?=
- =?us-ascii?Q?APHT0p8zjgt6sjT0Tb15vqL5YzzqHAGTVcndD7MOG00vWi8uCDugicDbjYbD?=
- =?us-ascii?Q?+Ym7KwrLzH79GYu3a5lKfb+ltr+l5RHJgFIy5idNzOYop03z5hYomxhhG/Mp?=
- =?us-ascii?Q?Y98lBVPTIvf0NcPWdxmC8q0ZJZNh6rGv8I5wDc5It/jegw0i2LCy8R49yH0T?=
- =?us-ascii?Q?5DCw6EWYy3MQCZZi0oghwKPKWTYgYk6ZN1Rd19x9NfzMBL3sOsgIPkyE4Fak?=
- =?us-ascii?Q?Y/u9yjgVVa63Mn6euyrkAn86p4HjN7ljuFJ3Ix9209xr+hB7hfxOoTjjCaov?=
- =?us-ascii?Q?NoeqyWMuPTx/MyvpIUSm6OjEIiI+u0VH8g4z1sIMmMA/Q7Tl+PT059q3N4DL?=
- =?us-ascii?Q?ag6ayAA0DIRB9wwzDHyH22QmWtq2NUivqkpoaGbjj7Mq5Ed58+45BiALAu3Q?=
- =?us-ascii?Q?9fDgQcVjJtvl0/o2ewrLyyWYQuFSMQFF?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UlZYQjVJSHFJdzlkT0pRQ2FDOVpDMXg3THdqcnpaVE5LOFZJOFk0b05JYnQw?=
+ =?utf-8?B?UXliS2hUbVRnbGEyU3dCa2xtNmVkSkRmeWFJY2wwRUg5a3A1NHdkeE94OGlU?=
+ =?utf-8?B?QmF1amxvR2FHaG5YbUpSY1ZtdzNIQmpZWE5IdVFod05DQ2VYakgvTzM4VEVh?=
+ =?utf-8?B?V2wzMFdYRVBiUE9kc0hXbmFYaEY5bEYzbHpOQndkdjU1Mnduckc4NHd2dldX?=
+ =?utf-8?B?N3Q1VzVPcVd1TDB2cFd4WTNoTlhZRUJWYVVET0FpNG05QXgwRWJ3QXl6Y3NS?=
+ =?utf-8?B?OFJmM1Q2czhKaXdzMTBMSHhDRGxnTmVLUFh5S0R1WW5JUVJGVnF6ZUltZktW?=
+ =?utf-8?B?bCtLT0x0Z0dtRUhWeWxZeUprNnJxa0hwTTFsYkViM0c2M3ZUaDRHNEtHR0J3?=
+ =?utf-8?B?cG53ZDNxa0dYclZiWG42UWp1RGRUa2taNlBnanIybW5tZkVyMG10d1ZxRzRi?=
+ =?utf-8?B?T2RISzhGN1dIbnFWWHBGWHFxa1JiOThNSHFQSTRGb0VVUnhmT0x4cnpEaFN3?=
+ =?utf-8?B?dDgyVGtqcDQyazFJK3JIbVBOb2k0NkkxS3MzelBxZW5KMzhTRWpVdi9BNm9q?=
+ =?utf-8?B?V2JybVNxYUFEZ1BKbEI1YldqTnFkZjVzalloQ2s0dVNmOXNBUlNuUGJtTEJm?=
+ =?utf-8?B?dUhwRG53b1BaWGtlQSt0UmdMcjJQcTlvbk9wQ1VMMVRZejYzek1JazhPNm91?=
+ =?utf-8?B?TFNBNHI1Qko2bnYyRVE2N1pJSFdWRWlxRGZjbndHRjJpNzdsMk42ZGtEdGVm?=
+ =?utf-8?B?Yndyb2llUmxSYjBBMEhQMTFacVlNUEw3dVYvTmZwOGxxMVBMcjhRRFdhSFN5?=
+ =?utf-8?B?Y1hiL3A3eDZoaXV5UGVsZjhocG9XSmNJcktvQWdvRWZtVGtBSHc5MFU0RHg0?=
+ =?utf-8?B?QVM3SkJOVFlNVUlNcDViRHNzMDJhVVRvZFMwbW53ZlFsMjJqU3pVajM0K1ZK?=
+ =?utf-8?B?VEVlNDE5cnZSQXVmdE5nai9ENzdMM0N0eWtiUlhwZ2Npc1A3bnBnVVRlSUgw?=
+ =?utf-8?B?SnJ2ZmV1S0F3akhMalJ0ZDZjSUs0RE5GNFpSZTltRFpHM0REbVk1Wm0yc2Ro?=
+ =?utf-8?B?VDFJc0xKNXJ4aW1HV0FGYkI1bkVVVWkvMUtmSU9GRzZZWUY5WFZuZ1MvL3Rt?=
+ =?utf-8?B?ZWtrWG9XREZic2ZmWkkrQmlmVUNjSVdQZXB1enNTYWl2YjlIU0tQeGU0S1ow?=
+ =?utf-8?B?QmZBZTc3QzNqVS9mcE5PM0l3OGdzSGlROExzKzdOMUhncjgzNElLNjZoeXhm?=
+ =?utf-8?B?UVAvRHhlamh1K0I2OGZTRFBtSW1LZXcwVXZuSFJzRGpTNWk5TGdva0JHWTFU?=
+ =?utf-8?B?Z2lyNkxEN3ZlRG0vTDhSS1Vna2xOeTc4VFN4RTBmVmhSR1NNekd0VlJLMnhZ?=
+ =?utf-8?B?aC9OZ24vNTNXNkhaR3UrT3RFSWtqOGUwSUt6UUltMll2K2VkazJaRDlMOWty?=
+ =?utf-8?B?WUxVZkRVdzdVYXhPUHdQRlVDaUsyVnFRNHE2OWw1c01DTlgwQ2hkZnFBaVYy?=
+ =?utf-8?B?QkMvcnFadXQ4c2JxU0tsNWU5Y2tNOWE0ZmdtaDlqdEx4Y0RoQndYVVRORXpE?=
+ =?utf-8?B?ZUlheENZeUFZWGNxZ095QXM4VXpYUmd6TnB3OVdrUWpGT2dUckNZTVk1T2Fu?=
+ =?utf-8?B?V08rMUtVUU4yakxLQlBOYyswVHVRMFhZSkFWVWx0a20yNTQ1VGNCZ0t2YUgr?=
+ =?utf-8?B?dWtHR2tmQlY5UW1WUkdPNmRJZ1dxazI1TDZLZXhqS2tUOWV6blhUd2ZWYmhY?=
+ =?utf-8?B?a3VsYU9sRnpNQ0dvYlJCdGFCclF1SW9INUtVOTBEbWxmcGY1SFk0dDhucXF6?=
+ =?utf-8?B?RXA4M21LWUZ2T1YyTGRRQT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVI2dC92TjdXVjhaUGlNRjF0eXVGeW9jdTU5NFZiUk9hMVQwdVZBSVkvL3E1?=
+ =?utf-8?B?NEluaGtuN2k3ejRVWkxyOVdGM2JzOFB0OVRFU1FkOXNhUE9MRlczWnZwNGZ3?=
+ =?utf-8?B?c2N2dWZ0K1FFdWMrTlQwR1ZneUtHTXR4NVJ2V2lDMUxXMDZvLzEreDRBeWk2?=
+ =?utf-8?B?M25wU1o1K2VCSmdDNDFDRTNPOUNja2JXbTR4YmE1eFRSV2hpTHJOSDVkZ2lI?=
+ =?utf-8?B?R3p0S1VRMGtuWkpEaE9wWEt5YVg2OERvWFczMTNRN1c4VmdOM1UzWmtKOWpQ?=
+ =?utf-8?B?eWtXa0hrR24xd2dTdXY0ZkVIaGNsSC9yN1VVTlo3bk9kTHYvSC9iK0FBL29k?=
+ =?utf-8?B?SG51L0lqY2kxa0hibmhZRnU4MHRvSTZsNzEzN3B4aG5YeWExSUpWRVlxQW0x?=
+ =?utf-8?B?dVpLZE1XUktwbUx6bjFxanRYNUl0eTdmYnVzSXpOeW5EUUJ0Wkp3TmlnMmFW?=
+ =?utf-8?B?Nm9iK3pTWUMydFVUbyt2QStiUUJ2TjdtNFBwc29lVWVxaHBHTEh6Vjc5ZHZC?=
+ =?utf-8?B?L2gwekNWUWExdnZzL1hhWEl6UndRZGNJOGg3SHZDdmxtSStzdm9Zd2pVZmhu?=
+ =?utf-8?B?TnpMeTlmc29tUENnK09rbURreUFGU0RuRHZBUGlOdmpoZVV6WkpuTjU0ZVNr?=
+ =?utf-8?B?NUhReUZpUWFnNFZVV01MSlhmeGNaczA5c0pMRDh2Tm1VVkdlT3U0NTAvbmpZ?=
+ =?utf-8?B?MUJCd0E0anczaUQrc2ZhaDRVVHM0R1gzYktlS0JwMUtCQkJDWU1nOTVvZTJB?=
+ =?utf-8?B?bWdCclpnbnF2aFR5ZWhXbHJVaHd2RlJxa2RxWUZ0aGd0OGdsQWpoYk4xOWxj?=
+ =?utf-8?B?ZmJuSURLMy9oQlByeXV4OCtmM0pSaUtwcVl6cEVNSEdqMHBZcC9CaS9EaEt0?=
+ =?utf-8?B?bXg4c3lFdVp0eXNzTUJZcHJCcU11Qit4QnVTaGk3RkVsMTFQVXBpOCtBN0Q1?=
+ =?utf-8?B?VklmTGp2L3JGQWRwdmlacUh0cUNwWDhVMlVzOHNtM1JNRGJaRXdRNGhEMVZV?=
+ =?utf-8?B?SWxHdWdBc0Q5WndJTkdCb0sxcXJyK3NXK3Y4OHJPdldLcFZEZERxT2VnVHNV?=
+ =?utf-8?B?RG8zbHZuV29teU9xY0lERGt4RUt2NUhsU3A4UlRVUnpyWElpNlJNMnMxSkxo?=
+ =?utf-8?B?eTFEWUZvU2JvTEpnc3ZPUlNZcDFrLzU5UzRvTzhpa3BUeFR1Y2pueWZqT0J2?=
+ =?utf-8?B?TzZSYldSNU5RK0VqQVdiT1l5UFVNN3JCSHcxM3ZPdklaZit0QXdNcGQvUnM5?=
+ =?utf-8?B?UGtTTWdZcVI4UzRVZ2VCOGlVblM2bkh1QncyeW1aOEFSWTN6NENtanNzMkRP?=
+ =?utf-8?B?eXRvVGltaFV3aGRkZWZ2SDNPRXZyb1I4RVNlMktGOENuSkx5VmQ2T3hlOUVN?=
+ =?utf-8?B?c1FUQVhScld5OVQ2cjAxV3J4cFMvMUJXWjkyOFhLSzA2blBvdEs4eGN6UWFw?=
+ =?utf-8?B?WEkxVWovcm9uSnlId2lkK1F3ZzVwSzE0SHJFZEZuUE9DZVlmTEhvMlgwZ3c4?=
+ =?utf-8?B?NlZjYzFnYlpMdzNKTENCdUF6TjVtbVhMUUR6dzFkQkJsNGdEZVhsdUQwNSto?=
+ =?utf-8?B?dlJyQWdEcTB2dC82MzN3aWg1R2pUeGZsUGNrZTNmSTNScXBkVXhEanZid1RO?=
+ =?utf-8?B?TVkzb0s0ODN6ZEhPeHlxQkwvdy9FOXdrTWtKZ24wZDI1cUJ5MWppS0ZISk5S?=
+ =?utf-8?B?R0dCeXR3SmZpV2h2bEYzUVBYK2FkZzVtbkQ1aGZLQ0dqUTJBVFlPVFB6dmFY?=
+ =?utf-8?B?Q1F6MVM5b3VXbzhGbklRNFUzNmtiZkpxbFRnZmlLK3UvSnY0VHhSU1crbnBn?=
+ =?utf-8?B?d3F5Njlaa1kvR1NqYkl5OFhudjVZblBUTCtVYjdtMFMvWEY2OVdHY2JXNmJo?=
+ =?utf-8?B?SzVJb0N6VU95bDkzaUdBMUZqeElGVkcyaUQweXpNeGZ3b0VyNWhnL0RJZ2Fj?=
+ =?utf-8?B?L1NsR3N4VDl6WEkrWEtDL3NFNlFaTmdSTG56YllHQlVwajFidGNqeDRVbmF2?=
+ =?utf-8?B?OUpycHhtSVlLMUZzT2Z1TGRPNWJqT1NzbXdlb0Urbjh3RVE4M2M2bzNyelJ0?=
+ =?utf-8?B?N2xiMnBvcGhRenlVWG9vSk5iWTFadm1ESWFMOFdBWDdWeXZXdkptMGIwc3Nx?=
+ =?utf-8?Q?X9VU=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 17:57:05.7538 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58d312b3-157b-48ff-8a54-08dca753093b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b0b05e6-f95c-4f4d-e7d7-08dca76069b2
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 19:32:51.3391 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397B1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5724
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CiOVSvuEJLVWfQ5ShrAvYvPE6FwNYcmAsJa5jR8MuZ1Tw+NLj9iU+x13H8bDbJbA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4148
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,154 +162,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In order to allow ROCm GDB to handle reset queues, raise an
-EC_QUEUE_RESET exception so that the debugger can subscribe and
-query this exception.
-
-Reset queues should still be considered suspendable with a status
-flag of KFD_DBG_QUEUE_RESET_MASK.
-However they should not be resumable since user space will no longer
-be able to access reset queues.
-
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
----
- .../drm/amd/amdkfd/kfd_device_queue_manager.c | 30 +++++++++++++++----
- include/uapi/linux/kfd_ioctl.h                |  4 +++
- 2 files changed, 29 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 037b75a64e66..8c41806df39e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -163,6 +163,10 @@ static void kfd_hws_hang(struct device_queue_manager *dqm)
- 		list_for_each_entry(q, &qpd->queues_list, list) {
- 			q->properties.is_reset = true;
- 			q->process->has_reset_queue = true;
-+
-+			kfd_dbg_ev_raise(KFD_EC_MASK(EC_QUEUE_RESET),
-+					 q->process, q->device, q->doorbell_id,
-+					 false, NULL, 0);
- 		}
- 	}
- 
-@@ -987,7 +991,7 @@ static int suspend_single_queue(struct device_queue_manager *dqm,
- {
- 	bool is_new;
- 
--	if (q->properties.is_suspended)
-+	if (q->properties.is_suspended || q->properties.is_reset)
- 		return 0;
- 
- 	pr_debug("Suspending PASID %u queue [%i]\n",
-@@ -1008,6 +1012,9 @@ static int suspend_single_queue(struct device_queue_manager *dqm,
- 		if (dqm->dev->kfd->shared_resources.enable_mes) {
- 			int r = remove_queue_mes(dqm, q, &pdd->qpd);
- 
-+			if (q->properties.is_reset)
-+				return 0;
-+
- 			if (r)
- 				return r;
- 		}
-@@ -1971,6 +1978,9 @@ static void set_queue_as_reset(struct device_queue_manager *dqm, struct queue *q
- 		q->properties.is_active = false;
- 		decrement_queue_count(dqm, qpd, q);
- 	}
-+
-+	kfd_dbg_ev_raise(KFD_EC_MASK(EC_QUEUE_RESET), q->process, q->device,
-+			 q->doorbell_id, false, NULL, 0);
- }
- 
- static int detect_queue_hang(struct device_queue_manager *dqm)
-@@ -3036,7 +3046,8 @@ int resume_queues(struct kfd_process *p,
- 						queue_ids[q_idx] &=
- 							~KFD_DBG_QUEUE_INVALID_MASK;
- 					} else {
--						queue_ids[q_idx] |=
-+						queue_ids[q_idx] |= q->properties.is_reset ?
-+							KFD_DBG_QUEUE_RESET_MASK :
- 							KFD_DBG_QUEUE_ERROR_MASK;
- 						break;
- 					}
-@@ -3071,7 +3082,7 @@ int resume_queues(struct kfd_process *p,
- 							queue_ids);
- 
- 					/* mask queue as error on resume fail */
--					if (q_idx != QUEUE_NOT_FOUND)
-+					if (q_idx != QUEUE_NOT_FOUND && !q->properties.is_reset)
- 						queue_ids[q_idx] |=
- 							KFD_DBG_QUEUE_ERROR_MASK;
- 				}
-@@ -3118,6 +3129,7 @@ int suspend_queues(struct kfd_process *p,
- 		struct qcm_process_device *qpd = &pdd->qpd;
- 		struct queue *q;
- 		int r, per_device_suspended = 0;
-+		bool has_queue_reset_fail = false;
- 
- 		mutex_lock(&p->event_mutex);
- 		dqm_lock(dqm);
-@@ -3134,6 +3146,9 @@ int suspend_queues(struct kfd_process *p,
- 
- 				if (!err) {
- 					queue_ids[q_idx] &= ~KFD_DBG_QUEUE_INVALID_MASK;
-+					if (q->properties.is_reset)
-+						queue_ids[q_idx] |= KFD_DBG_QUEUE_RESET_MASK;
-+
- 					if (exception_clear_mask && is_mes)
- 						q->properties.exception_status &=
- 							~exception_clear_mask;
-@@ -3175,13 +3190,18 @@ int suspend_queues(struct kfd_process *p,
- 				continue;
- 
- 			/* mask queue as error on suspend fail */
--			if (r)
-+			if (r && !q->properties.is_reset) {
-+				has_queue_reset_fail = true;
- 				queue_ids[q_idx] |= KFD_DBG_QUEUE_ERROR_MASK;
--			else if (exception_clear_mask)
-+			} else if (exception_clear_mask) {
- 				q->properties.exception_status &=
- 							~exception_clear_mask;
-+			}
- 		}
- 
-+		if (!has_queue_reset_fail)
-+			total_suspended += per_device_suspended;
-+
- 		dqm_unlock(dqm);
- 		mutex_unlock(&p->event_mutex);
- 		amdgpu_device_flush_hdp(dqm->dev->adev, NULL);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 285a36601dc9..4713f9a6796e 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -875,6 +875,7 @@ enum kfd_dbg_trap_exception_code {
- 	EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID = 21,
- 	EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID = 22,
- 	EC_QUEUE_PACKET_VENDOR_UNSUPPORTED = 23,
-+	EC_QUEUE_RESET = 29,
- 	EC_QUEUE_PREEMPTION_ERROR = 30,
- 	EC_QUEUE_NEW = 31,
- 	/* per device */
-@@ -907,6 +908,7 @@ enum kfd_dbg_trap_exception_code {
- 				 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID) |	\
- 				 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID) |	\
- 				 KFD_EC_MASK(EC_QUEUE_PACKET_VENDOR_UNSUPPORTED)	|	\
-+				 KFD_EC_MASK(EC_QUEUE_RESET)	|	\
- 				 KFD_EC_MASK(EC_QUEUE_PREEMPTION_ERROR)	|	\
- 				 KFD_EC_MASK(EC_QUEUE_NEW))
- #define KFD_EC_MASK_DEVICE	(KFD_EC_MASK(EC_DEVICE_QUEUE_DELETE) |		\
-@@ -997,8 +999,10 @@ struct kfd_queue_snapshot_entry {
- };
- 
- /* Queue status return for suspend/resume */
-+#define KFD_DBG_QUEUE_RESET_BIT		29
- #define KFD_DBG_QUEUE_ERROR_BIT		30
- #define KFD_DBG_QUEUE_INVALID_BIT	31
-+#define KFD_DBG_QUEUE_RESET_MASK	(1 << KFD_DBG_QUEUE_RESET_BIT)
- #define KFD_DBG_QUEUE_ERROR_MASK	(1 << KFD_DBG_QUEUE_ERROR_BIT)
- #define KFD_DBG_QUEUE_INVALID_MASK	(1 << KFD_DBG_QUEUE_INVALID_BIT)
- 
--- 
-2.34.1
-
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2024-07-17 16:10, Felix Kuehling
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:2239cfa0-6f41-4d8a-9915-0ec1829e248d@amd.com">
+      <blockquote type="cite" style="color: #007cff;">@@ -603,8 +606,6
+        @@ struct queue {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *gang_ctx_bo;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t gang_ctx_gpu_addr;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *gang_ctx_cpu_ptr;
+        <br>
+        -
+        <br>
+        -&nbsp;&nbsp;&nbsp; struct amdgpu_bo *wptr_bo;
+        <br>
+      </blockquote>
+      <br>
+      If the wptr_bo_gart is GART-mapped and freed in the same place as
+      the gang_ctx_bo, then maybe it makes sense to keep the two
+      together in this structure. It also avoids having two different
+      reference to the same BO in the same queue_properties structure
+      above.
+      <br>
+    </blockquote>
+    <p>Yes, agree it makes sense to keep it inside struct queue and
+      rename to wptr_bo_gart for GART mapping and unmapping. Add wptr_bo
+      to struct queue_properties for queue wptr acquire and release.</p>
+    <p>Regards,</p>
+    <p>Philip<br>
+    </p>
+    <blockquote type="cite" cite="mid:2239cfa0-6f41-4d8a-9915-0ec1829e248d@amd.com">
+      <br>
+      Other than that, this patch looks good to me.
+      <br>
+      <br>
+      Regards,
+      <br>
+      &nbsp; Felix
+      <br>
+      <br>
+      <br>
+      <blockquote type="cite" style="color: #007cff;">&nbsp; };
+        <br>
+        &nbsp; &nbsp; enum KFD_MQD_TYPE {
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
