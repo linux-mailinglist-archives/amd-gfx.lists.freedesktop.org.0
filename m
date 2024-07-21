@@ -2,127 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD03938E46
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2024 13:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2875938F69
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jul 2024 14:54:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1252510E4ED;
-	Mon, 22 Jul 2024 11:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B3D10E50E;
+	Mon, 22 Jul 2024 12:54:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XmtTwoGo";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="PPlJ2DMn";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9949310E4ED
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 11:48:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=goqD9VW44irr+Mhx0Sf00pYJ1/5RKVRkOVaHC/njof6JBOti+0DVo7HHMmzg4IO2V/nIKx4pK9XNjnG1Z4PnbmzLo3ediVWtReeOkpLoO2vAiaws8EbRlXA/BE9nYH8uuk4Ja92XzCtahcM4bwX44b0nYH2aMhC5Qk0o1KALKvCYXJ6ixZrOose0n+UeNU69CDbkRxvoRMuJVaaHTZ6wNU3HTJWRoT0hT9bXpvrcCvrNNWy9y+ug+uxpzeNjhfDJsQDTnrgOqpAopeaOdAUA9FrbFji30btyEG6PFdeO40SO1Yx/vy8VUrJQ7xXJOSCpIDsQHwctPNLzuFQoZDUUNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3BAcoXzJhGew3ExOhzncYcbmUkc9vW/kfTmnMiVPydw=;
- b=Pw6eK7G7sJUbIGyGgm6fvLaKOorpOzf6cv1e4Kgok8AuvQUVYdlI0onTPcJbUnOyvUaofH61JRAQmgx7hmZI6BEuqZmaaG3egAly7w0KvhjG4RySwZsF/we3eCOtvj6PQXALNNco+lNsEKbWLeX+Gk+Gv/1MaFanF2JWWU+Iq8XOX713RXkx+Ee9DQe6s2dq6GTY9eM2p6dSii8Ak8BjF3zOoPMYE2N7bygtp76BDRyFhsMk/9RQU+wIbg8YjFhzVUa/jGpMEvJ30GACCbE/FmvAgveUxJqA5ooA6IexLypXWoNena1fmLPs4ZavDV6XbBil3JU9fc4ijqSmIGi5ew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3BAcoXzJhGew3ExOhzncYcbmUkc9vW/kfTmnMiVPydw=;
- b=XmtTwoGoRluQFnwZvh/mRTTrzKoJ0WQwMCb/GEVrWq6AKiN2ZMUk6t9scobdD5VwXR1c5PhPEGOWhRpyecLPWyDtDbsPwMSzR21Bvz3srHY9GEINNrvQXyj4NNVSt9utTguHQf0ncPxreZWKXs+K71DCox8CBfbP7XjwLzZqK8w=
-Received: from BYAPR05CA0015.namprd05.prod.outlook.com (2603:10b6:a03:c0::28)
- by DS0PR12MB9273.namprd12.prod.outlook.com (2603:10b6:8:193::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.19; Mon, 22 Jul
- 2024 11:48:39 +0000
-Received: from SJ1PEPF0000231F.namprd03.prod.outlook.com
- (2603:10b6:a03:c0:cafe::ea) by BYAPR05CA0015.outlook.office365.com
- (2603:10b6:a03:c0::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20 via Frontend
- Transport; Mon, 22 Jul 2024 11:48:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF0000231F.mail.protection.outlook.com (10.167.242.235) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Mon, 22 Jul 2024 11:48:39 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 22 Jul 2024 06:48:35 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Aurabindo Pillai
- <aurabindo.pillai@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>,
- "Tom Chung" <chiahsuan.chung@amd.com>, Roman Li <roman.li@amd.com>, Hersen Wu
- <hersenxs.wu@amd.com>, Alex Hung <alex.hung@amd.com>, Harry Wentland
- <harry.wentland@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>
-Subject: [PATCH v2] drm/amd/display: Add null check for set_output_gamma in
- dcn30_set_output_transfer_func
-Date: Mon, 22 Jul 2024 17:18:17 +0530
-Message-ID: <20240722114817.3935101-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240716152445.228728-1-srinivasan.shanmugam@amd.com>
-References: <20240716152445.228728-1-srinivasan.shanmugam@amd.com>
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE6AC10E149
+ for <amd-gfx@lists.freedesktop.org>; Sun, 21 Jul 2024 09:06:54 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-52f01ec08d6so262521e87.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 21 Jul 2024 02:06:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1721552813; x=1722157613;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=k6gYokjRSWyrNGMR3J1P9KDvWZ1pohzgfwduMDyakus=;
+ b=PPlJ2DMnLjPQoNhT2RAvSSUg06wHUKvwW+wG89XXO+WLH+ydwV5zpVWdlw6L5L33Cn
+ isFGyMd4Unuvt6mXpbfHzE6Af5kx2t8rb5/y3Ta/1+tNA0itWtsWgEkSeSqjpKI8LWL8
+ dfqdhzn3x27CHloY67Z2IRhaAZtgcHhZp54JQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721552813; x=1722157613;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=k6gYokjRSWyrNGMR3J1P9KDvWZ1pohzgfwduMDyakus=;
+ b=mNHG7+7IR64EEwoSvueentzaGHXz2ZPBM/F/Gzh9JVRTqhViIAgOKLyOKYR8dsRwaY
+ uyg143hTXbE5mxsKf/2oJmpSVXK2MNwEPJDaoaeh0ck25ZhcZDYlissXDyoOv8x6HEwh
+ RLKknEDF0rsZZoFSGLtTxYiOfxnasf0SegYu4MA9R2dtB66mWjlBgJw7/q1SZF49Eljf
+ uVl+RUwiordBq3Az4aYKtfFtUnrPEXgxp+YKHsN0wg8uT68+WpAyZOQyUv1ZuDN5zUuL
+ aN9Z/L+wt6rxfXakGb0XikiSHHfYQvgPwsOiFomMvRWsG9Qj7EJ2/lfooKSe2Zx7ArbR
+ NWXw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVwCXvzZtisbwILWAUDlYlFae/p9AaDWaUStSEeYZon7tnHPGaJygkQRMqqqsEbSOkevsNQlTINsF4+dWC+nYO1dIFbNy9c3yBoqm/SJw==
+X-Gm-Message-State: AOJu0Yz+/ys+rRE9yNEv+2EYWdkeHq1hTP8vgAmo3jj53wZae4bB8F4X
+ /PqxfZAlXnWU2EzVOkRrgmIKWoPu7aKZ9KVrRqY1sqbz4wdyq3nsqmnRc+twZjjF4fPTaSLj0yD
+ L9yL9P7//BuiCUHCwIZ3Z1edSSIdcDUZY0TE=
+X-Google-Smtp-Source: AGHT+IFqqF14ze8eJiQnLsa6jy6P5mRFw4qxCuKyOXhmyr/g7mK/5hOqfuA6Mw3zy4+1u4v/qZ7NbCSuvMtryzribRk=
+X-Received: by 2002:a05:6512:3d0f:b0:52c:896f:930d with SMTP id
+ 2adb3069b0e04-52ee543eb1fmr8601569e87.57.1721552812560; Sun, 21 Jul 2024
+ 02:06:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231F:EE_|DS0PR12MB9273:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed209696-20d0-4a2d-8159-08dcaa443a5b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WOOJ0nPbx6D60A4ViQqfVRk7r6+QMa6D8REAcirZD/I414WgR3nRXwTM1qC5?=
- =?us-ascii?Q?ePMYTJ/Wz2zE4NjNAUJ3jiJlYbsapcmu0o/U9AI2rOtD4hZNPa+VgwWe/7VT?=
- =?us-ascii?Q?L91v40JaQY7XfnmryKs5ULmBX8LTooCIiEuGIs0FOWc3hFztS2ZGRiwStmib?=
- =?us-ascii?Q?gZMzvEyLcCSl4b1n97oShfHF2EztUzsqQnKHa4EXzJFueT27r9MCsG+EDjgZ?=
- =?us-ascii?Q?LC9TNubMQgI3iSN4xk2wlfTj4s4kFjbns/0a0aX2LyLuu6XDIrTI9/sAGfq4?=
- =?us-ascii?Q?jp5D/O5pdYeiu+ZrndXrOZzbW9Y23ZJioyoEofBEGBMTgusd4wrF9RsJA8ha?=
- =?us-ascii?Q?gw8pQKE+b91qkvvCShPh9fWW9HeCFuPRQ1F7lSH5WwGZ0hv27IBY1zsT/1Ti?=
- =?us-ascii?Q?g3B6BOT8mIwAvinSkv2Qg52tAhdvQwN26iVj1BTOXqPq7bwWvZ5Ie1MUGQvh?=
- =?us-ascii?Q?1K03hlcX1bY2+l9MYF3SZrT3aCKcjfiJJglmNpIlwwcxHn7qHOdt6ikdIUHy?=
- =?us-ascii?Q?9lhJihLcKxeIbKNdTCRJKRCqcy+85Fp+q3yMmefkEz3BDJFsWjmsszaOKd2O?=
- =?us-ascii?Q?cLii7+vrhO0F4gc4GyBm+CDEhJBFdqciMovzrEOXZLqUBW8/rN2sV4PnlaBK?=
- =?us-ascii?Q?IThG5ykdA3Q8GFLDwakgqVA5OE9zqvb3/803YVkM69w4AQSDKb4rGFKQES9m?=
- =?us-ascii?Q?NHBQPcXWm2BE33RMcJK/FsqVDubRM471oM72cnpbLFSVL05DuCOKDHGXBf7v?=
- =?us-ascii?Q?QjEaD2LFKccXVWVUBjR8QpzHvgt+W5WwLfAekaLvxOZ65OUp4L10ZMhmY9ti?=
- =?us-ascii?Q?cfoSEX0brBzZsYLGDoS5lFFQOPuApfjrmbgc0AKNX0ZfGBc9IdzCdHVOaHzk?=
- =?us-ascii?Q?oMoJciYYoy5aGO4vX43B8vcczU8kFbOz9pMscG5jJP/7HP2RnQ59gTPHh9sS?=
- =?us-ascii?Q?xBmh9n8BjBBzKRfYkhH0StXKQC0P/m/wgQASbm3A7HO+QBCnwEzgRqFuBLnD?=
- =?us-ascii?Q?bdW75h3QMmOgnuD6wxR4gVrsrgn1kNnMe4DBqDyl1iemlXLlxFCRLA3L65Yb?=
- =?us-ascii?Q?BkK9uTZv45GUawmu6kkpEFvPqkxaRElJluEkf2QeC1a3h6bZSJpY6FFwzjxd?=
- =?us-ascii?Q?N3fpetdFPLBFmpNcae8pX4kRprSQWgk0ARugsmkDSjGRiqp1cu1L03hTNb/V?=
- =?us-ascii?Q?YxIWK4H/iyIcVl2V5XfWJX/TEKB102MhFrF3+/88S86bQ9kyw91K2JhPlHP9?=
- =?us-ascii?Q?GliqKKYDTR5A2DYcsU+9OBMgnxCuVLw6cUD+rIYtmjUYSP8EcIm21zBYcSmy?=
- =?us-ascii?Q?vPWe+da0tAah9KudsjThTW7xCO75mkjXTywEml5Vt8EdXYg/zT5pHNOESI2W?=
- =?us-ascii?Q?YkBqY1Gcay1eGg50B/L4dxBKZhpKMr6HpIp+EV3bQpIl034ZtV40CtsRSQkG?=
- =?us-ascii?Q?gj/GMuBGWKBDNcMq8ULgSdH4AfuYN7qr?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2024 11:48:39.1934 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed209696-20d0-4a2d-8159-08dcaa443a5b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF0000231F.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9273
+References: <20240716185806.1572048-1-jim.cromie@gmail.com>
+In-Reply-To: <20240716185806.1572048-1-jim.cromie@gmail.com>
+From: =?UTF-8?Q?=C5=81ukasz_Bartosik?= <ukaszb@chromium.org>
+Date: Sun, 21 Jul 2024 11:06:30 +0200
+Message-ID: <CALwA+NbGf80zX1-CLof7OSpA4dQELuC7Ue7Xy2zQYmGJKgJcBQ@mail.gmail.com>
+Subject: Re: [PATCH v9-resend 00/54] fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+To: Jim Cromie <jim.cromie@gmail.com>
+Cc: linux-kernel@vger.kernel.org, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org, daniel.vetter@ffwll.ch, 
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, linux@rasmusvillemoes.dk, joe@perches.com, 
+ mcgrof@kernel.org, seanpaul@chromium.org, robdclark@gmail.com, 
+ groeck@google.com, yanivt@google.com, bleung@google.com, 
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, kernelnewbies@kernelnewbies.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 22 Jul 2024 12:53:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,95 +84,409 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This commit adds a null check for the set_output_gamma function pointer
-in the  dcn30_set_output_transfer_func function. Previously,
-set_output_gamma was being checked for nullity at line 386, but then it
-was being dereferenced without any nullity check at line 401. This
-could potentially lead to a null pointer dereference error if
-set_output_gamma is indeed null.
+On Tue, Jul 16, 2024 at 8:58=E2=80=AFPM Jim Cromie <jim.cromie@gmail.com> w=
+rote:
+>
+> resending to fix double-copies of a dozen patches.
+> added 2 squash-ins to address Ville's designated-initializer comment.
+>
+> This fixes dynamic-debug support for DRM.debug, added via classmaps.
+> commit bb2ff6c27bc9 (drm: Disable dynamic debug as broken)
+>
+> CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy was marked broken because drm.debug=3Dva=
+l
+> was applied when drm.ko was modprobed; too early for the yet-to-load
+> drivers, which thus missed the enablement.  My testing with
+> /etc/modprobe.d/ entries and modprobes with dyndbg=3D$querycmd options
+> obscured this omission.
+>
+> The fix is to replace invocations of DECLARE_DYNDBG_CLASSMAP with
+> DYNDBG_CLASSMAP_DEFINE for core, and DYNDBG_CLASSMAP_USE for drivers.
+> The distinction allows dyndbg to also handle the users properly.
+>
+> DRM is the only current classmaps user, and is not actually using it,
+> so if you think DRM could benefit from zero-off-cost debugs based on
+> static-keys, please test.
+>
+> There is also a no-DRM-involved selftest script:
+>
+>  [root@v6 b0-dd]# V=3D0 ./tools/testing/selftests/dynamic_debug/dyndbg_se=
+lftest.sh
+>  # consulting KCONFIG_CONFIG: .config
+>  # BASIC_TESTS
+>  : 0 matches on =3Dp
+>  : 14 matches on =3Dp
+>  : 0 matches on =3Dp
+>  : 21 matches on =3Dmf
+>  : 0 matches on =3Dml
+>  : 6 matches on =3Dmfl
+>  ...
+>  # Done on: Sun Jun 30 10:34:24 PM MDT 2024
+>
+> HISTORY
+>
+> 9/4/22  - ee879be38bc8..ace7c4bbb240 commited - classmaps-v1 dyndbg parts
+> 9/11/22 - 0406faf25fb1..16deeb8e18ca commited - classmaps-v1 drm parts
+>
+> https://lore.kernel.org/lkml/Y3XUrOGAV4I7bB3M@kroah.com/
+> greg k-h says:
+> This should go through the drm tree now.  The rest probably should also
+> go that way and not through my tree as well.
+>
+> https://lore.kernel.org/lkml/20221206003424.592078-1-jim.cromie@gmail.com=
+/
+> v1- RFC adds DYNDBG_CLASSMAP_DEFINE + test-submod to recap DRM failure
+>
+> https://lore.kernel.org/lkml/20230113193016.749791-1-jim.cromie@gmail.com=
+/
+> v2- w RFC on "tolerate toggled state"
+>
+> https://lore.kernel.org/lkml/Y8aNMxHpvZ8qecSc@hirez.programming.kicks-ass=
+.net/
+> - PeterZ - nacks tolerance of insane/uninit static-key state
+>
+> https://lore.kernel.org/lkml/8ca08fba-1120-ca86-6129-0b33afb4a1da@akamai.=
+com/
+> - JasonB diagnoses prob - set jump-label b4 init
+>
+> 7deabd674988 dyndbg: use the module notifier callbacks
+> - JasonB lands fix for my problem
+>   he moves dyndbg to use notifiers to do init, like & after jump-labels
+>
+> https://lore.kernel.org/lkml/20230125203743.564009-20-jim.cromie@gmail.co=
+m/
+> v3- probing, workaround-ish
+>
+> https://lore.kernel.org/lkml/20230713163626.31338-1-jim.cromie@gmail.com/
+> v4 - 7/13/23
+> - had extra/unused __UNIQUE_ID warnings/errs on lkp-tested arches
+>   due to unmatched __used marks
+> - RandyD doc fixes, thx.
+>
+> https://lore.kernel.org/lkml/20230801170255.163237-1-jim.cromie@gmail.com=
+/
+> v5 - 8/1/23
+> - lkp-test reported panics-on-boot
+>   https://lore.kernel.org/lkml/202308031432.fcb4197-oliver.sang@intel.com=
+/
+> - DRM=3Dy in apply-params
+> - missing align(8) in init-macro, failed only for builtin modules
+>
+> https://lore.kernel.org/lkml/20230911230838.14461-1-jim.cromie@gmail.com/
+> v6 - 9/11/23 - no feedback
+>
+> v7[a-d] - attempts to get into/thru DRM patchwork CI..
+> - "jenius" struck, I preserved DECLARE_DYNDBG_CLASSMAP til later
+>
+> v8[a-i] - added tools/testing/selftests/dynamic_debug/*
+> - now turnkey testable without DRM
+>
+>
+> CLASSMAPS FROM THE TOP
+>
+> dynamic-debug classmap's primary goal was to bring zero-off-cost
+> debugs, via static-keys, to DRM.
+>
+> drm.debug:
+>
+> is ~5000 invocations of debug-macros across core, drivers, helpers;
+> each in 1 of 10 exclusive categories: DRM_UT_*, kept in an enum/int,
+> and passed in 1st macro-arg, as a builtin-constant.
+>
+> The 10 categories are all controlled together, by bits 0..9 in a sysfs
+> knob.
+>
+>   drm.debug=3D0x1ff  # bootarg
+>   echo 0x4 > /sys/module/drm/parameters/debug  # run-time setting
+>
+> Keeping all that unchanged was a firm design requirement for classmaps.
+>
+> Below the sysfs interface, classmaps are exposed in the >control
+> grammar with a new "class" keyword.  This is mostly like the other
+> selector keywords, differing by:
+>
+> a- classnames are client/subsystem/domain defined, not code-name-structur=
+al.
+>    the classnames are global, across system
+>    IOW: "class DRM_UT_CORE" selects on any module which knows the class
+>
+> b- classes are protected from unqualified modification.
+>
+>    # cannot disable any DRM (or other) classes without saying so
+>    echo -p > /proc/dynamic_debug/control
+>
+> c- because b, modules must opt-in so dyndbg knows their classnames.
+>    without names, dyndbg cannot lookup the classid & change the class.
+>
+> d- classes don't have wildcards - add if needed.
+>    DRM uses "${SUBSYS}_${CATNAME}"
+>    probably more useful with "${TOP}_${MID}_${LOW}" classnames
+>    nobody's sure what _UT_ is.
+>
+> API in use:
+>
+> DYNDBG_CLASSMAP_* macros are all file-scope declarators.
+>
+> 1. DYNDBG_CLASSMAP_DEFINE(drm_debug_classes, ...);
+> 2. DYNDBG_CLASSMAP_USE(drm_debug_classes);
+>
+> Classmaps get DEFINEd once (in drm.ko for core) and USEd (in drivers
+> and helpers), these declarations 1. define and export a classmap (in
+> core module), and 2. refer to the exported class-struct from the other
+> modules.
+>
+> They both tell dynamic-debug that the module has some of these class'd
+> pr_debugs, so dyndbg can use the classmap's names to validate >control
+> inputs and change the callsites.  This is the opt-in.
+>
+> The distinction allows USErs to act differently than the DEFINEr; they
+> have to follow the ref back to the DEFINEing module, find the kparam
+> connected to the classmap, and lookup and apply its modprobed value.
+> (this is the bug-fix).
+>
+> Dyndbg uses the classnames to validate "class FOO" >control inputs,
+> and apply the changes to each module that has DEFINEd or USEd the
+> classmap.
+>
+> This makes classmaps opt-in: modules must _DEFINE or _USE a classmap
+> for their class'd pr_debug()s to be >control'd.
+>
+> NOTE: __pr_dbg_class(1, "const-int unreachable class 1"); is legal,
+> but not controllable unless the const 1 has been mapped to a _DEFINE'd
+> classname.
+>
+> NB: and __pr_dbg_class(i++, "undeclared class") is illegal.
+>
+> In drm_print.c we have: (theres room for better words...)
+>
+> /* classnames must match value-symbols of enum drm_debug_category */
+> DRM_CLASSMAP_DEFINE(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS,
+>                     DRM_UT_CORE, // _base
+>                     /* this effectively names the bits in drm.debug */
+>                     "DRM_UT_CORE",
+>                     "DRM_UT_DRIVER",
+>                     "DRM_UT_KMS",
+>                     "DRM_UT_PRIME",
+>                     "DRM_UT_ATOMIC",
+>                     "DRM_UT_VBL",
+>                     "DRM_UT_STATE",
+>                     "DRM_UT_LEASE",
+>                     "DRM_UT_DP",
+>                     "DRM_UT_DRMRES");
+>
+> This maps the sequence of "classnames" to ints starting with DRM_UT_CORE.
+> other _bases allow sharing the per-module 0..62 class-id space.
+> (63 is default/unclassed/common prdbg).
+>
+> Only complete, linear maps are recommended.  This suits DRM.
+>
+> DYNDBG_CLASSMAP_PARAM_REF() creates the sysfs-kparam classbits knob,
+> binding the extern'd long-int/bitvec to the classmap.  The extern
+> insures that old users of __drm_debug can still check its value.
+>
+> DRM's categories are independent of each other.  The other possible
+> classmap-type/behavior is "related", ie somehow "ordered": V3>V2.  The
+> relatedness of classes in a classmap is enforced at the kparam, where
+> they are all set together, not at the >control interface.
+>
+> THE PATCHSET has 2 halves:
+>
+> 1- dynamic-debug fix - API change
+>
+> The root cause was DECLARE_DYNDBG_CLASSMAP tried to do too much, and
+> its use in both core and drivers, helpers couldnt sort the difference.
+>
+> The fix is to replace it with DYNDBG_CLASSMAP_DEFINE in core, and
+> DYNDBG_CLASSMAP_USE in drivers,helpers. The 1st differs from -v1 by
+> exporting the classmap, allowing 2nd to ref it.  They respectively add
+> records to 2 ELF sections in the module.
+>
+> Now, dyndbg's on-modprobe handler follows the _USE/refs to the owning
+> module, finds the controlling kparam: drm.debug, and applies its value
+> thru the classmap, to the module's pr_debugs.
+>
+> A selftest script is included:
+>   :#> ./tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
+>
+> It recapitulates the DRM regression scenario using the 2 test modules.
+> The test verifies that the dependent module is initialized properly
+> from the parent's classmap kparam, and the classed prdbgs get enabled.
+>
+> This latest rev fixes the test for the various CONFIG_DYNAMIC_DEBUG*
+> build combos, by skipping some subtests where the expected counts are
+> wrong. Lukasz Bartosik caught this - thanks.
+> CC: ukaszb@chromium.org
+>
+> And 2 tweaks to kdoc & howto, to steer api users away from using
+> designated initializers to _DEFINE the classmap.
+>
+>
+> 2- DRM fixes - use new api.
+>
+> a. update core/drivers to invoke DRM_CLASSMAP_DEFINE/_USE
+> b. wrap DYNDBG_CLASSMAP_* with DRM_CLASSMAP_* - hide ifdef
+>
+> c. now with separate +DRM_CLASSMAP_USE patches for each driver/helper:
+> d. and defer dropping DECLARE_DYNDBG_CLASSMAP til later
+>
+> Maybe theres a single place to invoke DRM_CLASSMAP_USE just once,
+> perhaps from a client library c-file. I poked a little, didn't find it.
+> It would be a bit obscured for an opt-in style declaration.
+>
+> Patches are against v6.10
+> theyre also at:
+> tree/branch: https://github.com/jimc/linux.git dd-fix-9d
+> and lkp-robot told me:
+> [jimc:dd-fix-9d] BUILD SUCCESS 7c38f1d94f9919fec887113b620b83d60061c035
+>
+>
+> Finally, classmaps are in a meta-stable state right now; some governor
+> might yet walk it over to the gravel pit out back.
+>
+> Tested-bys would help greatly, help get it off the fence it straddles.
+> Please specify your test method: selftest or drm.debug=3D0x1ff boot.
+>
+> Next Im gonna try to haul this over to the freedesktop DRM-CI river,
+> presuming I can find the way (accts,etc)
+>
+> Also entertaining Reviewed-bys :-}
+>
+> Jim Cromie (54):
+>
+> DYNAMIC-DEBUG parts:
+>
+> cleanup:
+>   docs/dyndbg: update examples \012 to \n
+>   test-dyndbg: fixup CLASSMAP usage error
+>   dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+>   dyndbg: make ddebug_class_param union members same size
+>   dyndbg: replace classmap list with a vector
+>
+> prep:
+>   dyndbg: ddebug_apply_class_bitmap - add module arg, select on it
+>   dyndbg: split param_set_dyndbg_classes to _module & wrapper fns
+>   dyndbg: drop NUM_TYPE_ARRAY
+>   dyndbg: reduce verbose/debug clutter
+>   dyndbg: silence debugs with no-change updates
+>   dyndbg: tighten ddebug_class_name() 1st arg type
+>   dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+>   dyndbg: reduce verbose=3D3 messages in ddebug_add_module
+>
+> API changes & selftest:
+>   dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+>   dyndbg-API: fix DECLARE_DYNDBG_CLASSMAP
+>   selftests-dyndbg: add tools/testing/selftests/dynamic_debug/*
+>   dyndbg-API: promote DYNDBG_CLASSMAP_PARAM to API
+>   dyndbg-doc: add classmap info to howto
+>   dyndbg: treat comma as a token separator
+>   selftests-dyndbg: add comma_terminator_tests
+>   dyndbg: split multi-query strings with %
+>   selftests-dyndbg: test_percent_splitting
+>   docs/dyndbg: explain new delimiters: comma, percent
+>   selftests-dyndbg: add test_mod_submod
+>   dyndbg-doc: explain flags parse 1st
+>   dyndbg: change __dynamic_func_call_cls* macros into expressions
+>   selftests-dyndbg: check KCONFIG_CONFIG to avoid silly fails
+>   dyndbg-selftest: reduce default verbosity
+>
+> DRM-parts:
+>
+>   drm: use correct ccflags-y spelling
+>   drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+>   drm-dyndbg: adapt DRM to invoke DYNDBG_CLASSMAP_PARAM
+>   drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+>   drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+>   drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+>   drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+>   drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+>   drm-print: workaround unused variable compiler meh
+>   drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+>   drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+>   drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+>   drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+>   drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+>   drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+>   drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+>   drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+>
+> added in -resend (will squash back in):
+>
+>   dyndbg: tighten up kdoc about DYNDBG_CLASSMAP_* macros
+>   docs-dyndbg: improve howto classmaps api section
+>
+>  .../admin-guide/dynamic-debug-howto.rst       | 113 ++++-
+>  MAINTAINERS                                   |   3 +-
+>  drivers/gpu/drm/Kconfig                       |   3 +-
+>  drivers/gpu/drm/Makefile                      |   3 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
+>  drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
+>  drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
+>  drivers/gpu/drm/drm_gem_shmem_helper.c        |   2 +
+>  drivers/gpu/drm/drm_print.c                   |  38 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
+>  drivers/gpu/drm/gma500/psb_drv.c              |   2 +
+>  drivers/gpu/drm/gud/gud_drv.c                 |   2 +
+>  drivers/gpu/drm/i915/i915_params.c            |  12 +-
+>  drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
+>  drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
+>  drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
+>  drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
+>  drivers/gpu/drm/tiny/bochs.c                  |   2 +
+>  drivers/gpu/drm/tiny/simpledrm.c              |   2 +
+>  drivers/gpu/drm/udl/udl_main.c                |   2 +
+>  drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
+>  drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
+>  drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
+>  include/asm-generic/vmlinux.lds.h             |   1 +
+>  include/drm/drm_print.h                       |  10 +
+>  include/linux/dynamic_debug.h                 | 145 ++++--
+>  kernel/module/main.c                          |   3 +
+>  lib/Kconfig.debug                             |  24 +-
+>  lib/Makefile                                  |   3 +
+>  lib/dynamic_debug.c                           | 436 +++++++++++-------
+>  lib/test_dynamic_debug.c                      | 131 +++---
+>  lib/test_dynamic_debug_submod.c               |  17 +
+>  tools/testing/selftests/Makefile              |   1 +
+>  .../testing/selftests/dynamic_debug/Makefile  |   9 +
+>  tools/testing/selftests/dynamic_debug/config  |   2 +
+>  .../dynamic_debug/dyndbg_selftest.sh          | 375 +++++++++++++++
+>  37 files changed, 1042 insertions(+), 363 deletions(-)
+>  create mode 100644 lib/test_dynamic_debug_submod.c
+>  create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
+>  create mode 100644 tools/testing/selftests/dynamic_debug/config
+>  create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest=
+.sh
+>
+> --
+> 2.45.2
+>
 
-To fix this, we now ensure that set_output_gamma is not null before
-dereferencing it. We do this by adding a nullity check for
-set_output_gamma before the call to set_output_gamma at line 401. If
-set_output_gamma is null, we log an error message and do not call the
-function.
+Tested-by: =C5=81ukasz Bartosik <ukaszb@chromium.org>
 
-This fix prevents a potential null pointer dereference error.
+Here is what I tested in virtme-ng:
+TEST_DYNAMIC_DEBUG=3DM and TEST_DYNAMIC_DEBUG_SUBMOD=3DM
+BASIC_TESTS, COMMA_TERMINATOR_TESTS, TEST_PERCENT_SPLITTING and
+TEST_MOD_SUBMOD selftests passed
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn30/dcn30_hwseq.c:401 dcn30_set_output_transfer_func()
-error: we previously assumed 'mpc->funcs->set_output_gamma' could be null (see line 386)
+TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DM
+BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were skipped
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/hwss/dcn30/dcn30_hwseq.c
-    373 bool dcn30_set_output_transfer_func(struct dc *dc,
-    374                                 struct pipe_ctx *pipe_ctx,
-    375                                 const struct dc_stream_state *stream)
-    376 {
-    377         int mpcc_id = pipe_ctx->plane_res.hubp->inst;
-    378         struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
-    379         const struct pwl_params *params = NULL;
-    380         bool ret = false;
-    381
-    382         /* program OGAM or 3DLUT only for the top pipe*/
-    383         if (pipe_ctx->top_pipe == NULL) {
-    384                 /*program rmu shaper and 3dlut in MPC*/
-    385                 ret = dcn30_set_mpc_shaper_3dlut(pipe_ctx, stream);
-    386                 if (ret == false && mpc->funcs->set_output_gamma) {
-                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ If this is NULL
+TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DY
+BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were skipped
 
-    387                         if (stream->out_transfer_func.type == TF_TYPE_HWPWL)
-    388                                 params = &stream->out_transfer_func.pwl;
-    389                         else if (pipe_ctx->stream->out_transfer_func.type ==
-    390                                         TF_TYPE_DISTRIBUTED_POINTS &&
-    391                                         cm3_helper_translate_curve_to_hw_format(
-    392                                         &stream->out_transfer_func,
-    393                                         &mpc->blender_params, false))
-    394                                 params = &mpc->blender_params;
-    395                          /* there are no ROM LUTs in OUTGAM */
-    396                         if (stream->out_transfer_func.type == TF_TYPE_PREDEFINED)
-    397                                 BREAK_TO_DEBUGGER();
-    398                 }
-    399         }
-    400
---> 401         mpc->funcs->set_output_gamma(mpc, mpcc_id, params);
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Then it will crash
+I also did manual testing by enabling/disabling different classes from
+the kernel command line with drm.debug param
+and verified they are correctly reflected in cat /proc/dynamic_debug/contro=
+l.
 
-    402         return ret;
-    403 }
-
-Fixes: d99f13878d6f ("drm/amd/display: Add DCN3 HWSEQ")
-Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Tom Chung <chiahsuan.chung@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Roman Li <roman.li@amd.com>
-Cc: Hersen Wu <hersenxs.wu@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
-v2: s/DRM_ERROR/DC_LOG_ERROR (Tom)
-
- drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index 98a40d46aaae..42c52284a868 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -398,7 +398,11 @@ bool dcn30_set_output_transfer_func(struct dc *dc,
- 		}
- 	}
- 
--	mpc->funcs->set_output_gamma(mpc, mpcc_id, params);
-+	if (mpc->funcs->set_output_gamma)
-+		mpc->funcs->set_output_gamma(mpc, mpcc_id, params);
-+	else
-+		DC_LOG_ERROR("%s: set_output_gamma function pointer is NULL.\n", __func__);
-+
- 	return ret;
- }
- 
--- 
-2.34.1
-
+All the above LGTM.
