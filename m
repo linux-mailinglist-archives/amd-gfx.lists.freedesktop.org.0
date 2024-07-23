@@ -2,73 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D5B939CC8
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2024 10:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A04A939D05
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2024 10:56:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E112A10E49B;
-	Tue, 23 Jul 2024 08:34:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF10210E4DD;
+	Tue, 23 Jul 2024 08:56:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DeZAmOOH";
+	dkim=pass (2048-bit key; unprotected) header.d=kode54.net header.i=@kode54.net header.b="yFogl0Q7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
- [209.85.208.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F1E10E49B
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 08:34:06 +0000 (UTC)
-Received: by mail-lj1-f173.google.com with SMTP id
- 38308e7fff4ca-2ef283c58f4so28357401fa.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 01:34:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1721723645; x=1722328445; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=AJ2VNc2om1myjOGpQ6KrGhMJVYI0Y54L6d0Qtqmz9+4=;
- b=DeZAmOOHROfKsghYaau1BQKAsqGSMPTCFyHGn5sOjaBnSquesqgT68B29Dptb/k6rR
- z4uIidpqzrBh9IXEXDF+d6DxLGZ78+hQP+RaqoqEpRG1qy5FkTaJr2mLRLI8WSQ9oZGj
- okQMmN6C8r+hKKsb3uKYVna4DJLzr0tUDOCkQCUvZhxxZE/Shx3en7nOgei1HD/ybTIU
- 0j5Ktc8nyX3fiUjIevIGGKT8wK0EGfgHPxK+jYnbIUHOZu/ov1ZAOMSG8M5yg5Ly3aYS
- 08sFUhC4UaS6T5Xi3/FqbSJALcdilgM4b/CfaC2z0wn67SAXykGsRAdXFZu2yPrU7Gnk
- DtMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721723645; x=1722328445;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AJ2VNc2om1myjOGpQ6KrGhMJVYI0Y54L6d0Qtqmz9+4=;
- b=WFYoksyRVjvjkz8XVCn3RLwDxtS4cMqiyORF7M9R/HMpRV6EIyZes9e7GQQ3ZvTQCV
- EvBVXXNfq3w+3euE76dDEzNWW5SmhDgs0FinWNIeiCUl0y8oiUaCWXueML4IakQ9QL9g
- zCMjLwXX1W8i4ub5alZw25KbvSNJz87YnaVX6SfcLwpqbYKBplhOxG2yHSH94JCZJAdq
- pNrHuhOFnt39oZxFtcDVqOQCxow2X0j6F/t0meZgGxPGvxKpMSurYoUg/0N72ieE41Kx
- s47/Tq25L6/uRkO+4NTZDwa0IyqXqbfEcNLzENXnYFeRROM03oaBoIxc3jvSFDLEuSDy
- 4L3Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVlL7pZGQKukP0zkyk3TrR6BjvN8b7B4gWrUh8I08hMID6xabkUjSBwl4tRqR9++MewX4FkxRYNIIy9NB87/qYDciCnoO8W0dZS+l3JUg==
-X-Gm-Message-State: AOJu0Yxif9xxpIz8RKljWGHY4fxXJhE+kLhmcI9keGZ8KSPn6FKAVg3q
- qVIwkkm19iubAapAKvIAz4nON15XcvyqApRlUGGBx3Lm1VwlNGsT
-X-Google-Smtp-Source: AGHT+IELOW43OX4gZY1Nnr5U0Zz1Jy5AIhYMHFNMxPUSVeyOS2CgrPcg7vM7L3jjOOGFxcL5RwxXUQ==
-X-Received: by 2002:a2e:3013:0:b0:2ef:2247:987b with SMTP id
- 38308e7fff4ca-2ef22479e5emr59960631fa.32.1721723644191; 
- Tue, 23 Jul 2024 01:34:04 -0700 (PDT)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-427d9193350sm146558225e9.40.2024.07.23.01.34.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 23 Jul 2024 01:34:03 -0700 (PDT)
-Message-ID: <e78e5ace-9524-4dda-8d60-25bbf28a9311@gmail.com>
-Date: Tue, 23 Jul 2024 10:34:02 +0200
+X-Greylist: delayed 366 seconds by postgrey-1.36 at gabe;
+ Tue, 23 Jul 2024 08:56:31 UTC
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com
+ [95.215.58.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C22E10E4DD
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 08:56:31 +0000 (UTC)
+X-Envelope-To: alexdeucher@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kode54.net; s=key1;
+ t=1721724622;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=FJ3RA1yKeLZMFVlJfElG7YMB12PyUVcx2YZHgBMuUAI=;
+ b=yFogl0Q7ptXVu3daKTd70JXFypgU2Hkh5TosY78cTgwcNliX1iWOBh2ZQCs9OjlmyhothO
+ 0VaIckMVw6U8Hdc72GKuS8qY1nezCuekr6MQxgcEiRaVLDOcd61r9pjsfvXFzmC6gX8NCD
+ hA/8rSjW977E0rWxhiZYDhwgrWSIzymXNJcUQzrBhXbGj18NDWfXdfxRmWfp+B+cRfLjZn
+ E096OU0I9Qm9hWAbreK101S+bq72U2d3PE+FqO0/N9bJ3dv3HV0NuiCfuEVLNy3yZYtwgO
+ KmBLq8d29WHTmRzvAW/k/TqjmoLh55DRN2qyXRy+NFdqv84illYRlc2BxarxQw==
+X-Envelope-To: amd-gfx@lists.freedesktop.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Christopher Snowhill <chris@kode54.net>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 00/34] GC per queue reset
+In-Reply-To: <CADnq5_NHzGzPe73Ks8au=_up87PTJU11mHpCxVcQBNcWkW-b8w@mail.gmail.com>
+References: <20240718140733.1731004-1-alexander.deucher@amd.com>
+ <CADnq5_NHzGzPe73Ks8au=_up87PTJU11mHpCxVcQBNcWkW-b8w@mail.gmail.com>
+Date: Tue, 23 Jul 2024 01:50:18 -0700
+Message-ID: <87a5i8jxv9.fsf@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/mes: refine for maximum packet execution
-To: Jack Xiao <Jack.Xiao@amd.com>, amd-gfx@lists.freedesktop.org,
- Alexander.Deucher@amd.com
-References: <20240723082737.2359410-1-Jack.Xiao@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20240723082737.2359410-1-Jack.Xiao@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Migadu-Flow: FLOW_OUT
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,69 +61,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 23.07.24 um 10:27 schrieb Jack Xiao:
-> Only allow API_NUMBER_OF_COMMAND_MAX packet in mes ring buffer,
-> refine the code for maximum packet execution.
+Alex Deucher <alexdeucher@gmail.com> writes:
+
+> On Thu, Jul 18, 2024 at 10:15=E2=80=AFAM Alex Deucher <alexander.deucher@=
+amd.com> wrote:
+>>
+>> This adds preliminary support for GC per queue reset.  In this
+>> case, only the jobs currently in the queue are lost.  If this
+>> fails, we fall back to a full adapter reset.
 >
-> Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 2 ++
->   drivers/gpu/drm/amd/amdgpu/mes_v11_0.c   | 2 +-
->   drivers/gpu/drm/amd/amdgpu/mes_v12_0.c   | 2 +-
->   3 files changed, 4 insertions(+), 2 deletions(-)
+> Also available here via git:
+> https://gitlab.freedesktop.org/agd5f/linux/-/commits/amd-staging-drm-next=
+-queue-reset
+
+Just tested this, after encountering the double-add crash trying to
+reset after a GPU hang. It doesn't seem to gracefully recover from this
+particular GPU hang, but at least now it resets properly. Still not
+going to attempt to run it against KDE / Plasma 6.1.3 on Arch, as that
+loves to hang if there's any Xwayland involved in the GPU reset event.
+
+However, under labwc-git with my own PR applied to it, it recovers okay,
+though Xwayland eventually crashes and is restarted by labwc. Here's a
+dmesg log excerpt of the reset and recovery event:
+
+[  189.830630] amdgpu 0000:0a:00.0: amdgpu: ring gfx_0.0.0 timeout, signale=
+d seq=3D52410, emitted seq=3D52412
+[  189.830642] amdgpu 0000:0a:00.0: amdgpu: Process information: process St=
+ray-Win64-Shi pid 11560 thread vkd3d_queue pid 11719
+[  190.099191] amdgpu 0000:0a:00.0: amdgpu: GPU reset begin!
+[  190.457702] amdgpu 0000:0a:00.0: amdgpu: Dumping IP State
+[  190.459418] amdgpu 0000:0a:00.0: amdgpu: Dumping IP State Completed
+[  190.459420] amdgpu 0000:0a:00.0: amdgpu: MODE1 reset
+[  190.459423] amdgpu 0000:0a:00.0: amdgpu: GPU mode1 reset
+[  190.459483] amdgpu 0000:0a:00.0: amdgpu: GPU smu mode1 reset
+[  190.967464] amdgpu 0000:0a:00.0: amdgpu: GPU reset succeeded, trying to =
+resume
+[  190.967824] [drm] PCIE GART of 512M enabled (table at 0x0000008000300000=
+).
+[  190.967912] [drm] VRAM is lost due to GPU reset!
+[  190.967914] amdgpu 0000:0a:00.0: amdgpu: PSP is resuming...
+[  191.042264] amdgpu 0000:0a:00.0: amdgpu: reserve 0xa00000 from 0x82fd000=
+000 for PSP TMR
+[  191.143003] amdgpu 0000:0a:00.0: amdgpu: RAS: optional ras ta ucode is n=
+ot available
+[  191.156566] amdgpu 0000:0a:00.0: amdgpu: SECUREDISPLAY: securedisplay ta=
+ ucode is not available
+[  191.156572] amdgpu 0000:0a:00.0: amdgpu: SMU is resuming...
+[  191.156576] amdgpu 0000:0a:00.0: amdgpu: smu driver if version =3D 0x000=
+0000e, smu fw if version =3D 0x00000012, smu fw program =3D 0, version =3D =
+0x00413e00 (65.62.0)
+[  191.156580] amdgpu 0000:0a:00.0: amdgpu: SMU driver if version not match=
+ed
+[  191.156609] amdgpu 0000:0a:00.0: amdgpu: use vbios provided pptable
+[  191.215750] amdgpu 0000:0a:00.0: amdgpu: SMU is resumed successfully!
+[  191.217023] [drm] DMUB hardware initialized: version=3D0x02020020
+[  191.530005] [drm] kiq ring mec 2 pipe 1 q 0
+[  191.532863] amdgpu 0000:0a:00.0: amdgpu: ring gfx_0.0.0 uses VM inv eng =
+0 on hub 0
+[  191.532866] amdgpu 0000:0a:00.0: amdgpu: ring gfx_0.1.0 uses VM inv eng =
+1 on hub 0
+[  191.532867] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.0.0 uses VM inv eng=
+ 4 on hub 0
+[  191.532869] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.1.0 uses VM inv eng=
+ 5 on hub 0
+[  191.532870] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.2.0 uses VM inv eng=
+ 6 on hub 0
+[  191.532871] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.3.0 uses VM inv eng=
+ 7 on hub 0
+[  191.532872] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.0.1 uses VM inv eng=
+ 8 on hub 0
+[  191.532874] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.1.1 uses VM inv eng=
+ 9 on hub 0
+[  191.532875] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.2.1 uses VM inv eng=
+ 10 on hub 0
+[  191.532876] amdgpu 0000:0a:00.0: amdgpu: ring comp_1.3.1 uses VM inv eng=
+ 11 on hub 0
+[  191.532878] amdgpu 0000:0a:00.0: amdgpu: ring kiq_0.2.1.0 uses VM inv en=
+g 12 on hub 0
+[  191.532879] amdgpu 0000:0a:00.0: amdgpu: ring sdma0 uses VM inv eng 13 o=
+n hub 0
+[  191.532880] amdgpu 0000:0a:00.0: amdgpu: ring sdma1 uses VM inv eng 14 o=
+n hub 0
+[  191.532881] amdgpu 0000:0a:00.0: amdgpu: ring vcn_dec_0 uses VM inv eng =
+0 on hub 8
+[  191.532883] amdgpu 0000:0a:00.0: amdgpu: ring vcn_enc_0.0 uses VM inv en=
+g 1 on hub 8
+[  191.532884] amdgpu 0000:0a:00.0: amdgpu: ring vcn_enc_0.1 uses VM inv en=
+g 4 on hub 8
+[  191.532885] amdgpu 0000:0a:00.0: amdgpu: ring jpeg_dec uses VM inv eng 5=
+ on hub 8
+[  191.536522] amdgpu 0000:0a:00.0: amdgpu: recover vram bo from shadow sta=
+rt
+[  191.555443] amdgpu 0000:0a:00.0: amdgpu: recover vram bo from shadow done
+[  191.555471] amdgpu 0000:0a:00.0: amdgpu: GPU reset(2) succeeded!
+[  191.555663] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to initialize =
+parser -125!
+
+Yes, I can reliably hang my gfx ring if I run Stray with -dx12 switch
+applied. In-game, though, not on the title screen.
+
+
+> Alex
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> index ad49cecb20b8..dfe487521a4a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-> @@ -212,6 +212,8 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
->   	 */
->   	if (ring->funcs->type == AMDGPU_RING_TYPE_KIQ)
->   		sched_hw_submission = max(sched_hw_submission, 256);
-> +	else if (ring->funcs->type == AMDGPU_RING_TYPE_MES)
-> +		sched_hw_submission = 32;
-
-Yeah that looks like it makes sense.
-
->   	else if (ring == &adev->sdma.instance[0].page)
->   		sched_hw_submission = 256;
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> index 68c74adf79f1..951f13e01ee9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> @@ -198,7 +198,7 @@ static int mes_v11_0_submit_pkt_and_poll_completion(struct amdgpu_mes *mes,
->   
->   	seq = ++ring->fence_drv.sync_seq;
->   	r = amdgpu_fence_wait_polling(ring,
-> -				      seq - ring->fence_drv.num_fences_mask,
-> +				      seq - (API_NUMBER_OF_COMMAND_MAX/2 - 1),
-
-This looks a bit questionable. amdgpu_fence_wait_polling() doesn't apply 
-the fence mask to the polled value.
-
-So what happens if that overruns?
-
-Additional to that we should really keep that logic in 
-amdgpu_fence_emit_polling() and not each individual MES generation.
-
-Regards,
-Christian.
-
->   				      timeout);
->   	if (r < 1)
->   		goto error_undo;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> index 48e01206bcc4..dc65f28d1795 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
-> @@ -184,7 +184,7 @@ static int mes_v12_0_submit_pkt_and_poll_completion(struct amdgpu_mes *mes,
->   
->   	seq = ++ring->fence_drv.sync_seq;
->   	r = amdgpu_fence_wait_polling(ring,
-> -				      seq - ring->fence_drv.num_fences_mask,
-> +				      seq - (API_NUMBER_OF_COMMAND_MAX/2 - 1),
->   				      timeout);
->   	if (r < 1)
->   		goto error_undo;
-
+>>
+>> Alex Deucher (19):
+>>   drm/amdgpu/mes: add API for legacy queue reset
+>>   drm/amdgpu/mes11: add API for legacy queue reset
+>>   drm/amdgpu/mes12: add API for legacy queue reset
+>>   drm/amdgpu/mes: add API for user queue reset
+>>   drm/amdgpu/mes11: add API for user queue reset
+>>   drm/amdgpu/mes12: add API for user queue reset
+>>   drm/amdgpu: add new ring reset callback
+>>   drm/amdgpu: add per ring reset support (v2)
+>>   drm/amdgpu/gfx11: add ring reset callbacks
+>>   drm/amdgpu/gfx11: rename gfx_v11_0_gfx_init_queue()
+>>   drm/amdgpu/gfx10: add ring reset callbacks
+>>   drm/amdgpu/gfx10: rework reset sequence
+>>   drm/amdgpu/gfx9: add ring reset callback
+>>   drm/amdgpu/gfx9.4.3: add ring reset callback
+>>   drm/amdgpu/gfx12: add ring reset callbacks
+>>   drm/amdgpu/gfx12: fallback to driver reset compute queue directly
+>>   drm/amdgpu/gfx11: enter safe mode before touching CP_INT_CNTL
+>>   drm/amdgpu/gfx11: add a mutex for the gfx semaphore
+>>   drm/amdgpu/gfx11: export gfx_v11_0_request_gfx_index_mutex()
+>>
+>> Jiadong Zhu (13):
+>>   drm/amdgpu/gfx11: wait for reset done before remap
+>>   drm/amdgpu/gfx10: remap queue after reset successfully
+>>   drm/amdgpu/gfx10: wait for reset done before remap
+>>   drm/amdgpu/gfx9: remap queue after reset successfully
+>>   drm/amdgpu/gfx9: wait for reset done before remap
+>>   drm/amdgpu/gfx9.4.3: remap queue after reset successfully
+>>   drm/amdgpu/gfx_9.4.3: wait for reset done before remap
+>>   drm/amdgpu/gfx: add a new kiq_pm4_funcs callback for reset_hw_queue
+>>   drm/amdgpu/gfx9: implement reset_hw_queue for gfx9
+>>   drm/amdgpu/gfx9.4.3: implement reset_hw_queue for gfx9.4.3
+>>   drm/amdgpu/mes: modify mes api for mmio queue reset
+>>   drm/amdgpu/mes: implement amdgpu_mes_reset_hw_queue_mmio
+>>   drm/amdgpu/mes11: implement mmio queue reset for gfx11
+>>
+>> Prike Liang (2):
+>>   drm/amdgpu: increase the reset counter for the queue reset
+>>   drm/amdgpu/gfx11: fallback to driver reset compute queue directly (v2)
+>>
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   1 +
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |   6 +
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  18 +++
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c    |  88 ++++++++++++
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h    |  37 +++++
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   2 +
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     | 158 ++++++++++++++++++++-
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c     | 117 +++++++++++++--
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.h     |   3 +
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c     |  95 ++++++++++++-
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c      | 126 +++++++++++++++-
+>>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 125 +++++++++++++++-
+>>  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     | 132 +++++++++++++++++
+>>  drivers/gpu/drm/amd/amdgpu/mes_v12_0.c     |  54 +++++++
+>>  14 files changed, 930 insertions(+), 32 deletions(-)
+>>
+>> --
+>> 2.45.2
+>>
