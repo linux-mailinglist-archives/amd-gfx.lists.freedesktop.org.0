@@ -2,58 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C4F93A0C4
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2024 15:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBFE93A14E
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jul 2024 15:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A79010E5B3;
-	Tue, 23 Jul 2024 13:02:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28A910E5C5;
+	Tue, 23 Jul 2024 13:26:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kDn+Fn5L";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Tue, 23 Jul 2024 09:53:47 UTC
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E349A10E53D
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 09:53:47 +0000 (UTC)
-X-UUID: ebe9620248d711ef93f4611109254879-20240723
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.38, REQID:9a903de0-ccdc-49ef-9344-e19dc9abf223, IP:5,
- U
- RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:5,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
- N:release,TS:-15
-X-CID-INFO: VERSION:1.1.38, REQID:9a903de0-ccdc-49ef-9344-e19dc9abf223, IP:5,
- URL
- :0,TC:0,Content:-25,EDM:0,RT:0,SF:5,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
- release,TS:-15
-X-CID-META: VersionHash:82c5f88, CLOUDID:b4718e6bfbe46ce6a77ef1fe607cb3a7,
- BulkI
- D:240723173705O876ZW6R,BulkQuantity:1,Recheck:0,SF:66|23|72|19|43|74|102,T
- C:nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,RT:nil,Bulk:40,QS:nil,BEC:nil,
- COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FSD
-X-UUID: ebe9620248d711ef93f4611109254879-20240723
-X-User: yaolu@kylinos.cn
-Received: from localhost.localdomain [(111.48.58.10)] by mailgw.kylinos.cn
- (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
- with ESMTP id 2021975999; Tue, 23 Jul 2024 17:42:48 +0800
-From: Lu Yao <yaolu@kylinos.cn>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- kenneth.feng@amd.com
-Cc: mario.limonciello@amd.com, lijo.lazar@amd.com, Hawking.Zhang@amd.com,
- andrealmeid@igalia.com, hamza.mahfooz@amd.com, candice.li@amd.com,
- victorchengchi.lu@amd.com, sunil.khatri@amd.com, Jun.Ma2@amd.com,
- kevinyang.wang@amd.com, Tim.Huang@amd.com, jesse.zhang@amd.com,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Lu Yao <yaolu@kylinos.cn>
-Subject: [PATCH] drm/amdgpu: fix OLAND card ip_init failed during kdump
- caputrue kernel boot
-Date: Tue, 23 Jul 2024 17:42:32 +0800
-Message-Id: <20240723094232.162319-1-yaolu@kylinos.cn>
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2052.outbound.protection.outlook.com [40.107.96.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0958810E5C5;
+ Tue, 23 Jul 2024 13:25:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DetdoJ8hnN/5uSR0K86/XCjwdCcr/sf/uU/8UrbSrj1/Obyb/w1A0yM3VXCCuMSXHCt/9nq6R5m9KLuFEyJoWtF9/PEkseWKZC199O8KOxDoB7WIF7wve5hiruClsJdQgyDxv02DZl+p59JxrMxRro8ErsQDwhVdCXYThhMSsWY70H01vsju8INecxx63TvwZXoyH501bs/wjUwy4qddrrtYlMGmwhNsg3b9LJ340egd8XXBezTyZNBVViqIINq95asNuK13OOzlcmXFKdAvXbUY1TA4QYfQ2f8RuFAHoheimWsMfmAV0xG0kgDNrmYfLCnPtitcDBU+i7inQYZsNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b6UoF1zGqtVrNRypomsBMEF/otGkLEyqVBmoP+knsu4=;
+ b=CZ/kyJaoiQPQgxPPA/mKoCyT57BBcfXRcXJa95t6iwpfAGtvvW/fwKq17sicx4m7xsCWsEb8KNFphovc3iyk1wM5R7ewWY4ygjQzXPQuQWuCpqDbPD2/uDroBwtNPTBc9mahXkZpH4OB7PrueNMUX9Qgz1nfZmRtXsOPU3txt1tCO26g5FnIy44XyyON3SDFgX5nowmxGwZe81Gh7bBY5HJZXJ14NyqVkM2bsWJiLSubsL9pLe/TVaxYlt1JUZ/Ay2+kem0IP1BozRCTDXTAHfLnLvRSzDGPrPo43NwJYExIVUjFO+F71B6iyJL1w4qVwjLJJ38BFVJ34L2cU90reQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b6UoF1zGqtVrNRypomsBMEF/otGkLEyqVBmoP+knsu4=;
+ b=kDn+Fn5LGAtk4hdiNnbHMurfzUdRrpdd6l0f22LukKSWwD8NWMCs3LnlmqfOcB1JQN33wUwQ53gbcr+++IdihiiVVdER8vbG2yhez0kR0nAnTUumeR+lmf0ift4t7ZJLxosQlD9HP6ZlLxQ5WFZSdQklhdTXVfxOKWAa7r+eGeU=
+Received: from MW3PR05CA0010.namprd05.prod.outlook.com (2603:10b6:303:2b::15)
+ by CH3PR12MB8936.namprd12.prod.outlook.com (2603:10b6:610:179::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.16; Tue, 23 Jul
+ 2024 13:25:45 +0000
+Received: from CO1PEPF000044FC.namprd21.prod.outlook.com
+ (2603:10b6:303:2b:cafe::ed) by MW3PR05CA0010.outlook.office365.com
+ (2603:10b6:303:2b::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18 via Frontend
+ Transport; Tue, 23 Jul 2024 13:25:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044FC.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7784.5 via Frontend Transport; Tue, 23 Jul 2024 13:25:44 +0000
+Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 23 Jul 2024 08:25:42 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <matthew.auld@intel.com>
+CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
+ <frank.min@amd.com>, <marek.olsak@amd.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH v7 1/2] drm/buddy: Add start address support to trim function
+Date: Tue, 23 Jul 2024 18:55:24 +0530
+Message-ID: <20240723132525.31294-1-Arunpravin.PaneerSelvam@amd.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 23 Jul 2024 13:02:21 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044FC:EE_|CH3PR12MB8936:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d81a51e-9ccf-4841-d7f3-08dcab1af53c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VGV0cCtjb0tjY2pPU2luYlRWV0MxdHVaZVRuazJBWWJ4NlFxazJRYWVwdTNt?=
+ =?utf-8?B?YkJ5QnYwZGllNnJYdzlMb3lzVmxXcU1DMG5yMlNlY1hlb016MTdxMFZsc0hK?=
+ =?utf-8?B?cDRlNkNBWWxCUk96N0pENVZqbDFRSlVXWGhKNWpjSURINkFuTHhndmErWHUr?=
+ =?utf-8?B?V0pLMm1IbjNEUkowZGtabk5mcXVEb3Y5UzJ6Rm02S2JheUVFRWhOSGFHakla?=
+ =?utf-8?B?ajZUblZzcmNKU1ZRcjE1Qi9obks1elZqQlJqbWhtWFkxNk9TajNIYXNFaUVO?=
+ =?utf-8?B?d3hZaEVuOWdoVlRuNTQ5YXU4MERxRjkvTEI2TGt5YUZsN2VkYmN5U1lZU2g3?=
+ =?utf-8?B?ZWtHN2xhR01QWG9rRVZYT0IzcnVNZ0ZQbGxoejU3SkR6WVR1czRETU9qcGk5?=
+ =?utf-8?B?VnNtSHRmV3hkaUZaZnBselBWY0RuVlBiYWNoSWpOeW5YaFkzNXBxZk9Dbk5K?=
+ =?utf-8?B?Q1E2NkROd3ovc2lPVjc3K1RKMjQzR2F6aUJ2ajZjY2VYSjZ0akF0YWNlall0?=
+ =?utf-8?B?VEFJSHpvUDRtK3BvLzNERnhGMDZ1b3IrS1FycUdNNWpEaUM5T0d6TjMyUm9T?=
+ =?utf-8?B?ZnlGL1VlMHE3QzB4MGdUZ05Zb2tBS1EvV0dUYW5pMW5SV2hUMFdxdHBVdjZi?=
+ =?utf-8?B?LzdaNHJEMzlYdDlEMlNYUklkQ3FySXAzUFdNMFYzaG1OdlBSeXBzOElEMndX?=
+ =?utf-8?B?a0p4MmRhbU1vSzQwd3NIQ2NpSmJrcGZXaVNaa2JjL3J0d2FtZHZpSnF1bU5S?=
+ =?utf-8?B?b28yK2ZqaVV0ZDNwWVFuZ214aXRSZUNvdGE3ZnhSYThydE9FNmh3WS9seTBJ?=
+ =?utf-8?B?SlJSQnJwSWg3TnBuN2gvVUZZa3B2TGpDaU5Wbng3WEdURjBxQ201YTBPZzNJ?=
+ =?utf-8?B?UFZ4MVdBY1lkSGlRdEZqNHNzSlEvWlZXQkFJSzhQc0ZsOEpzMlNzREpxK2xz?=
+ =?utf-8?B?bDd2WHp1WWhDMVNDVFAzOWtWbHIvRkhsSmdhdWNabzVqaTVaM05rc1MxWDdi?=
+ =?utf-8?B?ZmZEMVZxd2VQdVdEVDI0SDZFM29FSnJHRjJDVlpJeXlpWWF6RWhzbGRmZ0w4?=
+ =?utf-8?B?Sy9PNFVkV0lOeGxwSXRGa2NiK0lHWm56anhLUHdzS0RSemZVMkRoSjlpbSsv?=
+ =?utf-8?B?VzBjUk5JV2VTejJ5T0RTakc5a09iWS9LeFgrTXJpV3lsRVhvSGMyclZMYUxq?=
+ =?utf-8?B?Vk5LdkxSRmRpMjFrWmpPZy9Hc003dUx4VzVyemlnM1RsS1VTZGorOXAyUFpo?=
+ =?utf-8?B?YVN2TnFqRUNwY2lrTFVYZTNXMjBhYVRhKzBFRHJycE1sU3RxQUVoaFllQ2Vi?=
+ =?utf-8?B?OHBGOVJvZWNyWXYxaHVhUEg2V25CdlZmUkF3ZkhvUjY1ZzBWZW4rZUluV2la?=
+ =?utf-8?B?d2dLUDVKZW5pRW05STh3SXlCWlE4UGZtMHl6a0NvRldsajBsS1dqdFJhWTcx?=
+ =?utf-8?B?YkRCMG81d1ZQdnZBUWZnSENTK3JxTW1qb1cxN1dxMTB1TzVDUzRINmJJNjUy?=
+ =?utf-8?B?MGNoYXdxRXIxa2lsYU92NjY4KzNhR01BbnovUnhUWUZ2NmtWdTBUbm9pWGdU?=
+ =?utf-8?B?SGgzajNrRnJZM0pTR25pWjB3cUhOVytHYjhmMjI4NGpWM0k5aUMwNlBGMGI2?=
+ =?utf-8?B?dUxxcVJxOG82ZzNaaUZUNzlwZE9GZVBrbTM0QjlXSml3Q0FyMkhNY2hyeFY1?=
+ =?utf-8?B?Q0luOHZNSGN2MVJ1Q3cvcnh0OFFHbGNJLzExcnMrVHFwWlZLS1VVVDIzdStx?=
+ =?utf-8?B?OWhzZk56cmlnYmJJNEc1Z2pUN2pzRkk3Rjk3THhiNXZsTmJjRWlGb1owMWxt?=
+ =?utf-8?B?VE1Kb0k1cWVMVzRJWmxBYTlveHF3UDUyZHJ4eFlkYkVvN0N0aHgrM1NZYUV5?=
+ =?utf-8?B?MTlVSGpWVlRmc0tSa1orcDROLzExNkhFaVBuRHhnYnhrbVVRSHBxVzUwSmMy?=
+ =?utf-8?Q?vAbC8QuG9JduowyKaR6mRHsqRjFJB74J?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2024 13:25:44.8860 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d81a51e-9ccf-4841-d7f3-08dcab1af53c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044FC.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8936
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,100 +140,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-When running kdump test on a machine with R7340 card, a hang is caused due
-to the failure of 'amdgpu_device_ip_init()', error message as follows:
+- Add a new start parameter in trim function to specify exact
+  address from where to start the trimming. This would help us
+  in situations like if drivers would like to do address alignment
+  for specific requirements.
 
-  '[drm:amdgpu_device_ip_init [amdgpu]] *ERROR* hw_init of IP block <si_dpm> failed -22'
-  '[drm:uvd_v3_1_hw_init [amdgpu]] *ERROR* amdgpu: UVD Firmware validate fail (-22).'
-  '[drm:amdgpu_device_ip_init [amdgpu]] *ERROR* hw_init of IP block <uvd_v3_1> failed -22'
-  'amdgpu 0000:01:00.0: amdgpu: amdgpu_device_ip_init failed'
-  'amdgpu 0000:01:00.0: amdgpu: Fatal error during GPU init'
+- Add a new flag DRM_BUDDY_TRIM_DISABLE. Drivers can use this
+  flag to disable the allocator trimming part. This patch enables
+  the drivers control trimming and they can do it themselves
+  based on the application requirements.
 
-This is because the caputrue kernel does not power off when it starts,
-cause hardware status does not reset.
+v1:(Matthew)
+  - check new_start alignment with min chunk_size
+  - use range_overflows()
 
-[How]
-Add 'is_kdump_kernel()' judgment.
-For 'si_dpm' block, use disable and then enable.
-For 'uvd_v3_1' block, skip loading during the initialization phase.
-
-Signed-off-by: Lu Yao <yaolu@kylinos.cn>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Acked-by: Christian König <christian.koenig@amd.com>
 ---
-During test, I first modified the 'amdgpu_device_ip_hw_init_phase*', make
-it does not end directly when a block hw_init failed.
+ drivers/gpu/drm/drm_buddy.c          | 25 +++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  2 +-
+ include/drm/drm_buddy.h              |  2 ++
+ 3 files changed, 26 insertions(+), 3 deletions(-)
 
-After analysis, 'si_dpm' block failed at 'si_dpm_enable()->
-amdgpu_si_is_smc_running()', calling 'si_dpm_disable()' before can resolve.
-'uvd_v3_1' block failed at 'uvd_v3_1_hw_init()->uvd_v3_1_fw_validate()',
-read mmUVD_FW_STATUS value is 0x27220102, I didn't find out why. But for
-caputrue kernel, UVD is not required. Therefore, don't added this block.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
- drivers/gpu/drm/amd/amdgpu/si.c            | 6 ++++--
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 6 ++++++
- 3 files changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 137a88b8de45..52ebc24561c4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -50,6 +50,7 @@
- #include <linux/hashtable.h>
- #include <linux/dma-fence.h>
- #include <linux/pci.h>
-+#include <linux/crash_dump.h>
- 
- #include <drm/ttm/ttm_bo.h>
- #include <drm/ttm/ttm_placement.h>
-diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-index 85235470e872..fc0daed1b829 100644
---- a/drivers/gpu/drm/amd/amdgpu/si.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si.c
-@@ -2739,7 +2739,8 @@ int si_set_ip_blocks(struct amdgpu_device *adev)
- #endif
- 		else
- 			amdgpu_device_ip_block_add(adev, &dce_v6_0_ip_block);
--		amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
-+		if (!is_kdump_kernel())
-+			amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
- 		/* amdgpu_device_ip_block_add(adev, &vce_v1_0_ip_block); */
- 		break;
- 	case CHIP_OLAND:
-@@ -2757,7 +2758,8 @@ int si_set_ip_blocks(struct amdgpu_device *adev)
- #endif
- 		else
- 			amdgpu_device_ip_block_add(adev, &dce_v6_4_ip_block);
--		amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
-+		if (!is_kdump_kernel())
-+			amdgpu_device_ip_block_add(adev, &uvd_v3_1_ip_block);
- 		/* amdgpu_device_ip_block_add(adev, &vce_v1_0_ip_block); */
- 		break;
- 	case CHIP_HAINAN:
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-index a1baa13ab2c2..8700a22ba809 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -1848,6 +1848,7 @@ static int si_calculate_sclk_params(struct amdgpu_device *adev,
- static void si_thermal_start_smc_fan_control(struct amdgpu_device *adev);
- static void si_fan_ctrl_set_default_mode(struct amdgpu_device *adev);
- static void si_dpm_set_irq_funcs(struct amdgpu_device *adev);
-+static void si_dpm_disable(struct amdgpu_device *adev);
- 
- static struct si_power_info *si_get_pi(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 6a8e45e9d0ec..103c185bb1c8 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -851,6 +851,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+  * drm_buddy_block_trim - free unused pages
+  *
+  * @mm: DRM buddy manager
++ * @start: start address to begin the trimming.
+  * @new_size: original size requested
+  * @blocks: Input and output list of allocated blocks.
+  * MUST contain single block as input to be trimmed.
+@@ -866,11 +867,13 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+  * 0 on success, error code on failure.
+  */
+ int drm_buddy_block_trim(struct drm_buddy *mm,
++			 u64 *start,
+ 			 u64 new_size,
+ 			 struct list_head *blocks)
  {
-@@ -6811,6 +6812,11 @@ static int si_dpm_enable(struct amdgpu_device *adev)
- 	struct amdgpu_ps *boot_ps = adev->pm.dpm.boot_ps;
- 	int ret;
+ 	struct drm_buddy_block *parent;
+ 	struct drm_buddy_block *block;
++	u64 block_start, block_end;
+ 	LIST_HEAD(dfs);
+ 	u64 new_start;
+ 	int err;
+@@ -882,6 +885,9 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 				 struct drm_buddy_block,
+ 				 link);
  
-+	if (is_kdump_kernel()) {
-+		si_dpm_disable(adev);
-+		udelay(50);
++	block_start = drm_buddy_block_offset(block);
++	block_end = block_start + drm_buddy_block_size(mm, block);
++
+ 	if (WARN_ON(!drm_buddy_block_is_allocated(block)))
+ 		return -EINVAL;
+ 
+@@ -894,6 +900,20 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	if (new_size == drm_buddy_block_size(mm, block))
+ 		return 0;
+ 
++	new_start = block_start;
++	if (start) {
++		new_start = *start;
++
++		if (new_start < block_start)
++			return -EINVAL;
++
++		if (!IS_ALIGNED(new_start, mm->chunk_size))
++			return -EINVAL;
++
++		if (range_overflows(new_start, new_size, block_end))
++			return -EINVAL;
 +	}
 +
- 	if (amdgpu_si_is_smc_running(adev))
- 		return -EINVAL;
- 	if (pi->voltage_control || si_pi->voltage_control_svi2)
+ 	list_del(&block->link);
+ 	mark_free(mm, block);
+ 	mm->avail += drm_buddy_block_size(mm, block);
+@@ -904,7 +924,6 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	parent = block->parent;
+ 	block->parent = NULL;
+ 
+-	new_start = drm_buddy_block_offset(block);
+ 	list_add(&block->tmp_link, &dfs);
+ 	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
+ 	if (err) {
+@@ -1066,7 +1085,8 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 	} while (1);
+ 
+ 	/* Trim the allocated block to the required size */
+-	if (original_size != size) {
++	if (!(flags & DRM_BUDDY_TRIM_DISABLE) &&
++	    original_size != size) {
+ 		struct list_head *trim_list;
+ 		LIST_HEAD(temp);
+ 		u64 trim_size;
+@@ -1083,6 +1103,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 		}
+ 
+ 		drm_buddy_block_trim(mm,
++				     NULL,
+ 				     trim_size,
+ 				     trim_list);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index fe3779fdba2c..423b261ea743 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -150,7 +150,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	} while (remaining_size);
+ 
+ 	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-		if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
++		if (!drm_buddy_block_trim(mm, NULL, vres->base.size, &vres->blocks))
+ 			size = vres->base.size;
+ 	}
+ 
+diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+index 2a74fa9d0ce5..9689a7c5dd36 100644
+--- a/include/drm/drm_buddy.h
++++ b/include/drm/drm_buddy.h
+@@ -27,6 +27,7 @@
+ #define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
+ #define DRM_BUDDY_CLEAR_ALLOCATION		BIT(3)
+ #define DRM_BUDDY_CLEARED			BIT(4)
++#define DRM_BUDDY_TRIM_DISABLE			BIT(5)
+ 
+ struct drm_buddy_block {
+ #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+@@ -155,6 +156,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 			   unsigned long flags);
+ 
+ int drm_buddy_block_trim(struct drm_buddy *mm,
++			 u64 *start,
+ 			 u64 new_size,
+ 			 struct list_head *blocks);
+ 
+
+base-commit: b27d70e1042bf6a31ba7e5acf58b61c9cd28f95b
 -- 
 2.25.1
 
