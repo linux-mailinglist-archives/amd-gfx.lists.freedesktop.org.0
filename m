@@ -2,60 +2,197 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AE693B11E
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 14:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C29893B11C
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 14:56:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A09810E6B4;
-	Wed, 24 Jul 2024 12:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3153089DFC;
+	Wed, 24 Jul 2024 12:56:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="h84mPW0O";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="o3DDmN3e";
+	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="zqUyfpjB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1BE810E493;
- Wed, 24 Jul 2024 08:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=k+eCM4giXZ30XEioe7+Fgj54F6YI8rOam69609kXZJE=; b=h84mPW0O+1sa4cl70QAXVsxvcf
- Us7NL+zL/Ibd2TauzmJld9qDuqUQMMvyqviGLKXAy4DulimtIK+3iTefLmlbpT5bpFsa2LAk1mdKz
- 5h2QvSYPxwcVV7IGE8wof+7XqsfrUOKR1Fif6FG7nlcrrDA3NIxtfoMfu+qx750YRDzGCKEnxkf0W
- w9uNPgq9aaB83/XNnIXybHpuYKbgUE/1Bg5P/6PLU5mDSiQpMQdNxjht3bFFtEPqHFzlgqhpsXZED
- kQN4dfnUBNYpZJ/McC3pxl994YOfF7G1Rbdhtza4m0XS0gYkpge6pZTeJ8EpHV+TLpU1ROLH5OH/p
- TtSX5oDA==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1sWXBC-001OZd-RA; Wed, 24 Jul 2024 10:16:58 +0200
-Message-ID: <ecc032cd-d595-4f4d-a96a-bee51f290547@igalia.com>
-Date: Wed, 24 Jul 2024 09:16:57 +0100
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A2310E2D9;
+ Wed, 24 Jul 2024 10:24:28 +0000 (UTC)
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46O5ofiZ030549;
+ Wed, 24 Jul 2024 10:24:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=
+ from:to:cc:subject:date:message-id:references:content-type
+ :mime-version; s=corp-2023-11-20; bh=l+Pl7JN+6cDpF7Ixj9YJZtM6eBG
+ fanWwY5yCsMr26uw=; b=o3DDmN3ej8h4/XbgsU+RSdW0ryQBY+83QFQHws2zwwg
+ GuIXkhiyJM5kwAyqGE0h4+ypfYg0eogvm9vR0ZQsoBQq10KNSPFQwc4hM7E6b7/m
+ TClM6FBmrrcXvRNLyaJ78+mM9Rgy92qvqPZQOpXJyfoQVCWoTx8IORbecv98ygB0
+ KyjNwBe6s1Pr2ydZVbolDEIYfKn+Gz7oGg2ghUHw32TAtIyfrAtUTWmRbkgtTMiD
+ gEbNSOxabyEO68U3i9ygmVTmBdXLJLNkKOCOqYOfJRcTS7Ahkx7F/2/DjJMhJGr9
+ hsuJjRHH2GHLTLWPw+FMrmyeD8FQ4MALohyQ0YuXrLA==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 40hgkt8mv9-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 24 Jul 2024 10:24:25 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
+ with ESMTP id 46O9M6OQ010953; Wed, 24 Jul 2024 10:24:24 GMT
+Received: from nam10-mw2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10lp2048.outbound.protection.outlook.com [104.47.55.48])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 40h29sdnsw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 24 Jul 2024 10:24:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iThM98QHi3aiYaId5/HNY170eW65OQP3Yv7wTdAfkzWibkcwbuuWv13ebXPxhQtSOeE916W+sJY6pm77SxBet9fu6fxDtbbYjP4WCK11vc4yzxrlO8M+/v4aD+mgvLsAOsfxe8WMXjvKABDfZFqOudhzjfFw7biAdQV5il15pEFV6VP3Z5LS/s7dFfdsW3ikmPPSTAGED6cgrllopkzkkeaoF4Ih9ls5NPHSdaFD7qiqpLtYk5nrOzqA+Ojnp9FfmShhRYIY4uFkot38ddTaM+G4XW0JFVmHmk/LlGn9AtSvIPmtL/TA0b4+aQTmwQzaGFoEVwYhI4Wieql8GFcQHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l+Pl7JN+6cDpF7Ixj9YJZtM6eBGfanWwY5yCsMr26uw=;
+ b=oAODPVHqN8Ao7lk0h/zzAAc918QTReH5EcXiltFXCPd0QT79Gt8UFJknpt1cuKw5KZQDaARIBwQl1VmFb9LYB81XylDxxAu9e/KBjZ3WT/Yonw4/Nzt61k+VJIuOI1f6vd0AaMebWAHIoourS2jod1EvyfjSRcsDAMzFZRy3K+Z5QEdJPP3FCaiDC2vTgqeNb2O2B8TtKYa1xBgBZd5/2sQ2f4Be1TWilV0nMaITGkPmcHGXXZdC86u1A/X7oI4LJVHcQ0H6kdNBW9aULD+lhXrKa+aOpcLCZGM6QmHN6/QfwxspJZzirbOcN2dE5mxCHfTAvyGLRcd+uRCZ2v12VQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l+Pl7JN+6cDpF7Ixj9YJZtM6eBGfanWwY5yCsMr26uw=;
+ b=zqUyfpjBQIrDfw0l9IVfDrrFNCixHyZLziDDRzNNc6tBOAxXccrp8tilO33E3HeGTviGQh9/tfuH2rh+/eagYZvxvVEJIcKppTMHN8a+4iYmhdBGnB+++zVNqU0LJNjFdsrbDxFsdMATP/2YIyY4HdJXCgwDqUcppze3nHpwNks=
+Received: from PH0PR10MB5563.namprd10.prod.outlook.com (2603:10b6:510:f2::13)
+ by BN0PR10MB4933.namprd10.prod.outlook.com (2603:10b6:408:125::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Wed, 24 Jul
+ 2024 10:24:21 +0000
+Received: from PH0PR10MB5563.namprd10.prod.outlook.com
+ ([fe80::1917:9c45:4a41:240]) by PH0PR10MB5563.namprd10.prod.outlook.com
+ ([fe80::1917:9c45:4a41:240%5]) with mapi id 15.20.7784.017; Wed, 24 Jul 2024
+ 10:24:21 +0000
+From: Siddh Raman Pant <siddh.raman.pant@oracle.com>
+To: "stable@vger.kernel.org" <stable@vger.kernel.org>
+CC: "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "bob.zhou@amd.com" <bob.zhou@amd.com>
+Subject: Re: CVE-2024-39471: drm/amdgpu: add error handle to avoid
+ out-of-bounds
+Thread-Topic: CVE-2024-39471: drm/amdgpu: add error handle to avoid
+ out-of-bounds
+Thread-Index: AQHa3bER+kqff6ydjk6DKvLuzhjwZw==
+Date: Wed, 24 Jul 2024 10:24:20 +0000
+Message-ID: <2651470974c130f8026b4c13e91f37ce67dc69fb.camel@oracle.com>
+References: <d5e6930140e85c92e7ab4b7d68642d754ead1746.camel@oracle.com>
+Accept-Language: en-US, en-IN
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR10MB5563:EE_|BN0PR10MB4933:EE_
+x-ms-office365-filtering-correlation-id: 771e91fa-b017-4fcb-b23c-08dcabcac826
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?Z1NiSGRuVmE0amJrditpemFkWm9Yblk0cHlOYVZJT0FVdmFKTUhVK0tYMVFi?=
+ =?utf-8?B?MDg3ek9TblF0akE2WGZZZTVaM3NjdFpoT1h6VWhLQ1MvOVptWTZ3bTNybG5X?=
+ =?utf-8?B?dm9FK0Q0N1FMM3pwQVViR0t3Q2F1Y2U1THVpNDh1bkoxSzRvVmNPRXJ6ck1r?=
+ =?utf-8?B?TjlJK016VXRDOW9SZ2F1SjNTOFUwTUhkbzAzSGJ6eFRBWGNBTlhaRnJEeERu?=
+ =?utf-8?B?eTRUUUNNaWhxa01vQXZUbDVuMHhKV1lNY0JZUkt6QlYwaDBPZXVoRWNrSElp?=
+ =?utf-8?B?ZUw5TmhSckhLYlJXUTVzemFoVkhEeFNFb3ZOUW1UOG9rKy9LKzhLMUNLVUQ1?=
+ =?utf-8?B?OWhCbUM2b0RjMUpKdDVTSzFob0FNazRYOU1DT0tKVlRBM1Y3N1NxeDN1WXFD?=
+ =?utf-8?B?bXJDUit6cjFUanRzSXJIUzF5cG5NM1d1eW9lNjdwNG5kQ0NxcUljV0ZWcG9n?=
+ =?utf-8?B?a081SmU2Y1dEUDRJUG1NNTdubEUxaFU5aytweVVQcVZGRXJtdjQ1UStTNUVs?=
+ =?utf-8?B?cEdDRDRCdUpYd2dxK0R5aGNlY2x3bDhCdE4ySmMwZG8vWnhuNFRQOFJuclFW?=
+ =?utf-8?B?RTQ4Qi9hcjdCMm1Fa1VsNTJnZnhHZDBJZ2ZQV2djcFhtYkYrMHB2YWFCYkNu?=
+ =?utf-8?B?MTVvMVRHbEU4NmMvMTdVQUt1eG9nUmdvYmF5NEM3NFdUTXh0ZVJIeTRLbCto?=
+ =?utf-8?B?aThNNWZaNjhQck0wVjQybUVkZ2tzbVNyeVI5ZlliTXVYVExhelNQUmhSYlpV?=
+ =?utf-8?B?QWVqb1Y0RHYxcG8rb2JPc2Q1OEZKSGh1N1R2TGFjbUY4elp3NlBwcm1zQTdq?=
+ =?utf-8?B?d215ZHdlY3dmU3REanRRbWpBRkVXSmloalVUREtvWk8vR3cyMlR5RHF0clpS?=
+ =?utf-8?B?cTd4RTc1RmNJUmRydmg5QmV5aUpGcnJ3MUx2WkcxWUZYZHQyNjdaSG9DL0J6?=
+ =?utf-8?B?bkk0WjlrZkgydnNaUUVvYkw5WXA4Y3E4MnlVSDhIOE5pb3Y2bW95WmhwYWZx?=
+ =?utf-8?B?S3p4ZitxdzlNK245U3hqRkhtS1VjUmM0TmkxRHlicXN0ZkFFK1VHNEc1UWRo?=
+ =?utf-8?B?aWZFbDlnTlBEN2lmZzF6dHdEa1A0aitDRGpFbmlLYUhBSHAreGRlbCt5TERI?=
+ =?utf-8?B?ZlJ2NFdSWWVwTjlFRUtPQ2dmYjZkV3BnditiS3hwcE1EMUMvZFI2c3FUaFda?=
+ =?utf-8?B?bCtKaDVUd3hhSWZrc3FWcXE5TG96UFlsRXdyYVFJSHRJL3hKR2xKYi9tdExN?=
+ =?utf-8?B?dnRPNVo1UVV2U3ROcXRqeFdJYkhvL0FEK01sSmtTQXRUaUxaSko1ZWYzNXhy?=
+ =?utf-8?B?NDJoejgvcDFzS3ppdll0UklRSkFnMm52cEI2SGpEbThRWGFHbVd1bHRNVWJP?=
+ =?utf-8?B?T2RwZGhPQWQybW1BYnNSajVyY2YvbHRHKy9pU1BMSDJia1pFakxzVWxtZk0x?=
+ =?utf-8?B?dXlreTNqZmhkdGdoalkyeTFweUxSQXJTS0F4RTEwVmJra1NUcjlWdkQ0SG9V?=
+ =?utf-8?B?VmREakh5K3ltSk8wZmRqM0RDallEWC9SMFZIV2VQRndDOVJjcDRCb0piZ2tl?=
+ =?utf-8?B?Nlc4UlAwMVBhY0VONUlOSG9vbmVVYnJPd1hpbzFyL3M1V1lJczFrMHdZRDVB?=
+ =?utf-8?B?VUhhVGdKTUFTZ21FWHBzL0srcFlsOEtJWThQZkc0cGI4cHFJVlRnZmFqbjE5?=
+ =?utf-8?B?aTk0dm0rQy93TkZlL3IwZlREYXE3dDJ2dCt1SzFKQWJIM0M2UjNUSVcwQTNY?=
+ =?utf-8?B?U2w4alpRUGJST1JTYkIwVFZtNzNuNGxzTHNxZ3ZkckU0Z080eEpSN3E3elg1?=
+ =?utf-8?B?TTFFcnVHc3E2aFdyVkJHc0hOd0lZWkxEWHNMa0JlSzNHOFp5bVhDN2NZbktR?=
+ =?utf-8?B?SDJucDd4ZE9WSzJJbU84c2NyMW92ZVMvWDMwWUo3UmJsL0E9PQ==?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR10MB5563.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U3dBQzhlKzNISGtUQ0ZKMUg0bUQ4Z3RoMG1Jd24yTnBFTWthTVZLNld5amor?=
+ =?utf-8?B?Q0RubGdTSEt3aVRKTXQvdDZtbHRCRGFrQlU0WFkxTGMxVDd5SHljRlNtTXhX?=
+ =?utf-8?B?RzA4aS9nc2pLaTlHNGs0ckJ0TDVrcnVSVGJEWDliNmRVdjVORkdkR3NuN2hs?=
+ =?utf-8?B?dlJNbXZlOEpzc3NCZXZIR2I1UEsxRUJ3eXdzVWJoekdLcldSMGF1OHA1ekda?=
+ =?utf-8?B?TGxOQkUzVnlNRi9HS1RDUTJ2SzVTejhJakVKV2pMY0JTMitTeGMzU1lPNlVR?=
+ =?utf-8?B?bStvaWdENDE1TnNxL3JuK1dUelBBZjZEbWE0anZUMXNuaktyUGRrTUF1MHlY?=
+ =?utf-8?B?MG9KZitEVXdJZEMyaTFvYm5GNVVNMkJvNzZNVzVubnZ5VTlyVHpQTk9uMWdQ?=
+ =?utf-8?B?eUVKZURheCt2d3JWb29ZUzRYYnM5SFA2UDY2QUo3Yy9BMXo2MnJlYnFaSi9m?=
+ =?utf-8?B?N2M5U0JXUEFUSEJWRVVlbjZ3OFRCRmV0ZFVZK2dHblRiZmY1TFN1T3NsVXBw?=
+ =?utf-8?B?SmR3emdkQWFoL2ptT1k0M0NkUDNsZkdrWjBBYTRjb3ZYaW9IYjFoKzRBNmVW?=
+ =?utf-8?B?ekZ3b2VWdStxYTNGVnpXaURjWDZnV0NiR2QrTXBWblZMSENsNnNBK3VLbWlq?=
+ =?utf-8?B?bzQ1T0VuaGQ4ZCsxRVYyV1JqMlovbXNja0hJVHp0UDRyRnVTOFJnQkRpZUFm?=
+ =?utf-8?B?d1l5YWlmMk1mRXo5ckRBSWpackNONFJacms4RldKVkFJSlZhdk0wcWp6NWV0?=
+ =?utf-8?B?OWp3eTVrL2p0Qk0wZ003bzlHclRVb1FmT002OWVDenBneWJRc3NiU3VSQk5v?=
+ =?utf-8?B?MXNRQm5hSTNvNHllb1BXb3ZPcXZYVnZVOUNTTVV0TUZmR2EvRCthZ2dFbzZw?=
+ =?utf-8?B?bEtTejdWK3hrNzhOR0RSdWlEN1gza04ydXY4S3hKb3Y0SG5RdkhvMEl3ZVBz?=
+ =?utf-8?B?bTB0cG8xeXVUV1RsUTFnVURkNUEwNXh0YTFrYnJxWEw2ZmtuMkRWOTFDY3Ey?=
+ =?utf-8?B?cWRwcitkOTZhU2RKbWlSZUVsV0QwVEJyZGpBaG1xNUtHbTU0SFZ3TG42VFRR?=
+ =?utf-8?B?akpHTUdEZHBReXM4ZHE3dElBUnpIelNwc3pVTTFlSi8wRGdkdEYyZFQwcUN2?=
+ =?utf-8?B?M1RWeTR0djgzUGhndGx1VjYvVkRFNE9sNEFVMFlrVVpTaldyUEpjVGY4VzFJ?=
+ =?utf-8?B?dU56VTAwb0dRdmZxWVJwM3lXdWlEYzBXazhtTEMyb3ZQeThGZGhNSlpLSnM0?=
+ =?utf-8?B?M0hxUm5CNlQ1dnFJcjQ3RkFJYlFNSVozUk9CREdaUXkxR3o2M0R1L3BiSGJt?=
+ =?utf-8?B?cFZiRS9VTTlSZGlMeE9tMWdFdkJPVDlKTkI3TjRveGkvNjRqRVlSeUg3UStz?=
+ =?utf-8?B?K1V2VmVuMWR4RW1nTjl0WUpoYWVBZEd4U3cwcXlZZkFBb2VMVTJ4Sk5LNjlx?=
+ =?utf-8?B?Z2Fvbm9TRm5yOHlzK1FHTEdWT2RUSnBwd21zekdZQms1ZitHZnpwVThweXlM?=
+ =?utf-8?B?SHNGOU8wT21YdDVlT1JPcHpQaGtINjNMZDBDVzFxeDQ5TGdCNFpRZFBNVmE0?=
+ =?utf-8?B?RGdMNUNkbWFBdVpQTDMvWW1rbllNMEJWZmtrOWtiYzNzakxORno3d3BGWm5M?=
+ =?utf-8?B?eWRsTU1CZDZGa2YrUGt0TXRTZGVDNk90MGk0NWlaQUxuTFhvbUZTZmkwaTh0?=
+ =?utf-8?B?MlB2NWtaVmxvUzJyZnQ5K0M5U2Z3TE4zUTMyL1Z3TlF0YUU0MGFBYitUSmc1?=
+ =?utf-8?B?WDZmelBTQjhzeFdtS2JrbTRjYjZOUWJNWXMxeEp6Rmd4WTM5OEd6dlhheHk0?=
+ =?utf-8?B?bHhCWDhkWVVCMUVSdVd3L0ZpQnRWaEp2a1pJWU1ZTUM4MW5ZUXVBQk8vWmZK?=
+ =?utf-8?B?RHI0ZmR3MzNyR09MSTZzZkNXR2pwQW9wSjBidUxHT09MelJWenlBQ2tzaFRC?=
+ =?utf-8?B?cGtqZjNmSXdDQ2lmem9RN0lvd0Z1SWdldkZSeVAzaXpJS09IV0VJVkF3b01G?=
+ =?utf-8?B?ckVrSGpya1gxS05qUjVIcjVSOXFsREdrd3RmTmhVbWFOa3llNWtiNnpwTDN4?=
+ =?utf-8?B?SUlSS2FGWElaSVZWNFlibjN1TDViWE5YOGdvS2VJVUhSbTg3Y0lzSkNvNWVY?=
+ =?utf-8?B?V2lwSWI5cTdsQjdzcnl5TU5sUGE4VU1iMUM5bW9QKzB5NUFka1BRWnVpOG9R?=
+ =?utf-8?Q?F9dJkRvsyWhefquj+hPM5AJLONjoq3B6v+JZ5A0ksAZ0?=
+Content-Type: multipart/signed; micalg="pgp-sha512";
+ protocol="application/pgp-signature"; boundary="=-lkqVLD5oKIzw53TcvEeo"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/scheduler: Fix drm_sched_entity_set_priority()
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
- Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- stable@vger.kernel.org
-References: <20240719094730.55301-1-tursulin@igalia.com>
- <61bd1b84-a7f3-46fd-8511-27e306806c8d@gmail.com>
- <bd1f203f-d8c4-4c93-8074-79c3df4fe159@gmail.com>
- <8f977694-eb15-4b64-97f7-f2b8921de5cf@igalia.com>
- <eb8a2ce7-223f-4518-8d72-fac875a51f98@amd.com>
- <9867a2b2-6729-424f-abc9-e1d1b81bab41@igalia.com>
- <6b254b3d-a6d9-4b12-9a5e-dacb32d41ee9@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <6b254b3d-a6d9-4b12-9a5e-dacb32d41ee9@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: rarhX7icUj/6ZkztGAJegbX46rkIVfJUSoOMe69lzR2SUGyPt88fFIGQKxz5bQbpnehu47+jiFfROUNEHuMRcwqpqtsdbdWgzNak/808/CDkyyT91VmWVJ1Ye9SzwCnol1Unoerd8lszzDLA0Ozm1T7dkio21I29q9/GfGVaUKlxf1IDvN/C2yOS/sB9/q4obRAmJAxQEIbUv4PkS2qFMpVSuySDHdR2PW88zJmvZd/Q0hAwMv2OGgKhGZOVmScQRZij7iPCQjMPdzQ90nPIn6xaQttG6+iDe0Yn2VCeE0n2D+vk4I1pI7B5TjmUwotVlTm53+xE1SNRa4yw+B4pGjAjX1b9I6CT88Hik2HfPA5TrV4E5srqix22bDIiRLwy6RNPrzdxidnP7bMNyzzhh48TYzt5H4mKaic487VLFzm8bDDvyRgfBAOKBtWWGWVsbtyZ+mpwMPlI72ul0IsqVMnYdRDqe+Z+4Svp8hvqw3r+34nWLkLY7HrvZe0ovfVF/xhclbDLOwxt28VG4MajROxggf3bgKdOR9534sDbn9aD6B6a3poo6Al0JoBvE1HnqMkhV+MtzNPEmV+XRNST45FRnXd3vca84NHW24ohfRo=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB5563.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 771e91fa-b017-4fcb-b23c-08dcabcac826
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2024 10:24:20.9380 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SHqArhgkTfhn8Ly5WsdSP8GKSSvdy/gRr4qeO5qbLZHqRWTxT94cx+JdWrX2iV274rQh0JEmHfj21AuDp3H0MspSdpVujEsj6Sa/HGUAjrM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4933
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-24_07,2024-07-23_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ bulkscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=999 phishscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2407110000
+ definitions=main-2407240076
+X-Proofpoint-GUID: k65Sip5c7tx5HmJAlyTssAiuoUCElbiu
+X-Proofpoint-ORIG-GUID: k65Sip5c7tx5HmJAlyTssAiuoUCElbiu
 X-Mailman-Approved-At: Wed, 24 Jul 2024 12:56:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,293 +208,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--=-lkqVLD5oKIzw53TcvEeo
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+(Mail V2: Send to correct mailing list and CCing relevant people.)
 
-On 22/07/2024 16:13, Christian König wrote:
-> Am 22.07.24 um 16:43 schrieb Tvrtko Ursulin:
->>
->> On 22/07/2024 15:06, Christian König wrote:
->>> Am 22.07.24 um 15:52 schrieb Tvrtko Ursulin:
->>>>
->>>> On 19/07/2024 16:18, Christian König wrote:
->>>>> Am 19.07.24 um 15:02 schrieb Christian König:
->>>>>> Am 19.07.24 um 11:47 schrieb Tvrtko Ursulin:
->>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>>>>
->>>>>>> Long time ago in commit b3ac17667f11 ("drm/scheduler: rework entity
->>>>>>> creation") a change was made which prevented priority changes for 
->>>>>>> entities
->>>>>>> with only one assigned scheduler.
->>>>>>>
->>>>>>> The commit reduced drm_sched_entity_set_priority() to simply 
->>>>>>> update the
->>>>>>> entities priority, but the run queue selection logic in
->>>>>>> drm_sched_entity_select_rq() was never able to actually change the
->>>>>>> originally assigned run queue.
->>>>>>>
->>>>>>> In practice that only affected amdgpu, being the only driver 
->>>>>>> which can do
->>>>>>> dynamic priority changes. And that appears was attempted to be 
->>>>>>> rectified
->>>>>>> there in 2316a86bde49 ("drm/amdgpu: change hw sched list on ctx 
->>>>>>> priority
->>>>>>> override").
->>>>>>>
->>>>>>> A few unresolved problems however were that this only fixed
->>>>>>> drm_sched_entity_set_priority() *if* 
->>>>>>> drm_sched_entity_modify_sched() was
->>>>>>> called first. That was not documented anywhere.
->>>>>>>
->>>>>>> Secondly, this only works if drm_sched_entity_modify_sched() is 
->>>>>>> actually
->>>>>>> called, which in amdgpu's case today is true only for gfx and 
->>>>>>> compute.
->>>>>>> Priority changes for other engines with only one scheduler 
->>>>>>> assigned, such
->>>>>>> as jpeg and video decode will still not work.
->>>>>>>
->>>>>>> Note that this was also noticed in 981b04d96856 ("drm/sched: 
->>>>>>> improve docs
->>>>>>> around drm_sched_entity").
->>>>>>>
->>>>>>> Completely different set of non-obvious confusion was that whereas
->>>>>>> drm_sched_entity_init() was not keeping the passed in list of 
->>>>>>> schedulers
->>>>>>> (courtesy of 8c23056bdc7a ("drm/scheduler: do not keep a copy of 
->>>>>>> sched
->>>>>>> list")), drm_sched_entity_modify_sched() was disagreeing with 
->>>>>>> that and
->>>>>>> would simply assign the single item list.
->>>>>>>
->>>>>>> That incosistency appears to be semi-silently fixed in ac4eb83ab255
->>>>>>> ("drm/sched: select new rq even if there is only one v3").
->>>>>>>
->>>>>>> What was also not documented is why it was important to not keep the
->>>>>>> list of schedulers when there is only one. I suspect it could have
->>>>>>> something to do with the fact the passed in array is on stack for 
->>>>>>> many
->>>>>>> callers with just one scheduler. With more than one scheduler 
->>>>>>> amdgpu is
->>>>>>> the only caller, and there the container is not on the stack. 
->>>>>>> Keeping a
->>>>>>> stack backed list in the entity would obviously be undefined 
->>>>>>> behaviour
->>>>>>> *if* the list was kept.
->>>>>>>
->>>>>>> Amdgpu however did only stop passing in stack backed container 
->>>>>>> for the more
->>>>>>> than one scheduler case in 977f7e1068be ("drm/amdgpu: allocate 
->>>>>>> entities on
->>>>>>> demand"). Until then I suspect dereferencing freed stack from
->>>>>>> drm_sched_entity_select_rq() was still present.
->>>>>>>
->>>>>>> In order to untangle all that and fix priority changes this patch is
->>>>>>> bringing back the entity owned container for storing the passed in
->>>>>>> scheduler list.
->>>>>>
->>>>>> Please don't. That makes the mess just more horrible.
->>>>>>
->>>>>> The background of not keeping the array is to intentionally 
->>>>>> prevent the priority override from working.
->>>>>>
->>>>>> The bug is rather that adding drm_sched_entity_modify_sched() 
->>>>>> messed this up.
->>>>>
->>>>> To give more background: Amdgpu has two different ways of handling 
->>>>> priority:
->>>>> 1. The priority in the DRM scheduler.
->>>>> 2. Different HW rings with different priorities.
->>>>>
->>>>> Your analysis is correct that drm_sched_entity_init() initially 
->>>>> dropped the scheduler list to avoid using a stack allocated list, 
->>>>> and that functionality is still used in amdgpu_ctx_init_entity() 
->>>>> for example.
->>>>>
->>>>> Setting the scheduler priority was basically just a workaround 
->>>>> because we didn't had the hw priorities at that time. Since that is 
->>>>> no longer the case I suggest to just completely drop the 
->>>>> drm_sched_entity_set_priority() function instead.
->>>>
->>>> Removing drm_sched_entity_set_priority() is one thing, but we also 
->>>> need to clear up the sched_list container ownership issue. It is 
->>>> neither documented, nor robustly handled in the code. The 
->>>> "num_scheds == 1" special casing throughout IMHO has to go too.
->>>
->>> I disagree. Keeping the scheduler list in the entity is only useful 
->>> for load balancing.
->>>
->>> As long as only one scheduler is provided and we don't load balance 
->>> the entity doesn't needs the scheduler list in the first place.
->>
->> Once set_priority is removed then it indeed it doesn't. But even when 
->> it is removed it needs documenting who owns the passed in container. 
->> Today drivers are okay to pass a stack array when it is one element, 
->> but if they did it with more than one they would be in for a nasty 
->> surprise.
-> 
-> Yes, completely agree. But instead of copying the array  I would rather 
-> go into the direction to cleanup all callers and make the scheduler list 
-> mandatory to stay around as long as the scheduler lives.
-> 
-> The whole thing of one calling convention there and another one at a 
-> different place really sucks.
+On Tue, 25 Jun 2024 16:29:04 +0200, Greg Kroah-Hartman wrote:
+> In the Linux kernel, the following vulnerability has been resolved:
+>=20
+> drm/amdgpu: add error handle to avoid out-of-bounds
+>=20
+> if the sdma_v4_0_irq_id_to_seq return -EINVAL, the process should
+> be stop to avoid out-of-bounds read, so directly return -EINVAL.
+>=20
+> The Linux kernel CVE team has assigned CVE-2024-39471 to this issue.
 
-Ok, lets scroll a bit down to formulate a plan.
+This commit has a bug which was fixed by 6769a23697f1. It should be
+immediately backported, otherwise this "fix" doesn't do anything since
+gcc will optimise out the check.
 
->>>> Another thing if you want to get rid of frontend priority handling 
->>>> is to stop configuring scheduler instances with 
->>>> DRM_SCHED_PRIORITY_COUNT priority levels, to avoid wasting memory on 
->>>> pointless run queues.
->>>
->>> I would rather like to completely drop the RR with the runlists 
->>> altogether and keep only the FIFO approach around. This way priority 
->>> can be implemented by boosting the score of submissions by a certain 
->>> degree.
->>
->> You mean larger refactoring of the scheduler removing the 1:N between 
->> drm_sched and drm_sched_rq?
-> 
-> Yes, exactly that.
-> 
->>
->>>> And final thing is to check whether the locking in 
->>>> drm_sched_entity_modify_sched() is okay. Because according to 
->>>> kerneldoc:
->>>>
->>>>  * Note that this must be called under the same common lock for 
->>>> @entity as
->>>>  * drm_sched_job_arm() and drm_sched_entity_push_job(), or the 
->>>> driver needs to
->>>>  * guarantee through some other means that this is never called 
->>>> while new jobs
->>>>  * can be pushed to @entity.
->>>>
->>>> I don't see that is the case. Priority override is under 
->>>> amdgpu_ctx_mgr->lock, while job arm and push appear not. I also 
->>>> cannot spot anything else preventing amdgpu_sched_ioctl() running in 
->>>> parallel to everything else.
->>>
->>> Yeah that's certainly incorrect as well. 
->>> drm_sched_entity_modify_sched() should grab entity->rq_lock instead.
->>
->> Ah cool. Well not cool, but good problem has been identified. Are you 
->> going to work in it or should I? Once we agree the correct fix for all 
->> this I am happy to write more patches if you are too busy.
-> 
-> Absolutely.
+Thanks,
+Siddh
 
-Absolutely good and absolutely me, or absolutely you? :)
+--=-lkqVLD5oKIzw53TcvEeo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-These are the TODO points and their opens:
+-----BEGIN PGP SIGNATURE-----
 
-- Adjust amdgpu_ctx_set_entity_priority() to call 
-drm_sched_entity_modify_sched() regardless of the hw_type - to fix 
-priority changes on a single sched other than gfx or compute.
+iQIzBAABCgAdFiEEQ4+7hHLv3y1dvdaRBwq/MEwk8ioFAmag1jcACgkQBwq/MEwk
+8iqElQ//bppKzfNw91eYjHS/y9FkTq6Vt0GjFqfcnLUaLLezaCNfWnFS/V070oGy
+9HjH5voB6ODdZ0xx8KKzbMAV+yN/i6olyJLs46aw/WbzIEybbkWYfkG4gUfpNO+F
+qxCIuryUK6bEEniYRccbnl7T/6ffNDG9VPkLXBlVZKvDT7VXGx1BmvVpTMvh6MyT
+FjPk23Yf+Y1cMRyoZStYbRswCIzvvmXMOdPHHYVpsfGQ8bWXeuY2jrjlAf8N6bh2
+cHwW2soitOD7wuU+h7DE50/o+z70Q6NcfVibkSgszO9s95D55jOEnvsiOk08YCtq
+tKK206Rt8zoCJ445Uh3UQNJzkM4gs3p88K3f5iKTVJLFPq7F5jx3/hfSjjB4c2OS
+bsFFQUExjR39coKM16lmrIWZRIrSZu5B/EJGcuugivLvpJ+nHGBpU+RdDroH/Ji9
+VO2vgC0OyTYKP0wY6x+AXemaYyQEa6xIPwMAKCeTzWlkhMfD1vof4EFA1Ki43SQS
+JN1ezdr6+l4a4xcBtdseHgsz2+1/xz0Em0acAj4yAjpqfRtoV29NzKa14s+llm3o
+PEuLTrVZmh/xY1pp8BrEqu6vgLQLMicbhcXunJdFx1Q68hzbXIxx112rO4/nUNix
+T/wkOiw7N5l+0W5lfT3g1PrDAhPvAZq0gf1LMELQRVU/pyGMRsc=
+=OxPw
+-----END PGP SIGNATURE-----
 
-- Document sched_list array lifetime must align with the entity and 
-adjust the callers.
-
-Open:
-
-Do you still oppose keeping sched_list for num_scheds == 1? If so do you 
-propose drm_sched_entity_modify_sched() keeps disagreeing with 
-drm_sched_entity_init() on this detail? And keep the "one shot single 
-sched_list" quirk in? Why is that nicer than simply keeping the list and 
-remove that quirk? Once lifetime rules are clear it IMO is okay to 
-always keep the list.
-
-- Remove drm_sched_entity_set_priority().
-
-Open:
-
-Should we at this point also modify amdgpu_device_init_schedulers() to 
-stop initialising schedulers with DRM_SCHED_PRIORITY_COUNT run queues?
-
-Once drm_sched_entity_set_priority() is gone there is little point. 
-Unless there are some non-obvious games with the kernel priority or 
-something.
-
->>>>> In general scheduler priorities were meant to be used for things 
->>>>> like kernel queues which would always have higher priority than 
->>>>> user space submissions and using them for userspace turned out to 
->>>>> be not such a good idea.
->>>>
->>>> Out of curiousity what were the problems? I cannot think of anything 
->>>> fundamental since there are priorities at the backend level after 
->>>> all, just fewer levels.
->>>
->>> A higher level queue can starve lower level queues to the point that 
->>> they never get a chance to get anything running.
->>
->> Oh that.. well I call that implementation details. :) Because nowhere 
->> in the uapi is I think guaranteed execution ordering needs to be 
->> strictly in descending priority. This potentially goes back to what 
->> you said above that a potential larger rewrite might be beneficial. 
->> Implementing some smarter scheduling. Although the issue will be it is 
->> just frontend scheduling after all. So a bit questionable to invest in 
->> making it too smart.
-> 
-> +1 and we have a bug report complaining that RR is in at least one 
-> situation better than FIFO. So it is actually quite hard to remove.
-> 
-> On the other hand FIFO has some really nice properties as well. E.g. try 
-> to run >100 glxgears instances (on weaker hw) and just visually compare 
-> the result differences between RR and FIFO. FIFO is baby smooth and RR 
-> is basically stuttering all the time.
-> 
->> I think this goes more back to what I was suggesting during early xe 
->> days, that potentially drm scheduler should be split into dependency 
->> handling part and the scheduler part. Drivers with 1:1 
->> entity:scheduler and full hardware/firmware scheduling do not really 
->> need neither fifo or rr.
-> 
-> Yeah that's my thinking as well and I also suggested that multiple times 
-> in discussions with Sima and others.
-> 
->>
->>> This basically means that userspace gets a chance to submit infinity 
->>> fences with all the bad consequences.
->>>
->>>>
->>>> I mean one problem unrelated to this discussion is this:
->>>>
->>>> void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->>>> {
->>>>     struct dma_fence *fence;
->>>>     struct drm_gpu_scheduler *sched;
->>>>     struct drm_sched_rq *rq;
->>>>
->>>>     /* queue non-empty, stay on the same engine */
->>>>     if (spsc_queue_count(&entity->job_queue))
->>>>         return;
->>>>
->>>> Which makes it look like the entity with a constant trickle of jobs 
->>>> will never actually manage to change it's run queue. Neither today, 
->>>> nor after the potential drm_sched_entity_set_priority() removal.
->>>
->>> That's intentional and based on how the scheduler load balancing works.
->>
->> I see that it is intentional but if it can silently prevent priority 
->> changes (even hw priority) it is not very solid. Unless I am missing 
->> something here.
-> 
-> IIRC the GSoC student who implemented this (with me as mentor) actually 
-> documented that behavior somewhere.
-> 
-> And to be honest it kind of makes sense because switching priorities 
-> would otherwise be disruptive, e.g. you have a moment were you need to 
-> drain all previous submissions with the old priority before you can do 
-> new ones with the new priority.
-
-Hmmm I don't see how it makes sense. Perhaps a test case for 
-AMDGPU_SCHED_OP_*_PRIORITY_OVERRIDE is missing to show how it doesn't 
-work. Or at least how easy it can be defeated with callers none the wiser.
-
-For context I am kind of interested because I wired up amdgpu to the DRM 
-cgroup controller and use priority override to de-prioritize certain 
-cgroups and it kind of works. But again, it will not be great if a 
-client with a constant trickle of submissions can just defeat it.
-
-Regards,
-
-Tvrtko
+--=-lkqVLD5oKIzw53TcvEeo--
