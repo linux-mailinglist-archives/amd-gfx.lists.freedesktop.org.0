@@ -2,34 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042C093B057
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 13:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CA693B11D
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 14:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD5310E692;
-	Wed, 24 Jul 2024 11:33:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E7810E040;
+	Wed, 24 Jul 2024 12:56:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="ZM7oxzAJ";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E85210E689
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 11:33:02 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 46OBWqKc2707737; Wed, 24 Jul 2024 17:02:52 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 46OBWqQB2707736;
- Wed, 24 Jul 2024 17:02:52 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>, Liu Leo <Leo.Liu@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 3/3] drm/amdgpu: add print support for vcn_v3_0 ip dump
-Date: Wed, 24 Jul 2024 17:02:50 +0530
-Message-Id: <20240724113250.2707693-4-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240724113250.2707693-1-sunil.khatri@amd.com>
-References: <20240724113250.2707693-1-sunil.khatri@amd.com>
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49D8C10E00A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 05:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1721800340;
+ bh=3bbl96roa+NssIyHdp/IRcWkrNlQNIFthbUmOO7OWbg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ZM7oxzAJes1BM0IX1DYVUk6LhqpY+inZYbpbSSn+qb5Yq9WGUz97gnlVC4bA4EtBd
+ QYd9kw71vNpMpzH8Y2z4KSxO6NJCQ2DhZi9F780/vCZJu4jpK3+wieQYGFBoyQoDe4
+ vyDUY5sfU8ndvieab7KS5hJC0CXw0v0t4WjaWlEA=
+Date: Wed, 24 Jul 2024 07:52:20 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm/amdgpu: properly handle vbios fake edid sizing
+Message-ID: <e060caa3-fc54-48f7-822d-a5cff1edcc7e@t-8ch.de>
+References: <20240723173357.2314927-1-alexander.deucher@amd.com>
+ <86877483-365e-4c11-bf7d-4f66adabf954@t-8ch.de>
+ <BL1PR12MB5144224A6143186A6758D22AF7A92@BL1PR12MB5144.namprd12.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <BL1PR12MB5144224A6143186A6758D22AF7A92@BL1PR12MB5144.namprd12.prod.outlook.com>
+X-Mailman-Approved-At: Wed, 24 Jul 2024 12:56:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,60 +51,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add support for logging the registers in devcoredump
-buffer for vcn_v3_0.
+On 2024-07-23 20:30:08+0000, Deucher, Alexander wrote:
+> > -----Original Message-----
+> > From: Thomas Weißschuh <linux@weissschuh.net>
+> > Sent: Tuesday, July 23, 2024 1:58 PM
+> > To: Deucher, Alexander <Alexander.Deucher@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org
+> > Subject: Re: [PATCH 1/2] drm/amdgpu: properly handle vbios fake edid sizing
+> >
+> > On 2024-07-23 13:33:56+0000, Alex Deucher wrote:
+> > > The comment in the vbios structure says:
+> > > // = 128 means EDID length is 128 bytes, otherwise the EDID length =
+> > > ucFakeEDIDLength*128
+> > >
+> > > This fake edid struct has not been used in a long time, so I'm not
+> > > sure if there were actually any boards out there with a non-128 byte
+> > > EDID, but align the code with the comment.
+> > >
+> > > Reported-by: Thomas Weißschuh <linux@weissschuh.net>
+> >
+> > Afaik Reported-by: should also have a Link:.
+> >
+> > And IMO a Fixes: would also be fitting.
+> 
+> I can add those.
+> 
+> >
+> > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > > ---
+> > >  .../gpu/drm/amd/amdgpu/atombios_encoders.c    | 24 +++++++++++------
+> > --
+> > >  1 file changed, 14 insertions(+), 10 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+> > > b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+> > > index 25feab188dfe..a8751a5901c6 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+> > > @@ -2065,12 +2065,16 @@
+> > amdgpu_atombios_encoder_get_lcd_info(struct amdgpu_encoder *encoder)
+> > >                                     fake_edid_record =
+> > (ATOM_FAKE_EDID_PATCH_RECORD *)record;
+> > >                                     if (fake_edid_record-
+> > >ucFakeEDIDLength) {
+> > >                                             struct edid *edid;
+> > > -                                           int edid_size =
+> > > -
+> >       max((int)EDID_LENGTH, (int)fake_edid_record->ucFakeEDIDLength);
+> > > -                                           edid = kmalloc(edid_size,
+> > GFP_KERNEL);
+> > > +                                           int edid_size;
+> > > +
+> > > +                                           if (fake_edid_record-
+> > >ucFakeEDIDLength == 128)
+> > > +                                                   edid_size =
+> > fake_edid_record->ucFakeEDIDLength;
+> > > +                                           else
+> > > +                                                   edid_size =
+> > fake_edid_record->ucFakeEDIDLength * 128;
+> > > +                                           edid =
+> > kmalloc(max(EDID_LENGTH, edid_size), GFP_KERNEL);
+> >
+> > This looks wrong, but it was similar before.
+> > If the EDID contains extensions and the code tries to access those, it will be an
+> > out of bounds memory access, because the extensions were not actually
+> > copied.
+> > (And this seems to already happen in drm_edid_is_valid())
+> >
+> > This code will go away soon with my patch, but at least we can now figure out
+> > what to do on EDIDs with extensions instead of changing the behaviour just as
+> > a side-effect.
+> >
+> > Is there any issue with just dropping the max() and keeping the full EDID?
+> 
+> Yes, we can drop the max().  Although I'm not entirely sure what the
+> problem is that you are getting at.  We always copy the entire EDID
+> from the vbios.  The EDID from the bios is either 128 bytes or a
+> multiple of 128 bytes.  The max was only there to make sure we
+> allocated a minimum of EDID_LENGTH bytes.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 28 ++++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index 544b46ad55bf..7d7e386f231f 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -2324,6 +2324,32 @@ static void vcn_v3_0_set_irq_funcs(struct amdgpu_device *adev)
- 	}
- }
- 
-+static void vcn_v3_0_print_ip_state(void *handle, struct drm_printer *p)
-+{
-+	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	int i, j;
-+	uint32_t reg_count = ARRAY_SIZE(vcn_reg_list_3_0);
-+	uint32_t inst_off;
-+
-+	if (!adev->vcn.ip_dump)
-+		return;
-+
-+	drm_printf(p, "num_instances:%d\n", adev->vcn.num_vcn_inst);
-+	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
-+		if (adev->vcn.harvest_config & (1 << i)) {
-+			drm_printf(p, "\nHarvested Instance:VCN%d Skipping dump\n", i);
-+			continue;
-+		}
-+
-+		inst_off = i * reg_count;
-+		drm_printf(p, "\nActive Instance:VCN%d\n", i);
-+
-+		for (j = 0; j < reg_count; j++)
-+			drm_printf(p, "%-50s \t 0x%08x\n", vcn_reg_list_3_0[j].reg_name,
-+				   adev->vcn.ip_dump[inst_off + j]);
-+	}
-+}
-+
- static void vcn_v3_0_dump_ip_state(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -2369,7 +2395,7 @@ static const struct amd_ip_funcs vcn_v3_0_ip_funcs = {
- 	.set_clockgating_state = vcn_v3_0_set_clockgating_state,
- 	.set_powergating_state = vcn_v3_0_set_powergating_state,
- 	.dump_ip_state = vcn_v3_0_dump_ip_state,
--	.print_ip_state = NULL,
-+	.print_ip_state = vcn_v3_0_print_ip_state,
- };
- 
- const struct amdgpu_ip_block_version vcn_v3_0_ip_block = {
--- 
-2.34.1
-
+Somehow I got confused by max() and min(), so please ignore.
