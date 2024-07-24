@@ -2,38 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EC493B123
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 14:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E5A93B11F
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 14:57:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C749F10E6B7;
-	Wed, 24 Jul 2024 12:57:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDBB10E6B2;
+	Wed, 24 Jul 2024 12:57:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="eQLcikd+";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="ec+TJ/DQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 473A610E00A
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 05:56:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2F310E011
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 05:56:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1721800579;
- bh=LwvjsL6ik/ORapD53n5eIjOhKG7iQAHh4Rj2y1jM9pI=;
+ s=mail; t=1721800611;
+ bh=TVgyKoYIVHgiVPZt6abyanmBO83Uau31sKWes7IEjoc=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=eQLcikd+ohLgpu3/ZDiZWKRm1UfHN8sDcI7rSkBWjZ9v6dv0d7VWNyUoqAyJYsCB6
- HsVJsE50mh0rFxDXRa84xfktOQYFlY4V6GnHsrTAPGj88SYnIW1o4jMk5tQOy3T8sQ
- uRkgmzN9kIOkeZBtVAf4clz0Zp+V62AXqVAhUYLk=
-Date: Wed, 24 Jul 2024 07:56:19 +0200
+ b=ec+TJ/DQavljCOOweQYjTWbW2qUUa72dfjdRJZsLYOH62aAz/ZSk5Smy/o1pPsihU
+ Uj6rbkS79v7l22jbW2k+diMQ7FArG7BjfbXDhOkg/g0zDutyY/NvgSERa86gS8sj9e
+ dtNfY0vUH9otE+aQ41WE6cX4D5nhzcb5dcpdBJ5Q=
+Date: Wed, 24 Jul 2024 07:56:50 +0200
 From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
 To: Alex Deucher <alexander.deucher@amd.com>
 Cc: amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/2 V2] drm/amdgpu: properly handle vbios fake edid sizing
-Message-ID: <33dc68e7-42d8-461f-a845-f2fae95f9037@t-8ch.de>
+Subject: Re: [PATCH 2/2 V2] drm/radeon: properly handle vbios fake edid sizing
+Message-ID: <3170169c-6174-4ae6-b571-b6e25b0aa92f@t-8ch.de>
 References: <20240723205121.2412168-1-alexander.deucher@amd.com>
+ <20240723205121.2412168-2-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240723205121.2412168-1-alexander.deucher@amd.com>
+In-Reply-To: <20240723205121.2412168-2-alexander.deucher@amd.com>
 X-Mailman-Approved-At: Wed, 24 Jul 2024 12:56:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,7 +50,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2024-07-23 16:51:20+0000, Alex Deucher wrote:
+On 2024-07-23 16:51:21+0000, Alex Deucher wrote:
 > The comment in the vbios structure says:
 > // = 128 means EDID length is 128 bytes, otherwise the EDID length = ucFakeEDIDLength*128
 > 
@@ -59,7 +60,7 @@ On 2024-07-23 16:51:20+0000, Alex Deucher wrote:
 > 
 > Reported-by: Thomas Weißschuh <linux@weissschuh.net>
 > Link: https://lists.freedesktop.org/archives/amd-gfx/2024-June/109964.html
-> Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+> Fixes: c324acd5032f ("drm/radeon/kms: parse the extended LCD info block")
 > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
 Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
@@ -67,15 +68,16 @@ Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
 > ---
 > 
 > V2: Incorporate comments.
+>     Fix accidently dropped hunk.
 > 
->  .../gpu/drm/amd/amdgpu/atombios_encoders.c    | 29 ++++++++++---------
+>  drivers/gpu/drm/radeon/radeon_atombios.c | 29 +++++++++++++-----------
 >  1 file changed, 16 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> index 25feab188dfe..ebf83fee43bb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> @@ -2065,26 +2065,29 @@ amdgpu_atombios_encoder_get_lcd_info(struct amdgpu_encoder *encoder)
+> diff --git a/drivers/gpu/drm/radeon/radeon_atombios.c b/drivers/gpu/drm/radeon/radeon_atombios.c
+> index 97c4e10d0550..168f3f94003b 100644
+> --- a/drivers/gpu/drm/radeon/radeon_atombios.c
+> +++ b/drivers/gpu/drm/radeon/radeon_atombios.c
+> @@ -1717,26 +1717,29 @@ struct radeon_encoder_atom_dig *radeon_atombios_get_lvds_info(struct
 >  					fake_edid_record = (ATOM_FAKE_EDID_PATCH_RECORD *)record;
 >  					if (fake_edid_record->ucFakeEDIDLength) {
 >  						struct edid *edid;
@@ -95,8 +97,8 @@ Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
 > -							       fake_edid_record->ucFakeEDIDLength);
 > -
 >  							if (drm_edid_is_valid(edid)) {
->  								adev->mode_info.bios_hardcoded_edid = edid;
->  								adev->mode_info.bios_hardcoded_edid_size = edid_size;
+>  								rdev->mode_info.bios_hardcoded_edid = edid;
+>  								rdev->mode_info.bios_hardcoded_edid_size = edid_size;
 > -							} else
 > +							} else {
 >  								kfree(edid);
