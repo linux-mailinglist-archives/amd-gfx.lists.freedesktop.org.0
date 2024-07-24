@@ -2,30 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F9493B5EA
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 19:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D408893B5EC
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jul 2024 19:27:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B9510E778;
-	Wed, 24 Jul 2024 17:27:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D9BB10E77C;
+	Wed, 24 Jul 2024 17:27:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C58210E778
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF5F10E77B
  for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 17:27:02 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 46OHQqWF2848275; Wed, 24 Jul 2024 22:56:52 +0530
+ 46OHQq252848280; Wed, 24 Jul 2024 22:56:52 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 46OHQqxC2848274;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 46OHQq7a2848279;
  Wed, 24 Jul 2024 22:56:52 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>, Liu Leo <Leo.Liu@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 1/4] drm/amdgpu: add vcn ip dump ptr in vcn global struct
-Date: Wed, 24 Jul 2024 22:56:45 +0530
-Message-Id: <20240724172648.2848228-1-sunil.khatri@amd.com>
+Subject: [PATCH v2 2/4] drm/amdgpu: add macro to calculate offset with instance
+Date: Wed, 24 Jul 2024 22:56:46 +0530
+Message-Id: <20240724172648.2848228-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240724172648.2848228-1-sunil.khatri@amd.com>
+References: <20240724172648.2848228-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -42,28 +44,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add pointer to the vcn ip dump in the vcn global structure
-to be accessible for all vcn version via global adev.
+Add macro definition which calculate offset of the
+register with index override.
+
+This is useful in case when there is an array of
+registers which is common for all instances.
+To read registers in that case it is easy to define
+registers once and the index value is manually passed
+to calculate proper offset of register for each instance.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/soc15.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-index 1a5439abd1a0..f127eccf59d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -330,6 +330,9 @@ struct amdgpu_vcn {
- 	uint16_t inst_mask;
- 	uint8_t	num_inst_per_aid;
- 	bool using_unified_queue;
-+
-+	/* IP reg dump */
-+	uint32_t		*ip_dump;
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.h b/drivers/gpu/drm/amd/amdgpu/soc15.h
+index 282584a48be0..ef7c603b50ae 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.h
+@@ -93,6 +93,10 @@ struct soc15_ras_field_entry {
  
- struct amdgpu_fw_shared_rb_ptrs_struct {
+ #define SOC15_REG_ENTRY_OFFSET(entry)	(adev->reg_offset[entry.hwip][entry.inst][entry.seg] + entry.reg_offset)
+ 
++/* Over ride the instance id */
++#define SOC15_REG_ENTRY_OFFSET_INST(entry, inst) \
++	(adev->reg_offset[entry.hwip][inst][entry.seg] + entry.reg_offset)
++
+ #define SOC15_REG_GOLDEN_VALUE(ip, inst, reg, and_mask, or_mask) \
+ 	{ ip##_HWIP, inst, reg##_BASE_IDX, reg, and_mask, or_mask }
+ 
 -- 
 2.34.1
 
