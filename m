@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44CF93C7F2
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 547C593C7F4
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:03:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ACB310E73E;
-	Thu, 25 Jul 2024 18:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFD810E2F5;
+	Thu, 25 Jul 2024 18:03:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XFytJDWU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yPuVGw6b";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2046.outbound.protection.outlook.com [40.107.243.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7734110E313
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2048.outbound.protection.outlook.com [40.107.244.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8C8110E313
  for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 18:03:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Jlqdc4w0YWSsnNtKKQ/JwQHYnGZFoo6aPbqaT8PTz3zz9fHOY5/IX1baEKSjM7i6HBalnL+jHC/a5qY8Yv1VP8wftz9jrL+Wua8zKRgfHL/XoOKpMvNqhhF4L8ZshR9M0eCVBF04lGdwyxd5KGDHAR3qAZzKyzHqbCgTiYhIbhwgRZYy28iEAhYgX04Hypc+J+qS8B9oBXdJRF2cUIIwmYPgLvJlhGdL3JsslhPzqcuq3J0ijqn8j4Cxj3hlOCQoNBgokOwGah8dFxChoUs4EBT6BJwyAtu2xFSX3FCxc0nNEqrf0ugKzI4pb5Ers66V7hNR3TqjoOehyAwSdEBBRA==
+ b=TwYNh5zcseFkG6AIDVIRNAv2o3p2h3rw8nSA2DjCn/Vf0E5jWwoRntzO1DbR4lr7qsTK4BZzMNpkVxC8e2bqEYPW7XepkefoE0Nb+yXB6cz1L7DobSAezdDGzPnqFGbxXae2pvIT//S+CccsxhHfG6hCkO1wGKBX236fv7/InNBnL/ZuKeiCIzd2Nn6Wxslvi0FldP92ZoDqV697HIWF3QCngy47n6KIoQ1B4bJzkzL9nUSg8Km/pvDYlTwXR/OD6h0XfayCED7YmVvY6hI95Y/gdhR6mICtC7ylrTbZDp+sXxhsIqdH2295cNmvHKfLw6x5MEE+iDUE0nLJF/cm7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o56B8mKOgex86ZUXYCWLYE3zgez4f/tEFhlnpi/V+aY=;
- b=F+FWj3HIr6n0OXN0Px69pvUMDFQ7dkIBB6OG/rn8jQZem17hq5j02yJSkRMNoSzNHt3Ufh91IyZH+rDizLHphJBvxCaSlruSAal9wcWcl2Web6PAlroAOXozF0teKD4kY7lvXL4ORi96FAGdZcMQJ9Dhb5XAmi0odKpK4PZ3Ndo+pOseK/sJmSpMFAxNesd1RbnFjBajdF6/wLz03hELKEOStS4ie97pJti37WRGSC2H0rInzSlCW7SnqBgD5NGBylDuv+KATcO9x6KgCmJa6BP3F5RXkTRMK7nID3mi5fW14+pzQMTzU5Mt03IsodFJHSC0dDMY/7X6XaxclMcOAQ==
+ bh=X7Ny8j8muubjCp37M4EV4MyC5yOwdav5IFUEeo3F/7k=;
+ b=D8nmU+gkkE+H9lDwEIgFGJTjuogVevNDWwMawDu1UgtBi/UEt22UCvyJOm++pYH8WPEGgtVPo/sAWY5N2QYpV1/hy8Y8fo1i+cdm3ZxszjnrlErEi8XDNvMtJTApbYvWGJhUkrb8a+4mQIYByWYiPfF89fx95l+SJJfYkOpahRLtr1KpH/Wz4bYHRRnC2gut9Az4pDdGNDWi61Np0UA6FuqW3gEUaIuWhSvH+rQYvoSTL9mIijYt1cjypWoS4FRZ0idvKrPN1o3Rova2Szz6ySZh3u7YQ/x/PfTssnTr+K7mcrBCr2o3By9Vi6rpheiPdlZbwQpqNKs+Kyx7j+QAqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o56B8mKOgex86ZUXYCWLYE3zgez4f/tEFhlnpi/V+aY=;
- b=XFytJDWUGNSuQ2ru3i23cDCvAnROwqCady/Y2zFyk8hMgbR3HkX5QXc/WPRCtEeL+dieICio0TLC2RTE5+CtAP+8JX/mIEq4CLDBl+WfxhHv7rzEr5Ur0Z5HgIyzLG/YJGH96SAevnP+04o8jSZiPZZApfUhcxdF7Rv5DeMTUwc=
-Received: from CH0PR03CA0208.namprd03.prod.outlook.com (2603:10b6:610:e4::33)
- by DS0PR12MB8525.namprd12.prod.outlook.com (2603:10b6:8:159::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Thu, 25 Jul
- 2024 18:03:44 +0000
+ bh=X7Ny8j8muubjCp37M4EV4MyC5yOwdav5IFUEeo3F/7k=;
+ b=yPuVGw6bM9Wau45dFoevoBzlR5c5imtsaZyCNBFeMil1ite370nsxef2kPbssmDxlKNVKmFbR90GUrs/9jMJ3W7a4K86rivKjWgv3q064WRgOwpII32D90SQM07JRcEsORqLezAIxajMFKg0VEUalbUbb1O3mCf5IkknuThOvts=
+Received: from CH0PR03CA0197.namprd03.prod.outlook.com (2603:10b6:610:e4::22)
+ by SA1PR12MB5638.namprd12.prod.outlook.com (2603:10b6:806:229::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Thu, 25 Jul
+ 2024 18:03:47 +0000
 Received: from CH2PEPF00000142.namprd02.prod.outlook.com
- (2603:10b6:610:e4:cafe::41) by CH0PR03CA0208.outlook.office365.com
- (2603:10b6:610:e4::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18 via Frontend
- Transport; Thu, 25 Jul 2024 18:03:44 +0000
+ (2603:10b6:610:e4:cafe::bb) by CH0PR03CA0197.outlook.office365.com
+ (2603:10b6:610:e4::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20 via Frontend
+ Transport; Thu, 25 Jul 2024 18:03:46 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,79 +50,86 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH2PEPF00000142.mail.protection.outlook.com (10.167.244.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:03:44 +0000
+ 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:03:46 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 25 Jul
- 2024 13:03:42 -0500
+ 2024 13:03:44 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Duncan Ma <duncan.ma@amd.com>, "Rodrigo
- Siqueira" <rodrigo.siqueira@amd.com>
-Subject: [PATCH 05/39] drm/amd/display: Request 0MHz dispclk for zero display
- case
-Date: Thu, 25 Jul 2024 12:00:49 -0600
-Message-ID: <20240725180309.105968-6-Rodrigo.Siqueira@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Bhuvanachandra Pinninti
+ <bpinnint@amd.com>, Martin Leung <martin.leung@amd.com>, Rodrigo Siqueira
+ <rodrigo.siqueira@amd.com>
+Subject: [PATCH 06/39] drm/amd/display: Refactor for dio
+Date: Thu, 25 Jul 2024 12:00:50 -0600
+Message-ID: <20240725180309.105968-7-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
 References: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|DS0PR12MB8525:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ee58f66-da1a-43c5-ad81-08dcacd41fcc
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|SA1PR12MB5638:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26ce5faa-5214-41b5-7809-08dcacd4211a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ugtWysuzDjLT1B2RaP0we1Va5l8I01h4qf5S+XM94VRwxOndzqaeu2dOkWUQ?=
- =?us-ascii?Q?K6auHCBemRl5aGGdntdbo6poHGbZ3hgxYqKGaCVgMwY6t9xOkE87hacV3NBh?=
- =?us-ascii?Q?RGBf6pyS+httiO692cYpQHNaS53PIIbkN2qXvygZDvJR5ADfq6eei0IYbFJM?=
- =?us-ascii?Q?TsbYNbafJ4yMzbQPTFXB9tzatC+/tj1tgXg6BLMbvEcNVlx7jOrXq5+Tojfm?=
- =?us-ascii?Q?yh4Q9OMW5y2d2yh9kkfWwiPQfdfKDrD2uYgw7RbPCMaWdelRYaMBZe3ga7sy?=
- =?us-ascii?Q?JbF73NEtnL8tfAOmXwi3Fj2CTvl6tNm2lU2nJ/MUk4+FouRzw/x5z/zv/ULZ?=
- =?us-ascii?Q?g8ianU6tGfMGlllLaaMVFnByjgR5/g1XKNJdmr0JfM37BaDZ+dOr4J5vzxNI?=
- =?us-ascii?Q?A6nL4WXixYXQ80Wqla10PZowFCCYYx2XIHwEU3Hmi4eYm1VlbjKxhgdHApGe?=
- =?us-ascii?Q?f6HQ1F2wpYaHgiwdvUBndRvKG0igIVAdhHt9Ni07nT1rTLwRY0F76Hz+IHYF?=
- =?us-ascii?Q?QuKWfejnhBbFbKw6SxL1fNYr110tFOmkcuSGILLIJH7eXr8MnNZgXo+AVzd+?=
- =?us-ascii?Q?65lsZdmEQlgVtQwMyJqy0X2FlO4f5ve3Th2/giQh45tCki2/kIr5KooNX37g?=
- =?us-ascii?Q?QNGQOAcQm6uuLncxaby10SZJPDs+m2envfjSwTTRfZcfvoWijwtqatP6KUO9?=
- =?us-ascii?Q?HCW36g6oYfPElO1kzI1d+EcGcap0LZrspBBL49Qk0SxY9NZyFqWtFaWVPndM?=
- =?us-ascii?Q?S2+7lnVn2Pf53zuejYo3OQSSCv3vl21EuEg5l5xEVcnfJHoLc92nkWRNzMDf?=
- =?us-ascii?Q?Fp1EHvDoXZndUlm6wAJO5UkDVFXXfPJ22XELNt9+jRbwMeyO2KNmS6x42Izl?=
- =?us-ascii?Q?A9UxE5wMc5WQ4K9TjgxY7hILgZBZ2aaRSev/vRxy7bguL87moFairYeNKZNZ?=
- =?us-ascii?Q?JGYm3JI6AStsoveSYfnJFdyk5zoPIIXvOFHoPKoyACBaKdP8dP2dPF9sZ1Ke?=
- =?us-ascii?Q?xpP3VPm4gXp2k77qBnkOX/P9y8U/vNt7NHFGYFyjNSBuxhGgIU/GCyScw7Nz?=
- =?us-ascii?Q?CuNfd2MhiwSljNx1Mdw4XMiRDqXaTAnoZTwaRVJghkS0nIMYDJ0GyaDUtXWK?=
- =?us-ascii?Q?J14r/DbN+gejJsBFu4WcpJCK5NzN6iIkf/NUdcQF2K1FfdcXDY6VWEcW2wFD?=
- =?us-ascii?Q?U+oY5xacYtu+Fe62P/xPJSiUtlEVae581pPnNhH1s+oQyU2TpBEmlPJ6AHHr?=
- =?us-ascii?Q?pUBYigxlRnRHb5SrNubZ/KPNjmcKB20VvHZw9XSjdCPwC4MPbuLComaMKJmM?=
- =?us-ascii?Q?8w8Q00IAf3VwOUJf7ZQ9g7QXKHQHZvdExFJGfbBxQ3he7ZAh/8WWb8mWa3P+?=
- =?us-ascii?Q?UFjtBxSJcM55gJo7oj5ElaEUMyXdexngjxaxz/AlVmm0drp79KTRXx2OIbg2?=
- =?us-ascii?Q?W74H9QJMYgb5fSm4r5PAjcClEVCvNCxb?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VVkxSDRQYnBmTmhwWnh3b1JTbnNtZUdoUEg1bnhaNDZ2emNkT2NIZnNuUmkz?=
+ =?utf-8?B?VXZUZTRyV3pKTHZFL2VZTmY3Y25QQ3hadjRlTlk3MmdNMWIzajFVSmhIaWpq?=
+ =?utf-8?B?VlR1bFIwNGFHT2hPdUlxUjZnRkc1K2psOHdWL3N4bU1TMjBOOTdhbXZFM3ho?=
+ =?utf-8?B?TjFuaTk1QTk4YTNPdEE0ZWZleTNlR3djR29Vem51a0hGUEpHN3p2ZzY3ZVp2?=
+ =?utf-8?B?R005UjlWenFpOVl2MUtiOEl1c01EbmtOTlVMYVp5bUlZMkNuaGR2SzRiUnU4?=
+ =?utf-8?B?bmJudWhpeVVYWkU5QzU2WEZ0K1MrM01ibjc1MkQ5UGxvaFVPVWNHRmtmeEtK?=
+ =?utf-8?B?YU1hemo4Rkphbjdkd0xaRUxRdTYrcGhOaVNlZElsVTVlZGR5SlFidW5SN2Z2?=
+ =?utf-8?B?UTMzUVFtdTYyb1RabmNRZy9VaWtmNnpVN0kwMm0wZVRrMlhxZURsOVRJdnht?=
+ =?utf-8?B?aDBvbW1PNmFXYkNJMnZOYXMrM3hld2hUTVh0RGdtQlRzcVhDZmZOcGlMRGZQ?=
+ =?utf-8?B?bWgxMitsUVJpUVVKbXZSaHpCY0tieHFKMWN1ZnF1cEttdEM2MVRwMFBEMFR1?=
+ =?utf-8?B?MitEOUtYZ29DaTBKdkpMdXhIU0pWdnpUdmcrUVgyNEJUUGkzKzlsS3BjWS9Z?=
+ =?utf-8?B?R1hGc0JOdTloMGxUeG42MW0xVnBBQmhmdk5kWGFnY282Q2dBQ1Q3NXd2K0s1?=
+ =?utf-8?B?OXAxT2x5VDE0KzNGdHdpNlVRdHJENCt6b21SdHVITGRGWXFzSldsUXdhSHpK?=
+ =?utf-8?B?cFdNSkV3eVQzZ1ppN2dBTVJRVm9LYUMvZWQ2elZPSm9tcVVBYUhCUGNXTHJG?=
+ =?utf-8?B?bnJmQjdSSGNmcmxadmhHbG9KUTltVmtMRXRpUzh0UG9XODJXM0M5TlA5SWtJ?=
+ =?utf-8?B?eTBjS1hwWHhjSUpUcFRTN3NYN0pBaVd6ZjhENEhNM0d1ZzZtN3ZMVzI1RGF0?=
+ =?utf-8?B?TjJkWWFhMU9zbTRXcXpERUZhcUJCQ2lLRWlwNW1oSDc4N01QNnhiQUVWcXdF?=
+ =?utf-8?B?WVdyOEZ2VUJZTzFVdlI3RTBZVXhMcVZkck1IQ085U0IvaHh6dWN3NHRITGNX?=
+ =?utf-8?B?RmhWZmtRSWV3NEh6bkFHbEdLT1psYXdqZzZRbXdHL0IxN2lVQk9pdit1Vk1N?=
+ =?utf-8?B?NEdyZWRiaUhkYXV0c1ZtdEVQREd6RVpsQTRGTVB1K21EQ3Z4ZUNHZjFzVktJ?=
+ =?utf-8?B?Qy9jMEo1eTY2UWRzQW94dHg4UVAvYVpxblB3Q0tEdjdxZEFEcWNnTms5aXFO?=
+ =?utf-8?B?TDA5M05qQkpSOURVa1B1K1BJcTNPUWswVzZQZ212TVdReStxU05Qc21GQ0xu?=
+ =?utf-8?B?Ym9aTlllWE9XUmtDYnlDMGZjdkJnZVpmbUZZeG9uMXgxWERMdEd6ZXJvd1hR?=
+ =?utf-8?B?OGhqd05oeDBJTTJGRVErOVVaWmtiSDRMelBuZmNyWnpjTm1tbEhLOVBqTUZP?=
+ =?utf-8?B?SkU4NzdZOFV5d0hCOW9JL0d6c0xGOUtLSytycDBUTUlORnlVSVUrVVFMak9j?=
+ =?utf-8?B?bi95THYrTDBzb0FUZUZpSWJ1UTFTb1RWV3QyZmN3ZjVhS1I5cnVQbENhUmJw?=
+ =?utf-8?B?ZlcwZ2pMRTBnTy8wTXhxTEZ4TExRZVJKQlB2OGNNS2ZrVEwwUkdJOERNWk14?=
+ =?utf-8?B?QjNkTUV0Z0JMeUVUQXBKVHF1UHV6RlRXNU9UZy93bVdidGJiMk5MYm9GT2Z4?=
+ =?utf-8?B?ckE1ODVLejZkNkR4cW1ZRDBsakhLckNPbFZjNGRlQWk0RnB6UThpTm9RTVRL?=
+ =?utf-8?B?bjdqdzBJZHhQbWUzRlVMRVJGdklzUjhiVGV5eCtIR2oyeS9BdzhVNGtRYVMy?=
+ =?utf-8?B?VVVzM0tHcm4zS1ByUGtJS1laR2N0Wkwwcm4rMWNidU4venBRbU92Y3ZBR1BL?=
+ =?utf-8?B?V1dMWFNGOTM5YWlWVndPUGtOWGF2R0R1OUttSnExTTIrL1R1QTRZejNXZlY0?=
+ =?utf-8?Q?L1UKkcpvwBfQvMENV/8oPd04JTrTRP9p?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:03:44.3194 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ee58f66-da1a-43c5-ad81-08dcacd41fcc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:03:46.5695 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26ce5faa-5214-41b5-7809-08dcacd4211a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000142.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8525
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5638
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,39 +144,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Bhuvanachandra Pinninti <bpinnint@amd.com>
 
-[Why]
-If we aren't entering RCG/IPS2 or CLKSTOP is not supported by PMFW then
-we should be requesting a dispclk value of 0MHz to PMFW.
+Moved files to respective folders to improve DIO code.
 
-Currenly we run at max clock since there's an assumption in APU clock
-table formulation where we can run at any DISPCLK at any state so the
-real clock value ends up as 1200Mhz - the maximum.
-
-[How]
-Set to 0 instead of the minimum value in the state array.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Duncan Ma <duncan.ma@amd.com>
+Signed-off-by: Bhuvanachandra Pinninti <bpinnint@amd.com>
+Reviewed-by: Martin Leung <martin.leung@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/Makefile        |  1 -
+ drivers/gpu/drm/amd/display/dc/dcn301/Makefile |  2 +-
+ drivers/gpu/drm/amd/display/dc/dcn314/Makefile | 10 ----------
+ drivers/gpu/drm/amd/display/dc/dio/Makefile    | 18 ++++++++++++++++++
+ .../{ => dio}/dcn301/dcn301_dio_link_encoder.c |  0
+ .../{ => dio}/dcn301/dcn301_dio_link_encoder.h |  0
+ .../dcn314/dcn314_dio_stream_encoder.c         |  0
+ .../dcn314/dcn314_dio_stream_encoder.h         |  0
+ .../dc/dio/dcn321/dcn321_dio_link_encoder.c    |  1 -
+ .../dc/dio/dcn35/dcn35_dio_stream_encoder.c    |  1 -
+ 10 files changed, 19 insertions(+), 14 deletions(-)
+ delete mode 100644 drivers/gpu/drm/amd/display/dc/dcn314/Makefile
+ rename drivers/gpu/drm/amd/display/dc/{ => dio}/dcn301/dcn301_dio_link_encoder.c (100%)
+ rename drivers/gpu/drm/amd/display/dc/{ => dio}/dcn301/dcn301_dio_link_encoder.h (100%)
+ rename drivers/gpu/drm/amd/display/dc/{ => dio}/dcn314/dcn314_dio_stream_encoder.c (100%)
+ rename drivers/gpu/drm/amd/display/dc/{ => dio}/dcn314/dcn314_dio_stream_encoder.h (100%)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-index d5dcc8b77281..866b0abcff1b 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_wrapper.c
-@@ -575,7 +575,7 @@ static bool dml2_validate_and_build_resource(const struct dc *in_dc, struct dc_s
- 		unsigned int lowest_state_idx = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/Makefile b/drivers/gpu/drm/amd/display/dc/Makefile
+index 80069651def3..8992e697759f 100644
+--- a/drivers/gpu/drm/amd/display/dc/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/Makefile
+@@ -35,7 +35,6 @@ DC_LIBS += dcn201
+ DC_LIBS += dcn30
+ DC_LIBS += dcn301
+ DC_LIBS += dcn31
+-DC_LIBS += dcn314
+ DC_LIBS += dml
+ DC_LIBS += dml2
+ endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/Makefile b/drivers/gpu/drm/amd/display/dc/dcn301/Makefile
+index dc37dbf870df..fb4814ab3f05 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn301/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn301/Makefile
+@@ -3,7 +3,7 @@
+ #
+ # Makefile for dcn30.
  
- 		out_clks.p_state_supported = true;
--		out_clks.dispclk_khz = (unsigned int)dml2->v20.dml_core_ctx.states.state_array[lowest_state_idx].dispclk_mhz * 1000;
-+		out_clks.dispclk_khz = 0; /* No requirement, and lowest index will generally be maximum dispclk. */
- 		out_clks.dcfclk_khz = (unsigned int)dml2->v20.dml_core_ctx.states.state_array[lowest_state_idx].dcfclk_mhz * 1000;
- 		out_clks.fclk_khz = (unsigned int)dml2->v20.dml_core_ctx.states.state_array[lowest_state_idx].fabricclk_mhz * 1000;
- 		out_clks.uclk_mts = (unsigned int)dml2->v20.dml_core_ctx.states.state_array[lowest_state_idx].dram_speed_mts;
+-DCN301 = dcn301_dio_link_encoder.o dcn301_panel_cntl.o
++DCN301 = dcn301_panel_cntl.o
+ 
+ AMD_DAL_DCN301 = $(addprefix $(AMDDALPATH)/dc/dcn301/,$(DCN301))
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/Makefile b/drivers/gpu/drm/amd/display/dc/dcn314/Makefile
+deleted file mode 100644
+index 15fdcf7c6466..000000000000
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/Makefile
++++ /dev/null
+@@ -1,10 +0,0 @@
+-# SPDX-License-Identifier: MIT
+-# Copyright © 2024 Advanced Micro Devices, Inc. All rights reserved.
+-#
+-# Makefile for dcn314.
+-
+-DCN314 = dcn314_dio_stream_encoder.o
+-
+-AMD_DAL_DCN314 = $(addprefix $(AMDDALPATH)/dc/dcn314/,$(DCN314))
+-
+-AMD_DISPLAY_FILES += $(AMD_DAL_DCN314)
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/Makefile b/drivers/gpu/drm/amd/display/dc/dio/Makefile
+index 67840e474d7a..0dfd480976f7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dio/Makefile
+@@ -51,6 +51,15 @@ AMD_DAL_DIO_DCN30 = $(addprefix $(AMDDALPATH)/dc/dio/dcn30/,$(DIO_DCN30))
+ 
+ AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN30)
+ 
++###############################################################################
++# DCN301
++###############################################################################
++DIO_DCN301 = dcn301_dio_link_encoder.o
++
++AMD_DAL_DIO_DCN301 = $(addprefix $(AMDDALPATH)/dc/dio/dcn301/,$(DIO_DCN301))
++
++AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN301)
++
+ ###############################################################################
+ # DCN31
+ ###############################################################################
+@@ -60,6 +69,15 @@ AMD_DAL_DIO_DCN31 = $(addprefix $(AMDDALPATH)/dc/dio/dcn31/,$(DIO_DCN31))
+ 
+ AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN31)
+ 
++###############################################################################
++# DCN314
++###############################################################################
++DIO_DCN314 = dcn314_dio_stream_encoder.o
++
++AMD_DAL_DIO_DCN314 = $(addprefix $(AMDDALPATH)/dc/dio/dcn314/,$(DIO_DCN314))
++
++AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN314)
++
+ ###############################################################################
+ # DCN32
+ ###############################################################################
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn301/dcn301_dio_link_encoder.c
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn301/dcn301_dio_link_encoder.c
+rename to drivers/gpu/drm/amd/display/dc/dio/dcn301/dcn301_dio_link_encoder.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_dio_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dio/dcn301/dcn301_dio_link_encoder.h
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn301/dcn301_dio_link_encoder.h
+rename to drivers/gpu/drm/amd/display/dc/dio/dcn301/dcn301_dio_link_encoder.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn314/dcn314_dio_stream_encoder.c
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c
+rename to drivers/gpu/drm/amd/display/dc/dio/dcn314/dcn314_dio_stream_encoder.c
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dio/dcn314/dcn314_dio_stream_encoder.h
+similarity index 100%
+rename from drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.h
+rename to drivers/gpu/drm/amd/display/dc/dio/dcn314/dcn314_dio_stream_encoder.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn321/dcn321_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn321/dcn321_dio_link_encoder.c
+index 05783daa62ac..2ed382a8e79c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/dcn321/dcn321_dio_link_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn321/dcn321_dio_link_encoder.c
+@@ -23,7 +23,6 @@
+  *
+  */
+ 
+-
+ #include "reg_helper.h"
+ 
+ #include "core_types.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+index fcc88ef83e6a..19e50fbf908d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+@@ -22,7 +22,6 @@
+  *
+  */
+ 
+-
+ #include "dc_bios_types.h"
+ #include "dcn30/dcn30_dio_stream_encoder.h"
+ #include "dcn314/dcn314_dio_stream_encoder.h"
 -- 
 2.43.0
 
