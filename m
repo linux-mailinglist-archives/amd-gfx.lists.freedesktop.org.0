@@ -2,121 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29EB493C609
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 17:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F147993C662
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 17:29:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2506B10E86C;
-	Thu, 25 Jul 2024 15:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 627F110E882;
+	Thu, 25 Jul 2024 15:29:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gIROkri3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BEC9+C3D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 294B410E84D
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 15:01:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IobSMdSuKvsrBTJ3TUzkhc7xgnKtXzA+9zR9oVvZAG7L+z5eRboKJkmE5+GIBkven1p9Shie8BbjIz/4kM2pFJfX8Y2GbJuhbG/am/p+JcRJ+BB3kFFVRDfnygUPmM0IgvJzjhJDDnguNTeIuJD3X7+Tqw+PjwFTS+0c4cjAV287Lz3ovGWxtrqJcTos9zQ50+H10lHbZ/5ByAnSacBsSXhxIhdkPR9pKxIbHTYbHmXTZR3bbCTBBP+JsBmo4azPsrENE/TB2xntR95ZXZSpZMyE1bKYsedP5V/6QgezBStSOaGX7uw5F8CTJK7RRELAjIlTtqQVaNmSdUb4mThWjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EsFTANUQuu3mpK03qzehtdtSN5aOY5MfY2PwiMwb2Wg=;
- b=RK7V2CTfQvAl84MTvFn5WCfvwBtVIQ52L6c6glTI3RC1EXFqNo8k0kvq/Y5Aht7KDg1Ney2cfJ0J6H0xJ4YKXXMaXn8XDTGNZ9LQoFxOJTAvDFW5xC2mnSl9Zf9DEdg0QVJ/VzS4zJ0mx3yH3DS2LR6J0Iak9MKUCL4yy++sxQIWr20yvDM/SVXKH2O2E5wZEYkQEzyDIGkHU8z4NahpvHCNpp3SQZeRdbAQ+iBXuSRaLdAt7CGE/I4n29Y4JsSRq88nurACOxq1x65Ca7ZzaF3QMN3U/lkzmRZsV9dk99q6NeRmKnJK46HhHV0Hd0Ek4kzLZqqaqKan148HBi47Cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EsFTANUQuu3mpK03qzehtdtSN5aOY5MfY2PwiMwb2Wg=;
- b=gIROkri3qHdt+zXWytFkjdEqubXZnuH6kQYE3hEAAoSD43Z7LjJ4ra7ac9CJ6xBBa6xG54qaWi3d3kYKYHSnDLm05yyCzFQ8U4pcC+RzDvStRod8zbfJzrEakUTu+nt4EKxxX9yH+wicPNS68oO4IVvZTDKrYx7VDb+pjnLcDY4=
-Received: from CYZPR10CA0004.namprd10.prod.outlook.com (2603:10b6:930:8a::9)
- by CH3PR12MB8880.namprd12.prod.outlook.com (2603:10b6:610:17b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Thu, 25 Jul
- 2024 15:01:39 +0000
-Received: from CY4PEPF0000E9D4.namprd03.prod.outlook.com
- (2603:10b6:930:8a:cafe::a) by CYZPR10CA0004.outlook.office365.com
- (2603:10b6:930:8a::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29 via Frontend
- Transport; Thu, 25 Jul 2024 15:01:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D4.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 15:01:38 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 25 Jul
- 2024 10:01:36 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 53/53] drm/amdgpu/gfx9: use rlc safe mode for soft recovery
-Date: Thu, 25 Jul 2024 11:00:55 -0400
-Message-ID: <20240725150055.1991893-54-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240725150055.1991893-1-alexander.deucher@amd.com>
-References: <20240725150055.1991893-1-alexander.deucher@amd.com>
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F235D10E882
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 15:29:26 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-2cd1661174cso34a91.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 08:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1721921366; x=1722526166; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jTgV5WGclQrpLo9XK8FsNIB+Jnu+X8s/EUlQVOxpS/M=;
+ b=BEC9+C3DqPb7Q+cFnjygX5RKKt05rXd7orKakyq2epFm9WlLEZ3lZ9FAQLlXwLvUVG
+ M0tFB48KMb5FrtEqEr5A2OP7Oc4sSNOQFMWrlCG7R6rIaLjvpK1UO5IkWxI6bA/fHVe1
+ ThZrWIhvXn7xwmK8Jg8izJk10SPz5ZdGjeFdXYlr25z7XnzNG8icKqTy1ecdS9dbHCLS
+ Us9L9nTC9QSCqN4x2LhtRcFzV/CgHP82Ew9zd7Vzzs8EhLzr3tv4NF887dEdR008pr+i
+ oWnA8R/ckT1nTDJAPCYUe6tinuiiL+kHMlIx0jzJzw5og7tRbdXshE3gx56VUzrfktya
+ 2Gaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721921366; x=1722526166;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jTgV5WGclQrpLo9XK8FsNIB+Jnu+X8s/EUlQVOxpS/M=;
+ b=TULp4Mo/eIJIuzYfhBgy3uFRgJQzz/ZyPQC4nYkp84OdOV0sAgfFG76qcT1Y6rjZDQ
+ P6FgT3tJqC++ThtKvLVpcO79D+PDRe9eXJwbWd7kvjBRQBstsjZegmy0xVyAL8G/3bVu
+ IGhCErw8fqTKoo+9R9b0CHcfoPEUWbaB4gn6cTRBGlMk3SxMMzwZvxZ3kkdyCFC0W3gV
+ bCaeq41gueqAS6HiaDlPHY3OuAfpmqyX+ngo6hjWolKIQMQ8UL5K1e6Uq6pl+kfeuW5X
+ gc1/yPwB6PWBziJ5zsDG/6IltsRF0CbBqQjICnQ/2CGJAnqyo84sJ++HD+bqtonPNORj
+ jTZQ==
+X-Gm-Message-State: AOJu0Ywp8nJ8wkptJelpZYtlMzm6yGRkdhV8DWGKa5W6IBuqZQG6AltG
+ 8L2sAAvglmTHB347DYOVFTGU7hkMOV4+QVS/0i3QgeHJN94kxqu+k5y8Fd8H7YuJ4r5A0yUSL4p
+ Zqf/dkDDm6TlpwgrhJ65h5xCAdn+PYgdO
+X-Google-Smtp-Source: AGHT+IGJJONBvyIDzHn2gmacKs5JgPTA/TMcxvUJ/weRfLLmaW+VA0EqMmd8KUWMhFjvACt3kbPGGYWtcA5IS//sDhI=
+X-Received: by 2002:a17:90a:4bc6:b0:2c9:6f5e:f5c1 with SMTP id
+ 98e67ed59e1d1-2cf2379baa2mr3493269a91.10.1721921366081; Thu, 25 Jul 2024
+ 08:29:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D4:EE_|CH3PR12MB8880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e4f2154-bcd0-41e1-2f79-08dcacbaafa4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?80OUXxHAE55nU9cFFErWvlKZRevVRMUUFrCdy1TvbIkLOqfeEPeFVbCE0ip8?=
- =?us-ascii?Q?szihlwgOD9BVx2MA996ruH3OO01hKcJN53//4T1+RMJ5+ejrriVovPCkskFj?=
- =?us-ascii?Q?Pg+VmO01998/hhvvrMLQjsZ+dREkoM+pFOynY1SSsjEc1wSWzOM+eaxm2cf1?=
- =?us-ascii?Q?EqL6R0+tloqWE7AsxC0RT+aLp7nDQb2waT7S1mwy3O+RNbUqb8TpSTEv1kGK?=
- =?us-ascii?Q?JI/Az/8OC1QZyKJiM98nHeE1HKD7yI97vrWLHCQIm4/WnQPHc6dif+TztkzJ?=
- =?us-ascii?Q?+6b59NFadaEazH45RG98qUZIVuY/lixKUdKLk1sySkKgba3Pi2dM803dwID3?=
- =?us-ascii?Q?eS0KsIJ0mv8QC86wKGrtNi79nv5ahDSQ2n+/5L7vjDQlO1cSOhXKKlP0Q7Ug?=
- =?us-ascii?Q?LVDn3vAIuqP0ZuTcwe174zgIIBel7PnOm/eB7g2ufXCt5+KznSS3P9emskpK?=
- =?us-ascii?Q?JDUt3ZbQgAgSsqQ6bO1dpLMZjTjKakea11eGPqbbke8JmluWVqVZ1JsCeO3X?=
- =?us-ascii?Q?cbU/d7s4QgM3Dm1cdTqAHv+tfnIOm4HBFTSVozX1g00VVU2MLFgWWhXbM5Ia?=
- =?us-ascii?Q?zphp7badSW1qwkyHxANLq3/FEfp4q/wVh4YXzA8v8pF3WebnFXcnFraQHflC?=
- =?us-ascii?Q?AQVcBRiKwa4o9iCyrQjAzeUdJ2MDx75iDDJuXpO497ieMlv4VtG8bTLVK7EH?=
- =?us-ascii?Q?Lx2N4STLwgvJWhrGoKENbd5Y+Ifc+kQ/qrwB2rfPCwkUf9UUNfe46DaN3dwB?=
- =?us-ascii?Q?HHhlFoBKGdazHf+b2s8ekilPi3oDcX25DmtSmL0EsUJjv+K/Lzehxo34tMxC?=
- =?us-ascii?Q?a15KdwM2RiqxJvYyW2rqpDcpU0J/CTpjZDTYHdORq9KcqOMZiAvXzvTJ+MMk?=
- =?us-ascii?Q?vrFfQFs5Z/HWXtYtQdfwBXSJPpRMzyWYJVYbL8/o/WViVs5NIFxrLbQXQJQA?=
- =?us-ascii?Q?DzOYkSxVNFH4qqcoM4pCy890HDn6H/2SrmYxO/vNFhxLgRZe+9lPQeUnmJov?=
- =?us-ascii?Q?+pfME06seMASqPDNzlUgdGq1RSE1+f1XWtfZzDl7c8i3AOiJfj/ZjLNuHtXv?=
- =?us-ascii?Q?sRr7Rq2CDCaZuki7rd435yvGNdkO0ooRAs/sizYvUp/w43c6BMaLBQpbMmXT?=
- =?us-ascii?Q?14ueLLhKZWKMWELI85GJPCttX598i24Nf6QQ4ZZ/HGWHdHlte6iKwBLy/8J5?=
- =?us-ascii?Q?FYLtOzSo8zkuE+FyLCrYFOKVlrWq4qikLys/CRXbE1axHJe9lxdYYq3zmsqg?=
- =?us-ascii?Q?+ifZt2im8z013KEI4lNTC3H75UNZ3LfX70tQBh7Mhg/wPaFp8IJNpbmWbdEX?=
- =?us-ascii?Q?MyPfUbMNO1OyvFj5mUhTlrVMG9UnDIdJRIYnTTCxMp9l4NhGdXHT747JffBr?=
- =?us-ascii?Q?idpc1qnM15nwzgjJlt3QiqAfHOHFcnHW567txCwrMrVJYwwrXpw67QZ4IZc+?=
- =?us-ascii?Q?FfzVJ+VO+xOT+DPsszWIn3zupOE0pIVf?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 15:01:38.9185 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e4f2154-bcd0-41e1-2f79-08dcacbaafa4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8880
+References: <20240725150055.1991893-1-alexander.deucher@amd.com>
+In-Reply-To: <20240725150055.1991893-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 25 Jul 2024 11:29:14 -0400
+Message-ID: <CADnq5_NWdzoTVOuCEOFMhC0GF+26=2z8nknADXyiLxmAs9fTzQ@mail.gmail.com>
+Subject: Re: [PATCH V2 00/53] GC per queue reset
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,27 +75,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Protect the MMIO access with safe mode.
+On Thu, Jul 25, 2024 at 11:20=E2=80=AFAM Alex Deucher <alexander.deucher@am=
+d.com> wrote:
+>
+> This adds preliminary support for GC per queue reset.  In this
+> case, only the jobs currently in the queue are lost.  If this
+> fails, we fall back to a full adapter reset.
+>
+> V2: Fix fallbacks to full adapter reset
+>     RLC safemode cleanup
+>     Preliminary support for older GPUs
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 2 ++
- 1 file changed, 2 insertions(+)
+Forgot to add a git link as well:
+https://gitlab.freedesktop.org/agd5f/linux/-/tree/amd-staging-drm-next-queu=
+e-reset?ref_type=3Dheads
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 77e64987bb03..11a565d7b5d1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5907,7 +5907,9 @@ static void gfx_v9_0_ring_soft_recovery(struct amdgpu_ring *ring, unsigned vmid)
- 	value = REG_SET_FIELD(value, SQ_CMD, MODE, 0x01);
- 	value = REG_SET_FIELD(value, SQ_CMD, CHECK_VMID, 1);
- 	value = REG_SET_FIELD(value, SQ_CMD, VM_ID, vmid);
-+	amdgpu_gfx_rlc_enter_safe_mode(adev, 0);
- 	WREG32_SOC15(GC, 0, mmSQ_CMD, value);
-+	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
- }
- 
- static void gfx_v9_0_set_gfx_eop_interrupt_state(struct amdgpu_device *adev,
--- 
-2.45.2
+Alex
 
+>
+> Alex Deucher (38):
+>   drm/amdgpu/gfx10: handle SDMA in KIQ map/unmap
+>   drm/amdgpu/mes11: handle second gfx pipe
+>   drm/amdgpu/mes: add API for legacy queue reset
+>   drm/amdgpu/mes11: add API for legacy queue reset
+>   drm/amdgpu/mes12: add API for legacy queue reset
+>   drm/amdgpu/mes: add API for user queue reset
+>   drm/amdgpu/mes11: add API for user queue reset
+>   drm/amdgpu/mes12: add API for user queue reset
+>   drm/amdgpu: add new ring reset callback
+>   drm/amdgpu: add per ring reset support (v5)
+>   drm/amdgpu/gfx11: add ring reset callbacks
+>   drm/amdgpu/gfx11: rename gfx_v11_0_gfx_init_queue()
+>   drm/amdgpu/gfx10: add ring reset callbacks
+>   drm/amdgpu/gfx10: rework reset sequence
+>   drm/amdgpu/gfx9: add ring reset callback
+>   drm/amdgpu/gfx9.4.3: add ring reset callback
+>   drm/amdgpu/gfx12: add ring reset callbacks
+>   drm/amdgpu/gfx12: fallback to driver reset compute queue directly
+>   drm/amdgpu/gfx11: enter safe mode before touching CP_INT_CNTL
+>   drm/amdgpu/gfx11: add a mutex for the gfx semaphore
+>   drm/amdgpu/gfx11: export gfx_v11_0_request_gfx_index_mutex()
+>   drm/amdgpu/gfx9: per queue reset only on bare metal
+>   drm/amdgpu/gfx10: per queue reset only on bare metal
+>   drm/amdgpu/gfx11: per queue reset only on bare metal
+>   drm/amdgpu/gfx12: per queue reset only on bare metal
+>   drm/amdgpu/gfx9: add ring reset callback for gfx
+>   drm/amdgpu/gfx8: add ring reset callback for gfx
+>   drm/amdgpu/gfx7: add ring reset callback for gfx
+>   drm/amdgpu/gfx9: use proper rlc safe mode helpers
+>   drm/amdgpu/gfx9.4.3: use proper rlc safe mode helpers
+>   drm/amdgpu/gfx10: use proper rlc safe mode helpers
+>   drm/amdgpu/gfx11: use proper rlc safe mode helpers
+>   drm/amdgpu/gfx12: use proper rlc safe mode helpers
+>   drm/amdgpu/gfx12: use rlc safe mode for soft recovery
+>   drm/amdgpu/gfx11: use rlc safe mode for soft recovery
+>   drm/amdgpu/gfx10: use rlc safe mode for soft recovery
+>   drm/amdgpu/gfx9.4.3: use rlc safe mode for soft recovery
+>   drm/amdgpu/gfx9: use rlc safe mode for soft recovery
+>
+> Jiadong Zhu (13):
+>   drm/amdgpu/gfx11: wait for reset done before remap
+>   drm/amdgpu/gfx10: remap queue after reset successfully
+>   drm/amdgpu/gfx10: wait for reset done before remap
+>   drm/amdgpu/gfx9: remap queue after reset successfully
+>   drm/amdgpu/gfx9: wait for reset done before remap
+>   drm/amdgpu/gfx9.4.3: remap queue after reset successfully
+>   drm/amdgpu/gfx_9.4.3: wait for reset done before remap
+>   drm/amdgpu/gfx: add a new kiq_pm4_funcs callback for reset_hw_queue
+>   drm/amdgpu/gfx9: implement reset_hw_queue for gfx9
+>   drm/amdgpu/gfx9.4.3: implement reset_hw_queue for gfx9.4.3
+>   drm/amdgpu/mes: modify mes api for mmio queue reset
+>   drm/amdgpu/mes: implement amdgpu_mes_reset_hw_queue_mmio
+>   drm/amdgpu/mes11: implement mmio queue reset for gfx11
+>
+> Prike Liang (2):
+>   drm/amdgpu: increase the reset counter for the queue reset
+>   drm/amdgpu/gfx11: fallback to driver reset compute queue directly (v2)
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |   6 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  20 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c    |  88 ++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h    |  37 +++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   2 +
+>  drivers/gpu/drm/amd/amdgpu/cikd.h          |   1 +
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     | 251 +++++++++++++++++++--
+>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c     | 127 +++++++++--
+>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.h     |   3 +
+>  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c     | 103 ++++++++-
+>  drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c      |  76 ++++++-
+>  drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c      |  75 +++++-
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c      | 179 ++++++++++++++-
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 132 ++++++++++-
+>  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     | 134 +++++++++++
+>  drivers/gpu/drm/amd/amdgpu/mes_v12_0.c     |  54 +++++
+>  drivers/gpu/drm/amd/amdgpu/nvd.h           |   2 +
+>  drivers/gpu/drm/amd/amdgpu/vid.h           |   1 +
+>  19 files changed, 1243 insertions(+), 49 deletions(-)
+>
+> --
+> 2.45.2
+>
