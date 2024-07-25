@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5741193C806
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DDBD93C80D
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:04:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F09FF10E8AE;
-	Thu, 25 Jul 2024 18:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B2110E8B5;
+	Thu, 25 Jul 2024 18:04:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SYFwUgJw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="d/A6kFPp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2040.outbound.protection.outlook.com [40.107.96.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E694B10E8AD
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 18:04:23 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2055.outbound.protection.outlook.com [40.107.236.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D081810E8B0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 18:04:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CHU6uIY5+h/7HtTCNkgcRmkF7jgkj7oiOyioiLZhR65QEjlbQO3vGLBwpMOYtmd8cVnLhWz8cai2QqM6fP62KWL3/Abiiiar9WeFwat3uKcfa+I5IffDc8oeL13jkzlNmSdRpMRwvpo0IP7w5B/hrXRnRv9nmYYR1D6j3bCgketWefs/bLWQ0sor97Rf39NxlJJum3xnntBCUqjXNGoZ9OClfGQPiCViwm7cuxCvGFk7AmGUCAn8O8MgMRM+5rwq87SWBtna3Wwfm5O1bKPrg4gHBEK6xBfa7bnjFquAMipxVpBkpPpMvrRyJshPww4xMQlpMc4YZgGT/BrQSX7D7A==
+ b=ojb1idv3mrQKzDph9vrDlZOAi9PZNNdjHCHIGE3KokGq5+bDcWc78GqbRErIBAgHRIfgWt+7fXDsMHe76FvBH17Jim5pBhl5teylqVef7nWcmuGMyc9lvUYocBgRnr3L4SgM0u6lgQlWW9HLJtafab1HNGDeQbEC5cEzr+PuUYeCQo2oxQyXUxReRuqc/PTLXKHxmm6bi1DoTI08IRr8mz6TMU0/eDfSI7qJDjOlrL9UHBd8wnANCwkvXFiIYoijrNCFe/onggNZ7C4ucL5pkjmhGsUbTIMLT2cvcxnc4Eu1qWFmcZA1z/a4CBrgSsh27gb8vGa+xs4lGEktRSks4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rHg4ZdePVhchlAB6zpWsEYGQ41FwO541afzuTS9Fj2o=;
- b=wqF4RPc0BRpGhz5eAQeOoxa7AG2NEEfR0RM2e2Dq/33C0skNmxtnFa9D3NHEUgZfv55hgOFkQRkyRDtbYrRjGIecXQK+DMl0q51g0lV4GejHG+dv3OXftfcgogjUAadc7yWGjnhwGOdyud1sI5JFAGVuLFTrR7Xwk85DUQ1F8N2ltmynQanA/XzhkSY6w4jg2lKZq7wJni8AoSxGDKLgg5P/jNLbf4Y9VoQA2lQUD1FUPHU2XOyKyw6aB3EGXE9aPqKrqWa6zcHWD5D8sMBkv7cbR71vAJ/BS/wFp9zknukVCM3MRCqDBqRJOLJ10wbnG/Wxjpgr+weDEUyTmg22zw==
+ bh=F+qZwbTuWjrfqSRWCfol3ZVhAlyBnvuhRl45bg7plWE=;
+ b=gXZfccCuX+P8QSW0dCUjy6sKQqB+6ZR7gqEumhkl/ADvkAD24oO4MIPO+/SVOl7OombtMFpGUBBcBz3dD+AfATUnGKrIzuQ8JZC8n/6YppaQNxywR6NzzirbWd+M2S3+Lp1tfFIow3iQu9YPQMoFr5/OwKTMkIw4XI3CoTcZShJxzHhZY3zcEHiUxLESJfGyrHfnu/bz/ZvlrCY6Jt0PqxuJOpm236Zk89FB670Fx1xjKgdgVN6OFHvjTHflBw0D0AmR9F02kQB4YQ53molI+WF0EIeGOEvb9z6dNghvUdMRf2Gt3rFK7aQn914ta66tfxRgvuSAkCAR/Kt+whdcew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rHg4ZdePVhchlAB6zpWsEYGQ41FwO541afzuTS9Fj2o=;
- b=SYFwUgJw9q5t6dq7GX09OPmlAeyYLsSUopO7UxSIZC4fU71zXc95xDg5qsVMW35j0ULcNOSkZonl9IGdEAg5PIPG3sRhaDQx4FR9Vfr5qKUuJ0qnXpaH3qQ3JyZ+Myn/ZfpI7mmUPWcOFXZaSBhiDJ/likaU3/jElB17LUXd6u4=
-Received: from CH0PR03CA0190.namprd03.prod.outlook.com (2603:10b6:610:e4::15)
- by CH3PR12MB9080.namprd12.prod.outlook.com (2603:10b6:610:1a7::12)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=F+qZwbTuWjrfqSRWCfol3ZVhAlyBnvuhRl45bg7plWE=;
+ b=d/A6kFPpi6685olQlgLcX60WfsynG/IOK4JvIbqRZlf9yrxZeY6PLXTdLjKy4WZzpvdScm+HlW3ojvMqy+exvcwKPTdYiCIE8nCP7oZQmXMakq7i+fdVnGdlbPUynuEvY1vuo3OKlROiKh3IHxwoXUrv3z3OivhLE7D/rL8+PQY=
+Received: from CH0PR03CA0184.namprd03.prod.outlook.com (2603:10b6:610:e4::9)
+ by SN7PR12MB7106.namprd12.prod.outlook.com (2603:10b6:806:2a1::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.28; Thu, 25 Jul
  2024 18:04:21 +0000
 Received: from CH2PEPF00000142.namprd02.prod.outlook.com
- (2603:10b6:610:e4:cafe::bc) by CH0PR03CA0190.outlook.office365.com
- (2603:10b6:610:e4::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20 via Frontend
+ (2603:10b6:610:e4:cafe::b9) by CH0PR03CA0184.outlook.office365.com
+ (2603:10b6:610:e4::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.28 via Frontend
  Transport; Thu, 25 Jul 2024 18:04:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -50,23 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH2PEPF00000142.mail.protection.outlook.com (10.167.244.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:04:20 +0000
+ 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:04:21 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 25 Jul
- 2024 13:04:12 -0500
+ 2024 13:04:13 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Jun Lei <jun.lei@amd.com>, Rodrigo Siqueira
- <rodrigo.siqueira@amd.com>
-Subject: [PATCH 22/39] drm/amd/display: Use gpuvm_min_page_size_kbytes for
- DML2 surfaces
-Date: Thu, 25 Jul 2024 12:01:06 -0600
-Message-ID: <20240725180309.105968-23-Rodrigo.Siqueira@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Hansen Dsouza
+ <Hansen.Dsouza@amd.com>, Muhammad Ahmed <ahmed.ahmed@amd.com>, "Rodrigo
+ Siqueira" <rodrigo.siqueira@amd.com>
+Subject: [PATCH 23/39] drm/amd/display: Add new enable and disable functions
+ for DCN35
+Date: Thu, 25 Jul 2024 12:01:07 -0600
+Message-ID: <20240725180309.105968-24-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
 References: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
@@ -78,51 +78,51 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|CH3PR12MB9080:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7dc7d7d-34e5-40a0-5f97-08dcacd43595
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000142:EE_|SN7PR12MB7106:EE_
+X-MS-Office365-Filtering-Correlation-Id: b7b9ef51-1346-4e16-6fbb-08dcacd435e6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7n486MJblInL9UhtuTIrZhPVwQ7YdxZNl8oZ+p0dSUTmtXd8FZfAxsyplG5b?=
- =?us-ascii?Q?5drt+UFN0ppMUoJzhzD4epg3aqqc37FeQg9rGOWLbOeVtqu9ykgogB4+02Bm?=
- =?us-ascii?Q?5ttuO8blH0AT+shhsiui+Fd4f2ipDmk+MMbsAx7kcQUvq4XYqyqtXx0hxqck?=
- =?us-ascii?Q?EPHZdZhMEjacpjjMshHxsPcL1O+NDsrrswWvGaG9l/OCuDY6v/C0EwL3nHYk?=
- =?us-ascii?Q?b0k3pZtC2P8Ilmi8+plYzSRDn4skVOx7tvksyBaLEjgfc2tiWblWH+YDrRB7?=
- =?us-ascii?Q?MoFcJf85cs98abU4Jf7CJ5Xi4v6xb0sbfjqSVjjJUgJXSbfkv32Y0EiqZBV+?=
- =?us-ascii?Q?r6yIvU2rqRvBbmU/8zeqeMZYqGcbskvHdC+kcnDZl2lazHU9eLPHbE8Kf274?=
- =?us-ascii?Q?svzU9HoTWSmffahc4hEAcAE+cBvSdSqoUn+Q8zaw5eRgaTygkOG45POJiUxT?=
- =?us-ascii?Q?9JPuqGZbKn0vhY3sRIpbmUY5EeXsHEsZo6AFoaj7gQQfufaGF2+zsB5lQGnM?=
- =?us-ascii?Q?RHRySSRbQMOZ+fbtFBfVl7j8li3B4emUrl6+ZIivmd4f0A/UU14YlQziEYno?=
- =?us-ascii?Q?Pi7No20LcVCBN1oJpc1RnjTC6eUhWH7QOrZ4IfNdyMis5d9HHRVcMgHzqfE4?=
- =?us-ascii?Q?z1ff0KiBmohWACR9HW8R1j+jvOIeVLmXBBFe4t6vrLHDp0CWLTiAKnAq0ziX?=
- =?us-ascii?Q?K/xI9WHRQXQgAsdYhFCTycRntxActRH+77qm48SJ1aLkUQG7I4wTNcRQ7Iy5?=
- =?us-ascii?Q?tS2RWgjAFrpjgGtW3TRSYPurjCoGUVZiGiFgVQlKmvpFiVxJ3vdvpGg8xGbC?=
- =?us-ascii?Q?IGLyhDc0RZTfwt+4QpGqrp+FiOxXVgDWSUJXgt97+LTFnFn4Ip4xCgHYoRvu?=
- =?us-ascii?Q?bfSMY4VHHVMiroBqHqlhvAwzI8MjV3ZHLTXwFad83sxduP2ctZrvg4l6oO5r?=
- =?us-ascii?Q?6wMzCWXGcTBaDWDBel+/pXCKAN7ZG9Vqzg97elrX26KmNrdnOKvkuGW4sc10?=
- =?us-ascii?Q?ar3ZeZZcP6ChQI4DOTT5GXadAegtTS9WGzy4f8Jc3TAOahAWd9AsDX9X+r5/?=
- =?us-ascii?Q?oPm3oB+GIHKgk44LWPQesfnicHsgX+4RMl01wqGyuzh6s2qIgL4fzBUSkfmn?=
- =?us-ascii?Q?YH6NNrAPUSAoF+cbq0RtZUXsCfh2R5ys9JRbAqnlNNYgrsbyL4Nlbx6d1qrS?=
- =?us-ascii?Q?BF7JX4ZNvBaSns2Oysu+LICfNEXrfd1+RLUyG/YD2DQ7KWVv1TW0oW2KtoqT?=
- =?us-ascii?Q?EZdxwua5GIPDiJxH2DAg5ds/p8kQWi/eaRrP5hSITgyNvTVHmLzX6RYSaS95?=
- =?us-ascii?Q?xjxyEWKvmBz3pqvz18oh/bB9Fg5OVUE+GVFUQM/gkq0WUCNYFnwSOs3lD5AL?=
- =?us-ascii?Q?uKP7Ly579O9KkEwz6WJiLfUGgpr1aLqRKUP3pnO/BNVirnVRegpdQ8/6J7qj?=
- =?us-ascii?Q?XlvyrDDiDOglwvEWeokhCmf33JsuVnA3?=
+ ARA:13230040|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uiVwdzfe8YooujrJVRojJ4TpbTSuF35eKy5AcAWVWr/NC8lWNdqwyPf5TOZz?=
+ =?us-ascii?Q?KxVzU0c12n1101xl5pFbUQJTlOWwMvS7v2+i7XeOiVpeuiGRNW/obmU84wST?=
+ =?us-ascii?Q?h9CdygCHvWq1DIvEdghp9R+f8DVvNJPeeWIteFF11KuxJIKMOk1uSMoy0CsU?=
+ =?us-ascii?Q?OV3WBvfuJaRQQsY/cXaL9Yei2SpT8VsZytQiyvzbzLhG8YGH5oz5b1XrwISq?=
+ =?us-ascii?Q?IgmXOD+Yu/Mz4uE2nSeL7rxTJo0pP2UGO9BW812KeTi4wjd+7G6qmaQOsuJM?=
+ =?us-ascii?Q?i1L3vIo46oU5t3KzixvnAa2JksPLN9nT7eT85QXVCQI10eiSi0/FG7dlO3S4?=
+ =?us-ascii?Q?hmoGlGKBQIOxLl+ezrwiPdXSKfGraSoTaMHNwGVdh91QMmKyy8t3y260n3lZ?=
+ =?us-ascii?Q?LdR59Zyen5C3fweVxa2UAa9EzgHIpqLHKgSsOi7oaVAbBvV1ac/M8Oj8ArM0?=
+ =?us-ascii?Q?Ag546/41bpcL/YKany7bcEv7N2qvbCysIEcrlIB/0yIFfErdlSE2e+eNO7UD?=
+ =?us-ascii?Q?FqPWxMRMw8Z7U4B/pj4RONgocZbHmf/3OtdtX6zwvx4RUJlXaTYMhaeQ8D8s?=
+ =?us-ascii?Q?4jj5WJqF1t3QM7kd42whbw0XyAaUf57dimqof9ZuDPMDslHaiyf8eiGA2Kbt?=
+ =?us-ascii?Q?IT8OT3RljPr4RpnIfraZd1wTknegmN2Uu3hNoHZyTyxFyBdbYAiJYuJP+571?=
+ =?us-ascii?Q?BoVRzK/qYcbyMf5Lrr0QiLSCWOnQriSX6hOljNXwrunqsntQYLrOruhiYiWS?=
+ =?us-ascii?Q?dndd1PI9hKaolHsovoG5KENMhTMno4DtB0nHetJ9suhHLhYh0Hh0Dm/Na9Lq?=
+ =?us-ascii?Q?L8N0ll+y6L7AT06sBQxH6I5U8FeNjdQRhXN7sMH2RXv8rx9QvAHon5XCJODq?=
+ =?us-ascii?Q?dwItvxSoYckNmI84J7kqaa09WZkrO5Qb3W2a6pdWzdvT2snLPaM3mzFb+S/z?=
+ =?us-ascii?Q?pIDiUYLSlXuUeCH6Dz/InDP4uElqRiCFk8ver7ZtNuPLKBWeiRaIkuFfqjzn?=
+ =?us-ascii?Q?ThwU3SKoTJLmTb6BKUOIP6tDnz79mlsLsXJbOTiYtCIGykzuJ3UdaUJ8JIg3?=
+ =?us-ascii?Q?PyT02aLojHnaPK0omEV7O3GPzd3uYC6ku4EjHDPWCYjbIJOQhgbNWawnsRuz?=
+ =?us-ascii?Q?XXxIu4FoBHStEm2CkAcg7TFVUNxygWKGRjq9Qkx6WAoDqiuH8nWeh/92qrCR?=
+ =?us-ascii?Q?2Trm+7BjukHCxUmtpLVJ2gi/bEHMTyVs52RaTB1D8TrA5Qyw1yWLg49pW56k?=
+ =?us-ascii?Q?nUGKhO+1ebZAscWCVsQMcyRoID/+tBCrH5R0MUOOh6i7vHn9Sv7pw8rGCUQB?=
+ =?us-ascii?Q?U2gMP7432h/UThcBPEJoN9D6Eh7IAWzUjsK9PngyrbqcZvNL1Tpc24eZ4oAi?=
+ =?us-ascii?Q?gIcH7QK6KzWeMEg+9UtDsK63uz7vaYsxDiMDs01LEF9/bqAnFe5Xkdr2P5KO?=
+ =?us-ascii?Q?GsFF/tzjCq1r7Y9JbJzJUykmM27hTh17?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:04:20.9137 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7dc7d7d-34e5-40a0-5f97-08dcacd43595
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:04:21.5075 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7b9ef51-1346-4e16-6fbb-08dcacd435e6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000142.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9080
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7106
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,89 +137,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Hansen Dsouza <Hansen.Dsouza@amd.com>
 
-[Why]
-It's currently hard coded to 256 when it should be using the SOC
-provided values. This can result in corruption with linear surfaces
-where we prefetch more PTE than the buffer can hold.
+Add new enable and disable functions based on DCCG spec.
 
-[How]
-Update the min page size correctly for the plane.
-
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Jun Lei <jun.lei@amd.com>
+Signed-off-by: Hansen Dsouza <Hansen.Dsouza@amd.com>
+Reviewed-by: Muhammad Ahmed <ahmed.ahmed@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- .../display/dc/dml2/dml2_translation_helper.c | 20 +++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ .../amd/display/dc/dccg/dcn35/dcn35_dccg.c    | 54 ++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-index 25d4ef040173..7e39873832bf 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_translation_helper.c
-@@ -954,7 +954,9 @@ static void get_scaler_data_for_plane(const struct dc_plane_state *in, struct dc
- 	memcpy(out, &temp_pipe->plane_res.scl_data, sizeof(*out));
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
+index 7d88b0ae241c..bd3757de51c9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
+@@ -932,6 +932,53 @@ static void dccg35_disable_dpp_new(
+ 	dccg35_set_dppclk_rcg(dccg, inst, true);
  }
  
--static void populate_dummy_dml_plane_cfg(struct dml_plane_cfg_st *out, unsigned int location, const struct dc_stream_state *in)
-+static void populate_dummy_dml_plane_cfg(struct dml_plane_cfg_st *out, unsigned int location,
-+					 const struct dc_stream_state *in,
-+					 const struct soc_bounding_box_st *soc)
++static void dccg35_disable_dscclk_new(struct dccg *dccg,
++									  int inst)
++{
++	dccg35_set_dsc_clk_src_new(dccg, inst, DSC_CLK_REF_CLK);
++	dccg35_set_dsc_clk_rcg(dccg, inst, true);
++}
++
++static void dccg35_enable_dscclk_new(struct dccg *dccg,
++									 int inst,
++									 enum dsc_clk_source src)
++{
++	dccg35_set_dsc_clk_rcg(dccg, inst, false);
++	dccg35_set_dsc_clk_src_new(dccg, inst, src);
++}
++
++static void dccg35_enable_dtbclk_p_new(struct dccg *dccg,
++									   enum dtbclk_source src,
++									   int inst)
++{
++	dccg35_set_dtbclk_p_rcg(dccg, inst, false);
++	dccg35_set_dtbclk_p_src_new(dccg, src, inst);
++}
++
++static void dccg35_disable_dtbclk_p_new(struct dccg *dccg,
++										enum dtbclk_source src,
++										int inst)
++{
++	dccg35_set_dtbclk_p_src_new(dccg, DTBCLK_REFCLK, inst);
++	dccg35_set_dtbclk_p_rcg(dccg, inst, true);
++}
++
++static void dccg35_enable_dpstreamclk_new(struct dccg *dccg,
++										  enum dtbclk_source src,
++										  int inst)
++{
++	dccg35_set_dpstreamclk_src_new(dccg, DP_STREAM_REFCLK, inst);
++	dccg35_set_dpstreamclk_rcg(dccg, inst, true);
++}
++
++static void dccg35_disable_dpstreamclk_new(struct dccg *dccg,
++										   enum dtbclk_source src,
++										   int inst)
++{
++	dccg35_set_dpstreamclk_rcg(dccg, inst, false);
++	dccg35_set_dtbclk_p_src_new(dccg, src, inst);
++}
++
+ static void dccg35_trigger_dio_fifo_resync(struct dccg *dccg)
  {
- 	dml_uint_t width, height;
- 
-@@ -971,7 +973,7 @@ static void populate_dummy_dml_plane_cfg(struct dml_plane_cfg_st *out, unsigned
- 	out->CursorBPP[location] = dml_cur_32bit;
- 	out->CursorWidth[location] = 256;
- 
--	out->GPUVMMinPageSizeKBytes[location] = 256;
-+	out->GPUVMMinPageSizeKBytes[location] = soc->gpuvm_min_page_size_kbytes;
- 
- 	out->ViewportWidth[location] = width;
- 	out->ViewportHeight[location] = height;
-@@ -1008,7 +1010,9 @@ static void populate_dummy_dml_plane_cfg(struct dml_plane_cfg_st *out, unsigned
- 	out->ScalerEnabled[location] = false;
- }
- 
--static void populate_dml_plane_cfg_from_plane_state(struct dml_plane_cfg_st *out, unsigned int location, const struct dc_plane_state *in, struct dc_state *context)
-+static void populate_dml_plane_cfg_from_plane_state(struct dml_plane_cfg_st *out, unsigned int location,
-+						    const struct dc_plane_state *in, struct dc_state *context,
-+						    const struct soc_bounding_box_st *soc)
- {
- 	struct scaler_data *scaler_data = kzalloc(sizeof(*scaler_data), GFP_KERNEL);
- 	if (!scaler_data)
-@@ -1019,7 +1023,7 @@ static void populate_dml_plane_cfg_from_plane_state(struct dml_plane_cfg_st *out
- 	out->CursorBPP[location] = dml_cur_32bit;
- 	out->CursorWidth[location] = 256;
- 
--	out->GPUVMMinPageSizeKBytes[location] = 256;
-+	out->GPUVMMinPageSizeKBytes[location] = soc->gpuvm_min_page_size_kbytes;
- 
- 	out->ViewportWidth[location] = scaler_data->viewport.width;
- 	out->ViewportHeight[location] = scaler_data->viewport.height;
-@@ -1332,7 +1336,8 @@ void map_dc_state_into_dml_display_cfg(struct dml2_context *dml2, struct dc_stat
- 			disp_cfg_plane_location = dml_dispcfg->num_surfaces++;
- 
- 			populate_dummy_dml_surface_cfg(&dml_dispcfg->surface, disp_cfg_plane_location, context->streams[i]);
--			populate_dummy_dml_plane_cfg(&dml_dispcfg->plane, disp_cfg_plane_location, context->streams[i]);
-+			populate_dummy_dml_plane_cfg(&dml_dispcfg->plane, disp_cfg_plane_location,
-+						     context->streams[i], &dml2->v20.dml_core_ctx.soc);
- 
- 			dml_dispcfg->plane.BlendingAndTiming[disp_cfg_plane_location] = disp_cfg_stream_location;
- 
-@@ -1348,7 +1353,10 @@ void map_dc_state_into_dml_display_cfg(struct dml2_context *dml2, struct dc_stat
- 				ASSERT(disp_cfg_plane_location >= 0 && disp_cfg_plane_location <= __DML2_WRAPPER_MAX_STREAMS_PLANES__);
- 
- 				populate_dml_surface_cfg_from_plane_state(dml2->v20.dml_core_ctx.project, &dml_dispcfg->surface, disp_cfg_plane_location, context->stream_status[i].plane_states[j]);
--				populate_dml_plane_cfg_from_plane_state(&dml_dispcfg->plane, disp_cfg_plane_location, context->stream_status[i].plane_states[j], context);
-+				populate_dml_plane_cfg_from_plane_state(
-+					&dml_dispcfg->plane, disp_cfg_plane_location,
-+					context->stream_status[i].plane_states[j], context,
-+					&dml2->v20.dml_core_ctx.soc);
- 
- 				if (stream_mall_type == SUBVP_MAIN) {
- 					dml_dispcfg->plane.UseMALLForPStateChange[disp_cfg_plane_location] = dml_use_mall_pstate_change_sub_viewport;
+ 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
+@@ -1965,7 +2012,12 @@ struct dccg *dccg35_create(
+ 	(void)&dccg35_disable_symclk32_le_new;
+ 	(void)&dccg35_enable_dpp_new;
+ 	(void)&dccg35_disable_dpp_new;
+-
++	(void)&dccg35_disable_dscclk_new;
++	(void)&dccg35_enable_dscclk_new;
++	(void)&dccg35_enable_dtbclk_p_new;
++	(void)&dccg35_disable_dtbclk_p_new;
++	(void)&dccg35_enable_dpstreamclk_new;
++	(void)&dccg35_disable_dpstreamclk_new;
+ 	base = &dccg_dcn->base;
+ 	base->ctx = ctx;
+ 	base->funcs = &dccg35_funcs;
 -- 
 2.43.0
 
