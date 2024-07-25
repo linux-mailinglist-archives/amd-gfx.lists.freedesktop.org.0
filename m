@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295CE93C7FF
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A10093C800
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 20:04:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3B7310E8A7;
-	Thu, 25 Jul 2024 18:04:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8A0210E8A9;
+	Thu, 25 Jul 2024 18:04:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WPrLkZF+";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="X7ErdVWi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0619110E8A5
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 18:04:03 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2081.outbound.protection.outlook.com [40.107.96.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2DF910E89B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 18:04:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NLiNTT49dH6WVTY8jK4Pxp20xGvgYYip9JqbsWQ6+H6Rx+BolhfiCTCZYPLjntpavG4DYRAnP5vTAYY+PLZZpYbyPqLWJWhnvA+Ag4DHkZn/xL+ud8rmBdIKsM94z47ZUrvS3XE3GakyL/DKrEoPtK0p1xYXVBJAkOWKWUpyi0aEmiXbhngs0XSqDzyYuKKFEECmB+zLGEuXVjffGeFFwZscYx5zkzRf0QWa1pMw3rvtWmry3Tf36enHvUbqFf23gXZu70H3S8/pbmx6eE8KZ8ki3cMIZSYwu/ealakik+3lK2lgBmH8V1GuDiEMwCaQsFtBGTZZVY/3H2ELphZnyw==
+ b=CtrfxXWsB04HshZ2oNX+VhLAs6fmLsROYySpC5KL8j3pjHRmLPmHqFCageSnoKHj7Dai9MWy/WbfMIESTq4GQ6LBwzJJ5dmk/VuC+o/i8xKyrMI+eoBnezE4MeEJtWAZsGocojbRZWRbXlRckBABB7j0WbQeQ6l+kZFLwZe0wgJvZnD1FN3QBbyVp29JL/na/dAsZhKcQ/57mWyU1lE96VM8PCDUUbvkXLZUirIviE+IKp4w9ueX6Tzci/C7Yf4k5bCa4FnbV8IXje/ZvB00pXbDsRa6tdPQC8nb4XziwY+vR/cG1wpA/NLBERb0l+p47nphQRCGTLXeNFdXla5I2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NzT6tHg65HWm6SYpIjKhRhpxiCbbZWF+hzVWMNettB8=;
- b=KbgH7Hisy95D/SdFHOUTzaoThdPkBex1RqbPSewZDDtGa8CTPjIDH6qhylLznj6NFRiKlu/28nBTZ/3n5+3hqF15r5PIxhud2nXiV3N//g8b1RwEy182wTEVE3KHZh6L1SuNA+4OPNR9D5TBx9DPjTINZHIDTBjGW0rFVoBqUuRjZ82xXAX4Ga1mNgPsZ/QsHXR/nNDykoabs+Xfw/hxKHt67yHz2gxiu9mq2F7SZcY9jdS1pCbG/58COxotAO8xxTZ8pUV+5KcXC8YdeCJSr12YmMTbvkzvjryhxsoQTk3zVy3OR2qHjxueQHNgLarXhjSus7renSvnlzFTmcNnrA==
+ bh=oE2tIu/F6k2NfTpj7J2Wb7mDrBTMXl81j3Qf5TdZWMo=;
+ b=XbWHVOq2wzltgEbxxPpGpHJvq2ZWZNx+uLNlQSvwfy9GncRNzY8jL5kpXGrYpls4r/u9PoMiyxpMgFQTjl6hoY3Ma7Bn1+iaW/fcxE+NQIWivX/jUxe08+eRk5Ucmns7jq0xghEmgnp/p6dqt2wyyjz/aG+QOVoSgu3tY+46ZUkCDVCgINMfuXgJLb5YtFFQ2RHgW9sTZolPwMdQkf7gUSPLtgbTn/p0gQ8S2FrXVae6DAfLTQcwLncas5EvJQesvSOCkY1zo804BwkRXcVLt33Whewc+D2rJtkJLpgQ+uCG8DIIA8hoh87VYNL93uFuhxhdbv/x94MaLHUS+gi8eQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NzT6tHg65HWm6SYpIjKhRhpxiCbbZWF+hzVWMNettB8=;
- b=WPrLkZF+uIBKpbIrXLuqz5qP7whtf1FLqe7ZxIvhkVN5kWl61od7ewM1xgNIhNd9BV/ulHCQdHQuCgvg1g+kHHdtXaJCPjyiNOEvYpULzyi7S3gsWawfcujTV5R6YB2jxmwa2bo1qMKMnSRQeEa4LbTVaEgYGb4EZXDWY28l7do=
-Received: from CH2PR10CA0006.namprd10.prod.outlook.com (2603:10b6:610:4c::16)
- by DS0PR12MB8296.namprd12.prod.outlook.com (2603:10b6:8:f7::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7784.28; Thu, 25 Jul 2024 18:04:00 +0000
-Received: from CH2PEPF0000013D.namprd02.prod.outlook.com
- (2603:10b6:610:4c:cafe::b5) by CH2PR10CA0006.outlook.office365.com
- (2603:10b6:610:4c::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29 via Frontend
- Transport; Thu, 25 Jul 2024 18:04:00 +0000
+ bh=oE2tIu/F6k2NfTpj7J2Wb7mDrBTMXl81j3Qf5TdZWMo=;
+ b=X7ErdVWiSFZSL2NJXHrDswj5VIc51a6Ehq1hXyIn51YiYOouRVIii2ITd36Z4G6ZgZXIRKpJUsRxQfvQlJJZTcbzQ839DGjipEDshqo0B0SbqKQi9uU2vyZQ21laCarXLXvM0RqaHtNRFqnSUaE0sEPl3o49FuP+crRZ2AXrUTQ=
+Received: from CH2PR18CA0023.namprd18.prod.outlook.com (2603:10b6:610:4f::33)
+ by IA0PR12MB7723.namprd12.prod.outlook.com (2603:10b6:208:431::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.19; Thu, 25 Jul
+ 2024 18:04:02 +0000
+Received: from CH2PEPF0000013B.namprd02.prod.outlook.com
+ (2603:10b6:610:4f:cafe::3f) by CH2PR18CA0023.outlook.office365.com
+ (2603:10b6:610:4f::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29 via Frontend
+ Transport; Thu, 25 Jul 2024 18:04:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,23 +48,25 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH2PEPF0000013D.mail.protection.outlook.com (10.167.244.69) with Microsoft
+ CH2PEPF0000013B.mail.protection.outlook.com (10.167.244.68) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:04:00 +0000
+ 15.20.7784.11 via Frontend Transport; Thu, 25 Jul 2024 18:04:02 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 25 Jul
- 2024 13:03:57 -0500
+ 2024 13:03:59 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Sun peng Li
- <sunpeng.li@amd.com>, Rodrigo Siqueira <rodrigo.siqueira@amd.com>
-Subject: [PATCH 14/39] drm/amd/display: Reset VRR config during resume
-Date: Thu, 25 Jul 2024 12:00:58 -0600
-Message-ID: <20240725180309.105968-15-Rodrigo.Siqueira@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Nicholas Kazlauskas
+ <nicholas.kazlauskas@amd.com>, Duncan Ma <duncan.ma@amd.com>, "Rodrigo
+ Siqueira" <rodrigo.siqueira@amd.com>
+Subject: [PATCH 15/39] drm/amd/display: Add seamless boot support for more DIG
+ operation modes
+Date: Thu, 25 Jul 2024 12:00:59 -0600
+Message-ID: <20240725180309.105968-16-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
 References: <20240725180309.105968-1-Rodrigo.Siqueira@amd.com>
@@ -76,51 +78,51 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013D:EE_|DS0PR12MB8296:EE_
-X-MS-Office365-Filtering-Correlation-Id: c411becb-7492-480a-737c-08dcacd42979
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013B:EE_|IA0PR12MB7723:EE_
+X-MS-Office365-Filtering-Correlation-Id: 78072d41-23f5-4b86-c1a1-08dcacd42a74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?w3zoUb3k9swBol5ruW1w9aYViyRaVC4t/wrZjWtrWrjOjFyt7FknUPQFIHOZ?=
- =?us-ascii?Q?jTpYMkR7wVtojpn/EFlbcL60vONdpgby3WKFC+DC65ed7p8soxXtUV1eX/gQ?=
- =?us-ascii?Q?3389tt8rJXV4vdSgrS8IxG5+OA+Ay42/wBR8HTkI75uys1BzIWFfu1qeEUKl?=
- =?us-ascii?Q?fmhvr4T6e3y+eLab6RLblhEv/MRoGN8v7OjoDLkD/u3dVlutEO5pnK79h48A?=
- =?us-ascii?Q?+SeZg6Gw1XMgxbKOd1h3oy2Nd39pEO/fv8t4ftNGrJ7YtokFVygK0JCSM9ox?=
- =?us-ascii?Q?So6Fxz3Kki5NOu5HFFcoswAt5xSai8orA45oxJe5bN+P9LN0I2xZ/z3ysWGI?=
- =?us-ascii?Q?NcVqIwqEZC+pJjwgwgQufNLWdpPHwB1YgbeADSZ5orxRQjfcbnvucKEnR5sX?=
- =?us-ascii?Q?Fd1RPGN7VS6ph9NvKaaseo2zoAsGfI0yU3NKD2WR9PvuDkq3Tqn28IfphXd7?=
- =?us-ascii?Q?5zF7DRyKBOvijWhV692QVlSvBDGoF/ZmwCwx9k1EfEhQA8aXvx1XBmUutBuR?=
- =?us-ascii?Q?ZYJzoM3dBOdYlYY44WQ5IWN60wdikz3sJxQ2uxq3A7kJ7OWs0m5GF3bMTDWt?=
- =?us-ascii?Q?gdxlMtUjrNPMHFqeQCknKDp8YB8baQMPcovF1K8brnh9tjdZTZc4R+bqk7Ev?=
- =?us-ascii?Q?jqPJp1SBhulNk8t9YOy7flmt1NbU1EZTQfcaN9ovyEEmBB+v9wdsZVSJxRab?=
- =?us-ascii?Q?adGGrT/w+borxCDEpnE8+aZIMLYhhXaW3l96LraFawXm25x4KpnzscObXkr7?=
- =?us-ascii?Q?0seWkaunS3nItcI9Kmpfgr1IxUWWh4sykagjUspwO+wvlUolTMlWQ2QaZfg4?=
- =?us-ascii?Q?AC26B1HBiaq3yzQekKSncVpDQAKsetHMOhkm4kui0mvC4huTg2U9yi5Wzht0?=
- =?us-ascii?Q?ldH5+t8D4Rmbb+I6S6UOCY0no9Ucavod4lPJXLPuFkUMb1J262seufcdz0fU?=
- =?us-ascii?Q?EFBTf12ePwYR6MX/Ovir0QZl1SWASgEs48pwSwDkANe+nnxPL9CyCdlCdO4T?=
- =?us-ascii?Q?gAd9aQiCS4atL4haYx5tg5UxHKdvwDiaOMekgH+h+triqWLtHe/+l2+rJ3D4?=
- =?us-ascii?Q?3o9ij0WxskQdEw2sJPv7gU+ToaFqUUxEjSAN/Zdj0LYVnP8a0QSrjTJp3s8w?=
- =?us-ascii?Q?RRnODWJm4CsSz/X8P8cJRfgrbQiXNch5n7mHV6i+5jZ/8f9bZkcrgq1dZv7t?=
- =?us-ascii?Q?Juqa5/fu4ZhGiTdZRESVCJfmPCRVzqAD0LY/FAEJZFXe4fv1+rI64a5qNxwT?=
- =?us-ascii?Q?ooml546umbL2tDuqiClrWKZZfLnRrbwxKXJDe23nPKxS+rjKKPk4NNcdKBRC?=
- =?us-ascii?Q?bsLDQSv2FobvSyFpXkpu2bXk44VnT4Yzr9tOrvVNPC/n+HWaEPxQE2VNsvuw?=
- =?us-ascii?Q?r/oNVZEylFTP5sK2DryzgpqBQawbaaw3/YMRdRRpvxNOh7sjR2GMLXJPkDBT?=
- =?us-ascii?Q?1iMapOCgW7wZqt1e+cHycH8A2vIvkbP8?=
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?d5cJvVP/yH21Bs5GJhd3tn3wQhajDTx/WU5DHWCYXVr7yMLCyxjQwWO1d7py?=
+ =?us-ascii?Q?O6dUpLg/JCRnM6b/lN78x43svQCA/nLbhxWNz8KxKgOBwUVIA/i20lrY42OG?=
+ =?us-ascii?Q?gP+G85tVRjLNc9q79qOsyMh8N0i1g6Ih7gqCAMR1An8pZ45kGM9KoULXnhQB?=
+ =?us-ascii?Q?z+hBNF3NpshvNJtFQG4+ipqENk0yGnwR/+8fhlVxJgZb5J5jLrQteUtAXK1r?=
+ =?us-ascii?Q?EXWrOYNbZ2Wtfppt4QaGbqqo9g2q60fE82EeZOvlJR+BIkMno7C1C7t1Xwkv?=
+ =?us-ascii?Q?BZaeaubYYvIvbxyojNJBV4FzohquJRTloSByvTNP341ruUk/W29NsNVyHQjZ?=
+ =?us-ascii?Q?Z/q/4Vv6QFAGbyXzpmkGYs4K8DOJTxt84/0+rK87dwkBDAAIaufq5+nPBL5O?=
+ =?us-ascii?Q?D9JR8uPWVcoeFdI51u9xHZ38e9B3DfpU7+taSBtAgjPAAsPoq5nMSYG0u1oq?=
+ =?us-ascii?Q?8KmKSG2QHmpcOiu4VWyM0DGhjuTx8kDgAy3o6TNujIGwTLqXj50T1QuhWFiQ?=
+ =?us-ascii?Q?DIqXe+1YIPExz0baNAYAO37mMhyqk5XplWbNgPk0n6o0xXh7GQmUttZ3DT5e?=
+ =?us-ascii?Q?TxCBWz0N6VZMxiC0Qgz/XJksujOB01InuIZalKQ+PZYzxk8uAxdrRHcMPb/q?=
+ =?us-ascii?Q?CKMZgB+7/TThfyYAax6ALci5ulY1JckNS+s9N7D6bXs8LLiKLbFVOqweT1iM?=
+ =?us-ascii?Q?u/FG+D0SjQrFSFlafMgcF+fGvs8dT+22mmQnv1Ua54rfw7qDy0pWm8eYEha3?=
+ =?us-ascii?Q?ANKgFKrwaTrV5kyeyttt+DMJxLCY4nuS3xazk1rdGpPNdFxGzQZ3bWm68o/m?=
+ =?us-ascii?Q?qiNnvs2d+zwN5LC4gkuvU7msM4lVKDkQ+2exaEBgkXvQXDsqqzDReOKh8rem?=
+ =?us-ascii?Q?hbdqX4d48H4dFRVDd8mO5aqFJzwpoKB0sO+5li6Td6YAzEpryaoJSqsJmpo0?=
+ =?us-ascii?Q?x3FfnABHtQ1/6Tq4kCBRjJrx/04J6VkQgUHcgq+u4MxMoBiFJGTAfiu0LWIL?=
+ =?us-ascii?Q?JbFFjhz/MAMfKiTFApBCsL7g5z702my+8TvzcipIAF9c3ibOnZb4SSAdqNP+?=
+ =?us-ascii?Q?j5I+Ouj9nmj/zHUYyEQeXUyPTsiwbgVOObrqyqKBUTr4ZHnnIpGJ81flfyGu?=
+ =?us-ascii?Q?QDsHFIGxgvCnAgpdRiDWsRfY7F3EBTn7bmXvVmb/Ki5+SmrsQvIjjuQK0B5p?=
+ =?us-ascii?Q?/7cZJ+lM3A5dJc8zwHfciNxPXOyAr703a24wQ+EK41pytSfj+bnSlqOsMyDb?=
+ =?us-ascii?Q?2a8U5xWMmtrvFYSoc9ur/oF96VTPfbfjZgxni+XtSMgjhWTnf84V26DhxE+g?=
+ =?us-ascii?Q?ZnTHWuFpEX72F+RRHbMNxj8103ZAioYWoePk4DY7UY9hJIJ3YW4iG24Wdu7v?=
+ =?us-ascii?Q?a1RRKv2g9bRd6ONhcCDGnCxBN9ecAv8NZB1au2d0xlVM/CIRRnV5OOWav/6N?=
+ =?us-ascii?Q?zNtebCff9mDYsIAk1vuCyiwJuuABvUkQ?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:04:00.5824 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c411becb-7492-480a-737c-08dcacd42979
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 18:04:02.2763 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78072d41-23f5-4b86-c1a1-08dcacd42a74
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8296
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7723
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,52 +137,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tom Chung <chiahsuan.chung@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-After resume the system, the new_crtc_state->vrr_infopacket does not
-synchronize with the current state.  It will affect the
-update_freesync_state_on_stream() does not update the state correctly.
+When pre-OS firmware enables display support for displays that operate
+the DIG in 2 pixels per cycle processing modes the inferred pixel rate
+from get_pixel_clk_frequency_100hz does not account for the true pixel
+rate since we're outputting 2 per cycle past the stream encoder.
 
-The previous patch causes a PSR SU regression that cannot let panel go
-into self-refresh mode.
+This causes seamless boot validation to abort early.
 
 [How]
-Reset the VRR config during resume to force update the VRR config later.
+Add a new stream encoder function for getting pixels per cycle from the
+stream encoder. If the pixels per cycle is greater than 1 and the driver
+policy is to enable 2 pixels per cycle for post-OS then allow seamless
+boot to continue.
 
-Fixes: f8ebe6341a6a ("drm/amd/display: Reset freesync config before update new state")
-Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
-Reviewed-by: Sun peng Li <sunpeng.li@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Duncan Ma <duncan.ma@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 12 ++++++++++--
+ .../dc/dio/dcn35/dcn35_dio_stream_encoder.c   | 19 +++++++++++++++++++
+ .../amd/display/dc/inc/hw/stream_encoder.h    |  1 +
+ 3 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f2d5a180f293..293f93d1976c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -176,6 +176,7 @@ MODULE_FIRMWARE(FIRMWARE_DCN_401_DMUB);
- static int amdgpu_dm_init(struct amdgpu_device *adev);
- static void amdgpu_dm_fini(struct amdgpu_device *adev);
- static bool is_freesync_video_mode(const struct drm_display_mode *mode, struct amdgpu_dm_connector *aconnector);
-+static void reset_freesync_config_for_crtc(struct dm_crtc_state *new_crtc_state);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index ed811352506e..143415d600ac 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1823,10 +1823,18 @@ bool dc_validate_boot_timing(const struct dc *dc,
+ 			tg->funcs->get_optc_source(tg,
+ 						&numOdmPipes, &id_src[0], &id_src[1]);
  
- static enum drm_mode_subconnector get_subconnector_type(struct dc_link *link)
- {
-@@ -3213,8 +3214,11 @@ static int dm_resume(void *handle)
- 	drm_connector_list_iter_end(&iter);
+-		if (numOdmPipes == 2)
++		if (numOdmPipes == 2) {
+ 			pix_clk_100hz *= 2;
+-		if (numOdmPipes == 4)
++		} else if (numOdmPipes == 4) {
+ 			pix_clk_100hz *= 4;
++		} else if (se && se->funcs->get_pixels_per_cycle) {
++			uint32_t pixels_per_cycle = se->funcs->get_pixels_per_cycle(se);
++
++			if (pixels_per_cycle != 1 && !dc->debug.enable_dp_dig_pixel_rate_div_policy)
++				return false;
++
++			pix_clk_100hz *= pixels_per_cycle;
++		}
  
- 	/* Force mode set in atomic commit */
--	for_each_new_crtc_in_state(dm->cached_state, crtc, new_crtc_state, i)
-+	for_each_new_crtc_in_state(dm->cached_state, crtc, new_crtc_state, i) {
- 		new_crtc_state->active_changed = true;
-+		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
-+		reset_freesync_config_for_crtc(dm_new_crtc_state);
+ 		// Note: In rare cases, HW pixclk may differ from crtc's pixclk
+ 		// slightly due to rounding issues in 10 kHz units.
+diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+index 19e50fbf908d..6ab2a218b769 100644
+--- a/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dio/dcn35/dcn35_dio_stream_encoder.c
+@@ -422,6 +422,24 @@ void enc35_enable_fifo(struct stream_encoder *enc)
+ 	REG_UPDATE(DIG_FIFO_CTRL0, DIG_FIFO_ENABLE, 1);
+ }
+ 
++static uint32_t enc35_get_pixels_per_cycle(struct stream_encoder *enc)
++{
++	struct dcn10_stream_encoder *enc1 = DCN10STRENC_FROM_STRENC(enc);
++	uint32_t value;
++
++	REG_GET(DIG_FIFO_CTRL0, DIG_FIFO_OUTPUT_PIXEL_MODE, &value);
++
++	switch (value) {
++	case 0:
++		return 1;
++	case 1:
++		return 2;
++	default:
++		ASSERT_CRITICAL(false);
++		return 1;
 +	}
++}
++
+ static const struct stream_encoder_funcs dcn35_str_enc_funcs = {
+ 	.dp_set_odm_combine =
+ 		enc314_dp_set_odm_combine,
+@@ -474,6 +492,7 @@ static const struct stream_encoder_funcs dcn35_str_enc_funcs = {
+ 	.disable_fifo = enc35_disable_fifo,
+ 	.is_fifo_enabled = enc35_is_fifo_enabled,
+ 	.map_stream_to_link = enc35_stream_encoder_map_to_link,
++	.get_pixels_per_cycle = enc35_get_pixels_per_cycle,
+ };
  
- 	/*
- 	 * atomic_check is expected to create the dc states. We need to release
+ void dcn35_dio_stream_encoder_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+index 6fe42120738d..fe7f3137f228 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/stream_encoder.h
+@@ -273,6 +273,7 @@ struct stream_encoder_funcs {
+ 	void (*disable_fifo)(struct stream_encoder *enc);
+ 	bool (*is_fifo_enabled)(struct stream_encoder *enc);
+ 	void (*map_stream_to_link)(struct stream_encoder *enc, uint32_t stream_enc_inst, uint32_t link_enc_inst);
++	uint32_t (*get_pixels_per_cycle)(struct stream_encoder *enc);
+ };
+ 
+ struct hpo_dp_stream_encoder_state {
 -- 
 2.43.0
 
