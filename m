@@ -2,149 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183E693BD30
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 09:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3FF93BD55
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jul 2024 09:49:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C388892E4;
-	Thu, 25 Jul 2024 07:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDCC10E259;
+	Thu, 25 Jul 2024 07:49:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="n+Hjp/YK";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=friedrich.vock@gmx.de header.b="oyqvitX5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA6E8922E;
- Thu, 25 Jul 2024 07:37:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fDBG8UxTokmEms26w6IAvLGxSqtK+5YfhqUj0SJl7RkZn4d7mMtDB7dsBkVTx8Ou4ZlXAu8Ozy9LlkjQy2+l9YeLwqJtY3ND8ofqSPwSYZDizxAF9CWmh8INlwDXH2cNDzlycDqiy+Dkyo05nADeTBbnIvdVDMhKGarmNsbqiOogS/DEclvkqFFoNeWK4PVpFPxhV0EZlfKdxLWL/Qljl3env0D4oE+FDmCLHWO3XIntMrOBFwZuWH9Acjy0CrvszPv62MGH+296PBZarhTrMZqoM93+TWPjeJ8MreDDjBmqIFhp8EpW95z6MMG+ElcM0s1faiaTtxNU65jMbOedVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zwO+mGmZc1bkDwKVOMalKRyZ+SivGlQal5/cAj97JuE=;
- b=CD0fynk7e5dU6wnNANSFAzMYcJqcgDjo47m/8dXO49cFbgITGAfd3mLs/6IkuwwnJsvFA9zGzoveQ49T1mjwqusTTciYeY9AoKPIu0e18cqJN3B7tA67u6vR0lMykfLOgcdWqytcEHI8+h/uDx85qJN8umwp24djZUJjxoxyCfWEY61Zlr0ZCXT8qs33I54qYIbE6JrMwCNu+vz9CTq1RTQ3PxQTsYG1tZLz/lElX4QPB6jK1r1nyR9mFk+WorNRSHwyLFZcTsDK+qh+j4Rb6tPKknHDssjL2+VsfjL/qWX8eY0+UienMDYFY1J3Xxc32poB8AivpVwBCy+wTiRa5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zwO+mGmZc1bkDwKVOMalKRyZ+SivGlQal5/cAj97JuE=;
- b=n+Hjp/YKvlIg5t14wnmDpxFhrRYy1Riyb2gGvIzjf+ZtJnMbPlJHL2lOnrJGLWny1BvVy3hZ0fLgpXmZvmwmpKi0jDkkAkoj4SjNEkC5nsFfuo8UIqQ6dt4g320c8xS95wtPbMENSpwMLU2HAwWow+DqXb6vuqWJVOdKHKm8HKQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB8827.namprd12.prod.outlook.com (2603:10b6:510:26b::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Thu, 25 Jul
- 2024 07:37:43 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7784.017; Thu, 25 Jul 2024
- 07:37:43 +0000
-Message-ID: <429968dc-03e3-4755-865f-b6a844db7f0e@amd.com>
-Date: Thu, 25 Jul 2024 09:37:38 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/sched: Add error code parameter to drm_sched_start
-To: vitaly.prosyak@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- jesse.zhang@amd.com
-References: <20240724184340.183606-1-vitaly.prosyak@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240724184340.183606-1-vitaly.prosyak@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P190CA0016.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d0::10) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-Greylist: delayed 305 seconds by postgrey-1.36 at gabe;
+ Thu, 25 Jul 2024 07:49:38 UTC
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0AE910E259
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 07:49:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1721893777; x=1722498577; i=friedrich.vock@gmx.de;
+ bh=+j3/Bxk8LOCFxa0Ml+FNbEV5ioFZny8DmeulaR3kejI=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+ Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=oyqvitX5sph+d8XZFHcqZcMfm7FpD9CO1SiJMQOlvSvmcJc08wcM5IGXfbd9GTiF
+ tL09/0osFQl+jKXEcc0bSWPRAvmndbOvXj4b8djWWoWvHodXuuBjTXlTOvbT0JVVr
+ gsrHXqlQxMKGdFTnmRulxmPsTfum1XnBp4VO0sOKsbZB5ruDUJYktQiw4KkJDZFyP
+ 8E4AimkfZzxOurve6mBV/AXSRescY9vwcNzOvwWiJW2/JoSp7az6E4xFw64KA0wUp
+ VJgkLZB5bLOz7JyhDrlIaArLX8SNhhDNjistoDuJKEZXWDa9nUu2X+ohfK4WmdDgy
+ ZMdTkpkkfATMn1mM0g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.177.3] ([213.152.114.245]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N5mKP-1sD5312qPj-00whvt; Thu, 25
+ Jul 2024 09:44:28 +0200
+Message-ID: <d73cccd0-6483-493d-baec-e6def1b3b35b@gmx.de>
+Date: Thu, 25 Jul 2024 09:44:27 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB8827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 369680e0-78b3-4f1e-4551-08dcac7cab51
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aUZxci9TaVNYbXdTQjVka05tUGMrbkxpaXVzTTU1d2VjbExwKzBOendiY3dL?=
- =?utf-8?B?YkhMSnFnSW9tVnYwS2tUbG50dDRVZnVFcTlQOWNacjJTOXZoUmN4NnAvQW9q?=
- =?utf-8?B?N05YQVhlcXRzOTBDa3d4TzlucC9PeUFPREQyOUYwaTFQdjhoSGtKamc4Y2ZF?=
- =?utf-8?B?b0NMN1luKzgwNkJEQXJaQ0lzdXpBSnlkQThtWHNES2M1Wm5xSXA3R3FHMUJV?=
- =?utf-8?B?RXZXeXRXbHJkbVAzQU9yTVg2ZHRPYmJDem5rSktuY0UwK2dMZnJzQ2V0RWxZ?=
- =?utf-8?B?eE5DTkFTeXRyLzJzck4xYUlRdkVUL1JFR0tJTGFJeUEyaXhLbDV5YUx6bGVL?=
- =?utf-8?B?dnEwWWdQWFpXQWtTVjhIZnc2RVFYdElWajBHbGZTZjBZeFB1citsbGltQlNL?=
- =?utf-8?B?WldpNnByNC9jVCtiK3gzdlp4dFFFNS9GY21BdDAzL0hnNXFRU1VuZWI4Ry93?=
- =?utf-8?B?MHZtaEhnQVF0clA0WDJYbmhjZXdtYmYvWVgrTlhHR0NWamt1SE5hUk1QbkRw?=
- =?utf-8?B?RVJCcGxyZ09lNkdIMittZ293ZTFlM0ZXc3lVQ0lOU1F6Zi95UTRWeGZ4ZzNS?=
- =?utf-8?B?Z3dBdVZJTjRONGxETW4xK0VwaXhwZktVQXVIenkyL0Q5WFFIWk5hK3lPL3R6?=
- =?utf-8?B?aUlzYndBQXJRdUJ2Vm1vT1pSTDNLNGFaS3oxbUZneng0ckVIU2xtWnBZUzFq?=
- =?utf-8?B?WHRLbDJLTGNhL2d6dFhJRFgyejRaYnViVDNycDhsSFpSemhRUmNoYXd6aTg4?=
- =?utf-8?B?OERoZG1NdFh3VXNOOEtvbjEydnY0eG85c1phaHAzaDRyR285U3A4elNjK2Jn?=
- =?utf-8?B?Z1BaVEZobkhtMzRzeEFPcnZyZGFSRG1YZGZFYXpuZnZkdDZTOXFhaHlHNVRv?=
- =?utf-8?B?bllEcXVMNjNFVVZCMStTU0xnaUV0YVUzWUluY1UvQ1BGRFIzQjAyVEpwTlNw?=
- =?utf-8?B?UUpwaVVDeWNhbm8xRjlhZlF5U0FYMFdJbDNrcEFDOEQ3MmI1TERUbHV2ZS81?=
- =?utf-8?B?aW51M1dGMm5UN1ZjY2JxUmtNWm9sUVF5eHR6THFzKzJ4VWdDTEgvdHpPVGdD?=
- =?utf-8?B?b3BuVVQ0VlJuQWN3ODR3S2hNeGxpUWJyajk5SU9UM29DTVVWbFVkQ2ZFTkdL?=
- =?utf-8?B?c1Vla2NBYWpJWHpDd2lGYWh2ZGs5WU0za29JTXcyWm93R0hYbzhwMlFQREVo?=
- =?utf-8?B?U3c4NW83Nng4SmJLa096TFF2dDhwZzZESHh2Vk1uNVJlL2tIa3dLanFUbU8x?=
- =?utf-8?B?ejhCM1FUaktSNVFKUjk3dDlKc2RKWVZPb3BtdUNVaWNDODBpSUJPYmJzRUI5?=
- =?utf-8?B?OFdqcXpWSG9wQ0FEVHgwSWk5RVIvNGJIWXRDbG1OZWFGTHhNUnVsd3daeStq?=
- =?utf-8?B?cHhyQ1YyNXJiUFNLNGQ1YVVIWlRQckpOREY5b3cvZEZOT3NtSDRSeHJwdkg0?=
- =?utf-8?B?K3hJaXFtS2JYcU04ZU5HbThka0Y3aSt3enVQc203S2NpU09wdUVVRURFSHVx?=
- =?utf-8?B?MHZibk5PTXU5SW5FN25Id3lBaC9KQnlBOHJYMWRSMEk2YVF2b2tmSHpGMTlW?=
- =?utf-8?B?bGNOclRzYnhqSmM0WjNrenBZUkZaMjFjVWQ1NFJ4WmxsQjlFVUdZZTg5b01w?=
- =?utf-8?B?TFVOMXJNZUFJK3hrYllKdmk2aG5yU09nV24rbFZkemZVVUtKa21jL1NXSVFm?=
- =?utf-8?B?TXlhZmtEMjVvR2dzY2hBYTdxWkZSanVxdTZpWUt5UlBSSU1DZldyR3h5SWtN?=
- =?utf-8?B?N0V2eGVUVHNnaVVkbGNrZUJIWndJUzlpNnJBMkMwL05OUmFuVzlQMmVZMG9v?=
- =?utf-8?B?TVpYeGRsWE1PWUI0SXZiQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWlUSVF0YVFaMjZ6TGR6OUdqMFVoczBHL09XSFFWNHhNTnJIaXZMVHhTa01w?=
- =?utf-8?B?S2kxUjg4dFhVWllrakVVb2xiSVNwaFhwZXpSRWVweEJadlpucEgycTQ5NCtS?=
- =?utf-8?B?bHZEcnRXQkNGYlcyTjIyS0Fia0Q3WHRsVkVOcktwRFBHUy8yKy9xWjlrbkhH?=
- =?utf-8?B?ZmRobEZadzRva1hqUThnY1N1VFFIYXgxUEVpTXBCSE9DR00wcXBIOHhOZGFt?=
- =?utf-8?B?WVNEQUJjL1IwaU82UlVXTkliaThrRUtZNnZHeHFHNEw1UW1XTk56RzVlMmli?=
- =?utf-8?B?dUJUclludUExcHJla0p0ZHkyR0ZtcmlNdFRneXBNKzJVdm1tdDhxVCt2R2x1?=
- =?utf-8?B?cDZ4KzhlRkZxM0pUdHJ4WGd3OTlhQVBpRkI4U1I1eVBiNXVUSzBNam9XVTJY?=
- =?utf-8?B?czF5bGdQNi9hU05XK0ZWS0VzWXdoeWIramhLcUYwZm4wakpRZktNV1NST1ZI?=
- =?utf-8?B?MWJvZCs0RDB2cmUrSVVXUzNGV1V5dlo2RHhUS3hlby81d0dqNnNnU2dIaXVH?=
- =?utf-8?B?T3FGN09NM1MwVU5CVFY2Q1BlSm01UXFlRkg1Z0gxRWtRbVVIZEtpMmFHV2Jn?=
- =?utf-8?B?MU1PZmNNOVlwN2FWMURpVUtpNWpHbEQ2ZVM5YU4xcTRxc3VGS1AwRm1RRHJJ?=
- =?utf-8?B?NlBoMXVsVUNiY2RES2JubnFXeVpvWWxycUwzS1FRRWI1NnJqSXdhQzRVWGQ5?=
- =?utf-8?B?KzNQaVZyWEpYdVc3RXR2WE1nNDdQSEFqZkdRY04zK1lOcVZaejlqbnk3WWpY?=
- =?utf-8?B?SkNUbThSMWxidi83UTE2UUNBM2xQdWRRaDhHWWhLeWZtVUZFei90RkI1ZGpO?=
- =?utf-8?B?RFZOc1d2SUppd2JxTlNXclV2bEZKL2RLNlY3MXRqNkh3U2FhZmNrWFR4WUFI?=
- =?utf-8?B?NG9heUVpQlppM0F2NmsyM3Zzd3d4S3FYQlF1cDhOcFpmU3o5bVZieEdocEly?=
- =?utf-8?B?QmxmOXdnZW5kNDdZVlp5QVRLTmRRNlcwemdPOVN2ODFZSmJEN0VlTnV6VHYx?=
- =?utf-8?B?SWgrdjZZYVc1RkpjUmRZcGZFTndhb2wrNzgrUUI5Tk9MVTdVS2swbU1oYzMv?=
- =?utf-8?B?aUZjMUNXVW9pT2Jqc1E0ZzIydmtLdG9KOU02diszS29mY0dNQ3dvU1cwdmFk?=
- =?utf-8?B?OVI4OU9tN2J5bytKdHBYbHVFT1JxUkNrV1dQZHRHNEl2dW5IS25Id3c1Y1p1?=
- =?utf-8?B?M3BlMmQzcVl4MG5Fb2JkbUtCdjZXMXczVVJpdEJsZTBGQS9La0RNdG5laE1B?=
- =?utf-8?B?K254TmV4M0pBK1FFODVRUVBJSFhMM3pvMjIwUWdwWlh5dUk0SGwyWDZrZGtq?=
- =?utf-8?B?cjNCdGtyaG9lbFA1OHVJbFB1RlFERzg4cGZFd1E2cnFVeS9Xd1ViSkVyU21E?=
- =?utf-8?B?VDlSb2lDVkxSZ2pIemhMbDZRWldZLy9ja2pQT0RMZlJCYm53UXRCdE9HMVhj?=
- =?utf-8?B?dlIvZzM4N1hXdFBFM0dsRElURFZXeUxIQ3NJVjJNNmxLc3ZhblhJN3I2cVpK?=
- =?utf-8?B?YWhkc3RQS1NOWStmMnpxSnBsMWxTeUJLMXpLZktKMWVLUHFJTG9ONGtzNDZX?=
- =?utf-8?B?YWZpa0NyM0QxRW55THRzU1NYVHVJSGdxNUJ1YngxWVB3QUpPYnlZWDkwTTh0?=
- =?utf-8?B?S3l4V2RnUXBBdWJZdHRBYTNDRVZDTW1OUzZMZXRLS3FwZUJ3dVlpaFJrSUVj?=
- =?utf-8?B?RFRmaGo0SjFIaStvdmprM2gvUTBna1I5Y3VKeEVub0tQWjVLU09XamhpV3kz?=
- =?utf-8?B?cVZFK0NqTDRVQU0zMUwxUmtwbnhsREtoTFRUemhlUyttN0lFL1N6Z2I1bkhO?=
- =?utf-8?B?d0Y3L0p1c3lFL2YzSFBHeGEvbThOdGc2QnplUTV3YjFkM0lYZS8yMXNCRkp6?=
- =?utf-8?B?Q0YwVWxyaklGNzJ0OWxQSnh6MGV3V1pqU0lHL2JYWGt2WWQ2Wk9hMkpEVGx6?=
- =?utf-8?B?WEVrZVlqbmU1aWIyLzd0YlVPcThXN2VTQnpXT1VadDNxM2xTc0NmQ0JPZHRw?=
- =?utf-8?B?Rnp2N2I4ZHRtOXp4Z0hrSEJVaVNBZTRzRHFzblpXaGt6S3NzSEllZ3ZrTkNP?=
- =?utf-8?B?Yk03OG04RGFrQ3dySElGNHZQM2VUdk9TNUQ1U0xpSWF0bzNlakc1emhmTXFY?=
- =?utf-8?Q?1HL+w0uhj3KIT0+U3Mxx9PpRV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 369680e0-78b3-4f1e-4551-08dcac7cab51
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2024 07:37:43.2336 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TztDNnbGBWvpEQ2QanlRSgmtSKPbb/1zztnf3vhhDuFU2BaSmJUD1lvtJ/Jsgmha
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8827
+User-Agent: Mozilla Thunderbird
+From: Friedrich Vock <friedrich.vock@gmx.de>
+Subject: Re: [PATCH 00/34] GC per queue reset
+To: "Zhu, Jiadong" <Jiadong.Zhu@amd.com>, Alex Deucher <alexdeucher@gmail.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20240718140733.1731004-1-alexander.deucher@amd.com>
+ <95387eeb-d81e-4a09-8475-820317605f49@gmx.de>
+ <CADnq5_NaXHNz_AO9YJbe5X7qKP8h7CQqUVd5BwxDh4rbg2nBkw@mail.gmail.com>
+ <DS7PR12MB6333400E4AC22FB5DFEE06DBF4AA2@DS7PR12MB6333.namprd12.prod.outlook.com>
+Content-Language: en-US
+Autocrypt: addr=friedrich.vock@gmx.de; keydata=
+ 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
+ f7+xmX0X3AMtWz/15Y+7cPO2
+In-Reply-To: <DS7PR12MB6333400E4AC22FB5DFEE06DBF4AA2@DS7PR12MB6333.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:mNAy53yVPuUPR3xP5boxHBkGxbwNrwFPAOh0GoLCthSv+1jrKuO
+ lJggaJLIeE6qB8n8CF4lxZMrzfZhJxNhf7F0mjjkKheF5NtA36d4VUq0TYZmBbcItSuD8Zf
+ dB87Fs1XE83pJkWffhZfzsG+t2aEDwNZhAEWUvajep8IVVdJulofgBl4p4bVk+ahxXN336n
+ lVv92u6XLGGGJWPIPGFwQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:dOEgZu/OFYk=;DGHB8s5xGq7lm3vqb9aXpCSsGlo
+ R58t+hK9Zj5WA/GKVP4tpwXW5v2PTIMk8uiZh06RwFimGEkXEi7BaEhjgMl7RD5Nzr5I7MO7k
+ mPsYRUp4oqKu2Eyq0uiO+6+0xCeQ5lo4fuqjs0e20q4Ym2u5fYViKoLnPtGE4CGUWb4KYGQHD
+ Dltr31fInL9USNP6QcQq+VsxfYV/OUQB99OAuNziohTZqwQ5eBd7VrqFVd1Qhg3b6lxQwaW+A
+ d374nXoervfgooehl5VaKyO7cD+ktoANZMwSlPGR0gI2WVPw3EXyd4ACoPFidnl3/dnk7GznK
+ MOz1jTSBwpxbAsuq6UAQzMwP/F/aYLLQzOLHbZJLTuyXkBhoBsbl2saxjMAPjnlVlVVRk8qX6
+ R0i8O8Hate3NG8yxwDebrX7yZwbpEH5Fec/ngdyL3jXCHA4HL6jLQ+H2Mrkbv4w0yF2yghS6N
+ fAivPsO/+ZaC1IbyhWAlvcD3iR1+OOiAGP7w19ijMLJsInDafS02O/kiTIjOzZ8mDsnW7+Dr3
+ +gJa+EcAv92RlWp1fVrEo652bBItkuIY0Px//E26O8vEpDKM83uZXogYQGycNGh3/RxlMFT49
+ ik0M3zR7+gIq9k/P6vKzviivgYI7EGxp1iorlYhjay8M46/d4IlDKS1D105OLJ2qYTlO2Cod9
+ P+xuV/u8zHO2IUl7c3S6kbcUn/+Ktb5HuN0pj7x7ql8ul0VU+Ywp57awIPT2PE9f7WXjkmelq
+ kWA379FWyOLTRuRJ66NgL9wuf/0QtsccE+TqEEnAX9Yg3VNdymAI5pnnD+jcIvg4CrAWaJoS2
+ W8LGlBvZtSjHTTAlkfrapkzO6dwXubzKRQksV6JURthwc=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,107 +117,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 24.07.24 um 20:43 schrieb vitaly.prosyak@amd.com:
-> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
+On 24.07.24 11:20, Zhu, Jiadong wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 >
-> The current implementation of drm_sched_start uses a hardcoded -ECANCELED to dispose of a job when
-> the parent/hw fence is NULL. This results in drm_sched_job_done being called with -ECANCELED for
-> each job with a NULL parent in the pending list, making it difficult to distinguish between recovery
-> methods, whether a queue reset or a full GPU reset was used. To improve this, we first try a soft
-> recovery for timeout jobs and use the error code -ENODATA. If soft recovery fails, we proceed with
-> a queue reset, where the error code would still be -ENODATA for the job. Finally, for a full GPU
-> reset, we use error codes -ECANCELED or -ETIME. This patch adds an error code parameter to
-> drm_sched_start, allowing us to differentiate between queue reset and GPU reset failures.
-> This enables user mode and test applications to validate the expected correctness of the requested
-> operation. After a successful queue reset, the only way to continue normal operation is to call
-> drm_sched_job_done with the specific error code -ENODATA.
+>> -----Original Message-----
+>> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex
+>> Deucher
+>> Sent: Friday, July 19, 2024 9:40 PM
+>> To: Friedrich Vock <friedrich.vock@gmx.de>
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-
+>> gfx@lists.freedesktop.org
+>> Subject: Re: [PATCH 00/34] GC per queue reset
+>>
+>> On Thu, Jul 18, 2024 at 1:00=E2=80=AFPM Friedrich Vock <friedrich.vock@=
+gmx.de>
+>> wrote:
+>>>
+>>> Hi,
+>>>
+>>> On 18.07.24 16:06, Alex Deucher wrote:
+>>>> This adds preliminary support for GC per queue reset.  In this case,
+>>>> only the jobs currently in the queue are lost.  If this fails, we
+>>>> fall back to a full adapter reset.
+>>>
+>>> First of all, thank you so much for working on this! It's great to
+>>> finally see progress in making GPU resets better.
+>>>
+>>> I've just taken this patchset (together with your other
+>>> patchsets[1][2][3]) for a quick spin on my
+>>> Navi21 with the GPU reset tests[4] I had written a while ago - the
+>>> current patchset sadly seems to have some regressions WRT recovery
+>> there.
+>>>
+>>> I ran the tests under my Plasma Wayland session once - this triggered
+>>> a list double-add in drm_sched_stop (calltrace follows):
+>>
+>> I think this should fix the double add:
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> index 7107c4d3a3b6..555d3b671bdb 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> @@ -88,6 +88,8 @@ static enum drm_gpu_sched_stat
+>> amdgpu_job_timedout(struct drm_sched_job *s_job)
+>>                                  drm_sched_start(&ring->sched, true);
+>>                          goto exit;
+>>                  }
+>> +               if (amdgpu_ring_sched_ready(ring))
+>> +                       drm_sched_start(&ring->sched, true);
+>>          }
+>>
+>>          if (amdgpu_device_should_recover_gpu(ring->adev)) {
+>>
+>>
+>>>
+>>> ? die (arch/x86/kernel/dumpstack.c:421 arch/x86/kernel/dumpstack.c:434
+>>> arch/x86/kernel/dumpstack.c:447) ? do_trap
+>>> (arch/x86/kernel/traps.c:113 arch/x86/kernel/traps.c:154) ?
+>>> __list_add_valid_or_report (lib/list_debug.c:35 (discriminator 1)) ?
+>>> do_error_trap (./arch/x86/include/asm/traps.h:58
+>>> arch/x86/kernel/traps.c:175) ? __list_add_valid_or_report
+>>> (lib/list_debug.c:35 (discriminator 1)) ? exc_invalid_op
+>>> (arch/x86/kernel/traps.c:266) ? __list_add_valid_or_report
+>>> (lib/list_debug.c:35 (discriminator 1)) ? asm_exc_invalid_op
+>>> (./arch/x86/include/asm/idtentry.h:568)
+>>> ? __list_add_valid_or_report (lib/list_debug.c:35 (discriminator 1)) ?
+>>> __list_add_valid_or_report (lib/list_debug.c:35 (discriminator 1))
+>>> drm_sched_stop (./include/linux/list.h:151 ./include/linux/list.h:169
+>>> drivers/gpu/drm/scheduler/sched_main.c:617)
+>>> amdgpu_device_gpu_recover
+>>> (drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:5808)
+>>> amdgpu_job_timedout
+>> (drivers/gpu/drm/amd/amdgpu/amdgpu_job.c:103)
+>>> drm_sched_job_timedout (drivers/gpu/drm/scheduler/sched_main.c:569)
+>>> process_one_work (kernel/workqueue.c:2633) worker_thread
+>>> (kernel/workqueue.c:2700 (discriminator 2) kernel/workqueue.c:2787
+>>> (discriminator 2)) ? __pfx_worker_thread (kernel/workqueue.c:2733)
+>>> kthread (kernel/kthread.c:388) ? __pfx_kthread (kernel/kthread.c:341)
+>>> ret_from_fork (arch/x86/kernel/process.c:147) ? __pfx_kthread
+>>> (kernel/kthread.c:341) ret_from_fork_asm
+>>> (arch/x86/entry/entry_64.S:251)
+>>>
+>>> When running the tests without a desktop environment active, the
+>>> double-add disappeared, but the GPU reset still didn't go well - the
+>>> TTY remained frozen and the kernel log contained a few messages like:
+>>>
+>>> [drm] *ERROR* [CRTC:90:crtc-0] flip_done timed out
 >
-> v1: Initial implementation by Jesse utilized amdgpu_device_lock_reset_domain and
->      amdgpu_device_unlock_reset_domain to allow user mode to track the queue reset status
->      and distinguish between queue reset and GPU reset.
-> v2: Christian suggested using the error codes -ENODATA for queue reset and -ECANCELED or
->      -ETIME for GPU reset, returned to amdgpu_cs_wait_ioctl.
-> v3: To meet the requirements, we introduce a new function drm_sched_start_ex with an additional
->      parameter to set dma_fence_set_error, allowing us to handle the specific error codes
->      appropriately and dispose of bad jobs with the selected error code depending on whether
->      it was a queue reset or GPU reset.
+> Hi Friedrich, we cannot reproduce the flip_done timed out on dgpu.
+> could you have a check if the hangtest runs on integrated gpu or the dgp=
+u. If it runs on igpu, could you have a try to disable igpu in bios to see=
+ if it works. Thanks.
 
-I've already send out a patch to remove the full reset parameter from 
-the function and have another one in the pipeline to add the errno as 
-optional parameter.
+Hi,
 
-I'm currently just waiting for the feedback on those patches.
+I double-checked with the iGPU disabled in BIOS and can still reproduce.
+In case it matters, note that I had a typo in my original message: I'm
+testing on Navi22, not 21 - sorry about that.
+
+Also, it seems like the issue also occurs on normal
+amd-staging-drm-next without the per-queue reset patches, so this
+actually an earlier, unrelated regression.
+
+I'll try bisecting later and will open a separate GitLab issue for this.
 
 Regards,
-Christian.
+Friedrich
 
 >
-> Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
-> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
-> ---
->   drivers/gpu/drm/scheduler/sched_main.c | 19 ++++++++++++++++---
->   include/drm/gpu_scheduler.h            |  1 +
->   2 files changed, 17 insertions(+), 3 deletions(-)
+> Thanks,
+> Jiadong
 >
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 7e90c9f95611..5a534772335a 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -671,13 +671,14 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->   EXPORT_SYMBOL(drm_sched_stop);
->   
->   /**
-> - * drm_sched_start - recover jobs after a reset
-> + * drm_sched_start_ex - recover jobs after a reset
->    *
->    * @sched: scheduler instance
->    * @full_recovery: proceed with complete sched restart
-> + * @error : err code for set dma_fence_set_error
->    *
->    */
-> -void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
-> +void drm_sched_start_ex(struct drm_gpu_scheduler *sched, bool full_recovery, int error)
->   {
->   	struct drm_sched_job *s_job, *tmp;
->   	int r;
-> @@ -704,7 +705,7 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
->   				DRM_DEV_ERROR(sched->dev, "fence add callback failed (%d)\n",
->   					  r);
->   		} else
-> -			drm_sched_job_done(s_job, -ECANCELED);
-> +			drm_sched_job_done(s_job, error);
->   	}
->   
->   	if (full_recovery)
-> @@ -712,6 +713,18 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
->   
->   	drm_sched_wqueue_start(sched);
->   }
-> +EXPORT_SYMBOL(drm_sched_start_ex);
-> +/**
-> + * drm_sched_start - recover jobs after a reset
-> + *
-> + * @sched: scheduler instance
-> + * @full_recovery: proceed with complete sched restart
-> + *
-> + */
-> +void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
-> +{
-> +	drm_sched_start_ex(sched, full_recovery, -ECANCELED);
-> +}
->   EXPORT_SYMBOL(drm_sched_start);
->   
->   /**
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 5acc64954a88..444fa6761590 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -580,6 +580,7 @@ void drm_sched_wqueue_stop(struct drm_gpu_scheduler *sched);
->   void drm_sched_wqueue_start(struct drm_gpu_scheduler *sched);
->   void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
->   void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery);
-> +void drm_sched_start_ex(struct drm_gpu_scheduler *sched, bool full_recovery, int error);
->   void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
->   void drm_sched_increase_karma(struct drm_sched_job *bad);
->   void drm_sched_reset_karma(struct drm_sched_job *bad);
+>> I don't think the display hardware is hung, I think it's a fence signal=
+ling issue
+>> after the reset.  We are investigating some limitations we are seeing i=
+n the
+>> handling of fences.
+>>
+>>>
+>>> which I guess means at least the display subsystem is hung.
+>>>
+>>> Hope this info is enough to repro/investigate.
+>>
+>> Thanks for testing!
+>>
+>> Alex
+>>
+>>>
+>>> Thanks,
+>>> Friedrich
+>>>
+>>> [1]
+>>> https://lore.kernel.org/amd-gfx/20240717203740.14059-1-alexander.deuch
+>>> er@amd.com/T/#t [2]
+>>> https://lore.kernel.org/amd-gfx/20240717203847.14600-1-alexander.deuch
+>>> er@amd.com/T/#t [3]
+>>> https://lore.kernel.org/amd-gfx/230ee72e-4f7f-4894-a789-
+>> 2e1e5788344f@a
+>>> md.com/T/#t [4] https://gitlab.steamos.cloud/holo/HangTestSuite
+>>>
+>>>
+>>>>
+>>>> Alex Deucher (19):
+>>>>     drm/amdgpu/mes: add API for legacy queue reset
+>>>>     drm/amdgpu/mes11: add API for legacy queue reset
+>>>>     drm/amdgpu/mes12: add API for legacy queue reset
+>>>>     drm/amdgpu/mes: add API for user queue reset
+>>>>     drm/amdgpu/mes11: add API for user queue reset
+>>>>     drm/amdgpu/mes12: add API for user queue reset
+>>>>     drm/amdgpu: add new ring reset callback
+>>>>     drm/amdgpu: add per ring reset support (v2)
+>>>>     drm/amdgpu/gfx11: add ring reset callbacks
+>>>>     drm/amdgpu/gfx11: rename gfx_v11_0_gfx_init_queue()
+>>>>     drm/amdgpu/gfx10: add ring reset callbacks
+>>>>     drm/amdgpu/gfx10: rework reset sequence
+>>>>     drm/amdgpu/gfx9: add ring reset callback
+>>>>     drm/amdgpu/gfx9.4.3: add ring reset callback
+>>>>     drm/amdgpu/gfx12: add ring reset callbacks
+>>>>     drm/amdgpu/gfx12: fallback to driver reset compute queue directly
+>>>>     drm/amdgpu/gfx11: enter safe mode before touching CP_INT_CNTL
+>>>>     drm/amdgpu/gfx11: add a mutex for the gfx semaphore
+>>>>     drm/amdgpu/gfx11: export gfx_v11_0_request_gfx_index_mutex()
+>>>>
+>>>> Jiadong Zhu (13):
+>>>>     drm/amdgpu/gfx11: wait for reset done before remap
+>>>>     drm/amdgpu/gfx10: remap queue after reset successfully
+>>>>     drm/amdgpu/gfx10: wait for reset done before remap
+>>>>     drm/amdgpu/gfx9: remap queue after reset successfully
+>>>>     drm/amdgpu/gfx9: wait for reset done before remap
+>>>>     drm/amdgpu/gfx9.4.3: remap queue after reset successfully
+>>>>     drm/amdgpu/gfx_9.4.3: wait for reset done before remap
+>>>>     drm/amdgpu/gfx: add a new kiq_pm4_funcs callback for
+>> reset_hw_queue
+>>>>     drm/amdgpu/gfx9: implement reset_hw_queue for gfx9
+>>>>     drm/amdgpu/gfx9.4.3: implement reset_hw_queue for gfx9.4.3
+>>>>     drm/amdgpu/mes: modify mes api for mmio queue reset
+>>>>     drm/amdgpu/mes: implement amdgpu_mes_reset_hw_queue_mmio
+>>>>     drm/amdgpu/mes11: implement mmio queue reset for gfx11
+>>>>
+>>>> Prike Liang (2):
+>>>>     drm/amdgpu: increase the reset counter for the queue reset
+>>>>     drm/amdgpu/gfx11: fallback to driver reset compute queue directly
+>>>> (v2)
+>>>>
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   1 +
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |   6 +
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  18 +++
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c    |  88 ++++++++++++
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h    |  37 +++++
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   2 +
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     | 158
+>> ++++++++++++++++++++-
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c     | 117 +++++++++++++--
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v11_0.h     |   3 +
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c     |  95 ++++++++++++-
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c      | 126 +++++++++++++++-
+>>>>    drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 125
+>> +++++++++++++++-
+>>>>    drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     | 132
+>> +++++++++++++++++
+>>>>    drivers/gpu/drm/amd/amdgpu/mes_v12_0.c     |  54 +++++++
+>>>>    14 files changed, 930 insertions(+), 32 deletions(-)
+>>>>
+>>>
+>>>
+>>>
 
