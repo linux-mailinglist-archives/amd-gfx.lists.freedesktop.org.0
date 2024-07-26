@@ -2,67 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5864A93CEEF
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2024 09:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEAD193CE45
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jul 2024 08:47:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D52B10E942;
-	Fri, 26 Jul 2024 07:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F7910E097;
+	Fri, 26 Jul 2024 06:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="UquicRM4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KB/bMhpw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com
- [209.85.160.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEFDD10E91A
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 05:00:24 +0000 (UTC)
-Received: by mail-oa1-f44.google.com with SMTP id
- 586e51a60fabf-267b7ef154aso563210fac.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 22:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1721970024; x=1722574824; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=lC/1+Rq9M2/d/DfolWrO+hBIeAhWV2SjsyoElLtfCCw=;
- b=UquicRM4hscMO1V57JEfvu4nwMmRYO7scXqt0h+DaCF01eseMcq3r8oAUH/PXwtlns
- IxKAHYw5G6CCXcsUZAWbtLJED4otgIZ+Q78iUR6WWtePVGKVxViWuqi2zx6ymTIbxpsQ
- hddXGePUqWwKXaVg+t1QINukJcqcRgG4dLEVCtbpL764Ky+Aht2S0DR0CZeaOUOdYT6z
- WMjllfB0ITtYziQlzZDoPPUmrsJYvNsz/4r+vxnknXP3kFRzABsGwzY3yhqWgjIuDL3N
- RiiooLJ6pilDNuttwqEdFTW/6vJQ2Ca9ncu8HXt6hKKwc2SLnD3fl2b2dB3rWq7OFhlN
- bhxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721970024; x=1722574824;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lC/1+Rq9M2/d/DfolWrO+hBIeAhWV2SjsyoElLtfCCw=;
- b=lfExyUW3QpKhfy6/hVKZvgtH8W4MYlMo29I5aXdIfrrk59RMJb4l6YmC8sfDjKuvjW
- CZdYmZ69Hz5+8c2ViqJ5dFQBQwWx6fv+32gjHvcaXPYVfHaxs1NPy7rIpwQcikqVrmND
- uFI84QzgPr6Lqp66+VUyFig24Zi4nUdLKmt3cFvMQbQOnFg339Ou1FWbdzlfJB4T45Qe
- TJYmpwevQ9Oh0Ndbf65hUkfI8M59+mqYHeFauXucSCsD8tizxGNCEiIUW5RBfTST6xqr
- h0p5zPOU6+xv3igNhjfleoSqeTTt3VqQyYS3G7s5zgwHb5srSQ4/jGEGInjHygLIPqaY
- 3E0g==
-X-Gm-Message-State: AOJu0YxxN91SL2pz0zkr+j/fFYiKnef98yKHLnqSBYTk6DDntwfJx7Sz
- 3B1mz3ZptICm09C2X/2iz02UQEtskNHmaFBomISRq2MFMDqPT/Uj83eZTlojbR4=
-X-Google-Smtp-Source: AGHT+IGRTqQNDG+u6uZVytOJKshruMWW9eOlO1urAOeN0oHe0rUfaj3k9JsV+dZb/WXeI5F8YoAr2Q==
-X-Received: by 2002:a05:6870:2104:b0:25e:2923:a379 with SMTP id
- 586e51a60fabf-264a0c5dbd0mr6213263fac.16.1721970023816; 
- Thu, 25 Jul 2024 22:00:23 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:71d:9448:a412:cafd])
- by smtp.gmail.com with ESMTPSA id
- 46e09a7af769-7093072b795sm627936a34.42.2024.07.25.22.00.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jul 2024 22:00:23 -0700 (PDT)
-Date: Fri, 26 Jul 2024 00:00:21 -0500
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chaitanya Dhere <chaitanya.dhere@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/display: DML2.1 resynchronization
-Message-ID: <91d2f01d-b38c-4674-90d2-f297733bb6af@stanley.mountain>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9A7710E06B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 06:47:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iH31el5v2fsvGqiB8PP1XlKXpsKWzHHaEhx99Xx+yNvzkbrUV410PvEBFbSkEc8Cbpx5WiJzydwApfWRH5uHRK8qDcqS0AhREPSGRoAK75uxrtikwiEysBuWYE8hafor1puyyriZk+QjlrZ6mB4XgNYMV1nRwTiFFf9VbWv5YSLA0F7K1yVrHJL36XUGXCbBLQiaXVmM4tE0j0EzZuy4zyaza2pwpl4h3jV92LZDBSRqCntNRUkRMg/7Meph/8SpWUFVSCIr7kz/D6UFyoczCfIddlri2RwWkkyOwUdH0HTUcugm3Bk9yqAeWNnfDYoLURJTWwJDjn35y/oHT3lHvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yd0z2YeHPjuezYnqVbvS6rz4VhrsgoJsRBBgt+p1sIs=;
+ b=Yp3Rdh5kbuoL3Gpf4iQVW9uxv05rPONlN8rTn8CNHtlwUrTctuak0/cMWXIoUjt5yTClaXoXtyRUgMKe3ESaXNznZrJRSHUwWmbKpa5T4yupWF37kUowpXdjRdJLpOCIRAdt4Jx6YnBhYU/Fl60T4rnqtJtf10ZThEQpkIu32ekD9PIWeBc0KigT4SpdlsOQUj+CndD71vOSRGutHnly56oRBTZZTvXHkkJrJ071MYTHoqIHNF+09IGLKsWGZHax3/5ivoM1v02XAVwOcs6UwRYiQrPVow5wBC0KSlNMPZCQyJV0Shxi9W7dhy9tCAfhmmL8YZ8t0ZvBb4Za+RXlzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yd0z2YeHPjuezYnqVbvS6rz4VhrsgoJsRBBgt+p1sIs=;
+ b=KB/bMhpwhWTNk2cma1krRYQDpeftmHQA5rELQEPIuwRrWfOIsc69clKB8HdyMpsMkh8TgbxmoOgYW8DlvXdYUEkyicLQl8HJBW6vxkN1CRrGVcZ3ASBXr3STEAa0RFDr3t4qtpPDWqAHV040QdoYrfjaSbfpQbTFs7HWVLdIZ10=
+Received: from PH7P220CA0078.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32c::34)
+ by PH8PR12MB7421.namprd12.prod.outlook.com (2603:10b6:510:22b::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.27; Fri, 26 Jul
+ 2024 06:47:29 +0000
+Received: from SN1PEPF000397AF.namprd05.prod.outlook.com
+ (2603:10b6:510:32c:cafe::34) by PH7P220CA0078.outlook.office365.com
+ (2603:10b6:510:32c::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.31 via Frontend
+ Transport; Fri, 26 Jul 2024 06:47:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF000397AF.mail.protection.outlook.com (10.167.248.53) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7784.11 via Frontend Transport; Fri, 26 Jul 2024 06:47:28 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 26 Jul 2024 01:47:25 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>,
+ Philip Yang <Philip.Yang@amd.com>
+Subject: [PATCH] drm/amdkfd: Fix missing error code in
+ kfd_queue_acquire_buffers
+Date: Fri, 26 Jul 2024 12:17:12 +0530
+Message-ID: <20240726064712.2167971-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Fri, 26 Jul 2024 07:40:26 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397AF:EE_|PH8PR12MB7421:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61f52c0b-9448-4c62-2421-08dcad3ed130
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TmFUUTQ1Q1M3MjYvbmNlNXdVdVFwUVhjb2F2UCt2c1RUd1g4MVdnK3BBemxV?=
+ =?utf-8?B?cjQwRmlPd3hrTU81azBseGM2cFVyb1JGZ0NSVWpsZU9KVlpPcFJFSE4yek41?=
+ =?utf-8?B?ZnhuMUFDSHBvdnFzKzhWcE1GU0dOTVVyMWErVlhoVnpyY1pKZ3ZheGZsRVhm?=
+ =?utf-8?B?TmIxK056ejBjdjlVazJPZmdhUndkSk8vOTUvSjdnZEkwUG1hM0s4cXNtZlVO?=
+ =?utf-8?B?MTRiZnQzbitFekVkcWRCQnpPR1VCVlBVT2QrN3BBNjFqdXE4SGZ1UjJxR0xV?=
+ =?utf-8?B?ZzkzM1dCT25iR3lyS0U5RWViSDdUZHR0eFJYdjhvN2x3a29BaXpaWUYyUFhP?=
+ =?utf-8?B?SWp3YkF5ditUY2diM2d1MWxzM1lIakErRnpFSHRVemF2Ykw3WHhHenpCRVc5?=
+ =?utf-8?B?SVZRQ0dqcjczYTQ4RVNCQmtqWVhHM25OM2tRR0dPQXhUaVRaQWxzeUJwREwy?=
+ =?utf-8?B?MGdYenVLNXRTWDNYTHRtdE5ENUd1QmRyUVdXeXlqdkoxekFYQ0FmaHB4MVBz?=
+ =?utf-8?B?TDB3MW1CVXhnVVBRaG9kWnk1cTVwa0k3eGhSNUtkRUJ2QzVLd1d3cG0rVUlu?=
+ =?utf-8?B?Ti9uODgzMkNicm9ES01Va0svM3k0SmdVTk5iRnhjWk5xcDByYXppVnc5Qnoy?=
+ =?utf-8?B?d3VOYmdFdDBzckg1dWdlNDA2MjlMM3paUGQ2MHBDOTdySEFMQmtZS0FaTE52?=
+ =?utf-8?B?S25PZFJMekhWWmE4dnF1R05GQ1gwcXcwK1FOWU1NSHRzMHNtUFFYL24wdDlM?=
+ =?utf-8?B?TldTZHo0TmhSaFh4NGxKU0NTSDRvQnRJWWVuTDJpVjVSYU1wMEwxaHBjKys2?=
+ =?utf-8?B?b3hMd0Fid0R4aWFQZTJkQ3VhS0FjT2ZuYnA0QzdzS1BPZFFIbGpPZ2VrWHJG?=
+ =?utf-8?B?Vjg3VlBjT3U1NDZJcVN0TElxcVZoZGk1ZkFNS1QxR1J5eXV4TnBPd0lIdzBY?=
+ =?utf-8?B?WXNNNURMRTNpamlyM29Ud0RBRlk2NERNVEVKWll1UnpqRVRqaTJyK1kxV3VS?=
+ =?utf-8?B?SjJLWkpNaWtESXNWNUJrSWdyS1ZnS1djQ0xIWTI4Q1FNd1RHZXZ3cWl3dmpI?=
+ =?utf-8?B?NWU2UjRBaTV0TVZORitMZFMvZjUwbHVMVHArcWlJNHdVNGpmdVYyVkNXcDhm?=
+ =?utf-8?B?Sy9NbFZSUElXWlppdGgxWlBMamx3L1k3Mk5PZUY5ZVFFajErSWJmSG9mcFVO?=
+ =?utf-8?B?bVk2dW1GdmUxbEJOTEtWcEVNMzRraDgxaWZhYnNyWkhOZnRZTmdQTjBGWjl5?=
+ =?utf-8?B?VFNzZXpFbXdTYlNXM2NISXc2Mlp0aVhTSDBrRFdCbHphNzRhd1VLSjZ3ZWNu?=
+ =?utf-8?B?cmNCWW9vWGJWVDVqbTRhdXRCZk11VUFWdHE0NFVCVjZJdmlyUnpQdWdyNllQ?=
+ =?utf-8?B?aHd4K2NVR2dPY1hRVkxFb1ZOMTB0YmlGeW9pZmpod1E1aXVhaFptTjlwcmNK?=
+ =?utf-8?B?THNLK0dFSVFPQ3NlTzR2ZlR1M1ZqL2Zvem1rWVF1UGM3UHRDTGNIdlY2anhF?=
+ =?utf-8?B?ZEJmU1Zhb0Nka0JaRVUrMEhnUjFvT1MzNTZ3bndjd3lNSmRYY1J3YzVaeHlO?=
+ =?utf-8?B?dER4aEpSdmVrUWVPc0gvQnB6NEtMS2JYZ2FFajZnbW9rakFyd0QvNXZNeEtk?=
+ =?utf-8?B?ek5iY3M5dEswaW9LRWI4c0ZDRlFjZG5lNU05bWNMQm9aZDUva3JQTEE0UTdX?=
+ =?utf-8?B?WkozTHVDaDVXNUcra2lTR1YwZUR4cUlrbHVsdVVmaXdXRFBhWmc5cmlSckFY?=
+ =?utf-8?B?blhycHNXVzZ2K1Y5d3BUUW4yQkc1Qm1WbmRlNndwNDI5RUhYOG5tSnJESDY5?=
+ =?utf-8?B?M3lVelZtY1VvcW84dFduR0RXcU5pOGZQYlVFY0Nla2lDQWhKcEh6TWZFMWl5?=
+ =?utf-8?B?K0hEUEJiNGQyd3Uwc0kwZVJONGhFRTRWVEFQdHVoNnNQNmZoZG9ZaVZRamdW?=
+ =?utf-8?Q?AG8AmBq5BvSRgSkAF7MKTYLUTNyvT139?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 06:47:28.6438 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61f52c0b-9448-4c62-2421-08dcad3ed130
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000397AF.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7421
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,184 +141,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Chaitanya Dhere,
+The fix involves setting 'err' to '-EINVAL' before each 'goto
+out_err_unreserve'.
 
-This is a semi-automatic email about new static checker warnings.
+Fixes the below:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_queue.c:265 kfd_queue_acquire_buffers()
+warn: missing error code 'err'
 
-Commit 2563391e57b5 ("drm/amd/display: DML2.1 resynchronization")
-from Jul 2, 2024, leads to the following Smatch complaint:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_queue.c
+    226 int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_properties *properties)
+    227 {
+    228         struct kfd_topology_device *topo_dev;
+    229         struct amdgpu_vm *vm;
+    230         u32 total_cwsr_size;
+    231         int err;
+    232
+    233         topo_dev = kfd_topology_device_by_id(pdd->dev->id);
+    234         if (!topo_dev)
+    235                 return -EINVAL;
+    236
+    237         vm = drm_priv_to_vm(pdd->drm_priv);
+    238         err = amdgpu_bo_reserve(vm->root.bo, false);
+    239         if (err)
+    240                 return err;
+    241
+    242         err = kfd_queue_buffer_get(vm, properties->write_ptr, &properties->wptr_bo, PAGE_SIZE);
+    243         if (err)
+    244                 goto out_err_unreserve;
+    245
+    246         err = kfd_queue_buffer_get(vm, properties->read_ptr, &properties->rptr_bo, PAGE_SIZE);
+    247         if (err)
+    248                 goto out_err_unreserve;
+    249
+    250         err = kfd_queue_buffer_get(vm, (void *)properties->queue_address,
+    251                                    &properties->ring_bo, properties->queue_size);
+    252         if (err)
+    253                 goto out_err_unreserve;
+    254
+    255         /* only compute queue requires EOP buffer and CWSR area */
+    256         if (properties->type != KFD_QUEUE_TYPE_COMPUTE)
+    257                 goto out_unreserve;
 
-    drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c:3854 CalculateSwathAndDETConfiguration()
-    warn: variable dereferenced before check 'p->UnboundedRequestEnabled' (see line 3698)
+This is clearly a success path.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-  3697	
-  3698		*p->UnboundedRequestEnabled = UnboundedRequest(p->display_cfg->overrides.hw.force_unbounded_requesting.enable, p->display_cfg->overrides.hw.force_unbounded_requesting.value, TotalActiveDPP, NoChromaOrLinear);
-  3699	
-  3700		CalculateDETBufferSize(
-  3701			&scratch->CalculateDETBufferSize_locals,
-  3702			p->display_cfg,
-  3703			p->ForceSingleDPP,
-  3704			p->NumberOfActiveSurfaces,
-  3705			*p->UnboundedRequestEnabled,
-  3706			p->nomDETInKByte,
-  3707			p->MaxTotalDETInKByte,
-  3708			p->ConfigReturnBufferSizeInKByte,
-  3709			p->MinCompressedBufferSizeInKByte,
-  3710			p->ConfigReturnBufferSegmentSizeInkByte,
-  3711			p->CompressedBufferSegmentSizeInkByte,
-  3712			p->ReadBandwidthLuma,
-  3713			p->ReadBandwidthChroma,
-  3714			p->full_swath_bytes_l,
-  3715			p->full_swath_bytes_c,
-  3716			p->DPPPerSurface,
-  3717	
-  3718			// Output
-  3719			p->DETBufferSizeInKByte, // per hubp pipe
-  3720			p->CompressedBufferSizeInkByte);
-  3721	
-  3722	#ifdef __DML_VBA_DEBUG__
-  3723		dml2_printf("DML::%s: TotalActiveDPP = %u\n", __func__, TotalActiveDPP);
-  3724		dml2_printf("DML::%s: nomDETInKByte = %u\n", __func__, p->nomDETInKByte);
-  3725		dml2_printf("DML::%s: ConfigReturnBufferSizeInKByte = %u\n", __func__, p->ConfigReturnBufferSizeInKByte);
-  3726		dml2_printf("DML::%s: UnboundedRequestEnabled = %u\n", __func__, *p->UnboundedRequestEnabled);
-  3727		dml2_printf("DML::%s: CompressedBufferSizeInkByte = %u\n", __func__, *p->CompressedBufferSizeInkByte);
-  3728	#endif
-  3729	
-  3730		*p->ViewportSizeSupport = true;
-  3731		for (unsigned int k = 0; k < p->NumberOfActiveSurfaces; ++k) {
-  3732	
-  3733			DETBufferSizeInKByteForSwathCalculation = (dml_is_phantom_pipe(&p->display_cfg->plane_descriptors[k]) ? 1024 : p->DETBufferSizeInKByte[k]);
-  3734	#ifdef __DML_VBA_DEBUG__
-  3735			dml2_printf("DML::%s: k=%u DETBufferSizeInKByteForSwathCalculation = %u\n", __func__, k, DETBufferSizeInKByteForSwathCalculation);
-  3736	#endif
-  3737			if (p->display_cfg->plane_descriptors[k].surface.tiling == dml2_sw_linear) {
-  3738				p->SwathHeightY[k] = MaximumSwathHeightY[k];
-  3739				p->SwathHeightC[k] = MaximumSwathHeightC[k];
-  3740				RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k];
-  3741				RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k];
-  3742	
-  3743				if (p->surf_linear128_l[k])
-  3744					p->request_size_bytes_luma[k] = 128;
-  3745				else
-  3746					p->request_size_bytes_luma[k] = 256;
-  3747	
-  3748				if (p->surf_linear128_c[k])
-  3749					p->request_size_bytes_chroma[k] = 128;
-  3750				else
-  3751					p->request_size_bytes_chroma[k] = 256;
-  3752	
-  3753			} else if (p->full_swath_bytes_l[k] + p->full_swath_bytes_c[k] <= DETBufferSizeInKByteForSwathCalculation * 1024 / 2) {
-  3754				p->SwathHeightY[k] = MaximumSwathHeightY[k];
-  3755				p->SwathHeightC[k] = MaximumSwathHeightC[k];
-  3756				RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k];
-  3757				RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k];
-  3758				p->request_size_bytes_luma[k] = 256;
-  3759				p->request_size_bytes_chroma[k] = 256;
-  3760	
-  3761			} else if (p->full_swath_bytes_l[k] >= 1.5 * p->full_swath_bytes_c[k] && p->full_swath_bytes_l[k] / 2 + p->full_swath_bytes_c[k] <= DETBufferSizeInKByteForSwathCalculation * 1024 / 2) {
-  3762				p->SwathHeightY[k] = MaximumSwathHeightY[k] / 2;
-  3763				p->SwathHeightC[k] = MaximumSwathHeightC[k];
-  3764				RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k] / 2;
-  3765				RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k];
-  3766				p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
-  3767				p->request_size_bytes_chroma[k] = 256;
-  3768	
-  3769			} else if (p->full_swath_bytes_l[k] < 1.5 * p->full_swath_bytes_c[k] && p->full_swath_bytes_l[k] + p->full_swath_bytes_c[k] / 2 <= DETBufferSizeInKByteForSwathCalculation * 1024 / 2) {
-  3770				p->SwathHeightY[k] = MaximumSwathHeightY[k];
-  3771				p->SwathHeightC[k] = MaximumSwathHeightC[k] / 2;
-  3772				RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k];
-  3773				RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k] / 2;
-  3774				p->request_size_bytes_luma[k] = 256;
-  3775				p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
-  3776	
-  3777			} else {
-  3778				p->SwathHeightY[k] = MaximumSwathHeightY[k] / 2;
-  3779				p->SwathHeightC[k] = MaximumSwathHeightC[k] / 2;
-  3780				RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k] / 2;
-  3781				RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k] / 2;
-  3782				p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
-  3783				p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
-  3784			}
-  3785	
-  3786			if (p->SwathHeightC[k] == 0)
-  3787				p->request_size_bytes_chroma[k] = 0;
-  3788	
-  3789			if ((p->full_swath_bytes_l[k] / 2 + p->full_swath_bytes_c[k] / 2 > DETBufferSizeInKByteForSwathCalculation * 1024 / 2) ||
-  3790				p->SwathWidth[k] > p->MaximumSwathWidthLuma[k] || (p->SwathHeightC[k] > 0 && p->SwathWidthChroma[k] > p->MaximumSwathWidthChroma[k])) {
-  3791				*p->ViewportSizeSupport = false;
-  3792				dml2_printf("DML::%s: k=%u full_swath_bytes_l=%u\n", __func__, k, p->full_swath_bytes_l[k]);
-  3793				dml2_printf("DML::%s: k=%u full_swath_bytes_c=%u\n", __func__, k, p->full_swath_bytes_c[k]);
-  3794				dml2_printf("DML::%s: k=%u DETBufferSizeInKByteForSwathCalculation=%u\n", __func__, k, DETBufferSizeInKByteForSwathCalculation);
-  3795				dml2_printf("DML::%s: k=%u SwathWidth=%u\n", __func__, k, p->SwathWidth[k]);
-  3796				dml2_printf("DML::%s: k=%u MaximumSwathWidthLuma=%f\n", __func__, k, p->MaximumSwathWidthLuma[k]);
-  3797				dml2_printf("DML::%s: k=%u SwathWidthChroma=%d\n", __func__, k, p->SwathWidthChroma[k]);
-  3798				dml2_printf("DML::%s: k=%u MaximumSwathWidthChroma=%f\n", __func__, k, p->MaximumSwathWidthChroma[k]);
-  3799				p->ViewportSizeSupportPerSurface[k] = false;
-  3800			} else {
-  3801				p->ViewportSizeSupportPerSurface[k] = true;
-  3802			}
-  3803	
-  3804			if (p->SwathHeightC[k] == 0) {
-  3805	#ifdef __DML_VBA_DEBUG__
-  3806				dml2_printf("DML::%s: k=%u, All DET will be used for plane0\n", __func__, k);
-  3807	#endif
-  3808				p->DETBufferSizeY[k] = p->DETBufferSizeInKByte[k] * 1024;
-  3809				p->DETBufferSizeC[k] = 0;
-  3810			} else if (RoundedUpSwathSizeBytesY[k] <= 1.5 * RoundedUpSwathSizeBytesC[k]) {
-  3811	#ifdef __DML_VBA_DEBUG__
-  3812				dml2_printf("DML::%s: k=%u, Half DET will be used for plane0, and half for plane1\n", __func__, k);
-  3813	#endif
-  3814				p->DETBufferSizeY[k] = p->DETBufferSizeInKByte[k] * 1024 / 2;
-  3815				p->DETBufferSizeC[k] = p->DETBufferSizeInKByte[k] * 1024 / 2;
-  3816			} else {
-  3817	#ifdef __DML_VBA_DEBUG__
-  3818				dml2_printf("DML::%s: k=%u, 2/3 DET will be used for plane0, and 1/3 for plane1\n", __func__, k);
-  3819	#endif
-  3820				p->DETBufferSizeY[k] = (unsigned int)(math_floor2(p->DETBufferSizeInKByte[k] * 1024 * 2 / 3, 1024));
-  3821				p->DETBufferSizeC[k] = p->DETBufferSizeInKByte[k] * 1024 - p->DETBufferSizeY[k];
-  3822			}
-  3823	
-  3824	#ifdef __DML_VBA_DEBUG__
-  3825			dml2_printf("DML::%s: k=%u SwathHeightY = %u\n", __func__, k, p->SwathHeightY[k]);
-  3826			dml2_printf("DML::%s: k=%u SwathHeightC = %u\n", __func__, k, p->SwathHeightC[k]);
-  3827			dml2_printf("DML::%s: k=%u full_swath_bytes_l = %u\n", __func__, k, p->full_swath_bytes_l[k]);
-  3828			dml2_printf("DML::%s: k=%u full_swath_bytes_c = %u\n", __func__, k, p->full_swath_bytes_c[k]);
-  3829			dml2_printf("DML::%s: k=%u RoundedUpSwathSizeBytesY = %u\n", __func__, k, RoundedUpSwathSizeBytesY[k]);
-  3830			dml2_printf("DML::%s: k=%u RoundedUpSwathSizeBytesC = %u\n", __func__, k, RoundedUpSwathSizeBytesC[k]);
-  3831			dml2_printf("DML::%s: k=%u DETBufferSizeInKByte = %u\n", __func__, k, p->DETBufferSizeInKByte[k]);
-  3832			dml2_printf("DML::%s: k=%u DETBufferSizeY = %u\n", __func__, k, p->DETBufferSizeY[k]);
-  3833			dml2_printf("DML::%s: k=%u DETBufferSizeC = %u\n", __func__, k, p->DETBufferSizeC[k]);
-  3834			dml2_printf("DML::%s: k=%u ViewportSizeSupportPerSurface = %u\n", __func__, k, p->ViewportSizeSupportPerSurface[k]);
-  3835	#endif
-  3836	
-  3837		}
-  3838	
-  3839		*p->compbuf_reserved_space_64b = 2 * p->pixel_chunk_size_kbytes * 1024 / 64;
-  3840		if (*p->UnboundedRequestEnabled) {
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Everything check if enabled is true
+    258
+    259         /* EOP buffer is not required for all ASICs */
+    260         if (properties->eop_ring_buffer_address) {
+    261                 if (properties->eop_ring_buffer_size != topo_dev->node_props.eop_buffer_size) {
+    262                         pr_debug("queue eop bo size 0x%lx not equal to node eop buf size 0x%x\n",
+    263                                 properties->eop_buf_bo->tbo.base.size,
+    264                                 topo_dev->node_props.eop_buffer_size);
+--> 265                         goto out_err_unreserve;
 
-  3841			*p->compbuf_reserved_space_64b = (unsigned int)math_ceil2(math_max2(*p->compbuf_reserved_space_64b,
-  3842				(double)(p->rob_buffer_size_kbytes * 1024 / 64) - (double)(RoundedUpSwathSizeBytesY[SurfaceDoingUnboundedRequest] * TTUFIFODEPTH / (p->mrq_present ? MAXIMUMCOMPRESSION : 1) / 64)), 1.0);
-  3843	#ifdef __DML_VBA_DEBUG__
-  3844			dml2_printf("DML::%s: RoundedUpSwathSizeBytesY[%d] = %u\n", __func__, SurfaceDoingUnboundedRequest, RoundedUpSwathSizeBytesY[SurfaceDoingUnboundedRequest]);
-  3845			dml2_printf("DML::%s: rob_buffer_size_kbytes = %u\n", __func__, p->rob_buffer_size_kbytes);
-  3846	#endif
-  3847		}
-  3848	#ifdef __DML_VBA_DEBUG__
-  3849		dml2_printf("DML::%s: compbuf_reserved_space_64b = %u\n", __func__, *p->compbuf_reserved_space_64b);
-  3850	#endif
-  3851	
-  3852		*p->hw_debug5 = false;
-  3853		for (unsigned int k = 0; k < p->NumberOfActiveSurfaces; ++k) {
-  3854			if (!(p->mrq_present) && (!p->UnboundedRequestEnabled) && (TotalActiveDPP == 1)
-                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-This checks if the pointer to enabled is NULL.  Probably *p was intended.
+This has err in the label name.  err = -EINVAL?
 
+    266                 }
+    267                 err = kfd_queue_buffer_get(vm, (void *)properties->eop_ring_buffer_address,
+    268                                            &properties->eop_buf_bo,
+    269                                            properties->eop_ring_buffer_size);
+    270                 if (err)
+    271                         goto out_err_unreserve;
+    272         }
+    273
+    274         if (properties->ctl_stack_size != topo_dev->node_props.ctl_stack_size) {
+    275                 pr_debug("queue ctl stack size 0x%x not equal to node ctl stack size 0x%x\n",
+    276                         properties->ctl_stack_size,
+    277                         topo_dev->node_props.ctl_stack_size);
+    278                 goto out_err_unreserve;
 
-  3855				&& p->display_cfg->plane_descriptors[k].surface.dcc.enable
-  3856				&& ((p->rob_buffer_size_kbytes * 1024 * (p->mrq_present ? MAXIMUMCOMPRESSION : 1)
+err?
 
-regards,
-dan carpenter
+    279         }
+    280
+    281         if (properties->ctx_save_restore_area_size != topo_dev->node_props.cwsr_size) {
+    282                 pr_debug("queue cwsr size 0x%x not equal to node cwsr size 0x%x\n",
+    283                         properties->ctx_save_restore_area_size,
+    284                         topo_dev->node_props.cwsr_size);
+    285                 goto out_err_unreserve;
+
+err?  Not sure.
+
+    286         }
+    287
+    288         total_cwsr_size = (topo_dev->node_props.cwsr_size + topo_dev->node_props.debug_memory_size)
+    289                           * NUM_XCC(pdd->dev->xcc_mask);
+    290         total_cwsr_size = ALIGN(total_cwsr_size, PAGE_SIZE);
+    291
+    292         err = kfd_queue_buffer_get(vm, (void *)properties->ctx_save_restore_area_address,
+    293                                    &properties->cwsr_bo, total_cwsr_size);
+    294         if (!err)
+    295                 goto out_unreserve;
+    296
+    297         amdgpu_bo_unreserve(vm->root.bo);
+    298
+    299         err = kfd_queue_buffer_svm_get(pdd, properties->ctx_save_restore_area_address,
+    300                                        total_cwsr_size);
+    301         if (err)
+    302                 goto out_err_release;
+    303
+    304         return 0;
+    305
+    306 out_unreserve:
+    307         amdgpu_bo_unreserve(vm->root.bo);
+    308         return 0;
+    309
+    310 out_err_unreserve:
+    311         amdgpu_bo_unreserve(vm->root.bo);
+    312 out_err_release:
+    313         kfd_queue_release_buffers(pdd, properties);
+    314         return err;
+    315 }
+
+Fixes: 629568d25fea ("drm/amdkfd: Validate queue cwsr area and eop buffer size")
+Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Philip Yang <Philip.Yang@amd.com>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
+index 9807e8adf77d..63795f0cd55a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
+@@ -262,6 +262,7 @@ int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_prope
+ 			pr_debug("queue eop bo size 0x%lx not equal to node eop buf size 0x%x\n",
+ 				properties->eop_buf_bo->tbo.base.size,
+ 				topo_dev->node_props.eop_buffer_size);
++			err = -EINVAL;
+ 			goto out_err_unreserve;
+ 		}
+ 		err = kfd_queue_buffer_get(vm, (void *)properties->eop_ring_buffer_address,
+@@ -275,6 +276,7 @@ int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_prope
+ 		pr_debug("queue ctl stack size 0x%x not equal to node ctl stack size 0x%x\n",
+ 			properties->ctl_stack_size,
+ 			topo_dev->node_props.ctl_stack_size);
++		err = -EINVAL;
+ 		goto out_err_unreserve;
+ 	}
+ 
+@@ -282,6 +284,7 @@ int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_prope
+ 		pr_debug("queue cwsr size 0x%x not equal to node cwsr size 0x%x\n",
+ 			properties->ctx_save_restore_area_size,
+ 			topo_dev->node_props.cwsr_size);
++		err = -EINVAL;
+ 		goto out_err_unreserve;
+ 	}
+ 
+-- 
+2.34.1
+
