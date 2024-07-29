@@ -2,46 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2FD940A6B
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 067C8940A68
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:55:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDA3110E4EB;
-	Tue, 30 Jul 2024 07:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C65CD10E4E5;
+	Tue, 30 Jul 2024 07:54:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="DcHfSgzz";
+	dkim=pass (2048-bit key; secure) header.d=holm.dev header.i=@holm.dev header.b="PqEKLtsl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5983E10E049
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jul 2024 09:45:48 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6CF5B61228;
- Mon, 29 Jul 2024 09:45:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C199DC32786;
- Mon, 29 Jul 2024 09:45:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1722246347;
- bh=8ZQ2zn8Or662G4pel4BS2xL70Ie4jCL8uD1hXV8e5Jg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DcHfSgzzSx5coCWMXPNoB1SkS9rT4jQVG9XZ+t5ASf+JFYpULeeyTV+C14HTxkysd
- ZGbrkiyDhEJmLfOdM1E5+jeyUQRECuNsDMKBuFFytinE2rjp5AoMUjXcEMOqTEb7fB
- /xRq5iEDNyFskPRqJLMsOK8okpUf58AKWiWq/GNk=
-Date: Mon, 29 Jul 2024 11:45:43 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: mikhail.v.gavrilov@gmail.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/amd/display: fix corruption with high refresh rates
- on DCN 3.0
-Message-ID: <2024072937-undivided-liver-b59b@gregkh>
-References: <20240716173322.4061791-1-alexander.deucher@amd.com>
- <a3af3f0b-df81-4407-a38d-2fa35b33b08c@leemhuis.info>
+X-Greylist: delayed 527 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Jul 2024 13:30:31 UTC
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com
+ [95.215.58.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67B3310E3DA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jul 2024 13:30:31 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a3af3f0b-df81-4407-a38d-2fa35b33b08c@leemhuis.info>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=holm.dev; s=key1;
+ t=1722259302;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=G1Agd5vRjGskPC+jhoG7bLdcvURz2aFKxK/qDcooy8Y=;
+ b=PqEKLtsleFSFZPHLbs8jFKP/lXcMKZuWAJLaMSv+BmPZ0SDnt9m8rVAX6HVrpbVRUINwUp
+ qMAD26NOhMKIvW/RATtyDc1Rw9gV0wj+fSbZVAZjLXwpxwe7vjkX9v8jinHYHITGdyk+uE
+ yu3qx0YUXuFiSe19j5OAfRtkFuchIFScLlHUyU74Hbzy3qlIo+C0rvrOVHtP253xX18/mM
+ mrALJB3DFkl/+mcjwhoPEP7Ag6P7R0PCvQ7Q4/Str/2gD9n0N3SonW4FSo9yHBMHzmzTga
+ Fuy9oIT4WMFRYp2jh6qgPDRWeBa4/cJc7TsnYs28kBK5SsHYOEq+z+RE2lhezQ==
+Date: Mon, 29 Jul 2024 13:21:40 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: kevin@holm.dev
+Message-ID: <7bf26283474fbb6ea915f93f4db0bc614a627617@holm.dev>
+TLS-Required: No
+Subject: Re: [REGRESSION] No image on 4k display port displays connected
+ through usb-c dock in kernel 6.10
+To: "Linux regressions mailing list" <regressions@lists.linux.dev>,
+ "Christian Heusel" <christian@heusel.eu>
+Cc: "Greg KH" <gregkh@linuxfoundation.org>, "Lin, Wayne" <Wayne.Lin@amd.com>, 
+ stable@vger.kernel.org, "LKML" <linux-kernel@vger.kernel.org>, "ML
+ dri-devel" <dri-devel@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, "Wu, Hersen" <hersenxs.wu@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+In-Reply-To: <ca007d54-c204-4f7f-9eca-5a282324b941@leemhuis.info>
+References: <d74a7768e957e6ce88c27a5bece0c64dff132e24@holm.dev>
+ <9ca719e4-2790-4804-b2cb-4812899adfe8@leemhuis.info>
+ <fd8ece71459cd79f669efcfd25e4ce38b80d4164@holm.dev>
+ <CO6PR12MB54897CE472F9271B25883DF6FCB72@CO6PR12MB5489.namprd12.prod.outlook.com>
+ <e2050c2e-582f-4c6c-bf5f-54c5abd375cb@leemhuis.info>
+ <b7f0f3e1-522b-4763-be31-dcee1948f7b3@heusel.eu>
+ <ca007d54-c204-4f7f-9eca-5a282324b941@leemhuis.info>
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Tue, 30 Jul 2024 07:54:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,25 +72,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 29, 2024 at 10:31:38AM +0200, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 16.07.24 19:33, Alex Deucher wrote:
-> > This reverts commit bc87d666c05a13e6d4ae1ddce41fc43d2567b9a2 and the
-> > register changes from commit 6d4279cb99ac4f51d10409501d29969f687ac8dc.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3478
-> > Cc: mikhail.v.gavrilov@gmail.com
-> > Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > [...]
-> 
-> Hi Greg, quick note, as I don't see the quoted patch in your 6.10-queue
-> yet: you might want to pick up e3615bd198289f ("drm/amd/display: fix
-> corruption with high refresh rates on DCN 3.0") [v6.11-rc1, contains
-> table tag] rather sooner than later for 6.10.y, as the problem
-> apparently hit a few people and even made the news:
-> https://lore.kernel.org/all/20240723042420.GA1455@sol.localdomain/
-> https://www.reddit.com/r/archlinux/comments/1eaxjzo/linux_610_causes_screen_flicker_on_amd_gpus/
+July 29, 2024 at 11:15 AM, "Linux regression tracking (Thorsten Leemhuis)=
+" <regressions@leemhuis.info> wrote:
 
-Thanks, now queued up.
 
-greg k-h
+
+>=20
+>=20On 29.07.24 10:47, Christian Heusel wrote:
+>=20
+>=20>=20
+>=20> On 24/07/29 10:35AM, Linux regression tracking (Thorsten Leemhuis) =
+wrote:
+> >=20
+>=20> >=20
+>=20> > [+Greg +stable]
+> > >=20
+>=20> >  On 29.07.24 10:16, Lin, Wayne wrote:
+> > >=20
+>=20>=20
+>=20>  Thanks for the report.
+> >=20
+>=20>  Patch fa57924c76d995 ("drm/amd/display: Refactor function dm_dp_ms=
+t_is_port_support_mode()")
+> >=20
+>=20>  is kind of correcting problems causing by commit:
+> >=20
+>=20>  4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for ms=
+t mode validation")
+> >=20
+>=20>  Sorry if it misses fixes tag and would suggest to backport to fix =
+it. Thanks!
+> >=20
+>=20> >=20
+>=20> > Greg, seem it would be wise to pick up fa57924c76d995 for 6.10.y =
+as
+> > >=20
+>=20> >  well, despite a lack of Fixes or stable tags.
+> > >=20
+>=20> >  Ciao, Thorsten
+> > >=20
+>=20>=20
+>=20>=20=20
+>=20>=20
+>=20>  The issue is that the fixing commit does not apply to the 6.10 ser=
+ies
+> >=20
+>=20>  without conflict and the offending commit does not revert cleanly
+> >=20
+>=20>  aswell.
+> >=20
+>=20
+> Hah, many thx, I should have checked that.
+>=20
+>=20Lin, Wayne: could you maybe help out here and provide something for 6=
+.10.y?
+>=20
+>=20Ciao, Thorsten
+>
+
+I reverted 4df96ba6676034 from v6.10.2 from the stable/linux git, resolvi=
+ng the conflict by removing everything that git marked as from the curren=
+t branch and kept everything marked as from before the branch to merge. T=
+hat resulted in a patch that is fixing the problem on my machine. Since I=
+ don't understand what the code is actually doing it might break things o=
+n other machines.
+
+From cd1674a469cede83f6b0907f320b6af08c3c8950 Mon Sep 17 00:00:00 2001
+From: Kevin Holm <kevin@holm.dev>
+Date: Mon, 29 Jul 2024 13:24:38 +0200
+Subject: [PATCH] Test patch
+
+---
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 33 +++----------------
+ 1 file changed, 5 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
+b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index a5e1a93ddaea..5c555a37e367 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -1599,7 +1599,7 @@ enum dc_status dm_dp_mst_is_port_support_mode(
+     struct amdgpu_dm_connector *aconnector,
+     struct dc_stream_state *stream)
+ {
+-    int pbn, branch_max_throughput_mps =3D 0;
++    int bpp, pbn, branch_max_throughput_mps =3D 0;
+     struct dc_link_settings cur_link_settings;
+     unsigned int end_to_end_bw_in_kbps =3D 0;
+     unsigned int upper_link_bw_in_kbps =3D 0, down_link_bw_in_kbps =3D 0=
+;
+@@ -1649,34 +1649,11 @@ enum dc_status dm_dp_mst_is_port_support_mode(
+             }
+         }
+     } else {
+-        /* Check if mode could be supported within max slot
+-         * number of current mst link and full_pbn of mst links.
+-         */
+-        int pbn_div, slot_num, max_slot_num;
+-        enum dc_link_encoding_format link_encoding;
+-        uint32_t stream_kbps =3D
+-            dc_bandwidth_in_kbps_from_timing(&stream->timing,
+-                dc_link_get_highest_encoding_format(stream->link));
+-
+-        pbn =3D kbps_to_peak_pbn(stream_kbps);
+-        pbn_div =3D dm_mst_get_pbn_divider(stream->link);
+-        slot_num =3D DIV_ROUND_UP(pbn, pbn_div);
+-
+-        link_encoding =3D dc_link_get_highest_encoding_format(stream->li=
+nk);
+-        if (link_encoding =3D=3D DC_LINK_ENCODING_DP_8b_10b)
+-            max_slot_num =3D 63;
+-        else if (link_encoding =3D=3D DC_LINK_ENCODING_DP_128b_132b)
+-            max_slot_num =3D 64;
+-        else {
+-            DRM_DEBUG_DRIVER("Invalid link encoding format\n");
++        /* check if mode could be supported within full_pbn */
++        bpp =3D convert_dc_color_depth_into_bpc(stream->timing.display_c=
+olor_depth) * 3;
++        pbn =3D drm_dp_calc_pbn_mode(stream->timing.pix_clk_100hz / 10, =
+bpp << 4);
++        if (pbn > aconnector->mst_output_port->full_pbn)
+             return DC_FAIL_BANDWIDTH_VALIDATE;
+-        }
+-
+-        if (slot_num > max_slot_num ||
+-            pbn > aconnector->mst_output_port->full_pbn) {
+-            DRM_DEBUG_DRIVER("Mode can not be supported within mst links=
+!");
+-            return DC_FAIL_BANDWIDTH_VALIDATE;
+-        }
+     }
+=20
+=20    /* check is mst dsc output bandwidth branch_overall_throughput_0_m=
+ps */
+--=20
+2.45.2
+
+
+Regards,
+Kevin
