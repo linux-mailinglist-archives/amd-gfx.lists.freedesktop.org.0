@@ -2,64 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E85F940A6D
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2F7940A70
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 103A410E4ED;
-	Tue, 30 Jul 2024 07:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95DE010E4EF;
+	Tue, 30 Jul 2024 07:55:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="cdFRv8UG";
+	dkim=pass (2048-bit key; unprotected) header.d=heusel.eu header.i=christian@heusel.eu header.b="aIkAWYdf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9A810E03A;
- Mon, 29 Jul 2024 08:35:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=hCYlTQ17YHOGNp0OKHgpYTRh6FCoAUsIqBGDapwrN1A=;
- t=1722242132; x=1722674132; b=cdFRv8UGMiU1Gkh0fXHgcrfuLClQkgpb3Hon6/HenCMNMut
- xFwTl2F+jbdUA6XPFAzenOu3oMxBVLOgb2ouNDyhW74ugkRSFCGM03Uz9ghkW66riHvlYsu5LvjvJ
- NG2zEFqWv2++RbqvHVE52Y34iK6uwM0DL8UuX8Yk0oO55BAyvTDUELiC0/bg9AJr9mCqRV4dMwcWM
- I4pThVHkoWzs0R2jsYL3W3AjSiUHHyO96Ldim31qkZU58ytuGoa4/Htk11wcKnSWugGNrhAhtgejx
- w3TdA/OGtTbApooTmuFTEAS49L0Vk2XCbQ41EBbiNUUx9eD1CAni+FJTMFU5OHbw==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1sYLqs-0004yw-5c; Mon, 29 Jul 2024 10:35:30 +0200
-Message-ID: <e2050c2e-582f-4c6c-bf5f-54c5abd375cb@leemhuis.info>
-Date: Mon, 29 Jul 2024 10:35:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+X-Greylist: delayed 319 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Jul 2024 08:53:26 UTC
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDC710E338;
+ Mon, 29 Jul 2024 08:53:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=heusel.eu;
+ s=s1-ionos; t=1722243204; x=1722848004; i=christian@heusel.eu;
+ bh=N+NwBbz+/aJSBJUMWMagSHJ6kZuiXC8iiLcDvJJtxAM=;
+ h=X-UI-Sender-Class:Date:From:To:Cc:Subject:Message-ID:References:
+ MIME-Version:Content-Type:In-Reply-To:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=aIkAWYdfnSdB/BSneVxyHttpJHdlX+I0e/5//U894N6QcMbhsIDHWoOgAiaL3vpL
+ ZuZc+Szg3ubxvxe2a33N70+FzCiuInsuiT6s1KidzhQx3iKKzMXRXmsUd6C6MsdpV
+ WGDeeGhpYcaIV79IODJ0EhYzPWWjFOJJMdu/Cw/c++ACXey+sgttQ66XGwlmTXxuM
+ y8TQxDolpaOXqijmYlyooCS6RA/8TF+T7HatLu8fFnjs0N3XttV4alYluU4oDRa7Q
+ Iy6JIPPKYIzqFth9zKqYtyjx4lPebBYc/8AFlZ06tFave7lvRY9iS2KeRg9YNhcj6
+ F6fJs4y7QyJRT4nT5Q==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from localhost ([141.70.80.5]) by mrelayeu.kundenserver.de (mreue012
+ [212.227.15.167]) with ESMTPSA (Nemesis) id 1MVJZv-1sfBg84Bkt-00Ukrx; Mon, 29
+ Jul 2024 10:48:00 +0200
+Date: Mon, 29 Jul 2024 10:47:58 +0200
+From: Christian Heusel <christian@heusel.eu>
+To: Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: Greg KH <gregkh@linuxfoundation.org>, "Lin, Wayne" <Wayne.Lin@amd.com>, 
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>, 
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "Wu, Hersen" <hersenxs.wu@amd.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "kevin@holm.dev" <kevin@holm.dev>
 Subject: Re: [REGRESSION] No image on 4k display port displays connected
  through usb-c dock in kernel 6.10
-To: Greg KH <gregkh@linuxfoundation.org>, "Lin, Wayne" <Wayne.Lin@amd.com>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Wu, Hersen" <hersenxs.wu@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "kevin@holm.dev" <kevin@holm.dev>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+Message-ID: <b7f0f3e1-522b-4763-be31-dcee1948f7b3@heusel.eu>
 References: <d74a7768e957e6ce88c27a5bece0c64dff132e24@holm.dev>
  <9ca719e4-2790-4804-b2cb-4812899adfe8@leemhuis.info>
  <fd8ece71459cd79f669efcfd25e4ce38b80d4164@holm.dev>
  <CO6PR12MB54897CE472F9271B25883DF6FCB72@CO6PR12MB5489.namprd12.prod.outlook.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <CO6PR12MB54897CE472F9271B25883DF6FCB72@CO6PR12MB5489.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1722242132;
- 19f7f9fa; 
-X-HE-SMSGID: 1sYLqs-0004yw-5c
+ <e2050c2e-582f-4c6c-bf5f-54c5abd375cb@leemhuis.info>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="n63a2yfaefc6qmdi"
+Content-Disposition: inline
+In-Reply-To: <e2050c2e-582f-4c6c-bf5f-54c5abd375cb@leemhuis.info>
+X-Provags-ID: V03:K1:VUQmBHNbUxSuivJa3UWDZUqROOuD+vc3R6CCCrrh1OCODtgXJZY
+ whBiOcObwswdViHJ7YQFJWyEGkXfr5cc17ziisLlaAyGJQtzW9LNeUIG1daJeIbnckfphJr
+ kIfm1yEZmZtTsw+BEw6S2QdqYF3E0UzgvrM6rkWWVIL3M3rsVmwO6MxdO1CKyRkQkRKwRik
+ u5VMTw6Z6RC7sZmXJ+NcQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:BpXulR7GWOU=;jSFCaL6BH+dWZ9GEequ1mAyiBXF
+ /0hrtQPNPq0MU3DY6JTWgcSQzTsVYqXtVPJ9rQTCFdFj09eUuYQnqj6RHPXb/kZTzPZoCLlFv
+ M2TT27qQf2bLUaL+2bipHHbxZcPaauEuN035dvH+ooWxTXMhvHO1oDkWnDygDCArO6TyiL3hf
+ pvInd4/SrlT4m27CX2SQdst46/y1QDq54zLIuuguRl64cu9IYHRKD7oSdVkMr1r0JVwuB9k+C
+ iTs3cNP4DjsbZihv9Zx6qt4ewZP2C/XmmaCV9pEl3dh1NzuLf1i3v0sREImgn0a26pAF7Hzmq
+ D2OGYi5jpL4abo685rBXcVGETqvh2KQsH2uT2+VVJGvvWkdnhtjehuWF8UMN3T+1Zdwcsplz/
+ QqEKl9UWaz3xnW2v19BlCw2puOuN5eAMDFxqqK5Jjj+B3h71bn16TSlCCJ+AgUkKo8vTXZFBI
+ Ks28cgG4M69xaJcSYD+Xt/dvStxYtkraaMqJ25l8K/8GshW6Jyfmwq3qIQAwfXMuQpbYAf7fU
+ KkiTNoLUFnf5FPYEJ3+wQGePB8XsLwHtpZZ88xB5ozuzUgvbgotg4EKhFwGdVQpn0jjrplyU0
+ pwGDWziBLWc61f9ZNYOlEfuSDEVbVLeJSc9C7Nvq6zn+V3Ffd9QAfkNLXTHD3ddQeb7FTxSKu
+ vjbajmHa6rIv6SmwgLVnlhNXujPzPz6lgQRW965LMyG5CXRaoY9JJNIZm0B4aJ+JfeWJ803GI
+ KoOq3pkOFHRgLkjYMLtPfXWNlF6pDT8vAjQM7gJJ4aFqziZtYsFBpNwzzdn9AnnWAsWebwu1V
+ lr
 X-Mailman-Approved-At: Tue, 30 Jul 2024 07:54:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,138 +87,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[+Greg +stable]
 
-On 29.07.24 10:16, Lin, Wayne wrote:
->
-> Thanks for the report.
-> 
-> Patch fa57924c76d995 ("drm/amd/display: Refactor function dm_dp_mst_is_port_support_mode()")
-> is kind of correcting problems causing by commit:
-> 4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for mst mode validation")
-> 
-> Sorry if it misses fixes tag and would suggest to backport to fix it. Thanks!
+--n63a2yfaefc6qmdi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Greg, seem it would be wise to pick up fa57924c76d995 for 6.10.y as
-well, despite a lack of Fixes or stable tags.
+On 24/07/29 10:35AM, Linux regression tracking (Thorsten Leemhuis) wrote:
+> [+Greg +stable]
+>=20
+> On 29.07.24 10:16, Lin, Wayne wrote:
+> >
+> > Thanks for the report.
+> >=20
+> > Patch fa57924c76d995 ("drm/amd/display: Refactor function dm_dp_mst_is_=
+port_support_mode()")
+> > is kind of correcting problems causing by commit:
+> > 4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for mst mod=
+e validation")
+> >=20
+> > Sorry if it misses fixes tag and would suggest to backport to fix it. T=
+hanks!
+>=20
+> Greg, seem it would be wise to pick up fa57924c76d995 for 6.10.y as
+> well, despite a lack of Fixes or stable tags.
+>=20
+> Ciao, Thorsten
 
-Ciao, Thorsten
+The issue is that the fixing commit does not apply to the 6.10 series
+without conflict and the offending commit does not revert cleanly
+aswell.
 
->> -----Original Message-----
->> From: kevin@holm.dev <kevin@holm.dev>
->> Sent: Sunday, July 28, 2024 12:43 AM
->> To: Linux regressions mailing list <regressions@lists.linux.dev>; Deucher,
->> Alexander <Alexander.Deucher@amd.com>; Wu, Hersen
->> <hersenxs.wu@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
->> Cc: regressions@lists.linux.dev; stable@vger.kernel.org; LKML <linux-
->> kernel@vger.kernel.org>; ML dri-devel <dri-devel@lists.freedesktop.org>;
->> amd-gfx@lists.freedesktop.org
->> Subject: Re: [REGRESSION] No image on 4k display port displays connected
->> through usb-c dock in kernel 6.10
->>
->>> [adding a few people and lists to the recipients]
->>>
->>> Hi! Thx for your rpeort.
->>>
->>> On 27.07.24 18:07, kevin@holm.dev wrote:
->>>
->>>>
->>>> Connecting two 4k displays with display port through a lenovo usb-c
->>>>
->>>>  dock (type 40AS) to a Lenovo P14s Gen 2 (type 21A0) results in no
->>>>
->>>>  image on the connected displays.
->>>>
->>>>
->>>>
->>>>  The CPU in the Lenovo P14s is a 'AMD Ryzen 7 PRO 5850U with Radeon
->>>>
->>>>  Graphics' and it has no discrete GPU.
->>>>
->>>>
->>>>
->>>>  I first noticed the issue with kernel version '6.10.0-arch1-2'
->>>>
->>>>  provided by arch linux. With the previous kernel version
->>>>
->>>>  '6.9.10.arch1-1' both connected displays worked normally. I reported
->>>>
->>>>  the issue in the arch forums at
->>>>
->>>>  https://bbs.archlinux.org/viewtopic.php?id=297999 and was guided to
->>>>
->>>>  do a bisection to find the commit that caused the problem. Through
->>>>
->>>>  testing I identified that the issue is not present in the latest
->>>>
->>>>  kernel directly compiled from the trovalds/linux git repository.
->>>>
->>>>
->>>>
->>>>  With git bisect I identified
->> 4df96ba66760345471a85ef7bb29e1cd4e956057
->>>>
->>>
->>> That's 4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for
->>>
->>> mst mode validation") [v6.10-rc1] from Hersen Wu.
->>>
->>> Did you try if reverting that commit is possible and might fix the problem?
->>
->> Reverting is not easily possible:
->>
->> $ git checkout v6.10
->> [...]
->> HEAD is now at 0c3836482481 Linux 6.10
->>
->> $ git revert 4df96ba66760345471a85ef7bb29e1cd4e956057
->> Auto-merging
->> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
->> CONFLICT (content): Merge conflict in
->> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
->> error: could not revert 4df96ba66760... drm/amd/display: Add timing pixel
->> encoding for mst mode validation
->>
->> I do not know enough to try and solve the conflict myself without breaking
->> more things.
->>
->>>
->>>>
->>>> as the first bad commit and
->> fa57924c76d995e87ca3533ec60d1d5e55769a27
->>>>
->>>
->>> That's fa57924c76d995 ("drm/amd/display: Refactor function
->>>
->>> dm_dp_mst_is_port_support_mode()") [v6.10-post] from Wayne Lin.
->>>
->>>>
->>>> as the first commit that fixed the problem again.
->>>>
->>>
->>> Hmm, the latter commit does not have a fixes tag and might or might not
->>>
->>> be to invasive to backport to 6.10. Let's see what the AMD developers say.
->>>
->>>>
->>>> The initial commit only still shows an image on one of the connected
->>>>
->>>>  4k screens. I have not investigated further to find out at what point
->>>>
->>>>  both displays stopped showing an image.
->>>>
->>>
->>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->>>
->>> --
->>>
->>> Everything you wanna know about Linux kernel regression tracking:
->>>
->>> https://linux-regtracking.leemhuis.info/about/#tldr
->>>
->>> If I did something stupid, please tell me, as explained on that page.
->>>
+Cheers,
+Chris
+
+--n63a2yfaefc6qmdi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEb3ea3iR6a4oPcswTwEfU8yi1JYUFAmanVz4ACgkQwEfU8yi1
+JYUDMQ//Y8/U38qoRUI7sbmJIBjtkpE62b//dAJYdlSyjbvLe2/qOs+pp0oXFn4D
+bkw39ja845pauQ0ISjSOm3lJkxLxsHHhU4Ea9z1ww1wrONnPTPImpf3v7bKPnVJu
+pHS6fYP61Wfpktv+lXbsscprlWyvejjRwlwSJT8NXKdPtIn7qXK/hQkmYZQg7CwO
+GGjBMAOG/ocpLk9UGkmCN8ncArXDpzP+jIJMl0LE6TNtiBl6V6rtFsqEm2dVCqtJ
+pLE4FT/t3/FfAaRMn2U1HyLTsxYy/FIYtQr5eogDcShmkKL2k9mHfTJuKxKhvYWU
+z1qfWD0T1pxGnl+EnKUmnuX+ypACWYpGRLWdoIWJLke9aKCjpF559xEArom3djfb
+KK3yOm9EjxXQYqZuroLCYn8IA+OlWuIZX8wo2g/6/WsVnxM5pb6QeuZMNAs9Il/8
+UxaOxBNMx5eyGqNEvlBaG3re/wsfwKucjA3fqnjVqoc31527EpNcH/3edRtwdARd
+ApvEueEJXC//c+liEQFhXwc+p+yGAWpf0jAagpd5Z3XdvQkcMOEFrejsOLuZb7/Z
+nnEluHAheR+CrUAQEefHWjjjcrNx8/yFKmLj7yTeV7T9VwKkbTEW7mJFgFp56fFf
+MlSoriJ2BgHDaHW7gRUisq0D+CopuNS3nQUBGc4unCALCCLlIGI=
+=jOkp
+-----END PGP SIGNATURE-----
+
+--n63a2yfaefc6qmdi--
