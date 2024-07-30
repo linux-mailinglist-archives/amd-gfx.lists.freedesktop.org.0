@@ -2,49 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2329D940A65
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AD9940A6E
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jul 2024 09:55:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D0510E4E2;
-	Tue, 30 Jul 2024 07:54:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275E510E4E6;
+	Tue, 30 Jul 2024 07:55:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="neZhOk35";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F9A10E368;
- Mon, 29 Jul 2024 17:26:12 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Mon, 29 Jul
- 2024 20:26:09 +0300
-Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
- (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 29 Jul
- 2024 20:26:08 +0300
-Message-ID: <e497f5cb-a3cb-477b-8947-f96276e401b7@fintech.ru>
-Date: Mon, 29 Jul 2024 10:26:08 -0700
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B11FD10E1C9;
+ Tue, 30 Jul 2024 02:03:33 +0000 (UTC)
+Received: from [192.168.49.54] (c-73-118-245-227.hsd1.wa.comcast.net
+ [73.118.245.227])
+ by linux.microsoft.com (Postfix) with ESMTPSA id AA20620B7165;
+ Mon, 29 Jul 2024 19:03:31 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AA20620B7165
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1722305013;
+ bh=T8coAm5q0CSJOJYA2CaVwB4weZg41nUZwF8ur3BSbes=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=neZhOk35gk3ArYbtwdYJiUYeUVpuCtaY75cRf6NPYFuCU9VOeKeGpDeKezrD9B75g
+ knbZhVGSCoxH74cXLYqoX+XaHjuC7NBlApoV0P0k/GaThp9LMi7YNSKLf+QoAv54J7
+ 96LjXOX3kwzeSxTrZgVlYlVUSCcHbvT/YRzfWBpg=
+Message-ID: <c8023385-8fb8-432c-acf6-10e9a2894e2a@linux.microsoft.com>
+Date: Mon, 29 Jul 2024 19:03:28 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/radeon/evergreen_cs: fix int overflow errors in cs
- track offsets
+Cc: eahariha@linux.microsoft.com,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, Wenjing Liu <wenjing.liu@amd.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Samson Tam <samson.tam@amd.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ Charlene Liu <charlene.liu@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Bob Zhou <bob.zhou@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Sohaib Nadeem <sohaib.nadeem@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
+ Le Ma <le.ma@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Li Ma <li.ma@amd.com>,
+ Ran Sun <sunran001@208suo.com>, Evan Quan <evan.quan@amd.com>,
+ Candice Li <candice.li@amd.com>, Rodrigo Siqueira
+ <Rodrigo.Siqueira@amd.com>, Dillon Varone <dillon.varone@amd.com>,
+ Ruan Jinjie <ruanjinjie@huawei.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Umio Yasuno <coelacanth_dream@protonmail.com>, Alvin Lee
+ <alvin.lee2@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Darren Powell <darren.powell@amd.com>, Qingqing Zhuo
+ <Qingqing.Zhuo@amd.com>, Tom Chung <chiahsuan.chung@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ George Shen <george.shen@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Alex Hung
+ <alex.hung@amd.com>, Wayne Lin <wayne.lin@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Alexander Richards <electrodeyt@gmail.com>
+Subject: Re: [PATCH v4 1/6] drm/amdgpu, drm/radeon: Make I2C terminology more
+ inclusive
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Wolfram Sang <wsa@kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-2-eahariha@linux.microsoft.com>
 Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher
- <alexdeucher@gmail.com>
-CC: Alex Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, "Jerome
- Glisse" <jglisse@redhat.com>, Dave Airlie <airlied@redhat.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
- <stable@vger.kernel.org>
-References: <20240725180950.15820-1-n.zhandarovich@fintech.ru>
- <e5199bf0-0861-4b79-8f32-d14a784b116f@amd.com>
- <CADnq5_PuzU12x=M09HaGkG7Yqg8Lk1M1nWDAut7iP09TT33D6g@mail.gmail.com>
- <fb530f45-df88-402a-9dc0-99298b88754c@amd.com>
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-In-Reply-To: <fb530f45-df88-402a-9dc0-99298b88754c@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <20240711052734.1273652-2-eahariha@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 30 Jul 2024 07:54:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,173 +94,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 7/29/24 02:23, Christian König wrote:
-> Am 26.07.24 um 14:52 schrieb Alex Deucher:
->> On Fri, Jul 26, 2024 at 3:05 AM Christian König
->> <christian.koenig@amd.com> wrote:
->>> Am 25.07.24 um 20:09 schrieb Nikita Zhandarovich:
->>>> Several cs track offsets (such as 'track->db_s_read_offset')
->>>> either are initialized with or plainly take big enough values that,
->>>> once shifted 8 bits left, may be hit with integer overflow if the
->>>> resulting values end up going over u32 limit.
->>>>
->>>> Some debug prints take this into account (see according dev_warn() in
->>>> evergreen_cs_track_validate_stencil()), even if the actual
->>>> calculated value assigned to local 'offset' variable is missing
->>>> similar proper expansion.
->>>>
->>>> Mitigate the problem by casting the type of right operands to the
->>>> wider type of corresponding left ones in all such cases.
->>>>
->>>> Found by Linux Verification Center (linuxtesting.org) with static
->>>> analysis tool SVACE.
->>>>
->>>> Fixes: 285484e2d55e ("drm/radeon: add support for evergreen/ni
->>>> tiling informations v11")
->>>> Cc: stable@vger.kernel.org
->>> Well first of all the long cast doesn't makes the value 64bit, it
->>> depends on the architecture.
->>>
->>> Then IIRC the underlying hw can only handle a 32bit address space so
->>> having the offset as long is incorrect to begin with.
->> Evergreen chips support a 36 bit internal address space and NI and
->> newer support a 40 bit one, so this is applicable.
+On 7/10/2024 10:27 PM, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+> the approved verbiage exists in the specification.
 > 
-> In that case I strongly suggest that we replace the unsigned long with
-> u64 or otherwise we get different behavior on 32 and 64bit machines.
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>  .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 +++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 10 +++----
+>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 +++---
+>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.h     |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 20 ++++++-------
+>  .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+>  .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+>  .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+>  drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+>  drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+>  .../display/include/grph_object_ctrl_defs.h   |  2 +-
+>  drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+>  drivers/gpu/drm/amd/include/atomfirmware.h    | 26 ++++++++---------
+>  .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+>  .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+>  .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+>  .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+>  .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+>  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+>  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 +++---
+>  drivers/gpu/drm/radeon/atombios.h             | 16 +++++------
+>  drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+>  drivers/gpu/drm/radeon/radeon_combios.c       | 28 +++++++++----------
+>  drivers/gpu/drm/radeon/radeon_i2c.c           | 10 +++----
+>  drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+>  28 files changed, 93 insertions(+), 93 deletions(-)
 > 
-> Regards,
-> Christian.
-> 
 
-To be clear, I'll prepare v2 patch that changes 'offset' to u64 as well
-as the cast of 'track->db_z_read_offset' (and the likes) to u64 too.
+Hi Alex, Christian, Xinhui, David, Daniel, others
 
-On the other note, should I also include casting to wider type of the
-expression surf.layer_size * mslice (example down below) in
-evergreen_cs_track_validate_cb() and other similar functions? I can't
-properly gauge if the result will definitively fit into u32, maybe it
-makes sense to expand it as well?
+This is the only patch in the series not merged into a tree. Is
+something needed from me to move this forward?
 
-441         }
-442
-443         offset += surf.layer_size * mslice;
-444         if (offset > radeon_bo_size(track->cb_color_bo[id])) {
-445                 /* old ddx are broken they allocate bo with w*h*bpp
-
-Regards,
-Nikita
->>
->> Alex
->>
->>> And finally that is absolutely not material for stable.
->>>
->>> Regards,
->>> Christian.
->>>
->>>> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
->>>> ---
->>>> P.S. While I am not certain that track->cb_color_bo_offset[id]
->>>> actually ends up taking values high enough to cause an overflow,
->>>> nonetheless I thought it prudent to cast it to ulong as well.
->>>>
->>>>    drivers/gpu/drm/radeon/evergreen_cs.c | 18 +++++++++---------
->>>>    1 file changed, 9 insertions(+), 9 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c
->>>> b/drivers/gpu/drm/radeon/evergreen_cs.c
->>>> index 1fe6e0d883c7..d734d221e2da 100644
->>>> --- a/drivers/gpu/drm/radeon/evergreen_cs.c
->>>> +++ b/drivers/gpu/drm/radeon/evergreen_cs.c
->>>> @@ -433,7 +433,7 @@ static int evergreen_cs_track_validate_cb(struct
->>>> radeon_cs_parser *p, unsigned i
->>>>                return r;
->>>>        }
->>>>
->>>> -     offset = track->cb_color_bo_offset[id] << 8;
->>>> +     offset = (unsigned long)track->cb_color_bo_offset[id] << 8;
->>>>        if (offset & (surf.base_align - 1)) {
->>>>                dev_warn(p->dev, "%s:%d cb[%d] bo base %ld not
->>>> aligned with %ld\n",
->>>>                         __func__, __LINE__, id, offset,
->>>> surf.base_align);
->>>> @@ -455,7 +455,7 @@ static int evergreen_cs_track_validate_cb(struct
->>>> radeon_cs_parser *p, unsigned i
->>>>                                min = surf.nby - 8;
->>>>                        }
->>>>                        bsize = radeon_bo_size(track->cb_color_bo[id]);
->>>> -                     tmp = track->cb_color_bo_offset[id] << 8;
->>>> +                     tmp = (unsigned
->>>> long)track->cb_color_bo_offset[id] << 8;
->>>>                        for (nby = surf.nby; nby > min; nby--) {
->>>>                                size = nby * surf.nbx * surf.bpe *
->>>> surf.nsamples;
->>>>                                if ((tmp + size * mslice) <= bsize) {
->>>> @@ -476,10 +476,10 @@ static int
->>>> evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->>>>                        }
->>>>                }
->>>>                dev_warn(p->dev, "%s:%d cb[%d] bo too small (layer
->>>> size %d, "
->>>> -                      "offset %d, max layer %d, bo size %ld, slice
->>>> %d)\n",
->>>> +                      "offset %ld, max layer %d, bo size %ld, slice
->>>> %d)\n",
->>>>                         __func__, __LINE__, id, surf.layer_size,
->>>> -                     track->cb_color_bo_offset[id] << 8, mslice,
->>>> -                     radeon_bo_size(track->cb_color_bo[id]), slice);
->>>> +                     (unsigned long)track->cb_color_bo_offset[id]
->>>> << 8,
->>>> +                     mslice,
->>>> radeon_bo_size(track->cb_color_bo[id]), slice);
->>>>                dev_warn(p->dev, "%s:%d problematic surf: (%d %d) (%d
->>>> %d %d %d %d %d %d)\n",
->>>>                         __func__, __LINE__, surf.nbx, surf.nby,
->>>>                        surf.mode, surf.bpe, surf.nsamples,
->>>> @@ -608,7 +608,7 @@ static int
->>>> evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
->>>>                return r;
->>>>        }
->>>>
->>>> -     offset = track->db_s_read_offset << 8;
->>>> +     offset = (unsigned long)track->db_s_read_offset << 8;
->>>>        if (offset & (surf.base_align - 1)) {
->>>>                dev_warn(p->dev, "%s:%d stencil read bo base %ld not
->>>> aligned with %ld\n",
->>>>                         __func__, __LINE__, offset, surf.base_align);
->>>> @@ -627,7 +627,7 @@ static int
->>>> evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
->>>>                return -EINVAL;
->>>>        }
->>>>
->>>> -     offset = track->db_s_write_offset << 8;
->>>> +     offset = (unsigned long)track->db_s_write_offset << 8;
->>>>        if (offset & (surf.base_align - 1)) {
->>>>                dev_warn(p->dev, "%s:%d stencil write bo base %ld not
->>>> aligned with %ld\n",
->>>>                         __func__, __LINE__, offset, surf.base_align);
->>>> @@ -706,7 +706,7 @@ static int
->>>> evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
->>>>                return r;
->>>>        }
->>>>
->>>> -     offset = track->db_z_read_offset << 8;
->>>> +     offset = (unsigned long)track->db_z_read_offset << 8;
->>>>        if (offset & (surf.base_align - 1)) {
->>>>                dev_warn(p->dev, "%s:%d stencil read bo base %ld not
->>>> aligned with %ld\n",
->>>>                         __func__, __LINE__, offset, surf.base_align);
->>>> @@ -722,7 +722,7 @@ static int
->>>> evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
->>>>                return -EINVAL;
->>>>        }
->>>>
->>>> -     offset = track->db_z_write_offset << 8;
->>>> +     offset = (unsigned long)track->db_z_write_offset << 8;
->>>>        if (offset & (surf.base_align - 1)) {
->>>>                dev_warn(p->dev, "%s:%d stencil write bo base %ld not
->>>> aligned with %ld\n",
->>>>                         __func__, __LINE__, offset, surf.base_align);
-> 
+Thanks,
+Easwar
