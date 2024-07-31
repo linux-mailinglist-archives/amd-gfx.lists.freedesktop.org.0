@@ -2,22 +2,22 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 720B9942FD3
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2024 15:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BC5942FD5
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2024 15:13:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2815E10E622;
-	Wed, 31 Jul 2024 13:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B87F510E621;
+	Wed, 31 Jul 2024 13:13:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5998610E622
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 13:13:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0362510E621
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 13:13:23 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 46VDD3Hf354435; Wed, 31 Jul 2024 18:43:03 +0530
+ 46VDD4rM354440; Wed, 31 Jul 2024 18:43:04 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 46VDD1nM354412;
- Wed, 31 Jul 2024 18:43:01 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 46VDD4do354439;
+ Wed, 31 Jul 2024 18:43:04 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
@@ -25,9 +25,9 @@ Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
  Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  Tvrtko Ursulin <tursulin@igalia.com>,
  =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>
-Subject: [PATCH v1 1/3] drm/amdgpu: optimize the padding for gfx12
-Date: Wed, 31 Jul 2024 18:42:50 +0530
-Message-Id: <20240731131252.354336-2-sunil.khatri@amd.com>
+Subject: [PATCH v1 2/3] drm/amdgpu: optimize the padding for gfx9
+Date: Wed, 31 Jul 2024 18:42:51 +0530
+Message-Id: <20240731131252.354336-3-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240731131252.354336-1-sunil.khatri@amd.com>
 References: <20240731131252.354336-1-sunil.khatri@amd.com>
@@ -63,18 +63,18 @@ Cc: Tvrtko Ursulin <tursulin@igalia.com>
 Cc: Marek Olšák <marek.olsak@amd.com>
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 24 +++++++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index f932c7ff85e3..29b3bf1b29b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5005,6 +5005,24 @@ static void gfx_v12_0_emit_mem_sync(struct amdgpu_ring *ring)
- 	amdgpu_ring_write(ring, gcr_cntl); /* GCR_CNTL */
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 675a1a8e2515..991f7c2fc1a2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -7100,6 +7100,24 @@ static void gfx_v9_0_emit_wave_limit(struct amdgpu_ring *ring, bool enable)
+ 	}
  }
  
-+static void gfx_v12_ring_insert_nop(struct amdgpu_ring *ring, uint32_t num_nop)
++static void gfx_v9_ring_insert_nop(struct amdgpu_ring *ring, uint32_t num_nop)
 +{
 +	int i;
 +
@@ -92,27 +92,36 @@ index f932c7ff85e3..29b3bf1b29b3 100644
 +		amdgpu_ring_write(ring, ring->funcs->nop);
 +}
 +
- static void gfx_v12_ip_print(void *handle, struct drm_printer *p)
+ static void gfx_v9_ip_print(void *handle, struct drm_printer *p)
  {
  	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -5186,7 +5204,7 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_gfx = {
- 	.emit_hdp_flush = gfx_v12_0_ring_emit_hdp_flush,
- 	.test_ring = gfx_v12_0_ring_test_ring,
- 	.test_ib = gfx_v12_0_ring_test_ib,
+@@ -7240,7 +7258,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_gfx = {
+ 	.emit_gds_switch = gfx_v9_0_ring_emit_gds_switch,
+ 	.emit_hdp_flush = gfx_v9_0_ring_emit_hdp_flush,
+ 	.test_ring = gfx_v9_0_ring_test_ring,
 -	.insert_nop = amdgpu_ring_insert_nop,
-+	.insert_nop = gfx_v12_ring_insert_nop,
++	.insert_nop = gfx_v9_ring_insert_nop,
  	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.emit_cntxcntl = gfx_v12_0_ring_emit_cntxcntl,
- 	.init_cond_exec = gfx_v12_0_ring_emit_init_cond_exec,
-@@ -5224,7 +5242,7 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_compute = {
- 	.emit_hdp_flush = gfx_v12_0_ring_emit_hdp_flush,
- 	.test_ring = gfx_v12_0_ring_test_ring,
- 	.test_ib = gfx_v12_0_ring_test_ib,
+ 	.emit_switch_buffer = gfx_v9_ring_emit_sb,
+ 	.emit_cntxcntl = gfx_v9_ring_emit_cntxcntl,
+@@ -7294,7 +7312,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_sw_ring_funcs_gfx = {
+ 	.emit_hdp_flush = gfx_v9_0_ring_emit_hdp_flush,
+ 	.test_ring = gfx_v9_0_ring_test_ring,
+ 	.test_ib = gfx_v9_0_ring_test_ib,
+-	.insert_nop = amdgpu_sw_ring_insert_nop,
++	.insert_nop = gfx_v9_ring_insert_nop,
+ 	.pad_ib = amdgpu_ring_generic_pad_ib,
+ 	.emit_switch_buffer = gfx_v9_ring_emit_sb,
+ 	.emit_cntxcntl = gfx_v9_ring_emit_cntxcntl,
+@@ -7338,7 +7356,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
+ 	.emit_hdp_flush = gfx_v9_0_ring_emit_hdp_flush,
+ 	.test_ring = gfx_v9_0_ring_test_ring,
+ 	.test_ib = gfx_v9_0_ring_test_ib,
 -	.insert_nop = amdgpu_ring_insert_nop,
-+	.insert_nop = gfx_v12_ring_insert_nop,
++	.insert_nop = gfx_v9_ring_insert_nop,
  	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.emit_wreg = gfx_v12_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v12_0_ring_emit_reg_wait,
+ 	.emit_wreg = gfx_v9_0_ring_emit_wreg,
+ 	.emit_reg_wait = gfx_v9_0_ring_emit_reg_wait,
 -- 
 2.34.1
 
