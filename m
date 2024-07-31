@@ -2,72 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A989427BA
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2024 09:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A36249427B8
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Jul 2024 09:20:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40A1910E43D;
-	Wed, 31 Jul 2024 07:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F92A10E3F4;
+	Wed, 31 Jul 2024 07:20:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=uci.edu header.i=@uci.edu header.b="kCmXRuw+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="jqhe/tyJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA1E210E246
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 05:54:56 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-1ff1cd07f56so33748475ad.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jul 2024 22:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=uci.edu; s=google; t=1722405296; x=1723010096; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=tKqvRSmHkIVmsY2tE+MEGPilglpL1hNRDaBy1R6HENs=;
- b=kCmXRuw+BWGIX/AWeMmhXe9dUqR/stbAB54lutqXQXrZvH0hMvswjp0mVP8I7ROHX1
- xDaHY/MV+pqmPAlBw5EBjtN0Q68eaTqby9p0QcoPQgtORQF5MYbLKVVDEOFG/VhrC/N4
- enULg0q+u374kYORDTopwo/cYs6ZpJ6C7DJkI841fWCS0237GECcq2S+mKxNm9mDwC9h
- oQO+1Bc4nzeAGHJSn9Wrh1kELgNG8bqaZ64J0cVi+M3wDxyYjeKHZyexNS4it9WpwWwT
- AFEzOMUPX7ZAeObYQZkFZzUDuh0QCvh4cvj+QplIH9cDFDZeyXDhZP3nhL5Ri1/Yn6n0
- tzxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1722405296; x=1723010096;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=tKqvRSmHkIVmsY2tE+MEGPilglpL1hNRDaBy1R6HENs=;
- b=mLjP80J8lkqYg2PAbnJAOW4C8kY98fJUOMeHSOJH3SSL5fm0N+0g26JRfRRA88vwHM
- 24kDA3mhNTcqkTSqskdI7ZAJrDiG92o/nrShWBbEFZDttgxh+G2iKtJ6diRzmoTKokp/
- 0tLsqM/hcsRI6YUq9QxmVM1yVCx+S0tdZh/J0t1j+r1JLAs2add1w6dzZHFmyi+XVF4i
- uSyA7LHINp6tVZiJGFYnd99M8xTpmQPN3go42l30oHU18M2xhaUqCUDgGycbnoXuAmtZ
- TJmTTb5QgyFMi7C8UKl+WPq6V/KYXclW1JFUPBnbOB9BOsBwByUahu71zn1C9bsouAOX
- H8zA==
-X-Gm-Message-State: AOJu0YzhZ+A5d+Ob+1x/yBteWyXmTA5B/4ZzPvU3kFIQ4ZyfvG+RL6O2
- U1F1ZtVgM5GpMSiVS626AllVHliVh3i7W6u3QrVVh6W5CeVlYuJQLq2rhEZQ2cY=
-X-Google-Smtp-Source: AGHT+IFhCVV0PZXpK0cSSWZ1v4yPQWI6euzChZEKm8M/bxSqMPBGp7wJxtefAjhZ7cUEpLN3KGIPHQ==
-X-Received: by 2002:a17:902:ea0e:b0:1fc:6740:3ce6 with SMTP id
- d9443c01a7336-1ff048270a2mr147043735ad.20.1722405295409; 
- Tue, 30 Jul 2024 22:54:55 -0700 (PDT)
-Received: from alpha.mshome.net (ip68-4-168-191.oc.oc.cox.net. [68.4.168.191])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1fed7ee4ce6sm112339595ad.157.2024.07.30.22.54.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jul 2024 22:54:54 -0700 (PDT)
-From: Remington Brasga <rbrasga@uci.edu>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- Remington Brasga <rbrasga@uci.edu>
-Subject: [PATCH] drm/amdgpu/uvd4: fix mask and shift definitions
-Date: Wed, 31 Jul 2024 05:54:51 +0000
-Message-Id: <20240731055451.15467-1-rbrasga@uci.edu>
-X-Mailer: git-send-email 2.34.1
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC6010E252;
+ Wed, 31 Jul 2024 06:38:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ In-Reply-To:References; bh=P1V0z9JyXNMjXUrrv9MyjJnAXiVD3xEEot8JcZbXg2w=;
+ t=1722407884; x=1722839884; b=jqhe/tyJToFnr96kQpiEys0KNdmNcFU4Z90ED1uEQd9JMWL
+ /FXC8FdXHRzr/8rJDp36xSt5xMovzhvlWbw1wezHKvMHSarG+mK7d5WNqGhBiVniC9CzcmdCJM0p/
+ 6Z40Vq4u8Jzw5lEU15fyX4zF8J4JpPaGqzf35yGZpiRAGjG7hI314ZP5zSBRGJ1nvuLgezu2x9sJI
+ 4EsnEpDX+bjjEIQnjglYqxsDKcagg4h0ImGX0O+RQQy3xP1gnWfe6xOzciuzUu7tzjfumXOTbzgBs
+ cIyFkty60oXIbA410jW/TDzJ0TfgT6gc9r6CeTlXTl8ZMtCn7gBzDEvI8lJqZABQ==;
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1sZ2yH-00070r-AD; Wed, 31 Jul 2024 08:38:01 +0200
+Message-ID: <245f2c54-6d06-4b71-a9f8-a6fc0dbcceb3@leemhuis.info>
+Date: Wed, 31 Jul 2024 08:38:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] Brightness at max level after waking up from sleep
+ on AMD Laptop
+To: hamza.mahfooz@amd.com
+Cc: regressions@lists.linux.dev, alexander.deucher@amd.com,
+ serg.partizan@gmail.com,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ mario.limonciello@amd.com, ML dri-devel <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>
+References: <77KAHS.13UUH2XVHQQF1@gmail.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: en-US, de-DE
+In-Reply-To: <77KAHS.13UUH2XVHQQF1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1722407884;
+ 56903427; 
+X-HE-SMSGID: 1sZ2yH-00070r-AD
 X-Mailman-Approved-At: Wed, 31 Jul 2024 07:19:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,41 +65,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-A few define's are listed twice with different, incorrect values.
-This fix sets them appropriately.
+[+amd-glx, +lkml, +dri-devel]
 
-Signed-off-by: Remington Brasga <rbrasga@uci.edu>
----
-The second UVD_LMI_CTRL__RFU_MASK is incorrect, so it was removed. It should be
-`0xf800 0000`.
-The first UVD_LMI_CTRL__RFU__SHIFT is incorrect, so it was removed.
-It should bei `0x1a`.
+On 27.07.24 18:52, serg.partizan@gmail.com wrote:
+> 
+> After updating from 6.8.9 to 6.9.1 I noticed a bug on my HP Envy x360
+> with AMD Ryzen 5 4500U.
+>
+> [...]
+> After waking up from sleep brightness is set to max level, ignoring
+> previous value.
+> 
+> With the help of Arch Linux team, we was able to track bad commit to
+> this:
+> https://gitlab.freedesktop.org/agd5f/linux/-/commit/63d0b87213a0ba241b3fcfba3fe7b0aed0cd1cc5
 
-This change aligns the uvd definitions, please refer to:
-drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_3_1_sh_mask.h
-drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_2_sh_mask.h
-drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_5_0_sh_mask.h
-drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_6_0_sh_mask.h
+Hamza Mahfooz, in case you missed it, that is a patch of yours:
+63d0b87213a0ba ("drm/amd/display: add panel_power_savings sysfs entry to
+eDP connectors") [v6.9-rc1].
 
- drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_0_sh_mask.h | 2 --
- 1 file changed, 2 deletions(-)
+> I have tested this on latest mainline kernel:
+> 
+> Results after waking up:
+> 
+>> cat /sys/class/backlight/amdgpu_bl1/{brightness,actual_brightness}
+> 12
+> 252
+> 
+> Then, on exact this commit (63d0b87213a0ba241b3fcfba3fe7b0aed0cd1cc5),
+> result is the same.
+> 
+> Then, on commit just before this one (aeaf3e6cf842):
+> 
+>> cat /sys/class/backlight/amdgpu_bl1/{brightness,actual_brightness}
+> 12
+> 12
+> 
+> I hope I included all relevant information, more info can be found here:
+> 
+> https://gitlab.archlinux.org/archlinux/packaging/packages/linux/-/issues/52
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_0_sh_mask.h
-index 8ee3149df5b7..2ef1273e65ab 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/uvd/uvd_4_0_sh_mask.h
-@@ -340,8 +340,6 @@
- #define UVD_LMI_CTRL__REQ_MODE_MASK 0x00000200L
- #define UVD_LMI_CTRL__REQ_MODE__SHIFT 0x00000009
- #define UVD_LMI_CTRL__RFU_MASK 0xf8000000L
--#define UVD_LMI_CTRL__RFU_MASK 0xfc000000L
--#define UVD_LMI_CTRL__RFU__SHIFT 0x0000001a
- #define UVD_LMI_CTRL__RFU__SHIFT 0x0000001b
- #define UVD_LMI_CTRL__VCPU_DATA_COHERENCY_EN_MASK 0x00200000L
- #define UVD_LMI_CTRL__VCPU_DATA_COHERENCY_EN__SHIFT 0x00000015
--- 
-2.34.1
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
+P.S.:
+
+#regzbot introduced: 63d0b87213a0ba241
