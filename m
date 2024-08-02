@@ -2,146 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B619473EF
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2024 05:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7AA9475D0
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2024 09:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC4110E111;
-	Mon,  5 Aug 2024 03:37:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A88F10E12E;
+	Mon,  5 Aug 2024 07:17:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1k90YOh1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PdDugiyB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2070.outbound.protection.outlook.com [40.107.243.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1BB410E111
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 03:37:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hMBPoT83ySmQxqe4ghSNHBS6P6PCrS5R0+qd4ElP7VqxqEBKiVaW55NJd2tEr57zKMUUJlPZnFDg9vJR/ZNs7rQW6EA7kjm06syk4nJLyHajiKVLr+tyrhCj0bxaQwsWj2ZpkchrDi36jTTVCNBfPQu5mo0txKnuQOg41Qp7JkMmdKJzbxDtN/AWpxx3VUwq/tGltHPXNiNNSAS29l8Di4AcmIRntG7mm/H7nfRTcOohMJ7DzJlQCGZUUxTw+T1Llt1M1CGig+NuJ0JMKvAZpw50g/FNJxOeJ0fsDFn+nTU6E7VcIBCTLCNpwZRr5JNWx21TYwD7liz8JoGRy67NBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qQjLNq04e7SJIILw0FbztFNG8WuQKHsyiV47nYIGf24=;
- b=vrMyhYzeU30OLF8LUBK3wBoubGXc9I1MLcvVJuLT3kFvbIaVrkKUCQfG3XSZpm7u+whrcaGrH9JRHs9sAA4WYwQGOY+bvTYxvySK5pupxL0/PhCuWEQVSqfmxy7W/LzXA9ceOtLwlAwoY3jWTMUPrpoKx2/OHemo3DeHcOpP7vjSAFAz8PwEySEuzxtz05bL0iik0vuDRjraR3mqMf5e19G0n1w+A0Ik9e8pgQVarYuTDDOoTXt4Eo+F592Ado/9fY4EcL8s0koi7ISYbkBrADIp3hRbDZxOTwS6L+Mu4G8JlOvFKD9+2aMjQovhG1XtS9jRmhS8TPKZzoWZdBbHVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qQjLNq04e7SJIILw0FbztFNG8WuQKHsyiV47nYIGf24=;
- b=1k90YOh1s1H8JUsoRTAF8AIZtUA3CcC4e3gY0b2JcvIgh5YuCistTi01HecDIPwj2G2rPsj4BT0t52QqNJGPwyMwhk37f8BVPzRipuWv5D1b8UM0wV+zRpd7HGQoyzVz0i8Dzu8S7OluwYz9RWc4etj3wFmZ3brnfhnPLpD/WMI=
-Received: from DM4PR12MB5152.namprd12.prod.outlook.com (2603:10b6:5:393::16)
- by DM4PR12MB7525.namprd12.prod.outlook.com (2603:10b6:8:113::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Mon, 5 Aug
- 2024 03:37:35 +0000
-Received: from DM4PR12MB5152.namprd12.prod.outlook.com
- ([fe80::d4b5:6a30:96d5:e3ed]) by DM4PR12MB5152.namprd12.prod.outlook.com
- ([fe80::d4b5:6a30:96d5:e3ed%3]) with mapi id 15.20.7828.023; Mon, 5 Aug 2024
- 03:37:35 +0000
-From: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
-To: "Huang, Tim" <Tim.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "Zhou, Bob" <Bob.Zhou@amd.com>
-Subject: RE: [PATCH 4/4] drm/amdgpu: check return for setting engine dram
- timings
-Thread-Topic: [PATCH 4/4] drm/amdgpu: check return for setting engine dram
- timings
-Thread-Index: AQHa4+EeQF01qwEHT0+hgpxkO04YNbIYCb2g
-Date: Mon, 5 Aug 2024 03:37:35 +0000
-Message-ID: <DM4PR12MB515285AB8B3A03FDD69197CFE3BE2@DM4PR12MB5152.namprd12.prod.outlook.com>
-References: <20240801070333.423881-1-tim.huang@amd.com>
- <20240801070333.423881-4-tim.huang@amd.com>
-In-Reply-To: <20240801070333.423881-4-tim.huang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=37105cc1-8769-4998-8107-c59c37f5b24f;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-08-05T03:37:08Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB5152:EE_|DM4PR12MB7525:EE_
-x-ms-office365-filtering-correlation-id: 27bff79a-9b78-4480-7976-08dcb4fff236
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?GtCk6T0nvp2oeJojB2rhqMqB/RbbucknMqRzhpcbL78coZ/tOvLAjt/SFFv/?=
- =?us-ascii?Q?1trAeHgcssvnQ6jG+K6VsiLq4/NB9NDD13y46UK6fEg1H208+ZZKxUYsZZXS?=
- =?us-ascii?Q?UWAYfBzXFz696/2wvSeoH4WcL+x/Bg5mfrwWVUqWaKmRF0InsFPoS5/x8Zy8?=
- =?us-ascii?Q?xn2Qa2pVJhYXK/iiKF1IxyAWv5AcUxtxoNLnKCb40P6nzEsWC2RV0g23jTiR?=
- =?us-ascii?Q?WWHYinAI0/WyI+O6BuAzBPc022ITf+ZNhUbM1YK/3/4UcBw/dAdQKn428rUy?=
- =?us-ascii?Q?p1SRD0fGO/meQ7Vh+RLLT4WCf6gaiHKCs4lSBtNRdh8oLm4polu1nHg9XCEF?=
- =?us-ascii?Q?iv/bWZ6uXV7SpgJ2Lhur9TFyRzbyaMZFCVH9BLjcqZ+sCK+g0XsBKbDq21Wg?=
- =?us-ascii?Q?RX4j2OX2MxIdvF93vc7+iG0ehD8H2P74VPWbHGJiabmC5IWCRiaP56qdWud8?=
- =?us-ascii?Q?kv0qMxMkbUOfa2oYEcPPmvrIxZPU6kavqaPnoFn3TIeeQqdVdqQzGDocyR8l?=
- =?us-ascii?Q?w41zrmTVRmIeiTyISisircbCveO2zTSvrar/20YDew55hcwfGyGKQlCP1EDx?=
- =?us-ascii?Q?LTQpXujaUa5Im4pxNtlCrf5fYC2ZBcUwDC4oQb/tRUHnf4DGSRiViZk+UhuW?=
- =?us-ascii?Q?DI7Kb1G4q7LLFfQN0fi19Nx2q5hCg3GjOMbtDf1NeosTpAIZxyhkaylUh882?=
- =?us-ascii?Q?rexRf2BvDuWki+b9IFMiHFXko3UGbdO+sXGhF9rlPP4MR7C4sidRXnl39KQC?=
- =?us-ascii?Q?shtr5s1W1iGvZLnKCIkQWbedro9WWV/oafXaKja8WjqlJ04eqHZyOOtqULpI?=
- =?us-ascii?Q?MEIVr/6ehRJN4/ZWh6b2zJSR+O64ZzhSwBvSw9A9C7QdUSaOaxCtHFsk/Mrg?=
- =?us-ascii?Q?MHdUIV53Vd7BWU3bipOrYmntGnH+JEUN2A6pJ7/uig/fkl8NLkUK+pFd6SmJ?=
- =?us-ascii?Q?3RUI5GNEPsBJuZDGV/kKWhBNtLcR1VRUg+BBhsxbgG3EWFSLTg0MBleFaONA?=
- =?us-ascii?Q?8lCVEzi65eM/dDqXHdsr3J+x/NjPn6roVDM9wdFtu+iTbdiS+5iFnbdTPWuH?=
- =?us-ascii?Q?Um06iOh3EWT1N65HJzGNasXjoj/KSBd3UeUhZYkChSrnn7MW59CdG20QIDOy?=
- =?us-ascii?Q?pvVVWsfT+J/E15JL16/bk85yQTJWJnywzdTCCfz8X4MM45k0vugpevYssDvq?=
- =?us-ascii?Q?dgaZXTzu9s7v5uFwuPuBYfHuIdM+qwQ9rLBPGgMpI8ulImEDJgJCCXWGWX4v?=
- =?us-ascii?Q?T/dQJI50D3eGWFG/S8LJgTUXnDJloRHGtIAykygyxyBWj3oBqRk0NGTRSEe8?=
- =?us-ascii?Q?NPzJru8VTqTvQRryc9nh/y9PZiR2+wUHqSRwkqZLS+B3A9bmHL/RnSZTC36T?=
- =?us-ascii?Q?lplH/K4NWf4TR/v0r3z4KURnhm12ACoij1UXebAs4FKlqZdBwQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5152.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?r9wzW+RELiZ4uKG7f+PpV0ZuL8qCEp+eOvj2OX+xexZBoeC8d2O4Lr98UOLB?=
- =?us-ascii?Q?3UMo7i5hx8ew700xTtxhMswXqdsx9mDyyRDmwdHOeFhghpYr9QtVV8psrArV?=
- =?us-ascii?Q?5hN/8SRxRCb41YrsjlmDrZEnl5xyFbMqmrD+jrKrDzkbwVhgaDmvybuqHdVs?=
- =?us-ascii?Q?MQIGWFen6wPpy58nyR9KkQjP1/y/z/TNr6rORWZSUzAV4KFhScsIU+DfttJq?=
- =?us-ascii?Q?wH9VvwzkouxTnLwytGbXwM2QSAN8GZskEg0iqsUUc7vygrsI7cICeRmONVYZ?=
- =?us-ascii?Q?xw2O0OvjEEKDj1GH4ys8eO/quJyAV3P6VyAOJoFeW6FEXX5/Z2FIMyEBgjkS?=
- =?us-ascii?Q?Ie7hEQndWsUCOslvwhtw9MM19Bu13gHp+TwDP8lSmrRFhEkRMQc/FmX1qoS9?=
- =?us-ascii?Q?+f1JQ1ozfFbwCsLsyC2Jj5rXPFMQ0peuktWLo89ev5lKJ5XnV5cCFEqEMBzR?=
- =?us-ascii?Q?6FFnMOKFnJ7J6XGtV+WnU+o5hcrElIVQMjnRIg8kSXo0jkpkD2Z5s0LWxdKR?=
- =?us-ascii?Q?qxRWmO7fYSCQi/pjnMTn1kU94+9VZiVKMnnEvrTXtB7LK8XzXVXA6XrmXOQM?=
- =?us-ascii?Q?wcOQxBVxoP8KCcohUGOnfRRgdS0pOugf9rJxo280ziCjI4eGyFOVB+W74VAr?=
- =?us-ascii?Q?akOyXwnpz2OT/HyX0FoVj3Jg67wy0qdpewhIUYAQC5OUNkiHVWkD7sYvJAnR?=
- =?us-ascii?Q?fWkjHxVDdvcX68bmHPzrNZl1yDmgc4No4/5K9Qfc8kOD1E9qQ2mCLPVKB4JC?=
- =?us-ascii?Q?T7vL92afKDOKDRz/rsHEpVN9JGVUrsJ2yKGTpk48z1bc7uZ7KMxWgnL127vJ?=
- =?us-ascii?Q?W01efn8x7xuUONzlpY5vxY3MxZ72hmMSXU6Q9HKQXe9PQnXMdylpfVK8PwQL?=
- =?us-ascii?Q?+gYm+HdKGQ5x3s5LzJ0UthLTnSNB7Laorhod5Ot4h2LLzoKVqF+YjrSaWUwJ?=
- =?us-ascii?Q?nXmHepvaeZVd8XH0zNDcyvP4MFrHDLqhKpAG5+eAWA3/41J1p9VSDlf8eN9N?=
- =?us-ascii?Q?r9D596cRuuGm1S6JoBOyCxh0ydeO8p5aOkWbqlmbL0cOkMjK2by+NQczCyir?=
- =?us-ascii?Q?Y32ojKE4Lk9jwIw90ADcGZURo029T/i70tdwChxSv1Lb1JBUjwZtXL3CVpJB?=
- =?us-ascii?Q?kbDCtUvnTA862hlBEe8Yml8l7J22kjAlQQyl6c3DLg9LUKW+eY97hAlq6Fh9?=
- =?us-ascii?Q?ROtzn5oJEcSfz8PCOSeI1Luv5qPHhVdCc1H5d9J8vU1S4VdcJGpa/VIAmtmF?=
- =?us-ascii?Q?u9Y9wfBgz0ZbrgzpehYRyJwBHHCx4BL5AvPijt7jbUIa3x9Yic2mukG8Z3qJ?=
- =?us-ascii?Q?V92g3d7rpNYY/dETLZP782h46vPKZ8x6DlLH93lTxGiTSfwxRN62iQGQQn/n?=
- =?us-ascii?Q?vW97i38AEDBTQJ0mg6O0yp/AB3j2iTKKnqwSpynxJhApKHLBxjdEtRNjtywT?=
- =?us-ascii?Q?sOpOa0NG7UkQSzH8pLecxUN8NZPo+cdEJk+hM+4Uvlq9eewCMxlxlPvaGjkI?=
- =?us-ascii?Q?HCmamtCn2m2M04nmXrC+sc39kwpvVZfbC5P1CxikX6BCi9SZRHx9mcaV8+y/?=
- =?us-ascii?Q?neaTh0M9f8ooewq2GDQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB7FF10E043;
+ Fri,  2 Aug 2024 11:42:56 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id
+ 38308e7fff4ca-2f0271b0ae9so94768821fa.1; 
+ Fri, 02 Aug 2024 04:42:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1722598975; x=1723203775; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=OOwlLJ3ofGI0TikYJvkZxHGMFAPFrL5NOyAVPrWUQ+k=;
+ b=PdDugiyBT7d/RSXIYLonsa3nZF2JLJERysGqSRyplxihmcW9Xmo2QFjQL0e2K6pP33
+ YiP5kFdh6z/k3FrlymUX5IfB7r+iViGPxa5Lu12gsdx6fysIC+IWM5iwREkobrUQvbw2
+ QMCP+hByUkx/givDW/GFViVQ0eHR6R/RzbcsljgAucvNlRTxCw2wlzPFCJ344guTlH+u
+ nATZIJYJkojumM9P432jKlb+aKPb8L1KXZmz/UgJ50JlLs3hfK19tpJZs6fgiP8yf2tn
+ 24oMQe96swhs0aqiPl8isZ58KlvATa166EWd2hcm1U/Lo6jOKBATBP0DSzzJUiAGSkmW
+ 9tCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1722598975; x=1723203775;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=OOwlLJ3ofGI0TikYJvkZxHGMFAPFrL5NOyAVPrWUQ+k=;
+ b=rEnG7s3kpeKalIBeYogaIrzK2Rc2PMPlK62PT3rulbCiLuYlE8dpx2VaYkCo9hSEwq
+ 0LbrXLajehIrmxuNM5QLDlHncG34q1EONITB5LXM4tNtTYV+Gt8K16MzrSitK824GRWW
+ c3HC+I12T2Suk1uH6F8iyNmlg76eVIujB6m4xdrxdF3F3/l+DjQV2U/E4VDPV1ue4aAL
+ XI1/hVBER5BPlKXbtycEGTnZmcLfmJ2kJj24YEtupJJziR0tGhepzN5g7cgLzMKlUNhI
+ EwsoNxCZf4h0+KOlUwN8ZaXADjfK6Dmsql3Mcj/cfgHsPUZBuXT3oLlTs1nTf9IFWk74
+ 7y9g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWAUUYwr50ekqKWYErH0AD2pCntpasB1F8oXKPAEEUAHKiMZGM4Ii0vzEbzNrYuwck6+xSHwGYe0ZNMnhSmTwvVHmywlN8P7Mmdqbz2++g4Yg+JbO6jthWFo16sTw6ToRpCDkZOPXUhJXnmofMang==
+X-Gm-Message-State: AOJu0YymztT0EOBDhM11o2n9HYVvovo5jB2fmRM1IYHovobMTvycfBJA
+ pb3LDBv6XYVzIWeJaiGqYK6Y6n93W6lsCzeWQP2mx2jfIO+rVvPz
+X-Google-Smtp-Source: AGHT+IG+hjnJrqP5K8N5VX1i9PsnTAXDZwc4jEIMQBxc57qkv2RRrZbZV6TiQhmdzFY+TrIqpfM45w==
+X-Received: by 2002:a2e:4941:0:b0:2ef:28d2:39cc with SMTP id
+ 38308e7fff4ca-2f15aa7187bmr22236801fa.3.1722598974134; 
+ Fri, 02 Aug 2024 04:42:54 -0700 (PDT)
+Received: from localhost
+ (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-428e6cd8d67sm30582345e9.0.2024.08.02.04.42.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 02 Aug 2024 04:42:53 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Chaitanya Dhere <chaitanya.dhere@amd.com>, Jun Lei <jun.lei@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH][next] drm/amd/display: remove extraneous ; after statements
+Date: Fri,  2 Aug 2024 12:42:52 +0100
+Message-Id: <20240802114252.449452-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5152.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27bff79a-9b78-4480-7976-08dcb4fff236
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2024 03:37:35.2726 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RoHLuTcWasr2OfIdeOT6Cvh9xQO1o6OApgqqA4BibAncYpQfbhsSzEz85FKvlXLZc721aCm9VaB7f8OIbUuOnQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7525
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 05 Aug 2024 07:17:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,105 +88,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+There are a several statements with two following semicolons, replace
+these with just one semicolon.
 
-Series is:
-Reviewed-by: Jesse Zhang <jesse.zhang@amd.com>
-
------Original Message-----
-From: Huang, Tim <Tim.Huang@amd.com>
-Sent: Thursday, August 1, 2024 3:04 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Chri=
-stian.Koenig@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; Zhou, Bob <=
-Bob.Zhou@amd.com>; Huang, Tim <Tim.Huang@amd.com>
-Subject: [PATCH 4/4] drm/amdgpu: check return for setting engine dram timin=
-gs
-
-This resolves the unchecded return value warning reported by Coverity.
-
-Signed-off-by: Tim Huang <tim.huang@amd.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 8 ++++----  drivers/gpu/drm=
-/amd/amdgpu/amdgpu_atombios.h | 4 ++--
- drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c   | 8 +++++---
- 3 files changed, 11 insertions(+), 9 deletions(-)
+ .../drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c  | 2 +-
+ .../dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c        | 2 +-
+ .../display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c    | 4 ++--
+ drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c              | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_atombios.c
-index 0c8975ac5af9..093141ad6ed0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
-@@ -1145,8 +1145,8 @@ int amdgpu_atombios_get_memory_pll_dividers(struct am=
-dgpu_device *adev,
-        return 0;
- }
-
--void amdgpu_atombios_set_engine_dram_timings(struct amdgpu_device *adev,
--                                            u32 eng_clock, u32 mem_clock)
-+int amdgpu_atombios_set_engine_dram_timings(struct amdgpu_device *adev,
-+                                           u32 eng_clock, u32 mem_clock)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+index 65776602648d..9956974c4527 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.c
+@@ -1040,7 +1040,7 @@ void dml21_copy_clocks_to_dc_state(struct dml2_context *in_ctx, struct dc_state
+ void dml21_extract_legacy_watermark_set(const struct dc *in_dc, struct dcn_watermarks *watermark, enum dml2_dchub_watermark_reg_set_index reg_set_idx, struct dml2_context *in_ctx)
  {
-        SET_ENGINE_CLOCK_PS_ALLOCATION args;
-        int index =3D GetIndexIntoMasterTable(COMMAND, DynamicMemorySetting=
-s); @@ -1161,8 +1161,8 @@ void amdgpu_atombios_set_engine_dram_timings(stru=
-ct amdgpu_device *adev,
-        if (mem_clock)
-                args.sReserved.ulClock =3D cpu_to_le32(mem_clock & SET_CLOC=
-K_FREQ_MASK);
-
--       amdgpu_atom_execute_table(adev->mode_info.atom_context, index, (uin=
-t32_t *)&args,
--               sizeof(args));
-+       return amdgpu_atom_execute_table(adev->mode_info.atom_context, inde=
-x,
-+                                        (uint32_t *)&args, sizeof(args));
- }
-
- void amdgpu_atombios_get_default_voltages(struct amdgpu_device *adev, diff=
- --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.h b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_atombios.h
-index 0811474e8fd3..0e16432d9a72 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.h
-@@ -163,8 +163,8 @@ int amdgpu_atombios_get_memory_pll_dividers(struct amdg=
-pu_device *adev,
-                                            bool strobe_mode,
-                                            struct atom_mpll_param *mpll_pa=
-ram);
-
--void amdgpu_atombios_set_engine_dram_timings(struct amdgpu_device *adev,
--                                            u32 eng_clock, u32 mem_clock);
-+int amdgpu_atombios_set_engine_dram_timings(struct amdgpu_device *adev,
-+                                           u32 eng_clock, u32 mem_clock);
-
- bool
- amdgpu_atombios_is_voltage_gpio(struct amdgpu_device *adev, diff --git a/d=
-rivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-d=
-pm/si_dpm.c
-index a1baa13ab2c2..43028e776c93 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-@@ -4755,13 +4755,15 @@ static int si_populate_memory_timing_parameters(str=
-uct amdgpu_device *adev,
-        u32 dram_timing;
-        u32 dram_timing2;
-        u32 burst_time;
-+       int ret;
-
-        arb_regs->mc_arb_rfsh_rate =3D
-                (u8)si_calculate_memory_refresh_rate(adev, pl->sclk);
-
--       amdgpu_atombios_set_engine_dram_timings(adev,
--                                           pl->sclk,
--                                           pl->mclk);
-+       ret =3D amdgpu_atombios_set_engine_dram_timings(adev, pl->sclk,
-+                                                     pl->mclk);
-+       if (ret)
-+               return ret;
-
-        dram_timing  =3D RREG32(MC_ARB_DRAM_TIMING);
-        dram_timing2 =3D RREG32(MC_ARB_DRAM_TIMING2);
---
-2.43.0
+ 	struct dml2_core_internal_display_mode_lib *mode_lib = &in_ctx->v21.dml_init.dml2_instance->core_instance.clean_me_up.mode_lib;
+-	double refclk_freq_in_mhz = (in_ctx->v21.display_config.overrides.hw.dlg_ref_clk_mhz > 0) ? (double)in_ctx->v21.display_config.overrides.hw.dlg_ref_clk_mhz : mode_lib->soc.dchub_refclk_mhz;;
++	double refclk_freq_in_mhz = (in_ctx->v21.display_config.overrides.hw.dlg_ref_clk_mhz > 0) ? (double)in_ctx->v21.display_config.overrides.hw.dlg_ref_clk_mhz : mode_lib->soc.dchub_refclk_mhz;
+ 
+ 	if (reg_set_idx >= DML2_DCHUB_WATERMARK_SET_NUM) {
+ 		/* invalid register set index */
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index 13f2c80bad4c..54197d18ab19 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -7218,7 +7218,7 @@ static bool dml_core_mode_support(struct dml2_core_calcs_mode_support_ex *in_out
+ #if defined(DV_BUILD)
+ 		// Assume a memory config setting of 3 in 420 mode or get a new ip parameter that reflects the programming.
+ 		if (mode_lib->ms.BytePerPixelC[k] != 0.0 && display_cfg->plane_descriptors[k].pixel_format != dml2_rgbe_alpha) {
+-			lb_buffer_size_bits_luma = 34620 * 57;;
++			lb_buffer_size_bits_luma = 34620 * 57;
+ 			lb_buffer_size_bits_chroma = 13560 * 57;
+ 		}
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+index c54c29711a65..8f3c1c0b1cc1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+@@ -6464,8 +6464,8 @@ static void CalculateSwathAndDETConfiguration(struct dml2_core_internal_scratch
+ 			p->SwathHeightC[k] = l->MaximumSwathHeightC[k] / 2;
+ 			l->RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k] / 2;
+ 			l->RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k] / 2;
+-			p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
+-			p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
++			p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
++			p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
+ 		}
+ 
+ 		if (p->SwathHeightC[k] == 0)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
+index 7655501e75d4..9e8ff3a9718e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_utils.c
+@@ -421,7 +421,7 @@ unsigned int dml2_calc_max_scaled_time(
+ 
+ void dml2_extract_writeback_wm(struct dc_state *context, struct display_mode_lib_st *dml_core_ctx)
+ {
+-	int i, j = 0;;
++	int i, j = 0;
+ 	struct mcif_arb_params *wb_arb_params = NULL;
+ 	struct dcn_bw_writeback *bw_writeback = NULL;
+ 	enum mmhubbub_wbif_mode wbif_mode = PACKED_444_FP16; /*for now*/
+-- 
+2.39.2
 
