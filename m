@@ -2,56 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9C89458F9
-	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2024 09:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7C29458FE
+	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2024 09:37:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 965C010E99D;
-	Fri,  2 Aug 2024 07:37:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=kapsi.fi header.i=@kapsi.fi header.b="zp/TqSzt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 514B110E9A6;
+	Fri,  2 Aug 2024 07:37:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1810 seconds by postgrey-1.36 at gabe;
- Fri, 02 Aug 2024 07:30:48 UTC
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABFB010E99D;
- Fri,  2 Aug 2024 07:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
- s=20161220; h=References:Cc:To:Subject:Message-ID:From:
- Content-Transfer-Encoding:Content-Type:Date:MIME-Version:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pNOEhidxMr88WUeRwjolcg948ZGsyDBZIrg4gRDa9l4=; b=zp/TqSztDeBrtRbgdjrSfwz3QT
- 3IalpkIfeQjyLgkBeC/TOpv++FMXsYcKe3GFm88YWCaABWIOFBT9MnWHVay6jnMqfsW3vkiPbPOvl
- xLTNzJ8Dtk/YUElZJcwrtKrfh8oAbeqijEs/tgitD1AIYHn6ahOwxMfeEopYV6HtklI0n1OXlCrlu
- eeoNtryeqXSY3s5MUPCnY81iRgPqsWcpnCAvtcG0T7BRiLckh1Cc/gfGxCcH4rBwvq034ysVCchL/
- R64dgvXX8sZwl+RjuhPvTUuVvrIMXZtMD/nMQoJMLz8zcVk2ikaeUIVjF6Zc0XYawsH2KrNOXUJ2K
- yvyK8x/A==;
-Received: from webng-gw.kapsi.fi ([91.232.154.200] helo=rainloop.kapsi.fi)
- by mail.kapsi.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
- (envelope-from <jyri.sarha@iki.fi>) id 1sZmH3-00E0j4-10;
- Fri, 02 Aug 2024 10:00:25 +0300
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4AB710E995
+ for <amd-gfx@lists.freedesktop.org>; Fri,  2 Aug 2024 07:18:01 +0000 (UTC)
+X-UUID: 5699da2c509f11efa216b1d71e6e1362-20240802
+X-CTIC-Tags: HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NAME, HR_CC_NO_NAME,
+ HR_CTE_8B
+ HR_CTT_MISS, HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME
+ HR_SJ_DIGIT_LEN, HR_SJ_LANG, HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM
+ HR_SJ_PHRASE, HR_SJ_PHRASE_LEN, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT
+ HR_TO_NO_NAME, DN_TRUSTED, SRC_TRUSTED, SA_TRUSTED, SA_EXISTED
+ SN_TRUSTED, SN_EXISTED, SPF_NOPASS, DKIM_NOPASS, DMARC_NOPASS
+ CIE_BAD, CIE_GOOD, CIE_GOOD_SPF, GTI_FG_BS, GTI_RG_INFO
+ GTI_C_BU, AMN_T1, AMN_GOOD, AMN_C_TI, AMN_C_BU ABX_MISS_RDNS
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38, REQID:18879357-d45b-457b-b8cf-d9e8aa7d7e3b, IP:5,
+ U
+ RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+ ON:release,TS:-25
+X-CID-INFO: VERSION:1.1.38, REQID:18879357-d45b-457b-b8cf-d9e8aa7d7e3b, IP:5,
+ URL
+ :0,TC:0,Content:-25,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+ :release,TS:-25
+X-CID-META: VersionHash:82c5f88, CLOUDID:15c989120bec1d690fb547910e61687c,
+ BulkI
+ D:240802151224UQ7DLJME,BulkQuantity:1,Recheck:0,SF:66|25|17|19|45|102,TC:n
+ il,Content:0,EDM:-3,IP:-2,URL:0,File:nil,RT:nil,Bulk:40,QS:nil,BEC:nil,COL
+ :0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSI,TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD
+X-UUID: 5699da2c509f11efa216b1d71e6e1362-20240802
+X-User: yaolu@kylinos.cn
+Received: from localhost.localdomain [(111.48.58.10)] by mailgw.kylinos.cn
+ (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1078735964; Fri, 02 Aug 2024 15:17:55 +0800
+From: Lu Yao <yaolu@kylinos.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ srinivasan.shanmugam@amd.com, sunil.khatri@amd.com
+Cc: airlied@gmail.com, daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Lu Yao <yaolu@kylinos.cn>
+Subject: [PATCH] drm/amdgpu: add dce6 drm_panic support
+Date: Fri,  2 Aug 2024 15:17:52 +0800
+Message-Id: <20240802071752.116541-1-yaolu@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Fri, 02 Aug 2024 07:00:23 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-From: jyri.sarha@iki.fi
-Message-ID: <907bfa7ecffde2e2b0550edf183d6c58b6caf42d@iki.fi>
-Subject: Re: [PATCH 9/9] drm/tilcdc: Use backlight power constants
-To: "Thomas Zimmermann" <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, "Jyri
- Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>
-References: undefined <20240731122311.1143153-1-tzimmermann@suse.de>
-X-SA-Exim-Connect-IP: 91.232.154.200
-X-SA-Exim-Mail-From: jyri.sarha@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 02 Aug 2024 07:37:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,43 +71,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-July 31, 2024 at 3:17 PM, "Thomas Zimmermann" <tzimmermann@suse.de mailto=
-:tzimmermann@suse.de?to=3D%22Thomas%20Zimmermann%22%20%3Ctzimmermann%40su=
-se.de%3E > wrote:
+Add support for the drm_panic module, which displays a pretty user
+friendly message on the screen when a Linux kernel panic occurs.
 
->=20
->=20Replace FB_BLANK_ constants with their counterparts from the
-> backlight subsystem. The values are identical, so there's no
-> change in functionality or semantics.
->=20
->=20Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jyri Sarha <jyri.sarha@iki.fi>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
+Signed-off-by: Lu Yao <yaolu@kylinos.cn>
+---
+The patch can work properly on the TTY, but after start X, drawn
+image is messy, it looks like the data isn't linearly arranged.
+However at this time 'fb->modifier' is 'DRM_FORMAT_MOD_LINEAR'.
 
-Acked-by: Jyri Sarha <jyri.sarha@iki.fi>
+Another difference I found is:
+  For TTY, the amdgpu_bo is created with flag
+  'AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED|AMDGPU_GEM_CREATE_CPU_GTT_USWC|
+  AMDGPU_GEM_CREATE_VRAM_CLEARED|AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS'.
+  For X, the amdgpu_bo is created with flag
+  'AMDGPU_GEM_CREATE_NO_CPU_ACCESS|AMDGPU_GEM_CREATE_CPU_GTT_USWC'
+I try to use same flag for X, it looks like no difference.
 
-Thank,
-Jyri
+Can someone provide some insight into this problem or where I am going
+wrong. Thanks a lot.
 
-> drivers/gpu/drm/tilcdc/tilcdc_panel.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
->=20diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/=
-tilcdc/tilcdc_panel.c
-> index 68093d6b6b16..5f2d1b6f9ee9 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> @@ -49,7 +49,7 @@ static void panel_encoder_dpms(struct drm_encoder *en=
-coder, int mode)
->=20
->=20 if (backlight) {
->  backlight->props.power =3D mode =3D=3D DRM_MODE_DPMS_ON ?
-> - FB_BLANK_UNBLANK : FB_BLANK_POWERDOWN;
-> + BACKLIGHT_POWER_ON : BACKLIGHT_POWER_OFF;
->  backlight_update_status(backlight);
->  }
->=20
->=20--=20
->=202.45.2
->
+Test environment: X86 arch + v6.6 kernel + R7340.
+---
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c | 32 +++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index 05c0df97f01d..12c3801c264a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -28,6 +28,8 @@
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_modeset_helper_vtables.h>
+ #include <drm/drm_vblank.h>
++#include <drm/drm_panic.h>
++#include "../../drm_internal.h"
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_pm.h"
+@@ -2600,6 +2602,35 @@ static const struct drm_crtc_helper_funcs dce_v6_0_crtc_helper_funcs = {
+ 	.get_scanout_position = amdgpu_crtc_get_scanout_position,
+ };
+ 
++static int dce_v6_0_drm_primary_plane_get_scanout_buffer(struct drm_plane *plane,
++							 struct drm_scanout_buffer *sb)
++{
++	struct drm_framebuffer *fb;
++	struct drm_gem_object *obj;
++	struct amdgpu_bo *abo;
++	int ret = 0;
++
++	if (!plane->fb || plane->fb->modifier != DRM_FORMAT_MOD_LINEAR)
++		return -ENODEV;
++
++	fb = plane->fb;
++	sb->width = fb->width;
++	sb->height = fb->height;
++	sb->format = fb->format;
++	sb->pitch[0] = fb->pitches[0];
++
++	obj = fb->obj[0];
++	abo = gem_to_amdgpu_bo(obj);
++	if (!abo || abo->flags & AMDGPU_GEM_CREATE_NO_CPU_ACCESS)
++		return -EINVAL;
++
++	return drm_gem_vmap(obj, &sb->map[0]);
++}
++
++static const struct drm_plane_helper_funcs dce_v6_0_drm_primary_plane_helper_funcs = {
++	.get_scanout_buffer = dce_v6_0_drm_primary_plane_get_scanout_buffer
++};
++
+ static int dce_v6_0_crtc_init(struct amdgpu_device *adev, int index)
+ {
+ 	struct amdgpu_crtc *amdgpu_crtc;
+@@ -2627,6 +2658,7 @@ static int dce_v6_0_crtc_init(struct amdgpu_device *adev, int index)
+ 	amdgpu_crtc->encoder = NULL;
+ 	amdgpu_crtc->connector = NULL;
+ 	drm_crtc_helper_add(&amdgpu_crtc->base, &dce_v6_0_crtc_helper_funcs);
++	drm_plane_helper_add(amdgpu_crtc->base.primary, &dce_v6_0_drm_primary_plane_helper_funcs);
+ 
+ 	return 0;
+ }
+-- 
+2.25.1
+
