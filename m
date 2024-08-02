@@ -2,66 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B639458FA
-	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2024 09:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E57189458FF
+	for <lists+amd-gfx@lfdr.de>; Fri,  2 Aug 2024 09:37:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 966EF10E9A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E603810E9A3;
 	Fri,  2 Aug 2024 07:37:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="gN2ljHnU";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="Y436ndEi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 322 seconds by postgrey-1.36 at gabe;
- Thu, 01 Aug 2024 16:58:03 UTC
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40A4410E02D
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Aug 2024 16:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1722531481; x=1723136281; i=spasswolf@web.de;
- bh=YXzdAyJuCN+crNIs8n0L2vrv8e4Yz9lRbDuGR0XjS1A=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
- MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=gN2ljHnUhvpdfAJdptXcPPguuN9YXFqwH18t7m1TqplLsq72uXgCw8XDP+mdFdf7
- /3dupNTcdQNaakk3vS8CaagLTKyNs7MklOaSbRNVlt7MwVR9FrizD5er+HW9CGfrw
- UkklMbIyn75dyF0ZOnLs27kKgXbz4iyvGYUtnBuIRY7M3q5UOMnc7R53X1qhJq7W/
- DCepHzgLhexYagZHrRMZs0NP2qk5zG3MBfdSdNEWUKsRw38bU/wweJjT9CusI3Qf9
- QC6GKvV08d1ej3bsZA5GYUXs2HxPNeKk6P5feiIiQRN04qXmj2UMcQw8Cu+70+fZI
- 7tgghZ/xEYGySMMbtg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from localhost.localdomain ([84.119.92.193]) by smtp.web.de
- (mrweb106 [213.165.67.124]) with ESMTPSA (Nemesis) id
- 1MVrbz-1sjDXd3vRF-00TU6B; Thu, 01 Aug 2024 18:52:37 +0200
-From: Bert Karwatzki <spasswolf@web.de>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Bert Karwatzki <spasswolf@web.de>, linux-kernel@vger.kernel.org,
- linux-next@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Subject: commit 9d8c094ddab0 breaks Xorg/xfce4
-Date: Thu,  1 Aug 2024 18:52:32 +0200
-Message-ID: <20240801165234.2806-1-spasswolf@web.de>
-X-Mailer: git-send-email 2.45.2
+Received: from out30-97.freemail.mail.aliyun.com
+ (out30-97.freemail.mail.aliyun.com [115.124.30.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE5DF10E035;
+ Fri,  2 Aug 2024 02:59:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1722567591; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=0kM025x32/0+5dTxxuOpGxTdKPJ7pjJl/LKjasSay0I=;
+ b=Y436ndEi16m6hH5Qdvuq/NSFGni9dKUz9ytdzrrrwLPmoSEu79cFyKq39Cvsx0dT6ridFlDYQ4Zwcl9EO17xdTT3MnXt8M+8XLW/fV3btRGxqk/jwvSRsoz9MOsFNwqE+5QCOIu6ng+jGTSz3be6Ac81mWWFhKEquXbnBOVlmoE=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R181e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=maildocker-contentspam033037067110;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=15; SR=0;
+ TI=SMTPD_---0WBvhqXh_1722567582; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0WBvhqXh_1722567582) by smtp.aliyun-inc.com;
+ Fri, 02 Aug 2024 10:59:50 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: chaitanya.dhere@amd.com
+Cc: jun.lei@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH -next] drm/amd/display: remove unneeded semicolon
+Date: Fri,  2 Aug 2024 10:59:42 +0800
+Message-Id: <20240802025942.62734-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.32.0.3.g01195cf9f
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:84uszetUgx3rIli4ubyycxiX/XKr4EoFSLGH2U7qZS1I0dx4F1M
- tihI36Ktj+Z9y0jfN4y6puI9HduYSkR5hWRpX/3AQW8+823JtMVrnd4rAl9k1FxpPyZyLbT
- pFUGoHhgXMi3SC5iZc78p5GYQkQM7xpra8xrefoSj+fzbQifjP7ScOmixgRYBq8hhf4FDOv
- sTy/wSwzV3RjSI0QwvYNg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:OqkyKK+uCns=;28jgk4DZB24WbgmTCgiRNWmznEp
- XEyz5RFRRICegcEBHfZykJVZShZZvlH6eZ60lxqvhD3vJ8fOGOCVkbdl4p9FggcrkXXnrFNN8
- lRsp16v84BeVmSoZqyL0cn1VFEOzbcGTH1nHfNV7PySt6AZj+4Grr9IuCouGzPNpqv2I28HAz
- W/e/sEPzcRq36+rga8aQM5x2jSdngGpzfZbLXYvWZ5xRvP39pQ+uhtx9Y0aZeXIdX3NOZWQ9j
- Vpbc6gSnnSxV6JciXL7Z0tmv5o1B0o7E9FlrCKqqVTTpltoWCf027eldGRmW1/SEjJYYY5iqR
- qWhFyCKkQJv53uyX9IZyNW3E55WSGCHDzAdaGH+sy3rne9JkHuzbL5yo8AKq9cmzS7HPcfBTo
- 2OddiMdQ8mY5EoaZY3CwttTatI8R/GltwKVQ22evAxf9D8fZqeMS5kGWynFC4zSR2NOHs+nSn
- QwJ0HVfq3ZrurPLn421G6gbXZOO8KRFJOpjUf/s6a0hpBwomgF7MCcAMeGx5KcH5rp7iRElFK
- 0Q3mCwS6HsFx7N4zFaNibVW6aR7ffhHPv2iKVEEXYzJIDHsZ8uUWp6gXhE3S2kKLpTT9N8Vqs
- tlaJrkz/6CIAY67kNBmbu/T4477z4rDJG+ia3hZiRiQEXhNT2osOj1Hr3p6hIMeGlHCnd81UT
- WvKibRf1tE61I8k0/acnMu+HQeHXdX2jEsKQfds8+919V1BoIiHoDeZK5dikGjWlyRGERN24S
- 4zv/zQeM2CSZ8SF0H/FBpHoVDONqE/Uu5vzaIwYTwVHoi7qspm27DWupEzI1KS6Z+DrpNRonl
- vr/wy+T2QXCJSSKT44NR5ZDQ==
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 02 Aug 2024 07:37:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,39 +58,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since linux-next-20240801 starting Xorg/xfce4 fails on my MSI Alpha15 Lapt=
-op.
-I bisected this to the following commit and reverting this in linux-next-2=
-0240801
-fixes the issue for me. Gnome (with Xwayland) works as usual.
+No functional modification involved.
 
-9d8c094ddab05db88d183ba82e23be807848cad8 is the first bad commit
-commit 9d8c094ddab05db88d183ba82e23be807848cad8
-Author: Mario Limonciello <mario.limonciello@amd.com>
-Date:   Wed Jul 3 00:17:22 2024 -0500
+./drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c:6463:166-167: Unneeded semicolon.
 
-    drm/amd: Add power_saving_policy drm property to eDP connectors
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=9633
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ .../display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-    When the `power_saving_policy` property is set to bit mask
-    "Require color accuracy" ABM should be disabled immediately and
-    any requests by sysfs to update will return an -EBUSY error.
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+index c54c29711a65..8f3c1c0b1cc1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.c
+@@ -6464,8 +6464,8 @@ static void CalculateSwathAndDETConfiguration(struct dml2_core_internal_scratch
+ 			p->SwathHeightC[k] = l->MaximumSwathHeightC[k] / 2;
+ 			l->RoundedUpSwathSizeBytesY[k] = p->full_swath_bytes_l[k] / 2;
+ 			l->RoundedUpSwathSizeBytesC[k] = p->full_swath_bytes_c[k] / 2;
+-			p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
+-			p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;;
++			p->request_size_bytes_luma[k] = ((p->BytePerPixY[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
++			p->request_size_bytes_chroma[k] = ((p->BytePerPixC[k] == 2) == dml_is_vertical_rotation(p->display_cfg->plane_descriptors[k].composition.rotation_angle)) ? 128 : 64;
+ 		}
+ 
+ 		if (p->SwathHeightC[k] == 0)
+-- 
+2.32.0.3.g01195cf9f
 
-    When the `power_saving_policy` property is set to bit mask
-    "Require low latency" PSR should be disabled.
-
-    When the property is restored to an empty bit mask ABM and PSR
-    can be enabled again.
-
-    Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-    Reviewed-by: Leo Li <sunpeng.li@amd.com>
-    Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-    Link: https://patchwork.freedesktop.org/patch/msgid/20240703051722.328=
--3-mario.limonciello@amd.com
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       |  4 ++++
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 52 ++++++++++++++++++=
-+++++++++++++++++++++++++++++-----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 ++
- 3 files changed, 53 insertions(+), 5 deletions(-)
-
-Bert Karwatzki
