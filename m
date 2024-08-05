@@ -2,121 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D5E947C61
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2024 16:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74CDC947E65
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Aug 2024 17:43:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B93310E20B;
-	Mon,  5 Aug 2024 14:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC9210E239;
+	Mon,  5 Aug 2024 15:43:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zPlVMlAR";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="K1xaeCBW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2077.outbound.protection.outlook.com [40.107.243.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5847F10E20B
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 14:01:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tWYu0BAvA6JCrVX4uyC5t8b86G9eqt9LK/CqPDXdy1fujPRTgPTorZryyjBUZfTI6zUMC90Cr1i9dU8TVtyq2tCc2vlM8IaIUFQqXqHnGKNc7Uk6ldpBIp7tOcaq2yN5P4yTtHGvvsvD/3VO83FqY19sZsWqqXxkuTpOjZmBRvJUHOBEGIEfAMZY9dvZU/606K07JvGzGpyBhQzZvjv40/cn0K35/Y9oszFkpNKIum4XTeMSreoI7fT7/zOLsBrUmmwh0QDUyPzANF3H22nKmKrQOtkc+4glO1dr1fkjy0TOxsAy/oDMwCEzuuxtaqyvRrr4smGX82Po4s7Hpwt8tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M9L90K2DUlYH8ntBxdZnjErA40N41asbd9KtYdYU7kw=;
- b=uoJQOzdZtG+93DDogqVdcH4a/Iw39/rouACjPS2DnJog8NkvGsmgpslbqqIrfV7xjp5VGSGvSdLfVXXOI43uxrmxxhYncMM1eiGra2fszwQcYWupB5vtGtMxAQ+3fR1AWqqPYsU1lYj1ZEhU3eflT13Dz3AWNzyO2ecmLTLfIrLl7Nhz/obRXrA5GEwB/RNjC26P0ZY69UJj33RcLqYHCizK18eawZX61urQYgtlehfHgNlnykB9/qWKaOMLoPrjWAafxC0nL3NPD5mJ9tGCYbOV/jFQBGkgJvy0C9vBhIk6hwsAE2SG4QZRZ9G5GrtBITxGvwuGKkdVAcF/nPT5iA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M9L90K2DUlYH8ntBxdZnjErA40N41asbd9KtYdYU7kw=;
- b=zPlVMlARTZBLGJZAcNpHZSSla7GspTqtDcHUMO/tXDpl4QvculahkrUKifEFJbjt3uD5NAH2Q/wx0kVNGNFXr40IGll+JEmtIHOKZ5n0R5BNYUdttBdXuis2JiWVn4CZhhGZVe6vhVnzaLOePp3Ko/XTqRS1UA94VGOsFEUKxAM=
-Received: from DS7PR05CA0088.namprd05.prod.outlook.com (2603:10b6:8:56::14) by
- PH0PR12MB8030.namprd12.prod.outlook.com (2603:10b6:510:28d::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.22; Mon, 5 Aug
- 2024 14:01:53 +0000
-Received: from DS1PEPF00017095.namprd03.prod.outlook.com
- (2603:10b6:8:56:cafe::5a) by DS7PR05CA0088.outlook.office365.com
- (2603:10b6:8:56::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.11 via Frontend
- Transport; Mon, 5 Aug 2024 14:01:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF00017095.mail.protection.outlook.com (10.167.17.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7828.19 via Frontend Transport; Mon, 5 Aug 2024 14:01:52 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 5 Aug 2024 09:01:50 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
- <frank.min@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH] drm/amdgpu: Add DCC GFX12 flag to enable address alignment
-Date: Mon, 5 Aug 2024 19:31:25 +0530
-Message-ID: <20240805140125.549000-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7D510E0CA
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 12:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1722862524;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6sFTkFFBzy68gGYyVFthr8XWWlGLTI9qL1cAt5iZfio=;
+ b=K1xaeCBW31rtEmP/jsmeK5FB2rF7ewjuKt7e7JudHCGs3xQ8ETbl6JaPZfAzVFfliTeR53
+ 3DgANnzQo0AmYK4I2Z8GokTrYaUhJRREiWeI5TrRsEtiymlFlT2ct9/yXMOVuJhqO1wHrd
+ Nnap1iEL8UQ1QREXBOdsAi0heXemnzM=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-516-4LSK3i7EM0aBQZvda8Rxog-1; Mon, 05 Aug 2024 08:55:22 -0400
+X-MC-Unique: 4LSK3i7EM0aBQZvda8Rxog-1
+Received: by mail-ej1-f69.google.com with SMTP id
+ a640c23a62f3a-a7abaf0aecdso713568166b.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 05 Aug 2024 05:55:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1722862521; x=1723467321;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6sFTkFFBzy68gGYyVFthr8XWWlGLTI9qL1cAt5iZfio=;
+ b=wSOjfARCXRprQxI8nN8ztOvhQ/8xroweEAeJpJu3XeTJJALKM0PQ/E6P4P7/AaLw0B
+ QxZ1YYUAjnp484Gg2cnxS5/GlXADzHBVNcUhb7u6oHGCl7oGJ7OIZbuG/coWT+wJgWou
+ JsH4ZgiXtTz56WCebn8tsIfs8nS7aMOBSYj1T7YqXjfrM7/fhjgfvwztJX9LMENq4u46
+ w4SCfkCaq5sFkNpO3uqp7V8r5N9NCxR7XnABswy0oyFY10Zoyunrmu0OIekIN7f2/6fd
+ 6/D4xJiVgTdNN7DfRRvBTmKIRY4DZz2KMZCb58feeGRUn+kcPe/S5lOu8e1Fva2USFnr
+ rdcA==
+X-Gm-Message-State: AOJu0YzejrEpgKEnu/I4U9PQhn0+4reUob7MGDA1fwAKHtiU0taJIEPf
+ 17Jukcvn4T0aqahUCGkKN75W+EpNlyUWiqcHS/VahpX7JSNlNb3HstvvGRUg5uvlGGVFhY61Lqf
+ KU7BSqMZ569oVAiSCysU3K0g4RKc9w9QbHnoPVMeQDmXgEb92dpIhYQNzbvb0sGQ=
+X-Received: by 2002:a17:906:d262:b0:a7a:9f78:fef with SMTP id
+ a640c23a62f3a-a7dc5179f86mr918970366b.45.1722862521520; 
+ Mon, 05 Aug 2024 05:55:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE9YeBvy8oWLp/NyTyOio/5DPMJElgRHoNwm4t6biuGr97/fY6gQoYH1jOlXD1POvqPTXGZVQ==
+X-Received: by 2002:a17:906:d262:b0:a7a:9f78:fef with SMTP id
+ a640c23a62f3a-a7dc5179f86mr918967066b.45.1722862520880; 
+ Mon, 05 Aug 2024 05:55:20 -0700 (PDT)
+Received: from [10.40.98.157] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a7dc9d4542esm452408766b.127.2024.08.05.05.55.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 05 Aug 2024 05:55:20 -0700 (PDT)
+Message-ID: <df84bf60-bcb4-4fcc-bbf2-d627714e365d@redhat.com>
+Date: Mon, 5 Aug 2024 14:55:19 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] drm: backlight quirk infrastructure and lower
+ minimum for Framework AMD 13
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Matt Hartley <matt.hartley@gmail.com>, Kieran Levin <ktl@framework.net>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dustin Howett <dustin@howett.net>
+References: <20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017095:EE_|PH0PR12MB8030:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0bd8d78f-776d-46a6-11fa-08dcb55728c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700013|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?n7JCSOKsd8txk8X+O6DsgYQ6srOlXrqxh3wgUb+9S8l6FVwKen5Vs4GN01ya?=
- =?us-ascii?Q?AHYVitnfKbEWMpNf8LC1za5THETfCYa3pYmPMQNnUeMj40RnmA3vCThtBjoV?=
- =?us-ascii?Q?UXfeBa6sE8t+XV0LMYP2fdVM7gXW3UQjiw8gq+FlZkCWYJNIx+M/OwJMmrmQ?=
- =?us-ascii?Q?z766mYDYyuVR3sCu5NwB+1/loORUwtt6OGP2LzAaIJ/fSzVJ7OBrT5wglMoG?=
- =?us-ascii?Q?WWCIj7gr6qT1NJu9xCEXzZens9NI/3L7qsKnlwOE1WxTvBGRAJO46eXHGJFY?=
- =?us-ascii?Q?Ywa2VJMrgq2bDUx2yihIxd4xKOpqLX+PSjbWwbKl9qY+/+5IiHsEPSD+XMqx?=
- =?us-ascii?Q?U4kG4sgTjLbv4NRBcIDGNf297O2GEMvHNJfwXaENyL50YL0OBQLSW/ALLxmI?=
- =?us-ascii?Q?Vc0TnWfBClfocvzyZmH/DxiSsOhXVCZrt+2aOuBDR8/zh+qS7NROLJ14lG/U?=
- =?us-ascii?Q?1jP3hmlr4JxuTJnTsMj/BbvLAgbCqfbNrDsByGBhq2skpRjRuzNH4sRftJ0m?=
- =?us-ascii?Q?ZmxCP22nUol9J5IBVh3mreBAu98db4gMmMPuKk1eBq8CJN9fBAhtqpoYZ/A9?=
- =?us-ascii?Q?k+kLEvUsoNSeya/Tj/M5Awgdi/dLEzRrwR75uaC2jnM6dioWYTy6+VkA3YUc?=
- =?us-ascii?Q?EZ+8gzUOZfjAhbAnAHm4ZC2T5ZRfx+J1RiLz060BN8lwxJ527kJOws/wjc1V?=
- =?us-ascii?Q?O7HC+jAObib9vsH6Ua8NvQL8ArCF5mFK38RZvMDzN7EQz8SVxSGhiGee6u7h?=
- =?us-ascii?Q?id7QNtJXvy2Fovkj02mvN+TCcoA0v5qr8LE1SxfLOYOz/U9QodYR9vOEwGKf?=
- =?us-ascii?Q?XBLpCopFWT6hyzzigUuORXnANmFPSEn8su7VWATHiN7J1Nu1wEuGyQP7qM4j?=
- =?us-ascii?Q?i3h9xMKu0Kcpqv1zRGOoxYLiCKoDN2cGzFaE/IuWVA50Garxb6HQsWJT4Ukg?=
- =?us-ascii?Q?pa980z6UvE0K64o0JQjXbA8O+E+Mg5NkAFjsgvpUHdX48+tUSIoZ1ZflqRRh?=
- =?us-ascii?Q?62Kg7hB0nwzKA9fJPuiVTBSAg/iWCC9Jjl+OdhgEyAOjDmDg4Fp72nr3hTs0?=
- =?us-ascii?Q?0yeF5bWvMp4Vh0GbKgUvbtTxAJt68L1XIeUyTv0pVglNJwVnC4CL/Ud/bV9U?=
- =?us-ascii?Q?qzT799cYSrpS9V5hicvEWKdd+ude7o26lOVWvub+fib0wSP2o861/8+73Pfr?=
- =?us-ascii?Q?cq71EXi4gpU8wzHwxEUqsPc/Fln8l9crdgdym8IS9aqmtKBiZ1ohryPS7eh3?=
- =?us-ascii?Q?jT4Xz01fpcyneeMa17V4LGEHVmQ0grqYo0G9KiA1ETgyVLnaOEBC4SrUdu0p?=
- =?us-ascii?Q?234/Nxk3Lcx1KNStj1gfWFYHp+IqkQA5qIhfm/5H6y2pvlQ4y9MBzPgw9ccR?=
- =?us-ascii?Q?y3rZlJzB7FBB3WBUO/M1LIfMUysKz+d/1aIVpLelu6uajedfqEp9AJzShTWC?=
- =?us-ascii?Q?b+N+GgX4XjI5i2o7wQe6yqqI9BB2ukEp?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 14:01:52.9132 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bd8d78f-776d-46a6-11fa-08dcb55728c0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017095.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8030
+X-Mailman-Approved-At: Mon, 05 Aug 2024 15:43:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,33 +102,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We require this flag AMDGPU_GEM_CREATE_GFX12_DCC or any other
-kernel level GFX12 DCC flag to differentiate the DCC buffers and other
-pinned display buffers(which has TTM_PL_FLAG_CONTIGUOUS enabled).
+Hi Thomas,
 
-If we use the TTM_PL_FLAG_CONTIGUOUS flag for DCC buffers, we may over
-allocate for all the pinned display buffers unnecessarily that leads to
-memory allocation failure.
+On 6/23/24 10:51 AM, Thomas Weißschuh wrote:
+> The value of "min_input_signal" returned from ATIF on a Framework AMD 13
+> is "12". This leads to a fairly bright minimum display backlight.
+> 
+> Add a generic quirk infrastructure for backlight configuration to
+> override the settings provided by the firmware.
+> Also add amdgpu as a user of that infrastructure and a quirk for the
+> Framework 13 matte panel.
+> Most likely this will also work for the glossy panel, but I can't test
+> that.
+> 
+> One solution would be a fixed firmware version, but given that the
+> problem exists since the release of the hardware, it has been known for
+> a month that the hardware can go lower and there was no acknowledgment
+> from Framework in any way, I'd like to explore this alternative
+> way forward.
+> 
+> Notes:
+> 
+> * Should the quirk infrastructure be part of drm_edid.c?
+> * The current allocation of struct drm_edid in amdgpu is bad.
+>   But it is done the same way in other parts of amdgpu.
+>   I do have patches migrating amdgpu to proper usage of struct drm_edid [0]
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+So now that we have agreed to move forward with this approach one
+generic design issue / question which popped into my head is:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 5415a5cc7789..7de0ac07a060 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -509,7 +509,8 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 		/* Allocate blocks in desired range */
- 		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
- 
--	if (adev->gmc.gmc_funcs->get_dcc_alignment)
-+	if (bo->flags & AMDGPU_GEM_CREATE_GFX12_DCC &&
-+	    adev->gmc.gmc_funcs->get_dcc_alignment)
- 		adjust_dcc_size = amdgpu_gmc_get_dcc_alignment(adev);
- 
- 	remaining_size = (u64)vres->base.size;
--- 
-2.25.1
+What happens if i915 also gets support for the minimum brightness quirk?
+
+Specifically the panel used on the framework 13 will match the quirk
+independent of which GPU driver is used. But does say a minimum value
+of "5" have the same meaning / results in the same minimum duty-cycle
+when used by the i915 code vs the amdgpu code ?
+
+I know that the actual quirk sets the min pwm to 0, which presumably results
+in a 0% duty cycle on both i915 and amdgpu, but I'm worried what happens
+if we see the same panel used in designs which can have it attached to
+different vendor GPUs, how should the GPU driver interpret the
+pwm_min_brightness value so that it is interpretted consistently between
+drivers ? 
+
+I guess this is covered by the docbook saying that min-brightness is on
+a 0-255 brightness scale (with 255 being 100%) though ?  Just making sure
+that everyone has agreement on that being the scale and that drivers
+should not directly take this value but scale it as necessary.
+This should also (scale it as necessary) be explicitly mentioned in
+the docs IMHO.
+
+Regards,
+
+Hans
+
+
+
+
+
+
+> Mario:
+> 
+> I intentionally left out the consideration of the firmware version.
+> The quirk will stay correct even if the firmware starts reporting
+> correct values.
+> If there are strong opinions it would be easy to add, though.
+> 
+> Based on amdgpu/drm-next.
+> 
+> [0] https://lore.kernel.org/lkml/20240616-amdgpu-edid-bios-v1-1-2874f212b365@weissschuh.net/
+> 
+> ---
+> Changes in v2:
+> - Introduce proper drm backlight quirk infrastructure
+> - Quirk by EDID and DMI instead of only DMI
+> - Limit quirk to only single Framework 13 matte panel
+> - Link to v1: https://lore.kernel.org/r/20240610-amdgpu-min-backlight-quirk-v1-1-8459895a5b2a@weissschuh.net
+> 
+> ---
+> Thomas Weißschuh (3):
+>       drm: Add panel backlight quirks
+>       drm: panel-backlight-quirks: Add Framework 13 matte panel
+>       drm/amd/display: Add support backlight quirks
+> 
+>  Documentation/gpu/drm-kms-helpers.rst             |  3 +
+>  drivers/gpu/drm/Kconfig                           |  4 ++
+>  drivers/gpu/drm/Makefile                          |  1 +
+>  drivers/gpu/drm/amd/amdgpu/Kconfig                |  1 +
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 28 +++++++++
+>  drivers/gpu/drm/drm_panel_backlight_quirks.c      | 76 +++++++++++++++++++++++
+>  include/drm/drm_utils.h                           | 11 ++++
+>  7 files changed, 124 insertions(+)
+> ---
+> base-commit: 1ecef5589320fd56af599b624d59c355d162ac7b
+> change-id: 20240610-amdgpu-min-backlight-quirk-8402fd8e736a
+> 
+> Best regards,
 
