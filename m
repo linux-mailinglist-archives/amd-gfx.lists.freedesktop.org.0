@@ -2,120 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9912A9497A3
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2024 20:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 679A89497AA
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2024 20:42:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3608310E065;
-	Tue,  6 Aug 2024 18:39:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCAE10E3D7;
+	Tue,  6 Aug 2024 18:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="SVCUQTT7";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="P7bkSFbS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2046.outbound.protection.outlook.com [40.107.220.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC2810E065
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Aug 2024 18:39:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fFJ2r9TzwwzpHhGYjtk4+Oc+MwcwA+7YvQLVFnt2BDZW7eTtXdNWBQVx23dCOTFKBJ0CkF5/e3eGHKkFXczcmQ+D26e3q8qZ6xdSJ7KWd9+628eTJJM4bRgTDq7FzK0ffnvo/+RYLmMxpDsXBUY5NRbywD2DbH5pv/XoMRSDuI5a3RTPPnwMjxolvmoaYFP4ij92u7JC2eGuKREkw5F8YxiojfiIkKEJzg/xmTVx/R2237Ac/697TElmdpdsO2wYz12dYPbNOIgqxd2COWdgOxNfgqZPCS+/1cflM9qIsZsGWyMWPBRvgex4IARWr0aAaEgWSdCUhexyI30+trfNbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hfc5YNtb4LSGIg1FqXZ51V+3fvVMadMxCw+cQZNwW2M=;
- b=Yeib7OC4cHn/D/5+nxVJisGq/FUTvrW4oTI4HED3dOosjtNOaVZ+1niguKWpzQIvGtSXKZeYz+QBr5PMXt9AVsXkC4l6BApFPOmkdP7s51jSXDH15QT2UHcj01YEttGFU2No/3w3YMxpG3t2yOMMJygbuFYS/oegCbReoomFU3BZOL+eE7YkHyiU7OI7ZM872EM6lbwAf6qQ6VtIDepb2EBPXVsMmj+diZLLP8/2cgozFlcfMjs5c1vFl0o5OjcyYjMGYYHCK+Zcitf+LbqvBW1a0UIc8qRrCEiqDmXSHNQggivLe79dD3BuCOGkf8EbwHCFOuZ9vh52qShVj3XWgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hfc5YNtb4LSGIg1FqXZ51V+3fvVMadMxCw+cQZNwW2M=;
- b=SVCUQTT7oiW6UFHYpcBAQ0+rmnerI/CqW/cnI/nA8Nn26aVb1Z6EYovyFwlB6ZCG+nIKdtEiqA00TMJELgIjKhJesO4RthRG9SRv1if62k5hah6OnzodH+BBztKD7A8uOqKX+FbyW+LEouR3Vohiwsmxt26S70rH2yUMMF5yIw8=
-Received: from BYAPR06CA0012.namprd06.prod.outlook.com (2603:10b6:a03:d4::25)
- by CH0PR12MB8488.namprd12.prod.outlook.com (2603:10b6:610:18d::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.12; Tue, 6 Aug
- 2024 18:39:17 +0000
-Received: from CO1PEPF000044EE.namprd05.prod.outlook.com (2603:10b6:a03:d4::4)
- by BYAPR06CA0012.outlook.office365.com (2603:10b6:a03:d4::25) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7828.27 via Frontend Transport; Tue, 6 Aug 2024 18:39:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000044EE.mail.protection.outlook.com (10.167.241.68) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Tue, 6 Aug 2024 18:39:16 +0000
-Received: from yinjiyao-test0.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 6 Aug
- 2024 13:39:14 -0500
-From: yinjiyao <yinjie.yao@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Christian.Koenig@amd.com>
-CC: <alexander.deucher@amd.com>, <leo.liu@amd.com>, <ruijing.dong@amd.com>,
- <yinjie.yao@amd.com>
-Subject: [PATCH] drm/amdgpu: Update kmd_fw_shared for VCN5
-Date: Tue, 6 Aug 2024 14:39:03 -0400
-Message-ID: <20240806183903.198416-1-yinjie.yao@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5338510E3D7
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Aug 2024 18:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1722969740;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=01pYy0RoeEupYF7zERqbs3TQif/Fpq9bfAeMMVajTZo=;
+ b=P7bkSFbS8mVUtD8yU6dl+KsrkgxqmqpmqNdvMnuFmf2VKetZwXskT33tKWsgPlWzromcP9
+ Pigt6rnvJyGo6rIVTCD5tE2Nds1JVh/Z0htfSQBDPDsXAqOzEWf5ixEFpY0xHvolfpI8Sq
+ jN+ztyp5PWW6UvhbIH4A4nr6m/2KHaQ=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-665-oStN7SolNvSMaDXiAZ2V7A-1; Tue, 06 Aug 2024 14:42:17 -0400
+X-MC-Unique: oStN7SolNvSMaDXiAZ2V7A-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4280645e3e0so7472975e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 06 Aug 2024 11:42:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1722969736; x=1723574536;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=01pYy0RoeEupYF7zERqbs3TQif/Fpq9bfAeMMVajTZo=;
+ b=v0QGiXgTt4sXKih+invm7hsBIyU5uLQ2EWxUQHMkDsLzLSq60x84F3S0uoATvd3+By
+ qu6NSMGZc1sas9iskA7sDZyRavkwIMbOV6mUGFsoHLc9BLlxFX2ZPMByF+MRtXXaxzid
+ TeAVcX0jzce+s7ZOomVORucW5V/EK2RAol6HhcQ6pAUm4gqgHYm4FNzBVyqBLz7qNVWr
+ h5oK41rYGjcz3osFAjqbhuTrc1/vk7MwzHwN62hlV/LrLaoNXTQcjmynovWIMpNEgduA
+ Z23S07lLMpwh75GPDpoVJSMoHTN4gKe9vKlDA08voS0ZiACJhrkZJWX15C5ArqbKLvF/
+ 2ivg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWQvOz5Zrt5e/RL0xDYsiEquZgq+Hf9gdxqxQXz+Nqn/ECYCCeS4HdE7tYiVUvtNCjwbC4PUrOqOp6AhLoIhvg/sw5rYSvlaGBue2iMvg==
+X-Gm-Message-State: AOJu0YyfMPGbT/CfqOGVVFFGDSNMW5xc11oFNC6vi8zhFiykK51Fv570
+ 5g5YbAankevobGbGWtxuVVjgbGBpZ6R6g/DSdPBUXErBOPTKH0Mjxi+wcp/1wICXHFur9AgwJfw
+ YDc9dH2hr2+1DUIv3CpVvQDL78uzRzP6Q1pATl0YHbDzuq+8JiWmLGKWW57Jnoqk=
+X-Received: by 2002:a05:600c:4691:b0:426:61af:e1d3 with SMTP id
+ 5b1f17b1804b1-428e6b93599mr102556205e9.31.1722969735932; 
+ Tue, 06 Aug 2024 11:42:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFiFpIvlI8k7114/ZEzme3IC5OCI9T0woaEQMiy/WOE6Z1hplw5fhcTbm7blEJxF4i2lUmGOg==
+X-Received: by 2002:a05:600c:4691:b0:426:61af:e1d3 with SMTP id
+ 5b1f17b1804b1-428e6b93599mr102556085e9.31.1722969735360; 
+ Tue, 06 Aug 2024 11:42:15 -0700 (PDT)
+Received: from toolbox.fritz.box ([2001:9e8:898e:ab00:d894:f48:6689:8e30])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-428e6e3ef10sm196595695e9.24.2024.08.06.11.42.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Aug 2024 11:42:14 -0700 (PDT)
+From: Sebastian Wick <sebastian.wick@redhat.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Sebastian Wick <sebastian@sebastianwick.net>,
+ Xaver Hugl <xaver.hugl@gmail.com>, Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Hung <alex.hung@amd.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Roman Li <roman.li@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Wayne Lin <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] Revert "drm/amd/display: Don't register
+ panel_power_savings on OLED panels"
+Date: Tue,  6 Aug 2024 20:42:09 +0200
+Message-ID: <20240806184214.224672-1-sebastian.wick@redhat.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044EE:EE_|CH0PR12MB8488:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a1d6d95-1991-4153-9199-08dcb64713a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700013|43062017; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pqqpQoiByJI2q+uTbaEInYtckjRfmBQM8zN+P1TOW1VglUmrYfcNhbJcf+SC?=
- =?us-ascii?Q?pYQbkNT8M9N9PpgVgKntqoQ0gaVrjpieHCJrSKhDRdmdkDGn7S57wEjkYSSY?=
- =?us-ascii?Q?t03H1YZSvPM+VLZmu29+grx9OEuY0KdJKkWq23DZSHF9PKL2ltk+Qu5d+e88?=
- =?us-ascii?Q?QvkTqNFFEBiYsmPsVBXBpEFh48n4Ju9oA4ShzCE+cEJG6eFtIZxg/g4KrnKf?=
- =?us-ascii?Q?bzjp6i/ag6M6VCqsjB04aPxDrJfvSW0+TNogivvG0hBLByzMOEdh719A8kgl?=
- =?us-ascii?Q?7lCS8FEHOudnH4rIiTsQitdP5QxnGpTLdppOIrDMHkwpw5k/rS0AFTOO4pJy?=
- =?us-ascii?Q?ZIs4FLV7jjhNghEA1YoS2h5FslGEbLKnyTKIi+6qv2nDihbfUSCTj+wCMKaP?=
- =?us-ascii?Q?wUt+t/Yy5o36LoRXlSDXKl5D+askI/Tlj1p8Sb64fmJMI/3FkFhP7ZZZGE1k?=
- =?us-ascii?Q?8S18EzN8BUfi+G8ZqqylzQmC0Tw24lDQoM2DyxVJNCYiqt792+X99GMoamTq?=
- =?us-ascii?Q?TeUDEkQgAZ2w42tMh/mcNwUw7HOacgRTdecC0ZOQpOtC54TeekkuL8i3RZIo?=
- =?us-ascii?Q?LsYO3rghMNIERSukSuSqtI5ALFxIOwvFmiWq8c5oDbFKqS8xyNmBbBmY3IE6?=
- =?us-ascii?Q?94FaJ/8XVr6ReekPCmmqejLQ8YnRIJwQVM/5Zx4Y9K9veCt70pXoAZzbm5a4?=
- =?us-ascii?Q?vmTya5zkEQDyZV0dA6wCMHLJbroNw1wIM7xZjUTAeUdiAklVTg78mUKxaPa2?=
- =?us-ascii?Q?RYlcyBkSHRL6sL/wz+jd8HTtU6nuIrMTdUikEmtGjb3AHdlgCR8qt2ATnot0?=
- =?us-ascii?Q?XBGAJ7oKI1s83L5zMRy58HHAWw8GshBoaohQMbKikhHlEzVdOHpdx9AYAVBv?=
- =?us-ascii?Q?bCFpF+VF6LUvBP+nNLB6QOGFOrZQMkXG3tkLD/fsHyEsLTbN3T1OzfCI7itC?=
- =?us-ascii?Q?QL83rCDWQYoNfbB7HpJC7fnniQmSVnN1LmG4+vDK2WQU+GmP97iJqPdwG1FN?=
- =?us-ascii?Q?ekC4N5cEdJpcYoue1oe8axaXCCHokMDADLeiTv3YuwLj7t+/0ZuW/hNi3aR1?=
- =?us-ascii?Q?bWtWzIo5gIebRPhNn7J0NtwPQfyH6sIia8AjmUNyuxHGa5JXYrzydpVBSRT4?=
- =?us-ascii?Q?fCou1PVDWqSftniCoTCInpRVxrS9o9QW2Cp4U+CriMXYjcimP59s/7UEEJDQ?=
- =?us-ascii?Q?UUwFKJrBu4a9/jNAvkffbWyGAWN+bbIb0usY2RBhpBabeOM80XkPV7XXzFU/?=
- =?us-ascii?Q?u6QSggNN9KobM+IYHVqnQddE3iZ42KH5v7ZMVR0XLOC5UyDLrqWO3bnlU3UM?=
- =?us-ascii?Q?NZVjUT4lrj2Wc2in9k5wPP4YcgvapqwZnihrsEchjah2qVI7v6wA/kpy3+Nj?=
- =?us-ascii?Q?iKKw/aP4LzHRSbI72e+U3C8JZxXJbnNIVoGMx4bzkdG/BIqnML5kODO53x1k?=
- =?us-ascii?Q?hYZlRAnOV40S38vn7t9pwymAueRh2veg9JzIr6CgVytUeUcyX5amhw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(43062017);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2024 18:39:16.6181 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a1d6d95-1991-4153-9199-08dcb64713a1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044EE.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8488
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,31 +101,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-kmd_fw_shared changed in VCN5
+From: Sebastian Wick <sebastian@sebastianwick.net>
 
-Signed-off-by: Yinjie Yao <yinjie.yao@amd.com>
-Reviewed-by: Ruijing Dong <ruijing.dong@amd.com>
+This reverts commit 76cb763e6ea62e838ccc8f7a1ea4246d690fccc9.
+
+Reverting the panel_power_savings sysfs. See next commit.
+
+Signed-off-by: Sebastian Wick <sebastian.wick@redhat.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 29 +++----------------
+ 1 file changed, 4 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-index f127eccf59d7..2a1f3dbb14d3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -464,8 +464,11 @@ struct amdgpu_vcn5_fw_shared {
- 	struct amdgpu_fw_shared_unified_queue_struct sq;
- 	uint8_t pad1[8];
- 	struct amdgpu_fw_shared_fw_logging fw_log;
-+	uint8_t pad2[20];
- 	struct amdgpu_fw_shared_rb_setup rb_setup;
--	uint8_t pad2[4];
-+	struct amdgpu_fw_shared_smu_interface_info smu_dpm_interface;
-+	struct amdgpu_fw_shared_drm_key_wa drm_key_wa;
-+	uint8_t pad3[9];
+diff --git ./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c ../drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 7e7929f24ae4..4d4c75173fc3 100644
+--- ./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ ../drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6840,34 +6840,12 @@ static const struct attribute_group amdgpu_group = {
+ 	.attrs = amdgpu_attrs
  };
  
- #define VCN_BLOCK_ENCODE_DISABLE_MASK 0x80
+-static bool
+-amdgpu_dm_should_create_sysfs(struct amdgpu_dm_connector *amdgpu_dm_connector)
+-{
+-	if (amdgpu_dm_abm_level >= 0)
+-		return false;
+-
+-	if (amdgpu_dm_connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
+-		return false;
+-
+-	/* check for OLED panels */
+-	if (amdgpu_dm_connector->bl_idx >= 0) {
+-		struct drm_device *drm = amdgpu_dm_connector->base.dev;
+-		struct amdgpu_display_manager *dm = &drm_to_adev(drm)->dm;
+-		struct amdgpu_dm_backlight_caps *caps;
+-
+-		caps = &dm->backlight_caps[amdgpu_dm_connector->bl_idx];
+-		if (caps->aux_support)
+-			return false;
+-	}
+-
+-	return true;
+-}
+-
+ static void amdgpu_dm_connector_unregister(struct drm_connector *connector)
+ {
+ 	struct amdgpu_dm_connector *amdgpu_dm_connector = to_amdgpu_dm_connector(connector);
+ 
+-	if (amdgpu_dm_should_create_sysfs(amdgpu_dm_connector))
++	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
++	    amdgpu_dm_abm_level < 0)
+ 		sysfs_remove_group(&connector->kdev->kobj, &amdgpu_group);
+ 
+ 	drm_dp_aux_unregister(&amdgpu_dm_connector->dm_dp_aux.aux);
+@@ -6974,7 +6952,8 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
+ 		to_amdgpu_dm_connector(connector);
+ 	int r;
+ 
+-	if (amdgpu_dm_should_create_sysfs(amdgpu_dm_connector)) {
++	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
++	    amdgpu_dm_abm_level < 0) {
+ 		r = sysfs_create_group(&connector->kdev->kobj,
+ 				       &amdgpu_group);
+ 		if (r)
 -- 
-2.34.1
+2.45.2
 
