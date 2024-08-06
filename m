@@ -2,61 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4EA9949EFA
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2024 07:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C5194A1E7
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2024 09:41:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E52E10E02B;
-	Wed,  7 Aug 2024 05:13:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eJA7ziTX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C194310E429;
+	Wed,  7 Aug 2024 07:41:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C163710E02B;
- Wed,  7 Aug 2024 05:13:23 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 08B796111F;
- Wed,  7 Aug 2024 05:13:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D27D0C32782;
- Wed,  7 Aug 2024 05:13:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1723007602;
- bh=um2GSGAvdjY0j0MtneCmmwl8RQ+HTQsfh/xKbEsHYF4=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=eJA7ziTXO28uCUme73hpCZF3OLsHd4lwtyFCAmJ1L4eCc/QTU9cfVMxbSC3WALSoy
- lHrZ7UhyZbLJFuT2PtoUsIloW+Qqb1NWq+6HVLivJm59yiY4oqL7zwuLAddfm7n9KO
- cC8TF/iE88IPUUR+YWh2EDmpsDVew17PhYO3aYVZBA3eL/kQixnQ1Ss5lTUz+6EBth
- EICk472OHMMw6uQGzjGtGW6OX1AQjViyc273VX01VndWyhIxlUtPAEHPRHPF8pEM6F
- eOBg6WDblf2kecf8nQ7O2+5RL2itFfJ/2keTN5k6ITA6O4ukEd17AcTjK8LYuTXJ/V
- 6hgu2UZwbqnWA==
-Message-ID: <0141fd24-ee8e-4d19-a93c-11e8d54b093a@kernel.org>
-Date: Wed, 7 Aug 2024 00:13:15 -0500
+Received: from Edge12.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463CE10E3D4;
+ Tue,  6 Aug 2024 17:19:14 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Tue, 6 Aug
+ 2024 20:19:11 +0300
+Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Tue, 6 Aug 2024
+ 20:19:10 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Xinhui Pan
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Jerome Glisse
+ <jglisse@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
+Subject: [PATCH v2] drm/radeon/evergreen_cs: fix int overflow errors in cs
+ track offsets
+Date: Tue, 6 Aug 2024 10:19:04 -0700
+Message-ID: <20240806171904.49032-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] Revert "drm/amd/display: add panel_power_savings
- sysfs entry to eDP connectors"
-To: Sebastian Wick <sebastian.wick@redhat.com>, dri-devel@lists.freedesktop.org
-Cc: Sebastian Wick <sebastian@sebastianwick.net>,
- Xaver Hugl <xaver.hugl@gmail.com>, Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Hung <alex.hung@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, Roman Li <roman.li@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Wayne Lin
- <Wayne.Lin@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20240806184214.224672-1-sebastian.wick@redhat.com>
- <20240806184214.224672-2-sebastian.wick@redhat.com>
-Content-Language: en-US
-From: Mario Limonciello <superm1@kernel.org>
-In-Reply-To: <20240806184214.224672-2-sebastian.wick@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
+X-Mailman-Approved-At: Wed, 07 Aug 2024 07:41:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,153 +54,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 8/6/24 13:42, Sebastian Wick wrote:
-> From: Sebastian Wick <sebastian@sebastianwick.net>
-> 
-> This reverts commit 63d0b87213a0ba241b3fcfba3fe7b0aed0cd1cc5.
-> 
-> The panel_power_savings sysfs entry can be used to change the displayed
-> colorimetry which breaks color managed setups.
-> 
-> The "do not break userspace" rule which was violated here is enough
-> reason to revert this commit.
-> 
-> The bigger problem is that this feature is part of the display chain
-> which is supposed to be controlled by KMS. This sysfs entry bypasses the
-> DRM master process and splits control to two independent processes which
-> do not know about each other. This is what caused the broken user space.
-> It also causes modesets which can be extremely confusing for the DRM
-> master process, causing unexpected timings.
-> 
-> We should in general not allow anything other than KMS to control the
-> display path. If we make an exception to this rule, this must be first
-> discussed on dri-devel with all the stakeholders approving the
-> exception.
-> 
-> This has not happened which is the second reason to revert this commit.
-> 
-> Signed-off-by: Sebastian Wick <sebastian.wick@redhat.com>
+Several cs track offsets (such as 'track->db_s_read_offset')
+either are initialized with or plainly take big enough values that,
+once shifted 8 bits left, may be hit with integer overflow if the
+resulting values end up going over u32 limit.
 
-For anyone who hasn't seen it, there has been a bunch of discussions 
-that have transpired on this topic and what to do about it on [1] as 
-well as some other linked places on that bug.
+Same goes for a few instances of 'surf.layer_size * mslice'
+multiplications that are added to 'offset' variable - they may
+potentially overflow as well and need to be validated properly.
 
-Also FWIW there was a discussion on the merits of the sysfs file on 
-dri-devel during the initial patch submission [2].
+While some debug prints in this code section take possible overflow
+issues into account, simply casting to (unsigned long) may be
+erroneous in its own way, as depending on CPU architecture one is
+liable to get different results.
 
-If this revert ends up going through, please also revert 
-0887054d14ae23061e28e28747cdea7e40be9224 in the same series so the 
-feature can "at least" be accessed by the compositor and changed at 
-runtime like the sysfs file had allowed.
+Fix said problems by:
+ - casting 'offset' to fixed u64 data type instead of
+ ambiguous unsigned long.
+ - casting one of the operands in vulnerable to integer
+ overflow cases to u64.
+ - adjust format specifiers in debug prints to properly
+ represent 'offset' values.
 
-[1] https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/issues/159
-[2] 
-https://lore.kernel.org/dri-devel/20240202152837.7388-1-hamza.mahfooz@amd.com/
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
-> ---
->   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 80 -------------------
->   1 file changed, 80 deletions(-)
-> 
-> diff --git ./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c ../drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 4d4c75173fc3..16c9051d9ccf 100644
-> --- ./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ ../drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -6772,82 +6772,10 @@ int amdgpu_dm_connector_atomic_get_property(struct drm_connector *connector,
->   	return ret;
->   }
->   
-> -/**
-> - * DOC: panel power savings
-> - *
-> - * The display manager allows you to set your desired **panel power savings**
-> - * level (between 0-4, with 0 representing off), e.g. using the following::
-> - *
-> - *   # echo 3 > /sys/class/drm/card0-eDP-1/amdgpu/panel_power_savings
-> - *
-> - * Modifying this value can have implications on color accuracy, so tread
-> - * carefully.
-> - */
-> -
-> -static ssize_t panel_power_savings_show(struct device *device,
-> -					struct device_attribute *attr,
-> -					char *buf)
-> -{
-> -	struct drm_connector *connector = dev_get_drvdata(device);
-> -	struct drm_device *dev = connector->dev;
-> -	u8 val;
-> -
-> -	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
-> -	val = to_dm_connector_state(connector->state)->abm_level ==
-> -		ABM_LEVEL_IMMEDIATE_DISABLE ? 0 :
-> -		to_dm_connector_state(connector->state)->abm_level;
-> -	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-> -
-> -	return sysfs_emit(buf, "%u\n", val);
-> -}
-> -
-> -static ssize_t panel_power_savings_store(struct device *device,
-> -					 struct device_attribute *attr,
-> -					 const char *buf, size_t count)
-> -{
-> -	struct drm_connector *connector = dev_get_drvdata(device);
-> -	struct drm_device *dev = connector->dev;
-> -	long val;
-> -	int ret;
-> -
-> -	ret = kstrtol(buf, 0, &val);
-> -
-> -	if (ret)
-> -		return ret;
-> -
-> -	if (val < 0 || val > 4)
-> -		return -EINVAL;
-> -
-> -	drm_modeset_lock(&dev->mode_config.connection_mutex, NULL);
-> -	to_dm_connector_state(connector->state)->abm_level = val ?:
-> -		ABM_LEVEL_IMMEDIATE_DISABLE;
-> -	drm_modeset_unlock(&dev->mode_config.connection_mutex);
-> -
-> -	drm_kms_helper_hotplug_event(dev);
-> -
-> -	return count;
-> -}
-> -
-> -static DEVICE_ATTR_RW(panel_power_savings);
-> -
-> -static struct attribute *amdgpu_attrs[] = {
-> -	&dev_attr_panel_power_savings.attr,
-> -	NULL
-> -};
-> -
-> -static const struct attribute_group amdgpu_group = {
-> -	.name = "amdgpu",
-> -	.attrs = amdgpu_attrs
-> -};
-> -
->   static void amdgpu_dm_connector_unregister(struct drm_connector *connector)
->   {
->   	struct amdgpu_dm_connector *amdgpu_dm_connector = to_amdgpu_dm_connector(connector);
->   
-> -	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
-> -	    amdgpu_dm_abm_level < 0)
-> -		sysfs_remove_group(&connector->kdev->kobj, &amdgpu_group);
-> -
->   	drm_dp_aux_unregister(&amdgpu_dm_connector->dm_dp_aux.aux);
->   }
->   
-> @@ -6952,14 +6880,6 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
->   		to_amdgpu_dm_connector(connector);
->   	int r;
->   
-> -	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
-> -	    amdgpu_dm_abm_level < 0) {
-> -		r = sysfs_create_group(&connector->kdev->kobj,
-> -				       &amdgpu_group);
-> -		if (r)
-> -			return r;
-> -	}
-> -
->   	amdgpu_dm_register_backlight_device(amdgpu_dm_connector);
->   
->   	if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
+Fixes: 285484e2d55e ("drm/radeon: add support for evergreen/ni tiling informations v11")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+v2:
+- change data type to cast from unsigned long to u64 per Alex's and
+Christian's suggestion:
+https://lore.kernel.org/all/CADnq5_NaMr+vpqwqhsMoSeGrto2Lw5v0KXWEp2HRK=++orScMg@mail.gmail.com/
+- include validation of surf.layer_size * mslice per Christian's
+approval:
+https://lore.kernel.org/all/1914cfcb-9700-4274-8120-9746e241cb54@amd.com/
+- change format specifiers when printing 'offset' value.
+- fix commit description to reflect patch changes.
 
+v1:
+https://lore.kernel.org/all/20240725180950.15820-1-n.zhandarovich@fintech.ru/
+
+ drivers/gpu/drm/radeon/evergreen_cs.c | 62 +++++++++++++++++------------------
+ 1 file changed, 31 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/radeon/evergreen_cs.c
+index e5577d2a19ef..a46613283393 100644
+--- a/drivers/gpu/drm/radeon/evergreen_cs.c
++++ b/drivers/gpu/drm/radeon/evergreen_cs.c
+@@ -397,7 +397,7 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
+ 	struct evergreen_cs_track *track = p->track;
+ 	struct eg_surface surf;
+ 	unsigned pitch, slice, mslice;
+-	unsigned long offset;
++	u64 offset;
+ 	int r;
+ 
+ 	mslice = G_028C6C_SLICE_MAX(track->cb_color_view[id]) + 1;
+@@ -435,14 +435,14 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
+ 		return r;
+ 	}
+ 
+-	offset = track->cb_color_bo_offset[id] << 8;
++	offset = (u64)track->cb_color_bo_offset[id] << 8;
+ 	if (offset & (surf.base_align - 1)) {
+-		dev_warn(p->dev, "%s:%d cb[%d] bo base %ld not aligned with %ld\n",
++		dev_warn(p->dev, "%s:%d cb[%d] bo base %llu not aligned with %ld\n",
+ 			 __func__, __LINE__, id, offset, surf.base_align);
+ 		return -EINVAL;
+ 	}
+ 
+-	offset += surf.layer_size * mslice;
++	offset += (u64)surf.layer_size * mslice;
+ 	if (offset > radeon_bo_size(track->cb_color_bo[id])) {
+ 		/* old ddx are broken they allocate bo with w*h*bpp but
+ 		 * program slice with ALIGN(h, 8), catch this and patch
+@@ -450,14 +450,14 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
+ 		 */
+ 		if (!surf.mode) {
+ 			uint32_t *ib = p->ib.ptr;
+-			unsigned long tmp, nby, bsize, size, min = 0;
++			u64 tmp, nby, bsize, size, min = 0;
+ 
+ 			/* find the height the ddx wants */
+ 			if (surf.nby > 8) {
+ 				min = surf.nby - 8;
+ 			}
+ 			bsize = radeon_bo_size(track->cb_color_bo[id]);
+-			tmp = track->cb_color_bo_offset[id] << 8;
++			tmp = (u64)track->cb_color_bo_offset[id] << 8;
+ 			for (nby = surf.nby; nby > min; nby--) {
+ 				size = nby * surf.nbx * surf.bpe * surf.nsamples;
+ 				if ((tmp + size * mslice) <= bsize) {
+@@ -469,7 +469,7 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
+ 				slice = ((nby * surf.nbx) / 64) - 1;
+ 				if (!evergreen_surface_check(p, &surf, "cb")) {
+ 					/* check if this one works */
+-					tmp += surf.layer_size * mslice;
++					tmp += (u64)surf.layer_size * mslice;
+ 					if (tmp <= bsize) {
+ 						ib[track->cb_color_slice_idx[id]] = slice;
+ 						goto old_ddx_ok;
+@@ -478,9 +478,9 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
+ 			}
+ 		}
+ 		dev_warn(p->dev, "%s:%d cb[%d] bo too small (layer size %d, "
+-			 "offset %d, max layer %d, bo size %ld, slice %d)\n",
++			 "offset %llu, max layer %d, bo size %ld, slice %d)\n",
+ 			 __func__, __LINE__, id, surf.layer_size,
+-			track->cb_color_bo_offset[id] << 8, mslice,
++			(u64)track->cb_color_bo_offset[id] << 8, mslice,
+ 			radeon_bo_size(track->cb_color_bo[id]), slice);
+ 		dev_warn(p->dev, "%s:%d problematic surf: (%d %d) (%d %d %d %d %d %d %d)\n",
+ 			 __func__, __LINE__, surf.nbx, surf.nby,
+@@ -564,7 +564,7 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
+ 	struct evergreen_cs_track *track = p->track;
+ 	struct eg_surface surf;
+ 	unsigned pitch, slice, mslice;
+-	unsigned long offset;
++	u64 offset;
+ 	int r;
+ 
+ 	mslice = G_028008_SLICE_MAX(track->db_depth_view) + 1;
+@@ -610,18 +610,18 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
+ 		return r;
+ 	}
+ 
+-	offset = track->db_s_read_offset << 8;
++	offset = (u64)track->db_s_read_offset << 8;
+ 	if (offset & (surf.base_align - 1)) {
+-		dev_warn(p->dev, "%s:%d stencil read bo base %ld not aligned with %ld\n",
++		dev_warn(p->dev, "%s:%d stencil read bo base %llu not aligned with %ld\n",
+ 			 __func__, __LINE__, offset, surf.base_align);
+ 		return -EINVAL;
+ 	}
+-	offset += surf.layer_size * mslice;
++	offset += (u64)surf.layer_size * mslice;
+ 	if (offset > radeon_bo_size(track->db_s_read_bo)) {
+ 		dev_warn(p->dev, "%s:%d stencil read bo too small (layer size %d, "
+-			 "offset %ld, max layer %d, bo size %ld)\n",
++			 "offset %llu, max layer %d, bo size %ld)\n",
+ 			 __func__, __LINE__, surf.layer_size,
+-			(unsigned long)track->db_s_read_offset << 8, mslice,
++			(u64)track->db_s_read_offset << 8, mslice,
+ 			radeon_bo_size(track->db_s_read_bo));
+ 		dev_warn(p->dev, "%s:%d stencil invalid (0x%08x 0x%08x 0x%08x 0x%08x)\n",
+ 			 __func__, __LINE__, track->db_depth_size,
+@@ -629,18 +629,18 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
+ 		return -EINVAL;
+ 	}
+ 
+-	offset = track->db_s_write_offset << 8;
++	offset = (u64)track->db_s_write_offset << 8;
+ 	if (offset & (surf.base_align - 1)) {
+-		dev_warn(p->dev, "%s:%d stencil write bo base %ld not aligned with %ld\n",
++		dev_warn(p->dev, "%s:%d stencil write bo base %llu not aligned with %ld\n",
+ 			 __func__, __LINE__, offset, surf.base_align);
+ 		return -EINVAL;
+ 	}
+-	offset += surf.layer_size * mslice;
++	offset += (u64)surf.layer_size * mslice;
+ 	if (offset > radeon_bo_size(track->db_s_write_bo)) {
+ 		dev_warn(p->dev, "%s:%d stencil write bo too small (layer size %d, "
+-			 "offset %ld, max layer %d, bo size %ld)\n",
++			 "offset %llu, max layer %d, bo size %ld)\n",
+ 			 __func__, __LINE__, surf.layer_size,
+-			(unsigned long)track->db_s_write_offset << 8, mslice,
++			(u64)track->db_s_write_offset << 8, mslice,
+ 			radeon_bo_size(track->db_s_write_bo));
+ 		return -EINVAL;
+ 	}
+@@ -661,7 +661,7 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
+ 	struct evergreen_cs_track *track = p->track;
+ 	struct eg_surface surf;
+ 	unsigned pitch, slice, mslice;
+-	unsigned long offset;
++	u64 offset;
+ 	int r;
+ 
+ 	mslice = G_028008_SLICE_MAX(track->db_depth_view) + 1;
+@@ -708,34 +708,34 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
+ 		return r;
+ 	}
+ 
+-	offset = track->db_z_read_offset << 8;
++	offset = (u64)track->db_z_read_offset << 8;
+ 	if (offset & (surf.base_align - 1)) {
+-		dev_warn(p->dev, "%s:%d stencil read bo base %ld not aligned with %ld\n",
++		dev_warn(p->dev, "%s:%d stencil read bo base %llu not aligned with %ld\n",
+ 			 __func__, __LINE__, offset, surf.base_align);
+ 		return -EINVAL;
+ 	}
+-	offset += surf.layer_size * mslice;
++	offset += (u64)surf.layer_size * mslice;
+ 	if (offset > radeon_bo_size(track->db_z_read_bo)) {
+ 		dev_warn(p->dev, "%s:%d depth read bo too small (layer size %d, "
+-			 "offset %ld, max layer %d, bo size %ld)\n",
++			 "offset %llu, max layer %d, bo size %ld)\n",
+ 			 __func__, __LINE__, surf.layer_size,
+-			(unsigned long)track->db_z_read_offset << 8, mslice,
++			(u64)track->db_z_read_offset << 8, mslice,
+ 			radeon_bo_size(track->db_z_read_bo));
+ 		return -EINVAL;
+ 	}
+ 
+-	offset = track->db_z_write_offset << 8;
++	offset = (u64)track->db_z_write_offset << 8;
+ 	if (offset & (surf.base_align - 1)) {
+-		dev_warn(p->dev, "%s:%d stencil write bo base %ld not aligned with %ld\n",
++		dev_warn(p->dev, "%s:%d stencil write bo base %llu not aligned with %ld\n",
+ 			 __func__, __LINE__, offset, surf.base_align);
+ 		return -EINVAL;
+ 	}
+-	offset += surf.layer_size * mslice;
++	offset += (u64)surf.layer_size * mslice;
+ 	if (offset > radeon_bo_size(track->db_z_write_bo)) {
+ 		dev_warn(p->dev, "%s:%d depth write bo too small (layer size %d, "
+-			 "offset %ld, max layer %d, bo size %ld)\n",
++			 "offset %llu, max layer %d, bo size %ld)\n",
+ 			 __func__, __LINE__, surf.layer_size,
+-			(unsigned long)track->db_z_write_offset << 8, mslice,
++			(u64)track->db_z_write_offset << 8, mslice,
+ 			radeon_bo_size(track->db_z_write_bo));
+ 		return -EINVAL;
+ 	}
