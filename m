@@ -2,60 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B4DE948B25
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2024 10:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E47948B0F
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Aug 2024 10:18:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4866B10E31B;
-	Tue,  6 Aug 2024 08:21:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Lnhluq5L";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D44310E30A;
+	Tue,  6 Aug 2024 08:18:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5478A10E2E9
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Aug 2024 02:43:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1722912203;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Aq8ZYlDMSbmaa6KQhOh4EPglh61tK+x7a0+GyG0d/dw=;
- b=Lnhluq5LaB37xWfYPHJ0Z/HJfrJ1yuXyDjPqBZ2P2gnnfwB0t3BEc5la/iqRJKybPWO+Vk
- NH0QOAzZ0VoWRfEmTgQb7xv91ADpWr9NzvNY7v171Frl/KQ6pQ3mSsxAwluogOcaNahfQC
- +yOX16Gx/hK1CkfNhNvVftiN3Y3rWVw=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-45-gmbvvrK6OICN4ZxuPbaZ1Q-1; Mon,
- 05 Aug 2024 22:43:18 -0400
-X-MC-Unique: gmbvvrK6OICN4ZxuPbaZ1Q-1
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id EA1161955D4F
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Aug 2024 02:43:17 +0000 (UTC)
-Received: from dev64.localdomain.com (unknown [10.64.240.68])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 93B8A19560AE; Tue,  6 Aug 2024 02:43:16 +0000 (UTC)
-From: Masatake YAMATO <yamato@redhat.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: Masatake YAMATO <yamato@redhat.com>
-Subject: [PATCH] drm/amdgpu: fix the ioctl direction for
- DRM_IOCTL_AMDGPU_GEM_VA
-Date: Tue,  6 Aug 2024 11:43:10 +0900
-Message-ID: <20240806024310.3650332-1-yamato@redhat.com>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A241410E317
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Aug 2024 08:18:36 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 4768IVTR2422830; Tue, 6 Aug 2024 13:48:31 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 4768IUWB2422829;
+ Tue, 6 Aug 2024 13:48:30 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v1 00/15] VCN IP DUMP support for remaining IP's
+Date: Tue,  6 Aug 2024 13:48:10 +0530
+Message-Id: <20240806081825.2422771-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Tue, 06 Aug 2024 08:21:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,29 +42,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Though drmCommandWriteRead() is used in libdrm [1],
-DRM_IOCTL_AMDGPU_GEM_VA uses DRM_IOW for encoding.
+VCN IP dump support for
+a. 1.0
+b. 2.0
+c. 2.5
+d. 2.6
+e. 4.0
+f. 4.0.3
+g. 4.0.5
+h. 5.0
 
-[1] https://gitlab.freedesktop.org/mesa/drm/-/blob/main/amdgpu/amdgpu_bo.c?ref_type=heads
+Testing is done on VCN 3.x 4.x 5.x only as older version of VCN targets
+are not available but it should work as the methodology to read and dump
+value in devcoredump remains same. All the registers are validated
+against the IP and from windows program as much as possible.
 
-Signed-off-by: Masatake YAMATO <yamato@redhat.com>
----
- include/uapi/drm/amdgpu_drm.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index efe5de6ce208..7325390798bc 100644
---- a/include/uapi/drm/amdgpu_drm.h
-+++ b/include/uapi/drm/amdgpu_drm.h
-@@ -63,7 +63,7 @@ extern "C" {
- #define DRM_IOCTL_AMDGPU_INFO		DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_INFO, struct drm_amdgpu_info)
- #define DRM_IOCTL_AMDGPU_GEM_METADATA	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_METADATA, struct drm_amdgpu_gem_metadata)
- #define DRM_IOCTL_AMDGPU_GEM_WAIT_IDLE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_WAIT_IDLE, union drm_amdgpu_gem_wait_idle)
--#define DRM_IOCTL_AMDGPU_GEM_VA		DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_VA, struct drm_amdgpu_gem_va)
-+#define DRM_IOCTL_AMDGPU_GEM_VA		DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_VA, struct drm_amdgpu_gem_va)
- #define DRM_IOCTL_AMDGPU_WAIT_CS	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_WAIT_CS, union drm_amdgpu_wait_cs)
- #define DRM_IOCTL_AMDGPU_GEM_OP		DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_OP, struct drm_amdgpu_gem_op)
- #define DRM_IOCTL_AMDGPU_GEM_USERPTR	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_USERPTR, struct drm_amdgpu_gem_userptr)
+Sunil Khatri (15):
+  drm/amdgpu: add vcn_v5_0 ip dump support
+  drm/amdgpu: add print support for vcn_v5_0 ip dump
+  drm/amdgpu: add vcn_v4_0 ip dump support
+  drm/amdgpu: add print support for vcn_v4_0 ip dump
+  drm/amdgpu: add vcn_v4_0_3 ip dump support
+  drm/amdgpu: add print support for vcn_v4_0_3 ip dump
+  drm/amdgpu: add vcn_v4_0_5 ip dump support
+  drm/amdgpu: add print support for vcn_v4_0_5 ip dump
+  drm/amdgpu: add vcn_v1_0 ip dump support
+  drm/amdgpu: add print support for vcn_v1_0 ip dump
+  drm/amdgpu: add vcn_v2_0 ip dump support
+  drm/amdgpu: add print support for vcn_v2_0 ip dump
+  drm/amdgpu: add vcn_v2_5 ip dump support
+  drm/amdgpu: add print support for vcn_v2_5 ip dump
+  drm/amdgpu: add vcn ip dump support for vcn_v2_6
+
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   | 129 ++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   | 145 ++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 148 ++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 203 ++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 204 +++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 203 ++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 204 +++++++++++++++++++++++-
+ 7 files changed, 1220 insertions(+), 16 deletions(-)
+
 -- 
-2.45.2
+2.34.1
 
