@@ -2,80 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214C594B099
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2024 21:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F1A94B15A
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Aug 2024 22:33:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE1C210E595;
-	Wed,  7 Aug 2024 19:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB5210E5CB;
+	Wed,  7 Aug 2024 20:33:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OGM8VEM/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DZ84yKfh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E53110E19B;
- Wed,  7 Aug 2024 19:47:51 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id
- 41be03b00d2f7-76cb5b6b3e4so161091a12.1; 
- Wed, 07 Aug 2024 12:47:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1723060071; x=1723664871; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=y8fOPzmtqiLIFR7hdlUGU7hbaoMoJU1ECSwmA8wwi8k=;
- b=OGM8VEM/FxZ/pNRlrFPfNC5RS/QUzy/4sHeR7VJDkDv7GtlxPaaYbqX91T/LkMzmSl
- qhIpgLEWz7xrnEqLJyysKCdTHYDK9qOGnm+t0PhhjbSTD3wAyTpuYRzTZbwhn22GQRT3
- ZarSt/HrmNzznpVLuxtjTtUGdA+bPJmdgZRxdwJR3kalpQ9WiAU960NKa62pt6IDwPJK
- Mxwz4JxY8Ej5UbiVPB6kNy5vlXmE1iQWDYZOcpQ76smLTrKwuocLG/xdbUunf7R+zRKI
- 7d4IBoRjJX7kcJ5Vx9R3wS9g6HLKidmCqt00cqP4a0SV3QR3cizfy5ILsh2bil//Ed68
- +L7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723060071; x=1723664871;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=y8fOPzmtqiLIFR7hdlUGU7hbaoMoJU1ECSwmA8wwi8k=;
- b=iY4ckIaio6ADRSUYXcFWVROzGVcCX4a++Q/2ADloAl8k829tLwukpTqeZBoApwwILb
- iFzsRYre+hoHsc6sYzC859o07bf2xemAcaQuGhnl8zC4nM5ruQt+8KnoCcyOC4ZgFDjj
- TNJscJ4+NYf1fI/YcpIpc4Nuov3B0N6wcH8EIrKYYzqbQGF4xj4MbIOnr7URzt8kx8gP
- 0zAPyVBiBJRFMDrzH2IUJ+/QnOlyLkfaZJMqktoe299edKY523Ou1Ozex57e1gV/Cc5J
- PfYmLqajoq3nw3R4SDZalxdSXPBPbiAuJEQW6Zrg1U1NRj9SHGEpHlJ7fBAUza7CM8hV
- 4JCA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVnhKC+W7SsvZVYJrtqYd0ObttUYFbFkt81tCYTOGCXzpJObv/ue3lXNmBZQnIoPcArl6TbwopaQhDPXO+YwW4RjlrwGDe2RoAwQSazaHel3zNxcUzMwGHPwOqb2MFbX7G+X4Xahtn2yNLNKHbLQGHd29dWE07sYfDdaiw2Vipvc3/+2/SysXLnypYnLQcroSFTWF3jecIgABEg9X3pQED4cXv0KaFfeBF4P95fuo6R
-X-Gm-Message-State: AOJu0YzfoO4wFmV2exSYxVjnDq6l74wNFP29uMKgKOTEvaILlzBQg0wA
- 7kl1u4sn/moPV9gEetMKKbGSpQbZwVwgFQ/iXt7SNqRRokRP6agXDGkuZQ4whciDBCoffiWSpgW
- ApWX7A9uZ1oBgNEmwZQVr8SfhzUQ=
-X-Google-Smtp-Source: AGHT+IHmFlEPW3T9TfVRn+SCIYDPVxch8xQRSjUwcj3bFrKKJ2emjniSP+27GrHeI++j0gGMn/UeW1lRfqmrGRN+oIc=
-X-Received: by 2002:a17:90a:ec0b:b0:2c9:62be:292a with SMTP id
- 98e67ed59e1d1-2cff9449548mr18631680a91.21.1723060070533; Wed, 07 Aug 2024
- 12:47:50 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA1B10E1E5;
+ Wed,  7 Aug 2024 20:33:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=CQ8edwtzyG0J16XiUr2wFd7uhCXmwRC9WSvQBDtaPqk=; b=DZ84yKfhrjvjGWGXMGpwl5gzy8
+ qgyEfp95zHp/hT7QyxDQTFgjzWlW/yQraofWnw1gInnv7JLWQTjg0b7LfaJHiSjIA0cnL4IX9pkuG
+ SbA6+Uydm8xvykz5j9grLHnk85d2LILlZ+yLOq4UkyO4O5WDV7rmMSpLfwbakOaGJn0NKrITQi7P8
+ nAGHTSlrGMEgmf+hsOZlZDKcNHN20J/YzorQV1ipRH6jH7j8TFn2QEeWjJJpatlI4Oo9SyYTayzQV
+ EtFcAcrOeryqLmdyv7UtJQgcqDNcnbuvIxuE75Y6DPARepGwffdj9SrHjEZSfC4pU3lBxLOyLcEMf
+ kq6IUMaw==;
+Received: from [189.6.17.125] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sbnLP-0098Re-W5; Wed, 07 Aug 2024 22:33:16 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ daniel@ffwll.ch, harry.wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ sunpeng.li@amd.com, Xinhui.Pan@amd.com
+Cc: Alex Hung <alex.hung@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, kernel-dev@igalia.com,
+ Melissa Wen <mwen@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v5 0/9] drm/amd/display: switch amdgpu_dm_connector to use
+ struct drm_edid
+Date: Wed,  7 Aug 2024 19:25:02 -0100
+Message-ID: <20240807203207.2830-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20240731122311.1143153-1-tzimmermann@suse.de>
- <20240731122311.1143153-2-tzimmermann@suse.de>
- <BL1PR12MB514410E846FEB773DC0CAEEFF7BE2@BL1PR12MB5144.namprd12.prod.outlook.com>
- <6156f386-9316-4777-8cdb-f46ca3a9c183@suse.de>
-In-Reply-To: <6156f386-9316-4777-8cdb-f46ca3a9c183@suse.de>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 7 Aug 2024 15:47:38 -0400
-Message-ID: <CADnq5_NyVDp2kGK1t-XLyvF0qQL+3NNY+hCeRD8MOeY7wbApEg@mail.gmail.com>
-Subject: Re: [PATCH 1/9] drm/amdgpu: Use backlight power constants
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
- "mripard@kernel.org" <mripard@kernel.org>,
- "airlied@gmail.com" <airlied@gmail.com>, 
- "daniel@ffwll.ch" <daniel@ffwll.ch>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "Koenig, Christian" <Christian.Koenig@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,92 +62,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 6, 2024 at 3:06=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse.=
-de> wrote:
->
-> Hi
->
-> Am 05.08.24 um 21:00 schrieb Deucher, Alexander:
-> > [Public]
-> >
-> >> -----Original Message-----
-> >> From: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Sent: Wednesday, July 31, 2024 8:17 AM
-> >> To: maarten.lankhorst@linux.intel.com; mripard@kernel.org;
-> >> airlied@gmail.com; daniel@ffwll.ch
-> >> Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; in=
-tel-
-> >> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Thomas
-> >> Zimmermann <tzimmermann@suse.de>; Deucher, Alexander
-> >> <Alexander.Deucher@amd.com>; Koenig, Christian
-> >> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>
-> >> Subject: [PATCH 1/9] drm/amdgpu: Use backlight power constants
-> >>
-> >> Replace FB_BLANK_ constants with their counterparts from the backlight
-> >> subsystem. The values are identical, so there's no change in functiona=
-lity or
-> >> semantics.
-> >>
-> >> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Cc: Alex Deucher <alexander.deucher@amd.com>
-> >> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> >> Cc: Xinhui Pan <Xinhui.Pan@amd.com>
-> > This patch and the radeon patch are:
-> > Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> >
-> > Feel free to take them via whatever tree makes sense if you are trying =
-to keep the patches together, or let me know if you want me to pick them up=
-.
->
-> Thank you for the reviews. Please pick up both patches into the rsp AMD
-> trees. The i915 patch already went into Intel trees and the rest of the
-> series will go into drm-misc.
+Hi,
 
-What changes do these depend on?  BACKLIGHT_POWER_ON isn't declared in
-my -next tree yet.  Might be easier to just run them through drm-misc
-if that's where the change is.
+Here AMD display driver migrates from open struct edid to opaque
+drm_edid. This version works on top of amd/drm-next branch since
+amd-staging-drm-next doesn't have the commits that support
+drm_edid_product_id[1]. It's mostly addressing Alex Hung's feedback
+from the previous version.
 
-Alex
+Patches 1-4 works on amd-staging-drm-next.
+- First patch basically changes amd connector to store struct drm_edid
+  instead of edid with some pending rework to get rid of raw edid.
+- 2-4 update the driver code to use drm common-code, removing
+  driver-specific steps already done during drm_edid updates.
 
->
-> Best regards
-> Thomas
->
-> >
-> > Thanks,
-> >
-> > Alex
-> >
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/atombios_encoders.c | 2 +-
-> >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> >> b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> >> index 25feab188dfe..650ec95bb40a 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> >> @@ -215,7 +215,7 @@ void
-> >> amdgpu_atombios_encoder_init_backlight(struct amdgpu_encoder
-> >> *amdgpu_encode
-> >>        dig->bl_dev =3D bd;
-> >>
-> >>        bd->props.brightness =3D
-> >> amdgpu_atombios_encoder_get_backlight_brightness(bd);
-> >> -     bd->props.power =3D FB_BLANK_UNBLANK;
-> >> +     bd->props.power =3D BACKLIGHT_POWER_ON;
-> >>        backlight_update_status(bd);
-> >>
-> >>        DRM_INFO("amdgpu atom DIG backlight initialized\n");
-> >> --
-> >> 2.45.2
->
-> --
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
->
+Patches 5-9 depend on drm_edid_product_id, therefore, it doesn't work on
+current amd-staging-drm-next. They parse edid caps from drm_eld and
+drm_edid_product_id data, removing the need of handling raw edid in the
+dm_helpers_parse_edid_caps(), since all callers of this helper has
+updated display info from drm_edid at this point.
+
+To completely remove raw edid, I changed dc/link_detection in the last
+commit because all calls of dm_helpers_parse_edid_caps in
+link_add_remote_sink are preceded by the setup and update of drm_edid in
+the connector, so we can always use the connector->drm_edid. 
+
+Finally, there are some pending drm_edid_raw to be addressed in next
+iterations.
+
+Let me know your thoughts.
+
+Melissa
+
+Change log:
+v1: https://lore.kernel.org/amd-gfx/20240126163429.56714-1-mwen@igalia.com/
+- use const to fix compilation warnings (Alex Hung)
+- remove unused variables
+- remove driver-specific parser for connector info in favor of drm_edid
+  common code
+
+v2: https://lore.kernel.org/amd-gfx/20240327165828.288792-1-mwen@igalia.com/
+- fix general protection fault on mst
+
+v3: https://lore.kernel.org/amd-gfx/20240327214953.367126-1-mwen@igalia.com/
+- rename edid to drm_edid in amdgpu_connector (Jani)
+- call drm_edid_connector_update to clear edid in case of NULL (Jani)
+- keep setting NULL instead of free drm_edid (Jani)
+- check drm_edid not NULL, instead of valid (Jani)
+- use drm_edid_product_id to parse product info
+- use drm_eld info to parse edid caps
+
+v4: https://lore.kernel.org/amd-gfx/20240706034004.801329-1-mwen@igalia.com/
+- squash variable cleanup to related common-code cleanup (Alex H)
+- add more informative commit description (Alex H)
+- avoid unnecessary call to drm_edid_raw (Alex H)
+- remove unnecessary cast (Alex H.)
+- remove deprecated comments (Alex H.)
+- fix kernel-doc (kernel test bot)
+
+[1] https://lore.kernel.org/dri-devel/cover.1712655867.git.jani.nikula@intel.com
+
+Melissa Wen (9):
+  drm/amd/display: switch amdgpu_dm_connector to use struct drm_edid
+  drm/amd/display: switch to setting physical address directly
+  drm/amd/display: always call connector_update when parsing
+    freesync_caps
+  drm/amd/display: remove redundant freesync parser for DP
+  drm/amd/display: use drm_edid_product_id for parsing EDID product info
+  drm/amd/display: parse display name from drm_eld
+  drm/amd/display: get SAD from drm_eld when parsing EDID caps
+  drm/amd/display: get SADB from drm_eld when parsing EDID caps
+  drm/amd/display: remove dc_edid handler from
+    dm_helpers_parse_edid_caps
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 196 +++++-------------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   4 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 113 +++++-----
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  32 +--
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   1 -
+ .../drm/amd/display/dc/link/link_detection.c  |   6 +-
+ 6 files changed, 131 insertions(+), 221 deletions(-)
+
+-- 
+2.43.0
+
