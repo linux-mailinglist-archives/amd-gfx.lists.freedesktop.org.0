@@ -2,57 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4731A94CC98
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Aug 2024 10:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0CD094CCA4
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Aug 2024 10:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0335810E876;
-	Fri,  9 Aug 2024 08:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E63010E87B;
+	Fri,  9 Aug 2024 08:48:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="fU9/d69g";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="DuaxmFf+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1711510E872
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Aug 2024 08:46:02 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-a7aa74d1ab8so22077166b.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 09 Aug 2024 01:46:02 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE6210E87B
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Aug 2024 08:48:02 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-5a5809a3bb9so185100a12.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 09 Aug 2024 01:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1723193160; x=1723797960; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1723193280; x=1723798080; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=72fzkNql20oZmkyoYxQE69cjTMLd53lCrcpG8jSN45k=;
- b=fU9/d69gpHjdWWMuxM5Ex++yzkgw62mBxm3KfsZWgvD01xkOKBtxzniM5GPgXuM25z
- Q8Ab6AmhnEb3v9/fkwVMIDqmgkpFy2MJSrbCweE1rBjpm683uaCoWTtX+sOwpKekcMa0
- G0aXfCuhZykgLz9OGsxGrkIcV9o5bj9aBzoMk=
+ bh=X5AwRwVwTZmkq3oGoDJtamdAtUPilZp0Mb1FEZtX/Us=;
+ b=DuaxmFf+Phv8S9HiZgkrru8s81TJ2A+HifXVjq1a8dCIZomnGTiEp/5oTwlw7FLJs8
+ 3Ozx4MH45MLijTG5vtKkwn1SCVDbgf/RYS6G6KPzKv1QHR2KnDLPGAjoxiUc0LTU4zBp
+ 5nwJNEPuqR3bWqt3SS25NufSEWhd7oa61Q3zw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723193160; x=1723797960;
+ d=1e100.net; s=20230601; t=1723193280; x=1723798080;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=72fzkNql20oZmkyoYxQE69cjTMLd53lCrcpG8jSN45k=;
- b=i920sfGQ5aoccBE2/1lX3kzoSC5rshR3M5hRntahOF1AWLmlNQ3vyjhPeT034ofpy6
- f0uImhjaVIeei/pVORbE3r9bO690+FxBHgbPPbXiz7o5d60b8IbApLrsUCHSio3uSjDh
- v0li+k7D35nQT5rfq6N8EJ8T0HuEmYVEy083la7N1ikD6IXqC1dwuhbt4kwqt+QOgoQW
- N/DLO84GZUUOLqfgyE6RQX0Q+E2BudHotFdo5HfkgMXJ3ZUvpv+ncOu1u1MvXkfk5Kdl
- Xv1vUW+hrf1FYTeglJONq11RjDdKTBRuu8ELRh3qQX+T1dPbdvsULZQPSvh6fmuYJWq+
- g1Mw==
+ bh=X5AwRwVwTZmkq3oGoDJtamdAtUPilZp0Mb1FEZtX/Us=;
+ b=TdOMBENKQJezuqUARtMwDRxHi156Q8ISk5IIDd6CuysYd+RqMTHGXKyE9l4IPTcVPz
+ cPE3cULhxkKkBw8xXlkK0hcTmKJ2cyoHUYJZMCU6GZ9pbvW+855LC3qTBpbHkd7OwsUh
+ /i2tHz7iTvFOqlFBGpUz+4Tm5aZRvttSYlhvojKCAm7tCpl5BV5q3ngcDKvcXRnWJUPP
+ qhdbCEUx5f2bwXMA1UJKiu+1yeVkbkCAIf9QeQGHJs5T1vfHt0Rg4V3pEFbL6iBXPdtL
+ m2YNODRAYDp95rFnitNLAjVKgC1ZTGuJ6SMRmIpNFBsd1hLg4Ycr2kGvhPzGpyUjjgN6
+ cBYg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUy1zdsCQ2heGdzSZtcTwONTU39CtKWTn0jLXfR5AVZq0X4eskBozfmDrLpTCdvZ4byMjyY82pA@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyZpGohq5rG+dv4vgXgEpbDplpHlqee7/uAF39k8m6Qbr+Ir1Jr
- iaCzaQlTmhMc3orQLTzQEln6A1j5ikQLS9Z82VstotFkFJ4Avusze4xB96B2mnY=
-X-Google-Smtp-Source: AGHT+IFkrJ2c4TakfF6EyYpfYC5bggsGcKZmnZrOkxoZ9muG1idw93FCyntJmLE9/435y1pFPmNcVA==
-X-Received: by 2002:a17:907:2d23:b0:a7a:9e11:e875 with SMTP id
- a640c23a62f3a-a80aa65511cmr44659166b.6.1723193160341; 
- Fri, 09 Aug 2024 01:46:00 -0700 (PDT)
+ AJvYcCXm6o2ZFGofjxU3528VQ9vELZ94nkUnlHXQwG87fXJNqVG1azoKorPv++k08i4kGmcDw84OHRnn@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxZGMnXnJgepcRVYUOMnx0j0cnktVWnZdxgQfKgCupveFeU+fBv
+ XqdvYoU3Pzur+DSHiDdvaFLheev64IoMlHHntPuRn9iaMHVEv4xGbfCdRQBaC24=
+X-Google-Smtp-Source: AGHT+IGrDlxJnCmNLqrjUzch8tJq3bfI6vWVJONzmqgEemt+YVn9Bzggh5dLbbui/xxZ9iff2V0O1A==
+X-Received: by 2002:a17:907:2d89:b0:a80:91b0:f501 with SMTP id
+ a640c23a62f3a-a80aa5cb79dmr40237966b.4.1723193280365; 
+ Fri, 09 Aug 2024 01:48:00 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a7dc9d4522esm817359266b.106.2024.08.09.01.45.59
+ a640c23a62f3a-a7dc9d437bbsm815788066b.121.2024.08.09.01.47.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Aug 2024 01:45:59 -0700 (PDT)
-Date: Fri, 9 Aug 2024 10:45:57 +0200
+ Fri, 09 Aug 2024 01:47:59 -0700 (PDT)
+Date: Fri, 9 Aug 2024 10:47:57 +0200
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
@@ -61,15 +61,15 @@ Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 4/8] drm/nouveau: Do not set struct
- drm_mode_config_funcs.output_poll_changed
-Message-ID: <ZrXXRfoJAXiZWQUj@phenom.ffwll.local>
+Subject: Re: [PATCH 5/8] drm/nouveau: Implement switcheroo reprobe with
+ drm_client_dev_hotplug()
+Message-ID: <ZrXXvcKeN2w3lZs_@phenom.ffwll.local>
 References: <20240807084539.304014-1-tzimmermann@suse.de>
- <20240807084539.304014-5-tzimmermann@suse.de>
+ <20240807084539.304014-6-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240807084539.304014-5-tzimmermann@suse.de>
+In-Reply-To: <20240807084539.304014-6-tzimmermann@suse.de>
 X-Operating-System: Linux phenom 6.9.10-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,44 +85,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 10:41:36AM +0200, Thomas Zimmermann wrote:
-> The output_poll_changed hook was only necessary before in-kernel
-> DRM clients existed, but is now obsolete. The client code handles
-> display otplugging internally.
+On Wed, Aug 07, 2024 at 10:41:37AM +0200, Thomas Zimmermann wrote:
+> Replace the callto drm_fb_helper_output_poll_changed() with a call
+> to drm_client_dev_hotplug(). It's equivalent in functionality, but
+> use the DRM client infrastructure.
 > 
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
 > ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c   | 1 -
->  drivers/gpu/drm/nouveau/nouveau_display.c | 1 -
->  2 files changed, 2 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_vga.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index e4c8ce6dd40a..eed579a6c858 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -2648,7 +2648,6 @@ nv50_disp_atomic_state_alloc(struct drm_device *dev)
->  static const struct drm_mode_config_funcs
->  nv50_disp_func = {
->  	.fb_create = nouveau_user_framebuffer_create,
-> -	.output_poll_changed = drm_fb_helper_output_poll_changed,
->  	.atomic_check = nv50_disp_atomic_check,
->  	.atomic_commit = nv50_disp_atomic_commit,
->  	.atomic_state_alloc = nv50_disp_atomic_state_alloc,
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 8a87e9697a42..e2fd561cd23f 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -391,7 +391,6 @@ nouveau_user_framebuffer_create(struct drm_device *dev,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> index ee637f1fe03d..ab4e11dc0b8a 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> @@ -58,8 +58,9 @@ static void
+>  nouveau_switcheroo_reprobe(struct pci_dev *pdev)
+>  {
+>  	struct nouveau_drm *drm = pci_get_drvdata(pdev);
+> +	struct drm_device *dev = drm->dev;
 >  
->  static const struct drm_mode_config_funcs nouveau_mode_config_funcs = {
->  	.fb_create = nouveau_user_framebuffer_create,
-> -	.output_poll_changed = drm_fb_helper_output_poll_changed,
->  };
+> -	drm_fb_helper_output_poll_changed(drm->dev);
+> +	drm_client_dev_hotplug(dev);
+>  }
 >  
->  
+>  static bool
 > -- 
 > 2.46.0
 > 
