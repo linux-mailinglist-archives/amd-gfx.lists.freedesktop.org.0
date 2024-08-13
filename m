@@ -2,153 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520E894FD90
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 Aug 2024 08:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1138A94FF2C
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 Aug 2024 09:56:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC62A10E2AB;
-	Tue, 13 Aug 2024 06:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E5010E05E;
+	Tue, 13 Aug 2024 07:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pCYKtfw5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5iF+mAk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08FC310E2AB
- for <amd-gfx@lists.freedesktop.org>; Tue, 13 Aug 2024 06:05:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hHjf3bbRg4DCXjUnugIAxea+MouAv06fKSJhKxEIhJdQti7y8Jzd7EKe05USZBIpTfEiy5xge4frSPV+oBiqmEv33ENuyLzByd4qartI7aML7EU76AiypXg9AXFptyk787TW6uSFxTUVQ4DfxXtgR/Dim8VI/8d8bz1FF8kAb8IRu/iyX3Qa6NPse5aUaZtxw1IMoHFTHTlqMbaNBN/CdkUhnxb1qQXy0eBjroRVauiTyGhoFdx2jODA1Yd7LprCxGfqrqtbvRec2wqqp5OjhVocu/6OrvrMFYF/t/Hsz3vtNdKtrxgCD+TpAQ1JEkm5y7BJthEpAfNx7d1hUhZEfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4GYzlrMiBch6g5Z69R6kCMf+9vSQsFnzZZEA4HWrWKc=;
- b=WmQ4NYVagL/YvOo2se9nhySYOclaKMwoIBPxknoP1mTs5VsNjFFvcwdWmQdcQQFJcZYrGG0QJHSYuDLDN3KMjADKlVKSISLrfGR9EA3yNMeus2/cyN/jgUMQcvU6RytqwqPFwkN3gbzh3EEZG45sNrE+EFHsOhFGKA8J9goOrN9zgsVWOrFaaOmbuxXRVf9hJF6V5mfmUVu8KkzQ6BE4KtgereYAQ0rAjXIak6zJGsTtLqJzlwMMcBy9NfK13lUcG0T2OCwxBziYvaKR+xZ1Zc7jCQkGqGfIgxgIoufPcy4iaGBqCxjWg6+zyTcqKyehhJEzEsOn0j3eFkIL5i8EtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4GYzlrMiBch6g5Z69R6kCMf+9vSQsFnzZZEA4HWrWKc=;
- b=pCYKtfw52fToBZ2FoY9eG+XAhVTTVvI32KaCrvtosYqP8ccnPbPd3zt8jvypo8c0B9ZpX0WVuiBKeCciViSroBUjO1B/VDwD/puYi6KxTnFT/AjqHPya0sABHbObI4GgnGXkLA2wGyons/BOzXBxmlE7ay6h4z7oJEOtHxtiqLU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB6611.namprd12.prod.outlook.com (2603:10b6:510:211::11)
- by BL3PR12MB6452.namprd12.prod.outlook.com (2603:10b6:208:3bb::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Tue, 13 Aug
- 2024 06:05:41 +0000
-Received: from PH7PR12MB6611.namprd12.prod.outlook.com
- ([fe80::76d1:e471:c215:4381]) by PH7PR12MB6611.namprd12.prod.outlook.com
- ([fe80::76d1:e471:c215:4381%5]) with mapi id 15.20.7849.021; Tue, 13 Aug 2024
- 06:05:41 +0000
-Message-ID: <a731fb0f-99d2-4c9e-9a57-c527cbc692ec@amd.com>
-Date: Tue, 13 Aug 2024 14:05:36 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/display: Align hwss_wait_for_all_blank_complete
- descriptor with implementation
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Roman Li <roman.li@amd.com>,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>
-References: <20240812104023.3744443-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: "Chung, ChiaHsuan (Tom)" <chiahsuan.chung@amd.com>
-In-Reply-To: <20240812104023.3744443-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCPR01CA0100.jpnprd01.prod.outlook.com
- (2603:1096:405:4::16) To PH7PR12MB6611.namprd12.prod.outlook.com
- (2603:10b6:510:211::11)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6481A10E04C;
+ Tue, 13 Aug 2024 07:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723535800; x=1755071800;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=KYijDMxWTruxUOHeIXuSweAvO2AIcNRXv9pQTHmdND4=;
+ b=l5iF+mAkHJ8O6704NkawDsDOkhCf/ZgC6w57SwuCdrkLFwAKnktObs4/
+ wCU0zW7MG/1ltHEk1aKcw8FyXziaPyDnC8Kk5DGZJEtxqwj4Hd2vMzCz+
+ hZSkRjo5ujyzskQ2Piw216/49F4Oozool//mJmEeUQG6gwxgy55cwv58a
+ Vg+AP/H5Z0gHH+IyWk4MJRKe+5NwePSYjVOTa6xstAg4/FsEYiir4fovK
+ bfK5B8zlHmVa5tmDjkEgqwjb7qSETl2GqAxS2wvz1oE+QghFarnKRk9g6
+ zOYGjnIkfTqvvlhWcSEGZO0Q1P592v2JFuSFuzvb1c1RfHftdB76OXI46 g==;
+X-CSE-ConnectionGUID: RtK2JQrpRsupEJUllqMYPw==
+X-CSE-MsgGUID: TMQtl3WbQraWvW02ZnljIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="25546397"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="25546397"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 00:56:39 -0700
+X-CSE-ConnectionGUID: lG7mVi4oRlqiqUXf6sr6fg==
+X-CSE-MsgGUID: kpoadPFQSNGgFJblkarbew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="63438975"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.234])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 00:56:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Harry
+ Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo
+ Siqueira <Rodrigo.Siqueira@amd.com>, Mario Limonciello
+ <mario.limonciello@amd.com>, Matt Hartley <matt.hartley@gmail.com>, Kieran
+ Levin <ktl@framework.net>, Hans de Goede <hdegoede@redhat.com>, Xinhui Pan
+ <Xinhui.Pan@amd.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dustin Howett <dustin@howett.net>,
+ linux-doc@vger.kernel.org, Thomas =?utf-8?Q?Wei=C3=9Fschuh?=
+ <linux@weissschuh.net>
+Subject: Re: [PATCH v4 1/3] drm: Add panel backlight quirks
+In-Reply-To: <20240812-amdgpu-min-backlight-quirk-v4-1-56a63ff897b7@weissschuh.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240812-amdgpu-min-backlight-quirk-v4-0-56a63ff897b7@weissschuh.net>
+ <20240812-amdgpu-min-backlight-quirk-v4-1-56a63ff897b7@weissschuh.net>
+Date: Tue, 13 Aug 2024 10:56:30 +0300
+Message-ID: <878qx026vl.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB6611:EE_|BL3PR12MB6452:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67917345-3482-4edc-bf73-08dcbb5df5e9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MkMzU01DcTRjM0RVSDdiZ3A1ek00bDVmbEhkaVRlV1lvcXNlME82T1JjMFdn?=
- =?utf-8?B?VkZVUHFsOUpSL0JVd0Z5eHdyQnJXdFV3MjhrMy9FVEpsMFRoUFl1RW5OMVVh?=
- =?utf-8?B?UVlLOVcveWM0Y29HREVybmlGUGh1eE9aWG1Ha3M5a2JvaFg0NmtXeUlDUE9k?=
- =?utf-8?B?ZUhXVVA4QVhIbnF4OE1XY1RqMTJENHFuaExXejk4Kzdqa3dsS1NuZ0JrTHhy?=
- =?utf-8?B?YkMzMTJTY002Q0lhc25zdTVPRGVLZzJreWpWM1ZVdXY4Qi9LS3FMOG1yRXRS?=
- =?utf-8?B?M214bk0rdUpGcnBLY2ttVEZtcFptVXFZRHBiUk5GSVZLQVIweGw4Tm9LWEJa?=
- =?utf-8?B?a29jOUZCaVNxSlYrU3ZYYldkVWh1K1hxMkc0blE2NnUwcVBremZiTW1mblR1?=
- =?utf-8?B?OEtUN1N2alZ6d0VXS3Q0NVdxNFNuYnpZdmxXdUE3cXJNUjUrVWFEZ005SmMw?=
- =?utf-8?B?RVdZandWV3RnNjNNdTdydElibzExVnpWWHFqR3F5M3ppK0xBTFJnWExqemtB?=
- =?utf-8?B?WmpidWhzL0NDVWoxZTJvRTJJV0EreXZ3cVFGeEF6Nm45azk3Ny9WVEY1Q3FY?=
- =?utf-8?B?RWh0TnhHS0RONHFKcU0xdVZQVTNmajJVMmRhclcrRzZldTFyb2NuczF4TFJJ?=
- =?utf-8?B?b0JmeGx0NkcwdHZoMnpNL3JycUpETTVYYWJYSjQzQWYyK1c3VTdRaFNuTHM0?=
- =?utf-8?B?YXFOdjVJSEVibUJuUnY1MU9VZ3BYSUpxdkhoSm84S1BzU1JoU2xsR0toV1N1?=
- =?utf-8?B?dDJXaUs4U3JmT3FOTzlvRzMwaS93dDJON3pBRGtsdGYyZElYdDQvQzY4dElD?=
- =?utf-8?B?WTdpSzdzVWlxMlRhWnVPRjFVSUkyRlFPWHRDU3BMZVpmUitvcDFoWFhjZjRv?=
- =?utf-8?B?NlZTbVNWSjg2VTdsc1hTbE9xR3hvU28xRUc3V2hkK3NuUlIxSEh3ZUVpNkR3?=
- =?utf-8?B?MmU5d2Vpc3FPUTJQVGVXWFpCVjVGSmZyQWlQdmFSWm9XUmVnOTdDenlJUnBF?=
- =?utf-8?B?Wm9MVG93MWJVOTExKzJuNC9Sa3JhcXRvWXRDTWNhVXhZZXlYMlhRWS96RTV1?=
- =?utf-8?B?NmtqVHJ5ejVxMFBqUnRtSmZnVGhwTXBHd2VzRGNiQUJxR1N5c284K3dJeUtj?=
- =?utf-8?B?VGRMN2drT0JZSEp0YTZVQURQbXBHU1dDNHJwenhMc0w4YmhRcHpsc0U5UFZ1?=
- =?utf-8?B?QjhmWUh2MSszOURSSlYyUWFyYmV4Mzc5SURyclFpNTJveVVlWVljS1ZRWitw?=
- =?utf-8?B?N3ZnZXZ2bjQrSmZOcWhBLzJCT0ExYVNub0VIS1Y4UmFIMmdYK253bFIzRmlz?=
- =?utf-8?B?TTBnaFlDYU14K0V4KzMzNjNaZ1BvdWJGbGRkN01DSkpQRGpETmRGV05ENXBr?=
- =?utf-8?B?VDRqV20vcnMyeEFYVWtlb2dTTytoNGVoYU5XeElmK3RRN2QvMjZPUmF2OTFl?=
- =?utf-8?B?M0dFSm5HTUFVSHNNTWlwR2ZUT3JSQklOMGlKQ3VvZFdCM2JIa2ZIWU9NMERU?=
- =?utf-8?B?N0dVYUgyT1oyNXNqSlB4QmozMG02Q2NXWjlQcTBpQ2RwTkhxYzNXRzZvYWIv?=
- =?utf-8?B?M0ppYWJyOXhWY0ZzUUlMQU0vODRiVnRVcm5aNHhLUUVYMkJKeTZIbTRpcTF1?=
- =?utf-8?B?eTUxcUpCN2pHb0U0R0JkT1NkdDEyRmdpRVN6K2VVM3ZRdUwwQVJMMHhzZmFx?=
- =?utf-8?B?QmZNKzVDU0hJbWJ2c1BzMURLSVlxSGZxbElhZVpzR000NEtuU2k0c0FuWng2?=
- =?utf-8?B?MFQ3cmtvZGxNRmhpemkzdWRHTm84ZVJUWkcwQ2UzdTZtcVkveC9QQ3FCVjlF?=
- =?utf-8?B?UWQ0U2RPVHFJOHg2K2h2Zz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB6611.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0MvRy9XVWNIdzF1SEM3RzQxTStkTEJqTzVzdk1ZY2RMbWxqRzI2YXhmNWRR?=
- =?utf-8?B?Kyt3M25zL1ZSa1NjY0tvRGNab29JWkJHN2Y0T3lueGZsY2NobVFoZ3Rzc0RY?=
- =?utf-8?B?cUhZMUQwMHVOc0tOYmV2TFdWeDRkbWdBYys5cjNoaklRaFVlVFBuSlJvSjc1?=
- =?utf-8?B?UUxaSXJKdXpuWWNyR2VpZ2tpd0hsSGplN3ZnQks4eVZwWXZXVmduRXFGMDVp?=
- =?utf-8?B?aEpNdE5jZWN6K0FodTk0MEQxODdmWGJ6aFVPYnpPWllGMitWZlY3T1dCaWNY?=
- =?utf-8?B?Si9od3c3djBPbFVXS0ZHWUszVEQzSWdPaWxERktGQzJyK0NMQmR4czVPbEs5?=
- =?utf-8?B?KzB1RVpITGVxOUQ0ZitWM0JKZDhLT09sTmhFRFA1cUpvWWJsUWU4MTZuUFE3?=
- =?utf-8?B?ejJ0WjZpUzJhNXZkQUlTblhFMnRISTZFazhGRFR3QXdiY2dXeUg1YWtqcEpM?=
- =?utf-8?B?ZHprbUxRWkszaW8xVG9zSk5YWVVGQ1EyUkhlYmZOMEcvMXZTcFJpVW5TcmpT?=
- =?utf-8?B?NmpxUUY0clpnRHMrK1hQNFh6TUQwejRRMlk2MzNrQ3IzQTVkcW13K2pLRlcy?=
- =?utf-8?B?MmwwTkxWejg0VENNd3FYNHBHTDlxRDlocEJWZlFYc1Fua3lJMW12bTFwK0Qy?=
- =?utf-8?B?SlNOVmlaVm4xblpkMlZEVDB0YTVDT0JKUDhZYWMzMjhWZXQ1UDlrSWZ4bHU1?=
- =?utf-8?B?ZGxtNDd1M2grSG53bTRXRFd1Q0NqR2dxb2MwdEdZTEE0VnRGWlRpRnV5LzFO?=
- =?utf-8?B?bEpWc3p2THdHckl1MnlIV053czhXVEhSNHJnVkJoNFZnQ0RSTTBIaHdSZ3NY?=
- =?utf-8?B?U082K1B3cFJWOFMwaG5DV2RHVHgwRmlwMzQ1UFZBTnczazRUT1IxMHczY2lj?=
- =?utf-8?B?RTBURVEvM3RmOXUrVm1kb3pVTXZDenNtTlJVN3haVTRJTEhHc3hta2drR1ZV?=
- =?utf-8?B?MEpsNE9FRk0xRVZUNjc3aFIreElPOXBVdW91Y0kvZXFqNUlmb1Z1eHZhSzR4?=
- =?utf-8?B?R1RUMm5BTG1OUnlwYW5MWHEyN0NSNzRYbFVVcUxsRlUyRUVlQWVLNGRQNVpP?=
- =?utf-8?B?UmFVbm9rb0lIcGdGTVY3ZUZMUG5lakRwdnU0NXk1SVJmcHFGZTRuM3R3bzll?=
- =?utf-8?B?VURHT1NzS0dFcWZ3TE9rbW81YW9jK2JxZ1hZNE9ZOVBPYXJPbXR2bFZCQ0tJ?=
- =?utf-8?B?MGErNjYxaUNaajQrV0YxNkZhVjZqSUltMUdGbU1GazNXdWdnSHZwWm9BcjJx?=
- =?utf-8?B?ZW03Zm9tZE9kUnR6Z2lZZVJ0eGdoRUY3SjVycFBEQ0lrbkc4RFhrcEcvRWpu?=
- =?utf-8?B?ejlkYVovZWtnMHdTRXYxMzQwdkRHRWpZZmdHRUZ6UGpRK3FRVUZaamhtbmhU?=
- =?utf-8?B?YzkraFprdUU3RGJqZittTmR2YlZ0SG8wbkxpejVDRDEzeU8yRjRRZE9UV0xp?=
- =?utf-8?B?dFpSUUpUR0hYNExPYVRmZDNQVU9XRmx2c3N4Rk1KVDUvMWNWN01EL2FKL0Fz?=
- =?utf-8?B?RURKNDBNVkw5bTlkTjhLSE9SSnByK0VQaTR3eVowOXkxVUhoTHhraFNGVVRk?=
- =?utf-8?B?Z2RJKzBteDhFSXFQQlJmdUxTQ3ZJQUxPc3lRUFR4bk53cHdBWUQzdUNsYS9V?=
- =?utf-8?B?V2lKVC9KYkF5RGNGMDRTUks1MFVNSjFYZVNLWDdXRWIrNTJjZjRvQXVkMm1T?=
- =?utf-8?B?Q2YvQ3czOTJkaUdFRm02V0JWeHowdHpjdDB3amk1Z0pQYWlsWHhjZXBrMS9P?=
- =?utf-8?B?VjRDcUFvbWlEaGxvd1RvS1hNckcvK1ljMS9kN1k4dHQ4Q2xsQ1BjcC90MHla?=
- =?utf-8?B?YnMyeWlCdzBaa21mTWgrOE5zNTlBS2l6cmt4aHRJWUVLdzlkbDdERmFTSW1I?=
- =?utf-8?B?dXExbjFLNmtJN1llc2pmRm1KQ0Nvd3o4VVAxK1BWdTRVbnVLTUh5Y0xhZHZW?=
- =?utf-8?B?YUZPNmw0L1ZBQVpvTGJ4VmdLTHJSTmF5VkFuV3M3ajlleDVXamhKVitqOGRM?=
- =?utf-8?B?YUF2OG1DbFQ3S3ZpZkZHUVBPaVMvUEp0WExaVTBVMlBIYkE2STBrN2RVeFZn?=
- =?utf-8?B?OHZQMkRXUDZ4VDVtWXlLZVAycUJsNHFvUGFXTFA4aEl5RXN6S1dobWNBeWQ4?=
- =?utf-8?Q?r54gl+oQbu58dja35Ib4i8BT5?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67917345-3482-4edc-bf73-08dcbb5df5e9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB6611.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2024 06:05:41.4017 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9ZoscyEzPEuBSJ1ZeuepbReH3gP8EDFi0Jce1MrarzZP3I8lEA4M8nq/FBjE9LpOY1r6hKh0M+i8aCX7I0Ajdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6452
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,39 +82,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Tom Chung <chiahsuan.chung@amd.com>
-
-On 8/12/2024 6:40 PM, Srinivasan Shanmugam wrote:
-> The descriptor for `hwss_wait_for_all_blank_complete` was previously
-> misaligned with the actual implementation. This commit refines the
-> descriptor to reflect the implementation of
-> `hwss_wait_for_all_blank_complete`
+On Mon, 12 Aug 2024, Thomas Wei=C3=9Fschuh <linux@weissschuh.net> wrote:
+> Panels using a PWM-controlled backlight source without an do not have a
+> standard way to communicate their valid PWM ranges.
+> On x86 the ranges are read from ACPI through driver-specific tables.
+> The built-in ranges are not necessarily correct, or may grow stale if an
+> older device can be retrofitted with newer panels.
 >
-> Fixes the below with gcc W=1:
-> drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.c:991: warning: expecting prototype for hwss_wait_for_blank_complete(). Prototype was for hwss_wait_for_all_blank_complete() instead
+> Add a quirk infrastructure with which the minimum valid backlight value
+> can be maintained as part of the kernel.
 >
-> Cc: Tom Chung <chiahsuan.chung@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: Roman Li <roman.li@amd.com>
-> Cc: Alex Hung <alex.hung@amd.com>
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> Signed-off-by: Thomas Wei=C3=9Fschuh <linux@weissschuh.net>
 > ---
->   drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/gpu/drm-kms-helpers.rst        |  3 ++
+>  drivers/gpu/drm/Kconfig                      |  4 ++
+>  drivers/gpu/drm/Makefile                     |  1 +
+>  drivers/gpu/drm/drm_panel_backlight_quirks.c | 69 ++++++++++++++++++++++=
+++++++
+>  include/drm/drm_utils.h                      |  3 ++
+>  5 files changed, 80 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-> index 9a569aac3c00..7ee2be8f82c4 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-> @@ -980,7 +980,7 @@ void get_surface_tile_visual_confirm_color(
->   }
->   
->   /**
-> - * hwss_wait_for_blank_complete - wait for all active OPPs to finish pending blank
-> + * hwss_wait_for_all_blank_complete - wait for all active OPPs to finish pending blank
->    * pattern updates
->    *
->    * @dc: [in] dc reference
+> diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/dr=
+m-kms-helpers.rst
+> index 8435e8621cc0..a26989500129 100644
+> --- a/Documentation/gpu/drm-kms-helpers.rst
+> +++ b/Documentation/gpu/drm-kms-helpers.rst
+> @@ -230,6 +230,9 @@ Panel Helper Reference
+>  .. kernel-doc:: drivers/gpu/drm/drm_panel_orientation_quirks.c
+>     :export:
+>=20=20
+> +.. kernel-doc:: drivers/gpu/drm/drm_panel_backlight_quirks.c
+> +   :export:
+> +
+>  Panel Self Refresh Helper Reference
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=20=20
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 6b2c6b91f962..9ebb8cdb535e 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -454,6 +454,10 @@ config DRM_HYPERV
+>  config DRM_EXPORT_FOR_TESTS
+>  	bool
+>=20=20
+> +# Separate option as not all DRM drivers use it
+> +config DRM_PANEL_BACKLIGHT_QUIRKS
+> +	tristate
+> +
+>  config DRM_LIB_RANDOM
+>  	bool
+>  	default n
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 68cc9258ffc4..adf85999aee2 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -92,6 +92,7 @@ drm-$(CONFIG_DRM_PANIC) +=3D drm_panic.o
+>  obj-$(CONFIG_DRM)	+=3D drm.o
+>=20=20
+>  obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) +=3D drm_panel_orientation_qu=
+irks.o
+> +obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) +=3D drm_panel_backlight_quirks=
+.o
+>=20=20
+>  #
+>  # Memory-management helpers
+> diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/d=
+rm/drm_panel_backlight_quirks.c
+> new file mode 100644
+> index 000000000000..a88e77db97c5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> @@ -0,0 +1,69 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/dmi.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <drm/drm_utils.h>
+> +
+> +struct drm_panel_min_backlight_quirk {
+> +	struct {
+> +		enum dmi_field field;
+> +		const char * const value;
+> +	} dmi_match;
+> +	struct drm_edid_ident ident;
+> +	u8 min_brightness;
+> +};
+> +
+> +static const struct drm_panel_min_backlight_quirk drm_panel_min_backligh=
+t_quirks[] =3D {
+> +};
+> +
+> +static bool drm_panel_min_backlight_quirk_matches(const struct drm_panel=
+_min_backlight_quirk *quirk,
+> +						  const struct drm_edid *edid)
+> +{
+> +	if (!dmi_match(quirk->dmi_match.field, quirk->dmi_match.value))
+> +		return false;
+> +
+> +	if (!drm_edid_match(edid, &quirk->ident))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +/**
+> + * drm_get_panel_min_brightness_quirk - Get minimum supported brightness=
+ level for a panel.
+> + * @edid: EDID of the panel to check
+> + *
+> + * This function checks for platform specific (e.g. DMI based) quirks
+> + * providing info on the minimum backlight brightness for systems where =
+this
+> + * cannot be probed correctly from the hard-/firm-ware.
+> + *
+> + * Returns:
+> + * A negative error value or
+> + * an override value in the range [0, 255] representing 0-100% to be sca=
+led to
+> + * the drivers target range.
+> + */
+> +int drm_get_panel_min_brightness_quirk(const struct drm_edid *edid)
+> +{
+> +	const struct drm_panel_min_backlight_quirk *quirk;
+> +	size_t i;
+> +
+> +	if (!IS_ENABLED(CONFIG_DMI))
+> +		return -ENODATA;
+> +
+> +	if (!edid)
+> +		return -EINVAL;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(drm_panel_min_backlight_quirks); i++) {
+> +		quirk =3D &drm_panel_min_backlight_quirks[i];
+> +
+> +		if (drm_panel_min_backlight_quirk_matches(quirk, edid))
+> +			return quirk->min_brightness;
+> +	}
+> +
+> +	return -ENODATA;
+> +}
+> +EXPORT_SYMBOL(drm_get_panel_min_brightness_quirk);
+> +
+> +MODULE_DESCRIPTION("Quirks for panel backlight overrides");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/drm/drm_utils.h b/include/drm/drm_utils.h
+> index 70775748d243..267711028dd4 100644
+> --- a/include/drm/drm_utils.h
+> +++ b/include/drm/drm_utils.h
+> @@ -11,9 +11,12 @@
+>  #define __DRM_UTILS_H__
+>=20=20
+>  #include <linux/types.h>
+> +#include <drm/drm_edid.h>
+
+Please prefer forward declarations over includes where possible.
+
+Here,
+
+struct drm_edid;
+
+is sufficient.
+
+BR,
+Jani.
+
+>=20=20
+>  int drm_get_panel_orientation_quirk(int width, int height);
+>=20=20
+> +int drm_get_panel_min_brightness_quirk(const struct drm_edid *edid);
+> +
+>  signed long drm_timeout_abs_to_jiffies(int64_t timeout_nsec);
+>=20=20
+>  #endif
+
+--=20
+Jani Nikula, Intel
