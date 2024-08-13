@@ -2,30 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FBA59503A7
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 Aug 2024 13:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE8C9503A2
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 Aug 2024 13:30:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 919B610E03A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3505810E304;
 	Tue, 13 Aug 2024 11:30:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6269A10E309
- for <amd-gfx@lists.freedesktop.org>; Tue, 13 Aug 2024 11:30:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2452910E302
+ for <amd-gfx@lists.freedesktop.org>; Tue, 13 Aug 2024 11:30:46 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 47DBUalI768848; Tue, 13 Aug 2024 17:00:36 +0530
+ 47DBUafm768853; Tue, 13 Aug 2024 17:00:36 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 47DBUaNl768847;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 47DBUag3768852;
  Tue, 13 Aug 2024 17:00:36 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, 
  Leo Liu <leo.liu@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 00/18] VCN patches with updated register list
-Date: Tue, 13 Aug 2024 17:00:16 +0530
-Message-Id: <20240813113034.768804-1-sunil.khatri@amd.com>
+Subject: [PATCH v1 01/18] drm/amdgpu: add vcn ip dump ptr in vcn global struct
+Date: Tue, 13 Aug 2024 17:00:17 +0530
+Message-Id: <20240813113034.768804-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240813113034.768804-1-sunil.khatri@amd.com>
+References: <20240813113034.768804-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -42,39 +44,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-*** BLURB HERE ***
+Add pointer to the vcn ip dump in the vcn global structure
+to be accessible for all vcn version via global adev.
 
-Sunil Khatri (18):
-  drm/amdgpu: add vcn ip dump ptr in vcn global struct
-  drm/amdgpu: add vcn_v3_0 ip dump support
-  drm/amdgpu: add print support for vcn_v3_0 ip dump
-  drm/amdgpu: add vcn_v5_0 ip dump support
-  drm/amdgpu: add print support for vcn_v5_0 ip dump
-  drm/amdgpu: add vcn_v4_0 ip dump support
-  drm/amdgpu: add print support for vcn_v4_0 ip dump
-  drm/amdgpu: add vcn_v4_0_3 ip dump support
-  drm/amdgpu: add print support for vcn_v4_0_3 ip dump
-  drm/amdgpu: add vcn_v4_0_5 ip dump support
-  drm/amdgpu: add print support for vcn_v4_0_5 ip dump
-  drm/amdgpu: add vcn_v1_0 ip dump support
-  drm/amdgpu: add print support for vcn_v1_0 ip dump
-  drm/amdgpu: add vcn_v2_0 ip dump support
-  drm/amdgpu: add print support for vcn_v2_0 ip dump
-  drm/amdgpu: add vcn_v2_5 ip dump support
-  drm/amdgpu: add print support for vcn_v2_5 ip dump
-  drm/amdgpu: add vcn ip dump support for vcn_v2_6
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |   3 +
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   | 112 +++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   | 113 ++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 118 +++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   | 113 ++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 114 ++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 115 ++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 113 ++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 110 +++++++++++++++++++++-
- 9 files changed, 893 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+index c87d68d4be53..2a1f3dbb14d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+@@ -330,6 +330,9 @@ struct amdgpu_vcn {
+ 	uint16_t inst_mask;
+ 	uint8_t	num_inst_per_aid;
+ 	bool using_unified_queue;
++
++	/* IP reg dump */
++	uint32_t		*ip_dump;
+ };
+ 
+ struct amdgpu_fw_shared_rb_ptrs_struct {
 -- 
 2.34.1
 
