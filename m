@@ -2,51 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A689511DD
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Aug 2024 04:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 803B1951506
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Aug 2024 09:11:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F41F210E24E;
-	Wed, 14 Aug 2024 02:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6F6E10E416;
+	Wed, 14 Aug 2024 07:11:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kode54.net header.i=@kode54.net header.b="DGu6KNgQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iEKaISBY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 501 seconds by postgrey-1.36 at gabe;
- Wed, 14 Aug 2024 02:09:33 UTC
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com
- [91.218.175.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96B9010E24E
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Aug 2024 02:09:33 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kode54.net; s=key1;
- t=1723600870;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wG9DIG79vb0bxX96t9DAQQD3GXc6IfrfZvACFwsXH0c=;
- b=DGu6KNgQwnv+MKwmxzUJvP7xL4DNjTZci2DCw99DCg2Y1KNwoiAKiIR2VxogqNDWEiPfuw
- Wm0rWgfd7UmS0UpMgtyF8XlGF6r0Ke7XnQYrSQvjYyM/WxvJGCxZBWfJnUbw2bUCCVBU91
- U2NZidZ3MLBgeJ/VdSFLEkqw+ZZxHHrCiaPhMNRrw0O1bQmDKpDRj+o0M9qtN8EBPhEAuH
- 5Fu+gi4xIZTKTepYcO5hLWZCN5cVGqkpZa7iM/UFWg7sjEEhLmy2Pec/C/siVWmsnLluTr
- 003bzeuRWBcrSRwpNMDRP84WmwLoYJ7v2gMrKhzcQJzkr34EPyac2vS0VAFJUA==
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Christopher Snowhill <chris@kode54.net>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH] drm/amdkfd: keep create queue success if cwsr save area
- doesn't match
-Date: Tue, 13 Aug 2024 19:00:51 -0700
-Message-Id: <E3D1CFD8-93E9-4B38-BC02-7432B94432E8@kode54.net>
-References: <7e40e8c2-d6a7-4e10-b71c-c4f869e825ab@amd.com>
-Cc: "Zhang, Yifan" <Yifan1.Zhang@amd.com>,
- "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>,
- amd-gfx@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>
-In-Reply-To: <7e40e8c2-d6a7-4e10-b71c-c4f869e825ab@amd.com>
-To: Felix Kuehling <felix.kuehling@amd.com>
-X-Migadu-Flow: FLOW_OUT
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B7310E364;
+ Tue, 13 Aug 2024 14:10:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=mPUoP3zBnuD+//2jB4+IyrnBJmrAfmAOVrJvxYI+SN0=; b=iEKaISBYjakJKv7tuJYQ50lXUV
+ QzReT+g0eVOGyPtTA0aLy4VjRf+qrDpYjgLg5Dt2u+XLll66338+ehxOhkBxDKflJ4dMuelEFJokt
+ C2YvfRqutqILuEvv5C8oTwTg57M4rdd27x89ASAt9zenRPw3Td/DU2lRfIBvbS54PXHTGaveGTKSt
+ J90KMte2+l2rpCTWqnNNv/21QT6Hw3/5T9IK1qnHVsGtWzleAbPXF1ROwSgliEIsJnZcyeuy0aeZ0
+ Es8NcYabKIuzJlE2KsjyBtHMMDc31F9azBrO5KH7I+z8SkYxiYqaAigMiUCcZVsDTzSJuqkC0jw0p
+ QdTKD8cg==;
+Received: from [84.69.19.168] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1sdsEK-00ByDj-5y; Tue, 13 Aug 2024 16:10:32 +0200
+Message-ID: <586d1ac2-5563-40a6-9d99-b23d6bec17e9@igalia.com>
+Date: Tue, 13 Aug 2024 15:10:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Remove hidden double memset from
+ amdgpu_vm_pt_clear()
+To: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com
+References: <20240813140835.82748-1-tursulin@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20240813140835.82748-1-tursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 14 Aug 2024 07:11:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,129 +63,50 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
+On 13/08/2024 15:08, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> When CONFIG_INIT_STACK_ALL_ZERO is set and so -ftrivial-auto-var-init=zero
+> compiler option active, compiler fails to notice that later in
+> amdgpu_vm_pt_clear() there  is a second memset to clear the same on stack
+> struct amdgpu_vm_update_params.
+> 
+> If we replace this memset with an explicit automatic variable initializer,
+> compiler can then see it and avoid clearing this struct twice.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+> This is perhaps a bit questionable, regardless of how annoying it is to
+> know there is this double memset.
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+> index e39d6e7643bf..ecdc8fffe941 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+> @@ -361,7 +361,7 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>   {
+>   	unsigned int level = adev->vm_manager.root_level;
+>   	struct ttm_operation_ctx ctx = { true, false };
+> -	struct amdgpu_vm_update_params params;
+> +	struct amdgpu_vm_update_params params = { };
+>   	struct amdgpu_bo *ancestor = &vmbo->bo;
+>   	unsigned int entries;
+>   	struct amdgpu_bo *bo = &vmbo->bo;
+> @@ -398,7 +398,6 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>   	if (r)
+>   		goto exit;
+>   
+> -	memset(&params, 0, sizeof(params));
+>   	params.adev = adev;
+>   	params.vm = vm;
+>   	params.immediate = immediate;
 
-> On Aug 13, 2024, at 6:52=E2=80=AFPM, Felix Kuehling <felix.kuehling@amd.co=
-m> wrote:
->=20
-> =EF=BB=BFHang on a second. If there are production GPUs that only work wit=
-h HSA_OVERRIDE_GFX_VERSION right now, then we should make those GPUs properl=
-y supported. I thought this was only used internally for bring-up or maybe e=
-xternally as a short-term solution before we upstream proper support for new=
- GPUs.
+Or even move all above three into the automatic initializer since all 
+are the function input arguments.
 
-For instance, for a bunch of compute things, I have to override 10.3.0 for m=
-y 10.3.1 GPU, a 6700 XT, because nobody builds or packages the kernels for 1=
-0.3.1.
+Regards,
 
->=20
-> Regards,
->  Felix
->=20
->=20
->> On 2024-08-11 22:10, Zhang, Yifan wrote:
->> [AMD Official Use Only - AMD Internal Distribution Only]
->>=20
->> I agree that adding exp_hw_support is a safer approach. My concern is tha=
-t HSA_OVERRIDE_GFX_VERSION has been used for a while and has become a status=
- quo for running ROCm on unsupported APUs. I'm not sure if this approach wil=
-l be a burden for APU end users. Adding driver load parameters is more compl=
-icated than simply adding an environment variable on consumer PCs.
->>=20
->> Best Regards,
->> Yifan
->>=20
->> -----Original Message-----
->> From: Kuehling, Felix <Felix.Kuehling@amd.com>
->> Sent: Saturday, August 10, 2024 7:37 AM
->> To: Zhang, Yifan <Yifan1.Zhang@amd.com>; Kasiviswanathan, Harish <Harish.=
-Kasiviswanathan@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Yang, Philip <Philip.Yang@amd.com>
->> Subject: Re: [PATCH] drm/amdkfd: keep create queue success if cwsr save a=
-rea doesn't match
->>=20
->> Maybe we can turn this check into a warnings if, and only if the exp_hw_s=
-upport module param is set. That way we don't water down the checks on the p=
-roduction code path but allow experimental setups to run without a seat belt=
-.
->>=20
->> Regards,
->>   Felix
->>=20
->>=20
->>> On 2024-08-09 01:39, Zhang, Yifan wrote:
->>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>=20
->>> Yes, I think we need that change for a normal code path, but this case i=
-s introduced only with the HSA_OVERRIDE_GFX_VERSION environment setting, whi=
-ch implies that "the override ASIC is compatible with the real ASIC." It is i=
-ntended for experimental purposes. When a user is using HSA_OVERRIDE_GFX_VER=
-SION, they should be aware of the potential risks it may bring. Usually, HSA=
-_OVERRIDE_GFX_VERSION is used to force an unsupported APU to be recognized a=
-s a ROCm-supported high-end dGPU, which has a large cwsr save area, making t=
-he operation safe. This check was added to KFD two weeks ago, the HSA_OVERRI=
-DE_GFX_VERSION environment had been working fine before that.
->>>=20
->>> Best Regards,
->>> Yifan
->>>=20
->>> -----Original Message-----
->>> From: Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>
->>> Sent: Thursday, August 8, 2024 10:46 PM
->>> To: Zhang, Yifan <Yifan1.Zhang@amd.com>; amd-gfx@lists.freedesktop.org
->>> Cc: Kuehling, Felix <Felix.Kuehling@amd.com>; Yang, Philip
->>> <Philip.Yang@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>
->>> Subject: RE: [PATCH] drm/amdkfd: keep create queue success if cwsr
->>> save area doesn't match
->>>=20
->>> [AMD Official Use Only - AMD Internal Distribution Only]
->>>=20
->>> In this case, shouldn't larger of two sizes be used. Also, we should hav=
-e an upper bound check.
->>>=20
->>> -----Original Message-----
->>> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
->>> Yifan Zhang
->>> Sent: Thursday, August 8, 2024 4:44 AM
->>> To: amd-gfx@lists.freedesktop.org
->>> Cc: Kuehling, Felix <Felix.Kuehling@amd.com>; Yang, Philip
->>> <Philip.Yang@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>
->>> Subject: [PATCH] drm/amdkfd: keep create queue success if cwsr save
->>> area doesn't match
->>>=20
->>> If HSA_OVERRIDE_GFX_VERSION is used in ROCm workload, user space and ker=
-nel use different spec to calculate cwsr save area, current check may fail c=
-reate queue ioctl. Change error to warn to make create queue succeed in that=
- case.
->>>=20
->>> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
->>> ---
->>>  drivers/gpu/drm/amd/amdkfd/kfd_queue.c | 4 +---
->>>  1 file changed, 1 insertion(+), 3 deletions(-)
->>>=20
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> index e0a073ae4a49..9f283aff057a 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
->>> @@ -295,11 +295,9 @@ int kfd_queue_acquire_buffers(struct kfd_process_de=
-vice *pdd, struct queue_prope
->>>         }
->>>=20
->>>         if (properties->ctx_save_restore_area_size !=3D topo_dev->node_p=
-rops.cwsr_size) {
->>> -               pr_debug("queue cwsr size 0x%x not equal to node cwsr si=
-ze 0x%x\n",
->>> +               pr_warn("queue cwsr size 0x%x not equal to node cwsr
->>> + size 0x%x\n",
->>>                         properties->ctx_save_restore_area_size,
->>>                         topo_dev->node_props.cwsr_size);
->>> -               err =3D -EINVAL;
->>> -               goto out_err_unreserve;
->>>         }
->>>=20
->>>         total_cwsr_size =3D (topo_dev->node_props.cwsr_size +
->>> topo_dev->node_props.debug_memory_size)
->>> --
->>> 2.37.3
->>>=20
->>>=20
+Tvrtko
