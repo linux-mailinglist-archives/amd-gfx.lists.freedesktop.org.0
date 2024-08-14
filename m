@@ -2,45 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD70952B9A
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 12:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF676952B96
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 12:06:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793F610E0A6;
-	Thu, 15 Aug 2024 10:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82C4A10E0D8;
+	Thu, 15 Aug 2024 10:05:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B7410E498;
- Wed, 14 Aug 2024 13:48:23 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 14 Aug
- 2024 16:48:20 +0300
-Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
- (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 14 Aug
- 2024 16:48:20 +0300
-Message-ID: <714daae5-b95c-425e-afe2-3b107033e493@fintech.ru>
-Date: Wed, 14 Aug 2024 06:48:14 -0700
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D81A810E49A;
+ Wed, 14 Aug 2024 13:53:47 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-01 (Coremail) with SMTP id qwCowAD3PsPXtrxm46l4Bg--.47134S2;
+ Wed, 14 Aug 2024 21:53:35 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, mwen@igalia.com,
+ aurabindo.pillai@amd.com, joshua@froggi.es, hamza.mahfooz@amd.com,
+ marek.olsak@amd.com, HaoPing.Liu@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/amd/display: avoid using null object of framebuffer
+Date: Wed, 14 Aug 2024 21:53:25 +0800
+Message-Id: <20240814135325.48117-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/radeon/evergreen_cs: fix int overflow errors in cs
- track offsets
-To: Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-CC: Jerome Glisse <jglisse@redhat.com>, Dave Airlie <airlied@redhat.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
- <n.zhandarovich@fintech.ru>
-References: <20240806171904.49032-1-n.zhandarovich@fintech.ru>
-Content-Language: en-US
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-In-Reply-To: <20240806171904.49032-1-n.zhandarovich@fintech.ru>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowAD3PsPXtrxm46l4Bg--.47134S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF4xWF4xKw18Ar48KFWUCFg_yoW8Xw43pF
+ sxAFy5Xr1UZF47t347CF1I9FZ0ka93XF1xKrWUuw1Svw15trn8Zws8Grs2gF4xXFWjkw4S
+ qFy7ArW2yF1qvw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUBF14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+ 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+ 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
+ rcIFxwACI402YVCY1x02628vn2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x
+ 0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+ 7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcV
+ C0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF
+ 04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7
+ CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRBVb9UUUUU=
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
 X-Mailman-Approved-At: Thu, 15 Aug 2024 10:05:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,235 +64,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Instead of using state->fb->obj[0] directly, get object from framebuffer
+by calling drm_gem_fb_get_obj() and return error code when object is
+null to avoid using null object of framebuffer.
 
-On 8/6/24 10:19, Nikita Zhandarovich wrote:
-> Several cs track offsets (such as 'track->db_s_read_offset')
-> either are initialized with or plainly take big enough values that,
-> once shifted 8 bits left, may be hit with integer overflow if the
-> resulting values end up going over u32 limit.
-> 
-> Same goes for a few instances of 'surf.layer_size * mslice'
-> multiplications that are added to 'offset' variable - they may
-> potentially overflow as well and need to be validated properly.
-> 
-> While some debug prints in this code section take possible overflow
-> issues into account, simply casting to (unsigned long) may be
-> erroneous in its own way, as depending on CPU architecture one is
-> liable to get different results.
-> 
-> Fix said problems by:
->  - casting 'offset' to fixed u64 data type instead of
->  ambiguous unsigned long.
->  - casting one of the operands in vulnerable to integer
->  overflow cases to u64.
->  - adjust format specifiers in debug prints to properly
->  represent 'offset' values.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
-> 
-> Fixes: 285484e2d55e ("drm/radeon: add support for evergreen/ni tiling informations v11")
-> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-> ---
-> v2:
-> - change data type to cast from unsigned long to u64 per Alex's and
-> Christian's suggestion:
-> https://lore.kernel.org/all/CADnq5_NaMr+vpqwqhsMoSeGrto2Lw5v0KXWEp2HRK=++orScMg@mail.gmail.com/
-> - include validation of surf.layer_size * mslice per Christian's
-> approval:
-> https://lore.kernel.org/all/1914cfcb-9700-4274-8120-9746e241cb54@amd.com/
-> - change format specifiers when printing 'offset' value.
-> - fix commit description to reflect patch changes.
-> 
-> v1:
-> https://lore.kernel.org/all/20240725180950.15820-1-n.zhandarovich@fintech.ru/
-> 
->  drivers/gpu/drm/radeon/evergreen_cs.c | 62 +++++++++++++++++------------------
->  1 file changed, 31 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/radeon/evergreen_cs.c
-> index e5577d2a19ef..a46613283393 100644
-> --- a/drivers/gpu/drm/radeon/evergreen_cs.c
-> +++ b/drivers/gpu/drm/radeon/evergreen_cs.c
-> @@ -397,7 +397,7 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->  	struct evergreen_cs_track *track = p->track;
->  	struct eg_surface surf;
->  	unsigned pitch, slice, mslice;
-> -	unsigned long offset;
-> +	u64 offset;
->  	int r;
->  
->  	mslice = G_028C6C_SLICE_MAX(track->cb_color_view[id]) + 1;
-> @@ -435,14 +435,14 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->  		return r;
->  	}
->  
-> -	offset = track->cb_color_bo_offset[id] << 8;
-> +	offset = (u64)track->cb_color_bo_offset[id] << 8;
->  	if (offset & (surf.base_align - 1)) {
-> -		dev_warn(p->dev, "%s:%d cb[%d] bo base %ld not aligned with %ld\n",
-> +		dev_warn(p->dev, "%s:%d cb[%d] bo base %llu not aligned with %ld\n",
->  			 __func__, __LINE__, id, offset, surf.base_align);
->  		return -EINVAL;
->  	}
->  
-> -	offset += surf.layer_size * mslice;
-> +	offset += (u64)surf.layer_size * mslice;
->  	if (offset > radeon_bo_size(track->cb_color_bo[id])) {
->  		/* old ddx are broken they allocate bo with w*h*bpp but
->  		 * program slice with ALIGN(h, 8), catch this and patch
-> @@ -450,14 +450,14 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->  		 */
->  		if (!surf.mode) {
->  			uint32_t *ib = p->ib.ptr;
-> -			unsigned long tmp, nby, bsize, size, min = 0;
-> +			u64 tmp, nby, bsize, size, min = 0;
->  
->  			/* find the height the ddx wants */
->  			if (surf.nby > 8) {
->  				min = surf.nby - 8;
->  			}
->  			bsize = radeon_bo_size(track->cb_color_bo[id]);
-> -			tmp = track->cb_color_bo_offset[id] << 8;
-> +			tmp = (u64)track->cb_color_bo_offset[id] << 8;
->  			for (nby = surf.nby; nby > min; nby--) {
->  				size = nby * surf.nbx * surf.bpe * surf.nsamples;
->  				if ((tmp + size * mslice) <= bsize) {
-> @@ -469,7 +469,7 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->  				slice = ((nby * surf.nbx) / 64) - 1;
->  				if (!evergreen_surface_check(p, &surf, "cb")) {
->  					/* check if this one works */
-> -					tmp += surf.layer_size * mslice;
-> +					tmp += (u64)surf.layer_size * mslice;
->  					if (tmp <= bsize) {
->  						ib[track->cb_color_slice_idx[id]] = slice;
->  						goto old_ddx_ok;
-> @@ -478,9 +478,9 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
->  			}
->  		}
->  		dev_warn(p->dev, "%s:%d cb[%d] bo too small (layer size %d, "
-> -			 "offset %d, max layer %d, bo size %ld, slice %d)\n",
-> +			 "offset %llu, max layer %d, bo size %ld, slice %d)\n",
->  			 __func__, __LINE__, id, surf.layer_size,
-> -			track->cb_color_bo_offset[id] << 8, mslice,
-> +			(u64)track->cb_color_bo_offset[id] << 8, mslice,
->  			radeon_bo_size(track->cb_color_bo[id]), slice);
->  		dev_warn(p->dev, "%s:%d problematic surf: (%d %d) (%d %d %d %d %d %d %d)\n",
->  			 __func__, __LINE__, surf.nbx, surf.nby,
-> @@ -564,7 +564,7 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
->  	struct evergreen_cs_track *track = p->track;
->  	struct eg_surface surf;
->  	unsigned pitch, slice, mslice;
-> -	unsigned long offset;
-> +	u64 offset;
->  	int r;
->  
->  	mslice = G_028008_SLICE_MAX(track->db_depth_view) + 1;
-> @@ -610,18 +610,18 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
->  		return r;
->  	}
->  
-> -	offset = track->db_s_read_offset << 8;
-> +	offset = (u64)track->db_s_read_offset << 8;
->  	if (offset & (surf.base_align - 1)) {
-> -		dev_warn(p->dev, "%s:%d stencil read bo base %ld not aligned with %ld\n",
-> +		dev_warn(p->dev, "%s:%d stencil read bo base %llu not aligned with %ld\n",
->  			 __func__, __LINE__, offset, surf.base_align);
->  		return -EINVAL;
->  	}
-> -	offset += surf.layer_size * mslice;
-> +	offset += (u64)surf.layer_size * mslice;
->  	if (offset > radeon_bo_size(track->db_s_read_bo)) {
->  		dev_warn(p->dev, "%s:%d stencil read bo too small (layer size %d, "
-> -			 "offset %ld, max layer %d, bo size %ld)\n",
-> +			 "offset %llu, max layer %d, bo size %ld)\n",
->  			 __func__, __LINE__, surf.layer_size,
-> -			(unsigned long)track->db_s_read_offset << 8, mslice,
-> +			(u64)track->db_s_read_offset << 8, mslice,
->  			radeon_bo_size(track->db_s_read_bo));
->  		dev_warn(p->dev, "%s:%d stencil invalid (0x%08x 0x%08x 0x%08x 0x%08x)\n",
->  			 __func__, __LINE__, track->db_depth_size,
-> @@ -629,18 +629,18 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
->  		return -EINVAL;
->  	}
->  
-> -	offset = track->db_s_write_offset << 8;
-> +	offset = (u64)track->db_s_write_offset << 8;
->  	if (offset & (surf.base_align - 1)) {
-> -		dev_warn(p->dev, "%s:%d stencil write bo base %ld not aligned with %ld\n",
-> +		dev_warn(p->dev, "%s:%d stencil write bo base %llu not aligned with %ld\n",
->  			 __func__, __LINE__, offset, surf.base_align);
->  		return -EINVAL;
->  	}
-> -	offset += surf.layer_size * mslice;
-> +	offset += (u64)surf.layer_size * mslice;
->  	if (offset > radeon_bo_size(track->db_s_write_bo)) {
->  		dev_warn(p->dev, "%s:%d stencil write bo too small (layer size %d, "
-> -			 "offset %ld, max layer %d, bo size %ld)\n",
-> +			 "offset %llu, max layer %d, bo size %ld)\n",
->  			 __func__, __LINE__, surf.layer_size,
-> -			(unsigned long)track->db_s_write_offset << 8, mslice,
-> +			(u64)track->db_s_write_offset << 8, mslice,
->  			radeon_bo_size(track->db_s_write_bo));
->  		return -EINVAL;
->  	}
-> @@ -661,7 +661,7 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
->  	struct evergreen_cs_track *track = p->track;
->  	struct eg_surface surf;
->  	unsigned pitch, slice, mslice;
-> -	unsigned long offset;
-> +	u64 offset;
->  	int r;
->  
->  	mslice = G_028008_SLICE_MAX(track->db_depth_view) + 1;
-> @@ -708,34 +708,34 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
->  		return r;
->  	}
->  
-> -	offset = track->db_z_read_offset << 8;
-> +	offset = (u64)track->db_z_read_offset << 8;
->  	if (offset & (surf.base_align - 1)) {
-> -		dev_warn(p->dev, "%s:%d stencil read bo base %ld not aligned with %ld\n",
-> +		dev_warn(p->dev, "%s:%d stencil read bo base %llu not aligned with %ld\n",
->  			 __func__, __LINE__, offset, surf.base_align);
->  		return -EINVAL;
->  	}
-> -	offset += surf.layer_size * mslice;
-> +	offset += (u64)surf.layer_size * mslice;
->  	if (offset > radeon_bo_size(track->db_z_read_bo)) {
->  		dev_warn(p->dev, "%s:%d depth read bo too small (layer size %d, "
-> -			 "offset %ld, max layer %d, bo size %ld)\n",
-> +			 "offset %llu, max layer %d, bo size %ld)\n",
->  			 __func__, __LINE__, surf.layer_size,
-> -			(unsigned long)track->db_z_read_offset << 8, mslice,
-> +			(u64)track->db_z_read_offset << 8, mslice,
->  			radeon_bo_size(track->db_z_read_bo));
->  		return -EINVAL;
->  	}
->  
-> -	offset = track->db_z_write_offset << 8;
-> +	offset = (u64)track->db_z_write_offset << 8;
->  	if (offset & (surf.base_align - 1)) {
-> -		dev_warn(p->dev, "%s:%d stencil write bo base %ld not aligned with %ld\n",
-> +		dev_warn(p->dev, "%s:%d stencil write bo base %llu not aligned with %ld\n",
->  			 __func__, __LINE__, offset, surf.base_align);
->  		return -EINVAL;
->  	}
-> -	offset += surf.layer_size * mslice;
-> +	offset += (u64)surf.layer_size * mslice;
->  	if (offset > radeon_bo_size(track->db_z_write_bo)) {
->  		dev_warn(p->dev, "%s:%d depth write bo too small (layer size %d, "
-> -			 "offset %ld, max layer %d, bo size %ld)\n",
-> +			 "offset %llu, max layer %d, bo size %ld)\n",
->  			 __func__, __LINE__, surf.layer_size,
-> -			(unsigned long)track->db_z_write_offset << 8, mslice,
-> +			(u64)track->db_z_write_offset << 8, mslice,
->  			radeon_bo_size(track->db_z_write_bo));
->  		return -EINVAL;
->  	}
+Cc: stable@vger.kernel.org
+Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Gentle ping...
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index a83bd0331c3b..5cb11cc2d063 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -28,6 +28,7 @@
+ #include <drm/drm_blend.h>
+ #include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_plane_helper.h>
++#include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_fourcc.h>
+ 
+ #include "amdgpu.h"
+@@ -935,10 +936,14 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
+ 	}
+ 
+ 	afb = to_amdgpu_framebuffer(new_state->fb);
+-	obj = new_state->fb->obj[0];
++	obj = drm_gem_fb_get_obj(new_state->fb, 0);
++	if (!obj) {
++		DRM_ERROR("Failed to get obj from framebuffer\n");
++		return -EINVAL;
++	}
++
+ 	rbo = gem_to_amdgpu_bo(obj);
+ 	adev = amdgpu_ttm_adev(rbo->tbo.bdev);
+-
+ 	r = amdgpu_bo_reserve(rbo, true);
+ 	if (r) {
+ 		dev_err(adev->dev, "fail to reserve bo (%d)\n", r);
+-- 
+2.25.1
 
-Regards,
-Nikita
