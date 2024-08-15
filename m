@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05EA2953D7C
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 00:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DFE953D77
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 00:45:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B2910E555;
-	Thu, 15 Aug 2024 22:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA47210E53F;
+	Thu, 15 Aug 2024 22:45:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IGMndx3l";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IvmcA0k8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2041.outbound.protection.outlook.com [40.107.93.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F17910E53F
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2049.outbound.protection.outlook.com [40.107.212.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1499910E541
  for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 22:45:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WEgnJrYCeTTlXHJ/+K+QE2lVCuUHNFiAt7L33RTW2Lg4KCv2TkFwhT9atGBB/q6m7y4BrBRZ0H/XaX1SC8Y/+LKuvy1Y79rEEW2L8yt6ZMYIqFkP6R6DBSOnSI58qEkCrpIJcerYYUZms3CXKDuy/HavAz3ac32gqYa1nk+hP8QbrgKQOW1PdwWRg0NlvyhDemg4T6mZaLXNjgR1AjzgefXKq08HCOa7ZuzNVqOclALNMINKsX4ijSy5/n7s3LcpfSCtsS5QbfujuToVzjVatR79B35rwL41e2opM2n4/q9uYJAD+UDHI04bYPbYu3E8Qw1UiGWV89KxTduOpISvYQ==
+ b=iS7lDVuzHBYXJeqPnKuTGJ/mEZ10hl+mbXxO+T95O+9Le5VS+j1hcy2kISyCeKQsYRkeQwmEm2sSvLClJuU4YtR2kquT6nY4dXYQa/32xkPoqnkjgvttLAaEBhzxFgeNC1RuUky95ldNfTpP8S+SachTZLduaqMxRSU6T09r4BIMTFYJFeyNoBJmkiLweYR3PKt7DukBkJ8eLfJeyC9F7ShLc5nHmMkd3Wcm/FFE6F8Q/HRtZ1Ne4e771ehcDLP8joXVIL0tosh0/GWYlEApc6aDrbpEtHy1jZboQ3OPKRDhEyaY0CFh9Kf9VjUf47yIBbDYJssMt3Bh+Qn7S3XOnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FuFqrCyxc3ozb732MA3V1TbKQNF8wAZBAnfw3cuQ48o=;
- b=EldmwcpMbM7w6NVV3CDsiDndN0ig1DF3S6GaqXbFTrk3AWgeULX/+iRj55WEXfJXv7Itjxx/XFGJ8RHRz9IMhguWmQMzQZRaZDNus1VkzuRFtYQDpRQ9QPXhVUx3JR2Agk2h/3fcgmyOYDZFJaIcXD1TVyZQBrU5wCouiTRKXqmwmhIDr/HOFeuqo/XH9iRuo/XHBj0kqE11kEH1pajlTifi4yKmJttikOfc+OKD6RRT1QBaEJLEFRcQIIy4cH1FVlTDrFb/DV4Abmri3g3nteGXTVQ07r1jtZEOVDZXVz0IpvUailhht6qQcO9IY3PPtiI1YAbai84Hfu5FD0IAug==
+ bh=/Gj5OG6JpctUdpYMzg19GcDc2LvfEHm+nMEvnbz5+is=;
+ b=itXbvyJW7EHH3PfO14MNFLULr0sOmJmrlEPYM8/vfh36EVN2dE/QkqzO1ZoYQmD4fXdGWtVI80Y7g5QeCIbHhawcZHwEByi8gTnHDyFizL73fQIiYJUm/SjDpMYqTI4gEFcV+bFFSsh0+IAbIG2MjQ1CX2gryJvl4dEVR0EsAZ7yJrmHZTZ5kGCH8g+VpyTLRA2trXV6BWJ57dUc5rwKVT+vycoR68wenrhaFQ11JbcpY+WxY2NmxgGtx8WPu4CXSDdjSWFX6Aux7jVajhPYx/lKDQi96A7MTbjqFcne6BdcT0d2aiNdgkUmk7oXfhKzb8fSabXQGdjxIcXsCx0Pug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FuFqrCyxc3ozb732MA3V1TbKQNF8wAZBAnfw3cuQ48o=;
- b=IGMndx3l7PTIx8T5XJAG+v2fWe8D8ZiRpH3EVulKS6Jcv80HvcGKWeEvfp/lSpS+0dPk0pM9LdDE4/HBCgB77Yt6PJtkwLJQc4knIF86Esk1f4fU7U4lENectOhXFvmncOvB9AyQ/pwPon/HEL9WL2jTE3VEi25DcWXwQpFQI7g=
-Received: from BL1PR13CA0205.namprd13.prod.outlook.com (2603:10b6:208:2be::30)
- by PH7PR12MB6609.namprd12.prod.outlook.com (2603:10b6:510:213::20)
+ bh=/Gj5OG6JpctUdpYMzg19GcDc2LvfEHm+nMEvnbz5+is=;
+ b=IvmcA0k81dX9u4c1fCFV+qZLVQaHHvFzu6LgR7uGR2UuZcxeLb1LuJ5K7OCfWKeA7AzS14g4wreC2mQT/26dzfwt7yKmwnJb4zIJr4qzdqElzg3pOIlVPpJ75PmRKiM3G4aPcvwZbqIhcZJuNoTM6Jx6YTIYKj9uP4yAdAbRJPM=
+Received: from MN2PR08CA0004.namprd08.prod.outlook.com (2603:10b6:208:239::9)
+ by MN2PR12MB4142.namprd12.prod.outlook.com (2603:10b6:208:1dd::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.25; Thu, 15 Aug
- 2024 22:45:36 +0000
-Received: from BL6PEPF0001AB73.namprd02.prod.outlook.com
- (2603:10b6:208:2be:cafe::ef) by BL1PR13CA0205.outlook.office365.com
- (2603:10b6:208:2be::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.10 via Frontend
- Transport; Thu, 15 Aug 2024 22:45:35 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Thu, 15 Aug
+ 2024 22:45:42 +0000
+Received: from BL6PEPF0001AB78.namprd02.prod.outlook.com
+ (2603:10b6:208:239:cafe::88) by MN2PR08CA0004.outlook.office365.com
+ (2603:10b6:208:239::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23 via Frontend
+ Transport; Thu, 15 Aug 2024 22:45:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,28 +48,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB73.mail.protection.outlook.com (10.167.242.166) with Microsoft
+ BL6PEPF0001AB78.mail.protection.outlook.com (10.167.242.171) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 22:45:35 +0000
+ 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 22:45:40 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 15 Aug
- 2024 17:45:34 -0500
+ 2024 17:45:39 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 15 Aug 2024 17:45:33 -0500
+ Transport; Thu, 15 Aug 2024 17:45:34 -0500
 From: <Roman.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Michael Strauss
- <michael.strauss@amd.com>, Charlene Liu <charlene.liu@amd.com>, Wenjing Liu
- <wenjing.liu@amd.com>
-Subject: [PATCH 02/13] drm/amd/display: Update HPO I/O When Handling Link
- Retrain Automation Request
-Date: Thu, 15 Aug 2024 18:45:14 -0400
-Message-ID: <20240815224525.3077505-3-Roman.Li@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>, Alvin Lee <alvin.lee2@amd.com>
+Subject: [PATCH 03/13] drm/amd/display: remove an extraneous call for checking
+ dchub clock
+Date: Thu, 15 Aug 2024 18:45:15 -0400
+Message-ID: <20240815224525.3077505-4-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240815224525.3077505-1-Roman.Li@amd.com>
 References: <20240815224525.3077505-1-Roman.Li@amd.com>
@@ -80,51 +79,51 @@ Received-SPF: None (SATLEXMB03.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB73:EE_|PH7PR12MB6609:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77cbc32d-88d0-4920-b19c-08dcbd7bfa43
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB78:EE_|MN2PR12MB4142:EE_
+X-MS-Office365-Filtering-Correlation-Id: c25dac55-6348-4c83-c990-08dcbd7bfd13
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DeF+2uRAVCaT8pbOMw5/bM0WniVBFXTVct0irsw3JqSumLPpWlV481WS3SRz?=
- =?us-ascii?Q?J79Mu0+V7Gf4AXdXv/238L4nBlG6LXAoeBNOnndE2dxVVMr0SCvs3W9TpHSh?=
- =?us-ascii?Q?3xrRdgF4+C+gxLctUE8fwGHNe0wLoqj3zjPLu7TghjlAxnPzzByjVD6fo+11?=
- =?us-ascii?Q?CVSZyNpcj2q9+4gPICkHp+DSM6H+F4gr3ith6TDsgLBcjJI+QF8A+HcyBzEN?=
- =?us-ascii?Q?X0iIHgjiqFsYvYSHwXJRxrZ6TwCtu99vkB/UJ87ENNl7yZ2bPzIucyi5skG4?=
- =?us-ascii?Q?h2exzQGje985YdxE47v9mlt/VMogx8VMNHAQgkRQpfHO5Al6bQTd5bivhc41?=
- =?us-ascii?Q?uHhMcYwfFRoaZS9FpZ8ZWswQBlrQLDh0tPIp/Y8SV2AxCGHro1Gmp+nC+Nce?=
- =?us-ascii?Q?IiNCPQUy5CSaBI+dYFU/D64eTDgr8br3GChN8zkyqEcG6hbViHSxj1GE1aCh?=
- =?us-ascii?Q?KOmhRzqIkcOXQYn8tg+hzVaCkuInIa95Deg8YgBktk/Z1eHNSDNFQratpfMG?=
- =?us-ascii?Q?eXdUb7JaqKuBpkiUStNGVZtoCAisBHJEGTJCQ8pIkYsePngwStEszlqYvbAk?=
- =?us-ascii?Q?QmBNwTWCZjNp3en+c/PxZRezudFVh6QBW26wsPhyX5kLHJ/4ZdOP4H9WuqyG?=
- =?us-ascii?Q?Om4DU36aQSviaanmwkZ8ETdvGvEEJiQuRZ8ATIDHRDJ0DU6+cBd7uRxFYtRg?=
- =?us-ascii?Q?CboX9cXdwQYG1UI4yTla/0hfRVEZ1uFzIBx395DQ9wYPIENk9ZMeQRqxIWrz?=
- =?us-ascii?Q?ecb3lGoharK879i5rvoIyXJFD2ze0MV/L7VQawPNVJbzaha6F/U4Tr/LOI2I?=
- =?us-ascii?Q?6beAMxMtfd/E87NWXdn7rpoS8bxaqnd9ML2vQ9lbnpMPozVtuGKwub/I08+a?=
- =?us-ascii?Q?CAAb7dI4Bg1JxLZn6a6LnhlO/Qu+ALC0UP+w2prRMXV7C2egYTsolnO1liST?=
- =?us-ascii?Q?Q0BPMOOAWVfHcLI10nThHsssXqyv6LsoQewaog3LV/SnmIR1u9gpTZR9YtNb?=
- =?us-ascii?Q?oeIXKpA/F65KAYAOFFMH7GrfICuexHNuYmpREG34Wam8slKJUAnNY93PB2zQ?=
- =?us-ascii?Q?YGnNBUJw4DBaR2UqtWgrwXQnFtHfUmUOk3x9jfak951XgrvQg9urikXmWfdD?=
- =?us-ascii?Q?LVRxJMm8FYjQ3iYSxf7W0Y53Do2Kpoof2lmvqzgvv5aiJ21PWhgEAOxfw210?=
- =?us-ascii?Q?WXDPA2zHPMmY/fhJV5f2awSOvnJDg7jL3aOfUOSCz1f9e28ztPqLeqdKl0J7?=
- =?us-ascii?Q?TZUKKXc6jYKkO5ZRwePqpJ5SKp4vWPXGddKl/49mqFYYTglkwyYSw6k7CkND?=
- =?us-ascii?Q?Fl7uZ/r4szoZa0WNPjaeBgQAltkd0vgVuqTUVbD6WRXmDR4E9RwyXZwIfcUO?=
- =?us-ascii?Q?drAEOLNwzuukcx8sTR/3o61JXp/DStk6Ny4KNvAZgGLMl+cBlz+J5giP59fV?=
- =?us-ascii?Q?J0h2xwcUALGXUGLUJY+kGPACNmJd01lv?=
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9DZxuTcYyNHYrUM0asMGhZ+zdOCyILccVmcy/ONSeCWrNJEBMUIoUPrwzCkL?=
+ =?us-ascii?Q?SkyjeWfjES4F0CpVCDB3h1eEKTmk8bhdNsmCOF4FmY2QFw51+sGVhyzKp/Cu?=
+ =?us-ascii?Q?aa6cbdaYTJegtCffOkcbJlRYO4MwgvK1GNzEqTr+VW4xSnmKmDK9O6n9WVdv?=
+ =?us-ascii?Q?AFGYEIgVmEkmhT8xA1TvvvYzE4m/C5n3/19l8IMlRE5pP4U/k4lvnfdakoEf?=
+ =?us-ascii?Q?jqJ1rJ/JVSoN9giRhRQwtRlqcGk5i5Ljrka1BaCZBV8K1jIwWiNjRg6rOFAt?=
+ =?us-ascii?Q?7bHYiPQm1JmThZZmH99+Q+pHg6vimbdEUDF7sTao1cOYijN/Af5ynvmb0vbc?=
+ =?us-ascii?Q?UD/AU3ntT1dG1YrzQLEgGuDmmwBu+jmaKTJneZuV8SPbBAQCTiGcozSlHgd0?=
+ =?us-ascii?Q?NHtPVao0wxqCpl5oD4JkLZPjxScUAUaoFG6b8KpALH1XRGlV8IiTvPj7YfaA?=
+ =?us-ascii?Q?PdNNuqMOX7lPMDkct/bvnwJl5e3RNMVIq/3sYutL2m/FGDwocvBzbKfwDTyv?=
+ =?us-ascii?Q?iuuagPW4y2VB8zCNZ7rvl8gv2cTyXg6HGrnMIFPPDHqCkWrgYkJRYafv61ZX?=
+ =?us-ascii?Q?qoafYR9rvSBA9x6DPNrqAzb6+t1IL0+qTJV1XgNl/6Pz2zlUhOKwmuvGXB+f?=
+ =?us-ascii?Q?lo9oDuAFn1/4VNZimF1R8lUdVGWQunQh8gnbLeuGmMorkH29W+H5IzouNLEb?=
+ =?us-ascii?Q?oyv8zH+tt68cjfVPrlZR8LT2+DqijS9kpYBPGi0ja7Y3h3KyiCfSGmGWFhws?=
+ =?us-ascii?Q?cpzAjYGQAMJag2Dz2bYU2r7c8hieo/NfMU7MpJ+OWEzdz5WeyT2/8CBrjE6n?=
+ =?us-ascii?Q?465uHfx64NiO62BhXSFOsp4VWqPVhTOP4GwEtBjLrm6ct+8ZMu1iW9PdKHpS?=
+ =?us-ascii?Q?GkdFewAUSV7RBWy6k7JxnlbEGKR3/OH+X44aX4tqfT04PnOjCsu0XjSFc7RD?=
+ =?us-ascii?Q?lF8nRyaq0StbVx6x2WTnbA9654sZ/KpQHxUUI09LWs/Y8dmIBou/xxSQTuvb?=
+ =?us-ascii?Q?hAwTFB4ImcQMAZZOsvgRtinkUJ9aK790zRVjBL/yLGUm/HB9NptVlX7q4KNM?=
+ =?us-ascii?Q?wKj2Ti7zCleo1ZRZtHdxWNMMb9uRMCpRpgLwAusipcr33vz7/Csd5DBbQ/9L?=
+ =?us-ascii?Q?ZAPLDNGAid8dK/eEbnblJF999RPfCQgouViM57U/1cUx4sqNFSQAwYNkAcox?=
+ =?us-ascii?Q?PT1eSK2WxkCT4bLnnPxkIyzfGX8WO5lTp2AgiN7Qm0o2wrJfuy6o2khfAPiC?=
+ =?us-ascii?Q?VphxdgIjkcQbHPFuDojPi7TLuicM5W1V0lBjo9Kwz9cUtYgc+TCVUZQjBo51?=
+ =?us-ascii?Q?sLUcEwUe13I9AvYCUB954I+50BMLdgoz1neaBvUyhGapntfanV6iQGxMI46X?=
+ =?us-ascii?Q?6wbqzLC1TjIY2XBIp1F9p4QZ7HlzYzTk7Iza6lepFzPlwfEgfhjXuRxg9DWr?=
+ =?us-ascii?Q?fnxETdkymR1ptG678hvVV7t9G9fR0JS0?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:45:35.6510 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77cbc32d-88d0-4920-b19c-08dcbd7bfa43
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:45:40.3546 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c25dac55-6348-4c83-c990-08dcbd7bfd13
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB73.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB78.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6609
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4142
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,184 +138,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-[WHY]
-Previous multi-display HPO fix moved where HPO I/O enable/disable is performed.
-The codepath now taken to enable/disable HPO I/O is not used for compliance
-test automation, meaning that if a compliance box being driven at a DP1 rate
-requests retrain at UHBR, HPO I/O will remain off if it was previously off.
+when removing the amdgpu module and reinserting it, a call trace is
+triggered:
 
-[HOW]
-Explicitly update HPO I/O after allocating encoders for test request.
+[  334.230602] RIP: 0010:hubbub2_get_dchub_ref_freq+0xbb/0xe0 [amdgpu]
+[  334.230807] Code: 25 28 00 00 00 75 3c 48 8d 65 f0 5b 41 5c 5d 31 c0 31 d2 31 c9 31 f6 31 ff 45 31 c0 45 31 c9 45 31 d2 45 31 db e9 55 a1 ca de <0f> 0b eb c6 0f 0b eb c2 d1 eb 8d 83 c0 63 ff ff 3d 20 4e 00 00 76
+[  334.230809] RSP: 0018:ffffbc8b823fb540 EFLAGS: 00010246
+[  334.230811] RAX: 0000000000001000 RBX: 00000000000186a0 RCX: 0000000000000000
+[  334.230812] RDX: ffffbc8b823fb544 RSI: 0000000000000000 RDI: 0000000000000000
+[  334.230813] RBP: ffffbc8b823fb560 R08: 0000000000000000 R09: 0000000000000000
+[  334.230814] R10: 0000000000000000 R11: 000000000000000f R12: ffff9e644f1f2bb0
+[  334.230815] R13: ffff9e6451361300 R14: 0000000000000000 R15: ffff9e6452c00000
+[  334.230816] FS:  00007af7c8519000(0000) GS:ffff9e737dd00000(0000) knlGS:0000000000000000
+[  334.230817] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  334.230818] CR2: 0000703576b9cbd0 CR3: 00000001095a2000 CR4: 0000000000750ee0
+[  334.230819] PKRU: 55555554
+[  334.230820] Call Trace:
+[  334.230822]  <TASK>
+[  334.230824]  ? show_regs+0x6d/0x80
+[  334.230828]  ? __warn+0x89/0x160
+[  334.230832]  ? hubbub2_get_dchub_ref_freq+0xbb/0xe0 [amdgpu]
+[  334.231024]  ? report_bug+0x17e/0x1b0
+[  334.231028]  ? handle_bug+0x46/0x90
+[  334.231030]  ? exc_invalid_op+0x18/0x80
+[  334.231032]  ? asm_exc_invalid_op+0x1b/0x20
+[  334.231036]  ? hubbub2_get_dchub_ref_freq+0xbb/0xe0 [amdgpu]
+[  334.231217]  dc_create_resource_pool+0xfd/0x320 [amdgpu]
+[  334.231408]  dc_create+0x256/0x700 [amdgpu]
+[  334.231588]  ? srso_alias_return_thunk+0x5/0x7f
+[  334.231590]  ? dmi_matches+0xa0/0x230
+[  334.231594]  amdgpu_dm_init+0x28c/0x25f0 [amdgpu]
+[  334.231791]  ? prb_read_valid+0x1c/0x30
+[  334.231795]  ? __irq_work_queue_local+0x43/0xf0
+[  334.231798]  ? srso_alias_return_thunk+0x5/0x7f
+[  334.231800]  ? irq_work_queue+0x2f/0x70
+[  334.231802]  ? srso_alias_return_thunk+0x5/0x7f
+[  334.231803]  ? __wake_up_klogd.part.0+0x40/0x70
+[  334.231805]  ? srso_alias_return_thunk+0x5/0x7f
+[  334.231807]  ? vprintk_emit+0xd9/0x210
+[  334.231809]  ? set_dev_info+0x130/0x1c0
+[  334.231812]  ? srso_alias_return_thunk+0x5/0x7f
+[  334.231813]  ? dev_printk_emit+0xa1/0xe0
+[  334.231819]  dm_hw_init+0x14/0x30 [amdgpu]
+[  334.231993]  amdgpu_device_init+0x23c7/0x2fc0 [amdgpu]
+[  334.232134]  ? pci_read_config_word+0x25/0x50
+[  334.232139]  amdgpu_driver_load_kms+0x1a/0xd0 [amdgpu]
+[  334.232284]  amdgpu_pci_probe+0x1f9/0x620 [amdgpu]
 
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+On DCN401, get_dchub_ref_freq() hook is called before init_hw() hook.
+Hence, it is expected to trigger an assert. Remove the extraneous call
+to get_dchub_ref_freq() to suppress the call trace
+
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Roman Li <roman.li@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 13 ++++++++++++
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 21 ++++---------------
- .../amd/display/dc/hwss/dcn31/dcn31_init.c    |  1 +
- .../amd/display/dc/hwss/dcn314/dcn314_init.c  |  1 +
- .../amd/display/dc/hwss/dcn351/dcn351_init.c  |  1 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  1 +
- drivers/gpu/drm/amd/display/dc/inc/resource.h |  2 ++
- .../display/dc/link/accessories/link_dp_cts.c |  8 +++++++
- 8 files changed, 31 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index b38340c690c6..b6377efc6253 100644
+index b6377efc6253..ef585a89847b 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -5303,3 +5303,16 @@ int resource_calculate_det_for_stream(struct dc_state *state, struct pipe_ctx *o
+@@ -342,11 +342,6 @@ struct resource_pool *dc_create_resource_pool(struct dc  *dc,
+ 				res_pool->ref_clocks.xtalin_clock_inKhz;
+ 			res_pool->ref_clocks.dchub_ref_clock_inKhz =
+ 				res_pool->ref_clocks.xtalin_clock_inKhz;
+-			if (dc->debug.using_dml2)
+-				if (res_pool->hubbub && res_pool->hubbub->funcs->get_dchub_ref_freq)
+-					res_pool->hubbub->funcs->get_dchub_ref_freq(res_pool->hubbub,
+-										    res_pool->ref_clocks.dccg_ref_clock_inKhz,
+-										    &res_pool->ref_clocks.dchub_ref_clock_inKhz);
+ 		} else
+ 			ASSERT_CRITICAL(false);
  	}
- 	return det_segments;
- }
-+
-+bool resource_is_hpo_acquired(struct dc_state *context)
-+{
-+	int i;
-+
-+	for (i = 0; i < MAX_HPO_DP2_ENCODERS; i++) {
-+		if (context->res_ctx.is_hpo_dp_stream_enc_acquired[i]) {
-+			return true;
-+		}
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index 217344ccf644..246fa300ee95 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -2350,19 +2350,6 @@ static void dce110_setup_audio_dto(
- 	}
- }
- 
--static bool dce110_is_hpo_enabled(struct dc_state *context)
--{
--	int i;
--
--	for (i = 0; i < MAX_HPO_DP2_ENCODERS; i++) {
--		if (context->res_ctx.is_hpo_dp_stream_enc_acquired[i]) {
--			return true;
--		}
--	}
--
--	return false;
--}
--
- enum dc_status dce110_apply_ctx_to_hw(
- 		struct dc *dc,
- 		struct dc_state *context)
-@@ -2371,8 +2358,8 @@ enum dc_status dce110_apply_ctx_to_hw(
- 	struct dc_bios *dcb = dc->ctx->dc_bios;
- 	enum dc_status status;
- 	int i;
--	bool was_hpo_enabled = dce110_is_hpo_enabled(dc->current_state);
--	bool is_hpo_enabled = dce110_is_hpo_enabled(context);
-+	bool was_hpo_acquired = resource_is_hpo_acquired(dc->current_state);
-+	bool is_hpo_acquired = resource_is_hpo_acquired(context);
- 
- 	/* reset syncd pipes from disabled pipes */
- 	if (dc->config.use_pipe_ctx_sync_logic)
-@@ -2415,8 +2402,8 @@ enum dc_status dce110_apply_ctx_to_hw(
- 
- 	dce110_setup_audio_dto(dc, context);
- 
--	if (dc->hwseq->funcs.setup_hpo_hw_control && was_hpo_enabled != is_hpo_enabled) {
--		dc->hwseq->funcs.setup_hpo_hw_control(dc->hwseq, is_hpo_enabled);
-+	if (dc->hwseq->funcs.setup_hpo_hw_control && was_hpo_acquired != is_hpo_acquired) {
-+		dc->hwseq->funcs.setup_hpo_hw_control(dc->hwseq, is_hpo_acquired);
- 	}
- 
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-index b57dd45611f2..56f3c70d4b55 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-@@ -111,6 +111,7 @@ static const struct hw_sequencer_funcs dcn31_funcs = {
- 	.optimize_pwr_state = dcn21_optimize_pwr_state,
- 	.exit_optimized_pwr_state = dcn21_exit_optimized_pwr_state,
- 	.update_visual_confirm_color = dcn10_update_visual_confirm_color,
-+	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
- };
- 
- static const struct hwseq_private_funcs dcn31_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-index fe5495a8e7a2..68e6de6b5758 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-@@ -114,6 +114,7 @@ static const struct hw_sequencer_funcs dcn314_funcs = {
- 	.exit_optimized_pwr_state = dcn21_exit_optimized_pwr_state,
- 	.update_visual_confirm_color = dcn10_update_visual_confirm_color,
- 	.calculate_pix_rate_divider = dcn314_calculate_pix_rate_divider,
-+	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
- };
- 
- static const struct hwseq_private_funcs dcn314_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-index 5da3069fc1ab..d00822e8daa5 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn351/dcn351_init.c
-@@ -123,6 +123,7 @@ static const struct hw_sequencer_funcs dcn351_funcs = {
- 	.set_long_vtotal = dcn35_set_long_vblank,
- 	.calculate_pix_rate_divider = dcn32_calculate_pix_rate_divider,
- 	.program_outstanding_updates = dcn32_program_outstanding_updates,
-+	.setup_hpo_hw_control = dcn35_setup_hpo_hw_control,
- };
- 
- static const struct hwseq_private_funcs dcn351_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index 326854489802..ac9205625623 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -461,6 +461,7 @@ struct hw_sequencer_funcs {
- 	void (*set_long_vtotal)(struct pipe_ctx **pipe_ctx, int num_pipes, uint32_t v_total_min, uint32_t v_total_max);
- 	void (*program_outstanding_updates)(struct dc *dc,
- 			struct dc_state *context);
-+	void (*setup_hpo_hw_control)(const struct dce_hwseq *hws, bool enable);
- };
- 
- void color_space_to_black_color(
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-index 9cd80d3864c7..cd1157d225ab 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-@@ -644,4 +644,6 @@ void resource_init_common_dml2_callbacks(struct dc *dc, struct dml2_configuratio
-  *Calculate total DET allocated for all pipes for a given OTG_MASTER pipe
-  */
- int resource_calculate_det_for_stream(struct dc_state *state, struct pipe_ctx *otg_master);
-+
-+bool resource_is_hpo_acquired(struct dc_state *context);
- #endif /* DRIVERS_GPU_DRM_AMD_DC_DEV_DC_INC_RESOURCE_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-index df3781081da7..ff8fe1a94965 100644
---- a/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/accessories/link_dp_cts.c
-@@ -67,6 +67,8 @@ static void dp_retrain_link_dp_test(struct dc_link *link,
- {
- 	struct pipe_ctx *pipes[MAX_PIPES];
- 	struct dc_state *state = link->dc->current_state;
-+	bool was_hpo_acquired = resource_is_hpo_acquired(link->dc->current_state);
-+	bool is_hpo_acquired;
- 	uint8_t count;
- 	int i;
- 
-@@ -83,6 +85,12 @@ static void dp_retrain_link_dp_test(struct dc_link *link,
- 				pipes[i]);
- 	}
- 
-+	if (link->dc->hwss.setup_hpo_hw_control) {
-+		is_hpo_acquired = resource_is_hpo_acquired(state);
-+		if (was_hpo_acquired != is_hpo_acquired)
-+			link->dc->hwss.setup_hpo_hw_control(link->dc->hwseq, is_hpo_acquired);
-+	}
-+
- 	for (i = count-1; i >= 0; i--)
- 		link_set_dpms_on(state, pipes[i]);
- }
 -- 
 2.34.1
 
