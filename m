@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C7C953D79
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 00:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E85F9953D78
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 00:45:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6BF010E545;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CAB810E541;
 	Thu, 15 Aug 2024 22:45:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Qr42VzBW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZWppZJHX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2050.outbound.protection.outlook.com [40.107.96.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 753E410E53F
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25E4510E545
  for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 22:45:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dtlkxpUpfrhkjvguc5yOE+cEAjJp1hhRRGXzysjGnhzpBHazYDCWhc/TnjH+sH4QJqbk8WJLASHaWoN18dkcOP7txltCtr9SeKavVYcM9Dfhy4Sgx4Vyl/iY5iyWwGbw0ccqpQBa203AJYtmoKgoE2hXD+x+JsxSkzZlZmQd56va7/18/yHMuXjhmt8fNTssCdCcAWRoM+cfLxZNtWmc4QzqOzSDnb/gm/AEhvqN0GvtSlT2EdQhfE3x7dSMYuWxNLykONl3VQIdOfWtOWHjieAiPAs7wVAorzxKl9WaJzuHR0VOMnF4G5DpjHSSGCZNPQSHFl0mVTnzAMY9FY3RDQ==
+ b=Nf/74OVZSRdcSXlKNx6mHJmmxyaldB84cp9+hb41HhA4U+DAU4VQfmUxkGmvjwNOwv+qU4T9YpdYkSh9MNQStnFiD/5eU33c414xeKBmVUh/ESnE+wW06mPqgg8PXvFw/f2lwKKNCyrjc97pGr/NCDdYdiGh81RqLKcc+guOkyOkIFKfmJIdjHeLsDLjtZcln50MM5dYMOjyNHa+RFrvJdcN0DiLUilI0iZVmzNzpvBobgwfoy2+OgMtFIoarO9ibfm7Ecltd05e1Qv26V3lNcyriYwsJljSB80gMdRWLuegwSbdcVN5KuRi/aDoZUV7Hf7IYhWyCEtLn6OpsiojQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+V22TFsTJrNqXseRGrYnc+J1l+5OSxHPLRO7E8wcdjc=;
- b=G4c8oOdcpwvXT7e82pkvQR+z2KiGoTqSyZBTiALHZ0VuN8mgTyVu+c6YnuCN8OPyBNScSquIyTn7xQq0+OGd+CeR5jy3+O28OdmmIKfSFIKlB3HhWJ422IuKCufzTHpUPLYEdiTarSonVU8qwky/ITps+6moU7PH9ugUqnp6bnE3h/5pAV7ohxLKLGSaRRZ/PGzJB3lAYI/1s7Y2vMtXMICeOVDZHd5/4JKx/GX4+oTHTrk2+N3Pzd0hKEhkk+VtnNsNPTX8bBml8qaZ/FV0/DHyIXb6byqBHdKJ91yvx/y/ksAwdIg8MKQMqH+4doBPOOcVLfffPENXejgbJMMy/g==
+ bh=yq3BhuPp8Fqfb5bOf/fAVDdi6ZGjGaRGYCdeRuQvU9Q=;
+ b=hd1S2WS3uKRQdT/ADtP9JaC4fINJvgA8/AS69s5JRYW9HYXKCue39P5QL5yCjsQWFQv2an7nK+esB5JQcYcaBk0IKc76rA383m0D6yhBzm3XwMFmiN5bBTHZxV6avCIpSKDrcRiPzmomXZLNfxm3t865kM7A8leWflTOFxHwERXvUEk+U3MzZiE2fRhW1tHiUgoMeFjZsr+G8+bM/hV+Y0Rxbp7a4c5zhRqeaPIEcxoNqWAQUh2uDEU+Df7J5zuMPvVVh3OE73AHIUbulLrMeLw2EvJMrc3Sya/FQpqhwSaRKtbcr9uS2Nd/tPguXC2qGInhfc0H8QzE8JWPlyPeeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+V22TFsTJrNqXseRGrYnc+J1l+5OSxHPLRO7E8wcdjc=;
- b=Qr42VzBWDEityTMSQCmpZ6DDyhZOPZuS3q/CO/YqKdUhkR5R2G5qRvGcATlc1UKxVBxIwNw4Wz85OPrQgS/jGF+mHI4pVLpchi0Xp/NEb6Id3EKOu4w6ugpreSbugWtJCkwhZEofd3/oouZJKg57QoOkRgSlFR184nsW/ZpqgDM=
-Received: from BN0PR03CA0034.namprd03.prod.outlook.com (2603:10b6:408:e7::9)
- by SJ0PR12MB6759.namprd12.prod.outlook.com (2603:10b6:a03:44b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Thu, 15 Aug
- 2024 22:45:42 +0000
+ bh=yq3BhuPp8Fqfb5bOf/fAVDdi6ZGjGaRGYCdeRuQvU9Q=;
+ b=ZWppZJHXoxaKJgkNSl7b/S1hencKJ25cBCreK3RGfop0RcXT4wFNzwL0PnpjS90veemGc3pZzTTL5ICmX3QMeCrA53uTBOMXuM1uT3be6R+JkgovOkv92eicP/Jxfsl9xwC22NcfpS4u4412YlBGWGY4NxevP1m0QljLqvrL4wE=
+Received: from BN0PR03CA0052.namprd03.prod.outlook.com (2603:10b6:408:e7::27)
+ by IA0PR12MB8253.namprd12.prod.outlook.com (2603:10b6:208:402::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.18; Thu, 15 Aug
+ 2024 22:45:43 +0000
 Received: from BN3PEPF0000B074.namprd04.prod.outlook.com
- (2603:10b6:408:e7:cafe::16) by BN0PR03CA0034.outlook.office365.com
- (2603:10b6:408:e7::9) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:e7:cafe::cd) by BN0PR03CA0052.outlook.office365.com
+ (2603:10b6:408:e7::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.33 via Frontend
- Transport; Thu, 15 Aug 2024 22:45:42 +0000
+ Transport; Thu, 15 Aug 2024 22:45:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN3PEPF0000B074.mail.protection.outlook.com (10.167.243.119) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 22:45:42 +0000
+ 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 22:45:43 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 15 Aug
- 2024 17:45:41 -0500
+ 2024 17:45:42 -0500
 Received: from roman-vdev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
  Transport; Thu, 15 Aug 2024 17:45:41 -0500
@@ -63,12 +63,11 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Nevenko Stupar
- <Nevenko.Stupar@amd.com>, Chris Park <chris.park@amd.com>
-Subject: [PATCH 06/13] drm/amd/display: Hardware cursor changes color when
- switched to software cursor
-Date: Thu, 15 Aug 2024 18:45:18 -0400
-Message-ID: <20240815224525.3077505-7-Roman.Li@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Sung Joon Kim
+ <Sungjoon.Kim@amd.com>, Wenjing Liu <wenjing.liu@amd.com>
+Subject: [PATCH 07/13] drm/amd/display: Support UHBR10 link rate on eDP
+Date: Thu, 15 Aug 2024 18:45:19 -0400
+Message-ID: <20240815224525.3077505-8-Roman.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240815224525.3077505-1-Roman.Li@amd.com>
 References: <20240815224525.3077505-1-Roman.Li@amd.com>
@@ -79,51 +78,51 @@ Received-SPF: None (SATLEXMB04.amd.com: Roman.Li@amd.com does not designate
  permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B074:EE_|SJ0PR12MB6759:EE_
-X-MS-Office365-Filtering-Correlation-Id: 612c2eb1-409b-480f-d120-08dcbd7bfe4b
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B074:EE_|IA0PR12MB8253:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee8c9e2b-b0d0-4f61-8e8d-08dcbd7bfead
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mV9R74tWkMGyCC0e+xIAz8V3FGsUyzJY/d2K7rCcx3r3wos+E+QYdNRUsheJ?=
- =?us-ascii?Q?woS25qQss3xZ/ze2B8qa3UuDU0J7iUmg+9pxPLUJcFVk9XgaYyr0zVexyXUb?=
- =?us-ascii?Q?YAuPKew9g8CuHr6DvHFHnV9Zy9J6FfaJ87khSTiAbV+OJjwP+GDCPXtanKpQ?=
- =?us-ascii?Q?IdPcvUQM8wN8U+PaOeP5I+nq710K/EfQi6eyvMagyd0NMzamN1bEr7nooWR3?=
- =?us-ascii?Q?BqMWPDc1uHw4q+W3jtBYiv7ucbbr6ZVAqyrIXBrdFktxGAODopuWVuuT7tTM?=
- =?us-ascii?Q?bfNqAE2xfMUE09p1cbYD6Lrr7ipIMj4TtzpWSPuRxi3/wpXNA57jAjcHFHuz?=
- =?us-ascii?Q?jBWwAWh136/0hdl3LuU+M+I07vxf27eQecwZeoyNtusv1f0KSCqadkV7ODs3?=
- =?us-ascii?Q?+MxBy7FRMPo+5LOj4skjvQoWy3FuZ8e236O2ietWdN0xT3U5SvDIYj0ESWAB?=
- =?us-ascii?Q?jErVZO0RovfZIt6/ilTuQFvNjATR4CQGFVSnmFdLs+E7S0oBMGGF2eVehbpi?=
- =?us-ascii?Q?bQ+iAohgDJ3MfGaeOv2EBFRCm7iAeJCAg35EeZaDgqOEPiYyRpk1I3kTMqck?=
- =?us-ascii?Q?grvRxa4n85+mPjmEBq7N0ViCCs4GCvSMYz6UAvYBcqdgrI6LiMY5LiR7ath3?=
- =?us-ascii?Q?E7oWYGEDHIWaRppik75Z1Vg5EhWezwrRQLem6WECmEinGB0K72TtMje41b76?=
- =?us-ascii?Q?gaeqvAPu5qNIOTSym4FfNHtxlZvs1ckyW1wneE/+978pG8SwXHl83Eaeku06?=
- =?us-ascii?Q?+wWi836M8jeiQrRCVvyyCJ5k45ye+Lp+eh260D+gmUQafhAlHVKSEWhq6atz?=
- =?us-ascii?Q?0XyxDvaIFCILnAFDxIfZarfwqHtfdGXbE5JDykG7rbkBOobyAWubPnpR4cxO?=
- =?us-ascii?Q?cDrSKaEuc+5+eoW/d+zIgjMNZrzAAbCrzmT/UFkQBHKj6luRQ/U6HrHdCZdp?=
- =?us-ascii?Q?KYMx6wxVz6sPvV6hFqTunL67ifje/PyJ3JMwlUqiZyvKNTLUwMtl2phIvRyg?=
- =?us-ascii?Q?N3Hoi1i/BwK38u4SFwCu5Cb1Sm6+5P9B8x97JR0wvZEL4+BMp3JvkNclv1Dx?=
- =?us-ascii?Q?4UybScwP4fYaQR4nh6UOKNScVNb9cDubVxUpEEjWgWBHbLSZsh409KMI6bSJ?=
- =?us-ascii?Q?Bv4ojmZsVDzlNHlGifb+7Ct3JFwsHH0Fccfj5K7BRWsqASAGg9vioBanfpfm?=
- =?us-ascii?Q?GCdyeh+naMKcFdsyBLkD4t/t83Uyal+xlGAbZwhgQEOu6LAz8FF47S95zgla?=
- =?us-ascii?Q?rvBAholNu91+24ks3k6jicJQq3gAW7+e2KtxQkpaLciNRIOtDPywl/TdCO5r?=
- =?us-ascii?Q?7V1+1niVTt7gha9KUMb221GlZnk1rqAmw7Zrg61EsZYYL+sWBKdeUVvh/gqB?=
- =?us-ascii?Q?Dg0HI50qh/PvIl981E/K+R0dx64oiyYEbHuf4d9j0bd/Z0t3dLC9kqVVPLHJ?=
- =?us-ascii?Q?swKMaa1d8qN7NJGyiPqkpcEFsJmS1Wui?=
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?99jzUDvSK3Picsx4QLs1q2aJ+FL2V6Ny4nrV5tchJmdwCTx/Lv4RgH0NIUmA?=
+ =?us-ascii?Q?c54rqK0xTIVP1z1ViIgq0ZSIwDdq+7N83yQelxvc2gihBU5d0pCSaXkgblsA?=
+ =?us-ascii?Q?a8qhiV5z2R0EWLinqcIWLBq6KTwTH/arQhFgCQqwBRpcaBJoQhEf+negJem0?=
+ =?us-ascii?Q?VLDZBzYfPIrsnQqZafD04iA2wWHT0PlgITfjm4s8hCoyMJx+bKLInYPNpOdu?=
+ =?us-ascii?Q?DRmAnnwqLbFah/LYQVmm7plCip7ChS7aHSl51BEH3gzl8Ezp5WuA5hgarTLd?=
+ =?us-ascii?Q?9QSMTHKh5tepltjYd67Ze7v7fKNdCPD2vx1MZkUaTXz1ZMtYYYvMM0AE0CoX?=
+ =?us-ascii?Q?OU1t5goGfoakvms5RK5/veIK2Ioo3XdNqZjCXLStoeEISA86V+6AxqNl2Vzs?=
+ =?us-ascii?Q?2OuBfN7ON3LON+tEGupwt7Xon7HjCkrHXnx9ATz/A89H28Nl/XU3jp4vTNfC?=
+ =?us-ascii?Q?Jyv0VNJvp2n5TtPVX6iUwb7L7AmfvxzkKq1jppSjUWmjwQkNlwYy26wE+wlZ?=
+ =?us-ascii?Q?T1RtrC++gDUmSQd9gkYNi3kWw1Wf53M/AjgRjRkSAaXNRpDE8Qt/LNMm4Xp5?=
+ =?us-ascii?Q?0osryEBWP9H40SGV7/MgWGcRzsU8L4LUlq072wq+bvqz3ETQRY88t51k4fzo?=
+ =?us-ascii?Q?At2qwUnP78Li5E6rHRX0jxzmYBMgpHk0gSExHbf+APyILkdJYCy/6VgvwpHP?=
+ =?us-ascii?Q?pQYa5p6SnYsZUDrMzQsxQwQzUvONiOARW3OOzHABbpdXDLRKtt9aWFS5MQfE?=
+ =?us-ascii?Q?zIeJvnn768QFBwy6XI86+4NgBsl7NFJaV6eGq0n10XorkdiWYoaZFQZjESct?=
+ =?us-ascii?Q?oO7/xTbaRPM2qiqr/Z7jcTmCU9KECnbjUdiD7UFFf0O98eyAnWeCMOlbu/5/?=
+ =?us-ascii?Q?8Tjt0bd5fYlPN2ZkjSmd4biK7qQ5VEFGzzSQfP8Hxgz+RtJzeGaj3PynkMdD?=
+ =?us-ascii?Q?+p0Ha9wr2P7AAbIDgSExL1LRXKV8Md3VIcNdXLOI4L/VJe/kthf6kIPOrSeT?=
+ =?us-ascii?Q?a1GRffjRvSWwx5bj5twwMAlkfeFTesgCAW6dkj8+ieNg1m9P3QAQgwBMfS/l?=
+ =?us-ascii?Q?wpTQzb/y1dDri7GWOMpa8w6BAJNDi3CKMfQp8maOWEm+z31mklFNZ9+0zDxK?=
+ =?us-ascii?Q?sRvMwFL1IbsNs9+MPAslk9jPaRQ1ns6n0eRBvJU6+5sV+jqx0J/wLZFI81Ca?=
+ =?us-ascii?Q?qoHW6QjBVsIeDMEczje/pDNxXFmrEkHICkImZPDDvfN4JZH2LBPeU87EVCXM?=
+ =?us-ascii?Q?CiX9pHaAW9cXiYBN0msR4F0Xjb71Y7MClZ4ohVD5tMN2CRZjyo5PzyhIm0jA?=
+ =?us-ascii?Q?SRcbERCjZuE3B9yfooYNPi12kCav/+4KayAPDWjOCnhECIw4oDT/Pl219knI?=
+ =?us-ascii?Q?ZyWEUCbNW4LK9Texta+PWyeVJdH7vUbJNJphuTQ/730bJsnTasv6gNING8Vi?=
+ =?us-ascii?Q?C7GEHMvrvyV4JNa/JlWSKDxLRFbO5J5x?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:45:42.4150 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 612c2eb1-409b-480f-d120-08dcbd7bfe4b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 22:45:43.0400 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee8c9e2b-b0d0-4f61-8e8d-08dcbd7bfead
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B074.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6759
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8253
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,37 +137,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nevenko Stupar <Nevenko.Stupar@amd.com>
+From: Sung Joon Kim <Sungjoon.Kim@amd.com>
 
-[Why & How]
-DCN4 Cursor has separate degamma block and should always
-do Cursor degamma for Cursor color modes.
+[why]
+Supporting UHBR10 link rate on eDP leverages
+the existing DP2.0 code but need to add some small
+adjustments in code.
 
-Reviewed-by: Chris Park <chris.park@amd.com>
-Signed-off-by: Nevenko Stupar <Nevenko.Stupar@amd.com>
+[how]
+Acknowledge the given DPCD caps for UHBR10
+link rate support and allow DP2.0 programming
+sequence and link training for eDP.
+
+Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Sung Joon Kim <Sungjoon.Kim@amd.com>
 Signed-off-by: Roman Li <roman.li@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 23 ++++++++++---------
+ .../gpu/drm/amd/display/dc/link/link_dpms.c   |  4 ++--
+ .../link/protocols/link_edp_panel_control.c   |  3 +++
+ 4 files changed, 18 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
-index 92b34fe47f74..3b6ca7974e18 100644
---- a/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c
-@@ -120,11 +120,10 @@ void dpp401_set_cursor_attributes(
- 	enum dc_cursor_color_format color_format = cursor_attributes->color_format;
- 	int cur_rom_en = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 6b036417a73a..3de311533571 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1760,6 +1760,7 @@ struct dc_link {
+ 		bool dongle_mode_timing_override;
+ 		bool blank_stream_on_ocs_change;
+ 		bool read_dpcd204h_on_irq_hpd;
++		bool disable_assr_for_uhbr;
+ 	} wa_flags;
+ 	struct link_mst_stream_allocation_table mst_stream_alloc_table;
  
-+	// DCN4 should always do Cursor degamma for Cursor Color modes
- 	if (color_format == CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA ||
- 		color_format == CURSOR_MODE_COLOR_UN_PRE_MULTIPLIED_ALPHA) {
--		if (cursor_attributes->attribute_flags.bits.ENABLE_CURSOR_DEGAMMA) {
--			cur_rom_en = 1;
--		}
-+		cur_rom_en = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index 246fa300ee95..d52ce58c6a98 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -1232,20 +1232,21 @@ void dce110_blank_stream(struct pipe_ctx *pipe_ctx)
+ 			 * has changed or they enter protection state and hang.
+ 			 */
+ 			msleep(60);
+-		} else if (pipe_ctx->stream->signal == SIGNAL_TYPE_EDP) {
+-			if (!link->dc->config.edp_no_power_sequencing) {
+-				/*
+-				 * Sometimes, DP receiver chip power-controlled externally by an
+-				 * Embedded Controller could be treated and used as eDP,
+-				 * if it drives mobile display. In this case,
+-				 * we shouldn't be doing power-sequencing, hence we can skip
+-				 * waiting for T9-ready.
+-				 */
+-				link->dc->link_srv->edp_receiver_ready_T9(link);
+-			}
+ 		}
  	}
  
- 	REG_UPDATE_3(CURSOR0_CONTROL,
++	if (pipe_ctx->stream->signal == SIGNAL_TYPE_EDP &&
++	    !link->dc->config.edp_no_power_sequencing) {
++			/*
++			 * Sometimes, DP receiver chip power-controlled externally by an
++			 * Embedded Controller could be treated and used as eDP,
++			 * if it drives mobile display. In this case,
++			 * we shouldn't be doing power-sequencing, hence we can skip
++			 * waiting for T9-ready.
++			 */
++		link->dc->link_srv->edp_receiver_ready_T9(link);
++	}
++
+ }
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+index d6550b904b16..c4e03482ba9a 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+@@ -2358,7 +2358,7 @@ void link_set_dpms_off(struct pipe_ctx *pipe_ctx)
+ 
+ 	if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
+ 		deallocate_mst_payload(pipe_ctx);
+-	else if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT &&
++	else if (dc_is_dp_sst_signal(pipe_ctx->stream->signal) &&
+ 			dp_is_128b_132b_signal(pipe_ctx))
+ 		update_sst_payload(pipe_ctx, false);
+ 
+@@ -2591,7 +2591,7 @@ void link_set_dpms_on(
+ 
+ 	if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
+ 		allocate_mst_payload(pipe_ctx);
+-	else if (pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT &&
++	else if (dc_is_dp_sst_signal(pipe_ctx->stream->signal) &&
+ 			dp_is_128b_132b_signal(pipe_ctx))
+ 		update_sst_payload(pipe_ctx, true);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+index 070b6c8c1aef..3aa05a2be6c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
+@@ -1168,6 +1168,9 @@ static void edp_set_assr_enable(const struct dc *pDC, struct dc_link *link,
+ 	link_enc_index = link->link_enc->transmitter - TRANSMITTER_UNIPHY_A;
+ 
+ 	if (link_res->hpo_dp_link_enc) {
++		if (link->wa_flags.disable_assr_for_uhbr)
++			return;
++
+ 		link_enc_index = link_res->hpo_dp_link_enc->inst;
+ 		use_hpo_dp_link_enc = true;
+ 	}
 -- 
 2.34.1
 
