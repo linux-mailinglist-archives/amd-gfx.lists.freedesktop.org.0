@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AABEA952679
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 02:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC70595267C
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 02:05:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A04E10E352;
-	Thu, 15 Aug 2024 00:05:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6919010E386;
+	Thu, 15 Aug 2024 00:05:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D5I6Fpwu";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vWwxAj+z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2057.outbound.protection.outlook.com [40.107.101.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32E310E33F
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 00:05:32 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2071.outbound.protection.outlook.com [40.107.92.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECCF910E370
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 00:05:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sdXjCQ+wgpF6nxNbfQGd4IF6V2q7OgaHXkwWpHeiix4og/lXsQ2qafqKQmJnaeT2SvK2EpkY1HgoCXE8imcnAuxT6nqr9MiBkajvsS4/RRZfdA2cEibnII6R4NjLnRsJX6FvqcrLKuoVA9DySk952vdzV99AGf8yGKjE1xEObQN7y67nhq67NK7RSqd7Izd/2GkrvW7tR3fUMK5irRquRk+KM3bgeXT56/9wOyewV0sk8ZTLr3RmD6X5mGGTsITpOrMRoRFT0pJRy5RzTMjQrAzlTOsiAlUwa5k5HcFD8ITCHtOf06CTWV1qvTKFqjxlJFhMtv4tqw74FD99YXRt8Q==
+ b=WblmXQntctQQdCuFP6OZ8EMNeFs1lhxl/BioYbHGfGghp27HyWjQ/lQ/rDZjTtly1WUKUryh1bq317OMOXL1jurhpCxIfCyJyWxUBvM/216io+VGd9QSJ0fMJ/2H8ApNlUyTaeh4KIQA2tsWNIagR5DKpbg51+SWfjIETpurJiST4U2pQNLEUkHIcGZkd/q5nQIpZwof44eO0frWEZXQFXPil/heTjQ9X3lzunYK6VaxutWVzuV1Ri9dVMDlMwVMppppUPXtgyus1ScF9ur0VUriWtq0ZwEY4e3M3eXcUeWxSXFjJuetePaB3mWMvjdo2uQuh+NIZEqrd/PHV5aWHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CeaWYRzsr4i2WshczX8nEvIpGeTvQgGee6nElgorz0U=;
- b=IzVgJKiKQz6kTjJO5p1vJQE0IYK5UwM6F71BBM8AKTIqDxIHzAnBrS2FvAlZD5xiY5J12I9/4lyS+imKvzEJ5Vgd5SBDbw/t9pbANlJdEZPLMgwzdYshbnirKixn78E7kfpmtvzPAAxIAw2UoipPhaiFIYLFJmhyYy6KCcX9269/Ax3KUi6rE+6ar5+CMOH3W4I3hI2B4z61/Y42Td4X9Zy3TGDQltSFzKyOYwLiyriUUvSV+4aJAOOMdNjFGoOjpXZ1NO9CKXmWy84/yRp1EHOK9Xv/mrxD/ES/DdFFqSyskSXvuGXWPXBBwcypsqf2mj8urLY2FayaXqAQ9LsvvQ==
+ bh=ETwVFCgZrmcazwC5ezJYMfkY4y9R0E7mguNerYF7aO8=;
+ b=YVVpI5QuO8mg14xDv+BP6+8CwJz/YgPWCXr3Q6p/5Uf9WfsLolU6YFWqu2wrBnBLzD9BgIE7qmsAkTmGg6ACcTZTab7/8qYpPV1DCccrBPKdy8YO2Ys4ZTT86cfK+711ExqmLZHIMWynyHFJRICFEb1Q+rF53++u3fTILOIkvxBsvhfplY0RCPErrVAsHdxpKwHJjc28Efnf+HbTzNzWUjTIqc1qA2rLPCuBJ5u8pU4dS5cd7y1xV+RokAf0d5VbGignRvsP3S6i0NKcPCcnywvDJDcsA5IzRwHPu8zQRDXJvylf6HER66rjor7edk4xTVpRvF5UP/HdwrhEGeI9Iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CeaWYRzsr4i2WshczX8nEvIpGeTvQgGee6nElgorz0U=;
- b=D5I6FpwusJ/Y8JsOrQDD3/PGi8Dtx2MBuo76lh9iJNLF8p8KtOb3TQxQihpIQrY43t1jgq/33XQ0VhPSwsAm0rgUR+BYsc0tSAVNSx5pkgrmVFMUArOx4Eo17VS33hcZ+r+jBqXBMvQrW+YKi69lBEjM5Wmbctc3l6GNFy2E10s=
-Received: from MN2PR04CA0014.namprd04.prod.outlook.com (2603:10b6:208:d4::27)
- by PH7PR12MB7940.namprd12.prod.outlook.com (2603:10b6:510:275::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Thu, 15 Aug
- 2024 00:05:30 +0000
+ bh=ETwVFCgZrmcazwC5ezJYMfkY4y9R0E7mguNerYF7aO8=;
+ b=vWwxAj+zuVeCQsikvgyBe3v4VmfkI7py1VQUm117L75fIVrV7FG7z0Dag1Jcn57glgQ7DTyBRM8QRVAp70VFUL8BQ0wIM54HboxjQLdl9DXjEhlOtplNjMKa12C1MFUwNn1uxKtjT1pdTdG0z7DdxhFQFZmmmo7ylHAFs0f2u+8=
+Received: from MN2PR04CA0009.namprd04.prod.outlook.com (2603:10b6:208:d4::22)
+ by DM4PR12MB8522.namprd12.prod.outlook.com (2603:10b6:8:18f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.24; Thu, 15 Aug
+ 2024 00:05:31 +0000
 Received: from MN1PEPF0000F0E4.namprd04.prod.outlook.com
- (2603:10b6:208:d4:cafe::34) by MN2PR04CA0014.outlook.office365.com
- (2603:10b6:208:d4::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22 via Frontend
- Transport; Thu, 15 Aug 2024 00:05:30 +0000
+ (2603:10b6:208:d4:cafe::d7) by MN2PR04CA0009.outlook.office365.com
+ (2603:10b6:208:d4::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23 via Frontend
+ Transport; Thu, 15 Aug 2024 00:05:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,77 +57,66 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2024 19:05:27 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>
-Subject: [PATCH 16/17] drm/amdgpu/gfx_v9_4_3: Apply Isolation Enforcement to
- GFX & Compute rings
-Date: Wed, 14 Aug 2024 20:05:00 -0400
-Message-ID: <20240815000501.1845226-17-alexander.deucher@amd.com>
+CC: Amber Lin <Amber.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 17/17] drm/amdkfd: Enable processes isolation on gfx9
+Date: Wed, 14 Aug 2024 20:05:01 -0400
+Message-ID: <20240815000501.1845226-18-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240815000501.1845226-1-alexander.deucher@amd.com>
 References: <20240815000501.1845226-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E4:EE_|PH7PR12MB7940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9dec6e27-5f70-4c97-9ddd-08dcbcbdf9b8
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E4:EE_|DM4PR12MB8522:EE_
+X-MS-Office365-Filtering-Correlation-Id: d528eeee-13b5-4013-d523-08dcbcbdfa10
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Vzd3WHhPeXNPdVcvNG12RDlVZng0M1dEaFE5QnRaV2NYcTBjRm1sRDZkWHNo?=
- =?utf-8?B?Z0hLb2daakJ1ZXhQUnRpQjZWNmdTWFpRVEVHMmR3WXpRaE56SVJkdS9CT0J2?=
- =?utf-8?B?endtTXozUnpMWU9EUVZzR1IyRmQybVhldTVNVmZWN2hMLytQc2FqTlFRK0Fr?=
- =?utf-8?B?aWpCc1BQWXVMU1FpN0c1UGFTYm1SSUZySXFFbUtkRThYLzFBL0JBaDFtbW1o?=
- =?utf-8?B?MVQ4bFdENVJsdC9XZGZYdmRIRzBMQVRaOS9XMG9HNVBEbmc0L0JZQnQ1OGZ4?=
- =?utf-8?B?TFlYUFkwbjByL1RaS2N2V2pSb09aaTVMMUNRN0hGZXk3c1dyNS9hUzVYOVFF?=
- =?utf-8?B?dmNUcUxjZ2VQNGl1akZJSWozMFJ5VndZUkxTdk51WjhxVU1rc2VoZDkzZGFL?=
- =?utf-8?B?anYrL2lRcVdhTFRuVHJ2aEpLU3dMOGpiYzlPcFRyNG5Oa3JETkV0Tjh3R0JO?=
- =?utf-8?B?ZFJ1bHB1V0dsY2s3RHlEcHFLTElrQXRkczZ4UjMxWkNpenBpaCs1RXpHZVRy?=
- =?utf-8?B?UVdOVkpHdFp3eThkbjMzU2VTSW9tNGF2cHhpQWV4QzZZeEpPM2R6bGpKQllD?=
- =?utf-8?B?L3oxN0pFY2tBZE15OWpaUmRabXVaNmFQNjErTzdSV1pkdHNtQkdZd0NHOTBq?=
- =?utf-8?B?YXJOWTdqMmQ4Vy9RWGJWeWJhYU5OL3Z0UXVzbldYamM0RDFrYnBTUngzelRQ?=
- =?utf-8?B?UjBxM2lFck5QS0VDbkwwQnVxWkhKc0Y5REtoMk1JL0xEVDBJaWV6Y3JqYlZl?=
- =?utf-8?B?M3lORzE0cVZhY1k4RXdjZFZOVERnODVPaUdlZ3pMdEFnVmN5a2JadHBMd0Nl?=
- =?utf-8?B?V0RrQUtoUlc5d0tkcG9Mek0yN1BXUVBzSFVXUlBDOElWNGdORXBrYy95Q2Vm?=
- =?utf-8?B?eU9OcGNBQ0hTdjFvdVR0V3g4TVh2ZWdUb09yZFhYb1FsclVmMjZrTGFKM0ht?=
- =?utf-8?B?OU03YUJDN28zeVo1L1JNMnFoL0JRT0EyMkIxdnJQLzN2T1ZHbDM3MExUVDd2?=
- =?utf-8?B?QWx2d3JScnl2Qks3YWdlRExiZVd0YjVud29HYnVzZHBYQkIxVy9KVnNWb0Zl?=
- =?utf-8?B?L3JxY3dCNzBRc2FhVW1aMkNhME45UnA3WG5PUm01cTB5VnhKYzVMN3Nsb2tJ?=
- =?utf-8?B?NTk0OW9yUUcvWEhBUnoydGt2VWUxd0NUUlg0bTRxeE1BdTcwN05iSEQ3SGFw?=
- =?utf-8?B?cUpCajdwYWZqeU51WUZLQUVRa3Zrckt0VjRBQ2xvUWpjMDlZZURnSXd0QTlV?=
- =?utf-8?B?cE1YbGF5TkVyb1o0NnBzVWp2bmdKZ1g2eXBObU1KSVdLajlCR2w0U0hPTnE3?=
- =?utf-8?B?YU95bC9xZlJCSllqUGM0cTdyY2VvNjdFNUpBbTViQTg2aTgxSUhLdGo5UmZT?=
- =?utf-8?B?cXVDbWN0M1BHLzEzeFhieDNnSWR0RmxCYVZYWWFsdGFJRUJyc3Z1RkNYbGtz?=
- =?utf-8?B?S0IzR2ZKZm1Mc2REY2crZmNieUU4SS8zWXJoR1FKRmhVL0hNL050ZVNlN002?=
- =?utf-8?B?V2s2NU5QY2ZyeW1sUURHNjFySW9uMXBDeXpnZWo3OUVtbENTUG9oby9zRFMr?=
- =?utf-8?B?K3daTHBFV09xVTA0eDM5dVd6bjk4aWUzWXdrTWd6L2VHZElNRzR3RnVVY21Q?=
- =?utf-8?B?VnJBMEkvaklCZ0xMUWdPVHRwUjJPdkRtNERCU1YxYWUvZVdKNzAvVlp5QVVH?=
- =?utf-8?B?NHBDNHpGd1RmcVJOM2dUU2duaFYzWmFMbU1DbVdjRkE3eXNLTWpXQ2hqSHYv?=
- =?utf-8?B?dml2RlhUd21jT0JoSWNyYjlzRVIvUDNNV09pUXFBRGhlTGp0cnhudmxwTE9Z?=
- =?utf-8?B?NkdMZG5XSGtLSE1JZ0huU1RReXM5L1BjazVPcmh3ekd0OHlnSDg0WnZ5YmlG?=
- =?utf-8?B?aThITW1qcGV3a0Vrbnc5dytpR0N6WllEcWlzQzVGWHYyRHdQcy9KayswNmhp?=
- =?utf-8?Q?PN/sFIiz6HnWT5oyeXrDUwXDJjWsWvbv?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xzGzhItlsJVKOrFZrYXJt26i0S0ahdSd6XRqfpfiDeK11AvuFPX9PmJguIvL?=
+ =?us-ascii?Q?cEK3jpCeeFD7klzIgqPKVsHHS6AGqaM1QEeLg5bNC5wE4o2Nsf/WCu0ngjl5?=
+ =?us-ascii?Q?gUgMoxAQUKdN0V7Q8vmT0PwDXlFvohvxuvCrb9sCTpFaoWwnPhPUR23SVp1H?=
+ =?us-ascii?Q?IZ8ye3AeefmGi5WygJDyZzQxnTqhAV5ziXRPSWyJM3/G5rTlQrf9ZwFTpcmD?=
+ =?us-ascii?Q?J1Xf2C2W5Qw+ImiLiWMIEjMRYyq5sfB5WMBchEY/i6NtSMom4tcvAmeBGzi4?=
+ =?us-ascii?Q?Uefn/tUUk33d0MXT/EXpUf0HosmvaLBlKaA1k0ahBo7Qb2kDuljzYPCDI/qj?=
+ =?us-ascii?Q?j1SQS8vGjLVNiBIbVwsJTjUe+nymP4i2Y0hqL7as3j9kOvyOplmR21AxZtbH?=
+ =?us-ascii?Q?UqAWI2RNKElIS/q+ucOQDxDQUHJwlNRFQ6OA4grX01KeSZPdxEpirzM8hvUk?=
+ =?us-ascii?Q?8sPURJxdCQPesIomoYaIKDnUbu+iXoGWr4pkej6pEiYUYtPGzzal2mdfD2HD?=
+ =?us-ascii?Q?QWWFS5Flg9i1AI8QcLyofnPzJ4SircwSOBdHvWGbczDrk06XgOdrcVyTgWat?=
+ =?us-ascii?Q?giOL3q1Cb/EBIrNA1ND2t1wb7wQfLjz3zJ1/Suy65JkXJrUjV5/D5ycX+MHa?=
+ =?us-ascii?Q?U5HJTg4FxVvpx7nqeyCnHyUgsqGvzX+DuY0/NSWub/Z0bAz0uIFKtVR0vcCo?=
+ =?us-ascii?Q?MqQZifHhUFCK4sKbtBPZ5mAUb2rvuhTDmXzTv1FSKUjKjTQI7MN091X4pzKZ?=
+ =?us-ascii?Q?6Cug/6Qe31KNDvyb7wajjdcuXkUt0t0qgHKus8bjzRR/bxAgzjar4jE8HkE4?=
+ =?us-ascii?Q?m01ft1ilpzx2L0vRiIftePjfd/URHd5r1sUYqPRoXFHuLOFCyNHIVWCj70e7?=
+ =?us-ascii?Q?tG4YxafwbT/B7uGWyxS5bfLKdTAKPeq9WYpH7uxa5KJrT1W30wFbABHsYH/A?=
+ =?us-ascii?Q?yDVseKMSLE5kxYs6CdyjfJgfdVrXErNrUKQjbJ2CycGsny2Qf3AlaCbcnNAo?=
+ =?us-ascii?Q?2AtZ5Ck3oahYvsl+CPZWtzy4HtC8Tu1Ji8f5ilV5JWYfeNds3B0JojenvD+G?=
+ =?us-ascii?Q?A6JgfVQo3uETM3pi6wapGa8DQe4xrWbnYSNZeInJsnCQyHn/32FF5HpfVUkm?=
+ =?us-ascii?Q?gL/xqLsWEmRhMpWEatjkAq+K+1CUwolgeNMn76TLwKLyIxXzzF4THXadkMhr?=
+ =?us-ascii?Q?5TZTHbnoMPpFFl9i2w6gTAd3I3QG/IGSDh4S4qYYqQxv3J8U+6Re3i7DY4ks?=
+ =?us-ascii?Q?lVBgKEDH0ES7qpRwmNZkunfxsnGFBFtjn1svqO7jIy8lCbPc4UpaTphLTaZu?=
+ =?us-ascii?Q?fD1JVI85SXlW0mCgjDwhd80+2qha6v9oCJ8xvgDA748KnyX0d2qiOykOm+fl?=
+ =?us-ascii?Q?Dln9ZIhBLObAMXwWebEtGfq4QawBU2EgwpAMrSPaqcco2IC47qqjrPmSaCPp?=
+ =?us-ascii?Q?gSFzecNP9jRA4sM7iG9C22LBZw3hj0pS?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 00:05:30.3609 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9dec6e27-5f70-4c97-9ddd-08dcbcbdf9b8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 00:05:30.9390 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d528eeee-13b5-4013-d523-08dcbcbdfa10
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E4.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7940
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8522
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,80 +131,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+From: Amber Lin <Amber.Lin@amd.com>
 
-This commit applies isolation enforcement to the GFX and Compute rings
-in the gfx_v9_4_3 module.
+When amdgpu enable enforce_isolation, KFD enables single-process mode in
+HWS and sets exec_cleaner_shader bit in MAP_PROCESS.
 
-The commit sets `amdgpu_gfx_enforce_isolation_ring_begin_use` and
-`amdgpu_gfx_enforce_isolation_ring_end_use` as the functions to be
-called when a ring begins and ends its use, respectively.
-
-`amdgpu_gfx_enforce_isolation_ring_begin_use` is called when a ring
-begins its use. This function cancels any scheduled
-`enforce_isolation_work` and, if necessary, signals the Kernel Fusion
-Driver (KFD) to stop the runqueue.
-
-`amdgpu_gfx_enforce_isolation_ring_end_use` is called when a ring ends
-its use. This function schedules `enforce_isolation_work` to be run
-after a delay.
-
-These functions are part of the Enforce Isolation Handler, which
-enforces shader isolation on AMD GPUs to prevent data leakage between
-different processes.
-
-The commit also includes a check for the type of the ring. If the type
-of the ring is `AMDGPU_RING_TYPE_COMPUTE`, the `xcp_id` of the
-`enforce_isolation` structure in the `gfx` structure of the
-`amdgpu_device` is set to the `xcp_id` of the ring. This ensures that
-the correct `xcp_id` is used when enforcing isolation on compute rings.
-The `xcp_id` is an identifier for an XCP partition, and different rings
-can be associated with different XCP partitions.
-
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c | 4 ++++
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    | 2 ++
- 2 files changed, 6 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c | 14 +++++++++++++-
+ drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_ai.h    |  5 +++--
+ .../gpu/drm/amd/amdkfd/kfd_pm4_headers_aldebaran.h |  2 +-
+ 3 files changed, 17 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-index 228fd4dd32f1..26e2188101e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-+++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram.c
-@@ -75,6 +75,8 @@ static void aqua_vanjaram_set_xcp_id(struct amdgpu_device *adev,
- 	uint32_t inst_mask;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
+index 00776f08351c..1f9f5bfeaf86 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_v9.c
+@@ -37,11 +37,14 @@ static int pm_map_process_v9(struct packet_manager *pm,
+ 	struct kfd_node *kfd = pm->dqm->dev;
+ 	struct kfd_process_device *pdd =
+ 			container_of(qpd, struct kfd_process_device, qpd);
++	struct amdgpu_device *adev = kfd->adev;
  
- 	ring->xcp_id = AMDGPU_XCP_NO_PARTITION;
-+	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE)
-+		adev->gfx.enforce_isolation[0].xcp_id = ring->xcp_id;
- 	if (adev->xcp_mgr->mode == AMDGPU_XCP_MODE_NONE)
- 		return;
+ 	packet = (struct pm4_mes_map_process *)buffer;
+ 	memset(buffer, 0, sizeof(struct pm4_mes_map_process));
+ 	packet->header.u32All = pm_build_pm4_header(IT_MAP_PROCESS,
+ 					sizeof(struct pm4_mes_map_process));
++	if (adev->enforce_isolation[kfd->node_id])
++		packet->bitfields2.exec_cleaner_shader = 1;
+ 	packet->bitfields2.diq_enable = (qpd->is_debug) ? 1 : 0;
+ 	packet->bitfields2.process_quantum = 10;
+ 	packet->bitfields2.pasid = qpd->pqm->process->pasid;
+@@ -89,14 +92,18 @@ static int pm_map_process_aldebaran(struct packet_manager *pm,
+ 	struct pm4_mes_map_process_aldebaran *packet;
+ 	uint64_t vm_page_table_base_addr = qpd->page_table_base;
+ 	struct kfd_dev *kfd = pm->dqm->dev->kfd;
++	struct kfd_node *knode = pm->dqm->dev;
+ 	struct kfd_process_device *pdd =
+ 			container_of(qpd, struct kfd_process_device, qpd);
+ 	int i;
++	struct amdgpu_device *adev = kfd->adev;
  
-@@ -103,6 +105,8 @@ static void aqua_vanjaram_set_xcp_id(struct amdgpu_device *adev,
- 	for (xcp_id = 0; xcp_id < adev->xcp_mgr->num_xcps; xcp_id++) {
- 		if (adev->xcp_mgr->xcp[xcp_id].ip[ip_blk].inst_mask & inst_mask) {
- 			ring->xcp_id = xcp_id;
-+			if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE)
-+				adev->gfx.enforce_isolation[xcp_id].xcp_id = xcp_id;
- 			break;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index fa6752585a72..2067f26d3a9d 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -4671,6 +4671,8 @@ static const struct amdgpu_ring_funcs gfx_v9_4_3_ring_funcs_compute = {
- 	.emit_wave_limit = gfx_v9_4_3_emit_wave_limit,
- 	.reset = gfx_v9_4_3_reset_kcq,
- 	.emit_cleaner_shader = gfx_v9_4_3_ring_emit_cleaner_shader,
-+	.begin_use = amdgpu_gfx_enforce_isolation_ring_begin_use,
-+	.end_use = amdgpu_gfx_enforce_isolation_ring_end_use,
- };
+ 	packet = (struct pm4_mes_map_process_aldebaran *)buffer;
+ 	memset(buffer, 0, sizeof(struct pm4_mes_map_process_aldebaran));
+ 	packet->header.u32All = pm_build_pm4_header(IT_MAP_PROCESS,
+ 			sizeof(struct pm4_mes_map_process_aldebaran));
++	if (adev->enforce_isolation[knode->node_id])
++		packet->bitfields2.exec_cleaner_shader = 1;
+ 	packet->bitfields2.diq_enable = (qpd->is_debug) ? 1 : 0;
+ 	packet->bitfields2.process_quantum = 10;
+ 	packet->bitfields2.pasid = qpd->pqm->process->pasid;
+@@ -144,17 +151,22 @@ static int pm_runlist_v9(struct packet_manager *pm, uint32_t *buffer,
  
- static const struct amdgpu_ring_funcs gfx_v9_4_3_ring_funcs_kiq = {
+ 	int concurrent_proc_cnt = 0;
+ 	struct kfd_node *kfd = pm->dqm->dev;
++	struct amdgpu_device *adev = kfd->adev;
+ 
+ 	/* Determine the number of processes to map together to HW:
+ 	 * it can not exceed the number of VMIDs available to the
+ 	 * scheduler, and it is determined by the smaller of the number
+ 	 * of processes in the runlist and kfd module parameter
+ 	 * hws_max_conc_proc.
++	 * However, if enforce_isolation is set (toggle LDS/VGPRs/SGPRs
++	 * cleaner between process switch), enable single-process mode
++	 * in HWS.
+ 	 * Note: the arbitration between the number of VMIDs and
+ 	 * hws_max_conc_proc has been done in
+ 	 * kgd2kfd_device_init().
+ 	 */
+-	concurrent_proc_cnt = min(pm->dqm->processes_count,
++	concurrent_proc_cnt = adev->enforce_isolation[kfd->node_id] ?
++			1 : min(pm->dqm->processes_count,
+ 			kfd->max_proc_per_quantum);
+ 
+ 	packet = (struct pm4_mes_runlist *)buffer;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_ai.h b/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_ai.h
+index 8b6b2bd5c148..cd8611401a66 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_ai.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_ai.h
+@@ -145,8 +145,9 @@ struct pm4_mes_map_process {
+ 
+ 	union {
+ 		struct {
+-			uint32_t pasid:16;
+-			uint32_t reserved1:2;
++			uint32_t pasid:16;		/* 0 - 15  */
++			uint32_t reserved1:1;		/* 16      */
++			uint32_t exec_cleaner_shader:1;	/* 17      */
+ 			uint32_t debug_vmid:4;
+ 			uint32_t new_debug:1;
+ 			uint32_t reserved2:1;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_aldebaran.h b/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_aldebaran.h
+index 38f5cb6a222a..e0ed62c4ade0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_aldebaran.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_pm4_headers_aldebaran.h
+@@ -37,7 +37,7 @@ struct pm4_mes_map_process_aldebaran {
+ 		struct {
+ 			uint32_t pasid:16;	    /* 0 - 15  */
+ 			uint32_t single_memops:1;   /* 16      */
+-			uint32_t reserved1:1;	    /* 17      */
++			uint32_t exec_cleaner_shader:1;	    /* 17      */
+ 			uint32_t debug_vmid:4;	    /* 18 - 21 */
+ 			uint32_t new_debug:1;	    /* 22      */
+ 			uint32_t tmz:1;		    /* 23      */
 -- 
 2.46.0
 
