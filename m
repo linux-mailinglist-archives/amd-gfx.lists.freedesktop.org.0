@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B283F952671
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 02:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E17E952674
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 02:05:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27D2689FA7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 674C710E339;
 	Thu, 15 Aug 2024 00:05:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KA5mSCxg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gkwkpGz4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8339B10E32E
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 00:05:26 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 163E110E32E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 00:05:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wdAoCFprQHPLUjBx3RJtSAC5VrZu4M/4RGwnecKr78F+YsJogd9/N4npZjR7IuMbejF2NoyjlY7PVpNGPj/U6tAN3WcZviA/uqZ6PLOkQdeIrzkEigS9qevVpFGin8+S3nctYWtXxB471lbn9trIUCxU8fpA9X62N5y736Gj4rSPOGXzjyvAbagmTEF/EOGIW1PcWhSmijA+LG+08dX3Pjj4mNecX3nD2/OzmegXyiu+uVYSN3XwXz1YZ/+RmnMhGXwPhyv777oEF+5GTJYmaa8HSx5zC5RJGrZQymk8IjWoQKKtTwW167GisVDAp8FlWtNG1sKOvYjeselz4Kgr0Q==
+ b=KTHO16e0xi4jsH0x4yVnGJhOQwq/0M6Wk0YhuzXsqXDRpmUg1qrsRrHWOgIApCqA4qU9fl6uAtPJEPX1Ac+dq8SOKkL6mgC9kIeQ3DmSxhoG2e9O2hmuuEltcfoYrjscxdmkimiX3zGHtmGziiix/ipVDQllqb0051eHZrJVu5EbIjF2DI4fyL11WKzhIGCfFeWtNI3PJno8GYchbTlbHUeluNkC1W7ZWAEpE6hA/JSKEwmacvvzVS3xEUZQXnlWDU6FXbiokqkNteib5eMSK6DU0AmxZRnY/gOlHTSQlF7jPuiq7Lr7WlOMUkWhIQxks5MmEjW8oz547EXPT3Mwvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ThhZ8vle2T68/VxohDNWymi2tkkkVNoTPpo9GR9N0AE=;
- b=sCYpm+yORujtYl9nlIJTa9k7ncEtjDoG7yuqhR/H+1oxZh07RfYjEdUr4vq7xFyke9G5evyN0aqUGUV3ltnzDrxV2otULVIga4o9CyH5MkDhhcWxzu8H/QkY8x94NcNykzxt08e9fGWji8Rv6HZ7wLPXV3GWavRN9sNIe4U5znRtVDgXOhhaRUKpQPUTk9ndfnrhZcSQCTNtxMvDSvALTDCws9386tRWt6FI74B2X2dHIJMvyPyUwCRTkap0KHVZ+Fa4QqFJ1sk4qVihwXA4D4Tpryhuftfaxjnvy7QIHswC5YhJWjQmhn9+Bvrbns23S4W/T5WBv8wDUd9T1H9ONg==
+ bh=KlUKntlkdof33rjbl0BKYn3uccMi07rhTYQKX3vw7LQ=;
+ b=RidHZPU85MCcvid4dp0xfOB660esF58gcEUj1W2ArqzpjkeFZgL8P+GXXhXoatLyX0wsTfQTNAJnBCylJZ8Scf0Ml7hxuw6rz9gaVanye3vY8M/BHzenrAO6nj/gqxFajxr38td6OAMlYXWvDOPaPzPhTKnA/4Tv0cpNRdNmY6Rd30Y3T4QkFUIPwYNXfKlKmPsK4ZWgujFzFhMy/yBjs0MxUfAEUG8cDZKSePYPNaGH7Sy1wPY/GEIKUWIRJJIhzILXWhpk7KbjJvjPe8BB3QIBQzFIDUIvQ03vdMx8uiVHjnKhL0XQGb7W1CJaThrC7fuKyJY8c36NsXvwwr0vcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ThhZ8vle2T68/VxohDNWymi2tkkkVNoTPpo9GR9N0AE=;
- b=KA5mSCxgYUtaae/udiur+tsaUhOjqu7KoouTFcWgcNxascvwU2oITWEgEGcduR93pX2PbN7qFsH6NxkP/eipUclPjwyUbhTFyg5aqV9kNwCPknzMo5rgAnfL35qOLa6vHlf7SFK9/PaT5NxdDk4N9y57jR5i2MaYQZlKKU1PB3Y=
-Received: from BL1P221CA0022.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:2c5::16)
- by DS0PR12MB6559.namprd12.prod.outlook.com (2603:10b6:8:d1::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7849.22; Thu, 15 Aug 2024 00:05:23 +0000
+ bh=KlUKntlkdof33rjbl0BKYn3uccMi07rhTYQKX3vw7LQ=;
+ b=gkwkpGz4AP9AeymMsYaFAec6S7kWjBvW3LdXeAAInDzm54sEYYftDTqZ5gW9q1U0Uhk+R/OSNVRSAAiVYE8m2knfkjXMC5dqSloW+3Cke3o3kDNZ8IAUUP2e9fD8yUe6e55D0mk+4s9E6WLQ6CGNxMmxvNAmzqNDyqAkQoPNp2U=
+Received: from BL1P221CA0027.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:2c5::8)
+ by IA1PR12MB7686.namprd12.prod.outlook.com (2603:10b6:208:422::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23; Thu, 15 Aug
+ 2024 00:05:23 +0000
 Received: from MN1PEPF0000F0DE.namprd04.prod.outlook.com
- (2603:10b6:208:2c5:cafe::7f) by BL1P221CA0022.outlook.office365.com
- (2603:10b6:208:2c5::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.24 via Frontend
+ (2603:10b6:208:2c5:cafe::65) by BL1P221CA0027.outlook.office365.com
+ (2603:10b6:208:2c5::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22 via Frontend
  Transport; Thu, 15 Aug 2024 00:05:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -50,7 +50,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  MN1PEPF0000F0DE.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 00:05:22 +0000
+ 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 00:05:23 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 Aug
@@ -60,10 +60,10 @@ To: <amd-gfx@lists.freedesktop.org>
 CC: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher
  <alexander.deucher@amd.com>
-Subject: [PATCH 08/17] drm/amdgpu: Add PACKET3_RUN_CLEANER_SHADER for cleaner
- shader execution
-Date: Wed, 14 Aug 2024 20:04:52 -0400
-Message-ID: <20240815000501.1845226-9-alexander.deucher@amd.com>
+Subject: [PATCH 09/17] drm/amdgpu/gfx9: Implement cleaner shader support for
+ GFX9 hardware
+Date: Wed, 14 Aug 2024 20:04:53 -0400
+Message-ID: <20240815000501.1845226-10-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240815000501.1845226-1-alexander.deucher@amd.com>
 References: <20240815000501.1845226-1-alexander.deucher@amd.com>
@@ -75,59 +75,59 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|DS0PR12MB6559:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed2fadfa-fb0c-4313-501b-08dcbcbdf54e
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DE:EE_|IA1PR12MB7686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28e22fd6-d778-494d-4bc2-08dcbcbdf5ab
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RG5kOXVmS0JiTE0xTEJOMUxzN2xKcFZuR3hEYUx6L2JzbDYyZ3dkQm1SbXp6?=
- =?utf-8?B?aW0vM25qaG4xLzVsQXdnRlcxUEQvbGp3bFUvQllsdXN2TXh5Yk9BYVBkSWJz?=
- =?utf-8?B?ZHFRM1RKejRCc3pxZCtPUnhsZ2h5ck5IM2hybkEzaURLNnN2b0NZc2FFQzl3?=
- =?utf-8?B?RVFFQ2g3bWZLeWYrQnlHcHF4UWR6OXkyekowNTBJSVR6aEM5b0t1aTErWUNw?=
- =?utf-8?B?cmN5b2FOZk1qMWdvRDJKZklkRFhITUJJNGQzYzViNjcxQXdXSUNwendrTnVn?=
- =?utf-8?B?R3BJbkpsYXpFa2RHMmZXTGhuV09uMTZLdXFicUZXS0p5RUVQS2hNWlV0dGhm?=
- =?utf-8?B?endOa200ZUNhQ25iTFNyR0tMUGR5M2tUcmRzbU9ydHNacDdTaHJsRWhtMTE4?=
- =?utf-8?B?eGlubFlwbVlWWDM4WEhMcUNOcmpnS3A4RzdTUmExRzhRajY2MnJyZzFSZ2xF?=
- =?utf-8?B?NXhqOXlBV05ibTZoRnVTczlQamNETnArZ2d6S2hpdUJ4VlBGNUJHeTByQmFl?=
- =?utf-8?B?WlZYb2diMnhsZWxNU2orcUJVTUhScjZ1aFNEblZ6ZmRvdVJRRU1oNk5sUVN6?=
- =?utf-8?B?UTFkdkF0Smprd0tXblNXTWIwWE5lS291cjJON1JvY20zb1k3Qzc3WUQvbTVm?=
- =?utf-8?B?MkRVa1IzUU0vS1pwMncwQzAwL0s0cmFpRCs4VVo1K2dtb2ZYck12aThsN010?=
- =?utf-8?B?aHk5SWM5cUxXaEpCRjVPNll6Q1A3TXVJMXV4K3hyZ09oTHpRc21QdjlKbG5n?=
- =?utf-8?B?RlMzWUtRem9MVHZVbmtBVVZEWlptN0doWE5mc3Vuek9qb2ZpaVlLdEJzN1h0?=
- =?utf-8?B?U0NObmJhWXRqNjhiMEdyVkxMQmRjMWtzTHR0M0pFT0RkdFZDa215OExHdFdB?=
- =?utf-8?B?SSs1QjNsUEF3SDgrKytTbHRBbUxPOFlpdE11aHhkZ1VHN3pQeHNWczg5dXB0?=
- =?utf-8?B?eVBlZzIrYll3dU1BckIxa1dOeHQrdm9FclIrS0I0RUxhc1A5NlVWcUlremY4?=
- =?utf-8?B?RVFENncvUWVmdlFHUzFTMStuMC9GaGRub1hURUI1T0dQcVFUL0MzQVpCci9o?=
- =?utf-8?B?SDZVRVdLMFMwazNMK2JWKzcrRGJ0QjhrZURIRkZmTHN1UUxQMTdUd3ZDbGx4?=
- =?utf-8?B?a2d6ajAxeDMxZGpzS2NxY2pLNU9odHRnMW5zenprcC81Myt5VlA2UzJaamJ6?=
- =?utf-8?B?SFFQdWlva2VNMUVqYTk0Snh3WnVEb1hOb2JOdHFycW51OHMzU0ZaS1BWMFVx?=
- =?utf-8?B?Vm96dkRpVEpPekdxUlQzYTJiOWZOdUNDNkdHaDU0bXNoYSs5bS9OU1paZEI1?=
- =?utf-8?B?L1VvZ2VTa3hKUXhJUmZiSm9wSHRJQmVnT09TT3dmcEdXYXByZGlZTTZJSzFC?=
- =?utf-8?B?V1BWWDRUc0MwNW4rTFNsUWpaSC9GOE1mend3Mk44d3pyemZqSEkwZ1JtQ2do?=
- =?utf-8?B?bG1jSnVsbEw0dUUwV0tXSFB2L3VhSEJENE1lNDRaaVdXUEVHTXVWWUdUc1R0?=
- =?utf-8?B?ejZSbHRjRDdHeUN6YzRmMXlBdXIyb2ZkM0lmdm45UmhUM2dtYzQwcDVkb3Z1?=
- =?utf-8?B?Y3Z0TG80VXhUZ01NY1JNTlBYWVZRZ1EzY01CSVdMaVl2NmxTMUowWlpwZVZG?=
- =?utf-8?B?a2xrcXNLZnlCMk8zTzllR0NIcnBsaXhhd2JSSHE4b2VZOVFBVCtjQU9OM21R?=
- =?utf-8?B?blFjbUU2RENZMHl3bUtwTGZTUUFQb0xkSEFoTmovaG1nNC9uQ0NVd1dEc0dn?=
- =?utf-8?B?VUFNbXN1ZGM4OFBLZ1JnQ0RZSklGMU42dEpFZW1hVDJFYmVYK1Y2ZzdxQjBQ?=
- =?utf-8?B?bXJJQ1cyeUtYTlJoY3NXcVliN1EzUlZ5ZHhRTU5IdGozVG5RZ2hUY2NPMm1v?=
- =?utf-8?B?azdZdFVrSGhNRTd2ZXp6NkdBSEpBZ1kvckNoQzFJRngwUlRsTStPdGlEU0RP?=
- =?utf-8?Q?RoXXhcMNF9SU+ekjHNxRNzW1WlHgxJGa?=
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OEQ0RVZFNEtacllRWUVTL0lHUUhPdjFkTkI5cktnQkM0M2xwbkRGNXpia1NN?=
+ =?utf-8?B?eHlmRVZ1NVhyd1ZzZUgwQmFUamlOeEZSK1ZUWktkTzh3U3hWam9kRFE5U0I0?=
+ =?utf-8?B?RHZGUHZVUGRPV0ZZV1VRN1lLTW0yOEhuR2VOLzVYZ0lDWlFEVmpUaURvUE1r?=
+ =?utf-8?B?aDVLMlVsQUN1YVZhNTBvaEE0am02ZlMrd002SHRYY0VRandJR2dFaXZ0TS9J?=
+ =?utf-8?B?YVdQUmZVMUwvNnFkc3ZPRDlJWHRVYWVhTGNFa1M5V0g3djh0VlNYODFuYXlm?=
+ =?utf-8?B?UkczQU5ncjlIKzhvQ3JWdXZabGV5aGJhOVFMQm5ZOGFvSCtyNnNkczRYbS9S?=
+ =?utf-8?B?ZzIvM2xUUkhTTHlvV0syQlpFUWN0dlZRdnE5Tktod2NxQjY0UlIxYXRWc1Av?=
+ =?utf-8?B?YjBRTlgrYStKQkk1Mk1TUXJhNUt6UlZVNHVWSUxaL0RCM3R6TU9QeUgwaGtn?=
+ =?utf-8?B?RjFmazU0Mmt0OC9ZNTZZaTJFM3RrZmhwNG5WQ2Nmbkc3UDMrd2JzNER5dXRJ?=
+ =?utf-8?B?bjkyMCt6ejE1ME1zdFBvdmJUaHl2Ulh1UXJ6UW5LV1NGV0FWallDdksxbmtW?=
+ =?utf-8?B?MEZrODFOQVNDUUNXK0RtbVpyTDFaSHFjUjlkN2RMek1mNHZhZnRIM0FvQkd4?=
+ =?utf-8?B?RFk1VGN3UFNlcVBaRW9qazVNOFNOMUNldVV0STBYUWlzc3JuUW1Ody8zMVhW?=
+ =?utf-8?B?SklMc3NCcjZQRytnbTVTazIxRGh2L2lrWUpSUUF6eFdFRnFDaFkvekQya25o?=
+ =?utf-8?B?aUsvMElpNXNYYTV1Zyt6RDVadnk3RVFYN3l3YUtmMWZIbjFldllTaEJwV3gv?=
+ =?utf-8?B?QWNNbWdrSjU5M3VpNUdLNUpFbDhnNkw3Y3lBSU5LY1lPT2xBM3F4S0thcVZ0?=
+ =?utf-8?B?dE5wNGlaVDdHaXB1VkNVRzU4MlFYYjhHWG5CY1lMWUJUaTUweDI4QWJZeFNu?=
+ =?utf-8?B?d3R5YTBPeThKOFFRWWptOTFDeXVZS3pXRmpsUE5EQS85RWRXK1JBZDdsbGw3?=
+ =?utf-8?B?QUhWZkR6bFZ2ZG10WHRiMTdybjFoMTNrMGM5ekhSRk51T2VvK0NlTCtPY3dw?=
+ =?utf-8?B?OXRZYzdxeTkydDhWRytMR1hiaDRzMHE5czFxSlVqMkJPRU9LTS9KMlR5Vngw?=
+ =?utf-8?B?RGEvK2t2SzN3ZTlHYXVTcTU1VENNSUs5TmRucFA5UVBrdWgxcXR3aW5FckhT?=
+ =?utf-8?B?U01BZjBJOHJXWUQ3WTFGWnpqUDJ6Y3dMeWFJa3ZhQ3hxT1JBazUrQnVaWHEv?=
+ =?utf-8?B?RE8zR2ZDa1ZlQmp1VFpDYVZaZTYyMWo1R1I2V3VLaGpIVnpqRFg5RURKZTdh?=
+ =?utf-8?B?bW9VbkVEWExmNnNFQnY5QnBjT2I5d3R5WmxzaUVlalFUczZVbS81YUNSVjYv?=
+ =?utf-8?B?d3RBSGxra2V5dzNnY0NoK3c2REhFUE9jbGh6SDI4UFVBY3RiRUZzL1VlTFo2?=
+ =?utf-8?B?WGk4NXdXUEcxTHJzdEZ5NDFjNzBWNXBja0wrdmRsTnBQOTZDL2JuVTROemE4?=
+ =?utf-8?B?YXhITFJVSExiQ2dnQ25YaitndHArTzA4Q3BoN0RzK3drbGRleFlLc2ZHa0d6?=
+ =?utf-8?B?Q01SYitwZFowWlZBMnJ0NzR0cVBoY3NvRWs0Myt6VmtjWXYrVDhNcnpYUVJJ?=
+ =?utf-8?B?L0VNM21nNXArejVPOGhtMWoySmYxQlJpUFcyZHRRWTJIVUdYZ3E0TUE2V1dP?=
+ =?utf-8?B?U09vMDd0U2ZKZkp4ei9EK2NOVlVjMndsa3A4T0U5bDdWK0pwQ0JjN2MrYnln?=
+ =?utf-8?B?TGRHWmlpeGN6K3grNU5KaU5NSW5OMGo0cFlnMEV2MFE1OElPbTQvYmlmUkFm?=
+ =?utf-8?B?MnovRlZ5VDJRTFMydGFmS3pGTzQzR2JzQnJUM1JQTmNkNlNya1hDYm8wTnZK?=
+ =?utf-8?B?cytzY2dVTmZvb282NGdGZjlibi8rU2ZFaEppU1B5aXZLRWJUV2Y1ZUljV0Fq?=
+ =?utf-8?Q?UsV57NxOLLoMEX+vbSar9FVy8BuLdfQo?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 00:05:22.9533 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed2fadfa-fb0c-4313-501b-08dcbcbdf54e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 00:05:23.5627 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28e22fd6-d778-494d-4bc2-08dcbcbdf5ab
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DE.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6559
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7686
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,48 +144,210 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-This commit adds the PACKET3_RUN_CLEANER_SHADER definition. This packet
-is a command packet used to instruct the GPU to execute the cleaner
-shader.
+The patch modifies the gfx_v9_0_kiq_set_resources function to write
+the cleaner shader's memory controller address to the ring buffer. It
+also adds a new function, gfx_v9_0_ring_emit_cleaner_shader, which
+emits the PACKET3_RUN_CLEANER_SHADER packet to the ring buffer.
 
-The cleaner shader is a piece of GPU code that is used to clear or
-initialize certain GPU resources, such as Local Data Share (LDS), Vector
-General Purpose Registers (VGPRs), and Scalar General Purpose Registers
-(SGPRs). Clearing these resources is important for ensuring data
-isolation between different workloads running on the GPU.
+This patch adds support for the PACKET3_RUN_CLEANER_SHADER packet in the
+gfx_v9_0 module. This packet is used to emit the cleaner shader, which
+is used to clear GPU memory before it's reused, helping to prevent data
+leakage between different processes.
 
-The PACKET3_RUN_CLEANER_SHADER packet is used to trigger the execution
-of the cleaner shader on the GPU. The packet consists of a header
-followed by a RESERVED field, which is programmed to zero. When the GPU
-receives this packet, it fetches and executes the cleaner shader
-instructions from the location specified in the packet.
-
-The cleaner shader feature helps to enhances security and reliability by
-preventing data leaks between workloads.
+Finally, the patch updates the ring function structures to include the
+new gfx_v9_0_ring_emit_cleaner_shader function. This allows the
+cleaner shader to be emitted as part of the ring's operations.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/soc15d.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 45 ++++++++++++++++---
+ .../drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h  | 26 +++++++++++
+ 2 files changed, 66 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15d.h b/drivers/gpu/drm/amd/amdgpu/soc15d.h
-index e74e1983da53..b9cbeb389edc 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15d.h
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15d.h
-@@ -413,6 +413,10 @@
- #              define PACKET3_QUERY_STATUS_DOORBELL_OFFSET(x)  ((x) << 2)
- #              define PACKET3_QUERY_STATUS_ENG_SEL(x)          ((x) << 25)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index db21fb951e0e..3045b8b0796d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -50,6 +50,7 @@
+ #include "amdgpu_ring_mux.h"
+ #include "gfx_v9_4.h"
+ #include "gfx_v9_0.h"
++#include "gfx_v9_0_cleaner_shader.h"
+ #include "gfx_v9_4_2.h"
  
-+#define PACKET3_RUN_CLEANER_SHADER                      0xD2
-+/* 1. header
-+ * 2. RESERVED [31:0]
+ #include "asic_reg/pwr/pwr_10_0_offset.h"
+@@ -899,6 +900,12 @@ static void gfx_v9_0_unset_safe_mode(struct amdgpu_device *adev, int xcc_id);
+ static void gfx_v9_0_kiq_set_resources(struct amdgpu_ring *kiq_ring,
+ 				uint64_t queue_mask)
+ {
++	struct amdgpu_device *adev = kiq_ring->adev;
++	u64 shader_mc_addr;
++
++	/* Cleaner shader MC address */
++	shader_mc_addr = adev->gfx.cleaner_shader_gpu_addr >> 8;
++
+ 	amdgpu_ring_write(kiq_ring, PACKET3(PACKET3_SET_RESOURCES, 6));
+ 	amdgpu_ring_write(kiq_ring,
+ 		PACKET3_SET_RESOURCES_VMID_MASK(0) |
+@@ -908,8 +915,8 @@ static void gfx_v9_0_kiq_set_resources(struct amdgpu_ring *kiq_ring,
+ 			lower_32_bits(queue_mask));	/* queue mask lo */
+ 	amdgpu_ring_write(kiq_ring,
+ 			upper_32_bits(queue_mask));	/* queue mask hi */
+-	amdgpu_ring_write(kiq_ring, 0);	/* gws mask lo */
+-	amdgpu_ring_write(kiq_ring, 0);	/* gws mask hi */
++	amdgpu_ring_write(kiq_ring, lower_32_bits(shader_mc_addr)); /* cleaner shader addr lo */
++	amdgpu_ring_write(kiq_ring, upper_32_bits(shader_mc_addr)); /* cleaner shader addr hi */
+ 	amdgpu_ring_write(kiq_ring, 0);	/* oac mask */
+ 	amdgpu_ring_write(kiq_ring, 0);	/* gds heap base:0, gds heap size:0 */
+ }
+@@ -2211,6 +2218,12 @@ static int gfx_v9_0_sw_init(void *handle)
+ 		break;
+ 	}
+ 
++	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
++	default:
++		adev->gfx.enable_cleaner_shader = false;
++		break;
++	}
++
+ 	adev->gfx.mec.num_pipe_per_mec = 4;
+ 	adev->gfx.mec.num_queue_per_pipe = 8;
+ 
+@@ -2373,6 +2386,10 @@ static int gfx_v9_0_sw_init(void *handle)
+ 
+ 	gfx_v9_0_alloc_ip_dump(adev);
+ 
++	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
++	if (r)
++		return r;
++
+ 	return 0;
+ }
+ 
+@@ -2408,6 +2425,8 @@ static int gfx_v9_0_sw_fini(void *handle)
+ 	}
+ 	gfx_v9_0_free_microcode(adev);
+ 
++	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
++
+ 	kfree(adev->gfx.ip_dump_core);
+ 	kfree(adev->gfx.ip_dump_compute_queues);
+ 
+@@ -3952,6 +3971,9 @@ static int gfx_v9_0_hw_init(void *handle)
+ 	int r;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
++	amdgpu_gfx_cleaner_shader_init(adev, adev->gfx.cleaner_shader_size,
++				       adev->gfx.cleaner_shader_ptr);
++
+ 	if (!amdgpu_sriov_vf(adev))
+ 		gfx_v9_0_init_golden_registers(adev);
+ 
+@@ -7368,6 +7390,13 @@ static void gfx_v9_ip_dump(void *handle)
+ 
+ }
+ 
++static void gfx_v9_0_ring_emit_cleaner_shader(struct amdgpu_ring *ring)
++{
++	/* Emit the cleaner shader */
++	amdgpu_ring_write(ring, PACKET3(PACKET3_RUN_CLEANER_SHADER, 0));
++	amdgpu_ring_write(ring, 0);  /* RESERVED field, programmed to zero */
++}
++
+ static const struct amd_ip_funcs gfx_v9_0_ip_funcs = {
+ 	.name = "gfx_v9_0",
+ 	.early_init = gfx_v9_0_early_init,
+@@ -7417,7 +7446,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_gfx = {
+ 		5 + /* HDP_INVL */
+ 		8 + 8 + /* FENCE x2 */
+ 		2 + /* SWITCH_BUFFER */
+-		7, /* gfx_v9_0_emit_mem_sync */
++		7 + /* gfx_v9_0_emit_mem_sync */
++		2, /* gfx_v9_0_ring_emit_cleaner_shader */
+ 	.emit_ib_size =	4, /* gfx_v9_0_ring_emit_ib_gfx */
+ 	.emit_ib = gfx_v9_0_ring_emit_ib_gfx,
+ 	.emit_fence = gfx_v9_0_ring_emit_fence,
+@@ -7439,6 +7469,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_gfx = {
+ 	.soft_recovery = gfx_v9_0_ring_soft_recovery,
+ 	.emit_mem_sync = gfx_v9_0_emit_mem_sync,
+ 	.reset = gfx_v9_0_reset_kgq,
++	.emit_cleaner_shader = gfx_v9_0_ring_emit_cleaner_shader,
+ };
+ 
+ static const struct amdgpu_ring_funcs gfx_v9_0_sw_ring_funcs_gfx = {
+@@ -7471,7 +7502,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_sw_ring_funcs_gfx = {
+ 		5 + /* HDP_INVL */
+ 		8 + 8 + /* FENCE x2 */
+ 		2 + /* SWITCH_BUFFER */
+-		7, /* gfx_v9_0_emit_mem_sync */
++		7 + /* gfx_v9_0_emit_mem_sync */
++		2, /* gfx_v9_0_ring_emit_cleaner_shader */
+ 	.emit_ib_size =	4, /* gfx_v9_0_ring_emit_ib_gfx */
+ 	.emit_ib = gfx_v9_0_ring_emit_ib_gfx,
+ 	.emit_fence = gfx_v9_0_ring_emit_fence,
+@@ -7495,6 +7527,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_sw_ring_funcs_gfx = {
+ 	.patch_cntl = gfx_v9_0_ring_patch_cntl,
+ 	.patch_de = gfx_v9_0_ring_patch_de_meta,
+ 	.patch_ce = gfx_v9_0_ring_patch_ce_meta,
++	.emit_cleaner_shader = gfx_v9_0_ring_emit_cleaner_shader,
+ };
+ 
+ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
+@@ -7515,7 +7548,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
+ 		8 + 8 + 8 + /* gfx_v9_0_ring_emit_fence x3 for user fence, vm fence */
+ 		7 + /* gfx_v9_0_emit_mem_sync */
+ 		5 + /* gfx_v9_0_emit_wave_limit for updating mmSPI_WCL_PIPE_PERCENT_GFX register */
+-		15, /* for updating 3 mmSPI_WCL_PIPE_PERCENT_CS registers */
++		15 + /* for updating 3 mmSPI_WCL_PIPE_PERCENT_CS registers */
++		2, /* gfx_v9_0_ring_emit_cleaner_shader */
+ 	.emit_ib_size =	7, /* gfx_v9_0_ring_emit_ib_compute */
+ 	.emit_ib = gfx_v9_0_ring_emit_ib_compute,
+ 	.emit_fence = gfx_v9_0_ring_emit_fence,
+@@ -7534,6 +7568,7 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
+ 	.emit_mem_sync = gfx_v9_0_emit_mem_sync,
+ 	.emit_wave_limit = gfx_v9_0_emit_wave_limit,
+ 	.reset = gfx_v9_0_reset_kcq,
++	.emit_cleaner_shader = gfx_v9_0_ring_emit_cleaner_shader,
+ };
+ 
+ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_kiq = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
+new file mode 100644
+index 000000000000..36c0292b5110
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0_cleaner_shader.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright 2018 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
 + */
- 
- #define VCE_CMD_NO_OP		0x00000000
- #define VCE_CMD_END		0x00000001
++/* Define the cleaner shader gfx_9_0 */
++static const u32 __maybe_unused gfx_9_0_cleaner_shader_hex[] = {
++	/* Add the cleaner shader code here */
++};
 -- 
 2.46.0
 
