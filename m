@@ -2,56 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619F3952EB6
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 15:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB739537D8
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Aug 2024 18:01:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB3E10E0A4;
-	Thu, 15 Aug 2024 13:03:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C8A410E132;
+	Thu, 15 Aug 2024 16:01:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mUeEPhYj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KKzDaDy4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8514910E028;
- Thu, 15 Aug 2024 08:37:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fS+Ia4UM+I2tTgaoG2DZUFNTzlzvvhStumNeJ1V63Bs=; b=mUeEPhYjPNq6RoCiZYR5s6KPxZ
- G57Sr1tXluPKPcjbj6JahpBS1lbsOfA5tSvJDXMAEHBwHux9jZluhslOWlrPI+sok4RYj7UgeRZ6o
- w90ozAfUNooP61Ao8bYrQqc4hm7T2m0YeV6mPjutZkQCHfHkspsNreE2M+Qxeh09Lg8Nciq0eUF3c
- wyln+YQXFbDm/UQI/f9g7UdThRdZgAdBk3ofQmdge68wkAiS/dwLbca1LUfIdpe3Eid4PWNre4nH3
- DjKNFFmhK7wakgvp5XOZBPK8hGvF3IDAQF+LMEsYqlGSVJdMyZaNt0bxsIo2x7UcCKZuBK1XvWRUD
- OVirrxgg==;
-Received: from [84.69.19.168] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1seVzB-000UW2-Cs; Thu, 15 Aug 2024 10:37:32 +0200
-Message-ID: <51bb99fd-4f50-41b0-836d-69606c50321c@igalia.com>
-Date: Thu, 15 Aug 2024 09:37:31 +0100
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
+ [209.85.210.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6B3E10E132
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 16:01:47 +0000 (UTC)
+Received: by mail-ot1-f42.google.com with SMTP id
+ 46e09a7af769-7093705c708so1055120a34.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 09:01:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723737707; x=1724342507; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=K0DqZEThPb5emBs3Rc4VSWLD6xB3+uGQCYDiofTb/q8=;
+ b=KKzDaDy4Tpq5ZAK/mRAp6pAcP4zmpIAdu71sC6pZIH1RPQGXY5VgLTyS8l1hUgAu/I
+ +0FLgnug5iCmn1ttP00yvGQ8W0lF9iao5bDBf270EMCCgirA8RkpGkSnFTY+iPrCAfOB
+ 2fwy5rEE1M+YQoaI3pZQ7852BWWTieVD9mehnEfj/0qll3HO+Dv/S6qoIxfLe79qRC/H
+ pNBEwKkhFkm/LgjPLIRUPcsfNWFbKmhHmZEGZWVOs69ClitO06UXVbbi/F3JxHy2rga1
+ zeanSPWbGtxzaD1SLHRI03nrNy9arDmiHtYUd0rGSJTg5FqB9ON2/GBth1cF61eM6eoe
+ 2oJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723737707; x=1724342507;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=K0DqZEThPb5emBs3Rc4VSWLD6xB3+uGQCYDiofTb/q8=;
+ b=BuX6P+B4JdIf++9Sd4EsQFzDR1NtqnEjEGKS/DN9ZoaeUJo92qdf1Q4oZKeUpqJ4eg
+ BoILo6z2fEWAwuW873p9fhUAhxewi8LTJ/918X07dGV4ouT8kiLqVc6bXqd8OLEiwB0u
+ Or8JA1vTpg0TI5q9Wby2+t56PcM//wG3qNV8j6nc2mpu9L1zSTxdBg2uEYGRbx7Ipsfq
+ CpQmZ8FkTVMYl1nBtP1O1xlTgYHUaIcBTEh4lr97VRi8idM2mTHLW4awUjWxiTp9+Q97
+ e6pA2Q0rG8do+DX2daJ0NWR4JvOvS9kpuLqX3KYOoksJH90ZgzuO7RJFRC5Z0yEbtOOw
+ FdCw==
+X-Gm-Message-State: AOJu0YxMFcy2WW9SpJXdkcbWCABHWKxTnquv8ntKse8O2xLluC+tpyDN
+ cB1RoklysjQjRCprYvVV2do8oVGVWG9spPTfVVqcopgolttx0HCEl8qn79n9jbo+8J1FPoSCp1i
+ 0XkV2gU9ipFh+OlxG9FUe75fuzIc=
+X-Google-Smtp-Source: AGHT+IGAby6PLtgxVir7YNvU1BmT1nYu+GNpiTzPtaFn0YHMtNPKGWW8AG1O9KhpiFp7fulHw45lyeXiTtgZu203xAc=
+X-Received: by 2002:a05:6358:3226:b0:1a6:783c:a70f with SMTP id
+ e5c5f4694b2df-1b39331487dmr22669055d.27.1723737706826; Thu, 15 Aug 2024
+ 09:01:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] Documentation/gpu: Document the situation with
- unqualified drm-memory-
-To: Rob Clark <robdclark@gmail.com>, Tvrtko Ursulin <tursulin@igalia.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
- Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <20240813135712.82611-1-tursulin@igalia.com>
- <20240813135712.82611-2-tursulin@igalia.com>
- <CAF6AEGvbZDg4K642HJtNAhj2f8Sv9DvfU+en52gi42=ssPiNnQ@mail.gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CAF6AEGvbZDg4K642HJtNAhj2f8Sv9DvfU+en52gi42=ssPiNnQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 15 Aug 2024 13:03:23 +0000
+References: <20240815113836.399377-1-Trigger.Huang@amd.com>
+ <20240815113836.399377-2-Trigger.Huang@amd.com>
+In-Reply-To: <20240815113836.399377-2-Trigger.Huang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 15 Aug 2024 12:01:34 -0400
+Message-ID: <CADnq5_NumwJ6ujpJERTF7gK7TAJMkG7MNMNgrtr3=k8pqYnBvg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/amdgpu: Add gpu_coredump parameter
+To: Trigger.Huang@amd.com
+Cc: amd-gfx@lists.freedesktop.org, sunil.khatri@amd.com, 
+ alexander.deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,116 +77,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Aug 15, 2024 at 7:39=E2=80=AFAM <Trigger.Huang@amd.com> wrote:
+>
+> From: Trigger Huang <Trigger.Huang@amd.com>
+>
+> Add new separate parameter to control GPU coredump procedure. This can
+> be used to decouple the coredump procedure from gpu recovery procedure
+>
+> Signed-off-by: Trigger Huang <Trigger.Huang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++++
+>  2 files changed, 9 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/am=
+dgpu/amdgpu.h
+> index 937de21a7142..4dd465ad14af 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -201,6 +201,7 @@ extern uint amdgpu_force_long_training;
+>  extern int amdgpu_lbpw;
+>  extern int amdgpu_compute_multipipe;
+>  extern int amdgpu_gpu_recovery;
+> +extern int amdgpu_gpu_coredump;
+>  extern int amdgpu_emu_mode;
+>  extern uint amdgpu_smu_memory_pool_size;
+>  extern int amdgpu_smu_pptable_id;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_drv.c
+> index b9529948f2b2..c5d357420236 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -178,6 +178,7 @@ uint amdgpu_force_long_training;
+>  int amdgpu_lbpw =3D -1;
+>  int amdgpu_compute_multipipe =3D -1;
+>  int amdgpu_gpu_recovery =3D -1; /* auto */
+> +int amdgpu_gpu_coredump;
+>  int amdgpu_emu_mode;
+>  uint amdgpu_smu_memory_pool_size;
+>  int amdgpu_smu_pptable_id =3D -1;
+> @@ -556,6 +557,13 @@ module_param_named(compute_multipipe, amdgpu_compute=
+_multipipe, int, 0444);
+>  MODULE_PARM_DESC(gpu_recovery, "Enable GPU recovery mechanism, (1 =3D en=
+able, 0 =3D disable, -1 =3D auto)");
+>  module_param_named(gpu_recovery, amdgpu_gpu_recovery, int, 0444);
+>
+> +/**
+> + * DOC: gpu_coredump (int)
+> + * Set to enable GPU coredump mechanism (1 =3D enable, 0 =3D disable). T=
+he default is 0
+> + */
+> +MODULE_PARM_DESC(gpu_coredump, "Enable GPU coredump mechanism, (1 =3D en=
+able, 0 =3D disable (default))");
+> +module_param_named(gpu_coredump, amdgpu_gpu_coredump, int, 0444);
 
-On 13/08/2024 19:47, Rob Clark wrote:
-> On Tue, Aug 13, 2024 at 6:57 AM Tvrtko Ursulin <tursulin@igalia.com> wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Currently it is not well defined what is drm-memory- compared to other
->> categories.
->>
->> In practice the only driver which emits these keys is amdgpu and in them
->> exposes the current resident buffer object memory (including shared).
->>
->> To prevent any confusion, document that drm-memory- is deprecated and an
->> alias for drm-resident-memory-.
->>
->> While at it also clarify that the reserved sub-string 'memory' refers to
->> the memory region component, and also clarify the intended semantics of
->> other memory categories.
->>
->> v2:
->>   * Also mark drm-memory- as deprecated.
->>   * Add some more text describing memory categories. (Alex)
->>
->> v3:
->>   * Semantics of the amdgpu drm-memory is actually as drm-resident.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian König <christian.keonig@amd.com>
->> Cc: Rob Clark <robdclark@chromium.org>
-> 
-> Reviewed-by: Rob Clark <robdclark@gmail.com>
+I don't think we need a separate parameter for this, although if we
+do, this would need to be enabled by default.  If it needs to be
+decoupled from reset, that's fine, but I don't see the need for a
+separate knob.
 
-Thanks!
+Alex
 
-So this one is stand alone and could be pushed to drm-misc-next.
-
-2/2 can wait for AMD to give a verdict.
-
-Regards,
-
-Tvrtko
-
-> 
->> ---
->>   Documentation/gpu/drm-usage-stats.rst | 25 ++++++++++++++++++++++---
->>   1 file changed, 22 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
->> index a80f95ca1b2f..ff964c707754 100644
->> --- a/Documentation/gpu/drm-usage-stats.rst
->> +++ b/Documentation/gpu/drm-usage-stats.rst
->> @@ -144,7 +144,9 @@ Memory
->>
->>   Each possible memory type which can be used to store buffer objects by the
->>   GPU in question shall be given a stable and unique name to be returned as the
->> -string here.  The name "memory" is reserved to refer to normal system memory.
->> +string here.
->> +
->> +The region name "memory" is reserved to refer to normal system memory.
->>
->>   Value shall reflect the amount of storage currently consumed by the buffer
->>   objects belong to this client, in the respective memory region.
->> @@ -152,6 +154,9 @@ objects belong to this client, in the respective memory region.
->>   Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
->>   indicating kibi- or mebi-bytes.
->>
->> +This key is deprecated and is an alias for drm-resident-<region>. Only one of
->> +the two should be present in the output.
->> +
->>   - drm-shared-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are shared with another file (e.g., have more
->> @@ -159,20 +164,34 @@ than a single handle).
->>
->>   - drm-total-<region>: <uint> [KiB|MiB]
->>
->> -The total size of buffers that including shared and private memory.
->> +The total size of all created buffers including shared and private memory. The
->> +backing store for the buffers does not have to be currently instantiated to be
->> +counted under this category.
->>
->>   - drm-resident-<region>: <uint> [KiB|MiB]
->>
->> -The total size of buffers that are resident in the specified region.
->> +The total size of buffers that are resident (have their backing store present or
->> +instantiated) in the specified region.
->> +
->> +This is an alias for drm-memory-<region> and only one of the two should be
->> +present in the output.
->>
->>   - drm-purgeable-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are purgeable.
->>
->> +For example drivers which implement a form of 'madvise' like functionality can
->> +here count buffers which have instantiated backing store, but have been marked
->> +with an equivalent of MADV_DONTNEED.
->> +
->>   - drm-active-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are active on one or more engines.
->>
->> +One practical example of this can be presence of unsignaled fences in an GEM
->> +buffer reservation object. Therefore the active category is a subset of
->> +resident.
->> +
->>   Implementation Details
->>   ======================
->>
->> --
->> 2.44.0
->>
+> +
+>  /**
+>   * DOC: emu_mode (int)
+>   * Set value 1 to enable emulation mode. This is only needed when runnin=
+g on an emulator. The default is 0 (disabled).
+> --
+> 2.34.1
+>
