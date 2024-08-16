@@ -2,125 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F7895617D
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 05:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B39956455
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 09:21:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD47910E193;
-	Mon, 19 Aug 2024 03:50:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4192710E1B9;
+	Mon, 19 Aug 2024 07:21:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xlmlViLq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z2t12zKa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2050.outbound.protection.outlook.com [40.107.95.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8417910E193
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 03:50:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LuAEaW8AulKAO/hu2SxtearrHqvOo4SSG3goS9laTBe/LXMbzipSlS+mPURmlGUTpB8Zoc3ZYUzQSdSlEQIErSWZGd2oogYwrAYNZHwIs/BATva+bwRJmft9GBlN6YYj2pydwZkTcqqNdU0fBiL45QyzDtcXWXojstxVp5VDZBQfxsAHtRSNWHzbJH7YizQI5K/7PX+KNgnkv0cHYgs2fm7v928VQ80+rtq8gH4aTAZ1DEbSJmolpM5rvJjpby0lrFurovXfUIPuyqg5+tO85Y1brXE9C4icKYgisUJWumU2a46oIVLrouv0J/Bp5gecrDJ6/z+afahygMb2ooOegQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RJuCOwztPSPpSJ6QmFRwSi+LAOjrGdCLjhKY9CgjpJE=;
- b=GchNpIBemsbvApeq9cMkOPGLfdb+wXVe5shv8v1P3vJdAJ/TOu4/WBg1YYpvW5O+hhu48fuiBBSt01PIVZ8I9ZHZA8vfmyqe5TyyPyfCn7YriF+blVq1hdRfplxM0W1JqGxZzftdiWEl88gYneKea7y/+DIae/XH6Rl6bPYUbuu7rHokLridqtg4dSACgkW2OLxXUb/PToFzbJIbHU9db68+cVd53t+tw86rAdMFo+eAvMHphU2/Ckw2Nd/sHVbe4Vl+R7YrWgZ6WRcmS2VTx1R8cwKpL7DZHK3LmsXl5iUR/mbLz62X9YGm35RTwgQdzjX9r1Uhk/vg2zsgex20CQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RJuCOwztPSPpSJ6QmFRwSi+LAOjrGdCLjhKY9CgjpJE=;
- b=xlmlViLqN86+C5uMHmzwKvjl34N1amp9aE4FBVbc8lO1eyH3hqdmwnlLC4h+ob1fB+vds7Gdl0MbOBgYe2+lHp4gGi7DLA+qmawVLdCTDJB68MoMDfd58VRtyBeHY9G4gdW3AhgdCFJFALoX9vRlJQwUu86jTPmRaUq6T9P9TF8=
-Received: from BL0PR02CA0082.namprd02.prod.outlook.com (2603:10b6:208:51::23)
- by MW4PR12MB6923.namprd12.prod.outlook.com (2603:10b6:303:208::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Mon, 19 Aug
- 2024 03:50:03 +0000
-Received: from BL6PEPF0001AB52.namprd02.prod.outlook.com
- (2603:10b6:208:51:cafe::44) by BL0PR02CA0082.outlook.office365.com
- (2603:10b6:208:51::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21 via Frontend
- Transport; Mon, 19 Aug 2024 03:50:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB52.mail.protection.outlook.com (10.167.241.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Mon, 19 Aug 2024 03:50:02 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 18 Aug
- 2024 22:50:01 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 18 Aug
- 2024 22:49:51 -0500
-Received: from victor-x86-02.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Sun, 18 Aug 2024 22:49:50 -0500
-From: Victor Zhao <Victor.Zhao@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Emily.Deng@amd.com>, Victor Zhao <Victor.Zhao@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: allow use kiq to do hdp flush under sriov
-Date: Mon, 19 Aug 2024 11:49:37 +0800
-Message-ID: <20240819034937.1181639-1-Victor.Zhao@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
+ [209.85.128.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D680E10E7F4;
+ Fri, 16 Aug 2024 15:37:07 +0000 (UTC)
+Received: by mail-yw1-f170.google.com with SMTP id
+ 00721157ae682-6b443880945so309247b3.0; 
+ Fri, 16 Aug 2024 08:37:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723822627; x=1724427427; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=tzNM0AA9xntFTf2RXz/yks0bBfTi9noMOikasbHbbu4=;
+ b=Z2t12zKazoaAOVmV93FgdhWEJLRHdDSFGKQf0q3R3Q1Te6X1JwKNcs9k/zSo6g7iuS
+ g00H5cZkghK/ORO/C1d27WZkILVDzFjjFuJCX9jWxHYD72APAFM9CrV6J9IXLng72DI6
+ +EzHcs5F3ETRzEmQU7xS/orYSgtlTFLEDjs68jI4qeZZeEDSUSTqaMBCZIEj5BOLFVwv
+ U+j/wCWjxjMWbhwyXmZinGyzyn53UxmiN9xn/KEE6g2TAaiO1p5B2H8NYLF1Pbw6taqd
+ AltDhbq2Siq+ylEAn4/bKX6efo8k87bG0nAG8opGau2+t6hr7NornCMG9l6Qg5xWgrev
+ HErA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723822627; x=1724427427;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=tzNM0AA9xntFTf2RXz/yks0bBfTi9noMOikasbHbbu4=;
+ b=ZXMezvKza1mfGKRxn11pwL2tYz9e3iHPFaQhq1/ANIGS26pxRBnQ4nCLee3Unt+U2/
+ OwyxF1eW0q+uugWSrydS07XUkLGprEWESc/tMFPrSOOJpELkJ/VrjlAW675riCAmBR/2
+ F1pDnnSFK9/fMH8Rs3WQWXobsO9hig5QKXUyB6Lq/W/6wtAG1bXqDUMhMkWTnA5y5Bsv
+ Y6bTFQ5CJb73SMUwABGguzvdgd3PzQkefKSCDYQWdw9M7GFeFWbxyI4/UcFxJkGz3n7M
+ r7nhbhdUm5Hg01d7igXjJU6NJI4lQ7lRmPCi5eilsA2BpXqQFfmbJgiecsvcuh07Pgg4
+ nstQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW/dSsXJMm+BETFTDVxyixHorEJ8rth/+IRFrks34fsEGfKPedDeviNg5M6KnPj8wRI0lzJ5975VTSlUh3Dgi4P5dZx+6hsovUHLKf4nrT+kXCnLYUAOxVctO+m0FCS+FwWYaalfdnKFTsY9gmrf2jsqEb3dltgdUjogvFbEdQ6a1grd584qRIPbPaAbHe7kr9TANA3RvCmIUOyz56E1DltA5DSpjLDyuzfdmxai+ixjDB43yypgb6IRJPLRoPv9iTcUAc7ajd63zmeQKnjCg==
+X-Gm-Message-State: AOJu0Yy3YT7fMMPKoCiRI2+cz7z66b+Xrgm3IUiAm0FHxz2LiQWJemnO
+ n03Ca7qOigRm/YNieC9SpajgboR1lxy7V42M/bGdwN1K+9M7spARAgBxM+Rfx1q/0hozIrvqRtw
+ 8z8FELjk6zlmyPbvkwxjSRVIWYk4=
+X-Google-Smtp-Source: AGHT+IENPTqD3CAvuVgtrBE+LadrBjEy9w12rrQn3kw5b6eR3pYhJO5bQriCQH4X41FgJUosHcVqnrP21MmRdDACkJ0=
+X-Received: by 2002:a05:690c:4e8a:b0:6ad:b01a:9469 with SMTP id
+ 00721157ae682-6b1bc3f877cmr29215657b3.39.1723822626590; Fri, 16 Aug 2024
+ 08:37:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: Victor.Zhao@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB52:EE_|MW4PR12MB6923:EE_
-X-MS-Office365-Filtering-Correlation-Id: e10ed56e-94b1-485d-6af9-08dcc0020168
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LoaviqblE3x8GaAkgV0vrinaTdS/z2+OroOIsU0KU2VvTSXt1a1cASnSQBR1?=
- =?us-ascii?Q?yjHsMMWtfsYcX9WvhRoRvgNYmNv9FJCsXl6WFVqRxNDvD6Cw+9B0czStaTMX?=
- =?us-ascii?Q?QiMdCuKOdili0Udoy3ppeiz0efAyAso6Gadas41EzObLWAg97oKrTsCj3Wjv?=
- =?us-ascii?Q?SwSgdanVTU2g6kFvCVygkwlQLDKe2BzBjC/VVK6USsymf27n90/NZxuDxfV5?=
- =?us-ascii?Q?JMZfwC+VJUtWyc1Ig8892TRjDyW7eQois2YIyXkJHJ0GxvB+lXj0ipE4nAfT?=
- =?us-ascii?Q?1rB9oF4ivGXN0MFsa1LDPYT4J9er47XenGuDzuCCDA/c33aUYlKwho5o69Fv?=
- =?us-ascii?Q?J21zA1QkTo5RiMHn7Fv7Vch7YYoU3sQIdzB0M0ZR34gCzSrJ9uI2zAb+EZYU?=
- =?us-ascii?Q?3AvO7Hi+Qjd9G7xOlHajLpsWAY3zVPQ0eW5TrpsxIjWbMRbsrDY6wKqFgEKd?=
- =?us-ascii?Q?5RqOxgE0XD0naU2prAZShDSuU6Qu+OGc+Bp9VSn0fsRG4U5SRuC7lFwWXQwu?=
- =?us-ascii?Q?xUREWRQN5UfL7yyAjUOwOAQKCpjFeoPzeWHZqWTuDnjgksoiVhFlOjGbXhf9?=
- =?us-ascii?Q?OkscXWJj+e5gI73AG4KaDC2Dt7P2XiLm8Jm1Y3Im/GaxM94wbA8QceSPwUCD?=
- =?us-ascii?Q?oFRtHvfriXx0OPR37O/+BiCF4hqNDEROfi5tljULj+Tkb0peLhzOwDfeywaU?=
- =?us-ascii?Q?s0/EAzEOGQE5xbg8uP/pAj9AAktsShKjsnu/op6E6bKVqIF/bucWJCkWI8v+?=
- =?us-ascii?Q?w89R66fMTrEI/CxwGfd7rDxSQBSCBm1rKDBMiYofntJdWa+jIFGQvlztkuBi?=
- =?us-ascii?Q?X0EWVUkF0PF8h+uC2g+LwIU13NvaTQ+m2IxevHUjNpAF5xqKafmz0X67g86x?=
- =?us-ascii?Q?+aaOvoiMBl/Mkxyr72wEcrrj4+hu/npD/dnTuVEbk03+6bvOo5GyEbo81MQR?=
- =?us-ascii?Q?KMQhrvSh0MbLkLRFwYqY0OFCkPvAHIdft955JwxtR0sLIpW7G2VlQmCGSIbe?=
- =?us-ascii?Q?4DPzah/Ans9kSdbj+jqFQPTOoeUi+ZDtwsnlgNDcwtkTJcXOaNUf71Z+lHf5?=
- =?us-ascii?Q?+ky/gAKuNjBZNPH0Yl5Tw//NMvvxB/oRWa3qXNmlDL5SsmO4m66RwUy/I69i?=
- =?us-ascii?Q?m7rXtQsLMDzmHxzpz+ltSEpXb3fRNVUimNJkrQ+Z7mEuFBQpMnQlTBbdXD92?=
- =?us-ascii?Q?/UkUvsyJ4y4KRm5o6+9AI7bdyMMi7F8tqiMzuh6m2I1Wy73shMqA6P7+kkqa?=
- =?us-ascii?Q?69PV/NGZPU/sEg+Q/lnfdSC/WEEbFal9gC8F1GrwP120AUaHnvHp/ToYH53n?=
- =?us-ascii?Q?Z8XaixhHvOtcG+IwgoqHkWrSuw6UDxcR7Wbfwj0rkiu6Ia3/bJSHE+lMwUcP?=
- =?us-ascii?Q?DSnBLcPGouA+YyEMy+SASq8MKFnd+ZcPYhNxznn84JjZ5jWrStVyGHeOdja5?=
- =?us-ascii?Q?Bk2TBvQ7bxh1N6epz/pyhFQqCsI1wAWV?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2024 03:50:02.5230 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e10ed56e-94b1-485d-6af9-08dcc0020168
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB52.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6923
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-56-tzimmermann@suse.de>
+In-Reply-To: <20240816125408.310253-56-tzimmermann@suse.de>
+From: Deepak Rawat <drawat.floss@gmail.com>
+Date: Fri, 16 Aug 2024 08:36:55 -0700
+Message-ID: <CAHFnvW3zK0VsQKzqjncTTuNNenh6Lxr4mf2fqzX+gR1Z9i6yOA@mail.gmail.com>
+Subject: Re: [PATCH 55/86] drm/hyperv_drm: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 19 Aug 2024 07:21:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,71 +82,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-when use cpu to do page table update under sriov runtime, since mmio
-access is blocked, kiq has to be used to flush hdp.
+Reviewed-by: Deepak Rawat <drawat.floss@gmail.com>
 
-change WREG32_NO_KIQ to WREG32 to allow kiq.
-
-Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-index 077c6d920e27..e019249883fb 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-@@ -41,7 +41,7 @@ static void hdp_v4_0_flush_hdp(struct amdgpu_device *adev,
- 				struct amdgpu_ring *ring)
- {
- 	if (!ring || !ring->funcs->emit_wreg)
--		WREG32_NO_KIQ((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
-+		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- 	else
- 		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-index a9ea23fa0def..ed7facacf2fe 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-@@ -32,7 +32,7 @@ static void hdp_v5_0_flush_hdp(struct amdgpu_device *adev,
- 				struct amdgpu_ring *ring)
- {
- 	if (!ring || !ring->funcs->emit_wreg)
--		WREG32_NO_KIQ((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
-+		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- 	else
- 		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
-index ab06c2b4b20b..33736d361dd0 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
-@@ -35,7 +35,7 @@ static void hdp_v6_0_flush_hdp(struct amdgpu_device *adev,
- 				struct amdgpu_ring *ring)
- {
- 	if (!ring || !ring->funcs->emit_wreg)
--		WREG32_NO_KIQ((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
-+		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- 	else
- 		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
-index 8d7d0813e331..1c99bb09e2a1 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
-@@ -32,7 +32,7 @@ static void hdp_v7_0_flush_hdp(struct amdgpu_device *adev,
- 				struct amdgpu_ring *ring)
- {
- 	if (!ring || !ring->funcs->emit_wreg)
--		WREG32_NO_KIQ((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
-+		WREG32((adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- 	else
- 		amdgpu_ring_emit_wreg(ring, (adev->rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
- }
--- 
-2.34.1
-
+On Fri, Aug 16, 2024 at 5:54=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Deepak Rawat <drawat.floss@gmail.com>
+> ---
+>  drivers/gpu/drm/hyperv/hyperv_drm_drv.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hy=
+perv/hyperv_drm_drv.c
+> index ff93e08d5036..3077ce5470f6 100644
+> --- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+> +++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+> @@ -10,6 +10,7 @@
+>
+>  #include <drm/drm_aperture.h>
+>  #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_fbdev_shmem.h>
+>  #include <drm/drm_gem_shmem_helper.h>
+> @@ -36,6 +37,7 @@ static struct drm_driver hyperv_driver =3D {
+>
+>         .fops            =3D &hv_fops,
+>         DRM_GEM_SHMEM_DRIVER_OPS,
+> +       DRM_FBDEV_SHMEM_DRIVER_OPS,
+>  };
+>
+>  static int hyperv_pci_probe(struct pci_dev *pdev,
+> @@ -149,7 +151,7 @@ static int hyperv_vmbus_probe(struct hv_device *hdev,
+>                 goto err_free_mmio;
+>         }
+>
+> -       drm_fbdev_shmem_setup(dev, 0);
+> +       drm_client_setup(dev, NULL);
+>
+>         return 0;
+>
+> --
+> 2.46.0
+>
