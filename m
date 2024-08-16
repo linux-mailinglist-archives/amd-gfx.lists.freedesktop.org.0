@@ -2,55 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C534954BAF
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 16:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B65F954B47
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Aug 2024 15:43:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6EDD10E792;
-	Fri, 16 Aug 2024 14:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF8B10E77D;
+	Fri, 16 Aug 2024 13:43:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=sntech.de header.i=@sntech.de header.b="vwlhcw/j";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mHkHgI+p";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1678 seconds by postgrey-1.36 at gabe;
- Fri, 16 Aug 2024 14:02:32 UTC
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E29C410E7A0;
- Fri, 16 Aug 2024 14:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de; 
- s=gloria202408;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6APiPsl1dk8hQTUQIp5bKhxGcpS03CWAMAQchIn+9+A=; b=vwlhcw/j12UiyS4tp3lQKpH1A3
- KHBdt7G5yTSG50550RFm+BIulA4G2eFh/eA/vcFBbBwmlq+2Kx9Qdl/YsMiR1BkFFvHRDN/kg5YYd
- lBb79ICOHR91T9X/LaVainI0wouXePAU8MpMvozCBFlZK7NZGME5qiLS4fPxEqQSQvEMoDlLruzbq
- cwv4U4c1/FlatNReWkKBlNZqfWIGLPEVUbnPXRC+rxwYo3yMULGkA/MZCYdzVWM/OpP2NN6ZmWtNU
- ZqdtR+PBY72bBd7QcG7NdqUESP49CYleEC6NEWkfr22DJTEOYsWkm1nqiTHOSinq/YLJN8BePuPxc
- jRqRLz0A==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
- by gloria.sntech.de with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <heiko@sntech.de>)
- id 1sex67-0002U1-4U; Fri, 16 Aug 2024 15:34:31 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 38/86] drm/rockchip: Run DRM default client setup
-Date: Fri, 16 Aug 2024 15:34:29 +0200
-Message-ID: <2949271.e9J7NaK4W3@diego>
-In-Reply-To: <20240816125408.310253-39-tzimmermann@suse.de>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-39-tzimmermann@suse.de>
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19CFE10E799
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Aug 2024 13:43:31 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-2cb53da06a9so1376404a91.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Aug 2024 06:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723815810; x=1724420610; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LoxU/rp6k1oXcfMUEebZRoSo30Iju2lYYV9tiXnvJFM=;
+ b=mHkHgI+pKQtdYsOoU6CmULiWzj4pMq+7Z1wc0pknoQsdLS6ctOOzMxecLpPsc6pEwA
+ 4rZUVpUOu6IkF0aee7QK5Kiq/1dehXUD8Sad/DreLRB7EyMf+3xCubINqCnO3ajbggYy
+ TVIpDWqz/L1CXs4Q5/ZPWVmyGJ+Fco18/GvNLhrsv3O1WVzkUem423FDdogwMiwDNAlj
+ 7wTUi0Ejrr5akM9hWcia55rVxfyRiMyNIiV8HaOTPgLTuctrDnaxV179Pp9PPtXIahSN
+ FCf1wYODKYuFQTWMsMgMTq1U6u7AOnOxDcJGYJLUnaakZPWTZj/G5ImiKqdlxXOdCpB/
+ f98w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723815810; x=1724420610;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=LoxU/rp6k1oXcfMUEebZRoSo30Iju2lYYV9tiXnvJFM=;
+ b=rET37qp0HpVEAER7rd60+WeDFIGjVOqePFf4yTlCgX96II3N1w4AHWuZh9CW4Eu2OT
+ vkYHY7SSgTPCFauEl2vXo7FEAgxRGROC/DMpsZCPbtNTOOAZ+w6fpsphJOtvDhaJsf4P
+ 3Abw85nSvQqfcCSl7/vwMRKSOHD31uosRtdW9f+0cNY4po0hzT1FM1s2lQgFkMB8FsyY
+ GBTR+hDy3DzC8rb9Q+DVBG1mIUGB4+/Mj7izaA7TR3aWS5Bcn2xOpuPxXQ7RXvUq8Te7
+ lFwgZvk6Qz1PWup6VOcS5RO8VVHOfQ7KwhmTAWmlacGPavVCMsc8041LmMUxP94C+fWw
+ k3Rg==
+X-Gm-Message-State: AOJu0Yw7XpuYdAdVvcm2dOjn7XtDAoQsQAhJceaPrACflDw89EaaNUW6
+ uH7ZhtgkgcKmn7bfa5zOGk6R9fL180t3JlIZCL9/xsnVhefntq5oGOA1Py+Euc6dpX/hbnBELeX
+ gs5PWZvb2w951WOClbMwA6+QADsRFHWxZ
+X-Google-Smtp-Source: AGHT+IF5Zdt7RySOJJBt7hie2HYKX+l4v9ty52Esfyl+8BrXlnou9CuXBvxqzk0PyDGBGmTco6bfpL4YBnPBSNDpevY=
+X-Received: by 2002:a17:90a:bf09:b0:2d3:c365:53b1 with SMTP id
+ 98e67ed59e1d1-2d3e45529b3mr4087654a91.6.1723815810297; Fri, 16 Aug 2024
+ 06:43:30 -0700 (PDT)
 MIME-Version: 1.0
+References: <20240815113836.399377-1-Trigger.Huang@amd.com>
+ <20240815113836.399377-2-Trigger.Huang@amd.com>
+ <CADnq5_NumwJ6ujpJERTF7gK7TAJMkG7MNMNgrtr3=k8pqYnBvg@mail.gmail.com>
+ <SA1PR12MB74425F710D53EAA007A062F2FE812@SA1PR12MB7442.namprd12.prod.outlook.com>
+In-Reply-To: <SA1PR12MB74425F710D53EAA007A062F2FE812@SA1PR12MB7442.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 16 Aug 2024 09:43:18 -0400
+Message-ID: <CADnq5_Oy=-54C-m1UHJijEL+LdgRMJ_aGusuo2pjdcp6nCg5xg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/amdgpu: Add gpu_coredump parameter
+To: "Huang, Trigger" <Trigger.Huang@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Khatri,
+ Sunil" <Sunil.Khatri@amd.com>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,59 +80,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am Freitag, 16. August 2024, 14:23:04 CEST schrieb Thomas Zimmermann:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: "Heiko St=FCbner" <heiko@sntech.de>
-> Cc: Andy Yan <andy.yan@rock-chips.com>
+On Fri, Aug 16, 2024 at 2:36=E2=80=AFAM Huang, Trigger <Trigger.Huang@amd.c=
+om> wrote:
+>
+> [AMD Official Use Only - AMD Internal Distribution Only]
+>
+> > -----Original Message-----
+> > From: Alex Deucher <alexdeucher@gmail.com>
+> > Sent: Friday, August 16, 2024 12:02 AM
+> > To: Huang, Trigger <Trigger.Huang@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org; Khatri, Sunil <Sunil.Khatri@amd.com>=
+;
+> > Deucher, Alexander <Alexander.Deucher@amd.com>
+> > Subject: Re: [PATCH 1/3] drm/amdgpu: Add gpu_coredump parameter
+> >
+> > On Thu, Aug 15, 2024 at 7:39=E2=80=AFAM <Trigger.Huang@amd.com> wrote:
+> > >
+> > > From: Trigger Huang <Trigger.Huang@amd.com>
+> > >
+> > > Add new separate parameter to control GPU coredump procedure. This ca=
+n
+> > > be used to decouple the coredump procedure from gpu recovery procedur=
+e
+> > >
+> > > Signed-off-by: Trigger Huang <Trigger.Huang@amd.com>
+> > > ---
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 1 +
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++++
+> > >  2 files changed, 9 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > > index 937de21a7142..4dd465ad14af 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > > @@ -201,6 +201,7 @@ extern uint amdgpu_force_long_training;  extern
+> > > int amdgpu_lbpw;  extern int amdgpu_compute_multipipe;  extern int
+> > > amdgpu_gpu_recovery;
+> > > +extern int amdgpu_gpu_coredump;
+> > >  extern int amdgpu_emu_mode;
+> > >  extern uint amdgpu_smu_memory_pool_size;  extern int
+> > > amdgpu_smu_pptable_id; diff --git
+> > > a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > index b9529948f2b2..c5d357420236 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > @@ -178,6 +178,7 @@ uint amdgpu_force_long_training;  int
+> > amdgpu_lbpw
+> > > =3D -1;  int amdgpu_compute_multipipe =3D -1;  int amdgpu_gpu_recover=
+y =3D
+> > > -1; /* auto */
+> > > +int amdgpu_gpu_coredump;
+> > >  int amdgpu_emu_mode;
+> > >  uint amdgpu_smu_memory_pool_size;
+> > >  int amdgpu_smu_pptable_id =3D -1;
+> > > @@ -556,6 +557,13 @@ module_param_named(compute_multipipe,
+> > > amdgpu_compute_multipipe, int, 0444);
+> > MODULE_PARM_DESC(gpu_recovery,
+> > > "Enable GPU recovery mechanism, (1 =3D enable, 0 =3D disable, -1 =3D
+> > > auto)");  module_param_named(gpu_recovery, amdgpu_gpu_recovery, int,
+> > > 0444);
+> > >
+> > > +/**
+> > > + * DOC: gpu_coredump (int)
+> > > + * Set to enable GPU coredump mechanism (1 =3D enable, 0 =3D disable=
+).
+> > > +The default is 0  */ MODULE_PARM_DESC(gpu_coredump, "Enable GPU
+> > > +coredump mechanism, (1 =3D enable, 0 =3D disable (default))");
+> > > +module_param_named(gpu_coredump, amdgpu_gpu_coredump, int,
+> > 0444);
+> >
+> > I don't think we need a separate parameter for this, although if we do,=
+ this
+> > would need to be enabled by default.  If it needs to be decoupled from =
+reset,
+> > that's fine, but I don't see the need for a separate knob.
+> >
+> > Alex
+>
+> Hi Alex,
+> It is fine to enable it by default
+> There are several application scenarios that I can think of.
+>         1, Customer may need to do the core dump with gpu_recovery disabl=
+ed. This can be used for GPU hang debug
+>         2, Customer may need to disable the core dump with gpu_recovery e=
+nabled. This can be used for quick GPU recovery, especially for some lightw=
+eight hangs that can be processed by soft recovery or per ring reset.
+>         3, Customer may need to enable the core dump with gpu_recovery en=
+abled. This can be used for GPU recovery but record the core dump for furth=
+er check in stress test or system health check.
+> It seems not easy to support all the scenarios by only using amdgpu_gpu_c=
+oredump, right?
 
-I've looked up the whole patchseries and while I can't say overly much
-about the core changes, at least for the Rockchip driver, things look
-like they'll stay the same even after those changes are applied, so
+We always want devcoredump enabled by default for full adapter resets,
+otherwise it kind of defeats the purpose of the feature.  Do we want
+devcoredumps for cases where we can recover via soft recovery or per
+queue reset?  If we mainly care about full adapter reset then we can
+do something like:
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+1. in amdgpu_job_timedout(), we can do:
+if (!amdgpu_gpu_recovery)
+    amdgpu_dev_coredump()
+between per ring reset and full adapter reset.  That way it won't get
+called for soft recovery or per queue reset.
 
-> ---
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/dr=
-m/rockchip/rockchip_drm_drv.c
-> index 44d769d9234d..83ea6cc8cd21 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> @@ -17,6 +17,7 @@
->  #include <linux/iommu.h>
-> =20
->  #include <drm/drm_aperture.h>
-> +#include <drm/drm_client_setup.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fbdev_dma.h>
->  #include <drm/drm_gem_dma_helper.h>
-> @@ -191,7 +192,7 @@ static int rockchip_drm_bind(struct device *dev)
->  	if (ret)
->  		goto err_kms_helper_poll_fini;
-> =20
-> -	drm_fbdev_dma_setup(drm_dev, 0);
-> +	drm_client_setup(drm_dev, NULL);
-> =20
->  	return 0;
->  err_kms_helper_poll_fini:
-> @@ -226,6 +227,7 @@ static const struct drm_driver rockchip_drm_driver =
-=3D {
->  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
->  	.dumb_create		=3D rockchip_gem_dumb_create,
->  	.gem_prime_import_sg_table	=3D rockchip_gem_prime_import_sg_table,
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->  	.fops			=3D &rockchip_drm_driver_fops,
->  	.name	=3D DRIVER_NAME,
->  	.desc	=3D DRIVER_DESC,
->=20
+2. leave the current dev_coredump code in place for the case when
+recovery is enabled.
 
+If we want it for both soft-recovery and queue reset and full adapter
+reset, then we just just unconditionally call it in
+amdgpu_job_timedout().  If the finer grained resets don't work, we'll
+get two dumps, but I think that's probably ok.
 
+Alex
 
-
+>
+> Regards,
+> Trigger
+> >
+> > > +
+> > >  /**
+> > >   * DOC: emu_mode (int)
+> > >   * Set value 1 to enable emulation mode. This is only needed when ru=
+nning
+> > on an emulator. The default is 0 (disabled).
+> > > --
+> > > 2.34.1
+> > >
