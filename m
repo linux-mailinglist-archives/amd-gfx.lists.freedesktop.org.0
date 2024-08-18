@@ -2,51 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 736F5956458
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 09:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 262A3956466
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 09:21:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3028610E1B6;
-	Mon, 19 Aug 2024 07:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2ECE10E1B0;
+	Mon, 19 Aug 2024 07:21:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="bedKcfx0";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="erBoN4tt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B55D910E0E1;
- Sun, 18 Aug 2024 05:08:45 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 6D6CFCE03F7;
- Sun, 18 Aug 2024 05:08:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22EA0C32786;
- Sun, 18 Aug 2024 05:08:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1723957722;
- bh=tLHjBLhxmFXEWqxbLa7VP5D2HxF8A4lSY0hSwJ/qc5M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bedKcfx0w9jhWw8P66djV4eyhZMxnyqdcrZTdTwp3los+uxy9iS2wKbIhVgZSnxN2
- wYz7S4xWZIeBNhgqOpd1+omEFR6NEHTj81kA4Rd8JnFKWXNkwXbmeEjpNxCTSFGYSh
- 5M3yKvWHyUHVgBH+Ityom1j1WcaYJYdM+lVZrDlE=
-Date: Sun, 18 Aug 2024 07:08:39 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Kevin Holm <kevin@holm.dev>
-Cc: stable@vger.kernel.org, regressions@lists.linux.dev,
- amd-gfx@lists.freedesktop.org,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Wayne Lin <wayne.lin@amd.com>,
- Jerry Zuo <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: [PATCH 6.10] drm/amd/display: Refactor function
- dm_dp_mst_is_port_support_mode()
-Message-ID: <2024081800-owl-girdle-fd89@gregkh>
-References: <20240730185339.543359-1-kevin@holm.dev>
- <2024081739-suburb-manor-e6c3@gregkh>
- <e518ef00-4c7a-4719-bc58-90d782e34b30@holm.dev>
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7C610E164;
+ Sun, 18 Aug 2024 06:58:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1723964282;
+ bh=kNCKiT1FN6YahGLa2oSLHTz2Alz/wRPZwTWTFClaIjg=;
+ h=From:Subject:Date:To:Cc:From;
+ b=erBoN4tte68H/WaTM29ouoFi4ZXbyhZy7DBczgz69veu7xLn86PfuNWYd6o4o6fLT
+ QfI3dTyUN8vQneXBazl73Dkyd1/DsyCQwooVNHP4yyj6atLrpxz2Q/V+F1PxnecHqm
+ j/8xWVYdfuTTv0lbAsKxu9omL/rk9MAC85RdoSGI=
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Subject: [PATCH v5 0/4] drm: Minimum backlight overrides and implementation
+ for amdgpu
+Date: Sun, 18 Aug 2024 08:56:36 +0200
+Message-Id: <20240818-amdgpu-min-backlight-quirk-v5-0-b6c0ead0c73d@weissschuh.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e518ef00-4c7a-4719-bc58-90d782e34b30@holm.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACSbwWYC/43NS07DMBSF4a1UHmNkX787Yh+IgZ+xVZoWOwmgK
+ nvH7aRIVBHD/wy+c0Et1hIb2u8uqMaltHIae4inHfLZjkPEJfRGQIATSQm2xzCcZ3wsI3bWH97
+ LkCf8MZd6wJoTSEFHxaRFHTjXmMrXDX99651Lm071+/a10Ov6L3ahmHZbGG2EFQ7sy2csrTWf5
+ /w8xgld7QV+ecA2PcAE++iTStwEa9xDj909xeimx7rHZeDEOaBWwkOP3z1NYdPj3RPSSpaSNsq
+ pP966rj82dFsSuQEAAA==
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>, 
+ Matt Hartley <matt.hartley@gmail.com>, Kieran Levin <ktl@framework.net>, 
+ Hans de Goede <hdegoede@redhat.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, Xinhui Pan <Xinhui.Pan@amd.com>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Dustin Howett <dustin@howett.net>, 
+ linux-doc@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723964281; l=2448;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=kNCKiT1FN6YahGLa2oSLHTz2Alz/wRPZwTWTFClaIjg=;
+ b=7h3BBPZuOZAF4p/CtlZ3V4u4Xa1fmy2PSEC1mrAH6U6xvkgEpJ6UXtejd5lgu/N1MNmYHeGKw
+ lStgNTZuvpbB4NpvCMvpv1JFeR6JPVL3gADixG75tjuLlEjvd7Lpld6
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-Mailman-Approved-At: Mon, 19 Aug 2024 07:21:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,71 +74,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Aug 17, 2024 at 10:30:41PM +0200, Kevin Holm wrote:
-> 
-> 
-> On 17.08.24 10:42, Greg KH wrote:
-> > On Tue, Jul 30, 2024 at 08:53:39PM +0200, Kevin Holm wrote:
-> > > From: Wayne Lin <wayne.lin@amd.com>
-> > > 
-> > > [ Upstream commit fa57924c76d995e87ca3533ec60d1d5e55769a27 ]
-> > > 
-> > > [Why]
-> > > dm_dp_mst_is_port_support_mode() is a bit not following the original design rule and cause
-> > > light up issue with multiple 4k monitors after mst dsc hub.
-> > > 
-> > > [How]
-> > > Refactor function dm_dp_mst_is_port_support_mode() a bit to solve the light up issue.
-> > > 
-> > > Reviewed-by: Jerry Zuo <jerry.zuo@amd.com>
-> > > Acked-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
-> > > Signed-off-by: Wayne Lin <wayne.lin@amd.com>
-> > > Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-> > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > [kevin@holm.dev: Resolved merge conflict in .../amdgpu_dm_mst_types.c]
-> > > Fixes: 4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for mst mode validation")
-> > > Link: https://lore.kernel.org/stable/d74a7768e957e6ce88c27a5bece0c64dff132e24@holm.dev/T/#u
-> > > Signed-off-by: Kevin Holm <kevin@holm.dev>
-> > > ---
-> > > I resolved the merge conflict so that, after this patch is applied to the
-> > > linux-6.10.y branch of the stable git repository, the resulting function
-> > > dm_dp_mst_is_port_support_mode (and also the new function
-> > > dp_get_link_current_set_bw) is identical to the original commit.
-> > > 
-> > > I've confirmed that it fixes the regression I reported for my use case.
-> > 
-> > And it turns out this change breaks the arm and arm64 builds.  I tried
-> > to fix it up by applying the fixup afterward for this file, but it's
-> > just too much of a mess to unwind this, so I'm going to have to revert
-> > this now, sorry.
-> That sucks, sorry for the problems my patch caused. :(
-> 
-> > See:
-> > 	https://lore.kernel.org/r/b27c5434-f1b1-4697-985b-91bb3e9a22df@roeck-us.net
-> > for details.
-> I unfortunately don't know the amdgpu driver and kernel code in general enough to help fix
-> that. The back-ported patch I send was my first patch to the kernel.
-> 
-> In the email thread where I reported the problem I send a patch that reverts
-> 4df96ba6676034 ("drm/amd/display: Add timing pixel encoding for mst mode validation") to
-> fix the problem that way [1]. I've included a copy of that below.
-> I've tested that it still applies to 6.10.6-rc3 without conflicts and compiles for me. I
-> could not test if the 6.10.6-rc3 with the revert applied fixes the problem as I'm
-> traveling and don't have access to my normal setup. I can only say that reverting it on
-> v6.10.2 fixed the problem for me.
-> 
-> I don't know how to compile for other architectures so I did not test that.
-> 
-> Not sure what would be best, reverting the problem commit so the regression is fixed in
-> the 6.10 stable kernel (and maybe breaking something else?) or waiting for someone at AMD
-> with better knowledge of the amdgpu driver to back-port the fixing commit in a non-broken
-> way.
+The value of "min_input_signal" returned from ATIF on a Framework AMD 13
+is "12". This leads to a fairly bright minimum display backlight.
 
-Yes, this is up to the amd developers now, I suggest you work with them
-to get this resolved please.
+Introduce a quirk to override "min_input_signal" to "0" which leads to a
+much lower minimum brightness, which is still readable even in daylight.
 
-Or just use 6.11-rc3 and newer :)
+Tested on a Framework AMD 13 BIOS 3.05 and Framework AMD 16.
 
-thanks,
+One solution would be a fixed firmware version, which was announced but
+has no timeline.
 
-greg k-h
+---
+Changes in v5:
+- Forward-declare struct drm_edid
+- Reorder patches, quirk entries are last
+- Add patch from Dustin for additional quirk entries
+- Link to v4: https://lore.kernel.org/r/20240812-amdgpu-min-backlight-quirk-v4-0-56a63ff897b7@weissschuh.net
+
+Changes in v4:
+- Switch back to v2 implementation
+- Add MODULE_DESCRIPTION()
+- Simplify quirk infrastructure to only handle min backlight quirks.
+  It can be extended if necessary.
+- Expand documentation.
+- Link to v3: https://lore.kernel.org/r/20240731-amdgpu-min-backlight-quirk-v3-0-46d40bb21a62@weissschuh.net
+
+Changes in v3:
+- Switch to cmdline override parameter
+- Link to v2: https://lore.kernel.org/r/20240623-amdgpu-min-backlight-quirk-v2-0-cecf7f49da9b@weissschuh.net
+
+Changes in v2:
+- Introduce proper drm backlight quirk infrastructure
+- Quirk by EDID and DMI instead of only DMI
+- Limit quirk to only single Framework 13 matte panel
+- Link to v1: https://lore.kernel.org/r/20240610-amdgpu-min-backlight-quirk-v1-1-8459895a5b2a@weissschuh.net
+
+---
+Dustin L. Howett (1):
+      drm: panel-backlight-quirks: Add Framework 13 glossy and 2.8k panels
+
+Thomas Weißschuh (3):
+      drm: Add panel backlight quirks
+      drm/amd/display: Add support for minimum backlight quirk
+      drm: panel-backlight-quirks: Add Framework 13 matte panel
+
+ Documentation/gpu/drm-kms-helpers.rst             |  3 +
+ drivers/gpu/drm/Kconfig                           |  4 +
+ drivers/gpu/drm/Makefile                          |  1 +
+ drivers/gpu/drm/amd/amdgpu/Kconfig                |  1 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++
+ drivers/gpu/drm/drm_panel_backlight_quirks.c      | 94 +++++++++++++++++++++++
+ include/drm/drm_utils.h                           |  4 +
+ 7 files changed, 117 insertions(+)
+---
+base-commit: c3f2d783a459980eafd24c5af94ccd56a615961f
+change-id: 20240610-amdgpu-min-backlight-quirk-8402fd8e736a
+
+Best regards,
+-- 
+Thomas Weißschuh <linux@weissschuh.net>
+
