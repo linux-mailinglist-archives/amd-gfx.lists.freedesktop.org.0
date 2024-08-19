@@ -2,150 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38CE956B18
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 14:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0F1956C40
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 15:37:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62ED810E25D;
-	Mon, 19 Aug 2024 12:43:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C60710E273;
+	Mon, 19 Aug 2024 13:37:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Hh+r+1Hw";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dGEu9kzk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDBA10E25D
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 12:43:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YB09K/yK3qg63uAeIBuXfnvYyAfTfouRldOWjZaetZ0UrzLhHKikmMTgh61lDPGya5SaXt9MnkuRYjLmGW9Q878kXdusmrYJ4cZ12oIY5KKqc/UgkPvkH+CxRqvnnOWiX2odR91qwVMF6k9OJD0kzdVIKv8DBh4nl7BEjUBAoIwVl/KuF0yEezEnjEcmJPTz6QTCnfWXNFAfezXQORIYEnTbjjjYUEQwAIGZqre2xbNIcMhg2q3LNjra9dbeVRQFNjtMFLdOgRSi1f8k3CO+BN2wBCxKj2xI4WxX86dW8iXJRK/BTXChdoI+twHfVgal0KJrg07hKeM8DUTLvzP2YQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kPlFB26kOS+f3735grjPBtaSlQWzPp4oLDrSjFf1QZ0=;
- b=FkXcnD/hAL18Ja7e3fimKDCKf1uVtAsnweSObQzoTULgeoxldS/jUzOJaYPb2V+pbU4lL4LfNWwmGPxBP44F0ebbiLSD/icw1rmqzvfvfVoPLabYOgM1iME1CAECyZpNK4PkJqEymLXY3SfUrhM/nzzns8uBq9M9JhTGwAWUOxgJudrcukSP27llVkDkr6LhRqJL7k3eXAXBw+WtdKY8QmegFEtV7HrCcrAKZVntMXnFb+ZmiPRRhl2SCxoyFPyA7jYPyhkuwgFm7049z6t6dIoSLUoTyDGhwNSAeLnQvJj1EzMpbHXpp4+SGq4CyaIdTSRxaSW2qtvDzzje95hZrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kPlFB26kOS+f3735grjPBtaSlQWzPp4oLDrSjFf1QZ0=;
- b=Hh+r+1HwJdtevAjx0LE99pAok3mq0cKyfsRyXPTqkLBra7iDfeFJ1pO9IEb2qw0z/CkjtwYvVpdjCQD5gYKxaKmVxFn7e0iEqwB0QwNdkQGUFhKaY6EVkGs5jn4M4pJMwVJE5V4J5nd3pUCMXwV/43y3PbKOwuObgueq7ZWFEXw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by MW6PR12MB8760.namprd12.prod.outlook.com (2603:10b6:303:23a::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Mon, 19 Aug
- 2024 12:43:36 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::c55f:19e:6896:cf3]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::c55f:19e:6896:cf3%4]) with mapi id 15.20.7875.019; Mon, 19 Aug 2024
- 12:43:35 +0000
-Message-ID: <a782805f-c7c0-4084-a406-7ead10c6eab3@amd.com>
-Date: Mon, 19 Aug 2024 18:13:30 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Add DCC GFX12 flag to enable address alignment
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com, frank.min@amd.com
-References: <20240805140125.549000-1-Arunpravin.PaneerSelvam@amd.com>
- <0f5d4a46-9f27-40c3-9b55-1f139240c964@gmail.com>
-Content-Language: en-US
-From: "Paneer Selvam, Arunpravin" <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <0f5d4a46-9f27-40c3-9b55-1f139240c964@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0171.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:de::14) To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F38F10E275
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 13:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1724074620;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Py1nKUzAfM/OTvIy7L2sYTr0+ohPDjRTycpz1UnhWhw=;
+ b=dGEu9kzkC6nhvReK49yhAw2dsZqr9bYjrmvAzU9oJryRmNtra9RwzrwT6tTIHre4Cletk5
+ OC6/kN46IZkXuJRyZQ1cE5T2SgNQA6/T11JIH8WVVMghd4d6rg4tSA9iEPRvXgQSuJE/7B
+ VSXXUWTpXgOz9D45R4VvFkP/nGztK/M=
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
+ [209.85.167.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-457-BbQDJXAxOSuGPudyCoVqtA-1; Mon, 19 Aug 2024 09:36:56 -0400
+X-MC-Unique: BbQDJXAxOSuGPudyCoVqtA-1
+Received: by mail-oi1-f197.google.com with SMTP id
+ 5614622812f47-3d929d7a90bso4090256b6e.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 06:36:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724074615; x=1724679415;
+ h=content-transfer-encoding:mime-version:message-id:date:references
+ :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=B/iJNM2H0Bn+mH5epT+OXY9z51A/PXnyvIAFT4yJMBs=;
+ b=nQgmOg3prFCaJFLcWP7sIQX8ogoxcA8w4mr6Sr9Ndgq+8hFEqE/gUYhHGkWxrOKH93
+ LL+LCpUzC3ELZiI3PpblJLheK5PRrVUSWjy//kIb4149mF1yc7gWviJTrSiZkjOYOpVV
+ zCe6gBQVeGRlWaIz6MBgCvdXPYTFhtvDrZaVco86F8u+sI3OER3g2nlojDKELHljFgmk
+ tjZa9L8C9Tw3I3rGoowypiDyegx5ewb90GgaESRjfiKkJaauR5kNYQd54SZC2UEjld2e
+ 0lwdE/MK30UcDt/7tEWJe61XpcRzCrRkXcChNpMlQRBigLYkmipWY4VEuUf5W80hYAS+
+ AnIA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX/PUyea8I6/hCMx8PS+5YUhggciCH9Hw6gGJ58+EhcsQ0HqJc59nBWLUYr1iIy+33kuwtMzXvM5vzVDf+Z/6EbDX2WfJP1H73p6SPwXw==
+X-Gm-Message-State: AOJu0YwAN35ZguckrsRS8lCDP49Qpc5xaW0JP2Ms4cr1OAFmiikXbbUV
+ xjjB9EL2MM1TISjujoj8zPVoJh7fq4KG4thGmzpJCfXEvDFGTXwifyJbV6PxSb1fGyohv2N3Bjn
+ IrJh2LvJiqsaBRFiZb8GuEkrFW6O8RlXpCqpUVLpEpZUqyxJ3GPpmAMGEpt8vrKk=
+X-Received: by 2002:a05:6808:148a:b0:3da:e219:bf with SMTP id
+ 5614622812f47-3dd3ae320edmr14893358b6e.43.1724074615346; 
+ Mon, 19 Aug 2024 06:36:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEPpaKdjs9uyeLCpbyaYGw5neC/R9XgXicCaeDNO0oBOnU3UKv8pW+3H0tiVsMRwweNVZ2MzA==
+X-Received: by 2002:a05:6808:148a:b0:3da:e219:bf with SMTP id
+ 5614622812f47-3dd3ae320edmr14893327b6e.43.1724074614976; 
+ Mon, 19 Aug 2024 06:36:54 -0700 (PDT)
+Received: from localhost ([181.120.144.238]) by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-7c6b61a6dcfsm6585022a12.7.2024.08.19.06.36.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Aug 2024 06:36:54 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher
+ <alexdeucher@gmail.com>
+Cc: kernel test robot <lkp@intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, Helge Deller <deller@gmx.de>, Sam
+ Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] video/aperture: match the pci device when calling
+ sysfb_disable()
+In-Reply-To: <8bbf3f92-3719-4ff4-9587-e076635758d1@suse.de>
+References: <20240809150327.2485848-1-alexander.deucher@amd.com>
+ <202408101951.tXyqYOzv-lkp@intel.com>
+ <1c77f913-4707-4300-b84a-36fcf99942f4@suse.de>
+ <CADnq5_NjCFyy+bQY+uyijcZwvwXYkvVLLUQdtzN_ODvHAj193Q@mail.gmail.com>
+ <8bbf3f92-3719-4ff4-9587-e076635758d1@suse.de>
+Date: Mon, 19 Aug 2024 15:36:51 +0200
+Message-ID: <87frr0ljm4.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4342:EE_|MW6PR12MB8760:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5d5ea55b-da01-4a98-e0df-08dcc04c8a84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?clFILzZtcHAvRjBqeVZWSFBHUDRnODRXWjJnbHZVaC9kbXkzczU4cCtXNEVW?=
- =?utf-8?B?RHRBQVlLSVY4TmRBWmlOZTdYSHVRQUxBcld0RmdYcE10OUxWMDVpTi9meTBF?=
- =?utf-8?B?T1NzQi9uUW9ONzRxSkI4MjFIb0VOM2tZc1MweTJyYWRVZXlRVVV4RW9ENTdP?=
- =?utf-8?B?bVl0U2RvNGV6a1R1ajJGZGV3eVFUVWxzWTJ0NUIzbVNWemNLK0dGWXFyMWto?=
- =?utf-8?B?aW00MitWeWdiQ0lKL0xEa0Z5TnVRMTJZbWNzc3lXZDNMUm4vSm5mVUViSElx?=
- =?utf-8?B?WnNoY2FVYnFkUEVSek5JSDNCMzZSVlpEM0NJL0RZTHRPZzQ0RjhQVmlxaUI1?=
- =?utf-8?B?dmF0dk5mQlVGRllEbjRmaTV0dnFORzFkdzl3dmt3Q3BTS3FhMm9hNUNxWWU3?=
- =?utf-8?B?UHVCaU9HaXJWVitLMUx5T2ovMnNoRWxnc0ZwL3BTaFI0UVRkMlgzMXhsaVo4?=
- =?utf-8?B?WEduMzRSL1JUSGhLMGF5VlI3Q0NkeE9YK29yaFE2amY2MHpVQm9XZDdTcVFF?=
- =?utf-8?B?dzhDc20vUDJtSHhJRW5sNzVtaldnMm1qeXhSZjBST2QycDNSL0p2SjdUb1lU?=
- =?utf-8?B?SzNzczQ3K3VVOHVCQ2RPbSs2ckdZTC8xaTNESGx0SzVvV3gxSDZyVUZWb1pF?=
- =?utf-8?B?Njlzc0Qybk1MTFZWSkIvWEtFMDQyK0RNYmx4MVFic01qQ3NyQnF0MGgyeE90?=
- =?utf-8?B?ZzY5Y2pza0xXRkVXR2pneHpxSjRxclBOazVSMTBVQ0xNQlhOVmhyVk9CZDVi?=
- =?utf-8?B?NHRMWDQwMUlUVUFlZld6bjVrRVc0UVZ2TGpIK09QdGRZMmpIQnNqMENycHV5?=
- =?utf-8?B?MUhzN0loSjNpYitFSFhudXJvL0s1SjB1bjZ0ZktRa0IyUmVLdWdPS0pxUFJT?=
- =?utf-8?B?ejJNRVlCMDlDeXE1ZnhkOExwTkJFWnVTc255ZUpIODhjSTFDNkFSQktsbmpo?=
- =?utf-8?B?cU1DTjMyWnYzSldYZWVTSmljM2dvYm9FT09oZ2d1Q250d2kyYnc2dm1OMFR5?=
- =?utf-8?B?ZW03ajZHNjMwV253bldVOXU0T2RjZ0ZzTjV1VUdoWHZIZTZWSEZGN2p3b1Uz?=
- =?utf-8?B?TDZPODVBNlE3NXFBR0JEZkE3VjZRTHNuL25yYkZvbHhHUGhuYmRFTkVXYlFR?=
- =?utf-8?B?THNEck1pMVd1cEs1NkNtWld2RlpqRTcvVE1Wb1QvWnlvdmtVZEtaYm1OOTd4?=
- =?utf-8?B?d3Q1Q0pVMEJHbFE5OC9kQzl5M1YzL3hTWkJua3FmcXhKVDQrOVEyN01kOExY?=
- =?utf-8?B?UnNsZGgrN1BhR2ZtZVR6WTkrS1ZHL1loNnFXaFR6c05sMkpHOXZxTFpUa3Vy?=
- =?utf-8?B?QVVFeUEwa3cwRHdjTzNDcE1mcFZ3OHZSYjBBd1hCOWF5a2w3VmN6enZiNFd0?=
- =?utf-8?B?TDRCZWxHRFlMTHdjNzBidjRCNmMxTVpKbjVCaXpKZTZnOWRQenlidUNHSDVx?=
- =?utf-8?B?NTNPenQ5THNMRnRReEM0bW1uWk1oRVVkVjZkN0xTNk42SXY3d1JmaUYxd2Rr?=
- =?utf-8?B?dit0encvNVhFRmdXM3lQazl1TW5qalh3eFdCcTZtbHRpWGFkUFMycFZadzRl?=
- =?utf-8?B?Qm5HYTUvMkdaM2pYMjdGdjBzcmEzUFlFOWYyL00zazVYazVMeU5oK3BVK2ZM?=
- =?utf-8?B?aUxJV2dDS0V2dndvMFFVZkxVYzEzZzhZUjM2dVFyaU1KUU9iZHVIOEFrNEhN?=
- =?utf-8?B?ZzFGaW1udzZpYXljQnViVWtvcGZFMkFCU1VjN1VqNWpTZUlSWEVRQ293Nk5M?=
- =?utf-8?B?ZFBrZGJtQU83cjN6d2FXbk55RklJUXpZajc3TjZqOTNtWTlRL3plVDIyMGRW?=
- =?utf-8?B?WkVQQ3dOYnMrT3hTUDhxQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1VnVGhCT3BjZmphOERHbWtEWkw4TWEyNmUwRVpjK1hzZ253WDVIamV4SzdM?=
- =?utf-8?B?Ly84SW9GNVQvV2VmdmhIVUtvN0VoRVFwTDlRWDk5czdVV0tZc05BRmlqYUh0?=
- =?utf-8?B?b2tFZWI0S1UzWUpyeGVlU0dQODBHVE91WFlLeWtOcTM5cy9aSUViMUdGODNq?=
- =?utf-8?B?RU9ZRGxwV3BUc1U4ZzJkYkxrcnpvUzh3bUg5ajBOTy9MVEZnaHUzbXc3a3dD?=
- =?utf-8?B?QXhYb0tBK2tVcGtueStQNTR1Qkh0MUR0S20xU0lDajE2WDFzV1g4SjJwOXFB?=
- =?utf-8?B?VjFOSmRYVzJjZ1ZTd3pEejRsVEp2bkdMam1XaTVIVTlVMWR2b2MzdWI4RGN2?=
- =?utf-8?B?L04xWHdwK3g0YStFeGpzdEJIV3FITlh3bDNOWjl2S2ZHcmNvdHhDdG9ZUUc4?=
- =?utf-8?B?VkIrLzk2bjJjYXN6eVpPeHJ6WklLdnQ5VkZPRjNpVE1RNHBEUjhrdUFSZnBa?=
- =?utf-8?B?b1RpSDF5QlpUakNDeGNWSHBFOVRRMWQyWENSRTZnR3hhN1VVU09aeWQ3MHRR?=
- =?utf-8?B?eFdOREtLNHZTSHRBU0JUYkVndG5TS1U1Q3cwa01oS0JHaWh5TzlpTXhyZndL?=
- =?utf-8?B?TXNEQjNFUHlOV2h3NTZhN1FTV0o3Wm8zZXJoMENWaVEyeCtKSEV6dVR6YWpZ?=
- =?utf-8?B?VVJmcmJveWI4eFJmMGMvLzR2TW9iR2VoK2I0NEZHeVJianBpWkFDVFFDbHlL?=
- =?utf-8?B?c3JVSDRLdkpkS1ZHZWVxWGhoaENEL3JrLzUvSFJyQndEUVJoRlZFRkU5QlZB?=
- =?utf-8?B?Qk03cGFZeXZCS29ZZlNHUW02WU80WStvSnpWSnhZT3RJaGRzVEJ6bmhMWW9K?=
- =?utf-8?B?YlltQlpkeXJRYzJ2aG42eGZ3dFFhbjcvc3BraDNaL0NwT3NNZVpTaHN5QkxP?=
- =?utf-8?B?M0JyK25SMDVRRjNVcUVLSTMvS3JYQXZkbkFxKzAvMElxSDBPbXJPbUJqOVMr?=
- =?utf-8?B?TlVGZnNmaDRlYVA2L2JtT3EwL1UwU3REYis4aEt5YU5Cc3hXb2c0SVZ6RkNa?=
- =?utf-8?B?V0ZiWklXQ2tXbEY5UGRtK2srYjVybG9rb3BiVFZEQ3RMVGJpV014U3lwU25U?=
- =?utf-8?B?WEQyTVIwWUVMWHNVTzlnT2xiNENXcGZGUnVPaFRPL3oyalRBdmltSHJUdS9r?=
- =?utf-8?B?OXVQY0hlNExWZTFjekVXeUh5aFBna0JqVDFuLytmL21TL2hDaHovK0QreFRp?=
- =?utf-8?B?Q01yVGlhWGdIR0lMLzlGTHp5cWZ3dnB5Q0hBUGY3ODB3RG5RQ1k1eExxdENV?=
- =?utf-8?B?Z2p1NndoZjdWY2xsakh5dFkvL2hqOUh5N0RYUlZlTnA4V1dtbDYvVlhEaUg3?=
- =?utf-8?B?a0pITkdXMjRjTU9maWRqeGt6a2ZMY3RTSGJobk14djJIdkZYTnFKZWVzTkRu?=
- =?utf-8?B?UzhnTXd3djVTVGtrRHlsRWo3QTNySjIwWWdoSVUwQW5DMmdwOVBhVzFxMEN0?=
- =?utf-8?B?c0dHWWI0enl2eXVYWW5zMVg0OE5GN0dXNWhUOUVOTTcvbWdldExTRjFidmxu?=
- =?utf-8?B?ekNib1laYUIzN08vQTdVZDVsODU4QVo2YjVaeU04TCs2d0x3NUhSYXliZUZw?=
- =?utf-8?B?NDRacE9ST21CQlJzQVJVOE5iZEIvemhFcFhTTXdrTWwrTStPQWNGaFdrVU14?=
- =?utf-8?B?T0NXRmsvSlEvU01nQ3VOVUFNc04venpKQjA4bVdvSjkxMEYxMjZOSlFXV01a?=
- =?utf-8?B?Um9HckovZzBsRU41QlhMcVlHcjJydzlnVVFzbDRaK25GRG9kaFdET1lwbFAz?=
- =?utf-8?B?QUgvQS9aUjNtNVZlc2phdEM2b3VKZ1hzcU52ZDg2WHQyRlhSM2ZUR1RyQU5C?=
- =?utf-8?B?WFFBNWlwUHF6cEJBWUY3cDB0bFVNVkQxODFCSEt6VWZuZllkaGVXZkNGcUtM?=
- =?utf-8?B?TDZxb0N1aWtxU0pVbjFlMURNa3BnbUsyRldnc0JUeUEydTVSM2xVTC9hSlVU?=
- =?utf-8?B?QmtBenplRGFHOFR0NGVmNDltSWpkS2ZEUDNweWFrcTBxSElIMlRxc1B0cDJL?=
- =?utf-8?B?TTVXOVpvQzJKL1ZYMTBYVThKQzVOZGpFNGhaNnBVUVo1KzJrZHVaQ0d6azI1?=
- =?utf-8?B?MzZRSXIyMXFDVzJGY1puR2xRcTliSVFCTGcrYWxZQUNKd3VJRlBJMmdHMTZr?=
- =?utf-8?Q?glR+uE5LDaSvbLKSyWXIo5u5o?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d5ea55b-da01-4a98-e0df-08dcc04c8a84
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2024 12:43:35.9187 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oW6tR9oFhODkLlFjyozmvoPUrnDlRcfvOj2ptBRYOM2muKVX/vvb+7siuAVDuN4eDmheI7R/CsxBFTPmfEGjFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8760
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,55 +100,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-On 8/19/2024 1:59 PM, Christian König wrote:
-> Am 05.08.24 um 16:01 schrieb Arunpravin Paneer Selvam:
->> We require this flag AMDGPU_GEM_CREATE_GFX12_DCC or any other
->> kernel level GFX12 DCC flag to differentiate the DCC buffers and other
->> pinned display buffers(which has TTM_PL_FLAG_CONTIGUOUS enabled).
->
-> That's a pretty bad idea, the DCC flag is not the right approach to 
-> differentiate this.
->
-> What other pinned display buffers are you talking about? As far as I 
-> can see that patch shouldn't be necessary in any way.
+Hello Alex and Thomas,
 
-TMR is requesting pinned buffer enabling the TTM_PL_FLAG_CONTIGUOUS. For 
-DCC size adjustment,
-we will try to over-allocate for the TMR region and that leads to memory 
-allocation failure.
+> Hi
+>
+> Am 16.08.24 um 22:57 schrieb Alex Deucher:
+>> On Mon, Aug 12, 2024 at 8:10=E2=80=AFAM Thomas Zimmermann <tzimmermann@s=
+use.de> wrote:
+>>> Hi
+>>>
+>>> Am 10.08.24 um 13:44 schrieb kernel test robot:
+>>>> Hi Alex,
+>>>>
+>>>> kernel test robot noticed the following build errors:
+>>>>
+>>>> [auto build test ERROR on drm-misc/drm-misc-next]
+>>>> [also build test ERROR on linus/master v6.11-rc2 next-20240809]
+>>>> [If your patch is applied to the wrong git tree, kindly drop us a note=
+.
+>>>> And when submitting patch, we suggest to use '--base' as documented in
+>>>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>>>>
+>>>> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Deucher/vi=
+deo-aperture-match-the-pci-device-when-calling-sysfb_disable/20240810-02135=
+7
+>>>> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+>>>> patch link:    https://lore.kernel.org/r/20240809150327.2485848-1-alex=
+ander.deucher%40amd.com
+>>>> patch subject: [PATCH] video/aperture: match the pci device when calli=
+ng sysfb_disable()
+>>>> config: csky-randconfig-001-20240810 (https://download.01.org/0day-ci/=
+archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/config)
+>>>> compiler: csky-linux-gcc (GCC) 14.1.0
+>>>> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/ar=
+chive/20240810/202408101951.tXyqYOzv-lkp@intel.com/reproduce)
+>>>>
+>>>> If you fix the issue in a separate patch/commit (i.e. not just a new v=
+ersion of
+>>>> the same patch/commit), kindly add following tags
+>>>> | Reported-by: kernel test robot <lkp@intel.com>
+>>>> | Closes: https://lore.kernel.org/oe-kbuild-all/202408101951.tXyqYOzv-=
+lkp@intel.com/
+>>>>
+>>>> All errors (new ones prefixed by >>):
+>>>>
+>>>>      csky-linux-ld: drivers/video/aperture.o: in function `aperture_re=
+move_conflicting_pci_devices':
+>>>>>> aperture.c:(.text+0x222): undefined reference to `screen_info_pci_de=
+v'
+>>> Strange. There's a already placeholder [1] for architectures without
+>>> PCI. Otherwise the source file is listed at [2].
+>> So I dug into this, and the problem seems to be that
+>> CONFIG_SCREEN_INFO is not defined in that config.  I can't figure out
+>> how this should work in that case or why this is not a problem in
+>> drivers/firmware/sysfb.c.
+>>
+>> Something like this works:
+>> diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
+>> index 56a5a0bc2b1af..50e98210c9fe5 100644
+>> --- a/drivers/video/aperture.c
+>> +++ b/drivers/video/aperture.c
+>> @@ -347,7 +347,9 @@ EXPORT_SYMBOL(__aperture_remove_legacy_vga_devices);
+>>    */
+>>   int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev,
+>> const char *name)
+>>   {
+>> +#if defined(CONFIG_SCREEN_INFO)
+>>          struct screen_info *si =3D &screen_info;
+>> +#endif
+>>          bool primary =3D false;
+>>          resource_size_t base, size;
+>>          int bar, ret =3D 0;
+>> @@ -355,8 +357,10 @@ int
+>> aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const
+>> char *na
+>>          if (pdev =3D=3D vga_default_device())
+>>                  primary =3D true;
+>>
+>> +#if defined(CONFIG_SCREEN_INFO)
+>>          if (pdev =3D=3D screen_info_pci_dev(si))
+>>                  sysfb_disable();
+>> +#endif
+>>
+>>          for (bar =3D 0; bar < PCI_STD_NUM_BARS; ++bar) {
+>>                  if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
+>>
+>> But that can't be the right fix...  Any ideas?
+>
+> Thanks for investigating. I'd say we should pass the device (pdev->dev)=
+=20
+> to sysfb_disable() and=C2=A0 do the test there. In sysfb.c, next to=20
+> sysfb_disable(), you'll find sysfb_parent_dev(), which gives the Linux=20
+> device of the screen_info.
+>
+> The code then looks something like this:
+>
+> sysfb_disable(struct device *dev)
+> {
+>  =C2=A0=C2=A0=C2=A0 if (dev && dev =3D=3D sysfb_parent_dev(screen_info))
+>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return
+>
+>  =C2=A0 /* else do the current code */
+> }
+>
+> there's an invocation of sysfb_disable() in drivers/of/platform.c where=
+=20
+> you can pass NULL.
+>
 
-Thanks,
-Arun.
+Agreed. That sounds like the best approach.
+
+> Best regards
+> Thomas
 >
-> Regards,
-> Christian.
->
->>
->> If we use the TTM_PL_FLAG_CONTIGUOUS flag for DCC buffers, we may over
->> allocate for all the pinned display buffers unnecessarily that leads to
->> memory allocation failure.
->>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> index 5415a5cc7789..7de0ac07a060 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> @@ -509,7 +509,8 @@ static int amdgpu_vram_mgr_new(struct 
->> ttm_resource_manager *man,
->>           /* Allocate blocks in desired range */
->>           vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
->>   -    if (adev->gmc.gmc_funcs->get_dcc_alignment)
->> +    if (bo->flags & AMDGPU_GEM_CREATE_GFX12_DCC &&
->> +        adev->gmc.gmc_funcs->get_dcc_alignment)
->>           adjust_dcc_size = amdgpu_gmc_get_dcc_alignment(adev);
->>         remaining_size = (u64)vres->base.size;
->
+
+--=20
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
