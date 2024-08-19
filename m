@@ -2,52 +2,142 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405CC95645F
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 09:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCDE956388
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Aug 2024 08:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66CF510E1BC;
-	Mon, 19 Aug 2024 07:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2086D10E16C;
+	Mon, 19 Aug 2024 06:17:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="cTKOYyGw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PcuKagUJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FCE10E032;
- Sun, 18 Aug 2024 16:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1723998220;
- bh=Q7o8gz79XSffGfBrsVTJcm795XahCJSCgR53ChT/DnI=;
- h=From:Date:Subject:To:Cc:From;
- b=cTKOYyGwISix5BSBeP4wbRN25QXmmqZw4pCUDr3XiUB9cdUKoqO8jGAjXMOEN9wl9
- P1oSebDNiygRzBI7p07pZNP5xr4vnPSvsxnlyVi0HKwdIYho/HNELS0+PK0RFo4GSq
- KHEADpuWFVSBjQLTnJx4NMYJc9cRX9Q4c5lU9B8s=
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Date: Sun, 18 Aug 2024 18:23:18 +0200
-Subject: [PATCH] drm/radeon: Switch radeon_connector to struct drm_edid
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2079.outbound.protection.outlook.com [40.107.102.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DEBB10E16C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 06:17:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YxWw8Q81Rkeaq7xJISojX+kP1R3XqeFResjEwhREMtwUmPQY0U8yIOqoB500+oTfx7wVBWDFyBqtOSREErPMECBBBnZuhNq4ALmBZXzxNZJJI9QOfSMHBz5Jkl4fIKyJGEOQLvbR57HXehEx/e2udoQU+cmiO03BkvhRX/q2U3VrBH9ee8ysONZvBuQuvQtB2rR1GYdNSnia6UT/V9BOnlnyyOn5TKl5Fwa94/u8xD5tB9o+tX8irPcha9LK2X/HSFbHWT5Af7loCbuRzNUiDZosCQoAgQ5I6Wj5mIjw1cvKKihLkeg87T7nX64jGcrVloKmF25ktx0uN0TIyDqakw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/lwPeZ17cD8gtNo3MAPeSPLhV5bEYTx4RDOPd2NeVPk=;
+ b=j0zQlQkrql2e/n5DHSm88BkUL5Mzr+KPCO/cnY9535Y8wQxmwPHCue8Yl+sJHU7ruABZ05e0i3QeoPE5tkMV3MVPF6kvn0KpQZ4ncNaxXRLIkNbpqs0nul3ADh1nX3My/Tyw2SjE9CBqv5/kKhmwND3uMuUjo4mYLqEbGndle164l3zbGT1emNSX8VB6A1+wtEvdmaF30BT7V2ARcBKu0OAlOUrFwmGYBNKm+cORlcIwuMbl1jvRuZSHp/migWCLuCuG/5NswKA7aKnHnTrlp9DVoKuxCAMjqhGbBJVfQbSxmO7WByKOQ2K3Fl9OrmeFlCGXSsPi+f610ZBPBXonNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/lwPeZ17cD8gtNo3MAPeSPLhV5bEYTx4RDOPd2NeVPk=;
+ b=PcuKagUJWTMVoTSlLmGeKbAMmNsBX2jwUfhcOGlLy7QH466gYuvQ+SnkzuSSZZmgCkAX9BRK+d4M9BerI8BnJP6jCy7dPqvflSeBwr1D7h2WTngkHsVe090PNhA33UR0IRwto9ofaPXEE9zluBl5LUFYsuSP9tAJPTZ+ty5z/hs=
+Received: from PH0PR12MB5417.namprd12.prod.outlook.com (2603:10b6:510:e1::10)
+ by SJ2PR12MB9192.namprd12.prod.outlook.com (2603:10b6:a03:55d::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Mon, 19 Aug
+ 2024 06:17:06 +0000
+Received: from PH0PR12MB5417.namprd12.prod.outlook.com
+ ([fe80::de07:ec43:e847:2f50]) by PH0PR12MB5417.namprd12.prod.outlook.com
+ ([fe80::de07:ec43:e847:2f50%5]) with mapi id 15.20.7875.019; Mon, 19 Aug 2024
+ 06:17:06 +0000
+From: "Deng, Emily" <Emily.Deng@amd.com>
+To: "Zhao, Victor" <Victor.Zhao@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Zhao, Victor" <Victor.Zhao@amd.com>
+Subject: RE: [PATCH] drm/amd/amdgpu: allow use kiq to do hdp flush under sriov
+Thread-Topic: [PATCH] drm/amd/amdgpu: allow use kiq to do hdp flush under sriov
+Thread-Index: AQHa8eroAUDTXgh/rkaJUsPGXvVRsbIuC8UQ
+Date: Mon, 19 Aug 2024 06:17:05 +0000
+Message-ID: <PH0PR12MB54171A8F16C422CCB5D61FDF8F8C2@PH0PR12MB5417.namprd12.prod.outlook.com>
+References: <20240819034937.1181639-1-Victor.Zhao@amd.com>
+In-Reply-To: <20240819034937.1181639-1-Victor.Zhao@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=94589d67-5050-44ac-892c-e6f688f89b66;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution Only;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-08-19T05:22:37Z;
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR12MB5417:EE_|SJ2PR12MB9192:EE_
+x-ms-office365-filtering-correlation-id: 0abb0e73-e054-4346-78eb-08dcc0168c8c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?aQitR3gDmkn/leHcqR6Fv4SGI18TcxpCyIFRg/x24oiBaIlYF0WI8cgmm7lO?=
+ =?us-ascii?Q?QggVysYJP4gCBNYZXkC5sBwMUs7XfoTtwYnQBOsQ6kr/whTC5cMCDH20LUVr?=
+ =?us-ascii?Q?2NNgUtmNKGj1Ar6D2NAlG0s3J22D0TIjwqzgfquOJG7xshSyF51Bq40ZGjN0?=
+ =?us-ascii?Q?hRYCw0IovzqLyrCc9Z2HNCUdkJ7xV49gKmmFNfxGc5X9X5k83NH2RFj5dsQU?=
+ =?us-ascii?Q?8aSko1co++YgMPau8aJ2nX66eEI1I0SIxxX5ZJRZ2Ypy1IGAOpeV3UqtAOgk?=
+ =?us-ascii?Q?pj3QFj6caZkwzGaVlNUr4TKO5Jr3onl7raLs8dsUG5KuWoe5qVLOM5e8jc/q?=
+ =?us-ascii?Q?0zBlDRbNl0x7a3X72n7TQsJBlaj4B9j6U6TrMuvQRJMd+KiHIwcMV20ntFCx?=
+ =?us-ascii?Q?wDtZLiXkQEa+ZOgAgkhhH43WPhTvdwk2dSYJf2/OORnt09qQBlWPDrN85Ttd?=
+ =?us-ascii?Q?zpLcPfYxYK7U6vTfcJdie5adieeoYEx8b0gsmIG12JnK4I/si35ohlCr4EfE?=
+ =?us-ascii?Q?lEdeaK+dhQSjbk7gXBIcF2C3cQEEeKnFYNMRiX0V1m/L/V1J0sKZGZ2pF7Lt?=
+ =?us-ascii?Q?yKljSvZymx8pQd8D6+HLdRGV364O/y7Uuyed2MzgprfGXBq+qddEZi4KVp2Z?=
+ =?us-ascii?Q?cPHR7Rkzx0h6U6gI+evjYEU+X+W2Gfadfh6xFy8WZ0qhSxa5XRMVOQ58yG70?=
+ =?us-ascii?Q?Ypi+MC1gG6sAO1IlCXc0WUvJ6Jfxo37ikWyi3mIrc8714EO0ydhXIeEh9zKL?=
+ =?us-ascii?Q?LpU6bqeCARKBq6xqEFpSbkepj3fgl5TPKICd7lVlzOou47nuH08ZlX0g5kBD?=
+ =?us-ascii?Q?pfA6/ZsQlsLu79G6nIoKNlmGTES59FKYP7pf8MTG3oKUUo1hbAPhPlIclnW2?=
+ =?us-ascii?Q?mpAz5hVPOC/7gYva1c0+LSB5MEcYxTlziApw0XDm+Uf9PhHZ4pBItFgL7gDD?=
+ =?us-ascii?Q?iNxmkc02bOMBshfAJMA3dfuaOeJ1nHwI5X2cy6LspEHThbcV5qXuVpTDUdds?=
+ =?us-ascii?Q?+U2vpRsy9ULqrAL5IWbc8mpfxkgV4A3+lOLe2aMoPN9hWFesIfFiotIUGEg0?=
+ =?us-ascii?Q?8jy2UwOkOKdLce4oBIkCT6enVStvfs1o8Y4wskovKIUr+3puVmLKb3bzu29D?=
+ =?us-ascii?Q?4GQfgY4XXb0GdKs9RMvPeY1qlHZWqoRnLXBBeSs8BxCcVheAwVS+ZAsyigOO?=
+ =?us-ascii?Q?+BD6BvwWOn/PeqpFOQEb/9O5LUYLZM+T78BCyiV7a7eu+A1FRpvtK0R71seq?=
+ =?us-ascii?Q?wh9UZrtAYLt8LH7hrVYnpplIk+Zi+R4JXHjMeOKlxtfcrN9QLTt97oSrhM6P?=
+ =?us-ascii?Q?9AUHhAyG86jwnpfwtE0MX3Id098J/ejvHlmKiME2qRAfw1g6e7y1yeMarMQj?=
+ =?us-ascii?Q?Fy6OJvg+D4ue286Kq9DvNzdQFJmKE9fdXNZFZyOSm7wqZXnu0g=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR12MB5417.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?XKT84VOyF6HLsotqWJGFmABT4Oqeo0H+mMkLYCRfYxqcAeCawLGZXsq5pcAX?=
+ =?us-ascii?Q?LTxMDh444lFWBOXk8c+9GQAinjiVbZ2qQSdicDn6DrUZU6RSjuNpzd9l5Pey?=
+ =?us-ascii?Q?E+VZMKmWaoanEqOar+Dy1u6Ae/Dj5WAqrkZlcqKPQ4DOA7s/dyj2KHshFBZt?=
+ =?us-ascii?Q?xhE8MWZuo/Xr4GWTYPCGmaP48Cr8DayMQ+zV/IvrE/47wTBd2h5z4PFwJtvJ?=
+ =?us-ascii?Q?6Gy6Titv2A35IJj/K83Pmq3aHV4KKFY556PkJhABoJodA6atLpNta/AuzM7f?=
+ =?us-ascii?Q?Pfw/CsIBkLUqHwW/AUaE2NzhwrPx4czvv1HchcgHsG8PrVwsYZ3UGP/1Nmzd?=
+ =?us-ascii?Q?kWoulT2flrVMjar43Lz0SWIFyVrnbHAa/3n2e9c0Y6Yd16LFX7qTgIvoZSwq?=
+ =?us-ascii?Q?8LY+hCIr8fSbwnVRfnA3gUoC+oZxfeqAcoGj9EhlOmi3DnZQzpJmD1KJosE4?=
+ =?us-ascii?Q?paXOqc12ReIyTvLyHEnrurvmDV3KDPFyLT/rIgN0nH92mDcUNilE/HJ+DW/5?=
+ =?us-ascii?Q?ZMMKZ8PoNVTENwaQJ8+ZGCyrGocl0LhvaaLSV8Wuz415LPSlonbKCfKBNq/X?=
+ =?us-ascii?Q?rC0sehVEG7Yp5uDY3a6Ng4TOdod8pG7GGrrmuoQGxzsVpcgQIp7RbXYnRbQX?=
+ =?us-ascii?Q?hfWLhJt9EidonibazJBCkwhVBZb9F/U7gCnQIIVoULzQ6Ws71vRlvvU0yicJ?=
+ =?us-ascii?Q?oR7C7qKzwQ9LpyF2pSjJKM1IiatlrhLMi8VRzZwGkzP6HyfuCPAoa7jM5aY1?=
+ =?us-ascii?Q?p89b+duvOM0JwfLJG41hJo5FLP5DucgWS3io9I8g6tLXqJkFgLY1O6n0RNa0?=
+ =?us-ascii?Q?Y2JDzfq+a0l+0DblpqPNQkkLr8uPGW8hAZUPtVnTV9VT5e0v6pz5TwmQAcQ8?=
+ =?us-ascii?Q?BWzaTx5JIWaEaQkejUUgO1qu0POGEcNOU73ZV4n5/ynRX+QWqb4/OqQe1Y4U?=
+ =?us-ascii?Q?j5xL/OcnEy5tCEcLgzsdctZzTWYaJMNOaQmzYarKxUcfIFEZ1+nvsMiO90lk?=
+ =?us-ascii?Q?QSJg1iN2dSHJAlJs6T7EbMh6B2wVRZkNgBPAOI5n8F803Y+lfmyfZdzCwdqS?=
+ =?us-ascii?Q?El/6hCUHM7aUGO4H0b02c28fWVGH09OmUwfbzVzFKf4uVNKRh64IXYYQ7lxY?=
+ =?us-ascii?Q?nF/o8OIeqK8LF7+OgUp8l3t83VRZ0QGfJTBDyldYAm+ic6twpf0kN8YZzaJU?=
+ =?us-ascii?Q?Zc0oJEPGv8OYWYBuieZqs53LviUfURqKaCuP7UY2d+xJSpcnmhJV4nxieyXW?=
+ =?us-ascii?Q?RaA3IwoHWDKIAyx6iUNcH/VJmswVLg5jWgBi7/lOQLOmgE0wMejlEeRT+u30?=
+ =?us-ascii?Q?Vd6wYjt6hcR2sTCPpdsqanUlwcrN434Z5ezTlzmUDCSG0s7Q6jHTjqxT6QwS?=
+ =?us-ascii?Q?QjnT5zOar1e4KR/FOS0s5kuIY0+qzi/Ua3zUCInnSV0HNpFLOqjnfPj4AYye?=
+ =?us-ascii?Q?r0wonSiaiDwVnqU7Z9X/PpqQ9nQzjqOBB2N4wniT2HtMMFdQTZkEibPK+oWV?=
+ =?us-ascii?Q?0EUZURtlAH9X9iC4YD6Y3MZ2AOh+ONs4OiiOTkv6PWr9psFmUBeuW0guPySl?=
+ =?us-ascii?Q?+aUowMk9IwxS1KMuo+I=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240818-radeon-drm_edid-v1-1-4b7fdd19132e@weissschuh.net>
-X-B4-Tracking: v=1; b=H4sIAPUfwmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDC0ML3aLElNT8PN2Uotz41JTMFF3LNIPk1GRjs1QjI3MloK6CotS0zAq
- widGxEH5RamEp0OASqGBtLQByMehQdgAAAA==
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723998219; l=10444;
- i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=Q7o8gz79XSffGfBrsVTJcm795XahCJSCgR53ChT/DnI=;
- b=x/YxpOA8ebwYFo2leVwCLWOVI88lL/lk1y8VhP8wPxGgg5Z5CsLsbXm/VlvA39R10vAY+7BBL
- thmNwMhTFMACq/qZvgVRn5iMjdvZWmMhwnS4Dvr7IQ1r61s62y7em70
-X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
- pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
-X-Mailman-Approved-At: Mon, 19 Aug 2024 07:21:29 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB5417.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0abb0e73-e054-4346-78eb-08dcc0168c8c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2024 06:17:05.9104 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NBgHJ64IEHGDNOhI9RBm/fwoVxDDXfd9teAfeFSzCeQByGzEJW8vsWgNxneFGfHq
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9192
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,241 +152,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-"struct drm_edid" is the safe and recommended alternative to "struct edid".
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Rename the member to make sure that no usage sites are missed,
-as "struct drm_edid" has some restrictions, for example it can not be
-used with kfree().
+Reviewed-by: Emily Deng <Emily.Deng@amd.com>
 
-Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
----
-This is only compile-tested.
----
- drivers/gpu/drm/radeon/radeon_audio.c      |  4 +--
- drivers/gpu/drm/radeon/radeon_combios.c    |  4 +--
- drivers/gpu/drm/radeon/radeon_connectors.c | 54 +++++++++++++++---------------
- drivers/gpu/drm/radeon/radeon_mode.h       |  5 ++-
- 4 files changed, 33 insertions(+), 34 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/radeon_audio.c b/drivers/gpu/drm/radeon/radeon_audio.c
-index 47aa06a9a942..59d0e47c94d0 100644
---- a/drivers/gpu/drm/radeon/radeon_audio.c
-+++ b/drivers/gpu/drm/radeon/radeon_audio.c
-@@ -311,7 +311,7 @@ static void radeon_audio_write_sad_regs(struct drm_encoder *encoder)
- 	if (!connector)
- 		return;
- 
--	sad_count = drm_edid_to_sad(radeon_connector->edid, &sads);
-+	sad_count = drm_edid_to_sad(drm_edid_raw(radeon_connector->drm_edid), &sads);
- 	if (sad_count < 0)
- 		DRM_ERROR("Couldn't read SADs: %d\n", sad_count);
- 	if (sad_count <= 0)
-@@ -335,7 +335,7 @@ static void radeon_audio_write_speaker_allocation(struct drm_encoder *encoder)
- 	if (!connector)
- 		return;
- 
--	sad_count = drm_edid_to_speaker_allocation(radeon_connector->edid, &sadb);
-+	sad_count = drm_edid_to_speaker_allocation(drm_edid_raw(radeon_connector->drm_edid), &sadb);
- 	if (sad_count < 0) {
- 		DRM_DEBUG("Couldn't read Speaker Allocation Data Block: %d\n",
- 			  sad_count);
-diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
-index df8d7f56b028..f4947acd0419 100644
---- a/drivers/gpu/drm/radeon/radeon_combios.c
-+++ b/drivers/gpu/drm/radeon/radeon_combios.c
-@@ -390,10 +390,10 @@ bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev)
- }
- 
- /* this is used for atom LCDs as well */
--struct edid *
-+const struct drm_edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
- {
--	return drm_edid_duplicate(drm_edid_raw(rdev->mode_info.bios_hardcoded_edid));
-+	return drm_edid_dup(rdev->mode_info.bios_hardcoded_edid);
- }
- 
- static struct radeon_i2c_bus_rec combios_setup_i2c_bus(struct radeon_device *rdev,
-diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
-index 528a8f3677c2..87a78c8e09c0 100644
---- a/drivers/gpu/drm/radeon/radeon_connectors.c
-+++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-@@ -261,7 +261,7 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 	struct radeon_device *rdev = dev->dev_private;
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
- 
--	if (radeon_connector->edid)
-+	if (radeon_connector->drm_edid)
- 		return;
- 
- 	/* on hw with routers, select right port */
-@@ -271,8 +271,8 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 	if ((radeon_connector_encoder_get_dp_bridge_encoder_id(connector) !=
- 	     ENCODER_OBJECT_ID_NONE) &&
- 	    radeon_connector->ddc_bus->has_aux) {
--		radeon_connector->edid = drm_get_edid(connector,
--						      &radeon_connector->ddc_bus->aux.ddc);
-+		radeon_connector->drm_edid = drm_edid_read_ddc(connector,
-+							       &radeon_connector->ddc_bus->aux.ddc);
- 	} else if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
- 		   (connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
- 		struct radeon_connector_atom_dig *dig = radeon_connector->con_priv;
-@@ -280,22 +280,22 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 		if ((dig->dp_sink_type == CONNECTOR_OBJECT_ID_DISPLAYPORT ||
- 		     dig->dp_sink_type == CONNECTOR_OBJECT_ID_eDP) &&
- 		    radeon_connector->ddc_bus->has_aux)
--			radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--							      &radeon_connector->ddc_bus->aux.ddc);
-+			radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+								       &radeon_connector->ddc_bus->aux.ddc);
- 		else if (radeon_connector->ddc_bus)
--			radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--							      &radeon_connector->ddc_bus->adapter);
-+			radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+								       &radeon_connector->ddc_bus->adapter);
- 	} else if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC &&
- 		   connector->connector_type == DRM_MODE_CONNECTOR_LVDS &&
- 		   radeon_connector->ddc_bus) {
--		radeon_connector->edid = drm_get_edid_switcheroo(&radeon_connector->base,
--								 &radeon_connector->ddc_bus->adapter);
-+		radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+							       &radeon_connector->ddc_bus->adapter);
- 	} else if (radeon_connector->ddc_bus) {
--		radeon_connector->edid = drm_get_edid(&radeon_connector->base,
--						      &radeon_connector->ddc_bus->adapter);
-+		radeon_connector->drm_edid = drm_edid_read_ddc(&radeon_connector->base,
-+							       &radeon_connector->ddc_bus->adapter);
- 	}
- 
--	if (!radeon_connector->edid) {
-+	if (!radeon_connector->drm_edid) {
- 		/* don't fetch the edid from the vbios if ddc fails and runpm is
- 		 * enabled so we report disconnected.
- 		 */
-@@ -306,20 +306,22 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 			/* some laptops provide a hardcoded edid in rom for LCDs */
- 			if (((connector->connector_type == DRM_MODE_CONNECTOR_LVDS) ||
- 			     (connector->connector_type == DRM_MODE_CONNECTOR_eDP)))
--				radeon_connector->edid = radeon_bios_get_hardcoded_edid(rdev);
-+				radeon_connector->drm_edid = radeon_bios_get_hardcoded_edid(rdev);
- 		} else {
- 			/* some servers provide a hardcoded edid in rom for KVMs */
--			radeon_connector->edid = radeon_bios_get_hardcoded_edid(rdev);
-+			radeon_connector->drm_edid = radeon_bios_get_hardcoded_edid(rdev);
- 		}
- 	}
-+
-+	drm_edid_connector_update(&radeon_connector->base, radeon_connector->drm_edid);
- }
- 
- static void radeon_connector_free_edid(struct drm_connector *connector)
- {
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
- 
--	kfree(radeon_connector->edid);
--	radeon_connector->edid = NULL;
-+	drm_edid_free(radeon_connector->drm_edid);
-+	radeon_connector->drm_edid = NULL;
- }
- 
- static int radeon_ddc_get_modes(struct drm_connector *connector)
-@@ -327,12 +329,12 @@ static int radeon_ddc_get_modes(struct drm_connector *connector)
- 	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
- 	int ret;
- 
--	if (radeon_connector->edid) {
--		drm_connector_update_edid_property(connector, radeon_connector->edid);
--		ret = drm_add_edid_modes(connector, radeon_connector->edid);
-+	if (radeon_connector->drm_edid) {
-+		drm_edid_connector_update(connector, radeon_connector->drm_edid);
-+		ret = drm_edid_connector_add_modes(connector);
- 		return ret;
- 	}
--	drm_connector_update_edid_property(connector, NULL);
-+	drm_edid_connector_update(connector, NULL);
- 	return 0;
- }
- 
-@@ -869,7 +871,7 @@ radeon_lvds_detect(struct drm_connector *connector, bool force)
- 
- 	/* check for edid as well */
- 	radeon_connector_get_edid(connector);
--	if (radeon_connector->edid)
-+	if (radeon_connector->drm_edid)
- 		ret = connector_status_connected;
- 	/* check acpi lid status ??? */
- 
-@@ -1012,13 +1014,12 @@ radeon_vga_detect(struct drm_connector *connector, bool force)
- 		radeon_connector_free_edid(connector);
- 		radeon_connector_get_edid(connector);
- 
--		if (!radeon_connector->edid) {
-+		if (!radeon_connector->drm_edid) {
- 			DRM_ERROR("%s: probed a monitor but no|invalid EDID\n",
- 					connector->name);
- 			ret = connector_status_connected;
- 		} else {
--			radeon_connector->use_digital =
--				!!(radeon_connector->edid->input & DRM_EDID_INPUT_DIGITAL);
-+			radeon_connector->use_digital = drm_edid_is_digital(radeon_connector->drm_edid);
- 
- 			/* some oems have boards with separate digital and analog connectors
- 			 * with a shared ddc line (often vga + hdmi)
-@@ -1270,7 +1271,7 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
- 		radeon_connector_free_edid(connector);
- 		radeon_connector_get_edid(connector);
- 
--		if (!radeon_connector->edid) {
-+		if (!radeon_connector->drm_edid) {
- 			DRM_ERROR("%s: probed a monitor but no|invalid EDID\n",
- 					connector->name);
- 			/* rs690 seems to have a problem with connectors not existing and always
-@@ -1286,8 +1287,7 @@ radeon_dvi_detect(struct drm_connector *connector, bool force)
- 				broken_edid = true; /* defer use_digital to later */
- 			}
- 		} else {
--			radeon_connector->use_digital =
--				!!(radeon_connector->edid->input & DRM_EDID_INPUT_DIGITAL);
-+			radeon_connector->use_digital = drm_edid_is_digital(radeon_connector->drm_edid);
- 
- 			/* some oems have boards with separate digital and analog connectors
- 			 * with a shared ddc line (often vga + hdmi)
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index 421c83fc70dc..ae1d91cd93ec 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -38,7 +38,6 @@
- #include <linux/i2c.h>
- #include <linux/i2c-algo-bit.h>
- 
--struct edid;
- struct drm_edid;
- struct radeon_bo;
- struct radeon_device;
-@@ -521,7 +520,7 @@ struct radeon_connector {
- 	bool use_digital;
- 	/* we need to mind the EDID between detect
- 	   and get modes due to analog/digital/tvencoder */
--	struct edid *edid;
-+	const struct drm_edid *drm_edid;
- 	void *con_priv;
- 	bool dac_load_detect;
- 	bool detected_by_load; /* if the connection status was determined by load */
-@@ -843,7 +842,7 @@ radeon_get_crtc_scanout_position(struct drm_crtc *crtc, bool in_vblank_irq,
- 				 const struct drm_display_mode *mode);
- 
- extern bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev);
--extern struct edid *
-+extern const struct drm_edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev);
- extern bool radeon_atom_get_clock_info(struct drm_device *dev);
- extern bool radeon_combios_get_clock_info(struct drm_device *dev);
-
----
-base-commit: 19cff16559a4f2d763faf4f8392bf86d3a21b93c
-change-id: 20240818-radeon-drm_edid-9f0cec36e227
-
-Best regards,
--- 
-Thomas Weißschuh <linux@weissschuh.net>
+>-----Original Message-----
+>From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Victor
+>Zhao
+>Sent: Monday, August 19, 2024 11:50 AM
+>To: amd-gfx@lists.freedesktop.org
+>Cc: Deng, Emily <Emily.Deng@amd.com>; Zhao, Victor
+><Victor.Zhao@amd.com>
+>Subject: [PATCH] drm/amd/amdgpu: allow use kiq to do hdp flush under sriov
+>
+>when use cpu to do page table update under sriov runtime, since mmio
+>access is blocked, kiq has to be used to flush hdp.
+>
+>change WREG32_NO_KIQ to WREG32 to allow kiq.
+>
+>Signed-off-by: Victor Zhao <Victor.Zhao@amd.com>
+>---
+> drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c | 2 +-
+>drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c | 2 +-
+>drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c | 2 +-
+>drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c | 2 +-
+> 4 files changed, 4 insertions(+), 4 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+>b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+>index 077c6d920e27..e019249883fb 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+>+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
+>@@ -41,7 +41,7 @@ static void hdp_v4_0_flush_hdp(struct amdgpu_device
+>*adev,
+>                               struct amdgpu_ring *ring)
+> {
+>       if (!ring || !ring->funcs->emit_wreg)
+>-              WREG32_NO_KIQ((adev->rmmio_remap.reg_offset +
+>KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>+              WREG32((adev->rmmio_remap.reg_offset +
+>+KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>       else
+>               amdgpu_ring_emit_wreg(ring, (adev-
+>>rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+>2, 0);  } diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+>b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+>index a9ea23fa0def..ed7facacf2fe 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+>+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
+>@@ -32,7 +32,7 @@ static void hdp_v5_0_flush_hdp(struct amdgpu_device
+>*adev,
+>                               struct amdgpu_ring *ring)
+> {
+>       if (!ring || !ring->funcs->emit_wreg)
+>-              WREG32_NO_KIQ((adev->rmmio_remap.reg_offset +
+>KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>+              WREG32((adev->rmmio_remap.reg_offset +
+>+KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>       else
+>               amdgpu_ring_emit_wreg(ring, (adev-
+>>rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+>2, 0);  } diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+>b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+>index ab06c2b4b20b..33736d361dd0 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+>+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v6_0.c
+>@@ -35,7 +35,7 @@ static void hdp_v6_0_flush_hdp(struct amdgpu_device
+>*adev,
+>                               struct amdgpu_ring *ring)
+> {
+>       if (!ring || !ring->funcs->emit_wreg)
+>-              WREG32_NO_KIQ((adev->rmmio_remap.reg_offset +
+>KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>+              WREG32((adev->rmmio_remap.reg_offset +
+>+KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>       else
+>               amdgpu_ring_emit_wreg(ring, (adev-
+>>rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+>2, 0);  } diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+>b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+>index 8d7d0813e331..1c99bb09e2a1 100644
+>--- a/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+>+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v7_0.c
+>@@ -32,7 +32,7 @@ static void hdp_v7_0_flush_hdp(struct amdgpu_device
+>*adev,
+>                               struct amdgpu_ring *ring)
+> {
+>       if (!ring || !ring->funcs->emit_wreg)
+>-              WREG32_NO_KIQ((adev->rmmio_remap.reg_offset +
+>KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>+              WREG32((adev->rmmio_remap.reg_offset +
+>+KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >> 2, 0);
+>       else
+>               amdgpu_ring_emit_wreg(ring, (adev-
+>>rmmio_remap.reg_offset + KFD_MMIO_REMAP_HDP_MEM_FLUSH_CNTL) >>
+>2, 0);  }
+>--
+>2.34.1
 
