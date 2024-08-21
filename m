@@ -2,68 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD35959588
+	by mail.lfdr.de (Postfix) with ESMTPS id 12506959586
 	for <lists+amd-gfx@lfdr.de>; Wed, 21 Aug 2024 09:16:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F55910E89C;
-	Wed, 21 Aug 2024 07:16:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mlfb75n4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B515C10E899;
+	Wed, 21 Aug 2024 07:16:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
- [209.85.208.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFA110E548
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 02:45:09 +0000 (UTC)
-Received: by mail-ed1-f49.google.com with SMTP id
- 4fb4d7f45d1cf-5bed72ff443so5550479a12.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Aug 2024 19:45:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1724208307; x=1724813107; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=o4cqz96N+ROaBBMWLpFKEgKo/bq32VOrAJWuy8mVm0E=;
- b=Mlfb75n4BR/73vRuBpxyNL+nDOlr3BEdgCUHAn13o5ZlGJnxRJi71fgPKo0zrEJVlQ
- aqWTDLRdkyrdELbwwHaNG2XBEAVW9R5gWrDr3ANV0Ix7QwODGEoVqRAmT8KJr5d668Lx
- JKUDKL++TOF+j04vlmdpEzVFtPpkiJ071y3upBfPZ20NXa2MFZvXkZAJzkekQBP45M1+
- lNlqQTTGmN0QRtnXK1+wGXybxalmoZB80FIwZwMzxa2nlN7GNyhAMvdv+EbOOTWgnBiQ
- m0KfNMncUkFVxLfa7uT8vDtP87VK9bMlvQqJ858RBa26XZBauRJQDlY+/tBZi8efoE4c
- qRGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724208307; x=1724813107;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=o4cqz96N+ROaBBMWLpFKEgKo/bq32VOrAJWuy8mVm0E=;
- b=rUg0NHonGNAaOFk/leijw93uRJzd/6XEBbmUon8ahqvnwbfg6TQTpjf1ngeCSDORVU
- f36ncZ0biFw/InOBuEVmS4qCEbGYP5UrQjKVfoVavKThd6OKWK1rYDgUegltk0K/u7AZ
- O5ELnIJqtTzbIElRhWS2LmOxuto5FqqaFbEco8VrENG7fbMIoiPMSNK7Emz0SyL4YjrI
- QiL2QHvJlI5J92wr11o7ouz0xbVrr6duVsWunHznVAjHDLbTg844kYLvttb2zZ3ELpB9
- e7YywPukWIR/btoT6r0gljkOu4iS6RRS03Cvt3EFnBEEiTaDGdI3epJNArmDybfEirul
- +xfg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWIdb+fX0X0eMvOF+PEPqjn150+3vuSwcl+VadpZwT7CikdfKgPIlqvHRq8+Jv0mHjcSX4ecFnu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwMM1YysBIkoXdbSdWXEVt3J+Xi7Ktok1ks+bh5ZBGUKKnToPft
- JAH811+Xr1zs4qSMtlICPZmyXTS6y8ewOYbKspa6JQp5r1X0gBw68vgCpD0dG88fFevpxADNbly
- sZTChoBJn3usJQK+hSi4XOiWYWDM=
-X-Google-Smtp-Source: AGHT+IE/BtNAH4luKFYEHjh92k3KtZ8KEYJ9HdfouOot62dbFjXZDQ2EVtmsXYhf0KyGa4yuegO5enEAusQ+n/KkY1M=
-X-Received: by 2002:a05:6402:190c:b0:5be:c73e:26e1 with SMTP id
- 4fb4d7f45d1cf-5bf1f1666e6mr391225a12.22.1724208306979; Tue, 20 Aug 2024
- 19:45:06 -0700 (PDT)
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB3A10E886;
+ Wed, 21 Aug 2024 04:27:48 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-03 (Coremail) with SMTP id rQCowABHTPivbMVmUjqrCA--.1206S2;
+ Wed, 21 Aug 2024 12:27:36 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, mwen@igalia.com,
+ aurabindo.pillai@amd.com, joshua@froggi.es, hamza.mahfooz@amd.com,
+ marek.olsak@amd.com, HaoPing.Liu@amd.com, akpm@linux-foundation.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH RESEND] drm/amd/display: avoid using null object of framebuffer
+Date: Wed, 21 Aug 2024 12:27:24 +0800
+Message-Id: <20240821042724.1391169-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CA+Y=x3n+X6PDza5KAG2fy2wLh0-w5mWQtvKbWvT3E3A0r_makg@mail.gmail.com>
- <CADnq5_N-pvp8czodNT=YDFsqRz-Tet4GHK-JWiDdHnfL-2YF-w@mail.gmail.com>
- <CA+Y=x3kr1F4OVPK8priS6cJZx_4KAT4kiYTLXhGK6qcYSG9TXw@mail.gmail.com>
- <CADnq5_PthnFSeyLxhLSRiWSU1Y2McrMuSC6LXC2CFW3hqmTwVw@mail.gmail.com>
-In-Reply-To: <CADnq5_PthnFSeyLxhLSRiWSU1Y2McrMuSC6LXC2CFW3hqmTwVw@mail.gmail.com>
-From: Andrew Worsley <amworsley@gmail.com>
-Date: Wed, 21 Aug 2024 12:44:54 +1000
-Message-ID: <CA+Y=x3k2ctOPbUnopoGj29ytLtnWZkSDFnYS6Z0A+-YbtKRr_g@mail.gmail.com>
-Subject: Re: v6.11-rc4 amdgpu regression from v6.10.0
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Jack Xiao <Jack.Xiao@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: rQCowABHTPivbMVmUjqrCA--.1206S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF4xWF4xKw18Ar48KFWUCFg_yoW8Xw43pF
+ sxAFy5Xr1UZF47t347CF1I9FZ0ka93XF1xKrWUuw1Svw15trn8Zws8Grs2gF4xXFWjkw4S
+ qFy7ArW2yF1qvw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUBa14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr
+ 1j6F4UJwAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40E
+ FcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr
+ 0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8v
+ x2IErcIFxwACI402YVCY1x02628vn2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20x
+ vY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
+ 3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIx
+ AIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAI
+ cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2js
+ IEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRBVb9UUUUU=
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
 X-Mailman-Approved-At: Wed, 21 Aug 2024 07:16:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,116 +63,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Aug 2024 at 23:09, Alex Deucher <alexdeucher@gmail.com> wrote:
->
-> + Jack
->
-> Looks like maybe some older firmware versions don't support this
-> properly.  @Jack Xiao Can you find out if there is a minimum firmware
-> version needed for legacy queue mapping and add the appropriate check?
+Instead of using state->fb->obj[0] directly, get object from framebuffer
+by calling drm_gem_fb_get_obj() and return error code when object is
+null to avoid using null object of framebuffer.
 
-Might be even nicer if there was a version bit that could be checked
-to see if the feature is present
-rather than hardcode the version number into the driver....
->
-> @Andrew Worsley does it work correctly with a newer version of firmware?
+Cc: stable@vger.kernel.org
+Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Yep - it does!
- Didn't even realise there was firmware involved! - google searching
-showed on Debian (I'm running bookworm) there is the package
-firmware-non-free
-  https://tracker.debian.org/pkg/firmware-nonfree which generates the
-binary package firmware-amd-graphics
-  which has several releases (See
-https://packages.debian.org/search?keywords=firmware-amd-graphics)
-and there is a newer one 20240709-1 which I installed (lots of new
-files in /lib/firmware/amdgpu) then rebuilt my kernel with latest
-mainline:
-...
-commit 0108b7be2a18 (HEAD -> master, mainline/master)
-Merge: 521b1e7f4cf0 cf1e515c9a40
-Author: Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Tue Aug 20 16:06:39 2024 -0700
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index a83bd0331c3b..5cb11cc2d063 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -28,6 +28,7 @@
+ #include <drm/drm_blend.h>
+ #include <drm/drm_gem_atomic_helper.h>
+ #include <drm/drm_plane_helper.h>
++#include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_fourcc.h>
+ 
+ #include "amdgpu.h"
+@@ -935,10 +936,14 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
+ 	}
+ 
+ 	afb = to_amdgpu_framebuffer(new_state->fb);
+-	obj = new_state->fb->obj[0];
++	obj = drm_gem_fb_get_obj(new_state->fb, 0);
++	if (!obj) {
++		DRM_ERROR("Failed to get obj from framebuffer\n");
++		return -EINVAL;
++	}
++
+ 	rbo = gem_to_amdgpu_bo(obj);
+ 	adev = amdgpu_ttm_adev(rbo->tbo.bdev);
+-
+ 	r = amdgpu_bo_reserve(rbo, true);
+ 	if (r) {
+ 		dev_err(adev->dev, "fail to reserve bo (%d)\n", r);
+-- 
+2.25.1
 
-....
-
-Yep - it boots beautifully !
-
-Not sure what firmware file it ends up loading :
-
-% grep amdgpu dmesg-6.11.0-rc4-amw+.txt
-  gives
-
-[    2.636668] [drm] amdgpu kernel modesetting enabled.
-[    2.643985] amdgpu: Virtual CRAT table created for CPU
-[    2.644517] amdgpu: Topology: Add CPU node
-[    2.657219] amdgpu 0000:c1:00.0: amdgpu: Fetched VBIOS from VFCT
-[    2.657741] amdgpu: ATOM BIOS: 113-PHXGENERIC-001
-[    2.660178] amdgpu 0000:c1:00.0: vgaarb: deactivate vga console
-[    2.660182] amdgpu 0000:c1:00.0: amdgpu: Trusted Memory Zone (TMZ)
-feature enabled
-[    2.660246] amdgpu 0000:c1:00.0: amdgpu: VRAM: 2048M
-0x0000008000000000 - 0x000000807FFFFFFF (2048M used)
-[    2.660250] amdgpu 0000:c1:00.0: amdgpu: GART: 512M
-0x00007FFF00000000 - 0x00007FFF1FFFFFFF
-[    2.660449] [drm] amdgpu: 2048M of VRAM memory ready
-[    2.660452] [drm] amdgpu: 31048M of GTT memory ready.
-[    2.686979] amdgpu 0000:c1:00.0: amdgpu: reserve 0x4000000 from
-0x8078000000 for PSP TMR
-[    3.239914] amdgpu 0000:c1:00.0: amdgpu: RAS: optional ras ta ucode
-is not available
-[    3.248124] amdgpu 0000:c1:00.0: amdgpu: RAP: optional rap ta ucode
-is not available
-[    3.248134] amdgpu 0000:c1:00.0: amdgpu: SECUREDISPLAY:
-securedisplay ta ucode is not available
-[    3.278022] amdgpu 0000:c1:00.0: amdgpu: SMU is initialized successfully!
-[    3.388257] kfd kfd: amdgpu: Allocated 3969056 bytes on gart
-[    3.388276] kfd kfd: amdgpu: Total number of KFD nodes to be created: 1
-[    3.388466] amdgpu: Virtual CRAT table created for GPU
-[    3.388990] amdgpu: Topology: Add dGPU node [0x15bf:0x1002]
-[    3.388993] kfd kfd: amdgpu: added device 1002:15bf
-[    3.389007] amdgpu 0000:c1:00.0: amdgpu: SE 1, SH per SE 2, CU per
-SH 6, active_cu_number 12
-[    3.389014] amdgpu 0000:c1:00.0: amdgpu: ring gfx_0.0.0 uses VM inv
-eng 0 on hub 0
-[    3.389018] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.0.0 uses VM
-inv eng 1 on hub 0
-[    3.389022] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.1.0 uses VM
-inv eng 4 on hub 0
-[    3.389025] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.2.0 uses VM
-inv eng 6 on hub 0
-[    3.389028] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.3.0 uses VM
-inv eng 7 on hub 0
-[    3.389031] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.0.1 uses VM
-inv eng 8 on hub 0
-[    3.389034] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.1.1 uses VM
-inv eng 9 on hub 0
-[    3.389038] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.2.1 uses VM
-inv eng 10 on hub 0
-[    3.389041] amdgpu 0000:c1:00.0: amdgpu: ring comp_1.3.1 uses VM
-inv eng 11 on hub 0
-[    3.389044] amdgpu 0000:c1:00.0: amdgpu: ring sdma0 uses VM inv eng
-12 on hub 0
-[    3.389047] amdgpu 0000:c1:00.0: amdgpu: ring vcn_unified_0 uses VM
-inv eng 0 on hub 8
-[    3.389050] amdgpu 0000:c1:00.0: amdgpu: ring jpeg_dec uses VM inv
-eng 1 on hub 8
-[    3.389053] amdgpu 0000:c1:00.0: amdgpu: ring mes_kiq_3.1.0 uses VM
-inv eng 13 on hub 0
-[    3.395116] amdgpu 0000:c1:00.0: amdgpu: Runtime PM not available
-[    3.395724] [drm] Initialized amdgpu 3.58.0 for 0000:c1:00.0 on minor 0
-[    3.407862] fbcon: amdgpudrmfb (fb0) is primary device
-[    4.441001] amdgpu 0000:c1:00.0: [drm] fb0: amdgpudrmfb frame buffer device
-[   15.976841] snd_hda_intel 0000:c1:00.1: bound 0000:c1:00.0 (ops
-amdgpu_dm_audio_component_bind_ops [amdgpu])
-
-
->
-> Thanks,
->
-> Alex
->
-
-Thank - you
-
-Andrew
