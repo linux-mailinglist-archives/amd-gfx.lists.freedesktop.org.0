@@ -2,52 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38C195AEED
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FF795AEF3
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9C6C10E79F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B08D810E7A0;
 	Thu, 22 Aug 2024 07:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lirmm.fr header.i=@lirmm.fr header.b="eoyEa52R";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=lechnology.com header.i=@lechnology.com header.b="ckVpvyN8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 345 seconds by postgrey-1.36 at gabe;
- Wed, 21 Aug 2024 11:58:21 UTC
-Received: from kirkenes.lirmm.fr (kirkenes.lirmm.fr [193.49.104.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73FFD10E8DD
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 11:58:21 +0000 (UTC)
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
- [209.85.160.50])
- by kirkenes.lirmm.fr (Postfix) with ESMTPSA id 2F88BF94
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 13:52:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lirmm.fr; s=mail;
- t=1724241154; bh=RSS1SCA7TGlFtcnUwubl0ZphF+ny5nRJLXHO86dVl5Y=;
- h=Reply-To:From:Date:Subject:To:From;
- b=eoyEa52RfSLRLxB5WLRWgsF1vgFMmBb5RBpbFRD1JIjYQIp3re9NohaAav2yyoaYG
- atGcouwPBvjaNeppTBHGeJRQMQ2oRE14Vpj5JjIdLlhM7Wor4hnnF8VnRyhdHtZGgo
- IP9Fy3qV18B4Cdm0bars1O76uhYfQfuvT4D+x/+A9lTRDg9VKZHDvkD0yzGvVdzSWr
- h7eMsu3BCC/vHjr5CRdzBT1fA1Nz7/PjfOFHL6lpBB58OLepd1lqSAn5Hv9iYz3YIb
- 7M4zci1Ps6Tu8L7nkhhJ1RVQELcuIjp9ZaFDWYm0ocfJiYXKJkjZ80txy6T/LhlKig
- brHfwotMDieqQ==
-Received: by mail-oa1-f50.google.com with SMTP id
- 586e51a60fabf-27020fca39aso3847144fac.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 04:52:34 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwfhxMCUOLbBJ3XMs6irAHrY9B2kKt3S9kNlIxJqkmnbX40a25C
- 8WumIezU/psDqswT28JTdhoylQHy1++qxhhmi7w13auucdN9dX0jEFtfMOkN11eQFDgMycN9x6c
- Fe4/ZED6BbIHey36Jgem4za3+Eu8=
-X-Google-Smtp-Source: AGHT+IG6BcrYpP9ilOZnyeBPbuIp5i41CTP2ZJ1kNUHyttZgQ5ux/y76J66EYxNNDfVv7oysNHfj+v5X35fgXvanUL4=
-X-Received: by 2002:a05:6871:5222:b0:25e:1cdf:c604 with SMTP id
- 586e51a60fabf-2738be308f0mr1882139fac.31.1724241152942; Wed, 21 Aug 2024
- 04:52:32 -0700 (PDT)
+Received: from vern.gendns.com (vern.gendns.com [98.142.107.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E21510E5F2;
+ Wed, 21 Aug 2024 14:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lxOLKkIQ7poSz2tJygrDKrikqb7HuPRZ9lURWfUtGTA=; b=ckVpvyN8jxqtuL1DTYzbKqon8r
+ OFSNvDGX4aLwG1VDmJFbbbzn+SvlTfaDzHL0V0pgqzLKj1ydkl2pquDtA+gBCs4Vq4Yq6ArBCfEYR
+ qZ8w88/MouCFeP7fmHoF04ktgCputMXLKo8Ojqy15Y29ZfW0puhfZ1VnkUtRMfrPMzLZ/hB1XqLQp
+ eFdwd8WFso+lJ3quptmkeRbg6ys6CB+30tJF71CQpCnYfGvW6CbgAc+I/prKWeQAkfBDb2ooaVD9r
+ R45yMnxA0zEeglC+y5YwK0eKzRsEXX4LelfnCtP0ZHbcV+IODvlA9ZshORDFLeQNQEZjI8D5tC0fz
+ IcFkiPEQ==;
+Received: from ip98-183-112-25.ok.ok.cox.net ([98.183.112.25]:36126
+ helo=[192.168.0.142]) by vern.gendns.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96.2)
+ (envelope-from <david@lechnology.com>) id 1sglj3-00024a-1M;
+ Wed, 21 Aug 2024 09:48:01 -0400
+Message-ID: <8c2a2b80-cdb2-482f-85aa-4b7a943e0166@lechnology.com>
+Date: Wed, 21 Aug 2024 08:47:59 -0500
 MIME-Version: 1.0
-From: Krister Swenson <krister.swenson@lirmm.fr>
-Date: Wed, 21 Aug 2024 13:52:06 +0200
-X-Gmail-Original-Message-ID: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
-Message-ID: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
-Subject: two AMD cards failing with radeon driver
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="0000000000006dd5ab0620302df3"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 16/86] drm/ili9225: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-17-tzimmermann@suse.de>
+Content-Language: en-US
+From: David Lechner <david@lechnology.com>
+Autocrypt: addr=david@lechnology.com; keydata=
+ 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
+In-Reply-To: <20240821130348.73038-17-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id:
+ davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Mailman-Approved-At: Thu, 22 Aug 2024 07:20:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,138 +115,16 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: krister.swenson@lirmm.fr
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---0000000000006dd5ab0620302df3
-Content-Type: text/plain; charset="UTF-8"
+On 8/21/24 7:59 AM, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Lechner <david@lechnology.com>
+> ---
 
-Hello all,
-
-I couldn't find a list to send mail to concerning the radeon driver. Is
-this an OK place?
-
-I'm desperate for help, as I have crippling issues with my AMD cards since
-updating to Ubuntu 24.04. This is my work machine, and it's seriously
-hampering my productivity.
-
-I have a bit of experience messing around with this stuff over the last
-decades, but remain very naive about debugging graphics problems. I have
-two cards:
-
-03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-Oland GL [FirePro W2100]
-04:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
-
-Since the update the Radeon HD no longer works: I can boot into safe mode,
-but any attempt to start GDM results in a black screen with a line at the
-bottom.
-
-The FirePro card appears to work fine, until the driver goes haywire and I
-see a screen full of snow. I can still <ctrl><alt><F4> to a terminal and
-shut the machine down (without seeing anything but snow), but the graphics
-will not work. This happens with Wayland and Xorg. I posted a bug report
-here that includes details from syslog:
-
-https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-ati/+bug/2068342
-
-I would greatly appreciate any advice, hints, or workarounds on this issue,
-as it's seriously holding me back. Thank you folks!
-
-kms
-
-p.s.
-
-A few more details follow...
-
-=> sudo lshw -c video
-  *-display
-       description: VGA compatible controller
-       product: Oland GL [FirePro W2100]
-       vendor: Advanced Micro Devices, Inc. [AMD/ATI]
-       physical id: 0
-       bus info: pci@0000:03:00.0
-       logical name: /dev/fb0
-       version: 00
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pm pciexpress msi vga_controller bus_master cap_list
-rom fb
-       configuration: depth=32 driver=radeon latency=0 resolution=2560,1080
-       resources: irq:50 memory:e0000000-efffffff memory:f3e00000-f3e3ffff
-ioport:8000(size=256) memory:f3e40000-f3e5ffff
-  *-display
-       description: VGA compatible controller
-       product: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
-       vendor: Advanced Micro Devices, Inc. [AMD/ATI]
-       physical id: 0
-       bus info: pci@0000:04:00.0
-       version: 00
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pm pciexpress msi vga_controller bus_master cap_list
-rom
-       configuration: driver=radeon latency=0
-       resources: irq:51 memory:d0000000-dfffffff memory:f3d20000-f3d3ffff
-ioport:7000(size=256) memory:f3d00000-f3d1ffff
-
---0000000000006dd5ab0620302df3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I couldn&#39;t fi=
-nd a list to send mail to  concerning the radeon driver. Is this an OK plac=
-e?</div><div><br></div><div>I&#39;m desperate for help, as I have crippling=
- issues with my AMD cards since updating to Ubuntu 24.04. This is my work m=
-achine, and it&#39;s seriously hampering my productivity.</div><div><br></d=
-iv><div>I have a bit of experience messing around with this stuff over the =
-last decades, but remain very naive about debugging graphics problems. I ha=
-ve two cards:</div><div><br></div><div>03:00.0 VGA compatible controller: A=
-dvanced Micro Devices, Inc. [AMD/ATI] Oland GL [FirePro W2100]<br>04:00.0 V=
-GA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Caicos XT =
-[Radeon HD 7470/8470 / R5 235/310 OEM]</div><div><br></div><div>Since the u=
-pdate the Radeon HD no longer works: I can boot into safe mode, but any att=
-empt to start GDM results in a black screen with a line at the bottom.</div=
-><div><br></div><div>The FirePro card appears to work fine, until the drive=
-r goes haywire and I see a screen full of snow. I can still &lt;ctrl&gt;&lt=
-;alt&gt;&lt;F4&gt; to a terminal and shut the machine down (without seeing =
-anything but snow), but the graphics will not work. This happens with Wayla=
-nd and Xorg. I posted a bug report here that includes details from syslog:<=
-/div><div><br><a href=3D"https://bugs.launchpad.net/ubuntu/+source/xserver-=
-xorg-video-ati/+bug/2068342">https://bugs.launchpad.net/ubuntu/+source/xser=
-ver-xorg-video-ati/+bug/2068342</a></div><div><br></div><div>I would greatl=
-y appreciate any advice, hints, or workarounds on this issue, as it&#39;s s=
-eriously holding me back. Thank you folks!</div><div><br></div><div>kms</di=
-v><div><br></div><div>p.s.<br></div><div><br></div><div>A few more details =
-follow...<br></div><div><br></div><div>=3D&gt; sudo lshw -c video<br>=C2=A0=
- *-display =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0description: VGA compatible controller<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0product: Oland GL [FirePro W2100]<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@000=
-0:03:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0logical name: /dev/fb0<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0width: 64 bit=
-s<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
-capabilities: pm pciexpress msi vga_controller bus_master cap_list rom fb<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: depth=3D32 driver=3Dradeon late=
-ncy=3D0 resolution=3D2560,1080<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: irq=
-:50 memory:e0000000-efffffff memory:f3e00000-f3e3ffff ioport:8000(size=3D25=
-6) memory:f3e40000-f3e5ffff<br>=C2=A0 *-display<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0description: VGA compatible controller<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0pro=
-duct: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@000=
-0:04:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0width: 64 bits<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0capabilities: pm pciexpress msi vga_controller bus_mast=
-er cap_list rom<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: driver=3Dradeo=
-n latency=3D0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: irq:51 memory:d00000=
-00-dfffffff memory:f3d20000-f3d3ffff ioport:7000(size=3D256) memory:f3d0000=
-0-f3d1ffff</div><div>
-=20
-</div>
-</div>
-
---0000000000006dd5ab0620302df3--
+Acked-by: David Lechner <david@lechnology.com>
