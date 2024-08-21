@@ -2,120 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAF195AC7E
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 06:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38C195AEED
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5A110E02A;
-	Thu, 22 Aug 2024 04:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C6C10E79F;
+	Thu, 22 Aug 2024 07:20:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vIN+Yup8";
+	dkim=pass (2048-bit key; unprotected) header.d=lirmm.fr header.i=@lirmm.fr header.b="eoyEa52R";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2065.outbound.protection.outlook.com [40.107.212.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5837D10E02A
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 04:22:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i4wxqmOQv+5cEGPnQM5k8chAXp7xQamBpfLPeJ6eFMsKP0LaeIWDqzYT8wBC9koKs4Fi9cVyAvYHH6Gav+DE/8LG4q6IZmpjkLaE34iUGpQr5/LfXAWelbmhVfWgvdNKztc1tmd8eErPqk4Hv0Z2BQa+E02Jn62NXLnNL3B3QB4qk3QBDvu9oWBWK/4Q92o9ATPsYPZ0Y6dqcRr+oQBJk9bMXIEVvHSQkc+wVA8Lz0mU0pzN5a8qVi52kcV0wnBzgbNvwWLKlTBBDhGY+yIQLPLmUPwUPoEoXURrzxssQuKnSlBQVc1QO66+g3i47ZwimCKTqS84vVBRC+yOko7o8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0zMZNaYD6z8Bt9e/GV4x8CDH0IAXuCZDgLK7nmtyCJE=;
- b=peTvG3Il3gNbtvhbFRVO5JfRHqIDWY5HIY6n/YgDLLvbZOmK66jIevrJQ6lSVzCTCMYWdHg5taUjyh/YL2qMijvib8I4rEXUlgyJkzINO2qWKIrBkSHh+/z8lMeYKYTzAk+Ayu8XXv4w277GtsZJXyQeaTddA30XLQOz238WS0mZU7u9Cfs/Zh6MB8c0CPwl20/Py75H88XzNf+9Nds0f01UNyVoyb6vKAZaPyUXLJ5rcLQtv2WthhMvj/VuEA6bkkbeP/1SGih5XRqNh4TEoYvm5ND8ynI1xvElyW2m/mB9s8Uduaj4GCZkeehrXEI/wuWLUYYMXriaWZR4B+mS4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0zMZNaYD6z8Bt9e/GV4x8CDH0IAXuCZDgLK7nmtyCJE=;
- b=vIN+Yup8xs1sP9Mmr+9OL0QB/N0+bMLe0hT/uD9Je9iml605kjCaFnR9JqCuWU4FDW7q7xuRogUWC6Q8EsCdWQy5wnSwaKJ3zoTpHpBGLXahPRBJJFLnkDva2tR4IJdtm4vC+pioI5rOijFB/kDG3kimZLSl6WJso/F/kuDitLo=
-Received: from CH0PR03CA0256.namprd03.prod.outlook.com (2603:10b6:610:e5::21)
- by DS0PR12MB6558.namprd12.prod.outlook.com (2603:10b6:8:d2::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Thu, 22 Aug
- 2024 04:22:03 +0000
-Received: from CH3PEPF0000000D.namprd04.prod.outlook.com
- (2603:10b6:610:e5:cafe::a7) by CH0PR03CA0256.outlook.office365.com
- (2603:10b6:610:e5::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.19 via Frontend
- Transport; Thu, 22 Aug 2024 04:22:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH3PEPF0000000D.mail.protection.outlook.com (10.167.244.43) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7897.11 via Frontend Transport; Thu, 22 Aug 2024 04:22:03 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 21 Aug
- 2024 23:21:57 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Asad.Kamal@amd.com>, Asad Kamal <asad.kamal@amd.com>
-Subject: [PATCH] drm/amd/pm: Add support for new P2S table revision
-Date: Thu, 22 Aug 2024 09:50:50 +0530
-Message-ID: <20240822042050.1812745-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 345 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Aug 2024 11:58:21 UTC
+Received: from kirkenes.lirmm.fr (kirkenes.lirmm.fr [193.49.104.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73FFD10E8DD
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 11:58:21 +0000 (UTC)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
+ [209.85.160.50])
+ by kirkenes.lirmm.fr (Postfix) with ESMTPSA id 2F88BF94
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 13:52:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lirmm.fr; s=mail;
+ t=1724241154; bh=RSS1SCA7TGlFtcnUwubl0ZphF+ny5nRJLXHO86dVl5Y=;
+ h=Reply-To:From:Date:Subject:To:From;
+ b=eoyEa52RfSLRLxB5WLRWgsF1vgFMmBb5RBpbFRD1JIjYQIp3re9NohaAav2yyoaYG
+ atGcouwPBvjaNeppTBHGeJRQMQ2oRE14Vpj5JjIdLlhM7Wor4hnnF8VnRyhdHtZGgo
+ IP9Fy3qV18B4Cdm0bars1O76uhYfQfuvT4D+x/+A9lTRDg9VKZHDvkD0yzGvVdzSWr
+ h7eMsu3BCC/vHjr5CRdzBT1fA1Nz7/PjfOFHL6lpBB58OLepd1lqSAn5Hv9iYz3YIb
+ 7M4zci1Ps6Tu8L7nkhhJ1RVQELcuIjp9ZaFDWYm0ocfJiYXKJkjZ80txy6T/LhlKig
+ brHfwotMDieqQ==
+Received: by mail-oa1-f50.google.com with SMTP id
+ 586e51a60fabf-27020fca39aso3847144fac.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 04:52:34 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwfhxMCUOLbBJ3XMs6irAHrY9B2kKt3S9kNlIxJqkmnbX40a25C
+ 8WumIezU/psDqswT28JTdhoylQHy1++qxhhmi7w13auucdN9dX0jEFtfMOkN11eQFDgMycN9x6c
+ Fe4/ZED6BbIHey36Jgem4za3+Eu8=
+X-Google-Smtp-Source: AGHT+IG6BcrYpP9ilOZnyeBPbuIp5i41CTP2ZJ1kNUHyttZgQ5ux/y76J66EYxNNDfVv7oysNHfj+v5X35fgXvanUL4=
+X-Received: by 2002:a05:6871:5222:b0:25e:1cdf:c604 with SMTP id
+ 586e51a60fabf-2738be308f0mr1882139fac.31.1724241152942; Wed, 21 Aug 2024
+ 04:52:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000D:EE_|DS0PR12MB6558:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4658b3d-a677-4333-40f1-08dcc261f9a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YnYIwjBmwzX2+W1IG97BoxWVG8pdkF/tjKfE4GJJR0dIZztiqfNP/bnn+IjU?=
- =?us-ascii?Q?GWi+HcuCRMtddNoE6DnhISqrHmdb1M1DVEEVGpPEIC0yJrBVcGSDJj+NlhpK?=
- =?us-ascii?Q?bqilLenpUbBP2yzx5BaotjenVuJ48PvQB0lwAgIQbhOPP/OQOmfItTYtxr9O?=
- =?us-ascii?Q?mVWqCKE36SWN5kETjQaJQQd2aF5uFnwCJ7AGx/A4ESR+c345NlW0o8Fh+z96?=
- =?us-ascii?Q?LMypld1DpePAFyafrW1teOkx4PR+WJzzIt1We/IQsOrxTUXIAtK61unA5S05?=
- =?us-ascii?Q?iR+U7BlJ5GZW8qOpZALt1JMWKB+vttQ+Otj6OylyKCVyAx1Erb4pIfWzeTnb?=
- =?us-ascii?Q?jNH4jwbxt2OFgJX4pc1lEESMfTsdhNO7r5zpO7zg/eNfM/9M+pMM+W9oiO9Y?=
- =?us-ascii?Q?/EcZNOkxG/bLPtJVfcjEJSA+rTnNCOdvqYcJoLkwoS6vMZxsgciSHDv6kxRg?=
- =?us-ascii?Q?paN+wWBlkQ6BC3ra0ZdwB4AKSFRXLL5zimxHXcKKOSUW74aaHP85dfuOWprh?=
- =?us-ascii?Q?JGi6NT5VhVyTJdGWPjy5z52pG+xQ72n1ndkE299zB98HopAIEGr1TEqLD7VU?=
- =?us-ascii?Q?c9ZDqrevPx9MQiAr0d3MJ+kv6R2u1ydFxfHkPG8BBjcYmHZUTFFUwW2HnD+9?=
- =?us-ascii?Q?BVVEoAsfIO8lCx9Aykjdj3kM+NDLRqj2zISh/JEw+BkDEGqy4f1XCp4YbGHH?=
- =?us-ascii?Q?e0OzI/cMeMBLEYC95VPIULjNNk5jNJvewWQkWUGreB/YBYYTEubzOhk0x30f?=
- =?us-ascii?Q?CpEXYigj+vIv01KhIp9RR+9PkCf0gb1BKIF27X7DtVt8lBN8yq9yXMh15sXE?=
- =?us-ascii?Q?tPalguFKhKPO7pKl0HI5OGfJx3kcP2CfRW+X1h0IXbUEFozRSyT6nuL00sa3?=
- =?us-ascii?Q?lGzq4Xmc/kGZt6d/HAt3j1RV3pvy0J7hXz2+sLbZFHaOjtLV5SueVQOXV/Fg?=
- =?us-ascii?Q?bD9KPC6YKDgdilVxqNXNgceNquhuYsvUAVVAZPgtnyv1jSqWheICgElPXnyT?=
- =?us-ascii?Q?PebStit+U8JUTG0u59kLqSVwNYnSRKNpPWnAn0roZPwJKzwo17dxDn5zd9af?=
- =?us-ascii?Q?ITFIJ5KmnI29d1H803f+nIqhLHVfKmB+0ZO8YQ7Vu7JyjgN80ratu+UNaA35?=
- =?us-ascii?Q?znzHiGrbEzOi1yXF+FxVKs1vNzJqA+XsqGbngoIEVHBsvapJU1AfhUXPmy9u?=
- =?us-ascii?Q?jvuDjvDk9fIJiDLNT04hOLIKl1pXdkjWaiqw+4ILOKelmweP59qpGnd8BPLn?=
- =?us-ascii?Q?fgmXHeDg3h8U106BlVshElVHN4Q8oRcMD210EJfMYwQzjuAy5S5TlxXnv89l?=
- =?us-ascii?Q?Uc8tYOG5LETdJ1wP1hxe2ulTvgyXEekdjmJjEipNXT9Dgujabk9+WyT33o4x?=
- =?us-ascii?Q?nxXVjb26QKAkVCV+m80sTO1Udkn3UdXc/yeK4CcjMH3sxfwYunQTWqH5m9Sb?=
- =?us-ascii?Q?ZWrpQjioSCLKqSSVVoQVYvXhrJ+J/+pU?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 04:22:03.5221 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4658b3d-a677-4333-40f1-08dcc261f9a9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000D.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6558
+From: Krister Swenson <krister.swenson@lirmm.fr>
+Date: Wed, 21 Aug 2024 13:52:06 +0200
+X-Gmail-Original-Message-ID: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
+Message-ID: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
+Subject: two AMD cards failing with radeon driver
+To: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000006dd5ab0620302df3"
+X-Mailman-Approved-At: Thu, 22 Aug 2024 07:20:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,50 +60,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: krister.swenson@lirmm.fr
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add p2s table support for a new revision of SMUv13.0.6.
+--0000000000006dd5ab0620302df3
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Asad Kamal <asad.kamal@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Hello all,
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-index 7cea0862dcbb..ece1ffc1e56d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-@@ -121,6 +121,7 @@ struct mca_ras_info {
- 
- #define P2S_TABLE_ID_A 0x50325341
- #define P2S_TABLE_ID_X 0x50325358
-+#define P2S_TABLE_ID_3 0x50325303
- 
- // clang-format off
- static const struct cmn2asic_msg_mapping smu_v13_0_6_message_map[SMU_MSG_MAX_COUNT] = {
-@@ -279,14 +280,18 @@ static int smu_v13_0_6_init_microcode(struct smu_context *smu)
- 	struct amdgpu_device *adev = smu->adev;
- 	uint32_t p2s_table_id = P2S_TABLE_ID_A;
- 	int ret = 0, i, p2stable_count;
-+	int var = (adev->pdev->device & 0xF);
- 	char ucode_prefix[15];
- 
- 	/* No need to load P2S tables in IOV mode */
- 	if (amdgpu_sriov_vf(adev))
- 		return 0;
- 
--	if (!(adev->flags & AMD_IS_APU))
-+	if (!(adev->flags & AMD_IS_APU)) {
- 		p2s_table_id = P2S_TABLE_ID_X;
-+		if (var == 0x5)
-+			p2s_table_id = P2S_TABLE_ID_3;
-+	}
- 
- 	amdgpu_ucode_ip_version_decode(adev, MP1_HWIP, ucode_prefix,
- 				       sizeof(ucode_prefix));
--- 
-2.25.1
+I couldn't find a list to send mail to concerning the radeon driver. Is
+this an OK place?
 
+I'm desperate for help, as I have crippling issues with my AMD cards since
+updating to Ubuntu 24.04. This is my work machine, and it's seriously
+hampering my productivity.
+
+I have a bit of experience messing around with this stuff over the last
+decades, but remain very naive about debugging graphics problems. I have
+two cards:
+
+03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+Oland GL [FirePro W2100]
+04:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
+Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
+
+Since the update the Radeon HD no longer works: I can boot into safe mode,
+but any attempt to start GDM results in a black screen with a line at the
+bottom.
+
+The FirePro card appears to work fine, until the driver goes haywire and I
+see a screen full of snow. I can still <ctrl><alt><F4> to a terminal and
+shut the machine down (without seeing anything but snow), but the graphics
+will not work. This happens with Wayland and Xorg. I posted a bug report
+here that includes details from syslog:
+
+https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-ati/+bug/2068342
+
+I would greatly appreciate any advice, hints, or workarounds on this issue,
+as it's seriously holding me back. Thank you folks!
+
+kms
+
+p.s.
+
+A few more details follow...
+
+=> sudo lshw -c video
+  *-display
+       description: VGA compatible controller
+       product: Oland GL [FirePro W2100]
+       vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+       physical id: 0
+       bus info: pci@0000:03:00.0
+       logical name: /dev/fb0
+       version: 00
+       width: 64 bits
+       clock: 33MHz
+       capabilities: pm pciexpress msi vga_controller bus_master cap_list
+rom fb
+       configuration: depth=32 driver=radeon latency=0 resolution=2560,1080
+       resources: irq:50 memory:e0000000-efffffff memory:f3e00000-f3e3ffff
+ioport:8000(size=256) memory:f3e40000-f3e5ffff
+  *-display
+       description: VGA compatible controller
+       product: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
+       vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+       physical id: 0
+       bus info: pci@0000:04:00.0
+       version: 00
+       width: 64 bits
+       clock: 33MHz
+       capabilities: pm pciexpress msi vga_controller bus_master cap_list
+rom
+       configuration: driver=radeon latency=0
+       resources: irq:51 memory:d0000000-dfffffff memory:f3d20000-f3d3ffff
+ioport:7000(size=256) memory:f3d00000-f3d1ffff
+
+--0000000000006dd5ab0620302df3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I couldn&#39;t fi=
+nd a list to send mail to  concerning the radeon driver. Is this an OK plac=
+e?</div><div><br></div><div>I&#39;m desperate for help, as I have crippling=
+ issues with my AMD cards since updating to Ubuntu 24.04. This is my work m=
+achine, and it&#39;s seriously hampering my productivity.</div><div><br></d=
+iv><div>I have a bit of experience messing around with this stuff over the =
+last decades, but remain very naive about debugging graphics problems. I ha=
+ve two cards:</div><div><br></div><div>03:00.0 VGA compatible controller: A=
+dvanced Micro Devices, Inc. [AMD/ATI] Oland GL [FirePro W2100]<br>04:00.0 V=
+GA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Caicos XT =
+[Radeon HD 7470/8470 / R5 235/310 OEM]</div><div><br></div><div>Since the u=
+pdate the Radeon HD no longer works: I can boot into safe mode, but any att=
+empt to start GDM results in a black screen with a line at the bottom.</div=
+><div><br></div><div>The FirePro card appears to work fine, until the drive=
+r goes haywire and I see a screen full of snow. I can still &lt;ctrl&gt;&lt=
+;alt&gt;&lt;F4&gt; to a terminal and shut the machine down (without seeing =
+anything but snow), but the graphics will not work. This happens with Wayla=
+nd and Xorg. I posted a bug report here that includes details from syslog:<=
+/div><div><br><a href=3D"https://bugs.launchpad.net/ubuntu/+source/xserver-=
+xorg-video-ati/+bug/2068342">https://bugs.launchpad.net/ubuntu/+source/xser=
+ver-xorg-video-ati/+bug/2068342</a></div><div><br></div><div>I would greatl=
+y appreciate any advice, hints, or workarounds on this issue, as it&#39;s s=
+eriously holding me back. Thank you folks!</div><div><br></div><div>kms</di=
+v><div><br></div><div>p.s.<br></div><div><br></div><div>A few more details =
+follow...<br></div><div><br></div><div>=3D&gt; sudo lshw -c video<br>=C2=A0=
+ *-display =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0description: VGA compatible controller<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0product: Oland GL [FirePro W2100]<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<br>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@000=
+0:03:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0logical name: /dev/fb0<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0width: 64 bit=
+s<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+capabilities: pm pciexpress msi vga_controller bus_master cap_list rom fb<b=
+r>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: depth=3D32 driver=3Dradeon late=
+ncy=3D0 resolution=3D2560,1080<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: irq=
+:50 memory:e0000000-efffffff memory:f3e00000-f3e3ffff ioport:8000(size=3D25=
+6) memory:f3e40000-f3e5ffff<br>=C2=A0 *-display<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0description: VGA compatible controller<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0pro=
+duct: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<br>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@000=
+0:04:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0width: 64 bits<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0capabilities: pm pciexpress msi vga_controller bus_mast=
+er cap_list rom<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: driver=3Dradeo=
+n latency=3D0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: irq:51 memory:d00000=
+00-dfffffff memory:f3d20000-f3d3ffff ioport:7000(size=3D256) memory:f3d0000=
+0-f3d1ffff</div><div>
+=20
+</div>
+</div>
+
+--0000000000006dd5ab0620302df3--
