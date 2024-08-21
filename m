@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE25C95A78E
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 00:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 419AB95A78C
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 00:04:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A17DE10E703;
-	Wed, 21 Aug 2024 22:04:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBDC510E6FF;
+	Wed, 21 Aug 2024 22:04:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ycfE7q62";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="J8ifmR6x";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEDAA10E70B
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 22:04:44 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2076.outbound.protection.outlook.com [40.107.220.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF3B10E6FE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 22:04:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yr1DgzWt83CdyhWWpbavGSWee9Sf8gAAne84ju0uafHf0Gf6cAHfSpOITBhM/8feyAJaGk6f756G1VLgkpmJHn9DhGeELsVKbySUI8eOocBL3s8hKCs9mx/NQqw8xCqksEzmLIytvOMq7RPaXBafllCFbI7Rbq3ZOs+/g0e87MqXvBeDBzvfSBqukreIfpkcyDxmAP96d22HFCsSSQ/W5gU7aro/DUK8pBfMIC2q9z11I1Et/N+fzWd1rP+FhdxKxBhVl91Pde0ACxFwZkOj9ISQIvzxH9xpHgveQFwiFyqSGEXMgkCvvGpaExvZKC5uZOZHkbJbdBRsTpoOraLsbQ==
+ b=DH1xH9hV954a/HJiKahtYcfCeGMST/MZ2/m8BmGH5W7zXnefTUfZxsUmCZlIQcGJ0mU1u62tVjHoljOMp+zM5L79UwNuwJ/DA9XLE8pFbB01kQvw7qgEsF7rU5rApsUCefijj1CVN0rXGkvav4Ki7GQNiPhwK4saRq7lPv3DfDpZwPCKy4dmBaW96fvHIUT24XujI9cXnKYjkad0gB/4CVh9N9ayx/MvQKZpY2Ydsvm4g9m16H7O2ZcEfn6m6IHa7RKLIeR5/Z0KCrRDK6SLkSvjf7Tkd2FpxiqT3eFvUw4+GWv1IgRbxfJll67G9gPY6vDo2K9en1Vm0spb98R/KA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x3mcADqB8LXkFc4uWP0wSKBrZG367Ifp9pOBhdMxS4M=;
- b=ybQaPcibT2jCJsXTgDYDAuK8S9LIG6bshTHcof8rIqsfOIkQ3W2+m+I3B1nlApeYtZQE+Swg/3937uU5fMBh68mUlfRs/+M2g4+cY/omCBHHQPHWHFGXZceGFZZPhU3TbasGcusAM/se4gdAytNMZ1trpEglZjDqO66zIv6EyP0+c6J3h/CFgufpEBbytzyq8SG7KWd8jr+Boj2CtznK2gYoMAA6CzdoWVqrj5gMTmNy83xeVnZjThu7Bx3BQ7c4zegPmw+v9eHttwLTTc/IaRAhBeBGHL0czi2Vf2RllI7SfVW15dCPI1ksOn2C9AWwIJpLxmCrealuXnr+hocUfQ==
+ bh=7BkiuVhwb3dSCE+mo26ISux9BWXsjsUkivXZmZRLa+g=;
+ b=jz3duMSmmvUgwGKtVpc3mHEqCsTPEyHMstpw/d5F/QdJP49X0lUrONNAjjwPsZZ4Xcf93rnVv/NBbtdmaD4zm1cByWJG1XXHndvsNUetf0tY+RGiIBa9svHSLh2FHzUrSqz9hKr6mSYE23HBWzsr5nRnYxKpQla1yNN4eEVLqJpQ/Is/U//A58/3809Pehj9eYAA4qelI3FW1/e56nfbnTDccS4n25Lgwef3tOkf1SnrRnrUTR505iKMj9euSNTRxEHz0RKPxro8Rt2TdXu7w26yw7iFUNx1PoLaW5mekto9epPTRvw6BzsEPwLbWw60z9R+m2onUvLhS1w+jE6ogQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x3mcADqB8LXkFc4uWP0wSKBrZG367Ifp9pOBhdMxS4M=;
- b=ycfE7q62ALcBm6kqLVksWnPLkJK4I5OOYihi7LultbPyjV+jsQweXTouufX1CRmCOlziLWyh0jxDTlM2mQ0ga2Hvbu08S870cfdamK3PKC9VSQ0JtJlG2PPWRxRyVTckpyOzFLSoudWSbxlONMhD26HlPuTRyR1o7nwTXs5TVJ4=
-Received: from BN0PR03CA0052.namprd03.prod.outlook.com (2603:10b6:408:e7::27)
- by PH7PR12MB6537.namprd12.prod.outlook.com (2603:10b6:510:1f2::18)
+ bh=7BkiuVhwb3dSCE+mo26ISux9BWXsjsUkivXZmZRLa+g=;
+ b=J8ifmR6xIibdkWxqEq3aU4F8pbrcXvPWPkD3Y0JkwcXMDI3cQlEC8VsyNXRSbtd5nihyVxPNLkTiLV/nCGcFaOy4/VCYr4EhaZ/uXf1OoNFAm9r2N+NZykddBbO/1EHffgESIUcBjMkDycKJCyxjGG1H6ACgmjHsLQvEiG0e0kg=
+Received: from BLAPR03CA0003.namprd03.prod.outlook.com (2603:10b6:208:32b::8)
+ by IA1PR12MB8240.namprd12.prod.outlook.com (2603:10b6:208:3f2::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Wed, 21 Aug
- 2024 22:04:35 +0000
-Received: from BL6PEPF00020E60.namprd04.prod.outlook.com
- (2603:10b6:408:e7:cafe::fb) by BN0PR03CA0052.outlook.office365.com
- (2603:10b6:408:e7::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21 via Frontend
- Transport; Wed, 21 Aug 2024 22:04:35 +0000
+ 2024 22:04:37 +0000
+Received: from BL6PEPF00020E63.namprd04.prod.outlook.com
+ (2603:10b6:208:32b:cafe::ac) by BLAPR03CA0003.outlook.office365.com
+ (2603:10b6:208:32b::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19 via Frontend
+ Transport; Wed, 21 Aug 2024 22:04:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,24 +48,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00020E60.mail.protection.outlook.com (10.167.249.21) with Microsoft
+ BL6PEPF00020E63.mail.protection.outlook.com (10.167.249.24) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7897.11 via Frontend Transport; Wed, 21 Aug 2024 22:04:35 +0000
+ 15.20.7897.11 via Frontend Transport; Wed, 21 Aug 2024 22:04:37 +0000
 Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 21 Aug
- 2024 17:04:33 -0500
+ 2024 17:04:35 -0500
 From: Zaeem Mohamed <zaeem.mohamed@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
  <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>, 
- Dillon Varone <dillon.varone@amd.com>
-Subject: [PATCH 03/16] drm/amd/display: Wait for all pending cleared before
- full update
-Date: Wed, 21 Aug 2024 18:01:45 -0400
-Message-ID: <20240821220156.1498549-4-zaeem.mohamed@amd.com>
+ <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>, Dillon Varone
+ <dillon.varone@amd.com>, Jun Lei <jun.lei@amd.com>
+Subject: [PATCH 04/16] drm/amd/display: Fix MS/MP mismatches in dml21 for
+ dcn401
+Date: Wed, 21 Aug 2024 18:01:46 -0400
+Message-ID: <20240821220156.1498549-5-zaeem.mohamed@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240821220156.1498549-1-zaeem.mohamed@amd.com>
 References: <20240821220156.1498549-1-zaeem.mohamed@amd.com>
@@ -77,51 +77,51 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E60:EE_|PH7PR12MB6537:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51db4fb5-7981-47f2-aa43-08dcc22d3e69
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E63:EE_|IA1PR12MB8240:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58aeb239-b30a-471b-cf23-08dcc22d3fac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?v1U1UklQ5anQ3QXaaMDrTsl8sahFIQFoxL+2/pTWK5WKedWac8D3njbURyO+?=
- =?us-ascii?Q?QEkd0kSfdCbtgO8Im0rvbOde+5kAfZ4FnWoH/b4bEme38Q9kCDnSCKBj94Ui?=
- =?us-ascii?Q?rKtw0u0GgYov4EG6mUBcShGeGN9co8PRcSqS9FJy86kRSKh2oEEvjL1itAD3?=
- =?us-ascii?Q?y6lulYHlNPaquiL6wosUtvdqfEb8JVt8t3RPeOIMQc2kyqPKWfEzKpF/NkhR?=
- =?us-ascii?Q?oVp7L3mN2GNRH61edAhzIkzLw9/z2qbrkG5Z8Yn+vK/VydXZEf6TJSLb8Bw8?=
- =?us-ascii?Q?i/COeA5sVmppeqk7JlHconZU1FVaGRtLV9NbjZZ8xBAU4ctTCIpKkECA6tYb?=
- =?us-ascii?Q?WUWI/+CNJKJ6ZjsQdhOuxlNlnlvWjEEDqD82xnJ3IjxE4+nuvPx55wwkv9/5?=
- =?us-ascii?Q?XTuHidApFGP9ZbM0L2E7XQj9ljYU8rEaKb1t/BfipF9Q73q3Ar+Wn3rYe5lC?=
- =?us-ascii?Q?vf7ny0FlZYZX177xC5BnOTKsg8UX838IdshKaEt/nQmZ4R8jD6CoiIgpWfBL?=
- =?us-ascii?Q?/XyvBrIdVcmDmlYnKKGSvmRY6J4NQckPDfwaUm6p7KrJvR+JAdPgyjvd6qPW?=
- =?us-ascii?Q?f3bRNAwAZ1/iTXeO80UGSsY/egLmdO5pGsX+yAs691ENclVjXJ1822kVdrgU?=
- =?us-ascii?Q?RVwslAQPUp1XyOFX1TGv3WmvfdbrPE77B66uNBzNbnT2FoTBM7mqPPJ5Dnt0?=
- =?us-ascii?Q?8fwKunOY7UWfq3o/P6/T8bBG8pq0eI79v9e7m77e2Vg6raCA2soCu1A5hqvM?=
- =?us-ascii?Q?ZDl9nftAenL67oYTtW+j8A4BuGuDaSc2bvCJeKMD797YNpJLzHKzHGThU/hi?=
- =?us-ascii?Q?uiFC82FmQpwQy5V7Gdw8zyim7AaSDkesqmjUfYFrIZZe97uu+2FIEW8EmfiQ?=
- =?us-ascii?Q?TgkzibNpci75Wf7ogmnLAchWObFNyx7dPO7NBK3t418vV9I0mTbm5HidDwBP?=
- =?us-ascii?Q?k890Y34DeIVvLqcg+s/3rYyTSfISF3ltEzq1zzXIQzrC/5RcEVSTGZn00aC8?=
- =?us-ascii?Q?788YIhAk4UcPmkes4QioCOy9ilmoGK8QVtm8Z/xisZTOZV2jH05SCom0lmjJ?=
- =?us-ascii?Q?0dbUxIz+ETP0sAhSvaAo+dwX4IVQ+hZmBMxDrea6Tbx7KvmT0OfiPVak6nZ8?=
- =?us-ascii?Q?IbmMmYmal7hi+NFApJ0ETgumJYk+8r5bndOfFeFgHwtM6W/HeEDG8Rlyt3bR?=
- =?us-ascii?Q?pb5HsdM4rdWM8/DLSEFWTLQi1VdRXCUVeSIKGbIab0SsfLGpqZVT1GOr4tnn?=
- =?us-ascii?Q?hX9CpLSbrxVrBJmughVw8GJquj8iGzEtv4N8NkU8A6rghNKtbZTbPBlH9owS?=
- =?us-ascii?Q?6P6djxTujsw5KnHCdJC090vbJqsM58lDG2mT0KGm3r+oa/O28sfvDWnDgrQ4?=
- =?us-ascii?Q?AblAwDqJIDTUxhTDreFh+MPVPcEB9UluDELoY0eP/ZuIfLoCh9685y8Lti0F?=
- =?us-ascii?Q?joEHfGdrkKZlImnCZuwAgdUV9eAjbJwo?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?R1RfJDgrd8e2SmHJo3/s2JsBcxMtYoOlrdPsOXTsCst+s3pMZmnvyntYQ2KN?=
+ =?us-ascii?Q?pB7+m4rKcv2L/0u12V1a1zv+viHyYNO7EIw1quRs7WGRHJZgis8LorxEgQ4K?=
+ =?us-ascii?Q?MmpXjI0Pnnf6tGmuQoRTl5rkLOCZd8Xkz1HOFChviTTg9get6HpkXrzJnWBG?=
+ =?us-ascii?Q?kL8jBPHIyxTJMeS7YKpyyM59wQ3W8gL49A8Mv5fke7CTE2nuXOyaoDLjA+Tc?=
+ =?us-ascii?Q?R9qKSXBPCWqp1EFc7t0Xb2Yf3bCqxiwr2hEIXA0OZxSD98OrPda6BwyNpidn?=
+ =?us-ascii?Q?wYxRE/6YOo5SthF2gyyLr7Et46C32WWTxWT99DBMyWArjm7CHhX0Z4WDhxnJ?=
+ =?us-ascii?Q?58NxKqzM+Ic0vsGorKcAKaHs8Rqr6EEYfHDC2v579DaoMfilq+coYsFgng98?=
+ =?us-ascii?Q?NRpDVFSelS0hG5drC6WaZ2hgeG1KpUpoCjbhfBKFkNSC4faIhflVCy4m0lz0?=
+ =?us-ascii?Q?xMMivy3948+PrHDkyukdmKni2/6GgmYV3jW/8cG1Zu1TTxRmGnJQrzch+ODq?=
+ =?us-ascii?Q?HH88x7KnFSvnCww88LAYzNh2rTWjENsnvN9iBfIPvZDsGUTjAMhR8WroZJgm?=
+ =?us-ascii?Q?9bIhA052bPMXc+d2XFGEqdsZXfYUyY8TL3MWZhumOhb6eCq33oCT8oNG+ppi?=
+ =?us-ascii?Q?nuDvku3OUv0mDRf9E5DL4RjlDd6lRME5NKNG/S2RMRcDrxgZqmdTD6E3tdpV?=
+ =?us-ascii?Q?76AcsOrX1FwbI8tWNLCOdwFDa6ONJ6bSDeh6hy/opJVXSlewdsBK9GxFciO4?=
+ =?us-ascii?Q?/apKhQeXo1ZnGKMWXJ8gtXe5gFM7icXi+u8yYtjGeM1OB+k2xeyG7HcUKDXo?=
+ =?us-ascii?Q?GU8e7d9HhVZr7rqwXEORP4dLx6AHwmcdI+8k3LaE4CyFeig0W5z9RKr0r7iL?=
+ =?us-ascii?Q?oRf8oWU33gKcqrg9T6JPPcJXkiKf8UWMTK1Z3WhgeAYRmFgey5gogF3pil2r?=
+ =?us-ascii?Q?C4vICxwGHIUnhmnImoJJhD/cWRbalWE5W2S/JSnPdpWJsGINxFWjqbpL+3yJ?=
+ =?us-ascii?Q?9oWZ5Ge7BTgjfSmsAot5751PIbp1G+QXA8+c8u8uX0tu2g/s0HGZejoLnTb9?=
+ =?us-ascii?Q?+kpDqcFlIix8z5PWn2l16bQl722IRMKgW7ThxSI5XbsdR637Bsu5kHKZAN5X?=
+ =?us-ascii?Q?d0aYTjVPkhsuKuuyhyzu9mAeGfO6UE/MnwH6/Bde/uTW544ES2VWe1DxW8jO?=
+ =?us-ascii?Q?nqFQbHB9AB4RorthZVLRJX8MeNa8qiD0Ho9mQPbbogfrWjbD/bz+YjIbQqPa?=
+ =?us-ascii?Q?fH2TVSHXjYN+6r6SC5WLawmtCto/sb4lf4x/gvJSrIys4OG8U0eHb7KVBEwh?=
+ =?us-ascii?Q?1oQMXuHBln1rDVFifyyYYTiD48y7SveghUz0Or0sgKow0o2mE41122TktWPG?=
+ =?us-ascii?Q?r2ez8vQzwiXzOmhPVgdGRLwJzKF/WUeG6N/u0HF5E7R+WhI91YRDBTr8+9Op?=
+ =?us-ascii?Q?9zDYHNVpeOoX78FUr+ridnJ0lul2oZda?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 22:04:35.5571 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51db4fb5-7981-47f2-aa43-08dcc22d3e69
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 22:04:37.6749 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58aeb239-b30a-471b-cf23-08dcc22d3fac
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E60.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E63.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6537
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8240
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,583 +136,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Dillon Varone <dillon.varone@amd.com>
 
-[Description]
-Before every full update we must wait for all pending updates to be
-cleared - this is particularly important for minimal transitions
-because if we don't wait for pending cleared, it will be as if
-there was no minimal transition at all. In OTG we must read 3 different
-status registers for pending cleared, one specifically for OTG updates,
-one specifically for OPTC updates, and the last for surface related
-updates.
+[WHY]
+Prefetch calculations did not guarantee that bandwidth required in
+mode support was less than mode programming which can cause failures.
 
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+[HOW]
+Fix bandwidth calculations to assume fixed times for OTO schedule,
+and choose which schedule to use based on time to fetch pixel data.
+
+Reviewed-by: Jun Lei <jun.lei@amd.com>
+Signed-off-by: Dillon Varone <dillon.varone@amd.com>
 Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  9 +++-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  4 +-
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   | 27 +++++++++++
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.h   |  2 +
- .../amd/display/dc/hwss/dcn30/dcn30_init.c    |  3 +-
- .../amd/display/dc/hwss/dcn301/dcn301_init.c  |  1 +
- .../amd/display/dc/hwss/dcn32/dcn32_init.c    |  1 +
- .../amd/display/dc/hwss/dcn401/dcn401_init.c  |  1 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  1 +
- .../amd/display/dc/inc/hw/timing_generator.h  |  4 +-
- .../amd/display/dc/optc/dcn10/dcn10_optc.h    |  9 ++++
- .../amd/display/dc/optc/dcn20/dcn20_optc.h    |  7 ++-
- .../amd/display/dc/optc/dcn30/dcn30_optc.c    | 45 +++++++++++++++++++
- .../amd/display/dc/optc/dcn30/dcn30_optc.h    | 13 +++++-
- .../amd/display/dc/optc/dcn301/dcn301_optc.c  |  3 ++
- .../amd/display/dc/optc/dcn31/dcn31_optc.h    |  9 +++-
- .../amd/display/dc/optc/dcn314/dcn314_optc.h  |  9 +++-
- .../amd/display/dc/optc/dcn32/dcn32_optc.c    | 16 ++-----
- .../amd/display/dc/optc/dcn32/dcn32_optc.h    |  7 ++-
- .../amd/display/dc/optc/dcn35/dcn35_optc.h    |  6 ++-
- .../amd/display/dc/optc/dcn401/dcn401_optc.c  |  4 +-
- .../amd/display/dc/optc/dcn401/dcn401_optc.h  |  6 ++-
- .../dc/resource/dcn32/dcn32_resource.h        |  3 +-
- .../dc/resource/dcn401/dcn401_resource.h      |  5 ++-
- 24 files changed, 161 insertions(+), 34 deletions(-)
+ .../src/dml2_core/dml2_core_dcn4_calcs.c      | 47 ++++++++++++-------
+ .../src/dml2_core/dml2_core_shared_types.h    |  5 ++
+ 2 files changed, 36 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 7ee2be8f82c4..2cb9253c9bde 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -1071,8 +1071,13 @@ void hwss_wait_for_outstanding_hw_updates(struct dc *dc, struct dc_state *dc_con
- 		if (!pipe_ctx->stream)
- 			continue;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index e2c45e498664..b158b2781239 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -5056,6 +5056,8 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 	s->trip_to_mem = 0.0;
+ 	*p->Tvm_trips = 0.0;
+ 	*p->Tr0_trips = 0.0;
++	s->Tvm_no_trip_oto = 0.0;
++	s->Tr0_no_trip_oto = 0.0;
+ 	s->Tvm_trips_rounded = 0.0;
+ 	s->Tr0_trips_rounded = 0.0;
+ 	s->max_Tsw = 0.0;
+@@ -5293,31 +5295,38 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 	s->Lsw_oto = math_ceil2(4.0 * math_max2(s->prefetch_sw_bytes / s->prefetch_bw_oto / s->LineTime, s->min_Lsw_oto), 1.0) / 4.0;
  
--		if (pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear)
--			pipe_ctx->stream_res.tg->funcs->wait_drr_doublebuffer_pending_clear(pipe_ctx->stream_res.tg);
-+		/* For full update we must wait for all double buffer updates, not just DRR updates. This
-+		 * is particularly important for minimal transitions. Only check for OTG_MASTER pipes,
-+		 * as non-OTG Master pipes share the same OTG as
-+		 */
-+		if (resource_is_pipe_type(pipe_ctx, OTG_MASTER) && dc->hwss.wait_for_all_pending_updates) {
-+			dc->hwss.wait_for_all_pending_updates(pipe_ctx);
-+		}
- 
- 		hubp = pipe_ctx->plane_res.hubp;
- 		if (!hubp)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index a80c08582932..b383ed8cb4d4 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -2255,9 +2255,9 @@ void dcn20_post_unlock_program_front_end(
- 			struct timing_generator *tg = pipe->stream_res.tg;
- 
- 
--			if (tg->funcs->get_double_buffer_pending) {
-+			if (tg->funcs->get_optc_double_buffer_pending) {
- 				for (j = 0; j < TIMEOUT_FOR_PIPE_ENABLE_US / polling_interval_us
--				&& tg->funcs->get_double_buffer_pending(tg); j++)
-+				&& tg->funcs->get_optc_double_buffer_pending(tg); j++)
- 					udelay(polling_interval_us);
- 			}
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index 42c52284a868..d5458dae6d30 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -1185,3 +1185,30 @@ void dcn30_prepare_bandwidth(struct dc *dc,
- 	if (!dc->clk_mgr->clks.fw_based_mclk_switching)
- 		dc_dmub_srv_p_state_delegate(dc, false, context);
- }
-+
-+void dcn30_wait_for_all_pending_updates(const struct pipe_ctx *pipe_ctx)
-+{
-+	struct timing_generator *tg = pipe_ctx->stream_res.tg;
-+	bool pending_updates = false;
-+	unsigned int i;
-+
-+	if (tg && tg->funcs->is_tg_enabled(tg)) {
-+		// Poll for 100ms maximum
-+		for (i = 0; i < 100000; i++) {
-+			pending_updates = false;
-+			if (tg->funcs->get_optc_double_buffer_pending)
-+				pending_updates |= tg->funcs->get_optc_double_buffer_pending(tg);
-+
-+			if (tg->funcs->get_otg_double_buffer_pending)
-+				pending_updates |= tg->funcs->get_otg_double_buffer_pending(tg);
-+
-+			if (tg->funcs->get_pipe_update_pending)
-+				pending_updates |= tg->funcs->get_pipe_update_pending(tg);
-+
-+			if (!pending_updates)
-+				break;
-+
-+			udelay(1);
-+		}
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
-index 6a153e7ce910..4b90b781c4f2 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
-@@ -96,4 +96,6 @@ void dcn30_set_hubp_blank(const struct dc *dc,
- void dcn30_prepare_bandwidth(struct dc *dc,
- 	struct dc_state *context);
- 
-+void dcn30_wait_for_all_pending_updates(const struct pipe_ctx *pipe_ctx);
-+
- #endif /* __DC_HWSS_DCN30_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-index 2a8dc40d2847..0e8d32e3dbae 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-@@ -108,7 +108,8 @@ static const struct hw_sequencer_funcs dcn30_funcs = {
- 	.set_disp_pattern_generator = dcn30_set_disp_pattern_generator,
- 	.get_dcc_en_bits = dcn10_get_dcc_en_bits,
- 	.update_visual_confirm_color = dcn10_update_visual_confirm_color,
--	.is_abm_supported = dcn21_is_abm_supported
-+	.is_abm_supported = dcn21_is_abm_supported,
-+	.wait_for_all_pending_updates = dcn30_wait_for_all_pending_updates,
- };
- 
- static const struct hwseq_private_funcs dcn30_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-index 93e49d87a67c..780ce4c064aa 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-@@ -107,6 +107,7 @@ static const struct hw_sequencer_funcs dcn301_funcs = {
- 	.optimize_pwr_state = dcn21_optimize_pwr_state,
- 	.exit_optimized_pwr_state = dcn21_exit_optimized_pwr_state,
- 	.update_visual_confirm_color = dcn10_update_visual_confirm_color,
-+	.wait_for_all_pending_updates = dcn30_wait_for_all_pending_updates,
- };
- 
- static const struct hwseq_private_funcs dcn301_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-index 3422b564ae98..8e0946fd5b7f 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-@@ -121,6 +121,7 @@ static const struct hw_sequencer_funcs dcn32_funcs = {
- 	.is_pipe_topology_transition_seamless = dcn32_is_pipe_topology_transition_seamless,
- 	.calculate_pix_rate_divider = dcn32_calculate_pix_rate_divider,
- 	.program_outstanding_updates = dcn32_program_outstanding_updates,
-+	.wait_for_all_pending_updates = dcn30_wait_for_all_pending_updates,
- };
- 
- static const struct hwseq_private_funcs dcn32_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-index a2ca07235c83..73a632b5ff89 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-@@ -100,6 +100,7 @@ static const struct hw_sequencer_funcs dcn401_funcs = {
- 	.fams2_update_config = dcn401_fams2_update_config,
- 	.fams2_global_control_lock_fast = dcn401_fams2_global_control_lock_fast,
- 	.program_outstanding_updates = dcn401_program_outstanding_updates,
-+	.wait_for_all_pending_updates = dcn30_wait_for_all_pending_updates,
- };
- 
- static const struct hwseq_private_funcs dcn401_private_funcs = {
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index ac9205625623..b8c47e4c51c1 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -462,6 +462,7 @@ struct hw_sequencer_funcs {
- 	void (*program_outstanding_updates)(struct dc *dc,
- 			struct dc_state *context);
- 	void (*setup_hpo_hw_control)(const struct dce_hwseq *hws, bool enable);
-+	void (*wait_for_all_pending_updates)(const struct pipe_ctx *pipe_ctx);
- };
- 
- void color_space_to_black_color(
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-index 3d4c8bd42b49..4e08e80eafe8 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
-@@ -342,7 +342,9 @@ struct timing_generator_funcs {
- 	void (*wait_drr_doublebuffer_pending_clear)(struct timing_generator *tg);
- 	void (*set_long_vtotal)(struct timing_generator *optc, const struct long_vtotal_params *params);
- 	void (*wait_odm_doublebuffer_pending_clear)(struct timing_generator *tg);
--	bool (*get_double_buffer_pending)(struct timing_generator *tg);
-+	bool (*get_optc_double_buffer_pending)(struct timing_generator *tg);
-+	bool (*get_otg_double_buffer_pending)(struct timing_generator *tg);
-+	bool (*get_pipe_update_pending)(struct timing_generator *tg);
- };
- 
+ 	if (p->display_cfg->gpuvm_enable == true) {
+-		s->Tvm_oto = math_max3(
+-			*p->Tvm_trips,
++		s->Tvm_no_trip_oto = math_max2(
+ 			*p->Tno_bw + vm_bytes * p->HostVMInefficiencyFactor / s->prefetch_bw_oto,
+ 			s->LineTime / 4.0);
++		s->Tvm_oto = math_max2(
++			*p->Tvm_trips,
++			s->Tvm_no_trip_oto);
+ #ifdef __DML_VBA_DEBUG__
+ 		dml2_printf("DML::%s: Tvm_oto max0 = %f\n", __func__, *p->Tvm_trips);
+ 		dml2_printf("DML::%s: Tvm_oto max1 = %f\n", __func__, *p->Tno_bw + vm_bytes * p->HostVMInefficiencyFactor / s->prefetch_bw_oto);
+ 		dml2_printf("DML::%s: Tvm_oto max2 = %f\n", __func__, s->LineTime / 4.0);
  #endif
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-index b7a57f98553d..40757f20d73f 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.h
-@@ -202,6 +202,7 @@ struct dcn_optc_registers {
- 	uint32_t OPTC_CLOCK_CONTROL;
- 	uint32_t OPTC_WIDTH_CONTROL2;
- 	uint32_t OTG_PSTATE_REGISTER;
-+	uint32_t OTG_PIPE_UPDATE_STATUS;
- };
+ 	} else {
++		s->Tvm_no_trip_oto = s->Tvm_trips_rounded;
+ 		s->Tvm_oto = s->Tvm_trips_rounded;
+ 	}
  
- #define TG_COMMON_MASK_SH_LIST_DCN(mask_sh)\
-@@ -566,6 +567,12 @@ struct dcn_optc_registers {
- 	type OTG_H_TIMING_DIV_MODE_DB_UPDATE_PENDING;\
- 	type OPTC_DOUBLE_BUFFER_PENDING;\
+ 	if ((p->display_cfg->gpuvm_enable == true || p->setup_for_tdlut || dcc_mrq_enable)) {
+-		s->Tr0_oto = math_max3(
+-			*p->Tr0_trips,
++		s->Tr0_no_trip_oto = math_max2(
+ 			(p->PixelPTEBytesPerRow * p->HostVMInefficiencyFactor + p->meta_row_bytes + tdlut_row_bytes) / s->prefetch_bw_oto,
+ 			s->LineTime / 4.0);
++		s->Tr0_oto = math_max2(
++			*p->Tr0_trips,
++			s->Tr0_no_trip_oto);
+ #ifdef __DML_VBA_DEBUG__
+ 		dml2_printf("DML::%s: Tr0_oto max0 = %f\n", __func__, *p->Tr0_trips);
+ 		dml2_printf("DML::%s: Tr0_oto max1 = %f\n", __func__, (p->PixelPTEBytesPerRow * p->HostVMInefficiencyFactor + p->meta_row_bytes + tdlut_row_bytes) / s->prefetch_bw_oto);
+ 		dml2_printf("DML::%s: Tr0_oto max2 = %f\n", __func__, s->LineTime / 4);
+ #endif
+-	} else
+-		s->Tr0_oto = (s->LineTime - s->Tvm_oto) / 4.0;
++	} else {
++		s->Tr0_no_trip_oto = (s->LineTime - s->Tvm_oto) / 4.0;
++		s->Tr0_oto = s->Tr0_no_trip_oto;
++	}
  
-+#define TG_REG_FIELD_LIST_DCN2_0(type) \
-+	type OTG_FLIP_PENDING;\
-+	type OTG_DC_REG_UPDATE_PENDING;\
-+	type OTG_CURSOR_UPDATE_PENDING;\
-+	type OTG_VUPDATE_KEEPOUT_STATUS;\
+ 	s->Tvm_oto_lines = math_ceil2(4.0 * s->Tvm_oto / s->LineTime, 1) / 4.0;
+ 	s->Tr0_oto_lines = math_ceil2(4.0 * s->Tr0_oto / s->LineTime, 1) / 4.0;
+@@ -5595,6 +5604,9 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
+ 		dml2_printf("DML::%s: Tvm_equ = %f\n", __func__, s->Tvm_equ);
+ 		dml2_printf("DML::%s: Tr0_equ = %f\n", __func__, s->Tr0_equ);
+ #endif
++		// Lsw = dst_y_prefetch - (dst_y_per_vm_vblank + 2*dst_y_per_row_vblank)
++		s->Lsw_equ = s->dst_y_prefetch_equ - math_ceil2(4.0 * (s->Tvm_equ + 2 * s->Tr0_equ) / s->LineTime, 1.0) / 4.0;
 +
- #define TG_REG_FIELD_LIST_DCN3_2(type) \
- 	type OTG_H_TIMING_DIV_MODE_MANUAL;
+ 		// Use the more stressful prefetch schedule
+ 		if (s->dst_y_prefetch_oto < s->dst_y_prefetch_equ) {
+ 			*p->dst_y_prefetch = s->dst_y_prefetch_oto;
+@@ -5603,25 +5615,28 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
  
-@@ -600,6 +607,7 @@ struct dcn_optc_registers {
- 
- struct dcn_optc_shift {
- 	TG_REG_FIELD_LIST(uint8_t)
-+	TG_REG_FIELD_LIST_DCN2_0(uint8_t)
- 	TG_REG_FIELD_LIST_DCN3_2(uint8_t)
- 	TG_REG_FIELD_LIST_DCN3_5(uint8_t)
- 	TG_REG_FIELD_LIST_DCN401(uint8_t)
-@@ -607,6 +615,7 @@ struct dcn_optc_shift {
- 
- struct dcn_optc_mask {
- 	TG_REG_FIELD_LIST(uint32_t)
-+	TG_REG_FIELD_LIST_DCN2_0(uint32_t)
- 	TG_REG_FIELD_LIST_DCN3_2(uint32_t)
- 	TG_REG_FIELD_LIST_DCN3_5(uint32_t)
- 	TG_REG_FIELD_LIST_DCN401(uint32_t)
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn20/dcn20_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn20/dcn20_optc.h
-index 364034b19028..928e110b95fb 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn20/dcn20_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn20/dcn20_optc.h
-@@ -43,7 +43,8 @@
- 	SRI(OPTC_MEMORY_CONFIG, ODM, inst),\
- 	SR(DWB_SOURCE_SELECT),\
- 	SRI(OTG_MANUAL_FLOW_CONTROL, OTG, inst), \
--	SRI(OTG_DRR_CONTROL, OTG, inst)
-+	SRI(OTG_DRR_CONTROL, OTG, inst),\
-+	SRI(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- #define TG_COMMON_MASK_SH_LIST_DCN2_0(mask_sh)\
- 	TG_COMMON_MASK_SH_LIST_DCN(mask_sh),\
-@@ -53,6 +54,10 @@
- 	SF(OTG0_OTG_GLOBAL_CONTROL2, GLOBAL_UPDATE_LOCK_EN, mask_sh),\
- 	SF(OTG0_OTG_GLOBAL_CONTROL2, DIG_UPDATE_LOCATION, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_RANGE_TIMING_DBUF_UPDATE_MODE, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh),\
- 	SF(OTG0_OTG_GSL_WINDOW_X, OTG_GSL_WINDOW_START_X, mask_sh),\
- 	SF(OTG0_OTG_GSL_WINDOW_X, OTG_GSL_WINDOW_END_X, mask_sh), \
- 	SF(OTG0_OTG_GSL_WINDOW_Y, OTG_GSL_WINDOW_START_Y, mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.c
-index abcd03d78668..4c95c0958612 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.c
-@@ -271,6 +271,48 @@ void optc3_set_odm_combine(struct timing_generator *optc, int *opp_id, int opp_c
- 	optc1->opp_count = opp_cnt;
- }
- 
-+/* OTG status register that indicates OPTC update is pending */
-+bool optc3_get_optc_double_buffer_pending(struct timing_generator *optc)
-+{
-+	struct optc *optc1 = DCN10TG_FROM_TG(optc);
-+	uint32_t update_pending = 0;
-+
-+	REG_GET(OPTC_INPUT_GLOBAL_CONTROL,
-+			OPTC_DOUBLE_BUFFER_PENDING,
-+			&update_pending);
-+
-+	return (update_pending == 1);
-+}
-+
-+/* OTG status register that indicates OTG update is pending */
-+bool optc3_get_otg_update_pending(struct timing_generator *optc)
-+{
-+	struct optc *optc1 = DCN10TG_FROM_TG(optc);
-+	uint32_t update_pending = 0;
-+
-+	REG_GET(OTG_DOUBLE_BUFFER_CONTROL,
-+			OTG_UPDATE_PENDING,
-+			&update_pending);
-+
-+	return (update_pending == 1);
-+}
-+
-+/* OTG status register that indicates surface update is pending */
-+bool optc3_get_pipe_update_pending(struct timing_generator *optc)
-+{
-+	struct optc *optc1 = DCN10TG_FROM_TG(optc);
-+	uint32_t flip_pending = 0;
-+	uint32_t dc_update_pending = 0;
-+
-+	REG_GET_2(OTG_PIPE_UPDATE_STATUS,
-+			OTG_FLIP_PENDING,
-+			&flip_pending,
-+			OTG_DC_REG_UPDATE_PENDING,
-+			&dc_update_pending);
-+
-+	return (flip_pending == 1 || dc_update_pending == 1);
-+}
-+
- /**
-  * optc3_set_timing_double_buffer() - DRR double buffering control
-  *
-@@ -375,6 +417,9 @@ static struct timing_generator_funcs dcn30_tg_funcs = {
- 		.get_hw_timing = optc1_get_hw_timing,
- 		.wait_drr_doublebuffer_pending_clear = optc3_wait_drr_doublebuffer_pending_clear,
- 		.is_two_pixels_per_container = optc1_is_two_pixels_per_container,
-+		.get_optc_double_buffer_pending = optc3_get_optc_double_buffer_pending,
-+		.get_otg_double_buffer_pending = optc3_get_otg_update_pending,
-+		.get_pipe_update_pending = optc3_get_pipe_update_pending,
- };
- 
- void dcn30_timing_generator_init(struct optc *optc1)
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.h
-index bda974d432ea..e2303f9eaf13 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn30/dcn30_optc.h
-@@ -109,7 +109,8 @@
- 	SRI(OPTC_BYTES_PER_PIXEL, ODM, inst),\
- 	SRI(OPTC_WIDTH_CONTROL, ODM, inst),\
- 	SRI(OPTC_MEMORY_CONFIG, ODM, inst),\
--	SR(DWB_SOURCE_SELECT)
-+	SR(DWB_SOURCE_SELECT),\
-+	SRI(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- #define DCN30_VTOTAL_REGS_SF(mask_sh)
- 
-@@ -209,6 +210,7 @@
- 	SF(ODM0_OPTC_INPUT_CLOCK_CONTROL, OPTC_INPUT_CLK_GATE_DIS, mask_sh),\
- 	SF(ODM0_OPTC_INPUT_GLOBAL_CONTROL, OPTC_UNDERFLOW_OCCURRED_STATUS, mask_sh),\
- 	SF(ODM0_OPTC_INPUT_GLOBAL_CONTROL, OPTC_UNDERFLOW_CLEAR, mask_sh),\
-+	SF(ODM0_OPTC_INPUT_GLOBAL_CONTROL, OPTC_DOUBLE_BUFFER_PENDING, mask_sh),\
- 	SF(VTG0_CONTROL, VTG0_ENABLE, mask_sh),\
- 	SF(VTG0_CONTROL, VTG0_FP2, mask_sh),\
- 	SF(VTG0_CONTROL, VTG0_VCOUNT_INIT, mask_sh),\
-@@ -319,7 +321,11 @@
- 	SF(OTG0_OTG_DRR_V_TOTAL_CHANGE, OTG_DRR_V_TOTAL_CHANGE_LIMIT, mask_sh),\
- 	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_PENDING, mask_sh),\
--	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_MODE, mask_sh)
-+	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_MODE, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh),\
- 
- void dcn30_timing_generator_init(struct optc *optc1);
- 
-@@ -356,4 +362,7 @@ void optc3_set_odm_combine(struct timing_generator *optc, int *opp_id, int opp_c
- void optc3_wait_drr_doublebuffer_pending_clear(struct timing_generator *optc);
- void optc3_tg_init(struct timing_generator *optc);
- void optc3_set_vtotal_min_max(struct timing_generator *optc, int vtotal_min, int vtotal_max);
-+bool optc3_get_optc_double_buffer_pending(struct timing_generator *optc);
-+bool optc3_get_otg_update_pending(struct timing_generator *optc);
-+bool optc3_get_pipe_update_pending(struct timing_generator *optc);
- #endif /* __DC_OPTC_DCN30_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c
-index 1a22ae89fb55..d7a45ef2d01b 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c
-@@ -169,6 +169,9 @@ static struct timing_generator_funcs dcn30_tg_funcs = {
- 		.get_hw_timing = optc1_get_hw_timing,
- 		.wait_drr_doublebuffer_pending_clear = optc3_wait_drr_doublebuffer_pending_clear,
- 		.is_two_pixels_per_container = optc1_is_two_pixels_per_container,
-+		.get_optc_double_buffer_pending = optc3_get_optc_double_buffer_pending,
-+		.get_otg_double_buffer_pending = optc3_get_otg_update_pending,
-+		.get_pipe_update_pending = optc3_get_pipe_update_pending,
- };
- 
- void dcn301_timing_generator_init(struct optc *optc1)
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn31/dcn31_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn31/dcn31_optc.h
-index 30b81a448ce2..fbbe86d00c2e 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn31/dcn31_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn31/dcn31_optc.h
-@@ -99,7 +99,8 @@
- 	SRI(OPTC_MEMORY_CONFIG, ODM, inst),\
- 	SRI(OTG_CRC_CNTL2, OTG, inst),\
- 	SR(DWB_SOURCE_SELECT),\
--	SRI(OTG_DRR_CONTROL, OTG, inst)
-+	SRI(OTG_DRR_CONTROL, OTG, inst),\
-+	SRI(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- #define OPTC_COMMON_MASK_SH_LIST_DCN3_1(mask_sh)\
- 	SF(OTG0_OTG_VSTARTUP_PARAM, VSTARTUP_START, mask_sh),\
-@@ -254,7 +255,11 @@
- 	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_STREAM_COMBINE_MODE, mask_sh),\
- 	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_STREAM_SPLIT_MODE, mask_sh),\
- 	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_FORMAT, mask_sh),\
--	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh)
-+	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh),\
- 
- void dcn31_timing_generator_init(struct optc *optc1);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn314/dcn314_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn314/dcn314_optc.h
-index 99c098e76116..0ff72b97b465 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn314/dcn314_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn314/dcn314_optc.h
-@@ -98,7 +98,8 @@
- 	SRI(OPTC_BYTES_PER_PIXEL, ODM, inst),\
- 	SRI(OPTC_WIDTH_CONTROL, ODM, inst),\
- 	SRI(OPTC_MEMORY_CONFIG, ODM, inst),\
--	SRI(OTG_DRR_CONTROL, OTG, inst)
-+	SRI(OTG_DRR_CONTROL, OTG, inst),\
-+	SRI(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- #define OPTC_COMMON_MASK_SH_LIST_DCN3_14(mask_sh)\
- 	SF(OTG0_OTG_VSTARTUP_PARAM, VSTARTUP_START, mask_sh),\
-@@ -248,7 +249,11 @@
- 	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE, mask_sh),\
- 	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE_MANUAL, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_MODE, mask_sh),\
--	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh)
-+	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh),\
- 
- void dcn314_timing_generator_init(struct optc *optc1);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.c
-index 00094f0e8470..c217f653b3c8 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.c
-@@ -297,18 +297,6 @@ static void optc32_set_drr(
- 	optc32_setup_manual_trigger(optc);
- }
- 
--bool optc32_get_double_buffer_pending(struct timing_generator *optc)
--{
--	struct optc *optc1 = DCN10TG_FROM_TG(optc);
--	uint32_t update_pending = 0;
+ 			*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
+ 			*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
++			s->dst_y_per_vm_no_trip_vblank = math_ceil2(4.0 * s->Tvm_no_trip_oto / s->LineTime, 1.0) / 4.0;
++			s->dst_y_per_row_no_trip_vblank = math_ceil2(4.0 * s->Tr0_no_trip_oto / s->LineTime, 1.0) / 4.0;
+ #ifdef __DML_VBA_DEBUG__
+ 			dml2_printf("DML::%s: Using oto scheduling for prefetch\n", __func__);
+ #endif
 -
--	REG_GET(OPTC_INPUT_GLOBAL_CONTROL,
--			OPTC_DOUBLE_BUFFER_PENDING,
--			&update_pending);
--
--	return (update_pending == 1);
--}
--
- static struct timing_generator_funcs dcn32_tg_funcs = {
- 		.validate_timing = optc1_validate_timing,
- 		.program_timing = optc1_program_timing,
-@@ -373,7 +361,9 @@ static struct timing_generator_funcs dcn32_tg_funcs = {
- 		.setup_manual_trigger = optc2_setup_manual_trigger,
- 		.get_hw_timing = optc1_get_hw_timing,
- 		.is_two_pixels_per_container = optc1_is_two_pixels_per_container,
--		.get_double_buffer_pending = optc32_get_double_buffer_pending,
-+		.get_optc_double_buffer_pending = optc3_get_optc_double_buffer_pending,
-+		.get_otg_double_buffer_pending = optc3_get_otg_update_pending,
-+		.get_pipe_update_pending = optc3_get_pipe_update_pending,
- };
+ 		} else {
+ 			*p->dst_y_prefetch = s->dst_y_prefetch_equ;
+ 			s->TimeForFetchingVM = s->Tvm_equ;
+ 			s->TimeForFetchingRowInVBlank = s->Tr0_equ;
  
- void dcn32_timing_generator_init(struct optc *optc1)
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-index 665d7c52f67c..0b0964a9da74 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn32/dcn32_optc.h
-@@ -177,7 +177,11 @@
- 	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE, mask_sh),\
- 	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE_MANUAL, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_MODE, mask_sh),\
--	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh)
-+	SF(OTG0_OTG_DRR_CONTROL, OTG_V_TOTAL_LAST_USED_BY_DRR, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh)
+-		*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
+-		*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
++			*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
++			*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
++			s->dst_y_per_vm_no_trip_vblank = *p->dst_y_per_vm_vblank;
++			s->dst_y_per_row_no_trip_vblank = *p->dst_y_per_row_vblank;
  
- void dcn32_timing_generator_init(struct optc *optc1);
- void optc32_set_h_timing_div_manual_mode(struct timing_generator *optc, bool manual_mode);
-@@ -185,6 +189,5 @@ void optc32_get_odm_combine_segments(struct timing_generator *tg, int *odm_combi
- void optc32_set_odm_bypass(struct timing_generator *optc,
- 		const struct dc_crtc_timing *dc_crtc_timing);
- void optc32_wait_odm_doublebuffer_pending_clear(struct timing_generator *tg);
--bool optc32_get_double_buffer_pending(struct timing_generator *optc);
+ #ifdef __DML_VBA_DEBUG__
+ 			dml2_printf("DML::%s: Using equ bw scheduling for prefetch\n", __func__);
+ #endif
+ 		}
  
- #endif /* __DC_OPTC_DCN32_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.h
-index d077e2392379..be749ab41dce 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.h
-@@ -67,7 +67,11 @@
- 	SF(OTG0_OTG_CRC1_WINDOWB_Y_CONTROL_READBACK, OTG_CRC1_WINDOWB_Y_END_READBACK, mask_sh),\
- 	SF(OPTC_CLOCK_CONTROL, OPTC_FGCG_REP_DIS, mask_sh),\
- 	SF(OTG0_OTG_V_COUNT_STOP_CONTROL, OTG_V_COUNT_STOP, mask_sh),\
--	SF(OTG0_OTG_V_COUNT_STOP_CONTROL2, OTG_V_COUNT_STOP_TIMER, mask_sh)
-+	SF(OTG0_OTG_V_COUNT_STOP_CONTROL2, OTG_V_COUNT_STOP_TIMER, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh)
+-		// Lsw = dst_y_prefetch - (dst_y_per_vm_vblank + 2*dst_y_per_row_vblank)
+-		s->LinesToRequestPrefetchPixelData = *p->dst_y_prefetch - *p->dst_y_per_vm_vblank - 2 * *p->dst_y_per_row_vblank; // Lsw
++		/* take worst case Lsw to calculate bandwidth requirement regardless of schedule */
++		s->LinesToRequestPrefetchPixelData = math_min2(s->Lsw_equ, s->Lsw_oto); // Lsw
  
- void dcn35_timing_generator_init(struct optc *optc1);
+ 		s->cursor_prefetch_bytes = (unsigned int)math_max2(p->cursor_bytes_per_chunk, 4 * p->cursor_bytes_per_line);
+ 		*p->prefetch_cursor_bw = p->num_cursors * s->cursor_prefetch_bytes / (s->LinesToRequestPrefetchPixelData * s->LineTime);
+@@ -5741,13 +5756,13 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
  
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-index a5d6a7dca554..db670fc17264 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.c
-@@ -493,7 +493,9 @@ static struct timing_generator_funcs dcn401_tg_funcs = {
- 		.setup_manual_trigger = optc2_setup_manual_trigger,
- 		.get_hw_timing = optc1_get_hw_timing,
- 		.is_two_pixels_per_container = optc1_is_two_pixels_per_container,
--		.get_double_buffer_pending = optc32_get_double_buffer_pending,
-+		.get_optc_double_buffer_pending = optc3_get_optc_double_buffer_pending,
-+		.get_otg_double_buffer_pending = optc3_get_otg_update_pending,
-+		.get_pipe_update_pending = optc3_get_pipe_update_pending,
- };
+ 		if (vm_bytes == 0) {
+ 			prefetch_vm_bw = 0;
+-		} else if (*p->dst_y_per_vm_vblank > 0) {
++		} else if (s->dst_y_per_vm_no_trip_vblank > 0) {
+ #ifdef __DML_VBA_DEBUG__
+ 			dml2_printf("DML::%s: HostVMInefficiencyFactor = %f\n", __func__, p->HostVMInefficiencyFactor);
+ 			dml2_printf("DML::%s: dst_y_per_vm_vblank = %f\n", __func__, *p->dst_y_per_vm_vblank);
+ 			dml2_printf("DML::%s: LineTime = %f\n", __func__, s->LineTime);
+ #endif
+-			prefetch_vm_bw = vm_bytes * p->HostVMInefficiencyFactor / (*p->dst_y_per_vm_vblank * s->LineTime);
++			prefetch_vm_bw = vm_bytes * p->HostVMInefficiencyFactor / (s->dst_y_per_vm_no_trip_vblank * s->LineTime);
+ #ifdef __DML_VBA_DEBUG__
+ 			dml2_printf("DML::%s: prefetch_vm_bw = %f\n", __func__, prefetch_vm_bw);
+ #endif
+@@ -5759,8 +5774,8 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
  
- void dcn401_timing_generator_init(struct optc *optc1)
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.h b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.h
-index bb13a645802d..1be89571986f 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn401/dcn401_optc.h
-@@ -159,7 +159,11 @@
- 	SF(OTG0_OTG_PSTATE_REGISTER, OTG_PSTATE_KEEPOUT_START, mask_sh),\
- 	SF(OTG0_OTG_PSTATE_REGISTER, OTG_PSTATE_EXTEND, mask_sh),\
- 	SF(OTG0_OTG_PSTATE_REGISTER, OTG_UNBLANK, mask_sh),\
--	SF(OTG0_OTG_PSTATE_REGISTER, OTG_PSTATE_ALLOW_WIDTH_MIN, mask_sh)
-+	SF(OTG0_OTG_PSTATE_REGISTER, OTG_PSTATE_ALLOW_WIDTH_MIN, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_FLIP_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_DC_REG_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_CURSOR_UPDATE_PENDING, mask_sh),\
-+	SF(OTG0_OTG_PIPE_UPDATE_STATUS, OTG_VUPDATE_KEEPOUT_STATUS, mask_sh)
+ 		if (p->PixelPTEBytesPerRow == 0 && tdlut_row_bytes == 0) {
+ 			prefetch_row_bw = 0;
+-		} else if (*p->dst_y_per_row_vblank > 0) {
+-			prefetch_row_bw = (p->PixelPTEBytesPerRow * p->HostVMInefficiencyFactor + tdlut_row_bytes) / (*p->dst_y_per_row_vblank * s->LineTime);
++		} else if (s->dst_y_per_row_no_trip_vblank > 0) {
++			prefetch_row_bw = (p->PixelPTEBytesPerRow * p->HostVMInefficiencyFactor + tdlut_row_bytes) / (s->dst_y_per_row_no_trip_vblank * s->LineTime);
  
- void dcn401_timing_generator_init(struct optc *optc1);
+ #ifdef __DML_VBA_DEBUG__
+ 			dml2_printf("DML::%s: PixelPTEBytesPerRow = %u\n", __func__, p->PixelPTEBytesPerRow);
+@@ -10738,7 +10753,7 @@ static bool dml_core_mode_programming(struct dml2_core_calcs_mode_programming_ex
+ 				mode_lib->mp.UrgentLatency,
+ 				mode_lib->mp.TripToMemory,
+ 				!dml_is_phantom_pipe(&display_cfg->plane_descriptors[k]) && display_cfg->stream_descriptors[display_cfg->plane_descriptors[k].stream_index].timing.drr_config.enabled ?
+-				get_g6_temp_read_blackout_us(&mode_lib->soc, (unsigned int)(mode_lib->ms.uclk_freq_mhz * 1000), in_out_params->min_clk_index) : 0.0);
++				get_g6_temp_read_blackout_us(&mode_lib->soc, (unsigned int)(mode_lib->mp.uclk_freq_mhz * 1000), in_out_params->min_clk_index) : 0.0);
  
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
-index 7901792afb7b..86c6e5e8c42e 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.h
-@@ -1054,7 +1054,8 @@ unsigned int dcn32_calculate_mall_ways_from_bytes(const struct dc *dc, unsigned
-       SRI_ARR(OPTC_BYTES_PER_PIXEL, ODM, inst),                                \
-       SRI_ARR(OPTC_WIDTH_CONTROL, ODM, inst),                                  \
-       SRI_ARR(OPTC_MEMORY_CONFIG, ODM, inst),                                  \
--      SRI_ARR(OTG_DRR_CONTROL, OTG, inst)
-+      SRI_ARR(OTG_DRR_CONTROL, OTG, inst),                                     \
-+	  SRI_ARR(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- /* HUBP */
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-index 514d1ce20df9..bdafa7496cea 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.h
-@@ -536,8 +536,9 @@ void dcn401_prepare_mcache_programming(struct dc *dc, struct dc_state *context);
- 	SRI_ARR(OPTC_WIDTH_CONTROL, ODM, inst),                                  \
- 	SRI_ARR(OPTC_WIDTH_CONTROL2, ODM, inst),                                 \
- 	SRI_ARR(OPTC_MEMORY_CONFIG, ODM, inst),                                  \
--	SRI_ARR(OTG_DRR_CONTROL, OTG, inst),										 \
--	SRI_ARR(OTG_PSTATE_REGISTER, OTG, inst)
-+	SRI_ARR(OTG_DRR_CONTROL, OTG, inst),                                     \
-+	SRI_ARR(OTG_PSTATE_REGISTER, OTG, inst),                                 \
-+	SRI_ARR(OTG_PIPE_UPDATE_STATUS, OTG, inst)
- 
- /* HUBBUB */
- #define HUBBUB_REG_LIST_DCN4_01_RI(id)                                       \
+ 			myPipe->Dppclk = mode_lib->mp.Dppclk[k];
+ 			myPipe->Dispclk = mode_lib->mp.Dispclk;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
+index 13961c2eb634..cbdfbd5a0bde 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared_types.h
+@@ -1187,11 +1187,15 @@ struct dml2_core_calcs_CalculatePrefetchSchedule_locals {
+ 	double prefetch_bw_oto;
+ 	double Tvm_oto;
+ 	double Tr0_oto;
++	double Tvm_no_trip_oto;
++	double Tr0_no_trip_oto;
+ 	double Tvm_oto_lines;
+ 	double Tr0_oto_lines;
+ 	double dst_y_prefetch_oto;
+ 	double TimeForFetchingVM;
+ 	double TimeForFetchingRowInVBlank;
++	double dst_y_per_vm_no_trip_vblank;
++	double dst_y_per_row_no_trip_vblank;
+ 	double LinesToRequestPrefetchPixelData;
+ 	unsigned int HostVMDynamicLevelsTrips;
+ 	double trip_to_mem;
+@@ -1199,6 +1203,7 @@ struct dml2_core_calcs_CalculatePrefetchSchedule_locals {
+ 	double Tr0_trips_rounded;
+ 	double max_Tsw;
+ 	double Lsw_oto;
++	double Lsw_equ;
+ 	double Tpre_rounded;
+ 	double prefetch_bw_equ;
+ 	double Tvm_equ;
 -- 
 2.34.1
 
