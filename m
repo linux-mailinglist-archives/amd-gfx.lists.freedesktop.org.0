@@ -2,52 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC2A95AEEC
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC4E95AEFF
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9231A10E04E;
-	Thu, 22 Aug 2024 07:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD97910E7B4;
+	Thu, 22 Aug 2024 07:20:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lirmm.fr header.i=@lirmm.fr header.b="Lb7pWtpX";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="now+m2B8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from kirkenes.lirmm.fr (kirkenes.lirmm.fr [193.49.104.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC95D10E5AF
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 14:04:21 +0000 (UTC)
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com
- [209.85.160.51])
- by kirkenes.lirmm.fr (Postfix) with ESMTPSA id 3522415E5
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 16:04:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lirmm.fr; s=mail;
- t=1724249060; bh=9oqVjncvbl9OmFqZhDygqR28cBLms34D6a9jrq5Lazo=;
- h=References:In-Reply-To:Reply-To:From:Date:Subject:To:From;
- b=Lb7pWtpXZCMQI3y8AfUonCNxb/1TyisZaE3MuOuP+Le4eO/zL76nM47eaoNW5OmrW
- SY5qv+w840cfu4JF1Q2xXD2PMbOhJ4Lh0hznFb4FeO6BgiwCo+gND7Yii5/Ve8wR9o
- FlB9VQUKqTYSM18i916bc5bWSQnqBhxNbIxxoSMCGccpDC1Ofky3IVAyYF+NEGWxOt
- +C4Vl71v0qL+pzsDpXiFHzfzZLAtzYooMyb3qMtLL4nmPO1yoxNNDJSHl6uWZYDiq2
- agKesDmEhsSe1UQ2IoKbg2m+VXgRaofkzT74AngnvWIyNEkauF+uBABvKoHtEW29pI
- rZyMGaQbDpbbA==
-Received: by mail-oa1-f51.google.com with SMTP id
- 586e51a60fabf-2704d461058so2321477fac.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 07:04:20 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwKus8EmAy7Qozv5k1HSOACUUPpE3MF7ndj4mMUyhuc46YvauQn
- al3h2bfgOYekmZfs0jNXaX8sTbJJ7gMO/ASZnUncK3PRCFzfnbPzyvyD5tB2v+UTqerB6Ep/XEY
- 8r92qwV2eu0TuJ37ki9t8y+jiHfo=
-X-Google-Smtp-Source: AGHT+IEzOk17yvETpFrb/JgraKkzaiuJynkMsUBqcXSOIFf0GgliL7Ky+pIfaiZ5AsC4MK5GbT68+QoWMTberTcXElc=
-X-Received: by 2002:a05:6871:e71a:b0:254:e89e:fc1d with SMTP id
- 586e51a60fabf-2738bed3da3mr2090068fac.51.1724249058888; Wed, 21 Aug 2024
- 07:04:18 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF96C10E434
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 18:23:59 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-3717ff2358eso3787143f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 11:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1724264638; x=1724869438;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6UKtg+zvbSMPXrleMHfdH7Qk7nmkQZoNUnEZ2n2BArA=;
+ b=now+m2B8UpK6LZ1w0DCjhck5x4Bptn9/gEN/UUvV9o+Iclgh0EVnhdm2eEBPtCfH2J
+ 5FLGevPXC9G/+N0sUrizZnCRdvJKcH2xXMa70Nnwrw3pVxD5iy4jnOKxlVniuHTq+q7q
+ DZ4nKxpoDCPsZTL81/Y6bEmi4uZSNw5V9pTyNn5mVs5ae+F5ROTAhtIAUEY/OAopaPV9
+ jUNVWNBkahDWYrqQf2Z3PZaq8ckVpFHEA4HOO59LLcymI81i/t79EkLe3Y8fX/K1QNle
+ L3cXPTLUidPXZpT4dsigCWJIeCmHMqtp+YTw/7Co7JpuUl5OX+aTK0H/Bq9NAZqp9kz4
+ e2JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724264638; x=1724869438;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=6UKtg+zvbSMPXrleMHfdH7Qk7nmkQZoNUnEZ2n2BArA=;
+ b=iU9N8cn4v2TqkB1AsANbVwxTYoT4QeLoj1uCWywAimocGmNR/9GJ5r5xt9ZzmQTWgr
+ h5jRJ7JDnaWhuhU/GKJJgioD9TYSDKqNLdORHxkIiZTVfmNZU/Mr8kqEyRwHqns5DhTh
+ hgUABPqBG/Tc2VSwBlPwRV70r39pfObWxXEiLzZsqTtQLK85oL27JefPI1uPPH0lmjcN
+ 4r4zeJ3M4X/dtbm7w4fmoOOyiJBGpS27KK0pUXdP+tqh53rF5Rr5wuDRtYnjsEeewiyA
+ y/JQiOmxmQjcf6v0fufxHjwr30va9HZpfCyLDn6Z+uT/5ncnqAd4XoZT32ssEWqIdeAT
+ 1aUQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUXK9OvtwZ9q4SyR2wOzc7L20jvlHeCRo3bTiWERTN5m9rYoADUHmCBaKGHiuT6hSoizW9yP6t1@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxaS5Xj8/Urpo+f3nidBvVE3GXjLffci20ZKRzNTYG/SbSPoOVY
+ 3eXtVdk86xufY/6oSR7kiy6VbQBOqtg/H8lEDTeRn9Yuqmx7k4/BGlLEKbEiWrr1r9rPqRUmn89
+ gbpIa48U5mVz8rVQIhmk/GRXQtoCh90q6ix0=
+X-Google-Smtp-Source: AGHT+IG0fJ7c0qdelGJey9GL/wt13fokKG4Azv8WAjWPN2GOZwHyzJZuOrVRGRQpWEgQNsW5AtTzHed1qT8QSZdQ5ro=
+X-Received: by 2002:adf:a158:0:b0:368:41bd:149b with SMTP id
+ ffacd0b85a97d-372fd5ba7b6mr1932270f8f.34.1724264637269; Wed, 21 Aug 2024
+ 11:23:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
-In-Reply-To: <CALEYxHUaxtVx5M-k0v+3jTKWQB5ipSjy1HWQ6o5=krR_vKL3aw@mail.gmail.com>
-From: Krister Swenson <krister.swenson@lirmm.fr>
-Date: Wed, 21 Aug 2024 16:03:52 +0200
-X-Gmail-Original-Message-ID: <CALEYxHU3AF3u3gSzAcHj8GYpbVOPbHudgpOCAY3LgTYs1CkS3Q@mail.gmail.com>
-Message-ID: <CALEYxHU3AF3u3gSzAcHj8GYpbVOPbHudgpOCAY3LgTYs1CkS3Q@mail.gmail.com>
-Subject: Re: two AMD cards failing with radeon driver
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000a8dffc0620320441"
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-14-tzimmermann@suse.de>
+In-Reply-To: <20240821130348.73038-14-tzimmermann@suse.de>
+From: John Stultz <jstultz@google.com>
+Date: Wed, 21 Aug 2024 11:23:45 -0700
+Message-ID: <CANDhNCqDvWU8Hyudw=KromJzFjgj3CqeZ2q5+Qxo0EdS22gd+w@mail.gmail.com>
+Subject: Re: [PATCH v2 13/86] drm/hisilicon/kirin: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>, 
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Yongqin Liu <yongqin.liu@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 22 Aug 2024 07:20:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,170 +84,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: krister.swenson@lirmm.fr
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000a8dffc0620320441
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, Aug 21, 2024 at 6:04=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> The kirin driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Xinliang Liu <xinliang.liu@linaro.org>
+> Cc: Tian Tao <tiantao6@hisilicon.com>
+> Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: Yongqin Liu <yongqin.liu@linaro.org>
+> Cc: John Stultz <jstultz@google.com>
+> ---
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c | 2 ++
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c | 4 ++--
 
-Sorry for the spam folks.
-I didn't realize that the new amdgpu driver would work on that old
-hardware.  I'm using that driver now, hoping it will be more stable than
-radeon. I'm not sure why Ubuntu is set up to use the radeon driver by
-default.
+I don't have hardware to test anymore, but it looks reasonable.
+Acked-by: John Stultz <jstultz@google.com>
 
-kms
-
-On Wed, Aug 21, 2024 at 1:52=E2=80=AFPM Krister Swenson <swenson@lirmm.fr> =
-wrote:
-
-> Hello all,
->
-> I couldn't find a list to send mail to concerning the radeon driver. Is
-> this an OK place?
->
-> I'm desperate for help, as I have crippling issues with my AMD cards sinc=
-e
-> updating to Ubuntu 24.04. This is my work machine, and it's seriously
-> hampering my productivity.
->
-> I have a bit of experience messing around with this stuff over the last
-> decades, but remain very naive about debugging graphics problems. I have
-> two cards:
->
-> 03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-> Oland GL [FirePro W2100]
-> 04:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]
-> Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
->
-> Since the update the Radeon HD no longer works: I can boot into safe mode=
-,
-> but any attempt to start GDM results in a black screen with a line at the
-> bottom.
->
-> The FirePro card appears to work fine, until the driver goes haywire and =
-I
-> see a screen full of snow. I can still <ctrl><alt><F4> to a terminal and
-> shut the machine down (without seeing anything but snow), but the graphic=
-s
-> will not work. This happens with Wayland and Xorg. I posted a bug report
-> here that includes details from syslog:
->
->
-> https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-ati/+bug/206=
-8342
->
-> I would greatly appreciate any advice, hints, or workarounds on this
-> issue, as it's seriously holding me back. Thank you folks!
->
-> kms
->
-> p.s.
->
-> A few more details follow...
->
-> =3D> sudo lshw -c video
->   *-display
->        description: VGA compatible controller
->        product: Oland GL [FirePro W2100]
->        vendor: Advanced Micro Devices, Inc. [AMD/ATI]
->        physical id: 0
->        bus info: pci@0000:03:00.0
->        logical name: /dev/fb0
->        version: 00
->        width: 64 bits
->        clock: 33MHz
->        capabilities: pm pciexpress msi vga_controller bus_master cap_list
-> rom fb
->        configuration: depth=3D32 driver=3Dradeon latency=3D0 resolution=
-=3D2560,1080
->        resources: irq:50 memory:e0000000-efffffff memory:f3e00000-f3e3fff=
-f
-> ioport:8000(size=3D256) memory:f3e40000-f3e5ffff
->   *-display
->        description: VGA compatible controller
->        product: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
->        vendor: Advanced Micro Devices, Inc. [AMD/ATI]
->        physical id: 0
->        bus info: pci@0000:04:00.0
->        version: 00
->        width: 64 bits
->        clock: 33MHz
->        capabilities: pm pciexpress msi vga_controller bus_master cap_list
-> rom
->        configuration: driver=3Dradeon latency=3D0
->        resources: irq:51 memory:d0000000-dfffffff memory:f3d20000-f3d3fff=
-f
-> ioport:7000(size=3D256) memory:f3d00000-f3d1ffff
->
-
---000000000000a8dffc0620320441
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Sorry for the spam folks.</div><div>I didn&#39;t real=
-ize that the new amdgpu driver would work on that old hardware.=C2=A0 I&#39=
-;m using that driver now, hoping it will be more stable than radeon. I&#39;=
-m not sure why Ubuntu is set up to use the radeon driver by default.<br></d=
-iv><div><br></div><div>kms<br></div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 21, 2024 at 1:52=E2=80=AFPM=
- Krister Swenson &lt;<a href=3D"mailto:swenson@lirmm.fr">swenson@lirmm.fr</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr"><div>Hello all,</div><div><br></div><div>I couldn&#39;t find=
- a list to send mail to  concerning the radeon driver. Is this an OK place?=
-</div><div><br></div><div>I&#39;m desperate for help, as I have crippling i=
-ssues with my AMD cards since updating to Ubuntu 24.04. This is my work mac=
-hine, and it&#39;s seriously hampering my productivity.</div><div><br></div=
-><div>I have a bit of experience messing around with this stuff over the la=
-st decades, but remain very naive about debugging graphics problems. I have=
- two cards:</div><div><br></div><div>03:00.0 VGA compatible controller: Adv=
-anced Micro Devices, Inc. [AMD/ATI] Oland GL [FirePro W2100]<br>04:00.0 VGA=
- compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Caicos XT [R=
-adeon HD 7470/8470 / R5 235/310 OEM]</div><div><br></div><div>Since the upd=
-ate the Radeon HD no longer works: I can boot into safe mode, but any attem=
-pt to start GDM results in a black screen with a line at the bottom.</div><=
-div><br></div><div>The FirePro card appears to work fine, until the driver =
-goes haywire and I see a screen full of snow. I can still &lt;ctrl&gt;&lt;a=
-lt&gt;&lt;F4&gt; to a terminal and shut the machine down (without seeing an=
-ything but snow), but the graphics will not work. This happens with Wayland=
- and Xorg. I posted a bug report here that includes details from syslog:</d=
-iv><div><br><a href=3D"https://bugs.launchpad.net/ubuntu/+source/xserver-xo=
-rg-video-ati/+bug/2068342" target=3D"_blank">https://bugs.launchpad.net/ubu=
-ntu/+source/xserver-xorg-video-ati/+bug/2068342</a></div><div><br></div><di=
-v>I would greatly appreciate any advice, hints, or workarounds on this issu=
-e, as it&#39;s seriously holding me back. Thank you folks!</div><div><br></=
-div><div>kms</div><div><br></div><div>p.s.<br></div><div><br></div><div>A f=
-ew more details follow...<br></div><div><br></div><div>=3D&gt; sudo lshw -c=
- video<br>=C2=A0 *-display =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 <br>=C2=A0 =C2=A0 =C2=A0 =C2=A0description: VGA compatible controll=
-er<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0product: Oland GL [FirePro W2100]<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus=
- info: pci@0000:03:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0logical name: /dev/fb=
-0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0w=
-idth: 64 bits<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0capabilities: pm pciexpress msi vga_controller bus_master cap_=
-list rom fb<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: depth=3D32 driver=
-=3Dradeon latency=3D0 resolution=3D2560,1080<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
-resources: irq:50 memory:e0000000-efffffff memory:f3e00000-f3e3ffff ioport:=
-8000(size=3D256) memory:f3e40000-f3e5ffff<br>=C2=A0 *-display<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0description: VGA compatible controller<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0product: Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0vendor: Advanced Micro Devices, Inc. [AMD/ATI]<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0physical id: 0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0b=
-us info: pci@0000:04:00.0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0version: 00<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0width: 64 bits<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock:=
- 33MHz<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0capabilities: pm pciexpress msi vga_co=
-ntroller bus_master cap_list rom<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuratio=
-n: driver=3Dradeon latency=3D0<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: irq=
-:51 memory:d0000000-dfffffff memory:f3d20000-f3d3ffff ioport:7000(size=3D25=
-6) memory:f3d00000-f3d1ffff</div><div>
-=20
-</div>
-</div>
-</blockquote></div>
-
---000000000000a8dffc0620320441--
+thanks
+-john
