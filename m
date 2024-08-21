@@ -2,22 +2,22 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA7A95958A
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Aug 2024 09:16:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B707B959587
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Aug 2024 09:16:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 811A610E89D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ABDD10E89B;
 	Wed, 21 Aug 2024 07:16:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD1610E58F
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA2CD10E88F
  for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 06:50:07 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.88.214])
- by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Wpc3S1MNTz1S8Dh;
- Wed, 21 Aug 2024 14:33:24 +0800 (CST)
+Received: from mail.maildlp.com (unknown [172.19.88.163])
+ by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4Wpc3T4SCwz1j6gm;
+ Wed, 21 Aug 2024 14:33:25 +0800 (CST)
 Received: from kwepemh500013.china.huawei.com (unknown [7.202.181.146])
- by mail.maildlp.com (Postfix) with ESMTPS id D0ECB1A016C;
- Wed, 21 Aug 2024 14:33:26 +0800 (CST)
+ by mail.maildlp.com (Postfix) with ESMTPS id 7E9F5180019;
+ Wed, 21 Aug 2024 14:33:27 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemh500013.china.huawei.com
  (7.202.181.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 21 Aug
@@ -31,9 +31,9 @@ To: <chaitanya.dhere@amd.com>, <jun.lei@amd.com>, <harry.wentland@amd.com>,
  <dillon.varone@amd.com>, <amd-gfx@lists.freedesktop.org>,
  <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [PATCH -next 3/5] drm/amd/display: Make dcn35_hubp_funcs static
-Date: Wed, 21 Aug 2024 14:40:38 +0800
-Message-ID: <20240821064040.2292969-4-ruanjinjie@huawei.com>
+Subject: [PATCH -next 4/5] drm/amd/display: Make dcn401_dsc_funcs static
+Date: Wed, 21 Aug 2024 14:40:39 +0800
+Message-ID: <20240821064040.2292969-5-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240821064040.2292969-1-ruanjinjie@huawei.com>
 References: <20240821064040.2292969-1-ruanjinjie@huawei.com>
@@ -60,29 +60,29 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 The sparse tool complains as follows:
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/hubp/dcn35/dcn35_hubp.c:191:19: warning:
-	symbol 'dcn35_hubp_funcs' was not declared. Should it be static?
+drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/dcn401/dcn401_dsc.c:30:24: warning:
+	symbol 'dcn401_dsc_funcs' was not declared. Should it be static?
 
-This symbol is not used outside of dcn35_hubp.c, so marks it static.
+This symbol is not used outside of dcn401_dsc.c, so marks it static.
 
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- drivers/gpu/drm/amd/display/dc/hubp/dcn35/dcn35_hubp.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dsc/dcn401/dcn401_dsc.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn35/dcn35_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn35/dcn35_hubp.c
-index 771fcd0d3b99..d1f05b82b3dd 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn35/dcn35_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn35/dcn35_hubp.c
-@@ -188,7 +188,7 @@ void hubp35_program_surface_config(
- 	hubp35_program_pixel_format(hubp, format);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dcn401/dcn401_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dcn401/dcn401_dsc.c
+index 6acb6699f146..61678b0a5a1e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dcn401/dcn401_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dcn401/dcn401_dsc.c
+@@ -27,7 +27,7 @@ static void dsc401_disconnect(struct display_stream_compressor *dsc);
+ static void dsc401_wait_disconnect_pending_clear(struct display_stream_compressor *dsc);
+ static void dsc401_get_enc_caps(struct dsc_enc_caps *dsc_enc_caps, int pixel_clock_100Hz);
  
--struct hubp_funcs dcn35_hubp_funcs = {
-+static struct hubp_funcs dcn35_hubp_funcs = {
- 	.hubp_enable_tripleBuffer = hubp2_enable_triplebuffer,
- 	.hubp_is_triplebuffer_enabled = hubp2_is_triplebuffer_enabled,
- 	.hubp_program_surface_flip_and_addr = hubp3_program_surface_flip_and_addr,
+-const struct dsc_funcs dcn401_dsc_funcs = {
++static const struct dsc_funcs dcn401_dsc_funcs = {
+ 	.dsc_get_enc_caps = dsc401_get_enc_caps,
+ 	.dsc_read_state = dsc401_read_state,
+ 	.dsc_validate_stream = dsc401_validate_stream,
 -- 
 2.34.1
 
