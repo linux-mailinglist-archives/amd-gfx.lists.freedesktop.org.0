@@ -2,147 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1BB795AEF4
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A27DE95AD78
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 08:29:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3890B10E7AF;
-	Thu, 22 Aug 2024 07:20:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 119A210E743;
+	Thu, 22 Aug 2024 06:29:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="PjEO3pv2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WqRb/mGu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com
- (mail-sgaapc01on2088.outbound.protection.outlook.com [40.107.215.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7C4910E75A;
- Thu, 22 Aug 2024 06:33:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mhydPUqTXtWKBKsHC48XTbizSwLETDEWuIIBu6k1/u1YecVvm1CzwSgBLt6UydgdVmnjHwkYhVNCwguiGWwoJ/pDqiKPsuHXTqCAU2VGy3TTHuS0LwX62Gnf0clCE3booNpwGKFHGld6zZYt0Ajyb8cs9RUol3JIaPj4/hmRJ7PAWKsDJiOHhm+tMSmQa4Gb4XqH1PU1qRGHznbm4Zj3bH9YZ8wfxs74dPI1uFpHXxbNpu8FwUy5J4VIsK3GjjIObFNHX7Z/bE0T1Uaz4P8JjpgafIzLROP4dhHX7iqd0vM/aCJ/MhizxVkhuzyiTcTrzuCLM2K8VWcH7XQ+DhssFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6Nf4qHOg4Wy94B4bQcsuL4rSf5VRXrwo3ygBKI6+/bM=;
- b=cH2f3YPlAeLukcXZzrKdXgNVccBi/NhBJtHTBrHoefF+mElLpStTF+bSZAb8JWv/5Vu7zOgs5RxX8BZQQ1LE1pimajW38g7MVpQFwBDPJMR9bLejEmHx/41fB2mya+bOxkb6T0pFLBEWamDjnStEsWuoguiRxJCjsUqpjOySLcEpehZLCbUYr/MDNTjc+Psmq7jQOBLHtDvmTUefHGxniHPl+ACVxnl/jWABl9XPeLOtKBrQ/awO7SQbs8u8EO8OpxQVKeWjZQb0LKlmQJtA73U5udjaikewPueoR39X4/2oSbfuYYOsJR2wzybm2SDn96w9mC/UeDHH1apx2ABQYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6Nf4qHOg4Wy94B4bQcsuL4rSf5VRXrwo3ygBKI6+/bM=;
- b=PjEO3pv2oR/S+PLWmRo0vScE1OWfK8PGa8AoKr6rgGNP7ij0F0GL+rMLW7OLTrwiSVXS3A4Oo8FkWptLxPggioFCOwKsNOJMJzA7TXC/JMFpPrbVj8NEhMJMteFDuPiiqBWfAuxtSRInm7qKJAVxSglaexmgujcOT2f5ERD36aL4N2iyrBfnxspfM0yx7L/Jb9PwY6eQ0rTDJga84QtEVcETaT+GlHZuOqk9ozXhHFcq3A6Kux7ePP3KGelPN2xkhG+mVRWlFx4P3H1YHFPzR90ZBDKV5MpzPyO7wT03F4BL73JoKuFxJ3XPBe7YQoloaQ60FS13Ay4Qqz+3RwreKQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from TYZPR06MB4461.apcprd06.prod.outlook.com (2603:1096:400:82::8)
- by JH0PR06MB6344.apcprd06.prod.outlook.com (2603:1096:990:17::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Thu, 22 Aug
- 2024 06:33:37 +0000
-Received: from TYZPR06MB4461.apcprd06.prod.outlook.com
- ([fe80::9c62:d1f5:ede3:1b70]) by TYZPR06MB4461.apcprd06.prod.outlook.com
- ([fe80::9c62:d1f5:ede3:1b70%7]) with mapi id 15.20.7897.014; Thu, 22 Aug 2024
- 06:33:37 +0000
-From: Yu Jiaoliang <yujiaoliang@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Hung <alex.hung@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, Alvin Lee <alvin.lee2@amd.com>,
- Hersen Wu <hersenxs.wu@amd.com>, Dillon Varone <dillon.varone@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Krunoslav Kovac <krunoslav.kovac@amd.com>,
- Marcelo Mendes Spessoto Junior <marcelomspessoto@gmail.com>,
- Muhammad Ansari <muhammad.ansari@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: opensource.kernel@vivo.com
-Subject: [PATCH v1 6/6] drm/amd/display: Use max/min macro
-Date: Thu, 22 Aug 2024 14:29:32 +0800
-Message-Id: <20240822062947.1318340-7-yujiaoliang@vivo.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240822062947.1318340-1-yujiaoliang@vivo.com>
-References: <20240822062947.1318340-1-yujiaoliang@vivo.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0040.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::7) To TYZPR06MB4461.apcprd06.prod.outlook.com
- (2603:1096:400:82::8)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE40C10E743
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 06:29:37 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-428e0d18666so2299225e9.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 23:29:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1724308176; x=1724912976; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=N3qCjgQ61NT3W1H7eNx+8s7D5NK+EQR1NHkDhKiTiww=;
+ b=WqRb/mGumNOB0Rx9P6MiWSnED7IVjpr/L4A8FVqETr63L62a9jJVZ8+UXQZejKtVy1
+ NNuGUipSpmseOxbHS5to2qp7bySUluYHCVVG03191aElAb1N0aUB1XNhq0XK2R9jv9wk
+ 2aFcanlW931uGjUtPeoJlJ18HbLlEXy+2/a+kyyGZ7vkZcTvLI4BR5ijQbmialJCNQ0R
+ 314Z55TyktNRfmCx822s4LSiTW4uYGtWHSnnidnEo9sEGPIbeWuHmBKf/MSsVQMsiE0P
+ lPZh8kHcG29ECz/BsAbz6gPsHNVff/9tvh/hpgYRxXB2YjzMxDAzbKc84X0CWE6t17+A
+ 5nTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724308176; x=1724912976;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=N3qCjgQ61NT3W1H7eNx+8s7D5NK+EQR1NHkDhKiTiww=;
+ b=hWEFNlUrgT5PAuS6gt4pQ0nlQD7jVBgo79IsdHI2xw17GSdZQ/MPKVLVBzy5PHPiJG
+ RrJvD4v1C0mwNgQRAQbbhtjyOFytxWX6gBTH3AJXKm/I5PGWQNta/0FP9E69TKPyBVmw
+ ktc0IrmcPTz1/JO3VzyvWQFbODsn24y/VF3o4Jv7tTS8vdKaj6155Zfcdzi0e6kLT0zK
+ tpvTl2xlko6AT3yxLf3xON7eso7y2npIPoZA4vl2fznE6QE3ufhKKyi1ErHgnaGOcPQ8
+ XwzGG8KzZowmOcSbeSmDrvBsgBIymMk2xlfVEN9gLBUANKqG8OPOsj6BD8oWP1JM9buQ
+ x+8A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX6gXjJ9vd0mOFXNdpk9PtaBHT55qry7EyCkv4j1oLxkLkWB80oIJWaOCdIy3V4EajVhhr7BBp6@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzIwH4KdFvb6KQYyyPEuiexB+KTPDuaQvfxtgf8+ARWwpGtPCRn
+ 9SQ5u/1nrdfCC0tx93un4fs/QS7srgBu8TbMCNc63BOxp6rDYZbQ
+X-Google-Smtp-Source: AGHT+IG0uwuexgko1wHAytuBAAREejqoub0Ah/KVMSo3xn09uryoeBB/RwEz2IBMbtdEdB7GYlVNng==
+X-Received: by 2002:adf:ce8e:0:b0:371:8e50:2d06 with SMTP id
+ ffacd0b85a97d-372fd82c6c8mr2537343f8f.43.1724308175384; 
+ Wed, 21 Aug 2024 23:29:35 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42abefc604dsm48565025e9.35.2024.08.21.23.29.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 21 Aug 2024 23:29:35 -0700 (PDT)
+Message-ID: <f2ee509b-073e-4b21-87e3-e2c08b13c028@gmail.com>
+Date: Thu, 22 Aug 2024 08:29:33 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR06MB4461:EE_|JH0PR06MB6344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2af0cf4c-f12f-4cb6-962a-08dcc2745ae1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|52116014|7416014|1800799024|376014|366016|38350700014|921020; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4W16E6UpVblwdo9GArypANUqazeLf2MIOQ+68FB6QqE6VwOxw3s4kK0vRr5m?=
- =?us-ascii?Q?pfVQ5I6oOCMLeVk7NsOQ84ALaLXjAlSxerQGUYuZzUaQ9nW6Z+bG11f/JdzX?=
- =?us-ascii?Q?UCu+hOaDUtfMUmVdmkTn2k0yYV+i2OUsoMLvIZ4bVZM4XgnmkOFKMaZrC4BU?=
- =?us-ascii?Q?WeCEGWeSb8I0CZINyuCaxWcaAapso22bMcTYT4hGNnsCSUpJKtDAP6sK6txD?=
- =?us-ascii?Q?lDMubDQHRYmKRCxzWQ5Ugj+MVN2Zdvf4AoP1r1GcY/ZIuj4dRoyv2/+Eb4OP?=
- =?us-ascii?Q?L401TfaPu4Wud0CtMD3h4nRzpvO3fSnry4oJAK73wXRL9xK8Qi8MEjmSuP5p?=
- =?us-ascii?Q?kdbyLWx7LKGEjf03QvoVq6r77LCfMAHGGOLReb7C0tMzFJ/1+4o2Oz4R2oaT?=
- =?us-ascii?Q?TD9ibP0lHelQXFhgqzItjXD5nyxOHEIpzc72MEfh4JBW4RqrIZOp4osN01dT?=
- =?us-ascii?Q?xOnNFwSEsWO2s1ELJgXyCRe6wskEJBJmWGL602Q7GXKUFUw9CYjDVXoS5q/J?=
- =?us-ascii?Q?hBm76OB8x7HEbICJRafFESijK7YNwm7xD7+EjlgPUsm/I00cMqDDQzphnr21?=
- =?us-ascii?Q?94HW6uy8/DLGgofg9IMCjp+fwnxBNs1nzZUf52V9i/7osFZiHlX8DUrfVXKs?=
- =?us-ascii?Q?TgqN9hz8D8wunktTEqRqorWDBDuaCeLGQHabD0cNRAqg8eM6g6E8XGjCCGJk?=
- =?us-ascii?Q?EenwzN0nKqjttYpVQg+Zt+dGe2xT1BhMOGVo8dtXefo1IlsoxI0syxmJ4UJM?=
- =?us-ascii?Q?K04YkzFmzy1XBrYmBubCsAYU5vYolPPcVe7MO0t7gD7Lrd6BSuCKrA0K5fve?=
- =?us-ascii?Q?L50eZa6NeZufyUeGGWeORoGPn/mQICrWjJo4BTvT51LLf+eHms+VD2WRrvnM?=
- =?us-ascii?Q?ZqdKyko0vOQCqDlaMIgOG7YZX37hGJRuh6S6SFq6clqV6f51w64ijnJxGzmU?=
- =?us-ascii?Q?xx8D2spazCbisrLJMJFsvLmbmhjKc2FqNx0OjwlD+wZY+sEOBOIeWAEFrMtA?=
- =?us-ascii?Q?30IojyaRBnAMqCu12utxotypAqLJz9DaguSqPuRJNGsfi383jWCoW0P6jjFS?=
- =?us-ascii?Q?+rD1y8cQtdXJH7QnZwL9x4kPaYmSC0T+B8C+hrZE8OnFEx3i4nVynTYKABTL?=
- =?us-ascii?Q?gPBDFJRwRb7GeF3r0SmktPUgLv+E/6EZfrRjP0sxE5OdjM/kx+ngzVqSCBpZ?=
- =?us-ascii?Q?lmt6dZ7UZN/x6epafOUB6A0+zPqEI99cO7VPpp61kvXxB3WMD3Q4Z9HOPufu?=
- =?us-ascii?Q?2Xd2oEGdd+XToRtyUZ+omyFIgJ6ci4XxwdNAIGVX3hQ9sB5KpRgzxEXtIZ/7?=
- =?us-ascii?Q?2R90TDKPsABea0o+ArjZnbIiSeKL2cwGS4Aad9CL7+WMAK/Bo5OF4tkJJ8fd?=
- =?us-ascii?Q?Bye3yjxRtBnLbq48t7EMFgQuTAAUQs/OkY1RxkgNxcJiJNX5rghpggFuNqha?=
- =?us-ascii?Q?qUtpo8tICfA=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:TYZPR06MB4461.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(52116014)(7416014)(1800799024)(376014)(366016)(38350700014)(921020);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l+k5A/zjVJglLaikg/BaflaoCswhou4nWKEgZizY1LNncU2JAzeLnspUJdqx?=
- =?us-ascii?Q?Bw5JRqwtZeNejj3thQOZA3Ig5jE6CO/XCIUimyfz8Nm7bodAhyz7foymLaJS?=
- =?us-ascii?Q?bwJJW9dPTyrQOD5vkiESLKGe6qER9LyoEjZftHnBeo5ZfS7C5H1l8ERDac69?=
- =?us-ascii?Q?xRir/NFe/8oz09E/p7LHQOB+lKBWNK4k/UNPgBrvXQZeVZHNV4A3xtWyPLid?=
- =?us-ascii?Q?CQHefdH9u9I87nH8SIhSICdxSr/Lkk+E8nQu+QWOWUGoxuowwc6JrYxdzk92?=
- =?us-ascii?Q?rrz9Y6zlV4wgC9E6wHhTl/D9s1F2BBen7H0Xr7ZhURq9v7dTsRezJHyl8bI4?=
- =?us-ascii?Q?ekAffHGENu5sNEbnkymJ2VXYx8Urchx5qNOIQyS03rEMEiEQ2JsQoZ/Wgr01?=
- =?us-ascii?Q?m5l6k4IzsacH5SIgNuQw3gYrF3Px6B6smrjcHHf8a6M1/2LYO8GHqKX0K9/d?=
- =?us-ascii?Q?5LEO7/GNSlEL9JOYH7J9aVMxAkjB2QcecupOKJXa1LncGjilOzmGCnTsI02M?=
- =?us-ascii?Q?u47wbGhZzZ15VOVo3HUx//RxFWRk9Rl/DrmQdQhSBkgRKv4/XqgW1VfYMLUz?=
- =?us-ascii?Q?KFOksEu8PP+vbXHCrrYFVfz+28HXCj5IXZq8VO7+VCdz7I5MsNmK1PUjAd/b?=
- =?us-ascii?Q?55VAyKxpWNhMtiTcZ8lnDzPKuplo9DqhsZ80rdTS/Fz79DjKkvA5rp4kVIMi?=
- =?us-ascii?Q?D57t+rk2noqkltavP2VaimuTpHUILdpTbXHMtEi5HKW0psjdwGf4ckK3GDrb?=
- =?us-ascii?Q?W8nKYzOqBGY36mSzYdGtujWT43NhmauNY/C8AyZubsAEHuCk+MivsN0iFqa7?=
- =?us-ascii?Q?0J2faep4RXX7UNHex29/MdUkFoIlKKvjnE91w/swzcxz27io1mwL3Ki1Vf5s?=
- =?us-ascii?Q?fC331qIUXIsj7i18RQACQfK2bYOUVGLBjqPl17eRi4rFOKgqjBPnccCZbEky?=
- =?us-ascii?Q?Kd0CVcyK/oNa1AB3t3b7Nb9sHSsYo5c5DAZb5k8jI6Bc8qOpPvWeP6Tiq/qk?=
- =?us-ascii?Q?gU1TwQsWHTj/uLOc4dlslLlhIGOkAaUxrh/cvOgJLJioZ39NRHNLb4NYmQ/K?=
- =?us-ascii?Q?N8yK2toHrhdtlLghZ8VOL9CUOg8jdoPNgfS3+4hoTl5rAwdDrHDS2+aIYlHO?=
- =?us-ascii?Q?FO4rUVajuJ03MDU2QJgWFZ1yR+NJcIlMAQQDTZrG9bAnG1PnptVwY7SXFese?=
- =?us-ascii?Q?GQdHmk0rUxCheOv1S5h48Sjqhaz839cpO5aMCzH+wO1dpahQP8jZGGmZL5W4?=
- =?us-ascii?Q?O6xNKyiCnbqZaDvj+rRvooGy4z8O2d2jFell+GKqgWrYU48PYiLI9jLZpXWL?=
- =?us-ascii?Q?YcOXyHFJl2V1mmt1tKVtxc7khMTpI8ZKdvZfFihzZpKN2YtyYW7cloEucWg0?=
- =?us-ascii?Q?84332n4XgY8g/U64+P4DPJChx4zCOAFC961JwkR5+kEVwcPKTIKeaM41FAVJ?=
- =?us-ascii?Q?EGeQfMtP5cyDnxhiPSFHnLuwmvqoO7KLaBo0AHsdBuSHhlnaKUg/RkT7Lvk+?=
- =?us-ascii?Q?DDRJWFZzEJfNYlsiW6kNhn2xIwoC3HtU1f8cvZlRaouI9ZGa8OiehzB4nkGz?=
- =?us-ascii?Q?Kr39wGz4rtoUoO7I0l4+pZI7nKXd/EzKQ15lYnb5?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2af0cf4c-f12f-4cb6-962a-08dcc2745ae1
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB4461.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 06:33:37.8211 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1cEE1oyLWatkKE2unKjnt4GuVjH5dYzsbbPpqxwRof8YikDLTaclD96KWD/UazaqbvqBp4bV1h0dEyaOhO4S2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6344
-X-Mailman-Approved-At: Thu, 22 Aug 2024 07:20:39 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/17] drm/amdgpu: Add sysfs interface for running cleaner
+ shader
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20240815000501.1845226-1-alexander.deucher@amd.com>
+ <20240815000501.1845226-8-alexander.deucher@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240815000501.1845226-8-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,28 +86,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use the macro instead of ternary operator.
+Am 15.08.24 um 02:04 schrieb Alex Deucher:
+> From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+>
+> This patch adds a new sysfs interface for running the cleaner shader on
+> AMD GPUs. The cleaner shader is used to clear GPU memory before it's
+> reused, which can help prevent data leakage between different processes.
+>
+> The new sysfs file is write-only and is named `run_cleaner_shader`.
+> Write the number of the partition to this file to trigger the cleaner shader
+> on that partition. There is only one partition on GPUs which do not
+> support partitioning.
+>
+> Changes made in this patch:
+>
+> - Added `amdgpu_set_run_cleaner_shader` function to handle writes to the
+>    `run_cleaner_shader` sysfs file.
+> - Added `run_cleaner_shader` to the list of device attributes in
+>    `amdgpu_device_attrs`.
+> - Updated `default_attr_update` to handle `run_cleaner_shader`.
+> - Added `AMDGPU_DEVICE_ATTR_WO` macro to create write-only device
+>    attributes.
+>
+> v2: fix error handling (Alex)
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 134 ++++++++++++++++++++++++
+>   1 file changed, 134 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> index 2e35fc2577f9..76f77cf562af 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> @@ -24,10 +24,13 @@
+>    */
+>   
+>   #include <linux/firmware.h>
+> +#include <linux/pm_runtime.h>
+> +
+>   #include "amdgpu.h"
+>   #include "amdgpu_gfx.h"
+>   #include "amdgpu_rlc.h"
+>   #include "amdgpu_ras.h"
+> +#include "amdgpu_reset.h"
+>   #include "amdgpu_xcp.h"
+>   #include "amdgpu_xgmi.h"
+>   
+> @@ -1391,6 +1394,129 @@ static ssize_t amdgpu_gfx_get_available_compute_partition(struct device *dev,
+>   	return sysfs_emit(buf, "%s\n", supported_partition);
+>   }
+>   
+> +static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+> +{
+> +	struct amdgpu_device *adev = ring->adev;
+> +	long timeout = msecs_to_jiffies(1000);
+> +	struct dma_fence *f = NULL;
+> +	struct amdgpu_job *job;
+> +	struct amdgpu_ib *ib;
+> +	int i, r;
+> +
+> +	r = amdgpu_job_alloc_with_ib(adev, NULL, NULL,
+> +				     64, AMDGPU_IB_POOL_DIRECT,
+> +				     &job);
+> +	if (r)
+> +		goto err;
+> +
+> +	job->enforce_isolation = true;
+> +
+> +	ib = &job->ibs[0];
+> +	for (i = 0; i <= ring->funcs->align_mask; ++i)
+> +		ib->ptr[i] = ring->funcs->nop;
+> +	ib->length_dw = ring->funcs->align_mask + 1;
+> +
+> +	r = amdgpu_job_submit_direct(job, ring, &f);
 
-Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
----
- drivers/gpu/drm/amd/display/modules/freesync/freesync.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+That's a really really bad idea. There is nothing which guarantees the 
+the scheduler tries to submit something at the same time as well.
 
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index a40e6590215a..33b9b87d8d3a 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -1005,8 +1005,8 @@ void mod_freesync_build_vrr_params(struct mod_freesync *mod_freesync,
- 			(stream->timing.h_total * (long long)stream->ctx->dc->caps.max_v_total));
- 	}
- 	/* Limit minimum refresh rate to what can be supported by hardware */
--	min_refresh_in_uhz = min_hardware_refresh_in_uhz > in_config->min_refresh_in_uhz ?
--		min_hardware_refresh_in_uhz : in_config->min_refresh_in_uhz;
-+	min_refresh_in_uhz =
-+		max(min_hardware_refresh_in_uhz, in_config->min_refresh_in_uhz);
- 	max_refresh_in_uhz = in_config->max_refresh_in_uhz;
- 
- 	/* Full range may be larger than current video timing, so cap at nominal */
--- 
-2.34.1
+You need to allocate a scheduler entity and use that for submission.
+
+Christian.
+
+> +	if (r)
+> +		goto err_free;
+> +
+> +	r = dma_fence_wait_timeout(f, false, timeout);
+> +	if (r == 0)
+> +		r = -ETIMEDOUT;
+> +	else if (r > 0)
+> +		r = 0;
+> +
+> +	amdgpu_ib_free(adev, ib, f);
+> +	dma_fence_put(f);
+> +
+> +	return 0;
+> +
+> +err_free:
+> +	amdgpu_job_free(job);
+> +	amdgpu_ib_free(adev, ib, f);
+> +err:
+> +	return r;
+> +}
+> +
+> +static int amdgpu_gfx_run_cleaner_shader(struct amdgpu_device *adev, int xcp_id)
+> +{
+> +	int num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+> +	struct amdgpu_ring *ring;
+> +	int num_xcc_to_clear;
+> +	int i, r, xcc_id;
+> +
+> +	if (adev->gfx.num_xcc_per_xcp)
+> +		num_xcc_to_clear = adev->gfx.num_xcc_per_xcp;
+> +	else
+> +		num_xcc_to_clear = 1;
+> +
+> +	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
+> +		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+> +			ring = &adev->gfx.compute_ring[i + xcc_id * adev->gfx.num_compute_rings];
+> +			if ((ring->xcp_id == xcp_id) && ring->sched.ready) {
+> +				r = amdgpu_gfx_run_cleaner_shader_job(ring);
+> +				if (r)
+> +					return r;
+> +				num_xcc_to_clear--;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+> +	if (num_xcc_to_clear)
+> +		return -ENOENT;
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t amdgpu_gfx_set_run_cleaner_shader(struct device *dev,
+> +						 struct device_attribute *attr,
+> +						 const char *buf,
+> +						 size_t count)
+> +{
+> +	struct drm_device *ddev = dev_get_drvdata(dev);
+> +	struct amdgpu_device *adev = drm_to_adev(ddev);
+> +	int ret;
+> +	long value;
+> +
+> +	if (amdgpu_in_reset(adev))
+> +		return -EPERM;
+> +	if (adev->in_suspend && !adev->in_runpm)
+> +		return -EPERM;
+> +
+> +	ret = kstrtol(buf, 0, &value);
+> +
+> +	if (ret)
+> +		return -EINVAL;
+> +
+> +	if (value < 0)
+> +		return -EINVAL;
+> +
+> +	if (adev->xcp_mgr) {
+> +		if (value >= adev->xcp_mgr->num_xcps)
+> +			return -EINVAL;
+> +	} else {
+> +		if (value > 1)
+> +			return -EINVAL;
+> +	}
+> +
+> +	ret = pm_runtime_get_sync(ddev->dev);
+> +	if (ret < 0) {
+> +		pm_runtime_put_autosuspend(ddev->dev);
+> +		return ret;
+> +	}
+> +
+> +	ret = amdgpu_gfx_run_cleaner_shader(adev, value);
+> +
+> +	pm_runtime_mark_last_busy(ddev->dev);
+> +	pm_runtime_put_autosuspend(ddev->dev);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	return count;
+> +}
+> +
+>   static ssize_t amdgpu_gfx_get_enforce_isolation(struct device *dev,
+>   						struct device_attribute *attr,
+>   						char *buf)
+> @@ -1469,6 +1595,9 @@ static ssize_t amdgpu_gfx_set_enforce_isolation(struct device *dev,
+>   	return count;
+>   }
+>   
+> +static DEVICE_ATTR(run_cleaner_shader, 0200,
+> +		   NULL, amdgpu_gfx_set_run_cleaner_shader);
+> +
+>   static DEVICE_ATTR(enforce_isolation, 0644,
+>   		   amdgpu_gfx_get_enforce_isolation,
+>   		   amdgpu_gfx_set_enforce_isolation);
+> @@ -1509,6 +1638,10 @@ int amdgpu_gfx_sysfs_isolation_shader_init(struct amdgpu_device *adev)
+>   			return r;
+>   	}
+>   
+> +	r = device_create_file(adev->dev, &dev_attr_run_cleaner_shader);
+> +	if (r)
+> +		return r;
+> +
+>   	return 0;
+>   }
+>   
+> @@ -1516,6 +1649,7 @@ void amdgpu_gfx_sysfs_isolation_shader_fini(struct amdgpu_device *adev)
+>   {
+>   	if (!amdgpu_sriov_vf(adev))
+>   		device_remove_file(adev->dev, &dev_attr_enforce_isolation);
+> +	device_remove_file(adev->dev, &dev_attr_run_cleaner_shader);
+>   }
+>   
+>   int amdgpu_gfx_cleaner_shader_sw_init(struct amdgpu_device *adev,
 
