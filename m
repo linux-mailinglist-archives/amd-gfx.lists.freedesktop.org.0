@@ -2,124 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D68395C444
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2024 06:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B29795C6C7
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2024 09:42:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A74D810EC12;
-	Fri, 23 Aug 2024 04:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81E9F10EC31;
+	Fri, 23 Aug 2024 07:42:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="T+vcC7Bm";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=linux.org.uk header.i=@linux.org.uk header.b="U+8y7g7m";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2089.outbound.protection.outlook.com [40.107.212.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFE2410EC12
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 04:37:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=biRmiSxcozPAFMdzfQeEyY0o3cEc9NZ0feAmJh+TYT9oYeofsX7xYJ2PvQPF9CNO/jZYnnQkEPBr061Cyoww/SmlrQn1Q2124IxWb5y7XL9GyGMLNlLBJ1v+eqHJXxoV3LKZisEp9FQcyIlLRgsjqA0ozlx1AVSiBuK8xzAzv/NlNqv3VoSEAQKLI7M3X7yNre8o5qew5FUEw+mqAFjkn4ggnB8otLIjOSMRbHcIFj26KwKEEcSiEHtitPy7JAZeLGiYIm+RuHT+FgaEy9r620+AKU5jdp92Jdd1bpHP1nwXo5ospd+VuNZaJUyc55VTo2KiXLtZqCn/cuJXF32TeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7aIhaZlengaMeNFgr8O3cWo2sNDq8mV010+LSiRB3K0=;
- b=CikazpyHfdTHj0TV8+SuHiyG6EDPAvKpviaU0kv06FAA2O5Dfm6YG8YbGCHt7NE2L5Q2Zn6WeJt3Lh01oCyIe/clXokQyc7rOtySkPCJ9aD0eDqbk0/re4dIQBUr1c7FvEItUhXkWFfBt6GPwvz14hXn2wwi0/qJ4VcsutgJLCuAjresmcy5ODkFySzydTjbiFIquz+wgevy2htWB7OdOsplvSyDlvmpM1Nw9CsDeXbbIVbDwpBl8h4J3fJDEmwwlkmZWFu6Ua5eWKLpA0A3ORpLT0jPCMnns65dcsTH47xerrYSqlfLDxnrc3uSOFo3OTzwDRmD/jWgFEwTRdc8ZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7aIhaZlengaMeNFgr8O3cWo2sNDq8mV010+LSiRB3K0=;
- b=T+vcC7Bmxnd6kIRU7ohQ3+GZ2nxOdSdMqqTtLHh+ZA+BQebGMs/lRjM+ulczG+mfrDb5e0+/jX/5DBkbSXZvgDX+VTrONgPXCoF+zTUfGROvZ9bQLIBn+RbqI2gJjFZitk7ToL2zaUJtJi8qwVkimUJVaaVasnbCusymqfxwKHI=
-Received: from SA0PR13CA0015.namprd13.prod.outlook.com (2603:10b6:806:130::20)
- by SJ1PR12MB6268.namprd12.prod.outlook.com (2603:10b6:a03:455::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25; Fri, 23 Aug
- 2024 04:37:09 +0000
-Received: from SA2PEPF00001506.namprd04.prod.outlook.com
- (2603:10b6:806:130:cafe::b3) by SA0PR13CA0015.outlook.office365.com
- (2603:10b6:806:130::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.18 via Frontend
- Transport; Fri, 23 Aug 2024 04:37:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF00001506.mail.protection.outlook.com (10.167.242.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7897.11 via Frontend Transport; Fri, 23 Aug 2024 04:37:08 +0000
-Received: from mkmmarleung05.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 22 Aug
- 2024 23:37:02 -0500
-From: Zaeem Mohamed <zaeem.mohamed@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
- <Rodrigo.Siqueira@amd.com>, <Aurabindo.Pillai@amd.com>, <roman.li@amd.com>,
- <wayne.lin@amd.com>, <agustin.gutierrez@amd.com>, <chiahsuan.chung@amd.com>,
- <jerry.zuo@amd.com>, <zaeem.mohamed@amd.com>
-Subject: [PATCH 1/1] drm/amdgpu/display: remove unecessary TODO spl_os_types.h
-Date: Fri, 23 Aug 2024 00:35:43 -0400
-Message-ID: <20240823043543.1939766-2-zaeem.mohamed@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240823043543.1939766-1-zaeem.mohamed@amd.com>
-References: <20240823043543.1939766-1-zaeem.mohamed@amd.com>
+Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B485110EB30;
+ Thu, 22 Aug 2024 15:20:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=28CByVoDKbmSRRoAthE7OCIveD+kuGlPjlnsnOxE2WQ=; b=U+8y7g7mJU3YIDPNhHd6YX145o
+ S6ebhlQ3NAZ6TWcOC6QNny5FyE+2w5iFlzB667o8Jd0g6jScASoWP6RF3M9j0CXqTNW6ON9nH+IEz
+ rMscFLTn3peq7N0O81iSD7RDymYz2HpjOoA/CPvfC1xfiHj7iGBe37ULh7jdQtDaJnczCQDL8EN4/
+ BBHQl6jENKs8BgTOGztSqgyM+0I14aZ869U3+hXWv2/+zykm225FvgVMQCmjzDwnhBWu1Lx3lDCOo
+ XuNzCVorUvEU4e66WLtJI6WQX89u0/ANZBqIdwaJRYsptYazPEx7fe1Vrbs+b5FG+7B1Z4/rtS9p2
+ qjWRbB4Q==;
+Received: from viro by zeniv.linux.org.uk with local (Exim 4.98 #2 (Red Hat
+ Linux)) id 1sh9bq-00000004FKl-0LTH; Thu, 22 Aug 2024 15:20:22 +0000
+Date: Thu, 22 Aug 2024 16:20:22 +0100
+From: Al Viro <viro@zeniv.linux.org.uk>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org
+Subject: Re: [PATCH 1/4] new helper: drm_gem_prime_handle_to_dmabuf()
+Message-ID: <20240822152022.GU504335@ZenIV>
+References: <20240812065656.GI13701@ZenIV>
+ <20240812065906.241398-1-viro@zeniv.linux.org.uk>
+ <57520a28-fff2-41ae-850b-fa820d2b0cfa@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001506:EE_|SJ1PR12MB6268:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f37ebf3-0655-4026-5069-08dcc32d3f80
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ilGpWNBldvREWXjqN9ZAdsBn1t9I4TVwt2R0rjbMY1zxVwy1PjS4oz/guTTh?=
- =?us-ascii?Q?Wa+13zqPV6PX9RTvJnn74Je9MI5RXEXetjTB7hj8Nuo9Aqllpi7dJBFkVk15?=
- =?us-ascii?Q?C7v3gdlGwaIFCRWIi53EwB/MlrMCTsXcJLJTl9KENKRQrzlydwuzpLTb6wHi?=
- =?us-ascii?Q?xDSlOGihn3HzypBr0mzQkZcl1+nnvWlPi1d5Rw4SWbMZpLeEWYBBCxsH6ftw?=
- =?us-ascii?Q?NVW3cKr0ldeZbGx2CmTZ31gnHN8oVUHFM1NzawIODofZrVL08XNMZT08vQ19?=
- =?us-ascii?Q?UuvmrCSD5vFQdEbqxJBXHXDe/jUyawUfz5BzYs2Y53hcEpiVJah65FJqc8kD?=
- =?us-ascii?Q?+X3l1VhVrxiUFsVwR9ScsE4AqfYx7UMSi4J/o0D+eIAuxg1rGpLiFXsLBccs?=
- =?us-ascii?Q?1bTsdWfLhTyvMV35hQSdQyUuCSGzI6qJHD0+GlUGKchEY5+NoABpoHL4aBfz?=
- =?us-ascii?Q?8VTIUdlKXFXgRpexxLn4I2EL1UeFy5oSgRBOBRxAOMlWb5UH9oZYnWEtqcwx?=
- =?us-ascii?Q?f4wb8AlAYpvjNU9rnneTSPBOw9FgMEH1KdvhZKEFJqS2EabGg7b5ya9vGW4S?=
- =?us-ascii?Q?ZEKIXjiTvnlI/i4CvuQjrRw12UJQhWsvvLemy6+Ok68DNViNYEUR6Zn7LLVA?=
- =?us-ascii?Q?B7SGQoou5kVmTv/QXCyIC1YvMKNkGnL1X9SEn8nhk7/UNzaAYsnNp9wi9mxz?=
- =?us-ascii?Q?xZOKktsxAKqIRFIMaYUDuPaBFWWpKW2pvY+u2s2GcAyHWLdCnWVwNLV6R9Ud?=
- =?us-ascii?Q?eppUAZonkC24/Yb7BkzSJIU6wXZg0H75gkuLDUaSg0AvVjSwpvbduCOKfEYr?=
- =?us-ascii?Q?cHxX/F8RO7t5hjqj8rKITbR75kUn42e5OB9vpo6RHHj91PZHkzhvcMDcXL1B?=
- =?us-ascii?Q?/HVlnLAY9V69xk0RHBH8S5RjqitW5ILlotuYa63MYAjWvNLpmlWTF84DUgs7?=
- =?us-ascii?Q?32M/ifQ3GLjolPRJ7exC5q0oPDYCACSjNwtXovOdi1tF5pS+eNnSEiLC3hju?=
- =?us-ascii?Q?6CLdPW4t6f5wLrh71UmALZdqpkMlKHAH/00Nk9OC/pcRHzxYSodNSgg9KqQS?=
- =?us-ascii?Q?JcEw7BlaEmPWHQDY1iY++r9tyOeycKCVQo4KSmVtaBgF31KxHWs8IJqxAncz?=
- =?us-ascii?Q?aLRsjQ7+/q+PQde2e1gyVTMJKaPmloI0tZ+MDaae/zBGOIXC6DgWHjS+yDWD?=
- =?us-ascii?Q?PAjh0oyUwY7GiSXmV3dItPQjMrpW5JXAWLmcf5sXXLqq8mBeyPgb7/IO2VYg?=
- =?us-ascii?Q?Em0KhccA4M0P2bwMQhIVqVRD5i3tK6tiZv3SgvVkxS4hmMHR16BC7gGVosO+?=
- =?us-ascii?Q?tN5+LxxUrl2Nyfu9NA26bFreJYFzPYCN6IV5YA3wgbjn1xrHjQcP5BLkbnp0?=
- =?us-ascii?Q?jt9Nmnc0Cyb3dD5dM2CJDc3GBb03cVcKThO0CGS7cwM9DxbdFf+JyXI8XKnh?=
- =?us-ascii?Q?TAs0nESiNJpCEn+W9FT3ZX8cjkinNkHJ?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2024 04:37:08.5148 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f37ebf3-0655-4026-5069-08dcc32d3f80
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001506.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6268
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <57520a28-fff2-41ae-850b-fa820d2b0cfa@suse.de>
+X-Mailman-Approved-At: Fri, 23 Aug 2024 07:42:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,25 +56,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove TODO from spl_os_types.h
+On Thu, Aug 22, 2024 at 04:41:59PM +0200, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 12.08.24 um 08:59 schrieb Al Viro:
+> > Once something had been put into descriptor table, the only thing you
+> > can do with it is returning descriptor to userland - you can't withdraw
+> > it on subsequent failure exit, etc.  You certainly can't count upon
+> > it staying in the same slot of descriptor table - another thread
+> > could've played with close(2)/dup2(2)/whatnot.
+> 
+> This paragraph appears to refer to the newly added call to fd_install().
 
-Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
----
- drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h | 1 -
- 1 file changed, 1 deletion(-)
+It refers to dma_buf_fd() call that had been there all along, actually.
+dma_buf_fd() is get_unused_fd_flags() + fd_install().  The reason
+for splitting it in new variant and calling get_unused_fd_flags() and
+fd_install() separately is that it makes for simpler cleanup; we could
+use dma_buf_fd() instead - it would be a bit more clumsy, but that's
+it.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-index 058306bb41aa..709706ed4f2c 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-@@ -18,7 +18,6 @@
-  * general debug capabilities
-  *
-  */
--// TODO: need backport
- #define SPL_BREAK_TO_DEBUGGER() ASSERT(0)
+The real issue is that drm_gem_prime_handle_to_fd() forces us to make
+the thing reachable via descriptor table; it's just what we need when
+all we are going to do is returning descriptor to userland, but it's
+inherently racy for internal uses - anything put into descriptor table,
+be it by fd_install() or by dma_buf_fd(), is fair game for all syscalls
+by other threads.
  
- static inline uint64_t spl_div_u64_rem(uint64_t dividend, uint32_t divisor, uint32_t *remainder)
--- 
-2.34.1
+> > Add drm_gem_prime_handle_to_dmabuf() - the "set dmabuf up" parts of
+> > drm_gem_prime_handle_to_fd() without the descriptor-related ones.
+> > Instead of inserting into descriptor table and returning the file
+> > descriptor it just returns the struct file.
+> > 
+> > drm_gem_prime_handle_to_fd() becomes a wrapper for it.  Other users
+> > will be introduced in the next commit.
 
+> > -int drm_gem_prime_handle_to_fd(struct drm_device *dev,
+> > +struct dma_buf *drm_gem_prime_handle_to_dmabuf(struct drm_device *dev,
+> 
+> If it's exported it should have kernel docs. At least copy-paste the docs
+> from drm_gem_prime_handle_to_fd()
+> and reword a few bits.
+
+Point...
