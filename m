@@ -2,138 +2,139 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A8695AEF1
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 656D795AF0B
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Aug 2024 09:20:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E287510E7A7;
-	Thu, 22 Aug 2024 07:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4831A10E7C3;
+	Thu, 22 Aug 2024 07:20:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="qgCJaABg";
+	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="e1AwMQMr";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com
- (mail-psaapc01on2051.outbound.protection.outlook.com [40.107.255.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B016A10E78A;
- Thu, 22 Aug 2024 06:58:00 +0000 (UTC)
+Received: from HK2PR02CU002.outbound.protection.outlook.com
+ (mail-eastasiaazon11010027.outbound.protection.outlook.com [52.101.128.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3F4A10E792;
+ Thu, 22 Aug 2024 07:11:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aw65ZlcUWh/y/lzUuuyPPsQuk3Tfoi5t1JzJTtSEeGAne3/4Aq5hC5H357FXzT4NY7c2y+den/5Qgi1zbg4se4QHTRKGXT7OTIr2z8YdI6Oi7Mg5Gs/JrdUHfH/C99U2J+OLRcXwdVSVbkF19qIglTXybNIB8Q/K/6otaHJ2xm8x8AjpLGX7b+y4XN3gRH6VVMrLc/oMnobttNmKE0SrXU78BRSX1TkL52htLqBUHtOiBRv+9Yu/pLbzQ4GuienqMcF4SY5xYRSlXviitiXZAOW3PAvcHCOj/PtODUVLaclwrKMzVXUicr3lRpUZ9hmYaJEzYPHL09fy8vQc2bC8gQ==
+ b=wTZz8ZAIZlVnGysvXXKVIDdvtpNoQYEZbMpbSDFnRc0zzIUPSREdP23tuZHtUk0LEVmAyddwCR6gw3eUe+MqH7QLH3G6lhr7d5gfgyIiYRMVRPJIF5oYGJA9IaWc8ePQPX/73Sqou4Dr+Q+ctrRr9qiu1ZzwglCSs45PU/PAVMpbAa8Yj+o26raQLVYJJRQ/VOeAaLyomKjIIq9GDQL6AA1L38E3saMQfJqszOWUPtnRP/vUVA12dHVSJdQBoRolY7lq4njeWMqNjfhJCQhAc6aQ3Jo335K56XTthqxjdAXichd/eINz+xnX01dgyk+oEdbsO+pCnp6/bbDSE+5sNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8s/el5JOOU+Pho7H74LhNFfESzGFbNXPaPJtptZs+1M=;
- b=lxFrqi63VcWb49sPjgptFGQ50PopCNeA35iHkYFa/CjQGRl3uFY+COJMVfAgNvl1gn14rSdz4D1DMMyFylTbnpHtFbZvLQaDtvHUpT4FVX9y09dXKh44/pCEnydZiKQxv2bKcwPQAc4K52o5V1+zvc++UK7WCzbMffGV/JAu9llrNhtwDxZ2JsnuA2EyP/++vv1StJEMMVKBsWWWtefm0ngd3TZYO2F2A2kUxoWBQugWkJfGHc0AJFhwkpaSO+ib+z2I6c9Lq+oA/B5fQrmqPcDhdVau/0p4+DqPCkTXIekDDukTxYzuB7etEF67p0Au0MZ3L8dC/k24j4wTOOwZWQ==
+ bh=d3i9MlsMghJyLZQjdNWYFTuWDk8mbnH5lmqE/00Vz0M=;
+ b=Zhabvnas9A7PhP+f0QNPTY/KRTKgeiaY0Dmt9rMVtqyupzIrK2UYAyFZRVi+YYQT4Pe3fggD0EK+T8zFeheJDinF6RDK1L/C3z8qx/J3OYKXM6x8KMo7WYGEtGhP8IWDHqWfGoe0hrRFlsOHhIMHiQsukbEpLTYiVIND0mwFsTfomVd1uAs9dnXrS2X4/T6Lnw8UI8qWNUJLJi2Y4nu+Ir7iVwkXPLvVw3eKuJYKWh30Lu5dwuzMSqrGys5JoGS8jllYrYytjB3Ndg00F90rzWYLlZKt3GIB30rNMRc2Fc6xiJkZICsjsHnqNfmP9Npb2aioCf3shiFvRr7UHFXBpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
  dkim=pass header.d=vivo.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8s/el5JOOU+Pho7H74LhNFfESzGFbNXPaPJtptZs+1M=;
- b=qgCJaABga/kILiHK03z2hOoVfCkD62th2StCX6omBQ0NuplYKpsRJKMpiVctoYGWtQ3pTPjliU4uuZFMr0S0s77IGM9gc8ng+mpvmNpPO/1hewdNB5vSZC7rvjPDrK09Ym3Gtqz9WSQPlQ0NXlFyPQQPASwjwqpHYdbfBa9fhUtsWHeaHpbcjE6or+EzmiuoD2Ba3THuaMtBltZyY86rC/OIIsBXgaejnmIXTjEYQBLdu9weiqWfDcatMjBghSqV9BT7It4BozpoEBputqCZiA+pVUA9b97dRZ1A9n3H+XXJcAx4mz5wwbtDImDLKdA/MGGg6HZWdk0Thm/CWSTw8Q==
+ bh=d3i9MlsMghJyLZQjdNWYFTuWDk8mbnH5lmqE/00Vz0M=;
+ b=e1AwMQMrELxU1KxZH5DcpP7IBk1fGqCxe7DkBcOoTnMaULeZKwbF0MuJi0IxQDwi7G6oYzBJCSvKxSN3iIWi2z8uAnZ8qQxQNOH9llTWoPtHbAaoC8RnzgvtdUz4GuQiqimB3ohOQAbOpvOG2KWwlxeBm9Ex+KYQmPgAqHanwaUXzu0Uth/cx55spfS+3T9gWhRwFVWYwo3cHG3FToxeo5aR9n8l7ZjPW4qmDHqUuZ32jnyvwyZ7l7jyhdYc5oToiGoSzFgok5Ylx9ai9Q7O05J2N1r8jBUIci/f9qU2g5L/CDkxJrcMaIHL59YL/FyiEWMaexwHurcmlhB4j0oEyQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=vivo.com;
 Received: from TYZPR06MB6263.apcprd06.prod.outlook.com (2603:1096:400:33d::14)
- by JH0PR06MB7233.apcprd06.prod.outlook.com (2603:1096:990:94::14)
+ by TYSPR06MB7257.apcprd06.prod.outlook.com (2603:1096:405:81::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25; Thu, 22 Aug
- 2024 06:57:56 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Thu, 22 Aug
+ 2024 07:11:08 +0000
 Received: from TYZPR06MB6263.apcprd06.prod.outlook.com
  ([fe80::bd8:d8ed:8dd5:3268]) by TYZPR06MB6263.apcprd06.prod.outlook.com
  ([fe80::bd8:d8ed:8dd5:3268%6]) with mapi id 15.20.7875.019; Thu, 22 Aug 2024
- 06:57:55 +0000
+ 07:11:08 +0000
 From: Yang Ruibin <11162571@vivo.com>
 To: Kenneth Feng <kenneth.feng@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Yang Ruibin <11162571@vivo.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Yang Ruibin <11162571@vivo.com>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Cc: opensource.kernel@vivo.com
-Subject: [PATCH v1] drivers:smumgr:Use min macro
-Date: Thu, 22 Aug 2024 14:57:45 +0800
-Message-Id: <20240822065746.1336545-1-11162571@vivo.com>
+Subject: [PATCH v1] drivers:smumgr:Variable names should be consistent with
+ other modules
+Date: Thu, 22 Aug 2024 15:10:55 +0800
+Message-Id: <20240822071056.1342551-1-11162571@vivo.com>
 X-Mailer: git-send-email 2.34.1
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: TYCP286CA0141.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:31b::6) To TYZPR06MB6263.apcprd06.prod.outlook.com
+X-ClientProxiedBy: SG2PR01CA0135.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::15) To TYZPR06MB6263.apcprd06.prod.outlook.com
  (2603:1096:400:33d::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR06MB6263:EE_|JH0PR06MB7233:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06788e1e-775f-476a-1689-08dcc277bfc1
+X-MS-TrafficTypeDiagnostic: TYZPR06MB6263:EE_|TYSPR06MB7257:EE_
+X-MS-Office365-Filtering-Correlation-Id: da174f75-fff9-4499-b06b-08dcc279984a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|52116014|7416014|1800799024|366016|921020|38350700014|81742002;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zr51OenXTNgCif7haAU/SHL1Wer+cesg25/m9RnR97OeXVHOFpxA2aFTddAb?=
- =?us-ascii?Q?b/7NTRWDsUpMc8PDnWprlLo/2GxeEympXwaQhTvo2otn5JORYDniq9avYIo8?=
- =?us-ascii?Q?8DlyTZFbMKkalcijgeV1/t+z4wLetGUSxlGqmZDvzn0LKEzDbuUOe8j3NDpO?=
- =?us-ascii?Q?tDzYhCZVV49p3awYMulN49gR63wWPRnNPShoNHTwWS1enAzwOM0VQ2oIUgDZ?=
- =?us-ascii?Q?AZaiMQ3uWXFbxFYxkMPViQjO1HJOxWHsAACK60cpH4Dr2xv7LNzTUi5++FA8?=
- =?us-ascii?Q?xwO2eVlRZADp6BAnSH1g0rFmJCb56fZRoOKMrtYjdO6jTkme4jZP/dVd7Ktd?=
- =?us-ascii?Q?P1IOwZ79KXCdg2thfZsM+Sp+tFKDkUjZ+mARo00sqehp+9VOv1VgTEkKdR4R?=
- =?us-ascii?Q?RB1VeyqhWC4ME5fqizEvDeO+qpWhw/U16ZHVyxv8J4HQfxO1rJ9JuRw1NxDV?=
- =?us-ascii?Q?UakX8+g1pniigmiuVYtJdzYEveA1tljdaEHM3shBdsdlCp+jnPC/N5FlXLsV?=
- =?us-ascii?Q?Qk07z82buAX12/ETIOucZifrNg6Pr4Rm+8wf1ZTwO1SRzyBp1+Rl0Zm7iPfi?=
- =?us-ascii?Q?IJL2qeEEC39iitQoCt9P+RKb5xzmaYFf8WPn5DIO5195PNqj5x23PAG+kAIe?=
- =?us-ascii?Q?UrIx34aAgllk1JPm9qw/a9bp0hWj3Q1h6a/Xmh4BhgH+yffMt0GdAFWQLIFW?=
- =?us-ascii?Q?/6PC8dIeaDziygCPf3tF1JBBqkgi8om58vLsy1eEFdgx3eKq+GCmAkJAzadU?=
- =?us-ascii?Q?VxvZuPmn8nuiv49D6YIvQBfnymqm97ilhruqGNJhTEmyO7FfpLPttuWfeLqb?=
- =?us-ascii?Q?e4jX8RzMWAX1VjsMJpRmhsay19PDmy4pvOsHO8S+EhGh3qSDPJ2puTb+OIVJ?=
- =?us-ascii?Q?Okdmr+ujScBUrQ8etvFPSNFTDnWZ19W0nJ9gYmZWJT2P5ZrvwppigSjnAW+C?=
- =?us-ascii?Q?CBXHB3VZSyVVsr3Pzx4T70VxzLyl3tBwIyNWSoN2184wOCSpMEVf8Rse6+R4?=
- =?us-ascii?Q?9ojzrwb1/ESVFmUatFjwr81QVBqS19DH3aRMN/2ExGKtJKplDlUYl7onEjr8?=
- =?us-ascii?Q?UpuQpa/Du3v0R6RR2e31xVz/WLcWxPIsn2npeDgCYTmpNNx0m7LP4v3W1tqT?=
- =?us-ascii?Q?UD9eFybxQ9bLR0bjDC4gOxgUmK8gRk4U6eACyvLUYF4c6QxxWFuRNRwJayiZ?=
- =?us-ascii?Q?zMw//4r7B4Vj8UfXm0bxPu9HlEsj8+nMZqsNWq6LTM1X/z9/SlOtXx2oSOir?=
- =?us-ascii?Q?Mf0NkbzLa4lVyDEz77dCWkL9ID5ZLu2vyfeLn73NRVcHp5dUeTFxtXMONIr8?=
- =?us-ascii?Q?S7sDK9pr6lvE0oHRT8+zz4By/KrDbk8Ps9GFSVuz+5fgty8t3DMfPA4Wot/O?=
- =?us-ascii?Q?g2zuYSKGCFKNtJrsefawJ3vW8h89SOqR+mSTIAo5w6GA3QLhm9w+EUEMtAfb?=
- =?us-ascii?Q?x67Q8FiPm5aI1DpBR4wsV7IsDQw98aLs?=
+ ARA:13230040|376014|7416014|52116014|1800799024|366016|921020|38350700014|81742002;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GoVa1i9oIdKAxHBpMjvQJCfOuPblprbyHTFsgG0bSaNsDmIsB+jDcg9mGt6f?=
+ =?us-ascii?Q?L8X3Q/pVEuYPJARyu04A4zgwkkTR3q7cYLKeE5J5xM9yWjRM9z/Ls2HIJIRb?=
+ =?us-ascii?Q?NWuWnruzd8SX2vhm5LhH7Zhc7BckWHgkQZ1jNWPjKrDQshq/lk4ju+1VwuHt?=
+ =?us-ascii?Q?MtgRH657Ch9YuEhCRhCDrDfJkcU6+y7d2gwD4H3putSNXoqGiry+v+8606qc?=
+ =?us-ascii?Q?wGS922g6RN5qvmHs7erqYy6azNe0GHCS7c0S/BVBkSzVi83171FHr4j1uMO7?=
+ =?us-ascii?Q?w7/hjVZLLWWU2Rne7BphiBdIihADKxAgTugOT+tXs4zrLIDnjeUIR8+w0HhY?=
+ =?us-ascii?Q?OHT06PICTb4Ds1K8sYbQdqyzcMTSl1XSabQS5GVFIpjGYrrpeUAh8WTSFScV?=
+ =?us-ascii?Q?NGB8CHnY03N+mlMpIB7/1LDw+QCO4muQFB0hM/JJYOGTg3XlZCBa4O/899is?=
+ =?us-ascii?Q?HpcjEKxQ/7MGmgUPkjTtrpWFfHvOrB/hzxAXRf2kxkvnzp3xwZaeP/cEoUyv?=
+ =?us-ascii?Q?NvMLIBgOT2WFtj657AVz5vT7cbte4T7A9pQ0/DtfOaFAK7+J2NL4Ab/KWvK6?=
+ =?us-ascii?Q?s8TZ02Vm4Be+L1CFR4F7/NbbfHLQXxccl5BPUxSmRVQdOVS0LcnhMCJxZdSo?=
+ =?us-ascii?Q?QKFY6XEyqEsMKh4bTFnphuFzICJtbtzzB5TtdfcydxBdhtHuYd6uozOuuKDU?=
+ =?us-ascii?Q?x7Sab0AEOthJ8jvETKyt8xHIizTL4ZVVBUBhMkLPb6cGI/tMg3nJjADZpG5n?=
+ =?us-ascii?Q?1Ih2syg7Y+5QWhcBsx3WkOjcG0jU/9H//By18hxRxIaxpQ9dKxSfbbTAyeDd?=
+ =?us-ascii?Q?Ze4a3fKuHiyAs69MIlg27IFUCsL6p9B5F80pUTTsDbZnNkHBlTAb7SX4TdIi?=
+ =?us-ascii?Q?KPVO55sXPY3qJx8L4MI+hXn0nS5BcH5jTIR3tMwqpgePFV9A55jJlwLTT39W?=
+ =?us-ascii?Q?eHrT/r+Q0OLa1QvRCeziti27jwycsKu0z35GgyYHGb1cMwCx/nPI13eb/b+2?=
+ =?us-ascii?Q?hMoQMC1tClUwwuIWlCO+bq1Au5Av2cfqcvVJ0g+IQDiDqMyb4YYNKGPXh5nc?=
+ =?us-ascii?Q?tHoY3QVEpymWcDC7v7k1NJ7IkxKk3Ko+IFUf938ecAOT2Xl3HIfco2634wGN?=
+ =?us-ascii?Q?bFBpFQtiBYpVlv/HCiLInzI65JT4CBCWf2NUrbPoV0f4CTfHynYf+NzA7Ri4?=
+ =?us-ascii?Q?Mwe7bs/Vk0uOU5flu8Ui15QIdvtzUbbwqPamuhxVjC74Hyi5q70hexxhfK7B?=
+ =?us-ascii?Q?mGdWJ+0vzT+PUi5EkztSRVQVd/dJRWvAF10btcLGmz5Xc9G/wXBr+Anwm/vR?=
+ =?us-ascii?Q?XEAKtde8Ht62fslThnNUr0vDgtIpSk2L/pCPHUKxUipaemA1Ctukwobz4sgo?=
+ =?us-ascii?Q?ON0IOEna/Ktp3UtpsZqX+xZnbMKezlVIO2WncJcXWr1wVfcuFHSrDAKj70Wc?=
+ =?us-ascii?Q?jxa3tlJ/OfHlQr4aIoyqYfGE+3PND+Xk?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:TYZPR06MB6263.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(921020)(38350700014)(81742002);
+ SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(921020)(38350700014)(81742002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kiCPIrrc4CW66Y7DcxLW/Olg3TG+VnBOMT3rKDIYCNwd3BQ8g+aGcCJxkB/b?=
- =?us-ascii?Q?0Xc/iJo8/vExTr5Y1+fOHThNEHng02vQoaxSrxOEhaNABqDuC8/HTdoUyzHL?=
- =?us-ascii?Q?TWViuwcaem2o+fDHBRikCX3MwXA6SQB/cpF/uCyBcIlnoe6Z2nvcaDNt82Ih?=
- =?us-ascii?Q?KG+CWmiJR1HWnQ6or/TK6wDUTsIhFKZTBLHsWe48MGiWFRpU2dzFq/iEHQXD?=
- =?us-ascii?Q?oHyt6z2w3xqDw8DbmsRs/U3kj7H78gPV+ZUsgo3U/+a4Cpye55FXNp8lP/K2?=
- =?us-ascii?Q?ZnKY3BULk4jg7ad6xFDo1JGGlk2r4/oGjikZkdPhvsg4t10gburirnPlHhhN?=
- =?us-ascii?Q?mgwn73r7Ax30pruUJefLDNqUTkncGMCEFMgWEczhmpkICrlqJg+dBG/1y11S?=
- =?us-ascii?Q?FvVvJhtc0WoAnJCMM1EvJhOrcENpSDzzY0buaH27Xp8Z0dIO4gTbbTnk0cra?=
- =?us-ascii?Q?FkF50eYakckAEe4vFdw8cluGRxdZ091VXTr75lSBXW0ou3ykAY2f5fgvOzRm?=
- =?us-ascii?Q?DCr0Q8cxY/DGQWKIel+dk6HL6qieUM+fVxRXCaqbBFpxzVCngIkR/7Zepqnk?=
- =?us-ascii?Q?KZfWQvsv3Zl1amt0e6LlKRqXFxtaRK6uYfbOzk2q/lZbgMoLDLZ2LWQepedD?=
- =?us-ascii?Q?AHh6qDAi3DStD88eF/2cBVPPyyI3jh/TaPJOpGAkM7RTc90hRik0X/6kLWAk?=
- =?us-ascii?Q?daKTdk2IVvtDDj68rZ+WT1QHbZ1H76+2Y4CKuLrgSoxlz6+sTbYFO9+izk3N?=
- =?us-ascii?Q?68+wPceBU9mHTeAx7+1zUOHQ40pcXl8+a4n2BnerUdz4O2119dflzQR4qgaF?=
- =?us-ascii?Q?2iAra78RaN/4aWD+zyNodG0ZkYbOYUHhm8rMojHQpqCi1fHfO4Es6UeBGAhv?=
- =?us-ascii?Q?qQXgZYJHkHReGOVBiIcBQiTsvVmGsBLBsd6Kkxb2Fy44+oLho1iIlxEQZ3PF?=
- =?us-ascii?Q?YoloktjDgUsNF4IgFbi8JES4W0il2YkUM97OhK8HnZK6aH8l/zgmqQ7ZciSe?=
- =?us-ascii?Q?Hr26Z/T+hJqJpHpLx5wECljQXTILGhxbSkf7YHbPzahdi4tkarpxiFUj3zTc?=
- =?us-ascii?Q?1ld3eRDft4QWi7aea35MfhKQ2hSs7TkOOOxEUlMciYpGgsZlQuSHUjHK2hwc?=
- =?us-ascii?Q?2fAH+CEAcLR2Bp/UHFe3cA4SHy5J//RED6geYKmkGtrUH+mwJfQIsu1kCkNv?=
- =?us-ascii?Q?1tLq3MMiGY6wymYNt4Fptp6oNaHRW3nfpK8naxzyRWHcJrW73fvh48fIUa6l?=
- =?us-ascii?Q?TCafzR7bddmwL+lPQYJrFara9btTKTq4lkaPx+iWIPJSfHMSYzKhT/u4CYDM?=
- =?us-ascii?Q?zcx3Uv5Qpr4DT+qqhRjnh/yR3LrqYbjVV2McxdBAvJEQ9GPlUj9Ma3OHwMQy?=
- =?us-ascii?Q?LWj2WPeJmGRL7pCR7b4WVAl4akbKPaL5/bnDi/9uFbhgJZ9voAEQGXvS0dVk?=
- =?us-ascii?Q?5hCA9vXWO76U7/Sf9hxgRTggwCqwUX1JASTJt/q4mm217CkzmRCtIWPE3eQA?=
- =?us-ascii?Q?s5huUaDj3Aqjpt3XBiBq1+fBHHb0TaifkMMtLWjKjdfzTh/eb2cb6FfhFmw7?=
- =?us-ascii?Q?vBPcRrmhoIhKorOi07L+T4rz1ZFJ0aRnh+LtcXXq?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8GH/TN0wVl9G0pqmz7hG799MZ7nXkSVRumQfQITJSzKTI9RwV32lNrAKD2HI?=
+ =?us-ascii?Q?VxAGiyTFwd4+bWSAMR22bhftSw21k3DuC1PIJ5vUuWvd6xE90OPjGrH1Mx93?=
+ =?us-ascii?Q?xA8+WAFV4eh7fN+QwzL7+MgliPHcWQVUZXMHTqEcapJkHfd9Li4YpZ8NRvft?=
+ =?us-ascii?Q?+QOrN/ESoQW5Ul/bBIAkpALfdZh5BIPKRMD7U8WaUOOTle5YgUDMM4mov758?=
+ =?us-ascii?Q?h5QyOfoZhIJEIqGr50+toF20vXS0G83oAStwMqlljV0HjCyXTW8xAI6ec5yi?=
+ =?us-ascii?Q?LXMKaQDNqu37s/IdsbATdm9ny9Tonz1rF284bcli8YW3UHK3hbkGejTOkxGm?=
+ =?us-ascii?Q?26W+8Ju88VmMlZQ1OYkfVdn8QS+GKHGmj0KUOkHMPu/yhAgHn1wQg/YDe6cI?=
+ =?us-ascii?Q?Y2UNsyUbAVc1z6WaVs3njIYDXS+ii3NMPIUUO855dfpkPxj7G9F1m88QmYEM?=
+ =?us-ascii?Q?TdWhJ6bC9Klkwsp0nRM2eibtq8a0yBMLZtps3DpWhakQjmbegsU52+43+KCi?=
+ =?us-ascii?Q?IGGEgqrkLGdpOWgCnVwsfFurODcTjRyOBRZ3pDD4zvknN58IWeczM8JQmou2?=
+ =?us-ascii?Q?b4GbBCPDQihsJzTgA5bGWpy8yzbMaroeer8l5SqO5u49NCP6wju9CZueqK9J?=
+ =?us-ascii?Q?SCbh+he3vRq0EP8XwIkFt8xZikKDkbUki9UmhmoWveVn2ojf9dMQHR+VSiGN?=
+ =?us-ascii?Q?kSZ4W1kQZHEm5403ckdlotY0HzbXNPGvKaiv77iJX5PON9l216M7ltwJT1xt?=
+ =?us-ascii?Q?BH/hitrD8E9IT2TPQ1m+1DIE5m6bMF5qCwF4RQq5G2DnRj6oeOsVYsEoBeuv?=
+ =?us-ascii?Q?kz7vASz8RkJi0JKwY9Wa1dDRigcoyqw36Tkozk4sGKVbkaouN0J/FCGzNI/V?=
+ =?us-ascii?Q?ukoWlsi/5pytBBf0Eo7m4kOjdYe/79UpXaPJuQPm8EynTAjRsWoMVpzEm7ic?=
+ =?us-ascii?Q?udrF4ZABQZMNGZIJ29KsJ436vmeWqJ1UeeRpSeJetn0Qn0m15+c78OqhurPt?=
+ =?us-ascii?Q?PQgA3i7E/4DoAedJWOHgIIqN3ONQbKlk1m/Jr8KtTNyBuHkr9MPorjRc3zoH?=
+ =?us-ascii?Q?ClNf4g86zVST4epicp49cRQ9+6LeKBLidJ5MzkWtYiP6GbbjBnf6Ee5DMG8P?=
+ =?us-ascii?Q?+LYUiXs9BX6XXxPrGXjeWtaHFbFJRvE3HofU29RhflfQNb2kDilMLOHIKAGb?=
+ =?us-ascii?Q?ZoZgyzqE9Ow8TLeE2xSXRvxuJAErXBVvUSNthr403JVC23zgd9jUndIcRSbo?=
+ =?us-ascii?Q?2wJt+9fKUx5vNbgAObqHMOPA9cr84EvVZtvsUuo+yZuo4CCYW69IpFr3JD9v?=
+ =?us-ascii?Q?L8V3DnsxToim3xArWtAYgBLdRQ/iOA4pt3T+DusF1Y3VYsL73rFIKPEmgWUL?=
+ =?us-ascii?Q?8HtGewhqQhGBWH8zdlj7HXXtM/mRtq2YuVDzQNxTXVnVISYxUJoiyDb7mQFl?=
+ =?us-ascii?Q?W2q+Dz0jQRg1eUP7w/UpbFguPDHspeK002Ys7I6zlMD89LxdTi0KNZwOuQlP?=
+ =?us-ascii?Q?TrrIEhWb3rVwjvqHEFN+UOuce+O++iAG/9inhT6txR5d8dFP5PkDvW0xZ8Bl?=
+ =?us-ascii?Q?UkBbY8lDAOQfkaBXHy/xIeV5O/A/ZeOH5qw8FlUc?=
 X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06788e1e-775f-476a-1689-08dcc277bfc1
+X-MS-Exchange-CrossTenant-Network-Message-Id: da174f75-fff9-4499-b06b-08dcc279984a
 X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6263.apcprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 06:57:55.7045 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 07:11:08.7251 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XCurTbo6wY0bS9nCdA8lXvW/+FUpkKXv8E7VDerjFWALAu4j5T0VHUDx7LbDmWkDfFcOF9eDTkX7V0S7anDKAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7233
+X-MS-Exchange-CrossTenant-UserPrincipalName: hkhsozhsO6gX0Hx/k+DeCgjYqAUiegM0bMs5YZyrwTbCIu8HeJ3Ws8FCQX73MsBrZCMWLgt5MqVvT+5AeDNSOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB7257
 X-Mailman-Approved-At: Thu, 22 Aug 2024 07:20:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -149,69 +150,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of using the min() implementation of 
-the ternary operator, use real macros.
+The variable highest_pcie_level_enabled is named 
+hightest_pcie_level_enabled in other modules. 
+Please ensure the consistency of variable naming
+and use min macros instead of the triadic operator.
 
 Signed-off-by: Yang Ruibin <11162571@vivo.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c      | 5 +----
- drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c | 7 ++-----
- drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c     | 5 +----
- 3 files changed, 4 insertions(+), 13 deletions(-)
+ .../amd/pm/powerplay/smumgr/iceland_smumgr.c    | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-index 5e43ad2b2..8bf80f65f 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-@@ -1067,10 +1067,7 @@ static int fiji_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
+index 17d2f5bff..165fbfa2e 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/iceland_smumgr.c
+@@ -970,7 +970,7 @@ static int iceland_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
+ 	SMU71_Discrete_GraphicsLevel *levels = smu_data->smc_state_table.GraphicsLevel;
  
--		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
--						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
-+		mid_pcie_level_enabled = min(lowest_pcie_level_enabled + 1 + count,
-+						hightest_pcie_level_enabled);
-
- 		/* set pcieDpmLevel to hightest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-index ff6b563ec..62d9156ef 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-@@ -1127,11 +1127,8 @@ static int polaris10_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
+ 	uint32_t i;
+-	uint8_t highest_pcie_level_enabled = 0;
++	uint8_t hightest_pcie_level_enabled = 0;
+ 	uint8_t lowest_pcie_level_enabled = 0, mid_pcie_level_enabled = 0;
+ 	uint8_t count = 0;
+ 	int result = 0;
+@@ -1003,8 +1003,8 @@ static int iceland_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
+ 		phm_get_dpm_level_enable_mask_value(&dpm_table->sclk_table);
  
--		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
--						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
+ 	while ((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
+-				(1 << (highest_pcie_level_enabled + 1))) != 0) {
+-		highest_pcie_level_enabled++;
++				(1 << (hightest_pcie_level_enabled + 1))) != 0) {
++		hightest_pcie_level_enabled++;
+ 	}
+ 
+ 	while ((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
+@@ -1012,19 +1012,18 @@ static int iceland_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
+ 		lowest_pcie_level_enabled++;
+ 	}
+ 
+-	while ((count < highest_pcie_level_enabled) &&
++	while ((count < hightest_pcie_level_enabled) &&
+ 			((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
+ 				(1 << (lowest_pcie_level_enabled + 1 + count))) == 0)) {
+ 		count++;
+ 	}
+ 
+-	mid_pcie_level_enabled = (lowest_pcie_level_enabled+1+count) < highest_pcie_level_enabled ?
+-		(lowest_pcie_level_enabled+1+count) : highest_pcie_level_enabled;
++	mid_pcie_level_enabled = min(lowest_pcie_level_enabled + 1 + count,
++					hightest_pcie_level_enabled);
+ 
 -
-+		mid_pcie_level_enabled = min(lowest_pcie_level_enabled + 1 + count,
-+						hightest_pcie_level_enabled);
-
- 		/* set pcieDpmLevel to hightest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
- 			levels[i].pcieDpmLevel = hightest_pcie_level_enabled;
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-index 34c9f59b8..4616c3261 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-@@ -938,10 +938,7 @@ static int vegam_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
+-	/* set pcieDpmLevel to highest_pcie_level_enabled*/
++	/* set pcieDpmLevel to hightest_pcie_level_enabled*/
+ 	for (i = 2; i < dpm_table->sclk_table.count; i++) {
+-		smu_data->smc_state_table.GraphicsLevel[i].pcieDpmLevel = highest_pcie_level_enabled;
++		smu_data->smc_state_table.GraphicsLevel[i].pcieDpmLevel =
++					hightest_pcie_level_enabled;
+ 	}
  
--		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
--						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
-+		mid_pcie_level_enabled = min(lowest_pcie_level_enabled + 1 + count,
-+						hightest_pcie_level_enabled);
-
- 		/* set pcieDpmLevel to hightest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
+ 	/* set pcieDpmLevel to lowest_pcie_level_enabled*/
 -- 
 2.34.1
 
