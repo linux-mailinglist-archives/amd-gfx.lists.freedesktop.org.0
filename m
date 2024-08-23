@@ -2,79 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE17C95CD24
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2024 15:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D725595CD2F
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Aug 2024 15:09:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A71310E640;
-	Fri, 23 Aug 2024 13:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F6A10E67D;
+	Fri, 23 Aug 2024 13:09:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="osSw7uxD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KuP+psIU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7A510E622
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 12:50:37 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-428101fa30aso15764645e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 05:50:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1724417435; x=1725022235; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=wglUMOfSKj/CJM1zOfzFbHWNacB0avO+XJafuxMQMWw=;
- b=osSw7uxDPifzrVL2njVSz5RDT13sIz3nbZPxIIgXTpRaeTgAEXT2EAKPazKXMTO4Px
- SrU0oeWp7g/QU+R1qiZQl5Q/z3FKHfQnXDa4eutEPaGULIQ1gYtC4XhYmcM1ettdJ1Lt
- 4CwbeUu9KH4qq3A/Ff4RjiocajDcZSJVFpKCJ0dMsel6Zvv5t/yxX54rJ5SsPxhUdOjb
- sUhNBbtxvrUYyoKFXjjlpX8cqFMvFrKNAPMGVmg0WgIuxpKGd0xdBYOJMLHZE6xy/dCd
- rPZyv9/uP7bJRGj3GYF5LGs5S7XxbR34Jt2U69zH1AGu8H7QidZLsZu81hmkfdWnH4zo
- /lDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724417435; x=1725022235;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=wglUMOfSKj/CJM1zOfzFbHWNacB0avO+XJafuxMQMWw=;
- b=sfmyN4jarG1CGGV2G69kWjSovuru320AHIe++jA9ksNDZftPG1RSZ43Nxq4ja5LAO3
- wyxiwMdHbazGALOk/zvMPTZqMtxpJelCuySDLjaorttCTVk4XMxjwmYo9dea24/C7zeV
- ZXhCs4K5E2ztN2xxB12uBTPy4tZUzZNX31sCt78JGQ6ers9VIscWEL5ZAVbwcDgELp9i
- ZPUM6blUUyPyab7nLpSzKU7paD5hsWl7erV5Pb6GjHO18lgsiqPuGYcSQ/sJiiJ3YWO5
- uk+ZzKycMKcklNbOMI6GLXts2KX/xqnvbrkTOyVGbLtMiU29Ikr2iMIwyTRL2GAjNK7T
- a9Dg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVptzZFcInvAb1BGNonGUsR/82qQTmRe4d3LLkT/PegdZC6RfkALLv8zstK4FQzX8/2caGoIhCG@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBZ8H7oetQYApEdtlTRMKPE2S0RXPYaUmqAJ5iPpYKEEXywnc+
- XZrhusJTJn31FBT4U5kRCsTWpQN+dW3hkOjxuIchFvWobFsROj3l4B1An2q23hQ=
-X-Google-Smtp-Source: AGHT+IFLiLazjFQT+RbARqd6XebDKnhmp2PsLFcYq7T4M8t9bB2PBe0YloLgYQ2LGsntaXnC81G06g==
-X-Received: by 2002:a05:600c:4f14:b0:426:6f81:d235 with SMTP id
- 5b1f17b1804b1-42acc8dcb19mr17146615e9.15.1724417435283; 
- Fri, 23 Aug 2024 05:50:35 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-37308265ae6sm4074861f8f.109.2024.08.23.05.50.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Aug 2024 05:50:34 -0700 (PDT)
-Date: Fri, 23 Aug 2024 15:50:30 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chaitanya Dhere <chaitanya.dhere@amd.com>,
- Austin Zheng <Austin.Zheng@amd.com>
-Cc: Jun Lei <jun.lei@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Hung <alex.hung@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dillon Varone <dillon.varone@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org
-Subject: [PATCH] drm/amd/display: fix some indenting in
- CalculatePrefetchSchedule()
-Message-ID: <f57c247f-ba47-4318-b2ee-75aef1726503@stanley.mountain>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B387010E67E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 13:09:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kq+1sh3OPnfjJ8He14WQBY/VMY6/d+oJN1B3UWm7t1QQ9/7kYZOPfkXq2efmYEcmqNGNcltNhX/gE3nvz/m8kHzq6DAG63EJpCrk4VGa6pN0ylTBZgrySrhDcuBqeSWrnM4xo+2L8KmppA6grFvFJ6YGKGQZ4jm08Ai2tfP8AfoB9jJ/JKDMJf4wdTqd3GcctdEd/ufkDxu1wttSE8hE4S/sewsFkwFHlUY7zMjXC7+dZj7Uw8ThYPEi0NaPv5K/y1MaYyhTr7yoXTDKxfBKlxr7CVBQW5ouAfHALpuT7Jw121n2gzgv/y1JPqKkptSPfNLvdcvCV7BfT0MQxJt5vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B5ciMGp6pJd/T7iNR6MoEMDlNd/L1IgHJVvudR+DwRc=;
+ b=uuLofBeGi1OXSrG+GqgS8sdeISyBa0hvYRfVyCx6lvlelhROfsDVNjmdrlEp5wc3lEwIhheepHUA46QsSJGDpJaMtr3Yqj34wuE+TCz4aqqV/lY1uWwPkiHeA+GCTKwyMHNPrUIspv55oeFcSjhlTTqVjP9E8TIV03dJnoVKjT76IPh3Xsu06LfOmCiFgamyeSzrt93KmBKt2pAFrgOsv0f8g2bof9thmpGJA6B9li6tvrmTkRJdNNs5uBWt11JZs0QFstpVubXuIp10JRhbiwIkFA7U/ZoZeAtyUF25xH3MsHRBot/ShYj+lHlT0h6M7Vj3FRTLr+CcXTMHTtrNCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B5ciMGp6pJd/T7iNR6MoEMDlNd/L1IgHJVvudR+DwRc=;
+ b=KuP+psIUoSpWmsWlgc1rSOka1n8kSI9j8Zf0EWsPivxt+PSMaYR+0xZ1F84joyENnbTSTna9kcO+wlSco/hZgljSC+4apzvBwiUFGQ/xSkPqHnTLczue5U9gDpooJRPajNXCJN5FcQL2hiJGDPp1V3+zG0zgbsVdCDkl9D7lVeE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SN7PR12MB6839.namprd12.prod.outlook.com (2603:10b6:806:265::21)
+ by SA3PR12MB7880.namprd12.prod.outlook.com (2603:10b6:806:305::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Fri, 23 Aug
+ 2024 13:09:03 +0000
+Received: from SN7PR12MB6839.namprd12.prod.outlook.com
+ ([fe80::eaf3:6d41:3ac0:b5f4]) by SN7PR12MB6839.namprd12.prod.outlook.com
+ ([fe80::eaf3:6d41:3ac0:b5f4%6]) with mapi id 15.20.7875.023; Fri, 23 Aug 2024
+ 13:09:02 +0000
+Message-ID: <e7089408-41c8-41d6-9f00-8ad4f74be6d0@amd.com>
+Date: Fri, 23 Aug 2024 09:08:59 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/amdgpu/display: SPDX copyright for spl_os_types.h
+To: Zaeem Mohamed <zaeem.mohamed@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Harry.Wentland@amd.com, Sunpeng.Li@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, roman.li@amd.com, wayne.lin@amd.com,
+ agustin.gutierrez@amd.com, chiahsuan.chung@amd.com, jerry.zuo@amd.com
+References: <20240823001453.1845297-1-zaeem.mohamed@amd.com>
+ <20240823001453.1845297-2-zaeem.mohamed@amd.com>
+Content-Language: en-US
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+In-Reply-To: <20240823001453.1845297-2-zaeem.mohamed@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQXPR0101CA0004.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c00:15::17) To SN7PR12MB6839.namprd12.prod.outlook.com
+ (2603:10b6:806:265::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Fri, 23 Aug 2024 13:06:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR12MB6839:EE_|SA3PR12MB7880:EE_
+X-MS-Office365-Filtering-Correlation-Id: fefdea75-8471-4e27-4923-08dcc374c277
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SUF3dWNSS0Rpb2F2b0NvRGNRc0ltbGlmSkkwdVM2UUhYemg0T1RhU0t2aUp3?=
+ =?utf-8?B?ZSt2c2dMUndOL21hd2lYLzhLU2pSMEh6NVpFcnEzQnZaSHlSMXhRZEFSdWRo?=
+ =?utf-8?B?eWhmSHhZd200R3lPVndaQ25wVGhMcVJzdm5iSW5ib2ZiMC9aeUI2TVMxMk9M?=
+ =?utf-8?B?b2FGdmNHcWhjelJSN0N2VkxBRWMrUjNKaW10TTM1WWlHNmV6SHlsSEYrcEFi?=
+ =?utf-8?B?OWw3NVdodnEzZklUeDIvV005WEhqOG16VDdZYTN1N1p5NUNHL1lyWEFxYk41?=
+ =?utf-8?B?eVFOak4va2VFd3VBWWQxUVdnWGFCUEJwR2dkZStQZ215RGV6RXkvZFNVQ3ZR?=
+ =?utf-8?B?b2E0YUl5Y0hrdzVvaTdkSmQ0TW9lN1hZQ1ZMSkhXbG1ZOGNNNHl1eVhjQXRi?=
+ =?utf-8?B?MHZVaHRVSVE2OUlhcjhwWHVqaGhCMzJ1Y00xcjhXSk5xQ1pDaElvM0xxdGRG?=
+ =?utf-8?B?eFN3V1BKOFYyMUtEb1FOTEo1OTFEeUlOR3hYUVNibllpRGlvdVd3OGZ3VEFG?=
+ =?utf-8?B?d1FtbDhNNnEwbktHSlhEcUdXNWhZRUovZ3IwUmtET0lod01uMS90QVhQNUJi?=
+ =?utf-8?B?WXI0cGYvV1ZPYk1NV1RZWUo1ZnNJYW1EUUVSVS9Nd0Z6QlBnZE5CMXBVek91?=
+ =?utf-8?B?bGRNTzh6V25Mb2NoeUZtLy9YT1lweHdCN0hleC9ibnZTMmpnR3hmNE54TGlo?=
+ =?utf-8?B?cE94UGZlWnNvWkpKNndiL0NxZGJSeGU1T2RJU0R0MmtETy9DaUMyU0JIU202?=
+ =?utf-8?B?YnM2Y3dXb3BxK0hnV0x2U1dVOG1UcXAvVFRpSnpmRVBHdkJOY25WRk9xcktz?=
+ =?utf-8?B?dnNNbXkyTnkxK2QyZDJ2UDhJZUtVUHN5TjA5bElaa0loLzZMM3R2alZYSUZv?=
+ =?utf-8?B?TUJIZUZmY3Jxalltb0FVN3FpNXVzTCt2UEtwVHRsWUM1VUZQVk1kRG1rSERw?=
+ =?utf-8?B?MDlEbmtobkVQMzI2aEgvdmhFT2Y0bzAxQVJYZUkyZDBCQ2FnMWdhbVVVNXNY?=
+ =?utf-8?B?SGVqR0YrZWVRQkdkVWtjZDNtMVdHeWt3aWJtejJuTnR1WGhYemxzalM1Wmt2?=
+ =?utf-8?B?dC9neHpGTlp1NlZkTjV1N1d0dGxlTnpoRzlXSFJJUWl0bnNLVVE0SHJrU2ZL?=
+ =?utf-8?B?b2ZrNEFyVVhYZHlzbXVvSTJYQURhNGxkdE8yclhhSk5hWGtZR3FielhNUjRV?=
+ =?utf-8?B?Qjh1VGVvaEkwaDJNZjB3TTFZVkhsWDFYb3dOWWozTUthUmFUNDJDRVc5WE5k?=
+ =?utf-8?B?OEs0SThmZGNzKzA5dm55TVNmSGNXQSs5Q0VGd05XSUR0bXNiUXhrQVVxdWUw?=
+ =?utf-8?B?OWJlTk9qblJlbHJwRW5ubWxJeHZGMERZdlNGdElGdnY4YUlaKzQvYzdtSHNz?=
+ =?utf-8?B?aHVsdmdQMkwvcGJIMGxpM2J4aGVsQzVRcm1CWmZScUdVc2xHRmVVWk92YTJV?=
+ =?utf-8?B?bFhxT3BPc3A2QzZrMHNPOHVnSldySTR3WDROVFQ0SjJTNlpLNXJFMjdBNFQw?=
+ =?utf-8?B?Y1pNbEYxanpqY25ONjZLUFlCaUlwL0RIRTZVbHpwemh6N21RS1dveVNXY09n?=
+ =?utf-8?B?QzJHLzBWajlmZU5lWXJpZ3FzVUl4dGZIejZsVzFsV1ZPVEtpeHRRamtBN09W?=
+ =?utf-8?B?TStjTU1GS0FlM2ZSMzRYN3VGNkdCVkEzaldzUmYxS3dOL25WOG5pTzJGS0Js?=
+ =?utf-8?B?TWRJK2E3OHhia2pZYU43NldzcHpXR0hVaktkczRSRm5PR3dGdVZuQzJFWTZK?=
+ =?utf-8?B?TWRQaE1LRUpLRmt4Zzg3WEY4YlZsWUtzaFNMdzhLZWt2LzdUWjRNVXlvaU1V?=
+ =?utf-8?B?VmQ4WTcxdVdZRk5oVVBLZz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR12MB6839.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d3YwZzVFMjd4MzkrY3VQU0V5bHBEeGUwdWtuOVN0VlZ6WERVa0kreWozL0FF?=
+ =?utf-8?B?TUNGYTQrak1SQnh4bENwTjJUWDdWK2NlRVRXM3JsNS8rZCtQWVJuQTNhdUpr?=
+ =?utf-8?B?d21jclBDR3BMc0x5dnNNKzBJQnR0aERzRGZ1ak9abENTbTZPRzA3cHRlb2FC?=
+ =?utf-8?B?bXFSV2srWFM3N2Mrd1dzK1Q4SFUrVGdCUFRtNkNKNlYyVVlOZzNIYUtlRW1t?=
+ =?utf-8?B?NEM5alJPVFVqaGoxK0JMQ2krN2tpeU5haXNPNTc5di9iN1R4QXJvZzBUUzdL?=
+ =?utf-8?B?V2ltVlMveU5OYmdidU1UNVlSL3pMa3hHRTRiby9RMlJZNWM3dTFSV1hNUUdu?=
+ =?utf-8?B?K0ZUWU10ZkpHUGEvV0FhOUZlVy9oSEdSVW1JYWh4THJCcnd4V01qdkRZcGlV?=
+ =?utf-8?B?MC9IL2trbmd2SExtODYwQzVhQ0JmeGVNWDNuOWtVbUVMRUVzY3V5WUlhaVZ5?=
+ =?utf-8?B?UkgyVm1zNzg4STNiVHdnUnpjSTJuWHJmbWZBYkJjbXQ2VUhJeUlYbjdWa3dX?=
+ =?utf-8?B?T2pQOHJCUWFGQ1hqaE9oZW9CWnNVOExxUmxOSjBnNnBpSkxROEVSNlpYRjJj?=
+ =?utf-8?B?K3BDa3hCWkpBQlZVbktHb3BMOHh2d2xWL2ZWU2x0WWRDenZBWHRwYmN6ZWtQ?=
+ =?utf-8?B?bXhhaDdOc01ZUTRhMmY1OHJYZjJHckZCeW5zd21Cc3crQ29NZ1RRalhvaWtr?=
+ =?utf-8?B?Z1FvRGxnU2piWWM2Z3lYbVovR1VDeENmZ1BoYmlacElSSnFidVdlYUdBZmM0?=
+ =?utf-8?B?TnRTUGF2bFF0Mmx1KzVoUURGWVV6VmFiT2R1TGRMR3FkVXI0bmZkR3NLUVUv?=
+ =?utf-8?B?aDRndHh6QmdZVW1sRHJmRFI0Y0pTTGZFZ0N1WWxjMHZDUmRxOVNxQ2tiTTc1?=
+ =?utf-8?B?RjNiTWE3b3owWnZRMStEQkdsOWlRMjE4WjFKYzdMdlNVcmxFeFdIQWk1SzI2?=
+ =?utf-8?B?RXZISWNPQ3dtV2hQVkp5a0pnd1ZoMHEvdng0V0RSaGxqcVBERXhUUUt0L21G?=
+ =?utf-8?B?Qm93ZlU4cXdzYVBCRlpFTWp4WFlJaWhTdVQ1TUhpMjdya0Q0eGRkTW5wM01q?=
+ =?utf-8?B?Y3QrdlJKcnVrU1RMLzBCS3VQbnR0T3FuR2ErUWxnV2dNZjBlMzFEaDFrUW9Y?=
+ =?utf-8?B?aDI1YStrWHo3dEp4VFBjb0U4VDlVVC9MK04xbEo0djZaTnVGV2orR2FkS0Jn?=
+ =?utf-8?B?cVFISUhwTU1PNTJXdHoxa215ZTVpbERvd24xY2Z1ekw2OVBsZXRGc2M5a2x5?=
+ =?utf-8?B?aGluMXZ5ajFFdHhPOUx1Mi9iQVNyRFBtcENueWd0TUFRVXFCZUplZllHOEg0?=
+ =?utf-8?B?TFROR2d6M3pJd2d3aVN1cElOS3pweDlmM2FDOWtvSUhWdU5ob1dkeHZXZEEy?=
+ =?utf-8?B?MHNqOEg0emtVQWZLV1h6VTZzSHI0T1pxWSt3NVlBR05lRDhMeUNMSjErazl6?=
+ =?utf-8?B?ZGtZQlFyTW1zcnZvYk1USUtTeDNYbW0zRGlqbVZ1c1NjQ1c3dTBwUnpwWE5B?=
+ =?utf-8?B?MnJrNUIvUlR6ODNQVTNKWGg4U0hCU2lleDdDU2RCSklraEJFL3NGeldKdFdB?=
+ =?utf-8?B?MUtGQUdMUkQ4Y29qR2p1U09rNmRIMGI1VGtUK20yTTRaWlFnMWYvSU1sS1Rn?=
+ =?utf-8?B?SnFSYVEzYkpOVXQwQjVFcFZjSzNGSy9WT1dxV085UmF5dHZTSlRxU1ErUXpG?=
+ =?utf-8?B?UjlFcmVERGdRamZKZ0pvREplczNCcXVXTDFxWUltMkVNSk9pdHZ4ckI5dEFO?=
+ =?utf-8?B?Ly8xWk1uTU1peHdhbytBOGVhOEtlSWNnSEV2NWRBajNSdVJkYVlpdHRMUzlN?=
+ =?utf-8?B?bjNoT3N5TjEwYXZrbWNKMk1QRDdRZEhPUVhtbVFNYXMxYndFQzlDNlg1dHNJ?=
+ =?utf-8?B?Mi9XTHRsTHBqWWdLa0UweitrWXo0emIxdUVIQzNLQ1NvVEMybHpXRTVDc1Yz?=
+ =?utf-8?B?VW0vSXFvMUdieUVuZzMxRVMxT3lSdmNoRzFPVGkvdWlydEdRZTNDU0JQaGZj?=
+ =?utf-8?B?ZDlMMkhRUlpUZUtSb3k0TFhlbnVSa1dXalRNWnpwOWJid2MyY2RYMVc3eU1j?=
+ =?utf-8?B?VXdJV1ZEMzAycUlQMzU5RHJaNlV6emNNVDJWYWFDcjhDd1pSMWlUQnh5OGdF?=
+ =?utf-8?Q?jXvEzkJZd+B6YMfvgxQCIShOK?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fefdea75-8471-4e27-4923-08dcc374c277
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB6839.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2024 13:09:02.7320 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fi2hvl+6ItkyDyJFu8CI/5X/gbckjC574DAgwiUyaThCaY+mzwo8OBh9B+LX2il3suZFAeL9B3FkWzNCQXlYsg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7880
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,29 +161,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-These tabs were deleted accidentally in commit d07722e1fc74 ("drm/amd/display:
-DML2.1 Reintegration for Various Fixes").  Add them back.
+On 8/22/24 20:14, Zaeem Mohamed wrote:
+> Use appropriate SPDX copyright for spl_os_types.h
+> 
+> Signed-off-by: Zaeem Mohamed <zaeem.mohamed@amd.com>
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- .../dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c        | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-index e2c45e498664..7d287b07108f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
-@@ -5612,8 +5612,8 @@ static bool CalculatePrefetchSchedule(struct dml2_core_internal_scratch *scratch
- 			s->TimeForFetchingVM = s->Tvm_equ;
- 			s->TimeForFetchingRowInVBlank = s->Tr0_equ;
- 
--		*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
--		*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
-+			*p->dst_y_per_vm_vblank = math_ceil2(4.0 * s->TimeForFetchingVM / s->LineTime, 1.0) / 4.0;
-+			*p->dst_y_per_row_vblank = math_ceil2(4.0 * s->TimeForFetchingRowInVBlank / s->LineTime, 1.0) / 4.0;
- 
- #ifdef __DML_VBA_DEBUG__
- 			dml2_printf("DML::%s: Using equ bw scheduling for prefetch\n", __func__);
+> ---
+>   .../gpu/drm/amd/display/dc/spl/spl_os_types.h | 29 +++----------------
+>   1 file changed, 4 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
+> index 7ebea91c84f6..058306bb41aa 100644
+> --- a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
+> +++ b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
+> @@ -1,28 +1,7 @@
+> -/*
+> - * Copyright 2012-16 Advanced Micro Devices, Inc.
+> - * Copyright 2019 Raptor Engineering, LLC
+> - *
+> - * Permission is hereby granted, free of charge, to any person obtaining a
+> - * copy of this software and associated documentation files (the "Software"),
+> - * to deal in the Software without restriction, including without limitation
+> - * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> - * and/or sell copies of the Software, and to permit persons to whom the
+> - * Software is furnished to do so, subject to the following conditions:
+> - *
+> - * The above copyright notice and this permission notice shall be included in
+> - * all copies or substantial portions of the Software.
+> - *
+> - * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> - * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> - * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> - * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> - * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> - * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> - * OTHER DEALINGS IN THE SOFTWARE.
+> - *
+> - * Authors: AMD
+> - *
+> - */
+> +/* SPDX-License-Identifier: MIT */
+> +
+> +/* Copyright 2024 Advanced Micro Devices, Inc. */
+> +/* Copyright 2019 Raptor Engineering, LLC */
+>   
+>   #ifndef _SPL_OS_TYPES_H_
+>   #define _SPL_OS_TYPES_H_
 -- 
-2.43.0
+Hamza
 
