@@ -2,119 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4B095DA08
-	for <lists+amd-gfx@lfdr.de>; Sat, 24 Aug 2024 01:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4289895DCEC
+	for <lists+amd-gfx@lfdr.de>; Sat, 24 Aug 2024 10:28:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFFC10E175;
-	Fri, 23 Aug 2024 23:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3110810E099;
+	Sat, 24 Aug 2024 08:28:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bT7XhMxN";
+	dkim=pass (2048-bit key; unprotected) header.d=ljones.dev header.i=@ljones.dev header.b="cvWr6EAC";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="c3IwsTdE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2064.outbound.protection.outlook.com [40.107.244.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 815AC10E175
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 23:58:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zEo+9lUNeQJQPUaRViZTSXJawKFx4eNQStejd5vqpns6bM/uLpteA3i25gL5Z5SS1FQY06ZhCO4riRB7AzuUoM3N4bwN1Ts/1OZp8SwyABrDO8UXpmZMeJYaLcw/MaroDbwZUMx2v08DgE0PDWVNyUHwn6hTBnhbDKu9UE18iLYo+v2FY4C9lJ3f79s+NbMQza024qf7wnHnsGzDhhxLgXoXNxlB2mrLYt8T62vbQRUj3nYYRI8NM3ddU4EE8yNuLyA/mUEIQIXChD1wjQcovTQZwOikF34GHsZAW+qAbATJDUWBqZNvemdK6BWMgwIBec1uRMSum6cPbVMMtJq+uQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ox8dZcSvmTJUp3OAw65JXeCkwgb/c2AJBJCrixmjyok=;
- b=bG7g6O8gJPs3XYuqAiOotO+wLNvhDV2TwiIKaDofHeMlPfp9Zjxz8oJRub8AVJwyXk37ZCZXE/KSpyDIVoldiMzs2uX5+icMRj2kK7SsT9UGxl2b22BfrwzThJNVknWQvshFSg1Nbz+trOVrmotXjYmsYaWp8Qiy27AlodX3IjuJtdauPjg6tNNa/tMfHx1+stIrRXk2vNr6+OCq07L/6wJEqhygUM50uailSBarJK9Rj06BL+uSL6S8mnd/QOlYmhBOlG4UeJSgEhBwpuuLpGy/kGun0ASmcIgTtYVQKINtlR0SrXkCFqZLhYbdSrobkI+c76S4BfLf5vLc0u1XMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ox8dZcSvmTJUp3OAw65JXeCkwgb/c2AJBJCrixmjyok=;
- b=bT7XhMxNizKepvojQ6JLeHdYtFL4IuVQ+60OHaZ1qIWCYgVBRdbEhR3mCja4t2YaSrQyH2V/A6fAZNfiuEaS2xxoFoniKvXXNVBDsvCpZqjyCYDFZ411Y61Fpum3KnUvq0X8UOQ9nM3VfzAzR3U8925JkpXcmBLGbFQoXDI6H58=
-Received: from CY5PR19CA0064.namprd19.prod.outlook.com (2603:10b6:930:69::10)
- by CY8PR12MB8339.namprd12.prod.outlook.com (2603:10b6:930:7e::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Fri, 23 Aug
- 2024 23:58:53 +0000
-Received: from CY4PEPF0000FCC2.namprd03.prod.outlook.com
- (2603:10b6:930:69:cafe::30) by CY5PR19CA0064.outlook.office365.com
- (2603:10b6:930:69::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.18 via Frontend
- Transport; Fri, 23 Aug 2024 23:58:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000FCC2.mail.protection.outlook.com (10.167.242.104) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7897.11 via Frontend Transport; Fri, 23 Aug 2024 23:58:53 +0000
-Received: from belanger-linux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 23 Aug
- 2024 18:58:52 -0500
-From: David Belanger <david.belanger@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: David Belanger <david.belanger@amd.com>
-Subject: [PATCH] drm/amdkfd: Add cache line size info
-Date: Fri, 23 Aug 2024 19:58:35 -0400
-Message-ID: <20240823235835.2190295-1-david.belanger@amd.com>
-X-Mailer: git-send-email 2.41.0
+X-Greylist: delayed 517 seconds by postgrey-1.36 at gabe;
+ Sat, 24 Aug 2024 02:31:26 UTC
+Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com
+ [103.168.172.145])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC96110E18A
+ for <amd-gfx@lists.freedesktop.org>; Sat, 24 Aug 2024 02:31:26 +0000 (UTC)
+Received: from phl-compute-03.internal (phl-compute-03.nyi.internal
+ [10.202.2.43])
+ by mailfout.nyi.internal (Postfix) with ESMTP id 939A1138CCB5;
+ Fri, 23 Aug 2024 22:22:48 -0400 (EDT)
+Received: from phl-imap-01 ([10.202.2.91])
+ by phl-compute-03.internal (MEProxy); Fri, 23 Aug 2024 22:22:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ljones.dev; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1724466168;
+ x=1724552568; bh=JSo44rT3ToEjkoxNCHxzXk9Auyqfa7DnNHlvGrQLZpw=; b=
+ cvWr6EACDcHZwezWVl+cmzy9K9kmYxFSuvhf5IzMFJHNI0XN7J3D4s2aOtyPSigz
+ rZviJ0FrBZmnO6CVJ39MJd1jimxG8Jtu8X1uyg0p/Ce0c25EWAstR/9YAZRKaEE8
+ IQt/wbQe3JN7OKQd3TwFb78BlLNi7xhcwwWuIcpbp/XU/CHOCqEEQ7YEp9ZWhBVt
+ 5DVnRjqEPhgfmaTwXoFKIEpS0LNoZgNEn2TQbx6DidgeDlCxj1GvaFciXcT5uuAG
+ ENgdxiqRv66eIa+OAOnXSl5VuL7BPr5JXUFfRsQt6laUu8oMQMHGVRRJINEMmDlW
+ d2CgDetc0+ypaASx+9vkBw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724466168; x=
+ 1724552568; bh=JSo44rT3ToEjkoxNCHxzXk9Auyqfa7DnNHlvGrQLZpw=; b=c
+ 3IwsTdExMGM4VdkeXwGGqDqAuakNGmRH0NoH+zQQw0V/F6LtJMIG9/lwxgk3iB3p
+ gkp0lRlUDoZpCqNXTsX1oi9M46ApRgfrc7v2u/gaz13DKmJU0BU4le2315TkIIYd
+ dgSG4gx8xUJbv5LatlQwuw6v/was6HagAM1/hD0b+x9Xu8qFC+gBtRx6YCDaBsxW
+ g1wcg9YOk8bkeuuSjpRdsxTmeNJ3Bck3qXkTWKU9IUCP7zKO4RGA1630VFh+o/lP
+ LFSIXCwjFvEViL5j5twgzXsaHMF4hfC2JI5+P1SWpYEV3zhLqCfxWXuZe4BtuFcW
+ nBTPN0Ncy8xM02VOV+jEQ==
+X-ME-Sender: <xms:-EPJZk4qUxpmV8Q0rIBcZcZukeRYdpupqsS2poZBDksGZiYBpL1KJw>
+ <xme:-EPJZl4zSdnLta5X6esvfeqapVYhJbCi47hUTC-jdK2KD_qNHX7Abdopq4L6fAuRb
+ NV7Y-OoRx-uS80z_Pk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddvfedgheejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+ rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+ htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
+ necuhfhrohhmpedfnfhukhgvucflohhnvghsfdcuoehluhhkvgeslhhjohhnvghsrdguvg
+ hvqeenucggtffrrghtthgvrhhnpeeihfefkefgtdefhfffheeuleeuieffgfevhedttdet
+ jedtfeehfeeufeeftdeukeenucffohhmrghinhepghhithhlrggsrdgtohhmnecuvehluh
+ hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheplhhukhgvsehljhho
+ nhgvshdruggvvhdpnhgspghrtghpthhtohepgedpmhhouggvpehsmhhtphhouhhtpdhrtg
+ hpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdprhgtphht
+ thhopegrlhgvgiguvghutghhvghrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhuph
+ gvrhhmudeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghmugdqghhfgieslhhishht
+ shdrfhhrvggvuggvshhkthhophdrohhrgh
+X-ME-Proxy: <xmx:-EPJZjerWR4MQLb_jgFjI0ZRWGEl1YVRBaM-3wUfzgw3Kf6m_uhvNQ>
+ <xmx:-EPJZpK8mEmDOftf8-IjW_ls66V1_o1t4lGKCUgz7ghq6T6f-LV5Zw>
+ <xmx:-EPJZoI6Tz7aUauj6Qo0jN0RCTjOeF1h76OviT5uoj1q7lMKbTn3Gg>
+ <xmx:-EPJZqxRC-OK9xAvi26soHgOCpO0YR1S60OjYA1x0inyfRH6IOVPZg>
+ <xmx:-EPJZvVVIi3L40j5Vz9iIt90zwoMD7XMe_gf9NZI0G0SCqe6osj9AVMF>
+Feedback-ID: i5ec1447f:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 228DB3360073; Fri, 23 Aug 2024 22:22:48 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC2:EE_|CY8PR12MB8339:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08798f35-4598-489b-60d5-08dcc3cf8aec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ni+K0u0u0jrFQdM+vAnhc1UaoD8vIhk6Pj2zr67R+bGldzr/fFQRMAMlfy+H?=
- =?us-ascii?Q?GApDU1XlTAF/BQfkMNBPT9FC6xTVLFPq60Mw4kLJRaHEAfTG+Hul7hKzEZCo?=
- =?us-ascii?Q?dmkSyDkk84d1NKlmUFyFhksxK/fnQpdFxtIhsICGQlp7kyDsYOME2Sa4IRCC?=
- =?us-ascii?Q?gmXphLwWWxeoisx/MPmpMkDx2GQUVIbVBbtJ3zvx62TaGW2n1j+uAXti7hxZ?=
- =?us-ascii?Q?5Ugg7RVOT6p9seVz0qjw65sJ8vPhTYNvPdCOyB4aqUU058s73gPBiGtleygI?=
- =?us-ascii?Q?LWF7Eet2CYUtLPf7Vur7ZRYMDZ686aTDjgCCeGwXdsnJ67MJLsRgJ4ZDBJSt?=
- =?us-ascii?Q?FJb74GsUW4/qehik9/PE+q1kA9tsF+t9gQU0H1oeEtCJviBhIGkaDn52JShc?=
- =?us-ascii?Q?DH+NWHJ1oBa8eEdp1g6Qm8C7rcfThDb47ajjNOBJE8hHFRqXlNFImfQRTOey?=
- =?us-ascii?Q?NOCcKjtDQqWeFH3mdqfys5OrwGaULhlCqmLuwGkTcQu34OOd5vvi35BU/8Iw?=
- =?us-ascii?Q?71WRPFezt/5DSGzk4T0tQZfl+XhlaG4JXyOEsAhr/QzOH+6DsnYL2jvJ+6od?=
- =?us-ascii?Q?OP+EY8CurGnUK9kkfK+nw8njpQH4A32mODihkIcccs5HG4v60X7K9M88V9Zm?=
- =?us-ascii?Q?S3WXMLcI4znzk6qBY/VfVTwJ3Yz6tGTO61C/UWkENNOgruo9NFlz5XrX1Sdn?=
- =?us-ascii?Q?nneKM1zfPK6rlnM7MjUzta8jdVyt2E/cS1JYOOKBiUJwIK50sZv2oAC7a1kL?=
- =?us-ascii?Q?bx35FfkbAQq7wQAMgz4Hejdhh7PmqTnKPAeT1rikAjPdGu0t8x4Qd6EtXWuJ?=
- =?us-ascii?Q?RrOPrz0cE2srdAAyWQIIw5P0QDQck5A4t5YN79+T11bX6GXEwRrKjZHc0Y6z?=
- =?us-ascii?Q?+lOUbg7GXN1vCyb2Nj3F0e+nB5N2UNYDKjPChwuZ0DbpGeWXgSqFzI2ojkne?=
- =?us-ascii?Q?7VSczE8+tThDbolyFDco5Guo1ZwnaehBfSnY51t8yrgUBg7CvdItjzWHqdm+?=
- =?us-ascii?Q?7c8O3I+oMopyw91bnKmbwAkA4JZ0TCfpxtZ+qa7bWtJz+8hqRik6uRnMeFD1?=
- =?us-ascii?Q?yjGAi+15eh4S+EyHaViONTrTru6aB0Awl60vW0EO5xvHvJekvW9OShQ5s7e4?=
- =?us-ascii?Q?OjVwNTDUSXFeNFZgG88OSP+TulNFZGrUr+jxXEUlciqG5vCeiB8W/NQcPfqC?=
- =?us-ascii?Q?mOFcnY1vDqbq5ziin7V0mbyhnMQZN4c4lMeJDwJ4LfQL7apUuk3abgYr+tKl?=
- =?us-ascii?Q?8dlRgZv39kQzTef3Bp3MkRUdo3pIu98StIeutLdi8akk7l7P2FAjfnu7eQH8?=
- =?us-ascii?Q?4sxaoxFk3nnpNA8ScXpjemWHpZdPVRObpwItCjceqGI24jv5zQoPmpKZgPvv?=
- =?us-ascii?Q?wKTYWUP8rslrLXSkfIajaPidtnD4wmAytsDwnqpf1VFWDWXs8yTmyPTHDtrf?=
- =?us-ascii?Q?U6tY9AmXDCayqgEOf8NyKmqf59GxCXeY?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2024 23:58:53.4911 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08798f35-4598-489b-60d5-08dcc3cf8aec
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC2.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8339
+Date: Sat, 24 Aug 2024 14:22:27 +1200
+From: "Luke Jones" <luke@ljones.dev>
+To: "Mario Limonciello" <mario.limonciello@amd.com>,
+ "Alex Deucher" <alexdeucher@gmail.com>
+Cc: "Mario Limonciello" <superm1@kernel.org>, amd-gfx@lists.freedesktop.org
+Message-Id: <da2860c4-df08-49d8-b730-68691520f7ec@app.fastmail.com>
+In-Reply-To: <9efbc3a1-c43b-4f8a-a334-6ff77e6de283@amd.com>
+References: <20240820020435.472490-1-superm1@kernel.org>
+ <CADnq5_O3uTj_Zu9+iY_k8i2MQhXH=Ac2+GhCe5DeW=CWY6jn4w@mail.gmail.com>
+ <0e8d0a26-3dca-4669-96fc-d9f4bffbe5f6@amd.com>
+ <CADnq5_OL=W_Uz9LCeoYAEZ=XX=1tu0=Hky=pjLmfz0x8vWUT-g@mail.gmail.com>
+ <9efbc3a1-c43b-4f8a-a334-6ff77e6de283@amd.com>
+Subject: Re: [PATCH] drm/amd: Don't wake dGPUs while reading sensors
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 24 Aug 2024 08:28:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,68 +105,574 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Populate cache line size info in topology based on information from IP
-discovery table.
+On Sat, 24 Aug 2024, at 2:39 AM, Mario Limonciello wrote:
+> On 8/23/2024 09:31, Alex Deucher wrote:
+> > On Fri, Aug 23, 2024 at 10:13=E2=80=AFAM Mario Limonciello
+> > <mario.limonciello@amd.com> wrote:
+> >>
+> >> On 8/23/2024 09:09, Alex Deucher wrote:
+> >>> On Mon, Aug 19, 2024 at 10:30=E2=80=AFPM Mario Limonciello <superm=
+1@kernel.org> wrote:
+> >>>>
+> >>>> From: Mario Limonciello <mario.limonciello@amd.com>
+> >>>>
+> >>>> If the dGPU is off, then reading the sysfs files with a sensor mo=
+nitoring
+> >>>> application will wake it. Change the behavior to return an error =
+when the
+> >>>> dGPU is in D3cold.
+> >>>
+> >>> I'm a little concerned that this will generate a flurry of bug rep=
+orts
+> >>> if this now reports an error.  One more comment below.
+> >>>
+> >>
+> >> Do you have a particular app you're worried about, or just a general
+> >> worry?  I've had a lot of people reach out to me complaining about
+> >> battery life on A+A systems, and it comes down to the use of sensor
+> >> monitoring software waking the dGPU which people don't seem to expe=
+ct.
+> >=20
+> > Nothing in particular.  Just expecting reports of "I checked my GPU
+> > temperature and it returned an error.  It was working with the last
+> > kernel."
+> >=20
+> >>
+> >> I did double check that software like 'sensors', 'mission center' a=
+nd
+> >> 'nvtop' don't freak out from this change.
+> >=20
+> > Do we know what other devices do? =20
+>=20
+> I'm not sure.  Let me CC Luke Jones, he might know.
 
-Signed-off-by: David Belanger <david.belanger@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+These apps have been actively working around or finding good ways to avo=
+id waking the dGPU. In some cases the dGPU monitoring widget is disabled=
+ until the user requests it.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-index cd7b81b7b939..48caecf7e72e 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1434,7 +1434,8 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 		pcache_info[i].flags = (CRAT_CACHE_FLAGS_ENABLED |
- 					CRAT_CACHE_FLAGS_DATA_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
--		pcache_info[0].num_cu_shared = adev->gfx.config.gc_num_tcp_per_wpg / 2;
-+		pcache_info[i].num_cu_shared = adev->gfx.config.gc_num_tcp_per_wpg / 2;
-+		pcache_info[i].cache_line_size = adev->gfx.config.gc_tcp_cache_line_size;
- 		i++;
- 	}
- 	/* Scalar L1 Instruction Cache per SQC */
-@@ -1446,6 +1447,7 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 					CRAT_CACHE_FLAGS_INST_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
- 		pcache_info[i].num_cu_shared = adev->gfx.config.gc_num_sqc_per_wgp * 2;
-+		pcache_info[i].cache_line_size = adev->gfx.config.gc_instruction_cache_line_size;
- 		i++;
- 	}
- 	/* Scalar L1 Data Cache per SQC */
-@@ -1456,6 +1458,7 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 					CRAT_CACHE_FLAGS_DATA_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
- 		pcache_info[i].num_cu_shared = adev->gfx.config.gc_num_sqc_per_wgp * 2;
-+		pcache_info[i].cache_line_size = adev->gfx.config.gc_scalar_data_cache_line_size;
- 		i++;
- 	}
- 	/* GL1 Data Cache per SA */
-@@ -1468,6 +1471,7 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 					CRAT_CACHE_FLAGS_DATA_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
- 		pcache_info[i].num_cu_shared = adev->gfx.config.max_cu_per_sh;
-+		pcache_info[i].cache_line_size = 0;
- 		i++;
- 	}
- 	/* L2 Data Cache per GPU (Total Tex Cache) */
-@@ -1478,6 +1482,7 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 					CRAT_CACHE_FLAGS_DATA_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
- 		pcache_info[i].num_cu_shared = adev->gfx.config.max_cu_per_sh;
-+		pcache_info[i].cache_line_size = adev->gfx.config.gc_tcc_cache_line_size;
- 		i++;
- 	}
- 	/* L3 Data Cache per GPU */
-@@ -1488,6 +1493,7 @@ static int kfd_fill_gpu_cache_info_from_gfx_config(struct kfd_dev *kdev,
- 					CRAT_CACHE_FLAGS_DATA_CACHE |
- 					CRAT_CACHE_FLAGS_SIMD_CACHE);
- 		pcache_info[i].num_cu_shared = adev->gfx.config.max_cu_per_sh;
-+		pcache_info[i].cache_line_size = 0;
- 		i++;
- 	}
- 	return i;
--- 
-2.41.0
+>=20
+> > I wonder if it would make more
+> > sense to have the userspace tools check the runpm state before trying
+> > to access the device.  Of course there are a lot of them and fixing
+> > them all is non-trivial...
+>=20
+> Yes that's another way to go about it.  But I've raised a bug with=20
+> mission center folks 8 months ago [1] to tell them to stop querying=20
+> dGPUs in runtime PM, and Luke Jones also raised it with them 4 months=20
+> earlier [2] but it's still not sorted in their project.
+>=20
+> [1] https://gitlab.com/mission-center-devs/mission-center/-/issues/143
+> [2] https://gitlab.com/mission-center-devs/mission-center/-/issues/30
+>=20
+> I suspect we'll hit similar road blocks with the dozens of other=20
+> softwares that do this.  So that's why I was thinking cut off the=20
+> snake's head.
 
+It is a continuous issue. If I had a dollar for every message in my disc=
+ord channel asking why the dGPU is not sleeping I'd have a few thousand =
+in savings now.
+
+If the only way to prevent this is to return error if in d3cold then I'm=
+ 110% in agreeance. If apps can't handle that possiblity then it will fo=
+rce proper handling and prevent all future issues like this.
+
+Cheers,
+Luke.
+
+>=20
+> >=20
+> > Alex
+> >=20
+> >>
+> >> Here is what 'sensors' shows on my local workstation with this chan=
+ge.
+> >>
+> >> amdgpu-pci-6100
+> >> Adapter: PCI adapter
+> >> vddgfx:           N/A
+> >> ERROR: Can't get value of subfeature fan1_min: Can't read
+> >> ERROR: Can't get value of subfeature fan1_max: Can't read
+> >> fan1:             N/A  (min =3D    0 RPM, max =3D    0 RPM)
+> >> edge:             N/A  (crit =3D +97.0=C2=B0C, hyst =3D -273.1=C2=B0=
+C)
+> >> ERROR: Can't get value of subfeature power1_cap: Can't read
+> >> PPT:              N/A  (cap =3D   0.00 W)
+> >>
+> >>>>
+> >>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> >>>> ---
+> >>>>    drivers/gpu/drm/amd/pm/amdgpu_pm.c | 90 +++++++++++++++-------=
+--------
+> >>>>    1 file changed, 45 insertions(+), 45 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm=
+/amd/pm/amdgpu_pm.c
+> >>>> index c11952a4389bc..d6e38466fbb82 100644
+> >>>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> >>>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> >>>> @@ -142,7 +142,7 @@ static ssize_t amdgpu_get_power_dpm_state(str=
+uct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -173,7 +173,7 @@ static ssize_t amdgpu_set_power_dpm_state(str=
+uct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (strncmp("battery", buf, strlen("battery")) =3D=3D 0)
+> >>>> @@ -270,7 +270,7 @@ static ssize_t amdgpu_get_power_dpm_force_per=
+formance_level(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -309,7 +309,7 @@ static ssize_t amdgpu_set_power_dpm_force_per=
+formance_level(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (strncmp("low", buf, strlen("low")) =3D=3D 0) {
+> >>>> @@ -371,7 +371,7 @@ static ssize_t amdgpu_get_pp_num_states(struc=
+t device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -409,7 +409,7 @@ static ssize_t amdgpu_get_pp_cur_state(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -448,7 +448,7 @@ static ssize_t amdgpu_get_pp_force_state(stru=
+ct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (adev->pm.pp_force_state_enabled)
+> >>>> @@ -471,7 +471,7 @@ static ssize_t amdgpu_set_pp_force_state(stru=
+ct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           adev->pm.pp_force_state_enabled =3D false;
+> >>>> @@ -541,7 +541,7 @@ static ssize_t amdgpu_get_pp_table(struct dev=
+ice *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -577,7 +577,7 @@ static ssize_t amdgpu_set_pp_table(struct dev=
+ice *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -760,7 +760,7 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(s=
+truct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (count > 127 || count =3D=3D 0)
+> >>>> @@ -862,7 +862,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(s=
+truct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -922,7 +922,7 @@ static ssize_t amdgpu_set_pp_features(struct =
+device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D kstrtou64(buf, 0, &featuremask);
+> >>>> @@ -957,7 +957,7 @@ static ssize_t amdgpu_get_pp_features(struct =
+device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1026,7 +1026,7 @@ static ssize_t amdgpu_get_pp_dpm_clock(stru=
+ct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1095,7 +1095,7 @@ static ssize_t amdgpu_set_pp_dpm_clock(stru=
+ct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D amdgpu_read_mask(buf, count, &mask);
+> >>>> @@ -1280,7 +1280,7 @@ static ssize_t amdgpu_get_pp_sclk_od(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1309,7 +1309,7 @@ static ssize_t amdgpu_set_pp_sclk_od(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D kstrtol(buf, 0, &value);
+> >>>> @@ -1342,7 +1342,7 @@ static ssize_t amdgpu_get_pp_mclk_od(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1371,7 +1371,7 @@ static ssize_t amdgpu_set_pp_mclk_od(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D kstrtol(buf, 0, &value);
+> >>>> @@ -1424,7 +1424,7 @@ static ssize_t amdgpu_get_pp_power_profile_=
+mode(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1463,7 +1463,7 @@ static ssize_t amdgpu_set_pp_power_profile_=
+mode(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           tmp[0] =3D *(buf);
+> >>>> @@ -1517,7 +1517,7 @@ static int amdgpu_hwmon_get_sensor_generic(=
+struct amdgpu_device *adev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -1630,7 +1630,7 @@ static ssize_t amdgpu_get_pcie_bw(struct de=
+vice *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (adev->flags & AMD_IS_APU)
+> >>>> @@ -1673,7 +1673,7 @@ static ssize_t amdgpu_get_unique_id(struct =
+device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (adev->unique_id)
+> >>>> @@ -1846,7 +1846,7 @@ static ssize_t amdgpu_get_pm_metrics(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -1887,7 +1887,7 @@ static ssize_t amdgpu_get_gpu_metrics(struc=
+t device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -2005,7 +2005,7 @@ static ssize_t amdgpu_set_smartshift_bias(s=
+truct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           r =3D pm_runtime_get_sync(ddev->dev);
+> >>>> @@ -2227,7 +2227,7 @@ static ssize_t amdgpu_get_xgmi_plpd_policy(=
+struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           mode =3D amdgpu_dpm_get_xgmi_plpd_mode(adev, &mode_desc=
+);
+> >>>> @@ -2250,7 +2250,7 @@ static ssize_t amdgpu_set_xgmi_plpd_policy(=
+struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D kstrtos32(buf, 0, &mode);
+> >>>> @@ -2652,7 +2652,7 @@ static ssize_t amdgpu_hwmon_get_pwm1_enable=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -2684,7 +2684,7 @@ static ssize_t amdgpu_hwmon_set_pwm1_enable=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D kstrtoint(buf, 10, &value);
+> >>>> @@ -2742,7 +2742,7 @@ static ssize_t amdgpu_hwmon_set_pwm1(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D kstrtou32(buf, 10, &value);
+> >>>> @@ -2787,7 +2787,7 @@ static ssize_t amdgpu_hwmon_get_pwm1(struct=
+ device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -2817,7 +2817,7 @@ static ssize_t amdgpu_hwmon_get_fan1_input(=
+struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -2881,7 +2881,7 @@ static ssize_t amdgpu_hwmon_get_fan1_target=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -2912,7 +2912,7 @@ static ssize_t amdgpu_hwmon_set_fan1_target=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D kstrtou32(buf, 10, &value);
+> >>>> @@ -2956,7 +2956,7 @@ static ssize_t amdgpu_hwmon_get_fan1_enable=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -2988,7 +2988,7 @@ static ssize_t amdgpu_hwmon_set_fan1_enable=
+(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           err =3D kstrtoint(buf, 10, &value);
+> >>>> @@ -3128,7 +3128,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_=
+generic(struct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+> >>>> @@ -3209,7 +3209,7 @@ static ssize_t amdgpu_hwmon_set_power_cap(s=
+truct device *dev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           if (amdgpu_sriov_vf(adev))
+> >>>> @@ -3663,7 +3663,7 @@ static int amdgpu_retrieve_od_settings(stru=
+ct amdgpu_device *adev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D pm_runtime_get_sync(adev->dev);
+> >>>> @@ -3747,7 +3747,7 @@ amdgpu_distribute_custom_od_settings(struct=
+ amdgpu_device *adev,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D parse_input_od_command_lines(in_buf,
+> >>>> @@ -4626,7 +4626,7 @@ static int amdgpu_debugfs_pm_info_show(stru=
+ct seq_file *m, void *unused)
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>
+> >>> I'd prefer to keep the current behavior for debugfs.
+> >>
+> >> OK.  I'll exclude it for debugfs in the next spin.
+> >>
+> >>>
+> >>> Alex
+> >>>
+> >>>>
+> >>>>           r =3D pm_runtime_get_sync(dev->dev);
+> >>>> @@ -4671,7 +4671,7 @@ static ssize_t amdgpu_pm_prv_buffer_read(st=
+ruct file *f, char __user *buf,
+> >>>>
+> >>>>           if (amdgpu_in_reset(adev))
+> >>>>                   return -EPERM;
+> >>>> -       if (adev->in_suspend && !adev->in_runpm)
+> >>>> +       if (adev->in_suspend || adev->in_runpm)
+> >>>>                   return -EPERM;
+> >>>>
+> >>>>           ret =3D amdgpu_dpm_get_smu_prv_buf_details(adev, &smu_p=
+rv_buf, &smu_prv_buf_size);
+> >>>> --
+> >>>> 2.43.0
+> >>>>
+> >>
+>=20
+>=20
