@@ -2,139 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDA395EA11
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Aug 2024 09:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A78B95EA0B
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Aug 2024 09:12:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0818610E124;
-	Mon, 26 Aug 2024 07:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D859D10E11D;
+	Mon, 26 Aug 2024 07:11:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="l5452ohB";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="yiRsuF6J";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="29qQqnFg";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="yiRsuF6J";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="29qQqnFg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from HK2PR02CU002.outbound.protection.outlook.com
- (mail-eastasiaazon11010049.outbound.protection.outlook.com [52.101.128.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADF210E0EF;
- Mon, 26 Aug 2024 06:36:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hlmq7cPHEIgiecc3NvvpigrrZ2rS8KEGIGZ1QXYgMdKpbT5gAyNRJZW2m9Xpx62jlSiLyuCEnTmHavJrzwcdcJdkxgxdFpfWaTRWBaAxLBLXPVq4qHgHMJVDg37Qa2gj7w0x4wkC2uLPwxWSflGi2aIcEPAV3L/SjzaLDk+MBX3RL6i1YpgJOzbLsuJwCJ9j/HRNL15ZcaMV5qoojgt4ZsoMaHR2FzFcwfI0sC4FDJ6tj78PyVFG5nTua9X7zn7qfshd0FTefiyRjqoEmt57ExrKQPMT9ACxNgSt9bwZg7FfUuivdpEV4W/rpD5vSe5QkSord2vh7eI9/o0ur2FS3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fz/EVunoOiX/fAeklvvhibF3SK5zFtUNT5QNuwArAYc=;
- b=Zl+s5MyP8ehjXR2L2SNvzjsN3B0rTMLH4c0ymlREh4VpPLtiJ7+lC8wvEumf/MdUnRjZNftcBTkkE1gXoS03QwYY9YKjySSrQ3hxwvCi7pDfEPI/hRv1SagyV2GtLkNxomZGJPQC+CxGU4Rbi0n/wAIphxXvE77ym/v7C9txbyl6IEpZwbxaQveJFTw7J8olFWedIPyaETVBJkTcCSvWR+UX9+oxyLYgnE42g9G8t1B/OgS1EU9oOKblZ/gjHysevDzkPLV1dIweumkX32VaYrYyucKp4IMeh/4/0nl4W5eJrG1hAtsISAwtcpZxIoHCKweor4bsH26hlG3v4HJj6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fz/EVunoOiX/fAeklvvhibF3SK5zFtUNT5QNuwArAYc=;
- b=l5452ohBFsSlyC7BBLh08SN6UGBUPg4lkVdDmEK93bpk9hBi4v2cuBdpbaCWROJdlAVJ+MuVT1eK5mChbX5nkINM4ez3vs/d5y6uK7vJvG0o8zuTgTg0zkUnqjBwOUwgoiWXvuke8xFZtK1U6AWoyzWBARO8Ry/awu2mJ2Uy6MzNYVRWbBjkhImw4HjInjPEfybKHKqHvkaegmhKSGXvmBPtQgQeseyFBwZUeo0XUDRHexW3/ca7kfIBLL+tikXCYbdDP9zhGTTFIpkhGydTtM3/2dFXk3sRVmbBKEuMQxCidVBkBSAHIeU1rd0REhdp0QprGy8L1E/WuoRzo/ukyw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SEYPR06MB6252.apcprd06.prod.outlook.com (2603:1096:101:c5::14)
- by SEYPR06MB5892.apcprd06.prod.outlook.com (2603:1096:101:d5::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.24; Mon, 26 Aug
- 2024 06:35:57 +0000
-Received: from SEYPR06MB6252.apcprd06.prod.outlook.com
- ([fe80::d2f1:960e:a2e7:406b]) by SEYPR06MB6252.apcprd06.prod.outlook.com
- ([fe80::d2f1:960e:a2e7:406b%4]) with mapi id 15.20.7897.021; Mon, 26 Aug 2024
- 06:35:57 +0000
-From: Yang Ruibin <11162571@vivo.com>
-To: Kenneth Feng <kenneth.feng@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Yang Ruibin <11162571@vivo.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: opensource.kernel@vivo.com
-Subject: [PATCH v5] drivers: smumgr: fix up the misspellings
-Date: Mon, 26 Aug 2024 14:35:33 +0800
-Message-Id: <20240826063542.2144716-1-11162571@vivo.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0130.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::34) To SEYPR06MB6252.apcprd06.prod.outlook.com
- (2603:1096:101:c5::14)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1DE10E117;
+ Mon, 26 Aug 2024 07:11:54 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 78B091F843;
+ Mon, 26 Aug 2024 07:11:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724656312; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
+ b=yiRsuF6JiAtqiOk9gt3PEf2krtfxOQ2u51mW+KGmD+x5s2UFbWxfxyQqJsBihiahItJc/K
+ 0kaccrjqshrHp7NYLFAG91Ro93OaSUVUsG9gLEcL1qyXyBN3+dX9KIcKyw71ZuPk12lefk
+ fjbAFZPUgKVjR4CtmDPnHBYNmHJL9s0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724656312;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
+ b=29qQqnFgDsGd5nkxZ8fQOVtYsaiRcfxdUNwefj13wi4tM7UYuenFuavriwgfSbn/L8ecQy
+ gZexfuis3UJGJZCA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=yiRsuF6J;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=29qQqnFg
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724656312; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
+ b=yiRsuF6JiAtqiOk9gt3PEf2krtfxOQ2u51mW+KGmD+x5s2UFbWxfxyQqJsBihiahItJc/K
+ 0kaccrjqshrHp7NYLFAG91Ro93OaSUVUsG9gLEcL1qyXyBN3+dX9KIcKyw71ZuPk12lefk
+ fjbAFZPUgKVjR4CtmDPnHBYNmHJL9s0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724656312;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
+ b=29qQqnFgDsGd5nkxZ8fQOVtYsaiRcfxdUNwefj13wi4tM7UYuenFuavriwgfSbn/L8ecQy
+ gZexfuis3UJGJZCA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1F6FF1398D;
+ Mon, 26 Aug 2024 07:11:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id /zNuBrgqzGb1QgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 26 Aug 2024 07:11:52 +0000
+Message-ID: <65faaa8b-72b5-4fa3-9959-8fecba90ad30@suse.de>
+Date: Mon, 26 Aug 2024 09:11:51 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEYPR06MB6252:EE_|SEYPR06MB5892:EE_
-X-MS-Office365-Filtering-Correlation-Id: 028a209c-5329-4d5b-187e-08dcc59957d0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|52116014|921020|38350700014|81742002; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?IYoRfI2CST2yxFBQS1HqOhbeaIBvsUuNw7XvJuTttKk0LgF7PRAn1SjNsUAC?=
- =?us-ascii?Q?XszxQimJvKp71UJeDLndNPD0qK0duwQpgqwp7XE1tZ8wSw2RpoAEZs/blZ9s?=
- =?us-ascii?Q?vWNkFJXRSTfrLNhYrcuBGSlIBQm6rqK0aY961OR2cGQqsp/GiWkoEXZtF1Y/?=
- =?us-ascii?Q?9LmsU2mTBTRbI/xXOqlAn2ux/raoeR/jvvaZdxAPte6I5MPlZiP4TgznpOic?=
- =?us-ascii?Q?RX0v+y9PS+HaMoDGUGp4r02H68XKhIwpJPso/mjcyipK5yZtJmFkpkwUhQc3?=
- =?us-ascii?Q?hb29xhgTVgmeFvKa0J60qU2HtN6WDdMKTKIgjC7gTN6NNtKJEPfNfv/aeHj+?=
- =?us-ascii?Q?kyTBy79j2qSaICBW/NnR3Ui+OBYHAfX8e+rIaeucsNi8UXUHFJ5D6GpONXmT?=
- =?us-ascii?Q?UaVrWPi8Xf7eKTgg2l6Sfmoo13EVHjQqtY4DBB4HSxw7WBpm0uW6Yg+T4HYO?=
- =?us-ascii?Q?QI5JkYJgCr5w13+Q4RDkQ0Wo4i31mnWaBKpSrGyDkePW8w5AP4AowSrIrXm6?=
- =?us-ascii?Q?HZvRmPuRqJw6S4eoucqjMLNgDzAKnTFW1B5wsFp6hSUGKVIWKLPgq8ZxhXmv?=
- =?us-ascii?Q?vhK76wcIe1qobf6EFXTNMN9iKxWBhi6W2QpNLJdPNTOoNCqUUcw/UL+FvYdU?=
- =?us-ascii?Q?+zyyox3YfffcyrG/JvAvTODx+e79dQU6+4+MxwG4/9Jky+qLOemfW73XOwlM?=
- =?us-ascii?Q?gXtlQl4yzdg65NfciXQf9X4vrzGrpBcsiYqcy2i8i+GPBMcIpssOzV7ikyWo?=
- =?us-ascii?Q?id4rM8Pp6S6WPwPiz2eI6AdpEz2pkVEK+kkMvPS16kTH3jEVdyFbzTKmzh9X?=
- =?us-ascii?Q?m5cyzknEDsuMQWFL0TfRqISvt5LMhv+Fj8fytFF6B4QuMxH4a5x7pWkRXYYw?=
- =?us-ascii?Q?hmVImyLd1gihSbWaLi0XSbnlU1uFk44KVQ16fdXccDhuCPtWIuky1FUIAKBy?=
- =?us-ascii?Q?wVRs+h63zllUCTEuW0wCDSU5mX+WnggEmKd4YRjLs1sS05R04yf93tJInrig?=
- =?us-ascii?Q?SvuDUK+jU7N9KczIQiBCYGxBv2OGRddJSzmw29XYJvC+BfgZE0+3R05NpL0N?=
- =?us-ascii?Q?GArw3BQTFRevVaTBL7b4AieTFfl12+y4/KgaWbNb3ZTnrx4OsHT0jj0oIKpC?=
- =?us-ascii?Q?DeouVbcb0MJKKFmUgZsRHXQG2c0sNSKsHadNYTD/Bmp+cF++sGeZz/REDIWW?=
- =?us-ascii?Q?OjN7CZnJ0Di84GxFiOr2+TuSQny4Nm+kOfLz1FtkWqeoopddKff89vp7LbOl?=
- =?us-ascii?Q?JRR98iqQzcRhgiJPkFohNnZyHqOfeUUjnAlqo0brGJKqsVlNuuhiYBCd+410?=
- =?us-ascii?Q?d0AnmAdaZsDK8BDFK6UeUGK8gOqWpHsnpen2OAEHPbGiK1DXY/G8maK6eRgf?=
- =?us-ascii?Q?zTLFililmv+XXe3fu4H3piefW3XzwY/sWyB9ezNvcTGW8sCjq+FWTb4WRPeu?=
- =?us-ascii?Q?+ykBfLTwx/6DwJrgnui4d4YxDBNim7Q7?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SEYPR06MB6252.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(52116014)(921020)(38350700014)(81742002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nhAMj/qoOOe3LZJbsRg8yxfwKBEdRYiRXZGtyLKaBtvG5aPCjx47qGtWmnPg?=
- =?us-ascii?Q?6InoTe3D6t3qxvTOQAeC7gaQyaVaruGyK56EBUd2aKdr4RGKyGPykr1tQ+Nz?=
- =?us-ascii?Q?m6j/EsIiMX3QEmCqcZz+diuD0gMRPN05kWGq4j0xucJNag21AwNH5/dc8dqj?=
- =?us-ascii?Q?AGKoSSmPET32A0iLKwr+AWGlT4nZWuvx2NcfRRRHeG7bHZPJmbCJAxJAtgSI?=
- =?us-ascii?Q?1PijsyjxqLi66/a75RZV/PGMQ4E8/nYBaI7v4Je75OxMoVYOJ5uBRXrFB3pt?=
- =?us-ascii?Q?Dq/5DKA4EaHqXmtpE9mvUdKR4jLJxnGOzwLiNq2GdpyirFLypln8WfpKWqgg?=
- =?us-ascii?Q?5lPD7busyMcny0rz6rk3hmM8yxLoeXKtvLQnjMAFHcIQN0lyL6Vp0KcOe+q3?=
- =?us-ascii?Q?/zf+iQgA8x5THublqLapExAc0tjxw7eHZTR+CELziRzVyCBnu+/MC+YUM1z7?=
- =?us-ascii?Q?GRzfMuCW32ufnUw8D9On0T8jH5y0Jb4r0LdASp9ZQgow6tBLPKa364fm67Vx?=
- =?us-ascii?Q?BGRr5sIWzs+iXvU/jC5Hdg4w6/7yZRZZhRLeFz9sQ3IvYMGW7Gp+y8CEGrP2?=
- =?us-ascii?Q?k3T1AW9SbnXcg93YPa612LBU/CcPKy3ytuYXWTNPnDKoYzODsV2AGDW6ox08?=
- =?us-ascii?Q?JeV4KCYlrxUePFU3FBz+Tcltu7xM+cF1A5ucVuncaGYvfzzBpweRrC9SI2IW?=
- =?us-ascii?Q?e/YqErOMM0FXvopcZjb2v4vCqQDXC8k8nsW/CPHzuJDjNYuQF0iDEh4BIIp7?=
- =?us-ascii?Q?6IwNBn3YKw/RwMx1ahMqBjymxzFuACpaclbqSlS42fedXxOw4d/QvfL59JGb?=
- =?us-ascii?Q?Cx1Q2wKh4BcRArNV0MqLJVAo8N+zbBSwY9TwuTA8NEC86pf/ql9nS0+Wr8Dc?=
- =?us-ascii?Q?dhN8N32O/dJec5L6fzRMcUStd96Uw2So/ck0dFZJ0PDRyzK0M0XvNXI/mbHg?=
- =?us-ascii?Q?PDJcIu4FSZW5tqBqn1cLlE4OOSPAS7oyF/wnziLOpNynCwxocujng+zIdQCC?=
- =?us-ascii?Q?9v1VTHY9HLN1iCIIm3ccO5oQslxM5H1/Cznr6LV09trF63k4T8DTik7hPS7d?=
- =?us-ascii?Q?IiTidPANHA+pg2LBiEm5AKFdJKV5efDlSUfjjna8TR0ScXXQtJGTYJps5lRS?=
- =?us-ascii?Q?dtYQVVODy2M5Pz/6pOONFs7XZ33jFn3kh9rSEIRjEO3ckeulnWTVmCAKyce6?=
- =?us-ascii?Q?foFC1MAq42kzskmligKd/+AANH2CmMIyo+A0lBwmg6I43q9ssGIg+0LcDckp?=
- =?us-ascii?Q?aL971ii6ZtE+oCkAJ8kWAhBuOvp90v21GwwRQUS1YkRwK1vC4ha07fX80Hut?=
- =?us-ascii?Q?/BKPb5AKn660Mot+anS80R6pAAE7oVbzFas7YYGZU9Lvzo5fsSDgrQ1arGxD?=
- =?us-ascii?Q?C9mGsTEwptMo1ITHdC/bv1TISm5J38Lx6+jog0obOA3Br379zI22zpIk5vYQ?=
- =?us-ascii?Q?db9+gdBVhiLXWvPbhdAZ3OjgQjIz4/ySt1vekyG+Gs5ucd9f1XqZrIY3wR/Q?=
- =?us-ascii?Q?ogfslJ5NW7KC0vwX6mRvGjYYbBXcVh55Oi+hCVslK1JrAGe2MUqXmli4ZDpc?=
- =?us-ascii?Q?EBUviPZcDMZ2uK4+iW/E97WklhdvYFYHKOp29dz2?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 028a209c-5329-4d5b-187e-08dcc59957d0
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6252.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 06:35:57.5713 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mz7ORM88jDOGA6ZTspWxcqqaOrR8UqHcw1RjQFj/Q08XqWfcw/40lpMkN/i9sKdPDgIr2oCcuSx4a/rup8PRJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5892
-X-Mailman-Approved-At: Mon, 26 Aug 2024 07:12:20 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 11/86] drm/atmel-hdlcd: Run DRM default client setup
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-12-tzimmermann@suse.de>
+ <20240823185156.GA367392@ravnborg.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20240823185156.GA367392@ravnborg.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 78B091F843
+X-Spam-Level: 
+X-Spamd-Result: default: False [-6.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[14]; MIME_TRACE(0.00)[0:+];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,lists.freedesktop.org,kernel.org,microchip.com,bootlin.com,tuxon.dev];
+ RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ DKIM_TRACE(0.00)[suse.de:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.de:email, suse.de:dkim, suse.de:mid]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -6.51
+X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,163 +160,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hightest is a typo. It should be highest.Please ensure
-the consistency of variable naming.
+Hi Sam
 
-Signed-off-by: Yang Ruibin <11162571@vivo.com>
----
-Changes v5:
--Updated the ignored misspellings
----
- .../drm/amd/pm/powerplay/smumgr/fiji_smumgr.c    | 16 ++++++++--------
- .../amd/pm/powerplay/smumgr/polaris10_smumgr.c   | 16 ++++++++--------
- .../drm/amd/pm/powerplay/smumgr/vegam_smumgr.c   | 16 ++++++++--------
- 3 files changed, 24 insertions(+), 24 deletions(-)
+Am 23.08.24 um 20:51 schrieb Sam Ravnborg:
+> On Wed, Aug 21, 2024 at 02:59:08PM +0200, Thomas Zimmermann wrote:
+>> Call drm_client_setup_with_fourcc() to run the kernel's default client
+>> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
+>> setup can start the common fbdev client.
+>>
+>> v2:
+>> - use drm_client_setup_with_fourcc()
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Sam Ravnborg <sam@ravnborg.org>
+>> Cc: Boris Brezillon <bbrezillon@kernel.org>
+>> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+>> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+>> Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> Hi Thomas.
+>
+>> ---
+>>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+>> index 9ce429f889ca..ca5bde8ac300 100644
+>> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+>> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+>> @@ -18,8 +18,10 @@
+>>   
+>>   #include <drm/drm_atomic.h>
+>>   #include <drm/drm_atomic_helper.h>
+>> +#include <drm/drm_client_setup.h>
+>>   #include <drm/drm_drv.h>
+>>   #include <drm/drm_fbdev_dma.h>
+>> +#include <drm/drm_fourcc.h>
+>>   #include <drm/drm_gem_dma_helper.h>
+>>   #include <drm/drm_gem_framebuffer_helper.h>
+>>   #include <drm/drm_module.h>
+>> @@ -865,7 +867,7 @@ static int atmel_hlcdc_dc_drm_probe(struct platform_device *pdev)
+>>   	if (ret)
+>>   		goto err_unload;
+>>   
+>> -	drm_fbdev_dma_setup(ddev, 24);
+>> +	drm_client_setup_with_fourcc(ddev, DRM_FORMAT_RGB888);
+>>   
+>>   	return 0;
+> I looks like a patch is missing to add DRM_FBDEV_DMA_DRIVER_OPS to
+> struct drm_driver?
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-index 5e43ad2b2956..e16efc44df88 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/fiji_smumgr.c
-@@ -1014,7 +1014,7 @@ static int fiji_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	struct SMU73_Discrete_GraphicsLevel *levels =
- 			smu_data->smc_state_table.GraphicsLevel;
- 	uint32_t i, max_entry;
--	uint8_t hightest_pcie_level_enabled = 0,
-+	uint8_t highest_pcie_level_enabled = 0,
- 			lowest_pcie_level_enabled = 0,
- 			mid_pcie_level_enabled = 0,
- 			count = 0;
-@@ -1054,27 +1054,27 @@ static int fiji_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	} else {
- 		while (data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
--						(1 << (hightest_pcie_level_enabled + 1))) != 0))
--			hightest_pcie_level_enabled++;
-+						(1 << (highest_pcie_level_enabled + 1))) != 0))
-+			highest_pcie_level_enabled++;
- 
- 		while (data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << lowest_pcie_level_enabled)) == 0))
- 			lowest_pcie_level_enabled++;
- 
--		while ((count < hightest_pcie_level_enabled) &&
-+		while ((count < highest_pcie_level_enabled) &&
- 				((data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
- 
- 		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
-+				highest_pcie_level_enabled ?
- 						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
-+						highest_pcie_level_enabled;
- 
--		/* set pcieDpmLevel to hightest_pcie_level_enabled */
-+		/* set pcieDpmLevel to highest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
--			levels[i].pcieDpmLevel = hightest_pcie_level_enabled;
-+			levels[i].pcieDpmLevel = highest_pcie_level_enabled;
- 
- 		/* set pcieDpmLevel to lowest_pcie_level_enabled */
- 		levels[0].pcieDpmLevel = lowest_pcie_level_enabled;
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-index ff6b563ecbf5..d785cc6468ef 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/polaris10_smumgr.c
-@@ -1050,7 +1050,7 @@ static int polaris10_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	struct SMU74_Discrete_GraphicsLevel *levels =
- 			smu_data->smc_state_table.GraphicsLevel;
- 	uint32_t i, max_entry;
--	uint8_t hightest_pcie_level_enabled = 0,
-+	uint8_t highest_pcie_level_enabled = 0,
- 		lowest_pcie_level_enabled = 0,
- 		mid_pcie_level_enabled = 0,
- 		count = 0;
-@@ -1114,27 +1114,27 @@ static int polaris10_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	} else {
- 		while (hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
--						(1 << (hightest_pcie_level_enabled + 1))) != 0))
--			hightest_pcie_level_enabled++;
-+						(1 << (highest_pcie_level_enabled + 1))) != 0))
-+			highest_pcie_level_enabled++;
- 
- 		while (hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << lowest_pcie_level_enabled)) == 0))
- 			lowest_pcie_level_enabled++;
- 
--		while ((count < hightest_pcie_level_enabled) &&
-+		while ((count < highest_pcie_level_enabled) &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
- 
- 		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
-+				highest_pcie_level_enabled ?
- 						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
-+						highest_pcie_level_enabled;
- 
--		/* set pcieDpmLevel to hightest_pcie_level_enabled */
-+		/* set pcieDpmLevel to highest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
--			levels[i].pcieDpmLevel = hightest_pcie_level_enabled;
-+			levels[i].pcieDpmLevel = highest_pcie_level_enabled;
- 
- 		/* set pcieDpmLevel to lowest_pcie_level_enabled */
- 		levels[0].pcieDpmLevel = lowest_pcie_level_enabled;
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-index 34c9f59b889a..3e73f380a591 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/vegam_smumgr.c
-@@ -878,7 +878,7 @@ static int vegam_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	struct SMU75_Discrete_GraphicsLevel *levels =
- 			smu_data->smc_state_table.GraphicsLevel;
- 	uint32_t i, max_entry;
--	uint8_t hightest_pcie_level_enabled = 0,
-+	uint8_t highest_pcie_level_enabled = 0,
- 		lowest_pcie_level_enabled = 0,
- 		mid_pcie_level_enabled = 0,
- 		count = 0;
-@@ -925,27 +925,27 @@ static int vegam_populate_all_graphic_levels(struct pp_hwmgr *hwmgr)
- 	} else {
- 		while (hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
--						(1 << (hightest_pcie_level_enabled + 1))) != 0))
--			hightest_pcie_level_enabled++;
-+						(1 << (highest_pcie_level_enabled + 1))) != 0))
-+			highest_pcie_level_enabled++;
- 
- 		while (hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << lowest_pcie_level_enabled)) == 0))
- 			lowest_pcie_level_enabled++;
- 
--		while ((count < hightest_pcie_level_enabled) &&
-+		while ((count < highest_pcie_level_enabled) &&
- 				((hw_data->dpm_level_enable_mask.pcie_dpm_enable_mask &
- 						(1 << (lowest_pcie_level_enabled + 1 + count))) == 0))
- 			count++;
- 
- 		mid_pcie_level_enabled = (lowest_pcie_level_enabled + 1 + count) <
--				hightest_pcie_level_enabled ?
-+				highest_pcie_level_enabled ?
- 						(lowest_pcie_level_enabled + 1 + count) :
--						hightest_pcie_level_enabled;
-+						highest_pcie_level_enabled;
- 
--		/* set pcieDpmLevel to hightest_pcie_level_enabled */
-+		/* set pcieDpmLevel to highest_pcie_level_enabled */
- 		for (i = 2; i < dpm_table->sclk_table.count; i++)
--			levels[i].pcieDpmLevel = hightest_pcie_level_enabled;
-+			levels[i].pcieDpmLevel = highest_pcie_level_enabled;
- 
- 		/* set pcieDpmLevel to lowest_pcie_level_enabled */
- 		levels[0].pcieDpmLevel = lowest_pcie_level_enabled;
+Indeed. Thanks a lot for proof reading. I'll double-check the other 
+patches for the next iteration.
+
+Best regards
+Thomas
+
+>
+> 	Sam
+
 -- 
-2.34.1
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
