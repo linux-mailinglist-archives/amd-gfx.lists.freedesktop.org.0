@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D3C961444
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2024 18:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 927B5961443
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Aug 2024 18:41:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF7010E38E;
-	Tue, 27 Aug 2024 16:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A57610E38D;
+	Tue, 27 Aug 2024 16:41:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3gVDCYOr";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YM0Ks6hi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2044.outbound.protection.outlook.com [40.107.96.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D130210E38D
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2085.outbound.protection.outlook.com [40.107.236.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF7E010E38C
  for <amd-gfx@lists.freedesktop.org>; Tue, 27 Aug 2024 16:41:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LnFRzTlwcEm2r1KNNWDDlAVKLnrv093/i6WSIYfg45k+AUaSwPqXE92vhpC/lSYy7q0/sLOGnHEjSy2oqESItKGio0hdH76/7P3pxs5okcEUjogUHiemG2FGdXqlKEC/elOHETHb13d0lfe3kiA7U43YRoWcgx0ZJ40BEQ/gE3VRc6DNptE33phs+Kp1KwSzQUxAUlV5JZ7QyyvdpuGCIAl+Xewq6SpSgDZi2xA1GGk1CJ7L344nwxlyTYyuOGMCXYLWx771ZsMw/TXzEuc3LJ46nN7OhIKSDsOrb0wgaNmrtlY5dwRsEZ4DGSM1SSH1oJ2erI5lcl9mvcg86SyeZA==
+ b=ve73jybcPa+FurkOrRPOyDGBjG8ALGOXoynoEU1WxH9Cw9YHe+5eIrd87QIbMKZM4AVb9cqHNDbx+6v5RyELznSgCWF5HCsIvM/WYEKxNOvT2Sq73hyMlASkdrmux8QMYEKcXblYEqJPLl6GyqnbHqB+sbvSVthTcrH1KKN2H6Phd4AO/ossHDDXY9QBIOGn7M3jQO1jTmPoJvRSukYG1f5hPu7VKCw6x0VEqSka4HJdu0dvrUMemi+NtoGhNTwWRWjZHdIIvxKRbtg6WJ1tVrksGiqCCcDqxLsSMVS9FJCrYrXWePy1qktOnKUIPv94OGw3JeEic1+bVZSHbQEe7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h2N89G5N/GiBYINz9mNxRlfR6PN+kyGmrAURxGZm5j0=;
- b=xjEv1pXjK38CDxaYH9+1QNU1NMhfp/rN9kvm6l1xZg+kJKG8StuDNCV1bMnBKwvKD7WSkxCs+DwXGwH8GDdSyzKyzVCXNczn3cJ4wIYc4xTf/DK0AG3IGepvO79nt/uXDd9VAV8oyjQSPWCW1S/n4tfUlcCwCouz6NSj7h31vXoj64gn4ExJh/mWqDQv0ZBbDC/FNIyKLli09wMp7hCj6nXgbW6+AkGbfX8MjPBZ3Tf/ZdUS0/S6hyyoRFSxNBYVRRzGz4kx9/j7nyCKaDdSqHCs1WFWGuXpv+J9AltwjRovAEISgyOVYw6J/J9yaReOAHnwf36MB7j2h6mQlP76mA==
+ bh=dTJj+XXXXrkkymsT6Sod28LHaRDxwXTpzcMHaqmr9qo=;
+ b=oWz61TktFIJzxEVOzvyfP6QwQL03E2dQH2GeURtm2Pu2ahHDxN8NOUA9RFbLR76lgnKnzDlKsNqvHeCaAmZ6UMxCQK90z7oSXsOgoddSHvzDOCLFdbcIbNTlXSI0ZkSn1niJxT6wpWOLMF2DVg1hnVPOzLHz2RMeqjIcYPbERc2OGK93kn3LZIfLIeplxd4IrTXhDNuLZkUh638DmcWcOuOPEAXVq5YT0kvchs6zcSRdqY0c5dISseQtpimifK0JPi3PxhGQhTfXWQNvebd06gxrkMzE1MI2OM2lST1xvRXYklGYoiTQAaF4C2DPq/tuMkutqxfQkiEAvVbWrxc2og==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h2N89G5N/GiBYINz9mNxRlfR6PN+kyGmrAURxGZm5j0=;
- b=3gVDCYOrgkQj/uXx5oDdzvJUnDrho9+wyP4PjaETpo/A2G9zOeCpcVvWVzRJbcFVuZUzf8YAcd9XSeLQGFtFnCNNS/pxFGH2ARoHqUyeonakVgnxvqGBR1SvWo7uAKWDn6ng94y7t2Izcg2sJG0yCyW9sO3bZ6PSlRIbfz/tv20=
-Received: from BN9PR03CA0634.namprd03.prod.outlook.com (2603:10b6:408:13b::9)
- by DM6PR12MB4154.namprd12.prod.outlook.com (2603:10b6:5:21d::21) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=dTJj+XXXXrkkymsT6Sod28LHaRDxwXTpzcMHaqmr9qo=;
+ b=YM0Ks6hiZI5BDjmZ/U5rt+73c44sgNNLQor/7u2mFMK6FJ8/TqLdiPf9ibRE5rLq3otjbahYz020IgHCimHXqE66TmW/YDAmb0/Se1xQyEnKmPKUiKNui3IiR7xBLI78f7MKZ4nuVk0CRxefltI7w2GaXLdgeUuakBMe+sJ0MDM=
+Received: from BN9PR03CA0658.namprd03.prod.outlook.com (2603:10b6:408:13b::33)
+ by CYYPR12MB8923.namprd12.prod.outlook.com (2603:10b6:930:bc::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Tue, 27 Aug
  2024 16:41:05 +0000
 Received: from BL6PEPF0001AB74.namprd02.prod.outlook.com
- (2603:10b6:408:13b:cafe::4b) by BN9PR03CA0634.outlook.office365.com
- (2603:10b6:408:13b::9) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:13b:cafe::88) by BN9PR03CA0658.outlook.office365.com
+ (2603:10b6:408:13b::33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25 via Frontend
- Transport; Tue, 27 Aug 2024 16:41:04 +0000
+ Transport; Tue, 27 Aug 2024 16:41:05 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL6PEPF0001AB74.mail.protection.outlook.com (10.167.242.167) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Tue, 27 Aug 2024 16:41:04 +0000
+ 15.20.7918.13 via Frontend Transport; Tue, 27 Aug 2024 16:41:05 +0000
 Received: from hamza-pc.localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 27 Aug
- 2024 11:41:02 -0500
+ 2024 11:41:04 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -62,12 +62,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <aurabindo.pillai@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>, Roman Li
  <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
- <zaeem.mohamed@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, "Nicholas
- Susanto" <Nicholas.Susanto@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 01/14] drm/amd/display: Fix DCN35 set min dispclk logic
-Date: Tue, 27 Aug 2024 12:37:21 -0400
-Message-ID: <20240827164045.167557-2-hamza.mahfooz@amd.com>
+ <zaeem.mohamed@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, Daniel Sa
+ <Daniel.Sa@amd.com>, Jun Lei <jun.lei@amd.com>
+Subject: [PATCH 02/14] drm/amd/display: only trigger BIOS related assert for
+ older ASICs
+Date: Tue, 27 Aug 2024 12:37:22 -0400
+Message-ID: <20240827164045.167557-3-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240827164045.167557-1-hamza.mahfooz@amd.com>
 References: <20240827164045.167557-1-hamza.mahfooz@amd.com>
@@ -79,51 +79,51 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB74:EE_|DM6PR12MB4154:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42f7e95d-19d1-41f1-3426-08dcc6b70b0d
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB74:EE_|CYYPR12MB8923:EE_
+X-MS-Office365-Filtering-Correlation-Id: c56d3ab2-8fbd-40ec-7bb4-08dcc6b70bb6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?728pjqSs29hpMOT/5w0HwSWuAeYJgKSWiqqh6ZvHSysnshmM4ZVzRUUBpJLg?=
- =?us-ascii?Q?XUT60oDP7pRWy2DPzIFOe8x735/T3PCnY16WFbbHn/hadotM0gjlF5QN4auL?=
- =?us-ascii?Q?rDN996fjtWt7ljXq4+qCLUizwQITYPkCuVIkvt5JrA5pxQq+STAyupCo7q8k?=
- =?us-ascii?Q?Dl/ieK+wdWL2irr6N4SYBFiE1tTEyeCptpNxi7dMDhHG4FqvGmGt1owuarCY?=
- =?us-ascii?Q?zY1+9kfZkQHmp3yRQiTMTRJXyzWFXwqgpFP8Y8ZzS1GasI8bD/YVbpUzqZbg?=
- =?us-ascii?Q?X53PlbtSersstED4Eb3DeobvK2jcSWHDmYvAVVsTNw6th4JWy9he3MVltNO+?=
- =?us-ascii?Q?yVbWJbnETW/5/yxOKTqeDnIY3EREoPz0HnNAwWEI242AEfOImsr3RwVacxtT?=
- =?us-ascii?Q?uD0xZmrWIXhf71pD64b3jLyg241FeXSUmKVHnPlLH6nKRJODTyeciT4BmfvO?=
- =?us-ascii?Q?DVRWMvWQaYJXdDF1v9VgoxgcB1+ICxl3OJ2URn7mlyulNsTtlnaD2HbgnoNi?=
- =?us-ascii?Q?0VzfxawSuDwNW4Q6FEXSuloL8uBWXgppvwT1FT6yA7bCIsAmLOCiWhkxQ1Ie?=
- =?us-ascii?Q?u7DJEzkta0M1P9mLpiy3BIXxgoSmvQoGmyQDyrx20EDsHTFOc5F8QP2s1gmD?=
- =?us-ascii?Q?SJuZtq0q6bleur8/ASt6Awxazt/c5+VrZ30OeFJCvuJi/iGfiwQGMq6wlt0c?=
- =?us-ascii?Q?SlfW0yJnTqZc8/y2xrSPsRwhRRfoMVA1RaZmlv0hH/5wpKwtFPWbR4rdJo49?=
- =?us-ascii?Q?Bu2Ow5f35SwlOF1Xd2dv6ttaLjlDj5wRkRUk5QxmtSwkkN2pJybByKF8IFku?=
- =?us-ascii?Q?WFKutYASv1IzQ2BXckTsoXYevavrrQZMIuvjOS4DBV/3YmgGOz011fy1CHM5?=
- =?us-ascii?Q?7Xha9SxKZvhyarsFYrJK4xGzyuPUJZvFQb25wUf/lyky/6h9bjf7dwYJMDjD?=
- =?us-ascii?Q?uCsh0DhQ0PWwWGDs/SgG3kNXvPqnbrUKzuT70P4D24TsxZb90OC2Hw5wIwJr?=
- =?us-ascii?Q?iiFRGu/VTGfaWcFyHT1auOorebO6Pi8z3LMvU24PW4RHJh1wVJOMTEEHDMoW?=
- =?us-ascii?Q?G1UNzSoaxnHS2Fe7LS1sgeV8Xd5pYJwIUp3xwzNl/6EtVVWl0R461pZ6nate?=
- =?us-ascii?Q?bCkC8RQ0IhTZwbDch3QdWaoEFl1CTeG3PbDsRqG8HAldAIV3CkonR7e5hNTX?=
- =?us-ascii?Q?1MOOM4TJnt0ccwh+9R9lCzsUbNzwXJo+KnKG0ZK27nA+aH0TG8sWpASRopYW?=
- =?us-ascii?Q?JvOh2i/42xM0yEFTiWqPTr92hBgj+DRx1ohZhKAoPGSzc9l14R72o1i5cdFG?=
- =?us-ascii?Q?Zlz02+X32yzDboZQ9PWzfccj1vWxJI7x/yhK4ckvGT3fuCq2LRLjzFFp1tWG?=
- =?us-ascii?Q?hWDE5e/o9F+K6QA1avebGIfLGfb93H7j61hG0LY/AJFmf7REsA4wp5mtr061?=
- =?us-ascii?Q?7nuxclXLUuMzPqDHqh/FgohFNtMHbHEY?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8nsBawBMR7ZOLOtLYmTCtWv8JfvZ5x2H3POMikIyXo6ALxn+UHePY0Y32Ekc?=
+ =?us-ascii?Q?Fqc9E5tLirQ1LYjP2YYi74lGL1LKJz94SRKDMLc2d4p3X5WqQuf4gbaoDVpf?=
+ =?us-ascii?Q?G0+t5Oe9VP0G5aZ0JGlv1vx2QryrLEgTu6oid+rwQKQ+/cgNAMMdUuJKqdI1?=
+ =?us-ascii?Q?Bb3DQ5kDf4wr9zFHg+nr65lVuFMJRYRbhEcODwDcdQWU6FVkPAJ2CKb3f50P?=
+ =?us-ascii?Q?5TGD6IgcqOOkgPasGF11/cw2d07Um67ZYHssP+nJIBTcKuQL7k1XOskW5yDq?=
+ =?us-ascii?Q?kJCDyIAEuE1bQQX/07WLjys15WwpPfwshagcEoGWQP5LFQ8KGnR9ugmWlAUN?=
+ =?us-ascii?Q?WVZ4cUs2T2m5xfM3/KwYBL9FhQqW/48YszEfuhbESLOxl+k6LE/yZJI1cOjb?=
+ =?us-ascii?Q?nOFm75VqrQ2zmvArHAliazf1Lz/Mg1d0z81eB+l58dLA12tL5npshr5mdHOo?=
+ =?us-ascii?Q?0DHyzLtf+biiijC7DLN0dY6EcDnC6YP2dtCuW106ox8Duf4FRLP7pUA7fLRu?=
+ =?us-ascii?Q?KTehL3L0o7N/ldfB3118jnyEFvgdzL6DiYu96f6cVG5mFa/1p+nGnqDgSRTK?=
+ =?us-ascii?Q?4gjO5zxyxAVMDPnn0+s+a3P4/BJ22y1U/99ezQMXFXTFn0AqbOf5JXTpyn47?=
+ =?us-ascii?Q?XQIgHjWqfDdD0EbgmyVMjAKvUpm5zItP1dn35RiYvZGc03S1bgk5lzi9LIIU?=
+ =?us-ascii?Q?k1fI+EP8jEoFQQi6bI55v7oDtXdorEbYAI/JYfMaVuL+N6lSLw2eYW4yZ61T?=
+ =?us-ascii?Q?XswKeBn/eyuV6JdlzhXhzXc4/T8v5P/4ICovqLerVy4NrMo9+ZYoZB1xCMUU?=
+ =?us-ascii?Q?nTZauM5JUevmuwR+3UE0IflmW6ilfdbXK3QV/qpafYIzUN/2lGLbTn4L6O6o?=
+ =?us-ascii?Q?4NuznFt0yxzu190EZuRrnhew7wfU1TEcCxIHoWRXVJTJAfbyq3JxJiA2xTtP?=
+ =?us-ascii?Q?zwl/QGQ7qNbVJbPQZBDSZSqN/bSHVTWc8vBxkf+en8voRTII4DEeCQOV+3cK?=
+ =?us-ascii?Q?vrYBNmhu71bLwm8rrrwquafzOMXnJECbD0yPoIdr8BR0o3DayEolXSXhauD3?=
+ =?us-ascii?Q?Z0JJbNb0F518WeUst31YDJqpN1yJuFHXzQiOI2eYB+1pXuIwQg0X8AxWEAX8?=
+ =?us-ascii?Q?dp/7BgTpxMhbKc/rRe2HtPgCa+BT5pBAkO3Vw0d7tzYKK0DcR8mZPTzQjQnI?=
+ =?us-ascii?Q?9iYtcRzmnoQ7vVaaQDgKUCpX3rTkhSHotvPRbSq7HHWuAACgoRtBjJnyEipQ?=
+ =?us-ascii?Q?ex5giMK0ZhXxXr8dEya1Jp8yToydER6kCX49K4wyxETE+uBFROPdt7fj6v2j?=
+ =?us-ascii?Q?jYgEG7Z++YIZYFU6OKLLgV9DhR5uI0+i3NGLQdd8+5uF93YGJHTjPx6rBtzy?=
+ =?us-ascii?Q?xmWsInvtsFGx8fb9/SxuBEbaLcoDGcSAu6juzfsVi9/CjoDa+hNYhuOIEC9w?=
+ =?us-ascii?Q?HJcY/py+wbkrz+ahAH8RCLWYoD/zs0rl?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 16:41:04.5872 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42f7e95d-19d1-41f1-3426-08dcc6b70b0d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 16:41:05.6810 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c56d3ab2-8fbd-40ec-7bb4-08dcc6b70bb6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB74.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4154
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8923
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,51 +138,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Susanto <Nicholas.Susanto@amd.com>
+From: Daniel Sa <Daniel.Sa@amd.com>
 
 [Why]
-
-Setting min dispclk to 50Mhz outside clock lowering function causes
-unnecessary calls to SMU to lower dispclk and causes dentist hangs when
-there is no stream on the pipes.
+Some asserts are always hit on startup/Pnp when they should only be used
+to indicate when something has gone wrong.
 
 [How]
+Ignore result of getting function from bios cmd table for newer asics.
 
-Move the set minimum dispclk logic inside the lowering dispclk if
-statement.
-
-Fixes: 2dd29403b206 ("DCN35 set min dispclk to 50Mhz")
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Nicholas Susanto <Nicholas.Susanto@amd.com>
+Reviewed-by: Jun Lei <jun.lei@amd.com>
+Signed-off-by: Daniel Sa <Daniel.Sa@amd.com>
 Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c    | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/bios/command_table2.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-index f50054089da7..97164b5585a8 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
-@@ -305,9 +305,6 @@ void dcn35_update_clocks(struct clk_mgr *clk_mgr_base,
- 	if (new_clocks->dtbclk_en && !new_clocks->ref_dtbclk_khz)
- 		new_clocks->ref_dtbclk_khz = 600000;
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
+index 4254bdfefe38..7d18f372ce7a 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/command_table2.c
+@@ -227,7 +227,7 @@ static void init_transmitter_control(struct bios_parser *bp)
+ 	uint8_t frev;
+ 	uint8_t crev = 0;
  
--	if (dc->debug.min_disp_clk_khz > 0 && new_clocks->dispclk_khz < dc->debug.min_disp_clk_khz)
--		new_clocks->dispclk_khz = dc->debug.min_disp_clk_khz;
--
- 	/*
- 	 * if it is safe to lower, but we are already in the lower state, we don't have to do anything
- 	 * also if safe to lower is false, we just go in the higher state
-@@ -385,6 +382,9 @@ void dcn35_update_clocks(struct clk_mgr *clk_mgr_base,
- 	if (should_set_clock(safe_to_lower, new_clocks->dispclk_khz, clk_mgr_base->clks.dispclk_khz)) {
- 		dcn35_disable_otg_wa(clk_mgr_base, context, safe_to_lower, true);
+-	if (!BIOS_CMD_TABLE_REVISION(dig1transmittercontrol, frev, crev))
++	if (!BIOS_CMD_TABLE_REVISION(dig1transmittercontrol, frev, crev) && (bp->base.ctx->dc->ctx->dce_version <= DCN_VERSION_2_0))
+ 		BREAK_TO_DEBUGGER();
  
-+		if (dc->debug.min_disp_clk_khz > 0 && new_clocks->dispclk_khz < dc->debug.min_disp_clk_khz)
-+			new_clocks->dispclk_khz = dc->debug.min_disp_clk_khz;
-+
- 		clk_mgr_base->clks.dispclk_khz = new_clocks->dispclk_khz;
- 		dcn35_smu_set_dispclk(clk_mgr, clk_mgr_base->clks.dispclk_khz);
- 		dcn35_disable_otg_wa(clk_mgr_base, context, safe_to_lower, false);
+ 	switch (crev) {
 -- 
 2.46.0
 
