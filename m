@@ -2,75 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141ED963C3A
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5AC963C31
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE4B110E5B5;
-	Thu, 29 Aug 2024 07:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DB510E4E4;
+	Thu, 29 Aug 2024 07:08:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="B2RQ2aBs";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=helen.koike@collabora.com header.b="Dzkh270i";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
- [209.85.210.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5BAF10E57F
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 15:16:50 +0000 (UTC)
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-7141b04e7a3so5655616b3a.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 08:16:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1724858210; x=1725463010;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=MGorGxckmvbXxL6wgNnUsbdoW3Ac8a0ImG5glZMucZ8=;
- b=B2RQ2aBs+6PU6kJTyg3KbBMuWdfMgGFDz1HLwP94KEnd4fU01h6LVzpmgZLPY61h8e
- u7kGShRCyg0fB1mawLsnVvTrjVBj70VX8CWdvH7S3YABdXTxQ3AdLwfkE90Hbnrumeh7
- 92JYnAQXQWv1e/86qXVC3qkiVjkvW2gXKVJb0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724858210; x=1725463010;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=MGorGxckmvbXxL6wgNnUsbdoW3Ac8a0ImG5glZMucZ8=;
- b=ZnZg8IC+azJV62pmBub10nd5VfTiwgMFD2lTf3OhVrxFYf17nBQLdg3tSRIIH8voMC
- 0ovTFIN7TrP86q8Ad0F/In3yiSt6w9JsNaYITVGaL7Gp/FSzfHaV3waa3Lu3G7o+3eN6
- j9PGL5xsij0oQZZndWc/AABqE6QzZxauxZP48A6hKuUZcfbNuaEBquo7mBgJtpoMZSIB
- JnVW08KK9IG1xM6lvr7sqQrjn0tk1emckrJIkLzoL1Z7IvFXPX9ZFn5kqN5B5eV/GGhy
- +ncsJmHdhZe4ZtW923IIavWERBbKsw+2pSZErFg+MH8l49KiQeN0H4unNtccjLMB7/wL
- NVlQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXF8boeaq95SwH8VUO38sOmnTowkBUUzp4Unc0I3eQjiPpAM6my/5siNyKmXMupRLYnr254+SIE@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzagT2hy19+ZN1z7AsN8ahDbFtDT3g/6Y4Fzb+SQpRWRpHZ9OOf
- QYLeSa1NmfEFdaDSV3xYNNt3E9XYhgKnbRRsYAdNcf5i4fSevgN4N+hYpbqu+lSLQ/Pkjdr/Lmv
- l9w==
-X-Google-Smtp-Source: AGHT+IHh7AFyXRDDkAshsWM9475dqzQbE9aMYa4K9mjb6QVCeNbGlYkoS7LO5r9jYiUaTcHHtxhNHA==
-X-Received: by 2002:a05:6a20:d492:b0:1c4:a7a0:a7d4 with SMTP id
- adf61e73a8af0-1cc89d15ec2mr21365161637.7.1724858210082; 
- Wed, 28 Aug 2024 08:16:50 -0700 (PDT)
-Received: from fedora.. ([66.170.99.2]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7143430608csm10273508b3a.153.2024.08.28.08.16.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Aug 2024 08:16:49 -0700 (PDT)
-From: Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
-To: stable@vger.kernel.org,
-	gregkh@linuxfoundation.org
-Cc: jesse.zhang@amd.com, alexander.deucher@amd.com, sashal@kernel.org,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- ajay.kaher@broadcom.com, alexey.makhalov@broadcom.com,
- vasavi.sirnapalli@broadcom.com,
- Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
-Subject: [PATCH v4.19-v6.1] drm/amdgpu: Using uninitialized value *size when
- calling
-Date: Wed, 28 Aug 2024 10:15:56 -0500
-Message-ID: <20240828151607.448360-2-vamsi-krishna.brahmajosyula@broadcom.com>
-X-Mailer: git-send-email 2.45.2
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6926989B78;
+ Wed, 28 Aug 2024 15:23:05 +0000 (UTC)
+Delivered-To: vignesh.raman@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724858582; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=n/0UeusnXOCvaEaJ1nhapBysPWJg8696ZD22LhKwNOjMIrmhYm6Hh/g1hJ2z3QffkO4VuqYZoxTZXKLyZ/VTyATeBFUvyW/ZTdjjq0xEj/BL5lEofKZ3SyCH2dTGpVenvq19l/KefQXVK3WIUe8zflbpzEzhS3fqEqfVoADkWcY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1724858582;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=XCKdPShM2BSsjoKUXd5jLwgut9vQqNvq4fosnc20z7A=; 
+ b=OP92ZjLenjEMMDFT+eHK7WNuPjfEm8fEPF52kLJYyZgF60nuoeQ6TmTaNF/rShu+hbGPRqPXTNzN3OP53bxDne9Uq8QHMJ9MK/q3vMknoCQWTbv1dUAWmiKyoRQ0RKe4AwCrlVwpwPxUnOKdJQQDDrK4d1klaeYMRNqMVbpR76U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=helen.koike@collabora.com;
+ dmarc=pass header.from=<helen.koike@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724858582; 
+ s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
+ h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=XCKdPShM2BSsjoKUXd5jLwgut9vQqNvq4fosnc20z7A=;
+ b=Dzkh270iCgK9bLYwALngFlgSPGwMdPTS1B0v6XJC1P80G0jRtoqar0Eds6Zhlh12
+ A6c93FpxNKjl5bogYxOE5VQ9ept63a2EgrUR6Vojrmsbfi6AhNbfmU3XHd//hy/UhZT
+ 8qK23+cNsxfQjZuN+ibJPBV//LGXRxKEljTN573A=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 17248585802298.455583977077822;
+ Wed, 28 Aug 2024 08:23:00 -0700 (PDT)
+Date: Wed, 28 Aug 2024 12:23:00 -0300
+From: Helen Mae Koike Fornazier <helen.koike@collabora.com>
+To: "Rob Clark" <robdclark@gmail.com>
+Cc: "Vignesh Raman" <vignesh.raman@collabora.com>,
+ "dri-devel" <dri-devel@lists.freedesktop.org>,
+ "daniels" <daniels@collabora.com>, "airlied" <airlied@gmail.com>,
+ "daniel" <daniel@ffwll.ch>,
+ "guilherme.gallo" <guilherme.gallo@collabora.com>,
+ "sergi.blanch.torne" <sergi.blanch.torne@collabora.com>,
+ "deborah.brouwer" <deborah.brouwer@collabora.com>,
+ "linux-mediatek" <linux-mediatek@lists.infradead.org>,
+ "linux-amlogic" <linux-amlogic@lists.infradead.org>,
+ "linux-rockchip" <linux-rockchip@lists.infradead.org>,
+ "amd-gfx" <amd-gfx@lists.freedesktop.org>,
+ "linux-arm-msm" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx" <intel-gfx@lists.freedesktop.org>,
+ "virtualization" <virtualization@lists.linux.dev>,
+ "linux-kernel" <linux-kernel@vger.kernel.org>
+Message-ID: <19199953cbf.ded17a68157355.1209172729493560159@collabora.com>
+In-Reply-To: <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
+References: <20240820070818.1124403-1-vignesh.raman@collabora.com>
+ <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
+Subject: Re: [PATCH v1] drm/ci: increase timeout for all jobs
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Mailman-Approved-At: Thu, 29 Aug 2024 07:08:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,38 +83,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jesse Zhang <jesse.zhang@amd.com>
 
-[ Upstream commit 88a9a467c548d0b3c7761b4fd54a68e70f9c0944 ]
 
-Initialize the size before calling amdgpu_vce_cs_reloc, such as case 0x03000001.
-V2: To really improve the handling we would actually
-   need to have a separate value of 0xffffffff.(Christian)
 
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
-Signed-off-by: Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-index ecaa2d748..0a28daa14 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
-@@ -725,7 +725,8 @@ int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser *p, uint32_t ib_idx)
- 	uint32_t created = 0;
- 	uint32_t allocated = 0;
- 	uint32_t tmp, handle = 0;
--	uint32_t *size = &tmp;
-+	uint32_t dummy = 0xffffffff;
-+	uint32_t *size = &dummy;
- 	unsigned idx;
- 	int i, r = 0;
- 
--- 
-2.39.4
+---- On Tue, 27 Aug 2024 19:04:42 -0300 Rob Clark  wrote ---
 
+ > On Tue, Aug 20, 2024 at 12:09=E2=80=AFAM Vignesh Raman=20
+ > vignesh.raman@collabora.com> wrote:=20
+ > >=20
+ > > Set the timeout of all drm-ci jobs to 1h30m since=20
+ > > some jobs takes more than 1 hour to complete.=20
+ > >=20
+ > > Signed-off-by: Vignesh Raman vignesh.raman@collabora.com>=20
+ > =20
+ > Acked-by: Rob Clark robdclark@gmail.com>=20
+
+Applied to drm-misc-next.
+
+Thanks
+Helen
+
+ > =20
+ > > ---=20
+ > >  drivers/gpu/drm/ci/test.yml | 5 ++++-=20
+ > >  1 file changed, 4 insertions(+), 1 deletion(-)=20
+ > >=20
+ > > diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml=
+=20
+ > > index b6f428cdaf94..09d8447840e9 100644=20
+ > > --- a/drivers/gpu/drm/ci/test.yml=20
+ > > +++ b/drivers/gpu/drm/ci/test.yml=20
+ > > @@ -10,6 +10,7 @@=20
+ > >  .lava-test:=20
+ > >    extends:=20
+ > >      - .test-rules=20
+ > > +  timeout: "1h30m"=20
+ > >    script:=20
+ > >      # Note: Build dir (and thus install) may be dirty due to GIT_STRA=
+TEGY=20
+ > >      - rm -rf install=20
+ > > @@ -71,6 +72,7 @@=20
+ > >      - .baremetal-test-arm64=20
+ > >      - .use-debian/baremetal_arm64_test=20
+ > >      - .test-rules=20
+ > > +  timeout: "1h30m"=20
+ > >    variables:=20
+ > >      FDO_CI_CONCURRENT: 10=20
+ > >      HWCI_TEST_SCRIPT: "/install/igt_runner.sh"=20
+ > > @@ -215,7 +217,6 @@ panfrost:rk3399:=20
+ > >    extends:=20
+ > >      - .lava-igt:x86_64=20
+ > >    stage: i915=20
+ > > -  timeout: "1h30m"=20
+ > >    variables:=20
+ > >      DRIVER_NAME: i915=20
+ > >      DTB: ""=20
+ > > @@ -414,6 +415,7 @@ panfrost:g12b:=20
+ > >=20
+ > >  virtio_gpu:none:=20
+ > >    stage: software-driver=20
+ > > +  timeout: "1h30m"=20
+ > >    variables:=20
+ > >      CROSVM_GALLIUM_DRIVER: llvmpipe=20
+ > >      DRIVER_NAME: virtio_gpu=20
+ > > @@ -436,6 +438,7 @@ virtio_gpu:none:=20
+ > >=20
+ > >  vkms:none:=20
+ > >    stage: software-driver=20
+ > > +  timeout: "1h30m"=20
+ > >    variables:=20
+ > >      DRIVER_NAME: vkms=20
+ > >      GPU_VERSION: none=20
+ > > --=20
+ > > 2.43.0=20
+ > >=20
+ >=20
