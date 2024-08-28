@@ -2,79 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B844E963C37
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 388F1963C34
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8355C10E5A5;
-	Thu, 29 Aug 2024 07:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D81A210E4EE;
+	Thu, 29 Aug 2024 07:08:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XsjpwwG7";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="lVNoFK/K";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32C0710E43C;
- Wed, 28 Aug 2024 09:32:53 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-5bebd3b7c22so765208a12.0; 
- Wed, 28 Aug 2024 02:32:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1724837571; x=1725442371; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ljlQm4Z756d2n9EnFl4azi2/3XalhuzYi2PKJHl8biM=;
- b=XsjpwwG7EixVdRDtbW0w5tQ6SZ+kWulwFrAOpKuWuHFjj1IDgvifLrWbgHpeSQHQD6
- 0dtXRz4YRI+F1S3n43yvX7z7+ATr9OtUeTGXCZjMBe9aEpVuooeGjUAY14NN6o7gMIbO
- ckXWqHJNsbigxP2kPtEuccooCU7olzL/+d42MmbzA5uUGs+PyZyDaWzi1+nBR7k1zix7
- VA5JpDoBVyXo6L8VYMAneQv6RQSeDWQmxnA/x+kZfU1MWqku+/be5Zz9W/I5gqC+2qgR
- OqPZUy9s6jAylCLy7GKWrVZakkX8aYb/qbMMWvaXpyca4sSJLER0ABgN6lXJ8H5CmbOY
- uiZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724837571; x=1725442371;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ljlQm4Z756d2n9EnFl4azi2/3XalhuzYi2PKJHl8biM=;
- b=J6dk+x4K9MW4Cl8F8629qFEPKpwVwM1HckefI/alH1d/BgYUiIM3sDSuyxX+ZA9bPr
- v4nFEJjb+oGGaArg47USHfusHbhgJwxXcV2sxTnEhsI5ngw58j0bp0b8pFt6je55J0gJ
- wnXoYSCEODW/3V510L4AbnD2lveqd7MrGWWbeJeBK0nAltQcZigIqWILpiGTl3jG488d
- yOSg9qWYB34kn6JaHoibcchLHx2wNvDMwG+Crg+4TwO27T4Vl48cYsr+J7hyXvbxYJ33
- nk9i1522iRNibWJ97A3VPIVrubpmMyJ8r2IqzNiXhJyRilwWF6r1sJeiZwpQOaQ4Y+KO
- tfVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV7XW8M002DtNpJShof7m69e63QJh67HqmA1Wyug8bADgLQ36zu0SW3dovCoLrp42Tvab9eDSySHFQz@lists.freedesktop.org,
- AJvYcCXek1ZdyzCLnKCc9dN7yfmYfaSxa3bA7bJ/KqHCL1UPjimInLGqASo1TrG6M4dH37DFHzQThSMf@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyMsbOEkNhNe/O7ZvalLyjm0q2t5Z2B0U3N3w8QLCpYFve5GQWr
- OVtqxPy6UNHsYGj/Vgv72g1/MH3q9qWkGfcC9PRlC63IpHI2qEEcbLVTJGYn
-X-Google-Smtp-Source: AGHT+IFZqJB6vFvBK0EcgsYJ7T2OksI6qWVL0bPPi01r8q10EQ7avC39obDkdaWm65VsU3qbjrEM7A==
-X-Received: by 2002:a17:907:7da0:b0:a86:a6ee:7d92 with SMTP id
- a640c23a62f3a-a870a9ba661mr180942766b.18.1724837571236; 
- Wed, 28 Aug 2024 02:32:51 -0700 (PDT)
-Received: from localhost
- (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a86e5487810sm219558766b.6.2024.08.28.02.32.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Aug 2024 02:32:50 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/amd/display: Fix spelling mistake "recompte" ->
- "recompute"
-Date: Wed, 28 Aug 2024 10:32:50 +0100
-Message-Id: <20240828093250.271358-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.2
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17BE910E314;
+ Wed, 28 Aug 2024 11:01:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1724842836;
+ bh=rGkv8vXTKQNNDjP5vTcEOnsxxSzEmVf10njH6gZtvbg=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=lVNoFK/KCHTP4ynQyOCcOeXrh08UYkTBcMhAivVVdOjFYiJ334pCccGHinCjXNboM
+ 9Pxj6rUeCP2hBgPiJAnp28mD2IZBUVRNqlpqvmXjCprn9t2qqMMWNnvrpVHbVMBFHq
+ 4YaDGGc02OLxeqQ9KdERcBKr7h0ksSuND7epbHXM=
+X-QQ-mid: bizesmtp88t1724842792tz70z34i
+X-QQ-Originating-IP: yURP3s+8jR7D8ND1Wq3RX+2ffkTw4oLhrct7u85Sa4c=
+Received: from localhost.localdomain ( [113.57.152.160])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Wed, 28 Aug 2024 18:59:49 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 8286794993761644341
+From: WangYuli <wangyuli@uniontech.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, lijo.lazar@amd.com,
+ mario.limonciello@amd.com, le.ma@amd.com, Jun.Ma2@amd.com,
+ hamza.mahfooz@amd.com, andrealmeid@igalia.com, wenlunpeng@uniontech.com,
+ wangyuli@uniontech.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, guanwentao@uniontech.com,
+ zhanjun@uniontech.com
+Subject: [PATCH] amdgpu: disable amdgpu_dpm on THTF-SW831-1W-DS25_MB board
+Date: Wed, 28 Aug 2024 18:59:38 +0800
+Message-ID: <3EA7C2B9E8C4D00A+20240828105938.37674-1-wangyuli@uniontech.com>
+X-Mailer: git-send-email 2.43.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 X-Mailman-Approved-At: Thu, 29 Aug 2024 07:08:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,26 +62,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a DRM_DEBUG_DRIVER message. Fix it.
+From: wenlunpeng <wenlunpeng@uniontech.com>
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+The quirk is for reboot-stability.
+
+A device reboot stress test has been observed to cause
+random system hangs when amdgpu_dpm is enabled.
+
+Disabling amdgpu_dpm can fix this.
+
+However, a boot-param can still overwrite it to enable
+amdgpu_dpm.
+
+Serial log when error occurs:
+...
+Console: switching to colour frame buffer device 160x45
+amdgpu 0000:01:00.0: fb0: amdgpudrmfb frame buffer device
+[drm:amdgpu_device_ip_late_init] *ERROR* late_init of IP block <si_dpm> failed -22
+amdgpu 0000:01:00.0: amdgpu_device_ip_late_init failed
+amdgpu 0000:01:00.0: Fatal error during GPU init
+[drm] amdgpu: finishing device.
+Console: switching to colour dummy device 80x25
+...
+
+Signed-off-by: wenlunpeng <wenlunpeng@uniontech.com>
+Signed-off-by: WangYuli <wangyuli@uniontech.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 0859a7173a06..669fd8fb6c24 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -1325,7 +1325,7 @@ static bool is_dsc_need_re_compute(
- 		if (new_crtc_state->enable && new_crtc_state->active) {
- 			if (new_crtc_state->mode_changed || new_crtc_state->active_changed ||
- 					new_crtc_state->connectors_changed) {
--				DRM_DEBUG_DRIVER("%s:%d MST_DSC dsc recompte required."
-+				DRM_DEBUG_DRIVER("%s:%d MST_DSC dsc recompute required."
- 						 "stream 0x%p in new dc_state\n",
- 						 __func__, __LINE__, stream);
- 				is_dsc_need_re_compute = true;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 094498a0964b..81716fcac7cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -32,6 +32,7 @@
+ #include <drm/drm_vblank.h>
+ 
+ #include <linux/cc_platform.h>
++#include <linux/dmi.h>
+ #include <linux/dynamic_debug.h>
+ #include <linux/module.h>
+ #include <linux/mmu_notifier.h>
+@@ -3023,10 +3024,32 @@ static struct pci_driver amdgpu_kms_pci_driver = {
+ 	.dev_groups = amdgpu_sysfs_groups,
+ };
+ 
++static int quirk_set_amdgpu_dpm_0(const struct dmi_system_id *dmi)
++{
++	amdgpu_dpm = 0;
++	pr_info("Identified '%s', set amdgpu_dpm to 0.\n", dmi->ident);
++	return 1;
++}
++
++static const struct dmi_system_id amdgpu_quirklist[] = {
++	{
++		.ident = "DS25 Desktop",
++		.matches = {
++			DMI_MATCH(DMI_BOARD_NAME, "THTF-SW831-1W-DS25_MB"),
++		},
++		.callback = quirk_set_amdgpu_dpm_0,
++	},
++	{}
++};
++
+ static int __init amdgpu_init(void)
+ {
+ 	int r;
+ 
++	/* quirks for some hardware, applied only when it's untouched */
++	if (amdgpu_dpm == -1)
++		dmi_check_system(amdgpu_quirklist);
++
+ 	if (drm_firmware_drivers_only())
+ 		return -EINVAL;
+ 
 -- 
-2.39.2
+2.43.4
 
