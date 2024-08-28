@@ -2,61 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8644963C35
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 141ED963C3A
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Aug 2024 09:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E75C10E4FC;
-	Thu, 29 Aug 2024 07:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4B110E5B5;
+	Thu, 29 Aug 2024 07:08:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ai+Q/70P";
+	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="B2RQ2aBs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2E610E576;
- Wed, 28 Aug 2024 15:10:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724857858; x=1756393858;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+OwYc8bK2ZE/BbrISfqwEqzDsEWaDGtTsTjHjxyCVHw=;
- b=Ai+Q/70PEP46daLsLChGJ80Z0I9fAyd++NWXesPJ6fZ6XCH30a3iU5ip
- tfDRrhFJBRFJX5QVQVR5rmcvkfDnXYQ7sK11WInnxDdZRINUonlUBalv0
- LqMHH9+fdycnpDHA1a/yp8ixzvfJ6T9JC+vF/2nRy2+LUpYB7j1tz3g2g
- E+Xl0eTShxifzEfe7nDbLQtWhbofhcH2XvCy3fFPMD6uHLma3galbqCGO
- Dyc7uU2d3bsD0eddydT1m+16tACi6ZJ2Jp+tViTfJjJDiGxz+6AtzE8Fc
- uOwcNol0X9mR18LmYNbB2fc/XtXkrWVken/w+s3I7SZUAnQCVeg9H6nJW g==;
-X-CSE-ConnectionGUID: 5IMRYiTHSkKcGidUgJKnTQ==
-X-CSE-MsgGUID: G8aGE9lhR7uIQqhMw8EbRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="27162727"
-X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="27162727"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 08:10:56 -0700
-X-CSE-ConnectionGUID: TSUn6mMoQcuff7YyyZsGFQ==
-X-CSE-MsgGUID: fixwIkM3TNeTfOiKMuSkcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,183,1719903600"; d="scan'208";a="67613148"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 08:10:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [RESEND 3/3] drm/amd/display: switch to guid_gen() to generate
- valid GUIDs
-In-Reply-To: <87mskwyc6p.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240812122312.1567046-1-jani.nikula@intel.com>
- <20240812122312.1567046-3-jani.nikula@intel.com>
- <dac8f408-6f13-4ee7-a54c-342d51ba88d1@amd.com> <87mskwyc6p.fsf@intel.com>
-Date: Wed, 28 Aug 2024 18:10:49 +0300
-Message-ID: <87h6b4y96u.fsf@intel.com>
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
+ [209.85.210.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5BAF10E57F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 15:16:50 +0000 (UTC)
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-7141b04e7a3so5655616b3a.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 08:16:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=broadcom.com; s=google; t=1724858210; x=1725463010;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=MGorGxckmvbXxL6wgNnUsbdoW3Ac8a0ImG5glZMucZ8=;
+ b=B2RQ2aBs+6PU6kJTyg3KbBMuWdfMgGFDz1HLwP94KEnd4fU01h6LVzpmgZLPY61h8e
+ u7kGShRCyg0fB1mawLsnVvTrjVBj70VX8CWdvH7S3YABdXTxQ3AdLwfkE90Hbnrumeh7
+ 92JYnAQXQWv1e/86qXVC3qkiVjkvW2gXKVJb0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724858210; x=1725463010;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=MGorGxckmvbXxL6wgNnUsbdoW3Ac8a0ImG5glZMucZ8=;
+ b=ZnZg8IC+azJV62pmBub10nd5VfTiwgMFD2lTf3OhVrxFYf17nBQLdg3tSRIIH8voMC
+ 0ovTFIN7TrP86q8Ad0F/In3yiSt6w9JsNaYITVGaL7Gp/FSzfHaV3waa3Lu3G7o+3eN6
+ j9PGL5xsij0oQZZndWc/AABqE6QzZxauxZP48A6hKuUZcfbNuaEBquo7mBgJtpoMZSIB
+ JnVW08KK9IG1xM6lvr7sqQrjn0tk1emckrJIkLzoL1Z7IvFXPX9ZFn5kqN5B5eV/GGhy
+ +ncsJmHdhZe4ZtW923IIavWERBbKsw+2pSZErFg+MH8l49KiQeN0H4unNtccjLMB7/wL
+ NVlQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXF8boeaq95SwH8VUO38sOmnTowkBUUzp4Unc0I3eQjiPpAM6my/5siNyKmXMupRLYnr254+SIE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzagT2hy19+ZN1z7AsN8ahDbFtDT3g/6Y4Fzb+SQpRWRpHZ9OOf
+ QYLeSa1NmfEFdaDSV3xYNNt3E9XYhgKnbRRsYAdNcf5i4fSevgN4N+hYpbqu+lSLQ/Pkjdr/Lmv
+ l9w==
+X-Google-Smtp-Source: AGHT+IHh7AFyXRDDkAshsWM9475dqzQbE9aMYa4K9mjb6QVCeNbGlYkoS7LO5r9jYiUaTcHHtxhNHA==
+X-Received: by 2002:a05:6a20:d492:b0:1c4:a7a0:a7d4 with SMTP id
+ adf61e73a8af0-1cc89d15ec2mr21365161637.7.1724858210082; 
+ Wed, 28 Aug 2024 08:16:50 -0700 (PDT)
+Received: from fedora.. ([66.170.99.2]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7143430608csm10273508b3a.153.2024.08.28.08.16.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Aug 2024 08:16:49 -0700 (PDT)
+From: Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
+To: stable@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: jesse.zhang@amd.com, alexander.deucher@amd.com, sashal@kernel.org,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ ajay.kaher@broadcom.com, alexey.makhalov@broadcom.com,
+ vasavi.sirnapalli@broadcom.com,
+ Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
+Subject: [PATCH v4.19-v6.1] drm/amdgpu: Using uninitialized value *size when
+ calling
+Date: Wed, 28 Aug 2024 10:15:56 -0500
+Message-ID: <20240828151607.448360-2-vamsi-krishna.brahmajosyula@broadcom.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 29 Aug 2024 07:08:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,96 +86,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 28 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 28 Aug 2024, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
->> On 8/12/24 08:23, Jani Nikula wrote:
->>> Instead of just smashing jiffies into a GUID, use guid_gen() to generate
->>> RFC 4122 compliant GUIDs.
->>> 
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> 
->>> ---
->>
->> Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
->>
->> I would prefer to take this series through the amdgpu tree though,
->> assuming nobody minds.
->
-> How long is it going to take for that to get synced back to
-> drm-misc-next though?
+From: Jesse Zhang <jesse.zhang@amd.com>
 
-Also getting acks from Alex and Harry to merge via drm-misc-next.
+[ Upstream commit 88a9a467c548d0b3c7761b4fd54a68e70f9c0944 ]
 
-BR,
-Jani.
+Initialize the size before calling amdgpu_vce_cs_reloc, such as case 0x03000001.
+V2: To really improve the handling we would actually
+   need to have a separate value of 0xffffffff.(Christian)
 
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Vamsi Krishna Brahmajosyula <vamsi-krishna.brahmajosyula@broadcom.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
->
-> BR,
-> Jani.
->
->
->>
->>> 
->>> Side note, it baffles me why amdgpu has a copy of this instead of
->>> plumbing it into drm mst code.
->>> ---
->>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
->>>   1 file changed, 12 insertions(+), 11 deletions(-)
->>> 
->>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> index 72c10fc2c890..ce05e7e2a383 100644
->>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> @@ -2568,9 +2568,9 @@ static int dm_late_init(void *handle)
->>>   
->>>   static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>>   {
->>> +	u8 buf[UUID_SIZE];
->>> +	guid_t guid;
->>>   	int ret;
->>> -	u8 guid[16];
->>> -	u64 tmp64;
->>>   
->>>   	mutex_lock(&mgr->lock);
->>>   	if (!mgr->mst_primary)
->>> @@ -2591,26 +2591,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>>   	}
->>>   
->>>   	/* Some hubs forget their guids after they resume */
->>> -	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
->>> -	if (ret != 16) {
->>> +	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
->>> +	if (ret != sizeof(buf)) {
->>>   		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
->>>   		goto out_fail;
->>>   	}
->>>   
->>> -	if (memchr_inv(guid, 0, 16) == NULL) {
->>> -		tmp64 = get_jiffies_64();
->>> -		memcpy(&guid[0], &tmp64, sizeof(u64));
->>> -		memcpy(&guid[8], &tmp64, sizeof(u64));
->>> +	import_guid(&guid, buf);
->>>   
->>> -		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
->>> +	if (guid_is_null(&guid)) {
->>> +		guid_gen(&guid);
->>> +		export_guid(buf, &guid);
->>>   
->>> -		if (ret != 16) {
->>> +		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
->>> +
->>> +		if (ret != sizeof(buf)) {
->>>   			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
->>>   			goto out_fail;
->>>   		}
->>>   	}
->>>   
->>> -	import_guid(&mgr->mst_primary->guid, guid);
->>> +	guid_copy(&mgr->mst_primary->guid, &guid);
->>>   
->>>   out_fail:
->>>   	mutex_unlock(&mgr->lock);
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index ecaa2d748..0a28daa14 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -725,7 +725,8 @@ int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser *p, uint32_t ib_idx)
+ 	uint32_t created = 0;
+ 	uint32_t allocated = 0;
+ 	uint32_t tmp, handle = 0;
+-	uint32_t *size = &tmp;
++	uint32_t dummy = 0xffffffff;
++	uint32_t *size = &dummy;
+ 	unsigned idx;
+ 	int i, r = 0;
+ 
 -- 
-Jani Nikula, Intel
+2.39.4
+
