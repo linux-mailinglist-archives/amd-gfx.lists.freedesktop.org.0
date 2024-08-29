@@ -2,148 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F89F9652ED
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Aug 2024 00:32:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB70396582B
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Aug 2024 09:16:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9610010E76F;
-	Thu, 29 Aug 2024 22:32:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3zjlMH+g";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9110310E82C;
+	Fri, 30 Aug 2024 07:16:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2071.outbound.protection.outlook.com [40.107.96.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7330110E76F
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Aug 2024 22:32:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mIH+WqBP7dvm46Lv/izcvoNjHRkyqmQMqkjIPaGhkdoITa8UC9g2RG1MwswP04XonMLDaObzGCGzUmxpL4j8YUzgH831O1M5idNlYhej2Lt9eRjC2CNSFS8k6yUw/SjQ6ivXs4i5HdAX0E1junn4v4pthOlqnsdjUj2FbQLzbENyr/HenzQyOQODyd9gBAooq2143BEuNPiOnRzgMF/1c1qKBb8w5x3uyoLH/zOVD2u5eqAPlLkt89wbse6GXBGX6bAEy/FviUYWfMqyb+rjMb47yi/cWs5DbJsAzdax/mcL2uPYtr1XYlfw3HVZS/PfczNRONCkfjV6FFXDLpK7JA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CZq2pLKgBBECfP+jB6orTL8IGn9hnjeNklpsVBSDGzU=;
- b=L3k+umcvO6DVvIkUlpl/puKNwQMLU6thugK5MfrwRuvMXo0gsdUS7MZBuHOK4A/8MFG7LAJo8PkJLvnPmGa/WP+NchUP+fxA6dLmyl7pvKXwjJ1PZsKT2B4lpY0BR92aKIwvBUl/+jdaB7StZKaGoF/m6aeD4hOMS51teXjxADkXQfiyF4wBozyDdDY6DoaH3E0roU1JB3MhVwC9q5Ll5V2uXiBV1Y4t6G7tSH9RGttppNzC6htFqZUuRhQ84lMrp2sXWqRsfedcuEXG2OsLNY8PEkVfqERnIxAMzq7AdR+xKxjtSOV0at3XTsDEV+i6G7zuZQyL+OiXoEfjxW4STA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CZq2pLKgBBECfP+jB6orTL8IGn9hnjeNklpsVBSDGzU=;
- b=3zjlMH+glYiOGgSMzmu16PsMAb3JvBUvFJ19FQuzpmj4FpknXo/AitOBANewzF+uc4D+CdWZZFdnsMORCPt8eyqSE3uvMAggpHTQd2/VkhRhSA0woOU4jWU+GxJpqN1g8pDzNkU+W802Py5E8Ip5yJUy+gN+9xkz61rmD21jTdQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com (2603:10b6:8:8d::16) by
- MW4PR12MB5626.namprd12.prod.outlook.com (2603:10b6:303:169::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.27; Thu, 29 Aug
- 2024 22:32:01 +0000
-Received: from DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7]) by DM4PR12MB6566.namprd12.prod.outlook.com
- ([fe80::31b:5d31:8ba6:abd7%6]) with mapi id 15.20.7918.019; Thu, 29 Aug 2024
- 22:32:01 +0000
-Message-ID: <78d992ce-9a81-480c-9acd-5a176d40ada3@amd.com>
-Date: Thu, 29 Aug 2024 17:31:59 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3] drm/amdgpu: Surface svm_default_granularity, a RW
- module parameter
-Content-Language: en-CA
-To: Ramesh Errabolu <Ramesh.Errabolu@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20240829221334.313701-1-Ramesh.Errabolu@amd.com>
-From: "Chen, Xiaogang" <xiaogang.chen@amd.com>
-In-Reply-To: <20240829221334.313701-1-Ramesh.Errabolu@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SA1P222CA0169.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:3c3::12) To DM4PR12MB6566.namprd12.prod.outlook.com
- (2603:10b6:8:8d::16)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA95F10E610;
+ Thu, 29 Aug 2024 08:11:51 +0000 (UTC)
+X-UUID: 54b60bb465de11efa216b1d71e6e1362-20240829
+X-CTIC-Tags: HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NO_NAME, HR_CTE_8B,
+ HR_CTT_MISS
+ HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME, HR_SJ_LANG
+ HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM, HR_SJ_PHRASE, HR_SJ_PHRASE_LEN
+ HR_SJ_PRE_RE, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT, HR_TO_NO_NAME
+ DN_TRUSTED, SRC_TRUSTED, SA_TRUSTED, SA_EXISTED, SN_TRUSTED
+ SN_EXISTED, SPF_NOPASS, DKIM_NOPASS, DMARC_NOPASS, CIE_BAD
+ CIE_GOOD, CIE_GOOD_SPF, GTI_FG_BS, GTI_RG_INFO, GTI_C_BU
+ AMN_T1, AMN_GOOD, AMN_C_TI, AMN_C_BU, ABX_MISS_RDNS
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.38, REQID:ce9c4b22-c925-4fd2-952f-fa40832ff2b2, IP:15,
+ URL:0,TC:0,Content:0,EDM:0,RT:0,SF:-3,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:12
+X-CID-INFO: VERSION:1.1.38, REQID:ce9c4b22-c925-4fd2-952f-fa40832ff2b2, IP:15,
+ UR
+ L:0,TC:0,Content:0,EDM:0,RT:0,SF:-3,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:12
+X-CID-META: VersionHash:82c5f88, CLOUDID:63e1b3db4a4e3506366ec8e9954b823e,
+ BulkI
+ D:240822220608SXRKO8Y3,BulkQuantity:1,Recheck:0,SF:64|66|100|17|19|42|25|1
+ 01|74|102,TC:nil,Content:0|-5,EDM:-3,IP:-2,URL:0,File:nil,RT:nil,Bulk:40,Q
+ S:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FAS,TF_CID_SPAM_FSD,TF_CID_SPAM_FSI
+X-UUID: 54b60bb465de11efa216b1d71e6e1362-20240829
+X-User: yaolu@kylinos.cn
+Received: from localhost.localdomain [(111.48.58.10)] by mailgw.kylinos.cn
+ (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1307947314; Thu, 29 Aug 2024 16:11:45 +0800
+From: Lu Yao <yaolu@kylinos.cn>
+To: mario.limonciello@amd.com
+Cc: Hawking.Zhang@amd.com, Jun.Ma2@amd.com, Tim.Huang@amd.com,
+ Xinhui.Pan@amd.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, andrealmeid@igalia.com, candice.li@amd.com,
+ christian.koenig@amd.com, hamza.mahfooz@amd.com, jesse.zhang@amd.com,
+ kenneth.feng@amd.com, kevinyang.wang@amd.com, lijo.lazar@amd.com,
+ linux-kernel@vger.kernel.org, sunil.khatri@amd.com,
+ victorchengchi.lu@amd.com, yaolu@kylinos.cn,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/amdgpu: fix OLAND card ip_init failed during kdump
+ caputrue kernel boot
+Date: Thu, 29 Aug 2024 16:11:41 +0800
+Message-Id: <20240829081141.134471-1-yaolu@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <5dcd603a-7d62-439d-9a07-9d7d9324e0b6@amd.com>
+References: <5dcd603a-7d62-439d-9a07-9d7d9324e0b6@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6566:EE_|MW4PR12MB5626:EE_
-X-MS-Office365-Filtering-Correlation-Id: e652c4eb-23b3-4ea6-d805-08dcc87a6671
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RG03QUFtU2tQMlhXdkdCNm84L2YyTVFoNFhUSitkYUJ5SCtrOUo3MU9YcDdL?=
- =?utf-8?B?eW9qTkdQQ1NCYk1JS3h6UHFIc29hTWxoYlJwc2l5M08xYWY2K3ZMVkNXWXJR?=
- =?utf-8?B?QWN2bjdWWFEyYytLUmcyZmdaSHgwMGUrTlBydUFhbmduanVkQ1Nya2dDK3Jv?=
- =?utf-8?B?Y0VQZWF2TnFtMWoyL2J3K3F3eDNmc2w0RlJGTUhuRjdBMmxDNUw0Q1BTR2Fw?=
- =?utf-8?B?SzBhb1VrT0E4WE1LSkZPMjN2TTk0M2NMWnNqV2JvbTFsNUZ1ajhHQ0thQUU3?=
- =?utf-8?B?YytWWkRNekNreEdVL1lXamxlcFlVd1lUcEdNeWV2OHZqWmgzTHRSbVVnVzRV?=
- =?utf-8?B?RytkZTBzWS9PVHVCNExXMk5pOFBaeEU1citkc1Q2TW8vM21JUTRYbGZVQnhU?=
- =?utf-8?B?VXkySzNVb3g1VUppL2R5NWszWnJ5NTVoeW13azBJRmk4SlFlRW1jZHFYL0ts?=
- =?utf-8?B?bDVIWGpYN0tBTnUrN3QxTm55dDBlWk9EZGZFZ2dJa2VpbVVKUEJwaFBFWlFR?=
- =?utf-8?B?RXUwZ3lZSk1SNlZiTjhhdi8rV0lPMkZoL3VIOWhnRnFoR1dzamxBaE84SFVi?=
- =?utf-8?B?aWRHQVJCNTVqVjlTbStQSVFvNmxhNDBORXh0M3JveURqOEhWWm1YR25DalBG?=
- =?utf-8?B?WVZ4cWNOVFA5SVYzZlg4UHVmU1hnR2w0anN1aFBIZGsvYUVDeWFyVVNGUW8z?=
- =?utf-8?B?YjI3M3Y4SXpIekpKa2xNczFBOHEyM1RHYjBJUzU5WUlCcGNldG1KZHRGblhD?=
- =?utf-8?B?ajAwRWNRbHZla1lnTmMrTmswS2NwVGlaV2lXTm80emRJNVM5WnpuSnFGVUhJ?=
- =?utf-8?B?VmxiSUJ1OHFlR1ZKYzVUQTZrWWdyNzM4WE1TMms4VXhNNnZGb3hhZFZUVU5C?=
- =?utf-8?B?M0FPQmRIS2phazJFKzBiRENxTkEwTDIwMGxFRGlEeHB1NEd6Z3pjNnhNSGZt?=
- =?utf-8?B?TjRuakpldU1jUG50Y3JTS043WDRsZ1hLV0pYd05MdE5JM0k4aVI1QmJEWmUr?=
- =?utf-8?B?TXNXckJVSEZ6ZU4xa0t3R0FDakpoQkJ6Z3VPL3QvQzJ4c0dyRmV4ZkZsc0p2?=
- =?utf-8?B?U1E0Z0xWWUo0V3dlMUNpUnJZZDB5c0dmcmswd0YvV2hxT1VzaXA5UkQxWWNj?=
- =?utf-8?B?NVVHWkNTMWRNUWw3eFBJTFdsaUIwTHF4ZDJxY0hackowWHpyMEh5VUE2Ukgw?=
- =?utf-8?B?NDlaOWltM1hLbXRnWEU2dnYydzZzOXc0Mlk2REtkbEZNY09jVHAyRjA0bGFq?=
- =?utf-8?B?MVdWbEFMdWVDT01BTDlub3VDQUd2MCsxTm1vd3hSay9ma3NWYkxSanVzQUlC?=
- =?utf-8?B?U2crcGt1YnFmajlpTFVpR05wSzdMUXdHaDV4Nnp1aWx4cHQ1MGsvQ2RSVGND?=
- =?utf-8?B?Y1gxQVhsVTJYRjAzRlk2WktQQkFyNXlsbjd6STRKV3N1aVpidVlqYlAxSkU1?=
- =?utf-8?B?MGVoSE4vMnBHS1R5VXNlK29uL0o5Rzhwd1lmMmp0Zy92cG5Vd2N0RDhwSU9S?=
- =?utf-8?B?Z0ZJejBtcGhDVVZLOS9YRG83R2gwZHlJakg4SjJYQWwxZXloOU04S2VpYWk0?=
- =?utf-8?B?K1FITEdpMWtYVjBhcFlHTlJuSFdKL21FRWpucHRtY0IvYzhqQkNqL3RKUDdm?=
- =?utf-8?B?QlBUMzBNRk9leHJHSTU5ZkdRSFR2ODR3Ukw2dWlwdHdwN1prSTZxeUZkNjlL?=
- =?utf-8?B?ZHBXZ0VYU2VSN3RucmNRM3ExbytCS3JtNUVaa1dEY1RMZEVBUGxBOTI4NWZq?=
- =?utf-8?B?ZXlZOEJORWxJeEh3ZGNzMHIvNCs0eUsrVlZmcTNUU01QdVhIR0NaTVBEZVZs?=
- =?utf-8?B?T0E4ek9teVFVeTN6SG12UT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6566.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFUva2lWTG5UUWJKbWloTDYxaThndTRudEg3eFp5SGFmSUlkTkZLU2hISVEy?=
- =?utf-8?B?bC9mR3dQTTVLMW93akw0N3hwRGFDS1NvTVBSVHdGbFdXS21wNTJ4V1NRazdi?=
- =?utf-8?B?UEM4b2VwV0ErVkcwVm84R1duVWpQUm0rY1ZOSHZWR1N0bWxlZ3ZKQmF6YnNt?=
- =?utf-8?B?Rjk4ZlN0OFRhWkVlZ05LY0xWek9PYVJlVnhRTUdmQi9MQ3BpdkNNcEczckdK?=
- =?utf-8?B?Y01Hc2pFamZZRHFXclJsTDFnSzRkajV2a01sUjBibkNKVlJFWkVtTTV6aXRJ?=
- =?utf-8?B?K1M2bHJRSk44Vzd3STB6UndvUVU4YnpCdU0vTWRNdEsyMUhkSzF0QkN6VTg4?=
- =?utf-8?B?LzNZZ3l1Wm9PelYxM3dMSi9hQlZwUlRVRGlZYmMrb0VvQjJOKzhKbDFGMWJL?=
- =?utf-8?B?U25lNkJsUHlmMVpQdCtZeFR5M0lNV1Vma0tzT2ltSyt6RGJEa01ielVHZHlB?=
- =?utf-8?B?MGNnMjNRaXV3cUJraXdDUmk5T0V0US9Cc3BiOG9JeCtsczFGZklHa0Fpalo1?=
- =?utf-8?B?MXBRS3A1SHVZWTM0TXZhbzdGeGZ0YkJsdjlrbGlDY3Z5OVBxUTdnRkF1OE52?=
- =?utf-8?B?UldYR01WUDZibWhYUDNHcVZpKzV2RkF4aTRLeFdIMUtKMHRCTjVXbnJSdGFR?=
- =?utf-8?B?QTJxZmJ0Q2lpNVVoRkFIWUxEK1RzZGhFR3JTSFViRUpQeVUyMFd5YUFRL0p0?=
- =?utf-8?B?Tk1mZVEzeVpPOEUxSXIvOHNuN09IejB0ZFNRZHJQQkRRRExxOWFVNHhxd01T?=
- =?utf-8?B?QVRYMmNQZVEvZ1dCVHpGWGxGaUdVVUN0REUxOXZ1OHp0bkhMMG9xVTRBSjdp?=
- =?utf-8?B?VURTRnVMVmMweHBuOTBhWm5zSE8xSS9xMGxCN0lOUFlMK1lYMGcxRXVObVUz?=
- =?utf-8?B?aEV4bnNHdldoZXV0QmsrM1BRenBGa25sM1kzS1diZTgwZjNHenVJN3pkUE91?=
- =?utf-8?B?TDcxRC9ZUGszcVFsODlsbU1ZTVlGTXU1bEdHS2tyamxKa1ZVN3FmWGJOeTht?=
- =?utf-8?B?VGxDSXkvMU40Z3lZQ29qajZ3dDJHN29EdmZxMnZRUWNJNHRoT0RnNWV2ZlNj?=
- =?utf-8?B?R3YzZVdvZlZoaTdkRXFYZ005WVpjQ2RYdlFVRDZOYkZETzROUml6TitHWjVG?=
- =?utf-8?B?VjhsdHh5a0FCejBvcmUrUmFhdkxBYmprM0hvaGF4YTE2STJPamtLMEY4aTRX?=
- =?utf-8?B?RkZwRkNCMkJmZzhLWmtRVHRIaUlaYkNDTUphK1BUZ0MreCtZUUpYd0dFcVNa?=
- =?utf-8?B?M3hUanp4Nk1uMnoycnZNbitUZHZ2QlpyTUJkdnF0TS9pQTdVTFZPNWJZb3BC?=
- =?utf-8?B?bFZVRHdxUlhtNkZNMnlMa3dtSEFFQUpuZ3pQMUNSM1ZnOStCM2hCaUhmS0dk?=
- =?utf-8?B?UXIySGpTREt6SSt1L1ZxNjVCVjJzUXpQRHpGNDdGOUFjMWgwVEJVMVZFQzMy?=
- =?utf-8?B?cy9ISksyUmp2SWFhd1hpUVNGNFl6Y2hrczNaYmpVSFNjZFRCL05Jd2lBWVp5?=
- =?utf-8?B?UVUwVkdYY0xSZTUxblZ2OFBzOXVjYmlmNnVvdHNCYUljc3k4T25NVmJaVEVn?=
- =?utf-8?B?TmMwWHlZdzlVUm51RnA4MHRLOG5sNncrS1VOOHI5OEVhZGxzZGFjOHVld2Ev?=
- =?utf-8?B?S0pDUllKRnk4RmJHeWhmdzlzM2VGOUVNUStTa21pdlNWUG12M1Q0MTBqU3ZY?=
- =?utf-8?B?akV5T2gxQTRKbThydjFtTURHNXJ6WUV1TEd2VG82cUdjNFZFVUJXbXBZQzk3?=
- =?utf-8?B?bWtQNVRYODByWWFWcG9JU2xTeURsdWNmenpGT0NHZHNwdm9COUFWcGRJNVpG?=
- =?utf-8?B?QU1tNnVlNFdRRmZnS1hlWnF1djh1UUx4YUh3UEl1NmdUbmZEcnFxejlLd2cv?=
- =?utf-8?B?SlVQaTBRY3NXcS9LNk8vWWFEVUpzM1VScWE4VUROY0J3c25LYVl1RG40bUZO?=
- =?utf-8?B?OU1FcmtUcVErMmViRk5Pa2RlYWp0QWxtQUN1NVJORXAraDFERC9RNXZtRHJQ?=
- =?utf-8?B?bHNmN2xYWjJZd1l4QzlqN1ZTU3VWT1lYbStVZ0RXaWlhMTdVS1Z3YkZqaFFh?=
- =?utf-8?B?SkROL2Rnb0hvMUo3NHBsckRvUndTbldmWnJlTENpM3hYOGVZQStBMTBPTHZZ?=
- =?utf-8?Q?IbaM=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e652c4eb-23b3-4ea6-d805-08dcc87a6671
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6566.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2024 22:32:01.1090 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NpQSy6IP+ra5cA1HtZNdpLKAY1JeVGufMziKgxqPN5/E+EBtaRUfKPSbctMi8W38
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5626
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 30 Aug 2024 07:15:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,165 +77,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 2024/8/22 22:05, Mario Limonciello wrote:
+> On 7/23/2024 04:42, Lu Yao wrote:
+>> [Why]
+>> When running kdump test on a machine with R7340 card, a hang is caused due
+>> to the failure of 'amdgpu_device_ip_init()', error message as follows:
+>>
+>>    '[drm:amdgpu_device_ip_init [amdgpu]] *ERROR* hw_init of IP block <si_dpm> failed -22'
+>>    '[drm:uvd_v3_1_hw_init [amdgpu]] *ERROR* amdgpu: UVD Firmware validate fail (-22).'
+>>    '[drm:amdgpu_device_ip_init [amdgpu]] *ERROR* hw_init of IP block <uvd_v3_1> failed -22'
+>>    'amdgpu 0000:01:00.0: amdgpu: amdgpu_device_ip_init failed'
+>>    'amdgpu 0000:01:00.0: amdgpu: Fatal error during GPU init'
+>>
+>> This is because the caputrue kernel does not power off when it starts, 
+>
+> Presumably you mean:
+> s/caputrue/capture/ 
+Oh, you're right. It's a mistake.
+>
+>> cause hardware status does not reset.
+>>
+>> [How]
+>> Add 'is_kdump_kernel()' judgment.
+>> For 'si_dpm' block, use disable and then enable.
+>> For 'uvd_v3_1' block, skip loading during the initialization phase.
+>>
+>> Signed-off-by: Lu Yao <yaolu@kylinos.cn>
+>> ---
+>> During test, I first modified the 'amdgpu_device_ip_hw_init_phase*', make
+>> it does not end directly when a block hw_init failed.
+>>
+>> After analysis, 'si_dpm' block failed at 'si_dpm_enable()->
+>> amdgpu_si_is_smc_running()', calling 'si_dpm_disable()' before can resolve.
+>> 'uvd_v3_1' block failed at 'uvd_v3_1_hw_init()->uvd_v3_1_fw_validate()',
+>> read mmUVD_FW_STATUS value is 0x27220102, I didn't find out why. But for
+>> caputrue kernel, UVD is not required. Therefore, don't added this block. 
+>
+> Hmm, a few thoughs.
+>
+> 1) Although you used this for the R7340, these concepts you're identifying probably make sense on most AMD GPUs.  SUch checks might be better to uplevel to earlier in IP discovery code.
+>
+> 2) I'd actually argue we don't want to have the kdump capture kernel do ANY hardware init.  You're going to lose hardware state which "could" be valuable information for debugging a problem that caused a panic.
+>
+So, maybe  should skip all the  ip_block hw_init functions when kdump?
+> That being said, I'm not really sure what framebuffer can drive the display across a kexec if you don't load amdgpu.  What actually happens if you blacklist amdgpu in the capture kernel?
+>
+> What happens with your patch in place?
+>
+> At least for me I'd like to see a kernel log from both cases.
+>
 
+After add 'initcall_blacklist=amdgpu_init' in KDUMP_CMDLINE_APPEND,  kernel logs are as follow:
 
-On 8/29/2024 5:13 PM, Ramesh Errabolu wrote:
-> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
->
->
-> Enables users to update SVM's default granularity, used in
-> buffer migration and handling of recoverable page faults.
-> Param value is set in terms of log(numPages(buffer)),
-> e.g. 9 for a 2 MIB buffer
+[    4.085602][ 0]   nvme0n1: p1 p2 p3 p4 p5 p6
+[    4.157927][ 0]  [drm] radeon kernel modesetting enabled.
+[    4.163383][ 0]  radeon 0000:01:00.0: SI support disabled by module param
+[    5.387012][ 0]  initcall amdgpu_init blacklisted
+[    6.613733][ 0]  initcall amdgpu_init blacklisted
+[    7.859320][ 0]  mtsnd build info: e3fc429
+[    8.687512][ 0]  EXT4-fs (nvme0n1p3): orphan cleanup on readonly fs
+[    8.694035][ 0]  EXT4-fs (nvme0n1p3): mounted filesystem 75c1e96b-cef8-4ed3-86ea-45010c7b859c ro with ordered data mode. Quota mode: none.
+[    9.309862][ 0]  device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    9.325236][ 0]  device-mapper: uevent: version 1.0.3
+[    9.330946][ 0]  systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+[    9.341512][ 0]  device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[    9.380944][ 0]  fuse: init (API version 7.39)
+[    9.390196][ 0]  loop: module loaded
+[    9.486957][ 0]  lp: driver loaded but no devices found
+[    9.494904][ 0]  EXT4-fs (nvme0n1p3): re-mounted 75c1e96b-cef8-4ed3-86ea-45010c7b859c r/w. Quota mode: none.
+[    9.505931][ 0]  systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+[    9.518899][ 0]  ppdev: user-space parallel port driver
+[    9.524908][ 0]  systemd[1]: Started systemd-journald.service - Journal Service.
+[    9.574209][ 0]  systemd-journald[350]: Received client request to flush runtime journal.
+[   10.118484][ 0]  snd_hda_intel 0000:00:1f.3: Unknown capability 0
+[   11.590124][ 0]  hdaudio hdaudioC0D2: Unable to configure, disabling
+[   23.892640][ 0]  reboot: Restarting system
 
-Forgot asking if this parameter is request from customer or used for 
-debug/experiment purpose? If it is later, how about put it at debug fs? 
-There are already many driver parameters.
+After with my patch in place:
 
-Regards
+[    4.074629][ 0]   nvme0n1: p1 p2 p3 p4 p5 p6
+[    4.146956][ 0]  [drm] radeon kernel modesetting enabled.
+[    4.152409][ 0]  radeon 0000:01:00.0: SI support disabled by module param
+[    5.379207][ 0]  [drm] amdgpu kernel modesetting enabled.
+[    5.384909][ 0]  amdgpu: Virtual CRAT table created for CPU
+[    5.390514][ 0]  amdgpu: Topology: Add CPU node
+[    5.395225][ 0]  [drm] initializing kernel modesetting (OLAND 0x1002:0x6611 0x1642:0x1869 0x87).
+[    5.404040][ 0]  [drm] register mmio base: 0xA1600000
+[    5.409118][ 0]  [drm] register mmio size: 262144
+[    5.413864][ 0]  [drm] add ip block number 0 <si_common>
+[    5.419207][ 0]  [drm] add ip block number 1 <gmc_v6_0>
+[    5.424448][ 0]  [drm] add ip block number 2 <si_ih>
+[    5.429427][ 0]  [drm] add ip block number 3 <gfx_v6_0>
+[    5.434668][ 0]  [drm] add ip block number 4 <si_dma>
+[    5.439733][ 0]  [drm] add ip block number 5 <si_dpm>
+[    5.444803][ 0]  [drm] add ip block number 6 <dce_v6_0>
+[    5.450051][ 0]  amdgpu 0000:01:00.0: amdgpu: Fetched VBIOS from VFCT
+[    5.456517][ 0]  amdgpu: ATOM BIOS: 113-RADEONI6910-B03-BT
+[    5.462023][ 0]  kfd kfd: amdgpu: OLAND  not supported in kfd
+[    5.467857][ 0]  amdgpu 0000:01:00.0: vgaarb: deactivate vga console
+[    5.474239][ 0]  amdgpu 0000:01:00.0: amdgpu: Trusted Memory Zone (TMZ) feature not supported
+[    5.482781][ 0]  amdgpu 0000:01:00.0: amdgpu: PCIE atomic ops is not supported
+[    5.490242][ 0]  [drm] PCIE gen 3 link speeds already enabled
+[    5.496017][ 0]  [drm] vm size is 64 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
+[    5.504778][ 0]  amdgpu 0000:01:00.0: amdgpu: VRAM: 1024M 0x000000F400000000 - 0x000000F43FFFFFFF (1024M used)
+[    5.514812][ 0]  amdgpu 0000:01:00.0: amdgpu: GART: 1024M 0x000000FF00000000 - 0x000000FF3FFFFFFF
+[    5.523710][ 0]  [drm] Detected VRAM RAM=1024M, BAR=1024M
+[    5.529133][ 0]  [drm] RAM width 32bits GDDR5
+[    5.533532][ 0]  [drm] amdgpu: 1024M of VRAM memory ready
+[    5.538963][ 0]  [drm] amdgpu: 225M of GTT memory ready.
+[    5.544293][ 0]  [drm] GART: num cpu pages 262144, num gpu pages 262144
+[    5.550950][ 0]  amdgpu 0000:01:00.0: amdgpu: PCIE GART of 1024M enabled (table at 0x000000F400E00000).
+[    5.560859][ 0]  [drm] Internal thermal controller with fan control
+[    5.567163][ 0]  [drm] amdgpu: dpm initialized
+[    5.571642][ 0]  [drm] AMDGPU Display Connectors
+[    5.576278][ 0]  [drm] Connector 0:
+[    5.579782][ 0]  [drm]   HDMI-A-1
+[    5.583108][ 0]  [drm]   HPD2  
+[    5.586088][ 0]  [drm]   DDC: 0x1950 0x1950 0x1951 0x1951 0x1952 0x1952 0x1953 0x1953
+[    5.593937][ 0]  [drm]   Encoders:
+[    5.597353][ 0]  [drm]     DFP1: INTERNAL_UNIPHY
+[    5.601985][ 0]  [drm] Connector 1:
+[    5.605488][ 0]  [drm]   VGA-1
+[    5.608553][ 0]  [drm]   DDC: 0x194c 0x194c 0x194d 0x194d 0x194e 0x194e 0x194f 0x194f
+[    5.616400][ 0]  [drm]   Encoders:
+[    5.619807][ 0]  [drm]     CRT1: INTERNAL_KLDSCP_DAC1
+[    5.985857][ 0]  amdgpu 0000:01:00.0: amdgpu: SE 1, SH per SE 1, CU per SH 6, active_cu_number 6
+[    6.346743][ 0]  [drm] Initialized amdgpu 3.54.0 20150101 for 0000:01:00.0 on minor 0
+[    6.433683][ 0]  fbcon: amdgpudrmfb (fb0) is primary device
+[    6.439260][ 0]  Console: switching to colour frame buffer device 240x67
+[    6.454578][ 0]  amdgpu 0000:01:00.0: [drm] fb0: amdgpudrmfb frame buffer device
+[    6.816426][ 0]  mtsnd build info: e3fc429
+[    7.827506][ 0]  EXT4-fs (nvme0n1p3): orphan cleanup on readonly fs
+[    7.834021][ 0]  EXT4-fs (nvme0n1p3): mounted filesystem 75c1e96b-cef8-4ed3-86ea-45010c7b859c ro with ordered data mode. Quota mode: none.
+[    8.502847][ 0]  device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    8.517899][ 0]  systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+[    8.526044][ 0]  device-mapper: uevent: version 1.0.3
+[    8.531923][ 0]  systemd[1]: Starting modprobe@loop.service - Load Kernel Module loop...
+[    8.545910][ 0]  systemd[1]: systemd-fsck-root.service - File System Check on Root Device was skipped because of an unmet condition check (ConditionPathExists=!/run/initramfs/fsck-root).
+[    8.564367][ 0]  fuse: init (API version 7.39)
+[    8.568872][ 0]  device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[    8.581889][ 0]  systemd[1]: Starting systemd-journald.service - Journal Service...
+[    8.591857][ 0]  loop: module loaded
+[    8.639020][ 0]  lp: driver loaded but no devices found
+[    8.662288][ 0]  systemd[1]: systemd-tpm2-setup-early.service - TPM2 SRK Setup (Early) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[    8.685851][ 0]  ppdev: user-space parallel port driver
+[    8.697866][ 0]  EXT4-fs (nvme0n1p3): re-mounted 75c1e96b-cef8-4ed3-86ea-45010c7b859c r/w. Quota mode: none.
+[    9.362160][ 0]  snd_hda_intel 0000:00:1f.3: Unknown capability 0
+[    9.716497][ 0]  hdaudio hdaudioC0D2: Unable to configure, disabling
+[   20.101499][ 0]  reboot: Restarting system
 
-Xiaogang
-
-> Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 17 +++++++++++++++++
->   drivers/gpu/drm/amd/amdkfd/kfd_priv.h   |  6 ++++++
->   drivers/gpu/drm/amd/amdkfd/kfd_svm.c    | 25 +++++++++++++++----------
->   4 files changed, 39 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index e8c284aea1f2..8eb934af02f2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -237,6 +237,7 @@ extern int sched_policy;
->   extern bool debug_evictions;
->   extern bool no_system_mem_limit;
->   extern int halt_if_hws_hang;
-> +extern uint amdgpu_svm_default_granularity;
->   #else
->   static const int __maybe_unused sched_policy = KFD_SCHED_POLICY_HWS;
->   static const bool __maybe_unused debug_evictions; /* = false */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index b9529948f2b2..442039436cb3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -169,6 +169,16 @@ uint amdgpu_sdma_phase_quantum = 32;
->   char *amdgpu_disable_cu;
->   char *amdgpu_virtual_display;
->   bool enforce_isolation;
-> +
-> +/* Specifies the default granularity for SVM, used in buffer
-> + * migration and restoration of backing memory when handling
-> + * recoverable page faults.
-> + *
-> + * The value is given as log(numPages(buffer)); for a 2 MiB
-> + * buffer it computes to be 9
-> + */
-> +uint amdgpu_svm_default_granularity = 9;
-> +
->   /*
->    * OverDrive(bit 14) disabled by default
->    * GFX DCS(bit 19) disabled by default
-> @@ -320,6 +330,13 @@ module_param_named(pcie_gen2, amdgpu_pcie_gen2, int, 0444);
->   MODULE_PARM_DESC(msi, "MSI support (1 = enable, 0 = disable, -1 = auto)");
->   module_param_named(msi, amdgpu_msi, int, 0444);
->
-> +/**
-> + * DOC: svm_default_granularity (uint)
-> + * Used in buffer migration and handling of recoverable page faults
-> + */
-> +MODULE_PARM_DESC(svm_default_granularity, "SVM's default granularity in log(2^Pages), default 9 = 2^9 = 2 MiB");
-> +module_param_named(svm_default_granularity, amdgpu_svm_default_granularity, uint, 0644);
-> +
->   /**
->    * DOC: lockup_timeout (string)
->    * Set GPU scheduler timeout value in ms.
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> index 9ae9abc6eb43..d6530febabad 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -868,6 +868,12 @@ struct svm_range_list {
->          struct task_struct              *faulting_task;
->          /* check point ts decides if page fault recovery need be dropped */
->          uint64_t                        checkpoint_ts[MAX_GPU_INSTANCE];
-> +
-> +       /* Default granularity to use in buffer migration
-> +        * and restoration of backing memory while handling
-> +        * recoverable page faults
-> +        */
-> +       uint8_t default_granularity;
->   };
->
->   /* Process data */
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index b44dec90969f..624bfe317c9c 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -309,12 +309,13 @@ static void svm_range_free(struct svm_range *prange, bool do_unmap)
->   }
->
->   static void
-> -svm_range_set_default_attributes(int32_t *location, int32_t *prefetch_loc,
-> -                                uint8_t *granularity, uint32_t *flags)
-> +svm_range_set_default_attributes(struct svm_range_list *svms,
-> +                       int32_t *location, uint8_t *granularity,
-> +                       int32_t *prefetch_loc, uint32_t *flags)
->   {
->          *location = KFD_IOCTL_SVM_LOCATION_UNDEFINED;
->          *prefetch_loc = KFD_IOCTL_SVM_LOCATION_UNDEFINED;
-> -       *granularity = 9;
-> +       *granularity = svms->default_granularity;
->          *flags =
->                  KFD_IOCTL_SVM_FLAG_HOST_ACCESS | KFD_IOCTL_SVM_FLAG_COHERENT;
->   }
-> @@ -358,9 +359,8 @@ svm_range *svm_range_new(struct svm_range_list *svms, uint64_t start,
->                  bitmap_copy(prange->bitmap_access, svms->bitmap_supported,
->                              MAX_GPU_INSTANCE);
->
-> -       svm_range_set_default_attributes(&prange->preferred_loc,
-> -                                        &prange->prefetch_loc,
-> -                                        &prange->granularity, &prange->flags);
-> +       svm_range_set_default_attributes(svms, &prange->preferred_loc,
-> +               &prange->granularity, &prange->prefetch_loc, &prange->flags);
->
->          pr_debug("svms 0x%p [0x%llx 0x%llx]\n", svms, start, last);
->
-> @@ -2694,9 +2694,10 @@ svm_range_get_range_boundaries(struct kfd_process *p, int64_t addr,
->          *is_heap_stack = vma_is_initial_heap(vma) || vma_is_initial_stack(vma);
->
->          start_limit = max(vma->vm_start >> PAGE_SHIFT,
-> -                     (unsigned long)ALIGN_DOWN(addr, 2UL << 8));
-> +                     (unsigned long)ALIGN_DOWN(addr, 1UL << p->svms.default_granularity));
->          end_limit = min(vma->vm_end >> PAGE_SHIFT,
-> -                   (unsigned long)ALIGN(addr + 1, 2UL << 8));
-> +                   (unsigned long)ALIGN(addr + 1, 1UL << p->svms.default_granularity));
-> +
->          /* First range that starts after the fault address */
->          node = interval_tree_iter_first(&p->svms.objects, addr + 1, ULONG_MAX);
->          if (node) {
-> @@ -3240,6 +3241,10 @@ int svm_range_list_init(struct kfd_process *p)
->                  if (KFD_IS_SVM_API_SUPPORTED(p->pdds[i]->dev->adev))
->                          bitmap_set(svms->bitmap_supported, i, 1);
->
-> +       /* Update default granularity to one bound by user/driver */
-> +       svms->default_granularity = min_t(u8, amdgpu_svm_default_granularity, 0x1B);
-> +       pr_debug("Default SVM Granularity to use: %d\n", svms->default_granularity);
-> +
->          return 0;
->   }
->
-> @@ -3767,8 +3772,8 @@ svm_range_get_attr(struct kfd_process *p, struct mm_struct *mm,
->          node = interval_tree_iter_first(&svms->objects, start, last);
->          if (!node) {
->                  pr_debug("range attrs not found return default values\n");
-> -               svm_range_set_default_attributes(&location, &prefetch_loc,
-> -                                                &granularity, &flags_and);
-> +               svm_range_set_default_attributes(svms, &location,
-> +                               &granularity, &prefetch_loc, &flags_and);
->                  flags_or = flags_and;
->                  if (p->xnack_enabled)
->                          bitmap_copy(bitmap_access, svms->bitmap_supported,
-> --
-> 2.34.1
->
+Compared with the blacklist method, amdgpu driver initialization can be completed after adding patch.
+From the external observation, more startup animation can be shown (of course, this is meaningless, because it will restart immediately).
