@@ -2,43 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7144196625D
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Aug 2024 15:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFC9966350
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Aug 2024 15:46:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0741B10E3B1;
-	Fri, 30 Aug 2024 13:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06EAB10E0A5;
+	Fri, 30 Aug 2024 13:46:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UBLfq6Of";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from gauss.telenet-ops.be (gauss.telenet-ops.be [195.130.132.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 503FD10E8E7
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Aug 2024 09:45:24 +0000 (UTC)
-Received: from andre.telenet-ops.be (andre.telenet-ops.be
- [IPv6:2a02:1800:120:4::f00:15])
- by gauss.telenet-ops.be (Postfix) with ESMTPS id 4WwCtp6lwPz50PqV
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Aug 2024 11:45:22 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:f0d5:75e3:232:dfed])
- by andre.telenet-ops.be with cmsmtp
- id 69lM2D00L4wyYGe019lMm3; Fri, 30 Aug 2024 11:45:22 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sjyC1-001KOP-Bj;
- Fri, 30 Aug 2024 11:45:21 +0200
-Date: Fri, 30 Aug 2024 11:45:21 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
- javierm@redhat.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v3 04/81] drm: Add client-agnostic setup helper
-In-Reply-To: <20240830084456.77630-5-tzimmermann@suse.de>
-Message-ID: <6c78eb72-c555-1fa8-18f9-c1e671a8b12@linux-m68k.org>
-References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-5-tzimmermann@suse.de>
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADE2910E0A5;
+ Fri, 30 Aug 2024 13:46:07 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-2020430b139so1606475ad.1; 
+ Fri, 30 Aug 2024 06:46:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1725025567; x=1725630367; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ifpCQeP2cumNf3KquMi5xFhz4u6doTwHEPxrybMpp+E=;
+ b=UBLfq6OffeA3yo12XJFjpLyax0tuk48Kp6eq6qdCBMCQut+0GS5+hxI7pe9iUcfkVt
+ xsaiNKVvsZM6Ue0JLn/eNydFoCbIDiTJ98Mp3lDCr1QoSbjaHyyPGaBpkvPy7AKLkhsv
+ xBPRZ27zQiL4kxwHJI5p1pBBK5ApMMpk3rDuMqKbdcuycuseUpPnMHO8OybwSXwqcqSU
+ Jh9wZuRQH8/P15LuXrHCfJYDutByf8qnvW8sdmy6G45vo/4fl3TL+c8A2gK9Evo+5kcA
+ MXj4tseqyW9/dNWV+BaC4i4wrSF97G86SD3nKkVLGjZZk6keoYR1q6+JR/SSqokBBNNX
+ RhoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725025567; x=1725630367;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ifpCQeP2cumNf3KquMi5xFhz4u6doTwHEPxrybMpp+E=;
+ b=FCr0InD1Z4vOn2CWxTXghB2KNLDu8pMl/UCwb0A3MUyx/2NDcedGdSfvN55ARq9sAV
+ izNZI9VVEIv7fE4LcnuRz1g3wFcEZHn59Z+9wG2ChNVYW/O0uc/wO25aYfCZbd80xyQQ
+ Ye+3IPQ/HUzoWNStDu5Vlke5XiLCAkHrWOiQn1+/ijlDxj9EfQDvzCdihIco1NWp7Qmf
+ Gnw6zpE9hBACP2E/ODok6CXyB/SgrweFtytIfqEzP+DkHLfweuSxBSJc2HMhjYJV4Pb/
+ PqKFiK9kUPBzNpjYa4Oj2yiXPIrCmhzeaI+ANa5ppuQEsSTwXHVC0tBKyTwZs+9l/PiV
+ aB7Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU5P4BFD5A7+BE69xmQTZpZccXCBZns6YMkeoOoYehxXzp0eMs2fuegDKNJ/T7lBlQ7QvqvvRiHnw==@lists.freedesktop.org,
+ AJvYcCVROuLDlwzv+5pwG/8Gm3M/F4l3QkO7TKrak1vQG6EEfn3cmEQmYvsCr3redrWU3MuNTVgif54x@lists.freedesktop.org,
+ AJvYcCVutHZ8IUk0xZL7jZ+nA4Qjr+K08l3uvwhSBgu6tVw8AnxNjaou4yQ5cgwWBVJYRHjlUY8/UC4FX9AK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxJiXgMsTTHxzjLTGiq2l3QJCOl6HgnrjpY10n0ZHCiCHugASB3
+ I1l7efl4q1CBliXQKJhTPZ18pT3h3nMIMiY86U2MVi3E354cn3QRU7AY6BBndUGMeFoqXgdjVp/
+ eYnQe6q02te1i3tlAyVhIZaQzk8M=
+X-Google-Smtp-Source: AGHT+IF5Bv6WaeQVgx6+6WiJxNlzOFFDKTePFL/dXi1F74yXRFY3KwXprcz/ekS9nHS3kcSzssaEqNkdG0sya8S6eJE=
+X-Received: by 2002:a17:903:18b:b0:202:35aa:c1c with SMTP id
+ d9443c01a7336-20527a66cf4mr13338925ad.7.1725025566988; Fri, 30 Aug 2024
+ 06:46:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Mailman-Approved-At: Fri, 30 Aug 2024 13:04:03 +0000
+References: <20240830012216.603623-1-lizetao1@huawei.com>
+ <20240830012216.603623-4-lizetao1@huawei.com>
+In-Reply-To: <20240830012216.603623-4-lizetao1@huawei.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 30 Aug 2024 09:45:55 -0400
+Message-ID: <CADnq5_N98gB4BopT+XbPCahOZJxe2aDfm8wbK5DZbUAaUivD=g@mail.gmail.com>
+Subject: Re: [PATCH -next 3/3] drm/amdgpu: use clamp() in nvkm_volt_map()
+To: Li Zetao <lizetao1@huawei.com>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com, 
+ airlied@gmail.com, daniel@ffwll.ch, kherbst@redhat.com, lyude@redhat.com, 
+ dakr@redhat.com, felix.kuehling@amd.com, zhenguo.yin@amd.com, 
+ srinivasan.shanmugam@amd.com, shashank.sharma@amd.com, Jesse.Zhang@amd.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,94 +85,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- 	Hi Thomas,
+The patch title prefix should say drm/nouveau.
 
-On Fri, 30 Aug 2024, Thomas Zimmermann wrote:
-> DRM may support multiple in-kernel clients that run as soon as a DRM
-> driver has been registered. To select the client(s) in a single place,
-> introduce drm_client_setup().
+Alex
+
+On Fri, Aug 30, 2024 at 3:15=E2=80=AFAM Li Zetao <lizetao1@huawei.com> wrot=
+e:
 >
-> Drivers that call the new helper automatically instantiate the kernel's
-> configured default clients. Only fbdev emulation is currently supported.
-> Later versions can add support for DRM-based logging, a boot logo or even
-> a console.
+> When it needs to get a value within a certain interval, using clamp()
+> makes the code easier to understand than min(max()).
 >
-> Some drivers handle the color mode for clients internally. Provide the
-> helper drm_client_setup_with_color_mode() for them.
+> Signed-off-by: Li Zetao <lizetao1@huawei.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> v3:
-> - fix build error
-> v2:
-> - add drm_client_setup_with_fourcc() (Laurent)
-> - push default-format handling into actual clients
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c b/drivers/gp=
+u/drm/nouveau/nvkm/subdev/volt/base.c
+> index a17a6dd8d3de..803b98df4858 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c
+> @@ -142,7 +142,7 @@ nvkm_volt_map(struct nvkm_volt *volt, u8 id, u8 temp)
+>                         return -ENODEV;
+>                 }
 >
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_client_setup.c
-
-> +/**
-> + * drm_client_setup_with_fourcc() - Setup in-kernel DRM clients for color mode
-> + * @dev: DRM device
-> + * @fourcc: Preferred pixel format as 4CC code for the device
-> + *
-> + * This function sets up the in-kernel DRM clients. It is equivalent
-> + * to drm_client_setup(), but expects a 4CC code as second argument.
-> + *
-> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
-> + * format of NULL.
-
-Why? To me this looks like the right function to call on hardware
-that does not support ARGB8888 natively.
-
-BTW, once this series is applied, I plan to check again how to wire up
-native fbcon support for monochrome (DRM_FORMAT_R1) and grayscale
-(DRM_FORMAT_R8), as used by the Solomon driver.
-
-> + */
-> +void drm_client_setup_with_fourcc(struct drm_device *dev, u32 fourcc)
-> +{
-> +	drm_client_setup(dev, drm_format_info(fourcc));
-> +}
-> +EXPORT_SYMBOL(drm_client_setup_with_fourcc);
-> +
-> +/**
-> + * drm_client_setup_with_color_mode() - Setup in-kernel DRM clients for color mode
-> + * @dev: DRM device
-> + * @color_mode: Preferred color mode for the device
-> + *
-> + * This function sets up the in-kernel DRM clients. It is equivalent
-> + * to drm_client_setup(), but expects a color mode as second argument.
-> + *
-> + * Do not use this function in new drivers. Prefer drm_client_setup() with a
-
-
-Yeah, this is definitely not to be used in new drivers, as color_mode is
-ambiguous.
-
-> + * format of NULL.
-
-or drm_client_setup_with_fourcc().
-
-> + */
-> +void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color_mode)
-> +{
-> +	u32 fourcc = drm_driver_color_mode_format(dev, color_mode);
-> +
-> +	drm_client_setup_with_fourcc(dev, fourcc);
-> +}
-> +EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+> -               result =3D min(max(result, (s64)info.min), (s64)info.max)=
+;
+> +               result =3D clamp(result, (s64)info.min, (s64)info.max);
+>
+>                 if (info.link !=3D 0xff) {
+>                         int ret =3D nvkm_volt_map(volt, info.link, temp);
+> --
+> 2.34.1
+>
