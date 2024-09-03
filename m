@@ -2,78 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303B3968CF4
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Sep 2024 19:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E175969320
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Sep 2024 07:13:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A06A10E38F;
-	Mon,  2 Sep 2024 17:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B1B10E170;
+	Tue,  3 Sep 2024 05:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e5Icd0St";
+	dkim=pass (2048-bit key; unprotected) header.d=kode54.net header.i=@kode54.net header.b="Zw7NZtUs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
- [209.85.215.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B522510E38E;
- Mon,  2 Sep 2024 17:49:47 +0000 (UTC)
-Received: by mail-pg1-f174.google.com with SMTP id
- 41be03b00d2f7-7cd80d28743so497658a12.3; 
- Mon, 02 Sep 2024 10:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725299387; x=1725904187; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=t9TS7jw6n3RoymRmhl3aVty2+uITWBB11ESJlaPjabM=;
- b=e5Icd0StzQuVrCpJgF/Z5CaEqDdqgefLtOwOR7NZk68JQVA9hqKVkNuXz561sla0qt
- lxBBVXwzjAHGAnyFbTg9EQjDJeMJdOvLLcPZQCk2YzsuF5vEELPubCyZn4EwHwXfQEKL
- TjsaivNlo4DZ+pdZIBi9suFaWpj1A5CkwBruBujIqw7r9uwmH4OoYfCCiqTtFPdVqG1D
- cUMdXKD66xknJJ7/ZewxSDNgxa/E1N2uR1jtC5XkfZnxhEuT7btMvs8vW/DuYhFknMGi
- U2G+0tajb2obR3+1yqRvB5GC/mvlkDGwusjAyzFEBi1TC3uwkD5Y4VQEfpsqingK2DXZ
- VBTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725299387; x=1725904187;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=t9TS7jw6n3RoymRmhl3aVty2+uITWBB11ESJlaPjabM=;
- b=SAzoVVxxaLmHEEjYYrcCC74SS4rxDOKjSYKBT2FQ8Chdd9GbaphIfKb9RAudnTF87v
- YtTUIeHmY1aCAJW67VKfvVtDDJzTIF0aznBnH60Kt99CygdsO/V+ZI7vgGxxsNSciOTp
- WJPJ3H67nh9MAoGS1QMhv/BOsDEc+w5ErFviLh/+t+EHGcQQhZflhm9RLb2JKLKnKQfA
- qqM5PUK3aX9A9rS8Xwhw5dhkX5Aa7j88iZqjoJV6XOLPd1rTjuDha/OCMivR69MfIUE+
- 7vPMysGNhZ28I/UkEmLgflfO87Xukoq9ueTlZ+hWbLE3iVqgpbq/rW0oZPM6BH/L460q
- U0cQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW5Mmao6VWjWbpa6o0a5FzYoC8ICgoBoevkqbl9EGcGm48kSpzTcl+pdJklaOx6SzjNqYwvMAA+@lists.freedesktop.org,
- AJvYcCWPs66Fxn9xuvPxbUF+C12Lu0vJi2KzusqQRM5ILJ42r/3xG8VFr4W3xoi18WmU326JxJ6sFTYPlA==@lists.freedesktop.org,
- AJvYcCWggHSHMWn1b4Fio0PeaaNfqJUZrPhjP3NnTlc/724p8c2U412YNqmOaPVIfkQld4MBlGXighxoYPQi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy31BXpwWfuBo3dpnzgROmocz4VEPkdbVJ8SLdkK7KBAztQ0Y1j
- /ujS2JM8UfWzXptH6yAnSfO1Cus3kKZNN94ayklGaJB8rvHN8xR79a7LLTagEPzKpzCz2NXoC4T
- sB+sgKwT7BTdVkg20hl70l9lyNSHETQ==
-X-Google-Smtp-Source: AGHT+IHoEKHi2KEbBv7k1Q8Ul30OvldZS9WmLuy/6dO9Q0hdux6sVxhrIgHwB0DEHkfgzEwgqcGyA/eEIa/jhJa33ks=
-X-Received: by 2002:a17:903:2346:b0:205:938b:f387 with SMTP id
- d9443c01a7336-205938bf846mr10610275ad.8.1725299386902; Mon, 02 Sep 2024
- 10:49:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20240830012216.603623-1-lizetao1@huawei.com>
- <20240830012216.603623-3-lizetao1@huawei.com>
- <64f6b72e-dd00-47e1-bd06-0cd3ef972f8b@amd.com>
-In-Reply-To: <64f6b72e-dd00-47e1-bd06-0cd3ef972f8b@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 2 Sep 2024 13:49:35 -0400
-Message-ID: <CADnq5_PB2nrhoRy=sEWAjEhM2niFi4T3MVLHsq90Q8VSS5F7aQ@mail.gmail.com>
-Subject: Re: [PATCH -next 2/3] drm/amdgpu: use clamp() in
- amdgpu_vm_adjust_size()
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Li Zetao <lizetao1@huawei.com>, alexander.deucher@amd.com,
- Xinhui.Pan@amd.com, 
- airlied@gmail.com, daniel@ffwll.ch, kherbst@redhat.com, lyude@redhat.com, 
- dakr@redhat.com, felix.kuehling@amd.com, zhenguo.yin@amd.com, 
- srinivasan.shanmugam@amd.com, shashank.sharma@amd.com, Jesse.Zhang@amd.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com
+ [91.218.175.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FAFA10E170
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 05:13:52 +0000 (UTC)
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kode54.net; s=key1;
+ t=1725340430;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iliSav6dNVEYXLM7O3mkTRt+jnvb6sFDnm4YjoTgLHY=;
+ b=Zw7NZtUsZkfmlefxeuXz6WzKkI1OtfmSxdpPTXae4+Yi8LptdoYXzeeV8j2OqzZjSBTvEZ
+ 98cFj7eSAkoO1wo4IIxMgWDlTRNl0gJSt8RNF08uFHkgQMbgL1dfyRX3x5YtwMWzjcSoXt
+ zPiPYsTRd3lSykDUqDOKJhC66DhmCPNmfObbkdgRiNkvZsySHrh3uMJLdX/JXbx71zex0q
+ DLsfj9CPGwF6A5xLw6CmX0SVeH1AnpVztAO4NF+Z6pKx29N7bfj5q6UqiEJGR7udzauAwe
+ 5E8kpcIYbB4/qzeWWRNqghYC1b2SnihBrBxGaEC+0CxO107+8q/wI1snRPCxtg==
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 02 Sep 2024 22:13:43 -0700
+Message-Id: <D3WE4WL0ZP0W.2S2CCR4UJ3Q5Z@kode54.net>
+Cc: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] drm/amd/display: Avoid race between dcn10_set_drr()
+ and dc_state_destruct()
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: "Christopher Snowhill" <chris@kode54.net>
+To: <tjakobi@math.uni-bielefeld.de>, "Harry Wentland"
+ <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, "Rodrigo Siqueira"
+ <Rodrigo.Siqueira@amd.com>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter"
+ <daniel@ffwll.ch>, "Mario Limonciello" <mario.limonciello@amd.com>
+References: <cover.1725269643.git.tjakobi@math.uni-bielefeld.de>
+ <7b9dbbbb1e6a3aa6d7a4d9367d44d18ddd947158.1725269643.git.tjakobi@math.uni-bielefeld.de>
+In-Reply-To: <7b9dbbbb1e6a3aa6d7a4d9367d44d18ddd947158.1725269643.git.tjakobi@math.uni-bielefeld.de>
+X-Migadu-Flow: FLOW_OUT
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,44 +64,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied amdgpu patches.  Thanks!
+On Mon Sep 2, 2024 at 2:40 AM PDT, tjakobi wrote:
+> From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+>
+> dc_state_destruct() nulls the resource context of the DC state. The pipe
+> context passed to dcn10_set_drr() is a member of this resource context.
+>
+> If dc_state_destruct() is called parallel to the IRQ processing (which
+> calls dcn10_set_drr() at some point), we can end up using already nulled
+> function callback fields of struct stream_resource.
+>
+> The logic in dcn10_set_drr() already tries to avoid this, by checking tg
+> against NULL. But if the nulling happens exactly after the NULL check and
+> before the next access, then we get a race.
+>
+> Avoid this by copying tg first to a local variable, and then use this
+> variable for all the operations. This should work, as long as nobody
+> frees the resource pool where the timing generators live.
+>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3142
+> Fixes: 06ad7e164256 ("drm/amd/display: Destroy DC context while keeping D=
+ML and DML2")
+> Signed-off-by: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+> ---
+>  .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   | 20 +++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/dr=
+ivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
+> index 3306684e805a..da8f2cb3c5db 100644
+> --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
+> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
+> @@ -3223,15 +3223,19 @@ void dcn10_set_drr(struct pipe_ctx **pipe_ctx,
+>  	 * as well.
+>  	 */
+>  	for (i =3D 0; i < num_pipes; i++) {
+> -		if ((pipe_ctx[i]->stream_res.tg !=3D NULL) && pipe_ctx[i]->stream_res.=
+tg->funcs) {
+> -			if (pipe_ctx[i]->stream_res.tg->funcs->set_drr)
+> -				pipe_ctx[i]->stream_res.tg->funcs->set_drr(
+> -					pipe_ctx[i]->stream_res.tg, &params);
+> +		/* dc_state_destruct() might null the stream resources, so fetch tg
+> +		 * here first to avoid a race condition. The lifetime of the pointee
+> +		 * itself (the timing_generator object) is not a problem here.
+> +		 */
+> +		struct timing_generator *tg =3D pipe_ctx[i]->stream_res.tg;
+> +
+> +		if ((tg !=3D NULL) && tg->funcs) {
+> +			if (tg->funcs->set_drr)
+> +				tg->funcs->set_drr(tg, &params);
+>  			if (adjust.v_total_max !=3D 0 && adjust.v_total_min !=3D 0)
+> -				if (pipe_ctx[i]->stream_res.tg->funcs->set_static_screen_control)
+> -					pipe_ctx[i]->stream_res.tg->funcs->set_static_screen_control(
+> -						pipe_ctx[i]->stream_res.tg,
+> -						event_triggers, num_frames);
+> +				if (tg->funcs->set_static_screen_control)
+> +					tg->funcs->set_static_screen_control(
+> +						tg, event_triggers, num_frames);
+>  		}
+>  	}
+>  }
 
-On Fri, Aug 30, 2024 at 10:19=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> Am 30.08.24 um 03:22 schrieb Li Zetao:
-> > When it needs to get a value within a certain interval, using clamp()
-> > makes the code easier to understand than min(max()).
-> >
-> > Signed-off-by: Li Zetao <lizetao1@huawei.com>
->
-> This patch and #1 is a nice cleanup and Reviewed-by: Christian K=C3=B6nig
-> <christian.koenig@amd.com>
->
-> But as Alex also pointed out patch #3 is for Nouveau and not amdgpu.
->
-> Regards,
-> Christian.
->
->
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_vm.c
-> > index e20d19ae01b2..40f9a5d4f3c0 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > @@ -2224,7 +2224,7 @@ void amdgpu_vm_adjust_size(struct amdgpu_device *=
-adev, uint32_t min_vm_size,
-> >               phys_ram_gb =3D ((uint64_t)si.totalram * si.mem_unit +
-> >                              (1 << 30) - 1) >> 30;
-> >               vm_size =3D roundup_pow_of_two(
-> > -                     min(max(phys_ram_gb * 3, min_vm_size), max_size))=
-;
-> > +                     clamp(phys_ram_gb * 3, min_vm_size, max_size));
-> >       }
-> >
-> >       adev->vm_manager.max_pfn =3D (uint64_t)vm_size << 18;
->
+This fixes hard to trace panics with labwc VRR and Wayfire on RX 6700 XT. I=
+ had to use netconsole to arrive at the original bug report.
+
+Tested-by: Christopher Snowhill <chris@kode54.net>
