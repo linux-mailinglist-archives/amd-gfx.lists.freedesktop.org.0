@@ -2,60 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEFB96E240
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD79B96E246
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D14DA10E930;
-	Thu,  5 Sep 2024 18:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5570F10E938;
+	Thu,  5 Sep 2024 18:49:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GCAAhcus";
+	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="R0FTTo49";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com
- [209.85.219.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9872E10E3C6
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 23:20:05 +0000 (UTC)
-Received: by mail-yb1-f171.google.com with SMTP id
- 3f1490d57ef6-e1ce8a675f7so1028425276.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Sep 2024 16:20:05 -0700 (PDT)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com
+ [209.85.161.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C13F210E120
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 04:58:52 +0000 (UTC)
+Received: by mail-oo1-f41.google.com with SMTP id
+ 006d021491bc7-5df9343b5b8so3190094eaf.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 02 Sep 2024 21:58:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725319204; x=1725924004; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=9kMpMnZNN8xeF/Kd0n+gc33N/RD8m1Vri7joRo6FyEQ=;
- b=GCAAhcusUoSUMUEdJKkyhhYFEQeDDK4UBYrYBPeSngCsmBb7Wy/DKcGSjSck3HjO8o
- QX/UZJGNWo3J3s+qfZ2ciG986MEIxzvy3nifW3WjR1YRWL21c+LqOTKzEayaVwBYTJYU
- tDzDElmSBsF8gUx29xljy8XddUpUJ0hWqzgveuJlwo9gjzFHIzzbDdPzx49r+jT9AI1g
- ridMoVQFdqzkzuCLbztQBVOfIVKKrba/qXlTg+7eYHcU8GxhMbklETjNquWjyK8XqRfN
- 6vIbuds38qJZnxHU8GToTLnlnP51RDVLgv5ZhsU5UuCdxXFAoaYtW8fEu4mzUD2TxNNx
- CfAw==
+ d=broadcom.com; s=google; t=1725339532; x=1725944332;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=sPhZdW35wA0lKARiWkZjmf+aWFeCFp2ESl8o+4bQ7rQ=;
+ b=R0FTTo49kn1U+3eGiTNHetXGno20cL5ijDDyMXGulQLJdaCav0yU5F6iWNzxUp3jGV
+ jCwFbspEAE9LtLga+BI5ECFWxf6xTE79yz6Pjs6Hp2RKkFzJ3JWonHwoaSliT2lssWWn
+ esrVM3q6dRcTOezOsOIbwprKpzhCh+LqxNw9I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725319204; x=1725924004;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=9kMpMnZNN8xeF/Kd0n+gc33N/RD8m1Vri7joRo6FyEQ=;
- b=LwSvDDvAZ3wmT+b92RYipPIDAydJLedAUPFEEy7ZrsjwrU09XiPkrHNopq+aE3ZfsM
- FGPZrVU3t6pNWICtA7WUSKvIs7RR96SE49l3vpdxVRWUren12PrdkioN4/t7DCmHgMxR
- j27TD19UAC5QZ4AjGk8BnBlWyU+5zrZJmxtKJDd8kclb5IfeYkW/Vvyv56EnCyUU2Y79
- Uq5yvYC+66jFIHOBYcv+p5sIUrocxBJK0rkDjP+YyLJZgdRt6k72KODXgdPo4GCTc6NZ
- JIlCkbZ9qWxygZ0BUhOdXWIxnCoPVGbiioanoM0qZXv4QeSTyJZ+6SX2OOz/wU1Rbp6x
- cPyA==
-X-Gm-Message-State: AOJu0YxCnUs+xF4Vow73iX9dVWuJAkLhTcwkP+nsRV4Cl1RYJR6yp/aC
- NCWrH5mmksfBP6bcVMmZ/pmvsg+hYE38X0DOssKzIzDyt5B7YoFAb6exJue7KnfnfOPyrfB9c7+
- 6CQWmSJCv8aRTDm7/HEehGkq7AVOnfg5B
-X-Google-Smtp-Source: AGHT+IFyAcbXTf/zcRfdZwwBEslSgTQO0kdq4jkyF8GprPtcsI9fmcEfA7D6/XR2jjmLfILlrcKo1tnOv1H7JacVNQk=
-X-Received: by 2002:a05:6902:c03:b0:e0b:c297:8a1c with SMTP id
- 3f1490d57ef6-e1a79fdc00emr14865502276.15.1725319204134; Mon, 02 Sep 2024
- 16:20:04 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1725339532; x=1725944332;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sPhZdW35wA0lKARiWkZjmf+aWFeCFp2ESl8o+4bQ7rQ=;
+ b=sFaT9Oxlg9j5qLsXNnG6w/I/sVfC3Tk76gJ2L2rp8CrHAPlEMfTiciIiuUMmGbmaUb
+ AnvvtUeJG+53v8WtXGCL7v0/9QiGIdeda26pi3+HVGQnJZsQmm410fEHBQQ92H6XXzbG
+ iNpzkQf58Hrxf8bbsqtrQzaBo7l38aRlPcPyMENNTvyigtoxIXLgG3L4ScrCGELzf+mK
+ UNSlcfYOv3YIziQmvzhjGYWxRwvzlV/x2PkdaaxzfKQfhbDMhyW6E6bzVGWLn+rG2rtK
+ ZIr1cNP3LrVsRvfaBj0RzkydEO0g+S4ZGa54UMP8QH8vxkM/qaZr5VjGQYXilTKKoFz9
+ Nosw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX16kt1L65OvZ6/70gxDfVNFZ5AngkZ4cWMLIKppJseTslM5P6cxHmY79T0nRrmwWdSS+3MVYYH@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy1w0MBxm8Wb+a62fMz4t+r1nE00euzx4HlyZGZfB+0L4CqTYvl
+ WU/TGRo0Gkut8SW/0IY+oufZuUvjMVkYDsfwI5U6j/cwcjFQR7GTs4qt7FHFcA==
+X-Google-Smtp-Source: AGHT+IG8me1bSENR4wRx/OKAQejDcXWKY5+HZ/AzEltyhw/WRh8aAe2pXkZG/Vr0P7/zTKqlGwLNxQ==
+X-Received: by 2002:a05:6358:4429:b0:1aa:b9f2:a0c4 with SMTP id
+ e5c5f4694b2df-1b8117bccf4mr268303755d.11.1725339531470; 
+ Mon, 02 Sep 2024 21:58:51 -0700 (PDT)
+Received: from photon-a190c64c6e7e.. ([66.170.99.1])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2d8d06c9340sm3599334a91.22.2024.09.02.21.58.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Sep 2024 21:58:51 -0700 (PDT)
+From: sikkamukul <mukul.sikka@broadcom.com>
+To: stable@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, Jun.Ma2@amd.com, kevinyang.wang@amd.com,
+ sashal@kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ ajay.kaher@broadcom.com, alexey.makhalov@broadcom.com,
+ vasavi.sirnapalli@broadcom.com, Bob Zhou <bob.zhou@amd.com>,
+ Tim Huang <Tim.Huang@amd.com>, Mukul Sikka <mukul.sikka@broadcom.com>
+Subject: [PATCH v5.15-v5.10] drm/amd/pm: Fix the null pointer dereference for
+ vega10_hwmgr
+Date: Tue,  3 Sep 2024 04:58:09 +0000
+Message-Id: <20240903045809.5025-1-mukul.sikka@broadcom.com>
+X-Mailer: git-send-email 2.39.4
 MIME-Version: 1.0
-From: __- -__ <isapgswell@gmail.com>
-Date: Mon, 2 Sep 2024 20:19:51 -0300
-Message-ID: <CAN9WMdOgytm9pMdne625bHEpD5DbpghKE047m1cvSJKaqR=L1A@mail.gmail.com>
-Subject: [INFO] bad desktop experience, external monitor attached
- nvidia-optimus-enhanced gpu
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000496b1306212b2eae"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 05 Sep 2024 18:49:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,47 +85,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000496b1306212b2eae
-Content-Type: text/plain; charset="UTF-8"
+From: Bob Zhou <bob.zhou@amd.com>
 
-Hi,
+[ Upstream commit 50151b7f1c79a09117837eb95b76c2de76841dab ]
 
-This issue has a workaround.
+Check return value and conduct null pointer handling to avoid null pointer dereference.
 
-put into /etc/environment
-LIBGL_DRI3_DISABLE=1
+Signed-off-by: Bob Zhou <bob.zhou@amd.com>
+Reviewed-by: Tim Huang <Tim.Huang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Mukul Sikka <mukul.sikka@broadcom.com>
+---
+ .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c | 30 ++++++++++++++++---
+ 1 file changed, 26 insertions(+), 4 deletions(-)
 
-Above envar force use of egl_dri2 defaults
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+index 10678b519..304874cba 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+@@ -3391,13 +3391,17 @@ static int vega10_find_dpm_states_clocks_in_dpm_table(struct pp_hwmgr *hwmgr, co
+ 	const struct vega10_power_state *vega10_ps =
+ 			cast_const_phw_vega10_power_state(states->pnew_state);
+ 	struct vega10_single_dpm_table *sclk_table = &(data->dpm_table.gfx_table);
+-	uint32_t sclk = vega10_ps->performance_levels
+-			[vega10_ps->performance_level_count - 1].gfx_clock;
+ 	struct vega10_single_dpm_table *mclk_table = &(data->dpm_table.mem_table);
+-	uint32_t mclk = vega10_ps->performance_levels
+-			[vega10_ps->performance_level_count - 1].mem_clock;
++	uint32_t sclk, mclk;
+ 	uint32_t i;
+ 
++	if (vega10_ps == NULL)
++		return -EINVAL;
++	sclk = vega10_ps->performance_levels
++			[vega10_ps->performance_level_count - 1].gfx_clock;
++	mclk = vega10_ps->performance_levels
++			[vega10_ps->performance_level_count - 1].mem_clock;
++
+ 	for (i = 0; i < sclk_table->count; i++) {
+ 		if (sclk == sclk_table->dpm_levels[i].value)
+ 			break;
+@@ -3704,6 +3708,9 @@ static int vega10_generate_dpm_level_enable_mask(
+ 			cast_const_phw_vega10_power_state(states->pnew_state);
+ 	int i;
+ 
++	if (vega10_ps == NULL)
++		return -EINVAL;
++
+ 	PP_ASSERT_WITH_CODE(!vega10_trim_dpm_states(hwmgr, vega10_ps),
+ 			"Attempt to Trim DPM States Failed!",
+ 			return -1);
+@@ -4828,6 +4835,9 @@ static int vega10_check_states_equal(struct pp_hwmgr *hwmgr,
+ 
+ 	psa = cast_const_phw_vega10_power_state(pstate1);
+ 	psb = cast_const_phw_vega10_power_state(pstate2);
++	if (psa == NULL || psb == NULL)
++		return -EINVAL;
++
+ 	/* If the two states don't even have the same number of performance levels they cannot be the same state. */
+ 	if (psa->performance_level_count != psb->performance_level_count) {
+ 		*equal = false;
+@@ -4953,6 +4963,8 @@ static int vega10_set_sclk_od(struct pp_hwmgr *hwmgr, uint32_t value)
+ 		return -EINVAL;
+ 
+ 	vega10_ps = cast_phw_vega10_power_state(&ps->hardware);
++	if (vega10_ps == NULL)
++		return -EINVAL;
+ 
+ 	vega10_ps->performance_levels
+ 	[vega10_ps->performance_level_count - 1].gfx_clock =
+@@ -5004,6 +5016,8 @@ static int vega10_set_mclk_od(struct pp_hwmgr *hwmgr, uint32_t value)
+ 		return -EINVAL;
+ 
+ 	vega10_ps = cast_phw_vega10_power_state(&ps->hardware);
++	if (vega10_ps == NULL)
++		return -EINVAL;
+ 
+ 	vega10_ps->performance_levels
+ 	[vega10_ps->performance_level_count - 1].mem_clock =
+@@ -5239,6 +5253,9 @@ static void vega10_odn_update_power_state(struct pp_hwmgr *hwmgr)
+ 		return;
+ 
+ 	vega10_ps = cast_phw_vega10_power_state(&ps->hardware);
++	if (vega10_ps == NULL)
++		return;
++
+ 	max_level = vega10_ps->performance_level_count - 1;
+ 
+ 	if (vega10_ps->performance_levels[max_level].gfx_clock !=
+@@ -5261,6 +5278,9 @@ static void vega10_odn_update_power_state(struct pp_hwmgr *hwmgr)
+ 
+ 	ps = (struct pp_power_state *)((unsigned long)(hwmgr->ps) + hwmgr->ps_size * (hwmgr->num_ps - 1));
+ 	vega10_ps = cast_phw_vega10_power_state(&ps->hardware);
++	if (vega10_ps == NULL)
++		return;
++
+ 	max_level = vega10_ps->performance_level_count - 1;
+ 
+ 	if (vega10_ps->performance_levels[max_level].gfx_clock !=
+@@ -5451,6 +5471,8 @@ static int vega10_get_performance_level(struct pp_hwmgr *hwmgr, const struct pp_
+ 		return -EINVAL;
+ 
+ 	ps = cast_const_phw_vega10_power_state(state);
++	if (ps == NULL)
++		return -EINVAL;
+ 
+ 	i = index > ps->performance_level_count - 1 ?
+ 			ps->performance_level_count - 1 : index;
+-- 
+2.39.4
 
-According to https://docs.mesa3d.org/egl.html
-
-Maybe it is a race condition with default MESA_LOADER.
-
-What is the relation between iris and egl_dri2????
-
-Both running is a good strategy??
-
-Please investigate this performance issue ( i think this do not impact 3D
-accelerated gammig perf )
-
-Thx
-
-Luiz
-
---000000000000496b1306212b2eae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>This issue has a workaro=
-und.</div><div><br></div><div>put into /etc/environment</div><div>LIBGL_DRI=
-3_DISABLE=3D1</div><div><br></div><div>Above envar force use of egl_dri2 de=
-faults<br></div><div><br></div><div>According to=C2=A0<a href=3D"https://do=
-cs.mesa3d.org/egl.html" target=3D"_blank">https://docs.mesa3d.org/egl.html<=
-/a></div><div><br></div><div>Maybe it is a race condition with default MESA=
-_LOADER.<br></div><div><br></div><div>What is the relation between iris and=
- egl_dri2????</div><div><br></div><div>Both running is a good strategy??</d=
-iv><div><br></div><div>Please investigate this performance issue ( i think =
-this do not impact 3D accelerated gammig perf )<br></div><div><br></div><di=
-v>Thx <br></div><div><br></div><div>Luiz</div></div>
-
---000000000000496b1306212b2eae--
