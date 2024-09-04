@@ -2,76 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3FB496E249
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FBB96E242
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C9710E93A;
-	Thu,  5 Sep 2024 18:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE20D10E935;
+	Thu,  5 Sep 2024 18:49:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FdhXum30";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="sfVGEzZo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 559AF10E670;
- Wed,  4 Sep 2024 00:49:03 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-374bb1a3addso2437399f8f.1; 
- Tue, 03 Sep 2024 17:49:03 -0700 (PDT)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
+ [209.85.221.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56CF110E6B2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Sep 2024 08:01:50 +0000 (UTC)
+Received: by mail-wr1-f54.google.com with SMTP id
+ ffacd0b85a97d-374b25263a3so2720879f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 04 Sep 2024 01:01:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725410942; x=1726015742; darn=lists.freedesktop.org;
- h=user-agent:mime-version:message-id:cc:to:subject:date:from:from:to
- :cc:subject:date:message-id:reply-to;
- bh=MI2VD9V3HSMHAEsHid7UqFpfCx71vZJu73a+V6jxQIc=;
- b=FdhXum30B5GUlfi7KqySBvBDCAit0fAaUphGA9QDoHTj8U4b4N4jCJQh58ZOtyDXDK
- tJX/nn4RRQzDrBGVFEx8XE+5mnhQ00kug2anMwqz8a1JxNgW3KFLe22UxQgkF3w9Mpgd
- myTEjXxSNsYXbWI4TyccTPJiUH+SlaO7iK5yZxxEmO5jPZZhb1g89WL5uxsdvmzMSbGu
- vLRPQhcanfQa1qxI2hs66V90tO5G9J7Wt3YcdBGHxra6G/QwwiTNn7cNMgiYcEz+jt45
- gDjqF9yW8ny8gaKrNrj1cxn5WF2cjftz0jb3t9D2d2lm6cki6AsJlkSlAR4kWy61G5q8
- neEA==
+ d=linaro.org; s=google; t=1725436908; x=1726041708; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=RPGRyZgor+ICRd/PoCXOyw7qG7eZQ2SIyPr9G8EXgT8=;
+ b=sfVGEzZoKPxkcJ47vcerr2fQTqINigy3ec60W9vkYOxmLwF7xJh8vZ6n6W5MHxQyUW
+ DOLw9dn8rBrRkWpX8TyY/Adsrvim2WLwzgeZwiLpsco6sfiQ0Ii3DS90Yjbb/WsTGP8+
+ /0cqpNTbnj8XKreV1jmhM89BSVW3V9f4CPE8V87+73HCBbIMeZz8hLZpNeyjWhBVJ52F
+ FgkX5lTMuSBV4/spCyogyJYxSWAYkdufzdlynLP36lC0+2xg+/5jHTdmGrjVkWJCoN49
+ wZXGmIEWVvdNB7I93/Vig6nxJMxDYO8qNYYGMh9F89Bzq8gKkbazamGhs/ll7SVTOujt
+ 4oxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725410942; x=1726015742;
- h=user-agent:mime-version:message-id:cc:to:subject:date:from
+ d=1e100.net; s=20230601; t=1725436908; x=1726041708;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=MI2VD9V3HSMHAEsHid7UqFpfCx71vZJu73a+V6jxQIc=;
- b=X6Z0lKoa9xNPwytArtT2Nr7GInvY+TqR8yabv4ty9recjrpt6f49avfGQm4xRFARzg
- 9CqeeMgTzvHTBJ0Wig3AdTos5Wmh3Q5LOWiVrZp6HJFmG7CQaMdGnw1YjOwCF/a5bIiA
- gGFoK4arHfxJWP4Sunt+a7GtvpStyIzcqecfJHQOMlcJIBDjCmyva74li9XSvNr5zeVq
- X1dUdPFFczR1+zLUjJ0/CeRzRUOPtZF0rr7odNTzRNx0d5uf3KmIXVMJb8clAoba0LPY
- qmUZTjbcZzIaw//rQnmwZxbH+1P8FtLGAGVFt/tf5r5ZnS30+wiJxMMUQGAaaxtscVde
- qnSw==
+ bh=RPGRyZgor+ICRd/PoCXOyw7qG7eZQ2SIyPr9G8EXgT8=;
+ b=c0U7vygOEeMbprK5sSnl88Odk+q6umGmzd0SORbBAQiHBffMpi9i32BkOIU6T1Wfgb
+ Zk5n7y24yP8ctTxiHf1Yo0O9YQcA3EqxLh7YVW8xl0GnwSooa7FPFv55ycKbHTEFFA10
+ SVQFZP4F/QTykCNDZMGQHeWJnt8WkKvQdJWe9OylmAIMAcIddwseqkMYERdkplmNkTqp
+ rehD45WDHuh+qSPgOaeTD6uPP2hGdyp8jZ97a+A3KZsdd3xGb6FjCedl3FjEuGiXA5ep
+ POQkYJCwAoOAJayMcObClSTmpkSgFMLqcwtNSjs87KFxBys4unpGl4rySifCX3oMn8PE
+ 2VhQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVDuBZtaWVIb8RsckjzxIufYmUz0IxtM3fgY4y7qAsUg+LpQqsw5TSi4zZl1hPOll3eAG60EUBc9kPn@lists.freedesktop.org,
- AJvYcCXQoMsWyK5VXahE621Gn5Qmzp8LcmUFKiS9Mwmb7RBI2qsdYEtneDqODqZrQCXr/5k83yRZ1cBV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxnumhBrL1iiGpmbe9nuImCBbY9zjgA5sZeeefq2Q+/toZJtHoP
- T2FiinOVVq4ETT/8Wqa39o0Na6PMyo6oKWZvj7r/jOTtj0JRrd+Z
-X-Google-Smtp-Source: AGHT+IF/dT9moCjMlTPpV1LF79HsX4lZi1lQZyE6VNTQ8vBAlwqecX7lrCGqmEOe3DjJR3wrDhVrhg==
-X-Received: by 2002:a5d:5269:0:b0:368:420e:b790 with SMTP id
- ffacd0b85a97d-376dd15a8cemr1591613f8f.14.1725410941339; 
- Tue, 03 Sep 2024 17:49:01 -0700 (PDT)
-Received: from [10.33.80.43] (mem-185.47.220.165.jmnet.cz. [185.47.220.165])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5c226c6a399sm6976144a12.8.2024.09.03.17.49.00
+ AJvYcCXRGKjzCARLvEQkzLkcB9ia7CCU194PHVO5Q5YMmhmxLzhg09+rLnBI602usCt6ZN+a54FxPeHZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzRIYMYCi1QN+0J+6fqyxsJ0kWppShPMKmcEW2cO3m5sa7rfXdh
+ kv2bnbApXMcQvaE8nrB3eyI/uXqM37SsDO9huUOLQsppRYlCp2k9Q5qmXb2UlXo=
+X-Google-Smtp-Source: AGHT+IHKnu53nThpZGWQqPEljZp+OwL7w/w0X/6FdYop1bPaA9q53NpXOxJ4zAW3vWCLnYcSEXQUDw==
+X-Received: by 2002:a05:6000:144e:b0:374:d2a3:9806 with SMTP id
+ ffacd0b85a97d-374d2a3989cmr5576698f8f.2.1725436908416; 
+ Wed, 04 Sep 2024 01:01:48 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-374c4059811sm10059317f8f.4.2024.09.04.01.01.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 17:49:00 -0700 (PDT)
-From: Filip Hejsek <filip.hejsek@gmail.com>
-Date: Wed, 4 Sep 2024 00:50:56 +0200
-Subject: [PATCH] drm/amd/display: Fix debugfs dmub_fw_state read
-To: Harry Wentland <harry.wentland@amd.com>,
-    Leo Li <sunpeng.li@amd.com>,
-    Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
-    Alex Deucher <alexander.deucher@amd.com>,
-    "Christian König" <christian.koenig@amd.com>,
-    Xinhui Pan <Xinhui.Pan@amd.com>,
-    David Airlie <airlied@gmail.com>,
-    Daniel Vetter <daniel@ffwll.ch>,
-    amd-gfx@lists.freedesktop.org,
-    dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Message-ID: <d02c033c6f4411be31a9439f33de2c593b51d8fc.camel@gmail.com>
+ Wed, 04 Sep 2024 01:01:47 -0700 (PDT)
+Date: Wed, 4 Sep 2024 11:01:43 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Jiadong Zhu <Jiadong.Zhu@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jack Xiao <Jack.Xiao@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>, shaoyunl <shaoyun.liu@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>, Tim Huang <Tim.Huang@amd.com>,
+ chongli2 <chongli2@amd.com>, amd-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org
+Subject: [PATCH] drm/amdgpu/mes11: Indent an if statment
+Message-ID: <4152e10c-2ec5-4ac3-be47-c97fcafdb35f@stanley.mountain>
 MIME-Version: 1.0
-User-Agent: Evolution 3.52.4 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Mailman-Approved-At: Thu, 05 Sep 2024 18:49:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,34 +86,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When the FW state is too large to fit in initial seq_file buffer,
-seq_write returns -1, which is subsequently returned from
-dmub_fw_state_show. This causes the read operation to fail.
+Indent the "break" statement one more tab.
 
-Return instead always 0 and let the seq_file handling retry the read
-with a larger buffer if the initial buffer overflows.
-
-Fixes: 2364076772b1 ("drm/amd/display: Add DMUB firmware state debugfs")
-Signed-off-by: Filip Hejsek <filip.hejsek@gmail.com>
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index db56b0aa545..ecda44789b4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -958,7 +958,8 @@ static int dmub_fw_state_show(struct seq_file *m, void *data)
- 
- 	state_size = fb_info->fb[DMUB_WINDOW_6_FW_STATE].size;
- 
--	return seq_write(m, state_base, state_size);
-+	seq_write(m, state_base, state_size);
-+	return 0;
- }
- 
- /* replay_capability_show() - show eDP panel replay capability
-
-base-commit: 96a5152075c0424e9bda551d00ab850c815e309c
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index 0f055d1b1da6..ee91ff9e52a2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -415,7 +415,7 @@ static int mes_v11_0_reset_queue_mmio(struct amdgpu_mes *mes, uint32_t queue_typ
+ 		/* wait till dequeue take effects */
+ 		for (i = 0; i < adev->usec_timeout; i++) {
+ 			if (!(RREG32_SOC15(GC, 0, regCP_HQD_ACTIVE) & 1))
+-			break;
++				break;
+ 			udelay(1);
+ 		}
+ 		if (i >= adev->usec_timeout) {
 -- 
-2.46.0
+2.45.2
+
