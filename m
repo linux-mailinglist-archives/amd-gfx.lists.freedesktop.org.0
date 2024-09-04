@@ -2,55 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B82F96E243
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E59096E244
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Sep 2024 20:49:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65B2B10E937;
-	Thu,  5 Sep 2024 18:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1A0D10E931;
+	Thu,  5 Sep 2024 18:49:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Dq4TM6XO";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="fqR2QsG/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B5DD10E68E;
- Wed,  4 Sep 2024 08:36:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VJD6rwXkF/xvLRfaJH1aIA1roUctSJfeuI0pZ0ZCB30=; b=Dq4TM6XOqRlIYXcz8LBa8a1izW
- 8guXYbcKQKsRt9M+JaGmF8RHXRjWHHxfr3s71WE4iyQO1sJwWwpmHV6K3M0+dux2IW+0SqRA9r4aK
- U10+boLawol3HndEoEWjdA2zzhss1metwU6TuwktbjkI84NlKcAOoWBSmmIHcuqER1TFoINzvGCar
- dXKVffiT2Z9RbUOdJnNQY0rVoJ3qr1+X20mwM0BV146SrzWt7cnBT3g/meeKfqvi2qANIzV/+iVVo
- BUYXQfLaAfidtmAQYuNpEBCe1St8Aokb5Bi5g8570+vyzVEd65ObcCZF76zLytSMepzEjUgphGgg3
- 1Afp/2VA==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1sllUg-009QMg-9C; Wed, 04 Sep 2024 10:36:01 +0200
-Message-ID: <8c732c8e-27d3-46f8-83fe-6b3edb835d95@igalia.com>
-Date: Wed, 4 Sep 2024 09:36:00 +0100
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABC3210E816
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 Sep 2024 17:23:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 6E422A440FE;
+ Wed,  4 Sep 2024 17:23:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0C0DC4CEC2;
+ Wed,  4 Sep 2024 17:23:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1725470587;
+ bh=MKVWiXAJ+7Pq+eolEHDrok3t8EEZ6mlOOGqnV70ub0Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fqR2QsG/5A2d7tJRY3kzsPBXJIdIWhE8IMlbxaF6CK0DGsTCsuVHVVX9FM/jtWTEZ
+ iIJvDdnnKhemLvI0O0a824vfqnrJUvg6LzfvODA2LMx2nKa4IG90XKTXPe4ymppHvX
+ GOAyL73b/IdXjPzRqZgCcb7FODGsKwmHTIzV2Mpw=
+Date: Wed, 4 Sep 2024 19:23:04 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: AMD drm patch workflow is broken for stable trees
+Message-ID: <2024090447-boozy-judiciary-849b@gregkh>
+References: <2024081247-until-audacious-6383@gregkh>
+ <07bbc66f-5689-405d-9232-87ba59d2f421@amd.com>
+ <CADnq5_MXBZ_WykSMv-GtHZv60aNzvLFVBOvze09o6da3-4-dTQ@mail.gmail.com>
+ <2024081558-filtrate-stuffed-db5b@gregkh>
+ <CADnq5_OFxhxrm-cAfhB8DzdmEcMq_HbkU52vbynqoS1_L0rhzg@mail.gmail.com>
+ <2024082439-extending-dramatize-09ca@gregkh>
+ <CADnq5_OeJ7LD0DvXjXmr-dV2ciEhfiEEEZsZn3w1MKnOvL=KUA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] Documentation/gpu: Document the situation with
- unqualified drm-memory-
-To: Alex Deucher <alexdeucher@gmail.com>, Tvrtko Ursulin <tursulin@igalia.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.keonig@amd.com>,
- Rob Clark <robdclark@chromium.org>
-References: <20240813135712.82611-1-tursulin@igalia.com>
- <20240813135712.82611-2-tursulin@igalia.com>
- <CADnq5_Pv8B+nXkO3t05VLger+zwLN7PRDcB44K-=wXWo3CymhQ@mail.gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CADnq5_Pv8B+nXkO3t05VLger+zwLN7PRDcB44K-=wXWo3CymhQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADnq5_OeJ7LD0DvXjXmr-dV2ciEhfiEEEZsZn3w1MKnOvL=KUA@mail.gmail.com>
 X-Mailman-Approved-At: Thu, 05 Sep 2024 18:49:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,125 +61,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 21/08/2024 21:47, Alex Deucher wrote:
-> On Tue, Aug 13, 2024 at 9:57 AM Tvrtko Ursulin <tursulin@igalia.com> wrote:
->>
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Currently it is not well defined what is drm-memory- compared to other
->> categories.
->>
->> In practice the only driver which emits these keys is amdgpu and in them
->> exposes the current resident buffer object memory (including shared).
->>
->> To prevent any confusion, document that drm-memory- is deprecated and an
->> alias for drm-resident-memory-.
->>
->> While at it also clarify that the reserved sub-string 'memory' refers to
->> the memory region component, and also clarify the intended semantics of
->> other memory categories.
->>
->> v2:
->>   * Also mark drm-memory- as deprecated.
->>   * Add some more text describing memory categories. (Alex)
->>
->> v3:
->>   * Semantics of the amdgpu drm-memory is actually as drm-resident.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian König <christian.keonig@amd.com>
->> Cc: Rob Clark <robdclark@chromium.org>
->> ---
->>   Documentation/gpu/drm-usage-stats.rst | 25 ++++++++++++++++++++++---
->>   1 file changed, 22 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
->> index a80f95ca1b2f..ff964c707754 100644
->> --- a/Documentation/gpu/drm-usage-stats.rst
->> +++ b/Documentation/gpu/drm-usage-stats.rst
->> @@ -144,7 +144,9 @@ Memory
->>
->>   Each possible memory type which can be used to store buffer objects by the
->>   GPU in question shall be given a stable and unique name to be returned as the
->> -string here.  The name "memory" is reserved to refer to normal system memory.
->> +string here.
->> +
->> +The region name "memory" is reserved to refer to normal system memory.
->>
->>   Value shall reflect the amount of storage currently consumed by the buffer
->>   objects belong to this client, in the respective memory region.
->> @@ -152,6 +154,9 @@ objects belong to this client, in the respective memory region.
->>   Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
->>   indicating kibi- or mebi-bytes.
->>
->> +This key is deprecated and is an alias for drm-resident-<region>. Only one of
->> +the two should be present in the output.
->> +
+On Tue, Aug 27, 2024 at 10:18:27AM -0400, Alex Deucher wrote:
+> On Sat, Aug 24, 2024 at 1:23 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Fri, Aug 23, 2024 at 05:23:46PM -0400, Alex Deucher wrote:
+> > > On Thu, Aug 15, 2024 at 1:11 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> > > >
+> > > > On Wed, Aug 14, 2024 at 05:30:08PM -0400, Alex Deucher wrote:
+> > > > > On Wed, Aug 14, 2024 at 4:55 PM Felix Kuehling <felix.kuehling@amd.com> wrote:
+> > > > > >
+> > > > > > On 2024-08-12 11:00, Greg KH wrote:
+> > > > > > > Hi all,
+> > > > > > >
+> > > > > > > As some of you have noticed, there's a TON of failure messages being
+> > > > > > > sent out for AMD gpu driver commits that are tagged for stable
+> > > > > > > backports.  In short, you all are doing something really wrong with how
+> > > > > > > you are tagging these.
+> > > > > > Hi Greg,
+> > > > > >
+> > > > > > I got notifications about one KFD patch failing to apply on six branches
+> > > > > > (6.10, 6.6, 6.1, 5.15, 5.10 and 5.4). The funny thing is, that you
+> > > > > > already applied this patch on two branches back in May. The emails had a
+> > > > > > suspicious looking date in the header (Sep 17, 2001). I wonder if there
+> > > > > > was some date glitch that caused a whole bunch of patches to be re-sent
+> > > > > > to stable somehow:
+> > > > >
+> > > > > I think the crux of the problem is that sometimes patches go into
+> > > > > -next with stable tags and they end getting taken into -fixes as well
+> > > > > so after the merge window they end up getting picked up for stable
+> > > > > again.  Going forward, if they land in -next, I'll cherry-pick -x the
+> > > > > changes into -fixes so there is better traceability.
+> > > >
+> > > > Please do so, and also work to not have duplicate commits like this in
+> > > > different branches.  Git can handle merges quite well, please use it.
+> > > >
+> > > > If this shows up again in the next -rc1 merge window without any
+> > > > changes, I'll have to just blackhole all amd drm patches going forward
+> > > > until you all tell me you have fixed your development process.
+> > >
+> > > Just a heads up, you will see some of these when the 6.12 merge window
+> > > due to what is currently in -next and the fixes that went into 6.11,
+> > > but going forward we have updated our process and it should be better.
+> >
+> > Can you give me a list of the git ids that I should be ignoring for
+> > 6.12-rc1?  Otherwise again, it's a huge waste of time on my side trying
+> > to sift through them and figure out if the rejection is real or not...
 > 
-> I'm not sure how best to handle this.  What should amdgpu do?  We have
-> customers out in the field using these existing fields and then with
-> patch 2, they go away.  Arguably we'd want both for backwards
-> compatibility.
+> 8151a6c13111 drm/amd/display: Skip Recompute DSC Params if no Stream on Link
+> fbfb5f034225 drm/amdgpu: fix contiguous handling for IB parsing v2
+> ec0d7abbb0d4 drm/amd/display: Fix Potential Null Dereference
+> 332315885d3c drm/amd/display: Remove ASSERT if significance is zero in
+> math_ceil2
+> 295d91cbc700 drm/amd/display: Check for NULL pointer
+> 6472de66c0aa drm/amd/amdgpu: Fix uninitialized variable warnings
+> 93381e6b6180 drm/amdgpu: fix a possible null pointer dereference
+> 7a38efeee6b5 drm/radeon: fix null pointer dereference in radeon_add_common_modes
 
-Exactly, so it looks you maybe missed that 2/2 is not removing the 
-amdgpu "legacy" drm-memory-. It keeps outputting it and also duplicating 
-under drm-resident-. This is mentioned in the commit paragraph:
+Please resend this after -rc1 is out, so we don't have to hunt for it
+again.
 
-"""
-Legacy keys have been preserved, with the outlook of only potentially
-removing only the drm-memory- when the time gets right.
-"""
+thanks,
 
-Put differently, I don't think 2/2 should break the existing 
-tools/parsers. Only if they have hardcoded assumptions about the order 
-of keys perhaps?
-
-Regards,
-
-Tvrtko
-
->>   - drm-shared-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are shared with another file (e.g., have more
->> @@ -159,20 +164,34 @@ than a single handle).
->>
->>   - drm-total-<region>: <uint> [KiB|MiB]
->>
->> -The total size of buffers that including shared and private memory.
->> +The total size of all created buffers including shared and private memory. The
->> +backing store for the buffers does not have to be currently instantiated to be
->> +counted under this category.
->>
->>   - drm-resident-<region>: <uint> [KiB|MiB]
->>
->> -The total size of buffers that are resident in the specified region.
->> +The total size of buffers that are resident (have their backing store present or
->> +instantiated) in the specified region.
->> +
->> +This is an alias for drm-memory-<region> and only one of the two should be
->> +present in the output.
->>
->>   - drm-purgeable-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are purgeable.
->>
->> +For example drivers which implement a form of 'madvise' like functionality can
->> +here count buffers which have instantiated backing store, but have been marked
->> +with an equivalent of MADV_DONTNEED.
->> +
->>   - drm-active-<region>: <uint> [KiB|MiB]
->>
->>   The total size of buffers that are active on one or more engines.
->>
->> +One practical example of this can be presence of unsignaled fences in an GEM
->> +buffer reservation object. Therefore the active category is a subset of
->> +resident.
->> +
->>   Implementation Details
->>   ======================
->>
->> --
->> 2.44.0
->>
+greg k-h
