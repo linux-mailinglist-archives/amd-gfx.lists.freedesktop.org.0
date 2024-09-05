@@ -2,69 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CBD96E9A0
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Sep 2024 07:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB5496EC21
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Sep 2024 09:37:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9663410E183;
-	Fri,  6 Sep 2024 05:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E5010E197;
+	Fri,  6 Sep 2024 07:37:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LXvGjGYj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OLnnHmQl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85A4610E18D;
- Fri,  6 Sep 2024 05:59:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725602371; x=1757138371;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yMyT0v1kxNbfJq+8ycKl/AKn5rVKTHrtntCjDqG2Jww=;
- b=LXvGjGYjIgybQz3KJl0IPJHbOLlXbFko/ixDIES8qnf85EH3u0TaZCp9
- ho/ruOiAIDTVDdeoOPsZhtoz47jfw7xeqTEtk11mZsa5IursoHxj09/a3
- vMIaBojCLxgAhuriqvt4No6U3LnBe3RU0XvUqy26+1hudH7G0JzaEP+Ae
- AnJdFtgOOLI81wbleTeRoocQlpIkJbOkBDF0f8LHC18bTeiAl+yYUvWvx
- QBR8i2FmwNh7TyEjtLmky4dhKqNKoDDatVnxODqaQEXkU/Tur+DRwSu5Y
- ZCeTRmz/Se6OfR+zn0+Gleo/ZK1Yb4h6FNI9OFQ4iW1BSraHOzfgwS6pb g==;
-X-CSE-ConnectionGUID: V3qCyORGQ/Ci4IBJxEkvTg==
-X-CSE-MsgGUID: GvgoGDhBS2GTynzpInICWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24150889"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="24150889"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 22:59:30 -0700
-X-CSE-ConnectionGUID: 0UIUUh0ZRp+wylHFk4u9bg==
-X-CSE-MsgGUID: gNrrE9nWR56EdWunTgr+ZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="66088329"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 05 Sep 2024 22:59:27 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1smS0C-000AjR-2a;
- Fri, 06 Sep 2024 05:59:24 +0000
-Date: Fri, 6 Sep 2024 13:58:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Zack Rusin <zack.rusin@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com,
- Sui Jingfeng <suijingfeng@loongson.cn>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH 1/2] drm/ttm: Change ttm_device_init to use a struct
- instead of multiple bools
-Message-ID: <202409061330.a2rRYEMl-lkp@intel.com>
-References: <20240905093322.29786-2-thomas.hellstrom@linux.intel.com>
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com
+ [209.85.128.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59DDC10E95E
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Sep 2024 22:25:03 +0000 (UTC)
+Received: by mail-yw1-f177.google.com with SMTP id
+ 00721157ae682-6d6891012d5so12628607b3.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 05 Sep 2024 15:25:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1725575102; x=1726179902; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=zMkX07JSpF4ZTof1kwdmnFdYzjLU84vys3KyrWxvvas=;
+ b=OLnnHmQl2t/nETMW6J6c0boHLUQwqIFEnSZdfe8Ao+d0VxKZjHgsSyCq9zlKIkFbM7
+ fAAhpPhg0+fjnLqgFW4vu0H2RpCoj1aZMLM5tF7LthF+cBxRFF//liV/qKSXvW15WOPZ
+ dteDTCF2kLBU6w8dOzLB4wzpuE1QNssjV34z6EyvBaNwUZFTtGovc/pSxaiZDydv2eGy
+ hyO6S/KF7RYnOHrCI8opS9XQyuBN6gz7vvZpiAwubiL0VCqbpBWSg3EWQp7qcwmXyB+v
+ a+eqqqLg1hQikwBb5xdLjjeNPJ9hUN/1LJfnQOgrqcah8e8swnZ44JmAMLv/iXUsrHR6
+ h0+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725575102; x=1726179902;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=zMkX07JSpF4ZTof1kwdmnFdYzjLU84vys3KyrWxvvas=;
+ b=ui0Yu3U7BF71l2ixHqU1cyFlnBFYqx8KRzueaSrfSyV61XBFVs0eVEhKQxM7Zjh/Aa
+ 8e0mygt+49PlmSaWla70PXd0tiNZc/y6z0qIENBWovFSWIMvFSvlJYgv3MBdCDiJBj3Y
+ qw1wwl9zq7d/20D+XOsEMfniyImBDgVeSPHM5fp40SU8sq5kuNDacnKVG48FAZmhhoul
+ gvaVAuun/Z5WD4Sei9H43P929z83uU78ba3MEspZaHFNWadGSMQdr1Ds85KWYcNTXdAy
+ ekpCkMDTR+R6ijZaWEx0oxLNCL/DJ4yNHM70eN5xe+SThbtRiMRkTmb2oo0UnnD7DS7N
+ X7YA==
+X-Gm-Message-State: AOJu0YzWp2wCsLcVqEf0ZTCH36/0q8OM+AfcJLpUMlFcLApUaEDGQBFJ
+ gUOMxF1mduz3nxF9ruJ+qtmKk6oV+trFPLgdQE4cZJny1of5ym2Wz6Ov+WIV1Gf0HDXlC4N0PXO
+ XpStIntokgKvo0TKhBLqhzLml3jtdaZLh
+X-Google-Smtp-Source: AGHT+IH3HJ73tX9qJmA9FwJdWus9tXtzICtsdrG/HVNJ9pw7oaH8Ur91rsnFLiE2nuEcJCKCXkNXULXnat1pFFkOrlE=
+X-Received: by 2002:a05:690c:82:b0:6c7:a120:e10f with SMTP id
+ 00721157ae682-6db452c394dmr6842367b3.29.1725575102034; Thu, 05 Sep 2024
+ 15:25:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240905093322.29786-2-thomas.hellstrom@linux.intel.com>
+From: __- -__ <isapgswell@gmail.com>
+Date: Thu, 5 Sep 2024 19:26:08 -0300
+Message-ID: <CAN9WMdMfHkadFwrccv2ucnAjMn1u185=n14WmEFFLQqOiEw7aQ@mail.gmail.com>
+Subject: [INFO] multi-gpu scenario
+To: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000fd7c8f062166c266"
+X-Mailman-Approved-At: Fri, 06 Sep 2024 07:37:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,79 +70,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+--000000000000fd7c8f062166c266
+Content-Type: text/plain; charset="UTF-8"
 
-kernel test robot noticed the following build errors:
+Hi,
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on next-20240905]
-[cannot apply to drm-xe/drm-xe-next linus/master v6.11-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I am trying to a way we can have a desktop performance compared to
+windows/macos on linux where system is optimus-enhanced (nvidia) focused.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Change-ttm_device_init-to-use-a-struct-instead-of-multiple-bools/20240905-173606
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240905093322.29786-2-thomas.hellstrom%40linux.intel.com
-patch subject: [PATCH 1/2] drm/ttm: Change ttm_device_init to use a struct instead of multiple bools
-config: i386-randconfig-006-20240906 (https://download.01.org/0day-ci/archive/20240906/202409061330.a2rRYEMl-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240906/202409061330.a2rRYEMl-lkp@intel.com/reproduce)
+I have read about off-screen mesa. So ubuntu has gl_dispatcher strategy,
+why not make osmesa defaults and let gl_dispatcher take care of relative
+device (nvidia, amd, nvidia) when optimus-enhanced is in set.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409061330.a2rRYEMl-lkp@intel.com/
+On-demand nvidia-prime profile runs Xorg nvidia's vram, ok?
+an alternative config says intel/nvidia as default opengl ...
 
-All errors (new ones prefixed by >>):
+Maybe osmesa (off-screen mesa) default background, when optimus-enhanced is
+needed/set, should communicate gl_dispatcher and decision what device take
+control could be set. I think it is a good strategy together with envvars.
 
-   drivers/gpu/drm/drm_gem_vram_helper.c: In function 'drm_vram_mm_init':
->> drivers/gpu/drm/drm_gem_vram_helper.c:981:34: error: incompatible type for argument 6 of 'ttm_device_init'
-     981 |                                  false, true);
-         |                                  ^~~~~
-         |                                  |
-         |                                  int
-   In file included from include/drm/ttm/ttm_bo.h:39,
-                    from include/drm/drm_gem_ttm_helper.h:10,
-                    from drivers/gpu/drm/drm_gem_vram_helper.c:13:
-   include/drm/ttm/ttm_device.h:303:56: note: expected 'const struct ttm_device_init_flags' but argument is of type 'int'
-     303 |                     const struct ttm_device_init_flags flags);
-         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
->> drivers/gpu/drm/drm_gem_vram_helper.c:978:15: error: too many arguments to function 'ttm_device_init'
-     978 |         ret = ttm_device_init(&vmm->bdev, &bo_driver, dev->dev,
-         |               ^~~~~~~~~~~~~~~
-   include/drm/ttm/ttm_device.h:300:5: note: declared here
-     300 | int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
-         |     ^~~~~~~~~~~~~~~
+We could have hybrid-profile (nvidia-prime on-demand) in addition to
+powersave (intel/amd) amd performance (nvidia-only)
 
+For testing i have set:
+LIBGL_ALWAYS_SOFTWARE=1
+GALLIUM_DRIVER=softpipe/llvmpipe
 
-vim +/ttm_device_init +981 drivers/gpu/drm/drm_gem_vram_helper.c
+And desktop lag was terrible
 
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  969  
-c30b225dba01b4 Thomas Zimmermann 2019-09-11  970  static int drm_vram_mm_init(struct drm_vram_mm *vmm, struct drm_device *dev,
-b0e40e0805221d Thomas Zimmermann 2019-09-11  971  			    uint64_t vram_base, size_t vram_size)
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  972  {
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  973  	int ret;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  974  
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  975  	vmm->vram_base = vram_base;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  976  	vmm->vram_size = vram_size;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  977  
-8af8a109b34fa8 Christian König   2020-10-01 @978  	ret = ttm_device_init(&vmm->bdev, &bo_driver, dev->dev,
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  979  				 dev->anon_inode->i_mapping,
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  980  				 dev->vma_offset_manager,
-ee5d2a8e549e90 Christian König   2020-10-24 @981  				 false, true);
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  982  	if (ret)
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  983  		return ret;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  984  
-37205891d84f92 Dave Airlie       2020-08-04  985  	ret = ttm_range_man_init(&vmm->bdev, TTM_PL_VRAM,
-0fe438cec9e1d2 Christian König   2020-09-11  986  				 false, vram_size >> PAGE_SHIFT);
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  987  	if (ret)
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  988  		return ret;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  989  
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  990  	return 0;
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  991  }
-6b5ce4a1fb8489 Thomas Zimmermann 2019-09-11  992  
+Thx
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Luiz
+
+--000000000000fd7c8f062166c266
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,<br></div><div><div><br></div><div>I am trying to =
+a way we can have a=20
+desktop performance compared to windows/macos on linux where system is=20
+optimus-enhanced (nvidia) focused.</div><div><br></div><div>I have read abo=
+ut <span style=3D"background-color:rgb(255,255,0)">off-screen mesa</span>. =
+So ubuntu has gl_dispatcher strategy, why not make <span style=3D"backgroun=
+d-color:rgb(255,255,0)">osmesa</span> defaults and let gl_dispatcher take c=
+are of relative device (nvidia, amd, nvidia) when optimus-enhanced is in se=
+t.</div><div><br></div><div>On-demand nvidia-prime profile runs Xorg nvidia=
+&#39;s vram, ok?</div><div>an alternative config says intel/nvidia as defau=
+lt opengl ...</div><div><br></div><div>Maybe
+ osmesa (off-screen mesa) default background, when optimus-enhanced is=20
+needed/set, should communicate gl_dispatcher and decision what device=20
+take control could be set. I think it is a good strategy together with=20
+envvars.<br></div><div><br></div><div>We could have hybrid-profile (nvidia-=
+prime on-demand) in addition to powersave (intel/amd) amd performance (nvid=
+ia-only)</div><div><br></div><div>For testing i have set:</div><div>LIBGL_A=
+LWAYS_SOFTWARE=3D1<br>GALLIUM_DRIVER=3Dsoftpipe/llvmpipe</div><div><br></di=
+v><div>And desktop lag was terrible<br></div><div><br></div><div>Thx</div><=
+div><br></div><div>Luiz</div></div></div>
+
+--000000000000fd7c8f062166c266--
