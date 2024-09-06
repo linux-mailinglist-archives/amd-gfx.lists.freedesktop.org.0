@@ -2,65 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA65696F5A3
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Sep 2024 15:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C830B96F674
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Sep 2024 16:16:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFFDE10EA5F;
-	Fri,  6 Sep 2024 13:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6389E10E09A;
+	Fri,  6 Sep 2024 14:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OzVThkKH";
+	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="X7ridRbF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA6D410EA5F
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 13:42:48 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id
- d9443c01a7336-2055548469aso1922895ad.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Sep 2024 06:42:48 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E55710E9C9
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 08:50:24 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-371ba7e46easo1064588f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 06 Sep 2024 01:50:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725630168; x=1726234968; darn=lists.freedesktop.org;
+ d=broadcom.com; s=google; t=1725612622; x=1726217422;
+ darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=t4CYXxXm5NlDEdw9Fh0ZFV5njTV/KUkdwBPwFbHkk0g=;
- b=OzVThkKHn5KVxTDj0h++UxOy1D7fbttyjR47Ri9caESlLcZBEojnMaAXpbuLhAEzI5
- ZyWeUIkBWbk/RD2wSu2UvYfDK92GAnTo5wbGGAQW8N4tF0e230BCdh+CbAUACeZWnjtr
- B90dafcIMSDQLWD9DY/zb0wMa11u91CHnEJ+Io8qocONkv66ShpNKls7xTqLJeFpZkoa
- es5s5HmjXljDxiotqFICHaPgN2PAoFMkfgRHwClrUEdCPQUuOqe7snkfbz2A2xV0X1Lw
- ztusNpP/pbv0mEwqpGgZMqwxzXbOZPy7YMZV6sU3QbAh87aEMGhW6pkILDwvKdnqEa32
- 2hXg==
+ bh=SR/9jqMaY4ZkJhVpjV584ea+FY7mIMJMTafocuSMEVI=;
+ b=X7ridRbFO21NIcwatqjdkfzuKoZLSI7Kh6aJyaxPOyzjMtsJ26PviNx7zM54RyiKrh
+ qS+Ul93hocCiVRdRrvR/epJYJYGGD7sIurh0Sp4e7rYEPujPDcPBAPH4u7zRqxqpa+Lp
+ Z9MmP8TP8RD7LFMs3tW1zZyGsGUdy9CWpNdfE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725630168; x=1726234968;
+ d=1e100.net; s=20230601; t=1725612622; x=1726217422;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=t4CYXxXm5NlDEdw9Fh0ZFV5njTV/KUkdwBPwFbHkk0g=;
- b=HlIPnGhAQydmXSGpPlgJhKNd2iw5/MzlnwSLMQX4ZWeehbbo8j7DdObmtR3+beW0UR
- sETvBL3JzvYFaH+SiWfXcBxwVabth5F3HvRJBbVFcc2VY4b1lwBn+3huo00Rmssoy2wW
- PdQy65W4PAOZo2XUsC3bKrX1hJwEZrGetneevEIFCWolagao/chVyYsecVW/yLKaWzAh
- zEQ38rnQAQShQ8mqr+rEV+9VJk+Rh5hb7V40msPDBpjYiPGc/E0SFd5HBF5eToTusZ38
- sPdFe3Q1yUR/tlkvSqEMd6vrZXQP7eiSaeNl0P92pjxs6Ahic50PW0gxu9i2l6gDE/ic
- iKDQ==
-X-Gm-Message-State: AOJu0YzBxQAzUbd6xaL56oH9NFiVVwLJ6DYMfTDA38nvNasY0MnY7WT3
- 4bDecdLf8D/PIXCaO03OkuH5loDm/g3tJyGmLikDvxn8iNTULtywvPUd7cC3xw+uIx3Z973x1ie
- T6vnTR/MxC7FXGsa6H4OQdCpIoeI=
-X-Google-Smtp-Source: AGHT+IEv7n1TJ945IMUTVI7QqY2SBBBv6uGvVmHd5upY13WqgiZtbCaIuCaH8TKgzUx2IwgbBGfFL62snIdEm+p1VOE=
-X-Received: by 2002:a17:902:c40c:b0:205:9204:d0be with SMTP id
- d9443c01a7336-206f068a66cmr13773855ad.10.1725630167954; Fri, 06 Sep 2024
- 06:42:47 -0700 (PDT)
+ bh=SR/9jqMaY4ZkJhVpjV584ea+FY7mIMJMTafocuSMEVI=;
+ b=rEA2+Y8lpnPFUUHBJf0QpqJ44yAlV00N8d+XqrlP+DpNGYBRkf+q5nP0cTLHBnsKzd
+ 3yX7madCjDuXAoUAulx+sdswYWSpTVUAlmKT9j6llZ5rlauxchQt5aPCh+4x50bxehET
+ EX8fXDPSxU5z2r7fKECoG/Nai2zIz0i9PRQjBXn8KnU92pBt+4x0dPOY0iRY8ljaZQf8
+ 81tJwDegTP0rxxG1UJR97rejkLb87wBHt+TFEmZ6HS8ip4AdTR1yJfei8AnQkJwxsfYU
+ LSuVvOYj5sdCFlnWOV8y/LADSSGzmnK41/lOjpZFJEEtUcdGP9g1jEAWE9TRR3jIAJmI
+ nQrQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVcGovJGhPWOYW6AuWkRJeL4OB2S54sV2JL2739bba4LzKKc/4Vz/MBdLbwoMRIvISwIdkCJTtw@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFcBXalXPfeY4zsB9/veWEgOSQibSikQzlBTcYkLwink+ATa4k
+ AtMZ5tIOnRJlmdjg/G1p26bn72rlOGI8bUa5kX8IZN1VDZ6mfX+VbeVljAExSXRMUl945LY3tJC
+ hkg5A2hBpwLGVs2n++8DlfqccDbWYaj/w8zg9
+X-Google-Smtp-Source: AGHT+IEf3kS+J5eIcH9aoEI8sQEx7ql08PzycsM89+gtgjd5bmyXErbV7K7VP95PFXMisPnX+f8aCwG5eZm6hdTL5O8=
+X-Received: by 2002:a5d:4983:0:b0:371:86b2:a7e4 with SMTP id
+ ffacd0b85a97d-37889682e03mr1118424f8f.37.1725612621485; Fri, 06 Sep 2024
+ 01:50:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20240906125242.263564-1-kenneth.feng@amd.com>
-In-Reply-To: <20240906125242.263564-1-kenneth.feng@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 6 Sep 2024 09:42:35 -0400
-Message-ID: <CADnq5_P2wmTUTQzW5UDWyWwXV2_Mg2i4PTXWDf3X2QHdbHOO8A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/pm: fix the pp_dpm_pcie issue on smu v14.0.2/3
-To: Kenneth Feng <kenneth.feng@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, kevinyang.wang@amd.com
+References: <20240903045809.5025-1-mukul.sikka@broadcom.com>
+ <CADnq5_OVSD1DXgi_9f_H-uT7KSjMwz-FfhP=vRQvposSxv=BMw@mail.gmail.com>
+In-Reply-To: <CADnq5_OVSD1DXgi_9f_H-uT7KSjMwz-FfhP=vRQvposSxv=BMw@mail.gmail.com>
+From: Mukul Sikka <mukul.sikka@broadcom.com>
+Date: Fri, 6 Sep 2024 14:20:09 +0530
+Message-ID: <CAG99D9Jss=h5aVLDq0tkDjfZgGUbrNV1gqwcw631RbwCiPVqNg@mail.gmail.com>
+Subject: Re: [PATCH v5.15-v5.10] drm/amd/pm: Fix the null pointer dereference
+ for vega10_hwmgr
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: stable@vger.kernel.org, gregkh@linuxfoundation.org, evan.quan@amd.com, 
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, 
+ daniel@ffwll.ch, Jun.Ma2@amd.com, kevinyang.wang@amd.com, sashal@kernel.org, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, ajay.kaher@broadcom.com, 
+ alexey.makhalov@broadcom.com, vasavi.sirnapalli@broadcom.com, 
+ Bob Zhou <bob.zhou@amd.com>, Tim Huang <Tim.Huang@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 06 Sep 2024 14:16:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,40 +84,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 6, 2024 at 8:52=E2=80=AFAM Kenneth Feng <kenneth.feng@amd.com> =
-wrote:
+On Fri, Sep 6, 2024 at 12:05=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com=
+> wrote:
 >
-> fix the pp_dpm_pcie issue on smu v14.0.2/3 as below:
-> 0: 2.5GT/s, x4 250Mhz
-> 1: 8.0GT/s, x4 616Mhz *
-> 2: 8.0GT/s, x4 1143Mhz *
-> the middle level can be removed since it is always skipped on
-> smu v14.0.2/3
+> On Tue, Sep 3, 2024 at 5:53=E2=80=AFAM sikkamukul <mukul.sikka@broadcom.c=
+om> wrote:
+> >
+> > From: Bob Zhou <bob.zhou@amd.com>
+> >
+> > [ Upstream commit 50151b7f1c79a09117837eb95b76c2de76841dab ]
+> >
+> > Check return value and conduct null pointer handling to avoid null poin=
+ter dereference.
+> >
+> > Signed-off-by: Bob Zhou <bob.zhou@amd.com>
+> > Reviewed-by: Tim Huang <Tim.Huang@amd.com>
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Sasha Levin <sashal@kernel.org>
+> > Signed-off-by: Mukul Sikka <mukul.sikka@broadcom.com>
 >
-> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+> Just out of curiosity, are you actually seeing an issue?  This and a
+> lot of the other recent NULL check patches are just static checker
+> fixes.  They don't actually fix a known issue.
+>
+No, according to the description of this patch and CVE-2024-43905.
+It seems to be applicable to LTS.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+- Mukul
 
-> ---
->  drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drive=
-rs/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> index a31fae5feedf..30f6cf0d9555 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> @@ -687,6 +687,9 @@ static int smu_v14_0_2_set_default_dpm_table(struct s=
-mu_context *smu)
->                 pcie_table->clk_freq[pcie_table->num_of_link_levels] =3D
->                                         skutable->LclkFreq[link_level];
->                 pcie_table->num_of_link_levels++;
-> +
-> +               if (link_level =3D=3D 0)
-> +                       link_level++;
->         }
->
->         /* dcefclk dpm table setup */
-> --
-> 2.34.1
->
+> > ---
+> >  .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c | 30 ++++++++++++++++---
+> >  1 file changed, 26 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/dr=
+ivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> > index 10678b519..304874cba 100644
+> > --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> > +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> > @@ -3391,13 +3391,17 @@ static int vega10_find_dpm_states_clocks_in_dpm=
+_table(struct pp_hwmgr *hwmgr, co
+> >         const struct vega10_power_state *vega10_ps =3D
+> >                         cast_const_phw_vega10_power_state(states->pnew_=
+state);
+> >         struct vega10_single_dpm_table *sclk_table =3D &(data->dpm_tabl=
+e.gfx_table);
+> > -       uint32_t sclk =3D vega10_ps->performance_levels
+> > -                       [vega10_ps->performance_level_count - 1].gfx_cl=
+ock;
+> >         struct vega10_single_dpm_table *mclk_table =3D &(data->dpm_tabl=
+e.mem_table);
+> > -       uint32_t mclk =3D vega10_ps->performance_levels
+> > -                       [vega10_ps->performance_level_count - 1].mem_cl=
+ock;
+> > +       uint32_t sclk, mclk;
+> >         uint32_t i;
+> >
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return -EINVAL;
+> > +       sclk =3D vega10_ps->performance_levels
+> > +                       [vega10_ps->performance_level_count - 1].gfx_cl=
+ock;
+> > +       mclk =3D vega10_ps->performance_levels
+> > +                       [vega10_ps->performance_level_count - 1].mem_cl=
+ock;
+> > +
+> >         for (i =3D 0; i < sclk_table->count; i++) {
+> >                 if (sclk =3D=3D sclk_table->dpm_levels[i].value)
+> >                         break;
+> > @@ -3704,6 +3708,9 @@ static int vega10_generate_dpm_level_enable_mask(
+> >                         cast_const_phw_vega10_power_state(states->pnew_=
+state);
+> >         int i;
+> >
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return -EINVAL;
+> > +
+> >         PP_ASSERT_WITH_CODE(!vega10_trim_dpm_states(hwmgr, vega10_ps),
+> >                         "Attempt to Trim DPM States Failed!",
+> >                         return -1);
+> > @@ -4828,6 +4835,9 @@ static int vega10_check_states_equal(struct pp_hw=
+mgr *hwmgr,
+> >
+> >         psa =3D cast_const_phw_vega10_power_state(pstate1);
+> >         psb =3D cast_const_phw_vega10_power_state(pstate2);
+> > +       if (psa =3D=3D NULL || psb =3D=3D NULL)
+> > +               return -EINVAL;
+> > +
+> >         /* If the two states don't even have the same number of perform=
+ance levels they cannot be the same state. */
+> >         if (psa->performance_level_count !=3D psb->performance_level_co=
+unt) {
+> >                 *equal =3D false;
+> > @@ -4953,6 +4963,8 @@ static int vega10_set_sclk_od(struct pp_hwmgr *hw=
+mgr, uint32_t value)
+> >                 return -EINVAL;
+> >
+> >         vega10_ps =3D cast_phw_vega10_power_state(&ps->hardware);
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return -EINVAL;
+> >
+> >         vega10_ps->performance_levels
+> >         [vega10_ps->performance_level_count - 1].gfx_clock =3D
+> > @@ -5004,6 +5016,8 @@ static int vega10_set_mclk_od(struct pp_hwmgr *hw=
+mgr, uint32_t value)
+> >                 return -EINVAL;
+> >
+> >         vega10_ps =3D cast_phw_vega10_power_state(&ps->hardware);
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return -EINVAL;
+> >
+> >         vega10_ps->performance_levels
+> >         [vega10_ps->performance_level_count - 1].mem_clock =3D
+> > @@ -5239,6 +5253,9 @@ static void vega10_odn_update_power_state(struct =
+pp_hwmgr *hwmgr)
+> >                 return;
+> >
+> >         vega10_ps =3D cast_phw_vega10_power_state(&ps->hardware);
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return;
+> > +
+> >         max_level =3D vega10_ps->performance_level_count - 1;
+> >
+> >         if (vega10_ps->performance_levels[max_level].gfx_clock !=3D
+> > @@ -5261,6 +5278,9 @@ static void vega10_odn_update_power_state(struct =
+pp_hwmgr *hwmgr)
+> >
+> >         ps =3D (struct pp_power_state *)((unsigned long)(hwmgr->ps) + h=
+wmgr->ps_size * (hwmgr->num_ps - 1));
+> >         vega10_ps =3D cast_phw_vega10_power_state(&ps->hardware);
+> > +       if (vega10_ps =3D=3D NULL)
+> > +               return;
+> > +
+> >         max_level =3D vega10_ps->performance_level_count - 1;
+> >
+> >         if (vega10_ps->performance_levels[max_level].gfx_clock !=3D
+> > @@ -5451,6 +5471,8 @@ static int vega10_get_performance_level(struct pp=
+_hwmgr *hwmgr, const struct pp_
+> >                 return -EINVAL;
+> >
+> >         ps =3D cast_const_phw_vega10_power_state(state);
+> > +       if (ps =3D=3D NULL)
+> > +               return -EINVAL;
+> >
+> >         i =3D index > ps->performance_level_count - 1 ?
+> >                         ps->performance_level_count - 1 : index;
+> > --
+> > 2.39.4
+> >
