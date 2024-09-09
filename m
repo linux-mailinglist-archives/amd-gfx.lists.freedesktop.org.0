@@ -2,144 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD449719FC
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 14:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E852971B49
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 15:41:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D99D010E500;
-	Mon,  9 Sep 2024 12:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8BE10E583;
+	Mon,  9 Sep 2024 13:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VAJtswEW";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="VtbNU9GL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2073.outbound.protection.outlook.com [40.107.101.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8F510E500
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 12:52:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o/ykEBE8CNb8ruhcjvXQFo6JmfE9DB71i0igMEQ5HSK0Dhmo7yPIkXf2IsVbqJKO75TFnmbOlzqw0djD1AXKtkjBoSygMkqU3yqzXp5Ck25xf5JNMUmDv2pqC8wFKu0OiYS6mQR7BOUCTR2WqLiTwBOcn5q/fWeo+ZjT86mSDUo7AMV/urLFpsF5YpyvO382CNmYFI6zDIH9ThIwu6IOZKHb7G6NQ23xrGliiovCONkKCJyQNULrtkBeMDBdoWOX44jUMUCHo8z8ocHnBntFQxBKDz1amRGShzvlxcRGMYATl5iC3YmiUjJovYw8MfgCYo+MpUqMgqAUCFkX7r8+NQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=02lYp9U6Ba4AZW+yBK8G+OiSkAeRmFu24Sabf+gTUzE=;
- b=dpyKj9WZZXjgakHtd7MSF3gPdEfHdyyplD1SXRTDqr2BAZlYhDALw7Gvm2JqBD1uweaRdGUPQhmuSaxnqK1TUZ17H9D7IW3nJPF+QoWnkFJ+OI4W1I/zM6dO9iFtvyJYMeucr5iPv9Et1ZTNqgCeni9yWXiLxsaiQ3LpTpf9QYnEueyqm2/0cFeSCmoU4f1WpSwYWSI8dJSc0Un+G0e8LBz32NrjZgHoWtaaIQC7sUJECS7pxj7WOT8VKpJoQvzpXWKjoeiNeMWk7eVT4vw9eR6jSEKOELxnopTR0z8LX1SNrcNTY4hgwbtIlxq56idDqwl6syHpGbutBa1bhsb7vQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=02lYp9U6Ba4AZW+yBK8G+OiSkAeRmFu24Sabf+gTUzE=;
- b=VAJtswEW+cWJ+yqPHO7xxk52PMAEmRwvLGmiSp7kkWqku8xmNDpa8duhHGW3Gbpb1XHyse2pjQt8tegxwO0jWyACjsMbKfa0MCSpCFF2UXSgwo+03pQStGSUbYGOW2jpWWg7CSQZsxvUQxgwqEF0WENaVZuFnCU3LRTm+pa8HlM=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by PH8PR12MB6820.namprd12.prod.outlook.com (2603:10b6:510:1cb::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Mon, 9 Sep
- 2024 12:52:48 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::c593:f43d:c798:e009%4]) with mapi id 15.20.7918.024; Mon, 9 Sep 2024
- 12:52:48 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Zhou1, Tao"
- <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: disable RAS bad page feature for specific APU
-Thread-Topic: [PATCH] drm/amdgpu: disable RAS bad page feature for specific APU
-Thread-Index: AQHbAqgxtrH9ZU5wWUGsTb7vw+y7JLJPXCBwgAAMxcA=
-Date: Mon, 9 Sep 2024 12:52:48 +0000
-Message-ID: <BN9PR12MB5257A6921EC4A92DB2056810FC992@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20240909110508.19202-1-tao.zhou1@amd.com>
- <BN9PR12MB5257D7D20C08EE756F27D051FC992@BN9PR12MB5257.namprd12.prod.outlook.com>
-In-Reply-To: <BN9PR12MB5257D7D20C08EE756F27D051FC992@BN9PR12MB5257.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=4e291243-7132-44b3-a40e-7aceeae231ca;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-09-09T12:06:36Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|PH8PR12MB6820:EE_
-x-ms-office365-filtering-correlation-id: 74d3eabe-0344-4130-4a6a-08dcd0ce4ea7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?zXVnSGyfP/V3Qouu1mi0+y3xfDM5MN1PkWYULT1pewkgwo06imcdrZ6b5WG/?=
- =?us-ascii?Q?84gDd6vLU+RlV6ZCMW79J1Q8h65EowWzmkM4HJwbldn+yLbZDA4Hs3ZyXwgT?=
- =?us-ascii?Q?fduQxBgrHKZbm47tAVSJX4NTx5VylZBLWt/HglXfycmvwjprvBRQBrj4FkvU?=
- =?us-ascii?Q?xBkoy84HGcAIacO2IyVNImPvXvy0eZqDfrGDaXaQtdATITxODS8h/hjQ38Qb?=
- =?us-ascii?Q?KtmXboBFKSjSCXueFPuQxzLBtr90eA4wy5UPoeDU+gJbztqkXoRj5EYT2FoJ?=
- =?us-ascii?Q?QAOrx8Un0RrmkW2kDhYPH7GAI8JlbeEpN3QayEEgiHX1EN9MMpUmne1I8w2T?=
- =?us-ascii?Q?ijX2R5uehYDFsNUTWUzVi8w4rQpHI8T7wUJb7WrlbpDQV/ewilUB0s8E6Z23?=
- =?us-ascii?Q?Ueiqf8iNHJYMW0+sBU8KvxOQ9rcjBF2QzqnQHl1haKTv9CwMNqNt7u+fYsCl?=
- =?us-ascii?Q?uAFyJKvJRyObLOcy6pOxXGie7oK+vluuLCRy2ck8nVgZdUQCKkv10b/2cQlx?=
- =?us-ascii?Q?47XOY/Gq0E2ihEPuKLdIHJHKxnzJy8TRJ3X3P+87VsM2Jo678nvzSm1OwaLI?=
- =?us-ascii?Q?J6nscMHbck1NP8z5rYAvZ9OAMtCT6+I8aEEA/9GOij1jMfcFwDnvD/vTUtmx?=
- =?us-ascii?Q?B6vpScgl7kzJJNPoKN5lf3aEAn8HixYd9o1ry7hzU5Lxkiv3D82B+miXeA5U?=
- =?us-ascii?Q?7gs+nvte1gmxYgKJ2pgqALkgKAxpiWhAu2RQ+axjseMZSGVuEC7PqOjFwut0?=
- =?us-ascii?Q?xdbJHUorrYmhaTTRwzoT7DBISdmYrtQ3APFu2vglOpGsulpgNKAADPKFSA2v?=
- =?us-ascii?Q?IheFjIi2UVIwsMFw08K/trILubxQ9PC7pl6D6k7r2+ynX454aqiVmMJ+NCwM?=
- =?us-ascii?Q?FHG9e1Xn39Zka/HrXpiQxDzQwPzVrXIbYHgJEzMUJfCO2gowmWlevavS3zYF?=
- =?us-ascii?Q?g7danFQfc6GC2Yizx1UoEf4CDOjtwFWCUnxk8N4XRm8bevSwsVNTCqLMOUQh?=
- =?us-ascii?Q?i4PhX8A20m8cV1cF1lQ62GBAR/bcFjyOGixshqHdeaBHPPsINwFKX6lp4DZr?=
- =?us-ascii?Q?HfO99QYsVRmvMlGbFfVVABpQTc3N0Rn5asLd7Z5DGsyGCPot3JM7xYSJe61U?=
- =?us-ascii?Q?RLMBWsGhyX+xpv2se8cDk3EyxvMS7TO+x9Gc4uJRv0SFGPi2wcMLdEzPLFyz?=
- =?us-ascii?Q?sotam4oJaloT73E93t6nBdDacn7XlyHI6T+S6GqKdBCnBVg2S7zyB9jQNxiY?=
- =?us-ascii?Q?GpK2NRBG1BwWKUoiV90OWZ1vQLSgFDS9vA4jKChN/EZwIuy9Xt8IBmTQT8lp?=
- =?us-ascii?Q?/k0KC6twTM2BmvHVT9EKAMaf7qcdCa1o2+vv+fJwkkurORZOOa/7EDKD4v9n?=
- =?us-ascii?Q?/bNUU+SUqcmZSKj+DH1EfqZQTO9HiAvMzwJorkSij+kY5Oz/hg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?erq4FGuCeeNhh0K4UVKZ+xFMZHr/zuRd1DSKGntnWiKsqggEjheUT5GgzxoH?=
- =?us-ascii?Q?/rmlhvC5Jt8bDoV728RNDavtsXnhqDTXAr8dUQLM91+4Tsvoe2Y09HIIZbQ5?=
- =?us-ascii?Q?5Iv9u2Md0R2m0rkjA74+qlnNah1ADURRLT1MDNKUX4tx9nFE8glQTWBihHlD?=
- =?us-ascii?Q?iMBET8fTK85iQq7SVRJi5wVkQ4DxEd7ZwXWzI3fUjM28jpJ/ygBRNz1nW0LJ?=
- =?us-ascii?Q?9iqiWW53Ei4Ic5thqhyipjFvXv22HzCaUAAAqr34LYKFnQxTjYQvZtTyfoRB?=
- =?us-ascii?Q?l7zW0AVT1c76TWjo9ZIsus+ItCXTAaU7VLGxahMNHWRa/g6IiM9Z4cdeSrdK?=
- =?us-ascii?Q?LoYWUZOwsa9iNumsY0a5U9iqKc7Hpp8S/vXZAk3w+MPcguk1YiDvYOsFkzZV?=
- =?us-ascii?Q?5HEwIZGT13TsiQRUNnnB1vlxDPHXxcDTQd6hn5J2IBnJ7DfeaM0cpmz3IUpk?=
- =?us-ascii?Q?vyxFgzgudjH6W9MvhvC/LyW9teXOBs64GfpsSWFBBD3yccU6O6iH3qVm7Dxv?=
- =?us-ascii?Q?4O6/9tI/H6iIXmDY7Vz9xUw4l9aJ0E0oJU/HIGu3zkQExFZR3KMYSJnAgxGK?=
- =?us-ascii?Q?764oYOHj5RIap5/2USo/XUhvqkk0TMni1NgF2ZLDBk7HStXd40iipVMb9zqm?=
- =?us-ascii?Q?qA3KUrfqcOJoLq/Sp6t7VeWeIaBfwou4W0mnM92/8dTD+2D21cWxRAMHEJJR?=
- =?us-ascii?Q?iKZcV+gB5+ue293SBAL9BsiWlAgPnDBYEQkhVS9WEsjTAbB00rlFntWIOeqA?=
- =?us-ascii?Q?yPgtVVjK7y8xK6hVM0EvriGZ5QqXqCbcbPBItYINUnFQEqDomqaHz5wrhZ0Q?=
- =?us-ascii?Q?1U3NhWeS2NN3+Krl/uFoWG2vJ3UZJUAtVvTSXONEP+Phz20Rvvn2y6ILzo/K?=
- =?us-ascii?Q?nVBgizcOMVyja7XVbaYhsjmpsLU70wri//38o8gv2ZznQx4JTQIKsAMRomU4?=
- =?us-ascii?Q?ScK8Qe4HmBGxflBLRhn0RDm4YAGeQxBaBvJyM/NMUE+HgHcyutaYtSEYs0Qk?=
- =?us-ascii?Q?1y3qthFR41YiFRtQgkdvRvz0xTYHOuG/gR4pB8bO7QyfBDGk3dZHVw+nEXxU?=
- =?us-ascii?Q?zI+DxOE+sDy7KU6sXYrXH9WB0SLat+ep0I0Tm2CqCB7SHeVQ/g1FskC+2kcQ?=
- =?us-ascii?Q?BoMnsETA8bFLdNGzlBYmiCNidmvjrYrDl3MRyrrC8guLSK93DVD4sLaR+0ba?=
- =?us-ascii?Q?TCQlC234dWofiFg38f75kyCoUOVA9Il8OsTfwkwY6AvpXe2+hDjveNsZRwnE?=
- =?us-ascii?Q?igukx+X2k6CYte2GHDGfasohafXWI8jCFBwJRbKVxB1WBYcPTry5cq08AaLL?=
- =?us-ascii?Q?XzgDa8REhevVb9O4lw5RuaG4FJG4kCHL7yzyU90BTYShHY+iLdciwBqgSbUx?=
- =?us-ascii?Q?BksWCDbbt21Csh4W23kodimo42yS7xpV+UDiG07RLPNHzHUw4sndXOQw5IoI?=
- =?us-ascii?Q?R7xjYvZNnX0wO+3Zdqx02b3Sawiuaj0Sk/HgsGwQUXf53RIayZdjJyKcFc0Z?=
- =?us-ascii?Q?d122Wblmsm+cXheeX15AUYLBDXDpJI+9wyabCxsacB/5HOh7mW5vthyOJ1s0?=
- =?us-ascii?Q?aJOLLIiOdcADTVGSWc7aJYqWi6mYKdlPJdUipicy?=
-Content-Type: multipart/alternative;
- boundary="_000_BN9PR12MB5257A6921EC4A92DB2056810FC992BN9PR12MB5257namp_"
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C59DD10E583
+ for <amd-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 13:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1725889262;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Th3ZR3EL1plv5t9bnbhjvduRXVqLRDu6yA89xIZ+JNc=;
+ b=VtbNU9GLvVXLrDeTWudyzEjsr+cj8B6zbByXSNSmsUxDY1lbCUvk3JUGfEJYTTxsuCArxV
+ zmsqHIPFNXqKtQah3VvGxCHrW/GYXm/w4KF+Oun3fqaUvuMLu5hSJyzIEdvMh0HF59MXUT
+ v6uiaeksF8AM/8FxjlpAH2fdeXgGrwU=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-624-e55_Qar7OtKUGnmjpVenRA-1; Mon, 09 Sep 2024 09:41:01 -0400
+X-MC-Unique: e55_Qar7OtKUGnmjpVenRA-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-374cd315c68so2653242f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 09 Sep 2024 06:41:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725889260; x=1726494060;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=kRT4RGVSoW78yOsC/Y7gv9msChIjfBCcI5oKX4lypl8=;
+ b=rPxEwXycTEMZ+/BtP82ZWutSibt7nee3XYoeH+HA+QTmtQLMqqFOLKVgnH6+yqY1Td
+ 1/6hNTEBhbUM4gPgYgBJp1wmDJpoPXf3XfwN2bsF2UQdz0pIwrnmxuM9LZRlS9SSih4L
+ foSOV5ExjHm6k9ipbdznbm5xv2KAE3+K7s3svTFPAxkK8kMt5HebOXrSfqS9PXXvFu0V
+ CD9TxB/cQMOeoWytD8iW+zWx6OVMwicns+p66JA2fIHpYRYLPwrliYBPAAUdBo8mlxd6
+ mGYy2OTMMXmgWSMv53bmDrPZolD4BglwlKBcmZOlJCzP3m4aeoB7uX7M8w9FCtSXVBo8
+ omyw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUBqvaRGA3oQLltGQFahHSZUPnKCqGyq4JmBPqI4MSWgM3+xM6Uxu75F0c5AE00BpYzMWq+eY6t@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzvHqIHnmJ6J3owQOtcLjZAyRy31HbbiOFi5uV4XeKP/kxwmWoX
+ f4fsSHIArzT12UC8gcrnPqXqM1f6sUdT+DGWFEMiPL2ihx4j3Cb8j/Sy61ZQql2HI58e9e+XHXY
+ RhdTPrv5V34uhKTcHRwbkdyrfAMEXf4czJ1LphmCQMw1d+168nYvVWNS9LAqBfBw=
+X-Received: by 2002:adf:f38b:0:b0:374:c847:859 with SMTP id
+ ffacd0b85a97d-37894a6b15dmr4073461f8f.54.1725889260407; 
+ Mon, 09 Sep 2024 06:41:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGpHrLlqrLCC/C9OzpjJS85NonzndADR4+sBGv0pOLpgNEZxs4Hgk1jmN1WiQIH+0KN4RFJBg==
+X-Received: by 2002:adf:f38b:0:b0:374:c847:859 with SMTP id
+ ffacd0b85a97d-37894a6b15dmr4073453f8f.54.1725889259813; 
+ Mon, 09 Sep 2024 06:40:59 -0700 (PDT)
+Received: from dhcp-64-8.muc.redhat.com (nat-pool-muc-t.redhat.com.
+ [149.14.88.26]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378956654e8sm6085882f8f.41.2024.09.09.06.40.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 09 Sep 2024 06:40:59 -0700 (PDT)
+Message-ID: <3d361fc62a43dde95ce31185470d3a153c648909.camel@redhat.com>
+Subject: Re: [RFC 1/4] drm/sched: Add locking to drm_sched_entity_modify_sched
+From: Philipp Stanner <pstanner@redhat.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Tvrtko Ursulin <tursulin@igalia.com>, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, Luben Tuikov
+ <ltuikov89@gmail.com>,  Matthew Brost <matthew.brost@intel.com>, David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ stable@vger.kernel.org
+Date: Mon, 09 Sep 2024 15:40:58 +0200
+In-Reply-To: <1848b0fc-7031-46f2-b7f8-f7c086fb00ce@igalia.com>
+References: <20240906180618.12180-1-tursulin@igalia.com>
+ <20240906180618.12180-2-tursulin@igalia.com>
+ <8d763e5162ebc130a05da3cefbff148cdb6ce042.camel@redhat.com>
+ <80e02cde-19e7-4fb6-a572-fb45a639a3b7@amd.com>
+ <2356e3d66da3e5795295267e527042ab44f192c8.camel@redhat.com>
+ <fb9556a1-b48d-49ed-9b9c-74b21fb76af4@amd.com>
+ <14ef37f4-b982-41c1-8121-80882917e9c0@igalia.com>
+ <d8944e6ad57e4efcd480d917a38f9cee9475d59c.camel@redhat.com>
+ <1848b0fc-7031-46f2-b7f8-f7c086fb00ce@igalia.com>
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74d3eabe-0344-4130-4a6a-08dcd0ce4ea7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2024 12:52:48.0774 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xIf9FpJH5ZXGbhvizgcfvu+p0NrT7SPXClcYNFQwgIEyyGDydm8J13GLPmtzSC/woutrGAjR+aLL/ktSNKVm1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6820
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,240 +105,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BN9PR12MB5257A6921EC4A92DB2056810FC992BN9PR12MB5257namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 2024-09-09 at 14:27 +0100, Tvrtko Ursulin wrote:
+>=20
+> On 09/09/2024 13:46, Philipp Stanner wrote:
+> > On Mon, 2024-09-09 at 13:37 +0100, Tvrtko Ursulin wrote:
+> > >=20
+> > > On 09/09/2024 13:18, Christian K=C3=B6nig wrote:
+> > > > Am 09.09.24 um 14:13 schrieb Philipp Stanner:
+> > > > > On Mon, 2024-09-09 at 13:29 +0200, Christian K=C3=B6nig wrote:
+> > > > > > Am 09.09.24 um 11:44 schrieb Philipp Stanner:
+> > > > > > > On Fri, 2024-09-06 at 19:06 +0100, Tvrtko Ursulin wrote:
+> > > > > > > > From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > > > > > > >=20
+> > > > > > > > Without the locking amdgpu currently can race
+> > > > > > > > amdgpu_ctx_set_entity_priority() and
+> > > > > > > > drm_sched_job_arm(),
+> > > > > > > I would explicitly say "amdgpu's
+> > > > > > > amdgpu_ctx_set_entity_priority()
+> > > > > > > races
+> > > > > > > through drm_sched_entity_modify_sched() with
+> > > > > > > drm_sched_job_arm()".
+> > > > > > >=20
+> > > > > > > The actual issue then seems to be drm_sched_job_arm()
+> > > > > > > calling
+> > > > > > > drm_sched_entity_select_rq(). I would mention that, too.
+> > > > > > >=20
+> > > > > > >=20
+> > > > > > > > leading to the
+> > > > > > > > latter accesing potentially inconsitent entity-
+> > > > > > > > >sched_list
+> > > > > > > > and
+> > > > > > > > entity->num_sched_list pair.
+> > > > > > > >=20
+> > > > > > > > The comment on drm_sched_entity_modify_sched() however
+> > > > > > > > says:
+> > > > > > > >=20
+> > > > > > > > """
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0* Note that this must be called und=
+er the same
+> > > > > > > > common
+> > > > > > > > lock for
+> > > > > > > > @entity as
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0* drm_sched_job_arm() and
+> > > > > > > > drm_sched_entity_push_job(),
+> > > > > > > > or the
+> > > > > > > > driver
+> > > > > > > > needs to
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0* guarantee through some other mean=
+s that this is
+> > > > > > > > never
+> > > > > > > > called
+> > > > > > > > while
+> > > > > > > > new jobs
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0* can be pushed to @entity.
+> > > > > > > > """
+> > > > > > > >=20
+> > > > > > > > It is unclear if that is referring to this race or
+> > > > > > > > something
+> > > > > > > > else.
+> > > > > > > That comment is indeed a bit awkward. Both
+> > > > > > > drm_sched_entity_push_job()
+> > > > > > > and drm_sched_job_arm() take rq_lock. But
+> > > > > > > drm_sched_entity_modify_sched() doesn't.
+> > > > > > >=20
+> > > > > > > The comment was written in 981b04d968561. Interestingly,
+> > > > > > > in
+> > > > > > > drm_sched_entity_push_job(), this "common lock" is
+> > > > > > > mentioned
+> > > > > > > with
+> > > > > > > the
+> > > > > > > soft requirement word "should" and apparently is more
+> > > > > > > about
+> > > > > > > keeping
+> > > > > > > sequence numbers in order when inserting.
+> > > > > > >=20
+> > > > > > > I tend to think that the issue discovered by you is
+> > > > > > > unrelated
+> > > > > > > to
+> > > > > > > that
+> > > > > > > comment. But if no one can make sense of the comment,
+> > > > > > > should
+> > > > > > > it
+> > > > > > > maybe
+> > > > > > > be removed? Confusing comment is arguably worse than no
+> > > > > > > comment
+> > > > > > Agree, we probably mixed up in 981b04d968561 that
+> > > > > > submission
+> > > > > > needs a
+> > > > > > common lock and that rq/priority needs to be protected by
+> > > > > > the
+> > > > > > rq_lock.
+> > > > > >=20
+> > > > > > There is also the big FIXME in the drm_sched_entity
+> > > > > > documentation
+> > > > > > pointing out that this is most likely not implemented
+> > > > > > correctly.
+> > > > > >=20
+> > > > > > I suggest to move the rq, priority and rq_lock fields
+> > > > > > together
+> > > > > > in the
+> > > > > > drm_sched_entity structure and document that rq_lock is
+> > > > > > protecting
+> > > > > > the two.
+> > > > > That could also be a great opportunity for improving the lock
+> > > > > naming:
+> > > >=20
+> > > > Well that comment made me laugh because I point out the same
+> > > > when
+> > > > the
+> > > > scheduler came out ~8years ago and nobody cared about it since
+> > > > then.
+> > > >=20
+> > > > But yeah completely agree :)
+> > >=20
+> > > Maybe, but we need to keep in sight the fact some of these fixes
+> > > may
+> > > be
+> > > good to backport. In which case re-naming exercises are best left
+> > > to
+> > > follow.
+> >=20
+> > My argument basically. It's good if fixes and other improvements
+> > are
+> > separated, in general, unless there is a practical / good reason
+> > not
+> > to.
+>=20
+> Ah cool, I am happy to add follow up patches after the fixes.
+>=20
+> > > Also..
+> > >=20
+> > > > > void drm_sched_rq_update_fifo(struct drm_sched_entity
+> > > > > *entity,
+> > > > > ktime_t
+> > > > > ts)
+> > > > > {
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Both locks need to be grabbed, o=
+ne to protect from
+> > > > > entity-
+> > > > > > rq
+> > > > > change
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * for entity from within concurren=
+t
+> > > > > drm_sched_entity_select_rq
+> > > > > and the
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * other to update the rb tree stru=
+cture.
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_lock(&entity->rq_lock);
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_lock(&entity->rq->lock);
+> > >=20
+> > > .. I agree this is quite unredable and my initial reaction was a
+> > > similar
+> > > ugh. However.. What names would you guys suggest and for what to
+> > > make
+> > > this better and not lessen the logic of naming each individually?
+> >=20
+> > According to the documentation, drm_sched_rq.lock does not protect
+> > the
+> > entire runque, but "@lock: to modify the entities list."
+> >=20
+> > So I would keep drm_sched_entity.rq_lock as it is, because it
+> > indeed
+> > protects the entire runqueue.
+>=20
+> Agreed on entity->rq_lock.
+>=20
+> > And drm_sched_rq.lock could be named "entities_lock" or
+> > "entities_list_lock" or something. That's debatable, but it should
+> > be
+> > something that highlights that this lock is not for locking the
+> > entire
+> > runque as the one in the entity apparently is.
+>=20
+> AFAICT it also protects rq->current_entity and rq->rb_tree_root in
+> which=20
+> case it is a bit more tricky.
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Then in any case we'll also have to update the documentation snippet I
+had quoted above.
+
+btw. I'm not saying you have to do all of that; I'm also currently
+working on some additional scheduler documentation.
+
+>  Only rq->sched is outside its scope. Hm.=20
+> Maybe just re-arrange the struct to be like:
+>=20
+> struct drm_sched_rq {
+> =09struct drm_gpu_scheduler=09*sched;
+>=20
+> =09spinlock_t=09=09=09lock;
+> =09/* Following members are protected by the @lock: */
+> =09struct list_head=09=09entities;
+> =09struct drm_sched_entity=09=09*current_entity;
+> =09struct rb_root_cached=09=09rb_tree_root;
+> };
+>=20
+> I have no ideas for better naming.
+
+Hmmm. Difficult.
+
+Maybe rq_outer_lock <-> rq_inner_lock or "partial" and "whole".
+
+Explains why no one ever bothered renaming it.
+
+>  But this would be inline with=20
+> Christian's suggestion for tidying the order in drm_sched_entity.
+>=20
+> I am also not sure what is the point of setting rq->current_entity in
+> drm_sched_rq_select_entity_fifo().
+
+It seems to me that current_entity is only used (read) in
+drm_sched_rq_remove_entity() and drm_sched_rq_select_entity_rr(). It=20
+seems to be only really useful for the RR function?
+
+drm_sched_rq_select_entity_fifo() was added later, in 08fb97de03aa2,
+and it's very likely that the author oriented himself at the RR
+function. So it's possible it's actually not needed and was just copied
+by accident.
 
 
-Fixed typo in red
+P.
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Zhang, H=
-awking
-Sent: Monday, September 9, 2024 20:22
-To: Zhou1, Tao <Tao.Zhou1@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: disable RAS bad page feature for specific =
-APU
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> >=20
+> >=20
+> > Cheers,
+> > P.
+> >=20
+> > >=20
+> > > Regards,
+> > >=20
+> > > Tvrtko
+> > >=20
+> > > > > [...]
+> > > > >=20
+> > > > >=20
+> > > > > P.
+> > > > >=20
+> > > > >=20
+> > > > > > Then audit the code if all users of rq and priority
+> > > > > > actually
+> > > > > > hold the
+> > > > > > correct locks while reading and writing them.
+> > > > > >=20
+> > > > > > Regards,
+> > > > > > Christian.
+> > > > > >=20
+> > > > > > > P.
+> > > > > > >=20
+> > > > > > > > Signed-off-by: Tvrtko Ursulin
+> > > > > > > > <tvrtko.ursulin@igalia.com>
+> > > > > > > > Fixes: b37aced31eb0 ("drm/scheduler: implement a
+> > > > > > > > function
+> > > > > > > > to
+> > > > > > > > modify
+> > > > > > > > sched list")
+> > > > > > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > > > > > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > > > > > > Cc: Luben Tuikov <ltuikov89@gmail.com>
+> > > > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > Cc: David Airlie <airlied@gmail.com>
+> > > > > > > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > > > > > > Cc: dri-devel@lists.freedesktop.org
+> > > > > > > > Cc: <stable@vger.kernel.org> # v5.7+
+> > > > > > > > ---
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0drivers/gpu/drm/scheduler/sched_ent=
+ity.c | 2 ++
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A01 file changed, 2 insertions(+)
+> > > > > > > >=20
+> > > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > > > > > b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > > > > > index 58c8161289fe..ae8be30472cd 100644
+> > > > > > > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > > > > > > > @@ -133,8 +133,10 @@ void
+> > > > > > > > drm_sched_entity_modify_sched(struct
+> > > > > > > > drm_sched_entity *entity,
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0{
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WARN_ON(!num_sch=
+ed_list || !sched_list);
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 spin_lock(&entity->rq_lock);
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 entity->sched_li=
+st =3D sched_list;
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 entity->num_sche=
+d_list =3D num_sched_list;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 spin_unlock(&entity->rq_lock);
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0}
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0EXPORT_SYMBOL(drm_sched_entity_modi=
+fy_sched);
+> > > >=20
+> > >=20
+> >=20
+>=20
 
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-[AMD Official Use Only - AMD Internal Distribution Only]
-
-connected_to_cpu is legacy design - I understand UMC IP version is also use=
-d so it works. Checking is_app_apu flag is good enough at this stage.
-
-It would be better to move the code change to amdgpu_ras_fs_init.
-
-In addition, it's more accurate to say that bad_pae_thread is not applicabl=
-e to specific app platform, or something like that. Bad bad page feature is=
- supported on the APU, but just GPU driver is not involved.
-
-Regards,
-Hawking
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org<mailto:amd-gfx-bounces=
-@lists.freedesktop.org>> On Behalf Of Tao Zhou
-Sent: Monday, September 9, 2024 19:05
-To: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com<mailto:Tao.Zhou1@amd.com>>
-Subject: [PATCH] drm/amdgpu: disable RAS bad page feature for specific APU
-
-The feature is unsupported on specific APU.
-
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com<mailto:tao.zhou1@amd.com>>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_ras.c
-index dbfc41ddc3c7..d46f216a33b1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3679,6 +3679,12 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
-
-        amdgpu_ras_init_reserved_vram_size(adev);
-
-+       /* bad page feature is unspported on specific APU */
-+       if ((adev->gmc.xgmi.connected_to_cpu ||
-+           adev->gmc.is_app_apu) &&
-+           amdgpu_ip_version(adev, UMC_HWIP, 0) =3D=3D IP_VERSION(12, 0, 0=
-))
-+               amdgpu_bad_page_threshold =3D 0;
-+
-        if (amdgpu_ras_fs_init(adev)) {
-                r =3D -EINVAL;
-                goto release_con;
---
-2.34.1
-
-
---_000_BN9PR12MB5257A6921EC4A92DB2056810FC992BN9PR12MB5257namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:10pt;">
-<div style=3D"padding-right:5pt;padding-left:5pt;"><font color=3D"blue">[AM=
-D Official Use Only - AMD Internal Distribution Only]<br>
-
-</font></div>
-<div style=3D"margin-top:5pt;"><font face=3D"Times New Roman" size=3D"3"><s=
-pan style=3D"font-size:12pt;"><br>
-
-</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Fixe=
-d typo in <font color=3D"red">red</font></span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">----=
--Original Message-----<br>
-
-From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of Zh=
-ang, Hawking<br>
-
-Sent: Monday, September 9, 2024 20:22<br>
-
-To: Zhou1, Tao &lt;Tao.Zhou1@amd.com&gt;; amd-gfx@lists.freedesktop.org<br>
-
-Cc: Zhou1, Tao &lt;Tao.Zhou1@amd.com&gt;<br>
-
-Subject: RE: [PATCH] drm/amdgpu: disable RAS bad page feature for specific =
-APU</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">[AMD=
- Official Use Only - AMD Internal Distribution Only]</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">[AMD=
- Official Use Only - AMD Internal Distribution Only]</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">conn=
-ected_to_<font color=3D"red">cpu</font> is legacy design - I understand UMC=
- IP version is also used so it works. Checking is_app_apu flag is good enou=
-gh at this stage.</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">It w=
-ould be better to move the code change to amdgpu_ras_fs_init.</span></font>=
-</div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">In a=
-ddition, it's more accurate to say that bad_pae_thread is not applicable to=
- specific app platform, or something like that. Bad bad page feature is sup=
-ported on the APU, but just GPU driver
-is not involved.</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Rega=
-rds,</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Hawk=
-ing</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">----=
--Original Message-----</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">From=
-: amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.org">amd-=
-gfx-bounces@lists.freedesktop.org</a>&gt; On Behalf Of Tao Zhou</span></fon=
-t></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Sent=
-: Monday, September 9, 2024 19:05</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">To: =
-<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.=
-org</a></span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Cc: =
-Zhou1, Tao &lt;<a href=3D"mailto:Tao.Zhou1@amd.com">Tao.Zhou1@amd.com</a>&g=
-t;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Subj=
-ect: [PATCH] drm/amdgpu: disable RAS bad page feature for specific APU</spa=
-n></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">The =
-feature is unsupported on specific APU.</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Sign=
-ed-off-by: Tao Zhou &lt;<a href=3D"mailto:tao.zhou1@amd.com">tao.zhou1@amd.=
-com</a>&gt;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">---<=
-/span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;"> dri=
-vers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 6 ++++++</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;"> 1 f=
-ile changed, 6 insertions(+)</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">diff=
- --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdg=
-pu/amdgpu_ras.c</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">inde=
-x dbfc41ddc3c7..d46f216a33b1 100644</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">--- =
-a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+++ =
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">@@ -=
-3679,6 +3679,12 @@ int amdgpu_ras_init(struct amdgpu_device *adev)</span></=
-font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ras_init_reserved_vram_size(a=
-dev);</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* bad page feature is unspported on spec=
-ific APU */</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((adev-&gt;gmc.xgmi.connected_to_cpu |=
-|</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gmc.is_a=
-pp_apu) &amp;&amp;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ip_version=
-(adev, UMC_HWIP, 0) =3D=3D IP_VERSION(12, 0, 0))</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; amdgpu_bad_page_threshold =3D 0;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">+</s=
-pan></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_ras_fs_init(adev)) {</spa=
-n></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; r =3D -EINVAL;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; goto release_con;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">--</=
-span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">2.34=
-.1</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
-
---_000_BN9PR12MB5257A6921EC4A92DB2056810FC992BN9PR12MB5257namp_--
