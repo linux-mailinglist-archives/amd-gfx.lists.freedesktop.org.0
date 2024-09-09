@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275BD971A16
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 14:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3181A971A13
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 14:55:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA58A10E561;
-	Mon,  9 Sep 2024 12:55:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3FA610E513;
+	Mon,  9 Sep 2024 12:55:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ef7eqMSl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RphJp/I7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 358F210E340;
- Mon,  9 Sep 2024 09:13:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 994DA10E351;
+ Mon,  9 Sep 2024 09:20:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,37 +22,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UQorVFH+3/p6XhrJD9Gg39tlZOUc67E0HuFK3IMFSis=; b=ef7eqMSlq9FT8UyfetbDJXgb3f
- N4vExWyTh3b+QUW28FwxYirERSCAFi5fuatwcelQjxpYwOvF6pbHwBA0cIGJHINnjH427i28Y1j2m
- 0rkcu6VGHBQImyparPkC5txe9OtmbKUeev8cKg9N2R6ZkZx9b0YaKG/PUCxo42Rs0SS7Gv4K1oo27
- 4rSPRqNmUIIekHZciuTiNcRu4fevcYnxQbppyoyvzobm2OjkWaFX80o7sCuPYC9gt0A7bRjJ4YYsg
- 0jygnHW0EQgQnZDCZDfVldSkfISXn8Yen3FaAWqUmRkaxji7DuETLUtPiS5ZtyhlYhBxcOTMHY6N7
- 0LDnl3PQ==;
+ bh=/1h8BWkktXtDv4aCLL9t99+OTSOBbd0Kpw9GYJSdS/w=; b=RphJp/I70BS1S8olzWXAhmb7gU
+ tQ8dUxctlF8w6UmWZaNUn3io6AbTbN6hACa7ib0MTgNs5O4HOTQccIiQQNQHhENhfH7oPpHiWIILO
+ qC5Yj+zSt83+9QOMz73LRmSDOLHVIgEZlh1hFAJzW51GyjyN1F6kHJnjv4knmbCDIffLl4ZYAe8bv
+ YNrX7wlCJXmCuj4zRvi4+aGKKrjlb8VRMJJqjXp++8Rh1QZPmCaO1Uyh5jS22gclUH+VKuGChCx7K
+ CAAD99pB+rUbKrmuW21/36yQwwPz4Jx3qMvVFi6Z0SsEc2TUa6M1iEOKzWvHURurJ17hde/Mr2lnZ
+ 4ttmWuhg==;
 Received: from [90.241.98.187] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1snaSJ-00BQiz-P4; Mon, 09 Sep 2024 11:13:07 +0200
-Message-ID: <e3acac9f-021c-4113-898a-1c77e8216631@igalia.com>
-Date: Mon, 9 Sep 2024 10:13:06 +0100
+ id 1snaZg-00BQyk-Aj; Mon, 09 Sep 2024 11:20:44 +0200
+Message-ID: <80d8a180-75f8-4244-b25a-97ee38bf49d6@igalia.com>
+Date: Mon, 9 Sep 2024 10:20:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] Documentation/gpu: Document the situation with
- unqualified drm-memory-
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
- Alex Deucher <alexander.deucher@amd.com>, Rob Clark
- <robdclark@chromium.org>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20240813135712.82611-1-tursulin@igalia.com>
- <20240813135712.82611-2-tursulin@igalia.com>
- <CADnq5_Pv8B+nXkO3t05VLger+zwLN7PRDcB44K-=wXWo3CymhQ@mail.gmail.com>
- <8c732c8e-27d3-46f8-83fe-6b3edb835d95@igalia.com>
- <CADnq5_NbC3NORJVCYifPDOP8Qt84RN=M0Cwa_LKpMKH8stRF9w@mail.gmail.com>
+Subject: Re: [RFC 0/4] DRM scheduler fixes, or not, or incorrect kind
+To: Philipp Stanner <pstanner@redhat.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Luben Tuikov
+ <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>
+References: <20240906180618.12180-1-tursulin@igalia.com>
+ <3d9450d3a7334da47b0d3dd7b902be7dd9051a2d.camel@redhat.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <CADnq5_NbC3NORJVCYifPDOP8Qt84RN=M0Cwa_LKpMKH8stRF9w@mail.gmail.com>
+In-Reply-To: <3d9450d3a7334da47b0d3dd7b902be7dd9051a2d.camel@redhat.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:55:48 +0000
@@ -71,147 +66,71 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 06/09/2024 19:12, Alex Deucher wrote:
-> On Wed, Sep 4, 2024 at 4:36 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
->>
->>
->> On 21/08/2024 21:47, Alex Deucher wrote:
->>> On Tue, Aug 13, 2024 at 9:57 AM Tvrtko Ursulin <tursulin@igalia.com> wrote:
->>>>
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>
->>>> Currently it is not well defined what is drm-memory- compared to other
->>>> categories.
->>>>
->>>> In practice the only driver which emits these keys is amdgpu and in them
->>>> exposes the current resident buffer object memory (including shared).
->>>>
->>>> To prevent any confusion, document that drm-memory- is deprecated and an
->>>> alias for drm-resident-memory-.
->>>>
->>>> While at it also clarify that the reserved sub-string 'memory' refers to
->>>> the memory region component, and also clarify the intended semantics of
->>>> other memory categories.
->>>>
->>>> v2:
->>>>    * Also mark drm-memory- as deprecated.
->>>>    * Add some more text describing memory categories. (Alex)
->>>>
->>>> v3:
->>>>    * Semantics of the amdgpu drm-memory is actually as drm-resident.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Alex Deucher <alexander.deucher@amd.com>
->>>> Cc: Christian König <christian.keonig@amd.com>
->>>> Cc: Rob Clark <robdclark@chromium.org>
->>>> ---
->>>>    Documentation/gpu/drm-usage-stats.rst | 25 ++++++++++++++++++++++---
->>>>    1 file changed, 22 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
->>>> index a80f95ca1b2f..ff964c707754 100644
->>>> --- a/Documentation/gpu/drm-usage-stats.rst
->>>> +++ b/Documentation/gpu/drm-usage-stats.rst
->>>> @@ -144,7 +144,9 @@ Memory
->>>>
->>>>    Each possible memory type which can be used to store buffer objects by the
->>>>    GPU in question shall be given a stable and unique name to be returned as the
->>>> -string here.  The name "memory" is reserved to refer to normal system memory.
->>>> +string here.
->>>> +
->>>> +The region name "memory" is reserved to refer to normal system memory.
->>>>
->>>>    Value shall reflect the amount of storage currently consumed by the buffer
->>>>    objects belong to this client, in the respective memory region.
->>>> @@ -152,6 +154,9 @@ objects belong to this client, in the respective memory region.
->>>>    Default unit shall be bytes with optional unit specifiers of 'KiB' or 'MiB'
->>>>    indicating kibi- or mebi-bytes.
->>>>
->>>> +This key is deprecated and is an alias for drm-resident-<region>. Only one of
->>>> +the two should be present in the output.
->>>> +
->>>
->>> I'm not sure how best to handle this.  What should amdgpu do?  We have
->>> customers out in the field using these existing fields and then with
->>> patch 2, they go away.  Arguably we'd want both for backwards
->>> compatibility.
->>
->> Exactly, so it looks you maybe missed that 2/2 is not removing the
->> amdgpu "legacy" drm-memory-. It keeps outputting it and also duplicating
->> under drm-resident-. This is mentioned in the commit paragraph:
->>
->> """
->> Legacy keys have been preserved, with the outlook of only potentially
->> removing only the drm-memory- when the time gets right.
->> """
->>
->> Put differently, I don't think 2/2 should break the existing
->> tools/parsers. Only if they have hardcoded assumptions about the order
->> of keys perhaps?
+On 09/09/2024 09:47, Philipp Stanner wrote:
+> Hi,
 > 
-> You're right.  I totally missed that part.  The series is:
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> Happy to take the patches through my tree or patch 2 via mine and
-> patch 1 via drm-misc.
+> On Fri, 2024-09-06 at 19:06 +0100, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>> In a recent conversation with Christian there was a thought that
+>> drm_sched_entity_modify_sched() should start using the entity-
+>>> rq_lock to be
+>> safe against job submission and simultaneous priority changes.
+> 
+> There are also FIXMEs in gpu_scheduler.h that might be related.
 
-Thanks!
+Yes there appears to be a good number of dodgy/unclear areas there.
 
-As to how to merge I don't have a strong preference. Adding Maxime and 
-Thomas to check if they would want to take 1/2 via drm-misc-next? But 
-IMO not splitting the patches between trees also kind of makes sense.
+>> The kerneldoc accompanying that function however is a bit unclear to
+>> me. For
+>> instance is amdgpu simply doing it wrongly by not serializing the two
+>> in the
+>> driver? Or is the comment referring to some other race condition than
+>> which is
+>> of concern in this series?
+>>
+>> To cut the long story short, first three patches try to fix this race
+>> in three
+>> places I *think* can manifest in different ways.
+>>
+>> Last patch is a trivial optimisation I spotted can be easily done.
+> 
+> I took a look and at least to me it doesn't appear to be that trivial,
+> mostly because it takes two locks.
+
+The code does take two locks, but the patch itself does not change any 
+of that. It just splits the locked helper out so re-locking is avoided.
+
+> Would you mind branching that out as a separate patch so that the
+> series would 100% address bugs?
+
+I wanted to start the series with fixes so backporting will work. If I 
+put the optimisation first then fixes will not trivially apply to older 
+kernels. Assuming they are correct of course.
 
 Regards,
 
 Tvrtko
 
 > 
-> Alex
+> P.	
 > 
 >>
->> Regards,
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>> Cc: Luben Tuikov <ltuikov89@gmail.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
 >>
->> Tvrtko
+>> Tvrtko Ursulin (4):
+>>    drm/sched: Add locking to drm_sched_entity_modify_sched
+>>    drm/sched: Always wake up correct scheduler in
+>>      drm_sched_entity_push_job
+>>    drm/sched: Always increment correct scheduler score
+>>    drm/sched: Optimise drm_sched_entity_push_job
 >>
->>>>    - drm-shared-<region>: <uint> [KiB|MiB]
->>>>
->>>>    The total size of buffers that are shared with another file (e.g., have more
->>>> @@ -159,20 +164,34 @@ than a single handle).
->>>>
->>>>    - drm-total-<region>: <uint> [KiB|MiB]
->>>>
->>>> -The total size of buffers that including shared and private memory.
->>>> +The total size of all created buffers including shared and private memory. The
->>>> +backing store for the buffers does not have to be currently instantiated to be
->>>> +counted under this category.
->>>>
->>>>    - drm-resident-<region>: <uint> [KiB|MiB]
->>>>
->>>> -The total size of buffers that are resident in the specified region.
->>>> +The total size of buffers that are resident (have their backing store present or
->>>> +instantiated) in the specified region.
->>>> +
->>>> +This is an alias for drm-memory-<region> and only one of the two should be
->>>> +present in the output.
->>>>
->>>>    - drm-purgeable-<region>: <uint> [KiB|MiB]
->>>>
->>>>    The total size of buffers that are purgeable.
->>>>
->>>> +For example drivers which implement a form of 'madvise' like functionality can
->>>> +here count buffers which have instantiated backing store, but have been marked
->>>> +with an equivalent of MADV_DONTNEED.
->>>> +
->>>>    - drm-active-<region>: <uint> [KiB|MiB]
->>>>
->>>>    The total size of buffers that are active on one or more engines.
->>>>
->>>> +One practical example of this can be presence of unsignaled fences in an GEM
->>>> +buffer reservation object. Therefore the active category is a subset of
->>>> +resident.
->>>> +
->>>>    Implementation Details
->>>>    ======================
->>>>
->>>> --
->>>> 2.44.0
->>>>
+>>   drivers/gpu/drm/scheduler/sched_entity.c | 17 ++++++++++++-----
+>>   drivers/gpu/drm/scheduler/sched_main.c   | 21 ++++++++++++++-------
+>>   include/drm/gpu_scheduler.h              |  1 +
+>>   3 files changed, 27 insertions(+), 12 deletions(-)
+>>
+> 
