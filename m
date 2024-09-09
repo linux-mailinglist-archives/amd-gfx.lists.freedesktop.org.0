@@ -2,156 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713249716DF
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 13:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB1497170C
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Sep 2024 13:36:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA9B10E372;
-	Mon,  9 Sep 2024 11:29:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84A1310E387;
+	Mon,  9 Sep 2024 11:36:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jWcuYoHX";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ftM2TX3d";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rMM6/EoK";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ftM2TX3d";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rMM6/EoK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2076.outbound.protection.outlook.com [40.107.244.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56F9410E200;
- Mon,  9 Sep 2024 11:29:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EyjdJw8eJCsUqejPUSuswhseEH6Ve4eYxQlmZ3ruyC+6JIbmVP+JCUUki745S2jaf6I/0KdKP04MZV91Jy3VvQNU6wo00CzfkWI1zP5ppZnkQgTA6csoauzXp6RRetpHtFCFprOh6HZhqwEjyhkxIZx/WvQAUaYtIILGDtPLrpOvtExQteplRSAUMIMbJW89+OjH+2C4tg4j8nQmth+vpHKynX3Bp7/k4kT15LonZ20NNdDI6Gglyb1cfKFz0ft9nkuNnuItDvF8E96be++s+Bt44QUYP20qL3scBrLPRzYnyvCxdmIyDSd7vb1/qDIQoRM2CotP3q1TSWzdpUeHRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ENL1gst14kcAcAlCfRRTVmUsaq3ujbh1qgESY5wE4Uo=;
- b=f29FUx/32Vcx4n7T5kkd5asP2deO/xrrigNRYi7D5T391bYPyEYMZCt0yugWSOK+HhnCTwO1ZPU9W/SqGeYn03SNxtjLxu2wltbk2JXopnInne+l8tIBzL2p7cHtLnpTOcBoBuU3z09++Ud5L11pJvnnWrzP6GoDAApr4zHx3ixPifK6Iy7mkiCBd88wOqYQ+Tj6MBDEKA6+k+BY8ya/xJM0oxwX5bXVwPnzhmXMhbfivg2/BUD5Dvon1WE/aLRCM3H0GH4FMB6rvGKmeeUNQSeWdToh9AotMP70A5byLd3ndnomPfAZUuXLiTrFVo+O4xbTnHOJ/6p/2EP34Iat0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ENL1gst14kcAcAlCfRRTVmUsaq3ujbh1qgESY5wE4Uo=;
- b=jWcuYoHXZg7hpKMBjxiMTh7Tfd/NaLswpwgMqWrEfGDtOYHdACC+/pfJFavK9G50miulWCq6qssYciFfz064lqqOMU9RnZD9fj9rw26P4to1uJwe23sG+opF+XjSvAzn2rnPawyQDxalxhNesCdaMuUm57qRwlQ8B3gcODGBLfY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SN7PR12MB7956.namprd12.prod.outlook.com (2603:10b6:806:328::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.17; Mon, 9 Sep
- 2024 11:29:36 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.7918.024; Mon, 9 Sep 2024
- 11:29:36 +0000
-Message-ID: <80e02cde-19e7-4fb6-a572-fb45a639a3b7@amd.com>
-Date: Mon, 9 Sep 2024 13:29:27 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/4] drm/sched: Add locking to drm_sched_entity_modify_sched
-To: Philipp Stanner <pstanner@redhat.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, Luben Tuikov
- <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- stable@vger.kernel.org
-References: <20240906180618.12180-1-tursulin@igalia.com>
- <20240906180618.12180-2-tursulin@igalia.com>
- <8d763e5162ebc130a05da3cefbff148cdb6ce042.camel@redhat.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <8d763e5162ebc130a05da3cefbff148cdb6ce042.camel@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0148.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:98::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B732810E37C;
+ Mon,  9 Sep 2024 11:36:39 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 32B19219A4;
+ Mon,  9 Sep 2024 11:36:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725881798; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4gnxCM192RSGya9VDvk7L9uXikGxjp15QzbsrTjabMw=;
+ b=ftM2TX3dv349TBmHiJKit52SIAZqqN8LGMTOQkU1Q4PB9e/oEVcNlJhjzOTpykGebj16PH
+ ay0C9ChVL+o3ZXRXXh+rwLSiQ2p+Nlc49UnbMoHiqPLhlS6CE0vM9ZI7TEkL5dFMBKcORQ
+ PTG8UTCt6nE47S4x5DEwac5Hc4ABgU4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725881798;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4gnxCM192RSGya9VDvk7L9uXikGxjp15QzbsrTjabMw=;
+ b=rMM6/EoKiNH5z7cwCi4/m2mjxpxWm6isM503WKJDArGj3U9O6ucYqp/agXriXAnrpbBlON
+ vy9dm4/iYKjM5gDA==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ftM2TX3d;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="rMM6/EoK"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725881798; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4gnxCM192RSGya9VDvk7L9uXikGxjp15QzbsrTjabMw=;
+ b=ftM2TX3dv349TBmHiJKit52SIAZqqN8LGMTOQkU1Q4PB9e/oEVcNlJhjzOTpykGebj16PH
+ ay0C9ChVL+o3ZXRXXh+rwLSiQ2p+Nlc49UnbMoHiqPLhlS6CE0vM9ZI7TEkL5dFMBKcORQ
+ PTG8UTCt6nE47S4x5DEwac5Hc4ABgU4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725881798;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4gnxCM192RSGya9VDvk7L9uXikGxjp15QzbsrTjabMw=;
+ b=rMM6/EoKiNH5z7cwCi4/m2mjxpxWm6isM503WKJDArGj3U9O6ucYqp/agXriXAnrpbBlON
+ vy9dm4/iYKjM5gDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E015113312;
+ Mon,  9 Sep 2024 11:36:37 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 88wTNMXd3malNAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 09 Sep 2024 11:36:37 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: simona@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v4 00/80] drm: Provide client setup helper and convert drivers
+Date: Mon,  9 Sep 2024 13:30:06 +0200
+Message-ID: <20240909113633.595465-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB7956:EE_
-X-MS-Office365-Filtering-Correlation-Id: 615bb097-e54a-41ce-39bc-08dcd0c2af21
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eE5ZcWV1eStDVEprYTNMYktabDY1cklWQ1pzZzU4WDlQcXhLM2FUQm5BQ1Ez?=
- =?utf-8?B?NHhYRE5XR2tMR0dOMFdMSzNsbG95WGVDVVRGb3F1eUt1ZTlmbTdka21kd3hN?=
- =?utf-8?B?bW4yc0V6ZVdWR1U2WmdJcjI4dG04YTllOUxMeUViUGFpSU9UREtwQ0VIMHI4?=
- =?utf-8?B?eVFzVzdqUEN0TXVqRUZKZ3kxNDVTOXhmc2xaZHdJS0hZdWUxRHoxMmswTDVo?=
- =?utf-8?B?b0dhVUsrdW1sMHp6TnNpa2ZlZ1BGYm94cWhtU1h1S3A3eGllZm1xZC9jOFJs?=
- =?utf-8?B?SjFZN2Z5cHRQQjVieE91UlA4T1VkZldtb1dWLzgvejA2aGFBSEQ5L1BpYUFC?=
- =?utf-8?B?cnZ3UStqUW03Ni9PK3ZEelp5SU9XV0dEM0ZlMUZOaFM2RXlNYkRzRU5UZ1JK?=
- =?utf-8?B?TDUrVzBrNnhXcHdmMTBiYVc0SXUxZEtaWjBIR2JnN25XaXBhUkZ3dTQxM3FP?=
- =?utf-8?B?c0VIWnBVQ3VNYWJKZkNUKzVNZWdkMVBsd0duZmV6NUJjdGw3U3JJaElkS1Ru?=
- =?utf-8?B?WkIrYWd1QlhYS1dFeTFKRnU1L005T0dMVTh5SzhUNVhtSjVzTXd5b1ZhSmRj?=
- =?utf-8?B?OEl1dUNKK0lpMW9OYnU5eWg2UFd3ZVBBR3RCYmQ1VERsMDZxQzdjWkFmZ3k5?=
- =?utf-8?B?SUduSC80NE1ISjEzMCtkc2s2eDlJeTUzUm1wWU9uQlRueThWb2UzRFhMWGZy?=
- =?utf-8?B?dHd3UHV4cnUxK09Qanhrd3FZd25LMythUnZrM1dDTkxmUCsrYjg3WDNacHRD?=
- =?utf-8?B?QUNJWTQxSDZSa2haL3NnTGs0Vi8yUHVpNHFjU0FGUUU3a0o2Nmk3ZkpnU0VB?=
- =?utf-8?B?RkJsWGhmWVZ2M0l4TzVkVkFrQzZQS0luVDhiQm9WdWFBVTNwTHRhS2JsWTB3?=
- =?utf-8?B?emFvSDNKYzY1ZDVIcWZFVXNUU2Z3R3YrczQ4NisvbjdVbTRud1FXWmlGYVR0?=
- =?utf-8?B?bzV0SVljUzlKaDNqaUMwcDdGMTM5TS9MQmlGVE1oRDNUeTRoS1lGc05ITE5o?=
- =?utf-8?B?RFBJZUZ6MEoydXhpWWl6K250YzE2Y3JxUlg1ZUR0L25mcWRBTjhWeEwzeEk4?=
- =?utf-8?B?YWJwbmJiUGZQekxEc3NQeUdRUDEwSlVyUzhQWmRzbmxhT2V5NTNpTzB3Z0JY?=
- =?utf-8?B?c2FiQzVtMmdYNUZhbjFYUHd6Y0VTdnBVWHpXSmpzcFVwQ0YzRTB4STBtVHRo?=
- =?utf-8?B?V3JlckVlUU1jdE9adFVoMGRrZ3BiTEgzZUZsTDZNV2I4Q3IrVllRSDZHTERv?=
- =?utf-8?B?N01SbVN0ZzZrWTV0MHhnWjZuZEZzRGFKTko3SnR6Rk9ITGNndjl2UWs5MWRy?=
- =?utf-8?B?YjM4blpGREhNMmZ3S2JUbmJtQmtGNzRCSmtUZGRpdkY5L0VGOXIyQkZaV29R?=
- =?utf-8?B?YTJBY01uWjlzTmQwVDlVYXhOeG5WcEJuK05rZ1REYTdyWTVzOWI0cEFndnpK?=
- =?utf-8?B?T0cxa21iTTVaUEpraG1lSzFRaXZTL2NaVGpON2krYncvMTd0WlJVRlZDY04x?=
- =?utf-8?B?WHJ6ZjhTQk1Oa0FpTjJTRGRTWXJraGhXNnV2RW9wMkVjc09wYUJFL0lnRXpo?=
- =?utf-8?B?Q2lEcmNOYVZjNXlZMnFmSG5pWU0waGZKb3ZnL1lUSDNYM3pvU2VzSlNLamM4?=
- =?utf-8?B?a3pqQUdWYjZOelNhU1FxbVo0YktLUmdrNDZONTkyMlBiUmxaN2t6aldNdUpT?=
- =?utf-8?B?L2VVdzdHVDJjSDR2NUNJT0FGTWNQYTdoZGdIMGRKV1NGNThyWkt6Tit5OWpC?=
- =?utf-8?B?bGRjOENtUHJUY3VNQ1hQK0hoSTdYQ3hwUkFSaGtEZFBqVWlNVmw5SEF5NGZ4?=
- =?utf-8?B?OGVnNXZhZGNUVk1LMXA0QT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZFUvc0J2TUMzUzdMV1R0RUJIQjZJejlNRE92OE1SenBGY2JScGUzUGR6bENy?=
- =?utf-8?B?bmFBdEpHRUFEQmEva0h2dWZ2VDUwYm4wejlqTkpXSWh3YnNzMGRmcG5Ta2kw?=
- =?utf-8?B?Znl1N2lhR2Jpaks2d1ZZTFVSVkllaUE2Y3VWK3F3Yk1ORXJrc0FQTlBkSnBo?=
- =?utf-8?B?SjlBeG5LbTQyVzR0QlhaQnlidC9NQkY1d3dDNzZxTGwraUxJNTFtVXdUeDBX?=
- =?utf-8?B?eUoydEVNWFh1ZmY3Nm9Sa2FROTVERjNmRXBBS241ZWdEWmhVTmszZHUxNWNp?=
- =?utf-8?B?ZE5VRXhrNFZDWWFnWWY1ZHZ1TVZGMVBib1dtaUU2akpuaFNnVUt1YnBiM3g0?=
- =?utf-8?B?a0NDaXlyRDVYUjMzb1JkVk9EL3h6eXppQWlpNUtTdlFFUkhrZURFODcwU2Q1?=
- =?utf-8?B?elBOc2R5dFF6VENuUklhK1U2TW9hNjRMMmlpNTBiTzQ1UXJpRldBbk9XSnJO?=
- =?utf-8?B?b3MxQ2pSdWk3MUY5QStvcVdYWmFOVHpFdmRCSm1KZGJHRlcyOWN4NkRYQjBX?=
- =?utf-8?B?N1JKbFFRTGROeXd5WkZ1c3ZNdUhNWlQ0SElNTWNMSUlNR0lBT2pLTHNoSkJz?=
- =?utf-8?B?WjVJUU8vWmIvanRETEpubm1TM3RXUEdPeWpXWFhNTG5Zb0h6UGJsWkM0Z3Q0?=
- =?utf-8?B?amxjRHNHR3VEcWNzVmFwZnJhY2tLMEIyTDF1WVdycG50bkE3QjU0WVExeGZm?=
- =?utf-8?B?ek1QM1JHL0JHd0NMd2ordldmVlBKUzg3UWRZS3hGZ00wQUNKYzYzT1lXNUpV?=
- =?utf-8?B?Nno3dkdTYXdMcFhoRXRUZnd2RUVKQW1BTEVwamd6U05adzYzckxpOExia1Vm?=
- =?utf-8?B?Mm40Q1BMaC9wSVBzMHUzbVZsTG9HMFdWeE1PaGF2NitoOUFiNXBjUHdVRWt4?=
- =?utf-8?B?ekxTRHNrWmovcWVQWlppNlhKZ1JFOUE4TzhaaUQvUkV2b21iOEVpSVBpSEpG?=
- =?utf-8?B?WmRRYi9DVEhGMGZCM09GS3l4b3NzS0hRMC9rNjFrL1BVdTkwbGFGVGNNNmNS?=
- =?utf-8?B?ZHJ0dzhDSmFxV2JMWGY4U1p6NnVIZmQxQ09HK3NzZkllbndScGFwU0JsVnV4?=
- =?utf-8?B?TVZhcm5GUlo0WjUwVkJCU1AvN0xOWkpQRy84YXpqcFd2cnlhWkV5d3g0cHQz?=
- =?utf-8?B?NTY3dE9Ib09VYXhidjQ5RkE0bENhZTFEMmJxQUNXb2tmb1BPTkZEQVpaUnFY?=
- =?utf-8?B?NXRIb2Fpd2pEdHZEUnRzL1p3ZEdpTERpYzRlMDlLdUdUS1dCQzd3K0RmR040?=
- =?utf-8?B?bVJ6eTFPTnFIQUlyYjZFZHU2ZzlyY2hZeDFmWUlyUE5xSDVXSmZuek40WnNI?=
- =?utf-8?B?bExFNzZCYU5UU3BIS01EcWM2aUlqRUFPRnlTL1FWdS9XclBRWk1mOVE1ZmQr?=
- =?utf-8?B?SGhDVlZkVkw2N0lUMCszTXRNb1BteEFTMElPSmlRSzNDSk1zNTRoZEdBeDRB?=
- =?utf-8?B?VVRQd0ZxNGx4K2hRQlVFM09aSnQvYWFoVU5RYU9BZ1FhTW8rRVliajI4RFpp?=
- =?utf-8?B?dVk4ZjdkUzJVU1NMelhkYjdCZCt6WGVBNFpjMHpsY0svdi95SGYyNExhVS9m?=
- =?utf-8?B?b2gzYkxsM1VUWm1VNWhBdUZkYW4yYWJZbWZ0YXV0cmwzUFlrQkJQdnRjbUFj?=
- =?utf-8?B?RWhXUnhpQzRYbkFoZnljSjRXc1FOUFQzSlg4NlVKKzA4UkpLci8wdmROSnJX?=
- =?utf-8?B?UnNhb3ZQbVFzOTRzMUhxUzEvUk5QaWNsTG5wZjRXQnNGOVl1WE9yS2FOMDNy?=
- =?utf-8?B?MTJXTVpzbm9WaDFqUHZxd3R2bWpPYjRJa1Rac1U2VVpHMDZHSkM3d1g1K1VT?=
- =?utf-8?B?MGNBRnRIRzFmNE50bmFQcDVGTitKNUZ2QVYyUys5UEhHOS9tSHJQSENYMmth?=
- =?utf-8?B?cGpiYXFaR2EwZEJ3c096VU5ranJDWGNjb1pSL0EydlFTR1cvQjNjQUt3VVlQ?=
- =?utf-8?B?VGR3b3VrTCtsSWxvb2l1M3RhbTdmUVlNTUxOK0xlWFhEN0F3dmdpS2Q4QVR1?=
- =?utf-8?B?b0RmOGdIcEtvbFZ6WnFMc1VXbm5CQVk2UTlTQUlaRFJtcThvdURCYjc0N0kw?=
- =?utf-8?B?WEdVdExveHZmUmhhb0g0VmtyTW54cEk4V3AyVWZnTkNWWlppcGh2SDNhejZ1?=
- =?utf-8?Q?k0W8=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 615bb097-e54a-41ce-39bc-08dcd0c2af21
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 11:29:36.2861 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MXkuWrgtDLR5d0JelyNtQ8JeSAD2QKXpoHf2yM8FCkZ1zgOGna6Lx6mEAgUjfzJn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7956
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 32B19219A4
+X-Spam-Score: -3.51
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[9]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:url,suse.de:mid,suse.de:dkim];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,97 +116,271 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 09.09.24 um 11:44 schrieb Philipp Stanner:
-> On Fri, 2024-09-06 at 19:06 +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Without the locking amdgpu currently can race
->> amdgpu_ctx_set_entity_priority() and drm_sched_job_arm(),
-> I would explicitly say "amdgpu's amdgpu_ctx_set_entity_priority() races
-> through drm_sched_entity_modify_sched() with drm_sched_job_arm()".
->
-> The actual issue then seems to be drm_sched_job_arm() calling
-> drm_sched_entity_select_rq(). I would mention that, too.
->
->
->> leading to the
->> latter accesing potentially inconsitent entity->sched_list and
->> entity->num_sched_list pair.
->>
->> The comment on drm_sched_entity_modify_sched() however says:
->>
->> """
->>   * Note that this must be called under the same common lock for
->> @entity as
->>   * drm_sched_job_arm() and drm_sched_entity_push_job(), or the driver
->> needs to
->>   * guarantee through some other means that this is never called while
->> new jobs
->>   * can be pushed to @entity.
->> """
->>
->> It is unclear if that is referring to this race or something else.
-> That comment is indeed a bit awkward. Both drm_sched_entity_push_job()
-> and drm_sched_job_arm() take rq_lock. But
-> drm_sched_entity_modify_sched() doesn't.
->
-> The comment was written in 981b04d968561. Interestingly, in
-> drm_sched_entity_push_job(), this "common lock" is mentioned with the
-> soft requirement word "should" and apparently is more about keeping
-> sequence numbers in order when inserting.
->
-> I tend to think that the issue discovered by you is unrelated to that
-> comment. But if no one can make sense of the comment, should it maybe
-> be removed? Confusing comment is arguably worse than no comment
+Provide drm_client_setup() to initialize in-kernel DRM clients. Then
+convert all drivers to the new interface. Remove old interfaces for
+the fbdev client.
 
-Agree, we probably mixed up in 981b04d968561 that submission needs a 
-common lock and that rq/priority needs to be protected by the rq_lock.
+So far, the only supported DRM client in the kernel is for fbdev
+emulation with its fbcon support. Long term, we want to move away
+from fbcon. Possible replacements are DRM-based loggers, boot-up
+logos or maybe even a console. The exact kind of client should be
+configurable by the user. You can find examples of such clients at
+[1] and [2].
 
-There is also the big FIXME in the drm_sched_entity documentation 
-pointing out that this is most likely not implemented correctly.
+To do this, we need one single interface for drivers to initialize
+the configured in-kernel clients, replacing the current call to
+initialize fbdev emulation. The fbdev emulation also depends on the
+DRM driver's management, so drivers differ in what fbdev code they
+run. We need to abstract this as well.
 
-I suggest to move the rq, priority and rq_lock fields together in the 
-drm_sched_entity structure and document that rq_lock is protecting the two.
+This patchset addresses these topics. While there are many patches,
+most of them are small, straight-forward changes to drivers or
+rearrange existing code.
 
-Then audit the code if all users of rq and priority actually hold the 
-correct locks while reading and writing them.
+Patches 1 to 3 add a driver-neutral setup function for the fbdev
+client. The new callback fbdev_probe in struct drm_driver creates
+the GEM buffer for fbdev output. It replaces the existing callback
+fb_probe from struct drm_fb_helper_funcs, which currently does the
+same. The client code is equal to code in exisisting fbdev emulation,
+except for its use of fbdev_probe.
 
-Regards,
-Christian.
+Patch 4 adds drm_client_setup(), a client-agnostic interface to
+initialize the in-kernel DRM clients. It only supports the new fbdev
+emulation setup, but additional clients will be added here. Hopefully
+this will hide future changes to DRM client initialization from
+drivers.
 
->
-> P.
->
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->> Fixes: b37aced31eb0 ("drm/scheduler: implement a function to modify
->> sched list")
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Luben Tuikov <ltuikov89@gmail.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: <stable@vger.kernel.org> # v5.7+
->> ---
->>   drivers/gpu/drm/scheduler/sched_entity.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
->> b/drivers/gpu/drm/scheduler/sched_entity.c
->> index 58c8161289fe..ae8be30472cd 100644
->> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->> @@ -133,8 +133,10 @@ void drm_sched_entity_modify_sched(struct
->> drm_sched_entity *entity,
->>   {
->>   	WARN_ON(!num_sched_list || !sched_list);
->>   
->> +	spin_lock(&entity->rq_lock);
->>   	entity->sched_list = sched_list;
->>   	entity->num_sched_list = num_sched_list;
->> +	spin_unlock(&entity->rq_lock);
->>   }
->>   EXPORT_SYMBOL(drm_sched_entity_modify_sched);
->>   
+Patches 5 to 48 rework all drivers with GEM memory management based
+on DMA helpers. This is fairly straigh-forward. The fbdev-dma helpers
+provide an implementation of the fbdev_probe helpers. Each driver
+sets the new callback in its instance of struct drm_driver and calls
+drm_client_setup(). Then the old fbdev-dma client goes away.
+
+Patches 49 to 62 do the same for drivers with SHMEM-based GEM memory
+management. The fbdev client code is again the same as before, except
+for the fbdev_probe callback.
+
+Patches 63 to 72 do the same for drivers with TTM-based GEM memory
+management.
+
+Patches 73 to 80 do the same for most of the remaining drivers with
+custom fbdev emulation. As before, the new fbdev client code is mostly
+the same the old one; except for the fbdev_probe function.
+
+Changes for i915 and xe are a bit more involved, so they are left out
+for now and will be send in a separate series.
+
+This patchset has been tested on various hardware with the various
+memory managers involved.
+
+v4:
+- drop unneeded changes to panel/ili9341
+- fix docs
+v3:
+- add missing macros for driver ops (Sam)
+- split off i915/xe changes
+v2:
+- add drm_client_setup_with_fourcc()
+- xe: set fbdev_probe in xe_display_driver_set_hooks()
+- do cleanups
+
+[1] https://lore.kernel.org/dri-devel/20240801100640.462606-4-jfalempe@redhat.com/
+[2] https://lists.freedesktop.org/archives/dri-devel/2019-March/212113.html
+
+Thomas Zimmermann (80):
+  drm/fbdev-helper: Move color-mode lookup into 4CC format helper
+  drm/fbdev-helper: Set and clear VGA switcheroo client from fb_info
+  drm/fbdev: Add memory-agnostic fbdev client
+  drm: Add client-agnostic setup helper
+  drm/fbdev-dma: Support struct drm_driver.fbdev_probe
+  drm/arcgpu: Run DRM default client setup
+  drm/arm/komeda: Run DRM default client setup
+  drm/arm/hdlcd: Run DRM default client setup
+  drm/arm/malidp: Run DRM default client setup
+  drm/aspeed: Run DRM default client setup
+  drm/atmel-hdlcd: Run DRM default client setup
+  drm/fsl-dcu: Run DRM default client setup
+  drm/hisilicon/kirin: Run DRM default client setup
+  drm/hx8357d: Run DRM default client setup
+  drm/ili9163: Run DRM default client setup
+  drm/ili9225: Run DRM default client setup
+  drm/ili9341: Run DRM default client setup
+  drm/ili9486: Run DRM default client setup
+  drm/imx/dcss: Run DRM default client setup
+  drm/imx/ipuv3: Run DRM default client setup
+  drm/imx/lcdc: Run DRM default client setup
+  drm/ingenic: Run DRM default client setup
+  drm/kmb: Run DRM default client setup
+  drm/logicvc: Run DRM default client setup
+  drm/mcde: Run DRM default client setup
+  drm/mediatek: Run DRM default client setup
+  drm/meson: Run DRM default client setup
+  drm/mi0283qt: Run DRM default client setup
+  drm/mxsfb/lcdif: Run DRM default client setup
+  drm/mxsfb: Run DRM default client setup
+  drm/panel-mipi-dbi: Run DRM default client setup
+  drm/pl111: Run DRM default client setup
+  drm/renesas/rcar-du: Run DRM default client setup
+  drm/renesas/rz-du: Run DRM default client setup
+  drm/renesas/shmobile: Run DRM default client setup
+  drm/repaper: Run DRM default client setup
+  drm/rockchip: Run DRM default client setup
+  drm/sti: Run DRM default client setup
+  drm/stm: Run DRM default client setup
+  drm/sun4i: Run DRM default client setup
+  drm/tidss: Run DRM default client setup
+  drm/tilcdc: Run DRM default client setup
+  drm/st7586: Run DRM default client setup
+  drm/st7735r: Run DRM default client setup
+  drm/tve200: Run DRM default client setup
+  drm/vc4: Run DRM default client setup
+  drm/xlnx: Run DRM default client setup
+  drm/fbdev-dma: Remove obsolete setup function
+  drm/fbdev-shmem: Support struct drm_driver.fbdev_probe
+  drm/ast: Run DRM default client setup
+  drm/bochs: Run DRM default client setup
+  drm/cirrus: Run DRM default client setup
+  drm/gm12u320: Run DRM default client setup
+  drm/gud: Run DRM default client setup
+  drm/hyperv_drm: Run DRM default client setup
+  drm/mgag200: Run DRM default client setup
+  drm/ofdrm: Use DRM default client setup
+  drm/simpledrm: Run DRM default client setup
+  drm/solomon: Run DRM default client setup
+  drm/udl: Run DRM default client setup
+  drm/virtgpu: Run DRM default client setup
+  drm/vkms: Run DRM default client setup
+  drm/fbdev-shmem: Remove obsolete setup function
+  drm/fbdev-ttm: Support struct drm_driver.fbdev_probe
+  drm/amdgpu: Run DRM default client setup
+  drm/hisilicon/hibmc: Run DRM default client setup
+  drm/loongson: Run DRM default client setup
+  drm/nouveau: Run DRM default client setup
+  drm/qxl: Run DRM default client setup
+  drm/vboxvideo: Run DRM default client setup
+  drm/vmwgfx: Run DRM default client setup
+  drm/fbdev-ttm: Remove obsolete setup function
+  drm/armada: Run DRM default client setup
+  drm/exynos-drm: Run DRM default client setup
+  drm/gma500: Run DRM default client setup
+  drm/msm: Run DRM default client setup
+  drm/radeon: Run DRM default client setup
+  drm/tegra: Run DRM default client setup
+  drm/omapdrm: Remove struct drm_fb_helper from struct omap_fbdev.
+  drm/omapdrm: Run DRM default client setup
+
+ drivers/gpu/drm/Makefile                      |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  11 +-
+ .../gpu/drm/arm/display/komeda/komeda_drv.c   |   4 +-
+ .../gpu/drm/arm/display/komeda/komeda_kms.c   |   2 +
+ drivers/gpu/drm/arm/hdlcd_drv.c               |   4 +-
+ drivers/gpu/drm/arm/malidp_drv.c              |   4 +-
+ drivers/gpu/drm/armada/armada_drm.h           |  11 +-
+ drivers/gpu/drm/armada/armada_drv.c           |   4 +-
+ drivers/gpu/drm/armada/armada_fbdev.c         | 113 +--------
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |   4 +-
+ drivers/gpu/drm/ast/ast_drv.c                 |   6 +-
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |   5 +-
+ drivers/gpu/drm/drm_client_setup.c            |  66 +++++
+ drivers/gpu/drm/drm_fb_helper.c               | 102 +++-----
+ drivers/gpu/drm/drm_fbdev_client.c            | 141 +++++++++++
+ drivers/gpu/drm/drm_fbdev_dma.c               | 170 +++----------
+ drivers/gpu/drm/drm_fbdev_shmem.c             | 170 +++----------
+ drivers/gpu/drm/drm_fbdev_ttm.c               | 225 +++++-------------
+ drivers/gpu/drm/drm_fourcc.c                  |  30 ++-
+ drivers/gpu/drm/exynos/exynos_drm_drv.c       |   4 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c     |  99 +-------
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.h     |  15 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |   4 +-
+ drivers/gpu/drm/gma500/fbdev.c                | 100 +-------
+ drivers/gpu/drm/gma500/psb_drv.c              |   4 +-
+ drivers/gpu/drm/gma500/psb_drv.h              |  12 +-
+ drivers/gpu/drm/gud/gud_drv.c                 |   4 +-
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |   4 +-
+ .../gpu/drm/hisilicon/kirin/kirin_drm_ade.c   |   2 +
+ .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |   4 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c       |   4 +-
+ drivers/gpu/drm/imx/dcss/dcss-kms.c           |   4 +-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |   4 +-
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c           |   4 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |   4 +-
+ drivers/gpu/drm/kmb/kmb_drv.c                 |   4 +-
+ drivers/gpu/drm/logicvc/logicvc_drm.c         |  16 +-
+ drivers/gpu/drm/loongson/lsdc_drv.c           |   4 +-
+ drivers/gpu/drm/mcde/mcde_drv.c               |   4 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   4 +-
+ drivers/gpu/drm/meson/meson_drv.c             |   4 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |   5 +-
+ drivers/gpu/drm/msm/msm_drv.c                 |   4 +-
+ drivers/gpu/drm/msm/msm_drv.h                 |  13 +-
+ drivers/gpu/drm/msm/msm_fbdev.c               | 144 ++---------
+ drivers/gpu/drm/mxsfb/lcdif_drv.c             |   4 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  10 +-
+ drivers/gpu/drm/omapdrm/omap_drv.c            |   1 +
+ drivers/gpu/drm/omapdrm/omap_drv.h            |   3 +
+ drivers/gpu/drm/omapdrm/omap_fbdev.c          | 161 ++++---------
+ drivers/gpu/drm/omapdrm/omap_fbdev.h          |   8 +
+ drivers/gpu/drm/pl111/pl111_drv.c             |   4 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   4 +-
+ drivers/gpu/drm/radeon/radeon_drv.c           |  14 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c         | 114 +--------
+ drivers/gpu/drm/radeon/radeon_mode.h          |  12 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c |   4 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |   4 +-
+ .../gpu/drm/renesas/shmobile/shmob_drm_drv.c  |   5 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |   4 +-
+ drivers/gpu/drm/solomon/ssd130x.c             |   4 +-
+ drivers/gpu/drm/sti/sti_drv.c                 |   4 +-
+ drivers/gpu/drm/stm/drv.c                     |   5 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c             |   4 +-
+ drivers/gpu/drm/tegra/drm.c                   |   5 +-
+ drivers/gpu/drm/tegra/drm.h                   |  12 +-
+ drivers/gpu/drm/tegra/fbdev.c                 |  98 +-------
+ drivers/gpu/drm/tidss/tidss_drv.c             |   4 +-
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c           |   5 +-
+ drivers/gpu/drm/tiny/arcpgu.c                 |   4 +-
+ drivers/gpu/drm/tiny/bochs.c                  |   5 +-
+ drivers/gpu/drm/tiny/cirrus.c                 |   4 +-
+ drivers/gpu/drm/tiny/gm12u320.c               |   4 +-
+ drivers/gpu/drm/tiny/hx8357d.c                |   4 +-
+ drivers/gpu/drm/tiny/ili9163.c                |   4 +-
+ drivers/gpu/drm/tiny/ili9225.c                |   4 +-
+ drivers/gpu/drm/tiny/ili9341.c                |   4 +-
+ drivers/gpu/drm/tiny/ili9486.c                |   4 +-
+ drivers/gpu/drm/tiny/mi0283qt.c               |   4 +-
+ drivers/gpu/drm/tiny/ofdrm.c                  |   9 +-
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c         |   4 +-
+ drivers/gpu/drm/tiny/repaper.c                |   4 +-
+ drivers/gpu/drm/tiny/simpledrm.c              |   9 +-
+ drivers/gpu/drm/tiny/st7586.c                 |   4 +-
+ drivers/gpu/drm/tiny/st7735r.c                |   4 +-
+ drivers/gpu/drm/tve200/tve200_drv.c           |   9 +-
+ drivers/gpu/drm/udl/udl_drv.c                 |   4 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.c          |   4 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                 |   5 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |   6 +-
+ drivers/gpu/drm/vkms/vkms_drv.c               |   4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   5 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c             |   4 +-
+ include/drm/drm_client_setup.h                |  15 ++
+ include/drm/drm_drv.h                         |  18 ++
+ include/drm/drm_fbdev_client.h                |  19 ++
+ include/drm/drm_fbdev_dma.h                   |  13 +-
+ include/drm/drm_fbdev_shmem.h                 |  13 +-
+ include/drm/drm_fbdev_ttm.h                   |  15 +-
+ include/drm/drm_fourcc.h                      |   1 +
+ 101 files changed, 889 insertions(+), 1369 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_client_setup.c
+ create mode 100644 drivers/gpu/drm/drm_fbdev_client.c
+ create mode 100644 include/drm/drm_client_setup.h
+ create mode 100644 include/drm/drm_fbdev_client.h
+
+
+base-commit: c60c8a9f80f13dfdeed45927a71d65b0250e17d2
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: cbc453ee02fae02af22fbfdce56ab732c7a88c36
+-- 
+2.46.0
 
