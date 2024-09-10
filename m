@@ -2,59 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26AF9726B9
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Sep 2024 03:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E33D49727B1
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Sep 2024 05:39:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 820CD10E62C;
-	Tue, 10 Sep 2024 01:50:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF40810E691;
+	Tue, 10 Sep 2024 03:39:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=vignesh.raman@collabora.com header.b="Dep+z9gD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5PF+XeyO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C4810E55D;
- Tue, 10 Sep 2024 01:50:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1725933032; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=fIPdJk+6J18vJCJUi1Pyl8+n/91d2Ts5crRnF9ntW2PILiQjafsn6eB248X6Ml/iFKESTpnbCHjGuLtOUfxfh3bs7vU25jcFJ5JHo7mAfZ4Q0+0fS1NmD+nhfYzYZGEW4lthkU2EolWcPLsAj4mHI2oI3GEsb91hzevG0GkJTnA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1725933032;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=vPytkYFUSSd+BWTuELtYnmazpfLpeTZTeQ2mw3v85wE=; 
- b=jiKuw9O0DELOn89lTjjVPPEJkZdVmbgXPIvWnhLbGOdiXAGlurb1XO0BgKAAkkW9qAV8DuD9rKocJ5pRl+lLh/58Gz4DF1IQ4qOTzwszHkVnKS8UuWRIsmW1knmrsZk9IRPU+qsQS+gEutO9B1ffJxJF2H9ZIgE3M5u9aWcHgOQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=vignesh.raman@collabora.com;
- dmarc=pass header.from=<vignesh.raman@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725933032; 
- s=zohomail; d=collabora.com; i=vignesh.raman@collabora.com;
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:From:From:To:To:Cc:Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=vPytkYFUSSd+BWTuELtYnmazpfLpeTZTeQ2mw3v85wE=;
- b=Dep+z9gDdIA9oNdWvqeKcjVTjU8GGJMHIoqSqAErlmxPPHGof+AyX4ZZREzht3A2
- QE6Cvis8XkzhjngOQFrHkSUXDcpehxpEPLfDMSS/YGGJeLGY3a4LgNRI3cjbDWHFcId
- H7pWIFKgBC1ZLADi3pKW8Wrkf/O9k3PLyjHqMItM=
-Received: by mx.zohomail.com with SMTPS id 1725933029424493.8684684871224;
- Mon, 9 Sep 2024 18:50:29 -0700 (PDT)
-Message-ID: <09ee1862-3a0e-4085-ac1b-262601b1122b@collabora.com>
-Date: Tue, 10 Sep 2024 07:20:22 +0530
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E07B10E63A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 03:39:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=abCTL8BIfpiawXuY7M1gzDy35EZRTkFJN3xLBYKu4NfVER51LKZo90xqVIBTOHxcJ7OSjrSKlLbhqabWBj9FJETfHvVcab0zNM6eloi9ffqY3mTiZX8oDRn/LBg8vkaEJ7Yqd8vd60h1knBzJn6Cj2ea5M6LUHI2ZOb+gqz9P/WU6dTAfG5kkb7Plngx8b07bHWsegGSSlchnqw2RaDVjCrMYKtPfMStwLVTPSemmTR6pahSt1yLc+eFBU/mmqItIT3jEC+ntcIDfGLRwMqiCKV4sHPn03x8NAIC8JovV/HHQYUtUTplLL2Q6DWnwIZS0FSCftARvyrs+ZJw9a+udg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fQJyXiu+OWq6LRwejjM38JY5+n9EWmi3+T9LwTaupf4=;
+ b=tfgEtJsInGVZTPEXZgVCIkvXKQjI3A+10y6t36LTBAu6YOdA5Lwf/iIpZ82IwRSIFq5LEMnnVgNC0pp3P5O21LpgdJimGd90z9dtsfHZ6YWDtKw0kGV4vegFsztXwNBE3PlDfNdo9Kwh1OTN2ANhRK2+NThoZmL04jxe9AXs04wgkFIOtIjBSmjW2yFZ74MWNvY6TpxKsieljL3T6jqAYD61r46pOWRX/SXFGMx6eWirHC9WzdL4gu6BdhFkPQALgww0QGcvq/6NSJpjLloRkxcTXGk0omroBiVA6IdqcUq+AGYI/jWUv1BVKAarRb2JvyHAK7eho9G4CHyHEcd3ug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fQJyXiu+OWq6LRwejjM38JY5+n9EWmi3+T9LwTaupf4=;
+ b=5PF+XeyOgmSFc9ahAroOgtGYB7+9X5P1AKHYYvAtaRTcB3j0Su/mg767lj7QVuzfv02UVwuOqwxVpN1FPXRjr4Tr+yIx82H+ax6mPiJZbiSqr0Q+KjCU4pjq9z8MyOKfv1ed2tkWxHkJqL4UrTg7h+x6M2JXWWZmfuXy08JFqy8=
+Received: from SJ0PR13CA0172.namprd13.prod.outlook.com (2603:10b6:a03:2c7::27)
+ by DS7PR12MB6237.namprd12.prod.outlook.com (2603:10b6:8:97::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Tue, 10 Sep
+ 2024 03:39:36 +0000
+Received: from CO1PEPF000044EF.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c7:cafe::b) by SJ0PR13CA0172.outlook.office365.com
+ (2603:10b6:a03:2c7::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.23 via Frontend
+ Transport; Tue, 10 Sep 2024 03:39:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1PEPF000044EF.mail.protection.outlook.com (10.167.241.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 03:39:35 +0000
+Received: from jenkins-jiadong-1.amd.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 9 Sep 2024 22:39:33 -0500
+From: <jiadong.zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Jiadong Zhu <Jiadong.Zhu@amd.com>
+Subject: [PATCH v2 1/3] drm/amdgpu/mes11: update mes_reset_queue function to
+ support sdma queue
+Date: Tue, 10 Sep 2024 11:39:16 +0800
+Message-ID: <20240910033918.6035-1-jiadong.zhu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: drm-ci: flaky tests for amdgpu driver testing
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- lijo.lazar@amd.com, felix.kuehling@amd.com, srinivasan.shanmugam@amd.com,
- Daniel Stone <daniels@collabora.com>,
- Helen Mae Koike Fornazier <helen.koike@collabora.com>
-References: <3542730f-b8d7-404d-a947-b7a5e95d661c@collabora.com>
-Content-Language: en-US
-In-Reply-To: <3542730f-b8d7-404d-a947-b7a5e95d661c@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044EF:EE_|DS7PR12MB6237:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9518a938-ca6b-4221-9187-08dcd14a30b1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?l2IVNtDod+EuVFK4dTC7UeXbPAexa7D8XTtR0qdxrxjT2voB/38Bs5S9AXs5?=
+ =?us-ascii?Q?3RBmtbqVJH8tMszkztzpYOB1uP9N8NN9qKcu2rqbUVfxdNjruuzwlwr8MuL/?=
+ =?us-ascii?Q?IqXXT/6786LVq0NDUxU/OOk6vWDSmP46nTxSgbe/M+g83ry3//N2/DRxkuSu?=
+ =?us-ascii?Q?uF892UP1gTxg3d1LPXuMQpfYB3c1Hv6ouD8Xw9cT3deZ4VGsgPpSJnxWkYdw?=
+ =?us-ascii?Q?sd1E3oDt961HR2dNlVOWPCreNW0O5gugEWd1es3wjNouANNe9XL5e+d9/FCN?=
+ =?us-ascii?Q?PQShZMTpOxUEEIw5S0+C+V3F9UwWsxhuketEMuGLCZYXlhHPvBeR/P/ySoto?=
+ =?us-ascii?Q?LvgDwwZF7RDx7JyErRB1BJlltSiDgIFC/Ye+3BPF4M1+qKaxYyJy4+51TrXb?=
+ =?us-ascii?Q?GE2nI3RLs6P+SFFAzS7jgUOs034pZT1ao8z7Mh2ZmGbw7Hhwh9kPRmo5oKs2?=
+ =?us-ascii?Q?aN8j7V10SnNBwUbRqa6ghtVVWJQF55wn9bSfVxnrVs0XvrT5Y0e0l7WckjTC?=
+ =?us-ascii?Q?r2NUUTzenw18lHThI0LSZof+PFkx4pef9BjF6K+KvrfUnU5iBSMG2uhevapY?=
+ =?us-ascii?Q?6IFnLCCjQn+UFzsxNgljq/0qbW0rhh69GMudUyQrHsyR2j/N2j2je3f5JAlB?=
+ =?us-ascii?Q?5wSBUTxFAVNKGu71AyfJYKf0fq0hRWAslDvYc7Fdenk3tJk/6Hzt1ptP6Xpc?=
+ =?us-ascii?Q?n+3ithI1fqus1fRRLyYo3omC0N99rgFCHwKWg7e1YOZgPhN383bNzmCjpol7?=
+ =?us-ascii?Q?1aA8RU+KcwzCyAJkSwcmj/4s3aEHcWjkVmn4V6BlkRNHmFP0a+4yUOYLyYvw?=
+ =?us-ascii?Q?epoiR4LoLJujlf2Xi00odGfeIbR+Cah1MZY7D9nFM6g+YMz5T0gC2TFBrBFN?=
+ =?us-ascii?Q?70nSGbdX7gQykw24ifSxhdcIrXbAB72ssQmem2Hx4ECc5xioz/RfTcoQp+D8?=
+ =?us-ascii?Q?1FMqOGjpaSOFLnqkKMK+A4cPpHNy8/RthFN66P+LrmS4op7XbkVkAWU5ZWXz?=
+ =?us-ascii?Q?WhRPqjUOei2uGM1pEyXusJjQsQlXVDhToe3UIqVPnOu8dTl92XrdkNh5LMd/?=
+ =?us-ascii?Q?C7UK+1ugzXuxbAxr7OxuWPTuf8zNnAOLZ9+8KJX2FikYSvIHMtKQ9FNe6j0D?=
+ =?us-ascii?Q?62AjkOtAZzLoPNEjeAVxMi+yk2rWZgSTt8i9C6eevPZvsxQPZPa6qyTaanXD?=
+ =?us-ascii?Q?mPUrBwGOH1We2EIigbBXKu168JM8GtTxW4+5kHRy3xjL+rwfXs1ke2V6RdbZ?=
+ =?us-ascii?Q?0bu0J4n8LRmR780idks3GImhg6/WpgLZSb+mJIsvqG9YFj7jst0TSpPF328u?=
+ =?us-ascii?Q?OBM3c8RwSS2T3JIbZfqDNnrgOeRpjJWVNEuIIEeXeNX7MLQugmEtqPXu8n+0?=
+ =?us-ascii?Q?hQcZRzLWjfb6ejloWKZBYDTT2lXHV8RnP4io/sFahLBYM2QFpQntXRqO/xSI?=
+ =?us-ascii?Q?QSRcsAifFzKhILeOMS1ZXHkQg8GO0ert?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 03:39:35.2933 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9518a938-ca6b-4221-9187-08dcd14a30b1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044EF.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6237
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,42 +130,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Maintainers,
+From: Jiadong Zhu <Jiadong.Zhu@amd.com>
 
-On 28/05/24 10:19, Vignesh Raman wrote:
-> Hi Maintainers,
-> 
-> There are some flaky tests reported for amdgpu driver testing in drm-ci.
-> 
-> # Board Name: hp-11A-G6-EE-grunt
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> kms_async_flips@async-flip-with-page-flip-events
-> kms_async_flips@crc
-> kms_plane@pixel-format-source-clamping
-> 
-> Will add these tests in 
-> drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt 
-> (https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/gpu/automated_testing.rst#n70)
-> 
-> Please could you have a look at these test results and let us know if 
-> you need more information. Thank you.
+Reset sdma queue through mmio based on me_id and queue_id.
 
-There are some flaky tests reported for amdgpu driver testing in drm-ci.
+v2: simplify callflows and register calculation.
 
-# Board Name: hp-11A-G6-EE-grunt
-# Failure Rate: 100
-# IGT Version: 1.28-ga73311079
-# Linux Version: 6.11.0-rc2
-kms_async_flips@async-flip-with-page-flip-events
+Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c  | 27 ++++++++++++++++++++++++-
+ 2 files changed, 27 insertions(+), 2 deletions(-)
 
-Will add these tests in 
-drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt 
-(https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/gpu/automated_testing.rst#n70)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 5174ed31ae5c..285ea4cdd5b6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -914,7 +914,7 @@ int amdgpu_mes_reset_legacy_queue(struct amdgpu_device *adev,
+ 	queue_input.me_id = ring->me;
+ 	queue_input.pipe_id = ring->pipe;
+ 	queue_input.queue_id = ring->queue;
+-	queue_input.mqd_addr = amdgpu_bo_gpu_offset(ring->mqd_obj);
++	queue_input.mqd_addr = ring->mqd_obj ? amdgpu_bo_gpu_offset(ring->mqd_obj) : 0;
+ 	queue_input.wptr_addr = ring->wptr_gpu_addr;
+ 	queue_input.vmid = vmid;
+ 	queue_input.use_mmio = use_mmio;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index c4212b6fbc56..9dba72779391 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -366,7 +366,7 @@ static int mes_v11_0_reset_queue_mmio(struct amdgpu_mes *mes, uint32_t queue_typ
+ 				      uint32_t queue_id, uint32_t vmid)
+ {
+ 	struct amdgpu_device *adev = mes->adev;
+-	uint32_t value;
++	uint32_t value, reg;
+ 	int i, r = 0;
+ 
+ 	amdgpu_gfx_rlc_enter_safe_mode(adev, 0);
+@@ -422,6 +422,31 @@ static int mes_v11_0_reset_queue_mmio(struct amdgpu_mes *mes, uint32_t queue_typ
+ 		}
+ 		soc21_grbm_select(adev, 0, 0, 0, 0);
+ 		mutex_unlock(&adev->srbm_mutex);
++	} else if (queue_type == AMDGPU_RING_TYPE_SDMA) {
++		dev_info(adev->dev, "reset sdma queue (%d:%d:%d)\n",
++			 me_id, pipe_id, queue_id);
++		switch (me_id) {
++		case 1:
++			reg = SOC15_REG_OFFSET(GC, 0, regSDMA1_QUEUE_RESET_REQ);
++			break;
++		case 0:
++		default:
++			reg = SOC15_REG_OFFSET(GC, 0, regSDMA0_QUEUE_RESET_REQ);
++			break;
++		}
++
++		value = 1 << queue_id;
++		WREG32(reg, value);
++		/* wait for queue reset done */
++		for (i = 0; i < adev->usec_timeout; i++) {
++			if (!(RREG32(reg) & value))
++				break;
++			udelay(1);
++		}
++		if (i >= adev->usec_timeout) {
++			dev_err(adev->dev, "failed to wait on sdma queue reset done\n");
++			r = -ETIMEDOUT;
++		}
+ 	}
+ 
+ 	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
+-- 
+2.25.1
 
-Please could you have a look at these test results and let us know if 
-you need more information. Thank you.
-
-Regards,
-Vignesh
