@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B938C974AFA
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Sep 2024 09:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FFC974AFC
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Sep 2024 09:07:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E677510EA03;
-	Wed, 11 Sep 2024 07:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E39610EA0A;
+	Wed, 11 Sep 2024 07:07:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2JEvDEIg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="T30XN5Ll";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2062.outbound.protection.outlook.com [40.107.93.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4601610EA03
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 07:07:35 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDFC10EA06
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 07:07:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AJUz/BEepKD5mGdoUC8yR225xbzVWoXLFF2mT4wBo3auzABx4WwPmt1SEULKSi7+DUHbgC7YvkGGgrtZAgH2PFHDN9nmkvwEXwu/InVCVaPRyxl/3v5CSVLaEoJlwGxmoJ1drlwmzEftY4eikdAgrFk8TSmPoIQ9AXXDddZ/9R27MF0VxRqmTwaukmxH5wp17X+XQEo0P9MK80HFGRX7OOEsoa2JZYAqZcQd55yWr6ZqfFfeCs8ct2mG0daRR5vzbcMba4cnWChcOsSUeJ3/9MsmmoOJwumJ64SonKEAx14RXOBOOO7n73XESkH0MxWiEao5TZK+T+ZjVgkRTW4lKg==
+ b=oo9C4R4KiMKbeYt/4dBULlDwL5AXSDbXoXGzlHKKMF31an5FOBZbavnwOdGpB6PWkIRzWFwhC0A38uzaZD3OkfuE8QQMORTITlH43vdfkBaAruTTKLcUk95wmVXi7rARN47SnttWHUQi100is7jUYzuKldJ+eC2HmYWNbedQtG2pIkZi75vBfc6qteACg0d006G0KCgGPfFLjWJKRwkat/H8D2FehjyiOv6zTzoJke6rvgNM6Yt8vV1nHhHfT/hbitqfjfLQEumeRclcmoWJqPBtB+S29yLdYJ5IVH2IjsQFqOY497G2pNHEXE0WO15pPJuLtw77aiyX+UPdam+iPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hbtTf347CR3iIVIFsFBqQKHcklPevn0WgF5U/46nz6s=;
- b=Zz7fur/dBshjb5QcGqNmXUGgD+erRsr1bWWrj+msXuISEmdztvS2wgXws8PxqBQs+uKBGkuBQPnY08zgvYIlzZ/k7OaeGwX9dPhm+67XaoF60Vm0eWpr/a0dhQLqGwFNhm3P7YX/Wid2cEX6w/trQFvvMQAG7EJCqtxXXIjI2QDCcIp/gqz9Fijnh4p/DJEW0shn7ccVF390N7yeCzTegC2slHnhtAQdaNybQS3jjDpY2+pxE+3JJ0MPHEbjgkucECxouCY5s62nQ86yAw/96goSupSY+zPHwIiGwdZCEp3o2BMoNNELoXJomnCK2BQGJrYZ1z7eRS6oAslZMOcCZA==
+ bh=gea5M+EWgeS5m3UiPWrboI9VgAA9m5N3UXwjflU4eV8=;
+ b=AOiH88UpWDc8QviDgwSSnSx1KmZD10A0dH9y74KVvuq9HlsUffi5H6NstGjeCpEslZ01ZsDHa/e25ypx7tmHasz4gyflGymp25yx5x9JoE0VY6H45VOPsd90hl5UHxWmfBoWdLiwk/O6rfG/ywSzDdeUhhjv0WGOb1riJAnImyQ55RaIahkFG899/2S+rmBd2DHd8tYSkNnaJbrR1/8zefwE0aV3b+PhdJVhuR7BB+RAtZrZ0iekFLY04jqeH/9KCyY6ZvjGPcChryMehOzm55L9BTaCZa4T3qQemg+fbKGEggU9pes+jm6B63gh0V6AmBzj9ZCkL7vAaFf+Sv5v5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hbtTf347CR3iIVIFsFBqQKHcklPevn0WgF5U/46nz6s=;
- b=2JEvDEIgLDk12vU8ohBrR8WmF5zVsoU1l+IL9pof4c2rxAENBfYajBRw5XwRowFrJ+zroxz+pZ4kUBeofxHbl2BVkt1xordkeHHbp5w+v60YCxWkHpQ1EocBzL55Gg5d4ZADRgaTc6eXioiObSjpbmn2WWzxOaQlr+gPKteTgOU=
-Received: from MW4PR03CA0023.namprd03.prod.outlook.com (2603:10b6:303:8f::28)
- by MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ bh=gea5M+EWgeS5m3UiPWrboI9VgAA9m5N3UXwjflU4eV8=;
+ b=T30XN5LlwkjEcZtSFa7kp/SIdR1CH25VpnRaMLxT307IZMELW4Rev6cSINwIicPRo+zho7e+RyecxMl57pX1lHOg3YQFzcyLgtXExbXufD9UP0eyRkhzaf/hxL0FXNjM8hkWFNMyTIqucUaN+BVuO0m+q13NszE/imSY3nEPwoc=
+Received: from BN9PR03CA0532.namprd03.prod.outlook.com (2603:10b6:408:131::27)
+ by SJ0PR12MB6712.namprd12.prod.outlook.com (2603:10b6:a03:44e::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Wed, 11 Sep
- 2024 07:07:30 +0000
-Received: from CO1PEPF000075ED.namprd03.prod.outlook.com
- (2603:10b6:303:8f:cafe::3) by MW4PR03CA0023.outlook.office365.com
- (2603:10b6:303:8f::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.25 via Frontend
- Transport; Wed, 11 Sep 2024 07:07:30 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.26; Wed, 11 Sep
+ 2024 07:07:31 +0000
+Received: from BN1PEPF0000468A.namprd05.prod.outlook.com
+ (2603:10b6:408:131:cafe::ec) by BN9PR03CA0532.outlook.office365.com
+ (2603:10b6:408:131::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
+ Transport; Wed, 11 Sep 2024 07:07:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,21 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000075ED.mail.protection.outlook.com (10.167.249.36) with Microsoft
+ BN1PEPF0000468A.mail.protection.outlook.com (10.167.243.135) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Wed, 11 Sep 2024 07:07:30 +0000
+ 15.20.7918.13 via Frontend Transport; Wed, 11 Sep 2024 07:07:31 +0000
 Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Sep
- 2024 02:06:10 -0500
+ 2024 02:06:38 -0500
 From: Lijo Lazar <lijo.lazar@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
- <Christian.Koenig@amd.com>, <feifxu@amd.com>, <rajneesh.bhardwaj@amd.com>,
- Feifei Xu <Feifei.Xu@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH v2 05/10] drm/amdgpu: Add helper to initialize badpage info
-Date: Wed, 11 Sep 2024 12:28:53 +0530
-Message-ID: <20240911065858.2224424-6-lijo.lazar@amd.com>
+ <Christian.Koenig@amd.com>, <feifxu@amd.com>, <rajneesh.bhardwaj@amd.com>
+Subject: [PATCH v2 06/10] drm/amdgpu: Refactor XGMI reset on init handling
+Date: Wed, 11 Sep 2024 12:28:54 +0530
+Message-ID: <20240911065858.2224424-7-lijo.lazar@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240911065858.2224424-1-lijo.lazar@amd.com>
 References: <20240911065858.2224424-1-lijo.lazar@amd.com>
@@ -74,51 +73,51 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075ED:EE_|MN0PR12MB6101:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a2a1793-0d80-4c71-4f16-08dcd23066ce
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|SJ0PR12MB6712:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e715be8-659d-40a0-3c20-08dcd230673e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4wEV6CVjKXbu3+MJlU4xhvanuoBVOQ6fP8Nlgp9q8l/v/d9dut2+3loa1Gwv?=
- =?us-ascii?Q?dsSaQe7wminGlc5lKx5QpwIwX5b/9Jw7SkyNBHJPgkOsU6soAW3pj/+ecI7x?=
- =?us-ascii?Q?cnEHaEiO9jrXp97bPD00uLMX7DpCtH1qsEeY0AqGgYhSIA8/HN9xsxz2jsuq?=
- =?us-ascii?Q?ekGFjAoQVAiiMkBoJVOLn6b0DnkXA22D3lsOoQVD6/IgH0vsFNkleSgDMQ/6?=
- =?us-ascii?Q?2yPu2OfPLWrfnVmDEyBDnn/JiIjxWmPrLu6sCMQH5tZTHyZV8/RphoDaK6Hi?=
- =?us-ascii?Q?37F4iIiDs8QHQ2d/O39cNdtV6MMcm/qiFV3tCGyqWloSfiiGJanPwHbeO3NS?=
- =?us-ascii?Q?4UAdFIkO4ODQH0gLKcD1Q3jlL84smy4iaVzUHTB1Uu0ihANpQmeMIL2hU7L4?=
- =?us-ascii?Q?I4q+SNaz2pQM32RTYdbNVdeqkE4t8L18gNsPZbbuqh3pQSrI5SMlQjagNSb9?=
- =?us-ascii?Q?d8tjfAXzWhURQgXptNQ13ShXYWtlVVy52GJcmRKjsLaFxyCjA7bgpUAXFYPJ?=
- =?us-ascii?Q?gTwJxiX01Y3ffQ5KhX6teLqOtpsh0nPRa5s0KZ9Rly6Xj4O80RqdTCBhELr0?=
- =?us-ascii?Q?4xnV45s5zMO7gqa9ZxxsXb/2WiTLM7bpPMe4VJm7IWxYkWluQpOKu0gZ7mRs?=
- =?us-ascii?Q?7FMbjbqIU6UaAoCMVJdGDA1IXnhvJdvpnTY/2tyd6ewTk1EHy7dXP2P3n9Ij?=
- =?us-ascii?Q?Hr8Op+gw1lcIWdiUpI/W3V2z1d0fuTsPjMGC7ag5oHCIYjVLy9zeTk9R28uF?=
- =?us-ascii?Q?Yvbm0RLClHj7xStYXbWTJmYRl/ZLZLk0/yWW7350bwthTmzAtUnavk3j23S9?=
- =?us-ascii?Q?5n63Vw3M/BcpPYGV7P08WtXBut4qbyGRpk77KarhnQACnVdjhzii/yXSs1Es?=
- =?us-ascii?Q?M5fwECgTdAF3BInzUNncz/4xeLXg8UOTX5lXhCqdWZsNfj2JOxJdHf9iAfPT?=
- =?us-ascii?Q?N7WNS28tCrVjum/RQQ7klVxd9zXVw2yqPFnz8ruxLVyKBhAhgezC6WhAwFGA?=
- =?us-ascii?Q?GyRSQUejQbK8mrGGqy2cA/hcs2VJ9OvMgK8ZTCulOgLFL2yKKXPBEq0ZK5tX?=
- =?us-ascii?Q?qpQKUKMSBdcIRxeTpm+jRRLkbQyt8exx1z/EYjMI5Yo5QhK5m/O7FWYQmCWV?=
- =?us-ascii?Q?lnuyrbHxCQNLmFqK8onlXMckyo28PSaXvkAk2X41GXPGWdOCcUqZ7erWIM7F?=
- =?us-ascii?Q?GglLadGqPXGfQa+ScEGow2XHtpbjg9ZFFDL1Mr9YkEeuehqRU9G/dr3Q+GiI?=
- =?us-ascii?Q?Xj/evz6VZ1Bllir+q8Hkn910kzmWbVubutz0TuthI3GUGrhE+GxTnsktpTgV?=
- =?us-ascii?Q?Au9nhnxtwOfxBhsz+nfdM8N89ukXTPuuH59CSyJTNgtdNPTa0OuMIB+dV/E3?=
- =?us-ascii?Q?+3m+vlJ6GLn81YexvNA4a+YKU4tE75+6MOe8cBAQjpLIklJ4qNyr28gCTMHb?=
- =?us-ascii?Q?RyTELecxf1EF8+U70GVkEstDD4YSB+Ux?=
+ ARA:13230040|82310400026|376014|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UBMd7V/luaywnWNQxFiVWeOKEPCAY4YZ0nTThdwml83r8VM3kVd0mPywo/i4?=
+ =?us-ascii?Q?wP93FgZnIE7z+2BF96H28pXV81SybcwdPPuxAi96dLpAT9/MeKXwXlfU9hSF?=
+ =?us-ascii?Q?qdDIIJC+8FdX3btRCpiS42W/g/Uz+NEbnDi3PZ52L1pV9rP5Q5HkhM1z1lYe?=
+ =?us-ascii?Q?+5ZCuzuzcQfpuCQtbNCaZ4YOBa/5slTb2cRFp/UxsmxXKkBzJRbojCGQBa9r?=
+ =?us-ascii?Q?SlalPbHzPHe6KH9BsMwjYI4nFgRj+2TIwcNHL/Bo8/+7FE741oK1ITSAzAgj?=
+ =?us-ascii?Q?epf5eIuu/xjNcLtg05Cg80N3OKmBQWqGyLGcr0q98E8lYFhnFN0inhdc+2em?=
+ =?us-ascii?Q?nTsI1zYuHrkO1+DhhBq4CXV1HAjvT9mD657HRavybjNlzKnzQSqbAq+/I/V5?=
+ =?us-ascii?Q?8Wld/Bm75DbFziHCzunecskvNJtxDprBBRupKFADazhhke40JiaQC0UHnfgG?=
+ =?us-ascii?Q?RztbtmNQLWGgOViPhFeoo2dkFtUQMabc0PWWv9v/Pct5NjPu4PhXaxzZnbFM?=
+ =?us-ascii?Q?APNw01OfwjmZodtxEWUb2sNc9anq75S18K3V5g2B5VKClH9ASjqq470yp1wc?=
+ =?us-ascii?Q?wq8qHL8Lq3wLfoDLw01p5HCZEGNj//UpnqSKcDiU5kUgHaci1G6dhkTINs0x?=
+ =?us-ascii?Q?AABZiUVkKIXNHY9bJR3envRkm/Jh4OcJB6rD/c91kliCbTDZmGywlPvJ79Vj?=
+ =?us-ascii?Q?fs7AaRFvpojGrr7ybBkdRa68Pjf1Jaz4EtG88KeJKei/wmxlfgekzS+x+o1h?=
+ =?us-ascii?Q?Q/Iz+3gwEwlJOSm1KrD84/2BXiwZHE6dRy7GuWh+vZ1vzEag4Fix7GUFzLJz?=
+ =?us-ascii?Q?eQmzjM6q/Fw2xKyih6ujfkuVMTP441l6xTEd3T7WXiS+X9itlsFDJJTFH8rO?=
+ =?us-ascii?Q?3fDzUzGxE78cifJRpWQCqW2P3HmhuuiKU0uJTCFXS0Wjt9tWEOdQu4ek1GSE?=
+ =?us-ascii?Q?aFufPraZTlS8eBEURH4BliCrSF/noGc/PrB0mnHCxDD0CDQySvkbhRmrGfoL?=
+ =?us-ascii?Q?g0+AWiTnYJcOsGBIs0gJm2c9yU4mlzSK6pbn5vMtiPTLn7C1fgjlDaKYc7jp?=
+ =?us-ascii?Q?8YE1v/IwwaweuPdA8Pgk+0B5J57mzBo0U0OUlLu/lPd4LWxJYXoVq7iRD42f?=
+ =?us-ascii?Q?UbHorUCzANmk+GesLYrJZ3zlwmtkimJzsirIKWkSmZnEi8LikBmxgUcIPZ1f?=
+ =?us-ascii?Q?/XOm9+A+57iKApWtM4NhhdWno27AR/ucgUAf1JCpoaVGsq8OTGYbf9XmMeIg?=
+ =?us-ascii?Q?z3gy53wuJosznEE8OoDCL397/LA4bsxrbdobNZ/ANimNuPuCqWYN9EbpO+LT?=
+ =?us-ascii?Q?MflOerAIaNpe70VMa6sg/UOtz5eUBdqmpUo0sTK/yRz7zWHLBcZTOhvC1rwc?=
+ =?us-ascii?Q?JQF3s70OhtATso1cLPmONUsnTUImUqbziUXC6pODdJ4tHeaf0eKgP1863jzE?=
+ =?us-ascii?Q?klSpz2mlkNe0SDCw3aEJTudQbG1o+py7?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2024 07:07:30.3733 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a2a1793-0d80-4c71-4f16-08dcd23066ce
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2024 07:07:31.1225 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e715be8-659d-40a0-3c20-08dcd230673e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000075ED.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6101
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6712
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,124 +132,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a separate function to read badpage data during initialization.
-Reading bad pages will need hardware access and cannot be done during
-reset. Hence in cases where device needs a full reset during
-init itself, attempting to read will cause a deadlock.
+Use XGMI hive information to rely on resetting XGMI devices on
+initialization rather than using mgpu structure. mgpu structure may have
+other devices as well.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Feifei Xu <Feifei.Xu@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Feifei Xu <feifxu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    | 56 +++++++++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h    |  4 +-
- 3 files changed, 41 insertions(+), 21 deletions(-)
+v2:
+	Use consistent naming scheme for functions/variables (Alex Deucher)
+	Use renamed init level id - AMDGPU_INIT_LEVEL_MINIMAL_XGMI
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    |  6 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c   | 73 ++++++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h   |  2 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c      | 14 +++--
+ drivers/gpu/drm/amd/amdgpu/soc15.c         |  5 ++
+ 6 files changed, 91 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0caab1a4ae8c..4928881c13b2 100644
+index 4928881c13b2..c104076e85b6 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2953,7 +2953,7 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+@@ -164,7 +164,8 @@ struct amdgpu_init_level amdgpu_init_minimal_xgmi = {
+ 	.level = AMDGPU_INIT_LEVEL_MINIMAL_XGMI,
+ 	.hwini_ip_block_mask =
+ 		BIT(AMD_IP_BLOCK_TYPE_GMC) | BIT(AMD_IP_BLOCK_TYPE_SMC) |
+-		BIT(AMD_IP_BLOCK_TYPE_COMMON) | BIT(AMD_IP_BLOCK_TYPE_IH)
++		BIT(AMD_IP_BLOCK_TYPE_COMMON) | BIT(AMD_IP_BLOCK_TYPE_IH) |
++		BIT(AMD_IP_BLOCK_TYPE_PSP)
+ };
+ 
+ static inline bool amdgpu_ip_member_of_hwini(struct amdgpu_device *adev,
+@@ -2840,6 +2841,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+  */
+ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+ {
++	bool init_badpage;
+ 	int i, r;
+ 
+ 	r = amdgpu_ras_init(adev);
+@@ -2953,7 +2955,8 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
  	 * Note: theoretically, this should be called before all vram allocations
  	 * to protect retired page from abusing
  	 */
--	r = amdgpu_ras_recovery_init(adev);
-+	r = amdgpu_ras_recovery_init(adev, true);
+-	r = amdgpu_ras_recovery_init(adev, true);
++	init_badpage = (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI);
++	r = amdgpu_ras_recovery_init(adev, init_badpage);
  	if (r)
  		goto init_failed;
  
+@@ -4514,8 +4517,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 		vga_switcheroo_init_domain_pm_ops(adev->dev, &adev->vga_pm_domain);
+ 
+ 	if (adev->init_lvl->level == AMDGPU_INIT_LEVEL_MINIMAL_XGMI)
+-		queue_delayed_work(system_wq, &mgpu_info.delayed_reset_work,
+-				   msecs_to_jiffies(AMDGPU_RESUME_MS));
++		amdgpu_xgmi_reset_on_init(adev);
+ 
+ 	amdgpu_device_check_iommu_direct_map(adev);
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index c7cdbd2b5adc..f5cd91fd63ea 100644
+index f5cd91fd63ea..2c29f4c34e64 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3146,7 +3146,42 @@ static int amdgpu_ras_page_retirement_thread(void *param)
- 	return 0;
- }
+@@ -3216,12 +3216,6 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev, bool init_bp_info)
+ 	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count(&con->eeprom_control);
+ 	amdgpu_ras_validate_threshold(adev, max_eeprom_records_count);
  
--int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
-+int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
-+{
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
-+	int ret;
-+
-+	if (!con || amdgpu_sriov_vf(adev))
-+		return 0;
-+
-+	ret = amdgpu_ras_eeprom_init(&con->eeprom_control);
-+
-+	if (ret)
-+		return ret;
-+
-+	/* HW not usable */
-+	if (amdgpu_ras_is_rma(adev))
-+		return -EHWPOISON;
-+
-+	if (con->eeprom_control.ras_num_recs) {
-+		ret = amdgpu_ras_load_bad_pages(adev);
-+		if (ret)
-+			return ret;
-+
-+		amdgpu_dpm_send_hbm_bad_pages_num(
-+			adev, con->eeprom_control.ras_num_recs);
-+
-+		if (con->update_channel_flag == true) {
-+			amdgpu_dpm_send_hbm_bad_channel_flag(
-+				adev, con->eeprom_control.bad_channel_bitmap);
-+			con->update_channel_flag = false;
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+int amdgpu_ras_recovery_init(struct amdgpu_device *adev, bool init_bp_info)
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	struct ras_err_handler_data **data;
-@@ -3187,25 +3222,10 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 	 */
- 	if (adev->init_lvl->level == AMDGPU_INIT_LEVEL_MINIMAL_XGMI)
- 		return 0;
--	ret = amdgpu_ras_eeprom_init(&con->eeprom_control);
--	/*
--	 * This calling fails when is_rma is true or
--	 * ret != 0.
+-	/* Todo: During test the SMU might fail to read the eeprom through I2C
+-	 * when the GPU is pending on XGMI reset during probe time
+-	 * (Mostly after second bus reset), skip it now
 -	 */
--	if (amdgpu_ras_is_rma(adev) || ret)
--		goto free;
--
--	if (con->eeprom_control.ras_num_recs) {
--		ret = amdgpu_ras_load_bad_pages(adev);
-+	if (init_bp_info) {
-+		ret = amdgpu_ras_init_badpage_info(adev);
+-	if (adev->init_lvl->level == AMDGPU_INIT_LEVEL_MINIMAL_XGMI)
+-		return 0;
+ 	if (init_bp_info) {
+ 		ret = amdgpu_ras_init_badpage_info(adev);
  		if (ret)
- 			goto free;
--
--		amdgpu_dpm_send_hbm_bad_pages_num(adev, con->eeprom_control.ras_num_recs);
--
--		if (con->update_channel_flag == true) {
--			amdgpu_dpm_send_hbm_bad_channel_flag(adev, con->eeprom_control.bad_channel_bitmap);
--			con->update_channel_flag = false;
--		}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 74135d611cba..61b293c60b41 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -860,8 +860,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 	if (!adev->gmc.xgmi.supported)
+ 		return 0;
+ 
+-	if ((adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) &&
+-	    amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP)) {
++	if (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP)) {
+ 		ret = psp_xgmi_initialize(&adev->psp, false, true);
+ 		if (ret) {
+ 			dev_err(adev->dev,
+@@ -907,8 +906,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 
+ 	task_barrier_add_task(&hive->tb);
+ 
+-	if ((adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) &&
+-	    amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP)) {
++	if (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_PSP)) {
+ 		list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
+ 			/* update node list for other device in the hive */
+ 			if (tmp_adev != adev) {
+@@ -985,7 +983,7 @@ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ 		}
  	}
  
- 	mutex_init(&con->page_rsv_lock);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 669720a9c60a..871b2d6278e0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -736,8 +736,8 @@ struct amdgpu_ras_block_hw_ops {
-  * 8: feature disable
-  */
+-	if (!ret && (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI))
++	if (!ret)
+ 		ret = amdgpu_xgmi_sysfs_add_dev_info(adev, hive);
  
--
--int amdgpu_ras_recovery_init(struct amdgpu_device *adev);
-+int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev);
-+int amdgpu_ras_recovery_init(struct amdgpu_device *adev, bool init_bp_info);
+ exit_unlock:
+@@ -1500,3 +1498,68 @@ int amdgpu_xgmi_ras_sw_init(struct amdgpu_device *adev)
  
- void amdgpu_ras_resume(struct amdgpu_device *adev);
- void amdgpu_ras_suspend(struct amdgpu_device *adev);
+ 	return 0;
+ }
++
++static void amdgpu_xgmi_reset_on_init_work(struct work_struct *work)
++{
++	struct amdgpu_hive_info *hive =
++		container_of(work, struct amdgpu_hive_info, reset_on_init_work);
++	struct amdgpu_reset_context reset_context;
++	struct amdgpu_device *tmp_adev;
++	struct list_head device_list;
++	int r;
++
++	mutex_lock(&hive->hive_lock);
++
++	INIT_LIST_HEAD(&device_list);
++	list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head)
++		list_add_tail(&tmp_adev->reset_list, &device_list);
++
++	tmp_adev = list_first_entry(&device_list, struct amdgpu_device,
++				    reset_list);
++	amdgpu_device_lock_reset_domain(tmp_adev->reset_domain);
++
++	reset_context.method = AMD_RESET_METHOD_ON_INIT;
++	reset_context.reset_req_dev = tmp_adev;
++	reset_context.hive = hive;
++	reset_context.reset_device_list = &device_list;
++	set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
++	set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);
++
++	amdgpu_reset_do_xgmi_reset_on_init(&reset_context);
++	mutex_unlock(&hive->hive_lock);
++	amdgpu_device_unlock_reset_domain(tmp_adev->reset_domain);
++
++	list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
++		r = amdgpu_ras_init_badpage_info(tmp_adev);
++		if (r && r != -EHWPOISON)
++			dev_err(tmp_adev->dev,
++				"error during bad page data initializtion");
++	}
++}
++
++static void amdgpu_xgmi_schedule_reset_on_init(struct amdgpu_hive_info *hive)
++{
++	INIT_WORK(&hive->reset_on_init_work, amdgpu_xgmi_reset_on_init_work);
++	amdgpu_reset_domain_schedule(hive->reset_domain,
++				     &hive->reset_on_init_work);
++}
++
++int amdgpu_xgmi_reset_on_init(struct amdgpu_device *adev)
++{
++	struct amdgpu_hive_info *hive;
++	int r, num_devs;
++
++	hive = amdgpu_get_xgmi_hive(adev);
++	if (!hive)
++		return -EINVAL;
++
++	mutex_lock(&hive->hive_lock);
++	num_devs = atomic_read(&hive->number_devices);
++	if (num_devs == adev->gmc.xgmi.num_physical_nodes)
++		amdgpu_xgmi_schedule_reset_on_init(hive);
++
++	mutex_unlock(&hive->hive_lock);
++	amdgpu_put_xgmi_hive(hive);
++
++	return r;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+index a3bfc16de6d4..d652727ca565 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+@@ -45,6 +45,7 @@ struct amdgpu_hive_info {
+ 	struct amdgpu_reset_domain *reset_domain;
+ 	atomic_t ras_recovery;
+ 	struct ras_event_manager event_mgr;
++	struct work_struct reset_on_init_work;
+ };
+ 
+ struct amdgpu_pcs_ras_field {
+@@ -75,5 +76,6 @@ static inline bool amdgpu_xgmi_same_hive(struct amdgpu_device *adev,
+ 		adev->gmc.xgmi.hive_id == bo_adev->gmc.xgmi.hive_id);
+ }
+ int amdgpu_xgmi_ras_sw_init(struct amdgpu_device *adev);
++int amdgpu_xgmi_reset_on_init(struct amdgpu_device *adev);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index c76ac0dfe572..cafcb24449df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -2413,11 +2413,17 @@ static int gmc_v9_0_hw_fini(void *handle)
+ 	if (adev->mmhub.funcs->update_power_gating)
+ 		adev->mmhub.funcs->update_power_gating(adev, false);
+ 
+-	amdgpu_irq_put(adev, &adev->gmc.vm_fault, 0);
++	/*
++	 * For minimal init, late_init is not called, hence VM fault/RAS irqs
++	 * are not enabled.
++	 */
++	if (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) {
++		amdgpu_irq_put(adev, &adev->gmc.vm_fault, 0);
+ 
+-	if (adev->gmc.ecc_irq.funcs &&
+-		amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC))
+-		amdgpu_irq_put(adev, &adev->gmc.ecc_irq, 0);
++		if (adev->gmc.ecc_irq.funcs &&
++		    amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC))
++			amdgpu_irq_put(adev, &adev->gmc.ecc_irq, 0);
++	}
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 8d16dacdc172..e60c69c5f894 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -1295,7 +1295,12 @@ static int soc15_common_hw_fini(void *handle)
+ 	if (amdgpu_sriov_vf(adev))
+ 		xgpu_ai_mailbox_put_irq(adev);
+ 
++	/*
++	 * For minimal init, late_init is not called, hence RAS irqs are not
++	 * enabled.
++	 */
+ 	if ((!amdgpu_sriov_vf(adev)) &&
++	    (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) &&
+ 	    adev->nbio.ras_if &&
+ 	    amdgpu_ras_is_supported(adev, adev->nbio.ras_if->block)) {
+ 		if (adev->nbio.ras &&
 -- 
 2.25.1
 
