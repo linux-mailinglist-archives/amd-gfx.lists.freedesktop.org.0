@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA0C975695
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Sep 2024 17:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42082975698
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Sep 2024 17:14:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951B010E037;
-	Wed, 11 Sep 2024 15:14:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DACB10E038;
+	Wed, 11 Sep 2024 15:14:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="4GEMa37q";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lLvL0dQj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA5C10E037
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 15:14:07 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2042.outbound.protection.outlook.com [40.107.94.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0024810E038
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 15:14:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aqeFJb+66mbKg6l3g0UVOZlfnLxDq2pAQbTyPqN5n0B1kBm4uQaVm6iMfL/VMbDa9zvi3XBqhLkaI3VWFuiSRfV52FzkeEBt5z7kl0cbrAnugo1fCNv18obKxiUnMVmVQwvgXwbs58H3dp38Xiia/wETRd/dNFLnCSsLNodhGt0AlcOyionvPECQceEi/gONKDq4Yz6qgtuIsKIWbiN22VzXURvSmLtpxJqDWIdEICoXmR6vIBnPOKa1NSSF7oHXEEI1/us4QjD/j52+tkd+6nOimZn4E4hSJumqnUPs1oqqHh9uRRWR10BXfA7zOhG/d8E8mZczpKrL4Fshl/px0w==
+ b=fhRrpFf+7j5i3YcnvCYDoAvhv2l2idAT+xDqmOrznU+QNS7/2J0Cd/9uH0iNA2vpk9VvORP1XBZ89Hq2mWfEtsaDTzBVML+egcVCBGLpifC0SRd6zUtmZ0F5oWEREj9QZlj7q6bbbox7abL6U1g6qqtJnl5Nns4UcN2WXMrqUR14VnlG9L1tcWVc29DxlWHoABYzdxgTJSDsTBSxyQppWPKBlCy696R94p3R/yzXA95+v2Si5i+mDHa68lFBiaQGNMv24t1ATZby41W0UY0joDH9yDUPcDPpgg2XVp7X8ufrJnRXQK/Ptmga+C66gMpUjDv/g5BACVDuvkx9C3mduw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oJgCsqfC3N6J00NuXlE8wpH3ebRoHfbLMn0jsXJOeBs=;
- b=ZmmIWVECj8nAfg2FLCuWaaHEIrpTOVK3dbaUYvph+FXy8pHUD9c0beHJwqYcdRrSJsYdmRuihG3iNxopfbe2IpcvxYxWa/4XB/nYaZcwhlKulmpaDprq93TxmY2NcxOP7J3KZvvE+M1Ts7LUviLx0OpSX1RzZ3eAv0KAlGjHFjv/AAOneAjp2TtFDqIeNKBYOPjt3NXCLbFjjYBDebQDL+byKr64HtbLPMQzSB+KIdcE/5tha8aGag/EyXtSywvR4mMlURJBedJeBrFEVDOQb/PR9PE/Q0wkITzooWHptAF+Ua3oQKJlEys5YkdePMGeyuqpqb+bb5Ff/G5KvsYY7Q==
+ bh=zb6r1o2fTt+RYP1MLdsRwEymd6XSJ2Z6iC5zclwkFBA=;
+ b=u+wcqBv/kv5CKrBK22wMJa15jr5WlalsNyC3Uc97fi7BFIpSLumBjLqGcEjRddVPTJfwS2W1Cd1CIYHNXuUk0dRK95ai0QyYLn7nHfFOUWW/2lewC6C4mRbUQAUlGStrP2ihdMr+pjSeIXCBFBcWP16IQ8eGvWjk6ar0z8fmxSn95LMJYCL3Nr7g2ghAXcXwZpeX0VCy3WgmZp7dPqpgh28iqQlXvzcvEPoYYt99Wb2DuG95CQk2tZLQlNBPMv9WO6rYXtW6cOe6v/2oZJRNJUbrh7mr2w1+a2bad9CATsUI64cNgCQg+FSBC8fQ7l6Pz1MYHy1ZJWN1KQB4uMTULw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oJgCsqfC3N6J00NuXlE8wpH3ebRoHfbLMn0jsXJOeBs=;
- b=4GEMa37qmz9A2X3rH+AxGRnXXeTuLsTJ8Cy3pkDtxT7aY1uV42EMV6mZR6UB/hSPp8MGel++EjCk0ofuv2WdwgegT2jJ3dkOsrChwCDBHzimsXszHWgfxNUj5cHLlqCIXxq9wrxdlvPGtmOy8upuEPS4oXRGCcQJqrQxc3y2FR4=
-Received: from CH2PR14CA0055.namprd14.prod.outlook.com (2603:10b6:610:56::35)
- by SA1PR12MB6871.namprd12.prod.outlook.com (2603:10b6:806:25f::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.20; Wed, 11 Sep
- 2024 15:14:00 +0000
+ bh=zb6r1o2fTt+RYP1MLdsRwEymd6XSJ2Z6iC5zclwkFBA=;
+ b=lLvL0dQjWdhcPpGCuxDKWDDr47QWxuRDPN4tppNEjdp/D3jrTBKfehXy2r4m7CukrWgYWfl2SEkp7ZcKh/UBZ9IlJBzNdS+bdllka0fcMTPHj+OOSI4/BU0tZz4eQmxfnDxco7o4z74CZhNJLlC+LSAROr7a2NhyDiiNfC1bAjo=
+Received: from CH2PR14CA0048.namprd14.prod.outlook.com (2603:10b6:610:56::28)
+ by DM4PR12MB8449.namprd12.prod.outlook.com (2603:10b6:8:17f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Wed, 11 Sep
+ 2024 15:14:03 +0000
 Received: from CH2PEPF0000013C.namprd02.prod.outlook.com
- (2603:10b6:610:56:cafe::7f) by CH2PR14CA0055.outlook.office365.com
- (2603:10b6:610:56::35) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:610:56:cafe::13) by CH2PR14CA0048.outlook.office365.com
+ (2603:10b6:610:56::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
- Transport; Wed, 11 Sep 2024 15:14:00 +0000
+ Transport; Wed, 11 Sep 2024 15:14:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CH2PEPF0000013C.mail.protection.outlook.com (10.167.244.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Wed, 11 Sep 2024 15:14:00 +0000
+ 15.20.7918.13 via Frontend Transport; Wed, 11 Sep 2024 15:14:03 +0000
 Received: from MKM-L10-YUNXIA9.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Sep
- 2024 10:13:59 -0500
+ 2024 10:14:00 -0500
 From: Yunxiang Li <Yunxiang.Li@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>
 CC: <Alexander.Deucher@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>
-Subject: [PATCH v3 1/3] drm/amdgpu: stop tracking visible memory stats
-Date: Wed, 11 Sep 2024 11:13:27 -0400
-Message-ID: <20240911151329.9438-1-Yunxiang.Li@amd.com>
+Subject: [PATCH v3 2/3] drm/amdgpu: remove unused function parameter
+Date: Wed, 11 Sep 2024 11:13:28 -0400
+Message-ID: <20240911151329.9438-2-Yunxiang.Li@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240911151329.9438-1-Yunxiang.Li@amd.com>
+References: <20240911151329.9438-1-Yunxiang.Li@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -70,51 +72,51 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013C:EE_|SA1PR12MB6871:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb057d25-e9e1-4af5-efdd-08dcd2745d6d
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013C:EE_|DM4PR12MB8449:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0308371-7213-4cce-66e6-08dcd2745f0a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DPnll0Nk8VE4pkL7ldMTzzpblUtbt3NngCSRPKH7FUWGDEd/AfWAKa0PDYCp?=
- =?us-ascii?Q?ERfsW83t8c+oHaTZMRIWzyUzDA5eM1wGUvuMDra7v4ljmw8HM4vVaS13YnPD?=
- =?us-ascii?Q?ARac4e07AE6/8GHium813uFNAhFBzOQ1B0Y7pFZnv4dRAdHXW5mjNYjglUud?=
- =?us-ascii?Q?BKT0UMwgk+aCHMzth1cQdgCS+COZNWySeTxKmTVox+LqKfXwmByBlwT42VB9?=
- =?us-ascii?Q?1rB98/EYrkPBORKGXxl8KD3qUYfYRu4HO/MpxDNp6J6kLCT1FZi03hzGnVfp?=
- =?us-ascii?Q?IbnvFrYf/kiihKQ1uCT+1HQJXN4FCLBoh3AIGz2JsPMCmIhGdPnQugPWEPk1?=
- =?us-ascii?Q?OgeRqoN+sjiqbKylNwBNiIJf255CiSEmoEUpoQFHF/zNP1Um1RzJiR6zsmKT?=
- =?us-ascii?Q?kTzugWpZoLTcIJR+hAp90MA+2T0YUn0x+c3U6U7MKGuyqMfaTQeaZCHoYJ/U?=
- =?us-ascii?Q?DEM0o5b1YFiYuFwixIKM1xwkpkDl9NZyVhyi0CdNqKu0LLFvW5VHlLGj2gHr?=
- =?us-ascii?Q?WP8aZX/GZZpuXyPFpWnJbwz7BMVrNOI9/24GZ+LdUFtprsRPwjC6JHp/EAyY?=
- =?us-ascii?Q?0Nfdk0smWvKoYjDrfvRM4t2PYHiYdkV+qmwSKJgdRl8b9REKN2RI76Yzrkxv?=
- =?us-ascii?Q?Gydb0ZviR2fResA4n9AMcyxBQHmCUDz7QLy1EI0l6SVAIlAvmHvg22w24Rra?=
- =?us-ascii?Q?XSc+GoDulVwpAMQzRhEMXy8x0ebtfWsBboLlWlKaTHAv9TymUM6BMUczRimF?=
- =?us-ascii?Q?LeEfalZ3477HR6CbT5Mmh2+9F5WGbwgDjv31txo850GdeMYCE4RRXUWXdgD5?=
- =?us-ascii?Q?vFQdTxYSsLvKw9WDHHQvkb8M7UWVkUgiGCaQB7s5a4BXvwOT3i0UguEHxQ6i?=
- =?us-ascii?Q?HQ1Dn23iTD8H8k2yFhKb0BOG+EzYyoC9apyqHT48UYfocaI/bIsZagtNFbsl?=
- =?us-ascii?Q?aD7GB3B2k6bin3PZqvCCdUYSKvjDQ9FxWHtsZnR5doMrcXOqodun5dc0/AbJ?=
- =?us-ascii?Q?VirMzmDwDFQChCkO0KQT16vU6ySrsr7U/TpGhm9J83GBR/mMww2TKKlJcyUs?=
- =?us-ascii?Q?UBdjv9LORknICJpN+Wy9d6ZnO0cduzF5N/oHsPO42YCr0FWW5cTqg3l8/Q9C?=
- =?us-ascii?Q?cUOPGJKUaR+yZu/tyPu7TFqh2pysKaAGGcx/rdE47wlsORPDHS194RUcS3+d?=
- =?us-ascii?Q?Yp3EMsGd0eWmK1JHrb4aKUtH3H7vaGRT8Y0kWpgzqgRU3pWyWsEFfFopt1p7?=
- =?us-ascii?Q?6N+NWv8PC4KL7x87HfGsMAs1A1ZN3ioqp1eVxE525BWgIV47EvphQXR4/fio?=
- =?us-ascii?Q?1+c5nAxSKzl9xwQdldU4ED3X8xYYKdVjXuJx6vX8uEXYOg185Lu15vOyvMYp?=
- =?us-ascii?Q?euS5+7lnDNJ9Gw4IlRfqkVFsl/ukU06DPQ8E92I4mXIsgripQE2AsT6wid0e?=
- =?us-ascii?Q?K9tquEkXMTlzmXyHDi/DXi9BEyk3x3LC?=
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Q0UPyMlmqEIba4nk3K5oWGAWvnVPOUM+xne3dQGIWublROx3HSRdWKAwl0A0?=
+ =?us-ascii?Q?z9AWiXsjg8tYxIpaoupH3HEToqNuthE1tT8BlmiReHzbR57yHCjFziO9Insq?=
+ =?us-ascii?Q?MjlEfPTGa9FprcpijNrC65o67nRy0yZ8OxyoD+rRmdxm8maYZS71m3AInZTi?=
+ =?us-ascii?Q?AqlvDPrUKyuymE2SdgYC6iKM0ledMOxxFFzz3tJRQXMFtqqNU0GAioF5eEAC?=
+ =?us-ascii?Q?aD0Vs33tTguiZnPfDjDVpQSdipnbvYXO99FYr+Q7YH5iUMLORRqahW6Ra7mx?=
+ =?us-ascii?Q?wih2X1a74M/TtUv8G5bWSMA3uAfFDeIY6g9K5gRbt74tmRprKHADQ2VJ5XW3?=
+ =?us-ascii?Q?VvqbD/ai+X85wXRIqkSg8pDF6jlZ3jejffOJ/GnpTXhu1upz1mWr9BWaY4Lx?=
+ =?us-ascii?Q?topa+CGfrT0i60lXttZy9e1zZDVpYmI1oYJU6W6r5rYwJbgsqAeBeIvG9VRd?=
+ =?us-ascii?Q?tSK4S8DyeyZ9DvQP6fetCTTVQVihs1skSgMYFuscv0WAcAk3B3DGqh3+FRfe?=
+ =?us-ascii?Q?rE4Feq5XqsW8VL6Y6FfM/1ymCCanUoKDkuTY1ejiKV9SMyyPGLuLYuyUSaSw?=
+ =?us-ascii?Q?dheJIhWomx98qvEfYbmrlrllSgpL+0mQ/Igk5a4JzBSU04aSFP7x4PgfamuD?=
+ =?us-ascii?Q?3k1r3ZjeSqLUvlME5xVgLUPG4RCG+UBU9DvRAHDJ7/7RrJTwr6fJXS58pMYY?=
+ =?us-ascii?Q?eKQddjX+lSSq3F2xHpibrNz81+36JmaPgYOAQWl41aCQzCeRR8BqmCYejcMO?=
+ =?us-ascii?Q?wQip/L3PpkNKKvO9zi6SNlWUE1m/G/8GJQCraaw1VIWBtX79LH6+knCJvpfH?=
+ =?us-ascii?Q?98SMPxDEzhPAMlakyqzcedg7urQ9UcKCzg++2459pxzfzXZujrHz2Ljoauow?=
+ =?us-ascii?Q?vtxin3f6+FL8L78RZCoug3zJdoqYXXnWZQw65cZXOXruhz72/CjXjd2EwA7o?=
+ =?us-ascii?Q?iixx4fYNMi7ouisaa+m3hBNdGUsTawuf6Ob2Ms3lDVqhQzwRly/T7vAIW80K?=
+ =?us-ascii?Q?D0IuEoG6QJQ3YV9KzZA1PCZPKIMXO2CkuHfCudvm22442w6HJp3L7eGz1ooo?=
+ =?us-ascii?Q?0LlhAUZ0mixhPD+le+7XrJTk+WzhNqrXCR+mUF9pUglEH7i29zB0IVjSUh9w?=
+ =?us-ascii?Q?c3TDz5QZQsaZ7AqVAGZXRDtAVOWDgFfgJgRykWp+4v1nJBl9k2UA9qdnu2O6?=
+ =?us-ascii?Q?8CWMGDHbxDXnCgy2k2n/jRLzW3qXiSzK0rDGbwdZQuvWdontAvC3CWXgrfbz?=
+ =?us-ascii?Q?/Fa5+ArE92Va9vOgZ5SXuQf3RQ/rs1VO63BNYkRsz0wJ7oPwY0z1M148jjEY?=
+ =?us-ascii?Q?1JgtbUO1n1kJKqpr1oLhtCifa5pd3j6oIuyj2pwYZwqxnl58YhwmuBTXW5de?=
+ =?us-ascii?Q?DDSF/tF3RgvRqzAEUpCuLdY9MLFJeNxMC9969IrHxrn3IBvCk8rybfuaYbir?=
+ =?us-ascii?Q?ELOJBMxc8+ufPayshMP2VV33OLFwAuI0?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2024 15:14:00.4511 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb057d25-e9e1-4af5-efdd-08dcd2745d6d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2024 15:14:03.1386 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0308371-7213-4cce-66e6-08dcd2745f0a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6871
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8449
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,112 +131,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since on modern systems all of vram can be made visible anyways, to
-simplify the new implementation, drops tracking how much memory is
-visible for now. If this is still needed we can add it back on top of
-the new implementation.
+amdgpu_vm_bo_invalidate doesn't use the adev parameter and not all
+callers have a reference to adev handy, so remove it for cleanliness.
 
 Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  6 ------
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 +----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h | 14 ++++----------
- 3 files changed, 5 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     | 3 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 3 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      | 4 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h      | 3 +--
+ 6 files changed, 7 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-index c7df7fa3459f..9a40ff5c6dd3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-@@ -85,16 +85,10 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
- 	drm_printf(p, "drm-memory-vram:\t%llu KiB\n", stats.vram/1024UL);
- 	drm_printf(p, "drm-memory-gtt: \t%llu KiB\n", stats.gtt/1024UL);
- 	drm_printf(p, "drm-memory-cpu: \t%llu KiB\n", stats.cpu/1024UL);
--	drm_printf(p, "amd-memory-visible-vram:\t%llu KiB\n",
--		   stats.visible_vram/1024UL);
- 	drm_printf(p, "amd-evicted-vram:\t%llu KiB\n",
- 		   stats.evicted_vram/1024UL);
--	drm_printf(p, "amd-evicted-visible-vram:\t%llu KiB\n",
--		   stats.evicted_visible_vram/1024UL);
- 	drm_printf(p, "amd-requested-vram:\t%llu KiB\n",
- 		   stats.requested_vram/1024UL);
--	drm_printf(p, "amd-requested-visible-vram:\t%llu KiB\n",
--		   stats.requested_visible_vram/1024UL);
- 	drm_printf(p, "amd-requested-gtt:\t%llu KiB\n",
- 		   stats.requested_gtt/1024UL);
- 	drm_printf(p, "drm-shared-vram:\t%llu KiB\n", stats.vram_shared/1024UL);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 1e475eb01417..538d7523adcc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1105,7 +1105,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
+ 	 * We can't use gang submit on with reserved VMIDs when the VM changes
+ 	 * can't be invalidated by more than one engine at the same time.
+ 	 */
+-	if (p->gang_size > 1 && !p->adev->vm_manager.concurrent_flush) {
++	if (p->gang_size > 1 && !adev->vm_manager.concurrent_flush) {
+ 		for (i = 0; i < p->gang_size; ++i) {
+ 			struct drm_sched_entity *entity = p->entities[i];
+ 			struct drm_gpu_scheduler *sched = entity->rq->sched;
+@@ -1189,7 +1189,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
+ 			if (!bo)
+ 				continue;
+ 
+-			amdgpu_vm_bo_invalidate(adev, bo, false);
++			amdgpu_vm_bo_invalidate(bo, false);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+index 8e81a83d37d8..b14440490225 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+@@ -345,7 +345,7 @@ amdgpu_dma_buf_move_notify(struct dma_buf_attachment *attach)
+ 	/* FIXME: This should be after the "if", but needs a fix to make sure
+ 	 * DMABuf imports are initialized in the right VM list.
+ 	 */
+-	amdgpu_vm_bo_invalidate(adev, bo, false);
++	amdgpu_vm_bo_invalidate(bo, false);
+ 	if (!bo->tbo.resource || bo->tbo.resource->mem_type == TTM_PL_SYSTEM)
+ 		return;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index ebb3f87ef4f6..62c81b74c78e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -838,7 +838,6 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *filp)
+ {
+-	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	struct drm_amdgpu_gem_op *args = data;
+ 	struct drm_gem_object *gobj;
+ 	struct amdgpu_vm_bo_base *base;
+@@ -898,7 +897,7 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ 			robj->allowed_domains |= AMDGPU_GEM_DOMAIN_GTT;
+ 
+ 		if (robj->flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID)
+-			amdgpu_vm_bo_invalidate(adev, robj, true);
++			amdgpu_vm_bo_invalidate(robj, true);
+ 
+ 		amdgpu_bo_unreserve(robj);
+ 		break;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 6faeb9e4a572..bcf25c7e85e0 100644
+index bcf25c7e85e0..1d2929ad8cbd 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1282,7 +1282,6 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
- void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
- 			  struct amdgpu_mem_stats *stats)
+@@ -1258,7 +1258,6 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
+ 			   bool evict,
+ 			   struct ttm_resource *new_mem)
  {
--	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
- 	struct ttm_resource *res = bo->tbo.resource;
- 	uint64_t size = amdgpu_bo_size(bo);
- 	struct drm_gem_object *obj;
-@@ -1298,8 +1297,6 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
- 	switch (res->mem_type) {
- 	case TTM_PL_VRAM:
- 		stats->vram += size;
--		if (amdgpu_res_cpu_visible(adev, res))
--			stats->visible_vram += size;
- 		if (shared)
- 			stats->vram_shared += size;
- 		break;
-@@ -1318,14 +1315,8 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
+-	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct ttm_resource *old_mem = bo->resource;
+ 	struct amdgpu_bo *abo;
  
- 	if (bo->preferred_domains & AMDGPU_GEM_DOMAIN_VRAM) {
- 		stats->requested_vram += size;
--		if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
--			stats->requested_visible_vram += size;
--
--		if (res->mem_type != TTM_PL_VRAM) {
-+		if (res->mem_type != TTM_PL_VRAM)
- 			stats->evicted_vram += size;
--			if (bo->flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED)
--				stats->evicted_visible_vram += size;
--		}
- 	} else if (bo->preferred_domains & AMDGPU_GEM_DOMAIN_GTT) {
- 		stats->requested_gtt += size;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index d7e27957013f..e14b4fbb486e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -142,12 +142,10 @@ struct amdgpu_bo_vm {
- };
+@@ -1266,7 +1265,7 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
+ 		return;
  
- struct amdgpu_mem_stats {
--	/* current VRAM usage, includes visible VRAM */
-+	/* current VRAM usage */
- 	uint64_t vram;
--	/* current shared VRAM usage, includes visible VRAM */
-+	/* current shared VRAM usage */
- 	uint64_t vram_shared;
--	/* current visible VRAM usage */
--	uint64_t visible_vram;
- 	/* current GTT usage */
- 	uint64_t gtt;
- 	/* current shared GTT usage */
-@@ -156,14 +154,10 @@ struct amdgpu_mem_stats {
- 	uint64_t cpu;
- 	/* current shared system memory usage */
- 	uint64_t cpu_shared;
--	/* sum of evicted buffers, includes visible VRAM */
-+	/* sum of evicted buffers */
- 	uint64_t evicted_vram;
--	/* sum of evicted buffers due to CPU access */
--	uint64_t evicted_visible_vram;
--	/* how much userspace asked for, includes vis.VRAM */
--	uint64_t requested_vram;
- 	/* how much userspace asked for */
--	uint64_t requested_visible_vram;
-+	uint64_t requested_vram;
- 	/* how much userspace asked for */
- 	uint64_t requested_gtt;
- };
+ 	abo = ttm_to_amdgpu_bo(bo);
+-	amdgpu_vm_bo_invalidate(adev, abo, evict);
++	amdgpu_vm_bo_invalidate(abo, evict);
+ 
+ 	amdgpu_bo_kunmap(abo);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 48d0bec8e278..6f169e0ea30f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2138,14 +2138,12 @@ bool amdgpu_vm_evictable(struct amdgpu_bo *bo)
+ /**
+  * amdgpu_vm_bo_invalidate - mark the bo as invalid
+  *
+- * @adev: amdgpu_device pointer
+  * @bo: amdgpu buffer object
+  * @evicted: is the BO evicted
+  *
+  * Mark @bo as invalid.
+  */
+-void amdgpu_vm_bo_invalidate(struct amdgpu_device *adev,
+-			     struct amdgpu_bo *bo, bool evicted)
++void amdgpu_vm_bo_invalidate(struct amdgpu_bo *bo, bool evicted)
+ {
+ 	struct amdgpu_vm_bo_base *bo_base;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index 52dd7cdfdc81..b4424a757b38 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -515,8 +515,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev,
+ 			struct amdgpu_bo_va *bo_va,
+ 			bool clear);
+ bool amdgpu_vm_evictable(struct amdgpu_bo *bo);
+-void amdgpu_vm_bo_invalidate(struct amdgpu_device *adev,
+-			     struct amdgpu_bo *bo, bool evicted);
++void amdgpu_vm_bo_invalidate(struct amdgpu_bo *bo, bool evicted);
+ uint64_t amdgpu_vm_map_gart(const dma_addr_t *pages_addr, uint64_t addr);
+ struct amdgpu_bo_va *amdgpu_vm_bo_find(struct amdgpu_vm *vm,
+ 				       struct amdgpu_bo *bo);
 -- 
 2.34.1
 
