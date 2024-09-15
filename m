@@ -2,50 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F947979B9A
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Sep 2024 08:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 408D697986F
+	for <lists+amd-gfx@lfdr.de>; Sun, 15 Sep 2024 21:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F3AC10E2E1;
-	Mon, 16 Sep 2024 06:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B658010E2BC;
+	Sun, 15 Sep 2024 19:28:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=rosa.ru header.i=@rosa.ru header.b="BUkaGEHp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VyZbLvTb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 3603 seconds by postgrey-1.36 at gabe;
- Sun, 15 Sep 2024 18:41:01 UTC
-Received: from mail.rosa.ru (mail.rosa.ru [176.109.80.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F0C10E05A;
- Sun, 15 Sep 2024 18:41:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/simple; d=rosa.ru;
- s=mail; bh=AWlzurw8TjVSJHL81PnGiT03F3c0KZ6Bu9J4LY1ExbA=;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From;
- b=BUkaGEHpVeR+imcr5SkWnflzoRg5liO3N7CvuAJEVGFMDlxP3VUuzrA5YLKmJF1OiJ/2ooQbAsr
- rtvjcZWfiWvJSqX2Gu5hJycCU3lIJmw/wotEe791xvLeZ+ixWC8ZW9tL2GJZkWgBWpcjOzpGLBjm4
- 7jgxOm+0pzLa25mzTOs=
-Received: from [194.9.26.89] (account m.arhipov@rosa.ru HELO
- localhost.localdomain) by mail.rosa.ru (CommuniGate Pro SMTP 6.4.1j)
- with ESMTPSA id 130329; Sun, 15 Sep 2024 20:40:54 +0300
-From: Mikhail Arkhipov <m.arhipov@rosa.ru>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: Mikhail Arkhipov <m.arhipov@rosa.ru>, Jake Wang <haonan.wang2@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Wenjing Liu <wenjing.liu@amd.com>,
- Swapnil Patel <swapnil.patel@amd.com>, Sasha Levin <sashal@kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
- lvc-patches@linuxtesting.org
-Subject: [PATCH] drm/amd/display: Add NULL check for panel_cntl in
- dce110_edp_backlight_control
-Date: Sun, 15 Sep 2024 20:40:50 +0300
-Message-Id: <20240915174050.78956-1-m.arhipov@rosa.ru>
-X-Mailer: git-send-email 2.39.3 (Apple Git-146)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A51210E2BC
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Sep 2024 19:28:53 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 513BDA40EE9;
+ Sun, 15 Sep 2024 19:28:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 494CCC4CEC3;
+ Sun, 15 Sep 2024 19:28:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726428531;
+ bh=g1/tBL6wMAVCAbZ4Zgi16X2hkvKxKZdJzr4cgRsOXZs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=VyZbLvTb5fyLQvfU7r7I9t4TEwJpUzTz+jl6FpIfXB6U5flizYFBPpOtwBECh9Qj7
+ nW5IbDENtjSpDDyLDqOtmrON0PD2nzTDewzG+3Y6ws1KOUIu05mQJcJ+oS5yl3bakB
+ vKDBWK8P1uJ56PJ4WT0FF2nL9ARyFGIK5JH0pjSFC8y2MfE8mhLFH3Vnf+aTYdjcW0
+ UdYza0ize+T/GHoptESJg4CLlyoGH5QtLGd/pbpo+6pPG927PcgyKoUg/nVQgyerVC
+ oIO9zWQu14Er7+ZaCLLiG1V6HFuiU7VqHSBrWcHJIFRLhV7FX/ElR1SyKbhOELjkBK
+ ed5RArSpEOBNA==
+From: Mario Limonciello <superm1@kernel.org>
+To: harry.wentland@amd.com
+Cc: amd-gfx@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Subject: [PATCH] drm/amd/display: Allow backlight to go below
+ `AMDGPU_DM_DEFAULT_MIN_BACKLIGHT`
+Date: Sun, 15 Sep 2024 14:28:37 -0500
+Message-ID: <20240915192837.124745-1-superm1@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 16 Sep 2024 06:55:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,92 +57,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If link->panel_cntl is NULL, the function dce110_edp_backlight_control
-attempts to dereference it at line 1019, leading to a potential NULL
-pointer dereference and a kernel crash.
+From: Mario Limonciello <mario.limonciello@amd.com>
 
-This bug can manifest when the eDP panel is not correctly configured
-or initialized during certain power or display state transitions,
-leaving link->panel_cntl unset or NULL. In such cases, the dereference
-of a NULL pointer can result in an immediate kernel panic or
-system instability.
+The issue with panel power savings compatibility below
+`AMDGPU_DM_DEFAULT_MIN_BACKLIGHT` happens at
+`AMDGPU_DM_DEFAULT_MIN_BACKLIGHT` as well.
 
-Add a NULL check for link->panel_cntl before using it. Ensure that
-the function safely returns if link->panel_cntl is not properly set,
-preventing any attempts to dereference a NULL pointer and avoiding
-potential crashes.
+That issue will be fixed separately, so don't prevent the backlight
+brightness from going that low.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
-
-Fixes: 06ddcee49a35 ("drm/amd/display: Added multi instance support for panel control")
-Signed-off-by: Mikhail Arkhipov <m.arhipov@rosa.ru>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Thomas Weißschuh <linux@weissschuh.net>
+Link: https://lore.kernel.org/amd-gfx/be04226a-a9e3-4a45-a83b-6d263c6557d8@t-8ch.de/T/#m400dee4e2fc61fe9470334d20a7c8c89c9aef44f
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../display/dc/dce110/dce110_hw_sequencer.c   | 50 ++++++++++---------
- 1 file changed, 26 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 508f5fe26848..1269628a4014 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -1016,32 +1016,34 @@ void dce110_edp_backlight_control(
- 	 */
- 	/* dc_service_sleep_in_milliseconds(50); */
- 		/*edp 1.2*/
--	panel_instance = link->panel_cntl->inst;
-+	if (link->panel_cntl) {
-+		panel_instance = link->panel_cntl->inst;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index ad66f09cd0bb..80b8594fcc33 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -4449,7 +4449,7 @@ static void amdgpu_dm_update_backlight_caps(struct amdgpu_display_manager *dm,
+ 		int spread = caps.max_input_signal - caps.min_input_signal;
  
--	if (cntl.action == TRANSMITTER_CONTROL_BACKLIGHT_ON) {
--		if (!link->dc->config.edp_no_power_sequencing)
--		/*
--		 * Sometimes, DP receiver chip power-controlled externally by an
--		 * Embedded Controller could be treated and used as eDP,
--		 * if it drives mobile display. In this case,
--		 * we shouldn't be doing power-sequencing, hence we can skip
--		 * waiting for T7-ready.
--		 */
--			edp_receiver_ready_T7(link);
--		else
--			DC_LOG_DC("edp_receiver_ready_T7 skipped\n");
--	}
-+		if (cntl.action == TRANSMITTER_CONTROL_BACKLIGHT_ON) {
-+			if (!link->dc->config.edp_no_power_sequencing)
-+				/*
-+				 * Sometimes, DP receiver chip power-controlled externally by an
-+				 * Embedded Controller could be treated and used as eDP,
-+				 * if it drives mobile display. In this case,
-+				 * we shouldn't be doing power-sequencing, hence we can skip
-+				 * waiting for T7-ready.
-+				 */
-+				edp_receiver_ready_T7(link);
-+			else
-+				DC_LOG_DC("edp_receiver_ready_T7 skipped\n");
-+		}
- 
--	if (ctx->dc->ctx->dmub_srv &&
--			ctx->dc->debug.dmub_command_table) {
--		if (cntl.action == TRANSMITTER_CONTROL_BACKLIGHT_ON)
--			ctx->dc_bios->funcs->enable_lvtma_control(ctx->dc_bios,
--					LVTMA_CONTROL_LCD_BLON,
--					panel_instance);
--		else
--			ctx->dc_bios->funcs->enable_lvtma_control(ctx->dc_bios,
--					LVTMA_CONTROL_LCD_BLOFF,
--					panel_instance);
-+		if (ctx->dc->ctx->dmub_srv &&
-+				ctx->dc->debug.dmub_command_table) {
-+			if (cntl.action == TRANSMITTER_CONTROL_BACKLIGHT_ON)
-+				ctx->dc_bios->funcs->enable_lvtma_control(ctx->dc_bios,
-+						LVTMA_CONTROL_LCD_BLON,
-+						panel_instance);
-+			else
-+				ctx->dc_bios->funcs->enable_lvtma_control(ctx->dc_bios,
-+						LVTMA_CONTROL_LCD_BLOFF,
-+						panel_instance);
-+		}
- 	}
- 
- 	link_transmitter_control(ctx->dc_bios, &cntl);
+ 		if (caps.max_input_signal > AMDGPU_DM_DEFAULT_MAX_BACKLIGHT ||
+-		    caps.min_input_signal < AMDGPU_DM_DEFAULT_MIN_BACKLIGHT ||
++		    caps.min_input_signal < 0 ||
+ 		    spread > AMDGPU_DM_DEFAULT_MAX_BACKLIGHT ||
+ 		    spread < AMDGPU_DM_MIN_SPREAD) {
+ 			DRM_DEBUG_KMS("DM: Invalid backlight caps: min=%d, max=%d\n",
 -- 
-2.39.3 (Apple Git-146)
+2.43.0
 
