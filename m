@@ -2,65 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0330979A63
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Sep 2024 06:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D8F979C9D
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Sep 2024 10:16:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3485410E21D;
-	Mon, 16 Sep 2024 04:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF7D10E16B;
+	Mon, 16 Sep 2024 08:16:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UMfmKDI9";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GuPWisE1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F108A10E074;
- Mon, 16 Sep 2024 04:30:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726461056; x=1757997056;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kGKwQsa5LY7zTU/w6kahcoUb6uO4yOJn+ssgNH3DOqA=;
- b=UMfmKDI914ApbDK/JCzCRofoZUaI1v4S8sedP0j+FpRr3XANWciEXda/
- dDOeBpo8LkEIM60diLmvQX2uYDEY4dV7QQDZhi22ETCLVTlDs6Vm3aX1p
- Pw/TnYqoc66djaUfoFUlOOPmO2kv6A8MT1MAFM2vu3TH/EFQWeLN1wSci
- cMJcoMyqgBy+SXbUk2EK98ES2ZQOLRmw9CySfqn8Z/umZr3u5MBEAgIdW
- TpLnaEBIVXVde9qJDF38OgJD4FmZX1e1U3FrJhOaM9Uhan9OpsUKIx5xL
- Ky24qWJjdLNOxv/khb1TVtb7XQbnFe8ym1d1CZgoM5rED7nrSc7P4qrWf Q==;
-X-CSE-ConnectionGUID: 5uuDaU+0RPCzgpCYmntH3Q==
-X-CSE-MsgGUID: OH2/uQgLRL+QAXSneuQc7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11196"; a="25408619"
-X-IronPort-AV: E=Sophos;i="6.10,232,1719903600"; d="scan'208";a="25408619"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2024 21:30:54 -0700
-X-CSE-ConnectionGUID: HX9MfthFQUe7lhJiZsCfPg==
-X-CSE-MsgGUID: xhk4qz6rTWiCFPYmrYmGPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,232,1719903600"; d="scan'208";a="68860743"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 15 Sep 2024 21:30:51 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sq3Nx-0009O0-1N;
- Mon, 16 Sep 2024 04:30:49 +0000
-Date: Mon, 16 Sep 2024 12:30:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mario Limonciello <superm1@kernel.org>, Alex Hung <alex.hung@amd.com>,
- Alexander Deucher <alexander.deucher@amd.com>,
- Melissa Wen <mwen@igalia.com>
-Cc: oe-kbuild-all@lists.linux.dev, kernel-dev@igalia.com,
- Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- harry.wentland@amd.com, sunpeng.li@amd.com,
- Mark Pearson <mpearson-lenovo@squebb.ca>
-Subject: Re: [PATCH v6 10/10] drm/amd/display: Fetch the EDID from _DDC if
- available for eDP
-Message-ID: <202409161225.xuQVKkoR-lkp@intel.com>
-References: <20240911213537.2338164-11-superm1@kernel.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9211E10E097
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 08:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1726474592;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=X9SZPQqVNZ+LpnL44lBJE+Mp94qpYJOtqq8/bcvSdwQ=;
+ b=GuPWisE1akap5vZ3vo5KtSeN43jqU+SsmcNykMZb0w5FQGauUmV/CG/4JPqhMnEadD3M9S
+ zaEao3FX39zSg4P0xXhXYUPdkOzeW2uLPXBsqzJVc17Jh/NvjR2zsZbQDVjkwOWs6MdpuE
+ 1Q5Euu5jYJbG/FRbpRVPovwwFnM8c7Y=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-78-339qyoE5NH6P4BDJ8rK6zg-1; Mon, 16 Sep 2024 04:16:28 -0400
+X-MC-Unique: 339qyoE5NH6P4BDJ8rK6zg-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-374c54e188dso2560739f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 01:16:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726474588; x=1727079388;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Ru+y90+/NDdm3ALQ4k8hpnsdZ4JCGl0gCU2htuaBc5Q=;
+ b=xTRCIoFLikMybaP0V5TNw1v3O6kGYxc9DNWXuMMiFujFTuV74DEV83xNUc+YSn3AwJ
+ EeAktly8nfyLffwoeI2XIzeqjCImXakmwZphSRxeZ1utM/3N5gd9jzJDnYpYizP2Zotw
+ w6m5SCWj+f1obd65kAX31RAY9gHk8Q/goJhJuavBCtgFQIL1iDsqkZNNojzKuLoG3x3K
+ y+hFzL8+Y7rcpnDQv4RSMaC1vsR7zQvzi2CEjtcdK/sOqnPgIj3m1IEB4R74iukYPsJl
+ 6siM0M6tQYzm4VkXcEKIajns4gvad0S4IB3ek3xkyuhoGH1zpA7vmCv5/ADscB1YrFPd
+ Gi/g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVkQf30cjRjNyaWkbB1714HxO+GWjbAvw6+4XoQnpq3UQu+In/fjzIUO0mZ93/oqVQbdxL0SlqR@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzVLwIIvqbGURlJrFIGVMg8nwUd7iQsghzoKbmWGAttpwXNmAjJ
+ psdd1iGIzaAs7rIryTCXqa79xeeAI8j6XW5ZaNcJQUjj+fNDrWPGYQzv/hkMU3HJIkFGdvMGAs2
+ 8hvGUXOakDti1yacch1v2ZvTrYqidRChGlcL3mClw2k10w63RbEqoVzLyBag2UG4=
+X-Received: by 2002:adf:ef06:0:b0:374:c692:42e2 with SMTP id
+ ffacd0b85a97d-378a8a0b8d9mr12166043f8f.9.1726474587638; 
+ Mon, 16 Sep 2024 01:16:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG3Pe7vB4fkiiwscsyI8XJ1gc3S/ZG6W0I9i8O0mpHG4jkRbDMGA+yNv3NCd/yNP/wC1oUJXQ==
+X-Received: by 2002:adf:ef06:0:b0:374:c692:42e2 with SMTP id
+ ffacd0b85a97d-378a8a0b8d9mr12166023f8f.9.1726474587085; 
+ Mon, 16 Sep 2024 01:16:27 -0700 (PDT)
+Received: from eisenberg.fritz.box ([2001:16b8:3d97:9600:c4de:e8e2:392:1c61])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378e73e81a5sm6503395f8f.34.2024.09.16.01.16.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Sep 2024 01:16:26 -0700 (PDT)
+Message-ID: <f193ac6e13c9069eacf3498e1df41c97577c58e4.camel@redhat.com>
+Subject: Re: [PATCH 6/8] drm/sched: Re-order struct drm_sched_rq members for
+ clarity
+From: Philipp Stanner <pstanner@redhat.com>
+To: Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Luben Tuikov <ltuikov89@gmail.com>, Matthew
+ Brost <matthew.brost@intel.com>
+Date: Mon, 16 Sep 2024 10:16:25 +0200
+In-Reply-To: <20240913160559.49054-7-tursulin@igalia.com>
+References: <20240913160559.49054-1-tursulin@igalia.com>
+ <20240913160559.49054-7-tursulin@igalia.com>
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240911213537.2338164-11-superm1@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,75 +97,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Mario,
+On Fri, 2024-09-13 at 17:05 +0100, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>=20
+> Current kerneldoc for struct drm_sched_rq incompletely documents what
+> fields are protected by the lock.
+>=20
+> This is not good because it is misleading.
+>=20
+> Lets fix it by listing all the elements which are protected by the
+> lock.
+>=20
+> While at it, lets also re-order the members so all protected by the
+> lock
+> are in a single group.
+>=20
+> v2:
+> =C2=A0* Refer variables by kerneldoc syntax, more verbose commit text.
+> (Philipp)
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Luben Tuikov <ltuikov89@gmail.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <pstanner@redhat.com>
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-kernel test robot noticed the following build warnings:
+Looks good, thx
 
-[auto build test WARNING on amd-pstate/linux-next]
-[also build test WARNING on amd-pstate/bleeding-edge linus/master v6.11]
-[cannot apply to next-20240913]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/drm-amd-display-switch-amdgpu_dm_connector-to-use-struct-drm_edid/20240912-093827
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git linux-next
-patch link:    https://lore.kernel.org/r/20240911213537.2338164-11-superm1%40kernel.org
-patch subject: [PATCH v6 10/10] drm/amd/display: Fetch the EDID from _DDC if available for eDP
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240916/202409161225.xuQVKkoR-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240916/202409161225.xuQVKkoR-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409161225.xuQVKkoR-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.c: In function 'dm_helpers_probe_acpi_edid':
->> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.c:883:28: warning: unused variable 'ddev' [-Wunused-variable]
-     883 |         struct drm_device *ddev = connector->dev;
-         |                            ^~~~
+Reviewed-by: Philipp Stanner <pstanner@redhat.com>
 
 
-vim +/ddev +883 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.c
+> ---
+> =C2=A0include/drm/gpu_scheduler.h | 10 ++++++----
+> =C2=A01 file changed, 6 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/include/drm/gpu_scheduler.h
+> b/include/drm/gpu_scheduler.h
+> index 38465b78c7d5..2f58af00f792 100644
+> --- a/include/drm/gpu_scheduler.h
+> +++ b/include/drm/gpu_scheduler.h
+> @@ -243,10 +243,10 @@ struct drm_sched_entity {
+> =C2=A0/**
+> =C2=A0 * struct drm_sched_rq - queue of entities to be scheduled.
+> =C2=A0 *
+> - * @lock: to modify the entities list.
+> =C2=A0 * @sched: the scheduler to which this rq belongs to.
+> - * @entities: list of the entities to be scheduled.
+> + * @lock: protects @entities, @rb_tree_root and @current_entity.
 
-   878	
-   879	static int
-   880	dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
-   881	{
-   882		struct drm_connector *connector = data;
- > 883		struct drm_device *ddev = connector->dev;
-   884		struct acpi_device *acpidev = ACPI_COMPANION(ddev->dev);
-   885		unsigned char start = block * EDID_LENGTH;
-   886		void *edid;
-   887		int r;
-   888	
-   889		if (!acpidev)
-   890			return -ENODEV;
-   891	
-   892		/* fetch the entire edid from BIOS */
-   893		r = acpi_video_get_edid(acpidev, ACPI_VIDEO_DISPLAY_LCD, -1, &edid);
-   894		if (r < 0) {
-   895			DRM_DEBUG_KMS("Failed to get EDID from ACPI: %d\n", r);
-   896			return r;
-   897		}
-   898		if (len > r || start > r || start + len > r) {
-   899			r = -EINVAL;
-   900			goto cleanup;
-   901		}
-   902	
-   903		memcpy(buf, edid + start, len);
-   904		r = 0;
-   905	
-   906	cleanup:
-   907		kfree(edid);
-   908	
-   909		return r;
-   910	}
-   911	
+nit: in case you'll provide a new version anyways you could consider
+sorting these three to be congruent with the lines below.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you!
+P.
+
+
+> =C2=A0 * @current_entity: the entity which is to be scheduled.
+> + * @entities: list of the entities to be scheduled.
+> =C2=A0 * @rb_tree_root: root of time based priory queue of entities for
+> FIFO scheduling
+> =C2=A0 *
+> =C2=A0 * Run queue is a set of entities scheduling command submissions fo=
+r
+> @@ -254,10 +254,12 @@ struct drm_sched_entity {
+> =C2=A0 * the next entity to emit commands from.
+> =C2=A0 */
+> =C2=A0struct drm_sched_rq {
+> -=09spinlock_t=09=09=09lock;
+> =C2=A0=09struct drm_gpu_scheduler=09*sched;
+> -=09struct list_head=09=09entities;
+> +
+> +=09spinlock_t=09=09=09lock;
+> +=09/* Following members are protected by the @lock: */
+> =C2=A0=09struct drm_sched_entity=09=09*current_entity;
+> +=09struct list_head=09=09entities;
+> =C2=A0=09struct rb_root_cached=09=09rb_tree_root;
+> =C2=A0};
+> =C2=A0
+
