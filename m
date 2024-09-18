@@ -2,76 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A606197BD98
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2024 16:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E786197C598
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 10:11:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC39B10E26A;
-	Wed, 18 Sep 2024 14:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85C6110E250;
+	Thu, 19 Sep 2024 08:11:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HeRz19Vh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i9y4aR1r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
- [209.85.210.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC97510E240;
- Wed, 18 Sep 2024 14:03:35 +0000 (UTC)
-Received: by mail-pf1-f180.google.com with SMTP id
- d2e1a72fcca58-7191f1875d3so703109b3a.0; 
- Wed, 18 Sep 2024 07:03:35 -0700 (PDT)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
+ [209.85.222.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037D910E633;
+ Wed, 18 Sep 2024 20:29:46 +0000 (UTC)
+Received: by mail-ua1-f49.google.com with SMTP id
+ a1e0cc1a2514c-846d536254fso37381241.1; 
+ Wed, 18 Sep 2024 13:29:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726668215; x=1727273015; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rWbJgztcoceFfFThLVY5wbXfQyLhn8o8Q6POCrLxBDM=;
- b=HeRz19VhVvnFRRzJD/YdP3OorTbl6oh2kWPvguWyh7gypwdAGHpRyhvZmXjClwoizE
- 13ZW5mLl5l4NDYoCtmZpYkJukohFYVcnZbnEi3+/Zs4Un9mhCt3uR8rKyu6qmH4cjfmD
- RBbKQlOmNy+zkx4SnmXtAJCnQ8z9dAhBHC4b42grI7qchjkYpPPTPkTOTL2LhFM82zw6
- B8Y6yBWdszAZoqFCWBO3IHBEN3SC84Ysk9Ul2bjMBuRUrxRZjuqW2Wk6SXc/I0D0jgws
- 7k9G6bMP9TpWBfPzwPVjmiHLj96LwlmuzNhrGXUkL+v4/DFxj//wTQScn8PAjxMh1WUo
- kj0w==
+ d=gmail.com; s=20230601; t=1726691385; x=1727296185; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Z0+Veg0ajsYwcOQjqw+fgqS5nYmrOd6UXKJLeJklo8Q=;
+ b=i9y4aR1ra/naOgldLWXzmTkow/K8N0nYHnqZAoDTwYfHVep/RF9pKD2SZQj8aYteuV
+ W5FJldjRwRVZw6rDYm+lbrBSq1cJlX5im7VTozCEnl/wMB4IFnMIy9sNbm2LigsfonlM
+ gKEAvFkjdYdU5ZqD3LPA/QTk0p6zW575CIm2R/fHNypu4jBbXyzU3K7VdoMUVIUkDjIB
+ bFv0fB2wagheI7gfmiYtul+7CNKuWw0KsN0XrGanyp+XTZxAMgWdGgh42yK9ppmXSaWR
+ WV7Gp3U7nrvEnlQXcCmY8P53rNMMt3jGQtbl5WchEBi/swDy7CRdUpm2kO3eRRAQt1SX
+ 3i6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726668215; x=1727273015;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=rWbJgztcoceFfFThLVY5wbXfQyLhn8o8Q6POCrLxBDM=;
- b=xQfZ/MeRHJ8+0ZD0/SXbLVIXqIcRGHCbuM6Rteljxtdi6GQbgNpEYkcW97ogRAmw+k
- Yew3IP40zoGB6k/TpgSxAL6fMklalo/LdzN9743FRNzCXEQ89QtC+Tf6V2sGtqpFziA1
- fB8fprQpq7/lQUlpI/ED8YtJpSKWs01Ynsix0ZpgA0RdMrplh1MPR4hJidYv7RtlpOpI
- Z4Xhbe1PASuZ3HlDTcJ4hY3JUOsg7i0bPqxqtHt5Ha624s53gmJRvtEHw2uG2OuZ1y3X
- Hr4JMOfz3WqjvXna67ZK7tPeyB1wYBgwytKrWOCnG265pNd3wKuuLd3sfMc4FZE94eS8
- hUUw==
+ d=1e100.net; s=20230601; t=1726691385; x=1727296185;
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z0+Veg0ajsYwcOQjqw+fgqS5nYmrOd6UXKJLeJklo8Q=;
+ b=PppNzx/5j8y1f+5Gt/uZ/jhp0RXJ7j315cHhdU799iICsk+O5v9eAfcLjc83ffqbx1
+ 2u1hku0ZT3K/zGYABTkC3ABrqubkWcr0vTXoSrTK1jz2I1VEOFEMIL1KMKVnUY02PjZG
+ m3kxAGYLTGrXH651SQOEIvVXmuQSlkCVQdc+iXK+s4krUsA/pADIdVUpyDymTGOWAHcf
+ 3TFscnv4wBnFDUoVCwAbOpadkjx1OapdQicBcdyH9KxyQjH2LxE0ZkQCobDpkzOxnOmi
+ eWstMvaplG0WOBN+/JP6+YExft6AIHz/8BipQNZqWy75hJuLYzIJOKju0iue+3BA+IMV
+ q8PQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUyv/nP3sOuifcxXx4W+CsXS8vdMK6pIWCSDVAwWmLhasSqkr/ZuRpPx+BHj0kH1oUwRZMpwiqw5w2v@lists.freedesktop.org,
- AJvYcCVQcxBRc1ijMfvrs9SXlSqFtgtkhM8+zZy2Yyo/YTmqbU7qczaCoPaIXm94AgwOcXRo4x2JP/tw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YySqVjuTlKTVfZTRP+f9K3s4rDzcQ2W5FkdzQDRjIgCPHRaYcbm
- JmFWIVVymeSelcBDaqX6s6VcZjNZqOmsugFa9zTlhoE5wBB+H0tVhx4GHKwFbZd2xt07g2L+6ut
- pKBnCuG2Q+6jB1pnlcwq13kP4HJU=
-X-Google-Smtp-Source: AGHT+IHDEMiQCcUgd0quuVe6+gHogtqzPU+y9sOiiTdAPQGGpUctqLcMyAdRZYLEQDqTWWmP+4jGGqEYoYG6oIHKK6k=
-X-Received: by 2002:a05:6a00:1256:b0:70d:2289:4c55 with SMTP id
- d2e1a72fcca58-7192633889cmr13505341b3a.5.1726668215320; Wed, 18 Sep 2024
- 07:03:35 -0700 (PDT)
+ AJvYcCWe1Z2wriKqKsEySevcql2gZGwXFsoGUMR5USyEOvfolSgT4FhY5KBhbpA2sA8TNH1KZGLvRGju@lists.freedesktop.org,
+ AJvYcCXovhfUP/JLS3eOD944NPCBeUDn9Asg/0BK0Lil7rgBWTAd/63joo04rergjcErdYSnCE/ecOkZT9h7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwesuncCbRg677bofEqjgiJ+nWvaSoLIJlwYCppe+V++7pvH5yP
+ +fnEYRdwIr2tEkLRofuiuU9U9Hswy3g4UobPFFtyJ9WB0h536yQPWObfyHnCptGuGOYE+4NWAEJ
+ ec/yMokDcfoOcEVgxUfA3V1Qb/GI=
+X-Google-Smtp-Source: AGHT+IEVrC+ErbrSJv9jeauTLrJtajhjtGNAO2ZDnBfXorHFZ062AREFhdCHG4ssi+Vfk/BSL/g1/dDRj/uTYjW9/78=
+X-Received: by 2002:a05:6102:38d1:b0:49b:f5ed:4bcb with SMTP id
+ ada2fe7eead31-49d4157db8cmr16663527137.24.1726691385640; Wed, 18 Sep 2024
+ 13:29:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20240917163119.890276-1-roheetchavan@gmail.com>
-In-Reply-To: <20240917163119.890276-1-roheetchavan@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 18 Sep 2024 10:03:21 -0400
-Message-ID: <CADnq5_MXmSYf0=Lfb5-bsmuK6m2UEgyeVOMp4hjZcpxU82_Z2A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Fix unnecessary cast warnings from
- checkpatch
-To: Rohit Chavan <roheetchavan@gmail.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
+References: <CALjAwxidmwCT5ZwbZRhf9GwshYbzQZ4N8K3B8KGLi5DnRzj8wQ@mail.gmail.com>
+In-Reply-To: <CALjAwxidmwCT5ZwbZRhf9GwshYbzQZ4N8K3B8KGLi5DnRzj8wQ@mail.gmail.com>
+From: Sitsofe Wheeler <sitsofe@gmail.com>
+Date: Wed, 18 Sep 2024 21:29:19 +0100
+Message-ID: <CALjAwxiytz=FUy4Fu8j-hOa2BKXpYL0ZyjMHyOGRE0OdsfKDkA@mail.gmail.com>
+Subject: Re: Kernel hang when amdgpu driver is loaded on old radeon card
+To: Alex Deucher <alexander.deucher@amd.com>, 
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
  Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel@ffwll.ch>, 
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 19 Sep 2024 08:11:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,65 +80,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+(CC'ing Hans de Goede who recently wrote a blog post
+(https://hansdegoede.dreamwidth.org/28552.html ) which sounds like the
+same issue I'm seeing)
 
-Applied.
-
-Thanks!
-
-On Tue, Sep 17, 2024 at 5:58=E2=80=AFPM Rohit Chavan <roheetchavan@gmail.co=
-m> wrote:
+On Sun, 15 Sept 2024 at 21:30, Sitsofe Wheeler <sitsofe@gmail.com> wrote:
 >
-> This patch addresses warnings produced by the checkpatch script
-> related to unnecessary casts that could potentially hide bugs.
+> Hello,
 >
-> The specific warnings are as follows:
-> - Warning at drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:16
-> - Warning at drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:20
-> - Warning at drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c:30
+> (Apologies if I have CC'd the wrong people/places - I just went by
+> what get_maintainer.pl -f drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> said)
 >
-> Signed-off-by: Rohit Chavan <roheetchavan@gmail.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> I recently upgraded from Ubuntu 20.04 (5.15.0-119.129~20.04.1-generic
+> kernel) to Ubuntu 24.04 (6.8.0-44-generic kernel) and found that while
+> booting the kernel hangs for around 15 seconds just before the amdgpu
+> driver is loaded:
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c b/=
-drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
-> index 41ecf00ed196..3ab401729f9b 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_wrapper.c
-> @@ -13,11 +13,11 @@
+> [    4.459519] radeon 0000:01:05.0: [drm] Cannot find any crtc or sizes
+> [    4.460118] probe of 0000:01:05.0 returned 0 after 902266 usecs
+> [    4.460184] initcall radeon_module_init+0x0/0xff0 [radeon] returned
+> 0 after 902473 usecs
+> [    4.465797] calling  drm_buddy_module_init+0x0/0xff0 [drm_buddy] @ 122
+> [    4.465853] initcall drm_buddy_module_init+0x0/0xff0 [drm_buddy]
+> returned 0 after 29 usecs
+> [    4.469419] radeon 0000:01:05.0: [drm] Cannot find any crtc or sizes
+> [    4.473831] calling  drm_sched_fence_slab_init+0x0/0xff0 [gpu_sched] @ 122
+> [    4.473892] initcall drm_sched_fence_slab_init+0x0/0xff0
+> [gpu_sched] returned 0 after 31 usecs
+> [   18.724442] calling  amdgpu_init+0x0/0xff0 [amdgpu] @ 122
+> [   18.726303] [drm] amdgpu kernel modesetting enabled.
+> [   18.726576] amdgpu: Virtual CRAT table created for CPU
+> [   18.726609] amdgpu: Topology: Add CPU node
+> [   18.726787] initcall amdgpu_init+0x0/0xff0 [amdgpu] returned 0
+> after 528 usecs
 >
->  static bool dml21_allocate_memory(struct dml2_context **dml_ctx)
->  {
-> -       *dml_ctx =3D (struct dml2_context *)kzalloc(sizeof(struct dml2_co=
-ntext), GFP_KERNEL);
-> +       *dml_ctx =3D kzalloc(sizeof(struct dml2_context), GFP_KERNEL);
->         if (!(*dml_ctx))
->                 return false;
+> I've checked and the problem still exists in 6.11.0-061100rc7-generic
+> (which is close to vanilla upstream).
 >
-> -       (*dml_ctx)->v21.dml_init.dml2_instance =3D (struct dml2_instance =
-*)kzalloc(sizeof(struct dml2_instance), GFP_KERNEL);
-> +       (*dml_ctx)->v21.dml_init.dml2_instance =3D kzalloc(sizeof(struct =
-dml2_instance), GFP_KERNEL);
->         if (!((*dml_ctx)->v21.dml_init.dml2_instance))
->                 return false;
+> The graphics card I have is:
+> 01:05.0 VGA compatible controller: Advanced Micro Devices, Inc.
+> [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250] (prog-if 00 [VGA
+> controller])
+> 01:05.0 0300: 1002:9712 (prog-if 00 [VGA controller])
+> Subsystem: 103c:1609
 >
-> @@ -27,7 +27,7 @@ static bool dml21_allocate_memory(struct dml2_context *=
-*dml_ctx)
->         (*dml_ctx)->v21.mode_support.display_config =3D &(*dml_ctx)->v21.=
-display_config;
->         (*dml_ctx)->v21.mode_programming.display_config =3D (*dml_ctx)->v=
-21.mode_support.display_config;
+> At first I thought the problem was related to the change
+> https://github.com/torvalds/linux/commit/eb4fd29afd4aa1c98d882800ceeee7d1f5262803
+> ("drm/amdgpu: bind to any 0x1002 PCI diplay [sic] class device") which
+> now means my card is claimed by two drivers (radeon and amdgpu). That
+> change complicated things because:
+> - The amdgpu module and its dependencies remain permanently present (which
+>   never used to happen)
+> - It took some time for me to realise that the amdgpu driver hadn't suddenly
+>   grown the ability to support this old card :-) There is a nice table on
+>   https://www.x.org/wiki/RadeonFeature/#decoderringforengineeringvsmarketingnames
+>   that shows it is part of the R600 family and
+>   https://www.x.org/wiki/RadeonFeature/#featurematrixforfreeradeondrivers shows
+>   that R600 is only supported by the radeon driver.
 >
-> -       (*dml_ctx)->v21.mode_programming.programming =3D (struct dml2_dis=
-play_cfg_programming *)kzalloc(sizeof(struct dml2_display_cfg_programming),=
- GFP_KERNEL);
-> +       (*dml_ctx)->v21.mode_programming.programming =3D kzalloc(sizeof(s=
-truct dml2_display_cfg_programming), GFP_KERNEL);
->         if (!((*dml_ctx)->v21.mode_programming.programming))
->                 return false;
+> However, testing a 5.16.20-051620-generic kernel showed that while the
+> amdgpu module is loaded, there is no 15 second hang... So far my
+> testing has the following results:
+> - 5.16.20-051620-generic - amdgpu loaded, no hang
+> - 5.18.19-051819-generic - amdgpu loaded, no hang
+> - 6.0.0-060000-generic - amdgpu loaded, hang
+> - 6.2.0-060200-generic - amdgpu loaded, hang
+> - 6.8.0-44-generic - amdgpu loaded, hang
+> - 6.11.0-061100rc7-generic - amdgpu loaded, hang
+>
+> To work around the problem I've taken to blacklisting amdgpu in
+> /etc/modprobe.d/ which makes the hang disappear.
+>
+> Does anyone else see this issue? Is there something better than my
+> current workaround? What do other drivers that want to bind to such a
+> large set of devices do? Further, while I'm already using
+> initcall_debug, is there any other kernel boot parameter to make
+> what's happening more visible?
 >
 > --
-> 2.34.1
->
+> Sitsofe
+
+
+
+-- 
+Sitsofe
