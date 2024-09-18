@@ -2,88 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D8797BCF7
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2024 15:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8E697BA2F
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Sep 2024 11:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35E7C10E59C;
-	Wed, 18 Sep 2024 13:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A57E010E23A;
+	Wed, 18 Sep 2024 09:34:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=maxima.ru header.i=@maxima.ru header.b="ZCuKeT3K";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="p1byay1r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ksmg02.maxima.ru (ksmg02.maxima.ru [81.200.124.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44FAF10E1DD;
- Wed, 18 Sep 2024 08:48:30 +0000 (UTC)
-Received: from ksmg02.maxima.ru (localhost [127.0.0.1])
- by ksmg02.maxima.ru (Postfix) with ESMTP id EAA891E0008;
- Wed, 18 Sep 2024 11:48:26 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ksmg02.maxima.ru EAA891E0008
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxima.ru; s=sl;
- t=1726649306; bh=4didXC8oklQfIE0UM2UabfJum3DZPrOiUxM6+vR/FuM=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
- b=ZCuKeT3K17L3Uiu5uSTqkq87sYD6I3SIrkhejr23+1b+9mjdq+mnImsw8e0O+OZcG
- foaiFeCFBxa864n63oVUk3HgLzwPjDhUu1fFzGxw6i2GwOzUIpU7HoagrLXPFYH/om
- V+vWEbyuNxhFHHjtbbwKthFtHWHFk5Sv7fGQgSWwRyLuJZNcuBm38PG8ZfV/xc6NLj
- fPrD7NyFUjqGKmcVHxwmLSWXkZkRfucHCaszKhiEfVva5q2Urt2GG+jl9W+dvEg5MS
- V7CEPg0vU6Tfc6kJiXrVWtx5b3XmHfFQH7kk7IHJG08d0J/VkO7fbkp9mxhHRokuBV
- xoiWJm2sS5lqg==
-Received: from ksmg02.maxima.ru (unknown [81.200.124.62])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client CN "*.maxima.ru",
- Issuer "GlobalSign GCC R3 DV TLS CA 2020" (verified OK))
- by ksmg02.maxima.ru (Postfix) with ESMTPS;
- Wed, 18 Sep 2024 11:48:26 +0300 (MSK)
-Received: from GS-NOTE-190.mt.ru (10.0.247.62) by mmail-p-exch02.mt.ru
- (81.200.124.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1544.4; Wed, 18 Sep
- 2024 11:48:14 +0300
-From: Murad Masimov <m.masimov@maxima.ru>
-To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: Murad Masimov <m.masimov@maxima.ru>, Felix Kuehling
- <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, "open list:AMD KFD" <amd-gfx@lists.freedesktop.org>, "open
- list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>, open list
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>, Philip Yang
- <Philip.Yang@amd.com>, Alex Sierra <alex.sierra@amd.com>
-Subject: [PATCH 6.1] drm/amdkfd: Skip handle mapping SVM range with no GPU
- access
-Date: Wed, 18 Sep 2024 11:47:16 +0300
-Message-ID: <20240918084718.958-1-m.masimov@maxima.ru>
-X-Mailer: git-send-email 2.46.0.windows.1
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7008F10E23A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Sep 2024 09:34:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a6katLZHsVkuZVN9yswo6qbEbnxtHAzjfmtPXb0/FqqcBbFndvJuuvc7GFWfh9ZT/BjJC5nosnevTGgCKJHEDyHUEHV15e612C40ZF04hSDRX4ijDhDBPeJANjmfdxXEj92UkhQ+rsFc/95POzS8TuwDoLkVV+ZxShoXvDJOoaEzTjnDSy2Ql0G1g+RXjAnZhy9q9zPsMZNlERxsgzPIVhXevEZzAB65WzFV9h1srnNTU32xJBZAWc7lcie1gvJcUcFp+gpTuaCem3nPA6VwtBMk8s6U5AJiZwV3SdOBEZ2x1+bKQoa5aRAGSQSmrw0PivgldocS8Pf4fuB8B2aCWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3WUr6zD8KKN2APrEVayeJ871YbljqSTKxgHBCIQf32s=;
+ b=TmsT/ztqNzO9O/sS7lgOoEqwgdyoidyo6JvkVhTnNYw61pSioYO/YMOuzCl12uL11QpXmU266udDwJQs+h5YIIf3l6+S8UZNCEuZxvhAFnum+vrgF6VM6Pu7c6Vj6SlgiUGFIlanFA7s1kQfzDjAUn/Cf5UbGsECylfF+lnsE6sEcz5flq7KeVTLXbmIqaQJZ4o+4/uv9uOzjn8tw38bAiimIv+wxDx00AAt8IuoouOep6Fpbkz1gOqrMJONdO1qKtp6tf+98kVfOz5f4TMb+cpP0uNdMJqefAE1lLWZUE8/O1vJrPGTeuN8D0aQ5Lf1DnfgIAbMDlVcP06t1PLS0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3WUr6zD8KKN2APrEVayeJ871YbljqSTKxgHBCIQf32s=;
+ b=p1byay1r0Uljpr0Hi5kYKufOlKWbpO5jNRUenazygs8virP/jabwnb7E7wRXv/eOMNk8SpeLsVAedryWv7xelJLuBU1Sseg5EzwTUsyKzaHLO5G3hYo6MhBeWAsykly7saDLwZ71zCjyFmPmcuyth/8Z+ST2bUwlX8nDMhncZYg=
+Received: from SJ0PR03CA0002.namprd03.prod.outlook.com (2603:10b6:a03:33a::7)
+ by PH7PR12MB7939.namprd12.prod.outlook.com (2603:10b6:510:278::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.25; Wed, 18 Sep
+ 2024 09:34:23 +0000
+Received: from SJ1PEPF00002315.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a:cafe::7d) by SJ0PR03CA0002.outlook.office365.com
+ (2603:10b6:a03:33a::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.30 via Frontend
+ Transport; Wed, 18 Sep 2024 09:34:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ1PEPF00002315.mail.protection.outlook.com (10.167.242.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7918.13 via Frontend Transport; Wed, 18 Sep 2024 09:34:22 +0000
+Received: from jackfedora30.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 18 Sep
+ 2024 04:31:24 -0500
+From: Jack Xiao <Jack.Xiao@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
+ <Hawking.Zhang@amd.com>, <JinHuiEric.Huang@amd.com>
+CC: Jack Xiao <Jack.Xiao@amd.com>
+Subject: [PATCH] drm/amdgpu/mes12: set enable_level_process_quantum_check
+Date: Wed, 18 Sep 2024 17:31:06 +0800
+Message-ID: <20240918093106.825708-1-Jack.Xiao@amd.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.0.247.62]
-X-ClientProxiedBy: mt-exch-01.mt.ru (91.220.120.210) To mmail-p-exch02.mt.ru
- (81.200.124.62)
-X-KSMG-Rule-ID: 7
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 187815 [Sep 18 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.5
-X-KSMG-AntiSpam-Envelope-From: m.masimov@maxima.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dmarc=none header.from=maxima.ru;
- spf=none smtp.mailfrom=maxima.ru; dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 34 0.3.34
- 8a1fac695d5606478feba790382a59668a4f0039, {rep_avail},
- {Tracking_from_domain_doesnt_match_to}, maxima.ru:7.1.1;
- d41d8cd98f00b204e9800998ecf8427e.com:7.1.1; 81.200.124.62:7.1.2;
- ksmg02.maxima.ru:7.1.1;
- 127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 81.200.124.62, {DNS
- response errors}
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960,
- bases: 2024/09/18 05:45:00 #26614741
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Mailman-Approved-At: Wed, 18 Sep 2024 13:19:58 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002315:EE_|PH7PR12MB7939:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2cc9c99-39cd-42a9-8573-08dcd7c51462
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8yAjH+oTaQS53IcNEdPUcZvPJI1W+FjtMxJBLYHJ4bYQsSkzSO5oHELAigLJ?=
+ =?us-ascii?Q?+z2mqOu9ihWhPX0PY+dPLSgNPeykCvRvQ5wCKc0VrEamlyJEBWTzWqKDmuTt?=
+ =?us-ascii?Q?D4jkuqs1rzfvoFNfc1OiJXcnzeaxyzSXCMZv6JsOfFzyhjAQAbxjuG+OxTrg?=
+ =?us-ascii?Q?EhXdXA475KAAwSnW61mnYlkC5/R73C9XXjgnonc0GKgWmxKVdO5doHLOYC5x?=
+ =?us-ascii?Q?OUVN6huOfa5IWCy0DsxC/P5Gt/uEq5CdTRGjOExpG36PnPlEtQKxtnH/KZRt?=
+ =?us-ascii?Q?g8Hqv17diHzQ774UGBjBoi99AZBBbjuk/PaZumlWqv0LeUH6PkZ2f/Ul8VKe?=
+ =?us-ascii?Q?rHvMlZsCaW5y7boBKSnIZ+pJIFFjAABIDS/AzHo15623JWLnA2aDkocSgB7f?=
+ =?us-ascii?Q?th71EAS0KKiHjtnvnals84yy2+MMtVPqKO2fKysGpMpCLV0Erip18ysMNIgF?=
+ =?us-ascii?Q?bYOFeXr+YdAZmcY4rumL4w0aVlf4fDrdUV+qM6K5YYayzFWh6WAA1xPvL8id?=
+ =?us-ascii?Q?ADCSsYE9Si6er0eb3+zsYzQMmLRxreYUF0mzMKHPKLIBqYnzB5VS1Efuc5Bf?=
+ =?us-ascii?Q?isPL/2kqOKHI6d/A5ax7ZEkOgPUByuCaVyL+QsCGw7hzYtsxs7PV3dT6Hn5t?=
+ =?us-ascii?Q?fLnK2wecDF2nBBGxjlXwo6rFEGFGjiByqxmdVwFwNWhu24CFCqAy5WaJQbrz?=
+ =?us-ascii?Q?3DaUaIOeXZlKnBvFHGWcN2ES7NcWorM8rFRtGYDto1P6RqHKDbm9HNbv/z+M?=
+ =?us-ascii?Q?gM+shzAU2jK7kyF1MTcUsrpeayhnj15qTiQtM0It1g2PjItoX8IZcVL+d6RE?=
+ =?us-ascii?Q?Ag+GwjCklLed/SVaY3J0QisceAYtAryV0CkqE+HkC1GCBEF30gAGZQJANE86?=
+ =?us-ascii?Q?p57aiXgzGSpGkYBu7q7+EIVkzHeFxLCms1mLSxb1VTfnAynIbESijSrWMI4o?=
+ =?us-ascii?Q?DCLvHUCC0RAb3fqcjKmzGs2ZvPjHUWHjvbg+zqejilIKwXw2txKqh4Pg2RFM?=
+ =?us-ascii?Q?NamgYANuJ/Rb6NE1vG78AplhcXQ894t1sixAWqPPdI5J/fCUeboiay8DjQ2O?=
+ =?us-ascii?Q?XS8tUQ3GuO2WbeLglpZC+ZYD0iMLD10VyQzpJ08GpsrgHR4cGE7PTjGDN4hy?=
+ =?us-ascii?Q?3dSlsYHEE0dQX4l+Vo1GLKIuFvNxOjUNWeQif9Fxoa7MMhoVHjiVj7vOB1IQ?=
+ =?us-ascii?Q?zmyR3bQ9WUAsTwwQqseqNUb0yL89oURQ6IrsC31wN8UDy5b7nwqNnVU0Qgp0?=
+ =?us-ascii?Q?/uIRp7E/VSGI7gOuTiKUpOYCn2BkP6moap1T/Q/Sf46T3RweYCsgPpw+9Lrz?=
+ =?us-ascii?Q?DPzNlbhurJ5B8pveZ2+Wysk2hGr/uOo7c1sgKKo6nBRaAvAD3jUAXTe8O/aF?=
+ =?us-ascii?Q?qZHfItVp5BiAxCAMmBJzqzYUwnS5Rvu2GxefkYR7wQuMDVD4bM4VowTac0hH?=
+ =?us-ascii?Q?zbfncc3CI/g=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2024 09:34:22.8735 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2cc9c99-39cd-42a9-8573-08dcd7c51462
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002315.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7939
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,53 +130,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Philip Yang <Philip.Yang@amd.com>
+enable_level_process_quantum_check is requried to enable process
+quantum based scheduling.
 
-commit 8c45b31909b730f9c7b146588e038f9c6553394d upstream.
-
-If the SVM range has no GPU access nor access-in-place attribute,
-validate and map to GPU should skip the range.
-
-Add NULL pointer check if find_first_bit(ctx->bitmap, MAX_GPU_INSTANCE)
-returns MAX_GPU_INSTANCE as gpuidx if ctx->bitmap is empty.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-Reviewed-by: Alex Sierra <alex.sierra@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-[m.masimov@maxima.ru: In order to adapt this patch to branch 6.1
-ctx was treated as a variable and not as a pointer.]
-Signed-off-by: Murad Masimov <m.masimov@maxima.ru>
+Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v12_0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 7fa5e70f1aac..a44781b66af9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1491,6 +1491,8 @@ static void *kfd_svm_page_owner(struct kfd_process *p, int32_t gpuidx)
- 	struct kfd_process_device *pdd;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
+index ef05a4116230..ad87621f91b1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_0.c
+@@ -609,6 +609,7 @@ static int mes_v12_0_set_hw_resources(struct amdgpu_mes *mes, int pipe)
+ 	mes_set_hw_res_pkt.disable_mes_log = 1;
+ 	mes_set_hw_res_pkt.use_different_vmid_compute = 1;
+ 	mes_set_hw_res_pkt.enable_reg_active_poll = 1;
++	mes_set_hw_res_pkt.enable_level_process_quantum_check = 1;
  
- 	pdd = kfd_process_device_from_gpuidx(p, gpuidx);
-+	if (!pdd)
-+		return NULL;
- 
- 	return SVM_ADEV_PGMAP_OWNER(pdd->dev->adev);
- }
-@@ -1561,10 +1563,10 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
- 	}
- 
- 	if (bitmap_empty(ctx.bitmap, MAX_GPU_INSTANCE)) {
--		if (!prange->mapped_to_gpu)
--			return 0;
--
- 		bitmap_copy(ctx.bitmap, prange->bitmap_access, MAX_GPU_INSTANCE);
-+		if (!prange->mapped_to_gpu ||
-+		    bitmap_empty(ctx.bitmap, MAX_GPU_INSTANCE))
-+			return 0;
- 	}
- 
- 	if (prange->actual_loc && !prange->ttm_res) {
+ 	/*
+ 	 * Keep oversubscribe timer for sdma . When we have unmapped doorbell
 -- 
-2.39.2
+2.41.0
 
