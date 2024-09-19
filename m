@@ -2,62 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF4397CDB6
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 20:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E374A97CDB2
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 20:35:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1B310E768;
-	Thu, 19 Sep 2024 18:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9040F10E758;
+	Thu, 19 Sep 2024 18:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="u7u85ukQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="OazgNd9d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DF410E764
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 18:35:12 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 559C310E758
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 18:35:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MZX/o7K2Ftdflo5twCL5VdOMibF8XlI9HWcfPisB/QGBnVruV7H3C5Uti49OZVUIkdXW3MuEsqRvueaQpKbIiOk8NIZBwdAhVbWOqdUaSCcZ96S7fTbjgFj+bHAmKNe/J4zHlqGYmDWRDgIuzRUw5OXBTXGE0OTAtH2PbJfrB7j/yTO9ORn/0iucQUigaehepXMM40ghvQRWvIU6EQmXnYFHaJtwoHSnh23CHzYlxFg1nXru/YEVFwCSFUjTRZHJoYf4GB8R+6OYt4AOUiddzJ2vH9GV6OOjDSfHcVLOTmi8l952AyDCyOAf9C2oW8pYxKYRJzjjXsi8qko/gfWI3A==
+ b=sDjIzVFOcyf173+YAb7BppPPipZFzk/ieoxCNEM1CmsOOtbbjTKc5UrrNYdFcZYo95T8GuM80Y3YI0/DA1GejmNXLzoTkzZ5bO+vYKm8t3RXcHNaPC4Ytepd8Wj3WtB6RpxzlVClu3jUzmWIkNgzjwJNvKorj62RC33kIQ1xW8ISIW2NdfedCc80dsdEbcsPrkX3rtUApHqsix0yYVnmkmssI+155JdHRtLgUuu0r1WozAOmxy/qGeuoHCbxFNHh/B6+pdTcUiQQs5Zn585AK5sVhkqI+0durJyew0+koqLzTnPT/oAHW1V/6Ypwdy1RkIjfhdec1eyRiDcTEWm9Rw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lFxZTRxvIrcR8qRz4+h/cdH0iZRuGngql9mOQK/D9iY=;
- b=c7JQjv52Vjf200mb1hNsKGEgmSk1BP4B0TCaljFp72UQm4WY9KD6c5YQxaNeDcmaYAKkZccO68w3E0UVff786R+QWvYSOlmiPcn7eg4bBae7yMH6GPQmld1QqlEKhPCm9PT53hbU4TIHmBnhPzptrAQaldjpREd2Ex6n4MzRNIpKqlXNa6b4Q56EKSyWKapVTssr5xTyx4VwyXajBVmidLVYre0JiLatt5ed6ZYuAomWSYrzwxudhzCaAaYYPbpG7ADTW7srDvND0UAxdqyG3innL8prZnpndWuL/DzgtUHdLZuvWuMz5yS2DRdV1Xsh8Sam1ZUk4gKrVG90rDiSsw==
+ bh=v6SQNR4XkDtiV3b+K1Ww64Ny1UaIUWCM5y+Z1mfQiwQ=;
+ b=RoUW6ZObRudHyxoQtkR8bEtVKEZFDg9/N5Ra3gtUyw7ZUfFRsVH5LMII4QdGXBt359jGDwVRAeeywwvsY9v0g4rn1T26lrykaFUmfqc3ZwK3vmZuaxhbu6+JrI91wCtu0oiAWOT+9pEesiPR2dNdp9axRJhKjUyl9yLK86g95+wRZbk7RR+vF+AdB4C7vFnO4c+6zWYmW/bn5KrNkBVrurEDCh/VcvZ27oq5zvWR3oXZUkTNwjmfNkhZgofMPMASWJCsvgQuFwKKmbJtCPNfVbkAEfucaBsIIi0RR5eqfkSGtKIR7i5JTAKLrGbgW15LGyON3/R9GFynZUR3DiaV0w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFxZTRxvIrcR8qRz4+h/cdH0iZRuGngql9mOQK/D9iY=;
- b=u7u85ukQWqccQPksLwMOv7ibhFFq8vQuUgDmRCqr75Lp87GT8trTLul74ePdFuNPq9YDz1+OtUtJYOK0TGxlnaSbRUgxO4DN7cyIoINMWpoJv5JeKlo9Biy3eCCOOg9iEFcMR/S60f8gnJ6E884jl782NOIoUry9el8jpobLoJQ=
-Received: from SN7PR04CA0188.namprd04.prod.outlook.com (2603:10b6:806:126::13)
- by PH7PR12MB7116.namprd12.prod.outlook.com (2603:10b6:510:1ef::12)
+ bh=v6SQNR4XkDtiV3b+K1Ww64Ny1UaIUWCM5y+Z1mfQiwQ=;
+ b=OazgNd9dQ6wBWhO/eiNyk43viookAYoQ0xtJKYNnQq1ITi7w0qh+fK7m3Hx1uSFTqNfOMPGwj7kZhpu/rf0cVRMzKTRQigk2yRZAJLshtCRZPut3TUTJ4E9rK4QRFQA0HAUdf4Cy371pNCuoUaw/ykN2c7EyHsLCX5oD0O9ARDk=
+Received: from BL1P223CA0007.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:2c4::12)
+ by PH0PR12MB7485.namprd12.prod.outlook.com (2603:10b6:510:1e9::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Thu, 19 Sep
- 2024 18:35:06 +0000
-Received: from SN1PEPF0002529D.namprd05.prod.outlook.com
- (2603:10b6:806:126:cafe::62) by SN7PR04CA0188.outlook.office365.com
- (2603:10b6:806:126::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.25 via Frontend
- Transport; Thu, 19 Sep 2024 18:35:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.17; Thu, 19 Sep
+ 2024 18:35:08 +0000
+Received: from BN3PEPF0000B077.namprd04.prod.outlook.com
+ (2603:10b6:208:2c4:cafe::4) by BL1P223CA0007.outlook.office365.com
+ (2603:10b6:208:2c4::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.30 via Frontend
+ Transport; Thu, 19 Sep 2024 18:35:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SN1PEPF0002529D.mail.protection.outlook.com (10.167.242.4) with Microsoft
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN3PEPF0000B077.mail.protection.outlook.com (10.167.243.122) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Thu, 19 Sep 2024 18:35:06 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.7918.13 via Frontend Transport; Thu, 19 Sep 2024 18:35:07 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 19 Sep
- 2024 13:35:02 -0500
+ 2024 13:35:03 -0500
 Received: from aaurabin-suse.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 19 Sep 2024 13:35:02 -0500
+ Transport; Thu, 19 Sep 2024 13:35:03 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -66,66 +66,67 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Ilya Bakoulin <Ilya.Bakoulin@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>
-Subject: [PATCH 16/21] drm/amd/display: Fix cursor visual confirm update
-Date: Thu, 19 Sep 2024 14:33:34 -0400
-Message-ID: <20240919183435.1896209-17-aurabindo.pillai@amd.com>
+ <daniel.wheeler@amd.com>, Joshua Aberback <joshua.aberback@amd.com>, "Dillon
+ Varone" <dillon.varone@amd.com>
+Subject: [PATCH 17/21] drm/amd/display: Clip rect size changes should be full
+ updates
+Date: Thu, 19 Sep 2024 14:33:35 -0400
+Message-ID: <20240919183435.1896209-18-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240919183435.1896209-1-aurabindo.pillai@amd.com>
 References: <20240919183435.1896209-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: aurabindo.pillai@amd.com does not
+Received-SPF: None (SATLEXMB04.amd.com: aurabindo.pillai@amd.com does not
  designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529D:EE_|PH7PR12MB7116:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1380444-3997-4805-f513-08dcd8d9c8a1
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B077:EE_|PH0PR12MB7485:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3702a74f-dc64-4adf-f3a9-08dcd8d9c94f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?F9udFmzVibhsDE++zOkm7WQ/nLopDlLbkccGNX6uLfBK9gCGSSDhI6u18VlZ?=
- =?us-ascii?Q?fJcCV19LmcdDCn5NA0TehIPAeIf/nIG+Y5Gih4mBeK8pIaCxrkRvceVz8IlV?=
- =?us-ascii?Q?jRBlmkEqKeom2ZvV2gsCxcRfYZ6VjzjPI4xxQbAtQVjVgzNigZ7mDrZ7yTRm?=
- =?us-ascii?Q?kI0L6FtuScStvkMS6h7GscRupwkMVlBtIRN/iVOSvGwN7ycUtdSbBVRZBO62?=
- =?us-ascii?Q?2InccTHmVH6tUSY/sk71PfHOI9WuXbw4pHvBshtQXZ6GEmB0YiThbnfVyOyn?=
- =?us-ascii?Q?CLVD4Hzn4Y4Plx3t7Wny9Z9qiYN58Mo6olMIKqaiamVdVCRSICIY1gQuVTyp?=
- =?us-ascii?Q?6L706+XPKTI7qNUcaiAMimAKcqwhZq5Sl9ZFRgFnCpAwvfBSl66qPu8kJrOv?=
- =?us-ascii?Q?dO92sl/yvuSmwdNt6TEDdANVHMC9Ab20ZroJpkgxLRV/ilQINAUw3Q5KXCZN?=
- =?us-ascii?Q?v0nZEx0uRdllbExyKVBx16Q8q9/cyatREOrlkVJqBu72ZqbG3zDnYMH2wKkH?=
- =?us-ascii?Q?VsrOVjdrKNRLw42CAH50Jc+0m+s/4yuUwmNiuySAMToE6+vWAVUh9LKGGJ+P?=
- =?us-ascii?Q?OZWd+79DrRCeHLflD5vPQWOI8ywH6M5ROJECFLmK7Y8GkbuX5apZmiIcDxgd?=
- =?us-ascii?Q?V53vKn1l1D2sh+tZSGmn6NhJrqA5qJVZMdtszthbaQU+Qz0frh+QEep87Cpz?=
- =?us-ascii?Q?Iyt6se6NQ4ZoMF+fiHqaRVOtMf9KEBANgfv13gWmC+PUq2WPxOdcfozAt/pc?=
- =?us-ascii?Q?lmt9gnxy8x09SqAaOmfMvAmP9niN62Sv4cVinVDuw++CYj2Pe8MoSK4ou7kv?=
- =?us-ascii?Q?Avc+8zhCvdfPfYu7hNYnjr8T9c9pyHg/4ghpcoCbpFer1gqdwzNfUBCUD1MG?=
- =?us-ascii?Q?mhXC/7QQus0L2ccfyXrg9rK0S1WcOhM+9L+36Q7h9+hpl+bO/ZdRzYuEis5E?=
- =?us-ascii?Q?uMfWq+SJVzL1pP5HR/WwFhFc26cA6hzVbWAjCo/s0axkocSWziB5JewBGpdh?=
- =?us-ascii?Q?4qUusrAr/rgfKTRM3eXz/850j4dU9yMvVLt2cdBL6E1z40frlwrrV01W7KYr?=
- =?us-ascii?Q?i1jftreqWpuZ3qS8xP+w1PPelGKKYH02brQGYPUkgXISnsQVEKBDgnhzAolA?=
- =?us-ascii?Q?Z9zCMGFcZRz/sWwTcfKvYWp3MPUC9RCcPy1Qu0pJ8G45XJ6JK2Y14LOaYjV+?=
- =?us-ascii?Q?hg5mUQVeImmQ6TFQMawtbXAotveTayGi541fi2dKdO4ZQs4g3eAY3+AjhH0S?=
- =?us-ascii?Q?yhjYZluuXC2cwAQcKcjEA3rZD6DJh4hRcE9+sfuJpNVFuUe+d8O0jnBHCq1b?=
- =?us-ascii?Q?xpmDHpy3imUIYXabTYmkXUQW9zSts6/stXT8oZgjdqj2xB6DetXbfpMCr4m/?=
- =?us-ascii?Q?wzP0Yz9g3FodMVBIpJkA3AX16gk7qH+rYOjqZEFvkyEJQ5SIihuEovvD25j4?=
- =?us-ascii?Q?pHxD+uHp9xyzlerM7At8fj+xPZoNG1VZ?=
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?FGJyMczI/Ph6ibk7F2RhwWYeZYU+IUKaxsvGP22x61KZmaeHKgDt3uOS/kDB?=
+ =?us-ascii?Q?EAkGOaOVJiJmEtEU2NBLln1MXs8LbRp2KUuCE3zBqmPqWVEEvHb/YdOFgJw+?=
+ =?us-ascii?Q?b1ridYoK9j3l1TmriyMAXDalK+z2dBEieNHjge5hazOjx6/wPl7CLqxLfzfm?=
+ =?us-ascii?Q?XI+WmiJiKzMTKlaJjFjrqA3hYrtZ5voY08sC/qxJa+AFRO4g6YDe404TSmfE?=
+ =?us-ascii?Q?sCAjtG/nHveMEbdw/jBjMNXlzg1VfC6VvNkKvl88VK3yTR1uQmFU1WmUFvvG?=
+ =?us-ascii?Q?u1MX1xaaiKskvlkQWvaoLAZsp82Z1qEPmPEs7WBZEN5RRfJb+1BaxukgGPgp?=
+ =?us-ascii?Q?OoBCy21jVSW8XcT0tFRPya5VXhjDu5o5Q8yxWCybxxhGEQAemB0HWVNibVRo?=
+ =?us-ascii?Q?zBr/fM3w17zee1hXjk5uoC23oqwurYvyInlndasgiN6Z5zEwPdmgqMiAJ8w/?=
+ =?us-ascii?Q?fsObmJNm39clBQ8wmYEo9yag/sLKUCyem51HCSHssuHn3Ji7Wm0Z0q4N/5Ov?=
+ =?us-ascii?Q?YjpSIGfZhxfLkfTqyNUAd2/8aRq7XfOBDtkPnIgqWDYWRFqDb00eS7B/sbTm?=
+ =?us-ascii?Q?j2YJeiw6lIaONb3sC3h8DEcjNOfYOLPA7EeQgJ+tuhkN6ZmEt3hEmEq5wjo7?=
+ =?us-ascii?Q?MpmoyonIbuSyh/KDkGlBXOhlgD8LoS8h1bsIy1EZoHFcY9p3fPCxk+/kuxg0?=
+ =?us-ascii?Q?cJ36sznzma4kEDJHMplClbZkMODSETj4SJQzRdrUH0VPD79YmEkI9B2t6/bB?=
+ =?us-ascii?Q?D1xZe6Kr6pdXPtxoocXukik2TDlNK44k1czYycR9o7pr8/0TJCV+zPZUdesT?=
+ =?us-ascii?Q?dIOxrzFet/jNQTODME13wtk5b5rY37iTX1j/1O/86Wx4ECiISlS275Z3drKd?=
+ =?us-ascii?Q?IWr/JU2fSktsGwyoNE/+C2+0nlGXHOC5G6SnpLr4Fd7/Vm/fjkeZvbyV+6EQ?=
+ =?us-ascii?Q?k8Eeq6Gvfz03zlb3QukTCjlSW4E2IQqW+Su1JI3V0RkUk0up2AbpaZ/TQ3aW?=
+ =?us-ascii?Q?hzi+5fpKov0S2KcrMxMbA2HHqPNd1GIm0lkM6JZJ8Se4uQG036nnPLYswMyD?=
+ =?us-ascii?Q?w8Wsn52AMzqBDCumOzWC38n0AmtTNDaTCgFBLcfsvxeyEXRHwn2N0DTdnfkC?=
+ =?us-ascii?Q?hdJM//0lN7Wp/l5gq7qkta5HafZ99q/7Jv/WFGvgwa3z25Uu8utwNDHEeNe8?=
+ =?us-ascii?Q?WFqSnUC2WJw+bzkZRsuPQ0O5GgExEGmqr8ZLNCxIF9mcDRdRAoiZ8luwrpLj?=
+ =?us-ascii?Q?ckiUc4R6+9xZ7cZ3ix+CtFMXsibqNhlVOA/hkhVMQfaKgi+X/hhuFMbLObi+?=
+ =?us-ascii?Q?IAj29HQGHyCR/4wmvurLr+NxMvPyg0t/pXu2sswsiD42JHMB+EF87HIz7E8n?=
+ =?us-ascii?Q?esQ1VypQTEcE+cuQsVdGjfghJ9ECwc8OjwGTmc4FhdXhE+fgl5/VSw1YS8rx?=
+ =?us-ascii?Q?OpTFsJXYDtWNumrm0xymHmO1WSPqZBTU?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2024 18:35:06.4546 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1380444-3997-4805-f513-08dcd8d9c8a1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2024 18:35:07.6105 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3702a74f-dc64-4adf-f3a9-08dcd8d9c94f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529D.namprd05.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B077.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7116
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7485
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,108 +141,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
-[Why/How]
-Certain transitions from HW to SW cursor can be missed, which will
-result in black visual confirm instead of expected blue/red. Need to add
-handling for cursor visual confirm to dc_update_visual_confirm_color.
+[Why]
+In cases where an MPO plane is being dragged around partially off-screen,
+it is possible to get a flip where the only scaling parameters to change
+are the clip rect size and position. Currently, clip rect size changes
+are considered medium updates, which can result in the clip rect being used
+for HW programming being larger than the clip rect that was used for the
+last DML validation. This can lead to mismatches in different parts of the
+pipe and can result in a p-state hang.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+[How]
+ - consider clip rect size changes scaling changes, therefore full updates
+ - refactor get_scaling_info_update_type for clarity
+ - remove clip_size_change update flag
+
+Clip rect size changes were previously demoted from full updates as an
+optimization when the MPO + ODM policy changed to always pre-allocate MPO
+pipes, but it created the issue described above. Personally testing this
+use case, the performance feels fine with full update spam, and we expect
+this is a fairly infrequent use case. If the performance needs to be
+optimized in the future, consider reworking the entire update type logic
+to run a DML pass and determine the update type based on what DML says
+will actually change.
+
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c        |  2 ++
- .../drm/amd/display/dc/core/dc_hw_sequencer.c   | 17 +++++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 11 +----------
- .../gpu/drm/amd/display/dc/hwss/hw_sequencer.h  |  4 ++++
- 4 files changed, 24 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 45 ++++++++-----------
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 -
+ .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  2 -
+ 3 files changed, 19 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 024d2d0bf457..fbc2e1dfb610 100644
+index fbc2e1dfb610..5c9a88e834e6 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1157,6 +1157,8 @@ static void dc_update_visual_confirm_color(struct dc *dc, struct dc_state *conte
- 			get_surface_visual_confirm_color(pipe_ctx, &(pipe_ctx->visual_confirm_color));
- 		else if (dc->debug.visual_confirm == VISUAL_CONFIRM_SWIZZLE)
- 			get_surface_tile_visual_confirm_color(pipe_ctx, &(pipe_ctx->visual_confirm_color));
-+		else if (dc->debug.visual_confirm == VISUAL_CONFIRM_HW_CURSOR)
-+			get_cursor_visual_confirm_color(pipe_ctx, &(pipe_ctx->visual_confirm_color));
- 		else {
- 			if (dc->ctx->dce_version < DCN_VERSION_2_0)
- 				color_space_to_black_color(
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 2cb9253c9bde..2fdcf8d59b9f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -497,6 +497,23 @@ void get_mclk_switch_visual_confirm_color(
+@@ -2515,41 +2515,35 @@ static enum surface_update_type get_scaling_info_update_type(
+ 	if (!u->scaling_info)
+ 		return UPDATE_TYPE_FAST;
+ 
+-	if (u->scaling_info->dst_rect.width != u->surface->dst_rect.width
++	if (u->scaling_info->src_rect.width != u->surface->src_rect.width
++			|| u->scaling_info->src_rect.height != u->surface->src_rect.height
++			|| u->scaling_info->dst_rect.width != u->surface->dst_rect.width
+ 			|| u->scaling_info->dst_rect.height != u->surface->dst_rect.height
++			|| u->scaling_info->clip_rect.width != u->surface->clip_rect.width
++			|| u->scaling_info->clip_rect.height != u->surface->clip_rect.height
+ 			|| u->scaling_info->scaling_quality.integer_scaling !=
+-				u->surface->scaling_quality.integer_scaling
+-			) {
++					u->surface->scaling_quality.integer_scaling) {
+ 		update_flags->bits.scaling_change = 1;
+ 
++		if (u->scaling_info->src_rect.width > u->surface->src_rect.width
++				|| u->scaling_info->src_rect.height > u->surface->src_rect.height)
++			/* Making src rect bigger requires a bandwidth change */
++			update_flags->bits.clock_change = 1;
++
+ 		if ((u->scaling_info->dst_rect.width < u->surface->dst_rect.width
+ 			|| u->scaling_info->dst_rect.height < u->surface->dst_rect.height)
+ 				&& (u->scaling_info->dst_rect.width < u->surface->src_rect.width
+ 					|| u->scaling_info->dst_rect.height < u->surface->src_rect.height))
+ 			/* Making dst rect smaller requires a bandwidth change */
+ 			update_flags->bits.bandwidth_change = 1;
+-	}
+-
+-	if (u->scaling_info->src_rect.width != u->surface->src_rect.width
+-		|| u->scaling_info->src_rect.height != u->surface->src_rect.height) {
+ 
+-		update_flags->bits.scaling_change = 1;
+-		if (u->scaling_info->src_rect.width > u->surface->src_rect.width
+-				|| u->scaling_info->src_rect.height > u->surface->src_rect.height)
+-			/* Making src rect bigger requires a bandwidth change */
+-			update_flags->bits.clock_change = 1;
++		if (u->scaling_info->src_rect.width > dc->caps.max_optimizable_video_width &&
++			(u->scaling_info->clip_rect.width > u->surface->clip_rect.width ||
++			 u->scaling_info->clip_rect.height > u->surface->clip_rect.height))
++			 /* Changing clip size of a large surface may result in MPC slice count change */
++			update_flags->bits.bandwidth_change = 1;
  	}
- }
  
-+void get_cursor_visual_confirm_color(
-+		struct pipe_ctx *pipe_ctx,
-+		struct tg_color *color)
-+{
-+	uint32_t color_value = MAX_TG_COLOR_VALUE;
-+
-+	if (pipe_ctx->stream && pipe_ctx->stream->cursor_position.enable) {
-+		color->color_r_cr = color_value;
-+		color->color_g_y = 0;
-+		color->color_b_cb = 0;
-+	} else {
-+		color->color_r_cr = 0;
-+		color->color_g_y = 0;
-+		color->color_b_cb = color_value;
-+	}
-+}
-+
- void set_p_state_switch_method(
- 		struct dc *dc,
- 		struct dc_state *context,
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index be2638c763d7..b000bf39762f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -419,7 +419,6 @@ bool dc_stream_program_cursor_position(
- 		/* apply/update visual confirm */
- 		if (dc->debug.visual_confirm == VISUAL_CONFIRM_HW_CURSOR) {
- 			/* update software state */
--			uint32_t color_value = MAX_TG_COLOR_VALUE;
- 			int i;
+-	if (u->scaling_info->src_rect.width > dc->caps.max_optimizable_video_width &&
+-		(u->scaling_info->clip_rect.width > u->surface->clip_rect.width ||
+-		 u->scaling_info->clip_rect.height > u->surface->clip_rect.height))
+-		 /* Changing clip size of a large surface may result in MPC slice count change */
+-		update_flags->bits.bandwidth_change = 1;
+-
+-	if (u->scaling_info->clip_rect.width != u->surface->clip_rect.width ||
+-			u->scaling_info->clip_rect.height != u->surface->clip_rect.height)
+-		update_flags->bits.clip_size_change = 1;
+-
+ 	if (u->scaling_info->src_rect.x != u->surface->src_rect.x
+ 			|| u->scaling_info->src_rect.y != u->surface->src_rect.y
+ 			|| u->scaling_info->clip_rect.x != u->surface->clip_rect.x
+@@ -2558,13 +2552,13 @@ static enum surface_update_type get_scaling_info_update_type(
+ 			|| u->scaling_info->dst_rect.y != u->surface->dst_rect.y)
+ 		update_flags->bits.position_change = 1;
  
- 			for (i = 0; i < dc->res_pool->pipe_count; i++) {
-@@ -427,15 +426,7 @@ bool dc_stream_program_cursor_position(
++	/* process every update flag before returning */
+ 	if (update_flags->bits.clock_change
+ 			|| update_flags->bits.bandwidth_change
+ 			|| update_flags->bits.scaling_change)
+ 		return UPDATE_TYPE_FULL;
  
- 				/* adjust visual confirm color for all pipes with current stream */
- 				if (stream == pipe_ctx->stream) {
--					if (stream->cursor_position.enable) {
--						pipe_ctx->visual_confirm_color.color_r_cr = color_value;
--						pipe_ctx->visual_confirm_color.color_g_y = 0;
--						pipe_ctx->visual_confirm_color.color_b_cb = 0;
--					} else {
--						pipe_ctx->visual_confirm_color.color_r_cr = 0;
--						pipe_ctx->visual_confirm_color.color_g_y = 0;
--						pipe_ctx->visual_confirm_color.color_b_cb = color_value;
--					}
-+					get_cursor_visual_confirm_color(pipe_ctx, &(pipe_ctx->visual_confirm_color));
+-	if (update_flags->bits.position_change ||
+-			update_flags->bits.clip_size_change)
++	if (update_flags->bits.position_change)
+ 		return UPDATE_TYPE_MED;
  
- 					/* programming hardware */
- 					if (pipe_ctx->plane_state)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index b3134c85df39..1df17c54f3a9 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -509,6 +509,10 @@ void get_mclk_switch_visual_confirm_color(
- 		struct pipe_ctx *pipe_ctx,
- 		struct tg_color *color);
+ 	return UPDATE_TYPE_FAST;
+@@ -3263,8 +3257,7 @@ static bool update_planes_and_stream_state(struct dc *dc,
  
-+void get_cursor_visual_confirm_color(
-+		struct pipe_ctx *pipe_ctx,
-+		struct tg_color *color);
-+
- void set_p_state_switch_method(
- 		struct dc *dc,
- 		struct dc_state *context,
+ 		if (update_type != UPDATE_TYPE_MED)
+ 			continue;
+-		if (surface->update_flags.bits.clip_size_change ||
+-				surface->update_flags.bits.position_change) {
++		if (surface->update_flags.bits.position_change) {
+ 			for (j = 0; j < dc->res_pool->pipe_count; j++) {
+ 				struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[j];
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index d3b6a389fece..6d60f7597f88 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1254,7 +1254,6 @@ union surface_update_flags {
+ 		uint32_t rotation_change:1;
+ 		uint32_t swizzle_change:1;
+ 		uint32_t scaling_change:1;
+-		uint32_t clip_size_change: 1;
+ 		uint32_t position_change:1;
+ 		uint32_t in_transfer_func_change:1;
+ 		uint32_t input_csc_change:1;
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
+index b383ed8cb4d4..e89499536c46 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
+@@ -1732,7 +1732,6 @@ static void dcn20_update_dchubp_dpp(
+ 	if (pipe_ctx->update_flags.bits.scaler ||
+ 			plane_state->update_flags.bits.scaling_change ||
+ 			plane_state->update_flags.bits.position_change ||
+-			plane_state->update_flags.bits.clip_size_change ||
+ 			plane_state->update_flags.bits.per_pixel_alpha_change ||
+ 			pipe_ctx->stream->update_flags.bits.scaling) {
+ 		pipe_ctx->plane_res.scl_data.lb_params.alpha_en = pipe_ctx->plane_state->per_pixel_alpha;
+@@ -1745,7 +1744,6 @@ static void dcn20_update_dchubp_dpp(
+ 	if (pipe_ctx->update_flags.bits.viewport ||
+ 			(context == dc->current_state && plane_state->update_flags.bits.position_change) ||
+ 			(context == dc->current_state && plane_state->update_flags.bits.scaling_change) ||
+-			(context == dc->current_state && plane_state->update_flags.bits.clip_size_change) ||
+ 			(context == dc->current_state && pipe_ctx->stream->update_flags.bits.scaling)) {
+ 
+ 		hubp->funcs->mem_program_viewport(
 -- 
 2.46.0
 
