@@ -2,64 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D86197D1AC
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Sep 2024 09:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB6297CCC8
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 18:59:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B8010E7B9;
-	Fri, 20 Sep 2024 07:23:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 197BA10E096;
+	Thu, 19 Sep 2024 16:59:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=internode.on.net header.i=@internode.on.net header.b="aBjBiQxO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HTaUHKif";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 7119 seconds by postgrey-1.36 at gabe;
- Thu, 19 Sep 2024 18:55:27 UTC
-Received: from omr000.pc5.atmailcloud.com (omr000.pc5.atmailcloud.com
- [103.150.252.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 831A710E76C;
- Thu, 19 Sep 2024 18:55:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=internode.on.net; s=202309; h=MIME-Version:Message-ID:Date:Subject:To:From:
- content-type; bh=CNvzFe9fGd98RlReCYS+NNkkhCDG6VKvF/0EOMmVuWw=; b=aBjBiQxONcG+
- WStWCQNFMDyM5XL8L1jEzI2qqij749Gda8n53drz+derd8HA4XwjKNa1vC5DUQSy7cyHzmZZFGv/i
- G+nnprzZT7RD0myzz/ZaRUj4YYxRhCBLVjgZZyFZH7sAmglhQi35Q18txbtpwAK2d1sga2+NtVtzS
- cvf6N0YJ+WBlWG4v4QV8JyCDTRXH0LecxI/++lVRzLSvTsqUs+EBwPtRX2Zm+RnIrG47s2/xXCkbM
- 7f9S5CEcTO7E09RwZmIP6KPW0RQrpHSGLZy77sAn0GMAh3vSQjJqElpc4FhJRUPPtZP1sMvxuFBXa
- 1em9/3Q+IyV26dom6HPYbw==;
-Received: from CMR-KAKADU01.i-02175a00542f9bb7e
- by OMR.i-011229ae50fa0cd71 with esmtps
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1srKST-000000006NL-2t4y; Thu, 19 Sep 2024 16:56:45 +0000
-Received: from [203.173.7.72] (helo=localhost)
- by CMR-KAKADU01.i-02175a00542f9bb7e with esmtpsa
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1srKST-000000004vD-06HQ; Thu, 19 Sep 2024 16:56:45 +0000
-Received: from amarsh04 by localhost with local (Exim 4.98)
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1srKSP-000000001Cq-1EPo; Fri, 20 Sep 2024 02:26:41 +0930
-From: Arthur Marsh <arthur.marsh@internode.on.net>
-To: wuhoipok@gmail.com
-Cc: Xinhui.Pan@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- tzimmermann@suse.de, arthur.marsh@internode.on.net
-Subject: drm/radeon: remove load callback from kms_driver
-Date: Fri, 20 Sep 2024 02:26:40 +0930
-Message-ID: <20240919165641.4632-1-user@am64>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240630165949.117634-3-wuhoipok@gmail.com>
-References: <20240630165949.117634-3-wuhoipok@gmail.com>
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com
+ [209.85.216.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3E8E10E096
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 16:59:55 +0000 (UTC)
+Received: by mail-pj1-f43.google.com with SMTP id
+ 98e67ed59e1d1-2d871bd95ffso181577a91.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 09:59:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726765195; x=1727369995; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rmt1OY81W09kX9Tc0DN4+79ATVDwgLije1EzCv1QHfY=;
+ b=HTaUHKifJl3c1WVCxuqYeHEhSGj0zqxx4JXMuc8GVRhm5CzTQKYMA9CxxxkFkCXEhU
+ M9JccSmGeD3y8nKBfCB4SQiJZQjVYEtoMy3hH2wgJM/aGe2Atu3KNguRfbazGJ56Eil8
+ 49Ll2pBCj9BB5+yfmM1z/KQpeBQ4sl2UJKp5Cm0PRaxIneepvKegfsNg/whRB6tH11ry
+ hdLy7zVu+oS7zA1iKRR8SdM5FESvSlQs6McXs5zAQlr3nY/ySwKTUGOc01U9wU/6k7Jq
+ S/lfEIEKMLXnAybZnbeYxNcXmRo5/hjwN2Q42G9HAuatpZCqSI8sFGQbrQ3CNtJAw3X2
+ qMAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726765195; x=1727369995;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rmt1OY81W09kX9Tc0DN4+79ATVDwgLije1EzCv1QHfY=;
+ b=egTPDCO44uQxMA5DlmZ0PL2NdSwBLApXWMHKOut0FKd5S4Dlgw0hf8I4y9m+0bVf6l
+ v/R+Ak4sBUuEO8vN6td/PIktDe/apc/0UY33tbwpVrmeLdV7VsSsgs+HmxAT5GcAZY1n
+ YkvArmmd3/eruTqeUtfTr+MZBFW21omNS0jnPqrp4gh10LOP1/oh0cB/Mh3ABkAGZM/a
+ b4A/+gdosTGP2snHuuIGh+O0b76AWp+e67+UlcZ4LEMTF5BDJrPxc3W8A619YA5PGMa2
+ 986nlg0hEhiCVfrwAgqn8nPN+y0fq95lCqLlkQOozUr1WayEVfD6C3iBqCI7JdZ4AuK7
+ FPjA==
+X-Gm-Message-State: AOJu0YzPMoPd5MjZHNxJsnXJgVHtdPykMlz6dD8q3q1vesrFCgF5P7hA
+ b+jy3aWXW0QXoOMzFXvu8Bn6wCv4VQvAV6L9jWR3wcVy3063RivY8WFDdBLT5R9PAmfmVAnCmup
+ kNadHZRp0L0zr7BLfLHFJWUqNBHz/Vg==
+X-Google-Smtp-Source: AGHT+IGEcW8FtAO2T6Fvj8qGxe4lBlMr6ZAt7bG8VqpnMePAuuaFgtKy9R4gkHXcgaPzcdc1n70SY5m9AlfBGEJ6Bd8=
+X-Received: by 2002:a17:90a:6443:b0:2db:60b:9be4 with SMTP id
+ 98e67ed59e1d1-2dd7f72c223mr22928a91.7.1726765195181; Thu, 19 Sep 2024
+ 09:59:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Atmail-Id: arthur.marsh@internode.on.net
-X-atmailcloud-spam-action: no action
-X-Cm-Analysis: v=2.4 cv=S/DfwpsP c=1 sm=1 tr=0 ts=66ec57cd
- a=q73fGBFtUWUW5y4nvQjQTA==:117 a=q73fGBFtUWUW5y4nvQjQTA==:17
- a=EaEq8P2WXUwA:10 a=x7bEGLp0ZPQA:10 a=pGLkceISAAAA:8 a=aIJAOKreiCTeCyBpU-sA:9
-X-Cm-Envelope: MS4xfHYppumKWIUnyI2Ju0M49vhnvlI5I58KLh4+FPPY2NoGJ2kbZEMp8UJ0GP5RcBj4Y7lrVRzdx8vKa/zkhB+xX2yttGtN9cY+gbgwMpCjdJRG9KUiZfoW
- mgFQnH+Gory5lpvGZtlBfdI/y0NdXfFypS6yxqGrTmIK0ZplfmRYhuA0wyzStGh3shfYwSgojx+DgA==
-X-atmailcloud-route: unknown
-X-Mailman-Approved-At: Fri, 20 Sep 2024 07:23:04 +0000
+References: <20240909200614.481-1-shashank.sharma@amd.com>
+In-Reply-To: <20240909200614.481-1-shashank.sharma@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 19 Sep 2024 12:59:42 -0400
+Message-ID: <CADnq5_OzaOWZ4tvN=13oXHc091kFUdtkhz9=R8-eknD1PMhYkw@mail.gmail.com>
+Subject: Re: [PATCH v11 00/28] AMDGPU usermode queues
+To: Shashank Sharma <shashank.sharma@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,33 +75,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Recent kernels resulted in a blank screen, with Xorg.0.log reporting:
+On Mon, Sep 9, 2024 at 4:07=E2=80=AFPM Shashank Sharma <shashank.sharma@amd=
+.com> wrote:
+>
+> This patch series introduces base code of AMDGPU usermode queues for gfx
+> workloads. Usermode queues is a method of GPU workload submission into th=
+e
+> graphics hardware without any interaction with kernel/DRM schedulers. In
+> this method, a userspace graphics application can create its own workqueu=
+e
+> and submit it directly in the GPU HW.
+>
+> The general idea of how Userqueues are supposed to work:
+> - The application creates the following GPU objetcs:
+>   - A queue object to hold the workload packets.
+>   - A read pointer object.
+>   - A write pointer object.
+>   - A doorbell page.
+>   - Other supporting buffer objects as per target IP engine (shadow, GDS
+>     etc, information available with AMDGPU_INFO_IOCTL)
 
-(II) [KMS] drm report modesetting isn't supported.
+the queue, rptr, wptr, and metadata buffers don't have to be separate
+buffers.  Userspace could suballocate them out of the same buffer.  We
+just need the virtual addresses.  However, we need to keep track of
+the GPU virtual addresses used by the user queue for these buffers and
+prevent them from being unmapped until the queue is destroyed, similar
+to what we do on the KFD side.  Otherwise, the user could unmap one of
+the buffers and submit work to the user queue which could cause it to
+hang.
 
-Sometimes while bisecting the pc came to a complete lockup (magic Sysreq 
-unresponsive).
+Alex
 
-At the end of bisecting I had:
-
-90985660ba488cd3428706e7d53d6c9cdbbf3101 is the first bad commit
-commit 90985660ba488cd3428706e7d53d6c9cdbbf3101
-Author: Wu Hoi Pok <wuhoipok@gmail.com>
-Date:   Sun Jun 30 12:59:18 2024 -0400
-
-    drm/radeon: remove load callback from kms_driver
-    
-    The ".load" callback in "struct drm_driver" is deprecated. In order to remove
-    the callback, we have to manually call "radeon_driver_load_kms" instead.
-
-This machine reports having:
-
-AMD A10-6800K APU with Radeon HD Graphics
-
-with the gpu appearing as 
-
-Advanced Micro Devices [AMD/ATI] Richland [Radeon HD 8670D] 1002:990c
-
-Regards,
-
-Arthur Marsh.
+> - The application picks a 32-bit offset in the doorbell page for this
+>   queue.
+> - The application uses the usermode_queue_create IOCTL introduced in
+>   this patch, by passing the GPU addresses of these objects (read ptr,
+>   write ptr, queue base address, shadow, gds) with doorbell object and
+>   32-bit doorbell offset in the doorbell page.
+> - The kernel creates the queue and maps it in the HW.
+> - The application maps the GPU buffers in process address space.
+> - The application can start submitting the data in the queue as soon as
+>   the kernel IOCTL returns.
+> - After filling the workload data in the queue, the app must write the
+>   number of dwords added in the queue into the doorbell offset and the
+>   WPTR buffer. The GPU will start fetching the data as soon as its done.
+> - This series adds usermode queue support for all three MES based IPs
+>   (GFX, SDMA and Compute).
+> - This series also adds eviction fences to handle migration of the
+>   userqueue mapped buffers by TTM.
+> - For synchronization of userqueues, we have added a secure semaphores
+>   IOCTL which is getting reviewed separately here:
+>   https://patchwork.freedesktop.org/patch/611971/
+>
+> libDRM UAPI changes for this series can be found here:
+> (This also contains an example test utility which demonstrates
+> the usage of userqueue UAPI)
+> https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/287
+>
+> MESA changes consuming this series can be seen in the MR here:
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29010
+>
+> Alex Deucher (1):
+>   drm/amdgpu: UAPI for user queue management
+>
+> Arvind Yadav (4):
+>   drm/amdgpu: enable SDMA usermode queues
+>   drm/amdgpu: Add input fence to sync bo unmap
+>   drm/amdgpu: fix MES GFX mask
+>   Revert "drm/amdgpu: don't allow userspace to create a doorbell BO"
+>
+> Shashank Sharma (18):
+>   drm/amdgpu: add usermode queue base code
+>   drm/amdgpu: add new IOCTL for usermode queue
+>   drm/amdgpu: add helpers to create userqueue object
+>   drm/amdgpu: create MES-V11 usermode queue for GFX
+>   drm/amdgpu: create context space for usermode queue
+>   drm/amdgpu: map usermode queue into MES
+>   drm/amdgpu: map wptr BO into GART
+>   drm/amdgpu: generate doorbell index for userqueue
+>   drm/amdgpu: cleanup leftover queues
+>   drm/amdgpu: enable GFX-V11 userqueue support
+>   drm/amdgpu: enable compute/gfx usermode queue
+>   drm/amdgpu: update userqueue BOs and PDs
+>   drm/amdgpu: add kernel config for gfx-userqueue
+>   drm/amdgpu: add gfx eviction fence helpers
+>   drm/amdgpu: add userqueue suspend/resume functions
+>   drm/amdgpu: suspend gfx userqueues
+>   drm/amdgpu: resume gfx userqueues
+>   Revert "drm/amdgpu/gfx11: only enable CP GFX shadowing on SR-IOV"
+>
+>  drivers/gpu/drm/amd/amdgpu/Kconfig            |   8 +
+>  drivers/gpu/drm/amd/amdgpu/Makefile           |  10 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  11 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   5 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  10 +
+>  .../drm/amd/amdgpu/amdgpu_eviction_fence.c    | 297 ++++++++
+>  .../drm/amd/amdgpu/amdgpu_eviction_fence.h    |  67 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  68 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  11 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       |   3 -
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h       |   2 +-
+>  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 713 ++++++++++++++++++
+>  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.h   |  74 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 644 ++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        |  42 +-
+>  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c        |  16 +-
+>  .../gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c  | 395 ++++++++++
+>  .../gpu/drm/amd/amdgpu/mes_v11_0_userqueue.h  |  30 +
+>  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c        |   5 +
+>  .../gpu/drm/amd/include/amdgpu_userqueue.h    | 100 +++
+>  drivers/gpu/drm/amd/include/v11_structs.h     |   4 +-
+>  include/uapi/drm/amdgpu_drm.h                 | 252 +++++++
+>  22 files changed, 2722 insertions(+), 45 deletions(-)
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.h
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.c
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/mes_v11_0_userqueue.h
+>  create mode 100644 drivers/gpu/drm/amd/include/amdgpu_userqueue.h
+>
+> --
+> 2.45.1
+>
