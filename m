@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7257197CDAF
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 20:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F80D97CDB4
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Sep 2024 20:35:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2434810E762;
-	Thu, 19 Sep 2024 18:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3ED210E766;
+	Thu, 19 Sep 2024 18:35:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1a9ksvYa";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="c1bhQDRe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2086.outbound.protection.outlook.com [40.107.236.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9398110E762
- for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 18:35:06 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2070.outbound.protection.outlook.com [40.107.212.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBCB710E758
+ for <amd-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 18:35:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZKcZ05VkZOxMM1+BAXQOKTol8wAFYXzT+k8UMqxTSXMUKWCLW3UrkEMUlxL6go4s5fkMYfonrRuiOBJ11XX2F2IxrFScb9wHJgarC3nITBPuoW5sp4+mQWTnqCOHWbTECd0XhmBgPekgYArej6sxSryesSotQqdQX6R9XR4kcocnzC2BsPXKKA+ytN0DDgLB215fvdonTqsxBMPBC4DLjEt6Z0Tr+uOnsp1ooKQctlov9auWC36L5VFs++AMJNiKO8KY5E8IRik5Ld14HE6KlnmQ/aBIIoZvDWtZAhPYleOedEDBH3BwTPkGl7sFpqw+lwwk3FfHRfO+4c+6PSkGtg==
+ b=YDFhrsOjXbMw8s5V9Tb3sIjBNKqIekvFIPdU9ALkK4blKBzfpb1grcXtRRBlzEdaPnh1l2WNArcvkcj2d+W+Z8Gdk7izEvzC+33s8QDRdE0q71q37A6CN6ToUxIjobMGzLJNJS8hB82ZTjR6u4Bp/MocCT1Kr1CW0UOxn2mnQ4NUL33wFAyhR/QJZMFHeNiUN7kEBV/8QgkwO0wVVIRPByHm9SOEFzqizhB3XQw49XoSWxnuV8V0C9jX6tcuGqQPrFwHMl08zcKdcTz72kDs3ksGLeLbWwXt2x9PpjohCNU++lC5KSyuht16IE8pnFkAP51MLxhfa3saDESVqakbYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JSX+RMgkS5pBE8CjwxdGVdfdUDfjxphaRmymYfqx+mw=;
- b=kzXshuOolMv98JLE+GTrrJ0OifMtg4ko5Gl7tNpgiwXvAcPiFO7cItCy3wd3LDRLKrcgwTWpTLsM032D9d3cBzyxaAMxoW8aoOa9Q1rY1G+2vYpWiluuvjgB4au+NvqodmF9ttbayiegqrXrQhnEu88Aj/fPTxsxkB/nf0EmKZSUVxnYHsPXAdMp+m9grKVyZQ5obwoZFhNXA8JMB0Lnuh1Yeyniilv2qC/eA9DSEwNWZ1deUDui00onFTsPvIwjz1yZDjZHGvr6QfaI1wj3shahVORWg96X25EmFGLTBgk9bl2UHKtE5Bpa8Apr5jPgX+vU00ArZrtvLMjAUTCWhA==
+ bh=B34WqtSC9jNcP0BzA6XzZzx0IvfCKdwaOMaVJ9EMx2U=;
+ b=zPnit0THdtHUBAqLHjBGHarvMhyeXZQs+5AI7bpxmbFBcIhu88bsdujXK4h74l/+0dnqs9VnxgOdqys3SDa6Fc0zB2rqKwZKSeOlWnlsPM3N1HBPCG7ETs/ZxzXmo1O4X/9X20jPixVemfzynT3xH0Z+/HT9hX6OUZ/6dkQvydBr0FW/nDVfXK9s0n7HGhGaWuxYN5tiEzQJ9peHNnMkkthtOEgOTQgSJkcXposy9x7ICESR2kbSx3dzgGsH3zWrO461ZHLkT/3J8skm7E99RWjrLCMBNejmqCFyjDFH5AyPcKzjnFQkLxlw66gmmmkib43+3WqKe5vjhrwaV5Yjjg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JSX+RMgkS5pBE8CjwxdGVdfdUDfjxphaRmymYfqx+mw=;
- b=1a9ksvYavcc7CTXAiXLlRwsFvX8QaQVFLel54Tacn7D5874oxGSDs0LUtkxQYp4GkVj0JOxSE7R44ImAw5IxAvcdESGQ9R4EAUjurLbrJTTM1AEW6S4AtIzVvEaBzNvd09Lq3qcyqTqCGnqOOn5/CI69L9I5bxesYW9a773acQQ=
-Received: from MN0PR05CA0021.namprd05.prod.outlook.com (2603:10b6:208:52c::16)
- by IA1PR12MB7663.namprd12.prod.outlook.com (2603:10b6:208:424::18)
+ bh=B34WqtSC9jNcP0BzA6XzZzx0IvfCKdwaOMaVJ9EMx2U=;
+ b=c1bhQDRecshn/Xx6CLMGL7IPzKVRoLZipND5a9BoGQf5f6YKUUNouxta9N/qcN9L9X8R+4jD5v6IZ4ODQQ9MiQx/Z2AVQE8F/tnoQhn+jsFUFJSUdJJDxoX0CLjwL3CMzC6BBh30f3rK+I4ZFS0N27SwqkKJaEDRGEqKK4G4N44=
+Received: from MN0PR05CA0018.namprd05.prod.outlook.com (2603:10b6:208:52c::30)
+ by PH7PR12MB6809.namprd12.prod.outlook.com (2603:10b6:510:1af::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.17; Thu, 19 Sep
- 2024 18:35:01 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.21; Thu, 19 Sep
+ 2024 18:35:07 +0000
 Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
- (2603:10b6:208:52c:cafe::1f) by MN0PR05CA0021.outlook.office365.com
- (2603:10b6:208:52c::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16 via Frontend
- Transport; Thu, 19 Sep 2024 18:35:01 +0000
+ (2603:10b6:208:52c:cafe::d0) by MN0PR05CA0018.outlook.office365.com
+ (2603:10b6:208:52c::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.7 via Frontend
+ Transport; Thu, 19 Sep 2024 18:35:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,18 +50,14 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Thu, 19 Sep 2024 18:35:01 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ 15.20.7918.13 via Frontend Transport; Thu, 19 Sep 2024 18:35:06 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 19 Sep
- 2024 13:35:00 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 19 Sep
- 2024 13:35:00 -0500
+ 2024 13:35:01 -0500
 Received: from aaurabin-suse.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 19 Sep 2024 13:34:59 -0500
+ Transport; Thu, 19 Sep 2024 13:35:00 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,64 +66,66 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Samson Tam <Samson.Tam@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>
-Subject: [PATCH 14/21] drm/amd/display: fix static analysis warnings
-Date: Thu, 19 Sep 2024 14:33:32 -0400
-Message-ID: <20240919183435.1896209-15-aurabindo.pillai@amd.com>
+ <daniel.wheeler@amd.com>, Austin Zheng <Austin.Zheng@amd.com>, Aric Cyr
+ <aric.cyr@amd.com>
+Subject: [PATCH 15/21] drm/amd/display: Update Interface to Check UCLK DPM
+Date: Thu, 19 Sep 2024 14:33:33 -0400
+Message-ID: <20240919183435.1896209-16-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240919183435.1896209-1-aurabindo.pillai@amd.com>
 References: <20240919183435.1896209-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: aurabindo.pillai@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|IA1PR12MB7663:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8e9f89b-5d9e-4494-fd20-08dcd8d9c59e
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|PH7PR12MB6809:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b576ef4-8990-4e4f-162a-08dcd8d9c8a1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|376014|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KRah7uEgKDwOgo5G6OkUtSEP9vZLLWuTw2Z4yxy28E/eLfnr74E5vf51heC5?=
- =?us-ascii?Q?8OD4emJdQFTv4y4Ah3slrQFkaixxIchaIPNTSHlQzYM7MFY0cA+jBQdRpIsZ?=
- =?us-ascii?Q?a/8q8vU9H805xg8caMJWkCuwa3SOPciEcaPb5DY2+xNfmMR68JCOHsTfsYEu?=
- =?us-ascii?Q?7hOBcp4b5bIZedyLTqeRpB+gn4KM0yge7/aDhjf8fVjCUR+z+Ct9UkAMvbmu?=
- =?us-ascii?Q?u8NTda0yINmH5PneWykPwBvjmEBZDsCi5ovgZO0zNvnQWU2kL4KacjV+E2hs?=
- =?us-ascii?Q?RgOT7X/Wa6hYpY1tBhUYxMuok/MZiFfLJslnsougweJnJ+0CmhWDf9z3Jm+K?=
- =?us-ascii?Q?9oMDjs/OczBLB+unOusrvglWAYFxfd67fjpsnMpgYVUKR+cQU8uIaGyISs3y?=
- =?us-ascii?Q?oM8GTFjBBz6doV7AMD28Lt0gNeEaWvD8dUSv/QiIzf265s91/1Dwke0cu5/9?=
- =?us-ascii?Q?CVqa8OTVIXX1WK0wdk1X/NK6U7dc5jENkYfkOFWtc9YDsHkzbJMuSPLY85ZI?=
- =?us-ascii?Q?l8bzahwHjNEUjIpQB8orKU4AFz+BuECZ9n/JXmX6zVT+SKEj0VeGUfDMcZ+v?=
- =?us-ascii?Q?dSzNs3M4fiwSDNF6qM/pkqZHvOJHs2J68cXvvkJgTd/2N6em6OVbrZzt5hxO?=
- =?us-ascii?Q?LKsALiG/WRyebbegEVAne/GaAJJrs7OKuYt/cr+knsARErfO/hR2oO86lmV3?=
- =?us-ascii?Q?9QArImFeZCCn2TtlW+x+ZCTTiOdx1arrA87dpTE46uy6+cGtMS95bs4VrX8C?=
- =?us-ascii?Q?1Z16th8GagmpgYkl1Jy1COHnCareSQalXZYLtx6qcpqhi3hRuBdjDUr4mBrC?=
- =?us-ascii?Q?s69+R+ttuxLOUtPZa3N77UBSLvRAiEtpFPFGW4goBIiMz2wl0XQraFA6T2Xk?=
- =?us-ascii?Q?YLrO6Qxy8ihYTmKMvc+Yg5BQxp8V2b9cKpYSIzN55Sz0N0xGt3ee94OdDS/M?=
- =?us-ascii?Q?xphVumUnfdG7BqnRM9+XZLH9Lc2ZpFOpoq0zVz1bHdvz6O4FfDtvHTLHtIBW?=
- =?us-ascii?Q?oBoy0PuBMD8xfGbTvtwfOtsPFMqWte9X6O777rCyZKS01kjgSM5CEVod2/1o?=
- =?us-ascii?Q?oOSTba0N6Pz68X+BWnvJMbEBBBl3wWVM4LgGt87h1i60tfkb3h6g/wTtG/gQ?=
- =?us-ascii?Q?w7JDWc6CGqT7rpV0yJijlhHIkREO5b7K5FWgyanHQn4EA0Ex0Yq7vFMjXCBk?=
- =?us-ascii?Q?AyEDLSVBJhwh1F3Bnx7FbTr91T2OFdLWJM4YRYq9zDxHU5XyWCmIJ8rWMIMC?=
- =?us-ascii?Q?cIMVcj19yPfgv6mCqIlt1EIqgx5dht5tzBg6c+AyMt7mBn1kQkOeGYHUyspF?=
- =?us-ascii?Q?SzBRxzD2+Dcjm6B9c7NNLLnDLLDoEkXskGVbixSjFj3HNJCfqWC61bc0ZZWY?=
- =?us-ascii?Q?kmUUPAVuCwo8GoVYupE/gwmmFiFb/ehNLlSzf0qr9H0zvY5grgH2xhhRDXfA?=
- =?us-ascii?Q?TFKmXi7kGeDpz8cTEe4JfVnLWNhewg05?=
+ ARA:13230040|1800799024|82310400026|36860700013|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5Vymey403E2LL0S4jJB4kAZ50ziuMfc0CvE7GrhzvH+D0Tp65JKE1XAoh0Oe?=
+ =?us-ascii?Q?ymW3hbvDcezzUrsemDBJHl5jC5vSFaqrsYb0SrmzcFHrte60rhfrWmGRRLrH?=
+ =?us-ascii?Q?d19n1MC0BIBja296vdTaugu/492ORtA5y0URoWSFNmyg3f/4bbwg5z4tZPlY?=
+ =?us-ascii?Q?bzuU9UH7AL/BCicMC1+pcfyNEXWK0BSozeP9KJHI4k0+yZgGggydNpLKJhx2?=
+ =?us-ascii?Q?1tCprnsBO7Fw0B53Tiz002TgCAbLCqH1onGpBAJUrxF8moQ9mWcqbeBv6tU9?=
+ =?us-ascii?Q?q5to921LAPxayeV3CYV4yRfLGetROsKPdVthYyDzdN9FCpeqC78lbcmwOWsh?=
+ =?us-ascii?Q?EkmquhdogFGCuI8nmpUL/BZLc6SaamcH5NaX7Pe0Kv9syPj4f2kw+HlIOIa0?=
+ =?us-ascii?Q?Er6gmmg3yFFwcv4qdZuBLuFXIlUO05QtDPSLxJkRLRZLsteziWeGgUHSlu0l?=
+ =?us-ascii?Q?y8QH48ej4yvYeUTo7S1xlyscJr9ITUz5aZxD1PaPLDquSyZmeRI7+5djKkRJ?=
+ =?us-ascii?Q?Bi1Kv6Jx9EHS+WFur/MxgRTpHkJq47KO5V9fN6lI5kpgMNFfnMyDMcMP4Rz5?=
+ =?us-ascii?Q?cF67pkpW89Lx/sgQAObjSFBh1C5BoR4K5AMBMwdTARu797hsEIThd3VwrCHh?=
+ =?us-ascii?Q?GPucHekyfsbF1ZvlnaWVNkwFxMXStwbMeG0kPV01FfhDeeZvjGymaNev5tlI?=
+ =?us-ascii?Q?FC34m1quiSFsamhQ7F679z8WQuOeymM6/H0YnD5ywYuetLo+ecpcXsxTNG9h?=
+ =?us-ascii?Q?PQm4aU1eTvWJBLuQsFYrUrqECw5SmOOwsjq9OV9LgcVJUQpMA/yJGOoEt8r4?=
+ =?us-ascii?Q?1avlge5cfwzvD7BXX/hRkCfNuw8JePEA+lvpYkJ/5SM85c//dC4H/FqdBE1t?=
+ =?us-ascii?Q?apkh8oC3i5z5ak0tu3kF068pKtf5gygFn+CpUczJP9ltaJOzrKcQFegbKPZ3?=
+ =?us-ascii?Q?H58sjWCcCd8ICTtaf4CFmV9UvRTHpwLdUh7e5VwxMmCPujgvNJuBcZv1X+wk?=
+ =?us-ascii?Q?6eADPJWP2T722J4b0Pr4FutmJ8306wNGNH8IKpULuTfaBI+H/gKxZmpgGO7T?=
+ =?us-ascii?Q?veB5HviBeL63mTibgj1YWvBL2U1NGlcZVis+svFMBOOfdRC60EpDsLfn7z3F?=
+ =?us-ascii?Q?sq9DwRCDIL/So5K7MOVchWG23jFV/GXEpQk3o5UmJ7P3TEg4ZqEkJZrkpTpS?=
+ =?us-ascii?Q?u9pOTUqnGEKPVwyfvEornEzJ/LvUPbrhjxFa6j7GPEPIXzt/ptFrJOeuGrys?=
+ =?us-ascii?Q?jJZgZGMHN7cRqizBjmsIKadOACyBvwIXpImnheh+vl9X00eHj9qqeM2uj+JV?=
+ =?us-ascii?Q?XY3WQY9RrAyHQdsGhYDJl3a7YS68L5yPHiQQtYP8Ap/hjiYQ3xph12mJL5uo?=
+ =?us-ascii?Q?M9NrTsmAOP8xjWBJ0viouoXo/p27k7U7JoMhDEcOhPpZHUD1ATo7sqyvB7gQ?=
+ =?us-ascii?Q?3JifcXKYeTCLhzJn7Z3Pq/ryz337FrcM?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2024 18:35:01.4176 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8e9f89b-5d9e-4494-fd20-08dcd8d9c59e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2024 18:35:06.4645 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b576ef4-8990-4e4f-162a-08dcd8d9c8a1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B078.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7663
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6809
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,307 +140,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <Samson.Tam@amd.com>
+From: Austin Zheng <Austin.Zheng@amd.com>
 
-[Why & How]
-Fix static analysis warnings in SPL library
+[Why]
+Videos using YUV420 format may result in high power being used.
+Disabling MPO may result in lower power usage.
+Update interface that can be used to check power profile of a dc_state.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Samson Tam <Samson.Tam@amd.com>
+[How]
+Allow pstate switching in VBlank as last entry in strategy candidates.
+Add helper functions that can be used to determine power level:
+-get power profile after a dc_state has undergone full validation
+
+Reviewed-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../gpu/drm/amd/display/dc/spl/dc_spl_types.h |  4 +--
- .../gpu/drm/amd/display/dc/spl/spl_debug.h    | 33 +++++++++++--------
- .../drm/amd/display/dc/spl/spl_fixpt31_32.c   | 32 +++++++++---------
- .../drm/amd/display/dc/spl/spl_fixpt31_32.h   | 17 ++++------
- .../gpu/drm/amd/display/dc/spl/spl_os_types.h |  3 +-
- 5 files changed, 45 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c        |  9 ++++++++-
+ .../dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c    |  1 +
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h |  4 ++++
+ .../dc/resource/dcn315/dcn315_resource.c        |  6 ++++++
+ .../dc/resource/dcn401/dcn401_resource.c        | 17 +++++++++++++++++
+ 5 files changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h b/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-index 2a74ff5fdfdb..48e4217555f8 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/dc_spl_types.h
-@@ -5,10 +5,8 @@
- #ifndef __DC_SPL_TYPES_H__
- #define __DC_SPL_TYPES_H__
- 
-+#include "spl_debug.h"
- #include "spl_os_types.h"   // swap
--#ifndef SPL_ASSERT
--#define SPL_ASSERT(_bool) ((void *)0)
--#endif
- #include "spl_fixpt31_32.h"	// fixed31_32 and related functions
- #include "spl_custom_float.h" // custom float and related functions
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_debug.h b/drivers/gpu/drm/amd/display/dc/spl/spl_debug.h
-index 5696dafd0894..a6f6132df241 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_debug.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_debug.h
-@@ -5,21 +5,26 @@
- #ifndef SPL_DEBUG_H
- #define SPL_DEBUG_H
- 
--#ifdef SPL_ASSERT
--#undef SPL_ASSERT
--#endif
--#define SPL_ASSERT(b)
-+#if defined(CONFIG_HAVE_KGDB) || defined(CONFIG_KGDB)
-+#define SPL_ASSERT_CRITICAL(expr) do {	\
-+	if (WARN_ON(!(expr))) { \
-+		kgdb_breakpoint(); \
-+	} \
-+} while (0)
-+#else
-+#define SPL_ASSERT_CRITICAL(expr) do {	\
-+	if (WARN_ON(!(expr))) { \
-+		; \
-+	} \
-+} while (0)
-+#endif /* CONFIG_HAVE_KGDB || CONFIG_KGDB */
- 
--#define SPL_ASSERT_CRITICAL(expr)  do {if (expr)/* Do nothing */; } while (0)
-+#if defined(CONFIG_DEBUG_KERNEL_DC)
-+#define SPL_ASSERT(expr) SPL_ASSERT_CRITICAL(expr)
-+#else
-+#define SPL_ASSERT(expr) WARN_ON(!(expr))
-+#endif /* CONFIG_DEBUG_KERNEL_DC */
- 
--#ifdef SPL_DALMSG
--#undef SPL_DALMSG
--#endif
--#define SPL_DALMSG(b)
--
--#ifdef SPL_DAL_ASSERT_MSG
--#undef SPL_DAL_ASSERT_MSG
--#endif
--#define SPL_DAL_ASSERT_MSG(b, m)
-+#define SPL_BREAK_TO_DEBUGGER() SPL_ASSERT(0)
- 
- #endif  // SPL_DEBUG_H
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-index a95565df5487..5fd79d9c67e2 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.c
-@@ -29,7 +29,7 @@ static inline unsigned long long complete_integer_division_u64(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 98b94415e86c..024d2d0bf457 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -6018,8 +6018,15 @@ void dc_set_edp_power(const struct dc *dc, struct dc_link *edp_link,
+ struct dc_power_profile dc_get_power_profile_for_dc_state(const struct dc_state *context)
  {
- 	unsigned long long result;
+ 	struct dc_power_profile profile = { 0 };
++	struct dc *dc = NULL;
  
--	ASSERT(divisor);
-+	SPL_ASSERT(divisor);
- 
- 	result = spl_div64_u64_rem(dividend, divisor, remainder);
- 
-@@ -63,7 +63,7 @@ struct spl_fixed31_32 spl_fixpt_from_fraction(long long numerator, long long den
- 	unsigned long long res_value = complete_integer_division_u64(
- 		arg1_value, arg2_value, &remainder);
- 
--	ASSERT(res_value <= LONG_MAX);
-+	SPL_ASSERT(res_value <= (unsigned long long)LONG_MAX);
- 
- 	/* determine fractional part */
- 	{
-@@ -85,7 +85,7 @@ struct spl_fixed31_32 spl_fixpt_from_fraction(long long numerator, long long den
- 	{
- 		unsigned long long summand = (remainder << 1) >= arg2_value;
- 
--		ASSERT(res_value <= LLONG_MAX - summand);
-+		SPL_ASSERT(res_value <= (unsigned long long)LLONG_MAX - summand);
- 
- 		res_value += summand;
- 	}
-@@ -118,19 +118,19 @@ struct spl_fixed31_32 spl_fixpt_mul(struct spl_fixed31_32 arg1, struct spl_fixed
- 
- 	res.value = arg1_int * arg2_int;
- 
--	ASSERT(res.value <= (long long)LONG_MAX);
-+	SPL_ASSERT(res.value <= (long long)LONG_MAX);
- 
- 	res.value <<= FIXED31_32_BITS_PER_FRACTIONAL_PART;
- 
- 	tmp = arg1_int * arg2_fra;
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
- 	tmp = arg2_int * arg1_fra;
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
-@@ -139,7 +139,7 @@ struct spl_fixed31_32 spl_fixpt_mul(struct spl_fixed31_32 arg1, struct spl_fixed
- 	tmp = (tmp >> FIXED31_32_BITS_PER_FRACTIONAL_PART) +
- 		(tmp >= (unsigned long long)spl_fixpt_half.value);
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
-@@ -163,17 +163,17 @@ struct spl_fixed31_32 spl_fixpt_sqr(struct spl_fixed31_32 arg)
- 
- 	res.value = arg_int * arg_int;
- 
--	ASSERT(res.value <= (long long)LONG_MAX);
-+	SPL_ASSERT(res.value <= (long long)LONG_MAX);
- 
- 	res.value <<= FIXED31_32_BITS_PER_FRACTIONAL_PART;
- 
- 	tmp = arg_int * arg_fra;
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
-@@ -182,7 +182,7 @@ struct spl_fixed31_32 spl_fixpt_sqr(struct spl_fixed31_32 arg)
- 	tmp = (tmp >> FIXED31_32_BITS_PER_FRACTIONAL_PART) +
- 		(tmp >= (unsigned long long)spl_fixpt_half.value);
- 
--	ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
-+	SPL_ASSERT(tmp <= (unsigned long long)(LLONG_MAX - res.value));
- 
- 	res.value += tmp;
- 
-@@ -196,7 +196,7 @@ struct spl_fixed31_32 spl_fixpt_recip(struct spl_fixed31_32 arg)
- 	 * Good idea to use Newton's method
- 	 */
- 
--	ASSERT(arg.value);
-+	SPL_ASSERT(arg.value);
- 
- 	return spl_fixpt_from_fraction(
- 		spl_fixpt_one.value,
-@@ -295,7 +295,7 @@ static struct spl_fixed31_32 fixed31_32_exp_from_taylor_series(struct spl_fixed3
- 		n + 1);
- 	/* TODO find correct res */
- 
--	ASSERT(spl_fixpt_lt(arg, spl_fixpt_one));
-+	SPL_ASSERT(spl_fixpt_lt(arg, spl_fixpt_one));
- 
- 	do
- 		res = spl_fixpt_add(
-@@ -337,9 +337,9 @@ struct spl_fixed31_32 spl_fixpt_exp(struct spl_fixed31_32 arg)
- 				spl_fixpt_ln2,
- 				m));
- 
--		ASSERT(m != 0);
-+		SPL_ASSERT(m != 0);
- 
--		ASSERT(spl_fixpt_lt(
-+		SPL_ASSERT(spl_fixpt_lt(
- 			spl_fixpt_abs(r),
- 			spl_fixpt_one));
- 
-@@ -364,7 +364,7 @@ struct spl_fixed31_32 spl_fixpt_log(struct spl_fixed31_32 arg)
- 
- 	struct spl_fixed31_32 error;
- 
--	ASSERT(arg.value > 0);
-+	SPL_ASSERT(arg.value > 0);
- 	/* TODO if arg is negative, return NaN */
- 	/* TODO if arg is zero, return -INF */
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.h b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.h
-index 8a045e2f8699..ed2647f9a099 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_fixpt31_32.h
-@@ -5,11 +5,8 @@
- #ifndef __SPL_FIXED31_32_H__
- #define __SPL_FIXED31_32_H__
- 
--#include "os_types.h"
-+#include "spl_debug.h"
- #include "spl_os_types.h"   // swap
--#ifndef ASSERT
--#define ASSERT(_bool) ((void *)0)
--#endif
- 
- #ifndef LLONG_MAX
- #define LLONG_MAX 9223372036854775807ll
-@@ -194,7 +191,7 @@ static inline struct spl_fixed31_32 spl_fixpt_clamp(
-  */
- static inline struct spl_fixed31_32 spl_fixpt_shl(struct spl_fixed31_32 arg, unsigned char shift)
- {
--	ASSERT(((arg.value >= 0) && (arg.value <= LLONG_MAX >> shift)) ||
-+	SPL_ASSERT(((arg.value >= 0) && (arg.value <= LLONG_MAX >> shift)) ||
- 		((arg.value < 0) && (arg.value >= ~(LLONG_MAX >> shift))));
- 
- 	arg.value = arg.value << shift;
-@@ -231,7 +228,7 @@ static inline struct spl_fixed31_32 spl_fixpt_add(struct spl_fixed31_32 arg1, st
- {
- 	struct spl_fixed31_32 res;
- 
--	ASSERT(((arg1.value >= 0) && (LLONG_MAX - arg1.value >= arg2.value)) ||
-+	SPL_ASSERT(((arg1.value >= 0) && (LLONG_MAX - arg1.value >= arg2.value)) ||
- 		((arg1.value < 0) && (LLONG_MIN - arg1.value <= arg2.value)));
- 
- 	res.value = arg1.value + arg2.value;
-@@ -256,7 +253,7 @@ static inline struct spl_fixed31_32 spl_fixpt_sub(struct spl_fixed31_32 arg1, st
- {
- 	struct spl_fixed31_32 res;
- 
--	ASSERT(((arg2.value >= 0) && (LLONG_MIN + arg2.value <= arg1.value)) ||
-+	SPL_ASSERT(((arg2.value >= 0) && (LLONG_MIN + arg2.value <= arg1.value)) ||
- 		((arg2.value < 0) && (LLONG_MAX + arg2.value >= arg1.value)));
- 
- 	res.value = arg1.value - arg2.value;
-@@ -448,7 +445,7 @@ static inline int spl_fixpt_round(struct spl_fixed31_32 arg)
- 
- 	const long long summand = spl_fixpt_half.value;
- 
--	ASSERT(LLONG_MAX - (long long)arg_value >= summand);
-+	SPL_ASSERT(LLONG_MAX - (long long)arg_value >= summand);
- 
- 	arg_value += summand;
- 
-@@ -469,7 +466,7 @@ static inline int spl_fixpt_ceil(struct spl_fixed31_32 arg)
- 	const long long summand = spl_fixpt_one.value -
- 		spl_fixpt_epsilon.value;
- 
--	ASSERT(LLONG_MAX - (long long)arg_value >= summand);
-+	SPL_ASSERT(LLONG_MAX - (long long)arg_value >= summand);
- 
- 	arg_value += summand;
- 
-@@ -504,7 +501,7 @@ static inline struct spl_fixed31_32 spl_fixpt_truncate(struct spl_fixed31_32 arg
- 	bool negative = arg.value < 0;
- 
- 	if (frac_bits >= FIXED31_32_BITS_PER_FRACTIONAL_PART) {
--		ASSERT(frac_bits == FIXED31_32_BITS_PER_FRACTIONAL_PART);
-+		SPL_ASSERT(frac_bits == FIXED31_32_BITS_PER_FRACTIONAL_PART);
- 		return arg;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-index 709706ed4f2c..2e6ba71960ac 100644
---- a/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/spl/spl_os_types.h
-@@ -6,6 +6,8 @@
- #ifndef _SPL_OS_TYPES_H_
- #define _SPL_OS_TYPES_H_
- 
-+#include "spl_debug.h"
+-	profile.power_level += !context->bw_ctx.bw.dcn.clk.p_state_change_support;
++	if (!context || !context->clk_mgr || !context->clk_mgr->ctx || !context->clk_mgr->ctx->dc)
++		return profile;
 +
- #include <linux/slab.h>
- #include <linux/kgdb.h>
- #include <linux/kref.h>
-@@ -18,7 +20,6 @@
-  * general debug capabilities
-  *
-  */
--#define SPL_BREAK_TO_DEBUGGER() ASSERT(0)
++	dc = context->clk_mgr->ctx->dc;
++
++	if (dc->res_pool->funcs->get_power_profile)
++		profile.power_level = dc->res_pool->funcs->get_power_profile(context);
  
- static inline uint64_t spl_div_u64_rem(uint64_t dividend, uint32_t divisor, uint32_t *remainder)
- {
+ 	return profile;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
+index 1cf9015e854a..2e9c59e9e0c1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
+@@ -1798,6 +1798,7 @@ bool pmo_dcn4_fams2_init_for_pstate_support(struct dml2_pmo_init_for_pstate_supp
+ 	}
+ 
+ 	if (s->pmo_dcn4.num_pstate_candidates > 0) {
++		s->pmo_dcn4.pstate_strategy_candidates[s->pmo_dcn4.num_pstate_candidates-1].allow_state_increase = true;
+ 		s->pmo_dcn4.cur_pstate_candidate = -1;
+ 		return true;
+ 	} else {
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index bfb8b8502d20..8597e866bfe6 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -215,6 +215,10 @@ struct resource_funcs {
+ 
+ 	void (*get_panel_config_defaults)(struct dc_panel_config *panel_config);
+ 	void (*build_pipe_pix_clk_params)(struct pipe_ctx *pipe_ctx);
++	/*
++	 * Get indicator of power from a context that went through full validation
++	 */
++	int (*get_power_profile)(const struct dc_state *context);
+ };
+ 
+ struct audio_support{
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+index 3f4b9dba4112..f6b840f046a5 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+@@ -1812,6 +1812,11 @@ static void dcn315_get_panel_config_defaults(struct dc_panel_config *panel_confi
+ 	*panel_config = panel_config_defaults;
+ }
+ 
++static int dcn315_get_power_profile(const struct dc_state *context)
++{
++	return !context->bw_ctx.bw.dcn.clk.p_state_change_support;
++}
++
+ static struct dc_cap_funcs cap_funcs = {
+ 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
+ };
+@@ -1840,6 +1845,7 @@ static struct resource_funcs dcn315_res_pool_funcs = {
+ 	.update_bw_bounding_box = dcn315_update_bw_bounding_box,
+ 	.patch_unknown_plane_state = dcn20_patch_unknown_plane_state,
+ 	.get_panel_config_defaults = dcn315_get_panel_config_defaults,
++	.get_power_profile = dcn315_get_power_profile,
+ };
+ 
+ static bool dcn315_resource_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+index f2653a86d3e7..59184abab1a7 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+@@ -1688,6 +1688,22 @@ static void dcn401_build_pipe_pix_clk_params(struct pipe_ctx *pipe_ctx)
+ 	}
+ }
+ 
++static int dcn401_get_power_profile(const struct dc_state *context)
++{
++	int uclk_mhz = context->bw_ctx.bw.dcn.clk.dramclk_khz / 1000;
++	int dpm_level = 0;
++
++	for (int i = 0; i < context->clk_mgr->bw_params->clk_table.num_entries_per_clk.num_memclk_levels; i++) {
++		if (context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz == 0 ||
++			uclk_mhz < context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz)
++			break;
++		if (uclk_mhz > context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz)
++			dpm_level++;
++	}
++
++	return dpm_level;
++}
++
+ static struct resource_funcs dcn401_res_pool_funcs = {
+ 	.destroy = dcn401_destroy_resource_pool,
+ 	.link_enc_create = dcn401_link_encoder_create,
+@@ -1714,6 +1730,7 @@ static struct resource_funcs dcn401_res_pool_funcs = {
+ 	.prepare_mcache_programming = dcn401_prepare_mcache_programming,
+ 	.build_pipe_pix_clk_params = dcn401_build_pipe_pix_clk_params,
+ 	.calculate_mall_ways_from_bytes = dcn32_calculate_mall_ways_from_bytes,
++	.get_power_profile = dcn401_get_power_profile,
+ };
+ 
+ static uint32_t read_pipe_fuses(struct dc_context *ctx)
 -- 
 2.46.0
 
