@@ -2,43 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A6E97D1A9
+	by mail.lfdr.de (Postfix) with ESMTPS id 3859697D1A7
 	for <lists+amd-gfx@lfdr.de>; Fri, 20 Sep 2024 09:23:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3BAC10E7CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D11610E7CA;
 	Fri, 20 Sep 2024 07:23:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="nblTc9WX";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="YQCi76sN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 28980 seconds by postgrey-1.36 at gabe;
- Fri, 20 Sep 2024 02:32:13 UTC
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 630F110E0DB
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Sep 2024 02:32:13 +0000 (UTC)
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA1110E77A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Sep 2024 03:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1726799531;
- bh=2kyAqX0UmcnVQ2r2WsVJruwXGGrYUL0M/kI4rXDSr9A=;
+ s=onoh2408; t=1726802494;
+ bh=shxUc18DoBNRsdkk9C5y4x+v7snjoAnIdhKh0M5V5Zo=;
  h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=nblTc9WXlIJZu+91reg6GY0YOUHF+DF2kqIxNRtv7giuWl0yNyKxHqXIc+LXY/fpT
- zIFdVrCczsq00E8G1yUmda9cIRY6g8xS+Z4Q0+jzjPc5Y45Rq3Fw2jE3aSjhwgktPu
- f20nyAlSUxbv93bk9ZQGYb3eZCAEqnQDKgdqyHlo=
-X-QQ-mid: bizesmtp91t1726799522tmx5q8zr
-X-QQ-Originating-IP: ffXfo76nqqY9lfia2Nzg/UbJJ73MBdFP5f3xCSUe0Dw=
+ b=YQCi76sNTPm1EOjadAr4aP8rAtTusvdhJGiH3J5b//fD0Qcl4hJUDqHLRfULQnAjC
+ iON4qvcIiaFAHT/4/uEMGvQ1Chzj8H4dhkRuN65y3WI8kGCYi/J83WQ0l1umxI9kEj
+ ARQalV5tseFuuyzvRNnJ637Zls9OaXOawZUJThVw=
+X-QQ-mid: bizesmtp80t1726802464t2p7zzip
+X-QQ-Originating-IP: +QAnzIjD+lFPrmz2QT6gcaLhCxuM+Mtsn6KjiI+9+9w=
 Received: from [10.20.53.22] ( [113.57.152.160])
  by bizesmtp.qq.com (ESMTP) with 
- id ; Fri, 20 Sep 2024 10:31:59 +0800 (CST)
+ id ; Fri, 20 Sep 2024 11:21:01 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 13317544603402082152
-Message-ID: <2573492DD1A88727+468e98e3-ead1-4232-9bc4-6eeef19d143d@uniontech.com>
-Date: Fri, 20 Sep 2024 10:31:59 +0800
+X-BIZMAIL-ID: 2284525689725457276
+Message-ID: <1839F46EBABE4C15+d6a788fb-05ce-4281-a16f-d6ecb21da8e2@uniontech.com>
+Date: Fri, 20 Sep 2024 11:21:00 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] treewide: Correct the typo 'acccess'
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
  simona@ffwll.ch, sunil.khatri@amd.com, vitaly.prosyak@amd.com,
  yifan1.zhang@amd.com, Tim.Huang@amd.com, jesse.zhang@amd.com,
  Prike.Liang@amd.com, Hawking.Zhang@amd.com, kevinyang.wang@amd.com,
@@ -49,7 +47,7 @@ Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Wenhui.Sheng@amd.com, jjhiblot@traphandler.com, guanwentao@uniontech.com,
  zhanjun@uniontech.com
 References: <4AB1F900B5D100C2+20240919182855.85840-1-wangyuli@uniontech.com>
- <f75fbe30-528e-404f-97e4-854d27d7a401@amd.com>
+ <0c768bf6-bc19-43de-a30b-ff5e3ddfd0b3@suse.de>
 Content-Language: en-US
 From: WangYuli <wangyuli@uniontech.com>
 Autocrypt: addr=wangyuli@uniontech.com; keydata=
@@ -61,10 +59,10 @@ Autocrypt: addr=wangyuli@uniontech.com; keydata=
  VTL0dvPDofBTjFYDAQgHwngEGBYIACAWIQRrUYzNh64o+SCoO6/F2h8wRvQL7gUCZoEsiQIb
  DAAKCRDF2h8wRvQL7sKvAP4mBvm7Zn1OUjFViwkma8IGRGosXAvMUFyOHVcl1RTgFQEAuJkU
  o9ERi7qS/hbUdUgtitI89efbY0TVetgDsyeQiwU=
-In-Reply-To: <f75fbe30-528e-404f-97e4-854d27d7a401@amd.com>
+In-Reply-To: <0c768bf6-bc19-43de-a30b-ff5e3ddfd0b3@suse.de>
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="------------lf4Jms0gKlolG25Z0id6kYg1"
+ boundary="------------Uun9fRmh4xSP0NYMUlTG7U73"
 X-QQ-SENDSIZE: 520
 Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 X-Mailman-Approved-At: Fri, 20 Sep 2024 07:23:04 +0000
@@ -83,12 +81,12 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------lf4Jms0gKlolG25Z0id6kYg1
-Content-Type: multipart/mixed; boundary="------------L1QVVc1ADqeZ4LsnZ9tF0ciV";
+--------------Uun9fRmh4xSP0NYMUlTG7U73
+Content-Type: multipart/mixed; boundary="------------xO8JoEoqvqfP97ZWoykpG3RW";
  protected-headers="v1"
 From: WangYuli <wangyuli@uniontech.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
  simona@ffwll.ch, sunil.khatri@amd.com, vitaly.prosyak@amd.com,
  yifan1.zhang@amd.com, Tim.Huang@amd.com, jesse.zhang@amd.com,
  Prike.Liang@amd.com, Hawking.Zhang@amd.com, kevinyang.wang@amd.com,
@@ -98,47 +96,42 @@ Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, le.ma@amd.com,
  Wenhui.Sheng@amd.com, jjhiblot@traphandler.com, guanwentao@uniontech.com,
  zhanjun@uniontech.com
-Message-ID: <468e98e3-ead1-4232-9bc4-6eeef19d143d@uniontech.com>
+Message-ID: <d6a788fb-05ce-4281-a16f-d6ecb21da8e2@uniontech.com>
 Subject: Re: [PATCH] treewide: Correct the typo 'acccess'
 References: <4AB1F900B5D100C2+20240919182855.85840-1-wangyuli@uniontech.com>
- <f75fbe30-528e-404f-97e4-854d27d7a401@amd.com>
-In-Reply-To: <f75fbe30-528e-404f-97e4-854d27d7a401@amd.com>
+ <0c768bf6-bc19-43de-a30b-ff5e3ddfd0b3@suse.de>
+In-Reply-To: <0c768bf6-bc19-43de-a30b-ff5e3ddfd0b3@suse.de>
 
---------------L1QVVc1ADqeZ4LsnZ9tF0ciV
-Content-Type: multipart/mixed; boundary="------------yEsJV508YGyTPoNrV5tBjLo2"
+--------------xO8JoEoqvqfP97ZWoykpG3RW
+Content-Type: multipart/mixed; boundary="------------LNvD65nY6HiRo2dRWRoV2GUg"
 
---------------yEsJV508YGyTPoNrV5tBjLo2
+--------------LNvD65nY6HiRo2dRWRoV2GUg
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: base64
 
-5ZyoIDIwMjQvOS8yMCAwMzowMSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToNCg0KPg0KPg0K
-PiBBbSAxOS4wOS4yNCB1bSAyMDoyOCBzY2hyaWViIFdhbmdZdWxpOg0KPj4gVGhlcmUgYXJl
-IHNvbWUgc3BlbGxpbmcgbWlzdGFrZXMgb2YgJ2FjY2Nlc3MnIGluIGNvbW1lbnRzIHdoaWNo
-DQo+PiBzaG91bGQgYmUgaW5zdGVhZCBvZiAnYWNjZXNzJy4NCj4+DQo+PiBTaWduZWQtb2Zm
-LWJ5OiBXYW5nWXVsaSA8d2FuZ3l1bGlAdW5pb250ZWNoLmNvbT4NCj4+IC0tLQ0KPj4gwqAg
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmPCoMKgIHwgMiArLQ0KPj4g
-wqAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzRfMy5jwqAgfCAyICstDQo+
-PiDCoCBkcml2ZXJzL2xlZHMvcmdiL2xlZHMtZ3JvdXAtbXVsdGljb2xvci5jIHwgMiArLQ0K
-Pj4gwqAgMyBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
-DQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92
-MTFfMC5jIA0KPj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjExXzAuYw0K
-Pj4gaW5kZXggZDNlOGJlODJhMTcyLi5mODQ3YTlmYzYxZTEgMTAwNjQ0DQo+PiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjExXzAuYw0KPj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmMNCj4+IEBAIC0xODk0LDcgKzE4OTQs
-NyBAQCBzdGF0aWMgdm9pZCBnZnhfdjExXzBfaW5pdF9jb21wdXRlX3ZtaWQoc3RydWN0IA0K
-Pj4gYW1kZ3B1X2RldmljZSAqYWRldikNCj4+IMKgwqDCoMKgwqAgbXV0ZXhfdW5sb2NrKCZh
-ZGV2LT5zcmJtX211dGV4KTsNCj4+IMKgIMKgwqDCoMKgwqAgLyogSW5pdGlhbGl6ZSBhbGwg
-Y29tcHV0ZSBWTUlEcyB0byBoYXZlIG5vIEdEUywgR1dTLCBvciBPQQ0KPj4gLcKgwqDCoMKg
-wqDCoCBhY2NjZXNzLiBUaGVzZSBzaG91bGQgYmUgZW5hYmxlZCBieSBGVyBmb3IgdGFyZ2V0
-IFZNSURzLiAqLw0KPj4gK8KgwqDCoMKgwqDCoCBhY2Nlc3MuIFRoZXNlIHNob3VsZCBiZSBl
-bmFibGVkIGJ5IEZXIGZvciB0YXJnZXQgVk1JRHMuICovDQo+DQo+IFdoaWxlIGF0IGl0IGNv
-dWxkIHlvdSBmaXggdGhlIGNvbW1lbnQgc3R5bGUgaGVyZT8gRS5nLiB1c2UNCj4NCj4gLyoN
-Cj4gwqAqIFRleHQNCj4gwqAqIFRleHQNCj4gwqAqLw0KPg0KT0suDQoNCkxpbms6IA0KaHR0
-cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsL0YyNUExMzk3ODlFODdDM0UrMjAyNDA5MjAwMjI3
-NTUuMTE2MjQ5NS0xLXdhbmd5dWxpQHVuaW9udGVjaC5jb20vDQoNCldpdGggVGhvbWFzIFpp
-bW1lcm1hbm4ncyBBY2tlZC1ieS4NCg0KPiBUaGFua3MsDQo+IENocmlzdGlhbi4NCj4NCj4N
-ClRoYW5rcywNCi0tIA0KV2FuZ1l1bGkNCg==
---------------yEsJV508YGyTPoNrV5tBjLo2
+T24gMjAyNC85LzIwIDAyOjU4LCBUaG9tYXMgWmltbWVybWFubiB3cm90ZToNCg0KPiBIaQ0K
+Pg0KPiBBbSAxOS4wOS4yNCB1bSAyMDoyOCBzY2hyaWViIFdhbmdZdWxpOg0KPj4gVGhlcmUg
+YXJlIHNvbWUgc3BlbGxpbmcgbWlzdGFrZXMgb2YgJ2FjY2Nlc3MnIGluIGNvbW1lbnRzIHdo
+aWNoDQo+PiBzaG91bGQgYmUgaW5zdGVhZCBvZiAnYWNjZXNzJy4NCj4+DQo+PiBTaWduZWQt
+b2ZmLWJ5OiBXYW5nWXVsaSA8d2FuZ3l1bGlAdW5pb250ZWNoLmNvbT4NCj4+IC0tLQ0KPj4g
+wqAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmPCoMKgIHwgMiArLQ0K
+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzRfMy5jwqAgfCAyICst
+DQo+PiDCoCBkcml2ZXJzL2xlZHMvcmdiL2xlZHMtZ3JvdXAtbXVsdGljb2xvci5jIHwgMiAr
+LQ0KPg0KPiBJIHRoaW5rIGl0J3MgYmV0dGVyIHRvIG1ha2UgMiBwYXRjaGVzOiBvbmUgZm9y
+IGFtZGdwdSBhbmQgb25lIGZvciANCj4gbGVkcy4gRWFjaCBwYXRjaCBjYW4gdGhlbiBnbyBp
+bnRvIHRoZSBjb3JyZWN0IHRyZWUuDQo+DQo+IElmIHlvdSBtYWtlIDIgcGF0Y2hlcywgeW91
+IGNhbiBhZGQNCj4NCj4gQWNrZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFu
+bkBzdXNlLmRlPg0KPg0KPiB0byBlYWNoIG9mIHRoZW0uDQo+DQpEb25lLg0KDQpMaW5rOiAN
+Cmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC9GMjVBMTM5Nzg5RTg3QzNFKzIwMjQwOTIw
+MDIyNzU1LjExNjI0OTUtMS13YW5neXVsaUB1bmlvbnRlY2guY29tLw0KDQpMaW5rOiANCmh0
+dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC9CNTg2QTFFNkVBNDc2QjY4KzIwMjQwOTIwMDI0
+NTE0LjExODIyOTItMS13YW5neXVsaUB1bmlvbnRlY2guY29tLw0KDQpBbmQgdGhlcmUgaXMg
+b25lIG1vcmUgImFjY2Nlc3MiIHR5cG8gZml4Og0KDQpMaW5rOiANCmh0dHBzOi8vbG9yZS5r
+ZXJuZWwub3JnL2FsbC83ODFDMTI3OTk0MjFEMzY2KzIwMjQwOTIwMDMxNjIwLjEyMTE3NTIt
+MS13YW5neXVsaUB1bmlvbnRlY2guY29tLw0KDQpBZnRlciB0aGF0LCB0aGVyZSBpcyBubyBt
+b3JlICJhY2NjZXNzIiB0eXBvIGluIGtlcm5lbCBzb3VyY2UuDQoNCj4gQmVzdCByZWdhcmRz
+DQo+IFRob21hcw0KPg0KPg0KQ2hlZXJzLA0KLS0gDQpXYW5nWXVsaQ0K
+--------------LNvD65nY6HiRo2dRWRoV2GUg
 Content-Type: application/pgp-keys; name="OpenPGP_0xC5DA1F3046F40BEE.asc"
 Content-Disposition: attachment; filename="OpenPGP_0xC5DA1F3046F40BEE.asc"
 Content-Description: OpenPGP public key
@@ -158,21 +151,21 @@ GBYIACAWIQRrUYzNh64o+SCoO6/F2h8wRvQL7gUCZoEsiQIbDAAKCRDF2h8wRvQL
 =3DBlkq
 -----END PGP PUBLIC KEY BLOCK-----
 
---------------yEsJV508YGyTPoNrV5tBjLo2--
+--------------LNvD65nY6HiRo2dRWRoV2GUg--
 
---------------L1QVVc1ADqeZ4LsnZ9tF0ciV--
+--------------xO8JoEoqvqfP97ZWoykpG3RW--
 
---------------lf4Jms0gKlolG25Z0id6kYg1
+--------------Uun9fRmh4xSP0NYMUlTG7U73
 Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-wnsEABYIACMWIQRrUYzNh64o+SCoO6/F2h8wRvQL7gUCZuzenwUDAAAAAAAKCRDF2h8wRvQL7pDd
-AP98YmH2GuZSl7gSJJZM5828IoxW3uwXszr1jM3hyLEJeQEAjvQBiWBW1zciyNuTaRetGXNvZNCZ
-tkYIZHG6DDS/cAc=
-=PnZn
+wnsEABYIACMWIQRrUYzNh64o+SCoO6/F2h8wRvQL7gUCZuzqHQUDAAAAAAAKCRDF2h8wRvQL7pVK
+AP49ateMZvPmMrtIAGtl2B5sMSmigX8nowDUucjoVLIHsgEApmKMzxPJTdSx3QyF79iw7OmEPVwK
+nbMH0+Ox0wYgKwM=
+=lzHO
 -----END PGP SIGNATURE-----
 
---------------lf4Jms0gKlolG25Z0id6kYg1--
+--------------Uun9fRmh4xSP0NYMUlTG7U73--
