@@ -2,49 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E1D9842A4
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Sep 2024 11:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F0B9842E8
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Sep 2024 12:03:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15D310E6A0;
-	Tue, 24 Sep 2024 09:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E329F10E6AA;
+	Tue, 24 Sep 2024 10:03:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="E+cJTeJ/";
+	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="Po0Pnoh2";
+	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="C2LLIChc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68D8610E6A0
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Sep 2024 09:51:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=ilELQIOmlBTWcFmZloJw0lZvjZOiTfcxYVEUCcR6Fog=; b=E+cJTeJ/RCKT7FxEbeJU/tIGSb
- igKtvWNG0lufP3vZ++tsOLQfebhIz2T/aydk+8rj2s2UD6rc/j40eKm1l8F0TfJuOHqpAeqZWaJzq
- 7DCIv4ILqBSkQVu8jRzcEMUzuVx2Hii+BjNvU0YStAsi66XfFvaVClXV8Yzf0hieBuwpnEs9l0bEP
- jthsrlGS5t/1Jb9D9kJSTnCQu5RjcKRvx7u4v/iroOt5hqLrg7uwt0iFxD8cuZ0cx8cEZQwCsPzXS
- xfuqIgjruNBJHfrAKdeyvZJmgLE+mk69zgwQX9SUoif8KOYrli4Vbfg1A67TsKw4aSTdUtL5ypU34
- c9Pr6s3g==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1st2D5-000KQg-DT; Tue, 24 Sep 2024 11:51:55 +0200
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu: Remove the while loop from
- amdgpu_job_prepare_job
-Date: Tue, 24 Sep 2024 10:51:45 +0100
-Message-ID: <20240924095145.2281-3-tursulin@igalia.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240924095145.2281-1-tursulin@igalia.com>
-References: <20240924095145.2281-1-tursulin@igalia.com>
+Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E7B10E6A5;
+ Tue, 24 Sep 2024 10:03:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1727172090;
+ bh=Vgoy2mqrOJSuLgcURVE/ckm
+ d7UE5V/DHsEqtDVY+bIQ=; b=Po0Pnoh2oJjcoAudwlgXswI0zJlLi86HvB1In1ztm3R74s6UQE
+ 0S2A7QULfXLt54C+e5OWYJ2ellJNWuLsIYgJD4v9fRLcuPLOHJHaDMX3mvzONMTdyeulCXMcKM1
+ oBQSxSWfIL3x1g1bFHQP8X6adDpielnfAl+fGpgZDZgggdHWSd/pm1k13Eit5i1uE2/WqNsojoW
+ OAgBY+Y+z3MySvEL9lUcGRH578d2xCYBVaIc1/IvPoFwCrSNOjo7R5i8QMmNv0Em2WUz5VD4T3s
+ 7Pmm9lqWPqpY3076YBMIphXJQieYz/tPIF3VP7n2q/LdVRqvpDcPaiz7/tDd//hUIsw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
+ c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1727172090; bh=Vgoy2mqrOJSuLgcURVE/ckm
+ d7UE5V/DHsEqtDVY+bIQ=; b=C2LLIChcxpanz6BOECirHhfZLG03wOeRzwpXNOHzrtu1DdsGpZ
+ mu6mMMAq+a8/ooBvXlepYV89b+rV2j0QYzAw==;
+Message-ID: <fd28718e-cba5-43b0-996b-508390fa23fd@damsy.net>
+Date: Tue, 24 Sep 2024 12:01:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] drm/amdgpu: delay the use of
+ amdgpu_vm_set_task_info
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ dri-devel@lists.freedesktop.org, tursulin@igalia.com,
+ simona.vetter@ffwll.ch, robdclark@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org
+References: <20240920090920.1342694-1-pierre-eric.pelloux-prayer@amd.com>
+ <20240920090920.1342694-4-pierre-eric.pelloux-prayer@amd.com>
+ <121a41fe-6637-41ca-a21e-7bd01dc0f0bf@igalia.com>
+ <ca494935-cf38-4bad-ab5c-2afdc9ce3d33@amd.com>
+ <4898fa51-aac8-40ed-8d9d-9c019fc5add1@igalia.com>
+Content-Language: en-US
+From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
+In-Reply-To: <4898fa51-aac8-40ed-8d9d-9c019fc5add1@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,38 +65,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
-While loop makes it sound like amdgpu_vmid_grab() potentially needs to be
-called multiple times to produce a fence, while in reality all code paths
-either return an error, assign a valid job->vmid or assign a vmid which
-will be valid once the returned fence signals.
 
-Therefore we can remove the loop to make it clear the call does not need
-to be repeated.
+Le 24/09/2024 à 10:43, Tvrtko Ursulin a écrit :
+> 
+> On 24/09/2024 09:23, Christian König wrote:
+>> Am 23.09.24 um 12:25 schrieb Tvrtko Ursulin:
+>>>
+>>> On 20/09/2024 10:06, Pierre-Eric Pelloux-Prayer wrote:
+>>>> At this point the vm is locked so we safely modify it without risk of
+>>>> concurrent access.
+>>>
+>>> To which particular lock this is referring to and does this imply previous placement was unsafe?
+>>
+>> We use the root PDs dma_resv object as VM lock to protect most field inside the VM structure, only 
+>> a few are protected by an additional spinlock.
+>>
+>> And yes, previously it was possible that you got a mangled process/task name because no lock was 
+>> protecting the task_info structure.
+> 
+> Got it, thanks Christian!
+> 
+> In this case I only suggest to be more explicit in the commit message and clearly say it is fixing 
+> an existing bug. Like it stands I wasn't sure if it was that, or the movement was just enabling the 
+> changes which come later in the series.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
----
-I stared for a good while, going back and forth, and couldn't see that the
-while loop is needed. But maybe I missed something?
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Good idea, will do.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index d11cb0ad8c49..85f10b59d09c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -356,7 +356,7 @@ amdgpu_job_prepare_job(struct drm_sched_job *sched_job,
- 	if (job->gang_submit)
- 		fence = amdgpu_device_switch_gang(ring->adev, job->gang_submit);
- 
--	while (!fence && job->vm && !job->vmid) {
-+	if (!fence && job->vm && !job->vmid) {
- 		r = amdgpu_vmid_grab(job->vm, ring, job, &fence);
- 		if (r) {
- 			dev_err(ring->adev->dev, "Error getting VM ID (%d)\n", r);
--- 
-2.46.0
+Pierre-Eric
 
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+>>>> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+>>>> ---
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 6 +++---
+>>>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>>>> index 1e475eb01417..891128ecee6d 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+>>>> @@ -309,9 +309,6 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
+>>>>           p->gang_leader->uf_addr = uf_offset;
+>>>>       kvfree(chunk_array);
+>>>>   -    /* Use this opportunity to fill in task info for the vm */
+>>>> -    amdgpu_vm_set_task_info(vm);
+>>>> -
+>>>>       return 0;
+>>>>     free_all_kdata:
+>>>> @@ -1180,6 +1177,9 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
+>>>>           job->vm_pd_addr = amdgpu_gmc_pd_addr(vm->root.bo);
+>>>>       }
+>>>>   +    /* Use this opportunity to fill in task info for the vm */
+>>>> +    amdgpu_vm_set_task_info(vm);
+>>>> +
+>>>>       if (adev->debug_vm) {
+>>>>           /* Invalidate all BOs to test for userspace bugs */
+>>>>           amdgpu_bo_list_for_each_entry(e, p->bo_list) {
+>>
