@@ -2,144 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019069852A7
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Sep 2024 07:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9401985377
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Sep 2024 09:14:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D63E210E78B;
-	Wed, 25 Sep 2024 05:52:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1AA010E7A0;
+	Wed, 25 Sep 2024 07:14:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nSsGYZYD";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="cOzAC4TO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2049.outbound.protection.outlook.com [40.107.100.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C2010E78B
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 05:52:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Dey3Bk5L3sbqYULZI1KJTkbirwJekbFeLuay7r5qMZKl3TrzgDqw1Qy153RIXgjJi7ZOvrhgWDnZaoZMNo1to7bU8CRSJY6dTGOdsWNo1/VTZdZ4Pa0QgJXFnIFwG3lLbR8EURsna22sx2cMJKvtRPUBv53s0Qd7nA3oJti36KttTOxmL0rIPUF0iye0tQrF+tQ6/xrCfmYLDcthNFxcfFjra6pFdEpwAVudRekDepff1/UwBfLp9V82MYewIFeTwmpgJMuFOe8akaQZa+sLMNSoo6TAOqUAdwenlORu9De9TFGt7YyOynV9m9gJcMWRMP8uykc2ldTenXuN3Bk4rQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9PAwe8bCqPEDE7dtZ1egrCxk1dKGCBSSwe/3+Uj1+Tc=;
- b=Z3XFDEHPI77vPBd1fzJ1gnfO7amwsbBeiXloEfNsYWA7KKB9yzpX4XU0mO4MGvwTDeun39Jgm+VT91GC2NcfwFEpDUpF/RRtEvPzkKo8EOzNEHdDixRpRTp5Ed8vBXksC/aqoymwDyHrVpUr0MEbEg9aQVNSAzrHeFXqIt5EmlKWSObO0IlpsuAKY+B2FHipIuYXm9+EbQlPSnvr9IgXplya7ELHdNyRizUYA0avQOGMoZ80rExXzrDx4KRy3iyHjHYZPykU8+PkxKP7J9HYC7o6fw+zKG6R/1lJ4JvgyuADgIFhhg1UvUm2iV49iTReuJgiXFamnXs+lT4KfD9n0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9PAwe8bCqPEDE7dtZ1egrCxk1dKGCBSSwe/3+Uj1+Tc=;
- b=nSsGYZYDHyTxn7HQbBJ8z/04YM24R+D0rnTLWv+JA86m3pwmu8W/LeFO0YSASYgGqlkG9sVL6PHa5qj6C50cgGg+tr0d9PYOvZtOAAHPR+Bj4ImRvlQeVg11VWgzED2przduUZQLpHDviw2i48Lt2fSwfPfuTTvx1F6jrcoDt4E=
-Received: from DM4PR12MB5072.namprd12.prod.outlook.com (2603:10b6:5:38b::22)
- by DS0PR12MB8504.namprd12.prod.outlook.com (2603:10b6:8:155::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Wed, 25 Sep
- 2024 05:52:03 +0000
-Received: from DM4PR12MB5072.namprd12.prod.outlook.com
- ([fe80::6015:2417:2e27:dd79]) by DM4PR12MB5072.namprd12.prod.outlook.com
- ([fe80::6015:2417:2e27:dd79%4]) with mapi id 15.20.7982.022; Wed, 25 Sep 2024
- 05:52:03 +0000
-From: "Chen, Horace" <Horace.Chen@amd.com>
-To: "YuanShang Mao (River)" <YuanShang.Mao@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "YuanShang Mao (River)" <YuanShang.Mao@amd.com>, "YuanShang Mao (River)"
- <YuanShang.Mao@amd.com>
-Subject: RE: [PATCH v2] drm/amdgpu: Flush tlb by VM_INVALIDATION packet in
- sdma_v5_2
-Thread-Topic: [PATCH v2] drm/amdgpu: Flush tlb by VM_INVALIDATION packet in
- sdma_v5_2
-Thread-Index: AQHbApxI7WbUrdUnOUOaLlnKXb1lxLJoF6ig
-Date: Wed, 25 Sep 2024 05:52:02 +0000
-Message-ID: <DM4PR12MB5072F175E7E649CA11150157E1692@DM4PR12MB5072.namprd12.prod.outlook.com>
-References: <20240909093955.16747-1-YuanShang.Mao@amd.com>
-In-Reply-To: <20240909093955.16747-1-YuanShang.Mao@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=4c4f4916-fc14-4709-8eea-0bd259c00e1d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-09-25T05:47:42Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB5072:EE_|DS0PR12MB8504:EE_
-x-ms-office365-filtering-correlation-id: 4e828548-e2ad-4a5c-d2ef-08dcdd262dfe
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?xT9so5GgBkmkyU2QOkiBvDmjB7VG/QKOHWnFiPXTx2mUUxLek00FLNTs/qjg?=
- =?us-ascii?Q?JHAroGXkRgsV/rpA+21y+QmFj/9X+3Hk7WMztTcmHloL0RuVxhQuah5Pxigl?=
- =?us-ascii?Q?boNcqp7dMOK1OcySFw9AohcEHMMhe+/FaIlt+SepqHoIDvf5kICuyVB8StLo?=
- =?us-ascii?Q?KmIdnPt1knCU35uDSk+ROsnRuThZfzntRWFNg5g2XQfJsNMYUVECKc9PkP+f?=
- =?us-ascii?Q?IthyXpYQIiDHa8samd6PncmIuKKkWzAdK09GzOCVXOuSjyvEg3IQMStCpoFn?=
- =?us-ascii?Q?lIP1WLOOv7DYdrXfSpupbGjO3CQu0kX/MSk7BCqyPp2F/WBkjKrz82CodEld?=
- =?us-ascii?Q?PkQjY0JRNRTNM+KILEXKPR4IwMzamdAD7WNpxZZKUmnqcGeqmamasjVIN2Xd?=
- =?us-ascii?Q?OJ1y6uHJzfbd317eiYCxb8vwnJ50pvLPEZmzpxMIEz/dSWYnXPeIu0aOqQqM?=
- =?us-ascii?Q?Ahm3RmRilzEUtIDHr7WGcK7Thmk3TqVAOD3uOnvroSXIXIeeTY5r9xc7qE60?=
- =?us-ascii?Q?s3l8Po1H7l3IDnajrjesnZ4pv2NNvAkpT5H7ZnAwVJq4hH27XnOmek2zaHtX?=
- =?us-ascii?Q?6n7CoY0kVJADOZup0aGn7zZYYZ9Z2Iv2qGbSmw0tScEwDtBNq2nVe9MYN1Us?=
- =?us-ascii?Q?IcgCYOOHSFfyOItYTPPfgBlEepkhVj9QCIfFGnyTXjGCyJ5q9U79Koa1y95Y?=
- =?us-ascii?Q?XAAkiYMO+zVyNGVGgsi3Fp7xKZ+l3E89aJEnWtXSACwiPdq9qeboSqtm0kz8?=
- =?us-ascii?Q?0p/M8H4bLyzj9fJmbZ0Q1McD+c+Ozd9xbEAwE3NEjCJRKPcs40YJmmairIC8?=
- =?us-ascii?Q?k8awqyr6KssbbHKvuGFAPwVsR0FdNG/8utEwhwgIzY/+whqFU5K1JhZ47khh?=
- =?us-ascii?Q?pR7UOYuFAKmQO+YDqyx3fwqRxBgTQz6T9x23wB49aPC57KsZYxytYYiHzAKO?=
- =?us-ascii?Q?89vpclNh3rD3kWBjLvOtOjD1bbVCDlNzTGkOiEEwfJQJRtTexinnFVtbXGbI?=
- =?us-ascii?Q?UQZOFMGX+e4qG4gSoE4VoNjsIANvjgeyEBCgGn7qldMYckQdncB7FdLnGWin?=
- =?us-ascii?Q?tdhCfnOU8oK0vO3D7cJ0KYDzeALMGEFLpCMupkH7VUAwvqmGaOjrLzLO50jB?=
- =?us-ascii?Q?Qeuwl6PxvEZrfnajZqxKecIHEN18Kt7dyB1pWA0JPYNn9GTgHirGwRSP0Dx+?=
- =?us-ascii?Q?3lg+zNU6Sz69yGZ9m97yF6ouNap4hR4BfR/XnltPPcCyK061bgoW6cCoMPnW?=
- =?us-ascii?Q?xVNBbDVQ+R9qt04WwcMRf9NYW6UacZ7eTsFbvy63knYM71iXlcikiyB1vJgZ?=
- =?us-ascii?Q?ivY004LFUCN1NUbH7+A5XBuLuPnmVeil6vQ+d4PXmqrobw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1gxBGraYXLb9qw8qneIcq7qg/oHn9evcT2jLBuPvIisLFnsbeo/y0aNdTfPb?=
- =?us-ascii?Q?Ky1LN3RaQCRDLodkbnN8mzjiPlKtbkQI17xwRVaAlbgVbwz01OUWzcJV+ubu?=
- =?us-ascii?Q?xak/+yhzVZ7MbGL+H4+fDCqqnDIWMTbSdAQAPjxfKTogY/g+xbCBJziJpnC4?=
- =?us-ascii?Q?8gk8KR1nH6+6CdGprEp6eBXwHDTc3kywiDuTdwD4JjdEPI5xNGMhxS1RDPdO?=
- =?us-ascii?Q?iByKIqtfi6A8DnflWNxVvAPWBWImlPDMDr4dTa470Axp/g7IXi85u2bK0Ug1?=
- =?us-ascii?Q?srNms3BVe5rPp13lAydkm2/G+igpDWRtyIrFnP6Qy9udT6uaFY/L0hbyuG6/?=
- =?us-ascii?Q?4l3m8Srukhb+FFfjmsgrJcZigKQoZPK8yFB9lK3yJGU/pBL8YSW5LpLhWHsf?=
- =?us-ascii?Q?74b6VABkgH4XcBPAYQCzI1R/jSIUjkV0WfZaozeExTBGV4jF2nBsiNmkSV5V?=
- =?us-ascii?Q?IQH6ZkLz9ew57RMJH1anUYz4y5KhOIWBXBlqA9OOl3NIM4M+vnsqrJwCSNyQ?=
- =?us-ascii?Q?6QSxdQhuSIHMBHwGSAZmTzcBEnvDaUVfEdDd9IWLmVZuKIE58bWy9/L3CI6y?=
- =?us-ascii?Q?k7cv8q9FipXXyhszKTJkZlfQbVjOgMrOI/+SkVR6BZ95NACLRrEc/HD1SAI6?=
- =?us-ascii?Q?ASh+Y6BTIK+3zFPYg26M+sDWVkadgSkP/rIgxiyMSEGIvDWWwMui+rGAopdX?=
- =?us-ascii?Q?yVrRoscI3cabOw/Hppnq30P+qDXX6R4o+wg/zhNz679K1aUOn1YuofQ9TRpC?=
- =?us-ascii?Q?XlIlYRWC5YRD5PGMnqk8zNtyrXVGv3fGM2PC8EA/hpDvZ400PE8p1DwDDG6B?=
- =?us-ascii?Q?cgr8koRAO1KB0iHe48KaBjrQQyvalNpstOmDkUF8ftkGfdT8PEhSxlCs+7yw?=
- =?us-ascii?Q?5bXd91hjgsICTd9de+99ytZLmztw0R6en/IMT1ghLVUseH9AAwFyZeBFN0fs?=
- =?us-ascii?Q?3QV9wkkswXIJbi0UyybM3IsFzL9tNGU14nmjZ3I1u4taNaEf+g4bkJ0aKnPk?=
- =?us-ascii?Q?2Uc3rFGGDmRLwUfUW79gxGZBD3oWLLYErl81OY1ihSj4dT5rn6esf8stSatO?=
- =?us-ascii?Q?ezc5teEVY0x4CUYQ9VBzg4oozbVv14iF2BBqZ/o0lhkU1AT6zcXIhwZBCxuS?=
- =?us-ascii?Q?9ktU4wRzgqmouRXBbMGqsz8eeoJ+09AZxHPYv906L3IzED7JGP4RLdjU/L9A?=
- =?us-ascii?Q?yp1DpsMqNlyuNd6my288XtiW6HPD5p8vlLDxBwVnaAYL5WBKo7F0mbcYjnS7?=
- =?us-ascii?Q?pq/kH65Wpf7NNV9ZFiRb3W589tQFImuuS1+axWwV0Z0TafAF5gl1pb3jIybY?=
- =?us-ascii?Q?q8czipycD9pYifmmkR892QUquUwv0XxSeEiMRZWlZk1riFiDs51npd/HrFDV?=
- =?us-ascii?Q?cvF5R8sWw8pMMR52q/cEv1VED5m2bL9lDVjJ+09DSPCSnkL6UrQfCFXfB3fO?=
- =?us-ascii?Q?Q8q6RdPm1LeF669T7NjPni2adyQnCFXMbsVgW304smVBK9vGFl03WtryKmw2?=
- =?us-ascii?Q?Fh/q+iAOZetqieme+SvNeZ5fEx9IK5qdnNhOEGjiW3oUb6d4oXFdrHHSaEKt?=
- =?us-ascii?Q?OTRDNOS24DSfVEzYfIA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5029110E2BD;
+ Tue, 24 Sep 2024 14:13:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=FN15zMSTmhz7Nauhya2gPIoC/eGYXanuEqcHORTclQ8=; b=cOzAC4TOqcazXtKCVlKKpTCxFp
+ g1RYfL3k9ZbmcdsuHWKirdRzZ76BGE8Eby+ZeR0WKE2YInzJ9V78RF3wD1vIus6IqF7SfzqGoQjlj
+ NuDKIp6pq9o4q4J63g2jflmoeTiLPpGhANx8x+zdTuS688xqEbp/QUiqHlV0+CnUuhmDYG9Kf9F3O
+ w3S6QuRuk86fntcx+s9W6I95lJoEOaS0koSkgvRtJF/CmHIHXx1xb4hrrs0+BDny6LZCGMkP4LRUN
+ C3MiGNXbV3ZyNp588uJ3ns0LgcsRTt06hf8WAtLR/WKvdwX9kgjDj/Tl90O0u0ZKtUEnu860ONpF+
+ CYHTD0Yg==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1st6He-000Ul1-Pw; Tue, 24 Sep 2024 16:12:54 +0200
+Message-ID: <1b56854b-5357-4efa-b31b-950eb85ee277@igalia.com>
+Date: Tue, 24 Sep 2024 15:12:53 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e828548-e2ad-4a5c-d2ef-08dcdd262dfe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2024 05:52:02.9773 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: q/8C/PHsKRCVXViU8ai6v3fu92BYC2QS9bqTXqjPnx5rMe+4e2ZVD5WuTUYj1BrE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8504
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/8] drm/sched: Always wake up correct scheduler in
+ drm_sched_entity_push_job
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>,
+ Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Philipp Stanner <pstanner@redhat.com>, stable@vger.kernel.org
+References: <20240924101914.2713-1-tursulin@igalia.com>
+ <20240924101914.2713-3-tursulin@igalia.com>
+ <4dcce6db-cdb1-4378-8fea-8540ec7539ef@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <4dcce6db-cdb1-4378-8fea-8540ec7539ef@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 25 Sep 2024 07:14:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,177 +68,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
 
-Reviewed-By: Horace Chen <horace.chen@amd.com>
+On 24/09/2024 14:55, Christian König wrote:
+> I've pushed the first to drm-misc-next, but that one here fails to apply 
+> cleanly.
 
-Thanks & Regards,
-Horace.
+This appears due 440d52b370b0 ("drm/sched: Fix dynamic job-flow control 
+race") in drm-misc-fixes.
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of YuanShan=
-g
-Sent: Monday, September 9, 2024 5:40 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: YuanShang Mao (River) <YuanShang.Mao@amd.com>; YuanShang Mao (River) <Y=
-uanShang.Mao@amd.com>
-Subject: [PATCH v2] drm/amdgpu: Flush tlb by VM_INVALIDATION packet in sdma=
-_v5_2
+In theory 1-3 from my series are fixes. Should they also go to 
+drm-misc-fixes? I am not too familiar with the drm-misc flow.
 
-In order for SDMA not to be switched between VM_INVALIDATION request and ac=
-k, use an single VM_INVALIDATION packet in function sdma_v5_2_ring_emit_vm_=
-flush.
+Or the series now needs to wait for some backmerge?
 
-Signed-off-by: YuanShang <YuanShang.Mao@amd.com>
----
- .../gpu/drm/amd/amdgpu/navi10_sdma_pkt_open.h | 64 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c        | 23 ++++++-
- 2 files changed, 86 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_sdma_pkt_open.h b/drivers/gp=
-u/drm/amd/amdgpu/navi10_sdma_pkt_open.h
-index a5b60c9a2418..c88284ff92d8 100644
---- a/drivers/gpu/drm/amd/amdgpu/navi10_sdma_pkt_open.h
-+++ b/drivers/gpu/drm/amd/amdgpu/navi10_sdma_pkt_open.h
-@@ -68,6 +68,7 @@
- #define SDMA_SUBOP_POLL_REG_WRITE_MEM  1  #define SDMA_SUBOP_POLL_DBIT_WRI=
-TE_MEM  2  #define SDMA_SUBOP_POLL_MEM_VERIFY  3
-+#define SDMA_SUBOP_VM_INVALIDATION  4
- #define HEADER_AGENT_DISPATCH  4
- #define HEADER_BARRIER  5
- #define SDMA_OP_AQL_COPY  0
-@@ -4040,6 +4041,69 @@
- #define SDMA_PKT_POLL_MEM_VERIFY_RESERVED_RESERVED(x) (((x) & SDMA_PKT_POL=
-L_MEM_VERIFY_RESERVED_reserved_mask) << SDMA_PKT_POLL_MEM_VERIFY_RESERVED_r=
-eserved_shift)
+Tvrtko
 
-
-+/*
-+** Definitions for SDMA_PKT_VM_INVALIDATION packet */
-+
-+/*define for HEADER word*/
-+/*define for op field*/
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_op_offset 0
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_op_mask   0x000000FF
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_op_shift  0 #define
-+SDMA_PKT_VM_INVALIDATION_HEADER_OP(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_HEADER_op_mask) <<
-+SDMA_PKT_VM_INVALIDATION_HEADER_op_shift)
-+
-+/*define for sub_op field*/
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_sub_op_offset 0
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_sub_op_mask   0x000000FF
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_sub_op_shift  8 #define
-+SDMA_PKT_VM_INVALIDATION_HEADER_SUB_OP(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_HEADER_sub_op_mask) <<
-+SDMA_PKT_VM_INVALIDATION_HEADER_sub_op_shift)
-+
-+/*define for gfx_eng_id field*/
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_gfx_eng_id_offset 0
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_gfx_eng_id_mask   0x0000001F
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_gfx_eng_id_shift  16 #define
-+SDMA_PKT_VM_INVALIDATION_HEADER_GFX_ENG_ID(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_HEADER_gfx_eng_id_mask) <<
-+SDMA_PKT_VM_INVALIDATION_HEADER_gfx_eng_id_shift)
-+
-+/*define for mm_eng_id field*/
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_mm_eng_id_offset 0
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_mm_eng_id_mask   0x0000001F
-+#define SDMA_PKT_VM_INVALIDATION_HEADER_mm_eng_id_shift  24 #define
-+SDMA_PKT_VM_INVALIDATION_HEADER_MM_ENG_ID(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_HEADER_mm_eng_id_mask) <<
-+SDMA_PKT_VM_INVALIDATION_HEADER_mm_eng_id_shift)
-+
-+/*define for INVALIDATEREQ word*/
-+/*define for invalidatereq field*/
-+#define SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_invalidatereq_offset 1
-+#define SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_invalidatereq_mask   0xFFFF=
-FFFF
-+#define SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_invalidatereq_shift  0
-+#define SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_INVALIDATEREQ(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_invalidatereq_mask) <<
-+SDMA_PKT_VM_INVALIDATION_INVALIDATEREQ_invalidatereq_shift)
-+
-+/*define for ADDRESSRANGELO word*/
-+/*define for addressrangelo field*/
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_addressrangelo_offset 2
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_addressrangelo_mask   0xFF=
-FFFFFF
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_addressrangelo_shift  0
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_ADDRESSRANGELO(x) (((x)
-+& SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_addressrangelo_mask) <<
-+SDMA_PKT_VM_INVALIDATION_ADDRESSRANGELO_addressrangelo_shift)
-+
-+/*define for ADDRESSRANGEHI word*/
-+/*define for invalidateack field*/
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_invalidateack_offset 3
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_invalidateack_mask   0x000=
-0FFFF
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_invalidateack_shift  0
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_INVALIDATEACK(x) (((x)
-+& SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_invalidateack_mask) <<
-+SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_invalidateack_shift)
-+
-+/*define for addressrangehi field*/
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_addressrangehi_offset 3
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_addressrangehi_mask   0x00=
-00001F
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_addressrangehi_shift
-+16 #define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_ADDRESSRANGEHI(x)
-+(((x) & SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_addressrangehi_mask) <<
-+SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_addressrangehi_shift)
-+
-+/*define for reserved field*/
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_reserved_offset 3
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_reserved_mask   0x000001FF
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_reserved_shift  23
-+#define SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_RESERVED(x) (((x) &
-+SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_reserved_mask) <<
-+SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_reserved_shift)
-+
-+
- /*
- ** Definitions for SDMA_PKT_ATOMIC packet  */ diff --git a/drivers/gpu/drm=
-/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-index bc9b240a3488..46b86bb5cd2a 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
-@@ -1180,7 +1180,28 @@ static void sdma_v5_2_ring_emit_pipeline_sync(struct=
- amdgpu_ring *ring)  static void sdma_v5_2_ring_emit_vm_flush(struct amdgpu=
-_ring *ring,
-                                         unsigned vmid, uint64_t pd_addr)
- {
--       amdgpu_gmc_emit_flush_gpu_tlb(ring, vmid, pd_addr);
-+       struct amdgpu_vmhub *hub =3D &ring->adev->vmhub[ring->vm_hub];
-+       uint32_t req =3D hub->vmhub_funcs->get_invalidate_req(vmid, 0);
-+
-+       /* Update the PD address for this VMID. */
-+       amdgpu_ring_emit_wreg(ring, hub->ctx0_ptb_addr_lo32 +
-+                             (hub->ctx_addr_distance * vmid),
-+                             lower_32_bits(pd_addr));
-+       amdgpu_ring_emit_wreg(ring, hub->ctx0_ptb_addr_hi32 +
-+                             (hub->ctx_addr_distance * vmid),
-+                             upper_32_bits(pd_addr));
-+
-+       /* Trigger invalidation. */
-+       amdgpu_ring_write(ring,
-+                         SDMA_PKT_VM_INVALIDATION_HEADER_OP(SDMA_OP_POLL_R=
-EGMEM) |
-+                         SDMA_PKT_VM_INVALIDATION_HEADER_SUB_OP(SDMA_SUBOP=
-_VM_INVALIDATION) |
-+                         SDMA_PKT_VM_INVALIDATION_HEADER_GFX_ENG_ID(ring->=
-vm_inv_eng) |
-+                         SDMA_PKT_VM_INVALIDATION_HEADER_MM_ENG_ID(0x1f));
-+       amdgpu_ring_write(ring, req);
-+       amdgpu_ring_write(ring, 0xFFFFFFFF);
-+       amdgpu_ring_write(ring,
-+                         SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_INVALIDAT=
-EACK(1 << vmid) |
-+                         SDMA_PKT_VM_INVALIDATION_ADDRESSRANGEHI_ADDRESSRA=
-NGEHI(0x1F));
- }
-
- static void sdma_v5_2_ring_emit_wreg(struct amdgpu_ring *ring,
---
-2.25.1
-
+> Am 24.09.24 um 12:19 schrieb Tvrtko Ursulin:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>> Since drm_sched_entity_modify_sched() can modify the entities run queue,
+>> lets make sure to only dereference the pointer once so both adding and
+>> waking up are guaranteed to be consistent.
+>>
+>> Alternative of moving the spin_unlock to after the wake up would for now
+>> be more problematic since the same lock is taken inside
+>> drm_sched_rq_update_fifo().
+>>
+>> v2:
+>>   * Improve commit message. (Philipp)
+>>   * Cache the scheduler pointer directly. (Christian)
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Fixes: b37aced31eb0 ("drm/scheduler: implement a function to modify 
+>> sched list")
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>> Cc: Luben Tuikov <ltuikov89@gmail.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Philipp Stanner <pstanner@redhat.com>
+>> Cc: dri-devel@lists.freedesktop.org
+>> Cc: <stable@vger.kernel.org> # v5.7+
+>> Reviewed-by: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/scheduler/sched_entity.c | 10 ++++++++--
+>>   1 file changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c 
+>> b/drivers/gpu/drm/scheduler/sched_entity.c
+>> index 0e002c17fcb6..a75eede8bf8d 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+>> @@ -599,6 +599,9 @@ void drm_sched_entity_push_job(struct 
+>> drm_sched_job *sched_job)
+>>       /* first job wakes up scheduler */
+>>       if (first) {
+>> +        struct drm_gpu_scheduler *sched;
+>> +        struct drm_sched_rq *rq;
+>> +
+>>           /* Add the entity to the run queue */
+>>           spin_lock(&entity->rq_lock);
+>>           if (entity->stopped) {
+>> @@ -608,13 +611,16 @@ void drm_sched_entity_push_job(struct 
+>> drm_sched_job *sched_job)
+>>               return;
+>>           }
+>> -        drm_sched_rq_add_entity(entity->rq, entity);
+>> +        rq = entity->rq;
+>> +        sched = rq->sched;
+>> +
+>> +        drm_sched_rq_add_entity(rq, entity);
+>>           spin_unlock(&entity->rq_lock);
+>>           if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
+>>               drm_sched_rq_update_fifo(entity, submit_ts);
+>> -        drm_sched_wakeup(entity->rq->sched);
+>> +        drm_sched_wakeup(sched);
+>>       }
+>>   }
+>>   EXPORT_SYMBOL(drm_sched_entity_push_job);
+> 
