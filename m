@@ -2,63 +2,148 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC9998537B
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Sep 2024 09:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B3B9852CB
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Sep 2024 08:15:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB6010E039;
-	Wed, 25 Sep 2024 07:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BEC010E099;
+	Wed, 25 Sep 2024 06:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=internode.on.net header.i=@internode.on.net header.b="IbKFpcLF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VSGDSFrG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from omr002.pc5.atmailcloud.com (omr002.pc5.atmailcloud.com
- [103.150.252.2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB94410E920;
- Wed, 25 Sep 2024 00:22:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=internode.on.net; s=202309; h=MIME-Version:Message-ID:Date:Subject:To:From:
- content-type; bh=VO+pqWj1yIOcgZrNglPcMFYl+7rjqsSaJWWxgX9+s1I=; b=IbKFpcLFCqe3
- 1GkQoNAmvochWFH3S779x5Dgyaaj2L14KJIe63zzF4xX0hkx7dD9Z0tRMiHR7egxpLUd5iR3sTfiQ
- 94eybGtwbUfgSp4rthoFuE6l3Lkmn+YTySxEO2EpBkHtA0tMI5iEJChQU5CmbnwYfeyS+3IfUWXu+
- tNx5qox4nr4jSJB917PFIdKyG+2abs3qKjZb6MNsl0hY+hg1GvVV8op/IeDS5NO8vq93idqJ5WY7o
- 96B3Ed+F+MjwB7vAQM+N1vIDaWKPHTTgzsz54vP85A7rThkdwHXRiHq/DDuTSdWIiE1v9rEP5Agc/
- yRpGdpDhQ1Xo9iNfF77Ixg==;
-Received: from CMR-KAKADU01.i-02175a00542f9bb7e
- by OMR.i-06efc5390fb1e2455 with esmtps
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1stFnF-000000001LH-3zIl; Wed, 25 Sep 2024 00:22:09 +0000
-Received: from [118.210.167.213] (helo=localhost)
- by CMR-KAKADU01.i-02175a00542f9bb7e with esmtpsa
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1stFnF-000000001WC-0xQ7; Wed, 25 Sep 2024 00:22:09 +0000
-Received: from amarsh04 by localhost with local (Exim 4.98)
- (envelope-from <arthur.marsh@internode.on.net>)
- id 1stFnB-0000000013i-2r9I; Wed, 25 Sep 2024 09:52:05 +0930
-From: Arthur Marsh <arthur.marsh@internode.on.net>
-To: alexdeucher@gmail.com
-Cc: Xinhui.Pan@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, arthur.marsh@internode.on.net,
- christian.koenig@amd.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
- iommu@lists.linux.dev, linux-kernel@vger.kernel.org, tzimmermann@suse.de,
- wuhoipok@gmail.com, x86@kernel.org
-Subject: NULL pointer dereference after ib test on ring 7 succeeded
-Date: Wed, 25 Sep 2024 09:52:04 +0930
-Message-ID: <20240925002205.4065-1-user@am64>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <CADnq5_OtdUvOUPpq1aUoxtgpt6a4h598019SNhe+9ZWUaANYqg@mail.gmail.com>
-References: <CADnq5_OtdUvOUPpq1aUoxtgpt6a4h598019SNhe+9ZWUaANYqg@mail.gmail.com>
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2086.outbound.protection.outlook.com [40.107.100.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C137C10E099
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 06:15:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HAdMBfAoLSYqZDAIgy7WiOmQbGYVt2R6GdRVVx8rF47DNHuLgKHpV9SazlPLrJGhfZ8UKjsozAbW3s2MpQbBtRnpLsbSTyRRAzgAJeBumV0b9jkpq2JH9B33lNecPekDJ+3hn6DGnQRU74DKTYJSXwW+CS7NEO5Y2GE2/w8CipreCyKf043r1DIzcnNQCB8T9xLKPBgFhKBi92K2MgUb4RnTa7Zjur0XafOB/JI/bD/ChplhOvf4lkEQ18VQTUIEsVvMeNYqpC5/tEOMF9sZ0iwXND9wwbbmnaxryRpTPreibyGrq8+BuCeuwdVcLXASvnZfMehieHNjVthXv5Gx1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BeguBCk9Y2gcg3EMxMnR0pyQh0+2dtmkYiBQmUK8IcM=;
+ b=xbV9XhF08x9VPTQIMIg/nz/2185a9K4uONEcNhGS+y466Icy/A8OfsjltOVpqL7bK+RNcMIA/ODUhPX0el5m/4FT/NnxQbd+gQthlhpm6/hrwVUyBcDIcX8YPYpoH7DSi8J1yxtq8a6hqgJbreD1pZVi/tJcF2zpzTAnwaS9uw6TLU7N9LvH5t7WpLTLYWF0xG1FTf8VdzlVE8Cyx/tGP9csMrMi0RrrYD9xFYFa+Vq77hLsjWO41TrSvPxMQHtizLn0lBCBqjdS+uLj8qIAYeSrpB04636YMmUVxg9G9rgvlM/YdbbSqi5RduOjEZoFgKAO1wTuGS/OA8uJQXm7fA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BeguBCk9Y2gcg3EMxMnR0pyQh0+2dtmkYiBQmUK8IcM=;
+ b=VSGDSFrG1jOfqfWxkqyEuew+3VRNtD8rCT3gU9gZW4ERB0jckmaJODUo7u+bYzLyvNajw9nv6nZkfMJBeJ6Xe1RCo271xzVFqINWLuhGb5js6SgDuN6t9qrEQZrcGUAXo3+HMT5b/EHW8Ko7y8/BwGOLnYkg8/NfSD8OqUyCTRg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MW4PR12MB6683.namprd12.prod.outlook.com (2603:10b6:303:1e2::5)
+ by CY5PR12MB6383.namprd12.prod.outlook.com (2603:10b6:930:3d::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Wed, 25 Sep
+ 2024 06:15:22 +0000
+Received: from MW4PR12MB6683.namprd12.prod.outlook.com
+ ([fe80::9e98:5170:cedb:5505]) by MW4PR12MB6683.namprd12.prod.outlook.com
+ ([fe80::9e98:5170:cedb:5505%4]) with mapi id 15.20.7982.022; Wed, 25 Sep 2024
+ 06:15:22 +0000
+Message-ID: <9c89000c-e5e1-4da8-be8d-fce3a787e2ce@amd.com>
+Date: Wed, 25 Sep 2024 14:15:16 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/powerplay: skip enable mgpu fan boost in SRIOV
+To: "Lazar, Lijo" <lijo.lazar@amd.com>, ZhenGuo Yin <zhenguo.yin@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, yifan.zha@amd.com
+References: <20240924034012.237955-1-zhenguo.yin@amd.com>
+ <a9bff99d-6d93-46bd-a13f-43a145adf93d@amd.com>
+Content-Language: en-US
+From: "Yin, ZhenGuo (Chris)" <zhengyin@amd.com>
+In-Reply-To: <a9bff99d-6d93-46bd-a13f-43a145adf93d@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TYCPR01CA0111.jpnprd01.prod.outlook.com
+ (2603:1096:405:4::27) To MW4PR12MB6683.namprd12.prod.outlook.com
+ (2603:10b6:303:1e2::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Atmail-Id: arthur.marsh@internode.on.net
-X-atmailcloud-spam-action: no action
-X-Cm-Analysis: v=2.4 cv=A4dqPbWG c=1 sm=1 tr=0 ts=66f357b1
- a=Kh1sbcNhzywcxpuRN39Emg==:117 a=Kh1sbcNhzywcxpuRN39Emg==:17
- a=EaEq8P2WXUwA:10 a=x7bEGLp0ZPQA:10 a=-3lUenqOrSg5RfNWSYcA:9
-X-Cm-Envelope: MS4xfETnA6LXsDoIbHo78TzFnuLKdTbuh6Xc81j3uKGCfrG+02BZA76KXSzIgCsUX8DRfw2SxVgzHNbtz7GWtsVJcLgIxgPxKnk8frFYdV5liTMecmR9J7tN
- airCbemFwH3XFB5XOQha/VWWEu2R/lcwZw7ASx5Ua4HSBkxt7lOx2esCacjsRflwPoGIn/hcu2nrjvHlgjSQ7SenLIwKOn8QRtY=
-X-atmailcloud-route: unknown
-X-Mailman-Approved-At: Wed, 25 Sep 2024 07:14:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR12MB6683:EE_|CY5PR12MB6383:EE_
+X-MS-Office365-Filtering-Correlation-Id: 376fc0db-40b7-45bd-a778-08dcdd296ff8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dTRJMUZWYk1jYmY2QUxyVzM2SEhjU1RldVdrbHd3V3k2UjVwT3hvbkZWSWlF?=
+ =?utf-8?B?azZNcUlRVXNGU25ieXhTMTQxdHZaRVZybUp0aHpVU0UyQnczMlBmc3VQcTFK?=
+ =?utf-8?B?QkhORThaNlF4WXFGZGZpYjA1aDNSR2lEZklFWi9NNllqVERJeC8zdVhicGpP?=
+ =?utf-8?B?aU1zZjdYNWJ4S2I2OHNpTE0wMFc1VE54M2p2YzV5bEZUVTdJMm1ZSXpjT1ZH?=
+ =?utf-8?B?NjVRUjY0Z25SSDUya2RKRU9ObXZGNXZneWlNUk9HQmdXekFWamIvOXo1WnRn?=
+ =?utf-8?B?QzVIVDVldnFrZUZWMUIrTTA3SER2alhTNVA0Mko2NHFVeGpDSG4wWnh1QmZo?=
+ =?utf-8?B?L2xZVkxyanlGWmNCeUM0aExKbFErelZWbzV2RDdEb080MFhDOTJpeVdGYjUw?=
+ =?utf-8?B?SEQ5cnMxdnlBZDVSWHo1OGNEUEZucUJRQVg5aWVyaEYzQThWZjQ0eWZyZkNU?=
+ =?utf-8?B?NVZ2TVlMV2pCbDVEQlRiajhCOVhPOFA1NExRcWErZmtJRFpqQjlpVzZMcnpN?=
+ =?utf-8?B?TDdRbXZwUkxZb2IzSTVOTlhUMFdIZmVWVlRLODdGMzFkYVVtYldYLytFZ1NX?=
+ =?utf-8?B?bTV5VFFwc1pSQVFzOHA2M1pVSTBDNi9JQXN6MnV4SVZoeU9kSWNFYUxIbFVD?=
+ =?utf-8?B?c3dTTVVFTGI4ZXJWUHpFTS92VDhmVVVJdVNxd0VmY2NkSldWS1B0K3lrRmpP?=
+ =?utf-8?B?eDYzNHlMYllkWXNNL1Q1V3pEcEwwZzZuRjV4YkZMQkU4QjgxbjFvTkp6V3Yw?=
+ =?utf-8?B?elJXLzI1M3NiQXRZTHpzUWExb0Q3aVVtREhVNEhmc0UrVWx6TWJHVHZTUGZF?=
+ =?utf-8?B?WklSaWFFcTVtQytRMFJnVlk4eCtBMFplUytRdUVlVkxkSFdXaStBWnlMNkpX?=
+ =?utf-8?B?bTgvQ1ZaamlVVjc2QktoZnVBYUFMLzlIWjFYZFhaWDB1bTBXOVJISTdiK0I1?=
+ =?utf-8?B?NEFWWlFBbWJkUmdpSHNOcWFtZmQwRUVRNHBFbXVhNFZEZ0lqaWx2WUR0Rzdq?=
+ =?utf-8?B?ZXpxVzd6WnFsOWhGZWMwSzQ3emlBOUd2TGxacjk2K0JRVzZNaXcwbmpNY2hL?=
+ =?utf-8?B?cDdnMnNQUTVFaXhFUExwakpyOWhRSTVtb1Nwb3plVTY2SDdTSTh6Um1iYlNU?=
+ =?utf-8?B?bHBMZkxMdUVRaTlLQktpZFVXcHNDRG9HNTg3RzRZMHVON3ZRSTUwRGFxenht?=
+ =?utf-8?B?L1d4UldQamZvbmxSNTFHdnNkdFlQaDhndXdpNnNkRlNMK29RdXJHRE05bHlQ?=
+ =?utf-8?B?OHRucXFFRXlJQ0c3VXcvYmFSczJBakNlcXU5VzM3QVZSaTIreCt0bThxamJu?=
+ =?utf-8?B?UWJnakQrTTN3ZGxqdVBLNncyckFVZ2ZmTDVsN21QV0RoVElkMHVvcDNhNFVQ?=
+ =?utf-8?B?WHB0ZEtrOEFGOGUrS3RnWUxwNGE5c3hxVkVTM3VpK1NXaFdIMmNxWlBiU05a?=
+ =?utf-8?B?MkpvVDNIeXVPcmN6QXZ6Rm1xc3N2SndrTUN0SGkzZnpObVFRa2VFNzFLQWZy?=
+ =?utf-8?B?d0Z2QzBLeURlanJTSnhCT1c1UlRBOGw5WEtqS28zVlpWN3d3VjluL0VGMXZC?=
+ =?utf-8?B?UXBNeGdTVmYyTWc2MXJxY2xWbGlVSlJ3T21xZFdEYkx2UGs0NVVtYlBPRXUw?=
+ =?utf-8?B?eTFIcmljU1ZHN1M5S3pORk5iN2FJaTVZN1V0dmpGOVpCcVJLVlJSekwwSnZE?=
+ =?utf-8?B?eS9uMHNJQitUeGVhZnpxSnBWOHZPaFRxeXI0aDZZWTYweTlUQUdHWkh3PT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR12MB6683.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NmFua1hLMXF4SFpVNjhPcytyM3g5YjNmWXFzejZwRWVkbmZaRC8vZ1pIaVBW?=
+ =?utf-8?B?aFZENUFxNFk2bVZDcnpLZElwdUFYOUQ0WFFHdWtIODMvMVVvSFF6bnJVTFY0?=
+ =?utf-8?B?Zll0WEdtWk50ZzlxN3dMVCtrbm9SSmUxbUF3ZHQ0QW9pUlVMRnFqYm05TmRa?=
+ =?utf-8?B?N2hQRWcwZFN3VUpkN1hoVDBiY1dWaTRtVnVsVXNXeUdzSGx0UUdtSnVpN3c2?=
+ =?utf-8?B?OWlkcm0zYmFxZSs0YTRsTmdWM29DZHhyejY1TitsRThjck9GL0w4NkowaXRN?=
+ =?utf-8?B?OFJmR1BWNzNPOFRlNWNhTGgvRWN2MFNEYmN3bm1OajhGWmtTR29uaGNvdWJO?=
+ =?utf-8?B?MW1kK1kyQzJSLy9TY2tjOWZySldxbWZ3NWp4VVh0V25rWmV6QTdpdU1xSGFm?=
+ =?utf-8?B?STQ4ZTVqNGUxWlEwRElicHJnSGcrejZpdWk1elRkSWViL3NXT1lEMjY2Wi9B?=
+ =?utf-8?B?Z0RIZ01LMjhDalNUWTlObE9nT3N6UE41dzdHZlExRVBESmt4OHg3TVZHYVNK?=
+ =?utf-8?B?eW5tQnlteW1CYUxyVDFmV2hzaTY2OSt3QWxtSm5kak5tUStIVXQ3LzZBNXlD?=
+ =?utf-8?B?WHZXa3VnRHpJZWNLZUdlcTZoR3o1NVlQL29LcFpVNXErUnhhSG03b0M4V243?=
+ =?utf-8?B?NUhhN3N5dzRabk9qWk1SM2ZYd2lqV0xlSHZaOHF5V0NGNTA3OFdIampUNDlh?=
+ =?utf-8?B?UkFPTGhvMWREUUI3NHZEOTdwZ3c1cnd0N3RzeTFFU2RqME02cHhvQ1lNNkl0?=
+ =?utf-8?B?V2NOUWN1YldQc3ZhbWFRVVpHaDNsN0pvTVhsa0hadk9CeTNjcnFxZzU3VTkw?=
+ =?utf-8?B?RHV5bERuUWdNYWZTbGl0Q0dNdHZTK3hMUlJMZEdBSkpPYW5UU1RiaDFYSGZa?=
+ =?utf-8?B?U1FLY1EyTUxHWVppQktuSlgxLzZYeHlxYVZ1eHlHUXRCbVIySitCd2lVMDlo?=
+ =?utf-8?B?cjVoQ1ZTaEMvK1p0MUNmNit5M2Fpa2p4MjZGbE1BZ3Y1ejFzTlluMS9GRWtr?=
+ =?utf-8?B?d1l6R3hFL2FOMnZPK3dMWGZhbjF6dFFJODkyMlY2QzRNUXI2T0tnY3NucExS?=
+ =?utf-8?B?WjZhb0JlajhkeENySVVPcUs2ZGM3ZWticGFFNDFOSXBQbG1MeEsvMmRIa3d2?=
+ =?utf-8?B?N3FNWEtKWmg3Q1VLckMxQUs0TXBlN1lud3ovRkZod3pQaUhEa2tod0JSMUZl?=
+ =?utf-8?B?T1VOVFJGR0l4U1RjZEVBZ1p6TlZxSjBHald5c0tUN294ckNzVE1PYXIwalRs?=
+ =?utf-8?B?S0tDVGdLMmxRa3RrclYxYXQvTjdzTUNzaW5pRE1qMDJvenlzanJ6R2REcmdh?=
+ =?utf-8?B?Z2RFeHRRSm01NjE2Mkw2ZHhlRzgveHpEYkYxa0FVOVB1WHl1YWR2MUxabS9w?=
+ =?utf-8?B?WnJkZ2Z4SnNRQ3dJMGh0MjZVOW5BSXREZ0pDclBtUE1EdDJPOTNTM01HUlJ6?=
+ =?utf-8?B?OW1vSnVFQmdsRFRrMnhmZEIxTkdsNUY4aEVKN05YVmVkS2JqSDVDbytXbGJB?=
+ =?utf-8?B?enhtYU81MlR6ZTRBNGk2Q3lMQld4dEIxRmgvZkRyMUVidmxPMkNERHhZUjlF?=
+ =?utf-8?B?UEk3NkZyMFpVV2RZWWxxQUJ0RW9CaEJGRVVOemU3eVVmamtXSnVORnduWm5C?=
+ =?utf-8?B?cFZpQVN0ZGhqaG1qK3YwNnhDUEpLMUg0eGYyZ3NBL0lXUVh0RWF6ZGY1TjlQ?=
+ =?utf-8?B?VW1RNUZNSURMTjJkcTNyT0RhYVZURWZ6dVZ5bkJCRlVidzU1YVA1UVd4L2lB?=
+ =?utf-8?B?QTRtUnBQRnVua0lxY2ZsMXplc1Q2Yjl1a2lQSVVOSkZFTnNzWURlVGxjakJh?=
+ =?utf-8?B?Um10SEkxYVUwQ3VJK1dlYlhnellkaVNpcDd1MVBNbUhEakpHUHo2VU9rSTMr?=
+ =?utf-8?B?bTJvRVhvMkx6R1BOejcxbXM0bG5mSm5hWlM2ZXkyM0h6dlJIdkxQWFdXbzVn?=
+ =?utf-8?B?MlNoSjJkVndPRDhtbnBqeXptMzRyUjhPZ0VMRC9mZ2NHUVBqSU5jb3hsQmhZ?=
+ =?utf-8?B?TUo3cE9ZU3FTZ3Vkb3FieUtlcWlkdFBwSTFxOHcxQmxSampSREJoSnBtczRm?=
+ =?utf-8?B?SW8zZFFuNGtVYmdNMHhydXhvbE8rVXgyVWNxN28zZEFGSmNtUm9OY2ZXSG1z?=
+ =?utf-8?Q?LOle2j+0hz+kbnebYtfWAL1cl?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 376fc0db-40b7-45bd-a778-08dcdd296ff8
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB6683.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2024 06:15:22.4004 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CUdBhK7NaqfcGLrVvWgB5kcxZXeK2IWaBMA8d5dEbm+w+qUJSbMUbgP4uxVgE0QE58sWWUvq61/rp5DGtPnNLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6383
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,186 +158,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-After rebuilding current Linus git head with:
 
-dma-mapping: report unlimited DMA addressing in IOMMU DMA path
-b348b6d17fd1d5d89b86db602f02bea54a754bd8
+On 9/24/2024 8:24 PM, Lazar, Lijo wrote:
+>
+> On 9/24/2024 9:10 AM, ZhenGuo Yin wrote:
+>> SMU_MSG_SetMGpuFanBoostLimitRpm is unsupported for VF,
+>> skip enabling mgpu fan boost in SRIOV.
+>>
+>> Signed-off-by: ZhenGuo Yin <zhenguo.yin@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> index dee57f15719e..49f320fc974a 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -3178,7 +3178,7 @@ static int amdgpu_device_enable_mgpu_fan_boost(void)
+>>   	for (i = 0; i < mgpu_info.num_dgpu; i++) {
+>>   		gpu_ins = &(mgpu_info.gpu_ins[i]);
+>>   		adev = gpu_ins->adev;
+>> -		if (!(adev->flags & AMD_IS_APU) &&
+>> +		if (!(adev->flags & AMD_IS_APU) && !amdgpu_sriov_vf(adev) &&
+>>   		    !gpu_ins->mgpu_fan_enabled) {
+>>   			ret = amdgpu_dpm_enable_mgpu_fan_boost(adev);
+> Better to move the fix inside amdgpu_dpm_enable_mgpu_fan_boost() so that
+> any other call to this coming from some other piece of code also doesn't
+> do anything for this.
+>
+> Thanks,
+> Lijo
 
-applied, the radeon module load gets further before hitting another
-NULL pointer dereference:
+If we move the fix inside, the driver will either break and report an 
+error message or set gpu_ins->mgpu_fan_enabled to 1.
 
-[   17.777472] [drm] radeon kernel modesetting enabled.
-[   17.777536] radeon 0000:00:01.0: vgaarb: deactivate vga console
-[   17.778276] Console: switching to colour dummy device 80x25
-[   17.778519] [drm] initializing kernel modesetting (ARUBA 0x1002:0x990C 0=
-x1002:0x0123 0x00).
-[   17.778600] ATOM BIOS: 113
-[   17.778658] radeon 0000:00:01.0: VRAM: 768M 0x0000000000000000 - 0x00000=
-0002FFFFFFF (768M used)
-[   17.778661] radeon 0000:00:01.0: GTT: 1024M 0x0000000030000000 - 0x00000=
-0006FFFFFFF
-[   17.778665] [drm] Detected VRAM RAM=3D768M, BAR=3D256M
-[   17.778665] [drm] RAM width 64bits DDR
-[   17.778764] [drm] radeon: 768M of VRAM memory ready
-[   17.778766] [drm] radeon: 1024M of GTT memory ready.
-[   17.778777] [drm] Loading ARUBA Microcode
-[   18.038084] [drm] Internal thermal controller without fan control
-[   18.038425] [drm] radeon: dpm initialized
-[   18.333508] [drm] Found VCE firmware/feedback version 50.0.1 / 17!
-[   18.333548] [drm] GART: num cpu pages 262144, num gpu pages 262144
-[   18.353624] [drm] PCIE GART of 1024M enabled (table at 0x00000000001D600=
-0).
-[   18.353755] radeon 0000:00:01.0: WB enabled
-[   18.353758] radeon 0000:00:01.0: fence driver on ring 0 use gpu addr 0x0=
-000000030000c00
-[   18.354136] radeon 0000:00:01.0: fence driver on ring 5 use gpu addr 0x0=
-000000000075a18
-[   18.374206] radeon 0000:00:01.0: fence driver on ring 6 use gpu addr 0x0=
-000000030000c18
-[   18.374208] radeon 0000:00:01.0: fence driver on ring 7 use gpu addr 0x0=
-000000030000c1c
-[   18.374210] radeon 0000:00:01.0: fence driver on ring 1 use gpu addr 0x0=
-000000030000c04
-[   18.374212] radeon 0000:00:01.0: fence driver on ring 2 use gpu addr 0x0=
-000000030000c08
-[   18.374213] radeon 0000:00:01.0: fence driver on ring 3 use gpu addr 0x0=
-000000030000c0c
-[   18.374214] radeon 0000:00:01.0: fence driver on ring 4 use gpu addr 0x0=
-000000030000c10
-[   18.374469] radeon 0000:00:01.0: radeon: MSI limited to 32-bit
-[   18.374525] radeon 0000:00:01.0: radeon: using MSI.
-[   18.374604] [drm] radeon: irq initialized.
-[   18.392823] [drm] ring test on 0 succeeded in 3 usecs
-[   18.392831] [drm] ring test on 3 succeeded in 4 usecs
-[   18.392836] [drm] ring test on 4 succeeded in 3 usecs
-[   18.438526] [drm] ring test on 5 succeeded in 2 usecs
-[   18.458380] [drm] UVD initialized successfully.
-[   18.567616] [drm] ring test on 6 succeeded in 18 usecs
-[   18.567626] [drm] ring test on 7 succeeded in 3 usecs
-[   18.567627] [drm] VCE initialized successfully.
-[   18.567686] snd_hda_intel 0000:00:01.1: bound 0000:00:01.0 (ops radeon_a=
-udio_component_bind_ops [radeon])
-[   18.567925] [drm] ib test on ring 0 succeeded in 0 usecs
-[   18.567968] [drm] ib test on ring 3 succeeded in 0 usecs
-[   18.568008] [drm] ib test on ring 4 succeeded in 0 usecs
-[   19.094527] [drm] ib test on ring 5 succeeded
-[   19.257713] mc: Linux media interface: v0.10
-[   19.638235] [drm] ib test on ring 6 succeeded
-[   20.017069] usb 1-3: dvb_usb_v2: found a 'Realtek RTL2832U reference des=
-ign' in warm state
-[   20.048473] usb 1-3: dvb_usb_v2: will pass the complete MPEG2 transport =
-stream to the software demuxer
-[   20.048493] dvbdev: DVB: registering new adapter (Realtek RTL2832U refer=
-ence design)
-[   20.048497] usb 1-3: media controller created
-[   20.049487] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' re=
-gistered.
-[   20.150361] [drm] ib test on ring 7 succeeded
-[   20.150700] BUG: kernel NULL pointer dereference, address: 0000000000000=
-050
-[   20.150702] #PF: supervisor read access in kernel mode
-[   20.150704] #PF: error_code(0x0000) - not-present page
-[   20.150705] PGD 0 P4D 0=20
-[   20.150707] Oops: Oops: 0000 [#1] PREEMPT_RT SMP NOPTI
-[   20.150710] CPU: 0 UID: 0 PID: 446 Comm: udevd Not tainted 6.11.0+ #6122
-[   20.150713] Hardware name: Gigabyte Technology Co., Ltd. To be filled by=
- O.E.M./F2A78M-HD2, BIOS F2 05/28/2014
-[   20.150714] RIP: 0010:drm_dp_aux_register+0x59/0x110 [drm_display_helper]
-[   20.150732] Code: a1 c0 48 85 f6 48 89 83 b8 00 00 00 74 1c 48 8d bb b4 =
-03 00 00 ba 30 00 00 00 e8 52 e5 60 db 48 8d 7b 08 5b 5d e9 b7 ea 37 db <48=
-> 8b 70 50 48 85 f6 75 db 48 8b 30 eb d6 48 8d ab 88 04 00 00 48
-[   20.150734] RSP: 0018:ffff9eb8013cb960 EFLAGS: 00010246
-[   20.150736] RAX: 0000000000000000 RBX: ffff8f1983bfc508 RCX: ffffffffc0b=
-d1bc0
-[   20.150737] RDX: ffffffffc0a1de40 RSI: 0000000000000000 RDI: ffff8f1983b=
-fc9f0
-[   20.150738] RBP: ffff8f1983bfc9f0 R08: ffff8f199ca70008 R09: 00000000c0c=
-0c0c0
-[   20.150739] R10: 0000000000000000 R11: 0000000000000001 R12: ffff8f199da=
-9af50
-[   20.150740] R13: ffff8f199da9b092 R14: ffff8f199da9af2e R15: 00000000000=
-00018
-[   20.150741] FS:  00007ff9b9e6a840(0000) GS:ffff8f1caf800000(0000) knlGS:=
-0000000000000000
-[   20.150743] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   20.150744] CR2: 0000000000000050 CR3: 00000001033e4000 CR4: 00000000000=
-406f0
-[   20.150745] Call Trace:
-[   20.150747]  <TASK>
-[   20.150748]  ? __die_body.cold+0x19/0x1e
-[   20.150753]  ? page_fault_oops+0xa8/0x230
-[   20.150757]  ? drm_dp_aux_register+0x59/0x110 [drm_display_helper]
-[   20.150767]  ? search_module_extables+0x4f/0x90
-[   20.150771]  ? fixup_exception+0x36/0x2f0
-[   20.150773]  ? exc_page_fault+0x88/0x1b0
-[   20.150776]  ? asm_exc_page_fault+0x22/0x30
-[   20.150779]  ? __pfx_radeon_dp_aux_transfer_atom+0x10/0x10 [radeon]
-[   20.150888]  ? drm_dp_aux_register+0x59/0x110 [drm_display_helper]
-[   20.150900]  radeon_dp_aux_init+0x91/0xc0 [radeon]
-[   20.150984]  radeon_get_atom_connector_info_from_object_table+0x58e/0x88=
-0 [radeon]
-[   20.151047]  ? radeon_get_atom_connector_info_from_supported_devices_tab=
-le+0x5cf/0x600 [radeon]
-[   20.151111]  ? kstrdup+0x4c/0x70
-[   20.151115]  ? __kmalloc_noprof+0x24d/0x340
-[   20.151118]  radeon_modeset_init+0x375/0x470 [radeon]
-[   20.151187]  ? radeon_device_init+0x667/0xb40 [radeon]
-[   20.151250]  radeon_driver_load_kms+0xc2/0x260 [radeon]
-[   20.151312]  radeon_pci_probe+0xff/0x170 [radeon]
-[   20.151374]  pci_device_probe+0xbe/0x1a0
-[   20.151377]  really_probe+0xde/0x350
-[   20.151380]  ? pm_runtime_barrier+0x61/0xb0
-[   20.151383]  ? __pfx___driver_attach+0x10/0x10
-[   20.151386]  __driver_probe_device+0x78/0x110
-[   20.151388]  driver_probe_device+0x2d/0xc0
-[   20.151390]  __driver_attach+0xc9/0x1c0
-[   20.151393]  bus_for_each_dev+0x6a/0xb0
-[   20.151395]  ? migrate_enable+0xbf/0xf0
-[   20.151397]  bus_add_driver+0x139/0x220
-[   20.151400]  driver_register+0x6e/0xc0
-[   20.151402]  ? __pfx_radeon_module_init+0x10/0x10 [radeon]
-[   20.151463]  do_one_initcall+0x42/0x210
-[   20.151467]  ? __kmalloc_cache_noprof+0x89/0x230
-[   20.151469]  do_init_module+0x60/0x210
-[   20.151472]  init_module_from_file+0x89/0xc0
-[   20.151475]  __x64_sys_finit_module+0x142/0x390
-[   20.151477]  do_syscall_64+0x47/0x110
-[   20.151480]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[   20.151483] RIP: 0033:0x7ff9b9d82279
-[   20.151485] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 =
-89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48=
-> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 77 6b 0d 00 f7 d8 64 89 01 48
-[   20.151486] RSP: 002b:00007fffc5f84708 EFLAGS: 00000246 ORIG_RAX: 000000=
-0000000139
-[   20.151488] RAX: ffffffffffffffda RBX: 000055d02068d9b0 RCX: 00007ff9b9d=
-82279
-[   20.151489] RDX: 0000000000000000 RSI: 000055d0206807f0 RDI: 00000000000=
-00012
-[   20.151490] RBP: 0000000000000000 R08: 0000000000000001 R09: 000055d0206=
-6d540
-[   20.151491] R10: 0000000000000040 R11: 0000000000000246 R12: 000055d0206=
-807f0
-[   20.151492] R13: 0000000000020000 R14: 000055d02067e510 R15: 00000000000=
-00000
-[   20.151494]  </TASK>
-[   20.151494] Modules linked in: i2c_mux dvb_usb_rtl28xxu(+) dvb_usb_v2 dv=
-b_core mc snd_emu10k1_synth radeon(+) snd_emux_synth snd_seq_midi_emul snd_=
-seq_virmidi drm_ttm_helper snd_seq_midi snd_seq_midi_event ttm snd_seq edac=
-_mce_amd snd_hda_codec_hdmi sha512_ssse3 sha512_generic sha256_ssse3 sha1_s=
-sse3 snd_emu10k1 aesni_intel drm_suballoc_helper snd_hda_intel drm_display_=
-helper snd_intel_dspcfg snd_hda_codec snd_util_mem gf128mul snd_ac97_codec =
-snd_hda_core drm_kms_helper crypto_simd cryptd ac97_bus snd_rawmidi k10temp=
- snd_seq_device snd_hwdep snd_pcm drm acpi_cpufreq evdev serio_raw pcspkr a=
-t24 emu10k1_gp gameport regmap_i2c i2c_algo_bit snd_timer video snd sp5100_=
-tco soundcore wmi button ext4 crc32c_generic crc16 mbcache jbd2 uas usb_sto=
-rage hid_generic usbhid hid sg sr_mod cdrom sd_mod ata_generic firewire_ohc=
-i crc32_pclmul crc32c_intel ahci i2c_piix4 firewire_core crc_itu_t pata_ati=
-ixp libahci i2c_smbus ohci_pci xhci_pci libata xhci_hcd ehci_pci ohci_hcd r=
-8169 ehci_hcd realtek scsi_mod mdio_devres usbcore
-[   20.151550]  scsi_common libphy usb_common
-[   20.151553] CR2: 0000000000000050
-[   20.151555] ---[ end trace 0000000000000000 ]---
+I believe we should avoid both scenarios.
 
-Regards,
+             ret = amdgpu_dpm_enable_mgpu_fan_boost(adev);
+             if (ret)
+                 break;
 
-Arthur.
+             gpu_ins->mgpu_fan_enabled = 1;
+
+>>   			if (ret)
