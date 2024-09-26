@@ -2,76 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC83987311
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 13:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6258D987420
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 15:04:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9AA10EAF3;
-	Thu, 26 Sep 2024 11:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8194310EAB6;
+	Thu, 26 Sep 2024 13:04:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bPhxci7U";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tua5LlFg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 128FE10EAF6
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 11:49:06 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-42cbc22e1c4so7133265e9.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 04:49:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727351344; x=1727956144; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=GgO99B6Ivt6jNIbSgf63wgFRWduq0iNPNzfEp1e3M7c=;
- b=bPhxci7UKabG9hREE+ddPpPTA3DwejukTDBNFnLJyqb+9LdVh1DF6nGvWleie6mTua
- Ueff1JKuLj+xtFgrBfdRH2ybYdyaqHW5yNMVk8UGs1cG944quVk4qZQRjPP4VBuqwM8t
- ZoqIgyZIeT19qfMgtXOpCyFV8sFopvY9bXN6c/UCVjWRofLelE9KYfC+oRmbZoohmXgd
- 9Xha+vkVXJ+OOvvjrJnQrRANnacic19wT6U2tBJWUEEVZBK8eYuZSR0OUN45vKQ21H8L
- lFYvRO83BA3qJNk5vSpD12+22qPwFmJLLWSdhVk3eZctSLbssiKIag7hkIgfKT3roNKX
- 5Kbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727351344; x=1727956144;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GgO99B6Ivt6jNIbSgf63wgFRWduq0iNPNzfEp1e3M7c=;
- b=W22avywG9ocuCq/CZk/YT9IfASey1Bck5mk5F3n0quI3o3aciq/lYUx6L1dzFRcKqb
- UTwfCqICnvf87LdRaxVKgZHSf0sM8f6GbEhv7RSLYjKbFLlUiPvoGtCb7hb3H3eEDlgo
- U878W7jPMf/UKJ3IpVCWoL6msRUe3MOYCiDtjMkuoCrsTMBMCR+kErB1GTS8kEp+qS6d
- jgYbcJFIazqfAJrYJ6dq+Ep4QuIek8hDq/IFF/f+jLeUqFg6Am9k9dQ1TkhAla78/2zo
- ikHA/dpQWgnz5lwk3o8LsC2o1/zPa9GLN+Z/vGF9A3cQuTcWsIoLSIQvwNHO5pkmmG3W
- v5gA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVA5OKGTZDu7xYa4TXdR6+h5khXM7TmCGx/SWUmqsh6h5q1DXnE7+SSAWN3VJ/w0f0CioKUib//@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxdtQjPdzr81hI7vV16STN9vyVrvDPAvrYRGyvtIFnY1r7uUY93
- HOXPTYwpYZDqAXuAVeIkcP4OTdyFn8FPbBjrL+Xp0VU9+TY229x6svtYMXFK
-X-Google-Smtp-Source: AGHT+IHLY4mliIwA/1gf3TeJJiVXMM15KS3BkUIjAg2PdmOfQN8tVxnZEdpRaZIrNJUQ2cGulC6udQ==
-X-Received: by 2002:a05:600c:3d08:b0:42d:a024:d6bb with SMTP id
- 5b1f17b1804b1-42e9611919fmr44088545e9.20.1727351344196; 
- Thu, 26 Sep 2024 04:49:04 -0700 (PDT)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-37cbc2c1acasm6219979f8f.32.2024.09.26.04.49.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 26 Sep 2024 04:49:03 -0700 (PDT)
-Message-ID: <c4503a08-18c3-4ecc-a60b-3bdb8f709805@gmail.com>
-Date: Thu, 26 Sep 2024 13:49:02 +0200
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A8C410E321;
+ Thu, 26 Sep 2024 12:12:02 +0000 (UTC)
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi
+ [91.156.87.48])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 60C94169;
+ Thu, 26 Sep 2024 14:10:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1727352632;
+ bh=ty/0EEPC1HNSViP1lPC3UwHwPR61YYvHhV7K8pEYIzQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=tua5LlFgxkHqh4iJv12/XIrHTo5cnc+bbtYq/DBm62SlinWiJW4+JkBJqunE3Zt9+
+ +RVA+rs3OgteZBAE9Bd4q4RA8gPlGMlRn5Lh9PgiQiOizj3BXYLASpCb+1vKluwGHc
+ TUMQJ6SfFudglcZ5uVtK5hOlGKsWCPI13OH5B6Lo=
+Message-ID: <eb5b4f6e-88dd-4322-a10c-608db6abfe14@ideasonboard.com>
+Date: Thu, 26 Sep 2024 15:11:56 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/08] drm/amdgpu: Add wait IOCTL timeline syncobj
- support
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com
-References: <20240925195928.142001-1-Arunpravin.PaneerSelvam@amd.com>
- <20240925195928.142001-3-Arunpravin.PaneerSelvam@amd.com>
+Subject: Re: [PATCH v5 41/80] drm/tidss: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ jfalempe@redhat.com, airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Jyri Sarha <jyri.sarha@iki.fi>
+References: <20240924071734.98201-1-tzimmermann@suse.de>
+ <20240924071734.98201-42-tzimmermann@suse.de>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20240925195928.142001-3-Arunpravin.PaneerSelvam@amd.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240924071734.98201-42-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 26 Sep 2024 13:04:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,220 +102,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 25.09.24 um 21:59 schrieb Arunpravin Paneer Selvam:
-> Add user fence wait IOCTL timeline syncobj support.
->
-> v2:(Christian)
->    - handle dma_fence_wait() return value.
->    - shorten the variable name syncobj_timeline_points a bit.
->    - move num_points up to avoid padding issues.
->
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+On 24/09/2024 10:12, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+> 
+> The tidss driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+> 
+> v5:
+> - select DRM_CLIENT_SELECTION
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 > ---
->   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 82 +++++++++++++++++--
->   include/uapi/drm/amdgpu_drm.h                 | 16 +++-
->   2 files changed, 88 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> index 97b1af574407..2465ca307644 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> @@ -474,11 +474,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   			    struct drm_file *filp)
->   {
-> +	u32 *syncobj_handles, *timeline_points, *timeline_handles, *bo_handles;
-> +	u32 num_syncobj, num_bo_handles, num_points;
->   	struct drm_amdgpu_userq_fence_info *fence_info = NULL;
->   	struct drm_amdgpu_userq_wait *wait_info = data;
-> -	u32 *syncobj_handles, *bo_handles;
->   	struct dma_fence **fences = NULL;
-> -	u32 num_syncobj, num_bo_handles;
->   	struct drm_gem_object **gobj;
->   	struct drm_exec exec;
->   	int r, i, entry, cnt;
-> @@ -498,11 +498,26 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   		goto free_bo_handles;
+>   drivers/gpu/drm/tidss/Kconfig     | 1 +
+>   drivers/gpu/drm/tidss/tidss_drv.c | 4 +++-
+>   2 files changed, 4 insertions(+), 1 deletion(-)
+
+Tested on AM62 SK.
+
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+  Tomi
+
+> diff --git a/drivers/gpu/drm/tidss/Kconfig b/drivers/gpu/drm/tidss/Kconfig
+> index 2385c56493b9..31ad582b7602 100644
+> --- a/drivers/gpu/drm/tidss/Kconfig
+> +++ b/drivers/gpu/drm/tidss/Kconfig
+> @@ -2,6 +2,7 @@ config DRM_TIDSS
+>   	tristate "DRM Support for TI Keystone"
+>   	depends on DRM && OF
+>   	depends on ARM || ARM64 || COMPILE_TEST
+> +	select DRM_CLIENT_SELECTION
+>   	select DRM_KMS_HELPER
+>   	select DRM_DISPLAY_HELPER
+>   	select DRM_BRIDGE_CONNECTOR
+> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+> index d15f836dca95..2428b9aaa003 100644
+> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> @@ -11,6 +11,7 @@
+>   
+>   #include <drm/drm_atomic.h>
+>   #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+>   #include <drm/drm_crtc.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_fbdev_dma.h>
+> @@ -109,6 +110,7 @@ static const struct drm_driver tidss_driver = {
+>   	.fops			= &tidss_fops,
+>   	.release		= tidss_release,
+>   	DRM_GEM_DMA_DRIVER_OPS_VMAP,
+> +	DRM_FBDEV_DMA_DRIVER_OPS,
+>   	.name			= "tidss",
+>   	.desc			= "TI Keystone DSS",
+>   	.date			= "20180215",
+> @@ -186,7 +188,7 @@ static int tidss_probe(struct platform_device *pdev)
+>   		goto err_irq_uninstall;
 >   	}
 >   
-> +	num_points = wait_info->num_points;
-> +	timeline_handles = memdup_user(u64_to_user_ptr(wait_info->syncobj_timeline_handles),
-> +				       sizeof(u32) * num_points);
-> +	if (IS_ERR(timeline_handles)) {
-> +		r = PTR_ERR(timeline_handles);
-> +		goto free_syncobj_handles;
-> +	}
-> +
-> +	timeline_points = memdup_user(u64_to_user_ptr(wait_info->syncobj_timeline_points),
-> +				      sizeof(u32) * num_points);
-> +	if (IS_ERR(timeline_points)) {
-> +		r = PTR_ERR(timeline_points);
-> +		goto free_timeline_handles;
-> +	}
-> +
->   	/* Array of GEM object handles */
->   	gobj = kmalloc_array(num_bo_handles, sizeof(*gobj), GFP_KERNEL);
->   	if (!gobj) {
->   		r = -ENOMEM;
-> -		goto free_syncobj_handles;
-> +		goto free_timeline_points;
->   	}
+> -	drm_fbdev_dma_setup(ddev, 32);
+> +	drm_client_setup(ddev, NULL);
 >   
->   	for (entry = 0; entry < num_bo_handles; entry++) {
-> @@ -524,17 +539,34 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   	}
+>   	dev_dbg(dev, "%s done\n", __func__);
 >   
->   	if (!wait_info->num_fences) {
-> +		if (num_points) {
-> +			struct dma_fence *fence;
-> ++
-> +			for (i = 0; i < num_points; i++) {
-> +				r = drm_syncobj_find_fence(filp, timeline_handles[i],
-> +							   timeline_points[i],
-> +							   DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT,
-> +							   &fence);
-> +				if (r || !fence)
-
-You can't simply ignore errors here. That needs some goto error handling 
-and cleanup.
-
-> +					continue;
-> +
-> +				dma_fence_put(fence);
-> +				num_fences++;
-
-There can be more than one fence in the timeline we need to wait for. 
-You should probably use dma_fence_unwrap_for_each() here.
-
-> +			}
-> +		}
-> +
->   		/* Count syncobj's fence */
->   		for (i = 0; i < num_syncobj; i++) {
->   			struct dma_fence *fence;
->   
->   			r = drm_syncobj_find_fence(filp, syncobj_handles[i],
-> -						   0, 0, &fence);
-> -			dma_fence_put(fence);
-> -
-> +						   0,
-> +						   DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT,
-> +						   &fence);
->   			if (r || !fence)
->   				continue;
->   
-> +			dma_fence_put(fence);
->   			num_fences++;
->   		}
->   
-> @@ -589,12 +621,34 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   			}
->   		}
->   
-> +		if (num_points) {
-> +			struct dma_fence *fence;
-> +
-> +			for (i = 0; i < num_points; i++) {
-> +				r = drm_syncobj_find_fence(filp, timeline_handles[i],
-> +							   timeline_points[i],
-> +							   DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT,
-> +							   &fence);
-> +				if (r || !fence)
-
-Same here, just ignoring errors is a no-go.
-
-Regards,
-Christian.
-
-> +					continue;
-> +
-> +				if (WARN_ON_ONCE(num_fences >= wait_info->num_fences)) {
-> +					r = -EINVAL;
-> +					goto free_fences;
-> +				}
-> +
-> +				fences[num_fences++] = fence;
-> +			}
-> +		}
-> +
->   		/* Retrieve syncobj's fence */
->   		for (i = 0; i < num_syncobj; i++) {
->   			struct dma_fence *fence;
->   
->   			r = drm_syncobj_find_fence(filp, syncobj_handles[i],
-> -						   0, 0, &fence);
-> +						   0,
-> +						   DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT,
-> +						   &fence);
->   			if (r || !fence)
->   				continue;
->   
-> @@ -617,9 +671,13 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   				 * Just waiting on other driver fences should
->   				 * be good for now
->   				 */
-> -				dma_fence_wait(fences[i], false);
-> -				dma_fence_put(fences[i]);
-> +				r = dma_fence_wait(fences[i], true);
-> +				if (r) {
-> +					dma_fence_put(fences[i]);
-> +					goto free_fences;
-> +				}
->   
-> +				dma_fence_put(fences[i]);
->   				continue;
->   			}
->   
-> @@ -665,6 +723,8 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   		drm_gem_object_put(gobj[i]);
->   	kfree(gobj);
->   
-> +	kfree(timeline_points);
-> +	kfree(timeline_handles);
->   	kfree(syncobj_handles);
->   	kfree(bo_handles);
->   
-> @@ -682,6 +742,10 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
->   	while (entry-- > 0)
->   		drm_gem_object_put(gobj[entry]);
->   	kfree(gobj);
-> +free_timeline_points:
-> +	kfree(timeline_points);
-> +free_timeline_handles:
-> +	kfree(timeline_handles);
->   free_syncobj_handles:
->   	kfree(syncobj_handles);
->   free_bo_handles:
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index af42798e901d..3b24e0cb1b51 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -521,12 +521,26 @@ struct drm_amdgpu_userq_wait {
->   	 * matching fence wait info pair in @userq_fence_info.
->   	 */
->   	__u32	bo_wait_flags;
-> -	__u32	pad;
-> +	/**
-> +	 * @num_points: A count that represents the number of timeline syncobj handles in
-> +	 * syncobj_handles_array.
-> +	 */
-> +	__u32	num_points;
->   	/**
->   	 * @syncobj_handles_array: An array of syncobj handles defined to get the
->   	 * fence wait information of every syncobj handles in the array.
->   	 */
->   	__u64	syncobj_handles_array;
-> +	/**
-> +	 * @syncobj_timeline_handles: An array of timeline syncobj handles defined to get the
-> +	 * fence wait information of every timeline syncobj handles in the array.
-> +	 */
-> +	__u64   syncobj_timeline_handles;
-> +	/**
-> +	 * @syncobj_timeline_points: An array of timeline syncobj points defined to get the
-> +	 * fence wait points of every timeline syncobj handles in the syncobj_handles_array.
-> +	 */
-> +	__u64	syncobj_timeline_points;
->   	/**
->   	 * @bo_handles_array: An array of GEM BO handles defined to fetch the fence
->   	 * wait information of every BO handles in the array.
 
