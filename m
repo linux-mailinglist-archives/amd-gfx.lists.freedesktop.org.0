@@ -2,149 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648E1986ECC
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 10:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45618986E96
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 10:16:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABB6110EB09;
-	Thu, 26 Sep 2024 08:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064D710E042;
+	Thu, 26 Sep 2024 08:16:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jYgsEAw5";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NzyIBgt8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10A9A10E0C4
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 01:33:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=beJiQxHkBPLWRTa/q39jV4wLG+tI4GMlcY07BAhxGTK2FkA0Y/lUMtSfK9Z5v508v6b1Hl8LBKEvgtkgcjlP9C/h6cUl/YeQDY8Rtr+89ANAp0RpYJ7ohi5lecU1HKNefzPi8aFSrZdwT54jM8kNisSyOLdFUFz7uuh1eidY5gGQHZ4gOXE3h5nKROhBYbvu/R3aSXQVASO5OaGu+w4lV9cCHiS+8PHPa75iVQaSGrwXratd/VhT5p9br/VSiHf3mLy0/XB+0rCd5ZtcAMW/HR/kmTbfRLs/OZqjKdF28RkA6bAKDnzA+kAax+kOwLmnJnJ6L9TPf8fkA27Pil20Zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8lCynZ42w7HTNYOswJ+W9HnEn4gvJuTc7+yxwOLb7k4=;
- b=M8gt16JloXeOyNOFyRR4xsOoOE+Wqs1JFaFRq1j+Z3/VkeApPmrnwB9Rw5MyIHS8M33edMMpCiyj3jjIqgLnTjKGGeOcbj6EQVeC1CQ7I8fhO9PbFbC8bWeYve2MDxGiyusJpYAofQID1FkOUZar1Gv+TDFKb2MO/DqoH7jH21XuAG63fbYBZVeCmkpHBYZB7jspt0UoJhmIK9kb4mMYkFwnURCbMWMUpsR9hUomzAenwpSbZCQEJFTn/9Gyxj/yRfTZPS8kgZzW3Mw7IHYmukCkEuR/PmTbFxU+1rXT6CsvNryGCmX3HV6b247DI9QGDEm+cXSUDiCI9utER6/T+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8lCynZ42w7HTNYOswJ+W9HnEn4gvJuTc7+yxwOLb7k4=;
- b=jYgsEAw5ofPMiwLjxKdIDsd7CcizhbzfK/hos27tDCbUGy4TrpK5r1vS6CoXZhm/LsdH/ogaXTjcMbtYqgwV/Zp6po0rVHTGIVkNKLvKAJiSBFcAeUgwOmCEcEYTRlr8lGfE8TlHHmugIWKRcctCIvyJBSCBI0YRsFiHRVW4Y/s=
-Received: from SN7PR12MB6932.namprd12.prod.outlook.com (2603:10b6:806:260::14)
- by MW4PR12MB6851.namprd12.prod.outlook.com (2603:10b6:303:20b::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.28; Thu, 26 Sep
- 2024 01:33:47 +0000
-Received: from SN7PR12MB6932.namprd12.prod.outlook.com
- ([fe80::ec4:314a:d766:9783]) by SN7PR12MB6932.namprd12.prod.outlook.com
- ([fe80::ec4:314a:d766:9783%4]) with mapi id 15.20.7982.022; Thu, 26 Sep 2024
- 01:33:46 +0000
-From: "Min, Frank" <Frank.Min@amd.com>
-To: brahma_sw_dev <brahma_sw_dev@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Olsak, Marek" <Marek.Olsak@amd.com>, "Zhang, Hawking"
- <Hawking.Zhang@amd.com>, "Gao, Likun" <Likun.Gao@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: fix PTE copy corruption for sdma 7
-Thread-Topic: [PATCH] drm/amdgpu: fix PTE copy corruption for sdma 7
-Thread-Index: AQHbDyCvoxUa/60Rzk6YXzwWrJrK2rJoKpgggAEfG2A=
-Date: Thu, 26 Sep 2024 01:33:46 +0000
-Message-ID: <SN7PR12MB6932ED618E4FF7B1FBB6A5ECE96A2@SN7PR12MB6932.namprd12.prod.outlook.com>
-References: <20240925075607.420409-1-Frank.Min@amd.com>
- <SN7PR12MB6932EB1636FC06F28B4E133BE9692@SN7PR12MB6932.namprd12.prod.outlook.com>
-In-Reply-To: <SN7PR12MB6932EB1636FC06F28B4E133BE9692@SN7PR12MB6932.namprd12.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=d1f7f3bb-874b-4711-ad51-c591739fa1df;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution Only;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2024-09-25T08:25:06Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR12MB6932:EE_|MW4PR12MB6851:EE_
-x-ms-office365-filtering-correlation-id: f63cfb5a-a8de-4060-7114-08dcddcb440c
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700018|921020; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?nEQ5nSGNaZU7ZKc4XdfyT1AaUuqmG0gfPKJ3IcQcgEcUgiFfasA09XM+4duM?=
- =?us-ascii?Q?StcrOXEHTygx12f+oGTmy64NpQD9MuHOJp+XcbK7vdXD7MZmx2YCxyI02WtK?=
- =?us-ascii?Q?nU59AqiTH/1ctZ68/copzwfLhc0AYaFazurCn1J8Ts7S/ske9EP0M8Pue788?=
- =?us-ascii?Q?0EXObK3jS1tWKwGfVKmGjLFtJqSjMoik9SBEg+c9Tt8SIoM3bA2pGBilb2PJ?=
- =?us-ascii?Q?zujKyJpw6CL4bxVkJ+VxqHMEkAAcTnXcM/bCJLeFF02qZFM+d6Xqd7rPZjee?=
- =?us-ascii?Q?WjSKs3XDgRAqY0QHVknf/xEIKftHpi9gn4ky9GylfgZBIlgPechcz37ba2SO?=
- =?us-ascii?Q?I8n3sAXYGor/XvKfGr9yeg/obC+MPTKbAJzAR30eZZB6V3ch+ix2ZAwxzc6g?=
- =?us-ascii?Q?mfcdvxooEew9VJVvArRb6R/PKNcobprjMLq3gRH91blzrz3Kgtxf1a5BPzHt?=
- =?us-ascii?Q?XWtLitvrY3wfsKoxfkYqZ3t3L4W8DpuV5pLN45S2zeexoc5N75WM9MngwhTC?=
- =?us-ascii?Q?Is/LCL7Tr2N5wppZ5Y1Lgaeu1WiPInmBWlxZF+Sp/cRVeXEZOBu1XzfbZHiC?=
- =?us-ascii?Q?Hetggssf0s8Fl0hIDGzeSEPjGvhxD86UIuLlUIJo6zrLcpzgXEnynyS7bn8Y?=
- =?us-ascii?Q?XnYQmMPUmGDOdxnFCCSzMackF6Ju9SweuZ9z8oc8k5UNxdAIViVw1SQod1D/?=
- =?us-ascii?Q?GsDowp3SAd2cFaRX0IVbxtnkXu4qyzPKWUSMtVN+2P+9ncf5x7uBaO/rOL4u?=
- =?us-ascii?Q?kAmTD3C+QJOiw2jF87c32LJZf06/I92xgeb1FUnpLij5/6gMtH3ySsP315KR?=
- =?us-ascii?Q?7zpulqCgYo6tahQrcIVRldrJjfUJUn+LE5nxx6MMW9J/2qfeUiZDof4N3FOg?=
- =?us-ascii?Q?/7h8xcBM07gK2UVm3V49ky0j9HiwD9HCSYnw9BQMAiU3eQlwuwMndzLa9AYA?=
- =?us-ascii?Q?YyddbkeUuaUw90SERiVzUeyHCRSFmZNFYniOb9cUf+eHTMKIRmiQEaAFP/5D?=
- =?us-ascii?Q?UxDAOCckO+aqEGojc1QYyjw/TcsGqXg6k7HuxN9QddqwxP+kHn0Ia9a5lzEa?=
- =?us-ascii?Q?NCY0erXhQ0cUComAxKZ1OmC87PFZuQymgUFjpO8LEF1qykmy9AevRZ5y60Ew?=
- =?us-ascii?Q?c2Oi0INIxQjVCvq4yGYlU54KXgBRZENwdiYyyOUmgpkycA7dZbMSXMZqgA/W?=
- =?us-ascii?Q?Lvx9brgu7J+xPW9Jf7V4KSDIL1CP+Nkf8K6y46Y08QQQ5TI7kww/A5CKlRm3?=
- =?us-ascii?Q?bjVebx3tp9qqkoaZsBRE0D2icVqIIp9CMUXgKohj9BLr4XNzoUI6n3V3fKea?=
- =?us-ascii?Q?cehq9NbqWeAq0UyXYAaVgdL3GfR6ROx6G5idxBcxTNI/Bw3xvdquKPiBpOOn?=
- =?us-ascii?Q?LBzKPfI=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR12MB6932.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018)(921020); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?b9QMtglfKZoRGwt0O2dpB1dkMyWP7eMJfO/rw7gZZoZZ0iZHTCwAR+q1yIz4?=
- =?us-ascii?Q?NIfiVO6tW3V3qazd3axrh6ZR4HtQKOecEJZtDUwe0YgK73MLJioKEybhr4GG?=
- =?us-ascii?Q?ASQ86T0AkbaiqP6MsJ+yNgdLJbHhQntV3eSsmqi2Ce0envA8GSQHzdmBfPnR?=
- =?us-ascii?Q?K5fdrhEcmt4h7tcFOEUMI67XeFtWv+OFmvEznIMFQAA3Boo42Cnkd/jfTQ4H?=
- =?us-ascii?Q?Imj4t1ywkG6dZ8rx515MxEbQzOovm+mbJRXYCylcV8vFTH+B6T1hkMUw0yix?=
- =?us-ascii?Q?UImGwmAJjpYUaBer65z2Qe5Sb+3W3M0imBtbQacCGaQLUcrN52hbRvkkjT/i?=
- =?us-ascii?Q?/xgianxeFumzHIK4QjzDVF4RPRLv0tkLbDfFH1cJxR9mfErm0slPYZZPgcR2?=
- =?us-ascii?Q?hohFk8zosu2F7HLaqib1UzLzx5LBMrMHdBruVN3YYkgplXzLXKgYDRFAR26C?=
- =?us-ascii?Q?HrJgfLApoGs8YkhsBB2tpr7+HlGd6sr77EPoSlCDZd6nefmDTzJ/o21qWWAH?=
- =?us-ascii?Q?mmfukFjFkMQdtd6hki82GemXC/iGHlna8CQTMiWYkXGaflVK0KD4AhZEeFcb?=
- =?us-ascii?Q?4cvDMAHi7q6772X6Xe5x58jskLjsdXEo8ut+QYO/56nhWm0Y1awX1nektOs8?=
- =?us-ascii?Q?ebNip7xBfaWOaTNwDpptZuKEEi44AtfjJyG6IU0v+OjLAAC02SJu/ccN1U+5?=
- =?us-ascii?Q?o/OcR/2rxVhtzYLwh3wyfxTYdXgnWbzSgPo09bAkQ1lKtlHjvVfGJ9ycIesD?=
- =?us-ascii?Q?ku7zv0xewCbGqpANpoGlra4svpoT0bM3UdSxJlmQkCBcpoBsZGcbwk+ZF+6q?=
- =?us-ascii?Q?azUpkxk0/HziCj8x6bn60Cn7+uNvru259coV9WSQH/TDc+z9i5qDJ28mhI/f?=
- =?us-ascii?Q?vJHGDNDUJ3KGhbTezJh2l29SX4gbfVRYoSF+3XQq5qjqkVexgcsvDVuEYtJj?=
- =?us-ascii?Q?OpUzL/JFAWud5TrOAB+w8CFHg5pcmNPYKJYtG8GWaerZtlYu7JSiS/KPeEsv?=
- =?us-ascii?Q?TYejVDmk6OD+RnkX0clKuzl3m/ILzt9iNFWLuGyG/o6gs1VEFgKzO9wJRM9r?=
- =?us-ascii?Q?m+Mm7pbkDtHJUmR0BTek7Cti/5JRAxhXTDgemDnGDul6vAtDOpbqZ2DYKade?=
- =?us-ascii?Q?TtVbM/FYhV8ePAF2oEEXNG4dV2zV2SZIQ2bjryRuKpXGUJ48AjS+ZJ6Lrto9?=
- =?us-ascii?Q?hZb4aXrpDrf3Vn7OJa6u++7wha6FoxhbKNswPfaCSPi0kuZLYeHRnE9GPaoC?=
- =?us-ascii?Q?9KnlrbhhOLbbk9oHvZdgRPAsUsXW2WnD+Ln9/CVNA23dgvd+imcVCQVBn1Dh?=
- =?us-ascii?Q?aumrtCXksbx4jSfusQQqeQowYuk7nAEorwG8LzB7rN3UspdUT7XMHallTGef?=
- =?us-ascii?Q?XHYAm2irr1KUaVd0ofS+53qopwdLOALYsYRs1WTUe1Da0v0wCPbgujRKY7y9?=
- =?us-ascii?Q?SpuQeA/OGZOIpm1wJ2cQVU5o6/ZfLk7Rax/6kO0AD7kCZXmfLLdMQRIcko2h?=
- =?us-ascii?Q?FVooRg24ciHE5Li36oBvMK6R3TeP3tBDWKVayATSHgr6/Uiw0EdN4OakrOKa?=
- =?us-ascii?Q?73JjsmmIYFBTgIjJmE0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7A010E042
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 08:16:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1727338562;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=jkE98gTtDfNr5GfMuftp4G9EJP69laL9HOqoZTWYEH4=;
+ b=NzyIBgt8LxKeBm7PkwFy0UF+ciwZquoVTjRA0D46byz16J8XLZ+IzyF9vlMIH0VOUXAIX9
+ V00UFsu6e/7Hsil39nmLoJdBTe6fBsTtEUj1a5IPaC8+gVSm5Xu2O2qhmcpCZzuQVHj6bM
+ fongz5g5FTdpHpwOWbmPjEPIoBdQ4dw=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-657-6HkrhnVqP9iHyOmhVlY1Vg-1; Thu, 26 Sep 2024 04:16:01 -0400
+X-MC-Unique: 6HkrhnVqP9iHyOmhVlY1Vg-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-42cb9e14ab6so4408145e9.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 01:16:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727338560; x=1727943360;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Q+PB1bX63yvpVUwHd1p8kcnlGkK65hhrsf8Uv72pc7E=;
+ b=uHfQAfpmqyRbKBcFScgs4Nz6quJ4bZH/A8+9WThxRh1LcJF+G2e1uHHURflJg6nl/i
+ Gttvv1KTiEw+crUr8ZqKKberY38aVk2q7L+2iDUR8wJm7ydiazBx0cq4eaxYbq73j6aO
+ UYmRAL2dUZpiSszOZ2HfsBUyw6NhYjhHOnN93A5OrVsuf4kfRe2AUfRVb+2EKNQ/DUpU
+ LKfWxYs+58oBxDZyTcdFDO+T4qHi2IfmVD7AkB19q+RxgerB5NaNKit/CXALetM0IDi3
+ yiqpqptbWFxERNwEmsogDMk/FVWWyAagkxLD4DEwC6lZTlCDZhm6ekBnA1pfrruxdDga
+ Aonw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWusLR/GMeyCDgjqX7KpcagNUg/0CoIdUEx3pbDYdCCXvWEHLSPERWfMPWKpTqjNmWRv+zeeUl7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxuopOzTI2pqHVwg8pLB9FspZbgB0WrxdXhCIJEQapAV5pnOBBT
+ ph7TMyaGju9hiuLZR19WBDmTNC3qXj61goktb7MRBEUVC1gL8ep3Vd7ZP7DZB7Ka92LadWxD/L/
+ oZZwyLIXhQakNiGTD6+sTPOT+Q+wdXLVwNkQRkGliVWRBMr6uWJZCrui7QTv9cTk=
+X-Received: by 2002:a05:600c:1d28:b0:42c:cd7c:a196 with SMTP id
+ 5b1f17b1804b1-42e9611d114mr43907395e9.17.1727338559961; 
+ Thu, 26 Sep 2024 01:15:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEwymqbtplHXtGKps6e8X68XchcCU8AuujFE6kob4eddrzwCgTX6kD4e43/wdKG6NNCah1n6g==
+X-Received: by 2002:a05:600c:1d28:b0:42c:cd7c:a196 with SMTP id
+ 5b1f17b1804b1-42e9611d114mr43907165e9.17.1727338559472; 
+ Thu, 26 Sep 2024 01:15:59 -0700 (PDT)
+Received: from eisenberg.fritz.box ([2001:16b8:3dee:bc00:37ec:5f5c:23da:fb5f])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42e969ddb64sm40042255e9.8.2024.09.26.01.15.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Sep 2024 01:15:59 -0700 (PDT)
+Message-ID: <a5dd98b71891ea0392d61e24cde8b35051035780.camel@redhat.com>
+Subject: Re: [PATCH v2] drm/sched: Further optimise drm_sched_entity_push_job
+From: Philipp Stanner <pstanner@redhat.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Tvrtko Ursulin
+ <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Luben
+ Tuikov <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>
+Date: Thu, 26 Sep 2024 10:15:58 +0200
+In-Reply-To: <1650ecb9-ac8a-4199-8693-77c73a95bbbd@igalia.com>
+References: <20240913160559.49054-9-tursulin@igalia.com>
+ <20240916173007.118-1-tursulin@igalia.com>
+ <1650ecb9-ac8a-4199-8693-77c73a95bbbd@igalia.com>
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB6932.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f63cfb5a-a8de-4060-7114-08dcddcb440c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2024 01:33:46.8959 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: seuVQqh8TJxwoD0kun1uuunbV4p87/CMbM1bn8uN1laynTkUm8kDJM3r49nxxpLp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6851
-X-Mailman-Approved-At: Thu, 26 Sep 2024 08:31:22 +0000
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,55 +97,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On Mon, 2024-09-23 at 15:35 +0100, Tvrtko Ursulin wrote:
+>=20
+> Ping Christian and Philipp - reasonably happy with v2? I think it's
+> the=20
+> only unreviewed patch from the series.
 
-From: Frank Min <Frank.Min@amd.com>
+Howdy,
 
-Without setting dcc bit, there is ramdon PTE copy corruption on sdma 7.
+sry for the delay, I had been traveling.
 
-so add this bit and update the packet format accordingly.
+I have a few nits below regarding the commit message. Besides, I'm OK
+with that, thx for your work :)
 
-Signed-off-by: Frank Min <Frank.Min@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
+> On 16/09/2024 18:30, Tvrtko Ursulin wrote:
+> > From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> >=20
+> > Having removed one re-lock cycle on the entity->lock in a patch
+> > titled
+> > "drm/sched: Optimise drm_sched_entity_push_job",=C2=A0
+> > with only a tiny bit
+> > larger refactoring we can do the same optimisation=C2=A0
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/sdma_v7_0.c
-index cfd8e183ad50..a8763496aed3 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c
-@@ -1080,13 +1080,16 @@ static void sdma_v7_0_vm_copy_pte(struct amdgpu_ib =
-*ib,
-        unsigned bytes =3D count * 8;
+Well, the commit message does not state which optimization that is. One
+would have to look for the previous patch, which you apparently cannot
+provide a commit ID for yet because it's not in Big Boss's branch.
 
-        ib->ptr[ib->length_dw++] =3D SDMA_PKT_COPY_LINEAR_HEADER_OP(SDMA_OP=
-_COPY) |
--               SDMA_PKT_COPY_LINEAR_HEADER_SUB_OP(SDMA_SUBOP_COPY_LINEAR);
-+               SDMA_PKT_COPY_LINEAR_HEADER_SUB_OP(SDMA_SUBOP_COPY_LINEAR) =
-|
-+               SDMA_PKT_COPY_LINEAR_HEADER_CPV(1);
-+
-        ib->ptr[ib->length_dw++] =3D bytes - 1;
-        ib->ptr[ib->length_dw++] =3D 0; /* src/dst endian swap */
-        ib->ptr[ib->length_dw++] =3D lower_32_bits(src);
-        ib->ptr[ib->length_dw++] =3D upper_32_bits(src);
-        ib->ptr[ib->length_dw++] =3D lower_32_bits(pe);
-        ib->ptr[ib->length_dw++] =3D upper_32_bits(pe);
-+       ib->ptr[ib->length_dw++] =3D 0;
+In this case I am for including a sentence about what is being
+optimized also because
 
- }
+> > on the rq->lock.
+> > (Currently both drm_sched_rq_add_entity() and
+> > drm_sched_rq_update_fifo_locked() take and release the same lock.)
+> >=20
+> > To achieve this we make drm_sched_rq_update_fifo_locked() and
 
-@@ -1744,7 +1747,7 @@ static void sdma_v7_0_set_buffer_funcs(struct amdgpu_=
-device *adev)  }
+it's not clear what the "this" that's being achieved is.
 
- static const struct amdgpu_vm_pte_funcs sdma_v7_0_vm_pte_funcs =3D {
--       .copy_pte_num_dw =3D 7,
-+       .copy_pte_num_dw =3D 8,
-        .copy_pte =3D sdma_v7_0_vm_copy_pte,
-        .write_pte =3D sdma_v7_0_vm_write_pte,
-        .set_pte_pde =3D sdma_v7_0_vm_set_pte_pde,
---
-2.43.0
+> > drm_sched_rq_add_entity() expect the rq->lock to be held.
+> >=20
+> > We also align drm_sched_rq_update_fifo_locked(),
+> > drm_sched_rq_add_entity() and
+> > drm_sched_rq_remove_fifo_locked() function signatures, by adding rq
+> > as a
+> > parameter to the latter.
+> >=20
+> > v2:
+> > =C2=A0 * Fix after rebase of the series.
+> > =C2=A0 * Avoid naming incosistency between drm_sched_rq_add/remove.
+> > (Christian)
+> >=20
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
+Reviewed-by: Philipp Stanner <pstanner@redhat.com>
+
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Luben Tuikov <ltuikov89@gmail.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Philipp Stanner <pstanner@redhat.com>
+> > ---
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_entity.c | 12 ++++++++--
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0 | 29 ++++++++=
+++++-------
+> > -----
+> > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 ++-
+> > =C2=A0 3 files changed, 26 insertions(+), 18 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
+> > b/drivers/gpu/drm/scheduler/sched_entity.c
+> > index d982cebc6bee..8ace1f1ea66b 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> > @@ -515,9 +515,14 @@ struct drm_sched_job
+> > *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09=09next =3D to_drm_sched_job(spsc_queue_peek(&entity-
+> > >job_queue));
+> > =C2=A0=C2=A0=09=09if (next) {
+> > +=09=09=09struct drm_sched_rq *rq;
+> > +
+> > =C2=A0=C2=A0=09=09=09spin_lock(&entity->lock);
+> > -=09=09=09drm_sched_rq_update_fifo_locked(entity,
+> > +=09=09=09rq =3D entity->rq;
+> > +=09=09=09spin_lock(&rq->lock);
+> > +=09=09=09drm_sched_rq_update_fifo_locked(entity,
+> > rq,
+> > =C2=A0=C2=A0=09=09=09=09=09=09=09next-
+> > >submit_ts);
+> > +=09=09=09spin_unlock(&rq->lock);
+> > =C2=A0=C2=A0=09=09=09spin_unlock(&entity->lock);
+> > =C2=A0=C2=A0=09=09}
+> > =C2=A0=C2=A0=09}
+> > @@ -618,11 +623,14 @@ void drm_sched_entity_push_job(struct
+> > drm_sched_job *sched_job)
+> > =C2=A0=C2=A0=09=09sched =3D rq->sched;
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09=09atomic_inc(sched->score);
+> > +
+> > +=09=09spin_lock(&rq->lock);
+> > =C2=A0=C2=A0=09=09drm_sched_rq_add_entity(rq, entity);
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09=09if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > -=09=09=09drm_sched_rq_update_fifo_locked(entity,
+> > submit_ts);
+> > +=09=09=09drm_sched_rq_update_fifo_locked(entity,
+> > rq, submit_ts);
+> > =C2=A0=20
+> > +=09=09spin_unlock(&rq->lock);
+> > =C2=A0=C2=A0=09=09spin_unlock(&entity->lock);
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09=09drm_sched_wakeup(sched, entity);
+> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > b/drivers/gpu/drm/scheduler/sched_main.c
+> > index 18a952f73ecb..5c83fb92bb89 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > @@ -153,17 +153,18 @@ static __always_inline bool
+> > drm_sched_entity_compare_before(struct rb_node *a,
+> > =C2=A0=C2=A0=09return ktime_before(ent_a->oldest_job_waiting, ent_b-
+> > >oldest_job_waiting);
+> > =C2=A0 }
+> > =C2=A0=20
+> > -static inline void drm_sched_rq_remove_fifo_locked(struct
+> > drm_sched_entity *entity)
+> > +static void drm_sched_rq_remove_fifo_locked(struct
+
+I think the commit message should contain a short sentence about why
+you removed the inline.
+
+AKA "As we're at it, remove the inline function specifier from
+drm_sched_rq_remove_fifo_locked() because XYZ"
+
+
+P.
+
+> > drm_sched_entity *entity,
+> > +=09=09=09=09=09=C2=A0=C2=A0=C2=A0 struct drm_sched_rq
+> > *rq)
+> > =C2=A0 {
+> > -=09struct drm_sched_rq *rq =3D entity->rq;
+> > -
+> > =C2=A0=C2=A0=09if (!RB_EMPTY_NODE(&entity->rb_tree_node)) {
+> > =C2=A0=C2=A0=09=09rb_erase_cached(&entity->rb_tree_node, &rq-
+> > >rb_tree_root);
+> > =C2=A0=C2=A0=09=09RB_CLEAR_NODE(&entity->rb_tree_node);
+> > =C2=A0=C2=A0=09}
+> > =C2=A0 }
+> > =C2=A0=20
+> > -void drm_sched_rq_update_fifo_locked(struct drm_sched_entity
+> > *entity, ktime_t ts)
+> > +void drm_sched_rq_update_fifo_locked(struct drm_sched_entity
+> > *entity,
+> > +=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_rq *rq,
+> > +=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 ktime_t ts)
+> > =C2=A0 {
+> > =C2=A0=C2=A0=09/*
+> > =C2=A0=C2=A0=09 * Both locks need to be grabbed, one to protect from
+> > entity->rq change
+> > @@ -171,17 +172,14 @@ void drm_sched_rq_update_fifo_locked(struct
+> > drm_sched_entity *entity, ktime_t ts
+> > =C2=A0=C2=A0=09 * other to update the rb tree structure.
+> > =C2=A0=C2=A0=09 */
+> > =C2=A0=C2=A0=09lockdep_assert_held(&entity->lock);
+> > +=09lockdep_assert_held(&rq->lock);
+> > =C2=A0=20
+> > -=09spin_lock(&entity->rq->lock);
+> > -
+> > -=09drm_sched_rq_remove_fifo_locked(entity);
+> > +=09drm_sched_rq_remove_fifo_locked(entity, rq);
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09entity->oldest_job_waiting =3D ts;
+> > =C2=A0=20
+> > -=09rb_add_cached(&entity->rb_tree_node, &entity->rq-
+> > >rb_tree_root,
+> > +=09rb_add_cached(&entity->rb_tree_node, &rq->rb_tree_root,
+> > =C2=A0=C2=A0=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_entity_compa=
+re_before);
+> > -
+> > -=09spin_unlock(&entity->rq->lock);
+> > =C2=A0 }
+> > =C2=A0=20
+> > =C2=A0 /**
+> > @@ -213,15 +211,14 @@ static void drm_sched_rq_init(struct
+> > drm_gpu_scheduler *sched,
+> > =C2=A0 void drm_sched_rq_add_entity(struct drm_sched_rq *rq,
+> > =C2=A0=C2=A0=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_entity *=
+entity)
+> > =C2=A0 {
+> > +=09lockdep_assert_held(&entity->lock);
+> > +=09lockdep_assert_held(&rq->lock);
+> > +
+> > =C2=A0=C2=A0=09if (!list_empty(&entity->list))
+> > =C2=A0=C2=A0=09=09return;
+> > =C2=A0=20
+> > -=09spin_lock(&rq->lock);
+> > -
+> > =C2=A0=C2=A0=09atomic_inc(rq->sched->score);
+> > =C2=A0=C2=A0=09list_add_tail(&entity->list, &rq->entities);
+> > -
+> > -=09spin_unlock(&rq->lock);
+> > =C2=A0 }
+> > =C2=A0=20
+> > =C2=A0 /**
+> > @@ -235,6 +232,8 @@ void drm_sched_rq_add_entity(struct
+> > drm_sched_rq *rq,
+> > =C2=A0 void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+> > =C2=A0=C2=A0=09=09=09=09struct drm_sched_entity *entity)
+> > =C2=A0 {
+> > +=09lockdep_assert_held(&entity->lock);
+> > +
+> > =C2=A0=C2=A0=09if (list_empty(&entity->list))
+> > =C2=A0=C2=A0=09=09return;
+> > =C2=A0=20
+> > @@ -247,7 +246,7 @@ void drm_sched_rq_remove_entity(struct
+> > drm_sched_rq *rq,
+> > =C2=A0=C2=A0=09=09rq->current_entity =3D NULL;
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09if (drm_sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+> > -=09=09drm_sched_rq_remove_fifo_locked(entity);
+> > +=09=09drm_sched_rq_remove_fifo_locked(entity, rq);
+> > =C2=A0=20
+> > =C2=A0=C2=A0=09spin_unlock(&rq->lock);
+> > =C2=A0 }
+> > diff --git a/include/drm/gpu_scheduler.h
+> > b/include/drm/gpu_scheduler.h
+> > index 80198e6cf537..b21806d5a8eb 100644
+> > --- a/include/drm/gpu_scheduler.h
+> > +++ b/include/drm/gpu_scheduler.h
+> > @@ -596,7 +596,8 @@ void drm_sched_rq_add_entity(struct
+> > drm_sched_rq *rq,
+> > =C2=A0 void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+> > =C2=A0=C2=A0=09=09=09=09struct drm_sched_entity *entity);
+> > =C2=A0=20
+> > -void drm_sched_rq_update_fifo_locked(struct drm_sched_entity
+> > *entity, ktime_t ts);
+> > +void drm_sched_rq_update_fifo_locked(struct drm_sched_entity
+> > *entity,
+> > +=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_sched_rq *rq,
+> > ktime_t ts);
+> > =C2=A0=20
+> > =C2=A0 int drm_sched_entity_init(struct drm_sched_entity *entity,
+> > =C2=A0=C2=A0=09=09=09=C2=A0 enum drm_sched_priority priority,
+>=20
 
