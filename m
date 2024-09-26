@@ -2,92 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6258D987420
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 15:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D3398738E
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Sep 2024 14:27:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8194310EAB6;
-	Thu, 26 Sep 2024 13:04:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E0CE10E32A;
+	Thu, 26 Sep 2024 12:27:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tua5LlFg";
+	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="l8YfwWZX";
+	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="kvBULnOR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A8C410E321;
- Thu, 26 Sep 2024 12:12:02 +0000 (UTC)
-Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi
- [91.156.87.48])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 60C94169;
- Thu, 26 Sep 2024 14:10:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1727352632;
- bh=ty/0EEPC1HNSViP1lPC3UwHwPR61YYvHhV7K8pEYIzQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=tua5LlFgxkHqh4iJv12/XIrHTo5cnc+bbtYq/DBm62SlinWiJW4+JkBJqunE3Zt9+
- +RVA+rs3OgteZBAE9Bd4q4RA8gPlGMlRn5Lh9PgiQiOizj3BXYLASpCb+1vKluwGHc
- TUMQJ6SfFudglcZ5uVtK5hOlGKsWCPI13OH5B6Lo=
-Message-ID: <eb5b4f6e-88dd-4322-a10c-608db6abfe14@ideasonboard.com>
-Date: Thu, 26 Sep 2024 15:11:56 +0300
+Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7695B10E32A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 12:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1727353600;
+ bh=LyigKsRn91AHY9U9fAnBEtR
+ 6y0qdcv0Ou+075cNFfzE=; b=l8YfwWZXzAAVq0H5s0iNqG/q6mggBO0OY9wS/zM6dr9QQCyfk0
+ G0Iqxd4f2DTwRI/SaFbmY7+zWOQZRQ+xsZxyZjjd2D0O1ndFy56Fd0nRKS4f9o0+mvFeAYOVjTJ
+ TdAo4+2bqU0rP+6fecL8TOypZXWf4Ci+f7aktxnWUo3CXnqj/n9D/lDkfpenZlXia3gzzE2TpYk
+ j82x3jDJ/LSHBblQ9tGzrXOF7agWxtlN0laZ7a+fn3N/cGyP9hNmN8l5IjHeuQJ5wux4hvJSEKt
+ X8ldC1aourS+dflPw2ryzIqPE7j9Dj9ZHL6nhPk1SaoggE+tfl5IyzwnVGE3mrNYFUA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
+ c=relaxed/relaxed; 
+ h=From:To:Subject:Date:Message-ID; t=1727353600; bh=LyigKsRn91AHY9U9fAnBEtR
+ 6y0qdcv0Ou+075cNFfzE=; b=kvBULnORDdGjLj8Oz3IGdW9wPris+3BvQCa442Wg8jiNVbgpie
+ JS+aGvzNtG016Tsf3Xg2sZwYpdqsjesavzAQ==;
+Message-ID: <887489b1-d5ba-4a8b-bb57-68784173def0@damsy.net>
+Date: Thu, 26 Sep 2024 14:26:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 41/80] drm/tidss: Run DRM default client setup
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- jfalempe@redhat.com, airlied@gmail.com, simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Jyri Sarha <jyri.sarha@iki.fi>
-References: <20240924071734.98201-1-tzimmermann@suse.de>
- <20240924071734.98201-42-tzimmermann@suse.de>
+Subject: Re: [PATCH v1 5/9] drm/amd/pm: use pm_runtime_get_if_active for
+ debugfs getters
+To: "Lazar, Lijo" <lijo.lazar@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ kenneth.feng@amd.com, mario.limonciello@amd.com
+References: <20240925075607.23929-1-pierre-eric.pelloux-prayer@amd.com>
+ <20240925075607.23929-6-pierre-eric.pelloux-prayer@amd.com>
+ <a760b202-560a-4824-8362-1e9a9fde2dfa@amd.com>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <20240924071734.98201-42-tzimmermann@suse.de>
+From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
+In-Reply-To: <a760b202-560a-4824-8362-1e9a9fde2dfa@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 26 Sep 2024 13:04:09 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,71 +61,354 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 24/09/2024 10:12, Thomas Zimmermann wrote:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
+
+
+Le 26/09/2024 à 11:27, Lazar, Lijo a écrit :
 > 
-> The tidss driver specifies a preferred color mode of 32. As this
-> is the default if no format has been given, leave it out entirely.
 > 
-> v5:
-> - select DRM_CLIENT_SELECTION
+> On 9/25/2024 1:24 PM, Pierre-Eric Pelloux-Prayer wrote:
+>> Don't wake up the GPU for reading pm values. Instead, take a runtime
+>> powermanagement ref when trying to read it iff the GPU is already
+>> awake.
+>>
+>> This avoids spurious wake ups (eg: from applets).
+>>
+>> We use pm_runtime_get_if_in_active(ign_usage_count=true) because we care
+>> about "is the GPU awake?" not about "is the GPU awake and something else
+>> prevents suspend?".
 > 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jyri Sarha <jyri.sarha@iki.fi>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
->   drivers/gpu/drm/tidss/Kconfig     | 1 +
->   drivers/gpu/drm/tidss/tidss_drv.c | 4 +++-
->   2 files changed, 4 insertions(+), 1 deletion(-)
+> One possible downside of this approach is - let's say an application
+> tries this way on a BACO enabled device (device is visible on bus, but
+> powered off due to runtime PM)
+> 
+> 	Get current clock level
+> 	If (success) && (not desired clock level)
+> 		Set clock level
+> 		Submit some jobs to run at set clock level
+> 
+> This type of approach won't work since get clock level() itself will
+> fail. That said, I don't know if there is any app out there does
+> something like this.
 
-Tested on AM62 SK.
+Yes, this would break this pattern but I don't see why it would be used.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+If this theoretical concern becomes real because an application reports a breakage after this series 
+is merged, we can figure out how to best deal with it.
 
-  Tomi
+Pierr-Eric
 
-> diff --git a/drivers/gpu/drm/tidss/Kconfig b/drivers/gpu/drm/tidss/Kconfig
-> index 2385c56493b9..31ad582b7602 100644
-> --- a/drivers/gpu/drm/tidss/Kconfig
-> +++ b/drivers/gpu/drm/tidss/Kconfig
-> @@ -2,6 +2,7 @@ config DRM_TIDSS
->   	tristate "DRM Support for TI Keystone"
->   	depends on DRM && OF
->   	depends on ARM || ARM64 || COMPILE_TEST
-> +	select DRM_CLIENT_SELECTION
->   	select DRM_KMS_HELPER
->   	select DRM_DISPLAY_HELPER
->   	select DRM_BRIDGE_CONNECTOR
-> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
-> index d15f836dca95..2428b9aaa003 100644
-> --- a/drivers/gpu/drm/tidss/tidss_drv.c
-> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
-> @@ -11,6 +11,7 @@
->   
->   #include <drm/drm_atomic.h>
->   #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client_setup.h>
->   #include <drm/drm_crtc.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_fbdev_dma.h>
-> @@ -109,6 +110,7 @@ static const struct drm_driver tidss_driver = {
->   	.fops			= &tidss_fops,
->   	.release		= tidss_release,
->   	DRM_GEM_DMA_DRIVER_OPS_VMAP,
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->   	.name			= "tidss",
->   	.desc			= "TI Keystone DSS",
->   	.date			= "20180215",
-> @@ -186,7 +188,7 @@ static int tidss_probe(struct platform_device *pdev)
->   		goto err_irq_uninstall;
->   	}
->   
-> -	drm_fbdev_dma_setup(ddev, 32);
-> +	drm_client_setup(ddev, NULL);
->   
->   	dev_dbg(dev, "%s done\n", __func__);
->   
 
+> 
+> Thanks,
+> Lijo
+> 
+>>
+>> Tested-by: Mario Limonciello <mario.limonciello@amd.com>
+>> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/pm/amdgpu_pm.c | 138 ++++++++++++++---------------
+>>   1 file changed, 69 insertions(+), 69 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>> index c8f34b1a4d8e..f1f339b75380 100644
+>> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+>> @@ -145,9 +145,9 @@ static ssize_t amdgpu_get_power_dpm_state(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	amdgpu_dpm_get_current_power_state(adev, &pm);
+>>   
+>> @@ -268,9 +268,9 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	level = amdgpu_dpm_get_performance_level(adev);
+>>   
+>> @@ -364,9 +364,9 @@ static ssize_t amdgpu_get_pp_num_states(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	if (amdgpu_dpm_get_pp_num_states(adev, &data))
+>>   		memset(&data, 0, sizeof(data));
+>> @@ -399,9 +399,9 @@ static ssize_t amdgpu_get_pp_cur_state(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	amdgpu_dpm_get_current_power_state(adev, &pm);
+>>   
+>> @@ -526,9 +526,9 @@ static ssize_t amdgpu_get_pp_table(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_get_pp_table(adev, &table);
+>>   
+>> @@ -840,9 +840,9 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	for (clk_index = 0 ; clk_index < 6 ; clk_index++) {
+>>   		ret = amdgpu_dpm_emit_clock_levels(adev, od_clocks[clk_index], buf, &size);
+>> @@ -930,9 +930,9 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_get_ppfeature_status(adev, buf);
+>>   	if (size <= 0)
+>> @@ -996,9 +996,9 @@ static ssize_t amdgpu_get_pp_dpm_clock(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	ret = amdgpu_dpm_emit_clock_levels(adev, type, buf, &size);
+>>   	if (ret == -ENOENT)
+>> @@ -1245,9 +1245,9 @@ static ssize_t amdgpu_get_pp_sclk_od(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	value = amdgpu_dpm_get_sclk_od(adev);
+>>   
+>> @@ -1302,9 +1302,9 @@ static ssize_t amdgpu_get_pp_mclk_od(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	value = amdgpu_dpm_get_mclk_od(adev);
+>>   
+>> @@ -1379,9 +1379,9 @@ static ssize_t amdgpu_get_pp_power_profile_mode(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_get_power_profile_mode(adev, buf);
+>>   	if (size <= 0)
+>> @@ -1467,9 +1467,9 @@ static int amdgpu_hwmon_get_sensor_generic(struct amdgpu_device *adev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	r = pm_runtime_resume_and_get(adev->dev);
+>> -	if (r < 0)
+>> -		return r;
+>> +	r = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (r <= 0)
+>> +		return r ?: -EPERM;
+>>   
+>>   	/* get the sensor value */
+>>   	r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
+>> @@ -1583,9 +1583,9 @@ static ssize_t amdgpu_get_pcie_bw(struct device *dev,
+>>   	if (!adev->asic_funcs->get_pcie_usage)
+>>   		return -ENODATA;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	amdgpu_asic_get_pcie_usage(adev, &count0, &count1);
+>>   
+>> @@ -1711,9 +1711,9 @@ static ssize_t amdgpu_get_apu_thermal_cap(struct device *dev,
+>>   	struct drm_device *ddev = dev_get_drvdata(dev);
+>>   	struct amdgpu_device *adev = drm_to_adev(ddev);
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	ret = amdgpu_dpm_get_apu_thermal_limit(adev, &limit);
+>>   	if (!ret)
+>> @@ -1787,9 +1787,9 @@ static ssize_t amdgpu_get_pm_metrics(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_get_pm_metrics(adev, buf, PAGE_SIZE);
+>>   
+>> @@ -1825,9 +1825,9 @@ static ssize_t amdgpu_get_gpu_metrics(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(ddev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(ddev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_get_gpu_metrics(adev, &gpu_metrics);
+>>   	if (size <= 0)
+>> @@ -2700,9 +2700,9 @@ static ssize_t amdgpu_hwmon_get_pwm1_enable(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(adev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	ret = amdgpu_dpm_get_fan_control_mode(adev, &pwm_mode);
+>>   
+>> @@ -2828,9 +2828,9 @@ static ssize_t amdgpu_hwmon_get_pwm1(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	err = pm_runtime_resume_and_get(adev->dev);
+>> -	if (err < 0)
+>> -		return err;
+>> +	err = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (err <= 0)
+>> +		return err ?: -EPERM;
+>>   
+>>   	err = amdgpu_dpm_get_fan_speed_pwm(adev, &speed);
+>>   
+>> @@ -2855,9 +2855,9 @@ static ssize_t amdgpu_hwmon_get_fan1_input(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	err = pm_runtime_resume_and_get(adev->dev);
+>> -	if (err < 0)
+>> -		return err;
+>> +	err = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (err <= 0)
+>> +		return err ?: -EPERM;
+>>   
+>>   	err = amdgpu_dpm_get_fan_speed_rpm(adev, &speed);
+>>   
+>> @@ -2916,9 +2916,9 @@ static ssize_t amdgpu_hwmon_get_fan1_target(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	err = pm_runtime_resume_and_get(adev->dev);
+>> -	if (err < 0)
+>> -		return err;
+>> +	err = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (err <= 0)
+>> +		return err ?: -EPERM;
+>>   
+>>   	err = amdgpu_dpm_get_fan_speed_rpm(adev, &rpm);
+>>   
+>> @@ -2986,9 +2986,9 @@ static ssize_t amdgpu_hwmon_get_fan1_enable(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(adev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	ret = amdgpu_dpm_get_fan_control_mode(adev, &pwm_mode);
+>>   
+>> @@ -3152,9 +3152,9 @@ static ssize_t amdgpu_hwmon_show_power_cap_generic(struct device *dev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	r = pm_runtime_resume_and_get(adev->dev);
+>> -	if (r < 0)
+>> -		return r;
+>> +	r = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (r <= 0)
+>> +		return r ?: -EPERM;
+>>   
+>>   	r = amdgpu_dpm_get_power_limit(adev, &limit,
+>>   				      pp_limit_level, power_type);
+>> @@ -3685,9 +3685,9 @@ static int amdgpu_retrieve_od_settings(struct amdgpu_device *adev,
+>>   	if (adev->in_suspend && !adev->in_runpm)
+>>   		return -EPERM;
+>>   
+>> -	ret = pm_runtime_resume_and_get(adev->dev);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	ret = pm_runtime_get_if_active(adev->dev, true);
+>> +	if (ret <= 0)
+>> +		return ret ?: -EPERM;
+>>   
+>>   	size = amdgpu_dpm_print_clock_levels(adev, od_type, buf);
+>>   	if (size == 0)
