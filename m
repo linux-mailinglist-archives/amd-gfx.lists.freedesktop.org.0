@@ -2,43 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D924987F94
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2024 09:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3367E987F2D
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Sep 2024 09:13:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D26A310EC3F;
-	Fri, 27 Sep 2024 07:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFF4610E206;
+	Fri, 27 Sep 2024 07:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="FsuOPIlr";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XOFPCG0d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-97.freemail.mail.aliyun.com
- (out30-97.freemail.mail.aliyun.com [115.124.30.97])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C28B510EC26;
- Fri, 27 Sep 2024 06:57:55 +0000 (UTC)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A0E10E206
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 07:13:52 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-42cc43454d5so14394525e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 00:13:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1727420273; h=From:To:Subject:Date:Message-Id:MIME-Version;
- bh=lm4phqS7A6HguwH5oHc4wZl+h617qLTjcXj+ufu38W8=;
- b=FsuOPIlrfughAV1cbzFrIxc4Q90x6N+4qzGEoX3XtNDvGNfL8Qj+3ESXp47fTJRysxvw6uJGrC5exZmdi5iHMPIZGPpx9EZAkGQaMPpiWSkdRUeJ3wz8qZ+2t2tG6PRO7pmtPUPdGv7YZ2ZXq0p4jv13LdrbIn8/tLKXO/x69kQ=
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0WFpiDnj_1727420263) by smtp.aliyun-inc.com;
- Fri, 27 Sep 2024 14:57:52 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: Felix.Kuehling@amd.com
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Abaci Robot <abaci@linux.alibaba.com>
-Subject: [PATCH -next] drm/amdkfd: Remove the redundant parameter comments in
- function get_wave_count
-Date: Fri, 27 Sep 2024 14:57:42 +0800
-Message-Id: <20240927065742.126124-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.32.0.3.g01195cf9f
+ d=gmail.com; s=20230601; t=1727421231; x=1728026031; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=p0aIJUbbD52CiHFs3mdVWZKQuKglsVGCitNlq5GvifM=;
+ b=XOFPCG0d8+pwtYNNLNq/tT6vQEVV+YNriICWGfaOwv/gfzE6sS1msR0MSGbGdi+55p
+ uEQ2kjrPQnEjweN6/pJC8v98oZYCGWD5xfJMzgRXwpvEaD8W2BsNA7g2PBeKDoYPozuT
+ Tr0cEvjNKkx4kTU8bVibyVHU/Tb8mbWShKWy9WFTxIaPxZ/z63F2jwP2mfUl1wMoSw2u
+ mk4Kzsb2c7WEhTlyVyB6R5Gh+X7w5yRxU6qoRUz+ToK6jAYIKcfObRJRhRfqooDtV7zE
+ JJxHHh1MZgJrpKY4P3alMkCTPN193K0XBHx3Fr2VEHa3HdaOkj6wWDkck+Zz84e12eB2
+ tSQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727421231; x=1728026031;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=p0aIJUbbD52CiHFs3mdVWZKQuKglsVGCitNlq5GvifM=;
+ b=dHwVpPIg5NZBPSlV6VZTTqhqqwmbcsytZye6048pk1V7LgINsoRxHKBwtGfyjYMwVB
+ xs1irpwm9rcReHCAgL6UTlp4qPjlYF7DsnxdROQA9igf/blG1SKnEVMk5sSFr53rUCGR
+ nIwX7hyzFvMmQxqmUbiFeYXAUTZwV0+vzlmlKyQunrKwYQuI52CzNS1Bi3oMP/VxjPs4
+ 6zGgsucaA4D3xROB2ySKEIzT3NSbvIBtg6W8w9t3eNJnVAifHZ0x73vEt9afhlOWRWtu
+ IlmK0c/QmbMOyH58/6VJKDjKl3q5V3+tMMv4khaaTvbj5tAV8dW9qZ25XkjINux9pGkl
+ p/RQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV6i3r+B+9T7DvbtW0cpYs0zU1xAY4jvVxtB9WPD7rVDH9SzoNc8N0FMxL253gC9SvSjelbibSr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyWf2B+t6oT4z0EF2YfavCjQt9XtRfIIrvjUIYombWu2BTly6v7
+ hi5kPdiFOv0jchphug+FUcH0yDhzvzAzYECLNLVnVXmpQrvbD0PPpggS/0ia
+X-Google-Smtp-Source: AGHT+IH6EoyB/O9NpehSkDLfcJc1JKDwv4BKel9Kmv72mH3S9Ya/s5jw5ErTh/bsCHbB6CFncJS3Mg==
+X-Received: by 2002:a05:600c:348b:b0:42b:af5a:109 with SMTP id
+ 5b1f17b1804b1-42f584646b9mr13072295e9.24.1727421230533; 
+ Fri, 27 Sep 2024 00:13:50 -0700 (PDT)
+Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42e96a52915sm65924055e9.39.2024.09.27.00.13.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 27 Sep 2024 00:13:49 -0700 (PDT)
+Message-ID: <98980fa6-2dca-4195-9afc-6311a1c35dc4@gmail.com>
+Date: Fri, 27 Sep 2024 09:13:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 27 Sep 2024 07:38:42 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: simplify vram alloc logic since 2GB
+ limitation removed
+To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org,
+ "Paneer Selvam, Arunpravin" <Arunpravin.PaneerSelvam@amd.com>
+Cc: Philip.Yang@amd.com, Felix.Kuehling@amd.com
+References: <20240923081931.2126969-1-yifan1.zhang@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20240923081931.2126969-1-yifan1.zhang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,34 +85,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This commit updates described non-existent parameters 'wave_cnt' and
-'vmid', and failed to describe the existing 'queue_cnt' parameter.
+Arun please take a look at that.
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c:954: warning: Excess function parameter 'vmid' description in 'get_wave_count'.
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c:954: warning: Excess function parameter 'wave_cnt' description in 'get_wave_count'.
+Looks valid to me in general.
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=11144
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Thanks,
+Christian.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-index 3bc0cbf45bc5..247d927438e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-@@ -944,9 +944,7 @@ static void unlock_spi_csq_mutexes(struct amdgpu_device *adev)
-  *
-  * @adev: Handle of device whose registers are to be read
-  * @queue_idx: Index of queue in the queue-map bit-field
-- * @wave_cnt: Output parameter updated with number of waves in flight
-- * @vmid: Output parameter updated with VMID of queue whose wave count
-- *        is being collected
-+ * @queue_cnt: Output parameter updated with number of waves in flight
-  * @inst: xcc's instance number on a multi-XCC setup
-  */
- static void get_wave_count(struct amdgpu_device *adev, int queue_idx,
--- 
-2.32.0.3.g01195cf9f
+Am 23.09.24 um 10:19 schrieb Yifan Zhang:
+> Make vram alloc loop simpler after 2GB limitation removed.
+>
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 15 +++++----------
+>   1 file changed, 5 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> index 7d26a962f811..3d129fd61fa7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+> @@ -455,7 +455,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   	struct amdgpu_bo *bo = ttm_to_amdgpu_bo(tbo);
+>   	u64 vis_usage = 0, max_bytes, min_block_size;
+>   	struct amdgpu_vram_mgr_resource *vres;
+> -	u64 size, remaining_size, lpfn, fpfn;
+> +	u64 size, lpfn, fpfn;
+>   	unsigned int adjust_dcc_size = 0;
+>   	struct drm_buddy *mm = &mgr->mm;
+>   	struct drm_buddy_block *block;
+> @@ -516,25 +516,23 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   	    adev->gmc.gmc_funcs->get_dcc_alignment)
+>   		adjust_dcc_size = amdgpu_gmc_get_dcc_alignment(adev);
+>   
+> -	remaining_size = (u64)vres->base.size;
+> +	size = (u64)vres->base.size;
+>   	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS && adjust_dcc_size) {
+>   		unsigned int dcc_size;
+>   
+>   		dcc_size = roundup_pow_of_two(vres->base.size + adjust_dcc_size);
+> -		remaining_size = (u64)dcc_size;
+> +		size = (u64)dcc_size;
+>   
+>   		vres->flags |= DRM_BUDDY_TRIM_DISABLE;
+>   	}
+>   
+>   	mutex_lock(&mgr->lock);
+> -	while (remaining_size) {
+> +	while (true) {
+>   		if (tbo->page_alignment)
+>   			min_block_size = (u64)tbo->page_alignment << PAGE_SHIFT;
+>   		else
+>   			min_block_size = mgr->default_page_size;
+>   
+> -		size = remaining_size;
+> -
+>   		if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS && adjust_dcc_size)
+>   			min_block_size = size;
+>   		else if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
+> @@ -562,10 +560,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+>   		if (unlikely(r))
+>   			goto error_free_blocks;
+>   
+> -		if (size > remaining_size)
+> -			remaining_size = 0;
+> -		else
+> -			remaining_size -= size;
+> +		break;
+>   	}
+>   	mutex_unlock(&mgr->lock);
+>   
 
