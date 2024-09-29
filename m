@@ -2,51 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 770B9988CD9
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Sep 2024 01:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9CF9894E0
+	for <lists+amd-gfx@lfdr.de>; Sun, 29 Sep 2024 12:49:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29A5D10ED40;
-	Fri, 27 Sep 2024 23:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB1C210E144;
+	Sun, 29 Sep 2024 10:49:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TzDTyW7z";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mRYpoNYf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDAD10ED3C;
- Fri, 27 Sep 2024 23:06:19 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 0A4845C479C;
- Fri, 27 Sep 2024 23:06:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D492C4CECE;
- Fri, 27 Sep 2024 23:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727478378;
- bh=e69DCfIRrx1HCBMhyuWL56YP8dt8rtB8OVAtl08htIY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=TzDTyW7zZ8W9KYTI3s+nZAY9y/8eMyqQvW9YkHAgcp31RzIflvVCrSB5ze8q5JWfx
- s9TXcIZU9MH2/szsAP9qiNlI3xz28l7sMkjdf0jWaeioOPPtrey+ZPOzFVmXBdT2NF
- 1tALQ2aTwLfeZUhwlwonoWfWgijjW0yIcFCuuTqRBNAH/3PA+4XFro+Y+LwyzdJy9V
- jHQwWjwatzmjOZd5M3+6Dq4qBNEcwaf9HlrXIWgyGPaBEnSxJqubWhHj0lxPQLkyDr
- 2AF9EppKCFvAaWJZISEI7M9114HCta37o7wzsbWNth8lmHBeyR+9a3NR7rxZBSy4SF
- jsA251cECxLRQ==
-From: Mario Limonciello <superm1@kernel.org>
-To: Alex Hung <alex.hung@amd.com>,
- Alexander Deucher <alexander.deucher@amd.com>,
- Melissa Wen <mwen@igalia.com>
-Cc: kernel-dev@igalia.com, Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- harry.wentland@amd.com, sunpeng.li@amd.com,
- Mark Pearson <mpearson-lenovo@squebb.ca>
-Subject: [PATCH v8 5/5] drm/amd/display: Fetch the EDID from _DDC if available
- for eDP
-Date: Fri, 27 Sep 2024 18:06:00 -0500
-Message-ID: <20240927230600.2619844-6-superm1@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240927230600.2619844-1-superm1@kernel.org>
-References: <20240927230600.2619844-1-superm1@kernel.org>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2CC010E111
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Sep 2024 10:49:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lTm9UtS8VDJzJhKQVDMsCWp3AjXug3jIHmXwbFqIqYobgAEBCvrWcMdNzRLpolsx0TZWcykRuuBVL0QEAxPnX5HNX+vPhzg+jIA8icfOMTCsQe03hPmRV9jrXHe8iMOPJ32dM455Hsd2qW3E7GIa9plmcTZbUuasnTSxXjspcqMIKC/elXkMa9HKNRLxvXkfuV0h5BntIdELw85TFkisRy9n/7ivVgyaweFi1vBsh1sbEDo20VQ0TvYW7gopC8iVeL0jb7xitBfw/Nalt8W0pY+ZD0SZCor2rcKuBEDrRAJuVRqCzeG4CSAfc84rSrBl58FOdZqmyRvoR/qUQzh8uQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yhhQEudBm8Sp60D2o7Q9iOrPZ09PSJoiNhEWmY+4cMY=;
+ b=qiEixXfZ33kphxlEqqw0nH8B4NJuguXkwrJ2ZUaBdxIbjBFPfM65gsBxROU9QbpG8VDpWrcUW4JmVLffmyJzZKdHs3mTQRmZvhrIT2zv2Rafmn6UhlLu+N4nMJE6Lmeh59Oi4Pz1tUHmN1I2Xyjeo6J/7YWx7FgKkHlo8olJxXFYc39xZX3OkizgNDqP+Rz6qITI06WC6pZnaKXBdvBE5H9h3+KKyRigAZSjTLW/ufoIwcql8RoSwh8yssozCUDgFq5JrB3X1qj9Fbg7rcvDdZbNXltcWm+v1HjdHvisOKFjTh/BBAUcSGh6Jm0Nl+wAWZ3Z8l0ij1rzfYU+w1jeuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yhhQEudBm8Sp60D2o7Q9iOrPZ09PSJoiNhEWmY+4cMY=;
+ b=mRYpoNYfrsdmXmyc0+g24g4di4JXv7v/7hbuuKTKYHU3qhLtDjuUcIvV4INkdpln1o6sVQ78XffsCbx27/8oib2eSAIm2rxn8sqTJkAJCj2ZC7ldQ0XVxv9TZ98w3q6dktkuPpvc+DS14xx5Q+5n1uOKoyYRcFLhmGr45RetQg4=
+Received: from SA1P222CA0167.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c3::15)
+ by CH2PR12MB4325.namprd12.prod.outlook.com (2603:10b6:610:a9::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Sun, 29 Sep
+ 2024 10:49:14 +0000
+Received: from SN1PEPF000252A4.namprd05.prod.outlook.com
+ (2603:10b6:806:3c3:cafe::e8) by SA1P222CA0167.outlook.office365.com
+ (2603:10b6:806:3c3::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26 via Frontend
+ Transport; Sun, 29 Sep 2024 10:49:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SN1PEPF000252A4.mail.protection.outlook.com (10.167.242.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8026.11 via Frontend Transport; Sun, 29 Sep 2024 10:49:13 +0000
+Received: from jenkins-jiadong-1.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Sun, 29 Sep 2024 05:49:11 -0500
+From: <jiadong.zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Jiadong Zhu <Jiadong.Zhu@amd.com>
+Subject: [PATCH 1/3] drm/amd/pm: update smu_v13_0_6 smu header
+Date: Sun, 29 Sep 2024 18:48:54 +0800
+Message-ID: <20240929104856.46010-1-jiadong.zhu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A4:EE_|CH2PR12MB4325:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbeee906-bb73-4d7a-c70e-08dce0745b9d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|82310400026|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wZc8avcRettuyW3+vApVkqaSBOQdwIj4dqBja/VRYA1ISMqW7E8x0DAFWbuI?=
+ =?us-ascii?Q?T5fF+yLHAsnzisBp8h2nMq/+GemAOnsGSOhCkmupnX4+bqCs2o0NcQH3d2nn?=
+ =?us-ascii?Q?wEPPNnJgNyqU/aNKLklmB2C2rQUPpn+kSoNFSv4diWUZlYNPNbbr+K1C5Xnm?=
+ =?us-ascii?Q?nVZv2NYw6VtRTDAiNqTFdtj/2vP8R012gQAAV2W21lVQP+n+AxoZuoaPhS6u?=
+ =?us-ascii?Q?BefsGUvG1z1xeDJ6arv9RLIhymhxkKQ7lnWXShXvAdylg/agwVR9SnBXApyb?=
+ =?us-ascii?Q?NeielTEAJ2wDTOh1JRd1drK3KnSBgFWcgWhLNKA4jiUdrAHluqWkRLT4iVGv?=
+ =?us-ascii?Q?bHSlAKIIm2a5aSzquV6s4stuETR4m3/+KBfe7XUwDFXbWfXFmX0fmZCELSIJ?=
+ =?us-ascii?Q?6yxny+HHomVbc9/EICGMVXUeMw9ioZffKUwCeJzbVG4pLvvEDEudp8NFD8A+?=
+ =?us-ascii?Q?7RGA8mDAS0GGOSK2/uLhqi4SZ/QgSV9/xcfoUyHn7GoqkVTX/51vQQbiCxde?=
+ =?us-ascii?Q?IYGWRUUM3YeIKHyF+hI48YSytp8HBk1aXbm9DyBmHS5UhkZafHaXEcpbphSL?=
+ =?us-ascii?Q?CZFL7TSTIU9RT8HSyp9P7y2MtGBbuiLTj10yiLelTPAOTI2F6xrzZTLhknyX?=
+ =?us-ascii?Q?awxhQyxorbE68HpWXE6Yj96NpcbO+hu6gR2oAj8Xh0Pkib6LTrVkJHMP2BaP?=
+ =?us-ascii?Q?lWraXO8So6ckELQWjABkKR6BqQxcBHnBUZV5AV64gqORcomt84j+QcmDkqFp?=
+ =?us-ascii?Q?a2+MySRInWEFjQT3OuD4nUqOIgS4XcBLyVfA8OZLjK8F0HxD3X5Q7FRRYzJN?=
+ =?us-ascii?Q?rhct2Y3Q6gukO+cqDne0kZFIbVBy9Ws+b2h5WnjnjQFrY7iovEX1z3L46GHG?=
+ =?us-ascii?Q?7BAo2EsK5k2E1qN18/GSNR5Zm9kJNBYGo/XpEYlXd1Z1ZwxmdO2yK8grDyRa?=
+ =?us-ascii?Q?mcNN/M/Ld8gW4B45Pu0128lq0p7BeDgZ1f+PJf8VDaERJr+zvpNUjaaBoKpm?=
+ =?us-ascii?Q?cqaiIFpkRCDnDJ+BYiGR3h+gJU4u65WfsbdkV/66EX4LX1MMIjaXCl2iaJ4R?=
+ =?us-ascii?Q?8HfhlulpeRDm3PFr1DjC10mKPfx41kB6KZTeSOdoRxqoEx87dOcRrB10QgUU?=
+ =?us-ascii?Q?aTVdj6HpwbC/YyUHsbx31LGyEMaYQgo8OotjipRRPAh4VssE2KrbnUeQyadT?=
+ =?us-ascii?Q?ERPyz/SHJ4mNrb52TrdtR2BgGa9pbZbZppr9cbBBI6s5+44pDcTAF5+rJ76l?=
+ =?us-ascii?Q?vvxzKoC9Eg/hI/N8sNyC8Vs5kFdRVjw5AzHsnIhFq1oS/wCusPwRSfv+nEn9?=
+ =?us-ascii?Q?/tVyuOHZJ8AKdE+lTO564tqrxAGYH1DUCtCGAKvgW++Z6hUzGx71FydBrK6g?=
+ =?us-ascii?Q?zKNXnXus2ED/9DHyAUhv5luKntAgz0mubET5fLoqerdTrVu5YsP9JPycdKD+?=
+ =?us-ascii?Q?/AeyHO7KG/Xp+b1fUzRr8ddiJULSamXp?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2024 10:49:13.6881 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbeee906-bb73-4d7a-c70e-08dce0745b9d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4325
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,137 +129,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Mario Limonciello <mario.limonciello@amd.com>
+From: Jiadong Zhu <Jiadong.Zhu@amd.com>
 
-Some manufacturers have intentionally put an EDID that differs from
-the EDID on the internal panel on laptops.
+update smu header for sdma soft reset.
 
-Attempt to fetch this EDID if it exists and prefer it over the EDID
-that is provided by the panel. If a user prefers to use the EDID from
-the panel, offer a DC debugging parameter that would disable this.
-
-Reviewed-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
 ---
-v3:
- * Change message to INFO when using ACPI EDID
- * rebase
----
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 65 ++++++++++++++++++-
- drivers/gpu/drm/amd/include/amd_shared.h      |  5 ++
- 2 files changed, 67 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_ppsmc.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index b8004ccdcc33..7534e1624e4f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -23,6 +23,8 @@
-  *
-  */
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_ppsmc.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_ppsmc.h
+index 41cb681927e2..147bfb12fd75 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_ppsmc.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_6_ppsmc.h
+@@ -93,7 +93,8 @@
+ #define PPSMC_MSG_SelectPLPDMode                    0x40
+ #define PPSMC_MSG_RmaDueToBadPageThreshold          0x43
+ #define PPSMC_MSG_SelectPstatePolicy                0x44
+-#define PPSMC_Message_Count                         0x45
++#define PPSMC_MSG_ResetSDMA                         0x4D
++#define PPSMC_Message_Count                         0x4E
  
-+#include <acpi/video.h>
-+
- #include <linux/string.h>
- #include <linux/acpi.h>
- #include <linux/i2c.h>
-@@ -887,6 +889,60 @@ bool dm_helpers_is_dp_sink_present(struct dc_link *link)
- 	return dp_sink_present;
- }
- 
-+static int
-+dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
-+{
-+	struct drm_connector *connector = data;
-+	struct acpi_device *acpidev = ACPI_COMPANION(connector->dev->dev);
-+	unsigned char start = block * EDID_LENGTH;
-+	void *edid;
-+	int r;
-+
-+	if (!acpidev)
-+		return -ENODEV;
-+
-+	/* fetch the entire edid from BIOS */
-+	r = acpi_video_get_edid(acpidev, ACPI_VIDEO_DISPLAY_LCD, -1, &edid);
-+	if (r < 0) {
-+		drm_dbg(connector->dev, "Failed to get EDID from ACPI: %d\n", r);
-+		return r;
-+	}
-+	if (len > r || start > r || start + len > r) {
-+		r = -EINVAL;
-+		goto cleanup;
-+	}
-+
-+	memcpy(buf, edid + start, len);
-+	r = 0;
-+
-+cleanup:
-+	kfree(edid);
-+
-+	return r;
-+}
-+
-+static const struct drm_edid *
-+dm_helpers_read_acpi_edid(struct amdgpu_dm_connector *aconnector)
-+{
-+	struct drm_connector *connector = &aconnector->base;
-+
-+	if (amdgpu_dc_debug_mask & DC_DISABLE_ACPI_EDID)
-+		return NULL;
-+
-+	switch (connector->connector_type) {
-+	case DRM_MODE_CONNECTOR_LVDS:
-+	case DRM_MODE_CONNECTOR_eDP:
-+		break;
-+	default:
-+		return NULL;
-+	}
-+
-+	if (connector->force == DRM_FORCE_OFF)
-+		return NULL;
-+
-+	return drm_edid_read_custom(connector, dm_helpers_probe_acpi_edid, connector);
-+}
-+
- enum dc_edid_status dm_helpers_read_local_edid(
- 		struct dc_context *ctx,
- 		struct dc_link *link,
-@@ -909,8 +965,11 @@ enum dc_edid_status dm_helpers_read_local_edid(
- 	 * do check sum and retry to make sure read correct edid.
- 	 */
- 	do {
--
--		drm_edid = drm_edid_read_ddc(connector, ddc);
-+		drm_edid = dm_helpers_read_acpi_edid(aconnector);
-+		if (drm_edid)
-+			drm_info(connector->dev, "Using ACPI provided EDID for %s\n", connector->name);
-+		else
-+			drm_edid = drm_edid_read_ddc(connector, ddc);
- 		drm_edid_connector_update(connector, drm_edid);
- 
- 		/* DP Compliance Test 4.2.2.6 */
-@@ -1300,4 +1359,4 @@ bool dm_helpers_is_hdr_on(struct dc_context *ctx, struct dc_stream_state *stream
- {
- 	// TODO
- 	return false;
--}
-\ No newline at end of file
-+}
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index 3f91926a50e9..1ec7c5e5249e 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -337,6 +337,11 @@ enum DC_DEBUG_MASK {
- 	 * @DC_FORCE_IPS_ENABLE: If set, force enable all IPS, all the time.
- 	 */
- 	DC_FORCE_IPS_ENABLE = 0x4000,
-+	/**
-+	 * @DC_DISABLE_ACPI_EDID: If set, don't attempt to fetch EDID for
-+	 * eDP display from ACPI _DDC method.
-+	 */
-+	DC_DISABLE_ACPI_EDID = 0x8000,
- };
- 
- enum amd_dpm_forced_level;
+ //PPSMC Reset Types for driver msg argument
+ #define PPSMC_RESET_TYPE_DRIVER_MODE_1_RESET        0x1
 -- 
-2.43.0
+2.25.1
 
