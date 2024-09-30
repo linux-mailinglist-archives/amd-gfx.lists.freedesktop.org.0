@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4F498A52F
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B6598A534
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAB5110E4C8;
-	Mon, 30 Sep 2024 13:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0BA210E4DC;
+	Mon, 30 Sep 2024 13:31:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="a+jwIjbg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Hp0JZAmD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFFE010E3CD;
- Mon, 30 Sep 2024 08:57:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE5F10E3D6;
+ Mon, 30 Sep 2024 09:24:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
@@ -22,31 +22,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ksW1PaBLtCGSwLe9j0gLvai8oxFCvyaUi2E0QliHXBg=; b=a+jwIjbg4SAd3qP6VqRSAFC5ig
- AweUmlZ3eOBsbalYQFll2j3ZHqETDVZ+T4AAefYXt3cMIYoZa8Wn5TzHVxmOjn3woz+9lRhuovwUL
- QGYsJI5kayYqke2amJ/D28c7GBgDH4tbQdbtZ84+hcCgvqAai7lzJMCI2jnGQWkpr6wiDfU5JQbGd
- fKrJiVptLE6lavV9C1BJaXxEgVSkjIH+Ydo66G3zW0VyriBgKl4IdpBZpsesMKnabuVAzWKdNBoyi
- ORWASJNFMP0v3W6UWaVjbQZPrsGYgpwf8tpJzLXRfDEh60Q+NX0lA0sxP17lL0E3VgWXKEg812k0B
- qUesBylQ==;
+ bh=7Q5w8gEsZA4ne/753oq1P+zP4DXCpP3lG8+l7lPuoLA=; b=Hp0JZAmDiQIINtbLW6y2yaRMdV
+ nNeMYLUmqbZgP+gqE78mw3kfXvnJyYIUaKsmLP7VuozHYbajFHr8v2+cGfJuidqPmEMTWCPY2OjS4
+ v/HAQkR1U3FZV0T2ewEZv0BbVyQXfkwKoMAKOP/n/EPRaOhVfgjyaTMGgASHulKyUJpSXRwzg2kgT
+ H0O8bMLIwRJ7HRTpQF+KTERBl7dXBybgyxq8bY5OoEwRX+z97m31RLA2oARPDgDjsGpyMqB6LeRXo
+ He5TYm/MlAR8aUGhTjnEcvdAmM2C+nUd5F9xofXP3/S5bjEP/KLFtMZsr12jva87faFJZsE4VPWMo
+ 0ngbPeZA==;
 Received: from [90.241.98.187] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1svCDJ-002lzL-Q0; Mon, 30 Sep 2024 10:57:05 +0200
-Message-ID: <a169226b-c171-4a6d-88f6-d59214cb7b5d@igalia.com>
-Date: Mon, 30 Sep 2024 09:57:04 +0100
+ id 1svCeA-002mam-Oo; Mon, 30 Sep 2024 11:24:50 +0200
+Message-ID: <ef541212-0799-4891-8632-baf86fa88df6@igalia.com>
+Date: Mon, 30 Sep 2024 10:24:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] drm: add DRM_SET_CLIENT_NAME ioctl
+Subject: Re: [PATCH v4 6/6] drm/amdgpu: use drm_file::name in
+ task_info::process_desc
 To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
  tursulin@igalia.com, simona.vetter@ffwll.ch, robdclark@gmail.com,
  alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
  dmitry.osipenko@collabora.com
 References: <20240927084848.263718-1-pierre-eric.pelloux-prayer@amd.com>
- <20240927084848.263718-2-pierre-eric.pelloux-prayer@amd.com>
+ <20240927084848.263718-7-pierre-eric.pelloux-prayer@amd.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20240927084848.263718-2-pierre-eric.pelloux-prayer@amd.com>
+In-Reply-To: <20240927084848.263718-7-pierre-eric.pelloux-prayer@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 30 Sep 2024 13:31:10 +0000
@@ -66,269 +67,181 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 On 27/09/2024 09:48, Pierre-Eric Pelloux-Prayer wrote:
-> Giving the opportunity to userspace to associate a free-form
-> name with a drm_file struct is helpful for tracking and debugging.
+> If a drm_file name is set append it to the process name.
 > 
-> This is similar to the existing DMA_BUF_SET_NAME ioctl.
+> This information is useful with the virtio/native-context driver: this
+> allows the guest applications identifier to visible in amdgpu's output.
 > 
-> Access to client_name is protected by a mutex, and the 'clients' debugfs
-> file has been updated to print it.
+> The output in amdgpu_vm_info/amdgpu_gem_info looks like this:
+>     pid:12255	Process:glxgears/test-set-fd-name ----------
 > 
-> Userspace MR to use this ioctl:
->     https://gitlab.freedesktop.org/virgl/virglrenderer/-/merge_requests/1428
-> 
-> If the string passed by userspace contains chars that would mess up output
-> when it's going to be printed (in dmesg, fdinfo, etc), -EINVAL is returned.
-> 
-> A 0-length string is a valid use, and clears the existing name.
-> 
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 > Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 > ---
->   drivers/gpu/drm/drm_debugfs.c | 14 ++++++---
->   drivers/gpu/drm/drm_file.c    |  5 ++++
->   drivers/gpu/drm/drm_ioctl.c   | 55 +++++++++++++++++++++++++++++++++++
->   include/drm/drm_file.h        |  9 ++++++
->   include/uapi/drm/drm.h        | 17 +++++++++++
->   5 files changed, 96 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  1 +
+>   .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  3 ++-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |  2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 26 +++++++++++++++----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |  2 +-
+>   drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  3 +++
+>   6 files changed, 29 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-> index 6b239a24f1df..5c99322a4c6f 100644
-> --- a/drivers/gpu/drm/drm_debugfs.c
-> +++ b/drivers/gpu/drm/drm_debugfs.c
-> @@ -78,12 +78,14 @@ static int drm_clients_info(struct seq_file *m, void *data)
->   	kuid_t uid;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> index f9d119448442..ad909173e419 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> @@ -299,6 +299,7 @@ int amdgpu_amdkfd_gpuvm_set_vm_pasid(struct amdgpu_device *adev,
+>   				     struct amdgpu_vm *avm, u32 pasid);
+>   int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct amdgpu_device *adev,
+>   					struct amdgpu_vm *avm,
+> +					struct drm_file *filp,
+>   					void **process_info,
+>   					struct dma_fence **ef);
+>   void amdgpu_amdkfd_gpuvm_release_process_vm(struct amdgpu_device *adev,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> index 6d5fd371d5ce..172882af6705 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> @@ -1558,6 +1558,7 @@ int amdgpu_amdkfd_gpuvm_set_vm_pasid(struct amdgpu_device *adev,
 >   
->   	seq_printf(m,
-> -		   "%20s %5s %3s master a %5s %10s\n",
-> +		   "%20s %5s %3s master a %5s %10s %*s\n",
->   		   "command",
->   		   "tgid",
->   		   "dev",
->   		   "uid",
-> -		   "magic");
-> +		   "magic",
-> +		   DRM_CLIENT_NAME_MAX_LEN,
-> +		   "name");
+>   int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct amdgpu_device *adev,
+>   					   struct amdgpu_vm *avm,
+> +					   struct drm_file *filp,
+>   					   void **process_info,
+>   					   struct dma_fence **ef)
+>   {
+> @@ -1577,7 +1578,7 @@ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct amdgpu_device *adev,
+>   	if (ret)
+>   		return ret;
 >   
->   	/* dev->filelist is sorted youngest first, but we want to present
->   	 * oldest first (i.e. kernel, servers, clients), so walk backwardss.
-> @@ -94,19 +96,23 @@ static int drm_clients_info(struct seq_file *m, void *data)
->   		struct task_struct *task;
->   		struct pid *pid;
+> -	amdgpu_vm_set_task_info(avm);
+> +	amdgpu_vm_set_task_info(avm, filp);
 >   
-> +		mutex_lock(&priv->client_name_lock);
->   		rcu_read_lock(); /* Locks priv->pid and pid_task()->comm! */
->   		pid = rcu_dereference(priv->pid);
->   		task = pid_task(pid, PIDTYPE_TGID);
->   		uid = task ? __task_cred(task)->euid : GLOBAL_ROOT_UID;
-> -		seq_printf(m, "%20s %5d %3d   %c    %c %5d %10u\n",
-> +		seq_printf(m, "%20s %5d %3d   %c    %c %5d %10u %*s\n",
->   			   task ? task->comm : "<unknown>",
->   			   pid_vnr(pid),
->   			   priv->minor->index,
->   			   is_current_master ? 'y' : 'n',
->   			   priv->authenticated ? 'y' : 'n',
->   			   from_kuid_munged(seq_user_ns(m), uid),
-> -			   priv->magic);
-> +			   priv->magic,
-> +			   DRM_CLIENT_NAME_MAX_LEN,
-> +			   priv->client_name ? priv->client_name : "<unset>");
->   		rcu_read_unlock();
-> +		mutex_unlock(&priv->client_name_lock);
->   	}
->   	mutex_unlock(&dev->filelist_mutex);
 >   	return 0;
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index 01fde94fe2a9..64f5e15304e7 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -158,6 +158,7 @@ struct drm_file *drm_file_alloc(struct drm_minor *minor)
+>   }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> index 891128ecee6d..5d43e24906d2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> @@ -1178,7 +1178,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
+>   	}
 >   
->   	spin_lock_init(&file->master_lookup_lock);
->   	mutex_init(&file->event_read_lock);
-> +	mutex_init(&file->client_name_lock);
+>   	/* Use this opportunity to fill in task info for the vm */
+> -	amdgpu_vm_set_task_info(vm);
+> +	amdgpu_vm_set_task_info(vm, p->filp);
 >   
->   	if (drm_core_check_feature(dev, DRIVER_GEM))
->   		drm_gem_open(dev, file);
-> @@ -259,6 +260,10 @@ void drm_file_free(struct drm_file *file)
->   	WARN_ON(!list_empty(&file->event_list));
->   
->   	put_pid(rcu_access_pointer(file->pid));
-> +
-> +	mutex_destroy(&file->client_name_lock);
-> +	kfree(file->client_name);
-> +
->   	kfree(file);
+>   	if (adev->debug_vm) {
+>   		/* Invalidate all BOs to test for userspace bugs */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> index cec0a5cffcc8..f6e2be6d4e9e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+> @@ -2355,25 +2355,40 @@ amdgpu_vm_get_task_info_pasid(struct amdgpu_device *adev, u32 pasid)
+>   			amdgpu_vm_get_vm_from_pasid(adev, pasid));
 >   }
 >   
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index 51f39912866f..df8d59bd5241 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -540,6 +540,59 @@ int drm_version(struct drm_device *dev, void *data,
->   	return err;
->   }
+> -static int amdgpu_vm_create_task_info(struct amdgpu_vm *vm)
+> +static int amdgpu_vm_create_task_info(struct amdgpu_vm *vm, struct drm_file *filp)
+>   {
+>   	char process_name[TASK_COMM_LEN];
+> -	int desc_len;
+> +	size_t desc_len;
+
+Nit - would be nicer to avoid the churn from patch to patch by starting 
+with the correct type in the previous patch.
+
 >   
-> +/*
-> + * Check if the passed string contains control char or spaces or
-> + * anything that would mess up a formatted output.
-> + */
-> +static int drm_validate_value_string(const char *value, size_t len)
-> +{
-> +	int i;
+>   	get_task_comm(process_name, current->group_leader);
+>   	desc_len = strlen(process_name);
+>   
+> +	mutex_lock(&filp->client_name_lock);
+> +	if (filp->client_name)
+> +		desc_len += 1 + strlen(filp->client_name);
 > +
-> +	for (i = 0; i < len; i++) {
-> +		if (value[i] <= 32 || value[i] >= 127)
-
-Would !isascii() || isgraph() work for what you have in mind here, 
-considering the comment from the cover letter about the extended ASCII?
-
-> +			return -EINVAL;
+>   	vm->task_info = kzalloc(
+>   		struct_size(vm->task_info, process_desc, desc_len + 1),
+>   		GFP_KERNEL);
+>   
+> -	if (!vm->task_info)
+> +	if (!vm->task_info) {
+> +		mutex_unlock(&filp->client_name_lock);
+>   		return -ENOMEM;
 > +	}
-> +	return 0;
-> +}
-> +
-> +static int drm_set_client_name(struct drm_device *dev, void *data,
-> +			       struct drm_file *file_priv)
-> +{
-> +	struct drm_set_client_name *name = data;
-> +	void __user *user_ptr;
-> +	char *new_name;
-> +	size_t len;
-> +
-> +	if (name->name_len > DRM_CLIENT_NAME_MAX_LEN)
-> +		return -EINVAL;
-> +
-> +	user_ptr = u64_to_user_ptr(name->name);
-> +
-> +	new_name = memdup_user_nul(user_ptr, name->name_len);
-> +	if (IS_ERR(new_name))
-> +		return PTR_ERR(new_name);
-> +
-> +	len = strlen(new_name);
-> +
-> +	if (len != name->name_len ||
-> +	    drm_validate_value_string(new_name, len) < 0) {
-> +		kfree(new_name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	mutex_lock(&file_priv->client_name_lock);
-> +	kfree(file_priv->client_name);
-> +	if (len > 0) {
-> +		file_priv->client_name = new_name;
-> +	} else {
-> +		kfree(new_name);
-> +		file_priv->client_name = NULL;
-> +	}
-> +	mutex_unlock(&file_priv->client_name_lock);
+>   
+>   	/* Set process attributes now. */
+>   	vm->task_info->tgid = current->group_leader->pid;
+>   	strscpy(vm->task_info->process_desc, process_name, desc_len + 1);
+>   
+> +	if (filp->client_name) {
+> +		size_t p_len = strlen(process_name);
 
-FWIW I still find it hard to look at needlessly allocating a string when 
-userspace has passed name->name_len == 0.
+Another nit is that you are taking this strlen twice. Maybe cache it in 
+a top level local so it looks cleaner.
 
-I would have done it something like this:
-
-{
-	struct drm_set_client_name *name = data;
-	size_t len = name->len;
-	char *new_name;
-
-	if (len > DRM_CLIENT_NAME_MAX_LEN) {
-		return -EINVAL;
-	} else if (len) {
-		new_name = memdup_user_nul(u64_to_user_ptr(name->name), len);
-		if (IS_ERR(new_name))
-			return PTR_ERR(new_name);
-
-		if (strlen(new_name) != len ||
-		    drm_validate_value_string(new_name, len) < 0) {
-			kfree(new_name);
-			return -EINVAL;
-		}
-	} else {
-		new_name = NULL;
-	}
-
-	mutex_lock(&file_priv->client_name_lock);
-	kfree(file_priv->client_name);
-	file_priv->client_name = new_name;
-	mutex_unlock(&file_priv->client_name_lock);
-
-But whatever, you can keep the r-b regardless.
+But those are just nits to make the series look more polished. 
+Fundamentals look fine to me so up to you if you want to respin or not.
 
 Regards,
 
 Tvrtko
 
 > +
-> +	return 0;
-> +}
+> +		vm->task_info->process_desc[p_len] = '/';
+> +		strscpy(&vm->task_info->process_desc[p_len + 1],
+> +			filp->client_name, (desc_len + 1) - (p_len + 1));
+> +	}
+> +	mutex_unlock(&filp->client_name_lock);
 > +
->   static int drm_ioctl_permit(u32 flags, struct drm_file *file_priv)
->   {
->   	/* ROOT_ONLY is only for CAP_SYS_ADMIN */
-> @@ -610,6 +663,8 @@ static const struct drm_ioctl_desc drm_ioctls[] = {
->   	DRM_IOCTL_DEF(DRM_IOCTL_PRIME_HANDLE_TO_FD, drm_prime_handle_to_fd_ioctl, DRM_RENDER_ALLOW),
->   	DRM_IOCTL_DEF(DRM_IOCTL_PRIME_FD_TO_HANDLE, drm_prime_fd_to_handle_ioctl, DRM_RENDER_ALLOW),
->   
-> +	DRM_IOCTL_DEF(DRM_IOCTL_SET_CLIENT_NAME, drm_set_client_name, DRM_RENDER_ALLOW),
-> +
->   	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETPLANERESOURCES, drm_mode_getplane_res, 0),
->   	DRM_IOCTL_DEF(DRM_IOCTL_MODE_GETCRTC, drm_mode_getcrtc, 0),
->   	DRM_IOCTL_DEF(DRM_IOCTL_MODE_SETCRTC, drm_mode_setcrtc, DRM_MASTER),
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index 8c0030c77308..d4f1c115ea0f 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -388,6 +388,15 @@ struct drm_file {
->   	 * Per-file buffer caches used by the PRIME buffer sharing code.
->   	 */
->   	struct drm_prime_file_private prime;
-> +
-> +	/**
-> +	 * @client_name:
-> +	 *
-> +	 * Userspace-provided name; useful for accounting and debugging.
-> +	 */
-> +	const char *client_name;
-> +	/** @name_lock: Protects @client_name. */
-> +	struct mutex client_name_lock;
->   };
->   
->   /**
-> diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
-> index 16122819edfe..7fba37b94401 100644
-> --- a/include/uapi/drm/drm.h
-> +++ b/include/uapi/drm/drm.h
-> @@ -1024,6 +1024,13 @@ struct drm_crtc_queue_sequence {
->   	__u64 user_data;	/* user data passed to event */
->   };
->   
-> +#define DRM_CLIENT_NAME_MAX_LEN		64
-> +struct drm_set_client_name {
-> +	__u64 name_len;
-> +	__u64 name;
-> +};
-> +
-> +
->   #if defined(__cplusplus)
+>   	kref_init(&vm->task_info->refcount);
+>   	return 0;
 >   }
->   #endif
-> @@ -1288,6 +1295,16 @@ extern "C" {
+> @@ -2382,11 +2397,12 @@ static int amdgpu_vm_create_task_info(struct amdgpu_vm *vm)
+>    * amdgpu_vm_set_task_info - Sets VMs task info.
+>    *
+>    * @vm: vm for which to set the info
+> + * @filp: drm_file instance
 >    */
->   #define DRM_IOCTL_MODE_CLOSEFB		DRM_IOWR(0xD0, struct drm_mode_closefb)
+> -void amdgpu_vm_set_task_info(struct amdgpu_vm *vm)
+> +void amdgpu_vm_set_task_info(struct amdgpu_vm *vm, struct drm_file *filp)
+>   {
+>   	if (!vm->task_info) {
+> -		if (amdgpu_vm_create_task_info(vm))
+> +		if (amdgpu_vm_create_task_info(vm, filp))
+>   			return;
+>   	} else if (vm->task_info->pid == current->pid) {
+>   		return;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> index 44da250217be..8df3dece54c2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> @@ -561,7 +561,7 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
+>   			    u32 vmid, u32 node_id, uint64_t addr, uint64_t ts,
+>   			    bool write_fault);
 >   
-> +/**
-> + * DRM_IOCTL_SET_CLIENT_NAME - Attach a name to a drm_file
-> + *
-> + * Having a name allows for easier tracking and debugging.
-> + * The length of the name (without null ending char) must be
-> + * <= DRM_CLIENT_NAME_MAX_LEN.
-> + * The call will fail if the name contains whitespaces or non-printable chars.
-> + */
-> +#define DRM_IOCTL_SET_CLIENT_NAME	DRM_IOWR(0xD1, struct drm_set_client_name)
-> +
->   /*
->    * Device specific ioctls should only be in their respective headers
->    * The device specific ioctl range is from 0x40 to 0x9f.
+> -void amdgpu_vm_set_task_info(struct amdgpu_vm *vm);
+> +void amdgpu_vm_set_task_info(struct amdgpu_vm *vm, struct drm_file *filp);
+>   
+>   void amdgpu_vm_move_to_lru_tail(struct amdgpu_device *adev,
+>   				struct amdgpu_vm *vm);
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> index a902950cc060..e473fe433d3f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> @@ -1654,6 +1654,7 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+>   			       struct file *drm_file)
+>   {
+>   	struct amdgpu_fpriv *drv_priv;
+> +	struct drm_file *filp;
+>   	struct amdgpu_vm *avm;
+>   	struct kfd_process *p;
+>   	struct dma_fence *ef;
+> @@ -1673,8 +1674,10 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+>   
+>   	p = pdd->process;
+>   	dev = pdd->dev;
+> +	filp = drm_file->private_data;
+>   
+>   	ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(dev->adev, avm,
+> +						     filp,
+>   						     &p->kgd_process_info,
+>   						     &ef);
+>   	if (ret) {
