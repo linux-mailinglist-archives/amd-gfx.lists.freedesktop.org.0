@@ -2,30 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD4C98A71B
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 16:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B8798A714
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 16:32:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 341A510E51D;
-	Mon, 30 Sep 2024 14:32:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25D8710E514;
+	Mon, 30 Sep 2024 14:32:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9B010E51A
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 14:32:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40DC210E516
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 14:32:20 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 48UEWEi02682322; Mon, 30 Sep 2024 20:02:14 +0530
+ 48UEWFLj2682327; Mon, 30 Sep 2024 20:02:15 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 48UEWE1T2682321;
- Mon, 30 Sep 2024 20:02:14 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 48UEWFWj2682326;
+ Mon, 30 Sep 2024 20:02:15 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Boyuan Zhang <boyuan.zhang@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH 01/12] drm/amdgpu: remove the dummy fn acp_early_init
-Date: Mon, 30 Sep 2024 20:00:08 +0530
-Message-Id: <20240930143019.2682202-2-sunil.khatri@amd.com>
+Subject: [PATCH 02/12] drm/amdgpu: update the handle ptr in late_fini
+Date: Mon, 30 Sep 2024 20:00:09 +0530
+Message-Id: <20240930143019.2682202-3-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240930143019.2682202-1-sunil.khatri@amd.com>
 References: <20240930143019.2682202-1-sunil.khatri@amd.com>
@@ -45,39 +45,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-acp_early_init is a dummy function and is not being
-used and hence removed.
+Update the *handle to amdgpu_ip_block ptr for all
+functions pointers of late_fini.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c       | 2 +-
+ drivers/gpu/drm/amd/include/amd_shared.h         | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c | 4 ++--
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        | 4 ++--
+ 4 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-index 08f5a8614356..8c85d7a9e0b0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-@@ -585,11 +585,6 @@ static int acp_resume(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 28c1bf6867ca..9eb07bdbdea8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3392,7 +3392,7 @@ static int amdgpu_device_ip_fini(struct amdgpu_device *adev)
+ 		if (!adev->ip_blocks[i].status.late_initialized)
+ 			continue;
+ 		if (adev->ip_blocks[i].version->funcs->late_fini)
+-			adev->ip_blocks[i].version->funcs->late_fini((void *)adev);
++			adev->ip_blocks[i].version->funcs->late_fini(&adev->ip_blocks[i]);
+ 		adev->ip_blocks[i].status.late_initialized = false;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index 980a6a740689..615f880d3e80 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -386,7 +386,7 @@ struct amd_ip_funcs {
+ 	int (*early_fini)(struct amdgpu_ip_block *ip_block);
+ 	int (*hw_init)(void *handle);
+ 	int (*hw_fini)(void *handle);
+-	void (*late_fini)(void *handle);
++	void (*late_fini)(struct amdgpu_ip_block *ip_block);
+ 	int (*prepare_suspend)(void *handle);
+ 	int (*suspend)(void *handle);
+ 	int (*resume)(void *handle);
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+index 194cf4f922a3..5c109be6bcbd 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+@@ -230,9 +230,9 @@ static int pp_late_init(struct amdgpu_ip_block *ip_block)
  	return 0;
  }
  
--static int acp_early_init(struct amdgpu_ip_block *ip_block)
--{
--	return 0;
--}
--
- static bool acp_is_idle(void *handle)
+-static void pp_late_fini(void *handle)
++static void pp_late_fini(struct amdgpu_ip_block *ip_block)
  {
- 	return true;
-@@ -624,7 +619,7 @@ static int acp_set_powergating_state(void *handle,
+-	struct amdgpu_device *adev = handle;
++	struct amdgpu_device *adev = ip_block->adev;
  
- static const struct amd_ip_funcs acp_ip_funcs = {
- 	.name = "acp_ip",
--	.early_init = acp_early_init,
-+	.early_init = NULL,
- 	.late_init = NULL,
- 	.sw_init = acp_sw_init,
- 	.sw_fini = acp_sw_fini,
+ 	if (adev->pm.smu_prv_buffer)
+ 		amdgpu_bo_free_kernel(&adev->pm.smu_prv_buffer, NULL, NULL);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 3a92eac86f4b..2f15a17a7500 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2042,9 +2042,9 @@ static int smu_hw_fini(void *handle)
+ 	return 0;
+ }
+ 
+-static void smu_late_fini(void *handle)
++static void smu_late_fini(struct amdgpu_ip_block *ip_block)
+ {
+-	struct amdgpu_device *adev = handle;
++	struct amdgpu_device *adev = ip_block->adev;
+ 	struct smu_context *smu = adev->powerplay.pp_handle;
+ 
+ 	kfree(smu);
 -- 
 2.34.1
 
