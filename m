@@ -2,157 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BE998A4F5
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 15:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD4C98A69E
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 16:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F43010E4B8;
-	Mon, 30 Sep 2024 13:28:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD28710E50E;
+	Mon, 30 Sep 2024 14:06:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NntH4iNS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="aEdlJfRb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2088.outbound.protection.outlook.com [40.107.243.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFAEF10E4B7;
- Mon, 30 Sep 2024 13:28:05 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A95F910E3F6;
+ Mon, 30 Sep 2024 14:06:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q+1x6QeWfEx/RulJTFn1Sg8shkX3sKbqUIzpo4aHTXn7sefZw2mQI5W86oQFGt1PbQJ1JMtRzEC9GEiAIbWhi8LobK/z2xsS6vsY2POF+df5xkSsBdIuDm4r4IbQnk+zMM5EXyhRMebk8hB/Q6jFSvnnpSnEHd6wrNWmcZRusu02fUGiJl77pXcHmdiTNik1aXUOV7qMKpSSxOKcQ34lE2abu9aaV6+yywchKvg8ksVPBPlknu02XpMoFutwUJ7u8iy33Ppb3sKsZkz5uPMI6aMFQ5PIwDPxuc8JROJBbBRiZIW0yjMb+hJuuHDmiKfgHHf5NEW6z8c+Xt/pVQdL0w==
+ b=VKHuQHwklYYZ7lp72qaOPpeiWH7sjHk9f4l1V917VSThCvxO3pJBwwPc2xZLf5YUp+NfMNpGg+Y7y94YHkZdsl6+AfDsJ7ISvnLnrY7suKgF5kz/P//yEpfVqi0rNft+dcGli5CjlWHklu/e0z19mSG2q63am2yvCaUQ6fb0+YEzOJZuQ9s1/S0u3ObWcVZfeaaFL4S4RmQ5bmOBj9WXjadyDcxNvGm7idy2wNvOWJeaMQ5vKLqsi+WOYV9KFqzosorfbjpJvLiPFaSqwDMUQWV72NnRbEFYuZekbfkq4RWTBlh9CSqo5ev0D4IlFKU0XxoY+cKtQjHBcOJunmyVrQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sY3CYkABz7X9kr+IqxWb4V2/izC8K08qr60EwQxvbOI=;
- b=MLofd0hGuwgaL9OxXWHGGVsZVLRQe0pYu1CpNPgiRBrJ2FI/EDi4S2naJnV74D9h07HqG2DVcpavM24AWZ7beyn9iCsMa3Zlh0T0q+WAY1wrqrghpNIWhzsSLNThVV/c6iR79Rsf8VKpN6MuR57lnWOF6h31t8HrZ4YwMmqVRKk6PWSfNMZGESZW4WwwFfluHkR4jods5q9yTz6h9Kcxqovr0/LmxzH009BLhylfBEnk0h774GqQxME/XdxF+NY3xoqUV0TCde0WDsWFAtQyw2Xe14IuPaffPo9eTdtpuLnoDsgoikI1QHB/CQFaB8c2IUTE3Z0iR5dtdKXm6U9UWQ==
+ bh=v7U14cOUs5nclZX8L/PyW5UpyD6LxZPZnZNMoY/tiYM=;
+ b=lDrNzmUqxOLOTdlYXqmB8f6fIoVCTqcJUjtvJIR/ejZ86uL08BVkmWMGUmqHAzrDCcNYF7lQ4LNO1cTJkInojAIt+B1TyXcQPulcTKDUQXjq3b3JZP300qW7rnX8kjlXMYVkECUw9WESn0f3fKegkN5PSxmk4SmO8SXdXu5cS5B2LiBZYtnnzx7biCA3X7EB7WJlpkec5XbPXhqxWgS1ZAY3tV8o8TwzVZee6R4SZWWaeT8Xy6os6aSLW0YULJQJ82xNuI9P1qU89jg2ZfGC738Zjy/mdByt0ufTRvzIrCUtMr8uMklth77bDiHjYdgAGt945LBhuSDPXPPZLw8gtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sY3CYkABz7X9kr+IqxWb4V2/izC8K08qr60EwQxvbOI=;
- b=NntH4iNSJ9NCZ0OIywvkpzUt4QfBolkwTsAmweIrzADK1z2IXsOY9BtQ2ROrFBbTEQSa1pRJ45BCSLbnZllCXb+HA8G04jNqKbCK5ZabfXUn9Ebk6L7hLSfJA9xPT4GbHEXE6t7nKVmmPDLcWzA2DEJuS2Kq7wdrwUgsC0gLZZA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by BL3PR12MB6547.namprd12.prod.outlook.com (2603:10b6:208:38e::6)
+ bh=v7U14cOUs5nclZX8L/PyW5UpyD6LxZPZnZNMoY/tiYM=;
+ b=aEdlJfRbLSueHdXmG6I38P3+6fdO8pNAbXznlKViP67Ta3NtoE033e7zFv+lgZXt38mMnKrR6Ts2/55GM/IEo7eQAXV0ZxgXIoT+u4gUcaPT5a4HaVwZpwVfk8/J7gA1bboIo6qcg0gK2KAI7fkbavG2KMa7nTQX4rE+0TjH2a0=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by SN7PR12MB7180.namprd12.prod.outlook.com (2603:10b6:806:2a8::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Mon, 30 Sep
- 2024 13:28:01 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8005.024; Mon, 30 Sep 2024
- 13:28:00 +0000
-Message-ID: <693dd05a-0537-4be6-9d8c-6cd1b5d31833@amd.com>
-Date: Mon, 30 Sep 2024 15:27:53 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] drm/sched: Always increment correct scheduler score
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Luben Tuikov <ltuikov89@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, stable@vger.kernel.org,
- Nirmoy Das <nirmoy.das@intel.com>
-References: <20240913160559.49054-1-tursulin@igalia.com>
- <20240913160559.49054-4-tursulin@igalia.com>
- <8392475d-489e-4aa3-b6c2-7cd15b86dab2@igalia.com>
- <cf135523-92ca-4d41-9acf-e979c9769ad9@amd.com>
- <2b0860a2-5ef0-496f-9283-d5056433af58@igalia.com>
+ 2024 14:06:27 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::491a:cce3:e531:3c42]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::491a:cce3:e531:3c42%3]) with mapi id 15.20.8005.026; Mon, 30 Sep 2024
+ 14:06:27 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, "javierm@redhat.com"
+ <javierm@redhat.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "maarten.lankhorst@linux.intel.com"
+ <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+ <mripard@kernel.org>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Jonathan
+ Corbet <corbet@lwn.net>
+Subject: RE: [PATCH 28/28] drm: Remove DRM aperture helpers
+Thread-Topic: [PATCH 28/28] drm: Remove DRM aperture helpers
+Thread-Index: AQHbEzof+McZnngLq0WRy19iH4mwnLJwXSqA
+Date: Mon, 30 Sep 2024 14:06:27 +0000
+Message-ID: <BL1PR12MB514462B1ECDAC79E490D0890F7762@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+ <20240930130921.689876-29-tzimmermann@suse.de>
+In-Reply-To: <20240930130921.689876-29-tzimmermann@suse.de>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <2b0860a2-5ef0-496f-9283-d5056433af58@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1c::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ActionId=7945b151-8137-48db-ad28-27e9b7950dab;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=0;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=true;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open Source;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2024-09-30T14:05:40Z;
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|SN7PR12MB7180:EE_
+x-ms-office365-filtering-correlation-id: fbfd9a49-0dc5-418a-60ea-08dce1591398
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|7416014|376014|1800799024|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?o+8n2aH4mmNXPrIvczpQQ9m6/vXyTyraEOkbOIyR90f4a3Wog9NyhQVb3Lc5?=
+ =?us-ascii?Q?CskD/bwXXJGyQ0H3/5QTAfyUmawL4bXo3T0CzsVjsVJDo11JEkzPJv1juYZe?=
+ =?us-ascii?Q?cfVgi2cGk431rUaaiExEmOn3/ZIGcoINejtQ4j+EZDNCYgnRvv3HjGybPno4?=
+ =?us-ascii?Q?Hv4lnFEkSfu1IufMye1Eqb4BcocAVemsb7vhzDKDYia7KiMKo1nlta7cv7Hb?=
+ =?us-ascii?Q?NFirJb0fa87yINKZ/P//SIfmAQOwdQjP1KGqKUrVeM5Lrgg/mySRWqiv/M71?=
+ =?us-ascii?Q?lGcbES87EHrDzpwSOXo/pLJHWAs5+naWKau1RG5fuKpccFkmvjibfT/vF2tu?=
+ =?us-ascii?Q?ZM3chlJ+TrWZBYgxXLjqcqiuNvFClIPzn1PrN1K04Gfxbq/pOU+nAPSQI9Uz?=
+ =?us-ascii?Q?HNQATKY3gLcoO5fF1kSlHeyvetj+L+onxAbJkPStH+YXFTnGqsFJwYOgncWr?=
+ =?us-ascii?Q?LzqBhzLSTpSqL5gstWDo2bkzcpbhZj0DfwuNjBlgH/gSndM9TmNEaglOvfDo?=
+ =?us-ascii?Q?sRSG6UEtuXMgqbGlyqoGIJmBju3EhpCUBvqT7cYaF+PjZ1M3JJxo9s011k6m?=
+ =?us-ascii?Q?COhvQUDlNTt2MghWRXxWtUT/65KmSrBs7QkwtFpB79EZd7z6ZgfzQGK0n2Il?=
+ =?us-ascii?Q?rTxHsNgs5QXm2R1+uuXtq6TOj2tCWPSNAJgLHPpys1eAI+Ped72jZkR1aMZy?=
+ =?us-ascii?Q?gRCAbL3q5Zun1ex2E/C0y4cdLK/y8826sDOlmKHAuxsZCSZZqfexmHv4Q4Pn?=
+ =?us-ascii?Q?eCWCNp/2jTgNap2ncMINjaUXykgoT7bhRBJRnPZGrMY7+lVwUBGf3Sc97wLL?=
+ =?us-ascii?Q?Zp/7RU8+PaLgqRZq3E1+3SAN80bns1wM0JzH7f7Ain6k5MwTcrNEgb8RQlTq?=
+ =?us-ascii?Q?LOkbRhtI76OO3nllbeFS9CDsmphBZs23FaVyBkCP0CWpRway9oevvUP3pPCs?=
+ =?us-ascii?Q?VmwyP/ZOGI9fAllgKoe7XyG5QNaq0HJttytQv3mqNqb9iSi1yWjBZqjmzUXA?=
+ =?us-ascii?Q?9j6V5Mfze6FO1zWkcZGUeBgrFqlLAkW7tQ6p4nfwDPjtPdQvv8N08PFdgrDU?=
+ =?us-ascii?Q?F9D8pgdOPZ/v/Kkb8YXPGwZrhcm7+kqMDKl7ksufGfuZkYzyzHUSN92fKnkp?=
+ =?us-ascii?Q?fMsa5+TeWisv8ojN2Pd4/vGyGNBwvNFHJEwdTusRzyRdhbXBpgOLQVlnStwe?=
+ =?us-ascii?Q?KkfoK63Lx8oCQMVZZhvd5cgr3WMe/LPkRsO2kfoVxYN3Cxo/4scq9BJ0k/qL?=
+ =?us-ascii?Q?DpQs1sCflTiJThUBGh1Fzs3HGf9ztEW/qjFN0/EJIlYwbuS/SpT6BmQi7+tB?=
+ =?us-ascii?Q?oxQm/tLC0hUVFGMwXHjGPbktopCuSP131WWTn7516VfZB3uTP/FR1PFepCMO?=
+ =?us-ascii?Q?u+Wk92Y=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jM/NpIVv7ZqVMAiPN92YlFDAA76ERlIEyuTf8fpfWWVZnzTilMzOrQkFk+OJ?=
+ =?us-ascii?Q?iAznGH8TF8HhmiH8zK2PTm8IXeGLfTv4h+7cbMCSxObwUlG3b7T8SMDX5lVV?=
+ =?us-ascii?Q?QEF+ckaUZcQrIyXq3qcW+3T4ERZYPt+EqGjh9glJfhof+x5AU7qEcMLINIId?=
+ =?us-ascii?Q?M83B6I6kFJsN9AqzRn7UmlB8CfXjz/o0wSMWgwm3YDADuKNrbvMPEUx/0ELc?=
+ =?us-ascii?Q?Rzd+g8Fp0W5huEc5AAM99Hiy/bCpOpVa3i9ot7rRIoN5RwXxp9xT75Y5gZpr?=
+ =?us-ascii?Q?6o8a6L2ZMcU6C4NPYUleKwt8urPMJdqBVyebM1bienTBAMAjhD4zf/neTEye?=
+ =?us-ascii?Q?kKlF/hVztS0gA+APWd0qOq2g/UkuQCr0RuOyLMYje8n0JylGmlvpHfEbTIo0?=
+ =?us-ascii?Q?Hqz7SUOIdj1KNaT4sXCKAW1JTUxHpOcQ9DWDb31sAQfJHsC7LeEOY5DipkaS?=
+ =?us-ascii?Q?uamwTiTLXrNjbudZ1r+WS6+HdIC8qIWnfWbKyUEam/8I06UfDGCgcObceGlv?=
+ =?us-ascii?Q?gjMmf8fsA31H6YgAAjIMEbav4xrkMC9oTrRcMKSa5gLcckZZZt0D4Q6R23FT?=
+ =?us-ascii?Q?69ZoEBRSCz+cvTRuvcJYWopnJOHmRZ5VU+WOcawL8VIRNcD1aMK3Kg1MQ17B?=
+ =?us-ascii?Q?3/wHtUke8q6/n6g5yO198rggYvZmw2ngZ9nEFpSRvTBQrhH2dUsicexXIul1?=
+ =?us-ascii?Q?hP09IfCZQqD34YzbxVFst/8B/Bf/AXLDBBUGHHBFP/2hX7dIsSZpzuJSISwp?=
+ =?us-ascii?Q?ip1kOZNMzk35P2IvnYdmEkIQCHuUQc+xTCje4q9dflyNiUwZENGIPcx+5GKc?=
+ =?us-ascii?Q?simzGG+lZYquPt8766Z1VTDszJiPE6FMT1k1HOWGx/skIYxDDhzjDqGMbTDd?=
+ =?us-ascii?Q?PWSNEyumjdyumadYbkqnIXItCSOBBc73QoQ2GzqmezJ9mvdG88FSAVRUXtM7?=
+ =?us-ascii?Q?XDQRHcI3QMhmKeErRpcAArlaubjlcR0HX5USvwvzBnvbqmfurTrDXPYmhthl?=
+ =?us-ascii?Q?RbyLSsSEbHdSB7s47DnlwHrg8LY9VTl3NCernUfd5ZrQLC3Q/pBHTgn9LZ+M?=
+ =?us-ascii?Q?SZs2RIoVvghMGuM6fDJFjiQr6EIwrKsWXb56RxldvUF4H1Hb4whcwOs4/Cqr?=
+ =?us-ascii?Q?74PkBE4C0U0NAN5fJ+vvsvGTOwsg8gEUNILqQ8VnXu5wR4uhzZIBM5ropGPd?=
+ =?us-ascii?Q?bbH4wm9hEUGxN53Fttmi2UkMhV2CBkAScLb720JT6Jb7muMpOJhfF6Ckh1jx?=
+ =?us-ascii?Q?y8LWD55Tv1KtbMTTYNUc2j69grrF33H1kNfT2HC+Fpaq7CwRcTB0xEaYng7k?=
+ =?us-ascii?Q?94+6QT+Qfyz8+pD2+IUU1bKRhYHcJqniPF9kk5wuUi9WYef8Pny6pz9x7EnH?=
+ =?us-ascii?Q?iYjoITNY7WsXKB8ri//bIMGhwyZYOaFdJh8IL3xjUeY/jwhZ11/EuHvS/7yI?=
+ =?us-ascii?Q?F39ou7AyfJUn8wpkGokzc1cRKLynzyM51eZDSfpTicj0EMhAx+zsBvPWIXxj?=
+ =?us-ascii?Q?z++h7vH7NAA0NSDrZrli+G0fhAB4y5AiS54bOzPfciMdgR7NujGUgQMpDtKW?=
+ =?us-ascii?Q?euSwrncGoVYWZevIGWk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6547:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43878047-4e11-43b4-11c2-08dce153b442
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UXdpdzRQMGs4R01QcDdhUlBYRUpBRWg1Y0Y2ZHVsVmhSRzFPRysyRnkySWVE?=
- =?utf-8?B?L3Z0QTRsQ1g2R0pJVlkrM3BlS3NGSm9RUURVNW1LZFBpcmRpUnN2QnFjajJO?=
- =?utf-8?B?N0lpSUx0alFaNUdrQlpla0N2MkFyNWlBUitudHowcGtoeExSRzNoNzlvOVB5?=
- =?utf-8?B?TGQ2U08vM3BpZ2Z3eGFvWGZkWm5hRkNIUjYxcjRsZUg5YjI3dlIxckt5aTN6?=
- =?utf-8?B?bC9OSk83TmZqeGRETHhGbElQT3QrcFpVMUY3S0hYNks5emt2L3oyblpHMWdm?=
- =?utf-8?B?b3RyazcxRGtjT3pqZGR2MXFiakZHaXVwLzVRaWV1U0J4U0FLTDhzbXhNWHNH?=
- =?utf-8?B?cThNNDFRRTRIbnpYazM1V0hxczZoZG9CQ3haaXBlSmtkUEttTjZqTWtvZ3JV?=
- =?utf-8?B?aThvQlIyekZKeXBQTFNHa3J6WWt2U3k4eDF1SE9zRCtkd1pqNkRwckFUOVk5?=
- =?utf-8?B?UXYzNFhVNDI3VXZkTGJ0KzAxQXBGWDZOaHVYbE9Pa0t2dGE3MFVoTk0zU2Mv?=
- =?utf-8?B?TkFHdzlKVjRSSXpGWStsaEdCbHNNbEFuMXFzLzU1d2FnSWZzdTBzNHhoYVhF?=
- =?utf-8?B?NGEwclBoZWNCcko0Tk5rVEFJNWF6RHNaRXZ4SEgxOERTVkE2UlQ2VVJ1Y2Nz?=
- =?utf-8?B?TU9SS3BDWGdET2JCUWhUR3VhY2Y1SXJ1Snp1QitNU1A1VzhYbXNyL3lXcCtI?=
- =?utf-8?B?eUxEVitxQVd2aENMYkNzUW5OTXY5cGM2SXVDWXVUNWJSU09uSkFJU1R0Z2Qx?=
- =?utf-8?B?eHFvdmQyRmlrNVJESmI5M2pVUGJkQVE3ME9nZFJIMm5ENDlIVDVTem9mOU9Y?=
- =?utf-8?B?TTNCM1FoVGFONnlzSGNZNGp5UHlhU05lWEJjMTZMOHZCM1dJRXBvM25oV3BK?=
- =?utf-8?B?T3VzYm5CdmErVVkwcndTeEJRTktxTStNNUN6akllcU9XRVBoRXJsdG9Jc3ZN?=
- =?utf-8?B?MUU0ZktlNmloL0xidEo5MHJwT1oxWXpYbkl4NkFWZEliWWsyb08rditxRWxx?=
- =?utf-8?B?MXJBWWZFSUorYVhQdVEvVDFjMDdOUFhQTFdCOTU0QnNFVUFrZk1seHJYOVRL?=
- =?utf-8?B?RHNob1NEQjFkVEVqalBxYW5BZlpoSHUxdGFMWnN2elh3eGRUem5sZjFMS3g5?=
- =?utf-8?B?bVhwZDJnRzA1VjY2NmFLZ0pDZm9jaElnRzlQRmpJakFvK2prNEtBVjlOWGRs?=
- =?utf-8?B?SUxrUnlXUVJvcytWcHcyMmlxbERUdzVMLzJNNGFuOG5zczhTN3MyM1ZqakxO?=
- =?utf-8?B?eDVYSlJsZ3lQelAzY0UvZ1dYdDFSMys4ZVB0MStHR09jV3BvZjEwTWZ4RURo?=
- =?utf-8?B?NVJBSjR3d01kOEdaWDBKcjVhdXk4R05ETXpleHdaMFJTWFp5TmsvZFQrelRN?=
- =?utf-8?B?UVlZenZLRU9mb3FyK1k5Rm90enl2Nk5YODNGdEQ0Y29IMlBXSktLNmxxWTJW?=
- =?utf-8?B?a2tkSm9rVTBjaDR1cjVZQVJsOFczd1lJWWNtMDlMaUdOdmgzRWZjcVFXcGhr?=
- =?utf-8?B?VkVmUGorbjFDRE1PdzVGYStFcWs4MW9uM09kQ0hmUnAzQTlpT3R6dG0zd2M2?=
- =?utf-8?B?T0NCZlFndTlCd25JckVFZmZpVG0xVUg4YytDRUQvZ25sZE9oZnh3V0lTMzlx?=
- =?utf-8?B?eStibHZpamtxMndSdmNpMWp3VVJPNmpZYnAxV2p4SUFPS3JjSm05T3dEclRX?=
- =?utf-8?B?YURBV3grN0pPdy9Mc0hXUEZQS3NvZ3dmUHFuYzVQSHpSTUhDK3dNUGpQZFJo?=
- =?utf-8?B?QlR6WWtZdDZ3bVBPYW9FTGtGZHc3eFJVOXR5aDJLUHNGQm9paS9LVVRRd1Fx?=
- =?utf-8?B?clZJZTViQTB6Z3Q4S0JMdz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S05EUjVCMVA3Y0p4UHNwOEMvVlJ3U2V0QU9vVEk2MDkxYVpYMzZFVzF3eWtq?=
- =?utf-8?B?bjJCNm5QaE1oY3ZBallQbUd5SFBlYlVYTmt3YnRDVmlrRHBxVHlydGNZK1Nl?=
- =?utf-8?B?cityYTZHbnE1LzJ0RVVCUHU2d2lwWVltNzNBV1R3dlp0YnAva2RCREpkbklW?=
- =?utf-8?B?eXMvWHJqendGeTlJL09kWkI2bGF5ZmpSSTNnQWRmTlU1ZzFKRVk0bU1jdXhv?=
- =?utf-8?B?MVRBOFVCL3VjdUF5R3lUSU5hd3dFWWRodG92TlNnOE82SENDdk5aUFNLUDJG?=
- =?utf-8?B?MGpFQndtdVNaRU40R1lqeHF4dUo1ZVRJL3pZNHVDdHNQTFFwSlBjZjhyaUl6?=
- =?utf-8?B?WmxpSEFuNkF5S0VBYkJTeG1WWUt4aGU5cnBqZjdZamV5SUtMSmNHd0o2Ukla?=
- =?utf-8?B?MTFaRTFpVXhJNFlMZ2k2czliOUExVnBMTlJxdnl1cmQxK1ljdlR6UkdwUXRL?=
- =?utf-8?B?VUhmYnpROTY5emhkRm81WC83aHBMQ1Y1VkI3RUdiUFUrNnpUaU8zVG04UUU2?=
- =?utf-8?B?d1ZabER5bGw0OHA4N0d1V0J5dmZhV0ptSm56d0tPakVEa3lnSzkrUkVJNkdW?=
- =?utf-8?B?SytuZGJmTFYweUVmNDRLY1NHMzRlNkRpdFo2SmJoZUNtY1doaXFralUwdWEr?=
- =?utf-8?B?WjFBdnlsdUdsOFVDWi9EeEV5bldBWDYxTFRlbGZETzd6N2loT0llY0hOL2NX?=
- =?utf-8?B?VXNhQ3ZSYSs0ZUVyVEN3Z0lBc1dzYVcveldHQjhTVHFJazR2VVhIbG93ZjlC?=
- =?utf-8?B?eFB0L1lZMmlaMGNZbnF4Q0sxeVdYNmRxc21GL2RQcE9YTFJmWUhXb3M2T0Nt?=
- =?utf-8?B?VHQyZjNuOEp3QWxHNEVqaEJSMmFrakZnU0dOV3c5WVE3aWJFb0ltakxBc1FW?=
- =?utf-8?B?bUtQMjFvemxvRGVEaWw1cFh1c2U5TTZXTmRsTGxzdUFkRjRRNU0xa2xPUGNy?=
- =?utf-8?B?L0U5ZU1Ob29OL0ZLRkYxWmlCdVYrYng4NC9WTjZsdzkySkI2b3lkcG9ueG1P?=
- =?utf-8?B?QnJGeU8yaVFTRzFnbzZPYVFxbzhXRVNwNE5kQmpCNXVyYkM3MWZrQkhCQnZp?=
- =?utf-8?B?SUY3Si9zODlMU2F0M2NkVzlia3luZHV6cWlUL2lVSGNRemtJeTR3aGZMUEsz?=
- =?utf-8?B?WlJYMDFERUxjQkt6c0JrbzB6empKMzhpZU1LaWNNbTRmaEFWQTJwOGxRUnFK?=
- =?utf-8?B?U0dHWldZSXdhNzV4VU0zSWJqZHBqSHU0MEJKbi9MRGc3UHU0YWc3SG5aUHB4?=
- =?utf-8?B?eDFxRk9URERaSnNQb2ZCTm9BNjVqdEdmcW9kcnFjc09RdVhJUnp6ZElJQ3N1?=
- =?utf-8?B?WHRRNXRTV0s5aU1oWThoZ2NpZWVlVjNDaHkzb3p3Uk9maHZ5d1dvVEdmODUw?=
- =?utf-8?B?L2VuNjRnemlnQ2YybjBweTNiNkovZzE3cXA0ZE9uTmFmYmNtU0R5K0l3Ni9i?=
- =?utf-8?B?Y0VpQTlFelRYM3Z4VUdsUWtvaGFJQUQrMkcyMEJzV3labmVtTzJ5TnJKa2Q2?=
- =?utf-8?B?R0c5V3R6ZHBqdzRNNlF6WDhqUFVjanBJR0picUl3TDhBRCtSWUc1Vlp5dHQ1?=
- =?utf-8?B?MGk5VFp5WDBDTFZjMHZnRWJtR3VjUDRCdFFaWmN5dllYRDNkSmx0MW0xOFg3?=
- =?utf-8?B?cW5ieElLTUxDU2VEMEwxV2tCSDZvc3lRZTFHaXM5VEhZTmlkeldTNkh2elFG?=
- =?utf-8?B?RUNHUGdHdVI3MEsrU2x4Q3dRY3RYdklnSUhYbUhJTFRWaHpWdUY5WUtlMFU1?=
- =?utf-8?B?d09vL3F4UC8vUUx3K3lqV0sxTG94ZlhaUTlKbGJpRVVPYmR6WkZ5ZmZXRlVH?=
- =?utf-8?B?TjlJVzhhZi9mQk9EVWRMZTZwajk0RkhBdUNlWVM0cU1sNXJtZFpLcU9hVVBT?=
- =?utf-8?B?UXNWb0JyZ3piOEU2aVJ1VUYyL0pKRFJIbktKUTNDT29MK2h2MXdpa1BxT3My?=
- =?utf-8?B?VFRlSEJiUlBzTjNTZGhXU2p6c1cwcFhDYXFYb0toNnRyeENMRjlhaWVqaVZw?=
- =?utf-8?B?d08rRHJxMUE2ckhjYTl5VGVpb0xpdTgvRlpKVVBici9nUk9wMGtJTVpTU2NH?=
- =?utf-8?B?UDhScXJIWFBYWUF2eXNXSGdHOGlzelQ3bHVrZzFYQ2pnL3F0VFpzdVliak9n?=
- =?utf-8?Q?7wgwxb3LZ0/q1F10Dm1zXCtSp?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43878047-4e11-43b4-11c2-08dce153b442
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 13:28:00.3666 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QYj1yzdpsZKJYzOMl34ENv2j0AP3flGV+BBTtLgjPg4Hu0vi/iocdVWXd1YWnGNU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6547
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbfd9a49-0dc5-418a-60ea-08dce1591398
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2024 14:06:27.6678 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FMkKm2p5uvWqgdlBnOANfDT44c+//gPAfyGaA3jZeyEUVZK+gL1KJbMjOcquErlQA13VjDbW9o7CC9M5XCEwrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7180
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,129 +161,393 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 30.09.24 um 15:22 schrieb Tvrtko Ursulin:
->
-> On 30/09/2024 14:07, Christian König wrote:
->> Am 30.09.24 um 15:01 schrieb Tvrtko Ursulin:
->>>
->>> On 13/09/2024 17:05, Tvrtko Ursulin wrote:
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>>
->>>> Entities run queue can change during drm_sched_entity_push_job() so 
->>>> make
->>>> sure to update the score consistently.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Fixes: d41a39dda140 ("drm/scheduler: improve job distribution with 
->>>> multiple queues")
->>>> Cc: Nirmoy Das <nirmoy.das@amd.com>
->>>> Cc: Christian König <christian.koenig@amd.com>
->>>> Cc: Luben Tuikov <ltuikov89@gmail.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: David Airlie <airlied@gmail.com>
->>>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>>> Cc: dri-devel@lists.freedesktop.org
->>>> Cc: <stable@vger.kernel.org> # v5.9+
->>>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>>> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/scheduler/sched_entity.c | 2 +-
->>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c 
->>>> b/drivers/gpu/drm/scheduler/sched_entity.c
->>>> index 76e422548d40..6645a8524699 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->>>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->>>> @@ -586,7 +586,6 @@ void drm_sched_entity_push_job(struct 
->>>> drm_sched_job *sched_job)
->>>>       ktime_t submit_ts;
->>>>         trace_drm_sched_job(sched_job, entity);
->>>> -    atomic_inc(entity->rq->sched->score);
->>>>       WRITE_ONCE(entity->last_user, current->group_leader);
->>>>         /*
->>>> @@ -614,6 +613,7 @@ void drm_sched_entity_push_job(struct 
->>>> drm_sched_job *sched_job)
->>>>           rq = entity->rq;
->>>>           sched = rq->sched;
->>>>   +        atomic_inc(sched->score);
->>>
->>> Ugh this is wrong. :(
->>>
->>> I was working on some further consolidation and realised this.
->>>
->>> It will create an imbalance in score since score is currently 
->>> supposed to be accounted twice:
->>>
->>>  1. +/- 1 for each entity (de-)queued
->>>  2. +/- 1 for each job queued/completed
->>>
->>> By moving it into the "if (first) branch" it unbalances it.
->>>
->>> But it is still true the original placement is racy. It looks like 
->>> what is required is an unconditional entity->lock section after 
->>> spsc_queue_push. AFAICT that's the only way to be sure entity->rq is 
->>> set for the submission at hand.
->>>
->>> Question also is, why +/- score in entity add/remove and not just 
->>> for jobs?
->>>
->>> In the meantime patch will need to get reverted.
->>
->> Ok going to revert that.
->
-> Thank you, and sorry for the trouble!
->
->> I also just realized that we don't need to change anything. The rq 
->> can't change as soon as there is a job armed for it.
->>
->> So having the increment right before pushing the armed job to the 
->> entity was actually correct in the first place.
->
-> Are you sure? Two threads racing to arm and push on the same entity?
->
->
->     T1        T2
->
->     arm job
->     rq1 selected
->     ..
->     push job    arm job
->     inc score rq1
->             spsc_queue_count check passes
->      ---  just before T1 spsc_queue_push ---
->             changed to rq2
->     spsc_queue_push
->     if (first)
->       resamples entity->rq
->       queues rq2
->
-> Where rq1 and rq2 belong to different schedulers.
+[Public]
 
-arm/push must be protected by an external lock preventing two threads 
-pushing into the same entity at the same time.
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Thomas
+> Zimmermann
+> Sent: Monday, September 30, 2024 9:03 AM
+> To: javierm@redhat.com; airlied@gmail.com; simona@ffwll.ch;
+> maarten.lankhorst@linux.intel.com; mripard@kernel.org
+> Cc: dri-devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org; intel=
+-
+> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Thomas Zimmerm=
+ann
+> <tzimmermann@suse.de>; Jonathan Corbet <corbet@lwn.net>
+> Subject: [PATCH 28/28] drm: Remove DRM aperture helpers
+>
+> The DRM aperture helpers are wrappers around video helpers from
+> <linux/aperture.h>. There are no callers of these functions. Remove them =
+entirely.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jonathan Corbet <corbet@lwn.net>
 
-That's what this misleading comment from Sima we already discussed 
-should have meant.
+Series is:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Regards,
-Christian.
 
+> ---
+>  Documentation/gpu/drm-internals.rst |  12 --
+>  MAINTAINERS                         |   2 -
+>  drivers/gpu/drm/Makefile            |   1 -
+>  drivers/gpu/drm/drm_aperture.c      | 192 ----------------------------
+>  include/drm/drm_aperture.h          |  38 ------
+>  5 files changed, 245 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/drm_aperture.c  delete mode 100644
+> include/drm/drm_aperture.h
 >
-> Regards,
+> diff --git a/Documentation/gpu/drm-internals.rst b/Documentation/gpu/drm-
+> internals.rst
+> index 11d9a5730fb2..cb9ae282771c 100644
+> --- a/Documentation/gpu/drm-internals.rst
+> +++ b/Documentation/gpu/drm-internals.rst
+> @@ -75,18 +75,6 @@ Module Initialization  .. kernel-doc::
+> include/drm/drm_module.h
+>     :doc: overview
 >
-> Tvrtko
+> -Managing Ownership of the Framebuffer Aperture
+> -----------------------------------------------
+> -
+> -.. kernel-doc:: drivers/gpu/drm/drm_aperture.c
+> -   :doc: overview
+> -
+> -.. kernel-doc:: include/drm/drm_aperture.h
+> -   :internal:
+> -
+> -.. kernel-doc:: drivers/gpu/drm/drm_aperture.c
+> -   :export:
+> -
+>  Device Instance and Driver Handling
+>  -----------------------------------
 >
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5a0b7bfb6315..e71e12085a9f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7097,12 +7097,10 @@ M:    Javier Martinez Canillas <javierm@redhat.co=
+m>
+>  L:   dri-devel@lists.freedesktop.org
+>  S:   Maintained
+>  T:   git https://gitlab.freedesktop.org/drm/misc/kernel.git
+> -F:   drivers/gpu/drm/drm_aperture.c
+>  F:   drivers/gpu/drm/tiny/ofdrm.c
+>  F:   drivers/gpu/drm/tiny/simpledrm.c
+>  F:   drivers/video/aperture.c
+>  F:   drivers/video/nomodeset.c
+> -F:   include/drm/drm_aperture.h
+>  F:   include/linux/aperture.h
+>  F:   include/video/nomodeset.h
 >
->> Regards,
->> Christian.
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>>>           drm_sched_rq_add_entity(rq, entity);
->>>>           spin_unlock(&entity->rq_lock);
->>
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile index
+> 3894f43f6d47..31d8bf60a2fd 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -34,7 +34,6 @@ endif
+>  subdir-ccflags-$(CONFIG_DRM_WERROR) +=3D -Werror
+>
+>  drm-y :=3D \
+> -     drm_aperture.o \
+>       drm_atomic.o \
+>       drm_atomic_uapi.o \
+>       drm_auth.o \
+> diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_apertur=
+e.c deleted
+> file mode 100644 index 5729f3bb4398..000000000000
+> --- a/drivers/gpu/drm/drm_aperture.c
+> +++ /dev/null
+> @@ -1,192 +0,0 @@
+> -// SPDX-License-Identifier: MIT
+> -
+> -#include <linux/aperture.h>
+> -#include <linux/platform_device.h>
+> -
+> -#include <drm/drm_aperture.h>
+> -#include <drm/drm_drv.h>
+> -#include <drm/drm_print.h>
+> -
+> -/**
+> - * DOC: overview
+> - *
+> - * A graphics device might be supported by different drivers, but only o=
+ne
+> - * driver can be active at any given time. Many systems load a generic
+> - * graphics drivers, such as EFI-GOP or VESA, early during the boot proc=
+ess.
+> - * During later boot stages, they replace the generic driver with a dedi=
+cated,
+> - * hardware-specific driver. To take over the device the dedicated drive=
+r
+> - * first has to remove the generic driver. DRM aperture functions manage
+> - * ownership of DRM framebuffer memory and hand-over between drivers.
+> - *
+> - * DRM drivers should call drm_aperture_remove_conflicting_framebuffers(=
+)
+> - * at the top of their probe function. The function removes any generic
+> - * driver that is currently associated with the given framebuffer memory=
+.
+> - * If the framebuffer is located at PCI BAR 0, the rsp code looks as in =
+the
+> - * example given below.
+> - *
+> - * .. code-block:: c
+> - *
+> - *   static const struct drm_driver example_driver =3D {
+> - *           ...
+> - *   };
+> - *
+> - *   static int remove_conflicting_framebuffers(struct pci_dev *pdev)
+> - *   {
+> - *           resource_size_t base, size;
+> - *           int ret;
+> - *
+> - *           base =3D pci_resource_start(pdev, 0);
+> - *           size =3D pci_resource_len(pdev, 0);
+> - *
+> - *           return drm_aperture_remove_conflicting_framebuffers(base, s=
+ize,
+> - *                                                               &exampl=
+e_driver);
+> - *   }
+> - *
+> - *   static int probe(struct pci_dev *pdev)
+> - *   {
+> - *           int ret;
+> - *
+> - *           // Remove any generic drivers...
+> - *           ret =3D remove_conflicting_framebuffers(pdev);
+> - *           if (ret)
+> - *                   return ret;
+> - *
+> - *           // ... and initialize the hardware.
+> - *           ...
+> - *
+> - *           drm_dev_register();
+> - *
+> - *           return 0;
+> - *   }
+> - *
+> - * PCI device drivers should call
+> - * drm_aperture_remove_conflicting_pci_framebuffers() and let it detect =
+the
+> - * framebuffer apertures automatically. Device drivers without knowledge=
+ of
+> - * the framebuffer's location shall call drm_aperture_remove_framebuffer=
+s(),
+> - * which removes all drivers for known framebuffer.
+> - *
+> - * Drivers that are susceptible to being removed by other drivers, such =
+as
+> - * generic EFI or VESA drivers, have to register themselves as owners of=
+ their
+> - * given framebuffer memory. Ownership of the framebuffer memory is achi=
+eved
+> - * by calling devm_aperture_acquire_from_firmware(). On success, the dri=
+ver
+> - * is the owner of the framebuffer range. The function fails if the
+> - * framebuffer is already owned by another driver. See below for an exam=
+ple.
+> - *
+> - * .. code-block:: c
+> - *
+> - *   static int acquire_framebuffers(struct drm_device *dev, struct plat=
+form_device
+> *pdev)
+> - *   {
+> - *           resource_size_t base, size;
+> - *
+> - *           mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> - *           if (!mem)
+> - *                   return -EINVAL;
+> - *           base =3D mem->start;
+> - *           size =3D resource_size(mem);
+> - *
+> - *           return devm_acquire_aperture_from_firmware(dev, base, size)=
+;
+> - *   }
+> - *
+> - *   static int probe(struct platform_device *pdev)
+> - *   {
+> - *           struct drm_device *dev;
+> - *           int ret;
+> - *
+> - *           // ... Initialize the device...
+> - *           dev =3D devm_drm_dev_alloc();
+> - *           ...
+> - *
+> - *           // ... and acquire ownership of the framebuffer.
+> - *           ret =3D acquire_framebuffers(dev, pdev);
+> - *           if (ret)
+> - *                   return ret;
+> - *
+> - *           drm_dev_register(dev, 0);
+> - *
+> - *           return 0;
+> - *   }
+> - *
+> - * The generic driver is now subject to forced removal by other drivers.=
+ This
+> - * only works for platform drivers that support hot unplug.
+> - * When a driver calls drm_aperture_remove_conflicting_framebuffers() et=
+ al.
+> - * for the registered framebuffer range, the aperture helpers call
+> - * platform_device_unregister() and the generic driver unloads itself. I=
+t
+> - * may not access the device's registers, framebuffer memory, ROM, etc
+> - * afterwards.
+> - */
+> -
+> -/**
+> - * devm_aperture_acquire_from_firmware - Acquires ownership of a firmwar=
+e
+> framebuffer
+> - *                                       on behalf of a DRM driver.
+> - * @dev:     the DRM device to own the framebuffer memory
+> - * @base:    the framebuffer's byte offset in physical memory
+> - * @size:    the framebuffer size in bytes
+> - *
+> - * Installs the given device as the new owner of the framebuffer. The fu=
+nction
+> - * expects the framebuffer to be provided by a platform device that has =
+been
+> - * set up by firmware. Firmware can be any generic interface, such as EF=
+I,
+> - * VESA, VGA, etc. If the native hardware driver takes over ownership of=
+ the
+> - * framebuffer range, the firmware state gets lost. Aperture helpers wil=
+l then
+> - * unregister the platform device automatically. Acquired apertures are
+> - * released automatically if the underlying device goes away.
+> - *
+> - * The function fails if the framebuffer range, or parts of it, is curre=
+ntly
+> - * owned by another driver. To evict current owners, callers should use
+> - * drm_aperture_remove_conflicting_framebuffers() et al. before calling =
+this
+> - * function. The function also fails if the given device is not a platfo=
+rm
+> - * device.
+> - *
+> - * Returns:
+> - * 0 on success, or a negative errno value otherwise.
+> - */
+> -int devm_aperture_acquire_from_firmware(struct drm_device *dev, resource=
+_size_t
+> base,
+> -                                     resource_size_t size)
+> -{
+> -     struct platform_device *pdev;
+> -
+> -     if (drm_WARN_ON(dev, !dev_is_platform(dev->dev)))
+> -             return -EINVAL;
+> -
+> -     pdev =3D to_platform_device(dev->dev);
+> -
+> -     return devm_aperture_acquire_for_platform_device(pdev, base, size);
+> -}
+> -EXPORT_SYMBOL(devm_aperture_acquire_from_firmware);
+> -
+> -/**
+> - * drm_aperture_remove_conflicting_framebuffers - remove existing frameb=
+uffers in
+> the given range
+> - * @base: the aperture's base address in physical memory
+> - * @size: aperture size in bytes
+> - * @req_driver: requesting DRM driver
+> - *
+> - * This function removes graphics device drivers which use the memory ra=
+nge
+> described by
+> - * @base and @size.
+> - *
+> - * Returns:
+> - * 0 on success, or a negative errno code otherwise
+> - */
+> -int drm_aperture_remove_conflicting_framebuffers(resource_size_t base,
+> resource_size_t size,
+> -                                              const struct drm_driver *r=
+eq_driver)
+> -{
+> -     return aperture_remove_conflicting_devices(base, size, req_driver->=
+name);
+> -}
+> -EXPORT_SYMBOL(drm_aperture_remove_conflicting_framebuffers);
+> -
+> -/**
+> - * drm_aperture_remove_conflicting_pci_framebuffers - remove existing
+> framebuffers for PCI devices
+> - * @pdev: PCI device
+> - * @req_driver: requesting DRM driver
+> - *
+> - * This function removes graphics device drivers using the memory range
+> configured
+> - * for any of @pdev's memory bars. The function assumes that a PCI devic=
+e with
+> - * shadowed ROM drives a primary display and so kicks out vga16fb.
+> - *
+> - * Returns:
+> - * 0 on success, or a negative errno code otherwise
+> - */
+> -int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pde=
+v,
+> -                                                  const struct drm_drive=
+r *req_driver)
+> -{
+> -     return aperture_remove_conflicting_pci_devices(pdev, req_driver->na=
+me);
+> -}
+> -EXPORT_SYMBOL(drm_aperture_remove_conflicting_pci_framebuffers);
+> diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h dele=
+ted file
+> mode 100644 index cbe33b49fd5d..000000000000
+> --- a/include/drm/drm_aperture.h
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -
+> -#ifndef _DRM_APERTURE_H_
+> -#define _DRM_APERTURE_H_
+> -
+> -#include <linux/types.h>
+> -
+> -struct drm_device;
+> -struct drm_driver;
+> -struct pci_dev;
+> -
+> -int devm_aperture_acquire_from_firmware(struct drm_device *dev, resource=
+_size_t
+> base,
+> -                                     resource_size_t size);
+> -
+> -int drm_aperture_remove_conflicting_framebuffers(resource_size_t base,
+> resource_size_t size,
+> -                                              const struct drm_driver *r=
+eq_driver);
+> -
+> -int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pde=
+v,
+> -                                                  const struct drm_drive=
+r *req_driver);
+> -
+> -/**
+> - * drm_aperture_remove_framebuffers - remove all existing framebuffers
+> - * @req_driver: requesting DRM driver
+> - *
+> - * This function removes all graphics device drivers. Use this function =
+on systems
+> - * that can have their framebuffer located anywhere in memory.
+> - *
+> - * Returns:
+> - * 0 on success, or a negative errno code otherwise
+> - */
+> -static inline int
+> -drm_aperture_remove_framebuffers(const struct drm_driver *req_driver) -{
+> -     return drm_aperture_remove_conflicting_framebuffers(0, (resource_si=
+ze_t)-1,
+> -                                                         req_driver);
+> -}
+> -
+> -#endif
+> --
+> 2.46.0
 
