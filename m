@@ -2,58 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1522598A548
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A381598A4CB
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 15:26:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A235010E4F6;
-	Mon, 30 Sep 2024 13:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D48310E4B3;
+	Mon, 30 Sep 2024 13:26:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hxzHkpfc";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ixG9N8w/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 010CA10E4A0;
- Mon, 30 Sep 2024 13:22:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Xy8Ha5b/dO5/HqKI95anmi16BefC7jwgdT9CNwJ8M9Q=; b=hxzHkpfcDQnN8mlJq/XrfhGG53
- M97kza/e+Nx5uyz58sqzHnbJJiCu9JwkhT/tRqMxIMe/WtNsIm5Rr+xD2ZhpdKVOCPRkC9Ps0OEoM
- JJuSN0TPiLfvnfUNe5O3raNFqj4v4Ut38wX0AMoKMyUU7+DoynupVqxGX6bIAviVORgUMgonDxioz
- bxReESWF8GTQHdYT5VWZ9W8GCumJ+rs+FWxDhKKaf5pznIkgXQHjjKfwMrQpwIVN4P/mP9yBixDnf
- u7zHM8DQx4fv4Sb443fzijen0imamX2OrtFj6D7dnclvPjhCnd7nFl2jdLT/QtF0wJ22CvZft3a82
- pX9+EUew==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1svGM9-002rgQ-J9; Mon, 30 Sep 2024 15:22:29 +0200
-Message-ID: <2b0860a2-5ef0-496f-9283-d5056433af58@igalia.com>
-Date: Mon, 30 Sep 2024 14:22:28 +0100
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7537210E4AB
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 13:26:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1727702770;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=iU6oHSTtkrHoG6AEjnDSNeGcEonnUQr+lho5LZwZCqk=;
+ b=ixG9N8w//pyd632xsbpOX5I8MWrzEnWZ9wY47WPvVaNq05oKHiEaWoNBA7/Qk6jdnZouO1
+ d9Cg2Vv64V4LX72saO3USatXFF3IQVvwqAwsA9tMU8Itk338xd04MAA3Fj1s8yC8l09paI
+ p8d8Aes5YyFpOBOpwvjLiDvpggj4iLA=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-159-6KQ2_WWvPYmLMwlwmllh1A-1; Mon, 30 Sep 2024 09:26:09 -0400
+X-MC-Unique: 6KQ2_WWvPYmLMwlwmllh1A-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-37cc9b5e533so1670594f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 06:26:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727702767; x=1728307567;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=iU6oHSTtkrHoG6AEjnDSNeGcEonnUQr+lho5LZwZCqk=;
+ b=K4/n31HTUo3s+LoEXV9JKzaQUbM0LmyMUjh/zQTQOCQYh5IClkA3op7amOisLtzeJY
+ Mf8DMKQQIuC+QdAOW2rNYg8dOe21DZkjJ8/JFPvR7CDckQ0BhIJLVz15keizWa69Z/5Z
+ Gw9jcZhEZf8tgLPT+Gryd/NQ7nAmuSwZ3ojhf6DqKloCbUoRIwCnL6/svz834NDuVeto
+ jHQEE1Q4TcSXJ8V8EYUE/ImfjkykcN2dQe6k9D2h1s+mJd4QhPagtIz1MM5mCVrRiBR+
+ 2PXu4zt8avg2+Ays50shCmaM8HXdTbLZhOS/tONdxkxoiZF8WHljnCjZJrs0kIx2c206
+ oYwA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUY8M6bs2eovHKrF9FtVQfDBLd/FPRhOFZRj1XbHYBOT99pPv3hnyghgG9Neae8u9oGoUipdbf9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZPZSo56Mh3oYLCP2ubr+ONDJxgu1+hdcI0ThKaJ3aPIp6HV9d
+ zShPaM1HD3BnmoQ/LWhd26G7/su615mZTxs1D15WKyHpmgVr87m2WxwQtwlGvkInTtS/I1ewKJV
+ 4buVBwQ1KgYT/CbYuXKDFBAyz6NDXrWr8c0O5H2Uq7Dv0Myhh6enI3k0Th1OQ7Ng=
+X-Received: by 2002:a5d:5548:0:b0:37c:cfbb:d356 with SMTP id
+ ffacd0b85a97d-37cd5aebe7bmr5906742f8f.28.1727702767558; 
+ Mon, 30 Sep 2024 06:26:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGC2V0F7vlRZz80HkueMTZBFg2rvllHK+Q0YOx0BGeDwQemdMjl0P56KLvckcpsgdHBb03bCA==
+X-Received: by 2002:a5d:5548:0:b0:37c:cfbb:d356 with SMTP id
+ ffacd0b85a97d-37cd5aebe7bmr5906722f8f.28.1727702767137; 
+ Mon, 30 Sep 2024 06:26:07 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42f57dec19bsm104420285e9.26.2024.09.30.06.26.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Sep 2024 06:26:06 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@gmail.com,
+ simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Thomas
+ Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH 00/28] drm: Remove DRM aperture helpers
+In-Reply-To: <20240930130921.689876-1-tzimmermann@suse.de>
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+Date: Mon, 30 Sep 2024 15:26:05 +0200
+Message-ID: <87ed518e8i.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] drm/sched: Always increment correct scheduler score
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Luben Tuikov <ltuikov89@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, stable@vger.kernel.org,
- Nirmoy Das <nirmoy.das@intel.com>
-References: <20240913160559.49054-1-tursulin@igalia.com>
- <20240913160559.49054-4-tursulin@igalia.com>
- <8392475d-489e-4aa3-b6c2-7cd15b86dab2@igalia.com>
- <cf135523-92ca-4d41-9acf-e979c9769ad9@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <cf135523-92ca-4d41-9acf-e979c9769ad9@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 30 Sep 2024 13:31:10 +0000
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +90,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-On 30/09/2024 14:07, Christian König wrote:
-> Am 30.09.24 um 15:01 schrieb Tvrtko Ursulin:
->>
->> On 13/09/2024 17:05, Tvrtko Ursulin wrote:
->>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>
->>> Entities run queue can change during drm_sched_entity_push_job() so make
->>> sure to update the score consistently.
->>>
->>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>> Fixes: d41a39dda140 ("drm/scheduler: improve job distribution with 
->>> multiple queues")
->>> Cc: Nirmoy Das <nirmoy.das@amd.com>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> Cc: Luben Tuikov <ltuikov89@gmail.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: David Airlie <airlied@gmail.com>
->>> Cc: Daniel Vetter <daniel@ffwll.ch>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Cc: <stable@vger.kernel.org> # v5.9+
->>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>   drivers/gpu/drm/scheduler/sched_entity.c | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c 
->>> b/drivers/gpu/drm/scheduler/sched_entity.c
->>> index 76e422548d40..6645a8524699 100644
->>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->>> @@ -586,7 +586,6 @@ void drm_sched_entity_push_job(struct 
->>> drm_sched_job *sched_job)
->>>       ktime_t submit_ts;
->>>         trace_drm_sched_job(sched_job, entity);
->>> -    atomic_inc(entity->rq->sched->score);
->>>       WRITE_ONCE(entity->last_user, current->group_leader);
->>>         /*
->>> @@ -614,6 +613,7 @@ void drm_sched_entity_push_job(struct 
->>> drm_sched_job *sched_job)
->>>           rq = entity->rq;
->>>           sched = rq->sched;
->>>   +        atomic_inc(sched->score);
->>
->> Ugh this is wrong. :(
->>
->> I was working on some further consolidation and realised this.
->>
->> It will create an imbalance in score since score is currently supposed 
->> to be accounted twice:
->>
->>  1. +/- 1 for each entity (de-)queued
->>  2. +/- 1 for each job queued/completed
->>
->> By moving it into the "if (first) branch" it unbalances it.
->>
->> But it is still true the original placement is racy. It looks like 
->> what is required is an unconditional entity->lock section after 
->> spsc_queue_push. AFAICT that's the only way to be sure entity->rq is 
->> set for the submission at hand.
->>
->> Question also is, why +/- score in entity add/remove and not just for 
->> jobs?
->>
->> In the meantime patch will need to get reverted.
-> 
-> Ok going to revert that.
+Hello Thomas,
 
-Thank you, and sorry for the trouble!
+> DRM's aperture helpers are merely wrappers around the respective
+> helpers in drivers/video/. The DRM interface existed first, but was
+> later generalized for use with fbdev and a few other graphics-related
+> places in the kernel. It is time to remove the DRM wrappers and call
+> the video helpers directly.
+>
+> No functional changes intended. This series should replace one interface
+> with another. Individual patches could go into the various trees and the
+> DRM wrappers can be removed when all driver changes have been merged.
+>
 
-> I also just realized that we don't need to change anything. The rq can't 
-> change as soon as there is a job armed for it.
-> 
-> So having the increment right before pushing the armed job to the entity 
-> was actually correct in the first place.
+Thanks for doing this cleanup. Makes a lot of sense for me to drop it.
 
-Are you sure? Two threads racing to arm and push on the same entity?
+For the whole series:
 
-	
-	T1		T2
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 
-	arm job
-	rq1 selected
-	..
-	push job	arm job
-	inc score rq1
-			spsc_queue_count check passes
-	 ---  just before T1 spsc_queue_push ---
-			changed to rq2
-	spsc_queue_push
-	if (first)
-	  resamples entity->rq
-	  queues rq2
+-- 
+Best regards,
 
-Where rq1 and rq2 belong to different schedulers.	
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
-Regards,
-
-Tvrtko
-
-
-> Regards,
-> Christian.
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>           drm_sched_rq_add_entity(rq, entity);
->>>           spin_unlock(&entity->rq_lock);
-> 
