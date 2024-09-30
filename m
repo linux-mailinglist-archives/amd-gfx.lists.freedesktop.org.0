@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED96098A14E
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 14:00:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9A798A151
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Sep 2024 14:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7034410E401;
-	Mon, 30 Sep 2024 12:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 351FC10E403;
+	Mon, 30 Sep 2024 12:00:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gRSch8sk";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pe7HMqdw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B034510E3FF
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 12:00:27 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2068.outbound.protection.outlook.com [40.107.101.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25C2F10E403
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 12:00:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LEYSe9FlAQRPlMnIM5uDDqOOJFCv4Ee6vIDziXW2AC+a1kqyTj7uwB/B9b8BhV5q5Fi/Dp29CTK2hjyY07msUIlAvQmuV74j5WtajLJMlt9PVuU1Yipq8RGoisTWBrmM6ObNqrWIbjr9d3I9jAMexxa3eiTwYM+T4O0uE6FYbl63/DB5tYmGqPwUWyFxko1oWL9Mp/6MbwldhCHadQcF8pJNK8c/dS2x1HFF3cbmcRIWFiWJvUX306RNzylZs3ReC+9ObgCGKeJxyG7yKHF53phRDkNNm8G+imtc+AzKvWGc4yHoCBHtkMlhkmRgHV0Lhv7yFyrCjo4Llqq760q6pw==
+ b=AE9o9hHBbcof/XSaTR3A1VrJzFER5yiMj9fRG1K55V+qaWSZut77yJ3Sg312atraADGZ1Eya57/p4xqGQcq5rekKENjGTnJRx503uO1ZRyaQkdRxz3xoRh2BrV1kWhoxodL3mi69LX6S9v+lV62vpZaY8HYCZM0QTLTAyrqACbnC/zJcJpE1WhjSkpEYbvnD+iTFj62KiZMadtDEGGMjqC6cE5zQD0hwVPMIsf3/b/UlC2rZOi1IZttw1l9MHoVdFNZP6tFhd6JCuHNXR/YWr6rUJqIGpq3Fl8BzyIxCLGpx6+KjXdinYhzVsPqUqAQRy+ijX3dEcl8GmmWvcZIsuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YwjefuIcVAInWApaLd1buS/72i2CsnipLdEq+HNf/G4=;
- b=c1ffWwxLB+4Vu8WmXkofxxoFYedUUa1gtUF6lBjUtnEk1sby74sRWdD7zOeLjCMzG3sV22sW84kntl4ZFocLZ1d03/79Cc8SSM/dv+NG8fbMVI6ueXsrBANDMGBkdKWvlvUuXkI+O3r5G8AxbcU9GVMwLqSz1Q63NMMo/qBT75ql4g4ZS3j0uobKsZugBzBIrwD2rLxb8pLZE4WB89wJxGNLI7lSM5gOWoK+Cc6aHec0+mkqjYta+oh6LP914ddfsiqOEKlSLG9FhiLnrAgz2FyX6n9IkwvFxtAZzvNmJOuMBhNxLyDcl1Op1BLGLhU9JjBhUGnWRfuf6+FGb7ZKWA==
+ bh=NV46kft/If9E+1EH/6ZK2NP5TLlO3FF/8axyGNWNzc0=;
+ b=rf1UW7z0aa2XSInMKxaw/ZgbFVyOP5G5C+gWe5iWff7uRAm090O/GElX6lFJvF/RbUWZdjBc5h5tJafCueBuNB0+V0vEEpz28ctnNvOcuHwZcgACPltdIMA3B4AIozD4FNALHiZLkURal8RCOCSUIr3SUYP4naKKAwecq3P9w5N/dTUcDOVwTzkdz/kjIVIBDEy1l+cMrkqRC3jc9zSDpY3d31vmRM4R3HrkFI8m1LP5H5z8Hcgg6JQYPcuPn2b7W8i4FwLDDR4SqsNJbOdVayT27diYCZ5iIsh+dOONlyKc3lsVNFHwf/xji43Pe8W/Lh0dqN4pL05eob+/tx1BAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YwjefuIcVAInWApaLd1buS/72i2CsnipLdEq+HNf/G4=;
- b=gRSch8sksEBhfbffr16AkUSFU/METNmshtlylNcnkIU8FxXTnCiWdoIN3+eG2DVNS1jGd6xxAG+AX4LxYrJ58BZjOu0W4/RH9P+taUHsTYvTQQ4EKtHISY9JKNXZK+QaTR3l1eQCoXGTB0zxs6B30ceEpdxIQIUyRL4TfcOSSS8=
-Received: from SA1PR03CA0010.namprd03.prod.outlook.com (2603:10b6:806:2d3::26)
- by DS0PR12MB7678.namprd12.prod.outlook.com (2603:10b6:8:135::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Mon, 30 Sep
- 2024 12:00:23 +0000
-Received: from SA2PEPF000015CB.namprd03.prod.outlook.com
- (2603:10b6:806:2d3:cafe::bb) by SA1PR03CA0010.outlook.office365.com
- (2603:10b6:806:2d3::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27 via Frontend
- Transport; Mon, 30 Sep 2024 12:00:23 +0000
+ bh=NV46kft/If9E+1EH/6ZK2NP5TLlO3FF/8axyGNWNzc0=;
+ b=pe7HMqdwzpNCKa5G2ds/9z9zUqEHzBf1bzieYJsJMCfcBuLDkdaz9OWROi+4IHhC9YVznJBiuzh+QV8/11OB3NiUe6wybJYSv9clFwJQiBfL2rHuI5VfI/a8ayHmbke+QiIgtCxyj4VIK6WYbOL0nCw/66otFUrkrWJq+avldHg=
+Received: from SN1PR12CA0065.namprd12.prod.outlook.com (2603:10b6:802:20::36)
+ by MN2PR12MB4373.namprd12.prod.outlook.com (2603:10b6:208:261::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Mon, 30 Sep
+ 2024 12:00:25 +0000
+Received: from SA2PEPF000015C6.namprd03.prod.outlook.com
+ (2603:10b6:802:20:cafe::2) by SN1PR12CA0065.outlook.office365.com
+ (2603:10b6:802:20::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26 via Frontend
+ Transport; Mon, 30 Sep 2024 12:00:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,20 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF000015CB.mail.protection.outlook.com (10.167.241.201) with Microsoft
+ SA2PEPF000015C6.mail.protection.outlook.com (10.167.241.196) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Mon, 30 Sep 2024 12:00:23 +0000
+ 15.20.8026.11 via Frontend Transport; Mon, 30 Sep 2024 12:00:24 +0000
 Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 30 Sep 2024 07:00:21 -0500
+ 15.1.2507.39; Mon, 30 Sep 2024 07:00:22 -0500
 From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>, "Arunpravin
  Paneer Selvam" <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v3 04/09] drm/amdgpu: Enable userq fence interrupt support
-Date: Mon, 30 Sep 2024 17:29:01 +0530
-Message-ID: <20240930115906.191060-4-Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH v3 05/09] drm/amdgpu: Remove the MES self test
+Date: Mon, 30 Sep 2024 17:29:02 +0530
+Message-ID: <20240930115906.191060-5-Arunpravin.PaneerSelvam@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240930115906.191060-1-Arunpravin.PaneerSelvam@amd.com>
 References: <20240930115906.191060-1-Arunpravin.PaneerSelvam@amd.com>
@@ -73,59 +73,59 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CB:EE_|DS0PR12MB7678:EE_
-X-MS-Office365-Filtering-Correlation-Id: 824c5cad-4230-45e2-d364-08dce14776d0
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C6:EE_|MN2PR12MB4373:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07ca7d19-590e-474e-aa17-08dce14777dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OS9SQmFFUkJpOVc1RHBnenBEQ2E2TVZSZkNFQ1Zobm5pUFJ3cE9ZWEhTT2pD?=
- =?utf-8?B?eW00NXFpY0ZIdWdwV2JWTXdvcCswMGhjTXpidTNUYTFPU3NwbDlQemk4Q2ll?=
- =?utf-8?B?Q2NaZlJkNmNIU2VweW1WYk9KWVFqVVhQSi9YY01ENVB3UE51eTYzUVMzcWl0?=
- =?utf-8?B?Rm53Z0x2clR5bmllRHRWdkZIWlA2SDdJVlVCaDE5a3k2aVNlOFlnTFBOQ2o2?=
- =?utf-8?B?Wnkwb2lseFpBTDZ0NUFSY0JQUDJseXc5RGJHTmJtRFZCc0V4QU1hczdCWWt1?=
- =?utf-8?B?WGo2a2RqTHlBdXlYU0tvOG1LQWdvZWp5MDI4VmFUY3hubnp3bEF1NE9xTVRU?=
- =?utf-8?B?bEtPWGpLUTVoTmgwejl3dkd0WlhUZ0dvWExXbmFsMFhxajl4Sm0xQU45N2Ez?=
- =?utf-8?B?amNUVXFUcFhZK3JySjNKUk1YenRsVUdIclNvdWl5R3RseHFoZ2ZGL28zRHdi?=
- =?utf-8?B?TmxzSng5ZTZrQjUxOG5jR1M3MGdrZzhOaVZvbktTSUo1ZFRlWk5ud1g0aVhJ?=
- =?utf-8?B?a0F3VnJodGEvMzdyM1N1MHBTUVZMZ3NyQ3lQOFRNVDNlWmR6L1ZEYXhXUXNP?=
- =?utf-8?B?TzdBbFBvbTkrUjNLS0ZFTHZ5QXlFTEhOVG1YNXgyWjhYeGFJKzhaYy96dnla?=
- =?utf-8?B?Y3FpTTd1alZycXJWbFRaRWNveUIvMUxUQWVEbU5uSkd6TG5Wa1N2MlFlcnpL?=
- =?utf-8?B?WlQ4Yy94dEZZYWg1OThpYVlXenBwNmpYQ2xBNFF5R1VkZHlsd1NJV3pvaFJt?=
- =?utf-8?B?TTJETE52TmRRdDNxV04zK2ovSW5GaGp6aHNORThVWnVqektmMjB6R2dTVUVi?=
- =?utf-8?B?S1NvellIbElVSEQwZGZVR2hoSC8xc0d2VmN2UUdaVFJPV3A2NU9PMktrNGF2?=
- =?utf-8?B?SUthNXpFN3lscjh6MW9iOGFGRC8rU01LSEI3cEJPYUdSdUpLeEpWT2JkR1I2?=
- =?utf-8?B?U0xYZXhJQWtYclRnRndKZVUxR2g3eTUrbUdOSVdSaUFsdUFIdGs0TnRnTHJq?=
- =?utf-8?B?dlROQ21OV3hvUS9jSHB1a1dmZ2FCME0waUpRYVZ3R1lQMDAzSmZrM1lKTWZB?=
- =?utf-8?B?amtUV2t6NVV1WkVlbkg4UlMzUmoybUQ1VklFd3pmdVdZYVM1OVh6ejhlN05I?=
- =?utf-8?B?UzlJWTdxR1k3bEhSNFJ4aElkYVVFampBeHN2Q09wVWk1ejdRcGRqNEtFQjg4?=
- =?utf-8?B?YXdrcUxMdDA5SytCT3dCdExQRVJuWC9RVnJIUFhtUlRDUjBmeThUdzFqald1?=
- =?utf-8?B?U21hNzlYMW1qejRTQ1VsSnhvK2tRZHMyVTNkaEtDUERhbnNtNDJhUmx3eHF3?=
- =?utf-8?B?allhWnplTEdOQlNCWHZnaUdwNDRRZVlUeVdCdE9XZVhPa3JCRnZ3ZUVFTkNX?=
- =?utf-8?B?a3hJdFpuRTkyQWV3WUQ0SDYzaTdjTUFOSzBVMG5yT0xkbUNFSlJpc3VHNEEr?=
- =?utf-8?B?OEUxSjB0Y2tlTFZZWUZZemMvc1NWY0pDU0lISTh2YUYxN3Z6SzJpQnJCWGRq?=
- =?utf-8?B?ZVVnT3U0bEJBVDExMllwbzB3dVNtU1YxZkM4U0lMRjVtWEhkblU4SE45V0tz?=
- =?utf-8?B?dFpHcFNhTkVvMlFTRlUyUjA2Wk5EaWtKUlljM3BpUHpITDduSEtsUC9lSXpr?=
- =?utf-8?B?K3c1MzlSaDM5ejBxSUtPMElCVnJCcGp1V1lGYVBQVEpTbnMyaitwdDd5WTRK?=
- =?utf-8?B?ZzVuWWsxYmptK29DazdTeFZ4Y0ppbTdwMURGakR5WFdUR0did1NxVU56djcx?=
- =?utf-8?B?dzJuVWJGckRKbVlCdkFsRHBONnNyQ0lrcUdFUW5YTHhZK2F5eUV3V0IyQzlU?=
- =?utf-8?B?SGtkZXQyTERyQUk4T2VKQXZrMWQ4SVkvaHgwUUprS25STldidVRNUXN2T3Rh?=
- =?utf-8?B?Y3NsSTc4ejFIdmxzcmhzekFUYlBBN2hlQ0xJTE00d0p4VXNqeEZEMGV0aTNt?=
- =?utf-8?Q?HGK+l8BkyjE=3D?=
+ ARA:13230040|36860700013|82310400026|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RWxYSCtqK0RiOVZVdnFBRk1ENjJBeEN0Wi9QZHpEL0RKT001RE1OakZPNzI2?=
+ =?utf-8?B?QU5VY3pZN0N2Zm41WXgzNWFnYVdWbllUVVBEQUZBMDUvVjBLUE91NGhYL3JT?=
+ =?utf-8?B?RHJ5M25GQzAvNzRXYzdoKzlyK3JFckVlMjdIT2R2SmVYVzZHc0JuN1F6VG9H?=
+ =?utf-8?B?VGJjbkdPQnBQdVY2NGVSTHUyaEJJa0RjTDMvKzJBZlMwV29sK3RYeTB6WUl2?=
+ =?utf-8?B?YUVGa3MvQjZlR3NiNENwLzFnTXZtVWR5bjFLVW1yVFZkdHN3ZjQyVmJlRFIv?=
+ =?utf-8?B?NGY5ckVrUHlpOURsQmcvdWZlVVhFekNKK29XUlYxNVdKekxkZ0cvWGFpMFBl?=
+ =?utf-8?B?Tm14U1M2TnN6WUpKUzdZYU8zK2k5M09OUXNCc2JYSndNbUYzcFZPcENaT3dz?=
+ =?utf-8?B?eE1nVjMvV3hRY2hjU3pDdndQOEY4cE1MeUVMcHFia0ZPdW9zNkhwTmRJa3ZF?=
+ =?utf-8?B?ZStuY1ZwenExaENoNnRvbWdXa0d0Y0tFSXJkdHpwTUlnR1RFQXI4c0JTUUxs?=
+ =?utf-8?B?bTZJN01tMk5CUnA0VWZhY1dBTm5ncHowdkRob2txczlMNE0wZkN0UkVoTnJV?=
+ =?utf-8?B?TFhmQWhSY0N5ZFZSZTcyTnlsVzJrOC91MUp5ZWNXQ1ZQOGllL3lDSE1zNk9S?=
+ =?utf-8?B?VWxPTFA1TDlhTXRhdUZUWkVTdUEwd2dlWmtwQVVkMlZxU2xvVlZicHpOeCtI?=
+ =?utf-8?B?MEZ2dlJHS1pqYytEOFVmbkQvd3BLa0pnaE5ZRXo5SXMzN3N3U25rSU5DQkl1?=
+ =?utf-8?B?VjFIcEt1SVFpamZ5VkVjNnYxbXFqNVR1OGw0WENrelA5dFdLQnBJd2E2NEJZ?=
+ =?utf-8?B?Nm9xS1dYc0Y0TFFaeGdxbGczUk9BUlZuQW5aa2NLenA4bFNQTk9OM2JRVEJz?=
+ =?utf-8?B?YXJTand0R1ZSSkxadGc2bCtjZWhMSTlTY1BCcDIrOXR0NkdxRHN5Mll4aGEv?=
+ =?utf-8?B?dnVMUFNSMjNUQ2dhc3JhWEVmWjlycVRQakRVYmdjV1lzMXhTNVBpZHFmaHps?=
+ =?utf-8?B?SWM3enJTblJpeFhiYitjUFhwRncvZy9hL0czM0JLSXRDOEFud2YrRlRKcXhu?=
+ =?utf-8?B?aXVqNjF5ems2KzhITWFLNU1XaWFra3VWelg2K2hkTkdHK3g4cHQzWFNKZ3Ry?=
+ =?utf-8?B?QTNzQjl5Ulppb2dxTUxBaytKZlZoQWtVUkhCTDBQVXhoL25JMzhYKytuakh3?=
+ =?utf-8?B?WmdHR0U0dy9BTzZBOVhwTzB2ZFJScExvVEhETytCdEU1NEROVXFidkxWaERJ?=
+ =?utf-8?B?NmJsWFQvY3NISzZUaXBGdXJLUVRXM0hiWXNmUjdFdFMzVkViNENtVUJjU0ZB?=
+ =?utf-8?B?dU4yUCtpRGNwMGhneE1rUTZUaFZEbzQ2Zkhhd1huR2t3ODMwL0NIVVhuWk9h?=
+ =?utf-8?B?U1lEYmhxTnJ4bEtTWWdtR0llOGl0V0NZWVVpNElva1BkZFRQdFhuYVR4NE9h?=
+ =?utf-8?B?MHhXZFhFb3pPYVdZSWZjWHZpN0hvWks1UGJVcDNXMlFOQmd2aDNZWkg1ZDdz?=
+ =?utf-8?B?R2JnUXRNc3M2WjBGSjVWT2laeEpqL3lHNVFacHlOcko3VENWcFdTTzFwUXZF?=
+ =?utf-8?B?MVUyRHV0SUFFWHF5blR6cmxmYk1CcmZzMlE5bk5Gd1k0RVZSaHJYdHBqcURm?=
+ =?utf-8?B?T0d0QUk2UzNENDBMeTRibGhFTGZKc1lRdWgxb3ZGcHFyQm9zc0YxelpkczVD?=
+ =?utf-8?B?SFQ2OW9Zb2grbzlDR2xyYXE2dzVSbTJZaVBMUk1LalJyR1l5RVIzeklCRVZ3?=
+ =?utf-8?B?a3hPQTBLcncxVE9QbGttMGpSSlFHSnAyKzBnbTJSOXZTUmp2TlBzSlF4MXhk?=
+ =?utf-8?B?a0lMdEtQcGN6RllmWGZvcU0waDl4d0pBZ0lud2xTc3djMVJpaExUbWh2QWFi?=
+ =?utf-8?B?UHNsMGFaYlQvY2tXS3RHWEhMeXZUSGg4MWp5d1JDNXFidk1QY21UQ0Exek1W?=
+ =?utf-8?Q?4uZGBYEJZjyDlS7YewzQJXvL2HZIGXX7?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 12:00:23.1311 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 824c5cad-4230-45e2-d364-08dce14776d0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 12:00:24.8929 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07ca7d19-590e-474e-aa17-08dce14777dd
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015C6.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7678
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4373
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,114 +140,283 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add support to handle the userqueue protected fence signal hardware
-interrupt.
+Remove MES self test as this conflicts the userqueue fence
+interrupts.
 
-Create a xarray which maps the doorbell index to the fence driver address.
-This would help to retrieve the fence driver information when an userq fence
-interrupt is triggered. Firmware sends the doorbell offset value and
-this info is compared with the queue's mqd doorbell offset value.
-If they are same, we process the userq fence interrupt.
-
-v1:(Christian):
-  - use xa_load to extract the fence driver.
-  - move the amdgpu_userq_fence_driver_process call within the xa_lock
-    as there is a chance that fence_drv might be freed.
+v2:(Christian)
+  - remove the amdgpu_mes_self_test() function and any now unused code.
 
 Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  2 ++
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  6 +++++
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 25 +++++++++----------
- 3 files changed, 20 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   3 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c    | 169 ---------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h    |   2 -
+ drivers/gpu/drm/amd/amdgpu/mes_v10_1.c     |  12 +-
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     |  14 +-
+ 5 files changed, 2 insertions(+), 198 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 94bdb5fa6ebc..2da895f91e4d 100644
+index 2da895f91e4d..5ec6cb237c81 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3967,6 +3967,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	spin_lock_init(&adev->audio_endpt_idx_lock);
- 	spin_lock_init(&adev->mm_stats.lock);
+@@ -4700,9 +4700,6 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
+ 	}
+ 	adev->in_suspend = false;
  
-+	xa_init_flags(&adev->userq_xa, XA_FLAGS_LOCK_IRQ);
-+
- 	INIT_LIST_HEAD(&adev->shadow_list);
- 	mutex_init(&adev->shadow_list_lock);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 76552eed6d86..dad26165df4c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -71,6 +71,7 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
- 				    struct amdgpu_usermode_queue *userq)
- {
- 	struct amdgpu_userq_fence_driver *fence_drv;
-+	unsigned long flags;
- 	int r;
- 
- 	fence_drv = kzalloc(sizeof(*fence_drv), GFP_KERNEL);
-@@ -98,6 +99,11 @@ int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
- 	fence_drv->context = dma_fence_context_alloc(1);
- 	get_task_comm(fence_drv->timeline_name, current);
- 
-+	xa_lock_irqsave(&adev->userq_xa, flags);
-+	__xa_store(&adev->userq_xa, userq->doorbell_index,
-+		   fence_drv, GFP_KERNEL);
-+	xa_unlock_irqrestore(&adev->userq_xa, flags);
-+
- 	userq->fence_drv = fence_drv;
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 508e0acebb0d..68f908cafb6f 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -50,6 +50,7 @@
- #include "nbio_v4_3.h"
- #include "mes_v11_0.h"
- #include "mes_v11_0_userqueue.h"
-+#include "amdgpu_userq_fence.h"
- 
- #define GFX11_NUM_GFX_RINGS		1
- #define GFX11_MEC_HPD_SIZE	2048
-@@ -5865,25 +5866,23 @@ static int gfx_v11_0_eop_irq(struct amdgpu_device *adev,
- 			     struct amdgpu_irq_src *source,
- 			     struct amdgpu_iv_entry *entry)
- {
--	int i;
-+	u32 doorbell_offset = entry->src_data[0];
- 	u8 me_id, pipe_id, queue_id;
- 	struct amdgpu_ring *ring;
--	uint32_t mes_queue_id = entry->src_data[0];
-+	int i;
- 
- 	DRM_DEBUG("IH: CP EOP\n");
- 
--	if (adev->enable_mes && (mes_queue_id & AMDGPU_FENCE_MES_QUEUE_FLAG)) {
--		struct amdgpu_mes_queue *queue;
-+	if (adev->enable_mes && doorbell_offset) {
-+		struct amdgpu_userq_fence_driver *fence_drv = NULL;
-+		struct xarray *xa = &adev->userq_xa;
-+		unsigned long flags;
- 
--		mes_queue_id &= AMDGPU_FENCE_MES_QUEUE_ID_MASK;
+-	if (adev->enable_mes)
+-		amdgpu_mes_self_test(adev);
 -
--		spin_lock(&adev->mes.queue_id_lock);
--		queue = idr_find(&adev->mes.queue_id_idr, mes_queue_id);
--		if (queue) {
--			DRM_DEBUG("process mes queue id = %d\n", mes_queue_id);
--			amdgpu_fence_process(queue->ring);
+ 	if (amdgpu_acpi_smart_shift_update(dev, AMDGPU_SS_DEV_D0))
+ 		DRM_WARN("smart shift update failed\n");
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index da48b6da0107..dbe7cf4b322d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -1297,175 +1297,6 @@ int amdgpu_mes_ctx_unmap_meta_data(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
+-static int amdgpu_mes_test_create_gang_and_queues(struct amdgpu_device *adev,
+-					  int pasid, int *gang_id,
+-					  int queue_type, int num_queue,
+-					  struct amdgpu_ring **added_rings,
+-					  struct amdgpu_mes_ctx_data *ctx_data)
+-{
+-	struct amdgpu_ring *ring;
+-	struct amdgpu_mes_gang_properties gprops = {0};
+-	int r, j;
+-
+-	/* create a gang for the process */
+-	gprops.priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+-	gprops.gang_quantum = adev->mes.default_gang_quantum;
+-	gprops.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+-	gprops.priority_level = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+-	gprops.global_priority_level = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+-
+-	r = amdgpu_mes_add_gang(adev, pasid, &gprops, gang_id);
+-	if (r) {
+-		DRM_ERROR("failed to add gang\n");
+-		return r;
+-	}
+-
+-	/* create queues for the gang */
+-	for (j = 0; j < num_queue; j++) {
+-		r = amdgpu_mes_add_ring(adev, *gang_id, queue_type, j,
+-					ctx_data, &ring);
+-		if (r) {
+-			DRM_ERROR("failed to add ring\n");
+-			break;
 -		}
--		spin_unlock(&adev->mes.queue_id_lock);
-+		xa_lock_irqsave(xa, flags);
-+		fence_drv = xa_load(xa, doorbell_offset);
-+		if (fence_drv)
-+			amdgpu_userq_fence_driver_process(fence_drv);
-+		xa_unlock_irqrestore(xa, flags);
- 	} else {
- 		me_id = (entry->ring_id & 0x0c) >> 2;
- 		pipe_id = (entry->ring_id & 0x03) >> 0;
+-
+-		DRM_INFO("ring %s was added\n", ring->name);
+-		added_rings[j] = ring;
+-	}
+-
+-	return 0;
+-}
+-
+-static int amdgpu_mes_test_queues(struct amdgpu_ring **added_rings)
+-{
+-	struct amdgpu_ring *ring;
+-	int i, r;
+-
+-	for (i = 0; i < AMDGPU_MES_CTX_MAX_RINGS; i++) {
+-		ring = added_rings[i];
+-		if (!ring)
+-			continue;
+-
+-		r = amdgpu_ring_test_helper(ring);
+-		if (r)
+-			return r;
+-
+-		r = amdgpu_ring_test_ib(ring, 1000 * 10);
+-		if (r) {
+-			DRM_DEV_ERROR(ring->adev->dev,
+-				      "ring %s ib test failed (%d)\n",
+-				      ring->name, r);
+-			return r;
+-		} else
+-			DRM_INFO("ring %s ib test pass\n", ring->name);
+-	}
+-
+-	return 0;
+-}
+-
+-int amdgpu_mes_self_test(struct amdgpu_device *adev)
+-{
+-	struct amdgpu_vm *vm = NULL;
+-	struct amdgpu_mes_ctx_data ctx_data = {0};
+-	struct amdgpu_ring *added_rings[AMDGPU_MES_CTX_MAX_RINGS] = { NULL };
+-	int gang_ids[3] = {0};
+-	int queue_types[][2] = { { AMDGPU_RING_TYPE_GFX, 1 },
+-				 { AMDGPU_RING_TYPE_COMPUTE, 1 },
+-				 { AMDGPU_RING_TYPE_SDMA, 1} };
+-	int i, r, pasid, k = 0;
+-
+-	pasid = amdgpu_pasid_alloc(16);
+-	if (pasid < 0) {
+-		dev_warn(adev->dev, "No more PASIDs available!");
+-		pasid = 0;
+-	}
+-
+-	vm = kzalloc(sizeof(*vm), GFP_KERNEL);
+-	if (!vm) {
+-		r = -ENOMEM;
+-		goto error_pasid;
+-	}
+-
+-	r = amdgpu_vm_init(adev, vm, -1);
+-	if (r) {
+-		DRM_ERROR("failed to initialize vm\n");
+-		goto error_pasid;
+-	}
+-
+-	r = amdgpu_mes_ctx_alloc_meta_data(adev, &ctx_data);
+-	if (r) {
+-		DRM_ERROR("failed to alloc ctx meta data\n");
+-		goto error_fini;
+-	}
+-
+-	ctx_data.meta_data_gpu_addr = AMDGPU_VA_RESERVED_SIZE;
+-	r = amdgpu_mes_ctx_map_meta_data(adev, vm, &ctx_data);
+-	if (r) {
+-		DRM_ERROR("failed to map ctx meta data\n");
+-		goto error_vm;
+-	}
+-
+-	r = amdgpu_mes_create_process(adev, pasid, vm);
+-	if (r) {
+-		DRM_ERROR("failed to create MES process\n");
+-		goto error_vm;
+-	}
+-
+-	for (i = 0; i < ARRAY_SIZE(queue_types); i++) {
+-		/* On GFX v10.3, fw hasn't supported to map sdma queue. */
+-		if (amdgpu_ip_version(adev, GC_HWIP, 0) >=
+-			    IP_VERSION(10, 3, 0) &&
+-		    amdgpu_ip_version(adev, GC_HWIP, 0) <
+-			    IP_VERSION(11, 0, 0) &&
+-		    queue_types[i][0] == AMDGPU_RING_TYPE_SDMA)
+-			continue;
+-
+-		r = amdgpu_mes_test_create_gang_and_queues(adev, pasid,
+-							   &gang_ids[i],
+-							   queue_types[i][0],
+-							   queue_types[i][1],
+-							   &added_rings[k],
+-							   &ctx_data);
+-		if (r)
+-			goto error_queues;
+-
+-		k += queue_types[i][1];
+-	}
+-
+-	/* start ring test and ib test for MES queues */
+-	amdgpu_mes_test_queues(added_rings);
+-
+-error_queues:
+-	/* remove all queues */
+-	for (i = 0; i < ARRAY_SIZE(added_rings); i++) {
+-		if (!added_rings[i])
+-			continue;
+-		amdgpu_mes_remove_ring(adev, added_rings[i]);
+-	}
+-
+-	for (i = 0; i < ARRAY_SIZE(gang_ids); i++) {
+-		if (!gang_ids[i])
+-			continue;
+-		amdgpu_mes_remove_gang(adev, gang_ids[i]);
+-	}
+-
+-	amdgpu_mes_destroy_process(adev, pasid);
+-
+-error_vm:
+-	amdgpu_mes_ctx_unmap_meta_data(adev, &ctx_data);
+-
+-error_fini:
+-	amdgpu_vm_fini(adev, vm);
+-
+-error_pasid:
+-	if (pasid)
+-		amdgpu_pasid_free(pasid);
+-
+-	amdgpu_mes_ctx_free_meta_data(&ctx_data);
+-	kfree(vm);
+-	return 0;
+-}
+-
+ int amdgpu_mes_init_microcode(struct amdgpu_device *adev, int pipe)
+ {
+ 	const struct mes_firmware_header_v1_0 *mes_hdr;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+index 7d4f93fea937..e7af28834766 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+@@ -396,8 +396,6 @@ int amdgpu_mes_ctx_map_meta_data(struct amdgpu_device *adev,
+ int amdgpu_mes_ctx_unmap_meta_data(struct amdgpu_device *adev,
+ 				   struct amdgpu_mes_ctx_data *ctx_data);
+ 
+-int amdgpu_mes_self_test(struct amdgpu_device *adev);
+-
+ int amdgpu_mes_doorbell_process_slice(struct amdgpu_device *adev);
+ 
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+index 1e5ad1e08d2a..1b2745670d4c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
+@@ -1156,20 +1156,10 @@ static int mes_v10_0_early_init(void *handle)
+ 	return 0;
+ }
+ 
+-static int mes_v10_0_late_init(void *handle)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-
+-	if (!amdgpu_in_reset(adev))
+-		amdgpu_mes_self_test(adev);
+-
+-	return 0;
+-}
+-
+ static const struct amd_ip_funcs mes_v10_1_ip_funcs = {
+ 	.name = "mes_v10_1",
+ 	.early_init = mes_v10_0_early_init,
+-	.late_init = mes_v10_0_late_init,
++	.late_init = NULL,
+ 	.sw_init = mes_v10_1_sw_init,
+ 	.sw_fini = mes_v10_1_sw_fini,
+ 	.hw_init = mes_v10_1_hw_init,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index 26d71a22395d..38e35c0a2876 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -1257,22 +1257,10 @@ static int mes_v11_0_early_init(void *handle)
+ 	return 0;
+ }
+ 
+-static int mes_v11_0_late_init(void *handle)
+-{
+-	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-
+-	/* it's only intended for use in mes_self_test case, not for s0ix and reset */
+-	if (!amdgpu_in_reset(adev) && !adev->in_s0ix && !adev->in_suspend &&
+-	    (amdgpu_ip_version(adev, GC_HWIP, 0) != IP_VERSION(11, 0, 3)))
+-		amdgpu_mes_self_test(adev);
+-
+-	return 0;
+-}
+-
+ static const struct amd_ip_funcs mes_v11_0_ip_funcs = {
+ 	.name = "mes_v11_0",
+ 	.early_init = mes_v11_0_early_init,
+-	.late_init = mes_v11_0_late_init,
++	.late_init = NULL,
+ 	.sw_init = mes_v11_0_sw_init,
+ 	.sw_fini = mes_v11_0_sw_fini,
+ 	.hw_init = mes_v11_0_hw_init,
 -- 
 2.34.1
 
