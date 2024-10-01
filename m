@@ -2,33 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBCB98CE43
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 09:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C08AD98CE45
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 09:59:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B4910E6B3;
-	Wed,  2 Oct 2024 07:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064DD10E6B6;
+	Wed,  2 Oct 2024 07:59:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=johnrowley.me header.i=@johnrowley.me header.b="sRxyv1mS";
+	dkim=pass (2048-bit key; unprotected) header.d=johnrowley.me header.i=@johnrowley.me header.b="P7+RqhTz";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.vapourmail.eu (mail.vapourmail.eu [5.75.183.223])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16F1010E11C
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 21:14:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDC610E333
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 21:32:38 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id A4F53C38D2; Tue,  1 Oct 2024 22:14:31 +0100 (BST)
+ with ESMTPSA id 0482CC0076; Tue,  1 Oct 2024 22:32:35 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=johnrowley.me;
- s=dkim; t=1727817273;
+ s=dkim; t=1727818356;
  h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:content-language:in-reply-to:references;
- bh=lpLuw2sJgaRY7hkI1hlJqq/JV14pDwqtWhNwVOESN5c=;
- b=sRxyv1mSkAFITZxgCxNKWhWNWPukzxcEvKQXumw5gKajM+6yXVJ2gRaTDEGfrEKhHeGL1r
- T8PGWe/Ag1dC1dk6KuzetR+nRme+USQ2YpgBhtnUT/jSzI3yCOeQQoxxeF34PnmyxsI7Lp
- Dg13HIuPsXuB1Ivx6inN+7HwCeYu0gbt9xuILd+HYrFuFIskBJV6ESero3hEkZghAWT57M
- hzGoIt0t6h0eQUm+snlb0gHvLHGmMODrz026zc+p5LHwASPN66llaOESMrvBjuQlIJ0wc6
- lwwPAX2vLV9urO8t3nMI1KHQmjVPxkMW/l6T/kiZIPS0WLaA//1MQT6Pkql3Kg==
-Message-ID: <3c0dfd3a-9549-4afa-94b6-80041f498436@johnrowley.me>
-Date: Tue, 1 Oct 2024 22:14:29 +0100
+ bh=msRv+wj1UiQoqKTQBAUpAS+3YDWf9M7FcIXLZ9BS2ro=;
+ b=P7+RqhTzTea40vH4nwpBLtbwEgl6eIO/gOFfZXtOMBc/VfvBN43+YC2Fr5lmTWzKf+jqdZ
+ sPQfSfuUjByPH1v8ycgcTOV0EYrUz7Pu5D4jjVJ1EeCOI2v6xd+1s/G3dYqkO6xxSitcll
+ otPIp37EDOwL5ZNOUa4N/7b5UApG7Icq3SNH7DflaLNvvcyxg1HsiVvRV06OJVEvzhOiWa
+ ni0Ss3GQuOIXJgnpMVPwNMnlu9lAgD0+ZuoMwu6CpYANPA4o7COadL2+cTKQM/pcKP7/ky
+ hTuZY8h3o45LRe8dl9FlqpjX50X42bIpG69RT3g7Cu4BRIxTGeTPRGShFd0Jdw==
+Message-ID: <92af8678-2b45-409e-82d1-f273fe907a36@johnrowley.me>
+Date: Tue, 1 Oct 2024 22:32:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [REGRESSION][BISECTED] 58a261bfc967: choppy GPU performance
@@ -44,9 +44,11 @@ References: <9b80e957-f20a-4bd7-a40b-2b5f1decf5a4@johnrowley.me>
  <7ed81635-3872-463c-94e5-e4972da9d014@amd.com>
  <bcc97e4e-ffe0-47a7-bd29-c993e5404a33@amd.com>
  <9c562132-64a0-41f5-80ad-8492d1039692@amd.com>
+ <3c0dfd3a-9549-4afa-94b6-80041f498436@johnrowley.me>
+ <25eed927-fe69-4005-8c0d-c5f3052e662e@amd.com>
 Content-Language: en-US
 From: John Rowley <lkml@johnrowley.me>
-In-Reply-To: <9c562132-64a0-41f5-80ad-8492d1039692@amd.com>
+In-Reply-To: <25eed927-fe69-4005-8c0d-c5f3052e662e@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
@@ -65,63 +67,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Disabling PSR as per Leo's reply seems to have done the trick!
+The attached patch seems to improve rendering performance a lot; animations and desktop performance are generally smoother again.
 
-Stock 6.12-rc1 (without revert): BROKEN
+But it doesn't seem 100%, e.g. if I let the laptop idle for 10 secs before interacting with the touchpad, the desktop cursor seems to stick in-place for 100-200ms or so, before becoming responsive again.
 
-    /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_state:
-    6
+This 'sticking' problem doesn't seem to occur with PSR disabled.
 
-    /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_capability:
-    Sink support: yes [0x03]
-    Driver support: yes
+My testing isn't exactly scientifically sound I'm afraid, if there's a better test or benchmark I can run, please let me know.
 
-With amdgpu.dcdebugmask=0x800: BROKEN
-
-With amdgpu.dcdebugmask=0x10: FIXED! Performance is as it was on 6.11.
-
-    /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_state:
-    0
-
-    /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_capability:
-    Sink support: yes [0x03]
-    Driver support: no [0xffffffff]
-
-I have the older Framework 13 panel (BOE 0x0BCA, 2256x1504 @ 59.999 Hz) so I assume PSR isn't supported according to Mario, yet psr_{state,capability} above seem to indicate otherwise?
-
-Thanks.
-
-On 01/10/2024 21:16, Mario Limonciello wrote:
-> On 10/1/2024 15:07, Leo Li wrote:
+On 01/10/2024 22:16, Mario Limonciello wrote:
+> On 10/1/2024 16:14, John Rowley wrote:
+>> Disabling PSR as per Leo's reply seems to have done the trick!
 >>
+>> Stock 6.12-rc1 (without revert): BROKEN
 >>
+>>      /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_state:
+>>      6
 >>
->> On 2024-10-01 15:10, Mario Limonciello wrote:
->>> On 10/1/2024 14:09, John Rowley wrote:
->>>> I was using power-profiles-daemon version 0.23 in balanced mode.
->>>>
->>>> I also tested TLP, and vanilla kernel without any power daemons running. Without any daemons I use the following:
->>>>
->>>>      energy_performance_preference: balance_power
->>>>
->>>>      scaling_driver: amd-pstate-epp
->>>>
->>>>      scaling_governor: powersave
->>>>
->>>
->>> Thanks as long as it can reproduce in 'balanced' mode that should exclude PPD from being the cause and it most likely a pure kernel bug.
->>>
+>>      /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_capability:
+>>      Sink support: yes [0x03]
+>>      Driver support: yes
 >>
->> I'm curious if you have a PSR supported panel. Does setting
->> amdgpu.dcdebugmask=0x10 on your kernel cmdline help? This force disables PSR.
+>> With amdgpu.dcdebugmask=0x800: BROKEN
 >>
->> Another flag to try is amdgpu.dcdebugmask=0x800, which allows PSR but disables
->> idle power optimizations. I wonder if that may be causing extra latency.
+>> With amdgpu.dcdebugmask=0x10: FIXED! Performance is as it was on 6.11.
 >>
->> - Leo
+>>      /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_state:
+>>      0
+>>
+>>      /sys/kernel/debug/dri/0000:c1:00.0/eDP-1/psr_capability:
+>>      Sink support: yes [0x03]
+>>      Driver support: no [0xffffffff]
+>>
+>> I have the older Framework 13 panel (BOE 0x0BCA, 2256x1504 @ 59.999 Hz) so I assume PSR isn't supported according to Mario, yet psr_{state,capability} above seem to indicate otherwise?
+>>
 >
-> Do you have the "new" 2.8k high res panel on your Framework 13?  If so; can you please check your logs to see if PSR is even getting enabled?
+> PSR and Replay are two different things.  But from your above analysis it does confirm it's a PSR issue.
 >
-> IE it might be enabling panel replay which is new to enable again in 6.12-rc1, and if so; this could be where the issue is too.
+> There's a patch that Hamza attached to https://gitlab.freedesktop.org/drm/amd/-/issues/3658.
 >
-> The lower res display shouldn't support it.
+> Can you try that?
+>
+> Thanks,
