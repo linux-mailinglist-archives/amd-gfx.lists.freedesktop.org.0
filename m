@@ -2,77 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEA998BD50
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Oct 2024 15:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CDD598BE5F
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Oct 2024 15:50:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB43B10E044;
-	Tue,  1 Oct 2024 13:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11BA810E624;
+	Tue,  1 Oct 2024 13:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AQT7jYAd";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="YKqD4Ys/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5055E10E620
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 13:19:26 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-2e0b46df34eso745804a91.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 01 Oct 2024 06:19:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727788766; x=1728393566; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mXiXIWwgmR0UfmkFz9FwQzFMESqlLTZEekI6B5j9d5s=;
- b=AQT7jYAdX9EUbxSn4nE+7v/87hh120U6BLaa03gnqGN0YB77rMb57Mzl0+q/gV3M9D
- 2/j0nyQhqziORI3NKaAiRzZrwI56G3zhsUz8L0TbNHPWK4asmu+MN3LsWvwyXnD5RKmr
- bktzws0MARwCu16a1JipztQ3GoTffLdLitD8E3mer1lXQDgC4GmYRwNMqpKwcdp2AOeu
- EE4YEVHLplSpjeJWS8yVQVcrxZSmYyLZb8GJJhVnM/qN0A6hJxFn34c0Z2umLPSdgCQl
- XWycIQ5z3uj3FzIKmH1pSsjMqFHQuzZ5J4Qsu52Bbl4EDmaSxVL+YKqDH1oT/PMh2YX2
- V0jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727788766; x=1728393566;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mXiXIWwgmR0UfmkFz9FwQzFMESqlLTZEekI6B5j9d5s=;
- b=NIKRTsxruxkzv61hCaHg5NMfNg0AggDD7yCwG6PdBgmHf/8cN/JPp3E4+j2YLmL5Fa
- iisk9lTpyBh9BXvK4iDfP4VvpUtTq/W51du8nlvUE0NWkUEkfxhzfUtzajkolelq6Hbk
- ddsWjMc1A0is2iNBXftrudQj+CsNBalZNB7iTpRcwaqvc8B0oN2ZMTLHokzmg9ashYUD
- tSpnehier9Bt5vinwZO2IUNDO8AW4IcLRygAt67VSwTQrdcprnuS5AC91L+j6noyO8TC
- Z8wSb02Vvv1SnnvE7afKwoaLKfNO3EKpu3ozLXbW5ap8TfvWQ9BhZ2zPphH87RjYHmRp
- 6JKg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWUAlgriDU7uJnfDUK1Ea+GINk8W+RZ30cXQ7S5JuThD1AW4UBdW5I5Twy5sbD3bA+qptIKYuAb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyrl4aXqBNcorE2eiRY81wS5vg3aomiahDR8+ohMQUX4gPvX6KQ
- FtMz5AiluBx1DORxx5OzdKO3NTGskiUI6bR3qvBBz+KP0AwXhK0e49aNfQ1xUqpkT/7n4IaxqcZ
- cWvtwfF+fhkmxgjioJTGemxWhKvU=
-X-Google-Smtp-Source: AGHT+IEmWCaMTr25cM8kV4jqwmHIiN2Dhczo4uoIMhMQguhRTriR+KjemXPpW3xTGHMkWnbULIeT2pUlUvZBsJAumXs=
-X-Received: by 2002:a17:90b:128b:b0:2db:60b:697e with SMTP id
- 98e67ed59e1d1-2e0e70f2160mr6270753a91.8.1727788765715; Tue, 01 Oct 2024
- 06:19:25 -0700 (PDT)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC32E10E624;
+ Tue,  1 Oct 2024 13:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1727790644;
+ bh=Wrdy0e1dz6T5uwCE6i2Zj6+AsBKQNypB0lnUzsj5xCI=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=YKqD4Ys/oGurqoWIOyx7Wn0hRTWDfyPPhsxJBv4liLaL79RWNITs6yYigoa9t0bYR
+ apYOKXRQwcu6+xBYSMhtRzZYX8riNbY3jwGgx54B/mqtnC6ECCMjvF74G/KjKZbgVO
+ RJzRdFANc0GPw4iUWTjgPb0VclImiN7kwj4rnOBg0+pqJjlWEITVsXj59SE2r7LUoj
+ 5BPDH1RBCLKq/QZ/2cqqNz0kemyYFg31AZl1ypfI77sHEXKV+OTQMPdPXhzsDquLmV
+ MCPct2nkHj5eYZYOGgoLbN+JW1S3vLWHHoQv7M/X9CrsLunLU6HnxNWpHM5ZiXsYda
+ Riy6fn3Jf9ZCg==
+Received: from [192.168.50.250] (unknown [171.76.80.165])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F28B17E0FC0;
+ Tue,  1 Oct 2024 15:50:39 +0200 (CEST)
+Message-ID: <87fea8ea-fe9d-4114-b03c-7ec50a4be874@collabora.com>
+Date: Tue, 1 Oct 2024 19:20:35 +0530
 MIME-Version: 1.0
-References: <2024081247-until-audacious-6383@gregkh>
- <07bbc66f-5689-405d-9232-87ba59d2f421@amd.com>
- <CADnq5_MXBZ_WykSMv-GtHZv60aNzvLFVBOvze09o6da3-4-dTQ@mail.gmail.com>
- <2024081558-filtrate-stuffed-db5b@gregkh>
- <CADnq5_OFxhxrm-cAfhB8DzdmEcMq_HbkU52vbynqoS1_L0rhzg@mail.gmail.com>
- <2024082439-extending-dramatize-09ca@gregkh>
- <CADnq5_OeJ7LD0DvXjXmr-dV2ciEhfiEEEZsZn3w1MKnOvL=KUA@mail.gmail.com>
- <2024090447-boozy-judiciary-849b@gregkh>
- <CADnq5_MZ8s=jcCt_-=D2huPA=X3f5PWNjMhr88xoiKc_JFwQtw@mail.gmail.com>
- <2024100112-flounder-paralysis-eb25@gregkh>
-In-Reply-To: <2024100112-flounder-paralysis-eb25@gregkh>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 1 Oct 2024 09:19:13 -0400
-Message-ID: <CADnq5_OKw-N6sXuX7hvfE7Agb5HStBjGxwjS-2x3AbghWyqMEg@mail.gmail.com>
-Subject: Re: AMD drm patch workflow is broken for stable trees
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: Felix Kuehling <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org, 
- stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] docs/gpu: ci: update flake tests requirements
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org
+Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
+ daniel@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
+ dmitry.baryshkov@linaro.org, mripard@kernel.org, rodrigo.vivi@intel.com,
+ quic_abhinavk@quicinc.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,39 +68,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 1, 2024 at 6:04=E2=80=AFAM Greg KH <gregkh@linuxfoundation.org>=
- wrote:
->
-> On Mon, Sep 30, 2024 at 10:10:25AM -0400, Alex Deucher wrote:
-> > Resending now that rc1 is out.  These should be ignored for stable.
-> >
-> > 8151a6c13111 drm/amd/display: Skip Recompute DSC Params if no Stream on=
- Link
-> > fbfb5f034225 drm/amdgpu: fix contiguous handling for IB parsing v2
-> > ec0d7abbb0d4 drm/amd/display: Fix Potential Null Dereference
-> > 332315885d3c drm/amd/display: Remove ASSERT if significance is zero in
-> > math_ceil2
-> > 295d91cbc700 drm/amd/display: Check for NULL pointer
-> > 6472de66c0aa drm/amd/amdgpu: Fix uninitialized variable warnings
-> > 93381e6b6180 drm/amdgpu: fix a possible null pointer dereference
-> > 7a38efeee6b5 drm/radeon: fix null pointer dereference in radeon_add_com=
-mon_modes
->
-> Thanks, that helped a lot.
->
-> However the following two commits did not apply, is that because they
-> are already in the tree or do they need someone to properly backport them=
-?
->
-> c2ed7002c061 ("drm/amd/display: Use SDR white level to calculate matrix c=
-oefficients")
-> b74571a83fd3 ("drm/amd/display: Use full update for swizzle mode change")
+Hi amdgpu Maintainers,
 
-Looks like they will need backports.
+On 30/09/24 15:22, Vignesh Raman wrote:
+> Update the documentation to specify linking to a relevant GitLab
+> issue or email report for each new flake entry. Added specific
+> GitLab issue urls for amdgpu, i915, msm and xe driver.
+> 
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> #intel and xe
+> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
+> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+> - Add gitlab issue link for msm driver.
+> 
+> v3:
+> - Update docs to specify we use email reporting or GitLab issues for flake entries.
+> 
+> v4:
+> - Add gitlab issue link for xe driver.
+> 
+> ---
+>   Documentation/gpu/automated_testing.rst | 14 ++++++++++----
+>   1 file changed, 10 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+> index 2d5a28866afe..6d7c6086034d 100644
+> --- a/Documentation/gpu/automated_testing.rst
+> +++ b/Documentation/gpu/automated_testing.rst
+> @@ -68,19 +68,25 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
+>   the result. They will still be run.
+>   
+>   Each new flake entry must be associated with a link to the email reporting the
+> -bug to the author of the affected driver, the board name or Device Tree name of
+> -the board, the first kernel version affected, the IGT version used for tests,
+> -and an approximation of the failure rate.
+> +bug to the author of the affected driver or the relevant GitLab issue. The entry
+> +must also include the board name or Device Tree name, the first kernel version
+> +affected, the IGT version used for tests, and an approximation of the failure rate.
+>   
+>   They should be provided under the following format::
+>   
+> -  # Bug Report: $LORE_OR_PATCHWORK_URL
+> +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
+>     # Board Name: broken-board.dtb
+>     # Linux Version: 6.6-rc1
+>     # IGT Version: 1.28-gd2af13d9f
+>     # Failure Rate: 100
+>     flaky-test
+>   
+> +Use the appropriate link below to create a GitLab issue:
+> +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
 
-Alex
+Please could you ack this patch. Thanks.
 
->
-> thanks,
->
-> greg k-h
+> +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
+> +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
+> +xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues
+> +
+>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
+>   -----------------------------------------------------------
+>   
+
+Regards,
+Vignesh
