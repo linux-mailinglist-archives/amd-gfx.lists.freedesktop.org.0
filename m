@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB73198CC1A
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 06:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2CD98CC15
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 06:38:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5703710E690;
-	Wed,  2 Oct 2024 04:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E9910E684;
+	Wed,  2 Oct 2024 04:38:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="L2BwzFuf";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="EE0PvC6S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2079.outbound.protection.outlook.com [40.107.236.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B5A10E68A
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Oct 2024 04:38:59 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2065.outbound.protection.outlook.com [40.107.220.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9AE410E684
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Oct 2024 04:38:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NF6xRqgt7FPaoj9o7GvGFFAtsiyC7fDz11kjfpI2qI3z5piWGIOlwng71bT2j43wgOGwlmixmj5yVmD1H3U+W0KdW5+tYwT8jhw55sQyl+RziAziC0MxJq8mRsLBFDHeFVI63xkQp5tGFF7kf7EtDlBMXzI+/d7qZPrRt1jALzWNef0NTSpYyq7H3I5DFHx6Gu/kdZPwx219i/LPknQhDoAUudoNfETVTtTN1wAiJtz4wbuUVPYuqQY4psqmq0mdvfs8ygfPIEJhEJDWjcsf/v+WdDOxn4zKHWP0QB9lC0rjLpSE8nh5sTpEdlLn0m44936DisUrUy84Kx6YMMtbjQ==
+ b=NJ7dE/TunhCCs2E+urLsdE9y309kPQLQzgegbjzmu5yTBhxsj7CeApSdqFXuydQo5iocckeLd67fAlBidZBiTCXr18yn4N0HC3nqVBG7QelD/jJ2sV3mVPGN/hkUW3hVUX53w9GNWQaG4NS6jiiIxTXVHhfJ342Ep5WJGeKeoZn9wYhqzPuV9EVLKT7AL5NaUWZu5megILpiZp1u+CuW1KBjqPDyiGxLDjAS61m7rQSLAbmd2GRgC7K5BNnMQvpn3pBNAvGntuXhAFw1jGFziR0sIFvFnGzumWL3l747YUMjZ/J0GJEE5kPe+c5NR0BMgOhGnxGYK3HKNgVXIEgV3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ak0zBx7YlXr6DbEzcyfVtviOpZS90lbi2lu/hcMhhtw=;
- b=pBjjDlXysgO8Zs1eichHWA0UbH8n/iAiYzhPNTceO8WjOq/vW5tkLxxCTnsOoC6AwOx0AoAb2DvgdWOGb14bym0UmecRLzXxObx0rNXP3agFYY0Qon/7C0SzkrWhkmSfyCkzSwKUEwB4hhZfMrEvq2cyopZpocJptHVGwHQZwT4AQqAGcmYkg4xxBzE/XifsvvKE3ThbbcPiR+jMALtYZsYKJT+Xi0qU6ezj62NnidM9TV0qqZnvIsBoaRHHZCq47zq2CpYc7+oVAFx/msBkspXwNOJpd7eQL4ev1sgsu+l/qEUmjWvAvYutbxwSlRkMFWyUcqK5AYvtHM8bt+5qLA==
+ bh=jWF8FlHq5tfqFTVBfgGoT250pJ1bebDgxgc1zDtNvzE=;
+ b=GmXfHOhVzlj6mmWtw4fldb+qhG0T6YPqogjWE8dbi2R+Ah6DnTIFsjHyZntYC9fJ+Hhk19azdFVBLCdPFBTFPU39soGgWIQzmVPHU3cBl8iZ8QRKkNhMgmOOXzHGTlS6ejnlZt62vmehsW0HnrECpY7ckJB+0jgOrWez96DGIAw2bJTRwzrk6aa0t4HTFGhaLAEsfOZQcnymOnUOS8MvBeKaXdWf9Dlv/0G54Ue59Hobfa4OxfkCCRHJgHbVGf0Hb3QRbyMV+SIRtqOiCB9bkssSZLVD3VF++HI9ZVKq7DoWEPjT2A/xJf4P5oBVwWhAqMLkW2+XRGl+13/KDdrqJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ak0zBx7YlXr6DbEzcyfVtviOpZS90lbi2lu/hcMhhtw=;
- b=L2BwzFufMEGRBuELDJfegpkkJXlr15ZFHuV7tdTaSdID1TzyKdwHQXBHrAijuNBthmJC93wJU+ODDZni/cCFeafAWD5A9hnbHDpP/QG2gNjact840UIpXlBFBFHU6fdRfugX7nINe61L0aY3fEW/4aJC6ZLR9LlC8xY6NMg5r78=
-Received: from SJ0PR05CA0103.namprd05.prod.outlook.com (2603:10b6:a03:334::18)
- by DS0PR12MB7559.namprd12.prod.outlook.com (2603:10b6:8:134::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
- 2024 04:38:51 +0000
+ bh=jWF8FlHq5tfqFTVBfgGoT250pJ1bebDgxgc1zDtNvzE=;
+ b=EE0PvC6Sp5HA9qEphp2S0xuJAkbC/MtcErQmCUh98sRtz42HfttzBqmHJ1ySyEWRDQt6PMulFdktsy+rSBLM34ts8zq3WnWtAK01QywaDqfhb5t0iYJuI7FRCA9juNZYhDkcq+TcPoftE5llo+9vfGmxtheirL8AWX8pMA8r2zQ=
+Received: from SJ0PR05CA0105.namprd05.prod.outlook.com (2603:10b6:a03:334::20)
+ by PH7PR12MB7115.namprd12.prod.outlook.com (2603:10b6:510:1ee::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Wed, 2 Oct
+ 2024 04:38:52 +0000
 Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
- (2603:10b6:a03:334:cafe::93) by SJ0PR05CA0103.outlook.office365.com
- (2603:10b6:a03:334::18) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:a03:334:cafe::39) by SJ0PR05CA0105.outlook.office365.com
+ (2603:10b6:a03:334::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.15 via Frontend
- Transport; Wed, 2 Oct 2024 04:38:51 +0000
+ Transport; Wed, 2 Oct 2024 04:38:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,19 +50,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 04:38:51 +0000
+ 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 04:38:52 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 1 Oct
- 2024 23:38:46 -0500
+ 2024 23:38:47 -0500
 From: <boyuan.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <leo.liu@amd.com>,
  <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
  <sunil.khatri@amd.com>
 CC: Boyuan Zhang <boyuan.zhang@amd.com>
-Subject: [PATCH 05/18] drm/amd/pm: set vcn enable by instance
-Date: Wed, 2 Oct 2024 00:36:14 -0400
-Message-ID: <20241002043627.102414-6-boyuan.zhang@amd.com>
+Subject: [PATCH 06/18] drm/amd/pm: set powergating by smu by instance
+Date: Wed, 2 Oct 2024 00:36:15 -0400
+Message-ID: <20241002043627.102414-7-boyuan.zhang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241002043627.102414-1-boyuan.zhang@amd.com>
 References: <20241002043627.102414-1-boyuan.zhang@amd.com>
@@ -74,51 +74,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|DS0PR12MB7559:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc09dd26-212b-483d-c827-08dce29c1d43
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|PH7PR12MB7115:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2cb77c9-6b52-460f-ace7-08dce29c1dea
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aCdJjT/SFe53TSYdjBCw3SlT7t8Yu0kZits/6o9f6AQpVOwR9WbSTpf5j5ro?=
- =?us-ascii?Q?Cg+3VxUblj3ZM6ezJKdGXCkgly2CPkqzcowC46u6P8M4eDG1OOp9m+SdLVUr?=
- =?us-ascii?Q?jrpHQF2Udx3+STSJg2LyaGjeZ2wdF5NkVApxZMogtC8OkTB5dMDMAPDZEHGT?=
- =?us-ascii?Q?+3acaEJUo16OmuIhf4Sx3B4SKGCxEWXVKR+LHU2SZQnv6O1osclv4X0shqJC?=
- =?us-ascii?Q?/7oC2XHHHaQJi4BA2bNWkOcslfRDVJuY3ne1RzFjnolb5pMIvxz9cPmNeZo7?=
- =?us-ascii?Q?VrKem0ByRo55DTepE2ofrxfmh04zzvsFL5wy2EnzZ/g1gv5R+CUK/NoJrc4P?=
- =?us-ascii?Q?pGGIzXV1ubwf52RNADzJRyIIzzcbYvYNIsENGAMNVaL1/5+A5UDq2us21bN+?=
- =?us-ascii?Q?zscm/xknGzy07nY70fm+niWdFxD+/TzOg5bA3AqNcfV667I/WfqyRnDnDCu6?=
- =?us-ascii?Q?8HzfRckBDwqi65n48JhBNwj6q7LMGSwSTIcOQszhOL/AccbUmP0p0BW2E002?=
- =?us-ascii?Q?dwms4L9nRmzCRTx+k26ught869SvYWqswF6fNXCwTVBwHFBC74pDmFbaGWrm?=
- =?us-ascii?Q?I+PfGT9c+E6PTDDy1+t90BgqgAGMhVro/eIFxgt445GhkuV12h+k6BBiChN3?=
- =?us-ascii?Q?CrSwP9/Sr+ZW1G7c+z6EB8bRWe5p9Yjs1tkbqxqskqYOcwc6T3b51kc75i5z?=
- =?us-ascii?Q?sYyjh62LI+PrNt4wld45RlTsUqwv7lLsPL9lxr25+tSnRWDYpG9ufBRSXH55?=
- =?us-ascii?Q?GSLXxx6ZqeaNXdt3wzLLSF/TtoOtXELMmERnp+hNbBOUyvgEBb8UqevtFP8T?=
- =?us-ascii?Q?krwvDecxVoAX2EEQmI0CuMIyiwOW67nLR6L8Rxtn2lsNzRgOpJ3TDaYs2lMh?=
- =?us-ascii?Q?VlFSW7ZMixoHpvmoxZp2yjZUacSsrqJuMqwYAcr9Fr2zqt5fXZ10c4NMvGBU?=
- =?us-ascii?Q?DQqfkR2l66LvwlgfIsundPS2d+KOkYm+GW93U+Q8AtGajESOjcddUTCu2JOT?=
- =?us-ascii?Q?UYEbjom+0gXi0MZ7YuFmTiVGQg0QwTyNa1vLoluDrnxHudD6Bkenj3lXd9tn?=
- =?us-ascii?Q?00wbZsMnqYEAtThOEfOVawvIbczf/J14KQ/rYct1tSKI7d9LPhxvEHLpu/PF?=
- =?us-ascii?Q?iu4lH34T4X6GdXbRZ5jbqxW7g9jxs6aItcSiyOqBt6/Qk7UOR3vEb+RWbrv5?=
- =?us-ascii?Q?sMSGgg9sxMiZEtII728Y/FW7xET4LfnDU0K5Nq0eJD/NxpU4kpfPggcn9K5p?=
- =?us-ascii?Q?eptSuwvLeEoC1B7Raxlh7momZ3TACiN4t2jPF172+GdfyFw6boCU+OvvB9mw?=
- =?us-ascii?Q?3WjXlISolLMAvRvZivnlFrzPmI3iB4MjFOTvEWadM+GLhlR9ojIFuhSuiejG?=
- =?us-ascii?Q?zLcAvqCqTNoMP2HsBtRWbCkqZkQcTpB81f5ZK8XcrYHXenw7XwFdRJ7Gc9Pr?=
- =?us-ascii?Q?tSrCb/i+1EuD+mWeB+0IKp8nG9v+dANe?=
+ ARA:13230040|376014|36860700013|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zVxCcviHR76I6Y8bDHnzyEqF5nnLm04vMx5goZR70UBcgOhQsVvwrtcM6Q8V?=
+ =?us-ascii?Q?mp/j+hKsWJP1i8xTa8O7nWBRegPptIZ4meiarmH4J1AbylVRu2NYZiVsOBOs?=
+ =?us-ascii?Q?CsNLfe/yjBTH4rnkj1YFwIRWEs24N9Oi3BpdXFIsdZjYR6GNSwqtS8AA72eC?=
+ =?us-ascii?Q?PHw6ahOkbydw3TP+hCHM3b9WsThp/0QZVOOBf8dWAgt4YEHJN0CehqJuw7yO?=
+ =?us-ascii?Q?zIwcABK8Z834bFcW7tU644g9So+bwEU9jXKEvJkE6PVr5CA8O840ZQ2fJoQL?=
+ =?us-ascii?Q?eqtrRpf/OsMKATAWE0CYcL9jFuxVaGajB/32OtbVOIIIa0K+e9woqQfA1bYj?=
+ =?us-ascii?Q?FCDBYXgfa3w6MClAOUkRhIrTBsv4JXmFkTr0z6TeOUKD4Lv3d0f3wPrjfKIf?=
+ =?us-ascii?Q?0PlqiOjMLO9CgFt2fVO9rRT9CzQXdwwTLv5JyWrshqwSjC73qPgXQykU/xVV?=
+ =?us-ascii?Q?7S2KKPMeZll0FIlmqE2MQCa6KHv635GcOaiJXH9Nx3FJVE0ATwrlOS2vWX8f?=
+ =?us-ascii?Q?0LLpW8fpsJYfcuhPutUNRWpoVSkS9w5zQc5eAC3NzLIFD+yO4covD8Fk4/GW?=
+ =?us-ascii?Q?+nUSKjwnyoWoUgHwo8KUM2vJvqSJuDn9y3H0kv2Hn5IqpoX5X6EWDSpWGgjZ?=
+ =?us-ascii?Q?oEs6KEWLZ1D+yrR4NTt6I/FBrS3KlD9fROrloM1Cp8rI5QCJUqD5UsXFh49z?=
+ =?us-ascii?Q?wj5FhT6vxyZkIBm9M+BMsSGm4dYZIufQ/g2YhrkW8lr+fCYEUEEmTM/f4779?=
+ =?us-ascii?Q?18MBT8vLfmchsX/cMIZB4jgNUxUMmQ6d7gnb6UNEAeNdvO4Wkc7tDn2roWTl?=
+ =?us-ascii?Q?nbfm7rs+sDe+uObMgQBGhdwbEWQh+S3eBu/vqci97c0b+necqAEqe1cmgIJt?=
+ =?us-ascii?Q?ovgc9BXbcTRI26Od5kVmqkW7gkBkZV3+hW0CL92FzkMk39M9L7YAtef5UMtl?=
+ =?us-ascii?Q?ek+MIYilkE19JTDPEFbNesySSEPNNWqc/Bi+8Gc/0w1N6YHdRPGxjHW/xfe7?=
+ =?us-ascii?Q?Im0f6yzDICwhS3s9MT00h/SymcU528Mg+FcpsnziFmF1PNNHXT3yneqH1gVP?=
+ =?us-ascii?Q?3nNB7UN1uBWemq85KoEiNzmPZ5ciw8Ia/FguKS3g+7bh2wbKUDpzsycAYgq1?=
+ =?us-ascii?Q?bUQu+nMR/0wfB7nxgtpSSpgyXY2MuHw5OBg5VEQC9Q3BBWf65z+PJWeG7cKh?=
+ =?us-ascii?Q?CJyeYpV76bui6nTs8ZMESgInUnt+BLdDsz5AsTSyjJSk39Ksj30rX23dphKA?=
+ =?us-ascii?Q?1NuwqXLgBVX0WwMg+cZxieEGJptDZh7I6LQB4LtsVI4XlP5wsj1Z4HFNamFy?=
+ =?us-ascii?Q?RRg2zPx+4VHDY4qL/lKdQDVFREMZkIpo+Jy9t4kxtpZshDeZ6csn9J4JIqRh?=
+ =?us-ascii?Q?LZOcIkQ=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 04:38:51.2118 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc09dd26-212b-483d-c827-08dce29c1d43
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 04:38:52.3056 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2cb77c9-6b52-460f-ace7-08dce29c1dea
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7559
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7115
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,239 +134,148 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-The new function smu_dpm_set_vcn_enable_instance() will be used to enable
-or disable vcn engine dynamic power for the given vcn instance only.
-
-The original function smu_dpm_set_vcn_enable() will still be used to enable
-or disable vcn engine dynamic power for all VCN instances as before.
+Add a new function to set powergating_by_smu for the given instance
 
 Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 132 +++++++++++++++---
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |   2 +-
- 2 files changed, 115 insertions(+), 19 deletions(-)
+ .../gpu/drm/amd/include/kgd_pp_interface.h    |  2 +
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c           | 67 +++++++++++++++++++
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |  4 ++
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  1 +
+ 4 files changed, 74 insertions(+)
 
+diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+index 2fa71f68205e..cdd891f51422 100644
+--- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+@@ -406,6 +406,8 @@ struct amd_pm_funcs {
+ 	int (*wait_for_fw_loading_complete)(void *handle);
+ 	int (*set_powergating_by_smu)(void *handle,
+ 				uint32_t block_type, bool gate);
++	int (*set_powergating_by_smu_instance)(void *handle,
++				uint32_t block_type, bool gate, int inst);
+ 	int (*set_clockgating_by_smu)(void *handle, uint32_t msg_id);
+ 	int (*set_power_limit)(void *handle, uint32_t n);
+ 	int (*get_power_limit)(void *handle, uint32_t *limit,
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+index 9dc82f4d7c93..f2d2f85476dc 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+@@ -110,6 +110,49 @@ int amdgpu_dpm_set_powergating_by_smu(struct amdgpu_device *adev, uint32_t block
+ 	return ret;
+ }
+ 
++int amdgpu_dpm_set_powergating_by_smu_instance(struct amdgpu_device *adev, uint32_t block_type, bool gate, int inst)
++{
++	int ret = 0;
++	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
++	enum ip_power_state pwr_state = gate ? POWER_STATE_OFF : POWER_STATE_ON;
++	bool is_vcn = (block_type == AMD_IP_BLOCK_TYPE_UVD || block_type == AMD_IP_BLOCK_TYPE_VCN);
++
++	if (atomic_read(&adev->pm.pwr_state[block_type]) == pwr_state &&
++		(!is_vcn || adev->vcn.num_vcn_inst == 1)) {
++		dev_dbg(adev->dev, "IP block%d already in the target %s state!",
++				block_type, gate ? "gate" : "ungate");
++      return 0;
++   }
++
++   mutex_lock(&adev->pm.mutex);
++
++   switch (block_type) {
++      case AMD_IP_BLOCK_TYPE_UVD:
++      case AMD_IP_BLOCK_TYPE_VCE:
++      case AMD_IP_BLOCK_TYPE_GFX:
++      case AMD_IP_BLOCK_TYPE_VCN:
++      case AMD_IP_BLOCK_TYPE_SDMA:
++      case AMD_IP_BLOCK_TYPE_JPEG:
++      case AMD_IP_BLOCK_TYPE_GMC:
++      case AMD_IP_BLOCK_TYPE_ACP:
++      case AMD_IP_BLOCK_TYPE_VPE:
++         if (pp_funcs && pp_funcs->set_powergating_by_smu_instance) {
++            ret = (pp_funcs->set_powergating_by_smu_instance(
++            (adev)->powerplay.pp_handle, block_type, gate, inst));
++			}
++         break;
++      default:
++         break;
++   }
++
++   if (!ret)
++      atomic_set(&adev->pm.pwr_state[block_type], pwr_state);
++
++   mutex_unlock(&adev->pm.mutex);
++
++   return ret;
++}
++
+ int amdgpu_dpm_set_gfx_power_up_by_imu(struct amdgpu_device *adev)
+ {
+ 	struct smu_context *smu = adev->powerplay.pp_handle;
+@@ -572,6 +615,30 @@ void amdgpu_dpm_enable_uvd(struct amdgpu_device *adev, bool enable)
+ 			  enable ? "enable" : "disable", ret);
+ }
+ 
++void amdgpu_dpm_enable_vcn(struct amdgpu_device *adev, bool enable, int inst)
++{
++	int ret = 0;
++
++	if (adev->family == AMDGPU_FAMILY_SI) {
++		mutex_lock(&adev->pm.mutex);
++		if (enable) {
++			adev->pm.dpm.uvd_active = true;
++			adev->pm.dpm.state = POWER_STATE_TYPE_INTERNAL_UVD;
++		} else {
++			adev->pm.dpm.uvd_active = false;
++		}
++		mutex_unlock(&adev->pm.mutex);
++
++		amdgpu_dpm_compute_clocks(adev);
++		return;
++	}
++
++	ret = amdgpu_dpm_set_powergating_by_smu_instance(adev, AMD_IP_BLOCK_TYPE_UVD, !enable, inst);
++	if (ret)
++		DRM_ERROR("Dpm %s uvd failed, ret = %d. \n",
++                enable ? "enable" : "disable", ret);
++}
++
+ void amdgpu_dpm_enable_vce(struct amdgpu_device *adev, bool enable)
+ {
+ 	int ret = 0;
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+index f5bf41f21c41..f4cd60ffba47 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+@@ -395,6 +395,9 @@ int amdgpu_dpm_set_apu_thermal_limit(struct amdgpu_device *adev, uint32_t limit)
+ int amdgpu_dpm_set_powergating_by_smu(struct amdgpu_device *adev,
+ 				      uint32_t block_type, bool gate);
+ 
++int amdgpu_dpm_set_powergating_by_smu_instance(struct amdgpu_device *adev,
++				      uint32_t block_type, bool gate, int inst);
++
+ extern int amdgpu_dpm_get_sclk(struct amdgpu_device *adev, bool low);
+ 
+ extern int amdgpu_dpm_get_mclk(struct amdgpu_device *adev, bool low);
+@@ -442,6 +445,7 @@ void amdgpu_pm_acpi_event_handler(struct amdgpu_device *adev);
+ 
+ void amdgpu_dpm_compute_clocks(struct amdgpu_device *adev);
+ void amdgpu_dpm_enable_uvd(struct amdgpu_device *adev, bool enable);
++void amdgpu_dpm_enable_vcn(struct amdgpu_device *adev, bool enable, int inst);
+ void amdgpu_dpm_enable_vce(struct amdgpu_device *adev, bool enable);
+ void amdgpu_dpm_enable_jpeg(struct amdgpu_device *adev, bool enable);
+ void amdgpu_dpm_enable_vpe(struct amdgpu_device *adev, bool enable);
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 939e15b24f86..ddfed7189708 100644
+index ddfed7189708..449925105889 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -232,12 +232,15 @@ static bool is_vcn_enabled(struct amdgpu_device *adev)
- 	return true;
- }
- 
--static int smu_dpm_set_vcn_enable(struct smu_context *smu,
--				  bool enable)
-+static int smu_dpm_set_vcn_enable_instance(struct smu_context *smu,
-+				  bool enable,
-+				  int inst)
- {
- 	struct smu_power_context *smu_power = &smu->smu_power;
- 	struct smu_power_gate *power_gate = &smu_power->power_gate;
-+	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0;
-+	bool single_inst = (adev->vcn.num_vcn_inst == 1);
- 
- 	/*
- 	 * don't poweron vcn/jpeg when they are skipped.
-@@ -245,15 +248,33 @@ static int smu_dpm_set_vcn_enable(struct smu_context *smu,
- 	if (!is_vcn_enabled(smu->adev))
- 		return 0;
- 
--	if (!smu->ppt_funcs->dpm_set_vcn_enable)
-+	if (!smu->ppt_funcs->dpm_set_vcn_enable_instance && !single_inst)
- 		return 0;
- 
--	if (atomic_read(&power_gate->vcn_gated) ^ enable)
-+	if (!smu->ppt_funcs->dpm_set_vcn_enable && single_inst)
- 		return 0;
- 
--	ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable);
-+	if (atomic_read(&power_gate->vcn_gated[inst]) ^ enable)
-+		return 0;
-+
-+	if (single_inst)
-+		ret = smu->ppt_funcs->dpm_set_vcn_enable(smu, enable);
-+	else
-+		ret = smu->ppt_funcs->dpm_set_vcn_enable_instance(smu, enable, inst);
- 	if (!ret)
--		atomic_set(&power_gate->vcn_gated, !enable);
-+		atomic_set(&power_gate->vcn_gated[inst], !enable);
-+
-+	return ret;
-+}
-+
-+static int smu_dpm_set_vcn_enable(struct smu_context *smu,
-+				  bool enable)
-+{
-+	struct amdgpu_device *adev = smu->adev;
-+	int ret = 0;
-+
-+	for (int i = 0; i < adev->vcn.num_vcn_inst; i++)
-+		ret = smu_dpm_set_vcn_enable_instance(smu, enable, i);
- 
- 	return ret;
- }
-@@ -408,6 +429,81 @@ static int smu_dpm_set_power_gate(void *handle,
- 	return ret;
- }
- 
-+/**
-+ * smu_dpm_set_power_gate_instance - power gate/ungate the specific IP block
-+ *                                   for the specific instance
-+ *
-+ * @handle:     smu_context pointer
-+ * @block_type: the IP block to power gate/ungate
-+ * @gate:       to power gate if true, ungate otherwise
-+ * @inst:       the instance to power gate/ungate
-+ *
-+ * This API uses no smu->mutex lock protection due to:
-+ * 1. It is either called by other IP block(gfx/sdma/vcn/uvd/vce).
-+ *    This is guarded to be race condition free by the caller.
-+ * 2. Or get called on user setting request of power_dpm_force_performance_level.
-+ *    Under this case, the smu->mutex lock protection is already enforced on
-+ *    the parent API smu_force_performance_level of the call path.
-+ */
-+static int smu_dpm_set_power_gate_instance(void *handle,
-+				  uint32_t block_type,
-+				  bool gate,
-+				  int inst)
-+{
-+	struct smu_context *smu = handle;
-+	int ret = 0;
-+
-+	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled) {
-+		dev_WARN(smu->adev->dev,
-+			 "SMU uninitialized but power %s requested for %u!\n",
-+			 gate ? "gate" : "ungate", block_type);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	switch (block_type) {
-+	/*
-+	 * Some legacy code of amdgpu_vcn.c and vcn_v2*.c still uses
-+	 * AMD_IP_BLOCK_TYPE_UVD for VCN. So, here both of them are kept.
-+	 */
-+	case AMD_IP_BLOCK_TYPE_UVD:
-+	case AMD_IP_BLOCK_TYPE_VCN:
-+		ret = smu_dpm_set_vcn_enable_instance(smu, !gate, inst);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s VCN!\n",
-+				gate ? "gate" : "ungate");
-+		break;
-+	case AMD_IP_BLOCK_TYPE_GFX:
-+		ret = smu_gfx_off_control(smu, gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to %s gfxoff!\n",
-+				gate ? "enable" : "disable");
-+		break;
-+	case AMD_IP_BLOCK_TYPE_SDMA:
-+		ret = smu_powergate_sdma(smu, gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s SDMA!\n",
-+				gate ? "gate" : "ungate");
-+		break;
-+	case AMD_IP_BLOCK_TYPE_JPEG:
-+		ret = smu_dpm_set_jpeg_enable(smu, !gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s JPEG!\n",
-+				gate ? "gate" : "ungate");
-+		break;
-+	case AMD_IP_BLOCK_TYPE_VPE:
-+		ret = smu_dpm_set_vpe_enable(smu, !gate);
-+		if (ret)
-+			dev_err(smu->adev->dev, "Failed to power %s VPE!\n",
-+				gate ? "gate" : "ungate");
-+		break;
-+	default:
-+		dev_err(smu->adev->dev, "Unsupported block type!\n");
-+		return -EINVAL;
-+	}
-+
-+	return ret;
-+}
-+
- /**
-  * smu_set_user_clk_dependencies - set user profile clock dependencies
-  *
-@@ -774,19 +870,11 @@ static int smu_early_init(struct amdgpu_ip_block *ip_block)
- static int smu_set_default_dpm_table(struct smu_context *smu)
- {
- 	struct amdgpu_device *adev = smu->adev;
--	struct smu_power_context *smu_power = &smu->smu_power;
--	struct smu_power_gate *power_gate = &smu_power->power_gate;
--	int vcn_gate, jpeg_gate;
- 	int ret = 0;
- 
- 	if (!smu->ppt_funcs->set_default_dpm_table)
- 		return 0;
- 
--	if (adev->pg_flags & AMD_PG_SUPPORT_VCN)
--		vcn_gate = atomic_read(&power_gate->vcn_gated);
--	if (adev->pg_flags & AMD_PG_SUPPORT_JPEG)
--		jpeg_gate = atomic_read(&power_gate->jpeg_gated);
--
- 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN) {
- 		ret = smu_dpm_set_vcn_enable(smu, true);
- 		if (ret)
-@@ -805,10 +893,10 @@ static int smu_set_default_dpm_table(struct smu_context *smu)
- 			"Failed to setup default dpm clock tables!\n");
- 
- 	if (adev->pg_flags & AMD_PG_SUPPORT_JPEG)
--		smu_dpm_set_jpeg_enable(smu, !jpeg_gate);
-+		smu_dpm_set_jpeg_enable(smu, false);
- err_out:
- 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN)
--		smu_dpm_set_vcn_enable(smu, !vcn_gate);
-+		smu_dpm_set_vcn_enable(smu, false);
- 
- 	return ret;
- }
-@@ -1253,7 +1341,8 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
- 	smu->power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
- 	smu->default_power_profile_mode = PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT;
- 
--	atomic_set(&smu->smu_power.power_gate.vcn_gated, 1);
-+	for (int i = 0; i < adev->vcn.num_vcn_inst; i++)
-+		atomic_set(&smu->smu_power.power_gate.vcn_gated[i], 1);
- 	atomic_set(&smu->smu_power.power_gate.jpeg_gated, 1);
- 	atomic_set(&smu->smu_power.power_gate.vpe_gated, 1);
- 	atomic_set(&smu->smu_power.power_gate.umsch_mm_gated, 1);
-@@ -2932,6 +3021,7 @@ static int smu_read_sensor(void *handle,
- 			   int *size_arg)
- {
- 	struct smu_context *smu = handle;
-+	struct amdgpu_device *adev = smu->adev;
- 	struct smu_umd_pstate_table *pstate_table =
- 				&smu->pstate_table;
- 	int ret = 0;
-@@ -2980,7 +3070,13 @@ static int smu_read_sensor(void *handle,
- 		*size = 4;
- 		break;
- 	case AMDGPU_PP_SENSOR_VCN_POWER_STATE:
--		*(uint32_t *)data = atomic_read(&smu->smu_power.power_gate.vcn_gated) ? 0 : 1;
-+		*(uint32_t *)data = 0;
-+		for (int i = 0; i < adev->vcn.num_vcn_inst; i++) {
-+			if (!atomic_read(&smu->smu_power.power_gate.vcn_gated[i])) {
-+				*(uint32_t *)data = 1;
-+				break;
-+			}
-+		}
- 		*size = 4;
- 		break;
- 	case AMDGPU_PP_SENSOR_MIN_FAN_RPM:
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index f88241cdf9b9..b8b6050877c1 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -399,7 +399,7 @@ struct smu_dpm_context {
- struct smu_power_gate {
- 	bool uvd_gated;
- 	bool vce_gated;
--	atomic_t vcn_gated;
-+	atomic_t vcn_gated[AMDGPU_MAX_VCN_INSTANCES];
- 	atomic_t jpeg_gated;
- 	atomic_t vpe_gated;
- 	atomic_t umsch_mm_gated;
+@@ -3744,6 +3744,7 @@ static const struct amd_pm_funcs swsmu_pm_funcs = {
+ 	.dispatch_tasks          = smu_handle_dpm_task,
+ 	.load_firmware           = smu_load_microcode,
+ 	.set_powergating_by_smu  = smu_dpm_set_power_gate,
++	.set_powergating_by_smu_instance  = smu_dpm_set_power_gate_instance,
+ 	.set_power_limit         = smu_set_power_limit,
+ 	.get_power_limit         = smu_get_power_limit,
+ 	.get_power_profile_mode  = smu_get_power_profile_mode,
 -- 
 2.34.1
 
