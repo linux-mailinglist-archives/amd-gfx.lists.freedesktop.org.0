@@ -2,64 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E7498D293
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 13:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E40E98D5E2
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 15:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA9B10E209;
-	Wed,  2 Oct 2024 11:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB7D10E358;
+	Wed,  2 Oct 2024 13:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mi6DfuF8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zb9fx+m5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E08A10E209;
- Wed,  2 Oct 2024 11:54:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727870098; x=1759406098;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RO8vC8TCS/iUL9rHuDguHrV6gLsXsNWqd9L6WJN9LfQ=;
- b=Mi6DfuF8ybevm5PmMKWfOi1tMaGTJyzqTTtE07dQttN1cmnL8UiKeypR
- l6fiGZ007HjwFlp4LcFT6d9w4sO3AfZHDDAvqzPA80hwvjdgju9so2h5X
- irZdpY9JhNPfQzreNnNUEHNfbG78uLWdpGcndfRrKOnCrYYDHDx69N1a3
- 7u7Z/PqDjKpuXbAon9EpAys6e/ukFE4Yfyohh4admUtxR37Fb38crRoOG
- 3vOe4XCYr0UL2+yV7DxfQDarthdzKO8yeR079Kfb2/vQn9E29+eORbryS
- AUIIAGZhwo3J3r03AOs8J2RkMyMkg9kusMWltLT2bp6+xcYun6mrPhd6L A==;
-X-CSE-ConnectionGUID: /4Jn1YYjRs+Gm0ETbFsJtQ==
-X-CSE-MsgGUID: Id0Jt1IMT76y62bPF7EvXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="26910756"
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="26910756"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 04:54:57 -0700
-X-CSE-ConnectionGUID: V42bzqWVQpOzL9fZ8VPhbA==
-X-CSE-MsgGUID: w829c22VR2SIooILxlC4EA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="77992893"
-Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.49])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 04:54:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Thomas
- Zimmermann <tzimmermann@suse.de>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH 07/28] drm/i915: Use video aperture helpers
-In-Reply-To: <20240930130921.689876-8-tzimmermann@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-8-tzimmermann@suse.de>
-Date: Wed, 02 Oct 2024 14:54:49 +0300
-Message-ID: <87a5fmu3cm.fsf@intel.com>
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1854110E6B3;
+ Wed,  2 Oct 2024 07:51:28 +0000 (UTC)
+Received: by mail-lf1-f41.google.com with SMTP id
+ 2adb3069b0e04-5366fd6fdf1so7788774e87.0; 
+ Wed, 02 Oct 2024 00:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1727855486; x=1728460286; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=k9nyVJGqZi2kIbcsm5pwHQqNkD1Y8pHSN+TEVYc1BR0=;
+ b=Zb9fx+m5mK2FqDKNcjK/VYbRAYQm0RnrIVBaUo5RYf5av2a2K83x9NhO0diUAXfNB/
+ x7oDvhL2XxiphTNxXPER0lftd/MZThAaHz7vbbZ0HChLvndMeL2hNN9Z6AHTZwyrJKv9
+ 8NJ3IiT8NaBVs0XzLVoFo5XyxjhAwLKMFVCbNeFZ4+2C/YjMjVkDUTWAX5+Iz8GuOjwo
+ 65aAhA1Ly3aOMg1DcaWHPblhF30KYd+kLWk4cdA8FQh+4dquvWemwImUt6Hpud97SNLU
+ 5O0QZqVaBwMrDzokxEYieHUk08XuH9zg/2NdjpQDpKyxOsA+qgtg5v1dIDVI2btwRn28
+ HUTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727855486; x=1728460286;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=k9nyVJGqZi2kIbcsm5pwHQqNkD1Y8pHSN+TEVYc1BR0=;
+ b=gMtrD1O3U+3bVQCh9gbTbSvxFnTso8D5AFQ6CQEjaoKEU+Qzb+BdpVCr0S6NpheyZy
+ iIMwTQbU3aM+CZdNXus4luhgr7aujNvhIvm6s5hVqq/hDRB55w0R8L45RBoGwXf6HnCD
+ izc02jNYxh5R1MJRofMKgaBrTBvckoT4Hy7Vl3VAXvcv+dHf5XDX764ExwiOoJ7qSEZx
+ YE1FQKWJYqV1d2NSVwi42QRxUSygujSoHSZfV3REl3Jttc3wh71UHg+//0SKpFS+0Cf6
+ /RomanqGuT0Gtonuu+EzB1L/ENsxTpQO0KwC5xQ2cUvjMvaDkkmeGaWm78rIHpXwPNo/
+ LGhg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUVCocZSvYjSTe5XaUcogb4aAFUKrh6Y8GBZ9aclyCMIDJup0x1ZZc3aZZVT8n+mfzO35zlMqci@lists.freedesktop.org,
+ AJvYcCWwdzkzaE6RsIBNlkL2R2SmVUnRQq/Yt1a3Fj4BScSBXPcKBav/CyquSBRVDMkwBZp5mWbmynNFfacb@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxcWTNmjHtBB9d7BSwbMCViQTWMWxMVxP5kO6wPRQbCzsng+smb
+ EYCzQTI+0WrVP9BvIl+/3nGL3ZlLp7D6LxxkB/zDBaH3CfXoIn1s
+X-Google-Smtp-Source: AGHT+IF8mtYU+7zcM/iYB2WyeVNCQnN+7leXQiXAba6EuIP/+NC+OtPnfMj3ik00ilaWb/QudUriHQ==
+X-Received: by 2002:a05:6512:ad2:b0:52e:f2a6:8e1a with SMTP id
+ 2adb3069b0e04-539a0680758mr1016050e87.29.1727855485537; 
+ Wed, 02 Oct 2024 00:51:25 -0700 (PDT)
+Received: from localhost
+ (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a93c277c056sm821081666b.33.2024.10.02.00.51.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Oct 2024 00:51:25 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH][next] drm/amdgpu: Fix spelling mistake "initializtion" ->
+ "initialization"
+Date: Wed,  2 Oct 2024 08:51:24 +0100
+Message-Id: <20241002075124.833394-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 02 Oct 2024 13:34:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,51 +88,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Sep 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+There is a spelling mistake in a dev_err message. Fix it.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index b3eb35fa5ff8..365329ff8a07 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -27,6 +27,7 @@
->   *
->   */
->  
-> +#include <linux/aperture.h>
->  #include <linux/acpi.h>
->  #include <linux/device.h>
->  #include <linux/module.h>
-> @@ -39,7 +40,6 @@
->  #include <linux/vga_switcheroo.h>
->  #include <linux/vt.h>
->  
-> -#include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_ioctl.h>
->  #include <drm/drm_managed.h>
-> @@ -485,7 +485,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
->  	if (ret)
->  		goto err_perf;
->  
-> -	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, dev_priv->drm.driver);
-> +	ret = aperture_remove_conflicting_pci_devices(pdev, dev_priv->drm.driver->name);
->  	if (ret)
->  		goto err_ggtt;
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index b17e63c98a99..733e69e90c5a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -1533,7 +1533,7 @@ static void amdgpu_xgmi_reset_on_init_work(struct work_struct *work)
+ 		r = amdgpu_ras_init_badpage_info(tmp_adev);
+ 		if (r && r != -EHWPOISON)
+ 			dev_err(tmp_adev->dev,
+-				"error during bad page data initializtion");
++				"error during bad page data initialization");
+ 	}
+ }
+ 
 -- 
-Jani Nikula, Intel
+2.39.5
+
