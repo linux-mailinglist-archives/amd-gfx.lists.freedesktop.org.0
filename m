@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C27098CC1E
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 06:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B6498CC19
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 06:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87F2510E693;
-	Wed,  2 Oct 2024 04:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF9610E68A;
+	Wed,  2 Oct 2024 04:39:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zkjhWqtz";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HHnrzK9+";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33B6F10E686
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Oct 2024 04:39:02 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBBED10E68C
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Oct 2024 04:38:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Is7LjW9jTQyyPbAO3n6l/FoTNY4fK3QmYj0A0QVDCBptwAVyjhyevg4Ab1sw32TNJmIEeOyCDK96TedHWmoTNwkT1sbB0l+x37ZwbPOmktpGFe2m79q+IeO+akBQCnqm784sWVeRCEZ8o1wekXyTcz+yBwcOyhAp//PnI1w+yidPxIFi5mR730I841pbUxNTIygSFRxxs9MeHEM/RoCy5GTSb0wNzyIbdJgeDMndE/R80tAVUpOLxEbZiKpYGe7gs59xY47PUpk1hUEq5JxH4zHRV+S2GpPRnckPIcUn1MSJ9EScWFQuGO67ImdZFlMRmtA6tVxdM04PkJyjm6+GWg==
+ b=JhnqiLebcgpuXwFr1A/m77eJ/uQVYQKgV0I0dD002TwxHAg+PfxmVGUtpnqw05hK0aqdlm89uOWEHzny2nounNKrylXtRvCBwaInHREpINZGtGZDHxf63WFa2gYD1jC3E+30Vcdqjj4AsCUCVTAo7HDu++G16mueDpArYSiu5hYczT8pc4V4NhhKr8Xk2nL2vKlkS6Upmhcy7NbaOh60DKjcQ1Vy8hID5UUETFxO44wg7yaP0SN4NAKqhuYXZ1yBi8mT6ssy1Gb3y8DDcHM7eWS8Kq4VfRRnt6cPY4n7pVNEyZdvu8JfbppaUpkOU4MJsld8VBibG9bgHD7gOR6NSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=00cYugmb7uIIxLN9peQdYY4Esp/Jg35Tjhw2B428nx8=;
- b=GPVV9EpoYL7PBlYrLCGq6YwuhBjHzacgFfwc5eibRZJTCZhCBWwrJMWP+ruC0+zR16iDZoH80sQf3KsMtd6gii1hYBnHzjkAs8ecCPXo6Jy0ydCb0t9hDYoU7DgE4SFswbMKF9UyUyHjh5az/mMB7rE+F01PmKN/tAOoRhLHPFrEReQShfO4AIe0aDbIHx+a5CvfBSKCjGHLfX6T+nQ7I8k4V3VVgGSzSOkLEak5IgDB2Z+af+6zpy2umhbNSfo1kYF6TyhYpimb2AeDbXKaf00WpTH6PUjrz7lhpwEHmNs3nVgqbhrjQ4WeLN0goo9VG4r53LHFdFu/ZSwhcBowQA==
+ bh=kvrxgA1PuUiwo0VCaYzzEqixRjztzDqrNCsfyp7vB4Q=;
+ b=d/Tna03FPEMnbL2utJqRVTW4Xv46DYwlhw10kZOKGw/1hE3CyGZalTUgRQix/wjoMVT0rZEPvTCjKtI8CvXawq4AGcJNXyg7+PSTOC9+PjtN6XEZW0nwI+cWAFQZOaHG0nAG4tjngTKPinnZw+8VtXrJJ6FrZqFrnm6zRUDJbjcmZoByXTy16hlkn2ZDAnjeYBQuO0aHnKiyBuR4oPysr/Bz4Py2M9mMRWK9n2CJxdPduXnPv07MB2dBAYZWjFwMXXtZdBJkR3jXn8T5yIp6MICu2cCQXw7E6jshGVZ56hPQyNMPBV85KK77zU9RCMaI9y1W38SYnrjzdqtIheTFdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=00cYugmb7uIIxLN9peQdYY4Esp/Jg35Tjhw2B428nx8=;
- b=zkjhWqtzsuk1hFrQTsZgnOWRdG+YB0g+4pawkmEYXU6o7aMUXt+mlEOXR+tO4bizRa+sPBAcJRUs6wLe/fidS7PP4ObSWgj27v6XxjqZyNVcfAVZtOv96Sdl68pFe4IuXayePsoK9nshuxIF0M3AsXrdGJTTFX2E42E+DVsSAII=
-Received: from MW4P222CA0005.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::10)
- by MN0PR12MB6319.namprd12.prod.outlook.com (2603:10b6:208:3c0::11)
+ bh=kvrxgA1PuUiwo0VCaYzzEqixRjztzDqrNCsfyp7vB4Q=;
+ b=HHnrzK9+Ew8yDlWM6csIvD9MBgIFX4eksGuCWZPLjZAixQDobpzqG/BNkEOqj9mUWK95uWO1Aso4b9gAyOvKL55TXygP4sDmAlJj4dSYWuokYOtchbF4QEdNH/y6SJ3IvFQRzw3jG9ZMShKqUnlOxNf9ST9vp9AgjyDQNWqCvkQ=
+Received: from SJ0PR05CA0097.namprd05.prod.outlook.com (2603:10b6:a03:334::12)
+ by CYYPR12MB8964.namprd12.prod.outlook.com (2603:10b6:930:bc::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Wed, 2 Oct
  2024 04:38:55 +0000
-Received: from SJ5PEPF00000205.namprd05.prod.outlook.com
- (2603:10b6:303:114:cafe::9) by MW4P222CA0005.outlook.office365.com
- (2603:10b6:303:114::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27 via Frontend
- Transport; Wed, 2 Oct 2024 04:38:54 +0000
+Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
+ (2603:10b6:a03:334:cafe::fd) by SJ0PR05CA0097.outlook.office365.com
+ (2603:10b6:a03:334::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.15 via Frontend
+ Transport; Wed, 2 Oct 2024 04:38:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,21 +48,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ5PEPF00000205.mail.protection.outlook.com (10.167.244.38) with Microsoft
+ SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 04:38:54 +0000
+ 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 04:38:55 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 1 Oct
- 2024 23:38:49 -0500
+ 2024 23:38:50 -0500
 From: <boyuan.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <leo.liu@amd.com>,
  <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
  <sunil.khatri@amd.com>
 CC: Boyuan Zhang <boyuan.zhang@amd.com>
-Subject: [PATCH 10/18] drm/amdgpu: add ip block with instance
-Date: Wed, 2 Oct 2024 00:36:19 -0400
-Message-ID: <20241002043627.102414-11-boyuan.zhang@amd.com>
+Subject: [PATCH 11/18] drm/amdgpu: add set_powergating_state_instance
+Date: Wed, 2 Oct 2024 00:36:20 -0400
+Message-ID: <20241002043627.102414-12-boyuan.zhang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241002043627.102414-1-boyuan.zhang@amd.com>
 References: <20241002043627.102414-1-boyuan.zhang@amd.com>
@@ -74,50 +74,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000205:EE_|MN0PR12MB6319:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d542862-ea25-4c62-decf-08dce29c1f50
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|CYYPR12MB8964:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f60d51c-3389-4518-3721-08dce29c1f9a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|1800799024|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?A0v908gyWbWd0Hj/3j/l00AFjrN4pL1ckkbG4QYQSyriCwg7lryoKI43i68k?=
- =?us-ascii?Q?qBlrqE53DYBFUTWtSsyEDY6NrscZlaqfueJnc3OzUg7xI5n8k+bIGiyYzC9w?=
- =?us-ascii?Q?4Q9H7etfNTFKgmxiJxZq8Nb7XDAsmQQ6EWnziwJzXoCjBEUmLXdaE7DRbBMe?=
- =?us-ascii?Q?5mowbrUcfP7M7L3yJ9uRJ9uwx5fGbDqbHCzzV6Prhna0WKqwYwvftb9cRyCi?=
- =?us-ascii?Q?uihOVIIoenxXsXY2GwSLgbPI9F8C+EeyWHxIbKh/bp5Cv8B9S9cVwaAAe4+G?=
- =?us-ascii?Q?bACp2FZxHGH1igIPo8uJxdF897HhVXuno0VTgLvUFLAQwfHeb9mZI1Ku6rva?=
- =?us-ascii?Q?IKhtikcMOClG1K5HdnhVDqTXNfJ5j9Sp8k5iy5JjCCeLKP+9QpIqdYTcGvab?=
- =?us-ascii?Q?qufDbLya881t4IKD4rJj+/9bvl48F+RtloEYP0DivZ+Rk+DqTDJz/5nxgfFK?=
- =?us-ascii?Q?OtLvOm4q3o35UkWDpROOJih+yo/YwCXp8wbGhv6azsQ3YDqK7ofPzJlBar7S?=
- =?us-ascii?Q?KbuPx4BBPeBVcYzXv8sYGQTF2gRcF0dM/2yCow+z3bGTHyA0pXRosK75gFo0?=
- =?us-ascii?Q?b+hQnxzYmb1uQl9oPfI+HNm0W15GLyjfzEDyHJI2zZas6hl8oYBHk0j4KJcj?=
- =?us-ascii?Q?vZb7Y3LKPEatFARNOlFhRlN5shcLwKvI3FkC8Fu5q5t5elayvTTnQD8AV6yc?=
- =?us-ascii?Q?SEZv05gYBier/KwDhLVlKh4ogodxTjoJkZelrhMdJuyrah/tqnPXUMQo0ZmJ?=
- =?us-ascii?Q?hOefFNGX5U31tBngYL5AitEkpjN+sSaMd4tGGhFXE59fTvyLZtno7s0KECsx?=
- =?us-ascii?Q?qXht3LModym02twhT1d/chEQGCyDwaBcP+mDFksVehxpI5o66+7bnJM3NL5K?=
- =?us-ascii?Q?iy+6a95JkZD+ICpaGem4Rdt2maBuJO8wgBBhbtHL7GSFoakarV2x+fZUp/Jd?=
- =?us-ascii?Q?2RaLyVpFszauh/9vBcPl0ypDNqwF1O9AW1Wudc88X0ePGWNEahXmpcwT3x42?=
- =?us-ascii?Q?qPYn5AorEwLI+h0h6xLtvwz7sU/xvZrXF9CikN6veM7TtIjCyvILXAE4/ujX?=
- =?us-ascii?Q?C8Jr0guIksuP7Om4fu3I6Yo8nHwP3JIP0B3bHuDfhDsgC23RSy7AlMhRDE5i?=
- =?us-ascii?Q?M24sNbbdG662oOq0T0Ch3mS3rFb/c83RYOnNC7HxxFQw/BW3JSee/t8t4zHA?=
- =?us-ascii?Q?QHiJZ9In8km+vZQdmwbVQUS2KhS85e++3Yci8Lz6B/tMSJ7AH1zMNPRJrDfK?=
- =?us-ascii?Q?DSOm3Eb0Q7PxSkmaC+Blwl2QrhwJFLdzjAdmOlen1t8imHNZdb1dISeZTATH?=
- =?us-ascii?Q?xk9DL9bhgx9PYsWTCfk2mbWLDSU231ZbaBwZWrzvrTKLmk4kx0coVxDHfw0D?=
- =?us-ascii?Q?p5HzMqniJAc1wZkW66/rfIZaMeX5?=
+ ARA:13230040|82310400026|36860700013|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7ZbbdG32rZarUK0QkENhQ3A++wYg3XUHCLQMjJIZqbe9Ut34irJa+Rd304X3?=
+ =?us-ascii?Q?Y14BOhSiK7lkglPB3PPcivaoosunc8pTuHF3TwzyulySoYSAP0jKgFL+nQBU?=
+ =?us-ascii?Q?9mPjH+D53yEzj9lQGyYzgZXAUksuQ/9P4CdkUb4CWyqS2DGMqA5jnPSiNF2W?=
+ =?us-ascii?Q?DL2DkmQMDJPti/o6VrxEUj/oOj0fzLTZwbUSk8gAhQyFHy9ycV1/+DIVSNZx?=
+ =?us-ascii?Q?qtAhg0+51F4hDmK6crvmYGMyknNbP1kPQLr9szbNArrEcVv8EEuESlimWh7s?=
+ =?us-ascii?Q?N4BzibPpY1gdUouzAAyu6Zz5Cije3pA6kI+nGgaHsPDunaEWwUGE96tvG8ZX?=
+ =?us-ascii?Q?ntIlsn+YZd2tYVnK6L9SvGoIMfhXMd0DNUvAWOl7lOLMVOnItuPdE0fNYTTG?=
+ =?us-ascii?Q?JtqNxgFwrv0KZzJROCcnBDbG1h8PlhDHQ8SMFVZbQdIpgQ8TBeIDEgoLGrTL?=
+ =?us-ascii?Q?x27cL/XVBRTjstxYbTJaOcMYRDQaP7fEsdrSo3iIHAhx3hYu2kEKzvLfDDEa?=
+ =?us-ascii?Q?LN5jsHM7cvnBxVkYrDIK7cN6/lJkeNrvrFwiufSBOORX4Eres2gBnQzQVCRD?=
+ =?us-ascii?Q?OtYBfyf2aXAiTWWQzQ5d1JdYONcheyvdRNHKYK3muayXBdfxozlkRjL4sljz?=
+ =?us-ascii?Q?7+gp7f4scw8t7vn6BT87MtFaorxne5s4Eh3LP6RUGBujw0Tu1AkVwKJk+fzj?=
+ =?us-ascii?Q?xVHzugIYBLzxh+MA5QEayyDDZaIHEYw05wFsXsnPMosCHd8qwvrblVMszTsp?=
+ =?us-ascii?Q?BwqKZSOq3RWsvzbtiKhmsdRkLujEr8kjYE1rEwmK/0v8suby8X0GfDEh9GsT?=
+ =?us-ascii?Q?3zFliNtaIhdsyv00cElxfvEDqiq0+WJZ2sbRN5D6uHkA8xc73m0Thft33MR1?=
+ =?us-ascii?Q?/VKO3uVQiR2IvOg44LibD4qSur3LT5RGaa7e0h8Wf2pglrnQ5Uwr8/ckxlfn?=
+ =?us-ascii?Q?5PoiGXDbXbwqrxbEOe6R3XMWk5TcD0m6WKb7N5h9gOF+ohUZPWwlIGOlhIiz?=
+ =?us-ascii?Q?Q9/haTG9heuJOt6NNa8GwYMRJkZMGKMnLVfeAQMvLP6SrnfsptJTz61966dR?=
+ =?us-ascii?Q?sHiN5Zkk190vhbr8syhH7roUik0+O/2Jc6wZ4ggg2v0SG6uge3BgtDhCABMv?=
+ =?us-ascii?Q?6sDuc8X68ae0b9X8A3BKTrfNG2t6IoY56geEObRwq0XF24vw1pyoAM6MK8cP?=
+ =?us-ascii?Q?62c0p6hHrCLoVJaXDyUPABNH6cNpCgs0f/FYfMDHD74lQiiuBkhlwJje/fDV?=
+ =?us-ascii?Q?VxuijDqieQyAQ4yM+xLgXxPbH+tPS+y78MosByM4q+qzPSxRJdu5TmAIsvu4?=
+ =?us-ascii?Q?s31gc+bL0nzKRjrTO8zJUrf4W0hB1o2I9ZZfyUaI3kMct2saxMK/uLjQkfMW?=
+ =?us-ascii?Q?JBaTKu4=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 04:38:54.6530 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d542862-ea25-4c62-decf-08dce29c1f50
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 04:38:55.1337 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f60d51c-3389-4518-3721-08dce29c1f9a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000205.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6319
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8964
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,90 +134,79 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Add instance number to ip block to track which instance the ip block
-belongs to.
-
-Also, add a new function to allow ip block to save the instance number
-along with other ip block driver information.
+Add a new function to allow setting requested powergating state for the
+given instance. If the instance value doesn't match with the one inside
+ip_block, then do nothing since this request is for other instances with
+the same block type.
 
 Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  5 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 39 ++++++++++++++++++++++
- 2 files changed, 44 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  4 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 37 ++++++++++++++++++++++
+ 2 files changed, 41 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 84a9749dcd7d..d77db73c71f7 100644
+index d77db73c71f7..a6a497844a3d 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -386,6 +386,7 @@ struct amdgpu_ip_block {
- 	struct amdgpu_ip_block_status status;
- 	const struct amdgpu_ip_block_version *version;
- 	struct amdgpu_device *adev;
-+	unsigned int instance;
- };
- 
- int amdgpu_device_ip_block_version_cmp(struct amdgpu_device *adev,
-@@ -399,6 +400,10 @@ amdgpu_device_ip_get_ip_block(struct amdgpu_device *adev,
- int amdgpu_device_ip_block_add(struct amdgpu_device *adev,
- 			       const struct amdgpu_ip_block_version *ip_block_version);
- 
-+int amdgpu_device_ip_block_add_instance(struct amdgpu_device *adev,
-+			       const struct amdgpu_ip_block_version *ip_block_version,
-+			       unsigned int inst);
-+
- /*
-  * BIOS.
-  */
+@@ -357,6 +357,10 @@ int amdgpu_device_ip_set_clockgating_state(void *dev,
+ int amdgpu_device_ip_set_powergating_state(void *dev,
+ 					   enum amd_ip_block_type block_type,
+ 					   enum amd_powergating_state state);
++int amdgpu_device_ip_set_powergating_state_instance(void *dev,
++					   enum amd_ip_block_type block_type,
++					   enum amd_powergating_state state,
++					   unsigned int inst);
+ void amdgpu_device_ip_get_clockgating_state(struct amdgpu_device *adev,
+ 					    u64 *flags);
+ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 263f25ac2d63..4bc109a0d832 100644
+index 4bc109a0d832..dfdb33833fc4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2321,6 +2321,45 @@ int amdgpu_device_ip_block_add(struct amdgpu_device *adev,
- 	return 0;
+@@ -2162,6 +2162,43 @@ int amdgpu_device_ip_set_powergating_state(void *dev,
+ 	return r;
  }
  
 +/**
-+ * amdgpu_device_ip_block_add_instance
++ * amdgpu_device_ip_set_powergating_state_instance - set the PG state
 + *
-+ * @adev: amdgpu_device pointer
-+ * @ip_block_version: pointer to the IP to add
++ * @dev: amdgpu_device pointer
++ * @block_type: Type of hardware IP (SMU, GFX, UVD, etc.)
++ * @state: powergating state (gate or ungate)
 + *
-+ * Adds the IP block driver information and instance number
-+ * to the collection of IPs on the asic.
++ * Sets the requested powergating state for the given instance of
++ * the hardware IP specified.
++ * Returns the error code from the last instance.
 + */
-+int amdgpu_device_ip_block_add_instance(struct amdgpu_device *adev,
-+			       const struct amdgpu_ip_block_version *ip_block_version,
-+			       unsigned int inst)
++int amdgpu_device_ip_set_powergating_state_instance(void *dev,
++					   enum amd_ip_block_type block_type,
++					   enum amd_powergating_state state,
++					   unsigned int inst)
 +{
-+	if (!ip_block_version)
-+		return -EINVAL;
++	struct amdgpu_device *adev = dev;
++	int i, r = 0;
 +
-+	switch (ip_block_version->type) {
-+	case AMD_IP_BLOCK_TYPE_VCN:
-+		if (adev->harvest_ip_mask & AMD_HARVEST_IP_VCN_MASK)
-+			return 0;
-+		break;
-+	case AMD_IP_BLOCK_TYPE_JPEG:
-+		if (adev->harvest_ip_mask & AMD_HARVEST_IP_JPEG_MASK)
-+			return 0;
-+		break;
-+	default:
-+		break;
++	for (i = 0; i < adev->num_ip_blocks; i++) {
++		if (!adev->ip_blocks[i].status.valid)
++			continue;
++		if (adev->ip_blocks[i].version->type != block_type)
++			continue;
++		if (adev->ip_blocks[i].instance != inst)
++			continue;
++		if (!adev->ip_blocks[i].version->funcs->set_powergating_state)
++			continue;
++		r = adev->ip_blocks[i].version->funcs->set_powergating_state(
++			(void *)&adev->ip_blocks[i], state);
++		if (r)
++			DRM_ERROR("set_powergating_state of IP block <%s> failed %d\n",
++				  adev->ip_blocks[i].version->funcs->name, r);
 +	}
-+
-+	DRM_INFO("add ip block number %d <%s>\n", adev->num_ip_blocks,
-+		  ip_block_version->funcs->name);
-+
-+	adev->ip_blocks[adev->num_ip_blocks].adev = adev;
-+	adev->ip_blocks[adev->num_ip_blocks].instance = inst;
-+	adev->ip_blocks[adev->num_ip_blocks++].version = ip_block_version;
-+
-+	return 0;
++	return r;
 +}
 +
  /**
-  * amdgpu_device_enable_virtual_display - enable virtual display feature
+  * amdgpu_device_ip_get_clockgating_state - get the CG state
   *
 -- 
 2.34.1
