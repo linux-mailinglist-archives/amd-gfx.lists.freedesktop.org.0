@@ -2,105 +2,154 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383E298D435
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 15:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 292D698D71B
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Oct 2024 15:46:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 348A410E751;
-	Wed,  2 Oct 2024 13:13:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A81C710E73A;
+	Wed,  2 Oct 2024 13:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="hASRsYAe";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rzDln58S";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="hASRsYAe";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rzDln58S";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="joPC/7v5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12B810E732;
- Wed,  2 Oct 2024 13:13:15 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 879A51FD61;
- Wed,  2 Oct 2024 13:13:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727874794; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rZOeZz6M8K6BMOdGgoOuni/pHgVctPNmEN54JCJJ47M=;
- b=hASRsYAeOulMdeycouf+sopqXNaDTEiGOqteIxF7NXz8koRT0UyB/dGRptZSoZ5Ld7BY5K
- uHFTTbPGEafQGZcLLCe/Cp+5IitRmIS3Irr+732eePLxvj/e/YLfB0mw2fUEzwqkRS2hC6
- CVZHW0ttzYYqxgRWEt3M9k/5lqSPWeY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727874794;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rZOeZz6M8K6BMOdGgoOuni/pHgVctPNmEN54JCJJ47M=;
- b=rzDln58SVR4c0RXqmk25MhcJgwJwvOGrhV8iKKFWKTmMVRitIYwFB7lnj7J2q8LxYBwspb
- 84n8BhT5I3LL+QDQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1727874794; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rZOeZz6M8K6BMOdGgoOuni/pHgVctPNmEN54JCJJ47M=;
- b=hASRsYAeOulMdeycouf+sopqXNaDTEiGOqteIxF7NXz8koRT0UyB/dGRptZSoZ5Ld7BY5K
- uHFTTbPGEafQGZcLLCe/Cp+5IitRmIS3Irr+732eePLxvj/e/YLfB0mw2fUEzwqkRS2hC6
- CVZHW0ttzYYqxgRWEt3M9k/5lqSPWeY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1727874794;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rZOeZz6M8K6BMOdGgoOuni/pHgVctPNmEN54JCJJ47M=;
- b=rzDln58SVR4c0RXqmk25MhcJgwJwvOGrhV8iKKFWKTmMVRitIYwFB7lnj7J2q8LxYBwspb
- 84n8BhT5I3LL+QDQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4AF3013A91;
- Wed,  2 Oct 2024 13:13:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 8GEVEepG/Wa/GAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 02 Oct 2024 13:13:14 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: simona@ffwll.ch, airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 11/11] drm/client: Add client-lib module
-Date: Wed,  2 Oct 2024 15:04:37 +0200
-Message-ID: <20241002131306.288618-12-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241002131306.288618-1-tzimmermann@suse.de>
-References: <20241002131306.288618-1-tzimmermann@suse.de>
-MIME-Version: 1.0
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46EB410E086;
+ Wed,  2 Oct 2024 13:46:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wpxTdUtuJXylW+tH1ulRoo8rV6VyJb2ZDJRYxjw/NlGwI2O8IlBJITYvFraCl1Mh+BNNWzQUdiSu9UwEzSNwxuyoPZPXF3ROHC1Vsz3ARyRTZi82cweKO7vONz36q9RWTqAY1BnrHy+XN5B7lMqYzPVdAvL9bBviMRFiMUSdW8SZyN2xjA4InKw4lMqJ3Xex5RID2QgCu3lPCXF3HP908s3ZIctswKt5S0IiRLcayKWM7RipYnIdOuPJ1DMrLadzhT9EHiQhvEwlE0grU8SBy882nrEHIwpl2p5gqjQDh1Cdf+ElC4qL8ra2vxKCT5hEaDZPsHlc/3qcm/rJ7wNAkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H2DPsGcdAcV9H+owYaEqbH+dcNAzsMhwesUYwLoz340=;
+ b=sRyhPw54m49sXtGOvpvnR+ZDm3jOKNsFKnX+MFwry5ZentSBjuPg46iXmojBNQf14NBbVzWWc8ochGRR+kv0P7wsE5OgpKq31CU0jeIKN2Fcxcze1B6D07K5f5FHxWYvbIXEq06M0Pnwngu8uxfeSyT2X3/xkkUr8lfHAFEJCz2UI93IiC4gtUZAqnWnuUz4lXMMwvSEJfAl6gqy/KDvqVGIx5jebjwuGP2erDqNPKc9GKEwwClYAhkur/Ws2+sspdYtsJLaKImLGSO1Jhd5vVFG5OZHYq2okdrGBwAogwP3tX0AohPkP0oExiH517nS7TtmMBmP7oZ/etx7XFZAuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H2DPsGcdAcV9H+owYaEqbH+dcNAzsMhwesUYwLoz340=;
+ b=joPC/7v5rh42u5eLL0TcEIM5nvwEc9TmtXlCbylRakNOrX3bmDAj7gaDlbZ/Ka7MWMz1w87VY3irUXhTDgj3XdSWatxMSmQ1snNGAtJgCIxwV/3yJ1chGDQKPEuN3UAlxhks2YAofc86ALopX9iILhpe1qm6jeC908+I8oM7G6g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS0PR12MB8320.namprd12.prod.outlook.com (2603:10b6:8:f8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Wed, 2 Oct
+ 2024 13:46:38 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.8026.016; Wed, 2 Oct 2024
+ 13:46:38 +0000
+Message-ID: <91d734a4-af1c-4506-98fc-cd1bad0857a4@amd.com>
+Date: Wed, 2 Oct 2024 15:46:29 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/ttm: Add a device flag to propagate -ENOSPC on
+ OOM
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Zack Rusin <zack.rusin@broadcom.com>, bcm-kernel-feedback-list@broadcom.com,
+ Sui Jingfeng <suijingfeng@loongson.cn>
+References: <20241002122422.287276-1-thomas.hellstrom@linux.intel.com>
+ <20241002122422.287276-3-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20241002122422.287276-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[9]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Spam-Score: -2.80
-X-Spam-Flag: NO
+X-ClientProxiedBy: FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::7) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS0PR12MB8320:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4af38f4-b863-48a7-dfb8-08dce2e8a33c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c0dnRnFBM2ozUU5Jd2FCenVNRldad1Rab2U4cG9ScERJQ3BOV1pSZFQzWUM3?=
+ =?utf-8?B?eTc5U2VibDMraytEVVhaekZxQ2FNcjdRdzR5RytDclE2RXFZbzdoeERZVVlN?=
+ =?utf-8?B?b1VmdHRwV0hWc09ZRkhnNndzNlE4aTNhWE9odWRhdjl1K2hiMTZsZXhUdzVt?=
+ =?utf-8?B?d0tOSEZwaElPNjh5RjlseG1nb1FtMmNrR2hOOW5BckNXNVJZUHpWVnpQQ1pP?=
+ =?utf-8?B?Q1FVU3Izc3ZNRkZIMkxxRkpxSVJZbDdrTjZ6eWNiWHZEdnFvNjB2SHVndjdy?=
+ =?utf-8?B?ekF1bFNZM3JyL3RMTS85YmlGZVowcVdJdC8wMlFYaFRSdGtqNFJxa1VjeUxH?=
+ =?utf-8?B?eUh2MHU1ZmxnVzJuaW11bS9FZSs3WkYxMkZDYm5kQU1RcnQ1ODFiUTFOY2dZ?=
+ =?utf-8?B?K1RwRkVpL3EyQnBUSUVnWENBa0dmQTVMazZOb2NEaUVmbS96enlFOWxycTdH?=
+ =?utf-8?B?ZENUb3hSdDlSK2R3VDF5SDQxd0xjVVFlQ3dEQm9EWEpSTnZlVlQybTZQTkIr?=
+ =?utf-8?B?WlQzMkxaNVhNcWxYZlRjVTZVbzBySzdZN2dlaVRqam9SY0VhUG50RkV1eDlH?=
+ =?utf-8?B?dGFvZEV1VDNhY2p3OExJRDIvdWVoUHBEVVZUaFVaZDQ5QWJoSXpMV1dvcmhU?=
+ =?utf-8?B?L2szajZiWnIrUytqYTZ0eGhidlpmWWpmT3JKOHliQUs1aXJ2MVdmZkhlbi9W?=
+ =?utf-8?B?NnRKZWsvMWo4YXFyMWg1QncySTBzeDRLd2t1MlZMdmNOcUJMMDhwSm9PVDFk?=
+ =?utf-8?B?YlY1Rk5ONDlPNFk2ZFYwdDQ4eEQ5SXJYS1NuSXc3bVRZeWlsazV5TC8yeEZa?=
+ =?utf-8?B?Yk5NNHJYaXhsd3l0QnB1c3lzdVhPWSt4bVJHbkJoZFErcis0U1dMZVh2UUdT?=
+ =?utf-8?B?eFB5YjF2Rks3YVNSWlZPbm1KeCtKVW1lc2FOMVl1M1o4SHlOdm5SQnVwcm1j?=
+ =?utf-8?B?SVR0RCtEU1VWY0c2dURJZ0w5QmZ1VDA2aUczL25uemFlWW83MFNmenR5VE1h?=
+ =?utf-8?B?RTdTL0RZNG95U0w1MDN1OWVvazFMQ1BZTUxBT2dCdzA2eDdrQm5BQjVML3Yr?=
+ =?utf-8?B?cUpyNVBSNXlVY1JTU0trZy9yL0cyY09HZWo0YnJ4SkJyUkNpMVluOTdvTUZn?=
+ =?utf-8?B?Zno4MStMcFNUVVFRZkVQelJqajlKZDRuOURTWVNmT0k0Q0JCTU1SZ1JDdWtT?=
+ =?utf-8?B?SXdJY2Rac1Yvb2lvMGgraXY3ek1WRW43aEtzTkNzSnJteEdud3pMc3YzYm9M?=
+ =?utf-8?B?SXZVc0pyVnkwWjhrOW9XMEtqWlk3dkMrZW5GTHZkaUozRnY4ZGZjUGdLVE12?=
+ =?utf-8?B?ZUJ3OEpENXphcU0vYjNnK2QvWDZDb2NLOHMwSndYeFhIUVJjS0s1ZFVFMGps?=
+ =?utf-8?B?VW82eXNhbVZmSW8vRzRXSkJESzdjM0dCUWpaenhyWENNS25UeEdCWENwdXVt?=
+ =?utf-8?B?WlNvSGZMYVhSOExaejdiMlJKc2k2b0NKTXN1cVBDenp1ZkxnWkhaMmwyRysr?=
+ =?utf-8?B?UVFnVWFPYnZxWlRDRXhCMVR1YTJsSE8xcVdSSHdoMWxDLzJYeXNkeS9OVzYw?=
+ =?utf-8?B?dTB4TVpWRkxDZ0N4WFZ6YWlhTTRrbit2aVZiV25TeVdVQ3ZVOGNtVkZHQ2hY?=
+ =?utf-8?B?cVE1bWxNS283ekc4YXk1NzluRllZOWwwL3o0NW1oc3VhVWxkaXc3RWhBSW80?=
+ =?utf-8?B?c3ljRXBOWGp5VmJBeDg0MWJIY0hvYnB2dzJsS2lSUFE5ZlB1QlFaSVdBPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXM5OVp4dWdwUXEzM1ZXVGhLK0R6Z0E5Q1BaOWk1aFRqUlR3TW5xaWN3WktD?=
+ =?utf-8?B?Z0o0ZC80Nm1LUzRvRitoU09NTkZJQjhhME92Szg5THlTRExrK2Jjcis2Tit2?=
+ =?utf-8?B?ZEJzN0NYWTBlMnV3UGtHczBZa0NsQkxUMDFxZElKeDd4T0Z5T0VJNXNKSFhW?=
+ =?utf-8?B?OXRkTWNtQnJ4WkhEZHJMNW5MRFk2c3R4a2RTSFkrSitxVGcwUE9RVm12UzI2?=
+ =?utf-8?B?bnpseE1NLzZPbFc2aC82eTFhZjJCVVFrTXUxOWdCNTB2S0dsMnczVzFENWZw?=
+ =?utf-8?B?VG53RUtiY3R1UHFQaitZUi9ZUkwvcnd6Ylg2ZDBmNDlqa2k5Q0ZWSTI4dklF?=
+ =?utf-8?B?T3ZxWnBLQ3lMZEJsQU5Jc05VNVRqeEpBSDFuRTJGS2FYaUJXKzRzbVIwc0M1?=
+ =?utf-8?B?eVRwam9vT1NONXRybEFiZTRwQUtCZEpCbmpPUjh5YXNmOFlncUR5Q21Ic1dr?=
+ =?utf-8?B?SEx5QldPTDl0Z2hXbTArOVRaYjRSRFZCeUxQKzZtZVR2WmhtYXprMVdyR09x?=
+ =?utf-8?B?d29GN0gvSFBsNEVBNXBBVjhudU9rQzBrUWRuaURJVENGM2FMdndzUlBDYTkr?=
+ =?utf-8?B?NUU3OFdWUG5td3dRQzc5S01hOTc5eVdqdTdDOGd0ajE4a1pieHhxUTdSVk41?=
+ =?utf-8?B?dWtKQUJxUGFRZVlKUTRxRUNIems1cUk5WmIwT1VlckMwaHJJSWF3cEhJaGp6?=
+ =?utf-8?B?c3NMMExSbnZvMHFuMEJ6eWdDOHVXQmpxZ0dEaWt5QytDTTlpSXNHMHZLNGx0?=
+ =?utf-8?B?YmlicDVjVlRQWXFDNk5rakIwUXQ2S0l1OU9jZ2tjOTZvNjFxb2x6U1J0bWpU?=
+ =?utf-8?B?aHZVdDJ6L0VtVDBhUUZDelBHZWVMYzlTRU00SGdYTno0TW82WGdXT1NWSXV0?=
+ =?utf-8?B?aVlaeGlCSVJNdVc5bDUzYTZ3UThhNk8xVGdjRXcvWnVFblhvbGNKT1ExSHVO?=
+ =?utf-8?B?WXl6VUw5TnpLa1NjOEJwN1V6aEloSmgwQnpiZ0FrNlFOamhiZ1h2L0NaZjJJ?=
+ =?utf-8?B?aWNyMkxxcWMvTFBjTG96bzRjOHNhcFZYMEpNS1JscWxZdFlUMlJodDNRNVkr?=
+ =?utf-8?B?cTAvZnV4RStQYzJGc3NlUFp3UTlNZ0xLWjNBRmJWWkpyUFRUT0tWL2l5QmVY?=
+ =?utf-8?B?Sy8rLzZ4eEJ6SjhxYU5tci9adlRtVmFQaStVV0pQbXhVa3NBa0RkcSsxK0cx?=
+ =?utf-8?B?YzZFbEo4YngydU5DU0MvUjRVY0M2WHlySTBMQ2hVdm9xVUQrU2RxcFBvMzY0?=
+ =?utf-8?B?aXYyMDhFOFc0QU55cFJHaER0aDJxbW92aFUxMDFhTVBIMnFBcWEwdEZnbkht?=
+ =?utf-8?B?NUZaS0xDTDdUNG5jUTVtNThqSVhuTmlLL1Q5cFdlMVZiSi96UEdyUDJiQU42?=
+ =?utf-8?B?MEtIa0tRb2ZkU1ZGOGcxNExKcUFCMWtXZFdzRmdRK0Y1dFJtZnJpb20xakl0?=
+ =?utf-8?B?ODRwT2cyd1Q5aXgrYTdNdXdkQnljK2tiWWxTT09pZGRzenlFdXFWbThwcmFG?=
+ =?utf-8?B?eWlMUWx4dm9TZDFHZjE0bzJPNGEvSDA1bEh3MXZvU1Q3eGZjNHB5b3Z0dC8x?=
+ =?utf-8?B?TnpqZW03VlRKOWt3MUZlWCtSNUpGbjRXYWZDTENyeGpudm1CRENFM1ZCbSsz?=
+ =?utf-8?B?L2MzTlRTMXZ0dFBRcWJuMGNmMnJmSjVlNFptM2tWbDExdGtOYmFDSTVPc1p2?=
+ =?utf-8?B?QWNVTzlDNnV0aEF5NE1VQjBnQ3hBK3BJREJPbGJqd1N5UkZIYmRyTlMyR0Zv?=
+ =?utf-8?B?cE16WDVWd2N3Vk56TWllTkdVSVBmVzVTNmJ6SnM3c0tKY0pZeExQa3FJU3Zn?=
+ =?utf-8?B?TWZnSS9sZjZWNEF2bWdYSy9jSVFqelltQmRvZVYwVXhaSGxYemVFZWp5NWRC?=
+ =?utf-8?B?d3BwVzlMdzMyLzlqZ0tjQ1pUQldzRERJNnFWUjhFalBxZTZnZ1dheXZxNkpw?=
+ =?utf-8?B?cUxKWjRvZnhHYkIvbVcvcllNbncxTlpIb2NRU3d3MGNsWGtKSEV6VGJoRFF3?=
+ =?utf-8?B?c0xvQ2ZWWnVHWmJXR1hWSFRRZ0pFQUM5RVVYUC9kVGhUb3d5WTB0S1F6Y3lr?=
+ =?utf-8?B?dFN5VmtvTU1SaWhvNjBpV2JzU0tMaWVQdkxjR3dzM1ZleVZaNlE2VXNueXRP?=
+ =?utf-8?Q?KND1DzIplc9epKPZudLmGHSL0?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4af38f4-b863-48a7-dfb8-08dce2e8a33c
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 13:46:38.1157 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NjfE3aHcs22JWT9tQV16C482MI5bL/Yh9ZSPvMX6ZHcoJvMxbu1rV4TmCQhzrszs
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8320
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,164 +164,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add drm_client_lib.ko to contain DRM's built-in client. Move the
-existing client for fbdev emulation into the new module. Protect the
-new module behind CONFIG_DRM_CLIENT_LIB.
+Am 02.10.24 um 14:24 schrieb Thomas Hellström:
+> Some graphics APIs differentiate between out-of-graphics-memory and
+> out-of-host-memory (system memory). Add a device init flag to
+> have -ENOSPC propagated from the resource managers instead of being
+> converted to -ENOMEM, to aid driver stacks in determining what
+> error code to return or whether corrective action can be taken at
+> the driver level.
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-The Kconfig rules separate the DRM drivers from the DRM clients. A
-driver can opt into the default clients, but the user configures
-each client individually. To do so, DRM drivers still select
-DRM_CLIENT_SELECTION. The option is now a tristate that further
-selects all dependencies of the enabled DRM clients. There's
-a menu option for each client. Enabling at least one client also
-selects DRM_CLIENT_SETUP, so that drivers call drm_client_setup().
-New DRM clients should depend on DRM_CLIENT_SELECTION.
+Independent of how we communicate flags to the TTM device init function 
+this looks like the right approach to me.
 
-There are existing kernel options in drm_fb_helper.o, so leave this
-file in the KMS-helper module for now.
+So feel free to add Reviewed-by: Christian König <christian.koenig@amd.com>.
 
-v3:
-- keep client code in core
-- protect lib with DRM_CLIENT_LIB
-- remove duplicate line from Makefile (Jocelyn)
+Regards,
+Christian.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/Kconfig                 | 26 ++++++++++++++++++++-----
- drivers/gpu/drm/Makefile                | 14 +++++++++----
- drivers/gpu/drm/drm_client_setup.c      |  3 +++
- drivers/gpu/drm/drm_kms_helper_common.c |  3 +++
- 4 files changed, 37 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 86e5b0194100..6f7aacfc8438 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -9,8 +9,6 @@ menuconfig DRM
- 	tristate "Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)"
- 	depends on (AGP || AGP=n) && !EMULATED_CMPXCHG && HAS_DMA
- 	select DRM_PANEL_ORIENTATION_QUIRKS
--	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
--	select FB_CORE if DRM_FBDEV_EMULATION
- 	select HDMI
- 	select I2C
- 	select DMA_SHARED_BUFFER
-@@ -218,10 +216,19 @@ config DRM_CLIENT
- 	  option. Drivers that support the default clients should
- 	  select DRM_CLIENT_SELECTION instead.
- 
-+config DRM_CLIENT_LIB
-+	tristate
-+	depends on DRM
-+	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
-+	select FB_CORE if DRM_FBDEV_EMULATION
-+	help
-+	  This option enables the DRM client library and selects all
-+	  modules and components according to the enabled clients.
-+
- config DRM_CLIENT_SELECTION
--	bool
-+	tristate
- 	depends on DRM
--	select DRM_CLIENT_SETUP if DRM_FBDEV_EMULATION
-+	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
- 	help
- 	  Drivers that support in-kernel DRM clients have to select this
- 	  option.
-@@ -229,11 +236,18 @@ config DRM_CLIENT_SELECTION
- config DRM_CLIENT_SETUP
- 	bool
- 	depends on DRM_CLIENT_SELECTION
-+	help
-+	  Enables the DRM client selection. DRM drivers that support the
-+	  default clients should select DRM_CLIENT_SELECTION instead.
-+
-+menu "Supported DRM clients"
-+	depends on DRM_CLIENT_SELECTION
- 
- config DRM_FBDEV_EMULATION
- 	bool "Enable legacy fbdev support for your modesetting driver"
--	depends on DRM
-+	depends on DRM_CLIENT_SELECTION
- 	select DRM_CLIENT
-+	select DRM_CLIENT_SETUP
- 	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
- 	default FB
- 	help
-@@ -272,6 +286,8 @@ config DRM_FBDEV_LEAK_PHYS_SMEM
- 	  If in doubt, say "N" or spread the word to your closed source
- 	  library vendor.
- 
-+endmenu
-+
- config DRM_LOAD_EDID_FIRMWARE
- 	bool "Allow to specify an EDID data set instead of probing for it"
- 	depends on DRM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index c3e5d353588e..edfd2ebaf153 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -145,13 +145,19 @@ drm_kms_helper-y := \
- 	drm_probe_helper.o \
- 	drm_self_refresh_helper.o \
- 	drm_simple_kms_helper.o
--drm_kms_helper-$(CONFIG_DRM_CLIENT_SETUP) += \
--	drm_client_setup.o
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
--drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += \
-+obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+
-+#
-+# DRM clients
-+#
-+
-+drm_client_lib-y := \
-+	drm_client_setup.o
-+drm_client_lib-$(CONFIG_DRM_FBDEV_EMULATION) += \
- 	drm_fbdev_client.o \
- 	drm_fb_helper.o
--obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+obj-$(CONFIG_DRM_CLIENT_LIB) += drm_client_lib.o
- 
- #
- # Drivers and the rest
-diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
-index 5969c4ffe31b..c14221ca5a0d 100644
---- a/drivers/gpu/drm/drm_client_setup.c
-+++ b/drivers/gpu/drm/drm_client_setup.c
-@@ -64,3 +64,6 @@ void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color
- 	drm_client_setup_with_fourcc(dev, fourcc);
- }
- EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-+
-+MODULE_DESCRIPTION("In-kernel DRM clients");
-+MODULE_LICENSE("GPL and additional rights");
-diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
-index cfdbc1ac88dc..ecff0b1414ac 100644
---- a/drivers/gpu/drm/drm_kms_helper_common.c
-+++ b/drivers/gpu/drm/drm_kms_helper_common.c
-@@ -31,11 +31,13 @@
- 
- #if defined(CONFIG_DRM_FBDEV_EMULATION)
- bool drm_fbdev_emulation = true;
-+EXPORT_SYMBOL(drm_fbdev_emulation);
- module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
- MODULE_PARM_DESC(fbdev_emulation,
- 		 "Enable legacy fbdev emulation [default=true]");
- 
- int drm_fbdev_overalloc = CONFIG_DRM_FBDEV_OVERALLOC;
-+EXPORT_SYMBOL(drm_fbdev_overalloc);
- module_param(drm_fbdev_overalloc, int, 0444);
- MODULE_PARM_DESC(drm_fbdev_overalloc,
- 		 "Overallocation of the fbdev buffer (%) [default="
-@@ -55,6 +57,7 @@ MODULE_PARM_DESC(drm_fbdev_overalloc,
-  * considered as a broken and legacy behaviour from a modern fbdev device.
-  */
- bool drm_leak_fbdev_smem;
-+EXPORT_SYMBOL(drm_leak_fbdev_smem);
- #if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
- module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
- MODULE_PARM_DESC(drm_leak_fbdev_smem,
--- 
-2.46.0
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c     |  2 +-
+>   drivers/gpu/drm/ttm/ttm_device.c |  1 +
+>   include/drm/ttm/ttm_device.h     | 13 +++++++++++++
+>   3 files changed, 15 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 320592435252..c4bec2ad301b 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -835,7 +835,7 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+>   
+>   	/* For backward compatibility with userspace */
+>   	if (ret == -ENOSPC)
+> -		return -ENOMEM;
+> +		return bo->bdev->propagate_enospc ? ret : -ENOMEM;
+>   
+>   	/*
+>   	 * We might need to add a TTM.
+> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+> index 0c85d10e5e0b..aee9d52d745b 100644
+> --- a/drivers/gpu/drm/ttm/ttm_device.c
+> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> @@ -203,6 +203,7 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
+>   	}
+>   
+>   	bdev->funcs = funcs;
+> +	bdev->propagate_enospc = flags.propagate_enospc;
+>   
+>   	ttm_sys_man_init(bdev);
+>   
+> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+> index 1534bd946c78..f9da78bbd925 100644
+> --- a/include/drm/ttm/ttm_device.h
+> +++ b/include/drm/ttm/ttm_device.h
+> @@ -266,6 +266,13 @@ struct ttm_device {
+>   	 * @wq: Work queue structure for the delayed delete workqueue.
+>   	 */
+>   	struct workqueue_struct *wq;
+> +
+> +	/**
+> +	 * @propagate_enospc: Whether -ENOSPC should be propagated to the caller after
+> +	 * graphics memory allocation failure. If false, this will be converted to
+> +	 * -ENOMEM, which is the default behaviour.
+> +	 */
+> +	bool propagate_enospc;
+>   };
+>   
+>   int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags);
+> @@ -295,6 +302,12 @@ struct ttm_device_init_flags {
+>   	u32 use_dma_alloc : 1;
+>   	/** @use_dma32: If we should use GFP_DMA32 for device memory allocations. */
+>   	u32 use_dma32 : 1;
+> +	/**
+> +	 * @propagate_enospc: Whether -ENOSPC should be propagated to the caller after
+> +	 * graphics memory allocation failure. If false, this will be converted to
+> +	 * -ENOMEM, which is the default behaviour.
+> +	 */
+> +	u32 propagate_enospc : 1;
+>   };
+>   
+>   int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
 
