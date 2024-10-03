@@ -2,64 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5619898FDD4
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 09:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2AE98FDD1
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 09:28:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F2810E8E2;
-	Fri,  4 Oct 2024 07:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9228D10E884;
+	Fri,  4 Oct 2024 07:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Ia0d19pu";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Tr+SM4F3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28F5E10E866
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 14:36:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEB710E8C7
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 17:48:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1727966218;
+ s=mimecast20190719; t=1727977691;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=VeyIJxw7aNdnhQcgAthWMhSN6IB9NSiqC9XEuzUPS94=;
- b=Ia0d19pu7QgSRU3TNUdGyOMhvjQmgFbrRq+3D/l42wt5Ac8KGddgl3JKdWDUAahZYXPAhs
- TICxDXx/OVwOROSlmzaaB75WWMe27rRNeo6wO6SzdxZ4P2QdYxQbYPugEg82NhEhVGhcLs
- BDi4PHfrWJRD3DKvdun37C61NUeNqH8=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-694-IXatcD54P2GLS6cLQmoyGw-1; Thu,
- 03 Oct 2024 10:36:57 -0400
-X-MC-Unique: IXatcD54P2GLS6cLQmoyGw-1
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 0E64719772F9; Thu,  3 Oct 2024 14:36:56 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.192.112])
- by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 2AC161955F41; Thu,  3 Oct 2024 14:36:52 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 6.12 regression fix 2/2] drm/radeon: Revert: "use GEM
- references instead of TTMs"
-Date: Thu,  3 Oct 2024 16:36:40 +0200
-Message-ID: <20241003143640.14932-3-hdegoede@redhat.com>
-In-Reply-To: <20241003143640.14932-1-hdegoede@redhat.com>
-References: <20241003143640.14932-1-hdegoede@redhat.com>
+ bh=UJlvHuDkFg4to1w3gK1SxyjzDAKplXT0LaEvspziFW8=;
+ b=Tr+SM4F330n0Yb9LHgaOvGq7KMgc058dHhgERBLMhLUR0A+KoeAXwKhvRwZWv9Estioy00
+ ZbxDx7q/5CUYWADCu4fSiCIcB/7xjR1sJuKboJmYw972ZmVh19o4naxZZ1dLJzmwR6KlZm
+ 907ClR2JHdhZvd8pCy5944yNvcHCAE0=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-214-asH6q7DYMyOolb0_IAl4Vw-1; Thu, 03 Oct 2024 13:48:08 -0400
+X-MC-Unique: asH6q7DYMyOolb0_IAl4Vw-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ a640c23a62f3a-a8a8d9a2a12so88101566b.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Oct 2024 10:48:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727977687; x=1728582487;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=UJlvHuDkFg4to1w3gK1SxyjzDAKplXT0LaEvspziFW8=;
+ b=SQhNzbSKUr5YYSX2khQBwuiaJLuizl9+CPKLaoVzU+Pg9f+ENJInvyC7wYgB02snCC
+ PS0TwOjGyxge7vbPMzpAisqflth8sF4/AeY2l62U9EwZHS/paY8AFquo7RNNTc0eVxZX
+ TqU5mJg/WKZvXkaLWU6M01l2/Ook3hGAzQzp8eROhXI7ICw5d6RJhxkThkSvD+8VMMuV
+ aodqNKWiA4J19LDuJVGLkV1Rh2p+sPCsChFmMpLwXWqz7LBQdTYZb3IOk5mnKz7ZWhbU
+ +uUMt3lxDjF+yuCcPzY976r88vvVTffE7jfNu3wQ5dCrF5SL0C99AmkTAjaNo/vrxgl7
+ DtrA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXXeodNtIeB8mCV9zw9Q6e4rsnOPX9sKKLoJC3O+IWuAH9V5BwE7UGp2Z+j6rKs0LpIZtFWO239@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzicBBonhQDrFO6rbdbfxNosr7IrFJ4QCppLwvr6UiNjCxPAs0h
+ yT603XRg12gcZrlLH9o6KHt9ka2m7CciJNKp1G1GDCZXTRuVnQ1tWY2tTJqhagZwxxXTriVP49f
+ iqsl26nOQ1H21LVK2rmfPVad4cp1cSz6pxkq41aTCQJeY3RL5X77ntrY0nusQyx4=
+X-Received: by 2002:a17:907:60c9:b0:a7a:a212:be4e with SMTP id
+ a640c23a62f3a-a991bd139b8mr19030666b.7.1727977686760; 
+ Thu, 03 Oct 2024 10:48:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGxxyof7QTMVZMS4QNE9XWZWHySOEJl7HxWxaAtNzVU5rP1ukRtbeYX6GNSgRO9L7MYoOQwEQ==
+X-Received: by 2002:a17:907:60c9:b0:a7a:a212:be4e with SMTP id
+ a640c23a62f3a-a991bd139b8mr19029366b.7.1727977686306; 
+ Thu, 03 Oct 2024 10:48:06 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a991047318esm113328866b.179.2024.10.03.10.48.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 03 Oct 2024 10:48:05 -0700 (PDT)
+Message-ID: <8adb805f-14f9-467e-a37a-668e3a9e7b07@redhat.com>
+Date: Thu, 3 Oct 2024 19:48:04 +0200
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/radeon: add late_register for connector
+To: Alex Deucher <alexdeucher@gmail.com>, Wu Hoi Pok <wuhoipok@gmail.com>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Christian Zigotzky <chzigotzky@xenosoft.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20241003060650.18454-1-wuhoipok@gmail.com>
+ <CADnq5_PA37NQ52-Y8r6JEtXDRwPehzM5+cxysiZgVks4AkivjQ@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CADnq5_PA37NQ52-Y8r6JEtXDRwPehzM5+cxysiZgVks4AkivjQ@mail.gmail.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
 X-Mailman-Approved-At: Fri, 04 Oct 2024 07:28:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,78 +104,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit fd69ef05029f ("drm/radeon: use GEM references instead of TTMs")
-causes a black screen at boot instead of showing the GDM login screen
-(the system is still alive).
+Hi,
 
-dmesg shows the following oops (abbreviated) when this happens:
+On 3-Oct-24 5:54 PM, Alex Deucher wrote:
+> + Hans
+> 
+> On Thu, Oct 3, 2024 at 2:33 AM Wu Hoi Pok <wuhoipok@gmail.com> wrote:
+>>
+>> This is a fix patch not tested yet,
+>> for a bug I introduce in previous rework of radeon driver.
+>> The bug is a null dereference in 'aux.dev', which is the
+>> 'device' not registered, resulting in kernel panic. By having
+>> 'late_register', the connector should be registered after
+>> 'drm_dev_register' automatically.
+>>
+>> Please help testing thank you.
+>>
+>> Signed-off-by: Wu Hoi Pok <wuhoipok@gmail.com>
 
-[   29.315203] BUG: kernel NULL pointer dereference, address: 0000000000000000
-[   29.315209] #PF: supervisor read access in kernel mode
-[   29.315213] #PF: error_code(0x0000) - not-present page
-[   29.315215] PGD 0 P4D 0
-[   29.315220] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-[   29.315225] CPU: 0 UID: 42 PID: 2253 Comm: Xwayland Tainted: G                   6.12.0-rc1+ #159
-[   29.315232] Hardware name: Micro-Star International Co., Ltd. MS-7C95/B550M PRO-VDH WIFI (MS-7C95), BIOS 2.L0 07/18/2024
-[   29.315234] RIP: 0010:drm_gem_object_free+0xc/0x20
-[   29.315272] Call Trace:
-[   29.315274]  <TASK>
-[   29.315305]  ? asm_exc_page_fault+0x22/0x30
-[   29.315315]  ? drm_gem_object_free+0xc/0x20
-[   29.315320]  radeon_bo_unref+0x50/0x60 [radeon]
-[   29.315337]  radeon_vm_fini+0x1ca/0x350 [radeon]
-[   29.315356]  radeon_driver_postclose_kms+0x16d/0x180 [radeon]
-[   29.315370]  drm_file_free+0x229/0x280
-[   29.315377]  drm_release+0x5f/0xe0
-[   29.315381]  __fput+0xfc/0x2c0
+Thank you both for the Cc and the patch. I can confirm that this
+fixes the crash which I was seeing. Also IHMO this should have
+a fixes tag for the original commit introducing the problem:
 
-Revert the change to restore things back to working order.
+Fixes: 90985660ba48 ("drm/radeon: remove load callback from kms_driver")
+Tested-by: Hans de Goede <hdegoede@redhat.com>
 
-Fixes: fd69ef05029f ("drm/radeon: use GEM references instead of TTMs")
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/radeon/radeon_gem.c    | 2 +-
- drivers/gpu/drm/radeon/radeon_object.c | 7 +++++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
-index 9735f4968b86..210e8d43bb23 100644
---- a/drivers/gpu/drm/radeon/radeon_gem.c
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c
-@@ -88,7 +88,7 @@ static void radeon_gem_object_free(struct drm_gem_object *gobj)
- 
- 	if (robj) {
- 		radeon_mn_unregister(robj);
--		ttm_bo_put(&robj->tbo);
-+		radeon_bo_unref(&robj);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_object.c b/drivers/gpu/drm/radeon/radeon_object.c
-index d0e4b43d155c..450ff7daa46c 100644
---- a/drivers/gpu/drm/radeon/radeon_object.c
-+++ b/drivers/gpu/drm/radeon/radeon_object.c
-@@ -256,15 +256,18 @@ struct radeon_bo *radeon_bo_ref(struct radeon_bo *bo)
- 	if (bo == NULL)
- 		return NULL;
- 
--	drm_gem_object_get(&bo->tbo.base);
-+	ttm_bo_get(&bo->tbo);
- 	return bo;
- }
- 
- void radeon_bo_unref(struct radeon_bo **bo)
- {
-+	struct ttm_buffer_object *tbo;
-+
- 	if ((*bo) == NULL)
- 		return;
--	drm_gem_object_put(&(*bo)->tbo.base);
-+	tbo = &((*bo)->tbo);
-+	ttm_bo_put(tbo);
- 	*bo = NULL;
- }
- 
--- 
-2.46.2
+Hans
+
+
+
+
+
+>> ---
+>>  drivers/gpu/drm/radeon/atombios_dp.c       |  9 ++-------
+>>  drivers/gpu/drm/radeon/radeon_connectors.c | 17 +++++++++++++++++
+>>  2 files changed, 19 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
+>> index fca8b08535a5..6328627b7c34 100644
+>> --- a/drivers/gpu/drm/radeon/atombios_dp.c
+>> +++ b/drivers/gpu/drm/radeon/atombios_dp.c
+>> @@ -228,10 +228,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+>>  {
+>>         struct drm_device *dev = radeon_connector->base.dev;
+>>         struct radeon_device *rdev = dev->dev_private;
+>> -       int ret;
+>>
+>>         radeon_connector->ddc_bus->rec.hpd = radeon_connector->hpd.hpd;
+>> -       radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
+>>         radeon_connector->ddc_bus->aux.drm_dev = radeon_connector->base.dev;
+>>         if (ASIC_IS_DCE5(rdev)) {
+>>                 if (radeon_auxch)
+>> @@ -242,11 +240,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+>>                 radeon_connector->ddc_bus->aux.transfer = radeon_dp_aux_transfer_atom;
+>>         }
+>>
+>> -       ret = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
+>> -       if (!ret)
+>> -               radeon_connector->ddc_bus->has_aux = true;
+>> -
+>> -       WARN(ret, "drm_dp_aux_register() failed with error %d\n", ret);
+>> +       drm_dp_aux_init(&radeon_connector->ddc_bus->aux);
+>> +       radeon_connector->ddc_bus->has_aux = true;
+>>  }
+>>
+>>  /***** general DP utility functions *****/
+>> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+>> index 528a8f3677c2..f9c73c55f04f 100644
+>> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
+>> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+>> @@ -1786,6 +1786,20 @@ static enum drm_mode_status radeon_dp_mode_valid(struct drm_connector *connector
+>>         return MODE_OK;
+>>  }
+>>
+>> +static int
+>> +radeon_connector_late_register(struct drm_connector *connector)
+>> +{
+>> +       struct radeon_connector *radeon_connector = to_radeon_connector(connector);
+>> +       int r = 0;
+>> +
+>> +       if (radeon_connector->ddc_bus->has_aux) {
+>> +               radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
+>> +               r = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
+>> +       }
+>> +
+>> +       return r;
+>> +}
+>> +
+>>  static const struct drm_connector_helper_funcs radeon_dp_connector_helper_funcs = {
+>>         .get_modes = radeon_dp_get_modes,
+>>         .mode_valid = radeon_dp_mode_valid,
+>> @@ -1800,6 +1814,7 @@ static const struct drm_connector_funcs radeon_dp_connector_funcs = {
+>>         .early_unregister = radeon_connector_unregister,
+>>         .destroy = radeon_connector_destroy,
+>>         .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>  };
+>>
+>>  static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+>> @@ -1810,6 +1825,7 @@ static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+>>         .early_unregister = radeon_connector_unregister,
+>>         .destroy = radeon_connector_destroy,
+>>         .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>  };
+>>
+>>  static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+>> @@ -1820,6 +1836,7 @@ static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+>>         .early_unregister = radeon_connector_unregister,
+>>         .destroy = radeon_connector_destroy,
+>>         .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>  };
+>>
+>>  void
+>> --
+>> 2.46.2
+>>
+> 
 
