@@ -2,53 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D5D98EA78
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Oct 2024 09:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A1698EA77
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Oct 2024 09:37:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B3AA10E7C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25F9010E7C2;
 	Thu,  3 Oct 2024 07:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; secure) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="ZOyPWkPv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lYguMvV0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 488 seconds by postgrey-1.36 at gabe;
- Wed, 02 Oct 2024 19:28:15 UTC
-Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
- by gabe.freedesktop.org (Postfix) with ESMTP id C310B10E0F6
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Oct 2024 19:28:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
- t=1727896805; bh=9mOuSM3QA6siPYW6wWOV6L98zTSHnGFLCNk7MAKndlY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ZOyPWkPvYxxStXn5wW5HKKyPXO2D076mb6cixtiDvzkBWvvrI3BgPi1F4a4K5rtsQ
- rI4crWKkgROcsGnMBaUY/pWNJf8cgDU01WvbH5vhhExZC6Yiz5h8E91SZYg8jkU5ni
- iDUiakcd97sZTcg8OszAq7WMhIpCDDu4gw1EeOE9Z343w21v7v0Wa5I2xjDm2/cMuH
- NznYQEaoz51olKcRs9WFyt12LrXoprHmrI2A8GxIQuS7yLpVCqOudVle+d3qtJZxzc
- cxMbtPTIjDsw1Lxgy66j8lLPCUByfH6sXQWRJD3YBFDFI56JHzkmqoUpBPgxvkThxd
- 8N6LzhXsIPkWCiaADKucdbC9ge7D0L0LtQ1lSRy8/xb/h1pYDnEcPISX5IOoFnE0La
- UNiUMsqUrqrj0PYC0wbD5WLzQNL4UMRHaP4yafMSOU1cEOWAIOV80EwQAPhBDFDB1Z
- A3a+I1OGRkTG8N1VXIZ3lphnoN2PIrwGE9dx3hubVzRvOs+3O5K5uO3FZD7X4cd77Y
- VXH7nhyDB1GUV8QUx1jNrXLW/n3ZxZbztwSIBog6/5L8abhbbw0GdnSFpb4GOMdhOs
- N/q109ICfgc+E0hwcyBYmJDklxy1qFQU501AaYNQMdX3LclYPlBwDc7hCJYICmsVPk
- naZZkamQXSq328U0FizAhbAg=
-Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl
- [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
- by bout3.ijzerbout.nl (Postfix) with ESMTPSA id E9F24167DD8;
- Wed,  2 Oct 2024 21:20:04 +0200 (CEST)
-Message-ID: <f42cfa4b-047c-472f-8263-f8fe632d8bd5@ijzerbout.nl>
-Date: Wed, 2 Oct 2024 21:20:02 +0200
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6620110E08B;
+ Thu,  3 Oct 2024 06:06:58 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-7ae3d7222d4so445222a12.3; 
+ Wed, 02 Oct 2024 23:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1727935618; x=1728540418; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Gizy/hHvKle/wUxwaQYiB0W0k117aCDj8y0fuH7eCC0=;
+ b=lYguMvV0KkjJyayEWuJ+g7U9iyn6uxm5F09tL09Q0e7D3EP2p2f7mLzDmQ5nya2vip
+ ChbTwZcovpObVhtolm9J+gIRLaeQhOoPKQEjR4EOfuOORQ6cG1buYqpX4wOIr+llMvMo
+ Szx6yjZJx7rwuyXN70RKffmMyOQWHV80efjEc2MFG1tLuWSYSLdAWUQ7PUS/KYiFK4mp
+ XPaOAj27QzcKZyJkZY2XC0t8xyrwApe6V2+qdypgMIIHxbMeC6+WSwUbl1zF8bCHmJAz
+ LD2rY2KDByzV0wVoES2wAAfJz4rPBeGL1PUfOQohPy1uC+XoLHsvFbHZMbymrBPLe7Gg
+ F51A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727935618; x=1728540418;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Gizy/hHvKle/wUxwaQYiB0W0k117aCDj8y0fuH7eCC0=;
+ b=aZiKQ+zVH9Nw7mSitPxUUOSQ+mATlsn/P4o/UHwf7mxpk0h/znmvr6UQOz7DlO4ioZ
+ LqT85pCskcqzZfaVrX2mw7NS7ikoIZp2VbK5YsVhjx9u8BzsAgEbq+Sk/CDzwiVWeFnC
+ M2NyanRs0NInVrYnkq+rxRPsSsfOYP9pXuxnJbKVuVotA3/0Q3T3aqj7ZeG4Y/sIrK9Q
+ A57usa5VL3bQgxbrbi94THialWeLs4WZkqskdselegU4spfTOZnvQ67DQXAhBJ9A2UtR
+ wGiDLhm36nwKXal2Y+0E3rhevJlI4R88XCq8mfK1LWcYVj4tSurc95PdE82YJ1i62HK1
+ Dx2g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUs0OXWPjU7982XKfhYAhH6tEbzwNgpkZPTOvhYVBx7D6bVwYXGUjPDwxOblq2z4JEwEVsW3LALDTKy@lists.freedesktop.org,
+ AJvYcCXE/HALfX4jTimir0sOxMAvNMSpdp8NBFy6CXz2vqq3nml5NRfw36oyqpuQA4PLpL8Ht7yvVWJQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxDM8KinXWO5ZIp9qHIGysQxBOJj5GtdhzMEJcY1XPD4Co/D4wz
+ yZKO8RLNvCoJxsoQYGdAcNSKqdnJg1onqxE1bnF4OQHjYd5ZUF+K
+X-Google-Smtp-Source: AGHT+IH28i2qJ6+/r9g3BIoTWHR1EDtmgHyOuIUkZIQ+s87HIus1gxI6hsudyMxwnt0IsASivdgL4w==
+X-Received: by 2002:a17:90b:3b52:b0:2e0:8784:d420 with SMTP id
+ 98e67ed59e1d1-2e1848013e7mr6502496a91.21.1727935617738; 
+ Wed, 02 Oct 2024 23:06:57 -0700 (PDT)
+Received: from jayDESKTOP.. (210006200231.ctinets.com. [210.6.200.231])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2e1bfad5e01sm620663a91.3.2024.10.02.23.06.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Oct 2024 23:06:57 -0700 (PDT)
+From: Wu Hoi Pok <wuhoipok@gmail.com>
+To: 
+Cc: Hoi Pok Wu <wuhoipok@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Christian Zigotzky <chzigotzky@xenosoft.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] drm/radeon: add late_register for connector
+Date: Thu,  3 Oct 2024 14:06:46 +0800
+Message-ID: <20241003060650.18454-1-wuhoipok@gmail.com>
+X-Mailer: git-send-email 2.46.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs
-To: Sathishkumar S <sathishkumar.sundararaju@amd.com>,
- amd-gfx@lists.freedesktop.org
-Cc: Leo Liu <Leo.Liu@amd.com>
-References: <20240910143146.1942083-1-sathishkumar.sundararaju@amd.com>
-Content-Language: en-US
-From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20240910143146.1942083-1-sathishkumar.sundararaju@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 03 Oct 2024 07:37:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,67 +89,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Op 10-09-2024 om 16:31 schreef Sathishkumar S:
-> JPEG_4_0_3 has up to 32 jpeg cores and a single mjpeg video decode
-> will use all available cores on the hardware. This debugfs entry
-> helps to disable or enable job submission to a cluster of cores or
-> one specific core in the ip for debugging. The entry is populated
-> only if there is at least two or more cores in the jpeg ip.
->
-> Signed-off-by: Sathishkumar S <sathishkumar.sundararaju@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  2 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c    | 71 +++++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h    |  1 +
->   3 files changed, 74 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> index cbef720de779..37d8657f0776 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -2095,6 +2095,8 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
->   	if (amdgpu_umsch_mm & amdgpu_umsch_mm_fwlog)
->   		amdgpu_debugfs_umsch_fwlog_init(adev, &adev->umsch_mm);
->   
-> +	amdgpu_debugfs_jpeg_sched_mask_init(adev);
-> +
->   	amdgpu_ras_debugfs_create_all(adev);
->   	amdgpu_rap_debugfs_init(adev);
->   	amdgpu_securedisplay_debugfs_init(adev);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> index 6df99cb00d9a..edf0a50dd345 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> @@ -342,3 +342,74 @@ int amdgpu_jpeg_psp_update_sram(struct amdgpu_device *adev, int inst_idx,
->   
->   	return psp_execute_ip_fw_load(&adev->psp, &ucode);
->   }
-> +
-> +/*
-> + * debugfs for to enable/disable jpeg job submission to specific core.
-> + */
-> +#if defined(CONFIG_DEBUG_FS)
-> +static int amdgpu_debugfs_jpeg_sched_mask_set(void *data, u64 val)
-> +{
-> +	struct amdgpu_device *adev = (struct amdgpu_device *) data;
-> +	uint32_t i, j;
-> +	uint64_t mask = 0;
-> +	struct amdgpu_ring *ring;
-> +
-> +	if (!adev)
-> +		return -ENODEV;
-> +
-> +	mask = (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
-This expression "1 << ..." is evaluated as 32 bits because of the plain 
-"1". If
-the shift is more than 32 then the result of the shift will be 0.
+This is a fix patch not tested yet,
+for a bug I introduce in previous rework of radeon driver.
+The bug is a null dereference in 'aux.dev', which is the
+'device' not registered, resulting in kernel panic. By having
+'late_register', the connector should be registered after
+'drm_dev_register' automatically.
 
-I suggest to change the expression to something like this (assuming ULL 
-makes it 64 bits)
-mask = (1ULL << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
-or
-mask = ((u64)1 << (adev->jpeg.num_jpeg_inst * 
-adev->jpeg.num_jpeg_rings)) - 1;
+Please help testing thank you.
 
-> [...]
->
+Signed-off-by: Wu Hoi Pok <wuhoipok@gmail.com>
+---
+ drivers/gpu/drm/radeon/atombios_dp.c       |  9 ++-------
+ drivers/gpu/drm/radeon/radeon_connectors.c | 17 +++++++++++++++++
+ 2 files changed, 19 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
+index fca8b08535a5..6328627b7c34 100644
+--- a/drivers/gpu/drm/radeon/atombios_dp.c
++++ b/drivers/gpu/drm/radeon/atombios_dp.c
+@@ -228,10 +228,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+ {
+ 	struct drm_device *dev = radeon_connector->base.dev;
+ 	struct radeon_device *rdev = dev->dev_private;
+-	int ret;
+ 
+ 	radeon_connector->ddc_bus->rec.hpd = radeon_connector->hpd.hpd;
+-	radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
+ 	radeon_connector->ddc_bus->aux.drm_dev = radeon_connector->base.dev;
+ 	if (ASIC_IS_DCE5(rdev)) {
+ 		if (radeon_auxch)
+@@ -242,11 +240,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+ 		radeon_connector->ddc_bus->aux.transfer = radeon_dp_aux_transfer_atom;
+ 	}
+ 
+-	ret = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
+-	if (!ret)
+-		radeon_connector->ddc_bus->has_aux = true;
+-
+-	WARN(ret, "drm_dp_aux_register() failed with error %d\n", ret);
++	drm_dp_aux_init(&radeon_connector->ddc_bus->aux);
++	radeon_connector->ddc_bus->has_aux = true;
+ }
+ 
+ /***** general DP utility functions *****/
+diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+index 528a8f3677c2..f9c73c55f04f 100644
+--- a/drivers/gpu/drm/radeon/radeon_connectors.c
++++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+@@ -1786,6 +1786,20 @@ static enum drm_mode_status radeon_dp_mode_valid(struct drm_connector *connector
+ 	return MODE_OK;
+ }
+ 
++static int
++radeon_connector_late_register(struct drm_connector *connector)
++{
++	struct radeon_connector *radeon_connector = to_radeon_connector(connector);
++	int r = 0;
++
++	if (radeon_connector->ddc_bus->has_aux) {
++		radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
++		r = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
++	}
++
++	return r;
++}
++
+ static const struct drm_connector_helper_funcs radeon_dp_connector_helper_funcs = {
+ 	.get_modes = radeon_dp_get_modes,
+ 	.mode_valid = radeon_dp_mode_valid,
+@@ -1800,6 +1814,7 @@ static const struct drm_connector_funcs radeon_dp_connector_funcs = {
+ 	.early_unregister = radeon_connector_unregister,
+ 	.destroy = radeon_connector_destroy,
+ 	.force = radeon_dvi_force,
++	.late_register = radeon_connector_late_register,
+ };
+ 
+ static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+@@ -1810,6 +1825,7 @@ static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+ 	.early_unregister = radeon_connector_unregister,
+ 	.destroy = radeon_connector_destroy,
+ 	.force = radeon_dvi_force,
++	.late_register = radeon_connector_late_register,
+ };
+ 
+ static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+@@ -1820,6 +1836,7 @@ static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+ 	.early_unregister = radeon_connector_unregister,
+ 	.destroy = radeon_connector_destroy,
+ 	.force = radeon_dvi_force,
++	.late_register = radeon_connector_late_register,
+ };
+ 
+ void
+-- 
+2.46.2
+
