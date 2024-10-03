@@ -2,51 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5845198FDD2
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 09:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA2D98FDCF
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 09:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE77010E8AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1AA10E875;
 	Fri,  4 Oct 2024 07:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ispras.ru header.i=@ispras.ru header.b="f6DMs9mc";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=helen.koike@collabora.com header.b="EdVEHlGX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 616 seconds by postgrey-1.36 at gabe;
- Thu, 03 Oct 2024 13:49:14 UTC
-Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A43310E844;
- Thu,  3 Oct 2024 13:49:14 +0000 (UTC)
-Received: from fpc (unknown [10.10.165.16])
- by mail.ispras.ru (Postfix) with ESMTPSA id 3F68540A1DCA;
- Thu,  3 Oct 2024 13:38:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 3F68540A1DCA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
- s=default; t=1727962735;
- bh=KOWqdSYd0HRIuG/HzcyDAFKhPmaylzN0roNXviZpNtw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=f6DMs9mcJlTEHUqLTs5QPEMUO7gN0VYHvdDmd/FxOybqbeRUBvUpIagjui8SOv9vZ
- 0DYyc/90v8TpSAxjE75gy5VUGqVGVkNcXu27F6n8d+RR/5hbeGUDOBvskxjKGnxgh9
- zYDYpR5pfyt4HfkQWc7/PPrL62IBlNdpvRVbgIJk=
-Date: Thu, 3 Oct 2024 16:38:46 +0300
-From: Fedor Pchelkin <pchelkin@ispras.ru>
-To: Igor Artemiev <Igor.A.Artemiev@mcst.ru>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Simona Vetter <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>,
- lvc-project@linuxtesting.org, Xinhui Pan <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Subject: Re: [lvc-project] [PATCH v2] drm/amd/pm: check return value of
- amdgpu_irq_add_id()
-Message-ID: <20241003-271275e284694a8c82dac508-pchelkin@ispras.ru>
-References: <7b3ea9a6-575e-4fe5-98d9-6e53803188fa@amd.com>
- <20241002130149.1607979-1-Igor.A.Artemiev@mcst.ru>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA74A10E195;
+ Thu,  3 Oct 2024 14:09:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1727964567; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=PxzjsxdZoHLLEWUXBUtJIbx9FvlzyWRBvnpXUEH8ZVkpiZfTLPGvy/XA4HWYH3GdXWX+Fz+Ry4cIzMuHahHXJgKCenG8jEWyZTKZyolivk+j54T4ML2Pv/4qbGoKaFOfbRo6H73BvIGULY1NSAmuOjbDWWcC+iPHvUooV3igJ74=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1727964567;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=1OHhhNZ+OELPUq/O9d/iIoYUAyuuf7NZlomVKgtomd4=; 
+ b=ZQ39KtJe+AupNLqYeceIQqzdxeoBXyc7+0+sM3kEHQadskrnS4I2nYcJIKzFZ6S6tT88hqj7BNMI3YkvxswsQoVqav0d37uWoeLGPwvWWGLRC3KyNnFYhzpPcv2naDvBK0ZmHLei4vv1jQtS+gO8XV4X2dxwr8Y1s6xchvBbZfw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=helen.koike@collabora.com;
+ dmarc=pass header.from=<helen.koike@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1727964566; 
+ s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
+ h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=1OHhhNZ+OELPUq/O9d/iIoYUAyuuf7NZlomVKgtomd4=;
+ b=EdVEHlGXFsAxJN+19yf//ol9ieQSDoRqLCvgjjIZOMKb7c74NYzeDUO6lVicMw25
+ TfSDEhx15h+ibwLHoPb6jl72/1Bqu4PAePPAaebr6aFNNBGM+9Bf1cQHGBqxtcl9Rre
+ 77I8HB53JN/onRr797LMXBEI+94fzCMDmNvIoeyc=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 1727964564611390.8472928612191;
+ Thu, 3 Oct 2024 07:09:24 -0700 (PDT)
+Date: Thu, 03 Oct 2024 11:09:24 -0300
+From: Helen Mae Koike Fornazier <helen.koike@collabora.com>
+To: "Vignesh Raman" <vignesh.raman@collabora.com>
+Cc: "dri-devel" <dri-devel@lists.freedesktop.org>,
+ "daniels" <daniels@collabora.com>, "airlied" <airlied@gmail.com>,
+ "daniel" <daniel@ffwll.ch>, "robdclark" <robdclark@gmail.com>,
+ "guilherme.gallo" <guilherme.gallo@collabora.com>,
+ "sergi.blanch.torne" <sergi.blanch.torne@collabora.com>,
+ "deborah.brouwer" <deborah.brouwer@collabora.com>,
+ "dmitry.baryshkov" <dmitry.baryshkov@linaro.org>,
+ "mripard" <mripard@kernel.org>, "rodrigo.vivi" <rodrigo.vivi@intel.com>,
+ "quic_abhinavk" <quic_abhinavk@quicinc.com>,
+ "linux-mediatek" <linux-mediatek@lists.infradead.org>,
+ "linux-amlogic" <linux-amlogic@lists.infradead.org>,
+ "linux-rockchip" <linux-rockchip@lists.infradead.org>,
+ "amd-gfx" <amd-gfx@lists.freedesktop.org>,
+ "linux-arm-msm" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx" <intel-gfx@lists.freedesktop.org>,
+ "virtualization" <virtualization@lists.linux.dev>,
+ "linux-kernel" <linux-kernel@vger.kernel.org>
+Message-ID: <19252b6cc3e.e564b8892647525.6443730088827538481@collabora.com>
+In-Reply-To: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+References: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+Subject: Re: [PATCH v4] docs/gpu: ci: update flake tests requirements
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241002130149.1607979-1-Igor.A.Artemiev@mcst.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Mailman-Approved-At: Fri, 04 Oct 2024 07:28:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,92 +83,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 02. Oct 16:01, Igor Artemiev wrote:
-> amdgpu_irq_ad_id() may fail and the irq handlers will not be registered.
-> This patch adds error code check.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
-> 
-> Signed-off-by: Igor Artemiev <Igor.A.Artemiev@mcst.ru>
-> ---
-> v2: Remove the cast to struct amdgpu_device as Christian König 
-> <christian.koenig@amd.com> suggested.
-> 
->  .../drm/amd/pm/powerplay/hwmgr/smu_helper.c   | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu_helper.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu_helper.c
-> index 79a566f3564a..50a3085c00aa 100644
-> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu_helper.c
-> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu_helper.c
-> @@ -647,28 +647,41 @@ int smu9_register_irq_handlers(struct pp_hwmgr *hwmgr)
->  {
->  	struct amdgpu_irq_src *source =
->  		kzalloc(sizeof(struct amdgpu_irq_src), GFP_KERNEL);
-> +	int ret;
->  
->  	if (!source)
->  		return -ENOMEM;
->  
->  	source->funcs = &smu9_irq_funcs;
->  
-> -	amdgpu_irq_add_id((struct amdgpu_device *)(hwmgr->adev),
-> +	ret = amdgpu_irq_add_id(hwmgr->adev,
->  			SOC15_IH_CLIENTID_THM,
->  			THM_9_0__SRCID__THM_DIG_THERM_L2H,
->  			source);
-> -	amdgpu_irq_add_id((struct amdgpu_device *)(hwmgr->adev),
-> +	if (ret)
-> +		goto err;
-> +
-> +	ret = amdgpu_irq_add_id(hwmgr->adev,
->  			SOC15_IH_CLIENTID_THM,
->  			THM_9_0__SRCID__THM_DIG_THERM_H2L,
->  			source);
-> +	if (ret)
-> +		goto err;
->  
->  	/* Register CTF(GPIO_19) interrupt */
-> -	amdgpu_irq_add_id((struct amdgpu_device *)(hwmgr->adev),
-> +	ret = amdgpu_irq_add_id(hwmgr->adev,
->  			SOC15_IH_CLIENTID_ROM_SMUIO,
->  			SMUIO_9_0__SRCID__SMUIO_GPIO19,
->  			source);
-> +	if (ret)
-> +		goto err;
->  
->  	return 0;
-> +
-> +err:
-> +	kfree(source);
 
-Oh, the calltrace looks like:
 
-hwmgr_sw_init()
-  phm_register_irq_handlers()
-    ->register_irq_handlers()
-    smu9_register_irq_handlers()
 
-And the return value of phm_register_irq_handlers() is not processed and
-the error is not reported anywhere, so I guess there is a risk of
-use-after-free: the source pointer may have been already registered by
-some of amdgpu_irq_add_id() calls before the error occured.
 
-The similar code exists in smu7_register_irq_handlers(), maybe should be
-fixed as well.
+---- On Mon, 30 Sep 2024 06:52:47 -0300 Vignesh Raman  wrote ---
 
-Alex, is https://gitlab.freedesktop.org/agd5f/linux a public repo this
-patch should go in? I'd suggest to drop the patch and ask Igor to do a
-complete fix or, if dropping is not possible now, fix it by another patch.
-For the latter one I can do this myself but it would be nice to refer to
-the current patch via a git hash (it's probably not published yet in your
-repo).
+ > Update the documentation to specify linking to a relevant GitLab 
+ > issue or email report for each new flake entry. Added specific 
+ > GitLab issue urls for amdgpu, i915, msm and xe driver. 
+ >  
+ > Acked-by: Maxime Ripard mripard@kernel.org> 
+ > Acked-by: Rodrigo Vivi rodrigo.vivi@intel.com> #intel and xe 
+ > Acked-by: Abhinav Kumar quic_abhinavk@quicinc.com> # msm 
+ > Acked-by: Dmitry Baryshkov dmitry.baryshkov@linaro.org> # msm 
+ > Signed-off-by: Vignesh Raman vignesh.raman@collabora.com> 
 
-> +
-> +	return ret;
->  }
->  
->  void *smu_atom_get_data_table(void *dev, uint32_t table, uint16_t *size,
-> -- 
-> 2.39.2
+Applied to drm-misc-next
+Thanks!
+
+Helen
+
+ > --- 
+ >  
+ > v2: 
+ > - Add gitlab issue link for msm driver. 
+ >  
+ > v3: 
+ > - Update docs to specify we use email reporting or GitLab issues for flake entries. 
+ >  
+ > v4: 
+ > - Add gitlab issue link for xe driver. 
+ >  
+ > --- 
+ >  Documentation/gpu/automated_testing.rst | 14 ++++++++++---- 
+ >  1 file changed, 10 insertions(+), 4 deletions(-) 
+ >  
+ > diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst 
+ > index 2d5a28866afe..6d7c6086034d 100644 
+ > --- a/Documentation/gpu/automated_testing.rst 
+ > +++ b/Documentation/gpu/automated_testing.rst 
+ > @@ -68,19 +68,25 @@ known to behave unreliably. These tests won't cause a job to fail regardless of 
+ >  the result. They will still be run. 
+ >  
+ >  Each new flake entry must be associated with a link to the email reporting the 
+ > -bug to the author of the affected driver, the board name or Device Tree name of 
+ > -the board, the first kernel version affected, the IGT version used for tests, 
+ > -and an approximation of the failure rate. 
+ > +bug to the author of the affected driver or the relevant GitLab issue. The entry 
+ > +must also include the board name or Device Tree name, the first kernel version 
+ > +affected, the IGT version used for tests, and an approximation of the failure rate. 
+ >  
+ >  They should be provided under the following format:: 
+ >  
+ > -  # Bug Report: $LORE_OR_PATCHWORK_URL 
+ > +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE 
+ >  # Board Name: broken-board.dtb 
+ >  # Linux Version: 6.6-rc1 
+ >  # IGT Version: 1.28-gd2af13d9f 
+ >  # Failure Rate: 100 
+ >  flaky-test 
+ >  
+ > +Use the appropriate link below to create a GitLab issue: 
+ > +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues 
+ > +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues 
+ > +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues 
+ > +xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues 
+ > + 
+ >  drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt 
+ >  ----------------------------------------------------------- 
+ >  
+ > -- 
+ > 2.43.0 
+ >  
+ > 
