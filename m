@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA0C98FA9D
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5FE98FA9F
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:36:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C94410E9B5;
-	Thu,  3 Oct 2024 23:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFAD710E9B7;
+	Thu,  3 Oct 2024 23:36:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qi2j+MOq";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="s8MY64PJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D404010E9B4
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 23:36:20 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A7810E9B6
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 23:36:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f8VssottvMqySnC1fL0h2maUH3dBm9InZzYpr00AYelQR4pYZstUxOMi5iYP7FJW/Dj/+rD3tS3JE6eMN0t22s0nOtcOmXc9Uzi79I6C9ptPWYzosVN7aMIFvqckm6uBtrqQjmuwUTSKoW62cBGFqpBCgcNh/9EfvFRlNubQMMiYCXgZzAY7ngM7RPg+Y0eeu81QpXm3r2RSs1A2nOvk++e5UJffSlQpretc+2WsnG/OvyvYz9ca3s5haPT9mO0yZ/IJClW+Uj9Vbrz4WzgTPP/alqcZbajwMc2zu2ti3qRHd2yv7e1PrD1AwTj/LbmHWuviIw/Ekj1TIXvEzE2ITg==
+ b=IUajqPtMPPj3p4EDa+gLnRsLfIVS6ByKKLj9yIaA2jPRjKhHEL2LDTH9CxK5JNWF9JtGCNxyIKqPsm7vWdLmUNw+EFs2MhionCZJsScIzZiO9t7cp7uwSzFAyHJdGEWed/M3WcEGTdStQhdwKt+sJc1lUtwqGWI36xKjPMmXQNLGXBM4pQr8S4+HmDKRZz1ScxMI3WxUxwLev/haVcd1bnfCxLnDnuOOCCQQq8sWd3rpMmNz7xRooSkvzHIdYkx8iYkfv92EIySUJXR+mO0f1x48CNTkV3LaP0OtEp6PDTIBxQ76yQ1rzMUMvO+YeFCXCNnUKSXTDthJM/ZaN6S3iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OdFuJVZTVS60vekxxzH3n7CjnOVR6/ZzC+o6GCACnlE=;
- b=bZy+hv1HRzUNSpTCJ476y2QRjXD0TGXWAJLeZNZUFG4DGJzkSwd+qtnvkQwQ+wKZ3GrQ0eJuazFP4PRVUVyQDhJfKV0vZL+axdnT+/MrjWTVKmiAT7Rw0o26Fdf8Y8MMevDFIpPHj05WZNQcVzBC0qmIcWBrhTQWg7BMMKBNlaW50yNQKTbDyQsnoZsA6TMGdcl8QV9p+nEbGEJxt5H3pbZHbfTyPhelhBJd7SHeCE5yh2H+ZExK6HrWV6tNIxQEU8bDHZ5BKJrsRMy06khFhrgF9qC0+pAwzMgf+mg+TIE5OisR+9uovTjbjgDtSAm4TNdEGOlAAPyQsWdMowPebA==
+ bh=6u11aOnmjIdNgmUZtaGHdP7Y9E7vKZjexcYX4PQEyl0=;
+ b=lROi7Ee4DIri+R4FAOv+z2QSCRpU6w+2hk37VuU6qrUuRQ8NluXsmU5wU+udnP0Dzpf/ZjIHGSVxbGJIZpZ1JuT5AtMM7EcyYyzjVPp0+rAgN1xBHNMsefMACdW2DzfOya6Ktq8843waUd6gNXcNg8haqipnDernirxcR2h8gYywpROi66dYQ6P2stc7G8bg7Fi0iB70X4CrdYr1NRcxxMaeuOVccJd/TujxBXVcXGqOMft+2ShJ3TX8R7v6k3kiz9U6NGMhRQSPUBgEBgROtX8xl1g+rlMvAqucXF9UJeA7VmP/1Fqx2n55X5pIVuG+95N3VgyTXSRuD+ySk3jmEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OdFuJVZTVS60vekxxzH3n7CjnOVR6/ZzC+o6GCACnlE=;
- b=qi2j+MOqBajkuNU+8AbbSUzdDsHudIA2RP9mjWNb3O/M+zEdK03AeJNrPpF9rWeXtkh2dqtIrg/iAFQ4kg+AbcVt11vUQSuDXwsVZ2YsR8PNIicYzaeWmx3Ko4YmxyMM1GHmmyvl7NdtQrC2EjIumxnvZXndpk9nNS6mH5N8Kf4=
-Received: from DM5PR07CA0091.namprd07.prod.outlook.com (2603:10b6:4:ae::20) by
- CH3PR12MB9078.namprd12.prod.outlook.com (2603:10b6:610:196::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18; Thu, 3 Oct
- 2024 23:36:17 +0000
+ bh=6u11aOnmjIdNgmUZtaGHdP7Y9E7vKZjexcYX4PQEyl0=;
+ b=s8MY64PJCF5rG5pKhnwz+/Qyof8i0zcClM4trY7wWEk2S00NnMU9Nkwmw21ZYg3X4jn8WHI73qpB7wtsAWIqe+XHCesUy4JPjTJdgB9PKAIs5QIGhUAldSgdtlLPJDDkTkNzpSCVvWEgUDKYT+lt7q91XKckSufUdwM8iKbvFeY=
+Received: from DM5PR07CA0086.namprd07.prod.outlook.com (2603:10b6:4:ae::15) by
+ LV3PR12MB9404.namprd12.prod.outlook.com (2603:10b6:408:219::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8026.16; Thu, 3 Oct 2024 23:36:19 +0000
 Received: from CY4PEPF0000EE32.namprd05.prod.outlook.com
- (2603:10b6:4:ae:cafe::30) by DM5PR07CA0091.outlook.office365.com
- (2603:10b6:4:ae::20) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:ae:cafe::f4) by DM5PR07CA0086.outlook.office365.com
+ (2603:10b6:4:ae::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18 via Frontend
- Transport; Thu, 3 Oct 2024 23:36:17 +0000
+ Transport; Thu, 3 Oct 2024 23:36:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CY4PEPF0000EE32.mail.protection.outlook.com (10.167.242.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:36:16 +0000
+ 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:36:18 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Oct
- 2024 18:36:10 -0500
+ 2024 18:36:11 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,10 +63,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Taimur Hassan <Syed.Hassan@amd.com>
-Subject: [PATCH 21/26] drm/amd/display: Add DMUB debug offset
-Date: Thu, 3 Oct 2024 17:33:39 -0600
-Message-ID: <20241003233509.210919-22-Rodrigo.Siqueira@amd.com>
+ <daniel.wheeler@amd.com>, Alex Hung <alex.hung@amd.com>, Nevenko Stupar
+ <nevenko.stupar@amd.com>
+Subject: [PATCH 22/26] drm/amd/display: Remove unnecessary assignments
+Date: Thu, 3 Oct 2024 17:33:40 -0600
+Message-ID: <20241003233509.210919-23-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
 References: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
@@ -78,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|CH3PR12MB9078:EE_
-X-MS-Office365-Filtering-Correlation-Id: c72d3b31-b16d-47f8-1685-08dce4042d5b
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|LV3PR12MB9404:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b66d19b-9232-4a6e-34a8-08dce4042e3b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?icv0UQSmdgwed8q5qwklU6RGcGp4axi8dXD6iNTPMQ0tthKQB729k8c6m7ef?=
- =?us-ascii?Q?QafQKQVoR1GSh6yjkhJlVFh40Ve4D1pMlklbFX2BfD7zB+Zy4rmq/oJuGcD2?=
- =?us-ascii?Q?kB28w5Pyh9ayAwPGR9OoS3ZtlO7iNWkWhzc28DtWK2sycOeKmTKSS7eqa6bC?=
- =?us-ascii?Q?1sdXv/3Z51P1o6osFqzb95XXRympnQlE+NCccPF3MfCGXbXz9qjE9RlhGxQC?=
- =?us-ascii?Q?2e6PirTkaC3vtwh/gKHQ/IQ6tCgoLWRQCSzj39ge1d/kUlnlkNDBcKoazJQE?=
- =?us-ascii?Q?EgyaX7lNKcrj3RyxGa7I2uu+o5zaEzNsNNzz/kK21ldofuK5JayggzeNcIqX?=
- =?us-ascii?Q?8yMQWeRl/IOTK1UVRYcVLh5Ezoa72LCl/VFj0RpjwKp5gtNFbVwWrJi5e94+?=
- =?us-ascii?Q?iZea+95vIkCAOSZq6TjHlaC2GGbGoeFZSjxwQ6RvcI4oQ0Kmr2igMVieoP7K?=
- =?us-ascii?Q?ubMXxCoixkZJuZ7o11HaL5r92uzbEbpuRjqQvyOPxMhRCUoZybKi0PDfNCT5?=
- =?us-ascii?Q?9DpssG9k/KcOlM4PylAg89EZMxZU7rwGI2lxKtxkc3lA5Zprj3uSlhmI+0KG?=
- =?us-ascii?Q?Y2gMKtqaK1eNa93ui9EdtTZj/M8KWwPPb+WPfXAcNBzqIbQvTgCVDY2gnYXE?=
- =?us-ascii?Q?RC0LAKD/Cdc7pCPrRay37O0QHCVspGM0geNh1GcgAAkZ77FlEco69M+UsJQ1?=
- =?us-ascii?Q?YyHb3k/IgBN1b1otT3sKIypmJf64i0NsaEWW547qsfqxZv8iLVcIZeJbV7Hf?=
- =?us-ascii?Q?Pg3m8RQiNO0C4XiVk+UWg5Nj1HH8knDLOIlcJc8D5prTuA4Ga0q8lNQHpyHX?=
- =?us-ascii?Q?ehQekxBTZKP7ol+HUIg5ZZByBpacKIAW1N7dh/3gKP5uk/HSGQDdAr04D2O0?=
- =?us-ascii?Q?2dJnvPccYm0rwHxpfzftynGmiF93ibJ4+7krNInDP4H7Y22MEuEVPkUFkGTf?=
- =?us-ascii?Q?4GfolB0thp2gzJ0POXyVt2kJaI0E+96m/iNDmUQOJd0vc9rlWTHWR+2vu5bv?=
- =?us-ascii?Q?O4pYwtledB5zC+iX/ehWbonyCYSVmL7tkGhM2xM9xJ3O4g+ogCRHxwj4L9JM?=
- =?us-ascii?Q?lGR5jSkCnF9meAV9vZQdO4E6YDfTXV/29Vi/J+x+L0JnJUvyniaKiGcV5ueC?=
- =?us-ascii?Q?HuchIImL7hioTUz2hGcFNVRXNZXKPofsS7g0mQZ5v3mInOasSppzcN9VqEdr?=
- =?us-ascii?Q?9nK7O3UG2TQSWE13cp3gLGauSNvDwaPfyzRbLjFnjUDSZfUoOkdCPfFOoOVp?=
- =?us-ascii?Q?PkDbfuIV/L+O48/T47Ktfty8D9N5PdyGYCgEAULKewgOXZL+qjpfOZGWfIqd?=
- =?us-ascii?Q?EF/pSXsTaQTmJHsvGqfaJFnWFTMPNR80wILZmfFNGhYHRqeeK9TDWSW5pTv+?=
- =?us-ascii?Q?cwmqnKA=3D?=
+ ARA:13230040|82310400026|376014|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Uemlxm52mOKglt1nNYfJxx29iwRbAkBuLfqQDKHyru4ipqscNi4gWci7hsOY?=
+ =?us-ascii?Q?GoJYEGXzM26Hahq0ArW5BoAHnJhGSIt13p4+de0ryOAgBFykDykOk3v4tRe/?=
+ =?us-ascii?Q?c8mPTN74ru1GZgpQpM3p05Kb5eLkMDFeZq/y54eO7+bIDWZSqcBkAaPJ5Kj6?=
+ =?us-ascii?Q?xmLVwkN2Gm6Sj/xXN/gxxNJBi8pRPFRyXnBgCj3KIsONNJp4DTQCyJOqLV9h?=
+ =?us-ascii?Q?Fb5tZdaH3f9SF2GAdHp3pmUODSYyCxcdGJNykhMGYknTwbCzKnlZ7oBgWvON?=
+ =?us-ascii?Q?MzDmrO8G80l873nLorLP1eSV4MH4kBGk6HwiOtfXE+zgl0tqRhnOlkeQ/vBu?=
+ =?us-ascii?Q?gqNL7sc5pFyDFrLucfR7IXUPGoJBuPJL5jbGT8mUBVpAgdZTgUrkGYVy/Q6b?=
+ =?us-ascii?Q?ghBcV/qldGzsahNNyFXJJjow1loZMdZK+iUJdwpTUMw+1d7coGDQHRTQ5BK/?=
+ =?us-ascii?Q?CUbjr7MTvpHLvEZcfHwKgrpbLHZSq7rdNSrol25VPWj4o8l6ZSL/ACklf1m/?=
+ =?us-ascii?Q?6MW0F1hP0siBojwmFzTdZrCf5smWqyX9FHMKnNBA6t3rN0hw3ZxumInu5xSk?=
+ =?us-ascii?Q?+JbeKzw7h9CLK9TCAixKpEvomdgr4rRtZyAc6cBrVbbB57hp1Q7q4HFRd09G?=
+ =?us-ascii?Q?w2ZMdHWH3zpgWgWOjCqFVmGCkC1XBW1qQSJgnnVKOHVGF8NmEJlUF5J183AP?=
+ =?us-ascii?Q?KarTVluhbUr4NDu9JaCAoRceIj3G3YvGaRFAd4AgH9Pek1Xy7E+wYJZn+J8A?=
+ =?us-ascii?Q?ZEPVELqez4BDVoJXW7+RbgwKnRzROAcX+LSjuJPqnzaVxfGy+/Q6I7EEBNoE?=
+ =?us-ascii?Q?L2djpU7Uf6g0AVZu8Mof0Yc+3k6jzZI/7tKmh/tRbioSitg+IZK7LEoP5bbE?=
+ =?us-ascii?Q?tWnREoHuDaOF5ULI7Lrk6WAl5cxodamB9abb9tKlDMrv4ScXtGMS+7VjdEue?=
+ =?us-ascii?Q?j/0o7pqOkOlE9XftZvkyh5KvyBV+L7maOkkdgETuJt39RYhD5BkE3h+jpR39?=
+ =?us-ascii?Q?vI68QNsr932VcpGuHhTAxJb75cmXnfdeTVOgReaauB68rPfsH9DZ4QqbfOZB?=
+ =?us-ascii?Q?eWyhptHzUlVxFdaO9Miqvr8hpfhTa5A3U8fman6prkM8eyeEvSLgpkxyPsoJ?=
+ =?us-ascii?Q?8/9KDiwwX6kDyc3nVWXmErxRRuFf4c44KW6f+1obbc/bX+YwiFzrIDTasgZC?=
+ =?us-ascii?Q?YQL3rpX1EQigWgjlGtih2157WhEWMewOdFjE/oUfYrGW2meI+s+du4C4tLib?=
+ =?us-ascii?Q?bDcJSp6Jq1XhtEcWV1bYST+FwaBBQVlpTv+XKpsDIxr0iEQHyvtu+IN9rOGU?=
+ =?us-ascii?Q?ZKspi8cN1ku+2rCfYTcukmi5DcAtQ+4POf+XsRvKFod+GWo2ABwy0E9sVwNM?=
+ =?us-ascii?Q?qGKKk9V4LLCZZvH7Bp77fOmv1zPH?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:36:16.9839 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c72d3b31-b16d-47f8-1685-08dce4042d5b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:36:18.4526 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b66d19b-9232-4a6e-34a8-08dce4042e3b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE32.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9078
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9404
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,33 +137,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-Add DMUB offset for future use.
+[WHAT & HOW]
+TimeForFetchingMetaPTE, TimeForFetchingRowInVBlank and
+LinesToRequestPrefetchPixelData are local variables. They
+are freed when CalculatePrefetchSchedule() ends and need
+not clearing explicitly.
 
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
-Acked-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+This fixes 21 UNUSED_VALUE issues reported by Coverity.
+
+Reviewed-by: Nevenko Stupar <nevenko.stupar@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c | 3 ---
+ .../gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c   | 3 ---
+ drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c | 3 ---
+ drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c | 3 ---
+ drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c | 3 ---
+ .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c   | 3 ---
+ .../drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c    | 3 ---
+ 7 files changed, 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 05d352c7b1d3..f9e82c4f8deb 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -170,6 +170,11 @@
- #pragma pack(push, 1)
- #define ABM_NUM_OF_ACE_SEGMENTS         5
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+index 565f3c492477..0c8c4a080c50 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+@@ -785,12 +785,9 @@ static bool CalculatePrefetchSchedule(
  
-+/**
-+ * Debug FW state offset
-+ */
-+#define DMUB_DEBUG_FW_STATE_OFFSET 0x300
-+
- union abm_flags {
- 	struct {
- 		/**
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBW = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+index 9d6675ecc5f1..c935903b68e1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+@@ -845,12 +845,9 @@ static bool CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBW = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+index eb3ed965e48b..cd8cca651419 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+@@ -1049,12 +1049,9 @@ static bool CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBWLuma = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+index 4822fad6ce3a..cee1b351e105 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+@@ -1280,12 +1280,9 @@ static bool CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBWLuma = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
+index 2b275e680379..f567a9023682 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
+@@ -1444,12 +1444,9 @@ static bool CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBWLuma = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+index debfa31583a6..5865e8fa2d8e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+@@ -1461,12 +1461,9 @@ static bool CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBWLuma = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+index d92fb428ee96..86ac7d59fd32 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+@@ -4097,12 +4097,9 @@ bool dml32_CalculatePrefetchSchedule(
+ 
+ 	if (MyError) {
+ 		*PrefetchBandwidth = 0;
+-		TimeForFetchingMetaPTE = 0;
+-		TimeForFetchingRowInVBlank = 0;
+ 		*DestinationLinesToRequestVMInVBlank = 0;
+ 		*DestinationLinesToRequestRowInVBlank = 0;
+ 		*DestinationLinesForPrefetch = 0;
+-		LinesToRequestPrefetchPixelData = 0;
+ 		*VRatioPrefetchY = 0;
+ 		*VRatioPrefetchC = 0;
+ 		*RequiredPrefetchPixDataBWLuma = 0;
 -- 
 2.45.2
 
