@@ -2,130 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2171298FC91
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 05:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6602698FDD7
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 09:28:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86FF410E193;
-	Fri,  4 Oct 2024 03:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C13E710E8AE;
+	Fri,  4 Oct 2024 07:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wQpBOAYq";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="W2BcBRvY";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5108810E104
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 03:45:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uf3BNG+NohuBB8AQnA43L1kVum7IiOF3EV2XYDki4xbnn9zQArbuJpmQvGzCkdaLzFXHLBVa9IxSH9/qVMZ3NAH4xEnfFu+/9NmTTajJHf5d3CAHydyom8rgmuI6qgWf26aiClPz0rT2x0QB2hzVaOxhzDb0zj++58rx+p3Agaj+wE012ayjEtg3pxqHaY5it0stkhzdLd4mIuUXIt3E9Ni1UzpSVB6T+cjv+x5+OvyFtlwn6zKhzX3Gb5Y0DcY1Q2LPRgs8831AJ2Itdd/EQ0ZefL2+v0VdGGmBn5kiGGokHhNSNO8NjAxnXqSNYGwgHYoPXOfn20CKU89fm2mtRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j19Bcl/vKw+Qn1b+DxHcKS8swBenDygdPy+ckzrNZGc=;
- b=lpZghNb4fidTFJ25JM23DcOL69tshZNKnihEcndzhV5EDuJnNXJQgOSmKXJBYK3Z4mZ9LHPmuRlxx5JQwabhB2tCS59CTzJzxwitmkwi0ODJCTJPr0qCWpX1jDIHCS8+IwnmPqCHy+jL2t2moA7vjVibiD3Bja+VzKqKw4H1DwGgXCBlTOPZ6r4iCeTOxbcZswrYossKsXURSRUCTZtYK4a3hyOS77cTDpNwyZZdqjpj7ItMUuLOXvMMr8vs1JdnUW7THg+pcdiOhm9T9rcbkgCCp9TR9Accb29eyceWbwiuhGxTLHcsKccE8OBH8Wt/1mMkU7FaZmBTmodpnEfxIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j19Bcl/vKw+Qn1b+DxHcKS8swBenDygdPy+ckzrNZGc=;
- b=wQpBOAYqZCFPzl9yVVYT7pTP/wCTsyZN9FHlNSwSWaLungBHLinNF7dWdX24PePshmEbzpTkwVZY+zoGQqUY9SX8q1UKY/bfB9HhhQ3nzdsBjKWR0dyxG+lp6XuudoUgTGP5ucQ4uAwfmeJ8z6veVbTYHvZ6ie7Ausw+34bxyxs=
-Received: from BYAPR05CA0041.namprd05.prod.outlook.com (2603:10b6:a03:74::18)
- by SA3PR12MB8438.namprd12.prod.outlook.com (2603:10b6:806:2f6::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Fri, 4 Oct
- 2024 03:45:24 +0000
-Received: from SJ1PEPF000023D7.namprd21.prod.outlook.com
- (2603:10b6:a03:74:cafe::d3) by BYAPR05CA0041.outlook.office365.com
- (2603:10b6:a03:74::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.10 via Frontend
- Transport; Fri, 4 Oct 2024 03:45:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF000023D7.mail.protection.outlook.com (10.167.244.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8048.2 via Frontend Transport; Fri, 4 Oct 2024 03:45:23 +0000
-Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 3 Oct 2024 22:45:20 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Mukul Joshi <mukul.joshi@amd.com>, "Harish
- Kasiviswanathan" <Harish.Kasiviswanathan@amd.com>, Felix Kuehling
- <felix.kuehling@amd.com>
-Subject: [PATCH] drm/amdkfd: Use dynamic allocation for CU occupancy array in
- 'kfd_get_cu_occupancy()'
-Date: Fri, 4 Oct 2024 09:15:05 +0530
-Message-ID: <20241004034505.3759692-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83B3B10E35C
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 08:21:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=wP1JycnOb11Eam3t9qyAt4OWDNYGwMHR56M0aRSc7NU=; b=W2BcBRvYXismH897lM9JmH7Jm0
+ tSfg/LCSQgJ6rHSn0d07ZN7aOWDLjdFWfsg3nzz1LY0//6yAp9yfokP4P6vnVlIU5L1dJeF/mwaCx
+ Qw7u/+mkjjuhgFCXn2BFvuYpt8ZxJBGPuQFwMb6vpUO7T1yQQaYk+olq8nNYz+GDLojRWBU3DO6W2
+ f2uJyVmdBniF+mlFdf0/qx+Gb+M5pHjwmFTwCaZdXUyJFo1KXxaEB5IjJUqTyMO4dJYTaC1qGWRFC
+ /T6hzG5jkGTbaV1tee5Jwpow8ycPAEv+pfaLiqtYEjI0mbawsyryRCdduvomPlnBvEapYlfdNFdly
+ AsEh8/1Q==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1swH5S-004Eq3-Ps; Thu, 03 Oct 2024 10:21:26 +0200
+Message-ID: <3e1ad979-a11e-43bd-8488-52712b58cec1@igalia.com>
+Date: Thu, 3 Oct 2024 09:21:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/amdgpu: Remove the while loop from
+ amdgpu_job_prepare_job
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>
+References: <20240924095145.2281-1-tursulin@igalia.com>
+ <20240924095145.2281-3-tursulin@igalia.com>
+ <6a7005b4-6af3-48e3-be65-353ffb5961f5@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <6a7005b4-6af3-48e3-be65-353ffb5961f5@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D7:EE_|SA3PR12MB8438:EE_
-X-MS-Office365-Filtering-Correlation-Id: d5226434-8601-4427-d8a9-08dce426fa36
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700013|376014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OEVHM1p1ZFFQa3E3eU5MM05CM2hqeWZuMUFqUU54TUgzVitBUDk1QlN3SVJH?=
- =?utf-8?B?Vml2aU50OHlmNHIxZjFjWWtNR1B2V0t4Vm9hSzJEWlJEOGRVUGQ2ek1IYnpR?=
- =?utf-8?B?U2RQVGJVUXQ1OE4vVTVnVlV4N1hHR3lINXhkUXlMYzlZSUxWUklrQ2pLQmJT?=
- =?utf-8?B?TWs5MForMlpZbURpZUQvWFcxWHpoTXNvbkhTNjZ5WnMxcFpZck0vdUlwbURM?=
- =?utf-8?B?YnlBN1JMQU52azRZS0psWkUwbXlqS25JdEhzeEc2RmwwNFBpMVc1elVxbjIw?=
- =?utf-8?B?MGt4d28wOWVmNzZFY2RFS2VKSHMrY3cyZ0Z2YTVvZnlvMUk1WGJkU0hHR2k1?=
- =?utf-8?B?eTN6V3ptemw0b2tmaytsZXc1UFNQY2E2Y1hadFh5UERpY2Y5bStPY2tyZUlG?=
- =?utf-8?B?OVpmOXBaaEIwYXJrek1KdFIxWllHL0p5TFYzKzVrYWlQWUtHN2NHM3dqNnVV?=
- =?utf-8?B?WlZvV1hndmNsbHAyMlhnYmtEWjRROE1wN2QwRGdNL0N5SGIrdVIzOTRMdkw5?=
- =?utf-8?B?WDQvTEJ0TWJDKzBVY1V1eEtCVFBkbzRZbnhIOG1IMWYvZURTVEVjNFdiL3Zs?=
- =?utf-8?B?Uk4xWUkvUnViM2M2Z0JtV1VncXQrUjRsNm1hb01kbTk4eGEwenlvaWU5UWI1?=
- =?utf-8?B?Sk1EVmlYeXRseVhQaTk4elBlTUhwajJhZ1lab3R4MjdsMkkrd2g5dGkzckVo?=
- =?utf-8?B?ZGc4R3hsOGtFcVhHb0VhdndCeEhCVUpSZEZ5eFNnWXFIQ1RrY0czenppdFVj?=
- =?utf-8?B?VUFheWw1MEQ4N0xBRDJwMFpoaCtrR0FPSkJITDkzeFd4YTlRaEI2Z0QvYmRV?=
- =?utf-8?B?QWVJa2VvTGFGcGJHd2R1dWVOYzlONWdXV0xBQ05tdEVIbTJZVkpHbEtGS3pi?=
- =?utf-8?B?VVRVakt2VkNZSTRWSkVUd2ZkcXUvVDR2THhNTjVRUkx5RzJDMDkrTEp4VFBj?=
- =?utf-8?B?c2NtcVJCbVRHK2dqQ0hBZklqdHA0VHVlUUlVL1MyOFkxWldOTkhabEZmOGN6?=
- =?utf-8?B?MWg1MGVUVnVWcmh5ZzV1b0puU1FmS0t2cFV4NnlQaG5PZWQwMTdBR3hxR3BO?=
- =?utf-8?B?a1hoYnlPRlBxNWlnSHFOV2ExMEVlUDBmZ3dSQjF0dTdIWDRvSUR2SWtUNFRU?=
- =?utf-8?B?eEZYelc3bldqV005QzVsWVNpYUYyWks1N3NJY29zSXNwbDQrRVFIbnFPZmtt?=
- =?utf-8?B?VHVQMHNEZXZLRWVKVStwTmlRWnlQMWFIa2hCNVl4dmFmbmYxU1FqRmhzanMv?=
- =?utf-8?B?SWorcUM4YUErbGZaTlJETzJEV0ZEL1lPdjh4ejNnNmpVRjA4NjFVSC9MQW1s?=
- =?utf-8?B?REZCUUN3MmE2c09kV242eVd1ZTNhUnBtNlF6ZS9SVXZVMUlMYVVqdE53NmFJ?=
- =?utf-8?B?dGRpVFErbUx1YU50a1YvQU1hV1RCTzBZWTB6eVNkQ21oaUpGdjlMdlZteUtX?=
- =?utf-8?B?SXQ4My9KNjRsSjdBQlAxTlNBakJZS1VoT0dObzJ5TS9uODB4YVdEZWdhNDEv?=
- =?utf-8?B?R1VDTGFWcmtER0kxWHZPbThpSldheEExSm5LY2RlR2YxVm9nRVp5dmNPOGRw?=
- =?utf-8?B?eFV6K2JocDVyTUpPeG54VXFIaHZONG5qb0JkbjJkNmRFaE1ObTRXaDdFRWUy?=
- =?utf-8?B?aGpvRG1yRVpFbEgvMk1JaGhuL1B3ckV3dmFPT0dETkdKY2JyYTdwdW5sNTlV?=
- =?utf-8?B?OFQvb1NtZExqaWN6cVNtTXAwQ1k1cEZGMTVGMERZb0R3cms2NEFlazdTUWdy?=
- =?utf-8?B?Yi9VUVhRN1VMa1JYOWtIQm8rYW9QQTQrUnA1c3l2L2pGN3h0K2pOR3N3WTVp?=
- =?utf-8?B?OTIyb2dqVVArL2NSbk9ndz09?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2024 03:45:23.5837 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5226434-8601-4427-d8a9-08dce426fa36
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D7.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8438
+X-Mailman-Approved-At: Fri, 04 Oct 2024 07:28:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,66 +64,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The `kfd_get_cu_occupancy` function previously declared a large
-`cu_occupancy` array as a local variable, which could lead to stack
-overflows due to excessive stack usage. This commit replaces the static
-array allocation with dynamic memory allocation using `kmalloc_array`,
-thereby reducing the stack size.
 
-This change avoids the risk of stack overflows in kernel space,  in
-scenarios where `AMDGPU_MAX_QUEUES` is large. The  allocated memory is
-freed using `kfree` before the function returns  to prevent memory
-leaks.
+On 24/09/2024 13:06, Christian König wrote:
+> Am 24.09.24 um 11:51 schrieb Tvrtko Ursulin:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>
+>> While loop makes it sound like amdgpu_vmid_grab() potentially needs to be
+>> called multiple times to produce a fence, while in reality all code paths
+>> either return an error, assign a valid job->vmid or assign a vmid which
+>> will be valid once the returned fence signals.
+>>
+>> Therefore we can remove the loop to make it clear the call does not need
+>> to be repeated.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+> 
+> Oh yeah that's a leftover from when we still had the dependency handling 
+> inside all this.
+> 
+> Reviewed-by: Christian König <christian.koenig@amd.com> for the whole 
+> series.
 
-Fixes the below with gcc W=1:
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c: In function ‘kfd_get_cu_occupancy’:
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.c:322:1: warning: the frame size of 1056 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-  322 | }
-      | ^
+Thanks - CC Alex if you could merge the trivial series please?
 
-Fixes: 6fc91266b798 ("drm/amdkfd: Update logic for CU occupancy calculations")
-Cc: Mukul Joshi <mukul.joshi@amd.com>
-Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index d665ecdcd12f..33109d9f6eed 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -271,10 +271,13 @@ static int kfd_get_cu_occupancy(struct attribute *attr, char *buffer)
- 	struct kfd_process *proc = NULL;
- 	struct kfd_process_device *pdd = NULL;
- 	int i;
--	struct kfd_cu_occupancy cu_occupancy[AMDGPU_MAX_QUEUES];
-+	struct kfd_cu_occupancy *cu_occupancy;
- 	u32 queue_format;
-+	int bytes_written;
- 
--	memset(cu_occupancy, 0x0, sizeof(cu_occupancy));
-+	cu_occupancy = kmalloc_array(AMDGPU_MAX_QUEUES, sizeof(*cu_occupancy), GFP_KERNEL);
-+	if (!cu_occupancy)
-+		return -ENOMEM;
- 
- 	pdd = container_of(attr, struct kfd_process_device, attr_cu_occupancy);
- 	dev = pdd->dev;
-@@ -318,7 +321,10 @@ static int kfd_get_cu_occupancy(struct attribute *attr, char *buffer)
- 
- 	/* Translate wave count to number of compute units */
- 	cu_cnt = (wave_cnt + (max_waves_per_cu - 1)) / max_waves_per_cu;
--	return snprintf(buffer, PAGE_SIZE, "%d\n", cu_cnt);
-+	bytes_written = snprintf(buffer, PAGE_SIZE, "%d\n", cu_cnt);
-+
-+	kfree(cu_occupancy);
-+	return bytes_written;
- }
- 
- static ssize_t kfd_procfs_show(struct kobject *kobj, struct attribute *attr,
--- 
-2.34.1
+Tvrtko
 
+>> ---
+>> I stared for a good while, going back and forth, and couldn't see that 
+>> the
+>> while loop is needed. But maybe I missed something?
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> index d11cb0ad8c49..85f10b59d09c 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>> @@ -356,7 +356,7 @@ amdgpu_job_prepare_job(struct drm_sched_job 
+>> *sched_job,
+>>       if (job->gang_submit)
+>>           fence = amdgpu_device_switch_gang(ring->adev, 
+>> job->gang_submit);
+>> -    while (!fence && job->vm && !job->vmid) {
+>> +    if (!fence && job->vm && !job->vmid) {
+>>           r = amdgpu_vmid_grab(job->vm, ring, job, &fence);
+>>           if (r) {
+>>               dev_err(ring->adev->dev, "Error getting VM ID (%d)\n", r);
+> 
