@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB1798FA8C
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBAB98FA8B
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:35:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1995B10E270;
-	Thu,  3 Oct 2024 23:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140AD10E26F;
+	Thu,  3 Oct 2024 23:35:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="AuFCYfgH";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WsuN3+l6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2062.outbound.protection.outlook.com [40.107.94.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA9C910E26F
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2068.outbound.protection.outlook.com [40.107.223.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3049C10E26F
  for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 23:35:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ttzMUKaHlySIxJi8mStzeHCuSf3PDd2GP4/rnLbWVR+TWfxP2oXLhhT3UtmyaocoqcNlVK9OVviOnjp4IXgH8N3Y3BnEcZnNQVS0Iq1YoEoPhJKusXEMzqWrqw+DeZEtDJWTAKQv+Q/NY4s049FzPR9/5AlacerwXobT/kPf3W/Q372AakLQ6GXH+2g91UynbPKFqr9cQAefQrBMvHCxF4DK2fSrH9tI+M49h74nz9AdR4n+avxieUnRybe/9tLGVTYZI9IZeLbL3yRUaneM/5ebSMN4SeH/6QGZmuuoHl8oxOfkQzh+ik/a0BDT0oPuxqXI8Ko+F5shLgg+RA2rgA==
+ b=u+Ox+H3BdYpvLxUf14bEbVz2zSSP20VZAwuxaXMiC2lhrQadzpUvl5Qw6N626JNEYgQOuPOfLdXikR4LOP/MGkotPHtei7k5a08kALWCmFpLFChvkYUPq6yv8Kllv2SbL4I13L+W98Ejs7n/svTksqKTGuOApPiTxQHHYxfnyXGhWzovxQS3oDbI7bIVQLt6xDMGLhR3pbpgZr+AloLOaqxfdvorul6Jxlv+K1QAfl+cxMjELhSlUthnghL35xErp49ekupQ9kFoainByzdsUVrgYZU8rPDwCxDZ21kSVuCHxcSlZzbwOv5iDCQljr6oVYE8hRMKd6IJRGOmHtNaxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k8TFqq+mvi1soax/9hGi6o13fvnqpu5tdHjJmruEcCU=;
- b=nMdqiekbjSn93dbG+P2KdhFLbZ9e4P/SCg5eS+o/KNOTeVwdFJMorgxOmuBROmeWOkcgPkZQ/fXjqK94mxnLLWM8HUXoyZsmvSJgDE1auHMRjxisZYlXzrcdXUne0QvoRZltfgjLDAqH7LU5OXmWaVHqUQVToi648GtCSEpjOJB9oiRvXddunKD0WTWREWVosQ6DVFfB2IXjF+Lp0JPFvsHpSlCqKBbmEZOTyjh4ezjfla+JNcj01qvE5IQmHdEEsV331U+UGbBGsz4H+lZtVgGnSqxYO1PGKuxX7nwpPs64BurxGgVir0mKNxaZahvmYwnylAVd1zN7GtB1VMieLg==
+ bh=cIrlzAjfQZdy5idwqOCMl1jJQ1n+4svJTRklSQ2F4Hc=;
+ b=Y+9tRCprSlgP3aGx/TPCANubNOXpUPJb9yHk21jf1UUI98hD83gTC+rsOUexXqkDiLGsu48ic27D0mwvf7r8UUUHW9n8iI3EQw4QyaHsbyGjVVNEUq/w+jXB/WzbU/qJrv8zEM4lIlaUt91IBJVkKN6x0Iv9xq2vXBVHowIgKOjCHVH2ZRn0hrTc0xay5Xyk/Qt7NxM5bZr2DhiMvsqVjT1TGtH2NbGRgJTRjIGyVTa0Wc3fqWY5lyz5I7O6vT1h56kAEi1zgke987/39Uaj2jJGTAUgWmRydCkQcq/LzCidXZc6sbChdxFSuxm8S3xFo+X9IN1u+f+1LGcpQdLqWg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k8TFqq+mvi1soax/9hGi6o13fvnqpu5tdHjJmruEcCU=;
- b=AuFCYfgHv9+BSvtdtRIaFd1HOa2kqwa/iYhttG+Ml+tuxnAy/sGx/rL8Uk/YAGBpo4W5iosZYObtFXb2fTIcLXq/NXy38tlQAHgSYtoC2ILTlDBrseqeHNNx/whLYa9FnYu79JZSgV4cSwxRf2yRQlaMcYEVYUn6PVxrTmf3P/4=
-Received: from BYAPR06CA0021.namprd06.prod.outlook.com (2603:10b6:a03:d4::34)
- by DS0PR12MB7748.namprd12.prod.outlook.com (2603:10b6:8:130::22) with
+ bh=cIrlzAjfQZdy5idwqOCMl1jJQ1n+4svJTRklSQ2F4Hc=;
+ b=WsuN3+l65MnXtSGzUvdjGNOrxZXDvB5Mw6j+rQNJXnDd7nSVivReOwunfZPUGMghGw7JU9zaRTlArpH6xTTto0NsJ5TGfqK7EpOe9yM14I91jIrMVsnSWkyKdHOBDezrpRt/yxqn6RqOIjl+tGT0Esc16B/Jdj9WuRFjzvjta2M=
+Received: from BYAPR06CA0036.namprd06.prod.outlook.com (2603:10b6:a03:d4::49)
+ by DS0PR12MB8198.namprd12.prod.outlook.com (2603:10b6:8:f2::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18; Thu, 3 Oct
- 2024 23:35:41 +0000
+ 2024 23:35:42 +0000
 Received: from CY4PEPF0000EE35.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::ec) by BYAPR06CA0021.outlook.office365.com
- (2603:10b6:a03:d4::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18 via Frontend
- Transport; Thu, 3 Oct 2024 23:35:41 +0000
+ (2603:10b6:a03:d4:cafe::a2) by BYAPR06CA0036.outlook.office365.com
+ (2603:10b6:a03:d4::49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.17 via Frontend
+ Transport; Thu, 3 Oct 2024 23:35:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CY4PEPF0000EE35.mail.protection.outlook.com (10.167.242.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:35:40 +0000
+ 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:35:42 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Oct
- 2024 18:35:38 -0500
+ 2024 18:35:40 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -63,12 +63,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Li" <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Tom Chung
  <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
- <daniel.wheeler@amd.com>, Fudongwang <Fudong.Wang@amd.com>, "Nicholas
- Kazlauskas" <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 02/26] drm/amd/display: skip disable CRTC in seemless bootup
- case
-Date: Thu, 3 Oct 2024 17:33:20 -0600
-Message-ID: <20241003233509.210919-3-Rodrigo.Siqueira@amd.com>
+ <daniel.wheeler@amd.com>, Austin Zheng <Austin.Zheng@amd.com>, Dillon Varone
+ <dillon.varone@amd.com>
+Subject: [PATCH 03/26] drm/amd/display: Flip All Planes Under OTG Master When
+ Flip Immediate
+Date: Thu, 3 Oct 2024 17:33:21 -0600
+Message-ID: <20241003233509.210919-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
 References: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
@@ -80,50 +80,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE35:EE_|DS0PR12MB7748:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1302976e-ab7b-4a1f-8820-08dce40417be
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE35:EE_|DS0PR12MB8198:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49c5b77b-8c00-4623-a577-08dce404189e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?eHn8yiMBdzDsyRXKqmmY+DRnR4zH1bgpGTaHAp0p7M9KRWcmFOsYl/3YApEZ?=
- =?us-ascii?Q?hfYkQg8kHJu7XcYFiEHi7qy/aJEsWAoEEOy/zvOTObTmV1hOZ5Kh2N8dQXmL?=
- =?us-ascii?Q?3buvAglDh0ukX3i+4vGkQJnAN+Rai1fnTtiVuref/FWQIifOBUCAH9BIFuIp?=
- =?us-ascii?Q?J56SIyzMqE+4AukEPF49vQFXDpqnJVfWoiaTFh+Fq7G8rGJRaTEY2lymAC7o?=
- =?us-ascii?Q?StPEN1moJqSaGIVGkpyhfEyHXDQHLV0qVdHjMMT0Mldl6dZDGzcrh1PxwwvP?=
- =?us-ascii?Q?/ehcj2l15HCxtLg5DcFTEFZeprqaUGBRg/ueA97Xz/lFYVKpZYQlhbBD7XQa?=
- =?us-ascii?Q?WPL1QQhqXRzk2+po6mEKtQptGr6d5i3tMDBDHodtPU1OQveN6k2J/8CHilcJ?=
- =?us-ascii?Q?bVZnM9UBQedC1Eq02EntIOkzdMru08ay2uQhZNGPZJAAdzIx0aNgKrL/+/UX?=
- =?us-ascii?Q?y1Re7MGT+T0qsDAnBG1rtO6abBOJJU9wF8NGqcBUBcGdifZ14QfGbXmW033p?=
- =?us-ascii?Q?DIrFQ1qRZv68jNoLMYA3QxbZhwUu9OKwLowoH3tCpzwOgJlxh1HUn3jpAKh3?=
- =?us-ascii?Q?5fVhXtRc5V16C4ZZRpYY7blJAWKda4gON7oX9AE5v+lwPZravp4q8lFs/JR1?=
- =?us-ascii?Q?XhzWpk2Wlx94g0IDL8ifWRVGWi/aiqodHck1P9NBgA+ypT4U8v1xBavSWKmM?=
- =?us-ascii?Q?UTITikp1gacKPpktnvQW8stcSAnhPqSvZvVQVGJ5tSpDAAk+gwiHeymAFWGj?=
- =?us-ascii?Q?iovCBC2TOzLcdfPiwMTQN8ZiG3wUVmD8+0+EPz1MWuBI6djhNFChevkjSJCN?=
- =?us-ascii?Q?0Fa65ad2upSLwIYwtQ5mU/vhz8jyQ6tWHlPXVWEiYfA54T1ROqF63YKK4ROW?=
- =?us-ascii?Q?TbTsZbxGcHmmW4QfwcBVM75F4CPzFdcR+gYTidcqhQOZZC+JFHVUjkkao2je?=
- =?us-ascii?Q?uSt4+cvgeLF7U7CyHS5iK4EUFR8gEBBo7Er9dQYIkXG34K33RqdOCVnw1r/G?=
- =?us-ascii?Q?SYWpTZvoFJZjsqM4UufrBTN+N33LhJmIdSCp7u6HW3oq/4/F6oJTSkgxQVYp?=
- =?us-ascii?Q?YndV1r9u3CDIbkH2t4JoHt+nQ3SQNz4TerxqOVE3qZm6nbGi0Zvh/BSk8aTj?=
- =?us-ascii?Q?l6lYkngp9Te/9bAKK+ju/ereqkjm9XX7w9tZsxmdyjkwETuvuB8IH+TZCOGe?=
- =?us-ascii?Q?QHRpL+esLf5q6PLxXU9lKoRVAl4QmbpLF0izROiHhuI0QjisHT5MiBxldCZR?=
- =?us-ascii?Q?brPxaipgDHW4ROah0ZLhBpa8Y1/lEgkSn43ENGL4gSXNzBoB4A/mOlsBfsDz?=
- =?us-ascii?Q?EIGMbGJoFR67yhRzpkMPfveKiBVaz3FSQQ/Sl9QM1EeBqWKaEq/X6yrC3F0d?=
- =?us-ascii?Q?Y3sUdatN81r7cT92Mu/AN+unEuC4?=
+ ARA:13230040|376014|36860700013|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fM0/z6vTXZekItWtNrqYHM4ylVXef3uAiBXNBNdj92tpriWu/fw5EZEi+P6C?=
+ =?us-ascii?Q?vZt6FqtzvgMQu1ZFJRQYl6YJ3xBkm6dIFBFdhG/AFcISbKQE+5CX7agSL+1n?=
+ =?us-ascii?Q?FemCN0Wo+Ul2upZVZlerRtFcwybf9tApz7hD3CI8jABSO6TeSKYa1KpXBMoc?=
+ =?us-ascii?Q?+q7p6axF3z69teErLkKD3WIPaL0p+IKfQ9R/20pWOhwMvqRqQ/+K7hCu+yTA?=
+ =?us-ascii?Q?C0aCm6TzfOSpPwMgulpAjd665kATz9c18WgUDwBXg2Va7SMw5YMbwTptMV9b?=
+ =?us-ascii?Q?BKx3kD/75yiPTwNpdzKRLgGDs+z+jWJfw/d2SKvJkc6QuaXnAtq7KcnsEdKy?=
+ =?us-ascii?Q?tuA3/Flb8L40QGSnVJJwRvs4oHn3aydKH6/T4CfnVZ5kvQOSums18c8pUJr+?=
+ =?us-ascii?Q?nixbaPR/XSvJC9e4D6fZU3p0q4q8Zg+MU6DjC4ILyVaPGr6vXDujuhVBxuwR?=
+ =?us-ascii?Q?Ujs4tvddJS+7dXuhDWr2cjl/arfBT0keiMGR3toTsvTX4/v2k+0uNGb6ouOu?=
+ =?us-ascii?Q?E4ReaPsmUxYXtwGp32Zi5M/n6nCtjzrdP4OMTaps7CyVn9fCu/Qm4FLW9Q28?=
+ =?us-ascii?Q?wFUPm2b7c1jQGPiAdIstnb4YnT30kXFUKaCVHbxj2ikvOWI0hQFjdVyQ2vk5?=
+ =?us-ascii?Q?dz2ClKrGUBgr/8SXf+8+Q+XG4nEFcRnkxFPNpUSTsvaXD38BcWaufJk7ENxL?=
+ =?us-ascii?Q?rgjqEdAG40vzmnBZA/ECXSzLvj3X8laP2cp8iEdxFUWgA5V1IvQfvmAtn1SD?=
+ =?us-ascii?Q?TE4W0C4Q5NZJKvoS5UFempuztsIBeCv0T+0cO0U9/6J5H0GRaCh2n7JvyXyg?=
+ =?us-ascii?Q?6vxFvnPJ0hvlXWg2/yJGLyE6ts/dLQ+K6tTmFJzVt+qRVQoQK9Y4Hb0IpO+T?=
+ =?us-ascii?Q?n9iG5QWDqcUE8b6EL2ho/XOtZkT1GKYFX0VLB3MlBF/L9hPkqMwWF9tfbGsO?=
+ =?us-ascii?Q?mknmlFeIJKXrxMgX9YO9JJTTJeoBFxQpuoHw8TiS3zTsWdnt76TzXgAJM2WH?=
+ =?us-ascii?Q?2X1s4fw91CGfXA9lp5sgaZrlr5g6f9qVXbhISJMGukuJpcIOj3N4nt3+Y3o4?=
+ =?us-ascii?Q?6nXQ26+GwoBXm9iRiulxoqFYym5l9hvudmhVP1qhIdQfml9SLQk/JmKCi8q4?=
+ =?us-ascii?Q?IwVGxUl/8aYqJsBTs4Ggd4xz4u3pM3+Sqf9BwjCCQeTbefsIvvj3uY+xWMi/?=
+ =?us-ascii?Q?Zh0pZb7mFsCYm/LuxQ9qxR/B3BcJzX8VUbyQYkpDs2CpKTh/AiSafcqB7k+M?=
+ =?us-ascii?Q?idkG2pNiEeYibr1pfBmj6FNarWoRgrGQ2BRvwjmQ1o4qm8aI+koLJ77Q/8iS?=
+ =?us-ascii?Q?Dr6fwqAGYKmuljFzQIuKK348sOR4byNx1Xu71kT2XI6+XXdTLZ3tLkq0lbO3?=
+ =?us-ascii?Q?f1KWSCtHW2+NuPMOTz0ph6tjc2fc?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:35:40.7413 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1302976e-ab7b-4a1f-8820-08dce40417be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:35:42.2101 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49c5b77b-8c00-4623-a577-08dce404189e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE35.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7748
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8198
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,36 +138,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Fudongwang <Fudong.Wang@amd.com>
+From: Austin Zheng <Austin.Zheng@amd.com>
 
-Resync FIFO is a workaround to write the same value to
-DENTIST_DISPCLK_CNTL register after programming OTG_PIXEL_RATE_DIV
-register, in case seemless boot, there is no OTG_PIXEL_RATE_DIV register
-update, so skip CRTC disable when resync FIFO to avoid random FIFO error
-and garbage.
+[Why]
+The MPO plane will receive a flip but
+desktop plane may not receive a flip when GSL is enabled.
+As a result, system will be stuck waiting for a flip that was never sent.
 
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Fudongwang <Fudong.Wang@amd.com>
+[How]
+Set update address update flag of all flip_immediate planes
+if there are multiple planes.
+
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_hwseq.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 33 ++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_hwseq.c
-index 5b6cf2a8e38d..e0054e654db6 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_hwseq.c
-@@ -371,7 +371,9 @@ void dcn314_resync_fifo_dccg_dio(struct dce_hwseq *hws, struct dc *dc, struct dc
- 		if (pipe->top_pipe || pipe->prev_odm_pipe)
- 			continue;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index f4a5accf1db9..48057ac22cbd 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2661,6 +2661,29 @@ static enum surface_update_type det_surface_update(const struct dc *dc,
+ 	return overall_type;
+ }
  
--		if (pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal))) {
-+		if (pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal)) &&
-+			!pipe->stream->apply_seamless_boot_optimization &&
-+			!pipe->stream->apply_edp_fast_boot_optimization) {
- 			pipe->stream_res.tg->funcs->disable_crtc(pipe->stream_res.tg);
- 			reset_sync_context_for_pipe(dc, context, i);
- 			otg_disabled[i] = true;
++/* May need to flip the desktop plane in cases where MPO plane receives a flip but desktop plane doesn't
++ * while both planes are flip_immediate
++ */
++static void force_immediate_gsl_plane_flip(struct dc *dc, struct dc_surface_update *updates, int surface_count)
++{
++	bool has_flip_immediate_plane = false;
++	int i;
++
++	for (i = 0; i < surface_count; i++) {
++		if (updates[i].surface->flip_immediate) {
++			has_flip_immediate_plane = true;
++			break;
++		}
++	}
++
++	if (has_flip_immediate_plane && surface_count > 1) {
++		for (i = 0; i < surface_count; i++) {
++			if (updates[i].surface->flip_immediate)
++				updates[i].surface->update_flags.bits.addr_update = 1;
++		}
++	}
++}
++
+ static enum surface_update_type check_update_surfaces_for_stream(
+ 		struct dc *dc,
+ 		struct dc_surface_update *updates,
+@@ -3177,6 +3200,11 @@ static bool update_planes_and_stream_state(struct dc *dc,
+ 	context = dc->current_state;
+ 	update_type = dc_check_update_surfaces_for_stream(
+ 			dc, srf_updates, surface_count, stream_update, stream_status);
++	/* It is possible to receive a flip for one plane while there are multiple flip_immediate planes in the same stream.
++	 * E.g. Desktop and MPO plane are flip_immediate but only the MPO plane received a flip
++	 * Force the other flip_immediate planes to flip so GSL doesn't wait for a flip that won't come.
++	 */
++	force_immediate_gsl_plane_flip(dc, srf_updates, surface_count);
+ 	if (update_type == UPDATE_TYPE_FULL)
+ 		backup_planes_and_stream_state(&dc->scratch.current_state, stream);
+ 
+@@ -4807,6 +4835,11 @@ static bool update_planes_and_stream_v1(struct dc *dc,
+ 
+ 	update_type = dc_check_update_surfaces_for_stream(
+ 				dc, srf_updates, surface_count, stream_update, stream_status);
++	/* It is possible to receive a flip for one plane while there are multiple flip_immediate planes in the same stream.
++	 * E.g. Desktop and MPO plane are flip_immediate but only the MPO plane received a flip
++	 * Force the other flip_immediate planes to flip so GSL doesn't wait for a flip that won't come.
++	 */
++	force_immediate_gsl_plane_flip(dc, srf_updates, surface_count);
+ 
+ 	if (update_type >= UPDATE_TYPE_FULL) {
+ 
 -- 
 2.45.2
 
