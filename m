@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BD498FA9B
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9D298FAA0
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Oct 2024 01:36:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF9F10E9B3;
-	Thu,  3 Oct 2024 23:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D23FC10E9B8;
+	Thu,  3 Oct 2024 23:36:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="E7Q1YMto";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="b9F91ogp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6986310E9B3
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 23:36:19 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC72A10E9B6
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 23:36:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yBZ9mYRkYLjmyzd4/KBXai/EPwPN+1aPoIusjYgYZPtbtShajzI37CweJMsoPvz1BaX0iBvO5RdBVqO7OoEDg7bwr+uMSS31Y8dgonQkZ3NsjWcI5lr38PgYEiFgR713HFwty7imT3JhxJhaFISiEZAnOPBTLCHlFA4Owp8B3LtdYY4s/DRLvu927ZQ+10VHpwRYt3lkBkBMaJBDRgYkBxj42QFjk4ulvPh6xzpK/dIp/PBtWoeNrR5ANBYrtmiRGkPbGcWJdxePAiG6zh8DE2Gyyh/ZXpb8j2wvJJ2ACCGSvW8bPh/jMG7dlLTuCK0HhjteCZElg1l/LvfKfyhxww==
+ b=MPdQyXdQjn/m5Ur1KqGo/eWPGdYchcfbovhxhh0m93KeYBiWBriDVaOIyOjNgPyTb4JDkXvua3H46438kLqWfKMbaO9Bk84VjaXzThc0M87IL5P72b7lzNT2et9Xk0ZJmTC/B0j2UMp9w78kMG2b7+aVAqYAY1YkNcf823c0sitiR9+Wvw2Dxepcw4rrA0Gl6EcGa4b+Ohjm+wZ93Xtx6KK3RqmrXQhZiK6Vr4tv+HBbjoMqJIoet/BSKpxAR1yJAXk1DL9ZzL3OBUvs0BKjzQZU5echXD2fOrApheptdoO/48Tu5Fr0ymvSxUQxpS0eCgI0DuRzMycEO1DUtz5a3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZSs31y70+4GeeiMpBSfMJzfwFjp4k+Z5JEoYzEQeQ7E=;
- b=QZp9vzhJ2pB0a7z4yDG3Xzl0wApLRgTjWh3ezDsHF9Mcl5se7gaBbgAj0JuhG+zlfHj4CN1foRENn+tVHQ5EOWv2DHznkpD3+jTzGk7Rtyt/Tw7PkSbkgdDJg9a3T/xmhvU8pY28FRS5qNKXPYaMjzOgz7ak5zMsztnNdjnhJcUQr2YU6s4jhlusObLb1xblDYciAKwTG2pXSxxr/4Gnzs3AsXYmRSD77p5UtmfD7eJ5D9wX+baUcFrFm8aFqOd7cRej3SCxOxYLBll269jbj6yTQy8CJUeR0gtOJFFXfAxqcZuEm0Mj7SZN1A0i4gLcUz7n3SKeIlRh0Y6Socpwbw==
+ bh=RHNLXd6QfYEHrIXyFRRwHKADqJ7ZEfvzc2hv7KaNzeM=;
+ b=ubNCN/OHxFB/NUPAo63DWhoO5AsMxW5RrDcfpbVdvMrflwvRSn6dJBZCzxdK1UllWxhkVBHlDttU7PcpTWzPXuA0V1WXBrmYn9Wt+lTE88Ax6mfV1bt65utZ+y2y70+4iKrtvGGF6lYqCqA5TDp1GIF4/Ul2x9NnFCnSonKI0mQkJOTGiyTGhFuu0cWKu/qn6ICCSNUWXYBALEx0LkvvdHOsgxGtx+KlH1Zv1RqIAr38n0XKzzeNlppDOQhYcZpTc7KOjzIglUWYtBKz6r/8w7Jo57f3+0NC5wGPdWxydU61C69+2P/gnaubMpFpTWAdtwL8LtTHptNJj4BXfzsfBA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZSs31y70+4GeeiMpBSfMJzfwFjp4k+Z5JEoYzEQeQ7E=;
- b=E7Q1YMtoDarmIuAwGW6T/UfsaFqA1spt5AHCDGaKoPpAcOUOOaL6sF+XrT9O+D1KTBrm1ADRBKykPQZwu/e8SDHqBTocjnkOTo9j3kXllSNPAs6C9AW/R1Y57fKdQ6rFKgft8j44T4DnAWv3xxEk0KUjoyHN5fAVTaEUFybFH48=
-Received: from DM5PR07CA0113.namprd07.prod.outlook.com (2603:10b6:4:ae::42) by
- BY1PR12MB8445.namprd12.prod.outlook.com (2603:10b6:a03:523::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7982.25; Thu, 3 Oct 2024 23:36:15 +0000
+ bh=RHNLXd6QfYEHrIXyFRRwHKADqJ7ZEfvzc2hv7KaNzeM=;
+ b=b9F91ogpxqZaAY9fTPYbNWWFDWvNBbA645zVUJWcKB5CDzG4rrlJgd7H+ivgZ77NyhvqchY+/BEcMkR0s0eWWUu6/dm4sS/4V6BwEgAM8gHiT5ca2mjP0Nuku+dEQ62BXIF6GddFqgyRi00eSIudB1olVK322bPSRyffULo6CAI=
+Received: from DM5PR07CA0087.namprd07.prod.outlook.com (2603:10b6:4:ae::16) by
+ SA1PR12MB6702.namprd12.prod.outlook.com (2603:10b6:806:252::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Thu, 3 Oct
+ 2024 23:36:16 +0000
 Received: from CY4PEPF0000EE32.namprd05.prod.outlook.com
- (2603:10b6:4:ae:cafe::38) by DM5PR07CA0113.outlook.office365.com
- (2603:10b6:4:ae::42) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:ae:cafe::68) by DM5PR07CA0087.outlook.office365.com
+ (2603:10b6:4:ae::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18 via Frontend
  Transport; Thu, 3 Oct 2024 23:36:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -50,11 +50,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CY4PEPF0000EE32.mail.protection.outlook.com (10.167.242.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:36:14 +0000
+ 15.20.8026.11 via Frontend Transport; Thu, 3 Oct 2024 23:36:15 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Oct
- 2024 18:36:06 -0500
+ 2024 18:36:08 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -65,10 +65,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <zaeem.mohamed@amd.com>, Solomon Chiu <solomon.chiu@amd.com>, Daniel Wheeler
  <daniel.wheeler@amd.com>, Austin Zheng <Austin.Zheng@amd.com>, Alvin Lee
  <alvin.lee2@amd.com>
-Subject: [PATCH 19/26] drm/amd/display: Move Link Encoder Assignment Out Of
- dc_global_validate
-Date: Thu, 3 Oct 2024 17:33:37 -0600
-Message-ID: <20241003233509.210919-20-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 20/26] drm/amd/display: Update Interface to Check UCLK DPM
+Date: Thu, 3 Oct 2024 17:33:38 -0600
+Message-ID: <20241003233509.210919-21-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
 References: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
@@ -80,50 +79,50 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|BY1PR12MB8445:EE_
-X-MS-Office365-Filtering-Correlation-Id: ffd0aba5-513b-4d4b-d54d-08dce4042c16
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE32:EE_|SA1PR12MB6702:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38e3f9a9-a45e-4746-32a9-08dce4042c95
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|82310400026|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kQEe5BQr4BwmJq9DtdclM89G7xQYtDtcT/JqrEPfJ+dmFmv1jafL4fptOeQs?=
- =?us-ascii?Q?uQLbJQs7gPL+mO42smKHjrP/3RfhH2XzWEVaf+Ic7qEA5eZlY8FtcNINhhrC?=
- =?us-ascii?Q?nUrIfgf3v4oGrxP82n+LgJIRfsWAufkWyc29sphi8Uie8mEU8qa9Q9mnBUk3?=
- =?us-ascii?Q?T0/acymPEWjtF+wiEGolAlaN93ubI2qkhwIraN5rHoNWHLdeVbpTIX0kE4BM?=
- =?us-ascii?Q?bx+GsOlfEPJ1WCztZZsfdIZOOSVC51EbCUf42GeIIuQYrvGrXK+SVQevtDvn?=
- =?us-ascii?Q?oaFZuhR6VWrq7Ntwxk9/f+nqtXDklZOY6toCAkiH44lFyQyXZsYl6wMV/Rbl?=
- =?us-ascii?Q?ed5NQMqiFP6ealqG2nFP957jR3AcY+x5IhALLB9EHfMcJPMYIxMLN4LP8KaH?=
- =?us-ascii?Q?qBTGD7bLBOMqgnR9/tPu5AbR1AXGgqpsjRQYJDF4/N5v7b//B9K+qtaNRQuq?=
- =?us-ascii?Q?3VEQBZF7bn9YQnAxfu3jt9TSsuMLjxCW9Z3IxqhiY9nUHvQ9MnbD9T21UvVA?=
- =?us-ascii?Q?AHGUgGzlmkVawSDLes97POFi12YnaYmuuGYhA1SlCQRE/DeE+TWSYhppJtFg?=
- =?us-ascii?Q?ez0mgAfp1mZIFYY1lLv4PVivndoukdtDLKv+2pmC2V6cMIcLv+imVsF4nzw8?=
- =?us-ascii?Q?7+czKuvwAUa/DCWpaVpjtd9WSOc3D33yU80L+afYB2hyTfx460ufqRa5co5m?=
- =?us-ascii?Q?El2lrRDasoNDBpIO2mibp0t1t/EouCf1yXGxEFPQStLbCqbzr0jt6z/3hPo8?=
- =?us-ascii?Q?Qi5cyIZ3D6+Pxt2+gDYQIH6kuXOKGDZXyMaru0tU9E9cAArDOuqo74yetJiG?=
- =?us-ascii?Q?8gT4MytfLi/TOGf8Dpx+Gxltaf8eJBOVpy38avMor6v+GcgAur3DkwHzANmJ?=
- =?us-ascii?Q?eexASs807A7jpfVmRH98OEzECgpCFYz7cX5IzGkCH/POD/AXrzT9qx6hcd0w?=
- =?us-ascii?Q?3UDOV1KzbEWjBmQJ/6tLiBzI932CPKLMoOdPiZ6fUgiplOH0su04GHfxpFCY?=
- =?us-ascii?Q?tQLW4ho6yat0lypP9AaGbx6b5Io3jl1X/mCy4L8xUvVwzIfzAPQIjtU2vVdd?=
- =?us-ascii?Q?oRaAI0nrJ0I11ypqAASflOhr4aF66Ww8CIq/Gdp5ptSFphRFxyg5uAAfXAVn?=
- =?us-ascii?Q?w7MdjlWgJPZuI6YKIDAcaeQ/s5kmgpfDQ8E941i4GDMhD8AAjst8DsgpBOZX?=
- =?us-ascii?Q?AWhD7Xt8hOQeCkTbUJzDyAeImVSHEr4aW3dMELYRh7N1OHKGZnOkn+N92tZ8?=
- =?us-ascii?Q?5Vq+OXhpArjVouWe9/Xv7jpDC+Rk7BCOGI/egooMIuT44LhHyyItxgYIhT10?=
- =?us-ascii?Q?6VzDomo4bwTvsY/r9Q1DjGhbMI3JKDvWqoFl1/AIfc37EIu8xNBk24/gTK5T?=
- =?us-ascii?Q?eO6g3Go+yRgAsGRJOK3PN98m9f1U?=
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xHA6iyJujmQz8BBb5jkmmjX1E9pYmO0J5QiJTa+1qZ9P/wFaMY9v4GJTvZhx?=
+ =?us-ascii?Q?xl32KXPUL0QqZKWG0lsCostpOH8G4pCh9PIUccB8bNUP5bZfP7A2/FFAtMx+?=
+ =?us-ascii?Q?Wb0tz8tvbAwKRW40k1uLTZmgCKhzh6veiQpdyHizDbL5sA4Gz+qPxFxVl0gG?=
+ =?us-ascii?Q?4tlbliR3MNlKXKM4BLE+PQ2f7TGSpD6kZKU7uG0RFGf/DdBq0UjsZwWuAGuh?=
+ =?us-ascii?Q?f5udiH0ch1xvVmj+UxnqDADySQCThHYAocCW556cND1BIpKita6wwQPqe7KX?=
+ =?us-ascii?Q?Hsp9s8+OFCDQ7Y52QFn8AdUlnE2LkS7AFM4X7c70OnIIwmu5WTneA5nUqTH7?=
+ =?us-ascii?Q?VFpxzXfqOrq5v8osUbL3XPUnyJHI8aCsZ/XuZ8Wz82XVwcYl3OoXRtBPONxK?=
+ =?us-ascii?Q?naYjd7ROTQcJ+q0w2LiPM1V4a52SAmufUyXhbUaMVQBWCztmv0Segv/aWuiX?=
+ =?us-ascii?Q?wsAeObbnsvyvB0FBzE4Ta0rLHx6cHXF200MVmMRgYMdBKGaR0pveMkA/c3XT?=
+ =?us-ascii?Q?5W21gNC94C+IXkyxJAYf3Klq4VzYVtr3wCfpbVbN7/NLjmmkQvqL1pOPy0OS?=
+ =?us-ascii?Q?uID/cNx9a8cdFEezzcPMXK4a9MlNowRHf1CHVYNa02PKYFyQaP3pLMWYuF0z?=
+ =?us-ascii?Q?NKY9YVJT9lUTrPZ7qhT2eqp2tms1Oa9+SjAFw3xmBmLtGeAm7cQabaGXUW9u?=
+ =?us-ascii?Q?+UnRbrnUJp8CUjGR6AAE1+GCZMpfcn/4Aev1oCSABxEo917gn9XB1M7QAshs?=
+ =?us-ascii?Q?5Mh195ljjRdZ3dxmyWqxESECp2pvk6PiVDDkim8rWe9nnjXNpiHoKuNeBtxX?=
+ =?us-ascii?Q?9CFhZOUHXiwqzb8h9Gpb4PJF/g6jYN/GAes5nOJ3fZgriBw0itCaa7PnG82w?=
+ =?us-ascii?Q?a1hm1LkbTEGJJxHTZda6rj26sC/nAz8NaPbn/cxHMir+KgZyXCkTWZFSLU3C?=
+ =?us-ascii?Q?AVMZ39SyEbaLgrGKaVYULmeKAmcyxAPan7wKz9CjDycmhsEQkvCBnLtET16C?=
+ =?us-ascii?Q?L4lPdDkxaIxqvX+rBLAKmg9cMfxuKXyrIiCjXXpsaxZolOf7mNUwzxvFi9gN?=
+ =?us-ascii?Q?6ODZkHwW64y0trfHRBjXmn9ScM+2kVKpHzTjXL8blVAanxh37A87DdpS2G8H?=
+ =?us-ascii?Q?SMKbeOhCwWZHsSg4FNeESSGeggbFm9N9O0dL3TLMZpYoVoXYdJGvqQ0rrv3f?=
+ =?us-ascii?Q?BPjLVd8TaDNMki+hLB0EZoXahx06mnclrV8CPTRoRjtBAEJgUz3J3AQJQUrU?=
+ =?us-ascii?Q?RwPj6E3Rm6wFiJG4BjBMJJ2TFHuGRixtHHtpHbLmeKhGrTusIZyIZuKfM8fr?=
+ =?us-ascii?Q?yKbsqrSWBmCulj4aLeDgLO8AW7CQB+Bte0spP5rLH+5JFuazdd9n09oLto1l?=
+ =?us-ascii?Q?J2jtrHk=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:36:14.8588 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ffd0aba5-513b-4d4b-d54d-08dce4042c16
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 23:36:15.6870 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38e3f9a9-a45e-4746-32a9-08dce4042c95
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE32.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR12MB8445
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6702
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,55 +139,117 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Austin Zheng <Austin.Zheng@amd.com>
 
-Assigning link encoder is not relevant to validating bandwidth so move
-the logic outside of dc_global_validate.
+[Why]
+Videos using YUV420 format may result in high power being used.
+Disabling MPO may result in lower power usage.
+Update interface that can be used to check power profile of a dc_state.
+
+[How]
+Add helper functions that can be used to determine power level:
+- get power profile after a dc_state has undergone full validation
 
 Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
 Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c          | 8 ++++++++
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 8 --------
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c        |  7 ++++++-
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h |  4 ++++
+ .../dc/resource/dcn315/dcn315_resource.c        |  6 ++++++
+ .../dc/resource/dcn401/dcn401_resource.c        | 17 +++++++++++++++++
+ 4 files changed, 33 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 7b239cbfbb4a..2d704c264b88 100644
+index 2d704c264b88..d1e397d5f84e 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2187,6 +2187,14 @@ enum dc_status dc_commit_streams(struct dc *dc, struct dc_commit_streams_params
- 	context->power_source = params->power_source;
+@@ -6071,7 +6071,12 @@ struct dc_power_profile dc_get_power_profile_for_dc_state(const struct dc_state
+ {
+ 	struct dc_power_profile profile = { 0 };
  
- 	res = dc_validate_with_context(dc, set, params->stream_count, context, false);
+-	profile.power_level += !context->bw_ctx.bw.dcn.clk.p_state_change_support;
++	if (!context || !context->clk_mgr || !context->clk_mgr->ctx || !context->clk_mgr->ctx->dc)
++		return profile;
++	struct dc *dc = context->clk_mgr->ctx->dc;
+ 
 +
++	if (dc->res_pool->funcs->get_power_profile)
++		profile.power_level = dc->res_pool->funcs->get_power_profile(context);
+ 	return profile;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index bfb8b8502d20..8597e866bfe6 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -215,6 +215,10 @@ struct resource_funcs {
+ 
+ 	void (*get_panel_config_defaults)(struct dc_panel_config *panel_config);
+ 	void (*build_pipe_pix_clk_params)(struct pipe_ctx *pipe_ctx);
 +	/*
-+	 * Only update link encoder to stream assignment after bandwidth validation passed.
++	 * Get indicator of power from a context that went through full validation
 +	 */
-+	if (res == DC_OK && dc->res_pool->funcs->link_encs_assign)
-+		dc->res_pool->funcs->link_encs_assign(
-+			dc, context, context->streams, context->stream_count);
-+
- 	if (res != DC_OK) {
- 		BREAK_TO_DEBUGGER();
- 		goto fail;
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index df513dbd32bd..33125b95c3a1 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -4091,14 +4091,6 @@ enum dc_status dc_validate_global_state(
- 		if (!dc->res_pool->funcs->validate_bandwidth(dc, new_ctx, fast_validate))
- 			result = DC_FAIL_BANDWIDTH_VALIDATE;
++	int (*get_power_profile)(const struct dc_state *context);
+ };
  
--	/*
--	 * Only update link encoder to stream assignment after bandwidth validation passed.
--	 * TODO: Split out assignment and validation.
--	 */
--	if (result == DC_OK && dc->res_pool->funcs->link_encs_assign && fast_validate == false)
--		dc->res_pool->funcs->link_encs_assign(
--			dc, new_ctx, new_ctx->streams, new_ctx->stream_count);
--
- 	return result;
+ struct audio_support{
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+index 3f4b9dba4112..f6b840f046a5 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+@@ -1812,6 +1812,11 @@ static void dcn315_get_panel_config_defaults(struct dc_panel_config *panel_confi
+ 	*panel_config = panel_config_defaults;
  }
  
++static int dcn315_get_power_profile(const struct dc_state *context)
++{
++	return !context->bw_ctx.bw.dcn.clk.p_state_change_support;
++}
++
+ static struct dc_cap_funcs cap_funcs = {
+ 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
+ };
+@@ -1840,6 +1845,7 @@ static struct resource_funcs dcn315_res_pool_funcs = {
+ 	.update_bw_bounding_box = dcn315_update_bw_bounding_box,
+ 	.patch_unknown_plane_state = dcn20_patch_unknown_plane_state,
+ 	.get_panel_config_defaults = dcn315_get_panel_config_defaults,
++	.get_power_profile = dcn315_get_power_profile,
+ };
+ 
+ static bool dcn315_resource_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+index f2653a86d3e7..59184abab1a7 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn401/dcn401_resource.c
+@@ -1688,6 +1688,22 @@ static void dcn401_build_pipe_pix_clk_params(struct pipe_ctx *pipe_ctx)
+ 	}
+ }
+ 
++static int dcn401_get_power_profile(const struct dc_state *context)
++{
++	int uclk_mhz = context->bw_ctx.bw.dcn.clk.dramclk_khz / 1000;
++	int dpm_level = 0;
++
++	for (int i = 0; i < context->clk_mgr->bw_params->clk_table.num_entries_per_clk.num_memclk_levels; i++) {
++		if (context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz == 0 ||
++			uclk_mhz < context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz)
++			break;
++		if (uclk_mhz > context->clk_mgr->bw_params->clk_table.entries[i].memclk_mhz)
++			dpm_level++;
++	}
++
++	return dpm_level;
++}
++
+ static struct resource_funcs dcn401_res_pool_funcs = {
+ 	.destroy = dcn401_destroy_resource_pool,
+ 	.link_enc_create = dcn401_link_encoder_create,
+@@ -1714,6 +1730,7 @@ static struct resource_funcs dcn401_res_pool_funcs = {
+ 	.prepare_mcache_programming = dcn401_prepare_mcache_programming,
+ 	.build_pipe_pix_clk_params = dcn401_build_pipe_pix_clk_params,
+ 	.calculate_mall_ways_from_bytes = dcn32_calculate_mall_ways_from_bytes,
++	.get_power_profile = dcn401_get_power_profile,
+ };
+ 
+ static uint32_t read_pipe_fuses(struct dc_context *ctx)
 -- 
 2.45.2
 
