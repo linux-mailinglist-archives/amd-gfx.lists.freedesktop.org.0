@@ -2,82 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6F6992C97
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8FF992C92
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECB9E10E388;
-	Mon,  7 Oct 2024 13:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A29AE10E379;
+	Mon,  7 Oct 2024 13:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gwmail.gwu.edu header.i=@gwmail.gwu.edu header.b="OHEHAO5r";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="p3rOZDzg";
+	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="cPrDotOU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
- [209.85.210.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C17CC10EA5A
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 18:20:24 +0000 (UTC)
-Received: by mail-pf1-f195.google.com with SMTP id
- d2e1a72fcca58-71793afc07bso287444b3a.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 04 Oct 2024 11:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gwmail.gwu.edu; s=google; t=1728066024; x=1728670824;
- darn=lists.freedesktop.org; 
- h=mime-version:references:message-id:in-reply-to:subject:cc:to:date
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=SoGAZIU5Lyc6A4+tnt6D5VON7IKbopZSScnnux0+cO0=;
- b=OHEHAO5r1d5b4pWKfBldTaY81GQfHRyp4BLe71VGtznGglwoP8Nspg3xd66O/Q9gml
- xK5pnyIO8V1r8S5PvDYdasNNX7QPSifaJgKevAKk0OGjnmsxpm3QTMTn39PyhAXa2Vq+
- 2T3T6cpazpoYAgpyYGc0MbUaNAoIE/G+0N81tz/G116nLgi+OHt3Rg591cqzTiZciEsm
- jXiFxgh8yES89B+wLCFpsYYGdJApDiQ9zbzPqSQ2qroYVOjLjuXcsdHYvfa4j3BUmPht
- uxIHmZmfdnuLj9vOKv2rpGJa+tqBIeI8FepWEvsdse6GCduTixeOstgqDSVL2gmFeaJf
- Oi8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728066024; x=1728670824;
- h=mime-version:references:message-id:in-reply-to:subject:cc:to:date
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=SoGAZIU5Lyc6A4+tnt6D5VON7IKbopZSScnnux0+cO0=;
- b=aIZU/F3vzaVFBhGWnYzI5X15+xoufDTxCNLqhUx1N0zK3arc/oUvr+4dTDd/cNG8d0
- +sRGt1LL4eOYUIrZtxfmeJlLlNU6WT/Si17agUXSNHzMyC9IFPPGAtpiwx9E37GYGHLd
- LkRO0i06EHk60XHec0P1DV6GIoZYfh3MKwDrF0D9Xt92R8sXCSSc+KGfDrLnI42i09Xc
- TeJsTFOIgrsRZQZnYjsHR0iva7b21njZ/65wJmxzWh6RQfZgZHbFjpVjdKzTiP0ZTdYa
- I/ESjUhRRiOQNs+0H5F5mgoIWufNgRicj9RgW33rzYHRB6orOjvdIsaD2XPlh6JFxAWy
- V+Bg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUb2vbxhuDWhcndPphD4RtH8MPJFm6P0ixCmsauhhzWr059eyONdu3vluPrPhkL8mIQaMunNH0q@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzuoA3BxZDXZl6UbNfwXZL6+W99thR8Pg6Nk2+pZJmTIZ7d4GVZ
- 1M1m8MFm3gqxAZa1+31QgRq8zrzwRjjHlFV8fKuc62yaBR1JtoRQbZdMwbC3yA==
-X-Google-Smtp-Source: AGHT+IH1m5PyiOreIRJ/nQ4GUuid0vEYFhSrwVunVSBHeMWEbhbknYuTiLrD11z571HSzM07Y/Uxpw==
-X-Received: by 2002:a05:6a20:2453:b0:1cf:2be2:6526 with SMTP id
- adf61e73a8af0-1d6dfaea5f0mr2370139637.12.1728066024038; 
- Fri, 04 Oct 2024 11:20:24 -0700 (PDT)
-Received: from threadripper-arch.router92d9be.com
- (syn-172-115-017-107.res.spectrum.com. [172.115.17.107])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-71df0d67d26sm153586b3a.181.2024.10.04.11.20.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Oct 2024 11:20:23 -0700 (PDT)
-From: Matthew Schwartz <mattschwartz@gwmail.gwu.edu>
-X-Google-Original-From: Matthew Schwartz <matt@gwmail.gwu.edu>
-Date: Fri, 4 Oct 2024 11:20:08 -0700 (PDT)
-To: Melissa Wen <mwen@igalia.com>
-cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Hamza Mahfooz <hamza.mahfooz@amd.com>, 
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, 
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, 
- Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, 
- Solomon Chiu <solomon.chiu@amd.com>, 
- Daniel Wheeler <daniel.wheeler@amd.com>, Josip Pavic <Josip.Pavic@amd.com>, 
- Aric Cyr <aric.cyr@amd.com>
-Subject: Re: [PATCH 13/26] drm/amd/display: Clear update flags after update
- has been applied
-In-Reply-To: <cee2e5fb-793a-4f4e-8314-a0d875ba2dde@igalia.com>
-Message-ID: <036f3bc1-bd00-00ec-87ec-be17bca675c4@gwmail.gwu.edu>
-References: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
- <20241003233509.210919-14-Rodrigo.Siqueira@amd.com>
- <cee2e5fb-793a-4f4e-8314-a0d875ba2dde@igalia.com>
+X-Greylist: delayed 323 seconds by postgrey-1.36 at gabe;
+ Fri, 04 Oct 2024 18:29:25 UTC
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [85.215.255.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2E5210EA7A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 18:29:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1728066202; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=ryuDJkyoAigBE+RjYWjHOwz8Thcg/gbb5fWaZSHOKf3JBmDgDoTeXz3xVdKujnkzl8
+ R+SWtAHPD1GziAmZIjOmP/jPWL+X84TE7IeB7kg4kNOzDLylwqwmOYD5SYD7SA6JDaTx
+ yVPfjPHrhNZArjZpXx3lm0B8HZtXcG00gvxxVFG+AVqH8SC8iMyuOrjCZJqNPfu55/i+
+ OId08i3wIHDYgsOy7AL3GEPgDwuzI52EbKO0c6j1pUCohNtxMmnYAUFeMZZ6Jo51jUz9
+ YXvOdPy4SfziFFzJEtdxeDdT0X9JfgI8AOeTvuzMmfk9WZucU1OZ3S9Y8jH9cKucX9Rg
+ N4KA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1728066202;
+ s=strato-dkim-0002; d=strato.com;
+ h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
+ b=cpYZO3RGAgzFip2LJ6xDfBHZMeM1zuDUDM2Vk6+Vb2B4rEOMjbOW07Z2xTsWTP8Xu6
+ xYDEPYn7HVSpFjZ9MZ4hchhfzwY5GsSobHh0yDIqt5JFKU2+6G5hqsBjrAJaZfh32szy
+ 5I2qjpmcDj9ctG0xSAdlq38N/f3HokxgmpbTKi/VElEe1cDrgKZ0qgNsCW55YdWrSCjp
+ oyoWec6QE2TzN5xW/LIHmxhnVIVzuLLHReErjR+4wTFN/IWppD22UVhMnHhxFR8CNQ9U
+ CZXB4kHCYShrXcUQ7sH/4pV0FI1imTATdKPy7kVh4pnsLCcKYz7gBHZYwZO5rGXM1Z0f
+ H8Fw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1728066202;
+ s=strato-dkim-0002; d=xenosoft.de;
+ h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
+ b=p3rOZDzgUeuNjjwRSaUcfaVPHXrMVMvdn2MkrRb+3WKWL1fkyB0L9WkitiF2tfEheo
+ H7+NzvSZwpxiAG/vBhFIgL3FdGwIAPFRDPU3k+dsS6Sd4NilPuI3QzbopyoONEg9AygS
+ koBB2JmRhdVygCTSE52rXEb72/Dvwg0HtzPMhgXchL+uymFEHBX+WsCtAxeeys39NgIb
+ AZ5FcrzcYaZl1lMG1Yv4OxrLmCEqNSLooxCHkxHyXLgEqTPWbDYyi1dddhzGqDP6LIUr
+ b9j6p7UJASIBdWdEBlgitL+lfgo9x9GNKtdYR6s+LNQfM20Dl42Xw94hzms4VMXuAkSw
+ eOZA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1728066202;
+ s=strato-dkim-0003; d=xenosoft.de;
+ h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
+ b=cPrDotOUMGIqIkpyrdwgVL/OvKnf2X+2HfYKDSbbZooT2v6gIAQ66Qn8b3ArRjUC1w
+ rCaUNpTGk9m9F74AYhAA==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5jms33DCCl8yuj1GiXKxy2NgsIyNI7J6OEvKwI="
+Received: from [IPV6:2a01:599:80b:670e:7ae4:fdea:aa8b:6a58]
+ by smtp.strato.de (RZmta 51.2.8 AUTH) with ESMTPSA id e0da1a094INKf8x
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Fri, 4 Oct 2024 20:23:20 +0200 (CEST)
+Message-ID: <b758c87b-1ab3-4ce0-bc97-ac8fe9387c1b@xenosoft.de>
+Date: Fri, 4 Oct 2024 20:24:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH v2] drm/radeon: add late_register for connector - Please test
+To: Alex Deucher <alexdeucher@gmail.com>, Wu Hoi Pok <wuhoipok@gmail.com>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Alex Deucher <alexander.deucher@amd.com>, Hans de Goede
+ <hdegoede@redhat.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, "R.T.Dickinson"
+ <rtd2@xtra.co.nz>, mad skateman <madskateman@gmail.com>,
+ hypexed@yahoo.com.au, Darren Stevens <darren@stevens-zone.net>
+References: <20241004010601.3387-1-wuhoipok@gmail.com>
+ <CADnq5_Nt=8Lx6KOXHf0DHmqo2O7dYKDTfGCz-w_Hv+__=BqP9w@mail.gmail.com>
+From: Christian Zigotzky <chzigotzky@xenosoft.de>
+In-Reply-To: <CADnq5_Nt=8Lx6KOXHf0DHmqo2O7dYKDTfGCz-w_Hv+__=BqP9w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,161 +105,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi All,
 
+I compiled a new RC1 of kernel 6.12 with this patch today. Please test it.
 
-On Fri, 4 Oct 2024, Melissa Wen wrote:
+Downloads:
 
->
->
->
-> On 03/10/2024 20:33, Rodrigo Siqueira wrote:
->>  From: Josip Pavic <Josip.Pavic@amd.com>
->>
->>  [Why]
->>  Since the surface/stream update flags aren't cleared after applying
->>  updates, those same updates may be applied again in a future call to
->>  update surfaces/streams for surfaces/streams that aren't actually part
->>  of that update (i.e. applying an update for one surface/stream can
->>  trigger unintended programming on a different surface/stream).
->>
->>  For example, when an update results in a call to
->>  program_front_end_for_ctx, that function may call program_pipe on all
->>  pipes. If there are surface update flags that were never cleared on the
->>  surface some pipe is attached to, then the same update will be
->>  programmed again.
->>
->>  [How]
->>  Clear the surface and stream update flags after applying the updates.
-> Hi,
->
-> Just to let you know: this patch fixes artifacts when transitioning from 2 to 
-> 3 planes with dynamic pipe split policy on DCN301, as reported here:
->
-> https://gitlab.freedesktop.org/drm/amd/-/issues/3441
->
-> The problem was first seen in kernel 6.5, when multiple features were enabled 
-> (plane color mgmt and zpos properties) and minimal transition state was 
-> reworked.
->
-> Should it be sent to stable too?
->
-> Thanks,
->
-> Melissa
-Hello,
+- https://github.com/chzigotzky/kernels/releases/tag/v6.12.0-rc1-2
+- https://www.xenosoft.de/linux-image-6.12-rc1-2-X1000_X5000.tar.gz
 
-I wanted to confirm that this patch also fixes artifacts when utilizing 
-windowed MPO ODM on DCN32, as I originally reported here:
+Thanks,
+Christian
 
-https://gitlab.freedesktop.org/drm/amd/-/issues/3616
-
-I bisected this as a regression in kernel 6.9, where I noticed my 7900XTX 
-started to display almost identical artifacting to the issue on DCN301 
-that Melissa linked. As this commit seems to resolve the regression, a 
-submission to stable would be greatly appreciated.
-
-Cheers,
-
-Matthew
+On 04 October 2024 at 4:00pm, Alex Deucher wrote:
+> On Thu, Oct 3, 2024 at 9:18 PM Wu Hoi Pok <wuhoipok@gmail.com> wrote:
+>> The patch is to solve null dereference in 'aux.dev', which is
+>> introduced in recent radeon rework. By having 'late_register',
+>> the connector should be registered after 'drm_dev_register'
+>> automatically, where in before it is the opposite.
 >>
->>  Reviewed-by: Aric Cyr <aric.cyr@amd.com>
->>  Signed-off-by: Josip Pavic <Josip.Pavic@amd.com>
->>  Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
->>  ---
->>    drivers/gpu/drm/amd/display/dc/core/dc.c | 45 ++++++++++++++++++------
->>    1 file changed, 34 insertions(+), 11 deletions(-)
->>
->>  diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c
->>  b/drivers/gpu/drm/amd/display/dc/core/dc.c
->>  index 981d9a327daf..7b239cbfbb4a 100644
->>  --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
->>  +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
->>  @@ -5129,11 +5129,26 @@ static bool update_planes_and_stream_v3(struct dc
->>  *dc,
->>    	return true;
->>    }
->>
->>  +static void clear_update_flags(struct dc_surface_update *srf_updates,
->>  +	int surface_count, struct dc_stream_state *stream)
->>  +{
->>  +	int i;
->>  +
->>  +	if (stream)
->>  +		stream->update_flags.raw = 0;
->>  +
->>  +	for (i = 0; i < surface_count; i++)
->>  +		if (srf_updates[i].surface)
->>  +			srf_updates[i].surface->update_flags.raw = 0;
->>  +}
->>  +
->>    bool dc_update_planes_and_stream(struct dc *dc,
->>      struct dc_surface_update *srf_updates, int surface_count,
->>      struct dc_stream_state *stream,
->>      struct dc_stream_update *stream_update)
->>    {
->>  +	bool ret = false;
->>  +
->>     dc_exit_ips_for_hw_access(dc);
->>     /*
->>    	 * update planes and stream version 3 separates FULL and FAST updates
->>  @@ -5150,10 +5165,16 @@ bool dc_update_planes_and_stream(struct dc *dc,
->>      * features as they are now transparent to the new sequence.
->>      */
->>    	if (dc->ctx->dce_version >= DCN_VERSION_4_01)
->>  -		return update_planes_and_stream_v3(dc, srf_updates,
->>  +		ret = update_planes_and_stream_v3(dc, srf_updates,
->>    				surface_count, stream, stream_update);
->>  -	return update_planes_and_stream_v2(dc, srf_updates,
->>  +	else
->>  +		ret = update_planes_and_stream_v2(dc, srf_updates,
->>    			surface_count, stream, stream_update);
->>  +
->>  +	if (ret)
->>  +		clear_update_flags(srf_updates, surface_count, stream);
->>  +
->>  +	return ret;
->>    }
->>
->>    void dc_commit_updates_for_stream(struct dc *dc,
->>  @@ -5163,6 +5184,8 @@ void dc_commit_updates_for_stream(struct dc *dc,
->>      struct dc_stream_update *stream_update,
->>      struct dc_state *state)
->>    {
->>  +	bool ret = false;
->>  +
->>     dc_exit_ips_for_hw_access(dc);
->>     /* TODO: Since change commit sequence can have a huge impact,
->>    	 * we decided to only enable it for DCN3x. However, as soon as
->>  @@ -5170,17 +5193,17 @@ void dc_commit_updates_for_stream(struct dc *dc,
->>      * the new sequence for all ASICs.
->>      */
->>    	if (dc->ctx->dce_version >= DCN_VERSION_4_01) {
->>  -		update_planes_and_stream_v3(dc, srf_updates, surface_count,
->>  +		ret = update_planes_and_stream_v3(dc, srf_updates,
->>  surface_count,
->>    				stream, stream_update);
->>  -		return;
->>  -	}
->>  -	if (dc->ctx->dce_version >= DCN_VERSION_3_2) {
->>  -		update_planes_and_stream_v2(dc, srf_updates, surface_count,
->>  +	} else if (dc->ctx->dce_version >= DCN_VERSION_3_2) {
->>  +		ret = update_planes_and_stream_v2(dc, srf_updates,
->>  surface_count,
->>    				stream, stream_update);
->>  -		return;
->>  -	}
->>  -	update_planes_and_stream_v1(dc, srf_updates, surface_count, stream,
->>  -			stream_update, state);
->>  +	} else
->>  +		ret = update_planes_and_stream_v1(dc, srf_updates,
->>  surface_count, stream,
->>  +				stream_update, state);
->>  +
->>  +	if (ret)
->>  +		clear_update_flags(srf_updates, surface_count, stream);
->>    }
->>
->>    uint8_t dc_get_current_stream_count(struct dc *dc)
+>> Fixes: 90985660ba48 ("drm/radeon: remove load callback from kms_driver")
+>> Tested-by: Hans de Goede <hdegoede@redhat.com>
+>> Suggested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> Signed-off-by: Wu Hoi Pok <wuhoipok@gmail.com>
+> Applied.  Thanks!
 >
+> Alex
 >
->
+>> ---
+>>   drivers/gpu/drm/radeon/atombios_dp.c       |  9 ++-------
+>>   drivers/gpu/drm/radeon/radeon_connectors.c | 17 +++++++++++++++++
+>>   2 files changed, 19 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
+>> index fca8b08535a5..6328627b7c34 100644
+>> --- a/drivers/gpu/drm/radeon/atombios_dp.c
+>> +++ b/drivers/gpu/drm/radeon/atombios_dp.c
+>> @@ -228,10 +228,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+>>   {
+>>          struct drm_device *dev = radeon_connector->base.dev;
+>>          struct radeon_device *rdev = dev->dev_private;
+>> -       int ret;
+>>
+>>          radeon_connector->ddc_bus->rec.hpd = radeon_connector->hpd.hpd;
+>> -       radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
+>>          radeon_connector->ddc_bus->aux.drm_dev = radeon_connector->base.dev;
+>>          if (ASIC_IS_DCE5(rdev)) {
+>>                  if (radeon_auxch)
+>> @@ -242,11 +240,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
+>>                  radeon_connector->ddc_bus->aux.transfer = radeon_dp_aux_transfer_atom;
+>>          }
+>>
+>> -       ret = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
+>> -       if (!ret)
+>> -               radeon_connector->ddc_bus->has_aux = true;
+>> -
+>> -       WARN(ret, "drm_dp_aux_register() failed with error %d\n", ret);
+>> +       drm_dp_aux_init(&radeon_connector->ddc_bus->aux);
+>> +       radeon_connector->ddc_bus->has_aux = true;
+>>   }
+>>
+>>   /***** general DP utility functions *****/
+>> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+>> index 528a8f3677c2..f9c73c55f04f 100644
+>> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
+>> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+>> @@ -1786,6 +1786,20 @@ static enum drm_mode_status radeon_dp_mode_valid(struct drm_connector *connector
+>>          return MODE_OK;
+>>   }
+>>
+>> +static int
+>> +radeon_connector_late_register(struct drm_connector *connector)
+>> +{
+>> +       struct radeon_connector *radeon_connector = to_radeon_connector(connector);
+>> +       int r = 0;
+>> +
+>> +       if (radeon_connector->ddc_bus->has_aux) {
+>> +               radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
+>> +               r = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
+>> +       }
+>> +
+>> +       return r;
+>> +}
+>> +
+>>   static const struct drm_connector_helper_funcs radeon_dp_connector_helper_funcs = {
+>>          .get_modes = radeon_dp_get_modes,
+>>          .mode_valid = radeon_dp_mode_valid,
+>> @@ -1800,6 +1814,7 @@ static const struct drm_connector_funcs radeon_dp_connector_funcs = {
+>>          .early_unregister = radeon_connector_unregister,
+>>          .destroy = radeon_connector_destroy,
+>>          .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>   };
+>>
+>>   static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+>> @@ -1810,6 +1825,7 @@ static const struct drm_connector_funcs radeon_edp_connector_funcs = {
+>>          .early_unregister = radeon_connector_unregister,
+>>          .destroy = radeon_connector_destroy,
+>>          .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>   };
+>>
+>>   static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+>> @@ -1820,6 +1836,7 @@ static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
+>>          .early_unregister = radeon_connector_unregister,
+>>          .destroy = radeon_connector_destroy,
+>>          .force = radeon_dvi_force,
+>> +       .late_register = radeon_connector_late_register,
+>>   };
+>>
+>>   void
+>> --
+>> 2.46.2
+>>
+
