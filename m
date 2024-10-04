@@ -2,68 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409EC992C8F
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DAF992C99
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E4F10E37C;
-	Mon,  7 Oct 2024 13:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0A810E38A;
+	Mon,  7 Oct 2024 13:06:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RotWumEo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GveZY3mZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B3E310E9C9;
- Fri,  4 Oct 2024 09:41:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFCB410E0AA;
+ Fri,  4 Oct 2024 14:22:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728034879; x=1759570879;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=opkEn8fF7zfWp9qZu6xZSkE5K0XQ7Loqw3FtWiM4MKg=;
- b=RotWumEo/njq1RnHbo8V0fV+6QMBo12sYLY3gvnuI0TV07inokYkWHlM
- cFSdockrSsosmtIYAX5qD9/oSzs/bIFgr9WprOR2ZP2phX52Y468/LF5N
- XFXXXZS7xqK1vlzh3lPCtG77kInK+NaDNFtKd+ZRC+lUpWmHJlZmUf3om
- VWirb78hJ+upTKjlLKvbGju2z012TOh0gy3Vby/ivcOtyttQInkaePTR8
- jJRk9UugUelYjFiwNXxA0oX36WtFTNTuUlzG+QTIv/NB4F4eYhf6ZAcCQ
- 5Lrjurl0uFun5PWfPoANlQc60fYfJRIe5PYxDJGImDfGHr6tFEk+SKisY Q==;
-X-CSE-ConnectionGUID: qlv01cT8S7K6+7HlaeXDTg==
-X-CSE-MsgGUID: jSsQnMFjR5uazg8DVrN54w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="37856201"
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="37856201"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 02:41:19 -0700
-X-CSE-ConnectionGUID: TxfR2o+sRXuh0r4F13wasg==
-X-CSE-MsgGUID: byQfcOEhRbmbPuMMg3bZqw==
+ t=1728051776; x=1759587776;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=n1Q9TwCKrJl0ksPHFqsosu5I2YFUTniCRunwtDtLXiw=;
+ b=GveZY3mZ5AKJAY8NBVMUY4MDqt+IlcfC1jPjMgL4Hs9YRSfiXAEWhKRi
+ xapRvGo4c53j5rarT/SKwjIv6POQdoVtwndFdBYR31T7iIf2al83tPOPT
+ 0hOPHKfmQmhCNCN9Iw3nz3dMqmkLcXAAI2QydV4JzM7it+uqYUPDsOavg
+ v1XD3zZ6uK2sEAFjmqZYTCOJFbeB1d208IFLVYHcv/Zc6+h8/lgVTH2RV
+ VcEL5AjSITIZU6yi69HX04XMGXGaZdeNaW9LI3YIJ3RS59lJ1sJgmFA+N
+ TaQm3yX3rpFbyDgFec5faskKw2+wKZPBJL3pp3qQ7tUzsvAeh0fMwKcie w==;
+X-CSE-ConnectionGUID: fNc6TPV2Tt25aFgKjuBeRw==
+X-CSE-MsgGUID: dVxbq7IBSKqgYRPgiVbfWw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="37844838"
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="37844838"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 07:22:55 -0700
+X-CSE-ConnectionGUID: BSmoy4NgTDC4a2xjgy3xXw==
+X-CSE-MsgGUID: qY0r8e4PS5+fvRme4E0jlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="74331925"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 02:41:17 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
- by kekkonen.fi.intel.com (Postfix) with ESMTP id 4792C120E62;
- Fri,  4 Oct 2024 12:41:12 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.96)
- (envelope-from <sakari.ailus@linux.intel.com>) id 1sweoC-000TWw-0t;
- Fri, 04 Oct 2024 12:41:12 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 09/51] drm/amd: Switch to __pm_runtime_put_autosuspend()
-Date: Fri,  4 Oct 2024 12:41:12 +0300
-Message-Id: <20241004094112.113504-1-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
-References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,177,1725346800"; d="scan'208";a="74830091"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.128])
+ ([10.245.245.128])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 07:22:50 -0700
+Message-ID: <15f163e1fe8f687f7105a8b0f709d472d0b781f7.camel@linux.intel.com>
+Subject: Re: [PATCH v2 1/2] drm/ttm: Change ttm_device_init to use a struct
+ instead of multiple bools
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Zack Rusin <zack.rusin@broadcom.com>
+Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ spice-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ bcm-kernel-feedback-list@broadcom.com, Sui Jingfeng
+ <suijingfeng@loongson.cn>,  Matthew Brost <matthew.brost@intel.com>, Thomas
+ Zimmermann <tzimmermann@suse.de>
+Date: Fri, 04 Oct 2024 16:22:47 +0200
+In-Reply-To: <CABQX2QNH32HUvE1R5tMzgiEnMtkRQxGV7L1YP4xV8WO2_kon8g@mail.gmail.com>
+References: <20241002122422.287276-1-thomas.hellstrom@linux.intel.com>
+ <20241002122422.287276-2-thomas.hellstrom@linux.intel.com>
+ <CABQX2QNH32HUvE1R5tMzgiEnMtkRQxGV7L1YP4xV8WO2_kon8g@mail.gmail.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,1620 +81,540 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pm_runtime_put_autosuspend() will soon be changed to include a call to
-pm_runtime_mark_last_busy(). This patch switches the current users to
-__pm_runtime_put_autosuspend() which will continue to have the
-functionality of old pm_runtime_put_autosuspend().
-
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c      |   2 +-
- .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  16 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   | 120 ++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c       |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |   2 +-
- .../gpu/drm/amd/amdgpu/amdgpu_securedisplay.c |   4 +-
- drivers/gpu/drm/amd/amdkfd/kfd_process.c      |   4 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 178 +++++++++---------
- 14 files changed, 177 insertions(+), 177 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index f85ace0384d2..1027873da5ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -495,7 +495,7 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
- 				/* Just fire off a uevent and let userspace tell us what to do */
- 				drm_helper_hpd_irq_event(adev_to_drm(adev));
- 				pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--				pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+				__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 			}
- 		}
- 		/* TODO: check other events */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index 344e0a9ee08a..c31969f5c6ef 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -714,7 +714,7 @@ amdgpu_connector_lvds_detect(struct drm_connector *connector, bool force)
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		r = pm_runtime_get_sync(connector->dev->dev);
- 		if (r < 0) {
--			pm_runtime_put_autosuspend(connector->dev->dev);
-+			__pm_runtime_put_autosuspend(connector->dev->dev);
- 			return connector_status_disconnected;
- 		}
- 	}
-@@ -739,7 +739,7 @@ amdgpu_connector_lvds_detect(struct drm_connector *connector, bool force)
- 
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		pm_runtime_mark_last_busy(connector->dev->dev);
--		pm_runtime_put_autosuspend(connector->dev->dev);
-+		__pm_runtime_put_autosuspend(connector->dev->dev);
- 	}
- 
- 	return ret;
-@@ -865,7 +865,7 @@ amdgpu_connector_vga_detect(struct drm_connector *connector, bool force)
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		r = pm_runtime_get_sync(connector->dev->dev);
- 		if (r < 0) {
--			pm_runtime_put_autosuspend(connector->dev->dev);
-+			__pm_runtime_put_autosuspend(connector->dev->dev);
- 			return connector_status_disconnected;
- 		}
- 	}
-@@ -924,7 +924,7 @@ amdgpu_connector_vga_detect(struct drm_connector *connector, bool force)
- out:
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		pm_runtime_mark_last_busy(connector->dev->dev);
--		pm_runtime_put_autosuspend(connector->dev->dev);
-+		__pm_runtime_put_autosuspend(connector->dev->dev);
- 	}
- 
- 	return ret;
-@@ -1025,7 +1025,7 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		r = pm_runtime_get_sync(connector->dev->dev);
- 		if (r < 0) {
--			pm_runtime_put_autosuspend(connector->dev->dev);
-+			__pm_runtime_put_autosuspend(connector->dev->dev);
- 			return connector_status_disconnected;
- 		}
- 	}
-@@ -1151,7 +1151,7 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
- exit:
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		pm_runtime_mark_last_busy(connector->dev->dev);
--		pm_runtime_put_autosuspend(connector->dev->dev);
-+		__pm_runtime_put_autosuspend(connector->dev->dev);
- 	}
- 
- 	return ret;
-@@ -1375,7 +1375,7 @@ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		r = pm_runtime_get_sync(connector->dev->dev);
- 		if (r < 0) {
--			pm_runtime_put_autosuspend(connector->dev->dev);
-+			__pm_runtime_put_autosuspend(connector->dev->dev);
- 			return connector_status_disconnected;
- 		}
- 	}
-@@ -1451,7 +1451,7 @@ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
- out:
- 	if (!drm_kms_helper_is_poll_worker()) {
- 		pm_runtime_mark_last_busy(connector->dev->dev);
--		pm_runtime_put_autosuspend(connector->dev->dev);
-+		__pm_runtime_put_autosuspend(connector->dev->dev);
- 	}
- 
- 	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index 37d8657f0776..045c7e9a47eb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -116,13 +116,13 @@ static int  amdgpu_debugfs_process_reg_op(bool read, struct file *f,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -130,7 +130,7 @@ static int  amdgpu_debugfs_process_reg_op(bool read, struct file *f,
- 		if ((sh_bank != 0xFFFFFFFF && sh_bank >= adev->gfx.config.max_sh_per_se) ||
- 		    (se_bank != 0xFFFFFFFF && se_bank >= adev->gfx.config.max_shader_engines)) {
- 			pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--			pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+			__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 			amdgpu_virt_disable_access_debugfs(adev);
- 			return -EINVAL;
- 		}
-@@ -180,7 +180,7 @@ static int  amdgpu_debugfs_process_reg_op(bool read, struct file *f,
- 		mutex_unlock(&adev->pm.mutex);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return result;
-@@ -240,13 +240,13 @@ static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf, u32 off
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -256,7 +256,7 @@ static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf, u32 off
- 		if ((rd->id.grbm.sh != 0xFFFFFFFF && rd->id.grbm.sh >= adev->gfx.config.max_sh_per_se) ||
- 		    (rd->id.grbm.se != 0xFFFFFFFF && rd->id.grbm.se >= adev->gfx.config.max_shader_engines)) {
- 			pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--			pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+			__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 			amdgpu_virt_disable_access_debugfs(adev);
- 			mutex_unlock(&rd->lock);
- 			return -EINVAL;
-@@ -311,7 +311,7 @@ static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf, u32 off
- 	mutex_unlock(&rd->lock);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return result;
-@@ -407,19 +407,19 @@ static ssize_t amdgpu_debugfs_gprwave_read(struct file *f, char __user *buf, siz
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	data = kcalloc(1024, sizeof(*data), GFP_KERNEL);
- 	if (!data) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		amdgpu_virt_disable_access_debugfs(adev);
- 		return -ENOMEM;
- 	}
-@@ -447,7 +447,7 @@ static ssize_t amdgpu_debugfs_gprwave_read(struct file *f, char __user *buf, siz
- 	mutex_unlock(&adev->grbm_idx_mutex);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (!x) {
- 		result = -EINVAL;
-@@ -527,13 +527,13 @@ static ssize_t amdgpu_debugfs_regs_pcie_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -558,7 +558,7 @@ static ssize_t amdgpu_debugfs_regs_pcie_read(struct file *f, char __user *buf,
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -587,13 +587,13 @@ static ssize_t amdgpu_debugfs_regs_pcie_write(struct file *f, const char __user
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -618,7 +618,7 @@ static ssize_t amdgpu_debugfs_regs_pcie_write(struct file *f, const char __user
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -650,13 +650,13 @@ static ssize_t amdgpu_debugfs_regs_didt_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -677,7 +677,7 @@ static ssize_t amdgpu_debugfs_regs_didt_read(struct file *f, char __user *buf,
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -709,13 +709,13 @@ static ssize_t amdgpu_debugfs_regs_didt_write(struct file *f, const char __user
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -737,7 +737,7 @@ static ssize_t amdgpu_debugfs_regs_didt_write(struct file *f, const char __user
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -769,13 +769,13 @@ static ssize_t amdgpu_debugfs_regs_smc_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -796,7 +796,7 @@ static ssize_t amdgpu_debugfs_regs_smc_read(struct file *f, char __user *buf,
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -828,13 +828,13 @@ static ssize_t amdgpu_debugfs_regs_smc_write(struct file *f, const char __user *
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -856,7 +856,7 @@ static ssize_t amdgpu_debugfs_regs_smc_write(struct file *f, const char __user *
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	amdgpu_virt_disable_access_debugfs(adev);
- 	return r;
- }
-@@ -991,20 +991,20 @@ static ssize_t amdgpu_debugfs_sensor_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_dpm_read_sensor(adev, idx, &values[0], &valuesize);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (r) {
- 		amdgpu_virt_disable_access_debugfs(adev);
-@@ -1073,13 +1073,13 @@ static ssize_t amdgpu_debugfs_wave_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_virt_enable_access_debugfs(adev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1095,7 +1095,7 @@ static ssize_t amdgpu_debugfs_wave_read(struct file *f, char __user *buf,
- 	mutex_unlock(&adev->grbm_idx_mutex);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (!x) {
- 		amdgpu_virt_disable_access_debugfs(adev);
-@@ -1193,7 +1193,7 @@ static ssize_t amdgpu_debugfs_gpr_read(struct file *f, char __user *buf,
- 	mutex_unlock(&adev->grbm_idx_mutex);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	while (size) {
- 		uint32_t value;
-@@ -1215,7 +1215,7 @@ static ssize_t amdgpu_debugfs_gpr_read(struct file *f, char __user *buf,
- 	return result;
- 
- err:
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	kfree(data);
- 	return r;
- }
-@@ -1243,7 +1243,7 @@ static ssize_t amdgpu_debugfs_gfxoff_residency_read(struct file *f, char __user
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1267,7 +1267,7 @@ static ssize_t amdgpu_debugfs_gfxoff_residency_read(struct file *f, char __user
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1294,7 +1294,7 @@ static ssize_t amdgpu_debugfs_gfxoff_residency_write(struct file *f, const char
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1316,7 +1316,7 @@ static ssize_t amdgpu_debugfs_gfxoff_residency_write(struct file *f, const char
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1342,7 +1342,7 @@ static ssize_t amdgpu_debugfs_gfxoff_count_read(struct file *f, char __user *buf
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1366,7 +1366,7 @@ static ssize_t amdgpu_debugfs_gfxoff_count_read(struct file *f, char __user *buf
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1393,7 +1393,7 @@ static ssize_t amdgpu_debugfs_gfxoff_write(struct file *f, const char __user *bu
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1415,7 +1415,7 @@ static ssize_t amdgpu_debugfs_gfxoff_write(struct file *f, const char __user *bu
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1441,7 +1441,7 @@ static ssize_t amdgpu_debugfs_gfxoff_read(struct file *f, char __user *buf,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1461,7 +1461,7 @@ static ssize_t amdgpu_debugfs_gfxoff_read(struct file *f, char __user *buf,
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1478,7 +1478,7 @@ static ssize_t amdgpu_debugfs_gfxoff_status_read(struct file *f, char __user *bu
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1502,7 +1502,7 @@ static ssize_t amdgpu_debugfs_gfxoff_status_read(struct file *f, char __user *bu
- 	r = result;
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1665,7 +1665,7 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return r;
- 	}
- 
-@@ -1702,7 +1702,7 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
- 	up_write(&adev->reset_domain->sem);
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return 0;
- }
-@@ -1715,14 +1715,14 @@ static int amdgpu_debugfs_evict_vram(void *data, u64 *val)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return r;
- 	}
- 
- 	*val = amdgpu_ttm_evict_resources(adev, TTM_PL_VRAM);
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return 0;
- }
-@@ -1736,14 +1736,14 @@ static int amdgpu_debugfs_evict_gtt(void *data, u64 *val)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return r;
- 	}
- 
- 	*val = amdgpu_ttm_evict_resources(adev, TTM_PL_TT);
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return 0;
- }
-@@ -1756,14 +1756,14 @@ static int amdgpu_debugfs_benchmark(void *data, u64 val)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return r;
- 	}
- 
- 	r = amdgpu_benchmark(adev, val);
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return r;
- }
-@@ -1995,7 +1995,7 @@ static int amdgpu_debugfs_sclk_set(void *data, u64 val)
- 
- 	ret = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return ret;
- 	}
- 
-@@ -2015,7 +2015,7 @@ static int amdgpu_debugfs_sclk_set(void *data, u64 val)
- 
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index b119d27271c1..b2bd0cfaacbb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -348,7 +348,7 @@ int amdgpu_display_crtc_set_config(struct drm_mode_set *set,
- 		adev->have_disp_power_ref = false;
- out:
- 	/* drop the power reference we got coming in here */
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index bb06cb20041c..57dce06b246a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2182,7 +2182,7 @@ static void amdgpu_get_secondary_funcs(struct amdgpu_device *adev)
- 		if (p) {
- 			pm_runtime_get_sync(&p->dev);
- 			pm_runtime_mark_last_busy(&p->dev);
--			pm_runtime_put_autosuspend(&p->dev);
-+			__pm_runtime_put_autosuspend(&p->dev);
- 			pci_dev_put(p);
- 		}
- 	}
-@@ -2391,7 +2391,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 		pm_runtime_allow(ddev->dev);
- 
- 		pm_runtime_mark_last_busy(ddev->dev);
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 
- 		pci_wake_from_d3(pdev, TRUE);
- 
-@@ -2810,7 +2810,7 @@ long amdgpu_drm_ioctl(struct file *filp,
- 
- 	pm_runtime_mark_last_busy(dev->dev);
- out:
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-index 2f24a6aa13bf..cf555ec0f816 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -307,7 +307,7 @@ bool amdgpu_fence_process(struct amdgpu_ring *ring)
- 		dma_fence_signal(fence);
- 		dma_fence_put(fence);
- 		pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 	} while (last_seq != seq);
- 
- 	return true;
-@@ -948,7 +948,7 @@ static int gpu_recover_get(void *data, u64 *val)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return 0;
- 	}
- 
-@@ -958,7 +958,7 @@ static int gpu_recover_get(void *data, u64 *val)
- 	*val = atomic_read(&adev->reset_domain->reset_res);
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 2fe75c920a73..278527cdddef 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1495,14 +1495,14 @@ static ssize_t amdgpu_gfx_set_run_cleaner_shader(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_gfx_run_cleaner_shader(adev, value);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 016a6f6c4267..2d0e9bebaafd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1383,7 +1383,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- out_suspend:
- 	pm_runtime_mark_last_busy(dev->dev);
- pm_put:
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return r;
- }
-@@ -1450,7 +1450,7 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
- 	file_priv->driver_priv = NULL;
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- }
- 
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c
-index 123bcf5c2bb1..5f85cb9102a3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rap.c
-@@ -60,7 +60,7 @@ static ssize_t amdgpu_rap_debugfs_write(struct file *f, const char __user *buf,
- 
- 	ret = pm_runtime_get_sync(dev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return ret;
- 	}
- 
-@@ -102,7 +102,7 @@ static ssize_t amdgpu_rap_debugfs_write(struct file *f, const char __user *buf,
- 
- 	amdgpu_gfx_off_ctrl(adev, true);
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return size;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 1d9eda883bb8..00f270a604b6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3511,7 +3511,7 @@ static void amdgpu_ras_counte_dw(struct work_struct *work)
- 
- 	pm_runtime_mark_last_busy(dev->dev);
- Out:
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- }
- 
- static int amdgpu_get_ras_schema(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
-index 41ebe690eeff..d461181e10f2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.c
-@@ -110,7 +110,7 @@ static ssize_t amdgpu_securedisplay_debugfs_write(struct file *f, const char __u
- 
- 	ret = pm_runtime_get_sync(dev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return ret;
- 	}
- 
-@@ -160,7 +160,7 @@ static ssize_t amdgpu_securedisplay_debugfs_write(struct file *f, const char __u
- 	}
- 
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return size;
- }
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index d07acf1b2f93..3011fe9927f4 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1081,7 +1081,7 @@ static void kfd_process_destroy_pdds(struct kfd_process *p)
- 		 */
- 		if (pdd->runtime_inuse) {
- 			pm_runtime_mark_last_busy(adev_to_drm(pdd->dev->adev)->dev);
--			pm_runtime_put_autosuspend(adev_to_drm(pdd->dev->adev)->dev);
-+			__pm_runtime_put_autosuspend(adev_to_drm(pdd->dev->adev)->dev);
- 			pdd->runtime_inuse = false;
- 		}
- 
-@@ -1766,7 +1766,7 @@ struct kfd_process_device *kfd_bind_process_to_device(struct kfd_node *dev,
- 	if (!pdd->runtime_inuse) {
- 		err = pm_runtime_get_sync(adev_to_drm(dev->adev)->dev);
- 		if (err < 0) {
--			pm_runtime_put_autosuspend(adev_to_drm(dev->adev)->dev);
-+			__pm_runtime_put_autosuspend(adev_to_drm(dev->adev)->dev);
- 			return ERR_PTR(err);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index d1ca9e709946..a7be15e8c06e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10102,7 +10102,7 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 	 * displays anymore
- 	 */
- 	for (i = 0; i < crtc_disable_count; i++)
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 	pm_runtime_mark_last_busy(dev->dev);
- }
- 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index d5d6ab484e5a..dce775edc1cd 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -147,14 +147,14 @@ static ssize_t amdgpu_get_power_dpm_state(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	amdgpu_dpm_get_current_power_state(adev, &pm);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return sysfs_emit(buf, "%s\n",
- 			  (pm == POWER_STATE_TYPE_BATTERY) ? "battery" :
-@@ -187,14 +187,14 @@ static ssize_t amdgpu_set_power_dpm_state(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	amdgpu_dpm_set_power_state(adev, state);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- }
-@@ -275,14 +275,14 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	level = amdgpu_dpm_get_performance_level(adev);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return sysfs_emit(buf, "%s\n",
- 			  (level == AMD_DPM_FORCED_LEVEL_AUTO) ? "auto" :
-@@ -338,14 +338,14 @@ static ssize_t amdgpu_set_power_dpm_force_performance_level(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	mutex_lock(&adev->pm.stable_pstate_ctx_lock);
- 	if (amdgpu_dpm_force_performance_level(adev, level)) {
- 		pm_runtime_mark_last_busy(ddev->dev);
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		mutex_unlock(&adev->pm.stable_pstate_ctx_lock);
- 		return -EINVAL;
- 	}
-@@ -354,7 +354,7 @@ static ssize_t amdgpu_set_power_dpm_force_performance_level(struct device *dev,
- 	mutex_unlock(&adev->pm.stable_pstate_ctx_lock);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- }
-@@ -376,7 +376,7 @@ static ssize_t amdgpu_get_pp_num_states(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -384,7 +384,7 @@ static ssize_t amdgpu_get_pp_num_states(struct device *dev,
- 		memset(&data, 0, sizeof(data));
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	buf_len = sysfs_emit(buf, "states: %d\n", data.nums);
- 	for (i = 0; i < data.nums; i++)
-@@ -414,7 +414,7 @@ static ssize_t amdgpu_get_pp_cur_state(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -423,7 +423,7 @@ static ssize_t amdgpu_get_pp_cur_state(struct device *dev,
- 	ret = amdgpu_dpm_get_pp_num_states(adev, &data);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return ret;
-@@ -487,7 +487,7 @@ static ssize_t amdgpu_set_pp_force_state(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -509,13 +509,13 @@ static ssize_t amdgpu_set_pp_force_state(struct device *dev,
- 	}
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- 
- err_out:
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 	return ret;
- }
- 
-@@ -546,14 +546,14 @@ static ssize_t amdgpu_get_pp_table(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	size = amdgpu_dpm_get_pp_table(adev, &table);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (size <= 0)
- 		return size;
-@@ -582,14 +582,14 @@ static ssize_t amdgpu_set_pp_table(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_set_pp_table(adev, buf, count);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return ret;
-@@ -810,7 +810,7 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -832,13 +832,13 @@ static ssize_t amdgpu_set_pp_od_clk_voltage(struct device *dev,
- 	}
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- 
- err_out:
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 	return -EINVAL;
- }
- 
-@@ -867,7 +867,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -889,7 +889,7 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -931,14 +931,14 @@ static ssize_t amdgpu_set_pp_features(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_set_ppfeature_status(adev, featuremask);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return -EINVAL;
-@@ -962,7 +962,7 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -971,7 +971,7 @@ static ssize_t amdgpu_get_pp_features(struct device *dev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -1031,7 +1031,7 @@ static ssize_t amdgpu_get_pp_dpm_clock(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -1043,7 +1043,7 @@ static ssize_t amdgpu_get_pp_dpm_clock(struct device *dev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -1104,14 +1104,14 @@ static ssize_t amdgpu_set_pp_dpm_clock(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_force_clock_level(adev, type, mask);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return -EINVAL;
-@@ -1285,14 +1285,14 @@ static ssize_t amdgpu_get_pp_sclk_od(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	value = amdgpu_dpm_get_sclk_od(adev);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return sysfs_emit(buf, "%d\n", value);
- }
-@@ -1319,14 +1319,14 @@ static ssize_t amdgpu_set_pp_sclk_od(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	amdgpu_dpm_set_sclk_od(adev, (uint32_t)value);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- }
-@@ -1347,14 +1347,14 @@ static ssize_t amdgpu_get_pp_mclk_od(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	value = amdgpu_dpm_get_mclk_od(adev);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return sysfs_emit(buf, "%d\n", value);
- }
-@@ -1381,14 +1381,14 @@ static ssize_t amdgpu_set_pp_mclk_od(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	amdgpu_dpm_set_mclk_od(adev, (uint32_t)value);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- }
-@@ -1429,7 +1429,7 @@ static ssize_t amdgpu_get_pp_power_profile_mode(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -1438,7 +1438,7 @@ static ssize_t amdgpu_get_pp_power_profile_mode(struct device *dev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -1494,14 +1494,14 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_set_power_profile_mode(adev, parameter, parameter_size);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (!ret)
- 		return count;
-@@ -1522,7 +1522,7 @@ static int amdgpu_hwmon_get_sensor_generic(struct amdgpu_device *adev,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -1530,7 +1530,7 @@ static int amdgpu_hwmon_get_sensor_generic(struct amdgpu_device *adev,
- 	r = amdgpu_dpm_read_sensor(adev, sensor, query, &size);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return r;
- }
-@@ -1641,14 +1641,14 @@ static ssize_t amdgpu_get_pcie_bw(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	amdgpu_asic_get_pcie_usage(adev, &count0, &count1);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return sysfs_emit(buf, "%llu %llu %i\n",
- 			  count0, count1, pcie_get_mps(adev->pdev));
-@@ -1772,7 +1772,7 @@ static ssize_t amdgpu_get_apu_thermal_cap(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -1783,7 +1783,7 @@ static ssize_t amdgpu_get_apu_thermal_cap(struct device *dev,
- 		size = sysfs_emit(buf, "failed to get thermal limit\n");
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -1809,7 +1809,7 @@ static ssize_t amdgpu_set_apu_thermal_cap(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -1820,7 +1820,7 @@ static ssize_t amdgpu_set_apu_thermal_cap(struct device *dev,
- 	}
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return count;
- }
-@@ -1851,14 +1851,14 @@ static ssize_t amdgpu_get_pm_metrics(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	size = amdgpu_dpm_get_pm_metrics(adev, buf, PAGE_SIZE);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -1892,7 +1892,7 @@ static ssize_t amdgpu_get_gpu_metrics(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
-@@ -1907,7 +1907,7 @@ static ssize_t amdgpu_get_gpu_metrics(struct device *dev,
- 
- out:
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	return size;
- }
-@@ -2010,7 +2010,7 @@ static ssize_t amdgpu_set_smartshift_bias(struct device *dev,
- 
- 	r = pm_runtime_get_sync(ddev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return r;
- 	}
- 
-@@ -2030,7 +2030,7 @@ static ssize_t amdgpu_set_smartshift_bias(struct device *dev,
- 
- out:
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 	return r;
- }
- 
-@@ -2337,14 +2337,14 @@ static ssize_t amdgpu_set_pm_policy_attr(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(ddev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(ddev->dev);
-+		__pm_runtime_put_autosuspend(ddev->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_set_pm_policy(adev, policy_attr->id, val);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
--	pm_runtime_put_autosuspend(ddev->dev);
-+	__pm_runtime_put_autosuspend(ddev->dev);
- 
- 	if (ret)
- 		return ret;
-@@ -2774,14 +2774,14 @@ static ssize_t amdgpu_hwmon_get_pwm1_enable(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_get_fan_control_mode(adev, &pwm_mode);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (ret)
- 		return -EINVAL;
-@@ -2819,14 +2819,14 @@ static ssize_t amdgpu_hwmon_set_pwm1_enable(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_set_fan_control_mode(adev, pwm_mode);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (ret)
- 		return -EINVAL;
-@@ -2868,7 +2868,7 @@ static ssize_t amdgpu_hwmon_set_pwm1(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
-@@ -2886,7 +2886,7 @@ static ssize_t amdgpu_hwmon_set_pwm1(struct device *dev,
- 
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -2909,14 +2909,14 @@ static ssize_t amdgpu_hwmon_get_pwm1(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
- 	err = amdgpu_dpm_get_fan_speed_pwm(adev, &speed);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -2939,14 +2939,14 @@ static ssize_t amdgpu_hwmon_get_fan1_input(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
- 	err = amdgpu_dpm_get_fan_speed_rpm(adev, &speed);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -3003,14 +3003,14 @@ static ssize_t amdgpu_hwmon_get_fan1_target(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
- 	err = amdgpu_dpm_get_fan_speed_rpm(adev, &rpm);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -3038,7 +3038,7 @@ static ssize_t amdgpu_hwmon_set_fan1_target(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
-@@ -3055,7 +3055,7 @@ static ssize_t amdgpu_hwmon_set_fan1_target(struct device *dev,
- 
- out:
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -3078,14 +3078,14 @@ static ssize_t amdgpu_hwmon_get_fan1_enable(struct device *dev,
- 
- 	ret = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return ret;
- 	}
- 
- 	ret = amdgpu_dpm_get_fan_control_mode(adev, &pwm_mode);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (ret)
- 		return -EINVAL;
-@@ -3121,14 +3121,14 @@ static ssize_t amdgpu_hwmon_set_fan1_enable(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
- 	err = amdgpu_dpm_set_fan_control_mode(adev, pwm_mode);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return -EINVAL;
-@@ -3250,7 +3250,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_generic(struct device *dev,
- 
- 	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return r;
- 	}
- 
-@@ -3263,7 +3263,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_generic(struct device *dev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	return size;
- }
-@@ -3341,14 +3341,14 @@ static ssize_t amdgpu_hwmon_set_power_cap(struct device *dev,
- 
- 	err = pm_runtime_get_sync(adev_to_drm(adev)->dev);
- 	if (err < 0) {
--		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 		return err;
- 	}
- 
- 	err = amdgpu_dpm_set_power_limit(adev, value);
- 
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
--	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+	__pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
- 	if (err)
- 		return err;
-@@ -3789,7 +3789,7 @@ static int amdgpu_retrieve_od_settings(struct amdgpu_device *adev,
- 
- 	ret = pm_runtime_get_sync(adev->dev);
- 	if (ret < 0) {
--		pm_runtime_put_autosuspend(adev->dev);
-+		__pm_runtime_put_autosuspend(adev->dev);
- 		return ret;
- 	}
- 
-@@ -3798,7 +3798,7 @@ static int amdgpu_retrieve_od_settings(struct amdgpu_device *adev,
- 		size = sysfs_emit(buf, "\n");
- 
- 	pm_runtime_mark_last_busy(adev->dev);
--	pm_runtime_put_autosuspend(adev->dev);
-+	__pm_runtime_put_autosuspend(adev->dev);
- 
- 	return size;
- }
-@@ -3899,14 +3899,14 @@ amdgpu_distribute_custom_od_settings(struct amdgpu_device *adev,
- 	}
- 
- 	pm_runtime_mark_last_busy(adev->dev);
--	pm_runtime_put_autosuspend(adev->dev);
-+	__pm_runtime_put_autosuspend(adev->dev);
- 
- 	return count;
- 
- err_out1:
- 	pm_runtime_mark_last_busy(adev->dev);
- err_out0:
--	pm_runtime_put_autosuspend(adev->dev);
-+	__pm_runtime_put_autosuspend(adev->dev);
- 
- 	return ret;
- }
-@@ -4760,7 +4760,7 @@ static int amdgpu_debugfs_pm_info_show(struct seq_file *m, void *unused)
- 
- 	r = pm_runtime_get_sync(dev->dev);
- 	if (r < 0) {
--		pm_runtime_put_autosuspend(dev->dev);
-+		__pm_runtime_put_autosuspend(dev->dev);
- 		return r;
- 	}
- 
-@@ -4778,7 +4778,7 @@ static int amdgpu_debugfs_pm_info_show(struct seq_file *m, void *unused)
- 
- out:
- 	pm_runtime_mark_last_busy(dev->dev);
--	pm_runtime_put_autosuspend(dev->dev);
-+	__pm_runtime_put_autosuspend(dev->dev);
- 
- 	return r;
- }
--- 
-2.39.5
+T24gVGh1LCAyMDI0LTEwLTAzIGF0IDAwOjI4IC0wNDAwLCBaYWNrIFJ1c2luIHdyb3RlOgo+IE9u
+IFdlZCwgT2N0IDIsIDIwMjQgYXQgODoyNOKAr0FNIFRob21hcyBIZWxsc3Ryw7ZtCj4gPHRob21h
+cy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPiB3cm90ZToKPiA+IAo+ID4gVGhlIHR0bV9kZXZp
+Y2VfaW5pdCBmdW5jaXRpb24gdXNlcyBtdWx0aXBsZSBib29sIGFyZ3VtZW50cy4gVGhhdAo+ID4g
+bWVhbnMKPiA+IHJlYWRhYmlsaXR5IGluIHRoZSBjYWxsZXIgYmVjb21lcyBwb29yLCBhbmQgYWxs
+IGNhbGxlcnMgbmVlZCB0bwo+ID4gY2hhbmdlIGlmCj4gPiB5ZXQgYW5vdGhlciBib29sIGlzIGFk
+ZGVkLgo+ID4gCj4gPiBJbnN0ZWFkIHVzZSBhIHN0cnVjdCB3aXRoIG11bHRpcGxlIHNpbmdsZS1i
+aXQgZmxhZ3MuIFRoaXMgYWRkcmVzc2VzCj4gPiBib3RoCj4gPiBwcm9ibGVtcy4gUHJlZmVyIGl0
+IG92ZXIgdXNpbmcgZGVmaW5lcyBvciBlbnVtcyB3aXRoIGV4cGxpY2l0IGJpdAo+ID4gc2hpZnRz
+LAo+ID4gc2luY2UgY29udmVydGluZyB0byBhbmQgZnJvbSB0aGVzZSBiaXQgdmFsdWVzIHVzZXMg
+bG9naWNhbAo+ID4gb3BlcmF0aW9ucyBvcgo+ID4gdGVzdHMgd2hpY2ggYXJlIGltcGxpY2l0IHdp
+dGggdGhlIHN0cnVjdCB1c2FnZSwgYW5kIG9mYyB0eXBlLQo+ID4gY2hlY2tpbmcuCj4gPiAKPiA+
+IFRoaXMgaXMgaW4gcHJlcGFyYXRpb24gb2YgYWRkaW5nIHlldCBhbm90aGVyIGJvb2wgZmxhZyBw
+YXJhbWV0ZXIgdG8KPiA+IHRoZQo+ID4gZnVuY3Rpb24uCj4gPiAKPiA+IENjOiBDaHJpc3RpYW4g
+S8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gPiBDYzogYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiA+IENjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+PiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBzcGljZS1kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4gPiBDYzogWmFjayBSdXNpbiA8emFjay5ydXNpbkBicm9hZGNvbS5jb20+Cj4gPiBDYzog
+PGJjbS1rZXJuZWwtZmVlZGJhY2stbGlzdEBicm9hZGNvbS5jb20+Cj4gPiBDYzogU3VpIEppbmdm
+ZW5nIDxzdWlqaW5nZmVuZ0Bsb29uZ3Nvbi5jbj4KPiA+IENjOiA8aW50ZWwteGVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnPgo+ID4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21h
+cy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+ID4gLS0tCj4gPiDCoGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uY8KgwqDCoMKgwqDCoCB8wqAgNiArKysrLS0KPiA+IMKg
+ZHJpdmVycy9ncHUvZHJtL2RybV9nZW1fdnJhbV9oZWxwZXIuY8KgwqDCoMKgwqDCoMKgwqAgfMKg
+IDcgKysrKy0tLQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9yZWdpb25fdHRtLmPC
+oMKgwqDCoMKgwqAgfMKgIDMgKystCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9sb29uZ3Nvbi9sc2Rj
+X3R0bS5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDUgKysrKy0KPiA+IMKgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV90dG0uY8KgwqDCoMKgwqDCoMKgwqAgfMKgIDcgKysrKystLQo+
+ID4gwqBkcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90dG0uY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHzCoCAyICstCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0
+bS5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDYgKysrKy0tCj4gPiDCoGRyaXZlcnMvZ3B1L2Ry
+bS90dG0vdGVzdHMvdHRtX2JvX3Rlc3QuY8KgwqDCoMKgwqDCoCB8IDE2ICsrKysrKystLS0tLS0t
+LQo+ID4gwqAuLi4vZ3B1L2RybS90dG0vdGVzdHMvdHRtX2JvX3ZhbGlkYXRlX3Rlc3QuY8KgIHzC
+oCAzICsrLQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3RzL3R0bV9kZXZpY2VfdGVzdC5j
+wqDCoCB8IDE2ICsrKysrKysrLS0tLS0tLQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3Rz
+L3R0bV9rdW5pdF9oZWxwZXJzLmMgfCAyMCArKysrKysrKy0tLS0tLS0KPiA+IC0tLS0KPiA+IMKg
+ZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fa3VuaXRfaGVscGVycy5oIHzCoCA2ICsrLS0t
+LQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2UuY8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHzCoCA3ICsrKy0tLS0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdn
+ZnhfZHJ2LmPCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgNCArKy0tCj4gPiDCoGRyaXZlcnMvZ3B1
+L2RybS94ZS94ZV9kZXZpY2UuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMyAr
+Ky0KPiA+IMKgaW5jbHVkZS9kcm0vdHRtL3R0bV9kZXZpY2UuaMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgfCAxMiArKysrKysrKysrLQo+ID4gwqAxNiBmaWxlcyBjaGFuZ2VkLCA3
+MSBpbnNlcnRpb25zKCspLCA1MiBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+ID4gYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKPiA+IGluZGV4IDc0YWRiOTgzYWIwMy4uZTQzNjM1
+YWM1NGZkIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3R0bS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMK
+PiA+IEBAIC0xODUzLDggKzE4NTMsMTAgQEAgaW50IGFtZGdwdV90dG1faW5pdChzdHJ1Y3QgYW1k
+Z3B1X2RldmljZQo+ID4gKmFkZXYpCj4gPiDCoMKgwqDCoMKgwqDCoCByID0gdHRtX2RldmljZV9p
+bml0KCZhZGV2LT5tbWFuLmJkZXYsICZhbWRncHVfYm9fZHJpdmVyLAo+ID4gYWRldi0+ZGV2LAo+
+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGFkZXZfdG9fZHJtKGFkZXYpLT5hbm9uX2lub2RlLQo+ID4gPmlfbWFwcGluZywKPiA+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBhZGV2X3RvX2RybShhZGV2KS0KPiA+ID52bWFfb2Zmc2V0X21hbmFnZXIsCj4gPiAtwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBh
+ZGV2LT5uZWVkX3N3aW90bGIsCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkbWFfYWRkcmVzc2luZ19saW1pdGVkKGFkZXYtPmRl
+dikpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgKHN0cnVjdCB0dG1fZGV2aWNlX2luaXRfZmxhZ3Mpewo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIC51c2VfZG1hX2FsbG9jID0gYWRldi0KPiA+ID5uZWVkX3N3aW90bGIsCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgLnVzZV9kbWEzMiA9Cj4gPiBkbWFfYWRkcmVzc2luZ19saW1pdGVk
+KGFkZXYtPmRldikKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIH0pOwo+ID4gwqDCoMKgwqDCoMKgwqAgaWYgKHIpIHsKPiA+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBEUk1fRVJST1IoImZhaWxlZCBpbml0aWFsaXpp
+bmcgYnVmZmVyIG9iamVjdAo+ID4gZHJpdmVyKCVkKS5cbiIsIHIpOwo+ID4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiByOwo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9kcm1fZ2VtX3ZyYW1faGVscGVyLmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2RybV9nZW1f
+dnJhbV9oZWxwZXIuYwo+ID4gaW5kZXggMjJiMWZlOWMwM2I4Li43YzMxNjViMDAzNzggMTAwNjQ0
+Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2dlbV92cmFtX2hlbHBlci5jCj4gPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vZHJtX2dlbV92cmFtX2hlbHBlci5jCj4gPiBAQCAtOTMxLDkgKzkz
+MSwxMCBAQCBzdGF0aWMgaW50IGRybV92cmFtX21tX2luaXQoc3RydWN0IGRybV92cmFtX21tCj4g
+PiAqdm1tLCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ID4gwqDCoMKgwqDCoMKgwqAgdm1tLT52
+cmFtX3NpemUgPSB2cmFtX3NpemU7Cj4gPiAKPiA+IMKgwqDCoMKgwqDCoMKgIHJldCA9IHR0bV9k
+ZXZpY2VfaW5pdCgmdm1tLT5iZGV2LCAmYm9fZHJpdmVyLCBkZXYtPmRldiwKPiA+IC3CoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBk
+ZXYtPmFub25faW5vZGUtPmlfbWFwcGluZywKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXYtPnZtYV9vZmZzZXRfbWFu
+YWdlciwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBmYWxzZSwgdHJ1ZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2LT5hbm9uX2lub2RlLT5pX21h
+cHBpbmcsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgZGV2LT52bWFfb2Zmc2V0X21hbmFnZXIsCj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHN0cnVjdCB0dG1fZGV2
+aWNlX2luaXRfZmxhZ3MpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgey51c2VfZG1hMzIgPSB0cnVlfSk7Cj4gPiDCoMKgwqDCoMKg
+wqDCoCBpZiAocmV0KQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBy
+ZXQ7Cj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9yZWdp
+b25fdHRtLmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5jCj4g
+PiBpbmRleCAwNDUyNWQ5MmJlYzUuLmRiMzRkYTYzODE0YyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lvbl90dG0uYwo+ID4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5jCj4gPiBAQCAtMzQsNyArMzQsOCBAQCBpbnQgaW50
+ZWxfcmVnaW9uX3R0bV9kZXZpY2VfaW5pdChzdHJ1Y3QKPiA+IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2KQo+ID4gCj4gPiDCoMKgwqDCoMKgwqDCoCByZXR1cm4gdHRtX2RldmljZV9pbml0KCZk
+ZXZfcHJpdi0+YmRldiwgaTkxNV90dG1fZHJpdmVyKCksCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZHJtLT5kZXYsIGRybS0+
+YW5vbl9pbm9kZS0KPiA+ID5pX21hcHBpbmcsCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkcm0tPnZtYV9vZmZzZXRfbWFuYWdl
+ciwgZmFsc2UsCj4gPiBmYWxzZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkcm0tPnZtYV9vZmZzZXRfbWFuYWdlciwKPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIChzdHJ1Y3QgdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+IMKgfQo+ID4gCj4gPiDC
+oC8qKgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9sb29uZ3Nvbi9sc2RjX3R0bS5j
+Cj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9sb29uZ3Nvbi9sc2RjX3R0bS5jCj4gPiBpbmRleCAyZTQy
+YzY5NzBjOWYuLmM2ODRmMTYzNmYzZiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9s
+b29uZ3Nvbi9sc2RjX3R0bS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbG9vbmdzb24vbHNk
+Y190dG0uYwo+ID4gQEAgLTU0NCw3ICs1NDQsMTAgQEAgaW50IGxzZGNfdHRtX2luaXQoc3RydWN0
+IGxzZGNfZGV2aWNlICpsZGV2KQo+ID4gCj4gPiDCoMKgwqDCoMKgwqDCoCByZXQgPSB0dG1fZGV2
+aWNlX2luaXQoJmxkZXYtPmJkZXYsICZsc2RjX2JvX2RyaXZlciwgZGRldi0KPiA+ID5kZXYsCj4g
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGRkZXYtPmFub25faW5vZGUtPmlfbWFwcGluZywKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZGV2LT52bWFfb2Zmc2V0X21h
+bmFnZXIsIGZhbHNlLAo+ID4gdHJ1ZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGRldi0+dm1hX29mZnNldF9tYW5hZ2VyLAo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIChzdHJ1Y3QgdHRtX2RldmljZV9pbml0X2ZsYWdzKXsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+LnVzZV9kbWEzMiA9IHRydWUKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9KTsKPiA+IMKgwqDCoMKgwqDCoMKgIGlmIChyZXQpCj4g
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPiA+IAo+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMKPiA+IGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV90dG0uYwo+ID4gaW5kZXggZTI0NDkyN2ViNWQ0
+Li41Zjg5ZDJiNDA0MjUgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X3R0bS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0
+bS5jCj4gPiBAQCAtMzAyLDggKzMwMiwxMSBAQCBub3V2ZWF1X3R0bV9pbml0KHN0cnVjdCBub3V2
+ZWF1X2RybSAqZHJtKQo+ID4gwqDCoMKgwqDCoMKgwqAgcmV0ID0gdHRtX2RldmljZV9pbml0KCZk
+cm0tPnR0bS5iZGV2LCAmbm91dmVhdV9ib19kcml2ZXIsCj4gPiBkcm0tPmRldi0+ZGV2LAo+ID4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIGRldi0+YW5vbl9pbm9kZS0+aV9tYXBwaW5nLAo+ID4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldi0+
+dm1hX29mZnNldF9tYW5hZ2VyLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZHJtX25lZWRfc3dpb3RsYihkcm0tCj4g
+PiA+Y2xpZW50Lm1tdS5kbWFiaXRzKSwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRybS0+Y2xpZW50Lm1tdS5kbWFi
+aXRzIDw9IDMyKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIChzdHJ1Y3QgdHRtX2RldmljZV9pbml0X2ZsYWdzKXsK
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAudXNlX2RtYV9hbGxvYyA9Cj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgZHJtX25lZWRfc3dpb3RsYihkcm0tCj4gPiA+Y2xpZW50Lm1tdS5k
+bWFiaXRzKSwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAudXNlX2RtYTMyID0gKGRybS0K
+PiA+ID5jbGllbnQubW11LmRtYWJpdHMgPD0gMzIpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9KTsKPiA+IMKgwqDC
+oMKgwqDCoMKgIGlmIChyZXQpIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBO
+Vl9FUlJPUihkcm0sICJlcnJvciBpbml0aWFsaXNpbmcgYm8gZHJpdmVyLCAlZFxuIiwKPiA+IHJl
+dCk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90dG0uYwo+ID4gYi9kcml2ZXJzL2dw
+dS9kcm0vcXhsL3F4bF90dG0uYwo+ID4gaW5kZXggNzY1YTE0NGNlYTE0Li5jZWQ0YzYwYzQ2NTAg
+MTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90dG0uYwo+ID4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfdHRtLmMKPiA+IEBAIC0xOTYsNyArMTk2LDcgQEAgaW50
+IHF4bF90dG1faW5pdChzdHJ1Y3QgcXhsX2RldmljZSAqcWRldikKPiA+IMKgwqDCoMKgwqDCoMKg
+IHIgPSB0dG1fZGV2aWNlX2luaXQoJnFkZXYtPm1tYW4uYmRldiwgJnF4bF9ib19kcml2ZXIsIE5V
+TEwsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgcWRldi0+ZGRldi5hbm9uX2lub2RlLT5pX21hcHBpbmcsCj4gPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcWRldi0+ZGRldi52bWFf
+b2Zmc2V0X21hbmFnZXIsCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHN0cnVjdCB0dG1fZGV2aWNlX2luaXRf
+ZmxhZ3Mpe30pOwo+ID4gwqDCoMKgwqDCoMKgwqAgaWYgKHIpIHsKPiA+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBEUk1fRVJST1IoImZhaWxlZCBpbml0aWFsaXppbmcgYnVmZmVyIG9i
+amVjdAo+ID4gZHJpdmVyKCVkKS5cbiIsIHIpOwo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHJldHVybiByOwo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24v
+cmFkZW9uX3R0bS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0bS5jCj4g
+PiBpbmRleCA2OWQwYzEyZmE0MTkuLjI5MTU0NzNlNDk1NiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0bS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+cmFkZW9uL3JhZGVvbl90dG0uYwo+ID4gQEAgLTY4NCw4ICs2ODQsMTAgQEAgaW50IHJhZGVvbl90
+dG1faW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZQo+ID4gKnJkZXYpCj4gPiDCoMKgwqDCoMKgwqDC
+oCByID0gdHRtX2RldmljZV9pbml0KCZyZGV2LT5tbWFuLmJkZXYsICZyYWRlb25fYm9fZHJpdmVy
+LAo+ID4gcmRldi0+ZGV2LAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJkZXZfdG9fZHJtKHJkZXYpLT5hbm9uX2lub2RlLQo+
+ID4gPmlfbWFwcGluZywKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZGV2X3RvX2RybShyZGV2KS0KPiA+ID52bWFfb2Zmc2V0
+X21hbmFnZXIsCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCByZGV2LT5uZWVkX3N3aW90bGIsCj4gPiAtwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkbWFfYWRkcmVzc2lu
+Z19saW1pdGVkKCZyZGV2LT5wZGV2LQo+ID4gPmRldikpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHN0cnVjdCB0dG1fZGV2
+aWNlX2luaXRfZmxhZ3Mpewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnVzZV9kbWFfYWxsb2Mg
+PSByZGV2LQo+ID4gPm5lZWRfc3dpb3RsYiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC51c2Vf
+ZG1hMzIgPQo+ID4gZG1hX2FkZHJlc3NpbmdfbGltaXRlZCgmcmRldi0+cGRldi0+ZGV2KQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCB9KTsKPiA+IMKgwqDCoMKgwqDCoMKgIGlmIChyKSB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgRFJNX0VSUk9SKCJmYWlsZWQgaW5pdGlhbGl6aW5nIGJ1ZmZlciBvYmpl
+Y3QKPiA+IGRyaXZlciglZCkuXG4iLCByKTsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCByZXR1cm4gcjsKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3Rz
+L3R0bV9ib190ZXN0LmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fYm9fdGVz
+dC5jCj4gPiBpbmRleCBmMGE3ZWI2MjExNmMuLjhhMmFiOTBjNmU4ZiAxMDA2NDQKPiA+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS90dG0vdGVzdHMvdHRtX2JvX3Rlc3QuYwo+ID4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fYm9fdGVzdC5jCj4gPiBAQCAtMjUxLDcgKzI1MSw3IEBA
+IHN0YXRpYyB2b2lkIHR0bV9ib191bnJlc2VydmVfYmFzaWMoc3RydWN0IGt1bml0Cj4gPiAqdGVz
+dCkKPiA+IMKgwqDCoMKgwqDCoMKgIHR0bV9kZXYgPSBrdW5pdF9remFsbG9jKHRlc3QsIHNpemVv
+ZigqdHRtX2RldiksCj4gPiBHRlBfS0VSTkVMKTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FT
+U0VSVF9OT1RfTlVMTCh0ZXN0LCB0dG1fZGV2KTsKPiA+IAo+ID4gLcKgwqDCoMKgwqDCoCBlcnIg
+PSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgdHRtX2RldiwgZmFsc2UsIGZhbHNlKTsKPiA+
+ICvCoMKgwqDCoMKgwqAgZXJyID0gdHRtX2RldmljZV9rdW5pdF9pbml0KHByaXYsIHR0bV9kZXYs
+IChzdHJ1Y3QKPiA+IHR0bV9kZXZpY2VfaW5pdF9mbGFncyl7fSk7Cj4gPiDCoMKgwqDCoMKgwqDC
+oCBLVU5JVF9BU1NFUlRfRVEodGVzdCwgZXJyLCAwKTsKPiA+IMKgwqDCoMKgwqDCoMKgIHByaXYt
+PnR0bV9kZXYgPSB0dG1fZGV2Owo+ID4gCj4gPiBAQCAtMjkwLDcgKzI5MCw3IEBAIHN0YXRpYyB2
+b2lkIHR0bV9ib191bnJlc2VydmVfcGlubmVkKHN0cnVjdAo+ID4ga3VuaXQgKnRlc3QpCj4gPiDC
+oMKgwqDCoMKgwqDCoCB0dG1fZGV2ID0ga3VuaXRfa3phbGxvYyh0ZXN0LCBzaXplb2YoKnR0bV9k
+ZXYpLAo+ID4gR0ZQX0tFUk5FTCk7Cj4gPiDCoMKgwqDCoMKgwqDCoCBLVU5JVF9BU1NFUlRfTk9U
+X05VTEwodGVzdCwgdHRtX2Rldik7Cj4gPiAKPiA+IC3CoMKgwqDCoMKgwqAgZXJyID0gdHRtX2Rl
+dmljZV9rdW5pdF9pbml0KHByaXYsIHR0bV9kZXYsIGZhbHNlLCBmYWxzZSk7Cj4gPiArwqDCoMKg
+wqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCAoc3RydWN0
+Cj4gPiB0dG1fZGV2aWNlX2luaXRfZmxhZ3Mpe30pOwo+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRf
+QVNTRVJUX0VRKHRlc3QsIGVyciwgMCk7Cj4gPiDCoMKgwqDCoMKgwqDCoCBwcml2LT50dG1fZGV2
+ID0gdHRtX2RldjsKPiA+IAo+ID4gQEAgLTM0Miw3ICszNDIsNyBAQCBzdGF0aWMgdm9pZCB0dG1f
+Ym9fdW5yZXNlcnZlX2J1bGsoc3RydWN0IGt1bml0Cj4gPiAqdGVzdCkKPiA+IMKgwqDCoMKgwqDC
+oMKgIHJlc3YgPSBrdW5pdF9remFsbG9jKHRlc3QsIHNpemVvZigqcmVzdiksIEdGUF9LRVJORUwp
+Owo+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYp
+Owo+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2
+LCB0dG1fZGV2LCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2
+aWNlX2t1bml0X2luaXQocHJpdiwgdHRtX2RldiwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0
+X2ZsYWdzKXt9KTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9FUSh0ZXN0LCBlcnIs
+IDApOwo+ID4gwqDCoMKgwqDCoMKgwqAgcHJpdi0+dHRtX2RldiA9IHR0bV9kZXY7Cj4gPiAKPiA+
+IEBAIC0zOTQsNyArMzk0LDcgQEAgc3RhdGljIHZvaWQgdHRtX2JvX3B1dF9iYXNpYyhzdHJ1Y3Qg
+a3VuaXQKPiA+ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldiA9IGt1bml0X2t6YWxs
+b2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2KSwKPiA+IEdGUF9LRVJORUwpOwo+ID4gwqDCoMKgwqDC
+oMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYpOwo+ID4gCj4gPiAtwqDC
+oMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCBmYWxz
+ZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQo
+cHJpdiwgdHRtX2RldiwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+
+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4gwqDCoMKg
+wqDCoMKgwqAgcHJpdi0+dHRtX2RldiA9IHR0bV9kZXY7Cj4gPiAKPiA+IEBAIC00MzcsNyArNDM3
+LDcgQEAgc3RhdGljIHZvaWQgdHRtX2JvX3B1dF9zaGFyZWRfcmVzdihzdHJ1Y3Qga3VuaXQKPiA+
+ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldiA9IGt1bml0X2t6YWxsb2ModGVzdCwg
+c2l6ZW9mKCp0dG1fZGV2KSwKPiA+IEdGUF9LRVJORUwpOwo+ID4gwqDCoMKgwqDCoMKgwqAgS1VO
+SVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYpOwo+ID4gCj4gPiAtwqDCoMKgwqDCoMKg
+IGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCBmYWxzZSwgZmFsc2Up
+Owo+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgdHRt
+X2RldiwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+IMKgwqDCoMKg
+wqDCoMKgIEtVTklUX0FTU0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4gwqDCoMKgwqDCoMKgwqAg
+cHJpdi0+dHRtX2RldiA9IHR0bV9kZXY7Cj4gPiAKPiA+IEBAIC00NzcsNyArNDc3LDcgQEAgc3Rh
+dGljIHZvaWQgdHRtX2JvX3Bpbl9iYXNpYyhzdHJ1Y3Qga3VuaXQKPiA+ICp0ZXN0KQo+ID4gwqDC
+oMKgwqDCoMKgwqAgdHRtX2RldiA9IGt1bml0X2t6YWxsb2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2
+KSwKPiA+IEdGUF9LRVJORUwpOwo+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9O
+VUxMKHRlc3QsIHR0bV9kZXYpOwo+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZp
+Y2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKg
+wqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgdHRtX2RldiwgKHN0cnVjdAo+
+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FT
+U0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4gwqDCoMKgwqDCoMKgwqAgcHJpdi0+dHRtX2RldiA9
+IHR0bV9kZXY7Cj4gPiAKPiA+IEBAIC01MTIsNyArNTEyLDcgQEAgc3RhdGljIHZvaWQgdHRtX2Jv
+X3Bpbl91bnBpbl9yZXNvdXJjZShzdHJ1Y3QKPiA+IGt1bml0ICp0ZXN0KQo+ID4gwqDCoMKgwqDC
+oMKgwqAgdHRtX2RldiA9IGt1bml0X2t6YWxsb2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2KSwKPiA+
+IEdGUF9LRVJORUwpOwo+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRl
+c3QsIHR0bV9kZXYpOwo+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3Vu
+aXRfaW5pdChwcml2LCB0dG1fZGV2LCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoCBl
+cnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgdHRtX2RldiwgKHN0cnVjdAo+ID4gdHRt
+X2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9F
+USh0ZXN0LCBlcnIsIDApOwo+ID4gwqDCoMKgwqDCoMKgwqAgcHJpdi0+dHRtX2RldiA9IHR0bV9k
+ZXY7Cj4gPiAKPiA+IEBAIC01NjMsNyArNTYzLDcgQEAgc3RhdGljIHZvaWQKPiA+IHR0bV9ib19t
+dWx0aXBsZV9waW5fb25lX3VucGluKHN0cnVjdCBrdW5pdCAqdGVzdCkKPiA+IMKgwqDCoMKgwqDC
+oMKgIHR0bV9kZXYgPSBrdW5pdF9remFsbG9jKHRlc3QsIHNpemVvZigqdHRtX2RldiksCj4gPiBH
+RlBfS0VSTkVMKTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9OT1RfTlVMTCh0ZXN0
+LCB0dG1fZGV2KTsKPiA+IAo+ID4gLcKgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0
+X2luaXQocHJpdiwgdHRtX2RldiwgZmFsc2UsIGZhbHNlKTsKPiA+ICvCoMKgwqDCoMKgwqAgZXJy
+ID0gdHRtX2RldmljZV9rdW5pdF9pbml0KHByaXYsIHR0bV9kZXYsIChzdHJ1Y3QKPiA+IHR0bV9k
+ZXZpY2VfaW5pdF9mbGFncyl7fSk7Cj4gPiDCoMKgwqDCoMKgwqDCoCBLVU5JVF9BU1NFUlRfRVEo
+dGVzdCwgZXJyLCAwKTsKPiA+IMKgwqDCoMKgwqDCoMKgIHByaXYtPnR0bV9kZXYgPSB0dG1fZGV2
+Owo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fYm9f
+dmFsaWRhdGVfdGVzdC5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdGVzdHMvdHRtX2JvX3Zh
+bGlkYXRlX3Rlc3QuYwo+ID4gaW5kZXggMWFkZjE4NDgxZWEwLi5jNjliOTcwN2U2ZDIgMTAwNjQ0
+Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3RzL3R0bV9ib192YWxpZGF0ZV90ZXN0
+LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdGVzdHMvdHRtX2JvX3ZhbGlkYXRlX3Rl
+c3QuYwo+ID4gQEAgLTEwNDQsNyArMTA0NCw4IEBAIHN0YXRpYyB2b2lkCj4gPiB0dG1fYm9fdmFs
+aWRhdGVfYnVzeV9kb21haW5fZXZpY3Qoc3RydWN0IGt1bml0ICp0ZXN0KQo+ID4gwqDCoMKgwqDC
+oMKgwqDCoCAqLwo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldmljZV9maW5pKHByaXYtPnR0bV9k
+ZXYpOwo+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdF9i
+YWRfZXZpY3QodGVzdC0+cHJpdiwgcHJpdi0KPiA+ID50dG1fZGV2LCBmYWxzZSwgZmFsc2UpOwo+
+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXRfYmFkX2V2aWN0KHRl
+c3QtPnByaXYsIHByaXYtCj4gPiA+dHRtX2RldiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIChzdHJ1Y3QKPiA+IHR0bV9kZXZpY2VfaW5pdF9mbGFncyl7fSk7Cj4gPiDCoMKg
+wqDCoMKgwqDCoCBLVU5JVF9BU1NFUlRfRVEodGVzdCwgZXJyLCAwKTsKPiA+IAo+ID4gwqDCoMKg
+wqDCoMKgwqAgdHRtX21vY2tfbWFuYWdlcl9pbml0KHByaXYtPnR0bV9kZXYsIG1lbV90eXBlLAo+
+ID4gTUFOQUdFUl9TSVpFKTsKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3Rl
+c3RzL3R0bV9kZXZpY2VfdGVzdC5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdGVzdHMvdHRt
+X2RldmljZV90ZXN0LmMKPiA+IGluZGV4IDE2MjE5MDM4MThlNS4uOTQxNWM3Yjc2ZTNiIDEwMDY0
+NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fZGV2aWNlX3Rlc3QuYwo+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fZGV2aWNlX3Rlc3QuYwo+ID4g
+QEAgLTI1LDcgKzI1LDcgQEAgc3RhdGljIHZvaWQgdHRtX2RldmljZV9pbml0X2Jhc2ljKHN0cnVj
+dCBrdW5pdAo+ID4gKnRlc3QpCj4gPiDCoMKgwqDCoMKgwqDCoCB0dG1fZGV2ID0ga3VuaXRfa3ph
+bGxvYyh0ZXN0LCBzaXplb2YoKnR0bV9kZXYpLAo+ID4gR0ZQX0tFUk5FTCk7Cj4gPiDCoMKgwqDC
+oMKgwqDCoCBLVU5JVF9BU1NFUlRfTk9UX05VTEwodGVzdCwgdHRtX2Rldik7Cj4gPiAKPiA+IC3C
+oMKgwqDCoMKgwqAgZXJyID0gdHRtX2RldmljZV9rdW5pdF9pbml0KHByaXYsIHR0bV9kZXYsIGZh
+bHNlLCBmYWxzZSk7Cj4gPiArwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5p
+dChwcml2LCB0dG1fZGV2LCAoc3RydWN0Cj4gPiB0dG1fZGV2aWNlX2luaXRfZmxhZ3Mpe30pOwo+
+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX0VRKHRlc3QsIGVyciwgMCk7Cj4gPiAKPiA+
+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0VYUEVDVF9QVFJfRVEodGVzdCwgdHRtX2Rldi0+ZnVuY3Ms
+ICZ0dG1fZGV2X2Z1bmNzKTsKPiA+IEBAIC01NSw3ICs1NSw4IEBAIHN0YXRpYyB2b2lkIHR0bV9k
+ZXZpY2VfaW5pdF9tdWx0aXBsZShzdHJ1Y3Qga3VuaXQKPiA+ICp0ZXN0KQo+ID4gwqDCoMKgwqDC
+oMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXZzKTsKPiA+IAo+ID4gwqDC
+oMKgwqDCoMKgwqAgZm9yIChpID0gMDsgaSA8IG51bV9kZXY7IGkrKykgewo+ID4gLcKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgZXJyID0gdHRtX2RldmljZV9rdW5pdF9pbml0KHByaXYsICZ0
+dG1fZGV2c1tpXSwKPiA+IGZhbHNlLCBmYWxzZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgJnR0bV9kZXZzW2ldLAo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAoc3RydWN0Cj4gPiB0dG1fZGV2aWNlX2lu
+aXRfZmxhZ3Mpe30pOwo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEtVTklUX0FT
+U0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4gCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgS1VOSVRfRVhQRUNUX1BUUl9FUSh0ZXN0LCB0dG1fZGV2c1tpXS5kZXZfbWFwcGluZywK
+PiA+IEBAIC04MSw3ICs4Miw3IEBAIHN0YXRpYyB2b2lkIHR0bV9kZXZpY2VfZmluaV9iYXNpYyhz
+dHJ1Y3Qga3VuaXQKPiA+ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldiA9IGt1bml0
+X2t6YWxsb2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2KSwKPiA+IEdGUF9LRVJORUwpOwo+ID4gwqDC
+oMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYpOwo+ID4gCj4g
+PiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2
+LCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0
+X2luaXQocHJpdiwgdHRtX2RldiwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9
+KTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4g
+Cj4gPiDCoMKgwqDCoMKgwqDCoCBtYW4gPSB0dG1fbWFuYWdlcl90eXBlKHR0bV9kZXYsIFRUTV9Q
+TF9TWVNURU0pOwo+ID4gQEAgLTEwOSw3ICsxMTAsNyBAQCBzdGF0aWMgdm9pZCB0dG1fZGV2aWNl
+X2luaXRfbm9fdm1hX21hbihzdHJ1Y3QKPiA+IGt1bml0ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKg
+wqAgdm1hX21hbiA9IGRybS0+dm1hX29mZnNldF9tYW5hZ2VyOwo+ID4gwqDCoMKgwqDCoMKgwqAg
+ZHJtLT52bWFfb2Zmc2V0X21hbmFnZXIgPSBOVUxMOwo+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVy
+ciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCBmYWxzZSwgZmFsc2UpOwo+
+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0X2luaXQocHJpdiwgdHRtX2Rl
+diwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9KTsKPiA+IMKgwqDCoMKgwqDC
+oMKgIEtVTklUX0VYUEVDVF9FUSh0ZXN0LCBlcnIsIC1FSU5WQUwpOwo+ID4gCj4gPiDCoMKgwqDC
+oMKgwqDCoCAvKiBCcmluZyB0aGUgbWFuYWdlciBiYWNrIGZvciBhIGdyYWNlZnVsIGNsZWFudXAg
+Ki8KPiA+IEBAIC0xNjIsOSArMTYzLDEwIEBAIHN0YXRpYyB2b2lkIHR0bV9kZXZpY2VfaW5pdF9w
+b29scyhzdHJ1Y3Qga3VuaXQKPiA+ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldiA9
+IGt1bml0X2t6YWxsb2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2KSwKPiA+IEdGUF9LRVJORUwpOwo+
+ID4gwqDCoMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYpOwo+
+ID4gCj4gPiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0
+dG1fZGV2LAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBhcmFtcy0+dXNlX2RtYV9hbGxvYywKPiA+IC3CoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBwYXJhbXMtPnVzZV9kbWEzMik7Cj4gPiArwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9k
+ZXZpY2Vfa3VuaXRfaW5pdChwcml2LCB0dG1fZGV2LCAoc3RydWN0Cj4gPiB0dG1fZGV2aWNlX2lu
+aXRfZmxhZ3Mpewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIC51c2VfZG1hX2FsbG9jID0gcGFyYW1zLT51c2VfZG1hX2FsbG9jLAo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC51c2VfZG1hMzIgPSBwYXJhbXMt
+PnVzZV9kbWEzMgo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSk7Cj4gPiDCoMKg
+wqDCoMKgwqDCoCBLVU5JVF9BU1NFUlRfRVEodGVzdCwgZXJyLCAwKTsKPiA+IAo+ID4gwqDCoMKg
+wqDCoMKgwqAgcG9vbCA9ICZ0dG1fZGV2LT5wb29sOwo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS90dG0vdGVzdHMvdHRtX2t1bml0X2hlbHBlcnMuYwo+ID4gYi9kcml2ZXJzL2dwdS9k
+cm0vdHRtL3Rlc3RzL3R0bV9rdW5pdF9oZWxwZXJzLmMKPiA+IGluZGV4IGI5MWMxM2Y0NjIyNS4u
+MjQ3MDZmYWJiMWM5IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90
+dG1fa3VuaXRfaGVscGVycy5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3RzL3R0
+bV9rdW5pdF9oZWxwZXJzLmMKPiA+IEBAIC0xMTQsOCArMTE0LDcgQEAgc3RhdGljIHZvaWQgYmFk
+X2V2aWN0X2ZsYWdzKHN0cnVjdAo+ID4gdHRtX2J1ZmZlcl9vYmplY3QgKmJvLAo+ID4gCj4gPiDC
+oHN0YXRpYyBpbnQgdHRtX2RldmljZV9rdW5pdF9pbml0X3dpdGhfZnVuY3Moc3RydWN0Cj4gPiB0
+dG1fdGVzdF9kZXZpY2VzICpwcml2LAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+c3RydWN0IHR0bV9kZXZpY2UgKnR0bSwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+Ym9vbCB1c2VfZG1hX2FsbG9jLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29s
+IHVzZV9kbWEzMiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0
+Cj4gPiB0dG1fZGV2aWNlX2luaXRfZmxhZ3MgZmxhZ3MsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX2RldmljZV9mdW5jcwo+ID4gKmZ1bmNzKQo+ID4gwqB7Cj4g
+PiDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX2RldmljZSAqZHJtID0gcHJpdi0+ZHJtOwo+ID4g
+QEAgLTEyNCw3ICsxMjMsNyBAQCBzdGF0aWMgaW50Cj4gPiB0dG1fZGV2aWNlX2t1bml0X2luaXRf
+d2l0aF9mdW5jcyhzdHJ1Y3QgdHRtX3Rlc3RfZGV2aWNlcyAqcHJpdiwKPiA+IMKgwqDCoMKgwqDC
+oMKgIGVyciA9IHR0bV9kZXZpY2VfaW5pdCh0dG0sIGZ1bmNzLCBkcm0tPmRldiwKPiA+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZHJt
+LT5hbm9uX2lub2RlLT5pX21hcHBpbmcsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRybS0+dm1hX29mZnNldF9tYW5hZ2VyLAo+
+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHVzZV9kbWFfYWxsb2MsIHVzZV9kbWEzMik7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZmxhZ3MpOwo+ID4gCj4gPiDCoMKg
+wqDCoMKgwqDCoCByZXR1cm4gZXJyOwo+ID4gwqB9Cj4gPiBAQCAtMTQwLDExICsxMzksOSBAQCBF
+WFBPUlRfU1lNQk9MX0dQTCh0dG1fZGV2X2Z1bmNzKTsKPiA+IAo+ID4gwqBpbnQgdHRtX2Rldmlj
+ZV9rdW5pdF9pbml0KHN0cnVjdCB0dG1fdGVzdF9kZXZpY2VzICpwcml2LAo+ID4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHR0bV9kZXZp
+Y2UgKnR0bSwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgYm9vbCB1c2VfZG1hX2FsbG9jLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIHVzZV9kbWEzMikKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IHR0bV9kZXZp
+Y2VfaW5pdF9mbGFncyBmbGFncykKPiA+IMKgewo+ID4gLcKgwqDCoMKgwqDCoCByZXR1cm4gdHRt
+X2RldmljZV9rdW5pdF9pbml0X3dpdGhfZnVuY3MocHJpdiwgdHRtLAo+ID4gdXNlX2RtYV9hbGxv
+YywKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1c2VfZG1hMzIsCj4g
+PiAmdHRtX2Rldl9mdW5jcyk7Cj4gPiArwqDCoMKgwqDCoMKgIHJldHVybiB0dG1fZGV2aWNlX2t1
+bml0X2luaXRfd2l0aF9mdW5jcyhwcml2LCB0dG0sIGZsYWdzLAo+ID4gJnR0bV9kZXZfZnVuY3Mp
+Owo+ID4gwqB9Cj4gPiDCoEVYUE9SVF9TWU1CT0xfR1BMKHR0bV9kZXZpY2Vfa3VuaXRfaW5pdCk7
+Cj4gPiAKPiA+IEBAIC0xNTksMTEgKzE1NiwxMCBAQCBFWFBPUlRfU1lNQk9MX0dQTCh0dG1fZGV2
+X2Z1bmNzX2JhZF9ldmljdCk7Cj4gPiAKPiA+IMKgaW50IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdF9i
+YWRfZXZpY3Qoc3RydWN0IHR0bV90ZXN0X2RldmljZXMgKnByaXYsCj4gPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IHN0cnVjdCB0dG1fZGV2aWNlICp0dG0sCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vbCB1c2VfZG1hX2Fs
+bG9jLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJvb2wgdXNlX2RtYTMyKQo+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNv
+bnN0IHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzIGZsYWdzKQo+ID4gwqB7Cj4gPiAt
+wqDCoMKgwqDCoMKgIHJldHVybiB0dG1fZGV2aWNlX2t1bml0X2luaXRfd2l0aF9mdW5jcyhwcml2
+LCB0dG0sCj4gPiB1c2VfZG1hX2FsbG9jLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHVzZV9kbWEzMiwKPiA+ICZ0dG1fZGV2X2Z1bmNzX2JhZF9ldmljdCk7Cj4gPiAr
+wqDCoMKgwqDCoMKgIHJldHVybiB0dG1fZGV2aWNlX2t1bml0X2luaXRfd2l0aF9mdW5jcyhwcml2
+LCB0dG0sIGZsYWdzLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4g
+PiAmdHRtX2Rldl9mdW5jc19iYWRfZXZpY3QpOwo+ID4gwqB9Cj4gPiDCoEVYUE9SVF9TWU1CT0xf
+R1BMKHR0bV9kZXZpY2Vfa3VuaXRfaW5pdF9iYWRfZXZpY3QpOwo+ID4gCj4gPiBAQCAtMjQ5LDcg
+KzI0NSw3IEBAIHN0cnVjdCB0dG1fdGVzdF9kZXZpY2VzCj4gPiAqdHRtX3Rlc3RfZGV2aWNlc19h
+bGwoc3RydWN0IGt1bml0ICp0ZXN0KQo+ID4gwqDCoMKgwqDCoMKgwqAgdHRtX2RldiA9IGt1bml0
+X2t6YWxsb2ModGVzdCwgc2l6ZW9mKCp0dG1fZGV2KSwKPiA+IEdGUF9LRVJORUwpOwo+ID4gwqDC
+oMKgwqDCoMKgwqAgS1VOSVRfQVNTRVJUX05PVF9OVUxMKHRlc3QsIHR0bV9kZXYpOwo+ID4gCj4g
+PiAtwqDCoMKgwqDCoMKgIGVyciA9IHR0bV9kZXZpY2Vfa3VuaXRfaW5pdChkZXZzLCB0dG1fZGV2
+LCBmYWxzZSwgZmFsc2UpOwo+ID4gK8KgwqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2t1bml0
+X2luaXQoZGV2cywgdHRtX2RldiwgKHN0cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzKXt9
+KTsKPiA+IMKgwqDCoMKgwqDCoMKgIEtVTklUX0FTU0VSVF9FUSh0ZXN0LCBlcnIsIDApOwo+ID4g
+Cj4gPiDCoMKgwqDCoMKgwqDCoCBkZXZzLT50dG1fZGV2ID0gdHRtX2RldjsKPiA+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3RzL3R0bV9rdW5pdF9oZWxwZXJzLmgKPiA+IGIv
+ZHJpdmVycy9ncHUvZHJtL3R0bS90ZXN0cy90dG1fa3VuaXRfaGVscGVycy5oCj4gPiBpbmRleCBj
+N2RhMjMyMzJmZmEuLmZiZjBkMzk4NGYyNSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS90dG0vdGVzdHMvdHRtX2t1bml0X2hlbHBlcnMuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3R0bS90ZXN0cy90dG1fa3VuaXRfaGVscGVycy5oCj4gPiBAQCAtMjgsMTIgKzI4LDEwIEBAIHN0
+cnVjdCB0dG1fdGVzdF9kZXZpY2VzIHsKPiA+IMKgLyogQnVpbGRpbmcgYmxvY2tzIGZvciB0ZXN0
+LXNwZWNpZmljIGluaXQgZnVuY3Rpb25zICovCj4gPiDCoGludCB0dG1fZGV2aWNlX2t1bml0X2lu
+aXQoc3RydWN0IHR0bV90ZXN0X2RldmljZXMgKnByaXYsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX2RldmljZSAqdHRtLAo+
+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29s
+IHVzZV9kbWFfYWxsb2MsCj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGJvb2wgdXNlX2RtYTMyKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IHR0bV9kZXZpY2VfaW5pdF9m
+bGFncwo+ID4gZmxhZ3MpOwo+ID4gwqBpbnQgdHRtX2RldmljZV9rdW5pdF9pbml0X2JhZF9ldmlj
+dChzdHJ1Y3QgdHRtX3Rlc3RfZGV2aWNlcyAqcHJpdiwKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0
+IHR0bV9kZXZpY2UgKnR0bSwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIHVzZV9kbWFfYWxsb2MsCj4g
+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgYm9vbCB1c2VfZG1hMzIpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0IHN0
+cnVjdAo+ID4gdHRtX2RldmljZV9pbml0X2ZsYWdzIGZsYWdzKTsKPiA+IMKgc3RydWN0IHR0bV9i
+dWZmZXJfb2JqZWN0ICp0dG1fYm9fa3VuaXRfaW5pdChzdHJ1Y3Qga3VuaXQgKnRlc3QsCj4gPiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX3Rlc3RfZGV2aWNlcwo+ID4g
+KmRldnMsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzaXplX3Qgc2l6ZSwKPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2UuYwo+ID4gYi9kcml2
+ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2UuYwo+ID4gaW5kZXggZTdjYzQ5NTRjMWJjLi4wYzg1
+ZDEwZTVlMGIgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2Uu
+Ywo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fZGV2aWNlLmMKPiA+IEBAIC0xNzQs
+OCArMTc0LDcgQEAgRVhQT1JUX1NZTUJPTCh0dG1fZGV2aWNlX3N3YXBvdXQpOwo+ID4gwqAgKiBA
+ZGV2OiBUaGUgY29yZSBrZXJuZWwgZGV2aWNlIHBvaW50ZXIgZm9yIERNQSBtYXBwaW5ncyBhbmQK
+PiA+IGFsbG9jYXRpb25zLgo+ID4gwqAgKiBAbWFwcGluZzogVGhlIGFkZHJlc3Mgc3BhY2UgdG8g
+dXNlIGZvciB0aGlzIGJvLgo+ID4gwqAgKiBAdm1hX21hbmFnZXI6IEEgcG9pbnRlciB0byBhIHZt
+YSBtYW5hZ2VyLgo+ID4gLSAqIEB1c2VfZG1hX2FsbG9jOiBJZiBjb2hlcmVudCBETUEgYWxsb2Nh
+dGlvbiBBUEkgc2hvdWxkIGJlIHVzZWQuCj4gPiAtICogQHVzZV9kbWEzMjogSWYgd2Ugc2hvdWxk
+IHVzZSBHRlBfRE1BMzIgZm9yIGRldmljZSBtZW1vcnkKPiA+IGFsbG9jYXRpb25zLgo+ID4gKyAq
+IEBmbGFnczogRmxhZ3MgZ292ZXJuaW5nIHRoZSBkZXZpY2UgYmVoYXZpb3VyLgo+ID4gwqAgKgo+
+ID4gwqAgKiBJbml0aWFsaXplcyBhIHN0cnVjdCB0dG1fZGV2aWNlOgo+ID4gwqAgKiBSZXR1cm5z
+Ogo+ID4gQEAgLTE4NCw3ICsxODMsNyBAQCBFWFBPUlRfU1lNQk9MKHR0bV9kZXZpY2Vfc3dhcG91
+dCk7Cj4gPiDCoGludCB0dG1fZGV2aWNlX2luaXQoc3RydWN0IHR0bV9kZXZpY2UgKmJkZXYsIGNv
+bnN0IHN0cnVjdAo+ID4gdHRtX2RldmljZV9mdW5jcyAqZnVuY3MsCj4gPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBhZGRy
+ZXNzX3NwYWNlCj4gPiAqbWFwcGluZywKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHN0cnVjdCBkcm1fdm1hX29mZnNldF9tYW5hZ2VyICp2bWFfbWFuYWdlciwKPiA+
+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vbCB1c2VfZG1hX2FsbG9j
+LCBib29sIHVzZV9kbWEzMikKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgY29uc3Qgc3RydWN0IHR0bV9kZXZpY2VfaW5pdF9mbGFncyBmbGFncykKPiA+IMKgewo+ID4g
+wqDCoMKgwqDCoMKgwqAgc3RydWN0IHR0bV9nbG9iYWwgKmdsb2IgPSAmdHRtX2dsb2I7Cj4gPiDC
+oMKgwqDCoMKgwqDCoCBpbnQgcmV0LCBuaWQ7Cj4gPiBAQCAtMjEyLDcgKzIxMSw3IEBAIGludCB0
+dG1fZGV2aWNlX2luaXQoc3RydWN0IHR0bV9kZXZpY2UgKmJkZXYsCj4gPiBjb25zdCBzdHJ1Y3Qg
+dHRtX2RldmljZV9mdW5jcyAqZnVuYwo+ID4gwqDCoMKgwqDCoMKgwqAgZWxzZQo+ID4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5pZCA9IE5VTUFfTk9fTk9ERTsKPiA+IAo+ID4gLcKg
+wqDCoMKgwqDCoCB0dG1fcG9vbF9pbml0KCZiZGV2LT5wb29sLCBkZXYsIG5pZCwgdXNlX2RtYV9h
+bGxvYywKPiA+IHVzZV9kbWEzMik7Cj4gPiArwqDCoMKgwqDCoMKgIHR0bV9wb29sX2luaXQoJmJk
+ZXYtPnBvb2wsIGRldiwgbmlkLCBmbGFncy51c2VfZG1hX2FsbG9jLAo+ID4gZmxhZ3MudXNlX2Rt
+YTMyKTsKPiA+IAo+ID4gwqDCoMKgwqDCoMKgwqAgYmRldi0+dm1hX21hbmFnZXIgPSB2bWFfbWFu
+YWdlcjsKPiA+IMKgwqDCoMKgwqDCoMKgIHNwaW5fbG9ja19pbml0KCZiZGV2LT5scnVfbG9jayk7
+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2LmMKPiA+
+IGIvZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2LmMKPiA+IGluZGV4IGNmN2E4OWQw
+MDJlNC4uN2ZmN2U1ZDdhOWYzIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3Ztd2dm
+eC92bXdnZnhfZHJ2LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X2Ry
+di5jCj4gPiBAQCAtMTA0OSw4ICsxMDQ5LDggQEAgc3RhdGljIGludCB2bXdfZHJpdmVyX2xvYWQo
+c3RydWN0IHZtd19wcml2YXRlCj4gPiAqZGV2X3ByaXYsIHUzMiBwY2lfaWQpCj4gPiDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldl9w
+cml2LT5kcm0uZGV2LAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZfcHJpdi0+ZHJtLmFub25faW5vZGUtPmlfbWFwcGluZywK
+PiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgZGV2X3ByaXYtPmRybS52bWFfb2Zmc2V0X21hbmFnZXIsCj4gPiAtwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2X3ByaXYtPm1h
+cF9tb2RlID09Cj4gPiB2bXdfZG1hX2FsbG9jX2NvaGVyZW50LAo+ID4gLcKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZhbHNlKTsKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAo
+c3RydWN0IHR0bV9kZXZpY2VfaW5pdF9mbGFncykKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB7LnVzZV9kbWFfYWxsb2MgPSAoZGV2
+X3ByaXYtPm1hcF9tb2RlCj4gPiA9PSB2bXdfZG1hX2FsbG9jX2NvaGVyZW50KX0pOwo+ID4gwqDC
+oMKgwqDCoMKgwqAgaWYgKHVubGlrZWx5KHJldCAhPSAwKSkgewo+ID4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIGRybV9lcnIoJmRldl9wcml2LT5kcm0sCj4gPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJGYWlsZWQgaW5pdGlhbGl6aW5nIFRU
+TSBidWZmZXIgb2JqZWN0Cj4gPiBkcml2ZXIuXG4iKTsKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0veGUveGVfZGV2aWNlLmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Rldmlj
+ZS5jCj4gPiBpbmRleCAwOWE3YWQ4MzBlNjkuLmY5MzE3ZjU2ZmY5YyAxMDA2NDQKPiA+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3hlL3hlX2RldmljZS5jCj4gPiBAQCAtMzIwLDcgKzMyMCw4IEBAIHN0cnVjdCB4ZV9kZXZpY2Ug
+KnhlX2RldmljZV9jcmVhdGUoc3RydWN0Cj4gPiBwY2lfZGV2ICpwZGV2LAo+ID4gCj4gPiDCoMKg
+wqDCoMKgwqDCoCBlcnIgPSB0dG1fZGV2aWNlX2luaXQoJnhlLT50dG0sICZ4ZV90dG1fZnVuY3Ms
+IHhlLT5kcm0uZGV2LAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCB4ZS0+ZHJtLmFub25faW5vZGUtPmlfbWFwcGluZywKPiA+IC3C
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB4
+ZS0+ZHJtLnZtYV9vZmZzZXRfbWFuYWdlciwgZmFsc2UsCj4gPiBmYWxzZSk7Cj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgeGUtPmRy
+bS52bWFfb2Zmc2V0X21hbmFnZXIsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHN0cnVjdCB0dG1fZGV2aWNlX2luaXRfZmxhZ3Mp
+e30pOwo+ID4gwqDCoMKgwqDCoMKgwqAgaWYgKFdBUk5fT04oZXJyKSkKPiA+IMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIGVycjsKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2luY2x1
+ZGUvZHJtL3R0bS90dG1fZGV2aWNlLmgKPiA+IGIvaW5jbHVkZS9kcm0vdHRtL3R0bV9kZXZpY2Uu
+aAo+ID4gaW5kZXggYzIyZjMwNTM1Yzg0Li4xNTM0YmQ5NDZjNzggMTAwNjQ0Cj4gPiAtLS0gYS9p
+bmNsdWRlL2RybS90dG0vdHRtX2RldmljZS5oCj4gPiArKysgYi9pbmNsdWRlL2RybS90dG0vdHRt
+X2RldmljZS5oCj4gPiBAQCAtMjg3LDEwICsyODcsMjAgQEAgc3RhdGljIGlubGluZSB2b2lkCj4g
+PiB0dG1fc2V0X2RyaXZlcl9tYW5hZ2VyKHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2LCBpbnQgdHlw
+ZSwKPiA+IMKgwqDCoMKgwqDCoMKgIGJkZXYtPm1hbl9kcnZbdHlwZV0gPSBtYW5hZ2VyOwo+ID4g
+wqB9Cj4gPiAKPiA+ICsvKioKPiA+ICsgKiBzdHJ1Y3QgdHRtX2RldmljZV9pbml0X2ZsYWdzIC0g
+RmxhZ3MgZm9yIHR0bSBkZXZpY2UgY3JlYXRpb24KPiA+ICsgKi8KPiA+ICtzdHJ1Y3QgdHRtX2Rl
+dmljZV9pbml0X2ZsYWdzIHsKPiA+ICvCoMKgwqDCoMKgwqAgLyoqIEB1c2VfZG1hX2FsbG9jOiBX
+aGV0aGVyIGNvaGVyZW50IERNQSBhbGxvY2F0aW9uIEFQSQo+ID4gc2hvdWxkIGJlIHVzZWQuICov
+Cj4gPiArwqDCoMKgwqDCoMKgIHUzMiB1c2VfZG1hX2FsbG9jIDogMTsKPiA+ICvCoMKgwqDCoMKg
+wqAgLyoqIEB1c2VfZG1hMzI6IElmIHdlIHNob3VsZCB1c2UgR0ZQX0RNQTMyIGZvciBkZXZpY2UK
+PiA+IG1lbW9yeSBhbGxvY2F0aW9ucy4gKi8KPiA+ICvCoMKgwqDCoMKgwqAgdTMyIHVzZV9kbWEz
+MiA6IDE7Cj4gPiArfTsKPiA+ICsKPiA+IMKgaW50IHR0bV9kZXZpY2VfaW5pdChzdHJ1Y3QgdHRt
+X2RldmljZSAqYmRldiwgY29uc3Qgc3RydWN0Cj4gPiB0dG1fZGV2aWNlX2Z1bmNzICpmdW5jcywK
+PiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkZXZpY2Ug
+KmRldiwgc3RydWN0IGFkZHJlc3Nfc3BhY2UKPiA+ICptYXBwaW5nLAo+ID4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV92bWFfb2Zmc2V0X21hbmFnZXIg
+KnZtYV9tYW5hZ2VyLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBi
+b29sIHVzZV9kbWFfYWxsb2MsIGJvb2wgdXNlX2RtYTMyKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IHR0bV9kZXZpY2VfaW5pdF9mbGFncyBm
+bGFncyk7Cj4gPiDCoHZvaWQgdHRtX2RldmljZV9maW5pKHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2
+KTsKPiA+IMKgdm9pZCB0dG1fZGV2aWNlX2NsZWFyX2RtYV9tYXBwaW5ncyhzdHJ1Y3QgdHRtX2Rl
+dmljZSAqYmRldik7Cj4gPiAKPiA+IC0tCj4gPiAyLjQ2LjAKPiA+IAo+IAo+IEZXSVcsIEkgbGlr
+ZSBlbnVtcyBhIGxvdCBiZXR0ZXIgdGhhbiBib29sZWFuJ3MgaW4gc2lnbmF0dXJlcy4gSXQganVz
+dAo+IG1ha2VzIHJlYWRpbmcgdGhlIGNvZGUgYSBsb3QgZWFzaWVyLgo+IFJldmlld2VkLWJ5OiBa
+YWNrIFJ1c2luIDx6YWNrLnJ1c2luQGJyb2FkY29tLmNvbT4KClRoYW5rcywgWmFjayEKL1Rob21h
+cwoKCj4gCj4gegoK
 
