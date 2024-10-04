@@ -2,77 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB727992CA0
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D6F6992C97
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024F710E393;
-	Mon,  7 Oct 2024 13:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB9E10E388;
+	Mon,  7 Oct 2024 13:06:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="O/MMSUcW";
+	dkim=pass (2048-bit key; unprotected) header.d=gwmail.gwu.edu header.i=@gwmail.gwu.edu header.b="OHEHAO5r";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
- [209.85.166.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02C0D10EA4E
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 17:33:52 +0000 (UTC)
-Received: by mail-io1-f51.google.com with SMTP id
- ca18e2360f4ac-82cdada0f21so94276439f.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 04 Oct 2024 10:33:52 -0700 (PDT)
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
+ [209.85.210.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17CC10EA5A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 18:20:24 +0000 (UTC)
+Received: by mail-pf1-f195.google.com with SMTP id
+ d2e1a72fcca58-71793afc07bso287444b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 04 Oct 2024 11:20:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google; t=1728063232; x=1728668032;
+ d=gwmail.gwu.edu; s=google; t=1728066024; x=1728670824;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=AgjqbFQ8hXrOjTXuOvQSjPVxsFmi6mOfY4A+dK7+CZQ=;
- b=O/MMSUcWSF5tkAvP5FhZ4BgHknUUnkMhLISDjxkS5w5xOK02w3/dplc2W5AE+Q6vyY
- EhANvktAd/IIG+QSTpsbD7AloB2bGbou2PPlDAcWX6EAMoMPCnoUYifIIMb672r5k4Dy
- xA9THu/ULKKBgFIbaPdF3pUMCzmOdVPbScz+Y=
+ h=mime-version:references:message-id:in-reply-to:subject:cc:to:date
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=SoGAZIU5Lyc6A4+tnt6D5VON7IKbopZSScnnux0+cO0=;
+ b=OHEHAO5r1d5b4pWKfBldTaY81GQfHRyp4BLe71VGtznGglwoP8Nspg3xd66O/Q9gml
+ xK5pnyIO8V1r8S5PvDYdasNNX7QPSifaJgKevAKk0OGjnmsxpm3QTMTn39PyhAXa2Vq+
+ 2T3T6cpazpoYAgpyYGc0MbUaNAoIE/G+0N81tz/G116nLgi+OHt3Rg591cqzTiZciEsm
+ jXiFxgh8yES89B+wLCFpsYYGdJApDiQ9zbzPqSQ2qroYVOjLjuXcsdHYvfa4j3BUmPht
+ uxIHmZmfdnuLj9vOKv2rpGJa+tqBIeI8FepWEvsdse6GCduTixeOstgqDSVL2gmFeaJf
+ Oi8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728063232; x=1728668032;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=AgjqbFQ8hXrOjTXuOvQSjPVxsFmi6mOfY4A+dK7+CZQ=;
- b=CzZ+wz90Nt+Ldc/OminBxCiFn0zKddYtQfNAAMbikvr07LZY3sadNjKIklVER/pzdF
- KPACeqZ897Ay0aqElvW6BVpudpered/jnCDxaVFFxtQtpSK9S9M2FvtRc5BUiWLlNJky
- mekT1f4hDQiOg+mEbxWh14UtSqwPPqTxr4K4FyF7vNN3NAylZbxzAdjPAiTsKVp27ToU
- TpCAFUP+TeYQlUezglJ3TfMmbyn9/HEpoRKNwVEga9krbis9jMMyat5cSNuHVCqLOEDh
- njSwNNtajG3C7R3lziaxeqdYcA42Swm6serWaW8uWe5Q1Z2MiFxwaom0PaM2+lxIedFg
- HRfQ==
-X-Gm-Message-State: AOJu0YyfjofXvYoipNdYDYbwzmbUd9MPSWMmnOK2QxD9ON2noTjSPTb4
- uP6CtOBY105Foc3pLdH9/ujO4ZepKVoqx4TX37EP44BecZMBoGvwQ+cjLKnNEK8=
-X-Google-Smtp-Source: AGHT+IFWtN+nePXXWQrjbLcWtHgnNNN+hX6zEwqzI13DzO7+hHBsT7GAMCn6f/EhVXGV2DP3eQ9Jew==
-X-Received: by 2002:a05:6602:3f93:b0:82c:fa71:2326 with SMTP id
- ca18e2360f4ac-834f7cfb296mr299279739f.8.1728063231607; 
- Fri, 04 Oct 2024 10:33:51 -0700 (PDT)
-Received: from [192.168.1.128] ([38.175.170.29])
+ d=1e100.net; s=20230601; t=1728066024; x=1728670824;
+ h=mime-version:references:message-id:in-reply-to:subject:cc:to:date
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=SoGAZIU5Lyc6A4+tnt6D5VON7IKbopZSScnnux0+cO0=;
+ b=aIZU/F3vzaVFBhGWnYzI5X15+xoufDTxCNLqhUx1N0zK3arc/oUvr+4dTDd/cNG8d0
+ +sRGt1LL4eOYUIrZtxfmeJlLlNU6WT/Si17agUXSNHzMyC9IFPPGAtpiwx9E37GYGHLd
+ LkRO0i06EHk60XHec0P1DV6GIoZYfh3MKwDrF0D9Xt92R8sXCSSc+KGfDrLnI42i09Xc
+ TeJsTFOIgrsRZQZnYjsHR0iva7b21njZ/65wJmxzWh6RQfZgZHbFjpVjdKzTiP0ZTdYa
+ I/ESjUhRRiOQNs+0H5F5mgoIWufNgRicj9RgW33rzYHRB6orOjvdIsaD2XPlh6JFxAWy
+ V+Bg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUb2vbxhuDWhcndPphD4RtH8MPJFm6P0ixCmsauhhzWr059eyONdu3vluPrPhkL8mIQaMunNH0q@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzuoA3BxZDXZl6UbNfwXZL6+W99thR8Pg6Nk2+pZJmTIZ7d4GVZ
+ 1M1m8MFm3gqxAZa1+31QgRq8zrzwRjjHlFV8fKuc62yaBR1JtoRQbZdMwbC3yA==
+X-Google-Smtp-Source: AGHT+IH1m5PyiOreIRJ/nQ4GUuid0vEYFhSrwVunVSBHeMWEbhbknYuTiLrD11z571HSzM07Y/Uxpw==
+X-Received: by 2002:a05:6a20:2453:b0:1cf:2be2:6526 with SMTP id
+ adf61e73a8af0-1d6dfaea5f0mr2370139637.12.1728066024038; 
+ Fri, 04 Oct 2024 11:20:24 -0700 (PDT)
+Received: from threadripper-arch.router92d9be.com
+ (syn-172-115-017-107.res.spectrum.com. [172.115.17.107])
  by smtp.gmail.com with ESMTPSA id
- ca18e2360f4ac-83503b154b5sm4227339f.43.2024.10.04.10.33.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 04 Oct 2024 10:33:51 -0700 (PDT)
-Message-ID: <7e1d5d2d-1b6d-4232-8d1b-6523849708b5@linuxfoundation.org>
-Date: Fri, 4 Oct 2024 11:33:49 -0600
+ d2e1a72fcca58-71df0d67d26sm153586b3a.181.2024.10.04.11.20.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Oct 2024 11:20:23 -0700 (PDT)
+From: Matthew Schwartz <mattschwartz@gwmail.gwu.edu>
+X-Google-Original-From: Matthew Schwartz <matt@gwmail.gwu.edu>
+Date: Fri, 4 Oct 2024 11:20:08 -0700 (PDT)
+To: Melissa Wen <mwen@igalia.com>
+cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, 
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>, 
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, 
+ Fangzhi Zuo <jerry.zuo@amd.com>, Zaeem Mohamed <zaeem.mohamed@amd.com>, 
+ Solomon Chiu <solomon.chiu@amd.com>, 
+ Daniel Wheeler <daniel.wheeler@amd.com>, Josip Pavic <Josip.Pavic@amd.com>, 
+ Aric Cyr <aric.cyr@amd.com>
+Subject: Re: [PATCH 13/26] drm/amd/display: Clear update flags after update
+ has been applied
+In-Reply-To: <cee2e5fb-793a-4f4e-8314-a0d875ba2dde@igalia.com>
+Message-ID: <036f3bc1-bd00-00ec-87ec-be17bca675c4@gwmail.gwu.edu>
+References: <20241003233509.210919-1-Rodrigo.Siqueira@amd.com>
+ <20241003233509.210919-14-Rodrigo.Siqueira@amd.com>
+ <cee2e5fb-793a-4f4e-8314-a0d875ba2dde@igalia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH-next] Fix unintentional integer overflow
-To: "Sundararaju, Sathishkumar" <sasundar@amd.com>,
- Advait Dhamorikar <advaitdhamorikar@gmail.com>, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- simona@ffwll.ch, leo.liu@amd.com, sathishkumar.sundararaju@amd.com,
- saleemkhan.jamadar@amd.com, Veerabadhran.Gopalakrishnan@amd.com,
- sonny.jiang@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, anupnewsmail@gmail.com,
- Shuah Khan <skhan@linuxfoundation.org>
-References: <20241004081618.27599-1-advaitdhamorikar@gmail.com>
- <00761132-75f3-41fd-b571-30b0cbe5565d@amd.com>
-Content-Language: en-US
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <00761132-75f3-41fd-b571-30b0cbe5565d@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,48 +93,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/4/24 03:15, Sundararaju, Sathishkumar wrote:
-> 
-> All occurrences of this error fix should have been together in a single patch both in _get and _set callbacks corresponding to f0b19b84d391, please avoid separate patch for each occurrence.
-> 
-> Sorry Alex, I missed to note this yesterday.
-> 
-> 
-> Regards,
-> Sathish
 
-Sathish,
 
-Please don't post on top when responding to kernel emails
-and patches. It makes it difficult to follow the discussions
+On Fri, 4 Oct 2024, Melissa Wen wrote:
 
-> 
-> 
-> On 10/4/2024 1:46 PM, Advait Dhamorikar wrote:
->> Fix shift-count-overflow when creating mask.
->> The expression's value may not be what the
->> programmer intended, because the expression is
->> evaluated using a narrower integer type.
+>
+>
+>
+> On 03/10/2024 20:33, Rodrigo Siqueira wrote:
+>>  From: Josip Pavic <Josip.Pavic@amd.com>
 >>
->> Fixes: f0b19b84d391 ("drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs")
->> Signed-off-by: Advait Dhamorikar<advaitdhamorikar@gmail.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>  [Why]
+>>  Since the surface/stream update flags aren't cleared after applying
+>>  updates, those same updates may be applied again in a future call to
+>>  update surfaces/streams for surfaces/streams that aren't actually part
+>>  of that update (i.e. applying an update for one surface/stream can
+>>  trigger unintended programming on a different surface/stream).
 >>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
->> index 95e2796919fc..7df402c45f40 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
->> @@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(void *data, u64 *val)
->>   		for (j = 0; j < adev->jpeg.num_jpeg_rings; ++j) {
->>   			ring = &adev->jpeg.inst[i].ring_dec[j];
->>   			if (ring->sched.ready)
->> -				mask |= 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
->> +				mask |= (u64)1 << ((i * adev->jpeg.num_jpeg_rings) + j);
->>   		}
->>   	}
->>   	*val = mask;
+>>  For example, when an update results in a call to
+>>  program_front_end_for_ctx, that function may call program_pipe on all
+>>  pipes. If there are surface update flags that were never cleared on the
+>>  surface some pipe is attached to, then the same update will be
+>>  programmed again.
+>>
+>>  [How]
+>>  Clear the surface and stream update flags after applying the updates.
+> Hi,
+>
+> Just to let you know: this patch fixes artifacts when transitioning from 2 to 
+> 3 planes with dynamic pipe split policy on DCN301, as reported here:
+>
+> https://gitlab.freedesktop.org/drm/amd/-/issues/3441
+>
+> The problem was first seen in kernel 6.5, when multiple features were enabled 
+> (plane color mgmt and zpos properties) and minimal transition state was 
+> reworked.
+>
+> Should it be sent to stable too?
+>
+> Thanks,
+>
+> Melissa
+Hello,
 
-thanks,
--- Shuah
+I wanted to confirm that this patch also fixes artifacts when utilizing 
+windowed MPO ODM on DCN32, as I originally reported here:
+
+https://gitlab.freedesktop.org/drm/amd/-/issues/3616
+
+I bisected this as a regression in kernel 6.9, where I noticed my 7900XTX 
+started to display almost identical artifacting to the issue on DCN301 
+that Melissa linked. As this commit seems to resolve the regression, a 
+submission to stable would be greatly appreciated.
+
+Cheers,
+
+Matthew
+>>
+>>  Reviewed-by: Aric Cyr <aric.cyr@amd.com>
+>>  Signed-off-by: Josip Pavic <Josip.Pavic@amd.com>
+>>  Signed-off-by: Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+>>  ---
+>>    drivers/gpu/drm/amd/display/dc/core/dc.c | 45 ++++++++++++++++++------
+>>    1 file changed, 34 insertions(+), 11 deletions(-)
+>>
+>>  diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c
+>>  b/drivers/gpu/drm/amd/display/dc/core/dc.c
+>>  index 981d9a327daf..7b239cbfbb4a 100644
+>>  --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
+>>  +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+>>  @@ -5129,11 +5129,26 @@ static bool update_planes_and_stream_v3(struct dc
+>>  *dc,
+>>    	return true;
+>>    }
+>>
+>>  +static void clear_update_flags(struct dc_surface_update *srf_updates,
+>>  +	int surface_count, struct dc_stream_state *stream)
+>>  +{
+>>  +	int i;
+>>  +
+>>  +	if (stream)
+>>  +		stream->update_flags.raw = 0;
+>>  +
+>>  +	for (i = 0; i < surface_count; i++)
+>>  +		if (srf_updates[i].surface)
+>>  +			srf_updates[i].surface->update_flags.raw = 0;
+>>  +}
+>>  +
+>>    bool dc_update_planes_and_stream(struct dc *dc,
+>>      struct dc_surface_update *srf_updates, int surface_count,
+>>      struct dc_stream_state *stream,
+>>      struct dc_stream_update *stream_update)
+>>    {
+>>  +	bool ret = false;
+>>  +
+>>     dc_exit_ips_for_hw_access(dc);
+>>     /*
+>>    	 * update planes and stream version 3 separates FULL and FAST updates
+>>  @@ -5150,10 +5165,16 @@ bool dc_update_planes_and_stream(struct dc *dc,
+>>      * features as they are now transparent to the new sequence.
+>>      */
+>>    	if (dc->ctx->dce_version >= DCN_VERSION_4_01)
+>>  -		return update_planes_and_stream_v3(dc, srf_updates,
+>>  +		ret = update_planes_and_stream_v3(dc, srf_updates,
+>>    				surface_count, stream, stream_update);
+>>  -	return update_planes_and_stream_v2(dc, srf_updates,
+>>  +	else
+>>  +		ret = update_planes_and_stream_v2(dc, srf_updates,
+>>    			surface_count, stream, stream_update);
+>>  +
+>>  +	if (ret)
+>>  +		clear_update_flags(srf_updates, surface_count, stream);
+>>  +
+>>  +	return ret;
+>>    }
+>>
+>>    void dc_commit_updates_for_stream(struct dc *dc,
+>>  @@ -5163,6 +5184,8 @@ void dc_commit_updates_for_stream(struct dc *dc,
+>>      struct dc_stream_update *stream_update,
+>>      struct dc_state *state)
+>>    {
+>>  +	bool ret = false;
+>>  +
+>>     dc_exit_ips_for_hw_access(dc);
+>>     /* TODO: Since change commit sequence can have a huge impact,
+>>    	 * we decided to only enable it for DCN3x. However, as soon as
+>>  @@ -5170,17 +5193,17 @@ void dc_commit_updates_for_stream(struct dc *dc,
+>>      * the new sequence for all ASICs.
+>>      */
+>>    	if (dc->ctx->dce_version >= DCN_VERSION_4_01) {
+>>  -		update_planes_and_stream_v3(dc, srf_updates, surface_count,
+>>  +		ret = update_planes_and_stream_v3(dc, srf_updates,
+>>  surface_count,
+>>    				stream, stream_update);
+>>  -		return;
+>>  -	}
+>>  -	if (dc->ctx->dce_version >= DCN_VERSION_3_2) {
+>>  -		update_planes_and_stream_v2(dc, srf_updates, surface_count,
+>>  +	} else if (dc->ctx->dce_version >= DCN_VERSION_3_2) {
+>>  +		ret = update_planes_and_stream_v2(dc, srf_updates,
+>>  surface_count,
+>>    				stream, stream_update);
+>>  -		return;
+>>  -	}
+>>  -	update_planes_and_stream_v1(dc, srf_updates, surface_count, stream,
+>>  -			stream_update, state);
+>>  +	} else
+>>  +		ret = update_planes_and_stream_v1(dc, srf_updates,
+>>  surface_count, stream,
+>>  +				stream_update, state);
+>>  +
+>>  +	if (ret)
+>>  +		clear_update_flags(srf_updates, surface_count, stream);
+>>    }
+>>
+>>    uint8_t dc_get_current_stream_count(struct dc *dc)
+>
+>
+>
