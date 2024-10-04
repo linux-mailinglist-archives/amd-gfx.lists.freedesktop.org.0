@@ -2,93 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8FF992C92
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D76992C98
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A29AE10E379;
-	Mon,  7 Oct 2024 13:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ADCD10E389;
+	Mon,  7 Oct 2024 13:06:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=xenosoft.de header.i=@xenosoft.de header.b="p3rOZDzg";
-	dkim=permerror (0-bit key) header.d=xenosoft.de header.i=@xenosoft.de header.b="cPrDotOU";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="kiNgiya4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 323 seconds by postgrey-1.36 at gabe;
- Fri, 04 Oct 2024 18:29:25 UTC
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [85.215.255.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2E5210EA7A
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Oct 2024 18:29:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1728066202; cv=none;
- d=strato.com; s=strato-dkim-0002;
- b=ryuDJkyoAigBE+RjYWjHOwz8Thcg/gbb5fWaZSHOKf3JBmDgDoTeXz3xVdKujnkzl8
- R+SWtAHPD1GziAmZIjOmP/jPWL+X84TE7IeB7kg4kNOzDLylwqwmOYD5SYD7SA6JDaTx
- yVPfjPHrhNZArjZpXx3lm0B8HZtXcG00gvxxVFG+AVqH8SC8iMyuOrjCZJqNPfu55/i+
- OId08i3wIHDYgsOy7AL3GEPgDwuzI52EbKO0c6j1pUCohNtxMmnYAUFeMZZ6Jo51jUz9
- YXvOdPy4SfziFFzJEtdxeDdT0X9JfgI8AOeTvuzMmfk9WZucU1OZ3S9Y8jH9cKucX9Rg
- N4KA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1728066202;
- s=strato-dkim-0002; d=strato.com;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
- b=cpYZO3RGAgzFip2LJ6xDfBHZMeM1zuDUDM2Vk6+Vb2B4rEOMjbOW07Z2xTsWTP8Xu6
- xYDEPYn7HVSpFjZ9MZ4hchhfzwY5GsSobHh0yDIqt5JFKU2+6G5hqsBjrAJaZfh32szy
- 5I2qjpmcDj9ctG0xSAdlq38N/f3HokxgmpbTKi/VElEe1cDrgKZ0qgNsCW55YdWrSCjp
- oyoWec6QE2TzN5xW/LIHmxhnVIVzuLLHReErjR+4wTFN/IWppD22UVhMnHhxFR8CNQ9U
- CZXB4kHCYShrXcUQ7sH/4pV0FI1imTATdKPy7kVh4pnsLCcKYz7gBHZYwZO5rGXM1Z0f
- H8Fw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1728066202;
- s=strato-dkim-0002; d=xenosoft.de;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
- b=p3rOZDzgUeuNjjwRSaUcfaVPHXrMVMvdn2MkrRb+3WKWL1fkyB0L9WkitiF2tfEheo
- H7+NzvSZwpxiAG/vBhFIgL3FdGwIAPFRDPU3k+dsS6Sd4NilPuI3QzbopyoONEg9AygS
- koBB2JmRhdVygCTSE52rXEb72/Dvwg0HtzPMhgXchL+uymFEHBX+WsCtAxeeys39NgIb
- AZ5FcrzcYaZl1lMG1Yv4OxrLmCEqNSLooxCHkxHyXLgEqTPWbDYyi1dddhzGqDP6LIUr
- b9j6p7UJASIBdWdEBlgitL+lfgo9x9GNKtdYR6s+LNQfM20Dl42Xw94hzms4VMXuAkSw
- eOZA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1728066202;
- s=strato-dkim-0003; d=xenosoft.de;
- h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
- From:Subject:Sender;
- bh=fh5lK3S2+T6zI5umkiU5AYrf63ArwtBPlfiCR8hznDs=;
- b=cPrDotOUMGIqIkpyrdwgVL/OvKnf2X+2HfYKDSbbZooT2v6gIAQ66Qn8b3ArRjUC1w
- rCaUNpTGk9m9F74AYhAA==
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGN0rBVhd9dFr6KxrfO5Oh7V7X5jms33DCCl8yuj1GiXKxy2NgsIyNI7J6OEvKwI="
-Received: from [IPV6:2a01:599:80b:670e:7ae4:fdea:aa8b:6a58]
- by smtp.strato.de (RZmta 51.2.8 AUTH) with ESMTPSA id e0da1a094INKf8x
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Fri, 4 Oct 2024 20:23:20 +0200 (CEST)
-Message-ID: <b758c87b-1ab3-4ce0-bc97-ac8fe9387c1b@xenosoft.de>
-Date: Fri, 4 Oct 2024 20:24:21 +0200
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2060010E0CB;
+ Fri,  4 Oct 2024 22:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=MIME-Version:Message-ID:Date:Subject:From:Content-Type:From
+ :Subject; bh=FN4JOMsiKWWAmejdS2L0j2XRB8TBUWM1mrrmECl6/d0=; b=kiNgiya4fZLu/PzQ
+ 4NvTxWltAErUp1Mhhr6nxO6B6WvGjp5GL4aq0rcgfWcCQnsOhYYkmbkGxhJYVTZoNKu77e151ch3Q
+ rnC9oB6gTCpaIHUs+Ls+Vs3azAMFgILib+hcIic/5x5a4B7drzWPIsc3Xcws0XKaX6hfBONyaOG0j
+ DOiXxA2oKNUXI+iO6riy7++pxuWcUvzfuut5AEpjEXt4Tgw+CwLGB+TCGaJRc4KxzHiDo55FpOKSW
+ H2zYXdsaTBsJ+wnT7tvTqCxF8l6zWIwl9ta+O5/mAJnTV4z0Gj87ZOH0OpfQxSLuUUaxVN+VQ4iqR
+ SFQHekDM6pXK7XRkRg==;
+Received: from localhost ([127.0.0.1] helo=dalek.home.treblig.org)
+ by mx.treblig.org with esmtp (Exim 4.96)
+ (envelope-from <linux@treblig.org>) id 1swrE3-0090pr-0H;
+ Fri, 04 Oct 2024 22:56:43 +0000
+From: linux@treblig.org
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com
+Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ "Dr. David Alan Gilbert" <linux@treblig.org>
+Subject: [PATCH] drm/amd/display: Remove unused regamma functions
+Date: Fri,  4 Oct 2024 23:56:42 +0100
+Message-ID: <20241004225642.280616-1-linux@treblig.org>
+X-Mailer: git-send-email 2.46.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v2] drm/radeon: add late_register for connector - Please test
-To: Alex Deucher <alexdeucher@gmail.com>, Wu Hoi Pok <wuhoipok@gmail.com>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
- Alex Deucher <alexander.deucher@amd.com>, Hans de Goede
- <hdegoede@redhat.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, "R.T.Dickinson"
- <rtd2@xtra.co.nz>, mad skateman <madskateman@gmail.com>,
- hypexed@yahoo.com.au, Darren Stevens <darren@stevens-zone.net>
-References: <20241004010601.3387-1-wuhoipok@gmail.com>
- <CADnq5_Nt=8Lx6KOXHf0DHmqo2O7dYKDTfGCz-w_Hv+__=BqP9w@mail.gmail.com>
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-In-Reply-To: <CADnq5_Nt=8Lx6KOXHf0DHmqo2O7dYKDTfGCz-w_Hv+__=BqP9w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -105,117 +55,381 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi All,
+From: "Dr. David Alan Gilbert" <linux@treblig.org>
 
-I compiled a new RC1 of kernel 6.12 with this patch today. Please test it.
+calculate_user_regamma_coeff() and calculate_user_regamma_ramp() were
+added in 2018 in commit
+55a01d4023ce ("drm/amd/display: Add user_regamma to color module")
 
-Downloads:
+but never used.
 
-- https://github.com/chzigotzky/kernels/releases/tag/v6.12.0-rc1-2
-- https://www.xenosoft.de/linux-image-6.12-rc1-2-X1000_X5000.tar.gz
+Remove them and their helpers.
 
-Thanks,
-Christian
+Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
+---
+ .../amd/display/modules/color/color_gamma.c   | 307 ------------------
+ .../amd/display/modules/color/color_gamma.h   |  11 -
+ 2 files changed, 318 deletions(-)
 
-On 04 October 2024 at 4:00pm, Alex Deucher wrote:
-> On Thu, Oct 3, 2024 at 9:18 PM Wu Hoi Pok <wuhoipok@gmail.com> wrote:
->> The patch is to solve null dereference in 'aux.dev', which is
->> introduced in recent radeon rework. By having 'late_register',
->> the connector should be registered after 'drm_dev_register'
->> automatically, where in before it is the opposite.
->>
->> Fixes: 90985660ba48 ("drm/radeon: remove load callback from kms_driver")
->> Tested-by: Hans de Goede <hdegoede@redhat.com>
->> Suggested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
->> Signed-off-by: Wu Hoi Pok <wuhoipok@gmail.com>
-> Applied.  Thanks!
->
-> Alex
->
->> ---
->>   drivers/gpu/drm/radeon/atombios_dp.c       |  9 ++-------
->>   drivers/gpu/drm/radeon/radeon_connectors.c | 17 +++++++++++++++++
->>   2 files changed, 19 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
->> index fca8b08535a5..6328627b7c34 100644
->> --- a/drivers/gpu/drm/radeon/atombios_dp.c
->> +++ b/drivers/gpu/drm/radeon/atombios_dp.c
->> @@ -228,10 +228,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
->>   {
->>          struct drm_device *dev = radeon_connector->base.dev;
->>          struct radeon_device *rdev = dev->dev_private;
->> -       int ret;
->>
->>          radeon_connector->ddc_bus->rec.hpd = radeon_connector->hpd.hpd;
->> -       radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
->>          radeon_connector->ddc_bus->aux.drm_dev = radeon_connector->base.dev;
->>          if (ASIC_IS_DCE5(rdev)) {
->>                  if (radeon_auxch)
->> @@ -242,11 +240,8 @@ void radeon_dp_aux_init(struct radeon_connector *radeon_connector)
->>                  radeon_connector->ddc_bus->aux.transfer = radeon_dp_aux_transfer_atom;
->>          }
->>
->> -       ret = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
->> -       if (!ret)
->> -               radeon_connector->ddc_bus->has_aux = true;
->> -
->> -       WARN(ret, "drm_dp_aux_register() failed with error %d\n", ret);
->> +       drm_dp_aux_init(&radeon_connector->ddc_bus->aux);
->> +       radeon_connector->ddc_bus->has_aux = true;
->>   }
->>
->>   /***** general DP utility functions *****/
->> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
->> index 528a8f3677c2..f9c73c55f04f 100644
->> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
->> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
->> @@ -1786,6 +1786,20 @@ static enum drm_mode_status radeon_dp_mode_valid(struct drm_connector *connector
->>          return MODE_OK;
->>   }
->>
->> +static int
->> +radeon_connector_late_register(struct drm_connector *connector)
->> +{
->> +       struct radeon_connector *radeon_connector = to_radeon_connector(connector);
->> +       int r = 0;
->> +
->> +       if (radeon_connector->ddc_bus->has_aux) {
->> +               radeon_connector->ddc_bus->aux.dev = radeon_connector->base.kdev;
->> +               r = drm_dp_aux_register(&radeon_connector->ddc_bus->aux);
->> +       }
->> +
->> +       return r;
->> +}
->> +
->>   static const struct drm_connector_helper_funcs radeon_dp_connector_helper_funcs = {
->>          .get_modes = radeon_dp_get_modes,
->>          .mode_valid = radeon_dp_mode_valid,
->> @@ -1800,6 +1814,7 @@ static const struct drm_connector_funcs radeon_dp_connector_funcs = {
->>          .early_unregister = radeon_connector_unregister,
->>          .destroy = radeon_connector_destroy,
->>          .force = radeon_dvi_force,
->> +       .late_register = radeon_connector_late_register,
->>   };
->>
->>   static const struct drm_connector_funcs radeon_edp_connector_funcs = {
->> @@ -1810,6 +1825,7 @@ static const struct drm_connector_funcs radeon_edp_connector_funcs = {
->>          .early_unregister = radeon_connector_unregister,
->>          .destroy = radeon_connector_destroy,
->>          .force = radeon_dvi_force,
->> +       .late_register = radeon_connector_late_register,
->>   };
->>
->>   static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
->> @@ -1820,6 +1836,7 @@ static const struct drm_connector_funcs radeon_lvds_bridge_connector_funcs = {
->>          .early_unregister = radeon_connector_unregister,
->>          .destroy = radeon_connector_destroy,
->>          .force = radeon_dvi_force,
->> +       .late_register = radeon_connector_late_register,
->>   };
->>
->>   void
->> --
->> 2.46.2
->>
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+index 3699e633801d..a71df052cf25 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+@@ -1399,71 +1399,6 @@ static void scale_gamma_dx(struct pwl_float_data *pwl_rgb,
+ 				pwl_rgb[i-1].b, 2), pwl_rgb[i-2].b);
+ }
+ 
+-/* todo: all these scale_gamma functions are inherently the same but
+- *  take different structures as params or different format for ramp
+- *  values. We could probably implement it in a more generic fashion
+- */
+-static void scale_user_regamma_ramp(struct pwl_float_data *pwl_rgb,
+-		const struct regamma_ramp *ramp,
+-		struct dividers dividers)
+-{
+-	unsigned short max_driver = 0xFFFF;
+-	unsigned short max_os = 0xFF00;
+-	unsigned short scaler = max_os;
+-	uint32_t i;
+-	struct pwl_float_data *rgb = pwl_rgb;
+-	struct pwl_float_data *rgb_last = rgb + GAMMA_RGB_256_ENTRIES - 1;
+-
+-	i = 0;
+-	do {
+-		if (ramp->gamma[i] > max_os ||
+-				ramp->gamma[i + 256] > max_os ||
+-				ramp->gamma[i + 512] > max_os) {
+-			scaler = max_driver;
+-			break;
+-		}
+-		i++;
+-	} while (i != GAMMA_RGB_256_ENTRIES);
+-
+-	i = 0;
+-	do {
+-		rgb->r = dc_fixpt_from_fraction(
+-				ramp->gamma[i], scaler);
+-		rgb->g = dc_fixpt_from_fraction(
+-				ramp->gamma[i + 256], scaler);
+-		rgb->b = dc_fixpt_from_fraction(
+-				ramp->gamma[i + 512], scaler);
+-
+-		++rgb;
+-		++i;
+-	} while (i != GAMMA_RGB_256_ENTRIES);
+-
+-	rgb->r = dc_fixpt_mul(rgb_last->r,
+-			dividers.divider1);
+-	rgb->g = dc_fixpt_mul(rgb_last->g,
+-			dividers.divider1);
+-	rgb->b = dc_fixpt_mul(rgb_last->b,
+-			dividers.divider1);
+-
+-	++rgb;
+-
+-	rgb->r = dc_fixpt_mul(rgb_last->r,
+-			dividers.divider2);
+-	rgb->g = dc_fixpt_mul(rgb_last->g,
+-			dividers.divider2);
+-	rgb->b = dc_fixpt_mul(rgb_last->b,
+-			dividers.divider2);
+-
+-	++rgb;
+-
+-	rgb->r = dc_fixpt_mul(rgb_last->r,
+-			dividers.divider3);
+-	rgb->g = dc_fixpt_mul(rgb_last->g,
+-			dividers.divider3);
+-	rgb->b = dc_fixpt_mul(rgb_last->b,
+-			dividers.divider3);
+-}
+-
+ /*
+  * RS3+ color transform DDI - 1D LUT adjustment is composed with regamma here
+  * Input is evenly distributed in the output color space as specified in
+@@ -1663,106 +1598,6 @@ static bool calculate_interpolated_hardware_curve(
+ 	return true;
+ }
+ 
+-/* The "old" interpolation uses a complicated scheme to build an array of
+- * coefficients while also using an array of 0-255 normalized to 0-1
+- * Then there's another loop using both of the above + new scaled user ramp
+- * and we concatenate them. It also searches for points of interpolation and
+- * uses enums for positions.
+- *
+- * This function uses a different approach:
+- * user ramp is always applied on X with 0/255, 1/255, 2/255, ..., 255/255
+- * To find index for hwX , we notice the following:
+- * i/255 <= hwX < (i+1)/255  <=> i <= 255*hwX < i+1
+- * See apply_lut_1d which is the same principle, but on 4K entry 1D LUT
+- *
+- * Once the index is known, combined Y is simply:
+- * user_ramp(index) + (hwX-index/255)*(user_ramp(index+1) - user_ramp(index)
+- *
+- * We should switch to this method in all cases, it's simpler and faster
+- * ToDo one day - for now this only applies to ADL regamma to avoid regression
+- * for regular use cases (sRGB and PQ)
+- */
+-static void interpolate_user_regamma(uint32_t hw_points_num,
+-		struct pwl_float_data *rgb_user,
+-		bool apply_degamma,
+-		struct dc_transfer_func_distributed_points *tf_pts)
+-{
+-	uint32_t i;
+-	uint32_t color = 0;
+-	int32_t index;
+-	int32_t index_next;
+-	struct fixed31_32 *tf_point;
+-	struct fixed31_32 hw_x;
+-	struct fixed31_32 norm_factor =
+-			dc_fixpt_from_int(255);
+-	struct fixed31_32 norm_x;
+-	struct fixed31_32 index_f;
+-	struct fixed31_32 lut1;
+-	struct fixed31_32 lut2;
+-	struct fixed31_32 delta_lut;
+-	struct fixed31_32 delta_index;
+-	const struct fixed31_32 one = dc_fixpt_from_int(1);
+-
+-	i = 0;
+-	/* fixed_pt library has problems handling too small values */
+-	while (i != 32) {
+-		tf_pts->red[i] = dc_fixpt_zero;
+-		tf_pts->green[i] = dc_fixpt_zero;
+-		tf_pts->blue[i] = dc_fixpt_zero;
+-		++i;
+-	}
+-	while (i <= hw_points_num + 1) {
+-		for (color = 0; color < 3; color++) {
+-			if (color == 0)
+-				tf_point = &tf_pts->red[i];
+-			else if (color == 1)
+-				tf_point = &tf_pts->green[i];
+-			else
+-				tf_point = &tf_pts->blue[i];
+-
+-			if (apply_degamma) {
+-				if (color == 0)
+-					hw_x = coordinates_x[i].regamma_y_red;
+-				else if (color == 1)
+-					hw_x = coordinates_x[i].regamma_y_green;
+-				else
+-					hw_x = coordinates_x[i].regamma_y_blue;
+-			} else
+-				hw_x = coordinates_x[i].x;
+-
+-			if (dc_fixpt_le(one, hw_x))
+-				hw_x = one;
+-
+-			norm_x = dc_fixpt_mul(norm_factor, hw_x);
+-			index = dc_fixpt_floor(norm_x);
+-			if (index < 0 || index > 255)
+-				continue;
+-
+-			index_f = dc_fixpt_from_int(index);
+-			index_next = (index == 255) ? index : index + 1;
+-
+-			if (color == 0) {
+-				lut1 = rgb_user[index].r;
+-				lut2 = rgb_user[index_next].r;
+-			} else if (color == 1) {
+-				lut1 = rgb_user[index].g;
+-				lut2 = rgb_user[index_next].g;
+-			} else {
+-				lut1 = rgb_user[index].b;
+-				lut2 = rgb_user[index_next].b;
+-			}
+-
+-			// we have everything now, so interpolate
+-			delta_lut = dc_fixpt_sub(lut2, lut1);
+-			delta_index = dc_fixpt_sub(norm_x, index_f);
+-
+-			*tf_point = dc_fixpt_add(lut1,
+-				dc_fixpt_mul(delta_index, delta_lut));
+-		}
+-		++i;
+-	}
+-}
+-
+ static void build_new_custom_resulted_curve(
+ 	uint32_t hw_points_num,
+ 	struct dc_transfer_func_distributed_points *tf_pts)
+@@ -1784,29 +1619,6 @@ static void build_new_custom_resulted_curve(
+ 	}
+ }
+ 
+-static void apply_degamma_for_user_regamma(struct pwl_float_data_ex *rgb_regamma,
+-		uint32_t hw_points_num, struct calculate_buffer *cal_buffer)
+-{
+-	uint32_t i;
+-
+-	struct gamma_coefficients coeff;
+-	struct pwl_float_data_ex *rgb = rgb_regamma;
+-	const struct hw_x_point *coord_x = coordinates_x;
+-
+-	build_coefficients(&coeff, TRANSFER_FUNCTION_SRGB);
+-
+-	i = 0;
+-	while (i != hw_points_num + 1) {
+-		rgb->r = translate_from_linear_space_ex(
+-				coord_x->x, &coeff, 0, cal_buffer);
+-		rgb->g = rgb->r;
+-		rgb->b = rgb->r;
+-		++coord_x;
+-		++rgb;
+-		++i;
+-	}
+-}
+-
+ static bool map_regamma_hw_to_x_user(
+ 	const struct dc_gamma *ramp,
+ 	struct pixel_gamma_point *coeff128,
+@@ -1855,125 +1667,6 @@ static bool map_regamma_hw_to_x_user(
+ 
+ #define _EXTRA_POINTS 3
+ 
+-bool calculate_user_regamma_coeff(struct dc_transfer_func *output_tf,
+-		const struct regamma_lut *regamma,
+-		struct calculate_buffer *cal_buffer,
+-		const struct dc_gamma *ramp)
+-{
+-	struct gamma_coefficients coeff;
+-	const struct hw_x_point *coord_x = coordinates_x;
+-	uint32_t i = 0;
+-
+-	do {
+-		coeff.a0[i] = dc_fixpt_from_fraction(
+-				regamma->coeff.A0[i], 10000000);
+-		coeff.a1[i] = dc_fixpt_from_fraction(
+-				regamma->coeff.A1[i], 1000);
+-		coeff.a2[i] = dc_fixpt_from_fraction(
+-				regamma->coeff.A2[i], 1000);
+-		coeff.a3[i] = dc_fixpt_from_fraction(
+-				regamma->coeff.A3[i], 1000);
+-		coeff.user_gamma[i] = dc_fixpt_from_fraction(
+-				regamma->coeff.gamma[i], 1000);
+-
+-		++i;
+-	} while (i != 3);
+-
+-	i = 0;
+-	/* fixed_pt library has problems handling too small values */
+-	while (i != 32) {
+-		output_tf->tf_pts.red[i] = dc_fixpt_zero;
+-		output_tf->tf_pts.green[i] = dc_fixpt_zero;
+-		output_tf->tf_pts.blue[i] = dc_fixpt_zero;
+-		++coord_x;
+-		++i;
+-	}
+-	while (i != MAX_HW_POINTS + 1) {
+-		output_tf->tf_pts.red[i] = translate_from_linear_space_ex(
+-				coord_x->x, &coeff, 0, cal_buffer);
+-		output_tf->tf_pts.green[i] = translate_from_linear_space_ex(
+-				coord_x->x, &coeff, 1, cal_buffer);
+-		output_tf->tf_pts.blue[i] = translate_from_linear_space_ex(
+-				coord_x->x, &coeff, 2, cal_buffer);
+-		++coord_x;
+-		++i;
+-	}
+-
+-	if (ramp && ramp->type == GAMMA_CS_TFM_1D)
+-		apply_lut_1d(ramp, MAX_HW_POINTS, &output_tf->tf_pts);
+-
+-	// this function just clamps output to 0-1
+-	build_new_custom_resulted_curve(MAX_HW_POINTS, &output_tf->tf_pts);
+-	output_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
+-
+-	return true;
+-}
+-
+-bool calculate_user_regamma_ramp(struct dc_transfer_func *output_tf,
+-		const struct regamma_lut *regamma,
+-		struct calculate_buffer *cal_buffer,
+-		const struct dc_gamma *ramp)
+-{
+-	struct dc_transfer_func_distributed_points *tf_pts = &output_tf->tf_pts;
+-	struct dividers dividers;
+-
+-	struct pwl_float_data *rgb_user = NULL;
+-	struct pwl_float_data_ex *rgb_regamma = NULL;
+-	bool ret = false;
+-
+-	if (regamma == NULL)
+-		return false;
+-
+-	output_tf->type = TF_TYPE_DISTRIBUTED_POINTS;
+-
+-	rgb_user = kcalloc(GAMMA_RGB_256_ENTRIES + _EXTRA_POINTS,
+-			   sizeof(*rgb_user),
+-			   GFP_KERNEL);
+-	if (!rgb_user)
+-		goto rgb_user_alloc_fail;
+-
+-	rgb_regamma = kcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
+-			      sizeof(*rgb_regamma),
+-			      GFP_KERNEL);
+-	if (!rgb_regamma)
+-		goto rgb_regamma_alloc_fail;
+-
+-	dividers.divider1 = dc_fixpt_from_fraction(3, 2);
+-	dividers.divider2 = dc_fixpt_from_int(2);
+-	dividers.divider3 = dc_fixpt_from_fraction(5, 2);
+-
+-	scale_user_regamma_ramp(rgb_user, &regamma->ramp, dividers);
+-
+-	if (regamma->flags.bits.applyDegamma == 1) {
+-		apply_degamma_for_user_regamma(rgb_regamma, MAX_HW_POINTS, cal_buffer);
+-		copy_rgb_regamma_to_coordinates_x(coordinates_x,
+-				MAX_HW_POINTS, rgb_regamma);
+-	}
+-
+-	interpolate_user_regamma(MAX_HW_POINTS, rgb_user,
+-			regamma->flags.bits.applyDegamma, tf_pts);
+-
+-	// no custom HDR curves!
+-	tf_pts->end_exponent = 0;
+-	tf_pts->x_point_at_y1_red = 1;
+-	tf_pts->x_point_at_y1_green = 1;
+-	tf_pts->x_point_at_y1_blue = 1;
+-
+-	if (ramp && ramp->type == GAMMA_CS_TFM_1D)
+-		apply_lut_1d(ramp, MAX_HW_POINTS, &output_tf->tf_pts);
+-
+-	// this function just clamps output to 0-1
+-	build_new_custom_resulted_curve(MAX_HW_POINTS, tf_pts);
+-
+-	ret = true;
+-
+-	kfree(rgb_regamma);
+-rgb_regamma_alloc_fail:
+-	kfree(rgb_user);
+-rgb_user_alloc_fail:
+-	return ret;
+-}
+-
+ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
+ 		struct dc_transfer_func *input_tf,
+ 		const struct dc_gamma *ramp, bool map_user_ramp)
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+index ee5c466613de..97e55278940e 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+@@ -115,15 +115,4 @@ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
+ 		struct dc_transfer_func *output_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp);
+ 
+-bool calculate_user_regamma_coeff(struct dc_transfer_func *output_tf,
+-		const struct regamma_lut *regamma,
+-		struct calculate_buffer *cal_buffer,
+-		const struct dc_gamma *ramp);
+-
+-bool calculate_user_regamma_ramp(struct dc_transfer_func *output_tf,
+-		const struct regamma_lut *regamma,
+-		struct calculate_buffer *cal_buffer,
+-		const struct dc_gamma *ramp);
+-
+-
+ #endif /* COLOR_MOD_COLOR_GAMMA_H_ */
+-- 
+2.46.2
 
