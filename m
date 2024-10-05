@@ -2,75 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C1E992C9A
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 651F7992C94
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 818F010E38B;
-	Mon,  7 Oct 2024 13:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E98310E383;
+	Mon,  7 Oct 2024 13:06:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m3mjtcKB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FQxNQT8d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5887610E0CB;
- Fri,  4 Oct 2024 23:59:20 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-20ba8d92af9so20765435ad.3; 
- Fri, 04 Oct 2024 16:59:20 -0700 (PDT)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA1110E1AF;
+ Sat,  5 Oct 2024 07:06:05 +0000 (UTC)
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-5398e3f43f3so3463053e87.2; 
+ Sat, 05 Oct 2024 00:06:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728086359; x=1728691159; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ELTyDzpdOksZjoNrVzCSOk+1T+6UJusdniGL8nRZ6BA=;
- b=m3mjtcKBEZbGCHoUncmYMN1Ij4ULPef/bPmXtMHo4PgXQdVD/Hg1Vyl/Kb9KiVhwi7
- VEk7uQbZc5VC8rk7t4ijz2VPdtfaz7RUuEuqYuJPWpfIlTJ4vKl1zXpE6yKDM4iO+i7B
- pMVgR9riWVlnMVLul0f9xM/zmkLM7+qIEVWELU8BjMLx4BjcfVzKiG/ckQPEt/e6xCnP
- sR7Kqyz3IyxhJD8FUc1Xod91okrQAt0YiskwwDR5mXZhbRhxK++T1qjMqHj1BukGvvvM
- MpupziDvephlJ0iHm2cryphDzkjoCZfgLtiiynr7/mGlV7xI9TvnRdY/AOnUXzUJ2lxa
- gytQ==
+ d=gmail.com; s=20230601; t=1728111963; x=1728716763; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bYVrMrQSJwfYKCjPdcCYgt+chvzT8Uf5ftZ8FQgUQlc=;
+ b=FQxNQT8d3ziGzaMKCw9Grn+LgpaJhGFevK5pko914Y+hkuPlO8tloIL3UgQ8DVd07E
+ Y1GW5R75pPWnQWIrdtsEiferDLs/fNoHVfpWqiyxbqK8eL9ErQX7abzgFmS79Dv0AMPE
+ 8joRJq/SsGm3RqUg8TQzclkUicE+1D/x7M8mI/xtILJaSOCOq8zg/ebyWLBwIHviQHmB
+ uuQQK+At0RsjP70QJtNr/6E0p2+UCL6fmbNTTiNhNdeCEY8/gauCA4PVHgqIQRvDDNRo
+ wDM7YIsgZxJFrBfv7TiV1kxQqdm6gYZY7ipDWjZywzrdQvZ9jT3Acrtziu/3WEk6LGdF
+ 6G3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728086359; x=1728691159;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ELTyDzpdOksZjoNrVzCSOk+1T+6UJusdniGL8nRZ6BA=;
- b=w72yAAKKS7Y33GMA3GQQq18WfgvfRV2P+oV0YeahyR/QX9jeVrKYsgCLi4oZXWpHrZ
- L01ny/oiFICR4G4+C7J6rvW0dRVyugfa0H2apZyp6cF8HHvbBdnkU10MME60EeWFxVAI
- v5H4Z5UTsCx4HrG+UkJnzkuCybrxkPnLbmgHAtNl47HDwNnVSBmYRHPwx0XYDPrH18fn
- 2E1fb1xBBgSciN3jwaP/UU99rs//IZ11T6g/yg98oUyqBTquPlSBUPS5eahOHQL0mLRy
- akoJtU2smYQmy+nLxx8jrUcWnJ4qa+VjxM8lzxG+TC8na1cUy5g9EyGu/6poNlBQ9l0Q
- Plqw==
+ d=1e100.net; s=20230601; t=1728111963; x=1728716763;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bYVrMrQSJwfYKCjPdcCYgt+chvzT8Uf5ftZ8FQgUQlc=;
+ b=CGT7rsji2mkKDTOnKmeRh9WwlTRATvVF8bGLIsi9omGmw7Zutj7sLl1R7Nbxl8Rotj
+ Y/6JA6lh6AmudAn1KnGBIAVMd57PbHqTRjru4fetOYxb0r/o4+VRRTQT8tKfWMVWatea
+ hA1jLkTPoOy9gxEqRKvCx/S/919wDtQx23ar1b+fm7IECUOB1KGaz0Z7Q8Jw2ChFLpbH
+ 1mztjrzYAVqWMOIQxmSm6nzmKgQqplLzwwfxltztAHnN3DFZkeEGWcngTu+an6qnk7Fk
+ 9rHMUlSB5Ql4hUEKHPV5JVtql0nO7nW+IqXs7HcLBVcaaVuwYeohwDjXfiAzFzcsHYfc
+ DyvQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXRPKaVhbuuqTJcEC46tGXA8mqpG0DSZu7U1lkmmk48diUJQCwga71qquUkjL2TdO5nfwboyL09SMQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy3RSW6+0IajbzAD2steRa4XaSQmtTebz1mkJSjgSm3zxZylZlx
- hz9zzPYuRh/l22ZzWiRWjLB2HvkBRCtGHPKWOpgUB+vXJna0TGu80wkG8o04
-X-Google-Smtp-Source: AGHT+IE4KeUCrGU0raePMGcI+7No2gZ8fga25JYXVow+n45+mMfBY6vGLyd1AwU6nr8w1On2GvMBAQ==
-X-Received: by 2002:a17:902:e547:b0:20b:b75d:e8c1 with SMTP id
- d9443c01a7336-20bfde5567cmr72247025ad.4.1728086358935; 
- Fri, 04 Oct 2024 16:59:18 -0700 (PDT)
-Received: from archlinux.. ([2405:201:e00c:517f:5e87:9cff:fe63:6000])
- by smtp.googlemail.com with ESMTPSA id
- d9443c01a7336-20c13987571sm3841785ad.250.2024.10.04.16.59.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Oct 2024 16:59:18 -0700 (PDT)
-From: Mohammed Anees <pvmohammedanees2003@gmail.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- David Wu <David.Wu3@amd.com>, Felix Kuehling <felix.kuehling@amd.com>,
- Mohammed Anees <pvmohammedanees2003@gmail.com>
-Subject: [PATCH] drm/amdgpu: prevent BO_HANDLES error from being overwritten
-Date: Sat,  5 Oct 2024 05:29:04 +0530
-Message-ID: <20241004235904.8605-1-pvmohammedanees2003@gmail.com>
-X-Mailer: git-send-email 2.46.0
+ AJvYcCXENv6PYxt0xC7mHV29mUxliBKqIMIcRpqanKalzu6al4F5jELTjq2UhSIfeaOzwUoJWgHW6aSL@lists.freedesktop.org,
+ AJvYcCXfQjB00F80tkWK+EhzI3pymsXEkpJqh85XQMMYu4fL4sHb35KKyhZcAn3aII+xjpmlXC95CK+92fHu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywk0GpN8+sRRr5SNJ/KWh+dcoO32wyR4lCI3aGQePlDwZlsPXm2
+ KdubtT2fT5e2GKB4mp6FY1AnOlBNyEw39TL4m6saydfODAKO/ry3m/Vqtkh1gVBbJHUvAPdAq3y
+ FZN+JntSZlwPd1Mch71Oa8L7c9FA=
+X-Google-Smtp-Source: AGHT+IF/SPb5q9d7Mi42mGpfn9y/A5HUxHESegg0s2/uE/R/lfVJVIWc3Bz0N41WkD4BgjxASggZkzFCnV8S5bjvk8g=
+X-Received: by 2002:a05:6512:1090:b0:539:896e:46c9 with SMTP id
+ 2adb3069b0e04-539ab9e4b44mr3143607e87.45.1728111963147; Sat, 05 Oct 2024
+ 00:06:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241004081618.27599-1-advaitdhamorikar@gmail.com>
+ <00761132-75f3-41fd-b571-30b0cbe5565d@amd.com>
+ <CADnq5_OKww1YZ1R_OytEMLcNVwdq=-ckc2gqQ+WMyOv6AZ9kqg@mail.gmail.com>
+ <007679b9-b7b6-4385-9a2e-2be392cb5f58@amd.com>
+In-Reply-To: <007679b9-b7b6-4385-9a2e-2be392cb5f58@amd.com>
+From: Advait Dhamorikar <advaitdhamorikar@gmail.com>
+Date: Sat, 5 Oct 2024 12:35:51 +0530
+Message-ID: <CAJ7bepLv3Z9RwuxoBS3SfkMjeBkN1LRTjLEjT8Lv4Jdu-CXb6Q@mail.gmail.com>
+Subject: Re: [PATCH-next] Fix unintentional integer overflow
+To: "Sundararaju, Sathishkumar" <sasundar@amd.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>, alexander.deucher@amd.com, 
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com, 
+ simona@ffwll.ch, leo.liu@amd.com, sathishkumar.sundararaju@amd.com, 
+ saleemkhan.jamadar@amd.com, Veerabadhran.Gopalakrishnan@amd.com, 
+ sonny.jiang@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ skhan@linuxfoundation.org, anupnewsmail@gmail.com, 
+ "Lazar, Lijo" <lijo.lazar@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,32 +89,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Before this patch, if multiple BO_HANDLES chunks were submitted,
-the error -EINVAL would be correctly set but could be overwritten
-by the return value from amdgpu_cs_p1_bo_handles(). This patch
-ensures that once an error condition is detected, the function
-returns immediately, avoiding the overwriting of the error code.
+Hi Sathish,
 
-Signed-off-by: Mohammed Anees <pvmohammedanees2003@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Please collate the changes together with Lijo's suggestion as well,
+> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
+> f0b19b84d391.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 1e475eb01417..543db0df9a31 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -266,8 +266,9 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
- 			/* Only a single BO list is allowed to simplify handling. */
- 			if (p->bo_list)
- 				ret = -EINVAL;
-+			else
-+				ret = amdgpu_cs_p1_bo_handles(p, p->chunks[i].kdata);
- 
--			ret = amdgpu_cs_p1_bo_handles(p, p->chunks[i].kdata);
- 			if (ret)
- 				goto free_partial_kdata;
- 			break;
--- 
-2.46.0
+I could only observe two instances of this error in f0b19b84d391 at:
+'mask =3D (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1=
+;`
+and `mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);`
 
+There are a few instances where we can use 1U instead of int as
+harvest_config uses unsigned int
+(adev->jpeg.harvest_config & (1 << i)
+However I think they should be fixed in a separate patch?
+
+Thanks and regards,
+Advait
+
+On Sat, 5 Oct 2024 at 09:05, Sundararaju, Sathishkumar <sasundar@amd.com> w=
+rote:
+>
+>
+>
+> On 10/4/2024 11:30 PM, Alex Deucher wrote:
+> > On Fri, Oct 4, 2024 at 5:15=E2=80=AFAM Sundararaju, Sathishkumar
+> > <sasundar@amd.com> wrote:
+> >>
+> >> All occurrences of this error fix should have been together in a singl=
+e patch both in _get and _set callbacks corresponding to f0b19b84d391, plea=
+se avoid separate patch for each occurrence.
+> >>
+> >> Sorry Alex, I missed to note this yesterday.
+> > I've dropped the patch.  Please pick it up once it's fixed up appropria=
+tely.
+> Thanks Alex.
+>
+> Hi Advait,
+> Please collate the changes together with Lijo's suggestion as well,
+> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
+> f0b19b84d391.
+>
+> Regards,
+> Sathish
+> >
+> > Thanks,
+> >
+> > Alex
+> >
+> >>
+> >> Regards,
+> >> Sathish
+> >>
+> >>
+> >> On 10/4/2024 1:46 PM, Advait Dhamorikar wrote:
+> >>
+> >> Fix shift-count-overflow when creating mask.
+> >> The expression's value may not be what the
+> >> programmer intended, because the expression is
+> >> evaluated using a narrower integer type.
+> >>
+> >> Fixes: f0b19b84d391 ("drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs")
+> >> Signed-off-by: Advait Dhamorikar <advaitdhamorikar@gmail.com>
+> >> ---
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_jpeg.c
+> >> index 95e2796919fc..7df402c45f40 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
+> >> @@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(void=
+ *data, u64 *val)
+> >>    for (j =3D 0; j < adev->jpeg.num_jpeg_rings; ++j) {
+> >>    ring =3D &adev->jpeg.inst[i].ring_dec[j];
+> >>    if (ring->sched.ready)
+> >> - mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
+> >> + mask |=3D (u64)1 << ((i * adev->jpeg.num_jpeg_rings) + j);
+> >>    }
+> >>    }
+> >>    *val =3D mask;
+>
