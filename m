@@ -2,78 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 651F7992C94
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CFA992C8C
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E98310E383;
-	Mon,  7 Oct 2024 13:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D66810E371;
+	Mon,  7 Oct 2024 13:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FQxNQT8d";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qh1Khbur";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADA1110E1AF;
- Sat,  5 Oct 2024 07:06:05 +0000 (UTC)
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-5398e3f43f3so3463053e87.2; 
- Sat, 05 Oct 2024 00:06:05 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 788B410E00C;
+ Sun,  6 Oct 2024 11:28:01 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-37ccd81de57so2222225f8f.0; 
+ Sun, 06 Oct 2024 04:28:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728111963; x=1728716763; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bYVrMrQSJwfYKCjPdcCYgt+chvzT8Uf5ftZ8FQgUQlc=;
- b=FQxNQT8d3ziGzaMKCw9Grn+LgpaJhGFevK5pko914Y+hkuPlO8tloIL3UgQ8DVd07E
- Y1GW5R75pPWnQWIrdtsEiferDLs/fNoHVfpWqiyxbqK8eL9ErQX7abzgFmS79Dv0AMPE
- 8joRJq/SsGm3RqUg8TQzclkUicE+1D/x7M8mI/xtILJaSOCOq8zg/ebyWLBwIHviQHmB
- uuQQK+At0RsjP70QJtNr/6E0p2+UCL6fmbNTTiNhNdeCEY8/gauCA4PVHgqIQRvDDNRo
- wDM7YIsgZxJFrBfv7TiV1kxQqdm6gYZY7ipDWjZywzrdQvZ9jT3Acrtziu/3WEk6LGdF
- 6G3Q==
+ d=gmail.com; s=20230601; t=1728214080; x=1728818880; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=6CAoqvvD4YI816IpY4nefTarN9VTzwy3A335UX1ixTk=;
+ b=Qh1Khbur6Q5fh4ZCiQrVpTUIiC3egJh4fojNGyhLuKIYceCD0zEoB0tG7DkOqxE5O8
+ 1QcwRXwJlPc21ez1WCTkjtlxht3P1D5wane59ORXCIx3Wq/4KZBsLlCiEyI0UIVC807A
+ 8+IVSYDt7Fb6xwb8ZSBcBvV4Cb5+ImIM8RSeXmDaysnxF9XeXGLBXrY8XaSfvC/nQSLt
+ eBFDEfea7W0PUtC9eis50hyqWzkhEMoJD1tpeHyZXiDAhCCA0ydCVBl3rmHmoUeaKUJl
+ HMGaYVxeRL0qiTJaFff3/fjl1OoRXKFrXOb6ZhWdj1s0nHBF79jEMnSCHn5n9y0b1bzM
+ 4NQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728111963; x=1728716763;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=bYVrMrQSJwfYKCjPdcCYgt+chvzT8Uf5ftZ8FQgUQlc=;
- b=CGT7rsji2mkKDTOnKmeRh9WwlTRATvVF8bGLIsi9omGmw7Zutj7sLl1R7Nbxl8Rotj
- Y/6JA6lh6AmudAn1KnGBIAVMd57PbHqTRjru4fetOYxb0r/o4+VRRTQT8tKfWMVWatea
- hA1jLkTPoOy9gxEqRKvCx/S/919wDtQx23ar1b+fm7IECUOB1KGaz0Z7Q8Jw2ChFLpbH
- 1mztjrzYAVqWMOIQxmSm6nzmKgQqplLzwwfxltztAHnN3DFZkeEGWcngTu+an6qnk7Fk
- 9rHMUlSB5Ql4hUEKHPV5JVtql0nO7nW+IqXs7HcLBVcaaVuwYeohwDjXfiAzFzcsHYfc
- DyvQ==
+ d=1e100.net; s=20230601; t=1728214080; x=1728818880;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=6CAoqvvD4YI816IpY4nefTarN9VTzwy3A335UX1ixTk=;
+ b=Tl/MkO+MiwHLz6Zu5I/ILbIeSLWhme6DPO2gVCpnnX2QqEe2cG2U0lY7q4K+zOgvef
+ SeMscfPf8C/A3YnqdfMQR0SyKuo8yoeLGjRsSu4VbuNW8xv5jKcMiy2BC2SXIibJgCro
+ mS8AvKt6kgbkqy6KUqaCuAdHhAh7eo424OR8SRL7QlMiQ2E8ZTQqF4A+iPgxaxHszmvH
+ CeDUROJqz3Y/4YdJv7WYGHBNZnUp+dZlIjmndgPC3NTJTf9C5ZzBhFKTGSJFea1yBQxB
+ XOpj04BfWxD1bdef/55pATVRL8uKfrFGjIdRgjEeFSsrxAHvRsiVwxvuM7gXUF3Z5fVy
+ +OPA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXENv6PYxt0xC7mHV29mUxliBKqIMIcRpqanKalzu6al4F5jELTjq2UhSIfeaOzwUoJWgHW6aSL@lists.freedesktop.org,
- AJvYcCXfQjB00F80tkWK+EhzI3pymsXEkpJqh85XQMMYu4fL4sHb35KKyhZcAn3aII+xjpmlXC95CK+92fHu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywk0GpN8+sRRr5SNJ/KWh+dcoO32wyR4lCI3aGQePlDwZlsPXm2
- KdubtT2fT5e2GKB4mp6FY1AnOlBNyEw39TL4m6saydfODAKO/ry3m/Vqtkh1gVBbJHUvAPdAq3y
- FZN+JntSZlwPd1Mch71Oa8L7c9FA=
-X-Google-Smtp-Source: AGHT+IF/SPb5q9d7Mi42mGpfn9y/A5HUxHESegg0s2/uE/R/lfVJVIWc3Bz0N41WkD4BgjxASggZkzFCnV8S5bjvk8g=
-X-Received: by 2002:a05:6512:1090:b0:539:896e:46c9 with SMTP id
- 2adb3069b0e04-539ab9e4b44mr3143607e87.45.1728111963147; Sat, 05 Oct 2024
- 00:06:03 -0700 (PDT)
+ AJvYcCXF0OmnHGvKLvUfFTscaDcvwzkcOP1JDHnnBJaNGGJbhKUi6pAifVluPNyce96rFfUTYpHvycODyzE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwLE9K+Hv1geWGQ7hBQp8D4R4osJV/YzWy68LeqYo5ZXLDnl6SU
+ MeQAzD0WB/0VD9fyDsO7PINK88ZBI+ehK+gsqCNErQE4GBHF+y9+
+X-Google-Smtp-Source: AGHT+IHfGrwFLywFiuwm/772cVOvBnRAK9phO1/F0qEaYxADEqaxNjoKOHyenCeSyujUCwHaFQP2Pw==
+X-Received: by 2002:a05:6000:402a:b0:374:ba78:9013 with SMTP id
+ ffacd0b85a97d-37d0f6a1ae7mr5087591f8f.9.1728214079487; 
+ Sun, 06 Oct 2024 04:27:59 -0700 (PDT)
+Received: from void.void ([141.226.12.238]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37d16972b2esm3464989f8f.105.2024.10.06.04.27.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 06 Oct 2024 04:27:59 -0700 (PDT)
+From: Andrew Kreimer <algonell@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Andrew Kreimer <algonell@gmail.com>
+Subject: [PATCH] drm/amdgpu: fix typos
+Date: Sun,  6 Oct 2024 14:27:52 +0300
+Message-Id: <20241006112752.6594-1-algonell@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-References: <20241004081618.27599-1-advaitdhamorikar@gmail.com>
- <00761132-75f3-41fd-b571-30b0cbe5565d@amd.com>
- <CADnq5_OKww1YZ1R_OytEMLcNVwdq=-ckc2gqQ+WMyOv6AZ9kqg@mail.gmail.com>
- <007679b9-b7b6-4385-9a2e-2be392cb5f58@amd.com>
-In-Reply-To: <007679b9-b7b6-4385-9a2e-2be392cb5f58@amd.com>
-From: Advait Dhamorikar <advaitdhamorikar@gmail.com>
-Date: Sat, 5 Oct 2024 12:35:51 +0530
-Message-ID: <CAJ7bepLv3Z9RwuxoBS3SfkMjeBkN1LRTjLEjT8Lv4Jdu-CXb6Q@mail.gmail.com>
-Subject: Re: [PATCH-next] Fix unintentional integer overflow
-To: "Sundararaju, Sathishkumar" <sasundar@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, alexander.deucher@amd.com, 
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com, 
- simona@ffwll.ch, leo.liu@amd.com, sathishkumar.sundararaju@amd.com, 
- saleemkhan.jamadar@amd.com, Veerabadhran.Gopalakrishnan@amd.com, 
- sonny.jiang@amd.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- skhan@linuxfoundation.org, anupnewsmail@gmail.com, 
- "Lazar, Lijo" <lijo.lazar@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,86 +83,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Sathish,
+Fix typos in comments: "wether -> whether".
 
-> Please collate the changes together with Lijo's suggestion as well,
-> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
-> f0b19b84d391.
+Signed-off-by: Andrew Kreimer <algonell@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c  | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  | 2 +-
+ 6 files changed, 9 insertions(+), 9 deletions(-)
 
-I could only observe two instances of this error in f0b19b84d391 at:
-'mask =3D (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1=
-;`
-and `mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);`
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index c544ea2aea6e..87247055a666 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -6374,7 +6374,7 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI, upper_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) &
+@@ -6412,7 +6412,7 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 		ring->wptr = 0;
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_WPTR, lower_32_bits(ring->wptr));
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_WPTR_HI, upper_32_bits(ring->wptr));
+-		/* Set the wb address wether it's enabled or not */
++		/* Set the wb address whether it's enabled or not */
+ 		rptr_addr = ring->rptr_gpu_addr;
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_RPTR_ADDR_HI, upper_32_bits(rptr_addr) &
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index a0f80cc993cf..cf741fc61300 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -3557,7 +3557,7 @@ static int gfx_v11_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 	WREG32_SOC15(GC, 0, regCP_RB0_WPTR_HI, upper_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32_SOC15(GC, 0, regCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32_SOC15(GC, 0, regCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) &
+@@ -3595,7 +3595,7 @@ static int gfx_v11_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 		ring->wptr = 0;
+ 		WREG32_SOC15(GC, 0, regCP_RB1_WPTR, lower_32_bits(ring->wptr));
+ 		WREG32_SOC15(GC, 0, regCP_RB1_WPTR_HI, upper_32_bits(ring->wptr));
+-		/* Set the wb address wether it's enabled or not */
++		/* Set the wb address whether it's enabled or not */
+ 		rptr_addr = ring->rptr_gpu_addr;
+ 		WREG32_SOC15(GC, 0, regCP_RB1_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 		WREG32_SOC15(GC, 0, regCP_RB1_RPTR_ADDR_HI, upper_32_bits(rptr_addr) &
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 63e1a2803503..b5281f45e1ea 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -2601,7 +2601,7 @@ static int gfx_v12_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 	WREG32_SOC15(GC, 0, regCP_RB0_WPTR_HI, upper_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32_SOC15(GC, 0, regCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32_SOC15(GC, 0, regCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) &
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+index 990e7de8da25..ee9ad38e12cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+@@ -2559,7 +2559,7 @@ static int gfx_v7_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	ring->wptr = 0;
+ 	WREG32(mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32(mmCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32(mmCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) & 0xFF);
+@@ -2876,7 +2876,7 @@ static void gfx_v7_0_mqd_init(struct amdgpu_device *adev,
+ 	mqd->cp_hqd_pq_wptr_poll_addr_lo = wb_gpu_addr & 0xfffffffc;
+ 	mqd->cp_hqd_pq_wptr_poll_addr_hi = upper_32_bits(wb_gpu_addr) & 0xffff;
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	wb_gpu_addr = ring->rptr_gpu_addr;
+ 	mqd->cp_hqd_pq_rptr_report_addr_lo = wb_gpu_addr & 0xfffffffc;
+ 	mqd->cp_hqd_pq_rptr_report_addr_hi =
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 6864219987e9..9d1672664c7d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -4260,7 +4260,7 @@ static int gfx_v8_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	ring->wptr = 0;
+ 	WREG32(mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32(mmCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32(mmCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) & 0xFF);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 99334afb7aae..979774cd2585 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -3357,7 +3357,7 @@ static int gfx_v9_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI, upper_32_bits(ring->wptr));
+ 
+-	/* set the wb address wether it's enabled or not */
++	/* set the wb address whether it's enabled or not */
+ 	rptr_addr = ring->rptr_gpu_addr;
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR, lower_32_bits(rptr_addr));
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR_HI, upper_32_bits(rptr_addr) & CP_RB_RPTR_ADDR_HI__RB_RPTR_ADDR_HI_MASK);
+-- 
+2.39.5
 
-There are a few instances where we can use 1U instead of int as
-harvest_config uses unsigned int
-(adev->jpeg.harvest_config & (1 << i)
-However I think they should be fixed in a separate patch?
-
-Thanks and regards,
-Advait
-
-On Sat, 5 Oct 2024 at 09:05, Sundararaju, Sathishkumar <sasundar@amd.com> w=
-rote:
->
->
->
-> On 10/4/2024 11:30 PM, Alex Deucher wrote:
-> > On Fri, Oct 4, 2024 at 5:15=E2=80=AFAM Sundararaju, Sathishkumar
-> > <sasundar@amd.com> wrote:
-> >>
-> >> All occurrences of this error fix should have been together in a singl=
-e patch both in _get and _set callbacks corresponding to f0b19b84d391, plea=
-se avoid separate patch for each occurrence.
-> >>
-> >> Sorry Alex, I missed to note this yesterday.
-> > I've dropped the patch.  Please pick it up once it's fixed up appropria=
-tely.
-> Thanks Alex.
->
-> Hi Advait,
-> Please collate the changes together with Lijo's suggestion as well,
-> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
-> f0b19b84d391.
->
-> Regards,
-> Sathish
-> >
-> > Thanks,
-> >
-> > Alex
-> >
-> >>
-> >> Regards,
-> >> Sathish
-> >>
-> >>
-> >> On 10/4/2024 1:46 PM, Advait Dhamorikar wrote:
-> >>
-> >> Fix shift-count-overflow when creating mask.
-> >> The expression's value may not be what the
-> >> programmer intended, because the expression is
-> >> evaluated using a narrower integer type.
-> >>
-> >> Fixes: f0b19b84d391 ("drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs")
-> >> Signed-off-by: Advait Dhamorikar <advaitdhamorikar@gmail.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 2 +-
-> >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_jpeg.c
-> >> index 95e2796919fc..7df402c45f40 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> >> @@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(void=
- *data, u64 *val)
-> >>    for (j =3D 0; j < adev->jpeg.num_jpeg_rings; ++j) {
-> >>    ring =3D &adev->jpeg.inst[i].ring_dec[j];
-> >>    if (ring->sched.ready)
-> >> - mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-> >> + mask |=3D (u64)1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-> >>    }
-> >>    }
-> >>    *val =3D mask;
->
