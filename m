@@ -2,105 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4489994826
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 14:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D33994F2E
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:25:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4138C10E505;
-	Tue,  8 Oct 2024 12:07:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4038510E52D;
+	Tue,  8 Oct 2024 13:25:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="gUQVrGrl";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="irro24VX";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gUQVrGrl";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="irro24VX";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="j6tvQ4dG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F43710E4F5;
- Tue,  8 Oct 2024 12:07:03 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 68EF91FF3E;
- Tue,  8 Oct 2024 12:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728389222; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JIcG5P7X/N6kGaJg2Fj+xGtcJOxXRdDriHpA1opI2+s=;
- b=gUQVrGrltt0GUs/WYoCVtu3J+xSEqbNkHaKdCJrhzfDP+54nCmO7UOHSDh5UPydrXVyP1p
- GIFbecwUhJ8z3rtle/TaWlhxqdT9FlpkkO8VoWNgfC/2moz/Kv/ikjjOjWSMZkEE/QIgWc
- fY8dq4gUkah5fuJ35nVJ3dCj2PC/cxY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728389222;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JIcG5P7X/N6kGaJg2Fj+xGtcJOxXRdDriHpA1opI2+s=;
- b=irro24VXkj5wPx2ABSAkaX+aUp+KstbUESCOwoF45AQ0G4VgTsmW45HVTxCixLO1rFh2+E
- URG8Dv9M6ydanGAg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728389222; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JIcG5P7X/N6kGaJg2Fj+xGtcJOxXRdDriHpA1opI2+s=;
- b=gUQVrGrltt0GUs/WYoCVtu3J+xSEqbNkHaKdCJrhzfDP+54nCmO7UOHSDh5UPydrXVyP1p
- GIFbecwUhJ8z3rtle/TaWlhxqdT9FlpkkO8VoWNgfC/2moz/Kv/ikjjOjWSMZkEE/QIgWc
- fY8dq4gUkah5fuJ35nVJ3dCj2PC/cxY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728389222;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JIcG5P7X/N6kGaJg2Fj+xGtcJOxXRdDriHpA1opI2+s=;
- b=irro24VXkj5wPx2ABSAkaX+aUp+KstbUESCOwoF45AQ0G4VgTsmW45HVTxCixLO1rFh2+E
- URG8Dv9M6ydanGAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2ACE01340C;
- Tue,  8 Oct 2024 12:07:02 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id yGg+CWYgBWcCbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 08 Oct 2024 12:07:02 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: simona@ffwll.ch, airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 12/12] drm/client: Add client-lib module
-Date: Tue,  8 Oct 2024 13:59:31 +0200
-Message-ID: <20241008120652.159190-13-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241008120652.159190-1-tzimmermann@suse.de>
-References: <20241008120652.159190-1-tzimmermann@suse.de>
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com
+ [209.85.219.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF25610E1D1
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Oct 2024 22:09:01 +0000 (UTC)
+Received: by mail-yb1-f176.google.com with SMTP id
+ 3f1490d57ef6-e28e6a1b11eso706185276.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Oct 2024 15:09:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1728338941; x=1728943741; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=CqX9Y0dEmHgiIN61I3/zW08Bfod5n7pFQiGUVIMbBVk=;
+ b=j6tvQ4dG8bv6smRdlDU10tj+BLoyiPLeujlhaVVPZScayyTdnmovhvrnI1LmNP5zZS
+ vWsQVR7lzV+edQ8F9S6Zcs76YRvoxQJSOD2orzPtvyBKyndxFB+OvRqufs6/LXbj+sWg
+ +ZPITqPG2yJdLBlhzdbKGRlKkrPqgAFCd4rj1eUgBgPC9fk+7shosi8RchtwtBF8nMK9
+ sIzIYVmvmcO7A9RsmIFxULauGhq4yf192rLZwHVSH5hIWa3f8CdBONQ3ji5lkUx9mBw0
+ /o6oHXZfDCnXsoiESLsv56crqvaXiy5/EEyzeP3JGieKZc1hGshSHV29YVaFv6/MJsiQ
+ jsqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728338941; x=1728943741;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=CqX9Y0dEmHgiIN61I3/zW08Bfod5n7pFQiGUVIMbBVk=;
+ b=So2K76UjsjblhWsY6zdWwlLHKSoI8bia7r7pf6MzYd1A/1ojkQwoTtngr6izLrdunn
+ byOaaDloV+uUBMxjKM8mu46OLyWarpCYaQPmND0rxkCYCM7fFM7K1q5Hq3vcUMOpNPBS
+ 0fwl7j39IzlSMoDAaOO365q3NFLlcAKkVFes7rLyiRr4seoGLHwd4UR24dAkJsQAVaz1
+ BODnpkABqlaUSGckCKkiRTL2xIzIWMSshCVJa6WCqPDQgh2XhLrHEK5jCa+atXfWOorY
+ ZgJ+DauC9eKvMFEbnwvJLTPuf6cqpqKdrVQZbhXtQ9XueIjuFL1yqFa8VKz63PGL2iNx
+ ZM/w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVbiiS+1+7et+YXd38ecMAX5bWxCyGcNk00ZMSov52NX2U0nNcDsU3n3pUf1gb++VV27TpHRnCG@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqcSTsOnNLZMyrTf8ns18yzMbkgSF8cPNiTB9ElceNe/HGpBDb
+ 06kKV2CBR5afYgjZij+jw/ggMLPUp0/FHLK/c2ktASHuvs37FAclcK7R8iGv0p5TaYGoCrXSzxf
+ R+TklRqYjnpy7ah1VXE4HoH+nw8x7gvHJVucP1g==
+X-Google-Smtp-Source: AGHT+IE2nJVabbXdwibt1H0pVBms5dYTsG8RkBKKAzfdsgMhYsZ8VyWIk7HanuWHiQPQxXFBk2ezA08qlljJFN0QQR4=
+X-Received: by 2002:a05:6902:848:b0:e28:edbd:765f with SMTP id
+ 3f1490d57ef6-e28edbd7f75mr206026276.2.1728338940867; Mon, 07 Oct 2024
+ 15:09:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -2.80
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid,suse.de:email];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[9]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Spam-Flag: NO
-X-Spam-Level: 
+References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
+ <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
+ <20241007184924.GH14766@pendragon.ideasonboard.com>
+In-Reply-To: <20241007184924.GH14766@pendragon.ideasonboard.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 8 Oct 2024 00:08:24 +0200
+Message-ID: <CAPDyKFpQVnF7eQv3dup8k-3EijnMjuveCG9sZ=Rpey1Y6MBJEg@mail.gmail.com>
+Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org, 
+ linux-input@vger.kernel.org, patches@opensource.cirrus.com, 
+ iommu@lists.linux.dev, imx@lists.linux.dev, 
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org, 
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, 
+ linux-serial@vger.kernel.org, greybus-dev@lists.linaro.org, 
+ asahi@lists.linux.dev, rafael@kernel.org, 
+ Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 08 Oct 2024 13:25:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,166 +98,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add drm_client_lib.ko to contain DRM's built-in client. Move the
-existing client for fbdev emulation into the new module. Protect the
-new module behind CONFIG_DRM_CLIENT_LIB.
+On Mon, 7 Oct 2024 at 20:49, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Ulf,
+>
+> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
+> > On Fri, 4 Oct 2024 at 11:41, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+> > >
+> > > Hello everyone,
+> > >
+> > > This set will switch the users of pm_runtime_put_autosuspend() to
+> > > __pm_runtime_put_autosuspend() while the former will soon be re-purposed
+> > > to include a call to pm_runtime_mark_last_busy(). The two are almost
+> > > always used together, apart from bugs which are likely common. Going
+> > > forward, most new users should be using pm_runtime_put_autosuspend().
+> > >
+> > > Once this conversion is done and pm_runtime_put_autosuspend() re-purposed,
+> > > I'll post another set to merge the calls to __pm_runtime_put_autosuspend()
+> > > and pm_runtime_mark_last_busy().
+> >
+> > That sounds like it could cause a lot of churns.
+> >
+> > Why not add a new helper function that does the
+> > pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
+> > things? Then we can start moving users over to this new interface,
+> > rather than having this intermediate step?
+>
+> I think the API would be nicer if we used the shortest and simplest
+> function names for the most common use cases. Following
+> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
+> most common use case. That's why I like Sakari's approach of repurposing
+> pm_runtime_put_autosuspend(), and introducing
+> __pm_runtime_put_autosuspend() for the odd cases where
+> pm_runtime_mark_last_busy() shouldn't be called.
 
-The Kconfig rules separate the DRM drivers from the DRM clients. A
-driver can opt into the default clients, but the user configures
-each client individually. To do so, DRM drivers still select
-DRM_CLIENT_SELECTION. The option is now a tristate that further
-selects all dependencies of the enabled DRM clients. There's
-a menu option for each client. Enabling at least one client also
-selects DRM_CLIENT_SETUP, so that drivers call drm_client_setup().
-New DRM clients should depend on DRM_CLIENT_SELECTION.
+Okay, so the reason for this approach is because we couldn't find a
+short and descriptive name that could be used in favor of
+pm_runtime_put_autosuspend(). Let me throw some ideas at it and maybe
+you like it - or not. :-)
 
-There are existing kernel options in drm_fb_helper.o, so leave this
-file in the KMS-helper module for now.
+I don't know what options you guys discussed, but to me the entire
+"autosuspend"-suffix isn't really that necessary in my opinion. There
+are more ways than calling pm_runtime_put_autosuspend() that triggers
+us to use the RPM_AUTO flag for rpm_suspend(). For example, just
+calling pm_runtime_put() has the similar effect.
 
-v3:
-- fix commit changelog
-v2:
-- keep client code in core
-- protect lib with DRM_CLIENT_LIB
-- remove duplicate line from Makefile (Jocelyn)
+Moreover, it's similar for pm_runtime_mark_last_busy(), it's called
+during rpm_resume() too, for example. So why bother about having
+"mark_last_busy" in the new name too.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/Kconfig                 | 26 ++++++++++++++++++++-----
- drivers/gpu/drm/Makefile                | 14 +++++++++----
- drivers/gpu/drm/drm_client_setup.c      |  3 +++
- drivers/gpu/drm/drm_kms_helper_common.c |  3 +++
- 4 files changed, 37 insertions(+), 9 deletions(-)
+That said, my suggestion is simply "pm_runtime_put_suspend".
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index ea1cc924528c..a9055c0b9a1a 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -9,8 +9,6 @@ menuconfig DRM
- 	tristate "Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)"
- 	depends on (AGP || AGP=n) && !EMULATED_CMPXCHG && HAS_DMA
- 	select DRM_PANEL_ORIENTATION_QUIRKS
--	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
--	select FB_CORE if DRM_FBDEV_EMULATION
- 	select HDMI
- 	select I2C
- 	select DMA_SHARED_BUFFER
-@@ -218,10 +216,19 @@ config DRM_CLIENT
- 	  option. Drivers that support the default clients should
- 	  select DRM_CLIENT_SELECTION instead.
- 
-+config DRM_CLIENT_LIB
-+	tristate
-+	depends on DRM
-+	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
-+	select FB_CORE if DRM_FBDEV_EMULATION
-+	help
-+	  This option enables the DRM client library and selects all
-+	  modules and components according to the enabled clients.
-+
- config DRM_CLIENT_SELECTION
--	bool
-+	tristate
- 	depends on DRM
--	select DRM_CLIENT_SETUP if DRM_FBDEV_EMULATION
-+	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
- 	help
- 	  Drivers that support in-kernel DRM clients have to select this
- 	  option.
-@@ -229,11 +236,18 @@ config DRM_CLIENT_SELECTION
- config DRM_CLIENT_SETUP
- 	bool
- 	depends on DRM_CLIENT_SELECTION
-+	help
-+	  Enables the DRM client selection. DRM drivers that support the
-+	  default clients should select DRM_CLIENT_SELECTION instead.
-+
-+menu "Supported DRM clients"
-+	depends on DRM_CLIENT_SELECTION
- 
- config DRM_FBDEV_EMULATION
- 	bool "Enable legacy fbdev support for your modesetting driver"
--	depends on DRM
-+	depends on DRM_CLIENT_SELECTION
- 	select DRM_CLIENT
-+	select DRM_CLIENT_SETUP
- 	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
- 	default FB
- 	help
-@@ -272,6 +286,8 @@ config DRM_FBDEV_LEAK_PHYS_SMEM
- 	  If in doubt, say "N" or spread the word to your closed source
- 	  library vendor.
- 
-+endmenu
-+
- config DRM_LOAD_EDID_FIRMWARE
- 	bool "Allow to specify an EDID data set instead of probing for it"
- 	depends on DRM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index c3e5d353588e..edfd2ebaf153 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -145,13 +145,19 @@ drm_kms_helper-y := \
- 	drm_probe_helper.o \
- 	drm_self_refresh_helper.o \
- 	drm_simple_kms_helper.o
--drm_kms_helper-$(CONFIG_DRM_CLIENT_SETUP) += \
--	drm_client_setup.o
- drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
--drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += \
-+obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+
-+#
-+# DRM clients
-+#
-+
-+drm_client_lib-y := \
-+	drm_client_setup.o
-+drm_client_lib-$(CONFIG_DRM_FBDEV_EMULATION) += \
- 	drm_fbdev_client.o \
- 	drm_fb_helper.o
--obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
-+obj-$(CONFIG_DRM_CLIENT_LIB) += drm_client_lib.o
- 
- #
- # Drivers and the rest
-diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
-index 5969c4ffe31b..c14221ca5a0d 100644
---- a/drivers/gpu/drm/drm_client_setup.c
-+++ b/drivers/gpu/drm/drm_client_setup.c
-@@ -64,3 +64,6 @@ void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color
- 	drm_client_setup_with_fourcc(dev, fourcc);
- }
- EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-+
-+MODULE_DESCRIPTION("In-kernel DRM clients");
-+MODULE_LICENSE("GPL and additional rights");
-diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
-index cfdbc1ac88dc..ecff0b1414ac 100644
---- a/drivers/gpu/drm/drm_kms_helper_common.c
-+++ b/drivers/gpu/drm/drm_kms_helper_common.c
-@@ -31,11 +31,13 @@
- 
- #if defined(CONFIG_DRM_FBDEV_EMULATION)
- bool drm_fbdev_emulation = true;
-+EXPORT_SYMBOL(drm_fbdev_emulation);
- module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
- MODULE_PARM_DESC(fbdev_emulation,
- 		 "Enable legacy fbdev emulation [default=true]");
- 
- int drm_fbdev_overalloc = CONFIG_DRM_FBDEV_OVERALLOC;
-+EXPORT_SYMBOL(drm_fbdev_overalloc);
- module_param(drm_fbdev_overalloc, int, 0444);
- MODULE_PARM_DESC(drm_fbdev_overalloc,
- 		 "Overallocation of the fbdev buffer (%) [default="
-@@ -55,6 +57,7 @@ MODULE_PARM_DESC(drm_fbdev_overalloc,
-  * considered as a broken and legacy behaviour from a modern fbdev device.
-  */
- bool drm_leak_fbdev_smem;
-+EXPORT_SYMBOL(drm_leak_fbdev_smem);
- #if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
- module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
- MODULE_PARM_DESC(drm_leak_fbdev_smem,
--- 
-2.46.0
+If you don't like it, I will certainly not object to your current
+approach, even if I think it leads to unnecessary churns.
 
+[...]
+
+Kind regards
+Uffe
