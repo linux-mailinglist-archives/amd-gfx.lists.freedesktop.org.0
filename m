@@ -2,81 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEA9992C9E
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 15:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57996992C33
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Oct 2024 14:44:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2521910E37D;
-	Mon,  7 Oct 2024 13:06:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB87A10E208;
+	Mon,  7 Oct 2024 12:44:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RllpkXYC";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="FSTZXJQ6";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Vw3oskYp";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="FSTZXJQ6";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Vw3oskYp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B3210E077;
- Mon,  7 Oct 2024 04:49:18 +0000 (UTC)
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-5369f1c7cb8so4090054e87.1; 
- Sun, 06 Oct 2024 21:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728276557; x=1728881357; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1lvwQPOid1i1r42ZkZnh/p8pKa/FUX1d5F+Gn+3bK3Q=;
- b=RllpkXYCmzkEYqSEGzKuBJ4NyxXSvXDvH68XCRkYIo81g9p4Li2PMFE9S36LrI7okw
- EwEodSJOZ/adb5qfIekgeJnUEtxHsJ1E76EJ2Vzbx0iXbj6fFIkUSYAuogSC9vvxABJY
- PBX+hPQPv4Z/6574Pkk/4dH2obNwrJsJ8+x2LdAWSWh/mkfsAg0FK8zPW/PbIeXlk89Y
- ZqQhQLmpGrIaINdbjgUbTm/5loFfIJzG5NzG/QQ+s3vc6ouvHejrgLzeR8IMZH4Soce3
- WkPzrDfIL/844ZqerAY7hvwmmA/EuaUXeJneuBtnT6d+Pc55U36Q8n4Q6eR2S9F+bfBf
- B/KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728276557; x=1728881357;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=1lvwQPOid1i1r42ZkZnh/p8pKa/FUX1d5F+Gn+3bK3Q=;
- b=esIGuLSmr3GZ1L7mzmLhv76ldkfqulXK3qiFiOTV0+WJwt+MMSTR/R0pUF82cQdbb6
- mXmUz2JeeHg0ZPNqe9+EOF//hfoyp59qBr9FbEbGO0d++DTuThiOAW5XzNWd6kFMFO75
- jzNuBaL6IGk/dWCk09PJXnezllYl3V49Izxhu1YYPffwDp7RtVIeRRLvkXVMCDKreUKQ
- JNCO56cZOxglFPXmb80LZTM6mkTfcumoxT913j9XyggV9ouuZ0KcvyybOKnWtBylGLo0
- M/i085qyHCti7+LpBKIdlrzyE9sEvE7P/5ppvqzhPeAlvpaKF2Usb6djtEDhBYkG960C
- seeg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUSDsyEfSh2Nxt7sZNiCyiUsySXBn74kJfjPivZg19dUqW2fkwjwOPcbGFifLsod7uVN0ZA9Y8elKeX@lists.freedesktop.org,
- AJvYcCUWVlIRsIZ8LutoMJIu/3krpWpOzTyhw5uLwmtv2wdc691h2ophdZUuACNEmsbPDlYv8T++m66U@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxooUJT/9OO461ineNcZNrpI+UOrEmlzNJ0Ebc9cHP305K69mdZ
- 8UaRPoMeQCUqqjIw9smkfUwq8NW2XjaMHw+WV44jjWeawKpibbmCXN+APblQcSWi1YNi5q9KxAp
- +fSvpugGf3qCuI5TTmdXQa0BITu4=
-X-Google-Smtp-Source: AGHT+IEqYdkAsBK40ts4UhEMsF1yFermt8J6Dvxy5IFPcLo+Hv58lpgoIpYRR++uyhCFnESMlrPik/53JXVKb3ATJUg=
-X-Received: by 2002:a05:6512:4019:b0:52e:9e70:d068 with SMTP id
- 2adb3069b0e04-539ab85b365mr4201855e87.4.1728276556297; Sun, 06 Oct 2024
- 21:49:16 -0700 (PDT)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C022910E204;
+ Mon,  7 Oct 2024 12:44:31 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 4BE8821B71;
+ Mon,  7 Oct 2024 12:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1728305070; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cdM9AVkgX17+khx6Cbz5kuLyepgO1ofZSPaQkn5wo8U=;
+ b=FSTZXJQ61t7jlznsx3XiFHhD6O6yu2arIP/yzbJlTRWrBBq84O0XvX2bYNKd4GgTBL4TIi
+ eGz46c/wQ5JnxLL2CybtLBJhDj4t3XgCzLyRVjq9Hazfg0N3GiNYusHxQK1HHwzRMJ5Drp
+ uZgD6ifZRz3WhxbNh/aHuhsX21IL5L0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1728305070;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cdM9AVkgX17+khx6Cbz5kuLyepgO1ofZSPaQkn5wo8U=;
+ b=Vw3oskYpHEszAqj2zpqHifjwmbPCJzYN0E6sysTe/qIicRWavozV03zfeUJYQzL7gtHIA/
+ mNJ56+DJMnFAImAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1728305070; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cdM9AVkgX17+khx6Cbz5kuLyepgO1ofZSPaQkn5wo8U=;
+ b=FSTZXJQ61t7jlznsx3XiFHhD6O6yu2arIP/yzbJlTRWrBBq84O0XvX2bYNKd4GgTBL4TIi
+ eGz46c/wQ5JnxLL2CybtLBJhDj4t3XgCzLyRVjq9Hazfg0N3GiNYusHxQK1HHwzRMJ5Drp
+ uZgD6ifZRz3WhxbNh/aHuhsX21IL5L0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1728305070;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cdM9AVkgX17+khx6Cbz5kuLyepgO1ofZSPaQkn5wo8U=;
+ b=Vw3oskYpHEszAqj2zpqHifjwmbPCJzYN0E6sysTe/qIicRWavozV03zfeUJYQzL7gtHIA/
+ mNJ56+DJMnFAImAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E37DE132BD;
+ Mon,  7 Oct 2024 12:44:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id UDQqNq3XA2eoVgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 07 Oct 2024 12:44:29 +0000
+Message-ID: <365b4f14-8aa2-4561-8545-29b38fc363e7@suse.de>
+Date: Mon, 7 Oct 2024 14:44:29 +0200
 MIME-Version: 1.0
-References: <20241003060650.18454-1-wuhoipok@gmail.com>
- <d2704a2b-ceb2-4919-81d3-f6ff58a734fe@xenosoft.de>
- <c868e394-b1ad-4f30-b27b-c779e3458c42@csgroup.eu>
-In-Reply-To: <c868e394-b1ad-4f30-b27b-c779e3458c42@csgroup.eu>
-From: Hoi Pok Wu <wuhoipok@gmail.com>
-Date: Mon, 7 Oct 2024 12:49:04 +0800
-Message-ID: <CANyH0kDWaS8mavzuUeH4CPHBN9kBQ3hcCGjWA8U0UU2_y=5Gnw@mail.gmail.com>
-Subject: Re: [PATCH] drm/radeon: add late_register for connector
-To: Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc: Christian Zigotzky <chzigotzky@xenosoft.de>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, 
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>, 
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- mad skateman <madskateman@gmail.com>, hypexed@yahoo.com.au, 
- Christian Zigotzky <info@xenosoft.de>, Darren Stevens <darren@stevens-zone.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 07 Oct 2024 13:06:21 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: NULL pointer dereference with kernel 6.12.0-rc1 and ARUBA GPU
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Arthur Marsh <arthur.marsh@internode.on.net>
+Cc: Xinhui.Pan@amd.com, airlied@gmail.com, alexander.deucher@amd.com,
+ alexdeucher@gmail.com, amd-gfx@lists.freedesktop.org, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
+ linux-kernel@vger.kernel.org, wuhoipok@gmail.com, x86@kernel.org
+References: <d95eca6e-0266-4ebe-b9d9-3e8552c5b09a@suse.de>
+ <20240930152520.4654-1-user@am64>
+ <8c04ea38-11ba-4ec0-bb5f-d7441de3429f@amd.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <8c04ea38-11ba-4ec0-bb5f-d7441de3429f@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -4.30
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.998]; MIME_GOOD(-0.10)[text/plain];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[13];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_TO(0.00)[amd.com,internode.on.net];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com,internode.on.net];
+ FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,ffwll.ch,lists.linux.dev,vger.kernel.org,kernel.org];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid]
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,176 +146,222 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thank you. I am looking at the problem now.
+Hi
 
-On Mon, Oct 7, 2024 at 1:37=E2=80=AFAM Christophe Leroy
-<christophe.leroy@csgroup.eu> wrote:
+Am 30.09.24 um 19:54 schrieb Christian König:
+> I've been running into the same issue as well. Going to take a look.
+
+Any results?
+
 >
+> Christian.
 >
+> Am 30.09.24 um 17:25 schrieb Arthur Marsh:
+>> [   13.069630] [drm] radeon kernel modesetting enabled.
+>> [   13.069681] radeon 0000:00:01.0: vgaarb: deactivate vga console
+>> [   13.070435] Console: switching to colour dummy device 80x25
+>> [   13.070632] [drm] initializing kernel modesetting (ARUBA 
+>> 0x1002:0x990C 0x1002:0x0123 0x00).
+>> [   13.070718] ATOM BIOS: 113
+>> [   13.070778] radeon 0000:00:01.0: VRAM: 768M 0x0000000000000000 - 
+>> 0x000000002FFFFFFF (768M used)
+>> [   13.070781] radeon 0000:00:01.0: GTT: 1024M 0x0000000030000000 - 
+>> 0x000000006FFFFFFF
+>> [   13.070785] [drm] Detected VRAM RAM=768M, BAR=256M
+>> [   13.070786] [drm] RAM width 64bits DDR
+>> [   13.070884] [drm] radeon: 768M of VRAM memory ready
+>> [   13.070885] [drm] radeon: 1024M of GTT memory ready.
+>> [   13.070896] [drm] Loading ARUBA Microcode
+>> [   13.504398] [drm] Internal thermal controller without fan control
+>> [   13.504566] [drm] radeon: dpm initialized
+>> [   13.839229] [drm] Found VCE firmware/feedback version 50.0.1 / 17!
+>> [   13.839264] [drm] GART: num cpu pages 262144, num gpu pages 262144
+>> [   13.863929] [drm] PCIE GART of 1024M enabled (table at 
+>> 0x00000000001D6000).
+>> [   13.864085] radeon 0000:00:01.0: WB enabled
+>> [   13.864088] radeon 0000:00:01.0: fence driver on ring 0 use gpu 
+>> addr 0x0000000030000c00
+>> [   13.864467] radeon 0000:00:01.0: fence driver on ring 5 use gpu 
+>> addr 0x0000000000075a18
+>> [   13.884497] radeon 0000:00:01.0: fence driver on ring 6 use gpu 
+>> addr 0x0000000030000c18
+>> [   13.884502] radeon 0000:00:01.0: fence driver on ring 7 use gpu 
+>> addr 0x0000000030000c1c
+>> [   13.884503] radeon 0000:00:01.0: fence driver on ring 1 use gpu 
+>> addr 0x0000000030000c04
+>> [   13.884505] radeon 0000:00:01.0: fence driver on ring 2 use gpu 
+>> addr 0x0000000030000c08
+>> [   13.884506] radeon 0000:00:01.0: fence driver on ring 3 use gpu 
+>> addr 0x0000000030000c0c
+>> [   13.884507] radeon 0000:00:01.0: fence driver on ring 4 use gpu 
+>> addr 0x0000000030000c10
+>> [   13.884862] radeon 0000:00:01.0: radeon: MSI limited to 32-bit
+>> [   13.884921] radeon 0000:00:01.0: radeon: using MSI.
+>> [   13.885003] [drm] radeon: irq initialized.
+>> [   13.903273] [drm] ring test on 0 succeeded in 3 usecs
+>> [   13.903281] [drm] ring test on 3 succeeded in 4 usecs
+>> [   13.903286] [drm] ring test on 4 succeeded in 3 usecs
+>> [   13.949128] [drm] ring test on 5 succeeded in 2 usecs
+>> [   13.968988] [drm] UVD initialized successfully.
+>> [   14.078221] [drm] ring test on 6 succeeded in 17 usecs
+>> [   14.078234] [drm] ring test on 7 succeeded in 3 usecs
+>> [   14.078236] [drm] VCE initialized successfully.
+>> [   14.078314] snd_hda_intel 0000:00:01.1: bound 0000:00:01.0 (ops 
+>> radeon_audio_component_bind_ops [radeon])
+>> [   14.078502] [drm] ib test on ring 0 succeeded in 0 usecs
+>> [   14.078555] [drm] ib test on ring 3 succeeded in 0 usecs
+>> [   14.078606] [drm] ib test on ring 4 succeeded in 0 usecs
+>> [   14.153378] mc: Linux media interface: v0.10
+>> [   14.593759] usb 1-3: dvb_usb_v2: found a 'Realtek RTL2832U 
+>> reference design' in warm state
+>> [   14.614227] [drm] ib test on ring 5 succeeded
+>> [   14.625865] usb 1-3: dvb_usb_v2: will pass the complete MPEG2 
+>> transport stream to the software demuxer
+>> [   14.625885] dvbdev: DVB: registering new adapter (Realtek RTL2832U 
+>> reference design)
+>> [   14.625889] usb 1-3: media controller created
+>> [   14.627064] dvbdev: dvb_create_media_entity: media entity 
+>> 'dvb-demux' registered.
+>> [   14.801142] i2c i2c-5: Added multiplexed i2c bus 6
+>> [   14.801149] rtl2832 5-0010: Realtek RTL2832 successfully attached
+>> [   14.801176] usb 1-3: DVB: registering adapter 0 frontend 0 
+>> (Realtek RTL2832 (DVB-T))...
+>> [   14.801189] dvbdev: dvb_create_media_entity: media entity 'Realtek 
+>> RTL2832 (DVB-T)' registered.
+>> [   14.957783] i2c i2c-6: fc0012: Fitipower FC0012 successfully 
+>> identified
+>> [   15.158461] [drm] ib test on ring 6 succeeded
+>> [   15.178787] videodev: Linux video capture interface: v2.00
+>> [   15.460709] rtl2832_sdr rtl2832_sdr.1.auto: Registered as swradio0
+>> [   15.460715] rtl2832_sdr rtl2832_sdr.1.auto: Realtek RTL2832 SDR 
+>> attached
+>> [   15.460718] rtl2832_sdr rtl2832_sdr.1.auto: SDR API is still 
+>> slightly experimental and functionality changes may follow
+>> [   15.477759] usb 1-3: dvb_usb_v2: 'Realtek RTL2832U reference 
+>> design' successfully initialized and connected
+>> [   15.477878] usbcore: registered new interface driver dvb_usb_rtl28xxu
+>> [   15.670413] [drm] ib test on ring 7 succeeded
+>> [   15.671111] BUG: kernel NULL pointer dereference, address: 
+>> 0000000000000050
+>> [   15.671114] #PF: supervisor read access in kernel mode
+>> [   15.671117] #PF: error_code(0x0000) - not-present page
+>> [   15.671119] PGD 0 P4D 0
+>> [   15.671123] Oops: Oops: 0000 [#1] PREEMPT_RT SMP NOPTI
+>> [   15.671127] CPU: 2 UID: 0 PID: 437 Comm: udevd Not tainted 
+>> 6.12.0-rc1 #6131
+>> [   15.671132] Hardware name: Gigabyte Technology Co., Ltd. To be 
+>> filled by O.E.M./F2A78M-HD2, BIOS F2 05/28/2014
+>> [   15.671134] RIP: 0010:drm_dp_aux_register+0x59/0x110 
+>> [drm_display_helper]
+>> [   15.671164] Code: 86 c0 48 85 f6 48 89 83 b8 00 00 00 74 1c 48 8d 
+>> bb b4 03 00 00 ba 30 00 00 00 e8 52 35 bc c7 48 8d 7b 08 5b 5d e9 37 
+>> 31 93 c7 <48> 8b 70 50 48 85 f6 75 db 48 8b 30 eb d6 48 8d ab 88 04 
+>> 00 00 48
+>> [   15.671167] RSP: 0018:ffffb37f80e33960 EFLAGS: 00010246
+>> [   15.671170] RAX: 0000000000000000 RBX: ffff892d407ee508 RCX: 
+>> ffffffffc09b3bc0
+>> [   15.671172] RDX: ffffffffc0869e40 RSI: 0000000000000000 RDI: 
+>> ffff892d407ee9f0
+>> [   15.671174] RBP: ffff892d407ee9f0 R08: ffff892d42fb8008 R09: 
+>> 00000000c0c0c0c0
+>> [   15.671176] R10: 0000000000000000 R11: 0000000000000001 R12: 
+>> ffff892d5b64af50
+>> [   15.671178] R13: ffff892d5b64b092 R14: ffff892d5b64af2e R15: 
+>> 0000000000000018
+>> [   15.671181] FS:  00007f066d882840(0000) GS:ffff89306f900000(0000) 
+>> knlGS:0000000000000000
+>> [   15.671183] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>> [   15.671185] CR2: 0000000000000050 CR3: 00000001047a6000 CR4: 
+>> 00000000000406f0
+>> [   15.671188] Call Trace:
+>> [   15.671190]  <TASK>
+>> [   15.671192]  ? __die_body.cold+0x19/0x1e
+>> [   15.671200]  ? page_fault_oops+0xa8/0x230
+>> [   15.671206]  ? drm_dp_aux_register+0x59/0x110 [drm_display_helper]
+>> [   15.671227]  ? search_module_extables+0x4f/0x90
+>> [   15.671233]  ? fixup_exception+0x36/0x2f0
+>> [   15.671239]  ? exc_page_fault+0x88/0x1b0
+>> [   15.671244]  ? asm_exc_page_fault+0x22/0x30
+>> [   15.671251]  ? __pfx_radeon_dp_aux_transfer_atom+0x10/0x10 [radeon]
+>> [   15.671437]  ? drm_dp_aux_register+0x59/0x110 [drm_display_helper]
+>> [   15.671463]  radeon_dp_aux_init+0x91/0xc0 [radeon]
+>> [   15.671634] 
+>> radeon_get_atom_connector_info_from_object_table+0x58e/0x880 [radeon]
+>> [   15.671764]  ? 
+>> radeon_get_atom_connector_info_from_supported_devices_table+0x5cf/0x600 
+>> [radeon]
+>> [   15.671895]  ? kstrdup+0x4c/0x70
+>> [   15.671902]  ? __kmalloc_noprof+0x24d/0x340
+>> [   15.671908]  radeon_modeset_init+0x375/0x470 [radeon]
+>> [   15.672050]  ? radeon_device_init+0x667/0xb40 [radeon]
+>> [   15.672179]  radeon_driver_load_kms+0xc2/0x260 [radeon]
+>> [   15.672308]  radeon_pci_probe+0xff/0x170 [radeon]
+>> [   15.672436]  pci_device_probe+0xbe/0x1a0
+>> [   15.672441]  really_probe+0xde/0x350
+>> [   15.672447]  ? pm_runtime_barrier+0x61/0xb0
+>> [   15.672452]  ? __pfx___driver_attach+0x10/0x10
+>> [   15.672457]  __driver_probe_device+0x78/0x110
+>> [   15.672462]  driver_probe_device+0x2d/0xc0
+>> [   15.672467]  __driver_attach+0xc9/0x1c0
+>> [   15.672472]  bus_for_each_dev+0x6a/0xb0
+>> [   15.672476]  ? migrate_enable+0xbf/0xf0
+>> [   15.672480]  bus_add_driver+0x139/0x220
+>> [   15.672485]  driver_register+0x6e/0xc0
+>> [   15.672491]  ? __pfx_radeon_module_init+0x10/0x10 [radeon]
+>> [   15.672616]  do_one_initcall+0x42/0x210
+>> [   15.672622]  ? __kmalloc_cache_noprof+0x89/0x230
+>> [   15.672627]  do_init_module+0x60/0x210
+>> [   15.672631]  init_module_from_file+0x89/0xc0
+>> [   15.672637]  __x64_sys_finit_module+0x142/0x390
+>> [   15.672643]  do_syscall_64+0x47/0x110
+>> [   15.672647]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>> [   15.672653] RIP: 0033:0x7f066d6b3839
+>> [   15.672657] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 
+>> 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 
+>> 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d b7 85 0d 00 f7 d8 64 
+>> 89 01 48
+>> [   15.672659] RSP: 002b:00007ffead344b38 EFLAGS: 00000246 ORIG_RAX: 
+>> 0000000000000139
+>> [   15.672663] RAX: ffffffffffffffda RBX: 00005586f29e09b0 RCX: 
+>> 00007f066d6b3839
+>> [   15.672665] RDX: 0000000000000000 RSI: 00005586f29d08d0 RDI: 
+>> 0000000000000011
+>> [   15.672667] RBP: 0000000000000000 R08: 0000000000000000 R09: 
+>> 00005586f29c0540
+>> [   15.672669] R10: 00007f066d78cac0 R11: 0000000000000246 R12: 
+>> 00005586f29d08d0
+>> [   15.672671] R13: 0000000000020000 R14: 00005586f29d82e0 R15: 
+>> 0000000000000000
+>> [   15.672675]  </TASK>
+>> [   15.672676] Modules linked in: rtl2832_sdr videobuf2_vmalloc 
+>> videobuf2_memops videobuf2_v4l2 videobuf2_common videodev fc0012 
+>> rtl2832 i2c_mux dvb_usb_rtl28xxu dvb_usb_v2 dvb_core mc 
+>> snd_emu10k1_synth snd_emux_synth snd_seq_midi_emul snd_seq_virmidi 
+>> radeon(+) snd_seq_midi snd_seq_midi_event snd_seq snd_emu10k1 
+>> drm_ttm_helper ttm snd_hda_codec_hdmi drm_suballoc_helper 
+>> snd_hda_intel snd_util_mem drm_display_helper snd_ac97_codec 
+>> snd_intel_dspcfg snd_hda_codec snd_hda_core ac97_bus snd_hwdep 
+>> snd_rawmidi snd_seq_device snd_pcm drm_kms_helper snd_timer 
+>> edac_mce_amd k10temp sha512_ssse3 sha512_generic sha256_ssse3 
+>> sha1_ssse3 drm aesni_intel snd gf128mul at24 crypto_simd cryptd 
+>> soundcore acpi_cpufreq regmap_i2c emu10k1_gp gameport pcspkr evdev 
+>> serio_raw i2c_algo_bit video sp5100_tco wmi button ext4 
+>> crc32c_generic crc16 mbcache jbd2 hid_generic usbhid hid sg sr_mod 
+>> cdrom sd_mod ata_generic crc32_pclmul firewire_ohci crc32c_intel 
+>> firewire_core ahci i2c_piix4 crc_itu_t pata_atiixp i2c_smbus r8169 
+>> libahci ohci_pci xhci_pci libata
+>> [   15.672761]  realtek ohci_hcd ehci_pci xhci_hcd ehci_hcd 
+>> mdio_devres scsi_mod scsi_common libphy usbcore usb_common
+>> [   15.672773] CR2: 0000000000000050
+>> [   15.672776] ---[ end trace 0000000000000000 ]---
 >
-> Le 06/10/2024 =C3=A0 18:56, Christian Zigotzky a =C3=A9crit :
-> > On 03 October 2024 at 08:06 am, Wu Hoi Pok wrote:
-> >> This is a fix patch not tested yet,
-> >> for a bug I introduce in previous rework of radeon driver.
-> >> The bug is a null dereference in 'aux.dev', which is the
-> >> 'device' not registered, resulting in kernel panic. By having
-> >> 'late_register', the connector should be registered after
-> >> 'drm_dev_register' automatically.
-> >>
-> >> Please help testing thank you.
-> > Hello Wu Hoi Pok,
-> >
-> > Thanks a lot for your patch. Unfortunately there is a new issue after
-> > patching the RC1. Could you please fix the following issue?
-> >
-> > Thanks,
-> > Christian
-> >
-> > ---
-> >
-> > Linux fienix 6.12.0-rc1-2-powerpc64-smp #1 SMP Fri Oct  4 08:55:45 CEST
-> > 2024 ppc64 GNU/Linux
-> >
-> > [   29.167145] systemd[1]: Sent message type=3Dsignal sender=3Dn/a
-> > destination=3Dn/a
-> > path=3D/org/freedesktop/systemd1/unit/NetworkManager_2eservice
-> > interface=3Dorg.freedesktop.DBus.Properties member=3DPropertiesChanged
-> > cookie=3D103 reply_cookie=3D0 signature=3Dsa{sv}as error-name=3Dn/a
-> > error-message=3Dn/a
-> > [   29.542140] systemd-journald[1301]: Successfully sent stream file
-> > descriptor to service manager.
-> > [   29.561863] BUG: Kernel NULL pointer dereference on read at 0x000000=
-00
-> > [   29.567156] Faulting instruction address: 0xc000000000c973c0
-> > [   29.571574] cpu 0x1: Vector: 300 (Data Access) at [c000000006f97640]
-> > [   29.576637]     pc: c000000000c973c0: .drm_gem_object_free+0x20/0x70
-> > [   29.581708]     lr: c000000000d28dd8: .radeon_bo_unref+0x58/0x90
-> > [   29.586428]     sp: c000000006f978e0
-> > [   29.588695]    msr: 9000000000009032
-> > [   29.590962]    dar: 0
-> > [   29.591925]  dsisr: 40000000
-> > [   29.593496]   current =3D 0xc0000000085b1f00
-> > [   29.596286]   paca    =3D 0xc00000003ffff680     irqmask: 0x03
-> > irq_happened: 0x01
-> > [   29.602119]     pid   =3D 1524, comm =3D Xorg.wrap
-> > [   29.605257] Linux version 6.12.0-rc1-2-powerpc64-smp
-> > (geeko@buildhost) (powerpc64-suse-linux-gcc (SUSE Linux) 7.5.0, GNU ld
-> > (GNU Binutils; devel:gcc / SLE-15) 2.43.1.20240828-150300.536) #1 SMP
-> > Fri Oct  4 08:55:45 CEST 2024
-> > [   29.623892] enter ? for help
-> > [   29.625487] [c000000006f97960] c000000000d28dd8
-> > .radeon_bo_unref+0x58/0x90
-> > [   29.631083] [c000000006f979e0] c000000000e287b0
-> > .radeon_vm_fini+0x260/0x330
-> > [   29.636765] [c000000006f97aa0] c000000000d07c94
-> > .radeon_driver_postclose_kms+0x1a4/0x1f0
-> > [   29.643579] [c000000006f97b30] c000000000c9374c
-> > .drm_file_free+0x28c/0x300
-> > [   29.649174] [c000000006f97be0] c000000000c93900 .drm_release+0x90/0x=
-170
-> > [   29.654508] [c000000006f97c70] c000000000304790 .__fput+0x120/0x3b0
-> > [   29.659495] [c000000006f97d10] c0000000002fe0fc .__se_sys_close+0x4c=
-/0xc0
-> > [   29.665004] [c000000006f97d90] c000000000025bac
-> > .system_call_exception+0x22c/0x260
-> > [   29.671295] [c000000006f97e10] c00000000000b554
-> > system_call_common+0xf4/0x258
-> > [   29.677164] --- Exception: c00 (System Call) at 00000000006b2b48
-> > [   29.681876] SP (fff4b3d0) is in userspace
-> > [   29.684577] 1:mon>  <no input ...>
-> > [   31.666727] Oops: Kernel access of bad area, sig: 11 [#1]
-> > [   31.670829] BE PAGE_SIZE=3D4K MMU=3DHash SMP NR_CPUS=3D2 A-EON Amiga=
-one X1000
-> > [   31.676144] Modules linked in: snd_hda_codec_idt
-> > snd_hda_codec_generic snd_hda_codec_hdmi snd_hda_intel snd_intel_dspcfg
-> > snd_hda_codec snd_hda_core dm_mod
-> > [   31.688703] CPU: 1 UID: 0 PID: 1524 Comm: Xorg.wrap Not tainted
-> > 6.12.0-rc1-2-powerpc64-smp #1
-> > [   31.695932] Hardware name: pasemi,nemo PA6T 0x900102 A-EON Amigaone =
-X1000
-> > [   31.701417] NIP:  c000000000c973c0 LR: c000000000d28dd8 CTR:
-> > c000000000d07af0
-> > [   31.707250] REGS: c000000006f97640 TRAP: 0300   Not tainted
-> > (6.12.0-rc1-2-powerpc64-smp)
-> > [   31.714128] MSR:  9000000000009032 <SF,HV,EE,ME,IR,DR,RI> CR:
-> > 28002222  XER: 20000000
-> > [   31.720773] DAR: 0000000000000000 DSISR: 40000000 IRQMASK: 0
-> >                 GPR00: c000000000d28dd8 c000000006f978e0
-> > c00000000207a800 c0000000085f5468
-> >                 GPR04: 0000000000000b9b 0000000000000b9a
-> > 0000000179779000 c0000000086a4b00
-> >                 GPR08: 0000000000000000 0000000000000000
-> > 0000000000000001 0000000000000000
-> >                 GPR12: 0000000048002202 c00000003ffff680
-> > 0000000000000000 0000000000000000
-> >                 GPR16: 00000000006e3318 0000000000000001
-> > 00000000006e289c 0000000000000063
-> >                 GPR20: 00000000c04064a0 00000000007f0088
-> > 00000000fff4c734 00000000007d165c
-> >                 GPR24: 00000000007d1668 c000000024b6a220
-> > c000000003588000 c000000024b6a200
-> >                 GPR28: c000000003b3cc00 c000000024b6a248
-> > c000000002d48820 c0000000085f5468
-> > [   31.778903] NIP [c000000000c973c0] .drm_gem_object_free+0x20/0x70
-> > [   31.783701] LR [c000000000d28dd8] .radeon_bo_unref+0x58/0x90
-> > [   31.788062] Call Trace:
-> > [   31.789199] [c000000006f978e0] [c000000006f97990] 0xc000000006f97990
-> > (unreliable)
-> > [   31.795388] [c000000006f97960] [c000000000d28dd8]
-> > .radeon_bo_unref+0x58/0x90
-> > [   31.801142] [c000000006f979e0] [c000000000e287b0]
-> > .radeon_vm_fini+0x260/0x330
-> > [   31.806982] [c000000006f97aa0] [c000000000d07c94]
-> > .radeon_driver_postclose_kms+0x1a4/0x1f0
-> > [   31.813954] [c000000006f97b30] [c000000000c9374c]
-> > .drm_file_free+0x28c/0x300
-> > [   31.819707] [c000000006f97be0] [c000000000c93900] .drm_release+0x90/=
-0x170
-> > [   31.825197] [c000000006f97c70] [c000000000304790] .__fput+0x120/0x3b=
-0
-> > [   31.830342] [c000000006f97d10] [c0000000002fe0fc]
-> > .__se_sys_close+0x4c/0xc0
-> > [   31.836010] [c000000006f97d90] [c000000000025bac]
-> > .system_call_exception+0x22c/0x260
-> > [   31.842460] [c000000006f97e10] [c00000000000b554]
-> > system_call_common+0xf4/0x258
-> > [   31.848476] --- interrupt: c00 at 0x6b2b48
-> > [   31.851267] NIP:  00000000006b2b48 LR: 00000000006b2b20 CTR:
-> > 0000000000000000
-> > [   31.857101] REGS: c000000006f97e80 TRAP: 0c00   Not tainted
-> > (6.12.0-rc1-2-powerpc64-smp)
-> > [   31.863978] MSR:  100000000200f032 <HV,VEC,EE,PR,FP,ME,IR,DR,RI>  CR=
-:
-> > 28002400  XER: 00000000
-> > [   31.871235] IRQMASK: 0
-> >                 GPR00: 0000000000000006 00000000fff4b3d0
-> > 00000000f7b7f3a0 0000000000000003
-> >                 GPR04: 0000000000000000 0000000000000000
-> > 0000000000000000 0000000000000000
-> >                 GPR08: 0000000000000000 0000000000000000
-> > 0000000000000000 0000000000000000
-> >                 GPR12: 0000000000000000 00000000007efff4
-> > 0000000000000000 0000000000000000
-> >                 GPR16: 00000000006e3318 0000000000000001
-> > 00000000006e289c 0000000000000063
-> >                 GPR20: 00000000c04064a0 00000000007f0088
-> > 00000000fff4c734 00000000007d165c
-> >                 GPR24: 00000000007d1668 00000000fff4b400
-> > 0000000000000001 0000000000000001
-> >                 GPR28: 00000000fff4b46c 0000000000000000
-> > 00000000007bfff4 0000000000000003
-> > [   31.926053] NIP [00000000006b2b48] 0x6b2b48
-> > [   31.928930] LR [00000000006b2b20] 0x6b2b20
-> > [   31.931720] --- interrupt: c00
-> > [   31.933466] Code: ebe1fff8 7c0803a6 4e800020 60000000 7c0802a6
-> > fbe1fff8 7c7f1b78 f8010010 f821ff81 60000000 60000000 e93f0140
-> > <e9290000> 7d2a0074 794ad182 0b0a0000
-> > [   31.946913] ---[ end trace 0000000000000000 ]---
-> >
-> >
->
-> That's a NULL pointer dereference in drm_gem_object_free().
->
-> Trying to read obj->funcs->free while obj->funcs is NULL.
->
-> Christophe
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
