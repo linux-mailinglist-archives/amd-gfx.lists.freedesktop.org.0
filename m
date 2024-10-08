@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B312995921
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 23:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA927995920
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 23:16:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C942B10E5EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48C2610E5E7;
 	Tue,  8 Oct 2024 21:16:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MKGEuKs5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ogCJCYtJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B388710E5D5
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 21:16:36 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 432B010E5D8
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 21:16:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fKJO64PX9TK+FTEikebshF6fRc9DTd/cgCbjqGVMohQyGYNW3Z4IhT1QCaEWHQvGSYWTNJuDyYLyS9jgV61jHL9viE1QYT/O6kux1NL7JSutBDF6POsQR1pa8rpp1TJQ+hPzBtMyXid3SoTKMKxbza3JjRrJ8ihyGAT99mkEsxX56RnnKvulhzK+8UwF0D9KYqXxLeNQcYDjVrVqXcdS0iONYX7Ari2O4IG3/8Qp/5CNmcfMbiidl/WQK9qGnVJlkyyEqBnXYPgqQIomCGWL4Wzo1MagE8XocXk10k9U/4VV37428CiQybOCJoNxbAiJqcCaFXPI4/eUOPQDrwf7Tg==
+ b=ncr6DhOjfJQQnp4yfkwIPaPhhEPp4fhJmNNyaXxo68ug+0jDwfopDLykFXYi3kWLg8Ip+3JmPN3gY80P5B9JoPcGFa0JLYHzpzyqEQJoC3fzQbw9Wfcn5gY6RRavED+QgYeAiZoQtD/zJap5UUoX4bbaPPIwV669VDA8xrA3xyt3Ir8tsk3iD9I1AzIjt4qvLlTXEBg8/xkC/bZLuVleKF5jUssfI1mUX3HmEelcpNxaMx/Y9GjUfx9PfnbOHysqYdD1CicAz3v7OvTR/JfXBjKHQJliuPmw/fgWo3hy6rSog8yMIJWrW0YZySWxRxEj2a9lHq7IHf03H08jMNcxXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UNW5+1hGdQIP/jjfRtyqMTCfrVZEtVYICTxnAklct6E=;
- b=i5NeraE3/Xc3bRFh4kzZgk/SQkXmfT6DGRI5tCOxnjNj9UhNwNHMS5VxAh0k/6I44Fj1/eAlwdWzLX1V7fWIhyq546PDbfk5CZs/nyKEHELTdeMcfePGc4hz75J1Yh69auak8HEYSE70+ghTubhVRcRCAofzgcZnX/1o35nZKmNHY+LqQFKA1YWjyMF5z8USOEQUHs0QAfkX5Hl7mmBXiPi1Q6ylhM9qlGf4xx0Eq30MX1BpsD0RnZlaLpJslsR5esJkg3xFUZ6Jrc9BHthjmkl84ImyrOCKcy2ppPbm01rQuL5rcUP//KSRh2wpOxfT/ax1c+jzw6y2+AZCpCqPIw==
+ bh=65fjtnw2qcXAhVUpMjqD3fZxOXFdWTZXBQ/sVFlov9U=;
+ b=rf8v2uyTDue3Z977z6uri+XIfNwngRUu3bV3mOOOq2/qxYXb8ck8ij2Fv/2TYKMejeeXlnCi0xubW5paS65CMCGQEdFhI986pB4Q+r88b3oo+0En0nwKo2HGi/mwo+eaoAY3XZtjmzHCfGW3n2VGo7bCVcfu+LtioeVtVnYQx11MFZoqVwVwA8205mLeShUaqgHohlMQGuZJD0iZK3k+qJVk3QQYDfn/XaNzlBEJo8tIavXFlq9qehTDVa/HRQ4Qjl48ELY9OTKs+INTEyatonggcR12sDaeQSl3QgcfHMYxE5v/a7iIofTtVSNsP9Uyqpd8qkfpKYnVuNqOt4Q3sA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UNW5+1hGdQIP/jjfRtyqMTCfrVZEtVYICTxnAklct6E=;
- b=MKGEuKs56AebDgBZxyvHjxUbEQEaGXgOGjcaOLHb3zyc+Wpg1dCLuLn0ED/xlMxR6aU3qE9EJDcMHfUgR3WtGW2zMfY6Tj0+UZ8ovBq/StBswiX93Lj04V7UAps+cMBg9k2IEOzSJoiM+qNOTqJuMtJbep8Yi4zBn+sbS6UhCxo=
-Received: from CH0PR03CA0400.namprd03.prod.outlook.com (2603:10b6:610:11b::20)
- by CH3PR12MB7713.namprd12.prod.outlook.com (2603:10b6:610:14d::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Tue, 8 Oct
- 2024 21:16:31 +0000
-Received: from DS2PEPF00003442.namprd04.prod.outlook.com
- (2603:10b6:610:11b:cafe::bf) by CH0PR03CA0400.outlook.office365.com
- (2603:10b6:610:11b::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23 via Frontend
+ bh=65fjtnw2qcXAhVUpMjqD3fZxOXFdWTZXBQ/sVFlov9U=;
+ b=ogCJCYtJQ9rMRHJCYBBC9g29tFIWNv5F28e+mLCclDfi7HwY5rzt+bkWmZmayu83fEMsJCbocjHglBWCZyL+oUOGkCfZ1BFfFVm5H2Oo5haxvVhpVjyUvos9z9GUcb6awkT3rfMItuIVYgtJvgqy/7GWau0BS2JkaBpb5ukUhLU=
+Received: from CH2PR05CA0032.namprd05.prod.outlook.com (2603:10b6:610::45) by
+ SJ0PR12MB6758.namprd12.prod.outlook.com (2603:10b6:a03:44a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.21; Tue, 8 Oct
+ 2024 21:16:32 +0000
+Received: from DS2PEPF00003448.namprd04.prod.outlook.com
+ (2603:10b6:610:0:cafe::48) by CH2PR05CA0032.outlook.office365.com
+ (2603:10b6:610::45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16 via Frontend
  Transport; Tue, 8 Oct 2024 21:16:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -48,7 +48,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS2PEPF00003442.mail.protection.outlook.com (10.167.17.69) with Microsoft
+ DS2PEPF00003448.mail.protection.outlook.com (10.167.17.75) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.8048.13 via Frontend Transport; Tue, 8 Oct 2024 21:16:31 +0000
 Received: from atitest-Rembrandt.amd.com (10.180.168.240) by
@@ -60,9 +60,9 @@ To: <amd-gfx@lists.freedesktop.org>, <leo.liu@amd.com>,
  <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
  <sunil.khatri@amd.com>
 CC: Boyuan Zhang <boyuan.zhang@amd.com>
-Subject: [PATCH 22/32] drm/amdgpu: sw_fini for each vcn instance
-Date: Tue, 8 Oct 2024 17:15:43 -0400
-Message-ID: <20241008211553.36264-23-boyuan.zhang@amd.com>
+Subject: [PATCH 23/32] drm/amdgpu: hw_init for each vcn instance
+Date: Tue, 8 Oct 2024 17:15:44 -0400
+Message-ID: <20241008211553.36264-24-boyuan.zhang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241008211553.36264-1-boyuan.zhang@amd.com>
 References: <20241008211553.36264-1-boyuan.zhang@amd.com>
@@ -74,50 +74,50 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003442:EE_|CH3PR12MB7713:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0749caa-657b-48fb-370a-08dce7de7b22
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003448:EE_|SJ0PR12MB6758:EE_
+X-MS-Office365-Filtering-Correlation-Id: d71e5b46-0d48-4eff-e095-08dce7de7b64
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?T/tz5Z4AgIDnO3RzxzgIOVKcsShx4ciIfRsCQ1TjkfzJ+gsdEgLYfel5dg9k?=
- =?us-ascii?Q?ckJ3mvDdFOK2tRqXFBDIJ7EKCo3/Y3Py1ROlyKZXXTDl5eX1X127M5/lKcbr?=
- =?us-ascii?Q?apTNlX/uN5CxZgpWT7Ovoobr8HOBrSHhhY2r+IbAKbd2QKAaPIBf5qdz/053?=
- =?us-ascii?Q?2I6JjSxKxtxFAJOd1JEQ9YPFagV7q9c/1Df6Ytnm5QGL6jqdiQ3yTJb7Y1YM?=
- =?us-ascii?Q?AR/Ykoq/bzUgJTejNdRo7gkiWafd0k2lrnh5mg6r0HpYteZ9VOp5NP7Ez9od?=
- =?us-ascii?Q?rF+4d6M8CNI+xDn7vMrswo4TT83+mcwZCZRLWch9KmzvyJZq+hftMkozKuji?=
- =?us-ascii?Q?gHTgE/P2cq/x/w3yL4gnChMf3ixcWQINo3R2qnVUi0k6xRpwqbpqvocmbv2Y?=
- =?us-ascii?Q?YRqAzarbHw3kknITJ4cGazSoD3P7XjIAguZVH8CLQMUKHkeKUg6YYuDTRp9Z?=
- =?us-ascii?Q?Bc7MCc20iKsZZFf3yRBXWx50l5Vtn9v4jrOQJgtoLa3dIXnRQFKU7DYKLyyL?=
- =?us-ascii?Q?NeuFNiIRUhFprIkPXGYlVsuU59INTcOqSW461auTz3C6RBPHKC0QFK3oXaxv?=
- =?us-ascii?Q?3Rvs7UOioZ8AQvxsIb+sCKsCPwODevXn9VWdeSEVh5K8v4kf23acm0XkHKgO?=
- =?us-ascii?Q?Zu5IdXsyk4MAGLixg0G/ReC4Hov2MCAwj5gErBFNSfl2bPiGeFNn+OqVLD3L?=
- =?us-ascii?Q?CpKe1/0nFEd8ZR+GZ9gXNc7CqMcqMnKpT47RH67ct14G/9Exgtt+T7Bdyhfi?=
- =?us-ascii?Q?KweqcTZKU2dhjmoi6ei0F+LcroM+J3EGtxSvT4uUay1+tgYUr6iEQFmighIt?=
- =?us-ascii?Q?p1IFcI2LC5asZOxN0qu0yMd6P635QogGRrOvmR7slYoV6j1UXM7EcGl98gsh?=
- =?us-ascii?Q?jc820Ct/ge5xcgtT5oOQNAAA9pACK9lryjsJKnADX4UCEQ8jltIvYA0bG+kp?=
- =?us-ascii?Q?sIf52jdts0gsilHFVdhm+I2f3tlUhlQ/r+2CZUk1ciilmXuRf4z3uYkn9svd?=
- =?us-ascii?Q?g41vLG5G5ncW5DmSmzKAoOwnzyKFTfzGkBMbsyOolJLC1WPnOEjUB9zBohip?=
- =?us-ascii?Q?5VxYG9fsH2xf6fCnFIzjn3VPSH2pBK2+xhi3EuN3x7PAKeiZCQjjQMX+vc0i?=
- =?us-ascii?Q?13OVnYolQaWV4FgjDXPEXPdY/DLB42UJHxerW/wPWsZ8aM/+H/ZfMbuFiwAZ?=
- =?us-ascii?Q?okvWOcSR9XlmCQMjnsr/YKeHk8Ddy/KDpNpxxwwP7wksf6CK6xd94DsrJ86y?=
- =?us-ascii?Q?STzCApD+LTc7NA/DaZKpVa5vErFrFUosOm6nTRz9da5TMpS/ongVKc1bqhgs?=
- =?us-ascii?Q?Jj2Pk7uYjLDetrde5eSQq633ab0JeCKR1SaqzYeMwEq3+TVUUJlBqWHMgQXa?=
- =?us-ascii?Q?gqQhNM0=3D?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?aAFMvGAtQOOC0hOmioKRW1uFBkuXlyx2xd5gcKEzNr8Eebs69JePd2+qnkM6?=
+ =?us-ascii?Q?QAJcloKtoonlScHVhEsr0rgOKhdrKr7gzjETO3SepCytK29/5bbS2q/m6XQF?=
+ =?us-ascii?Q?6RRHGc9eDvWrpmar5vGANHRwDTi8iG6CWD86EV3btxTVxloe55kKpGvhhKfA?=
+ =?us-ascii?Q?X3gZF8VcA9Q9ClbH9dnjoyBxC/bKZ4XJQ/WUi33V4p/NKeE9dXo7itOC29h4?=
+ =?us-ascii?Q?yN3mhcqi4lhj4ATOchRNkvz+yadEDScJzqrU3U0OHG5PN/2lNucnmeco04Ha?=
+ =?us-ascii?Q?DBCoL/4gw1LapbHQV7UmSYlhuc0e5TWqQ02QmvG5QbcfqUiH065cuddUVzif?=
+ =?us-ascii?Q?Dw93yH+/31T8xoHcYCKjRdRTstJujyZCg4DGfAa8zDf2IFUAcf1F2lQQof/t?=
+ =?us-ascii?Q?txZOd3GALR3JTQLgeCwtVklr8JADN7iMu0PnlGPP/cK+3nIyrWxXZjbyzTpo?=
+ =?us-ascii?Q?nrRwa1GyZv5K/hQwS8Q1ER/eosDsF5YSz3KQXlr7HqcdGZjA9tbSaihGCMld?=
+ =?us-ascii?Q?ZbJd7JaabYs8dX1iTe62yNnoqg8wSY2L2e/o4KqmqNOt4gevcsekl94tRXRq?=
+ =?us-ascii?Q?F1KAyOBlzSw3O9aUjcLr8DmWZ/eTbv1B7dl+dxU6LYdMPF1xpmg/YIQI/bsy?=
+ =?us-ascii?Q?Ra0mwqlTZo7xCxXMInD2JJc4rpRwbczaUo5My5LI96hup045Tn/bBVYUGVcv?=
+ =?us-ascii?Q?XJEGdGc8x0jOKGzm1Er9cXyoGaKjXWZozewmNONvcjIYlMErhzh0dGUbzqA0?=
+ =?us-ascii?Q?h2E4lNjdo+Wm/CNENmOQkJ1QM8EJKdZwKvCs+eByb8g+Yz9mYSnEpiRTRJ23?=
+ =?us-ascii?Q?+W+/ShWKW0jcxC4xtxpgVbayyaKlUJVpMr5tR3AExgOubKFoU9oY5slIo42G?=
+ =?us-ascii?Q?nM3STo48cqmPpp1lAXnRBlcKf+C25lNu+nrHPHkdl0SKtTXYVv8psZl76oT+?=
+ =?us-ascii?Q?oSBlkn6pLogeAInClGgfJvuf2FGGOxdsFJLMpPCr/U8CTcF6adpVjNA/a9kc?=
+ =?us-ascii?Q?n3JxmXBelaKw9LptEnokyibiwxaoGrb86jXJa+Wg3xganpGfSfiHLQhQ3eP6?=
+ =?us-ascii?Q?1dUdD9QYQA7xbQ+9IfP828HAMnvypME6kSQv37wwiAtKV+fOIWjv9X1QApS0?=
+ =?us-ascii?Q?1aHuHhfamLj2eMRhcNm55yxiracOg4HyzFzGumW3FcOkMVFLGzsKAt2mRogk?=
+ =?us-ascii?Q?PA0j3EhWG86tCm0wYfPUkUt/aj48vUmdrMpJRK7Wfmpx0cHWjoSWnbYeXq6s?=
+ =?us-ascii?Q?iZQtoXlJvzDlYQ3yvBHMlLfZP62gcFSiJI+IljVJOsvsmstr1PslbAqaRDR4?=
+ =?us-ascii?Q?HrxH6FX4kbsOnK+b1sdUaIE85I/lLn+RsrfycvxWvaZ1Blf2Yd80Ztn7Vopi?=
+ =?us-ascii?Q?rro0Lsk=3D?=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 21:16:31.2644 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0749caa-657b-48fb-370a-08dce7de7b22
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 21:16:31.6701 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d71e5b46-0d48-4eff-e095-08dce7de7b64
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003442.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003448.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7713
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6758
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,388 +134,404 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Pass instance parameter to amdgpu_vcn_sw_fini(), and perform
-sw fini ONLY for the given vcn instance, instead of for all
+Pass instance parameter to amdgpu_vcn_hw_init(), and perform
+hw init ONLY for the given vcn instance, instead of for all
 vcn instances. Modify each vcn generation accordingly.
 
 Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 36 ++++++++++++-------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  2 +-
- drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c   |  5 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   |  5 ++--
- drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 17 ++++++------
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   | 20 +++++++-------
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 21 +++++++--------
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 16 +++++------
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 21 +++++++--------
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 21 +++++++--------
- 10 files changed, 81 insertions(+), 83 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 39 +++++++------
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   | 73 ++++++++++++-------------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 37 ++++++-------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 67 +++++++++++------------
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 21 ++++---
+ drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 21 ++++---
+ 6 files changed, 123 insertions(+), 135 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 791b95867ac2..307615ffeb79 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -248,33 +248,31 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev, int inst)
- 	return 0;
- }
- 
--int amdgpu_vcn_sw_fini(struct amdgpu_device *adev)
-+int amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int inst)
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+index ed972d843f93..f225a0b214d0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+@@ -338,37 +338,36 @@ static int vcn_v2_5_hw_init(struct amdgpu_ip_block *ip_block)
  {
--	int i, j;
--
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	struct amdgpu_ring *ring;
+-	int i, j, r = 0;
++	int inst = ip_block->instance;
++	int i, r = 0;
+ 
+ 	if (amdgpu_sriov_vf(adev))
+ 		r = vcn_v2_5_sriov_start(adev);
+ 
 -	for (j = 0; j < adev->vcn.num_vcn_inst; ++j) {
 -		if (adev->vcn.harvest_config & (1 << j))
 -			continue;
-+	int i;
- 
--		amdgpu_bo_free_kernel(
--			&adev->vcn.inst[j].dpg_sram_bo,
--			&adev->vcn.inst[j].dpg_sram_gpu_addr,
--			(void **)&adev->vcn.inst[j].dpg_sram_cpu_addr);
 +	if (adev->vcn.harvest_config & (1 << inst))
-+		goto done;
++		return r;
  
--		kvfree(adev->vcn.inst[j].saved_bo);
-+	amdgpu_bo_free_kernel(
-+		&adev->vcn.inst[inst].dpg_sram_bo,
-+		&adev->vcn.inst[inst].dpg_sram_gpu_addr,
-+		(void **)&adev->vcn.inst[inst].dpg_sram_cpu_addr);
+-		if (amdgpu_sriov_vf(adev)) {
+-			adev->vcn.inst[j].ring_enc[0].sched.ready = true;
+-			adev->vcn.inst[j].ring_enc[1].sched.ready = false;
+-			adev->vcn.inst[j].ring_enc[2].sched.ready = false;
+-			adev->vcn.inst[j].ring_dec.sched.ready = true;
+-		} else {
++	if (amdgpu_sriov_vf(adev)) {
++		adev->vcn.inst[inst].ring_enc[0].sched.ready = true;
++		adev->vcn.inst[inst].ring_enc[1].sched.ready = false;
++		adev->vcn.inst[inst].ring_enc[2].sched.ready = false;
++		adev->vcn.inst[inst].ring_dec.sched.ready = true;
++	} else {
++
++		ring = &adev->vcn.inst[inst].ring_dec;
  
--		amdgpu_bo_free_kernel(&adev->vcn.inst[j].vcpu_bo,
--					  &adev->vcn.inst[j].gpu_addr,
--					  (void **)&adev->vcn.inst[j].cpu_addr);
-+	kvfree(adev->vcn.inst[inst].saved_bo);
+-			ring = &adev->vcn.inst[j].ring_dec;
++		adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
++						 ring->doorbell_index, inst);
  
--		amdgpu_ring_fini(&adev->vcn.inst[j].ring_dec);
-+	amdgpu_bo_free_kernel(&adev->vcn.inst[inst].vcpu_bo,
-+				  &adev->vcn.inst[inst].gpu_addr,
-+				  (void **)&adev->vcn.inst[inst].cpu_addr);
+-			adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
+-						     ring->doorbell_index, j);
++		r = amdgpu_ring_test_helper(ring);
++		if (r)
++			return r;
  
--		for (i = 0; i < adev->vcn.num_enc_rings; ++i)
--			amdgpu_ring_fini(&adev->vcn.inst[j].ring_enc[i]);
-+	amdgpu_ring_fini(&adev->vcn.inst[inst].ring_dec);
++		for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
++			ring = &adev->vcn.inst[inst].ring_enc[i];
+ 			r = amdgpu_ring_test_helper(ring);
+ 			if (r)
+ 				return r;
+-
+-			for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
+-				ring = &adev->vcn.inst[j].ring_enc[i];
+-				r = amdgpu_ring_test_helper(ring);
+-				if (r)
+-					return r;
+-			}
+ 		}
+ 	}
  
--		amdgpu_ucode_release(&adev->vcn.inst[j].fw);
--	}
-+	for (i = 0; i < adev->vcn.num_enc_rings; ++i)
-+		amdgpu_ring_fini(&adev->vcn.inst[inst].ring_enc[i]);
- 
-+	amdgpu_ucode_release(&adev->vcn.inst[inst].fw);
-+done:
- 	mutex_destroy(&adev->vcn.vcn1_jpeg1_workaround);
- 	mutex_destroy(&adev->vcn.vcn_pg_lock);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-index 825b70a396cd..883b9f9776a1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-@@ -485,7 +485,7 @@ enum vcn_ring_type {
- 
- int amdgpu_vcn_early_init(struct amdgpu_device *adev, int inst);
- int amdgpu_vcn_sw_init(struct amdgpu_device *adev, int inst);
--int amdgpu_vcn_sw_fini(struct amdgpu_device *adev);
-+int amdgpu_vcn_sw_fini(struct amdgpu_device *adev, int inst);
- int amdgpu_vcn_suspend(struct amdgpu_device *adev);
- int amdgpu_vcn_resume(struct amdgpu_device *adev);
- void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-index 70d865724463..8203f80be316 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-@@ -222,8 +222,9 @@ static int vcn_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
-  */
- static int vcn_v1_0_sw_fini(struct amdgpu_ip_block *ip_block)
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index c45bebeb0aaa..2d1835d06ecb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -345,8 +345,9 @@ static int vcn_v3_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ static int vcn_v3_0_hw_init(struct amdgpu_ip_block *ip_block)
  {
--	int r;
  	struct amdgpu_device *adev = ip_block->adev;
++	int inst = ip_block->instance;
+ 	struct amdgpu_ring *ring;
+-	int i, j, r;
++	int j, r;
+ 
+ 	if (amdgpu_sriov_vf(adev)) {
+ 		r = vcn_v3_0_start_sriov(adev);
+@@ -354,57 +355,53 @@ static int vcn_v3_0_hw_init(struct amdgpu_ip_block *ip_block)
+ 			return r;
+ 
+ 		/* initialize VCN dec and enc ring buffers */
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-			if (adev->vcn.harvest_config & (1 << i))
+-				continue;
++		if (adev->vcn.harvest_config & (1 << inst))
++			return 0;
++
++		ring = &adev->vcn.inst[inst].ring_dec;
++		if (amdgpu_vcn_is_disabled_vcn(adev, VCN_DECODE_RING, inst)) {
++			ring->sched.ready = false;
++			ring->no_scheduler = true;
++			dev_info(adev->dev, "ring %s is disabled by hypervisor\n", ring->name);
++		} else {
++			ring->wptr = 0;
++			ring->wptr_old = 0;
++			vcn_v3_0_dec_ring_set_wptr(ring);
++			ring->sched.ready = true;
++		}
+ 
+-			ring = &adev->vcn.inst[i].ring_dec;
+-			if (amdgpu_vcn_is_disabled_vcn(adev, VCN_DECODE_RING, i)) {
++		for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
++			ring = &adev->vcn.inst[inst].ring_enc[j];
++			if (amdgpu_vcn_is_disabled_vcn(adev, VCN_ENCODE_RING, inst)) {
+ 				ring->sched.ready = false;
+ 				ring->no_scheduler = true;
+ 				dev_info(adev->dev, "ring %s is disabled by hypervisor\n", ring->name);
+ 			} else {
+ 				ring->wptr = 0;
+ 				ring->wptr_old = 0;
+-				vcn_v3_0_dec_ring_set_wptr(ring);
++				vcn_v3_0_enc_ring_set_wptr(ring);
+ 				ring->sched.ready = true;
+ 			}
+-
+-			for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+-				ring = &adev->vcn.inst[i].ring_enc[j];
+-				if (amdgpu_vcn_is_disabled_vcn(adev, VCN_ENCODE_RING, i)) {
+-					ring->sched.ready = false;
+-					ring->no_scheduler = true;
+-					dev_info(adev->dev, "ring %s is disabled by hypervisor\n", ring->name);
+-				} else {
+-					ring->wptr = 0;
+-					ring->wptr_old = 0;
+-					vcn_v3_0_enc_ring_set_wptr(ring);
+-					ring->sched.ready = true;
+-				}
+-			}
+ 		}
+-	} else {
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-			if (adev->vcn.harvest_config & (1 << i))
+-				continue;
++	}
+ 
+-			ring = &adev->vcn.inst[i].ring_dec;
++	if (adev->vcn.harvest_config & (1 << inst))
++		return 0;
+ 
+-			adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
+-						     ring->doorbell_index, i);
++	ring = &adev->vcn.inst[inst].ring_dec;
+ 
+-			r = amdgpu_ring_test_helper(ring);
+-			if (r)
+-				return r;
++	adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
++					 ring->doorbell_index, inst);
+ 
+-			for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+-				ring = &adev->vcn.inst[i].ring_enc[j];
+-				r = amdgpu_ring_test_helper(ring);
+-				if (r)
+-					return r;
+-			}
+-		}
++	r = amdgpu_ring_test_helper(ring);
++	if (r)
++		return r;
++
++	for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
++		ring = &adev->vcn.inst[inst].ring_enc[j];
++		r = amdgpu_ring_test_helper(ring);
++		if (r)
++			return r;
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+index c87b4e46f2b0..afe2eba9aac4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
+@@ -299,37 +299,34 @@ static int vcn_v4_0_hw_init(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 	struct amdgpu_ring *ring;
+-	int i, r;
 +	int inst = ip_block->instance;
 +	int r;
  
- 	r = amdgpu_vcn_suspend(adev);
- 	if (r)
-@@ -231,7 +232,7 @@ static int vcn_v1_0_sw_fini(struct amdgpu_ip_block *ip_block)
+ 	if (amdgpu_sriov_vf(adev)) {
+ 		r = vcn_v4_0_start_sriov(adev);
+ 		if (r)
+ 			return r;
  
- 	jpeg_v1_0_sw_fini(ip_block);
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-index 834311e13a4c..0481a07054eb 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-@@ -245,9 +245,10 @@ static int vcn_v2_0_sw_init(struct amdgpu_ip_block *ip_block)
-  */
- static int vcn_v2_0_sw_fini(struct amdgpu_ip_block *ip_block)
- {
--	int r, idx;
- 	struct amdgpu_device *adev = ip_block->adev;
-+	int inst = ip_block->instance;
- 	volatile struct amdgpu_fw_shared *fw_shared = adev->vcn.inst->fw_shared.cpu_addr;
-+	int r, idx;
- 
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
- 		fw_shared->present_flag_0 = 0;
-@@ -260,7 +261,7 @@ static int vcn_v2_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-index f6d2e3e3bf32..ed972d843f93 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-@@ -297,17 +297,18 @@ static int vcn_v2_5_sw_init(struct amdgpu_ip_block *ip_block)
-  */
- static int vcn_v2_5_sw_fini(struct amdgpu_ip_block *ip_block)
- {
--	int i, r, idx;
- 	struct amdgpu_device *adev = ip_block->adev;
- 	volatile struct amdgpu_fw_shared *fw_shared;
-+	int inst = ip_block->instance;
-+	int r, idx;
- 
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
 -			if (adev->vcn.harvest_config & (1 << i))
 -				continue;
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--		}
 +		if (adev->vcn.harvest_config & (1 << inst))
-+			goto done;
-+
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+	done:
- 		drm_dev_exit(idx);
- 	}
++			return 0;
  
-@@ -319,7 +320,7 @@ static int vcn_v2_5_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index 9b62296cc233..c45bebeb0aaa 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -306,19 +306,19 @@ static int vcn_v3_0_sw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v3_0_sw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
--	int i, r, idx;
-+	int inst = ip_block->instance;
-+	int r, idx;
- 
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
--			volatile struct amdgpu_fw_shared *fw_shared;
-+		volatile struct amdgpu_fw_shared *fw_shared;
- 
+-			ring = &adev->vcn.inst[i].ring_enc[0];
+-			ring->wptr = 0;
+-			ring->wptr_old = 0;
+-			vcn_v4_0_unified_ring_set_wptr(ring);
+-			ring->sched.ready = true;
+-		}
++		ring = &adev->vcn.inst[inst].ring_enc[0];
++		ring->wptr = 0;
++		ring->wptr_old = 0;
++		vcn_v4_0_unified_ring_set_wptr(ring);
++		ring->sched.ready = true;
+ 	} else {
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
 -			if (adev->vcn.harvest_config & (1 << i))
 -				continue;
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--			fw_shared->sw_ring.is_enabled = false;
--		}
 +		if (adev->vcn.harvest_config & (1 << inst))
-+			goto done;
++			return 0;
  
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+		fw_shared->sw_ring.is_enabled = false;
-+	done:
- 		drm_dev_exit(idx);
+-			ring = &adev->vcn.inst[i].ring_enc[0];
++		ring = &adev->vcn.inst[inst].ring_enc[0];
+ 
+-			adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
+-					((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * i), i);
++		adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
++				((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * inst), inst);
+ 
+-			r = amdgpu_ring_test_helper(ring);
+-			if (r)
+-				return r;
+-		}
++		r = amdgpu_ring_test_helper(ring);
++		if (r)
++			return r;
  	}
  
-@@ -329,7 +329,7 @@ static int vcn_v3_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 	return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 79d5ef8f857c..c87b4e46f2b0 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -258,20 +258,19 @@ static int vcn_v4_0_sw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v4_0_sw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
--	int i, r, idx;
-+	int inst = ip_block->instance;
-+	int r, idx;
- 
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
--			volatile struct amdgpu_vcn4_fw_shared *fw_shared;
-+		volatile struct amdgpu_vcn4_fw_shared *fw_shared;
- 
--			if (adev->vcn.harvest_config & (1 << i))
--				continue;
--
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--			fw_shared->sq.is_enabled = 0;
--		}
-+		if (adev->vcn.harvest_config & (1 << inst))
-+			goto done;
- 
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+		fw_shared->sq.is_enabled = 0;
-+	done:
- 		drm_dev_exit(idx);
- 	}
- 
-@@ -282,7 +281,7 @@ static int vcn_v4_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
+ 	return 0;
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index 0932e992d088..0b55d801ae88 100644
+index 0b55d801ae88..0dc26dc173cb 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -219,16 +219,16 @@ static int vcn_v4_0_3_sw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v4_0_3_sw_fini(struct amdgpu_ip_block *ip_block)
+@@ -257,49 +257,46 @@ static int vcn_v4_0_3_hw_init(struct amdgpu_ip_block *ip_block)
  {
  	struct amdgpu_device *adev = ip_block->adev;
--	int i, r, idx;
+ 	struct amdgpu_ring *ring;
+-	int i, r, vcn_inst;
 +	int inst = ip_block->instance;
-+	int r, idx;
++	int r = 0, vcn_inst;
  
- 	if (drm_dev_enter(&adev->ddev, &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
--			volatile struct amdgpu_vcn4_fw_shared *fw_shared;
-+		volatile struct amdgpu_vcn4_fw_shared *fw_shared;
-+
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+		fw_shared->sq.is_enabled = cpu_to_le32(false);
+ 	if (amdgpu_sriov_vf(adev)) {
+ 		r = vcn_v4_0_3_start_sriov(adev);
+ 		if (r)
+ 			return r;
  
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--			fw_shared->sq.is_enabled = cpu_to_le32(false);
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-			ring = &adev->vcn.inst[i].ring_enc[0];
+-			ring->wptr = 0;
+-			ring->wptr_old = 0;
+-			vcn_v4_0_3_unified_ring_set_wptr(ring);
+-			ring->sched.ready = true;
 -		}
- 		drm_dev_exit(idx);
++		ring = &adev->vcn.inst[inst].ring_enc[0];
++		ring->wptr = 0;
++		ring->wptr_old = 0;
++		vcn_v4_0_3_unified_ring_set_wptr(ring);
++		ring->sched.ready = true;
+ 	} else {
+-		for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-			vcn_inst = GET_INST(VCN, i);
+-			ring = &adev->vcn.inst[i].ring_enc[0];
+-
+-			if (ring->use_doorbell) {
+-				adev->nbio.funcs->vcn_doorbell_range(
+-					adev, ring->use_doorbell,
+-					(adev->doorbell_index.vcn.vcn_ring0_1 << 1) +
+-						9 * vcn_inst,
+-					adev->vcn.inst[i].aid_id);
+-
+-				WREG32_SOC15(
+-					VCN, GET_INST(VCN, ring->me),
+-					regVCN_RB1_DB_CTRL,
+-					ring->doorbell_index
+-							<< VCN_RB1_DB_CTRL__OFFSET__SHIFT |
+-						VCN_RB1_DB_CTRL__EN_MASK);
+-
+-				/* Read DB_CTRL to flush the write DB_CTRL command. */
+-				RREG32_SOC15(
+-					VCN, GET_INST(VCN, ring->me),
+-					regVCN_RB1_DB_CTRL);
+-			}
+-
+-			r = amdgpu_ring_test_helper(ring);
+-			if (r)
+-				return r;
++		vcn_inst = GET_INST(VCN, inst);
++		ring = &adev->vcn.inst[inst].ring_enc[0];
++
++		if (ring->use_doorbell) {
++			adev->nbio.funcs->vcn_doorbell_range(
++				adev, ring->use_doorbell,
++				(adev->doorbell_index.vcn.vcn_ring0_1 << 1) +
++					9 * vcn_inst,
++				adev->vcn.inst[inst].aid_id);
++
++			WREG32_SOC15(
++				VCN, GET_INST(VCN, ring->me),
++				regVCN_RB1_DB_CTRL,
++				ring->doorbell_index
++						<< VCN_RB1_DB_CTRL__OFFSET__SHIFT |
++					VCN_RB1_DB_CTRL__EN_MASK);
++
++			/* Read DB_CTRL to flush the write DB_CTRL command. */
++			RREG32_SOC15(
++				VCN, GET_INST(VCN, ring->me),
++				regVCN_RB1_DB_CTRL);
+ 		}
++
++		r = amdgpu_ring_test_helper(ring);
++		if (r)
++			return r;
  	}
  
-@@ -239,7 +239,7 @@ static int vcn_v4_0_3_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
+ 	return r;
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-index e551ba1d1e12..b88fdb00cc5e 100644
+index b88fdb00cc5e..36e4477c99f3 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-@@ -227,20 +227,19 @@ static int vcn_v4_0_5_sw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v4_0_5_sw_fini(struct amdgpu_ip_block *ip_block)
+@@ -268,21 +268,20 @@ static int vcn_v4_0_5_hw_init(struct amdgpu_ip_block *ip_block)
  {
  	struct amdgpu_device *adev = ip_block->adev;
--	int i, r, idx;
+ 	struct amdgpu_ring *ring;
+-	int i, r;
 +	int inst = ip_block->instance;
-+	int r, idx;
++	int r;
  
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
--			volatile struct amdgpu_vcn4_fw_shared *fw_shared;
--
--			if (adev->vcn.harvest_config & (1 << i))
--				continue;
-+		volatile struct amdgpu_vcn4_fw_shared *fw_shared;
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
++	if (adev->vcn.harvest_config & (1 << inst))
++		return 0;
  
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--			fw_shared->sq.is_enabled = 0;
--		}
-+		if (adev->vcn.harvest_config & (1 << inst))
-+			goto done;
+-		ring = &adev->vcn.inst[i].ring_enc[0];
++	ring = &adev->vcn.inst[inst].ring_enc[0];
  
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+		fw_shared->sq.is_enabled = 0;
-+	done:
- 		drm_dev_exit(idx);
- 	}
+-		adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
+-				((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * i), i);
++	adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
++			((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * inst), inst);
  
-@@ -251,7 +250,7 @@ static int vcn_v4_0_5_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
+-		r = amdgpu_ring_test_helper(ring);
+-		if (r)
+-			return r;
+-	}
++	r = amdgpu_ring_test_helper(ring);
++	if (r)
++		return r;
  
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
+ 	return 0;
+ }
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-index dc15a74bb3d8..15cdc7be9062 100644
+index 15cdc7be9062..687d413a50b7 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-@@ -194,20 +194,19 @@ static int vcn_v5_0_0_sw_init(struct amdgpu_ip_block *ip_block)
- static int vcn_v5_0_0_sw_fini(struct amdgpu_ip_block *ip_block)
+@@ -232,21 +232,20 @@ static int vcn_v5_0_0_hw_init(struct amdgpu_ip_block *ip_block)
  {
  	struct amdgpu_device *adev = ip_block->adev;
--	int i, r, idx;
+ 	struct amdgpu_ring *ring;
+-	int i, r;
 +	int inst = ip_block->instance;
-+	int r, idx;
++	int r;
  
- 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--		for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
--			volatile struct amdgpu_vcn5_fw_shared *fw_shared;
--
--			if (adev->vcn.harvest_config & (1 << i))
--				continue;
-+		volatile struct amdgpu_vcn5_fw_shared *fw_shared;
+-	for (i = 0; i < adev->vcn.num_vcn_inst; ++i) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
++	if (adev->vcn.harvest_config & (1 << inst))
++		return 0;
  
--			fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
--			fw_shared->present_flag_0 = 0;
--			fw_shared->sq.is_enabled = 0;
--		}
-+		if (adev->vcn.harvest_config & (1 << inst))
-+			goto done;
+-		ring = &adev->vcn.inst[i].ring_enc[0];
++	ring = &adev->vcn.inst[inst].ring_enc[0];
  
-+		fw_shared = adev->vcn.inst[inst].fw_shared.cpu_addr;
-+		fw_shared->present_flag_0 = 0;
-+		fw_shared->sq.is_enabled = 0;
-+	done:
- 		drm_dev_exit(idx);
- 	}
+-		adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
+-			((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * i), i);
++	adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
++		((adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 8 * inst), inst);
  
-@@ -215,7 +214,7 @@ static int vcn_v5_0_0_sw_fini(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
+-		r = amdgpu_ring_test_helper(ring);
+-		if (r)
+-			return r;
+-	}
++	r = amdgpu_ring_test_helper(ring);
++	if (r)
++		return r;
  
--	r = amdgpu_vcn_sw_fini(adev);
-+	r = amdgpu_vcn_sw_fini(adev, inst);
- 
- 	kfree(adev->vcn.ip_dump);
- 
+ 	return 0;
+ }
 -- 
 2.34.1
 
