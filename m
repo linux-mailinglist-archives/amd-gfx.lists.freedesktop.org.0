@@ -2,73 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84705996C04
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 15:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACF5996C00
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Oct 2024 15:32:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5CB10E6FE;
-	Wed,  9 Oct 2024 13:32:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1127410E70B;
+	Wed,  9 Oct 2024 13:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="k0MLtWsK";
+	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NRYiLHUC";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8ACA10E240;
- Tue,  8 Oct 2024 19:16:36 +0000 (UTC)
-Received: by mail-pf1-f172.google.com with SMTP id
- d2e1a72fcca58-71dfc1124cdso105046b3a.1; 
- Tue, 08 Oct 2024 12:16:36 -0700 (PDT)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B84810E5BA
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 20:38:06 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-a9932aa108cso590533166b.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 08 Oct 2024 13:38:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728414996; x=1729019796; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Z7qu86Ysicdsx9sM/yuAIgyD1+rSLH54SdSYbKdh/+U=;
- b=k0MLtWsKmyZDeWPLhuRgxd9aFshcQexZFKdePQ9NTQV27XLSveMzO+77kCO9KoY1f/
- hBXMQPSiBJv1BsWXBKQx3KLHndWJQ/MMLN2MdUtmR+Q79Sm4EkiipDFD31609tljVcD6
- Pzc+FGIPOQahz0IY3U5yxXvkn9o7Hd5tM84JaLYU+puivhp0i9jEAofA37/yd3Zq061O
- l2sLz7HHdKuPjE5ISDAiq8Cby5egrbXE5OX2a+igalPeIkb2i3MkPPUzp6j/gbkYMqqO
- DVqXWSGjlb9RjU02v1qf6HMResaEPwJgvOPvdltprls607VY9veSDw6YaYrd9ECV7xdu
- gDzA==
+ d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728419885; x=1729024685;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
+ b=NRYiLHUCQ7TImUks4fAatmLv/c5uDIiISlrDWnTFQR02uom9zRcW+Uyi630EwtrLOS
+ rpn+clus4PoEaoSKGREcBZOO2TeBK8i5QT71Yh24xUCMM4+QelwwhGX8uPf306b+WpN6
+ h3Ibpnr5FCh7DfMRkj0zKWnT4q92PmClirZcHgUJjwk2Y67XZ2JnngcsUIxzaQPEZFAk
+ lse2Gk04nm8/j/zP2JcnXCFg7oXyNfhHisd2bbh8Fo0IPEJ9uLkhBf3DWnCN4R5kk/va
+ AdIQfqmNlleVyM7MvWnO7ARvwiYVRvMi9vgLzbzWZbWEfUvXyryK0A7KH3BUim9hkKEm
+ 7zzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728414996; x=1729019796;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Z7qu86Ysicdsx9sM/yuAIgyD1+rSLH54SdSYbKdh/+U=;
- b=K/fysrh0pIPWyLFnC7Zbqxg/waz756RnbPU6O6nGilFgU62KlXbgD+Zlh+bq01zM2b
- wdnh5WlM+pO5OUvrrwxFi56YCif3GeZiKoKl473xUKUZDgjj2SXB6/8Ql1oTBcWEBfHD
- p5+mtjZ2RmwM8s0faTErfooUqOAUEoxmKdpMo0iQfUuCVm4+TjHxR9i0iK3TzpMS3mnc
- ZYFc24Vk0CheMLhd6Up5tEid7225P+M9Us5XNPnbyypcWeD9CYTisvkT4dIRNIDtjyn0
- Og0gJ+DhECGwaP114MMMvEplRljcXazAzBISa1j9WjM8NEQDz3kCqUZv8xqYEwtLECBr
- jV1w==
+ d=1e100.net; s=20230601; t=1728419885; x=1729024685;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
+ b=OmPxFg4gTw+cFm0LJVpvXeOoar7VG1Ffa/ELZ2e81apX5lC0jo/rcrKyErkbCdVuc7
+ 51LDoR2Vu3ATd3CvKPS13OnPFCOfyg5fk5pAAIIFGKEbiLQDrU1LrUyyurkbBSgxhu2z
+ QF53NGt1l7L2bbOOzN6czUuYQQ6dTLcUo7ND4Nt82xaCoe5YYqamgAms3sU4da9C4lUm
+ KoN9S9CPiCk74kOsRtkq9Tr1OEN1B+tUWLXqGn+Fb5Aaq2fca+/9jfaT/8CM9HwE9yLK
+ vEZB7epJmsITF3CuXplHqzIFreMV60poMuH+7eeTThCg3VhrhSvwhQVCAaZhLHbhRnLM
+ iUZA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUJBN+HyA4sGkAXh3rUt/n7qlQq2aD/R34VSm45IeNPrHp53Dy1lKiCMdHvdxk8dwEx8xYdNjmOQQ8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzQ22lOhVcnu6Ba6PbuEPac60mOcjBXrlR9QauVTMtsf/f6KT3o
- 0wTfLAZXec+iAUTF9ddlOF/qdVqfCROxkArGZS3lF8pLxYnusAae
-X-Google-Smtp-Source: AGHT+IG11rsBrtdL3pEggLyoVCWr0nW6/pa+HBU7JaoO06ddPz9+dy2vVAYCq5o1iTlk25NJF+qmtw==
-X-Received: by 2002:a05:6a00:c94:b0:71d:fbc9:e5b2 with SMTP id
- d2e1a72fcca58-71e1d6d2014mr169431b3a.14.1728414995947; 
- Tue, 08 Oct 2024 12:16:35 -0700 (PDT)
-Received: from advait-kdeneon.. ([2405:201:1e:f1d5:c7a7:6c1f:8104:8963])
+ AJvYcCURyaqzqXuxkOUHrO4oq4l7L4oqUEnGsox2DCGGbxwu/NqAP3tNtZkNz6yZkTAC8VBlVMY2pBwn@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywsh9X+yN+RmSzyY9XIk+V4QMFkklXXj1pbe5YG9i7SDGjTvv2Y
+ YJ1A1RcmB2wD1ovlOaikQ9h1XLZgWxfj6Lt9lhzFkEDwDfirjKmwp+G213K8AMyReyhIhmwV7y9
+ E
+X-Google-Smtp-Source: AGHT+IFQsuFQDnMORn6KRqls83kXMRALTmz1xji/Zv3nzyXsaV17OwyYMIY5gtZ7u9n9SjQRNHRlFg==
+X-Received: by 2002:a17:907:94d4:b0:a8d:250a:52b2 with SMTP id
+ a640c23a62f3a-a998d114bbemr3268366b.6.1728419884897; 
+ Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:c420:a9b6:c5e1:5b65])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-71dfea52097sm4650939b3a.103.2024.10.08.12.16.29
+ a640c23a62f3a-a996274deeesm196971266b.103.2024.10.08.13.38.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Oct 2024 12:16:35 -0700 (PDT)
-From: Advait Dhamorikar <advaitdhamorikar@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, simona@ffwll.ch, leo.liu@amd.com,
- sathishkumar.sundararaju@amd.com, saleemkhan.jamadar@amd.com,
- sonny.jiang@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- anupnewsmail@gmail.com, Advait Dhamorikar <advaitdhamorikar@gmail.com>
-Subject: [PATCH-next v3] drm/amdgpu: Cleanup shift coding style
-Date: Wed,  9 Oct 2024 00:46:23 +0530
-Message-Id: <20241008191623.8171-1-advaitdhamorikar@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
+Date: Tue, 8 Oct 2024 22:38:02 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ linux-bluetooth@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-crypto@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-i3c@lists.infradead.org, 
+ linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
+ patches@opensource.cirrus.com, 
+ iommu@lists.linux.dev, imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
+ linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-mtd@lists.infradead.org, 
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-pci@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-staging@lists.linux.dev, 
+ linux-usb@vger.kernel.org, linux-serial@vger.kernel.org,
+ greybus-dev@lists.linaro.org, asahi@lists.linux.dev, rafael@kernel.org,
+ Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
+Message-ID: <ttmnzgsdyng5vab63pvj7csrotbsmwnultjelvdotrvyg2snac@iv7afgect5f3>
+References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
+ <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
+ <20241007184924.GH14766@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="2ocqjla6tcmukjn3"
+Content-Disposition: inline
+In-Reply-To: <20241007184924.GH14766@pendragon.ideasonboard.com>
 X-Mailman-Approved-At: Wed, 09 Oct 2024 13:32:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,72 +109,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Improves the coding style by updating bit-shift
-operations in the amdgpu_jpeg.c driver file.
-It ensures consistency and avoids potential issues
-by explicitly using 1U and 1ULL for unsigned
-and unsigned long long shifts in all relevant instances.
 
+--2ocqjla6tcmukjn3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Advait Dhamorikar <advaitdhamorikar@gmail.com>
----
-v1->v2: address review comments
-https://lore.kernel.org/lkml/CAJ7bepJrm9tJJMSZXz0B_94y8817X4oFpwnrTmUHeagOFgVL7g@mail.gmail.com/
-v2->v3: update changelog and add additional 1U cleanups
-https://lore.kernel.org/lkml/CADnq5_OgZvTgUDvDqDikoUh28jTRm2mOAVV6zAEtWE9RHTFkyA@mail.gmail.com/
+Hello,
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Mon, Oct 07, 2024 at 09:49:24PM +0300, Laurent Pinchart wrote:
+> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
+> > On Fri, 4 Oct 2024 at 11:41, Sakari Ailus <sakari.ailus@linux.intel.com=
+> wrote:
+> > >
+> > > Hello everyone,
+> > >
+> > > This set will switch the users of pm_runtime_put_autosuspend() to
+> > > __pm_runtime_put_autosuspend() while the former will soon be re-purpo=
+sed
+> > > to include a call to pm_runtime_mark_last_busy(). The two are almost
+> > > always used together, apart from bugs which are likely common. Going
+> > > forward, most new users should be using pm_runtime_put_autosuspend().
+> > >
+> > > Once this conversion is done and pm_runtime_put_autosuspend() re-purp=
+osed,
+> > > I'll post another set to merge the calls to __pm_runtime_put_autosusp=
+end()
+> > > and pm_runtime_mark_last_busy().
+> >=20
+> > That sounds like it could cause a lot of churns.
+> >=20
+> > Why not add a new helper function that does the
+> > pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
+> > things? Then we can start moving users over to this new interface,
+> > rather than having this intermediate step?
+>=20
+> I think the API would be nicer if we used the shortest and simplest
+> function names for the most common use cases. Following
+> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
+> most common use case. That's why I like Sakari's approach of repurposing
+> pm_runtime_put_autosuspend(), and introducing
+> __pm_runtime_put_autosuspend() for the odd cases where
+> pm_runtime_mark_last_busy() shouldn't be called.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-index 95e2796919fc..995bc28b4fe6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-@@ -47,7 +47,7 @@ int amdgpu_jpeg_sw_init(struct amdgpu_device *adev)
- 		adev->jpeg.indirect_sram = true;
- 
- 	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++) {
--		if (adev->jpeg.harvest_config & (1 << i))
-+		if (adev->jpeg.harvest_config & (1U << i))
- 			continue;
- 
- 		if (adev->jpeg.indirect_sram) {
-@@ -73,7 +73,7 @@ int amdgpu_jpeg_sw_fini(struct amdgpu_device *adev)
- 	int i, j;
- 
- 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
--		if (adev->jpeg.harvest_config & (1 << i))
-+		if (adev->jpeg.harvest_config & (1U << i))
- 			continue;
- 
- 		amdgpu_bo_free_kernel(
-@@ -110,7 +110,7 @@ static void amdgpu_jpeg_idle_work_handler(struct work_struct *work)
- 	unsigned int i, j;
- 
- 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
--		if (adev->jpeg.harvest_config & (1 << i))
-+		if (adev->jpeg.harvest_config & (1U << i))
- 			continue;
- 
- 		for (j = 0; j < adev->jpeg.num_jpeg_rings; ++j)
-@@ -357,7 +357,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_set(void *data, u64 val)
- 	if (!adev)
- 		return -ENODEV;
- 
--	mask = (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
-+	mask = (1ULL << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings)) - 1;
- 	if ((val & mask) == 0)
- 		return -EINVAL;
- 
-@@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(void *data, u64 *val)
- 		for (j = 0; j < adev->jpeg.num_jpeg_rings; ++j) {
- 			ring = &adev->jpeg.inst[i].ring_dec[j];
- 			if (ring->sched.ready)
--				mask |= 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-+				mask |= 1ULL << ((i * adev->jpeg.num_jpeg_rings) + j);
- 		}
- 	}
- 	*val = mask;
--- 
-2.34.1
+That's ok for me. However this patch series isn't the optimal path to
+there because most drivers (i.e. those that already today do
+pm_runtime_mark_last_busy() in combination with
+pm_runtime_put_autosuspend()) have to be patched twice.
 
+The saner route is: Only convert the drivers with a sole
+pm_runtime_put_autosuspend() (i.e. without pm_runtime_mark_last_busy())
+to __pm_runtime_put_autosuspend(). Then add the mark_last_busy() bits to
+pm_runtime_put_autosuspend() and then drop the explicit calls to
+pm_runtime_mark_last_busy() before pm_runtime_put_autosuspend().
+
+(Note this doesn't take into account Rafael's position that
+pm_runtime_put() might be the saner option. My argument applies for that
+conversion analogously.)
+
+Best regards
+Uwe
+
+--2ocqjla6tcmukjn3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcFmCEACgkQj4D7WH0S
+/k6xnwf/QOZhbtT562rFFa3JIiBatDxTcqyEXoXClrP7jSyQFY/VFzq2S2jRHOFt
+wM6zQUX1bTUqDtC4HozJIbQDjLxd3qFgc5RoTRLV8VhRJbcq9cOo5Nf1h4KJ5Ip9
+nhpzoHwUHoEjEHj1f9UvEWfnFAVCSLFxgb14ZDHZyb2pQue3G5OYI2f2cJYT8YVB
+xQktDFp7rUu4xWDTzoIxNKvR1Ipy5fGxdf9R2/+IQhW64sWuDG2ZH6tAmfn6mEb8
+ecspbesJx+NMbZ06Zl7wqBvyj/DpQGgPaCnWUQ5cI0Of/kOzqxh4+65JK68CLLs0
+/Goin2zz55IZITGC5zHuAA07bW/c7Q==
+=7Wup
+-----END PGP SIGNATURE-----
+
+--2ocqjla6tcmukjn3--
