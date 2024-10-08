@@ -2,81 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD814994F26
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A89994F2D
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:25:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E56F88EFF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 948CA10E52B;
 	Tue,  8 Oct 2024 13:25:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IljllP2L";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="htm+1Eg0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
- [209.85.167.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9872310E02A;
- Tue,  8 Oct 2024 03:38:23 +0000 (UTC)
-Received: by mail-lf1-f53.google.com with SMTP id
- 2adb3069b0e04-53993c115cfso6524438e87.2; 
- Mon, 07 Oct 2024 20:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728358701; x=1728963501; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=pjQV5PG9znaGBrtaMHn3b/2H4No4n9NWv2MWFM/8u1s=;
- b=IljllP2LhemnHFBwuyz4NOU6pAX56veUlufzXNCvGxS6jqltjJs1fLRVoO+ugG/A99
- R8/qdEYyZWtcukJzHNpur24jzMchBLGWp/cp5UfDgXEjAi/h1FKcjQeHRRSLe7lbdjU1
- vCFkUusVm8CrRo+YVmJbsBoc7TrkmtGg9ZjsGVF7cg/EJCUom+ElnCsTuknQxhyEMaRa
- 0DJtmqDSTu/1y8+mDHIS/OQdzLIcXoqvUOSal+Y4YAbGZiVxvXKmnJVnIq9iQaPBBx0I
- Fyf0X1E07QNDGUvejHz2JcA2yvivU9zwD47B+7kcqwZM/vrLXZzt2L1BR6Y8HhRH8mKJ
- Kt6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728358701; x=1728963501;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=pjQV5PG9znaGBrtaMHn3b/2H4No4n9NWv2MWFM/8u1s=;
- b=JGO+FtcDnCdK0t9hTqcb4dVVualK44RuB/SfpkYuMPYydrsw7ZW5+ItX3fsifdvhbK
- jHBb3uw8r1KgWq51WY/5BTPbd0hRUJDvFeePiaCNSF8ns9+BKlH50hAjQabEaldXoYsr
- 9sYFzJ+Ba+gbSfpxuG49MYyR/JjsRcMjGT+Qey2plNcrjKMtwW2q16gUHyE+iPldJi6C
- weSUEEN1Ho+doDAf0BXkiEpmUem1KsxFp9vNq2Ods6zH/ORZw+8zEP0qL3CsCrOrqG3X
- 19iYWu3dGH/43ou/yC7lYtQt2uZ5xRPE/0R5AE8Mb5/uNB+825np2NOmH/80+fMUZOsN
- Nz0Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUY9MXmLFC9LsGXhot3BUCRP9lpj541mpDJM2hfxRENRCeBrszbO/Dg5cu931hlU4mjNSojpPx6@lists.freedesktop.org,
- AJvYcCVRTv5txnngIqBOTOakjNqs9KdocvlK2L7rIwOKH+lAAdQsCZ1faLqog9OIbCaea0POG3cLCC6Y0Lfs@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9IPeuUmmfKuBf+xmq8to7OR5ISKqZmVFpgDta4gR+sRS3C3cC
- /dHeHaZTkuv9CK56X7MnM5BRKQ5amO8ABP44uY4t0xZrSclE+0NmNezaeO4rjSE1H9ZWEpgtyD1
- 67QRRiK5p0jfggvfLTighFzGSs58=
-X-Google-Smtp-Source: AGHT+IFsZc1EpKPyldw9Pj60xnYfN/hd9IMOfZUali0NPVvTUoiF3RRl1v9EkanLhvx67ubudnp/8MkDuZJuHGTtcME=
-X-Received: by 2002:a05:6512:3b13:b0:536:550e:7804 with SMTP id
- 2adb3069b0e04-539ab876df9mr7312477e87.18.1728358701155; Mon, 07 Oct 2024
- 20:38:21 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F91C10E492
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 08:20:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=70VY2ovIW7nIB6vrye19Iz5SAQ27aCMCdQXAP3qHBqY=; b=htm+1Eg0OTFQrh52/FB73RFkJA
+ JPj6WDRV8TPEqUpUCjXhpP5AKkxNvJjGQGMABCRvLUoKTayDf3YYakkcSTOxPqeVdZ/LTCAFW3baM
+ 4/W+kYikwxA03uS5GHGx8NoOmuxC8Y1czYijTxLJ+RvOCFIuPfE4iLAl4TzWbynzKfT8ljmGrgWB1
+ 8iKj+GTTTi3AzRa2Yv2iFWCe3UwmyyxauocqM9SYibrAFnVeQMk3KO5M5iI/ZFl3xMItWm81VhKyO
+ WWpbnHllntCISqlqgGxTIglAjbAlM6yL4f8GfYcx7t/HjjwpkbHdhNIbF7Oou9cy6/gKDQINGT+lF
+ vim1ukSw==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1sy5Se-006U83-89; Tue, 08 Oct 2024 10:20:52 +0200
+Message-ID: <4cadbd87-4742-411f-b421-fdb43971ae75@igalia.com>
+Date: Tue, 8 Oct 2024 09:20:51 +0100
 MIME-Version: 1.0
-References: <20241004081618.27599-1-advaitdhamorikar@gmail.com>
- <00761132-75f3-41fd-b571-30b0cbe5565d@amd.com>
- <CADnq5_OKww1YZ1R_OytEMLcNVwdq=-ckc2gqQ+WMyOv6AZ9kqg@mail.gmail.com>
- <007679b9-b7b6-4385-9a2e-2be392cb5f58@amd.com>
- <CAJ7bepLv3Z9RwuxoBS3SfkMjeBkN1LRTjLEjT8Lv4Jdu-CXb6Q@mail.gmail.com>
- <82c60f1b-a52a-4bc7-a635-06198dba0e13@gmail.com>
-In-Reply-To: <82c60f1b-a52a-4bc7-a635-06198dba0e13@gmail.com>
-From: Advait Dhamorikar <advaitdhamorikar@gmail.com>
-Date: Tue, 8 Oct 2024 09:08:09 +0530
-Message-ID: <CAJ7bepJrm9tJJMSZXz0B_94y8817X4oFpwnrTmUHeagOFgVL7g@mail.gmail.com>
-Subject: Re: [PATCH-next] Fix unintentional integer overflow
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: "Sundararaju, Sathishkumar" <sasundar@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>, alexander.deucher@amd.com, 
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com, 
- simona@ffwll.ch, leo.liu@amd.com, sathishkumar.sundararaju@amd.com, 
- saleemkhan.jamadar@amd.com, Veerabadhran.Gopalakrishnan@amd.com, 
- sonny.jiang@amd.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- skhan@linuxfoundation.org, anupnewsmail@gmail.com, 
- "Lazar, Lijo" <lijo.lazar@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/amdgpu: Remove the while loop from
+ amdgpu_job_prepare_job
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tursulin@igalia.com>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>
+References: <20240924095145.2281-1-tursulin@igalia.com>
+ <20240924095145.2281-3-tursulin@igalia.com>
+ <6a7005b4-6af3-48e3-be65-353ffb5961f5@amd.com>
+ <3e1ad979-a11e-43bd-8488-52712b58cec1@igalia.com>
+ <CADnq5_MgTQxMwmoB2_XDFGqwma7=mqKhUPnhcRJ5YJrGk2wSFQ@mail.gmail.com>
+ <f8073d28-111e-4bd3-90ae-f0d4ae3ebfb0@igalia.com>
+ <CADnq5_M8dru6p1OZguKxj7+eDL01fq2vbFpdA9Xn3xCqqO=+kQ@mail.gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <CADnq5_M8dru6p1OZguKxj7+eDL01fq2vbFpdA9Xn3xCqqO=+kQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Oct 2024 13:25:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,126 +69,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
 
-I am not sure if I correctly understood what you meant,  just to clarify
+On 07/10/2024 15:39, Alex Deucher wrote:
+> On Mon, Oct 7, 2024 at 8:52 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
+>>
+>>
+>> On 04/10/2024 15:15, Alex Deucher wrote:
+>>> Applied.  Thanks!
+>>
+>> Thanks Alex!
+>>
+>> Could you perhaps also merge
+>> https://lore.kernel.org/amd-gfx/20240813135712.82611-1-tursulin@igalia.com/
+>> via your tree? If it still applies that is.
+> 
+> Just picked it up.  Thanks!
 
-When you say this
->No, all of this are numerical problems where not taken into account the
->size of the destination type.
+Did you get only 1/2? 2/2 needs more work/review you think or?
 
->Saying that all of that are basically just style cleanups which doesn't
->need to be back-ported in any way, so please drop the Fixes: tag.
+Regards,
 
->And you should probably change the subject line to something like
->"drm/amdgpu: cleanup shift coding style".
+Tvrtko
 
-Are you just talking about this message?
->> There are a few instances where we can use 1U instead of int as
->> harvest_config uses unsigned int
->>(adev->jpeg.harvest_config & (1 << i)
->> However I think they should be fixed in a separate patch?
-
-Or is it intended for the complete previous "Fix unintentional
-overflow" patch as well?
-And I should just send a v3 with the two changes?
-
-Thanks and regards,
-Advait
-
-On Mon, 7 Oct 2024 at 19:26, Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 05.10.24 um 09:05 schrieb Advait Dhamorikar:
-> > Hi Sathish,
-> >
-> >> Please collate the changes together with Lijo's suggestion as well,
-> >> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
-> >> f0b19b84d391.
-> > I could only observe two instances of this error in f0b19b84d391 at:
-> > 'mask =3D (1 << (adev->jpeg.num_jpeg_inst * adev->jpeg.num_jpeg_rings))=
- - 1;`
-> > and `mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);`
-> >
-> > There are a few instances where we can use 1U instead of int as
-> > harvest_config uses unsigned int
-> > (adev->jpeg.harvest_config & (1 << i)
-> > However I think they should be fixed in a separate patch?
->
-> No, all of this are numerical problems where not taken into account the
-> size of the destination type.
->
-> Saying that all of that are basically just style cleanups which doesn't
-> need to be back-ported in any way, so please drop the Fixes: tag.
->
-> And you should probably change the subject line to something like
-> "drm/amdgpu: cleanup shift coding style".
->
-> Regards,
-> Christian.
->
-> >
-> > Thanks and regards,
-> > Advait
-> >
-> > On Sat, 5 Oct 2024 at 09:05, Sundararaju, Sathishkumar <sasundar@amd.co=
-m> wrote:
-> >>
-> >>
-> >> On 10/4/2024 11:30 PM, Alex Deucher wrote:
-> >>> On Fri, Oct 4, 2024 at 5:15=E2=80=AFAM Sundararaju, Sathishkumar
-> >>> <sasundar@amd.com> wrote:
-> >>>> All occurrences of this error fix should have been together in a sin=
-gle patch both in _get and _set callbacks corresponding to f0b19b84d391, pl=
-ease avoid separate patch for each occurrence.
-> >>>>
-> >>>> Sorry Alex, I missed to note this yesterday.
-> >>> I've dropped the patch.  Please pick it up once it's fixed up appropr=
-iately.
-> >> Thanks Alex.
-> >>
-> >> Hi Advait,
-> >> Please collate the changes together with Lijo's suggestion as well,
-> >> "1ULL <<" instead of typecast, there are 3 occurrences of the error in
-> >> f0b19b84d391.
-> >>
-> >> Regards,
-> >> Sathish
-> >>> Thanks,
-> >>>
-> >>> Alex
-> >>>
-> >>>> Regards,
-> >>>> Sathish
-> >>>>
-> >>>>
-> >>>> On 10/4/2024 1:46 PM, Advait Dhamorikar wrote:
-> >>>>
-> >>>> Fix shift-count-overflow when creating mask.
-> >>>> The expression's value may not be what the
-> >>>> programmer intended, because the expression is
-> >>>> evaluated using a narrower integer type.
-> >>>>
-> >>>> Fixes: f0b19b84d391 ("drm/amdgpu: add amdgpu_jpeg_sched_mask debugfs=
-")
-> >>>> Signed-off-by: Advait Dhamorikar <advaitdhamorikar@gmail.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 2 +-
-> >>>>    1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/=
-drm/amd/amdgpu/amdgpu_jpeg.c
-> >>>> index 95e2796919fc..7df402c45f40 100644
-> >>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-> >>>> @@ -388,7 +388,7 @@ static int amdgpu_debugfs_jpeg_sched_mask_get(vo=
-id *data, u64 *val)
-> >>>>     for (j =3D 0; j < adev->jpeg.num_jpeg_rings; ++j) {
-> >>>>     ring =3D &adev->jpeg.inst[i].ring_dec[j];
-> >>>>     if (ring->sched.ready)
-> >>>> - mask |=3D 1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-> >>>> + mask |=3D (u64)1 << ((i * adev->jpeg.num_jpeg_rings) + j);
-> >>>>     }
-> >>>>     }
-> >>>>     *val =3D mask;
->
+> Alex
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> On Fri, Oct 4, 2024 at 3:28 AM Tvrtko Ursulin <tvrtko.ursulin@igalia.com> wrote:
+>>>>
+>>>>
+>>>> On 24/09/2024 13:06, Christian König wrote:
+>>>>> Am 24.09.24 um 11:51 schrieb Tvrtko Ursulin:
+>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>>
+>>>>>> While loop makes it sound like amdgpu_vmid_grab() potentially needs to be
+>>>>>> called multiple times to produce a fence, while in reality all code paths
+>>>>>> either return an error, assign a valid job->vmid or assign a vmid which
+>>>>>> will be valid once the returned fence signals.
+>>>>>>
+>>>>>> Therefore we can remove the loop to make it clear the call does not need
+>>>>>> to be repeated.
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>>>
+>>>>> Oh yeah that's a leftover from when we still had the dependency handling
+>>>>> inside all this.
+>>>>>
+>>>>> Reviewed-by: Christian König <christian.koenig@amd.com> for the whole
+>>>>> series.
+>>>>
+>>>> Thanks - CC Alex if you could merge the trivial series please?
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>>> ---
+>>>>>> I stared for a good while, going back and forth, and couldn't see that
+>>>>>> the
+>>>>>> while loop is needed. But maybe I missed something?
+>>>>>> ---
+>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 2 +-
+>>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>>>>>> index d11cb0ad8c49..85f10b59d09c 100644
+>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+>>>>>> @@ -356,7 +356,7 @@ amdgpu_job_prepare_job(struct drm_sched_job
+>>>>>> *sched_job,
+>>>>>>         if (job->gang_submit)
+>>>>>>             fence = amdgpu_device_switch_gang(ring->adev,
+>>>>>> job->gang_submit);
+>>>>>> -    while (!fence && job->vm && !job->vmid) {
+>>>>>> +    if (!fence && job->vm && !job->vmid) {
+>>>>>>             r = amdgpu_vmid_grab(job->vm, ring, job, &fence);
+>>>>>>             if (r) {
+>>>>>>                 dev_err(ring->adev->dev, "Error getting VM ID (%d)\n", r);
+>>>>>
