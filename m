@@ -2,21 +2,21 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96694995036
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7A3995039
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Oct 2024 15:35:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 454EA10E148;
-	Tue,  8 Oct 2024 13:35:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF1B10E535;
+	Tue,  8 Oct 2024 13:35:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A58A10E535
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1309C10E148
  for <amd-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 13:35:02 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 498DYw1N710103; Tue, 8 Oct 2024 19:04:58 +0530
+ 498DYwg1710108; Tue, 8 Oct 2024 19:04:58 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 498DYwTU710102;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 498DYwhC710107;
  Tue, 8 Oct 2024 19:04:58 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
@@ -24,10 +24,12 @@ To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>
 Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 0/6] optimize insert nop operation on cpu side
-Date: Tue,  8 Oct 2024 19:04:50 +0530
-Message-Id: <20241008133456.710083-1-sunil.khatri@amd.com>
+Subject: [PATCH v2 1/6] drm/amdgpu: optimize insert_nop using multi dwords
+Date: Tue,  8 Oct 2024 19:04:51 +0530
+Message-Id: <20241008133456.710083-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241008133456.710083-1-sunil.khatri@amd.com>
+References: <20241008133456.710083-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -44,24 +46,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-*** BLURB HERE ***
+Optimize the ring_insert_nop fn for n dwords in one
+step rather then call to amdgpu_ring_write for each
+nop packet. This avoid function call for each nop
+packet and also wptr is updated once only.
 
-Sunil Khatri (6):
-  drm/amdgpu: optimize insert_nop using multi dwords
-  drm/amdgpu: optimize fn gfx_v9_4_3_ring_insert_nop
-  drm/amdgpu: optimize fn gfx_v9_ring_insert_nop
-  drm/amdgpu: optimize fn gfx_v10_ring_insert_nop
-  drm/amdgpu: optimize fn gfx_v11_ring_insert_nop
-  drm/amdgpu: optimize fn gfx_v12_ring_insert_nop
-
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 22 +++++++++++++++++++---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   |  5 +----
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   |  5 +----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c   |  5 +----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    |  5 +----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c  |  5 +----
- 6 files changed, 24 insertions(+), 23 deletions(-)
+ 1 file changed, 19 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 03bce2fa866a..910293664902 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -108,10 +108,26 @@ int amdgpu_ring_alloc(struct amdgpu_ring *ring, unsigned int ndw)
+  */
+ void amdgpu_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
+ {
+-	int i;
++	uint32_t occupied, chunk1, chunk2;
++	uint32_t *dst;
+ 
+-	for (i = 0; i < count; i++)
+-		amdgpu_ring_write(ring, ring->funcs->nop);
++	occupied = ring->wptr & ring->buf_mask;
++	dst = &ring->ring[occupied];
++	chunk1 = ring->buf_mask + 1 - occupied;
++	chunk1 = (chunk1 >= count) ? count : chunk1;
++	chunk2 = count - chunk1;
++
++	if (chunk1)
++		memset32(dst, ring->funcs->nop, chunk1);
++
++	if (chunk2) {
++		dst = ring->ring;
++		memset32(dst, ring->funcs->nop, chunk2);
++	}
++
++	ring->wptr += count;
++	ring->wptr &= ring->ptr_mask;
++	ring->count_dw -= count;
+ }
+ 
+ /**
 -- 
 2.34.1
 
